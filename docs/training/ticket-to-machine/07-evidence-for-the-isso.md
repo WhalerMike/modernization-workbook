@@ -88,7 +88,11 @@ You export October's closed findings, verify the package, chain November to it, 
    Chain head 144f5e8494281f83598d2fae5eacac12b9b271c90372c0e503aafc2bd4cf0623; written to out/evidence
    ```
 
-   Open the first line of `out/evidence/records.jsonl` and find `approval`, `executing_identity` and `what_ran`.
+   Print `approval`, `executing_identity` and `what_ran` from the first line of `out/evidence/records.jsonl`:
+
+   ```bash
+   python -c "import json; r=json.loads(open('out/evidence/records.jsonl', encoding='utf-8').readline()); [print(k, json.dumps(r[k])) for k in ('approval', 'executing_identity', 'what_ran')]"
+   ```
 
 3. Verify the package as the ISSO would.
 
@@ -123,13 +127,17 @@ You export October's closed findings, verify the package, chain November to it, 
 
 6. Delete the `out` folder.
 
+   ```bash
+   rm -rf out
+   ```
+
 **Check your work:** you can produce a package for a period, say what its problems are, and show whether a package you received still holds.
 
 ## Unit 5: Exercise: Lab 2 (your test instance)
 
 *Not timed. Not run by the authors.*
 
-Create the evidence reader and check it with `kit_calls.py`, export live from your developer instance, check the date format of `due` and `finished`, and verify the package. Follow [Chapter 07, Lab 2](../../project-plans/developer-workbooks/ticket-to-machine/07-evidence-records.md#lab-2-a-servicenow-developer-instance).
+Create the evidence reader and check its role against the kit's call list, export live from your developer instance, check the date format of `due` and `finished`, and verify the package. Follow [Chapter 07, Lab 2](../../project-plans/developer-workbooks/ticket-to-machine/07-evidence-records.md#lab-2-a-servicenow-developer-instance).
 
 - **You need:** the developer instance from the earlier modules, with at least one finding closed in Module 6's Lab 2.
 - **Back it out:** step 5 deletes `out/evidence-live` and the evidence reader's OAuth client, user and role.

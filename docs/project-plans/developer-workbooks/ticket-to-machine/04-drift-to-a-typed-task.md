@@ -156,13 +156,53 @@ Work in `examples/servicenow-sailpoint`, with Python 3.10 or later and Node.js 1
 
 ## Lab 2: a SailPoint sandbox and a ServiceNow developer instance
 
-Not run by the authors. Use a SailPoint sandbox tenant and the developer instance from Chapters 01 and 02, never production. The ServiceNow endpoint has to be reachable from SailPoint's cloud, because ISC workflows call out from it (*inference*; verify list, item 18).
+Not run by the authors. Use a SailPoint sandbox tenant and the developer instance from Chapters 01 and 02, never production. The ServiceNow endpoint has to be reachable from SailPoint's cloud, because ISC workflows call out from it (*inference*; verify list, item 18). Work in `examples/servicenow-sailpoint`. You'll replace: `<exported-workflow.json>` (the path of the workflow you export in step 2), `<trigger-input.json>` (the path of the trigger input you save in step 3), `<instance>` (your developer instance's name), and `<verifier-client-id>` and `<verifier-client-secret>` (the verifier's OAuth integration from Chapter 02).
 
 1. **Turn on Native Change Detection** on one test source, monitoring account updates and at least one attribute. The trigger fires only when that is on, account updates are monitored and a monitored attribute changed.[^ttm04-ncd]
-2. **Build one HTTP Request step by hand** in the workflow editor, export the workflow, and compare its attribute names with the kit's file; correct the file if they differ (verify list, item 2). Use the workflow client from [Chapter 03](03-sailpoint-client-and-scopes.md), with `sp:workflow:manage`.[^ttm04-workflows]
-3. **Point the step at a capture endpoint first,** or at the developer instance's Scripted REST resource with a test ACL, enable the workflow, and change the monitored attribute on a test account directly on the source. Save the trigger input from the workflow's execution history and run it through `workflow_payload.py`; the payload ServiceNow received must match the tool's output. If it doesn't, the `.$` keys or the input's root differ (verify list, item 3).
-4. **Repeat the change.** The second event should de-duplicate (`200`, `deduplicated: true`) and add one to the record's occurrences.
-5. **Back it out.** Disable and delete the workflow, turn Native Change Detection off on the test source if you turned it on for the lab, put the test account's attribute back, delete the findings from the developer instance, and remove the workflow client.
+2. **Build one HTTP Request step by hand** in the workflow editor and export the workflow. Use the workflow client from [Chapter 03](03-sailpoint-client-and-scopes.md), with `sp:workflow:manage`.[^ttm04-workflows] Compare the step's attribute names with the kit's file:
+
+   ```bash
+   python - sailpoint/workflows/drift-to-servicenow.json "<exported-workflow.json>" <<'EOF'
+   import json, sys
+   def http_attrs(o, found):
+       if isinstance(o, dict):
+           if o.get("actionId") == "sp:http":
+               found |= set(o.get("attributes", {}))
+           for v in o.values():
+               http_attrs(v, found)
+       elif isinstance(o, list):
+           for v in o:
+               http_attrs(v, found)
+       return found
+   kit = http_attrs(json.load(open(sys.argv[1], encoding="utf-8")), set())
+   exported = http_attrs(json.load(open(sys.argv[2], encoding="utf-8")), set())
+   print("only in the kit's file:", sorted(kit - exported))
+   print("only in your export:", sorted(exported - kit))
+   EOF
+   ```
+
+   Two empty lists mean the names agree. If they differ, correct the kit's file to the names your export uses (verify list, item 2).
+
+3. **Point the step at a capture endpoint first,** or at the developer instance's Scripted REST resource with a test ACL, enable the workflow, and change the monitored attribute on a test account directly on the source. Save the trigger input from the workflow's execution history to a file, and run it through the tool:
+
+   ```bash
+   python clients/python/workflow_payload.py --trigger idn:native-change-account-updated --event "<trigger-input.json>"
+   ```
+
+   The payload ServiceNow received must match the tool's output. If it doesn't, the `.$` keys or the input's root differ (verify list, item 3).
+
+4. **Repeat the change** on the same test account. The second event should de-duplicate (`200`, `deduplicated: true`) and add one to the record's occurrences. Read the findings' occurrence counts as the verifier:
+
+   ```bash
+   export SN_ACCESS_TOKEN=$(curl -s -X POST "https://<instance>.service-now.com/oauth_token.do" -d grant_type=client_credentials -d client_id="<verifier-client-id>" -d client_secret="<verifier-client-secret>" | python -c "import json,sys; print(json.load(sys.stdin)['access_token'])")
+   curl -s -H "Authorization: Bearer $SN_ACCESS_TOKEN" -H "Accept: application/json" "https://<instance>.service-now.com/api/now/table/u_identity_finding?sysparm_query=u_source=sailpoint-isc&sysparm_fields=number,u_dedupe_key,u_occurrences"
+   ```
+
+5. **Back it out.** Disable and delete the workflow, turn Native Change Detection off on the test source if you turned it on for the lab, put the test account's attribute back, delete the findings from the developer instance, and remove the workflow client. Clear the token from your shell:
+
+   ```bash
+   unset SN_ACCESS_TOKEN
+   ```
 
 ## The verified facts
 

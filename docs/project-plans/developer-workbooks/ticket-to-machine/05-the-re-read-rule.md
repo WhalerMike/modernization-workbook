@@ -138,13 +138,51 @@ Work in `examples/servicenow-sailpoint`, with Python 3.10 or later and Node.js 1
 
 ## Lab 2: a ServiceNow developer instance
 
-Not run by the authors. Use the developer instance from Chapters 01 and 02, never production, and the verifier user from Chapter 02.
+Not run by the authors. Use the developer instance from Chapters 01 and 02, never production, and the verifier user from Chapter 02. Work in `examples/servicenow-sailpoint`. You'll replace: `<instance>` (your developer instance's name), `<verifier-client-id>` and `<verifier-client-secret>` (the verifier's OAuth integration), `<test-sys_id>` (the `sys_id` of a test finding), and `<graph-tenant-id>`, `<graph-client-id>` and `<graph-cert.pem>` (a test app registration with `User.Read.All`, and the PEM file holding its certificate and key).
 
-1. **Configure the rule** on `u_identity_finding` as the kit's README says (before, update, order 1000, condition `current.state.changes()`), and the system properties: the *Awaiting verification* value, the verifier's `user_name`, the exception role.
+1. **Configure the rule** on `u_identity_finding` as the kit's README says (before, update, order 1000, condition `current.state.changes()`, script `servicenow/business-rule-await-verification.js`), and the system properties: the *Awaiting verification* value, the verifier's `user_name`, the exception role.
 2. **Close a finding as a person.** Set a test finding's state to Closed Complete as an ordinary user. Expect it to land in *Awaiting verification*, with a work note.
-3. **Confirm who the verifier is.** As the verifier's OAuth client, request a token and make one `PATCH` to a test record's work notes; look at the record's history for the user ServiceNow recorded. If it isn't the `user_name` in `x_example_idkit.verifier_user`, the rule will refuse every close (verify list, item 10).
-4. **Close it with evidence.** Set the test finding's `u_intended_state` to something a Graph read of a test user will show, for example `{"accountEnabled": false}` on a disabled test user, and run the client as the verifier, first as a dry run, then with `--apply --table u_identity_finding`. Expect the record closed with `u_evidence`, `u_evidence_hash`, `u_verified_at`, a close note and a JSON attachment.[^ttm05-table][^ttm05-attach]
-5. **Back it out.** Delete the test findings and their attachments, deactivate the business rule if you built it for the lab, and delete the system properties.
+3. **Confirm who the verifier is.** As the verifier's OAuth client, request a token and make one `PATCH` to a test record's work notes:
+
+   ```bash
+   export SN_ACCESS_TOKEN=$(curl -s -X POST "https://<instance>.service-now.com/oauth_token.do" -d grant_type=client_credentials -d client_id="<verifier-client-id>" -d client_secret="<verifier-client-secret>" | python -c "import json,sys; print(json.load(sys.stdin)['access_token'])")
+   curl -s -w "\nHTTP %{http_code}\n" -X PATCH -H "Authorization: Bearer $SN_ACCESS_TOKEN" -H "Content-Type: application/json" -H "Accept: application/json" --data '{"work_notes": "lab: which user does ServiceNow record for the verifier?"}' "https://<instance>.service-now.com/api/now/table/u_identity_finding/<test-sys_id>"
+   ```
+
+   Look at the record's history for the user ServiceNow recorded. If it isn't the `user_name` in `x_example_idkit.verifier_user`, the rule will refuse every close (verify list, item 10).
+
+4. **Close it with evidence.** Set the test finding's `u_intended_state` to something a Graph read of a test user will show; this sets `{"accountEnabled": false}`, for a finding about a disabled test user:
+
+   ```bash
+   curl -s -w "\nHTTP %{http_code}\n" -X PATCH -H "Authorization: Bearer $SN_ACCESS_TOKEN" -H "Content-Type: application/json" -H "Accept: application/json" --data '{"u_intended_state": "{\"accountEnabled\": false}"}' "https://<instance>.service-now.com/api/now/table/u_identity_finding/<test-sys_id>"
+   ```
+
+   Run the client as the verifier, first as a dry run. Certificate authentication needs the optional `cryptography` package.
+
+   ```bash
+   unset SN_ACCESS_TOKEN
+   export SN_INSTANCE="<instance>"
+   export SN_CLIENT_ID="<verifier-client-id>"
+   export SN_CLIENT_SECRET="<verifier-client-secret>"
+   export GRAPH_TENANT_ID="<graph-tenant-id>"
+   export GRAPH_CLIENT_ID="<graph-client-id>"
+   export GRAPH_CERT_PATH="<graph-cert.pem>"
+   python clients/python/reread_verification.py --table u_identity_finding
+   ```
+
+   Then with `--apply`:
+
+   ```bash
+   python clients/python/reread_verification.py --apply --table u_identity_finding
+   ```
+
+   Expect the record closed with `u_evidence`, `u_evidence_hash`, `u_verified_at`, a close note and a JSON attachment.[^ttm05-table][^ttm05-attach]
+
+5. **Back it out.** Delete the test findings and their attachments, deactivate the business rule if you built it for the lab, and delete the system properties. Clear the credentials from your shell:
+
+   ```bash
+   unset SN_INSTANCE SN_CLIENT_ID SN_CLIENT_SECRET GRAPH_TENANT_ID GRAPH_CLIENT_ID GRAPH_CERT_PATH
+   ```
 
 ## The verified facts
 

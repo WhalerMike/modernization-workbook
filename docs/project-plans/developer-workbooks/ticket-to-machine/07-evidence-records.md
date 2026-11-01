@@ -108,7 +108,13 @@ Work in `examples/servicenow-sailpoint`, with Python 3.10 or later and `pytest`.
 
    <!-- capture:end -->
 
-   The command exits 1, because three records have problems: the run says so instead of producing a clean-looking package. IDF0000905 was closed with a note that says "done," the closure by assertion Book 13 calls prose, not evidence. Open the first line of `out/evidence/records.jsonl`: `approval`, `executing_identity` and `what_ran` are `null`, each with its reason.
+   The command exits 1, because three records have problems: the run says so instead of producing a clean-looking package. IDF0000905 was closed with a note that says "done," the closure by assertion Book 13 calls prose, not evidence. Print three fields of the first line of `out/evidence/records.jsonl`:
+
+   ```bash
+   python -c "import json; r=json.loads(open('out/evidence/records.jsonl', encoding='utf-8').readline()); [print(k, json.dumps(r[k])) for k in ('approval', 'executing_identity', 'what_ran')]"
+   ```
+
+   `approval`, `executing_identity` and `what_ran` are `null`, each with its reason.
 
 3. **Verify the package as the ISSO would:**
 
@@ -157,17 +163,50 @@ Work in `examples/servicenow-sailpoint`, with Python 3.10 or later and `pytest`.
 
    <!-- capture:end -->
 
-   Delete `out` when you're done.
+6. **Delete the `out` folder** when you're done:
+
+   ```bash
+   rm -rf out
+   ```
 
 ## Lab 2: a ServiceNow developer instance
 
-Not run by the authors. Use the developer instance from the earlier chapters, with at least one finding closed by [Chapter 05](05-the-re-read-rule.md)'s Lab 2.
+Not run by the authors. Use the developer instance from the earlier chapters, with at least one finding closed by [Chapter 05](05-the-re-read-rule.md)'s Lab 2. Work in `examples/servicenow-sailpoint`. You'll replace: `<instance>` (your developer instance's name), `<reader-client-id>` and `<reader-client-secret>` (the evidence reader's OAuth integration), and `<closure-date>` (the date of your test closure, as `YYYY-MM-DD`).
 
-1. **Create the evidence reader**: the role `x_example_idkit.evidence_reader` with read only on `u_identity_finding`, an integration user and an OAuth client for it, as in Chapter 02. Check it with `kit_calls.py --task evidence --system servicenow --granted "x_example_idkit.evidence_reader"`.
-2. **Export live:** with the reader's token in `SN_ACCESS_TOKEN` and the instance in `SN_INSTANCE`, run `python clients/python/evidence_export.py --since <date of your test closure> --out-dir out/evidence-live --period lab`.[^ttm07-table] Expect each closed test finding with `evidence_intact` true and no problems.
-3. **Check the date format.** The Table API returns date and time fields in the instance's internal format; confirm `due` and `finished` in the records are the times you expect, in UTC (research gaps, row 61).
-4. **Verify the package** with `--verify-dir out/evidence-live`.
-5. **Back it out.** Delete `out/evidence-live`, and the evidence reader's OAuth client, user and role.
+1. **Create the evidence reader**: the role `x_example_idkit.evidence_reader` with read only on `u_identity_finding`, an integration user and an OAuth client for it, as in Chapter 02. Check it:
+
+   ```bash
+   python clients/python/kit_calls.py --task evidence --system servicenow --granted "x_example_idkit.evidence_reader"
+   ```
+
+2. **Export live,** with the reader's token in `SN_ACCESS_TOKEN` and the instance in `SN_INSTANCE`:[^ttm07-table]
+
+   ```bash
+   export SN_INSTANCE="<instance>"
+   export SN_ACCESS_TOKEN=$(curl -s -X POST "https://<instance>.service-now.com/oauth_token.do" -d grant_type=client_credentials -d client_id="<reader-client-id>" -d client_secret="<reader-client-secret>" | python -c "import json,sys; print(json.load(sys.stdin)['access_token'])")
+   python clients/python/evidence_export.py --since "<closure-date>" --out-dir out/evidence-live --period lab
+   ```
+
+   Expect each closed test finding with `evidence_intact` true and no problems.
+
+3. **Check the date format.** The Table API returns date and time fields in the instance's internal format; confirm `due` and `finished` in the records are the times you expect, in UTC (research gaps, row 61). This prints them for each record:
+
+   ```bash
+   python -c "import json; [print(r['record'], 'due', r['owner_and_clock']['due'], 'finished', r['owner_and_clock']['finished']) for r in map(json.loads, open('out/evidence-live/records.jsonl'))]"
+   ```
+
+4. **Verify the package:**
+
+   ```bash
+   python clients/python/evidence_export.py --verify-dir out/evidence-live
+   ```
+
+5. **Back it out.** Delete `out/evidence-live`, and the evidence reader's OAuth client, user and role:
+
+   ```bash
+   rm -rf out/evidence-live
+   unset SN_INSTANCE SN_ACCESS_TOKEN
+   ```
 
 ## The verified facts
 

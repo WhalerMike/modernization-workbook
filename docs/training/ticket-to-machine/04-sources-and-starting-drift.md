@@ -75,7 +75,11 @@ You run a two-day story: day one, HR's correction on day two, and a day two that
    python clients/python/identity_drift.py --hr-csv tests/fixtures/hr_extract.csv --config tests/fixtures/config.fixtures.json --graph-users-json tests/fixtures/graph_users.json --isc-identities-json tests/fixtures/isc_identities.json --isc-accounts-json tests/fixtures/isc_uncorrelated_accounts.json --entra-audit-json tests/fixtures/entra_audit.json --out-json out/day1.json --out-csv out/day1.csv
    ```
 
-   Expected: the summary counts `attribute_drift 4`, `missing_identity 2`, `orphan_account 3`, `stale_access 2` and `unauthorized_write 1`, and lists `credential_drift` and `schema_drift` under `not_computed`. Open `out/day1.csv` and find Erin's department and Carol's enabled accounts.
+   Expected: the summary counts `attribute_drift 4`, `missing_identity 2`, `orphan_account 3`, `stale_access 2` and `unauthorized_write 1`, and lists `credential_drift` and `schema_drift` under `not_computed`. Print Erin's and Carol's rows from `out/day1.csv`, and find Erin's department and Carol's enabled accounts:
+
+   ```bash
+   python -c "import csv, json; [print(r['drift_class'], r['system'], r['employee_id'], r['attribute'], r['expected'], '->', r['observed'], json.loads(r['evidence']).get('initiated_by', '')) for r in csv.DictReader(open('out/day1.csv', encoding='utf-8')) if r['employee_id'] in ('E1002', 'E1004')]"
+   ```
 
 3. Run day two, after HR's correction.
 
@@ -110,6 +114,10 @@ You run a two-day story: day one, HR's correction on day two, and a day two that
    Expected: the first command lists `unauthorized_write` under `not_computed`. The second prints `error: The runs computed different drift classes (...)` and exits 2.
 
 6. Delete the `out` folder.
+
+   ```bash
+   rm -rf out
+   ```
 
 **Check your work:** you can say what changed between two runs, and why a run that skipped a class can't be compared with one that didn't.
 

@@ -169,13 +169,41 @@ Work in `examples/servicenow-sailpoint`, with Python 3.10 or later, `pytest` and
 
 ## Lab 2: a ServiceNow developer instance
 
-Not run by the authors. Use a Personal Developer Instance, never production. You need the instance from [Chapter 01](01-the-loop-and-the-typed-task.md)'s Lab 2.
+Not run by the authors. Use a Personal Developer Instance, never production. You need the instance from [Chapter 01](01-the-loop-and-the-typed-task.md)'s Lab 2. Work in `examples/servicenow-sailpoint`. You'll replace: `<instance>` (your developer instance's name), `<writer-roles>`, `<verifier-roles>` and `<reader-roles>` (the roles each integration user holds, comma-separated, as its user record lists them), `<verifier-client-id>` and `<verifier-client-secret>`, `<reader-client-id>` and `<reader-client-secret>` (from the verifier's and the evidence reader's OAuth integrations), and `<sys_id>` (a test record's `sys_id` from step 4's listing).
 
 1. **Create three custom roles** in the scoped application: `x_example_idkit.finding_writer`, `x_example_idkit.verifier` and `x_example_idkit.evidence_reader`. Give the verifier read and write ACLs on `u_identity_finding` and create on `sys_attachment`; the evidence reader read on `u_identity_finding` only; the finding writer only the Scripted REST resource's `REST_Endpoint` ACL.[^ttm02-srapi][^ttm02-attach]
-2. **Create one integration user per role,** and one inbound OAuth client-credentials integration per user. On Zurich, ServiceNow documents this in the Machine Identity Console; older releases enable the grant with a system property (see what couldn't be verified).[^ttm02-cc]
-3. **Compare each user's roles** with `kit_calls.py --granted`, one task at a time, and fix anything extra.
-4. **Exercise each user.** Request a token as the verifier: `POST https://<instance>.service-now.com/oauth_token.do` with `grant_type=client_credentials`, the client ID and the secret. List `u_identity_finding` with the token. Then try, as the evidence reader, to `PATCH` a record: expect a refusal.
-5. **Back it out.** Delete the OAuth integrations, the three users and the three roles, and revoke any token you saved.
+2. **Create one integration user per role,** and one inbound OAuth client-credentials integration per user. On Zurich, ServiceNow documents this in the Machine Identity Console: **Machine Identity Console** > **Inbound integrations** > **New integration** > **OAuth - Client credential grant**. Older releases enable the grant with a system property (see what couldn't be verified).[^ttm02-cc]
+3. **Compare each user's roles** with the call list, one task at a time:
+
+   ```bash
+   python clients/python/kit_calls.py --task drift-push --system servicenow --granted "<writer-roles>"
+   python clients/python/kit_calls.py --task reread --system servicenow --granted "<verifier-roles>"
+   python clients/python/kit_calls.py --task evidence --system servicenow --granted "<reader-roles>"
+   ```
+
+   Each should end `Least privilege holds.` Fix anything listed under `extra:`.
+
+4. **Exercise each user.** Request a token as the verifier, then list `u_identity_finding` with it:
+
+   ```bash
+   export SN_ACCESS_TOKEN=$(curl -s -X POST "https://<instance>.service-now.com/oauth_token.do" -d grant_type=client_credentials -d client_id="<verifier-client-id>" -d client_secret="<verifier-client-secret>" | python -c "import json,sys; print(json.load(sys.stdin)['access_token'])")
+   curl -s -H "Authorization: Bearer $SN_ACCESS_TOKEN" -H "Accept: application/json" "https://<instance>.service-now.com/api/now/table/u_identity_finding?sysparm_limit=5"
+   ```
+
+   Then request a token as the evidence reader and try to `PATCH` a record:
+
+   ```bash
+   export SN_ACCESS_TOKEN=$(curl -s -X POST "https://<instance>.service-now.com/oauth_token.do" -d grant_type=client_credentials -d client_id="<reader-client-id>" -d client_secret="<reader-client-secret>" | python -c "import json,sys; print(json.load(sys.stdin)['access_token'])")
+   curl -s -w "\nHTTP %{http_code}\n" -X PATCH -H "Authorization: Bearer $SN_ACCESS_TOKEN" -H "Content-Type: application/json" -H "Accept: application/json" --data '{"work_notes": "lab: evidence reader write test"}' "https://<instance>.service-now.com/api/now/table/u_identity_finding/<sys_id>"
+   ```
+
+   Expect a refusal.
+
+5. **Back it out.** Delete the OAuth integrations, the three users and the three roles, and revoke any token you saved. Clear the token from your shell:
+
+   ```bash
+   unset SN_ACCESS_TOKEN
+   ```
 
 ## The verified facts
 

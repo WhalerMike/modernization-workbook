@@ -167,13 +167,59 @@ Work in `examples/servicenow-sailpoint`, with Python 3.10 or later, `pytest` and
 
 ## Lab 2: a SailPoint sandbox tenant
 
-Not run by the authors. Use a SailPoint sandbox tenant, never production. How an agency gets one is between it and SailPoint; the public documentation doesn't say (research gaps, row 21).
+Not run by the authors. Use a SailPoint sandbox tenant, never production. How an agency gets one is between it and SailPoint; the public documentation doesn't say (research gaps, row 21). Work in `examples/servicenow-sailpoint`. You'll replace: `<tenant>` (your sandbox tenant's name), `<reader-scopes>` and `<workflow-scopes>` (the scopes each API client shows, comma-separated), `<reader-client-id>` and `<reader-client-secret>` (the reader API client), `<pat-client-id>` and `<pat-client-secret>` (a personal access token, only if step 3 needs one) and `<employee-id-attribute>` (what step 4 finds).
 
-1. **Find the API base.** Open `https://<tenant>.api.identitynow.com/oauth/info`, or use your vanity domain's, and set `SAILPOINT_API_BASE` if it isn't the default.[^ttm03-auth]
-2. **Create two API clients.** A reader with `sp:search:read` and `idn:accounts:read`, for the drift and re-read clients; a workflow client with `sp:workflow:manage`, used only to create the three workflows. Compare each with `kit_calls.py --granted`.
-3. **Try the reader.** With its token in `SAILPOINT_ACCESS_TOKEN`, run the drift client against the sandbox with `--skip-graph`. SailPoint warns that client-credentials tokens have no user context and that calling most admin APIs with one often returns 403.[^ttm03-auth] If Search or Accounts returns 403, use a personal access token for a dedicated user at the lowest user level those endpoints list (for Accounts: `ORG_ADMIN`, `SOURCE_ADMIN`, `SOURCE_SUBADMIN` or `HELPDESK`), and record which one worked.[^ttm03-account][^ttm03-search]
-4. **Check the employee ID attribute.** Search one identity and find where your HR key lives (`employeeNumber` or `attributes.employeeId`); set `ISC_EMPLOYEE_ID_ATTRIBUTE` to match.
-5. **Back it out.** Delete both API clients (or the personal access tokens and the dedicated user), and delete anything the drift run wrote under `out`.
+1. **Find the API base.** Read your tenant's OAuth information:
+
+   ```bash
+   curl -s "https://<tenant>.api.identitynow.com/oauth/info"
+   ```
+
+   Set `SAILPOINT_API_BASE` to the API base. If you use a vanity domain, or the response names a different base, put that base in place of the default one below.[^ttm03-auth]
+
+   ```bash
+   export SAILPOINT_API_BASE="https://<tenant>.api.identitynow.com"
+   ```
+
+2. **Create two API clients.** A reader with `sp:search:read` and `idn:accounts:read`, for the drift and re-read clients; a workflow client with `sp:workflow:manage`, used only to create the three workflows. Compare each with the call list:
+
+   ```bash
+   python clients/python/kit_calls.py --task drift --system isc --granted "<reader-scopes>"
+   python clients/python/kit_calls.py --task workflows --system isc --granted "<workflow-scopes>"
+   ```
+
+3. **Try the reader.** Put its token in `SAILPOINT_ACCESS_TOKEN` and run the drift client against the sandbox, skipping Graph. The fixture HR extract is enough here: the step tests the reader's access, not the findings.
+
+   ```bash
+   export SAILPOINT_ACCESS_TOKEN=$(curl -s -X POST "$SAILPOINT_API_BASE/oauth/token" -d grant_type=client_credentials -d client_id="<reader-client-id>" -d client_secret="<reader-client-secret>" | python -c "import json,sys; print(json.load(sys.stdin)['access_token'])")
+   python clients/python/identity_drift.py --hr-csv tests/fixtures/hr_extract.csv --skip-graph --out-json out/sandbox.json --out-csv out/sandbox.csv
+   ```
+
+   SailPoint warns that client-credentials tokens have no user context and that calling most admin APIs with one often returns 403.[^ttm03-auth] If Search or Accounts returns 403, use a personal access token for a dedicated user at the lowest user level those endpoints list (for Accounts: `ORG_ADMIN`, `SOURCE_ADMIN`, `SOURCE_SUBADMIN` or `HELPDESK`), and record which one worked.[^ttm03-account][^ttm03-search] With the personal access token:
+
+   ```bash
+   export SAILPOINT_ACCESS_TOKEN=$(curl -s -X POST "$SAILPOINT_API_BASE/oauth/token" -d grant_type=client_credentials -d client_id="<pat-client-id>" -d client_secret="<pat-client-secret>" | python -c "import json,sys; print(json.load(sys.stdin)['access_token'])")
+   python clients/python/identity_drift.py --hr-csv tests/fixtures/hr_extract.csv --skip-graph --out-json out/sandbox.json --out-csv out/sandbox.csv
+   ```
+
+4. **Check the employee ID attribute.** Search one identity:
+
+   ```bash
+   curl -s -X POST "$SAILPOINT_API_BASE/v3/search?limit=1" -H "Authorization: Bearer $SAILPOINT_ACCESS_TOKEN" -H "Content-Type: application/json" -H "Accept: application/json" --data '{"indices": ["identities"], "query": {"query": "*"}}'
+   ```
+
+   Find where your HR key lives (`employeeNumber` or `attributes.employeeId`), and set `ISC_EMPLOYEE_ID_ATTRIBUTE` to match:
+
+   ```bash
+   export ISC_EMPLOYEE_ID_ATTRIBUTE="<employee-id-attribute>"
+   ```
+
+5. **Back it out.** Delete both API clients (or the personal access tokens and the dedicated user), and delete anything the drift run wrote under `out`:
+
+   ```bash
+   rm -rf out
+   unset SAILPOINT_ACCESS_TOKEN
+   ```
 
 ## The verified facts
 

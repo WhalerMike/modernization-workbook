@@ -156,13 +156,54 @@ Work in `examples/servicenow-sailpoint`, with Python 3.10 or later and `pytest`.
 
 ## Lab 2: exports from a test tenant and a SailPoint sandbox
 
-Not run by the authors. Use a test Entra tenant with an inbound provisioning job and a SailPoint sandbox with an Entra source, never production. Both reads are GET only.
+Not run by the authors. Use a test Entra tenant with an inbound provisioning job and a SailPoint sandbox with an Entra source, never production. Both reads are GET only. Work in `examples/servicenow-sailpoint`. You'll replace: `<graph-tenant-id>`, `<graph-client-id>` and `<graph-cert.pem>` (a test app registration holding the Graph permission below, and the PEM file holding its certificate and key), `<graph-cloud>` (`Global` for worldwide and GCC, `USGov` for GCC High, `USGovDoD`), `<service-principal-id>` (the provisioning app's service principal), `<job-id>` (its job, from the first listing), `<target-directory-name>` (what step 1 prints), `<tenant>` (your sandbox tenant's name), `<policy-client-id>` and `<policy-client-secret>` (the ISC API client of step 2), `<source-id>` (the Entra source in ISC), and `<sailpoint-field>=<entra-attribute>` (one pair from your alias list).
 
-1. **Export the inbound job's schema.** Find the provisioning app's service principal and job (`GET /servicePrincipals/{id}/synchronization/jobs`), then `GET /servicePrincipals/{id}/synchronization/jobs/{jobId}/schema` and save the response.[^ttm08-overview][^ttm08-schema] Learn lists `CustomSecAttributeProvisioning.Read.All` as the least-privileged application permission for that read, and `Synchronization.Read.All` among the higher ones; in delegated use the least-privileged roles are Application Administrator, Cloud Application Administrator and Hybrid Identity Administrator.[^ttm08-schema] Note the rule's `targetDirectoryName` for `--entra-directory`.
-2. **Export the ISC source's policies.** With an API client holding only `idn:provisioning-policy:read`, `GET /v3/sources/{sourceId}/provisioning-policies` for the Entra source, and save the response. The documented user level for that endpoint is `ORG_ADMIN`, so a personal access token is the wrong tool here; use an API client.[^ttm08-policies]
+1. **Export the inbound job's schema.** Find the provisioning app's service principal, then list its jobs and save the job's schema. The first commands get a Graph token for the app registration and the Graph root for your cloud with the kit's own code.[^ttm08-overview][^ttm08-schema]
+
+   ```bash
+   mkdir -p out
+   export GRAPH_TENANT_ID="<graph-tenant-id>"
+   export GRAPH_CLIENT_ID="<graph-client-id>"
+   export GRAPH_CERT_PATH="<graph-cert.pem>"
+   export GRAPH_CLOUD="<graph-cloud>"
+   export GRAPH_ACCESS_TOKEN=$(python -c "import sys; sys.path.insert(0, 'clients/python'); import kit_common as kc; print(kc.graph_headers(kc.load_config(), kc.Http())['Authorization'].split()[1])")
+   export GRAPH_ROOT=$(python -c "import sys; sys.path.insert(0, 'clients/python'); import kit_common as kc; print(kc.graph_endpoints(kc.load_config())[1])")
+   curl -s -H "Authorization: Bearer $GRAPH_ACCESS_TOKEN" -H "Accept: application/json" "$GRAPH_ROOT/v1.0/servicePrincipals/<service-principal-id>/synchronization/jobs"
+   ```
+
+   ```bash
+   curl -s -H "Authorization: Bearer $GRAPH_ACCESS_TOKEN" -H "Accept: application/json" -o out/entra_inbound_schema.json "$GRAPH_ROOT/v1.0/servicePrincipals/<service-principal-id>/synchronization/jobs/<job-id>/schema"
+   ```
+
+   Learn lists `CustomSecAttributeProvisioning.Read.All` as the least-privileged application permission for that read, and `Synchronization.Read.All` among the higher ones; in delegated use the least-privileged roles are Application Administrator, Cloud Application Administrator and Hybrid Identity Administrator.[^ttm08-schema] Note the rule's `targetDirectoryName` for `--entra-directory`; this prints it:
+
+   ```bash
+   python -c "import json; s=json.load(open('out/entra_inbound_schema.json')); print(sorted({r.get('targetDirectoryName') for r in s.get('synchronizationRules') or []}))"
+   ```
+
+2. **Export the ISC source's policies.** With an API client holding only `idn:provisioning-policy:read`, read the Entra source's provisioning policies and save the response. The documented user level for that endpoint is `ORG_ADMIN`, so a personal access token is the wrong tool here; use an API client.[^ttm08-policies]
+
+   ```bash
+   export SAILPOINT_API_BASE="https://<tenant>.api.identitynow.com"
+   export SAILPOINT_ACCESS_TOKEN=$(curl -s -X POST "$SAILPOINT_API_BASE/oauth/token" -d grant_type=client_credentials -d client_id="<policy-client-id>" -d client_secret="<policy-client-secret>" | python -c "import json,sys; print(json.load(sys.stdin)['access_token'])")
+   curl -s -H "Authorization: Bearer $SAILPOINT_ACCESS_TOKEN" -H "Accept: application/json" -o out/isc_entra_source_policies.json "$SAILPOINT_API_BASE/v3/sources/<source-id>/provisioning-policies"
+   ```
+
 3. **Build the alias list** from the Entra source's account schema: for each SailPoint field the policies name, the Entra attribute it writes. Keep the list in the repository and have the data architect review it.
-4. **Run the check** on the two exports with the aliases, and give each Finding to the data architect to decide which system owns the attribute. Book 03's default keeps Entra inbound provisioning as the writer.
-5. **Back it out.** Delete the two exports if they hold anything beyond mappings, and remove the Graph permission and the ISC API client.
+4. **Run the check** on the two exports with the aliases. The command shows one pair; give `--alias` once for each pair in your list.
+
+   ```bash
+   python clients/python/writer_check.py --entra-schema out/entra_inbound_schema.json --isc-policies out/isc_entra_source_policies.json --entra-directory "<target-directory-name>" --alias "<sailpoint-field>=<entra-attribute>"
+   ```
+
+   Give each Finding to the data architect to decide which system owns the attribute. Book 03's default keeps Entra inbound provisioning as the writer.
+
+5. **Back it out.** Delete the two exports if they hold anything beyond mappings, and remove the Graph permission and the ISC API client:
+
+   ```bash
+   rm -f out/entra_inbound_schema.json out/isc_entra_source_policies.json
+   unset GRAPH_TENANT_ID GRAPH_CLIENT_ID GRAPH_CERT_PATH GRAPH_CLOUD GRAPH_ACCESS_TOKEN GRAPH_ROOT SAILPOINT_API_BASE SAILPOINT_ACCESS_TOKEN
+   ```
 
 ## The verified facts
 

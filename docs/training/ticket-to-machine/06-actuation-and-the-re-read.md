@@ -114,6 +114,10 @@ You re-read six waiting findings on two days and run the business rule's tests. 
 
 5. Delete the `out` folder.
 
+   ```bash
+   rm -rf out
+   ```
+
 **Check your work:** for any waiting finding, you can say whether the client verifies it, reopens it, waits or skips it, and why.
 
 ## Unit 6: Exercise: Lab 2 (your test instance)

@@ -151,17 +151,47 @@ You need Python 3.10 or later with `pytest` and `requests`, and Node.js 18 or la
 
    Twelve lines start `ok`, three carry the warning (two missing identities and the unauthorized write), and the last line is `12 accepted, 0 rejected, 0 would de-duplicate`. Erin's two attribute drifts in Entra ID, department and manager, have their own keys; before Chapter 04's fix they shared one, and the second would have been folded into the first.
 
-**Expected result:** you can say, for any payload, what the Scripted REST resource will do with it. Delete `out` when you're done.
+5. **Delete the `out` folder** when you're done:
+
+   ```bash
+   rm -rf out
+   ```
+
+**Expected result:** you can say, for any payload, what the Scripted REST resource will do with it.
 
 ## Lab 2: a ServiceNow developer instance
 
-Not run by the authors. Use a ServiceNow Personal Developer Instance, free to Developer Program members,[^ttm01-pdi] never production.
+Not run by the authors. Use a ServiceNow Personal Developer Instance, free to Developer Program members,[^ttm01-pdi] never production. Work in `examples/servicenow-sailpoint`. You'll replace: `<instance>` (your developer instance's name, as in `https://<instance>.service-now.com`), `<writer-user>` and `<writer-password>` (the integration user you give the finding-writer role in step 2; basic authentication is for developer instances only).
 
-1. **Build the table and the resource** as the kit's README describes: the scoped application, `u_identity_finding` extending Task, the *Awaiting verification* state, and the Scripted REST API `identity_findings` with one `POST /finding` resource whose script is the kit's file. Creating a Scripted REST API needs the `web_service_admin` role; calling it doesn't.[^ttm01-srapi]
+1. **Build the table and the resource** as the kit's README describes. Creating a Scripted REST API needs the `web_service_admin` role; calling it doesn't.[^ttm01-srapi]
+   1. Create the scoped application, and in it `u_identity_finding` extending Task, with the fields the README lists and the *Awaiting verification* state.
+   2. Go to **System Web Services** > **Scripted REST APIs** > **New** and create the Scripted REST API `identity_findings`.
+   3. Give it one resource, `POST /finding`, whose script is the kit's file `servicenow/scripted-rest-identity-finding.js`.
 2. **Lock the resource down.** Require authentication and add an ACL of type `REST_Endpoint` granting a custom role, for example `x_example_idkit.finding_writer`, to one integration user.[^ttm01-srapi]
-3. **Check a payload first, then post it.** Run step 2 of Lab 1 on `tests/fixtures/payloads/valid_finding.json`, then post the same file as the integration user to `https://<instance>.service-now.com/api/x_example_idkit/identity_findings/finding`. Expect `201` with a `sys_id`, `number`, priority `2`, and a due date one hour after the insert. Post it again: `200` with `deduplicated: true`.
-4. **Post `samples.json`'s second payload.** Expect `400` with the same reason Lab 1 printed.
-5. **Back it out.** Delete the test records, the ACL and the role, and the Scripted REST API; delete the scoped application if you made it for the lab. A developer instance returns to the pool after a period without use, and is reset when it does.[^ttm01-pdi]
+3. **Check a payload first, then post it** as the integration user:
+
+   ```bash
+   python clients/python/finding_contract.py --validate tests/fixtures/payloads/valid_finding.json
+   curl -s -w "\nHTTP %{http_code}\n" -u "<writer-user>:<writer-password>" -H "Content-Type: application/json" -H "Accept: application/json" -X POST --data @tests/fixtures/payloads/valid_finding.json "https://<instance>.service-now.com/api/x_example_idkit/identity_findings/finding"
+   ```
+
+   Expect `201` with a `sys_id`, `number`, priority `2`, and a due date one hour after the insert. Post the same file again:
+
+   ```bash
+   curl -s -w "\nHTTP %{http_code}\n" -u "<writer-user>:<writer-password>" -H "Content-Type: application/json" -H "Accept: application/json" -X POST --data @tests/fixtures/payloads/valid_finding.json "https://<instance>.service-now.com/api/x_example_idkit/identity_findings/finding"
+   ```
+
+   Expect `200` with `deduplicated: true`.
+
+4. **Post `samples.json`'s second payload.** The first command prints that payload alone, and `curl` posts it:
+
+   ```bash
+   python -c "import json; print(json.dumps(json.load(open('tests/fixtures/payloads/samples.json'))[1]))" | curl -s -w "\nHTTP %{http_code}\n" -u "<writer-user>:<writer-password>" -H "Content-Type: application/json" -H "Accept: application/json" -X POST --data @- "https://<instance>.service-now.com/api/x_example_idkit/identity_findings/finding"
+   ```
+
+   Expect `400` with the same reason Lab 1 printed.
+
+5. **Back it out.** Delete the test records, the ACL and the role, and the Scripted REST API (**System Web Services** > **Scripted REST APIs**); delete the scoped application if you made it for the lab. A developer instance returns to the pool after a period without use, and is reset when it does.[^ttm01-pdi]
 
 ## The verified facts
 

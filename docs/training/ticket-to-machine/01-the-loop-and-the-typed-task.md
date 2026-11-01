@@ -111,6 +111,10 @@ You check payloads the way the Scripted REST resource would, then check every pa
 
 5. Delete the `out` folder.
 
+   ```bash
+   rm -rf out
+   ```
+
 **Check your work:** for any payload, you can say what the Scripted REST resource will do with it.
 
 ## Unit 5: Exercise: Lab 2 (your test instance)
