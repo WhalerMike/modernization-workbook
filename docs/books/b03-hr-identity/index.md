@@ -43,6 +43,8 @@ One chapter at a time: [01](../../../downloads/b03-hr-identity-01.docx) · [02](
 **Under review**: [DNS for HR-Driven Identity Across Clouds](../explainers/hr-identity-dns.md) explains what the HR-to-identity pipeline must resolve across Oracle, Azure, AWS and on-premises.
 
 **Under review**: [Building Book 03's HR Pipeline: Oracle Fusion Cloud HCM to Microsoft Entra ID](../guides/hcm-entra-implementation.md) is an implementation guide that builds this book's pipeline from the Core HCM platform Federal HR 2.0 awarded to Entra ID, with illustrative Python and PowerShell.
+
+**Draft**: [HR-Driven Identity: An Implementation Guide](../guides/hr-driven-identity-implementation.md) runs this book's lifecycle in Entra ID once the pipeline exists, as seven gates with federal requirements, ISSO evidence and government-cloud availability for each.
 :::
 
 An agency's identity platform can prove, cryptographically and at every hop, that a claim was signed by the party allowed to sign it. It can't tell you whether the claim is *true*: whether the person behind the credential still works for the agency, still holds the position the access was granted for, still reports to the supervisor who approved it. Those are workforce facts. They originate in workforce business processes and are recorded in the human capital system of record; identity services consume governed projections of them and remain authoritative for credentials, authentication, sessions, directory objects, and policy enforcement.

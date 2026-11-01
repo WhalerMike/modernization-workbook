@@ -135,6 +135,8 @@ website:
             text: "Guide: Effective Meetings"
           - href: docs/books/guides/hcm-entra-implementation.md
             text: "Guide: Oracle HCM to Entra ID Pipeline"
+          - href: docs/books/guides/hr-driven-identity-implementation.md
+            text: "Guide: HR-Driven Identity Implementation"
           - href: docs/books/guides/cyberark-certificate-lifecycle.md
             text: "Guide: Certificate Lifecycle on CyberArk"
           - href: docs/books/guides/infoblox-nios-implementation.md
@@ -332,6 +334,7 @@ website:
             - docs/books/guides/ansible-configuration-automation.md
             - docs/books/guides/effective-meetings.md
             - docs/books/guides/hcm-entra-implementation.md
+            - docs/books/guides/hr-driven-identity-implementation.md
             - docs/books/guides/cyberark-certificate-lifecycle.md
             - docs/books/guides/infoblox-nios-implementation.md
             - docs/books/guides/cisco-sdwan-implementation.md

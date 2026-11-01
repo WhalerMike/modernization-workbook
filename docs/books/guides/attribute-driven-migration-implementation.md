@@ -11,7 +11,7 @@ lifecycle_review: 2027-04-01
 aliases:
   - /docs/project-plans/developer-workbooks/attribute-driven-migration/implementation-guide.html
 review-status: approved
-reviewed-sha256: ec75481b8f65d65ccda06225e05ae40b2f2d1a1701059e232a6b8976e87052b0
+reviewed-sha256: 4f6e1bfad689407a62bd2a9766b9bea20fc72515f227528a721b4969f679671a
 last-reviewed: 2026-11-01
 ---
 # Attribute-Driven Migration: An Implementation Guide
@@ -45,7 +45,7 @@ This guide is for the people who **run** the migration: what has to be true at e
 
 | Track | Its implementation guide | Its project plan |
 |---|---|---|
-| HR: people | [Building Book 03's HR Pipeline](hcm-entra-implementation.md) (research, under review) | [Identity Lifecycle & Provisioning](../../project-plans/identity-lifecycle.md) |
+| HR: people | [Building Book 03's HR Pipeline](hcm-entra-implementation.md) (under review) builds the pipeline; [HR-Driven Identity: An Implementation Guide](hr-driven-identity-implementation.md) (draft) runs the lifecycle on it | [Identity Lifecycle & Provisioning](../../project-plans/identity-lifecycle.md) |
 | Intune: end-user devices | [Intune Track Implementation](intune-track-implementation.md) | [Endpoint & Device Modernization](../../project-plans/endpoint-device.md), Phases 0 to 3 and 5 |
 | Azure Arc: servers | [Azure Arc Track: Implementation Guide](arc-track-implementation.md) | [Endpoint & Device Modernization](../../project-plans/endpoint-device.md#phase-4-servers-under-azure-arc), Phase 4 |
 | Non-person identities | [Non-Person Identity: An Implementation Guide](non-person-identity-implementation.md) | [Non-Person Identity Modernization](../../project-plans/non-person-identity.md) |
