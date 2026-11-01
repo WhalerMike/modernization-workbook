@@ -2,11 +2,13 @@
 """Capture what a developer workbook's Lab 1 really prints, for the chapter pages and the narrated tours.
 
 Each chapter's "Lab 1" section runs against fixtures, so its commands can be run here exactly as a reader
-types them. This script reads the ```bash blocks of that section in order, runs them in a scratch copy of
-the kit (one copy per chapter, so a step can use what an earlier step wrote), and keeps what each block
-printed:
+types them. This script reads the command blocks of that section (```bash and ```powershell, and any
+```text block CHAPTERS marks as commands) in order and runs them in a scratch copy of examples/, from the
+folder the lab says to work in. A chapter's blocks share one shell per language, so a variable or a
+`cd` in one step carries into the next, as it would for a reader. Each bash command line, and each
+PowerShell statement, is echoed before its output:
 
-  data/kit-captures/<workbook>/<NN>-<k>.txt     the commands ("$ ..." lines) and their output, as run
+  data/kit-captures/<workbook>/<NN>-<k>.txt     the commands ("$ " or "PS> " lines) and their output
   docs/<workbook folder>/captures/<NN>-<k>.png   the same, drawn as a terminal window (with --images)
 
 With --pages, each chapter shows the PNG after the command block (and after the ```text block that follows
@@ -18,10 +20,12 @@ captures on their Lab 1 slides (presentations/_build/devwb.js, element { termina
     python scripts/kit_captures.py ttm --images       # also draw the PNGs (needs Pillow and Consolas)
     python scripts/kit_captures.py ttm --pages        # also put the PNGs on the chapter pages
     python scripts/kit_captures.py ttm --check        # exit 1 when a capture no longer matches the kit
+    python scripts/kit_captures.py ttm --check --ci   # the same, leaving out labs CHAPTERS marks local-only
 """
 from __future__ import annotations
 
 import argparse
+import json
 import os
 import re
 import shutil
@@ -31,8 +35,41 @@ import tempfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+# Each workbook's chapters and the kit its labs work in, unless a lab names another folder.
 WORKBOOKS = {
     "ttm": ("docs/project-plans/developer-workbooks/ticket-to-machine", "examples/servicenow-sailpoint"),
+    "pa": ("docs/project-plans/developer-workbooks/privileged-access", "examples/privileged-access"),
+    "npi": ("docs/project-plans/developer-workbooks/non-person-identity", "examples/non-person-identity"),
+    "hr": ("docs/project-plans/developer-workbooks/hr-driven-identity", "examples/hr-lifecycle"),
+    "adm": ("docs/books/b19-developer-workbook", "examples"),
+}
+# Per chapter ("<workbook>-<NN>"): "cwd" overrides the lab's folder; "text" lists the ```text blocks of the
+# lab (1-based among its text blocks) that are commands, and "text_lang" their shell; "skip" lists command
+# blocks (by k) not to run; "hidden" maps a block k to commands a step gives only in prose, run (unshown)
+# just before it; "local" is the reason a lab can't run in CI (its captures are kept, not checked
+# there); "off" is the reason a lab isn't captured at all.
+CHAPTERS: dict[str, dict] = {
+    "adm-01": {"text": [1, 2, 3]},
+    "adm-02": {"text": [1, 2, 4, 5, 6, 7]},
+    "adm-03": {"cwd": ".", "text": [1], "text_lang": "powershell"},
+    "adm-04": {"skip": [4]},   # Invoke-DrLibraryCheck diffs against git HEAD; the scratch copy isn't a repository
+    # Step 1 runs in examples/validation-kit, the rest in examples/group-policy-as-code, as the chapter says.
+    "adm-06": {"hidden": {1: "Set-Location ../validation-kit", 2: "Set-Location ../group-policy-as-code"}},
+    "adm-07": {"off": "needs Windows and three modules saved from the PowerShell Gallery"},
+    "adm-08": {"off": "needs a Linux control node with ansible-core and collections from Ansible Galaxy"},
+    # Labs that start from an earlier chapter's out folder ("needs": its lab runs first, unshown), and
+    # labs whose bash steps work in the drift pipeline.
+    "npi-02": {"needs": ["01"]}, "npi-04": {"needs": ["01"]}, "npi-06": {"needs": ["01"]},
+    "npi-07": {"needs": ["01"]}, "npi-09": {"needs": ["01", "02"]},
+    "npi-10": {"lang_cwd": {"bash": "examples/drift-pipeline"}},
+    "pa-08": {"lang_cwd": {"bash": "examples/drift-pipeline"}},
+    # Step 4 gives the next day's run in prose: step 2's command with the next window and folder.
+    "hr-07": {"hidden": {3: (
+        "python python/lifecycle_drift.py run --hr tests/fixtures/ch07/hr-export.csv --contractors out/ch02/extract/decisions.json"
+        " --users tests/fixtures/ch07/workforce-users.json --exceptions tests/fixtures/ch07/exceptions.csv --cards tests/fixtures/ch07/cards.csv"
+        " --derivation tests/fixtures/ch07/derivation.json --writers out/ch01 --readiness out/ch03/readiness --residual out/ch04/residual"
+        " --timing out/ch06 --config config/drift.json --since 2026-11-01 --until 2026-11-02 --cloud gcc"
+        " --tenant-id 00000000-0000-4000-8000-00000000c0de --mode fixture --out out/ch07/runs/2026-11-02T0600Z")}},
 }
 OUT = ROOT / "data" / "kit-captures"
 GH = "https://github.com/WhalerMike/modernization-workbook/blob/main"
@@ -42,76 +79,248 @@ END = "<!-- capture:end -->"
 # by one blank line, so deleting it gives back the page byte for byte (scripts/source_watch/review_gate.py).
 MARKED = re.compile(r"^( *)<!-- capture:begin[^\n]*-->\n(?:(?!<!-- capture:begin).)*?^\1<!-- capture:end -->\n\n", re.S | re.M)
 BLOCK = re.compile(r"^( *)```(\w+)\n(.*?)^\1```", re.S | re.M)
+LAB1 = re.compile(r"^## [^\n]*Lab 1[^\n]*\n", re.M)
+WORK_IN = re.compile(r"(?:[Ww]orks? in|[Ff]rom) `(examples/[\w./-]+?)/?`")
+MARK = "\x1e"           # starts a marker line in a shell's output
+PROMPT = {"bash": "$ ", "powershell": "PS> "}
+CONT = {"bash": "> ", "powershell": ">> "}
+
+
+def lab_span(md: str) -> tuple[int, int] | None:
+    m = LAB1.search(md)
+    if not m:
+        return None
+    end = re.compile(r"^## ", re.M).search(md, m.end())
+    return m.end(), end.start() if end else len(md)
 
 
 def lab1(md: str) -> str:
-    m = re.search(r"^## [^\n]*Lab 1[^\n]*\n(.*?)(?=^## )", md, re.S | re.M)
-    return m.group(1) if m else ""
+    span = lab_span(md)
+    return md[span[0]:span[1]] if span else ""
 
 
-def blocks(section: str) -> list[list[str]]:
-    """Each ```bash block of the section, as its command lines."""
-    out = []
-    for m in BLOCK.finditer(section):
-        if m.group(2) == "bash":
-            out.append([l.strip() for l in m.group(3).splitlines() if l.strip()])
+def commands(md: str, cfg: dict) -> list[tuple[int, str, str, re.Match]]:
+    """The lab's command blocks in page order: (k, language, code, match). Positions are in md."""
+    span = lab_span(md)
+    if not span:
+        return []
+    out, k, t = [], 0, 0
+    for b in BLOCK.finditer(md, *span):
+        lang = b.group(2)
+        if lang == "text":
+            t += 1
+            if t not in cfg.get("text", []):
+                continue
+            lang = cfg.get("text_lang", "bash")
+        if lang not in PROMPT:
+            continue
+        k += 1
+        if k in cfg.get("skip", []):
+            continue
+        code = "\n".join(l[len(b.group(1)):] if l.startswith(b.group(1)) else l for l in b.group(3).splitlines())
+        out.append((k, lang, code, b))
     return out
 
 
-def run(cmds: list[str], cwd: Path) -> str:
-    text = []
+def bash_lines(code: str) -> list[str]:
+    """A bash block as logical command lines: backslash continuations joined, comment lines dropped."""
+    out, cur = [], ""
+    for l in code.splitlines():
+        s = l.strip()
+        if not cur and (not s or s.startswith("#")):
+            continue
+        if s.endswith("\\"):
+            cur += s[:-1].rstrip() + " "
+            continue
+        out.append(cur + s)
+        cur = ""
+    if cur.strip():
+        out.append(cur.strip())
+    return out
+
+
+def clean(out: str, cwd: Path, root: Path) -> str:
+    """One command's output, made stable: no timings, no scratch paths (the lab's folder becomes relative,
+    the scratch copy's root "<scratch>"), and on Windows forward slashes."""
+    out = out.replace("\r\n", "\n").rstrip("\n")
+    for d, to in ((cwd, ""), (root, "<scratch>/")):
+        for p in sorted({str(d), d.as_posix()}, key=len, reverse=True):
+            out = out.replace(p + "\\", to).replace(p + "/", to).replace(p, to.rstrip("/") or ".")
+    if os.name == "nt":
+        out = out.replace("\\", "/")
+    # pytest, node and Pester print their own timings; keep the counts, drop the times.
+    out = re.sub(r" in \d+\.\d+s\b", "", out)
+    out = re.sub(r"^(. duration_ms) [\d.]+$", r"\1 …", out, flags=re.M)
+    out = re.sub(r" \(\d+(?:\.\d+)?ms\)$", "", out, flags=re.M)
+    out = re.sub(r"^((?:Tests completed|Discovery found [^\n]*?) in) [\d.]+m?s", r"\1 …", out, flags=re.M)
+    out = re.sub(r"^(\[[+-]\] [^\n]*?) [\d.]+m?s \([\d.]+m?s\|[\d.]+m?s\)$", r"\1", out, flags=re.M)
+    return "\n".join(l.rstrip() for l in out.split("\n")).strip("\n")
+
+
+def env() -> dict:
     # Node before 23 prints TAP when its output isn't a terminal; the spec reporter is what a reader sees.
-    env = dict(os.environ, PYTHONIOENCODING="utf-8", PYTHONUTF8="1", NO_COLOR="1",
-               NODE_OPTIONS="--test-reporter=spec")
-    for c in cmds:
-        text.append(f"$ {c}")
-        argv = c.split(" ", 1)
-        shell_cmd = (sys.executable + " " + argv[1]) if argv[0] == "python" else c
-        p = subprocess.run(shell_cmd, cwd=cwd, shell=True, capture_output=True, text=True, encoding="utf-8", env=env)
-        out = (p.stdout + p.stderr).rstrip("\n")
-        # pytest prints its own timing; keep the counts, drop the seconds, so a capture is stable.
-        out = re.sub(r" in \d+\.\d+s\b", "", out)
-        out = re.sub(r"^(. duration_ms) [\d.]+$", r"\1 …", out, flags=re.M)
-        out = re.sub(r" \(\d+(?:\.\d+)?ms\)$", "", out, flags=re.M)
+    return dict(os.environ, PYTHONIOENCODING="utf-8", PYTHONUTF8="1", NO_COLOR="1", TERM="dumb",
+                NODE_OPTIONS="--test-reporter=spec", __PY=sys.executable)
+
+
+def bash_exe() -> str:
+    git = Path(os.environ.get("ProgramFiles", r"C:\Program Files")) / "Git" / "bin" / "bash.exe"
+    return str(git) if os.name == "nt" and git.exists() else "bash"   # never Windows' WSL launcher
+
+
+def run_bash(blocks: list[tuple[int, str]], cwd: Path, root: Path) -> dict[int, list[tuple[str, str]]]:
+    """Run bash blocks in one shell; per block, (command, output) pairs."""
+    script, shown = ["exec 2>&1", "set +e", 'python() { "$__PY" "$@"; }', "export -f python"], []
+    for k, code in blocks:
+        for line in bash_lines(code):
+            script += [f"printf '{MARK}%s\\n' {len(shown)}", line,
+                       "__rc=$?; [ $__rc -ne 0 ] && printf '(exit code %d)\\n' $__rc"]
+            shown.append((k, line))
+    p = subprocess.run([bash_exe(), "-c", "\n".join(script)], cwd=cwd, capture_output=True, env=env())
+    return split(p.stdout.decode("utf-8", "replace"), shown, cwd, root)
+
+
+PS_DRIVER = r"""
+$ErrorActionPreference = 'Continue'; $ProgressPreference = 'SilentlyContinue'
+[Console]::OutputEncoding = [Text.UTF8Encoding]::new($false); $OutputEncoding = [Console]::OutputEncoding
+$PSStyle.OutputRendering = 'PlainText'; $ErrorView = 'ConciseView'
+function python { & $env:__PY @args }
+$__shown = 0
+foreach ($__b in (Get-Content -Raw -LiteralPath $args[0] | ConvertFrom-Json)) {
+  $__errs = $null
+  $__ast = [System.Management.Automation.Language.Parser]::ParseInput($__b.code, [ref]$null, [ref]$__errs)
+  foreach ($__st in $__ast.EndBlock.Statements) {
+    "$([char]0x1e)$__shown $($__b.k)"
+    "$([char]0x1e)SRC " + ($__st.Extent.Text -replace "`r?`n", [string][char]0x1f)
+    $__shown++
+    $global:LASTEXITCODE = 0
+    try { . ([scriptblock]::Create($__st.Extent.Text)) *>&1 | Out-String -Width 200 -Stream }
+    catch { $_ | Out-String -Width 200 -Stream }
+    if ($global:LASTEXITCODE) { "(exit code $global:LASTEXITCODE)" }
+  }
+}
+"""
+
+
+def run_pwsh(blocks: list[tuple[int, str]], cwd: Path, root: Path) -> dict[int, list[tuple[str, str]]]:
+    """Run PowerShell blocks in one session, statement by statement; per block, (statement, output) pairs."""
+    with tempfile.TemporaryDirectory() as tmp:
+        driver, data = Path(tmp) / "driver.ps1", Path(tmp) / "blocks.json"
+        driver.write_text(PS_DRIVER, encoding="utf-8")
+        data.write_text(json.dumps([{"k": k, "code": c} for k, c in blocks]), encoding="utf-8")
+        p = subprocess.run(["pwsh", "-NoLogo", "-NoProfile", "-NonInteractive", "-File", str(driver), str(data)],
+                           cwd=cwd, capture_output=True, env=env())
+    text = (p.stdout + p.stderr).decode("utf-8", "replace").replace("\r\n", "\n")
+    shown, parts, cur = [], [], None
+    for line in text.split("\n"):
+        if line.startswith(MARK + "SRC "):
+            shown.append((cur, line[5:].replace("\x1f", "\n")))
+        elif line.startswith(MARK):
+            cur = int(line[1:].split()[1])
+            parts.append([])
+        elif parts:
+            parts[-1].append(line)
+    res: dict[int, list[tuple[str, str]]] = {}
+    for (k, src), out in zip(shown, parts):
+        res.setdefault(k, []).append((src, clean("\n".join(out), cwd, root)))
+    return res
+
+
+def split(text: str, shown: list[tuple[int, str]], cwd: Path, root: Path) -> dict[int, list[tuple[str, str]]]:
+    parts: dict[int, list[str]] = {}
+    cur = None
+    for line in text.replace("\r\n", "\n").split("\n"):
+        if line.startswith(MARK) and line[1:].strip().isdigit():
+            cur = int(line[1:])
+            parts[cur] = []
+        elif cur is not None:
+            parts[cur].append(line)
+    res: dict[int, list[tuple[str, str]]] = {}
+    for i, (k, line) in enumerate(shown):
+        res.setdefault(k, []).append((line, clean("\n".join(parts.get(i, [])), cwd, root)))
+    return res
+
+
+def render(lang: str, pairs: list[tuple[str, str]]) -> str:
+    text = []
+    for src, out in pairs:
+        lines = src.split("\n")
+        text.append(PROMPT[lang] + lines[0])
+        text += [CONT[lang] + l for l in lines[1:]]
         if out:
             text.append(out)
-        if p.returncode:
-            text.append(f"(exit code {p.returncode})")
     return "\n".join(text) + "\n"
 
 
-def capture(wb: str) -> dict[str, str]:
-    docs, kit = WORKBOOKS[wb]
+def chapter_cfg(wb: str, nn: str) -> dict:
+    return CHAPTERS.get(f"{wb}-{nn}", {})
+
+
+def lab_dir(wb: str, md: str, cfg: dict) -> str:
+    if "cwd" in cfg:
+        return cfg["cwd"]
+    m = WORK_IN.search(lab1(md))
+    return m.group(1) if m else WORKBOOKS[wb][1]
+
+
+def run_lab(wb: str, nn: str, root: Path) -> list[tuple[int, str, list[tuple[str, str]]]]:
+    """Run one chapter's lab in the scratch copy under root: (k, language, (command, output) pairs)."""
+    page = next((ROOT / WORKBOOKS[wb][0]).glob(f"{nn}-*.md"))
+    md, cfg = page.read_text(encoding="utf-8"), chapter_cfg(wb, nn)
+    cmds = commands(md, cfg)
+    results: dict[int, list[tuple[str, str]]] = {}
+    # A chapter's blocks run in one shell per language, the language of its first block first.
+    for lang in dict.fromkeys(c[1] for c in cmds):
+        cwd = root / cfg.get("lang_cwd", {}).get(lang, lab_dir(wb, md, cfg))
+        mine = []
+        for k, l, code, _ in cmds:
+            if l == lang:
+                if k in cfg.get("hidden", {}):
+                    mine.append((0, cfg["hidden"][k]))    # block 0's output isn't shown
+                mine.append((k, code))
+        results.update((run_bash if lang == "bash" else run_pwsh)(mine, cwd, root))
+    return [(k, lang, results.get(k, [])) for k, lang, _, _ in cmds]
+
+
+def capture(wb: str, ci: bool = False) -> dict[str, str]:
+    docs, _ = WORKBOOKS[wb]
     found = {}
     for page in sorted((ROOT / docs).glob("[0-9][0-9]-*.md")):
         nn = page.name[:2]
-        steps = blocks(lab1(page.read_text(encoding="utf-8")))
-        if not steps:
+        cfg = chapter_cfg(wb, nn)
+        if cfg.get("off") or (ci and cfg.get("local")) or not commands(page.read_text(encoding="utf-8"), cfg):
             continue
         with tempfile.TemporaryDirectory() as tmp:
-            work = Path(tmp) / "kit"
-            shutil.copytree(ROOT / kit, work, ignore=shutil.ignore_patterns("out", "__pycache__", ".pytest_cache"))
-            for k, cmds in enumerate(steps, 1):
-                found[f"{nn}-{k}"] = run(cmds, work)
+            root = Path(tmp)
+            shutil.copytree(ROOT / "examples", root / "examples", ignore=shutil.ignore_patterns(
+                "out", "__pycache__", ".pytest_cache", "node_modules", "target", ".gradle"))
+            for before in cfg.get("needs", []):
+                run_lab(wb, before, root)
+            for k, lang, pairs in run_lab(wb, nn, root):
+                found[f"{nn}-{k}"] = render(lang, pairs)
     return found
 
 
+def is_command(l: str) -> bool:
+    return l.startswith(("$ ", "PS> ", ">> ", "> "))
+
+
 def wrapped(text: str, width: int = 100) -> list[str]:
-    """The capture's lines as a 100-column window shows them: long commands broken at spaces into bash
+    """The capture's lines as a 100-column window shows them: long commands broken at spaces into
     continuation lines, long output wrapped."""
     lines = []
     for l in text.rstrip("\n").split("\n"):
         if len(l) <= width:
             lines.append(l)
             continue
-        if not l.startswith("$ "):
+        if not is_command(l):
             # Output wraps as a terminal window this wide would wrap it.
             lines += [l[i:i + width] for i in range(0, len(l), width)]
             continue
-        cur = ""
+        cur, bash = "", l.startswith("$ ")
         for w in l.split(" "):
             if cur and len(cur) + 1 + len(w) > width - 2:
-                lines.append(cur + " \\")
+                lines.append(cur + (" \\" if bash else ""))
                 cur = "    " + w
             else:
                 cur = f"{cur} {w}" if cur else w
@@ -122,25 +331,23 @@ def wrapped(text: str, width: int = 100) -> list[str]:
 def place(md: str, wb: str, nn: str, found: dict[str, str]) -> str:
     """The chapter with each Lab 1 command block followed by its capture."""
     md = MARKED.sub("", md)
-    m = re.search(r"^## [^\n]*Lab 1[^\n]*\n", md, re.M)
-    if not m:
+    span = lab_span(md)
+    if not span:
         return md
-    start = m.end()
-    end = re.compile(r"^## ", re.M).search(md, start)
-    end = end.start() if end else len(md)
-    spots, k, last = [], 0, None
-    for b in BLOCK.finditer(md, start, end):
-        if b.group(2) == "bash":
-            k += 1
-            last = (k, b.group(1), b.end())
+    cmds = {b.start(): k for k, _, _, b in commands(md, chapter_cfg(wb, nn))}
+    spots, last = [], None
+    for b in BLOCK.finditer(md, *span):
+        if b.start() in cmds:
+            last = (cmds[b.start()], b.group(1), b.end())
             spots.append(last)
         elif b.group(2) == "text" and last and md[last[2]:b.start()].strip() == "":
             spots[-1] = (last[0], last[1], b.end())   # a ```text block right after the command: go after it
+            last = None
     for k, ind, pos in reversed(spots):
         key = f"{nn}-{k}"
         if key not in found:
             continue
-        first = found[key].split("\n", 1)[0][2:]
+        first = found[key].split("\n", 1)[0].split(" ", 1)[1]
         cmd = (first if len(first) <= 80 else first[:77] + "…").replace('"', "'")
         block = (f"{ind}{BEGIN.format(key)}\n\n"
                  f"{ind}![What the terminal shows, run on the kit's fixtures "
@@ -175,10 +382,11 @@ def draw(text: str, path: Path, title: str = "") -> None:
     y = bar + pad
     command = False
     for l in lines:
-        command = l.startswith("$ ") or (command and l.startswith("    "))
-        if l.startswith("$ "):
-            d.text((pad, y), "$ ", font=bold, fill="#5EEAD4")
-            d.text((pad + 2 * cw, y), l[2:], font=bold, fill="#F8FAFC")
+        command = is_command(l) or (command and l.startswith("    "))
+        prompt = next((p for p in ("PS> ", ">> ", "$ ", "> ") if l.startswith(p)), "")
+        if prompt:
+            d.text((pad, y), prompt, font=bold, fill="#5EEAD4")
+            d.text((pad + len(prompt) * cw, y), l[len(prompt):], font=bold, fill="#F8FAFC")
         elif command:
             d.text((pad, y), l, font=bold, fill="#F8FAFC")
         else:
@@ -192,10 +400,11 @@ def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     ap.add_argument("workbook", choices=sorted(WORKBOOKS))
     ap.add_argument("--check", action="store_true")
+    ap.add_argument("--ci", action="store_true", help="leave out the labs CHAPTERS marks local-only")
     ap.add_argument("--images", action="store_true")
     ap.add_argument("--pages", action="store_true")
     a = ap.parse_args()
-    found = capture(a.workbook)
+    found = capture(a.workbook, a.ci)
     folder = OUT / a.workbook
     stale = [k for k, t in found.items() if not (folder / f"{k}.txt").exists() or (folder / f"{k}.txt").read_text(encoding="utf-8") != t]
     if a.check:
@@ -205,13 +414,14 @@ def main() -> int:
         print(f"kit captures: {len(found)} match the kit")
         return 0
     folder.mkdir(parents=True, exist_ok=True)
+    docs = ROOT / WORKBOOKS[a.workbook][0]
     for k, t in found.items():
         (folder / f"{k}.txt").write_bytes(t.encode("utf-8"))
         if a.images:
-            draw(t, ROOT / WORKBOOKS[a.workbook][0] / "captures" / f"{k}.png",
-                 f"{WORKBOOKS[a.workbook][1]}  ·  fixture data")
+            md = next(docs.glob(f"{k[:2]}-*.md")).read_text(encoding="utf-8")
+            draw(t, docs / "captures" / f"{k}.png", f"{lab_dir(a.workbook, md, chapter_cfg(a.workbook, k[:2]))}  ·  fixture data")
     if a.pages:
-        for page in sorted((ROOT / WORKBOOKS[a.workbook][0]).glob("[0-9][0-9]-*.md")):
+        for page in sorted(docs.glob("[0-9][0-9]-*.md")):
             md = page.read_bytes().decode("utf-8")
             new = place(md, a.workbook, page.name[:2], found)
             if new != md:

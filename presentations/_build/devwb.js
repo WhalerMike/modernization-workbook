@@ -35,8 +35,8 @@ const path = require("path");
 const ROOT = path.join(__dirname, "..", "..");
 const WORKBOOKS = {
   adm: { dir: "docs/books/b19-developer-workbook", name: "Building the Attribute-Driven Migration" },
-  pa: { dir: "docs/project-plans/developer-workbooks/privileged-access", name: "Building Privileged Access" },
-  npi: { dir: "docs/project-plans/developer-workbooks/non-person-identity", name: "Building Non-Person Identity" },
+  pa: { dir: "docs/project-plans/developer-workbooks/privileged-access", name: "Building Privileged Access", kit: "examples/privileged-access" },
+  npi: { dir: "docs/project-plans/developer-workbooks/non-person-identity", name: "Building Non-Person Identity", kit: "examples/non-person-identity" },
   ttm: { dir: "docs/project-plans/developer-workbooks/ticket-to-machine", name: "Building Ticket-to-Machine", kit: "examples/servicenow-sailpoint" },
 };
 const ICONS = new Set(fs.readdirSync(path.join(__dirname, "icons")).map((f) => f.replace(/\.png$/, "")));
@@ -92,6 +92,8 @@ module.exports = function build(spec) {
   };
   const strip = (t) => String(t).replace(/\*\*/g, "");
 
+  // The prompt a capture line starts with: "$ " (bash), "PS> " (PowerShell), or a continuation.
+  const promptOf = (l) => ["PS> ", ">> ", "$ ", "> "].find((p) => l.startsWith(p)) || "";
   const E = {
     lead: {
       h: (e, w, s) => nlines(strip(e.lead), w, size(16, 13, s)) * lh(size(16, 13, s)) + 0.06,
@@ -178,10 +180,11 @@ module.exports = function build(spec) {
         const out = [];
         for (const l of E.terminal.raw(e)) {
           if (l.length <= cols) { out.push(l); continue; }
-          if (!l.startsWith("$ ")) { for (let i = 0; i < l.length; i += cols) out.push(l.slice(i, i + cols)); continue; }
+          if (!promptOf(l)) { for (let i = 0; i < l.length; i += cols) out.push(l.slice(i, i + cols)); continue; }
           let cur = "";
+          const cont = l.startsWith("$ ") ? " \\" : "";   // bash shows a continuation; PowerShell wraps
           for (const word of l.split(" ")) {
-            if (cur && cur.length + 1 + word.length > cols - 2) { out.push(cur + " \\"); cur = "    " + word; } else cur = cur ? `${cur} ${word}` : word;
+            if (cur && cur.length + 1 + word.length > cols - 2) { out.push(cur + cont); cur = "    " + word; } else cur = cur ? `${cur} ${word}` : word;
           }
           out.push(cur);
         }
@@ -193,16 +196,17 @@ module.exports = function build(spec) {
         box(sl, "Terminal", x, y, w, h, "0F172A", "0F172A");
         sl.addShape(pres.shapes.RECTANGLE, { objectName: "Terminal title bar", x, y, w, h: 0.3, fill: { color: "1E293B" }, line: { color: "1E293B" } });
         ["F87171", "FBBF24", "34D399"].forEach((c, k) => sl.addShape(pres.shapes.OVAL, { objectName: `Terminal dot ${k + 1}`, x: x + 0.14 + k * 0.2, y: y + 0.09, w: 0.12, h: 0.12, fill: { color: c }, line: { color: c } }));
-        txt(sl, "Terminal title", e.label || `${wb.kit || "the kit"}  ·  fixture data  ·  real output`,
+        txt(sl, "Terminal title", e.label || `${e.kit || spec.kit || wb.kit || "the kit"}  ·  fixture data  ·  real output`,
           { x: x + 0.8, y, w: w - 1.0, h: 0.3, fontSize: 9.5, color: "94A3B8", align: "center", valign: "middle" });
         let command = false;
         const runs = [];
         lines.forEach((l, k) => {
           const br = k < lines.length - 1;
-          command = l.startsWith("$ ") || (command && l.startsWith("    "));
-          if (l.startsWith("$ ")) {
-            runs.push({ text: "$ ", options: { color: "5EEAD4", bold: true } });
-            runs.push({ text: l.slice(2), options: { color: "F8FAFC", bold: true, breakLine: br } });
+          const p = promptOf(l);
+          command = !!p || (command && l.startsWith("    "));
+          if (p) {
+            runs.push({ text: p, options: { color: "5EEAD4", bold: true } });
+            runs.push({ text: l.slice(p.length) || " ", options: { color: "F8FAFC", bold: true, breakLine: br } });
           } else runs.push({ text: l.length ? l : " ", options: { color: command ? "F8FAFC" : (/^\(exit code|^…$/.test(l) ? "94A3B8" : "E2E8F0"), bold: command, breakLine: br } });
         });
         txt(sl, "Terminal output", runs, { x: x + 0.15, y: y + 0.38, w: w - 0.25, h: h - 0.45, fontFace: "Consolas", fontSize: pt, valign: "top" });
