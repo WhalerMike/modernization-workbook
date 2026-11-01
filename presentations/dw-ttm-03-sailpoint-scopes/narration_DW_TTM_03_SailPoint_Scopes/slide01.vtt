@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.200
+Welcome back to Building
+Ticket-to-Machine.
+
+2
+00:00:02.200 --> 00:00:06.113
+This is Chapter 3: the
+SailPoint client and its scopes.
+
+3
+00:00:06.113 --> 00:00:09.295
+An identity governance
+API client that can read
+
+4
+00:00:09.295 --> 00:00:12.399
+every identity is already
+a sensitive account.
+
+5
+00:00:12.399 --> 00:00:16.313
+One that can also change them is a
+second administrator nobody named.
+
+6
+00:00:16.313 --> 00:00:21.714
+This chapter shows how the kit's clients
+reach SailPoint Identity Security Cloud and
+
+7
+00:00:21.714 --> 00:00:24.757
+Microsoft Graph, adds their
+rows to the call list,
+
+8
+00:00:24.757 --> 00:00:28.637
+and proves the drift and re-read
+clients hold read scopes only.
+
+9
+00:00:28.637 --> 00:00:31.060
+Then two labs and the dangers.

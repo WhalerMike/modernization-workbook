@@ -1,0 +1,52 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.075
+The dangers.
+
+2
+00:00:01.075 --> 00:00:04.206
+A manage scope on a read
+client means a stolen token
+
+3
+00:00:04.206 --> 00:00:07.187
+can change accounts, and
+the comparison flags it.
+
+4
+00:00:07.187 --> 00:00:11.475
+The workflow scope left on a standing
+client lets anyone add workflows
+
+5
+00:00:11.475 --> 00:00:14.963
+that call out of SailPoint, so
+it lives on a client used once.
+
+6
+00:00:14.963 --> 00:00:19.131
+An administrator's personal token
+runs the kit as an org admin,
+
+7
+00:00:19.131 --> 00:00:21.338
+so use a dedicated low-level user.
+
+8
+00:00:21.338 --> 00:00:25.276
+Offset paging past ten thousand
+results stops silently,
+
+9
+00:00:25.276 --> 00:00:27.287
+so the code uses search-after.
+
+10
+00:00:27.287 --> 00:00:29.576
+The wrong Graph cloud is refused.
+
+11
+00:00:29.576 --> 00:00:33.340
+And Graph signs in with a
+certificate first, not a secret.

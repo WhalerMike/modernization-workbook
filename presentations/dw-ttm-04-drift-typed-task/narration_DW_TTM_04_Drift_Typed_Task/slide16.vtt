@@ -1,0 +1,56 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.250
+Done looks like this.
+
+2
+00:00:01.250 --> 00:00:05.204
+Every workflow resolves against a
+saved input from your own tenant,
+
+3
+00:00:05.204 --> 00:00:07.675
+with nothing you meant
+to send left behind.
+
+4
+00:00:07.675 --> 00:00:11.425
+The native-change workflow
+sends all three kinds of change.
+
+5
+00:00:11.425 --> 00:00:14.037
+The deployed script keys on the attribute.
+
+6
+00:00:14.037 --> 00:00:17.139
+The trigger ID, the step's
+attribute names and
+
+7
+00:00:17.139 --> 00:00:20.074
+the input's root are
+confirmed in a sandbox.
+
+8
+00:00:20.074 --> 00:00:22.631
+Workflows go in disabled, get tested,
+
+9
+00:00:22.631 --> 00:00:26.038
+then enabled, and the
+workflow client is removed.
+
+10
+00:00:26.038 --> 00:00:27.451
+And the tests pass.
+
+11
+00:00:27.451 --> 00:00:33.012
+Next, Chapter 5: the re-read rule, and
+why a success response isn't closure.
+
+12
+00:00:33.012 --> 00:00:34.180
+Thanks for watching.

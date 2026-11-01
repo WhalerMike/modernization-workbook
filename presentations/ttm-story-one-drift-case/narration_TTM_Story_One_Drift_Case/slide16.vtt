@@ -1,0 +1,93 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.049
+The answer to check four: a warning,
+
+2
+00:00:02.049 --> 00:00:04.975
+because there are two
+sources for the first value.
+
+3
+00:00:04.975 --> 00:00:08.913
+Scene five is the fix itself, and
+here the kit stops on purpose.
+
+4
+00:00:08.913 --> 00:00:10.587
+The guide says how it should run.
+
+5
+00:00:10.587 --> 00:00:14.669
+Erin's wrong fact is corrected
+where HR owns it, in Core HCM,
+
+6
+00:00:14.669 --> 00:00:20.400
+and SailPoint re-aggregates; SailPoint
+can't write HR-mastered attributes back.
+
+7
+00:00:20.400 --> 00:00:23.643
+Her unauthorized write is
+restored by SailPoint,
+
+8
+00:00:23.643 --> 00:00:25.937
+and the writer's access is reviewed.
+
+9
+00:00:25.937 --> 00:00:29.031
+The ticket authorizes
+a machine: a connector,
+
+10
+00:00:29.031 --> 00:00:32.626
+under a service identity,
+and a person only approves.
+
+11
+00:00:32.626 --> 00:00:35.835
+But the kit's first pass
+doesn't actuate at all:
+
+12
+00:00:35.835 --> 00:00:39.912
+no code writes to Entra ID,
+Active Directory or SailPoint.
+
+13
+00:00:39.912 --> 00:00:43.326
+What it does have is the closure
+signal, which we'll try next.
+
+14
+00:00:43.326 --> 00:00:47.575
+Why it matters: Gate 5 keeps
+changes off personal admin accounts.
+
+15
+00:00:47.575 --> 00:00:50.500
+The guide also keeps people
+off standing privilege.
+
+16
+00:00:50.500 --> 00:00:54.879
+Where a person must act, they activate
+an eligible role just in time,
+
+17
+00:00:54.879 --> 00:00:57.825
+with the ticket number
+as the justification.
+
+18
+00:00:57.825 --> 00:01:03.065
+And when no machine can reach the surface,
+the declared-exception lane takes over:
+
+19
+00:01:03.065 --> 00:01:06.410
+a named approver, a recorded
+session and an end date.

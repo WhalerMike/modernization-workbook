@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.125
+Here's the rule inside ServiceNow.
+
+2
+00:00:02.125 --> 00:00:05.200
+It runs before any update
+that changes the state.
+
+3
+00:00:05.200 --> 00:00:10.046
+If someone sets a closed state, the record
+goes to awaiting verification instead,
+
+4
+00:00:10.046 --> 00:00:12.866
+unless that same update
+carries a new evidence
+
+5
+00:00:12.866 --> 00:00:15.325
+hash and comes from the verifier account.
+
+6
+00:00:15.325 --> 00:00:19.963
+Evidence alone isn't enough, and
+the verifier alone isn't enough.
+
+7
+00:00:19.963 --> 00:00:24.615
+There's one human path: a named exception
+approver can cancel with a close note,
+
+8
+00:00:24.615 --> 00:00:27.959
+which is the Federal
+Modernization Workbook's Book 13's
+
+9
+00:00:27.959 --> 00:00:31.012
+declared-exception lane,
+and it stays on the record.
+
+10
+00:00:31.012 --> 00:00:35.140
+The rule also governs tickets the
+Service Desk integration opened.

@@ -1,0 +1,52 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.575
+Here's the drift client.
+
+2
+00:00:01.575 --> 00:00:04.310
+Its inputs are an HR extract, Graph users,
+
+3
+00:00:04.310 --> 00:00:09.532
+SailPoint identities and uncorrelated
+accounts, and optionally the Entra
+
+4
+00:00:09.532 --> 00:00:13.925
+directory audit; each can be a saved
+file, which is how the labs run.
+
+5
+00:00:13.925 --> 00:00:16.154
+It measures four of Book 3's classes,
+
+6
+00:00:16.154 --> 00:00:19.613
+and an unauthorized write
+only when it reads the audit.
+
+7
+00:00:19.613 --> 00:00:23.696
+Credential and schema drift are
+always reported as not computed,
+
+8
+00:00:23.696 --> 00:00:25.738
+because they need other systems.
+
+9
+00:00:25.738 --> 00:00:28.838
+Each finding's ID is a
+hash of what it's about,
+
+10
+00:00:28.838 --> 00:00:31.850
+so the same drift has
+the same ID every run.
+
+11
+00:00:31.850 --> 00:00:35.090
+And pushing to ServiceNow
+still needs the apply flag.

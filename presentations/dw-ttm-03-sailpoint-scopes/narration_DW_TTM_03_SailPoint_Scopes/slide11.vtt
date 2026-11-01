@@ -1,0 +1,43 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.088
+Who owns this?
+
+2
+00:00:01.088 --> 00:00:07.011
+Developers who own the clients, the identity
+engineers who own the SailPoint side,
+
+3
+00:00:07.011 --> 00:00:09.712
+and the I S S O who approves API clients.
+
+4
+00:00:09.712 --> 00:00:12.088
+There are three non-person
+identities here.
+
+5
+00:00:12.088 --> 00:00:15.950
+A standing SailPoint reader
+with exactly two read scopes.
+
+6
+00:00:15.950 --> 00:00:18.435
+A workflow client with one manage scope,
+
+7
+00:00:18.435 --> 00:00:21.975
+used once to create the three
+workflows and then removed.
+
+8
+00:00:21.975 --> 00:00:25.544
+And a Graph app registration
+with the user read permission,
+
+9
+00:00:25.544 --> 00:00:30.480
+plus the audit permission only if you read
+the audit, signed in with a certificate.

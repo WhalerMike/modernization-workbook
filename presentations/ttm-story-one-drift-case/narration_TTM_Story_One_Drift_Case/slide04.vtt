@@ -1,0 +1,90 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.875
+Scene one.
+
+2
+00:00:00.875 --> 00:00:05.737
+On day one, the drift client joins
+the HR extract, Microsoft Graph
+
+3
+00:00:05.737 --> 00:00:10.875
+and SailPoint on the employee ID,
+and measures Book 3's drift classes.
+
+4
+00:00:10.875 --> 00:00:12.700
+Erin collects four findings:
+
+5
+00:00:12.700 --> 00:00:17.186
+her Entra department and Entra manager
+disagree with HR, her SailPoint
+
+6
+00:00:17.186 --> 00:00:21.900
+manager disagrees too, and there's an
+unauthorized write on her department.
+
+7
+00:00:21.900 --> 00:00:26.293
+That last one appears only because
+this run read the directory audit;
+
+8
+00:00:26.293 --> 00:00:28.913
+without it, the class
+isn't computed at all.
+
+9
+00:00:28.913 --> 00:00:33.123
+Each finding's ID is a hash of
+its class, system, employee,
+
+10
+00:00:33.123 --> 00:00:38.175
+object and attribute, so the same
+drift has the same ID every night.
+
+11
+00:00:38.175 --> 00:00:41.637
+Why it matters: Gate 3
+measures the starting drift.
+
+12
+00:00:41.637 --> 00:00:45.380
+That's account management
+and continuous monitoring,
+
+13
+00:00:45.380 --> 00:00:47.875
+and the I S S O keeps every run's output.
+
+14
+00:00:47.875 --> 00:00:49.788
+Notice what the run doesn't claim.
+
+15
+00:00:49.788 --> 00:00:53.985
+Credential drift and schema drift
+need other systems, the card system,
+
+16
+00:00:53.985 --> 00:00:56.446
+Intune and the provisioning middleware,
+
+17
+00:00:56.446 --> 00:01:00.788
+so every run lists them as not computed
+instead of implying they're clean.
+
+18
+00:01:00.788 --> 00:01:04.740
+And expect a burst of High findings
+in a real estate's first month;
+
+19
+00:01:04.740 --> 00:01:07.420
+Book 3 calls that the measurement working.

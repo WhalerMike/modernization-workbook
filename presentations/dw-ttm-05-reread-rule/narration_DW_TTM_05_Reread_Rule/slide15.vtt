@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.387
+The dangers line up with the
+ways to close without proof.
+
+2
+00:00:03.387 --> 00:00:06.713
+Closure by ticket status
+is redirected by the rule.
+
+3
+00:00:06.713 --> 00:00:10.188
+An intended state that names
+nothing is skipped by the guard.
+
+4
+00:00:10.188 --> 00:00:14.576
+A stale read is pending inside the
+grace period and a mismatch after it.
+
+5
+00:00:14.576 --> 00:00:17.370
+A missing read is an error, never a match;
+
+6
+00:00:17.370 --> 00:00:20.950
+the live reader raises on
+anything but a not-found.
+
+7
+00:00:20.950 --> 00:00:25.963
+A misconfigured verifier would refuse
+every close, so check it in Lab 2.
+
+8
+00:00:25.963 --> 00:00:29.780
+And evidence edited after closure
+no longer proves anything,
+
+9
+00:00:29.780 --> 00:00:32.450
+which is why Chapter
+7 recomputes the hash.

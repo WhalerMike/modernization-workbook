@@ -1,0 +1,42 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.800
+Lab 1 needs only a laptop with Python.
+
+2
+00:00:02.800 --> 00:00:05.750
+First, run the chapter's twenty-two tests.
+
+3
+00:00:05.750 --> 00:00:10.438
+Then check five sample payloads at a
+fixed clock, noon on November first.
+
+4
+00:00:10.438 --> 00:00:13.315
+The first is accepted: it had no severity,
+
+5
+00:00:13.315 --> 00:00:17.500
+so the class default gave it P2
+and a due time one hour later.
+
+6
+00:00:17.500 --> 00:00:22.263
+The second has a typo in its class and
+is rejected with the list of valid ones.
+
+7
+00:00:22.263 --> 00:00:26.725
+The third is accepted but warned:
+its intended state names nothing.
+
+8
+00:00:26.725 --> 00:00:28.545
+The fourth has a bad severity,
+
+9
+00:00:28.545 --> 00:00:32.400
+and the fifth is a closure signal
+that never closes anything.

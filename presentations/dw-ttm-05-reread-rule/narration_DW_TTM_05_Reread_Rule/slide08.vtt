@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.025
+The facts each re-read depends
+on, read on November first.
+
+2
+00:00:04.025 --> 00:00:06.787
+The Table API lists and patches records,
+
+3
+00:00:06.787 --> 00:00:12.312
+and the Attachment API uploads the evidence
+file with a mandatory content type.
+
+4
+00:00:12.312 --> 00:00:15.757
+An account is re-read through
+SailPoint's Accounts API,
+
+5
+00:00:15.757 --> 00:00:20.657
+an identity through Search on the
+identities index, and an Entra user through
+
+6
+00:00:20.657 --> 00:00:25.250
+Graph's get-a-user call, which returns
+not found when the user doesn't exist.
+
+7
+00:00:25.250 --> 00:00:28.490
+And SailPoint's own best-practice
+page confirms the gap:
+
+8
+00:00:28.490 --> 00:00:33.190
+the mapped ServiceNow status decides
+when it treats provisioning as complete.

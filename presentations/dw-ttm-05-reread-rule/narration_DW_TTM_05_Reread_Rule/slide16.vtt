@@ -1,0 +1,51 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.250
+Done looks like this.
+
+2
+00:00:01.250 --> 00:00:03.578
+The rule is active on the finding table,
+
+3
+00:00:03.578 --> 00:00:08.525
+and on incidents and request items if the
+Service Desk integration opens tickets.
+
+4
+00:00:08.525 --> 00:00:13.225
+The verifier property matches the
+user ServiceNow actually records.
+
+5
+00:00:13.225 --> 00:00:17.013
+The grace period is at least the
+longest aggregation interval.
+
+6
+00:00:17.013 --> 00:00:21.072
+A dry run over this week's waiting
+findings skips nothing for an
+
+7
+00:00:21.072 --> 00:00:24.975
+empty intended state, or each
+such record has gone to a person.
+
+8
+00:00:24.975 --> 00:00:28.113
+Closed records carry their
+evidence and attachment.
+
+9
+00:00:28.113 --> 00:00:29.526
+And the tests pass.
+
+10
+00:00:29.526 --> 00:00:33.063
+Next, Chapter 6: drift reconciliation.
+
+11
+00:00:33.063 --> 00:00:34.220
+Thanks for watching.

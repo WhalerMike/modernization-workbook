@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.576
+Several things are open,
+and they matter because
+
+2
+00:00:02.576 --> 00:00:04.975
+they're exactly what the
+offline tool assumes.
+
+3
+00:00:04.975 --> 00:00:08.738
+The native change trigger's ID
+isn't in SailPoint's table.
+
+4
+00:00:08.738 --> 00:00:12.206
+The HTTP request step's JSON
+names aren't published,
+
+5
+00:00:12.206 --> 00:00:16.463
+and nor is whether it resolves
+those run-time keys inside its body.
+
+6
+00:00:16.463 --> 00:00:21.037
+The shape of each added entitlement
+isn't documented below the list level,
+
+7
+00:00:21.037 --> 00:00:24.487
+and provisioning results
+beyond success aren't listed.
+
+8
+00:00:24.487 --> 00:00:28.263
+Nor is whether the event sits at
+the root or under a trigger key.
+
+9
+00:00:28.263 --> 00:00:30.600
+Lab 2 settles these for your tenant.

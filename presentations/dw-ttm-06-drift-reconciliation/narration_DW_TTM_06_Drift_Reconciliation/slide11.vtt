@@ -1,0 +1,52 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.188
+Lab 1 tells the two-day story.
+
+2
+00:00:02.188 --> 00:00:03.926
+Seventeen tests pass.
+
+3
+00:00:03.926 --> 00:00:09.237
+Day one: run the reconciliation over
+all the fixtures, including the audit.
+
+4
+00:00:09.237 --> 00:00:14.507
+It counts four attribute drifts, two
+missing identities, three orphan accounts,
+
+5
+00:00:14.507 --> 00:00:17.620
+two stale accesses and
+one unauthorized write,
+
+6
+00:00:17.620 --> 00:00:21.213
+and lists credential and
+schema drift as not computed.
+
+7
+00:00:21.213 --> 00:00:25.624
+In the CSV, Erin's Entra department
+is Finance where HR says HR,
+
+8
+00:00:25.624 --> 00:00:30.124
+and the audit shows a help desk
+administrator made the change.
+
+9
+00:00:30.124 --> 00:00:32.925
+Carol, terminated, is still enabled.
+
+10
+00:00:32.925 --> 00:00:37.438
+Day two, after HR's correction:
+exactly the same counts.
+
+11
+00:00:37.438 --> 00:00:39.240
+The totals hide what moved.

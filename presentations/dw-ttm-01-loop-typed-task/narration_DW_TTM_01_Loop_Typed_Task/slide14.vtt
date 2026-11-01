@@ -1,0 +1,51 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.075
+Next, run the ServiceNow script's
+own fifteen tests in Node,
+
+2
+00:00:04.075 --> 00:00:06.087
+the rules the Python mirrors.
+
+3
+00:00:06.087 --> 00:00:08.650
+Then run the drift reconciliation over the
+
+4
+00:00:08.650 --> 00:00:11.426
+fixtures and check every
+payload it would post.
+
+5
+00:00:11.426 --> 00:00:12.812
+Twelve are accepted.
+
+6
+00:00:12.812 --> 00:00:17.567
+Three carry the warning, and they're
+exactly the classes a person decides first:
+
+7
+00:00:17.567 --> 00:00:20.712
+two missing identities and
+the unauthorized write.
+
+8
+00:00:20.712 --> 00:00:26.100
+Notice Erin's two attribute drifts
+in Entra ID, department and manager.
+
+9
+00:00:26.100 --> 00:00:27.763
+They now have separate keys.
+
+10
+00:00:27.763 --> 00:00:30.162
+Before Chapter 4's fix, they shared one,
+
+11
+00:00:30.162 --> 00:00:33.410
+and the second would have
+vanished into the first.

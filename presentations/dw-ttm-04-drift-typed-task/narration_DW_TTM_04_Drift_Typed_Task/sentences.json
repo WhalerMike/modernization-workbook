@@ -1,0 +1,519 @@
+{
+ "1": [
+  [
+   0.05,
+   2.15,
+   "Welcome back to Building Ticket-to-Machine."
+  ],
+  [
+   2.2,
+   4.5,
+   "This is Chapter 4: drift to a typed task, the kit's Build 1."
+  ],
+  [
+   6.7,
+   4.287,
+   "A workflow that posts a finding is easy to build and hard to see."
+  ],
+  [
+   10.988,
+   8.713,
+   "You can't run a SailPoint workflow on a laptop, but you can resolve its request body against a saved event and see the exact payload ServiceNow would get."
+  ],
+  [
+   19.7,
+   3.5,
+   "Doing that found two gaps, and this chapter fixes both."
+  ],
+  [
+   23.2,
+   3.375,
+   "Then two labs, the dangers and the checklist."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   0.925,
+   "Why bother?"
+  ],
+  [
+   0.975,
+   10.925,
+   "Because the body of a SailPoint workflow is full of keys that SailPoint resolves only at run time, so until now the only way to see the actual payload was to run the workflow in a tenant."
+  ],
+  [
+   11.9,
+   2.413,
+   "And what you can't see, you can't test."
+  ],
+  [
+   14.312,
+   7.862,
+   "If the workflow drops part of an event, that part of the change is never reverted, and the re-read later finds nothing to disagree with."
+  ],
+  [
+   22.175,
+   8.287,
+   "So this chapter resolves the body offline, derives the intended state the way ServiceNow will, and lists anything left behind."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   1.988,
+   "Here's what Build 1 already has."
+  ],
+  [
+   2.038,
+   2.825,
+   "Three SailPoint workflows, one per trigger."
+  ],
+  [
+   4.862,
+   3.675,
+   "A native change to an account raises an unauthorized write."
+  ],
+  [
+   8.537,
+   3.837,
+   "A change to an identity's attributes raises attribute drift."
+  ],
+  [
+   12.375,
+   6.112,
+   "And a completed provisioning action raises a closure signal, which never closes anything by itself."
+  ],
+  [
+   18.488,
+   7.138,
+   "Each workflow has one HTTP request step and is created disabled, because SailPoint won't create one enabled."
+  ],
+  [
+   25.625,
+   8.688,
+   "On the ServiceNow side, the scripted REST resource derives the intended state: a native change is reverted, an attribute change is kept."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   1.988,
+   "The new tool does five things."
+  ],
+  [
+   2.038,
+   2.362,
+   "It picks the workflow for the trigger you name."
+  ],
+  [
+   4.4,
+   10.225,
+   "It resolves the body against a saved event, but only simple paths; anything fancier is refused, because it isn't a jay-son path engine and won't pretend to be."
+  ],
+  [
+   14.625,
+   3.688,
+   "It derives the intended state the same way ServiceNow will."
+  ],
+  [
+   18.312,
+   2.95,
+   "It checks the result against Chapter 1's contract."
+  ],
+  [
+   21.262,
+   4.463,
+   "And it lists every top-level field of the event that the body never reads."
+  ],
+  [
+   25.725,
+   4.85,
+   "Three fictional events, shaped like SailPoint's published examples, feed it."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   1.125,
+   "The first fix."
+  ],
+  [
+   1.175,
+   10.512,
+   "SailPoint's native change event has three kinds of change: single-value attributes, entitlements, and multivalued attributes, each with values added and removed."
+  ],
+  [
+   11.688,
+   2.35,
+   "The workflow sent only the first two."
+  ],
+  [
+   14.037,
+   12.412,
+   "So a native change that touched only a multivalued attribute, a proxy address added out of band, say, produced an intended state with nothing in it, and a re-read would have found nothing to disagree with."
+  ],
+  [
+   26.45,
+   8.325,
+   "Now the workflow sends the multivalued changes, and the script reverts them: added values must be absent, removed ones present."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   2.888,
+   "The second fix is in the de-duplication key."
+  ],
+  [
+   2.938,
+   4.6,
+   "ServiceNow folded findings together on source, subject and class."
+  ],
+  [
+   7.537,
+   6.037,
+   "So when two attributes drifted on one user, department and manager, they became one record."
+  ],
+  [
+   13.575,
+   5.25,
+   "The second finding's intended state was lost, and the re-read checked only the first."
+  ],
+  [
+   18.825,
+   3.837,
+   "Now the key adds the attribute whenever the payload names one."
+  ],
+  [
+   22.663,
+   5.213,
+   "The slide shows the key for a department change on Erin's identity, before and after."
+  ],
+  [
+   27.875,
+   3.475,
+   "Each drifting attribute is now its own piece of work."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   1.462,
+   "Both fixes are pinned."
+  ],
+  [
+   1.512,
+   19.925,
+   "Seven Python tests run each workflow against its event, check that a native change reverts all three kinds of change, reproduce the empty intended state the old workflow produced, confirm the attribute change keeps the new value with the attribute in the key, and cover the closure signal, refused paths and an unknown trigger."
+  ],
+  [
+   21.438,
+   8.425,
+   "Two new Node tests run the ServiceNow script itself, and the contract test now requires the script to read the multivalued changes."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   2.888,
+   "The trigger facts, read on November first."
+  ],
+  [
+   2.938,
+   12.625,
+   "The native change trigger is fire-and-forget, and fires only when an aggregation finds an account changed directly on the source, with native change detection on, account updates monitored, and a monitored attribute changed."
+  ],
+  [
+   15.562,
+   3.475,
+   "Its trigger I D isn't in SailPoint's published table."
+  ],
+  [
+   19.038,
+   6.562,
+   "The attribute-change and provisioning triggers are listed, both fire-and-forget, with the inputs on the slide."
+  ],
+  [
+   25.6,
+   8.0,
+   "A workflow can't be created enabled, creating one needs the workflow manage scope, and the ServiceNow side needs an endpoint ACL."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   4.925,
+   "Several things are open, and they matter because they're exactly what the offline tool assumes."
+  ],
+  [
+   4.975,
+   3.763,
+   "The native change trigger's I D isn't in SailPoint's table."
+  ],
+  [
+   8.738,
+   7.725,
+   "The HTTP request step's jay-son names aren't published, and nor is whether it resolves those run-time keys inside its body."
+  ],
+  [
+   16.462,
+   8.025,
+   "The shape of each added entitlement isn't documented below the list level, and provisioning results beyond success aren't listed."
+  ],
+  [
+   24.488,
+   3.775,
+   "Nor is whether the event sits at the root or under a trigger key."
+  ],
+  [
+   28.262,
+   2.275,
+   "Lab 2 settles these for your tenant."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   1.475,
+   "What Build 1 proves."
+  ],
+  [
+   1.525,
+   11.537,
+   "A write made outside the governed process is detected and raised as an owned, clocked finding whose intended state is the revert, which supports change control and system monitoring at Moderate."
+  ],
+  [
+   13.062,
+   3.312,
+   "Each drifting attribute is its own piece of work."
+  ],
+  [
+   16.375,
+   5.963,
+   "And a workflow change is tested before it runs, which is developer testing, SA-11."
+  ],
+  [
+   22.337,
+   11.838,
+   "Two labels: treating a native change as an unauthorized write is the program's inference, and since the workflow can't know whether a claim is in use, a person or a rule raises it to P1."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   1.087,
+   "Who does this work?"
+  ],
+  [
+   1.137,
+   7.987,
+   "Identity engineers who build the SailPoint workflows; they read jay-son and should run the payload tool on every change before importing."
+  ],
+  [
+   9.125,
+   5.125,
+   "ServiceNow developers who own the scripted REST resource, and deploy both fixes."
+  ],
+  [
+   14.25,
+   5.9,
+   "And the workflow client from Chapter 3, with the workflow manage scope, used once and removed."
+  ],
+  [
+   20.15,
+   8.787,
+   "One practical point, labeled an inference: the ServiceNow endpoint has to be reachable from SailPoint's cloud, because workflows call out from there."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   0.812,
+   "Lab 1."
+  ],
+  [
+   0.863,
+   2.112,
+   "First, eleven tests pass."
+  ],
+  [
+   2.975,
+   4.388,
+   "Then resolve the native-change workflow against Alice's fictional event."
+  ],
+  [
+   7.362,
+   3.987,
+   "It's an unauthorized write on her account, accepted at P2."
+  ],
+  [
+   11.35,
+   9.137,
+   "The intended state reverts all three changes: the title goes back to Analyst, and both the new group and the new proxy address must be gone."
+  ],
+  [
+   20.488,
+   6.787,
+   "The only field not sent is the event type, which is always account-updated for this trigger, so nothing is lost."
+  ],
+  [
+   27.275,
+   6.138,
+   "Before the fix, the proxy address was missing here, and the multivalued changes were in that last line."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   1.488,
+   "Next, the mover."
+  ],
+  [
+   1.538,
+   3.962,
+   "Erin's identity changed department from H R to Finance."
+  ],
+  [
+   5.5,
+   7.412,
+   "The finding keeps the new value as the intended state, at P3, and the key now ends in the attribute, department."
+  ],
+  [
+   12.912,
+   1.875,
+   "Nothing in the event is dropped."
+  ],
+  [
+   14.787,
+   6.075,
+   "Then the closure signal from a successful provisioning action: it's accepted, and four fields aren't sent."
+  ],
+  [
+   20.863,
+   5.562,
+   "A signal only moves matching findings to awaiting verification; it never closes one."
+  ],
+  [
+   26.425,
+   4.425,
+   "Finally, the two new Node tests of the ServiceNow script both pass."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   6.562,
+   "Lab 2 needs a SailPoint sandbox and your developer instance, never production, and the authors haven't run it."
+  ],
+  [
+   6.612,
+   3.325,
+   "Turn on native change detection on one test source."
+  ],
+  [
+   9.938,
+   6.775,
+   "Build one HTTP request step by hand in the editor, export it, and compare its names with the kit's file."
+  ],
+  [
+   16.712,
+   9.312,
+   "Point it at a capture endpoint first, change a monitored attribute on the source, and run the saved trigger input through the tool: the two payloads must match."
+  ],
+  [
+   26.025,
+   2.587,
+   "Repeat the change and it de-duplicates."
+  ],
+  [
+   28.613,
+   1.438,
+   "Then put everything back."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   1.025,
+   "The dangers."
+  ],
+  [
+   1.075,
+   8.75,
+   "An event field the workflow doesn't send leaves part of a change unreverted, and the re-read passes anyway; the tool lists dropped fields."
+  ],
+  [
+   9.825,
+   5.25,
+   "Two drifts folded into one record lose an intended state; the key fixes that."
+  ],
+  [
+   15.075,
+   5.938,
+   "A workflow edited only in the editor stops matching the repository, so export and diff."
+  ],
+  [
+   21.012,
+   2.788,
+   "Credentials in the file are caught by a test."
+  ],
+  [
+   23.8,
+   5.812,
+   "A closure signal treated as closure would skip the re-read, so it only moves findings to waiting."
+  ],
+  [
+   29.613,
+   4.0,
+   "And an open endpoint is locked with authentication and an ACL."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   1.2,
+   "Done looks like this."
+  ],
+  [
+   1.25,
+   6.425,
+   "Every workflow resolves against a saved input from your own tenant, with nothing you meant to send left behind."
+  ],
+  [
+   7.675,
+   3.75,
+   "The native-change workflow sends all three kinds of change."
+  ],
+  [
+   11.425,
+   2.612,
+   "The deployed script keys on the attribute."
+  ],
+  [
+   14.037,
+   6.037,
+   "The trigger I D, the step's attribute names and the input's root are confirmed in a sandbox."
+  ],
+  [
+   20.075,
+   5.963,
+   "Workflows go in disabled, get tested, then enabled, and the workflow client is removed."
+  ],
+  [
+   26.038,
+   1.413,
+   "And the tests pass."
+  ],
+  [
+   27.45,
+   5.562,
+   "Next, Chapter 5: the re-read rule, and why a success response isn't closure."
+  ],
+  [
+   33.013,
+   1.1,
+   "Thanks for watching."
+  ]
+ ]
+}

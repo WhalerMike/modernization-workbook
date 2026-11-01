@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.950
+Lab 1 runs on a laptop.
+
+2
+00:00:01.950 --> 00:00:05.388
+First, the kit's four
+SailPoint client tests pass.
+
+3
+00:00:05.388 --> 00:00:09.675
+Then list what the drift client needs
+from SailPoint: a token, Search with
+
+4
+00:00:09.675 --> 00:00:13.963
+the search read scope, and the Accounts
+list with the accounts read scope.
+
+5
+00:00:13.963 --> 00:00:15.263
+That's two scopes.
+
+6
+00:00:15.263 --> 00:00:18.200
+Now give it a manage
+scope as well and compare.
+
+7
+00:00:18.200 --> 00:00:21.046
+Nothing is missing, the
+manage scope is extra,
+
+8
+00:00:21.046 --> 00:00:25.200
+least privilege doesn't hold, and
+the command exits with a failure.
+
+9
+00:00:25.200 --> 00:00:29.090
+That one line is the
+review an I S S O needs.

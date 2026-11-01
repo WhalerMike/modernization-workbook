@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.475
+Every record gets four
+checks, each reported by name.
+
+2
+00:00:03.475 --> 00:00:07.200
+Is the evidence intact: does it
+still hash to the stored hash?
+
+3
+00:00:07.200 --> 00:00:10.120
+An edit after closure fails,
+and so does a value cut
+
+4
+00:00:10.120 --> 00:00:13.112
+short by the field's
+four-thousand-character limit.
+
+5
+00:00:13.112 --> 00:00:14.476
+Is there evidence at all?
+
+6
+00:00:14.476 --> 00:00:17.300
+A close that bypassed
+the business rule fails.
+
+7
+00:00:17.300 --> 00:00:19.988
+Did the evidence say the
+intended state matched?
+
+8
+00:00:19.988 --> 00:00:21.901
+And did it finish inside its window?
+
+9
+00:00:21.901 --> 00:00:27.218
+Window adherence is measured as closures
+inside the window over closures judged,
+
+10
+00:00:27.218 --> 00:00:31.100
+not a ratio that improves just
+because new findings arrive.

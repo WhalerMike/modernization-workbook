@@ -1,0 +1,43 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.400
+Why start with the record?
+
+2
+00:00:01.400 --> 00:00:02.987
+Because the loop has one.
+
+3
+00:00:02.987 --> 00:00:07.560
+A drift becomes a typed task with a
+class, a severity, an owner, a clock,
+
+4
+00:00:07.560 --> 00:00:10.054
+the system where the re-read happens,
+
+5
+00:00:10.054 --> 00:00:13.962
+and an intended state that says
+what the re-read must find.
+
+6
+00:00:13.962 --> 00:00:18.926
+Get the class wrong and the finding
+bounces, so the drift is never recorded.
+
+7
+00:00:18.926 --> 00:00:22.838
+Choose severity by hand and the
+windows stop meaning anything.
+
+8
+00:00:22.838 --> 00:00:26.632
+And an intended state that
+names nothing is the quiet one:
+
+9
+00:00:26.632 --> 00:00:30.820
+a re-read finds no difference,
+and the record closes on nothing.

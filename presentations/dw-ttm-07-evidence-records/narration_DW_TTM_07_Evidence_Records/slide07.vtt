@@ -1,0 +1,41 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.828
+Eight tests cover the export: the seven
+fields and the null later-pass fields;
+
+2
+00:00:04.828 --> 00:00:09.605
+the late, tampered and unevidenced
+closures and a truncated evidence field;
+
+3
+00:00:09.605 --> 00:00:13.321
+the package and its verification,
+with tampering detected;
+
+4
+00:00:13.321 --> 00:00:16.885
+the chain continued across
+periods; reproducible bytes;
+
+5
+00:00:16.885 --> 00:00:20.525
+and evidence written by the
+real re-read client verifying.
+
+6
+00:00:20.525 --> 00:00:24.600
+One honest limit: the package
+is tamper-evident, not signed.
+
+7
+00:00:24.600 --> 00:00:29.337
+Anyone who can rewrite every file and
+the manifest can rewrite the chain.
+
+8
+00:00:29.337 --> 00:00:33.480
+Signing, and where the package
+lives, are the program's decisions.

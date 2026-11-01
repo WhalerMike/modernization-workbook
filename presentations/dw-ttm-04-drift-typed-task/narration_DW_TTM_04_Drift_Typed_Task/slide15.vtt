@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.075
+The dangers.
+
+2
+00:00:01.075 --> 00:00:05.962
+An event field the workflow doesn't send
+leaves part of a change unreverted,
+
+3
+00:00:05.962 --> 00:00:09.825
+and the re-read passes anyway;
+the tool lists dropped fields.
+
+4
+00:00:09.825 --> 00:00:15.075
+Two drifts folded into one record lose
+an intended state; the key fixes that.
+
+5
+00:00:15.075 --> 00:00:18.002
+A workflow edited only in the editor stops
+
+6
+00:00:18.002 --> 00:00:21.013
+matching the repository,
+so export and diff.
+
+7
+00:00:21.013 --> 00:00:23.800
+Credentials in the file
+are caught by a test.
+
+8
+00:00:23.800 --> 00:00:27.377
+A closure signal treated as
+closure would skip the re-read,
+
+9
+00:00:27.377 --> 00:00:29.612
+so it only moves findings to waiting.
+
+10
+00:00:29.612 --> 00:00:33.670
+And an open endpoint is locked
+with authentication and an ACL.

@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.714
+No new test file this time:
+
+2
+00:00:01.714 --> 00:00:05.438
+Chapter 2's call-list test
+covers SailPoint and Graph too.
+
+3
+00:00:05.438 --> 00:00:08.968
+The drift and re-read clients
+run against a fake session,
+
+4
+00:00:08.968 --> 00:00:12.651
+and every request they make must
+match a row for their task.
+
+5
+00:00:12.651 --> 00:00:16.599
+It also asserts that no task asks
+for a scope ending in manage,
+
+6
+00:00:16.599 --> 00:00:21.575
+or a Graph permission ending in ReadWrite
+dot All, except workflow creation.
+
+7
+00:00:21.575 --> 00:00:24.696
+And the kit's original
+SailPoint tests still pass:
+
+8
+00:00:24.696 --> 00:00:29.260
+the token by client credentials and
+from a vault, and both paging styles.

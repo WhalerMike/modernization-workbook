@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:05.562
+From the kit's folder, run the drift
+client over the fixtures, with the audit.
+
+3
+00:00:05.562 --> 00:00:09.680
+The summary counts four attribute
+drifts, two missing identities,
+
+4
+00:00:09.680 --> 00:00:14.771
+three orphan accounts, two stale accesses
+and one unauthorized write, and it lists
+
+5
+00:00:14.771 --> 00:00:19.712
+credential and schema drift as not computed
+rather than implying they're clean.
+
+6
+00:00:19.712 --> 00:00:23.237
+Then look for Erin's
+employee ID in the CSV.
+
+7
+00:00:23.237 --> 00:00:27.941
+There she is, four times:
+department and manager in Entra ID,
+
+8
+00:00:27.941 --> 00:00:34.113
+manager in SailPoint, each Medium at P3;
+and the unauthorized write, High at P2.
+
+9
+00:00:34.113 --> 00:00:39.382
+If you run this yourself, you need Python
+3.10 or later with pytest and requests,
+
+10
+00:00:39.382 --> 00:00:42.099
+and you work in the kit's examples folder.
+
+11
+00:00:42.099 --> 00:00:44.488
+Nothing touches a tenant or the network.
+
+12
+00:00:44.488 --> 00:00:48.670
+When you're done, delete the out
+folder; the labs write everything there.

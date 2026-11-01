@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.062
+The tests.
+
+2
+00:00:01.062 --> 00:00:05.999
+Six new offline tests cover the six
+outcomes, the grace period expiring,
+
+3
+00:00:05.999 --> 00:00:10.601
+the guard never calling the reader,
+a missing saved read as an error,
+
+4
+00:00:10.601 --> 00:00:13.362
+a null read as not
+found, and the refusals.
+
+5
+00:00:13.362 --> 00:00:16.725
+The kit's original nine
+re-read tests still pass.
+
+6
+00:00:16.725 --> 00:00:20.193
+And the business rule's six
+Node tests pin its behavior:
+
+7
+00:00:20.193 --> 00:00:25.203
+a person's close is redirected, only the
+verifier with fresh evidence may close,
+
+8
+00:00:25.203 --> 00:00:29.982
+either one alone isn't enough, the
+exception approver may cancel with a note,
+
+9
+00:00:29.982 --> 00:00:33.980
+and on incidents only the
+integration's tickets are governed.

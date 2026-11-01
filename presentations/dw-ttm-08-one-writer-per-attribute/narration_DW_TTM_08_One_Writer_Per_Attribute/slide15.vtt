@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.075
+The dangers.
+
+2
+00:00:01.075 --> 00:00:04.667
+Two systems updating one
+attribute means drift fixed
+
+3
+00:00:04.667 --> 00:00:08.100
+and recreated forever; that's
+a Finding and a failure.
+
+4
+00:00:08.100 --> 00:00:12.525
+Field names that differ can hide a
+second writer, so aliases are reviewed.
+
+5
+00:00:12.525 --> 00:00:17.600
+A wrong directory name would make every
+attribute look unwritten, so it's refused.
+
+6
+00:00:17.600 --> 00:00:21.363
+A disabled mapping would raise
+false findings, so it's skipped.
+
+7
+00:00:21.363 --> 00:00:26.538
+An export with values in it may carry
+personal data, so export mappings only.
+
+8
+00:00:26.538 --> 00:00:30.028
+And writers outside provisioning
+policies aren't seen at all,
+
+9
+00:00:30.028 --> 00:00:32.060
+so a person confirms there are none.

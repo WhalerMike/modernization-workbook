@@ -1,0 +1,20 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.887
+Check seven, the last one.
+
+2
+00:00:01.887 --> 00:00:05.675
+Someone deletes one closed record
+from October's records file.
+
+3
+00:00:05.675 --> 00:00:10.126
+What does the verifier report:
+nothing, only a file hash mismatch,
+
+4
+00:00:10.126 --> 00:00:13.800
+the file hash and a broken
+chain, or a moved chain head?

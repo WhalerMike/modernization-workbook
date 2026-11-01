@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.375
+For the I S S O, this is
+the closure evidence.
+
+2
+00:00:03.375 --> 00:00:08.271
+A finding closed only after a re-read
+showed the intended state, with the query,
+
+3
+00:00:08.271 --> 00:00:12.249
+the time, a hash of the response
+and the checker, which is Book 13's
+
+4
+00:00:12.249 --> 00:00:16.762
+fourth clause and supports change
+control and continuous monitoring.
+
+5
+00:00:16.762 --> 00:00:21.725
+No person can close a finding by setting
+its state, which is separation of duties.
+
+6
+00:00:21.725 --> 00:00:24.225
+A read that predates the
+change doesn't count.
+
+7
+00:00:24.225 --> 00:00:27.922
+And an empty intended state
+never closes anything:
+
+8
+00:00:27.922 --> 00:00:30.720
+a verified change, not an asserted one.

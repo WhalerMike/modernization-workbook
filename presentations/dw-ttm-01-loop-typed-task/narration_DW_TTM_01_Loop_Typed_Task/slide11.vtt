@@ -1,0 +1,43 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.063
+What does this chapter's output prove?
+
+2
+00:00:02.063 --> 00:00:05.833
+Every drift becomes one record
+with a class, a severity,
+
+3
+00:00:05.833 --> 00:00:10.275
+an owner and a due date, and a
+malformed one is rejected at the door.
+
+4
+00:00:10.275 --> 00:00:16.336
+That supports configuration change control
+and continuous monitoring, CM-3 and CA-7,
+
+5
+00:00:16.336 --> 00:00:18.501
+both in the Moderate baseline,
+
+6
+00:00:18.501 --> 00:00:23.263
+and the evidence is the ServiceNow
+record plus the contract tests.
+
+7
+00:00:23.263 --> 00:00:27.900
+And the response window is applied by
+code, not chosen ticket by ticket.
+
+8
+00:00:27.900 --> 00:00:32.788
+A typed finding is only the owned,
+clocked half of Book 13's record.
+
+9
+00:00:32.788 --> 00:00:35.210
+Approval and the re-read come later.

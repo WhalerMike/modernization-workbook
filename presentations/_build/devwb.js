@@ -4,7 +4,7 @@
 //
 //   require("../_build/devwb.js")({ workbook: "pa", chapter: 2, base: "DW_PA_02_Emergency_Access", title, subtitle, slides })
 //
-// and this file lays the slides out with the shared kit (lib.js), so all 27 tours look alike.
+// and this file lays the slides out with the shared kit (lib.js), so all 35 tours look alike.
 //
 // A slide is { part, title, body: [elements], sources, say, detail, cite: [footnote names], ref }:
 //   part      Why | What | Who | How: the tag, and the deck section
@@ -36,6 +36,7 @@ const WORKBOOKS = {
   adm: { dir: "docs/books/b19-developer-workbook", name: "Building the Attribute-Driven Migration" },
   pa: { dir: "docs/project-plans/developer-workbooks/privileged-access", name: "Building Privileged Access" },
   npi: { dir: "docs/project-plans/developer-workbooks/non-person-identity", name: "Building Non-Person Identity" },
+  ttm: { dir: "docs/project-plans/developer-workbooks/ticket-to-machine", name: "Building Ticket-to-Machine" },
 };
 const ICONS = new Set(fs.readdirSync(path.join(__dirname, "icons")).map((f) => f.replace(/\.png$/, "")));
 const BANNED = /\bUIAO\b|\bSSA\b|Social Security|Mainframe PIN|\bDISA\b|\bSTIGs?\b/i;

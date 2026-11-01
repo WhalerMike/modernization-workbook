@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.038
+The new tool does five things.
+
+2
+00:00:02.038 --> 00:00:04.400
+It picks the workflow
+for the trigger you name.
+
+3
+00:00:04.400 --> 00:00:09.390
+It resolves the body against a saved
+event, but only simple paths; anything
+
+4
+00:00:09.390 --> 00:00:14.625
+fancier is refused, because it isn't a
+JSON path engine and won't pretend to be.
+
+5
+00:00:14.625 --> 00:00:18.313
+It derives the intended state
+the same way ServiceNow will.
+
+6
+00:00:18.313 --> 00:00:21.262
+It checks the result against
+Chapter 1's contract.
+
+7
+00:00:21.262 --> 00:00:25.725
+And it lists every top-level field of
+the event that the body never reads.
+
+8
+00:00:25.725 --> 00:00:30.620
+Three fictional events, shaped like
+SailPoint's published examples, feed it.

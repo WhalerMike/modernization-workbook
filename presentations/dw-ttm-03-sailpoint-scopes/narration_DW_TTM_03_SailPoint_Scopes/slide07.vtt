@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.600
+The SailPoint facts, each
+read on November first.
+
+2
+00:00:03.600 --> 00:00:06.839
+The token endpoint supports
+client credentials
+
+3
+00:00:06.839 --> 00:00:09.762
+and personal access
+tokens, up to ten per user.
+
+4
+00:00:09.762 --> 00:00:13.048
+A client-credentials
+token has no user context,
+
+5
+00:00:13.048 --> 00:00:18.187
+and SailPoint warns that most admin
+APIs often return forbidden with one.
+
+6
+00:00:18.187 --> 00:00:23.076
+Search needs the search read scope and
+pages past ten thousand with search-after.
+
+7
+00:00:23.076 --> 00:00:26.500
+Its indexes include
+identities but no accounts.
+
+8
+00:00:26.500 --> 00:00:30.184
+The Accounts list and get
+accept a read or manage scope,
+
+9
+00:00:30.184 --> 00:00:32.312
+at most two hundred fifty a page.
+
+10
+00:00:32.312 --> 00:00:35.780
+And creating a workflow needs
+the workflow manage scope.

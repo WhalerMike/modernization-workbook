@@ -1,0 +1,526 @@
+{
+ "1": [
+  [
+   0.05,
+   5.362,
+   "Welcome to the Federal Modernization Workbook's developer workbook, Building Ticket-to-Machine."
+  ],
+  [
+   5.412,
+   3.275,
+   "This is Chapter 1: the loop and the typed task."
+  ],
+  [
+   8.688,
+   5.6,
+   "Every step of Book 13's loop writes or reads one record, the identity finding."
+  ],
+  [
+   14.287,
+   5.025,
+   "If its shape is wrong, the clock, the owner and the re-read are all wrong with it."
+  ],
+  [
+   19.312,
+   10.912,
+   "We'll place each file of the ServiceNow and SailPoint kit in the loop, then check that record on a laptop before anything reaches ServiceNow, and finish with two labs and the dangers."
+  ],
+  [
+   30.225,
+   3.4,
+   "The code is illustrative, tested against fixtures."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.35,
+   "Why start with the record?"
+  ],
+  [
+   1.4,
+   1.587,
+   "Because the loop has one."
+  ],
+  [
+   2.987,
+   10.975,
+   "A drift becomes a typed task with a class, a severity, an owner, a clock, the system where the re-read happens, and an intended state that says what the re-read must find."
+  ],
+  [
+   13.963,
+   4.963,
+   "Get the class wrong and the finding bounces, so the drift is never recorded."
+  ],
+  [
+   18.925,
+   3.913,
+   "Choose severity by hand and the windows stop meaning anything."
+  ],
+  [
+   22.837,
+   7.912,
+   "And an intended state that names nothing is the quiet one: a re-read finds no difference, and the record closes on nothing."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   8.925,
+   "Book 13's loop has five steps: test, detect drift, raise a typed task, actuate on the native surface, and close with evidence."
+  ],
+  [
+   8.975,
+   1.637,
+   "Here's where the kit sits in it."
+  ],
+  [
+   10.613,
+   9.062,
+   "The drift client tests by joining H R, Microsoft Graph and SailPoint on the employee I D. SailPoint's event triggers detect drift."
+  ],
+  [
+   19.675,
+   4.85,
+   "The workflows and a ServiceNow scripted REST resource raise the typed task."
+  ],
+  [
+   24.525,
+   6.737,
+   "Nothing in the kit actuates yet: no code writes to Entra I D, Active Directory or SailPoint."
+  ],
+  [
+   31.262,
+   4.438,
+   "And a business rule and the re-read client close only with evidence."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   4.675,
+   "The record those steps share has a short data contract, kept in the kit's read me."
+  ],
+  [
+   4.725,
+   8.875,
+   "Every payload says what kind it is, a finding or a closure signal, where it came from, and which of Book 3's seven drift classes it belongs to."
+  ],
+  [
+   13.6,
+   10.037,
+   "It carries a severity, P1 to P4, the system where the re-read will happen, one subject identifier, and the intended state a re-read must find."
+  ],
+  [
+   23.637,
+   5.225,
+   "The workbook doesn't restate where each field lands in Book 13's evidence record."
+  ],
+  [
+   28.863,
+   1.762,
+   "It makes the fields checkable."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   1.15,
+   "What exists today?"
+  ],
+  [
+   1.2,
+   6.688,
+   "The contract is enforced in exactly one place, the scripted REST resource that runs inside ServiceNow."
+  ],
+  [
+   7.888,
+   3.888,
+   "It validates the payload and answers four hundred with a reason."
+  ],
+  [
+   11.775,
+   10.075,
+   "It maps severity to a priority and a due date on Book 13's tempo: P1 immediate, P2 one hour, P3 a day, P4 three days."
+  ],
+  [
+   21.85,
+   3.55,
+   "That tempo is the program's design, not a federal rule."
+  ],
+  [
+   25.4,
+   7.812,
+   "It defaults severity by class, de-duplicates against an open finding, and fills in an intended state from a SailPoint event."
+  ],
+  [
+   33.212,
+   3.95,
+   "The catch: nothing outside ServiceNow applied the same rules."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   3.125,
+   "So the chapter adds a Python mirror of the contract."
+  ],
+  [
+   3.175,
+   13.662,
+   "Its validate function applies the script's rules and returns the errors ServiceNow would reject, warnings for what it would accept but the loop can't use, and the normalized values, including the de-duplication key and the response window."
+  ],
+  [
+   16.837,
+   8.475,
+   "Its constants copy the script's, and a test reads the JavaScript and fails if the two drift apart, so the mirror can't quietly go stale."
+  ],
+  [
+   25.312,
+   4.662,
+   "A command line checks a file of payloads, or everything a drift run would post."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   2.825,
+   "Here's the subtle case the chapter guards against."
+  ],
+  [
+   2.875,
+   5.3,
+   "An intended state like the one on the slide is a non-empty object, so it looks present."
+  ],
+  [
+   8.175,
+   3.9,
+   "But it names nothing: no attribute, no entitlement."
+  ],
+  [
+   12.075,
+   5.1,
+   "A re-read compares against it, finds no difference, and would close the record on nothing."
+  ],
+  [
+   17.175,
+   4.088,
+   "The check warns rather than rejects, because ServiceNow would accept it."
+  ],
+  [
+   21.262,
+   9.9,
+   "For the two classes Book 13 sends to a person first, missing identity and an unauthorized write, the warning says that's expected until that person decides."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   2.15,
+   "The chapter's tests number twenty-two."
+  ],
+  [
+   2.2,
+   15.438,
+   "They compare the constants against the script, try every rejection the script makes, cover closure signals and system defaults, check both checkable and empty intended states and the tempo, and accept every payload the drift client builds from the fixtures."
+  ],
+  [
+   17.637,
+   10.613,
+   "With the rest of the kit, a hundred and seven Python tests pass, plus fifteen Node tests of the ServiceNow scripts and forty PowerShell tests, all without a tenant or a network."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   5.375,
+   "These are the vendor facts the chapter's code relies on, each read on November first."
+  ],
+  [
+   5.425,
+   3.775,
+   "A scripted REST A P I has a fixed URL shape."
+  ],
+  [
+   9.2,
+   9.012,
+   "Access is set by A P I access policies and endpoint ACLs, and creating one needs the web service admin role, which calling it doesn't."
+  ],
+  [
+   18.212,
+   3.938,
+   "The kit uses two SailPoint triggers, both fire-and-forget."
+  ],
+  [
+   22.15,
+   7.3,
+   "ServiceNow's Government Community Cloud is fed-ramp High; SailPoint's Identity Security Cloud is fed-ramp Moderate."
+  ],
+  [
+   29.45,
+   4.037,
+   "And a free developer instance is reclaimed after ten days unused."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   3.825,
+   "Two points stay open, and the chapter says so rather than guessing."
+  ],
+  [
+   3.875,
+   12.088,
+   "First, nobody has confirmed which identity ServiceNow reports for a call made with an OAuth client-credentials token, and the business rule in Chapter 5 compares exactly that with its verifier account."
+  ],
+  [
+   15.963,
+   10.0,
+   "Second, ServiceNow's page says a developer instance is reclaimed after ten days unused, but newer community posts describe a rule that also considers its age."
+  ],
+  [
+   25.962,
+   4.938,
+   "So check before relying on one for more than a few days, and keep your work in source control."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   2.013,
+   "What does this chapter's output prove?"
+  ],
+  [
+   2.062,
+   8.213,
+   "Every drift becomes one record with a class, a severity, an owner and a due date, and a malformed one is rejected at the door."
+  ],
+  [
+   10.275,
+   12.988,
+   "That supports configuration change control and continuous monitoring, CM-3 and CA-7, both in the Moderate baseline, and the evidence is the ServiceNow record plus the contract tests."
+  ],
+  [
+   23.262,
+   4.638,
+   "And the response window is applied by code, not chosen ticket by ticket."
+  ],
+  [
+   27.9,
+   4.888,
+   "A typed finding is only the owned, clocked half of Book 13's record."
+  ],
+  [
+   32.788,
+   2.362,
+   "Approval and the re-read come later."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   1.062,
+   "Who is this for?"
+  ],
+  [
+   1.113,
+   5.513,
+   "Developers who build either side of the integration, and the reviewers who approve their changes."
+  ],
+  [
+   6.625,
+   5.0,
+   "You need to read Python and jay-son, and you don't need any instance until Lab 2."
+  ],
+  [
+   11.625,
+   11.225,
+   "One least-privilege point carries through the whole workbook: the person who creates the scripted REST A P I needs the web service admin role, but the integration user who calls it doesn't."
+  ],
+  [
+   22.85,
+   5.037,
+   "It gets one custom role, granted through an endpoint ACL, and nothing else."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   2.75,
+   "Lab 1 needs only a laptop with Python."
+  ],
+  [
+   2.8,
+   2.95,
+   "First, run the chapter's twenty-two tests."
+  ],
+  [
+   5.75,
+   4.688,
+   "Then check five sample payloads at a fixed clock, noon on November first."
+  ],
+  [
+   10.438,
+   7.062,
+   "The first is accepted: it had no severity, so the class default gave it P2 and a due time one hour later."
+  ],
+  [
+   17.5,
+   4.763,
+   "The second has a typo in its class and is rejected with the list of valid ones."
+  ],
+  [
+   22.262,
+   4.463,
+   "The third is accepted but warned: its intended state names nothing."
+  ],
+  [
+   26.725,
+   5.612,
+   "The fourth has a bad severity, and the fifth is a closure signal that never closes anything."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   6.037,
+   "Next, run the ServiceNow script's own fifteen tests in Node, the rules the Python mirrors."
+  ],
+  [
+   6.088,
+   5.338,
+   "Then run the drift reconciliation over the fixtures and check every payload it would post."
+  ],
+  [
+   11.425,
+   1.387,
+   "Twelve are accepted."
+  ],
+  [
+   12.812,
+   7.9,
+   "Three carry the warning, and they're exactly the classes a person decides first: two missing identities and the unauthorized write."
+  ],
+  [
+   20.712,
+   5.388,
+   "Notice Erin's two attribute drifts in Entra I D, department and manager."
+  ],
+  [
+   26.1,
+   1.663,
+   "They now have separate keys."
+  ],
+  [
+   27.762,
+   5.575,
+   "Before Chapter 4's fix, they shared one, and the second would have vanished into the first."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   6.8,
+   "Lab 2 moves to your own ServiceNow Personal Developer Instance, never production, and the authors haven't run it."
+  ],
+  [
+   6.85,
+   11.387,
+   "You build the finding table and the scripted REST resource from the kit, lock it down with authentication and an endpoint ACL for one integration user, then check a payload locally before posting it."
+  ],
+  [
+   18.238,
+   3.975,
+   "Expect a created record with priority 2, due an hour later."
+  ],
+  [
+   22.212,
+   2.438,
+   "Post it again and it de-duplicates."
+  ],
+  [
+   24.65,
+   4.175,
+   "Post the typo and you get the same four hundred Lab 1 predicted."
+  ],
+  [
+   28.825,
+   1.212,
+   "Then back it all out."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   1.45,
+   "Each danger has a guard."
+  ],
+  [
+   1.5,
+   8.338,
+   "If the Python mirror drifts from the script, a payload passes on a laptop and fails in ServiceNow, so a test reads the JavaScript itself."
+  ],
+  [
+   9.838,
+   4.938,
+   "A typo in a class would lose the drift entirely, so it fails locally first."
+  ],
+  [
+   14.775,
+   5.263,
+   "An empty intended state would close a record on nothing, so it's warned now and skipped later."
+  ],
+  [
+   20.038,
+   5.862,
+   "Severity chosen per ticket would empty the windows of meaning, so defaults liv in one table."
+  ],
+  [
+   25.9,
+   4.438,
+   "And a developer instance isn't permanent: keep your work in source control."
+  ]
+ ],
+ "17": [
+  [
+   0.05,
+   1.35,
+   "Here's what done looks like."
+  ],
+  [
+   1.4,
+   5.362,
+   "The Python constants match the script that's actually deployed, and the parity test passes."
+  ],
+  [
+   6.763,
+   5.35,
+   "Every client that posts findings runs its payloads through the validator in its own tests."
+  ],
+  [
+   12.113,
+   4.4,
+   "Nothing a client builds is rejected, and every warning is understood."
+  ],
+  [
+   16.512,
+   5.625,
+   "The windows are the program's current ones and the severity defaults match Book 3's classes."
+  ],
+  [
+   22.137,
+   3.688,
+   "And the A P I requires authentication and a custom role."
+  ],
+  [
+   25.825,
+   5.513,
+   "Next, Chapter 2 writes down every ServiceNow call and the least privilege it needs."
+  ],
+  [
+   31.337,
+   1.1,
+   "Thanks for watching."
+  ]
+ ]
+}

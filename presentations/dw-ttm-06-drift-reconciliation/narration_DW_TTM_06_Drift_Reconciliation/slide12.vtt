@@ -1,0 +1,47 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.650
+Now compare the two days.
+
+2
+00:00:01.650 --> 00:00:04.938
+One new, eleven persisting, one resolved.
+
+3
+00:00:04.938 --> 00:00:08.634
+Entra ID now matches HR, so
+that finding is resolved,
+
+4
+00:00:08.634 --> 00:00:13.563
+but SailPoint still holds the old
+value, so a new finding opens there.
+
+5
+00:00:13.563 --> 00:00:16.774
+And notice what persists:
+the unauthorized write.
+
+6
+00:00:16.774 --> 00:00:19.998
+HR agreeing afterwards
+doesn't make a hand-typed
+
+7
+00:00:19.998 --> 00:00:22.738
+change authorized; a person decides that.
+
+8
+00:00:22.738 --> 00:00:26.151
+Last, run day two without
+the audit and compare.
+
+9
+00:00:26.151 --> 00:00:29.025
+The tool refuses, exiting with an error.
+
+10
+00:00:29.025 --> 00:00:33.240
+Without that refusal, the unauthorized
+write would have looked resolved.

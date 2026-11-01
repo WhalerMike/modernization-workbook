@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.737
+Lab 2 needs a SailPoint sandbox
+and your developer instance,
+
+2
+00:00:03.737 --> 00:00:06.612
+never production, and the
+authors haven't run it.
+
+3
+00:00:06.612 --> 00:00:09.937
+Turn on native change
+detection on one test source.
+
+4
+00:00:09.937 --> 00:00:13.284
+Build one HTTP request step
+by hand in the editor,
+
+5
+00:00:13.284 --> 00:00:16.713
+export it, and compare its
+names with the kit's file.
+
+6
+00:00:16.713 --> 00:00:21.476
+Point it at a capture endpoint first,
+change a monitored attribute on the source,
+
+7
+00:00:21.476 --> 00:00:26.024
+and run the saved trigger input through
+the tool: the two payloads must match.
+
+8
+00:00:26.024 --> 00:00:28.612
+Repeat the change and it de-duplicates.
+
+9
+00:00:28.612 --> 00:00:30.120
+Then put everything back.

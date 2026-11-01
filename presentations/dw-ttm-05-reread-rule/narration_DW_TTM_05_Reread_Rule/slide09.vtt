@@ -1,0 +1,43 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.250
+Three points are open.
+
+2
+00:00:01.250 --> 00:00:04.151
+The biggest: which user
+ServiceNow records for a
+
+3
+00:00:04.151 --> 00:00:07.125
+call made with an OAuth
+client-credentials token.
+
+4
+00:00:07.125 --> 00:00:11.562
+The rule compares exactly that with its
+verifier property, so if they differ
+
+5
+00:00:11.562 --> 00:00:15.787
+it refuses every close, and people
+start looking for a way around the rule.
+
+6
+00:00:15.787 --> 00:00:17.899
+Lab 2 checks it before go-live.
+
+7
+00:00:17.899 --> 00:00:22.214
+Also open: how long a SailPoint read
+lags the source, which depends on the
+
+8
+00:00:22.214 --> 00:00:24.846
+aggregation schedule, and how to recognize
+
+9
+00:00:24.846 --> 00:00:27.700
+a ticket the Service
+Desk integration opened.

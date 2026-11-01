@@ -1,0 +1,47 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.238
+Why only this one?
+
+2
+00:00:01.238 --> 00:00:05.926
+The kit plans five items for Pass 2,
+and four of them need more than files.
+
+3
+00:00:05.926 --> 00:00:08.406
+One approver per authority class needs the
+
+4
+00:00:08.406 --> 00:00:11.162
+catalog app's internals,
+which aren't documented.
+
+5
+00:00:11.162 --> 00:00:15.625
+Change records on demand need a
+ServiceNow flow on a live instance.
+
+6
+00:00:15.625 --> 00:00:18.171
+The SailPoint half of the evidence export
+
+7
+00:00:18.171 --> 00:00:20.862
+needs event retention
+nobody has confirmed.
+
+8
+00:00:20.862 --> 00:00:24.475
+And email intake needs a
+mailbox and an inbound action.
+
+9
+00:00:24.475 --> 00:00:28.920
+The writer check needs only two
+documented exports compared offline,
+
+10
+00:00:28.920 --> 00:00:30.980
+so it can be built and tested now.

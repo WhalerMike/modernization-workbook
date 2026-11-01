@@ -1,0 +1,35 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.950
+Lab 1 runs on a laptop.
+
+2
+00:00:01.950 --> 00:00:06.275
+Step one proves every call is
+declared: the nine tests pass.
+
+3
+00:00:06.275 --> 00:00:09.935
+Step two lists what the re-read
+client needs on ServiceNow:
+
+4
+00:00:09.935 --> 00:00:13.977
+a token from its own OAuth client,
+then a read of the finding table,
+
+5
+00:00:13.977 --> 00:00:16.875
+a patch of one record,
+and an attachment upload.
+
+6
+00:00:16.875 --> 00:00:20.650
+Every one of those maps to
+a single role, the verifier.
+
+7
+00:00:20.650 --> 00:00:23.180
+That's the whole of what
+this account should hold.

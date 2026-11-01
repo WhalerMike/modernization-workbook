@@ -1,0 +1,43 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.100
+Who's involved?
+
+2
+00:00:01.100 --> 00:00:04.656
+Identity engineers who own
+the inbound provisioning job
+
+3
+00:00:04.656 --> 00:00:08.212
+or the SailPoint Entra source,
+and produce the two exports.
+
+4
+00:00:08.212 --> 00:00:13.366
+The data architect, who decides which
+system owns each attribute and reviews
+
+5
+00:00:13.366 --> 00:00:18.438
+the aliases; Book 3's default keeps
+Entra inbound provisioning as the writer.
+
+6
+00:00:18.438 --> 00:00:21.713
+And the I S S O, who keeps the decisions.
+
+7
+00:00:21.713 --> 00:00:23.487
+The two reads are read-only.
+
+8
+00:00:23.487 --> 00:00:29.137
+One wrinkle: SailPoint's policies endpoint
+documents the org admin user level,
+
+9
+00:00:29.137 --> 00:00:34.420
+so a personal token is the wrong tool;
+use an API client with one read scope.

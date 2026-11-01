@@ -1,0 +1,36 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.200
+Welcome back to Building
+Ticket-to-Machine.
+
+2
+00:00:02.200 --> 00:00:06.700
+This is Chapter 4: drift to a
+typed task, the kit's Build 1.
+
+3
+00:00:06.700 --> 00:00:10.987
+A workflow that posts a finding
+is easy to build and hard to see.
+
+4
+00:00:10.987 --> 00:00:15.415
+You can't run a SailPoint workflow on a
+laptop, but you can resolve its request
+
+5
+00:00:15.415 --> 00:00:19.701
+body against a saved event and see the
+exact payload ServiceNow would get.
+
+6
+00:00:19.701 --> 00:00:23.200
+Doing that found two gaps,
+and this chapter fixes both.
+
+7
+00:00:23.200 --> 00:00:26.640
+Then two labs, the
+dangers and the checklist.

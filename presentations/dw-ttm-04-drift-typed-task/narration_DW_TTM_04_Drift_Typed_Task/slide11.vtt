@@ -1,0 +1,39 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.137
+Who does this work?
+
+2
+00:00:01.137 --> 00:00:04.360
+Identity engineers who build
+the SailPoint workflows;
+
+3
+00:00:04.360 --> 00:00:09.124
+they read JSON and should run the payload
+tool on every change before importing.
+
+4
+00:00:09.124 --> 00:00:14.250
+ServiceNow developers who own the scripted
+REST resource, and deploy both fixes.
+
+5
+00:00:14.250 --> 00:00:16.734
+And the workflow client from Chapter 3,
+
+6
+00:00:16.734 --> 00:00:20.150
+with the workflow manage
+scope, used once and removed.
+
+7
+00:00:20.150 --> 00:00:24.508
+One practical point, labeled an
+inference: the ServiceNow endpoint has to
+
+8
+00:00:24.508 --> 00:00:28.990
+be reachable from SailPoint's cloud,
+because workflows call out from there.

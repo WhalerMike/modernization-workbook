@@ -35,7 +35,7 @@ Four rules keep this from sprawling:
 
 1. **A page doesn't change type or home.** If its type was wrong, fix it once, with an alias for the old address; don't move it back and forth.
 2. **Link, don't repeat.** A guide links to the book chapter that explains a concept instead of restating it; a training module links to guide sections, decks and labs instead of rewriting them. New text says only what nothing else already says.
-3. **One deck series per guide**, at the level of its gates. A book may have its own executive and technical decks; a guide does not add further tiers.
+3. **One deck series per guide**, at the level of its gates. A book may have its own executive and technical decks; a guide does not add further tiers. A developer workbook may add a narrated story deck that follows one case through its chapters, and one narrated tour per chapter.
 4. **New guides fill a real gap.** Before starting one, name the book chapters it builds on and the step-by-step work they don't already give.
 
 ### An implementation guide is finished when it has all four pieces

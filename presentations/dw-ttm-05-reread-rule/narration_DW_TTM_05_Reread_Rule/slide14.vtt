@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.236
+Lab 2 is on your developer instance,
+
+2
+00:00:02.236 --> 00:00:05.175
+never production, and the
+authors haven't run it.
+
+3
+00:00:05.175 --> 00:00:07.600
+Configure the rule and its properties.
+
+4
+00:00:07.600 --> 00:00:12.950
+Close a test finding as an ordinary user
+and watch it land in awaiting verification.
+
+5
+00:00:12.950 --> 00:00:16.376
+Then the important step: as
+the verifier's OAuth client,
+
+6
+00:00:16.376 --> 00:00:20.487
+make one harmless update and see
+which user ServiceNow recorded.
+
+7
+00:00:20.487 --> 00:00:24.951
+If it isn't the verifier property,
+the rule will refuse every close.
+
+8
+00:00:24.951 --> 00:00:28.065
+Then give a test finding
+a checkable intended
+
+9
+00:00:28.065 --> 00:00:31.262
+state and run the client,
+dry first, then for real.
+
+10
+00:00:31.262 --> 00:00:32.330
+Back it all out.

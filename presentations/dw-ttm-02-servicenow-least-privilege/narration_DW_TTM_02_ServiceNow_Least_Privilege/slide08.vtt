@@ -1,0 +1,41 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.162
+The vendor facts behind the code,
+each read on November first.
+
+2
+00:00:04.162 --> 00:00:08.631
+The token request is a post to the
+instance's OAuth token endpoint
+
+3
+00:00:08.631 --> 00:00:12.687
+with the grant type, client ID
+and secret; a scope is optional.
+
+4
+00:00:12.687 --> 00:00:16.832
+The Table API's read takes an
+encoded query, a field list,
+
+5
+00:00:16.832 --> 00:00:20.700
+a limit that defaults to
+ten thousand, and an offset.
+
+6
+00:00:20.700 --> 00:00:24.577
+The Attachment API needs the
+table, the record and a file name,
+
+7
+00:00:24.577 --> 00:00:29.850
+and a content type header, and no single
+role allows adding attachments by default.
+
+8
+00:00:29.850 --> 00:00:33.620
+And ServiceNow's Government
+Community Cloud is FedRAMP High.

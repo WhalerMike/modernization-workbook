@@ -1,0 +1,77 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:04.137
+The lab's package uses five
+other fictional records,
+
+3
+00:00:04.137 --> 00:00:07.187
+but Erin's would be one
+more line in the same file.
+
+4
+00:00:07.187 --> 00:00:11.465
+Export October: four closed on a
+re-read, one declared exception,
+
+5
+00:00:11.465 --> 00:00:14.838
+two of three inside their
+windows, and a chain head.
+
+6
+00:00:14.838 --> 00:00:18.518
+It also names three problem
+records and exits with a failure,
+
+7
+00:00:18.518 --> 00:00:21.388
+rather than producing a
+clean-looking package.
+
+8
+00:00:21.388 --> 00:00:25.799
+Now verify it as the I S S
+O would: the package holds.
+
+9
+00:00:25.799 --> 00:00:28.563
+Then delete one record and verify again.
+
+10
+00:00:28.563 --> 00:00:33.599
+The file's hash no longer matches the
+manifest, and the next line's link is broken.
+
+11
+00:00:33.599 --> 00:00:35.225
+The package doesn't hold.
+
+12
+00:00:35.225 --> 00:00:39.358
+Next month's export continues the
+chain from this month's manifest,
+
+13
+00:00:39.358 --> 00:00:41.462
+so a gap between periods shows too.
+
+14
+00:00:41.462 --> 00:00:45.687
+One limit to remember: the package
+is tamper-evident, not signed.
+
+15
+00:00:45.687 --> 00:00:50.160
+Someone who can rewrite every file and
+the manifest can rewrite the chain,
+
+16
+00:00:50.160 --> 00:00:53.380
+so keep each manifest where
+the exporter can't write.

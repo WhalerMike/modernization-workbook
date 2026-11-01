@@ -1,0 +1,78 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:06.000
+Feed day one's run to the contract check
+at a fixed clock, noon on November first.
+
+3
+00:00:06.000 --> 00:00:11.013
+Erin's department and manager drifts
+are accepted at P3, due the next noon.
+
+4
+00:00:11.013 --> 00:00:15.008
+Her unauthorized write is accepted
+at P2, due at one o'clock,
+
+5
+00:00:15.008 --> 00:00:19.087
+with the warning that its
+intended state names nothing yet.
+
+6
+00:00:19.087 --> 00:00:21.049
+All twelve payloads are accepted.
+
+7
+00:00:21.049 --> 00:00:23.560
+Then resolve SailPoint's mover workflow
+
+8
+00:00:23.560 --> 00:00:26.513
+against the fictional
+event for Erin's identity.
+
+9
+00:00:26.513 --> 00:00:29.683
+The intended state is
+department Finance, P3,
+
+10
+00:00:29.683 --> 00:00:33.112
+and the de-duplication
+key ends in the attribute.
+
+11
+00:00:33.112 --> 00:00:36.463
+This is the first thing to
+check whenever a client changes:
+
+12
+00:00:36.463 --> 00:00:39.674
+run its payloads through the
+validator in its own tests.
+
+13
+00:00:39.674 --> 00:00:42.153
+Nothing a client builds
+should be rejected,
+
+14
+00:00:42.153 --> 00:00:44.837
+and every warning should
+be one you understand.
+
+15
+00:00:44.837 --> 00:00:48.909
+Here, the only warnings are for
+the classes a person decides first:
+
+16
+00:00:48.909 --> 00:00:51.980
+missing identities and
+the unauthorized write.

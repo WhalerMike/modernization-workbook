@@ -1,0 +1,502 @@
+{
+ "1": [
+  [
+   0.05,
+   2.15,
+   "Welcome back to Building Ticket-to-Machine."
+  ],
+  [
+   2.2,
+   7.463,
+   "This is Chapter 7: evidence records for the Federal Modernization Workbook's Book 13 and the I S S O."
+  ],
+  [
+   9.662,
+   2.663,
+   "The I S S O doesn't need the tracker."
+  ],
+  [
+   12.325,
+   7.525,
+   "The I S S O needs one record per finding, in one shape, that nobody could have edited afterwards without it showing."
+  ],
+  [
+   19.85,
+   11.287,
+   "This chapter reads closed findings out of ServiceNow, writes each in Book 13's evidence shape, checks what an assessor would check, and packages the period with a hash chain and a verifier."
+  ],
+  [
+   31.137,
+   2.35,
+   "Then two labs and the dangers."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.975,
+   "Why records rather than the tracker?"
+  ],
+  [
+   2.025,
+   3.325,
+   "Because an assessor asks different questions from an operator."
+  ],
+  [
+   5.35,
+   7.425,
+   "Chapter 5's re-read client already writes evidence onto every record it closes, but nothing read those records back out."
+  ],
+  [
+   12.775,
+   7.037,
+   "And the assessor's worries are specific: was a record edited after it closed, so it now says something the re-read didn't?"
+  ],
+  [
+   19.812,
+   3.812,
+   "Was one quietly deleted, so the period only looks complete?"
+  ],
+  [
+   23.625,
+   4.612,
+   "Were fields filled in to claim an approval or an execution that never happened?"
+  ],
+  [
+   28.238,
+   2.025,
+   "This chapter answers each one."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   4.638,
+   "Each closed finding becomes one record with Book 13's seven fields."
+  ],
+  [
+   4.688,
+   3.062,
+   "Origin: when and where the drift was detected."
+  ],
+  [
+   7.75,
+   5.487,
+   "Owner and clock: who, how urgent, when it was due and whether it finished in time."
+  ],
+  [
+   13.238,
+   3.763,
+   "The result: the re-read evidence and whether it's intact."
+  ],
+  [
+   17.0,
+   1.938,
+   "And the closure, with its lane."
+  ],
+  [
+   18.938,
+   9.812,
+   "The other three fields, approval, the executing identity and what ran, are written as null, each with its reason: Pass 1 doesn't actuate."
+  ],
+  [
+   28.75,
+   4.987,
+   "The record says what it doesn't hold, rather than leaving the field out or filling it in."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   3.425,
+   "Every record gets four checks, each reported by name."
+  ],
+  [
+   3.475,
+   3.725,
+   "Is the evidence intact: does it still hash to the stored hash?"
+  ],
+  [
+   7.2,
+   5.912,
+   "An edit after closure fails, and so does a value cut short by the field's four-thousand-character limit."
+  ],
+  [
+   13.113,
+   1.363,
+   "Is there evidence at all?"
+  ],
+  [
+   14.475,
+   2.825,
+   "A close that bypassed the business rule fails."
+  ],
+  [
+   17.3,
+   2.688,
+   "Did the evidence say the intended state matched?"
+  ],
+  [
+   19.988,
+   1.913,
+   "And did it finish inside its window?"
+  ],
+  [
+   21.9,
+   9.15,
+   "Window adherence is measured as closures inside the window over closures judged, not a ratio that improves just because new findings arrive."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   1.125,
+   "Then the package."
+  ],
+  [
+   1.175,
+   7.362,
+   "Each line of the records file carries the hash of the line before it, so removing or reordering a record breaks the chain."
+  ],
+  [
+   8.537,
+   3.888,
+   "The excerpt on the slide is the whole idea in seven lines."
+  ],
+  [
+   12.425,
+   5.725,
+   "A summary file holds window adherence, the declared exceptions and the records with problems."
+  ],
+  [
+   18.15,
+   4.0,
+   "And a manifest holds a hash of every file and the chain's head."
+  ],
+  [
+   22.15,
+   8.262,
+   "Next month's export continues the chain from this month's manifest, and a fixed timestamp means the same records always give the same bytes."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   1.15,
+   "Two more pieces."
+  ],
+  [
+   1.2,
+   7.975,
+   "A verifier recomputes every file's hash and walks the chain; that's the check an I S S O runs on a package someone hands them."
+  ],
+  [
+   9.175,
+   9.95,
+   "And a live read pulls closed and cancelled findings through the Table A P I, under its own read-only role from Chapter 2, so the export can never close anything."
+  ],
+  [
+   19.125,
+   12.887,
+   "Five fictional records cover the cases: one closed in its window, one closed late, one whose evidence was edited after it closed, one cancelled as a declared exception, and one closed with no evidence at all."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   20.475,
+   "Eight tests cover the export: the seven fields and the null later-pass fields; the late, tampered and unevidenced closures and a truncated evidence field; the package and its verification, with tampering detected; the chain continued across periods; reproducible bytes; and evidence written by the real re-read client verifying."
+  ],
+  [
+   20.525,
+   4.075,
+   "One honest limit: the package is tamper-evident, not signed."
+  ],
+  [
+   24.6,
+   4.737,
+   "Anyone who can rewrite every file and the manifest can rewrite the chain."
+  ],
+  [
+   29.337,
+   4.075,
+   "Signing, and where the package lives, are the program's decisions."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   13.137,
+   "The vendor facts are few: the Table A P I's read and its query parameters, ServiceNow's Government Community Cloud at fed-ramp High, and SailPoint's Search events index, which the SailPoint half will read when it's built."
+  ],
+  [
+   13.188,
+   6.062,
+   "The record shape, the window and the lanes are Book 13's, and the hash chain is design guidance."
+  ],
+  [
+   19.25,
+   11.512,
+   "Two points stay open: the format and time zone of the dates the Table A P I returns, which the export parses both ways, and what SailPoint keeps in its events index and for how long."
+  ],
+  [
+   30.762,
+   2.15,
+   "That's why the SailPoint half waits."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   2.388,
+   "This chapter's output is the evidence."
+  ],
+  [
+   2.438,
+   4.412,
+   "One record per finding supports change control and continuous monitoring."
+  ],
+  [
+   6.85,
+   9.675,
+   "Records unchanged after closure, and none removed, supports protection of audit information, AU-9, through the manifest and the chain."
+  ],
+  [
+   16.525,
+   5.487,
+   "Closures inside the windows, with the late ones named, goes to the governance board."
+  ],
+  [
+   22.012,
+   3.638,
+   "Declared exceptions carry their note and a plan of action item."
+  ],
+  [
+   25.65,
+   2.663,
+   "And what isn't evidenced yet is stated outright."
+  ],
+  [
+   28.312,
+   5.638,
+   "Non-repudiation isn't in the Moderate baseline; signing the package would be a further step."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   1.05,
+   "Who's involved?"
+  ],
+  [
+   1.1,
+   8.775,
+   "Developers who build the evidence pipeline, and the I S S O and assessors who read what it produces and verify every package they receive."
+  ],
+  [
+   9.875,
+   13.512,
+   "The export runs as its own identity: the evidence reader, with read-only access to the finding table, its own user and OAuth client, and never the verifier's role, because it must not be able to close what it's hashing."
+  ],
+  [
+   23.387,
+   6.013,
+   "And keep each period's manifest somewhere the exporter can't write, signed if the program requires it."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   0.812,
+   "Lab 1."
+  ],
+  [
+   0.863,
+   1.275,
+   "Eight tests pass."
+  ],
+  [
+   2.138,
+   3.263,
+   "Then export October's five fictional findings."
+  ],
+  [
+   5.4,
+   3.7,
+   "Four closed on a re-read, and one is a declared exception."
+  ],
+  [
+   9.1,
+   3.038,
+   "Two of three judged closures were inside the window."
+  ],
+  [
+   12.137,
+   14.35,
+   "Then the problems, by name: one closed late, one whose evidence no longer matches its hash, and one closed with no re-read evidence at all; its close note just says done, which Book 13 calls prose, not evidence."
+  ],
+  [
+   26.488,
+   4.463,
+   "The command exits with a failure rather than producing a clean-looking package."
+  ],
+  [
+   30.95,
+   1.9,
+   "The last line is the chain's head."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   7.763,
+   "Now act as the I S S O. Verify the package: every file matches the manifest and the chain is unbroken."
+  ],
+  [
+   7.812,
+   7.013,
+   "Start November's chain from October's head; November's manifest records October's head as its previous link."
+  ],
+  [
+   14.825,
+   5.1,
+   "The lab reuses October's records for this, where a real November has its own."
+  ],
+  [
+   19.925,
+   4.1,
+   "Then remove one record from October's package and verify again."
+  ],
+  [
+   24.025,
+   6.963,
+   "Two problems: the file's hash no longer matches the manifest, and the next line's link points at a record that isn't there."
+  ],
+  [
+   30.988,
+   1.625,
+   "The package doesn't hold."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   8.113,
+   "Lab 2 exports for real from your developer instance, with at least one finding closed in Chapter 5's lab; the authors haven't run it."
+  ],
+  [
+   8.162,
+   2.775,
+   "Create the evidence reader and check its grant."
+  ],
+  [
+   10.938,
+   5.862,
+   "Export live since the date of your test closure, and expect every record intact with no problems."
+  ],
+  [
+   16.8,
+   8.05,
+   "Check that the due and finished times are the ones you expect, in UTC, since the Table A P I's date format wasn't confirmed."
+  ],
+  [
+   24.85,
+   1.488,
+   "Verify the package."
+  ],
+  [
+   26.337,
+   3.788,
+   "Then delete the output and the reader's client, user and role."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   2.9,
+   "The dangers map onto the assessor's worries."
+  ],
+  [
+   2.95,
+   3.975,
+   "An edit after closure is caught by recomputing the evidence hash."
+  ],
+  [
+   6.925,
+   5.575,
+   "Evidence cut short by the field limit is reported, and the attachment keeps the full copy."
+  ],
+  [
+   12.5,
+   4.225,
+   "A close that bypassed the business rule shows as closed without evidence."
+  ],
+  [
+   16.725,
+   2.112,
+   "A deleted record breaks the chain."
+  ],
+  [
+   18.837,
+   7.425,
+   "A package rewritten end to end is the one the chain alone can't catch, so store manifests where the exporter can't write."
+  ],
+  [
+   26.262,
+   3.25,
+   "Fields filled to look complete are null by design."
+  ],
+  [
+   29.512,
+   2.763,
+   "And the export never runs as the verifier."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   1.2,
+   "Done looks like this."
+  ],
+  [
+   1.25,
+   4.325,
+   "The export runs on a schedule as the evidence reader and holds nothing more."
+  ],
+  [
+   5.575,
+   4.463,
+   "Each period's package verifies and continues the last period's chain."
+  ],
+  [
+   10.037,
+   5.162,
+   "Every reported problem has gone to its owner, and none sits in the package unexplained."
+  ],
+  [
+   15.2,
+   3.4,
+   "Manifests are stored where the exporter can't overwrite them."
+  ],
+  [
+   18.6,
+   3.95,
+   "Window adherence is reviewed with Book 13's other measures."
+  ],
+  [
+   22.55,
+   1.413,
+   "And the tests pass."
+  ],
+  [
+   23.962,
+   3.4,
+   "Next, Chapter 8: one writer per attribute."
+  ],
+  [
+   27.363,
+   1.1,
+   "Thanks for watching."
+  ]
+ ]
+}

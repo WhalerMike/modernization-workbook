@@ -1,0 +1,1097 @@
+{
+ "1": [
+  [
+   0.05,
+   6.812,
+   "Welcome to the story deck for Building Ticket-to-Machine, a developer workbook in the Federal Modernization Workbook."
+  ],
+  [
+   6.862,
+   8.738,
+   "Instead of eight chapters one at a time, we'll follow one person's record all the way through Book 13's loop on ServiceNow and SailPoint."
+  ],
+  [
+   15.6,
+   9.588,
+   "Her name is Erin, and she's fictional: every value you'll see comes from the kit's own test fixtures, and every command was re-run before it went on a slide."
+  ],
+  [
+   25.188,
+   15.887,
+   "Seven scenes: the drift run finds her, her drift becomes a typed task, least-privilege clients touch it, we find why it keeps coming back, the fix is actuated, a re-read closes it, and her closure becomes evidence an I S S O can verify."
+  ],
+  [
+   41.075,
+   3.875,
+   "Each scene ends with a command to try and a one-question check."
+  ],
+  [
+   44.95,
+   3.612,
+   "One more thing before we start: the code is illustrative."
+  ],
+  [
+   48.562,
+   8.037,
+   "Its tests pass against fixtures and mocked responses, but it hasn't been run against a live ServiceNow instance or SailPoint tenant."
+  ],
+  [
+   56.6,
+   5.812,
+   "Where the vendors' documentation doesn't settle a point, the workbook says so, and so will we."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.125,
+   "Meet the cast."
+  ],
+  [
+   1.175,
+   5.625,
+   "Erin's H R record says she works in H R and reports to employee E1000."
+  ],
+  [
+   6.8,
+   7.188,
+   "Entra I D, in a Microsoft 365 G C C tenant, says Finance, and a different manager."
+  ],
+  [
+   13.988,
+   6.688,
+   "The directory audit shows why: on October twentieth a help desk administrator typed Finance in by hand."
+  ],
+  [
+   20.675,
+   1.962,
+   "SailPoint still says H R."
+  ],
+  [
+   22.637,
+   5.3,
+   "And ServiceNow is the front door, where her drift becomes a typed task with its evidence."
+  ],
+  [
+   27.938,
+   10.338,
+   "The stakes are the two failures the example guide warns about: closing her finding because a ticket says done, and fixing her record by hand while two systems still write department."
+  ],
+  [
+   38.275,
+   3.737,
+   "Either way the drift comes back, and nobody can prove what happened."
+  ],
+  [
+   42.013,
+   12.588,
+   "Keep three numbers in your head: E1004 is Erin, E1000 is the manager H R names, and E1001, Alice, is the manager Entra I D and SailPoint name instead."
+  ],
+  [
+   54.6,
+   15.025,
+   "The estate is a fed-ramp Moderate civilian one: ServiceNow's Government Community Cloud, fed-ramp High; SailPoint's Identity Security Cloud, fed-ramp Moderate; and Entra I D on the worldwide Graph endpoint, which is what G C C uses."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   0.988,
+   "Here's the route."
+  ],
+  [
+   1.038,
+   7.888,
+   "Book 13's loop has five steps: test, detect drift, raise a typed task, actuate, and close with evidence."
+  ],
+  [
+   8.925,
+   5.05,
+   "The example guide builds it in seven gates, and the workbook's chapters build the code."
+  ],
+  [
+   13.975,
+   3.987,
+   "Scene one is the drift run, Gate 3 and Chapter 6."
+  ],
+  [
+   17.962,
+   5.425,
+   "Scene two turns her drift into a typed task, Gate 4, Chapters 1 and 4."
+  ],
+  [
+   23.387,
+   4.713,
+   "Scene three is least privilege, Gate 1, Chapters 2 and 3."
+  ],
+  [
+   28.1,
+   4.737,
+   "Scene four finds why her department keeps drifting, Gate 2, Chapter 8."
+  ],
+  [
+   32.837,
+   5.95,
+   "Scene five is actuation, Gate 5, which the kit's first pass deliberately doesn't build."
+  ],
+  [
+   38.788,
+   3.85,
+   "Scene six is the re-read, Gate 6, Chapter 5."
+  ],
+  [
+   42.638,
+   4.125,
+   "And scene seven is the evidence, Gate 7, Chapter 7."
+  ],
+  [
+   46.763,
+   1.95,
+   "Every scene has the same shape."
+  ],
+  [
+   48.712,
+   7.338,
+   "First, the story beat: what happens to Erin's record, with the code that handles it and the federal requirement behind it."
+  ],
+  [
+   56.05,
+   6.175,
+   "Then a slide called Try it, with the exact Lab 1 command from the workbook and the output it really printed."
+  ],
+  [
+   62.225,
+   1.587,
+   "Then a one-question check."
+  ],
+  [
+   63.812,
+   4.25,
+   "Pause the video if you want to answer it; the answer opens the next slide."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   0.825,
+   "Scene one."
+  ],
+  [
+   0.875,
+   10.0,
+   "On day one, the drift client joins the H R extract, Microsoft Graph and SailPoint on the employee I D, and measures Book 3's drift classes."
+  ],
+  [
+   10.875,
+   11.025,
+   "Erin collects four findings: her Entra department and Entra manager disagree with H R, her SailPoint manager disagrees too, and there's an unauthorized write on her department."
+  ],
+  [
+   21.9,
+   7.013,
+   "That last one appears only because this run read the directory audit; without it, the class isn't computed at all."
+  ],
+  [
+   28.913,
+   9.262,
+   "Each finding's I D is a hash of its class, system, employee, object and attribute, so the same drift has the same I D every night."
+  ],
+  [
+   38.175,
+   3.462,
+   "Why it matters: Gate 3 measures the starting drift."
+  ],
+  [
+   41.638,
+   6.237,
+   "That's account management and continuous monitoring, and the I S S O keeps every run's output."
+  ],
+  [
+   47.875,
+   1.913,
+   "Notice what the run doesn't claim."
+  ],
+  [
+   49.788,
+   11.0,
+   "Credential drift and schema drift need other systems, the card system, Intune and the provisioning middleware, so every run lists them as not computed instead of implying they're clean."
+  ],
+  [
+   60.788,
+   6.562,
+   "And expect a burst of High findings in a real estate's first month; Book 3 calls that the measurement working."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   4.787,
+   "From the kit's folder, run the drift client over the fixtures, with the audit."
+  ],
+  [
+   5.562,
+   14.15,
+   "The summary counts four attribute drifts, two missing identities, three orphan accounts, two stale accesses and one unauthorized write, and it lists credential and schema drift as not computed rather than implying they're clean."
+  ],
+  [
+   19.712,
+   3.525,
+   "Then look for Erin's employee I D in the C S V."
+  ],
+  [
+   23.238,
+   10.875,
+   "There she is, four times: department and manager in Entra I D, manager in SailPoint, each Medium at P3; and the unauthorized write, High at P2."
+  ],
+  [
+   34.112,
+   7.987,
+   "If you run this yourself, you need Python 3.10 or later with pytest and requests, and you work in the kit's examples folder."
+  ],
+  [
+   42.1,
+   2.388,
+   "Nothing touches a tenant or the network."
+  ],
+  [
+   44.487,
+   4.125,
+   "When you're done, delete the out folder; the labs write everything there."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   0.812,
+   "Check one."
+  ],
+  [
+   0.863,
+   6.125,
+   "Tomorrow, H R corrects Erin's department to Finance, so H R and Entra I D agree."
+  ],
+  [
+   6.987,
+   3.825,
+   "Which of her four day-one findings still won't go away on its own?"
+  ],
+  [
+   10.812,
+   6.713,
+   "Is it the Entra department drift, the Entra manager drift, the SailPoint manager drift, or the unauthorized write?"
+  ],
+  [
+   17.525,
+   4.487,
+   "Think about what H R agreeing afterwards does, and doesn't, prove."
+  ],
+  [
+   22.012,
+   2.05,
+   "The answer opens the next scene."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   3.013,
+   "The answer to check one: the unauthorized write."
+  ],
+  [
+   3.062,
+   5.4,
+   "H R agreeing later doesn't make a hand-typed change authorized, so a person decides it."
+  ],
+  [
+   8.463,
+   0.863,
+   "Scene two."
+  ],
+  [
+   9.325,
+   12.912,
+   "Each of Erin's findings becomes one typed task in ServiceNow: a class, a severity, the system where it'll be re-read, one subject, its origin, and the intended state a re-read must find."
+  ],
+  [
+   22.238,
+   3.188,
+   "Her department drift is P3, due in a day."
+  ],
+  [
+   25.425,
+   9.55,
+   "The unauthorized write is P2, due in an hour, and it's accepted with a warning, because its intended state is empty until that person decides."
+  ],
+  [
+   34.975,
+   6.4,
+   "From SailPoint's side, the mover workflow raises her department change with Finance as the intended state."
+  ],
+  [
+   41.375,
+   5.275,
+   "Why it matters: Gate 4 makes every drift an owned record answered inside a window."
+  ],
+  [
+   46.65,
+   3.825,
+   "The tempo is Book 13's design, not a federal clock."
+  ],
+  [
+   50.475,
+   11.125,
+   "The important design choice is that the rules liv in one place, the scripted REST resource inside ServiceNow, and the Python mirror is held to it by a test that reads the JavaScript."
+  ],
+  [
+   61.6,
+   7.713,
+   "So a malformed payload fails on a laptop, not as a four hundred from a live instance, and the mirror can't quietly go stale."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   5.225,
+   "Feed day one's run to the contract check at a fixed clock, noon on November first."
+  ],
+  [
+   6.0,
+   5.013,
+   "Erin's department and manager drifts are accepted at P3, due the next noon."
+  ],
+  [
+   11.012,
+   8.075,
+   "Her unauthorized write is accepted at P2, due at one o'clock, with the warning that its intended state names nothing yet."
+  ],
+  [
+   19.087,
+   1.962,
+   "All twelve payloads are accepted."
+  ],
+  [
+   21.05,
+   5.463,
+   "Then resolve SailPoint's mover workflow against the fictional event for Erin's identity."
+  ],
+  [
+   26.512,
+   6.6,
+   "The intended state is department Finance, P3, and the de-duplication key ends in the attribute."
+  ],
+  [
+   33.112,
+   6.562,
+   "This is the first thing to check whenever a client changes: run its payloads through the validator in its own tests."
+  ],
+  [
+   39.675,
+   5.162,
+   "Nothing a client builds should be rejected, and every warning should be one you understand."
+  ],
+  [
+   44.837,
+   7.088,
+   "Here, the only warnings are for the classes a person decides first: missing identities and the unauthorized write."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   0.825,
+   "Check two."
+  ],
+  [
+   0.875,
+   4.062,
+   "Erin's department and manager both drift in Entra I D."
+  ],
+  [
+   4.938,
+   6.138,
+   "Before Chapter 4's fix, ServiceNow de-duplicated on source, subject and class only."
+  ],
+  [
+   11.075,
+   2.163,
+   "What went wrong with her two findings?"
+  ],
+  [
+   13.238,
+   5.475,
+   "Were they rejected, folded together, given the wrong severity, or raised twice?"
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   7.175,
+   "The answer to check two: the manager drift would have been folded into the department one, and its intended state never re-read."
+  ],
+  [
+   7.225,
+   2.862,
+   "Scene three: who may touch Erin's record."
+  ],
+  [
+   10.088,
+   7.775,
+   "The drift client read her through SailPoint with two read scopes, and through Graph with the user read permission plus the audit permission."
+  ],
+  [
+   17.863,
+   3.925,
+   "That audit read is the only reason the help desk write was seen."
+  ],
+  [
+   21.788,
+   8.162,
+   "In ServiceNow, a finding writer posted her tasks, only the verifier may close them, and an evidence reader may only read."
+  ],
+  [
+   29.95,
+   5.463,
+   "Every call is a row in one file, and a test fails on any call it doesn't declare."
+  ],
+  [
+   35.413,
+   10.363,
+   "Why it matters: Gate 1 records the integration identities, each least-privileged, with certificates rather than secrets, and the closer separated from the raisers."
+  ],
+  [
+   45.775,
+   2.975,
+   "Two details from Chapter 3 are worth carrying."
+  ],
+  [
+   48.75,
+   12.225,
+   "A SailPoint client-credentials token has no user context, and SailPoint warns that most admin A P I's often return forbidden with one, so Lab 2 records what actually works in your sandbox."
+  ],
+  [
+   60.975,
+   5.475,
+   "And the scope that creates workflows lives on its own client, used once, then removed."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   4.938,
+   "Suppose the SailPoint reader that read Erin was also given the accounts manage scope."
+  ],
+  [
+   5.713,
+   8.188,
+   "Compare it with what the drift task needs: nothing missing, the manage scope extra, least privilege doesn't hold, exit with a failure."
+  ],
+  [
+   13.9,
+   2.675,
+   "A stolen token could have changed her accounts."
+  ],
+  [
+   16.575,
+   8.037,
+   "Now the ServiceNow verifier, given the broad I T I L role as well: same result, one extra role, failure."
+  ],
+  [
+   24.613,
+   7.375,
+   "The tool calls no network; the operator types or exports the grant, and the output goes beside the access approval."
+  ],
+  [
+   31.988,
+   2.312,
+   "The same comparison works for Graph."
+  ],
+  [
+   34.3,
+   9.787,
+   "An app registration holding only the user read permission fails a drift run that reads the audit, and passes one that doesn't when you ask for required calls only."
+  ],
+  [
+   44.087,
+   6.525,
+   "In Erin's case, the audit read is required, because it's the only way her help desk write was ever seen."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   0.912,
+   "Check three."
+  ],
+  [
+   0.963,
+   3.875,
+   "Chapter 7's evidence export reads Erin's closed record."
+  ],
+  [
+   4.838,
+   3.388,
+   "It would work perfectly well if it ran as the verifier."
+  ],
+  [
+   8.225,
+   2.625,
+   "So why does the comparison refuse that grant?"
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   8.525,
+   "The answer to check three: running as the verifier, the export could also close the findings it's about to hash, which breaks separation of duties."
+  ],
+  [
+   8.575,
+   3.025,
+   "Scene four asks why Erin's department drifts at all."
+  ],
+  [
+   11.6,
+   7.575,
+   "Book 3 makes Entra inbound provisioning the one writer into the directory, but SailPoint can provision Entra I D too."
+  ],
+  [
+   19.175,
+   7.025,
+   "If both update department, each overwrites the other, and fixing her record by hand just schedules the next drift."
+  ],
+  [
+   26.2,
+   4.362,
+   "The writer check compares the two provisioning configurations, offline."
+  ],
+  [
+   30.562,
+   7.763,
+   "The kit's exports are fictional files, not Erin's tenant, but they show exactly the overlap that would keep her drift coming back."
+  ],
+  [
+   38.325,
+   6.588,
+   "Why it matters: Gate 2 decides one writer per attribute, so every account change traces to its source."
+  ],
+  [
+   44.913,
+   8.963,
+   "This is the one item from the kit's planned second pass that can be built today, because both configurations export as jay-son through documented reads."
+  ],
+  [
+   53.875,
+   11.287,
+   "The other planned items, one approver per authority class, change records on demand, the SailPoint half of the evidence and email intake, all need a live instance or product internals."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   3.0,
+   "Run the writer check on the two fictional exports."
+  ],
+  [
+   3.775,
+   11.45,
+   "Entra inbound provisioning writes eight attributes, SailPoint writes seven, and department is a Finding: both update it, so each overwrites the other and the drift never settles."
+  ],
+  [
+   15.225,
+   2.275,
+   "That's Erin's problem in one line."
+  ],
+  [
+   17.5,
+   4.612,
+   "Display name is a warning, and two attributes are only informational."
+  ],
+  [
+   22.113,
+   6.388,
+   "Now map SailPoint's title field to Entra's job title and run it again: a second Finding appears."
+  ],
+  [
+   28.5,
+   3.3,
+   "Without the alias, that second writer was invisible."
+  ],
+  [
+   31.8,
+   2.288,
+   "And notice the guard on the directory name."
+  ],
+  [
+   34.087,
+   11.188,
+   "If you tell the check the wrong name for the Entra directory, it refuses and exits with an error, rather than reporting no overlap, because a wrong name would make every attribute look unwritten."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   0.912,
+   "Check four."
+  ],
+  [
+   0.963,
+   7.537,
+   "Entra inbound provisioning updates display name on every change, and SailPoint sets it only when it creates the account."
+  ],
+  [
+   8.5,
+   5.35,
+   "What does the writer check report: a Finding, a warning, info, or nothing at all?"
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   4.925,
+   "The answer to check four: a warning, because there are two sources for the first value."
+  ],
+  [
+   4.975,
+   3.938,
+   "Scene five is the fix itself, and here the kit stops on purpose."
+  ],
+  [
+   8.912,
+   1.675,
+   "The guide says how it should run."
+  ],
+  [
+   10.588,
+   9.812,
+   "Erin's wrong fact is corrected where H R owns it, in Core H C M, and SailPoint re-aggregates; SailPoint can't write H R-mastered attributes back."
+  ],
+  [
+   20.4,
+   5.537,
+   "Her unauthorized write is restored by SailPoint, and the writer's access is reviewed."
+  ],
+  [
+   25.938,
+   6.688,
+   "The ticket authorizes a machine: a connector, under a service identity, and a person only approves."
+  ],
+  [
+   32.625,
+   7.287,
+   "But the kit's first pass doesn't actuate at all: no code writes to Entra I D, Active Directory or SailPoint."
+  ],
+  [
+   39.913,
+   3.413,
+   "What it does have is the closure signal, which we'll try next."
+  ],
+  [
+   43.325,
+   4.25,
+   "Why it matters: Gate 5 keeps changes off personal admin accounts."
+  ],
+  [
+   47.575,
+   2.925,
+   "The guide also keeps people off standing privilege."
+  ],
+  [
+   50.5,
+   7.325,
+   "Where a person must act, they activate an eligible role just in time, with the ticket number as the justification."
+  ],
+  [
+   57.825,
+   8.525,
+   "And when no machine can reach the surface, the declared-exception lane takes over: a named approver, a recorded session and an end date."
+  ]
+ ],
+ "17": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   5.737,
+   "The kit's provisioning fixture is Alice's, not Erin's, but the shape is the same for anyone."
+  ],
+  [
+   6.513,
+   3.487,
+   "Resolve SailPoint's provisioning-completed workflow against it."
+  ],
+  [
+   10.0,
+   5.375,
+   "ServiceNow gets a closure signal, accepted, with four input fields not sent."
+  ],
+  [
+   15.375,
+   5.388,
+   "And here's what a closure signal does: it moves matching findings to awaiting verification."
+  ],
+  [
+   20.762,
+   1.45,
+   "It never closes one."
+  ],
+  [
+   22.212,
+   6.037,
+   "That's the example guide's first gap, written into code: a success response is not closure."
+  ],
+  [
+   28.25,
+   4.513,
+   "The workflow is also why provisioning status can't be trusted on its own."
+  ],
+  [
+   32.763,
+   7.45,
+   "SailPoint's own best-practice page says its Service Desk integration treats the mapped ServiceNow status as completion."
+  ],
+  [
+   40.212,
+   5.513,
+   "The kit turns that around: a status or a success only starts the wait for evidence."
+  ]
+ ],
+ "18": [
+  [
+   0.05,
+   0.938,
+   "Check five."
+  ],
+  [
+   0.988,
+   5.838,
+   "SailPoint reports success for the fix to Erin's record, and the closure signal reaches ServiceNow."
+  ],
+  [
+   6.825,
+   1.587,
+   "What happens to her finding?"
+  ],
+  [
+   8.412,
+   4.513,
+   "Does it close, wait for a re-read, get ignored, or reopen?"
+  ]
+ ],
+ "19": [
+  [
+   0.05,
+   5.725,
+   "The answer to check five: her finding moves to awaiting verification, and waits for a re-read."
+  ],
+  [
+   5.775,
+   1.087,
+   "Scene six."
+  ],
+  [
+   6.862,
+   7.5,
+   "On day two, Entra I D matches H R, so the reconciliation calls that finding resolved, which is only a lead."
+  ],
+  [
+   14.363,
+   5.3,
+   "SailPoint still says H R until its next aggregation, so a new finding opens there."
+  ],
+  [
+   19.663,
+   10.562,
+   "When it's re-read, waiting record I D F one thousand four, Erin's SailPoint identity with intended department Finance, reads Finance, and verifies."
+  ],
+  [
+   30.225,
+   1.9,
+   "The client guards both ways."
+  ],
+  [
+   32.125,
+   3.938,
+   "An intended state that names nothing is skipped, never verified."
+  ],
+  [
+   36.062,
+   5.25,
+   "And a read older than the wait is pending through a grace period, then reopens the record."
+  ],
+  [
+   41.312,
+   4.138,
+   "Why it matters: Gate 6, Book 13's fourth clause."
+  ],
+  [
+   45.45,
+   6.75,
+   "The record closes only on a re-read, with its evidence, and no person can close it by setting its state."
+  ]
+ ],
+ "20": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   7.188,
+   "Compare day one with day two: one new, eleven persisting, one resolved, and both changes are Erin's."
+  ],
+  [
+   7.963,
+   3.587,
+   "Her Entra finding resolved; a SailPoint finding opened."
+  ],
+  [
+   11.55,
+   5.625,
+   "Then run the re-read client offline over six waiting records at noon on November first."
+  ],
+  [
+   17.175,
+   3.388,
+   "Erin's record verifies, and would be patched to closed."
+  ],
+  [
+   20.562,
+   6.025,
+   "One record is pending: a terminated user's account, read before the finding started waiting."
+  ],
+  [
+   26.587,
+   2.65,
+   "One is skipped for an empty intended state."
+  ],
+  [
+   29.238,
+   5.525,
+   "Run the same records a day later, and that pending one becomes a mismatch, and would reopen."
+  ],
+  [
+   34.763,
+   1.812,
+   "Everything here is a dry run."
+  ],
+  [
+   36.575,
+   8.125,
+   "The offline mode refuses the apply flag, and a subject with no saved read is an error, because a missing read is never a match."
+  ],
+  [
+   44.7,
+   6.287,
+   "On a developer instance, Chapter 5's Lab 2 runs the same client for real, as the verifier."
+  ]
+ ],
+ "21": [
+  [
+   0.05,
+   1.025,
+   "Check six."
+  ],
+  [
+   1.075,
+   5.275,
+   "On day two, the comparison reports Erin's Entra department finding as resolved."
+  ],
+  [
+   6.35,
+   5.713,
+   "Can its ServiceNow record close now, because it's resolved, or because a person sets it closed?"
+  ],
+  [
+   12.062,
+   2.212,
+   "Or does something else have to happen first?"
+  ]
+ ],
+ "22": [
+  [
+   0.05,
+   1.988,
+   "The answer to check six: no."
+  ],
+  [
+   2.038,
+   4.388,
+   "Resolved is a lead; only a matching re-read closes the record."
+  ],
+  [
+   6.425,
+   1.05,
+   "Scene seven."
+  ],
+  [
+   7.475,
+   4.85,
+   "When the re-read verified Erin's record, it wrote the result with an evidence hash."
+  ],
+  [
+   12.325,
+   12.675,
+   "On a real instance, that closed record is read back out and written as one line of an evidence package, in Book 13's shape: origin, owner and clock, the re-read result, and the closure."
+  ],
+  [
+   25.0,
+   8.25,
+   "Approval, the executing identity and what ran are written as null, each with its reason, because the first pass doesn't actuate."
+  ],
+  [
+   33.25,
+   2.125,
+   "The record says what it doesn't hold."
+  ],
+  [
+   35.375,
+   5.838,
+   "Each line carries the hash of the line before it, and a manifest holds a hash of every file."
+  ],
+  [
+   41.212,
+   2.025,
+   "Why it matters: Gate 7."
+  ],
+  [
+   43.237,
+   4.425,
+   "The I S S O gets records nobody could edit or remove without it showing."
+  ]
+ ],
+ "23": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   6.412,
+   "The lab's package uses five other fictional records, but Erin's would be one more line in the same file."
+  ],
+  [
+   7.188,
+   7.65,
+   "Export October: four closed on a re-read, one declared exception, two of three inside their windows, and a chain head."
+  ],
+  [
+   14.838,
+   6.55,
+   "It also names three problem records and exits with a failure, rather than producing a clean-looking package."
+  ],
+  [
+   21.387,
+   4.412,
+   "Now verify it as the I S S O would: the package holds."
+  ],
+  [
+   25.8,
+   2.763,
+   "Then delete one record and verify again."
+  ],
+  [
+   28.562,
+   5.037,
+   "The file's hash no longer matches the manifest, and the next line's link is broken."
+  ],
+  [
+   33.6,
+   1.625,
+   "The package doesn't hold."
+  ],
+  [
+   35.225,
+   6.237,
+   "Next month's export continues the chain from this month's manifest, so a gap between periods shows too."
+  ],
+  [
+   41.462,
+   4.225,
+   "One limit to remember: the package is tamper-evident, not signed."
+  ],
+  [
+   45.688,
+   7.625,
+   "Someone who can rewrite every file and the manifest can rewrite the chain, so keep each manifest where the exporter can't write."
+  ]
+ ],
+ "24": [
+  [
+   0.05,
+   1.837,
+   "Check seven, the last one."
+  ],
+  [
+   1.887,
+   3.788,
+   "Someone deletes one closed record from October's records file."
+  ],
+  [
+   5.675,
+   8.062,
+   "What does the verifier report: nothing, only a file hash mismatch, the file hash and a broken chain, or a moved chain head?"
+  ]
+ ],
+ "25": [
+  [
+   0.05,
+   6.325,
+   "The answer to check seven: the file's hash no longer matches the manifest, and the chain breaks at the next line."
+  ],
+  [
+   6.375,
+   13.225,
+   "That's Erin's record, end to end: measured, typed and clocked, touched only by least-privileged clients, traced to two writers, fixed at the source, closed on a re-read, and filed as evidence."
+  ],
+  [
+   19.6,
+   1.137,
+   "Now it's your turn."
+  ],
+  [
+   20.738,
+   11.775,
+   "Every chapter has a Lab 2 in your own test instance: a ServiceNow Personal Developer Instance, a SailPoint sandbox, and for some chapters a test Entra tenant with synthetic data, never production."
+  ],
+  [
+   32.513,
+   5.6,
+   "There's no hosted sandbox; you bring your own, and every lab ends with a back-out step."
+  ],
+  [
+   38.112,
+   9.425,
+   "Then go deeper: the workbook's eight chapters, a narrated tour of each, the seven-module learning path, and the example guide with its gate-level deck."
+  ],
+  [
+   47.538,
+   1.55,
+   "Thanks for following Erin."
+  ]
+ ]
+}

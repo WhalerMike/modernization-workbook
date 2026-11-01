@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.525
+What Build 1 proves.
+
+2
+00:00:01.525 --> 00:00:06.039
+A write made outside the governed process
+is detected and raised as an owned,
+
+3
+00:00:06.039 --> 00:00:09.121
+clocked finding whose
+intended state is the revert,
+
+4
+00:00:09.121 --> 00:00:13.062
+which supports change control and
+system monitoring at Moderate.
+
+5
+00:00:13.062 --> 00:00:16.374
+Each drifting attribute
+is its own piece of work.
+
+6
+00:00:16.374 --> 00:00:22.338
+And a workflow change is tested before it
+runs, which is developer testing, SA-11.
+
+7
+00:00:22.338 --> 00:00:27.526
+Two labels: treating a native change as
+an unauthorized write is the program's
+
+8
+00:00:27.526 --> 00:00:32.067
+inference, and since the workflow
+can't know whether a claim is in use,
+
+9
+00:00:32.067 --> 00:00:34.220
+a person or a rule raises it to P1.

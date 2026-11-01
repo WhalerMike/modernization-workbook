@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.444
+Lab 2 runs the client live, on a
+test tenant and a SailPoint sandbox
+
+2
+00:00:04.444 --> 00:00:08.837
+with synthetic data, never production;
+the authors haven't run it.
+
+3
+00:00:08.837 --> 00:00:11.126
+Grant only Chapter 3's reads.
+
+4
+00:00:11.126 --> 00:00:14.320
+Write a small HR extract
+that matches test users,
+
+5
+00:00:14.320 --> 00:00:19.112
+with one terminated user still enabled
+and one department that differs.
+
+6
+00:00:19.112 --> 00:00:22.350
+Run the client, and check its
+counts against a hand count.
+
+7
+00:00:22.350 --> 00:00:25.538
+Record whether Graph rejects
+the manager expansion.
+
+8
+00:00:25.538 --> 00:00:29.426
+Run again the next day after changing
+one department, and compare.
+
+9
+00:00:29.426 --> 00:00:30.337
+Push nothing.
+
+10
+00:00:30.337 --> 00:00:32.060
+Then delete everything.

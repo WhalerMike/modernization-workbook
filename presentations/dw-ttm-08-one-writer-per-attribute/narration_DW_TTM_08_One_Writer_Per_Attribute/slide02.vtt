@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.200
+Why does this matter?
+
+2
+00:00:01.200 --> 00:00:06.196
+The example guide's fourth gap: SailPoint
+reads the HR system and can provision
+
+3
+00:00:06.196 --> 00:00:11.038
+the directory, while Book 3 makes Entra
+inbound provisioning the one writer.
+
+4
+00:00:11.038 --> 00:00:14.274
+The guide's advice is to pick
+one writer per attribute.
+
+5
+00:00:14.274 --> 00:00:19.427
+Either Entra inbound provisioning stays the
+door and SailPoint governs entitlements,
+
+6
+00:00:19.427 --> 00:00:22.250
+or SailPoint becomes the
+provisioning service.
+
+7
+00:00:22.250 --> 00:00:23.225
+Not both.
+
+8
+00:00:23.225 --> 00:00:26.509
+Until now, the drift client
+saw only the symptom,
+
+9
+00:00:26.509 --> 00:00:29.625
+drift that keeps coming
+back, never the cause.
+
+10
+00:00:29.625 --> 00:00:35.110
+Both configurations export as JSON,
+so the check can run on files, today.

@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.607
+These are the vendor facts
+the chapter's code relies on,
+
+2
+00:00:03.607 --> 00:00:05.425
+each read on November first.
+
+3
+00:00:05.425 --> 00:00:09.200
+A scripted REST API has a fixed URL shape.
+
+4
+00:00:09.200 --> 00:00:13.026
+Access is set by API access
+policies and endpoint ACLs,
+
+5
+00:00:13.026 --> 00:00:18.212
+and creating one needs the web service
+admin role, which calling it doesn't.
+
+6
+00:00:18.212 --> 00:00:22.150
+The kit uses two SailPoint
+triggers, both fire-and-forget.
+
+7
+00:00:22.150 --> 00:00:25.800
+ServiceNow's Government
+Community Cloud is FedRAMP High;
+
+8
+00:00:25.800 --> 00:00:29.450
+SailPoint's Identity Security
+Cloud is FedRAMP Moderate.
+
+9
+00:00:29.450 --> 00:00:33.550
+And a free developer instance is
+reclaimed after ten days unused.

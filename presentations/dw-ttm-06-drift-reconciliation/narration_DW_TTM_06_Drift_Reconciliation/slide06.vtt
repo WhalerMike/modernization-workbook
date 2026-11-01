@@ -1,0 +1,39 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.544
+Four new tests cover the day-two story,
+
+2
+00:00:02.544 --> 00:00:05.763
+identical runs, the refusal
+and the command line.
+
+3
+00:00:05.763 --> 00:00:10.105
+The kit's original thirteen drift
+tests still pass, including the check
+
+4
+00:00:10.105 --> 00:00:14.300
+that the Python and PowerShell
+clients produce the same finding IDs.
+
+5
+00:00:14.300 --> 00:00:19.300
+One caution: these run over fictional
+exports, and two inputs, the manager
+
+6
+00:00:19.300 --> 00:00:24.800
+expansion and the SailPoint employee ID
+attribute, are still on the verify list.
+
+7
+00:00:24.800 --> 00:00:28.837
+And expect a burst of High findings
+in a real estate's first month.
+
+8
+00:00:28.837 --> 00:00:31.300
+Book 3 calls that the measurement working.

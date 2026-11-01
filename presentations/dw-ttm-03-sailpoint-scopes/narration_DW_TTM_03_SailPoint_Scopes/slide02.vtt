@@ -1,0 +1,51 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.762
+Why insist on read scopes?
+
+2
+00:00:01.762 --> 00:00:03.700
+Look at what the clients actually do.
+
+3
+00:00:03.700 --> 00:00:05.899
+The drift client reads identities,
+
+4
+00:00:05.899 --> 00:00:10.675
+uncorrelated accounts and Graph users,
+and optionally the directory audit.
+
+5
+00:00:10.675 --> 00:00:15.212
+The re-read client reads one
+account, one identity or one user.
+
+6
+00:00:15.212 --> 00:00:17.651
+Nothing in Pass 1 writes anywhere.
+
+7
+00:00:17.651 --> 00:00:21.654
+So a manage scope on either client
+buys nothing and risks a lot:
+
+8
+00:00:21.654 --> 00:00:24.088
+a stolen token could change accounts.
+
+9
+00:00:24.088 --> 00:00:27.010
+The workflow scope left
+on a standing client lets
+
+10
+00:00:27.010 --> 00:00:29.862
+anyone add workflows that
+call out of SailPoint.
+
+11
+00:00:29.862 --> 00:00:34.420
+And an administrator's personal token
+runs the whole kit as an org admin.

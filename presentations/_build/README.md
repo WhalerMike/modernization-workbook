@@ -57,7 +57,7 @@ powershell -File presentations/_build/build_narrated.ps1 -Dir <abs path>\present
 powershell -File presentations/_build/export_mp4.ps1 -Src <abs path>\DW_PA_02_Emergency_Access_Narrated.pptx -Mp4 <abs path>\DW_PA_02_Emergency_Access_Narrated.mp4
 ```
 
-Upload the MP4 to the videos release, run `scripts/generate_video_manifest.py --verify` and then without `--verify` (with the narrated deck here, it also refreshes the video's chapters in `data/video-chapters.json`), and finally `presentations/_build/link_tours.py "<recording date>"`. A new tour's deck links point at its folder until an edition carries the deck; the deck link check reports them until then. A tour runs about eleven minutes: a title slide and about seventeen content slides in Why, What, Who and How order. Rebuild and re-record a tour when its chapter changes.
+Upload the MP4 to the videos release, run `scripts/generate_video_manifest.py --verify` and then without `--verify` (with the narrated deck here, it also refreshes the video's chapters in `data/video-chapters.json`), and finally `presentations/_build/link_tours.py "<recording date>"`. A new tour's deck links point at its folder on GitHub until an edition carries the deck, and a tour whose video isn't on the videos release yet gets no player, Watch or MP4 link, so the link checks pass in between; a workbook recorded on another day takes its own date (`link_tours.py "October 31, 2026" ttm="November 1, 2026"`). A tour runs about eleven minutes: a title slide and about seventeen content slides in Why, What, Who and How order. Rebuild and re-record a tour when its chapter changes.
 
 ## Accessibility (Section 508 / WCAG 2.1 AA)
 

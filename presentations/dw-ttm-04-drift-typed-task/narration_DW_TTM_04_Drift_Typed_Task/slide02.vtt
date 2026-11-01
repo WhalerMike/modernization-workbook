@@ -1,0 +1,43 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.975
+Why bother?
+
+2
+00:00:00.975 --> 00:00:05.888
+Because the body of a SailPoint workflow
+is full of keys that SailPoint resolves
+
+3
+00:00:05.888 --> 00:00:08.674
+only at run time, so until
+now the only way to see
+
+4
+00:00:08.674 --> 00:00:11.900
+the actual payload was to
+run the workflow in a tenant.
+
+5
+00:00:11.900 --> 00:00:14.313
+And what you can't see, you can't test.
+
+6
+00:00:14.313 --> 00:00:19.044
+If the workflow drops part of an event,
+that part of the change is never reverted,
+
+7
+00:00:19.044 --> 00:00:22.174
+and the re-read later finds
+nothing to disagree with.
+
+8
+00:00:22.174 --> 00:00:24.964
+So this chapter resolves the body offline,
+
+9
+00:00:24.964 --> 00:00:30.530
+derives the intended state the way ServiceNow
+will, and lists anything left behind.

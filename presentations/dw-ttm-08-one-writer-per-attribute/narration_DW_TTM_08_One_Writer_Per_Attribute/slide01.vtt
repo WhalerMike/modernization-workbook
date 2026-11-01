@@ -1,0 +1,51 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.250
+Welcome to the last chapter of
+Building Ticket-to-Machine.
+
+2
+00:00:03.250 --> 00:00:05.862
+Chapter 8: one writer per attribute.
+
+3
+00:00:05.862 --> 00:00:09.437
+Two writers on one attribute
+isn't drift you can fix.
+
+4
+00:00:09.437 --> 00:00:10.900
+It's drift you've scheduled.
+
+5
+00:00:10.900 --> 00:00:15.870
+Book 3 makes Entra inbound provisioning
+the one writer into the directory,
+
+6
+00:00:15.870 --> 00:00:18.675
+but SailPoint can also provision Entra ID.
+
+7
+00:00:18.675 --> 00:00:20.253
+If both write department,
+
+8
+00:00:20.253 --> 00:00:24.237
+the reconciliation reports drift
+that the next sync recreates.
+
+9
+00:00:24.237 --> 00:00:28.144
+This chapter compares the two
+provisioning configurations,
+
+10
+00:00:28.144 --> 00:00:31.438
+offline, and names every
+attribute with two writers.
+
+11
+00:00:31.438 --> 00:00:33.840
+Then two labs and the dangers.

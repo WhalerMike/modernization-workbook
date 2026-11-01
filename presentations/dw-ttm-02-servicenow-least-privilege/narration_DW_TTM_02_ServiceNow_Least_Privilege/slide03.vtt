@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.125
+Here's what the clients already share.
+
+2
+00:00:02.125 --> 00:00:04.643
+Configuration comes from the environment,
+
+3
+00:00:04.643 --> 00:00:07.650
+and a settings file that
+carries a secret is refused.
+
+4
+00:00:07.650 --> 00:00:11.593
+The token comes from a vault if one
+is set, otherwise from the OAuth
+
+5
+00:00:11.593 --> 00:00:13.199
+client-credentials grant,
+
+6
+00:00:13.199 --> 00:00:16.850
+and only on a developer instance
+from basic authentication.
+
+7
+00:00:16.850 --> 00:00:20.837
+Paging reads a hundred rows
+a page through the Table API.
+
+8
+00:00:20.837 --> 00:00:26.887
+And one wrapper retries throttling and
+unavailable responses, honoring Retry-After.
+
+9
+00:00:26.887 --> 00:00:31.075
+The clients make three kinds of
+ServiceNow call: posting findings,
+
+10
+00:00:31.075 --> 00:00:34.420
+closing them with evidence,
+and reading closed ones.

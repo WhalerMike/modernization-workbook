@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.625
+Why a reconciliation as well as events?
+
+2
+00:00:02.625 --> 00:00:05.625
+Because events only tell
+you about changes you heard.
+
+3
+00:00:05.625 --> 00:00:08.600
+A missed event is drift
+nobody ever raised.
+
+4
+00:00:08.600 --> 00:00:11.165
+The reconciliation
+measures the state itself,
+
+5
+00:00:11.165 --> 00:00:14.125
+so it catches what changed
+while nobody was listening.
+
+6
+00:00:14.125 --> 00:00:16.150
+But one run is one moment.
+
+7
+00:00:16.150 --> 00:00:19.990
+Push every finding every night
+and you lean on de-duplication,
+
+8
+00:00:19.990 --> 00:00:22.475
+and nothing tells you what disappeared.
+
+9
+00:00:22.475 --> 00:00:25.797
+So this chapter compares
+runs, raises only what's new,
+
+10
+00:00:25.797 --> 00:00:30.650
+and refuses to call something resolved
+just because a run didn't measure it.

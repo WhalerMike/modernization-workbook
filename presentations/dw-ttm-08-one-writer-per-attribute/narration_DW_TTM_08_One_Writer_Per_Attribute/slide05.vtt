@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.041
+The second export is the SailPoint
+source's provisioning policies,
+
+2
+00:00:04.041 --> 00:00:06.250
+for the source that writes to Entra ID.
+
+3
+00:00:06.250 --> 00:00:09.837
+Each policy has a usage type
+and a list of field names.
+
+4
+00:00:09.837 --> 00:00:14.538
+The update profile is used for attribute
+sync, so it counts as an update.
+
+5
+00:00:14.538 --> 00:00:17.450
+The create profile is used
+when the account is made.
+
+6
+00:00:17.450 --> 00:00:20.274
+Enable, disable and the
+other types don't write
+
+7
+00:00:20.274 --> 00:00:22.950
+user attributes this
+way, so they're ignored.
+
+8
+00:00:22.950 --> 00:00:27.444
+One catch to remember: SailPoint's
+field names are the connector's,
+
+9
+00:00:27.444 --> 00:00:29.330
+not necessarily Entra ID's.

@@ -1,0 +1,87 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.175
+Meet the cast.
+
+2
+00:00:01.175 --> 00:00:06.800
+Erin's HR record says she works in
+HR and reports to employee E1000.
+
+3
+00:00:06.800 --> 00:00:13.988
+Entra ID, in a Microsoft 365 GCC tenant,
+says Finance, and a different manager.
+
+4
+00:00:13.988 --> 00:00:15.955
+The directory audit shows why:
+
+5
+00:00:15.955 --> 00:00:20.676
+on October twentieth a help desk
+administrator typed Finance in by hand.
+
+6
+00:00:20.676 --> 00:00:22.637
+SailPoint still says HR.
+
+7
+00:00:22.637 --> 00:00:24.625
+And ServiceNow is the front door,
+
+8
+00:00:24.625 --> 00:00:27.937
+where her drift becomes a
+typed task with its evidence.
+
+9
+00:00:27.937 --> 00:00:31.477
+The stakes are the two failures
+the example guide warns about:
+
+10
+00:00:31.477 --> 00:00:34.182
+closing her finding
+because a ticket says done,
+
+11
+00:00:34.182 --> 00:00:38.276
+and fixing her record by hand while
+two systems still write department.
+
+12
+00:00:38.276 --> 00:00:42.012
+Either way the drift comes back,
+and nobody can prove what happened.
+
+13
+00:00:42.012 --> 00:00:48.633
+Keep three numbers in your head: E1004
+is Erin, E1000 is the manager HR names,
+
+14
+00:00:48.633 --> 00:00:54.601
+and E1001, Alice, is the manager
+Entra ID and SailPoint name instead.
+
+15
+00:00:54.601 --> 00:00:57.686
+The estate is a FedRAMP
+Moderate civilian one:
+
+16
+00:00:57.686 --> 00:01:01.422
+ServiceNow's Government
+Community Cloud, FedRAMP High;
+
+17
+00:01:01.422 --> 00:01:05.158
+SailPoint's Identity Security
+Cloud, FedRAMP Moderate;
+
+18
+00:01:05.158 --> 00:01:09.700
+and Entra ID on the worldwide Graph
+endpoint, which is what GCC uses.

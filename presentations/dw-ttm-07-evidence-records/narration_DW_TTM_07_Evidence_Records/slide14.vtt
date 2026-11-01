@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.950
+The dangers map onto
+the assessor's worries.
+
+2
+00:00:02.950 --> 00:00:06.925
+An edit after closure is caught
+by recomputing the evidence hash.
+
+3
+00:00:06.925 --> 00:00:10.056
+Evidence cut short by the
+field limit is reported,
+
+4
+00:00:10.056 --> 00:00:12.500
+and the attachment keeps the full copy.
+
+5
+00:00:12.500 --> 00:00:16.725
+A close that bypassed the business
+rule shows as closed without evidence.
+
+6
+00:00:16.725 --> 00:00:18.837
+A deleted record breaks the chain.
+
+7
+00:00:18.837 --> 00:00:23.091
+A package rewritten end to end is
+the one the chain alone can't catch,
+
+8
+00:00:23.091 --> 00:00:26.262
+so store manifests where
+the exporter can't write.
+
+9
+00:00:26.262 --> 00:00:29.512
+Fields filled to look
+complete are null by design.
+
+10
+00:00:29.512 --> 00:00:32.330
+And the export never runs as the verifier.

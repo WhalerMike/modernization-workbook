@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.038
+Here's what Build 1 already has.
+
+2
+00:00:02.038 --> 00:00:04.863
+Three SailPoint workflows,
+one per trigger.
+
+3
+00:00:04.863 --> 00:00:08.537
+A native change to an account
+raises an unauthorized write.
+
+4
+00:00:08.537 --> 00:00:12.374
+A change to an identity's
+attributes raises attribute drift.
+
+5
+00:00:12.374 --> 00:00:16.131
+And a completed provisioning
+action raises a closure signal,
+
+6
+00:00:16.131 --> 00:00:18.487
+which never closes anything by itself.
+
+7
+00:00:18.487 --> 00:00:22.739
+Each workflow has one HTTP request
+step and is created disabled,
+
+8
+00:00:22.739 --> 00:00:25.626
+because SailPoint won't
+create one enabled.
+
+9
+00:00:25.626 --> 00:00:30.713
+On the ServiceNow side, the scripted REST
+resource derives the intended state:
+
+10
+00:00:30.713 --> 00:00:34.370
+a native change is reverted,
+an attribute change is kept.

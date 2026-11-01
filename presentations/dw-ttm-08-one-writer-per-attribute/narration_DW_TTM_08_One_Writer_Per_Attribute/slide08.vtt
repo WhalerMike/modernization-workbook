@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.537
+The facts behind the exports,
+read on November first.
+
+2
+00:00:03.537 --> 00:00:08.078
+Reading a synchronization schema is
+available in the government clouds; oddly,
+
+3
+00:00:08.078 --> 00:00:12.480
+Learn lists a custom security attribute
+permission as the least-privileged
+
+4
+00:00:12.480 --> 00:00:17.363
+application permission, with Synchronization
+dot Read dot All among the higher ones.
+
+5
+00:00:17.363 --> 00:00:21.913
+The schema's shape is rules, object
+mappings and attribute mappings.
+
+6
+00:00:21.913 --> 00:00:27.239
+SailPoint's policies come from the
+provisioning-policies endpoint with a read or
+
+7
+00:00:27.239 --> 00:00:32.251
+manage scope, at the org admin user level,
+each with a name, usage type and fields.
+
+8
+00:00:32.251 --> 00:00:35.420
+GCC uses the worldwide Graph host.

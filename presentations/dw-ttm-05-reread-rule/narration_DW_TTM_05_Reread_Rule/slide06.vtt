@@ -1,0 +1,41 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.862
+The second thing missing was a way to
+watch the decisions without a tenant.
+
+2
+00:00:03.862 --> 00:00:08.632
+The offline mode takes saved waiting
+records in the Table API's shape,
+
+3
+00:00:08.632 --> 00:00:11.812
+saved reads keyed by
+subject, and a fixed clock.
+
+4
+00:00:11.812 --> 00:00:16.237
+The same function makes the same
+decisions; only the reader is swapped.
+
+5
+00:00:16.237 --> 00:00:19.345
+It's a dry run only: the
+apply flag is refused,
+
+6
+00:00:19.345 --> 00:00:25.025
+and a subject with no saved read is an
+error, because a missing read isn't a match.
+
+7
+00:00:25.025 --> 00:00:28.418
+Six fictional waiting
+records cover every outcome,
+
+8
+00:00:28.418 --> 00:00:32.900
+from a clean verify to the empty
+intended state the guard exists for.

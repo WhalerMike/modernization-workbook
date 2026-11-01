@@ -1,0 +1,519 @@
+{
+ "1": [
+  [
+   0.05,
+   2.15,
+   "Welcome back to Building Ticket-to-Machine."
+  ],
+  [
+   2.2,
+   4.112,
+   "This is Chapter 5: the re-read rule, the kit's Build 2."
+  ],
+  [
+   6.312,
+   2.212,
+   "A success response is not closure."
+  ],
+  [
+   8.525,
+   4.225,
+   "Neither is a ticket status, and neither is a comparison against nothing."
+  ],
+  [
+   12.75,
+   4.825,
+   "A finding closes only when a re-read of the target shows the intended state."
+  ],
+  [
+   17.575,
+   5.037,
+   "A ServiceNow business rule enforces that, and a Python client does the re-reading."
+  ],
+  [
+   22.613,
+   6.737,
+   "This chapter adds an offline mode so you can watch every decision on a laptop, and a guard against closing on nothing."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.512,
+   "Why does this rule exist?"
+  ],
+  [
+   1.562,
+   3.825,
+   "Because there are several ways to close a finding without proving anything."
+  ],
+  [
+   5.388,
+   10.375,
+   "The first is closure by ticket status: SailPoint's Service Desk integration treats the mapped ServiceNow status as completion, and a person can simply mark the work done."
+  ],
+  [
+   15.762,
+   2.325,
+   "That's the example guide's first gap."
+  ],
+  [
+   18.087,
+   11.325,
+   "The others are subtler: comparing against an intended state that names nothing, which always matches; trusting a read older than the fix; and treating a missing read as a match."
+  ],
+  [
+   29.413,
+   1.962,
+   "This chapter closes all four."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   2.075,
+   "Here's the rule inside ServiceNow."
+  ],
+  [
+   2.125,
+   3.075,
+   "It runs before any update that changes the state."
+  ],
+  [
+   5.2,
+   10.125,
+   "If someone sets a closed state, the record goes to awaiting verification instead, unless that same update carries a new evidence hash and comes from the verifier account."
+  ],
+  [
+   15.325,
+   4.638,
+   "Evidence alone isn't enough, and the verifier alone isn't enough."
+  ],
+  [
+   19.962,
+   11.05,
+   "There's one human path: a named exception approver can cancel with a close note, which is the Federal Modernization Workbook's Book 13's declared-exception lane, and it stays on the record."
+  ],
+  [
+   31.012,
+   4.062,
+   "The rule also governs tickets the Service Desk integration opened."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   2.425,
+   "The other half is the re-read client."
+  ],
+  [
+   2.475,
+   10.5,
+   "It lists waiting findings, re-reads each subject according to its system, an account, an identity or an Entra user, and compares the read with the intended state."
+  ],
+  [
+   12.975,
+   9.863,
+   "A match closes the record with the evidence: the query, the time, a hash of the response, the intended state and the checker, attached as jay-son too."
+  ],
+  [
+   22.837,
+   1.475,
+   "A difference reopens it."
+  ],
+  [
+   24.312,
+   6.875,
+   "Because SailPoint's copy reflects the last aggregation, a read older than the wait is pending for a grace period."
+  ],
+  [
+   31.188,
+   2.638,
+   "And nothing is written without the apply flag."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   1.238,
+   "Two things were missing."
+  ],
+  [
+   1.288,
+   1.413,
+   "The first was this guard."
+  ],
+  [
+   2.7,
+   12.713,
+   "The client already skipped a record with an empty intended state, but not one whose intended state was a non-empty object naming nothing, which is exactly what ServiceNow stores for a native change the workflow didn't describe."
+  ],
+  [
+   15.412,
+   7.013,
+   "Comparing a read against that finds no difference, so the client would have closed the record, with evidence, on nothing."
+  ],
+  [
+   22.425,
+   6.775,
+   "Now Chapter 1's check runs before anything is read, and such a record is skipped with the reason, never verified."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   3.812,
+   "The second thing missing was a way to watch the decisions without a tenant."
+  ],
+  [
+   3.862,
+   7.95,
+   "The offline mode takes saved waiting records in the Table A P I's shape, saved reads keyed by subject, and a fixed clock."
+  ],
+  [
+   11.812,
+   4.425,
+   "The same function makes the same decisions; only the reader is swapped."
+  ],
+  [
+   16.238,
+   8.787,
+   "It's a dry run only: the apply flag is refused, and a subject with no saved read is an error, because a missing read isn't a match."
+  ],
+  [
+   25.025,
+   7.812,
+   "Six fictional waiting records cover every outcome, from a clean verify to the empty intended state the guard exists for."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   1.012,
+   "The tests."
+  ],
+  [
+   1.062,
+   12.3,
+   "Six new offline tests cover the six outcomes, the grace period expiring, the guard never calling the reader, a missing saved read as an error, a null read as not found, and the refusals."
+  ],
+  [
+   13.363,
+   3.362,
+   "The kit's original nine re-read tests still pass."
+  ],
+  [
+   16.725,
+   17.188,
+   "And the business rule's six Node tests pin its behavior: a person's close is redirected, only the verifier with fresh evidence may close, either one alone isn't enough, the exception approver may cancel with a note, and on incidents only the integration's tickets are governed."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   3.975,
+   "The facts each re-read depends on, read on November first."
+  ],
+  [
+   4.025,
+   8.287,
+   "The Table A P I lists and patches records, and the Attachment A P I uploads the evidence file with a mandatory content type."
+  ],
+  [
+   12.312,
+   12.938,
+   "An account is re-read through SailPoint's Accounts A P I, an identity through Search on the identities index, and an Entra user through Graph's get-a-user call, which returns not found when the user doesn't exist."
+  ],
+  [
+   25.25,
+   7.888,
+   "And SailPoint's own best-practice page confirms the gap: the mapped ServiceNow status decides when it treats provisioning as complete."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   1.2,
+   "Three points are open."
+  ],
+  [
+   1.25,
+   5.875,
+   "The biggest: which user ServiceNow records for a call made with an OAuth client-credentials token."
+  ],
+  [
+   7.125,
+   8.662,
+   "The rule compares exactly that with its verifier property, so if they differ it refuses every close, and people start looking for a way around the rule."
+  ],
+  [
+   15.787,
+   2.112,
+   "Lab 2 checks it before go-lyve."
+  ],
+  [
+   17.9,
+   9.725,
+   "Also open: how long a SailPoint read lags the source, which depends on the aggregation schedule, and how to recognize a ticket the Service Desk integration opened."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   3.325,
+   "For the I S S O, this is the closure evidence."
+  ],
+  [
+   3.375,
+   13.387,
+   "A finding closed only after a re-read showed the intended state, with the query, the time, a hash of the response and the checker, which is Book 13's fourth clause and supports change control and continuous monitoring."
+  ],
+  [
+   16.762,
+   4.963,
+   "No person can close a finding by setting its state, which is separation of duties."
+  ],
+  [
+   21.725,
+   2.5,
+   "A read that predates the change doesn't count."
+  ],
+  [
+   24.225,
+   6.425,
+   "And an empty intended state never closes anything: a verified change, not an asserted one."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   1.038,
+   "Who owns this?"
+  ],
+  [
+   1.087,
+   15.075,
+   "Developers who own the client or the rule; ServiceNow administrators who configure the rule's properties, the waiting state's value, the verifier's user name, and the exception role; and the I S S O, for whom this is the closure evidence."
+  ],
+  [
+   16.163,
+   1.562,
+   "The identities are simple."
+  ],
+  [
+   17.725,
+   4.812,
+   "The verifier can close a finding only in the same update as fresh evidence."
+  ],
+  [
+   22.538,
+   2.888,
+   "A named exception approver can cancel with a note."
+  ],
+  [
+   25.425,
+   4.975,
+   "Anyone else who sets a closed state just moves the record to awaiting verification."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   0.812,
+   "Lab 1."
+  ],
+  [
+   0.863,
+   1.6,
+   "Fifteen tests pass."
+  ],
+  [
+   2.462,
+   4.025,
+   "Then re-read the six waiting findings at noon on November first."
+  ],
+  [
+   6.487,
+   2.138,
+   "Three verify and would close."
+  ],
+  [
+   8.625,
+   6.6,
+   "One mismatches: a terminated user is still enabled in Entra I D, so it would reopen with that difference."
+  ],
+  [
+   15.225,
+   9.012,
+   "One is pending: the SailPoint account was last modified before the finding started waiting, so the read predates the change and the client leaves it alone."
+  ],
+  [
+   24.238,
+   4.062,
+   "And one is skipped, because its intended state names nothing."
+  ],
+  [
+   28.3,
+   2.263,
+   "That's the case the guard exists for."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   2.188,
+   "Now run the same records a day later."
+  ],
+  [
+   2.237,
+   3.312,
+   "The pending one has passed its twenty-four-hour grace period."
+  ],
+  [
+   5.55,
+   5.075,
+   "The account still isn't disabled, so it's now a mismatch, and the record would reopen."
+  ],
+  [
+   10.625,
+   3.35,
+   "A stale read can't hold a finding open forever."
+  ],
+  [
+   13.975,
+   3.712,
+   "The results file keeps each outcome with its evidence hash."
+  ],
+  [
+   17.688,
+   3.15,
+   "Finally, run the business rule's six Node tests."
+  ],
+  [
+   20.837,
+   6.412,
+   "They pass: a person's close is redirected, and only the verifier with fresh evidence can close."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   5.125,
+   "Lab 2 is on your developer instance, never production, and the authors haven't run it."
+  ],
+  [
+   5.175,
+   2.425,
+   "Configure the rule and its properties."
+  ],
+  [
+   7.6,
+   5.35,
+   "Close a test finding as an ordinary user and watch it land in awaiting verification."
+  ],
+  [
+   12.95,
+   7.537,
+   "Then the important step: as the verifier's OAuth client, make one harmless update and see which user ServiceNow recorded."
+  ],
+  [
+   20.488,
+   4.463,
+   "If it isn't the verifier property, the rule will refuse every close."
+  ],
+  [
+   24.95,
+   6.312,
+   "Then give a test finding a checkable intended state and run the client, dry first, then for real."
+  ],
+  [
+   31.262,
+   1.012,
+   "Back it all out."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   3.337,
+   "The dangers line up with the ways to close without proof."
+  ],
+  [
+   3.388,
+   3.325,
+   "Closure by ticket status is redirected by the rule."
+  ],
+  [
+   6.713,
+   3.475,
+   "An intended state that names nothing is skipped by the guard."
+  ],
+  [
+   10.188,
+   4.388,
+   "A stale read is pending inside the grace period and a mismatch after it."
+  ],
+  [
+   14.575,
+   6.375,
+   "A missing read is an error, never a match; the live reader raises on anything but a not-found."
+  ],
+  [
+   20.95,
+   5.013,
+   "A misconfigured verifier would refuse every close, so check it in Lab 2."
+  ],
+  [
+   25.962,
+   6.438,
+   "And evidence edited after closure no longer proves anything, which is why Chapter 7 recomputes the hash."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   1.2,
+   "Done looks like this."
+  ],
+  [
+   1.25,
+   7.275,
+   "The rule is active on the finding table, and on incidents and request items if the Service Desk integration opens tickets."
+  ],
+  [
+   8.525,
+   4.7,
+   "The verifier property matches the user ServiceNow actually records."
+  ],
+  [
+   13.225,
+   3.788,
+   "The grace period is at least the longest aggregation interval."
+  ],
+  [
+   17.012,
+   7.963,
+   "A dry run over this week's waiting findings skips nothing for an empty intended state, or each such record has gone to a person."
+  ],
+  [
+   24.975,
+   3.138,
+   "Closed records carry their evidence and attachment."
+  ],
+  [
+   28.113,
+   1.413,
+   "And the tests pass."
+  ],
+  [
+   29.525,
+   3.538,
+   "Next, Chapter 6: drift reconciliation."
+  ],
+  [
+   33.062,
+   1.1,
+   "Thanks for watching."
+  ]
+ ]
+}

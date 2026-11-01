@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.512
+Both fixes are pinned.
+
+2
+00:00:01.512 --> 00:00:04.932
+Seven Python tests run each
+workflow against its event,
+
+3
+00:00:04.932 --> 00:00:08.649
+check that a native change
+reverts all three kinds of change,
+
+4
+00:00:08.649 --> 00:00:12.515
+reproduce the empty intended
+state the old workflow produced,
+
+5
+00:00:12.515 --> 00:00:17.348
+confirm the attribute change keeps the
+new value with the attribute in the key,
+
+6
+00:00:17.348 --> 00:00:21.437
+and cover the closure signal,
+refused paths and an unknown trigger.
+
+7
+00:00:21.437 --> 00:00:24.792
+Two new Node tests run the
+ServiceNow script itself,
+
+8
+00:00:24.792 --> 00:00:29.930
+and the contract test now requires the
+script to read the multivalued changes.

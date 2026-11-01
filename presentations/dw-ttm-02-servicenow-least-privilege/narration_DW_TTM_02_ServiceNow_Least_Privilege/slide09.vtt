@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.475
+Three points stay open.
+
+2
+00:00:01.475 --> 00:00:06.175
+First, which inbound client-credentials
+setup applies depends on the release:
+
+3
+00:00:06.175 --> 00:00:08.923
+Zurich documents a
+Machine Identity Console,
+
+4
+00:00:08.923 --> 00:00:12.900
+and an older page documents a system
+property that's off by default.
+
+5
+00:00:12.900 --> 00:00:17.671
+Second, the token's optional scope:
+ServiceNow's examples narrow incident
+
+6
+00:00:17.671 --> 00:00:22.363
+reads and writes, but nothing found
+says a scope can narrow a custom table.
+
+7
+00:00:22.363 --> 00:00:26.724
+And third, API access policies:
+whether an instance's policies
+
+8
+00:00:26.724 --> 00:00:31.000
+add roles the kit doesn't list is
+still on the kit's verify list.
+
+9
+00:00:31.000 --> 00:00:32.980
+Lab 2 is where you settle them.

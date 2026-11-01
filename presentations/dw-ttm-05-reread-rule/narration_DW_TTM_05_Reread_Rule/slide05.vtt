@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.288
+Two things were missing.
+
+2
+00:00:01.288 --> 00:00:02.701
+The first was this guard.
+
+3
+00:00:02.701 --> 00:00:06.391
+The client already skipped a record
+with an empty intended state,
+
+4
+00:00:06.391 --> 00:00:10.834
+but not one whose intended state was a
+non-empty object naming nothing, which is
+
+5
+00:00:10.834 --> 00:00:15.413
+exactly what ServiceNow stores for a native
+change the workflow didn't describe.
+
+6
+00:00:15.413 --> 00:00:18.418
+Comparing a read against
+that finds no difference,
+
+7
+00:00:18.418 --> 00:00:22.425
+so the client would have closed the
+record, with evidence, on nothing.
+
+8
+00:00:22.425 --> 00:00:25.511
+Now Chapter 1's check runs
+before anything is read,
+
+9
+00:00:25.511 --> 00:00:29.260
+and such a record is skipped
+with the reason, never verified.

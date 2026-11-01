@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.100
+Who's involved?
+
+2
+00:00:01.100 --> 00:00:05.795
+Developers and identity engineers who
+schedule the reconciliation and set the
+
+3
+00:00:05.795 --> 00:00:09.719
+estate's settings: which SailPoint
+attribute holds the employee ID,
+
+4
+00:00:09.719 --> 00:00:13.713
+which sources are authoritative,
+and which apps are allowed to write.
+
+5
+00:00:13.713 --> 00:00:18.000
+And the identity data steward, who
+reads the output, triages the first
+
+6
+00:00:18.000 --> 00:00:22.663
+month's burst by class and severity,
+and sends decisions to the right people.
+
+7
+00:00:22.663 --> 00:00:25.642
+The client reads only
+what Chapter 3 granted:
+
+8
+00:00:25.642 --> 00:00:30.770
+Graph user and audit reads with a
+certificate, and two SailPoint read scopes.

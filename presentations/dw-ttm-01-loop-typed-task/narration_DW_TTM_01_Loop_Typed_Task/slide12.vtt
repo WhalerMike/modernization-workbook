@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.112
+Who is this for?
+
+2
+00:00:01.112 --> 00:00:04.108
+Developers who build either
+side of the integration,
+
+3
+00:00:04.108 --> 00:00:06.626
+and the reviewers who
+approve their changes.
+
+4
+00:00:06.626 --> 00:00:11.625
+You need to read Python and JSON, and
+you don't need any instance until Lab 2.
+
+5
+00:00:11.625 --> 00:00:15.440
+One least-privilege point carries
+through the whole workbook:
+
+6
+00:00:15.440 --> 00:00:20.135
+the person who creates the scripted REST
+API needs the web service admin role,
+
+7
+00:00:20.135 --> 00:00:22.850
+but the integration user
+who calls it doesn't.
+
+8
+00:00:22.850 --> 00:00:27.940
+It gets one custom role, granted through
+an endpoint ACL, and nothing else.

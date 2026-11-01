@@ -1,0 +1,46 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.200
+Welcome back to Building
+Ticket-to-Machine.
+
+2
+00:00:02.200 --> 00:00:06.338
+This is Chapter 2: the ServiceNow
+client and least privilege.
+
+3
+00:00:06.338 --> 00:00:09.371
+An integration user with
+more roles than its calls
+
+4
+00:00:09.371 --> 00:00:12.188
+need is a standing
+privilege nobody requested.
+
+5
+00:00:12.188 --> 00:00:16.801
+So this chapter writes down every ServiceNow
+call the kit's Python clients make,
+
+6
+00:00:16.801 --> 00:00:19.947
+the task that makes it and
+the least privilege it needs,
+
+7
+00:00:19.947 --> 00:00:22.813
+and then makes the tests
+hold the code to that list.
+
+8
+00:00:22.813 --> 00:00:26.104
+We'll see how the clients
+authenticate and page,
+
+9
+00:00:26.104 --> 00:00:30.720
+the call list and its test, the three
+roles, two labs and the dangers.

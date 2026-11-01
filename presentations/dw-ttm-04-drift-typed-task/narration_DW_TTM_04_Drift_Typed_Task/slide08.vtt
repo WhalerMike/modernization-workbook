@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.938
+The trigger facts, read on November first.
+
+2
+00:00:02.938 --> 00:00:05.463
+The native change trigger
+is fire-and-forget,
+
+3
+00:00:05.463 --> 00:00:10.172
+and fires only when an aggregation finds
+an account changed directly on the source,
+
+4
+00:00:10.172 --> 00:00:13.584
+with native change detection
+on, account updates monitored,
+
+5
+00:00:13.584 --> 00:00:15.563
+and a monitored attribute changed.
+
+6
+00:00:15.563 --> 00:00:19.037
+Its trigger ID isn't in
+SailPoint's published table.
+
+7
+00:00:19.037 --> 00:00:22.684
+The attribute-change and
+provisioning triggers are listed,
+
+8
+00:00:22.684 --> 00:00:25.600
+both fire-and-forget, with
+the inputs on the slide.
+
+9
+00:00:25.600 --> 00:00:30.705
+A workflow can't be created enabled, creating
+one needs the workflow manage scope,
+
+10
+00:00:30.705 --> 00:00:33.650
+and the ServiceNow side
+needs an endpoint ACL.

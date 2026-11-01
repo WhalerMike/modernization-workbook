@@ -1,0 +1,79 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.317
+Welcome to the story deck for
+Building Ticket-to-Machine,
+
+2
+00:00:03.317 --> 00:00:06.862
+a developer workbook in the
+Federal Modernization Workbook.
+
+3
+00:00:06.862 --> 00:00:11.031
+Instead of eight chapters one at
+a time, we'll follow one person's
+
+4
+00:00:11.031 --> 00:00:15.600
+record all the way through Book 13's
+loop on ServiceNow and SailPoint.
+
+5
+00:00:15.600 --> 00:00:20.275
+Her name is Erin, and she's fictional:
+every value you'll see comes from the
+
+6
+00:00:20.275 --> 00:00:25.188
+kit's own test fixtures, and every command
+was re-run before it went on a slide.
+
+7
+00:00:25.188 --> 00:00:29.963
+Seven scenes: the drift run finds
+her, her drift becomes a typed task,
+
+8
+00:00:29.963 --> 00:00:35.345
+least-privilege clients touch it, we find
+why it keeps coming back, the fix is
+
+9
+00:00:35.345 --> 00:00:37.342
+actuated, a re-read closes it,
+
+10
+00:00:37.342 --> 00:00:41.075
+and her closure becomes
+evidence an I S S O can verify.
+
+11
+00:00:41.075 --> 00:00:44.950
+Each scene ends with a command
+to try and a one-question check.
+
+12
+00:00:44.950 --> 00:00:48.562
+One more thing before we start:
+the code is illustrative.
+
+13
+00:00:48.562 --> 00:00:51.880
+Its tests pass against
+fixtures and mocked responses,
+
+14
+00:00:51.880 --> 00:00:56.599
+but it hasn't been run against a live
+ServiceNow instance or SailPoint tenant.
+
+15
+00:00:56.599 --> 00:01:00.213
+Where the vendors' documentation
+doesn't settle a point,
+
+16
+00:01:00.213 --> 00:01:02.470
+the workbook says so, and so will we.

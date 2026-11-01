@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.175
+The first fix.
+
+2
+00:00:01.175 --> 00:00:06.588
+SailPoint's native change event has three
+kinds of change: single-value attributes,
+
+3
+00:00:06.588 --> 00:00:11.687
+entitlements, and multivalued attributes,
+each with values added and removed.
+
+4
+00:00:11.687 --> 00:00:14.038
+The workflow sent only the first two.
+
+5
+00:00:14.038 --> 00:00:17.897
+So a native change that touched
+only a multivalued attribute,
+
+6
+00:00:17.897 --> 00:00:22.211
+a proxy address added out of band,
+say, produced an intended state with
+
+7
+00:00:22.211 --> 00:00:26.449
+nothing in it, and a re-read would
+have found nothing to disagree with.
+
+8
+00:00:26.449 --> 00:00:31.493
+Now the workflow sends the multivalued
+changes, and the script reverts them:
+
+9
+00:00:31.493 --> 00:00:34.820
+added values must be absent,
+removed ones present.

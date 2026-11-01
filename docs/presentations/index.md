@@ -110,7 +110,7 @@ Some books carry more than a 15-minute deck can. **Executive briefings** (about 
 
 ## Developer workbook chapter tours
 
-Each chapter of [Book 19](../books/b19-developer-workbook/index.md) and of the two [developer workbooks](../project-plans/developer-workbooks/index.md) under Projects has a narrated tour of about ten minutes: why the chapter's code comes first, what Microsoft's own sample gives and leaves out, the code and its tests, who runs it, the two labs, the dangers and the checklist. The slides follow the Why, What, Who and How order of the book decks; each slide's notes carry the narration, the chapter's full detail and the footnotes it rests on.
+Each chapter of [Book 19](../books/b19-developer-workbook/index.md) and of three [developer workbooks](../project-plans/developer-workbooks/index.md) under Projects has a narrated tour of about ten minutes: why the chapter's code comes first, what Microsoft's own sample gives and leaves out, the code and its tests, who runs it, the two labs, the dangers and the checklist. The slides follow the Why, What, Who and How order of the book decks; each slide's notes carry the narration, the chapter's full detail and the footnotes it rests on.
 
 ### Building the Attribute-Driven Migration
 
@@ -159,6 +159,21 @@ Each chapter of [Book 19](../books/b19-developer-workbook/index.md) and of the t
 | [10 — Drift and Evidence for the ISSO](../project-plans/developer-workbooks/non-person-identity/10-drift-and-evidence.md) | [Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11/DW_NPI_10_Drift_Evidence.pptx) | [Narrated](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11/DW_NPI_10_Drift_Evidence_Narrated.pptx) (about 11 min, captions) · [▶ Watch](watch.html?v=DW_NPI_10_Drift_Evidence_Narrated) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_NPI_10_Drift_Evidence_Narrated.mp4) | [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-npi-10-drift-evidence/DW_NPI_10_Drift_Evidence_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-npi-10-drift-evidence/DW_NPI_10_Drift_Evidence_Narrated.vtt) |
 
 : Building Non-Person Identity, chapter tours {.striped .hover}
+
+### Building Ticket-to-Machine
+
+| Chapter | Deck | Narrated | Script and captions |
+|---|---|---|---|
+| [01 — The Loop and the Typed Task](../project-plans/developer-workbooks/ticket-to-machine/01-the-loop-and-the-typed-task.md) | [Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-ttm-01-loop-typed-task) | Video not uploaded yet | [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-ttm-01-loop-typed-task/DW_TTM_01_Loop_Typed_Task_Narration_Script.md) |
+| [02 — The ServiceNow Client and Least Privilege](../project-plans/developer-workbooks/ticket-to-machine/02-servicenow-client-and-least-privilege.md) | [Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-ttm-02-servicenow-least-privilege) | Video not uploaded yet | [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-ttm-02-servicenow-least-privilege/DW_TTM_02_ServiceNow_Least_Privilege_Narration_Script.md) |
+| [03 — The SailPoint Client and Its Scopes](../project-plans/developer-workbooks/ticket-to-machine/03-sailpoint-client-and-scopes.md) | [Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-ttm-03-sailpoint-scopes) | Video not uploaded yet | [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-ttm-03-sailpoint-scopes/DW_TTM_03_SailPoint_Scopes_Narration_Script.md) |
+| [04 — Drift to a Typed Task](../project-plans/developer-workbooks/ticket-to-machine/04-drift-to-a-typed-task.md) | [Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-ttm-04-drift-typed-task) | Video not uploaded yet | [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-ttm-04-drift-typed-task/DW_TTM_04_Drift_Typed_Task_Narration_Script.md) |
+| [05 — The Re-read Rule](../project-plans/developer-workbooks/ticket-to-machine/05-the-re-read-rule.md) | [Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-ttm-05-reread-rule) | Video not uploaded yet | [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-ttm-05-reread-rule/DW_TTM_05_Reread_Rule_Narration_Script.md) |
+| [06 — Drift Reconciliation](../project-plans/developer-workbooks/ticket-to-machine/06-drift-reconciliation.md) | [Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-ttm-06-drift-reconciliation) | Video not uploaded yet | [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-ttm-06-drift-reconciliation/DW_TTM_06_Drift_Reconciliation_Narration_Script.md) |
+| [07 — Evidence Records for Book 13 and the ISSO](../project-plans/developer-workbooks/ticket-to-machine/07-evidence-records.md) | [Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-ttm-07-evidence-records) | Video not uploaded yet | [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-ttm-07-evidence-records/DW_TTM_07_Evidence_Records_Narration_Script.md) |
+| [08 — One Writer per Attribute](../project-plans/developer-workbooks/ticket-to-machine/08-one-writer-per-attribute.md) | [Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-ttm-08-one-writer-per-attribute) | Video not uploaded yet | [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-ttm-08-one-writer-per-attribute/DW_TTM_08_One_Writer_Per_Attribute_Narration_Script.md) |
+
+: Building Ticket-to-Machine, chapter tours {.striped .hover}
 
 ## Training: learning path modules
 
