@@ -73,3 +73,7 @@ Concepts derived from public modernization materials and restructured for indepe
 ---
 
 *For project use. Cleaned for external use.*
+
+## License
+
+Copyright © 2026 Michael F. Stratton. The written content is licensed under [CC BY-NC-ND 4.0](LICENSE-CONTENT) and the code under the [MIT License](LICENSE-CODE); third-party samples keep their own licenses. [LICENSE.md](LICENSE.md) says which is which, how to credit the workbook, and how to ask for other uses.
