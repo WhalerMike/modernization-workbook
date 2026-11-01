@@ -3,16 +3,19 @@ title: "Chapter 06 — Moving Group Policy as Code"
 description: "Moving Group Policy settings to Intune settings catalog policies as code: read Intune's Group Policy analytics (Graph beta) into a per-setting move plan, keep each policy as reviewed JSON in Git with its owner and decision records, lint it, diff it against the tenant, and create only what is missing, starting from Microsoft's own settings catalog samples (pinned in the repository), with least privilege per call, the US Government clouds, and labs against fixtures and a test tenant."
 doc-type: workbook-chapter
 audience: [Technical]
-family: dw-attribute-driven-migration
+family: b19-developer-workbook
+book: B19
 part: How
 series-order: 6
 status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
+aliases:
+  - /docs/project-plans/developer-workbooks/attribute-driven-migration/06-group-policy-as-code.html
 review-status: approved
-reviewed-sha256: b8c4e2b8a8143c71b7c68190022470ff2fa86316bd00392259bd472cea503d70
-last-reviewed: 2026-10-31
+reviewed-sha256: e21b96f87f1bb14a994ee1702bf24ca768bc81c59840b719da0bb28df9d7efd4
+last-reviewed: 2026-11-01
 ---
 # Chapter 06 — Moving Group Policy as Code
 
@@ -38,16 +41,16 @@ How a Group Policy setting becomes an Intune settings catalog policy through cod
 
 **Goal.** By the end of this chapter you can turn Group Policy analytics into a move plan, write a settings catalog policy as a library file that passes review, show what a change would create before it reaches the tenant, and create it with the least permission that works. For each rule in the code you can say whether it is Microsoft's contract, Microsoft's sample, or the program's own design.
 
-**Audience.** Developers and Intune engineers who build the policy library for the [Intune track](../../../books/guides/intune-track-implementation.md), and the reviewers who approve it. You should be comfortable in PowerShell 7 and know what a settings catalog policy is. You don't need a tenant until Lab 2.
+**Audience.** Developers and Intune engineers who build the policy library for the [Intune track](../guides/intune-track-implementation.md), and the reviewers who approve it. You should be comfortable in PowerShell 7 and know what a settings catalog policy is. You don't need a tenant until Lab 2.
 
 ## Where this sits
 
-The operator side is already written. [Book 05, Chapter 08](../../../books/b05-devices/08-gpo-to-intune-policy-migration.md) runs the GPO sunset in seven phases: inventory and classify, then build the library unassigned, then pilot, then cut over in waves. Its [Adopt, don't build](../../../books/b05-devices/08-gpo-to-intune-policy-migration.md#adopt-dont-build) table names Microsoft's tools for each step, and its [Graph templates](../../../books/b05-devices/08-gpo-to-intune-policy-migration.md#microsoft-graph-templates) show the payloads. The Intune track guide turns that into gates: [Step 3.1](../../../books/guides/intune-track-implementation.md#step-3.1-analyse-phase-1) imports every in-scope GPO into Group Policy analytics, and [Step 3.2](../../../books/guides/intune-track-implementation.md#step-3.2-build-the-policy-library-phases-2-and-3) creates the library as code. This chapter is the code for those two steps. It doesn't repeat them.
+The operator side is already written. [Book 05, Chapter 08](../b05-devices/08-gpo-to-intune-policy-migration.md) runs the GPO sunset in seven phases: inventory and classify, then build the library unassigned, then pilot, then cut over in waves. Its [Adopt, don't build](../b05-devices/08-gpo-to-intune-policy-migration.md#adopt-dont-build) table names Microsoft's tools for each step, and its [Graph templates](../b05-devices/08-gpo-to-intune-policy-migration.md#microsoft-graph-templates) show the payloads. The Intune track guide turns that into gates: [Step 3.1](../guides/intune-track-implementation.md#step-3.1-analyse-phase-1) imports every in-scope GPO into Group Policy analytics, and [Step 3.2](../guides/intune-track-implementation.md#step-3.2-build-the-policy-library-phases-2-and-3) creates the library as code. This chapter is the code for those two steps. It doesn't repeat them.
 
 Two rules from those pages shape the code:
 
-- **One owning policy per setting** ([Intune track, Step 2.4](../../../books/guides/intune-track-implementation.md#step-2.4-one-owning-policy-per-setting)), and **one owning tool per setting**, recorded as `config_owner` in the CMDB ([Ansible guide](../../../books/guides/ansible-configuration-automation.md#one-owning-tool-per-setting)). The library holds only settings Intune owns.
-- **Build unassigned** ([Book 05, Phase 3](../../../books/b05-devices/08-gpo-to-intune-policy-migration.md#phase-3-baseline-authoring)). The code creates policies with no assignments. Assigning them is a later, reviewed step.
+- **One owning policy per setting** ([Intune track, Step 2.4](../guides/intune-track-implementation.md#step-2.4-one-owning-policy-per-setting)), and **one owning tool per setting**, recorded as `config_owner` in the CMDB ([Ansible guide](../guides/ansible-configuration-automation.md#one-owning-tool-per-setting)). The library holds only settings Intune owns.
+- **Build unassigned** ([Book 05, Phase 3](../b05-devices/08-gpo-to-intune-policy-migration.md#phase-3-baseline-authoring)). The code creates policies with no assignments. Assigning them is a later, reviewed step.
 
 What Learn says about the tools sets the stakes:
 
@@ -117,7 +120,7 @@ The read side has two parts.
 | `NoCatalogSetting` | Supported, but no settings catalog definition | Learn's admin center shows the OMA-URI for a custom profile[^c06-gpa] |
 | `NotSupported`, `Deprecated`, `Unknown` | `mdmSupportedState` says so | Stays with the GPO until the GPO is retired, or is dropped by decision |
 
-The plan decides nothing. Book 05 is clear that Group Policy analytics finds the landing zone and never decides whether a setting is still needed ([Phase 1](../../../books/b05-devices/08-gpo-to-intune-policy-migration.md#phase-1-inventory-and-classify)). User-scope rows keep their scope, because user settings go to user groups on the HR track ([Intune track, Step 2.3](../../../books/guides/intune-track-implementation.md#step-2.3-user-groups-for-user-settings)).
+The plan decides nothing. Book 05 is clear that Group Policy analytics finds the landing zone and never decides whether a setting is still needed ([Phase 1](../b05-devices/08-gpo-to-intune-policy-migration.md#phase-1-inventory-and-classify)). User-scope rows keep their scope, because user settings go to user groups on the HR track ([Intune track, Step 2.3](../guides/intune-track-implementation.md#step-2.3-user-groups-for-user-settings)).
 
 ### Write: one file per policy
 
@@ -142,7 +145,7 @@ Each settings catalog policy is a JSON file in `policies/`:
 }
 ```
 
-`policy` is the body Graph receives, exactly as reviewed, in the shape Learn's Create page documents.[^c06-cp-create] The rest is the record: who approves a change, which tool owns the settings, which GPOs they came from, and the ID of each setting's [decision record](../../../books/b05-devices/07-the-gpo-sunset-program.md#step-4-decide-and-record) from Book 05, Chapter 07. The two library files use setting definition IDs that appear in Learn's own settings catalog examples.[^c06-pde] Export a policy built in the admin center and compare before you rely on any other ID, as Book 05 says.
+`policy` is the body Graph receives, exactly as reviewed, in the shape Learn's Create page documents.[^c06-cp-create] The rest is the record: who approves a change, which tool owns the settings, which GPOs they came from, and the ID of each setting's [decision record](../b05-devices/07-the-gpo-sunset-program.md#step-4-decide-and-record) from Book 05, Chapter 07. The two library files use setting definition IDs that appear in Learn's own settings catalog examples.[^c06-pde] Export a policy built in the admin center and compare before you rely on any other ID, as Book 05 says.
 
 ### Lint
 
@@ -255,7 +258,7 @@ Use a test tenant with Intune licenses and a test GPO export, never production. 
 7. **Drill drift.** In the admin center, change one value in a policy the sync created. Run the dry run: exit `2`, and the row names the setting. Change it back.
 8. **Back it out.** Delete the policies the sync created, by the IDs in `out/sync-record.json`, and `Lab-Migrate-compare`, in the admin center or with `DELETE /beta/deviceManagement/configurationPolicies/{id}` and `ReadWrite.All`.[^c06-cp-delete] The sync never deletes. Then delete the imported GPO in Group Policy analytics, as Learn describes.[^c06-gpa] Confirm the dry run shows `Create` for every library file again.
 
-When the policies are assigned later, Learn's guidance applies: use an assignment filter instead of a dynamic device group when only Intune uses the group, and don't exclude with a dynamic device group where timing matters.[^c06-filters-perf][^c06-assign] Book 05 keeps dynamic device groups where the rule reads device extension attributes, because filters can't ([assignment strategy](../../../books/b05-devices/08-gpo-to-intune-policy-migration.md#assignment-strategy)). VK-INT-04 checks the result.
+When the policies are assigned later, Learn's guidance applies: use an assignment filter instead of a dynamic device group when only Intune uses the group, and don't exclude with a dynamic device group where timing matters.[^c06-filters-perf][^c06-assign] Book 05 keeps dynamic device groups where the rule reads device extension attributes, because filters can't ([assignment strategy](../b05-devices/08-gpo-to-intune-policy-migration.md#assignment-strategy)). VK-INT-04 checks the result.
 
 ## Verified facts
 

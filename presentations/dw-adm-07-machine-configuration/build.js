@@ -1,5 +1,5 @@
 // Building the Attribute-Driven Migration, Chapter 07 — Machine Configuration Packages: the narrated tour.
-// Every fact comes from docs/project-plans/developer-workbooks/attribute-driven-migration/07-machine-configuration-packages.md;
+// Every fact comes from docs/books/b19-developer-workbook/07-machine-configuration-packages.md;
 // cite names are that chapter's footnotes. Layout and notes: ../_build/devwb.js.
 // Build (Git Bash): source /c/tmp/deckenv.sh && DATECODE="…" node presentations/dw-adm-07-machine-configuration/build.js
 require("../_build/devwb.js")({

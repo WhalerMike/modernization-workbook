@@ -1,6 +1,6 @@
 // Attribute-Driven Migration to Entra ID — Deeper Dive Implementation, PART 3: proving it, cutting over and keeping it true.
 // The deeper-dive series goes below the two-part technical deep dive and follows the implementation guide
-// (docs/project-plans/developer-workbooks/attribute-driven-migration/implementation-guide.md) and its project plan
+// (docs/books/guides/attribute-driven-migration-implementation.md) and its project plan
 // (data/project-plans/attribute-driven-migration.yaml). Part 1 is Gates 0–3, Part 2 Gates 4–6, Part 3 Gates 7–9.
 //   Module 1 (Gate 7):          setting up the mover proof, following one personnel action, what must not change,
 //                               reading a validation run and keeping the evidence.

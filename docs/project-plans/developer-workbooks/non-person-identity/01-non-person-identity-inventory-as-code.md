@@ -11,8 +11,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
 review-status: approved
-reviewed-sha256: b0f03da9cfee1e32445e61562695b19b1244593454f1fda5551c8640d78c1e16
-last-reviewed: 2026-10-31
+reviewed-sha256: 51c10227b64b9b812e6dfdf9ebc008d06a67008bf664fb6360313c5c46b41ef0
+last-reviewed: 2026-11-01
 ---
 # Chapter 01 — Non-Person Identity Inventory as Code
 
@@ -62,7 +62,7 @@ The risk, the candidate target and the stale lead come from the program, not fro
 
 ### Which cloud and which directory, for this read
 
-For the target estate, Microsoft 365 GCC with commercial Azure, every host is a worldwide one: Graph at `graph.microsoft.com` and Resource Manager at `management.azure.com`. GCC High uses `graph.microsoft.us`, DoD `dod-graph.microsoft.us`, and both use Azure Government's `management.usgovcloudapi.net`.[^np01-deployments] [^np01-compare] The Graph calls whose pages show a national cloud table (list applications, application owners, federated credentials, delegated permission grants) list the global service, US Government L4 and US Government L5.[^np01-app-list] [^np01-app-owners] [^np01-fic-list] [^np01-grants] The code takes `gcc` as an explicit cloud name and refuses any name it doesn't know, the pattern the first workbook's [Chapter 02](../attribute-driven-migration/02-graph-clients-for-government-clouds.md) sets. The Active Directory reads go to the domain named with `-Domain` (here `corp.contoso.example`), never to whatever domain the machine happens to be in.
+For the target estate, Microsoft 365 GCC with commercial Azure, every host is a worldwide one: Graph at `graph.microsoft.com` and Resource Manager at `management.azure.com`. GCC High uses `graph.microsoft.us`, DoD `dod-graph.microsoft.us`, and both use Azure Government's `management.usgovcloudapi.net`.[^np01-deployments] [^np01-compare] The Graph calls whose pages show a national cloud table (list applications, application owners, federated credentials, delegated permission grants) list the global service, US Government L4 and US Government L5.[^np01-app-list] [^np01-app-owners] [^np01-fic-list] [^np01-grants] The code takes `gcc` as an explicit cloud name and refuses any name it doesn't know, the pattern the first workbook's [Chapter 02](../../../books/b19-developer-workbook/02-graph-clients-for-government-clouds.md) sets. The Active Directory reads go to the domain named with `-Domain` (here `corp.contoso.example`), never to whatever domain the machine happens to be in.
 
 ## Start with Microsoft's sample
 

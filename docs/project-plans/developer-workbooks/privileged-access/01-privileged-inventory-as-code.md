@@ -11,8 +11,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
 review-status: approved
-reviewed-sha256: e32dc97641c9a5f15b6a98215d3fd3c16f2ce394a721f067e4d38b8393e1fa97
-last-reviewed: 2026-10-31
+reviewed-sha256: 9c120182d8ec97ca458f5b4d750c6fd7e13e9e32e3415483de1df12b5453a6f9
+last-reviewed: 2026-11-01
 ---
 # Chapter 01 — Privileged Inventory as Code
 
@@ -58,7 +58,7 @@ The tier comes from the program, not from Microsoft. Microsoft marks some Entra 
 
 ### Which cloud, for this read
 
-For the target estate, Microsoft 365 GCC with commercial Azure, every host is a worldwide one: Graph at `graph.microsoft.com` and Resource Manager at `management.azure.com`. GCC High uses `graph.microsoft.us`, DoD `dod-graph.microsoft.us`, and both use Azure Government's `management.usgovcloudapi.net`.[^pa01-deployments] [^pa01-compare] Microsoft Entra ID P1 and P2 for GCC are hosted in the Azure commercial environment,[^pa01-ems-gcc] and Microsoft Entra ID Governance, which PIM needs, is available in GCC, GCC High and DoD.[^pa01-availability] Every Graph call in this chapter lists the global service, US Government L4 and US Government L5 in its national cloud table.[^pa01-rasi] [^pa01-res] [^pa01-roledefs] [^pa01-list-ra] The code takes `gcc` as an explicit cloud name and refuses any name it doesn't know, the pattern the first workbook's [Chapter 02](../attribute-driven-migration/02-graph-clients-for-government-clouds.md) sets.
+For the target estate, Microsoft 365 GCC with commercial Azure, every host is a worldwide one: Graph at `graph.microsoft.com` and Resource Manager at `management.azure.com`. GCC High uses `graph.microsoft.us`, DoD `dod-graph.microsoft.us`, and both use Azure Government's `management.usgovcloudapi.net`.[^pa01-deployments] [^pa01-compare] Microsoft Entra ID P1 and P2 for GCC are hosted in the Azure commercial environment,[^pa01-ems-gcc] and Microsoft Entra ID Governance, which PIM needs, is available in GCC, GCC High and DoD.[^pa01-availability] Every Graph call in this chapter lists the global service, US Government L4 and US Government L5 in its national cloud table.[^pa01-rasi] [^pa01-res] [^pa01-roledefs] [^pa01-list-ra] The code takes `gcc` as an explicit cloud name and refuses any name it doesn't know, the pattern the first workbook's [Chapter 02](../../../books/b19-developer-workbook/02-graph-clients-for-government-clouds.md) sets.
 
 ## Start with Microsoft's sample
 

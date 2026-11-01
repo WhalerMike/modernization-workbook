@@ -1,6 +1,6 @@
 # Building the Attribute-Driven Migration, Chapter 04 — Dynamic Rules as Code: narrated tour
 
-**Deck name: DW_ADM_04_Dynamic_Rules.** A narrated tour of [Chapter 04 — Dynamic Rules as Code](../../docs/project-plans/developer-workbooks/attribute-driven-migration/04-dynamic-rules-as-code.md) in the developer workbook *Building the Attribute-Driven Migration*. It is built with the shared kit in [`../_build/`](../_build/README.md): the slides and notes are data in `build.js`, laid out by [`../_build/devwb.js`](../_build/devwb.js). This folder sits outside `docs/`, so the site doesn't render it.
+**Deck name: DW_ADM_04_Dynamic_Rules.** A narrated tour of [Chapter 04 — Dynamic Rules as Code](../../docs/books/b19-developer-workbook/04-dynamic-rules-as-code.md) in the developer workbook *Building the Attribute-Driven Migration*. It is built with the shared kit in [`../_build/`](../_build/README.md): the slides and notes are data in `build.js`, laid out by [`../_build/devwb.js`](../_build/devwb.js). This folder sits outside `docs/`, so the site doesn't render it.
 
 | File | Use |
 |---|---|

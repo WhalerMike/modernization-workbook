@@ -1,5 +1,5 @@
 // Building the Attribute-Driven Migration, Chapter 08 — Ansible Beside Arc: the narrated tour.
-// Every fact comes from docs/project-plans/developer-workbooks/attribute-driven-migration/08-ansible-beside-arc.md;
+// Every fact comes from docs/books/b19-developer-workbook/08-ansible-beside-arc.md;
 // cite names are that chapter's footnotes. Layout and notes: ../_build/devwb.js.
 // Build (Git Bash): source /c/tmp/deckenv.sh && DATECODE="…" node presentations/dw-adm-08-ansible-beside-arc/build.js
 require("../_build/devwb.js")({

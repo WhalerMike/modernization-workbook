@@ -13,8 +13,8 @@ listing:
     sort-ui: false
     filter-ui: false
 review-status: approved
-reviewed-sha256: 4af882dc3007271be6f5e1946f6cf307a6ff58b21f4871f571675c646c230b72
-last-reviewed: 2026-10-31
+reviewed-sha256: bb3137123edabe291c637af76edae5e34973ea72f7c71cc3b986d4b6228a0d34
+last-reviewed: 2026-11-01
 ---
 # Developer Workbooks {.unnumbered}
 
@@ -29,5 +29,5 @@ Every page is held for the owner's review: until a page is approved it is listed
 
 ::: {.callout-note}
 ## More to follow
-One developer workbook per project track is planned. Three are started: *Building the Attribute-Driven Migration*, with all nine chapters written; *Building Privileged Access*, with all eight chapters written; and *Building Non-Person Identity*, with all ten chapters written. Workbooks for the other project tracks will be added here as they are written.
+One developer workbook per project track is planned. Two are here: *Building Privileged Access*, with all eight chapters written, and *Building Non-Person Identity*, with all ten chapters written. The first developer workbook, *Building the Attribute-Driven Migration*, is now [Book 19](../../books/b19-developer-workbook/index.md) under Books. Workbooks for the other project tracks will be added here as they are written.
 :::

@@ -1,6 +1,6 @@
 # Building the Attribute-Driven Migration, Chapter 08 — Ansible Beside Arc: narrated tour
 
-**Deck name: DW_ADM_08_Ansible_Beside_Arc.** A narrated tour of [Chapter 08 — Ansible Beside Arc](../../docs/project-plans/developer-workbooks/attribute-driven-migration/08-ansible-beside-arc.md) in the developer workbook *Building the Attribute-Driven Migration*. It is built with the shared kit in [`../_build/`](../_build/README.md): the slides and notes are data in `build.js`, laid out by [`../_build/devwb.js`](../_build/devwb.js). This folder sits outside `docs/`, so the site doesn't render it.
+**Deck name: DW_ADM_08_Ansible_Beside_Arc.** A narrated tour of [Chapter 08 — Ansible Beside Arc](../../docs/books/b19-developer-workbook/08-ansible-beside-arc.md) in the developer workbook *Building the Attribute-Driven Migration*. It is built with the shared kit in [`../_build/`](../_build/README.md): the slides and notes are data in `build.js`, laid out by [`../_build/devwb.js`](../_build/devwb.js). This folder sits outside `docs/`, so the site doesn't render it.
 
 | File | Use |
 |---|---|

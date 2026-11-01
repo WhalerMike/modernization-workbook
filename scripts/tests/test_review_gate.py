@@ -45,12 +45,26 @@ class Gate(unittest.TestCase):
         self.assertEqual(rows[0]["reason"], "not yet reviewed")
 
     def test_pages_in_a_workbook_subfolder_wait_but_its_underscore_folders_dont(self):
-        wb = self.book / "attribute-driven-migration"
+        wb = self.book / "privileged-access"
         (wb / "_verification").mkdir(parents=True)
         (wb / "index.md").write_text(PAGE, encoding="utf-8")
         (wb / "_verification" / "01-test.md").write_text(PAGE, encoding="utf-8")
         pages = [r["page"] for r in rg.waiting(self.root)]
-        self.assertEqual(pages, [f"{rg.GATED[0]}/01-test.md", f"{rg.GATED[0]}/attribute-driven-migration/index.md"])
+        self.assertEqual(pages, [f"{rg.GATED[0]}/01-test.md", f"{rg.GATED[0]}/privileged-access/index.md"])
+
+    def test_book_19_and_the_implementation_guide_are_gated_but_other_books_and_guides_arent(self):
+        b19 = self.root / "docs/books/b19-developer-workbook"
+        guides = self.root / "docs/books/guides"
+        b18 = self.root / "docs/books/b18-application-modernization"
+        for folder in (b19, guides, b18):
+            folder.mkdir(parents=True)
+        (b19 / "01-test.md").write_text(PAGE, encoding="utf-8")
+        (guides / "attribute-driven-migration-implementation.md").write_text(PAGE, encoding="utf-8")
+        (guides / "attribute-driven-migration.md").write_text(PAGE, encoding="utf-8")
+        (b18 / "01-test.md").write_text(PAGE, encoding="utf-8")
+        pages = [r["page"] for r in rg.waiting(self.root)]
+        self.assertEqual(sorted(pages), sorted([f"{rg.GATED[0]}/01-test.md", "docs/books/b19-developer-workbook/01-test.md",
+                                                "docs/books/guides/attribute-driven-migration-implementation.md"]))
 
     def test_an_approved_page_stops_waiting(self):
         self.page.write_text(rg.approve(self.page, dt.date(2026, 11, 2)), encoding="utf-8")
@@ -126,7 +140,7 @@ class Gate(unittest.TestCase):
 
 class Report(unittest.TestCase):
     def test_waiting_pages_make_a_section_and_count_as_findings(self):
-        results = {"week_of": "2026-11-02", "review_gate": [{"page": "docs/project-plans/developer-workbooks/attribute-driven-migration/01-x.md", "title": "Chapter 01 — X",
+        results = {"week_of": "2026-11-02", "review_gate": [{"page": "docs/books/b19-developer-workbook/01-x.md", "title": "Chapter 01 — X",
                                     "reason": "not yet reviewed", "last_reviewed": ""}]}
         self.assertTrue(report.has_findings(results))
         text = report.render(results)

@@ -1,5 +1,5 @@
 // Building the Attribute-Driven Migration, Chapter 01 — The HR-to-Entra Middleware: the narrated tour.
-// Every fact comes from docs/project-plans/developer-workbooks/attribute-driven-migration/01-the-hr-to-entra-middleware.md;
+// Every fact comes from docs/books/b19-developer-workbook/01-the-hr-to-entra-middleware.md;
 // cite names are that chapter's footnotes. Layout and notes: ../_build/devwb.js.
 // Build (Git Bash): source /c/tmp/deckenv.sh && DATECODE="…" node presentations/dw-adm-01-hr-entra-middleware/build.js
 require("../_build/devwb.js")({

@@ -1,6 +1,6 @@
 # Attribute-Driven Migration to Entra ID — deeper dive implementation, Part 1: reading the tree to flowing attributes
 
-**Deck name: Attribute_Driven_Migration_Deeper_Dive_Part_1.** Part 1 of the three-part deeper dive on [Attribute-Driven Migration: An Implementation Guide](../../docs/project-plans/developer-workbooks/attribute-driven-migration/implementation-guide.md) and its [project plan](../../data/project-plans/attribute-driven-migration.yaml). It is built with the shared kit in [`../_build/`](../_build/README.md). This folder sits outside `docs/`, so the site doesn't render it.
+**Deck name: Attribute_Driven_Migration_Deeper_Dive_Part_1.** Part 1 of the three-part deeper dive on [Attribute-Driven Migration: An Implementation Guide](../../docs/books/guides/attribute-driven-migration-implementation.md) and its [project plan](../../data/project-plans/attribute-driven-migration.yaml). It is built with the shared kit in [`../_build/`](../_build/README.md). This folder sits outside `docs/`, so the site doesn't render it.
 
 The deeper dive goes below the two-part [technical deep dive](../attribute-driven-migration-technical-part-1/README.md). It covers the working detail an engineer runs: commands and their parameters, attribute slots, validation checks and how to read their output, the SCIM record, sync mappings, and rollback. Part 1 covers Gates 0–3 and adds a current-state baseline. Part 2 covers Gates 4–6, and Part 3 covers Gates 7–9.
 

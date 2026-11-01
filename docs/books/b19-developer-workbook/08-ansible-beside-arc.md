@@ -3,16 +3,19 @@ title: "Chapter 08 — Ansible Beside Arc"
 description: "Onboarding servers to Azure Arc with Ansible while keeping one owning tool per setting: start from Microsoft's own azure_arc role (pinned in the repository), then add what it leaves to you: a CMDB-driven inventory that reads config_owner and the new patch_owner column, mirrors them to the ConfigOwner and PatchOwner tags, plans each wave before anything runs, gives the role a dry run it can't do itself, and keeps a GCC estate on commercial Azure, with labs offline and in a test subscription."
 doc-type: workbook-chapter
 audience: [Technical]
-family: dw-attribute-driven-migration
+family: b19-developer-workbook
+book: B19
 part: How
 series-order: 8
 status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
+aliases:
+  - /docs/project-plans/developer-workbooks/attribute-driven-migration/08-ansible-beside-arc.html
 review-status: approved
-reviewed-sha256: 0244331f34b679371b14a868d2b2019cd34ca56291cc68dac5be4f009b551b1b
-last-reviewed: 2026-10-31
+reviewed-sha256: 25ccdb0b78a2f02c7baced473f27bc088957a53bb2ad8d40a0a27596026745f9
+last-reviewed: 2026-11-01
 ---
 # Chapter 08 — Ansible Beside Arc
 
@@ -42,7 +45,7 @@ How Ansible onboards servers to Azure Arc without taking anything another tool o
 
 ## Where Ansible sits beside Arc
 
-The program gives every setting one owning tool. The CMDB records it for each asset as `config_owner`, and the [Arc track](../../../books/guides/arc-track-implementation.md#step-2-the-tag-taxonomy-and-resource-groups) mirrors it to the Arc `ConfigOwner` tag. Patching has one owner too: the [Ansible guide's rule 5](../../../books/guides/ansible-configuration-automation.md#one-owning-tool-per-setting) names a `patch_owner` field, mirrored to the `PatchOwner` tag. Where Ansible already patches a fleet, Update Manager only assesses those servers and schedules nothing on them (*design guidance*).
+The program gives every setting one owning tool. The CMDB records it for each asset as `config_owner`, and the [Arc track](../guides/arc-track-implementation.md#step-2-the-tag-taxonomy-and-resource-groups) mirrors it to the Arc `ConfigOwner` tag. Patching has one owner too: the [Ansible guide's rule 5](../guides/ansible-configuration-automation.md#one-owning-tool-per-setting) names a `patch_owner` field, mirrored to the `PatchOwner` tag. Where Ansible already patches a fleet, Update Manager only assesses those servers and schedules nothing on them (*design guidance*).
 
 Arc doesn't change who owns what. It makes the server an Azure resource, and the tags tell the Azure tools which servers are theirs. [Chapter 07](07-machine-configuration-packages.md)'s enforcing definitions filter on `ConfigOwner`, so machine configuration changes only the servers it owns. Update Manager's dynamic scopes group machines by tags, among other criteria, and are evaluated at each scheduled run, so a scope on `PatchOwner` follows the tag.[^c08-dynscope] The built-in policy for periodic assessment on Arc servers can be scoped by tag too.[^c08-policyref] After the fact, VK-ARC-07 in the [validation kit](03-writing-a-validation-kit-check.md) reports a server whose owner isn't machine configuration but which carries an enforcing machine configuration assignment.
 

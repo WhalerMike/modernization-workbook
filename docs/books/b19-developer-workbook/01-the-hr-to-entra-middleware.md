@@ -3,7 +3,8 @@ title: "Chapter 01 — The HR-to-Entra Middleware"
 description: "Building the middleware between an HR extract and Microsoft Entra ID's API-driven inbound provisioning, starting from Microsoft's own CSV2SCIM sample (pinned in the repository) and adding only what a federal deployment needs on top: validation that fails closed, quarantine, leaver-first and manager-first ordering, a mass-disable hold, pacing within the documented limits, all three US clouds, least privilege, and a provenance manifest, with labs against fixtures and a test tenant."
 doc-type: workbook-chapter
 audience: [Technical]
-family: dw-attribute-driven-migration
+family: b19-developer-workbook
+book: B19
 part: How
 series-order: 1
 status: draft
@@ -11,10 +12,10 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
 aliases:
-  - /docs/books/b19-developer-workbook/01-the-hr-to-entra-middleware.html
+  - /docs/project-plans/developer-workbooks/attribute-driven-migration/01-the-hr-to-entra-middleware.html
 review-status: approved
-reviewed-sha256: db8eaf6d931064518adf17fd07f8974d11ed1cfb058ad323dc7bb498c3d59164
-last-reviewed: 2026-10-31
+reviewed-sha256: 88688c46ea161a1f5d1adbba645d20020b6e0d8679f35510d1ae316f06021d2b
+last-reviewed: 2026-11-01
 ---
 # Chapter 01 — The HR-to-Entra Middleware
 
@@ -42,7 +43,7 @@ The middleware that reads an HR extract and feeds Microsoft Entra ID's API-drive
 
 **Audience.** Developers who own the HR integration, and the engineers who review it. You should be comfortable in PowerShell 7 or Python and know what SCIM is. You don't need to know the HR product: everything here reads a CSV extract whose columns a mapping file names.
 
-[Book 03, Chapter 05](../../../books/b03-hr-identity/05-the-provisioning-pipeline.md) describes the pipeline's duties (validate, normalize, sequence, send, reconcile) and [Chapter 06](../../../books/b03-hr-identity/06-canonical-attribute-schema.md) the canonical schema and attribute map. [Appendix A](../../../books/b03-hr-identity/appendix-a-lifecycle-rules.md) holds the lifecycle rules, and [Appendix B](../../../books/b03-hr-identity/appendix-b-security-and-privacy.md) the security and privacy rules for what the pipeline may log. This chapter is the developer's view of those pages.
+[Book 03, Chapter 05](../b03-hr-identity/05-the-provisioning-pipeline.md) describes the pipeline's duties (validate, normalize, sequence, send, reconcile) and [Chapter 06](../b03-hr-identity/06-canonical-attribute-schema.md) the canonical schema and attribute map. [Appendix A](../b03-hr-identity/appendix-a-lifecycle-rules.md) holds the lifecycle rules, and [Appendix B](../b03-hr-identity/appendix-b-security-and-privacy.md) the security and privacy rules for what the pipeline may log. This chapter is the developer's view of those pages.
 
 ## Where the middleware sits
 
@@ -89,7 +90,7 @@ Run on this book's HR fixture (19 rows, Lab 1 below), CSV2SCIM sends all 19. Tha
 | Record validation | Validates the mapping, not the values. A blank key, a 17-character key, a pending worker and an unknown worker type are all sent, active | Fails closed: 9 of the 19 rows are quarantined with reasons | A bad HR row becomes a bad account |
 | Duplicates | A person with two rows is sent twice | A single separation wins; otherwise both are refused | Two writes race in the job |
 | Order | File order | Leavers first, then managers before reports | A departing mover briefly gains access; a manager reference can't resolve |
-| Future hires | Sent active | Sent disabled until the hire date ([Book 03, Appendix C](../../../books/b03-hr-identity/appendix-c-acceptance-and-cutover.md)) | An account works before day one |
+| Future hires | Sent active | Sent disabled until the hire date ([Book 03, Appendix C](../b03-hr-identity/appendix-c-acceptance-and-cutover.md)) | An account works before day one |
 | Mass change | No limit | `max_disables_per_run` holds the run | One bad extract disables everyone |
 | Pacing and budget | No pacing of its own; relies on the Graph SDK's retry handling | 40 calls in any 5 seconds, a daily call budget, `Retry-After`, stop on first failure | Throttling, and the tenant's daily quota |
 | Clouds | `/bulkUpload` and the schema update are hard-coded to `https://graph.microsoft.com/beta`, and sign-in names no cloud | The endpoint must be one of the three Graph hosts; v1.0 or beta | Works in GCC (worldwide endpoint); can't reach GCC High or DoD as written[^c01-deployments] |
@@ -114,7 +115,7 @@ The example is two equivalent clients, Python and PowerShell 7, that read the sa
 
 ### Validate and fail closed
 
-`build_operation` (Python) and `ConvertTo-HcmScimOperation` (PowerShell) take one row and either build a SCIM operation or refuse it with reasons. A row is refused when a required column is empty, the person number doesn't fit `employeeId`, the worker type is unknown or refused (pending workers and nonworkers), a code isn't in the code list, a value is longer than the target attribute holds, a date doesn't parse, a worker is recorded as their own manager, or an inactive assignment has no termination date. Every refused row goes to `quarantine.json` with its reasons, the unchanged HR row and the attempted payload: the quarantine contract in [Book 03, Appendix A](../../../books/b03-hr-identity/appendix-a-lifecycle-rules.md).
+`build_operation` (Python) and `ConvertTo-HcmScimOperation` (PowerShell) take one row and either build a SCIM operation or refuse it with reasons. A row is refused when a required column is empty, the person number doesn't fit `employeeId`, the worker type is unknown or refused (pending workers and nonworkers), a code isn't in the code list, a value is longer than the target attribute holds, a date doesn't parse, a worker is recorded as their own manager, or an inactive assignment has no termination date. Every refused row goes to `quarantine.json` with its reasons, the unchanged HR row and the attempted payload: the quarantine contract in [Book 03, Appendix A](../b03-hr-identity/appendix-a-lifecycle-rules.md).
 
 Some rules are warnings, not refusals. A suspended assignment keeps the account active ("leave is not a leaver"). A manager separating in the same run never blocks the joiner. A separation older than the Lifecycle Workflows catch-up window is flagged for the on-demand leaver workflow. *Design guidance:* treat every new validation rule as a refusal until the HR owner agrees it can be a warning.
 
@@ -151,7 +152,7 @@ Learn's concepts page sets the endpoint's limit at 40 calls within any 5-second 
 }
 ```
 
-Each `batch_sha256` is the hash `apply-results.json` records when that batch is sent, over the same canonical JSON. An auditor can go from a line in the provisioning logs to the person key, to the batch and its `Location`, to the extract and mapping files by hash. That only works because `bulkId` is the person key: with a random `bulkId`, as in the sample, the same input would never produce the same hash. The manifest carries keys and hashes only, so it can sit in the evidence store; [Book 13, Chapter 04](../../../books/b13-governance/04-change-control-and-provenance.md) describes the provenance pattern it follows.
+Each `batch_sha256` is the hash `apply-results.json` records when that batch is sent, over the same canonical JSON. An auditor can go from a line in the provisioning logs to the person key, to the batch and its `Location`, to the extract and mapping files by hash. That only works because `bulkId` is the person key: with a random `bulkId`, as in the sample, the same input would never produce the same hash. The manifest carries keys and hashes only, so it can sit in the evidence store; [Book 13, Chapter 04](../b13-governance/04-change-control-and-provenance.md) describes the provenance pattern it follows.
 
 ### The tests
 

@@ -3,16 +3,19 @@ title: "Chapter 05 — Lifecycle Workflows Custom Extensions"
 description: "Building the Logic Apps that Lifecycle Workflows custom task extensions call: start from Learn's Logic App definition (pinned in the repository), then add what it leaves to you: one reusable Logic App per integration with its own managed identity, a checked callback path, a callback on failure as well as success, the right Graph host for each US cloud, idempotency, bounded retries inside the callback timeout, proof-of-possession authorization built from a reviewed registry, and Book 03's leaver order, with labs against fakes and a test tenant."
 doc-type: workbook-chapter
 audience: [Technical]
-family: dw-attribute-driven-migration
+family: b19-developer-workbook
+book: B19
 part: How
 series-order: 5
 status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
+aliases:
+  - /docs/project-plans/developer-workbooks/attribute-driven-migration/05-lifecycle-workflows-custom-extensions.html
 review-status: approved
-reviewed-sha256: 51b9a8ca5925c313094d13cfaf9adf52702e10de15249ae3ee3c14955e75597e
-last-reviewed: 2026-10-31
+reviewed-sha256: 9813dd390f8bec8b5848abdcb608a4afc8d3a478d1a00d27c19ad944bb04dcdb
+last-reviewed: 2026-11-01
 ---
 # Chapter 05 — Lifecycle Workflows Custom Extensions
 
@@ -42,7 +45,7 @@ How a Lifecycle Workflows task calls an Azure Logic App, what the call carries, 
 
 ## Where the extensions sit
 
-[Book 03](../../../books/b03-hr-identity/08-joiner-mover-leaver.md#who-does-what-provisioning-and-lifecycle-workflows) splits the work: inbound provisioning creates and updates accounts, and Lifecycle Workflows act on accounts that already exist. The built-in tasks cover the account side. Everything else in a leaver (the PIV credential, the devices, the servers) goes through a custom task extension ([Book 03, Chapter 09](../../../books/b03-hr-identity/09-credentials-and-certificates.md#running-it-from-lifecycle-workflows)). Book 03 also sets three rules this chapter builds in code: one parameterized Logic App per integration, not one per component ([Chapter 08](../../../books/b03-hr-identity/08-joiner-mover-leaver.md#guardrails-at-agency-scale)); block first, with *Disable user account* and *Revoke all refresh tokens for user* before the custom task; and custom tasks that are idempotent and retry with a bound.
+[Book 03](../b03-hr-identity/08-joiner-mover-leaver.md#who-does-what-provisioning-and-lifecycle-workflows) splits the work: inbound provisioning creates and updates accounts, and Lifecycle Workflows act on accounts that already exist. The built-in tasks cover the account side. Everything else in a leaver (the PIV credential, the devices, the servers) goes through a custom task extension ([Book 03, Chapter 09](../b03-hr-identity/09-credentials-and-certificates.md#running-it-from-lifecycle-workflows)). Book 03 also sets three rules this chapter builds in code: one parameterized Logic App per integration, not one per component ([Chapter 08](../b03-hr-identity/08-joiner-mover-leaver.md#guardrails-at-agency-scale)); block first, with *Disable user account* and *Revoke all refresh tokens for user* before the custom task; and custom tasks that are idempotent and retry with a bound.
 
 What Learn says about the extension itself sets the contract:
 
@@ -115,7 +118,7 @@ The run goes in four steps:
 3. **`Call_integration`** posts the operation, the subject's object ID, the workflow ID and the task processing result ID to the integration, with its managed identity and an `Idempotency-Key` header set to the task processing result ID. It retries 408, 429 and 5xx responses up to four times, waiting at most two minutes between tries.[^c05-la-retry]
 4. **`Resume`** posts to `{graphHost}/v1.0{callbackUriPath}` with the managed identity, after the integration call succeeds, fails or times out, and reports `completed` only if the call succeeded. An unregistered workflow gets `failed`.
 
-The idempotency key is a contract with the downstream system, not a Microsoft feature: the system does the work once per key and answers a repeat with the first result (*design guidance*). The custom task extension may call the Logic App a second time (`maximumRetries` is 0 or 1),[^c05-client] a workflow can be rerun, and Book 03's rule for a partial leaver is that a rerun resumes from the first incomplete step ([Appendix A](../../../books/b03-hr-identity/appendix-a-lifecycle-rules.md#partial-leavers)). With the key, each of those is safe.
+The idempotency key is a contract with the downstream system, not a Microsoft feature: the system does the work once per key and answers a repeat with the first result (*design guidance*). The custom task extension may call the Logic App a second time (`maximumRetries` is 0 or 1),[^c05-client] a workflow can be rerun, and Book 03's rule for a partial leaver is that a rerun resumes from the first incomplete step ([Appendix A](../b03-hr-identity/appendix-a-lifecycle-rules.md#partial-leavers)). With the key, each of those is safe.
 
 The exact `callbackUriPath` that Lifecycle Workflows sends isn't documented. Learn's definition appends it to `https://graph.microsoft.com/beta`, which makes it the resume path that the Graph reference shows.[^c05-configure][^c05-resume] `Check_request` is written to that shape, and Lab 2 confirms it with a real run (research gap 11).
 
@@ -145,7 +148,7 @@ For the callback, the Logic App's managed identity needs no Graph permission. Ap
 
 ### The leaver order
 
-`check-workflow` reads a workflow's tasks by execution sequence. In a leaver workflow it requires *Disable user account* (`1dfdfcc7-…`) and *Revoke all refresh tokens for user* (`509589a4-…`) before the custom task, in that order, because [Book 03's leaver sequence](../../../books/b03-hr-identity/09-credentials-and-certificates.md#the-canonical-leaver-sequence) blocks first and follows Microsoft's order: disable, then revoke. It warns when the custom task stops the workflow on error: in a leaver, a failed revocation shouldn't stop the group, license and access package removals after it, and it is still recorded as failed (*design guidance*). `build_task` writes the task with the *Run a custom task extension* definition ID `4262b724-8dba-4fad-afc3-43fcbb497a0e` and the argument `customTaskExtensionID`.[^c05-tasks][^c05-args]
+`check-workflow` reads a workflow's tasks by execution sequence. In a leaver workflow it requires *Disable user account* (`1dfdfcc7-…`) and *Revoke all refresh tokens for user* (`509589a4-…`) before the custom task, in that order, because [Book 03's leaver sequence](../b03-hr-identity/09-credentials-and-certificates.md#the-canonical-leaver-sequence) blocks first and follows Microsoft's order: disable, then revoke. It warns when the custom task stops the workflow on error: in a leaver, a failed revocation shouldn't stop the group, license and access package removals after it, and it is still recorded as failed (*design guidance*). `build_task` writes the task with the *Run a custom task extension* definition ID `4262b724-8dba-4fad-afc3-43fcbb497a0e` and the argument `customTaskExtensionID`.[^c05-tasks][^c05-args]
 
 ### The tests
 

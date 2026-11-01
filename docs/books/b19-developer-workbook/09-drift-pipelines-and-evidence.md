@@ -3,16 +3,19 @@ title: "Chapter 09 — Drift Pipelines and Evidence to the ISSO"
 description: "A scheduled GitHub Actions pipeline that signs in with a federated credential and no secret, runs the validation kit read-only, compares each run with the last, opens findings for what is new, changed or unverified, and packages the run with the other kits' provenance, a SHA-256 per file and a hash chain for the ISSO. It starts from Learn's Azure Login sample workflows (pinned in the repository), checks them offline, and builds only what they leave out, with labs against fixtures and a test tenant."
 doc-type: workbook-chapter
 audience: [Technical]
-family: dw-attribute-driven-migration
+family: b19-developer-workbook
+book: B19
 part: How
 series-order: 9
 status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
+aliases:
+  - /docs/project-plans/developer-workbooks/attribute-driven-migration/09-drift-pipelines-and-evidence.html
 review-status: approved
-reviewed-sha256: 7e9f6b2da7f10a9c737f926633e4461c4c3d8c950874a5e2054e9a31b43a5605
-last-reviewed: 2026-10-31
+reviewed-sha256: f9c0e04a8a28cf4909154b72c78082532e59d0a0b8500d5b3b0ebec11fe85922
+last-reviewed: 2026-11-01
 ---
 # Chapter 09 — Drift Pipelines and Evidence to the ISSO
 
@@ -44,9 +47,9 @@ How the read-only checks from [Chapter 03](03-writing-a-validation-kit-check.md)
 
 Three pages already say what this pipeline must produce. This chapter builds it and doesn't repeat them.
 
-- [Book 13, Chapter 06](../../../books/b13-governance/06-the-drift-engine.md) defines the drift engine: drift is measured against a versioned record, not a snapshot, and each check's cadence is set by the book that owns it.
-- [Book 13, Chapter 04](../../../books/b13-governance/04-change-control-and-provenance.md#no-closure-counts-unless-it-carries-its-proof) says no closure counts unless it carries its proof, and that reports are derivations that can be re-run.
-- [Book 12, Chapter 02](../../../books/b12-security-operations/02-the-evidence-contract.md) defines the evidence contract, and says a finding closes only when a later observation shows the fixed state.
+- [Book 13, Chapter 06](../b13-governance/06-the-drift-engine.md) defines the drift engine: drift is measured against a versioned record, not a snapshot, and each check's cadence is set by the book that owns it.
+- [Book 13, Chapter 04](../b13-governance/04-change-control-and-provenance.md#no-closure-counts-unless-it-carries-its-proof) says no closure counts unless it carries its proof, and that reports are derivations that can be re-run.
+- [Book 12, Chapter 02](../b12-security-operations/02-the-evidence-contract.md) defines the evidence contract, and says a finding closes only when a later observation shows the fixed state.
 
 The pipeline is a small part of that design. Each validation kit check already compares the tenant with the program's record or rule: VK-HR-01 with the HR join, VK-DG-01 with the guards, VK-CA-01 with the governed-group list. The pipeline adds the second comparison: this run against the last. That finds *change*. Whether a change is drift from the record is still the check's answer, not the pipeline's. A finding that was there yesterday and is still there today is not new, but it is still open.
 

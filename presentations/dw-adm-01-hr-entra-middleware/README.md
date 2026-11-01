@@ -1,6 +1,6 @@
 # Building the Attribute-Driven Migration, Chapter 01 — The HR-to-Entra Middleware: narrated tour
 
-**Deck name: DW_ADM_01_HR_Entra_Middleware.** A narrated tour of [Chapter 01 — The HR-to-Entra Middleware](../../docs/project-plans/developer-workbooks/attribute-driven-migration/01-the-hr-to-entra-middleware.md) in the developer workbook *Building the Attribute-Driven Migration*. It is built with the shared kit in [`../_build/`](../_build/README.md): the slides and notes are data in `build.js`, laid out by [`../_build/devwb.js`](../_build/devwb.js). This folder sits outside `docs/`, so the site doesn't render it.
+**Deck name: DW_ADM_01_HR_Entra_Middleware.** A narrated tour of [Chapter 01 — The HR-to-Entra Middleware](../../docs/books/b19-developer-workbook/01-the-hr-to-entra-middleware.md) in the developer workbook *Building the Attribute-Driven Migration*. It is built with the shared kit in [`../_build/`](../_build/README.md): the slides and notes are data in `build.js`, laid out by [`../_build/devwb.js`](../_build/devwb.js). This folder sits outside `docs/`, so the site doesn't render it.
 
 | File | Use |
 |---|---|

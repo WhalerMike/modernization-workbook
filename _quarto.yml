@@ -117,8 +117,12 @@ website:
             text: "Book 17 — AI Identity Governance"
           - href: docs/books/b18-application-modernization/index.md
             text: "Book 18 — Application Modernization"
+          - href: docs/books/b19-developer-workbook/index.md
+            text: "Book 19 — Building the Attribute-Driven Migration"
           - href: docs/books/guides/attribute-driven-migration.md
             text: "Guide: Attribute-Driven Migration to Entra ID"
+          - href: docs/books/guides/attribute-driven-migration-implementation.md
+            text: "Guide: Attribute-Driven Migration Implementation"
           - href: docs/books/guides/intune-track-implementation.md
             text: "Guide: Intune Track Implementation"
           - href: docs/books/guides/arc-track-implementation.md
@@ -149,10 +153,6 @@ website:
             text: "Project Plans"
           - href: docs/project-plans/developer-workbooks/index.md
             text: "Developer Workbooks"
-          - href: docs/project-plans/developer-workbooks/attribute-driven-migration/index.md
-            text: "Building the Attribute-Driven Migration"
-          - href: docs/project-plans/developer-workbooks/attribute-driven-migration/implementation-guide.md
-            text: "Attribute-Driven Migration: Implementation Guide"
           - href: docs/project-plans/developer-workbooks/privileged-access/index.md
             text: "Building Privileged Access"
           - href: docs/project-plans/developer-workbooks/non-person-identity/index.md
@@ -228,11 +228,6 @@ website:
         - section: "Developer Workbooks"
           href: docs/project-plans/developer-workbooks/index.md
           contents:
-            - section: "Building the Attribute-Driven Migration"
-              href: docs/project-plans/developer-workbooks/attribute-driven-migration/index.md
-              contents:
-                - docs/project-plans/developer-workbooks/attribute-driven-migration/implementation-guide.md
-                - auto: "docs/project-plans/developer-workbooks/attribute-driven-migration/[0-9][0-9]-*.md"
             - section: "Building Privileged Access"
               href: docs/project-plans/developer-workbooks/privileged-access/index.md
               contents:
@@ -323,9 +318,14 @@ website:
           href: docs/books/b18-application-modernization/index.md
           contents:
             - auto: "docs/books/b18-application-modernization/*-*.md"
+        - section: "Book 19 — Building the Attribute-Driven Migration"
+          href: docs/books/b19-developer-workbook/index.md
+          contents:
+            - auto: "docs/books/b19-developer-workbook/*-*.md"
         - section: "Companion guides"
           contents:
             - docs/books/guides/attribute-driven-migration.md
+            - docs/books/guides/attribute-driven-migration-implementation.md
             - docs/books/guides/intune-track-implementation.md
             - docs/books/guides/arc-track-implementation.md
             - docs/books/guides/non-person-identity-implementation.md

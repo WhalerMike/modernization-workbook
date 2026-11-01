@@ -257,7 +257,8 @@ def page_title(path: Path) -> str:
 
 
 def page_rank(rel: str) -> tuple[int, str]:
-    if "/developer-workbooks/" in rel:
+    # Developer workbooks first: Book 19 and the workbooks under Projects.
+    if "/developer-workbooks/" in rel or "/books/b19-developer-workbook/" in rel:
         return (0, rel)
     if rel.startswith("docs/books/"):
         return (1, rel)

@@ -1,6 +1,6 @@
 # Dynamic rules as code
 
-A library of dynamic membership rules kept in Git, with a parser and an offline evaluator for the rule grammar Learn documents, a linter, membership tests per rule, a shadow diff for every change, and a pause manifest for incidents. It is the code for the [developer workbook *Building the Attribute-Driven Migration*, Chapter 04](../../docs/project-plans/developer-workbooks/attribute-driven-migration/04-dynamic-rules-as-code.md). The live checks on groups already in a tenant stay in the validation kit (VK-DG-01 to VK-DG-07).
+A library of dynamic membership rules kept in Git, with a parser and an offline evaluator for the rule grammar Learn documents, a linter, membership tests per rule, a shadow diff for every change, and a pause manifest for incidents. It is the code for the [developer workbook *Building the Attribute-Driven Migration*, Chapter 04](../../docs/books/b19-developer-workbook/04-dynamic-rules-as-code.md). The live checks on groups already in a tenant stay in the validation kit (VK-DG-01 to VK-DG-07).
 
 Illustrative: tested against fixtures and a fake tenant, not proven against a production tenant. The evaluator follows Learn's rule syntax page; where it and the service could differ, Lab 2 compares it with Graph's own `evaluateDynamicMembership` (beta).
 

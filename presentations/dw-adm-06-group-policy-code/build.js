@@ -1,5 +1,5 @@
 // Building the Attribute-Driven Migration, Chapter 06 — Moving Group Policy as Code: the narrated tour.
-// Every fact comes from docs/project-plans/developer-workbooks/attribute-driven-migration/06-group-policy-as-code.md;
+// Every fact comes from docs/books/b19-developer-workbook/06-group-policy-as-code.md;
 // cite names are that chapter's footnotes. Layout and notes: ../_build/devwb.js.
 // Build (Git Bash): source /c/tmp/deckenv.sh && DATECODE="…" node presentations/dw-adm-06-group-policy-code/build.js
 require("../_build/devwb.js")({

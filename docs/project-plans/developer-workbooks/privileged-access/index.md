@@ -19,8 +19,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
 review-status: approved
-reviewed-sha256: 9feacf1fa045ef3aed318a5d6df8da560c8b7de0112f6d4fe4ed21a13cc62e43
-last-reviewed: 2026-10-31
+reviewed-sha256: c37f1c69ead1f20e53e507d3312118c324a7e360fb9340bb1d2282c08c3235e1
+last-reviewed: 2026-11-01
 ---
 # Building Privileged Access {.unnumbered}
 
@@ -97,7 +97,7 @@ Every chapter has a narrated tour: a deck in Why, What, Who and How order, a sel
 
 ## Where this workbook sits
 
-This is the developer workbook for the [Privileged Access & Administrative Identity project](../../privileged-access.md), one of the [developer workbooks](../index.md) under Projects in the Federal Modernization Workbook. The privileged model, the build and its evidence are [Book 04](../../../books/b04-access/index.md), Chapters 04 to 10 and [Appendix B](../../../books/b04-access/appendix-b-pim-role-settings.md). The Graph client pattern every chapter follows, one cloud table, a declared call list with its least-privileged permission and no default cloud, is the first workbook's [Chapter 02](../attribute-driven-migration/02-graph-clients-for-government-clouds.md). The drift and evidence pipeline Chapter 08 extends is the first workbook's [Chapter 09](../attribute-driven-migration/09-drift-pipelines-and-evidence.md).
+This is the developer workbook for the [Privileged Access & Administrative Identity project](../../privileged-access.md), one of the [developer workbooks](../index.md) under Projects in the Federal Modernization Workbook. The privileged model, the build and its evidence are [Book 04](../../../books/b04-access/index.md), Chapters 04 to 10 and [Appendix B](../../../books/b04-access/appendix-b-pim-role-settings.md). The Graph client pattern every chapter follows, one cloud table, a declared call list with its least-privileged permission and no default cloud, is the first workbook's [Chapter 02](../../../books/b19-developer-workbook/02-graph-clients-for-government-clouds.md). The drift and evidence pipeline Chapter 08 extends is the first workbook's [Chapter 09](../../../books/b19-developer-workbook/09-drift-pipelines-and-evidence.md).
 
 ## Chapters
 
