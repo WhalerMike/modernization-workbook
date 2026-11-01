@@ -60,7 +60,9 @@ def blocks(section: str) -> list[list[str]]:
 
 def run(cmds: list[str], cwd: Path) -> str:
     text = []
-    env = dict(os.environ, PYTHONIOENCODING="utf-8", PYTHONUTF8="1", NO_COLOR="1")
+    # Node before 23 prints TAP when its output isn't a terminal; the spec reporter is what a reader sees.
+    env = dict(os.environ, PYTHONIOENCODING="utf-8", PYTHONUTF8="1", NO_COLOR="1",
+               NODE_OPTIONS="--test-reporter=spec")
     for c in cmds:
         text.append(f"$ {c}")
         argv = c.split(" ", 1)
