@@ -1,0 +1,28 @@
+{
+  "_program": {
+    "version": "1.0.0",
+    "tier": "standard",
+    "accessPackageName": "Program Operations baseline",
+    "resourceGroupIds": [
+      "e1000000-0000-4000-8000-000000000020"
+    ]
+  },
+  "displayName": "AUTO Program Ops by department name",
+  "description": "Everyone whose organization code is ORG-100",
+  "allowedTargetScope": "specificDirectoryUsers",
+  "specificAllowedTargets": [
+    {
+      "@odata.type": "#microsoft.graph.attributeRuleMembers",
+      "description": "Everyone whose organization code is ORG-100",
+      "membershipRule": "(user.department -eq \"Program Operations\")"
+    }
+  ],
+  "automaticRequestSettings": {
+    "requestAccessForAllowedTargets": true,
+    "removeAccessWhenTargetLeavesAllowedTargets": true,
+    "gracePeriodBeforeAccessRemoval": "P30D"
+  },
+  "accessPackage": {
+    "id": "d1000000-0000-4000-8000-000000000020"
+  }
+}

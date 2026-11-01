@@ -1,0 +1,53 @@
+{
+  "_program": {
+    "version": "1.0.0",
+    "owner": "identity engineering",
+    "executionLimit": {
+      "users": 40,
+      "percent": 1
+    }
+  },
+  "category": "mover",
+  "displayName": "JML-Mover-OrgCode",
+  "description": "Mover: organization code changed; remove the old packages, request the new one, notify the manager",
+  "isEnabled": true,
+  "isSchedulingEnabled": true,
+  "executionConditions": {
+    "@odata.type": "#microsoft.graph.identityGovernance.triggerAndScopeBasedConditions",
+    "scope": {
+      "@odata.type": "#microsoft.graph.identityGovernance.ruleBasedSubjectSet",
+      "rule": "(employeeType eq 'Employee') and (onPremisesExtensionAttributes/extensionAttribute11 eq 'EMP')"
+    },
+    "trigger": {
+      "@odata.type": "#microsoft.graph.identityGovernance.attributeChangeTrigger",
+      "triggerAttributes": [
+        {
+          "name": "onPremisesExtensionAttributes/extensionAttribute10"
+        }
+      ]
+    }
+  },
+  "tasks": [
+    {
+      "continueOnError": false,
+      "description": "Send email to notify manager of user move",
+      "displayName": "Send email to notify manager of user move",
+      "isEnabled": true,
+      "taskDefinitionId": "aab41899-9972-422a-9d97-f626014578b7",
+      "arguments": []
+    },
+    {
+      "continueOnError": false,
+      "description": "Remove access package assignment for user",
+      "displayName": "Remove access package assignment for user",
+      "isEnabled": true,
+      "taskDefinitionId": "4a0b64f2-c7ec-46ba-b117-18f262946c50",
+      "arguments": [
+        {
+          "name": "accessPackageId",
+          "value": "d1000000-0000-4000-8000-000000000020"
+        }
+      ]
+    }
+  ]
+}

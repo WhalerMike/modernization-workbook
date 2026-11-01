@@ -14,7 +14,7 @@ workflow changes.
 
 Some kits' suites also run when another kit changes, because they test that
 kit's output: the drift pipeline's tests read evidence runs that
-non-person-identity and privileged-access write (see ALSO).
+hr-lifecycle, non-person-identity and privileged-access write (see ALSO).
 
 A few test files exercise Windows-only cmdlets (Get-Acl, Get-WinEvent) and
 are left out on other platforms, by name and with the reason printed (see
@@ -42,6 +42,7 @@ EXAMPLES = ROOT / "examples"
 
 # Kit -> kits whose suites also run when it changes.
 ALSO = {
+    "hr-lifecycle": ["drift-pipeline"],
     "non-person-identity": ["drift-pipeline"],
     "privileged-access": ["drift-pipeline"],
 }

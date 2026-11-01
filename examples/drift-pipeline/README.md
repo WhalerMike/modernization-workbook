@@ -12,9 +12,11 @@ It starts from Microsoft's sample: Learn's [Use the Azure Login action with Open
 ```
 python/drift_pipeline.py      compare, issues, package, verify, cloud (standard library only)
 python/workflow_lint.py       offline checks for a sign-in workflow (needs PyYAML)
+python/hr_evidence.py         package, verify and assemble a period of HR lifecycle runs (Building HR-Driven Identity, Chapter 07)
 workflow/drift-pipeline.yml   the sample workflow for GCC (NOT active in this repository)
 tests/test_drift_pipeline.py  pytest, fixtures only
 tests/test_workflow_lint.py   pytest, Learn's pinned samples and the sample workflow
+tests/test_hr_evidence.py     pytest, runs that examples/hr-lifecycle writes from its own fixtures
 tests/make_fixtures.py        rewrites the two fictional kit runs in tests/fixtures/runs
 tests/fixtures/provenance/    provenance files the other kits wrote from their own fixtures
 ```
@@ -53,7 +55,17 @@ Runs are refused when the mode or cloud differs, when the current run isn't late
 python -m pytest tests -q
 ```
 
-74 tests, no tenant and no network.
+142 tests, no tenant and no network. `tests/test_hr_evidence.py` builds its runs with `examples/hr-lifecycle`, so its suite also runs when that kit changes.
+
+## HR-driven identity evidence
+
+`python/hr_evidence.py` packages the runs `examples/hr-lifecycle/python/lifecycle_drift.py` writes (the lifecycle drift classes and the six lifecycle metrics), using this file's hashing and the same rules: one tenant per chain, a package written once, a period with a gap or a broken chain isn't complete. The developer workbook *Building HR-Driven Identity*, Chapter 07, walks through it.
+
+| Command | What it does | Exit codes |
+|---|---|---|
+| `python python/hr_evidence.py package --run <run> [--previous-manifest <file>] --out <dir>` | Checks the run against its own manifests and writes `<dir>/<run-id>/` with the run, `summary.md`, `EVIDENCE-MANIFEST.json` and `SHA256SUMS` | 0, 1 |
+| `python python/hr_evidence.py verify <package>` | Rechecks every file and the run inside | 0, 1 |
+| `python python/hr_evidence.py period --evidence <dir> --since <date> --until <date> --out <dir>` | Verifies the period's packages, the chain and the coverage; gives each metric's series and the Gate 7 criteria | 0 complete, 2 not, 1 |
 
 ## Not covered
 

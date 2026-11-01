@@ -1,0 +1,47 @@
+{
+  "_program": {
+    "version": "1.0.0",
+    "owner": "identity engineering",
+    "executionLimit": {
+      "users": 60,
+      "percent": 2
+    },
+    "onboardingAccessPackageId": "d1000000-0000-4000-8000-000000000010"
+  },
+  "category": "joiner",
+  "displayName": "JML-Joiner-DayOne-Employees",
+  "description": "Day one: request the onboarding package; the pipeline enables the account",
+  "isEnabled": true,
+  "isSchedulingEnabled": true,
+  "executionConditions": {
+    "@odata.type": "#microsoft.graph.identityGovernance.triggerAndScopeBasedConditions",
+    "scope": {
+      "@odata.type": "#microsoft.graph.identityGovernance.ruleBasedSubjectSet",
+      "rule": "(employeeType eq 'Employee') and (onPremisesExtensionAttributes/extensionAttribute11 eq 'EMP')"
+    },
+    "trigger": {
+      "@odata.type": "#microsoft.graph.identityGovernance.timeBasedAttributeTrigger",
+      "timeBasedAttribute": "employeeHireDate",
+      "offsetInDays": 0
+    }
+  },
+  "tasks": [
+    {
+      "continueOnError": false,
+      "description": "Request onboarding access package",
+      "displayName": "Request onboarding access package",
+      "isEnabled": true,
+      "taskDefinitionId": "c1ec1e76-f374-4375-aaa6-0bb6bd4c60be",
+      "arguments": [
+        {
+          "name": "assignmentPolicyId",
+          "value": "d2000000-0000-4000-8000-000000000001"
+        },
+        {
+          "name": "accessPackageId",
+          "value": "d1000000-0000-4000-8000-000000000010"
+        }
+      ]
+    }
+  ]
+}

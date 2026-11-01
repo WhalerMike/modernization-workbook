@@ -1,0 +1,48 @@
+{
+  "value": [
+    {
+      "@odata.type": "#microsoft.graph.x509CertificateAuthenticationMethodConfiguration",
+      "id": "X509Certificate",
+      "state": "enabled",
+      "certificateUserBindings": [
+        {
+          "x509CertificateField": "PrincipalName",
+          "userProperty": "onPremisesUserPrincipalName",
+          "priority": 1
+        },
+        {
+          "x509CertificateField": "SHA1PublicKey",
+          "userProperty": "certificateUserIds",
+          "priority": 2
+        }
+      ],
+      "authenticationModeConfiguration": {
+        "x509CertificateAuthenticationDefaultMode": "x509CertificateSingleFactor",
+        "rules": [
+          {
+            "x509CertificateRuleType": "policyOID",
+            "identifier": "2.16.840.1.101.3.2.1.48.9",
+            "x509CertificateAuthenticationMode": "x509CertificateMultiFactor"
+          }
+        ]
+      },
+      "crlValidationConfiguration": {
+        "state": "disabled",
+        "exemptedCertificateAuthoritiesSubjectKeyIdentifiers": [
+          "5A5B5C5D5E5F60616263646566676869"
+        ]
+      },
+      "issuerHintsConfiguration": {
+        "state": "enabled"
+      },
+      "includeTargets": [
+        {
+          "targetType": "group",
+          "id": "all_users",
+          "isRegistrationRequired": false
+        }
+      ],
+      "excludeTargets": []
+    }
+  ]
+}

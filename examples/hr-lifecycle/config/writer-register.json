@@ -1,0 +1,43 @@
+{
+  "_comment": "The lifecycle rows of the writer register (HR-driven identity guide, Gate 1): one writer for every account-state transition and every HR-mastered value, with its backstop. Writers are named groups of identities; the scan reads the directory audit log and reports any protected write by an identity that is neither the writer nor the backstop. Identities are fictional contoso.example object IDs. auditProperty is the modifiedProperties display name the scan matches in an 'Update user' record; those names are not documented on Learn and are confirmed in Lab 2 (verification log). Design guidance, from Book 03, Chapter 08, and the guide's Step 1 table.",
+  "register": "contoso.example lifecycle writers",
+  "version": "1.0.0",
+  "signedBy": "ICAM governance body",
+  "signedOn": "2026-10-28",
+  "scopeFilter": {
+    "version": "2026-10-28.1",
+    "rule": "Active and suspended assignments (leave isn't a leaver); pre-hire records from 30 days before the hire date; contractors from the contractor source with a sponsor",
+    "middlewareFilter": "hcm-entra config/mapping.json assignment_status_types and refused_worker_types"
+  },
+  "writers": {
+    "inbound-provisioning": {
+      "description": "API-driven inbound provisioning: the HR app and the contractor-source app, through the same middleware",
+      "servicePrincipalIds": ["a1000000-0000-4000-8000-000000000001", "a1000000-0000-4000-8000-000000000002"]
+    },
+    "lifecycle-workflows": {
+      "description": "Lifecycle Workflows tasks (enable, disable, delete)",
+      "servicePrincipalIds": ["a1000000-0000-4000-8000-000000000003"]
+    },
+    "cms-integration": {
+      "description": "The card management system's integration, which writes the PIV binding (Gate 5)",
+      "servicePrincipalIds": ["a1000000-0000-4000-8000-000000000004"]
+    },
+    "ad-sync": {
+      "description": "Interim: the provisioning agent's gMSA and directory synchronization, for synced users until AD retires",
+      "servicePrincipalIds": ["a1000000-0000-4000-8000-000000000005"]
+    }
+  },
+  "rows": [
+    {"id": "account-created", "kind": "transition", "activity": "Add user", "writer": "inbound-provisioning", "backstop": null},
+    {"id": "enabled-at-hire", "kind": "transition", "activity": "Enable account", "writer": "inbound-provisioning", "backstop": "lifecycle-workflows"},
+    {"id": "disabled-at-separation", "kind": "transition", "activity": "Disable account", "writer": "inbound-provisioning", "backstop": "lifecycle-workflows"},
+    {"id": "reenabled-on-cancel", "kind": "transition", "activity": "Enable account", "writer": "inbound-provisioning", "backstop": "lifecycle-workflows"},
+    {"id": "deleted-at-disposition", "kind": "transition", "activity": "Delete user", "writer": "lifecycle-workflows", "backstop": null, "forbidden": ["inbound-provisioning"]},
+    {"id": "employeeHireDate", "kind": "attribute", "activity": "Update user", "auditProperty": "EmployeeHireDate", "writer": "inbound-provisioning", "backstop": null},
+    {"id": "employeeLeaveDateTime", "kind": "attribute", "activity": "Update user", "auditProperty": "EmployeeLeaveDateTime", "writer": "inbound-provisioning", "backstop": null},
+    {"id": "manager", "kind": "attribute", "activity": "Set user manager", "writer": "inbound-provisioning", "backstop": null},
+    {"id": "orgCode", "kind": "attribute", "activity": "Update user", "auditProperty": "ExtensionAttribute10", "writer": "inbound-provisioning", "backstop": "ad-sync"},
+    {"id": "workerTypeCode", "kind": "attribute", "activity": "Update user", "auditProperty": "ExtensionAttribute11", "writer": "inbound-provisioning", "backstop": "ad-sync"},
+    {"id": "certificateUserIds", "kind": "attribute", "activity": "Update user", "auditProperty": "CertificateUserIds", "writer": "cms-integration", "backstop": null}
+  ]
+}

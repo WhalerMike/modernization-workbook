@@ -1,0 +1,108 @@
+{
+  "value": [
+    {
+      "id": "b7000000-0000-4000-8000-000000000001",
+      "userPrincipalName": "morgan.lee@contoso.example",
+      "accountEnabled": true,
+      "employeeId": "100001",
+      "employeeType": "Employee",
+      "userType": "Member"
+    },
+    {
+      "id": "b7000000-0000-4000-8000-000000000002",
+      "userPrincipalName": "jordan.diaz@contoso.example",
+      "accountEnabled": true,
+      "employeeId": "100002",
+      "employeeType": "Employee",
+      "userType": "Member"
+    },
+    {
+      "id": "b7000000-0000-4000-8000-000000000003",
+      "userPrincipalName": "nia.brooks@contoso.example",
+      "accountEnabled": true,
+      "employeeId": "100101",
+      "employeeType": "Employee",
+      "userType": "Member"
+    },
+    {
+      "id": "b7000000-0000-4000-8000-000000000004",
+      "userPrincipalName": "omar.haddad@contoso.example",
+      "accountEnabled": true,
+      "employeeId": "100102",
+      "employeeType": "Employee",
+      "userType": "Member"
+    },
+    {
+      "id": "b7000000-0000-4000-8000-000000000005",
+      "userPrincipalName": "riley.chen@contoso.example",
+      "accountEnabled": false,
+      "employeeId": "100301",
+      "employeeType": "Employee",
+      "userType": "Member"
+    },
+    {
+      "id": "b7000000-0000-4000-8000-000000000006",
+      "userPrincipalName": "drew.park@contoso.example",
+      "accountEnabled": true,
+      "employeeId": "100303",
+      "employeeType": "Employee",
+      "userType": "Member"
+    },
+    {
+      "id": "b7000000-0000-4000-8000-000000000007",
+      "userPrincipalName": "harper.vu@contoso.example",
+      "accountEnabled": true,
+      "employeeId": "100305",
+      "employeeType": "Employee",
+      "userType": "Member"
+    },
+    {
+      "id": "b7000000-0000-4000-8000-000000000008",
+      "userPrincipalName": "sky.ford@contoso.example",
+      "accountEnabled": true,
+      "employeeId": "100401",
+      "employeeType": "Employee",
+      "userType": "Member"
+    },
+    {
+      "id": "b7000000-0000-4000-8000-000000000009",
+      "userPrincipalName": "alex.rivera@contoso.example",
+      "accountEnabled": true,
+      "employeeId": "900001",
+      "employeeType": "Contractor",
+      "userType": "Member"
+    },
+    {
+      "id": "b7000000-0000-4000-8000-000000000010",
+      "userPrincipalName": "bailey.ortiz@contoso.example",
+      "accountEnabled": true,
+      "employeeId": "900002",
+      "employeeType": "Contractor",
+      "userType": "Member"
+    },
+    {
+      "id": "b7000000-0000-4000-8000-000000000011",
+      "userPrincipalName": "svc.scanner@contoso.example",
+      "accountEnabled": true,
+      "employeeId": null,
+      "employeeType": "Employee",
+      "userType": "Member"
+    },
+    {
+      "id": "b7000000-0000-4000-8000-000000000012",
+      "userPrincipalName": "print.kiosk@contoso.example",
+      "accountEnabled": true,
+      "employeeId": null,
+      "employeeType": "Employee",
+      "userType": "Member"
+    },
+    {
+      "id": "b7000000-0000-4000-8000-000000000013",
+      "userPrincipalName": "old.temp@contoso.example",
+      "accountEnabled": true,
+      "employeeId": "100999",
+      "employeeType": "Employee",
+      "userType": "Member"
+    }
+  ]
+}

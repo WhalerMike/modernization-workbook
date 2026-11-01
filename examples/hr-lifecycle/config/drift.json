@@ -1,0 +1,12 @@
+{
+  "_comment": "Lifecycle drift (HR-driven identity guide, Gate 7; Book 03, Chapter 11). The six metrics and the thresholds the program proposes as starting values; choosing the metrics and thresholds is the agency's CA-7 decision. 'direction' says whether a value must stay at or below (max) or at or above (min) the threshold.",
+  "metrics": {
+    "separationToBlockHoursP90": {"threshold": 4, "direction": "max", "source": "separation_timing.py summary.json"},
+    "separationToRevocationHoursP90": {"threshold": 24, "direction": "max", "source": "separation_timing.py summary.json"},
+    "transferToReviewHours": {"threshold": 240, "direction": "max", "source": "access_assignment.py residual summary.json"},
+    "joinerReadinessRate": {"threshold": 0.95, "direction": "min", "source": "joiner_workflows.py readiness summary.json"},
+    "correlationCoverage": {"threshold": 0.99, "direction": "min", "source": "this run: enabled accounts that resolve to a current worker or contractor record"},
+    "derivationPurity": {"threshold": 0.8, "direction": "min", "source": "this run: access-granting memberships computed by rule"}
+  },
+  "severities": {"LD-01": "Finding", "LD-02": "Finding", "LD-03": "Finding", "LD-04": "Finding", "LD-05": "Finding", "LD-06": "Finding"}
+}

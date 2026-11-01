@@ -1,0 +1,10 @@
+PersonKey,FirstName,LastName,UserName,Vendor,ContractRef,StartDate,ContractEnd,CompletionDate,SuitabilityStatus,SuitabilityWithdrawnDate,SponsorPersonNumber,SponsorRecertDue
+900001,Alex,Rivera,alex.rivera@contoso.example,Fabrikam Services,CT-2026-0101,2026-01-12,2027-01-11,,Favorable,,100001,2027-03-01
+900002,Bailey,Ortiz,bailey.ortiz@contoso.example,Fabrikam Services,CT-2026-0101,2025-11-03,2026-12-31,2026-10-15,Favorable,,100001,2027-02-01
+900003,Cameron,Wu,cameron.wu@contoso.example,Northwind Consulting,CT-2025-0440,2025-06-01,2027-05-31,,Withdrawn,2026-10-20,100002,2027-01-15
+900004,Devon,Hale,devon.hale@contoso.example,Northwind Consulting,CT-2025-0440,2025-06-01,2027-05-31,,Favorable,,100003,2027-01-15
+900005,Ellis,Ward,ellis.ward@contoso.example,Northwind Consulting,CT-2025-0440,2026-02-01,2027-05-31,,Favorable,,100002,2026-10-25
+900006,Finley,Moss,finley.moss@contoso.example,Tailspin Labs,CT-2026-0222,2026-03-01,2026-11-10,,Favorable,,100002,2027-04-01
+900007,Gray,Lund,gray.lund@contoso.example,Tailspin Labs,CT-2026-0222,2026-04-01,,,Favorable,,100002,2027-04-01
+900008,Hollis,Kerr,hollis.kerr@contoso.example,Tailspin Labs,CT-2026-0222,2026-04-01,2027-03-31,,Favorable,,100099,2027-04-01
+900009,Indy,Shah,indy.shah@contoso.example,Fabrikam Services,CT-2026-0101,2026-09-01,2027-08-31,,Favorable,,100001,2027-03-01

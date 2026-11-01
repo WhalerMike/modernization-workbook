@@ -1,0 +1,254 @@
+{
+  "value": [
+    {
+      "category": "joiner",
+      "displayName": "JML-Joiner-PreHire-Employees",
+      "description": "Pre-hire: Temporary Access Pass to the manager seven days before day one",
+      "isEnabled": true,
+      "isSchedulingEnabled": true,
+      "executionConditions": {
+        "@odata.type": "#microsoft.graph.identityGovernance.triggerAndScopeBasedConditions",
+        "scope": {
+          "@odata.type": "#microsoft.graph.identityGovernance.ruleBasedSubjectSet",
+          "rule": "(employeeType eq 'Employee') and (onPremisesExtensionAttributes/extensionAttribute11 eq 'EMP')"
+        },
+        "trigger": {
+          "@odata.type": "#microsoft.graph.identityGovernance.timeBasedAttributeTrigger",
+          "timeBasedAttribute": "employeeHireDate",
+          "offsetInDays": -7
+        }
+      },
+      "tasks": [
+        {
+          "continueOnError": false,
+          "description": "Generate TAP and send email",
+          "displayName": "Generate TAP and send email",
+          "isEnabled": true,
+          "taskDefinitionId": "1b555e50-7f65-41d5-b514-5894a026d10d",
+          "arguments": [
+            {
+              "name": "tapLifetimeMinutes",
+              "value": "1440"
+            },
+            {
+              "name": "tapIsUsableOnce",
+              "value": "true"
+            }
+          ],
+          "executionSequence": 1,
+          "id": "t10",
+          "category": "joiner"
+        }
+      ],
+      "id": "f1000000-0000-4000-8000-000000000001",
+      "version": 3,
+      "createdDateTime": "2026-09-01T00:00:00Z"
+    },
+    {
+      "category": "joiner",
+      "displayName": "JML-Joiner-DayOne-Employees",
+      "description": "Day one: request the onboarding package; the pipeline enables the account",
+      "isEnabled": true,
+      "isSchedulingEnabled": true,
+      "executionConditions": {
+        "@odata.type": "#microsoft.graph.identityGovernance.triggerAndScopeBasedConditions",
+        "scope": {
+          "@odata.type": "#microsoft.graph.identityGovernance.ruleBasedSubjectSet",
+          "rule": "(employeeType eq 'Employee') and (onPremisesExtensionAttributes/extensionAttribute11 eq 'EMP')"
+        },
+        "trigger": {
+          "@odata.type": "#microsoft.graph.identityGovernance.timeBasedAttributeTrigger",
+          "timeBasedAttribute": "employeeHireDate",
+          "offsetInDays": 0
+        }
+      },
+      "tasks": [
+        {
+          "continueOnError": false,
+          "description": "Request onboarding access package",
+          "displayName": "Request onboarding access package",
+          "isEnabled": true,
+          "taskDefinitionId": "c1ec1e76-f374-4375-aaa6-0bb6bd4c60be",
+          "arguments": [
+            {
+              "name": "assignmentPolicyId",
+              "value": "d2000000-0000-4000-8000-000000000001"
+            },
+            {
+              "name": "accessPackageId",
+              "value": "d1000000-0000-4000-8000-000000000099"
+            }
+          ],
+          "executionSequence": 1,
+          "id": "t20",
+          "category": "joiner"
+        }
+      ],
+      "id": "f1000000-0000-4000-8000-000000000002",
+      "version": 1,
+      "createdDateTime": "2026-09-01T00:00:00Z"
+    },
+    {
+      "category": "leaver",
+      "displayName": "JML-Leaver-PostSeparation-Employees",
+      "description": "Post-separation: delete under the disposition rule, 30 days after the leave date",
+      "isEnabled": true,
+      "isSchedulingEnabled": true,
+      "executionConditions": {
+        "@odata.type": "#microsoft.graph.identityGovernance.triggerAndScopeBasedConditions",
+        "scope": {
+          "@odata.type": "#microsoft.graph.identityGovernance.ruleBasedSubjectSet",
+          "rule": "(employeeType eq 'Employee') and (onPremisesExtensionAttributes/extensionAttribute11 eq 'EMP')"
+        },
+        "trigger": {
+          "@odata.type": "#microsoft.graph.identityGovernance.timeBasedAttributeTrigger",
+          "timeBasedAttribute": "employeeLeaveDateTime",
+          "offsetInDays": 30
+        }
+      },
+      "tasks": [
+        {
+          "continueOnError": false,
+          "description": "Delete user",
+          "displayName": "Delete user",
+          "isEnabled": true,
+          "taskDefinitionId": "8d18588d-9ad3-4c0f-99d0-ec215f0e3dff",
+          "arguments": [],
+          "executionSequence": 1,
+          "id": "t30",
+          "category": "leaver"
+        }
+      ],
+      "id": "f1000000-0000-4000-8000-000000000003",
+      "version": 2,
+      "createdDateTime": "2026-09-01T00:00:00Z"
+    },
+    {
+      "category": "mover",
+      "displayName": "JML-Mover-OrgCode",
+      "description": "Mover: organization code changed; remove the old packages, request the new one, notify the manager",
+      "isEnabled": true,
+      "isSchedulingEnabled": true,
+      "executionConditions": {
+        "@odata.type": "#microsoft.graph.identityGovernance.triggerAndScopeBasedConditions",
+        "scope": {
+          "@odata.type": "#microsoft.graph.identityGovernance.ruleBasedSubjectSet",
+          "rule": "(employeeType eq 'Employee') and (onPremisesExtensionAttributes/extensionAttribute11 eq 'EMP')"
+        },
+        "trigger": {
+          "@odata.type": "#microsoft.graph.identityGovernance.attributeChangeTrigger",
+          "triggerAttributes": [
+            {
+              "name": "onPremisesExtensionAttributes/extensionAttribute10"
+            }
+          ]
+        }
+      },
+      "tasks": [
+        {
+          "continueOnError": false,
+          "description": "Send email to notify manager of user move",
+          "displayName": "Send email to notify manager of user move",
+          "isEnabled": true,
+          "taskDefinitionId": "aab41899-9972-422a-9d97-f626014578b7",
+          "arguments": [],
+          "executionSequence": 1,
+          "id": "t40",
+          "category": "mover"
+        },
+        {
+          "continueOnError": false,
+          "description": "Remove access package assignment for user",
+          "displayName": "Remove access package assignment for user",
+          "isEnabled": true,
+          "taskDefinitionId": "4a0b64f2-c7ec-46ba-b117-18f262946c50",
+          "arguments": [
+            {
+              "name": "accessPackageId",
+              "value": "d1000000-0000-4000-8000-000000000020"
+            }
+          ],
+          "executionSequence": 2,
+          "id": "t41",
+          "category": "mover"
+        }
+      ],
+      "id": "f1000000-0000-4000-8000-000000000004",
+      "version": 1,
+      "createdDateTime": "2026-09-01T00:00:00Z"
+    },
+    {
+      "category": "leaver",
+      "displayName": "JML-Leaver-LastDay-Contractors",
+      "description": "Contractor leaver on the earliest end the middleware sends",
+      "isEnabled": true,
+      "isSchedulingEnabled": true,
+      "executionConditions": {
+        "@odata.type": "#microsoft.graph.identityGovernance.triggerAndScopeBasedConditions",
+        "scope": {
+          "@odata.type": "#microsoft.graph.identityGovernance.ruleBasedSubjectSet",
+          "rule": "(employeeType eq 'Contractor') and (onPremisesExtensionAttributes/extensionAttribute11 eq 'CTR')"
+        },
+        "trigger": {
+          "@odata.type": "#microsoft.graph.identityGovernance.timeBasedAttributeTrigger",
+          "timeBasedAttribute": "employeeLeaveDateTime",
+          "offsetInDays": 0
+        }
+      },
+      "tasks": [
+        {
+          "continueOnError": false,
+          "description": "Disable user account",
+          "displayName": "Disable user account",
+          "isEnabled": true,
+          "taskDefinitionId": "1dfdfcc7-52fa-4c2e-bf3a-e3919cc12950",
+          "arguments": [
+            {
+              "name": "disableOnPremisesAccount",
+              "value": "true"
+            }
+          ],
+          "executionSequence": 1,
+          "id": "t50",
+          "category": "leaver"
+        },
+        {
+          "continueOnError": false,
+          "description": "Revoke all refresh tokens for user",
+          "displayName": "Revoke all refresh tokens for user",
+          "isEnabled": true,
+          "taskDefinitionId": "509589a4-0466-4471-829e-49c5e502bdee",
+          "arguments": [],
+          "executionSequence": 2,
+          "id": "t51",
+          "category": "leaver"
+        }
+      ],
+      "id": "f1000000-0000-4000-8000-000000000005",
+      "version": 1,
+      "createdDateTime": "2026-09-01T00:00:00Z"
+    },
+    {
+      "id": "f1000000-0000-4000-8000-000000000009",
+      "version": 7,
+      "category": "joiner",
+      "displayName": "Onboard Marketing (legacy)",
+      "description": "made in the portal",
+      "isEnabled": true,
+      "isSchedulingEnabled": true,
+      "executionConditions": {
+        "@odata.type": "#microsoft.graph.identityGovernance.triggerAndScopeBasedConditions",
+        "scope": {
+          "@odata.type": "#microsoft.graph.identityGovernance.ruleBasedSubjectSet",
+          "rule": "(department eq 'Marketing')"
+        },
+        "trigger": {
+          "@odata.type": "#microsoft.graph.identityGovernance.timeBasedAttributeTrigger",
+          "timeBasedAttribute": "employeeHireDate",
+          "offsetInDays": 0
+        }
+      },
+      "tasks": []
+    }
+  ]
+}

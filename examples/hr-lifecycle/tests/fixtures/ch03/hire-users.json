@@ -1,0 +1,46 @@
+{
+  "value": [
+    {
+      "id": "b3000000-0000-4000-8000-000000000001",
+      "userPrincipalName": "nia.brooks@contoso.example",
+      "employeeId": "100101",
+      "accountEnabled": true,
+      "employeeHireDate": "2026-11-02T08:00:00Z",
+      "assignedLicenses": [
+        {
+          "skuId": "a2000000-0000-4000-8000-000000000001",
+          "disabledPlans": []
+        }
+      ]
+    },
+    {
+      "id": "b3000000-0000-4000-8000-000000000002",
+      "userPrincipalName": "omar.haddad@contoso.example",
+      "employeeId": "100102",
+      "accountEnabled": true,
+      "employeeHireDate": "2026-11-02T08:00:00Z",
+      "assignedLicenses": [
+        {
+          "skuId": "a2000000-0000-4000-8000-000000000001",
+          "disabledPlans": []
+        }
+      ]
+    },
+    {
+      "id": "b3000000-0000-4000-8000-000000000003",
+      "userPrincipalName": "pia.santos@contoso.example",
+      "employeeId": "100103",
+      "accountEnabled": false,
+      "employeeHireDate": "2026-11-02T08:00:00Z",
+      "assignedLicenses": []
+    },
+    {
+      "id": "b3000000-0000-4000-8000-000000000005",
+      "userPrincipalName": "ravi.menon@contoso.example",
+      "employeeId": "100105",
+      "accountEnabled": false,
+      "employeeHireDate": "2026-11-09T08:00:00Z",
+      "assignedLicenses": []
+    }
+  ]
+}

@@ -1,0 +1,3 @@
+url,bytes,seconds,error,measuredAt
+http://pki.contoso.example/crl/piv-ca1.crl,2104330,1.2,,2026-11-01T13:00:00Z
+https://pki.contoso.example/crl/piv-ca2.crl,18500000,11.4,,2026-11-01T13:00:05Z

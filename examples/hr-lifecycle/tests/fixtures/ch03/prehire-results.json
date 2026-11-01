@@ -1,0 +1,35 @@
+{
+  "value": [
+    {
+      "id": "u1",
+      "processingStatus": "completed",
+      "completedDateTime": "2026-10-26T09:10:00Z",
+      "scheduledDateTime": "2026-10-26T09:00:00Z",
+      "workflowExecutionType": "scheduled",
+      "subject": {
+        "id": "b3000000-0000-4000-8000-000000000001"
+      }
+    },
+    {
+      "id": "u2",
+      "processingStatus": "completed",
+      "completedDateTime": "2026-10-26T09:11:00Z",
+      "scheduledDateTime": "2026-10-26T09:00:00Z",
+      "workflowExecutionType": "scheduled",
+      "subject": {
+        "id": "b3000000-0000-4000-8000-000000000002"
+      }
+    },
+    {
+      "id": "u3",
+      "processingStatus": "failed",
+      "completedDateTime": "2026-10-26T09:12:00Z",
+      "scheduledDateTime": "2026-10-26T09:00:00Z",
+      "workflowExecutionType": "scheduled",
+      "failedTasksCount": 1,
+      "subject": {
+        "id": "b3000000-0000-4000-8000-000000000003"
+      }
+    }
+  ]
+}

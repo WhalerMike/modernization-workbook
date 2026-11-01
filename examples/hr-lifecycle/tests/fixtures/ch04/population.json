@@ -1,0 +1,40 @@
+{
+  "value": [
+    {
+      "userPrincipalName": "user1@contoso.example",
+      "extensionAttribute10": "ORG-100",
+      "employeeType": "Employee",
+      "department": "Program Operations"
+    },
+    {
+      "userPrincipalName": "user2@contoso.example",
+      "extensionAttribute10": "ORG-100",
+      "employeeType": "Contractor",
+      "department": "Program Operations"
+    },
+    {
+      "userPrincipalName": "user3@contoso.example",
+      "extensionAttribute10": "ORG-210",
+      "employeeType": "Employee",
+      "department": "Infrastructure Services"
+    },
+    {
+      "userPrincipalName": "user4@contoso.example",
+      "extensionAttribute10": "ORG-210",
+      "employeeType": "Employee",
+      "department": "Infrastructure Services"
+    },
+    {
+      "userPrincipalName": "user5@contoso.example",
+      "extensionAttribute10": "ORG-310",
+      "employeeType": "Employee",
+      "department": "Financial Management"
+    },
+    {
+      "userPrincipalName": "user6@contoso.example",
+      "extensionAttribute10": "ORG-100",
+      "employeeType": "Employee",
+      "department": "Program Operations"
+    }
+  ]
+}

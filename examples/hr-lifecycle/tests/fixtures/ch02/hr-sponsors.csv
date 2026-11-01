@@ -1,0 +1,4 @@
+PersonNumber,AssignmentStatusType,TerminationDate,DepartmentCode,DepartmentName
+100001,ACTIVE,,ORG-100,Program Operations
+100002,ACTIVE,,ORG-210,Infrastructure Services
+100003,INACTIVE,2026-09-30,ORG-100,Program Operations

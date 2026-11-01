@@ -1,0 +1,3 @@
+UserPrincipalName,Owner,Reason
+svc.scanner@contoso.example,facilities-it@contoso.example,Shared scanner sign-in pending the non-person track
+print.kiosk@contoso.example,,No owner recorded

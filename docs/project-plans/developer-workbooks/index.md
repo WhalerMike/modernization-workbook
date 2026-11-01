@@ -29,5 +29,5 @@ Every page is held for the owner's review: until a page is approved it is listed
 
 ::: {.callout-note}
 ## More to follow
-One developer workbook per project track is planned. Three are here: *Building Privileged Access*, with all eight chapters written; *Building Non-Person Identity*, with all ten chapters written; and *Building Ticket-to-Machine*, with all eight chapters written and held for review. The first developer workbook, *Building the Attribute-Driven Migration*, is now [Book 19](../../books/b19-developer-workbook/index.md) under Books. Workbooks for the other project tracks will be added here as they are written.
+One developer workbook per project track is planned. Four are here: *Building Privileged Access*, with all eight chapters written; *Building Non-Person Identity*, with all ten chapters written; *Building Ticket-to-Machine*, with all eight chapters written; and *Building HR-Driven Identity*, with all seven chapters written. The newest two are held for review. The first developer workbook, *Building the Attribute-Driven Migration*, is now [Book 19](../../books/b19-developer-workbook/index.md) under Books. Workbooks for the other project tracks will be added here as they are written.
 :::

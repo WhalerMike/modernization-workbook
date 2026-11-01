@@ -1,0 +1,16 @@
+{
+  "_comment": "What the CBA configuration must hold (HR-driven identity guide, Gate 5). The issuing CAs the card program uses, by thumbprint; the policy OIDs of its PIV authentication certificates, which must map to multifactor; and the limits Learn's CRL page gives per cloud. The CA names, thumbprints and OIDs are fictional. warnPercent and caExpiryWarnDays are design guidance. Learn gives the CRL limits in MB; the check reads them as decimal megabytes (1 MB = 1,000,000 bytes), the stricter reading.",
+  "issuingCas": [
+    {"displayName": "Contoso Example PIV Issuing CA 1", "thumbprint": "1A2B3C4D5E6F708192A3B4C5D6E7F80910111213"},
+    {"displayName": "Contoso Example PIV Issuing CA 2", "thumbprint": "2B3C4D5E6F708192A3B4C5D6E7F8091011121314"}
+  ],
+  "multifactorPolicyOids": ["2.16.840.1.101.3.2.1.48.11"],
+  "crlLimits": {
+    "gcc": {"interactiveBytes": 20000000, "serviceBytes": 65000000, "downloadSeconds": 10},
+    "gcchigh": {"interactiveBytes": 45000000, "serviceBytes": 150000000, "downloadSeconds": 10},
+    "dod": {"interactiveBytes": 45000000, "serviceBytes": 150000000, "downloadSeconds": 10}
+  },
+  "warnPercent": 80,
+  "caExpiryWarnDays": 90,
+  "phishingResistantCombinations": ["fido2", "windowsHelloForBusiness", "x509CertificateMultiFactor"]
+}
