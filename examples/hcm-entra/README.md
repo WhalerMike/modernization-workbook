@@ -1,7 +1,7 @@
 # Oracle Fusion Cloud HCM to Microsoft Entra ID: extract-to-SCIM converter and validator
 
 > **Status: illustrative. Unit-tested against fixtures, not proven against live tenants.**
-> This is one way to build the middleware's validate and normalize duties from [Book 03, Chapter 05](../../docs/books/b03-hr-identity/05-the-provisioning-pipeline.md), using the canonical schema and program attribute map in [Chapter 06](../../docs/books/b03-hr-identity/06-canonical-attribute-schema.md). It isn't an endorsement of any product by any agency, and no agency has adopted it. Product and API facts were checked against Microsoft Learn and Oracle's documentation on October 25, 2026. The explanation, with sources, is the research page [Building Book 03's HR Pipeline: Oracle Fusion Cloud HCM to Microsoft Entra ID](../../docs/research/hcm-entra-implementation.md).
+> This is one way to build the middleware's validate and normalize duties from [Book 03, Chapter 05](../../docs/books/b03-hr-identity/05-the-provisioning-pipeline.md), using the canonical schema and program attribute map in [Chapter 06](../../docs/books/b03-hr-identity/06-canonical-attribute-schema.md). It isn't an endorsement of any product by any agency, and no agency has adopted it. Product and API facts were checked against Microsoft Learn and Oracle's documentation on October 25, 2026. The explanation, with sources, is the research page [Building Book 03's HR Pipeline: Oracle Fusion Cloud HCM to Microsoft Entra ID](../../docs/books/guides/hcm-entra-implementation.md).
 
 ## Start with Microsoft's sample
 

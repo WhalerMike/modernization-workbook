@@ -60,7 +60,7 @@ Drift is any difference between what the HR record says and what the directory h
 
 : Drift classes and how to detect them {.striped .hover}
 
-**Pending proof.** The contractor PIV path is the program's design and hasn't yet been validated in practice; the criteria for Proved are in the research page's [Status and review](../../research/oracle-contingent-worker-contractor-source.md#status-and-review).
+**Pending proof.** The contractor PIV path is the program's design and hasn't yet been validated in practice; the criteria for Proved are in the research page's [Status and review](../../evaluations/oracle-contingent-worker-contractor-source.md#status-and-review).
 
 The severities are this program's defaults, not an external standard. The provisioning logs are the first source for most of these: the API client already reads them for each record's result (Chapter 05). The rest are joins between the HR extract, the directory and the CMS, on the one identifier they share. Microsoft Entra ID Governance also offers Account Discovery, which finds existing accounts in a target application and identifies which have matching Entra accounts and which are orphans;[^c11-gov-licensing] it extends the orphan class past the directory.
 

@@ -51,7 +51,10 @@ PROJECT_PAGES = [
 # here follows alphabetically, headed by its title-cased name.
 SECTIONS = {
     "books": "The Workbook Books",
-    "research": "Research (under review)",
+    "evaluations": "Evaluations",
+    "training": "Training",
+    "reference": "Reference",
+    "research": "Research (moved)",
     "narratives": "Narratives",
     "client-server-to-hybrid-cloud": "Client-Server to Hybrid-Cloud Series",
     "projects": "Detailed Projects",

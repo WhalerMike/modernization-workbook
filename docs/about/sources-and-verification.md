@@ -26,7 +26,7 @@ An endnote proves less than it appears to:
 
 ## Claims logs
 
-Each chapter and each research page has a claims log in a `_verification` folder beside it: `docs/books/<book>/_verification/<chapter>.md` and `docs/research/_verification/<page>.md`. These aren't published on the site; they are in the [repository on GitHub](https://github.com/WhalerMike/modernization-workbook), where anyone can read them.
+Each chapter and each research page has a claims log in a `_verification` folder beside it: `docs/books/<book>/_verification/<chapter>.md`, and for a guide, explainer, evaluation, training or reference page, `_verification/<page>.md` in that page's folder. These aren't published on the site; they are in the [repository on GitHub](https://github.com/WhalerMike/modernization-workbook), where anyone can read them.
 
 A log lists the external claims in the page, one row each, with where the claim appears, the source, and a verdict:
 
@@ -56,22 +56,22 @@ Most research pages end with a section called **What couldn't be verified**. It 
 
 ## Access dates and the 90-day review
 
-Every endnote carries the date the source was opened. Research pages also carry a `last-reviewed` date: the last time someone checked the page against its sources. The status box at the top of a research page shows that date, and once it is more than 90 days old the box says the page is overdue for review and its sources should be checked before relying on it. The Research page lists each page's review date.
+Every endnote carries the date the source was opened. Pages with a status label (guides, explainers, evaluations and training not yet proved) also carry a `last-reviewed` date: the last time someone checked the page against its sources. The status box at the top of such a page shows that date, and once it is more than 90 days old the box says the page is overdue for review and its sources should be checked before relying on it. The Training, Evaluations and Explainers pages list each page's review date.
 
 ## The weekly source watch
 
-Once a week, every Monday, an automated job fetches every URL cited in a footnote in the books and the research pages (about three thousand of them) and compares each with the previous week. When a source has changed, moved or disappeared, it opens a GitHub issue that lists the source under the chapter or research page that cites it, quoting what was added. The same issue lists new publications from federal and vendor feeds that touch a book's topics, and every research page overdue for its 90-day review. The issues stay open until the chapters they name have been checked. How the watch works and what it can't see is described in [`scripts/source_watch/README.md`](https://github.com/WhalerMike/modernization-workbook/blob/main/scripts/source_watch/README.md).
+Once a week, every Monday, an automated job fetches every URL cited in a footnote in the books and the status-labeled pages (about three thousand of them) and compares each with the previous week. When a source has changed, moved or disappeared, it opens a GitHub issue that lists the source under the chapter or page that cites it, quoting what was added. The same issue lists new publications from federal and vendor feeds that touch a book's topics, and every status-labeled page overdue for its 90-day review. The issues stay open until the chapters they name have been checked. How the watch works and what it can't see is described in [`scripts/source_watch/README.md`](https://github.com/WhalerMike/modernization-workbook/blob/main/scripts/source_watch/README.md).
 
-## Research: from draft to published
+## Status labels for guides, explainers, evaluations and training {#status-labels}
 
-New work doesn't start in a book. It starts on the [Research](../research/index.md) page and moves through four statuses:
+New work doesn't start in a book. It starts as a guide, an explainer, an evaluation, a training page or a reference page, in the section for its type, and moves through four statuses:
 
 1. **Draft:** being written. Expect gaps and changes.
 2. **In review:** complete and sourced, open for comment. Its conclusions may still change.
 3. **Proved:** reviewed, and validated in practice, for example in a lab, a pilot or a test tenant, with the evidence recorded on the page.
-4. **Published:** moved into the books. The research page stays as the record of its sources, review and evidence.
+4. **Published:** its findings are taken into the books. The page stays as the record of its sources, review and evidence.
 
-Every research page carries its status in a banner at the top, so it can't be mistaken for production guidance. Each page's **Status and review** section says what would move it to Proved.
+Until it is published, every such page carries its status in a banner at the top, so it can't be mistaken for production guidance. Each page's **Status and review** section says what would move it to Proved.
 
 Until research is Proved, a book takes it only as a link: a line pointing the reader to the research page, with no new claims in the book. Where a book already carries design that rests on research still in review, the book says so. The contractor PIV path in Books 03, 04 and 07 is the current example: each place it appears carries a **Pending proof** note pointing to the research page's Proved criteria.
 
@@ -81,7 +81,7 @@ The books never name a specific agency as their subject, and the workbook is ind
 
 ## Independent verification passes
 
-A claims log is written by whoever wrote the page, so it can share the page's blind spots. From time to time, a separate pass re-checks a set of pages without relying on their logs: it re-opens each cited source, fetching the raw page or the PDF's full text rather than a summary, and records one verdict per footnoted sentence (supported, partly supported, not supported, source changed, or couldn't open). It fixes mechanical errors directly (a wrong page number, a quote that isn't verbatim, a dead URL with an obvious replacement) and lists every substantive finding as a proposed fix for the author, so a claim isn't changed without review. The first such pass, in October 2026, covered the contractor-source and HR 2.0 shared-governance research and the contractor PIV path in the books. Its ledger is [`docs/research/_verification/verification-pass-2026-10.md`](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/research/_verification/verification-pass-2026-10.md).
+A claims log is written by whoever wrote the page, so it can share the page's blind spots. From time to time, a separate pass re-checks a set of pages without relying on their logs: it re-opens each cited source, fetching the raw page or the PDF's full text rather than a summary, and records one verdict per footnoted sentence (supported, partly supported, not supported, source changed, or couldn't open). It fixes mechanical errors directly (a wrong page number, a quote that isn't verbatim, a dead URL with an obvious replacement) and lists every substantive finding as a proposed fix for the author, so a claim isn't changed without review. The first such pass, in October 2026, covered the contractor-source and HR 2.0 shared-governance research and the contractor PIV path in the books. Its ledger is [`docs/about/_verification/verification-pass-2026-10.md`](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/about/_verification/verification-pass-2026-10.md).
 
 ## The limits
 

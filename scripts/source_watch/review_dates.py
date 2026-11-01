@@ -1,19 +1,22 @@
 #!/usr/bin/env python3
-"""List the research pages that are due for review, and the pages past their lifecycle review date.
+"""List the status-labeled pages that are due for review, and the pages past their lifecycle review date.
 
-A research page (`docs/research/*.md`, not the index) records when someone
-last checked it against its sources in its front matter:
+A status-labeled page is any page under `docs/` (not an index, and not under a
+folder or file starting with `_`) whose front matter has `research-status`,
+wherever it lives: guides and explainers under `docs/books/`, `docs/training/`,
+`docs/evaluations/`, `docs/reference/`. It records when someone last checked
+it against its sources in its front matter:
 
     last-reviewed: 2026-10-25
 
 A page is due when that date is more than MAX_AGE_DAYS (90) days old, or when
 it has no `last-reviewed` at all. The weekly source watch lists due pages in
 its issue, every week, until each is reviewed and its date updated. The
-research banner (assets/research-banner.lua) says the same thing on the page
+status banner (assets/research-banner.lua) says the same thing on the page
 itself when the site renders.
 
 Other published pages (`docs/**/*.md`, not under a folder or file starting
-with `_`, and not the research pages) may carry a lifecycle review date:
+with `_`, and not the status-labeled pages) may carry a lifecycle review date:
 
     lifecycle_review: 2027-04-01
 
@@ -36,7 +39,6 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 DOCS = ROOT / "docs"
-RESEARCH = DOCS / "research"
 MAX_AGE_DAYS = 90
 
 FRONT_MATTER = re.compile(r"\A---\s*\n(.*?)\n---\s*\n", re.S)
@@ -51,12 +53,17 @@ def front_matter(path: Path) -> dict[str, str]:
     return {k: v.strip("\"'") for k, v in FIELD.findall(m.group(1))}
 
 
-def due(today: dt.date | None = None, max_age: int = MAX_AGE_DAYS) -> list[dict]:
-    """Research pages never reviewed, or last reviewed more than max_age days ago, oldest first."""
+def skipped(rel: Path) -> bool:
+    """Files and folders starting with `_` (briefs, verification logs, includes)."""
+    return any(part.startswith("_") for part in rel.parts)
+
+
+def due(today: dt.date | None = None, max_age: int = MAX_AGE_DAYS, docs: Path = DOCS) -> list[dict]:
+    """Status-labeled pages never reviewed, or last reviewed more than max_age days ago, oldest first."""
     today = today or dt.date.today()
     out = []
-    for path in sorted(RESEARCH.glob("*.md")):
-        if path.name == "index.md" or path.name.startswith("_"):
+    for path in sorted(docs.rglob("*.md")):
+        if path.name == "index.md" or skipped(path.relative_to(docs)):
             continue
         meta = front_matter(path)
         if "research-status" not in meta:
@@ -71,7 +78,7 @@ def due(today: dt.date | None = None, max_age: int = MAX_AGE_DAYS) -> list[dict]
             continue
         out.append(
             {
-                "page": path.relative_to(ROOT).as_posix(),
+                "page": path.relative_to(docs.parent).as_posix(),
                 "title": meta.get("title", path.stem),
                 "status": meta.get("research-status", ""),
                 "last_reviewed": reviewed.isoformat() if reviewed else "",
@@ -87,10 +94,11 @@ def lifecycle_due(today: dt.date | None = None, docs: Path = DOCS) -> list[dict]
     today = today or dt.date.today()
     out = []
     for path in sorted(docs.rglob("*.md")):
-        rel = path.relative_to(docs)
-        if rel.parts[0] == "research" or any(part.startswith("_") for part in rel.parts):
+        if skipped(path.relative_to(docs)):
             continue
         meta = front_matter(path)
+        if "research-status" in meta:
+            continue  # status-labeled pages are listed by due(), on their review date
         raw = meta.get("lifecycle_review", "")
         try:
             review = dt.date.fromisoformat(raw[:10]) if raw else None
@@ -112,7 +120,7 @@ def lifecycle_due(today: dt.date | None = None, docs: Path = DOCS) -> list[dict]
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="List research pages due for review, and pages past their lifecycle review date.")
+    parser = argparse.ArgumentParser(description="List status-labeled pages due for review, and pages past their lifecycle review date.")
     parser.add_argument("--json", action="store_true", help="print the due pages as JSON")
     parser.add_argument("--max-age", type=int, default=MAX_AGE_DAYS, help="days before a review is due (default 90)")
     args = parser.parse_args()
@@ -122,7 +130,7 @@ def main() -> int:
         print(json.dumps({"research": rows, "lifecycle": lifecycle}, indent=2))
         return 0
     if not rows:
-        print(f"review dates: no research page is more than {args.max_age} days past its last review")
+        print(f"review dates: no status-labeled page is more than {args.max_age} days past its last review")
     for r in rows:
         when = f"last reviewed {r['last_reviewed']} ({r['age_days']} days)" if r["last_reviewed"] else "never reviewed"
         print(f"{r['page']}: {when}")

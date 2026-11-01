@@ -1,5 +1,5 @@
 // Book 09's SD-WAN Design on Cisco Catalyst SD-WAN — a narrated research deck (about 15 minutes) presenting the
-// implementation guide docs/research/cisco-sdwan-implementation.md: the ED 26-03 gate and the KEV floor, the
+// implementation guide docs/books/guides/cisco-sdwan-implementation.md: the ED 26-03 gate and the KEV floor, the
 // hosted-or-on-premises decision, the 12-hub fabric, policy and segmentation, hardening, certificates, FIPS and
 // Common Criteria, TIC 3.0, SSE and Microsoft 365, evidence, the phased build, risks, vendor asks and the example.
 // Build (Git Bash):  source /c/tmp/deckenv.sh && node build.js Research_Cisco_SDWAN.pptx

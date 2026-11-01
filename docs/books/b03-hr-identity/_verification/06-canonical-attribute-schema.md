@@ -59,7 +59,7 @@ Footnote keys renamed `c05-*` → `c06-*`. Every kept footnote was re-opened on 
 
 ## Additions, October 29, 2026
 
-One-line link added after the contractor options table to the research page that tests the contingent worker option. No new claims. Research page: `docs/research/oracle-contingent-worker-contractor-source.md` (its log: `docs/research/_verification/oracle-contingent-worker-contractor-source.md`).
+One-line link added after the contractor options table to the research page that tests the contingent worker option. No new claims. Research page: `docs/evaluations/oracle-contingent-worker-contractor-source.md` (its log: `docs/evaluations/_verification/oracle-contingent-worker-contractor-source.md`).
 
 ## Revision 2026-10-29 — four tracks and companion-guide alignment
 

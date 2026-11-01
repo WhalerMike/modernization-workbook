@@ -257,7 +257,7 @@ Three patterns cover most hybrid namespaces. Each needs a validation step from b
 
 Microsoft supports split horizon directly: a private and a public zone can share a name and give different answers inside a virtual network and on the internet.[^c07-azpdns] The private half of the delegation pattern must use forwarding, because the resolver cannot be the target of an NS delegation.[^c07-arch] Chapter 10 places the third pattern inside the book's migration sequence, and Chapter 02 explains why every split-horizon name must be published from one source of truth.
 
-For the Route 53 VPC Resolver in the same depth, with GovCloud differences, and for running BIND or vNIOS beside the native resolvers, see the research page [Cloud DNS on AWS, Azure and Oracle Cloud](../../research/cloud-dns-resolvers-infoblox-bind.md) (in review).
+For the Route 53 VPC Resolver in the same depth, with GovCloud differences, and for running BIND or vNIOS beside the native resolvers, see the research page [Cloud DNS on AWS, Azure and Oracle Cloud](../../evaluations/cloud-dns-resolvers-infoblox-bind.md) (in review).
 
 ## SDN–IPAM consistency across cloud providers and VMware
 

@@ -1,6 +1,6 @@
 name: Source watch
 
-# Weekly: checks every source the books and research pages cite (scripts/source_watch) and the
+# Weekly: checks every source the books and status-labeled pages cite (scripts/source_watch) and the
 # new-publication feeds (data/source-watch/feeds.json), then opens one issue
 # if anything changed. The run's state lives on the `source-watch-state`
 # branch, never on main: every push to main redeploys the site.

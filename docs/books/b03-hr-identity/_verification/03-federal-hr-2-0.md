@@ -63,7 +63,7 @@ Searches on 2026-10-20 for Federal HR 2.0 news after September 1, 2026 found not
 
 ## Addition, October 25, 2026: Oracle Core HCM to Entra implementation research
 
-Applied from the research page `docs/research/hcm-entra-implementation.md`; every source below was opened on Oct 25, 2026.
+Applied from the research page `docs/books/guides/hcm-entra-implementation.md`; every source below was opened on Oct 25, 2026.
 
 | # | Claim | Where | Verdict | Source note |
 |---|---|---|---|---|
@@ -81,4 +81,4 @@ Applied from the research page `docs/research/hcm-entra-implementation.md`; ever
 
 ## Additions, October 30, 2026
 
-A one-line link was added at the end of the paragraph saying HR 2.0 covers federal employees. It points to the research page `docs/research/hr2-shared-governance-fedramp-boundary.md`, whose log is `docs/research/_verification/hr2-shared-governance-fedramp-boundary.md`. The link adds no new claims.
+A one-line link was added at the end of the paragraph saying HR 2.0 covers federal employees. It points to the research page `docs/books/explainers/hr2-shared-governance-fedramp-boundary.md`, whose log is `docs/books/explainers/_verification/hr2-shared-governance-fedramp-boundary.md`. The link adds no new claims.

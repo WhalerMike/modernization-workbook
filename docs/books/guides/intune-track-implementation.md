@@ -134,7 +134,7 @@ The device resource describes the extension attributes as mastered in the cloud 
 
 1. **Exactly one writer.** The device provisioning service, app-only, is the only principal that writes device slots. It holds `Device.ReadWrite.All` and nothing broader, signs in with a certificate or managed identity, never a secret, and is an owned workload identity on the [non-person identity track](attribute-driven-migration.md#non-person-identity-track).
 2. **Write from the source, at registration and on change.** Values come from the asset record keyed on serial number; the service writes when enrollment completes and when the record changes, and logs the source record and change reference. Reconciliation corrects at the source ([Chapter 10](../b05-devices/10-operating-and-evidencing-the-fleet.md#device-inventory-reconciliation)).
-3. **Use the house Graph pattern**: per-cloud connection, paging, `Retry-After` on 429 and 503, batches of at most 20 ([automation reference](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/ms-automation); [Module 1](../../research/ms-automation-foundations.md)).
+3. **Use the house Graph pattern**: per-cloud connection, paging, `Retry-After` on 429 and 503, batches of at most 20 ([automation reference](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/ms-automation); [Module 1](../../training/ms-automation-foundations.md)).
 4. **Delegated writes are break-fix only**, by an Intune Administrator activated through PIM with an approval, using [Chapter 08's delegated sample](../b05-devices/08-gpo-to-intune-policy-migration.md#writing-a-device-attribute).
 
 ::: {.callout-warning}

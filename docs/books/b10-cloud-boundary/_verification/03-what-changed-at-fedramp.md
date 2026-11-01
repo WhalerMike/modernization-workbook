@@ -77,4 +77,4 @@ Source: `docs/whitepapers/fedramp-20x-and-the-commercial-feature-gap.md` (*What 
 
 ## Additions, October 30, 2026
 
-A one-line link was added at the end of "What changes for the agency". It points to the research page `docs/research/hr2-shared-governance-fedramp-boundary.md`, whose log is `docs/research/_verification/hr2-shared-governance-fedramp-boundary.md`. The link adds no new claims.
+A one-line link was added at the end of "What changes for the agency". It points to the research page `docs/books/explainers/hr2-shared-governance-fedramp-boundary.md`, whose log is `docs/books/explainers/_verification/hr2-shared-governance-fedramp-boundary.md`. The link adds no new claims.

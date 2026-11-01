@@ -34,7 +34,7 @@ Editor pass 2026-10-20. The appendix had no footnotes; external claims are now f
 
 ## Addition, October 25, 2026: Oracle Core HCM to Entra implementation research
 
-Applied from the research page `docs/research/hcm-entra-implementation.md`; every source below was opened on Oct 25, 2026.
+Applied from the research page `docs/books/guides/hcm-entra-implementation.md`; every source below was opened on Oct 25, 2026.
 
 | # | Claim | Where | Verdict | Source note |
 |---|---|---|---|---|
@@ -56,8 +56,8 @@ Added at the author's request. The path is set in Chapter 09, "The contractor PI
 
 ## Additions, October 30, 2026 (contractor PIV path marked pending proof)
 
-Added at the author's request during the independent verification pass (`docs/research/_verification/verification-pass-2026-10.md`). No content removed.
+Added at the author's request during the independent verification pass (`docs/about/_verification/verification-pass-2026-10.md`). No content removed.
 
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
-| 1 | "Pending proof": the contractor PIV path is the program's design and hasn't yet been validated in practice; links to the Proved criteria | "Contractor leavers", first line | restated-as-design (status statement; nothing external claimed) | `docs/research/oracle-contingent-worker-contractor-source.md#status-and-review` |
+| 1 | "Pending proof": the contractor PIV path is the program's design and hasn't yet been validated in practice; links to the Proved criteria | "Contractor leavers", first line | restated-as-design (status statement; nothing external claimed) | `docs/evaluations/oracle-contingent-worker-contractor-source.md#status-and-review` |

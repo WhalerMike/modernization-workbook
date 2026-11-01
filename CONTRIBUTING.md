@@ -16,6 +16,10 @@ This repository is a living project. Content is accepted when it meets the quali
 2. For new material, indicate whether it is a cleaned extraction or original content.
 3. Update the relevant section README and the root README index if the change adds a new entry point.
 
+### Where new work goes, and its status label
+
+New work goes in the section for its type, as on Microsoft Learn: a how-to guide in `docs/books/guides/`, an explainer in `docs/books/explainers/`, an evaluation (a product or technology choice) in `docs/evaluations/`, a learning path in `docs/training/`, and lookup tables in `docs/reference/`. Until it is reviewed and proved, a page carries `research-status` (`draft`, `in review`, `proved`, `published`) and `last-reviewed` in its front matter, and a claims log at `_verification/<page>.md` beside it. The banner filter (`assets/research-banner.lua`) labels the page, and the weekly source watch checks its sources and its review date. What each status means, and what moves a page to the next, is in [Status labels for guides, explainers, evaluations and training](docs/about/sources-and-verification.md#status-labels).
+
 ## Checking a pull request
 
 A full site render takes most of an hour, so pull requests get a tiered check instead: `scripts/check_changed.py`, which the **Pull request checks** workflow (`.github/workflows/pr-checks.yml`) runs on every pull request to `main`. It compares the branch with its base and picks one of three tiers.

@@ -72,7 +72,7 @@ The `manager` relationship carries approvals, reviews and org charts (Chapter 10
 
 ## Contractor leavers {#contractor-leavers}
 
-**Pending proof.** The contractor PIV path is the program's design and hasn't yet been validated in practice; the criteria for Proved are in the research page's [Status and review](../../research/oracle-contingent-worker-contractor-source.md#status-and-review).
+**Pending proof.** The contractor PIV path is the program's design and hasn't yet been validated in practice; the criteria for Proved are in the research page's [Status and review](../../evaluations/oracle-contingent-worker-contractor-source.md#status-and-review).
 
 Contractors have no separation action in HR, so the contractor source supplies the leaver, and these rules apply *(design guidance)*:
 
@@ -81,7 +81,7 @@ Contractors have no separation action in HR, so the contractor source supplies t
 - **The end date is the notice.** On the earliest end date the leaver sends the PIV office its termination notice, so the 18-hour clock for a card that can't be collected starts on that date ([Chapter 09](09-credentials-and-certificates.md#the-contractor-piv-path)).
 - **No record, no card.** A card request starts only from a contractor joiner, and a card with no contractor record is a drift finding, not a request to create one.
 
-The evidence for each rule, and how agencies source contractors today, is in the research page [Contractors as Oracle Contingent Workers](../../research/oracle-contingent-worker-contractor-source.md).
+The evidence for each rule, and how agencies source contractors today, is in the research page [Contractors as Oracle Contingent Workers](../../evaluations/oracle-contingent-worker-contractor-source.md).
 
 ## Rehire and conversion
 

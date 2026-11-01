@@ -26,7 +26,7 @@ Every narrated deck is also available as a 1080p MP4 video, with its matching `.
 
 New here? Start with the six-minute narrated executive briefing on the [Start Here](../start-here.md) page: why modernization begins with identity, and the first step leadership can approve.
 
-Research presentations that are still under review, such as product deep dives, are on the [Research](../research/index.md) page, not here.
+Presentations for pages that are still under review, such as product evaluations, are on those pages in [Evaluations](../evaluations/index.md), [Explainers](../books/explainers/index.md) and the [companion guides](../books/index.md#companion-guides), not here.
 
 ## Book presentations
 
