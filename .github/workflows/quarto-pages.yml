@@ -116,6 +116,17 @@ jobs:
         # from that workbook's landing page and the Downloads page.
         run: python3 scripts/build_start_kit_zip.py --kit attribute-driven-migration-code --out _site/downloads
 
+      - name: Build the other developer workbook and kit downloads
+        # downloads/<name>.zip for the Ticket-to-Machine, HR-Driven Identity, Privileged
+        # Access and Non-Person Identity workbooks, the Microsoft Automation learning path
+        # (each a bundle of its examples folders and pinned Microsoft samples: BUNDLES in
+        # build_start_kit_zip.py) and the Cisco SD-WAN kit, linked from the Downloads page,
+        # the workbooks' landing pages and the Watch page.
+        run: |
+          for kit in ticket-to-machine-code hr-driven-identity-code privileged-access-code non-person-identity-code microsoft-automation-code cisco-sdwan; do
+            python3 scripts/build_start_kit_zip.py --kit "$kit" --out _site/downloads
+          done
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 

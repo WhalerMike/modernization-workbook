@@ -8,7 +8,9 @@ Ansible companion guide links its example playbooks (--kit ansible, published as
 and the track implementation guides link the validation kit (--kit validation-kit).
 The developer workbook Building the Attribute-Driven Migration links the code its nine
 chapters build on (--kit attribute-driven-migration-code), a bundle of several examples
-folders rather than one: see BUNDLES.
+folders rather than one: see BUNDLES. The other developer workbooks and the Microsoft
+Automation learning path have their own bundles (ticket-to-machine-code and the rest), and
+the Downloads page links every kit, Cisco SD-WAN included.
 This packs the folder as
 it is in the repository, scripts, README, fixtures and tests, under a top-level <kit>/
 folder. The archive is reproducible: entries are sorted, timestamps fixed and
@@ -34,7 +36,9 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent
 KITS = ("start-kit", "copilot-agent-pack", "app-modernization", "ansible", "validation-kit",
-        "attribute-driven-migration-code")
+        "attribute-driven-migration-code", "ticket-to-machine-code", "hr-driven-identity-code",
+        "privileged-access-code", "non-person-identity-code", "microsoft-automation-code",
+        "cisco-sdwan")
 # Kits packed from several examples folders, each kept under its own path, instead of
 # from examples/<kit>. The Attribute-Driven Migration developer workbook's chapters 01-09
 # build on these folders and the Microsoft samples pinned under third_party/.
@@ -48,6 +52,37 @@ BUNDLES = {
         "third_party/azure-arc-role", "third_party/azure-login-action",
         "third_party/azure-login-oidc-sample",
     ),
+    # The other developer workbooks and the Microsoft Automation learning path: each workbook's
+    # kits, the shared drift pipeline and validation kit its chapters use, and the Microsoft
+    # pages and samples those kits read from third_party/.
+    "ticket-to-machine-code": ("servicenow-sailpoint",),
+    "hr-driven-identity-code": (
+        "hr-lifecycle", "hcm-entra", "lifecycle-extensions", "dynamic-rules", "drift-pipeline",
+        "validation-kit", "third_party/csv2scim", "third_party/dynamic-membership-samples",
+        "third_party/lifecycle-workflows-logic-app", "third_party/azure-login-action",
+        "third_party/azure-login-oidc-sample",
+    ),
+    "privileged-access-code": (
+        "privileged-access", "drift-pipeline", "validation-kit", "third_party/azure-pim-rest-examples",
+        "third_party/conditional-access-template-page", "third_party/entra-emergency-access-page",
+        "third_party/entra-pim-audit-page", "third_party/entra-role-assignments-page",
+        "third_party/graph-access-reviews-roles-tutorial", "third_party/graph-pim-for-groups-pages",
+        "third_party/graph-pim-rules-pages", "third_party/azure-login-action",
+        "third_party/azure-login-oidc-sample",
+    ),
+    "non-person-identity-code": (
+        "non-person-identity", "drift-pipeline", "validation-kit", "third_party/az-keyvault-certificate-help",
+        "third_party/entra-agent-id-pages", "third_party/entra-app-credentials-export-page",
+        "third_party/entra-app-management-policies-page", "third_party/entra-review-app-permissions-page",
+        "third_party/entra-service-account-choice-pages", "third_party/entra-service-account-pages",
+        "third_party/entra-wif-create-trust-pages", "third_party/entra-workload-identity-ca-page",
+        "third_party/graph-agent-id-api-pages", "third_party/graph-app-credential-policy-pages",
+        "third_party/graph-applications-tutorial-page", "third_party/graph-fic-create-page",
+        "third_party/msi-fic-rest-examples", "third_party/sentinel-app-credential-rule",
+        "third_party/windows-server-msa-pages", "third_party/azure-login-action",
+        "third_party/azure-login-oidc-sample",
+    ),
+    "microsoft-automation-code": ("ms-automation", "third_party/msgraph-snippets-python"),
 }
 # Kits whose download name differs from their folder name.
 ZIP_NAMES = {"ansible": "ansible-examples"}
