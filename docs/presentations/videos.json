@@ -9,6 +9,9 @@
   "vtt": "presentations/start-here/Start_Here_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/Start_Here_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/start-here/Start_Here_Narration_Script.md",
+  "page": "docs/start-here.html",
+  "source": "docs/start-here.md",
+  "kits": [],
   "chapters": [
    [
     0,
@@ -62,6 +65,9 @@
   "vtt": "presentations/start-02-first-four-weeks/Start_02_First_Four_Weeks_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/Start_02_First_Four_Weeks_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/start-02-first-four-weeks/Start_02_First_Four_Weeks_Narration_Script.md",
+  "page": "docs/start-here.html",
+  "source": "docs/start-here.md",
+  "kits": [],
   "chapters": [
    [
     0,
@@ -119,6 +125,9 @@
   "vtt": "presentations/start-03-foundation-to-g1/Start_03_Foundation_to_G1_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/Start_03_Foundation_to_G1_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/start-03-foundation-to-g1/Start_03_Foundation_to_G1_Narration_Script.md",
+  "page": "docs/start-here.html",
+  "source": "docs/start-here.md",
+  "kits": [],
   "chapters": [
    [
     0,
@@ -172,6 +181,9 @@
   "vtt": "presentations/start-04-making-the-case/Start_04_Making_the_Case_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/Start_04_Making_the_Case_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/start-04-making-the-case/Start_04_Making_the_Case_Narration_Script.md",
+  "page": "docs/start-here.html",
+  "source": "docs/start-here.md",
+  "kits": [],
   "chapters": [
    [
     0,
@@ -225,6 +237,30 @@
   "vtt": "presentations/attribute-driven-migration-deeper-dive-part-1/Attribute_Driven_Migration_Deeper_Dive_Part_1_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/Attribute_Driven_Migration_Deeper_Dive_Part_1_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/attribute-driven-migration-deeper-dive-part-1/Attribute_Driven_Migration_Deeper_Dive_Part_1_Narration_Script.md",
+  "page": "docs/books/guides/attribute-driven-migration-implementation.html",
+  "source": "docs/books/guides/attribute-driven-migration-implementation.md",
+  "kits": [
+   {
+    "name": "validation-kit",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/validation-kit",
+    "zip": "downloads/validation-kit.zip"
+   },
+   {
+    "name": "hcm-entra",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/hcm-entra",
+    "zip": null
+   },
+   {
+    "name": "start-kit",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/start-kit",
+    "zip": "downloads/start-kit.zip"
+   },
+   {
+    "name": "ms-automation",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/ms-automation",
+    "zip": null
+   }
+  ],
   "chapters": [
    [
     0,
@@ -306,6 +342,35 @@
   "vtt": "presentations/attribute-driven-migration-deeper-dive-part-2/Attribute_Driven_Migration_Deeper_Dive_Part_2_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/Attribute_Driven_Migration_Deeper_Dive_Part_2_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/attribute-driven-migration-deeper-dive-part-2/Attribute_Driven_Migration_Deeper_Dive_Part_2_Narration_Script.md",
+  "page": "docs/books/guides/attribute-driven-migration-implementation.html",
+  "source": "docs/books/guides/attribute-driven-migration-implementation.md",
+  "kits": [
+   {
+    "name": "ms-automation",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/ms-automation",
+    "zip": null
+   },
+   {
+    "name": "ansible",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/ansible",
+    "zip": "downloads/ansible-examples.zip"
+   },
+   {
+    "name": "validation-kit",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/validation-kit",
+    "zip": "downloads/validation-kit.zip"
+   },
+   {
+    "name": "start-kit",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/start-kit",
+    "zip": "downloads/start-kit.zip"
+   },
+   {
+    "name": "hcm-entra",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/hcm-entra",
+    "zip": null
+   }
+  ],
   "chapters": [
    [
     0,
@@ -383,6 +448,15 @@
   "vtt": "presentations/attribute-driven-migration-deeper-dive-part-3/Attribute_Driven_Migration_Deeper_Dive_Part_3_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/Attribute_Driven_Migration_Deeper_Dive_Part_3_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/attribute-driven-migration-deeper-dive-part-3/Attribute_Driven_Migration_Deeper_Dive_Part_3_Narration_Script.md",
+  "page": "docs/books/guides/attribute-driven-migration.html",
+  "source": "docs/books/guides/attribute-driven-migration.md",
+  "kits": [
+   {
+    "name": "validation-kit",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/validation-kit",
+    "zip": "downloads/validation-kit.zip"
+   }
+  ],
   "chapters": [
    [
     0,
@@ -464,6 +538,9 @@
   "vtt": "presentations/attribute-driven-migration-technical-part-1/Attribute_Driven_Migration_Technical_Part_1_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/Attribute_Driven_Migration_Technical_Part_1_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/attribute-driven-migration-technical-part-1/Attribute_Driven_Migration_Technical_Part_1_Narration_Script.md",
+  "page": "docs/books/guides/attribute-driven-migration.html",
+  "source": "docs/books/guides/attribute-driven-migration.md",
+  "kits": [],
   "chapters": [
    [
     0,
@@ -589,6 +666,9 @@
   "vtt": "presentations/attribute-driven-migration-technical-part-2/Attribute_Driven_Migration_Technical_Part_2_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/Attribute_Driven_Migration_Technical_Part_2_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/attribute-driven-migration-technical-part-2/Attribute_Driven_Migration_Technical_Part_2_Narration_Script.md",
+  "page": "docs/books/guides/attribute-driven-migration.html",
+  "source": "docs/books/guides/attribute-driven-migration.md",
+  "kits": [],
   "chapters": [
    [
     0,
@@ -714,6 +794,9 @@
   "vtt": "presentations/b00-orientation-executive/B00_Orientation_Executive_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/B00_Orientation_Executive_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b00-orientation-executive/B00_Orientation_Executive_Narration_Script.md",
+  "page": "docs/books/b00-orientation/index.html",
+  "source": "docs/books/b00-orientation/index.md",
+  "kits": [],
   "chapters": [
    [
     0,
@@ -807,6 +890,9 @@
   "vtt": "presentations/b00-orientation/B00_Orientation_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/B00_Orientation_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b00-orientation/B00_Orientation_Narration_Script.md",
+  "page": "docs/books/b00-orientation/index.html",
+  "source": "docs/books/b00-orientation/index.md",
+  "kits": [],
   "chapters": [
    [
     0,
@@ -872,6 +958,9 @@
   "vtt": "presentations/b01-transformation-arc-executive/B01_Transformation_Arc_Executive_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/B01_Transformation_Arc_Executive_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b01-transformation-arc-executive/B01_Transformation_Arc_Executive_Narration_Script.md",
+  "page": "docs/books/b01-transformation-arc/index.html",
+  "source": "docs/books/b01-transformation-arc/index.md",
+  "kits": [],
   "chapters": [
    [
     0,
@@ -965,6 +1054,9 @@
   "vtt": "presentations/b01-transformation-arc/B01_Transformation_Arc_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/B01_Transformation_Arc_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b01-transformation-arc/B01_Transformation_Arc_Narration_Script.md",
+  "page": "docs/books/b01-transformation-arc/index.html",
+  "source": "docs/books/b01-transformation-arc/index.md",
+  "kits": [],
   "chapters": [
    [
     0,
@@ -1046,6 +1138,9 @@
   "vtt": "presentations/b02-identity-executive/B02_Identity_Executive_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/B02_Identity_Executive_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b02-identity-executive/B02_Identity_Executive_Narration_Script.md",
+  "page": "docs/books/b02-identity/index.html",
+  "source": "docs/books/b02-identity/index.md",
+  "kits": [],
   "chapters": [
    [
     0,
@@ -1135,6 +1230,9 @@
   "vtt": "presentations/b02-identity/B02_Identity_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/B02_Identity_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b02-identity/B02_Identity_Narration_Script.md",
+  "page": "docs/books/b02-identity/index.html",
+  "source": "docs/books/b02-identity/index.md",
+  "kits": [],
   "chapters": [
    [
     0,
@@ -1196,6 +1294,9 @@
   "vtt": "presentations/b02-identity-technical/B02_Identity_Technical_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/B02_Identity_Technical_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b02-identity-technical/B02_Identity_Technical_Narration_Script.md",
+  "page": "docs/books/b02-identity/index.html",
+  "source": "docs/books/b02-identity/index.md",
+  "kits": [],
   "chapters": [
    [
     0,
@@ -1325,6 +1426,9 @@
   "vtt": "presentations/b03-hr-identity-executive/B03_HR_Identity_Executive_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/B03_HR_Identity_Executive_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b03-hr-identity-executive/B03_HR_Identity_Executive_Narration_Script.md",
+  "page": "docs/books/b03-hr-identity/index.html",
+  "source": "docs/books/b03-hr-identity/index.md",
+  "kits": [],
   "chapters": [
    [
     0,
@@ -1414,6 +1518,9 @@
   "vtt": "presentations/b03-hr-identity/B03_HR_Identity_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/B03_HR_Identity_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b03-hr-identity/B03_HR_Identity_Narration_Script.md",
+  "page": "docs/books/b03-hr-identity/index.html",
+  "source": "docs/books/b03-hr-identity/index.md",
+  "kits": [],
   "chapters": [
    [
     0,
@@ -1475,6 +1582,9 @@
   "vtt": "presentations/b03-hr-identity-technical/B03_HR_Identity_Technical_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/B03_HR_Identity_Technical_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b03-hr-identity-technical/B03_HR_Identity_Technical_Narration_Script.md",
+  "page": "docs/books/b03-hr-identity/index.html",
+  "source": "docs/books/b03-hr-identity/index.md",
+  "kits": [],
   "chapters": [
    [
     0,
@@ -1616,6 +1726,9 @@
   "vtt": "presentations/b04-access-executive/B04_Access_Executive_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/B04_Access_Executive_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b04-access-executive/B04_Access_Executive_Narration_Script.md",
+  "page": "docs/books/b04-access/index.html",
+  "source": "docs/books/b04-access/index.md",
+  "kits": [],
   "chapters": [
    [
     0,
@@ -1705,6 +1818,9 @@
   "vtt": "presentations/b04-access/B04_Access_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/B04_Access_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b04-access/B04_Access_Narration_Script.md",
+  "page": "docs/books/b04-access/index.html",
+  "source": "docs/books/b04-access/index.md",
+  "kits": [],
   "chapters": [
    [
     0,
@@ -1758,6 +1874,9 @@
   "vtt": "presentations/b04-access-technical/B04_Access_Technical_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/B04_Access_Technical_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b04-access-technical/B04_Access_Technical_Narration_Script.md",
+  "page": "docs/books/b04-access/index.html",
+  "source": "docs/books/b04-access/index.md",
+  "kits": [],
   "chapters": [
    [
     0,
@@ -1883,6 +2002,9 @@
   "vtt": "presentations/b05-devices-executive/B05_Devices_Executive_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/B05_Devices_Executive_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b05-devices-executive/B05_Devices_Executive_Narration_Script.md",
+  "page": "docs/books/b05-devices/index.html",
+  "source": "docs/books/b05-devices/index.md",
+  "kits": [],
   "chapters": [
    [
     0,
@@ -1980,6 +2102,9 @@
   "vtt": "presentations/b05-devices/B05_Devices_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/B05_Devices_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b05-devices/B05_Devices_Narration_Script.md",
+  "page": "docs/books/b05-devices/index.html",
+  "source": "docs/books/b05-devices/index.md",
+  "kits": [],
   "chapters": [
    [
     0,
@@ -2045,6 +2170,9 @@
   "vtt": "presentations/b05-devices-technical/B05_Devices_Technical_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/B05_Devices_Technical_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b05-devices-technical/B05_Devices_Technical_Narration_Script.md",
+  "page": "docs/books/b05-devices/index.html",
+  "source": "docs/books/b05-devices/index.md",
+  "kits": [],
   "chapters": [
    [
     0,
@@ -2186,6 +2314,9 @@
   "vtt": "presentations/b06-data-platform-executive/B06_Data_Platform_Executive_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/B06_Data_Platform_Executive_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b06-data-platform-executive/B06_Data_Platform_Executive_Narration_Script.md",
+  "page": "docs/books/b06-data-platform/index.html",
+  "source": "docs/books/b06-data-platform/index.md",
+  "kits": [],
   "chapters": [
    [
     0,
@@ -2279,6 +2410,9 @@
   "vtt": "presentations/b06-data-platform/B06_Data_Platform_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/B06_Data_Platform_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b06-data-platform/B06_Data_Platform_Narration_Script.md",
+  "page": "docs/books/b06-data-platform/index.html",
+  "source": "docs/books/b06-data-platform/index.md",
+  "kits": [],
   "chapters": [
    [
     0,
@@ -2336,6 +2470,9 @@
   "vtt": "presentations/b06-data-platform-technical/B06_Data_Platform_Technical_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/B06_Data_Platform_Technical_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b06-data-platform-technical/B06_Data_Platform_Technical_Narration_Script.md",
+  "page": "docs/books/b06-data-platform/index.html",
+  "source": "docs/books/b06-data-platform/index.md",
+  "kits": [],
   "chapters": [
    [
     0,
@@ -2461,6 +2598,9 @@
   "vtt": "presentations/b07-pki-executive/B07_PKI_Executive_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/B07_PKI_Executive_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b07-pki-executive/B07_PKI_Executive_Narration_Script.md",
+  "page": "docs/books/b07-pki/index.html",
+  "source": "docs/books/b07-pki/index.md",
+  "kits": [],
   "chapters": [
    [
     0,
@@ -2546,6 +2686,9 @@
   "vtt": "presentations/b07-pki/B07_PKI_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/B07_PKI_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b07-pki/B07_PKI_Narration_Script.md",
+  "page": "docs/books/b07-pki/index.html",
+  "source": "docs/books/b07-pki/index.md",
+  "kits": [],
   "chapters": [
    [
     0,
@@ -2611,6 +2754,9 @@
   "vtt": "presentations/b07-pki-technical/B07_PKI_Technical_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/B07_PKI_Technical_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b07-pki-technical/B07_PKI_Technical_Narration_Script.md",
+  "page": "docs/books/b07-pki/index.html",
+  "source": "docs/books/b07-pki/index.md",
+  "kits": [],
   "chapters": [
    [
     0,
@@ -2744,6 +2890,9 @@
   "vtt": "presentations/b08-ddi-executive/B08_DDI_Executive_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/B08_DDI_Executive_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b08-ddi-executive/B08_DDI_Executive_Narration_Script.md",
+  "page": "docs/books/b08-ddi/index.html",
+  "source": "docs/books/b08-ddi/index.md",
+  "kits": [],
   "chapters": [
    [
     0,
@@ -2833,6 +2982,9 @@
   "vtt": "presentations/b08-ddi/B08_DDI_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/B08_DDI_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b08-ddi/B08_DDI_Narration_Script.md",
+  "page": "docs/books/b08-ddi/index.html",
+  "source": "docs/books/b08-ddi/index.md",
+  "kits": [],
   "chapters": [
    [
     0,
@@ -2902,6 +3054,9 @@
   "vtt": "presentations/b08-ddi-technical/B08_DDI_Technical_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/B08_DDI_Technical_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b08-ddi-technical/B08_DDI_Technical_Narration_Script.md",
+  "page": "docs/books/b08-ddi/index.html",
+  "source": "docs/books/b08-ddi/index.md",
+  "kits": [],
   "chapters": [
    [
     0,
@@ -3031,6 +3186,9 @@
   "vtt": "presentations/b09-network-executive/B09_Network_Executive_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/B09_Network_Executive_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b09-network-executive/B09_Network_Executive_Narration_Script.md",
+  "page": "docs/books/b09-network/index.html",
+  "source": "docs/books/b09-network/index.md",
+  "kits": [],
   "chapters": [
    [
     0,
@@ -3108,6 +3266,9 @@
   "vtt": "presentations/b09-network/B09_Network_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/B09_Network_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b09-network/B09_Network_Narration_Script.md",
+  "page": "docs/books/b09-network/index.html",
+  "source": "docs/books/b09-network/index.md",
+  "kits": [],
   "chapters": [
    [
     0,
@@ -3181,6 +3342,9 @@
   "vtt": "presentations/b09-network-technical/B09_Network_Technical_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/B09_Network_Technical_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b09-network-technical/B09_Network_Technical_Narration_Script.md",
+  "page": "docs/books/b09-network/index.html",
+  "source": "docs/books/b09-network/index.md",
+  "kits": [],
   "chapters": [
    [
     0,
@@ -3322,6 +3486,9 @@
   "vtt": "presentations/b09-sdwan-technical/B09_SDWAN_Technical_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/B09_SDWAN_Technical_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b09-sdwan-technical/B09_SDWAN_Technical_Narration_Script.md",
+  "page": "docs/books/b09-network/index.html",
+  "source": "docs/books/b09-network/index.md",
+  "kits": [],
   "chapters": [
    [
     0,
@@ -3459,6 +3626,9 @@
   "vtt": "presentations/b09-sdwan-executive/B09_SDWAN_Executive_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/B09_SDWAN_Executive_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b09-sdwan-executive/B09_SDWAN_Executive_Narration_Script.md",
+  "page": "docs/books/b09-network/11-field-office-wan-transformation.html",
+  "source": "docs/books/b09-network/11-field-office-wan-transformation.md",
+  "kits": [],
   "chapters": [
    [
     0,
@@ -3520,6 +3690,9 @@
   "vtt": "presentations/b10-cloud-boundary-executive/B10_Cloud_Boundary_Executive_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/B10_Cloud_Boundary_Executive_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b10-cloud-boundary-executive/B10_Cloud_Boundary_Executive_Narration_Script.md",
+  "page": "docs/books/b10-cloud-boundary/index.html",
+  "source": "docs/books/b10-cloud-boundary/index.md",
+  "kits": [],
   "chapters": [
    [
     0,
@@ -3597,6 +3770,9 @@
   "vtt": "presentations/b10-cloud-boundary/B10_Cloud_Boundary_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/B10_Cloud_Boundary_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b10-cloud-boundary/B10_Cloud_Boundary_Narration_Script.md",
+  "page": "docs/books/b10-cloud-boundary/index.html",
+  "source": "docs/books/b10-cloud-boundary/index.md",
+  "kits": [],
   "chapters": [
    [
     0,
@@ -3670,6 +3846,9 @@
   "vtt": "presentations/b10-cloud-boundary-technical/B10_Cloud_Boundary_Technical_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/B10_Cloud_Boundary_Technical_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b10-cloud-boundary-technical/B10_Cloud_Boundary_Technical_Narration_Script.md",
+  "page": "docs/books/b10-cloud-boundary/index.html",
+  "source": "docs/books/b10-cloud-boundary/index.md",
+  "kits": [],
   "chapters": [
    [
     0,
@@ -3811,6 +3990,9 @@
   "vtt": "presentations/b11-zero-trust-executive/B11_Zero_Trust_Executive_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/B11_Zero_Trust_Executive_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b11-zero-trust-executive/B11_Zero_Trust_Executive_Narration_Script.md",
+  "page": "docs/books/b11-zero-trust/index.html",
+  "source": "docs/books/b11-zero-trust/index.md",
+  "kits": [],
   "chapters": [
    [
     0,
@@ -3888,6 +4070,9 @@
   "vtt": "presentations/b11-zero-trust/B11_Zero_Trust_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/B11_Zero_Trust_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b11-zero-trust/B11_Zero_Trust_Narration_Script.md",
+  "page": "docs/books/b11-zero-trust/index.html",
+  "source": "docs/books/b11-zero-trust/index.md",
+  "kits": [],
   "chapters": [
    [
     0,
@@ -3957,6 +4142,9 @@
   "vtt": "presentations/b11-zero-trust-technical/B11_Zero_Trust_Technical_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/B11_Zero_Trust_Technical_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b11-zero-trust-technical/B11_Zero_Trust_Technical_Narration_Script.md",
+  "page": "docs/books/b11-zero-trust/index.html",
+  "source": "docs/books/b11-zero-trust/index.md",
+  "kits": [],
   "chapters": [
    [
     0,
@@ -4098,6 +4286,9 @@
   "vtt": "presentations/b12-security-operations-executive/B12_Security_Operations_Executive_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/B12_Security_Operations_Executive_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b12-security-operations-executive/B12_Security_Operations_Executive_Narration_Script.md",
+  "page": "docs/books/b12-security-operations/index.html",
+  "source": "docs/books/b12-security-operations/index.md",
+  "kits": [],
   "chapters": [
    [
     0,
@@ -4187,6 +4378,9 @@
   "vtt": "presentations/b12-security-operations/B12_Security_Operations_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/B12_Security_Operations_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b12-security-operations/B12_Security_Operations_Narration_Script.md",
+  "page": "docs/books/b12-security-operations/index.html",
+  "source": "docs/books/b12-security-operations/index.md",
+  "kits": [],
   "chapters": [
    [
     0,
@@ -4256,6 +4450,9 @@
   "vtt": "presentations/b12-security-operations-technical/B12_Security_Operations_Technical_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/B12_Security_Operations_Technical_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b12-security-operations-technical/B12_Security_Operations_Technical_Narration_Script.md",
+  "page": "docs/books/b12-security-operations/index.html",
+  "source": "docs/books/b12-security-operations/index.md",
+  "kits": [],
   "chapters": [
    [
     0,
@@ -4397,6 +4594,9 @@
   "vtt": "presentations/b13-governance-executive/B13_Governance_Executive_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/B13_Governance_Executive_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b13-governance-executive/B13_Governance_Executive_Narration_Script.md",
+  "page": "docs/books/b13-governance/index.html",
+  "source": "docs/books/b13-governance/index.md",
+  "kits": [],
   "chapters": [
    [
     0,
@@ -4486,6 +4686,9 @@
   "vtt": "presentations/b13-governance/B13_Governance_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/B13_Governance_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b13-governance/B13_Governance_Narration_Script.md",
+  "page": "docs/books/b13-governance/index.html",
+  "source": "docs/books/b13-governance/index.md",
+  "kits": [],
   "chapters": [
    [
     0,
@@ -4555,6 +4758,9 @@
   "vtt": "presentations/b13-governance-technical/B13_Governance_Technical_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/B13_Governance_Technical_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b13-governance-technical/B13_Governance_Technical_Narration_Script.md",
+  "page": "docs/books/b13-governance/index.html",
+  "source": "docs/books/b13-governance/index.md",
+  "kits": [],
   "chapters": [
    [
     0,
@@ -4696,6 +4902,9 @@
   "vtt": "presentations/b13-ticket-to-machine/B13_Ticket_to_Machine_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/B13_Ticket_to_Machine_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b13-ticket-to-machine/B13_Ticket_to_Machine_Narration_Script.md",
+  "page": "docs/books/b13-governance/appendix-b-ticket-to-machine-reference.html",
+  "source": "docs/books/b13-governance/appendix-b-ticket-to-machine-reference.md",
+  "kits": [],
   "chapters": [
    [
     0,
@@ -4777,6 +4986,9 @@
   "vtt": "presentations/b14-compliance-executive/B14_Compliance_Executive_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/B14_Compliance_Executive_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b14-compliance-executive/B14_Compliance_Executive_Narration_Script.md",
+  "page": "docs/books/b14-compliance/index.html",
+  "source": "docs/books/b14-compliance/index.md",
+  "kits": [],
   "chapters": [
    [
     0,
@@ -4866,6 +5078,9 @@
   "vtt": "presentations/b14-compliance/B14_Compliance_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/B14_Compliance_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b14-compliance/B14_Compliance_Narration_Script.md",
+  "page": "docs/books/b14-compliance/index.html",
+  "source": "docs/books/b14-compliance/index.md",
+  "kits": [],
   "chapters": [
    [
     0,
@@ -4931,6 +5146,20 @@
   "vtt": "presentations/b15-inhouse-automation-executive/B15_InHouse_Automation_Executive_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/B15_InHouse_Automation_Executive_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b15-inhouse-automation-executive/B15_InHouse_Automation_Executive_Narration_Script.md",
+  "page": "docs/books/b15-day2-operations/13-building-day-two-automation-in-house.html",
+  "source": "docs/books/b15-day2-operations/13-building-day-two-automation-in-house.md",
+  "kits": [
+   {
+    "name": "servicenow-sailpoint",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/servicenow-sailpoint",
+    "zip": null
+   },
+   {
+    "name": "copilot-agent-pack",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/copilot-agent-pack",
+    "zip": "downloads/copilot-agent-pack.zip"
+   }
+  ],
   "chapters": [
    [
     0,
@@ -4992,6 +5221,9 @@
   "vtt": "presentations/b15-day2-operations-executive/B15_Day2_Operations_Executive_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/B15_Day2_Operations_Executive_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b15-day2-operations-executive/B15_Day2_Operations_Executive_Narration_Script.md",
+  "page": "docs/books/b15-day2-operations/index.html",
+  "source": "docs/books/b15-day2-operations/index.md",
+  "kits": [],
   "chapters": [
    [
     0,
@@ -5077,6 +5309,9 @@
   "vtt": "presentations/b15-day2-operations/B15_Day2_Operations_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/B15_Day2_Operations_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b15-day2-operations/B15_Day2_Operations_Narration_Script.md",
+  "page": "docs/books/b15-day2-operations/index.html",
+  "source": "docs/books/b15-day2-operations/index.md",
+  "kits": [],
   "chapters": [
    [
     0,
@@ -5142,6 +5377,9 @@
   "vtt": "presentations/b15-day2-operations-technical/B15_Day2_Operations_Technical_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/B15_Day2_Operations_Technical_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b15-day2-operations-technical/B15_Day2_Operations_Technical_Narration_Script.md",
+  "page": "docs/books/b15-day2-operations/index.html",
+  "source": "docs/books/b15-day2-operations/index.md",
+  "kits": [],
   "chapters": [
    [
     0,
@@ -5271,6 +5509,9 @@
   "vtt": "presentations/b16-people-executive/B16_People_Executive_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/B16_People_Executive_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b16-people-executive/B16_People_Executive_Narration_Script.md",
+  "page": "docs/books/b16-people/index.html",
+  "source": "docs/books/b16-people/index.md",
+  "kits": [],
   "chapters": [
    [
     0,
@@ -5364,6 +5605,9 @@
   "vtt": "presentations/b16-people/B16_People_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/B16_People_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b16-people/B16_People_Narration_Script.md",
+  "page": "docs/books/b16-people/index.html",
+  "source": "docs/books/b16-people/index.md",
+  "kits": [],
   "chapters": [
    [
     0,
@@ -5433,6 +5677,9 @@
   "vtt": "presentations/b17-ai-identity-executive/B17_AI_Identity_Executive_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/B17_AI_Identity_Executive_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b17-ai-identity-executive/B17_AI_Identity_Executive_Narration_Script.md",
+  "page": "docs/books/b17-ai-identity/index.html",
+  "source": "docs/books/b17-ai-identity/index.md",
+  "kits": [],
   "chapters": [
    [
     0,
@@ -5518,6 +5765,9 @@
   "vtt": "presentations/b17-ai-identity/B17_AI_Identity_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/B17_AI_Identity_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b17-ai-identity/B17_AI_Identity_Narration_Script.md",
+  "page": "docs/books/b17-ai-identity/index.html",
+  "source": "docs/books/b17-ai-identity/index.md",
+  "kits": [],
   "chapters": [
    [
     0,
@@ -5587,6 +5837,9 @@
   "vtt": "presentations/b17-ai-identity-technical/B17_AI_Identity_Technical_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/B17_AI_Identity_Technical_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b17-ai-identity-technical/B17_AI_Identity_Technical_Narration_Script.md",
+  "page": "docs/books/b17-ai-identity/index.html",
+  "source": "docs/books/b17-ai-identity/index.md",
+  "kits": [],
   "chapters": [
    [
     0,
@@ -5728,6 +5981,15 @@
   "vtt": "presentations/b18-application-modernization-executive/B18_Application_Modernization_Executive_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/B18_Application_Modernization_Executive_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b18-application-modernization-executive/B18_Application_Modernization_Executive_Narration_Script.md",
+  "page": "docs/books/b18-application-modernization/index.html",
+  "source": "docs/books/b18-application-modernization/index.md",
+  "kits": [
+   {
+    "name": "app-modernization",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/app-modernization",
+    "zip": "downloads/app-modernization.zip"
+   }
+  ],
   "chapters": [
    [
     0,
@@ -5821,6 +6083,15 @@
   "vtt": "presentations/b18-application-modernization/B18_Application_Modernization_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/B18_Application_Modernization_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b18-application-modernization/B18_Application_Modernization_Narration_Script.md",
+  "page": "docs/books/b18-application-modernization/index.html",
+  "source": "docs/books/b18-application-modernization/index.md",
+  "kits": [
+   {
+    "name": "app-modernization",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/app-modernization",
+    "zip": "downloads/app-modernization.zip"
+   }
+  ],
   "chapters": [
    [
     0,
@@ -5886,6 +6157,15 @@
   "vtt": "presentations/b18-application-modernization-technical/B18_Application_Modernization_Technical_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/B18_Application_Modernization_Technical_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b18-application-modernization-technical/B18_Application_Modernization_Technical_Narration_Script.md",
+  "page": "docs/books/b18-application-modernization/index.html",
+  "source": "docs/books/b18-application-modernization/index.md",
+  "kits": [
+   {
+    "name": "app-modernization",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/app-modernization",
+    "zip": "downloads/app-modernization.zip"
+   }
+  ],
   "chapters": [
    [
     0,
@@ -6035,6 +6315,15 @@
   "vtt": "presentations/ttm-story-one-drift-case/TTM_Story_One_Drift_Case_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/TTM_Story_One_Drift_Case_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/ttm-story-one-drift-case/TTM_Story_One_Drift_Case_Narration_Script.md",
+  "page": "docs/project-plans/developer-workbooks/ticket-to-machine/index.html",
+  "source": "docs/project-plans/developer-workbooks/ticket-to-machine/index.md",
+  "kits": [
+   {
+    "name": "servicenow-sailpoint",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/servicenow-sailpoint",
+    "zip": null
+   }
+  ],
   "chapters": [
    [
     0,
@@ -6148,6 +6437,15 @@
   "vtt": "presentations/guide-ansible-technical/Guide_Ansible_Technical_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/Guide_Ansible_Technical_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/guide-ansible-technical/Guide_Ansible_Technical_Narration_Script.md",
+  "page": "docs/books/guides/ansible-configuration-automation.html",
+  "source": "docs/books/guides/ansible-configuration-automation.md",
+  "kits": [
+   {
+    "name": "ansible",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/ansible",
+    "zip": "downloads/ansible-examples.zip"
+   }
+  ],
   "chapters": [
    [
     0,
@@ -6277,6 +6575,9 @@
   "vtt": "presentations/guide-effective-meetings/Guide_Effective_Meetings_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/Guide_Effective_Meetings_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/guide-effective-meetings/Guide_Effective_Meetings_Narration_Script.md",
+  "page": "docs/books/guides/effective-meetings.html",
+  "source": "docs/books/guides/effective-meetings.md",
+  "kits": [],
   "chapters": [
    [
     0,
@@ -6378,6 +6679,30 @@
   "vtt": "presentations/hr-driven-identity-implementation-part-1/HR_Driven_Identity_Implementation_Part_1_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/HR_Driven_Identity_Implementation_Part_1_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/hr-driven-identity-implementation-part-1/HR_Driven_Identity_Implementation_Part_1_Narration_Script.md",
+  "page": "docs/books/guides/hr-driven-identity-implementation.html",
+  "source": "docs/books/guides/hr-driven-identity-implementation.md",
+  "kits": [
+   {
+    "name": "hr-lifecycle",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/hr-lifecycle",
+    "zip": null
+   },
+   {
+    "name": "hcm-entra",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/hcm-entra",
+    "zip": null
+   },
+   {
+    "name": "validation-kit",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/validation-kit",
+    "zip": "downloads/validation-kit.zip"
+   },
+   {
+    "name": "lifecycle-extensions",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/lifecycle-extensions",
+    "zip": null
+   }
+  ],
   "chapters": [
    [
     0,
@@ -6455,6 +6780,35 @@
   "vtt": "presentations/hr-driven-identity-implementation-part-2/HR_Driven_Identity_Implementation_Part_2_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/HR_Driven_Identity_Implementation_Part_2_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/hr-driven-identity-implementation-part-2/HR_Driven_Identity_Implementation_Part_2_Narration_Script.md",
+  "page": "docs/books/guides/hr-driven-identity-implementation.html",
+  "source": "docs/books/guides/hr-driven-identity-implementation.md",
+  "kits": [
+   {
+    "name": "hr-lifecycle",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/hr-lifecycle",
+    "zip": null
+   },
+   {
+    "name": "drift-pipeline",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/drift-pipeline",
+    "zip": null
+   },
+   {
+    "name": "validation-kit",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/validation-kit",
+    "zip": "downloads/validation-kit.zip"
+   },
+   {
+    "name": "lifecycle-extensions",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/lifecycle-extensions",
+    "zip": null
+   },
+   {
+    "name": "hcm-entra",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/hcm-entra",
+    "zip": null
+   }
+  ],
   "chapters": [
    [
     0,
@@ -6532,6 +6886,20 @@
   "vtt": "presentations/ttm-servicenow-sailpoint-implementation-part-1/TTM_ServiceNow_SailPoint_Implementation_Part_1_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/TTM_ServiceNow_SailPoint_Implementation_Part_1_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/ttm-servicenow-sailpoint-implementation-part-1/TTM_ServiceNow_SailPoint_Implementation_Part_1_Narration_Script.md",
+  "page": "docs/books/guides/ttm-servicenow-sailpoint.html",
+  "source": "docs/books/guides/ttm-servicenow-sailpoint.md",
+  "kits": [
+   {
+    "name": "servicenow-sailpoint",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/servicenow-sailpoint",
+    "zip": null
+   },
+   {
+    "name": "validation-kit",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/validation-kit",
+    "zip": "downloads/validation-kit.zip"
+   }
+  ],
   "chapters": [
    [
     0,
@@ -6613,6 +6981,20 @@
   "vtt": "presentations/ttm-servicenow-sailpoint-implementation-part-2/TTM_ServiceNow_SailPoint_Implementation_Part_2_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/TTM_ServiceNow_SailPoint_Implementation_Part_2_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/ttm-servicenow-sailpoint-implementation-part-2/TTM_ServiceNow_SailPoint_Implementation_Part_2_Narration_Script.md",
+  "page": "docs/books/guides/ttm-servicenow-sailpoint.html",
+  "source": "docs/books/guides/ttm-servicenow-sailpoint.md",
+  "kits": [
+   {
+    "name": "servicenow-sailpoint",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/servicenow-sailpoint",
+    "zip": null
+   },
+   {
+    "name": "validation-kit",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/validation-kit",
+    "zip": "downloads/validation-kit.zip"
+   }
+  ],
   "chapters": [
    [
     0,
@@ -6686,6 +7068,9 @@
   "vtt": "presentations/research-ddi-requirements/B08_DDI_Requirements_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/B08_DDI_Requirements_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/research-ddi-requirements/B08_DDI_Requirements_Narration_Script.md",
+  "page": "docs/books/explainers/ddi-platform-requirements.html",
+  "source": "docs/books/explainers/ddi-platform-requirements.md",
+  "kits": [],
   "chapters": [
    [
     0,
@@ -6763,6 +7148,15 @@
   "vtt": "presentations/research-cisco-sdwan/Research_Cisco_SDWAN_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/Research_Cisco_SDWAN_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/research-cisco-sdwan/Research_Cisco_SDWAN_Narration_Script.md",
+  "page": "docs/books/guides/cisco-sdwan-implementation.html",
+  "source": "docs/books/guides/cisco-sdwan-implementation.md",
+  "kits": [
+   {
+    "name": "cisco-sdwan",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/cisco-sdwan",
+    "zip": null
+   }
+  ],
   "chapters": [
    [
     0,
@@ -6856,6 +7250,9 @@
   "vtt": "presentations/research-cyberark-clm/Research_CyberArk_CLM_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/Research_CyberArk_CLM_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/research-cyberark-clm/Research_CyberArk_CLM_Narration_Script.md",
+  "page": "docs/books/guides/cyberark-certificate-lifecycle.html",
+  "source": "docs/books/guides/cyberark-certificate-lifecycle.md",
+  "kits": [],
   "chapters": [
    [
     0,
@@ -7005,6 +7402,9 @@
   "vtt": "presentations/research-hybrid-credentials/Research_Hybrid_Credentials_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/Research_Hybrid_Credentials_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/research-hybrid-credentials/Research_Hybrid_Credentials_Narration_Script.md",
+  "page": "docs/books/explainers/hybrid-credentials.html",
+  "source": "docs/books/explainers/hybrid-credentials.md",
+  "kits": [],
   "chapters": [
    [
     0,
@@ -7086,6 +7486,9 @@
   "vtt": "presentations/research-cloud-dns-part-1/Research_Cloud_DNS_Part_1_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/Research_Cloud_DNS_Part_1_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/research-cloud-dns-part-1/Research_Cloud_DNS_Part_1_Narration_Script.md",
+  "page": "docs/evaluations/cloud-dns-resolvers-infoblox-bind.html",
+  "source": "docs/evaluations/cloud-dns-resolvers-infoblox-bind.md",
+  "kits": [],
   "chapters": [
    [
     0,
@@ -7167,6 +7570,9 @@
   "vtt": "presentations/research-cloud-dns-part-2/Research_Cloud_DNS_Part_2_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/Research_Cloud_DNS_Part_2_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/research-cloud-dns-part-2/Research_Cloud_DNS_Part_2_Narration_Script.md",
+  "page": "docs/evaluations/cloud-dns-resolvers-infoblox-bind.html",
+  "source": "docs/evaluations/cloud-dns-resolvers-infoblox-bind.md",
+  "kits": [],
   "chapters": [
    [
     0,
@@ -7248,6 +7654,9 @@
   "vtt": "presentations/research-hr-identity-dns/Research_HR_Identity_DNS_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/Research_HR_Identity_DNS_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/research-hr-identity-dns/Research_HR_Identity_DNS_Narration_Script.md",
+  "page": "docs/books/explainers/hr-identity-dns.html",
+  "source": "docs/books/explainers/hr-identity-dns.md",
+  "kits": [],
   "chapters": [
    [
     0,
@@ -7309,6 +7718,9 @@
   "vtt": "presentations/research-infoblox-impl/Research_Infoblox_Impl_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/Research_Infoblox_Impl_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/research-infoblox-impl/Research_Infoblox_Impl_Narration_Script.md",
+  "page": "docs/books/guides/infoblox-nios-implementation.html",
+  "source": "docs/books/guides/infoblox-nios-implementation.md",
+  "kits": [],
   "chapters": [
    [
     0,
@@ -7438,6 +7850,9 @@
   "vtt": "presentations/research-infoblox-ddi/Infoblox_DDI_Federal_Deep_Dive_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/Infoblox_DDI_Federal_Deep_Dive_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/research-infoblox-ddi/Infoblox_DDI_Federal_Deep_Dive_Narration_Script.md",
+  "page": "docs/evaluations/infoblox-ddi-federal.html",
+  "source": "docs/evaluations/infoblox-ddi-federal.md",
+  "kits": [],
   "chapters": [
    [
     0,
@@ -7587,6 +8002,9 @@
   "vtt": "presentations/research-trinzic-multicloud/Research_Trinzic_MultiCloud_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/Research_Trinzic_MultiCloud_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/research-trinzic-multicloud/Research_Trinzic_MultiCloud_Narration_Script.md",
+  "page": "docs/evaluations/trinzic-multicloud-ddi.html",
+  "source": "docs/evaluations/trinzic-multicloud-ddi.md",
+  "kits": [],
   "chapters": [
    [
     0,
@@ -7640,6 +8058,9 @@
   "vtt": "presentations/research-device-naming/Research_Device_Naming_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/Research_Device_Naming_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/research-device-naming/Research_Device_Naming_Narration_Script.md",
+  "page": "docs/books/explainers/device-naming-after-ad.html",
+  "source": "docs/books/explainers/device-naming-after-ad.md",
+  "kits": [],
   "chapters": [
    [
     0,
@@ -7705,6 +8126,20 @@
   "vtt": "presentations/research-ttm-servicenow-sailpoint/Research_TTM_ServiceNow_SailPoint_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/Research_TTM_ServiceNow_SailPoint_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/research-ttm-servicenow-sailpoint/Research_TTM_ServiceNow_SailPoint_Narration_Script.md",
+  "page": "docs/books/guides/ttm-servicenow-sailpoint.html",
+  "source": "docs/books/guides/ttm-servicenow-sailpoint.md",
+  "kits": [
+   {
+    "name": "servicenow-sailpoint",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/servicenow-sailpoint",
+    "zip": null
+   },
+   {
+    "name": "validation-kit",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/validation-kit",
+    "zip": "downloads/validation-kit.zip"
+   }
+  ],
   "chapters": [
    [
     0,
@@ -7770,6 +8205,15 @@
   "vtt": "presentations/dw-npi-01-inventory-as-code/DW_NPI_01_Inventory_as_Code_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/DW_NPI_01_Inventory_as_Code_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-npi-01-inventory-as-code/DW_NPI_01_Inventory_as_Code_Narration_Script.md",
+  "page": "docs/project-plans/developer-workbooks/non-person-identity/01-non-person-identity-inventory-as-code.html",
+  "source": "docs/project-plans/developer-workbooks/non-person-identity/01-non-person-identity-inventory-as-code.md",
+  "kits": [
+   {
+    "name": "non-person-identity",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/non-person-identity",
+    "zip": null
+   }
+  ],
   "chapters": [
    [
     0,
@@ -7855,6 +8299,15 @@
   "vtt": "presentations/dw-npi-02-ownership-orphan-rule/DW_NPI_02_Ownership_Orphan_Rule_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/DW_NPI_02_Ownership_Orphan_Rule_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-npi-02-ownership-orphan-rule/DW_NPI_02_Ownership_Orphan_Rule_Narration_Script.md",
+  "page": "docs/project-plans/developer-workbooks/non-person-identity/02-ownership-and-the-orphan-rule.html",
+  "source": "docs/project-plans/developer-workbooks/non-person-identity/02-ownership-and-the-orphan-rule.md",
+  "kits": [
+   {
+    "name": "non-person-identity",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/non-person-identity",
+    "zip": null
+   }
+  ],
   "chapters": [
    [
     0,
@@ -7936,6 +8389,15 @@
   "vtt": "presentations/dw-npi-03-migration-path-matrix/DW_NPI_03_Migration_Path_Matrix_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/DW_NPI_03_Migration_Path_Matrix_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-npi-03-migration-path-matrix/DW_NPI_03_Migration_Path_Matrix_Narration_Script.md",
+  "page": "docs/project-plans/developer-workbooks/non-person-identity/03-the-migration-path-matrix-as-code.html",
+  "source": "docs/project-plans/developer-workbooks/non-person-identity/03-the-migration-path-matrix-as-code.md",
+  "kits": [
+   {
+    "name": "non-person-identity",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/non-person-identity",
+    "zip": null
+   }
+  ],
   "chapters": [
    [
     0,
@@ -8021,6 +8483,15 @@
   "vtt": "presentations/dw-npi-04-app-policy-rotation/DW_NPI_04_App_Policy_Rotation_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/DW_NPI_04_App_Policy_Rotation_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-npi-04-app-policy-rotation/DW_NPI_04_App_Policy_Rotation_Narration_Script.md",
+  "page": "docs/project-plans/developer-workbooks/non-person-identity/04-app-management-policies-and-certificate-rotation.html",
+  "source": "docs/project-plans/developer-workbooks/non-person-identity/04-app-management-policies-and-certificate-rotation.md",
+  "kits": [
+   {
+    "name": "non-person-identity",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/non-person-identity",
+    "zip": null
+   }
+  ],
   "chapters": [
    [
     0,
@@ -8106,6 +8577,15 @@
   "vtt": "presentations/dw-npi-05-workload-federation/DW_NPI_05_Workload_Federation_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/DW_NPI_05_Workload_Federation_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-npi-05-workload-federation/DW_NPI_05_Workload_Federation_Narration_Script.md",
+  "page": "docs/project-plans/developer-workbooks/non-person-identity/05-workload-identity-federation-and-managed-identities.html",
+  "source": "docs/project-plans/developer-workbooks/non-person-identity/05-workload-identity-federation-and-managed-identities.md",
+  "kits": [
+   {
+    "name": "non-person-identity",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/non-person-identity",
+    "zip": null
+   }
+  ],
   "chapters": [
    [
     0,
@@ -8191,6 +8671,15 @@
   "vtt": "presentations/dw-npi-06-gmsa-dmsa/DW_NPI_06_gMSA_dMSA_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/DW_NPI_06_gMSA_dMSA_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-npi-06-gmsa-dmsa/DW_NPI_06_gMSA_dMSA_Narration_Script.md",
+  "page": "docs/project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.html",
+  "source": "docs/project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.md",
+  "kits": [
+   {
+    "name": "non-person-identity",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/non-person-identity",
+    "zip": null
+   }
+  ],
   "chapters": [
    [
     0,
@@ -8276,6 +8765,15 @@
   "vtt": "presentations/dw-npi-07-least-privilege/DW_NPI_07_Least_Privilege_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/DW_NPI_07_Least_Privilege_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-npi-07-least-privilege/DW_NPI_07_Least_Privilege_Narration_Script.md",
+  "page": "docs/project-plans/developer-workbooks/non-person-identity/07-least-privilege-for-service-principals.html",
+  "source": "docs/project-plans/developer-workbooks/non-person-identity/07-least-privilege-for-service-principals.md",
+  "kits": [
+   {
+    "name": "non-person-identity",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/non-person-identity",
+    "zip": null
+   }
+  ],
   "chapters": [
    [
     0,
@@ -8361,6 +8859,15 @@
   "vtt": "presentations/dw-npi-08-workload-ca/DW_NPI_08_Workload_CA_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/DW_NPI_08_Workload_CA_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-npi-08-workload-ca/DW_NPI_08_Workload_CA_Narration_Script.md",
+  "page": "docs/project-plans/developer-workbooks/non-person-identity/08-conditional-access-for-workload-identities.html",
+  "source": "docs/project-plans/developer-workbooks/non-person-identity/08-conditional-access-for-workload-identities.md",
+  "kits": [
+   {
+    "name": "non-person-identity",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/non-person-identity",
+    "zip": null
+   }
+  ],
   "chapters": [
    [
     0,
@@ -8446,6 +8953,15 @@
   "vtt": "presentations/dw-npi-09-ai-agents/DW_NPI_09_AI_Agent_Identities_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/DW_NPI_09_AI_Agent_Identities_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-npi-09-ai-agents/DW_NPI_09_AI_Agent_Identities_Narration_Script.md",
+  "page": "docs/project-plans/developer-workbooks/non-person-identity/09-ai-agent-identities.html",
+  "source": "docs/project-plans/developer-workbooks/non-person-identity/09-ai-agent-identities.md",
+  "kits": [
+   {
+    "name": "non-person-identity",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/non-person-identity",
+    "zip": null
+   }
+  ],
   "chapters": [
    [
     0,
@@ -8531,6 +9047,20 @@
   "vtt": "presentations/dw-npi-10-drift-evidence/DW_NPI_10_Drift_Evidence_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/DW_NPI_10_Drift_Evidence_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-npi-10-drift-evidence/DW_NPI_10_Drift_Evidence_Narration_Script.md",
+  "page": "docs/project-plans/developer-workbooks/non-person-identity/10-drift-and-evidence.html",
+  "source": "docs/project-plans/developer-workbooks/non-person-identity/10-drift-and-evidence.md",
+  "kits": [
+   {
+    "name": "non-person-identity",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/non-person-identity",
+    "zip": null
+   },
+   {
+    "name": "drift-pipeline",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/drift-pipeline",
+    "zip": null
+   }
+  ],
   "chapters": [
    [
     0,
@@ -8612,6 +9142,15 @@
   "vtt": "presentations/dw-pa-01-privileged-inventory/DW_PA_01_Privileged_Inventory_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/DW_PA_01_Privileged_Inventory_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-pa-01-privileged-inventory/DW_PA_01_Privileged_Inventory_Narration_Script.md",
+  "page": "docs/project-plans/developer-workbooks/privileged-access/01-privileged-inventory-as-code.html",
+  "source": "docs/project-plans/developer-workbooks/privileged-access/01-privileged-inventory-as-code.md",
+  "kits": [
+   {
+    "name": "privileged-access",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/privileged-access",
+    "zip": null
+   }
+  ],
   "chapters": [
    [
     0,
@@ -8697,6 +9236,15 @@
   "vtt": "presentations/dw-pa-02-emergency-access/DW_PA_02_Emergency_Access_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/DW_PA_02_Emergency_Access_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-pa-02-emergency-access/DW_PA_02_Emergency_Access_Narration_Script.md",
+  "page": "docs/project-plans/developer-workbooks/privileged-access/02-emergency-access-as-code.html",
+  "source": "docs/project-plans/developer-workbooks/privileged-access/02-emergency-access-as-code.md",
+  "kits": [
+   {
+    "name": "privileged-access",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/privileged-access",
+    "zip": null
+   }
+  ],
   "chapters": [
    [
     0,
@@ -8774,6 +9322,15 @@
   "vtt": "presentations/dw-pa-03-ca-activation-gate/DW_PA_03_CA_Activation_Gate_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/DW_PA_03_CA_Activation_Gate_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-pa-03-ca-activation-gate/DW_PA_03_CA_Activation_Gate_Narration_Script.md",
+  "page": "docs/project-plans/developer-workbooks/privileged-access/03-conditional-access-for-administrators.html",
+  "source": "docs/project-plans/developer-workbooks/privileged-access/03-conditional-access-for-administrators.md",
+  "kits": [
+   {
+    "name": "privileged-access",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/privileged-access",
+    "zip": null
+   }
+  ],
   "chapters": [
    [
     0,
@@ -8859,6 +9416,15 @@
   "vtt": "presentations/dw-pa-04-pim-entra-roles/DW_PA_04_PIM_Entra_Roles_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/DW_PA_04_PIM_Entra_Roles_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-pa-04-pim-entra-roles/DW_PA_04_PIM_Entra_Roles_Narration_Script.md",
+  "page": "docs/project-plans/developer-workbooks/privileged-access/04-pim-for-entra-roles-as-code.html",
+  "source": "docs/project-plans/developer-workbooks/privileged-access/04-pim-for-entra-roles-as-code.md",
+  "kits": [
+   {
+    "name": "privileged-access",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/privileged-access",
+    "zip": null
+   }
+  ],
   "chapters": [
    [
     0,
@@ -8944,6 +9510,15 @@
   "vtt": "presentations/dw-pa-05-pim-for-groups/DW_PA_05_PIM_for_Groups_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/DW_PA_05_PIM_for_Groups_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-pa-05-pim-for-groups/DW_PA_05_PIM_for_Groups_Narration_Script.md",
+  "page": "docs/project-plans/developer-workbooks/privileged-access/05-pim-for-groups.html",
+  "source": "docs/project-plans/developer-workbooks/privileged-access/05-pim-for-groups.md",
+  "kits": [
+   {
+    "name": "privileged-access",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/privileged-access",
+    "zip": null
+   }
+  ],
   "chapters": [
    [
     0,
@@ -9029,6 +9604,15 @@
   "vtt": "presentations/dw-pa-06-pim-azure-resources/DW_PA_06_PIM_Azure_Resources_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/DW_PA_06_PIM_Azure_Resources_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-pa-06-pim-azure-resources/DW_PA_06_PIM_Azure_Resources_Narration_Script.md",
+  "page": "docs/project-plans/developer-workbooks/privileged-access/06-pim-for-azure-resources.html",
+  "source": "docs/project-plans/developer-workbooks/privileged-access/06-pim-for-azure-resources.md",
+  "kits": [
+   {
+    "name": "privileged-access",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/privileged-access",
+    "zip": null
+   }
+  ],
   "chapters": [
    [
     0,
@@ -9114,6 +9698,15 @@
   "vtt": "presentations/dw-pa-07-access-reviews/DW_PA_07_Access_Reviews_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/DW_PA_07_Access_Reviews_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-pa-07-access-reviews/DW_PA_07_Access_Reviews_Narration_Script.md",
+  "page": "docs/project-plans/developer-workbooks/privileged-access/07-access-reviews-of-privileged-roles.html",
+  "source": "docs/project-plans/developer-workbooks/privileged-access/07-access-reviews-of-privileged-roles.md",
+  "kits": [
+   {
+    "name": "privileged-access",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/privileged-access",
+    "zip": null
+   }
+  ],
   "chapters": [
    [
     0,
@@ -9199,6 +9792,20 @@
   "vtt": "presentations/dw-pa-08-evidence-drift/DW_PA_08_Evidence_Drift_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/DW_PA_08_Evidence_Drift_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-pa-08-evidence-drift/DW_PA_08_Evidence_Drift_Narration_Script.md",
+  "page": "docs/project-plans/developer-workbooks/privileged-access/08-evidence-and-drift.html",
+  "source": "docs/project-plans/developer-workbooks/privileged-access/08-evidence-and-drift.md",
+  "kits": [
+   {
+    "name": "privileged-access",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/privileged-access",
+    "zip": null
+   },
+   {
+    "name": "drift-pipeline",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/drift-pipeline",
+    "zip": null
+   }
+  ],
   "chapters": [
    [
     0,
@@ -9284,6 +9891,15 @@
   "vtt": "presentations/dw-adm-01-hr-entra-middleware/DW_ADM_01_HR_Entra_Middleware_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/DW_ADM_01_HR_Entra_Middleware_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-adm-01-hr-entra-middleware/DW_ADM_01_HR_Entra_Middleware_Narration_Script.md",
+  "page": "docs/books/b19-developer-workbook/01-the-hr-to-entra-middleware.html",
+  "source": "docs/books/b19-developer-workbook/01-the-hr-to-entra-middleware.md",
+  "kits": [
+   {
+    "name": "hcm-entra",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/hcm-entra",
+    "zip": null
+   }
+  ],
   "chapters": [
    [
     0,
@@ -9369,6 +9985,30 @@
   "vtt": "presentations/dw-adm-02-graph-clients/DW_ADM_02_Graph_Clients_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/DW_ADM_02_Graph_Clients_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-adm-02-graph-clients/DW_ADM_02_Graph_Clients_Narration_Script.md",
+  "page": "docs/books/b19-developer-workbook/02-graph-clients-for-government-clouds.html",
+  "source": "docs/books/b19-developer-workbook/02-graph-clients-for-government-clouds.md",
+  "kits": [
+   {
+    "name": "ms-automation",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/ms-automation",
+    "zip": null
+   },
+   {
+    "name": "hcm-entra",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/hcm-entra",
+    "zip": null
+   },
+   {
+    "name": "validation-kit",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/validation-kit",
+    "zip": "downloads/validation-kit.zip"
+   },
+   {
+    "name": "dynamic-rules",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/dynamic-rules",
+    "zip": null
+   }
+  ],
   "chapters": [
    [
     0,
@@ -9454,6 +10094,15 @@
   "vtt": "presentations/dw-adm-03-validation-kit-check/DW_ADM_03_Validation_Kit_Check_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/DW_ADM_03_Validation_Kit_Check_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-adm-03-validation-kit-check/DW_ADM_03_Validation_Kit_Check_Narration_Script.md",
+  "page": "docs/books/b19-developer-workbook/03-writing-a-validation-kit-check.html",
+  "source": "docs/books/b19-developer-workbook/03-writing-a-validation-kit-check.md",
+  "kits": [
+   {
+    "name": "validation-kit",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/validation-kit",
+    "zip": "downloads/validation-kit.zip"
+   }
+  ],
   "chapters": [
    [
     0,
@@ -9539,6 +10188,15 @@
   "vtt": "presentations/dw-adm-04-dynamic-rules/DW_ADM_04_Dynamic_Rules_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/DW_ADM_04_Dynamic_Rules_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-adm-04-dynamic-rules/DW_ADM_04_Dynamic_Rules_Narration_Script.md",
+  "page": "docs/books/b19-developer-workbook/04-dynamic-rules-as-code.html",
+  "source": "docs/books/b19-developer-workbook/04-dynamic-rules-as-code.md",
+  "kits": [
+   {
+    "name": "dynamic-rules",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/dynamic-rules",
+    "zip": null
+   }
+  ],
   "chapters": [
    [
     0,
@@ -9624,6 +10282,15 @@
   "vtt": "presentations/dw-adm-05-lifecycle-extensions/DW_ADM_05_Lifecycle_Extensions_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/DW_ADM_05_Lifecycle_Extensions_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-adm-05-lifecycle-extensions/DW_ADM_05_Lifecycle_Extensions_Narration_Script.md",
+  "page": "docs/books/b19-developer-workbook/05-lifecycle-workflows-custom-extensions.html",
+  "source": "docs/books/b19-developer-workbook/05-lifecycle-workflows-custom-extensions.md",
+  "kits": [
+   {
+    "name": "lifecycle-extensions",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/lifecycle-extensions",
+    "zip": null
+   }
+  ],
   "chapters": [
    [
     0,
@@ -9709,6 +10376,20 @@
   "vtt": "presentations/dw-adm-06-group-policy-code/DW_ADM_06_Group_Policy_as_Code_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/DW_ADM_06_Group_Policy_as_Code_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-adm-06-group-policy-code/DW_ADM_06_Group_Policy_as_Code_Narration_Script.md",
+  "page": "docs/books/b19-developer-workbook/06-group-policy-as-code.html",
+  "source": "docs/books/b19-developer-workbook/06-group-policy-as-code.md",
+  "kits": [
+   {
+    "name": "validation-kit",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/validation-kit",
+    "zip": "downloads/validation-kit.zip"
+   },
+   {
+    "name": "group-policy-as-code",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/group-policy-as-code",
+    "zip": null
+   }
+  ],
   "chapters": [
    [
     0,
@@ -9794,6 +10475,15 @@
   "vtt": "presentations/dw-adm-07-machine-configuration/DW_ADM_07_Machine_Configuration_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/DW_ADM_07_Machine_Configuration_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-adm-07-machine-configuration/DW_ADM_07_Machine_Configuration_Narration_Script.md",
+  "page": "docs/books/b19-developer-workbook/07-machine-configuration-packages.html",
+  "source": "docs/books/b19-developer-workbook/07-machine-configuration-packages.md",
+  "kits": [
+   {
+    "name": "machine-configuration",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/machine-configuration",
+    "zip": null
+   }
+  ],
   "chapters": [
    [
     0,
@@ -9879,6 +10569,15 @@
   "vtt": "presentations/dw-adm-08-ansible-beside-arc/DW_ADM_08_Ansible_Beside_Arc_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/DW_ADM_08_Ansible_Beside_Arc_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-adm-08-ansible-beside-arc/DW_ADM_08_Ansible_Beside_Arc_Narration_Script.md",
+  "page": "docs/books/b19-developer-workbook/08-ansible-beside-arc.html",
+  "source": "docs/books/b19-developer-workbook/08-ansible-beside-arc.md",
+  "kits": [
+   {
+    "name": "ansible",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/ansible",
+    "zip": "downloads/ansible-examples.zip"
+   }
+  ],
   "chapters": [
    [
     0,
@@ -9964,6 +10663,30 @@
   "vtt": "presentations/dw-adm-09-drift-pipelines-evidence/DW_ADM_09_Drift_Pipelines_Evidence_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/DW_ADM_09_Drift_Pipelines_Evidence_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-adm-09-drift-pipelines-evidence/DW_ADM_09_Drift_Pipelines_Evidence_Narration_Script.md",
+  "page": "docs/books/b19-developer-workbook/09-drift-pipelines-and-evidence.html",
+  "source": "docs/books/b19-developer-workbook/09-drift-pipelines-and-evidence.md",
+  "kits": [
+   {
+    "name": "drift-pipeline",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/drift-pipeline",
+    "zip": null
+   },
+   {
+    "name": "hcm-entra",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/hcm-entra",
+    "zip": null
+   },
+   {
+    "name": "machine-configuration",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/machine-configuration",
+    "zip": null
+   },
+   {
+    "name": "dynamic-rules",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/dynamic-rules",
+    "zip": null
+   }
+  ],
   "chapters": [
    [
     0,
@@ -10049,6 +10772,15 @@
   "vtt": "presentations/dw-ttm-01-loop-typed-task/DW_TTM_01_Loop_Typed_Task_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/DW_TTM_01_Loop_Typed_Task_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-ttm-01-loop-typed-task/DW_TTM_01_Loop_Typed_Task_Narration_Script.md",
+  "page": "docs/project-plans/developer-workbooks/ticket-to-machine/01-the-loop-and-the-typed-task.html",
+  "source": "docs/project-plans/developer-workbooks/ticket-to-machine/01-the-loop-and-the-typed-task.md",
+  "kits": [
+   {
+    "name": "servicenow-sailpoint",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/servicenow-sailpoint",
+    "zip": null
+   }
+  ],
   "chapters": [
    [
     0,
@@ -10130,6 +10862,15 @@
   "vtt": "presentations/dw-ttm-02-servicenow-least-privilege/DW_TTM_02_ServiceNow_Least_Privilege_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/DW_TTM_02_ServiceNow_Least_Privilege_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-ttm-02-servicenow-least-privilege/DW_TTM_02_ServiceNow_Least_Privilege_Narration_Script.md",
+  "page": "docs/project-plans/developer-workbooks/ticket-to-machine/02-servicenow-client-and-least-privilege.html",
+  "source": "docs/project-plans/developer-workbooks/ticket-to-machine/02-servicenow-client-and-least-privilege.md",
+  "kits": [
+   {
+    "name": "servicenow-sailpoint",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/servicenow-sailpoint",
+    "zip": null
+   }
+  ],
   "chapters": [
    [
     0,
@@ -10207,6 +10948,15 @@
   "vtt": "presentations/dw-ttm-03-sailpoint-scopes/DW_TTM_03_SailPoint_Scopes_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/DW_TTM_03_SailPoint_Scopes_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-ttm-03-sailpoint-scopes/DW_TTM_03_SailPoint_Scopes_Narration_Script.md",
+  "page": "docs/project-plans/developer-workbooks/ticket-to-machine/03-sailpoint-client-and-scopes.html",
+  "source": "docs/project-plans/developer-workbooks/ticket-to-machine/03-sailpoint-client-and-scopes.md",
+  "kits": [
+   {
+    "name": "servicenow-sailpoint",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/servicenow-sailpoint",
+    "zip": null
+   }
+  ],
   "chapters": [
    [
     0,
@@ -10284,6 +11034,15 @@
   "vtt": "presentations/dw-ttm-04-drift-typed-task/DW_TTM_04_Drift_Typed_Task_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/DW_TTM_04_Drift_Typed_Task_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-ttm-04-drift-typed-task/DW_TTM_04_Drift_Typed_Task_Narration_Script.md",
+  "page": "docs/project-plans/developer-workbooks/ticket-to-machine/04-drift-to-a-typed-task.html",
+  "source": "docs/project-plans/developer-workbooks/ticket-to-machine/04-drift-to-a-typed-task.md",
+  "kits": [
+   {
+    "name": "servicenow-sailpoint",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/servicenow-sailpoint",
+    "zip": null
+   }
+  ],
   "chapters": [
    [
     0,
@@ -10361,6 +11120,15 @@
   "vtt": "presentations/dw-ttm-05-reread-rule/DW_TTM_05_Reread_Rule_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/DW_TTM_05_Reread_Rule_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-ttm-05-reread-rule/DW_TTM_05_Reread_Rule_Narration_Script.md",
+  "page": "docs/project-plans/developer-workbooks/ticket-to-machine/05-the-re-read-rule.html",
+  "source": "docs/project-plans/developer-workbooks/ticket-to-machine/05-the-re-read-rule.md",
+  "kits": [
+   {
+    "name": "servicenow-sailpoint",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/servicenow-sailpoint",
+    "zip": null
+   }
+  ],
   "chapters": [
    [
     0,
@@ -10438,6 +11206,15 @@
   "vtt": "presentations/dw-ttm-06-drift-reconciliation/DW_TTM_06_Drift_Reconciliation_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/DW_TTM_06_Drift_Reconciliation_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-ttm-06-drift-reconciliation/DW_TTM_06_Drift_Reconciliation_Narration_Script.md",
+  "page": "docs/project-plans/developer-workbooks/ticket-to-machine/06-drift-reconciliation.html",
+  "source": "docs/project-plans/developer-workbooks/ticket-to-machine/06-drift-reconciliation.md",
+  "kits": [
+   {
+    "name": "servicenow-sailpoint",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/servicenow-sailpoint",
+    "zip": null
+   }
+  ],
   "chapters": [
    [
     0,
@@ -10511,6 +11288,15 @@
   "vtt": "presentations/dw-ttm-07-evidence-records/DW_TTM_07_Evidence_Records_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/DW_TTM_07_Evidence_Records_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-ttm-07-evidence-records/DW_TTM_07_Evidence_Records_Narration_Script.md",
+  "page": "docs/project-plans/developer-workbooks/ticket-to-machine/07-evidence-records.html",
+  "source": "docs/project-plans/developer-workbooks/ticket-to-machine/07-evidence-records.md",
+  "kits": [
+   {
+    "name": "servicenow-sailpoint",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/servicenow-sailpoint",
+    "zip": null
+   }
+  ],
   "chapters": [
    [
     0,
@@ -10584,6 +11370,15 @@
   "vtt": "presentations/dw-ttm-08-one-writer-per-attribute/DW_TTM_08_One_Writer_Per_Attribute_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/DW_TTM_08_One_Writer_Per_Attribute_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-ttm-08-one-writer-per-attribute/DW_TTM_08_One_Writer_Per_Attribute_Narration_Script.md",
+  "page": "docs/project-plans/developer-workbooks/ticket-to-machine/08-one-writer-per-attribute.html",
+  "source": "docs/project-plans/developer-workbooks/ticket-to-machine/08-one-writer-per-attribute.md",
+  "kits": [
+   {
+    "name": "servicenow-sailpoint",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/servicenow-sailpoint",
+    "zip": null
+   }
+  ],
   "chapters": [
    [
     0,
@@ -10661,6 +11456,15 @@
   "vtt": "presentations/training-ms-automation-module-1/Training_MS_Automation_Module_1_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/Training_MS_Automation_Module_1_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-ms-automation-module-1/Training_MS_Automation_Module_1_Narration_Script.md",
+  "page": "docs/training/ms-automation-foundations.html",
+  "source": "docs/training/ms-automation-foundations.md",
+  "kits": [
+   {
+    "name": "ms-automation",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/ms-automation",
+    "zip": null
+   }
+  ],
   "chapters": [
    [
     0,
@@ -10738,6 +11542,15 @@
   "vtt": "presentations/training-ms-automation-module-2/Training_MS_Automation_Module_2_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/Training_MS_Automation_Module_2_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-ms-automation-module-2/Training_MS_Automation_Module_2_Narration_Script.md",
+  "page": "docs/training/ms-automation-entra.html",
+  "source": "docs/training/ms-automation-entra.md",
+  "kits": [
+   {
+    "name": "ms-automation",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/ms-automation",
+    "zip": null
+   }
+  ],
   "chapters": [
    [
     0,
@@ -10815,6 +11628,20 @@
   "vtt": "presentations/training-ms-automation-module-3/Training_MS_Automation_Module_3_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/Training_MS_Automation_Module_3_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-ms-automation-module-3/Training_MS_Automation_Module_3_Narration_Script.md",
+  "page": "docs/training/ms-automation-intune.html",
+  "source": "docs/training/ms-automation-intune.md",
+  "kits": [
+   {
+    "name": "ms-automation",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/ms-automation",
+    "zip": null
+   },
+   {
+    "name": "validation-kit",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/validation-kit",
+    "zip": "downloads/validation-kit.zip"
+   }
+  ],
   "chapters": [
    [
     0,
@@ -10892,6 +11719,9 @@
   "vtt": "presentations/hr-driven-identity-interview/HR_Driven_Identity_AnyAgency_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/HR_Driven_Identity_AnyAgency_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/hr-driven-identity-interview/HR_Driven_Identity_AnyAgency_Narration_Script.md",
+  "page": "docs/books/b03-hr-identity/index.html",
+  "source": "docs/books/b03-hr-identity/index.md",
+  "kits": [],
   "chapters": [
    [
     0,
@@ -10969,6 +11799,9 @@
   "vtt": "presentations/hr-driven-identity-interview/HR_Driven_Identity_Exec_AnyAgency_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/HR_Driven_Identity_Exec_AnyAgency_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/hr-driven-identity-interview/HR_Driven_Identity_Exec_AnyAgency_Narration_Script.md",
+  "page": "docs/books/b03-hr-identity/index.html",
+  "source": "docs/books/b03-hr-identity/index.md",
+  "kits": [],
   "chapters": [
    [
     0,
@@ -11018,6 +11851,9 @@
   "vtt": "presentations/hr-driven-identity-interview/HR_Driven_Identity_Contractor_Source_AnyAgency_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/HR_Driven_Identity_Contractor_Source_AnyAgency_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/hr-driven-identity-interview/HR_Driven_Identity_Contractor_Source_AnyAgency_Narration_Script.md",
+  "page": "docs/books/b03-hr-identity/index.html",
+  "source": "docs/books/b03-hr-identity/index.md",
+  "kits": [],
   "chapters": [
    [
     0,
