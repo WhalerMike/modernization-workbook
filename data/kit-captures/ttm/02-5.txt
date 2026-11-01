@@ -1,0 +1,3 @@
+$ python -m pytest tests/python/test_kit_common.py -q -k "sn_ or retry or paging or base_urls"
+.......                                                                  [100%]
+7 passed, 12 deselected

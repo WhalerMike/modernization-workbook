@@ -224,18 +224,8 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: five sample payloads, checked",
       body: [
-        { code: [
-          "$ python -m pytest tests/python/test_finding_contract.py -q            # 22 passed",
-          "$ python clients/python/finding_contract.py --validate tests/fixtures/payloads/samples.json \\",
-          "    --now 2026-11-01T12:00:00Z",
-          "sample-1-good: ok stale_access P2 priority 2 due 2026-11-01T13:00:00Z system entra_user",
-          "sample-2-typo: 400 drift_class must be one of missing_identity, stale_access, orphan_account, …",
-          "sample-3-empty-intent: ok unauthorized_write P2 priority 2 due 2026-11-01T13:00:00Z system isc_account",
-          "sample-3-empty-intent: warning: intended_state names nothing a re-read can check (expected: …)",
-          "sample-4-bad-severity: 400 severity must be P1, P2, P3 or P4",
-          "sample-5-closure: ok closure_signal (moves matches to Awaiting verification; never closes)",
-          "3 accepted, 2 rejected, 0 would de-duplicate",
-        ], label: "PYTHON 3.10+ WITH PYTEST AND REQUESTS, IN examples/servicenow-sailpoint", pt: 11 },
+        { terminal: "01-1" },
+        { terminal: "01-2" },
         { callout: "the command exits 1, because two payloads would be rejected. The first sample had no severity: the class default gave it P2 and a one-hour window.", label: "Read it: ", icon: "FaListCheck", color: "teal" },
       ],
       sources: "Sources: examples/servicenow-sailpoint (fictional fixtures). Chapter 01, “Lab 1: fixtures, no tenant,” steps 1–2.",
@@ -247,16 +237,8 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: the script's tests and the drift payloads",
       body: [
-        { code: [
-          "$ node --test tests/servicenow/servicenow_scripts.test.js            # tests 15, pass 15, fail 0",
-          "$ python clients/python/identity_drift.py --hr-csv tests/fixtures/hr_extract.csv … \\",
-          "    --out-json out/day1.json --out-csv out/day1.csv",
-          "$ python clients/python/finding_contract.py --from-drift out/day1.json --now 2026-11-01T12:00:00Z",
-          "1f0e34ebf049f163: ok attribute_drift P3 priority 3 due 2026-11-02T12:00:00Z system entra_user",
-          "72cff206ce2db7b6: ok attribute_drift P3 priority 3 due 2026-11-02T12:00:00Z system entra_user",
-          "…",
-          "12 accepted, 0 rejected, 0 would de-duplicate",
-        ], label: "STEPS 3 AND 4 (NODE.JS 18+ FOR STEP 3)", pt: 11.5 },
+        { terminal: "01-3", lines: "1,19-20" },
+        { terminal: "01-4", lines: "1,17-23,33" },
         { bullets: [
           "Twelve lines start ok; three carry the warning: two missing identities and the unauthorized write",
           "Erin's two attribute drifts in Entra ID, department and manager, have their own keys; before Chapter 04's fix they shared one, and the second would have been folded into the first",

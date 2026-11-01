@@ -1,0 +1,5 @@
+$ python clients/python/drift_compare.py --previous out/day1.json --current out/day2.json
+1 new, 11 persisting, 1 resolved
+  new       6456e1f12a60e6be attribute_drift isc E1004 department: expected 'Finance', observed 'HR'
+  resolved  1f0e34ebf049f163 attribute_drift entra E1004 department: expected 'HR', observed 'Finance'
+Resolved findings are leads for the re-read; their records close only on reread_verification.py.

@@ -190,17 +190,8 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: exporting October's closed findings",
       body: [
-        { code: [
-          "$ python -m pytest tests/python/test_evidence_export.py -q                # 8 passed",
-          "$ python clients/python/evidence_export.py --records-json tests/fixtures/evidence/closed_records.json \\",
-          "    --out-dir out/evidence --period 2026-10 --generated-at 2026-11-01T12:00:00Z",
-          "5 evidence records: 4 closed on a re-read, 1 declared exception",
-          "Window adherence: 2 of 3 closed inside the window",
-          "  IDF0000902: closed after its response window",
-          "  IDF0000903: evidence doesn't hash to u_evidence_hash: edited after closure, or cut short",
-          "  IDF0000905: closed without re-read evidence",
-          "Chain head 144f5e8494281f83598d2fae5eacac12b9b271c90372c0e503aafc2bd4cf0623; written to out/evidence",
-        ], label: "PYTHON 3.10+ WITH PYTEST, IN examples/servicenow-sailpoint", pt: 10.5 },
+        { terminal: "07-1" },
+        { terminal: "07-2" },
         { callout: "the command exits 1: three records have problems, and the run says so instead of producing a clean-looking package. IDF0000905's note says “done”: closure by assertion, prose, not evidence.", label: "Read it: ", icon: "FaTriangleExclamation", color: "red" },
       ],
       sources: "Sources: examples/servicenow-sailpoint (fictional records). Chapter 07, “Lab 1: fixtures, no tenant,” steps 1–2.",
@@ -212,18 +203,9 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: verify, continue the chain, tamper",
       body: [
-        { code: [
-          "$ python clients/python/evidence_export.py --verify-dir out/evidence",
-          "Package holds: every file matches the manifest and the chain is unbroken.",
-          "$ python clients/python/evidence_export.py --records-json … --out-dir out/evidence-2026-11 --period 2026-11 \\",
-          "    --previous-manifest out/evidence/manifest.json --generated-at 2026-12-01T12:00:00Z",
-          "Chain head afa59e0f3038613ba36eb4a748da38bb3e76e8427d04038162d08fbdcc167bd1; written to out/evidence-2026-11",
-          "$ python -c \"p='out/evidence/records.jsonl'; l=open(p).readlines(); del l[1]; open(p,'w').writelines(l)\"",
-          "$ python clients/python/evidence_export.py --verify-dir out/evidence",
-          "  records.jsonl: SHA-256 doesn't match the manifest",
-          "  line 2 (IDF0000903): prev_sha256 doesn't match the line before",
-          "Package does not hold: 2 problem(s).",
-        ], label: "STEPS 3–5", pt: 10.5 },
+        { terminal: "07-3" },
+        { terminal: "07-4", lines: "1-2,7-8" },
+        { terminal: "07-5" },
         { lead: "November's manifest has chain_previous set to October's head, 144f5e84…. (The lab reuses October's records.)" },
       ],
       sources: "Sources: examples/servicenow-sailpoint. Chapter 07, “Lab 1: fixtures, no tenant,” steps 3–5.",

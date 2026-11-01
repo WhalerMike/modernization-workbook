@@ -1,0 +1,6 @@
+$ python clients/python/workflow_payload.py --trigger idn:native-change-account-updated --event tests/fixtures/events/native-change-account-updated.json
+Workflow: Drift to ServiceNow - native change (provenance)
+kind finding, drift_class unauthorized_write, system isc_account
+intended_state {"attributes": {"title": "Analyst"}, "entitlements_absent": [{"attribute": "proxyAddresses", "value": "smtp:ap-approver@contoso.example"}, {"attribute": "memberOf", "value": "CN=Payables Approvers,OU=Groups,DC=contoso,DC=example"}], "entitlements_present": []}
+contract: accepted: P2, priority 2, key sailpoint-isc|2c91800000000000000000000a1001ad|unauthorized_write
+input fields not sent: eventType

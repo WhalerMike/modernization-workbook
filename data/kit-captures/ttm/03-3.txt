@@ -1,0 +1,13 @@
+$ python clients/python/kit_calls.py --task drift --system isc --granted "sp:search:read,idn:accounts:read,idn:accounts:manage"
+Task drift: identity_drift.py: read Graph users, the Entra audit, ISC identities and uncorrelated accounts
+
+isc
+  POST   /oauth/token                                               API client (client credentials) or a personal access token
+  POST   /v3/search                                                 sp:search:read
+  GET    /v3/accounts                                               idn:accounts:read
+  needs: idn:accounts:read, sp:search:read
+
+missing: none
+extra:   idn:accounts:manage
+Least privilege does not hold: fix the grant.
+(exit code 1)

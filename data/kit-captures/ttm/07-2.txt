@@ -1,0 +1,8 @@
+$ python clients/python/evidence_export.py --records-json tests/fixtures/evidence/closed_records.json --out-dir out/evidence --period 2026-10 --generated-at 2026-11-01T12:00:00Z
+5 evidence records: 4 closed on a re-read, 1 declared exception
+Window adherence: 2 of 3 closed inside the window
+  IDF0000902: closed after its response window
+  IDF0000903: evidence doesn't hash to u_evidence_hash: edited after closure, or cut short
+  IDF0000905: closed without re-read evidence
+Chain head 144f5e8494281f83598d2fae5eacac12b9b271c90372c0e503aafc2bd4cf0623; written to out/evidence
+(exit code 1)

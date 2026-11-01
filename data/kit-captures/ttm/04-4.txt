@@ -1,0 +1,5 @@
+$ python clients/python/workflow_payload.py --trigger idn:post-provisioning --event tests/fixtures/events/provisioning-completed.json
+Workflow: Drift to ServiceNow - provisioning completed (closure signal)
+kind closure_signal, drift_class -, system -
+contract: accepted
+input fields not sent: action, requester, sources, warnings

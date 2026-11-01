@@ -1,0 +1,11 @@
+$ node --test --test-name-pattern="attribute is in the key|multivalued" tests/servicenow/servicenow_scripts.test.js
+✔ two attributes drifting on one subject are two findings (attribute is in the key)
+✔ multivalued attribute changes become entitlements absent and present
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms …

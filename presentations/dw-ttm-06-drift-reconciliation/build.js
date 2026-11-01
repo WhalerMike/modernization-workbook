@@ -172,18 +172,8 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: day one and day two",
       body: [
-        { code: [
-          "$ python -m pytest tests/python/test_identity_drift.py tests/python/test_drift_compare.py -q   # 17 passed",
-          "$ python clients/python/identity_drift.py --hr-csv tests/fixtures/hr_extract.csv \\",
-          "    --config tests/fixtures/config.fixtures.json --graph-users-json tests/fixtures/graph_users.json \\",
-          "    --isc-identities-json tests/fixtures/isc_identities.json \\",
-          "    --isc-accounts-json tests/fixtures/isc_uncorrelated_accounts.json \\",
-          "    --entra-audit-json tests/fixtures/entra_audit.json --out-json out/day1.json --out-csv out/day1.csv",
-          "\"attribute_drift\": 4, \"missing_identity\": 2, \"orphan_account\": 3, \"stale_access\": 2, \"unauthorized_write\": 1",
-          "not_computed: credential_drift, schema_drift",
-          "$ python clients/python/identity_drift.py --hr-csv tests/fixtures/hr_extract_day2.csv … --out-json out/day2.json …",
-          "# the same counts: the totals hide what moved",
-        ], label: "PYTHON 3.10+, IN examples/servicenow-sailpoint (THE JSON SUMMARY ON ONE LINE)", pt: 10.5 },
+        { terminal: "06-1" },
+        { cols: [[{ terminal: "06-2", lines: "1,3-9" }], [{ terminal: "06-3", lines: "1,14-15"}]] },
         { lead: "Day one: Erin's Entra department is Finance where HR says HR; the audit shows a help desk administrator made the change. Carol, terminated, is still enabled." },
       ],
       sources: "Sources: examples/servicenow-sailpoint (fictional fixtures). Chapter 06, “Lab 1: fixtures, no tenant,” steps 1–3.",
@@ -195,17 +185,8 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: comparing the days, and the refusal",
       body: [
-        { code: [
-          "$ python clients/python/drift_compare.py --previous out/day1.json --current out/day2.json",
-          "1 new, 11 persisting, 1 resolved",
-          "  new       6456e1f12a60e6be attribute_drift isc E1004 department: expected 'Finance', observed 'HR'",
-          "  resolved  1f0e34ebf049f163 attribute_drift entra E1004 department: expected 'HR', observed 'Finance'",
-          "Resolved findings are leads for the re-read; their records close only on reread_verification.py.",
-          "$ python clients/python/identity_drift.py --hr-csv tests/fixtures/hr_extract_day2.csv … (no audit) \\",
-          "    --out-json out/day2-noaudit.json --out-csv out/day2-noaudit.csv   # unauthorized_write: not_computed",
-          "$ python clients/python/drift_compare.py --previous out/day1.json --current out/day2-noaudit.json",
-          "error: The runs computed different drift classes (…)                        # exit 2",
-        ], label: "STEPS 4–5", pt: 10.5 },
+        { terminal: "06-4" },
+        { terminal: "06-5", lines: "1,12,17-19" },
         { lead: "The unauthorized write persists: HR agreeing afterwards doesn't make the write authorized, and a person decides it." },
       ],
       sources: "Sources: examples/servicenow-sailpoint (fictional fixtures). Chapter 06, “Lab 1: fixtures, no tenant,” steps 4–5.",

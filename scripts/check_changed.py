@@ -95,6 +95,8 @@ DOCS_UNDERSCORE = re.compile(r"docs/_[^/]*(/.*)?")   # docs/_* includes and part
 REVISIONS = re.compile(r"data/editions\.yml|data/edition-assets/[^/]+\.json|scripts/(generate_revisions|cut_edition)\.py"
                        r"|docs/about/archive\.md|docs/books/(b\d\d-[^/]+/index|guides/[^/_][^/]*)\.md"
                        r"|docs/project-plans/developer-workbooks/[^/]+/index\.md")
+# Workbooks whose Lab 1 output is captured (scripts/kit_captures.py): the chapters and the kit.
+KIT_CAPTURES = {"ttm": ("docs/project-plans/developer-workbooks/ticket-to-machine", "examples/servicenow-sailpoint")}
 
 
 @dataclass(frozen=True)
@@ -271,6 +273,9 @@ def non_site_tasks(changes: Iterable[Change], kits: Iterable[str] = ("start-kit"
             add("video-manifest", p)
         if p.startswith(("data/project-plans/", "scripts/project_plans/", "docs/project-plans/")):
             add("project-plans", p)
+        for wb, (docs, kit) in KIT_CAPTURES.items():
+            if p.startswith((f"{docs}/", f"{kit}/", f"data/kit-captures/{wb}/")) or p == "scripts/kit_captures.py":
+                add("kit-captures", wb)
         if REVISIONS.fullmatch(p):
             add("revisions", p)
         if (p.endswith(PAGE_SUFFIXES) and p.startswith(("docs/", "presentations/", "index.qmd"))
@@ -1081,6 +1086,10 @@ class Checker:
         if "revisions" in t and p.tier != "FULL":
             steps.append(("Revision histories and the Archive are current",
                           self.simple([PY, "scripts/generate_revisions.py", "--check"])))
+        if "kit-captures" in t:
+            for wb in t["kit-captures"]:
+                steps.append((f"Lab captures match what the kit prints ({wb})",
+                              self.simple([PY, "scripts/kit_captures.py", wb, "--check"])))
         if "project-plans" in t:
             steps.append(("Project plans are current", self.simple([PY, "scripts/project_plans/build.py", "--check"])))
         if "authorities" in t:

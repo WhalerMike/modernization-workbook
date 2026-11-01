@@ -1,0 +1,2 @@
+$ python clients/python/evidence_export.py --verify-dir out/evidence
+Package holds: every file matches the manifest and the chain is unbroken.

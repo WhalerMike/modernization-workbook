@@ -1,0 +1,6 @@
+$ python clients/python/workflow_payload.py --trigger idn:identity-attributes-changed --event tests/fixtures/events/identity-attributes-changed.json
+Workflow: Drift to ServiceNow - identity attributes changed (mover)
+kind finding, drift_class attribute_drift, system isc_identity
+intended_state {"attributes": {"department": "Finance"}}
+contract: accepted: P3, priority 3, key sailpoint-isc|2c9180000000000000000000000e1004|attribute_drift|department
+input fields not sent: none

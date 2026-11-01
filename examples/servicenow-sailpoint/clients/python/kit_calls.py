@@ -102,6 +102,8 @@ def main(argv: list[str] | None = None, out=None) -> int:
     data = load_calls(args.calls)
     if args.granted is not None and not args.system:
         parser.error("--granted needs --system")
+    if args.task not in data["tasks"]:
+        parser.error(f"no task {args.task!r}; the tasks are: " + ", ".join(sorted(data["tasks"])))
 
     systems = [args.system] if args.system else list(SYSTEMS)
     print(f"Task {args.task}: {data['tasks'][args.task]}", file=out)

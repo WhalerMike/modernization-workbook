@@ -1,0 +1,12 @@
+$ python clients/python/kit_calls.py --task evidence --system servicenow --granted "x_example_idkit.verifier"
+Task evidence: evidence_export.py: read closed findings for the evidence export
+
+servicenow
+  POST   /oauth_token.do                                            an inbound OAuth client (client credentials) with its own integration user
+  GET    /api/now/table/u_identity_finding                          x_example_idkit.evidence_reader (read only on u_identity_finding)
+  needs: x_example_idkit.evidence_reader
+
+missing: x_example_idkit.evidence_reader
+extra:   x_example_idkit.verifier
+Least privilege does not hold: fix the grant.
+(exit code 1)
