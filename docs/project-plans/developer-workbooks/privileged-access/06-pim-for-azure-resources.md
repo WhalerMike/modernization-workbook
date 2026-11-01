@@ -29,7 +29,7 @@ The code behind the project plan's task A3.2, "Azure privileged roles eligible t
 ## Narrated tour
 {{< fmw-video DW_PA_06_PIM_Azure_Resources_Narrated >}}
 
-[Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.10/DW_PA_06_PIM_Azure_Resources.pptx) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.10/DW_PA_06_PIM_Azure_Resources_Narrated.pptx) (about 12 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-pa-06-pim-azure-resources/DW_PA_06_PIM_Azure_Resources_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-pa-06-pim-azure-resources/DW_PA_06_PIM_Azure_Resources_Narrated.vtt). Recorded on October 31, 2026 from the approved chapter.
+[Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11/DW_PA_06_PIM_Azure_Resources.pptx) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11/DW_PA_06_PIM_Azure_Resources_Narrated.pptx) (about 12 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-pa-06-pim-azure-resources/DW_PA_06_PIM_Azure_Resources_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-pa-06-pim-azure-resources/DW_PA_06_PIM_Azure_Resources_Narrated.vtt). Recorded on October 31, 2026 from the approved chapter.
 :::
 
 <!-- tour:end -->

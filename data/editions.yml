@@ -118,6 +118,177 @@ editions:
       developer-workbooks/privileged-access:
         changes:
           - "First edition (12 merged changes since the workbook began)"
+  - id: edition-2026.11
+    date: 2026-11-01
+    commit: 66cc1efee5675d6c0b2b2a7bc063f6f3c2d928ea
+    summary: "Adds the HR-Driven Identity and Ticket-to-Machine implementation guides with their developer workbooks, learning paths and gate-level narrated deck series; retires Research into guides, training, reference, evaluations and explainers; restores the developer workbook as Book 19; and adds the content rules and license."
+    units:
+      b00-orientation:
+        changes:
+          - "Move the decks and narration audio out of git, onto edition 2026.10 (#260)"
+          - "Retire Research: move each page to a home by type (guides, training, reference, evaluations, explainers) (#269)"
+      b01-transformation-arc:
+        changes:
+          - "Move the decks and narration audio out of git, onto edition 2026.10 (#260)"
+      b02-identity:
+        changes:
+          - "Move the decks and narration audio out of git, onto edition 2026.10 (#260)"
+          - "Cite CISA's Hybrid Identity Solutions Guidance and its sources (#265)"
+          - "Retire Research: move each page to a home by type (guides, training, reference, evaluations, explainers) (#269)"
+          - "Content rules: one home per type, and the federal layers every guide carries (#271)"
+      b03-hr-identity:
+        changes:
+          - "Move the decks and narration audio out of git, onto edition 2026.10 (#260)"
+          - "Book 03: tie the move to Entra ID to CISA's hybrid identity guidance (#266)"
+          - "Retire Research: move each page to a home by type (guides, training, reference, evaluations, explainers) (#269)"
+          - "Restore the developer workbook as Book 19, and the ADM implementation guide to Books > Guides (#270)"
+          - "Content rules: one home per type, and the federal layers every guide carries (#271)"
+          - "HR-Driven Identity: An Implementation Guide (draft) (#272)"
+      b04-access:
+        changes:
+          - "Move the decks and narration audio out of git, onto edition 2026.10 (#260)"
+          - "Cite CISA's Hybrid Identity Solutions Guidance and its sources (#265)"
+          - "Retire Research: move each page to a home by type (guides, training, reference, evaluations, explainers) (#269)"
+          - "Content rules: one home per type, and the federal layers every guide carries (#271)"
+      b05-devices:
+        changes:
+          - "Move the decks and narration audio out of git, onto edition 2026.10 (#260)"
+          - "Retire Research: move each page to a home by type (guides, training, reference, evaluations, explainers) (#269)"
+          - "Content rules: one home per type, and the federal layers every guide carries (#271)"
+      b06-data-platform:
+        changes:
+          - "Move the decks and narration audio out of git, onto edition 2026.10 (#260)"
+          - "Retire Research: move each page to a home by type (guides, training, reference, evaluations, explainers) (#269)"
+      b07-pki:
+        changes:
+          - "Move the decks and narration audio out of git, onto edition 2026.10 (#260)"
+          - "Retire Research: move each page to a home by type (guides, training, reference, evaluations, explainers) (#269)"
+          - "Content rules: one home per type, and the federal layers every guide carries (#271)"
+      b08-ddi:
+        changes:
+          - "Move the decks and narration audio out of git, onto edition 2026.10 (#260)"
+          - "Cloud DNS research page: add Oracle Cloud, close the GovCloud query-logging item (#262)"
+          - "Retire Research: move each page to a home by type (guides, training, reference, evaluations, explainers) (#269)"
+          - "Content rules: one home per type, and the federal layers every guide carries (#271)"
+      b09-network:
+        changes:
+          - "Move the decks and narration audio out of git, onto edition 2026.10 (#260)"
+          - "Retire Research: move each page to a home by type (guides, training, reference, evaluations, explainers) (#269)"
+      b10-cloud-boundary:
+        changes:
+          - "Move the decks and narration audio out of git, onto edition 2026.10 (#260)"
+          - "Retire Research: move each page to a home by type (guides, training, reference, evaluations, explainers) (#269)"
+          - "Content rules: one home per type, and the federal layers every guide carries (#271)"
+      b11-zero-trust:
+        changes:
+          - "Move the decks and narration audio out of git, onto edition 2026.10 (#260)"
+          - "Cite CISA's Hybrid Identity Solutions Guidance and its sources (#265)"
+      b12-security-operations:
+        changes:
+          - "Move the decks and narration audio out of git, onto edition 2026.10 (#260)"
+      b13-governance:
+        changes:
+          - "Move the decks and narration audio out of git, onto edition 2026.10 (#260)"
+          - "Retire Research: move each page to a home by type (guides, training, reference, evaluations, explainers) (#269)"
+      b14-compliance:
+        changes:
+          - "Move the decks and narration audio out of git, onto edition 2026.10 (#260)"
+      b15-day2-operations:
+        changes:
+          - "Move the decks and narration audio out of git, onto edition 2026.10 (#260)"
+          - "Retire Research: move each page to a home by type (guides, training, reference, evaluations, explainers) (#269)"
+          - "Content rules: one home per type, and the federal layers every guide carries (#271)"
+      b16-people:
+        changes:
+          - "Move the decks and narration audio out of git, onto edition 2026.10 (#260)"
+          - "Retire Research: move each page to a home by type (guides, training, reference, evaluations, explainers) (#269)"
+      b17-ai-identity:
+        changes:
+          - "Move the decks and narration audio out of git, onto edition 2026.10 (#260)"
+      b18-application-modernization:
+        changes:
+          - "Move the decks and narration audio out of git, onto edition 2026.10 (#260)"
+          - "Retire Research: move each page to a home by type (guides, training, reference, evaluations, explainers) (#269)"
+      b19-developer-workbook:
+        changes:
+          - "Restore the developer workbook as Book 19, and the ADM implementation guide to Books > Guides (#270)"
+      guides/ansible-configuration-automation:
+        changes:
+          - "Move the decks and narration audio out of git, onto edition 2026.10 (#260)"
+          - "Retire Research: move each page to a home by type (guides, training, reference, evaluations, explainers) (#269)"
+      guides/arc-track-implementation:
+        changes:
+          - "Move the decks and narration audio out of git, onto edition 2026.10 (#260)"
+      guides/attribute-driven-migration-implementation:
+        changes:
+          - "Restore the developer workbook as Book 19, and the ADM implementation guide to Books > Guides (#270)"
+          - "Content rules: one home per type, and the federal layers every guide carries (#271)"
+          - "HR-Driven Identity: An Implementation Guide (draft) (#272)"
+      guides/attribute-driven-migration:
+        changes:
+          - "Move the decks and narration audio out of git, onto edition 2026.10 (#260)"
+          - "Retire Research: move each page to a home by type (guides, training, reference, evaluations, explainers) (#269)"
+          - "Restore the developer workbook as Book 19, and the ADM implementation guide to Books > Guides (#270)"
+          - "Content rules: one home per type, and the federal layers every guide carries (#271)"
+          - "HR-Driven Identity: An Implementation Guide (draft) (#272)"
+      guides/cisco-sdwan-implementation:
+        changes:
+          - "Retire Research: move each page to a home by type (guides, training, reference, evaluations, explainers) (#269)"
+      guides/cyberark-certificate-lifecycle:
+        changes:
+          - "Retire Research: move each page to a home by type (guides, training, reference, evaluations, explainers) (#269)"
+      guides/effective-meetings:
+        changes:
+          - "Move the decks and narration audio out of git, onto edition 2026.10 (#260)"
+      guides/hcm-entra-implementation:
+        changes:
+          - "Retire Research: move each page to a home by type (guides, training, reference, evaluations, explainers) (#269)"
+      guides/hr-driven-identity-implementation:
+        changes:
+          - "HR-Driven Identity: An Implementation Guide (draft) (#272)"
+          - "Building HR-Driven Identity: a developer workbook with labs (#276)"
+          - "Gate-level deck series for HR-Driven Identity and Ticket-to-Machine (sources) (#280)"
+      guides/infoblox-nios-implementation:
+        changes:
+          - "Retire Research: move each page to a home by type (guides, training, reference, evaluations, explainers) (#269)"
+      guides/intune-track-implementation:
+        changes:
+          - "Move the decks and narration audio out of git, onto edition 2026.10 (#260)"
+          - "Retire Research: move each page to a home by type (guides, training, reference, evaluations, explainers) (#269)"
+      guides/non-person-identity-implementation:
+        changes:
+          - "Move the decks and narration audio out of git, onto edition 2026.10 (#260)"
+          - "Retire Research: move each page to a home by type (guides, training, reference, evaluations, explainers) (#269)"
+      guides/snow-sailpoint-integration-kit:
+        changes:
+          - "Retire Research: move each page to a home by type (guides, training, reference, evaluations, explainers) (#269)"
+          - "Building Ticket-to-Machine: a developer workbook with labs (#275)"
+      guides/ttm-servicenow-sailpoint:
+        changes:
+          - "Retire Research: move each page to a home by type (guides, training, reference, evaluations, explainers) (#269)"
+          - "Ticket-to-Machine on ServiceNow and SailPoint: rewrite as a gated implementation guide (draft) (#273)"
+          - "Building Ticket-to-Machine: a developer workbook with labs (#275)"
+          - "Learning path: Ticket-to-Machine on ServiceNow and SailPoint (#277)"
+          - "Gate-level deck series for HR-Driven Identity and Ticket-to-Machine (sources) (#280)"
+      developer-workbooks/hr-driven-identity:
+        changes:
+          - "Building HR-Driven Identity: a developer workbook with labs (#276)"
+          - "Learning path: HR-Driven Identity in Microsoft Entra ID (#278)"
+          - "Gate-level deck series for HR-Driven Identity and Ticket-to-Machine (sources) (#280)"
+      developer-workbooks/non-person-identity:
+        changes:
+          - "Move the decks and narration audio out of git, onto edition 2026.10 (#260)"
+          - "Restore the developer workbook as Book 19, and the ADM implementation guide to Books > Guides (#270)"
+      developer-workbooks/privileged-access:
+        changes:
+          - "Move the decks and narration audio out of git, onto edition 2026.10 (#260)"
+          - "Restore the developer workbook as Book 19, and the ADM implementation guide to Books > Guides (#270)"
+      developer-workbooks/ticket-to-machine:
+        changes:
+          - "Building Ticket-to-Machine: a developer workbook with labs (#275)"
+          - "Learning path: Ticket-to-Machine on ServiceNow and SailPoint (#277)"
+          - "Learning path: HR-Driven Identity in Microsoft Entra ID (#278)"
+          - "Gate-level deck series for HR-Driven Identity and Ticket-to-Machine (sources) (#280)"
 # (scripts/cut_edition.py adds each new edition at the end of the list above.)
 
 # Releases that aren't editions (kits, video sets), listed on the Archive page.

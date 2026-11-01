@@ -368,7 +368,13 @@ Related: [Book 03 — HR-Driven Identity](../b03-hr-identity/index.md), [Book 02
 
 ## Version and revision history {#version-history}
 
-This guide has not been published in an edition yet. Each edition is kept, with its Word editions, decks and videos, on the [Archive](../../about/archive.md) page. Every change so far is in the [commit history](https://github.com/WhalerMike/modernization-workbook/commits/main/docs/books/guides/hcm-entra-implementation.md).
+**Version 1.0**, in [edition 2026.11](../../about/archive.md#edition-2026-11) (November 1, 2026). Every edition is kept on the [Archive](../../about/archive.md) page; every change between editions is in the [commit history](https://github.com/WhalerMike/modernization-workbook/commits/main/docs/books/guides/hcm-entra-implementation.md).
+
+| Version | Edition | Date | Changes |
+|---|---|---|---|
+| 1.0 | [2026.11](../../about/archive.md#edition-2026-11) | 2026-11-01 | Retire Research: move each page to a home by type (guides, training, reference, evaluations, explainers) ([#269](https://github.com/WhalerMike/modernization-workbook/pull/269)) |
+
+: Versions of this guide, newest first {.striped .hover}
 
 <!-- revisions:end -->
 

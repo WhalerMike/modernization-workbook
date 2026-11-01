@@ -29,7 +29,7 @@ The check and the plan behind the project plan's Gate 1, "every non-person ident
 ## Narrated tour
 {{< fmw-video DW_NPI_02_Ownership_Orphan_Rule_Narrated >}}
 
-[Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.10/DW_NPI_02_Ownership_Orphan_Rule.pptx) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.10/DW_NPI_02_Ownership_Orphan_Rule_Narrated.pptx) (about 11 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-npi-02-ownership-orphan-rule/DW_NPI_02_Ownership_Orphan_Rule_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-npi-02-ownership-orphan-rule/DW_NPI_02_Ownership_Orphan_Rule_Narrated.vtt). Recorded on October 31, 2026 from the approved chapter.
+[Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11/DW_NPI_02_Ownership_Orphan_Rule.pptx) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11/DW_NPI_02_Ownership_Orphan_Rule_Narrated.pptx) (about 11 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-npi-02-ownership-orphan-rule/DW_NPI_02_Ownership_Orphan_Rule_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-npi-02-ownership-orphan-rule/DW_NPI_02_Ownership_Orphan_Rule_Narrated.vtt). Recorded on October 31, 2026 from the approved chapter.
 :::
 
 <!-- tour:end -->

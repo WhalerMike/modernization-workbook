@@ -71,10 +71,11 @@ This is Book 14 of the [Federal Modernization Workbook](../index.md). The eviden
 
 ## Version and revision history {#version-history}
 
-**Version 1.0**, in [edition 2026.10](../../about/archive.md#edition-2026-10) (October 31, 2026). Every edition is kept on the [Archive](../../about/archive.md) page; every change between editions is in the [commit history](https://github.com/WhalerMike/modernization-workbook/commits/main/docs/books/b14-compliance).
+**Version 1.1**, in [edition 2026.11](../../about/archive.md#edition-2026-11) (November 1, 2026). Every edition is kept on the [Archive](../../about/archive.md) page; every change between editions is in the [commit history](https://github.com/WhalerMike/modernization-workbook/commits/main/docs/books/b14-compliance).
 
 | Version | Edition | Date | Changes |
 |---|---|---|---|
+| 1.1 | [2026.11](../../about/archive.md#edition-2026-11) | 2026-11-01 | Move the decks and narration audio out of git, onto edition 2026.10 ([#260](https://github.com/WhalerMike/modernization-workbook/pull/260)) |
 | 1.0 | [2026.10](../../about/archive.md#edition-2026-10) | 2026-10-31 | First edition (15 merged changes since the book began) |
 
 : Versions of this book, newest first {.striped .hover}
