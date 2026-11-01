@@ -1,0 +1,79 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.612
+DNSSEC has two halves.
+
+2
+00:00:01.612 --> 00:00:03.401
+BIND validates by default.
+
+3
+00:00:03.401 --> 00:00:07.029
+But behind the VPC Resolver,
+BIND can't validate:
+
+4
+00:00:07.029 --> 00:00:12.613
+the VPC Resolver ignores the DNSSEC
+OK bit and returns no DNSSEC records.
+
+5
+00:00:12.613 --> 00:00:14.934
+So validate in the VPC Resolver,
+
+6
+00:00:14.934 --> 00:00:18.951
+or in BIND toward an upstream
+that returns DNSSEC data.
+
+7
+00:00:18.951 --> 00:00:21.309
+Oracle's VCN resolver validates,
+
+8
+00:00:21.309 --> 00:00:26.288
+but whether it passes that data back
+to BIND isn't documented; confirm.
+
+9
+00:00:26.288 --> 00:00:30.436
+Private zones under a signed parent
+go on BIND's exceptions list,
+
+10
+00:00:30.436 --> 00:00:32.001
+held in the policy plane.
+
+11
+00:00:32.001 --> 00:00:35.431
+And whether Protective
+DNS returns DNSSEC records
+
+12
+00:00:35.431 --> 00:00:38.463
+to forwarders is a point
+to confirm with CISA.
+
+13
+00:00:38.463 --> 00:00:41.350
+Signing: no cloud signs private zones.
+
+14
+00:00:41.350 --> 00:00:46.040
+NIST says signing internal zones is
+not recommended except where required,
+
+15
+00:00:46.040 --> 00:00:48.125
+and notes agencies may require it.
+
+16
+00:00:48.125 --> 00:00:52.536
+The design guidance is that the
+zone's one writable owner signs it,
+
+17
+00:00:52.536 --> 00:00:57.650
+with keys on the Grid Master or an HSM,
+so a cloud BIND secondary holds no keys.

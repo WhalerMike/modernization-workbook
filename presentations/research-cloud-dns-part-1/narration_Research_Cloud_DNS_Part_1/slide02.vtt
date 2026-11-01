@@ -1,0 +1,57 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.900
+Why does cloud DNS need a deck of its own?
+
+2
+00:00:02.900 --> 00:00:07.237
+Book 08 of the workbook asks
+for one authoritative policy
+
+3
+00:00:07.237 --> 00:00:11.212
+and state plane that every
+other DNS system consumes.
+
+4
+00:00:11.212 --> 00:00:16.088
+Cloud DNS services are synchronized
+targets or forwarding destinations,
+
+5
+00:00:16.088 --> 00:00:18.525
+not independently authored sources.
+
+6
+00:00:18.525 --> 00:00:22.000
+The warning is about authoring
+copies in every silo.
+
+7
+00:00:22.000 --> 00:00:27.536
+That produces split-brain answers, names
+that work in one cloud but not another,
+
+8
+00:00:27.536 --> 00:00:30.262
+and uneven Protective DNS and logging.
+
+9
+00:00:30.262 --> 00:00:34.537
+The workbook already covers
+Infoblox with Azure and AWS.
+
+10
+00:00:34.537 --> 00:00:37.368
+It covered the Route 53 Resolver thinly,
+
+11
+00:00:37.368 --> 00:00:42.513
+and Oracle Cloud only at the comparison
+level, so Part 1 adds both in depth.
+
+12
+00:00:42.513 --> 00:00:46.010
+BIND in a cloud wasn't
+covered at all; that's Part 2.

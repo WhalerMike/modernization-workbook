@@ -1,0 +1,70 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.087
+The federal mapping reuses the
+controls Book 08 has already verified.
+
+2
+00:00:05.087 --> 00:00:10.276
+It's illustrative, so validate it against
+the system's own authorization boundary.
+
+3
+00:00:10.276 --> 00:00:12.850
+Configuration and inventory first.
+
+4
+00:00:12.850 --> 00:00:16.028
+CM-2, the baseline:
+the evidence is the Git
+
+5
+00:00:16.028 --> 00:00:19.688
+commit and tag of the
+rendered configuration.
+
+6
+00:00:19.688 --> 00:00:24.563
+CM-3, change control: pull
+requests with required review.
+
+7
+00:00:24.563 --> 00:00:31.162
+CM-6, configuration settings: the agency's
+stated profile, plus drift reports.
+
+8
+00:00:31.162 --> 00:00:36.483
+CM-7, least functionality: a dedicated
+DNS host, one role per server,
+
+9
+00:00:36.483 --> 00:00:41.113
+the version hidden, and
+recursion and transfers limited.
+
+10
+00:00:41.113 --> 00:00:44.964
+CM-8, inventory: a CMDB
+record for each server
+
+11
+00:00:44.964 --> 00:00:49.350
+and an IPAM entry for each
+address, with an owner.
+
+12
+00:00:49.350 --> 00:00:53.315
+And SI-2, flaw remediation:
+a supported BIND branch,
+
+13
+00:00:53.315 --> 00:00:57.376
+ISC's announcement list
+and vulnerability matrix,
+
+14
+00:00:57.376 --> 00:01:03.720
+and remediation inside the timelines of
+Binding Operational Directive 26-04.

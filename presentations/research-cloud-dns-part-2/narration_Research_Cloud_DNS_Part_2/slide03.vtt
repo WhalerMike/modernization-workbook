@@ -1,0 +1,66 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.188
+When should an agency run its own
+DNS servers in a cloud at all?
+
+2
+00:00:04.188 --> 00:00:08.455
+Microsoft's guidance is direct:
+use DNS Private Resolver
+
+3
+00:00:08.455 --> 00:00:13.176
+instead of custom DNS server
+software like BIND when possible.
+
+4
+00:00:13.176 --> 00:00:17.888
+AWS steers hybrid DNS to
+Resolver endpoints too.
+
+5
+00:00:17.888 --> 00:00:20.525
+So the criteria, as design guidance.
+
+6
+00:00:20.525 --> 00:00:23.294
+Run your own when a zone
+must be authoritative
+
+7
+00:00:23.294 --> 00:00:25.625
+in the cloud and reached by delegation.
+
+8
+00:00:25.625 --> 00:00:28.481
+When the agency's response policy zones,
+
+9
+00:00:28.481 --> 00:00:33.934
+or its encrypted-DNS logging at the
+agency resolver, must apply exactly as on
+
+10
+00:00:33.934 --> 00:00:39.387
+premises and the native filter can't carry
+them, or, as on Oracle, there isn't one.
+
+11
+00:00:39.387 --> 00:00:44.038
+When workloads need encrypted DNS
+the native endpoints don't offer.
+
+12
+00:00:44.038 --> 00:00:46.288
+For a migration bridge with an end date.
+
+13
+00:00:46.288 --> 00:00:49.076
+Or when load would exceed
+the per-instance quotas.
+
+14
+00:00:49.076 --> 00:00:51.700
+Otherwise, stay with the native resolver.

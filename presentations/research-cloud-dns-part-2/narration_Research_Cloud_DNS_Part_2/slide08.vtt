@@ -1,0 +1,77 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.138
+Here's the forwarder role on
+AWS, from the evaluation.
+
+2
+00:00:04.138 --> 00:00:05.450
+It's illustrative.
+
+3
+00:00:05.450 --> 00:00:10.407
+It passed BIND's configuration
+checker on version 9.18.39
+
+4
+00:00:10.407 --> 00:00:14.837
+but it hasn't run against a
+VPC or been checked on 9.20.
+
+5
+00:00:14.837 --> 00:00:18.528
+And in practice it's rendered
+from the policy plane and Git,
+
+6
+00:00:18.528 --> 00:00:19.988
+never typed on the host.
+
+7
+00:00:19.988 --> 00:00:23.764
+Version none hides the version,
+queries and recursion are
+
+8
+00:00:23.764 --> 00:00:27.225
+limited to the agency's
+clients, and transfers are off.
+
+9
+00:00:27.225 --> 00:00:31.680
+Validation is on, with an exceptions
+list for the private namespaces,
+
+10
+00:00:31.680 --> 00:00:33.400
+which have no DNSSEC chain.
+
+11
+00:00:33.400 --> 00:00:36.183
+Internet-bound queries go forward only,
+
+12
+00:00:36.183 --> 00:00:40.738
+to the agency resolvers, the
+governed upstream to Protective DNS.
+
+13
+00:00:40.738 --> 00:00:44.450
+The cloud's names go to this
+VPC's own plus-two resolver,
+
+14
+00:00:44.450 --> 00:00:47.825
+and on-premises names go
+to the agency resolvers.
+
+15
+00:00:47.825 --> 00:00:55.069
+On Oracle Cloud and Azure,
+the same file sends those
+
+16
+00:00:55.069 --> 00:01:01.510
+clouds' names to 169.254.169.254
+or 168.63.129.16.

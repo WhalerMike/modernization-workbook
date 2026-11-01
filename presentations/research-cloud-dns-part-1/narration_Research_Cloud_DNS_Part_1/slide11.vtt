@@ -1,0 +1,72 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.756
+Oracle Cloud Infrastructure matters here
+
+2
+00:00:02.756 --> 00:00:05.537
+because the HR platform
+runs on Oracle Cloud.
+
+3
+00:00:05.537 --> 00:00:14.412
+Every VCN gets a dedicated resolver,
+listening on 169.254.169.254.
+
+4
+00:00:14.412 --> 00:00:18.189
+It answers from the private
+views attached to it, in order,
+
+5
+00:00:18.189 --> 00:00:22.449
+then its default view, then its
+resolver rules, then the internet.
+
+6
+00:00:22.449 --> 00:00:25.057
+Oracle says it performs recursion to the
+
+7
+00:00:25.057 --> 00:00:28.200
+internet and DNSSEC
+validation for signed zones.
+
+8
+00:00:28.200 --> 00:00:29.787
+The trap is in that order.
+
+9
+00:00:29.787 --> 00:00:33.650
+A match in the sequence ends
+resolution, even an NXDOMAIN.
+
+10
+00:00:33.650 --> 00:00:36.721
+So a private zone for
+example dot com hides a
+
+11
+00:00:36.721 --> 00:00:40.048
+forwarding rule for onprem
+dot example dot com.
+
+12
+00:00:40.048 --> 00:00:42.863
+Views can be attached to many resolvers,
+
+13
+00:00:42.863 --> 00:00:46.275
+sharing private DNS data
+across VCNs in a region.
+
+14
+00:00:46.275 --> 00:00:50.812
+Same-name private and public
+zones give split-horizon DNS.
+
+15
+00:00:50.812 --> 00:00:56.180
+Between VCNs, resolution uses resolver
+endpoints over a peering gateway.

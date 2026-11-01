@@ -1,0 +1,71 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.700
+Here is the answer in brief.
+
+2
+00:00:01.700 --> 00:00:05.769
+Use the native resolver as the
+forwarding bridge in each cloud,
+
+3
+00:00:05.769 --> 00:00:08.038
+and keep the policy in the DDI plane.
+
+4
+00:00:08.038 --> 00:00:13.073
+The Route 53 VPC Resolver and the
+Azure DNS Private Resolver are managed,
+
+5
+00:00:13.073 --> 00:00:15.676
+zone-redundant forwarding services,
+
+6
+00:00:15.676 --> 00:00:20.712
+and both providers recommend them
+over DNS servers on virtual machines.
+
+7
+00:00:20.712 --> 00:00:24.237
+Oracle Cloud gives every
+virtual cloud network,
+
+8
+00:00:24.237 --> 00:00:27.850
+or VCN, a dedicated resolver
+that does the same job.
+
+9
+00:00:27.850 --> 00:00:32.247
+None of the three is an authority
+for the agency's own namespaces,
+
+10
+00:00:32.247 --> 00:00:35.400
+and neither AWS nor Azure
+signs private zones.
+
+11
+00:00:35.400 --> 00:00:41.033
+Oracle Cloud is the one with no native
+DNS-layer filter for private DNS, so in a
+
+12
+00:00:41.033 --> 00:00:47.113
+VCN the agency's policy applies only if
+queries are forwarded to agency resolvers.
+
+13
+00:00:47.113 --> 00:00:48.774
+And, as design guidance,
+
+14
+00:00:48.774 --> 00:00:52.974
+run your own DNS servers in a
+cloud only for a stated reason.
+
+15
+00:00:52.974 --> 00:00:54.430
+Part 2 covers that.

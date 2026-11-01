@@ -1,0 +1,70 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.370
+Then resolution, logging
+and Protective DNS.
+
+2
+00:00:03.370 --> 00:00:08.483
+SC-20 asks for signed authoritative
+data: the zone's one owner signs it,
+
+3
+00:00:08.483 --> 00:00:12.700
+and cloud secondaries serve
+signed data and hold no keys.
+
+4
+00:00:12.700 --> 00:00:18.951
+SC-21 asks for validation: validation on,
+the exceptions list from the policy plane,
+
+5
+00:00:18.951 --> 00:00:23.087
+and VPC Resolver validation
+where BIND forwards to it.
+
+6
+00:00:23.087 --> 00:00:28.324
+SC-22: at least two servers
+per Region, roles separated.
+
+7
+00:00:28.324 --> 00:00:34.163
+SI-4 treats DNS as a detection source,
+with every filter's hits in the SIEM.
+
+8
+00:00:34.163 --> 00:00:40.938
+AU-2 and AU-12: BIND's logs beside
+the three clouds' resolver logs,
+
+9
+00:00:40.938 --> 00:00:44.126
+kept for the M-26-14 retention.
+
+10
+00:00:44.126 --> 00:00:51.581
+For M-22-09's encrypted DNS and resolver
+logging: encrypted DNS to clients,
+
+11
+00:00:51.581 --> 00:00:56.937
+DNS over TLS upstream from BIND
+9.20, and logs at the BIND server.
+
+12
+00:00:56.937 --> 00:01:01.781
+CISA's guidance: internet-bound
+forwarding only to Protective
+
+13
+00:01:01.781 --> 00:01:05.801
+DNS or agency resolvers, and
+other DNS egress blocked.
+
+14
+00:01:05.801 --> 00:01:12.380
+And Emergency Directive 19-01 is sunset,
+but its four actions remain sound practice.

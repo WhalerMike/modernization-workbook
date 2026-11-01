@@ -1,0 +1,68 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.900
+How do the three meet on-premises DNS?
+
+2
+00:00:02.900 --> 00:00:08.962
+The same way, and Book 08's Decision 3
+already holds the rules, as design guidance.
+
+3
+00:00:08.962 --> 00:00:13.161
+Into the cloud: on-premises resolvers,
+and other clouds' resolvers,
+
+4
+00:00:13.161 --> 00:00:18.215
+conditionally forward each cloud namespace
+to that cloud's inbound endpoint,
+
+5
+00:00:18.215 --> 00:00:20.625
+using static addresses written once.
+
+6
+00:00:20.625 --> 00:00:24.375
+On Oracle Cloud, the entry
+point is a listening endpoint.
+
+7
+00:00:24.375 --> 00:00:30.325
+Neither the AWS nor the Azure inbound
+endpoint accepts an ordinary NS delegation
+
+8
+00:00:30.325 --> 00:00:36.100
+of a private zone; AWS's delegation inbound
+endpoint is the exception, and it's new.
+
+9
+00:00:36.100 --> 00:00:39.552
+Out of the cloud: each
+cloud forwards the agency's
+
+10
+00:00:39.552 --> 00:00:43.350
+namespaces back to the agency
+resolvers, by its rules.
+
+11
+00:00:43.350 --> 00:00:46.898
+On AWS, create the rules once
+in a network account and
+
+12
+00:00:46.898 --> 00:00:50.775
+share them through Resource
+Access Manager or a Profile.
+
+13
+00:00:50.775 --> 00:00:53.213
+Spokes associate them and can't edit them.
+
+14
+00:00:53.213 --> 00:00:56.230
+That's the cloud form
+of one policy object.

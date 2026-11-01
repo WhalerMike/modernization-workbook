@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.763
+Welcome.
+
+2
+00:00:00.763 --> 00:00:06.625
+This is Part 1 of a two-part narrated
+tour of a Federal Modernization Workbook
+
+3
+00:00:06.625 --> 00:00:10.472
+evaluation: Cloud DNS on
+AWS, Azure and Oracle Cloud,
+
+4
+00:00:10.472 --> 00:00:13.587
+with native resolvers, Infoblox and BIND.
+
+5
+00:00:13.587 --> 00:00:18.500
+It's research under review, written
+for FedRAMP Moderate civilian agencies.
+
+6
+00:00:18.500 --> 00:00:24.412
+Part 1 covers the three native resolvers
+in depth: the Route 53 VPC Resolver,
+
+7
+00:00:24.412 --> 00:00:29.562
+the Azure DNS Private Resolver,
+and the Oracle Cloud VCN resolver.
+
+8
+00:00:29.562 --> 00:00:32.838
+For each: its endpoints
+and forwarding rules,
+
+9
+00:00:32.838 --> 00:00:35.937
+its query logging and
+its DNS-layer filter.
+
+10
+00:00:35.937 --> 00:00:39.305
+Then what the providers say
+about their government clouds,
+
+11
+00:00:39.305 --> 00:00:41.436
+and how all three meet on-premises DNS.
+
+12
+00:00:41.436 --> 00:00:45.490
+Statements marked design guidance
+are the program's recommendations,
+
+13
+00:00:45.490 --> 00:00:49.940
+inferences are labeled, and confirm marks
+a point to settle with the provider.

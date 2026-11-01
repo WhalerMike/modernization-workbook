@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.837
+BIND does three jobs, and NIST and
+ISC both say to keep them apart.
+
+2
+00:00:04.837 --> 00:00:10.200
+NIST says an internet-facing server shouldn't
+serve in both roles, and ISC agrees.
+
+3
+00:00:10.200 --> 00:00:13.338
+In a cloud, the forwarder
+is the common case.
+
+4
+00:00:13.338 --> 00:00:17.226
+It holds no zones; it applies
+agency policy and logging,
+
+5
+00:00:17.226 --> 00:00:20.250
+then forwards each name
+to the right place.
+
+6
+00:00:20.250 --> 00:00:25.491
+A recursive resolver fits where agency
+policy and logging must apply at the first
+
+7
+00:00:25.491 --> 00:00:30.500
+hop, with the same response policy zones,
+validation and logging as on premises.
+
+8
+00:00:30.500 --> 00:00:35.402
+And authoritative service fits only for
+a delegated zone the native services
+
+9
+00:00:35.402 --> 00:00:39.550
+can't answer, or as a secondary of
+a zone mastered on the DDI platform.
+
+10
+00:00:39.550 --> 00:00:41.900
+Never a separately authored primary.

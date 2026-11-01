@@ -1,0 +1,82 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.188
+First, internet-bound queries.
+
+2
+00:00:02.188 --> 00:00:07.157
+CISA requires Protective DNS
+for all egress DNS resolution,
+
+3
+00:00:07.157 --> 00:00:13.100
+including from agency cloud deployments,
+directly or through agency DNS.
+
+4
+00:00:13.100 --> 00:00:18.988
+None of the native resolvers forwards the
+default path to Protective DNS on its own.
+
+5
+00:00:18.988 --> 00:00:23.437
+That takes a root rule in AWS or
+Azure, or a rule whose condition
+
+6
+00:00:23.437 --> 00:00:27.538
+is None in Oracle Cloud, pointing
+at the agency resolvers.
+
+7
+00:00:27.538 --> 00:00:30.272
+Whether cloud egress
+already reaches it some
+
+8
+00:00:30.272 --> 00:00:33.150
+other way is for the agency
+to confirm with CISA.
+
+9
+00:00:33.150 --> 00:00:34.550
+Second, policy.
+
+10
+00:00:34.550 --> 00:00:37.198
+The clouds' own filters
+are a second policy
+
+11
+00:00:37.198 --> 00:00:40.375
+surface beside the agency's
+response policy zones.
+
+12
+00:00:40.375 --> 00:00:44.748
+The design guidance: feed them
+from the same indicator decisions,
+
+13
+00:00:44.748 --> 00:00:49.687
+or use them as a backstop, so a block on
+premises is also a block in each cloud.
+
+14
+00:00:49.687 --> 00:00:52.821
+Oracle has no such filter for private DNS,
+
+15
+00:00:52.821 --> 00:00:57.613
+so its catch-all rule is the only
+way agency policy reaches a VCN.
+
+16
+00:00:57.613 --> 00:01:00.737
+Third, logs: all three go to the SIEM,
+
+17
+00:01:00.737 --> 00:01:05.300
+parsed through ASIM's DNS
+schema, as Book 12 does.
