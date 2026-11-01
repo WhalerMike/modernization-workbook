@@ -1,0 +1,9 @@
+$ python clients/python/finding_contract.py --validate tests/fixtures/payloads/samples.json --now 2026-11-01T12:00:00Z
+sample-1-good: ok stale_access P2 priority 2 due 2026-11-01T13:00:00Z system entra_user
+sample-2-typo: 400 drift_class must be one of missing_identity, stale_access, orphan_account, attribute_drift, unauthorized_write, credential_drift, schema_drift
+sample-3-empty-intent: ok unauthorized_write P2 priority 2 due 2026-11-01T13:00:00Z system isc_account
+sample-3-empty-intent: warning: intended_state names nothing a re-read can check (expected: Book 13 routes this class to a person, who sets it)
+sample-4-bad-severity: 400 severity must be P1, P2, P3 or P4
+sample-5-closure: ok closure_signal (moves matches to Awaiting verification; never closes)
+3 accepted, 2 rejected, 0 would de-duplicate
+(exit code 1)

@@ -1,0 +1,3 @@
+$ python clients/python/writer_check.py --entra-schema tests/fixtures/writers/entra_inbound_schema.json --isc-policies tests/fixtures/writers/isc_entra_source_policies.json --entra-directory "Microsoft Entra ID"
+error: No synchronization rule targets 'Microsoft Entra ID'; the schema's targets are ['Azure Active Directory']
+(exit code 2)

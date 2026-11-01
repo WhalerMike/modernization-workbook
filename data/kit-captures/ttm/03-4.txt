@@ -1,0 +1,11 @@
+$ python clients/python/kit_calls.py --task workflows --system isc --granted "sp:search:read,idn:accounts:read"
+Task workflows: create the three ISC workflows from sailpoint/workflows/drift-to-servicenow.json (by hand or a pipeline; no client in the kit makes this call)
+
+isc
+  POST   /v2025/workflows                                           sp:workflow:manage
+  needs: sp:workflow:manage
+
+missing: sp:workflow:manage
+extra:   idn:accounts:read, sp:search:read
+Least privilege does not hold: fix the grant.
+(exit code 1)

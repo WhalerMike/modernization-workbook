@@ -1,0 +1,3 @@
+$ python -m pytest tests/python/test_finding_contract.py -q
+......................                                                   [100%]
+22 passed

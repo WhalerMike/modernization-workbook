@@ -1,0 +1,24 @@
+$ node --test tests/servicenow/servicenow_scripts.test.js
+✔ creates a finding with priority and due date from severity
+✔ tempo windows: P1 immediate, P3 24h, P4 72h
+✔ de-duplicates an open finding on (source, subject, class)
+✔ two attributes drifting on one subject are two findings (attribute is in the key)
+✔ multivalued attribute changes become entitlements absent and present
+✔ attribute-change event becomes attribute drift on the identity
+✔ validation failures return 400
+✔ closure signal moves matching findings to awaiting verification, never closed
+✔ failed provisioning only adds a note
+✔ a person closing a finding is redirected to awaiting verification
+✔ the verifier with fresh evidence may close
+✔ evidence alone, or the verifier alone, is not enough
+✔ exception approver may cancel with a close note
+✔ non-closing changes are untouched
+✔ on incident, only SDIM-opened tickets are governed
+ℹ tests 15
+ℹ suites 0
+ℹ pass 15
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms …

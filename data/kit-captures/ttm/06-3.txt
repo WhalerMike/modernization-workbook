@@ -1,0 +1,16 @@
+$ python clients/python/identity_drift.py --hr-csv tests/fixtures/hr_extract_day2.csv --config tests/fixtures/config.fixtures.json --graph-users-json tests/fixtures/graph_users.json --isc-identities-json tests/fixtures/isc_identities.json --isc-accounts-json tests/fixtures/isc_uncorrelated_accounts.json --entra-audit-json tests/fixtures/entra_audit.json --out-json out/day2.json --out-csv out/day2.csv
+{
+  "counts": {
+    "attribute_drift": 4,
+    "missing_identity": 2,
+    "orphan_account": 3,
+    "stale_access": 2,
+    "unauthorized_write": 1
+  },
+  "not_computed": {
+    "credential_drift": "needs the card management system and Intune certificate reports",
+    "schema_drift": "needs the provisioning middleware's validation output"
+  },
+  "out_json": "out/day2.json",
+  "out_csv": "out/day2.csv"
+}

@@ -1,0 +1,33 @@
+$ python clients/python/identity_drift.py --hr-csv tests/fixtures/hr_extract.csv --config tests/fixtures/config.fixtures.json --graph-users-json tests/fixtures/graph_users.json --isc-identities-json tests/fixtures/isc_identities.json --isc-accounts-json tests/fixtures/isc_uncorrelated_accounts.json --entra-audit-json tests/fixtures/entra_audit.json --out-json out/day1.json --out-csv out/day1.csv
+{
+  "counts": {
+    "attribute_drift": 4,
+    "missing_identity": 2,
+    "orphan_account": 3,
+    "stale_access": 2,
+    "unauthorized_write": 1
+  },
+  "not_computed": {
+    "credential_drift": "needs the card management system and Intune certificate reports",
+    "schema_drift": "needs the provisioning middleware's validation output"
+  },
+  "out_json": "out/day1.json",
+  "out_csv": "out/day1.csv"
+}
+$ python clients/python/finding_contract.py --from-drift out/day1.json --now 2026-11-01T12:00:00Z
+1f0e34ebf049f163: ok attribute_drift P3 priority 3 due 2026-11-02T12:00:00Z system entra_user
+72cff206ce2db7b6: ok attribute_drift P3 priority 3 due 2026-11-02T12:00:00Z system entra_user
+0c7a86509768048c: ok attribute_drift P3 priority 3 due 2026-11-02T12:00:00Z system isc_account
+40961ae8da0e8cf3: ok attribute_drift P3 priority 3 due 2026-11-02T12:00:00Z system isc_account
+08c2e4690b59573a: ok missing_identity P2 priority 2 due 2026-11-01T13:00:00Z system entra_user
+08c2e4690b59573a: warning: intended_state names nothing a re-read can check (expected: Book 13 routes this class to a person, who sets it)
+c1b977b25ed6f817: ok missing_identity P2 priority 2 due 2026-11-01T13:00:00Z system isc_account
+c1b977b25ed6f817: warning: intended_state names nothing a re-read can check (expected: Book 13 routes this class to a person, who sets it)
+b7bdb5b9de78f5f3: ok orphan_account P2 priority 2 due 2026-11-01T13:00:00Z system entra_user
+2a17e849e5a24201: ok orphan_account P2 priority 2 due 2026-11-01T13:00:00Z system entra_user
+c72aab571b3a9237: ok orphan_account P2 priority 2 due 2026-11-01T13:00:00Z system isc_account
+c687d8f1a72b2a3f: ok stale_access P2 priority 2 due 2026-11-01T13:00:00Z system entra_user
+7590182ce4647db8: ok stale_access P2 priority 2 due 2026-11-01T13:00:00Z system isc_account
+7aabec019d85a331: ok unauthorized_write P2 priority 2 due 2026-11-01T13:00:00Z system entra_user
+7aabec019d85a331: warning: intended_state names nothing a re-read can check (expected: Book 13 routes this class to a person, who sets it)
+12 accepted, 0 rejected, 0 would de-duplicate

@@ -1,0 +1,19 @@
+$ python clients/python/identity_drift.py --hr-csv tests/fixtures/hr_extract_day2.csv --config tests/fixtures/config.fixtures.json --graph-users-json tests/fixtures/graph_users.json --isc-identities-json tests/fixtures/isc_identities.json --isc-accounts-json tests/fixtures/isc_uncorrelated_accounts.json --out-json out/day2-noaudit.json --out-csv out/day2-noaudit.csv
+{
+  "counts": {
+    "attribute_drift": 4,
+    "missing_identity": 2,
+    "orphan_account": 3,
+    "stale_access": 2
+  },
+  "not_computed": {
+    "credential_drift": "needs the card management system and Intune certificate reports",
+    "schema_drift": "needs the provisioning middleware's validation output",
+    "unauthorized_write": "no Entra audit extract supplied (--entra-audit-json or --include-audit)"
+  },
+  "out_json": "out/day2-noaudit.json",
+  "out_csv": "out/day2-noaudit.csv"
+}
+$ python clients/python/drift_compare.py --previous out/day1.json --current out/day2-noaudit.json
+error: The runs computed different drift classes (previous: attribute_drift, missing_identity, orphan_account, stale_access, unauthorized_write; current: attribute_drift, missing_identity, orphan_account, stale_access). A class one run didn't compute would look resolved; rerun with the same inputs.
+(exit code 2)

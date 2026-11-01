@@ -1,0 +1,8 @@
+$ python clients/python/reread_verification.py --records-json tests/fixtures/reread/awaiting_records.json --observations-json tests/fixtures/reread/observations.json --now 2026-11-02T12:00:00Z --out-json out/reread.json
+[dry-run] IDF0001001: verified; would PATCH state=3
+[dry-run] IDF0001002: mismatch; would PATCH state=1 (accountEnabled: intended False, observed True)
+[dry-run] IDF0001003: mismatch; would PATCH state=1 (disabled: intended True, observed False)
+[dry-run] IDF0001004: verified; would PATCH state=3
+IDF0001005: skipped, the intended state names nothing a re-read can check
+[dry-run] IDF0001006: verified; would PATCH state=3
+2 mismatch, 1 skipped, 3 verified

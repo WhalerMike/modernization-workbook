@@ -1,0 +1,7 @@
+$ python clients/python/writer_check.py --entra-schema tests/fixtures/writers/entra_inbound_schema.json --isc-policies tests/fixtures/writers/isc_entra_source_policies.json
+Entra inbound writes 8 attributes; SailPoint writes 7; 1 Finding, 1 Warn, 2 Info
+  Finding department         Entra update SailPoint update both update it: each overwrites the other, so drift never settles
+  Warn    displayName        Entra update SailPoint create one updates it and the other sets it at creation: two sources for its first value
+  Info    mailNickname       Entra create SailPoint create both set it only at creation
+  Info    userPrincipalName  Entra create SailPoint create both set it only at creation
+(exit code 1)

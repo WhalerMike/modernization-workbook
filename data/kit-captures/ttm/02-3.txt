@@ -1,0 +1,14 @@
+$ python clients/python/kit_calls.py --task reread --system servicenow --granted "x_example_idkit.verifier,itil"
+Task reread: reread_verification.py: list waiting findings, re-read each subject, close or reopen with evidence
+
+servicenow
+  POST   /oauth_token.do                                            an inbound OAuth client (client credentials) with its own integration user
+  GET    /api/now/table/u_identity_finding                          x_example_idkit.verifier (read on u_identity_finding)
+  PATCH  /api/now/table/u_identity_finding/{sys_id}                 x_example_idkit.verifier (write on u_identity_finding)
+  POST   /api/now/attachment/file                                   x_example_idkit.verifier (create on sys_attachment)
+  needs: x_example_idkit.verifier
+
+missing: none
+extra:   itil
+Least privilege does not hold: fix the grant.
+(exit code 1)

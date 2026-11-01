@@ -1,0 +1,3 @@
+$ python -m pytest tests/python/test_writer_check.py -q
+......                                                                   [100%]
+6 passed

@@ -1,0 +1,15 @@
+$ node --test --test-name-pattern="redirected|verifier|exception approver|evidence alone|non-closing|SDIM" tests/servicenow/servicenow_scripts.test.js
+✔ a person closing a finding is redirected to awaiting verification
+✔ the verifier with fresh evidence may close
+✔ evidence alone, or the verifier alone, is not enough
+✔ exception approver may cancel with a close note
+✔ non-closing changes are untouched
+✔ on incident, only SDIM-opened tickets are governed
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms …
