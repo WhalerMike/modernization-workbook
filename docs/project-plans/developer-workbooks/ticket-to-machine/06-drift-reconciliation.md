@@ -10,7 +10,9 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
-review-status: pending
+review-status: approved
+reviewed-sha256: a5e9e1af33d4b98639d0950e674aaa79d0fa7af0ad3d3faeb55b67525f1ae70c
+last-reviewed: 2026-11-01
 ---
 # Chapter 06 — Drift Reconciliation
 

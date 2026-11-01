@@ -10,7 +10,9 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
-review-status: pending
+review-status: approved
+reviewed-sha256: e899bb7858752d1279678c0e70fc73642385622f26e38232f604da5084391d04
+last-reviewed: 2026-11-01
 ---
 # Chapter 01 — The Loop and the Typed Task
 

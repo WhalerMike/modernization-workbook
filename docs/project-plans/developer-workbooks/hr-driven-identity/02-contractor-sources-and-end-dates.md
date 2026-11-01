@@ -10,7 +10,8 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
-review-status: pending
+review-status: approved
+reviewed-sha256: 831d2eb4e879140f9fdad1fcf69bd247d4a23902023e030aa2c1bdcc20c0c740
 last-reviewed: 2026-11-01
 ---
 # Chapter 02 — Contractor Sources and Enforced End Dates
@@ -125,6 +126,8 @@ You need Python 3.10 or later. Work in `examples/hr-lifecycle`.
    Source: 2 Finding, 1 Warn, 1 Info
    Extract written to out/ch02/extract/contractors-extract.csv; build the SCIM requests with examples/hcm-entra/python/hcm_to_scim.py
    ```
+
+   The exit code is 2, because the run has a Finding or a Warn; see the exit codes in the kit's README.
 
 3. **Read the decisions:**
 

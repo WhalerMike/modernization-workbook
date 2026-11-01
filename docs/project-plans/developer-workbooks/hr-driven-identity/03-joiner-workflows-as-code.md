@@ -10,7 +10,8 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
-review-status: pending
+review-status: approved
+reviewed-sha256: 9b1ec76762f2b902ddd18ff985b2d2584a64f707ff2efbd5b891d17d08dddaa0
 last-reviewed: 2026-11-01
 ---
 # Chapter 03 — Joiner Workflows as Code and the Temporary Access Pass Bridge
@@ -184,6 +185,8 @@ You need Python 3.10 or later. Work in `examples/hr-lifecycle`.
    Plan: 0 Finding, 1 Warn, 0 Info
    Plan written to out/ch03/plan/plan.json; nothing was sent
    ```
+
+   The exit code is 2: a Warn counts as well as a Finding.
 
    The day-one workflow in the tenant requests a different package, so it gets a new version; its body in `out/ch03/plan/bodies/day-one.json` is wrapped in `workflow` for `createNewVersion`. The employee leaver doesn't exist yet, so it gets a create. The Warn is JW-15 for `Onboard Marketing (legacy)`, a workflow made in the portal that no file defines. Try the same plan on the broken folder: it stops with an error, because those files have Findings.
 

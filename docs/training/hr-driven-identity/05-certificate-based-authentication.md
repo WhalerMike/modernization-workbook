@@ -1,0 +1,157 @@
+---
+title: "Module 5: Check certificate-based authentication"
+description: "Gate G5 and workbook Chapter 05: measure every CRL, and check the certificate-based authentication trust store, each CRL against the cloud's limit, the multifactor mapping, CRL validation and the phishing-resistant strength, for GCC and GCC High. About 45 minutes, with a lab on fixtures and a test tenant lab."
+doc-type: training-module
+research-status: draft
+research-type: training module
+research-book: "Book 03"
+last-reviewed: 2026-11-01
+series-order: 5
+---
+
+# Module 5: Check certificate-based authentication {.unnumbered}
+
+*Part of the [HR-Driven Identity learning path](index.md). Gate G5 Credentials. Workbook [Chapter 05](../../project-plans/developer-workbooks/hr-driven-identity/05-certificate-based-authentication-checks.md). About 45 minutes.*
+
+## Introduction (3 minutes)
+
+A PIV card's revocation reaches sign-in only through the certificate revocation list. If a CA has no CRL configured, Entra doesn't check revocation for it. If a configured CRL can't be downloaded in time, certificate-based authentication fails for every card from that CA. And a CRL grows with every revocation, so a list that fits today can cross your cloud's limit next month.
+
+In this module you measure each CRL and check the tenant's certificate-based authentication settings against the limits for your cloud, every day rather than once.
+
+**The federal requirement.** This gate meets NIST SP 800-53 IA-2(12) (acceptance of PIV credentials) and IA-5(2) (public key-based authentication), CISA SCuBA MS.AAD.3.1v1 and MS.AAD.3.6v1 (phishing-resistant MFA, required under BOD 25-01), FIPS 201-3's issuance and termination rules, and NIST SP 800-63-4. The requirements and evidence are in the [Gate 5 requirements table](../../books/guides/hr-driven-identity-implementation.md#step-5-bind-credentials-to-hr-events) (under **Federal requirements and evidence** in Step 5) and the workbook chapter's [Federal requirements and evidence](../../project-plans/developer-workbooks/hr-driven-identity/05-certificate-based-authentication-checks.md#federal-requirements-and-evidence).
+
+## Learning objectives (1 minute)
+
+After this module, you'll be able to:
+
+- state the interactive CRL limits for GCC and GCC High, and the download time limit;
+- measure a set of CRLs and record failures as findings;
+- run the certificate-based authentication check for a named cloud and explain its findings;
+- explain why the same CRL can be a warning in one cloud and not in another.
+
+## Prerequisites (1 minute)
+
+- [Module 3](03-joiners-and-the-temporary-access-pass.md): the Temporary Access Pass bridges to the card; this gate ends the bridge.
+- Some familiarity with PKI terms (issuing CA, CRL, policy OID). [Book 07, Chapter 06](../../books/b07-pki/06-device-and-user-certificates.md#entra-certificate-based-authentication) explains them for Entra.
+
+## Unit 1: Credentials follow HR events (6 minutes)
+
+Read the guide's [Step 5](../../books/guides/hr-driven-identity-implementation.md#step-5-bind-credentials-to-hr-events). Its step 1 gives the CRL limits per cloud; its later steps tie issuance and revocation to HR and contractor events.
+
+Then read why revocation matters:
+
+- [Book 03, Chapter 09, Revocation checking](../../books/b03-hr-identity/09-credentials-and-certificates.md#revocation-checking).
+- [Book 03, Chapter 09, Binding the PIV certificate to the Entra user](../../books/b03-hr-identity/09-credentials-and-certificates.md#binding-the-piv-certificate-to-the-entra-user): a reissue changes the binding.
+
+Per-user binding coverage and affinity aren't this module's: they belong to the validation kit's VK-PIV-01 and the [ADM implementation guide's Gate 6](../../books/guides/attribute-driven-migration-implementation.md#gate-6-piv-and-cac-binding).
+
+## Unit 2: The measurement and the check (6 minutes)
+
+Read the workbook's [Why this gate needs code](../../project-plans/developer-workbooks/hr-driven-identity/05-certificate-based-authentication-checks.md#why-this-gate-needs-code), which sets out Learn's two sets of CRL limits, then:
+
+- [The measurement](../../project-plans/developer-workbooks/hr-driven-identity/05-certificate-based-authentication-checks.md#the-measurement): download each CRL once, record bytes, seconds and any error.
+- [The check](../../project-plans/developer-workbooks/hr-driven-identity/05-certificate-based-authentication-checks.md#the-check): CB-01 to CB-13, which come from Learn, which from SCuBA and which are design guidance.
+
+## Exercise: Lab 1, fixtures, no tenant (20 minutes)
+
+This is the workbook's [Lab 1](../../project-plans/developer-workbooks/hr-driven-identity/05-certificate-based-authentication-checks.md#lab-1-fixtures-no-tenant). Work in `examples/hr-lifecycle`. The PKI is fictional.
+
+1. List the calls and permissions:
+
+    ```bash
+    python python/graph_export.py --task cba-read --list
+    ```
+
+    Expect three permissions, `Policy.Read.All`, `Policy.Read.AuthenticationMethod` and `PublicKeyInfrastructure.Read.All`, for five GET calls.
+
+2. Measure the fixture CRLs:
+
+    ```bash
+    python python/cba_check.py measure --urls tests/fixtures/ch05/crl-urls.txt --out out/ch05/crl-measurements.csv
+    ```
+
+    ```text
+             4,096 bytes    0.000 s  tests/fixtures/ch05/crl/piv-ca1.crl
+             8,192 bytes    0.000 s  tests/fixtures/ch05/crl/piv-ca2.crl
+                 0 bytes    0.000 s  tests/fixtures/ch05/crl/missing.crl  FileNotFoundError
+    Measured 3 CRL(s) -> out/ch05/crl-measurements.csv
+    ```
+
+    Your times may differ. The missing file is recorded, not raised.
+
+3. Check the fictional tenant for GCC:
+
+    ```bash
+    python python/cba_check.py check --cloud gcc --exports tests/fixtures/ch05/exports --crl tests/fixtures/ch05/crl-measurements.csv --expected config/cba-expected.json --as-of 2026-11-01 --out out/ch05/check
+    ```
+
+    Expect `Cloud gcc: interactive CRL limit 20,000,000 bytes, download within 10 s`, then `CBA: 5 Finding, 7 Warn, 0 Info` and exit code 2. Find CB-04 (a CRL that took 11.4 seconds), CB-05 (a CRL of 18,500,000 bytes, over 80 percent of the GCC limit), CB-09 (a PIV policy OID not mapped to multifactor) and CB-10 (no enabled policy requires a phishing-resistant strength).
+
+4. Check the same tenant for GCC High:
+
+    ```bash
+    python python/cba_check.py check --cloud gcchigh --exports tests/fixtures/ch05/exports --crl tests/fixtures/ch05/crl-measurements.csv --expected config/cba-expected.json --as-of 2026-11-01 --out out/ch05/check-gcchigh
+    ```
+
+    ```text
+    Cloud gcchigh: interactive CRL limit 45,000,000 bytes, download within 10 s
+    CBA: 5 Finding, 6 Warn, 0 Info
+    ```
+
+    CB-05 drops away; the 11.4-second download is still a Finding.
+
+5. Run the tests:
+
+    ```bash
+    python -m pytest tests -q
+    ```
+
+    Expect `57 passed`. Delete `out` when you're done.
+
+## Exercise: Lab 2, your test tenant (5 minutes to read)
+
+*Not run by the authors.* Follow the workbook's [Lab 2](../../project-plans/developer-workbooks/hr-driven-identity/05-certificate-based-authentication-checks.md#lab-2-test-tenant) in a test tenant with certificate-based authentication configured for a test CA, never production.
+
+- **What you do:** export the configuration, measure the real CRLs from outside the agency network, run the check with your test PKI's thumbprints and OIDs, then revoke a test certificate and confirm Entra refuses it after the next CRL publication.
+- **Permissions:** a reader app with a certificate holding the three application permissions from step 1, with admin consent, and nothing else.
+- **Back-out:** remove the permissions, delete the reader app and its certificate, reissue the test user's certificate if you need it, and delete the export and output folders.
+
+## Knowledge check (5 minutes)
+
+1. What happens when an issuing CA in the trust store has no CRL configured?
+    a. Entra downloads the CRL from the certificate's distribution point
+    b. Entra doesn't check revocation for that CA's certificates
+    c. Sign-in fails for that CA's certificates
+    d. Entra uses the root CA's CRL instead
+2. What's the interactive sign-in CRL size limit in GCC?
+    a. 20 MB, the commercial service limit
+    b. 45 MB, the Azure Government limit
+    c. 65 MB
+    d. 150 MB
+3. An 18,500,000-byte CRL raises CB-05 for GCC but not for GCC High. Why?
+    a. GCC High doesn't check CRL size
+    b. CB-05 warns at 80 percent of the cloud's interactive limit, and GCC High's limit is 45 MB
+    c. GCC High caches CRLs
+    d. The check skips CB-05 for root CAs
+4. A configured CRL takes 11.4 seconds to download. What does the check report?
+    a. A Warn in GCC and nothing in GCC High
+    b. A CB-04 Finding in every cloud, because the limit is 10 seconds
+    c. Nothing, because the size is under the limit
+    d. A CB-02 Warn, because it should be HTTP
+
+::: {.callout-tip collapse="true"}
+## Check your answers
+1. **b.** Without a configured CRL, Entra doesn't check revocation (CB-01). Taught in the guide's [Step 5](../../books/guides/hr-driven-identity-implementation.md#step-5-bind-credentials-to-hr-events) and [The check](../../project-plans/developer-workbooks/hr-driven-identity/05-certificate-based-authentication-checks.md#the-check).
+2. **a.** 20 MB in the commercial service, which GCC uses; 45 MB in Azure Government. Taught in the guide's [Step 5](../../books/guides/hr-driven-identity-implementation.md#step-5-bind-credentials-to-hr-events).
+3. **b.** The same size is under 80 percent of 45 MB. Taught in [The check](../../project-plans/developer-workbooks/hr-driven-identity/05-certificate-based-authentication-checks.md#the-check) and the chapter's [Lab 1](../../project-plans/developer-workbooks/hr-driven-identity/05-certificate-based-authentication-checks.md#lab-1-fixtures-no-tenant).
+4. **b.** A CRL must download within 10 seconds in every cloud. Taught in [The check](../../project-plans/developer-workbooks/hr-driven-identity/05-certificate-based-authentication-checks.md#the-check).
+:::
+
+## Summary (2 minutes)
+
+You measured three CRLs, checked a fictional tenant's certificate-based authentication for GCC and for GCC High, and saw how the cloud's limit changes the findings.
+
+**The evidence an ISSO keeps** for Gate 5: the `cba-read` export and the check's findings and manifest, dated; each CRL measurement; the CB-09 and CB-10 rows beside the ScubaGear report; Lab 2's refused sign-in with the revocation record and the CRL that published it; and the mode rules in the export. The full list is in the workbook's [Federal requirements and evidence](../../project-plans/developer-workbooks/hr-driven-identity/05-certificate-based-authentication-checks.md#federal-requirements-and-evidence).
+
+**Next:** [Module 6: Time separations from the logs](06-separation-timing.md).

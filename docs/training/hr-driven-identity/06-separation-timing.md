@@ -1,0 +1,156 @@
+---
+title: "Module 6: Time separations from the logs"
+description: "Gate G6 and workbook Chapter 06: measure separation-to-block and separation-to-revocation for every leaver from the audit log, the Lifecycle Workflows results, the card system and Intune, and find late separations, uncollected cards, re-enables, failed runs and deletes before devices are retired. About 45 minutes, with a lab on fixtures and a test tenant lab."
+doc-type: training-module
+research-status: draft
+research-type: training module
+research-book: "Book 03"
+last-reviewed: 2026-11-01
+series-order: 6
+---
+
+# Module 6: Time separations from the logs {.unnumbered}
+
+*Part of the [HR-Driven Identity learning path](index.md). Gate G6 Separation. Workbook [Chapter 06](../../project-plans/developer-workbooks/hr-driven-identity/06-separation-timing.md). About 45 minutes.*
+
+## Introduction (3 minutes)
+
+When a person separates, your ISSO has to show that access was blocked within the approved interval and the credential was revoked. No Microsoft report gives that number. Lifecycle Workflows records that a run completed, the audit log records when the account was disabled, and the card system and Intune record the rest, each in its own place.
+
+In this module you join those records per leaver, compute the two intervals, and find the separations that went wrong: late entries, a re-enable, a failed run, a card revoked too late, a delete before the devices were retired.
+
+**The federal requirement.** This gate meets NIST SP 800-53 PS-4 (personnel termination) and AC-2(3) (disable accounts), PS-7 for contractors, FIPS 201-3's rule that a card that can't be collected is terminated within 18 hours of notification, and AC-2(13) (disable accounts for high-risk individuals). The requirements and evidence are in the [Gate 6 requirements table](../../books/guides/hr-driven-identity-implementation.md#step-6-time-separations-and-deprovisioning) (under **Federal requirements and evidence** in Step 6) and the workbook chapter's [Federal requirements and evidence](../../project-plans/developer-workbooks/hr-driven-identity/06-separation-timing.md#federal-requirements-and-evidence).
+
+## Learning objectives (1 minute)
+
+After this module, you'll be able to:
+
+- describe the leaver order: block first, revoke in parallel, reconcile, dispose last;
+- define separation-to-block and separation-to-revocation, and say which records each reads;
+- run the measurement and explain the ST findings, including the catch-up window;
+- explain why the tenant schedule belongs inside the approved interval.
+
+## Prerequisites (1 minute)
+
+- [Module 1](01-one-writer-per-state.md): the pipeline sends `active` false no later than the leaver workflow's first run.
+- [Module 3](03-joiners-and-the-temporary-access-pass.md): the leaver and post-separation workflow files.
+- [Module 5](05-certificate-based-authentication.md): card revocation reaches sign-in through the CRL.
+
+## Unit 1: The leaver sequence (7 minutes)
+
+Read the guide's [Step 6](../../books/guides/hr-driven-identity-implementation.md#step-6-time-separations-and-deprovisioning): order the leaver as the sequence, time the leave date late in the day, coordinate the two writers, build the emergency path, catch late separations, verify the block, and dispose last.
+
+Then read the design:
+
+- [Book 03, Chapter 09, The canonical leaver sequence](../../books/b03-hr-identity/09-credentials-and-certificates.md#the-canonical-leaver-sequence).
+- [Book 03, Chapter 08, Triggers and schedule](../../books/b03-hr-identity/08-joiner-mover-leaver.md#triggers-and-schedule): why a separation entered late misses the scheduled trigger.
+- [Book 19, Chapter 05, The leaver order](../../books/b19-developer-workbook/05-lifecycle-workflows-custom-extensions.md#the-leaver-order): the custom task extension that revokes the card and retires the devices, already built.
+
+## Unit 2: The intervals and the rules (6 minutes)
+
+Read two sections of workbook Chapter 06:
+
+- [The intervals](../../project-plans/developer-workbooks/hr-driven-identity/06-separation-timing.md#the-intervals): *blocked* is the later of the disable and the session revocation; *revoked* adds the card and the devices.
+- [The rules](../../project-plans/developer-workbooks/hr-driven-identity/06-separation-timing.md#the-rules): ST-01 to ST-09, and which thresholds are samples the agency replaces.
+
+## Exercise: Lab 1, fixtures, no tenant (20 minutes)
+
+This is the workbook's [Lab 1](../../project-plans/developer-workbooks/hr-driven-identity/06-separation-timing.md#lab-1-fixtures-no-tenant). Work in `examples/hr-lifecycle`. The leavers are fictional.
+
+1. List the calls and permissions:
+
+    ```bash
+    python python/graph_export.py --task separation-read --list
+    ```
+
+    ```text
+    Task separation-read: AuditLog.Read.All, LifecycleWorkflows-Reports.Read.All
+      GET /auditLogs/directoryAudits  [AuditLog.Read.All]
+      GET /identityGovernance/lifecycleWorkflows/workflows/{workflowId}/userProcessingResults  [LifecycleWorkflows-Reports.Read.All]
+    ```
+
+2. Measure the fictional leavers:
+
+    ```bash
+    python python/separation_timing.py measure --separations tests/fixtures/ch06/hr-separations.csv --users tests/fixtures/ch06/leaver-users.json --audits tests/fixtures/ch06/separation-audits.json --results tests/fixtures/ch06/leaver-results.json --cards tests/fixtures/ch06/card-revocations.csv --devices tests/fixtures/ch06/device-actions.csv --role-holders tests/fixtures/ch06/role-holders.csv --config config/separation.json --as-of 2026-11-01T12:00:00Z --cloud gcc --out out/ch06
+    ```
+
+    ```text
+    Leavers: 7 separated, 1 cancelled, 1 not blocked
+    Separation-to-block hours: p50 0.25, p90 5.52, max 84.68 (threshold 4)
+    Separation-to-revocation hours: p50 11.0, p90 110.0, max 395.0 (threshold 24)
+    Separation: 10 Finding, 2 Warn, 0 Info
+    ```
+
+    The exit code is 2.
+
+3. Read the findings:
+
+    ```bash
+    python -c "import json; [print(r['Rule'], r['Severity'], r['Object']) for r in json.load(open('out/ch06/findings.json'))]"
+    ```
+
+    Expect twelve lines. Match each to the workbook's story: Casey blocked after 5.52 hours (ST-01) and the uncollected card was revoked 23 hours after notice (ST-04); Drew was entered 6.8 days late with no on-demand run and never blocked (ST-02, ST-03); Harper was re-enabled with no cancellation (ST-05) and had a failed run (ST-07); Kai holds a privileged role (ST-06); Blake was deleted before the device retire completed (ST-08).
+
+4. Read the intervals:
+
+    ```bash
+    cut -d, -f1,7,8,10 out/ch06/intervals.csv
+    ```
+
+    Expect a header and eight rows: six `measured`, one `not blocked` (100303) and one `cancelled` (100307).
+
+5. Run the tests:
+
+    ```bash
+    python -m pytest tests -q
+    ```
+
+    Expect `57 passed`. Delete `out` when you're done; Module 7 rebuilds `out/ch06` and reads its `summary.json`.
+
+## Exercise: Lab 2, your test tenant (5 minutes to read)
+
+*Not run by the authors.* Follow the workbook's [Lab 2](../../project-plans/developer-workbooks/hr-driven-identity/06-separation-timing.md#lab-2-test-tenant) in a test tenant with Lifecycle Workflows licensed and a leaver workflow in Book 03's order, never production.
+
+- **What you do:** make one scheduled and one on-demand test leaver, export the logs, confirm which audit activity the revoke task writes, and measure. Each test user's separation-to-block should include the wait for the tenant schedule.
+- **Permissions:** a reader app with a certificate holding `AuditLog.Read.All` and `LifecycleWorkflows-Reports.Read.All`, with admin consent, and nothing else.
+- **Back-out:** remove the test users' leave dates and re-enable or restore them if you need them, remove the permissions, delete the reader app and its certificate, and delete the export and output folders.
+
+## Knowledge check (5 minutes)
+
+1. What does the code take as the moment a leaver was *blocked*?
+    a. The leaver workflow's completion time
+    b. The later of the first *Disable account* and the first session revocation record
+    c. The HR effective time
+    d. The card system's revocation time
+2. A separation is entered in HR more than three days after its effective date, and nobody runs the leaver on demand. What does the measurement report?
+    a. Nothing; the scheduled trigger catches it
+    b. An ST-03 Finding, because it missed the catch-up window
+    c. An ST-06 Warn
+    d. An ST-08 Finding
+3. Why does the guide say the tenant schedule belongs inside the approved interval?
+    a. The schedule controls how long logs are kept
+    b. The tenant schedule can delay a scheduled leaver's run, so the wait is part of separation-to-block
+    c. The schedule sets the CRL publication time
+    d. On-demand runs use the schedule's interval
+4. A user is deleted on October 20, and the device retire completes on October 22. Which rule flags it, and why?
+    a. ST-08; the user was deleted before the devices were retired, and disposal comes last
+    b. ST-05; the account was re-enabled
+    c. ST-01; the block was late
+    d. None; deletion order doesn't matter
+
+::: {.callout-tip collapse="true"}
+## Check your answers
+1. **b.** *Blocked* is the later of the disable and the *Update StsRefreshTokenValidFrom Timestamp* record. Taught in [The intervals](../../project-plans/developer-workbooks/hr-driven-identity/06-separation-timing.md#the-intervals).
+2. **b.** Past three days the scheduled trigger skips the user; ST-03 is a Finding with no on-demand run, a Warn with one. Taught in [The rules](../../project-plans/developer-workbooks/hr-driven-identity/06-separation-timing.md#the-rules) and the guide's [Step 6](../../books/guides/hr-driven-identity-implementation.md#step-6-time-separations-and-deprovisioning).
+3. **b.** The interval includes the schedule, so set the threshold and the schedule together. Taught in the guide's [Step 6](../../books/guides/hr-driven-identity-implementation.md#step-6-time-separations-and-deprovisioning) and [Book 03, Triggers and schedule](../../books/b03-hr-identity/08-joiner-mover-leaver.md#triggers-and-schedule).
+4. **a.** Retire or wipe devices before deleting the user. Taught in [The rules](../../project-plans/developer-workbooks/hr-driven-identity/06-separation-timing.md#the-rules) and the guide's [Step 6](../../books/guides/hr-driven-identity-implementation.md#step-6-time-separations-and-deprovisioning).
+:::
+
+## Summary (2 minutes)
+
+You measured nine separations, found the ones that blocked late, never blocked, were re-enabled, failed or were deleted too early, and produced the percentiles Module 7 reports.
+
+**The evidence an ISSO keeps** for Gate 6: `intervals.csv`, `summary.json` and `findings.json` with the manifest, per run, and the exported workflow runs, audit records, card revocations and device actions behind them; the contractor rows of the intervals; the notice and revocation timestamps for uncollected cards; and the emergency path's on-demand runs, logged as changes. The full list is in the workbook's [Federal requirements and evidence](../../project-plans/developer-workbooks/hr-driven-identity/06-separation-timing.md#federal-requirements-and-evidence).
+
+**Next:** [Module 7: Find lifecycle drift and file the evidence](07-drift-and-evidence.md).

@@ -10,7 +10,9 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
-review-status: pending
+review-status: approved
+reviewed-sha256: 05f25bc89298ac8066afabbaa81d9ba7e04050ddea689478f8fe3e939d092c1a
+last-reviewed: 2026-11-01
 ---
 # Chapter 05 — The Re-read Rule
 

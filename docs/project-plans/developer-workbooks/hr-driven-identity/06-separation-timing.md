@@ -10,7 +10,8 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
-review-status: pending
+review-status: approved
+reviewed-sha256: 758437134a080fefd5954f5857329babe00b4da7d791a7845a9bebc7c8233431
 last-reviewed: 2026-11-01
 ---
 # Chapter 06 — Separation Timing from the Logs
@@ -187,7 +188,7 @@ You need Python 3.10 or later. Work in `examples/hr-lifecycle`.
    python -m pytest tests -q
    ```
 
-**Expected result:** `57 passed`. Keep `out/ch06` if you go on to Chapter 07, which reads its `summary.json`; otherwise delete `out`.
+**Expected result:** `57 passed`. Delete `out` either way: Chapter 07's first step measures the separations again into `out/ch06`, and the tool refuses to write into a folder that already holds a run.
 
 ## Lab 2: test tenant
 
