@@ -57,10 +57,7 @@ CHAPTERS: dict[str, dict] = {
     "adm-06": {"hidden": {1: "Set-Location ../validation-kit", 2: "Set-Location ../group-policy-as-code"}},
     "adm-07": {"off": "needs Windows and three modules saved from the PowerShell Gallery"},
     "adm-08": {"off": "needs a Linux control node with ansible-core and collections from Ansible Galaxy"},
-    # Labs that start from an earlier chapter's out folder ("needs": its lab runs first, unshown), and
-    # labs whose bash steps work in the drift pipeline.
-    "npi-02": {"needs": ["01"]}, "npi-04": {"needs": ["01"]}, "npi-06": {"needs": ["01"]},
-    "npi-07": {"needs": ["01"]}, "npi-09": {"needs": ["01", "02"]},
+    # Labs whose bash steps work in the drift pipeline.
     "npi-10": {"lang_cwd": {"bash": "examples/drift-pipeline"}},
     "pa-08": {"lang_cwd": {"bash": "examples/drift-pipeline"}},
 }
