@@ -1,0 +1,67 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.243
+The answer to check seven: the file's
+hash no longer matches the manifest,
+
+2
+00:00:04.243 --> 00:00:06.375
+and the chain breaks at the next line.
+
+3
+00:00:06.375 --> 00:00:10.547
+That's Erin's record, end to end:
+measured, typed and clocked,
+
+4
+00:00:10.547 --> 00:00:15.251
+touched only by least-privileged
+clients, traced to two writers,
+
+5
+00:00:15.251 --> 00:00:19.600
+fixed at the source, closed on a
+re-read, and filed as evidence.
+
+6
+00:00:19.600 --> 00:00:20.737
+Now it's your turn.
+
+7
+00:00:20.737 --> 00:00:23.755
+Every chapter has a Lab 2
+in your own test instance:
+
+8
+00:00:23.755 --> 00:00:27.656
+a ServiceNow Personal Developer
+Instance, a SailPoint sandbox,
+
+9
+00:00:27.656 --> 00:00:32.513
+and for some chapters a test Entra tenant
+with synthetic data, never production.
+
+10
+00:00:32.513 --> 00:00:35.522
+There's no hosted sandbox;
+you bring your own,
+
+11
+00:00:35.522 --> 00:00:38.113
+and every lab ends with a back-out step.
+
+12
+00:00:38.113 --> 00:00:42.510
+Then go deeper: the workbook's eight
+chapters, a narrated tour of each,
+
+13
+00:00:42.510 --> 00:00:47.537
+the seven-module learning path, and the
+example guide with its gate-level deck.
+
+14
+00:00:47.537 --> 00:00:49.150
+Thanks for following Erin.

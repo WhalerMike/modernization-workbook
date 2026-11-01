@@ -1,0 +1,46 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.862
+Lab 1.
+
+2
+00:00:00.862 --> 00:00:02.463
+Fifteen tests pass.
+
+3
+00:00:02.463 --> 00:00:06.487
+Then re-read the six waiting
+findings at noon on November first.
+
+4
+00:00:06.487 --> 00:00:08.625
+Three verify and would close.
+
+5
+00:00:08.625 --> 00:00:12.632
+One mismatches: a terminated user
+is still enabled in Entra ID,
+
+6
+00:00:12.632 --> 00:00:15.225
+so it would reopen with that difference.
+
+7
+00:00:15.225 --> 00:00:19.625
+One is pending: the SailPoint account
+was last modified before the finding
+
+8
+00:00:19.625 --> 00:00:24.237
+started waiting, so the read predates the
+change and the client leaves it alone.
+
+9
+00:00:24.237 --> 00:00:28.300
+And one is skipped, because its
+intended state names nothing.
+
+10
+00:00:28.300 --> 00:00:30.620
+That's the case the guard exists for.

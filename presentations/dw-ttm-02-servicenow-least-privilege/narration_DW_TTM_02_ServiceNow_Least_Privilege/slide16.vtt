@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.400
+Here's what done looks like.
+
+2
+00:00:01.400 --> 00:00:04.750
+Every ServiceNow call has
+a row and the test passes.
+
+3
+00:00:04.750 --> 00:00:08.838
+Each integration user's roles
+match the tool's list exactly.
+
+4
+00:00:08.838 --> 00:00:11.760
+The finding writer, the
+verifier and the evidence
+
+5
+00:00:11.760 --> 00:00:15.038
+reader are separate users
+with separate OAuth clients.
+
+6
+00:00:15.038 --> 00:00:16.450
+None holds a broad role.
+
+7
+00:00:16.450 --> 00:00:20.288
+Basic authentication exists
+only on a developer instance,
+
+8
+00:00:20.288 --> 00:00:24.987
+and tokens come from a vault or the
+client-credentials grant, never a file.
+
+9
+00:00:24.987 --> 00:00:28.558
+Next, Chapter 3 adds the
+SailPoint and Graph rows
+
+10
+00:00:28.558 --> 00:00:32.038
+and compares an API client's
+scopes the same way.
+
+11
+00:00:32.038 --> 00:00:33.190
+Thanks for watching.

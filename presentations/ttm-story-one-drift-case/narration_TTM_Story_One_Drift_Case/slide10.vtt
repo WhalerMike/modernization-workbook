@@ -1,0 +1,84 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.742
+The answer to check two: the
+manager drift would have been folded
+
+2
+00:00:03.742 --> 00:00:07.225
+into the department one, and its
+intended state never re-read.
+
+3
+00:00:07.225 --> 00:00:10.087
+Scene three: who may touch Erin's record.
+
+4
+00:00:10.087 --> 00:00:13.707
+The drift client read her through
+SailPoint with two read scopes,
+
+5
+00:00:13.707 --> 00:00:17.863
+and through Graph with the user read
+permission plus the audit permission.
+
+6
+00:00:17.863 --> 00:00:21.788
+That audit read is the only reason
+the help desk write was seen.
+
+7
+00:00:21.788 --> 00:00:25.154
+In ServiceNow, a finding
+writer posted her tasks,
+
+8
+00:00:25.154 --> 00:00:29.950
+only the verifier may close them,
+and an evidence reader may only read.
+
+9
+00:00:29.950 --> 00:00:35.413
+Every call is a row in one file, and a
+test fails on any call it doesn't declare.
+
+10
+00:00:35.413 --> 00:00:40.556
+Why it matters: Gate 1 records the
+integration identities, each least-privileged,
+
+11
+00:00:40.556 --> 00:00:45.776
+with certificates rather than secrets,
+and the closer separated from the raisers.
+
+12
+00:00:45.776 --> 00:00:48.750
+Two details from Chapter
+3 are worth carrying.
+
+13
+00:00:48.750 --> 00:00:52.611
+A SailPoint client-credentials
+token has no user context,
+
+14
+00:00:52.611 --> 00:00:57.517
+and SailPoint warns that most admin
+APIs often return forbidden with one,
+
+15
+00:00:57.517 --> 00:01:00.975
+so Lab 2 records what actually
+works in your sandbox.
+
+16
+00:01:00.975 --> 00:01:04.942
+And the scope that creates
+workflows lives on its own client,
+
+17
+00:01:04.942 --> 00:01:06.500
+used once, then removed.

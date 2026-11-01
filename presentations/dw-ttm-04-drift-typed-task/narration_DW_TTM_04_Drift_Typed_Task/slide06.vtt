@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.938
+The second fix is in
+the de-duplication key.
+
+2
+00:00:02.938 --> 00:00:07.538
+ServiceNow folded findings together
+on source, subject and class.
+
+3
+00:00:07.538 --> 00:00:10.392
+So when two attributes
+drifted on one user,
+
+4
+00:00:10.392 --> 00:00:13.574
+department and manager,
+they became one record.
+
+5
+00:00:13.574 --> 00:00:16.432
+The second finding's
+intended state was lost,
+
+6
+00:00:16.432 --> 00:00:18.825
+and the re-read checked only the first.
+
+7
+00:00:18.825 --> 00:00:22.662
+Now the key adds the attribute
+whenever the payload names one.
+
+8
+00:00:22.662 --> 00:00:25.193
+The slide shows the key for a department
+
+9
+00:00:25.193 --> 00:00:27.876
+change on Erin's identity,
+before and after.
+
+10
+00:00:27.876 --> 00:00:31.420
+Each drifting attribute is
+now its own piece of work.

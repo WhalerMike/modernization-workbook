@@ -1,0 +1,66 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:03.522
+The kit's provisioning fixture is Alice's,
+
+3
+00:00:03.522 --> 00:00:06.512
+not Erin's, but the shape
+is the same for anyone.
+
+4
+00:00:06.512 --> 00:00:10.000
+Resolve SailPoint's provisioning-completed
+workflow against it.
+
+5
+00:00:10.000 --> 00:00:15.375
+ServiceNow gets a closure signal,
+accepted, with four input fields not sent.
+
+6
+00:00:15.375 --> 00:00:17.530
+And here's what a closure signal does:
+
+7
+00:00:17.530 --> 00:00:20.763
+it moves matching findings
+to awaiting verification.
+
+8
+00:00:20.763 --> 00:00:22.212
+It never closes one.
+
+9
+00:00:22.212 --> 00:00:24.644
+That's the example guide's first gap,
+
+10
+00:00:24.644 --> 00:00:28.249
+written into code: a success
+response is not closure.
+
+11
+00:00:28.249 --> 00:00:32.763
+The workflow is also why provisioning
+status can't be trusted on its own.
+
+12
+00:00:32.763 --> 00:00:36.230
+SailPoint's own best-practice
+page says its Service Desk
+
+13
+00:00:36.230 --> 00:00:40.213
+integration treats the mapped
+ServiceNow status as completion.
+
+14
+00:00:40.213 --> 00:00:45.790
+The kit turns that around: a status or a
+success only starts the wait for evidence.

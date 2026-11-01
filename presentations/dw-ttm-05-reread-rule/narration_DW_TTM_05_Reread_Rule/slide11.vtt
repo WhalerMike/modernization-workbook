@@ -1,0 +1,43 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.088
+Who owns this?
+
+2
+00:00:01.088 --> 00:00:03.799
+Developers who own the client or the rule;
+
+3
+00:00:03.799 --> 00:00:08.106
+ServiceNow administrators who
+configure the rule's properties,
+
+4
+00:00:08.106 --> 00:00:12.892
+the waiting state's value, the verifier's
+user name, and the exception role;
+
+5
+00:00:12.892 --> 00:00:16.162
+and the I S S O, for whom
+this is the closure evidence.
+
+6
+00:00:16.162 --> 00:00:17.725
+The identities are simple.
+
+7
+00:00:17.725 --> 00:00:22.537
+The verifier can close a finding only
+in the same update as fresh evidence.
+
+8
+00:00:22.537 --> 00:00:25.426
+A named exception approver
+can cancel with a note.
+
+9
+00:00:25.426 --> 00:00:30.460
+Anyone else who sets a closed state just
+moves the record to awaiting verification.

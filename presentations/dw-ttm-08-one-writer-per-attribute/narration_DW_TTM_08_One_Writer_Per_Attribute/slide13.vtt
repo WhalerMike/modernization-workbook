@@ -1,0 +1,41 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.313
+Now map SailPoint's title field to
+Entra's job title and run it again.
+
+2
+00:00:04.313 --> 00:00:08.100
+A second Finding appears: job
+title has two writers too.
+
+3
+00:00:08.100 --> 00:00:10.745
+Without the alias that
+writer was invisible,
+
+4
+00:00:10.745 --> 00:00:13.175
+which is why the alias list gets reviewed.
+
+5
+00:00:13.175 --> 00:00:15.575
+Next, give the wrong directory name.
+
+6
+00:00:15.575 --> 00:00:18.384
+The check refuses and exits with an error,
+
+7
+00:00:18.384 --> 00:00:21.275
+rather than passing quietly as no overlap.
+
+8
+00:00:21.275 --> 00:00:23.819
+Finally, list the reads the exports need:
+
+9
+00:00:23.819 --> 00:00:29.110
+one SailPoint read scope for the policies,
+and one Graph permission for the schema.

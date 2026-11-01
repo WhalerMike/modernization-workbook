@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.975
+Who does what?
+
+2
+00:00:00.975 --> 00:00:05.488
+Developers build or change the ServiceNow
+side, and need to read Python.
+
+3
+00:00:05.488 --> 00:00:09.230
+ServiceNow administrators
+create the integration users,
+
+4
+00:00:09.230 --> 00:00:11.750
+their OAuth clients and the three roles.
+
+5
+00:00:11.750 --> 00:00:14.014
+And the I S S O approves the access,
+
+6
+00:00:14.014 --> 00:00:17.787
+with the comparison's output
+kept beside the approval.
+
+7
+00:00:17.787 --> 00:00:21.548
+The rule for the users is
+simple: three separate users,
+
+8
+00:00:21.548 --> 00:00:25.650
+each with its own OAuth client
+and exactly one custom role.
+
+9
+00:00:25.650 --> 00:00:28.981
+None of them holds the broad
+I T I L or admin roles,
+
+10
+00:00:28.981 --> 00:00:32.810
+and the evidence reader
+never borrows the verifier's.

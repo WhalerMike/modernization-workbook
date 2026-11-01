@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.075
+The dangers.
+
+2
+00:00:01.075 --> 00:00:05.338
+A class one run skipped would look
+resolved, so unauthorized writes
+
+3
+00:00:05.338 --> 00:00:09.525
+would vanish the night the audit
+read fails; the refusal stops that.
+
+4
+00:00:09.525 --> 00:00:12.064
+A resolved finding must
+never close a record,
+
+5
+00:00:12.064 --> 00:00:15.975
+because drift can leave the
+measurement without leaving the estate.
+
+6
+00:00:15.975 --> 00:00:20.887
+Pushing every finding every night fills
+the tracker, so push only what's new.
+
+7
+00:00:20.887 --> 00:00:24.212
+The first month's burst
+isn't failure; triage it.
+
+8
+00:00:24.212 --> 00:00:28.237
+Guests and the HR source's own
+accounts are excluded as noise.
+
+9
+00:00:28.237 --> 00:00:33.220
+And an HR extract is personal data:
+keep it where HR data is allowed.

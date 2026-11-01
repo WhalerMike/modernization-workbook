@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.163
+What does this prove?
+
+2
+00:00:01.163 --> 00:00:06.873
+That each integration user holds exactly
+the roles its calls need and the code calls
+
+3
+00:00:06.873 --> 00:00:11.115
+nothing else, which is least
+privilege and account management,
+
+4
+00:00:11.115 --> 00:00:13.725
+AC-6 and AC-2, in the Moderate baseline.
+
+5
+00:00:13.725 --> 00:00:16.800
+Keep the comparison's output
+with the access approval.
+
+6
+00:00:16.800 --> 00:00:20.827
+That the account that closes
+findings is separate from the ones
+
+7
+00:00:20.827 --> 00:00:24.475
+that raise and read them, which
+is separation of duties, AC-5.
+
+8
+00:00:24.475 --> 00:00:28.385
+And that any change to what the
+integration may call is reviewed,
+
+9
+00:00:28.385 --> 00:00:31.320
+because it arrives as a
+new row in a pull request.

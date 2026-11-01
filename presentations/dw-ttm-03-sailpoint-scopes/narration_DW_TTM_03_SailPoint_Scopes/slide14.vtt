@@ -1,0 +1,43 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.569
+Lab 2 is in a SailPoint sandbox tenant,
+
+2
+00:00:02.569 --> 00:00:05.738
+never production, and the
+authors haven't run it.
+
+3
+00:00:05.738 --> 00:00:11.224
+Find the tenant's API base from its own
+O auth info page rather than guessing.
+
+4
+00:00:11.224 --> 00:00:14.800
+Create the two API
+clients and compare each.
+
+5
+00:00:14.800 --> 00:00:17.025
+Try the reader against the sandbox.
+
+6
+00:00:17.025 --> 00:00:21.979
+If Search or Accounts refuses a
+client-credentials token, use a personal token
+
+7
+00:00:21.979 --> 00:00:26.475
+for a dedicated user at the lowest
+level that works, and record which one.
+
+8
+00:00:26.475 --> 00:00:29.363
+Find where the HR key
+lives on an identity.
+
+9
+00:00:29.363 --> 00:00:32.020
+Then delete both clients and the output.

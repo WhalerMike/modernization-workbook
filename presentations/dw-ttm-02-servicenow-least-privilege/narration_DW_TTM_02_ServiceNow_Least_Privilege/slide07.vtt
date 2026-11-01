@@ -1,0 +1,35 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.659
+The chapter's own test
+file has nine tests:
+
+2
+00:00:02.659 --> 00:00:06.573
+every client's requests matched
+to a declared row for its task,
+
+3
+00:00:06.573 --> 00:00:11.100
+and the assertion that no task asks
+SailPoint or Graph for a write scope.
+
+4
+00:00:11.100 --> 00:00:15.475
+The kit's original ServiceNow
+client tests still pass unchanged.
+
+5
+00:00:15.475 --> 00:00:18.173
+Lab 1 runs seven of them: the base URLs,
+
+6
+00:00:18.173 --> 00:00:23.568
+the order of OAuth before basic
+authentication, Retry-After read both as
+
+7
+00:00:23.568 --> 00:00:29.020
+seconds and as a date, a throttled
+request retried, and every paging style.

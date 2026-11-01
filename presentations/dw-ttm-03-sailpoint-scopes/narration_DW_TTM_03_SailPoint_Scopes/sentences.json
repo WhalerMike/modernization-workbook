@@ -1,0 +1,524 @@
+{
+ "1": [
+  [
+   0.05,
+   2.15,
+   "Welcome back to Building Ticket-to-Machine."
+  ],
+  [
+   2.2,
+   3.913,
+   "This is Chapter 3: the SailPoint client and its scopes."
+  ],
+  [
+   6.112,
+   6.287,
+   "An identity governance A P I client that can read every identity is already a sensitive account."
+  ],
+  [
+   12.4,
+   3.913,
+   "One that can also change them is a second administrator nobody named."
+  ],
+  [
+   16.312,
+   12.325,
+   "This chapter shows how the kit's clients reach SailPoint Identity Security Cloud and Microsoft Graph, adds their rows to the call list, and proves the drift and re-read clients hold read scopes only."
+  ],
+  [
+   28.637,
+   2.35,
+   "Then two labs and the dangers."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.712,
+   "Why insist on read scopes?"
+  ],
+  [
+   1.762,
+   1.938,
+   "Look at what the clients actually do."
+  ],
+  [
+   3.7,
+   6.975,
+   "The drift client reads identities, uncorrelated accounts and Graph users, and optionally the directory audit."
+  ],
+  [
+   10.675,
+   4.537,
+   "The re-read client reads one account, one identity or one user."
+  ],
+  [
+   15.213,
+   2.438,
+   "Nothing in Pass 1 writes anywhere."
+  ],
+  [
+   17.65,
+   6.438,
+   "So a manage scope on either client buys nothing and risks a lot: a stolen token could change accounts."
+  ],
+  [
+   24.087,
+   5.775,
+   "The workflow scope left on a standing client lets anyone add workflows that call out of SailPoint."
+  ],
+  [
+   29.863,
+   4.5,
+   "And an administrator's personal token runs the whole kit as an org admin."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   2.413,
+   "Here's what the shared client already does."
+  ],
+  [
+   2.462,
+   4.65,
+   "It builds SailPoint's base URL from the tenant name, or takes one you set."
+  ],
+  [
+   7.112,
+   6.15,
+   "It gets a token from a vault or by client credentials; a personal access token works the same way."
+  ],
+  [
+   13.262,
+   7.05,
+   "Search pages with search-after, sorted on the I D, which is how SailPoint says to get past ten thousand results."
+  ],
+  [
+   20.312,
+   4.787,
+   "Account lists page two hundred fifty at a time, the A P I's maximum."
+  ],
+  [
+   25.1,
+   3.95,
+   "Graph uses a certificate first, from the cloud's own authority."
+  ],
+  [
+   29.05,
+   5.638,
+   "And because Search has no accounts index, one account is re-read through the Accounts A P I."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   2.038,
+   "These are the rows this chapter adds."
+  ],
+  [
+   2.087,
+   9.675,
+   "On SailPoint, a token from an A P I client, then Search with the search read scope, and the Accounts list and single-account read with the accounts read scope."
+  ],
+  [
+   11.762,
+   6.85,
+   "Workflow creation needs a manage scope, and it's its own task, because no client in the kit makes that call."
+  ],
+  [
+   18.613,
+   11.425,
+   "On Graph, listing users and reading one user both need User dot Read dot All as an application permission, and the directory audit, which is optional, needs AuditLog dot Read dot All."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   2.388,
+   "Four choices make the rows enforceable."
+  ],
+  [
+   2.438,
+   8.438,
+   "The Accounts endpoints accept either a read or a manage scope; the list names the read scope, and the comparison flags manage as extra."
+  ],
+  [
+   10.875,
+   6.95,
+   "Workflow creation gets a separate client, used once and then removed, which is the program's design guidance."
+  ],
+  [
+   17.825,
+   4.963,
+   "The comparison works for SailPoint scopes and for Graph application permissions alike."
+  ],
+  [
+   22.788,
+   9.363,
+   "And a required-only option leaves out optional calls, so an app registration without the audit permission still passes for a drift run that doesn't read the audit."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   5.388,
+   "No new test file this time: Chapter 2's call-list test covers SailPoint and Graph too."
+  ],
+  [
+   5.438,
+   7.213,
+   "The drift and re-read clients run against a fake session, and every request they make must match a row for their task."
+  ],
+  [
+   12.65,
+   8.925,
+   "It also asserts that no task asks for a scope ending in manage, or a Graph permission ending in ReadWrite dot All, except workflow creation."
+  ],
+  [
+   21.575,
+   7.612,
+   "And the kit's original SailPoint tests still pass: the token by client credentials and from a vault, and both paging styles."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   3.55,
+   "The SailPoint facts, each read on November first."
+  ],
+  [
+   3.6,
+   6.162,
+   "The token endpoint supports client credentials and personal access tokens, up to ten per user."
+  ],
+  [
+   9.762,
+   8.425,
+   "A client-credentials token has no user context, and SailPoint warns that most admin A P I's often return forbidden with one."
+  ],
+  [
+   18.188,
+   4.888,
+   "Search needs the search read scope and pages past ten thousand with search-after."
+  ],
+  [
+   23.075,
+   3.425,
+   "Its indexes include identities but no accounts."
+  ],
+  [
+   26.5,
+   5.812,
+   "The Accounts list and get accept a read or manage scope, at most two hundred fifty a page."
+  ],
+  [
+   32.312,
+   3.413,
+   "And creating a workflow needs the workflow manage scope."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   1.413,
+   "And the Graph facts."
+  ],
+  [
+   1.462,
+   12.75,
+   "User dot Read dot All is the least-privileged application permission both to list users and to read one, and the audit needs AuditLog dot Read dot All; both reads are available in the U S Government clouds."
+  ],
+  [
+   14.213,
+   8.775,
+   "One wrinkle: application permissions aren't supported on the manager endpoint, and Learn documents expanding the manager on the users list instead."
+  ],
+  [
+   22.988,
+   8.85,
+   "Microsoft 365 G C C uses the worldwide Graph host; G C C High and the Defense Department cloud have their own."
+  ],
+  [
+   31.837,
+   3.763,
+   "SailPoint's Identity Security Cloud is fed-ramp Moderate."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   1.375,
+   "Four points are still open."
+  ],
+  [
+   1.425,
+   5.275,
+   "SailPoint's public pages don't say what A P I domain a fed-ramp tenant uses."
+  ],
+  [
+   6.7,
+   5.862,
+   "They don't say whether a client-credentials token gets data from Search and Accounts or a forbidden response."
+  ],
+  [
+   12.562,
+   4.888,
+   "Learn doesn't settle whether expanding the manager works under an application permission."
+  ],
+  [
+   17.45,
+   9.375,
+   "And feature parity in SailPoint's fed-ramp environment, for Search, Workflows and the Accounts A P I, is a question to put to SailPoint in writing."
+  ],
+  [
+   26.825,
+   2.487,
+   "Each one is on the kit's verify list."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   8.812,
+   "What this proves: the drift and re-read clients hold read scopes only, and the workflow client holds one scope and is removed after use."
+  ],
+  [
+   8.863,
+   7.037,
+   "That's least privilege and account management at Moderate, with the comparison kept beside the A P I client's approval."
+  ],
+  [
+   15.9,
+   7.513,
+   "The Graph app registration holds only what it reads, with a certificate, which adds authenticator management, IA-5."
+  ],
+  [
+   23.413,
+   12.925,
+   "And no part of Pass 1 can write to SailPoint, Entra I D or Active Directory, which is the Federal Modernization Workbook's Book 13's rule that the coordination layer never writes configuration itself."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   1.038,
+   "Who owns this?"
+  ],
+  [
+   1.087,
+   8.625,
+   "Developers who own the clients, the identity engineers who own the SailPoint side, and the I S S O who approves A P I clients."
+  ],
+  [
+   9.713,
+   2.375,
+   "There are three non-person identities here."
+  ],
+  [
+   12.088,
+   3.862,
+   "A standing SailPoint reader with exactly two read scopes."
+  ],
+  [
+   15.95,
+   6.025,
+   "A workflow client with one manage scope, used once to create the three workflows and then removed."
+  ],
+  [
+   21.975,
+   8.45,
+   "And a Graph app registration with the user read permission, plus the audit permission only if you read the audit, signed in with a certificate."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   1.9,
+   "Lab 1 runs on a laptop."
+  ],
+  [
+   1.95,
+   3.438,
+   "First, the kit's four SailPoint client tests pass."
+  ],
+  [
+   5.388,
+   8.575,
+   "Then list what the drift client needs from SailPoint: a token, Search with the search read scope, and the Accounts list with the accounts read scope."
+  ],
+  [
+   13.963,
+   1.3,
+   "That's two scopes."
+  ],
+  [
+   15.262,
+   2.938,
+   "Now give it a manage scope as well and compare."
+  ],
+  [
+   18.2,
+   7.0,
+   "Nothing is missing, the manage scope is extra, least privilege doesn't hold, and the command exits with a failure."
+  ],
+  [
+   25.2,
+   3.825,
+   "That one line is the review an I S S O needs."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   3.438,
+   "Next, check the reader's scopes against the workflow task."
+  ],
+  [
+   3.487,
+   7.475,
+   "The workflow scope is missing and both read scopes are extra: the comparison fails in both directions, which is the point."
+  ],
+  [
+   10.963,
+   1.9,
+   "Two jobs need two clients."
+  ],
+  [
+   12.863,
+   1.9,
+   "Then the Graph app registration."
+  ],
+  [
+   14.762,
+   7.237,
+   "Holding only the user read permission, it fails a drift run that reads the audit, because the audit permission is missing."
+  ],
+  [
+   22.0,
+   5.775,
+   "With the required-only option, the same grant passes for a drift run that doesn't read the audit."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   5.688,
+   "Lab 2 is in a SailPoint sandbox tenant, never production, and the authors haven't run it."
+  ],
+  [
+   5.737,
+   5.487,
+   "Find the tenant's A P I base from its own O auth info page rather than guessing."
+  ],
+  [
+   11.225,
+   3.575,
+   "Create the two A P I clients and compare each."
+  ],
+  [
+   14.8,
+   2.225,
+   "Try the reader against the sandbox."
+  ],
+  [
+   17.025,
+   9.45,
+   "If Search or Accounts refuses a client-credentials token, use a personal token for a dedicated user at the lowest level that works, and record which one."
+  ],
+  [
+   26.475,
+   2.888,
+   "Find where the H R key lives on an identity."
+  ],
+  [
+   29.363,
+   2.6,
+   "Then delete both clients and the output."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   1.025,
+   "The dangers."
+  ],
+  [
+   1.075,
+   6.112,
+   "A manage scope on a read client means a stolen token can change accounts, and the comparison flags it."
+  ],
+  [
+   7.188,
+   7.775,
+   "The workflow scope left on a standing client lets anyone add workflows that call out of SailPoint, so it lives on a client used once."
+  ],
+  [
+   14.963,
+   6.375,
+   "An administrator's personal token runs the kit as an org admin, so use a dedicated low-level user."
+  ],
+  [
+   21.337,
+   5.95,
+   "Offset paging past ten thousand results stops silently, so the code uses search-after."
+  ],
+  [
+   27.288,
+   2.288,
+   "The wrong Graph cloud is refused."
+  ],
+  [
+   29.575,
+   3.712,
+   "And Graph signs in with a certificate first, not a secret."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   1.2,
+   "Done looks like this."
+  ],
+  [
+   1.25,
+   3.55,
+   "The SailPoint reader holds exactly its two read scopes."
+  ],
+  [
+   4.8,
+   4.825,
+   "No standing client holds the workflow scope, and the workflow client is gone."
+  ],
+  [
+   9.625,
+   5.8,
+   "Any personal token belongs to a dedicated user at the lowest level that works, recorded."
+  ],
+  [
+   15.425,
+   3.775,
+   "The Graph app holds only what it reads, with a certificate."
+  ],
+  [
+   19.2,
+   2.825,
+   "The A P I base came from the tenant itself."
+  ],
+  [
+   22.025,
+   3.812,
+   "And the call-list test passes, including the no-write assertion."
+  ],
+  [
+   25.837,
+   6.162,
+   "Next, Chapter 4 turns a SailPoint event into a typed task and sees the exact payload."
+  ],
+  [
+   32.0,
+   1.1,
+   "Thanks for watching."
+  ]
+ ]
+}

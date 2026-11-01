@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.175
+Then the package.
+
+2
+00:00:01.175 --> 00:00:05.307
+Each line of the records file carries
+the hash of the line before it,
+
+3
+00:00:05.307 --> 00:00:08.537
+so removing or reordering
+a record breaks the chain.
+
+4
+00:00:08.537 --> 00:00:12.425
+The excerpt on the slide is
+the whole idea in seven lines.
+
+5
+00:00:12.425 --> 00:00:14.774
+A summary file holds window adherence,
+
+6
+00:00:14.774 --> 00:00:18.150
+the declared exceptions and
+the records with problems.
+
+7
+00:00:18.150 --> 00:00:22.150
+And a manifest holds a hash of
+every file and the chain's head.
+
+8
+00:00:22.150 --> 00:00:26.136
+Next month's export continues the
+chain from this month's manifest,
+
+9
+00:00:26.136 --> 00:00:30.480
+and a fixed timestamp means the same
+records always give the same bytes.

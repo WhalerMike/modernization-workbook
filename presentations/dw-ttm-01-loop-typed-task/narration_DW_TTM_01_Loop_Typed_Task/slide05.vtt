@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.200
+What exists today?
+
+2
+00:00:01.200 --> 00:00:04.190
+The contract is enforced
+in exactly one place,
+
+3
+00:00:04.190 --> 00:00:07.888
+the scripted REST resource
+that runs inside ServiceNow.
+
+4
+00:00:07.888 --> 00:00:11.776
+It validates the payload and
+answers four hundred with a reason.
+
+5
+00:00:11.776 --> 00:00:17.565
+It maps severity to a priority
+and a due date on Book 13's tempo:
+
+6
+00:00:17.565 --> 00:00:21.850
+P1 immediate, P2 one hour,
+P3 a day, P4 three days.
+
+7
+00:00:21.850 --> 00:00:25.400
+That tempo is the program's
+design, not a federal rule.
+
+8
+00:00:25.400 --> 00:00:29.809
+It defaults severity by class,
+de-duplicates against an open finding,
+
+9
+00:00:29.809 --> 00:00:33.212
+and fills in an intended
+state from a SailPoint event.
+
+10
+00:00:33.212 --> 00:00:37.220
+The catch: nothing outside
+ServiceNow applied the same rules.

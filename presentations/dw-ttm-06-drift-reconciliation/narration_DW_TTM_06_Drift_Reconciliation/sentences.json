@@ -1,0 +1,522 @@
+{
+ "1": [
+  [
+   0.05,
+   2.15,
+   "Welcome back to Building Ticket-to-Machine."
+  ],
+  [
+   2.2,
+   4.6,
+   "This is Chapter 6: drift reconciliation, the kit's Build 3."
+  ],
+  [
+   6.8,
+   1.6,
+   "Events tell you what changed."
+  ],
+  [
+   8.4,
+   5.362,
+   "A reconciliation tells you what is wrong now, including what changed while nobody was listening."
+  ],
+  [
+   13.762,
+   9.037,
+   "The drift client joins the H R extract, Microsoft Graph and SailPoint on the employee I D and measures Book 3's drift classes."
+  ],
+  [
+   22.8,
+   7.662,
+   "This chapter adds a comparison of two runs, so a scheduled run raises only what's new, and shows what has stopped being measured."
+  ],
+  [
+   30.462,
+   2.263,
+   "Then a two-day lab on a laptop."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   2.575,
+   "Why a reconciliation as well as events?"
+  ],
+  [
+   2.625,
+   3.0,
+   "Because events only tell you about changes you heard."
+  ],
+  [
+   5.625,
+   2.975,
+   "A missed event is drift nobody ever raised."
+  ],
+  [
+   8.6,
+   5.525,
+   "The reconciliation measures the state itself, so it catches what changed while nobody was listening."
+  ],
+  [
+   14.125,
+   2.025,
+   "But one run is one moment."
+  ],
+  [
+   16.15,
+   6.325,
+   "Push every finding every night and you lean on de-duplication, and nothing tells you what disappeared."
+  ],
+  [
+   22.475,
+   8.113,
+   "So this chapter compares runs, raises only what's new, and refuses to call something resolved just because a run didn't measure it."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   1.525,
+   "Here's the drift client."
+  ],
+  [
+   1.575,
+   12.35,
+   "Its inputs are an H R extract, Graph users, SailPoint identities and uncorrelated accounts, and optionally the Entra directory audit; each can be a saved file, which is how the labs run."
+  ],
+  [
+   13.925,
+   5.688,
+   "It measures four of Book 3's classes, and an unauthorized write only when it reads the audit."
+  ],
+  [
+   19.613,
+   6.125,
+   "Credential and schema drift are always reported as not computed, because they need other systems."
+  ],
+  [
+   25.738,
+   6.112,
+   "Each finding's I D is a hash of what it's about, so the same drift has the same I D every run."
+  ],
+  [
+   31.85,
+   3.188,
+   "And pushing to ServiceNow still needs the apply flag."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   5.7,
+   "The new tool compares two runs by finding I D and sorts every finding into three groups."
+  ],
+  [
+   5.75,
+   1.525,
+   "New ones should be raised."
+  ],
+  [
+   7.275,
+   4.725,
+   "Persisting ones are already raised, and de-duplication just adds a counter."
+  ],
+  [
+   12.0,
+   5.562,
+   "Resolved ones are no longer measured, which is a lead for the re-read, never a closure."
+  ],
+  [
+   17.562,
+   3.825,
+   "And it refuses to compare runs that computed different classes."
+  ],
+  [
+   21.387,
+   5.537,
+   "If one run read the audit and the next didn't, every unauthorized write would look resolved."
+  ],
+  [
+   26.925,
+   6.213,
+   "A resolved finding always prints with a reminder that only Chapter 5's re-read closes its record."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   5.175,
+   "To exercise the comparison, the chapter adds a second day to the fictional estate."
+  ],
+  [
+   5.225,
+   9.188,
+   "On day one, H R says Erin works in H R, but someone has already typed Finance into Entra I D by hand, and SailPoint still says H R."
+  ],
+  [
+   14.412,
+   3.737,
+   "On day two, H R corrects her department to Finance."
+  ],
+  [
+   18.15,
+   5.35,
+   "Now Graph agrees with H R, but SailPoint, not yet re-aggregated, doesn't."
+  ],
+  [
+   23.5,
+   7.175,
+   "The chapter also adds a fixture settings file with no secrets, and the client now creates its output folder if it's missing."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   5.713,
+   "Four new tests cover the day-two story, identical runs, the refusal and the command line."
+  ],
+  [
+   5.763,
+   8.537,
+   "The kit's original thirteen drift tests still pass, including the check that the Python and PowerShell clients produce the same finding I D's."
+  ],
+  [
+   14.3,
+   10.5,
+   "One caution: these run over fictional exports, and two inputs, the manager expansion and the SailPoint employee I D attribute, are still on the verify list."
+  ],
+  [
+   24.8,
+   4.037,
+   "And expect a burst of High findings in a real estate's first month."
+  ],
+  [
+   28.837,
+   2.4,
+   "Book 3 calls that the measurement working."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   3.45,
+   "The facts the join depends on, read on November first."
+  ],
+  [
+   3.5,
+   2.975,
+   "Graph lists users with User dot Read dot All."
+  ],
+  [
+   6.475,
+   8.338,
+   "For the manager, Learn documents expanding it on the users list, while the manager endpoint itself doesn't support application permissions."
+  ],
+  [
+   14.812,
+   5.312,
+   "The audit needs AuditLog dot Read dot All and is available in the government clouds."
+  ],
+  [
+   20.125,
+   10.162,
+   "SailPoint identities come from Search, paged past ten thousand, and uncorrelated accounts from the Accounts A P I with a filter, at most two hundred fifty a page."
+  ],
+  [
+   30.288,
+   3.237,
+   "And G C C uses the worldwide Graph host."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   1.637,
+   "Three inputs aren't settled."
+  ],
+  [
+   1.688,
+   3.9,
+   "Whether expanding the manager works under an application permission."
+  ],
+  [
+   5.588,
+   7.275,
+   "Which SailPoint identity attribute holds the H R key, the employee number or an employee I D attribute."
+  ],
+  [
+   12.863,
+   6.275,
+   "And the exact property names the Entra audit uses for the changes the client watches, such as department."
+  ],
+  [
+   19.137,
+   2.087,
+   "Each is on the kit's verify list."
+  ],
+  [
+   21.225,
+   7.625,
+   "Lab 2 records whether Graph rejects the manager expansion, and Chapter 3's lab finds where your tenant keeps the H R key."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   1.163,
+   "What this proves."
+  ],
+  [
+   1.212,
+   15.3,
+   "Every active H R record has its accounts, every terminated one has none enabled, and every enabled account belongs to a person: account management, A C two, and Book 3's leaver and orphan measures, kept as each run's output."
+  ],
+  [
+   16.512,
+   7.3,
+   "Drift is measured on a schedule, and what changed between runs is reported: continuous monitoring and system monitoring."
+  ],
+  [
+   23.812,
+   8.062,
+   "And what wasn't measured is stated, not implied, which feeds the Federal Modernization Workbook's Book 13's detection coverage measure."
+  ],
+  [
+   31.875,
+   3.587,
+   "The not-computed list and the refusal are that evidence."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   1.05,
+   "Who's involved?"
+  ],
+  [
+   1.1,
+   12.613,
+   "Developers and identity engineers who schedule the reconciliation and set the estate's settings: which SailPoint attribute holds the employee I D, which sources are authoritative, and which apps are allowed to write."
+  ],
+  [
+   13.713,
+   8.95,
+   "And the identity data steward, who reads the output, triages the first month's burst by class and severity, and sends decisions to the right people."
+  ],
+  [
+   22.663,
+   8.05,
+   "The client reads only what Chapter 3 granted: Graph user and audit reads with a certificate, and two SailPoint read scopes."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   2.138,
+   "Lab 1 tells the two-day story."
+  ],
+  [
+   2.188,
+   1.738,
+   "Seventeen tests pass."
+  ],
+  [
+   3.925,
+   5.312,
+   "Day one: run the reconciliation over all the fixtures, including the audit."
+  ],
+  [
+   9.238,
+   11.975,
+   "It counts four attribute drifts, two missing identities, three orphan accounts, two stale accesses and one unauthorized write, and lists credential and schema drift as not computed."
+  ],
+  [
+   21.212,
+   8.912,
+   "In the C S V, Erin's Entra department is Finance where H R says H R, and the audit shows a help desk administrator made the change."
+  ],
+  [
+   30.125,
+   2.8,
+   "Carol, terminated, is still enabled."
+  ],
+  [
+   32.925,
+   4.513,
+   "Day two, after H R's correction: exactly the same counts."
+  ],
+  [
+   37.438,
+   1.75,
+   "The totals hide what moved."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   1.6,
+   "Now compare the two days."
+  ],
+  [
+   1.65,
+   3.288,
+   "One new, eleven persisting, one resolved."
+  ],
+  [
+   4.938,
+   8.625,
+   "Entra I D now matches H R, so that finding is resolved, but SailPoint still holds the old value, so a new finding opens there."
+  ],
+  [
+   13.562,
+   3.212,
+   "And notice what persists: the unauthorized write."
+  ],
+  [
+   16.775,
+   5.963,
+   "H R agreeing afterwards doesn't make a hand-typed change authorized; a person decides that."
+  ],
+  [
+   22.738,
+   3.413,
+   "Last, run day two without the audit and compare."
+  ],
+  [
+   26.15,
+   2.875,
+   "The tool refuses, exiting with an error."
+  ],
+  [
+   29.025,
+   4.162,
+   "Without that refusal, the unauthorized write would have looked resolved."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   8.787,
+   "Lab 2 runs the client liv, on a test tenant and a SailPoint sandbox with synthetic data, never production; the authors haven't run it."
+  ],
+  [
+   8.838,
+   2.288,
+   "Grant only Chapter 3's reads."
+  ],
+  [
+   11.125,
+   7.987,
+   "Write a small H R extract that matches test users, with one terminated user still enabled and one department that differs."
+  ],
+  [
+   19.113,
+   3.237,
+   "Run the client, and check its counts against a hand count."
+  ],
+  [
+   22.35,
+   3.188,
+   "Record whether Graph rejects the manager expansion."
+  ],
+  [
+   25.538,
+   3.888,
+   "Run again the next day after changing one department, and compare."
+  ],
+  [
+   29.425,
+   0.912,
+   "Push nothing."
+  ],
+  [
+   30.337,
+   1.663,
+   "Then delete everything."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   1.025,
+   "The dangers."
+  ],
+  [
+   1.075,
+   8.45,
+   "A class one run skipped would look resolved, so unauthorized writes would vanish the night the audit read fails; the refusal stops that."
+  ],
+  [
+   9.525,
+   6.45,
+   "A resolved finding must never close a record, because drift can leave the measurement without leaving the estate."
+  ],
+  [
+   15.975,
+   4.912,
+   "Pushing every finding every night fills the tracker, so push only what's new."
+  ],
+  [
+   20.887,
+   3.325,
+   "The first month's burst isn't failure; triage it."
+  ],
+  [
+   24.212,
+   4.025,
+   "Guests and the H R source's own accounts are excluded as noise."
+  ],
+  [
+   28.238,
+   4.912,
+   "And an H R extract is personal data: keep it where H R data is allowed."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   1.2,
+   "Done looks like this."
+  ],
+  [
+   1.25,
+   3.862,
+   "The H R extract's statuses map the way the client expects."
+  ],
+  [
+   5.112,
+   2.013,
+   "The three estate settings are set."
+  ],
+  [
+   7.125,
+   3.05,
+   "A lyve run matched a hand count on synthetic data."
+  ],
+  [
+   10.175,
+   5.338,
+   "The scheduled job compares each run with the last and pushes only new findings."
+  ],
+  [
+   15.512,
+   4.45,
+   "Every run computes the same classes, or the comparison is rerun."
+  ],
+  [
+   19.962,
+   4.45,
+   "And the tests pass, with the PowerShell client's I D's still matching."
+  ],
+  [
+   24.413,
+   5.987,
+   "Next, Chapter 7 turns closed findings into the evidence an I S S O keeps."
+  ],
+  [
+   30.4,
+   1.1,
+   "Thanks for watching."
+  ]
+ ]
+}

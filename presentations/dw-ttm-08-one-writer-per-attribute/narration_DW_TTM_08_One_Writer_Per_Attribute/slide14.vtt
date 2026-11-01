@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.943
+Lab 2 uses your own exports, from a test
+tenant with an inbound provisioning
+
+2
+00:00:04.943 --> 00:00:09.600
+job and a SailPoint sandbox, never
+production; the authors haven't run it.
+
+3
+00:00:09.600 --> 00:00:11.162
+Both reads are GET only.
+
+4
+00:00:11.162 --> 00:00:15.449
+Export the job's schema and note
+the directory name it actually uses.
+
+5
+00:00:15.449 --> 00:00:21.338
+Export the SailPoint source's policies
+with an API client holding one read scope.
+
+6
+00:00:21.338 --> 00:00:23.966
+Build the alias list from
+the source's account
+
+7
+00:00:23.966 --> 00:00:26.525
+schema and have the data
+architect review it.
+
+8
+00:00:26.525 --> 00:00:30.188
+Run the check, and hand each
+Finding to the data architect.
+
+9
+00:00:30.188 --> 00:00:31.220
+Then clean up.

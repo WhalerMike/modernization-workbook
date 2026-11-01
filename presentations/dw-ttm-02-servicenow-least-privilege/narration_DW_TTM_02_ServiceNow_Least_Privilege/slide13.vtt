@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.575
+Now catch the mistakes.
+
+2
+00:00:01.575 --> 00:00:06.025
+An administrator gave the verifier
+the I T I L role as well.
+
+3
+00:00:06.025 --> 00:00:09.618
+The comparison finds nothing
+missing, one role extra,
+
+4
+00:00:09.618 --> 00:00:13.538
+says least privilege doesn't
+hold, and exits with a failure.
+
+5
+00:00:13.538 --> 00:00:17.374
+Then try the evidence export
+reusing the verifier's account.
+
+6
+00:00:17.374 --> 00:00:21.600
+It would work, which is the trap: it
+would also be able to close findings.
+
+7
+00:00:21.600 --> 00:00:26.275
+The tool reports the evidence reader role
+missing and the verifier role extra.
+
+8
+00:00:26.275 --> 00:00:30.580
+Finally, the original ServiceNow
+client tests: seven pass.

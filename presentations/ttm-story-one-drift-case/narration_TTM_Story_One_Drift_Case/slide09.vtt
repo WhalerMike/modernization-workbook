@@ -1,0 +1,24 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.875
+Check two.
+
+2
+00:00:00.875 --> 00:00:04.937
+Erin's department and manager
+both drift in Entra ID.
+
+3
+00:00:04.937 --> 00:00:11.076
+Before Chapter 4's fix, ServiceNow
+de-duplicated on source, subject and class only.
+
+4
+00:00:11.076 --> 00:00:13.238
+What went wrong with her two findings?
+
+5
+00:00:13.238 --> 00:00:18.770
+Were they rejected, folded together,
+given the wrong severity, or raised twice?

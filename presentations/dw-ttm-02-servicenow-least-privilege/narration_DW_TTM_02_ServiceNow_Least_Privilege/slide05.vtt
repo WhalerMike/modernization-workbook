@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.125
+The roles are custom roles
+in the scoped application,
+
+2
+00:00:03.125 --> 00:00:05.362
+and splitting them by task is the point.
+
+3
+00:00:05.362 --> 00:00:08.712
+The finding writer can create
+findings and nothing else.
+
+4
+00:00:08.712 --> 00:00:11.613
+The verifier can close them,
+which is why Chapter 5's
+
+5
+00:00:11.613 --> 00:00:14.651
+business rule accepts a
+close only from that account.
+
+6
+00:00:14.651 --> 00:00:17.566
+And the evidence reader,
+new in this workbook,
+
+7
+00:00:17.566 --> 00:00:21.113
+can read a record but never
+change one it's about to hash.
+
+8
+00:00:21.113 --> 00:00:22.663
+Why custom roles at all?
+
+9
+00:00:22.663 --> 00:00:26.737
+ServiceNow says the caller needs
+roles that allow access to the table,
+
+10
+00:00:26.737 --> 00:00:30.100
+and no single role allows
+adding attachments by default.

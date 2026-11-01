@@ -1,0 +1,85 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.312
+The answer to check three: running as
+the verifier, the export could also
+
+2
+00:00:04.312 --> 00:00:08.575
+close the findings it's about to hash,
+which breaks separation of duties.
+
+3
+00:00:08.575 --> 00:00:11.600
+Scene four asks why Erin's
+department drifts at all.
+
+4
+00:00:11.600 --> 00:00:16.492
+Book 3 makes Entra inbound provisioning
+the one writer into the directory,
+
+5
+00:00:16.492 --> 00:00:19.175
+but SailPoint can provision Entra ID too.
+
+6
+00:00:19.175 --> 00:00:22.499
+If both update department,
+each overwrites the other,
+
+7
+00:00:22.499 --> 00:00:26.200
+and fixing her record by hand
+just schedules the next drift.
+
+8
+00:00:26.200 --> 00:00:30.562
+The writer check compares the two
+provisioning configurations, offline.
+
+9
+00:00:30.562 --> 00:00:33.921
+The kit's exports are fictional
+files, not Erin's tenant,
+
+10
+00:00:33.921 --> 00:00:38.325
+but they show exactly the overlap that
+would keep her drift coming back.
+
+11
+00:00:38.325 --> 00:00:41.940
+Why it matters: Gate 2 decides
+one writer per attribute,
+
+12
+00:00:41.940 --> 00:00:44.913
+so every account change
+traces to its source.
+
+13
+00:00:44.913 --> 00:00:49.467
+This is the one item from the kit's planned
+second pass that can be built today,
+
+14
+00:00:49.467 --> 00:00:53.876
+because both configurations export
+as JSON through documented reads.
+
+15
+00:00:53.876 --> 00:00:59.067
+The other planned items, one approver per
+authority class, change records on demand,
+
+16
+00:00:59.067 --> 00:01:02.303
+the SailPoint half of the
+evidence and email intake,
+
+17
+00:01:02.303 --> 00:01:05.230
+all need a live instance
+or product internals.

@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.425
+This is the file the chapter
+adds: one row per call.
+
+2
+00:00:03.425 --> 00:00:08.712
+Every task first gets a token from its
+own OAuth client and integration user.
+
+3
+00:00:08.712 --> 00:00:11.176
+The drift push posts findings through the
+
+4
+00:00:11.176 --> 00:00:13.851
+scripted REST resource,
+as the finding writer.
+
+5
+00:00:13.851 --> 00:00:16.560
+The re-read task lists waiting findings,
+
+6
+00:00:16.560 --> 00:00:21.488
+patches each one and uploads an evidence
+attachment, all as the verifier.
+
+7
+00:00:21.488 --> 00:00:25.388
+And the evidence export reads the
+same table under its own role,
+
+8
+00:00:25.388 --> 00:00:29.063
+the evidence reader, which can
+read but not change anything.
+
+9
+00:00:29.063 --> 00:00:32.280
+Every row names the vendor
+page that justifies it.

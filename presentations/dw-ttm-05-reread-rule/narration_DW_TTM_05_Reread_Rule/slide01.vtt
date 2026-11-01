@@ -1,0 +1,39 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.200
+Welcome back to Building
+Ticket-to-Machine.
+
+2
+00:00:02.200 --> 00:00:06.312
+This is Chapter 5: the re-read
+rule, the kit's Build 2.
+
+3
+00:00:06.312 --> 00:00:08.524
+A success response is not closure.
+
+4
+00:00:08.524 --> 00:00:12.750
+Neither is a ticket status, and neither
+is a comparison against nothing.
+
+5
+00:00:12.750 --> 00:00:17.575
+A finding closes only when a re-read of
+the target shows the intended state.
+
+6
+00:00:17.575 --> 00:00:22.612
+A ServiceNow business rule enforces that,
+and a Python client does the re-reading.
+
+7
+00:00:22.612 --> 00:00:27.081
+This chapter adds an offline mode so you
+can watch every decision on a laptop,
+
+8
+00:00:27.081 --> 00:00:29.400
+and a guard against closing on nothing.

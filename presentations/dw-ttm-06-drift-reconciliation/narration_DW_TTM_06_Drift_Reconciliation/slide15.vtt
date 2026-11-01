@@ -1,0 +1,43 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.250
+Done looks like this.
+
+2
+00:00:01.250 --> 00:00:05.112
+The HR extract's statuses map
+the way the client expects.
+
+3
+00:00:05.112 --> 00:00:07.125
+The three estate settings are set.
+
+4
+00:00:07.125 --> 00:00:10.175
+A live run matched a hand
+count on synthetic data.
+
+5
+00:00:10.175 --> 00:00:15.513
+The scheduled job compares each run with
+the last and pushes only new findings.
+
+6
+00:00:15.513 --> 00:00:19.962
+Every run computes the same classes,
+or the comparison is rerun.
+
+7
+00:00:19.962 --> 00:00:24.412
+And the tests pass, with the PowerShell
+client's IDs still matching.
+
+8
+00:00:24.412 --> 00:00:30.400
+Next, Chapter 7 turns closed findings
+into the evidence an I S S O keeps.
+
+9
+00:00:30.400 --> 00:00:31.560
+Thanks for watching.

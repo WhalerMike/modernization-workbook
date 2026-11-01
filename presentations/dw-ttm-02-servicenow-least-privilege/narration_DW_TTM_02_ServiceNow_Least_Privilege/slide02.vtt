@@ -1,0 +1,35 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.425
+Why write the calls down?
+
+2
+00:00:01.425 --> 00:00:05.325
+Because privilege that nobody can
+trace back to a call tends to grow.
+
+3
+00:00:05.325 --> 00:00:10.088
+The kit's read me listed the roles in prose,
+and nothing tied that list to the code.
+
+4
+00:00:10.088 --> 00:00:14.354
+So a new call in a client would
+surface as an error on a live instance,
+
+5
+00:00:14.354 --> 00:00:18.776
+and the quickest fix, granting a
+broader role, is exactly the wrong one.
+
+6
+00:00:18.776 --> 00:00:24.115
+After this chapter, every call lives in
+one file with its task and least privilege,
+
+7
+00:00:24.115 --> 00:00:28.800
+a test holds the code to it, and a tool
+compares a real grant with the list.

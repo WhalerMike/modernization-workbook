@@ -1,0 +1,43 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.305
+The vendor facts are few: the Table
+API's read and its query parameters,
+
+2
+00:00:04.305 --> 00:00:08.858
+ServiceNow's Government Community
+Cloud at FedRAMP High, and SailPoint's
+
+3
+00:00:08.858 --> 00:00:13.187
+Search events index, which the SailPoint
+half will read when it's built.
+
+4
+00:00:13.187 --> 00:00:16.744
+The record shape, the window
+and the lanes are Book 13's,
+
+5
+00:00:16.744 --> 00:00:19.250
+and the hash chain is design guidance.
+
+6
+00:00:19.250 --> 00:00:24.483
+Two points stay open: the format and time
+zone of the dates the Table API returns,
+
+7
+00:00:24.483 --> 00:00:26.737
+which the export parses both ways,
+
+8
+00:00:26.737 --> 00:00:30.762
+and what SailPoint keeps in its
+events index and for how long.
+
+9
+00:00:30.762 --> 00:00:32.980
+That's why the SailPoint half waits.

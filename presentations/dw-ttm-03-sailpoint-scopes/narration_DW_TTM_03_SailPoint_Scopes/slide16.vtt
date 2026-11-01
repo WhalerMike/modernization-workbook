@@ -1,0 +1,51 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.250
+Done looks like this.
+
+2
+00:00:01.250 --> 00:00:04.800
+The SailPoint reader holds
+exactly its two read scopes.
+
+3
+00:00:04.800 --> 00:00:09.625
+No standing client holds the workflow
+scope, and the workflow client is gone.
+
+4
+00:00:09.625 --> 00:00:12.444
+Any personal token belongs to a dedicated
+
+5
+00:00:12.444 --> 00:00:15.425
+user at the lowest level
+that works, recorded.
+
+6
+00:00:15.425 --> 00:00:19.200
+The Graph app holds only what
+it reads, with a certificate.
+
+7
+00:00:19.200 --> 00:00:22.025
+The API base came from the tenant itself.
+
+8
+00:00:22.025 --> 00:00:25.837
+And the call-list test passes,
+including the no-write assertion.
+
+9
+00:00:25.837 --> 00:00:28.737
+Next, Chapter 4 turns a SailPoint event
+
+10
+00:00:28.737 --> 00:00:31.999
+into a typed task and
+sees the exact payload.
+
+11
+00:00:31.999 --> 00:00:33.170
+Thanks for watching.

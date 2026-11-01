@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.475
+The other half is the re-read client.
+
+2
+00:00:02.475 --> 00:00:07.483
+It lists waiting findings, re-reads each
+subject according to its system, an
+
+3
+00:00:07.483 --> 00:00:09.906
+account, an identity or an Entra user,
+
+4
+00:00:09.906 --> 00:00:12.975
+and compares the read
+with the intended state.
+
+5
+00:00:12.975 --> 00:00:17.274
+A match closes the record with
+the evidence: the query, the time,
+
+6
+00:00:17.274 --> 00:00:22.838
+a hash of the response, the intended state
+and the checker, attached as JSON too.
+
+7
+00:00:22.838 --> 00:00:24.312
+A difference reopens it.
+
+8
+00:00:24.312 --> 00:00:27.824
+Because SailPoint's copy
+reflects the last aggregation,
+
+9
+00:00:27.824 --> 00:00:31.187
+a read older than the wait is
+pending for a grace period.
+
+10
+00:00:31.187 --> 00:00:33.890
+And nothing is written
+without the apply flag.

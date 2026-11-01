@@ -1,0 +1,42 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.488
+Next, check the reader's scopes
+against the workflow task.
+
+2
+00:00:03.488 --> 00:00:07.262
+The workflow scope is missing
+and both read scopes are extra:
+
+3
+00:00:07.262 --> 00:00:10.962
+the comparison fails in both
+directions, which is the point.
+
+4
+00:00:10.962 --> 00:00:12.863
+Two jobs need two clients.
+
+5
+00:00:12.863 --> 00:00:14.763
+Then the Graph app registration.
+
+6
+00:00:14.763 --> 00:00:19.514
+Holding only the user read permission, it
+fails a drift run that reads the audit,
+
+7
+00:00:19.514 --> 00:00:21.999
+because the audit permission is missing.
+
+8
+00:00:21.999 --> 00:00:23.875
+With the required-only option,
+
+9
+00:00:23.875 --> 00:00:27.840
+the same grant passes for a drift
+run that doesn't read the audit.

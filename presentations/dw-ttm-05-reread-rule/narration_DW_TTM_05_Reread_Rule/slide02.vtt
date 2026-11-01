@@ -1,0 +1,46 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.562
+Why does this rule exist?
+
+2
+00:00:01.562 --> 00:00:05.387
+Because there are several ways to close
+a finding without proving anything.
+
+3
+00:00:05.387 --> 00:00:07.685
+The first is closure by ticket status:
+
+4
+00:00:07.685 --> 00:00:11.909
+SailPoint's Service Desk integration
+treats the mapped ServiceNow
+
+5
+00:00:11.909 --> 00:00:15.763
+status as completion, and a person
+can simply mark the work done.
+
+6
+00:00:15.763 --> 00:00:18.087
+That's the example guide's first gap.
+
+7
+00:00:18.087 --> 00:00:23.314
+The others are subtler: comparing against
+an intended state that names nothing,
+
+8
+00:00:23.314 --> 00:00:26.957
+which always matches; trusting
+a read older than the fix;
+
+9
+00:00:26.957 --> 00:00:29.412
+and treating a missing read as a match.
+
+10
+00:00:29.412 --> 00:00:31.440
+This chapter closes all four.

@@ -1,0 +1,66 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.038
+The answer to check six: no.
+
+2
+00:00:02.038 --> 00:00:06.426
+Resolved is a lead; only a matching
+re-read closes the record.
+
+3
+00:00:06.426 --> 00:00:07.475
+Scene seven.
+
+4
+00:00:07.475 --> 00:00:12.325
+When the re-read verified Erin's record,
+it wrote the result with an evidence hash.
+
+5
+00:00:12.325 --> 00:00:18.086
+On a real instance, that closed record is
+read back out and written as one line of
+
+6
+00:00:18.086 --> 00:00:21.366
+an evidence package, in
+Book 13's shape: origin,
+
+7
+00:00:21.366 --> 00:00:25.000
+owner and clock, the re-read
+result, and the closure.
+
+8
+00:00:25.000 --> 00:00:29.325
+Approval, the executing identity
+and what ran are written as null,
+
+9
+00:00:29.325 --> 00:00:33.250
+each with its reason, because
+the first pass doesn't actuate.
+
+10
+00:00:33.250 --> 00:00:35.375
+The record says what it doesn't hold.
+
+11
+00:00:35.375 --> 00:00:38.537
+Each line carries the hash
+of the line before it,
+
+12
+00:00:38.537 --> 00:00:41.213
+and a manifest holds a hash of every file.
+
+13
+00:00:41.213 --> 00:00:43.237
+Why it matters: Gate 7.
+
+14
+00:00:43.237 --> 00:00:47.710
+The I S S O gets records nobody could
+edit or remove without it showing.

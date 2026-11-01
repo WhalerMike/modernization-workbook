@@ -1,0 +1,36 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.225
+To exercise the comparison, the chapter
+adds a second day to the fictional estate.
+
+2
+00:00:05.225 --> 00:00:09.587
+On day one, HR says Erin works
+in HR, but someone has already
+
+3
+00:00:09.587 --> 00:00:14.413
+typed Finance into Entra ID by
+hand, and SailPoint still says HR.
+
+4
+00:00:14.413 --> 00:00:18.149
+On day two, HR corrects
+her department to Finance.
+
+5
+00:00:18.149 --> 00:00:23.500
+Now Graph agrees with HR, but SailPoint,
+not yet re-aggregated, doesn't.
+
+6
+00:00:23.500 --> 00:00:27.159
+The chapter also adds a fixture
+settings file with no secrets,
+
+7
+00:00:27.159 --> 00:00:30.740
+and the client now creates its
+output folder if it's missing.

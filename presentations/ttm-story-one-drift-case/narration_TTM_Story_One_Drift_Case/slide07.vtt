@@ -1,0 +1,92 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.063
+The answer to check one:
+the unauthorized write.
+
+2
+00:00:03.063 --> 00:00:07.053
+HR agreeing later doesn't make
+a hand-typed change authorized,
+
+3
+00:00:07.053 --> 00:00:08.462
+so a person decides it.
+
+4
+00:00:08.462 --> 00:00:09.326
+Scene two.
+
+5
+00:00:09.326 --> 00:00:15.153
+Each of Erin's findings becomes one typed
+task in ServiceNow: a class, a severity,
+
+6
+00:00:15.153 --> 00:00:18.381
+the system where it'll
+be re-read, one subject,
+
+7
+00:00:18.381 --> 00:00:22.237
+its origin, and the intended
+state a re-read must find.
+
+8
+00:00:22.237 --> 00:00:25.426
+Her department drift is P3, due in a day.
+
+9
+00:00:25.426 --> 00:00:30.580
+The unauthorized write is P2, due in an
+hour, and it's accepted with a warning,
+
+10
+00:00:30.580 --> 00:00:34.975
+because its intended state is
+empty until that person decides.
+
+11
+00:00:34.975 --> 00:00:38.102
+From SailPoint's side, the
+mover workflow raises her
+
+12
+00:00:38.102 --> 00:00:41.375
+department change with
+Finance as the intended state.
+
+13
+00:00:41.375 --> 00:00:46.650
+Why it matters: Gate 4 makes every drift
+an owned record answered inside a window.
+
+14
+00:00:46.650 --> 00:00:50.475
+The tempo is Book 13's
+design, not a federal clock.
+
+15
+00:00:50.475 --> 00:00:54.335
+The important design choice is
+that the rules live in one place,
+
+16
+00:00:54.335 --> 00:00:57.286
+the scripted REST resource
+inside ServiceNow,
+
+17
+00:00:57.286 --> 00:01:01.600
+and the Python mirror is held to it
+by a test that reads the JavaScript.
+
+18
+00:01:01.600 --> 00:01:04.224
+So a malformed payload fails on a laptop,
+
+19
+00:01:04.224 --> 00:01:09.380
+not as a four hundred from a live instance,
+and the mirror can't quietly go stale.

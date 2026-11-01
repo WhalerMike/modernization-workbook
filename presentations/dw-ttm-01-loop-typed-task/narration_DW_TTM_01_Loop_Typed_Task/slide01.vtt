@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.889
+Welcome to the Federal Modernization
+Workbook's developer workbook,
+
+2
+00:00:03.889 --> 00:00:05.412
+Building Ticket-to-Machine.
+
+3
+00:00:05.412 --> 00:00:08.687
+This is Chapter 1: the
+loop and the typed task.
+
+4
+00:00:08.687 --> 00:00:14.288
+Every step of Book 13's loop writes or
+reads one record, the identity finding.
+
+5
+00:00:14.288 --> 00:00:19.312
+If its shape is wrong, the clock, the owner
+and the re-read are all wrong with it.
+
+6
+00:00:19.312 --> 00:00:23.441
+We'll place each file of the ServiceNow
+and SailPoint kit in the loop,
+
+7
+00:00:23.441 --> 00:00:27.791
+then check that record on a laptop
+before anything reaches ServiceNow,
+
+8
+00:00:27.791 --> 00:00:30.224
+and finish with two labs and the dangers.
+
+9
+00:00:30.224 --> 00:00:33.700
+The code is illustrative,
+tested against fixtures.

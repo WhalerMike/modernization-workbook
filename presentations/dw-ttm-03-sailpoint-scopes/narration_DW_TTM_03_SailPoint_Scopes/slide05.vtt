@@ -1,0 +1,43 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.438
+Four choices make the rows enforceable.
+
+2
+00:00:02.438 --> 00:00:06.386
+The Accounts endpoints accept
+either a read or a manage scope;
+
+3
+00:00:06.386 --> 00:00:10.876
+the list names the read scope, and
+the comparison flags manage as extra.
+
+4
+00:00:10.876 --> 00:00:13.608
+Workflow creation gets a separate client,
+
+5
+00:00:13.608 --> 00:00:17.825
+used once and then removed, which
+is the program's design guidance.
+
+6
+00:00:17.825 --> 00:00:20.239
+The comparison works for SailPoint scopes
+
+7
+00:00:20.239 --> 00:00:22.788
+and for Graph application
+permissions alike.
+
+8
+00:00:22.788 --> 00:00:27.716
+And a required-only option leaves out optional
+calls, so an app registration without
+
+9
+00:00:27.716 --> 00:00:32.210
+the audit permission still passes for a
+drift run that doesn't read the audit.

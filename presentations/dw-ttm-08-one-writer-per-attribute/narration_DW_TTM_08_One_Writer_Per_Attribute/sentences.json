@@ -1,0 +1,544 @@
+{
+ "1": [
+  [
+   0.05,
+   3.2,
+   "Welcome to the last chapter of Building Ticket-to-Machine."
+  ],
+  [
+   3.25,
+   2.612,
+   "Chapter 8: one writer per attribute."
+  ],
+  [
+   5.862,
+   3.575,
+   "Two writers on one attribute isn't drift you can fix."
+  ],
+  [
+   9.438,
+   1.462,
+   "It's drift you've scheduled."
+  ],
+  [
+   10.9,
+   7.775,
+   "Book 3 makes Entra inbound provisioning the one writer into the directory, but SailPoint can also provision Entra I D."
+  ],
+  [
+   18.675,
+   5.562,
+   "If both write department, the reconciliation reports drift that the next sync recreates."
+  ],
+  [
+   24.238,
+   7.2,
+   "This chapter compares the two provisioning configurations, offline, and names every attribute with two writers."
+  ],
+  [
+   31.438,
+   2.35,
+   "Then two labs and the dangers."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.15,
+   "Why does this matter?"
+  ],
+  [
+   1.2,
+   9.838,
+   "The example guide's fourth gap: SailPoint reads the H R system and can provision the directory, while Book 3 makes Entra inbound provisioning the one writer."
+  ],
+  [
+   11.037,
+   3.237,
+   "The guide's advice is to pick one writer per attribute."
+  ],
+  [
+   14.275,
+   7.975,
+   "Either Entra inbound provisioning stays the door and SailPoint governs entitlements, or SailPoint becomes the provisioning service."
+  ],
+  [
+   22.25,
+   0.975,
+   "Not both."
+  ],
+  [
+   23.225,
+   6.4,
+   "Until now, the drift client saw only the symptom, drift that keeps coming back, never the cause."
+  ],
+  [
+   29.625,
+   5.438,
+   "Both configurations export as jay-son, so the check can run on files, today."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   1.188,
+   "Why only this one?"
+  ],
+  [
+   1.238,
+   4.688,
+   "The kit plans five items for Pass 2, and four of them need more than files."
+  ],
+  [
+   5.925,
+   5.237,
+   "One approver per authority class needs the catalog app's internals, which aren't documented."
+  ],
+  [
+   11.162,
+   4.463,
+   "Change records on demand need a ServiceNow flow on a live instance."
+  ],
+  [
+   15.625,
+   5.237,
+   "The SailPoint half of the evidence export needs event retention nobody has confirmed."
+  ],
+  [
+   20.863,
+   3.612,
+   "And email intake needs a mailbox and an inbound action."
+  ],
+  [
+   24.475,
+   6.438,
+   "The writer check needs only two documented exports compared offline, so it can be built and tested now."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   4.6,
+   "The first export is the inbound provisioning job's schema, read from Graph."
+  ],
+  [
+   4.65,
+   7.812,
+   "The check takes the rules that target the Entra directory, by default named Azure Active Directory, the name Learn's examples use."
+  ],
+  [
+   12.463,
+   6.812,
+   "Inside them it takes the enabled object mappings to User, and each attribute mapping's target name and flow type."
+  ],
+  [
+   19.275,
+   9.425,
+   "Two flow types matter: Always, the default, updates the attribute on every change, and object-add-only sets it only when the user is created."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   6.2,
+   "The second export is the SailPoint source's provisioning policies, for the source that writes to Entra I D."
+  ],
+  [
+   6.25,
+   3.587,
+   "Each policy has a usage type and a list of field names."
+  ],
+  [
+   9.838,
+   4.7,
+   "The update profile is used for attribute sync, so it counts as an update."
+  ],
+  [
+   14.537,
+   2.913,
+   "The create profile is used when the account is made."
+  ],
+  [
+   17.45,
+   5.5,
+   "Enable, disable and the other types don't write user attributes this way, so they're ignored."
+  ],
+  [
+   22.95,
+   6.325,
+   "One catch to remember: SailPoint's field names are the connector's, not necessarily Entra I D's."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   4.213,
+   "For each attribute both systems write, the check assigns a severity."
+  ],
+  [
+   4.263,
+   5.925,
+   "Both update it: a Finding, because each overwrites the other and drift never settles."
+  ],
+  [
+   10.188,
+   5.85,
+   "One updates it and the other sets it at creation: a Warning, two sources for its first value."
+  ],
+  [
+   16.038,
+   2.7,
+   "Both set it only at creation: Info."
+  ],
+  [
+   18.738,
+   2.0,
+   "Any Finding fails the command."
+  ],
+  [
+   20.738,
+   6.612,
+   "Names are matched ignoring case, and an alias maps a SailPoint field to its Entra attribute where they differ."
+  ],
+  [
+   27.35,
+   4.85,
+   "The check never guesses that mapping; the alias list is a reviewed input."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   10.838,
+   "Six tests cover flow types, usage types and aliases, the three severities, disabled mappings being ignored, a wrong directory name being refused, and the command line."
+  ],
+  [
+   10.887,
+   5.625,
+   "The usual caution applies, and it matters more here: the check reads fictional exports."
+  ],
+  [
+   16.512,
+   6.5,
+   "It can't show that your schema names the Entra directory the same way, or that SailPoint's field names match Entra's."
+  ],
+  [
+   23.012,
+   5.862,
+   "Run Lab 2 on your own exports and review the alias list before acting on any result."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   3.487,
+   "The facts behind the exports, read on November first."
+  ],
+  [
+   3.538,
+   13.825,
+   "Reading a synchronization schema is available in the government clouds; oddly, Learn lists a custom security attribute permission as the least-privileged application permission, with Synchronization dot Read dot All among the higher ones."
+  ],
+  [
+   17.363,
+   4.55,
+   "The schema's shape is rules, object mappings and attribute mappings."
+  ],
+  [
+   21.913,
+   10.338,
+   "SailPoint's policies come from the provisioning-policies endpoint with a read or manage scope, at the org admin user level, each with a name, usage type and fields."
+  ],
+  [
+   32.25,
+   3.125,
+   "G C C uses the worldwide Graph host."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   3.45,
+   "Four points are open, and each one changes what the check can see."
+  ],
+  [
+   3.5,
+   7.4,
+   "Why Learn names a custom security attribute permission as the least privilege for reading a schema; confirm the read works with it."
+  ],
+  [
+   10.9,
+   7.95,
+   "Which directory name an H R inbound job actually uses; Learn's pages differ, so the check refuses a name it can't find."
+  ],
+  [
+   18.85,
+   5.75,
+   "How SailPoint's connector fields map to Entra attributes; that's why aliases are reviewed."
+  ],
+  [
+   24.6,
+   5.963,
+   "And whether SailPoint writes Entra attributes through other paths, transforms or workflows."
+  ],
+  [
+   30.562,
+   1.925,
+   "The check covers policies only."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   1.163,
+   "What this proves."
+  ],
+  [
+   1.212,
+   10.175,
+   "Each Entra user attribute has one authoritative writer, or the overlap is named and assigned to someone, which supports configuration settings and change control."
+  ],
+  [
+   11.387,
+   5.963,
+   "Drift that the next sync would recreate is traced to its cause, which makes the monitoring meaningful."
+  ],
+  [
+   17.35,
+   8.55,
+   "And a change to either provisioning configuration is checked before it lands, which is change control and impact analysis, CM-4."
+  ],
+  [
+   25.9,
+   4.838,
+   "The evidence is the check's output and the data architect's decision for each Finding."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   1.05,
+   "Who's involved?"
+  ],
+  [
+   1.1,
+   7.112,
+   "Identity engineers who own the inbound provisioning job or the SailPoint Entra source, and produce the two exports."
+  ],
+  [
+   8.213,
+   10.225,
+   "The data architect, who decides which system owns each attribute and reviews the aliases; Book 3's default keeps Entra inbound provisioning as the writer."
+  ],
+  [
+   18.438,
+   3.275,
+   "And the I S S O, who keeps the decisions."
+  ],
+  [
+   21.712,
+   1.775,
+   "The two reads are read-only."
+  ],
+  [
+   23.488,
+   10.863,
+   "One wrinkle: SailPoint's policies endpoint documents the org admin user level, so a personal token is the wrong tool; use an A P I client with one read scope."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   0.812,
+   "Lab 1."
+  ],
+  [
+   0.863,
+   1.387,
+   "Six tests pass."
+  ],
+  [
+   2.25,
+   2.962,
+   "Then run the check on the two fictional exports."
+  ],
+  [
+   5.213,
+   4.875,
+   "Entra inbound provisioning writes eight attributes and SailPoint writes seven."
+  ],
+  [
+   10.088,
+   6.787,
+   "Department is a Finding: both systems update it, so each overwrites the other and drift never settles."
+  ],
+  [
+   16.875,
+   4.688,
+   "Display name is a Warning: one updates it and the other sets it at creation."
+  ],
+  [
+   21.562,
+   3.775,
+   "Two attributes are only Info, set by both at creation."
+  ],
+  [
+   25.337,
+   2.3,
+   "The command fails because of that Finding."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   4.263,
+   "Now map SailPoint's title field to Entra's job title and run it again."
+  ],
+  [
+   4.312,
+   3.788,
+   "A second Finding appears: job title has two writers too."
+  ],
+  [
+   8.1,
+   5.075,
+   "Without the alias that writer was invisible, which is why the alias list gets reviewed."
+  ],
+  [
+   13.175,
+   2.4,
+   "Next, give the wrong directory name."
+  ],
+  [
+   15.575,
+   5.7,
+   "The check refuses and exits with an error, rather than passing quietly as no overlap."
+  ],
+  [
+   21.275,
+   7.787,
+   "Finally, list the reads the exports need: one SailPoint read scope for the policies, and one Graph permission for the schema."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   9.55,
+   "Lab 2 uses your own exports, from a test tenant with an inbound provisioning job and a SailPoint sandbox, never production; the authors haven't run it."
+  ],
+  [
+   9.6,
+   1.562,
+   "Both reads are GET only."
+  ],
+  [
+   11.162,
+   4.287,
+   "Export the job's schema and note the directory name it actually uses."
+  ],
+  [
+   15.45,
+   5.888,
+   "Export the SailPoint source's policies with an A P I client holding one read scope."
+  ],
+  [
+   21.337,
+   5.188,
+   "Build the alias list from the source's account schema and have the data architect review it."
+  ],
+  [
+   26.525,
+   3.663,
+   "Run the check, and hand each Finding to the data architect."
+  ],
+  [
+   30.188,
+   0.988,
+   "Then clean up."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   1.025,
+   "The dangers."
+  ],
+  [
+   1.075,
+   7.025,
+   "Two systems updating one attribute means drift fixed and recreated forever; that's a Finding and a failure."
+  ],
+  [
+   8.1,
+   4.425,
+   "Field names that differ can hide a second writer, so aliases are reviewed."
+  ],
+  [
+   12.525,
+   5.075,
+   "A wrong directory name would make every attribute look unwritten, so it's refused."
+  ],
+  [
+   17.6,
+   3.763,
+   "A disabled mapping would raise false findings, so it's skipped."
+  ],
+  [
+   21.363,
+   5.175,
+   "An export with values in it may carry personal data, so export mappings only."
+  ],
+  [
+   26.538,
+   5.475,
+   "And writers outside provisioning policies aren't seen at all, so a person confirms there are none."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   1.2,
+   "Done looks like this."
+  ],
+  [
+   1.25,
+   3.9,
+   "The check runs on current exports with the reviewed alias list."
+  ],
+  [
+   5.15,
+   5.862,
+   "Every Finding has a decision, which system owns the attribute, with the other mapping removed."
+  ],
+  [
+   11.012,
+   4.438,
+   "Every Warning is understood, so each first value has one source."
+  ],
+  [
+   15.45,
+   2.638,
+   "The directory name matches the job's schema."
+  ],
+  [
+   18.087,
+   3.212,
+   "The two export identities hold only their reads."
+  ],
+  [
+   21.3,
+   1.413,
+   "And the tests pass."
+  ],
+  [
+   22.712,
+   8.588,
+   "That completes the workbook: the typed task, two least-privilege clients, three builds, the evidence, and one writer per attribute."
+  ],
+  [
+   31.3,
+   1.1,
+   "Thanks for watching."
+  ]
+ ]
+}

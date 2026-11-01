@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.524
+Now act as the I S S O.
+
+2
+00:00:01.524 --> 00:00:07.813
+Verify the package: every file matches
+the manifest and the chain is unbroken.
+
+3
+00:00:07.813 --> 00:00:10.601
+Start November's chain
+from October's head;
+
+4
+00:00:10.601 --> 00:00:14.825
+November's manifest records
+October's head as its previous link.
+
+5
+00:00:14.825 --> 00:00:19.925
+The lab reuses October's records for
+this, where a real November has its own.
+
+6
+00:00:19.925 --> 00:00:24.025
+Then remove one record from
+October's package and verify again.
+
+7
+00:00:24.025 --> 00:00:27.579
+Two problems: the file's hash
+no longer matches the manifest,
+
+8
+00:00:27.579 --> 00:00:30.988
+and the next line's link points
+at a record that isn't there.
+
+9
+00:00:30.988 --> 00:00:32.660
+The package doesn't hold.

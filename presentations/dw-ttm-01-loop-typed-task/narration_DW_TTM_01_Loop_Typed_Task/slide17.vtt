@@ -1,0 +1,52 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.400
+Here's what done looks like.
+
+2
+00:00:01.400 --> 00:00:05.189
+The Python constants match the
+script that's actually deployed,
+
+3
+00:00:05.189 --> 00:00:06.762
+and the parity test passes.
+
+4
+00:00:06.762 --> 00:00:09.260
+Every client that posts findings runs its
+
+5
+00:00:09.260 --> 00:00:12.113
+payloads through the
+validator in its own tests.
+
+6
+00:00:12.113 --> 00:00:16.513
+Nothing a client builds is rejected,
+and every warning is understood.
+
+7
+00:00:16.513 --> 00:00:19.362
+The windows are the
+program's current ones and
+
+8
+00:00:19.362 --> 00:00:22.137
+the severity defaults
+match Book 3's classes.
+
+9
+00:00:22.137 --> 00:00:25.825
+And the API requires
+authentication and a custom role.
+
+10
+00:00:25.825 --> 00:00:31.338
+Next, Chapter 2 writes down every ServiceNow
+call and the least privilege it needs.
+
+11
+00:00:31.338 --> 00:00:32.500
+Thanks for watching.

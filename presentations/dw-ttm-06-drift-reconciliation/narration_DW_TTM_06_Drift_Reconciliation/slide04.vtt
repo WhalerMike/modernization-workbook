@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.780
+The new tool compares two runs by finding
+
+2
+00:00:02.780 --> 00:00:05.750
+ID and sorts every
+finding into three groups.
+
+3
+00:00:05.750 --> 00:00:07.275
+New ones should be raised.
+
+4
+00:00:07.275 --> 00:00:12.000
+Persisting ones are already raised,
+and de-duplication just adds a counter.
+
+5
+00:00:12.000 --> 00:00:14.536
+Resolved ones are no longer measured,
+
+6
+00:00:14.536 --> 00:00:17.562
+which is a lead for the
+re-read, never a closure.
+
+7
+00:00:17.562 --> 00:00:21.387
+And it refuses to compare runs
+that computed different classes.
+
+8
+00:00:21.387 --> 00:00:24.006
+If one run read the audit
+and the next didn't,
+
+9
+00:00:24.006 --> 00:00:26.924
+every unauthorized write
+would look resolved.
+
+10
+00:00:26.924 --> 00:00:30.149
+A resolved finding always
+prints with a reminder
+
+11
+00:00:30.149 --> 00:00:33.190
+that only Chapter 5's
+re-read closes its record.

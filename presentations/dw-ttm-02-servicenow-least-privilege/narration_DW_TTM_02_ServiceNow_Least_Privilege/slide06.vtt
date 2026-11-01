@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.600
+Two tools read that file.
+
+2
+00:00:01.600 --> 00:00:05.183
+The first, kit calls, prints what
+a task needs on each system,
+
+3
+00:00:05.183 --> 00:00:09.810
+and with the granted option it compares
+what an integration user actually
+
+4
+00:00:09.810 --> 00:00:14.512
+holds against that need, exiting with
+a failure on anything missing or extra.
+
+5
+00:00:14.512 --> 00:00:18.987
+Grants are typed or exported by the
+operator; it never touches the network.
+
+6
+00:00:18.987 --> 00:00:22.467
+The second is the test that
+holds the code to the list:
+
+7
+00:00:22.467 --> 00:00:27.322
+it runs every client against a fake
+HTTP session and checks each request,
+
+8
+00:00:27.322 --> 00:00:31.030
+by method and whole path,
+against the rows for that task.

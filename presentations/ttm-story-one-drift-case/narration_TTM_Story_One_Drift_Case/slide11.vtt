@@ -1,0 +1,72 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:03.348
+Suppose the SailPoint
+reader that read Erin
+
+3
+00:00:03.348 --> 00:00:05.713
+was also given the accounts manage scope.
+
+4
+00:00:05.713 --> 00:00:09.386
+Compare it with what the drift
+task needs: nothing missing,
+
+5
+00:00:09.386 --> 00:00:13.901
+the manage scope extra, least privilege
+doesn't hold, exit with a failure.
+
+6
+00:00:13.901 --> 00:00:16.575
+A stolen token could have
+changed her accounts.
+
+7
+00:00:16.575 --> 00:00:21.699
+Now the ServiceNow verifier, given
+the broad I T I L role as well:
+
+8
+00:00:21.699 --> 00:00:24.612
+same result, one extra role, failure.
+
+9
+00:00:24.612 --> 00:00:28.895
+The tool calls no network; the
+operator types or exports the grant,
+
+10
+00:00:28.895 --> 00:00:31.988
+and the output goes beside
+the access approval.
+
+11
+00:00:31.988 --> 00:00:34.300
+The same comparison works for Graph.
+
+12
+00:00:34.300 --> 00:00:39.268
+An app registration holding only the user
+read permission fails a drift run that
+
+13
+00:00:39.268 --> 00:00:44.087
+reads the audit, and passes one that doesn't
+when you ask for required calls only.
+
+14
+00:00:44.087 --> 00:00:46.779
+In Erin's case, the
+audit read is required,
+
+15
+00:00:46.779 --> 00:00:50.660
+because it's the only way her
+help desk write was ever seen.

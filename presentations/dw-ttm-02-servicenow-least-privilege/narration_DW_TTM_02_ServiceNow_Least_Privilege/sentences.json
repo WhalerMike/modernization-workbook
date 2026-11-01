@@ -1,0 +1,484 @@
+{
+ "1": [
+  [
+   0.05,
+   2.15,
+   "Welcome back to Building Ticket-to-Machine."
+  ],
+  [
+   2.2,
+   4.138,
+   "This is Chapter 2: the ServiceNow client and least privilege."
+  ],
+  [
+   6.338,
+   5.85,
+   "An integration user with more roles than its calls need is a standing privilege nobody requested."
+  ],
+  [
+   12.188,
+   10.625,
+   "So this chapter writes down every ServiceNow call the kit's Python clients make, the task that makes it and the least privilege it needs, and then makes the tests hold the code to that list."
+  ],
+  [
+   22.812,
+   7.85,
+   "We'll see how the clients authenticate and page, the call list and its test, the three roles, two labs and the dangers."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.375,
+   "Why write the calls down?"
+  ],
+  [
+   1.425,
+   3.9,
+   "Because privilege that nobody can trace back to a call tends to grow."
+  ],
+  [
+   5.325,
+   4.763,
+   "The kit's read me listed the roles in prose, and nothing tied that list to the code."
+  ],
+  [
+   10.088,
+   8.688,
+   "So a new call in a client would surface as an error on a live instance, and the quickest fix, granting a broader role, is exactly the wrong one."
+  ],
+  [
+   18.775,
+   9.963,
+   "After this chapter, every call lives in one file with its task and least privilege, a test holds the code to it, and a tool compares a real grant with the list."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   2.075,
+   "Here's what the clients already share."
+  ],
+  [
+   2.125,
+   5.525,
+   "Configuration comes from the environment, and a settings file that carries a secret is refused."
+  ],
+  [
+   7.65,
+   9.2,
+   "The token comes from a vault if one is set, otherwise from the OAuth client-credentials grant, and only on a developer instance from basic authentication."
+  ],
+  [
+   16.85,
+   3.987,
+   "Paging reads a hundred rows a page through the Table A P I."
+  ],
+  [
+   20.837,
+   6.05,
+   "And one wrapper retries throttling and unavailable responses, honoring Retry-After."
+  ],
+  [
+   26.887,
+   7.463,
+   "The clients make three kinds of ServiceNow call: posting findings, closing them with evidence, and reading closed ones."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   3.375,
+   "This is the file the chapter adds: one row per call."
+  ],
+  [
+   3.425,
+   5.287,
+   "Every task first gets a token from its own OAuth client and integration user."
+  ],
+  [
+   8.713,
+   5.138,
+   "The drift push posts findings through the scripted REST resource, as the finding writer."
+  ],
+  [
+   13.85,
+   7.638,
+   "The re-read task lists waiting findings, patches each one and uploads an evidence attachment, all as the verifier."
+  ],
+  [
+   21.488,
+   7.575,
+   "And the evidence export reads the same table under its own role, the evidence reader, which can read but not change anything."
+  ],
+  [
+   29.062,
+   3.15,
+   "Every row names the vendor page that justifies it."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   5.312,
+   "The roles are custom roles in the scoped application, and splitting them by task is the point."
+  ],
+  [
+   5.362,
+   3.35,
+   "The finding writer can create findings and nothing else."
+  ],
+  [
+   8.713,
+   5.938,
+   "The verifier can close them, which is why Chapter 5's business rule accepts a close only from that account."
+  ],
+  [
+   14.65,
+   6.463,
+   "And the evidence reader, new in this workbook, can read a record but never change one it's about to hash."
+  ],
+  [
+   21.113,
+   1.55,
+   "Why custom roles at all?"
+  ],
+  [
+   22.663,
+   7.375,
+   "ServiceNow says the caller needs roles that allow access to the table, and no single role allows adding attachments by default."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   1.55,
+   "Two tools read that file."
+  ],
+  [
+   1.6,
+   12.912,
+   "The first, kit calls, prints what a task needs on each system, and with the granted option it compares what an integration user actually holds against that need, exiting with a failure on anything missing or extra."
+  ],
+  [
+   14.512,
+   4.475,
+   "Grants are typed or exported by the operator; it never touches the network."
+  ],
+  [
+   18.988,
+   11.975,
+   "The second is the test that holds the code to the list: it runs every client against a fake HTTP session and checks each request, by method and whole path, against the rows for that task."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   11.05,
+   "The chapter's own test file has nine tests: every client's requests matched to a declared row for its task, and the assertion that no task asks SailPoint or Graph for a write scope."
+  ],
+  [
+   11.1,
+   4.375,
+   "The kit's original ServiceNow client tests still pass unchanged."
+  ],
+  [
+   15.475,
+   13.488,
+   "Lab 1 runs seven of them: the base URLs, the order of OAuth before basic authentication, Retry-After read both as seconds and as a date, a throttled request retried, and every paging style."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   4.112,
+   "The vendor facts behind the code, each read on November first."
+  ],
+  [
+   4.162,
+   8.525,
+   "The token request is a post to the instance's OAuth token endpoint with the grant type, client I D and secret; a scope is optional."
+  ],
+  [
+   12.688,
+   8.012,
+   "The Table A P I's read takes an encoded query, a field list, a limit that defaults to ten thousand, and an offset."
+  ],
+  [
+   20.7,
+   9.15,
+   "The Attachment A P I needs the table, the record and a file name, and a content type header, and no single role allows adding attachments by default."
+  ],
+  [
+   29.85,
+   3.725,
+   "And ServiceNow's Government Community Cloud is fed-ramp High."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   1.425,
+   "Three points stay open."
+  ],
+  [
+   1.475,
+   11.425,
+   "First, which inbound client-credentials setup applies depends on the release: Zurich documents a Machine Identity Console, and an older page documents a system property that's off by default."
+  ],
+  [
+   12.9,
+   9.463,
+   "Second, the token's optional scope: ServiceNow's examples narrow incident reads and writes, but nothing found says a scope can narrow a custom table."
+  ],
+  [
+   22.363,
+   8.637,
+   "And third, A P I access policies: whether an instance's policies add roles the kit doesn't list is still on the kit's verify list."
+  ],
+  [
+   31.0,
+   1.925,
+   "Lab 2 is where you settle them."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   1.113,
+   "What does this prove?"
+  ],
+  [
+   1.163,
+   12.562,
+   "That each integration user holds exactly the roles its calls need and the code calls nothing else, which is least privilege and account management, AC-6 and A C two, in the Moderate baseline."
+  ],
+  [
+   13.725,
+   3.075,
+   "Keep the comparison's output with the access approval."
+  ],
+  [
+   16.8,
+   7.675,
+   "That the account that closes findings is separate from the ones that raise and read them, which is separation of duties, AC-5."
+  ],
+  [
+   24.475,
+   6.787,
+   "And that any change to what the integration may call is reviewed, because it arrives as a new row in a pull request."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   0.925,
+   "Who does what?"
+  ],
+  [
+   0.975,
+   4.513,
+   "Developers build or change the ServiceNow side, and need to read Python."
+  ],
+  [
+   5.487,
+   6.263,
+   "ServiceNow administrators create the integration users, their OAuth clients and the three roles."
+  ],
+  [
+   11.75,
+   6.037,
+   "And the I S S O approves the access, with the comparison's output kept beside the approval."
+  ],
+  [
+   17.788,
+   7.862,
+   "The rule for the users is simple: three separate users, each with its own OAuth client and exactly one custom role."
+  ],
+  [
+   25.65,
+   7.088,
+   "None of them holds the broad I T I L or admin roles, and the evidence reader never borrows the verifier's."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   1.9,
+   "Lab 1 runs on a laptop."
+  ],
+  [
+   1.95,
+   4.325,
+   "Step one proves every call is declared: the nine tests pass."
+  ],
+  [
+   6.275,
+   10.6,
+   "Step two lists what the re-read client needs on ServiceNow: a token from its own OAuth client, then a read of the finding table, a patch of one record, and an attachment upload."
+  ],
+  [
+   16.875,
+   3.775,
+   "Every one of those maps to a single role, the verifier."
+  ],
+  [
+   20.65,
+   2.475,
+   "That's the whole of what this account should hold."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   1.525,
+   "Now catch the mistakes."
+  ],
+  [
+   1.575,
+   4.45,
+   "An administrator gave the verifier the I T I L role as well."
+  ],
+  [
+   6.025,
+   7.513,
+   "The comparison finds nothing missing, one role extra, says least privilege doesn't hold, and exits with a failure."
+  ],
+  [
+   13.537,
+   3.837,
+   "Then try the evidence export reusing the verifier's account."
+  ],
+  [
+   17.375,
+   4.225,
+   "It would work, which is the trap: it would also be able to close findings."
+  ],
+  [
+   21.6,
+   4.675,
+   "The tool reports the evidence reader role missing and the verifier role extra."
+  ],
+  [
+   26.275,
+   4.25,
+   "Finally, the original ServiceNow client tests: seven pass."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   5.362,
+   "Lab 2 builds the split for real on your developer instance; the authors haven't run it."
+  ],
+  [
+   5.412,
+   3.95,
+   "Create the three custom roles with exactly the grants on the slide."
+  ],
+  [
+   9.363,
+   4.975,
+   "Create one integration user per role, each with its own OAuth client."
+  ],
+  [
+   14.338,
+   3.837,
+   "Compare each user's roles with the tool, one task at a time."
+  ],
+  [
+   18.175,
+   7.25,
+   "Then exercise them: get a token as the verifier and list findings, and try to patch a record as the evidence reader."
+  ],
+  [
+   25.425,
+   1.45,
+   "That should be refused."
+  ],
+  [
+   26.875,
+   5.8,
+   "Finally, delete the integrations, users and roles, and revoke any saved token."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   3.525,
+   "The dangers are mostly about privilege creeping in sideways."
+  ],
+  [
+   3.575,
+   8.662,
+   "A client gains a call nobody listed, and someone grants a broad role in production to make the error go away; the test stops that before release."
+  ],
+  [
+   12.238,
+   5.175,
+   "One user for everything lets the evidence reader close findings; the split stops it."
+  ],
+  [
+   17.413,
+   3.688,
+   "A broad role granted to make it work is caught as an extra."
+  ],
+  [
+   21.1,
+   5.3,
+   "Basic authentication outside a developer instance puts a password in a pipeline."
+  ],
+  [
+   26.4,
+   2.888,
+   "A secret in the config file is refused."
+  ],
+  [
+   29.288,
+   3.6,
+   "And paging is tested, so no waiting finding is skipped."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   1.35,
+   "Here's what done looks like."
+  ],
+  [
+   1.4,
+   3.35,
+   "Every ServiceNow call has a row and the test passes."
+  ],
+  [
+   4.75,
+   4.088,
+   "Each integration user's roles match the tool's list exactly."
+  ],
+  [
+   8.838,
+   6.2,
+   "The finding writer, the verifier and the evidence reader are separate users with separate OAuth clients."
+  ],
+  [
+   15.037,
+   1.413,
+   "None holds a broad role."
+  ],
+  [
+   16.45,
+   8.537,
+   "Basic authentication exists only on a developer instance, and tokens come from a vault or the client-credentials grant, never a file."
+  ],
+  [
+   24.988,
+   7.05,
+   "Next, Chapter 3 adds the SailPoint and Graph rows and compares an A P I client's scopes the same way."
+  ],
+  [
+   32.038,
+   1.1,
+   "Thanks for watching."
+  ]
+ ]
+}

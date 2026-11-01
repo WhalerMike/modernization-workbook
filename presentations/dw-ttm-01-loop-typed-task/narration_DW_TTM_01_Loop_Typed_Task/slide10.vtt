@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.875
+Two points stay open, and the
+chapter says so rather than guessing.
+
+2
+00:00:03.875 --> 00:00:08.869
+First, nobody has confirmed which identity
+ServiceNow reports for a call made with
+
+3
+00:00:08.869 --> 00:00:12.416
+an OAuth client-credentials
+token, and the business rule in
+
+4
+00:00:12.416 --> 00:00:15.963
+Chapter 5 compares exactly that
+with its verifier account.
+
+5
+00:00:15.963 --> 00:00:21.040
+Second, ServiceNow's page says a developer
+instance is reclaimed after ten days
+
+6
+00:00:21.040 --> 00:00:25.963
+unused, but newer community posts describe
+a rule that also considers its age.
+
+7
+00:00:25.963 --> 00:00:28.898
+So check before relying on
+one for more than a few days,
+
+8
+00:00:28.898 --> 00:00:30.960
+and keep your work in source control.

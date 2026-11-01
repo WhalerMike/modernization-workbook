@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.200
+Welcome back to Building
+Ticket-to-Machine.
+
+2
+00:00:02.200 --> 00:00:06.800
+This is Chapter 6: drift
+reconciliation, the kit's Build 3.
+
+3
+00:00:06.800 --> 00:00:08.400
+Events tell you what changed.
+
+4
+00:00:08.400 --> 00:00:10.880
+A reconciliation tells
+you what is wrong now,
+
+5
+00:00:10.880 --> 00:00:13.762
+including what changed
+while nobody was listening.
+
+6
+00:00:13.762 --> 00:00:18.057
+The drift client joins the HR
+extract, Microsoft Graph and
+
+7
+00:00:18.057 --> 00:00:22.799
+SailPoint on the employee ID and
+measures Book 3's drift classes.
+
+8
+00:00:22.799 --> 00:00:26.519
+This chapter adds a comparison
+of two runs, so a scheduled run
+
+9
+00:00:26.519 --> 00:00:30.462
+raises only what's new, and shows
+what has stopped being measured.
+
+10
+00:00:30.462 --> 00:00:32.780
+Then a two-day lab on a laptop.

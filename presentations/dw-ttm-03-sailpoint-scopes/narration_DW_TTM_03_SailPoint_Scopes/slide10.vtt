@@ -1,0 +1,46 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.577
+What this proves: the drift and
+re-read clients hold read scopes only,
+
+2
+00:00:04.577 --> 00:00:08.862
+and the workflow client holds one
+scope and is removed after use.
+
+3
+00:00:08.862 --> 00:00:12.418
+That's least privilege and
+account management at Moderate,
+
+4
+00:00:12.418 --> 00:00:15.900
+with the comparison kept beside
+the API client's approval.
+
+5
+00:00:15.900 --> 00:00:19.337
+The Graph app registration
+holds only what it reads,
+
+6
+00:00:19.337 --> 00:00:23.413
+with a certificate, which adds
+authenticator management, IA-5.
+
+7
+00:00:23.413 --> 00:00:28.091
+And no part of Pass 1 can write to
+SailPoint, Entra ID or Active Directory,
+
+8
+00:00:28.091 --> 00:00:32.056
+which is the Federal Modernization
+Workbook's Book 13's rule
+
+9
+00:00:32.056 --> 00:00:36.410
+that the coordination layer never
+writes configuration itself.

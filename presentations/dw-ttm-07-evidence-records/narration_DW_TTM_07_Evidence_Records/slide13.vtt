@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.372
+Lab 2 exports for real from
+your developer instance,
+
+2
+00:00:03.372 --> 00:00:08.163
+with at least one finding closed in Chapter
+5's lab; the authors haven't run it.
+
+3
+00:00:08.163 --> 00:00:10.937
+Create the evidence reader
+and check its grant.
+
+4
+00:00:10.937 --> 00:00:13.832
+Export live since the date
+of your test closure,
+
+5
+00:00:13.832 --> 00:00:16.800
+and expect every record
+intact with no problems.
+
+6
+00:00:16.800 --> 00:00:20.993
+Check that the due and finished
+times are the ones you expect,
+
+7
+00:00:20.993 --> 00:00:24.850
+in UTC, since the Table API's
+date format wasn't confirmed.
+
+8
+00:00:24.850 --> 00:00:26.338
+Verify the package.
+
+9
+00:00:26.338 --> 00:00:30.190
+Then delete the output and the
+reader's client, user and role.

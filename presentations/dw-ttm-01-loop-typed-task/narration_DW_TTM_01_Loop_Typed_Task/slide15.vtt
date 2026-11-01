@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.967
+Lab 2 moves to your own ServiceNow
+Personal Developer Instance,
+
+2
+00:00:03.967 --> 00:00:06.850
+never production, and the
+authors haven't run it.
+
+3
+00:00:06.850 --> 00:00:10.972
+You build the finding table and the
+scripted REST resource from the kit,
+
+4
+00:00:10.972 --> 00:00:15.513
+lock it down with authentication and an
+endpoint ACL for one integration user,
+
+5
+00:00:15.513 --> 00:00:18.237
+then check a payload
+locally before posting it.
+
+6
+00:00:18.237 --> 00:00:22.213
+Expect a created record with
+priority 2, due an hour later.
+
+7
+00:00:22.213 --> 00:00:24.650
+Post it again and it de-duplicates.
+
+8
+00:00:24.650 --> 00:00:28.825
+Post the typo and you get the same
+four hundred Lab 1 predicted.
+
+9
+00:00:28.825 --> 00:00:30.100
+Then back it all out.

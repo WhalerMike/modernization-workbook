@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.575
+The dangers are mostly about
+privilege creeping in sideways.
+
+2
+00:00:03.575 --> 00:00:07.831
+A client gains a call nobody listed,
+and someone grants a broad role in
+
+3
+00:00:07.831 --> 00:00:12.237
+production to make the error go away;
+the test stops that before release.
+
+4
+00:00:12.237 --> 00:00:17.413
+One user for everything lets the evidence
+reader close findings; the split stops it.
+
+5
+00:00:17.413 --> 00:00:21.101
+A broad role granted to make
+it work is caught as an extra.
+
+6
+00:00:21.101 --> 00:00:26.400
+Basic authentication outside a developer
+instance puts a password in a pipeline.
+
+7
+00:00:26.400 --> 00:00:29.288
+A secret in the config file is refused.
+
+8
+00:00:29.288 --> 00:00:32.950
+And paging is tested, so no
+waiting finding is skipped.

@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.780
+Lab 2 builds the split for real
+on your developer instance;
+
+2
+00:00:03.780 --> 00:00:05.412
+the authors haven't run it.
+
+3
+00:00:05.412 --> 00:00:09.362
+Create the three custom roles with
+exactly the grants on the slide.
+
+4
+00:00:09.362 --> 00:00:14.338
+Create one integration user per
+role, each with its own OAuth client.
+
+5
+00:00:14.338 --> 00:00:18.175
+Compare each user's roles with
+the tool, one task at a time.
+
+6
+00:00:18.175 --> 00:00:22.352
+Then exercise them: get a token as
+the verifier and list findings,
+
+7
+00:00:22.352 --> 00:00:25.425
+and try to patch a record
+as the evidence reader.
+
+8
+00:00:25.425 --> 00:00:26.875
+That should be refused.
+
+9
+00:00:26.875 --> 00:00:32.740
+Finally, delete the integrations, users
+and roles, and revoke any saved token.

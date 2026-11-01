@@ -1,0 +1,39 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.200
+The chapter's tests number twenty-two.
+
+2
+00:00:02.200 --> 00:00:07.274
+They compare the constants against the
+script, try every rejection the script makes,
+
+3
+00:00:07.274 --> 00:00:09.883
+cover closure signals and system defaults,
+
+4
+00:00:09.883 --> 00:00:13.579
+check both checkable and empty
+intended states and the tempo,
+
+5
+00:00:13.579 --> 00:00:17.638
+and accept every payload the drift
+client builds from the fixtures.
+
+6
+00:00:17.638 --> 00:00:21.374
+With the rest of the kit, a hundred
+and seven Python tests pass,
+
+7
+00:00:21.374 --> 00:00:24.737
+plus fifteen Node tests of
+the ServiceNow scripts and
+
+8
+00:00:24.737 --> 00:00:28.320
+forty PowerShell tests, all
+without a tenant or a network.

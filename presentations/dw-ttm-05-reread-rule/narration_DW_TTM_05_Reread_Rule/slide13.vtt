@@ -1,0 +1,43 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.238
+Now run the same records a day later.
+
+2
+00:00:02.238 --> 00:00:05.549
+The pending one has passed its
+twenty-four-hour grace period.
+
+3
+00:00:05.549 --> 00:00:07.595
+The account still isn't disabled,
+
+4
+00:00:07.595 --> 00:00:10.625
+so it's now a mismatch, and
+the record would reopen.
+
+5
+00:00:10.625 --> 00:00:13.975
+A stale read can't hold
+a finding open forever.
+
+6
+00:00:13.975 --> 00:00:17.687
+The results file keeps each
+outcome with its evidence hash.
+
+7
+00:00:17.687 --> 00:00:20.838
+Finally, run the business
+rule's six Node tests.
+
+8
+00:00:20.838 --> 00:00:23.621
+They pass: a person's close is redirected,
+
+9
+00:00:23.621 --> 00:00:27.310
+and only the verifier with
+fresh evidence can close.

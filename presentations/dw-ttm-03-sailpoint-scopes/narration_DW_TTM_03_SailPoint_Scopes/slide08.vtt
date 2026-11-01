@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.463
+And the Graph facts.
+
+2
+00:00:01.463 --> 00:00:06.685
+User dot Read dot All is the least-privileged
+application permission both to list
+
+3
+00:00:06.685 --> 00:00:10.832
+users and to read one, and the audit
+needs AuditLog dot Read dot All;
+
+4
+00:00:10.832 --> 00:00:14.212
+both reads are available in
+the US Government clouds.
+
+5
+00:00:14.212 --> 00:00:18.922
+One wrinkle: application permissions
+aren't supported on the manager endpoint,
+
+6
+00:00:18.922 --> 00:00:22.988
+and Learn documents expanding the
+manager on the users list instead.
+
+7
+00:00:22.988 --> 00:00:27.057
+Microsoft 365 GCC uses
+the worldwide Graph host;
+
+8
+00:00:27.057 --> 00:00:31.838
+GCC High and the Defense
+Department cloud have their own.
+
+9
+00:00:31.838 --> 00:00:35.660
+SailPoint's Identity Security
+Cloud is FedRAMP Moderate.

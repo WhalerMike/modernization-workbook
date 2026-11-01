@@ -1,0 +1,43 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.425
+Four points are still open.
+
+2
+00:00:01.425 --> 00:00:06.700
+SailPoint's public pages don't say
+what API domain a FedRAMP tenant uses.
+
+3
+00:00:06.700 --> 00:00:09.631
+They don't say whether a
+client-credentials token gets
+
+4
+00:00:09.631 --> 00:00:12.562
+data from Search and Accounts
+or a forbidden response.
+
+5
+00:00:12.562 --> 00:00:14.877
+Learn doesn't settle whether expanding the
+
+6
+00:00:14.877 --> 00:00:17.450
+manager works under an
+application permission.
+
+7
+00:00:17.450 --> 00:00:21.857
+And feature parity in SailPoint's
+FedRAMP environment, for Search,
+
+8
+00:00:21.857 --> 00:00:26.825
+Workflows and the Accounts API, is a
+question to put to SailPoint in writing.
+
+9
+00:00:26.825 --> 00:00:29.380
+Each one is on the kit's verify list.

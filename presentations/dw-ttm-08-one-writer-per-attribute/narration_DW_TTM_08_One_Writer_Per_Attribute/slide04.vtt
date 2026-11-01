@@ -1,0 +1,36 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.650
+The first export is the inbound
+provisioning job's schema, read from Graph.
+
+2
+00:00:04.650 --> 00:00:08.188
+The check takes the rules that
+target the Entra directory,
+
+3
+00:00:08.188 --> 00:00:12.462
+by default named Azure Active Directory,
+the name Learn's examples use.
+
+4
+00:00:12.462 --> 00:00:15.943
+Inside them it takes the
+enabled object mappings to User,
+
+5
+00:00:15.943 --> 00:00:19.275
+and each attribute mapping's
+target name and flow type.
+
+6
+00:00:19.275 --> 00:00:24.829
+Two flow types matter: Always, the default,
+updates the attribute on every change,
+
+7
+00:00:24.829 --> 00:00:28.750
+and object-add-only sets it
+only when the user is created.

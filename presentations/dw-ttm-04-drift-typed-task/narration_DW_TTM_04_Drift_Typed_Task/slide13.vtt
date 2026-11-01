@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.538
+Next, the mover.
+
+2
+00:00:01.538 --> 00:00:05.500
+Erin's identity changed
+department from HR to Finance.
+
+3
+00:00:05.500 --> 00:00:09.206
+The finding keeps the new
+value as the intended state,
+
+4
+00:00:09.206 --> 00:00:12.912
+at P3, and the key now ends
+in the attribute, department.
+
+5
+00:00:12.912 --> 00:00:14.787
+Nothing in the event is dropped.
+
+6
+00:00:14.787 --> 00:00:18.531
+Then the closure signal from a
+successful provisioning action:
+
+7
+00:00:18.531 --> 00:00:20.862
+it's accepted, and four
+fields aren't sent.
+
+8
+00:00:20.862 --> 00:00:26.425
+A signal only moves matching findings to
+awaiting verification; it never closes one.
+
+9
+00:00:26.425 --> 00:00:30.910
+Finally, the two new Node tests of
+the ServiceNow script both pass.

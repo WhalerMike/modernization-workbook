@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.463
+Here's what the shared
+client already does.
+
+2
+00:00:02.463 --> 00:00:07.112
+It builds SailPoint's base URL from
+the tenant name, or takes one you set.
+
+3
+00:00:07.112 --> 00:00:10.502
+It gets a token from a vault
+or by client credentials;
+
+4
+00:00:10.502 --> 00:00:13.262
+a personal access token
+works the same way.
+
+5
+00:00:13.262 --> 00:00:16.351
+Search pages with
+search-after, sorted on the ID,
+
+6
+00:00:16.351 --> 00:00:20.312
+which is how SailPoint says to
+get past ten thousand results.
+
+7
+00:00:20.312 --> 00:00:25.099
+Account lists page two hundred
+fifty at a time, the API's maximum.
+
+8
+00:00:25.099 --> 00:00:29.050
+Graph uses a certificate first,
+from the cloud's own authority.
+
+9
+00:00:29.050 --> 00:00:31.676
+And because Search has no accounts index,
+
+10
+00:00:31.676 --> 00:00:34.750
+one account is re-read
+through the Accounts API.

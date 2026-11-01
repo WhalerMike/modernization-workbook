@@ -1,0 +1,35 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.469
+Six tests cover flow types, usage types
+and aliases, the three severities, disabled
+
+2
+00:00:05.469 --> 00:00:10.888
+mappings being ignored, a wrong directory
+name being refused, and the command line.
+
+3
+00:00:10.888 --> 00:00:14.214
+The usual caution applies,
+and it matters more here:
+
+4
+00:00:14.214 --> 00:00:16.512
+the check reads fictional exports.
+
+5
+00:00:16.512 --> 00:00:20.426
+It can't show that your schema names
+the Entra directory the same way,
+
+6
+00:00:20.426 --> 00:00:23.012
+or that SailPoint's field
+names match Entra's.
+
+7
+00:00:23.012 --> 00:00:28.940
+Run Lab 2 on your own exports and review
+the alias list before acting on any result.

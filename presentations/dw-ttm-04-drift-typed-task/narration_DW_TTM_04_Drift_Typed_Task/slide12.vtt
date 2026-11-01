@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.862
+Lab 1.
+
+2
+00:00:00.862 --> 00:00:02.975
+First, eleven tests pass.
+
+3
+00:00:02.975 --> 00:00:07.363
+Then resolve the native-change workflow
+against Alice's fictional event.
+
+4
+00:00:07.363 --> 00:00:11.349
+It's an unauthorized write on
+her account, accepted at P2.
+
+5
+00:00:11.349 --> 00:00:16.490
+The intended state reverts all three
+changes: the title goes back to Analyst,
+
+6
+00:00:16.490 --> 00:00:20.487
+and both the new group and the
+new proxy address must be gone.
+
+7
+00:00:20.487 --> 00:00:23.005
+The only field not sent is the event type,
+
+8
+00:00:23.005 --> 00:00:27.275
+which is always account-updated for
+this trigger, so nothing is lost.
+
+9
+00:00:27.275 --> 00:00:30.307
+Before the fix, the proxy
+address was missing here,
+
+10
+00:00:30.307 --> 00:00:33.480
+and the multivalued changes
+were in that last line.

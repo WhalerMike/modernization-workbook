@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.875
+Here's the subtle case the
+chapter guards against.
+
+2
+00:00:02.875 --> 00:00:05.603
+An intended state like
+the one on the slide
+
+3
+00:00:05.603 --> 00:00:08.175
+is a non-empty object,
+so it looks present.
+
+4
+00:00:08.175 --> 00:00:12.075
+But it names nothing: no
+attribute, no entitlement.
+
+5
+00:00:12.075 --> 00:00:14.979
+A re-read compares against
+it, finds no difference,
+
+6
+00:00:14.979 --> 00:00:17.175
+and would close the record on nothing.
+
+7
+00:00:17.175 --> 00:00:21.263
+The check warns rather than rejects,
+because ServiceNow would accept it.
+
+8
+00:00:21.263 --> 00:00:26.017
+For the two classes Book 13 sends to a
+person first, missing identity and an
+
+9
+00:00:26.017 --> 00:00:31.220
+unauthorized write, the warning says
+that's expected until that person decides.

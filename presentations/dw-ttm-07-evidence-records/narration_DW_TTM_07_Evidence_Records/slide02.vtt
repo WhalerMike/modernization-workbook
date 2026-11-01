@@ -1,0 +1,43 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.025
+Why records rather than the tracker?
+
+2
+00:00:02.025 --> 00:00:05.350
+Because an assessor asks different
+questions from an operator.
+
+3
+00:00:05.350 --> 00:00:10.275
+Chapter 5's re-read client already writes
+evidence onto every record it closes,
+
+4
+00:00:10.275 --> 00:00:12.775
+but nothing read those records back out.
+
+5
+00:00:12.775 --> 00:00:17.320
+And the assessor's worries are specific:
+was a record edited after it closed,
+
+6
+00:00:17.320 --> 00:00:19.812
+so it now says something
+the re-read didn't?
+
+7
+00:00:19.812 --> 00:00:23.624
+Was one quietly deleted, so
+the period only looks complete?
+
+8
+00:00:23.624 --> 00:00:28.237
+Were fields filled in to claim an approval
+or an execution that never happened?
+
+9
+00:00:28.237 --> 00:00:30.310
+This chapter answers each one.

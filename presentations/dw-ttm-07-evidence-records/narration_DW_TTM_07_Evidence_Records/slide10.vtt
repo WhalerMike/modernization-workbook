@@ -1,0 +1,39 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.100
+Who's involved?
+
+2
+00:00:01.100 --> 00:00:05.017
+Developers who build the evidence
+pipeline, and the I S S O and
+
+3
+00:00:05.017 --> 00:00:09.875
+assessors who read what it produces
+and verify every package they receive.
+
+4
+00:00:09.875 --> 00:00:13.489
+The export runs as its own
+identity: the evidence reader,
+
+5
+00:00:13.489 --> 00:00:18.359
+with read-only access to the finding
+table, its own user and OAuth client, and
+
+6
+00:00:18.359 --> 00:00:23.387
+never the verifier's role, because it must
+not be able to close what it's hashing.
+
+7
+00:00:23.387 --> 00:00:27.372
+And keep each period's manifest
+somewhere the exporter can't write,
+
+8
+00:00:27.372 --> 00:00:29.450
+signed if the program requires it.

@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.088
+These are the rows this chapter adds.
+
+2
+00:00:02.088 --> 00:00:07.001
+On SailPoint, a token from an API client,
+then Search with the search read scope,
+
+3
+00:00:07.001 --> 00:00:11.762
+and the Accounts list and single-account
+read with the accounts read scope.
+
+4
+00:00:11.762 --> 00:00:15.711
+Workflow creation needs a manage
+scope, and it's its own task,
+
+5
+00:00:15.711 --> 00:00:18.612
+because no client in
+the kit makes that call.
+
+6
+00:00:18.612 --> 00:00:23.665
+On Graph, listing users and reading one
+user both need User dot Read dot All as an
+
+7
+00:00:23.665 --> 00:00:26.851
+application permission,
+and the directory audit,
+
+8
+00:00:26.851 --> 00:00:30.100
+which is optional, needs
+AuditLog dot Read dot All.

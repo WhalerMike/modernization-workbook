@@ -1,0 +1,79 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:04.922
+Compare day one with day two:
+one new, eleven persisting,
+
+3
+00:00:04.922 --> 00:00:07.963
+one resolved, and both changes are Erin's.
+
+4
+00:00:07.963 --> 00:00:11.550
+Her Entra finding resolved;
+a SailPoint finding opened.
+
+5
+00:00:11.550 --> 00:00:14.402
+Then run the re-read
+client offline over six
+
+6
+00:00:14.402 --> 00:00:17.175
+waiting records at noon on November first.
+
+7
+00:00:17.175 --> 00:00:20.563
+Erin's record verifies, and
+would be patched to closed.
+
+8
+00:00:20.563 --> 00:00:23.856
+One record is pending: a
+terminated user's account,
+
+9
+00:00:23.856 --> 00:00:26.587
+read before the finding started waiting.
+
+10
+00:00:26.587 --> 00:00:29.237
+One is skipped for an
+empty intended state.
+
+11
+00:00:29.237 --> 00:00:31.206
+Run the same records a day later,
+
+12
+00:00:31.206 --> 00:00:34.763
+and that pending one becomes
+a mismatch, and would reopen.
+
+13
+00:00:34.763 --> 00:00:36.575
+Everything here is a dry run.
+
+14
+00:00:36.575 --> 00:00:40.638
+The offline mode refuses the
+apply flag, and a subject with no
+
+15
+00:00:40.638 --> 00:00:44.700
+saved read is an error, because
+a missing read is never a match.
+
+16
+00:00:44.700 --> 00:00:46.496
+On a developer instance,
+
+17
+00:00:46.496 --> 00:00:51.050
+Chapter 5's Lab 2 runs the same
+client for real, as the verifier.
