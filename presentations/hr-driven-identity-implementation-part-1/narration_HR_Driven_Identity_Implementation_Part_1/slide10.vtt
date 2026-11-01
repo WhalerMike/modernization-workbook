@@ -1,0 +1,80 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.304
+The workbook's second
+chapter builds this in code,
+
+2
+00:00:03.304 --> 00:00:06.400
+reusing the HR middleware
+that already exists.
+
+3
+00:00:06.400 --> 00:00:10.992
+The extract step takes nine fictional
+records and finds three active,
+
+4
+00:00:10.992 --> 00:00:14.238
+four past their earliest
+end, and two quarantined.
+
+5
+00:00:14.238 --> 00:00:19.275
+Every record carries its end date, so the
+leaver workflow fires on the right day.
+
+6
+00:00:19.275 --> 00:00:21.992
+The middleware turns that extract into one
+
+7
+00:00:21.992 --> 00:00:25.087
+batch of seven requests,
+including four disables.
+
+8
+00:00:25.087 --> 00:00:28.512
+Nothing is sent, because
+a dry run is its default.
+
+9
+00:00:28.512 --> 00:00:32.187
+Then the read-only reconciliation
+finds seven issues.
+
+10
+00:00:32.187 --> 00:00:35.581
+Four are accounts still enabled
+past their earliest end,
+
+11
+00:00:35.581 --> 00:00:38.613
+and they're exactly the four
+disables waiting to go.
+
+12
+00:00:38.613 --> 00:00:42.867
+The others are an orphan account, a card
+for someone the source doesn't know,
+
+13
+00:00:42.867 --> 00:00:45.587
+and a leave date that would
+fire on the wrong day.
+
+14
+00:00:45.587 --> 00:00:49.424
+Finally, the review step writes
+the sponsor review settings.
+
+15
+00:00:49.424 --> 00:00:53.213
+Once the disables go out, the
+next reconciliation is clean.
+
+16
+00:00:53.213 --> 00:00:56.020
+That clean re-run is the
+evidence for the gate.

@@ -1,0 +1,75 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.600
+The rest of this gate ties the
+card's life to the person's.
+
+2
+00:00:03.600 --> 00:00:07.350
+No card is requested without
+a joiner record and a sponsor.
+
+3
+00:00:07.350 --> 00:00:10.747
+The card system writes the
+binding when the card is issued,
+
+4
+00:00:10.747 --> 00:00:13.012
+and removes it when the card is revoked.
+
+5
+00:00:13.012 --> 00:00:17.847
+Once the binding lands, the temporary pass
+from gate three isn't needed anymore,
+
+6
+00:00:17.847 --> 00:00:20.674
+and the proofing level
+is recorded per person.
+
+7
+00:00:20.674 --> 00:00:24.625
+The card system's events flow
+back in, keyed on the person key.
+
+8
+00:00:24.625 --> 00:00:28.797
+Those events are termination,
+revocation, suspension and expiry,
+
+9
+00:00:28.797 --> 00:00:31.888
+and the same event can
+mean two different things.
+
+10
+00:00:31.888 --> 00:00:36.562
+For a contractor, a terminated or
+expired card ends the engagement.
+
+11
+00:00:36.562 --> 00:00:40.275
+For an employee, it's credential
+drift, not a separation,
+
+12
+00:00:40.275 --> 00:00:43.575
+because only HR decides
+when an employee leaves.
+
+13
+00:00:43.575 --> 00:00:46.225
+And a legal name change
+rewrites the binding.
+
+14
+00:00:46.225 --> 00:00:49.324
+The guide is open that the
+card system's interface,
+
+15
+00:00:49.324 --> 00:00:52.630
+and the contractor PIV path,
+are still pending proof.

@@ -1,0 +1,86 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.575
+The re-read gate closes the first gap.
+
+2
+00:00:02.575 --> 00:00:06.987
+Out of the box, SailPoint treats a
+mapped ServiceNow status as done.
+
+3
+00:00:06.987 --> 00:00:09.464
+So add an awaiting verification state,
+
+4
+00:00:09.464 --> 00:00:13.024
+and a business rule that turns
+any close into that state.
+
+5
+00:00:13.024 --> 00:00:15.622
+The only exception is
+an update that carries
+
+6
+00:00:15.622 --> 00:00:18.500
+new evidence and comes
+from the verifier account.
+
+7
+00:00:18.500 --> 00:00:21.675
+A named exception approver
+can still cancel with a note.
+
+8
+00:00:21.675 --> 00:00:24.949
+Apply the same rule to the
+incident and request tables,
+
+9
+00:00:24.949 --> 00:00:28.587
+so SailPoint's status mapping
+no longer decides completion.
+
+10
+00:00:28.587 --> 00:00:30.687
+Then schedule the re-read client.
+
+11
+00:00:30.687 --> 00:00:34.601
+It re-reads the account, the
+identity, or the Graph user.
+
+12
+00:00:34.601 --> 00:00:38.305
+If the target matches, it closes
+the record with the query,
+
+13
+00:00:38.305 --> 00:00:40.512
+the time and a hash of the response.
+
+14
+00:00:40.512 --> 00:00:44.163
+If it doesn't match, it reopens
+the record with the differences.
+
+15
+00:00:44.163 --> 00:00:47.328
+A SailPoint read reflects
+the last aggregation,
+
+16
+00:00:47.328 --> 00:00:51.126
+so allow a grace period, tuned
+to the aggregation schedule.
+
+17
+00:00:51.126 --> 00:00:53.630
+The verifier account comes from gate one,
+
+18
+00:00:53.630 --> 00:00:57.460
+and its audit trail is what
+makes every closure attributable.

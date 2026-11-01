@@ -1,0 +1,72 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.588
+Here are Part 2's three gates on one page.
+
+2
+00:00:02.588 --> 00:00:07.513
+Actuation is done when each lane acts
+through a connector or a declared exception,
+
+3
+00:00:07.513 --> 00:00:11.787
+under a service identity, with a change
+record where its class needs one.
+
+4
+00:00:11.787 --> 00:00:15.725
+It closes the third gap, and there's
+no automated check for it yet.
+
+5
+00:00:15.725 --> 00:00:18.013
+You'll run one task per lane by hand.
+
+6
+00:00:18.013 --> 00:00:21.418
+The re-read gate is done
+when nothing closes without
+
+7
+00:00:21.418 --> 00:00:24.587
+a re-read of the target,
+which closes the first gap.
+
+8
+00:00:24.587 --> 00:00:26.699
+The kit's tests prove its logic.
+
+9
+00:00:26.699 --> 00:00:29.664
+The tempo gate is done when
+the windows are measured,
+
+10
+00:00:29.664 --> 00:00:34.350
+the identity fixes run through the loop,
+and the evidence is produced on a schedule.
+
+11
+00:00:34.350 --> 00:00:36.562
+Two rules run through all three.
+
+12
+00:00:36.562 --> 00:00:40.825
+A person's role stops at approval,
+except for declared exceptions.
+
+13
+00:00:40.825 --> 00:00:43.562
+And a success response
+doesn't count as closure.
+
+14
+00:00:43.562 --> 00:00:48.537
+The kit's first pass doesn't write to
+Entra ID, Active Directory or SailPoint,
+
+15
+00:00:48.537 --> 00:00:52.610
+which is why the actuation gate
+relies on a manual lab for now.

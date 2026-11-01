@@ -1,0 +1,74 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.943
+The workbook's eighth
+chapter checks the writer
+
+2
+00:00:02.943 --> 00:00:05.763
+decision against real
+configuration, offline.
+
+3
+00:00:05.763 --> 00:00:09.431
+It reads two exports: Entra's
+inbound provisioning schema,
+
+4
+00:00:09.431 --> 00:00:13.175
+and the provisioning policies
+on SailPoint's Entra source.
+
+5
+00:00:13.175 --> 00:00:17.790
+For every attribute both of them write,
+it flags a finding if both update it,
+
+6
+00:00:17.790 --> 00:00:21.725
+because each overwrites the other
+and the drift never settles.
+
+7
+00:00:21.725 --> 00:00:26.625
+It's a warning if one updates the attribute
+and the other only sets it at creation.
+
+8
+00:00:26.625 --> 00:00:30.112
+On the fictional exports,
+department is the finding.
+
+9
+00:00:30.112 --> 00:00:33.423
+SailPoint's field names
+don't always match Entra's,
+
+10
+00:00:33.423 --> 00:00:36.088
+so the check takes a reviewed alias list.
+
+11
+00:00:36.088 --> 00:00:41.212
+Map title to job title, and a second
+finding appears that was invisible before.
+
+12
+00:00:41.212 --> 00:00:44.181
+Point it at a directory
+name that doesn't exist,
+
+13
+00:00:44.181 --> 00:00:47.150
+and it fails rather than
+passing as no overlap.
+
+14
+00:00:47.150 --> 00:00:48.800
+It reads exports only.
+
+15
+00:00:48.800 --> 00:00:51.500
+Approvers and lanes are
+still checked by hand.

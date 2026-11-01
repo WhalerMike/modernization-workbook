@@ -1,0 +1,85 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.174
+The workbook's seventh chapter reads
+closed findings back out of ServiceNow,
+
+2
+00:00:05.174 --> 00:00:09.738
+using a read-only role, and writes
+one Book 13 evidence record for each.
+
+3
+00:00:09.738 --> 00:00:13.581
+Approval, executing identity
+and what ran are left empty,
+
+4
+00:00:13.581 --> 00:00:17.588
+each with its reason, because
+the first pass doesn't actuate.
+
+5
+00:00:17.588 --> 00:00:19.812
+Four checks run on every record.
+
+6
+00:00:19.812 --> 00:00:22.000
+Does the evidence still match its hash?
+
+7
+00:00:22.000 --> 00:00:23.363
+Is there evidence at all?
+
+8
+00:00:23.363 --> 00:00:25.151
+Did the intended state match?
+
+9
+00:00:25.151 --> 00:00:27.063
+And did it close inside its window?
+
+10
+00:00:27.063 --> 00:00:30.912
+Five fictional records come out
+with two of three closed on time.
+
+11
+00:00:30.912 --> 00:00:35.912
+Three have problems: one closed late, one
+had its evidence edited after closing,
+
+12
+00:00:35.912 --> 00:00:38.988
+and one was closed with a
+note that just says done.
+
+13
+00:00:38.988 --> 00:00:41.962
+Book 13 calls that prose, not evidence.
+
+14
+00:00:41.962 --> 00:00:45.312
+Each line carries the hash
+of the line before it,
+
+15
+00:00:45.312 --> 00:00:48.662
+so the ISSO's verifier
+catches a removed record.
+
+16
+00:00:48.662 --> 00:00:51.738
+The package can show tampering,
+but it isn't signed.
+
+17
+00:00:51.738 --> 00:00:55.539
+A later month continues the chain
+from the previous month's head,
+
+18
+00:00:55.539 --> 00:00:58.390
+so the packages link from
+one period to the next.

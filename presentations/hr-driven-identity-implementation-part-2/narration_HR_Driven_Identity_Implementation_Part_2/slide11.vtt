@@ -1,0 +1,83 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.063
+The separation gate puts the leaver
+in the Federal Modernization
+
+2
+00:00:04.063 --> 00:00:07.200
+Workbook's Book 03's order
+and then proves the timing.
+
+3
+00:00:07.200 --> 00:00:10.338
+Disable the account and
+revoke its sessions first.
+
+4
+00:00:10.338 --> 00:00:13.768
+Then one custom task starts
+the device retire and the
+
+5
+00:00:13.768 --> 00:00:17.276
+card revocation together,
+and waits for both to report.
+
+6
+00:00:17.276 --> 00:00:21.955
+That wait can run from thirty minutes
+to three hours, and if it times out,
+
+7
+00:00:21.955 --> 00:00:25.425
+it goes to a high-priority
+exception, not a retry loop.
+
+8
+00:00:25.425 --> 00:00:29.300
+Then come the removals, and a
+read-back to confirm the block took.
+
+9
+00:00:29.300 --> 00:00:32.612
+A disabled account with live
+sessions is an incident.
+
+10
+00:00:32.612 --> 00:00:37.625
+Deletion comes last, in a separate
+workflow, after the devices are retired.
+
+11
+00:00:37.625 --> 00:00:39.445
+Set the leave time late in the day,
+
+12
+00:00:39.445 --> 00:00:42.412
+and remember the schedule is
+part of the time allowed.
+
+13
+00:00:42.412 --> 00:00:45.613
+An emergency means an
+immediate out-of-band block,
+
+14
+00:00:45.613 --> 00:00:48.813
+then the same sequence on
+demand, behind approval.
+
+15
+00:00:48.813 --> 00:00:51.392
+A separation entered more than three days
+
+16
+00:00:51.392 --> 00:00:53.825
+late misses the trigger,
+so run it by hand.
+
+17
+00:00:53.825 --> 00:00:56.180
+Privileged leavers need their own path.

@@ -1,0 +1,91 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.615
+Once the loop is running,
+
+2
+00:00:01.615 --> 00:00:05.763
+it follows the Federal Modernization
+Workbook's Book 13's tempo.
+
+3
+00:00:05.763 --> 00:00:07.225
+A P1 halts work.
+
+4
+00:00:07.225 --> 00:00:12.025
+P2 has one hour, P3 has a
+day, and P4 has three days.
+
+5
+00:00:12.025 --> 00:00:15.150
+These are the program's
+windows, not federal ones.
+
+6
+00:00:15.150 --> 00:00:18.297
+Schedule the drift reconciliation
+and the re-read client,
+
+7
+00:00:18.297 --> 00:00:21.575
+and keep their outputs with the
+date and the checker version.
+
+8
+00:00:21.575 --> 00:00:25.548
+Report five measures to the
+governance board: detection coverage,
+
+9
+00:00:25.548 --> 00:00:28.292
+how well windows are
+kept, the escalation rate,
+
+10
+00:00:28.292 --> 00:00:32.987
+the share of findings closed by machine,
+and the number of declared exceptions.
+
+11
+00:00:32.987 --> 00:00:36.754
+Together they show whether the
+loop is closing on machines,
+
+12
+00:00:36.754 --> 00:00:39.599
+inside its windows, or
+leaning on exceptions.
+
+13
+00:00:39.599 --> 00:00:41.475
+Export the evidence nightly.
+
+14
+00:00:41.475 --> 00:00:43.654
+That's planned for the kit's second pass,
+
+15
+00:00:43.654 --> 00:00:46.650
+and the workbook already
+builds the ServiceNow half.
+
+16
+00:00:46.650 --> 00:00:49.655
+Review each declared
+exception at its end date,
+
+17
+00:00:49.655 --> 00:00:52.275
+and each autonomous class every quarter.
+
+18
+00:00:52.275 --> 00:00:55.006
+These measures come from
+Book 13's tenth chapter,
+
+19
+00:00:55.006 --> 00:00:59.420
+and they're what leadership reads to see
+whether the loop is actually working.

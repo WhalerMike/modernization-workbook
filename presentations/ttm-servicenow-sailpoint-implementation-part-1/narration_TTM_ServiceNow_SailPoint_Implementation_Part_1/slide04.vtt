@@ -1,0 +1,79 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.025
+The first gate confirms
+the authorization boundary.
+
+2
+00:00:03.025 --> 00:00:05.751
+Check each product on
+the FedRAMP Marketplace
+
+3
+00:00:05.751 --> 00:00:08.337
+on the day you decide,
+and record what you read.
+
+4
+00:00:08.337 --> 00:00:09.887
+As of November 1, 2026,
+
+5
+00:00:09.887 --> 00:00:14.625
+ServiceNow's Government Community
+Cloud is certified at High.
+
+6
+00:00:14.625 --> 00:00:17.525
+Its commercial cloud has
+no listing of its own.
+
+7
+00:00:17.525 --> 00:00:21.325
+SailPoint Identity Security
+Cloud is certified at Moderate.
+
+8
+00:00:21.325 --> 00:00:25.075
+SailPoint's self-hosted product
+has no listing of its own.
+
+9
+00:00:25.075 --> 00:00:28.562
+Next, confirm what's actually
+inside the authorization.
+
+10
+00:00:28.562 --> 00:00:33.571
+Ask SailPoint in writing whether workflows,
+native change detection and the HTTP
+
+11
+00:00:33.571 --> 00:00:36.517
+request step are in the
+authorized environment,
+
+12
+00:00:36.517 --> 00:00:38.800
+since later gates depend on all three.
+
+13
+00:00:38.800 --> 00:00:41.862
+Then record which actions
+run from a vendor's cloud.
+
+14
+00:00:41.862 --> 00:00:46.160
+SailPoint's connectors call Microsoft
+Graph from SailPoint's cloud,
+
+15
+00:00:46.160 --> 00:00:48.950
+so each of those calls
+is a recorded data flow.
+
+16
+00:00:48.950 --> 00:00:52.750
+And confirm the apps are available
+in ServiceNow's government store.

@@ -1,0 +1,76 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.275
+Three more steps finish the first gate.
+
+2
+00:00:02.275 --> 00:00:06.429
+First, write down which records
+provision at all, including leave,
+
+3
+00:00:06.429 --> 00:00:10.275
+secondments and pre-hire lookahead,
+and version that filter.
+
+4
+00:00:10.275 --> 00:00:12.775
+Remember, someone on leave hasn't left.
+
+5
+00:00:12.775 --> 00:00:17.788
+Second, remove every other way to write
+these values: the help desk, self-service,
+
+6
+00:00:17.788 --> 00:00:19.485
+Exchange administrators,
+
+7
+00:00:19.485 --> 00:00:23.650
+and the permissions on Active
+Directory's organizational units.
+
+8
+00:00:23.650 --> 00:00:25.513
+One path is easy to miss.
+
+9
+00:00:25.513 --> 00:00:28.940
+Whoever can write the
+certificate mapping attribute in
+
+10
+00:00:28.940 --> 00:00:32.150
+AD decides which card can
+sign in as which synced user.
+
+11
+00:00:32.150 --> 00:00:35.565
+Third, save an audit query
+for each protected value,
+
+12
+00:00:35.565 --> 00:00:39.062
+one that finds writes by
+anyone but the named writer.
+
+13
+00:00:39.062 --> 00:00:41.274
+Gate seven will run those queries.
+
+14
+00:00:41.274 --> 00:00:44.000
+The interim path matters
+for most agencies.
+
+15
+00:00:44.000 --> 00:00:48.725
+Until AD retires, sync is a writer too,
+so record the sync agent's managed
+
+16
+00:00:48.725 --> 00:00:53.660
+service account as a writer, and review
+those permissions every quarter.

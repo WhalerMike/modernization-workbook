@@ -1,0 +1,71 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.615
+The workbook's first
+and fourth chapters make
+
+2
+00:00:02.615 --> 00:00:05.450
+the front door testable
+before anything is posted.
+
+3
+00:00:05.450 --> 00:00:08.139
+The contract lives in ServiceNow's script,
+
+4
+00:00:08.139 --> 00:00:11.288
+so a Python mirror applies
+the same rules offline.
+
+5
+00:00:11.288 --> 00:00:13.925
+A test fails if the two ever drift apart.
+
+6
+00:00:13.925 --> 00:00:18.565
+On five sample payloads, one gets a
+default priority and a one-hour window,
+
+7
+00:00:18.565 --> 00:00:23.050
+two are rejected with the script's own
+error text, and one gets a warning.
+
+8
+00:00:23.050 --> 00:00:26.237
+Its intended state names
+nothing a re-read could check,
+
+9
+00:00:26.237 --> 00:00:28.362
+so the record would close on nothing.
+
+10
+00:00:28.362 --> 00:00:33.051
+Then the fourth chapter resolves each
+SailPoint workflow against a saved trigger.
+
+11
+00:00:33.051 --> 00:00:34.687
+That turned up two fixes.
+
+12
+00:00:34.687 --> 00:00:39.002
+A change to a multi-valued attribute,
+like an added proxy address,
+
+13
+00:00:39.002 --> 00:00:41.688
+used to produce an empty intended state.
+
+14
+00:00:41.688 --> 00:00:46.738
+And two attributes drifting on the same
+user used to collapse into one record.
+
+15
+00:00:46.738 --> 00:00:51.620
+Whether SailPoint resolves the body the
+same way is still on the verify list.

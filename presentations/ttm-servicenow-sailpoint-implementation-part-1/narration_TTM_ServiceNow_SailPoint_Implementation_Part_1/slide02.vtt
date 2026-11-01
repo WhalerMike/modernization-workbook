@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.213
+Here are the seven gates on one page.
+
+2
+00:00:02.213 --> 00:00:06.993
+The first is done when each product's
+FedRAMP status, the actions that run from
+
+3
+00:00:06.993 --> 00:00:11.849
+a vendor's cloud, and the integration
+identities are all recorded and accepted.
+
+4
+00:00:11.849 --> 00:00:15.235
+The second is done when every
+attribute has one writer,
+
+5
+00:00:15.235 --> 00:00:20.200
+every authority class has one approval
+system, and every change class has a lane.
+
+6
+00:00:20.200 --> 00:00:22.550
+That closes two of the four gaps.
+
+7
+00:00:22.550 --> 00:00:26.644
+The third is done when HR, Entra
+ID and Active Directory are
+
+8
+00:00:26.644 --> 00:00:31.250
+correlated on the employee I D and
+the starting drift is measured.
+
+9
+00:00:31.250 --> 00:00:35.318
+The fourth is done when findings,
+requests and manual work all
+
+10
+00:00:35.318 --> 00:00:39.625
+arrive in ServiceNow as typed tasks,
+each with an owner and a clock.
+
+11
+00:00:39.625 --> 00:00:44.842
+Part 2 covers the rest: actuating through
+a connector or a declared exception,
+
+12
+00:00:44.842 --> 00:00:49.220
+closing only on a re-read, and
+running the tempo with its evidence.

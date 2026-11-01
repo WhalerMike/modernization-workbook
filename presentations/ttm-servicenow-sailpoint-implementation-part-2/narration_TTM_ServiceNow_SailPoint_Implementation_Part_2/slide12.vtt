@@ -1,0 +1,78 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.918
+On the federal side,
+continuous monitoring calls
+
+2
+00:00:02.918 --> 00:00:05.925
+for the scheduled run outputs
+and the five measures.
+
+3
+00:00:05.925 --> 00:00:09.725
+Risk response calls for window
+adherence and the overdue list.
+
+4
+00:00:09.725 --> 00:00:12.525
+Plans of action call for
+the exception register.
+
+5
+00:00:12.525 --> 00:00:16.512
+Audit review calls for the monthly
+evidence package and its review.
+
+6
+00:00:16.512 --> 00:00:21.090
+To validate, the evidence export and
+the drift comparison are automated,
+
+7
+00:00:21.090 --> 00:00:23.074
+but the five measures aren't yet.
+
+8
+00:00:23.074 --> 00:00:27.379
+The manual part is a month of
+scheduled runs with their outputs kept,
+
+9
+00:00:27.379 --> 00:00:32.375
+the measures reported once, and the first
+monthly package accepted by the ISSO.
+
+10
+00:00:32.375 --> 00:00:35.550
+This gate uses nothing
+beyond the earlier gates.
+
+11
+00:00:35.550 --> 00:00:39.421
+Until the export exists, build
+the monthly package by hand,
+
+12
+00:00:39.421 --> 00:00:43.050
+from a ServiceNow report and
+a SailPoint event search.
+
+13
+00:00:43.050 --> 00:00:45.638
+And forward Entra's
+audit logs to the SIEM,
+
+14
+00:00:45.638 --> 00:00:48.462
+since Entra only keeps
+them for thirty days.
+
+15
+00:00:48.462 --> 00:00:50.712
+To roll back, stop the schedules.
+
+16
+00:00:50.712 --> 00:00:51.980
+The records stay.

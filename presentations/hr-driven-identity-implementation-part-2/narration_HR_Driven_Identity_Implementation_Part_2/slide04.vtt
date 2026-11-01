@@ -1,0 +1,73 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.682
+Next, decide who approves,
+
+2
+00:00:01.682 --> 00:00:05.412
+what happens when someone moves,
+and where privilege goes.
+
+3
+00:00:05.412 --> 00:00:10.487
+Requests go to the manager as approver,
+with a fallback for anyone without one.
+
+4
+00:00:10.487 --> 00:00:14.100
+That makes the supervisor HR
+names the one who approves.
+
+5
+00:00:14.100 --> 00:00:17.940
+When someone changes organization,
+the mover workflow removes
+
+6
+00:00:17.940 --> 00:00:21.200
+the old department's packages
+and requests the new one.
+
+7
+00:00:21.200 --> 00:00:25.550
+Then it starts a review of everything
+the person holds outside packages.
+
+8
+00:00:25.550 --> 00:00:27.913
+That leftover access is the residual,
+
+9
+00:00:27.913 --> 00:00:32.563
+and the time from transfer to review
+is the metric for personnel transfer.
+
+10
+00:00:32.563 --> 00:00:35.575
+Privileged access stays
+out of rules altogether.
+
+11
+00:00:35.575 --> 00:00:38.865
+HR attributes decide who
+may request eligibility,
+
+12
+00:00:38.865 --> 00:00:41.763
+and the role itself is
+activated through PIM.
+
+13
+00:00:41.763 --> 00:00:44.738
+And treat a reorganization as a mass move.
+
+14
+00:00:44.738 --> 00:00:47.893
+Rehearse it, let the
+execution limit quarantine it,
+
+15
+00:00:47.893 --> 00:00:51.260
+and release it only after
+you've checked it against HR.

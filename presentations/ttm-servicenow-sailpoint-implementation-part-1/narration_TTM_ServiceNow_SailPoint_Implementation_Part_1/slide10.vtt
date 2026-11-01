@@ -1,0 +1,72 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.737
+On the federal side, separation of duties
+calls for the table of one approval
+
+2
+00:00:04.737 --> 00:00:09.200
+system per class, merged with its
+review, so the requester never approves.
+
+3
+00:00:09.200 --> 00:00:11.512
+Change control calls for the lane table.
+
+4
+00:00:11.512 --> 00:00:16.025
+Account management calls for the attribute
+map, with each attribute's writer.
+
+5
+00:00:16.025 --> 00:00:20.562
+And any autonomous class needs the
+authorizing official's signed acceptance.
+
+6
+00:00:20.562 --> 00:00:24.650
+To validate, the writer check
+flags attributes with two writers.
+
+7
+00:00:24.650 --> 00:00:29.129
+The rest is a manual review:
+one writer, one approval system,
+
+8
+00:00:29.129 --> 00:00:32.488
+one lane and one record
+type each, all merged.
+
+9
+00:00:32.488 --> 00:00:34.387
+This gate uses nothing new.
+
+10
+00:00:34.387 --> 00:00:38.629
+The Entra features it relies on
+are available in Azure Government,
+
+11
+00:00:38.629 --> 00:00:40.788
+and GCC is the commercial service.
+
+12
+00:00:40.788 --> 00:00:44.653
+If the HR pipeline isn't live
+yet, decide the writers now,
+
+13
+00:00:44.653 --> 00:00:48.775
+and run the next gates against
+the HR extract the kit reads.
+
+14
+00:00:48.775 --> 00:00:52.050
+To roll back, re-decide
+through a reviewed change.
+
+15
+00:00:52.050 --> 00:00:53.880
+The record keeps the history.

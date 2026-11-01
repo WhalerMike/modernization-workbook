@@ -1,0 +1,70 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.500
+The tempo gate also routes the everyday
+identity fixes through the loop.
+
+2
+00:00:04.500 --> 00:00:07.388
+Most of this mapping is
+the program's inference.
+
+3
+00:00:07.388 --> 00:00:13.092
+A wrong fact in HR gets corrected in HR,
+and SailPoint picks it up on its next read,
+
+4
+00:00:13.092 --> 00:00:15.988
+since it can't write HR's attributes back.
+
+5
+00:00:15.988 --> 00:00:19.681
+A late personnel action shows
+up as a lifecycle-state change,
+
+6
+00:00:19.681 --> 00:00:23.300
+and the leaver state disables
+the account and its sessions.
+
+7
+00:00:23.300 --> 00:00:26.121
+An urgent leaver that HR
+hasn't entered yet runs
+
+8
+00:00:26.121 --> 00:00:29.375
+the same leaver sequence
+through an emergency change.
+
+9
+00:00:29.375 --> 00:00:33.375
+A write made outside the pipeline is
+caught by native change detection.
+
+10
+00:00:33.375 --> 00:00:37.725
+SailPoint restores the value, and
+the writer's access gets reviewed.
+
+11
+00:00:37.725 --> 00:00:42.163
+An account that matches nobody gets
+correlated to a person or disabled.
+
+12
+00:00:42.163 --> 00:00:46.225
+A rule that grants the wrong access
+is changed through a normal change.
+
+13
+00:00:46.225 --> 00:00:50.387
+And a credential that outlives the
+person is outside both products.
+
+14
+00:00:50.387 --> 00:00:53.830
+It's handled by the card system
+and the certificate platform.

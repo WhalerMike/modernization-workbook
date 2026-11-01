@@ -1,0 +1,80 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.162
+Four integration identities
+carry this integration.
+
+2
+00:00:03.162 --> 00:00:08.332
+There's SailPoint's Entra connector,
+ServiceNow's Entra spoke, the ServiceNow user
+
+3
+00:00:08.332 --> 00:00:13.425
+the workflow posts as along with the verifier
+account, and SailPoint's A P I client.
+
+4
+00:00:13.425 --> 00:00:16.274
+Each has two owners and a federal sponsor,
+
+5
+00:00:16.274 --> 00:00:19.625
+and uses a certificate,
+never a long-lived secret.
+
+6
+00:00:19.625 --> 00:00:23.612
+The workbook's second and third chapters
+make their permissions checkable.
+
+7
+00:00:23.612 --> 00:00:27.963
+One file declares every call the
+kit makes, with its least privilege.
+
+8
+00:00:27.963 --> 00:00:30.762
+A test fails on any call
+that isn't declared.
+
+9
+00:00:30.762 --> 00:00:33.152
+Then a checker compares what each identity
+
+10
+00:00:33.152 --> 00:00:35.674
+was actually granted with
+what its task needs.
+
+11
+00:00:35.674 --> 00:00:38.662
+A verifier that also
+holds a broad role fails.
+
+12
+00:00:38.662 --> 00:00:43.551
+So does an evidence exporter reusing the
+verifier, because it could close findings.
+
+13
+00:00:43.551 --> 00:00:46.700
+A read client holding a
+manage scope fails too.
+
+14
+00:00:46.700 --> 00:00:48.550
+The roles are split by task.
+
+15
+00:00:48.550 --> 00:00:50.713
+The finding writer only creates.
+
+16
+00:00:50.713 --> 00:00:52.349
+The verifier closes.
+
+17
+00:00:52.349 --> 00:00:54.600
+The evidence reader only reads.

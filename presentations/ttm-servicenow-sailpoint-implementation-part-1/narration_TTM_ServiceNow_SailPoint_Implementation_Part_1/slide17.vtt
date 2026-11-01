@@ -1,0 +1,60 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.988
+To close Part 1, here's what each gate
+leaves behind, and what Part 2 builds on.
+
+2
+00:00:04.988 --> 00:00:09.740
+The boundary gate leaves the identity
+register, and Part 2's actuation gate
+
+3
+00:00:09.740 --> 00:00:14.799
+uses exactly those identities, re-checked
+so none holds more than its lane needs.
+
+4
+00:00:14.799 --> 00:00:19.875
+The writers gate leaves the lane table,
+which actuation builds one lane at a time.
+
+5
+00:00:19.875 --> 00:00:22.766
+The sources gate leaves
+the baseline drift report,
+
+6
+00:00:22.766 --> 00:00:25.725
+which the tempo gate measures
+against on a schedule.
+
+7
+00:00:25.725 --> 00:00:28.893
+And the front door leaves each
+finding's intended state,
+
+8
+00:00:28.893 --> 00:00:32.475
+which the re-read gate compares
+against what it actually finds.
+
+9
+00:00:32.475 --> 00:00:37.438
+Part 2 covers actuation, the re-read,
+and the tempo with its evidence.
+
+10
+00:00:37.438 --> 00:00:41.776
+To build the code, use the developer
+workbook, Building Ticket-to-Machine.
+
+11
+00:00:41.776 --> 00:00:44.117
+To learn it in order, with exercises,
+
+12
+00:00:44.117 --> 00:00:49.030
+use the learning path for Ticket-to-Machine
+on ServiceNow and SailPoint.

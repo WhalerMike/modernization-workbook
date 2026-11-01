@@ -1,0 +1,941 @@
+{
+ "1": [
+  [
+   0.05,
+   5.862,
+   "Welcome to Part 1 of the implementation series for Ticket-to-Machine on ServiceNow and SailPoint."
+  ],
+  [
+   5.912,
+   4.438,
+   "The Federal Modernization Workbook's Book 13's loop is vendor-neutral."
+  ],
+  [
+   10.35,
+   9.45,
+   "This guide builds it on two named products to show what that takes, with ServiceNow as the front door and SailPoint Identity Security Cloud for identity governance."
+  ],
+  [
+   19.8,
+   2.413,
+   "It's an example, not an endorsement."
+  ],
+  [
+   22.212,
+   2.5,
+   "The guide's argument fits in one line."
+  ],
+  [
+   24.712,
+   4.05,
+   "Two products can carry the loop, but neither one closes it alone."
+  ],
+  [
+   28.762,
+   4.75,
+   "The ticket has to authorize a machine, and only a re-read can close the ticket."
+  ],
+  [
+   33.513,
+   8.225,
+   "Part 1 covers the first four gates: the boundary, the writers and approvers, the sources and starting drift, and the front door."
+  ],
+  [
+   41.737,
+   4.025,
+   "Part 2 covers actuation, the re-read, and the tempo."
+  ],
+  [
+   45.763,
+   2.95,
+   "The kit's tests run against mocked responses."
+  ],
+  [
+   48.712,
+   2.925,
+   "They prove the logic, not the live integration."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   2.163,
+   "Here are the seven gates on one page."
+  ],
+  [
+   2.212,
+   9.637,
+   "The first is done when each product's fed-ramp status, the actions that run from a vendor's cloud, and the integration identities are all recorded and accepted."
+  ],
+  [
+   11.85,
+   8.35,
+   "The second is done when every attribute has one writer, every authority class has one approval system, and every change class has a lane."
+  ],
+  [
+   20.2,
+   2.35,
+   "That closes two of the four gaps."
+  ],
+  [
+   22.55,
+   8.7,
+   "The third is done when H R, Entra I D and Active Directory are correlated on the employee I D and the starting drift is measured."
+  ],
+  [
+   31.25,
+   8.375,
+   "The fourth is done when findings, requests and manual work all arrive in ServiceNow as typed tasks, each with an owner and a clock."
+  ],
+  [
+   39.625,
+   9.537,
+   "Part 2 covers the rest: actuating through a connector or a declared exception, closing only on a re-read, and running the tempo with its evidence."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   7.838,
+   "Book 13's loop has five steps: test, detect drift, raise a typed task, actuate, and close with evidence."
+  ],
+  [
+   7.888,
+   3.812,
+   "Here, SailPoint and the kit's reconciliation do the testing."
+  ],
+  [
+   11.7,
+   2.638,
+   "SailPoint's change events detect drift."
+  ],
+  [
+   14.338,
+   3.925,
+   "A SailPoint workflow posting to ServiceNow raises the task."
+  ],
+  [
+   18.262,
+   4.088,
+   "SailPoint's connectors, and ServiceNow's Entra spoke, actuate."
+  ],
+  [
+   22.35,
+   3.587,
+   "And a re-read closes the loop, not the ticket status."
+  ],
+  [
+   25.938,
+   4.312,
+   "Used as shipped, the products fall short of the loop in four places."
+  ],
+  [
+   30.25,
+   2.8,
+   "First, a ticket status isn't a re-read."
+  ],
+  [
+   33.05,
+   3.675,
+   "SailPoint treats a mapped ServiceNow status as complete."
+  ],
+  [
+   36.725,
+   4.463,
+   "Second, the catalog app moves access approval into ServiceNow."
+  ],
+  [
+   41.188,
+   4.862,
+   "Third, SailPoint's service desk integration can't raise change requests."
+  ],
+  [
+   46.05,
+   6.775,
+   "And fourth, there are two doors into the directory, because SailPoint and Entra inbound provisioning can both write."
+  ],
+  [
+   52.825,
+   2.575,
+   "Each gap is closed by a specific gate."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   2.975,
+   "The first gate confirms the authorization boundary."
+  ],
+  [
+   3.025,
+   5.312,
+   "Check each product on the fed-ramp Marketplace on the day you decide, and record what you read."
+  ],
+  [
+   8.338,
+   6.287,
+   "As of November 1, 2026, ServiceNow's Government Community Cloud is certified at High."
+  ],
+  [
+   14.625,
+   2.9,
+   "Its commercial cloud has no listing of its own."
+  ],
+  [
+   17.525,
+   3.8,
+   "SailPoint Identity Security Cloud is certified at Moderate."
+  ],
+  [
+   21.325,
+   3.75,
+   "SailPoint's self-hosted product has no listing of its own."
+  ],
+  [
+   25.075,
+   3.487,
+   "Next, confirm what's actually inside the authorization."
+  ],
+  [
+   28.562,
+   10.238,
+   "Ask SailPoint in writing whether workflows, native change detection and the HTTP request step are in the authorized environment, since later gates depend on all three."
+  ],
+  [
+   38.8,
+   3.062,
+   "Then record which actions run from a vendor's cloud."
+  ],
+  [
+   41.862,
+   7.088,
+   "SailPoint's connectors call Microsoft Graph from SailPoint's cloud, so each of those calls is a recorded data flow."
+  ],
+  [
+   48.95,
+   3.737,
+   "And confirm the apps are available in ServiceNow's government store."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   3.112,
+   "Four integration identities carry this integration."
+  ],
+  [
+   3.163,
+   10.262,
+   "There's SailPoint's Entra connector, ServiceNow's Entra spoke, the ServiceNow user the workflow posts as along with the verifier account, and SailPoint's A P I client."
+  ],
+  [
+   13.425,
+   6.2,
+   "Each has two owners and a federal sponsor, and uses a certificate, never a long-lived secret."
+  ],
+  [
+   19.625,
+   3.987,
+   "The workbook's second and third chapters make their permissions checkable."
+  ],
+  [
+   23.613,
+   4.35,
+   "One file declares every call the kit makes, with its least privilege."
+  ],
+  [
+   27.962,
+   2.8,
+   "A test fails on any call that isn't declared."
+  ],
+  [
+   30.762,
+   4.912,
+   "Then a checker compares what each identity was actually granted with what its task needs."
+  ],
+  [
+   35.675,
+   2.987,
+   "A verifier that also holds a broad role fails."
+  ],
+  [
+   38.663,
+   4.888,
+   "So does an evidence exporter reusing the verifier, because it could close findings."
+  ],
+  [
+   43.55,
+   3.15,
+   "A read client holding a manage scope fails too."
+  ],
+  [
+   46.7,
+   1.85,
+   "The roles are split by task."
+  ],
+  [
+   48.55,
+   2.163,
+   "The finding writer only creates."
+  ],
+  [
+   50.712,
+   1.637,
+   "The verifier closes."
+  ],
+  [
+   52.35,
+   2.188,
+   "The evidence reader only reads."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   8.0,
+   "On the federal side, external system services calls for the Marketplace listings with the date you read them, plus the vendor's written answers."
+  ],
+  [
+   8.05,
+   5.175,
+   "fed-ramp authorization calls for the package or letter for each offering you rely on."
+  ],
+  [
+   13.225,
+   6.237,
+   "Information exchange calls for a data-flow record: source, destination, identity and data."
+  ],
+  [
+   19.462,
+   5.875,
+   "Least privilege and authenticator management call for the identity register and two kit checks' output."
+  ],
+  [
+   25.337,
+   6.4,
+   "One check lists integration identities with high-privilege Graph roles, each needing a justification."
+  ],
+  [
+   31.738,
+   2.85,
+   "The other flags credentials that last too long."
+  ],
+  [
+   34.587,
+   4.263,
+   "Most of this gate is a manual record, and there's nothing to roll back."
+  ],
+  [
+   38.85,
+   5.812,
+   "The guide uses SailPoint's cloud product because it has a public listing and reaches both directories."
+  ],
+  [
+   44.663,
+   4.9,
+   "The self-hosted product fits an agency that needs High or an in-boundary system."
+  ],
+  [
+   49.562,
+   5.925,
+   "If a feature isn't confirmed in the fed-ramp environment, build it in the sandbox and hold production."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   4.6,
+   "The second gate settles two of the gaps on paper, before anything is connected."
+  ],
+  [
+   4.65,
+   2.263,
+   "First, one writer per attribute."
+  ],
+  [
+   6.912,
+   11.338,
+   "Either Entra inbound provisioning stays the door and SailPoint only reads H R and governs entitlements, or SailPoint becomes the provisioning service and takes on the middleware's duties."
+  ],
+  [
+   18.25,
+   1.387,
+   "Pick one, not both."
+  ],
+  [
+   19.637,
+   5.375,
+   "SailPoint's H R connector can write back only the user name and work email anyway."
+  ],
+  [
+   25.012,
+   3.288,
+   "Second, one approval system per authority class."
+  ],
+  [
+   28.3,
+   9.725,
+   "As the guide's example, ServiceNow approves the low-authority classes, SailPoint approves owner-governed access, and the catalog app only collects those requests."
+  ],
+  [
+   38.025,
+   4.438,
+   "Every approval that times out should reject or cancel, never approve."
+  ],
+  [
+   42.462,
+   4.275,
+   "Write these decisions to the authoritative record as a reviewed change."
+  ],
+  [
+   46.737,
+   2.962,
+   "Every later gate builds on what this one decides."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   2.513,
+   "Next, every change class gets a lane."
+  ],
+  [
+   2.562,
+   2.487,
+   "This mapping is the program's inference."
+  ],
+  [
+   5.05,
+   8.05,
+   "Autonomous machine changes are SailPoint lifecycle states and birthright access, but only for classes the authorizing official listed."
+  ],
+  [
+   13.1,
+   3.763,
+   "In ServiceNow, they're standard changes, pre-authorized."
+  ],
+  [
+   16.863,
+   8.875,
+   "Gated machine changes are approved SailPoint access requests, or catalog items the spoke carries out, as normal changes where the class needs one."
+  ],
+  [
+   25.738,
+   4.713,
+   "Human decisions are certifications, or a ServiceNow approval or change board."
+  ],
+  [
+   30.45,
+   4.475,
+   "Certificates stay with the certificate platform, outside both products."
+  ],
+  [
+   34.925,
+   7.375,
+   "Disconnected applications run as declared exceptions, with a service desk ticket, a recorded session and an end date."
+  ],
+  [
+   42.3,
+   2.763,
+   "And emergencies go straight to the change board."
+  ],
+  [
+   45.062,
+   4.35,
+   "The authorizing official has to accept any autonomous class in writing."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   5.713,
+   "The workbook's eighth chapter checks the writer decision against real configuration, offline."
+  ],
+  [
+   5.763,
+   7.412,
+   "It reads two exports: Entra's inbound provisioning schema, and the provisioning policies on SailPoint's Entra source."
+  ],
+  [
+   13.175,
+   8.55,
+   "For every attribute both of them write, it flags a finding if both update it, because each overwrites the other and the drift never settles."
+  ],
+  [
+   21.725,
+   4.9,
+   "It's a warning if one updates the attribute and the other only sets it at creation."
+  ],
+  [
+   26.625,
+   3.487,
+   "On the fictional exports, department is the finding."
+  ],
+  [
+   30.113,
+   5.975,
+   "SailPoint's field names don't always match Entra's, so the check takes a reviewed alias list."
+  ],
+  [
+   36.087,
+   5.125,
+   "Map title to job title, and a second finding appears that was invisible before."
+  ],
+  [
+   41.212,
+   5.938,
+   "Point it at a directory name that doesn't exist, and it fails rather than passing as no overlap."
+  ],
+  [
+   47.15,
+   1.65,
+   "It reads exports only."
+  ],
+  [
+   48.8,
+   2.65,
+   "Approvers and lanes are still checked by hand."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   9.15,
+   "On the federal side, separation of duties calls for the table of one approval system per class, merged with its review, so the requester never approves."
+  ],
+  [
+   9.2,
+   2.312,
+   "Change control calls for the lane table."
+  ],
+  [
+   11.512,
+   4.513,
+   "Account management calls for the attribute map, with each attribute's writer."
+  ],
+  [
+   16.025,
+   4.537,
+   "And any autonomous class needs the authorizing official's signed acceptance."
+  ],
+  [
+   20.562,
+   4.088,
+   "To validate, the writer check flags attributes with two writers."
+  ],
+  [
+   24.65,
+   7.838,
+   "The rest is a manual review: one writer, one approval system, one lane and one record type each, all merged."
+  ],
+  [
+   32.487,
+   1.9,
+   "This gate uses nothing new."
+  ],
+  [
+   34.388,
+   6.4,
+   "The Entra features it relies on are available in Azure Government, and G C C is the commercial service."
+  ],
+  [
+   40.788,
+   7.987,
+   "If the H R pipeline isn't lyve yet, decide the writers now, and run the next gates against the H R extract the kit reads."
+  ],
+  [
+   48.775,
+   3.275,
+   "To roll back, re-decide through a reviewed change."
+  ],
+  [
+   52.05,
+   1.775,
+   "The record keeps the history."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   7.412,
+   "The third gate connects the sources, then measures how far the directory has drifted from H R before anything gets fixed."
+  ],
+  [
+   7.463,
+   4.25,
+   "Pull H R into SailPoint as the authoritative source, read-only."
+  ],
+  [
+   11.713,
+   6.138,
+   "Connect Entra I D through SailPoint's connector, and Active Directory through its on-premises appliance."
+  ],
+  [
+   17.85,
+   6.188,
+   "In G C C High, point the Entra source at the U S government Graph and sign-in endpoints."
+  ],
+  [
+   24.038,
+   7.888,
+   "Correlate everything on the employee I D. Treat uncorrelated accounts as possible orphans, not errors to suppress."
+  ],
+  [
+   31.925,
+   6.312,
+   "Turn on native change detection, which fires one event for each account that changed between aggregations."
+  ],
+  [
+   38.237,
+   2.587,
+   "Then run the kit's drift reconciliation."
+  ],
+  [
+   40.825,
+   6.475,
+   "It joins H R, Graph and SailPoint on the key, and reports Book 03's drift classes."
+  ],
+  [
+   47.3,
+   2.35,
+   "File that first run as the baseline."
+  ],
+  [
+   49.65,
+   3.8,
+   "And expect a burst of high-severity findings in the first month."
+  ],
+  [
+   53.45,
+   2.112,
+   "That just means the measurement is working."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   4.7,
+   "The workbook's sixth chapter runs the reconciliation over saved exports."
+  ],
+  [
+   4.75,
+   9.025,
+   "On day one, the fictional estate shows attribute drift, missing identities, orphan accounts, stale access, and one unauthorized write."
+  ],
+  [
+   13.775,
+   4.938,
+   "Credential and schema drift are reported as not computed, never as zero."
+  ],
+  [
+   18.712,
+   6.662,
+   "On day two, H R corrects a department to the value someone had already typed into Entra I D by hand."
+  ],
+  [
+   25.375,
+   1.488,
+   "The counts don't change."
+  ],
+  [
+   26.863,
+   3.1,
+   "A comparison by finding I D shows what moved."
+  ],
+  [
+   29.962,
+   3.538,
+   "Entra now matches H R, so that finding resolves."
+  ],
+  [
+   33.5,
+   3.888,
+   "SailPoint hasn't re-read yet, so a new finding opens."
+  ],
+  [
+   37.388,
+   6.138,
+   "The unauthorized write stays open, because H R agreeing afterward doesn't make the write authorized."
+  ],
+  [
+   43.525,
+   6.888,
+   "The comparison refuses two runs that computed different classes, since otherwise a skipped class would look resolved."
+  ],
+  [
+   50.413,
+   2.625,
+   "And a resolved finding is only a lead."
+  ],
+  [
+   53.038,
+   2.35,
+   "Its record still closes on a re-read."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   7.7,
+   "On the federal side, account management calls for the baseline drift report: accounts with no worker, and workers with no account."
+  ],
+  [
+   7.75,
+   4.263,
+   "Continuous monitoring calls for that report with its date and checker version."
+  ],
+  [
+   12.012,
+   8.45,
+   "Reading the inventory requirement for identities, which is the program's inference, gives the correlation rate and the list of uncorrelated accounts."
+  ],
+  [
+   20.462,
+   6.638,
+   "To validate, the kit's tests prove the drift classes, and both clients produce the same finding I Ds."
+  ],
+  [
+   27.1,
+   5.55,
+   "On a lyve system, the findings for a synthetic H R extract should match a hand count."
+  ],
+  [
+   32.65,
+   5.162,
+   "And the validation kit's checks for missing and duplicate keys should be clean, or owned."
+  ],
+  [
+   37.812,
+   3.913,
+   "SailPoint documents government endpoints for its Entra connector."
+  ],
+  [
+   41.725,
+   4.388,
+   "Native change detection isn't yet confirmed in the fed-ramp environment."
+  ],
+  [
+   46.112,
+   4.912,
+   "Without SailPoint, run the reconciliation on H R and Graph alone."
+  ],
+  [
+   51.025,
+   2.475,
+   "To roll back, disconnect the source."
+  ],
+  [
+   53.5,
+   1.725,
+   "This gate only reads."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   2.35,
+   "The fourth gate opens one front door."
+  ],
+  [
+   2.4,
+   8.613,
+   "Every drift event, request and manual step arrives in ServiceNow as a typed task, with an owner, a clock and a severity."
+  ],
+  [
+   11.012,
+   4.438,
+   "Build a finding table, plus an endpoint that validates each payload."
+  ],
+  [
+   15.45,
+   8.125,
+   "The endpoint sets the priority and due date from the severity, removes duplicates, and stores the state a re-read will need to find."
+  ],
+  [
+   23.575,
+   4.438,
+   "Then add one SailPoint workflow per trigger, posting to that endpoint."
+  ],
+  [
+   28.012,
+   4.8,
+   "Workflows can't be created enabled, so turn each one on after a test run."
+  ],
+  [
+   32.812,
+   5.075,
+   "The catalog app takes people's requests, using the approvals decided in gate two."
+  ],
+  [
+   37.888,
+   7.15,
+   "The service desk integration is only for disconnected applications, and each of those tickets is a declared exception."
+  ],
+  [
+   45.038,
+   4.912,
+   "Route everything by authority, and feed other detection tools into the same queue."
+  ],
+  [
+   49.95,
+   5.8,
+   "Due dates follow the program's tempo: immediate, one hour, a day, or three days."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   5.4,
+   "The workbook's first and fourth chapters make the front door testable before anything is posted."
+  ],
+  [
+   5.45,
+   5.838,
+   "The contract lives in ServiceNow's script, so a Python mirror applies the same rules offline."
+  ],
+  [
+   11.287,
+   2.638,
+   "A test fails if the two ever drift apart."
+  ],
+  [
+   13.925,
+   9.125,
+   "On five sample payloads, one gets a default priority and a one-hour window, two are rejected with the script's own error text, and one gets a warning."
+  ],
+  [
+   23.05,
+   5.312,
+   "Its intended state names nothing a re-read could check, so the record would close on nothing."
+  ],
+  [
+   28.363,
+   4.688,
+   "Then the fourth chapter resolves each SailPoint workflow against a saved trigger."
+  ],
+  [
+   33.05,
+   1.637,
+   "That turned up two fixes."
+  ],
+  [
+   34.688,
+   7.0,
+   "A change to a multi-valued attribute, like an added proxy address, used to produce an empty intended state."
+  ],
+  [
+   41.688,
+   5.05,
+   "And two attributes drifting on the same user used to collapse into one record."
+  ],
+  [
+   46.737,
+   4.825,
+   "Whether SailPoint resolves the body the same way is still on the verify list."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   5.85,
+   "On the federal side, change control calls for records with an origin, an owner and a clock."
+  ],
+  [
+   5.9,
+   4.688,
+   "Risk response calls for due dates by severity, plus an overdue list."
+  ],
+  [
+   10.588,
+   2.925,
+   "Continuous monitoring calls for the finding queue."
+  ],
+  [
+   13.512,
+   4.425,
+   "Separation of duties calls for approval history on every request."
+  ],
+  [
+   17.938,
+   6.912,
+   "The fully automated version of change control is in the High baseline only, so at Moderate it's adopted as design."
+  ],
+  [
+   24.85,
+   7.6,
+   "To validate, the kit's tests cover the priority, the due date, the tempo, duplicate removal and rejected payloads."
+  ],
+  [
+   32.45,
+   6.388,
+   "On a lyve system, one change should raise exactly one finding, and a repeat should merge into it."
+  ],
+  [
+   38.837,
+   4.0,
+   "The SailPoint apps aren't yet confirmed in ServiceNow's government store."
+  ],
+  [
+   42.837,
+   4.037,
+   "Without the catalog app, a ServiceNow flow can create the request."
+  ],
+  [
+   46.875,
+   4.225,
+   "Without the workflows, push the reconciliation's findings on a schedule."
+  ],
+  [
+   51.1,
+   3.8,
+   "To roll back, disable the workflows and catalog items."
+  ],
+  [
+   54.9,
+   2.638,
+   "Findings already raised stay on record."
+  ]
+ ],
+ "17": [
+  [
+   0.05,
+   4.938,
+   "To close Part 1, here's what each gate leaves behind, and what Part 2 builds on."
+  ],
+  [
+   4.987,
+   9.812,
+   "The boundary gate leaves the identity register, and Part 2's actuation gate uses exactly those identities, re-checked so none holds more than its lane needs."
+  ],
+  [
+   14.8,
+   5.075,
+   "The writers gate leaves the lane table, which actuation builds one lane at a time."
+  ],
+  [
+   19.875,
+   5.85,
+   "The sources gate leaves the baseline drift report, which the tempo gate measures against on a schedule."
+  ],
+  [
+   25.725,
+   6.75,
+   "And the front door leaves each finding's intended state, which the re-read gate compares against what it actually finds."
+  ],
+  [
+   32.475,
+   4.963,
+   "Part 2 covers actuation, the re-read, and the tempo with its evidence."
+  ],
+  [
+   37.438,
+   4.338,
+   "To build the code, use the developer workbook, Building Ticket-to-Machine."
+  ],
+  [
+   41.775,
+   7.188,
+   "To learn it in order, with exercises, use the learning path for Ticket-to-Machine on ServiceNow and SailPoint."
+  ]
+ ]
+}

@@ -1,0 +1,74 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.548
+The workbook's seventh chapter
+makes this gate one run,
+
+2
+00:00:03.548 --> 00:00:05.725
+plus a chain of evidence packages.
+
+3
+00:00:05.725 --> 00:00:11.225
+The run reads the earlier labs' outputs,
+checking each one against its own manifest.
+
+4
+00:00:11.225 --> 00:00:14.841
+It insists on knowing whether
+it's a fixture or a tenant run,
+
+5
+00:00:14.841 --> 00:00:16.875
+so a lab can't pass for production.
+
+6
+00:00:16.875 --> 00:00:21.787
+The evidence tool packages each run with
+checksums, chained to the one before.
+
+7
+00:00:21.787 --> 00:00:24.726
+Then the period report
+verifies the whole chain.
+
+8
+00:00:24.726 --> 00:00:27.844
+Here the chain is unbroken
+and nothing is missing,
+
+9
+00:00:27.844 --> 00:00:31.800
+but twenty findings are still
+open, so the period isn't complete.
+
+10
+00:00:31.800 --> 00:00:36.400
+On the federal side, continuous monitoring
+calls for the six metrics per period.
+
+11
+00:00:36.400 --> 00:00:39.555
+Audit review and retention
+call for the log export,
+
+12
+00:00:39.555 --> 00:00:44.062
+findings closed at the source, and
+retention set to the records schedule.
+
+13
+00:00:44.062 --> 00:00:48.000
+CISA's continuous reporting
+calls for ScubaGear results.
+
+14
+00:00:48.000 --> 00:00:51.775
+The kit checks run on the drift
+cadence, and the CISO owns it.
+
+15
+00:00:51.775 --> 00:00:55.510
+There's no rollback here, because
+this is the loop that keeps running.

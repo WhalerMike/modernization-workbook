@@ -1,0 +1,65 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.400
+The fourth gate opens one front door.
+
+2
+00:00:02.400 --> 00:00:07.296
+Every drift event, request and
+manual step arrives in ServiceNow
+
+3
+00:00:07.296 --> 00:00:11.013
+as a typed task, with an
+owner, a clock and a severity.
+
+4
+00:00:11.013 --> 00:00:15.450
+Build a finding table, plus an
+endpoint that validates each payload.
+
+5
+00:00:15.450 --> 00:00:19.359
+The endpoint sets the priority
+and due date from the severity,
+
+6
+00:00:19.359 --> 00:00:23.575
+removes duplicates, and stores the
+state a re-read will need to find.
+
+7
+00:00:23.575 --> 00:00:28.013
+Then add one SailPoint workflow per
+trigger, posting to that endpoint.
+
+8
+00:00:28.013 --> 00:00:32.812
+Workflows can't be created enabled,
+so turn each one on after a test run.
+
+9
+00:00:32.812 --> 00:00:37.887
+The catalog app takes people's requests,
+using the approvals decided in gate two.
+
+10
+00:00:37.887 --> 00:00:42.077
+The service desk integration is
+only for disconnected applications,
+
+11
+00:00:42.077 --> 00:00:45.038
+and each of those tickets
+is a declared exception.
+
+12
+00:00:45.038 --> 00:00:49.950
+Route everything by authority, and feed
+other detection tools into the same queue.
+
+13
+00:00:49.950 --> 00:00:55.800
+Due dates follow the program's tempo:
+immediate, one hour, a day, or three days.

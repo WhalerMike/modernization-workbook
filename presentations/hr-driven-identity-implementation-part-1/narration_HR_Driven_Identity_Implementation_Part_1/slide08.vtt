@@ -1,0 +1,75 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.738
+The second gate brings each
+population in from its own source.
+
+2
+00:00:03.738 --> 00:00:06.812
+For employees, the
+pipeline already exists.
+
+3
+00:00:06.812 --> 00:00:11.341
+This gate checks one thing: that the feed
+reads hires and separations by their
+
+4
+00:00:11.341 --> 00:00:15.800
+published date, so the pre-hire and
+pre-separation workflows have time to run.
+
+5
+00:00:15.800 --> 00:00:20.337
+Contractors are different, because
+they aren't in Federal HR 2.0.
+
+6
+00:00:20.337 --> 00:00:25.230
+The program's decision is an agency-owned
+contractor system of record for now,
+
+7
+00:00:25.230 --> 00:00:28.212
+with Oracle's contingent
+worker as a later swap.
+
+8
+00:00:28.212 --> 00:00:30.075
+Measure before you change anything.
+
+9
+00:00:30.075 --> 00:00:33.991
+Reconcile the contractor
+register, the card system and the
+
+10
+00:00:33.991 --> 00:00:37.987
+accounts in both directories,
+read-only, using the person key.
+
+11
+00:00:37.987 --> 00:00:43.155
+Then settle six questions with the
+register's owner: who owns it, what's in it,
+
+12
+00:00:43.155 --> 00:00:47.475
+how fresh it is, its privacy basis,
+the join key, and its coverage.
+
+13
+00:00:47.475 --> 00:00:51.694
+Contractors map into the same record,
+with their own worker type code,
+
+14
+00:00:51.694 --> 00:00:55.025
+the sponsor as manager, and
+their own provisioning app.
+
+15
+00:00:55.025 --> 00:00:58.300
+The contractor PIV path
+is still pending proof.

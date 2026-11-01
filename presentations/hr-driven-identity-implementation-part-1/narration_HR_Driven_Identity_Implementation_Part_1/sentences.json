@@ -1,0 +1,859 @@
+{
+ "1": [
+  [
+   0.05,
+   4.713,
+   "Welcome to Part 1 of the implementation series for H R-driven identity."
+  ],
+  [
+   4.763,
+   2.638,
+   "The H R pipeline makes an account exist."
+  ],
+  [
+   7.4,
+   5.987,
+   "This guide makes the H R record decide everything that happens to that account afterward, and proves it did."
+  ],
+  [
+   13.387,
+   1.725,
+   "It does that in seven gates."
+  ],
+  [
+   15.113,
+   15.488,
+   "For each gate, we'll cover what done means, the steps, the commands from the developer workbook's first lab, the federal requirement and the evidence an I S S O keeps, what's available in G C C and G C C High, and how to roll it back."
+  ],
+  [
+   30.6,
+   9.2,
+   "Part 1 takes the first three gates: one writer for every account state, employees and contractors from their sources, and joiners ready on day one."
+  ],
+  [
+   39.8,
+   1.875,
+   "Part 2 takes the other four."
+  ],
+  [
+   41.675,
+   7.263,
+   "Design guidance is labeled, and the workbook's code is illustrative, tested against fixtures rather than a lyve tenant."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   2.237,
+   "Here are all seven gates on one page."
+  ],
+  [
+   2.288,
+   7.875,
+   "The first is done when every account state and H R attribute has exactly one recorded writer, and the other write paths are gone."
+  ],
+  [
+   10.162,
+   6.662,
+   "The second is done when employees come from H R, and contractors come from a named source with an enforced end date."
+  ],
+  [
+   16.825,
+   6.6,
+   "The third is done when the pre-hire and day-one workflows run with limits, and day-one readiness is measured."
+  ],
+  [
+   23.425,
+   16.712,
+   "Part 2 picks up from there: access assigned from attributes, with a review of what a move leaves behind; piv and CAC credentials tied to H R events; separations that block access first and dispose of the account last; and drift found and closed at the source."
+  ],
+  [
+   40.138,
+   6.3,
+   "Each gate names the validation kit checks that prove part of it, and says plainly where no check exists yet."
+  ],
+  [
+   46.438,
+   5.3,
+   "Every threshold is a proposed starting point the agency approves or replaces."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   2.525,
+   "The gates assume some things are already in place."
+  ],
+  [
+   2.575,
+   6.112,
+   "The H R pipeline is lyve, with shadow differences explained and no unmatched creations."
+  ],
+  [
+   8.688,
+   6.463,
+   "The attribute foundation is done: the slot register is signed, and the attributes are proven on the pilot."
+  ],
+  [
+   15.15,
+   9.738,
+   "The Federal Modernization Workbook's Book 03's first-phase decisions are made: the person key, the authority map, the worker types and the privacy basis."
+  ],
+  [
+   24.887,
+   1.4,
+   "Licensing matters."
+  ],
+  [
+   26.288,
+   10.162,
+   "Inbound provisioning needs Entra I D P1, but workflows, entitlement management, access reviews and automatic assignment need Entra I D Governance."
+  ],
+  [
+   36.45,
+   4.737,
+   "Roles go through pim, with the workflows administrator role behind approval."
+  ],
+  [
+   41.188,
+   7.075,
+   "And logs leave Entra I D before the first gate, because its own retention is short and can't be recovered later."
+  ],
+  [
+   48.263,
+   7.463,
+   "As for where things run: the H R platform runs on Oracle Cloud Infrastructure, and the lifecycle's automation runs in Azure."
+  ],
+  [
+   55.725,
+   6.525,
+   "Apps on AWS or Oracle Cloud only see these changes through the access Entra I D grants them."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   1.988,
+   "The first gate starts from one idea."
+  ],
+  [
+   2.038,
+   5.537,
+   "Whoever can write an attribute effectively decides any access that a rule grants from it."
+  ],
+  [
+   7.575,
+   6.237,
+   "Account state works the same way, and two systems can set it: the pipeline, and Lifecycle Workflows."
+  ],
+  [
+   13.812,
+   5.588,
+   "So the register gets a row for every transition, each with one writer and one backstop."
+  ],
+  [
+   19.4,
+   3.8,
+   "Inbound provisioning creates the account, and nothing else does."
+  ],
+  [
+   23.2,
+   8.213,
+   "At hire, pick one writer to enable the account, either the pipeline or the day-one workflow, and record the other as the backstop."
+  ],
+  [
+   31.413,
+   5.625,
+   "At separation, the pipeline disables the account before the leaver workflow first runs."
+  ],
+  [
+   37.038,
+   3.538,
+   "Only the pipeline can re-enable a cancelled separation."
+  ],
+  [
+   40.575,
+   5.0,
+   "Deletion belongs to a separate post-separation workflow, never to a bulk upload."
+  ],
+  [
+   45.575,
+   4.925,
+   "The hire and leave dates, and the manager, are written only by provisioning."
+  ],
+  [
+   50.5,
+   3.638,
+   "H R, not IT, records a new supervisor."
+  ],
+  [
+   54.138,
+   3.025,
+   "And the certificate binding belongs to the card system."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   2.225,
+   "Three more steps finish the first gate."
+  ],
+  [
+   2.275,
+   8.0,
+   "First, write down which records provision at all, including leave, secondments and pre-hire lookahead, and version that filter."
+  ],
+  [
+   10.275,
+   2.5,
+   "Remember, someone on leave hasn't left."
+  ],
+  [
+   12.775,
+   10.875,
+   "Second, remove every other way to write these values: the help desk, self-service, Exchange administrators, and the permissions on Active Directory's organizational units."
+  ],
+  [
+   23.65,
+   1.863,
+   "One path is easy to miss."
+  ],
+  [
+   25.512,
+   6.638,
+   "Whoever can write the certificate mapping attribute in A D decides which card can sign in as which synced user."
+  ],
+  [
+   32.15,
+   6.912,
+   "Third, save an audit query for each protected value, one that finds writes by anyone but the named writer."
+  ],
+  [
+   39.062,
+   2.212,
+   "Gate seven will run those queries."
+  ],
+  [
+   41.275,
+   2.725,
+   "The interim path matters for most agencies."
+  ],
+  [
+   44.0,
+   9.613,
+   "Until A D retires, sync is a writer too, so record the sync agent's managed service account as a writer, and review those permissions every quarter."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   7.013,
+   "The workbook's first chapter turns the register into code, and its lab runs on fictional audit records with no tenant."
+  ],
+  [
+   7.062,
+   10.412,
+   "The check reads the register itself: one writer per row, every required transition present, no deletes by provisioning, and the register signed with its scope versioned."
+  ],
+  [
+   17.475,
+   2.6,
+   "The program's own register comes back clean."
+  ],
+  [
+   20.075,
+   3.638,
+   "Then the scan compares a month of audit records with the register."
+  ],
+  [
+   23.712,
+   2.175,
+   "It finds eleven protected writes."
+  ],
+  [
+   25.887,
+   6.938,
+   "Five came from the right writer, one from the backstop, four from a second writer, and one from a writer the register forbids."
+  ],
+  [
+   32.825,
+   7.125,
+   "So a help desk account disabled a leaver, a fix-up script wrote a coded slot, and provisioning deleted an account."
+  ],
+  [
+   39.95,
+   1.25,
+   "Two limits apply."
+  ],
+  [
+   41.2,
+   2.5,
+   "The scan doesn't read Active Directory."
+  ],
+  [
+   43.7,
+   7.4,
+   "And the audit property names it matches aren't documented by Microsoft, so confirm them in a test tenant before you trust the scan."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   2.237,
+   "Here's the federal side of the first gate."
+  ],
+  [
+   2.288,
+   4.75,
+   "Account management and identifier management are both in the Moderate baseline."
+  ],
+  [
+   7.037,
+   7.025,
+   "For those, the I S S O keeps the signed register, with its lifecycle rows and its versioned scope filter."
+  ],
+  [
+   14.062,
+   7.912,
+   "Audit review covers writes made outside the named writer, and the evidence is the saved queries plus the A D auditing settings."
+  ],
+  [
+   21.975,
+   3.638,
+   "The feed also needs a privacy determination for each flow."
+  ],
+  [
+   25.613,
+   5.912,
+   "To validate, two kit checks confirm there are no duplicate keys and that the key fields are filled in."
+  ],
+  [
+   31.525,
+   2.438,
+   "But they measure values, not writers."
+  ],
+  [
+   33.962,
+   2.337,
+   "Nothing in the kit reads who can write yet."
+  ],
+  [
+   36.3,
+   8.488,
+   "So the evidence for writers is the delegation export, the permission review, and a clean run of the saved queries over the pilot's last thirty days."
+  ],
+  [
+   44.788,
+   4.213,
+   "Everything this gate uses is available in both government clouds."
+  ],
+  [
+   49.0,
+   2.788,
+   "To roll back, make a signed register change."
+  ],
+  [
+   51.788,
+   4.825,
+   "A removed permission comes back only through a recorded change, with an end date."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   3.688,
+   "The second gate brings each population in from its own source."
+  ],
+  [
+   3.737,
+   3.075,
+   "For employees, the pipeline already exists."
+  ],
+  [
+   6.812,
+   8.988,
+   "This gate checks one thing: that the feed reads hires and separations by their published date, so the pre-hire and pre-separation workflows have time to run."
+  ],
+  [
+   15.8,
+   4.537,
+   "Contractors are different, because they aren't in Federal H R 2.0."
+  ],
+  [
+   20.337,
+   7.875,
+   "The program's decision is an agency-owned contractor system of record for now, with Oracle's contingent worker as a later swap."
+  ],
+  [
+   28.212,
+   1.863,
+   "Measure before you change anything."
+  ],
+  [
+   30.075,
+   7.912,
+   "Reconcile the contractor register, the card system and the accounts in both directories, read-only, using the person key."
+  ],
+  [
+   37.987,
+   9.488,
+   "Then settle six questions with the register's owner: who owns it, what's in it, how fresh it is, its privacy basis, the join key, and its coverage."
+  ],
+  [
+   47.475,
+   7.55,
+   "Contractors map into the same record, with their own worker type code, the sponsor as manager, and their own provisioning app."
+  ],
+  [
+   55.025,
+   3.212,
+   "The contractor piv path is still pending proof."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   3.05,
+   "For contractors, ship the leaver before the joiner."
+  ],
+  [
+   3.1,
+   4.45,
+   "An end date in a spreadsheet that nobody updates keeps access alive."
+  ],
+  [
+   7.55,
+   2.6,
+   "So the middleware works out the earliest end."
+  ],
+  [
+   10.15,
+   10.825,
+   "That's the contract end, capped by the completion date; suitability withdrawn; the card terminated; the sponsor gone past a grace period; or a missed sponsor recertification."
+  ],
+  [
+   20.975,
+   5.388,
+   "Whichever comes first, the middleware sends the leave date and disables the account itself."
+  ],
+  [
+   26.363,
+   2.25,
+   "The table comes from the workbook's lab."
+  ],
+  [
+   28.613,
+   3.95,
+   "Four fictional contractors go inactive, each for a different reason."
+  ],
+  [
+   32.562,
+   7.1,
+   "One of them had a card expiring in late October, but a recertification that came due earlier, so the earlier date wins."
+  ],
+  [
+   39.663,
+   6.062,
+   "Two records are quarantined, one with no contract end and one with a sponsor H R doesn't know."
+  ],
+  [
+   45.725,
+   3.725,
+   "Sponsors recertify through a twice-yearly access review."
+  ],
+  [
+   49.45,
+   5.013,
+   "Here's the design choice: if the sponsor doesn't respond, access is removed."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   6.35,
+   "The workbook's second chapter builds this in code, reusing the H R middleware that already exists."
+  ],
+  [
+   6.4,
+   7.838,
+   "The extract step takes nine fictional records and finds three active, four past their earliest end, and two quarantined."
+  ],
+  [
+   14.238,
+   5.037,
+   "Every record carries its end date, so the leaver workflow fires on the right day."
+  ],
+  [
+   19.275,
+   5.812,
+   "The middleware turns that extract into one batch of seven requests, including four disables."
+  ],
+  [
+   25.087,
+   3.425,
+   "Nothing is sent, because a dry run is its default."
+  ],
+  [
+   28.512,
+   3.675,
+   "Then the read-only reconciliation finds seven issues."
+  ],
+  [
+   32.188,
+   6.425,
+   "Four are accounts still enabled past their earliest end, and they're exactly the four disables waiting to go."
+  ],
+  [
+   38.612,
+   6.975,
+   "The others are an orphan account, a card for someone the source doesn't know, and a leave date that would fire on the wrong day."
+  ],
+  [
+   45.587,
+   3.837,
+   "Finally, the review step writes the sponsor review settings."
+  ],
+  [
+   49.425,
+   3.788,
+   "Once the disables go out, the next reconciliation is clean."
+  ],
+  [
+   53.212,
+   2.737,
+   "That clean re-run is the evidence for the gate."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   11.688,
+   "On the federal side, account management and external personnel security call for the source decision, the reconciliation report, and how long each contractor's access took to block after their end date."
+  ],
+  [
+   11.738,
+   5.625,
+   "Identifying each person by status means the worker type code appears on every account."
+  ],
+  [
+   17.363,
+   12.025,
+   "O M B's zero trust memo says enterprise identity draws on H R, contract management and personnel security, so the governance body signs a table that names one authority for each fact."
+  ],
+  [
+   29.387,
+   6.638,
+   "To validate, one kit check lists enabled accounts with no key, which is where contractors without one show up."
+  ],
+  [
+   36.025,
+   7.35,
+   "No check reads end dates, so the evidence is the reconciliation re-run, with no contractor past their end."
+  ],
+  [
+   43.375,
+   5.925,
+   "In Azure Government, A P I-driven inbound provisioning and access reviews are available."
+  ],
+  [
+   49.3,
+   6.888,
+   "Until the contractor source is automated, keep the contract end date as the leave date so the leaver still fires."
+  ],
+  [
+   56.188,
+   2.625,
+   "To roll back, pause the contractor app."
+  ],
+  [
+   58.812,
+   1.275,
+   "It keeps its state."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   2.712,
+   "The third gate makes joiners ready on day one."
+  ],
+  [
+   2.763,
+   4.575,
+   "The account already exists, disabled, because the pipeline sent it early."
+  ],
+  [
+   7.338,
+   8.512,
+   "Build just a few workflows: pre-hire, day-one, mover, leaver, post-leaver, and the rehire and conversion workflows."
+  ],
+  [
+   15.85,
+   3.962,
+   "Scope them by coded attributes, never one per organization."
+  ],
+  [
+   19.812,
+   7.35,
+   "Microsoft gives two different ceilings for workflows, fifty on one page and a hundred on another, so budget to fifty."
+  ],
+  [
+   27.163,
+   2.763,
+   "A workflow can hold up to twenty-five tasks."
+  ],
+  [
+   29.925,
+   5.975,
+   "The tenant schedule runs every three hours by default and can be set anywhere from one to twenty-four."
+  ],
+  [
+   35.9,
+   4.287,
+   "Every workflow shares it, so set it once, with the leaver in mind."
+  ],
+  [
+   40.188,
+   2.3,
+   "Set the hire time early in the day."
+  ],
+  [
+   42.487,
+   7.125,
+   "Give every scheduled workflow an execution limit a little above a normal week, so an anomaly gets quarantined."
+  ],
+  [
+   49.612,
+   4.388,
+   "In the workbook's files, the day-one workflow doesn't enable the account."
+  ],
+  [
+   54.0,
+   1.337,
+   "The pipeline does."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   3.35,
+   "A new hire needs a way to sign in before their card arrives."
+  ],
+  [
+   3.4,
+   6.562,
+   "The pre-hire workflow has a built-in task that creates a Temporary Access Pass and emails it to the manager."
+  ],
+  [
+   9.963,
+   1.637,
+   "It starts on the hire date."
+  ],
+  [
+   11.6,
+   3.337,
+   "It needs the manager and the manager's email filled in."
+  ],
+  [
+   14.938,
+   6.625,
+   "And it only works for someone with no other sign-in methods, no earlier sign-ins and no Entra role assignments."
+  ],
+  [
+   21.562,
+   4.825,
+   "So a rehire who kept their old methods won't qualify, and needs a separate path."
+  ],
+  [
+   26.387,
+   7.375,
+   "Microsoft recommends a pass sent to a new hire last no more than twenty-four hours, and the tenant can force one-time use."
+  ],
+  [
+   33.763,
+   6.725,
+   "Day-one access comes from an onboarding package, with department access assigned automatically in gate four."
+  ],
+  [
+   40.487,
+   3.125,
+   "Never add a new hire straight to an application group."
+  ],
+  [
+   43.612,
+   3.85,
+   "Then measure the share of hires who are fully ready at the start of day one."
+  ],
+  [
+   47.462,
+   1.85,
+   "The pass is only a bridge."
+  ],
+  [
+   49.312,
+   4.537,
+   "Once the card is bound, an account still running on a pass is a finding."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   4.013,
+   "The workbook's third chapter keeps the workflows as reviewed files."
+  ],
+  [
+   4.062,
+   2.712,
+   "Its lint passes the program's six files."
+  ],
+  [
+   6.775,
+   15.95,
+   "Against three broken copies, it catches an offset outside Microsoft's range, too many workflows for the budget, a missing execution limit, a joiner that adds groups directly, delete and disable in the same workflow, and a pass that lasts three days."
+  ],
+  [
+   22.725,
+   3.85,
+   "The plan step refuses to run if any file has a finding."
+  ],
+  [
+   26.575,
+   3.075,
+   "Then it compares each file with the tenant's export."
+  ],
+  [
+   29.65,
+   7.875,
+   "A missing workflow becomes a create, and a changed one becomes a new version, because workflows are versioned, not edited in place."
+  ],
+  [
+   37.525,
+   2.775,
+   "It reads with one permission and sends nothing."
+  ],
+  [
+   40.3,
+   4.537,
+   "Execution limits aren't in the A P I, so record them in the file."
+  ],
+  [
+   44.837,
+   7.75,
+   "Last, readiness checks each hire for an enabled, licensed account, the onboarding package, and a completed pre-hire run."
+  ],
+  [
+   52.587,
+   2.4,
+   "One of four fictional hires is ready."
+  ],
+  [
+   54.987,
+   2.35,
+   "Run it on an export from the start of the day."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   9.775,
+   "On the federal side, automated account management calls for the workflow definitions, their versions, and run history exported before Entra's thirty-day view drops it."
+  ],
+  [
+   9.825,
+   6.338,
+   "Authenticator management requires that the first authenticator is time-limited and goes to an accountable person."
+  ],
+  [
+   16.163,
+   4.388,
+   "So the I S S O keeps the pass policy and the task's settings."
+  ],
+  [
+   20.55,
+   5.675,
+   "To validate, one kit check flags hires whose start date has passed with no processing record."
+  ],
+  [
+   26.225,
+   5.112,
+   "Another confirms execution limits are set, and counts workflows against the ceiling."
+  ],
+  [
+   31.337,
+   4.15,
+   "Add the run history for the last group of hires, and the readiness rate."
+  ],
+  [
+   35.487,
+   5.088,
+   "Lifecycle Workflows and entitlement management are available in Azure Government."
+  ],
+  [
+   40.575,
+   8.113,
+   "But Microsoft's government table has no row for the Temporary Access Pass, so its availability in G C C High isn't confirmed."
+  ],
+  [
+   48.688,
+   7.025,
+   "Before Governance is licensed, the pipeline enables the account on the hire date and the help desk issues the pass."
+  ],
+  [
+   55.712,
+   2.925,
+   "To roll back, disable the workflow's schedule."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   4.9,
+   "To close Part 1, here's what each gate leaves behind, and where Part 2 picks it up."
+  ],
+  [
+   4.95,
+   4.787,
+   "The first gate leaves the register, the scope filter and the saved audit queries."
+  ],
+  [
+   9.738,
+   6.487,
+   "The separation gate relies on its rule that the pipeline disables first, and the drift gate runs its queries."
+  ],
+  [
+   16.225,
+   5.763,
+   "The second gate leaves the source decisions, the authority table and the reconciliation reports."
+  ],
+  [
+   21.988,
+   8.012,
+   "The credentials gate reads contractor card events, and the separation gate measures how fast contractors are blocked after their end date."
+  ],
+  [
+   30.0,
+   3.275,
+   "The third gate leaves the workflows and their run history."
+  ],
+  [
+   33.275,
+   5.388,
+   "The mover workflow, the end of the pass bridge, and the leaver sequence all build on it."
+  ],
+  [
+   38.663,
+   6.062,
+   "Part 2 covers access and movers, credentials, separation, and drift and evidence."
+  ],
+  [
+   44.725,
+   8.838,
+   "To build Part 1's code, use the developer workbook, Building H R-Driven Identity, chapters one to three, each with its labs."
+  ],
+  [
+   53.562,
+   9.512,
+   "And to learn it in order, use the learning path for H R-driven identity: seven modules, one per gate, each with a fixture lab and a knowledge check."
+  ]
+ ]
+}

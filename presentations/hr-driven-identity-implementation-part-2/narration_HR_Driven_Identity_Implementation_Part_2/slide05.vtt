@@ -1,0 +1,74 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.925
+The workbook's fourth chapter keeps
+the policies as reviewed files.
+
+2
+00:00:03.925 --> 00:00:08.861
+Run against five broken ones, its lint
+catches a rule built on group membership,
+
+3
+00:00:08.861 --> 00:00:13.038
+and two policies on one package
+that the same employees both match.
+
+4
+00:00:13.038 --> 00:00:16.491
+It also catches a policy
+that adds but never removes,
+
+5
+00:00:16.491 --> 00:00:21.150
+an approval with no fallback, and
+privileged access assigned by a rule.
+
+6
+00:00:21.150 --> 00:00:24.311
+A separate scan reads the
+tenant's existing policies
+
+7
+00:00:24.311 --> 00:00:27.113
+and finds the one still
+using group membership.
+
+8
+00:00:27.113 --> 00:00:28.375
+Then the residual.
+
+9
+00:00:28.375 --> 00:00:31.563
+A fictional employee moved
+departments in October.
+
+10
+00:00:31.563 --> 00:00:36.299
+For each package they hold, the code checks
+the rule against their new attributes.
+
+11
+00:00:36.299 --> 00:00:40.513
+The old baseline goes after the
+grace period, and the new one stays.
+
+12
+00:00:40.513 --> 00:00:42.942
+Three items go to the manager of record:
+
+13
+00:00:42.942 --> 00:00:46.738
+one requested package, and two
+groups held outside packages.
+
+14
+00:00:46.738 --> 00:00:49.884
+One finding stands out:
+the review is still open
+
+15
+00:00:49.884 --> 00:00:53.330
+thirteen days after the
+move, past the program's ten.

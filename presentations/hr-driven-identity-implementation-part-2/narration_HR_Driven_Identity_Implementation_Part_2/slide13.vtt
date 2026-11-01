@@ -1,0 +1,78 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.795
+On the federal side, personnel termination
+and account disabling call for both
+
+2
+00:00:04.795 --> 00:00:08.318
+measured times for each leaver,
+along with the workflow run,
+
+3
+00:00:08.318 --> 00:00:12.775
+the device actions, and the card revocation
+with the list that published it.
+
+4
+00:00:12.775 --> 00:00:15.950
+Contractors add the time
+from end date to block.
+
+5
+00:00:15.950 --> 00:00:19.929
+FIPS 201 says a card that can't
+be collected must be revoked
+
+6
+00:00:19.929 --> 00:00:23.825
+within eighteen hours of
+notice, so keep both timestamps.
+
+7
+00:00:23.825 --> 00:00:26.812
+Emergency disables are logged as changes.
+
+8
+00:00:26.812 --> 00:00:30.533
+To validate, run a full pay
+period with no missed leavers,
+
+9
+00:00:30.533 --> 00:00:34.012
+blocks within the limit,
+and every exception closed.
+
+10
+00:00:34.012 --> 00:00:35.876
+Security owns this gate.
+
+11
+00:00:35.876 --> 00:00:40.013
+Lifecycle Workflows and PIM are
+available in Azure Government.
+
+12
+00:00:40.013 --> 00:00:42.760
+The guide infers that a GCC tenant's Logic
+
+13
+00:00:42.760 --> 00:00:45.750
+App sits in a commercial
+Azure subscription.
+
+14
+00:00:45.750 --> 00:00:51.162
+Until the extensions exist, use a leaver
+checklist with a named owner for each row.
+
+15
+00:00:51.162 --> 00:00:55.613
+To roll back a cancelled separation,
+re-enable from the corrected record.
+
+16
+00:00:55.613 --> 00:00:59.020
+A deleted cloud user can be
+restored for thirty days.

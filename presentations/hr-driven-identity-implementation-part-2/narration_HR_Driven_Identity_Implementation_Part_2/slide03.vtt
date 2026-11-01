@@ -1,0 +1,78 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.938
+Dynamic groups carry access that
+a rule can decide on its own.
+
+2
+00:00:03.938 --> 00:00:08.576
+Access packages carry what a rule
+can't, with approvals and reviews.
+
+3
+00:00:08.576 --> 00:00:11.600
+Department packages are
+assigned automatically.
+
+4
+00:00:11.600 --> 00:00:16.138
+A policy gives the package to everyone
+who matches a rule on user attributes,
+
+5
+00:00:16.138 --> 00:00:18.587
+and takes it away when they stop matching.
+
+6
+00:00:18.587 --> 00:00:21.912
+Each policy covers up to
+fifteen thousand users.
+
+7
+00:00:21.912 --> 00:00:25.426
+Write the rules on the
+coded attributes HR owns.
+
+8
+00:00:25.426 --> 00:00:28.000
+Keep one automatic policy per package.
+
+9
+00:00:28.000 --> 00:00:33.050
+If a user matches two policies, or moves
+between them, they can lose access.
+
+10
+00:00:33.050 --> 00:00:37.250
+Each policy also creates a hidden
+dynamic group, so leave it alone.
+
+11
+00:00:37.250 --> 00:00:38.525
+One date matters.
+
+12
+00:00:38.525 --> 00:00:42.620
+From November 3, 2026, any
+policy whose rule uses group
+
+13
+00:00:42.620 --> 00:00:47.738
+membership is quarantined, and it
+stops adding or removing anyone.
+
+14
+00:00:47.738 --> 00:00:52.062
+Microsoft publishes a read-only script
+that finds them, so run it now.
+
+15
+00:00:52.062 --> 00:00:56.599
+Finally, a policy can keep access for
+a grace period after someone moves.
+
+16
+00:00:56.599 --> 00:01:01.150
+Use that for standard access, and give
+privileged access no grace period.

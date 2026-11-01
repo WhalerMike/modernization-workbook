@@ -1,0 +1,69 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.909
+Welcome to Part 2 of the
+implementation series
+
+2
+00:00:02.909 --> 00:00:05.988
+for Ticket-to-Machine on
+ServiceNow and SailPoint.
+
+3
+00:00:05.988 --> 00:00:10.001
+Part 1 confirmed the boundary,
+decided the writers and approvers,
+
+4
+00:00:10.001 --> 00:00:12.974
+connected the sources,
+and opened the front door.
+
+5
+00:00:12.974 --> 00:00:16.100
+Part 2 covers the three
+gates that finish the loop.
+
+6
+00:00:16.100 --> 00:00:20.988
+First, actuation, where the ticket
+authorizes a machine to do the work.
+
+7
+00:00:20.988 --> 00:00:24.288
+Then the re-read, because a
+ticket status isn't proof.
+
+8
+00:00:24.288 --> 00:00:27.093
+And then the tempo, with its measures,
+
+9
+00:00:27.093 --> 00:00:30.926
+its identity fixes, and
+the evidence an ISSO files.
+
+10
+00:00:30.926 --> 00:00:34.290
+After that, we'll look at the
+dangers across all seven gates,
+
+11
+00:00:34.290 --> 00:00:37.725
+and what it would take to move
+the guide from draft to proved.
+
+12
+00:00:37.725 --> 00:00:40.425
+It's still an example, not an endorsement.
+
+13
+00:00:40.425 --> 00:00:43.754
+And because the kit's first
+pass doesn't actuate anything,
+
+14
+00:00:43.754 --> 00:00:47.710
+the first gate here is about
+configuring the products themselves.

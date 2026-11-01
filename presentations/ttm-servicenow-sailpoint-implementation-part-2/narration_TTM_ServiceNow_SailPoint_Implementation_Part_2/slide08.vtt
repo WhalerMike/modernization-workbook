@@ -1,0 +1,69 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.997
+On the federal side, change
+control calls for the
+
+2
+00:00:02.997 --> 00:00:06.238
+evidence attachment and hash
+on every closed record.
+
+3
+00:00:06.238 --> 00:00:10.074
+Control verification calls for
+the re-read result and its time.
+
+4
+00:00:10.074 --> 00:00:15.338
+Continuous monitoring calls for counts of
+closed and reopened records each period.
+
+5
+00:00:15.338 --> 00:00:19.413
+Audit record generation calls for
+the verifier account's audit trail.
+
+6
+00:00:19.413 --> 00:00:23.694
+To validate, the kit's tests prove
+that a dry run writes nothing,
+
+7
+00:00:23.694 --> 00:00:28.563
+that a match closes, that a mismatch
+reopens, and that a stale read waits.
+
+8
+00:00:28.563 --> 00:00:33.006
+On a live system, a person's close
+should land in awaiting verification,
+
+9
+00:00:33.006 --> 00:00:36.837
+and only the client should close
+it, once the account matches.
+
+10
+00:00:36.837 --> 00:00:42.412
+The re-read uses SailPoint's account and
+search A P I's and Graph's users endpoint.
+
+11
+00:00:42.412 --> 00:00:45.551
+GCC High uses its own Graph host.
+
+12
+00:00:45.551 --> 00:00:50.250
+Until the client runs on a schedule,
+the verifier runs it by hand once a day.
+
+13
+00:00:50.250 --> 00:00:52.580
+To roll back, disable the business rule,
+
+14
+00:00:52.580 --> 00:00:55.700
+though closures lose their
+evidence while it's off.

@@ -82,8 +82,8 @@ def group_of(folder: str) -> str:
         return "start"
     if folder.startswith("research-"):
         return "research"
-    if folder.startswith("hr-driven"):
-        return "interview"
+    if folder.startswith("hr-driven") and not folder.startswith("hr-driven-identity-implementation"):
+        return "interview"   # the talk set; the implementation guide's deck series is a book presentation
     if folder.startswith("dw-"):
         return "developer"
     return "book"

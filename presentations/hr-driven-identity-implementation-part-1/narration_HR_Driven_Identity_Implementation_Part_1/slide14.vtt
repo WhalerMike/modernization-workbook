@@ -1,0 +1,78 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.063
+The workbook's third chapter keeps
+the workflows as reviewed files.
+
+2
+00:00:04.063 --> 00:00:06.774
+Its lint passes the program's six files.
+
+3
+00:00:06.774 --> 00:00:11.774
+Against three broken copies, it catches
+an offset outside Microsoft's range,
+
+4
+00:00:11.774 --> 00:00:15.742
+too many workflows for the
+budget, a missing execution limit,
+
+5
+00:00:15.742 --> 00:00:18.043
+a joiner that adds groups directly,
+
+6
+00:00:18.043 --> 00:00:22.725
+delete and disable in the same workflow,
+and a pass that lasts three days.
+
+7
+00:00:22.725 --> 00:00:26.575
+The plan step refuses to run
+if any file has a finding.
+
+8
+00:00:26.575 --> 00:00:29.650
+Then it compares each file
+with the tenant's export.
+
+9
+00:00:29.650 --> 00:00:34.256
+A missing workflow becomes a create,
+and a changed one becomes a new version,
+
+10
+00:00:34.256 --> 00:00:37.525
+because workflows are
+versioned, not edited in place.
+
+11
+00:00:37.525 --> 00:00:40.300
+It reads with one permission
+and sends nothing.
+
+12
+00:00:40.300 --> 00:00:44.837
+Execution limits aren't in the
+API, so record them in the file.
+
+13
+00:00:44.837 --> 00:00:49.151
+Last, readiness checks each hire
+for an enabled, licensed account,
+
+14
+00:00:49.151 --> 00:00:52.587
+the onboarding package, and
+a completed pre-hire run.
+
+15
+00:00:52.587 --> 00:00:54.987
+One of four fictional hires is ready.
+
+16
+00:00:54.987 --> 00:00:57.410
+Run it on an export from
+the start of the day.

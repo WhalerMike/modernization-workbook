@@ -1,0 +1,77 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.556
+The workbook's first chapter
+turns the register into code,
+
+2
+00:00:03.556 --> 00:00:07.063
+and its lab runs on fictional
+audit records with no tenant.
+
+3
+00:00:07.063 --> 00:00:10.433
+The check reads the register
+itself: one writer per row,
+
+4
+00:00:10.433 --> 00:00:14.403
+every required transition present,
+no deletes by provisioning,
+
+5
+00:00:14.403 --> 00:00:17.474
+and the register signed
+with its scope versioned.
+
+6
+00:00:17.474 --> 00:00:20.075
+The program's own register
+comes back clean.
+
+7
+00:00:20.075 --> 00:00:23.713
+Then the scan compares a month of
+audit records with the register.
+
+8
+00:00:23.713 --> 00:00:25.887
+It finds eleven protected writes.
+
+9
+00:00:25.887 --> 00:00:28.940
+Five came from the right
+writer, one from the backstop,
+
+10
+00:00:28.940 --> 00:00:32.825
+four from a second writer, and one
+from a writer the register forbids.
+
+11
+00:00:32.825 --> 00:00:35.409
+So a help desk account disabled a leaver,
+
+12
+00:00:35.409 --> 00:00:39.950
+a fix-up script wrote a coded slot,
+and provisioning deleted an account.
+
+13
+00:00:39.950 --> 00:00:41.200
+Two limits apply.
+
+14
+00:00:41.200 --> 00:00:43.700
+The scan doesn't read Active Directory.
+
+15
+00:00:43.700 --> 00:00:47.819
+And the audit property names it
+matches aren't documented by Microsoft,
+
+16
+00:00:47.819 --> 00:00:51.170
+so confirm them in a test tenant
+before you trust the scan.

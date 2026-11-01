@@ -1,0 +1,73 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.650
+The workbook's fifth
+chapter does two things.
+
+2
+00:00:02.650 --> 00:00:05.946
+First, it measures each
+revocation list once,
+
+3
+00:00:05.946 --> 00:00:09.687
+recording its size, its
+download time, and any error.
+
+4
+00:00:09.687 --> 00:00:13.850
+A failed download is the finding,
+so it's recorded, not raised.
+
+5
+00:00:13.850 --> 00:00:17.575
+Then it checks the tenant's settings
+against the limits for a named cloud.
+
+6
+00:00:17.575 --> 00:00:19.825
+The fictional tenant tells a story.
+
+7
+00:00:19.825 --> 00:00:22.236
+One certificate authority was renewed,
+
+8
+00:00:22.236 --> 00:00:26.400
+so the card program's expected
+authority is gone from the trust store.
+
+9
+00:00:26.400 --> 00:00:30.187
+The renewed list is eighteen
+and a half million bytes,
+
+10
+00:00:30.187 --> 00:00:34.662
+takes over eleven seconds to
+download, and is served over HTTPS.
+
+11
+00:00:34.662 --> 00:00:37.563
+The slow download fails in every cloud.
+
+12
+00:00:37.563 --> 00:00:41.149
+The policy mapping points at
+the wrong PIV identifier.
+
+13
+00:00:41.149 --> 00:00:45.088
+And the phishing-resistant policy
+is still in report-only mode.
+
+14
+00:00:45.088 --> 00:00:49.074
+Run the same check for GCC High
+and one warning disappears.
+
+15
+00:00:49.074 --> 00:00:53.690
+That size is close to the commercial
+limit, but well under Azure Government's.

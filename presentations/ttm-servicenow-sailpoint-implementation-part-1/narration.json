@@ -1,0 +1,87 @@
+[
+  {
+    "slide": 1,
+    "title": "Part 1: Boundary, writers, sources and the front door",
+    "say": "Welcome to Part 1 of the implementation series for Ticket-to-Machine on ServiceNow and SailPoint. Book 13's loop is vendor-neutral. This guide builds it on two named products to show what that takes, with ServiceNow as the front door and SailPoint Identity Security Cloud for identity governance. It's an example, not an endorsement. The guide's argument fits in one line. Two products can carry the loop, but neither one closes it alone. The ticket has to authorize a machine, and only a re-read can close the ticket. Part 1 covers the first four gates: the boundary, the writers and approvers, the sources and starting drift, and the front door. Part 2 covers actuation, the re-read, and the tempo. The kit's tests run against mocked responses. They prove the logic, not the live integration."
+  },
+  {
+    "slide": 2,
+    "title": "The seven gates on one page: done when, gap, proof",
+    "say": "Here are the seven gates on one page. The first is done when each product's FedRAMP status, the actions that run from a vendor's cloud, and the integration identities are all recorded and accepted. The second is done when every attribute has one writer, every authority class has one approval system, and every change class has a lane. That closes two of the four gaps. The third is done when HR, Entra ID and Active Directory are correlated on the employee I D and the starting drift is measured. The fourth is done when findings, requests and manual work all arrive in ServiceNow as typed tasks, each with an owner and a clock. Part 2 covers the rest: actuating through a connector or a declared exception, closing only on a re-read, and running the tempo with its evidence."
+  },
+  {
+    "slide": 3,
+    "title": "The loop on two products, and the four gaps",
+    "say": "Book 13's loop has five steps: test, detect drift, raise a typed task, actuate, and close with evidence. Here, SailPoint and the kit's reconciliation do the testing. SailPoint's change events detect drift. A SailPoint workflow posting to ServiceNow raises the task. SailPoint's connectors, and ServiceNow's Entra spoke, actuate. And a re-read closes the loop, not the ticket status. Used as shipped, the products fall short of the loop in four places. First, a ticket status isn't a re-read. SailPoint treats a mapped ServiceNow status as complete. Second, the catalog app moves access approval into ServiceNow. Third, SailPoint's service desk integration can't raise change requests. And fourth, there are two doors into the directory, because SailPoint and Entra inbound provisioning can both write. Each gap is closed by a specific gate."
+  },
+  {
+    "slide": 4,
+    "title": "G1: FedRAMP status, and what runs from a vendor cloud",
+    "say": "The first gate confirms the authorization boundary. Check each product on the FedRAMP Marketplace on the day you decide, and record what you read. As of November 1, 2026, ServiceNow's Government Community Cloud is certified at High. Its commercial cloud has no listing of its own. SailPoint Identity Security Cloud is certified at Moderate. SailPoint's self-hosted product has no listing of its own. Next, confirm what's actually inside the authorization. Ask SailPoint in writing whether workflows, native change detection and the HTTP request step are in the authorized environment, since later gates depend on all three. Then record which actions run from a vendor's cloud. SailPoint's connectors call Microsoft Graph from SailPoint's cloud, so each of those calls is a recorded data flow. And confirm the apps are available in ServiceNow's government store."
+  },
+  {
+    "slide": 5,
+    "title": "G1 in code: every call declared, least privilege checked",
+    "say": "Four integration identities carry this integration. There's SailPoint's Entra connector, ServiceNow's Entra spoke, the ServiceNow user the workflow posts as along with the verifier account, and SailPoint's A P I client. Each has two owners and a federal sponsor, and uses a certificate, never a long-lived secret. The workbook's second and third chapters make their permissions checkable. One file declares every call the kit makes, with its least privilege. A test fails on any call that isn't declared. Then a checker compares what each identity was actually granted with what its task needs. A verifier that also holds a broad role fails. So does an evidence exporter reusing the verifier, because it could close findings. A read client holding a manage scope fails too. The roles are split by task. The finding writer only creates. The verifier closes. The evidence reader only reads."
+  },
+  {
+    "slide": 6,
+    "title": "G1: requirement, evidence, availability, rollback",
+    "say": "On the federal side, external system services calls for the Marketplace listings with the date you read them, plus the vendor's written answers. FedRAMP authorization calls for the package or letter for each offering you rely on. Information exchange calls for a data-flow record: source, destination, identity and data. Least privilege and authenticator management call for the identity register and two kit checks' output. One check lists integration identities with high-privilege Graph roles, each needing a justification. The other flags credentials that last too long. Most of this gate is a manual record, and there's nothing to roll back. The guide uses SailPoint's cloud product because it has a public listing and reaches both directories. The self-hosted product fits an agency that needs High or an in-boundary system. If a feature isn't confirmed in the FedRAMP environment, build it in the sandbox and hold production."
+  },
+  {
+    "slide": 7,
+    "title": "G2: one writer per attribute, one approver per class",
+    "say": "The second gate settles two of the gaps on paper, before anything is connected. First, one writer per attribute. Either Entra inbound provisioning stays the door and SailPoint only reads HR and governs entitlements, or SailPoint becomes the provisioning service and takes on the middleware's duties. Pick one, not both. SailPoint's HR connector can write back only the user name and work email anyway. Second, one approval system per authority class. As the guide's example, ServiceNow approves the low-authority classes, SailPoint approves owner-governed access, and the catalog app only collects those requests. Every approval that times out should reject or cancel, never approve. Write these decisions to the authoritative record as a reviewed change. Every later gate builds on what this one decides."
+  },
+  {
+    "slide": 8,
+    "title": "G2: a lane for every change class",
+    "say": "Next, every change class gets a lane. This mapping is the program's inference. Autonomous machine changes are SailPoint lifecycle states and birthright access, but only for classes the authorizing official listed. In ServiceNow, they're standard changes, pre-authorized. Gated machine changes are approved SailPoint access requests, or catalog items the spoke carries out, as normal changes where the class needs one. Human decisions are certifications, or a ServiceNow approval or change board. Certificates stay with the certificate platform, outside both products. Disconnected applications run as declared exceptions, with a service desk ticket, a recorded session and an end date. And emergencies go straight to the change board. The authorizing official has to accept any autonomous class in writing."
+  },
+  {
+    "slide": 9,
+    "title": "G2 in code: find the attribute with two writers",
+    "say": "The workbook's eighth chapter checks the writer decision against real configuration, offline. It reads two exports: Entra's inbound provisioning schema, and the provisioning policies on SailPoint's Entra source. For every attribute both of them write, it flags a finding if both update it, because each overwrites the other and the drift never settles. It's a warning if one updates the attribute and the other only sets it at creation. On the fictional exports, department is the finding. SailPoint's field names don't always match Entra's, so the check takes a reviewed alias list. Map title to job title, and a second finding appears that was invisible before. Point it at a directory name that doesn't exist, and it fails rather than passing as no overlap. It reads exports only. Approvers and lanes are still checked by hand."
+  },
+  {
+    "slide": 10,
+    "title": "G2: requirement, evidence, availability, rollback",
+    "say": "On the federal side, separation of duties calls for the table of one approval system per class, merged with its review, so the requester never approves. Change control calls for the lane table. Account management calls for the attribute map, with each attribute's writer. And any autonomous class needs the authorizing official's signed acceptance. To validate, the writer check flags attributes with two writers. The rest is a manual review: one writer, one approval system, one lane and one record type each, all merged. This gate uses nothing new. The Entra features it relies on are available in Azure Government, and GCC is the commercial service. If the HR pipeline isn't live yet, decide the writers now, and run the next gates against the HR extract the kit reads. To roll back, re-decide through a reviewed change. The record keeps the history."
+  },
+  {
+    "slide": 11,
+    "title": "G3: aggregate, correlate on employeeId, detect change",
+    "say": "The third gate connects the sources, then measures how far the directory has drifted from HR before anything gets fixed. Pull HR into SailPoint as the authoritative source, read-only. Connect Entra ID through SailPoint's connector, and Active Directory through its on-premises appliance. In GCC High, point the Entra source at the US government Graph and sign-in endpoints. Correlate everything on the employee I D. Treat uncorrelated accounts as possible orphans, not errors to suppress. Turn on native change detection, which fires one event for each account that changed between aggregations. Then run the kit's drift reconciliation. It joins HR, Graph and SailPoint on the key, and reports Book 03's drift classes. File that first run as the baseline. And expect a burst of high-severity findings in the first month. That just means the measurement is working."
+  },
+  {
+    "slide": 12,
+    "title": "G3 in code: the starting drift, day one and day two",
+    "say": "The workbook's sixth chapter runs the reconciliation over saved exports. On day one, the fictional estate shows attribute drift, missing identities, orphan accounts, stale access, and one unauthorized write. Credential and schema drift are reported as not computed, never as zero. On day two, HR corrects a department to the value someone had already typed into Entra ID by hand. The counts don't change. A comparison by finding I D shows what moved. Entra now matches HR, so that finding resolves. SailPoint hasn't re-read yet, so a new finding opens. The unauthorized write stays open, because HR agreeing afterward doesn't make the write authorized. The comparison refuses two runs that computed different classes, since otherwise a skipped class would look resolved. And a resolved finding is only a lead. Its record still closes on a re-read."
+  },
+  {
+    "slide": 13,
+    "title": "G3: requirement, evidence, availability, rollback",
+    "say": "On the federal side, account management calls for the baseline drift report: accounts with no worker, and workers with no account. Continuous monitoring calls for that report with its date and checker version. Reading the inventory requirement for identities, which is the program's inference, gives the correlation rate and the list of uncorrelated accounts. To validate, the kit's tests prove the drift classes, and both clients produce the same finding I Ds. On a live system, the findings for a synthetic HR extract should match a hand count. And the validation kit's checks for missing and duplicate keys should be clean, or owned. SailPoint documents government endpoints for its Entra connector. Native change detection isn't yet confirmed in the FedRAMP environment. Without SailPoint, run the reconciliation on HR and Graph alone. To roll back, disconnect the source. This gate only reads."
+  },
+  {
+    "slide": 14,
+    "title": "G4: one front door for findings and requests",
+    "say": "The fourth gate opens one front door. Every drift event, request and manual step arrives in ServiceNow as a typed task, with an owner, a clock and a severity. Build a finding table, plus an endpoint that validates each payload. The endpoint sets the priority and due date from the severity, removes duplicates, and stores the state a re-read will need to find. Then add one SailPoint workflow per trigger, posting to that endpoint. Workflows can't be created enabled, so turn each one on after a test run. The catalog app takes people's requests, using the approvals decided in gate two. The service desk integration is only for disconnected applications, and each of those tickets is a declared exception. Route everything by authority, and feed other detection tools into the same queue. Due dates follow the program's tempo: immediate, one hour, a day, or three days."
+  },
+  {
+    "slide": 15,
+    "title": "G4 in code: the contract, and what a workflow posts",
+    "say": "The workbook's first and fourth chapters make the front door testable before anything is posted. The contract lives in ServiceNow's script, so a Python mirror applies the same rules offline. A test fails if the two ever drift apart. On five sample payloads, one gets a default priority and a one-hour window, two are rejected with the script's own error text, and one gets a warning. Its intended state names nothing a re-read could check, so the record would close on nothing. Then the fourth chapter resolves each SailPoint workflow against a saved trigger. That turned up two fixes. A change to a multi-valued attribute, like an added proxy address, used to produce an empty intended state. And two attributes drifting on the same user used to collapse into one record. Whether SailPoint resolves the body the same way is still on the verify list."
+  },
+  {
+    "slide": 16,
+    "title": "G4: requirement, evidence, availability, rollback",
+    "say": "On the federal side, change control calls for records with an origin, an owner and a clock. Risk response calls for due dates by severity, plus an overdue list. Continuous monitoring calls for the finding queue. Separation of duties calls for approval history on every request. The fully automated version of change control is in the High baseline only, so at Moderate it's adopted as design. To validate, the kit's tests cover the priority, the due date, the tempo, duplicate removal and rejected payloads. On a live system, one change should raise exactly one finding, and a repeat should merge into it. The SailPoint apps aren't yet confirmed in ServiceNow's government store. Without the catalog app, a ServiceNow flow can create the request. Without the workflows, push the reconciliation's findings on a schedule. To roll back, disable the workflows and catalog items. Findings already raised stay on record."
+  },
+  {
+    "slide": 17,
+    "title": "Handing G1–G4 to Part 2",
+    "say": "To close Part 1, here's what each gate leaves behind, and what Part 2 builds on. The boundary gate leaves the identity register, and Part 2's actuation gate uses exactly those identities, re-checked so none holds more than its lane needs. The writers gate leaves the lane table, which actuation builds one lane at a time. The sources gate leaves the baseline drift report, which the tempo gate measures against on a schedule. And the front door leaves each finding's intended state, which the re-read gate compares against what it actually finds. Part 2 covers actuation, the re-read, and the tempo with its evidence. To build the code, use the developer workbook, Building Ticket-to-Machine. To learn it in order, with exercises, use the learning path for Ticket-to-Machine on ServiceNow and SailPoint."
+  }
+]

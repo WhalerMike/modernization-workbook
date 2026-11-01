@@ -1,0 +1,80 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.038
+The first gate starts from one idea.
+
+2
+00:00:02.038 --> 00:00:04.806
+Whoever can write an attribute effectively
+
+3
+00:00:04.806 --> 00:00:07.575
+decides any access that
+a rule grants from it.
+
+4
+00:00:07.575 --> 00:00:11.317
+Account state works the same
+way, and two systems can set it:
+
+5
+00:00:11.317 --> 00:00:13.812
+the pipeline, and Lifecycle Workflows.
+
+6
+00:00:13.812 --> 00:00:16.925
+So the register gets a
+row for every transition,
+
+7
+00:00:16.925 --> 00:00:19.400
+each with one writer and one backstop.
+
+8
+00:00:19.400 --> 00:00:23.200
+Inbound provisioning creates the
+account, and nothing else does.
+
+9
+00:00:23.200 --> 00:00:26.150
+At hire, pick one writer
+to enable the account,
+
+10
+00:00:26.150 --> 00:00:31.413
+either the pipeline or the day-one workflow,
+and record the other as the backstop.
+
+11
+00:00:31.413 --> 00:00:34.033
+At separation, the pipeline disables the
+
+12
+00:00:34.033 --> 00:00:37.038
+account before the leaver
+workflow first runs.
+
+13
+00:00:37.038 --> 00:00:40.576
+Only the pipeline can re-enable
+a cancelled separation.
+
+14
+00:00:40.576 --> 00:00:45.575
+Deletion belongs to a separate post-separation
+workflow, never to a bulk upload.
+
+15
+00:00:45.575 --> 00:00:50.500
+The hire and leave dates, and the manager,
+are written only by provisioning.
+
+16
+00:00:50.500 --> 00:00:54.138
+HR, not IT, records a new supervisor.
+
+17
+00:00:54.138 --> 00:00:57.220
+And the certificate binding
+belongs to the card system.

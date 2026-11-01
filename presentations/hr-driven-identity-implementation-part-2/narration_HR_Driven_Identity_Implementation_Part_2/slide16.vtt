@@ -1,0 +1,82 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.313
+Put together, the gates make one
+evidence file for each population.
+
+2
+00:00:04.313 --> 00:00:08.274
+It holds the register, the
+sources and the reconciliations.
+
+3
+00:00:08.274 --> 00:00:13.500
+It holds the workflows and their run history,
+and the access policies and reviews.
+
+4
+00:00:13.500 --> 00:00:16.962
+It holds the certificate
+configuration and the card records.
+
+5
+00:00:16.962 --> 00:00:20.187
+It holds the separation
+times and their exceptions.
+
+6
+00:00:20.187 --> 00:00:24.563
+And it holds the drift findings, the
+metrics and the sole-source proof.
+
+7
+00:00:24.563 --> 00:00:28.537
+File every kit run with its
+date, tenant and check version.
+
+8
+00:00:28.537 --> 00:00:33.034
+To build the code for these four
+gates, use the developer workbook,
+
+9
+00:00:33.034 --> 00:00:37.863
+Building HR-Driven Identity, chapters
+four to seven, each with its labs.
+
+10
+00:00:37.863 --> 00:00:40.500
+For the design, see Book 03.
+
+11
+00:00:40.500 --> 00:00:42.722
+For the attributes these gates read,
+
+12
+00:00:42.722 --> 00:00:46.350
+see the attribute-driven
+migration implementation guide.
+
+13
+00:00:46.350 --> 00:00:51.073
+To learn it all in order, use the
+learning path for HR-driven identity:
+
+14
+00:00:51.073 --> 00:00:56.050
+seven modules, one per gate, each with
+a fixture lab and a knowledge check.
+
+15
+00:00:56.050 --> 00:00:58.262
+The pipeline makes the account exist.
+
+16
+00:00:58.262 --> 00:01:01.804
+These seven gates make the HR
+record decide what happens to it,
+
+17
+00:01:01.804 --> 00:01:04.080
+and they leave the evidence that it did.

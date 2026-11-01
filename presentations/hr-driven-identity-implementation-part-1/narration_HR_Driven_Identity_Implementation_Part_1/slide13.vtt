@@ -1,0 +1,79 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.400
+A new hire needs a way to sign
+in before their card arrives.
+
+2
+00:00:03.400 --> 00:00:06.719
+The pre-hire workflow has a
+built-in task that creates
+
+3
+00:00:06.719 --> 00:00:09.962
+a Temporary Access Pass and
+emails it to the manager.
+
+4
+00:00:09.962 --> 00:00:11.600
+It starts on the hire date.
+
+5
+00:00:11.600 --> 00:00:14.937
+It needs the manager and the
+manager's email filled in.
+
+6
+00:00:14.937 --> 00:00:18.511
+And it only works for someone
+with no other sign-in methods,
+
+7
+00:00:18.511 --> 00:00:21.563
+no earlier sign-ins and no
+Entra role assignments.
+
+8
+00:00:21.563 --> 00:00:26.387
+So a rehire who kept their old methods
+won't qualify, and needs a separate path.
+
+9
+00:00:26.387 --> 00:00:30.036
+Microsoft recommends a pass
+sent to a new hire last no more
+
+10
+00:00:30.036 --> 00:00:33.762
+than twenty-four hours, and the
+tenant can force one-time use.
+
+11
+00:00:33.762 --> 00:00:36.719
+Day-one access comes from
+an onboarding package,
+
+12
+00:00:36.719 --> 00:00:40.488
+with department access assigned
+automatically in gate four.
+
+13
+00:00:40.488 --> 00:00:43.612
+Never add a new hire straight
+to an application group.
+
+14
+00:00:43.612 --> 00:00:47.462
+Then measure the share of hires who are
+fully ready at the start of day one.
+
+15
+00:00:47.462 --> 00:00:49.312
+The pass is only a bridge.
+
+16
+00:00:49.312 --> 00:00:53.900
+Once the card is bound, an account
+still running on a pass is a finding.

@@ -1,0 +1,879 @@
+{
+ "1": [
+  [
+   0.05,
+   4.8,
+   "Welcome to Part 2 of the implementation series for H R-driven identity."
+  ],
+  [
+   4.85,
+   8.075,
+   "Part 1 named one writer for every account state, brought employees and contractors in from their sources, and got joiners ready on day one."
+  ],
+  [
+   12.925,
+   2.413,
+   "Part 2 covers the last four gates."
+  ],
+  [
+   15.338,
+   6.0,
+   "First, access assigned from H R attributes, with a review of what a move leaves behind."
+  ],
+  [
+   21.337,
+   3.938,
+   "Then piv and CAC credentials tied to H R events."
+  ],
+  [
+   25.275,
+   3.4,
+   "Then separations, timed and proven from the logs."
+  ],
+  [
+   28.675,
+   4.862,
+   "And finally drift, metrics and the evidence an I S S O files."
+  ],
+  [
+   33.538,
+   2.125,
+   "The format is the same as Part 1."
+  ],
+  [
+   35.663,
+   11.537,
+   "Each gate gets its steps, the workbook's lab commands, the federal requirement and evidence, availability in G C C and G C C High, an interim path, and a rollback."
+  ],
+  [
+   47.2,
+   5.55,
+   "Design guidance is labeled, and the code is tested against fixtures, not a lyve tenant."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   2.475,
+   "Here are Part 2's four gates on one page."
+  ],
+  [
+   2.525,
+   10.1,
+   "The access gate is done when department access is assigned automatically, the supervisor H R names approves requests, and anything left over after a move gets reviewed."
+  ],
+  [
+   12.625,
+   9.25,
+   "The credentials gate is done when every card issuer is trusted with a revocation list, and cards are issued and revoked by H R and contractor events."
+  ],
+  [
+   21.875,
+   10.588,
+   "The separation gate is done when a leaver's access is blocked first, credentials and devices are revoked in parallel, and the account is deleted last, with the timing measured."
+  ],
+  [
+   32.462,
+   6.9,
+   "The drift gate is done when drift is found and fixed at its source, and the metrics are reported on the monitoring cadence."
+  ],
+  [
+   39.362,
+   4.7,
+   "Each gate has its own rollback, except the last, which is a standing loop."
+  ],
+  [
+   44.062,
+   1.825,
+   "Together they finish the track."
+  ],
+  [
+   45.888,
+   7.287,
+   "Every entitlement traces back to a rule and a record, and every separation blocks in time and leaves evidence."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   3.888,
+   "Dynamic groups carry access that a rule can decide on its own."
+  ],
+  [
+   3.938,
+   4.638,
+   "Access packages carry what a rule can't, with approvals and reviews."
+  ],
+  [
+   8.575,
+   3.025,
+   "Department packages are assigned automatically."
+  ],
+  [
+   11.6,
+   6.987,
+   "A policy gives the package to everyone who matches a rule on user attributes, and takes it away when they stop matching."
+  ],
+  [
+   18.587,
+   3.325,
+   "Each policy covers up to fifteen thousand users."
+  ],
+  [
+   21.913,
+   3.513,
+   "Write the rules on the coded attributes H R owns."
+  ],
+  [
+   25.425,
+   2.575,
+   "Keep one automatic policy per package."
+  ],
+  [
+   28.0,
+   5.05,
+   "If a user matches two policies, or moves between them, they can lose access."
+  ],
+  [
+   33.05,
+   4.2,
+   "Each policy also creates a hidden dynamic group, so leave it alone."
+  ],
+  [
+   37.25,
+   1.275,
+   "One date matters."
+  ],
+  [
+   38.525,
+   9.213,
+   "From November 3, 2026, any policy whose rule uses group membership is quarantined, and it stops adding or removing anyone."
+  ],
+  [
+   47.737,
+   4.325,
+   "Microsoft publishes a read-only script that finds them, so run it now."
+  ],
+  [
+   52.062,
+   4.537,
+   "Finally, a policy can keep access for a grace period after someone moves."
+  ],
+  [
+   56.6,
+   4.487,
+   "Use that for standard access, and give privileged access no grace period."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   5.362,
+   "Next, decide who approves, what happens when someone moves, and where privilege goes."
+  ],
+  [
+   5.412,
+   5.075,
+   "Requests go to the manager as approver, with a fallback for anyone without one."
+  ],
+  [
+   10.488,
+   3.612,
+   "That makes the supervisor H R names the one who approves."
+  ],
+  [
+   14.1,
+   7.1,
+   "When someone changes organization, the mover workflow removes the old department's packages and requests the new one."
+  ],
+  [
+   21.2,
+   4.35,
+   "Then it starts a review of everything the person holds outside packages."
+  ],
+  [
+   25.55,
+   7.013,
+   "That leftover access is the residual, and the time from transfer to review is the metric for personnel transfer."
+  ],
+  [
+   32.562,
+   3.013,
+   "Privileged access stays out of rules altogether."
+  ],
+  [
+   35.575,
+   6.188,
+   "H R attributes decide who may request eligibility, and the role itself is activated through pim."
+  ],
+  [
+   41.763,
+   2.975,
+   "And treat a reorganization as a mass move."
+  ],
+  [
+   44.737,
+   6.463,
+   "Rehearse it, let the execution limit quarantine it, and release it only after you've checked it against H R."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   3.875,
+   "The workbook's fourth chapter keeps the policies as reviewed files."
+  ],
+  [
+   3.925,
+   9.113,
+   "Run against five broken ones, its lint catches a rule built on group membership, and two policies on one package that the same employees both match."
+  ],
+  [
+   13.037,
+   8.113,
+   "It also catches a policy that adds but never removes, an approval with no fallback, and privileged access assigned by a rule."
+  ],
+  [
+   21.15,
+   5.963,
+   "A separate scan reads the tenant's existing policies and finds the one still using group membership."
+  ],
+  [
+   27.113,
+   1.262,
+   "Then the residual."
+  ],
+  [
+   28.375,
+   3.188,
+   "A fictional employee moved departments in October."
+  ],
+  [
+   31.562,
+   4.737,
+   "For each package they hold, the code checks the rule against their new attributes."
+  ],
+  [
+   36.3,
+   4.213,
+   "The old baseline goes after the grace period, and the new one stays."
+  ],
+  [
+   40.513,
+   6.225,
+   "Three items go to the manager of record: one requested package, and two groups held outside packages."
+  ],
+  [
+   46.737,
+   6.537,
+   "One finding stands out: the review is still open thirteen days after the move, past the program's ten."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   9.8,
+   "On the federal side, account management, least privilege and separation of duties call for the policy exports, with their rules and the separation-of-duties settings."
+  ],
+  [
+   9.85,
+   5.037,
+   "Personnel transfer calls for the transfer-to-review times and the review decisions."
+  ],
+  [
+   14.887,
+   5.125,
+   "Account review results must be exported before Entra's thirty-day history closes."
+  ],
+  [
+   20.012,
+   12.125,
+   "sis-uh's baseline requires highly privileged roles to come only through a privileged access system, so the I S S O shows pim eligibility through packages, and no standing role assigned by a rule."
+  ],
+  [
+   32.138,
+   3.913,
+   "To validate, compare membership before and after a test move."
+  ],
+  [
+   36.05,
+   5.775,
+   "No kit check reads the policies yet, so keep the export and a clean group-membership scan."
+  ],
+  [
+   41.825,
+   3.825,
+   "Most features are available in Azure Government, with one gap."
+  ],
+  [
+   45.65,
+   8.275,
+   "Administrative units with dynamic membership aren't available there, so G C C High uses assigned units, filled by a scheduled job."
+  ],
+  [
+   53.925,
+   7.062,
+   "To roll back, remove the policy, but keep the old dynamic group until the package has run clean for a full cycle."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   3.938,
+   "A piv card without a binding to the account is just a badge."
+  ],
+  [
+   3.987,
+   4.55,
+   "The binding names one specific certificate, so any reissue changes it."
+  ],
+  [
+   8.537,
+   5.688,
+   "The first step is to trust each issuing authority, and give each one a revocation list."
+  ],
+  [
+   14.225,
+   3.275,
+   "Without a list, Entra doesn't check revocation at all."
+  ],
+  [
+   17.5,
+   1.788,
+   "The limits depend on the cloud."
+  ],
+  [
+   19.288,
+   8.938,
+   "For interactive sign-in, a list can be twenty megabytes in G C C and forty-five in G C C High, and it must download within ten seconds."
+  ],
+  [
+   28.225,
+   6.562,
+   "If Entra can't download a configured list, certificate sign-in fails for every certificate from that authority."
+  ],
+  [
+   34.788,
+   5.15,
+   "So host the lists on highly available endpoints, ideally over HTTP."
+  ],
+  [
+   39.938,
+   9.2,
+   "Next, raise piv certificates to multifactor strength by issuer or policy, and require phishing-resistant strength in Conditional Access."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   3.55,
+   "The rest of this gate ties the card's life to the person's."
+  ],
+  [
+   3.6,
+   3.75,
+   "No card is requested without a joiner record and a sponsor."
+  ],
+  [
+   7.35,
+   5.662,
+   "The card system writes the binding when the card is issued, and removes it when the card is revoked."
+  ],
+  [
+   13.012,
+   7.662,
+   "Once the binding lands, the temporary pass from gate three isn't needed anymore, and the proofing level is recorded per person."
+  ],
+  [
+   20.675,
+   3.95,
+   "The card system's events flow back in, keyed on the person key."
+  ],
+  [
+   24.625,
+   7.263,
+   "Those events are termination, revocation, suspension and expiry, and the same event can mean two different things."
+  ],
+  [
+   31.887,
+   4.675,
+   "For a contractor, a terminated or expired card ends the engagement."
+  ],
+  [
+   36.562,
+   7.013,
+   "For an employee, it's credential drift, not a separation, because only H R decides when an employee leaves."
+  ],
+  [
+   43.575,
+   2.65,
+   "And a legal name change rewrites the binding."
+  ],
+  [
+   46.225,
+   6.35,
+   "The guide is open that the card system's interface, and the contractor piv path, are still pending proof."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   2.6,
+   "The workbook's fifth chapter does two things."
+  ],
+  [
+   2.65,
+   7.037,
+   "First, it measures each revocation list once, recording its size, its download time, and any error."
+  ],
+  [
+   9.688,
+   4.162,
+   "A failed download is the finding, so it's recorded, not raised."
+  ],
+  [
+   13.85,
+   3.725,
+   "Then it checks the tenant's settings against the limits for a named cloud."
+  ],
+  [
+   17.575,
+   2.25,
+   "The fictional tenant tells a story."
+  ],
+  [
+   19.825,
+   6.575,
+   "One certificate authority was renewed, so the card program's expected authority is gone from the trust store."
+  ],
+  [
+   26.4,
+   8.262,
+   "The renewed list is eighteen and a half million bytes, takes over eleven seconds to download, and is served over HTTPS."
+  ],
+  [
+   34.663,
+   2.9,
+   "The slow download fails in every cloud."
+  ],
+  [
+   37.562,
+   3.587,
+   "The policy mapping points at the wrong piv identifier."
+  ],
+  [
+   41.15,
+   3.938,
+   "And the phishing-resistant policy is still in report-only mode."
+  ],
+  [
+   45.087,
+   3.987,
+   "Run the same check for G C C High and one warning disappears."
+  ],
+  [
+   49.075,
+   4.55,
+   "That size is close to the commercial limit, but well under Azure Government's."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   13.787,
+   "On the federal side, accepting piv credentials and public-key authentication call for the certificate sign-in configuration export: the trusted authorities, the revocation settings, the binding rules, and the required affinity."
+  ],
+  [
+   13.838,
+   8.338,
+   "sis-uh's baseline requires phishing-resistant M F A for all users and for privileged roles, so keep the ScubaGear report."
+  ],
+  [
+   22.175,
+   9.988,
+   "FIPS 201 allows issuance only once a proper authority authorizes it, so the card system's records are joined to the H R or contractor event."
+  ],
+  [
+   32.163,
+   5.312,
+   "To validate, one kit check lists card holders with no binding, or only weak ones."
+  ],
+  [
+   37.475,
+   7.162,
+   "No kit check reads the configuration, so the evidence includes a revoked test certificate being refused at sign-in."
+  ],
+  [
+   44.638,
+   4.688,
+   "Everything here is available in both clouds, though the size limits differ."
+  ],
+  [
+   49.325,
+   6.325,
+   "Until there's a clear way to write the binding after Active Directory retires, keep it in A D and sync it."
+  ],
+  [
+   55.65,
+   5.263,
+   "To roll back, restore the bindings from the card system, never by editing the directory."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   7.15,
+   "The separation gate puts the leaver in the Federal Modernization Workbook's Book 03's order and then proves the timing."
+  ],
+  [
+   7.2,
+   3.138,
+   "Disable the account and revoke its sessions first."
+  ],
+  [
+   10.338,
+   6.938,
+   "Then one custom task starts the device retire and the card revocation together, and waits for both to report."
+  ],
+  [
+   17.275,
+   8.15,
+   "That wait can run from thirty minutes to three hours, and if it times out, it goes to a high-priority exception, not a retry loop."
+  ],
+  [
+   25.425,
+   3.875,
+   "Then come the removals, and a read-back to confirm the block took."
+  ],
+  [
+   29.3,
+   3.312,
+   "A disabled account with lyve sessions is an incident."
+  ],
+  [
+   32.612,
+   5.013,
+   "Deletion comes last, in a separate workflow, after the devices are retired."
+  ],
+  [
+   37.625,
+   4.787,
+   "Set the leave time late in the day, and remember the schedule is part of the time allowed."
+  ],
+  [
+   42.413,
+   6.4,
+   "An emergency means an immediate out-of-band block, then the same sequence on demand, behind approval."
+  ],
+  [
+   48.812,
+   5.013,
+   "A separation entered more than three days late misses the trigger, so run it by hand."
+  ],
+  [
+   53.825,
+   2.3,
+   "Privileged leavers need their own path."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   4.45,
+   "The workbook's sixth chapter measures each separation from the audit logs."
+  ],
+  [
+   4.5,
+   5.275,
+   "A leaver counts as blocked once both the disable and the session revocation are recorded."
+  ],
+  [
+   9.775,
+   3.812,
+   "They count as fully revoked when the card and the devices are done too."
+  ],
+  [
+   13.588,
+   2.425,
+   "Nine fictional separations are measured."
+  ],
+  [
+   16.012,
+   3.0,
+   "The typical block lands in about fifteen minutes."
+  ],
+  [
+   19.012,
+   7.612,
+   "But the slowest ten percent take over five hours, against a sample limit of four, and full revocation takes far longer."
+  ],
+  [
+   26.625,
+   1.562,
+   "Three stories stand out."
+  ],
+  [
+   28.188,
+   7.925,
+   "One leaver was blocked late, and that person's card was revoked twenty-three hours after notice, past the eighteen FIPS allows."
+  ],
+  [
+   36.112,
+   7.162,
+   "Another separation was entered almost a week late, and its only disable failed, so that person was never blocked at all."
+  ],
+  [
+   43.275,
+   4.35,
+   "And the pipeline re-enabled a third leaver two days after the disable."
+  ],
+  [
+   47.625,
+   1.975,
+   "These limits are only samples."
+  ],
+  [
+   49.6,
+   4.425,
+   "The agency sets the real period, and sets it together with the schedule."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   12.725,
+   "On the federal side, personnel termination and account disabling call for both measured times for each leaver, along with the workflow run, the device actions, and the card revocation with the list that published it."
+  ],
+  [
+   12.775,
+   3.175,
+   "Contractors add the time from end date to block."
+  ],
+  [
+   15.95,
+   7.875,
+   "FIPS 201 says a card that can't be collected must be revoked within eighteen hours of notice, so keep both timestamps."
+  ],
+  [
+   23.825,
+   2.987,
+   "Emergency disables are logged as changes."
+  ],
+  [
+   26.812,
+   7.2,
+   "To validate, run a full pay period with no missed leavers, blocks within the limit, and every exception closed."
+  ],
+  [
+   34.013,
+   1.863,
+   "Security owns this gate."
+  ],
+  [
+   35.875,
+   4.138,
+   "Lifecycle Workflows and pim are available in Azure Government."
+  ],
+  [
+   40.013,
+   5.737,
+   "The guide infers that a G C C tenant's Logic App sits in a commercial Azure subscription."
+  ],
+  [
+   45.75,
+   5.412,
+   "Until the extensions exist, use a leaver checklist with a named owner for each row."
+  ],
+  [
+   51.163,
+   4.45,
+   "To roll back a cancelled separation, re-enable from the corrected record."
+  ],
+  [
+   55.612,
+   3.35,
+   "A deleted cloud user can be restored for thirty days."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   2.075,
+   "The last gate keeps the record true."
+  ],
+  [
+   2.125,
+   10.0,
+   "Run the lifecycle drift checks: missing identity, stale access, orphan accounts, unauthorized writes, and credential drift for employees and contractors."
+  ],
+  [
+   12.125,
+   6.987,
+   "Fix each finding at its source, and let the fix flow back through the pipeline, never as a direct directory edit."
+  ],
+  [
+   19.113,
+   2.763,
+   "Report six metrics on the monitoring cadence."
+  ],
+  [
+   21.875,
+   6.062,
+   "Prove H R is the only source, using seven days of logs, then close the ticket path."
+  ],
+  [
+   27.938,
+   4.838,
+   "And keep the evidence outside the directory, because it has to outlive the accounts."
+  ],
+  [
+   32.775,
+   2.413,
+   "The table shows the workbook's lab run."
+  ],
+  [
+   35.188,
+   9.012,
+   "Blocking, revocation, joiner readiness, correlation coverage, and the share of access granted by rules are all out of bounds on this fixture."
+  ],
+  [
+   44.2,
+   4.237,
+   "Transfer-to-review isn't measured, because a review is still open."
+  ],
+  [
+   48.438,
+   4.55,
+   "A metric with no input is reported as not measured, never as zero."
+  ],
+  [
+   52.987,
+   2.625,
+   "And the thresholds are for the agency to choose."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   5.675,
+   "The workbook's seventh chapter makes this gate one run, plus a chain of evidence packages."
+  ],
+  [
+   5.725,
+   5.5,
+   "The run reads the earlier labs' outputs, checking each one against its own manifest."
+  ],
+  [
+   11.225,
+   5.65,
+   "It insists on knowing whether it's a fixture or a tenant run, so a lab can't pass for production."
+  ],
+  [
+   16.875,
+   4.912,
+   "The evidence tool packages each run with checksums, chained to the one before."
+  ],
+  [
+   21.788,
+   2.938,
+   "Then the period report verifies the whole chain."
+  ],
+  [
+   24.725,
+   7.075,
+   "Here the chain is unbroken and nothing is missing, but twenty findings are still open, so the period isn't complete."
+  ],
+  [
+   31.8,
+   4.6,
+   "On the federal side, continuous monitoring calls for the six metrics per period."
+  ],
+  [
+   36.4,
+   7.662,
+   "Audit review and retention call for the log export, findings closed at the source, and retention set to the records schedule."
+  ],
+  [
+   44.062,
+   3.938,
+   "sis-uh's continuous reporting calls for ScubaGear results."
+  ],
+  [
+   48.0,
+   3.775,
+   "The kit checks run on the drift cadence, and the see-so owns it."
+  ],
+  [
+   51.775,
+   3.675,
+   "There's no rollback here, because this is the loop that keeps running."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   4.263,
+   "Put together, the gates make one evidence file for each population."
+  ],
+  [
+   4.312,
+   3.962,
+   "It holds the register, the sources and the reconciliations."
+  ],
+  [
+   8.275,
+   5.225,
+   "It holds the workflows and their run history, and the access policies and reviews."
+  ],
+  [
+   13.5,
+   3.462,
+   "It holds the certificate configuration and the card records."
+  ],
+  [
+   16.962,
+   3.225,
+   "It holds the separation times and their exceptions."
+  ],
+  [
+   20.188,
+   4.375,
+   "And it holds the drift findings, the metrics and the sole-source proof."
+  ],
+  [
+   24.562,
+   3.975,
+   "File every kit run with its date, tenant and check version."
+  ],
+  [
+   28.538,
+   9.325,
+   "To build the code for these four gates, use the developer workbook, Building H R-Driven Identity, chapters four to seven, each with its labs."
+  ],
+  [
+   37.862,
+   2.638,
+   "For the design, see Book 03."
+  ],
+  [
+   40.5,
+   5.85,
+   "For the attributes these gates read, see the attribute-driven migration implementation guide."
+  ],
+  [
+   46.35,
+   9.7,
+   "To learn it all in order, use the learning path for H R-driven identity: seven modules, one per gate, each with a fixture lab and a knowledge check."
+  ],
+  [
+   56.05,
+   2.212,
+   "The pipeline makes the account exist."
+  ],
+  [
+   58.263,
+   5.763,
+   "These seven gates make the H R record decide what happens to it, and they leave the evidence that it did."
+  ]
+ ]
+}

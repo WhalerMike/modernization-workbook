@@ -1,0 +1,79 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.950
+To close Part 1, here's what each gate
+leaves behind, and where Part 2 picks it up.
+
+2
+00:00:04.950 --> 00:00:09.737
+The first gate leaves the register, the
+scope filter and the saved audit queries.
+
+3
+00:00:09.737 --> 00:00:14.111
+The separation gate relies on its rule
+that the pipeline disables first,
+
+4
+00:00:14.111 --> 00:00:16.225
+and the drift gate runs its queries.
+
+5
+00:00:16.225 --> 00:00:18.857
+The second gate leaves
+the source decisions,
+
+6
+00:00:18.857 --> 00:00:21.988
+the authority table and
+the reconciliation reports.
+
+7
+00:00:21.988 --> 00:00:26.063
+The credentials gate reads contractor
+card events, and the separation
+
+8
+00:00:26.063 --> 00:00:30.000
+gate measures how fast contractors
+are blocked after their end date.
+
+9
+00:00:30.000 --> 00:00:33.275
+The third gate leaves the
+workflows and their run history.
+
+10
+00:00:33.275 --> 00:00:36.164
+The mover workflow, the
+end of the pass bridge,
+
+11
+00:00:36.164 --> 00:00:38.663
+and the leaver sequence all build on it.
+
+12
+00:00:38.663 --> 00:00:44.725
+Part 2 covers access and movers, credentials,
+separation, and drift and evidence.
+
+13
+00:00:44.725 --> 00:00:48.370
+To build Part 1's code,
+use the developer workbook,
+
+14
+00:00:48.370 --> 00:00:53.563
+Building HR-Driven Identity, chapters
+one to three, each with its labs.
+
+15
+00:00:53.563 --> 00:00:58.194
+And to learn it in order, use the
+learning path for HR-driven identity:
+
+16
+00:00:58.194 --> 00:01:03.140
+seven modules, one per gate, each with
+a fixture lab and a knowledge check.

@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.650
+The second gate settles two of the gaps
+on paper, before anything is connected.
+
+2
+00:00:04.650 --> 00:00:06.913
+First, one writer per attribute.
+
+3
+00:00:06.913 --> 00:00:11.823
+Either Entra inbound provisioning stays
+the door and SailPoint only reads HR and
+
+4
+00:00:11.823 --> 00:00:14.711
+governs entitlements, or
+SailPoint becomes the
+
+5
+00:00:14.711 --> 00:00:18.250
+provisioning service and takes
+on the middleware's duties.
+
+6
+00:00:18.250 --> 00:00:19.637
+Pick one, not both.
+
+7
+00:00:19.637 --> 00:00:25.012
+SailPoint's HR connector can write back
+only the user name and work email anyway.
+
+8
+00:00:25.012 --> 00:00:28.300
+Second, one approval system
+per authority class.
+
+9
+00:00:28.300 --> 00:00:33.126
+As the guide's example, ServiceNow approves
+the low-authority classes, SailPoint
+
+10
+00:00:33.126 --> 00:00:38.025
+approves owner-governed access, and the
+catalog app only collects those requests.
+
+11
+00:00:38.025 --> 00:00:42.463
+Every approval that times out should
+reject or cancel, never approve.
+
+12
+00:00:42.463 --> 00:00:46.737
+Write these decisions to the
+authoritative record as a reviewed change.
+
+13
+00:00:46.737 --> 00:00:49.750
+Every later gate builds
+on what this one decides.
