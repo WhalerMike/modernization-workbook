@@ -36,6 +36,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import sys
 from datetime import datetime, timedelta, timezone
 from typing import Any, Mapping
@@ -298,6 +299,7 @@ def main(argv: list[str] | None = None, http: kc.Http | None = None) -> int:
             counts[result["outcome"]] = counts.get(result["outcome"], 0) + 1
         print(", ".join(f"{counts[k]} {k}" for k in sorted(counts)))
         if args.out_json:
+            os.makedirs(os.path.dirname(args.out_json) or ".", exist_ok=True)
             with open(args.out_json, "w", encoding="utf-8") as handle:
                 json.dump(results, handle, indent=2)
         return 0
@@ -310,6 +312,7 @@ def main(argv: list[str] | None = None, http: kc.Http | None = None) -> int:
     graph = kc.graph_headers(cfg, http) if "entra_user" in systems else None
     results = verify_records(records, cfg, http, sn, isc, graph, table, args.apply, args.grace_hours)
     if args.out_json:
+        os.makedirs(os.path.dirname(args.out_json) or ".", exist_ok=True)
         with open(args.out_json, "w", encoding="utf-8") as handle:
             json.dump(results, handle, indent=2)
     return 0

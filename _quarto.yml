@@ -205,6 +205,16 @@ website:
             - docs/training/ms-automation-foundations.md
             - docs/training/ms-automation-entra.md
             - docs/training/ms-automation-intune.md
+        - section: "Ticket-to-Machine learning path"
+          href: docs/training/ticket-to-machine/index.md
+          contents:
+            - docs/training/ticket-to-machine/01-the-loop-and-the-typed-task.md
+            - docs/training/ticket-to-machine/02-boundary-and-least-privilege.md
+            - docs/training/ticket-to-machine/03-one-writer-per-attribute.md
+            - docs/training/ticket-to-machine/04-sources-and-starting-drift.md
+            - docs/training/ticket-to-machine/05-drift-to-a-typed-task.md
+            - docs/training/ticket-to-machine/06-actuation-and-the-re-read.md
+            - docs/training/ticket-to-machine/07-evidence-for-the-isso.md
         - section: "External learning paths"
           contents:
             - docs/training/infoblox-training.md

@@ -50,10 +50,10 @@ The estate is a FedRAMP Moderate civilian one: ServiceNow's Government Community
 | Developer workbook | This workbook: eight chapters, each building on the kit with labs and tests | [Chapters](#chapters-table) below |
 | Code | The kit: ISC workflows, the ServiceNow Scripted REST resource and business rule, Python and PowerShell clients, fixtures and tests, and this workbook's additions | [`examples/servicenow-sailpoint` on GitHub](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/servicenow-sailpoint) |
 | Decks and videos | The narrated deck for Book 13's Appendix B, and the narrated research deck for the example guide | [Presentations](../../../presentations/index.md#reference-b13) · [▶ Watch the example guide's deck](../../../presentations/watch.html?v=Research_TTM_ServiceNow_SailPoint_Narrated) |
-| Training | A learning path built from the example guide, the decks and this workbook's labs | Planned |
+| Training | A learning path built from the example guide, the decks and this workbook's labs: seven modules with exercises and knowledge checks | [Learning path: Ticket-to-Machine on ServiceNow and SailPoint](../../../training/ticket-to-machine/index.md) |
 | Word edition | This workbook as one document | [building-ticket-to-machine-bundle.docx](../../../../downloads/building-ticket-to-machine-bundle.docx) |
 
-How they connect: the book chapters set what the loop must prove. The example guide says where the two products fall short of it. The implementation example says what the kit builds to close the gap. This workbook builds on the kit, chapter by chapter, and every chapter's lab runs the kit's own code. The decks present the book and the guide; the training path, when it is written, will link this workbook's labs rather than repeat them.
+How they connect: the book chapters set what the loop must prove. The example guide says where the two products fall short of it. The implementation example says what the kit builds to close the gap. This workbook builds on the kit, chapter by chapter, and every chapter's lab runs the kit's own code. The decks present the book and the guide; the [training path](../../../training/ticket-to-machine/index.md) links this workbook's labs rather than repeating them.
 
 ## How each chapter is built
 
