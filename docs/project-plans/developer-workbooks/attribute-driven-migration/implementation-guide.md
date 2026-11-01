@@ -11,8 +11,8 @@ lifecycle_review: 2027-04-01
 aliases:
   - /docs/books/guides/attribute-driven-migration-implementation.html
 review-status: approved
-reviewed-sha256: d1eeb85937a5e7e1f80d301cd1be5314864983f4c4a2976d9c4f0446222832d5
-last-reviewed: 2026-10-31
+reviewed-sha256: cf4b287fe912f3513ddc6ce9eea1e31056840a7d77e91dc9248ba75370810c8c
+last-reviewed: 2026-11-01
 ---
 # Attribute-Driven Migration: An Implementation Guide
 
@@ -32,6 +32,11 @@ The shared foundation of the [Attribute-Driven Migration guide](../../../books/g
 **Deeper Dive Implementation.** Below the two overview decks, the three-part **Deeper Dive Implementation** series (about 15 minutes narrated each) walks the ten gates at working level: [Part 1, Gates 0–3](../../../presentations/index.md#deeper-dive-attribute-driven-migration-part-1), [Part 2, Gates 4–6](../../../presentations/index.md#deeper-dive-attribute-driven-migration-part-2) and [Part 3, Gates 7–9](../../../presentations/index.md#deeper-dive-attribute-driven-migration-part-3).
 
 **The schedule.** The [Attribute-Driven Migration project plan](../../attribute-driven-migration.md) schedules these gates, with owners, decide-by weeks and the margin against each track plan and program gate it hands to. Each section below names the plan tasks it carries out.
+:::
+
+::: {.callout-note}
+## This guide or the developer workbook?
+This guide is for the people who **run** the migration: what has to be true at each gate, and how to prove it. Its companion under Projects, [Building the Attribute-Driven Migration](index.md), is a developer workbook for the people who **build the software** the gates rely on: the HR middleware, Graph clients, validation kit checks, rule libraries, workflow extensions and drift pipelines, each with labs and tests. [This workbook or the implementation guide?](index.md#workbook-or-guide) compares the two.
 :::
 
 ## How to use this guide {#how-to-use-this-guide}

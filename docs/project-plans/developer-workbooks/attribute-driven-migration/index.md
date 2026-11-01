@@ -21,8 +21,8 @@ lifecycle_review: 2027-04-01
 aliases:
   - /docs/books/b19-developer-workbook/index.html
 review-status: approved
-reviewed-sha256: e5ee4f9e430dc8a405aa62a536cd8212cac552be5c485b7aee3395a0397f1273
-last-reviewed: 2026-10-31
+reviewed-sha256: 699d7094af4051b42922cbac538d9af4e24613b061dc7af417e231a3d0a9119f
+last-reviewed: 2026-11-01
 ---
 # Building the Attribute-Driven Migration {.unnumbered}
 
@@ -36,6 +36,22 @@ All nine chapters are written, and the owner approved every page on October 31, 
 The [Attribute-Driven Migration](../../../books/guides/attribute-driven-migration.md) moves an agency from Active Directory to Microsoft Entra ID by placing every person, device and server in policy through attributes instead of OU placement. Its operator material already exists: the companion guide, the [implementation guide](implementation-guide.md) with its ten gates, the [project plan](../../attribute-driven-migration.md) and the narrated decks. Those tell an operator what to do and how to prove it was done. They don't teach anyone to build the software the migration runs on: the middleware between the HR system and Entra ID, the Graph clients, the checks that prove each gate, the rule library, the workflow extensions, and the pipelines that catch drift and hand evidence to the ISSO.
 
 This workbook is for the developers who build those pieces. It is code first. Each chapter starts from working code in the repository's [`examples`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples) folder, extends it where the chapter needs to, and adds tests. Each has a lab that runs on a laptop against fixtures with no tenant at all, then a short step in a test tenant. Each lists the Graph and Azure facts the code depends on (endpoints, the least-privileged permission, availability in the US Government clouds), footnoted to Microsoft Learn with the date the page was read, then the dangers and a checklist.
+
+## This workbook or the implementation guide? {#workbook-or-guide}
+
+The project has two long documents, side by side under Projects, and they do different jobs. [Attribute-Driven Migration: An Implementation Guide](implementation-guide.md) is for the people who **run** the migration. This workbook is for the people who **build the software** the migration runs on.
+
+| | The implementation guide | This developer workbook |
+|---|---|---|
+| Reader | Operators, migration leads and ISSOs | Developers and platform engineers |
+| Question it answers | What has to be true at each gate, and how do I prove it? | How do I build, test and ship the code that makes it true? |
+| Shape | Ten gates, from reading the OU tree (Gate 0) to keeping attributes true (Gate 9). Each has prerequisites, steps, a **Validate** step, rollback and evidence | Nine chapters, each starting from code in the `examples` folder, with a lab against fixtures, a test-tenant step, verified Graph and Azure facts, dangers and a checklist |
+| You finish with | A migrated estate and the evidence package for each gate | Middleware, Graph clients, validation checks, rule libraries, workflow extensions and drift pipelines, with passing tests |
+| Download | [attribute-driven-migration-implementation-guide.docx](../../../../downloads/attribute-driven-migration-implementation-guide.docx) | [attribute-driven-migration-code.zip](../../../../downloads/attribute-driven-migration-code.zip) |
+
+: The implementation guide and the developer workbook {.striped .hover}
+
+They meet at the **Validate** step. Each gate in the guide names a validation kit check, and [Chapter 03](03-writing-a-validation-kit-check.md) teaches how to write one. Read the guide first if you need to know what the migration has to achieve, and the workbook when you have to build part of it.
 
 ## The pieces and how they connect
 
