@@ -38,6 +38,15 @@ Four rules keep this from sprawling:
 3. **One deck series per guide**, at the level of its gates. A book may have its own executive and technical decks; a guide does not add further tiers.
 4. **New guides fill a real gap.** Before starting one, name the book chapters it builds on and the step-by-step work they don't already give.
 
+### An implementation guide is finished when it has all four pieces
+
+1. **The guide**, in gates, carrying the two layers below.
+2. **One narrated deck series** at the level of its gates.
+3. **A developer workbook** in `docs/project-plans/developer-workbooks/` (Book 19 for the Attribute-Driven Migration): chapters built on tested code in `examples/`, each with **Lab 1** on fixtures with no tenant, **Lab 2** in a test tenant or instance with a way to back it out, the verified facts, dangers and a checklist. It links to chapters other workbooks already teach instead of rebuilding them.
+4. **A training path** in `docs/training/`: modules in order, each pointing to the guide sections, decks and workbook labs it uses, with a short knowledge check. The only new writing is the path, the module framing and the questions.
+
+Until all four exist, the guide's "pieces" table names the missing ones as planned.
+
 ### What every implementation guide and training module must carry
 
 Microsoft Learn says how to do something on the current commercial service. It doesn't say what a federal agency must do and prove, or how to get there from where most agencies are. Every implementation guide, and every training module, carries both:
