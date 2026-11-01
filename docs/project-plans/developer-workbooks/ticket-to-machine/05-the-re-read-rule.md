@@ -11,7 +11,7 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
 review-status: approved
-reviewed-sha256: 05f25bc89298ac8066afabbaa81d9ba7e04050ddea689478f8fe3e939d092c1a
+reviewed-sha256: 50f596a8ebcc6ca7268938243ab3858a6524ac20fc868e57698c5830e34d28d3
 last-reviewed: 2026-11-01
 ---
 # Chapter 05 — The Re-read Rule
