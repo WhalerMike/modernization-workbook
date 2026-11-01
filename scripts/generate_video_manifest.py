@@ -10,6 +10,11 @@ them and writes:
                                           by the fmw-video shortcode
   docs/presentations/_video-library.md    the library table on the Watch page
 
+Each video also names the page it is built from (the first docs/ page its
+folder README links, or a PAGES entry) and every kit under examples/ that the
+deck or that page links, so the Watch page can send a viewer to the chapter
+and its code.
+
 The browser streams each MP4 from the release; the caption tracks are
 published with the site, because a <track> must come from the page's own
 origin. A video that is also on the workbook's YouTube channel carries its
@@ -32,6 +37,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import posixpath
 import re
 import struct
 import subprocess
@@ -68,6 +74,27 @@ TITLES = {
     "HR_Driven_Identity_Contractor_Source_AnyAgency_Narrated": "HR-Driven Identity: who is authoritative for a contractor",
 }
 
+# Videos whose folder README links an index (or no page) first: the page each one is built from.
+PAGES = {
+    "start-here": "docs/start-here.md",
+    "start-02-first-four-weeks": "docs/start-here.md",
+    "start-03-foundation-to-g1": "docs/start-here.md",
+    "research-cyberark-clm": "docs/books/guides/cyberark-certificate-lifecycle.md",
+    "research-infoblox-impl": "docs/books/guides/infoblox-nios-implementation.md",
+    "research-ddi-requirements": "docs/books/explainers/ddi-platform-requirements.md",
+    "research-device-naming": "docs/books/explainers/device-naming-after-ad.md",
+    "research-hr-identity-dns": "docs/books/explainers/hr-identity-dns.md",
+    "research-hybrid-credentials": "docs/books/explainers/hybrid-credentials.md",
+    "research-infoblox-ddi": "docs/evaluations/infoblox-ddi-federal.md",
+    "research-trinzic-multicloud": "docs/evaluations/trinzic-multicloud-ddi.md",
+}
+EXAMPLES = ROOT / "examples"
+# Kits the site rebuilds as a zip on every deploy (.github/workflows/quarto-pages.yml).
+KIT_ZIPS = {"start-kit": "start-kit.zip", "copilot-agent-pack": "copilot-agent-pack.zip",
+            "app-modernization": "app-modernization.zip", "ansible": "ansible-examples.zip",
+            "validation-kit": "validation-kit.zip"}
+KIT_REF = re.compile(r"examples/([A-Za-z0-9_-]+)")
+
 GROUPS = [
     ("start", "The Start series"),
     ("book", "Book presentations and briefings"),
@@ -101,6 +128,32 @@ def title_of(vid: str, folder: Path) -> str:
             if line.startswith("# "):
                 return line[2:].strip()
     raise SystemExit(f"video manifest: no title for {vid}: add a README heading or a TITLES entry")
+
+
+def page_of(folder: Path) -> str | None:
+    """The docs page a video is built from, as a path from the repository root."""
+    if folder.name in PAGES:
+        page = PAGES[folder.name]
+    else:
+        readme = folder / "README.md"
+        m = re.search(r"\]\(\.\./\.\./(docs/[^)#\s]+\.(?:md|qmd))", readme.read_text(encoding="utf-8")) if readme.exists() else None
+        if not m:
+            return None
+        page = m.group(1)
+    if not (ROOT / page).exists():
+        raise SystemExit(f"video manifest: {folder.name} is built from {page}, which doesn't exist")
+    return page
+
+
+def kits_of(folder: Path, page: str | None) -> list[dict]:
+    """Every kit under examples/ that the deck's sources or its page link, in order of first mention."""
+    text = "".join(f.read_text(encoding="utf-8") for f in sorted(folder.glob("*.js")))
+    text += "".join(f.read_text(encoding="utf-8") for f in sorted(folder.glob("*_Narration_Script.md")))
+    if page:
+        text += (ROOT / page).read_text(encoding="utf-8")
+    names = [n for n in dict.fromkeys(KIT_REF.findall(text)) if n != "third_party" and (EXAMPLES / n).is_dir()]
+    return [{"name": n, "url": f"https://github.com/{REPO}/tree/main/examples/{n}",
+             "zip": f"downloads/{KIT_ZIPS[n]}" if n in KIT_ZIPS else None} for n in names]
 
 
 def minutes_of(vtt: Path) -> int:
@@ -170,6 +223,7 @@ def collect() -> list[dict]:
         rel = folder.relative_to(ROOT).as_posix()
         deck = folder / f"{vid}.pptx"
         script = folder / f"{vid[: -len('_Narrated')]}_Narration_Script.md"
+        page = page_of(folder)
         videos.append(
             {
                 "id": vid,
@@ -181,6 +235,9 @@ def collect() -> list[dict]:
                 "vtt": f"{rel}/{vtt.name}",
                 "deck": deck_assets.url(f"{rel}/{deck.name}"),
                 "script": f"{GH}/{rel}/{script.name}" if script.exists() else None,
+                "page": page[: page.rindex(".")] + ".html" if page else None,
+                "source": page,
+                "kits": kits_of(folder, page),
                 "chapters": chapters_of(deck, script) if deck.exists() else cached.get(vid),
             }
         )
@@ -190,6 +247,11 @@ def collect() -> list[dict]:
     order = {g: i for i, (g, _) in enumerate(GROUPS)}
     videos.sort(key=lambda v: (order[v["group"]], v["id"] != "Start_Here_Narrated", v["title"].lower()))
     return videos
+
+
+# The link to a video's source page, by group.
+READ = {"start": "Read the page", "book": "Read the page", "research": "Read the page",
+        "developer": "Read the chapter", "training": "Read the module", "interview": "Read the page"}
 
 
 def library(videos: list[dict]) -> str:
@@ -203,7 +265,11 @@ def library(videos: list[dict]) -> str:
             continue
         lines += [f"### {heading}", "", "| Video | Length | Also |", "|---|---|---|"]
         for v in rows:
-            extra = [f"[MP4]({v['mp4']})"]
+            extra = []
+            if v["page"]:
+                extra.append(f"[{READ[v['group']]}]({posixpath.relpath(v['source'], 'docs/presentations')})")
+            extra += [f"[Kit: {k['name']}]({k['url']})" for k in v["kits"]]
+            extra.append(f"[MP4]({v['mp4']})")
             if v["youtube"]:
                 extra.append(f"[YouTube](https://www.youtube.com/watch?v={v['youtube']})")
             if v["deck"]:

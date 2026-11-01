@@ -17,6 +17,7 @@ fmw-eyebrow: "Videos"
   <div id="fmw-player-yt" hidden style="width:100%;max-width:960px;aspect-ratio:16/9;border:1px solid #dfe5ec;border-radius:6px;overflow:hidden;background:#000">
     <iframe id="fmw-player-frame" style="width:100%;height:100%;border:0" allow="encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
   </div>
+  <p id="fmw-player-source" hidden style="font-size:1rem;margin:.5rem 0 .25rem"></p>
   <p id="fmw-player-links" style="font-size:.9rem;color:#475569;margin-bottom:.25rem"></p>
   <details id="fmw-player-chapters" hidden style="font-size:.9rem"><summary></summary><ol style="margin:.25rem 0 0;padding-left:1.5rem"></ol></details>
 </div>
@@ -30,6 +31,8 @@ fmw-eyebrow: "Videos"
   var video = document.getElementById("fmw-player-video");
   var track = document.getElementById("fmw-player-track");
   var links = document.getElementById("fmw-player-links");
+  var source = document.getElementById("fmw-player-source");
+  var READ = { developer: "Read the chapter", training: "Read the module" };
   var yt = document.getElementById("fmw-player-yt");
   var frame = document.getElementById("fmw-player-frame");
   function link(href, text) {
@@ -61,6 +64,16 @@ fmw-eyebrow: "Videos"
         video.setAttribute("aria-label", label);
         video.src = v.mp4;
         track.src = "../../" + v.vtt;
+      }
+      // The page the video is built from, and every kit the deck or that page uses.
+      if (v.page || (v.kits && v.kits.length)) {
+        if (v.page) { var r = link("../../" + v.page, (READ[v.group] || "Read the page") + " this video is built from"); r.style.fontWeight = "600"; source.appendChild(r); }
+        (v.kits || []).forEach(function (k, i) {
+          source.appendChild(document.createTextNode(i === 0 && !v.page ? "Kit: " : (i === 0 ? " · Kit: " : " · ")));
+          source.appendChild(link(k.url, "examples/" + k.name));
+          if (k.zip) { source.appendChild(document.createTextNode(" (")); source.appendChild(link("../../" + k.zip, "zip")); source.appendChild(document.createTextNode(")")); }
+        });
+        source.hidden = false;
       }
       links.textContent = v.minutes + " minutes · captions from the player's CC button · ";
       links.appendChild(link(v.mp4, "Download MP4"));
