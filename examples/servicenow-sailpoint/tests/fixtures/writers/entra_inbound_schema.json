@@ -1,0 +1,28 @@
+{
+  "_comment": "Fictional extract of a synchronizationSchema for an HR-to-Entra inbound provisioning job, in the shape Learn documents (synchronizationRules, objectMappings, attributeMappings with targetAttributeName and flowType). Directory names and mappings are invented.",
+  "directories": [],
+  "synchronizationRules": [
+    {
+      "name": "HR_USER_TO_ENTRA_USER",
+      "sourceDirectoryName": "Contoso HR",
+      "targetDirectoryName": "Azure Active Directory",
+      "objectMappings": [
+        {
+          "enabled": true,
+          "sourceObjectName": "Worker",
+          "targetObjectName": "User",
+          "attributeMappings": [
+            {"targetAttributeName": "employeeId", "flowType": "Always", "source": {"name": "WorkerID", "type": "Attribute"}},
+            {"targetAttributeName": "accountEnabled", "flowType": "Always", "source": {"name": "Active", "type": "Attribute"}},
+            {"targetAttributeName": "department", "flowType": "Always", "source": {"name": "Department", "type": "Attribute"}},
+            {"targetAttributeName": "jobTitle", "flowType": "Always", "source": {"name": "Title", "type": "Attribute"}},
+            {"targetAttributeName": "manager", "flowType": "Always", "source": {"name": "ManagerID", "type": "Attribute"}},
+            {"targetAttributeName": "displayName", "flowType": "Always", "source": {"name": "PreferredName", "type": "Attribute"}},
+            {"targetAttributeName": "userPrincipalName", "flowType": "ObjectAddOnly", "source": {"name": "Join", "type": "Function"}},
+            {"targetAttributeName": "mailNickname", "flowType": "ObjectAddOnly", "source": {"name": "WorkerID", "type": "Attribute"}}
+          ]
+        }
+      ]
+    }
+  ]
+}

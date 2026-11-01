@@ -1,0 +1,15 @@
+[
+  {"kind": "finding", "source": "drift-reconciliation", "drift_class": "stale_access", "system": "entra_user",
+   "subject_id": "00000000-0000-0000-0000-000000001002", "intended_state": {"accountEnabled": false},
+   "origin": {"finding_id": "sample-1-good"}},
+  {"kind": "finding", "source": "drift-reconciliation", "drift_class": "stale_account", "system": "entra_user",
+   "subject_id": "00000000-0000-0000-0000-000000001002", "origin": {"finding_id": "sample-2-typo"}},
+  {"kind": "finding", "source": "sailpoint-isc", "drift_class": "unauthorized_write", "system": "isc_account",
+   "account_id": "2c91800000000000000000000a0rph1", "intended_state": {"attributes": {}, "entitlements_absent": []},
+   "origin": {"finding_id": "sample-3-empty-intent"}},
+  {"kind": "finding", "source": "sailpoint-isc", "drift_class": "attribute_drift", "severity": "P5",
+   "identity_id": "2c9180000000000000000000000e1004", "origin": {"finding_id": "sample-4-bad-severity"}},
+  {"kind": "closure_signal", "source": "sailpoint-isc", "recipient_id": "2c9180000000000000000000000e1001",
+   "account_requests": [{"source": {"id": "src-ad"}, "provisioningResult": "SUCCESS"}],
+   "origin": {"finding_id": "sample-5-closure"}}
+]

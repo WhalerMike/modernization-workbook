@@ -98,6 +98,12 @@ bundles:
     image_dir: docs/images/diagrams/developer-workbooks/non-person-identity
     warn_unlisted: ["*.md"]
     pages: [index.md, "[0-9][0-9]-*.md"]
+  - output: building-ticket-to-machine-bundle.docx
+    title: "Building Ticket-to-Machine"
+    subtitle: "A developer workbook for the Ticket-to-Machine loop on ServiceNow and SailPoint — Federal Modernization Workbook, combined edition"
+    root: docs/project-plans/developer-workbooks/ticket-to-machine
+    warn_unlisted: ["*.md"]
+    pages: [index.md, "[0-9][0-9]-*.md"]
   - output: b18-application-modernization-bundle.docx
     title: "Book 18 — Application Modernization"
     subtitle: "A portfolio, not a rewrite — Federal Modernization Workbook, combined edition"

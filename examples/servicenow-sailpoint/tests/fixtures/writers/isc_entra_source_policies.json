@@ -1,0 +1,5 @@
+[
+  {"_comment": "Fictional provisioning policies for the ISC source that writes to Entra ID, in the shape of SailPoint's ProvisioningPolicyDto (name, usageType, fields[].name). Field names are invented; map them to Entra attribute names with writer_check.py --alias.", "name": "Create Account", "usageType": "CREATE", "fields": [{"name": "userPrincipalName"}, {"name": "displayName"}, {"name": "mailNickname"}, {"name": "usageLocation"}]},
+  {"name": "Update Account", "usageType": "UPDATE", "fields": [{"name": "department"}, {"name": "title"}, {"name": "officeLocation"}]},
+  {"name": "Disable Account", "usageType": "DISABLE", "fields": []}
+]

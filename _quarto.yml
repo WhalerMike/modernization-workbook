@@ -159,6 +159,8 @@ website:
             text: "Building Privileged Access"
           - href: docs/project-plans/developer-workbooks/non-person-identity/index.md
             text: "Building Non-Person Identity"
+          - href: docs/project-plans/developer-workbooks/ticket-to-machine/index.md
+            text: "Building Ticket-to-Machine"
       - href: docs/evaluations/index.md
         text: "Evaluations"
       - href: docs/training/index.md
@@ -238,6 +240,10 @@ website:
               href: docs/project-plans/developer-workbooks/non-person-identity/index.md
               contents:
                 - auto: "docs/project-plans/developer-workbooks/non-person-identity/*-*.md"
+            - section: "Building Ticket-to-Machine"
+              href: docs/project-plans/developer-workbooks/ticket-to-machine/index.md
+              contents:
+                - auto: "docs/project-plans/developer-workbooks/ticket-to-machine/*-*.md"
     - id: books
       title: "The Workbook Books"
       style: docked

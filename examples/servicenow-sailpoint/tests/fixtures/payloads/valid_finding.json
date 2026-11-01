@@ -1,0 +1,4 @@
+{"kind": "finding", "source": "drift-reconciliation", "drift_class": "stale_access", "severity": "P2", "system": "entra_user",
+ "subject_id": "00000000-0000-0000-0000-000000001002", "employee_id": "E1002", "attribute": "accountEnabled",
+ "expected_value": false, "observed_value": true, "intended_state": {"accountEnabled": false},
+ "origin": {"type": "drift-reconciliation", "finding_id": "c687d8f1a72b2a3f", "checker": "identity_drift.py/0.1.0-pass1"}}

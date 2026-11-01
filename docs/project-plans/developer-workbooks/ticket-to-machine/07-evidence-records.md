@@ -1,0 +1,187 @@
+---
+title: "Chapter 07 — Evidence Records for Book 13 and the ISSO"
+description: "The ServiceNow half of Pass 2's evidence export: read closed and cancelled identity findings and write one record per finding in Book 13's evidence shape (origin, owner and clock, approval, executing identity, what ran, result, closure), with the Pass 1 gaps written as null and the reason, never invented. Check each record's evidence against its hash, its closure against the business rule, and its finish against its response window, and package the period with a manifest and a hash chain an ISSO can verify; with labs against fixtures and a ServiceNow developer instance."
+doc-type: workbook-chapter
+audience: [Technical]
+family: dw-ticket-to-machine
+part: How
+series-order: 7
+status: draft
+lifecycle: active
+tiers_adopted: []
+lifecycle_review: 2027-05-01
+review-status: pending
+---
+# Chapter 07 — Evidence Records for Book 13 and the ISSO
+
+*The ISSO doesn't need the tracker. The ISSO needs one record per finding, in one shape, that nobody could have edited afterwards without it showing.*
+
+::: {.callout-note}
+## In this chapter
+The loop's fifth clause, "emits verified, secured evidence automatically," for identity findings. `evidence_export.py` reads closed and cancelled findings from ServiceNow, writes each as a record in [Book 13's evidence shape](../../../books/b13-governance/appendix-b-ticket-to-machine-reference.md#the-evidence-record), checks what an assessor would check, and packages the period with a SHA-256 per file and a hash chain across records and periods, with a verifier the ISSO can run. It builds the ServiceNow half of the kit's planned Pass 2 evidence export; the SailPoint events half needs a tenant and isn't built yet. Lab 1 runs on a laptop; Lab 2 exports from a developer instance.
+:::
+
+## Goal and audience
+
+**Goal.** By the end of this chapter you can produce the period's evidence package for identity findings, say what each record proves and what it doesn't yet, and verify a package you were handed.
+
+**Audience.** Developers who build the evidence pipeline, and the ISSO and assessors who read its output. You should read Python and JSON. You don't need an instance until Lab 2.
+
+## The code: `examples/servicenow-sailpoint`
+
+### What exists
+
+[Chapter 05](05-the-re-read-rule.md)'s re-read client writes the evidence onto each record it closes: `u_evidence` (the query, the check time, the intended state, a SHA-256 of the response, the differences, the checker and its identity, as canonical JSON), `u_evidence_hash` (the SHA-256 of that JSON), `u_verified_at` and a close note, plus a JSON attachment. The business rule allows a close only from the verifier with fresh evidence, or a cancellation with a note under the declared-exception lane. The implementation example maps the record's fields to Book 13's in its [evidence-record table](../../../books/guides/snow-sailpoint-integration-kit.md#the-identity-finding-and-book-13s-evidence-record), and lists the evidence export among the [items planned for Pass 2](../../../books/guides/snow-sailpoint-integration-kit.md#planned-for-pass-2). Nothing read the records back out.
+
+### What this chapter adds
+
+`clients/python/evidence_export.py`:
+
+- **One record per finding,** schema `book13-evidence-record/identity-finding/v1`, with Book 13's seven fields. Approval, executing identity and what ran are written as `null` with the reason: Pass 1 doesn't actuate, and the change or catalog record that would hold them is a later pass. The record says so rather than leaving the fields out or filling them.
+- **Four checks per record**, each reported by name: the evidence still hashes to `u_evidence_hash` (an edit after closure, or a value cut short by the 4,000-character field, fails); a closed record carries evidence at all (a close that bypassed the business rule fails); the evidence says the intended state matched; and the record finished inside its response window, verified at or before its due date.
+- **The package**: `records.jsonl`, each line with the SHA-256 of the line before it, so a removed or reordered record breaks the chain; `summary.json`, with window adherence, the count of declared exceptions and the records with problems; and `manifest.json`, with a SHA-256 per file and the chain head. `--previous-manifest` continues last period's chain. `--generated-at` fixes the timestamp, so the same records give the same bytes.
+- **A verifier.** `--verify-dir` recomputes every file's hash and walks the chain. It is the check an ISSO runs on a package they receive.
+- **A live read** through the Table API (`state` closed or cancelled, updated since `--since`), declared in [Chapter 02](02-servicenow-client-and-least-privilege.md)'s call list under its own read-only role, `x_example_idkit.evidence_reader`.
+
+Five fictional records in `tests/fixtures/evidence/closed_records.json` cover the cases: one closed in its window, one closed late, one whose evidence was edited after it closed, one cancelled as a declared exception, and one closed with no evidence at all.
+
+Window adherence is measured as Book 13 and [Book 12, Chapter 12](../../../books/b12-security-operations/12-evidence-metrics-and-continuous-monitoring.md#the-metric-set) define it: closures inside the window over closures judged, not a ratio of open findings that improves as new ones arrive.
+
+### The tests
+
+`tests/python/test_evidence_export.py`, 8 tests: the seven fields and the null later-pass fields, the late, tampered and unevidenced closures, a truncated `u_evidence`, the package and its verification, tampering detected, the chain continued across periods, reproducible bytes, and evidence written by the re-read client verifying.
+
+::: {.callout-important}
+## Illustrative code
+The commands below export fictional records. They show the record shape, the checks and the chain, not that a ServiceNow instance returns these fields in this format. The package is tamper-evident, not signed: anyone who can rewrite every file and the manifest can rewrite the chain. Signing, and where the package is stored, are the program's to decide (see dangers).
+:::
+
+## Lab 1: fixtures, no tenant
+
+Work in `examples/servicenow-sailpoint`, with Python 3.10 or later and `pytest`.
+
+1. **Run this chapter's tests:**
+
+   ```bash
+   python -m pytest tests/python/test_evidence_export.py -q
+   ```
+
+   `8 passed`.
+
+2. **Export October's closed findings:**
+
+   ```bash
+   python clients/python/evidence_export.py --records-json tests/fixtures/evidence/closed_records.json --out-dir out/evidence --period 2026-10 --generated-at 2026-11-01T12:00:00Z
+   ```
+
+   ```text
+   5 evidence records: 4 closed on a re-read, 1 declared exception
+   Window adherence: 2 of 3 closed inside the window
+     IDF0000902: closed after its response window
+     IDF0000903: evidence doesn't hash to u_evidence_hash: edited after closure, or cut short
+     IDF0000905: closed without re-read evidence
+   Chain head 144f5e8494281f83598d2fae5eacac12b9b271c90372c0e503aafc2bd4cf0623; written to out/evidence
+   ```
+
+   The command exits 1, because three records have problems: the run says so instead of producing a clean-looking package. IDF0000905 was closed with a note that says "done," the closure by assertion Book 13 calls prose, not evidence. Open the first line of `out/evidence/records.jsonl`: `approval`, `executing_identity` and `what_ran` are `null`, each with its reason.
+
+3. **Verify the package as the ISSO would:**
+
+   ```bash
+   python clients/python/evidence_export.py --verify-dir out/evidence
+   ```
+
+   `Package holds: every file matches the manifest and the chain is unbroken.`
+
+4. **Start November's chain from October's head:**
+
+   ```bash
+   python clients/python/evidence_export.py --records-json tests/fixtures/evidence/closed_records.json --out-dir out/evidence-2026-11 --period 2026-11 --previous-manifest out/evidence/manifest.json --generated-at 2026-12-01T12:00:00Z
+   ```
+
+   The last line reports chain head `afa59e0f3038613ba36eb4a748da38bb3e76e8427d04038162d08fbdcc167bd1`, and November's `manifest.json` has `chain_previous` set to October's head, `144f5e84...`. (The lab reuses October's records; a real November has its own.)
+
+5. **Remove one record from October's package, and verify again:**
+
+   ```bash
+   python -c "p='out/evidence/records.jsonl'; l=open(p).readlines(); del l[1]; open(p,'w').writelines(l)"
+   python clients/python/evidence_export.py --verify-dir out/evidence
+   ```
+
+   ```text
+     records.jsonl: SHA-256 doesn't match the manifest
+     line 2 (IDF0000903): prev_sha256 doesn't match the line before
+   Package does not hold: 2 problem(s).
+   ```
+
+   Delete `out` when you're done.
+
+## Lab 2: a ServiceNow developer instance
+
+Not run by the authors. Use the developer instance from the earlier chapters, with at least one finding closed by [Chapter 05](05-the-re-read-rule.md)'s Lab 2.
+
+1. **Create the evidence reader**: the role `x_example_idkit.evidence_reader` with read only on `u_identity_finding`, an integration user and an OAuth client for it, as in Chapter 02. Check it with `kit_calls.py --task evidence --system servicenow --granted "x_example_idkit.evidence_reader"`.
+2. **Export live:** with the reader's token in `SN_ACCESS_TOKEN` and the instance in `SN_INSTANCE`, run `python clients/python/evidence_export.py --since <date of your test closure> --out-dir out/evidence-live --period lab`.[^ttm07-table] Expect each closed test finding with `evidence_intact` true and no problems.
+3. **Check the date format.** The Table API returns date and time fields in the instance's internal format; confirm `due` and `finished` in the records are the times you expect, in UTC (research gaps, row 61).
+4. **Verify the package** with `--verify-dir out/evidence-live`.
+5. **Back it out.** Delete `out/evidence-live`, and the evidence reader's OAuth client, user and role.
+
+## The verified facts
+
+| Item | Value | Source |
+|---|---|---|
+| Table API read | `GET /api/now/table/{tableName}` with `sysparm_query` (encoded, `^OR` for alternatives, `ORDERBY`), `sysparm_fields`, `sysparm_limit`, `sysparm_offset`; the caller needs roles that allow access to the table | [^ttm07-table] |
+| ServiceNow Government Community Cloud | FedRAMP Certified, High, JAB | [^ttm07-fedramp] |
+| SailPoint Search `events` index | Exists in the v3 index list, for the SailPoint half of the export when it is built | [^ttm07-index] |
+
+The record shape, the window and the lanes are Book 13's (program design); the hash chain and the package are *design guidance*, the same pattern the other developer workbooks use for their evidence runs.
+
+### What couldn't be verified
+
+- **The format of date and time values** the Table API returns for `due_date`, `u_verified_at` and `closed_at` on a given instance, and their time zone. The export parses both `YYYY-MM-DD HH:MM:SS` (as UTC) and ISO 8601 (research gaps, row 61).
+- **What SailPoint keeps in the `events` index, and for how long.** The example guide lists event retention as unverified, which is why the SailPoint half of the export waits (research gaps, row 62).
+
+## Federal requirements and evidence
+
+This chapter's output is the evidence. What each part proves, and for whom:
+
+| What the output proves | Requirement it supports | Who keeps it |
+|---|---|---|
+| Each identity finding has one record: its origin, owner, clock, intended state, re-read and closure | NIST SP 800-53 CM-3 (retained records of changes) and CA-7 at Moderate;[^ttm07-moderate] Book 13's evidence record | The ISSO, as part of the continuous-monitoring evidence for the period |
+| Records weren't changed after closure, and none was removed from the period | AU-9 (protection of audit information) at Moderate;[^ttm07-moderate] the integrity half of Book 13's "verified, secured evidence" | The manifest and the chain, verified with `--verify-dir` |
+| Closures happened inside the program's windows, and late ones are named | Book 13's window adherence; CA-7's monitoring results | `summary.json`, reviewed by the governance board |
+| Exceptions are declared, with a note | Book 13's declared-exception lane; the POA&M item it needs | The cancelled records, and the exception register |
+| What isn't evidenced yet is stated | Honest scope for the assessor: no approval, executing identity or run log until actuation is built | The null fields and their reason |
+
+AU-10 (non-repudiation) and CM-5(1), which Book 13 maps to the loop, aren't in the Moderate baseline;[^ttm07-moderate] at Moderate the chain supports AU-9's integrity, and signing the package is a further step. The control mapping is Book 13's [Appendix A](../../../books/b13-governance/appendix-a-requirements-mapping.md), and the federal sources are in the [federal framework crosswalk](../../../reference/federal-framework-crosswalk.md).
+
+## Dangers
+
+| Danger | What happens | The guard |
+|---|---|---|
+| A record edited after closure | The evidence says something the re-read didn't | The evidence hash is recomputed; a mismatch is reported |
+| `u_evidence` cut short by the field length | The evidence can't be parsed, or hashes wrong | Reported as invalid JSON; the attachment holds the full copy |
+| A close that bypassed the business rule | A record closed with no evidence passes as closed | "Closed without re-read evidence" |
+| A record deleted from the period | The package looks complete | The chain breaks; `--verify-dir` reports it |
+| A package rewritten end to end | The chain is recomputed and holds | Keep each period's manifest where the exporter can't write, and sign it if the program requires (*design guidance*) |
+| Fields filled to look complete | Approval or execution claimed that never happened | Later-pass fields are `null` with the reason, and tests pin it |
+| The export runs with the verifier's role | It could close findings | Its own read-only role; `kit_calls.py --granted` |
+
+## Checklist
+
+- [ ] The export runs on a schedule under `x_example_idkit.evidence_reader`, and holds nothing more.
+- [ ] Each period's package passes `--verify-dir`, and its chain continues from the last period's manifest.
+- [ ] Every reported problem (late, tampered, unevidenced) has gone to its owner, and none is in the package unexplained.
+- [ ] Each period's manifest is stored where the exporter can't overwrite it.
+- [ ] `summary.json`'s window adherence is reviewed with Book 13's other measures.
+- [ ] `test_evidence_export.py` passes.
+
+::: {.callout-tip}
+## Continue the book
+[← Previous: Chapter 06 — Drift Reconciliation](06-drift-reconciliation.md) · [Workbook index](index.md) · [Next: Chapter 08 — One Writer per Attribute →](08-one-writer-per-attribute.md)
+:::
+
+[^ttm07-table]: ServiceNow, "Table API" (Zurich API reference), <https://www.servicenow.com/docs/bundle/zurich-api-reference/page/integrate/inbound-rest/concept/c_TableAPI.html> (read November 1, 2026).
+[^ttm07-fedramp]: FedRAMP Marketplace data, <https://www.fedramp.gov/marketplace/products.json> (last change November 1, 2026): ServiceNow Government Community Cloud, F1305072116 (read November 1, 2026).
+[^ttm07-index]: SailPoint, Identity Security Cloud OpenAPI specification, v3, search `Index` enumeration, <https://github.com/sailpoint-oss/api-specs/blob/main/idn/v3/schemas/search/Index.yaml> (read November 1, 2026).
+[^ttm07-moderate]: National Institute of Standards and Technology, SP 800-53B Moderate baseline, release 5.2.0 OSCAL profile (includes AU-9, CA-7 and CM-3; doesn't include AU-10 or CM-5(1)), <https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_MODERATE-baseline_profile.json> (read November 1, 2026).

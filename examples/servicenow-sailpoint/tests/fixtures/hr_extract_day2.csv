@@ -1,0 +1,8 @@
+employeeId,status,department,managerEmployeeId,displayName,email
+E1000,Active,Finance,,Bob Example,bob@contoso.example
+E1001,Active,Finance,E1000,Alice Example,alice@contoso.example
+E1002,Terminated,Sales,E1000,Carol Example,carol@contoso.example
+E1003,Active,Marketing,E1000,Dan Example,dan@contoso.example
+E1004,Active,Finance,E1000,Erin Example,erin@contoso.example
+E1005,Active,Sales,E1000,Frank Example,frank@contoso.example
+E1006,Terminated,IT,E1000,Grace Example,grace@contoso.example

@@ -1,0 +1,185 @@
+---
+title: "Chapter 04 — Drift to a Typed Task"
+description: "Build 1 of the kit: SailPoint event triggers start ISC workflows whose HTTP Request step posts a typed identity finding to the ServiceNow Scripted REST resource. Resolve each workflow's request body against a sample trigger input on a laptop, derive the intended state the script will store, check it against the data contract, and list the input fields the workflow drops. Two fixes follow from it: multivalued attribute changes are now reverted like any other, and the attribute is part of the de-duplication key; with labs against fixtures and a SailPoint sandbox."
+doc-type: workbook-chapter
+audience: [Technical]
+family: dw-ticket-to-machine
+part: How
+series-order: 4
+status: draft
+lifecycle: active
+tiers_adopted: []
+lifecycle_review: 2027-05-01
+review-status: pending
+---
+# Chapter 04 — Drift to a Typed Task
+
+*A workflow that posts a finding is easy to build and hard to see. Run its body against a real-shaped event before it runs against a real one.*
+
+::: {.callout-note}
+## In this chapter
+The kit's Build 1, the loop's steps 2 and 3: an ISC event becomes a typed finding in ServiceNow. You can't run an ISC workflow on a laptop, but you can resolve its HTTP Request body against a saved trigger input, the way its `.$` keys say, and see the exact payload ServiceNow would get. `workflow_payload.py` does that, derives the intended state, checks it against [Chapter 01](01-the-loop-and-the-typed-task.md)'s contract, and lists the input fields the workflow doesn't send. Running it found two gaps, both fixed here. Lab 1 runs on a laptop; Lab 2 creates one workflow in a SailPoint sandbox tenant.
+:::
+
+## Goal and audience
+
+**Goal.** By the end of this chapter you can say, for each of the three ISC workflows, what payload a given event produces, what intended state the finding will carry, and which event fields are dropped, and you can test a change to a workflow file before importing it.
+
+**Audience.** Identity engineers who build ISC workflows and the developers who own the Scripted REST resource. You should read JSON and a little JavaScript. You don't need a tenant until Lab 2.
+
+## The code: `examples/servicenow-sailpoint`
+
+### What exists
+
+The implementation example's [Build 1](../../../books/guides/snow-sailpoint-integration-kit.md#build-1-drift-to-a-typed-task) describes the design; the files are:
+
+- **`sailpoint/workflows/drift-to-servicenow.json`**: three workflows, one per trigger: Native Change Account Updated (an unauthorized write, on the account), Identity Attributes Changed (attribute drift, on the identity) and Provisioning Action Completed (a closure signal, never a closure). Each is a name, an owner, a trigger and a definition whose one action is an HTTP Request step. Each is created disabled, because SailPoint workflows can't be created enabled.[^ttm04-wfbody]
+- **`servicenow/scripted-rest-identity-finding.js`**: validates the payload, sets priority and due date, de-duplicates, derives the intended state when the payload has none (a native change reverted, an attribute change kept), and moves matching findings to *Awaiting verification* on a successful provisioning signal.
+- **`tests/python/test_contract.py`**: the workflow file's shape, no secrets in it, and every field its bodies send read by the script.
+
+What none of it showed was the payload itself. The body's `.$` keys (`"account_id.$": "$.account.id"`) are resolved by SailPoint at run time, so the only way to see the result was to run the workflow in a tenant.
+
+### What this chapter adds
+
+**`clients/python/workflow_payload.py`** picks the workflow for a trigger, resolves its body against a saved trigger input (simple paths only, `$.a.b`; anything else is refused, because this isn't a JSONPath engine), derives the intended state exactly as the script does, checks the payload with `finding_contract.validate`, and lists the input's top-level fields the body doesn't read.
+
+**Three fictional trigger inputs** in `tests/fixtures/events/`, in the shapes SailPoint publishes for each trigger's example input:[^ttm04-ncd][^ttm04-iac][^ttm04-prov] a native change to Alice's Active Directory account (title changed, a group added, a proxy address added), a department change on Erin's identity, and a successful provisioning action for Alice.
+
+**Two fixes,** each in the workflow or script, the Python mirror and a test:
+
+1. **Multivalued attributes.** SailPoint's Native Change Account Updated input has three kinds of change: `singleValueAttributeChanges`, `entitlementChanges` and `multiValueAttributeChanges` (each with `name`, `addedValues` and `removedValues`).[^ttm04-ncd] The workflow sent the first two. A native change only to a multivalued attribute, a proxy address added out of band, say, produced an intended state with nothing in it, and a re-read would have found nothing to disagree with. The workflow now sends `multi_value_changes`, and the script reverts it: added values must be absent, removed values present.
+2. **The de-duplication key.** The script de-duplicated on source, subject and class. Two attributes drifting on one user, department and manager, became one record, and the second finding's intended state was lost, so the re-read checked only the first. The key now adds the attribute when the payload names one. The README and the implementation example say so.
+
+### The tests
+
+`tests/python/test_workflow_payload.py`, 7 tests: each workflow against its event, the native change reverting all three kinds of change, the vacuous intended state the old workflow produced, the attribute change keeping the new value with the attribute in the key, the closure signal, refused paths and an unknown trigger. Two new node:test tests run the script itself: two attributes on one subject are two findings, and multivalued changes become entitlements absent and present. `test_contract.py` now also requires the script to read `multi_value_changes`.
+
+::: {.callout-important}
+## Illustrative code
+The commands below resolve the workflow file against fictional inputs. They show what the body says to send, not what SailPoint's HTTP Request step sends: whether the step resolves `.$` keys inside its JSON body, and whether the input sits at `$` or `$.trigger`, are on the kit README's verify list. Lab 2 settles both for your tenant.
+:::
+
+## Lab 1: fixtures, no tenant
+
+Work in `examples/servicenow-sailpoint`, with Python 3.10 or later and Node.js 18 or later.
+
+1. **Run this chapter's tests:**
+
+   ```bash
+   python -m pytest tests/python/test_workflow_payload.py tests/python/test_contract.py -q
+   ```
+
+   `11 passed`.
+
+2. **See what the native-change workflow posts:**
+
+   ```bash
+   python clients/python/workflow_payload.py --trigger idn:native-change-account-updated --event tests/fixtures/events/native-change-account-updated.json
+   ```
+
+   ```text
+   Workflow: Drift to ServiceNow - native change (provenance)
+   kind finding, drift_class unauthorized_write, system isc_account
+   intended_state {"attributes": {"title": "Analyst"}, "entitlements_absent": [{"attribute": "proxyAddresses", "value": "smtp:ap-approver@contoso.example"}, {"attribute": "memberOf", "value": "CN=Payables Approvers,OU=Groups,DC=contoso,DC=example"}], "entitlements_present": []}
+   contract: accepted: P2, priority 2, key sailpoint-isc|2c91800000000000000000000a1001ad|unauthorized_write
+   input fields not sent: eventType
+   ```
+
+   The title goes back to Analyst, the group and the proxy address must be gone. `eventType` is always `ACCOUNT_UPDATED` for this trigger, so dropping it loses nothing.[^ttm04-ncd] Before the fix, the proxy address wasn't in the intended state and `multiValueAttributeChanges` was in the last line.
+
+3. **See the mover's finding:**
+
+   ```bash
+   python clients/python/workflow_payload.py --trigger idn:identity-attributes-changed --event tests/fixtures/events/identity-attributes-changed.json
+   ```
+
+   `intended_state {"attributes": {"department": "Finance"}}`, `contract: accepted: P3, priority 3, key sailpoint-isc|2c9180000000000000000000000e1004|attribute_drift|department`, and `input fields not sent: none`. The key ends in the attribute.
+
+4. **See the closure signal:**
+
+   ```bash
+   python clients/python/workflow_payload.py --trigger idn:post-provisioning --event tests/fixtures/events/provisioning-completed.json
+   ```
+
+   `kind closure_signal`, `contract: accepted`, and `input fields not sent: action, requester, sources, warnings`. A signal moves matching findings to *Awaiting verification*; it never closes one.
+
+5. **Run the two new script tests:**
+
+   ```bash
+   node --test --test-name-pattern="attribute is in the key|multivalued" tests/servicenow/servicenow_scripts.test.js
+   ```
+
+   `tests 2`, `pass 2`, `fail 0`.
+
+## Lab 2: a SailPoint sandbox and a ServiceNow developer instance
+
+Not run by the authors. Use a SailPoint sandbox tenant and the developer instance from Chapters 01 and 02, never production. The ServiceNow endpoint has to be reachable from SailPoint's cloud, because ISC workflows call out from it (*inference*; verify list, item 18).
+
+1. **Turn on Native Change Detection** on one test source, monitoring account updates and at least one attribute. The trigger fires only when that is on, account updates are monitored and a monitored attribute changed.[^ttm04-ncd]
+2. **Build one HTTP Request step by hand** in the workflow editor, export the workflow, and compare its attribute names with the kit's file; correct the file if they differ (verify list, item 2). Use the workflow client from [Chapter 03](03-sailpoint-client-and-scopes.md), with `sp:workflow:manage`.[^ttm04-workflows]
+3. **Point the step at a capture endpoint first,** or at the developer instance's Scripted REST resource with a test ACL, enable the workflow, and change the monitored attribute on a test account directly on the source. Save the trigger input from the workflow's execution history and run it through `workflow_payload.py`; the payload ServiceNow received must match the tool's output. If it doesn't, the `.$` keys or the input's root differ (verify list, item 3).
+4. **Repeat the change.** The second event should de-duplicate (`200`, `deduplicated: true`) and add one to the record's occurrences.
+5. **Back it out.** Disable and delete the workflow, turn Native Change Detection off on the test source if you turned it on for the lab, put the test account's attribute back, delete the findings from the developer instance, and remove the workflow client.
+
+## The verified facts
+
+| Item | Value | Source |
+|---|---|---|
+| Native Change Account Updated | Fire-and-forget; fires when an aggregation finds an account updated directly on the source, with Native Change Detection on, account updates monitored and a monitored attribute changed; input has `account`, `identity`, `source`, `accountChangeTypes`, `singleValueAttributeChanges`, `multiValueAttributeChanges`, `entitlementChanges`, `eventType` (`ACCOUNT_UPDATED`) | [^ttm04-ncd] |
+| Its trigger ID | Not in the published trigger table; the page names the event type only | [^ttm04-ncd] [^ttm04-triggers] |
+| Identity Attributes Changed | `idn:identity-attributes-changed`, fire-and-forget; input `identity.id`, `identity.name`, `changes[].attribute`, `oldValue`, `newValue` | [^ttm04-triggers] [^ttm04-iac] |
+| Provisioning Action Completed | `idn:post-provisioning`, fire-and-forget; input includes `trackingNumber`, `recipient`, `accountRequests` (`source`, `accountId`, `accountOperation`, `provisioningResult`, `provisioningTarget`, `ticketId`, `attributeRequests`), `errors` | [^ttm04-triggers] [^ttm04-prov] |
+| Workflow body | `name`, `owner`, `description`, `definition`, `enabled` (default false; can't be created enabled), `trigger` | [^ttm04-wfbody] |
+| Creating a workflow | `sp:workflow:manage` | [^ttm04-workflows] |
+| Scripted REST resource | `REST_Endpoint` ACL; `web_service_admin` to create | [^ttm04-srapi] |
+
+### What couldn't be verified
+
+- **The Native Change Account Updated trigger ID.** The kit uses `idn:native-change-account-updated`; SailPoint's trigger table doesn't list it. Verify list, item 1.
+- **The HTTP Request step's JSON attribute names, and whether it resolves `.$` keys in its body.** SailPoint documents the step's fields in the editor, not its JSON. Verify list, items 2 and 3.
+- **The shape of each item in `entitlementChanges[].added`.** The script and the fixture read `value`; the trigger page lists the fields to the level of `added` and `removed` (research gaps, row 31).
+- **`provisioningResult` values beyond `SUCCESS`.** Verify list, item 5.
+
+## Federal requirements and evidence
+
+| What the output proves | Requirement it supports | Who keeps it |
+|---|---|---|
+| A write made outside the governed process is detected and raised as an owned, clocked finding whose intended state is the revert | NIST SP 800-53 CM-3 and SI-4 (system monitoring) at Moderate;[^ttm04-moderate] SP 800-37's call to monitor for unauthorized changes, as [Book 13, Chapter 10](../../../books/b13-governance/10-ticket-to-machine.md#native-tools-change-state-they-dont-close-findings) cites | The ServiceNow finding, with `u_origin` and `u_raw_event` |
+| Each drifting attribute is its own piece of work with its own intended state | CM-3; Book 13's evidence record, one result per finding | The finding records; `test_workflow_payload.py` and the node tests |
+| A workflow change is tested before it runs | CM-3 (change control), SA-11 (developer testing) at Moderate[^ttm04-moderate] | The pull request and its test run |
+
+Treating a native change as Book 03's unauthorized write is the program's *(inference)*, as the example guide says. Provenance drift on a claim in active use is P1 in [Book 13, Appendix B](../../../books/b13-governance/appendix-b-ticket-to-machine-reference.md#drift-classes-and-their-default-lanes); the workflow can't know whether a claim is in use, so a person or a rule raises it to P1.
+
+## Dangers
+
+| Danger | What happens | The guard |
+|---|---|---|
+| An event field the workflow doesn't send | Part of the change is never reverted, and the re-read passes | `workflow_payload.py` lists unmapped fields; the multivalued fix and its tests |
+| Two drifts on one subject folded into one record | The second intended state is lost and never re-read | The attribute in the de-duplication key; a node test |
+| A workflow imported enabled, or edited in the editor and not in the file | It runs untested, or the repository stops describing what runs | Workflows can't be created enabled; export and diff after any editor change |
+| Credentials in the workflow file | They reach the repository | `REPLACE-IN-THE-UI` placeholders; `test_contract.py` fails on a secret |
+| A closure signal treated as closure | A provisioning success closes the finding without a re-read | The script only moves findings to *Awaiting verification*; the business rule ([Chapter 05](05-the-re-read-rule.md)) blocks any other close |
+| An unreachable or unauthenticated endpoint | Findings are lost, or anyone can post them | Reachability tested in Lab 2; authentication and a `REST_Endpoint` ACL required |
+
+## Checklist
+
+- [ ] Each workflow in the file resolves against a saved input from your tenant, and `workflow_payload.py` lists no field you meant to send.
+- [ ] The native-change workflow sends single-value, multivalued and entitlement changes.
+- [ ] The deployed Scripted REST script includes the attribute in the de-duplication key.
+- [ ] The trigger ID, the HTTP step's attribute names and the input's root were confirmed in a sandbox and the file matches.
+- [ ] Workflows are created disabled, tested, then enabled; the workflow client is removed afterwards.
+- [ ] `test_workflow_payload.py`, `test_contract.py` and the node tests pass.
+
+::: {.callout-tip}
+## Continue the book
+[← Previous: Chapter 03 — The SailPoint Client and Its Scopes](03-sailpoint-client-and-scopes.md) · [Workbook index](index.md) · [Next: Chapter 05 — The Re-read Rule →](05-the-re-read-rule.md)
+:::
+
+[^ttm04-ncd]: SailPoint Developer, "Native Change Account Updated" event trigger (conditions, fire-and-forget, example input), <https://developer.sailpoint.com/docs/extensibility/event-triggers/triggers/native-change-account-updated> (read November 1, 2026).
+[^ttm04-iac]: SailPoint Developer, "Identity Attributes Changed" event trigger (example input), <https://developer.sailpoint.com/docs/extensibility/event-triggers/triggers/identity-attribute-changed> (read November 1, 2026).
+[^ttm04-prov]: SailPoint Developer, "Provisioning Completed" event trigger (example input), <https://developer.sailpoint.com/docs/extensibility/event-triggers/triggers/provisioning-completed> (read November 1, 2026).
+[^ttm04-triggers]: SailPoint Developer, "Triggers," Available Event Triggers table, <https://developer.sailpoint.com/docs/api/triggers> (read November 1, 2026).
+[^ttm04-wfbody]: SailPoint, Identity Security Cloud OpenAPI specification, v2025, `WorkflowBody` ("Workflows cannot be created in an enabled state"), <https://github.com/sailpoint-oss/api-specs/blob/main/idn/v2025/schemas/workflows/WorkflowBody.yaml> (read November 1, 2026).
+[^ttm04-workflows]: SailPoint, Identity Security Cloud OpenAPI specification, v2025, `createWorkflow`, <https://github.com/sailpoint-oss/api-specs/blob/main/idn/v2025/paths/workflows/workflows.yaml> (read November 1, 2026).
+[^ttm04-srapi]: ServiceNow, "Scripted REST APIs" (Zurich API reference), <https://www.servicenow.com/docs/bundle/zurich-api-reference/page/integrate/custom-web-services/concept/c_CustomWebServices.html> (read November 1, 2026).
+[^ttm04-moderate]: National Institute of Standards and Technology, SP 800-53B Moderate baseline, release 5.2.0 OSCAL profile (includes CM-3, SA-11 and SI-4), <https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_MODERATE-baseline_profile.json> (read November 1, 2026).

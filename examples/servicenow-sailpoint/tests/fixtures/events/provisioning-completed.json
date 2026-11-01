@@ -1,0 +1,11 @@
+{
+  "_comment": "Fictional input for Provisioning Action Completed, in the shape of SailPoint's published example input (field names read November 1, 2026). Every identifier is invented.",
+  "trackingNumber": "4b4d982dddff4267ab12f0f1e72b5a6d",
+  "sources": "Corp AD",
+  "action": "IdentityRefresh",
+  "errors": [],
+  "warnings": [],
+  "recipient": {"id": "2c9180000000000000000000000e1001", "name": "alice.example", "type": "IDENTITY"},
+  "requester": null,
+  "accountRequests": [{"source": {"id": "src-ad", "name": "Corp AD", "type": "SOURCE"}, "accountId": "CN=Alice Example,OU=Users,DC=contoso,DC=example", "accountOperation": "Modify", "provisioningResult": "SUCCESS", "provisioningTarget": "Corp AD", "ticketId": null, "attributeRequests": []}]
+}
