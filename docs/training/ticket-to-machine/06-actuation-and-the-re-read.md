@@ -95,10 +95,9 @@ You re-read six waiting findings on two days and run the business rule's tests. 
    1 mismatch, 1 pending, 1 skipped, 3 verified
    ```
 
-3. Run the same records a day later. The re-read client doesn't create the `out` folder, so make it first.
+3. Run the same records a day later, and keep the results in `out/reread.json` (the client makes the `out` folder).
 
    ```bash
-   mkdir -p out
    python clients/python/reread_verification.py --records-json tests/fixtures/reread/awaiting_records.json --observations-json tests/fixtures/reread/observations.json --now 2026-11-02T12:00:00Z --out-json out/reread.json
    ```
 
