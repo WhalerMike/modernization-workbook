@@ -45,12 +45,14 @@ WORKBOOKS = {
 }
 # Per chapter ("<workbook>-<NN>"): "cwd" overrides the lab's folder; "text" lists the ```text blocks of the
 # lab (1-based among its text blocks) that are commands, and "text_lang" their shell; "skip" lists command
-# blocks (by k) not to run; "hidden" maps a block k to commands a step gives only in prose, run (unshown)
+# blocks (by k) not to run; "copy" lists repository folders a lab's tests read, copied into the scratch
+# copy beside examples/; "hidden" maps a block k to commands a step gives only in prose, run (unshown)
 # just before it; "local" is the reason a lab can't run in CI (its captures are kept, not checked
 # there); "off" is the reason a lab isn't captured at all.
 CHAPTERS: dict[str, dict] = {
     "adm-03": {"cwd": "."},
-    "adm-04": {"skip": [5, 7]},   # Invoke-DrLibraryCheck diffs against git HEAD; the scratch copy isn't a repository
+    # Invoke-DrLibraryCheck diffs against git HEAD (the scratch copy isn't a repository); a test reads Book 03.
+    "adm-04": {"skip": [5, 7], "copy": ["docs/books/b03-hr-identity"]},
     "adm-07": {"off": "needs Windows and three modules saved from the PowerShell Gallery"},
     "adm-08": {"off": "needs a Linux control node with ansible-core and collections from Ansible Galaxy"},
     # Labs whose bash steps work in the drift pipeline.
@@ -298,6 +300,8 @@ def capture(wb: str, ci: bool = False) -> dict[str, str]:
             root = Path(tmp)
             shutil.copytree(ROOT / "examples", root / "examples", ignore=shutil.ignore_patterns(
                 "out", "__pycache__", ".pytest_cache", "node_modules", "target", ".gradle"))
+            for extra in cfg.get("copy", []):          # repository files a lab's tests read
+                shutil.copytree(ROOT / extra, root / extra)
             for before in cfg.get("needs", []):
                 run_lab(wb, before, root)
             for k, lang, pairs in run_lab(wb, nn, root):

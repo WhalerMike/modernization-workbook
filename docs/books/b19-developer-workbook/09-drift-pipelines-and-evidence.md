@@ -312,7 +312,7 @@ python python/drift_pipeline.py verify out/evidence/2026-10-29-0617-fixture-runn
    python -m pytest tests -q
    ```
 
-**Expected result:** 74 tests passing, and each row of the gap table seen with your own eyes.
+**Expected result:** 142 tests passing, and each row of the gap table seen with your own eyes.
 
 ## Lab 2: test tenant and test subscription
 

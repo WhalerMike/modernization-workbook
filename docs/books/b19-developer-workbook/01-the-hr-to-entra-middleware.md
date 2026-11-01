@@ -156,7 +156,7 @@ Each `batch_sha256` is the hash `apply-results.json` records when that batch is 
 
 ### The tests
 
-The Python suite has 48 tests and the PowerShell suite 48, all passing. They cover every rule above; that the two clients produce the same payloads, hashes and provenance (shared fixture hashes); and, in `Csv2ScimBaseline.Tests.ps1`, seven tests that run the pinned CSV2SCIM offline on the same fixture and pin the differences it can observe there. If a future CSV2SCIM version adds validation or ordering, those tests fail on the snapshot update, which is the prompt to shrink our client.
+The Python suite has 70 tests and the PowerShell suite 62, all passing. They cover every rule above; that the two clients produce the same payloads, hashes and provenance (shared fixture hashes); and, in `Csv2ScimBaseline.Tests.ps1`, seven tests that run the pinned CSV2SCIM offline on the same fixture and pin the differences it can observe there. If a future CSV2SCIM version adds validation or ordering, those tests fail on the snapshot update, which is the prompt to shrink our client.
 
 ::: {.callout-warning}
 ## Illustrative code
@@ -262,7 +262,7 @@ $map = Import-PowerShellDataFile ./hcm-entra/config/csv2scim/AttributeMapping.ps
    pwsh -NoProfile -Command "Invoke-Pester -Path tests/powershell"
    ```
 
-**Expected result:** 48 Python and 48 Pester tests passing, and the differences in the table above, seen with your own eyes.
+**Expected result:** 70 Python and 62 Pester tests passing, and the differences in the table above, seen with your own eyes.
 
 ## Lab 2: test tenant
 
