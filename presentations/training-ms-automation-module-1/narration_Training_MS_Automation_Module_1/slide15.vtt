@@ -1,0 +1,55 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.550
+Check yourself with two questions
+from the module's knowledge check.
+
+2
+00:00:03.550 --> 00:00:08.450
+First: your tenant is Microsoft 365 GCC.
+
+3
+00:00:08.450 --> 00:00:10.588
+Which Graph host does your collector call?
+
+4
+00:00:10.588 --> 00:00:13.938
+The answer is b, graph
+dot microsoft dot com,
+
+5
+00:00:13.938 --> 00:00:17.288
+because GCC uses the worldwide endpoints.
+
+6
+00:00:17.288 --> 00:00:19.697
+Second: a batch returns two hundred,
+
+7
+00:00:19.697 --> 00:00:23.600
+but two of its twenty requests
+returned four twenty-nine.
+
+8
+00:00:23.600 --> 00:00:24.950
+What should the client do?
+
+9
+00:00:24.950 --> 00:00:26.162
+The answer is c.
+
+10
+00:00:26.162 --> 00:00:28.990
+Each request in a batch
+is throttled on its own,
+
+11
+00:00:28.990 --> 00:00:33.825
+so check every response's status and
+retry the throttled ones after their wait.
+
+12
+00:00:33.825 --> 00:00:38.810
+The module page has three more questions,
+each linked to the unit that answers it.

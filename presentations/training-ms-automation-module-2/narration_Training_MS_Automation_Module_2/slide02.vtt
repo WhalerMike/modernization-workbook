@@ -1,0 +1,57 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.025
+Why script it?
+
+2
+00:00:01.025 --> 00:00:04.413
+Your ISSO asks the same
+questions every month.
+
+3
+00:00:04.413 --> 00:00:05.662
+Who hasn't signed in?
+
+4
+00:00:05.662 --> 00:00:08.149
+What do the Conditional
+Access policies say?
+
+5
+00:00:08.149 --> 00:00:10.313
+Who holds a privileged role permanently?
+
+6
+00:00:10.313 --> 00:00:12.537
+Which applications still have passwords?
+
+7
+00:00:12.537 --> 00:00:16.399
+And who can't yet use phishing-resistant
+multifactor authentication?
+
+8
+00:00:16.399 --> 00:00:20.247
+Too often, someone answers by
+clicking through the admin center and
+
+9
+00:00:20.247 --> 00:00:24.025
+pasting screenshots, and the answer
+can't be reproduced next month.
+
+10
+00:00:24.025 --> 00:00:28.359
+In this module each question becomes
+a Graph call with a least-privileged
+
+11
+00:00:28.359 --> 00:00:32.978
+permission, and five of them become
+read-only checks you can rerun on a schedule,
+
+12
+00:00:32.978 --> 00:00:36.460
+with output an assessor can diff
+from one month to the next.

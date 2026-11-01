@@ -1,0 +1,68 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.400
+Five of those reads are built as checks.
+
+2
+00:00:02.400 --> 00:00:07.459
+Stale-users lists enabled members with no
+sign-in of either kind in ninety days,
+
+3
+00:00:07.459 --> 00:00:10.338
+and never-signed-in
+accounts older than that.
+
+4
+00:00:10.338 --> 00:00:14.758
+Ca-export writes every policy as
+sorted JSON with counts by state,
+
+5
+00:00:14.758 --> 00:00:18.388
+evidence for ScubaGear's
+Conditional Access settings.
+
+6
+00:00:18.388 --> 00:00:23.856
+Pim-report counts Global Administrators
+and lists every permanent active assignment
+
+7
+00:00:23.856 --> 00:00:28.875
+to a role you name as privileged, for policies
+seven point one and seven point four.
+
+8
+00:00:28.875 --> 00:00:31.400
+App-credentials lists every secret and
+
+9
+00:00:31.400 --> 00:00:34.537
+certificate with its
+lifetime and days to expiry.
+
+10
+00:00:34.537 --> 00:00:38.502
+And mfa-registration counts
+members without MFA or without a
+
+11
+00:00:38.502 --> 00:00:42.776
+phishing-resistant method, and
+names administrators without one.
+
+12
+00:00:42.776 --> 00:00:45.637
+The permissions for all
+five are a reader's set.
+
+13
+00:00:45.637 --> 00:00:47.512
+None of them can change the tenant,
+
+14
+00:00:47.512 --> 00:00:50.260
+and you grant only the ones
+for the checks you run.

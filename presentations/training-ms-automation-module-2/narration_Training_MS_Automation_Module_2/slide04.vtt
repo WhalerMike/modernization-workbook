@@ -1,0 +1,65 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.184
+Here are six of the module's
+sixteen evidence questions,
+
+2
+00:00:03.184 --> 00:00:07.612
+with the Graph call and the least-privileged
+application permission for each.
+
+3
+00:00:07.612 --> 00:00:11.852
+Who signed in, and when: list users
+with sign-in activity selected,
+
+4
+00:00:11.852 --> 00:00:16.012
+which needs User dot Read dot All
+plus AuditLog dot Read dot All.
+
+5
+00:00:16.012 --> 00:00:18.568
+Who's in a group, nested groups included:
+
+6
+00:00:18.568 --> 00:00:22.562
+transitive members, with
+GroupMember dot ReadBasic dot All.
+
+7
+00:00:22.562 --> 00:00:26.587
+What the Conditional Access policies
+say: Policy dot Read dot All.
+
+8
+00:00:26.587 --> 00:00:29.787
+Who holds a role now: the
+role assignment schedules.
+
+9
+00:00:29.787 --> 00:00:34.825
+Which applications have secrets or
+certificates: Application dot Read dot All.
+
+10
+00:00:34.825 --> 00:00:39.650
+And who registered which authentication
+methods: the registration details report.
+
+11
+00:00:39.650 --> 00:00:44.862
+Every one of these is generally
+available in Graph version one point oh,
+
+12
+00:00:44.862 --> 00:00:48.043
+and each page lists it
+in the global service,
+
+13
+00:00:48.043 --> 00:00:51.550
+which GCC uses, and in the
+GCC High and DoD clouds.

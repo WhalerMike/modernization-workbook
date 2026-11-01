@@ -1,0 +1,62 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.875
+To sum up.
+
+2
+00:00:00.875 --> 00:00:06.044
+You matched each cloud to its hosts, its
+scope and its PowerShell environment,
+
+3
+00:00:06.044 --> 00:00:09.113
+and learned that GCC is
+the worldwide service.
+
+4
+00:00:09.113 --> 00:00:13.245
+You put the credentials in order,
+managed identity, federation,
+
+5
+00:00:13.245 --> 00:00:18.013
+certificate, never a secret, and found
+who consents to Graph permissions.
+
+6
+00:00:18.013 --> 00:00:22.025
+You found least-privileged permissions
+and what a narrow one hides.
+
+7
+00:00:22.025 --> 00:00:24.150
+You learned the four request patterns.
+
+8
+00:00:24.150 --> 00:00:27.794
+And in the lab you saw the
+client refuse an unknown cloud,
+
+9
+00:00:27.794 --> 00:00:30.250
+an undeclared call and the wrong host.
+
+10
+00:00:30.250 --> 00:00:31.971
+Before you ship a collector,
+
+11
+00:00:31.971 --> 00:00:35.713
+work through the developer
+workbook's Chapter 02 checklist.
+
+12
+00:00:35.713 --> 00:00:41.891
+Next is Module 2, Entra ID through
+Microsoft Graph: users, groups, Conditional
+
+13
+00:00:41.891 --> 00:00:48.530
+Access, PIM, applications and logs, with
+five read-only checks mapped to ScubaGear.

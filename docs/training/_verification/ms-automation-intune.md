@@ -2,7 +2,7 @@
 
 File: `docs/training/ms-automation-intune.md`
 Example code: `examples/ms-automation/python/intune_tasks.py`, the Intune functions in `examples/ms-automation/powershell/FmwGraph.psm1`, and `examples/ms-automation/tests/fixtures/intune.json`
-Verified: 2026-10-30
+Verified: 2026-10-30; restructured into the learning-path form, with Lab 1 run, on 2026-11-01 (claims 64 to 70)
 
 Method:
 - Microsoft Learn pages were read on 2026-10-30 with the Microsoft Learn tools (`microsoft_docs_fetch` for full pages, `microsoft_docs_search` for section text). Where a search returned two versions of one page, the full page was fetched and the fetched text used.
@@ -82,6 +82,13 @@ Verdicts: **verified** (the source says it); **inference** (labelled on the page
 | 61 | isEncrypted doesn't say method or volumes; BitLocker measured at boot via DHA | The five checks | inference (labelled); the DHA statement is Book 05 Ch 08's | m3-mdres, internal |
 | 62 | A sync date before 1971 is a placeholder | The five checks; code | design (labelled); the placeholder isn't documented | — |
 | 63 | 100 policies cost about 201 requests | Paging and limits | arithmetic from the code (1 + 2 per policy) | — |
+| 64 | Restructure into the learning-path form (November 1, 2026): units, objectives, Where agencies are, Lab 1, Lab 2, knowledge check, summary; existing facts and footnotes kept | Whole page | no new external facts; claims 1 to 63 unchanged | — |
+| 65 | Lab 1 commands and output for the five checks in Python, the GCC High `try_beta` call, two checks in PowerShell, and the Intune tests (17 passed) | Unit 8 | verified (run 2026-11-01 with Python 3.14.3 and PowerShell 7.6.9) | the kit, run locally |
+| 66 | Fixture: nine managed devices, two named WS-0002, KSK-0001 with sync date 0001-01-01; six Autopilot registrations | Unit 8 | verified (fixture read) | `tests/fixtures/intune.json` |
+| 67 | Book 05, Chapter 04's table lists Autopilot device preparation, not classic Autopilot, for GCC High and DoD | Unit 6, interim paths | verified in Book 05, Chapter 04 (linked, not re-checked) | internal |
+| 68 | Interim paths: coverage before changing the tenant-wide setting; VK-INT-06 for devices not yet in Intune; label the Settings Catalog export beta | Unit 6 | design (labelled) | m3-reports |
+| 69 | Lab 2 steps and back-out | Unit 9 | not verified: not run by the authors | — |
+| 70 | Knowledge-check answers; unit and module times | Unit 10; each unit | answers verified against the linked sections; times are estimates | the page |
 
 ## What couldn't be verified
 

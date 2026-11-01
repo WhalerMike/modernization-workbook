@@ -1,0 +1,72 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.450
+Use the current tools.
+
+2
+00:00:01.450 --> 00:00:07.473
+The Microsoft Graph PowerShell S D K, for
+interactive and scheduled administration,
+
+3
+00:00:07.473 --> 00:00:11.087
+with Invoke dash Mg Graph
+Request for any endpoint.
+
+4
+00:00:11.087 --> 00:00:15.232
+The Microsoft Graph Python S D
+K for services and pipelines,
+
+5
+00:00:15.232 --> 00:00:18.276
+where a page iterator
+follows pages for you.
+
+6
+00:00:18.276 --> 00:00:21.320
+azure-identity in Python,
+for managed identity,
+
+7
+00:00:21.320 --> 00:00:23.975
+certificate and federated credentials.
+
+8
+00:00:23.975 --> 00:00:28.067
+Az PowerShell and the Azure
+CLI for Azure Resource Manager,
+
+9
+00:00:28.067 --> 00:00:30.238
+which a planned Module 4 covers.
+
+10
+00:00:30.238 --> 00:00:34.376
+And not AzureAD, AzureAD
+Preview or MSOnline.
+
+11
+00:00:34.376 --> 00:00:40.913
+Microsoft deprecated them on March 30,
+2024, said they'd work only until March 30,
+
+12
+00:00:40.913 --> 00:00:45.037
+2025, and recommends
+Microsoft Graph PowerShell.
+
+13
+00:00:45.037 --> 00:00:50.075
+The example client calls the REST API
+directly with the standard library.
+
+14
+00:00:50.075 --> 00:00:52.812
+That isn't advice against the S D Ks.
+
+15
+00:00:52.812 --> 00:00:58.200
+It keeps every request visible, so you can
+read and test each pattern line by line.

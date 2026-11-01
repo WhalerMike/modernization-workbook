@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.507
+Privileged Identity Management's
+current APIs are under
+
+2
+00:00:03.507 --> 00:00:07.037
+role management slash directory,
+and two schedules matter.
+
+3
+00:00:07.037 --> 00:00:10.274
+Eligibility schedules say
+who may activate a role.
+
+4
+00:00:10.274 --> 00:00:12.900
+Assignment schedules say who holds it now.
+
+5
+00:00:12.900 --> 00:00:17.507
+The assignment type is Assigned for a
+direct assignment, or Activated for an
+
+6
+00:00:17.507 --> 00:00:20.870
+activation, and the member
+type says whether it's direct,
+
+7
+00:00:20.870 --> 00:00:22.625
+through a group, or inherited.
+
+8
+00:00:22.625 --> 00:00:27.513
+An assignment's end is in its expiration,
+whose type can be no expiration.
+
+9
+00:00:27.513 --> 00:00:32.392
+Put those together: an Assigned schedule
+with no expiration is permanent active,
+
+10
+00:00:32.392 --> 00:00:37.200
+which ScubaGear's policy seven point four
+forbids for highly privileged roles.
+
+11
+00:00:37.200 --> 00:00:41.975
+Role template IDs are stable; Global
+Administrator's is on the slide.
+
+12
+00:00:41.975 --> 00:00:46.300
+Changes need a read-write permission,
+which the collector never asks for.

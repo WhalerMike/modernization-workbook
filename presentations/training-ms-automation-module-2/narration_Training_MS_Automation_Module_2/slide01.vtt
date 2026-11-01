@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.351
+Welcome to Module 2 of the
+Microsoft Automation learning path:
+
+2
+00:00:04.351 --> 00:00:07.412
+Microsoft Entra ID
+through Microsoft Graph.
+
+3
+00:00:07.412 --> 00:00:12.563
+The Federal Modernization Workbook's
+Book 02 builds the Entra ID target,
+
+4
+00:00:12.563 --> 00:00:18.487
+and Book 04 puts access behind Conditional
+Access, PIM and application governance.
+
+5
+00:00:18.487 --> 00:00:21.001
+Both ask for evidence
+a script can collect.
+
+6
+00:00:21.001 --> 00:00:25.550
+In this module you'll map each of those
+evidence questions to the Graph API
+
+7
+00:00:25.550 --> 00:00:30.100
+that answers it, its least-privileged
+permission, and the shape of its data.
+
+8
+00:00:30.100 --> 00:00:32.507
+Then you'll run five read-only checks,
+
+9
+00:00:32.507 --> 00:00:36.038
+in Python and PowerShell,
+against a fictional tenant.
+
+10
+00:00:36.038 --> 00:00:41.476
+They're illustrative: unit-tested against
+fixtures, not proven against live tenants.
+
+11
+00:00:41.476 --> 00:00:44.459
+Module 1's foundations, the right cloud,
+
+12
+00:00:44.459 --> 00:00:48.620
+sign-in without a secret,
+and paging, apply throughout.

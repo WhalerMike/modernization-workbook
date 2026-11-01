@@ -1,0 +1,61 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.688
+Microsoft supports the Intune beta
+APIs, but says they're subject to more
+
+2
+00:00:04.688 --> 00:00:09.325
+frequent change, and recommends version
+one point oh where it can be used.
+
+3
+00:00:09.325 --> 00:00:12.463
+Three things the program
+relies on are beta-only today.
+
+4
+00:00:12.463 --> 00:00:18.121
+The Settings Catalog: Book 05's policy
+library is mostly Settings Catalog profiles,
+
+5
+00:00:18.121 --> 00:00:21.401
+so exporting the library
+as code depends on beta.
+
+6
+00:00:21.401 --> 00:00:23.985
+Assignment filters: the
+filter list is beta,
+
+7
+00:00:23.985 --> 00:00:28.151
+and version one point oh can't tell
+you which filter an assignment uses,
+
+8
+00:00:28.151 --> 00:00:32.675
+which is why the validation kit's filter
+check needs its include-beta switch.
+
+9
+00:00:32.675 --> 00:00:36.866
+And Autopilot profiles: version
+one point oh lists registrations,
+
+10
+00:00:36.866 --> 00:00:41.437
+but the profile assignment status
+and the profiles themselves are beta.
+
+11
+00:00:41.437 --> 00:00:44.982
+As design guidance, re-run
+a beta-dependent check after
+
+12
+00:00:44.982 --> 00:00:48.580
+each beta change before you
+use its result as evidence.

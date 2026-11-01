@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.872
+An application's secrets and certificates
+each carry a start and an end date,
+
+2
+00:00:04.872 --> 00:00:09.770
+in U T C, and those dates are enough to
+test ScubaGear's three application rules:
+
+3
+00:00:09.770 --> 00:00:14.592
+no application passwords, passwords
+valid for at most a hundred eighty days,
+
+4
+00:00:14.592 --> 00:00:18.725
+and certificates valid for at most
+three hundred sixty-five days.
+
+5
+00:00:18.725 --> 00:00:23.024
+Microsoft's app management policies
+enforce the same limits going forward;
+
+6
+00:00:23.024 --> 00:00:26.163
+the check finds what existed
+before they were turned on.
+
+7
+00:00:26.163 --> 00:00:30.795
+Two related reads support consent review:
+who has been given an application's roles,
+
+8
+00:00:30.795 --> 00:00:33.815
+and which delegated permissions
+have been consented,
+
+9
+00:00:33.815 --> 00:00:36.020
+which needs Directory dot Read dot All.

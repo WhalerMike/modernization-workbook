@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.875
+To sum up.
+
+2
+00:00:00.875 --> 00:00:04.183
+You mapped the books'
+Entra ID evidence questions
+
+3
+00:00:04.183 --> 00:00:07.813
+to Graph APIs and their
+least-privileged permissions.
+
+4
+00:00:07.813 --> 00:00:11.464
+You learned the traps in sign-in
+activity, group membership,
+
+5
+00:00:11.464 --> 00:00:15.637
+PIM schedules, application
+credentials and registration details.
+
+6
+00:00:15.637 --> 00:00:19.862
+You saw why a script checks
+Entra's logs but doesn't keep them,
+
+7
+00:00:19.862 --> 00:00:22.362
+and what differs in GCC High and DoD.
+
+8
+00:00:22.362 --> 00:00:25.425
+And you ran the five checks
+in Python and PowerShell.
+
+9
+00:00:25.425 --> 00:00:30.113
+Book 04's Chapter 10 assembles
+the evidence package for a period.
+
+10
+00:00:30.113 --> 00:00:34.915
+Next is Module 3, Intune through
+Microsoft Graph: devices, compliance,
+
+11
+00:00:34.915 --> 00:00:39.970
+configuration and Autopilot, which
+APIs are only in beta, and five checks
+
+12
+00:00:39.970 --> 00:00:45.100
+mapped to NIST special publication
+eight hundred fifty-three Moderate.

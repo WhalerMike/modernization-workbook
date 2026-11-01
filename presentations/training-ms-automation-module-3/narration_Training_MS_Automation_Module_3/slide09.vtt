@@ -1,0 +1,71 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.100
+Five checks.
+
+2
+00:00:01.100 --> 00:00:05.341
+Noncompliant devices lists
+devices that are noncompliant,
+
+3
+00:00:05.341 --> 00:00:09.412
+in grace, in error or in conflict,
+with the failing policies.
+
+4
+00:00:09.412 --> 00:00:14.530
+Compliance coverage lists policies
+with no assignment or only exclusions,
+
+5
+00:00:14.530 --> 00:00:16.724
+and devices no policy reports on.
+
+6
+00:00:16.724 --> 00:00:21.363
+Stale check-in lists devices with no
+Intune sync inside the fourteen-day
+
+7
+00:00:21.363 --> 00:00:25.150
+validity period or the ninety-day
+cleanup age, or none at all.
+
+8
+00:00:25.150 --> 00:00:30.038
+Device posture lists Windows and Mac
+devices not reporting encryption,
+
+9
+00:00:30.038 --> 00:00:32.075
+and devices below the OS floor.
+
+10
+00:00:32.075 --> 00:00:34.413
+And Autopilot profiles, on beta,
+
+11
+00:00:34.413 --> 00:00:39.000
+lists registrations whose profile
+isn't assigned and in sync.
+
+12
+00:00:39.000 --> 00:00:44.067
+Every control they evidence is in the
+NIST Moderate baseline: configuration
+
+13
+00:00:44.067 --> 00:00:48.738
+settings, the baseline, the inventory,
+encryption, and flaw remediation.
+
+14
+00:00:48.738 --> 00:00:52.212
+The mapping is the program's
+reading; the assessor decides.
+
+15
+00:00:52.212 --> 00:00:54.290
+The permissions are a reader's set.

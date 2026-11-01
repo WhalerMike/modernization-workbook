@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.207
+Welcome to Module 1 of the
+Microsoft Automation learning path:
+
+2
+00:00:04.207 --> 00:00:06.125
+Graph and Azure foundations.
+
+3
+00:00:06.125 --> 00:00:11.384
+The books keep asking for evidence a script
+collects: Conditional Access exported
+
+4
+00:00:11.384 --> 00:00:16.262
+as code, device compliance read back,
+control evidence gathered on a schedule.
+
+5
+00:00:16.262 --> 00:00:18.887
+Almost all of it goes
+through Microsoft Graph.
+
+6
+00:00:18.887 --> 00:00:24.003
+This module covers what every such script
+has to get right before it does anything
+
+7
+00:00:24.003 --> 00:00:27.689
+useful: which cloud it calls,
+how it signs in without a secret,
+
+8
+00:00:27.689 --> 00:00:31.225
+which permissions it asks for,
+and four request patterns.
+
+9
+00:00:31.225 --> 00:00:36.087
+Then you'll see the example client prove
+each rule on a laptop, with no tenant.
+
+10
+00:00:36.087 --> 00:00:41.090
+Modules 2 and 3 apply all of
+this to Entra ID and Intune.

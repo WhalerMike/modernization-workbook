@@ -1,0 +1,70 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.112
+A compliance policy's
+assignments list its targets.
+
+2
+00:00:03.112 --> 00:00:06.824
+In version one point oh a group
+target carries a group ID,
+
+3
+00:00:06.824 --> 00:00:09.487
+and beta documents an exclusion target.
+
+4
+00:00:09.487 --> 00:00:14.405
+A policy with no assignments, or with
+only exclusions, applies to no device,
+
+5
+00:00:14.405 --> 00:00:18.838
+and remember, by default an unassigned
+device counts as compliant.
+
+6
+00:00:18.838 --> 00:00:22.468
+Each policy's device statuses
+give one row per device,
+
+7
+00:00:22.468 --> 00:00:26.100
+with a status such as
+non-compliant, error or conflict.
+
+8
+00:00:26.100 --> 00:00:30.063
+But the row carries a device
+name, and its ID is described
+
+9
+00:00:30.063 --> 00:00:34.112
+only as the key of the entity,
+not as the managed device's ID.
+
+10
+00:00:34.112 --> 00:00:37.502
+So the checks join status
+rows to devices on the name,
+
+11
+00:00:37.502 --> 00:00:40.262
+and flag names held by
+more than one device.
+
+12
+00:00:40.262 --> 00:00:42.975
+That's an inference,
+and an open review item.
+
+13
+00:00:42.975 --> 00:00:45.849
+Two tenant-wide settings
+sit above every policy;
+
+14
+00:00:45.849 --> 00:00:50.420
+their read permission wasn't confirmed
+on Learn, so the checks don't read them.

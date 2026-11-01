@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.738
+A managed device is Intune's
+record of an enrolled device.
+
+2
+00:00:03.738 --> 00:00:06.208
+The checks read its compliance state,
+
+3
+00:00:06.208 --> 00:00:11.389
+one of seven values from compliant to in
+grace period; its last successful sync;
+
+4
+00:00:11.389 --> 00:00:15.374
+its OS version and encryption
+status; and its Entra device ID,
+
+5
+00:00:15.374 --> 00:00:17.925
+the join key to the Entra device object.
+
+6
+00:00:17.925 --> 00:00:22.700
+The same record also returns a person's
+name, email address and phone number.
+
+7
+00:00:22.700 --> 00:00:26.734
+The checks name only what they need
+in select and leave those out,
+
+8
+00:00:26.734 --> 00:00:30.388
+so a check's output never carries
+a person's name or address.
+
+9
+00:00:30.388 --> 00:00:31.925
+That's design guidance.
+
+10
+00:00:31.925 --> 00:00:36.031
+And watch for defaults that look like
+data: some properties, such as the
+
+11
+00:00:36.031 --> 00:00:40.562
+MAC address and physical memory, return
+default values when you list devices.
+
+12
+00:00:40.562 --> 00:00:44.740
+Their real values come only from
+reading one device and selecting them.

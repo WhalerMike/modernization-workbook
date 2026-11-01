@@ -1,0 +1,65 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.700
+Two things look useful and don't
+belong in a read-only collector.
+
+2
+00:00:03.700 --> 00:00:07.588
+Remote actions: retire, wipe
+and even sync device all need
+
+3
+00:00:07.588 --> 00:00:12.138
+the privileged operations
+permission, delegated or application.
+
+4
+00:00:12.138 --> 00:00:13.949
+That's an operator's permission.
+
+5
+00:00:13.949 --> 00:00:17.905
+A collector that holds it could wipe
+the fleet, so as design guidance,
+
+6
+00:00:17.905 --> 00:00:21.225
+keep it in a separate pipeline
+with its own approval step.
+
+7
+00:00:21.225 --> 00:00:25.416
+And report export jobs: creating
+one needs a read-write permission,
+
+8
+00:00:25.416 --> 00:00:29.227
+with no read-only option listed,
+and the file it produces sits
+
+9
+00:00:29.227 --> 00:00:33.037
+on blob storage behind a signed
+address, not on the Graph host.
+
+10
+00:00:33.037 --> 00:00:36.438
+The example client won't send
+its token anywhere else.
+
+11
+00:00:36.438 --> 00:00:39.988
+So the checks page through
+the list APIs instead.
+
+12
+00:00:39.988 --> 00:00:43.378
+A hundred policies cost about
+two hundred and one requests,
+
+13
+00:00:43.378 --> 00:00:47.810
+well under Intune's limit of a thousand
+per twenty seconds per app per tenant.

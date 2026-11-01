@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.088
+Why start here?
+
+2
+00:00:01.088 --> 00:00:03.212
+Picture your first evidence collector.
+
+3
+00:00:03.212 --> 00:00:05.324
+It works in a commercial test tenant.
+
+4
+00:00:05.324 --> 00:00:08.657
+Then, the day it points
+at a GCC High tenant,
+
+5
+00:00:08.657 --> 00:00:12.675
+it fails, or worse, sends
+its token to the wrong host.
+
+6
+00:00:12.675 --> 00:00:16.988
+It reads the first page of users and
+reports a tenant of a hundred people,
+
+7
+00:00:16.988 --> 00:00:20.350
+and nobody notices because
+the number looks plausible.
+
+8
+00:00:20.350 --> 00:00:23.553
+It signs in with a client
+secret that nobody rotates,
+
+9
+00:00:23.553 --> 00:00:27.575
+though ScubaGear says application
+passwords should be blocked.
+
+10
+00:00:27.575 --> 00:00:32.275
+And it asks for broad permissions, so a
+compromised job could do more than read.
+
+11
+00:00:32.275 --> 00:00:36.650
+Each of those has a fix, and each
+fix is a unit in this module.
+
+12
+00:00:36.650 --> 00:00:40.723
+The cost of skipping them is simple:
+a collector that doesn't page,
+
+13
+00:00:40.723 --> 00:00:45.550
+retry and keep delta links produces
+evidence that looks complete, and isn't.

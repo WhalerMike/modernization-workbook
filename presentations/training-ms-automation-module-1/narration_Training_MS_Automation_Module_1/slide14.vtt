@@ -1,0 +1,69 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.705
+This module's subject is
+the collector itself,
+
+2
+00:00:02.705 --> 00:00:06.688
+so its requirements are the ones the
+collector's identity has to meet.
+
+3
+00:00:06.688 --> 00:00:11.681
+Least privilege, A C six in NIST special
+publication eight hundred fifty-three:
+
+4
+00:00:11.681 --> 00:00:15.138
+each script holds only the
+permissions its calls need.
+
+5
+00:00:15.138 --> 00:00:18.696
+Authenticator management, I
+A five: no long-lived secret,
+
+6
+00:00:18.696 --> 00:00:24.112
+and ScubaGear's application-credential
+policies apply to the program's own apps too.
+
+7
+00:00:24.112 --> 00:00:26.224
+Continuous monitoring, C A seven,
+
+8
+00:00:26.224 --> 00:00:29.663
+depends on collectors that
+return complete results.
+
+9
+00:00:29.663 --> 00:00:33.892
+And BOD 25-01 requires
+the SCuBA assessment tools
+
+10
+00:00:33.892 --> 00:00:37.063
+and continuous reporting
+for in-scope tenants.
+
+11
+00:00:37.063 --> 00:00:39.937
+Book 02's Appendix A has the mapping.
+
+12
+00:00:39.937 --> 00:00:44.732
+The evidence an ISSO keeps: for each
+collector, its cloud, endpoint,
+
+13
+00:00:44.732 --> 00:00:50.148
+app registration, credential type,
+exact permissions and consent record,
+
+14
+00:00:50.148 --> 00:00:53.860
+plus the call list and its
+tests in the repository.

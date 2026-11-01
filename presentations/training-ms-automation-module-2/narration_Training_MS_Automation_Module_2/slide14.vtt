@@ -1,0 +1,73 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.437
+The federal requirement.
+
+2
+00:00:01.437 --> 00:00:06.241
+BOD 25-01 makes ScubaGear's
+mandatory Entra ID policies
+
+3
+00:00:06.241 --> 00:00:10.876
+required for in-scope tenants,
+with continuous reporting to CISA.
+
+4
+00:00:10.876 --> 00:00:15.234
+Four of the checks produce evidence for
+those: the Conditional Access settings,
+
+5
+00:00:15.234 --> 00:00:18.999
+the Global Administrator count,
+permanent privileged assignments,
+
+6
+00:00:18.999 --> 00:00:21.113
+and phishing-resistant registration.
+
+7
+00:00:21.113 --> 00:00:24.950
+In NIST special publication
+eight hundred fifty-three terms,
+
+8
+00:00:24.950 --> 00:00:29.615
+that's account management, A C two;
+least privilege for privileged accounts;
+
+9
+00:00:29.615 --> 00:00:33.226
+multifactor authentication;
+and continuous monitoring.
+
+10
+00:00:33.226 --> 00:00:36.591
+M-22-09's phishing-resistant
+requirement is what
+
+11
+00:00:36.591 --> 00:00:39.363
+the registration check
+measures progress toward.
+
+12
+00:00:39.363 --> 00:00:44.012
+Book 02's Appendix A has which policies
+are mandatory, and the mapping.
+
+13
+00:00:44.012 --> 00:00:49.035
+The evidence an ISSO keeps: each check's
+dated output with the app's permissions,
+
+14
+00:00:49.035 --> 00:00:51.430
+the Conditional Access export in Git,
+
+15
+00:00:51.430 --> 00:00:55.200
+and the findings with the change
+records that closed them.

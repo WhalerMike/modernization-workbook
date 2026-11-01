@@ -1,0 +1,69 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.563
+Beyond the hosts, five things change.
+
+2
+00:00:02.563 --> 00:00:06.914
+The token's scope names the
+cloud, so app-only tokens for GCC
+
+3
+00:00:06.914 --> 00:00:11.175
+High ask for graph dot microsoft
+dot U S slash dot default.
+
+4
+00:00:11.175 --> 00:00:14.557
+The Python azure-identity
+credential signs in to the public
+
+5
+00:00:14.557 --> 00:00:17.737
+cloud unless you give it the
+Azure Government authority.
+
+6
+00:00:17.737 --> 00:00:21.244
+Apps are registered per
+cloud: an app registered in a
+
+7
+00:00:21.244 --> 00:00:24.751
+commercial tenant can't read
+a GCC High tenant's data.
+
+8
+00:00:24.751 --> 00:00:30.013
+Graph Explorer isn't supported on the GCC
+High, DoD or China endpoints, so a query
+
+9
+00:00:30.013 --> 00:00:35.438
+you proved in Graph Explorer has to be
+retested against the government endpoint.
+
+10
+00:00:35.438 --> 00:00:36.976
+That's design guidance.
+
+11
+00:00:36.976 --> 00:00:41.380
+And every Graph API reference
+page has a national cloud table;
+
+12
+00:00:41.380 --> 00:00:44.663
+check it before you rely
+on an API in a new cloud.
+
+13
+00:00:44.663 --> 00:00:47.675
+GCC needs none of this,
+but it can lack features,
+
+14
+00:00:47.675 --> 00:00:51.940
+which is the Federal Modernization
+Workbook's Book 10's subject.

@@ -1,0 +1,74 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:06.525
+Lab 1 runs on a laptop in the examples
+folder, against fixtures, with no tenant.
+
+3
+00:00:06.525 --> 00:00:10.711
+Ask for a cloud name the client
+doesn't know, G C C High with capitals,
+
+4
+00:00:10.711 --> 00:00:14.587
+and you get a value error that
+lists the four names it accepts.
+
+5
+00:00:14.587 --> 00:00:17.626
+An unknown name is an
+error, never a default.
+
+6
+00:00:17.626 --> 00:00:22.766
+List the permissions the stale-users task
+needs, and you get exactly two: AuditLog
+
+7
+00:00:22.766 --> 00:00:27.600
+dot Read dot All and User dot Read dot
+All, computed from the calls it declares.
+
+8
+00:00:27.600 --> 00:00:31.803
+Make a call the Conditional Access
+task doesn't declare, and it refuses,
+
+9
+00:00:31.803 --> 00:00:35.788
+telling you to add it to graph-calls
+dot JSON with its permission.
+
+10
+00:00:35.788 --> 00:00:41.525
+Send a GCC High token to the worldwide
+Graph host, and it refuses again.
+
+11
+00:00:41.525 --> 00:00:43.412
+Nothing was sent in either case.
+
+12
+00:00:43.412 --> 00:00:46.750
+Then nine tests prove
+paging, retries, batching,
+
+13
+00:00:46.750 --> 00:00:51.113
+delta and the advanced-query
+header against a fake transport.
+
+14
+00:00:51.113 --> 00:00:55.418
+The lab repeats the rules in
+PowerShell, and the full suites pass:
+
+15
+00:00:55.418 --> 00:00:58.320
+seventy in pytest and
+forty-four in Pester.

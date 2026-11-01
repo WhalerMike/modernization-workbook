@@ -1,0 +1,70 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.525
+One discrepancy to know.
+
+2
+00:00:01.525 --> 00:00:07.188
+The Graph reference pages for Autopilot
+device identities list the API in the GCC
+
+3
+00:00:07.188 --> 00:00:11.019
+High and DoD clouds, while
+Intune's service description
+
+4
+00:00:11.019 --> 00:00:14.350
+lists Windows Autopilot
+as not available there.
+
+5
+00:00:14.350 --> 00:00:17.920
+The service description decides
+whether the feature can be used;
+
+6
+00:00:17.920 --> 00:00:21.225
+an endpoint that answers doesn't
+make the feature supported.
+
+7
+00:00:21.225 --> 00:00:25.885
+That's an inference, and the kit's call
+list follows the stricter statement,
+
+8
+00:00:25.885 --> 00:00:29.475
+so the Autopilot check is for
+GCC and commercial tenants.
+
+9
+00:00:29.475 --> 00:00:33.564
+The interim paths: run compliance
+coverage until it lists nothing,
+
+10
+00:00:33.564 --> 00:00:36.613
+then change the tenant's
+default to not compliant.
+
+11
+00:00:36.613 --> 00:00:39.715
+Devices still on Group
+Policy aren't in Intune yet,
+
+12
+00:00:39.715 --> 00:00:43.424
+so track them with the validation
+kit's platform inventory.
+
+13
+00:00:43.424 --> 00:00:51.225
+In GCC High or DoD, Book 05's Chapter 04
+compares Autopilot device preparation.
+
+14
+00:00:51.225 --> 00:00:54.310
+And label the Settings
+Catalog export as beta.

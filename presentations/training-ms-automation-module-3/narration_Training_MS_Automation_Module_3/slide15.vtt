@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.025
+Check yourself with two questions.
+
+2
+00:00:02.025 --> 00:00:06.525
+First: a compliance policy's only
+assignment is an exclusion group.
+
+3
+00:00:06.525 --> 00:00:07.825
+Which check reports it?
+
+4
+00:00:07.825 --> 00:00:10.450
+The answer is b, compliance coverage.
+
+5
+00:00:10.450 --> 00:00:13.513
+A policy with only exclusions
+reaches no device,
+
+6
+00:00:13.513 --> 00:00:17.112
+and by default an unassigned
+device counts as compliant.
+
+7
+00:00:17.112 --> 00:00:22.138
+Second: what does the Autopilot
+check report in a GCC High tenant?
+
+8
+00:00:22.138 --> 00:00:25.488
+The answer is c: not evaluated,
+without calling Graph,
+
+9
+00:00:25.488 --> 00:00:31.100
+because Intune's service description lists
+Windows Autopilot as not available there.
+
+10
+00:00:31.100 --> 00:00:36.070
+The module page has three more questions,
+each linked to the unit that answers it.

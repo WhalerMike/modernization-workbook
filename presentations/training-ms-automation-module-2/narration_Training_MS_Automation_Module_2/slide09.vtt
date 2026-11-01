@@ -1,0 +1,65 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.163
+Logs first.
+
+2
+00:00:01.163 --> 00:00:05.187
+Directory audits and sign-ins both
+need AuditLog dot Read dot All,
+
+3
+00:00:05.187 --> 00:00:08.987
+and the Conditional Access
+policies applied to a sign-in show
+
+4
+00:00:08.987 --> 00:00:12.713
+up only for callers allowed to
+read Conditional Access data.
+
+5
+00:00:12.713 --> 00:00:16.160
+Entra keeps audit and
+sign-in logs for seven days
+
+6
+00:00:16.160 --> 00:00:19.263
+on the free tier and
+thirty days with P1 or P2.
+
+7
+00:00:19.263 --> 00:00:23.874
+That's why ScubaGear requires sending the
+logs to the security operations center.
+
+8
+00:00:23.874 --> 00:00:26.913
+A Graph script checks
+logs; it doesn't keep them.
+
+9
+00:00:26.913 --> 00:00:32.599
+Authentication methods: the registration
+details report gives one row per user,
+
+10
+00:00:32.599 --> 00:00:37.776
+with MFA registration, admin status,
+user type and the methods registered.
+
+11
+00:00:37.776 --> 00:00:41.806
+One caution: Microsoft documents
+the method names only by example,
+
+12
+00:00:41.806 --> 00:00:46.203
+so a count of phishing-resistant users
+has to choose which names to count,
+
+13
+00:00:46.203 --> 00:00:49.060
+and should be confirmed
+against a real report.

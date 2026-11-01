@@ -1,0 +1,68 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.362
+Where are agencies?
+
+2
+00:00:01.362 --> 00:00:05.801
+Most on this path run a GCC tenant
+synchronized from Active Directory,
+
+3
+00:00:05.801 --> 00:00:10.468
+with some Conditional Access policies
+still report-only, permanent role
+
+4
+00:00:10.468 --> 00:00:15.288
+assignments left from before PIM, and
+applications that still hold secrets.
+
+5
+00:00:15.288 --> 00:00:18.765
+The APIs are the same in GCC High and DoD;
+
+6
+00:00:18.765 --> 00:00:22.787
+the endpoints differ,
+and so do some features.
+
+7
+00:00:22.787 --> 00:00:27.460
+Microsoft's U S Government feature
+table lists Conditional Access, PIM,
+
+8
+00:00:27.460 --> 00:00:32.686
+access reviews, entitlement management
+and Lifecycle Workflows as available,
+
+9
+00:00:32.686 --> 00:00:37.200
+HR-driven provisioning as partial,
+and two features as not available.
+
+10
+00:00:37.200 --> 00:00:42.038
+GCC uses the commercial Entra service,
+so the table doesn't apply to it.
+
+11
+00:00:42.038 --> 00:00:45.494
+One Azure Government difference
+matters for the export:
+
+12
+00:00:45.494 --> 00:00:49.464
+multifactor authentication's
+Trusted IPs isn't supported there,
+
+13
+00:00:49.464 --> 00:00:53.876
+so network-based exceptions live in
+Conditional Access named locations.
+
+14
+00:00:53.876 --> 00:00:55.900
+The interim paths are on the right.

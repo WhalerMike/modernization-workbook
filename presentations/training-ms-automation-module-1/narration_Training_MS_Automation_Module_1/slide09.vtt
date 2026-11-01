@@ -1,0 +1,81 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.137
+Every Graph script needs
+the same four patterns.
+
+2
+00:00:03.137 --> 00:00:04.363
+One, paging.
+
+3
+00:00:04.363 --> 00:00:09.077
+Collections come back a page at a time:
+a hundred users by default, up to nine
+
+4
+00:00:09.077 --> 00:00:14.024
+hundred ninety-nine with top, or five
+hundred when you select sign-in activity.
+
+5
+00:00:14.024 --> 00:00:17.925
+Follow the next link, unchanged,
+until it stops appearing.
+
+6
+00:00:17.925 --> 00:00:19.213
+Two, throttling.
+
+7
+00:00:19.213 --> 00:00:23.975
+Over a limit, Graph answers four
+twenty-nine with a Retry-After header.
+
+8
+00:00:23.975 --> 00:00:28.000
+Wait that long, because retrying at
+once keeps counting against you.
+
+9
+00:00:28.000 --> 00:00:29.350
+Three, batching.
+
+10
+00:00:29.350 --> 00:00:34.370
+A batch takes at most twenty requests, and
+each one is still throttled on its own,
+
+11
+00:00:34.370 --> 00:00:38.000
+so a batch can succeed while
+some requests inside it fail.
+
+12
+00:00:38.000 --> 00:00:39.587
+Check every status.
+
+13
+00:00:39.587 --> 00:00:40.750
+Four, delta.
+
+14
+00:00:40.750 --> 00:00:43.574
+Follow the next links
+until you get a delta link,
+
+15
+00:00:43.574 --> 00:00:46.325
+store it, and next time
+you get only the changes.
+
+16
+00:00:46.325 --> 00:00:50.126
+And some advanced Entra queries,
+like count and search, need the
+
+17
+00:00:50.126 --> 00:00:55.010
+ConsistencyLevel eventual header, or
+they fail or return something different.

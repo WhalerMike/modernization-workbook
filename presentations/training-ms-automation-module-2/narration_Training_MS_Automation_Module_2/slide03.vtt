@@ -1,0 +1,55 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.883
+Here's what you'll be able to
+do by the end of this module,
+
+2
+00:00:02.883 --> 00:00:05.587
+which takes about ninety-five
+minutes with the lab.
+
+3
+00:00:05.587 --> 00:00:08.276
+You'll name the Graph
+API and least-privileged
+
+4
+00:00:08.276 --> 00:00:11.388
+permission for each of the
+books' evidence questions.
+
+5
+00:00:11.388 --> 00:00:16.502
+You'll read sign-in activity, group
+membership, Conditional Access, PIM schedules,
+
+6
+00:00:16.502 --> 00:00:21.387
+application credentials and registration
+details, and know the trap in each.
+
+7
+00:00:21.387 --> 00:00:25.262
+You'll explain why a script checks
+Entra's logs but doesn't keep them.
+
+8
+00:00:25.262 --> 00:00:28.900
+You'll say what differs
+in GCC High and DoD.
+
+9
+00:00:28.900 --> 00:00:33.775
+And you'll run the five checks and read
+each finding against its ScubaGear policy.
+
+10
+00:00:33.775 --> 00:00:35.525
+You need Module 1 first.
+
+11
+00:00:35.525 --> 00:00:42.100
+Lab 1 needs no tenant; Lab 2 needs a
+test tenant with Entra ID P1 or P2.

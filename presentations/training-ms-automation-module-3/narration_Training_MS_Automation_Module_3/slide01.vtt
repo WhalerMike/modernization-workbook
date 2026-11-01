@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.394
+Welcome to Module 3 of the
+Microsoft Automation learning path:
+
+2
+00:00:04.394 --> 00:00:06.650
+Intune through Microsoft Graph.
+
+3
+00:00:06.650 --> 00:00:11.427
+The Federal Modernization Workbook's
+Book 05 moves the fleet from Group
+
+4
+00:00:11.427 --> 00:00:16.125
+Policy to Intune, and then has to prove,
+continuously, what each device is.
+
+5
+00:00:16.125 --> 00:00:21.763
+In this module you'll map Book 05's evidence
+questions to the Graph API that answers
+
+6
+00:00:21.763 --> 00:00:24.665
+each one, its least-privileged permission,
+
+7
+00:00:24.665 --> 00:00:28.313
+and whether it's in version
+one point oh or only in beta.
+
+8
+00:00:28.313 --> 00:00:30.721
+Then you'll run five read-only checks,
+
+9
+00:00:30.721 --> 00:00:34.174
+in Python and PowerShell,
+against a fictional fleet.
+
+10
+00:00:34.174 --> 00:00:39.113
+They complement the validation kit's Intune
+checks by reading Intune's own records.
+
+11
+00:00:39.113 --> 00:00:42.085
+Like Module 2's checks,
+they're illustrative:
+
+12
+00:00:42.085 --> 00:00:46.100
+tested against fixtures, not
+proven against live tenants.
