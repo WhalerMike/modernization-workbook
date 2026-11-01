@@ -1,0 +1,703 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.200
+Welcome back to Building
+Ticket-to-Machine.
+
+2
+00:00:02.200 --> 00:00:06.700
+This is Chapter 4: drift to a
+typed task, the kit's Build 1.
+
+3
+00:00:06.700 --> 00:00:10.987
+A workflow that posts a finding
+is easy to build and hard to see.
+
+4
+00:00:10.987 --> 00:00:15.415
+You can't run a SailPoint workflow on a
+laptop, but you can resolve its request
+
+5
+00:00:15.415 --> 00:00:19.701
+body against a saved event and see the
+exact payload ServiceNow would get.
+
+6
+00:00:19.701 --> 00:00:23.200
+Doing that found two gaps,
+and this chapter fixes both.
+
+7
+00:00:23.200 --> 00:00:26.940
+Then two labs, the
+dangers and the checklist.
+
+8
+00:00:30.690 --> 00:00:31.615
+Why bother?
+
+9
+00:00:31.615 --> 00:00:36.528
+Because the body of a SailPoint workflow
+is full of keys that SailPoint resolves
+
+10
+00:00:36.528 --> 00:00:39.314
+only at run time, so until
+now the only way to see
+
+11
+00:00:39.314 --> 00:00:42.540
+the actual payload was to
+run the workflow in a tenant.
+
+12
+00:00:42.540 --> 00:00:44.953
+And what you can't see, you can't test.
+
+13
+00:00:44.953 --> 00:00:49.684
+If the workflow drops part of an event,
+that part of the change is never reverted,
+
+14
+00:00:49.684 --> 00:00:52.814
+and the re-read later finds
+nothing to disagree with.
+
+15
+00:00:52.814 --> 00:00:55.604
+So this chapter resolves the body offline,
+
+16
+00:00:55.604 --> 00:01:01.470
+derives the intended state the way ServiceNow
+will, and lists anything left behind.
+
+17
+00:01:05.220 --> 00:01:07.208
+Here's what Build 1 already has.
+
+18
+00:01:07.208 --> 00:01:10.033
+Three SailPoint workflows,
+one per trigger.
+
+19
+00:01:10.033 --> 00:01:13.707
+A native change to an account
+raises an unauthorized write.
+
+20
+00:01:13.707 --> 00:01:17.544
+A change to an identity's
+attributes raises attribute drift.
+
+21
+00:01:17.544 --> 00:01:21.301
+And a completed provisioning
+action raises a closure signal,
+
+22
+00:01:21.301 --> 00:01:23.657
+which never closes anything by itself.
+
+23
+00:01:23.657 --> 00:01:27.909
+Each workflow has one HTTP request
+step and is created disabled,
+
+24
+00:01:27.909 --> 00:01:30.796
+because SailPoint won't
+create one enabled.
+
+25
+00:01:30.796 --> 00:01:35.883
+On the ServiceNow side, the scripted REST
+resource derives the intended state:
+
+26
+00:01:35.883 --> 00:01:39.840
+a native change is reverted,
+an attribute change is kept.
+
+27
+00:01:43.590 --> 00:01:45.578
+The new tool does five things.
+
+28
+00:01:45.578 --> 00:01:47.940
+It picks the workflow
+for the trigger you name.
+
+29
+00:01:47.940 --> 00:01:52.930
+It resolves the body against a saved
+event, but only simple paths; anything
+
+30
+00:01:52.930 --> 00:01:58.165
+fancier is refused, because it isn't a
+JSON path engine and won't pretend to be.
+
+31
+00:01:58.165 --> 00:02:01.853
+It derives the intended state
+the same way ServiceNow will.
+
+32
+00:02:01.853 --> 00:02:04.802
+It checks the result against
+Chapter 1's contract.
+
+33
+00:02:04.802 --> 00:02:09.265
+And it lists every top-level field of
+the event that the body never reads.
+
+34
+00:02:09.265 --> 00:02:14.460
+Three fictional events, shaped like
+SailPoint's published examples, feed it.
+
+35
+00:02:18.210 --> 00:02:19.335
+The first fix.
+
+36
+00:02:19.335 --> 00:02:24.748
+SailPoint's native change event has three
+kinds of change: single-value attributes,
+
+37
+00:02:24.748 --> 00:02:29.847
+entitlements, and multivalued attributes,
+each with values added and removed.
+
+38
+00:02:29.847 --> 00:02:32.198
+The workflow sent only the first two.
+
+39
+00:02:32.198 --> 00:02:36.057
+So a native change that touched
+only a multivalued attribute,
+
+40
+00:02:36.057 --> 00:02:40.371
+a proxy address added out of band,
+say, produced an intended state with
+
+41
+00:02:40.371 --> 00:02:44.609
+nothing in it, and a re-read would
+have found nothing to disagree with.
+
+42
+00:02:44.609 --> 00:02:49.653
+Now the workflow sends the multivalued
+changes, and the script reverts them:
+
+43
+00:02:49.653 --> 00:02:53.280
+added values must be absent,
+removed ones present.
+
+44
+00:02:57.030 --> 00:02:59.918
+The second fix is in
+the de-duplication key.
+
+45
+00:02:59.918 --> 00:03:04.518
+ServiceNow folded findings together
+on source, subject and class.
+
+46
+00:03:04.518 --> 00:03:07.372
+So when two attributes
+drifted on one user,
+
+47
+00:03:07.372 --> 00:03:10.554
+department and manager,
+they became one record.
+
+48
+00:03:10.554 --> 00:03:13.412
+The second finding's
+intended state was lost,
+
+49
+00:03:13.412 --> 00:03:15.805
+and the re-read checked only the first.
+
+50
+00:03:15.805 --> 00:03:19.642
+Now the key adds the attribute
+whenever the payload names one.
+
+51
+00:03:19.642 --> 00:03:22.173
+The slide shows the key for a department
+
+52
+00:03:22.173 --> 00:03:24.856
+change on Erin's identity,
+before and after.
+
+53
+00:03:24.856 --> 00:03:28.700
+Each drifting attribute is
+now its own piece of work.
+
+54
+00:03:32.450 --> 00:03:33.912
+Both fixes are pinned.
+
+55
+00:03:33.912 --> 00:03:37.332
+Seven Python tests run each
+workflow against its event,
+
+56
+00:03:37.332 --> 00:03:41.049
+check that a native change
+reverts all three kinds of change,
+
+57
+00:03:41.049 --> 00:03:44.915
+reproduce the empty intended
+state the old workflow produced,
+
+58
+00:03:44.915 --> 00:03:49.748
+confirm the attribute change keeps the
+new value with the attribute in the key,
+
+59
+00:03:49.748 --> 00:03:53.837
+and cover the closure signal,
+refused paths and an unknown trigger.
+
+60
+00:03:53.837 --> 00:03:57.192
+Two new Node tests run the
+ServiceNow script itself,
+
+61
+00:03:57.192 --> 00:04:02.630
+and the contract test now requires the
+script to read the multivalued changes.
+
+62
+00:04:06.380 --> 00:04:09.268
+The trigger facts, read on November first.
+
+63
+00:04:09.268 --> 00:04:11.793
+The native change trigger
+is fire-and-forget,
+
+64
+00:04:11.793 --> 00:04:16.502
+and fires only when an aggregation finds
+an account changed directly on the source,
+
+65
+00:04:16.502 --> 00:04:19.914
+with native change detection
+on, account updates monitored,
+
+66
+00:04:19.914 --> 00:04:21.893
+and a monitored attribute changed.
+
+67
+00:04:21.893 --> 00:04:25.367
+Its trigger ID isn't in
+SailPoint's published table.
+
+68
+00:04:25.367 --> 00:04:29.014
+The attribute-change and
+provisioning triggers are listed,
+
+69
+00:04:29.014 --> 00:04:31.930
+both fire-and-forget, with
+the inputs on the slide.
+
+70
+00:04:31.930 --> 00:04:37.035
+A workflow can't be created enabled, creating
+one needs the workflow manage scope,
+
+71
+00:04:37.035 --> 00:04:40.280
+and the ServiceNow side
+needs an endpoint ACL.
+
+72
+00:04:44.030 --> 00:04:46.556
+Several things are open,
+and they matter because
+
+73
+00:04:46.556 --> 00:04:48.955
+they're exactly what the
+offline tool assumes.
+
+74
+00:04:48.955 --> 00:04:52.718
+The native change trigger's ID
+isn't in SailPoint's table.
+
+75
+00:04:52.718 --> 00:04:56.186
+The HTTP request step's JSON
+names aren't published,
+
+76
+00:04:56.186 --> 00:05:00.443
+and nor is whether it resolves
+those run-time keys inside its body.
+
+77
+00:05:00.443 --> 00:05:05.017
+The shape of each added entitlement
+isn't documented below the list level,
+
+78
+00:05:05.017 --> 00:05:08.467
+and provisioning results
+beyond success aren't listed.
+
+79
+00:05:08.467 --> 00:05:12.243
+Nor is whether the event sits at
+the root or under a trigger key.
+
+80
+00:05:12.243 --> 00:05:14.880
+Lab 2 settles these for your tenant.
+
+81
+00:05:18.630 --> 00:05:20.105
+What Build 1 proves.
+
+82
+00:05:20.105 --> 00:05:24.619
+A write made outside the governed process
+is detected and raised as an owned,
+
+83
+00:05:24.619 --> 00:05:27.701
+clocked finding whose
+intended state is the revert,
+
+84
+00:05:27.701 --> 00:05:31.642
+which supports change control and
+system monitoring at Moderate.
+
+85
+00:05:31.642 --> 00:05:34.954
+Each drifting attribute
+is its own piece of work.
+
+86
+00:05:34.954 --> 00:05:40.918
+And a workflow change is tested before it
+runs, which is developer testing, SA-11.
+
+87
+00:05:40.918 --> 00:05:46.106
+Two labels: treating a native change as
+an unauthorized write is the program's
+
+88
+00:05:46.106 --> 00:05:50.647
+inference, and since the workflow
+can't know whether a claim is in use,
+
+89
+00:05:50.647 --> 00:05:53.100
+a person or a rule raises it to P1.
+
+90
+00:05:56.850 --> 00:05:57.937
+Who does this work?
+
+91
+00:05:57.937 --> 00:06:01.160
+Identity engineers who build
+the SailPoint workflows;
+
+92
+00:06:01.160 --> 00:06:05.924
+they read JSON and should run the payload
+tool on every change before importing.
+
+93
+00:06:05.924 --> 00:06:11.050
+ServiceNow developers who own the scripted
+REST resource, and deploy both fixes.
+
+94
+00:06:11.050 --> 00:06:13.534
+And the workflow client from Chapter 3,
+
+95
+00:06:13.534 --> 00:06:16.950
+with the workflow manage
+scope, used once and removed.
+
+96
+00:06:16.950 --> 00:06:21.308
+One practical point, labeled an
+inference: the ServiceNow endpoint has to
+
+97
+00:06:21.308 --> 00:06:26.090
+be reachable from SailPoint's cloud,
+because workflows call out from there.
+
+98
+00:06:29.840 --> 00:06:30.652
+Lab 1.
+
+99
+00:06:30.652 --> 00:06:32.765
+First, eleven tests pass.
+
+100
+00:06:32.765 --> 00:06:37.153
+Then resolve the native-change workflow
+against Alice's fictional event.
+
+101
+00:06:37.153 --> 00:06:41.139
+It's an unauthorized write on
+her account, accepted at P2.
+
+102
+00:06:41.139 --> 00:06:46.280
+The intended state reverts all three
+changes: the title goes back to Analyst,
+
+103
+00:06:46.280 --> 00:06:50.277
+and both the new group and the
+new proxy address must be gone.
+
+104
+00:06:50.277 --> 00:06:52.795
+The only field not sent is the event type,
+
+105
+00:06:52.795 --> 00:06:57.065
+which is always account-updated for
+this trigger, so nothing is lost.
+
+106
+00:06:57.065 --> 00:07:00.097
+Before the fix, the proxy
+address was missing here,
+
+107
+00:07:00.097 --> 00:07:03.570
+and the multivalued changes
+were in that last line.
+
+108
+00:07:07.320 --> 00:07:08.808
+Next, the mover.
+
+109
+00:07:08.808 --> 00:07:12.770
+Erin's identity changed
+department from HR to Finance.
+
+110
+00:07:12.770 --> 00:07:16.476
+The finding keeps the new
+value as the intended state,
+
+111
+00:07:16.476 --> 00:07:20.182
+at P3, and the key now ends
+in the attribute, department.
+
+112
+00:07:20.182 --> 00:07:22.057
+Nothing in the event is dropped.
+
+113
+00:07:22.057 --> 00:07:25.801
+Then the closure signal from a
+successful provisioning action:
+
+114
+00:07:25.801 --> 00:07:28.132
+it's accepted, and four
+fields aren't sent.
+
+115
+00:07:28.132 --> 00:07:33.695
+A signal only moves matching findings to
+awaiting verification; it never closes one.
+
+116
+00:07:33.695 --> 00:07:38.480
+Finally, the two new Node tests of
+the ServiceNow script both pass.
+
+117
+00:07:42.230 --> 00:07:45.917
+Lab 2 needs a SailPoint sandbox
+and your developer instance,
+
+118
+00:07:45.917 --> 00:07:48.792
+never production, and the
+authors haven't run it.
+
+119
+00:07:48.792 --> 00:07:52.117
+Turn on native change
+detection on one test source.
+
+120
+00:07:52.117 --> 00:07:55.464
+Build one HTTP request step
+by hand in the editor,
+
+121
+00:07:55.464 --> 00:07:58.893
+export it, and compare its
+names with the kit's file.
+
+122
+00:07:58.893 --> 00:08:03.656
+Point it at a capture endpoint first,
+change a monitored attribute on the source,
+
+123
+00:08:03.656 --> 00:08:08.204
+and run the saved trigger input through
+the tool: the two payloads must match.
+
+124
+00:08:08.204 --> 00:08:10.792
+Repeat the change and it de-duplicates.
+
+125
+00:08:10.792 --> 00:08:12.600
+Then put everything back.
+
+126
+00:08:16.350 --> 00:08:17.375
+The dangers.
+
+127
+00:08:17.375 --> 00:08:22.262
+An event field the workflow doesn't send
+leaves part of a change unreverted,
+
+128
+00:08:22.262 --> 00:08:26.125
+and the re-read passes anyway;
+the tool lists dropped fields.
+
+129
+00:08:26.125 --> 00:08:31.375
+Two drifts folded into one record lose
+an intended state; the key fixes that.
+
+130
+00:08:31.375 --> 00:08:34.302
+A workflow edited only in the editor stops
+
+131
+00:08:34.302 --> 00:08:37.313
+matching the repository,
+so export and diff.
+
+132
+00:08:37.313 --> 00:08:40.100
+Credentials in the file
+are caught by a test.
+
+133
+00:08:40.100 --> 00:08:43.677
+A closure signal treated as
+closure would skip the re-read,
+
+134
+00:08:43.677 --> 00:08:45.912
+so it only moves findings to waiting.
+
+135
+00:08:45.912 --> 00:08:50.270
+And an open endpoint is locked
+with authentication and an ACL.
+
+136
+00:08:54.020 --> 00:08:55.220
+Done looks like this.
+
+137
+00:08:55.220 --> 00:08:59.174
+Every workflow resolves against a
+saved input from your own tenant,
+
+138
+00:08:59.174 --> 00:09:01.645
+with nothing you meant
+to send left behind.
+
+139
+00:09:01.645 --> 00:09:05.395
+The native-change workflow
+sends all three kinds of change.
+
+140
+00:09:05.395 --> 00:09:08.007
+The deployed script keys on the attribute.
+
+141
+00:09:08.007 --> 00:09:11.109
+The trigger ID, the step's
+attribute names and
+
+142
+00:09:11.109 --> 00:09:14.044
+the input's root are
+confirmed in a sandbox.
+
+143
+00:09:14.044 --> 00:09:16.601
+Workflows go in disabled, get tested,
+
+144
+00:09:16.601 --> 00:09:20.008
+then enabled, and the
+workflow client is removed.
+
+145
+00:09:20.008 --> 00:09:21.421
+And the tests pass.
+
+146
+00:09:21.421 --> 00:09:26.982
+Next, Chapter 5: the re-read rule, and
+why a success response isn't closure.
+
+147
+00:09:26.982 --> 00:09:28.150
+Thanks for watching.

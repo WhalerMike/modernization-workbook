@@ -1,0 +1,693 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.250
+Welcome to the last chapter of
+Building Ticket-to-Machine.
+
+2
+00:00:03.250 --> 00:00:05.862
+Chapter 8: one writer per attribute.
+
+3
+00:00:05.862 --> 00:00:09.437
+Two writers on one attribute
+isn't drift you can fix.
+
+4
+00:00:09.437 --> 00:00:10.900
+It's drift you've scheduled.
+
+5
+00:00:10.900 --> 00:00:15.870
+Book 3 makes Entra inbound provisioning
+the one writer into the directory,
+
+6
+00:00:15.870 --> 00:00:18.675
+but SailPoint can also provision Entra ID.
+
+7
+00:00:18.675 --> 00:00:20.253
+If both write department,
+
+8
+00:00:20.253 --> 00:00:24.237
+the reconciliation reports drift
+that the next sync recreates.
+
+9
+00:00:24.237 --> 00:00:28.144
+This chapter compares the two
+provisioning configurations,
+
+10
+00:00:28.144 --> 00:00:31.438
+offline, and names every
+attribute with two writers.
+
+11
+00:00:31.438 --> 00:00:34.140
+Then two labs and the dangers.
+
+12
+00:00:37.890 --> 00:00:39.040
+Why does this matter?
+
+13
+00:00:39.040 --> 00:00:44.036
+The example guide's fourth gap: SailPoint
+reads the HR system and can provision
+
+14
+00:00:44.036 --> 00:00:48.878
+the directory, while Book 3 makes Entra
+inbound provisioning the one writer.
+
+15
+00:00:48.878 --> 00:00:52.114
+The guide's advice is to pick
+one writer per attribute.
+
+16
+00:00:52.114 --> 00:00:57.267
+Either Entra inbound provisioning stays the
+door and SailPoint governs entitlements,
+
+17
+00:00:57.267 --> 00:01:00.090
+or SailPoint becomes the
+provisioning service.
+
+18
+00:01:00.090 --> 00:01:01.065
+Not both.
+
+19
+00:01:01.065 --> 00:01:04.349
+Until now, the drift client
+saw only the symptom,
+
+20
+00:01:04.349 --> 00:01:07.465
+drift that keeps coming
+back, never the cause.
+
+21
+00:01:07.465 --> 00:01:13.250
+Both configurations export as JSON,
+so the check can run on files, today.
+
+22
+00:01:17.000 --> 00:01:18.188
+Why only this one?
+
+23
+00:01:18.188 --> 00:01:22.876
+The kit plans five items for Pass 2,
+and four of them need more than files.
+
+24
+00:01:22.876 --> 00:01:25.356
+One approver per authority class needs the
+
+25
+00:01:25.356 --> 00:01:28.112
+catalog app's internals,
+which aren't documented.
+
+26
+00:01:28.112 --> 00:01:32.575
+Change records on demand need a
+ServiceNow flow on a live instance.
+
+27
+00:01:32.575 --> 00:01:35.121
+The SailPoint half of the evidence export
+
+28
+00:01:35.121 --> 00:01:37.812
+needs event retention
+nobody has confirmed.
+
+29
+00:01:37.812 --> 00:01:41.425
+And email intake needs a
+mailbox and an inbound action.
+
+30
+00:01:41.425 --> 00:01:45.870
+The writer check needs only two
+documented exports compared offline,
+
+31
+00:01:45.870 --> 00:01:48.230
+so it can be built and tested now.
+
+32
+00:01:51.980 --> 00:01:56.580
+The first export is the inbound
+provisioning job's schema, read from Graph.
+
+33
+00:01:56.580 --> 00:02:00.118
+The check takes the rules that
+target the Entra directory,
+
+34
+00:02:00.118 --> 00:02:04.392
+by default named Azure Active Directory,
+the name Learn's examples use.
+
+35
+00:02:04.392 --> 00:02:07.873
+Inside them it takes the
+enabled object mappings to User,
+
+36
+00:02:07.873 --> 00:02:11.205
+and each attribute mapping's
+target name and flow type.
+
+37
+00:02:11.205 --> 00:02:16.759
+Two flow types matter: Always, the default,
+updates the attribute on every change,
+
+38
+00:02:16.759 --> 00:02:20.980
+and object-add-only sets it
+only when the user is created.
+
+39
+00:02:24.730 --> 00:02:28.721
+The second export is the SailPoint
+source's provisioning policies,
+
+40
+00:02:28.721 --> 00:02:30.930
+for the source that writes to Entra ID.
+
+41
+00:02:30.930 --> 00:02:34.517
+Each policy has a usage type
+and a list of field names.
+
+42
+00:02:34.517 --> 00:02:39.218
+The update profile is used for attribute
+sync, so it counts as an update.
+
+43
+00:02:39.218 --> 00:02:42.130
+The create profile is used
+when the account is made.
+
+44
+00:02:42.130 --> 00:02:44.954
+Enable, disable and the
+other types don't write
+
+45
+00:02:44.954 --> 00:02:47.630
+user attributes this
+way, so they're ignored.
+
+46
+00:02:47.630 --> 00:02:52.124
+One catch to remember: SailPoint's
+field names are the connector's,
+
+47
+00:02:52.124 --> 00:02:54.310
+not necessarily Entra ID's.
+
+48
+00:02:58.060 --> 00:03:02.273
+For each attribute both systems
+write, the check assigns a severity.
+
+49
+00:03:02.273 --> 00:03:03.990
+Both update it: a Finding,
+
+50
+00:03:03.990 --> 00:03:08.198
+because each overwrites the
+other and drift never settles.
+
+51
+00:03:08.198 --> 00:03:11.323
+One updates it and the
+other sets it at creation:
+
+52
+00:03:11.323 --> 00:03:14.048
+a Warning, two sources
+for its first value.
+
+53
+00:03:14.048 --> 00:03:16.748
+Both set it only at creation: Info.
+
+54
+00:03:16.748 --> 00:03:18.748
+Any Finding fails the command.
+
+55
+00:03:18.748 --> 00:03:21.834
+Names are matched ignoring
+case, and an alias maps a
+
+56
+00:03:21.834 --> 00:03:25.360
+SailPoint field to its Entra
+attribute where they differ.
+
+57
+00:03:25.360 --> 00:03:30.570
+The check never guesses that mapping;
+the alias list is a reviewed input.
+
+58
+00:03:34.320 --> 00:03:39.739
+Six tests cover flow types, usage types
+and aliases, the three severities, disabled
+
+59
+00:03:39.739 --> 00:03:45.158
+mappings being ignored, a wrong directory
+name being refused, and the command line.
+
+60
+00:03:45.158 --> 00:03:48.484
+The usual caution applies,
+and it matters more here:
+
+61
+00:03:48.484 --> 00:03:50.782
+the check reads fictional exports.
+
+62
+00:03:50.782 --> 00:03:54.696
+It can't show that your schema names
+the Entra directory the same way,
+
+63
+00:03:54.696 --> 00:03:57.282
+or that SailPoint's field
+names match Entra's.
+
+64
+00:03:57.282 --> 00:04:03.510
+Run Lab 2 on your own exports and review
+the alias list before acting on any result.
+
+65
+00:04:07.260 --> 00:04:10.747
+The facts behind the exports,
+read on November first.
+
+66
+00:04:10.747 --> 00:04:15.288
+Reading a synchronization schema is
+available in the government clouds; oddly,
+
+67
+00:04:15.288 --> 00:04:19.690
+Learn lists a custom security attribute
+permission as the least-privileged
+
+68
+00:04:19.690 --> 00:04:24.573
+application permission, with Synchronization
+dot Read dot All among the higher ones.
+
+69
+00:04:24.573 --> 00:04:29.123
+The schema's shape is rules, object
+mappings and attribute mappings.
+
+70
+00:04:29.123 --> 00:04:34.449
+SailPoint's policies come from the
+provisioning-policies endpoint with a read or
+
+71
+00:04:34.449 --> 00:04:39.461
+manage scope, at the org admin user level,
+each with a name, usage type and fields.
+
+72
+00:04:39.461 --> 00:04:42.930
+GCC uses the worldwide Graph host.
+
+73
+00:04:46.680 --> 00:04:50.130
+Four points are open, and each one
+changes what the check can see.
+
+74
+00:04:50.130 --> 00:04:54.036
+Why Learn names a custom security
+attribute permission as the least
+
+75
+00:04:54.036 --> 00:04:57.530
+privilege for reading a schema;
+confirm the read works with it.
+
+76
+00:04:57.530 --> 00:05:01.291
+Which directory name an HR
+inbound job actually uses;
+
+77
+00:05:01.291 --> 00:05:05.480
+Learn's pages differ, so the check
+refuses a name it can't find.
+
+78
+00:05:05.480 --> 00:05:09.210
+How SailPoint's connector
+fields map to Entra attributes;
+
+79
+00:05:09.210 --> 00:05:11.230
+that's why aliases are reviewed.
+
+80
+00:05:11.230 --> 00:05:15.588
+And whether SailPoint writes Entra
+attributes through other paths,
+
+81
+00:05:15.588 --> 00:05:17.193
+transforms or workflows.
+
+82
+00:05:17.193 --> 00:05:19.470
+The check covers policies only.
+
+83
+00:05:23.220 --> 00:05:24.383
+What this proves.
+
+84
+00:05:24.383 --> 00:05:29.320
+Each Entra user attribute has one
+authoritative writer, or the overlap is named
+
+85
+00:05:29.320 --> 00:05:34.557
+and assigned to someone, which supports
+configuration settings and change control.
+
+86
+00:05:34.557 --> 00:05:38.177
+Drift that the next sync would
+recreate is traced to its cause,
+
+87
+00:05:38.177 --> 00:05:40.520
+which makes the monitoring meaningful.
+
+88
+00:05:40.520 --> 00:05:45.813
+And a change to either provisioning
+configuration is checked before it lands,
+
+89
+00:05:45.813 --> 00:05:49.070
+which is change control
+and impact analysis, CM-4.
+
+90
+00:05:49.070 --> 00:05:51.420
+The evidence is the check's output and the
+
+91
+00:05:51.420 --> 00:05:54.260
+data architect's decision
+for each Finding.
+
+92
+00:05:58.010 --> 00:05:59.060
+Who's involved?
+
+93
+00:05:59.060 --> 00:06:02.616
+Identity engineers who own
+the inbound provisioning job
+
+94
+00:06:02.616 --> 00:06:06.172
+or the SailPoint Entra source,
+and produce the two exports.
+
+95
+00:06:06.172 --> 00:06:11.326
+The data architect, who decides which
+system owns each attribute and reviews
+
+96
+00:06:11.326 --> 00:06:16.398
+the aliases; Book 3's default keeps
+Entra inbound provisioning as the writer.
+
+97
+00:06:16.398 --> 00:06:19.673
+And the I S S O, who keeps the decisions.
+
+98
+00:06:19.673 --> 00:06:21.447
+The two reads are read-only.
+
+99
+00:06:21.447 --> 00:06:27.097
+One wrinkle: SailPoint's policies endpoint
+documents the org admin user level,
+
+100
+00:06:27.097 --> 00:06:32.680
+so a personal token is the wrong tool;
+use an API client with one read scope.
+
+101
+00:06:36.430 --> 00:06:37.242
+Lab 1.
+
+102
+00:06:37.242 --> 00:06:38.630
+Six tests pass.
+
+103
+00:06:38.630 --> 00:06:41.592
+Then run the check on the
+two fictional exports.
+
+104
+00:06:41.592 --> 00:06:46.468
+Entra inbound provisioning writes eight
+attributes and SailPoint writes seven.
+
+105
+00:06:46.468 --> 00:06:49.657
+Department is a Finding:
+both systems update it,
+
+106
+00:06:49.657 --> 00:06:53.255
+so each overwrites the other
+and drift never settles.
+
+107
+00:06:53.255 --> 00:06:57.943
+Display name is a Warning: one updates
+it and the other sets it at creation.
+
+108
+00:06:57.943 --> 00:07:01.717
+Two attributes are only Info,
+set by both at creation.
+
+109
+00:07:01.717 --> 00:07:04.380
+The command fails because of that Finding.
+
+110
+00:07:08.130 --> 00:07:12.393
+Now map SailPoint's title field to
+Entra's job title and run it again.
+
+111
+00:07:12.393 --> 00:07:16.180
+A second Finding appears: job
+title has two writers too.
+
+112
+00:07:16.180 --> 00:07:18.825
+Without the alias that
+writer was invisible,
+
+113
+00:07:18.825 --> 00:07:21.255
+which is why the alias list gets reviewed.
+
+114
+00:07:21.255 --> 00:07:23.655
+Next, give the wrong directory name.
+
+115
+00:07:23.655 --> 00:07:26.464
+The check refuses and exits with an error,
+
+116
+00:07:26.464 --> 00:07:29.355
+rather than passing quietly as no overlap.
+
+117
+00:07:29.355 --> 00:07:31.899
+Finally, list the reads the exports need:
+
+118
+00:07:31.899 --> 00:07:37.490
+one SailPoint read scope for the policies,
+and one Graph permission for the schema.
+
+119
+00:07:41.240 --> 00:07:46.133
+Lab 2 uses your own exports, from a test
+tenant with an inbound provisioning
+
+120
+00:07:46.133 --> 00:07:50.790
+job and a SailPoint sandbox, never
+production; the authors haven't run it.
+
+121
+00:07:50.790 --> 00:07:52.352
+Both reads are GET only.
+
+122
+00:07:52.352 --> 00:07:56.639
+Export the job's schema and note
+the directory name it actually uses.
+
+123
+00:07:56.639 --> 00:08:02.528
+Export the SailPoint source's policies
+with an API client holding one read scope.
+
+124
+00:08:02.528 --> 00:08:05.156
+Build the alias list from
+the source's account
+
+125
+00:08:05.156 --> 00:08:07.715
+schema and have the data
+architect review it.
+
+126
+00:08:07.715 --> 00:08:11.378
+Run the check, and hand each
+Finding to the data architect.
+
+127
+00:08:11.378 --> 00:08:12.710
+Then clean up.
+
+128
+00:08:16.460 --> 00:08:17.485
+The dangers.
+
+129
+00:08:17.485 --> 00:08:21.077
+Two systems updating one
+attribute means drift fixed
+
+130
+00:08:21.077 --> 00:08:24.510
+and recreated forever; that's
+a Finding and a failure.
+
+131
+00:08:24.510 --> 00:08:28.935
+Field names that differ can hide a
+second writer, so aliases are reviewed.
+
+132
+00:08:28.935 --> 00:08:34.010
+A wrong directory name would make every
+attribute look unwritten, so it's refused.
+
+133
+00:08:34.010 --> 00:08:37.773
+A disabled mapping would raise
+false findings, so it's skipped.
+
+134
+00:08:37.773 --> 00:08:42.948
+An export with values in it may carry
+personal data, so export mappings only.
+
+135
+00:08:42.948 --> 00:08:46.438
+And writers outside provisioning
+policies aren't seen at all,
+
+136
+00:08:46.438 --> 00:08:48.770
+so a person confirms there are none.
+
+137
+00:08:52.520 --> 00:08:53.720
+Done looks like this.
+
+138
+00:08:53.720 --> 00:08:57.620
+The check runs on current exports
+with the reviewed alias list.
+
+139
+00:08:57.620 --> 00:09:01.503
+Every Finding has a decision,
+which system owns the attribute,
+
+140
+00:09:01.503 --> 00:09:03.482
+with the other mapping removed.
+
+141
+00:09:03.482 --> 00:09:07.920
+Every Warning is understood, so
+each first value has one source.
+
+142
+00:09:07.920 --> 00:09:10.558
+The directory name
+matches the job's schema.
+
+143
+00:09:10.558 --> 00:09:13.769
+The two export identities
+hold only their reads.
+
+144
+00:09:13.769 --> 00:09:15.183
+And the tests pass.
+
+145
+00:09:15.183 --> 00:09:20.043
+That completes the workbook: the typed
+task, two least-privilege clients,
+
+146
+00:09:20.043 --> 00:09:23.770
+three builds, the evidence,
+and one writer per attribute.
+
+147
+00:09:23.770 --> 00:09:24.920
+Thanks for watching.

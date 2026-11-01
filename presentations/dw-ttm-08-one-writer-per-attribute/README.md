@@ -6,7 +6,7 @@
 |---|---|
 | `DW_TTM_08_One_Writer_Per_Attribute.pptx` | The deck: 16 narrated slides (the title and 15 content slides in Why, What, Who and How order), then a backup section with the chapter's footnotes in full |
 | `DW_TTM_08_One_Writer_Per_Attribute_Narrated.pptx` | The self-running edition: narration audio and a caption track on every slide, backup section dropped |
-| `DW_TTM_08_One_Writer_Per_Attribute_Narrated.mp4` | The video, for the videos release (not uploaded yet) |
+| `DW_TTM_08_One_Writer_Per_Attribute_Narrated.mp4` | The video, about 9 minutes, on the [videos release](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_TTM_08_One_Writer_Per_Attribute_Narrated.mp4) |
 | `DW_TTM_08_One_Writer_Per_Attribute_Narrated.vtt` | The video's caption track |
 | `DW_TTM_08_One_Writer_Per_Attribute_Narration_Script.md` | The spoken narration, slide by slide (about 1,317 words) |
 | `build.js` | The slides, the spoken narration (`say`), the presenter detail (`detail`) and the chapter footnotes each slide cites (`cite`) |

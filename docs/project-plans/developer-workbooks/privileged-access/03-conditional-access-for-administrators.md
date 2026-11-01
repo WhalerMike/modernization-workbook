@@ -29,7 +29,7 @@ The policies behind the plan's tasks A1.5, A2.3, A2.5 and A2.6: phishing-resista
 ## Narrated tour
 {{< fmw-video DW_PA_03_CA_Activation_Gate_Narrated >}}
 
-[Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11/DW_PA_03_CA_Activation_Gate.pptx) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11/DW_PA_03_CA_Activation_Gate_Narrated.pptx) (about 11 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-pa-03-ca-activation-gate/DW_PA_03_CA_Activation_Gate_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-pa-03-ca-activation-gate/DW_PA_03_CA_Activation_Gate_Narrated.vtt). Recorded on October 31, 2026 from the approved chapter.
+[Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/DW_PA_03_CA_Activation_Gate.pptx) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/DW_PA_03_CA_Activation_Gate_Narrated.pptx) (about 11 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-pa-03-ca-activation-gate/DW_PA_03_CA_Activation_Gate_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-pa-03-ca-activation-gate/DW_PA_03_CA_Activation_Gate_Narrated.vtt). Recorded on October 31, 2026 from the approved chapter.
 :::
 
 <!-- tour:end -->

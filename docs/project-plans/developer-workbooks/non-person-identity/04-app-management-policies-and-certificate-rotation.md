@@ -29,7 +29,7 @@ The code behind the project plan's tasks N3.1, "new client secrets and symmetric
 ## Narrated tour
 {{< fmw-video DW_NPI_04_App_Policy_Rotation_Narrated >}}
 
-[Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11/DW_NPI_04_App_Policy_Rotation.pptx) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11/DW_NPI_04_App_Policy_Rotation_Narrated.pptx) (about 11 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-npi-04-app-policy-rotation/DW_NPI_04_App_Policy_Rotation_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-npi-04-app-policy-rotation/DW_NPI_04_App_Policy_Rotation_Narrated.vtt). Recorded on October 31, 2026 from the approved chapter.
+[Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/DW_NPI_04_App_Policy_Rotation.pptx) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/DW_NPI_04_App_Policy_Rotation_Narrated.pptx) (about 11 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-npi-04-app-policy-rotation/DW_NPI_04_App_Policy_Rotation_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-npi-04-app-policy-rotation/DW_NPI_04_App_Policy_Rotation_Narrated.vtt). Recorded on October 31, 2026 from the approved chapter.
 :::
 
 <!-- tour:end -->

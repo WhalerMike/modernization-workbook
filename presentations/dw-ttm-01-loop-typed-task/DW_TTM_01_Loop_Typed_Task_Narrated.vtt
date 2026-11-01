@@ -1,0 +1,722 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.889
+Welcome to the Federal Modernization
+Workbook's developer workbook,
+
+2
+00:00:03.889 --> 00:00:05.412
+Building Ticket-to-Machine.
+
+3
+00:00:05.412 --> 00:00:08.687
+This is Chapter 1: the
+loop and the typed task.
+
+4
+00:00:08.687 --> 00:00:14.288
+Every step of Book 13's loop writes or
+reads one record, the identity finding.
+
+5
+00:00:14.288 --> 00:00:19.312
+If its shape is wrong, the clock, the owner
+and the re-read are all wrong with it.
+
+6
+00:00:19.312 --> 00:00:23.441
+We'll place each file of the ServiceNow
+and SailPoint kit in the loop,
+
+7
+00:00:23.441 --> 00:00:27.791
+then check that record on a laptop
+before anything reaches ServiceNow,
+
+8
+00:00:27.791 --> 00:00:30.224
+and finish with two labs and the dangers.
+
+9
+00:00:30.224 --> 00:00:34.000
+The code is illustrative,
+tested against fixtures.
+
+10
+00:00:37.750 --> 00:00:39.100
+Why start with the record?
+
+11
+00:00:39.100 --> 00:00:40.687
+Because the loop has one.
+
+12
+00:00:40.687 --> 00:00:45.260
+A drift becomes a typed task with a
+class, a severity, an owner, a clock,
+
+13
+00:00:45.260 --> 00:00:47.754
+the system where the re-read happens,
+
+14
+00:00:47.754 --> 00:00:51.662
+and an intended state that says
+what the re-read must find.
+
+15
+00:00:51.662 --> 00:00:56.626
+Get the class wrong and the finding
+bounces, so the drift is never recorded.
+
+16
+00:00:56.626 --> 00:01:00.538
+Choose severity by hand and the
+windows stop meaning anything.
+
+17
+00:01:00.538 --> 00:01:04.332
+And an intended state that
+names nothing is the quiet one:
+
+18
+00:01:04.332 --> 00:01:08.820
+a re-read finds no difference,
+and the record closes on nothing.
+
+19
+00:01:12.570 --> 00:01:17.397
+Book 13's loop has five steps: test,
+detect drift, raise a typed task,
+
+20
+00:01:17.397 --> 00:01:21.495
+actuate on the native surface,
+and close with evidence.
+
+21
+00:01:21.495 --> 00:01:23.132
+Here's where the kit sits in it.
+
+22
+00:01:23.132 --> 00:01:25.722
+The drift client tests by joining HR,
+
+23
+00:01:25.722 --> 00:01:29.261
+Microsoft Graph and
+SailPoint on the employee ID.
+
+24
+00:01:29.261 --> 00:01:32.195
+SailPoint's event triggers detect drift.
+
+25
+00:01:32.195 --> 00:01:37.045
+The workflows and a ServiceNow scripted
+REST resource raise the typed task.
+
+26
+00:01:37.045 --> 00:01:39.444
+Nothing in the kit actuates yet:
+
+27
+00:01:39.444 --> 00:01:43.782
+no code writes to Entra ID,
+Active Directory or SailPoint.
+
+28
+00:01:43.782 --> 00:01:48.580
+And a business rule and the re-read
+client close only with evidence.
+
+29
+00:01:52.330 --> 00:01:57.005
+The record those steps share has a short
+data contract, kept in the kit's read me.
+
+30
+00:01:57.005 --> 00:02:01.163
+Every payload says what kind it
+is, a finding or a closure signal,
+
+31
+00:02:01.163 --> 00:02:05.880
+where it came from, and which of Book
+3's seven drift classes it belongs to.
+
+32
+00:02:05.880 --> 00:02:11.034
+It carries a severity, P1 to P4, the
+system where the re-read will happen,
+
+33
+00:02:11.034 --> 00:02:15.917
+one subject identifier, and the
+intended state a re-read must find.
+
+34
+00:02:15.917 --> 00:02:21.142
+The workbook doesn't restate where each
+field lands in Book 13's evidence record.
+
+35
+00:02:21.142 --> 00:02:23.280
+It makes the fields checkable.
+
+36
+00:02:27.030 --> 00:02:28.180
+What exists today?
+
+37
+00:02:28.180 --> 00:02:31.170
+The contract is enforced
+in exactly one place,
+
+38
+00:02:31.170 --> 00:02:34.868
+the scripted REST resource
+that runs inside ServiceNow.
+
+39
+00:02:34.868 --> 00:02:38.756
+It validates the payload and
+answers four hundred with a reason.
+
+40
+00:02:38.756 --> 00:02:44.545
+It maps severity to a priority
+and a due date on Book 13's tempo:
+
+41
+00:02:44.545 --> 00:02:48.830
+P1 immediate, P2 one hour,
+P3 a day, P4 three days.
+
+42
+00:02:48.830 --> 00:02:52.380
+That tempo is the program's
+design, not a federal rule.
+
+43
+00:02:52.380 --> 00:02:56.789
+It defaults severity by class,
+de-duplicates against an open finding,
+
+44
+00:02:56.789 --> 00:03:00.192
+and fills in an intended
+state from a SailPoint event.
+
+45
+00:03:00.192 --> 00:03:04.500
+The catch: nothing outside
+ServiceNow applied the same rules.
+
+46
+00:03:08.250 --> 00:03:11.375
+So the chapter adds a Python
+mirror of the contract.
+
+47
+00:03:11.375 --> 00:03:16.254
+Its validate function applies the script's
+rules and returns the errors ServiceNow
+
+48
+00:03:16.254 --> 00:03:20.158
+would reject, warnings for what it
+would accept but the loop can't use,
+
+49
+00:03:20.158 --> 00:03:25.037
+and the normalized values, including the
+de-duplication key and the response window.
+
+50
+00:03:25.037 --> 00:03:29.393
+Its constants copy the script's,
+and a test reads the JavaScript and
+
+51
+00:03:29.393 --> 00:03:33.512
+fails if the two drift apart, so
+the mirror can't quietly go stale.
+
+52
+00:03:33.512 --> 00:03:38.520
+A command line checks a file of payloads,
+or everything a drift run would post.
+
+53
+00:03:42.270 --> 00:03:45.095
+Here's the subtle case the
+chapter guards against.
+
+54
+00:03:45.095 --> 00:03:47.823
+An intended state like
+the one on the slide
+
+55
+00:03:47.823 --> 00:03:50.395
+is a non-empty object,
+so it looks present.
+
+56
+00:03:50.395 --> 00:03:54.295
+But it names nothing: no
+attribute, no entitlement.
+
+57
+00:03:54.295 --> 00:03:57.199
+A re-read compares against
+it, finds no difference,
+
+58
+00:03:57.199 --> 00:03:59.395
+and would close the record on nothing.
+
+59
+00:03:59.395 --> 00:04:03.483
+The check warns rather than rejects,
+because ServiceNow would accept it.
+
+60
+00:04:03.483 --> 00:04:08.237
+For the two classes Book 13 sends to a
+person first, missing identity and an
+
+61
+00:04:08.237 --> 00:04:13.740
+unauthorized write, the warning says
+that's expected until that person decides.
+
+62
+00:04:17.490 --> 00:04:19.640
+The chapter's tests number twenty-two.
+
+63
+00:04:19.640 --> 00:04:24.714
+They compare the constants against the
+script, try every rejection the script makes,
+
+64
+00:04:24.714 --> 00:04:27.323
+cover closure signals and system defaults,
+
+65
+00:04:27.323 --> 00:04:31.019
+check both checkable and empty
+intended states and the tempo,
+
+66
+00:04:31.019 --> 00:04:35.078
+and accept every payload the drift
+client builds from the fixtures.
+
+67
+00:04:35.078 --> 00:04:38.814
+With the rest of the kit, a hundred
+and seven Python tests pass,
+
+68
+00:04:38.814 --> 00:04:42.177
+plus fifteen Node tests of
+the ServiceNow scripts and
+
+69
+00:04:42.177 --> 00:04:46.060
+forty PowerShell tests, all
+without a tenant or a network.
+
+70
+00:04:49.810 --> 00:04:53.367
+These are the vendor facts
+the chapter's code relies on,
+
+71
+00:04:53.367 --> 00:04:55.185
+each read on November first.
+
+72
+00:04:55.185 --> 00:04:58.960
+A scripted REST API has a fixed URL shape.
+
+73
+00:04:58.960 --> 00:05:02.786
+Access is set by API access
+policies and endpoint ACLs,
+
+74
+00:05:02.786 --> 00:05:07.972
+and creating one needs the web service
+admin role, which calling it doesn't.
+
+75
+00:05:07.972 --> 00:05:11.910
+The kit uses two SailPoint
+triggers, both fire-and-forget.
+
+76
+00:05:11.910 --> 00:05:15.560
+ServiceNow's Government
+Community Cloud is FedRAMP High;
+
+77
+00:05:15.560 --> 00:05:19.210
+SailPoint's Identity Security
+Cloud is FedRAMP Moderate.
+
+78
+00:05:19.210 --> 00:05:23.610
+And a free developer instance is
+reclaimed after ten days unused.
+
+79
+00:05:27.360 --> 00:05:31.185
+Two points stay open, and the
+chapter says so rather than guessing.
+
+80
+00:05:31.185 --> 00:05:36.179
+First, nobody has confirmed which identity
+ServiceNow reports for a call made with
+
+81
+00:05:36.179 --> 00:05:39.726
+an OAuth client-credentials
+token, and the business rule in
+
+82
+00:05:39.726 --> 00:05:43.273
+Chapter 5 compares exactly that
+with its verifier account.
+
+83
+00:05:43.273 --> 00:05:48.350
+Second, ServiceNow's page says a developer
+instance is reclaimed after ten days
+
+84
+00:05:48.350 --> 00:05:53.273
+unused, but newer community posts describe
+a rule that also considers its age.
+
+85
+00:05:53.273 --> 00:05:56.208
+So check before relying on
+one for more than a few days,
+
+86
+00:05:56.208 --> 00:05:58.570
+and keep your work in source control.
+
+87
+00:06:02.320 --> 00:06:04.333
+What does this chapter's output prove?
+
+88
+00:06:04.333 --> 00:06:08.103
+Every drift becomes one record
+with a class, a severity,
+
+89
+00:06:08.103 --> 00:06:12.545
+an owner and a due date, and a
+malformed one is rejected at the door.
+
+90
+00:06:12.545 --> 00:06:18.606
+That supports configuration change control
+and continuous monitoring, CM-3 and CA-7,
+
+91
+00:06:18.606 --> 00:06:20.771
+both in the Moderate baseline,
+
+92
+00:06:20.771 --> 00:06:25.533
+and the evidence is the ServiceNow
+record plus the contract tests.
+
+93
+00:06:25.533 --> 00:06:30.170
+And the response window is applied by
+code, not chosen ticket by ticket.
+
+94
+00:06:30.170 --> 00:06:35.058
+A typed finding is only the owned,
+clocked half of Book 13's record.
+
+95
+00:06:35.058 --> 00:06:37.780
+Approval and the re-read come later.
+
+96
+00:06:41.530 --> 00:06:42.592
+Who is this for?
+
+97
+00:06:42.592 --> 00:06:45.588
+Developers who build either
+side of the integration,
+
+98
+00:06:45.588 --> 00:06:48.106
+and the reviewers who
+approve their changes.
+
+99
+00:06:48.106 --> 00:06:53.105
+You need to read Python and JSON, and
+you don't need any instance until Lab 2.
+
+100
+00:06:53.105 --> 00:06:56.920
+One least-privilege point carries
+through the whole workbook:
+
+101
+00:06:56.920 --> 00:07:01.615
+the person who creates the scripted REST
+API needs the web service admin role,
+
+102
+00:07:01.615 --> 00:07:04.330
+but the integration user
+who calls it doesn't.
+
+103
+00:07:04.330 --> 00:07:09.720
+It gets one custom role, granted through
+an endpoint ACL, and nothing else.
+
+104
+00:07:13.470 --> 00:07:16.220
+Lab 1 needs only a laptop with Python.
+
+105
+00:07:16.220 --> 00:07:19.170
+First, run the chapter's twenty-two tests.
+
+106
+00:07:19.170 --> 00:07:23.858
+Then check five sample payloads at a
+fixed clock, noon on November first.
+
+107
+00:07:23.858 --> 00:07:26.735
+The first is accepted: it had no severity,
+
+108
+00:07:26.735 --> 00:07:30.920
+so the class default gave it P2
+and a due time one hour later.
+
+109
+00:07:30.920 --> 00:07:35.683
+The second has a typo in its class and
+is rejected with the list of valid ones.
+
+110
+00:07:35.683 --> 00:07:40.145
+The third is accepted but warned:
+its intended state names nothing.
+
+111
+00:07:40.145 --> 00:07:41.965
+The fourth has a bad severity,
+
+112
+00:07:41.965 --> 00:07:46.120
+and the fifth is a closure signal
+that never closes anything.
+
+113
+00:07:49.870 --> 00:07:53.895
+Next, run the ServiceNow script's
+own fifteen tests in Node,
+
+114
+00:07:53.895 --> 00:07:55.907
+the rules the Python mirrors.
+
+115
+00:07:55.907 --> 00:07:58.470
+Then run the drift reconciliation over the
+
+116
+00:07:58.470 --> 00:08:01.246
+fixtures and check every
+payload it would post.
+
+117
+00:08:01.246 --> 00:08:02.632
+Twelve are accepted.
+
+118
+00:08:02.632 --> 00:08:07.387
+Three carry the warning, and they're
+exactly the classes a person decides first:
+
+119
+00:08:07.387 --> 00:08:10.532
+two missing identities and
+the unauthorized write.
+
+120
+00:08:10.532 --> 00:08:15.920
+Notice Erin's two attribute drifts
+in Entra ID, department and manager.
+
+121
+00:08:15.920 --> 00:08:17.583
+They now have separate keys.
+
+122
+00:08:17.583 --> 00:08:19.982
+Before Chapter 4's fix, they shared one,
+
+123
+00:08:19.982 --> 00:08:23.530
+and the second would have
+vanished into the first.
+
+124
+00:08:27.280 --> 00:08:31.197
+Lab 2 moves to your own ServiceNow
+Personal Developer Instance,
+
+125
+00:08:31.197 --> 00:08:34.080
+never production, and the
+authors haven't run it.
+
+126
+00:08:34.080 --> 00:08:38.202
+You build the finding table and the
+scripted REST resource from the kit,
+
+127
+00:08:38.202 --> 00:08:42.743
+lock it down with authentication and an
+endpoint ACL for one integration user,
+
+128
+00:08:42.743 --> 00:08:45.467
+then check a payload
+locally before posting it.
+
+129
+00:08:45.467 --> 00:08:49.443
+Expect a created record with
+priority 2, due an hour later.
+
+130
+00:08:49.443 --> 00:08:51.880
+Post it again and it de-duplicates.
+
+131
+00:08:51.880 --> 00:08:56.055
+Post the typo and you get the same
+four hundred Lab 1 predicted.
+
+132
+00:08:56.055 --> 00:08:57.630
+Then back it all out.
+
+133
+00:09:01.380 --> 00:09:02.830
+Each danger has a guard.
+
+134
+00:09:02.830 --> 00:09:06.847
+If the Python mirror drifts from
+the script, a payload passes on a
+
+135
+00:09:06.847 --> 00:09:11.168
+laptop and fails in ServiceNow, so
+a test reads the JavaScript itself.
+
+136
+00:09:11.168 --> 00:09:16.106
+A typo in a class would lose the drift
+entirely, so it fails locally first.
+
+137
+00:09:16.106 --> 00:09:19.333
+An empty intended state would
+close a record on nothing,
+
+138
+00:09:19.333 --> 00:09:21.368
+so it's warned now and skipped later.
+
+139
+00:09:21.368 --> 00:09:25.432
+Severity chosen per ticket would
+empty the windows of meaning,
+
+140
+00:09:25.432 --> 00:09:27.230
+so defaults live in one table.
+
+141
+00:09:27.230 --> 00:09:32.040
+And a developer instance isn't permanent:
+keep your work in source control.
+
+142
+00:09:35.790 --> 00:09:37.140
+Here's what done looks like.
+
+143
+00:09:37.140 --> 00:09:40.929
+The Python constants match the
+script that's actually deployed,
+
+144
+00:09:40.929 --> 00:09:42.502
+and the parity test passes.
+
+145
+00:09:42.502 --> 00:09:45.000
+Every client that posts findings runs its
+
+146
+00:09:45.000 --> 00:09:47.853
+payloads through the
+validator in its own tests.
+
+147
+00:09:47.853 --> 00:09:52.253
+Nothing a client builds is rejected,
+and every warning is understood.
+
+148
+00:09:52.253 --> 00:09:55.102
+The windows are the
+program's current ones and
+
+149
+00:09:55.102 --> 00:09:57.877
+the severity defaults
+match Book 3's classes.
+
+150
+00:09:57.877 --> 00:10:01.565
+And the API requires
+authentication and a custom role.
+
+151
+00:10:01.565 --> 00:10:07.078
+Next, Chapter 2 writes down every ServiceNow
+call and the least privilege it needs.
+
+152
+00:10:07.078 --> 00:10:08.240
+Thanks for watching.

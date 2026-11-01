@@ -27,7 +27,9 @@ How the kit's clients authenticate to ServiceNow and page through its tables, an
 
 ::: {.callout-tip appearance="simple"}
 ## Narrated tour
-[Deck and narrated deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-ttm-02-servicenow-least-privilege) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-ttm-02-servicenow-least-privilege/DW_TTM_02_ServiceNow_Least_Privilege_Narration_Script.md). Recorded on November 1, 2026 from the approved chapter; the video follows when it is uploaded.
+{{< fmw-video DW_TTM_02_ServiceNow_Least_Privilege_Narrated >}}
+
+[Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/DW_TTM_02_ServiceNow_Least_Privilege.pptx) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/DW_TTM_02_ServiceNow_Least_Privilege_Narrated.pptx) (about 9 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-ttm-02-servicenow-least-privilege/DW_TTM_02_ServiceNow_Least_Privilege_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-ttm-02-servicenow-least-privilege/DW_TTM_02_ServiceNow_Least_Privilege_Narrated.vtt). Recorded on November 1, 2026 from the approved chapter.
 :::
 
 <!-- tour:end -->

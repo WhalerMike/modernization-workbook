@@ -27,7 +27,9 @@ The fourth gap the example guide found, and the one Pass 2 item that can be buil
 
 ::: {.callout-tip appearance="simple"}
 ## Narrated tour
-[Deck and narrated deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-ttm-08-one-writer-per-attribute) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-ttm-08-one-writer-per-attribute/DW_TTM_08_One_Writer_Per_Attribute_Narration_Script.md). Recorded on November 1, 2026 from the approved chapter; the video follows when it is uploaded.
+{{< fmw-video DW_TTM_08_One_Writer_Per_Attribute_Narrated >}}
+
+[Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/DW_TTM_08_One_Writer_Per_Attribute.pptx) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/DW_TTM_08_One_Writer_Per_Attribute_Narrated.pptx) (about 9 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-ttm-08-one-writer-per-attribute/DW_TTM_08_One_Writer_Per_Attribute_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-ttm-08-one-writer-per-attribute/DW_TTM_08_One_Writer_Per_Attribute_Narrated.vtt). Recorded on November 1, 2026 from the approved chapter.
 :::
 
 <!-- tour:end -->

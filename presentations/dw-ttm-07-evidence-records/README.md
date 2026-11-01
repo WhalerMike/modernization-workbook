@@ -6,7 +6,7 @@
 |---|---|
 | `DW_TTM_07_Evidence_Records.pptx` | The deck: 15 narrated slides (the title and 14 content slides in Why, What, Who and How order), then a backup section with the chapter's footnotes in full |
 | `DW_TTM_07_Evidence_Records_Narrated.pptx` | The self-running edition: narration audio and a caption track on every slide, backup section dropped |
-| `DW_TTM_07_Evidence_Records_Narrated.mp4` | The video, for the videos release (not uploaded yet) |
+| `DW_TTM_07_Evidence_Records_Narrated.mp4` | The video, about 9 minutes, on the [videos release](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_TTM_07_Evidence_Records_Narrated.mp4) |
 | `DW_TTM_07_Evidence_Records_Narrated.vtt` | The video's caption track |
 | `DW_TTM_07_Evidence_Records_Narration_Script.md` | The spoken narration, slide by slide (about 1,296 words) |
 | `build.js` | The slides, the spoken narration (`say`), the presenter detail (`detail`) and the chapter footnotes each slide cites (`cite`) |

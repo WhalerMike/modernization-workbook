@@ -19,7 +19,7 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
 review-status: approved
-reviewed-sha256: 2ee63b22083f3d02b6537f598e56419533bf4ed9b803d104be6884e02cb60109
+reviewed-sha256: c5d89be6c6982ebf6310ee2f1251b0ab488b37b38424c57bbb13c0a83a49ac0b
 last-reviewed: 2026-11-01
 ---
 # Building HR-Driven Identity {.unnumbered}
@@ -106,10 +106,11 @@ This is the developer workbook for the [HR-driven identity implementation guide]
 
 ## Version and revision history {#version-history}
 
-**Version 1.0**, in [edition 2026.11](../../../about/archive.md#edition-2026-11) (November 1, 2026). Every edition is kept on the [Archive](../../../about/archive.md) page; every change between editions is in the [commit history](https://github.com/WhalerMike/modernization-workbook/commits/main/docs/project-plans/developer-workbooks/hr-driven-identity).
+**Version 1.1**, in [edition 2026.11.1](../../../about/archive.md#edition-2026-11-1) (November 1, 2026). Every edition is kept on the [Archive](../../../about/archive.md) page; every change between editions is in the [commit history](https://github.com/WhalerMike/modernization-workbook/commits/main/docs/project-plans/developer-workbooks/hr-driven-identity).
 
 | Version | Edition | Date | Changes |
 |---|---|---|---|
+| 1.1 | [2026.11.1](../../../about/archive.md#edition-2026-11-1) | 2026-11-01 | Edition 2026.11: record the edition, and publish the four gate-level decks and videos ([#282](https://github.com/WhalerMike/modernization-workbook/pull/282)) |
 | 1.0 | [2026.11](../../../about/archive.md#edition-2026-11) | 2026-11-01 | Building HR-Driven Identity: a developer workbook with labs ([#276](https://github.com/WhalerMike/modernization-workbook/pull/276)); Learning path: HR-Driven Identity in Microsoft Entra ID ([#278](https://github.com/WhalerMike/modernization-workbook/pull/278)); Gate-level deck series for HR-Driven Identity and Ticket-to-Machine (sources) ([#280](https://github.com/WhalerMike/modernization-workbook/pull/280)) |
 
 : Versions of this workbook, newest first {.striped .hover}

@@ -27,7 +27,9 @@ Where `examples/servicenow-sailpoint` sits in Book 13's five-step loop, and the 
 
 ::: {.callout-tip appearance="simple"}
 ## Narrated tour
-[Deck and narrated deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-ttm-01-loop-typed-task) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-ttm-01-loop-typed-task/DW_TTM_01_Loop_Typed_Task_Narration_Script.md). Recorded on November 1, 2026 from the approved chapter; the video follows when it is uploaded.
+{{< fmw-video DW_TTM_01_Loop_Typed_Task_Narrated >}}
+
+[Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/DW_TTM_01_Loop_Typed_Task.pptx) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/DW_TTM_01_Loop_Typed_Task_Narrated.pptx) (about 10 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-ttm-01-loop-typed-task/DW_TTM_01_Loop_Typed_Task_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-ttm-01-loop-typed-task/DW_TTM_01_Loop_Typed_Task_Narrated.vtt). Recorded on November 1, 2026 from the approved chapter.
 :::
 
 <!-- tour:end -->

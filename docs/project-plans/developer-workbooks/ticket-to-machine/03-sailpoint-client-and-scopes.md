@@ -27,7 +27,9 @@ How the kit's clients authenticate to SailPoint Identity Security Cloud (ISC) an
 
 ::: {.callout-tip appearance="simple"}
 ## Narrated tour
-[Deck and narrated deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-ttm-03-sailpoint-scopes) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-ttm-03-sailpoint-scopes/DW_TTM_03_SailPoint_Scopes_Narration_Script.md). Recorded on November 1, 2026 from the approved chapter; the video follows when it is uploaded.
+{{< fmw-video DW_TTM_03_SailPoint_Scopes_Narrated >}}
+
+[Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/DW_TTM_03_SailPoint_Scopes.pptx) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/DW_TTM_03_SailPoint_Scopes_Narrated.pptx) (about 10 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-ttm-03-sailpoint-scopes/DW_TTM_03_SailPoint_Scopes_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-ttm-03-sailpoint-scopes/DW_TTM_03_SailPoint_Scopes_Narrated.vtt). Recorded on November 1, 2026 from the approved chapter.
 :::
 
 <!-- tour:end -->

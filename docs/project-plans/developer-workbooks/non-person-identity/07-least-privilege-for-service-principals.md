@@ -29,7 +29,7 @@ The sweep behind the project plan's Gate 4, "least privilege." You start with Le
 ## Narrated tour
 {{< fmw-video DW_NPI_07_Least_Privilege_Narrated >}}
 
-[Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11/DW_NPI_07_Least_Privilege.pptx) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11/DW_NPI_07_Least_Privilege_Narrated.pptx) (about 11 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-npi-07-least-privilege/DW_NPI_07_Least_Privilege_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-npi-07-least-privilege/DW_NPI_07_Least_Privilege_Narrated.vtt). Recorded on October 31, 2026 from the approved chapter.
+[Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/DW_NPI_07_Least_Privilege.pptx) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/DW_NPI_07_Least_Privilege_Narrated.pptx) (about 11 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-npi-07-least-privilege/DW_NPI_07_Least_Privilege_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-npi-07-least-privilege/DW_NPI_07_Least_Privilege_Narrated.vtt). Recorded on October 31, 2026 from the approved chapter.
 :::
 
 <!-- tour:end -->
