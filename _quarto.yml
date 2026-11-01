@@ -167,6 +167,8 @@ website:
         text: "Evaluations"
       - href: docs/training/index.md
         text: "Training"
+      - href: docs/training/labs.md
+        text: "Labs"
       - href: docs/presentations/index.md
         text: "Presentations"
       - href: docs/presentations/watch.md
@@ -202,6 +204,7 @@ website:
       style: docked
       contents:
         - docs/training/index.md
+        - docs/training/labs.md
         - section: "Microsoft Automation learning path"
           contents:
             - docs/training/ms-automation-foundations.md

@@ -44,6 +44,8 @@ listing:
 
 Training pages teach a skill step by step, in the order you should learn it. They work like a [Microsoft Learn learning path](https://learn.microsoft.com/training/): a short series of modules, each building on the one before.
 
+**Looking for a lab?** [Labs](labs.md) lists every hands-on lab in the workbook, chapter by chapter: what each needs, where it runs, and a direct link.
+
 Each page keeps its status label (draft or in review) until it is reviewed and proved. See [Status labels](../about/sources-and-verification.md#status-labels) for what each label means.
 
 ## Microsoft Automation learning path

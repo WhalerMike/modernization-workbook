@@ -11,7 +11,7 @@ Everything here is free to download. The kits and the Word editions are rebuilt 
 
 ## Kits
 
-Every command in these kits is listed, with what it does and the pages that teach it, in the [Command Reference](reference/commands.md).
+Every command in these kits is listed, with what it does and the pages that teach it, in the [Command Reference](reference/commands.md). The labs that use them, chapter by chapter, are on the [Labs](training/labs.md) page.
 
 | Kit | What's in it | Download |
 |---|---|---|
