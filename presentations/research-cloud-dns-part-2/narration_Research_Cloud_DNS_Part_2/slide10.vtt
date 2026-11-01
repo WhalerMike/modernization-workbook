@@ -1,0 +1,73 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.588
+Response policy zones are BIND's filter.
+
+2
+00:00:02.588 --> 00:00:06.333
+They're ordinary DNS zones,
+up to 64 per server,
+
+3
+00:00:06.333 --> 00:00:10.687
+whose triggers map to actions
+like NXDOMAIN or drop.
+
+4
+00:00:10.687 --> 00:00:13.201
+They stay in sync through zone transfers.
+
+5
+00:00:13.201 --> 00:00:18.250
+CISA's Protective DNS Resolver is
+mandatory for civilian agencies.
+
+6
+00:00:18.250 --> 00:00:23.323
+CISA says agency DNS should use only
+Protective DNS as its upstream,
+
+7
+00:00:23.323 --> 00:00:29.375
+and cloud infrastructure should use
+Protective DNS or agency DNS as its upstream.
+
+8
+00:00:29.375 --> 00:00:32.682
+CISA's pages don't mention
+response policy zones,
+
+9
+00:00:32.682 --> 00:00:35.425
+so the layering is NIST's
+and the program's.
+
+10
+00:00:35.425 --> 00:00:40.270
+As design guidance: the agency's
+own policy zones run on cloud BIND,
+
+11
+00:00:40.270 --> 00:00:44.038
+from the same feed as on
+premises, in front of CISA's.
+
+12
+00:00:44.038 --> 00:00:48.221
+Internet-bound queries leave
+only toward Protective DNS.
+
+13
+00:00:48.221 --> 00:00:50.226
+Hits and blocks go to the SOC.
+
+14
+00:00:50.226 --> 00:00:54.936
+And BIND 9.20 can forward
+over DNS over TLS;
+
+15
+00:00:54.936 --> 00:00:59.980
+CISA's 2024 note that it
+can't was true of 9.18.

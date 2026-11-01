@@ -1,0 +1,801 @@
+{
+ "1": [
+  [
+   0.05,
+   0.713,
+   "Welcome."
+  ],
+  [
+   0.762,
+   12.825,
+   "This is Part 1 of a two-part narrated tour of a Federal Modernization Workbook evaluation: Cloud D N S on AWS, Azure and Oracle Cloud, with native resolvers, Infoblox and BIND."
+  ],
+  [
+   13.588,
+   4.912,
+   "It's research under review, written for fed-ramp Moderate civilian agencies."
+  ],
+  [
+   18.5,
+   11.062,
+   "Part 1 covers the three native resolvers in depth: the Route 53 VPC Resolver, the Azure D N S Private Resolver, and the Oracle Cloud VCN resolver."
+  ],
+  [
+   29.562,
+   6.375,
+   "For each: its endpoints and forwarding rules, its query logging and its D N S-layer filter."
+  ],
+  [
+   35.938,
+   13.95,
+   "Then what the providers say about their government clouds, and how all three meet on-premises D N S. Statements marked design guidance are the program's recommendations, inferences are labeled, and confirm marks a point to settle with the provider."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   2.85,
+   "Why does cloud D N S need a deck of its own?"
+  ],
+  [
+   2.9,
+   8.312,
+   "Book 08 of the workbook asks for one authoritative policy and state plane that every other D N S system consumes."
+  ],
+  [
+   11.213,
+   7.312,
+   "Cloud D N S services are synchronized targets or forwarding destinations, not independently authored sources."
+  ],
+  [
+   18.525,
+   3.475,
+   "The warning is about authoring copies in every silo."
+  ],
+  [
+   22.0,
+   8.262,
+   "That produces split-brain answers, names that work in one cloud but not another, and uneven Protective D N S and logging."
+  ],
+  [
+   30.262,
+   4.275,
+   "The workbook already covers Infoblox with Azure and AWS."
+  ],
+  [
+   34.538,
+   7.975,
+   "It covered the Route 53 Resolver thinly, and Oracle Cloud only at the comparison level, so Part 1 adds both in depth."
+  ],
+  [
+   42.513,
+   3.438,
+   "BIND in a cloud wasn't covered at all; that's Part 2."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   1.65,
+   "Here is the answer in brief."
+  ],
+  [
+   1.7,
+   6.338,
+   "Use the native resolver as the forwarding bridge in each cloud, and keep the policy in the D D I plane."
+  ],
+  [
+   8.037,
+   12.675,
+   "The Route 53 VPC Resolver and the Azure D N S Private Resolver are managed, zone-redundant forwarding services, and both providers recommend them over D N S servers on virtual machines."
+  ],
+  [
+   20.712,
+   7.138,
+   "Oracle Cloud gives every virtual cloud network, or VCN, a dedicated resolver that does the same job."
+  ],
+  [
+   27.85,
+   7.55,
+   "None of the three is an authority for the agency's own namespaces, and neither AWS nor Azure signs private zones."
+  ],
+  [
+   35.4,
+   11.713,
+   "Oracle Cloud is the one with no native D N S-layer filter for private D N S, so in a VCN the agency's policy applies only if queries are forwarded to agency resolvers."
+  ],
+  [
+   47.112,
+   5.862,
+   "And, as design guidance, run your own D N S servers in a cloud only for a stated reason."
+  ],
+  [
+   52.975,
+   1.4,
+   "Part 2 covers that."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   1.587,
+   "Start with AWS."
+  ],
+  [
+   1.637,
+   9.7,
+   "AWS renamed the Route 53 Resolver the Route 53 VPC Resolver when it introduced Route 53 Global Resolver."
+  ],
+  [
+   11.338,
+   5.1,
+   "Several AWS pages still use the older name, so both appear in runbooks."
+  ],
+  [
+   16.438,
+   6.25,
+   "Every VPC reaches it at the VPC's base address plus two, called VPC plus two."
+  ],
+  [
+   22.688,
+   9.45,
+   "It answers the VPC's own EC2 names and records in private hosted zones associated with the VPC, and it recurses for public names."
+  ],
+  [
+   32.138,
+   1.363,
+   "One quota matters."
+  ],
+  [
+   33.5,
+   8.938,
+   "Each network interface may send 1,024 packets per second to link-local services, shared by D N S and other services."
+  ],
+  [
+   42.438,
+   3.188,
+   "It can't be raised, and traffic over it is rejected."
+  ],
+  [
+   45.625,
+   5.912,
+   "That matters to any D N S server on EC2 that forwards to VPC plus two."
+  ],
+  [
+   51.538,
+   10.875,
+   "Route 53 Global Resolver is a different thing, an internet-reachable resolver for branches and on-premises sites, listed in 30 commercial Regions and not in GovCloud."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   4.312,
+   "Hybrid resolution in AWS runs through two kinds of endpoint."
+  ],
+  [
+   4.362,
+   7.975,
+   "An inbound endpoint lets outside resolvers forward queries into a VPC and get the answers it sees, private zones included."
+  ],
+  [
+   12.338,
+   3.938,
+   "It has at least two addresses, in different Availability Zones."
+  ],
+  [
+   16.275,
+   7.862,
+   "Each address handles up to 10,000 UDP queries per second, but as few as 1,500 under connection tracking."
+  ],
+  [
+   24.137,
+   10.85,
+   "It speaks plain D N S, D N S over HTTPS, and a FIPS 140-2 version of D N S over HTTPS, inbound only."
+  ],
+  [
+   34.987,
+   5.338,
+   "A second type, the delegation inbound endpoint, answers NS delegations."
+  ],
+  [
+   40.325,
+   7.838,
+   "An outbound endpoint goes the other way: it sends queries that match a forwarding rule from the VPC to the agency's resolvers."
+  ],
+  [
+   48.163,
+   7.425,
+   "It speaks only plain D N S and D N S over HTTPS, so there's no FIPS option outbound."
+  ],
+  [
+   55.587,
+   3.0,
+   "And sharing a rule shares its outbound endpoint too."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   1.95,
+   "Rules decide where queries go."
+  ],
+  [
+   2.0,
+   3.737,
+   "A forwarding rule names one domain and its target addresses."
+  ],
+  [
+   5.737,
+   6.575,
+   "The most specific matching rule wins, and a rule overrides a private hosted zone of the same name."
+  ],
+  [
+   12.312,
+   4.275,
+   "A rule for the root, a single dot, forwards almost everything."
+  ],
+  [
+   16.587,
+   8.45,
+   "System rules carve a subdomain back out of a forwarding rule, so it resolves locally, and delegation rules handle delegated subdomains."
+  ],
+  [
+   25.038,
+   3.587,
+   "Rules are shared through AWS Resource Access Manager."
+  ],
+  [
+   28.625,
+   5.112,
+   "The receiving account associates them with its VPCs but can't change or delete them."
+  ],
+  [
+   33.737,
+   7.875,
+   "Profiles go further, bundling zones, rules, firewall rule groups and logging settings, one Profile per VPC."
+  ],
+  [
+   41.612,
+   11.637,
+   "Private hosted zones answer only inside associated VPCs, up to 300 per zone, and an empty match returns NXDOMAIN, with no fallback to public D N S."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   4.838,
+   "D N S Firewall applies rule groups of allow, alert and block rules."
+  ],
+  [
+   4.888,
+   6.1,
+   "It uses custom or AWS managed domain lists, and the managed lists can't be browsed."
+  ],
+  [
+   10.988,
+   5.45,
+   "The Advanced tier detects domain generation algorithms and D N S tunneling."
+  ],
+  [
+   16.438,
+   9.875,
+   "It filters only queries that pass through the VPC Resolver, including those arriving through inbound endpoints, and by default it fails closed, with SERVFAIL."
+  ],
+  [
+   26.312,
+   9.062,
+   "Query logging records queries from the VPC, through the endpoints, and firewall actions, to CloudWatch Logs, S3 or Firehose."
+  ],
+  [
+   35.375,
+   5.3,
+   "It logs only queries that reach the VPC Resolver, and not answers from its cache."
+  ],
+  [
+   40.675,
+   5.775,
+   "DNSSEC: the VPC Resolver can validate public signed names, enabled per VPC."
+  ],
+  [
+   46.45,
+   3.2,
+   "Route 53 signs public hosted zones only."
+  ],
+  [
+   49.65,
+   6.7,
+   "And the VPC Resolver returns no DNSSEC records, so a resolver behind it can't validate for itself."
+  ],
+  [
+   56.35,
+   4.338,
+   "AWS warns that enabling validation could result in an outage."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   1.613,
+   "What changes in GovCloud?"
+  ],
+  [
+   1.663,
+   14.562,
+   "AWS's GovCloud page for Route 53 says public and private D N S work in GovCloud U S-West and U S-East, the control plane is in U S-West, and public hosted zone queries are answered from within the fed-ramp boundary."
+  ],
+  [
+   16.225,
+   5.638,
+   "That page doesn't mention the Resolver features, so the table draws on other AWS pages."
+  ],
+  [
+   21.863,
+   2.425,
+   "Endpoints and rules: yes."
+  ],
+  [
+   24.288,
+   8.137,
+   "Resolver delegation is the conflict: the GovCloud guide says it's not available, and an April 2026 announcement says it is."
+  ],
+  [
+   32.425,
+   0.887,
+   "Confirm."
+  ],
+  [
+   33.312,
+   3.462,
+   "D N S Firewall and its managed lists: yes."
+  ],
+  [
+   36.775,
+   6.338,
+   "Of the Advanced protections, only dictionary DGA was announced for GovCloud; confirm the rest."
+  ],
+  [
+   43.112,
+   2.788,
+   "Query logging and Profiles: yes."
+  ],
+  [
+   45.9,
+   4.463,
+   "Signing of public zones: yes, with the key in U S-West."
+  ],
+  [
+   50.362,
+   4.375,
+   "Validation in the VPC Resolver isn't stated, so confirm."
+  ],
+  [
+   54.737,
+   2.275,
+   "And Global Resolver isn't listed."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   0.975,
+   "Now Azure."
+  ],
+  [
+   1.025,
+   8.012,
+   "Book 08's Chapter 07 covers the Private Resolver's hub-and-spoke design, so here is the summary with today's limits."
+  ],
+  [
+   9.037,
+   8.588,
+   "The inbound endpoint receives queries from on premises or other clouds and answers from private D N S zones linked to its virtual network."
+  ],
+  [
+   17.625,
+   4.4,
+   "There can be five per resolver, at 10,000 queries per second each."
+  ],
+  [
+   22.025,
+   11.613,
+   "The outbound endpoint and its forwarding ruleset send queries for named domains to target servers; a ruleset holds up to 1,000 rules, and a virtual network links only one ruleset."
+  ],
+  [
+   33.638,
+   9.037,
+   "It's a single-region service, zone-redundant inside the region, and it doesn't work in encrypted virtual networks or I P version six-enabled subnets."
+  ],
+  [
+   42.675,
+   8.225,
+   "And Azure D N S doesn't support zone transfers, so a BIND server can't be a secondary of an Azure private zone, or the reverse."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   4.9,
+   "Azure's D N S-layer filter is D N S resolver policy."
+  ],
+  [
+   4.95,
+   5.162,
+   "Microsoft renamed it from D N S security policy, so expect both names."
+  ],
+  [
+   10.113,
+   8.863,
+   "A resolver policy filters and logs every query in a linked virtual network, public and private, with allow, block and alert rules."
+  ],
+  [
+   18.975,
+   5.875,
+   "It includes a Microsoft-managed threat intelligence list from the Microsoft Security Response Center."
+  ],
+  [
+   24.85,
+   8.375,
+   "Its logs go to Log Analytics, in the D N S query logs table, or to storage or Event Hubs, through diagnostic settings."
+  ],
+  [
+   33.225,
+   12.075,
+   "Microsoft lists resource logs only for resolver policies, so the inference is that per-query logs come from a resolver policy, or Azure Firewall's D N S proxy, not from the resolver itself."
+  ],
+  [
+   45.3,
+   5.9,
+   "DNSSEC: Azure can sign public zones, but the Azure-provided resolver doesn't validate."
+  ],
+  [
+   51.2,
+   6.987,
+   "No Microsoft page describes signing private zones, or whether the Private Resolver validates, so confirm that."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   5.487,
+   "Oracle Cloud Infrastructure matters here because the H R platform runs on Oracle Cloud."
+  ],
+  [
+   5.537,
+   8.875,
+   "Every VCN gets a dedicated resolver, listening on 169.254.169.254."
+  ],
+  [
+   14.412,
+   8.037,
+   "It answers from the private views attached to it, in order, then its default view, then its resolver rules, then the internet."
+  ],
+  [
+   22.45,
+   5.75,
+   "Oracle says it performs recursion to the internet and DNSSEC validation for signed zones."
+  ],
+  [
+   28.2,
+   1.587,
+   "The trap is in that order."
+  ],
+  [
+   29.788,
+   3.862,
+   "A match in the sequence ends resolution, even an NXDOMAIN."
+  ],
+  [
+   33.65,
+   12.625,
+   "So a private zone for example dot com hides a forwarding rule for onprem dot example dot com. Views can be attached to many resolvers, sharing private D N S data across VCNs in a region."
+  ],
+  [
+   46.275,
+   4.537,
+   "Same-name private and public zones give split-horizon D N S."
+  ],
+  [
+   50.812,
+   5.312,
+   "Between VCNs, resolution uses resolver endpoints over a peering gateway."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   4.7,
+   "A listening endpoint receives queries from on premises or other VCNs."
+  ],
+  [
+   4.75,
+   6.463,
+   "A forwarding endpoint sends queries no view answers to targets, under up to 50 resolver rules."
+  ],
+  [
+   11.213,
+   5.575,
+   "A rule matches a client address block, a domain, or None, which matches any query."
+  ],
+  [
+   16.788,
+   6.025,
+   "Forward is the only action, the first match wins, and an unreachable target ends processing."
+  ],
+  [
+   22.812,
+   5.812,
+   "A subnet's DHCP options can name a custom resolver of up to three D N S servers."
+  ],
+  [
+   28.625,
+   9.975,
+   "Those instances reach private views and rules only if 169.254.169.254 is in that list."
+  ],
+  [
+   38.6,
+   1.113,
+   "Then the gaps."
+  ],
+  [
+   39.712,
+   8.088,
+   "There's no native D N S-layer policy: no Oracle page describes a D N S firewall for the VCN resolver."
+  ],
+  [
+   47.8,
+   6.625,
+   "Private resolver logs, with each query's resolution path, are documented for the commercial realms only."
+  ],
+  [
+   54.425,
+   3.875,
+   "And the resolver can serve stale answers for up to 24 hours."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   1.613,
+   "Who authorizes all this?"
+  ],
+  [
+   1.663,
+   17.05,
+   "AWS's services-in-scope page, updated October fifteenth, 2026, lists one row, Amazon Route 53, in scope for fed-ramp Class C, formerly Moderate, in U S East and West, and Class D, formerly High, in GovCloud."
+  ],
+  [
+   18.712,
+   6.5,
+   "There are no separate rows for the Resolver features; generally available features are in scope unless excluded."
+  ],
+  [
+   25.212,
+   5.062,
+   "For a Moderate civilian workload, both locations cover the D N S service."
+  ],
+  [
+   30.275,
+   3.325,
+   "As an inference, note that in the system security plan."
+  ],
+  [
+   33.6,
+   10.188,
+   "Microsoft's audit-scope page has one D N S row, at fed-ramp High in Azure and in Azure Government, with no separate row for the Private Resolver or resolver policy."
+  ],
+  [
+   43.788,
+   3.638,
+   "No Learn page states their Azure Government availability."
+  ],
+  [
+   47.425,
+   6.987,
+   "The price list carries their meters in the U S Gov zones: a strong signal, not an availability statement."
+  ],
+  [
+   54.413,
+   1.75,
+   "Confirm in the target region."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   2.513,
+   "Oracle's government cloud works differently."
+  ],
+  [
+   2.562,
+   10.688,
+   "The U S Government Cloud is its own realm, called OC2, with U S Gov East in Ashburn and U S Gov West in Phoenix, and it holds a fed-ramp High authorization."
+  ],
+  [
+   13.25,
+   9.088,
+   "And its D N S A P I is for private D N S only; public D N S isn't available in the government realms."
+  ],
+  [
+   22.337,
+   6.213,
+   "The fed-ramp Marketplace lists the Government Cloud at High, and no commercial Oracle infrastructure offering."
+  ],
+  [
+   28.55,
+   4.888,
+   "Oracle's software-as-a-service has its own listings, such as Fusion Cloud at Moderate."
+  ],
+  [
+   33.438,
+   1.475,
+   "So, as inferences."
+  ],
+  [
+   34.913,
+   5.763,
+   "A Moderate system on OCI infrastructure inherits from the Government Cloud's High authorization."
+  ],
+  [
+   40.675,
+   9.45,
+   "Commercial OCI regions have no fed-ramp listing of their own, so a federal system placed there needs its own authorization basis, settled before design."
+  ],
+  [
+   50.125,
+   6.312,
+   "Whether private resolver logging exists in the government realm isn't documented; confirm with Oracle."
+  ],
+  [
+   56.438,
+   5.85,
+   "And an agency holding only the H R platform's software-as-a-service has no VCN at all."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   2.85,
+   "How do the three meet on-premises D N S?"
+  ],
+  [
+   2.9,
+   6.062,
+   "The same way, and Book 08's Decision 3 already holds the rules, as design guidance."
+  ],
+  [
+   8.963,
+   11.662,
+   "Into the cloud: on-premises resolvers, and other clouds' resolvers, conditionally forward each cloud namespace to that cloud's inbound endpoint, using static addresses written once."
+  ],
+  [
+   20.625,
+   3.75,
+   "On Oracle Cloud, the entry point is a listening endpoint."
+  ],
+  [
+   24.375,
+   11.725,
+   "Neither the AWS nor the Azure inbound endpoint accepts an ordinary NS delegation of a private zone; AWS's delegation inbound endpoint is the exception, and it's new."
+  ],
+  [
+   36.1,
+   7.25,
+   "Out of the cloud: each cloud forwards the agency's namespaces back to the agency resolvers, by its rules."
+  ],
+  [
+   43.35,
+   7.425,
+   "On AWS, create the rules once in a network account and share them through Resource Access Manager or a Profile."
+  ],
+  [
+   50.775,
+   2.438,
+   "Spokes associate them and can't edit them."
+  ],
+  [
+   53.212,
+   2.95,
+   "That's the cloud form of one policy object."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   2.138,
+   "First, internet-bound queries."
+  ],
+  [
+   2.188,
+   10.912,
+   "sis-uh requires Protective D N S for all egress D N S resolution, including from agency cloud deployments, directly or through agency D N S."
+  ],
+  [
+   13.1,
+   5.888,
+   "None of the native resolvers forwards the default path to Protective D N S on its own."
+  ],
+  [
+   18.988,
+   8.55,
+   "That takes a root rule in AWS or Azure, or a rule whose condition is None in Oracle Cloud, pointing at the agency resolvers."
+  ],
+  [
+   27.538,
+   5.612,
+   "Whether cloud egress already reaches it some other way is for the agency to confirm with sis-uh."
+  ],
+  [
+   33.15,
+   1.4,
+   "Second, policy."
+  ],
+  [
+   34.55,
+   5.825,
+   "The clouds' own filters are a second policy surface beside the agency's response policy zones."
+  ],
+  [
+   40.375,
+   9.312,
+   "The design guidance: feed them from the same indicator decisions, or use them as a backstop, so a block on premises is also a block in each cloud."
+  ],
+  [
+   49.688,
+   7.925,
+   "Oracle has no such filter for private D N S, so its catch-all rule is the only way agency policy reaches a VCN."
+  ],
+  [
+   57.612,
+   7.638,
+   "Third, logs: all three go to the sim, parsed through ASIM's D N S schema, as Book 12 does."
+  ]
+ ],
+ "17": [
+  [
+   0.05,
+   4.4,
+   "To close Part 1, here's what the providers don't settle, so confirm it with them."
+  ],
+  [
+   4.45,
+   4.963,
+   "AWS: Resolver delegation and DNSSEC validation in GovCloud."
+  ],
+  [
+   9.412,
+   9.012,
+   "Azure: the Private Resolver's and resolver policy's availability in each Azure Government region, and whether the Private Resolver validates DNSSEC."
+  ],
+  [
+   18.425,
+   8.037,
+   "Oracle: private resolver logging in the government realm, and whether the VCN resolver passes DNSSEC data to a resolver behind it."
+  ],
+  [
+   26.462,
+   5.838,
+   "And sis-uh: whether Protective D N S returns DNSSEC data to agency forwarders."
+  ],
+  [
+   32.3,
+   7.825,
+   "To prove the page, the plan is to build the pattern in test accounts and run Book 08's Chapter 10 validation matrix."
+  ],
+  [
+   40.125,
+   7.325,
+   "Part 2 picks up from here: when to run your own D N S servers, BIND, the alignment checklist, and the federal mapping."
+  ],
+  [
+   47.45,
+   4.925,
+   "This is research under review, not an endorsement by any federal agency."
+  ],
+  [
+   52.375,
+   0.762,
+   "Thank you."
+  ]
+ ]
+}

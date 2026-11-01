@@ -1,0 +1,72 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.425
+How does BIND forward?
+
+2
+00:00:01.425 --> 00:00:05.513
+The native resolver stays the only
+path to the cloud's own names.
+
+3
+00:00:05.513 --> 00:00:08.063
+BIND's forward setting defaults to first,
+
+4
+00:00:08.063 --> 00:00:11.738
+which falls back to its own
+recursion when forwarders fail.
+
+5
+00:00:11.738 --> 00:00:16.493
+For private names, that fallback can
+return the public answer or NXDOMAIN,
+
+6
+00:00:16.493 --> 00:00:20.625
+so the AWS whitepaper says it's
+critical to specify forward only.
+
+7
+00:00:20.625 --> 00:00:23.002
+Per-instance limits: on AWS,
+
+8
+00:00:23.002 --> 00:00:29.919
+the 1,024-packet-per-second quota covers
+everything BIND sends to VPC plus two;
+
+9
+00:00:29.919 --> 00:00:33.917
+on Azure, a VM may send
+1,000 queries per second,
+
+10
+00:00:33.917 --> 00:00:37.375
+and queries over the limit are dropped.
+
+11
+00:00:37.375 --> 00:00:40.737
+Size the fleet so no server
+forwards near the limit.
+
+12
+00:00:40.737 --> 00:00:44.587
+Visibility: the VPC Resolver
+sees BIND as the source,
+
+13
+00:00:44.587 --> 00:00:47.899
+never the client, so BIND's
+logs are the record.
+
+14
+00:00:47.899 --> 00:00:50.754
+And loops: don't forward
+a domain to an inbound
+
+15
+00:00:50.754 --> 00:00:53.830
+endpoint from inside the
+network that holds it.

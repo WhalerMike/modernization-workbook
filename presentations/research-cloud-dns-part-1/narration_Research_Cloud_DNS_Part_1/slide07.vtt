@@ -1,0 +1,65 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.888
+DNS Firewall applies rule groups
+of allow, alert and block rules.
+
+2
+00:00:04.888 --> 00:00:10.988
+It uses custom or AWS managed domain lists,
+and the managed lists can't be browsed.
+
+3
+00:00:10.988 --> 00:00:16.438
+The Advanced tier detects domain
+generation algorithms and DNS tunneling.
+
+4
+00:00:16.438 --> 00:00:21.187
+It filters only queries that pass
+through the VPC Resolver, including those
+
+5
+00:00:21.187 --> 00:00:26.313
+arriving through inbound endpoints, and by
+default it fails closed, with SERVFAIL.
+
+6
+00:00:26.313 --> 00:00:31.247
+Query logging records queries from
+the VPC, through the endpoints,
+
+7
+00:00:31.247 --> 00:00:35.374
+and firewall actions, to
+CloudWatch Logs, S3 or Firehose.
+
+8
+00:00:35.374 --> 00:00:40.675
+It logs only queries that reach the VPC
+Resolver, and not answers from its cache.
+
+9
+00:00:40.675 --> 00:00:46.450
+DNSSEC: the VPC Resolver can validate
+public signed names, enabled per VPC.
+
+10
+00:00:46.450 --> 00:00:49.650
+Route 53 signs public hosted zones only.
+
+11
+00:00:49.650 --> 00:00:52.958
+And the VPC Resolver
+returns no DNSSEC records,
+
+12
+00:00:52.958 --> 00:00:56.350
+so a resolver behind it
+can't validate for itself.
+
+13
+00:00:56.350 --> 00:01:00.740
+AWS warns that enabling validation
+could result in an outage.

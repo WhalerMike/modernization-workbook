@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.362
+Where do the servers go?
+
+2
+00:00:01.362 --> 00:00:06.525
+As design guidance: in the shared-services
+or network hub VPC or virtual network
+
+3
+00:00:06.525 --> 00:00:11.688
+that already holds the native resolver's
+endpoints, never in workload accounts.
+
+4
+00:00:11.688 --> 00:00:13.538
+Each cloud adds a constraint.
+
+5
+00:00:13.538 --> 00:00:19.699
+On AWS, a BIND server can forward only
+to its own VPC's plus-two address.
+
+6
+00:00:19.699 --> 00:00:25.975
+On Azure, a custom DNS server sits
+in the same virtual network as the
+
+7
+00:00:25.975 --> 00:00:32.250
+VMs whose hostnames it resolves,
+and forwards those to 168.63.129.16.
+
+8
+00:00:32.250 --> 00:00:37.249
+On Oracle Cloud, it forwards the VCN's own
+
+9
+00:00:37.249 --> 00:00:42.400
+names and private views
+to 169.254.169.254.
+
+10
+00:00:42.400 --> 00:00:45.254
+For high availability,
+NIST asks for at least two
+
+11
+00:00:45.254 --> 00:00:48.750
+servers on different segments,
+dispersed geographically.
+
+12
+00:00:48.750 --> 00:00:52.267
+In practice: two or more per
+Region in different zones,
+
+13
+00:00:52.267 --> 00:00:56.330
+a second Region, and every client
+configured with all of them.

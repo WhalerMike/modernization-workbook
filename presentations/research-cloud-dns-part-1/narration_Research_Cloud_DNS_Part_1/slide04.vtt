@@ -1,0 +1,69 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.637
+Start with AWS.
+
+2
+00:00:01.637 --> 00:00:06.261
+AWS renamed the Route 53
+Resolver the Route 53 VPC
+
+3
+00:00:06.261 --> 00:00:11.337
+Resolver when it introduced
+Route 53 Global Resolver.
+
+4
+00:00:11.337 --> 00:00:16.438
+Several AWS pages still use the older
+name, so both appear in runbooks.
+
+5
+00:00:16.438 --> 00:00:22.688
+Every VPC reaches it at the VPC's base
+address plus two, called VPC plus two.
+
+6
+00:00:22.688 --> 00:00:27.413
+It answers the VPC's own EC2 names
+and records in private hosted
+
+7
+00:00:27.413 --> 00:00:32.138
+zones associated with the VPC,
+and it recurses for public names.
+
+8
+00:00:32.138 --> 00:00:33.501
+One quota matters.
+
+9
+00:00:33.501 --> 00:00:38.017
+Each network interface may
+send 1,024 packets per second
+
+10
+00:00:38.017 --> 00:00:42.438
+to link-local services, shared
+by DNS and other services.
+
+11
+00:00:42.438 --> 00:00:45.626
+It can't be raised, and
+traffic over it is rejected.
+
+12
+00:00:45.626 --> 00:00:51.537
+That matters to any DNS server on
+EC2 that forwards to VPC plus two.
+
+13
+00:00:51.537 --> 00:00:56.936
+Route 53 Global Resolver is a different
+thing, an internet-reachable resolver for
+
+14
+00:00:56.936 --> 00:01:02.470
+branches and on-premises sites, listed in
+30 commercial Regions and not in GovCloud.

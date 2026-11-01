@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.313
+If the agency does run its
+own servers, which ones?
+
+2
+00:00:03.313 --> 00:00:08.787
+Where its DNS runs on an Infoblox
+Grid, vNIOS is the natural choice.
+
+3
+00:00:08.787 --> 00:00:12.712
+It joins the same Grid and takes
+its policy from the Grid Master.
+
+4
+00:00:12.712 --> 00:00:18.288
+One caution: vNIOS failover in GovCloud
+and Azure Government is a point to confirm.
+
+5
+00:00:18.288 --> 00:00:20.744
+BIND is the choice when there's no Grid,
+
+6
+00:00:20.744 --> 00:00:24.388
+for a small footprint, or when
+a tool expects BIND itself.
+
+7
+00:00:24.388 --> 00:00:27.994
+BIND has no policy plane
+of its own; for Book 08,
+
+8
+00:00:27.994 --> 00:00:31.699
+its policy comes from
+the DDI platform and Git.
+
+9
+00:00:31.699 --> 00:00:32.688
+Which BIND?
+
+10
+00:00:32.688 --> 00:00:36.713
+ISC supports each even-numbered
+branch for four years.
+
+11
+00:00:36.713 --> 00:00:42.517
+As of October twenty-ninth, 9.20 is
+the supported production branch,
+
+12
+00:00:42.517 --> 00:00:47.900
+with end of life in 2028, and 9.18
+reached end of life in June 2026.
+
+13
+00:00:47.900 --> 00:00:52.940
+Operating-system packages follow their
+vendor, so record which support you rely on.

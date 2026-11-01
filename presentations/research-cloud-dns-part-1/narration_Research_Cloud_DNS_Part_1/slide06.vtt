@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.000
+Rules decide where queries go.
+
+2
+00:00:02.000 --> 00:00:05.737
+A forwarding rule names one
+domain and its target addresses.
+
+3
+00:00:05.737 --> 00:00:08.317
+The most specific matching rule wins,
+
+4
+00:00:08.317 --> 00:00:12.312
+and a rule overrides a private
+hosted zone of the same name.
+
+5
+00:00:12.312 --> 00:00:16.587
+A rule for the root, a single
+dot, forwards almost everything.
+
+6
+00:00:16.587 --> 00:00:20.359
+System rules carve a subdomain
+back out of a forwarding rule,
+
+7
+00:00:20.359 --> 00:00:25.037
+so it resolves locally, and delegation
+rules handle delegated subdomains.
+
+8
+00:00:25.037 --> 00:00:28.625
+Rules are shared through
+AWS Resource Access Manager.
+
+9
+00:00:28.625 --> 00:00:33.737
+The receiving account associates them with
+its VPCs but can't change or delete them.
+
+10
+00:00:33.737 --> 00:00:36.905
+Profiles go further,
+bundling zones, rules,
+
+11
+00:00:36.905 --> 00:00:41.612
+firewall rule groups and logging
+settings, one Profile per VPC.
+
+12
+00:00:41.612 --> 00:00:47.779
+Private hosted zones answer only inside
+associated VPCs, up to 300 per zone,
+
+13
+00:00:47.779 --> 00:00:53.300
+and an empty match returns NXDOMAIN,
+with no fallback to public DNS.

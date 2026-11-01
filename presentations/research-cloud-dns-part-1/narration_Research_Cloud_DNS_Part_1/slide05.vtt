@@ -1,0 +1,65 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.362
+Hybrid resolution in AWS runs
+through two kinds of endpoint.
+
+2
+00:00:04.362 --> 00:00:08.389
+An inbound endpoint lets outside
+resolvers forward queries
+
+3
+00:00:08.389 --> 00:00:12.337
+into a VPC and get the answers
+it sees, private zones included.
+
+4
+00:00:12.337 --> 00:00:16.276
+It has at least two addresses,
+in different Availability Zones.
+
+5
+00:00:16.276 --> 00:00:20.632
+Each address handles up to
+10,000 UDP queries per second,
+
+6
+00:00:20.632 --> 00:00:24.137
+but as few as 1,500 under
+connection tracking.
+
+7
+00:00:24.137 --> 00:00:28.356
+It speaks plain DNS, DNS over HTTPS,
+
+8
+00:00:28.356 --> 00:00:34.987
+and a FIPS 140-2 version of
+DNS over HTTPS, inbound only.
+
+9
+00:00:34.987 --> 00:00:40.325
+A second type, the delegation inbound
+endpoint, answers NS delegations.
+
+10
+00:00:40.325 --> 00:00:44.244
+An outbound endpoint goes the
+other way: it sends queries that
+
+11
+00:00:44.244 --> 00:00:48.163
+match a forwarding rule from the
+VPC to the agency's resolvers.
+
+12
+00:00:48.163 --> 00:00:55.588
+It speaks only plain DNS and DNS over
+HTTPS, so there's no FIPS option outbound.
+
+13
+00:00:55.588 --> 00:00:58.660
+And sharing a rule shares
+its outbound endpoint too.

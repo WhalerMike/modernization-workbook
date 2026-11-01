@@ -1,0 +1,72 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.750
+Logging is where cloud
+DNS most often goes dark.
+
+2
+00:00:03.750 --> 00:00:09.900
+NIST asks for robust DNS traffic logging,
+with blocked queries always logged.
+
+3
+00:00:09.900 --> 00:00:16.881
+OMB's M-22-09 expects agencies to keep
+visibility by logging at their designated
+
+4
+00:00:16.881 --> 00:00:19.874
+resolvers, and M-26-14 sets the retention:
+
+5
+00:00:19.874 --> 00:00:23.863
+searchable for six months
+and retrievable for a year.
+
+6
+00:00:23.863 --> 00:00:25.876
+BIND offers two mechanisms.
+
+7
+00:00:25.876 --> 00:00:29.879
+The logging statement writes
+categories such as queries,
+
+8
+00:00:29.879 --> 00:00:33.299
+responses and policy-zone
+hits to files or syslog,
+
+9
+00:00:33.299 --> 00:00:38.637
+and dnstap records messages to a file or
+socket, in a build with dnstap enabled.
+
+10
+00:00:38.637 --> 00:00:43.300
+ISC warns that query logging adds
+heavy overhead, so plan for it.
+
+11
+00:00:43.300 --> 00:00:46.800
+Send them to the SIEM,
+where ASIM's DNS parser
+
+12
+00:00:46.800 --> 00:00:50.300
+already handles BIND,
+as Book 12 describes.
+
+13
+00:00:50.300 --> 00:00:54.022
+Because the native resolver sees
+BIND rather than the client,
+
+14
+00:00:54.022 --> 00:00:56.138
+BIND's log is the record of who asked.
+
+15
+00:00:56.138 --> 00:00:59.400
+Without it, cloud DNS is a blind spot.

@@ -1,0 +1,75 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.950
+Azure's DNS-layer filter
+is DNS resolver policy.
+
+2
+00:00:04.950 --> 00:00:10.112
+Microsoft renamed it from DNS security
+policy, so expect both names.
+
+3
+00:00:10.112 --> 00:00:15.346
+A resolver policy filters and logs
+every query in a linked virtual network,
+
+4
+00:00:15.346 --> 00:00:18.976
+public and private, with
+allow, block and alert rules.
+
+5
+00:00:18.976 --> 00:00:22.014
+It includes a Microsoft-managed
+threat intelligence
+
+6
+00:00:22.014 --> 00:00:24.850
+list from the Microsoft
+Security Response Center.
+
+7
+00:00:24.850 --> 00:00:28.946
+Its logs go to Log Analytics,
+in the DNS query logs table,
+
+8
+00:00:28.946 --> 00:00:33.225
+or to storage or Event Hubs,
+through diagnostic settings.
+
+9
+00:00:33.225 --> 00:00:37.118
+Microsoft lists resource logs
+only for resolver policies,
+
+10
+00:00:37.118 --> 00:00:41.487
+so the inference is that per-query
+logs come from a resolver policy,
+
+11
+00:00:41.487 --> 00:00:45.300
+or Azure Firewall's DNS proxy,
+not from the resolver itself.
+
+12
+00:00:45.300 --> 00:00:47.744
+DNSSEC: Azure can sign public zones,
+
+13
+00:00:47.744 --> 00:00:51.200
+but the Azure-provided
+resolver doesn't validate.
+
+14
+00:00:51.200 --> 00:00:54.466
+No Microsoft page describes
+signing private zones,
+
+15
+00:00:54.466 --> 00:00:58.250
+or whether the Private Resolver
+validates, so confirm that.

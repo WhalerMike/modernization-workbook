@@ -1,0 +1,73 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.725
+Here's the checklist, seven
+questions an agency asks
+
+2
+00:00:03.725 --> 00:00:07.400
+of each BIND server it adds
+in AWS, as design guidance.
+
+3
+00:00:07.400 --> 00:00:12.900
+First establish whether they're EC2
+instances or VMware guests on AWS.
+
+4
+00:00:12.900 --> 00:00:18.925
+One, role: a forwarder, resolver or
+secondary aligns; a primary doesn't.
+
+5
+00:00:18.925 --> 00:00:24.575
+Two, source of truth: no zones, or
+zones transferred from the DDI platform.
+
+6
+00:00:24.575 --> 00:00:30.150
+Three, why BIND: a stated need from the
+criteria, or a bridge with an end date.
+
+7
+00:00:30.150 --> 00:00:32.299
+Four, configuration: rendered,
+
+8
+00:00:32.299 --> 00:00:36.425
+reviewed and applied by
+automation, not edited on the host.
+
+9
+00:00:36.425 --> 00:00:39.889
+Five, placement: the
+hub VPC of each Region,
+
+10
+00:00:39.889 --> 00:00:43.150
+at least two servers, rules shared once.
+
+11
+00:00:43.150 --> 00:00:48.232
+Six, shared policy: logs in the
+SIEM with the M-26-14 retention,
+
+12
+00:00:48.232 --> 00:00:53.950
+the same policy-zone feed, and
+Protective DNS as the only upstream.
+
+13
+00:00:53.950 --> 00:01:00.112
+Seven: a supported branch, a stated
+baseline, a CMDB record and a named owner.
+
+14
+00:01:00.112 --> 00:01:02.949
+Rows two and four are the serious signals.
+
+15
+00:01:02.949 --> 00:01:06.770
+Row three alone means the
+servers may not be needed at all.

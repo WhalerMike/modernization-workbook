@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.361
+Welcome to Part 2 of Cloud DNS
+on AWS, Azure and Oracle Cloud,
+
+2
+00:00:04.361 --> 00:00:09.750
+a Federal Modernization Workbook
+evaluation that's still under review.
+
+3
+00:00:09.750 --> 00:00:12.062
+Part 1 covered the native resolvers.
+
+4
+00:00:12.062 --> 00:00:16.524
+Part 2 asks when an agency should
+run its own DNS servers in a cloud,
+
+5
+00:00:16.524 --> 00:00:21.400
+and how to run BIND there so it stays
+inside Book 08's single policy plane.
+
+6
+00:00:21.400 --> 00:00:23.716
+We'll start with the test that matters:
+
+7
+00:00:23.716 --> 00:00:27.525
+does a cloud BIND server align
+with that plane, or create a silo?
+
+8
+00:00:27.525 --> 00:00:34.062
+Then the criteria, vNIOS or BIND, and BIND
+itself, from roles to patching and Git.
+
+9
+00:00:34.062 --> 00:00:36.995
+Then a seven-question
+checklist for an agency
+
+10
+00:00:36.995 --> 00:00:40.237
+adding BIND servers in AWS,
+and the federal mapping.
+
+11
+00:00:40.237 --> 00:00:45.620
+The labels carry over from Part 1:
+design guidance, inference, and confirm.

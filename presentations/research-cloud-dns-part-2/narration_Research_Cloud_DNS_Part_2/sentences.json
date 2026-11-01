@@ -1,0 +1,771 @@
+{
+ "1": [
+  [
+   0.05,
+   9.7,
+   "Welcome to Part 2 of Cloud D N S on AWS, Azure and Oracle Cloud, a Federal Modernization Workbook evaluation that's still under review."
+  ],
+  [
+   9.75,
+   2.312,
+   "Part 1 covered the native resolvers."
+  ],
+  [
+   12.062,
+   9.338,
+   "Part 2 asks when an agency should run its own D N S servers in a cloud, and how to run BIND there so it stays inside Book 08's single policy plane."
+  ],
+  [
+   21.4,
+   6.125,
+   "We'll start with the test that matters: does a cloud BIND server align with that plane, or create a silo?"
+  ],
+  [
+   27.525,
+   6.537,
+   "Then the criteria, vNIOS or BIND, and BIND itself, from roles to patching and Git."
+  ],
+  [
+   34.062,
+   6.175,
+   "Then a seven-question checklist for an agency adding BIND servers in AWS, and the federal mapping."
+  ],
+  [
+   40.237,
+   5.338,
+   "The labels carry over from Part 1: design guidance, inference, and confirm."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   11.162,
+   "Additional BIND servers in AWS align with Book 08 when they are forwarders or resolvers under central configuration, logged to the SOC, owned and with a reason."
+  ],
+  [
+   11.213,
+   9.6,
+   "BIND aligns when it's a resolver or forwarder whose configuration comes from the policy plane: its forwarding, its addresses and its logging all governed."
+  ],
+  [
+   20.812,
+   4.125,
+   "It aligns as a deliberate bridge, with an owner and an end date."
+  ],
+  [
+   24.938,
+   4.237,
+   "It aligns when Git configures it, and when it's hardened and inventoried."
+  ],
+  [
+   29.175,
+   15.062,
+   "It creates a silo when it hosts zones authored apart from the D D I platform, when it's edited by hand, when it skips the shared Protective D N S, validation and logging, or when it duplicates the Route 53 Resolver for no stated reason."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   4.138,
+   "When should an agency run its own D N S servers in a cloud at all?"
+  ],
+  [
+   4.188,
+   8.988,
+   "Microsoft's guidance is direct: use D N S Private Resolver instead of custom D N S server software like BIND when possible."
+  ],
+  [
+   13.175,
+   4.713,
+   "AWS steers hybrid D N S to Resolver endpoints too."
+  ],
+  [
+   17.887,
+   2.638,
+   "So the criteria, as design guidance."
+  ],
+  [
+   20.525,
+   5.1,
+   "Run your own when a zone must be authoritative in the cloud and reached by delegation."
+  ],
+  [
+   25.625,
+   13.762,
+   "When the agency's response policy zones, or its encrypted-D N S logging at the agency resolver, must apply exactly as on premises and the native filter can't carry them, or, as on Oracle, there isn't one."
+  ],
+  [
+   39.388,
+   4.65,
+   "When workloads need encrypted D N S the native endpoints don't offer."
+  ],
+  [
+   44.038,
+   2.25,
+   "For a migration bridge with an end date."
+  ],
+  [
+   46.288,
+   2.788,
+   "Or when load would exceed the per-instance quotas."
+  ],
+  [
+   49.075,
+   2.55,
+   "Otherwise, stay with the native resolver."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   3.263,
+   "If the agency does run its own servers, which ones?"
+  ],
+  [
+   3.312,
+   5.475,
+   "Where its D N S runs on an Infoblox Grid, vNIOS is the natural choice."
+  ],
+  [
+   8.787,
+   3.925,
+   "It joins the same Grid and takes its policy from the Grid Master."
+  ],
+  [
+   12.713,
+   5.575,
+   "One caution: vNIOS failover in GovCloud and Azure Government is a point to confirm."
+  ],
+  [
+   18.288,
+   6.1,
+   "BIND is the choice when there's no Grid, for a small footprint, or when a tool expects BIND itself."
+  ],
+  [
+   24.387,
+   7.312,
+   "BIND has no policy plane of its own; for Book 08, its policy comes from the D D I platform and Git."
+  ],
+  [
+   31.7,
+   0.988,
+   "Which BIND?"
+  ],
+  [
+   32.688,
+   4.025,
+   "ISC supports each even-numbered branch for four years."
+  ],
+  [
+   36.712,
+   11.188,
+   "As of October twenty-ninth, 9.20 is the supported production branch, with end of life in 2028, and 9.18 reached end of life in June 2026."
+  ],
+  [
+   47.9,
+   4.975,
+   "Operating-system packages follow their vendor, so record which support you rely on."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   4.787,
+   "BIND does three jobs, and nist and ISC both say to keep them apart."
+  ],
+  [
+   4.838,
+   5.362,
+   "nist says an internet-facing server shouldn't serve in both roles, and ISC agrees."
+  ],
+  [
+   10.2,
+   3.138,
+   "In a cloud, the forwarder is the common case."
+  ],
+  [
+   13.338,
+   6.912,
+   "It holds no zones; it applies agency policy and logging, then forwards each name to the right place."
+  ],
+  [
+   20.25,
+   10.25,
+   "A recursive resolver fits where agency policy and logging must apply at the first hop, with the same response policy zones, validation and logging as on premises."
+  ],
+  [
+   30.5,
+   9.05,
+   "And authoritative service fits only for a delegated zone the native services can't answer, or as a secondary of a zone mastered on the D D I platform."
+  ],
+  [
+   39.55,
+   2.288,
+   "Never a separately authored primary."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   1.312,
+   "Where do the servers go?"
+  ],
+  [
+   1.363,
+   10.325,
+   "As design guidance: in the shared-services or network hub VPC or virtual network that already holds the native resolver's endpoints, never in workload accounts."
+  ],
+  [
+   11.688,
+   1.85,
+   "Each cloud adds a constraint."
+  ],
+  [
+   13.537,
+   6.162,
+   "On AWS, a BIND server can forward only to its own VPC's plus-two address."
+  ],
+  [
+   19.7,
+   12.55,
+   "On Azure, a custom D N S server sits in the same virtual network as the VMs whose hostnames it resolves, and forwards those to 168.63.129.16."
+  ],
+  [
+   32.25,
+   10.15,
+   "On Oracle Cloud, it forwards the VCN's own names and private views to 169.254.169.254."
+  ],
+  [
+   42.4,
+   6.35,
+   "For high availability, nist asks for at least two servers on different segments, dispersed geographically."
+  ],
+  [
+   48.75,
+   7.513,
+   "In practice: two or more per Region in different zones, a second Region, and every client configured with all of them."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   1.375,
+   "How does BIND forward?"
+  ],
+  [
+   1.425,
+   4.088,
+   "The native resolver stays the only path to the cloud's own names."
+  ],
+  [
+   5.513,
+   6.225,
+   "BIND's forward setting defaults to first, which falls back to its own recursion when forwarders fail."
+  ],
+  [
+   11.738,
+   8.887,
+   "For private names, that fallback can return the public answer or NXDOMAIN, so the AWS whitepaper says it's critical to specify forward only."
+  ],
+  [
+   20.625,
+   16.75,
+   "Per-instance limits: on AWS, the 1,024-packet-per-second quota covers everything BIND sends to VPC plus two; on Azure, a VM may send 1,000 queries per second, and queries over the limit are dropped."
+  ],
+  [
+   37.375,
+   3.362,
+   "Size the fleet so no server forwards near the limit."
+  ],
+  [
+   40.737,
+   7.162,
+   "Visibility: the VPC Resolver sees BIND as the source, never the client, so BIND's logs are the record."
+  ],
+  [
+   47.9,
+   5.862,
+   "And loops: don't forward a domain to an inbound endpoint from inside the network that holds it."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   4.088,
+   "Here's the forwarder role on AWS, from the evaluation."
+  ],
+  [
+   4.138,
+   1.312,
+   "It's illustrative."
+  ],
+  [
+   5.45,
+   9.387,
+   "It passed BIND's configuration checker on version 9.18.39 but it hasn't run against a VPC or been checked on 9.20."
+  ],
+  [
+   14.838,
+   5.15,
+   "And in practice it's rendered from the policy plane and Git, never typed on the host."
+  ],
+  [
+   19.988,
+   7.237,
+   "Version none hides the version, queries and recursion are limited to the agency's clients, and transfers are off."
+  ],
+  [
+   27.225,
+   6.175,
+   "Validation is on, with an exceptions list for the private namespaces, which have no DNSSEC chain."
+  ],
+  [
+   33.4,
+   7.338,
+   "Internet-bound queries go forward only, to the agency resolvers, the governed upstream to Protective D N S."
+  ],
+  [
+   40.737,
+   7.088,
+   "The cloud's names go to this VPC's own plus-two resolver, and on-premises names go to the agency resolvers."
+  ],
+  [
+   47.825,
+   13.625,
+   "On Oracle Cloud and Azure, the same file sends those clouds' names to 169.254.169.254 or 168.63.129.16."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   1.562,
+   "DNSSEC has two halves."
+  ],
+  [
+   1.613,
+   1.788,
+   "BIND validates by default."
+  ],
+  [
+   3.4,
+   9.213,
+   "But behind the VPC Resolver, BIND can't validate: the VPC Resolver ignores the DNSSEC OK bit and returns no DNSSEC records."
+  ],
+  [
+   12.613,
+   6.338,
+   "So validate in the VPC Resolver, or in BIND toward an upstream that returns DNSSEC data."
+  ],
+  [
+   18.95,
+   7.338,
+   "Oracle's VCN resolver validates, but whether it passes that data back to BIND isn't documented; confirm."
+  ],
+  [
+   26.288,
+   5.713,
+   "Private zones under a signed parent go on BIND's exceptions list, held in the policy plane."
+  ],
+  [
+   32.0,
+   6.463,
+   "And whether Protective D N S returns DNSSEC records to forwarders is a point to confirm with sis-uh."
+  ],
+  [
+   38.462,
+   2.888,
+   "Signing: no cloud signs private zones."
+  ],
+  [
+   41.35,
+   6.775,
+   "nist says signing internal zones is not recommended except where required, and notes agencies may require it."
+  ],
+  [
+   48.125,
+   9.475,
+   "The design guidance is that the zone's one writable owner signs it, with keys on the Grid Master or an HSM, so a cloud BIND secondary holds no keys."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   2.538,
+   "Response policy zones are BIND's filter."
+  ],
+  [
+   2.587,
+   8.1,
+   "They're ordinary D N S zones, up to 64 per server, whose triggers map to actions like NXDOMAIN or drop."
+  ],
+  [
+   10.688,
+   2.513,
+   "They stay in sync through zone transfers."
+  ],
+  [
+   13.2,
+   5.05,
+   "sis-uh's Protective D N S Resolver is mandatory for civilian agencies."
+  ],
+  [
+   18.25,
+   11.125,
+   "sis-uh says agency D N S should use only Protective D N S as its upstream, and cloud infrastructure should use Protective D N S or agency D N S as its upstream."
+  ],
+  [
+   29.375,
+   6.05,
+   "sis-uh's pages don't mention response policy zones, so the layering is nist's and the program's."
+  ],
+  [
+   35.425,
+   8.613,
+   "As design guidance: the agency's own policy zones run on cloud BIND, from the same feed as on premises, in front of sis-uh's."
+  ],
+  [
+   44.038,
+   6.188,
+   "Internet-bound queries leave only toward Protective D N S. Hits and blocks go to the SOC."
+  ],
+  [
+   50.225,
+   9.7,
+   "And BIND 9.20 can forward over D N S over TLS; sis-uh's 2024 note that it can't was true of 9.18."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   3.7,
+   "Logging is where cloud D N S most often goes dark."
+  ],
+  [
+   3.75,
+   6.15,
+   "nist asks for robust D N S traffic logging, with blocked queries always logged."
+  ],
+  [
+   9.9,
+   13.963,
+   "O M B's M twenty-two oh-nine expects agencies to keep visibility by logging at their designated resolvers, and M-26-14 sets the retention: searchable for six months and retrievable for a year."
+  ],
+  [
+   23.863,
+   2.013,
+   "BIND offers two mechanisms."
+  ],
+  [
+   25.875,
+   12.762,
+   "The logging statement writes categories such as queries, responses and policy-zone hits to files or syslog, and dnstap records messages to a file or socket, in a build with dnstap enabled."
+  ],
+  [
+   38.638,
+   4.662,
+   "ISC warns that query logging adds heavy overhead, so plan for it."
+  ],
+  [
+   43.3,
+   7.0,
+   "Send them to the sim, where ASIM's D N S parser already handles BIND, as Book 12 describes."
+  ],
+  [
+   50.3,
+   5.838,
+   "Because the native resolver sees BIND rather than the client, BIND's log is the record of who asked."
+  ],
+  [
+   56.138,
+   3.212,
+   "Without it, cloud D N S is a blind spot."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   3.925,
+   "The patching sources are ISC's, and the clock is sis-uh's."
+  ],
+  [
+   3.975,
+   6.237,
+   "Subscribe to ISC's bind-announce list and check its vulnerability matrix for each version in use."
+  ],
+  [
+   10.213,
+   16.125,
+   "And patch to sis-uh's clock: Binding Operational Directive 26-04, from June 2026, replaced the older remediation directives with risk-based timelines, the shortest three days for the highest-risk flaws in publicly exposed assets."
+  ],
+  [
+   26.337,
+   2.087,
+   "Version none hides the version."
+  ],
+  [
+   28.425,
+   6.713,
+   "Query access defaults to all hosts, so restrict it, and restrict recursion to the agency's clients."
+  ],
+  [
+   35.138,
+   4.338,
+   "Restrict zone transfers and authenticate them with TSIG keys."
+  ],
+  [
+   39.475,
+   4.725,
+   "Run named unprivileged, and keep the host to D N S only."
+  ],
+  [
+   44.2,
+   9.2,
+   "For a baseline, CIS has benchmarks only for BIND 9.11 and 9.9, none for 9.20 or 9.18."
+  ],
+  [
+   53.4,
+   5.737,
+   "So the agency states its own profile, approved by the see-so, as design guidance."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   2.725,
+   "Who owns a cloud BIND server's configuration?"
+  ],
+  [
+   2.775,
+   5.875,
+   "The workbook's Ansible guide manages such Linux hosts by playbook from a reviewed repository."
+  ],
+  [
+   8.65,
+   3.138,
+   "Four practices make it work, as design guidance."
+  ],
+  [
+   11.787,
+   7.188,
+   "Rendered, not typed: BIND's configuration is a template rendered from data the D D I policy plane exports."
+  ],
+  [
+   18.975,
+   8.238,
+   "Checked before it lands: every change arrives by reviewed pull request, and CI and the playbook both run BIND's checkers."
+  ],
+  [
+   27.212,
+   10.188,
+   "Git is the evidence: the commit and tag are the CM-2 baseline, the pull request is the CM-3 change record, and check-mode runs report drift."
+  ],
+  [
+   37.4,
+   5.775,
+   "One owning tool: Ansible owns named.conf on these hosts, and nothing else writes it."
+  ],
+  [
+   43.175,
+   2.575,
+   "A hand edit is drift, to be reverted."
+  ],
+  [
+   45.75,
+   5.525,
+   "And secrets stay out of Git: keys and certificates come from the secrets store at run time."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   7.35,
+   "Here's the checklist, seven questions an agency asks of each BIND server it adds in AWS, as design guidance."
+  ],
+  [
+   7.4,
+   5.5,
+   "First establish whether they're EC2 instances or VMware guests on AWS."
+  ],
+  [
+   12.9,
+   6.025,
+   "One, role: a forwarder, resolver or secondary aligns; a primary doesn't."
+  ],
+  [
+   18.925,
+   5.65,
+   "Two, source of truth: no zones, or zones transferred from the D D I platform."
+  ],
+  [
+   24.575,
+   5.575,
+   "Three, why BIND: a stated need from the criteria, or a bridge with an end date."
+  ],
+  [
+   30.15,
+   6.275,
+   "Four, configuration: rendered, reviewed and applied by automation, not edited on the host."
+  ],
+  [
+   36.425,
+   6.725,
+   "Five, placement: the hub VPC of each Region, at least two servers, rules shared once."
+  ],
+  [
+   43.15,
+   10.8,
+   "Six, shared policy: logs in the sim with the M-26-14 retention, the same policy-zone feed, and Protective D N S as the only upstream."
+  ],
+  [
+   53.95,
+   6.162,
+   "Seven: a supported branch, a stated baseline, a CMDB record and a named owner."
+  ],
+  [
+   60.112,
+   2.837,
+   "Rows two and four are the serious signals."
+  ],
+  [
+   62.95,
+   3.75,
+   "Row three alone means the servers may not be needed at all."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   5.037,
+   "The federal mapping reuses the controls Book 08 has already verified."
+  ],
+  [
+   5.088,
+   5.188,
+   "It's illustrative, so validate it against the system's own authorization boundary."
+  ],
+  [
+   10.275,
+   2.575,
+   "Configuration and inventory first."
+  ],
+  [
+   12.85,
+   6.838,
+   "CM-2, the baseline: the evidence is the Git commit and tag of the rendered configuration."
+  ],
+  [
+   19.688,
+   4.875,
+   "CM-3, change control: pull requests with required review."
+  ],
+  [
+   24.562,
+   6.6,
+   "CM-6, configuration settings: the agency's stated profile, plus drift reports."
+  ],
+  [
+   31.163,
+   9.95,
+   "CM-7, least functionality: a dedicated D N S host, one role per server, the version hidden, and recursion and transfers limited."
+  ],
+  [
+   41.112,
+   8.238,
+   "CM-8, inventory: a CMDB record for each server and an eye-pam entry for each address, with an owner."
+  ],
+  [
+   49.35,
+   14.312,
+   "And SI-2, flaw remediation: a supported BIND branch, ISC's announcement list and vulnerability matrix, and remediation inside the timelines of Binding Operational Directive 26-04."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   12.65,
+   "Then resolution, logging and Protective D N S. SC-20 asks for signed authoritative data: the zone's one owner signs it, and cloud secondaries serve signed data and hold no keys."
+  ],
+  [
+   12.7,
+   10.387,
+   "SC-21 asks for validation: validation on, the exceptions list from the policy plane, and VPC Resolver validation where BIND forwards to it."
+  ],
+  [
+   23.087,
+   5.237,
+   "SC-22: at least two servers per Region, roles separated."
+  ],
+  [
+   28.325,
+   5.838,
+   "SI-4 treats D N S as a detection source, with every filter's hits in the sim."
+  ],
+  [
+   34.163,
+   9.963,
+   "AU-2 and AU-12: BIND's logs beside the three clouds' resolver logs, kept for the M-26-14 retention."
+  ],
+  [
+   44.125,
+   12.812,
+   "For M twenty-two oh-nine's encrypted D N S and resolver logging: encrypted D N S to clients, D N S over TLS upstream from BIND 9.20, and logs at the BIND server."
+  ],
+  [
+   56.938,
+   8.863,
+   "sis-uh's guidance: internet-bound forwarding only to Protective D N S or agency resolvers, and other D N S egress blocked."
+  ],
+  [
+   65.8,
+   6.525,
+   "And Emergency Directive 19-01 is sunset, but its four actions remain sound practice."
+  ]
+ ],
+ "17": [
+  [
+   0.05,
+   1.6,
+   "Where does Infoblox fit?"
+  ],
+  [
+   1.65,
+   9.4,
+   "Where the Grid already runs the agency's D N S, vNIOS is the choice, because it joins the same Grid and gets its policy from the Grid Master."
+  ],
+  [
+   11.05,
+   2.462,
+   "The same criteria apply as for BIND."
+  ],
+  [
+   13.512,
+   3.5,
+   "Confirm its failover in GovCloud and Azure Government."
+  ],
+  [
+   17.012,
+   12.137,
+   "The open points for this part: whether Oracle's VCN resolver passes DNSSEC data to a resolver behind it, and whether sis-uh's Protective D N S returns DNSSEC data to agency forwarders."
+  ],
+  [
+   29.15,
+   4.075,
+   "And the illustrative configuration hasn't yet run in a VPC."
+  ],
+  [
+   33.225,
+   12.5,
+   "The next steps: ask the seven questions of every cloud BIND server, build the forwarder pattern in a test account in each Region and realm, and run Book 08's validation matrix from every origin."
+  ],
+  [
+   45.725,
+   4.925,
+   "This is research under review, not an endorsement by any federal agency."
+  ],
+  [
+   50.65,
+   0.762,
+   "Thank you."
+  ]
+ ]
+}

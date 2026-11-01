@@ -1,0 +1,65 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.025
+Now Azure.
+
+2
+00:00:01.025 --> 00:00:06.076
+Book 08's Chapter 07 covers the Private
+Resolver's hub-and-spoke design,
+
+3
+00:00:06.076 --> 00:00:09.037
+so here is the summary
+with today's limits.
+
+4
+00:00:09.037 --> 00:00:13.557
+The inbound endpoint receives queries
+from on premises or other clouds
+
+5
+00:00:13.557 --> 00:00:17.625
+and answers from private DNS zones
+linked to its virtual network.
+
+6
+00:00:17.625 --> 00:00:22.025
+There can be five per resolver, at
+10,000 queries per second each.
+
+7
+00:00:22.025 --> 00:00:27.593
+The outbound endpoint and its forwarding
+ruleset send queries for named domains to
+
+8
+00:00:27.593 --> 00:00:30.695
+target servers; a ruleset
+holds up to 1,000 rules,
+
+9
+00:00:30.695 --> 00:00:33.638
+and a virtual network
+links only one ruleset.
+
+10
+00:00:33.638 --> 00:00:37.479
+It's a single-region service,
+zone-redundant inside the region,
+
+11
+00:00:37.479 --> 00:00:42.675
+and it doesn't work in encrypted virtual
+networks or IPv6-enabled subnets.
+
+12
+00:00:42.675 --> 00:00:45.780
+And Azure DNS doesn't
+support zone transfers,
+
+13
+00:00:45.780 --> 00:00:50.950
+so a BIND server can't be a secondary of
+an Azure private zone, or the reverse.

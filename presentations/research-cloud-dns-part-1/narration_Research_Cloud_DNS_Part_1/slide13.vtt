@@ -1,0 +1,69 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.663
+Who authorizes all this?
+
+2
+00:00:01.663 --> 00:00:08.204
+AWS's services-in-scope page, updated
+October fifteenth, 2026, lists one row,
+
+3
+00:00:08.204 --> 00:00:13.780
+Amazon Route 53, in scope for
+FedRAMP Class C, formerly Moderate,
+
+4
+00:00:13.780 --> 00:00:18.713
+in US East and West, and Class
+D, formerly High, in GovCloud.
+
+5
+00:00:18.713 --> 00:00:21.755
+There are no separate rows
+for the Resolver features;
+
+6
+00:00:21.755 --> 00:00:25.212
+generally available features
+are in scope unless excluded.
+
+7
+00:00:25.212 --> 00:00:30.274
+For a Moderate civilian workload,
+both locations cover the DNS service.
+
+8
+00:00:30.274 --> 00:00:33.600
+As an inference, note that
+in the system security plan.
+
+9
+00:00:33.600 --> 00:00:38.381
+Microsoft's audit-scope page has one
+DNS row, at FedRAMP High in Azure and in
+
+10
+00:00:38.381 --> 00:00:43.788
+Azure Government, with no separate row for
+the Private Resolver or resolver policy.
+
+11
+00:00:43.788 --> 00:00:47.426
+No Learn page states their
+Azure Government availability.
+
+12
+00:00:47.426 --> 00:00:51.168
+The price list carries their
+meters in the US Gov zones:
+
+13
+00:00:51.168 --> 00:00:54.412
+a strong signal, not an
+availability statement.
+
+14
+00:00:54.412 --> 00:00:56.230
+Confirm in the target region.

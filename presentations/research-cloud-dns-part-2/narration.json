@@ -1,0 +1,87 @@
+[
+  {
+    "slide": 1,
+    "title": "Cloud DNS, Part 2: BIND and the Federal Fit",
+    "say": "Welcome to Part 2 of Cloud DNS on AWS, Azure and Oracle Cloud, a Federal Modernization Workbook evaluation that's still under review. Part 1 covered the native resolvers. Part 2 asks when an agency should run its own DNS servers in a cloud, and how to run BIND there so it stays inside Book 08's single policy plane. We'll start with the test that matters: does a cloud BIND server align with that plane, or create a silo? Then the criteria, vNIOS or BIND, and BIND itself, from roles to patching and Git. Then a seven-question checklist for an agency adding BIND servers in AWS, and the federal mapping. The labels carry over from Part 1: design guidance, inference, and confirm."
+  },
+  {
+    "slide": 2,
+    "title": "BIND in AWS: aligned, or a new silo?",
+    "say": "Additional BIND servers in AWS align with Book 08 when they are forwarders or resolvers under central configuration, logged to the SOC, owned and with a reason. BIND aligns when it's a resolver or forwarder whose configuration comes from the policy plane: its forwarding, its addresses and its logging all governed. It aligns as a deliberate bridge, with an owner and an end date. It aligns when Git configures it, and when it's hardened and inventoried. It creates a silo when it hosts zones authored apart from the DDI platform, when it's edited by hand, when it skips the shared Protective DNS, validation and logging, or when it duplicates the Route 53 Resolver for no stated reason."
+  },
+  {
+    "slide": 3,
+    "title": "When to run your own DNS servers in a cloud",
+    "say": "When should an agency run its own DNS servers in a cloud at all? Microsoft's guidance is direct: use DNS Private Resolver instead of custom DNS server software like BIND when possible. AWS steers hybrid DNS to Resolver endpoints too. So the criteria, as design guidance. Run your own when a zone must be authoritative in the cloud and reached by delegation. When the agency's response policy zones, or its encrypted-DNS logging at the agency resolver, must apply exactly as on premises and the native filter can't carry them, or, as on Oracle, there isn't one. When workloads need encrypted DNS the native endpoints don't offer. For a migration bridge with an end date. Or when load would exceed the per-instance quotas. Otherwise, stay with the native resolver."
+  },
+  {
+    "slide": 4,
+    "title": "vNIOS or BIND, and which BIND to run",
+    "say": "If the agency does run its own servers, which ones? Where its DNS runs on an Infoblox Grid, vNIOS is the natural choice. It joins the same Grid and takes its policy from the Grid Master. One caution: vNIOS failover in GovCloud and Azure Government is a point to confirm. BIND is the choice when there's no Grid, for a small footprint, or when a tool expects BIND itself. BIND has no policy plane of its own; for Book 08, its policy comes from the DDI platform and Git. Which BIND? ISC supports each even-numbered branch for four years. As of October twenty-ninth, 9.20 is the supported production branch, with end of life in 2028, and 9.18 reached end of life in June 2026. Operating-system packages follow their vendor, so record which support you rely on."
+  },
+  {
+    "slide": 5,
+    "title": "Three roles, kept apart",
+    "say": "BIND does three jobs, and NIST and ISC both say to keep them apart. NIST says an internet-facing server shouldn't serve in both roles, and ISC agrees. In a cloud, the forwarder is the common case. It holds no zones; it applies agency policy and logging, then forwards each name to the right place. A recursive resolver fits where agency policy and logging must apply at the first hop, with the same response policy zones, validation and logging as on premises. And authoritative service fits only for a delegated zone the native services can't answer, or as a secondary of a zone mastered on the DDI platform. Never a separately authored primary."
+  },
+  {
+    "slide": 6,
+    "title": "Placement and high availability in each cloud",
+    "say": "Where do the servers go? As design guidance: in the shared-services or network hub VPC or virtual network that already holds the native resolver's endpoints, never in workload accounts. Each cloud adds a constraint. On AWS, a BIND server can forward only to its own VPC's plus-two address. On Azure, a custom DNS server sits in the same virtual network as the VMs whose hostnames it resolves, and forwards those to 168.63.129.16. On Oracle Cloud, it forwards the VCN's own names and private views to 169.254.169.254. For high availability, NIST asks for at least two servers on different segments, dispersed geographically. In practice: two or more per Region in different zones, a second Region, and every client configured with all of them."
+  },
+  {
+    "slide": 7,
+    "title": "Forwarding to and from the native resolver",
+    "say": "How does BIND forward? The native resolver stays the only path to the cloud's own names. BIND's forward setting defaults to first, which falls back to its own recursion when forwarders fail. For private names, that fallback can return the public answer or NXDOMAIN, so the AWS whitepaper says it's critical to specify forward only. Per-instance limits: on AWS, the 1,024-packet-per-second quota covers everything BIND sends to VPC plus two; on Azure, a VM may send 1,000 queries per second, and queries over the limit are dropped. Size the fleet so no server forwards near the limit. Visibility: the VPC Resolver sees BIND as the source, never the client, so BIND's logs are the record. And loops: don't forward a domain to an inbound endpoint from inside the network that holds it."
+  },
+  {
+    "slide": 8,
+    "title": "An illustrative forwarder configuration",
+    "say": "Here's the forwarder role on AWS, from the evaluation. It's illustrative. It passed BIND's configuration checker on version 9.18.39 but it hasn't run against a VPC or been checked on 9.20. And in practice it's rendered from the policy plane and Git, never typed on the host. Version none hides the version, queries and recursion are limited to the agency's clients, and transfers are off. Validation is on, with an exceptions list for the private namespaces, which have no DNSSEC chain. Internet-bound queries go forward only, to the agency resolvers, the governed upstream to Protective DNS. The cloud's names go to this VPC's own plus-two resolver, and on-premises names go to the agency resolvers. On Oracle Cloud and Azure, the same file sends those clouds' names to 169.254.169.254 or 168.63.129.16."
+  },
+  {
+    "slide": 9,
+    "title": "DNSSEC validation and signing in the cloud",
+    "say": "DNSSEC has two halves. BIND validates by default. But behind the VPC Resolver, BIND can't validate: the VPC Resolver ignores the DNSSEC OK bit and returns no DNSSEC records. So validate in the VPC Resolver, or in BIND toward an upstream that returns DNSSEC data. Oracle's VCN resolver validates, but whether it passes that data back to BIND isn't documented; confirm. Private zones under a signed parent go on BIND's exceptions list, held in the policy plane. And whether Protective DNS returns DNSSEC records to forwarders is a point to confirm with CISA. Signing: no cloud signs private zones. NIST says signing internal zones is not recommended except where required, and notes agencies may require it. The design guidance is that the zone's one writable owner signs it, with keys on the Grid Master or an HSM, so a cloud BIND secondary holds no keys."
+  },
+  {
+    "slide": 10,
+    "title": "Response policy zones and CISA Protective DNS",
+    "say": "Response policy zones are BIND's filter. They're ordinary DNS zones, up to 64 per server, whose triggers map to actions like NXDOMAIN or drop. They stay in sync through zone transfers. CISA's Protective DNS Resolver is mandatory for civilian agencies. CISA says agency DNS should use only Protective DNS as its upstream, and cloud infrastructure should use Protective DNS or agency DNS as its upstream. CISA's pages don't mention response policy zones, so the layering is NIST's and the program's. As design guidance: the agency's own policy zones run on cloud BIND, from the same feed as on premises, in front of CISA's. Internet-bound queries leave only toward Protective DNS. Hits and blocks go to the SOC. And BIND 9.20 can forward over DNS over TLS; CISA's 2024 note that it can't was true of 9.18."
+  },
+  {
+    "slide": 11,
+    "title": "Query and response logging into the SOC",
+    "say": "Logging is where cloud DNS most often goes dark. NIST asks for robust DNS traffic logging, with blocked queries always logged. OMB's M-22-09 expects agencies to keep visibility by logging at their designated resolvers, and M-26-14 sets the retention: searchable for six months and retrievable for a year. BIND offers two mechanisms. The logging statement writes categories such as queries, responses and policy-zone hits to files or syslog, and dnstap records messages to a file or socket, in a build with dnstap enabled. ISC warns that query logging adds heavy overhead, so plan for it. Send them to the SIEM, where ASIM's DNS parser already handles BIND, as Book 12 describes. Because the native resolver sees BIND rather than the client, BIND's log is the record of who asked. Without it, cloud DNS is a blind spot."
+  },
+  {
+    "slide": 12,
+    "title": "Patching, settings and hardening baselines",
+    "say": "The patching sources are ISC's, and the clock is CISA's. Subscribe to ISC's bind-announce list and check its vulnerability matrix for each version in use. And patch to CISA's clock: Binding Operational Directive 26-04, from June 2026, replaced the older remediation directives with risk-based timelines, the shortest three days for the highest-risk flaws in publicly exposed assets. Version none hides the version. Query access defaults to all hosts, so restrict it, and restrict recursion to the agency's clients. Restrict zone transfers and authenticate them with TSIG keys. Run named unprivileged, and keep the host to DNS only. For a baseline, CIS has benchmarks only for BIND 9.11 and 9.9, none for 9.20 or 9.18. So the agency states its own profile, approved by the CISO, as design guidance."
+  },
+  {
+    "slide": 13,
+    "title": "Who owns the configuration: Git and Ansible",
+    "say": "Who owns a cloud BIND server's configuration? The workbook's Ansible guide manages such Linux hosts by playbook from a reviewed repository. Four practices make it work, as design guidance. Rendered, not typed: BIND's configuration is a template rendered from data the DDI policy plane exports. Checked before it lands: every change arrives by reviewed pull request, and CI and the playbook both run BIND's checkers. Git is the evidence: the commit and tag are the CM-2 baseline, the pull request is the CM-3 change record, and check-mode runs report drift. One owning tool: Ansible owns named.conf on these hosts, and nothing else writes it. A hand edit is drift, to be reverted. And secrets stay out of Git: keys and certificates come from the secrets store at run time."
+  },
+  {
+    "slide": 14,
+    "title": "The alignment checklist: seven questions",
+    "say": "Here's the checklist, seven questions an agency asks of each BIND server it adds in AWS, as design guidance. First establish whether they're EC2 instances or VMware guests on AWS. One, role: a forwarder, resolver or secondary aligns; a primary doesn't. Two, source of truth: no zones, or zones transferred from the DDI platform. Three, why BIND: a stated need from the criteria, or a bridge with an end date. Four, configuration: rendered, reviewed and applied by automation, not edited on the host. Five, placement: the hub VPC of each Region, at least two servers, rules shared once. Six, shared policy: logs in the SIEM with the M-26-14 retention, the same policy-zone feed, and Protective DNS as the only upstream. Seven: a supported branch, a stated baseline, a CMDB record and a named owner. Rows two and four are the serious signals. Row three alone means the servers may not be needed at all."
+  },
+  {
+    "slide": 15,
+    "title": "Federal mapping: configuration and inventory",
+    "say": "The federal mapping reuses the controls Book 08 has already verified. It's illustrative, so validate it against the system's own authorization boundary. Configuration and inventory first. CM-2, the baseline: the evidence is the Git commit and tag of the rendered configuration. CM-3, change control: pull requests with required review. CM-6, configuration settings: the agency's stated profile, plus drift reports. CM-7, least functionality: a dedicated DNS host, one role per server, the version hidden, and recursion and transfers limited. CM-8, inventory: a CMDB record for each server and an IPAM entry for each address, with an owner. And SI-2, flaw remediation: a supported BIND branch, ISC's announcement list and vulnerability matrix, and remediation inside the timelines of Binding Operational Directive 26-04."
+  },
+  {
+    "slide": 16,
+    "title": "Federal mapping: resolution, logging and Protective DNS",
+    "say": "Then resolution, logging and Protective DNS. SC-20 asks for signed authoritative data: the zone's one owner signs it, and cloud secondaries serve signed data and hold no keys. SC-21 asks for validation: validation on, the exceptions list from the policy plane, and VPC Resolver validation where BIND forwards to it. SC-22: at least two servers per Region, roles separated. SI-4 treats DNS as a detection source, with every filter's hits in the SIEM. AU-2 and AU-12: BIND's logs beside the three clouds' resolver logs, kept for the M-26-14 retention. For M-22-09's encrypted DNS and resolver logging: encrypted DNS to clients, DNS over TLS upstream from BIND 9.20, and logs at the BIND server. CISA's guidance: internet-bound forwarding only to Protective DNS or agency resolvers, and other DNS egress blocked. And Emergency Directive 19-01 is sunset, but its four actions remain sound practice."
+  },
+  {
+    "slide": 17,
+    "title": "Where Infoblox fits, and what to confirm",
+    "say": "Where does Infoblox fit? Where the Grid already runs the agency's DNS, vNIOS is the choice, because it joins the same Grid and gets its policy from the Grid Master. The same criteria apply as for BIND. Confirm its failover in GovCloud and Azure Government. The open points for this part: whether Oracle's VCN resolver passes DNSSEC data to a resolver behind it, and whether CISA's Protective DNS returns DNSSEC data to agency forwarders. And the illustrative configuration hasn't yet run in a VPC. The next steps: ask the seven questions of every cloud BIND server, build the forwarder pattern in a test account in each Region and realm, and run Book 08's validation matrix from every origin. This is research under review, not an endorsement by any federal agency. Thank you."
+  }
+]

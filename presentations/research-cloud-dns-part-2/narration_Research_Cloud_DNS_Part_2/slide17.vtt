@@ -1,0 +1,67 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.650
+Where does Infoblox fit?
+
+2
+00:00:01.650 --> 00:00:06.094
+Where the Grid already runs the
+agency's DNS, vNIOS is the choice,
+
+3
+00:00:06.094 --> 00:00:11.050
+because it joins the same Grid and
+gets its policy from the Grid Master.
+
+4
+00:00:11.050 --> 00:00:13.512
+The same criteria apply as for BIND.
+
+5
+00:00:13.512 --> 00:00:17.012
+Confirm its failover in
+GovCloud and Azure Government.
+
+6
+00:00:17.012 --> 00:00:18.980
+The open points for this part:
+
+7
+00:00:18.980 --> 00:00:23.901
+whether Oracle's VCN resolver passes
+DNSSEC data to a resolver behind it,
+
+8
+00:00:23.901 --> 00:00:29.149
+and whether CISA's Protective DNS
+returns DNSSEC data to agency forwarders.
+
+9
+00:00:29.149 --> 00:00:33.225
+And the illustrative configuration
+hasn't yet run in a VPC.
+
+10
+00:00:33.225 --> 00:00:37.552
+The next steps: ask the seven
+questions of every cloud BIND server,
+
+11
+00:00:37.552 --> 00:00:42.199
+build the forwarder pattern in a test
+account in each Region and realm,
+
+12
+00:00:42.199 --> 00:00:45.725
+and run Book 08's validation
+matrix from every origin.
+
+13
+00:00:45.725 --> 00:00:50.650
+This is research under review, not an
+endorsement by any federal agency.
+
+14
+00:00:50.650 --> 00:00:51.480
+Thank you.

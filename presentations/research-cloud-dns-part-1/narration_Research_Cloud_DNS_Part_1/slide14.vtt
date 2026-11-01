@@ -1,0 +1,87 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.563
+Oracle's government
+cloud works differently.
+
+2
+00:00:02.563 --> 00:00:07.639
+The US Government Cloud is its own
+realm, called OC2, with US Gov East in
+
+3
+00:00:07.639 --> 00:00:13.250
+Ashburn and US Gov West in Phoenix, and
+it holds a FedRAMP High authorization.
+
+4
+00:00:13.250 --> 00:00:17.057
+And its DNS API is for private DNS only;
+
+5
+00:00:17.057 --> 00:00:22.338
+public DNS isn't available
+in the government realms.
+
+6
+00:00:22.338 --> 00:00:25.677
+The FedRAMP Marketplace lists
+the Government Cloud at High,
+
+7
+00:00:25.677 --> 00:00:28.550
+and no commercial Oracle
+infrastructure offering.
+
+8
+00:00:28.550 --> 00:00:31.525
+Oracle's software-as-a-service
+has its own listings,
+
+9
+00:00:31.525 --> 00:00:33.438
+such as Fusion Cloud at Moderate.
+
+10
+00:00:33.438 --> 00:00:34.913
+So, as inferences.
+
+11
+00:00:34.913 --> 00:00:37.865
+A Moderate system on OCI
+infrastructure inherits
+
+12
+00:00:37.865 --> 00:00:40.676
+from the Government
+Cloud's High authorization.
+
+13
+00:00:40.676 --> 00:00:45.211
+Commercial OCI regions have no FedRAMP
+listing of their own, so a federal
+
+14
+00:00:45.211 --> 00:00:50.125
+system placed there needs its own
+authorization basis, settled before design.
+
+15
+00:00:50.125 --> 00:00:53.061
+Whether private resolver
+logging exists in the
+
+16
+00:00:53.061 --> 00:00:56.437
+government realm isn't
+documented; confirm with Oracle.
+
+17
+00:00:56.437 --> 00:00:59.581
+And an agency holding
+only the HR platform's
+
+18
+00:00:59.581 --> 00:01:02.350
+software-as-a-service has no VCN at all.

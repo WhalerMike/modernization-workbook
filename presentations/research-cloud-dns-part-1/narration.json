@@ -1,0 +1,87 @@
+[
+  {
+    "slide": 1,
+    "title": "Cloud DNS, Part 1: The Native Resolvers",
+    "say": "Welcome. This is Part 1 of a two-part narrated tour of a Federal Modernization Workbook evaluation: Cloud DNS on AWS, Azure and Oracle Cloud, with native resolvers, Infoblox and BIND. It's research under review, written for FedRAMP Moderate civilian agencies. Part 1 covers the three native resolvers in depth: the Route 53 VPC Resolver, the Azure DNS Private Resolver, and the Oracle Cloud VCN resolver. For each: its endpoints and forwarding rules, its query logging and its DNS-layer filter. Then what the providers say about their government clouds, and how all three meet on-premises DNS. Statements marked design guidance are the program's recommendations, inferences are labeled, and confirm marks a point to settle with the provider."
+  },
+  {
+    "slide": 2,
+    "title": "Why cloud DNS belongs to one policy plane",
+    "say": "Why does cloud DNS need a deck of its own? Book 08 of the workbook asks for one authoritative policy and state plane that every other DNS system consumes. Cloud DNS services are synchronized targets or forwarding destinations, not independently authored sources. The warning is about authoring copies in every silo. That produces split-brain answers, names that work in one cloud but not another, and uneven Protective DNS and logging. The workbook already covers Infoblox with Azure and AWS. It covered the Route 53 Resolver thinly, and Oracle Cloud only at the comparison level, so Part 1 adds both in depth. BIND in a cloud wasn't covered at all; that's Part 2."
+  },
+  {
+    "slide": 3,
+    "title": "The answer in brief: native resolvers as the bridge",
+    "say": "Here is the answer in brief. Use the native resolver as the forwarding bridge in each cloud, and keep the policy in the DDI plane. The Route 53 VPC Resolver and the Azure DNS Private Resolver are managed, zone-redundant forwarding services, and both providers recommend them over DNS servers on virtual machines. Oracle Cloud gives every virtual cloud network, or VCN, a dedicated resolver that does the same job. None of the three is an authority for the agency's own namespaces, and neither AWS nor Azure signs private zones. Oracle Cloud is the one with no native DNS-layer filter for private DNS, so in a VCN the agency's policy applies only if queries are forwarded to agency resolvers. And, as design guidance, run your own DNS servers in a cloud only for a stated reason. Part 2 covers that."
+  },
+  {
+    "slide": 4,
+    "title": "AWS: what the Route 53 VPC Resolver answers",
+    "say": "Start with AWS. AWS renamed the Route 53 Resolver the Route 53 VPC Resolver when it introduced Route 53 Global Resolver. Several AWS pages still use the older name, so both appear in runbooks. Every VPC reaches it at the VPC's base address plus two, called VPC plus two. It answers the VPC's own EC2 names and records in private hosted zones associated with the VPC, and it recurses for public names. One quota matters. Each network interface may send 1,024 packets per second to link-local services, shared by DNS and other services. It can't be raised, and traffic over it is rejected. That matters to any DNS server on EC2 that forwards to VPC plus two. Route 53 Global Resolver is a different thing, an internet-reachable resolver for branches and on-premises sites, listed in 30 commercial Regions and not in GovCloud."
+  },
+  {
+    "slide": 5,
+    "title": "AWS: inbound and outbound endpoints",
+    "say": "Hybrid resolution in AWS runs through two kinds of endpoint. An inbound endpoint lets outside resolvers forward queries into a VPC and get the answers it sees, private zones included. It has at least two addresses, in different Availability Zones. Each address handles up to 10,000 UDP queries per second, but as few as 1,500 under connection tracking. It speaks plain DNS, DNS over HTTPS, and a FIPS 140-2 version of DNS over HTTPS, inbound only. A second type, the delegation inbound endpoint, answers NS delegations. An outbound endpoint goes the other way: it sends queries that match a forwarding rule from the VPC to the agency's resolvers. It speaks only plain DNS and DNS over HTTPS, so there's no FIPS option outbound. And sharing a rule shares its outbound endpoint too."
+  },
+  {
+    "slide": 6,
+    "title": "AWS: rules, sharing, Profiles and private zones",
+    "say": "Rules decide where queries go. A forwarding rule names one domain and its target addresses. The most specific matching rule wins, and a rule overrides a private hosted zone of the same name. A rule for the root, a single dot, forwards almost everything. System rules carve a subdomain back out of a forwarding rule, so it resolves locally, and delegation rules handle delegated subdomains. Rules are shared through AWS Resource Access Manager. The receiving account associates them with its VPCs but can't change or delete them. Profiles go further, bundling zones, rules, firewall rule groups and logging settings, one Profile per VPC. Private hosted zones answer only inside associated VPCs, up to 300 per zone, and an empty match returns NXDOMAIN, with no fallback to public DNS."
+  },
+  {
+    "slide": 7,
+    "title": "AWS: DNS Firewall, query logging and DNSSEC",
+    "say": "DNS Firewall applies rule groups of allow, alert and block rules. It uses custom or AWS managed domain lists, and the managed lists can't be browsed. The Advanced tier detects domain generation algorithms and DNS tunneling. It filters only queries that pass through the VPC Resolver, including those arriving through inbound endpoints, and by default it fails closed, with SERVFAIL. Query logging records queries from the VPC, through the endpoints, and firewall actions, to CloudWatch Logs, S3 or Firehose. It logs only queries that reach the VPC Resolver, and not answers from its cache. DNSSEC: the VPC Resolver can validate public signed names, enabled per VPC. Route 53 signs public hosted zones only. And the VPC Resolver returns no DNSSEC records, so a resolver behind it can't validate for itself. AWS warns that enabling validation could result in an outage."
+  },
+  {
+    "slide": 8,
+    "title": "AWS GovCloud (US) beside the commercial Regions",
+    "say": "What changes in GovCloud? AWS's GovCloud page for Route 53 says public and private DNS work in GovCloud US-West and US-East, the control plane is in US-West, and public hosted zone queries are answered from within the FedRAMP boundary. That page doesn't mention the Resolver features, so the table draws on other AWS pages. Endpoints and rules: yes. Resolver delegation is the conflict: the GovCloud guide says it's not available, and an April 2026 announcement says it is. Confirm. DNS Firewall and its managed lists: yes. Of the Advanced protections, only dictionary DGA was announced for GovCloud; confirm the rest. Query logging and Profiles: yes. Signing of public zones: yes, with the key in US-West. Validation in the VPC Resolver isn't stated, so confirm. And Global Resolver isn't listed."
+  },
+  {
+    "slide": 9,
+    "title": "Azure: the DNS Private Resolver",
+    "say": "Now Azure. Book 08's Chapter 07 covers the Private Resolver's hub-and-spoke design, so here is the summary with today's limits. The inbound endpoint receives queries from on premises or other clouds and answers from private DNS zones linked to its virtual network. There can be five per resolver, at 10,000 queries per second each. The outbound endpoint and its forwarding ruleset send queries for named domains to target servers; a ruleset holds up to 1,000 rules, and a virtual network links only one ruleset. It's a single-region service, zone-redundant inside the region, and it doesn't work in encrypted virtual networks or IPv6-enabled subnets. And Azure DNS doesn't support zone transfers, so a BIND server can't be a secondary of an Azure private zone, or the reverse."
+  },
+  {
+    "slide": 10,
+    "title": "Azure: DNS resolver policy, logging and DNSSEC",
+    "say": "Azure's DNS-layer filter is DNS resolver policy. Microsoft renamed it from DNS security policy, so expect both names. A resolver policy filters and logs every query in a linked virtual network, public and private, with allow, block and alert rules. It includes a Microsoft-managed threat intelligence list from the Microsoft Security Response Center. Its logs go to Log Analytics, in the DNS query logs table, or to storage or Event Hubs, through diagnostic settings. Microsoft lists resource logs only for resolver policies, so the inference is that per-query logs come from a resolver policy, or Azure Firewall's DNS proxy, not from the resolver itself. DNSSEC: Azure can sign public zones, but the Azure-provided resolver doesn't validate. No Microsoft page describes signing private zones, or whether the Private Resolver validates, so confirm that."
+  },
+  {
+    "slide": 11,
+    "title": "Oracle Cloud: how the VCN resolver answers",
+    "say": "Oracle Cloud Infrastructure matters here because the HR platform runs on Oracle Cloud. Every VCN gets a dedicated resolver, listening on 169.254.169.254. It answers from the private views attached to it, in order, then its default view, then its resolver rules, then the internet. Oracle says it performs recursion to the internet and DNSSEC validation for signed zones. The trap is in that order. A match in the sequence ends resolution, even an NXDOMAIN. So a private zone for example dot com hides a forwarding rule for onprem dot example dot com. Views can be attached to many resolvers, sharing private DNS data across VCNs in a region. Same-name private and public zones give split-horizon DNS. Between VCNs, resolution uses resolver endpoints over a peering gateway."
+  },
+  {
+    "slide": 12,
+    "title": "Oracle Cloud: endpoints, rules and what's missing",
+    "say": "A listening endpoint receives queries from on premises or other VCNs. A forwarding endpoint sends queries no view answers to targets, under up to 50 resolver rules. A rule matches a client address block, a domain, or None, which matches any query. Forward is the only action, the first match wins, and an unreachable target ends processing. A subnet's DHCP options can name a custom resolver of up to three DNS servers. Those instances reach private views and rules only if 169.254.169.254 is in that list. Then the gaps. There's no native DNS-layer policy: no Oracle page describes a DNS firewall for the VCN resolver. Private resolver logs, with each query's resolution path, are documented for the commercial realms only. And the resolver can serve stale answers for up to 24 hours."
+  },
+  {
+    "slide": 13,
+    "title": "Who authorizes it: AWS and Azure FedRAMP scope",
+    "say": "Who authorizes all this? AWS's services-in-scope page, updated October fifteenth, 2026, lists one row, Amazon Route 53, in scope for FedRAMP Class C, formerly Moderate, in US East and West, and Class D, formerly High, in GovCloud. There are no separate rows for the Resolver features; generally available features are in scope unless excluded. For a Moderate civilian workload, both locations cover the DNS service. As an inference, note that in the system security plan. Microsoft's audit-scope page has one DNS row, at FedRAMP High in Azure and in Azure Government, with no separate row for the Private Resolver or resolver policy. No Learn page states their Azure Government availability. The price list carries their meters in the US Gov zones: a strong signal, not an availability statement. Confirm in the target region."
+  },
+  {
+    "slide": 14,
+    "title": "Who authorizes it: Oracle US Government Cloud",
+    "say": "Oracle's government cloud works differently. The US Government Cloud is its own realm, called OC2, with US Gov East in Ashburn and US Gov West in Phoenix, and it holds a FedRAMP High authorization. And its DNS API is for private DNS only; public DNS isn't available in the government realms. The FedRAMP Marketplace lists the Government Cloud at High, and no commercial Oracle infrastructure offering. Oracle's software-as-a-service has its own listings, such as Fusion Cloud at Moderate. So, as inferences. A Moderate system on OCI infrastructure inherits from the Government Cloud's High authorization. Commercial OCI regions have no FedRAMP listing of their own, so a federal system placed there needs its own authorization basis, settled before design. Whether private resolver logging exists in the government realm isn't documented; confirm with Oracle. And an agency holding only the HR platform's software-as-a-service has no VCN at all."
+  },
+  {
+    "slide": 15,
+    "title": "How the three resolvers meet on-premises DNS",
+    "say": "How do the three meet on-premises DNS? The same way, and Book 08's Decision 3 already holds the rules, as design guidance. Into the cloud: on-premises resolvers, and other clouds' resolvers, conditionally forward each cloud namespace to that cloud's inbound endpoint, using static addresses written once. On Oracle Cloud, the entry point is a listening endpoint. Neither the AWS nor the Azure inbound endpoint accepts an ordinary NS delegation of a private zone; AWS's delegation inbound endpoint is the exception, and it's new. Out of the cloud: each cloud forwards the agency's namespaces back to the agency resolvers, by its rules. On AWS, create the rules once in a network account and share them through Resource Access Manager or a Profile. Spokes associate them and can't edit them. That's the cloud form of one policy object."
+  },
+  {
+    "slide": 16,
+    "title": "How Protective DNS, policy and logs reach each cloud",
+    "say": "First, internet-bound queries. CISA requires Protective DNS for all egress DNS resolution, including from agency cloud deployments, directly or through agency DNS. None of the native resolvers forwards the default path to Protective DNS on its own. That takes a root rule in AWS or Azure, or a rule whose condition is None in Oracle Cloud, pointing at the agency resolvers. Whether cloud egress already reaches it some other way is for the agency to confirm with CISA. Second, policy. The clouds' own filters are a second policy surface beside the agency's response policy zones. The design guidance: feed them from the same indicator decisions, or use them as a backstop, so a block on premises is also a block in each cloud. Oracle has no such filter for private DNS, so its catch-all rule is the only way agency policy reaches a VCN. Third, logs: all three go to the SIEM, parsed through ASIM's DNS schema, as Book 12 does."
+  },
+  {
+    "slide": 17,
+    "title": "What to confirm, and what Part 2 covers",
+    "say": "To close Part 1, here's what the providers don't settle, so confirm it with them. AWS: Resolver delegation and DNSSEC validation in GovCloud. Azure: the Private Resolver's and resolver policy's availability in each Azure Government region, and whether the Private Resolver validates DNSSEC. Oracle: private resolver logging in the government realm, and whether the VCN resolver passes DNSSEC data to a resolver behind it. And CISA: whether Protective DNS returns DNSSEC data to agency forwarders. To prove the page, the plan is to build the pattern in test accounts and run Book 08's Chapter 10 validation matrix. Part 2 picks up from here: when to run your own DNS servers, BIND, the alignment checklist, and the federal mapping. This is research under review, not an endorsement by any federal agency. Thank you."
+  }
+]
