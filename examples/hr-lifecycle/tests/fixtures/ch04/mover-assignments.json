@@ -1,0 +1,40 @@
+{
+  "value": [
+    {
+      "id": "x1",
+      "state": "delivered",
+      "accessPackage": {
+        "id": "d1000000-0000-4000-8000-000000000020",
+        "displayName": "Program Operations baseline"
+      },
+      "assignmentPolicy": {
+        "id": "d2000000-0000-4000-8000-000000000100",
+        "displayName": "AUTO ORG-100 Program Operations"
+      }
+    },
+    {
+      "id": "x2",
+      "state": "delivered",
+      "accessPackage": {
+        "id": "d1000000-0000-4000-8000-000000000030",
+        "displayName": "Infrastructure Services baseline"
+      },
+      "assignmentPolicy": {
+        "id": "d2000000-0000-4000-8000-000000000101",
+        "displayName": "AUTO ORG-210 Infrastructure Services"
+      }
+    },
+    {
+      "id": "x3",
+      "state": "delivered",
+      "accessPackage": {
+        "id": "d1000000-0000-4000-8000-000000000050",
+        "displayName": "Grants reporting workspace"
+      },
+      "assignmentPolicy": {
+        "id": "d2000000-0000-4000-8000-000000000150",
+        "displayName": "REQUEST Grants reporting"
+      }
+    }
+  ]
+}

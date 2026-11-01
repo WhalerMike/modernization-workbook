@@ -1,0 +1,58 @@
+{
+  "value": [
+    {
+      "id": "b6000000-0000-4000-8000-000000000001",
+      "employeeId": "100301",
+      "userPrincipalName": "riley.chen@contoso.example",
+      "accountEnabled": false
+    },
+    {
+      "id": "b6000000-0000-4000-8000-000000000002",
+      "employeeId": "100302",
+      "userPrincipalName": "casey.ng@contoso.example",
+      "accountEnabled": false
+    },
+    {
+      "id": "b6000000-0000-4000-8000-000000000003",
+      "employeeId": "100303",
+      "userPrincipalName": "drew.park@contoso.example",
+      "accountEnabled": false
+    },
+    {
+      "id": "b6000000-0000-4000-8000-000000000004",
+      "employeeId": "100304",
+      "userPrincipalName": "emery.sol@contoso.example",
+      "accountEnabled": false
+    },
+    {
+      "id": "b6000000-0000-4000-8000-000000000005",
+      "employeeId": "100305",
+      "userPrincipalName": "harper.vu@contoso.example",
+      "accountEnabled": false
+    },
+    {
+      "id": "b6000000-0000-4000-8000-000000000006",
+      "employeeId": "100306",
+      "userPrincipalName": "kai.oto@contoso.example",
+      "accountEnabled": false
+    },
+    {
+      "id": "b6000000-0000-4000-8000-000000000007",
+      "employeeId": "100307",
+      "userPrincipalName": "lee.marsh@contoso.example",
+      "accountEnabled": false
+    },
+    {
+      "id": "b6000000-0000-4000-8000-000000000008",
+      "employeeId": "100308",
+      "userPrincipalName": "blake.ito@contoso.example",
+      "accountEnabled": false
+    },
+    {
+      "id": "b6000000-0000-4000-8000-000000000009",
+      "employeeId": "100309",
+      "userPrincipalName": "rowan.tate@contoso.example",
+      "accountEnabled": false
+    }
+  ]
+}

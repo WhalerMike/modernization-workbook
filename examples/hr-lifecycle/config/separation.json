@@ -1,0 +1,12 @@
+{
+  "_comment": "Separation timing (HR-driven identity guide, Gate 6). The thresholds are the agency's organization-defined periods for PS-4 (sample values; the agency approves or replaces them). The card rule is FIPS 201-3's: a card that can't be collected is terminated within 18 hours of notification (Book 03, Chapter 09). The catch-up window is Learn's: a scheduled workflow still processes a user whose trigger date passed no more than three days ago.",
+  "blockThresholdHours": 4,
+  "revocationThresholdHours": 24,
+  "uncollectedCardHours": 18,
+  "catchUpDays": 3,
+  "disableActivity": "Disable account",
+  "sessionRevokeActivity": "Update StsRefreshTokenValidFrom Timestamp",
+  "enableActivity": "Enable account",
+  "deleteActivity": "Delete user",
+  "lookbackHours": 24
+}

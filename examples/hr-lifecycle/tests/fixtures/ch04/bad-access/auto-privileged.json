@@ -1,0 +1,43 @@
+{
+  "_program": {
+    "version": "1.0.0",
+    "tier": "T1",
+    "accessPackageName": "Infrastructure administrator eligibility (PIM for Groups)",
+    "resourceGroupIds": [
+      "e1000000-0000-4000-8000-000000000031"
+    ],
+    "expectedScope": 40
+  },
+  "displayName": "AUTO infra admin eligibility",
+  "description": "ORG-210 staff may request eligibility; the role is activated through PIM",
+  "allowedTargetScope": "specificDirectoryUsers",
+  "specificAllowedTargets": [
+    {
+      "@odata.type": "#microsoft.graph.attributeRuleMembers",
+      "description": "ORG-210 employees",
+      "membershipRule": "(user.extensionAttribute10 -eq \"ORG-210\") -and (user.employeeType -eq \"Employee\")"
+    }
+  ],
+  "expiration": {
+    "type": "afterDuration",
+    "duration": "P180D"
+  },
+  "requestorSettings": {
+    "enableTargetsToSelfAddAccess": true,
+    "enableTargetsToSelfUpdateAccess": false,
+    "enableTargetsToSelfRemoveAccess": true,
+    "allowCustomAssignmentSchedule": false,
+    "enableOnBehalfRequestorsToAddAccess": false,
+    "enableOnBehalfRequestorsToUpdateAccess": false,
+    "enableOnBehalfRequestorsToRemoveAccess": false,
+    "onBehalfRequestors": []
+  },
+  "accessPackage": {
+    "id": "d1000000-0000-4000-8000-000000000031"
+  },
+  "automaticRequestSettings": {
+    "requestAccessForAllowedTargets": true,
+    "removeAccessWhenTargetLeavesAllowedTargets": false,
+    "gracePeriodBeforeAccessRemoval": "PT0S"
+  }
+}

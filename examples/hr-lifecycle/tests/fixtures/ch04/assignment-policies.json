@@ -1,0 +1,127 @@
+{
+  "value": [
+    {
+      "displayName": "AUTO ORG-100 Program Operations",
+      "description": "Everyone whose organization code is ORG-100",
+      "allowedTargetScope": "specificDirectoryUsers",
+      "specificAllowedTargets": [
+        {
+          "@odata.type": "#microsoft.graph.attributeRuleMembers",
+          "description": "Everyone whose organization code is ORG-100",
+          "membershipRule": "(user.extensionAttribute10 -eq \"ORG-100\") -and (user.employeeType -in [\"Employee\",\"Contractor\"])"
+        }
+      ],
+      "automaticRequestSettings": {
+        "requestAccessForAllowedTargets": true,
+        "removeAccessWhenTargetLeavesAllowedTargets": true,
+        "gracePeriodBeforeAccessRemoval": "P7D"
+      },
+      "accessPackage": {
+        "id": "d1000000-0000-4000-8000-000000000020",
+        "displayName": "Program Operations baseline"
+      },
+      "id": "d2000000-0000-4000-8000-000000000100"
+    },
+    {
+      "displayName": "AUTO ORG-210 Infrastructure Services",
+      "description": "Everyone whose organization code is ORG-210",
+      "allowedTargetScope": "specificDirectoryUsers",
+      "specificAllowedTargets": [
+        {
+          "@odata.type": "#microsoft.graph.attributeRuleMembers",
+          "description": "Everyone whose organization code is ORG-210",
+          "membershipRule": "(user.extensionAttribute10 -eq \"ORG-210\") -and (user.employeeType -in [\"Employee\",\"Contractor\"])"
+        }
+      ],
+      "automaticRequestSettings": {
+        "requestAccessForAllowedTargets": true,
+        "removeAccessWhenTargetLeavesAllowedTargets": true,
+        "gracePeriodBeforeAccessRemoval": "P7D"
+      },
+      "accessPackage": {
+        "id": "d1000000-0000-4000-8000-000000000030",
+        "displayName": "Infrastructure Services baseline"
+      },
+      "id": "d2000000-0000-4000-8000-000000000101"
+    },
+    {
+      "displayName": "REQUEST Infrastructure administrator eligibility",
+      "description": "ORG-210 staff may request eligibility; the role is activated through PIM",
+      "allowedTargetScope": "specificDirectoryUsers",
+      "specificAllowedTargets": [
+        {
+          "@odata.type": "#microsoft.graph.attributeRuleMembers",
+          "description": "ORG-210 employees",
+          "membershipRule": "(user.extensionAttribute10 -eq \"ORG-210\") -and (user.employeeType -eq \"Employee\")"
+        }
+      ],
+      "expiration": {
+        "type": "afterDuration",
+        "duration": "P180D"
+      },
+      "requestorSettings": {
+        "enableTargetsToSelfAddAccess": true,
+        "enableTargetsToSelfUpdateAccess": false,
+        "enableTargetsToSelfRemoveAccess": true,
+        "allowCustomAssignmentSchedule": false,
+        "enableOnBehalfRequestorsToAddAccess": false,
+        "enableOnBehalfRequestorsToUpdateAccess": false,
+        "enableOnBehalfRequestorsToRemoveAccess": false,
+        "onBehalfRequestors": []
+      },
+      "requestApprovalSettings": {
+        "isApprovalRequiredForAdd": true,
+        "isApprovalRequiredForUpdate": false,
+        "stages": [
+          {
+            "durationBeforeAutomaticDenial": "P14D",
+            "isApproverJustificationRequired": true,
+            "isEscalationEnabled": false,
+            "durationBeforeEscalation": "PT0S",
+            "primaryApprovers": [
+              {
+                "@odata.type": "#microsoft.graph.requestorManager",
+                "managerLevel": 1
+              }
+            ],
+            "fallbackPrimaryApprovers": [
+              {
+                "@odata.type": "#microsoft.graph.singleUser",
+                "userId": "c1000000-0000-4000-8000-000000000010"
+              }
+            ],
+            "escalationApprovers": [],
+            "fallbackEscalationApprovers": []
+          }
+        ]
+      },
+      "accessPackage": {
+        "id": "d1000000-0000-4000-8000-000000000031",
+        "displayName": "Infrastructure administrator eligibility (PIM for Groups)"
+      },
+      "id": "d2000000-0000-4000-8000-000000000102"
+    },
+    {
+      "displayName": "AUTO via group membership",
+      "description": "Everyone whose organization code is ORG-210",
+      "allowedTargetScope": "specificDirectoryUsers",
+      "specificAllowedTargets": [
+        {
+          "@odata.type": "#microsoft.graph.attributeRuleMembers",
+          "description": "Everyone whose organization code is ORG-210",
+          "membershipRule": "user.memberof -any (group.objectId -in [\"e1000000-0000-4000-8000-000000000099\"])"
+        }
+      ],
+      "automaticRequestSettings": {
+        "requestAccessForAllowedTargets": true,
+        "removeAccessWhenTargetLeavesAllowedTargets": true,
+        "gracePeriodBeforeAccessRemoval": "P7D"
+      },
+      "accessPackage": {
+        "id": "d1000000-0000-4000-8000-000000000040",
+        "displayName": "Shared drives (legacy)"
+      },
+      "id": "d2000000-0000-4000-8000-000000000109"
+    }
+  ]
+}

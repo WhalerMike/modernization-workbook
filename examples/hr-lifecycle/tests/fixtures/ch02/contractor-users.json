@@ -1,0 +1,68 @@
+{
+  "value": [
+    {
+      "id": "b2000000-0000-4000-8000-000000000001",
+      "userPrincipalName": "alex.rivera@contoso.example",
+      "accountEnabled": true,
+      "employeeId": "900001",
+      "employeeType": "Contractor",
+      "employeeLeaveDateTime": "2027-01-11T23:00:00Z"
+    },
+    {
+      "id": "b2000000-0000-4000-8000-000000000002",
+      "userPrincipalName": "bailey.ortiz@contoso.example",
+      "accountEnabled": true,
+      "employeeId": "900002",
+      "employeeType": "Contractor",
+      "employeeLeaveDateTime": "2026-12-31T23:00:00Z"
+    },
+    {
+      "id": "b2000000-0000-4000-8000-000000000003",
+      "userPrincipalName": "cameron.wu@contoso.example",
+      "accountEnabled": true,
+      "employeeId": "900003",
+      "employeeType": "Contractor",
+      "employeeLeaveDateTime": "2027-05-31T23:00:00Z"
+    },
+    {
+      "id": "b2000000-0000-4000-8000-000000000004",
+      "userPrincipalName": "devon.hale@contoso.example",
+      "accountEnabled": true,
+      "employeeId": "900004",
+      "employeeType": "Contractor",
+      "employeeLeaveDateTime": "2027-05-31T23:00:00Z"
+    },
+    {
+      "id": "b2000000-0000-4000-8000-000000000005",
+      "userPrincipalName": "ellis.ward@contoso.example",
+      "accountEnabled": true,
+      "employeeId": "900005",
+      "employeeType": "Contractor",
+      "employeeLeaveDateTime": "2027-05-31T23:00:00Z"
+    },
+    {
+      "id": "b2000000-0000-4000-8000-000000000006",
+      "userPrincipalName": "finley.moss@contoso.example",
+      "accountEnabled": true,
+      "employeeId": "900006",
+      "employeeType": "Contractor",
+      "employeeLeaveDateTime": "2026-12-10T23:00:00Z"
+    },
+    {
+      "id": "b2000000-0000-4000-8000-000000000010",
+      "userPrincipalName": "temp.vendor@contoso.example",
+      "accountEnabled": true,
+      "employeeId": "",
+      "employeeType": "Contractor",
+      "employeeLeaveDateTime": null
+    },
+    {
+      "id": "b2000000-0000-4000-8000-000000000012",
+      "userPrincipalName": "old.contractor@contoso.example",
+      "accountEnabled": false,
+      "employeeId": "900012",
+      "employeeType": "Contractor",
+      "employeeLeaveDateTime": "2026-06-30T23:00:00Z"
+    }
+  ]
+}

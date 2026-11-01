@@ -1,0 +1,9 @@
+{
+  "value": [
+    {
+      "id": "pki-1",
+      "displayName": "Contoso Example PIV PKI",
+      "status": "succeeded"
+    }
+  ]
+}

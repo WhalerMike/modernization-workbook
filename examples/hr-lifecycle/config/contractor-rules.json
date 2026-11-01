@@ -1,0 +1,17 @@
+{
+  "_comment": "Contractor source rules (HR-driven identity guide, Gate 2; Book 03, Appendix A, Contractor leavers). The earliest end is the first of: contract end, the completion date when earlier, suitability withdrawn, the card terminated, revoked or expired, the sponsor's separation plus the grace period, and a missed sponsor recertification. The review settings go on the contractor access package's assignment policy: bi-annual, the sponsor (the manager) reviews, a named fallback, and remove access when no one responds. Grace and recertification periods are design guidance; the agency sets them.",
+  "sponsorGraceDays": 30,
+  "recertificationDays": 180,
+  "upcomingDays": 14,
+  "cardStatusesThatEnd": ["Terminated", "Revoked", "Expired"],
+  "legalEmployerColumn": "Vendor",
+  "workerTypeCode": "C",
+  "review": {
+    "accessPackageId": "d1000000-0000-4000-8000-000000000001",
+    "fallbackReviewerUserId": "c1000000-0000-4000-8000-000000000010",
+    "startDateTime": "2027-01-04T14:00:00Z",
+    "intervalMonths": 6,
+    "durationDays": 14,
+    "expirationBehavior": "removeAccess"
+  }
+}

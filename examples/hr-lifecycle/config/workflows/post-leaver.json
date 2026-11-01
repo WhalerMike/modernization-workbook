@@ -1,0 +1,37 @@
+{
+  "_program": {
+    "version": "1.0.0",
+    "owner": "security",
+    "executionLimit": {
+      "users": 40,
+      "percent": 1
+    }
+  },
+  "category": "leaver",
+  "displayName": "JML-Leaver-PostSeparation-Employees",
+  "description": "Post-separation: delete under the disposition rule, 30 days after the leave date",
+  "isEnabled": true,
+  "isSchedulingEnabled": true,
+  "executionConditions": {
+    "@odata.type": "#microsoft.graph.identityGovernance.triggerAndScopeBasedConditions",
+    "scope": {
+      "@odata.type": "#microsoft.graph.identityGovernance.ruleBasedSubjectSet",
+      "rule": "(employeeType eq 'Employee') and (onPremisesExtensionAttributes/extensionAttribute11 eq 'EMP')"
+    },
+    "trigger": {
+      "@odata.type": "#microsoft.graph.identityGovernance.timeBasedAttributeTrigger",
+      "timeBasedAttribute": "employeeLeaveDateTime",
+      "offsetInDays": 30
+    }
+  },
+  "tasks": [
+    {
+      "continueOnError": false,
+      "description": "Delete user",
+      "displayName": "Delete user",
+      "isEnabled": true,
+      "taskDefinitionId": "8d18588d-9ad3-4c0f-99d0-ec215f0e3dff",
+      "arguments": []
+    }
+  ]
+}

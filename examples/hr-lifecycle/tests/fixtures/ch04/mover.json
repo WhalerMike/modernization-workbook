@@ -1,0 +1,15 @@
+{
+  "userId": "b4000000-0000-4000-8000-000000000001",
+  "userPrincipalName": "jordan.diaz@contoso.example",
+  "employeeId": "100210",
+  "attributesBefore": {
+    "extensionAttribute10": "ORG-100",
+    "employeeType": "Employee"
+  },
+  "attributesAfter": {
+    "extensionAttribute10": "ORG-210",
+    "employeeType": "Employee"
+  },
+  "effectiveDateTime": "2026-10-19T08:00:00Z",
+  "reviewCompletedDateTime": null
+}

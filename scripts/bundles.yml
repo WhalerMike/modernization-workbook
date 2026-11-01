@@ -104,6 +104,12 @@ bundles:
     root: docs/project-plans/developer-workbooks/ticket-to-machine
     warn_unlisted: ["*.md"]
     pages: [index.md, "[0-9][0-9]-*.md"]
+  - output: building-hr-driven-identity-bundle.docx
+    title: "Building HR-Driven Identity"
+    subtitle: "A developer workbook for the Identity Lifecycle & Provisioning project — Federal Modernization Workbook, combined edition"
+    root: docs/project-plans/developer-workbooks/hr-driven-identity
+    warn_unlisted: ["*.md"]
+    pages: [index.md, "[0-9][0-9]-*.md"]
   - output: b18-application-modernization-bundle.docx
     title: "Book 18 — Application Modernization"
     subtitle: "A portfolio, not a rewrite — Federal Modernization Workbook, combined edition"

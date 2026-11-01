@@ -1,0 +1,347 @@
+{
+  "value": [
+    {
+      "id": "Sep_0001",
+      "category": "UserManagement",
+      "result": "success",
+      "activityDisplayName": "Disable account",
+      "activityDateTime": "2026-10-09T22:10:00Z",
+      "loggedByService": "Core Directory",
+      "initiatedBy": {
+        "app": {
+          "servicePrincipalId": "a1000000-0000-4000-8000-000000000001",
+          "displayName": "HR inbound provisioning"
+        },
+        "user": null
+      },
+      "targetResources": [
+        {
+          "id": "b6000000-0000-4000-8000-000000000001",
+          "type": "User",
+          "userPrincipalName": "riley.chen@contoso.example",
+          "modifiedProperties": []
+        }
+      ]
+    },
+    {
+      "id": "Sep_0002",
+      "category": "UserManagement",
+      "result": "success",
+      "activityDisplayName": "Update StsRefreshTokenValidFrom Timestamp",
+      "activityDateTime": "2026-10-09T22:15:00Z",
+      "loggedByService": "Core Directory",
+      "initiatedBy": {
+        "app": {
+          "servicePrincipalId": "a1000000-0000-4000-8000-000000000003",
+          "displayName": "Lifecycle Workflows"
+        },
+        "user": null
+      },
+      "targetResources": [
+        {
+          "id": "b6000000-0000-4000-8000-000000000001",
+          "type": "User",
+          "userPrincipalName": "riley.chen@contoso.example",
+          "modifiedProperties": []
+        }
+      ]
+    },
+    {
+      "id": "Sep_0003",
+      "category": "UserManagement",
+      "result": "success",
+      "activityDisplayName": "Disable account",
+      "activityDateTime": "2026-10-15T03:30:00Z",
+      "loggedByService": "Core Directory",
+      "initiatedBy": {
+        "app": {
+          "servicePrincipalId": "a1000000-0000-4000-8000-000000000001",
+          "displayName": "HR inbound provisioning"
+        },
+        "user": null
+      },
+      "targetResources": [
+        {
+          "id": "b6000000-0000-4000-8000-000000000002",
+          "type": "User",
+          "userPrincipalName": "casey.ng@contoso.example",
+          "modifiedProperties": []
+        }
+      ]
+    },
+    {
+      "id": "Sep_0004",
+      "category": "UserManagement",
+      "result": "success",
+      "activityDisplayName": "Update StsRefreshTokenValidFrom Timestamp",
+      "activityDateTime": "2026-10-15T03:31:00Z",
+      "loggedByService": "Core Directory",
+      "initiatedBy": {
+        "app": {
+          "servicePrincipalId": "a1000000-0000-4000-8000-000000000003",
+          "displayName": "Lifecycle Workflows"
+        },
+        "user": null
+      },
+      "targetResources": [
+        {
+          "id": "b6000000-0000-4000-8000-000000000002",
+          "type": "User",
+          "userPrincipalName": "casey.ng@contoso.example",
+          "modifiedProperties": []
+        }
+      ]
+    },
+    {
+      "id": "Sep_0005",
+      "category": "UserManagement",
+      "result": "success",
+      "activityDisplayName": "Disable account",
+      "activityDateTime": "2026-10-26T10:40:00Z",
+      "loggedByService": "Core Directory",
+      "initiatedBy": {
+        "app": {
+          "servicePrincipalId": "a1000000-0000-4000-8000-000000000003",
+          "displayName": "Lifecycle Workflows"
+        },
+        "user": null
+      },
+      "targetResources": [
+        {
+          "id": "b6000000-0000-4000-8000-000000000004",
+          "type": "User",
+          "userPrincipalName": "emery.sol@contoso.example",
+          "modifiedProperties": []
+        }
+      ]
+    },
+    {
+      "id": "Sep_0006",
+      "category": "UserManagement",
+      "result": "success",
+      "activityDisplayName": "Update StsRefreshTokenValidFrom Timestamp",
+      "activityDateTime": "2026-10-26T10:41:00Z",
+      "loggedByService": "Core Directory",
+      "initiatedBy": {
+        "app": {
+          "servicePrincipalId": "a1000000-0000-4000-8000-000000000003",
+          "displayName": "Lifecycle Workflows"
+        },
+        "user": null
+      },
+      "targetResources": [
+        {
+          "id": "b6000000-0000-4000-8000-000000000004",
+          "type": "User",
+          "userPrincipalName": "emery.sol@contoso.example",
+          "modifiedProperties": []
+        }
+      ]
+    },
+    {
+      "id": "Sep_0007",
+      "category": "UserManagement",
+      "result": "success",
+      "activityDisplayName": "Disable account",
+      "activityDateTime": "2026-10-23T22:05:00Z",
+      "loggedByService": "Core Directory",
+      "initiatedBy": {
+        "app": {
+          "servicePrincipalId": "a1000000-0000-4000-8000-000000000001",
+          "displayName": "HR inbound provisioning"
+        },
+        "user": null
+      },
+      "targetResources": [
+        {
+          "id": "b6000000-0000-4000-8000-000000000005",
+          "type": "User",
+          "userPrincipalName": "harper.vu@contoso.example",
+          "modifiedProperties": []
+        }
+      ]
+    },
+    {
+      "id": "Sep_0008",
+      "category": "UserManagement",
+      "result": "success",
+      "activityDisplayName": "Update StsRefreshTokenValidFrom Timestamp",
+      "activityDateTime": "2026-10-23T22:06:00Z",
+      "loggedByService": "Core Directory",
+      "initiatedBy": {
+        "app": {
+          "servicePrincipalId": "a1000000-0000-4000-8000-000000000003",
+          "displayName": "Lifecycle Workflows"
+        },
+        "user": null
+      },
+      "targetResources": [
+        {
+          "id": "b6000000-0000-4000-8000-000000000005",
+          "type": "User",
+          "userPrincipalName": "harper.vu@contoso.example",
+          "modifiedProperties": []
+        }
+      ]
+    },
+    {
+      "id": "Sep_0009",
+      "category": "UserManagement",
+      "result": "success",
+      "activityDisplayName": "Enable account",
+      "activityDateTime": "2026-10-25T06:00:00Z",
+      "loggedByService": "Core Directory",
+      "initiatedBy": {
+        "app": {
+          "servicePrincipalId": "a1000000-0000-4000-8000-000000000001",
+          "displayName": "HR inbound provisioning"
+        },
+        "user": null
+      },
+      "targetResources": [
+        {
+          "id": "b6000000-0000-4000-8000-000000000005",
+          "type": "User",
+          "userPrincipalName": "harper.vu@contoso.example",
+          "modifiedProperties": []
+        }
+      ]
+    },
+    {
+      "id": "Sep_0010",
+      "category": "UserManagement",
+      "result": "success",
+      "activityDisplayName": "Disable account",
+      "activityDateTime": "2026-10-24T22:20:00Z",
+      "loggedByService": "Core Directory",
+      "initiatedBy": {
+        "app": null,
+        "user": {
+          "id": "c1000000-0000-4000-8000-000000000020",
+          "userPrincipalName": "sec.ops@contoso.example"
+        }
+      },
+      "targetResources": [
+        {
+          "id": "b6000000-0000-4000-8000-000000000006",
+          "type": "User",
+          "userPrincipalName": "kai.oto@contoso.example",
+          "modifiedProperties": []
+        }
+      ]
+    },
+    {
+      "id": "Sep_0011",
+      "category": "UserManagement",
+      "result": "success",
+      "activityDisplayName": "Update StsRefreshTokenValidFrom Timestamp",
+      "activityDateTime": "2026-10-24T22:21:00Z",
+      "loggedByService": "Core Directory",
+      "initiatedBy": {
+        "app": null,
+        "user": {
+          "id": "c1000000-0000-4000-8000-000000000020",
+          "userPrincipalName": "sec.ops@contoso.example"
+        }
+      },
+      "targetResources": [
+        {
+          "id": "b6000000-0000-4000-8000-000000000006",
+          "type": "User",
+          "userPrincipalName": "kai.oto@contoso.example",
+          "modifiedProperties": []
+        }
+      ]
+    },
+    {
+      "id": "Sep_0012",
+      "category": "UserManagement",
+      "result": "success",
+      "activityDisplayName": "Disable account",
+      "activityDateTime": "2026-10-05T22:05:00Z",
+      "loggedByService": "Core Directory",
+      "initiatedBy": {
+        "app": {
+          "servicePrincipalId": "a1000000-0000-4000-8000-000000000001",
+          "displayName": "HR inbound provisioning"
+        },
+        "user": null
+      },
+      "targetResources": [
+        {
+          "id": "b6000000-0000-4000-8000-000000000008",
+          "type": "User",
+          "userPrincipalName": "blake.ito@contoso.example",
+          "modifiedProperties": []
+        }
+      ]
+    },
+    {
+      "id": "Sep_0013",
+      "category": "UserManagement",
+      "result": "success",
+      "activityDisplayName": "Update StsRefreshTokenValidFrom Timestamp",
+      "activityDateTime": "2026-10-05T22:06:00Z",
+      "loggedByService": "Core Directory",
+      "initiatedBy": {
+        "app": {
+          "servicePrincipalId": "a1000000-0000-4000-8000-000000000003",
+          "displayName": "Lifecycle Workflows"
+        },
+        "user": null
+      },
+      "targetResources": [
+        {
+          "id": "b6000000-0000-4000-8000-000000000008",
+          "type": "User",
+          "userPrincipalName": "blake.ito@contoso.example",
+          "modifiedProperties": []
+        }
+      ]
+    },
+    {
+      "id": "Sep_0014",
+      "category": "UserManagement",
+      "result": "success",
+      "activityDisplayName": "Delete user",
+      "activityDateTime": "2026-10-20T02:00:00Z",
+      "loggedByService": "Core Directory",
+      "initiatedBy": {
+        "app": {
+          "servicePrincipalId": "a1000000-0000-4000-8000-000000000003",
+          "displayName": "Lifecycle Workflows"
+        },
+        "user": null
+      },
+      "targetResources": [
+        {
+          "id": "b6000000-0000-4000-8000-000000000008",
+          "type": "User",
+          "userPrincipalName": "blake.ito@contoso.example",
+          "modifiedProperties": []
+        }
+      ]
+    },
+    {
+      "id": "Sep_fail",
+      "category": "UserManagement",
+      "result": "failure",
+      "activityDisplayName": "Disable account",
+      "activityDateTime": "2026-10-21T01:00:00Z",
+      "initiatedBy": {
+        "app": {
+          "servicePrincipalId": "a1000000-0000-4000-8000-000000000003",
+          "displayName": "Lifecycle Workflows"
+        },
+        "user": null
+      },
+      "targetResources": [
+        {
+          "id": "b6000000-0000-4000-8000-000000000003",
+          "type": "User",
+          "modifiedProperties": []
+        }
+      ]
+    }
+  ]
+}

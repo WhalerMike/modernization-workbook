@@ -161,6 +161,8 @@ website:
             text: "Building Non-Person Identity"
           - href: docs/project-plans/developer-workbooks/ticket-to-machine/index.md
             text: "Building Ticket-to-Machine"
+          - href: docs/project-plans/developer-workbooks/hr-driven-identity/index.md
+            text: "Building HR-Driven Identity"
       - href: docs/evaluations/index.md
         text: "Evaluations"
       - href: docs/training/index.md
@@ -254,6 +256,10 @@ website:
               href: docs/project-plans/developer-workbooks/ticket-to-machine/index.md
               contents:
                 - auto: "docs/project-plans/developer-workbooks/ticket-to-machine/*-*.md"
+            - section: "Building HR-Driven Identity"
+              href: docs/project-plans/developer-workbooks/hr-driven-identity/index.md
+              contents:
+                - auto: "docs/project-plans/developer-workbooks/hr-driven-identity/*-*.md"
     - id: books
       title: "The Workbook Books"
       style: docked

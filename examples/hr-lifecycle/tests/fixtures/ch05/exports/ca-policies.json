@@ -1,0 +1,58 @@
+{
+  "value": [
+    {
+      "id": "a4000000-0000-4000-8000-000000000001",
+      "displayName": "CA010-All-RequireMFAStrength",
+      "state": "enabled",
+      "conditions": {
+        "users": {
+          "includeUsers": [
+            "All"
+          ],
+          "excludeGroups": [
+            "e1000000-0000-4000-8000-0000000000ea"
+          ]
+        },
+        "applications": {
+          "includeApplications": [
+            "All"
+          ]
+        }
+      },
+      "grantControls": {
+        "operator": "OR",
+        "builtInControls": [],
+        "authenticationStrength": {
+          "id": "a3000000-0000-4000-8000-000000000002"
+        }
+      }
+    },
+    {
+      "id": "a4000000-0000-4000-8000-000000000002",
+      "displayName": "CA011-All-RequirePhishingResistant (report-only)",
+      "state": "enabledForReportingButNotEnforced",
+      "conditions": {
+        "users": {
+          "includeUsers": [
+            "All"
+          ],
+          "excludeGroups": [
+            "e1000000-0000-4000-8000-0000000000ea"
+          ]
+        },
+        "applications": {
+          "includeApplications": [
+            "All"
+          ]
+        }
+      },
+      "grantControls": {
+        "operator": "OR",
+        "builtInControls": [],
+        "authenticationStrength": {
+          "id": "a3000000-0000-4000-8000-000000000004"
+        }
+      }
+    }
+  ]
+}

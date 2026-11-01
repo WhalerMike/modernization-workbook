@@ -1,0 +1,50 @@
+{
+  "_program": {
+    "version": "1.0.0",
+    "owner": "security",
+    "executionLimit": {
+      "users": 20,
+      "percent": 1
+    }
+  },
+  "category": "leaver",
+  "displayName": "JML-Leaver-LastDay-Contractors",
+  "description": "Contractor leaver on the earliest end the middleware sends",
+  "isEnabled": true,
+  "isSchedulingEnabled": true,
+  "executionConditions": {
+    "@odata.type": "#microsoft.graph.identityGovernance.triggerAndScopeBasedConditions",
+    "scope": {
+      "@odata.type": "#microsoft.graph.identityGovernance.ruleBasedSubjectSet",
+      "rule": "(employeeType eq 'Contractor') and (onPremisesExtensionAttributes/extensionAttribute11 eq 'CTR')"
+    },
+    "trigger": {
+      "@odata.type": "#microsoft.graph.identityGovernance.timeBasedAttributeTrigger",
+      "timeBasedAttribute": "employeeLeaveDateTime",
+      "offsetInDays": 0
+    }
+  },
+  "tasks": [
+    {
+      "continueOnError": false,
+      "description": "Disable user account",
+      "displayName": "Disable user account",
+      "isEnabled": true,
+      "taskDefinitionId": "1dfdfcc7-52fa-4c2e-bf3a-e3919cc12950",
+      "arguments": [
+        {
+          "name": "disableOnPremisesAccount",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "continueOnError": false,
+      "description": "Revoke all refresh tokens for user",
+      "displayName": "Revoke all refresh tokens for user",
+      "isEnabled": true,
+      "taskDefinitionId": "509589a4-0466-4471-829e-49c5e502bdee",
+      "arguments": []
+    }
+  ]
+}

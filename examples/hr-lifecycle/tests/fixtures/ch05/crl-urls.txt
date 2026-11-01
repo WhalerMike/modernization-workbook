@@ -1,0 +1,4 @@
+# CRLs to measure: one URL per line (local paths are read as files, for labs)
+tests/fixtures/ch05/crl/piv-ca1.crl
+tests/fixtures/ch05/crl/piv-ca2.crl
+tests/fixtures/ch05/crl/missing.crl

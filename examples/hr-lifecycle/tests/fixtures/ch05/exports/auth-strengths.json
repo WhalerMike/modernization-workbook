@@ -1,0 +1,26 @@
+{
+  "value": [
+    {
+      "id": "a3000000-0000-4000-8000-000000000002",
+      "displayName": "Multifactor authentication",
+      "policyType": "builtIn",
+      "allowedCombinations": [
+        "windowsHelloForBusiness",
+        "fido2",
+        "x509CertificateMultiFactor",
+        "password,microsoftAuthenticatorPush",
+        "password,sms"
+      ]
+    },
+    {
+      "id": "a3000000-0000-4000-8000-000000000004",
+      "displayName": "Phishing-resistant MFA",
+      "policyType": "builtIn",
+      "allowedCombinations": [
+        "windowsHelloForBusiness",
+        "fido2",
+        "x509CertificateMultiFactor"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "value": [
+    {
+      "id": "e1000000-0000-4000-8000-000000000020",
+      "displayName": "APP-ProgramOps-Portal",
+      "groupTypes": []
+    },
+    {
+      "id": "e1000000-0000-4000-8000-000000000030",
+      "displayName": "APP-Infra-Monitoring",
+      "groupTypes": []
+    },
+    {
+      "id": "e1000000-0000-4000-8000-000000000060",
+      "displayName": "DG-ORG-210-All",
+      "groupTypes": [
+        "DynamicMembership"
+      ]
+    },
+    {
+      "id": "e1000000-0000-4000-8000-000000000070",
+      "displayName": "SHARE-ProgramOps-Finance",
+      "groupTypes": []
+    },
+    {
+      "id": "e1000000-0000-4000-8000-000000000071",
+      "displayName": "APP-Legacy-Timekeeping-Approvers",
+      "groupTypes": []
+    }
+  ]
+}

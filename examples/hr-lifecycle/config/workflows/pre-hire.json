@@ -1,0 +1,47 @@
+{
+  "_program": {
+    "version": "1.0.0",
+    "owner": "identity engineering",
+    "executionLimit": {
+      "users": 60,
+      "percent": 2
+    },
+    "tapWindowHours": 24
+  },
+  "category": "joiner",
+  "displayName": "JML-Joiner-PreHire-Employees",
+  "description": "Pre-hire: Temporary Access Pass to the manager seven days before day one",
+  "isEnabled": true,
+  "isSchedulingEnabled": true,
+  "executionConditions": {
+    "@odata.type": "#microsoft.graph.identityGovernance.triggerAndScopeBasedConditions",
+    "scope": {
+      "@odata.type": "#microsoft.graph.identityGovernance.ruleBasedSubjectSet",
+      "rule": "(employeeType eq 'Employee') and (onPremisesExtensionAttributes/extensionAttribute11 eq 'EMP')"
+    },
+    "trigger": {
+      "@odata.type": "#microsoft.graph.identityGovernance.timeBasedAttributeTrigger",
+      "timeBasedAttribute": "employeeHireDate",
+      "offsetInDays": -7
+    }
+  },
+  "tasks": [
+    {
+      "continueOnError": false,
+      "description": "Generate TAP and send email",
+      "displayName": "Generate TAP and send email",
+      "isEnabled": true,
+      "taskDefinitionId": "1b555e50-7f65-41d5-b514-5894a026d10d",
+      "arguments": [
+        {
+          "name": "tapLifetimeMinutes",
+          "value": "1440"
+        },
+        {
+          "name": "tapIsUsableOnce",
+          "value": "true"
+        }
+      ]
+    }
+  ]
+}

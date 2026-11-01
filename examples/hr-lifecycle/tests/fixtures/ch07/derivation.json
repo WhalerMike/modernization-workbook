@@ -1,0 +1,21 @@
+{
+  "_comment": "Access-granting memberships by how they were granted, counted from the group and assignment exports (design guidance: dynamic groups and automatic assignment are computed by rule).",
+  "accessGrantingMemberships": [
+    {
+      "source": "dynamicGroup",
+      "count": 5120
+    },
+    {
+      "source": "autoAssignment",
+      "count": 1830
+    },
+    {
+      "source": "requested",
+      "count": 940
+    },
+    {
+      "source": "direct",
+      "count": 1210
+    }
+  ]
+}
