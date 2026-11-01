@@ -10,7 +10,8 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
-review-status: pending
+review-status: approved
+reviewed-sha256: 969a5dddb48be2e319ec0ae277d7a01fc326f70a5bf1de84c16a22797d5453b1
 last-reviewed: 2026-11-01
 ---
 # Chapter 04 — Access from Attributes and the Mover's Residual Review

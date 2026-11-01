@@ -10,7 +10,8 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
-review-status: pending
+review-status: approved
+reviewed-sha256: 9b1ec76762f2b902ddd18ff985b2d2584a64f707ff2efbd5b891d17d08dddaa0
 last-reviewed: 2026-11-01
 ---
 # Chapter 03 — Joiner Workflows as Code and the Temporary Access Pass Bridge

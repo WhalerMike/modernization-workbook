@@ -10,7 +10,9 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
-review-status: pending
+review-status: approved
+reviewed-sha256: c20d6570000440b54efb3f3215c19b1cd38b761560676c0ec6d2d9b99c34e7f4
+last-reviewed: 2026-11-01
 ---
 # Chapter 03 — The SailPoint Client and Its Scopes
 

@@ -10,7 +10,8 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
-review-status: pending
+review-status: approved
+reviewed-sha256: 758437134a080fefd5954f5857329babe00b4da7d791a7845a9bebc7c8233431
 last-reviewed: 2026-11-01
 ---
 # Chapter 06 — Separation Timing from the Logs

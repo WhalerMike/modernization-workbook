@@ -10,7 +10,9 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
-review-status: pending
+review-status: approved
+reviewed-sha256: 1dc6629d4aaed95570bf1e1bbef3b5ac33e3f0828b9726ad86d51765a28bf35b
+last-reviewed: 2026-11-01
 ---
 # Chapter 08 — One Writer per Attribute
 

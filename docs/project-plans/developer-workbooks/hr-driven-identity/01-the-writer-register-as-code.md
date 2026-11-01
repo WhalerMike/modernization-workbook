@@ -10,7 +10,8 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
-review-status: pending
+review-status: approved
+reviewed-sha256: 74df3b51e38f08c0f68f68a69a639770b3e14b1c9e1d9a1960973a6efdeb2ac4
 last-reviewed: 2026-11-01
 ---
 # Chapter 01 — The Writer Register as Code
