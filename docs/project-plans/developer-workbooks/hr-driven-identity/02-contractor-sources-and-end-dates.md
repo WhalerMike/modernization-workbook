@@ -126,6 +126,8 @@ You need Python 3.10 or later. Work in `examples/hr-lifecycle`.
    Extract written to out/ch02/extract/contractors-extract.csv; build the SCIM requests with examples/hcm-entra/python/hcm_to_scim.py
    ```
 
+   The exit code is 2, because the run has a Finding or a Warn; see the exit codes in the kit's README.
+
 3. **Read the decisions:**
 
    ```bash

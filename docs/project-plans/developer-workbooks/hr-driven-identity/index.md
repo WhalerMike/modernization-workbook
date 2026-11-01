@@ -49,7 +49,7 @@ The target estate is Microsoft 365 GCC (Moderate) with commercial Azure. GCC use
 | Schedule | The project's tasks, decisions and gates | [Identity Lifecycle & Provisioning plan](../../identity-lifecycle.md) |
 | Code it builds on | The middleware, Graph clients, validation kit, dynamic rules, custom task extensions and drift pipeline | [Book 19](../../../books/b19-developer-workbook/index.md) |
 | Decks | One deck series per guide, at the level of its gates | Planned |
-| Training | A module built from the guide, these chapters and their labs | Planned |
+| Training | A learning path in seven modules built from the guide, these chapters and their labs, with knowledge checks | [Learning path: HR-Driven Identity in Microsoft Entra ID](../../../training/hr-driven-identity/index.md) |
 
 : The pieces of HR-driven identity and where each lives {.striped .hover}
 

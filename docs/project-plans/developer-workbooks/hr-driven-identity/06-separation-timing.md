@@ -187,7 +187,7 @@ You need Python 3.10 or later. Work in `examples/hr-lifecycle`.
    python -m pytest tests -q
    ```
 
-**Expected result:** `57 passed`. Keep `out/ch06` if you go on to Chapter 07, which reads its `summary.json`; otherwise delete `out`.
+**Expected result:** `57 passed`. Delete `out` either way: Chapter 07's first step measures the separations again into `out/ch06`, and the tool refuses to write into a folder that already holds a run.
 
 ## Lab 2: test tenant
 

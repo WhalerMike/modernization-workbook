@@ -185,6 +185,8 @@ You need Python 3.10 or later. Work in `examples/hr-lifecycle`.
    Plan written to out/ch03/plan/plan.json; nothing was sent
    ```
 
+   The exit code is 2: a Warn counts as well as a Finding.
+
    The day-one workflow in the tenant requests a different package, so it gets a new version; its body in `out/ch03/plan/bodies/day-one.json` is wrapped in `workflow` for `createNewVersion`. The employee leaver doesn't exist yet, so it gets a create. The Warn is JW-15 for `Onboard Marketing (legacy)`, a workflow made in the portal that no file defines. Try the same plan on the broken folder: it stops with an error, because those files have Findings.
 
 5. **Measure day one:**

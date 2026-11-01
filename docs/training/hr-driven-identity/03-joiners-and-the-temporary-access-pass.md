@@ -1,0 +1,174 @@
+---
+title: "Module 3: Make joiners ready on day one"
+description: "Gate G3 and workbook Chapter 03: keep Lifecycle Workflows definitions as reviewed code, lint them (scope by code, the Temporary Access Pass's lifetime and one-time use, access by package, execution limits, the 50-workflow budget), plan each change as a new workflow or a new version, and measure day-one readiness. About 50 minutes, with a lab on fixtures and a test tenant lab."
+doc-type: training-module
+research-status: draft
+research-type: training module
+research-book: "Book 03"
+last-reviewed: 2026-11-01
+series-order: 3
+---
+
+# Module 3: Make joiners ready on day one {.unnumbered}
+
+*Part of the [HR-Driven Identity learning path](index.md). Gate G3 Joiners. Workbook [Chapter 03](../../project-plans/developer-workbooks/hr-driven-identity/03-joiner-workflows-as-code.md). About 50 minutes.*
+
+## Introduction (3 minutes)
+
+The pipeline sends a new hire's account early, disabled. On the first morning, that person needs an enabled account, a license, baseline access and a way to sign in before their PIV card is bound. Lifecycle Workflows can do all of that, but each workflow is a definition someone can change in the portal, and Learn makes every change a new version rather than an in-place update.
+
+In this module you keep the workflows as reviewed files, lint them before they reach the tenant, plan each change against what the tenant holds, and measure how many hires were actually ready on day one.
+
+**The federal requirement.** This gate meets NIST SP 800-53 AC-2(1) (automated system account management), IA-5 (the initial authenticator is time-limited and goes to an accountable person) and OMB M-22-09's phishing-resistant MFA, which the Temporary Access Pass bridges to. The requirements and evidence are in the [Gate 3 requirements table](../../books/guides/hr-driven-identity-implementation.md#step-3-make-joiners-ready-on-day-one) (under **Federal requirements and evidence** in Step 3) and the workbook chapter's [Federal requirements and evidence](../../project-plans/developer-workbooks/hr-driven-identity/03-joiner-workflows-as-code.md#federal-requirements-and-evidence).
+
+## Learning objectives (1 minute)
+
+After this module, you'll be able to:
+
+- explain why workflows belong in reviewed files, and how the plan decides between a create and a new version;
+- run the workflow lint and explain the Temporary Access Pass findings (JW-05);
+- explain why the workflow budget is held to 50;
+- measure the day-one readiness rate and say what makes a hire ready.
+
+## Prerequisites (1 minute)
+
+- [Module 1](01-one-writer-per-state.md): in this program the pipeline's `active` value, not the day-one workflow, enables the account at hire.
+- [Module 2](02-contractor-sources.md), for the contractor leaver workflow the files include.
+
+## Unit 1: The joiner in the guide and the book (7 minutes)
+
+Read the guide's [Step 3](../../books/guides/hr-driven-identity-implementation.md#step-3-make-joiners-ready-on-day-one). Pay attention to three things:
+
+- the two tenant ceilings Learn gives (50 on the licensing page, 100 on the service limits page), and why the guide budgets to 50;
+- the conditions for the Temporary Access Pass task, and Learn's recommended 24-hour maximum for a pass sent to a new hire;
+- baseline access by package, never by a direct group add.
+
+Then read the design in [Book 03, Chapter 08](../../books/b03-hr-identity/08-joiner-mover-leaver.md): its [guardrails at agency scale](../../books/b03-hr-identity/08-joiner-mover-leaver.md#guardrails-at-agency-scale) and its [triggers and schedule](../../books/b03-hr-identity/08-joiner-mover-leaver.md#triggers-and-schedule).
+
+## Unit 2: The lint, the plan and readiness (8 minutes)
+
+Read four sections of workbook Chapter 03:
+
+- [The workflow files](../../project-plans/developer-workbooks/hr-driven-identity/03-joiner-workflows-as-code.md#the-workflow-files): six files, all scoped on codes, never on names.
+- [The lint](../../project-plans/developer-workbooks/hr-driven-identity/03-joiner-workflows-as-code.md#the-lint): JW-01 to JW-15, and which come from Learn and which are design guidance.
+- [The plan](../../project-plans/developer-workbooks/hr-driven-identity/03-joiner-workflows-as-code.md#the-plan): match by display name, then create, new version, or leave alone.
+- [Day-one readiness](../../project-plans/developer-workbooks/hr-driven-identity/03-joiner-workflows-as-code.md#day-one-readiness): the four things a ready hire has.
+
+## Exercise: Lab 1, fixtures, no tenant (20 minutes)
+
+This is the workbook's [Lab 1](../../project-plans/developer-workbooks/hr-driven-identity/03-joiner-workflows-as-code.md#lab-1-fixtures-no-tenant). Work in `examples/hr-lifecycle`.
+
+1. List the reads and their permissions:
+
+    ```bash
+    python python/graph_export.py --task joiner-plan --list
+    python python/graph_export.py --task joiner-readiness --list
+    ```
+
+    The plan needs only `LifecycleWorkflows-Workflow.Read.All`. Readiness needs `EntitlementManagement.Read.All`, `LifecycleWorkflows-Reports.Read.All`, `User-LifeCycleInfo.Read.All` and `User.Read.All`, for three GET calls.
+
+2. Lint the program's workflows:
+
+    ```bash
+    python python/joiner_workflows.py lint config/workflows --budget 50
+    ```
+
+    ```text
+    Workflows: 6 files, budget 50
+    Lint: 0 Finding, 0 Warn, 0 Info
+    ```
+
+3. Lint three broken copies, with a budget of two to see JW-07:
+
+    ```bash
+    python python/joiner_workflows.py lint tests/fixtures/ch03/bad-workflows --budget 2
+    ```
+
+    Expect `Lint: 7 Finding, 4 Warn, 0 Info` and exit code 2. Find the two JW-05 Warns: a pass lifetime of 4,320 minutes, over the 24 hours Learn recommends for a new hire, and a pass that isn't one-time use.
+
+4. Plan against the tenant's export:
+
+    ```bash
+    python python/joiner_workflows.py plan config/workflows --current tests/fixtures/ch03/workflows.json --out out/ch03/plan
+    ```
+
+    ```text
+      none        JML-Leaver-LastDay-Contractors
+      new-version JML-Joiner-DayOne-Employees
+      create      JML-Leaver-LastDay-Employees
+      none        JML-Mover-OrgCode
+      none        JML-Leaver-PostSeparation-Employees
+      none        JML-Joiner-PreHire-Employees
+    Plan: 0 Finding, 1 Warn, 0 Info
+    Plan written to out/ch03/plan/plan.json; nothing was sent
+    ```
+
+    The Warn is JW-15 for `Onboard Marketing (legacy)`, a portal-made workflow no file defines. Now try the same plan on `tests/fixtures/ch03/bad-workflows`: it stops with `error: the files have lint findings; fix them before planning`.
+
+5. Measure day one:
+
+    ```bash
+    python python/joiner_workflows.py readiness --hires tests/fixtures/ch03/hr-hires.csv --users tests/fixtures/ch03/hire-users.json --prehire-results tests/fixtures/ch03/prehire-results.json --assignments tests/fixtures/ch03/joiner-assignments.json --workflows config/workflows --as-of 2026-11-02T08:00:00Z --cloud gcc --out out/ch03/readiness
+    ```
+
+    ```text
+    Day one 2026-11-02: 1 of 4 hires ready (25%)
+    Readiness: 0 Finding, 3 Warn, 0 Info
+    ```
+
+    `summary.json` holds the rate, 0.25, which Module 7 reads.
+
+6. Run the tests:
+
+    ```bash
+    python -m pytest tests -q
+    ```
+
+    Expect `57 passed`. Delete `out/ch03` when you're done.
+
+## Exercise: Lab 2, your test tenant (5 minutes to read)
+
+*Not run by the authors.* Follow the workbook's [Lab 2](../../project-plans/developer-workbooks/hr-driven-identity/03-joiner-workflows-as-code.md#lab-2-test-tenant) in a worldwide or GCC test tenant with Microsoft Entra ID Governance trial or test licenses, never production, and test users whose hire date is a few days away.
+
+- **What you do:** export the tenant's workflows, plan one change, send it with Graph PowerShell as a Lifecycle Workflows Administrator, set the execution limit in the admin center, check that the manager receives the pass, and measure readiness on the start date.
+- **Permissions:** a reader app with a certificate holding `LifecycleWorkflows-Workflow.Read.All`; the Lifecycle Workflows Administrator role to send the change.
+- **Back-out:** delete a workflow the lab created (it can be restored for 30 days), or send the previous file's body as a further version; remove the reader app, its permission and certificate; delete the export and output folders.
+
+## Knowledge check (5 minutes)
+
+1. You change the pre-hire workflow's offset in its file. What does `plan` produce for it?
+    a. A body for `createNewVersion`, because Learn makes a definition change a new version
+    b. A PATCH that updates the workflow in place
+    c. A delete and a create
+    d. Nothing, because offsets aren't compared
+2. Learn's licensing page says 50 workflows and its service limits page says 100. What does the guide budget to?
+    a. 100, the higher figure
+    b. 50, until Microsoft reconciles them
+    c. 25, the task limit
+    d. No budget; the tenant enforces it
+3. JW-05 warns about a pass lifetime of 4,320 minutes. Why?
+    a. The tenant policy can't go above 4,320 minutes
+    b. Learn recommends at most 24 hours for a pass sent to a new hire
+    c. Passes over three days can't be one-time use
+    d. The lint rejects any lifetime above 60 minutes
+4. Which hire counts as ready on day one?
+    a. One whose account exists, even if disabled
+    b. One whose pre-hire workflow ran, whatever its result
+    c. One whose account exists and is enabled, holds a license, has the onboarding package delivered and has a completed pre-hire run
+    d. One whose manager received the pass
+
+::: {.callout-tip collapse="true"}
+## Check your answers
+1. **a.** A changed file becomes `{"workflow": ...}` for `createNewVersion`; a file with no match becomes a create. Taught in [The plan](../../project-plans/developer-workbooks/hr-driven-identity/03-joiner-workflows-as-code.md#the-plan).
+2. **b.** Budget to 50 *(design guidance)*. Taught in the guide's [Step 3](../../books/guides/hr-driven-identity-implementation.md#step-3-make-joiners-ready-on-day-one).
+3. **b.** Learn recommends a 24-hour maximum for a new hire's pass; the tenant allows 10 minutes to 30 days. Taught in [The lint](../../project-plans/developer-workbooks/hr-driven-identity/03-joiner-workflows-as-code.md#the-lint) and the guide's [Step 3](../../books/guides/hr-driven-identity-implementation.md#step-3-make-joiners-ready-on-day-one).
+4. **c.** All four conditions. Taught in [Day-one readiness](../../project-plans/developer-workbooks/hr-driven-identity/03-joiner-workflows-as-code.md#day-one-readiness).
+:::
+
+## Summary (2 minutes)
+
+You linted six workflow files and three broken ones, planned a create and a new version against a tenant export, saw a portal-made workflow flagged, and measured a day-one readiness rate of 25 percent.
+
+**The evidence an ISSO keeps** for Gate 3: the reviewed workflow files and the plan that changed each version, with its manifest; the lint's clean run, showing a one-time pass of at most 24 hours and an execution limit on every scheduled workflow; the readiness summary per start date; and the workflows' run history exported past Entra's 30-day view. The full list is in the workbook's [Federal requirements and evidence](../../project-plans/developer-workbooks/hr-driven-identity/03-joiner-workflows-as-code.md#federal-requirements-and-evidence).
+
+**Next:** [Module 4: Assign access from attributes and review what a move leaves](04-access-and-movers.md).

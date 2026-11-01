@@ -1,7 +1,7 @@
 ---
 title: "Training"
 subtitle: "Learning paths: modules to work through in order, and the vendors' own training mapped to the workbook's roles"
-description: "The Federal Modernization Workbook's training: the Microsoft Automation learning path in three modules, the Ticket-to-Machine learning path in seven, and external learning paths from product vendors."
+description: "The Federal Modernization Workbook's training: the Microsoft Automation learning path in three modules, the Ticket-to-Machine and HR-Driven Identity learning paths in seven modules each, and external learning paths from product vendors."
 doc-type: section-landing
 fmw-eyebrow: "Training"
 listing:
@@ -31,6 +31,7 @@ listing:
       - "!index.md"
       - "!ms-automation-*.md"
       - "!ticket-to-machine/**"
+      - "!hr-driven-identity/**"
     type: table
     fields: [title, research-status, last-reviewed, description]
     field-display-names: *names
@@ -62,6 +63,10 @@ Work through the three modules in order. Module 1 sets up what the other two use
 
 ::: {#training-ttm}
 :::
+
+## HR-Driven Identity learning path
+
+Seven modules, one per gate of the [HR-driven identity implementation guide](../books/guides/hr-driven-identity-implementation.md), each with a lab on fixtures and a lab in your own test tenant. Start at the [learning path](hr-driven-identity/index.md).
 
 ## External learning paths
 

@@ -217,6 +217,16 @@ website:
             - docs/training/ticket-to-machine/05-drift-to-a-typed-task.md
             - docs/training/ticket-to-machine/06-actuation-and-the-re-read.md
             - docs/training/ticket-to-machine/07-evidence-for-the-isso.md
+        - section: "HR-Driven Identity learning path"
+          href: docs/training/hr-driven-identity/index.md
+          contents:
+            - docs/training/hr-driven-identity/01-one-writer-per-state.md
+            - docs/training/hr-driven-identity/02-contractor-sources.md
+            - docs/training/hr-driven-identity/03-joiners-and-the-temporary-access-pass.md
+            - docs/training/hr-driven-identity/04-access-and-movers.md
+            - docs/training/hr-driven-identity/05-certificate-based-authentication.md
+            - docs/training/hr-driven-identity/06-separation-timing.md
+            - docs/training/hr-driven-identity/07-drift-and-evidence.md
         - section: "External learning paths"
           contents:
             - docs/training/infoblox-training.md
