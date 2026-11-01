@@ -273,6 +273,9 @@ def non_site_tasks(changes: Iterable[Change], kits: Iterable[str] = ("start-kit"
             add("video-manifest", p)
         if p.startswith(("data/project-plans/", "scripts/project_plans/", "docs/project-plans/")):
             add("project-plans", p)
+        if p.startswith(("docs/project-plans/developer-workbooks/", "docs/books/b19-developer-workbook/",
+                         "docs/training/", "docs/books/guides/")) or p == "scripts/generate_labs.py":
+            add("labs", p)
         for wb, (docs, kit) in KIT_CAPTURES.items():
             if p.startswith((f"{docs}/", f"{kit}/", f"data/kit-captures/{wb}/")) or p == "scripts/kit_captures.py":
                 add("kit-captures", wb)
@@ -1090,6 +1093,8 @@ class Checker:
             for wb in t["kit-captures"]:
                 steps.append((f"Lab captures match what the kit prints ({wb})",
                               self.simple([PY, "scripts/kit_captures.py", wb, "--check"])))
+        if "labs" in t:
+            steps.append(("Labs page and guide lab links are current", self.simple([PY, "scripts/generate_labs.py", "--check"])))
         if "project-plans" in t:
             steps.append(("Project plans are current", self.simple([PY, "scripts/project_plans/build.py", "--check"])))
         if "authorities" in t:

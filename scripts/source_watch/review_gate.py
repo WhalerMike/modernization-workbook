@@ -50,6 +50,10 @@ TOUR_BLOCK = re.compile(r"^<!-- tour:begin[^\n]*-->\n(?:(?!<!-- tour:begin).)*?^
 # printed, indented like the list item it sits in, after a blank line and followed by one. It is
 # the kit's own output, refreshed when the kit changes, not reviewed prose.
 CAPTURE_BLOCK = re.compile(r"^( *)<!-- capture:begin[^\n]*-->\n(?:(?!<!-- capture:begin).)*?^\1<!-- capture:end -->\n\n", re.S | re.M)
+# The lab links scripts/generate_labs.py writes in an implementation guide (a "Labs for this guide"
+# box, and a "Try it" box after a gate's Validate callout), in the same form: navigation generated
+# from the workbook and learning path, not reviewed prose.
+LABS_BLOCK = re.compile(r"^( *)<!-- labs:begin[^\n]*-->\n(?:(?!<!-- labs:begin).)*?^\1<!-- labs:end -->\n\n", re.S | re.M)
 # The version and revision history section scripts/generate_revisions.py writes from
 # data/editions.yml, with the blank lines around it: the page as it was without it is the
 # text before plus one blank line plus the text after (see generate_revisions.place).
@@ -73,11 +77,12 @@ def body_sha256(text: str) -> str:
     """sha256 of the body with trailing whitespace on each line and at the end removed,
     so an editor that trims spaces doesn't reopen a review. A generated tour block, between
     its begin and end markers, is left out: the tour build adds and updates it on approved
-    pages, and every other line still counts. So is a generated kit capture, and the generated version and revision
-    history section, which each edition rewrites."""
+    pages, and every other line still counts. So are a generated kit capture, generated lab links, and the generated
+    version and revision history section, which each edition rewrites."""
     _, body = split(text)
     body = TOUR_BLOCK.sub("", body)
     body = CAPTURE_BLOCK.sub("", body)
+    body = LABS_BLOCK.sub("", body)
     body = REVISIONS_BLOCK.sub("\n\n", body)
     lines = [line.rstrip() for line in body.split("\n")]
     return hashlib.sha256("\n".join(lines).strip().encode("utf-8")).hexdigest()
