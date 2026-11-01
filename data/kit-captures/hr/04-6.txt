@@ -1,0 +1,5 @@
+$ cat out/ch04/residual/residual-review.csv
+item,kind,via,class
+Grants reporting workspace,access package,REQUEST Grants reporting,requested: review
+APP-Legacy-Timekeeping-Approvers,group,direct or nested assignment,outside packages: review
+SHARE-ProgramOps-Finance,group,direct or nested assignment,outside packages: review

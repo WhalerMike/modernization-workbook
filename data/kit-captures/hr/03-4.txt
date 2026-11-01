@@ -1,0 +1,10 @@
+$ python python/joiner_workflows.py plan config/workflows --current tests/fixtures/ch03/workflows.json --out out/ch03/plan
+  none        JML-Leaver-LastDay-Contractors
+  new-version JML-Joiner-DayOne-Employees
+  create      JML-Leaver-LastDay-Employees
+  none        JML-Mover-OrgCode
+  none        JML-Leaver-PostSeparation-Employees
+  none        JML-Joiner-PreHire-Employees
+Plan: 0 Finding, 1 Warn, 0 Info
+Plan written to out/ch03/plan/plan.json; nothing was sent
+(exit code 2)

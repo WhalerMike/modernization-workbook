@@ -1,0 +1,3 @@
+$ python python/graph_export.py --task contractor-reconcile --list
+Task contractor-reconcile: User-LifeCycleInfo.Read.All, User.Read.All
+  GET /users  [User-LifeCycleInfo.Read.All, User.Read.All]

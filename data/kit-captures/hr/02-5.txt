@@ -1,0 +1,13 @@
+$ python python/contractor_source.py reconcile --register tests/fixtures/ch02/contractor-register.csv --cards tests/fixtures/ch02/cards.csv --sponsors tests/fixtures/ch02/hr-sponsors.csv --accounts tests/fixtures/ch02/contractor-users.json --rules config/contractor-rules.json --as-of 2026-11-01 --cloud gcc --out out/ch02/reconcile
+Reconciliation: 7 Finding, 1 Warn, 0 Info
+Written to out/ch02/reconcile (manifest.json lists every file's SHA-256)
+(exit code 2)
+$ python -c "import json; [print(r['Rule'], r['Severity'], r['Object'], '|', r['Issue']) for r in json.load(open('out/ch02/reconcile/findings.json'))]"
+CR-01 Finding bailey.ortiz@contoso.example | enabled past its earliest end 2026-10-15 (completion date)
+CR-01 Finding cameron.wu@contoso.example | enabled past its earliest end 2026-10-20 (suitability withdrawn)
+CR-01 Finding devon.hale@contoso.example | enabled past its earliest end 2026-10-30 (sponsor gone past the grace period)
+CR-01 Finding ellis.ward@contoso.example | enabled past its earliest end 2026-10-25 (sponsor recertification due)
+CR-02 Finding temp.vendor@contoso.example | enabled contractor account with no register record (orphan)
+CR-03 Finding 900011 | active card for a person the contractor source doesn't hold (contractor credential drift)
+CR-05 Finding finley.moss@contoso.example | employeeLeaveDateTime 2026-12-10 isn't the earliest end 2026-11-10; the leaver workflow fires on the wrong day
+CR-04 Warn indy.shah@contoso.example | active register record with no account

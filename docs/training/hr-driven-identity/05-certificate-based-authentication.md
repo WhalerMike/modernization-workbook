@@ -77,6 +77,9 @@ python python/cba_check.py check --cloud gcchigh --exports tests/fixtures/ch05/e
 
 # Step 5
 python -m pytest tests -q
+
+# Step 5
+rm -rf out
 ```
 
 :::

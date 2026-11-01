@@ -1,0 +1,7 @@
+$ python python/graph_export.py --task cba-read --list
+Task cba-read: Policy.Read.All, Policy.Read.AuthenticationMethod, PublicKeyInfrastructure.Read.All
+  GET /directory/publicKeyInfrastructure/certificateBasedAuthConfigurations  [PublicKeyInfrastructure.Read.All]
+  GET /directory/publicKeyInfrastructure/certificateBasedAuthConfigurations/{pkiId}/certificateAuthorities  [PublicKeyInfrastructure.Read.All]
+  GET /policies/authenticationMethodsPolicy/authenticationMethodConfigurations/x509Certificate  [Policy.Read.AuthenticationMethod]
+  GET /policies/authenticationStrengthPolicies  [Policy.Read.AuthenticationMethod]
+  GET /identity/conditionalAccess/policies  [Policy.Read.All]

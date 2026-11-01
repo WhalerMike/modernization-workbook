@@ -1,0 +1,7 @@
+$ (cd out/ch07/evidence/2026-11-02T0600Z && sha256sum -c SHA256SUMS)
+run/lifecycle/findings.json: OK
+run/lifecycle/manifest.json: OK
+run/lifecycle/metrics.json: OK
+run/run.json: OK
+summary.md: OK
+EVIDENCE-MANIFEST.json: OK

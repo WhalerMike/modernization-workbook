@@ -1,0 +1,5 @@
+$ python python/writer_register.py scan --register config/writer-register.json --audit tests/fixtures/ch01/directory-audits.json --since 2026-10-01 --until 2026-10-31 --cloud gcc --out out/ch01
+Protected writes: 11 (writer 5, backstop 1, second writer 4, forbidden 1)
+Writers: 5 Finding, 1 Warn, 0 Info
+Written to out/ch01 (manifest.json lists every file's SHA-256)
+(exit code 2)

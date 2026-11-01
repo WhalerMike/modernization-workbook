@@ -83,8 +83,14 @@ python -c "import json; [print(r['Rule'], r['Severity'], r['Object'], '|', r['Is
 # Step 6
 python python/contractor_source.py review --rules config/contractor-rules.json --out out/ch02/review
 
+# Step 6
+python -c "import json; print(json.dumps(json.load(open('out/ch02/review/assignment-policy-review.json')), indent=2))"
+
 # Step 7
 python -m pytest tests -q
+
+# Step 7
+rm -rf out
 ```
 
 :::

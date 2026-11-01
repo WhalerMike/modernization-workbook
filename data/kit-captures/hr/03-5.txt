@@ -1,0 +1,3 @@
+$ python python/joiner_workflows.py plan tests/fixtures/ch03/bad-workflows --current tests/fixtures/ch03/workflows.json --out out/ch03/plan-bad
+error: the files have lint findings; fix them before planning
+(exit code 1)

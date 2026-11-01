@@ -84,6 +84,9 @@ python -c "import json; print(json.load(open('out/ch01/queries.json'))[2])"
 
 # Step 6
 python -m pytest tests -q
+
+# Step 6
+rm -rf out
 ```
 
 :::

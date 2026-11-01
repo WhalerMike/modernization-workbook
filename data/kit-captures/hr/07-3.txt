@@ -1,0 +1,21 @@
+$ python -c "import json; [print(r['Rule'], r['Severity'], r['Object']) for r in json.load(open('out/ch07/runs/2026-11-01T0600Z/lifecycle/findings.json'))]"
+LD-01 Finding 100104
+LD-02 Finding drew.park@contoso.example
+LD-02 Finding harper.vu@contoso.example
+LD-02 Finding bailey.ortiz@contoso.example
+LD-03 Finding print.kiosk@contoso.example
+LD-03 Finding old.temp@contoso.example
+LD-04 Finding blake.ito@contoso.example
+LD-04 Finding casey.ng@contoso.example
+LD-04 Finding morgan.lee@contoso.example
+LD-04 Finding drew.park@contoso.example
+LD-04 Finding quinn.ross@contoso.example
+LD-05 Finding 100303
+LD-06 Finding 900002
+LD-06 Finding 900011
+LD-07 Warn correlationCoverage
+LD-07 Warn derivationPurity
+LD-07 Warn joinerReadinessRate
+LD-07 Warn separationToBlockHoursP90
+LD-07 Warn separationToRevocationHoursP90
+LD-08 Warn transferToReviewHours

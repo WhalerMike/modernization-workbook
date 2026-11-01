@@ -1,0 +1,11 @@
+$ python python/lifecycle_drift.py run --hr tests/fixtures/ch07/hr-export.csv --contractors out/ch02/extract/decisions.json --users tests/fixtures/ch07/workforce-users.json --exceptions tests/fixtures/ch07/exceptions.csv --cards tests/fixtures/ch07/cards.csv --derivation tests/fixtures/ch07/derivation.json --writers out/ch01 --readiness out/ch03/readiness --residual out/ch04/residual --timing out/ch06 --config config/drift.json --since 2026-11-01 --until 2026-11-02 --cloud gcc --tenant-id 00000000-0000-4000-8000-00000000c0de --mode fixture --out out/ch07/runs/2026-11-02T0600Z
+Run 2026-11-02T0600Z: 4 chapter outputs read (readiness, residual, timing, writers)
+  separationToBlockHoursP90            5.52  max 4  out of bounds
+  separationToRevocationHoursP90      110.0  max 24  out of bounds
+  transferToReviewHours                None  max 240  not measured
+  joinerReadinessRate                  0.25  min 0.95  out of bounds
+  correlationCoverage                0.5833  min 0.99  out of bounds
+  derivationPurity                   0.7637  min 0.8  out of bounds
+Lifecycle drift: 14 Finding, 6 Warn, 0 Info
+Run written to out/ch07/runs/2026-11-02T0600Z; package it with examples/drift-pipeline/python/hr_evidence.py
+(exit code 2)

@@ -77,11 +77,17 @@ python python/joiner_workflows.py lint tests/fixtures/ch03/bad-workflows --budge
 # Step 4
 python python/joiner_workflows.py plan config/workflows --current tests/fixtures/ch03/workflows.json --out out/ch03/plan
 
+# Step 4
+python python/joiner_workflows.py plan tests/fixtures/ch03/bad-workflows --current tests/fixtures/ch03/workflows.json --out out/ch03/plan-bad
+
 # Step 5
 python python/joiner_workflows.py readiness --hires tests/fixtures/ch03/hr-hires.csv --users tests/fixtures/ch03/hire-users.json --prehire-results tests/fixtures/ch03/prehire-results.json --assignments tests/fixtures/ch03/joiner-assignments.json --workflows config/workflows --as-of 2026-11-02T08:00:00Z --cloud gcc --out out/ch03/readiness
 
 # Step 6
 python -m pytest tests -q
+
+# Step 6
+rm -rf out/ch03
 ```
 
 :::

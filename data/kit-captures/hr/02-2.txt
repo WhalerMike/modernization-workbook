@@ -1,0 +1,5 @@
+$ python python/contractor_source.py extract --register tests/fixtures/ch02/contractor-register.csv --cards tests/fixtures/ch02/cards.csv --sponsors tests/fixtures/ch02/hr-sponsors.csv --rules config/contractor-rules.json --as-of 2026-11-01 --out out/ch02/extract
+Contractors: 9 records: 3 active, 4 inactive (past their earliest end), 2 quarantined
+Source: 2 Finding, 1 Warn, 1 Info
+Extract written to out/ch02/extract/contractors-extract.csv; build the SCIM requests with examples/hcm-entra/python/hcm_to_scim.py
+(exit code 2)

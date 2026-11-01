@@ -76,8 +76,14 @@ python python/access_assignment.py memberof-scan --policies tests/fixtures/ch04/
 # Step 5
 python python/access_assignment.py residual --mover tests/fixtures/ch04/mover.json --assignments tests/fixtures/ch04/mover-assignments.json --memberships tests/fixtures/ch04/mover-memberships.json --policies config/access --as-of 2026-11-01T12:00:00Z --cloud gcc --out out/ch04/residual
 
+# Step 5
+cat out/ch04/residual/residual-review.csv
+
 # Step 6
 python -m pytest tests -q
+
+# Step 6
+rm -rf out/ch04
 ```
 
 :::

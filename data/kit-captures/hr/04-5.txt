@@ -1,0 +1,5 @@
+$ python python/access_assignment.py residual --mover tests/fixtures/ch04/mover.json --assignments tests/fixtures/ch04/mover-assignments.json --memberships tests/fixtures/ch04/mover-memberships.json --policies config/access --as-of 2026-11-01T12:00:00Z --cloud gcc --out out/ch04/residual
+Mover jordan.diaz@contoso.example: 8 items held, 3 to the residual review
+Residual: 1 Finding, 3 Warn, 0 Info
+Written to out/ch04/residual (residual-review.csv goes to the manager of record)
+(exit code 2)

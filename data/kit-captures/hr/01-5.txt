@@ -1,0 +1,2 @@
+$ python -c "import json; print(json.load(open('out/ch01/queries.json'))[2])"
+{'allowed': ['inbound-provisioning', 'lifecycle-workflows'], 'graphFilter': "activityDateTime ge 2026-10-01T00:00:00Z and activityDateTime le 2026-10-31T23:59:59Z and activityDisplayName eq 'Disable account'", 'matchProperty': None, 'row': 'disabled-at-separation'}

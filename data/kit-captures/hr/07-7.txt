@@ -1,0 +1,3 @@
+$ python ../drift-pipeline/python/hr_evidence.py period --evidence out/ch07/evidence --since 2026-10-01 --until 2026-11-02 --out out/ch07/periods
+{"chain_breaks": 0, "complete": false, "coverage_gaps": 0, "open_at_end": 20, "packages": 2, "period": "period-2026-10-01_2026-11-02"}
+(exit code 2)

@@ -77,6 +77,9 @@ cut -d, -f1,7,8,10 out/ch06/intervals.csv
 
 # Step 5
 python -m pytest tests -q
+
+# Step 5
+rm -rf out
 ```
 
 :::

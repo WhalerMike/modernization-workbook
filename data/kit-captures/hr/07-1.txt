@@ -1,0 +1,25 @@
+$ python python/writer_register.py scan --register config/writer-register.json --audit tests/fixtures/ch01/directory-audits.json --since 2026-10-01 --until 2026-10-31 --cloud gcc --out out/ch01
+Protected writes: 11 (writer 5, backstop 1, second writer 4, forbidden 1)
+Writers: 5 Finding, 1 Warn, 0 Info
+Written to out/ch01 (manifest.json lists every file's SHA-256)
+(exit code 2)
+$ python python/contractor_source.py extract --register tests/fixtures/ch02/contractor-register.csv --cards tests/fixtures/ch02/cards.csv --sponsors tests/fixtures/ch02/hr-sponsors.csv --rules config/contractor-rules.json --as-of 2026-11-01 --out out/ch02/extract
+Contractors: 9 records: 3 active, 4 inactive (past their earliest end), 2 quarantined
+Source: 2 Finding, 1 Warn, 1 Info
+Extract written to out/ch02/extract/contractors-extract.csv; build the SCIM requests with examples/hcm-entra/python/hcm_to_scim.py
+(exit code 2)
+$ python python/joiner_workflows.py readiness --hires tests/fixtures/ch03/hr-hires.csv --users tests/fixtures/ch03/hire-users.json --prehire-results tests/fixtures/ch03/prehire-results.json --assignments tests/fixtures/ch03/joiner-assignments.json --workflows config/workflows --as-of 2026-11-02T08:00:00Z --cloud gcc --out out/ch03/readiness
+Day one 2026-11-02: 1 of 4 hires ready (25%)
+Readiness: 0 Finding, 3 Warn, 0 Info
+(exit code 2)
+$ python python/access_assignment.py residual --mover tests/fixtures/ch04/mover.json --assignments tests/fixtures/ch04/mover-assignments.json --memberships tests/fixtures/ch04/mover-memberships.json --policies config/access --as-of 2026-11-01T12:00:00Z --cloud gcc --out out/ch04/residual
+Mover jordan.diaz@contoso.example: 8 items held, 3 to the residual review
+Residual: 1 Finding, 3 Warn, 0 Info
+Written to out/ch04/residual (residual-review.csv goes to the manager of record)
+(exit code 2)
+$ python python/separation_timing.py measure --separations tests/fixtures/ch06/hr-separations.csv --users tests/fixtures/ch06/leaver-users.json --audits tests/fixtures/ch06/separation-audits.json --results tests/fixtures/ch06/leaver-results.json --cards tests/fixtures/ch06/card-revocations.csv --devices tests/fixtures/ch06/device-actions.csv --role-holders tests/fixtures/ch06/role-holders.csv --config config/separation.json --as-of 2026-11-01T12:00:00Z --cloud gcc --out out/ch06
+Leavers: 7 separated, 1 cancelled, 1 not blocked
+Separation-to-block hours: p50 0.25, p90 5.52, max 84.68 (threshold 4)
+Separation-to-revocation hours: p50 11.0, p90 110.0, max 395.0 (threshold 24)
+Separation: 10 Finding, 2 Warn, 0 Info
+(exit code 2)

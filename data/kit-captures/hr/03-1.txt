@@ -1,0 +1,8 @@
+$ python python/graph_export.py --task joiner-plan --list
+Task joiner-plan: LifecycleWorkflows-Workflow.Read.All
+  GET /identityGovernance/lifecycleWorkflows/workflows  [LifecycleWorkflows-Workflow.Read.All]
+$ python python/graph_export.py --task joiner-readiness --list
+Task joiner-readiness: EntitlementManagement.Read.All, LifecycleWorkflows-Reports.Read.All, User-LifeCycleInfo.Read.All, User.Read.All
+  GET /users  [User-LifeCycleInfo.Read.All, User.Read.All]
+  GET /identityGovernance/lifecycleWorkflows/workflows/{workflowId}/userProcessingResults  [LifecycleWorkflows-Reports.Read.All]
+  GET /identityGovernance/entitlementManagement/assignments  [EntitlementManagement.Read.All]
