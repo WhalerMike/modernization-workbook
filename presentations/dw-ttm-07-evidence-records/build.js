@@ -203,9 +203,9 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: verify, continue the chain, tamper",
       body: [
-        { terminal: "07-3" },
-        { terminal: "07-4", lines: "1-2,7-8" },
-        { terminal: "07-5" },
+        { terminal: "07-4" },
+        { terminal: "07-5", lines: "1-2,7-8" },
+        { terminal: "07-6" },
         { lead: "November's manifest has chain_previous set to October's head, 144f5e84…. (The lab reuses October's records.)" },
       ],
       sources: "Sources: examples/servicenow-sailpoint. Chapter 07, “Lab 1: fixtures, no tenant,” steps 3–5.",

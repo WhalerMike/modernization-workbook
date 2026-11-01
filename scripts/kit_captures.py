@@ -79,6 +79,7 @@ END = "<!-- capture:end -->"
 # by one blank line, so deleting it gives back the page byte for byte (scripts/source_watch/review_gate.py).
 MARKED = re.compile(r"^( *)<!-- capture:begin[^\n]*-->\n(?:(?!<!-- capture:begin).)*?^\1<!-- capture:end -->\n\n", re.S | re.M)
 BLOCK = re.compile(r"^( *)```(\w+)\n(.*?)^\1```", re.S | re.M)
+GENERATED = re.compile(r"^( *)<!-- (capture|labs):begin[^\n]*-->\n.*?^\1<!-- \2:end -->\n", re.S | re.M)
 LAB1 = re.compile(r"^## [^\n]*Lab 1[^\n]*\n", re.M)
 WORK_IN = re.compile(r"(?:[Ww]orks? in|[Ff]rom) `(examples/[\w./-]+?)/?`")
 MARK = "\x1e"           # starts a marker line in a shell's output
@@ -104,8 +105,12 @@ def commands(md: str, cfg: dict) -> list[tuple[int, str, str, re.Match]]:
     span = lab_span(md)
     if not span:
         return []
+    # Generated blocks (the lab's "Every command" list, its captures) repeat or show commands; skip them.
+    generated = [(m.start(), m.end()) for m in GENERATED.finditer(md)]
     out, k, t = [], 0, 0
     for b in BLOCK.finditer(md, *span):
+        if any(s <= b.start() < e for s, e in generated):
+            continue
         lang = b.group(2)
         if lang == "text":
             t += 1
