@@ -52,7 +52,7 @@ jobs:
       - name: Build the kit zips
         run: |
           python3 scripts/build_start_kit_zip.py --out _edition
-          for kit in copilot-agent-pack app-modernization ansible validation-kit; do
+          for kit in copilot-agent-pack app-modernization ansible validation-kit attribute-driven-migration-code ticket-to-machine-code hr-driven-identity-code privileged-access-code non-person-identity-code microsoft-automation-code cisco-sdwan; do
             python3 scripts/build_start_kit_zip.py --kit "$kit" --out _edition
           done
 

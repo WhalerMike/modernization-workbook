@@ -258,7 +258,7 @@
    {
     "name": "ms-automation",
     "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/ms-automation",
-    "zip": null
+    "zip": "downloads/microsoft-automation-code.zip"
    }
   ],
   "chapters": [
@@ -348,7 +348,7 @@
    {
     "name": "ms-automation",
     "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/ms-automation",
-    "zip": null
+    "zip": "downloads/microsoft-automation-code.zip"
    },
    {
     "name": "ansible",
@@ -5152,7 +5152,7 @@
    {
     "name": "servicenow-sailpoint",
     "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/servicenow-sailpoint",
-    "zip": null
+    "zip": "downloads/ticket-to-machine-code.zip"
    },
    {
     "name": "copilot-agent-pack",
@@ -6321,7 +6321,7 @@
    {
     "name": "servicenow-sailpoint",
     "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/servicenow-sailpoint",
-    "zip": null
+    "zip": "downloads/ticket-to-machine-code.zip"
    }
   ],
   "chapters": [
@@ -6685,7 +6685,7 @@
    {
     "name": "hr-lifecycle",
     "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/hr-lifecycle",
-    "zip": null
+    "zip": "downloads/hr-driven-identity-code.zip"
    },
    {
     "name": "hcm-entra",
@@ -6786,7 +6786,7 @@
    {
     "name": "hr-lifecycle",
     "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/hr-lifecycle",
-    "zip": null
+    "zip": "downloads/hr-driven-identity-code.zip"
    },
    {
     "name": "drift-pipeline",
@@ -6892,7 +6892,7 @@
    {
     "name": "servicenow-sailpoint",
     "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/servicenow-sailpoint",
-    "zip": null
+    "zip": "downloads/ticket-to-machine-code.zip"
    },
    {
     "name": "validation-kit",
@@ -6987,7 +6987,7 @@
    {
     "name": "servicenow-sailpoint",
     "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/servicenow-sailpoint",
-    "zip": null
+    "zip": "downloads/ticket-to-machine-code.zip"
    },
    {
     "name": "validation-kit",
@@ -7154,7 +7154,7 @@
    {
     "name": "cisco-sdwan",
     "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/cisco-sdwan",
-    "zip": null
+    "zip": "downloads/cisco-sdwan.zip"
    }
   ],
   "chapters": [
@@ -8132,7 +8132,7 @@
    {
     "name": "servicenow-sailpoint",
     "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/servicenow-sailpoint",
-    "zip": null
+    "zip": "downloads/ticket-to-machine-code.zip"
    },
    {
     "name": "validation-kit",
@@ -8211,7 +8211,7 @@
    {
     "name": "non-person-identity",
     "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/non-person-identity",
-    "zip": null
+    "zip": "downloads/non-person-identity-code.zip"
    }
   ],
   "chapters": [
@@ -8305,7 +8305,7 @@
    {
     "name": "non-person-identity",
     "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/non-person-identity",
-    "zip": null
+    "zip": "downloads/non-person-identity-code.zip"
    }
   ],
   "chapters": [
@@ -8395,7 +8395,7 @@
    {
     "name": "non-person-identity",
     "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/non-person-identity",
-    "zip": null
+    "zip": "downloads/non-person-identity-code.zip"
    }
   ],
   "chapters": [
@@ -8489,7 +8489,7 @@
    {
     "name": "non-person-identity",
     "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/non-person-identity",
-    "zip": null
+    "zip": "downloads/non-person-identity-code.zip"
    }
   ],
   "chapters": [
@@ -8583,7 +8583,7 @@
    {
     "name": "non-person-identity",
     "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/non-person-identity",
-    "zip": null
+    "zip": "downloads/non-person-identity-code.zip"
    }
   ],
   "chapters": [
@@ -8677,7 +8677,7 @@
    {
     "name": "non-person-identity",
     "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/non-person-identity",
-    "zip": null
+    "zip": "downloads/non-person-identity-code.zip"
    }
   ],
   "chapters": [
@@ -8771,7 +8771,7 @@
    {
     "name": "non-person-identity",
     "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/non-person-identity",
-    "zip": null
+    "zip": "downloads/non-person-identity-code.zip"
    }
   ],
   "chapters": [
@@ -8865,7 +8865,7 @@
    {
     "name": "non-person-identity",
     "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/non-person-identity",
-    "zip": null
+    "zip": "downloads/non-person-identity-code.zip"
    }
   ],
   "chapters": [
@@ -8959,7 +8959,7 @@
    {
     "name": "non-person-identity",
     "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/non-person-identity",
-    "zip": null
+    "zip": "downloads/non-person-identity-code.zip"
    }
   ],
   "chapters": [
@@ -9053,7 +9053,7 @@
    {
     "name": "non-person-identity",
     "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/non-person-identity",
-    "zip": null
+    "zip": "downloads/non-person-identity-code.zip"
    },
    {
     "name": "drift-pipeline",
@@ -9148,7 +9148,7 @@
    {
     "name": "privileged-access",
     "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/privileged-access",
-    "zip": null
+    "zip": "downloads/privileged-access-code.zip"
    }
   ],
   "chapters": [
@@ -9242,7 +9242,7 @@
    {
     "name": "privileged-access",
     "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/privileged-access",
-    "zip": null
+    "zip": "downloads/privileged-access-code.zip"
    }
   ],
   "chapters": [
@@ -9328,7 +9328,7 @@
    {
     "name": "privileged-access",
     "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/privileged-access",
-    "zip": null
+    "zip": "downloads/privileged-access-code.zip"
    }
   ],
   "chapters": [
@@ -9422,7 +9422,7 @@
    {
     "name": "privileged-access",
     "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/privileged-access",
-    "zip": null
+    "zip": "downloads/privileged-access-code.zip"
    }
   ],
   "chapters": [
@@ -9516,7 +9516,7 @@
    {
     "name": "privileged-access",
     "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/privileged-access",
-    "zip": null
+    "zip": "downloads/privileged-access-code.zip"
    }
   ],
   "chapters": [
@@ -9610,7 +9610,7 @@
    {
     "name": "privileged-access",
     "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/privileged-access",
-    "zip": null
+    "zip": "downloads/privileged-access-code.zip"
    }
   ],
   "chapters": [
@@ -9704,7 +9704,7 @@
    {
     "name": "privileged-access",
     "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/privileged-access",
-    "zip": null
+    "zip": "downloads/privileged-access-code.zip"
    }
   ],
   "chapters": [
@@ -9798,7 +9798,7 @@
    {
     "name": "privileged-access",
     "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/privileged-access",
-    "zip": null
+    "zip": "downloads/privileged-access-code.zip"
    },
    {
     "name": "drift-pipeline",
@@ -9991,7 +9991,7 @@
    {
     "name": "ms-automation",
     "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/ms-automation",
-    "zip": null
+    "zip": "downloads/microsoft-automation-code.zip"
    },
    {
     "name": "hcm-entra",
@@ -10778,7 +10778,7 @@
    {
     "name": "servicenow-sailpoint",
     "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/servicenow-sailpoint",
-    "zip": null
+    "zip": "downloads/ticket-to-machine-code.zip"
    }
   ],
   "chapters": [
@@ -10868,7 +10868,7 @@
    {
     "name": "servicenow-sailpoint",
     "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/servicenow-sailpoint",
-    "zip": null
+    "zip": "downloads/ticket-to-machine-code.zip"
    }
   ],
   "chapters": [
@@ -10954,7 +10954,7 @@
    {
     "name": "servicenow-sailpoint",
     "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/servicenow-sailpoint",
-    "zip": null
+    "zip": "downloads/ticket-to-machine-code.zip"
    }
   ],
   "chapters": [
@@ -11040,7 +11040,7 @@
    {
     "name": "servicenow-sailpoint",
     "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/servicenow-sailpoint",
-    "zip": null
+    "zip": "downloads/ticket-to-machine-code.zip"
    }
   ],
   "chapters": [
@@ -11126,7 +11126,7 @@
    {
     "name": "servicenow-sailpoint",
     "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/servicenow-sailpoint",
-    "zip": null
+    "zip": "downloads/ticket-to-machine-code.zip"
    }
   ],
   "chapters": [
@@ -11212,7 +11212,7 @@
    {
     "name": "servicenow-sailpoint",
     "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/servicenow-sailpoint",
-    "zip": null
+    "zip": "downloads/ticket-to-machine-code.zip"
    }
   ],
   "chapters": [
@@ -11294,7 +11294,7 @@
    {
     "name": "servicenow-sailpoint",
     "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/servicenow-sailpoint",
-    "zip": null
+    "zip": "downloads/ticket-to-machine-code.zip"
    }
   ],
   "chapters": [
@@ -11376,7 +11376,7 @@
    {
     "name": "servicenow-sailpoint",
     "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/servicenow-sailpoint",
-    "zip": null
+    "zip": "downloads/ticket-to-machine-code.zip"
    }
   ],
   "chapters": [
@@ -11462,7 +11462,7 @@
    {
     "name": "ms-automation",
     "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/ms-automation",
-    "zip": null
+    "zip": "downloads/microsoft-automation-code.zip"
    }
   ],
   "chapters": [
@@ -11548,7 +11548,7 @@
    {
     "name": "ms-automation",
     "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/ms-automation",
-    "zip": null
+    "zip": "downloads/microsoft-automation-code.zip"
    }
   ],
   "chapters": [
@@ -11634,7 +11634,7 @@
    {
     "name": "ms-automation",
     "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/ms-automation",
-    "zip": null
+    "zip": "downloads/microsoft-automation-code.zip"
    },
    {
     "name": "validation-kit",

@@ -89,10 +89,14 @@ PAGES = {
     "research-trinzic-multicloud": "docs/evaluations/trinzic-multicloud-ddi.md",
 }
 EXAMPLES = ROOT / "examples"
-# Kits the site rebuilds as a zip on every deploy (.github/workflows/quarto-pages.yml).
+# The zip the site rebuilds on every deploy for a kit (.github/workflows/quarto-pages.yml): its own,
+# or the workbook bundle it is the main kit of (build_start_kit_zip.BUNDLES).
 KIT_ZIPS = {"start-kit": "start-kit.zip", "copilot-agent-pack": "copilot-agent-pack.zip",
             "app-modernization": "app-modernization.zip", "ansible": "ansible-examples.zip",
-            "validation-kit": "validation-kit.zip"}
+            "validation-kit": "validation-kit.zip", "cisco-sdwan": "cisco-sdwan.zip",
+            "servicenow-sailpoint": "ticket-to-machine-code.zip", "hr-lifecycle": "hr-driven-identity-code.zip",
+            "privileged-access": "privileged-access-code.zip", "non-person-identity": "non-person-identity-code.zip",
+            "ms-automation": "microsoft-automation-code.zip"}
 KIT_REF = re.compile(r"examples/([A-Za-z0-9_-]+)")
 
 GROUPS = [
