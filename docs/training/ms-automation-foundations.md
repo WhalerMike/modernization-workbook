@@ -293,7 +293,13 @@ You prove, on a laptop, that the example client picks the right cloud, refuses t
    python -m pytest -q -p no:cacheprovider tests/python/test_graphkit_and_tasks.py -k "paging or next_link or 429 or retries or retry_after or batch or delta or advanced"
    ```
 
-   Expected: `9 passed, 11 deselected`. Open `tests/python/test_graphkit_and_tasks.py` and read `test_batch_chunks_of_20_and_retries_throttled_items` and `test_delta_returns_items_and_new_link`: each one feeds the client a fake transport and checks exactly what it sent.
+   Expected: `9 passed, 11 deselected`. Now print two of those tests, `test_batch_chunks_of_20_and_retries_throttled_items` and `test_delta_returns_items_and_new_link`:
+
+   ```bash
+   awk '/^def /{p = /test_batch_chunks_of_20_and_retries_throttled_items|test_delta_returns_items_and_new_link/} p' tests/python/test_graphkit_and_tasks.py
+   ```
+
+   Each one feeds the client a fake transport and checks exactly what it sent.
 
 6. The same rules in PowerShell. Start `pwsh` in `examples/ms-automation`, then:
 
@@ -306,7 +312,12 @@ You prove, on a laptop, that the example client picks the right cloud, refuses t
    Assert-FmwGraphCall -Method GET -Uri 'https://graph.microsoft.com/v1.0/users' -Cloud gcchigh
    ```
 
-   Expected output: `https://login.microsoftonline.us`, `https://graph.microsoft.us`, `https://management.azure.com`, then `AuditLog.Read.All` and `User.Read.All` on two lines, then an error: `Refusing to send the token to https://graph.microsoft.com/v1.0/users: not https://graph.microsoft.us`. In PowerShell the cloud name is checked by `ValidateSet`, which ignores case, so `Get-FmwCloud GCCHigh` works there and `Get-FmwCloud usgov` fails.
+   Expected output: `https://login.microsoftonline.us`, `https://graph.microsoft.us`, `https://management.azure.com`, then `AuditLog.Read.All` and `User.Read.All` on two lines, then an error: `Refusing to send the token to https://graph.microsoft.com/v1.0/users: not https://graph.microsoft.us`. In PowerShell the cloud name is checked by `ValidateSet`, which ignores case, so the first of these works there and the second fails:
+
+   ```powershell
+   (Get-FmwCloud GCCHigh).Graph
+   Get-FmwCloud usgov
+   ```
 
 7. Run the kit's full test suites.
 
@@ -325,10 +336,21 @@ You prove, on a laptop, that the example client picks the right cloud, refuses t
 
 You register an app with one permission, run one read-only task, see the token check and the wrong-cloud refusal work, and remove the app. Follow the developer workbook's [Chapter 02, Lab 2](../books/b19-developer-workbook/02-graph-clients-for-government-clouds.md#lab-2-test-tenant), which uses the Conditional Access export because it needs one permission.
 
-- **You need:** a test tenant in the worldwide or GCC cloud, never production, with fictional data; an administrator who can grant tenant-wide admin consent to a Microsoft Graph application permission, which is a Privileged Role Administrator ([Unit 3](#signing-in-as-a-workload)); Python with `pip install azure-identity`, or Microsoft Graph PowerShell.
+- **You need:** a test tenant in the worldwide or GCC cloud, never production, with fictional data; an administrator who can grant tenant-wide admin consent to a Microsoft Graph application permission, which is a Privileged Role Administrator ([Unit 3](#signing-in-as-a-workload)); Python with the `azure-identity` package (the run below installs it), or Microsoft Graph PowerShell.
+- **You'll replace:** `<tenant-id>` (the test tenant's ID), `<app-id>` (the app's application (client) ID); `app.pem` is the PEM file with the app's certificate and private key.
 - **The app registration:** a certificate credential, no secret, and the application permission `Policy.Read.All`, with admin consent. Nothing else.
-- **The run:** `python python/entra_tasks.py --cloud gcc --tenant <tenant-id> --client <app-id> --cert app.pem ca-export --out ca`. It only reads.
+- **The run**, from `examples/ms-automation`. It only reads:
+
+  ```bash
+  pip install azure-identity
+  python python/entra_tasks.py --cloud gcc --tenant <tenant-id> --client <app-id> --cert app.pem ca-export --out ca
+  ```
+
 - **Back it out:** remove the permissions, delete the app registration and its certificate, and delete the `ca` folder, which holds the tenant's policies. Step 7 of the chapter's Lab 2 lists each one.
+
+  ```bash
+  rm -rf ca
+  ```
 
 ## Unit 9: Knowledge check
 

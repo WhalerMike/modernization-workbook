@@ -191,36 +191,73 @@ $map = Import-PowerShellDataFile ./hcm-entra/config/csv2scim/AttributeMapping.ps
    ./third_party/csv2scim/src/CSV2SCIM.ps1 -Path ./hcm-entra/tests/fixtures/hcm_extract_sample.csv -AttributeMapping $map -ValidateAttributeMapping
    ./third_party/csv2scim/src/CSV2SCIM.ps1 -Path ./hcm-entra/tests/fixtures/hcm_extract_sample.csv -AttributeMapping $map `
        -ScimSchemaNamespace 'urn:ietf:params:scim:schemas:extension:contoso:1.0:User' > baseline.json
+   python -c "import json; [print(o['data']['externalId'] or '(empty)', o['data']['active']) for o in json.load(open('baseline.json', encoding='utf-8-sig'))['Operations']]"
    ```
 
-   The first command returns `True`. Open `baseline.json`: one bulk request with 19 operations. Find person 100006 (worker type `P`, a pending worker): `active` is `true`. Find person 100008: it is there twice. One operation has an empty `externalId`.
+   The first command returns `True`. The last lists `baseline.json`: one bulk request with 19 operations. Find person 100006 (worker type `P`, a pending worker): `active` is `true`. Find person 100008: it is there twice. One operation has an empty `externalId`.
 
-2. **Run the hardened client on the same fixture:**
+2. **Run the hardened client on the same fixture**, then the PowerShell client:
 
-   ```text
+   ```bash
    cd hcm-entra
    python python/hcm_to_scim.py --extract tests/fixtures/hcm_extract_sample.csv --as-of 2026-10-25 --out out
+   pwsh -File powershell/Invoke-HcmToScim.ps1 -Extract tests/fixtures/hcm_extract_sample.csv -AsOf 2026-10-25 -Out out-ps
    ```
 
-   It exits with code `2`. Counts: 9 ready, 9 quarantined, 1 superseded. The PowerShell client (`pwsh -File powershell/Invoke-HcmToScim.ps1 -Extract tests/fixtures/hcm_extract_sample.csv -AsOf 2026-10-25 -Out out-ps`) gives the same.
+   It exits with code `2`. Counts: 9 ready, 9 quarantined, 1 superseded. The PowerShell client gives the same.
 
-3. **Compare.** In `out/quarantine.json`, find 100006 and its reason (worker type `P` refused) and the blank-key row. In `out/bulk-request-001.json`, the first operation is the leaver, 100003, with `active` false; in `baseline.json`, the first is 100000. Find 100001 (hire date after the run date): disabled in ours, active in the baseline.
+3. **Compare.** List each quarantined record with its reason, then the first operation of each batch, then person 100001 in both:
 
-4. **Check provenance.** Open `out/provenance.json` and hash the extract yourself:
+   ```bash
+   python -c "import json; [print(q['person_key'], '|', '; '.join(q['reasons'])) for q in json.load(open('out/quarantine.json', encoding='utf-8'))]"
+   python -c "import json; [print(f, o['data']['externalId'], o['data']['active']) for f in ('out/bulk-request-001.json', '../baseline.json') for o in json.load(open(f, encoding='utf-8-sig'))['Operations'][:1]]"
+   python -c "import json; [print(f, o['data']['externalId'], o['data']['active']) for f in ('out/bulk-request-001.json', '../baseline.json') for o in json.load(open(f, encoding='utf-8-sig'))['Operations'] if o['data']['externalId'] == '100001']"
+   ```
 
-   ```text
+   In `out/quarantine.json`, find 100006 and its reason (worker type `P` refused) and the blank-key row. In `out/bulk-request-001.json`, the first operation is the leaver, 100003, with `active` false; in `baseline.json`, the first is 100000. Find 100001 (hire date after the run date): disabled in ours, active in the baseline.
+
+4. **Check provenance.** Show `out/provenance.json` and hash the extract yourself:
+
+   ```bash
+   cat out/provenance.json
    python -c "import hashlib,sys;print(hashlib.sha256(open(sys.argv[1],'rb').read()).hexdigest())" tests/fixtures/hcm_extract_sample.csv
    ```
 
-   It matches `extract_sha256`. Run CSV2SCIM's generate step twice and compare: the `bulkId` values differ every time. Run our client twice: identical batches and hashes.
+   It matches `extract_sha256`. Now run CSV2SCIM's generate step a second time and count the `bulkId` values that match the first run, then run our client a second time into `out-2` and compare its batch and manifest with the first run's:
 
-5. **Break something on purpose.** Change one worker's `DepartmentCode` to `org-100` (lower case) in a copy of the extract. Our client quarantines that worker with a code-list reason; CSV2SCIM sends it.
+   ```bash
+   pwsh -NoProfile -Command '$map = Import-PowerShellDataFile ./config/csv2scim/AttributeMapping.psd1; ../third_party/csv2scim/src/CSV2SCIM.ps1 -Path ./tests/fixtures/hcm_extract_sample.csv -AttributeMapping $map -ScimSchemaNamespace "urn:ietf:params:scim:schemas:extension:contoso:1.0:User" > baseline-2.json'
+   python -c "import json; a, b = (json.load(open(f, encoding='utf-8-sig'))['Operations'] for f in ('../baseline.json', 'baseline-2.json')); print(sum(x['bulkId'] == y['bulkId'] for x, y in zip(a, b)), 'of', len(a), 'bulkId values match')"
+   python python/hcm_to_scim.py --extract tests/fixtures/hcm_extract_sample.csv --as-of 2026-10-25 --out out-2
+   cmp out/bulk-request-001.json out-2/bulk-request-001.json && cmp out/provenance.json out-2/provenance.json && echo identical
+   ```
 
-6. **Hold a run.** Pass settings containing `{"max_disables_per_run": 1}` with `--settings` and see exit code `3`.
+   The `bulkId` values differ every time. Our client gives identical batches and hashes.
+
+5. **Break something on purpose.** The first command writes a copy of the extract with worker 100005's `DepartmentCode` changed to `org-100` (lower case). Run both tools on the copy:
+
+   ```bash
+   sed '/^100005,/s/ORG-100/org-100/' tests/fixtures/hcm_extract_sample.csv > extract-broken.csv
+   python python/hcm_to_scim.py --extract extract-broken.csv --as-of 2026-10-25 --out out-broken
+   python -c "import json; [print(q['person_key'], '|', '; '.join(q['reasons'])) for q in json.load(open('out-broken/quarantine.json', encoding='utf-8')) if q['person_key'] == '100005']"
+   pwsh -NoProfile -Command '$map = Import-PowerShellDataFile ./config/csv2scim/AttributeMapping.psd1; ../third_party/csv2scim/src/CSV2SCIM.ps1 -Path ./extract-broken.csv -AttributeMapping $map -ScimSchemaNamespace "urn:ietf:params:scim:schemas:extension:contoso:1.0:User" > baseline-broken.json'
+   grep -n '"org-100"' baseline-broken.json
+   ```
+
+   Our client quarantines that worker with a code-list reason; CSV2SCIM sends it.
+
+6. **Hold a run.** Write a settings file containing `{"max_disables_per_run": 1}` and pass it with `--settings`:
+
+   ```bash
+   echo '{"max_disables_per_run": 1}' > settings-hold.json
+   python python/hcm_to_scim.py --extract tests/fixtures/hcm_extract_sample.csv --as-of 2026-10-25 --settings settings-hold.json --out out-hold
+   ```
+
+   See exit code `3`.
 
 7. **Run the tests:**
 
-   ```text
+   ```bash
    python -m pytest -q -p no:cacheprovider tests/python
    pwsh -NoProfile -Command "Invoke-Pester -Path tests/powershell"
    ```
@@ -229,15 +266,50 @@ $map = Import-PowerShellDataFile ./hcm-entra/config/csv2scim/AttributeMapping.ps
 
 ## Lab 2: test tenant
 
-Use a test tenant, never production, and fictional records only.
+Use a test tenant, never production, and fictional records only. Work from `examples`. You'll replace: `<tenant-id>` (the test tenant's ID), `<provisioning-app-object-id>` (the provisioning app's object ID), `<provisioning-api-endpoint>` (the app's **Provisioning API Endpoint**) and `<graph-access-token>` (a bearer token for the tenant's Graph host, obtained outside the script from a managed identity or a certificate credential).
 
 1. **Create the provisioning app.** Create an API-driven inbound provisioning app that provisions to Microsoft Entra ID, following Learn's configuration guide; the feature needs Microsoft Entra ID P1, P2 or ID Governance.[^c01-concepts] Copy its **Provisioning API Endpoint**.
-2. **Extend its schema with Microsoft's sample** (worldwide or GCC tenant): run CSV2SCIM's `-UpdateSchema` mode with the extension namespace from `mapping.json` and your provisioning app's object ID, as Learn shows.[^c01-csv2scim] It adds every extract column to the app's attribute list. Then map the attributes you need in the admin center. In GCC High or DoD, add the attributes in the admin center instead: the sample can't reach those clouds as written.
+2. **Extend its schema with Microsoft's sample** (worldwide or GCC tenant): run CSV2SCIM's `-UpdateSchema` mode with the extension namespace from `mapping.json` and your provisioning app's object ID, as Learn shows.[^c01-csv2scim]
+
+   ```powershell
+   ./third_party/csv2scim/src/CSV2SCIM.ps1 -Path ./hcm-entra/tests/fixtures/hcm_extract_sample.csv `
+       -ScimSchemaNamespace 'urn:ietf:params:scim:schemas:extension:contoso:1.0:User' `
+       -TenantId <tenant-id> -ServicePrincipalId <provisioning-app-object-id> -UpdateSchema
+   ```
+
+   It adds every extract column to the app's attribute list. Then map the attributes you need in the admin center. In GCC High or DoD, add the attributes in the admin center instead: the sample can't reach those clouds as written.
 3. **Grant the least privilege to the sender.** Use a managed identity or an app with a certificate, never a secret. The least-privileged application permission is `SynchronizationData-User.Upload.OwnedBy` when the app owns the provisioning service principal; otherwise `SynchronizationData-User.Upload`.[^c01-bulkupload] Don't give the production sender CSV2SCIM's sign-in scopes. For CSV2SCIM's certificate flow, Learn adds `Application.Read.All` and `Synchronization.Read.All` so the script can look up the job;[^c01-csv2scim] keep that identity for testing.
 4. **Start the job and set its safety nets.** Start the job, set the notification email, and turn on accidental-deletions prevention.
-5. **Send five records with the hardened client.** Put the endpoint in `config/settings.json`, a token for the tenant's Graph host in `HCM_ENTRA_BEARER_TOKEN`, and run with `--apply` on five valid rows. Expect one batch, a `202`, and a `Location` in `apply-results.json`.
-6. **Reconcile.** Read the cycle with CSV2SCIM's `-GetPreviousCycleLogs` (worldwide or GCC), or query `GET /auditLogs/provisioning` filtered on the job. Every person key in `provenance.json`'s batch should appear with a result; one that doesn't is a finding.
-7. **Back it out.** Send the five records again as `INACTIVE` with a termination date, delete the test users and the app, and unset the token variable.
+5. **Send five records with the hardened client.** The commands put the endpoint in `config/settings.json`, the token in `HCM_ENTRA_BEARER_TOKEN`, write the fixture's first five rows (all valid) to `five.csv`, and send them with `--apply`:
+
+   ```bash
+   cd hcm-entra
+   cp config/settings.example.json config/settings.json
+   python -c "import json; p = 'config/settings.json'; s = json.load(open(p)); s['endpoint'] = '<provisioning-api-endpoint>'; json.dump(s, open(p, 'w'), indent=2)"
+   export HCM_ENTRA_BEARER_TOKEN='<graph-access-token>'
+   head -n 6 tests/fixtures/hcm_extract_sample.csv > five.csv
+   python python/hcm_to_scim.py --extract five.csv --as-of 2026-10-25 --settings config/settings.json --out out-apply --apply
+   cat out-apply/apply-results.json
+   ```
+
+   Expect one batch, a `202`, and a `Location` in `apply-results.json`.
+6. **Reconcile.** Read the cycle with CSV2SCIM's `-GetPreviousCycleLogs` (worldwide or GCC), or query `GET /auditLogs/provisioning` filtered on the job. Then list the person keys in the batch:
+
+   ```powershell
+   ../third_party/csv2scim/src/CSV2SCIM.ps1 -TenantId <tenant-id> -ServicePrincipalId <provisioning-app-object-id> -GetPreviousCycleLogs
+   (Get-Content out-apply/provenance.json -Raw | ConvertFrom-Json).batches.person_keys
+   ```
+
+   Every person key in `provenance.json`'s batch should appear with a result; one that doesn't is a finding.
+7. **Back it out.** The first command writes the five records again as `INACTIVE` with a termination date; the second sends them; the last unsets the token variable:
+
+   ```bash
+   python -c "import csv; rows = list(csv.DictReader(open('five.csv', encoding='utf-8', newline=''))); [r.update(AssignmentStatusType='INACTIVE', TerminationDate='2026-10-25') for r in rows]; w = csv.DictWriter(open('five-leavers.csv', 'w', encoding='utf-8', newline=''), fieldnames=list(rows[0])); w.writeheader(); w.writerows(rows)"
+   python python/hcm_to_scim.py --extract five-leavers.csv --as-of 2026-10-25 --settings config/settings.json --out out-backout --apply
+   unset HCM_ENTRA_BEARER_TOKEN
+   ```
+
+   Then delete the test users and the app.
 
 ## Verified facts
 

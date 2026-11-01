@@ -221,9 +221,22 @@ python python/drift_pipeline.py verify out/evidence/2026-10-29-0617-fixture-runn
 
    Exit `2`. Sample 1 has five findings (WF-02, WF-05 twice, WF-08, WF-09) and four warnings; sample 2 has seven findings, including three unpinned actions and two `latest` versions; sample 3 has one: `WF-01 Not valid YAML (mapping values are not allowed here)`.
 
-2. **Check the sample workflow:** `python python/workflow_lint.py workflow/drift-pipeline.yml`. Exit `0`: `0 finding(s), 0 warning(s)`.
+2. **Check the sample workflow:**
 
-3. **Print a cloud's hosts:** `python python/drift_pipeline.py cloud --name dod`. The authority is `https://login.microsoftonline.us`, the Graph host `https://dod-graph.microsoft.us`, the Azure environment `AzureUSGovernment`. Try `--name usgov`: exit `1`, unknown cloud.
+   ```bash
+   python python/workflow_lint.py workflow/drift-pipeline.yml
+   ```
+
+   Exit `0`: `0 finding(s), 0 warning(s)`.
+
+3. **Print a cloud's hosts**, then ask for a name the pipeline doesn't know:
+
+   ```bash
+   python python/drift_pipeline.py cloud --name dod
+   python python/drift_pipeline.py cloud --name usgov
+   ```
+
+   The authority is `https://login.microsoftonline.us`, the Graph host `https://dod-graph.microsoft.us`, the Azure environment `AzureUSGovernment`. With `--name usgov`: exit `1`, unknown cloud.
 
 4. **Record a baseline and package it:**
 
@@ -252,7 +265,14 @@ python python/drift_pipeline.py verify out/evidence/2026-10-29-0617-fixture-runn
    python python/drift_pipeline.py issues --diff out/day2/drift-report.json --out out/day2/issues.json
    ```
 
-   `{"close": 2, "comment": 0, "open": 6}`: three new findings, one changed (VK-ARC-02, whose issue text moved from the agent version to "Status Disconnected"), two unverified checks, and two closes, one for `frank` (resolved) and one for the superseded VK-ARC-02 row. Search `issues.json` for `gina@contoso.example`: it isn't there. Her object ID is.
+   `{"close": 2, "comment": 0, "open": 6}`: three new findings, one changed (VK-ARC-02, whose issue text moved from the agent version to "Status Disconnected"), two unverified checks, and two closes, one for `frank` (resolved) and one for the superseded VK-ARC-02 row. Search `issues.json` for `gina@contoso.example`, then for her object ID:
+
+   ```bash
+   grep -c "gina@contoso.example" out/day2/issues.json
+   grep -c "00000000-0000-4000-8000-000000000011" out/day2/issues.json
+   ```
+
+   Her address isn't there. Her object ID is.
 
 7. **Package and verify the second run, chained to the first:**
 
@@ -263,26 +283,79 @@ python python/drift_pipeline.py verify out/evidence/2026-10-29-0617-fixture-runn
    (cd out/evidence/2026-10-29-0617-fixture-runner-fixture && sha256sum -c --quiet SHA256SUMS)
    ```
 
-   The manifest hash is `0932f0a3…`, `verify` reports 16 files, and `sha256sum` exits `0`. Open `EVIDENCE-MANIFEST.json`: `previous.evidence_manifest_sha256` is the day 1 hash, `6d9fffbc…`, and `tenant_id` is the fixture tenant's placeholder, `11111111-1111-4111-8111-111111111111`.
+   The manifest hash is `0932f0a3…`, `verify` reports 16 files, and `sha256sum` exits `0`. Read two fields of `EVIDENCE-MANIFEST.json`:
 
-8. **Break it on purpose.** Append a line to `out/evidence/2026-10-29-0617-fixture-runner-fixture/drift/drift-summary.md` and run `verify` again: exit `1`, `drift/drift-summary.md doesn't match its SHA-256`. Then swap the runs: `compare --previous $CURR --current $PREV` exits `1`: the current run isn't later than the previous one.
+   ```bash
+   python -c "import json; m = json.load(open('out/evidence/2026-10-29-0617-fixture-runner-fixture/EVIDENCE-MANIFEST.json')); print(m['previous']['evidence_manifest_sha256']); print(m['tenant_id'])"
+   ```
 
-9. **Run the tests:** `python -m pytest tests -q`.
+   `previous.evidence_manifest_sha256` is the day 1 hash, `6d9fffbc…`, and `tenant_id` is the fixture tenant's placeholder, `11111111-1111-4111-8111-111111111111`.
+
+8. **Break it on purpose.** Append a line to `out/evidence/2026-10-29-0617-fixture-runner-fixture/drift/drift-summary.md` and run `verify` again:
+
+   ```bash
+   echo "edited after packaging" >> out/evidence/2026-10-29-0617-fixture-runner-fixture/drift/drift-summary.md
+   python python/drift_pipeline.py verify out/evidence/2026-10-29-0617-fixture-runner-fixture
+   ```
+
+   Exit `1`, `drift/drift-summary.md doesn't match its SHA-256`. Then swap the runs:
+
+   ```bash
+   python python/drift_pipeline.py compare --previous $CURR --current $PREV --out out/swapped
+   ```
+
+   It exits `1`: the current run isn't later than the previous one.
+
+9. **Run the tests:**
+
+   ```bash
+   python -m pytest tests -q
+   ```
 
 **Expected result:** 74 tests passing, and each row of the gap table seen with your own eyes.
 
 ## Lab 2: test tenant and test subscription
 
-Use a test tenant and a test subscription, never production, and a private test repository, `contoso-example/estate-checks`, holding the validation kit and this example.
+Use a test tenant and a test subscription, never production, and a private test repository, `contoso-example/estate-checks`, holding the validation kit and this example. You'll replace: `<app-object-id>` (the app registration's object ID).
 
-1. **Register the app and trust the repository.** Register an app in the test tenant. With Application Administrator, Cloud Application Administrator or ownership of the app,[^c09-fic] add a federated credential with Learn's command, `az ad app federated-credential create --id <app-object-id> --parameters credential.json`, where `credential.json` has the issuer `https://token.actions.githubusercontent.com`, the subject `repo:contoso-example/estate-checks:environment:drift-gcc` and the audience `api://AzureADTokenExchange`.[^c09-fic] In GCC High or DoD, the audience is `api://AzureADTokenExchangeUSGov`.[^c09-mi-trust] Learn warns that a wrong subject is accepted without error and only fails at sign-in, and that a new credential can take a few minutes to propagate (`AADSTS70021`).[^c09-fic-limits]
+1. **Register the app and trust the repository.** Register an app in the test tenant. With Application Administrator, Cloud Application Administrator or ownership of the app,[^c09-fic] add a federated credential with Learn's command, where `credential.json` has the issuer `https://token.actions.githubusercontent.com`, the subject `repo:contoso-example/estate-checks:environment:drift-gcc` and the audience `api://AzureADTokenExchange`:[^c09-fic]
+
+   ```bash
+   cat > credential.json <<'EOF'
+   {
+     "name": "drift-gcc",
+     "issuer": "https://token.actions.githubusercontent.com",
+     "subject": "repo:contoso-example/estate-checks:environment:drift-gcc",
+     "audiences": ["api://AzureADTokenExchange"]
+   }
+   EOF
+   az ad app federated-credential create --id <app-object-id> --parameters credential.json
+   ```
+
+   In GCC High or DoD, the audience is `api://AzureADTokenExchangeUSGov`.[^c09-mi-trust] Learn warns that a wrong subject is accepted without error and only fails at sign-in, and that a new credential can take a few minutes to propagate (`AADSTS70021`).[^c09-fic-limits]
 2. **Grant only the reads.** Grant the app the Graph application permissions the app-capable checks need, with admin consent; `Get-VkRequiredScope` prints them ([Chapter 03](03-writing-a-validation-kit-check.md)). Assign Reader on the test subscription for the Arc checks.
 3. **Make the evidence container.** In the test subscription, create a storage account and a container, `drift-evidence`, and assign **Storage Blob Data Contributor** on the container to the app; the upload uses `--auth-mode login`.[^c09-blob-cli] Add a time-based retention policy to the container and **leave it unlocked**. Learn says an unlocked policy is for testing and can be deleted; a locked one can't be deleted or shortened, and blocks deleting the account while any blob is retained.[^c09-immutable][^c09-immutable-container]
-4. **Set up the repository.** Create the `drift-gcc` environment, limited to the default branch. Add the secrets `AZURE_CLIENT_ID`, `AZURE_TENANT_ID` and `AZURE_SUBSCRIPTION_ID`, the variables `EVIDENCE_STORAGE_ACCOUNT`, `AZ_PS_VERSION` and `GRAPH_PS_VERSION` (exact versions), and the labels `drift`, `new`, `changed`, `unverified` and `baseline`. Copy the workflow to `.github/workflows/drift.yml` in the test repository, and run `workflow_lint.py` on the copy.
+4. **Set up the repository.** Create the `drift-gcc` environment, limited to the default branch. Add the secrets `AZURE_CLIENT_ID`, `AZURE_TENANT_ID` and `AZURE_SUBSCRIPTION_ID`, the variables `EVIDENCE_STORAGE_ACCOUNT`, `AZ_PS_VERSION` and `GRAPH_PS_VERSION` (exact versions), and the labels `drift`, `new`, `changed`, `unverified` and `baseline`. Copy the workflow to `.github/workflows/drift.yml` in the test repository, and run `workflow_lint.py` on the copy. From the test repository's root, where this example sits at `examples/drift-pipeline`:
+
+   ```bash
+   mkdir -p .github/workflows
+   cp examples/drift-pipeline/workflow/drift-pipeline.yml .github/workflows/drift.yml
+   python examples/drift-pipeline/python/workflow_lint.py .github/workflows/drift.yml
+   ```
 5. **Run it by hand.** Start it from the Actions tab (`workflow_dispatch`). The first run is the baseline: one package in the container, one issue. Confirm that the Graph sign-in works with the SecureString token on the pinned Graph PowerShell version: Learn's pages disagree on that parameter's type (see the verified facts).
-6. **Make a change and run again.** Create an enabled test member with no `employeeId` (VK-HR-01 reports it), then run the workflow. Expect one new finding and one issue, and a second package whose `previous` points at the first. Download it and run `sha256sum -c SHA256SUMS`.
+6. **Make a change and run again.** Create an enabled test member with no `employeeId` (VK-HR-01 reports it), then run the workflow. Expect one new finding and one issue, and a second package whose `previous` points at the first. Download it and, in the package's folder, run:
+
+   ```bash
+   sha256sum -c SHA256SUMS
+   ```
 7. **Let the schedule run.** GitHub runs a scheduled workflow on the latest commit of the default branch, may delay it under load, and, in a public repository, disables it after 60 days with no activity.[^c09-gh-events] Check the next day that a package arrived; a missing day is a break in the chain.
-8. **Back it out.** Delete the federated credential (`az ad app federated-credential delete`),[^c09-fic] the app registration and its role assignments. Delete the unlocked retention policy, then the container. Close the test issues, and delete the test repository or its workflow and environment.
+8. **Back it out.** Delete the federated credential:[^c09-fic]
+
+   ```bash
+   az ad app federated-credential delete --id <app-object-id> --federated-credential-id drift-gcc
+   ```
+
+   Then delete the app registration and its role assignments. Delete the unlocked retention policy, then the container. Close the test issues, and delete the test repository or its workflow and environment.
 
 In production, lock the retention policy once Lab 2 passes. Learn recommends locking it within a reasonable time, typically less than 24 hours, and says an unlocked policy is only for short-term testing.[^c09-immutable]
 

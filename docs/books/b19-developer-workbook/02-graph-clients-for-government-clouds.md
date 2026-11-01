@@ -207,15 +207,21 @@ Assert-FmwGraphCall -Method GET -Uri 'https://graph.microsoft.com/v1.0/users' -C
 
 1. **Run Microsoft's sample against the stand-ins:**
 
-   ```text
+   ```bash
    python -m pytest -q -p no:cacheprovider tests/python/test_learn_sample.py
    ```
 
-   `9 passed`. Open the test and read `test_sample_us_gov_credential_names_no_authority`: the snippet's credential gets `tenant_id`, `client_id` and `redirect_uri`, and nothing else.
+   `9 passed`. Now show the test `test_sample_us_gov_credential_names_no_authority`:
+
+   ```bash
+   grep -n -A7 "def test_sample_us_gov_credential_names_no_authority" tests/python/test_learn_sample.py
+   ```
+
+   The snippet's credential gets `tenant_id`, `client_id` and `redirect_uri`, and nothing else.
 
 2. **Print the endpoints for the target estate:**
 
-   ```text
+   ```bash
    python -c "import sys; sys.path.insert(0, 'python'); from graphkit import endpoints, scope_for; print(endpoints('gcc')); print(scope_for('gcc', 'arm')); print(scope_for('dod'))"
    ```
 
@@ -225,11 +231,17 @@ Assert-FmwGraphCall -Method GET -Uri 'https://graph.microsoft.com/v1.0/users' -C
    https://dod-graph.microsoft.us/.default
    ```
 
-   No `.us` host for GCC. Try `endpoints('GCCHigh')`: `ValueError: unknown cloud 'GCCHigh'`.
+   No `.us` host for GCC. Now ask for `GCCHigh`, a name the kit doesn't know:
+
+   ```bash
+   python -c "import sys; sys.path.insert(0, 'python'); from graphkit import endpoints; print(endpoints('GCCHigh'))"
+   ```
+
+   It ends `ValueError: unknown cloud 'GCCHigh'`.
 
 3. **List a task's permissions from its calls:**
 
-   ```text
+   ```bash
    python -c "import sys; sys.path.insert(0, 'python'); from graphkit import load_calls, permissions_for; print(permissions_for(load_calls('pim-report')))"
    ```
 
@@ -237,7 +249,7 @@ Assert-FmwGraphCall -Method GET -Uri 'https://graph.microsoft.com/v1.0/users' -C
 
 4. **Make a call the task doesn't declare:**
 
-   ```text
+   ```bash
    python -c "import sys; sys.path.insert(0, 'python'); from graphkit import GraphClient, load_calls; GraphClient('gcc', lambda s: 't', calls=load_calls('ca-export')).request('GET', '/users')"
    ```
 
@@ -245,7 +257,7 @@ Assert-FmwGraphCall -Method GET -Uri 'https://graph.microsoft.com/v1.0/users' -C
 
 5. **Read beta where the feature isn't offered:**
 
-   ```text
+   ```bash
    python -c "import sys; sys.path.insert(0, 'python'); from graphkit import GraphClient, try_beta; print(try_beta(GraphClient('gcchigh', lambda s: 't'), '/deviceManagement/windowsAutopilotDeviceIdentities'))"
    ```
 
@@ -265,7 +277,7 @@ Assert-FmwGraphCall -Method GET -Uri 'https://graph.microsoft.com/v1.0/users' -C
 
 7. **Run the tests:**
 
-   ```text
+   ```bash
    python -m pytest -q -p no:cacheprovider tests/python
    pwsh -NoProfile -Command "Invoke-Pester -Path tests/powershell"
    ```
@@ -274,21 +286,51 @@ Assert-FmwGraphCall -Method GET -Uri 'https://graph.microsoft.com/v1.0/users' -C
 
 ## Lab 2: test tenant
 
-Use a test tenant in the worldwide or GCC cloud, never production, with fictional data. The steps use the Conditional Access export because it needs one permission.
+Use a test tenant in the worldwide or GCC cloud, never production, with fictional data. The steps use the Conditional Access export because it needs one permission. Work in `examples/ms-automation`. You'll replace: `<tenant-id>` (the test tenant's ID), `<app-id>` (the app registration's application (client) ID), `<thumbprint>` (its certificate's thumbprint, in your certificate store for PowerShell), and `app.pem` is the PEM file with that certificate and its private key.
 
 1. **Register the app in the tenant's own cloud.** An app for a GCC tenant is registered in the worldwide Microsoft Entra admin center; an app for GCC High or DoD must be registered in the national cloud's.[^c02-sdk-clouds] Add a certificate credential. Don't add a secret.
 2. **Grant one permission.** Add the application permission `Policy.Read.All`, the one `ca-export` declares, and grant admin consent. Nothing else.
-3. **Run the task:**
+3. **Run the task.** Install `azure-identity` first:
 
-   ```text
+   ```bash
+   pip install azure-identity
    python python/entra_tasks.py --cloud gcc --tenant <tenant-id> --client <app-id> --cert app.pem ca-export --out ca
    ```
 
-   `pip install azure-identity` first. Expect no warning, one JSON file per policy in `ca`, and a summary on screen.
-4. **See the token check work.** Add `Application.Read.All` to the app, grant consent, and run step 3 again: the run continues and prints `warning: token also holds Application.Read.All, which this task doesn't use`. Then run `app-credentials` with only `Policy.Read.All` granted: it stops with `token lacks Application.Read.All` before any Graph call.
-5. **See the wrong cloud fail closed.** Run step 3 with `--cloud gcchigh`. Sign-in goes to `login.microsoftonline.us`, the Azure Government authority, which doesn't hold a GCC tenant,[^c02-identity-plan] and the run stops before anything reaches Graph. Learn says tokens aren't interchangeable between clouds.[^c02-deployments]
-6. **Optional: PowerShell.** `Connect-FmwGraph -Cloud gcc -TenantId <tenant-id> -ClientId <app-id> -CertificateThumbprint <thumbprint>`, then `Invoke-FmwEntraTask -Task ca-export -OutDirectory ca-ps`. Compare `ca` and `ca-ps`.
-7. **Back it out.** Remove `Application.Read.All` and `Policy.Read.All` from the app, delete the app registration and its certificate, and delete the `ca` and `ca-ps` folders. They hold the tenant's policies.
+   Expect no warning, one JSON file per policy in `ca`, and a summary on screen.
+4. **See the token check work.** First run `app-credentials` with only `Policy.Read.All` granted:
+
+   ```bash
+   python python/entra_tasks.py --cloud gcc --tenant <tenant-id> --client <app-id> --cert app.pem app-credentials
+   ```
+
+   It stops with `token lacks Application.Read.All` before any Graph call. Then add `Application.Read.All` to the app, grant consent, and run the export again:
+
+   ```bash
+   python python/entra_tasks.py --cloud gcc --tenant <tenant-id> --client <app-id> --cert app.pem ca-export --out ca
+   ```
+
+   The run continues and prints `warning: token also holds Application.Read.All, which this task doesn't use`.
+5. **See the wrong cloud fail closed.** Run the export with `--cloud gcchigh`:
+
+   ```bash
+   python python/entra_tasks.py --cloud gcchigh --tenant <tenant-id> --client <app-id> --cert app.pem ca-export --out ca
+   ```
+
+   Sign-in goes to `login.microsoftonline.us`, the Azure Government authority, which doesn't hold a GCC tenant,[^c02-identity-plan] and the run stops before anything reaches Graph. Learn says tokens aren't interchangeable between clouds.[^c02-deployments]
+6. **Optional: PowerShell.** Run the export into `ca-ps`, then compare the two folders:
+
+   ```powershell
+   Import-Module ./powershell/FmwGraph.psm1
+   Connect-FmwGraph -Cloud gcc -TenantId <tenant-id> -ClientId <app-id> -CertificateThumbprint <thumbprint>
+   Invoke-FmwEntraTask -Task ca-export -OutDirectory ca-ps
+   Compare-Object (Get-ChildItem ca -Name) (Get-ChildItem ca-ps -Name)
+   ```
+7. **Back it out.** Remove `Application.Read.All` and `Policy.Read.All` from the app, delete the app registration and its certificate, and delete the `ca` and `ca-ps` folders. They hold the tenant's policies:
+
+   ```bash
+   rm -rf ca ca-ps
+   ```
 
 ## Verified facts
 

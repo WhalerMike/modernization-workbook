@@ -49,12 +49,8 @@ WORKBOOKS = {
 # just before it; "local" is the reason a lab can't run in CI (its captures are kept, not checked
 # there); "off" is the reason a lab isn't captured at all.
 CHAPTERS: dict[str, dict] = {
-    "adm-01": {"text": [1, 2, 3]},
-    "adm-02": {"text": [1, 2, 4, 5, 6, 7]},
-    "adm-03": {"cwd": ".", "text": [1], "text_lang": "powershell"},
-    "adm-04": {"skip": [4]},   # Invoke-DrLibraryCheck diffs against git HEAD; the scratch copy isn't a repository
-    # Step 1 runs in examples/validation-kit, the rest in examples/group-policy-as-code, as the chapter says.
-    "adm-06": {"hidden": {1: "Set-Location ../validation-kit", 2: "Set-Location ../group-policy-as-code"}},
+    "adm-03": {"cwd": "."},
+    "adm-04": {"skip": [5, 7]},   # Invoke-DrLibraryCheck diffs against git HEAD; the scratch copy isn't a repository
     "adm-07": {"off": "needs Windows and three modules saved from the PowerShell Gallery"},
     "adm-08": {"off": "needs a Linux control node with ansible-core and collections from Ansible Galaxy"},
     # Labs whose bash steps work in the drift pipeline.

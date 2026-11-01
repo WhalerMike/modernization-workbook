@@ -211,27 +211,73 @@ $r.Evidence.Queries | Format-Table Source, Query
 
    Expect `Fail`, a count of 2, two Finding rows and one Info row, and one query logged as `Graph (fixture)`.
 
-2. Open the matching window and run again with `-Option @{ MatchWindowOpenUntil = '2026-10-31' }`. The status is `Warn`. Change `-AsOf` to `2026-11-01`: `Fail` again.
+2. Open the matching window until 2026-10-31 and run again, then run on the day after the window closes:
 
-3. Feed it an export. Make a folder with `onprem-sync-export.json` containing `{"value":[{"id":"x","features":{"blockSoftMatchEnabled":true,"blockCloudObjectTakeoverThroughHardMatchEnabled":false}}]}` and pass it as `-InputPath`. One Finding, and the evidence shows `Input`.
+   ```powershell
+   (Invoke-VkCheck -CheckId VK-SYNC-02 -Context (Get-VkRunContext -FixturePath ./tests/fixtures/fail -AsOf 2026-10-30 -Option @{ MatchWindowOpenUntil = '2026-10-31' })).Status
+   (Invoke-VkCheck -CheckId VK-SYNC-02 -Context (Get-VkRunContext -FixturePath ./tests/fixtures/fail -AsOf 2026-11-01 -Option @{ MatchWindowOpenUntil = '2026-10-31' })).Status
+   ```
 
-4. See what a live run would ask for: `Get-VkRequiredScope -Checks (Get-VkCheckCatalog -CheckId VK-SYNC-02)` prints `OnPremDirectorySynchronization.Read.All`, and `(Get-VkCheckCatalog -CheckId VK-SYNC-02).DelegatedRole` names the role.
+   The status is `Warn`, then `Fail` again.
 
-5. Confirm it isn't in a default run: `(Get-VkCheckCatalog).Id -contains 'VK-SYNC-02'` is `False`.
+3. Feed it an export. The first two commands make a folder, `inputs`, with an `onprem-sync-export.json` that blocks soft match but not hard-match takeover; the run passes the folder as `-InputPath`:
+
+   ```powershell
+   New-Item -ItemType Directory -Force -Path ./inputs | Out-Null
+   Set-Content -Path ./inputs/onprem-sync-export.json -Value '{"value":[{"id":"x","features":{"blockSoftMatchEnabled":true,"blockCloudObjectTakeoverThroughHardMatchEnabled":false}}]}'
+   $r = Invoke-VkCheck -CheckId VK-SYNC-02 -Context (Get-VkRunContext -InputPath ./inputs -AsOf 2026-10-30)
+   $r | Select-Object CheckId, Status, Count
+   $r.Evidence.Queries | Format-Table Source, Query
+   ```
+
+   One Finding, and the evidence shows `Input`.
+
+4. See what a live run would ask for:
+
+   ```powershell
+   Get-VkRequiredScope -Checks (Get-VkCheckCatalog -CheckId VK-SYNC-02)
+   (Get-VkCheckCatalog -CheckId VK-SYNC-02).DelegatedRole
+   ```
+
+   The first prints `OnPremDirectorySynchronization.Read.All`, and the second names the role.
+
+5. Confirm it isn't in a default run:
+
+   ```powershell
+   (Get-VkCheckCatalog).Id -contains 'VK-SYNC-02'
+   ```
+
+   It prints `False`.
 
 6. Run the whole kit's tests:
 
-   ```text
+   ```powershell
    pwsh -NoProfile -Command "Invoke-Pester -Path tests/powershell"
    ```
 
-7. Make it fail for the right reason. In your copy, change the check to read `blockSoftMatch` (a property that doesn't exist). The fail fixture still fails, but the pass fixture now fails too, because the missing value reads as off. That is the default-to-unsafe rule doing its job. Put it back.
+7. Make it fail for the right reason. The first two commands change your copy of the check to read `blockSoftMatch` (a property that doesn't exist); the next three reload the module and run the fail and pass fixtures:
+
+   ```powershell
+   $f = './powershell/ValidationKit/Checks/SYNC.ps1'
+   (Get-Content -Raw $f).Replace("Name = 'blockSoftMatchEnabled'", "Name = 'blockSoftMatch'") | Set-Content -NoNewline $f
+   Import-Module ./powershell/ValidationKit -Force
+   (Invoke-VkCheck -CheckId VK-SYNC-02 -Context (Get-VkRunContext -FixturePath ./tests/fixtures/fail -AsOf 2026-10-30)).Status
+   (Invoke-VkCheck -CheckId VK-SYNC-02 -Context (Get-VkRunContext -FixturePath ./tests/fixtures/pass -AsOf 2026-10-30)).Status
+   ```
+
+   The fail fixture still fails, but the pass fixture now fails too, because the missing value reads as off. That is the default-to-unsafe rule doing its job. Put it back, reload the module, and the pass fixture passes again:
+
+   ```powershell
+   (Get-Content -Raw $f).Replace("Name = 'blockSoftMatch'", "Name = 'blockSoftMatchEnabled'") | Set-Content -NoNewline $f
+   Import-Module ./powershell/ValidationKit -Force
+   (Invoke-VkCheck -CheckId VK-SYNC-02 -Context (Get-VkRunContext -FixturePath ./tests/fixtures/pass -AsOf 2026-10-30)).Status
+   ```
 
 **Expected result:** every test passes, and you've seen each of the check's four outcomes: Pass, Fail, Warn and NotApplicable.
 
 ## Lab 2: test tenant
 
-Use a test tenant that has Microsoft Entra Connect or Cloud Sync configured. The export is the only step that needs Global Administrator; nothing in the kit runs with that role.
+Use a test tenant that has Microsoft Entra Connect or Cloud Sync configured. The export is the only step that needs Global Administrator; nothing in the kit runs with that role. Work in `examples/validation-kit`.
 
 <!-- labs:begin lab-2-commands (generated by scripts/generate_labs.py; not part of the reviewed page) -->
 
@@ -261,11 +307,29 @@ Disconnect-MgGraph
 
    Read the file before handing it over. It holds tenant configuration and no personal data.
 
-2. **Run the check on the export** as any user, without signing in: `./Invoke-ValidationKit.ps1 -OutputPath ./out -CheckId VK-SYNC-02 -InputPath ./inputs -SkipConnect`. `-SkipConnect` stops the runner from signing in to Graph for a live run. Because the export is present, the check doesn't call Graph; the evidence in `Results/ValidationResults.json` shows `Input`.
+2. **Run the check on the export** as any user, without signing in:
 
-3. **Compare with the source.** Check the result against the `features` block in the export itself, line by line. If a property the check reads is missing or named differently, the response shape differs from Learn's example; fix the fixture and the check together.
+   ```powershell
+   ./Invoke-ValidationKit.ps1 -OutputPath ./out -CheckId VK-SYNC-02 -InputPath ./inputs -SkipConnect
+   ```
 
-4. **Back it out.** Delete the export when the run's evidence is stored; it isn't evidence by itself, the run's manifest is. The manifest, `ValidationManifest.json`, records the cloud and the tenant the run read: `TenantId` comes from the Graph session, which takes it from the token's `tid` claim, and a session in another tenant than the `-TenantId` you gave stops the run before it writes anything. [Chapter 09](09-drift-pipelines-and-evidence.md)'s comparator refuses to compare two runs of different tenants.
+   `-SkipConnect` stops the runner from signing in to Graph for a live run. Because the export is present, the check doesn't call Graph; the evidence in `Results/ValidationResults.json` shows `Input`.
+
+3. **Compare with the source.** Print the `features` block in the export itself and check the result against it, line by line:
+
+   ```powershell
+   (Get-Content -Raw ./inputs/onprem-sync-export.json | ConvertFrom-Json).value.features
+   ```
+
+   If a property the check reads is missing or named differently, the response shape differs from Learn's example; fix the fixture and the check together.
+
+4. **Back it out.** Delete the export when the run's evidence is stored; it isn't evidence by itself, the run's manifest is:
+
+   ```powershell
+   Remove-Item ./inputs/onprem-sync-export.json
+   ```
+
+   The manifest, `ValidationManifest.json`, records the cloud and the tenant the run read: `TenantId` comes from the Graph session, which takes it from the token's `tid` claim, and a session in another tenant than the `-TenantId` you gave stops the run before it writes anything. [Chapter 09](09-drift-pipelines-and-evidence.md)'s comparator refuses to compare two runs of different tenants.
 
 ## Verified facts
 

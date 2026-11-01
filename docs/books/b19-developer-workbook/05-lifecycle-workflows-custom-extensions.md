@@ -209,7 +209,13 @@ python tools/lcwext.py check-workflow config/integrations.json --name cms-revoca
    python tools/lcwext.py run out/learn-sample.workflow.json tests/fixtures/trigger-leaver.json --cloud GCCHigh
    ```
 
-   The run fails. The one `POST` goes to `https://graph.microsoft.com/beta/identityGovernance/…/resume` with the worldwide audience, and the last line reads `Lifecycle Workflows task: failed (no callback within PT1H)`. Run it again with `--cloud Global`: `completed`.
+   The run fails. The one `POST` goes to `https://graph.microsoft.com/beta/identityGovernance/…/resume` with the worldwide audience, and the last line reads `Lifecycle Workflows task: failed (no callback within PT1H)`. Run it again for a worldwide tenant:
+
+   ```bash
+   python tools/lcwext.py run out/learn-sample.workflow.json tests/fixtures/trigger-leaver.json --cloud Global
+   ```
+
+   The task is `completed`.
 
 3. **Lint the program's definition:**
 
@@ -217,7 +223,13 @@ python tools/lcwext.py check-workflow config/integrations.json --name cms-revoca
    python tools/lcwext.py lint logicapp/integration.workflow.json --timeout PT1H
    ```
 
-   `0 result(s); no findings`, exit `0`. Run it with `--timeout PT15M` and LX-11 reports that the worst-case retry waits, 960 seconds, reach the timeout.
+   `0 result(s); no findings`, exit `0`. Run it with a 15-minute timeout:
+
+   ```bash
+   python tools/lcwext.py lint logicapp/integration.workflow.json --timeout PT15M
+   ```
+
+   LX-11 reports that the worst-case retry waits, 960 seconds, reach the timeout.
 
 4. **Run it for GCC High through two transient failures:**
 
@@ -225,7 +237,14 @@ python tools/lcwext.py check-workflow config/integrations.json --name cms-revoca
    python tools/lcwext.py run logicapp/integration.workflow.json tests/fixtures/trigger-leaver.json --cloud GCCHigh --fail 503,503
    ```
 
-   The callback goes to `https://graph.microsoft.us/v1.0/identityGovernance/…/resume` with the audience `https://graph.microsoft.us` and `operationStatus=completed`; `downstream: 3 call(s), 1 effect(s)`; the task is `completed`. With `--fail 503,503,503,503,503` the downstream gets 5 calls, the callback reports `failed`, and the task is `failed` at once instead of at the end of the wait. With `--deliveries 2` and no failures the downstream gets 2 calls and 1 effect.
+   The callback goes to `https://graph.microsoft.us/v1.0/identityGovernance/…/resume` with the audience `https://graph.microsoft.us` and `operationStatus=completed`; `downstream: 3 call(s), 1 effect(s)`; the task is `completed`. Now run it through five failures, then with two deliveries and no failures:
+
+   ```bash
+   python tools/lcwext.py run logicapp/integration.workflow.json tests/fixtures/trigger-leaver.json --cloud GCCHigh --fail 503,503,503,503,503
+   python tools/lcwext.py run logicapp/integration.workflow.json tests/fixtures/trigger-leaver.json --cloud GCCHigh --deliveries 2
+   ```
+
+   With five failures the downstream gets 5 calls, the callback reports `failed`, and the task is `failed` at once instead of at the end of the wait. With two deliveries the downstream gets 2 calls and 1 effect.
 
 5. **Build the deployment pieces:**
 
@@ -233,7 +252,18 @@ python tools/lcwext.py check-workflow config/integrations.json --name cms-revoca
    python tools/lcwext.py build config/integrations.json --name cms-revocation --tenant-id 6e3a1f2b-8c4d-4e5f-9a0b-1c2d3e4f5a6b
    ```
 
-   Two files in `out/`: `arm-cms-revocation.json`, whose `accessControl` turns SAS off and holds the `AADPOP` policy with six claims, and `extension-cms-revocation.json`, with `azureAdPopTokenAuthentication` and `timeoutDuration` `PT1H`. In `config/integrations.json`, set `azureCloud` to `AzureUSGovernment` and run it again: exit `1`, because Learn documents no PoP policy for Azure Government. Put it back.
+   Two files in `out/`: `arm-cms-revocation.json`, whose `accessControl` turns SAS off and holds the `AADPOP` policy with six claims, and `extension-cms-revocation.json`, with `azureAdPopTokenAuthentication` and `timeoutDuration` `PT1H`. The first command sets `azureCloud` to `AzureUSGovernment` in `config/integrations.json`; then build again:
+
+   ```bash
+   sed -i 's/"azureCloud": "AzureCloud"/"azureCloud": "AzureUSGovernment"/' config/integrations.json
+   python tools/lcwext.py build config/integrations.json --name cms-revocation --tenant-id 6e3a1f2b-8c4d-4e5f-9a0b-1c2d3e4f5a6b
+   ```
+
+   Exit `1`, because Learn documents no PoP policy for Azure Government. Put it back:
+
+   ```bash
+   sed -i 's/"azureCloud": "AzureUSGovernment"/"azureCloud": "AzureCloud"/' config/integrations.json
+   ```
 
 6. **Check the read-backs:**
 
@@ -242,20 +272,58 @@ python tools/lcwext.py check-workflow config/integrations.json --name cms-revoca
    python tools/lcwext.py check-workflow config/integrations.json --name cms-revocation --extension-id c1d2e3f4-a5b6-4c7d-8e9f-0a1b2c3d4e01 tests/fixtures/workflow-get-leaver.json
    ```
 
-   Both `0 result(s); no findings`. In the workflow fixture, give the custom task `executionSequence` 0 and run the second command again: WX-03 twice, because the block no longer comes first.
+   Both `0 result(s); no findings`. The first command writes a copy of the workflow fixture in which the custom task has `executionSequence` 0; then check the copy:
 
-7. **Run the tests:** `python -m unittest discover -s tests -v`.
+   ```bash
+   sed 's/"executionSequence": 3, "displayName": "CMS/"executionSequence": 0, "displayName": "CMS/' tests/fixtures/workflow-get-leaver.json > workflow-seq0.json
+   python tools/lcwext.py check-workflow config/integrations.json --name cms-revocation --extension-id c1d2e3f4-a5b6-4c7d-8e9f-0a1b2c3d4e01 workflow-seq0.json
+   ```
+
+   WX-03 twice, because the block no longer comes first.
+
+7. **Run the tests:**
+
+   ```bash
+   python -m unittest discover -s tests -v
+   ```
 
 **Expected result:** 55 tests passing, and each difference in the table above seen with your own eyes.
 
 ## Lab 2: test tenant
 
-Use a test tenant with Microsoft Entra ID Governance licenses and a test Azure subscription, never production, with fictional test users. You need Lifecycle Workflows Administrator in the tenant and Logic App Contributor, Contributor or Owner on the resource group; Logic App Operator isn't enough.[^c05-ext][^c05-create]
+Use a test tenant with Microsoft Entra ID Governance licenses and a test Azure subscription, never production, with fictional test users. You need Lifecycle Workflows Administrator in the tenant and Logic App Contributor, Contributor or Owner on the resource group; Logic App Operator isn't enough.[^c05-ext][^c05-create] Work in `examples/lifecycle-extensions`. You'll replace: `<tenant-id>` (the test tenant's ID), `<extension-id>` (the custom task extension's ID), `<workflow-id>` (the test workflow's ID), `<subscription-id>` and `<resource-group>` (the test subscription and resource group that hold the Logic App).
 
 1. **Create the extension and its Logic App in the admin center.** Follow Learn's procedure: **ID Governance** > **Lifecycle workflows** > **Custom task extension** > **Create custom task extension**, choose **Launch and wait**, a one-hour wait, **System-assigned managed identity** for response authorization, and **Create new Logic App** in your test resource group with the registry's name.[^c05-trigger] This creates the Logic App with Learn's definition, the managed identity, the PoP authorization policy and the extension's authorized app.
-2. **Record what the admin center made.** Read the extension with `GET /identityGovernance/lifecycleWorkflows/customTaskExtensions/{id}`, save it over `tests/fixtures/extension-get.json`, and run `check-extension`. Read the Logic App through Azure Resource Manager (`GET …/providers/Microsoft.Logic/workflows/{name}?api-version=2016-06-01`, which Learn says returns the policies[^c05-la-security]) and compare its `accessControl` with `out/arm-cms-revocation.json`. Look up `GET /servicePrincipals(appId='ce79fdc4-cd1d-4ea5-8139-e74d7dbe0bb7')` and record its display name. Any difference is a finding against the builder.
+2. **Record what the admin center made.** Read the extension with `GET /identityGovernance/lifecycleWorkflows/customTaskExtensions/{id}`, save it over `tests/fixtures/extension-get.json`, and run `check-extension`:
+
+   ```powershell
+   Connect-MgGraph -Scopes 'LifecycleWorkflows.ReadWrite.All', 'Application.Read.All' -Environment Global
+   Invoke-MgGraphRequest -Method GET -Uri '/v1.0/identityGovernance/lifecycleWorkflows/customTaskExtensions/<extension-id>' -OutputType Json |
+       Set-Content tests/fixtures/extension-get.json
+   python tools/lcwext.py check-extension config/integrations.json --name cms-revocation tests/fixtures/extension-get.json
+   ```
+
+   Read the Logic App through Azure Resource Manager (`GET …/providers/Microsoft.Logic/workflows/{name}?api-version=2016-06-01`, which Learn says returns the policies[^c05-la-security]) and print its `accessControl` beside the one in `out/arm-cms-revocation.json`. Then look up `GET /servicePrincipals(appId='ce79fdc4-cd1d-4ea5-8139-e74d7dbe0bb7')` and record its display name:
+
+   ```powershell
+   az rest --method get --url '/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.Logic/workflows/la-lcw-cms-revocation?api-version=2016-06-01' --query properties.accessControl
+   python -c "import json; print(json.dumps(json.load(open('out/arm-cms-revocation.json'))['resources'][0]['properties']['accessControl'], indent=2))"
+   (Invoke-MgGraphRequest -Method GET -Uri "/v1.0/servicePrincipals(appId='ce79fdc4-cd1d-4ea5-8139-e74d7dbe0bb7')").displayName
+   ```
+
+   Any difference is a finding against the builder.
 3. **Replace the definition with the program's.** In code view, paste `logicapp/integration.workflow.json`; set the parameter values from the ARM file, with `integrationUri` pointing at your test instance of the downstream system or at a test receiver that answers `200` and logs the `Idempotency-Key` header.
-4. **Build a test workflow.** A custom leaver workflow, on demand only, with *Disable user account*, *Revoke all refresh tokens for user*, then *Run a custom task extension* with this extension. Read it with `GET /identityGovernance/lifecycleWorkflows/workflows/{id}?$expand=tasks` and run `check-workflow`. Add its ID to the registry's `workflows`, rebuild, and update the Logic App's `operations` parameter.
+4. **Build a test workflow.** A custom leaver workflow, on demand only, with *Disable user account*, *Revoke all refresh tokens for user*, then *Run a custom task extension* with this extension. Read it with `GET /identityGovernance/lifecycleWorkflows/workflows/{id}?$expand=tasks` and run `check-workflow`; then add its ID to the registry's `workflows` and rebuild:
+
+   ```powershell
+   Invoke-MgGraphRequest -Method GET -Uri '/v1.0/identityGovernance/lifecycleWorkflows/workflows/<workflow-id>?$expand=tasks' -OutputType Json |
+       Set-Content workflow-get-test.json
+   python tools/lcwext.py check-workflow config/integrations.json --name cms-revocation --extension-id <extension-id> workflow-get-test.json
+   python -c "import json; p = 'config/integrations.json'; c = json.load(open(p)); c['integrations'][0]['workflows'].append({'workflowId': '<workflow-id>', 'scenario': 'leaver', 'operation': 'revoke'}); json.dump(c, open(p, 'w'), indent=2)"
+   python tools/lcwext.py build config/integrations.json --name cms-revocation --tenant-id <tenant-id>
+   ```
+
+   Update the Logic App's `operations` parameter from the rebuilt `out/arm-cms-revocation.json`.
 5. **Run it on demand for one fictional user.** In the Logic App's run history, `Check_request` should pass. If the run ends in `Reject_request`, the real `callbackUriPath` differs from the documented shape: turn off **Secure Outputs** on the trigger for one more run, record the path, turn it back on, and file the difference against research gap 11. The task processing result should end `completed`.
 6. **Drill the failure path.** Point `integrationUri` at a receiver that answers `503`, run again for another fictional user, and confirm the task ends `failed` within minutes, not at the end of the hour. Confirm the receiver logged one key per task processing result.
 7. **Back it out.** Remove the custom task from the workflow and delete the workflow; then delete the custom task extension, which Learn allows only when no task references it.[^c05-remove] Delete the Logic App and the test resource group, remove the role assignments you added, and delete the test users.

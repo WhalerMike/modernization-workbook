@@ -283,7 +283,13 @@ You run each check against the kit's fictional tenant and read each finding agai
    ]
    ```
 
-   `cy` has never signed in and is older than 90 days. Open `tests/fixtures/users.json`: `ben`'s interactive sign-in was May 1, but his `lastSignIn` is July 1, his non-interactive date, because the check uses the later of the two. `dee` has never signed in either, but her account is less than 90 days old; `eve` is disabled; and the guest isn't a member. None of them is listed.
+   `cy` has never signed in and is older than 90 days. List each user in `tests/fixtures/users.json` with its state, type, creation date and the two sign-in dates:
+
+   ```bash
+   python -c "import json; [print(u['userPrincipalName'], u['accountEnabled'], u['userType'], u['createdDateTime'], (u.get('signInActivity') or {}).get('lastSignInDateTime'), (u.get('signInActivity') or {}).get('lastNonInteractiveSignInDateTime')) for u in json.load(open('tests/fixtures/users.json'))['users']]"
+   ```
+
+   `ben`'s interactive sign-in was May 1, but his `lastSignIn` is July 1, his non-interactive date, because the check uses the later of the two. `dee` has never signed in either, but her account is less than 90 days old; `eve` is disabled; and the guest isn't a member. None of them is listed.
 
 2. Export Conditional Access.
 
@@ -381,6 +387,7 @@ You run each check against the kit's fictional tenant and read each finding agai
 
    ```bash
    python -m pytest -q -p no:cacheprovider tests/python/test_graphkit_and_tasks.py
+   rm -rf out
    ```
 
    Expected: `20 passed`.
@@ -393,7 +400,8 @@ You run each check against the kit's fictional tenant and read each finding agai
 
 You run the same checks read-only against a test tenant and compare them with the Microsoft Entra admin center.
 
-- **You need:** a test tenant in the worldwide or GCC cloud, never production, with fictional users; Microsoft Entra ID P1 or P2 for `signInActivity` and PIM data as [Unit 3](#users-and-sign-in-activity) notes; a Privileged Role Administrator to grant admin consent ([Module 1](ms-automation-foundations.md#signing-in-as-a-workload)); Python with `pip install azure-identity`, or Microsoft Graph PowerShell.
+- **You need:** a test tenant in the worldwide or GCC cloud, never production, with fictional users; Microsoft Entra ID P1 or P2 for `signInActivity` and PIM data as [Unit 3](#users-and-sign-in-activity) notes; a Privileged Role Administrator to grant admin consent ([Module 1](ms-automation-foundations.md#signing-in-as-a-workload)); Python with the `azure-identity` package (step 3 installs it), or Microsoft Graph PowerShell.
+- **You'll replace:** `<tenant-id>` (the test tenant's ID), `<app-id>` (the app's application (client) ID), `<thumbprint>` (its certificate's thumbprint, for PowerShell); `app.pem` is the PEM file with the certificate and its private key. Work in `examples/ms-automation`.
 
 1. **Register one app** in the tenant's own cloud, with a certificate credential and no secret.
 2. **Grant only the application permissions for the checks you run**, and admin consent:
@@ -406,10 +414,36 @@ You run the same checks read-only against a test tenant and compare them with th
    | `app-credentials` | `Application.Read.All` |
    | `mfa-registration` | `AuditLog.Read.All` |
 
-   These are the lists `permissions_for(load_calls('<task>'))` prints from `graph-calls.json`.
-3. **Run the checks.** In Python: `python python/entra_tasks.py --cloud gcc --tenant <tenant-id> --client <app-id> --cert app.pem pim-report`, and the same for each task (`ca-export` needs `--out <folder>`). The client checks the token's permissions first: a missing one stops the run before any Graph call, and an extra one prints a warning. In PowerShell: `Connect-FmwGraph -Cloud gcc -TenantId <tenant-id> -ClientId <app-id> -CertificateThumbprint <thumbprint>`, then `Invoke-FmwEntraTask -Task pim-report`.
+   These are the lists `permissions_for(load_calls('<task>'))` prints from `graph-calls.json`:
+
+   ```bash
+   python -c "import sys; sys.path.insert(0, 'python'); from graphkit import load_calls, permissions_for; [print(t, permissions_for(load_calls(t))) for t in ('stale-users', 'ca-export', 'pim-report', 'app-credentials', 'mfa-registration')]"
+   ```
+
+3. **Run the checks.** In Python, one command per task (`ca-export` needs `--out <folder>`):
+
+   ```bash
+   pip install azure-identity
+   python python/entra_tasks.py --cloud gcc --tenant <tenant-id> --client <app-id> --cert app.pem stale-users
+   python python/entra_tasks.py --cloud gcc --tenant <tenant-id> --client <app-id> --cert app.pem ca-export --out ca
+   python python/entra_tasks.py --cloud gcc --tenant <tenant-id> --client <app-id> --cert app.pem pim-report
+   python python/entra_tasks.py --cloud gcc --tenant <tenant-id> --client <app-id> --cert app.pem app-credentials
+   python python/entra_tasks.py --cloud gcc --tenant <tenant-id> --client <app-id> --cert app.pem mfa-registration
+   ```
+
+   The client checks the token's permissions first: a missing one stops the run before any Graph call, and an extra one prints a warning. In PowerShell:
+
+   ```powershell
+   Import-Module ./powershell/FmwGraph.psm1
+   Connect-FmwGraph -Cloud gcc -TenantId <tenant-id> -ClientId <app-id> -CertificateThumbprint <thumbprint>
+   Invoke-FmwEntraTask -Task pim-report
+   ```
 4. **Compare** each result with the admin center: the Global Administrator count and permanent assignments in PIM, the policy states in Conditional Access, and the credentials under App registrations. Record which method names your tenant's registration report uses ([Unit 5](#authentication-methods)).
 5. **Back it out.** Remove the permissions, delete the app registration and its certificate, and delete the output folders and saved results: they hold the tenant's user names and policies.
+
+   ```bash
+   rm -rf ca
+   ```
 
 ## Unit 10: Knowledge check
 

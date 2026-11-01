@@ -369,7 +369,13 @@ You run each check against the kit's fictional fleet of nine devices and six Aut
      ]
    ```
 
-   `KSK-0001`'s fixture date is a placeholder before 1971, so it counts as no sync. Run it again with `--validity-days 30` after `stale-checkin`: `WS-0004`, at 20 days, drops out.
+   `KSK-0001`'s fixture date is a placeholder before 1971, so it counts as no sync. Run it again with `--validity-days 30` after `stale-checkin`:
+
+   ```bash
+   python python/intune_tasks.py --from-json tests/fixtures/intune.json --as-of 2026-10-30T00:00:00Z stale-checkin --validity-days 30
+   ```
+
+   `WS-0004`, at 20 days, drops out.
 
 4. Check encryption and the OS floor.
 
@@ -428,7 +434,8 @@ You run each check against the kit's fictional fleet of nine devices and six Aut
 
 You run the checks read-only against a test tenant and compare them with the Intune admin center.
 
-- **You need:** a test tenant in the worldwide or GCC cloud, never production, with an active Intune license and a few enrolled test devices; a Privileged Role Administrator to grant admin consent ([Module 1](ms-automation-foundations.md#signing-in-as-a-workload)); Python with `pip install azure-identity`, or Microsoft Graph PowerShell.
+- **You need:** a test tenant in the worldwide or GCC cloud, never production, with an active Intune license and a few enrolled test devices; a Privileged Role Administrator to grant admin consent ([Module 1](ms-automation-foundations.md#signing-in-as-a-workload)); Python with the `azure-identity` package (step 3 installs it), or Microsoft Graph PowerShell.
+- **You'll replace:** `<tenant-id>` (the test tenant's ID), `<app-id>` (the app's application (client) ID), `<thumbprint>` (its certificate's thumbprint, for PowerShell); `app.pem` is the PEM file with the certificate and its private key. Work in `examples/ms-automation`.
 
 1. **Register one app** in the tenant's own cloud, with a certificate credential and no secret.
 2. **Grant only the application permissions for the checks you run**, and admin consent:
@@ -440,7 +447,26 @@ You run the checks read-only against a test tenant and compare them with the Int
    | `autopilot-profiles` (beta) | `DeviceManagementServiceConfig.Read.All` |
 
    Never grant `DeviceManagementManagedDevices.PrivilegedOperations.All` to this app ([Unit 5](#remote-actions)).
-3. **Run the checks.** In Python: `python python/intune_tasks.py --cloud gcc --tenant <tenant-id> --client <app-id> --cert app.pem noncompliant-devices`, and the same for each task. In PowerShell: `Connect-FmwGraph -Cloud gcc -TenantId <tenant-id> -ClientId <app-id> -CertificateThumbprint <thumbprint>`, then `Invoke-FmwIntuneTask -Task device-posture`. A missing permission stops the run before any Graph call.
+3. **Run the checks.** In Python, one command per task:
+
+   ```bash
+   pip install azure-identity
+   python python/intune_tasks.py --cloud gcc --tenant <tenant-id> --client <app-id> --cert app.pem noncompliant-devices
+   python python/intune_tasks.py --cloud gcc --tenant <tenant-id> --client <app-id> --cert app.pem compliance-coverage
+   python python/intune_tasks.py --cloud gcc --tenant <tenant-id> --client <app-id> --cert app.pem stale-checkin
+   python python/intune_tasks.py --cloud gcc --tenant <tenant-id> --client <app-id> --cert app.pem device-posture
+   python python/intune_tasks.py --cloud gcc --tenant <tenant-id> --client <app-id> --cert app.pem autopilot-profiles
+   ```
+
+   In PowerShell:
+
+   ```powershell
+   Import-Module ./powershell/FmwGraph.psm1
+   Connect-FmwGraph -Cloud gcc -TenantId <tenant-id> -ClientId <app-id> -CertificateThumbprint <thumbprint>
+   Invoke-FmwIntuneTask -Task device-posture
+   ```
+
+   A missing permission stops the run before any Graph call.
 4. **Compare** each result with the Intune admin center's compliance, device and Autopilot views, and record the open review items: whether a status row's `id` matches a managed device's, and whether `$select` returns every selected property ([Status and review](#status-and-review)).
 5. **Back it out.** Remove the permissions, delete the app registration and its certificate, and delete the saved results: they hold device names and serial numbers.
 
