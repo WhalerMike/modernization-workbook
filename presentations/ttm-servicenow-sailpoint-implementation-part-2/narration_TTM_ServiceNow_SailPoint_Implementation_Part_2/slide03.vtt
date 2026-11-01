@@ -1,0 +1,84 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.537
+In the actuation gate, the
+ticket authorizes a machine.
+
+2
+00:00:03.537 --> 00:00:08.188
+For owner-governed access,
+SailPoint's connectors do the work:
+
+3
+00:00:08.188 --> 00:00:12.200
+accounts, groups, roles,
+licenses and access packages.
+
+4
+00:00:12.200 --> 00:00:15.109
+When the Entra connector
+disables an account,
+
+5
+00:00:15.109 --> 00:00:18.325
+it also signs the user out
+of any existing sessions.
+
+6
+00:00:18.325 --> 00:00:22.033
+For low-authority tasks,
+ServiceNow's Entra spoke can act,
+
+7
+00:00:22.033 --> 00:00:24.400
+as long as its actions cover the task.
+
+8
+00:00:24.400 --> 00:00:25.987
+Check what it really covers.
+
+9
+00:00:25.987 --> 00:00:32.338
+It has no M F A reset action, and its reset
+action works only for cloud-only users.
+
+10
+00:00:32.338 --> 00:00:36.844
+When a person does have to act, they
+activate an eligible role through PIM,
+
+11
+00:00:36.844 --> 00:00:39.624
+with the ticket number
+as the justification.
+
+12
+00:00:39.624 --> 00:00:42.788
+PIM doesn't check that
+number, so a SIEM rule does.
+
+13
+00:00:42.788 --> 00:00:45.575
+And resetting someone's
+authentication methods
+
+14
+00:00:45.575 --> 00:00:48.363
+stays with the help desk's
+identity verification.
+
+15
+00:00:48.363 --> 00:00:53.224
+A connector's M F A setting is not a
+substitute for verifying the person.
+
+16
+00:00:53.224 --> 00:00:56.190
+The prerequisites are the
+front door from gate four,
+
+17
+00:00:56.190 --> 00:00:59.980
+and the lanes decided in gate two,
+already written into the record.

@@ -1,0 +1,87 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.500
+Two more steps cover what
+the connectors can't.
+
+2
+00:00:02.500 --> 00:00:06.559
+SailPoint's service desk integration
+can't raise change requests,
+
+3
+00:00:06.559 --> 00:00:07.888
+which is the third gap.
+
+4
+00:00:07.888 --> 00:00:10.484
+So a ServiceNow flow raises a standard,
+
+5
+00:00:10.484 --> 00:00:15.188
+normal or emergency change from the
+request, based on its change class.
+
+6
+00:00:15.188 --> 00:00:17.838
+The kit plans that flow
+for its second pass.
+
+7
+00:00:17.838 --> 00:00:22.487
+Until then, the approver raises the
+change record by hand and links it.
+
+8
+00:00:22.487 --> 00:00:25.450
+Either way, closure still
+waits for the re-read.
+
+9
+00:00:25.450 --> 00:00:29.547
+Disconnected applications, the
+ones with only an admin console,
+
+10
+00:00:29.547 --> 00:00:31.788
+run in the declared-exception lane.
+
+11
+00:00:31.788 --> 00:00:36.273
+That means a service desk ticket, a
+named approver before the session,
+
+12
+00:00:36.273 --> 00:00:40.208
+a time-limited PIM activation,
+a recorded session, an end date,
+
+13
+00:00:40.208 --> 00:00:44.300
+and a plan-of-action item to
+automate or retire the application.
+
+14
+00:00:44.300 --> 00:00:47.150
+The danger is the
+exception that never ends.
+
+15
+00:00:47.150 --> 00:00:49.500
+End dates and reviews are what stop it.
+
+16
+00:00:49.500 --> 00:00:53.080
+The ServiceNow flow chooses
+the change type from the class,
+
+17
+00:00:53.080 --> 00:00:57.172
+so a pre-authorized standard change,
+a normal change with approvals,
+
+18
+00:00:57.172 --> 00:01:00.890
+or an emergency change each
+leave the record the class needs.

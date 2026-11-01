@@ -1,0 +1,77 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.007
+Every lane writes the same record,
+
+2
+00:00:02.007 --> 00:00:05.850
+and this slide shows where each
+field comes from on these products.
+
+3
+00:00:05.850 --> 00:00:11.288
+Origin is the SailPoint trigger, the
+reconciliation finding, or the catalog request.
+
+4
+00:00:11.288 --> 00:00:16.050
+Owner and clock come from the ServiceNow
+assignment, the severity and the due date.
+
+5
+00:00:16.050 --> 00:00:20.750
+Approval is ServiceNow's for low-authority
+tasks, SailPoint's for owner-governed
+
+6
+00:00:20.750 --> 00:00:25.100
+access, and the authorizing official's
+acceptance for autonomous classes.
+
+7
+00:00:25.100 --> 00:00:28.200
+The executing identity is
+the connector's or the
+
+8
+00:00:28.200 --> 00:00:31.688
+spoke's service principal, or
+a person's PIM activation.
+
+9
+00:00:31.688 --> 00:00:36.588
+What ran is the provisioning event, the
+workflow version, or the session recording.
+
+10
+00:00:36.588 --> 00:00:39.012
+The result is the re-read evidence.
+
+11
+00:00:39.012 --> 00:00:43.013
+And closure is the closed record,
+with its hash and attachment.
+
+12
+00:00:43.013 --> 00:00:44.913
+The mapping is the program's.
+
+13
+00:00:44.913 --> 00:00:47.646
+The authorizing official and the assessors
+
+14
+00:00:47.646 --> 00:00:50.601
+decide whether a control
+is actually satisfied.
+
+15
+00:00:50.601 --> 00:00:56.563
+Today the workbook's export fills origin,
+owner, result and closure from ServiceNow.
+
+16
+00:00:56.563 --> 00:00:59.880
+The other three wait for a
+later pass that actuates.

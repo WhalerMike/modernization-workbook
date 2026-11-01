@@ -1,0 +1,77 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.750
+The workbook's sixth chapter runs the
+reconciliation over saved exports.
+
+2
+00:00:04.750 --> 00:00:09.837
+On day one, the fictional estate shows
+attribute drift, missing identities,
+
+3
+00:00:09.837 --> 00:00:13.775
+orphan accounts, stale access,
+and one unauthorized write.
+
+4
+00:00:13.775 --> 00:00:18.713
+Credential and schema drift are reported
+as not computed, never as zero.
+
+5
+00:00:18.713 --> 00:00:22.043
+On day two, HR corrects
+a department to the value
+
+6
+00:00:22.043 --> 00:00:25.374
+someone had already typed
+into Entra ID by hand.
+
+7
+00:00:25.374 --> 00:00:26.863
+The counts don't change.
+
+8
+00:00:26.863 --> 00:00:29.963
+A comparison by finding
+I D shows what moved.
+
+9
+00:00:29.963 --> 00:00:33.500
+Entra now matches HR, so
+that finding resolves.
+
+10
+00:00:33.500 --> 00:00:37.388
+SailPoint hasn't re-read
+yet, so a new finding opens.
+
+11
+00:00:37.388 --> 00:00:39.533
+The unauthorized write stays open,
+
+12
+00:00:39.533 --> 00:00:43.526
+because HR agreeing afterward
+doesn't make the write authorized.
+
+13
+00:00:43.526 --> 00:00:47.352
+The comparison refuses two runs
+that computed different classes,
+
+14
+00:00:47.352 --> 00:00:50.413
+since otherwise a skipped
+class would look resolved.
+
+15
+00:00:50.413 --> 00:00:53.038
+And a resolved finding is only a lead.
+
+16
+00:00:53.038 --> 00:00:55.440
+Its record still closes on a re-read.

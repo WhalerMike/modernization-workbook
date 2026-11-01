@@ -1,0 +1,69 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.872
+Welcome to Part 1 of the
+implementation series
+
+2
+00:00:02.872 --> 00:00:05.912
+for Ticket-to-Machine on
+ServiceNow and SailPoint.
+
+3
+00:00:05.912 --> 00:00:10.350
+The Federal Modernization Workbook's
+Book 13's loop is vendor-neutral.
+
+4
+00:00:10.350 --> 00:00:15.075
+This guide builds it on two named products
+to show what that takes, with ServiceNow
+
+5
+00:00:15.075 --> 00:00:19.800
+as the front door and SailPoint Identity
+Security Cloud for identity governance.
+
+6
+00:00:19.800 --> 00:00:22.213
+It's an example, not an endorsement.
+
+7
+00:00:22.213 --> 00:00:24.712
+The guide's argument fits in one line.
+
+8
+00:00:24.712 --> 00:00:28.762
+Two products can carry the loop,
+but neither one closes it alone.
+
+9
+00:00:28.762 --> 00:00:33.512
+The ticket has to authorize a machine,
+and only a re-read can close the ticket.
+
+10
+00:00:33.512 --> 00:00:38.432
+Part 1 covers the first four gates: the
+boundary, the writers and approvers,
+
+11
+00:00:38.432 --> 00:00:41.738
+the sources and starting
+drift, and the front door.
+
+12
+00:00:41.738 --> 00:00:45.762
+Part 2 covers actuation,
+the re-read, and the tempo.
+
+13
+00:00:45.762 --> 00:00:48.713
+The kit's tests run
+against mocked responses.
+
+14
+00:00:48.713 --> 00:00:51.700
+They prove the logic,
+not the live integration.

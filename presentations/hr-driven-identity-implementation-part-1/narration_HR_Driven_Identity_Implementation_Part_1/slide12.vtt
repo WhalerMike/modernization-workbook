@@ -1,0 +1,79 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.762
+The third gate makes
+joiners ready on day one.
+
+2
+00:00:02.762 --> 00:00:07.338
+The account already exists, disabled,
+because the pipeline sent it early.
+
+3
+00:00:07.338 --> 00:00:11.121
+Build just a few workflows:
+pre-hire, day-one, mover,
+
+4
+00:00:11.121 --> 00:00:15.850
+leaver, post-leaver, and the
+rehire and conversion workflows.
+
+5
+00:00:15.850 --> 00:00:19.812
+Scope them by coded attributes,
+never one per organization.
+
+6
+00:00:19.812 --> 00:00:23.371
+Microsoft gives two different
+ceilings for workflows,
+
+7
+00:00:23.371 --> 00:00:27.162
+fifty on one page and a hundred
+on another, so budget to fifty.
+
+8
+00:00:27.162 --> 00:00:29.926
+A workflow can hold up
+to twenty-five tasks.
+
+9
+00:00:29.926 --> 00:00:33.164
+The tenant schedule runs
+every three hours by default
+
+10
+00:00:33.164 --> 00:00:35.900
+and can be set anywhere
+from one to twenty-four.
+
+11
+00:00:35.900 --> 00:00:40.187
+Every workflow shares it, so set
+it once, with the leaver in mind.
+
+12
+00:00:40.187 --> 00:00:42.488
+Set the hire time early in the day.
+
+13
+00:00:42.488 --> 00:00:46.324
+Give every scheduled workflow
+an execution limit a little
+
+14
+00:00:46.324 --> 00:00:49.612
+above a normal week, so an
+anomaly gets quarantined.
+
+15
+00:00:49.612 --> 00:00:54.000
+In the workbook's files, the day-one
+workflow doesn't enable the account.
+
+16
+00:00:54.000 --> 00:00:55.390
+The pipeline does.

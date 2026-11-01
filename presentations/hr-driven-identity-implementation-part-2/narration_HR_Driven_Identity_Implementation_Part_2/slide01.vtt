@@ -1,0 +1,67 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.850
+Welcome to Part 2 of the implementation
+series for HR-driven identity.
+
+2
+00:00:04.850 --> 00:00:08.995
+Part 1 named one writer for every
+account state, brought employees and
+
+3
+00:00:08.995 --> 00:00:12.925
+contractors in from their sources,
+and got joiners ready on day one.
+
+4
+00:00:12.925 --> 00:00:15.338
+Part 2 covers the last four gates.
+
+5
+00:00:15.338 --> 00:00:18.381
+First, access assigned from HR attributes,
+
+6
+00:00:18.381 --> 00:00:21.338
+with a review of what
+a move leaves behind.
+
+7
+00:00:21.338 --> 00:00:25.275
+Then PIV and CAC credentials
+tied to HR events.
+
+8
+00:00:25.275 --> 00:00:28.675
+Then separations, timed
+and proven from the logs.
+
+9
+00:00:28.675 --> 00:00:33.537
+And finally drift, metrics and
+the evidence an ISSO files.
+
+10
+00:00:33.537 --> 00:00:35.663
+The format is the same as Part 1.
+
+11
+00:00:35.663 --> 00:00:41.477
+Each gate gets its steps, the workbook's
+lab commands, the federal requirement
+
+12
+00:00:41.477 --> 00:00:47.200
+and evidence, availability in GCC and GCC
+High, an interim path, and a rollback.
+
+13
+00:00:47.200 --> 00:00:49.024
+Design guidance is labeled,
+
+14
+00:00:49.024 --> 00:00:52.800
+and the code is tested against
+fixtures, not a live tenant.

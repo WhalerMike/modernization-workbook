@@ -1,0 +1,74 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.914
+On the federal side, account management,
+least privilege and separation of duties
+
+2
+00:00:04.914 --> 00:00:09.850
+call for the policy exports, with their
+rules and the separation-of-duties settings.
+
+3
+00:00:09.850 --> 00:00:14.887
+Personnel transfer calls for the
+transfer-to-review times and the review decisions.
+
+4
+00:00:14.887 --> 00:00:20.012
+Account review results must be exported
+before Entra's thirty-day history closes.
+
+5
+00:00:20.012 --> 00:00:25.461
+CISA's baseline requires highly privileged
+roles to come only through a privileged
+
+6
+00:00:25.461 --> 00:00:29.681
+access system, so the ISSO shows
+PIM eligibility through packages,
+
+7
+00:00:29.681 --> 00:00:32.137
+and no standing role assigned by a rule.
+
+8
+00:00:32.137 --> 00:00:36.051
+To validate, compare membership
+before and after a test move.
+
+9
+00:00:36.051 --> 00:00:38.376
+No kit check reads the policies yet,
+
+10
+00:00:38.376 --> 00:00:41.825
+so keep the export and a
+clean group-membership scan.
+
+11
+00:00:41.825 --> 00:00:45.650
+Most features are available in
+Azure Government, with one gap.
+
+12
+00:00:45.650 --> 00:00:50.256
+Administrative units with dynamic
+membership aren't available there,
+
+13
+00:00:50.256 --> 00:00:53.925
+so GCC High uses assigned units,
+filled by a scheduled job.
+
+14
+00:00:53.925 --> 00:00:57.496
+To roll back, remove the
+policy, but keep the old dynamic
+
+15
+00:00:57.496 --> 00:01:01.060
+group until the package has
+run clean for a full cycle.

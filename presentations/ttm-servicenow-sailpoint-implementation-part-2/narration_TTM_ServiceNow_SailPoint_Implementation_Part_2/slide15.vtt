@@ -1,0 +1,84 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.637
+The guide is still a draft.
+
+2
+00:00:01.637 --> 00:00:06.893
+To move it to proved, build gates three
+to six in a ServiceNow developer instance
+
+3
+00:00:06.893 --> 00:00:11.512
+and a SailPoint sandbox, run the kit's
+lab items, and record the evidence.
+
+4
+00:00:11.512 --> 00:00:13.149
+Some questions are still open.
+
+5
+00:00:13.149 --> 00:00:17.665
+Is the full feature set available
+in SailPoint's FedRAMP environment,
+
+6
+00:00:17.665 --> 00:00:19.300
+and what is its A P I domain?
+
+7
+00:00:19.300 --> 00:00:21.738
+Are the apps in ServiceNow's
+government store?
+
+8
+00:00:21.738 --> 00:00:24.588
+And does the Entra spoke work in GCC High?
+
+9
+00:00:24.588 --> 00:00:28.925
+To build the code, use the developer
+workbook, Building Ticket-to-Machine.
+
+10
+00:00:28.925 --> 00:00:32.762
+It has eight chapters, each
+with labs that run on a laptop.
+
+11
+00:00:32.762 --> 00:00:34.693
+To learn the material in order,
+
+12
+00:00:34.693 --> 00:00:39.325
+use the learning path for Ticket-to-Machine
+on ServiceNow and SailPoint.
+
+13
+00:00:39.325 --> 00:00:43.312
+For the reasons behind it,
+see Book 13 and Book 15.
+
+14
+00:00:43.312 --> 00:00:45.725
+The loop, closed, looks like this.
+
+15
+00:00:45.725 --> 00:00:50.716
+The ticket authorizes a machine, the
+machine acts under a service identity,
+
+16
+00:00:50.716 --> 00:00:53.050
+and only a re-read closes the ticket.
+
+17
+00:00:53.050 --> 00:00:57.101
+The guide was rewritten as
+a gated guide on November 1,
+
+18
+00:00:57.101 --> 00:01:00.650
+2026, and that rewrite
+hasn't been reviewed yet.

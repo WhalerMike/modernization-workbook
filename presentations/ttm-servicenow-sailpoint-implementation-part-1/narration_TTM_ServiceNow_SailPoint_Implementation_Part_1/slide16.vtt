@@ -1,0 +1,78 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.056
+On the federal side,
+change control calls for
+
+2
+00:00:03.056 --> 00:00:05.900
+records with an origin,
+an owner and a clock.
+
+3
+00:00:05.900 --> 00:00:10.588
+Risk response calls for due dates
+by severity, plus an overdue list.
+
+4
+00:00:10.588 --> 00:00:13.513
+Continuous monitoring calls
+for the finding queue.
+
+5
+00:00:13.513 --> 00:00:17.937
+Separation of duties calls for
+approval history on every request.
+
+6
+00:00:17.937 --> 00:00:22.596
+The fully automated version of change
+control is in the High baseline only,
+
+7
+00:00:22.596 --> 00:00:24.850
+so at Moderate it's adopted as design.
+
+8
+00:00:24.850 --> 00:00:28.859
+To validate, the kit's tests
+cover the priority, the due date,
+
+9
+00:00:28.859 --> 00:00:32.450
+the tempo, duplicate removal
+and rejected payloads.
+
+10
+00:00:32.450 --> 00:00:36.598
+On a live system, one change
+should raise exactly one finding,
+
+11
+00:00:36.598 --> 00:00:38.838
+and a repeat should merge into it.
+
+12
+00:00:38.838 --> 00:00:42.837
+The SailPoint apps aren't yet confirmed
+in ServiceNow's government store.
+
+13
+00:00:42.837 --> 00:00:46.874
+Without the catalog app, a ServiceNow
+flow can create the request.
+
+14
+00:00:46.874 --> 00:00:51.100
+Without the workflows, push the
+reconciliation's findings on a schedule.
+
+15
+00:00:51.100 --> 00:00:54.900
+To roll back, disable the
+workflows and catalog items.
+
+16
+00:00:54.900 --> 00:00:57.600
+Findings already raised stay on record.

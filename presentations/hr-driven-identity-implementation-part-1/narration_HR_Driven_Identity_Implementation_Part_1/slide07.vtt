@@ -1,0 +1,79 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.287
+Here's the federal side of the first gate.
+
+2
+00:00:02.287 --> 00:00:07.038
+Account management and identifier management
+are both in the Moderate baseline.
+
+3
+00:00:07.038 --> 00:00:10.169
+For those, the ISSO keeps
+the signed register,
+
+4
+00:00:10.169 --> 00:00:14.062
+with its lifecycle rows and
+its versioned scope filter.
+
+5
+00:00:14.062 --> 00:00:17.714
+Audit review covers writes
+made outside the named writer,
+
+6
+00:00:17.714 --> 00:00:21.974
+and the evidence is the saved queries
+plus the AD auditing settings.
+
+7
+00:00:21.974 --> 00:00:25.613
+The feed also needs a privacy
+determination for each flow.
+
+8
+00:00:25.613 --> 00:00:28.425
+To validate, two kit checks
+confirm there are no
+
+9
+00:00:28.425 --> 00:00:31.525
+duplicate keys and that the
+key fields are filled in.
+
+10
+00:00:31.525 --> 00:00:33.963
+But they measure values, not writers.
+
+11
+00:00:33.963 --> 00:00:36.299
+Nothing in the kit
+reads who can write yet.
+
+12
+00:00:36.299 --> 00:00:40.794
+So the evidence for writers is the
+delegation export, the permission review,
+
+13
+00:00:40.794 --> 00:00:44.788
+and a clean run of the saved queries
+over the pilot's last thirty days.
+
+14
+00:00:44.788 --> 00:00:49.001
+Everything this gate uses is
+available in both government clouds.
+
+15
+00:00:49.001 --> 00:00:51.788
+To roll back, make a
+signed register change.
+
+16
+00:00:51.788 --> 00:00:56.660
+A removed permission comes back only
+through a recorded change, with an end date.

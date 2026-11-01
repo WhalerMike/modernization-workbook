@@ -1,0 +1,73 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.525
+Here are Part 2's four gates on one page.
+
+2
+00:00:02.525 --> 00:00:07.248
+The access gate is done when department
+access is assigned automatically, the
+
+3
+00:00:07.248 --> 00:00:09.646
+supervisor HR names approves requests,
+
+4
+00:00:09.646 --> 00:00:12.625
+and anything left over
+after a move gets reviewed.
+
+5
+00:00:12.625 --> 00:00:16.982
+The credentials gate is done when
+every card issuer is trusted with a
+
+6
+00:00:16.982 --> 00:00:21.875
+revocation list, and cards are issued
+and revoked by HR and contractor events.
+
+7
+00:00:21.875 --> 00:00:25.947
+The separation gate is done when a
+leaver's access is blocked first,
+
+8
+00:00:25.947 --> 00:00:28.983
+credentials and devices
+are revoked in parallel,
+
+9
+00:00:28.983 --> 00:00:32.463
+and the account is deleted
+last, with the timing measured.
+
+10
+00:00:32.463 --> 00:00:36.156
+The drift gate is done when drift
+is found and fixed at its source,
+
+11
+00:00:36.156 --> 00:00:39.362
+and the metrics are reported
+on the monitoring cadence.
+
+12
+00:00:39.362 --> 00:00:44.062
+Each gate has its own rollback, except
+the last, which is a standing loop.
+
+13
+00:00:44.062 --> 00:00:45.887
+Together they finish the track.
+
+14
+00:00:45.887 --> 00:00:49.370
+Every entitlement traces
+back to a rule and a record,
+
+15
+00:00:49.370 --> 00:00:53.230
+and every separation blocks
+in time and leaves evidence.

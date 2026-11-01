@@ -1,0 +1,79 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.118
+On the federal side, external system
+services calls for the Marketplace
+
+2
+00:00:04.118 --> 00:00:08.050
+listings with the date you read them,
+plus the vendor's written answers.
+
+3
+00:00:08.050 --> 00:00:13.225
+FedRAMP authorization calls for the package
+or letter for each offering you rely on.
+
+4
+00:00:13.225 --> 00:00:16.765
+Information exchange calls
+for a data-flow record:
+
+5
+00:00:16.765 --> 00:00:19.462
+source, destination, identity and data.
+
+6
+00:00:19.462 --> 00:00:22.433
+Least privilege and
+authenticator management call
+
+7
+00:00:22.433 --> 00:00:25.337
+for the identity register
+and two kit checks' output.
+
+8
+00:00:25.337 --> 00:00:29.877
+One check lists integration identities
+with high-privilege Graph roles,
+
+9
+00:00:29.877 --> 00:00:31.737
+each needing a justification.
+
+10
+00:00:31.737 --> 00:00:34.588
+The other flags credentials
+that last too long.
+
+11
+00:00:34.588 --> 00:00:38.850
+Most of this gate is a manual record,
+and there's nothing to roll back.
+
+12
+00:00:38.850 --> 00:00:41.790
+The guide uses SailPoint's
+cloud product because it
+
+13
+00:00:41.790 --> 00:00:44.662
+has a public listing and
+reaches both directories.
+
+14
+00:00:44.662 --> 00:00:49.563
+The self-hosted product fits an agency
+that needs High or an in-boundary system.
+
+15
+00:00:49.563 --> 00:00:52.886
+If a feature isn't confirmed
+in the FedRAMP environment,
+
+16
+00:00:52.886 --> 00:00:55.540
+build it in the sandbox
+and hold production.

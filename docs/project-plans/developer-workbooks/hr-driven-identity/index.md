@@ -49,7 +49,7 @@ The target estate is Microsoft 365 GCC (Moderate) with commercial Azure. GCC use
 | Design | Why HR is the source of authority, the attribute authority map, joiner, mover and leaver, credentials, access, drift and the phase model | [Book 03](../../../books/b03-hr-identity/index.md) |
 | Schedule | The project's tasks, decisions and gates | [Identity Lifecycle & Provisioning plan](../../identity-lifecycle.md) |
 | Code it builds on | The middleware, Graph clients, validation kit, dynamic rules, custom task extensions and drift pipeline | [Book 19](../../../books/b19-developer-workbook/index.md) |
-| Decks | One deck series per guide, at the level of its gates | Planned |
+| Decks | One deck series per guide, at the level of its gates: two narrated parts, G1–G3 and G4–G7; the decks and videos come with the next edition | [Presentations](../../../presentations/index.md#implementation-hr-driven-identity-part-1) |
 | Training | A learning path in seven modules built from the guide, these chapters and their labs, with knowledge checks | [Learning path: HR-Driven Identity in Microsoft Entra ID](../../../training/hr-driven-identity/index.md) |
 
 : The pieces of HR-driven identity and where each lives {.striped .hover}

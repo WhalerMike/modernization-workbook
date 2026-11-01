@@ -1,0 +1,85 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.019
+On the federal side, account management and
+external personnel security call for the
+
+2
+00:00:05.019 --> 00:00:07.609
+source decision, the
+reconciliation report,
+
+3
+00:00:07.609 --> 00:00:11.738
+and how long each contractor's access
+took to block after their end date.
+
+4
+00:00:11.738 --> 00:00:14.629
+Identifying each person
+by status means the
+
+5
+00:00:14.629 --> 00:00:17.363
+worker type code appears on every account.
+
+6
+00:00:17.363 --> 00:00:21.263
+OMB's zero trust memo says
+enterprise identity draws on HR,
+
+7
+00:00:21.263 --> 00:00:24.351
+contract management
+and personnel security,
+
+8
+00:00:24.351 --> 00:00:29.388
+so the governance body signs a table
+that names one authority for each fact.
+
+9
+00:00:29.388 --> 00:00:33.116
+To validate, one kit check lists
+enabled accounts with no key,
+
+10
+00:00:33.116 --> 00:00:36.025
+which is where contractors
+without one show up.
+
+11
+00:00:36.025 --> 00:00:40.954
+No check reads end dates, so the
+evidence is the reconciliation re-run,
+
+12
+00:00:40.954 --> 00:00:43.375
+with no contractor past their end.
+
+13
+00:00:43.375 --> 00:00:46.053
+In Azure Government, API-driven inbound
+
+14
+00:00:46.053 --> 00:00:49.300
+provisioning and access
+reviews are available.
+
+15
+00:00:49.300 --> 00:00:51.920
+Until the contractor source is automated,
+
+16
+00:00:51.920 --> 00:00:56.188
+keep the contract end date as the
+leave date so the leaver still fires.
+
+17
+00:00:56.188 --> 00:00:58.813
+To roll back, pause the contractor app.
+
+18
+00:00:58.813 --> 00:01:00.140
+It keeps its state.

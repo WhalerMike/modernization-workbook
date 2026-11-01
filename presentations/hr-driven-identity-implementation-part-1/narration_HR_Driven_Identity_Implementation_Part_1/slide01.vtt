@@ -1,0 +1,68 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.763
+Welcome to Part 1 of the implementation
+series for HR-driven identity.
+
+2
+00:00:04.763 --> 00:00:07.401
+The HR pipeline makes an account exist.
+
+3
+00:00:07.401 --> 00:00:10.462
+This guide makes the HR
+record decide everything that
+
+4
+00:00:10.462 --> 00:00:13.387
+happens to that account
+afterward, and proves it did.
+
+5
+00:00:13.387 --> 00:00:15.112
+It does that in seven gates.
+
+6
+00:00:15.112 --> 00:00:18.680
+For each gate, we'll cover
+what done means, the steps,
+
+7
+00:00:18.680 --> 00:00:22.509
+the commands from the
+developer workbook's first lab,
+
+8
+00:00:22.509 --> 00:00:26.511
+the federal requirement and
+the evidence an ISSO keeps,
+
+9
+00:00:26.511 --> 00:00:30.601
+what's available in GCC and GCC
+High, and how to roll it back.
+
+10
+00:00:30.601 --> 00:00:35.007
+Part 1 takes the first three gates:
+one writer for every account state,
+
+11
+00:00:35.007 --> 00:00:39.800
+employees and contractors from their
+sources, and joiners ready on day one.
+
+12
+00:00:39.800 --> 00:00:41.675
+Part 2 takes the other four.
+
+13
+00:00:41.675 --> 00:00:45.825
+Design guidance is labeled, and the
+workbook's code is illustrative,
+
+14
+00:00:45.825 --> 00:00:49.010
+tested against fixtures
+rather than a live tenant.

@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.988
+A PIV card without a binding to
+the account is just a badge.
+
+2
+00:00:03.988 --> 00:00:08.537
+The binding names one specific
+certificate, so any reissue changes it.
+
+3
+00:00:08.537 --> 00:00:11.869
+The first step is to trust
+each issuing authority,
+
+4
+00:00:11.869 --> 00:00:14.225
+and give each one a revocation list.
+
+5
+00:00:14.225 --> 00:00:17.500
+Without a list, Entra doesn't
+check revocation at all.
+
+6
+00:00:17.500 --> 00:00:19.288
+The limits depend on the cloud.
+
+7
+00:00:19.288 --> 00:00:23.843
+For interactive sign-in, a list
+can be twenty megabytes in GCC and
+
+8
+00:00:23.843 --> 00:00:28.226
+forty-five in GCC High, and it
+must download within ten seconds.
+
+9
+00:00:28.226 --> 00:00:30.650
+If Entra can't download a configured list,
+
+10
+00:00:30.650 --> 00:00:34.787
+certificate sign-in fails for every
+certificate from that authority.
+
+11
+00:00:34.787 --> 00:00:39.938
+So host the lists on highly available
+endpoints, ideally over HTTP.
+
+12
+00:00:39.938 --> 00:00:44.818
+Next, raise PIV certificates to
+multifactor strength by issuer or policy,
+
+13
+00:00:44.818 --> 00:00:49.200
+and require phishing-resistant
+strength in Conditional Access.

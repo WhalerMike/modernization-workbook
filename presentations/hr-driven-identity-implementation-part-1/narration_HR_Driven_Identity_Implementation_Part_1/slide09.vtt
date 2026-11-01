@@ -1,0 +1,78 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.100
+For contractors, ship the
+leaver before the joiner.
+
+2
+00:00:03.100 --> 00:00:07.550
+An end date in a spreadsheet that
+nobody updates keeps access alive.
+
+3
+00:00:07.550 --> 00:00:10.150
+So the middleware works
+out the earliest end.
+
+4
+00:00:10.150 --> 00:00:15.029
+That's the contract end, capped by the
+completion date; suitability withdrawn;
+
+5
+00:00:15.029 --> 00:00:18.612
+the card terminated; the sponsor
+gone past a grace period;
+
+6
+00:00:18.612 --> 00:00:20.975
+or a missed sponsor recertification.
+
+7
+00:00:20.975 --> 00:00:23.598
+Whichever comes first,
+the middleware sends
+
+8
+00:00:23.598 --> 00:00:26.363
+the leave date and disables
+the account itself.
+
+9
+00:00:26.363 --> 00:00:28.613
+The table comes from the workbook's lab.
+
+10
+00:00:28.613 --> 00:00:32.563
+Four fictional contractors go
+inactive, each for a different reason.
+
+11
+00:00:32.563 --> 00:00:35.402
+One of them had a card
+expiring in late October,
+
+12
+00:00:35.402 --> 00:00:39.662
+but a recertification that came due
+earlier, so the earlier date wins.
+
+13
+00:00:39.662 --> 00:00:41.629
+Two records are quarantined,
+
+14
+00:00:41.629 --> 00:00:45.725
+one with no contract end and one
+with a sponsor HR doesn't know.
+
+15
+00:00:45.725 --> 00:00:49.450
+Sponsors recertify through a
+twice-yearly access review.
+
+16
+00:00:49.450 --> 00:00:54.530
+Here's the design choice: if the sponsor
+doesn't respond, access is removed.

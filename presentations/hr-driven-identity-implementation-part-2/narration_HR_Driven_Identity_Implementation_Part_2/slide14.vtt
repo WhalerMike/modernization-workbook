@@ -1,0 +1,69 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.125
+The last gate keeps the record true.
+
+2
+00:00:02.125 --> 00:00:07.281
+Run the lifecycle drift checks: missing
+identity, stale access, orphan accounts,
+
+3
+00:00:07.281 --> 00:00:12.125
+unauthorized writes, and credential
+drift for employees and contractors.
+
+4
+00:00:12.125 --> 00:00:15.619
+Fix each finding at its source,
+and let the fix flow back
+
+5
+00:00:15.619 --> 00:00:19.112
+through the pipeline, never
+as a direct directory edit.
+
+6
+00:00:19.112 --> 00:00:21.876
+Report six metrics on
+the monitoring cadence.
+
+7
+00:00:21.876 --> 00:00:27.937
+Prove HR is the only source, using seven
+days of logs, then close the ticket path.
+
+8
+00:00:27.937 --> 00:00:32.776
+And keep the evidence outside the directory,
+because it has to outlive the accounts.
+
+9
+00:00:32.776 --> 00:00:35.188
+The table shows the workbook's lab run.
+
+10
+00:00:35.188 --> 00:00:39.263
+Blocking, revocation, joiner
+readiness, correlation coverage,
+
+11
+00:00:39.263 --> 00:00:44.200
+and the share of access granted by rules
+are all out of bounds on this fixture.
+
+12
+00:00:44.200 --> 00:00:48.437
+Transfer-to-review isn't measured,
+because a review is still open.
+
+13
+00:00:48.437 --> 00:00:52.988
+A metric with no input is reported
+as not measured, never as zero.
+
+14
+00:00:52.988 --> 00:00:55.680
+And the thresholds are
+for the agency to choose.

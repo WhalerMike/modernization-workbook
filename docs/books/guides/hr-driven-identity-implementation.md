@@ -23,6 +23,19 @@ last-reviewed: 2026-11-01
 How an agency makes its HR system of record decide who exists in Microsoft Entra ID and what they can reach, as gated steps an operator can run. First, how to read the guide and what it hands to other pages, where agencies start, the track at a glance, prerequisites and the path on one page. Then seven gates: fix who writes each account state and attribute; bring employees and contractors in from their sources; make joiners ready on day one; assign access from attributes and review what a move leaves behind; bind PIV and CAC credentials to HR events; time separations and deprovisioning; and keep the record true with drift checks and evidence. Each gate carries its federal requirements and the evidence an ISSO keeps, each feature's availability in GCC and GCC High, an interim path, a **Validate** step and rollback. Then the dangers, the evidence, rollback, a checklist and what couldn't be verified.
 :::
 
+## Watch or download
+
+A two-part narrated deck series follows this guide at the level of its gates: for each gate, what done means, the steps, the commands from the developer workbook's first lab, the federal requirement and evidence, government-cloud availability and rollback. The decks, the narrated decks and the videos come with the next edition; the narration scripts are here now.
+
+| Part | Gates | Deck, narrated deck and video | Narration script |
+|---|---|---|---|
+| Part 1: writers, sources and joiners (about 16 minutes) | G1–G3 | With the next edition | [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/hr-driven-identity-implementation-part-1/HR_Driven_Identity_Implementation_Part_1_Narration_Script.md) |
+| Part 2: access, credentials, separation and drift (about 16 minutes) | G4–G7 | With the next edition | [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/hr-driven-identity-implementation-part-2/HR_Driven_Identity_Implementation_Part_2_Narration_Script.md) |
+
+: The implementation deck series {.striped .hover}
+
+The [Presentations](../../presentations/index.md#implementation-hr-driven-identity-part-1) page lists them with the other decks. To learn the gates in order, with a fixture lab and a knowledge check for each, use the [learning path](../../training/hr-driven-identity/index.md).
+
 ## How to read this guide
 
 [Book 03](../b03-hr-identity/index.md) holds the design: why HR is the source of authority, the attribute authority map, the canonical schema, joiner, mover and leaver, credentials, access, drift and the phase model. This guide doesn't restate it. Each step says what to do, links the chapter that explains why, and adds only what the chapters don't give: the order of work in the tenant, the federal requirement and the ISSO's evidence per gate, and what's available in a government cloud.

@@ -1,0 +1,897 @@
+{
+ "1": [
+  [
+   0.05,
+   5.938,
+   "Welcome to Part 2 of the implementation series for Ticket-to-Machine on ServiceNow and SailPoint."
+  ],
+  [
+   5.987,
+   6.987,
+   "Part 1 confirmed the boundary, decided the writers and approvers, connected the sources, and opened the front door."
+  ],
+  [
+   12.975,
+   3.125,
+   "Part 2 covers the three gates that finish the loop."
+  ],
+  [
+   16.1,
+   4.888,
+   "First, actuation, where the ticket authorizes a machine to do the work."
+  ],
+  [
+   20.988,
+   3.3,
+   "Then the re-read, because a ticket status isn't proof."
+  ],
+  [
+   24.288,
+   6.638,
+   "And then the tempo, with its measures, its identity fixes, and the evidence an I S S O files."
+  ],
+  [
+   30.925,
+   6.8,
+   "After that, we'll look at the dangers across all seven gates, and what it would take to move the guide from draft to proved."
+  ],
+  [
+   37.725,
+   2.7,
+   "It's still an example, not an endorsement."
+  ],
+  [
+   40.425,
+   7.225,
+   "And because the kit's first pass doesn't actuate anything, the first gate here is about configuring the products themselves."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   2.538,
+   "Here are Part 2's three gates on one page."
+  ],
+  [
+   2.587,
+   9.2,
+   "Actuation is done when each lane acts through a connector or a declared exception, under a service identity, with a change record where its class needs one."
+  ],
+  [
+   11.787,
+   3.938,
+   "It closes the third gap, and there's no automated check for it yet."
+  ],
+  [
+   15.725,
+   2.288,
+   "You'll run one task per lane by hand."
+  ],
+  [
+   18.012,
+   6.575,
+   "The re-read gate is done when nothing closes without a re-read of the target, which closes the first gap."
+  ],
+  [
+   24.587,
+   2.112,
+   "The kit's tests prove its logic."
+  ],
+  [
+   26.7,
+   7.65,
+   "The tempo gate is done when the windows are measured, the identity fixes run through the loop, and the evidence is produced on a schedule."
+  ],
+  [
+   34.35,
+   2.212,
+   "Two rules run through all three."
+  ],
+  [
+   36.562,
+   4.263,
+   "A person's role stops at approval, except for declared exceptions."
+  ],
+  [
+   40.825,
+   2.737,
+   "And a success response doesn't count as closure."
+  ],
+  [
+   43.562,
+   8.988,
+   "The kit's first pass doesn't write to Entra I D, Active Directory or SailPoint, which is why the actuation gate relies on a manual lab for now."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   3.487,
+   "In the actuation gate, the ticket authorizes a machine."
+  ],
+  [
+   3.538,
+   8.662,
+   "For owner-governed access, SailPoint's connectors do the work: accounts, groups, roles, licenses and access packages."
+  ],
+  [
+   12.2,
+   6.125,
+   "When the Entra connector disables an account, it also signs the user out of any existing sessions."
+  ],
+  [
+   18.325,
+   6.075,
+   "For low-authority tasks, ServiceNow's Entra spoke can act, as long as its actions cover the task."
+  ],
+  [
+   24.4,
+   1.587,
+   "Check what it really covers."
+  ],
+  [
+   25.988,
+   6.35,
+   "It has no M F A reset action, and its reset action works only for cloud-only users."
+  ],
+  [
+   32.337,
+   7.287,
+   "When a person does have to act, they activate an eligible role through pim, with the ticket number as the justification."
+  ],
+  [
+   39.625,
+   3.163,
+   "pim doesn't check that number, so a sim rule does."
+  ],
+  [
+   42.788,
+   5.575,
+   "And resetting someone's authentication methods stays with the help desk's identity verification."
+  ],
+  [
+   48.362,
+   4.862,
+   "A connector's M F A setting is not a substitute for verifying the person."
+  ],
+  [
+   53.225,
+   6.688,
+   "The prerequisites are the front door from gate four, and the lanes decided in gate two, already written into the record."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   2.45,
+   "Two more steps cover what the connectors can't."
+  ],
+  [
+   2.5,
+   5.388,
+   "SailPoint's service desk integration can't raise change requests, which is the third gap."
+  ],
+  [
+   7.888,
+   7.3,
+   "So a ServiceNow flow raises a standard, normal or emergency change from the request, based on its change class."
+  ],
+  [
+   15.188,
+   2.65,
+   "The kit plans that flow for its second pass."
+  ],
+  [
+   17.837,
+   4.65,
+   "Until then, the approver raises the change record by hand and links it."
+  ],
+  [
+   22.488,
+   2.962,
+   "Either way, closure still waits for the re-read."
+  ],
+  [
+   25.45,
+   6.338,
+   "Disconnected applications, the ones with only an admin console, run in the declared-exception lane."
+  ],
+  [
+   31.788,
+   12.512,
+   "That means a service desk ticket, a named approver before the session, a time-limited pim activation, a recorded session, an end date, and a plan-of-action item to automate or retire the application."
+  ],
+  [
+   44.3,
+   2.85,
+   "The danger is the exception that never ends."
+  ],
+  [
+   47.15,
+   2.35,
+   "End dates and reviews are what stop it."
+  ],
+  [
+   49.5,
+   11.325,
+   "The ServiceNow flow chooses the change type from the class, so a pre-authorized standard change, a normal change with approvals, or an emergency change each leave the record the class needs."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   6.763,
+   "On the federal side, access restrictions for change call for the connector and spoke identities, with their permissions."
+  ],
+  [
+   6.812,
+   7.075,
+   "Access enforcement and least privilege call for SailPoint's provisioning events and pim activation records."
+  ],
+  [
+   13.887,
+   3.962,
+   "Change control calls for change records linked from each request."
+  ],
+  [
+   17.85,
+   7.713,
+   "Session audit isn't in any baseline, but it's added here, so declared-exception sessions are recorded with counsel consulted."
+  ],
+  [
+   25.562,
+   2.675,
+   "And each exception gets a plan-of-action item."
+  ],
+  [
+   28.238,
+   1.725,
+   "Validation is manual."
+  ],
+  [
+   29.962,
+   4.987,
+   "Run one task per lane from start to finish, and confirm each leaves its record."
+  ],
+  [
+   34.95,
+   6.15,
+   "Then re-run the identity check, so no integration identity holds more than its lane needs."
+  ],
+  [
+   41.1,
+   2.587,
+   "pim is available in Azure Government."
+  ],
+  [
+   43.688,
+   9.037,
+   "The spoke's documentation shows only the worldwide Graph endpoint, so it fits G C C, but confirm G C C High with ServiceNow."
+  ],
+  [
+   52.725,
+   2.388,
+   "To roll back, run the paired action."
+  ],
+  [
+   55.112,
+   2.962,
+   "A leaver's deprovisioning is never rolled back."
+  ],
+  [
+   58.075,
+   2.225,
+   "They come back through a new request."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   2.525,
+   "The re-read gate closes the first gap."
+  ],
+  [
+   2.575,
+   4.412,
+   "Out of the box, SailPoint treats a mapped ServiceNow status as done."
+  ],
+  [
+   6.987,
+   6.037,
+   "So add an awaiting verification state, and a business rule that turns any close into that state."
+  ],
+  [
+   13.025,
+   5.475,
+   "The only exception is an update that carries new evidence and comes from the verifier account."
+  ],
+  [
+   18.5,
+   3.175,
+   "A named exception approver can still cancel with a note."
+  ],
+  [
+   21.675,
+   6.912,
+   "Apply the same rule to the incident and request tables, so SailPoint's status mapping no longer decides completion."
+  ],
+  [
+   28.587,
+   2.1,
+   "Then schedule the re-read client."
+  ],
+  [
+   30.688,
+   3.913,
+   "It re-reads the account, the identity, or the Graph user."
+  ],
+  [
+   34.6,
+   5.912,
+   "If the target matches, it closes the record with the query, the time and a hash of the response."
+  ],
+  [
+   40.513,
+   3.65,
+   "If it doesn't match, it reopens the record with the differences."
+  ],
+  [
+   44.163,
+   6.963,
+   "A SailPoint read reflects the last aggregation, so allow a grace period, tuned to the aggregation schedule."
+  ],
+  [
+   51.125,
+   6.263,
+   "The verifier account comes from gate one, and its audit trail is what makes every closure attributable."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   3.862,
+   "The workbook's fifth chapter adds two things to the re-read client."
+  ],
+  [
+   3.913,
+   1.238,
+   "The first is a guard."
+  ],
+  [
+   5.15,
+   5.987,
+   "A record whose intended state names nothing checkable used to close on nothing, with evidence."
+  ],
+  [
+   11.137,
+   2.413,
+   "Now it's skipped, and never verified."
+  ],
+  [
+   13.55,
+   2.075,
+   "The second is an offline mode."
+  ],
+  [
+   15.625,
+   4.05,
+   "It makes the same decisions using saved records and saved reads."
+  ],
+  [
+   19.675,
+   5.525,
+   "It never writes anything, and it treats a missing read as an error, never as a match."
+  ],
+  [
+   25.2,
+   2.75,
+   "Six fictional records are re-read at noon."
+  ],
+  [
+   27.95,
+   1.163,
+   "Three verify."
+  ],
+  [
+   29.113,
+   5.075,
+   "A terminated user who's still enabled is a mismatch, so that record would reopen."
+  ],
+  [
+   34.188,
+   3.075,
+   "One read is older than the change, so it waits."
+  ],
+  [
+   37.263,
+   1.725,
+   "And the empty one is skipped."
+  ],
+  [
+   38.987,
+   5.588,
+   "A day later, the grace period has run out, so that stale read becomes a mismatch too."
+  ],
+  [
+   44.575,
+   6.662,
+   "The business rule's own tests confirm that evidence alone isn't enough, and neither is the verifier alone."
+  ],
+  [
+   51.237,
+   8.225,
+   "Before this chapter, the client could only run against a live instance and tenant, so its decisions were visible only in mocked unit tests."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   6.188,
+   "On the federal side, change control calls for the evidence attachment and hash on every closed record."
+  ],
+  [
+   6.237,
+   3.837,
+   "Control verification calls for the re-read result and its time."
+  ],
+  [
+   10.075,
+   5.263,
+   "Continuous monitoring calls for counts of closed and reopened records each period."
+  ],
+  [
+   15.338,
+   4.075,
+   "Audit record generation calls for the verifier account's audit trail."
+  ],
+  [
+   19.413,
+   9.15,
+   "To validate, the kit's tests prove that a dry run writes nothing, that a match closes, that a mismatch reopens, and that a stale read waits."
+  ],
+  [
+   28.562,
+   8.275,
+   "On a lyve system, a person's close should land in awaiting verification, and only the client should close it, once the account matches."
+  ],
+  [
+   36.837,
+   5.575,
+   "The re-read uses SailPoint's account and search A P I's and Graph's users endpoint."
+  ],
+  [
+   42.413,
+   3.138,
+   "G C C High uses its own Graph host."
+  ],
+  [
+   45.55,
+   4.7,
+   "Until the client runs on a schedule, the verifier runs it by hand once a day."
+  ],
+  [
+   50.25,
+   5.388,
+   "To roll back, disable the business rule, though closures lose their evidence while it's off."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   5.713,
+   "Once the loop is running, it follows the Federal Modernization Workbook's Book 13's tempo."
+  ],
+  [
+   5.763,
+   1.462,
+   "A P1 halts work."
+  ],
+  [
+   7.225,
+   4.8,
+   "P2 has one hour, P3 has a day, and P4 has three days."
+  ],
+  [
+   12.025,
+   3.125,
+   "These are the program's windows, not federal ones."
+  ],
+  [
+   15.15,
+   6.425,
+   "Schedule the drift reconciliation and the re-read client, and keep their outputs with the date and the checker version."
+  ],
+  [
+   21.575,
+   11.412,
+   "Report five measures to the governance board: detection coverage, how well windows are kept, the escalation rate, the share of findings closed by machine, and the number of declared exceptions."
+  ],
+  [
+   32.987,
+   6.612,
+   "Together they show whether the loop is closing on machines, inside its windows, or leaning on exceptions."
+  ],
+  [
+   39.6,
+   1.875,
+   "Export the evidence nightly."
+  ],
+  [
+   41.475,
+   5.175,
+   "That's planned for the kit's second pass, and the workbook already builds the ServiceNow half."
+  ],
+  [
+   46.65,
+   5.625,
+   "Review each declared exception at its end date, and each autonomous class every quarter."
+  ],
+  [
+   52.275,
+   7.1,
+   "These measures come from Book 13's tenth chapter, and they're what leadership reads to see whether the loop is actually working."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   4.45,
+   "The tempo gate also routes the everyday identity fixes through the loop."
+  ],
+  [
+   4.5,
+   2.888,
+   "Most of this mapping is the program's inference."
+  ],
+  [
+   7.388,
+   8.6,
+   "A wrong fact in H R gets corrected in H R, and SailPoint picks it up on its next read, since it can't write H R's attributes back."
+  ],
+  [
+   15.988,
+   7.312,
+   "A late personnel action shows up as a lifecycle-state change, and the leaver state disables the account and its sessions."
+  ],
+  [
+   23.3,
+   6.075,
+   "An urgent leaver that H R hasn't entered yet runs the same leaver sequence through an emergency change."
+  ],
+  [
+   29.375,
+   4.0,
+   "A write made outside the pipeline is caught by native change detection."
+  ],
+  [
+   33.375,
+   4.35,
+   "SailPoint restores the value, and the writer's access gets reviewed."
+  ],
+  [
+   37.725,
+   4.438,
+   "An account that matches nobody gets correlated to a person or disabled."
+  ],
+  [
+   42.163,
+   4.062,
+   "A rule that grants the wrong access is changed through a normal change."
+  ],
+  [
+   46.225,
+   4.162,
+   "And a credential that outlives the person is outside both products."
+  ],
+  [
+   50.388,
+   3.388,
+   "It's handled by the card system and the certificate platform."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   9.688,
+   "The workbook's seventh chapter reads closed findings back out of ServiceNow, using a read-only role, and writes one Book 13 evidence record for each."
+  ],
+  [
+   9.738,
+   7.85,
+   "Approval, executing identity and what ran are left empty, each with its reason, because the first pass doesn't actuate."
+  ],
+  [
+   17.587,
+   2.225,
+   "Four checks run on every record."
+  ],
+  [
+   19.812,
+   2.188,
+   "Does the evidence still match its hash?"
+  ],
+  [
+   22.0,
+   1.363,
+   "Is there evidence at all?"
+  ],
+  [
+   23.363,
+   1.788,
+   "Did the intended state match?"
+  ],
+  [
+   25.15,
+   1.913,
+   "And did it close inside its window?"
+  ],
+  [
+   27.062,
+   3.85,
+   "Five fictional records come out with two of three closed on time."
+  ],
+  [
+   30.913,
+   8.075,
+   "Three have problems: one closed late, one had its evidence edited after closing, and one was closed with a note that just says done."
+  ],
+  [
+   38.987,
+   2.975,
+   "Book 13 calls that prose, not evidence."
+  ],
+  [
+   41.962,
+   6.7,
+   "Each line carries the hash of the line before it, so the I S S O's verifier catches a removed record."
+  ],
+  [
+   48.663,
+   3.075,
+   "The package can show tampering, but it isn't signed."
+  ],
+  [
+   51.737,
+   6.6,
+   "A later month continues the chain from the previous month's head, so the packages link from one period to the next."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   5.875,
+   "On the federal side, continuous monitoring calls for the scheduled run outputs and the five measures."
+  ],
+  [
+   5.925,
+   3.8,
+   "Risk response calls for window adherence and the overdue list."
+  ],
+  [
+   9.725,
+   2.8,
+   "Plans of action call for the exception register."
+  ],
+  [
+   12.525,
+   3.987,
+   "Audit review calls for the monthly evidence package and its review."
+  ],
+  [
+   16.512,
+   6.562,
+   "To validate, the evidence export and the drift comparison are automated, but the five measures aren't yet."
+  ],
+  [
+   23.075,
+   9.3,
+   "The manual part is a month of scheduled runs with their outputs kept, the measures reported once, and the first monthly package accepted by the I S S O."
+  ],
+  [
+   32.375,
+   3.175,
+   "This gate uses nothing beyond the earlier gates."
+  ],
+  [
+   35.55,
+   7.5,
+   "Until the export exists, build the monthly package by hand, from a ServiceNow report and a SailPoint event search."
+  ],
+  [
+   43.05,
+   5.412,
+   "And forward Entra's audit logs to the sim, since Entra only keeps them for thirty days."
+  ],
+  [
+   48.462,
+   2.25,
+   "To roll back, stop the schedules."
+  ],
+  [
+   50.712,
+   1.2,
+   "The records stay."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   5.8,
+   "Every lane writes the same record, and this slide shows where each field comes from on these products."
+  ],
+  [
+   5.85,
+   5.438,
+   "Origin is the SailPoint trigger, the reconciliation finding, or the catalog request."
+  ],
+  [
+   11.287,
+   4.763,
+   "Owner and clock come from the ServiceNow assignment, the severity and the due date."
+  ],
+  [
+   16.05,
+   9.05,
+   "Approval is ServiceNow's for low-authority tasks, SailPoint's for owner-governed access, and the authorizing official's acceptance for autonomous classes."
+  ],
+  [
+   25.1,
+   6.588,
+   "The executing identity is the connector's or the spoke's service principal, or a person's pim activation."
+  ],
+  [
+   31.688,
+   4.9,
+   "What ran is the provisioning event, the workflow version, or the session recording."
+  ],
+  [
+   36.587,
+   2.425,
+   "The result is the re-read evidence."
+  ],
+  [
+   39.013,
+   4.0,
+   "And closure is the closed record, with its hash and attachment."
+  ],
+  [
+   43.013,
+   1.9,
+   "The mapping is the program's."
+  ],
+  [
+   44.913,
+   5.688,
+   "The authorizing official and the assessors decide whether a control is actually satisfied."
+  ],
+  [
+   50.6,
+   5.963,
+   "Today the workbook's export fills origin, owner, result and closure from ServiceNow."
+  ],
+  [
+   56.562,
+   3.263,
+   "The other three wait for a later pass that actuates."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   5.312,
+   "Before closing, here are the dangers the guide names, each with the gate that guards against it."
+  ],
+  [
+   5.362,
+   7.775,
+   "Closing by ticket status completes SailPoint's task with nothing checked, so the re-read rule goes on every table SailPoint writes to."
+  ],
+  [
+   13.137,
+   6.975,
+   "With two approval systems for one class, both approve or neither does, so there's one approval system per class."
+  ],
+  [
+   20.113,
+   6.25,
+   "Two writers for one attribute overwrite each other, which the attribute map and the writer check catch."
+  ],
+  [
+   26.363,
+   6.025,
+   "A vendor-cloud action nobody recorded leaves the reviewed boundary, so it goes in the data-flow record."
+  ],
+  [
+   32.388,
+   4.925,
+   "A feature outside the authorization needs written confirmation before production."
+  ],
+  [
+   37.312,
+   3.688,
+   "A connector's M F A setting isn't a reset procedure."
+  ],
+  [
+   41.0,
+   7.338,
+   "An integration identity with broad write rights is a back door, so it gets certificates, two owners, and a review."
+  ],
+  [
+   48.337,
+   3.987,
+   "And an exception that never ends needs an end date and a review."
+  ],
+  [
+   52.325,
+   7.638,
+   "Most of these come down to a decision made early, in gates one and two, and enforced later by the re-read and the reviews."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   1.587,
+   "The guide is still a draft."
+  ],
+  [
+   1.637,
+   9.875,
+   "To move it to proved, build gates three to six in a ServiceNow developer instance and a SailPoint sandbox, run the kit's lab items, and record the evidence."
+  ],
+  [
+   11.512,
+   1.637,
+   "Some questions are still open."
+  ],
+  [
+   13.15,
+   6.15,
+   "Is the full feature set available in SailPoint's fed-ramp environment, and what is its A P I domain?"
+  ],
+  [
+   19.3,
+   2.438,
+   "Are the apps in ServiceNow's government store?"
+  ],
+  [
+   21.738,
+   2.85,
+   "And does the Entra spoke work in G C C High?"
+  ],
+  [
+   24.587,
+   4.338,
+   "To build the code, use the developer workbook, Building Ticket-to-Machine."
+  ],
+  [
+   28.925,
+   3.837,
+   "It has eight chapters, each with labs that run on a laptop."
+  ],
+  [
+   32.763,
+   6.562,
+   "To learn the material in order, use the learning path for Ticket-to-Machine on ServiceNow and SailPoint."
+  ],
+  [
+   39.325,
+   3.987,
+   "For the reasons behind it, see Book 13 and Book 15."
+  ],
+  [
+   43.312,
+   2.413,
+   "The loop, closed, looks like this."
+  ],
+  [
+   45.725,
+   7.325,
+   "The ticket authorizes a machine, the machine acts under a service identity, and only a re-read closes the ticket."
+  ],
+  [
+   53.05,
+   7.55,
+   "The guide was rewritten as a gated guide on November 1, 2026, and that rewrite hasn't been reviewed yet."
+  ]
+ ]
+}

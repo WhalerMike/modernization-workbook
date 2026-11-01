@@ -1,0 +1,74 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.626
+On the federal side, account management
+calls for the baseline drift report:
+
+2
+00:00:04.626 --> 00:00:07.750
+accounts with no worker,
+and workers with no account.
+
+3
+00:00:07.750 --> 00:00:12.013
+Continuous monitoring calls for that
+report with its date and checker version.
+
+4
+00:00:12.013 --> 00:00:16.744
+Reading the inventory requirement for
+identities, which is the program's inference,
+
+5
+00:00:16.744 --> 00:00:20.462
+gives the correlation rate and
+the list of uncorrelated accounts.
+
+6
+00:00:20.462 --> 00:00:23.947
+To validate, the kit's tests
+prove the drift classes,
+
+7
+00:00:23.947 --> 00:00:27.100
+and both clients produce
+the same finding I Ds.
+
+8
+00:00:27.100 --> 00:00:32.650
+On a live system, the findings for a synthetic
+HR extract should match a hand count.
+
+9
+00:00:32.650 --> 00:00:35.231
+And the validation
+kit's checks for missing
+
+10
+00:00:35.231 --> 00:00:37.812
+and duplicate keys should
+be clean, or owned.
+
+11
+00:00:37.812 --> 00:00:41.725
+SailPoint documents government
+endpoints for its Entra connector.
+
+12
+00:00:41.725 --> 00:00:46.113
+Native change detection isn't yet
+confirmed in the FedRAMP environment.
+
+13
+00:00:46.113 --> 00:00:51.024
+Without SailPoint, run the
+reconciliation on HR and Graph alone.
+
+14
+00:00:51.024 --> 00:00:53.500
+To roll back, disconnect the source.
+
+15
+00:00:53.500 --> 00:00:55.300
+This gate only reads.

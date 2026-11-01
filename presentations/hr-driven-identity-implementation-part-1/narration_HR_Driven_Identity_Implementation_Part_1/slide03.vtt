@@ -1,0 +1,83 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.575
+The gates assume some things
+are already in place.
+
+2
+00:00:02.575 --> 00:00:04.188
+The HR pipeline is live,
+
+3
+00:00:04.188 --> 00:00:08.687
+with shadow differences explained
+and no unmatched creations.
+
+4
+00:00:08.687 --> 00:00:12.521
+The attribute foundation is done:
+the slot register is signed,
+
+5
+00:00:12.521 --> 00:00:15.151
+and the attributes are
+proven on the pilot.
+
+6
+00:00:15.151 --> 00:00:20.255
+The Federal Modernization Workbook's Book
+03's first-phase decisions are made:
+
+7
+00:00:20.255 --> 00:00:24.888
+the person key, the authority map, the
+worker types and the privacy basis.
+
+8
+00:00:24.888 --> 00:00:26.287
+Licensing matters.
+
+9
+00:00:26.287 --> 00:00:31.785
+Inbound provisioning needs Entra ID P1,
+but workflows, entitlement management,
+
+10
+00:00:31.785 --> 00:00:36.450
+access reviews and automatic
+assignment need Entra ID Governance.
+
+11
+00:00:36.450 --> 00:00:41.187
+Roles go through PIM, with the workflows
+administrator role behind approval.
+
+12
+00:00:41.187 --> 00:00:44.129
+And logs leave Entra ID
+before the first gate,
+
+13
+00:00:44.129 --> 00:00:48.263
+because its own retention is short
+and can't be recovered later.
+
+14
+00:00:48.263 --> 00:00:52.965
+As for where things run: the HR platform
+runs on Oracle Cloud Infrastructure,
+
+15
+00:00:52.965 --> 00:00:55.726
+and the lifecycle's
+automation runs in Azure.
+
+16
+00:00:55.726 --> 00:00:58.723
+Apps on AWS or Oracle Cloud only see these
+
+17
+00:00:58.723 --> 00:01:02.300
+changes through the access
+Entra ID grants them.

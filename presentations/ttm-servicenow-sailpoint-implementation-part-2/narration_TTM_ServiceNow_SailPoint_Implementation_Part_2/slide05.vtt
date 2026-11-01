@@ -1,0 +1,86 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.431
+On the federal side, access
+restrictions for change call for
+
+2
+00:00:03.431 --> 00:00:06.813
+the connector and spoke
+identities, with their permissions.
+
+3
+00:00:06.813 --> 00:00:09.965
+Access enforcement and
+least privilege call for
+
+4
+00:00:09.965 --> 00:00:13.887
+SailPoint's provisioning events
+and PIM activation records.
+
+5
+00:00:13.887 --> 00:00:17.849
+Change control calls for change
+records linked from each request.
+
+6
+00:00:17.849 --> 00:00:21.177
+Session audit isn't in any
+baseline, but it's added here,
+
+7
+00:00:21.177 --> 00:00:25.563
+so declared-exception sessions are
+recorded with counsel consulted.
+
+8
+00:00:25.563 --> 00:00:28.237
+And each exception gets
+a plan-of-action item.
+
+9
+00:00:28.237 --> 00:00:29.963
+Validation is manual.
+
+10
+00:00:29.963 --> 00:00:34.949
+Run one task per lane from start to
+finish, and confirm each leaves its record.
+
+11
+00:00:34.949 --> 00:00:37.056
+Then re-run the identity check,
+
+12
+00:00:37.056 --> 00:00:41.100
+so no integration identity
+holds more than its lane needs.
+
+13
+00:00:41.100 --> 00:00:43.687
+PIM is available in Azure Government.
+
+14
+00:00:43.687 --> 00:00:48.852
+The spoke's documentation shows
+only the worldwide Graph endpoint,
+
+15
+00:00:48.852 --> 00:00:52.725
+so it fits GCC, but confirm
+GCC High with ServiceNow.
+
+16
+00:00:52.725 --> 00:00:55.113
+To roll back, run the paired action.
+
+17
+00:00:55.113 --> 00:00:58.074
+A leaver's deprovisioning
+is never rolled back.
+
+18
+00:00:58.074 --> 00:01:00.360
+They come back through a new request.

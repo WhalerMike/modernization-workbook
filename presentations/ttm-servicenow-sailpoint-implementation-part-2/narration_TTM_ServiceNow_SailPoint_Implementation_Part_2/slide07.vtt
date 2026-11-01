@@ -1,0 +1,91 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.912
+The workbook's fifth chapter adds
+two things to the re-read client.
+
+2
+00:00:03.912 --> 00:00:05.151
+The first is a guard.
+
+3
+00:00:05.151 --> 00:00:07.990
+A record whose intended
+state names nothing
+
+4
+00:00:07.990 --> 00:00:11.137
+checkable used to close on
+nothing, with evidence.
+
+5
+00:00:11.137 --> 00:00:13.550
+Now it's skipped, and never verified.
+
+6
+00:00:13.550 --> 00:00:15.625
+The second is an offline mode.
+
+7
+00:00:15.625 --> 00:00:19.675
+It makes the same decisions using
+saved records and saved reads.
+
+8
+00:00:19.675 --> 00:00:21.433
+It never writes anything,
+
+9
+00:00:21.433 --> 00:00:25.200
+and it treats a missing read
+as an error, never as a match.
+
+10
+00:00:25.200 --> 00:00:27.950
+Six fictional records are re-read at noon.
+
+11
+00:00:27.950 --> 00:00:29.113
+Three verify.
+
+12
+00:00:29.113 --> 00:00:34.188
+A terminated user who's still enabled is
+a mismatch, so that record would reopen.
+
+13
+00:00:34.188 --> 00:00:37.263
+One read is older than
+the change, so it waits.
+
+14
+00:00:37.263 --> 00:00:38.988
+And the empty one is skipped.
+
+15
+00:00:38.988 --> 00:00:41.696
+A day later, the grace period has run out,
+
+16
+00:00:41.696 --> 00:00:44.575
+so that stale read becomes a mismatch too.
+
+17
+00:00:44.575 --> 00:00:49.068
+The business rule's own tests confirm
+that evidence alone isn't enough,
+
+18
+00:00:49.068 --> 00:00:51.237
+and neither is the verifier alone.
+
+19
+00:00:51.237 --> 00:00:56.114
+Before this chapter, the client could only
+run against a live instance and tenant,
+
+20
+00:00:56.114 --> 00:00:59.520
+so its decisions were visible
+only in mocked unit tests.

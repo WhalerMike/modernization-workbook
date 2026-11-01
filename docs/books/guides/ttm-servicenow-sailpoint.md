@@ -40,6 +40,15 @@ Book 13's five-step loop (test, detect drift, raise a typed task, actuate on the
 
 The deck was made from the October 24, 2026 version of this page, before it became a gated guide; its products, gaps and identity fixes still match. The vendor-neutral original has its own narrated deck, linked from [Book 13, Appendix B](../b13-governance/appendix-b-ticket-to-machine-reference.md).
 
+The implementation series follows the seven gates in two parts: for each gate, what done means, the steps, the commands from the developer workbook's first lab, the federal requirement and evidence, availability and rollback. The decks, the narrated decks and the videos come with the next edition; the narration scripts are here now.
+
+| Part | Gates | Deck, narrated deck and video | Narration script |
+|---|---|---|---|
+| Part 1: boundary, writers, sources and the front door (about 16 minutes) | G1–G4 | With the next edition | [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/ttm-servicenow-sailpoint-implementation-part-1/TTM_ServiceNow_SailPoint_Implementation_Part_1_Narration_Script.md) |
+| Part 2: actuation, re-read, tempo and evidence (about 15 minutes) | G5–G7 | With the next edition | [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/ttm-servicenow-sailpoint-implementation-part-2/TTM_ServiceNow_SailPoint_Implementation_Part_2_Narration_Script.md) |
+
+: The implementation deck series {.striped .hover}
+
 ## How to read this guide
 
 This guide owns the order of work and the gates. It links to the pages that hold the rest rather than repeating them:

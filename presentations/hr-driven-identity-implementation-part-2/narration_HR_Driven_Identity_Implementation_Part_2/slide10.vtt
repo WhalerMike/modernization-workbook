@@ -1,0 +1,74 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.057
+On the federal side, accepting PIV
+credentials and public-key authentication call
+
+2
+00:00:05.057 --> 00:00:09.628
+for the certificate sign-in configuration
+export: the trusted authorities,
+
+3
+00:00:09.628 --> 00:00:13.837
+the revocation settings, the binding
+rules, and the required affinity.
+
+4
+00:00:13.837 --> 00:00:17.922
+CISA's baseline requires
+phishing-resistant MFA for all
+
+5
+00:00:17.922 --> 00:00:22.176
+users and for privileged roles,
+so keep the ScubaGear report.
+
+6
+00:00:22.176 --> 00:00:27.213
+FIPS 201 allows issuance only once
+a proper authority authorizes it,
+
+7
+00:00:27.213 --> 00:00:32.163
+so the card system's records are
+joined to the HR or contractor event.
+
+8
+00:00:32.163 --> 00:00:37.475
+To validate, one kit check lists card
+holders with no binding, or only weak ones.
+
+9
+00:00:37.475 --> 00:00:39.812
+No kit check reads the configuration,
+
+10
+00:00:39.812 --> 00:00:44.637
+so the evidence includes a revoked test
+certificate being refused at sign-in.
+
+11
+00:00:44.637 --> 00:00:49.326
+Everything here is available in both
+clouds, though the size limits differ.
+
+12
+00:00:49.326 --> 00:00:52.526
+Until there's a clear way
+to write the binding after
+
+13
+00:00:52.526 --> 00:00:55.650
+Active Directory retires,
+keep it in AD and sync it.
+
+14
+00:00:55.650 --> 00:00:58.986
+To roll back, restore the
+bindings from the card system,
+
+15
+00:00:58.986 --> 00:01:00.980
+never by editing the directory.
