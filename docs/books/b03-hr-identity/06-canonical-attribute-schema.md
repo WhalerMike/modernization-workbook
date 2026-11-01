@@ -57,7 +57,7 @@ OPM's data standards and nature-of-action codes describe **federal employees**. 
 
 : Where contractors and vendors can be sourced from {.striped .hover}
 
-The research page [Contractors as Oracle Contingent Workers](../../evaluations/oracle-contingent-worker-contractor-source.md) tests the contingent worker option against Federal HR 2.0's scope, licensing and privacy, compares it with the alternatives, and recommends a phased path.
+The evaluation [Contractors as Oracle Contingent Workers](../../evaluations/oracle-contingent-worker-contractor-source.md) tests the contingent worker option against Federal HR 2.0's scope, licensing and privacy, compares it with the alternatives, and recommends a phased path.
 
 Whichever source the agency chooses, the rules are the same:
 

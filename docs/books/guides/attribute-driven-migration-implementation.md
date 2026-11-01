@@ -11,7 +11,7 @@ lifecycle_review: 2027-04-01
 aliases:
   - /docs/project-plans/developer-workbooks/attribute-driven-migration/implementation-guide.html
 review-status: approved
-reviewed-sha256: 8a64c0e93c0627f71aca1868ccc001b811d529b96987464801e46a859f8dea75
+reviewed-sha256: ec75481b8f65d65ccda06225e05ae40b2f2d1a1701059e232a6b8976e87052b0
 last-reviewed: 2026-11-01
 ---
 # Attribute-Driven Migration: An Implementation Guide
@@ -259,7 +259,7 @@ The non-person equivalent of this gate, correlating every service account and se
 
 This gate covers the plumbing between HR, AD and Entra ID while they coexist. Its failures are quiet.
 
-**Prerequisites.** Gate 1 for the slot register. The HR plan's pipeline and its HR feed live for the foundation scope (its Gate 3). The middleware, the provisioning apps and shadow mode are the HR track's, built through the [research guide's Part 1](hcm-entra-implementation.md#part-1-the-entra-side).
+**Prerequisites.** Gate 1 for the slot register. The HR plan's pipeline and its HR feed live for the foundation scope (its Gate 3). The middleware, the provisioning apps and shadow mode are the HR track's, built through the [implementation guide's Part 1](hcm-entra-implementation.md#part-1-the-entra-side).
 
 **Steps.**
 

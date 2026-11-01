@@ -137,7 +137,7 @@ Each gap was closed in the books with endnoted text, checked against the primary
 
 ## Additions made, October 30, 2026
 
-- **OMB's AI memoranda.** M-25-21 and M-25-22 were rechecked against OMB's memoranda list: neither has been amended or rescinded, and the only later AI memorandum is M-26-04. Book 15, Chapter 13 cites all three of M-24-10, M-25-21 and M-25-22, and Book 18, Chapter 05 cites M-25-21 and M-25-22; the citing-book lists below now include them. No page in the workbook cites M-24-10 or M-24-18 as current. The research page [Governing and Buying AI Under M-25-21 and M-25-22](../books/explainers/omb-ai-memos-m-25-21-m-25-22.md) covers the parts of both memos that Book 17 doesn't: the governance structure, the AI strategy and compliance plan, and M-25-22's acquisition lifecycle and contract terms.
+- **OMB's AI memoranda.** M-25-21 and M-25-22 were rechecked against OMB's memoranda list: neither has been amended or rescinded, and the only later AI memorandum is M-26-04. Book 15, Chapter 13 cites all three of M-24-10, M-25-21 and M-25-22, and Book 18, Chapter 05 cites M-25-21 and M-25-22; the citing-book lists below now include them. No page in the workbook cites M-24-10 or M-24-18 as current. The explainer [Governing and Buying AI Under M-25-21 and M-25-22](../books/explainers/omb-ai-memos-m-25-21-m-25-22.md) covers the parts of both memos that Book 17 doesn't: the governance structure, the AI strategy and compliance plan, and M-25-22's acquisition lifecycle and contract terms.
 
 ## Every federal source the books cite
 

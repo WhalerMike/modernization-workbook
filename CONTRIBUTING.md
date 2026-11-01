@@ -16,9 +16,40 @@ This repository is a living project. Content is accepted when it meets the quali
 2. For new material, indicate whether it is a cleaned extraction or original content.
 3. Update the relevant section README and the root README index if the change adds a new entry point.
 
-### Where new work goes, and its status label
+### Where new work goes: one home per type
 
-New work goes in the section for its type, as on Microsoft Learn: a how-to guide in `docs/books/guides/`, an explainer in `docs/books/explainers/`, an evaluation (a product or technology choice) in `docs/evaluations/`, a learning path in `docs/training/`, and lookup tables in `docs/reference/`. Until it is reviewed and proved, a page carries `research-status` (`draft`, `in review`, `proved`, `published`) and `last-reviewed` in its front matter, and a claims log at `_verification/<page>.md` beside it. The banner filter (`assets/research-banner.lua`) labels the page, and the weekly source watch checks its sources and its review date. What each status means, and what moves a page to the next, is in [Status labels for guides, explainers, evaluations and training](docs/about/sources-and-verification.md#status-labels).
+The workbook follows Microsoft Learn's content types. Every page is one type, and each type has one home:
+
+| Type | Learn equivalent | Home | What it holds |
+|---|---|---|---|
+| Book chapter | Overview and concepts | `docs/books/bNN-*/` | The vendor-neutral narrative: why, what, and the design. Book 19 is the code companion: a developer workbook built on `examples/` |
+| Explainer | Concept article | `docs/books/explainers/` | One concept in plain language, vendor-neutral, serving one or more books |
+| Implementation guide | How-to guide | `docs/books/guides/` | How to build a book's design, as gates with steps, a **Validate** step, rollback and evidence; may name products |
+| Evaluation | Technology choices | `docs/evaluations/` | A product or platform judged against a book's requirements, with the evidence for and against |
+| Training | Learning path | `docs/training/` | Modules that teach a skill in order, built from existing guides, decks and labs |
+| Reference | Reference | `docs/reference/` | Lookup tables: commands, crosswalks, mappings |
+| Project plan / developer workbook | (none) | `docs/project-plans/` | A schedule of a guide's gates, and the code workbooks for its tracks |
+| Deck and video | Shows | `presentations/` and the Presentations page | Presentations of a book or guide |
+
+Four rules keep this from sprawling:
+
+1. **A page doesn't change type or home.** If its type was wrong, fix it once, with an alias for the old address; don't move it back and forth.
+2. **Link, don't repeat.** A guide links to the book chapter that explains a concept instead of restating it; a training module links to guide sections, decks and labs instead of rewriting them. New text says only what nothing else already says.
+3. **One deck series per guide**, at the level of its gates. A book may have its own executive and technical decks; a guide does not add further tiers.
+4. **New guides fill a real gap.** Before starting one, name the book chapters it builds on and the step-by-step work they don't already give.
+
+### What every implementation guide and training module must carry
+
+Microsoft Learn says how to do something on the current commercial service. It doesn't say what a federal agency must do and prove, or how to get there from where most agencies are. Every implementation guide, and every training module, carries both:
+
+- **Federal requirements and evidence.** For each gate or module: the requirement it meets (an OMB memorandum, a CISA directive or binding operational directive, a NIST SP 800-53 control at Moderate, NIST SP 800-63, FedRAMP) and the evidence an ISSO keeps to show it was met. Link the [federal framework crosswalk](docs/reference/federal-framework-crosswalk.md) or the book's requirements appendix rather than restating them.
+- **Where agencies are.** The starting state the guide assumes (for example, Active Directory with OU-based policy, an on-premises HR system, a government cloud tenant), a **government-cloud availability** check for each feature it relies on, citing Learn's GCC, GCC High or national cloud availability page with the date it was read, and an **interim path** where a feature isn't available yet or a legacy system has to stay.
+
+Cite Microsoft Learn first for how a Microsoft feature works, and federal primary sources for what is required. Any comparison of cloud platforms covers AWS, Azure and Oracle Cloud Infrastructure.
+
+### Status labels
+
+Until it is reviewed and proved, a page carries `research-status` (`draft`, `in review`, `proved`, `published`) and `last-reviewed` in its front matter, and a claims log at `_verification/<page>.md` beside it. The banner filter (`assets/research-banner.lua`) labels the page, and the weekly source watch checks its sources and its review date. What each status means, and what moves a page to the next, is in [Status labels for guides, explainers, evaluations and training](docs/about/sources-and-verification.md#status-labels).
 
 ## Checking a pull request
 
