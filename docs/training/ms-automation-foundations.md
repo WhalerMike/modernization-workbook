@@ -16,7 +16,7 @@ aliases:
 
 **Learning path:** [Microsoft Automation](index.md#microsoft-automation-learning-path) · Module 1 of 3 · 85 minutes · Code: [examples/ms-automation](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/ms-automation) · Developer workbook: [Book 19, Chapter 02](../books/b19-developer-workbook/02-graph-clients-for-government-clouds.md)
 
-**Watch:** a narrated deck for this module, about 14 minutes with captions, comes with the next edition; its [narration script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-ms-automation-module-1/Training_MS_Automation_Module_1_Narration_Script.md) is here now.
+**Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/Training_MS_Automation_Module_1.pptx) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/Training_MS_Automation_Module_1_Narrated.pptx) (about 14 minutes, captions) · [▶ Watch](../presentations/watch.html?v=Training_MS_Automation_Module_1_Narrated) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_MS_Automation_Module_1_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-ms-automation-module-1/Training_MS_Automation_Module_1_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-ms-automation-module-1/Training_MS_Automation_Module_1_Narrated.vtt).
 
 ## Unit 1: Introduction
 

@@ -1,5 +1,5 @@
 {
- "edition": "edition-2026.11",
+ "edition": "edition-2026.11.1",
  "files": [
   {
    "path": "presentations/attribute-driven-migration-deeper-dive-part-1/Attribute_Driven_Migration_Deeper_Dive_Part_1.pptx",
@@ -1693,6 +1693,158 @@
    "members": 18
   },
   {
+   "path": "presentations/dw-ttm-01-loop-typed-task/DW_TTM_01_Loop_Typed_Task.pptx",
+   "asset": "DW_TTM_01_Loop_Typed_Task.pptx",
+   "size": 238626,
+   "sha256": "b4dc38dbfec5858e97b23fdf477926cfcaeaae677e475de3ddbbfa6c3a5ea81c"
+  },
+  {
+   "path": "presentations/dw-ttm-01-loop-typed-task/DW_TTM_01_Loop_Typed_Task_Narrated.pptx",
+   "asset": "DW_TTM_01_Loop_Typed_Task_Narrated.pptx",
+   "size": 3533962,
+   "sha256": "b67a41988a802116ef4ca5638e10f95c94fb2377f586e672770fd28b929d01c0"
+  },
+  {
+   "path": "presentations/dw-ttm-01-loop-typed-task/narration_DW_TTM_01_Loop_Typed_Task",
+   "asset": "DW_TTM_01_Loop_Typed_Task_narration_audio.zip",
+   "size": 3268256,
+   "sha256": "d62ca668289d180dc1bff0085206288bcd24c11257efb34d6fa1545337dd155b",
+   "members": 17
+  },
+  {
+   "path": "presentations/dw-ttm-02-servicenow-least-privilege/DW_TTM_02_ServiceNow_Least_Privilege.pptx",
+   "asset": "DW_TTM_02_ServiceNow_Least_Privilege.pptx",
+   "size": 216646,
+   "sha256": "76533328710a9b4e26e87843d6454621d008173547d84109947fa17052f6a0a4"
+  },
+  {
+   "path": "presentations/dw-ttm-02-servicenow-least-privilege/DW_TTM_02_ServiceNow_Least_Privilege_Narrated.pptx",
+   "asset": "DW_TTM_02_ServiceNow_Least_Privilege_Narrated.pptx",
+   "size": 3247190,
+   "sha256": "07d5b82fb68f81d629746cdd04a3c84dfd43527d0222a8dc213c69dfbc262d2a"
+  },
+  {
+   "path": "presentations/dw-ttm-02-servicenow-least-privilege/narration_DW_TTM_02_ServiceNow_Least_Privilege",
+   "asset": "DW_TTM_02_ServiceNow_Least_Privilege_narration_audio.zip",
+   "size": 3001462,
+   "sha256": "454220a45dd9ac874867df29b19877c690b42c6404fee0c80820a0a301cb7be4",
+   "members": 16
+  },
+  {
+   "path": "presentations/dw-ttm-03-sailpoint-scopes/DW_TTM_03_SailPoint_Scopes.pptx",
+   "asset": "DW_TTM_03_SailPoint_Scopes.pptx",
+   "size": 215182,
+   "sha256": "5b10fc50259dab55f53ba71b5ac662fb3c6757d62a64f55298c70310885033a0"
+  },
+  {
+   "path": "presentations/dw-ttm-03-sailpoint-scopes/DW_TTM_03_SailPoint_Scopes_Narrated.pptx",
+   "asset": "DW_TTM_03_SailPoint_Scopes_Narrated.pptx",
+   "size": 3338227,
+   "sha256": "47b2e78bc333d53d754f020f61fcaee7cfac4fef0732c4189a432b1d6a62fb78"
+  },
+  {
+   "path": "presentations/dw-ttm-03-sailpoint-scopes/narration_DW_TTM_03_SailPoint_Scopes",
+   "asset": "DW_TTM_03_SailPoint_Scopes_narration_audio.zip",
+   "size": 3092438,
+   "sha256": "e11042d26f6dcdc1a41b9d6bff00c790b29bbdd70d81e20d57a46474dcd2d62d",
+   "members": 16
+  },
+  {
+   "path": "presentations/dw-ttm-04-drift-typed-task/DW_TTM_04_Drift_Typed_Task.pptx",
+   "asset": "DW_TTM_04_Drift_Typed_Task.pptx",
+   "size": 219014,
+   "sha256": "07791d8c4e6b42e72919d0e4d561c498bde99084bb7b115a0f823f37cca968d7"
+  },
+  {
+   "path": "presentations/dw-ttm-04-drift-typed-task/DW_TTM_04_Drift_Typed_Task_Narrated.pptx",
+   "asset": "DW_TTM_04_Drift_Typed_Task_Narrated.pptx",
+   "size": 3299996,
+   "sha256": "2f4bccc9650c1d522b4cd1e06421ceb502588b294fda4c59e521546dbb7c15cd"
+  },
+  {
+   "path": "presentations/dw-ttm-04-drift-typed-task/narration_DW_TTM_04_Drift_Typed_Task",
+   "asset": "DW_TTM_04_Drift_Typed_Task_narration_audio.zip",
+   "size": 3051686,
+   "sha256": "8d06b74b20b1a8d790ff87e71d7409ed29c9d7e8e79afc236ccf47938b8f9b88",
+   "members": 16
+  },
+  {
+   "path": "presentations/dw-ttm-05-reread-rule/DW_TTM_05_Reread_Rule.pptx",
+   "asset": "DW_TTM_05_Reread_Rule.pptx",
+   "size": 216935,
+   "sha256": "3d3ec1c42a19c93723ff10adfc4d6a2ef5a1c0ba0273f7bbdecb4c23d106b88a"
+  },
+  {
+   "path": "presentations/dw-ttm-05-reread-rule/DW_TTM_05_Reread_Rule_Narrated.pptx",
+   "asset": "DW_TTM_05_Reread_Rule_Narrated.pptx",
+   "size": 3279236,
+   "sha256": "82a044564a068389601a3652fc0373cb6bcaedad089d6a2b625d692008d4844b"
+  },
+  {
+   "path": "presentations/dw-ttm-05-reread-rule/narration_DW_TTM_05_Reread_Rule",
+   "asset": "DW_TTM_05_Reread_Rule_narration_audio.zip",
+   "size": 3032662,
+   "sha256": "ca36d43f83a1a129e317c6c066a0d62fab0eef9b13c90ce386e106fb160e9b0a",
+   "members": 16
+  },
+  {
+   "path": "presentations/dw-ttm-06-drift-reconciliation/DW_TTM_06_Drift_Reconciliation.pptx",
+   "asset": "DW_TTM_06_Drift_Reconciliation.pptx",
+   "size": 220299,
+   "sha256": "81dfc63bcaacd16e2e99d210a6bb63b5d60bc765281801cfd54b31e09bcd782f"
+  },
+  {
+   "path": "presentations/dw-ttm-06-drift-reconciliation/DW_TTM_06_Drift_Reconciliation_Narrated.pptx",
+   "asset": "DW_TTM_06_Drift_Reconciliation_Narrated.pptx",
+   "size": 3200655,
+   "sha256": "8d22fe51b88cf194b2bb208492c7a612e70461cdc4a0454f4bf9b3c6778dccb4"
+  },
+  {
+   "path": "presentations/dw-ttm-06-drift-reconciliation/narration_DW_TTM_06_Drift_Reconciliation",
+   "asset": "DW_TTM_06_Drift_Reconciliation_narration_audio.zip",
+   "size": 2953858,
+   "sha256": "a792d08d54591dd1343e13a02548e5cd433c6ac633411aa6924d8751dc557aba",
+   "members": 15
+  },
+  {
+   "path": "presentations/dw-ttm-07-evidence-records/DW_TTM_07_Evidence_Records.pptx",
+   "asset": "DW_TTM_07_Evidence_Records.pptx",
+   "size": 217848,
+   "sha256": "c87d52053b04dafe037e8200c3b863ca0cd06dce3e53acaf1363712218bf3f63"
+  },
+  {
+   "path": "presentations/dw-ttm-07-evidence-records/DW_TTM_07_Evidence_Records_Narrated.pptx",
+   "asset": "DW_TTM_07_Evidence_Records_Narrated.pptx",
+   "size": 3115224,
+   "sha256": "c0f4d75e8939da64258372b4d1d0a662bcff94406b3a71e9ccbb2f466e15a804"
+  },
+  {
+   "path": "presentations/dw-ttm-07-evidence-records/narration_DW_TTM_07_Evidence_Records",
+   "asset": "DW_TTM_07_Evidence_Records_narration_audio.zip",
+   "size": 2869498,
+   "sha256": "144c865e90816c286076a8b0000cb26683a3e5a778ac02e51ccba6f7e3047d92",
+   "members": 15
+  },
+  {
+   "path": "presentations/dw-ttm-08-one-writer-per-attribute/DW_TTM_08_One_Writer_Per_Attribute.pptx",
+   "asset": "DW_TTM_08_One_Writer_Per_Attribute.pptx",
+   "size": 213797,
+   "sha256": "93b4b2008d3ea760730aad3b5d18a23d4b6ac85ab81704b3fdb835a2711037cd"
+  },
+  {
+   "path": "presentations/dw-ttm-08-one-writer-per-attribute/DW_TTM_08_One_Writer_Per_Attribute_Narrated.pptx",
+   "asset": "DW_TTM_08_One_Writer_Per_Attribute_Narrated.pptx",
+   "size": 3279494,
+   "sha256": "1ae726d7ab982faa3daf702ff89fc114a5148d4fd5abaf51cdfa6bb1b32125ec"
+  },
+  {
+   "path": "presentations/dw-ttm-08-one-writer-per-attribute/narration_DW_TTM_08_One_Writer_Per_Attribute",
+   "asset": "DW_TTM_08_One_Writer_Per_Attribute_narration_audio.zip",
+   "size": 3032646,
+   "sha256": "8524b9df2d21a0ebab6434cabb57fc25116de8f827bcf85beef48a0fed34467a",
+   "members": 16
+  },
+  {
    "path": "presentations/guide-ansible-technical/Guide_Ansible_Technical.pptx",
    "asset": "Guide_Ansible_Technical.pptx",
    "size": 328807,
@@ -1843,6 +1995,44 @@
    "size": 5594022,
    "sha256": "ccbef27163887df0e7582965c23961b3ba8148bfe73d13de58c13fe9e31fe793",
    "members": 20
+  },
+  {
+   "path": "presentations/research-cloud-dns-part-1/Research_Cloud_DNS_Part_1.pptx",
+   "asset": "Research_Cloud_DNS_Part_1.pptx",
+   "size": 217298,
+   "sha256": "49acbf2fa1e6fbaff9e29adde760feacf39eea8d2cd6e2b2879507b15325294b"
+  },
+  {
+   "path": "presentations/research-cloud-dns-part-1/Research_Cloud_DNS_Part_1_Narrated.pptx",
+   "asset": "Research_Cloud_DNS_Part_1_Narrated.pptx",
+   "size": 6006410,
+   "sha256": "0deb34de0b7c93838694e769a1b88ac8e479bf6186bb30d1d610288063d5b42c"
+  },
+  {
+   "path": "presentations/research-cloud-dns-part-1/narration_Research_Cloud_DNS_Part_1",
+   "asset": "Research_Cloud_DNS_Part_1_narration_audio.zip",
+   "size": 5761184,
+   "sha256": "72b5b0ee94ab23a788184ed313500b1b2aa9adb3001a26562e9f5d9443c11ef8",
+   "members": 17
+  },
+  {
+   "path": "presentations/research-cloud-dns-part-2/Research_Cloud_DNS_Part_2.pptx",
+   "asset": "Research_Cloud_DNS_Part_2.pptx",
+   "size": 216925,
+   "sha256": "4a821551ea446ce8cb86d8a235b512a919edc35406efd459d73dcef9e7f55c39"
+  },
+  {
+   "path": "presentations/research-cloud-dns-part-2/Research_Cloud_DNS_Part_2_Narrated.pptx",
+   "asset": "Research_Cloud_DNS_Part_2_Narrated.pptx",
+   "size": 5948007,
+   "sha256": "34b5ae1d2070dc3aae167e3d8ef301bf109f73fd906b6705dacb50eba4113721"
+  },
+  {
+   "path": "presentations/research-cloud-dns-part-2/narration_Research_Cloud_DNS_Part_2",
+   "asset": "Research_Cloud_DNS_Part_2_narration_audio.zip",
+   "size": 5703296,
+   "sha256": "acd0718dde5b3ec7b6c921809d7d3864702c485ff715f063d39ecec7d5c7848a",
+   "members": 17
   },
   {
    "path": "presentations/research-cyberark-clm/Research_CyberArk_CLM.pptx",
@@ -2092,6 +2282,63 @@
    "members": 10
   },
   {
+   "path": "presentations/training-ms-automation-module-1/Training_MS_Automation_Module_1.pptx",
+   "asset": "Training_MS_Automation_Module_1.pptx",
+   "size": 229547,
+   "sha256": "3c49f5a0fc87c08b1286438240eccc3e3e9eb987dc8791aefc5fd37703719190"
+  },
+  {
+   "path": "presentations/training-ms-automation-module-1/Training_MS_Automation_Module_1_Narrated.pptx",
+   "asset": "Training_MS_Automation_Module_1_Narrated.pptx",
+   "size": 5096988,
+   "sha256": "ea8ce096354d910c9b4bbd7275bd6f9659d7753d0bced564650ad8fec60f02f1"
+  },
+  {
+   "path": "presentations/training-ms-automation-module-1/narration_Training_MS_Automation_Module_1",
+   "asset": "Training_MS_Automation_Module_1_narration_audio.zip",
+   "size": 4839030,
+   "sha256": "af7784e8cef2d799c6022f9b90b09dfe0655a7436eabfcdfdbd0ef6ff81e5272",
+   "members": 16
+  },
+  {
+   "path": "presentations/training-ms-automation-module-2/Training_MS_Automation_Module_2.pptx",
+   "asset": "Training_MS_Automation_Module_2.pptx",
+   "size": 225186,
+   "sha256": "c869301ddd640e6990c585f2035efaab22766694f436fbabba3d082710482a6b"
+  },
+  {
+   "path": "presentations/training-ms-automation-module-2/Training_MS_Automation_Module_2_Narrated.pptx",
+   "asset": "Training_MS_Automation_Module_2_Narrated.pptx",
+   "size": 4687035,
+   "sha256": "2fdc4d3c1178a64331d55d4a9209b902b3ae1a09b6cff40b26ca1506f8d325dd"
+  },
+  {
+   "path": "presentations/training-ms-automation-module-2/narration_Training_MS_Automation_Module_2",
+   "asset": "Training_MS_Automation_Module_2_narration_audio.zip",
+   "size": 4429638,
+   "sha256": "99580f2b6d0a4b9873f9c803af426cad3f4dae2bf7835614a7c271160b907555",
+   "members": 16
+  },
+  {
+   "path": "presentations/training-ms-automation-module-3/Training_MS_Automation_Module_3.pptx",
+   "asset": "Training_MS_Automation_Module_3.pptx",
+   "size": 226357,
+   "sha256": "c92ed264a250f59d67dd7a81f077d4dc5cb89a40c535b0b28dce0669eb952a48"
+  },
+  {
+   "path": "presentations/training-ms-automation-module-3/Training_MS_Automation_Module_3_Narrated.pptx",
+   "asset": "Training_MS_Automation_Module_3_Narrated.pptx",
+   "size": 4942022,
+   "sha256": "45e44bdba882cf777e9c62dd9602c571fff6cfda4f325f9fd0bacf6c285053cf"
+  },
+  {
+   "path": "presentations/training-ms-automation-module-3/narration_Training_MS_Automation_Module_3",
+   "asset": "Training_MS_Automation_Module_3_narration_audio.zip",
+   "size": 4683798,
+   "sha256": "494112c9f83ba3c1763ab0992ca05ec0bdb709d2895cc4ffa85955fe437aaef9",
+   "members": 16
+  },
+  {
    "path": "presentations/ttm-servicenow-sailpoint-implementation-part-1/TTM_ServiceNow_SailPoint_Implementation_Part_1.pptx",
    "asset": "TTM_ServiceNow_SailPoint_Implementation_Part_1.pptx",
    "size": 230913,
@@ -2128,6 +2375,25 @@
    "size": 5153650,
    "sha256": "30c053b8e646ad5f8742628081a548828bb8924e5da7ab88b72108ffa5909fe8",
    "members": 15
+  },
+  {
+   "path": "presentations/ttm-story-one-drift-case/TTM_Story_One_Drift_Case.pptx",
+   "asset": "TTM_Story_One_Drift_Case.pptx",
+   "size": 314064,
+   "sha256": "0d98a6356cef8c9be7b470257b7e615ce67fcf8eef499be91214bc394ff24b07"
+  },
+  {
+   "path": "presentations/ttm-story-one-drift-case/TTM_Story_One_Drift_Case_Narrated.pptx",
+   "asset": "TTM_Story_One_Drift_Case_Narrated.pptx",
+   "size": 7169727,
+   "sha256": "a0fd35c9661ff97e34a469be104a9a89bd854e12091d10fba1b0447c90e5f9cf"
+  },
+  {
+   "path": "presentations/ttm-story-one-drift-case/narration_TTM_Story_One_Drift_Case",
+   "asset": "TTM_Story_One_Drift_Case_narration_audio.zip",
+   "size": 6844510,
+   "sha256": "32201b6266aaccbe6482a6fabb8334ffb21d999683d282d655e012bd3b9316a8",
+   "members": 25
   }
  ]
 }

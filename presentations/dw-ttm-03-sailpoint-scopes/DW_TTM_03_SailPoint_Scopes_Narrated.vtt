@@ -1,0 +1,713 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.200
+Welcome back to Building
+Ticket-to-Machine.
+
+2
+00:00:02.200 --> 00:00:06.113
+This is Chapter 3: the
+SailPoint client and its scopes.
+
+3
+00:00:06.113 --> 00:00:09.295
+An identity governance
+API client that can read
+
+4
+00:00:09.295 --> 00:00:12.399
+every identity is already
+a sensitive account.
+
+5
+00:00:12.399 --> 00:00:16.313
+One that can also change them is a
+second administrator nobody named.
+
+6
+00:00:16.313 --> 00:00:21.714
+This chapter shows how the kit's clients
+reach SailPoint Identity Security Cloud and
+
+7
+00:00:21.714 --> 00:00:24.757
+Microsoft Graph, adds their
+rows to the call list,
+
+8
+00:00:24.757 --> 00:00:28.637
+and proves the drift and re-read
+clients hold read scopes only.
+
+9
+00:00:28.637 --> 00:00:31.360
+Then two labs and the dangers.
+
+10
+00:00:35.110 --> 00:00:36.822
+Why insist on read scopes?
+
+11
+00:00:36.822 --> 00:00:38.760
+Look at what the clients actually do.
+
+12
+00:00:38.760 --> 00:00:40.959
+The drift client reads identities,
+
+13
+00:00:40.959 --> 00:00:45.735
+uncorrelated accounts and Graph users,
+and optionally the directory audit.
+
+14
+00:00:45.735 --> 00:00:50.272
+The re-read client reads one
+account, one identity or one user.
+
+15
+00:00:50.272 --> 00:00:52.711
+Nothing in Pass 1 writes anywhere.
+
+16
+00:00:52.711 --> 00:00:56.714
+So a manage scope on either client
+buys nothing and risks a lot:
+
+17
+00:00:56.714 --> 00:00:59.148
+a stolen token could change accounts.
+
+18
+00:00:59.148 --> 00:01:02.070
+The workflow scope left
+on a standing client lets
+
+19
+00:01:02.070 --> 00:01:04.922
+anyone add workflows that
+call out of SailPoint.
+
+20
+00:01:04.922 --> 00:01:09.780
+And an administrator's personal token
+runs the whole kit as an org admin.
+
+21
+00:01:13.530 --> 00:01:15.943
+Here's what the shared
+client already does.
+
+22
+00:01:15.943 --> 00:01:20.592
+It builds SailPoint's base URL from
+the tenant name, or takes one you set.
+
+23
+00:01:20.592 --> 00:01:23.982
+It gets a token from a vault
+or by client credentials;
+
+24
+00:01:23.982 --> 00:01:26.742
+a personal access token
+works the same way.
+
+25
+00:01:26.742 --> 00:01:29.831
+Search pages with
+search-after, sorted on the ID,
+
+26
+00:01:29.831 --> 00:01:33.792
+which is how SailPoint says to
+get past ten thousand results.
+
+27
+00:01:33.792 --> 00:01:38.579
+Account lists page two hundred
+fifty at a time, the API's maximum.
+
+28
+00:01:38.579 --> 00:01:42.530
+Graph uses a certificate first,
+from the cloud's own authority.
+
+29
+00:01:42.530 --> 00:01:45.156
+And because Search has no accounts index,
+
+30
+00:01:45.156 --> 00:01:48.530
+one account is re-read
+through the Accounts API.
+
+31
+00:01:52.280 --> 00:01:54.318
+These are the rows this chapter adds.
+
+32
+00:01:54.318 --> 00:01:59.231
+On SailPoint, a token from an API client,
+then Search with the search read scope,
+
+33
+00:01:59.231 --> 00:02:03.992
+and the Accounts list and single-account
+read with the accounts read scope.
+
+34
+00:02:03.992 --> 00:02:07.941
+Workflow creation needs a manage
+scope, and it's its own task,
+
+35
+00:02:07.941 --> 00:02:10.842
+because no client in
+the kit makes that call.
+
+36
+00:02:10.842 --> 00:02:15.895
+On Graph, listing users and reading one
+user both need User dot Read dot All as an
+
+37
+00:02:15.895 --> 00:02:19.081
+application permission,
+and the directory audit,
+
+38
+00:02:19.081 --> 00:02:22.630
+which is optional, needs
+AuditLog dot Read dot All.
+
+39
+00:02:26.380 --> 00:02:28.768
+Four choices make the rows enforceable.
+
+40
+00:02:28.768 --> 00:02:32.716
+The Accounts endpoints accept
+either a read or a manage scope;
+
+41
+00:02:32.716 --> 00:02:37.206
+the list names the read scope, and
+the comparison flags manage as extra.
+
+42
+00:02:37.206 --> 00:02:39.938
+Workflow creation gets a separate client,
+
+43
+00:02:39.938 --> 00:02:44.155
+used once and then removed, which
+is the program's design guidance.
+
+44
+00:02:44.155 --> 00:02:46.569
+The comparison works for SailPoint scopes
+
+45
+00:02:46.569 --> 00:02:49.118
+and for Graph application
+permissions alike.
+
+46
+00:02:49.118 --> 00:02:54.046
+And a required-only option leaves out optional
+calls, so an app registration without
+
+47
+00:02:54.046 --> 00:02:58.840
+the audit permission still passes for a
+drift run that doesn't read the audit.
+
+48
+00:03:02.590 --> 00:03:04.254
+No new test file this time:
+
+49
+00:03:04.254 --> 00:03:07.978
+Chapter 2's call-list test
+covers SailPoint and Graph too.
+
+50
+00:03:07.978 --> 00:03:11.508
+The drift and re-read clients
+run against a fake session,
+
+51
+00:03:11.508 --> 00:03:15.191
+and every request they make must
+match a row for their task.
+
+52
+00:03:15.191 --> 00:03:19.139
+It also asserts that no task asks
+for a scope ending in manage,
+
+53
+00:03:19.139 --> 00:03:24.115
+or a Graph permission ending in ReadWrite
+dot All, except workflow creation.
+
+54
+00:03:24.115 --> 00:03:27.236
+And the kit's original
+SailPoint tests still pass:
+
+55
+00:03:27.236 --> 00:03:32.100
+the token by client credentials and
+from a vault, and both paging styles.
+
+56
+00:03:35.850 --> 00:03:39.400
+The SailPoint facts, each
+read on November first.
+
+57
+00:03:39.400 --> 00:03:42.639
+The token endpoint supports
+client credentials
+
+58
+00:03:42.639 --> 00:03:45.562
+and personal access
+tokens, up to ten per user.
+
+59
+00:03:45.562 --> 00:03:48.848
+A client-credentials
+token has no user context,
+
+60
+00:03:48.848 --> 00:03:53.987
+and SailPoint warns that most admin
+APIs often return forbidden with one.
+
+61
+00:03:53.987 --> 00:03:58.876
+Search needs the search read scope and
+pages past ten thousand with search-after.
+
+62
+00:03:58.876 --> 00:04:02.300
+Its indexes include
+identities but no accounts.
+
+63
+00:04:02.300 --> 00:04:05.984
+The Accounts list and get
+accept a read or manage scope,
+
+64
+00:04:05.984 --> 00:04:08.112
+at most two hundred fifty a page.
+
+65
+00:04:08.112 --> 00:04:11.880
+And creating a workflow needs
+the workflow manage scope.
+
+66
+00:04:15.630 --> 00:04:17.043
+And the Graph facts.
+
+67
+00:04:17.043 --> 00:04:22.265
+User dot Read dot All is the least-privileged
+application permission both to list
+
+68
+00:04:22.265 --> 00:04:26.412
+users and to read one, and the audit
+needs AuditLog dot Read dot All;
+
+69
+00:04:26.412 --> 00:04:29.792
+both reads are available in
+the US Government clouds.
+
+70
+00:04:29.792 --> 00:04:34.502
+One wrinkle: application permissions
+aren't supported on the manager endpoint,
+
+71
+00:04:34.502 --> 00:04:38.568
+and Learn documents expanding the
+manager on the users list instead.
+
+72
+00:04:38.568 --> 00:04:42.637
+Microsoft 365 GCC uses
+the worldwide Graph host;
+
+73
+00:04:42.637 --> 00:04:47.418
+GCC High and the Defense
+Department cloud have their own.
+
+74
+00:04:47.418 --> 00:04:51.540
+SailPoint's Identity Security
+Cloud is FedRAMP Moderate.
+
+75
+00:04:55.290 --> 00:04:56.665
+Four points are still open.
+
+76
+00:04:56.665 --> 00:05:01.940
+SailPoint's public pages don't say
+what API domain a FedRAMP tenant uses.
+
+77
+00:05:01.940 --> 00:05:04.871
+They don't say whether a
+client-credentials token gets
+
+78
+00:05:04.871 --> 00:05:07.802
+data from Search and Accounts
+or a forbidden response.
+
+79
+00:05:07.802 --> 00:05:10.117
+Learn doesn't settle whether expanding the
+
+80
+00:05:10.117 --> 00:05:12.690
+manager works under an
+application permission.
+
+81
+00:05:12.690 --> 00:05:17.097
+And feature parity in SailPoint's
+FedRAMP environment, for Search,
+
+82
+00:05:17.097 --> 00:05:22.065
+Workflows and the Accounts API, is a
+question to put to SailPoint in writing.
+
+83
+00:05:22.065 --> 00:05:24.920
+Each one is on the kit's verify list.
+
+84
+00:05:28.670 --> 00:05:33.197
+What this proves: the drift and
+re-read clients hold read scopes only,
+
+85
+00:05:33.197 --> 00:05:37.482
+and the workflow client holds one
+scope and is removed after use.
+
+86
+00:05:37.482 --> 00:05:41.038
+That's least privilege and
+account management at Moderate,
+
+87
+00:05:41.038 --> 00:05:44.520
+with the comparison kept beside
+the API client's approval.
+
+88
+00:05:44.520 --> 00:05:47.957
+The Graph app registration
+holds only what it reads,
+
+89
+00:05:47.957 --> 00:05:52.033
+with a certificate, which adds
+authenticator management, IA-5.
+
+90
+00:05:52.033 --> 00:05:56.711
+And no part of Pass 1 can write to
+SailPoint, Entra ID or Active Directory,
+
+91
+00:05:56.711 --> 00:06:00.676
+which is the Federal Modernization
+Workbook's Book 13's rule
+
+92
+00:06:00.676 --> 00:06:05.330
+that the coordination layer never
+writes configuration itself.
+
+93
+00:06:09.080 --> 00:06:10.118
+Who owns this?
+
+94
+00:06:10.118 --> 00:06:16.041
+Developers who own the clients, the identity
+engineers who own the SailPoint side,
+
+95
+00:06:16.041 --> 00:06:18.742
+and the I S S O who approves API clients.
+
+96
+00:06:18.742 --> 00:06:21.118
+There are three non-person
+identities here.
+
+97
+00:06:21.118 --> 00:06:24.980
+A standing SailPoint reader
+with exactly two read scopes.
+
+98
+00:06:24.980 --> 00:06:27.465
+A workflow client with one manage scope,
+
+99
+00:06:27.465 --> 00:06:31.005
+used once to create the three
+workflows and then removed.
+
+100
+00:06:31.005 --> 00:06:34.574
+And a Graph app registration
+with the user read permission,
+
+101
+00:06:34.574 --> 00:06:39.810
+plus the audit permission only if you read
+the audit, signed in with a certificate.
+
+102
+00:06:43.560 --> 00:06:45.460
+Lab 1 runs on a laptop.
+
+103
+00:06:45.460 --> 00:06:48.898
+First, the kit's four
+SailPoint client tests pass.
+
+104
+00:06:48.898 --> 00:06:53.185
+Then list what the drift client needs
+from SailPoint: a token, Search with
+
+105
+00:06:53.185 --> 00:06:57.473
+the search read scope, and the Accounts
+list with the accounts read scope.
+
+106
+00:06:57.473 --> 00:06:58.773
+That's two scopes.
+
+107
+00:06:58.773 --> 00:07:01.710
+Now give it a manage
+scope as well and compare.
+
+108
+00:07:01.710 --> 00:07:04.556
+Nothing is missing, the
+manage scope is extra,
+
+109
+00:07:04.556 --> 00:07:08.710
+least privilege doesn't hold, and
+the command exits with a failure.
+
+110
+00:07:08.710 --> 00:07:12.900
+That one line is the
+review an I S S O needs.
+
+111
+00:07:16.650 --> 00:07:20.088
+Next, check the reader's scopes
+against the workflow task.
+
+112
+00:07:20.088 --> 00:07:23.862
+The workflow scope is missing
+and both read scopes are extra:
+
+113
+00:07:23.862 --> 00:07:27.562
+the comparison fails in both
+directions, which is the point.
+
+114
+00:07:27.562 --> 00:07:29.463
+Two jobs need two clients.
+
+115
+00:07:29.463 --> 00:07:31.363
+Then the Graph app registration.
+
+116
+00:07:31.363 --> 00:07:36.114
+Holding only the user read permission, it
+fails a drift run that reads the audit,
+
+117
+00:07:36.114 --> 00:07:38.599
+because the audit permission is missing.
+
+118
+00:07:38.599 --> 00:07:40.475
+With the required-only option,
+
+119
+00:07:40.475 --> 00:07:44.740
+the same grant passes for a drift
+run that doesn't read the audit.
+
+120
+00:07:48.490 --> 00:07:51.009
+Lab 2 is in a SailPoint sandbox tenant,
+
+121
+00:07:51.009 --> 00:07:54.178
+never production, and the
+authors haven't run it.
+
+122
+00:07:54.178 --> 00:07:59.664
+Find the tenant's API base from its own
+O auth info page rather than guessing.
+
+123
+00:07:59.664 --> 00:08:03.240
+Create the two API
+clients and compare each.
+
+124
+00:08:03.240 --> 00:08:05.465
+Try the reader against the sandbox.
+
+125
+00:08:05.465 --> 00:08:10.419
+If Search or Accounts refuses a
+client-credentials token, use a personal token
+
+126
+00:08:10.419 --> 00:08:14.915
+for a dedicated user at the lowest
+level that works, and record which one.
+
+127
+00:08:14.915 --> 00:08:17.803
+Find where the HR key
+lives on an identity.
+
+128
+00:08:17.803 --> 00:08:20.760
+Then delete both clients and the output.
+
+129
+00:08:24.510 --> 00:08:25.535
+The dangers.
+
+130
+00:08:25.535 --> 00:08:28.666
+A manage scope on a read
+client means a stolen token
+
+131
+00:08:28.666 --> 00:08:31.647
+can change accounts, and
+the comparison flags it.
+
+132
+00:08:31.647 --> 00:08:35.935
+The workflow scope left on a standing
+client lets anyone add workflows
+
+133
+00:08:35.935 --> 00:08:39.423
+that call out of SailPoint, so
+it lives on a client used once.
+
+134
+00:08:39.423 --> 00:08:43.591
+An administrator's personal token
+runs the kit as an org admin,
+
+135
+00:08:43.591 --> 00:08:45.798
+so use a dedicated low-level user.
+
+136
+00:08:45.798 --> 00:08:49.736
+Offset paging past ten thousand
+results stops silently,
+
+137
+00:08:49.736 --> 00:08:51.747
+so the code uses search-after.
+
+138
+00:08:51.747 --> 00:08:54.036
+The wrong Graph cloud is refused.
+
+139
+00:08:54.036 --> 00:08:58.100
+And Graph signs in with a
+certificate first, not a secret.
+
+140
+00:09:01.850 --> 00:09:03.050
+Done looks like this.
+
+141
+00:09:03.050 --> 00:09:06.600
+The SailPoint reader holds
+exactly its two read scopes.
+
+142
+00:09:06.600 --> 00:09:11.425
+No standing client holds the workflow
+scope, and the workflow client is gone.
+
+143
+00:09:11.425 --> 00:09:14.244
+Any personal token belongs to a dedicated
+
+144
+00:09:14.244 --> 00:09:17.225
+user at the lowest level
+that works, recorded.
+
+145
+00:09:17.225 --> 00:09:21.000
+The Graph app holds only what
+it reads, with a certificate.
+
+146
+00:09:21.000 --> 00:09:23.825
+The API base came from the tenant itself.
+
+147
+00:09:23.825 --> 00:09:27.637
+And the call-list test passes,
+including the no-write assertion.
+
+148
+00:09:27.637 --> 00:09:30.537
+Next, Chapter 4 turns a SailPoint event
+
+149
+00:09:30.537 --> 00:09:33.799
+into a typed task and
+sees the exact payload.
+
+150
+00:09:33.799 --> 00:09:34.970
+Thanks for watching.

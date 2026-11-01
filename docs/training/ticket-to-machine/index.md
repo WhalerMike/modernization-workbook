@@ -53,7 +53,7 @@ When you finish this path, you'll be able to:
 
 ## Watch first (optional)
 
-- The workbook's story deck, *One Drift Case, End to End*: one fictional person's drifted department followed through every module's gate, with the Lab 1 command and a knowledge check for each scene, about 20 minutes: [deck folder on GitHub](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/ttm-story-one-drift-case) (the deck and video follow when they are uploaded).
+- The workbook's story deck, *One Drift Case, End to End*: one fictional person's drifted department followed through every module's gate, with the Lab 1 command and a knowledge check for each scene, about 20 minutes: [Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/TTM_Story_One_Drift_Case.pptx) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/TTM_Story_One_Drift_Case_Narrated.pptx) (about 21 minutes, captions) · [▶ Watch](../../presentations/watch.html?v=TTM_Story_One_Drift_Case_Narrated) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/TTM_Story_One_Drift_Case_Narrated.mp4).
 - The narrated deck for the example guide: [▶ Watch](../../presentations/watch.html?v=Research_TTM_ServiceNow_SailPoint_Narrated), about 10 minutes.
 - The narrated deck for Book 13's Appendix B: [Presentations](../../presentations/index.md#reference-b13).
 

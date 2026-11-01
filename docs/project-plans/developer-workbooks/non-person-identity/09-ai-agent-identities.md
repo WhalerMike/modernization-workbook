@@ -29,7 +29,7 @@ The checks and the plan behind the project plan's Phase 6 and Gate 6, "AI identi
 ## Narrated tour
 {{< fmw-video DW_NPI_09_AI_Agent_Identities_Narrated >}}
 
-[Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11/DW_NPI_09_AI_Agent_Identities.pptx) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11/DW_NPI_09_AI_Agent_Identities_Narrated.pptx) (about 12 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-npi-09-ai-agents/DW_NPI_09_AI_Agent_Identities_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-npi-09-ai-agents/DW_NPI_09_AI_Agent_Identities_Narrated.vtt). Recorded on October 31, 2026 from the approved chapter.
+[Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/DW_NPI_09_AI_Agent_Identities.pptx) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/DW_NPI_09_AI_Agent_Identities_Narrated.pptx) (about 12 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-npi-09-ai-agents/DW_NPI_09_AI_Agent_Identities_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-npi-09-ai-agents/DW_NPI_09_AI_Agent_Identities_Narrated.vtt). Recorded on October 31, 2026 from the approved chapter.
 :::
 
 <!-- tour:end -->

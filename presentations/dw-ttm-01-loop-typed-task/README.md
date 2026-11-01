@@ -6,7 +6,7 @@
 |---|---|
 | `DW_TTM_01_Loop_Typed_Task.pptx` | The deck: 17 narrated slides (the title and 16 content slides in Why, What, Who and How order), then a backup section with the chapter's footnotes in full |
 | `DW_TTM_01_Loop_Typed_Task_Narrated.pptx` | The self-running edition: narration audio and a caption track on every slide, backup section dropped |
-| `DW_TTM_01_Loop_Typed_Task_Narrated.mp4` | The video, for the videos release (not uploaded yet) |
+| `DW_TTM_01_Loop_Typed_Task_Narrated.mp4` | The video, about 10 minutes, on the [videos release](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_TTM_01_Loop_Typed_Task_Narrated.mp4) |
 | `DW_TTM_01_Loop_Typed_Task_Narrated.vtt` | The video's caption track |
 | `DW_TTM_01_Loop_Typed_Task_Narration_Script.md` | The spoken narration, slide by slide (about 1,474 words) |
 | `build.js` | The slides, the spoken narration (`say`), the presenter detail (`detail`) and the chapter footnotes each slide cites (`cite`) |

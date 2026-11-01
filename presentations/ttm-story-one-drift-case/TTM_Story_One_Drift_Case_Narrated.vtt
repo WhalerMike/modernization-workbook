@@ -1,0 +1,1551 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.317
+Welcome to the story deck for
+Building Ticket-to-Machine,
+
+2
+00:00:03.317 --> 00:00:06.862
+a developer workbook in the
+Federal Modernization Workbook.
+
+3
+00:00:06.862 --> 00:00:11.031
+Instead of eight chapters one at
+a time, we'll follow one person's
+
+4
+00:00:11.031 --> 00:00:15.600
+record all the way through Book 13's
+loop on ServiceNow and SailPoint.
+
+5
+00:00:15.600 --> 00:00:20.275
+Her name is Erin, and she's fictional:
+every value you'll see comes from the
+
+6
+00:00:20.275 --> 00:00:25.188
+kit's own test fixtures, and every command
+was re-run before it went on a slide.
+
+7
+00:00:25.188 --> 00:00:29.963
+Seven scenes: the drift run finds
+her, her drift becomes a typed task,
+
+8
+00:00:29.963 --> 00:00:35.345
+least-privilege clients touch it, we find
+why it keeps coming back, the fix is
+
+9
+00:00:35.345 --> 00:00:37.342
+actuated, a re-read closes it,
+
+10
+00:00:37.342 --> 00:00:41.075
+and her closure becomes
+evidence an I S S O can verify.
+
+11
+00:00:41.075 --> 00:00:44.950
+Each scene ends with a command
+to try and a one-question check.
+
+12
+00:00:44.950 --> 00:00:48.562
+One more thing before we start:
+the code is illustrative.
+
+13
+00:00:48.562 --> 00:00:51.880
+Its tests pass against
+fixtures and mocked responses,
+
+14
+00:00:51.880 --> 00:00:56.599
+but it hasn't been run against a live
+ServiceNow instance or SailPoint tenant.
+
+15
+00:00:56.599 --> 00:01:00.213
+Where the vendors' documentation
+doesn't settle a point,
+
+16
+00:01:00.213 --> 00:01:02.770
+the workbook says so, and so will we.
+
+17
+00:01:06.520 --> 00:01:07.645
+Meet the cast.
+
+18
+00:01:07.645 --> 00:01:13.270
+Erin's HR record says she works in
+HR and reports to employee E1000.
+
+19
+00:01:13.270 --> 00:01:20.458
+Entra ID, in a Microsoft 365 GCC tenant,
+says Finance, and a different manager.
+
+20
+00:01:20.458 --> 00:01:22.425
+The directory audit shows why:
+
+21
+00:01:22.425 --> 00:01:27.146
+on October twentieth a help desk
+administrator typed Finance in by hand.
+
+22
+00:01:27.146 --> 00:01:29.107
+SailPoint still says HR.
+
+23
+00:01:29.107 --> 00:01:31.094
+And ServiceNow is the front door,
+
+24
+00:01:31.094 --> 00:01:34.407
+where her drift becomes a
+typed task with its evidence.
+
+25
+00:01:34.407 --> 00:01:37.947
+The stakes are the two failures
+the example guide warns about:
+
+26
+00:01:37.947 --> 00:01:40.652
+closing her finding
+because a ticket says done,
+
+27
+00:01:40.652 --> 00:01:44.746
+and fixing her record by hand while
+two systems still write department.
+
+28
+00:01:44.746 --> 00:01:48.482
+Either way the drift comes back,
+and nobody can prove what happened.
+
+29
+00:01:48.482 --> 00:01:55.103
+Keep three numbers in your head: E1004
+is Erin, E1000 is the manager HR names,
+
+30
+00:01:55.103 --> 00:02:01.071
+and E1001, Alice, is the manager
+Entra ID and SailPoint name instead.
+
+31
+00:02:01.071 --> 00:02:04.156
+The estate is a FedRAMP
+Moderate civilian one:
+
+32
+00:02:04.156 --> 00:02:07.892
+ServiceNow's Government
+Community Cloud, FedRAMP High;
+
+33
+00:02:07.892 --> 00:02:11.628
+SailPoint's Identity Security
+Cloud, FedRAMP Moderate;
+
+34
+00:02:11.628 --> 00:02:16.470
+and Entra ID on the worldwide Graph
+endpoint, which is what GCC uses.
+
+35
+00:02:20.220 --> 00:02:21.208
+Here's the route.
+
+36
+00:02:21.208 --> 00:02:24.955
+Book 13's loop has five
+steps: test, detect drift,
+
+37
+00:02:24.955 --> 00:02:29.096
+raise a typed task, actuate,
+and close with evidence.
+
+38
+00:02:29.096 --> 00:02:31.620
+The example guide builds
+it in seven gates,
+
+39
+00:02:31.620 --> 00:02:34.145
+and the workbook's
+chapters build the code.
+
+40
+00:02:34.145 --> 00:02:38.132
+Scene one is the drift
+run, Gate 3 and Chapter 6.
+
+41
+00:02:38.132 --> 00:02:43.557
+Scene two turns her drift into a
+typed task, Gate 4, Chapters 1 and 4.
+
+42
+00:02:43.557 --> 00:02:48.270
+Scene three is least privilege,
+Gate 1, Chapters 2 and 3.
+
+43
+00:02:48.270 --> 00:02:53.007
+Scene four finds why her department
+keeps drifting, Gate 2, Chapter 8.
+
+44
+00:02:53.007 --> 00:02:55.163
+Scene five is actuation, Gate 5,
+
+45
+00:02:55.163 --> 00:02:58.957
+which the kit's first pass
+deliberately doesn't build.
+
+46
+00:02:58.957 --> 00:03:02.808
+Scene six is the re-read,
+Gate 6, Chapter 5.
+
+47
+00:03:02.808 --> 00:03:06.933
+And scene seven is the
+evidence, Gate 7, Chapter 7.
+
+48
+00:03:06.933 --> 00:03:08.883
+Every scene has the same shape.
+
+49
+00:03:08.883 --> 00:03:11.984
+First, the story beat: what
+happens to Erin's record,
+
+50
+00:03:11.984 --> 00:03:16.220
+with the code that handles it and
+the federal requirement behind it.
+
+51
+00:03:16.220 --> 00:03:19.379
+Then a slide called Try it,
+with the exact Lab 1 command
+
+52
+00:03:19.379 --> 00:03:22.395
+from the workbook and the
+output it really printed.
+
+53
+00:03:22.395 --> 00:03:23.982
+Then a one-question check.
+
+54
+00:03:23.982 --> 00:03:28.580
+Pause the video if you want to answer
+it; the answer opens the next slide.
+
+55
+00:03:32.330 --> 00:03:33.155
+Scene one.
+
+56
+00:03:33.155 --> 00:03:38.017
+On day one, the drift client joins
+the HR extract, Microsoft Graph
+
+57
+00:03:38.017 --> 00:03:43.155
+and SailPoint on the employee ID,
+and measures Book 3's drift classes.
+
+58
+00:03:43.155 --> 00:03:44.980
+Erin collects four findings:
+
+59
+00:03:44.980 --> 00:03:49.466
+her Entra department and Entra manager
+disagree with HR, her SailPoint
+
+60
+00:03:49.466 --> 00:03:54.180
+manager disagrees too, and there's an
+unauthorized write on her department.
+
+61
+00:03:54.180 --> 00:03:58.573
+That last one appears only because
+this run read the directory audit;
+
+62
+00:03:58.573 --> 00:04:01.193
+without it, the class
+isn't computed at all.
+
+63
+00:04:01.193 --> 00:04:05.403
+Each finding's ID is a hash of
+its class, system, employee,
+
+64
+00:04:05.403 --> 00:04:10.455
+object and attribute, so the same
+drift has the same ID every night.
+
+65
+00:04:10.455 --> 00:04:13.917
+Why it matters: Gate 3
+measures the starting drift.
+
+66
+00:04:13.917 --> 00:04:17.660
+That's account management
+and continuous monitoring,
+
+67
+00:04:17.660 --> 00:04:20.155
+and the I S S O keeps every run's output.
+
+68
+00:04:20.155 --> 00:04:22.068
+Notice what the run doesn't claim.
+
+69
+00:04:22.068 --> 00:04:26.265
+Credential drift and schema drift
+need other systems, the card system,
+
+70
+00:04:26.265 --> 00:04:28.726
+Intune and the provisioning middleware,
+
+71
+00:04:28.726 --> 00:04:33.068
+so every run lists them as not computed
+instead of implying they're clean.
+
+72
+00:04:33.068 --> 00:04:37.020
+And expect a burst of High findings
+in a real estate's first month;
+
+73
+00:04:37.020 --> 00:04:40.000
+Book 3 calls that the measurement working.
+
+74
+00:04:43.750 --> 00:04:44.475
+Try it.
+
+75
+00:04:44.475 --> 00:04:49.262
+From the kit's folder, run the drift
+client over the fixtures, with the audit.
+
+76
+00:04:49.262 --> 00:04:53.380
+The summary counts four attribute
+drifts, two missing identities,
+
+77
+00:04:53.380 --> 00:04:58.471
+three orphan accounts, two stale accesses
+and one unauthorized write, and it lists
+
+78
+00:04:58.471 --> 00:05:03.412
+credential and schema drift as not computed
+rather than implying they're clean.
+
+79
+00:05:03.412 --> 00:05:06.937
+Then look for Erin's
+employee ID in the CSV.
+
+80
+00:05:06.937 --> 00:05:11.641
+There she is, four times:
+department and manager in Entra ID,
+
+81
+00:05:11.641 --> 00:05:17.813
+manager in SailPoint, each Medium at P3;
+and the unauthorized write, High at P2.
+
+82
+00:05:17.813 --> 00:05:23.082
+If you run this yourself, you need Python
+3.10 or later with pytest and requests,
+
+83
+00:05:23.082 --> 00:05:25.799
+and you work in the kit's examples folder.
+
+84
+00:05:25.799 --> 00:05:28.188
+Nothing touches a tenant or the network.
+
+85
+00:05:28.188 --> 00:05:32.670
+When you're done, delete the out
+folder; the labs write everything there.
+
+86
+00:05:36.420 --> 00:05:37.232
+Check one.
+
+87
+00:05:37.232 --> 00:05:43.358
+Tomorrow, HR corrects Erin's department
+to Finance, so HR and Entra ID agree.
+
+88
+00:05:43.358 --> 00:05:47.182
+Which of her four day-one findings
+still won't go away on its own?
+
+89
+00:05:47.182 --> 00:05:50.575
+Is it the Entra department
+drift, the Entra manager drift,
+
+90
+00:05:50.575 --> 00:05:53.895
+the SailPoint manager drift,
+or the unauthorized write?
+
+91
+00:05:53.895 --> 00:05:58.382
+Think about what HR agreeing
+afterwards does, and doesn't, prove.
+
+92
+00:05:58.382 --> 00:06:00.790
+The answer opens the next scene.
+
+93
+00:06:04.540 --> 00:06:07.553
+The answer to check one:
+the unauthorized write.
+
+94
+00:06:07.553 --> 00:06:11.543
+HR agreeing later doesn't make
+a hand-typed change authorized,
+
+95
+00:06:11.543 --> 00:06:12.952
+so a person decides it.
+
+96
+00:06:12.952 --> 00:06:13.816
+Scene two.
+
+97
+00:06:13.816 --> 00:06:19.643
+Each of Erin's findings becomes one typed
+task in ServiceNow: a class, a severity,
+
+98
+00:06:19.643 --> 00:06:22.871
+the system where it'll
+be re-read, one subject,
+
+99
+00:06:22.871 --> 00:06:26.727
+its origin, and the intended
+state a re-read must find.
+
+100
+00:06:26.727 --> 00:06:29.916
+Her department drift is P3, due in a day.
+
+101
+00:06:29.916 --> 00:06:35.070
+The unauthorized write is P2, due in an
+hour, and it's accepted with a warning,
+
+102
+00:06:35.070 --> 00:06:39.465
+because its intended state is
+empty until that person decides.
+
+103
+00:06:39.465 --> 00:06:42.592
+From SailPoint's side, the
+mover workflow raises her
+
+104
+00:06:42.592 --> 00:06:45.865
+department change with
+Finance as the intended state.
+
+105
+00:06:45.865 --> 00:06:51.140
+Why it matters: Gate 4 makes every drift
+an owned record answered inside a window.
+
+106
+00:06:51.140 --> 00:06:54.965
+The tempo is Book 13's
+design, not a federal clock.
+
+107
+00:06:54.965 --> 00:06:58.825
+The important design choice is
+that the rules live in one place,
+
+108
+00:06:58.825 --> 00:07:01.776
+the scripted REST resource
+inside ServiceNow,
+
+109
+00:07:01.776 --> 00:07:06.090
+and the Python mirror is held to it
+by a test that reads the JavaScript.
+
+110
+00:07:06.090 --> 00:07:08.714
+So a malformed payload fails on a laptop,
+
+111
+00:07:08.714 --> 00:07:14.170
+not as a four hundred from a live instance,
+and the mirror can't quietly go stale.
+
+112
+00:07:17.920 --> 00:07:18.645
+Try it.
+
+113
+00:07:18.645 --> 00:07:23.870
+Feed day one's run to the contract check
+at a fixed clock, noon on November first.
+
+114
+00:07:23.870 --> 00:07:28.883
+Erin's department and manager drifts
+are accepted at P3, due the next noon.
+
+115
+00:07:28.883 --> 00:07:32.878
+Her unauthorized write is accepted
+at P2, due at one o'clock,
+
+116
+00:07:32.878 --> 00:07:36.957
+with the warning that its
+intended state names nothing yet.
+
+117
+00:07:36.957 --> 00:07:38.919
+All twelve payloads are accepted.
+
+118
+00:07:38.919 --> 00:07:41.430
+Then resolve SailPoint's mover workflow
+
+119
+00:07:41.430 --> 00:07:44.383
+against the fictional
+event for Erin's identity.
+
+120
+00:07:44.383 --> 00:07:47.553
+The intended state is
+department Finance, P3,
+
+121
+00:07:47.553 --> 00:07:50.982
+and the de-duplication
+key ends in the attribute.
+
+122
+00:07:50.982 --> 00:07:54.333
+This is the first thing to
+check whenever a client changes:
+
+123
+00:07:54.333 --> 00:07:57.544
+run its payloads through the
+validator in its own tests.
+
+124
+00:07:57.544 --> 00:08:00.023
+Nothing a client builds
+should be rejected,
+
+125
+00:08:00.023 --> 00:08:02.707
+and every warning should
+be one you understand.
+
+126
+00:08:02.707 --> 00:08:06.779
+Here, the only warnings are for
+the classes a person decides first:
+
+127
+00:08:06.779 --> 00:08:10.150
+missing identities and
+the unauthorized write.
+
+128
+00:08:13.900 --> 00:08:14.725
+Check two.
+
+129
+00:08:14.725 --> 00:08:18.787
+Erin's department and manager
+both drift in Entra ID.
+
+130
+00:08:18.787 --> 00:08:24.926
+Before Chapter 4's fix, ServiceNow
+de-duplicated on source, subject and class only.
+
+131
+00:08:24.926 --> 00:08:27.088
+What went wrong with her two findings?
+
+132
+00:08:27.088 --> 00:08:32.920
+Were they rejected, folded together,
+given the wrong severity, or raised twice?
+
+133
+00:08:36.670 --> 00:08:40.362
+The answer to check two: the
+manager drift would have been folded
+
+134
+00:08:40.362 --> 00:08:43.845
+into the department one, and its
+intended state never re-read.
+
+135
+00:08:43.845 --> 00:08:46.707
+Scene three: who may touch Erin's record.
+
+136
+00:08:46.707 --> 00:08:50.327
+The drift client read her through
+SailPoint with two read scopes,
+
+137
+00:08:50.327 --> 00:08:54.483
+and through Graph with the user read
+permission plus the audit permission.
+
+138
+00:08:54.483 --> 00:08:58.408
+That audit read is the only reason
+the help desk write was seen.
+
+139
+00:08:58.408 --> 00:09:01.774
+In ServiceNow, a finding
+writer posted her tasks,
+
+140
+00:09:01.774 --> 00:09:06.570
+only the verifier may close them,
+and an evidence reader may only read.
+
+141
+00:09:06.570 --> 00:09:12.033
+Every call is a row in one file, and a
+test fails on any call it doesn't declare.
+
+142
+00:09:12.033 --> 00:09:17.176
+Why it matters: Gate 1 records the
+integration identities, each least-privileged,
+
+143
+00:09:17.176 --> 00:09:22.396
+with certificates rather than secrets,
+and the closer separated from the raisers.
+
+144
+00:09:22.396 --> 00:09:25.370
+Two details from Chapter
+3 are worth carrying.
+
+145
+00:09:25.370 --> 00:09:29.231
+A SailPoint client-credentials
+token has no user context,
+
+146
+00:09:29.231 --> 00:09:34.137
+and SailPoint warns that most admin
+APIs often return forbidden with one,
+
+147
+00:09:34.137 --> 00:09:37.595
+so Lab 2 records what actually
+works in your sandbox.
+
+148
+00:09:37.595 --> 00:09:41.562
+And the scope that creates
+workflows lives on its own client,
+
+149
+00:09:41.562 --> 00:09:43.420
+used once, then removed.
+
+150
+00:09:47.170 --> 00:09:47.895
+Try it.
+
+151
+00:09:47.895 --> 00:09:50.468
+Suppose the SailPoint
+reader that read Erin
+
+152
+00:09:50.468 --> 00:09:52.833
+was also given the accounts manage scope.
+
+153
+00:09:52.833 --> 00:09:56.506
+Compare it with what the drift
+task needs: nothing missing,
+
+154
+00:09:56.506 --> 00:10:01.021
+the manage scope extra, least privilege
+doesn't hold, exit with a failure.
+
+155
+00:10:01.021 --> 00:10:03.695
+A stolen token could have
+changed her accounts.
+
+156
+00:10:03.695 --> 00:10:08.819
+Now the ServiceNow verifier, given
+the broad I T I L role as well:
+
+157
+00:10:08.819 --> 00:10:11.732
+same result, one extra role, failure.
+
+158
+00:10:11.732 --> 00:10:16.015
+The tool calls no network; the
+operator types or exports the grant,
+
+159
+00:10:16.015 --> 00:10:19.108
+and the output goes beside
+the access approval.
+
+160
+00:10:19.108 --> 00:10:21.420
+The same comparison works for Graph.
+
+161
+00:10:21.420 --> 00:10:26.388
+An app registration holding only the user
+read permission fails a drift run that
+
+162
+00:10:26.388 --> 00:10:31.207
+reads the audit, and passes one that doesn't
+when you ask for required calls only.
+
+163
+00:10:31.207 --> 00:10:33.899
+In Erin's case, the
+audit read is required,
+
+164
+00:10:33.899 --> 00:10:38.080
+because it's the only way her
+help desk write was ever seen.
+
+165
+00:10:41.830 --> 00:10:42.742
+Check three.
+
+166
+00:10:42.742 --> 00:10:46.618
+Chapter 7's evidence export
+reads Erin's closed record.
+
+167
+00:10:46.618 --> 00:10:50.006
+It would work perfectly well
+if it ran as the verifier.
+
+168
+00:10:50.006 --> 00:10:53.000
+So why does the comparison
+refuse that grant?
+
+169
+00:10:56.750 --> 00:11:01.013
+The answer to check three: running as
+the verifier, the export could also
+
+170
+00:11:01.013 --> 00:11:05.275
+close the findings it's about to hash,
+which breaks separation of duties.
+
+171
+00:11:05.275 --> 00:11:08.300
+Scene four asks why Erin's
+department drifts at all.
+
+172
+00:11:08.300 --> 00:11:13.192
+Book 3 makes Entra inbound provisioning
+the one writer into the directory,
+
+173
+00:11:13.192 --> 00:11:15.875
+but SailPoint can provision Entra ID too.
+
+174
+00:11:15.875 --> 00:11:19.199
+If both update department,
+each overwrites the other,
+
+175
+00:11:19.199 --> 00:11:22.900
+and fixing her record by hand
+just schedules the next drift.
+
+176
+00:11:22.900 --> 00:11:27.262
+The writer check compares the two
+provisioning configurations, offline.
+
+177
+00:11:27.262 --> 00:11:30.621
+The kit's exports are fictional
+files, not Erin's tenant,
+
+178
+00:11:30.621 --> 00:11:35.025
+but they show exactly the overlap that
+would keep her drift coming back.
+
+179
+00:11:35.025 --> 00:11:38.640
+Why it matters: Gate 2 decides
+one writer per attribute,
+
+180
+00:11:38.640 --> 00:11:41.613
+so every account change
+traces to its source.
+
+181
+00:11:41.613 --> 00:11:46.167
+This is the one item from the kit's planned
+second pass that can be built today,
+
+182
+00:11:46.167 --> 00:11:50.576
+because both configurations export
+as JSON through documented reads.
+
+183
+00:11:50.576 --> 00:11:55.767
+The other planned items, one approver per
+authority class, change records on demand,
+
+184
+00:11:55.767 --> 00:11:59.003
+the SailPoint half of the
+evidence and email intake,
+
+185
+00:11:59.003 --> 00:12:02.230
+all need a live instance
+or product internals.
+
+186
+00:12:05.980 --> 00:12:06.705
+Try it.
+
+187
+00:12:06.705 --> 00:12:09.705
+Run the writer check on
+the two fictional exports.
+
+188
+00:12:09.705 --> 00:12:14.768
+Entra inbound provisioning writes eight
+attributes, SailPoint writes seven,
+
+189
+00:12:14.768 --> 00:12:17.494
+and department is a
+Finding: both update it,
+
+190
+00:12:17.494 --> 00:12:21.155
+so each overwrites the other
+and the drift never settles.
+
+191
+00:12:21.155 --> 00:12:23.430
+That's Erin's problem in one line.
+
+192
+00:12:23.430 --> 00:12:28.042
+Display name is a warning, and two
+attributes are only informational.
+
+193
+00:12:28.042 --> 00:12:31.153
+Now map SailPoint's title
+field to Entra's job
+
+194
+00:12:31.153 --> 00:12:34.431
+title and run it again:
+a second Finding appears.
+
+195
+00:12:34.431 --> 00:12:37.730
+Without the alias, that
+second writer was invisible.
+
+196
+00:12:37.730 --> 00:12:40.018
+And notice the guard
+on the directory name.
+
+197
+00:12:40.018 --> 00:12:43.487
+If you tell the check the wrong
+name for the Entra directory,
+
+198
+00:12:43.487 --> 00:12:47.452
+it refuses and exits with an error,
+rather than reporting no overlap,
+
+199
+00:12:47.452 --> 00:12:51.570
+because a wrong name would make
+every attribute look unwritten.
+
+200
+00:12:55.320 --> 00:12:56.232
+Check four.
+
+201
+00:12:56.232 --> 00:13:00.378
+Entra inbound provisioning updates
+display name on every change,
+
+202
+00:13:00.378 --> 00:13:03.770
+and SailPoint sets it only
+when it creates the account.
+
+203
+00:13:03.770 --> 00:13:09.490
+What does the writer check report: a
+Finding, a warning, info, or nothing at all?
+
+204
+00:13:13.240 --> 00:13:15.239
+The answer to check four: a warning,
+
+205
+00:13:15.239 --> 00:13:18.165
+because there are two
+sources for the first value.
+
+206
+00:13:18.165 --> 00:13:22.103
+Scene five is the fix itself, and
+here the kit stops on purpose.
+
+207
+00:13:22.103 --> 00:13:23.777
+The guide says how it should run.
+
+208
+00:13:23.777 --> 00:13:27.859
+Erin's wrong fact is corrected
+where HR owns it, in Core HCM,
+
+209
+00:13:27.859 --> 00:13:33.590
+and SailPoint re-aggregates; SailPoint
+can't write HR-mastered attributes back.
+
+210
+00:13:33.590 --> 00:13:36.833
+Her unauthorized write is
+restored by SailPoint,
+
+211
+00:13:36.833 --> 00:13:39.127
+and the writer's access is reviewed.
+
+212
+00:13:39.127 --> 00:13:42.221
+The ticket authorizes
+a machine: a connector,
+
+213
+00:13:42.221 --> 00:13:45.816
+under a service identity,
+and a person only approves.
+
+214
+00:13:45.816 --> 00:13:49.025
+But the kit's first pass
+doesn't actuate at all:
+
+215
+00:13:49.025 --> 00:13:53.102
+no code writes to Entra ID,
+Active Directory or SailPoint.
+
+216
+00:13:53.102 --> 00:13:56.516
+What it does have is the closure
+signal, which we'll try next.
+
+217
+00:13:56.516 --> 00:14:00.765
+Why it matters: Gate 5 keeps
+changes off personal admin accounts.
+
+218
+00:14:00.765 --> 00:14:03.690
+The guide also keeps people
+off standing privilege.
+
+219
+00:14:03.690 --> 00:14:08.069
+Where a person must act, they activate
+an eligible role just in time,
+
+220
+00:14:08.069 --> 00:14:11.015
+with the ticket number
+as the justification.
+
+221
+00:14:11.015 --> 00:14:16.255
+And when no machine can reach the surface,
+the declared-exception lane takes over:
+
+222
+00:14:16.255 --> 00:14:19.900
+a named approver, a recorded
+session and an end date.
+
+223
+00:14:23.650 --> 00:14:24.375
+Try it.
+
+224
+00:14:24.375 --> 00:14:27.122
+The kit's provisioning fixture is Alice's,
+
+225
+00:14:27.122 --> 00:14:30.112
+not Erin's, but the shape
+is the same for anyone.
+
+226
+00:14:30.112 --> 00:14:33.600
+Resolve SailPoint's provisioning-completed
+workflow against it.
+
+227
+00:14:33.600 --> 00:14:38.975
+ServiceNow gets a closure signal,
+accepted, with four input fields not sent.
+
+228
+00:14:38.975 --> 00:14:41.130
+And here's what a closure signal does:
+
+229
+00:14:41.130 --> 00:14:44.363
+it moves matching findings
+to awaiting verification.
+
+230
+00:14:44.363 --> 00:14:45.812
+It never closes one.
+
+231
+00:14:45.812 --> 00:14:48.244
+That's the example guide's first gap,
+
+232
+00:14:48.244 --> 00:14:51.849
+written into code: a success
+response is not closure.
+
+233
+00:14:51.849 --> 00:14:56.363
+The workflow is also why provisioning
+status can't be trusted on its own.
+
+234
+00:14:56.363 --> 00:14:59.830
+SailPoint's own best-practice
+page says its Service Desk
+
+235
+00:14:59.830 --> 00:15:03.813
+integration treats the mapped
+ServiceNow status as completion.
+
+236
+00:15:03.813 --> 00:15:09.690
+The kit turns that around: a status or a
+success only starts the wait for evidence.
+
+237
+00:15:13.440 --> 00:15:14.378
+Check five.
+
+238
+00:15:14.378 --> 00:15:17.621
+SailPoint reports success
+for the fix to Erin's record,
+
+239
+00:15:17.621 --> 00:15:20.216
+and the closure signal reaches ServiceNow.
+
+240
+00:15:20.216 --> 00:15:21.802
+What happens to her finding?
+
+241
+00:15:21.802 --> 00:15:26.670
+Does it close, wait for a
+re-read, get ignored, or reopen?
+
+242
+00:15:30.420 --> 00:15:31.947
+The answer to check five:
+
+243
+00:15:31.947 --> 00:15:36.145
+her finding moves to awaiting
+verification, and waits for a re-read.
+
+244
+00:15:36.145 --> 00:15:37.232
+Scene six.
+
+245
+00:15:37.232 --> 00:15:39.401
+On day two, Entra ID matches HR,
+
+246
+00:15:39.401 --> 00:15:44.732
+so the reconciliation calls that
+finding resolved, which is only a lead.
+
+247
+00:15:44.732 --> 00:15:50.033
+SailPoint still says HR until its next
+aggregation, so a new finding opens there.
+
+248
+00:15:50.033 --> 00:15:55.224
+When it's re-read, waiting record I D
+F one thousand four, Erin's SailPoint
+
+249
+00:15:55.224 --> 00:16:00.595
+identity with intended department
+Finance, reads Finance, and verifies.
+
+250
+00:16:00.595 --> 00:16:02.495
+The client guards both ways.
+
+251
+00:16:02.495 --> 00:16:06.433
+An intended state that names
+nothing is skipped, never verified.
+
+252
+00:16:06.433 --> 00:16:10.224
+And a read older than the wait is
+pending through a grace period,
+
+253
+00:16:10.224 --> 00:16:11.682
+then reopens the record.
+
+254
+00:16:11.682 --> 00:16:15.820
+Why it matters: Gate 6,
+Book 13's fourth clause.
+
+255
+00:16:15.820 --> 00:16:19.403
+The record closes only on a
+re-read, with its evidence,
+
+256
+00:16:19.403 --> 00:16:22.920
+and no person can close
+it by setting its state.
+
+257
+00:16:26.670 --> 00:16:27.395
+Try it.
+
+258
+00:16:27.395 --> 00:16:31.542
+Compare day one with day two:
+one new, eleven persisting,
+
+259
+00:16:31.542 --> 00:16:34.583
+one resolved, and both changes are Erin's.
+
+260
+00:16:34.583 --> 00:16:38.170
+Her Entra finding resolved;
+a SailPoint finding opened.
+
+261
+00:16:38.170 --> 00:16:41.022
+Then run the re-read
+client offline over six
+
+262
+00:16:41.022 --> 00:16:43.795
+waiting records at noon on November first.
+
+263
+00:16:43.795 --> 00:16:47.183
+Erin's record verifies, and
+would be patched to closed.
+
+264
+00:16:47.183 --> 00:16:50.476
+One record is pending: a
+terminated user's account,
+
+265
+00:16:50.476 --> 00:16:53.207
+read before the finding started waiting.
+
+266
+00:16:53.207 --> 00:16:55.857
+One is skipped for an
+empty intended state.
+
+267
+00:16:55.857 --> 00:16:57.826
+Run the same records a day later,
+
+268
+00:16:57.826 --> 00:17:01.383
+and that pending one becomes
+a mismatch, and would reopen.
+
+269
+00:17:01.383 --> 00:17:03.195
+Everything here is a dry run.
+
+270
+00:17:03.195 --> 00:17:07.257
+The offline mode refuses the
+apply flag, and a subject with no
+
+271
+00:17:07.257 --> 00:17:11.320
+saved read is an error, because
+a missing read is never a match.
+
+272
+00:17:11.320 --> 00:17:13.116
+On a developer instance,
+
+273
+00:17:13.116 --> 00:17:17.970
+Chapter 5's Lab 2 runs the same
+client for real, as the verifier.
+
+274
+00:17:21.720 --> 00:17:22.745
+Check six.
+
+275
+00:17:22.745 --> 00:17:28.020
+On day two, the comparison reports Erin's
+Entra department finding as resolved.
+
+276
+00:17:28.020 --> 00:17:30.275
+Can its ServiceNow record close now,
+
+277
+00:17:30.275 --> 00:17:33.733
+because it's resolved, or
+because a person sets it closed?
+
+278
+00:17:33.733 --> 00:17:36.300
+Or does something else
+have to happen first?
+
+279
+00:17:40.050 --> 00:17:42.038
+The answer to check six: no.
+
+280
+00:17:42.038 --> 00:17:46.426
+Resolved is a lead; only a matching
+re-read closes the record.
+
+281
+00:17:46.426 --> 00:17:47.475
+Scene seven.
+
+282
+00:17:47.475 --> 00:17:52.325
+When the re-read verified Erin's record,
+it wrote the result with an evidence hash.
+
+283
+00:17:52.325 --> 00:17:58.086
+On a real instance, that closed record is
+read back out and written as one line of
+
+284
+00:17:58.086 --> 00:18:01.366
+an evidence package, in
+Book 13's shape: origin,
+
+285
+00:18:01.366 --> 00:18:05.000
+owner and clock, the re-read
+result, and the closure.
+
+286
+00:18:05.000 --> 00:18:09.325
+Approval, the executing identity
+and what ran are written as null,
+
+287
+00:18:09.325 --> 00:18:13.250
+each with its reason, because
+the first pass doesn't actuate.
+
+288
+00:18:13.250 --> 00:18:15.375
+The record says what it doesn't hold.
+
+289
+00:18:15.375 --> 00:18:18.537
+Each line carries the hash
+of the line before it,
+
+290
+00:18:18.537 --> 00:18:21.213
+and a manifest holds a hash of every file.
+
+291
+00:18:21.213 --> 00:18:23.237
+Why it matters: Gate 7.
+
+292
+00:18:23.237 --> 00:18:28.010
+The I S S O gets records nobody could
+edit or remove without it showing.
+
+293
+00:18:31.760 --> 00:18:32.485
+Try it.
+
+294
+00:18:32.485 --> 00:18:35.847
+The lab's package uses five
+other fictional records,
+
+295
+00:18:35.847 --> 00:18:38.897
+but Erin's would be one
+more line in the same file.
+
+296
+00:18:38.897 --> 00:18:43.175
+Export October: four closed on a
+re-read, one declared exception,
+
+297
+00:18:43.175 --> 00:18:46.548
+two of three inside their
+windows, and a chain head.
+
+298
+00:18:46.548 --> 00:18:50.228
+It also names three problem
+records and exits with a failure,
+
+299
+00:18:50.228 --> 00:18:53.098
+rather than producing a
+clean-looking package.
+
+300
+00:18:53.098 --> 00:18:57.509
+Now verify it as the I S S
+O would: the package holds.
+
+301
+00:18:57.509 --> 00:19:00.273
+Then delete one record and verify again.
+
+302
+00:19:00.273 --> 00:19:05.309
+The file's hash no longer matches the
+manifest, and the next line's link is broken.
+
+303
+00:19:05.309 --> 00:19:06.935
+The package doesn't hold.
+
+304
+00:19:06.935 --> 00:19:11.068
+Next month's export continues the
+chain from this month's manifest,
+
+305
+00:19:11.068 --> 00:19:13.172
+so a gap between periods shows too.
+
+306
+00:19:13.172 --> 00:19:17.397
+One limit to remember: the package
+is tamper-evident, not signed.
+
+307
+00:19:17.397 --> 00:19:21.870
+Someone who can rewrite every file and
+the manifest can rewrite the chain,
+
+308
+00:19:21.870 --> 00:19:25.390
+so keep each manifest where
+the exporter can't write.
+
+309
+00:19:29.140 --> 00:19:30.977
+Check seven, the last one.
+
+310
+00:19:30.977 --> 00:19:34.765
+Someone deletes one closed record
+from October's records file.
+
+311
+00:19:34.765 --> 00:19:39.216
+What does the verifier report:
+nothing, only a file hash mismatch,
+
+312
+00:19:39.216 --> 00:19:43.190
+the file hash and a broken
+chain, or a moved chain head?
+
+313
+00:19:46.940 --> 00:19:51.133
+The answer to check seven: the file's
+hash no longer matches the manifest,
+
+314
+00:19:51.133 --> 00:19:53.265
+and the chain breaks at the next line.
+
+315
+00:19:53.265 --> 00:19:57.437
+That's Erin's record, end to end:
+measured, typed and clocked,
+
+316
+00:19:57.437 --> 00:20:02.141
+touched only by least-privileged
+clients, traced to two writers,
+
+317
+00:20:02.141 --> 00:20:06.490
+fixed at the source, closed on a
+re-read, and filed as evidence.
+
+318
+00:20:06.490 --> 00:20:07.627
+Now it's your turn.
+
+319
+00:20:07.627 --> 00:20:10.645
+Every chapter has a Lab 2
+in your own test instance:
+
+320
+00:20:10.645 --> 00:20:14.546
+a ServiceNow Personal Developer
+Instance, a SailPoint sandbox,
+
+321
+00:20:14.546 --> 00:20:19.403
+and for some chapters a test Entra tenant
+with synthetic data, never production.
+
+322
+00:20:19.403 --> 00:20:22.412
+There's no hosted sandbox;
+you bring your own,
+
+323
+00:20:22.412 --> 00:20:25.003
+and every lab ends with a back-out step.
+
+324
+00:20:25.003 --> 00:20:29.400
+Then go deeper: the workbook's eight
+chapters, a narrated tour of each,
+
+325
+00:20:29.400 --> 00:20:34.427
+the seven-module learning path, and the
+example guide with its gate-level deck.
+
+326
+00:20:34.427 --> 00:20:36.040
+Thanks for following Erin.

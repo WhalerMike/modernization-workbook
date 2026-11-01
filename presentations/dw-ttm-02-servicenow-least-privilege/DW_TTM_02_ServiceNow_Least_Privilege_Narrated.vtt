@@ -1,0 +1,671 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.200
+Welcome back to Building
+Ticket-to-Machine.
+
+2
+00:00:02.200 --> 00:00:06.338
+This is Chapter 2: the ServiceNow
+client and least privilege.
+
+3
+00:00:06.338 --> 00:00:09.371
+An integration user with
+more roles than its calls
+
+4
+00:00:09.371 --> 00:00:12.188
+need is a standing
+privilege nobody requested.
+
+5
+00:00:12.188 --> 00:00:16.801
+So this chapter writes down every ServiceNow
+call the kit's Python clients make,
+
+6
+00:00:16.801 --> 00:00:19.947
+the task that makes it and
+the least privilege it needs,
+
+7
+00:00:19.947 --> 00:00:22.813
+and then makes the tests
+hold the code to that list.
+
+8
+00:00:22.813 --> 00:00:26.104
+We'll see how the clients
+authenticate and page,
+
+9
+00:00:26.104 --> 00:00:31.020
+the call list and its test, the three
+roles, two labs and the dangers.
+
+10
+00:00:34.770 --> 00:00:36.145
+Why write the calls down?
+
+11
+00:00:36.145 --> 00:00:40.045
+Because privilege that nobody can
+trace back to a call tends to grow.
+
+12
+00:00:40.045 --> 00:00:44.808
+The kit's read me listed the roles in prose,
+and nothing tied that list to the code.
+
+13
+00:00:44.808 --> 00:00:49.074
+So a new call in a client would
+surface as an error on a live instance,
+
+14
+00:00:49.074 --> 00:00:53.496
+and the quickest fix, granting a
+broader role, is exactly the wrong one.
+
+15
+00:00:53.496 --> 00:00:58.835
+After this chapter, every call lives in
+one file with its task and least privilege,
+
+16
+00:00:58.835 --> 00:01:03.820
+a test holds the code to it, and a tool
+compares a real grant with the list.
+
+17
+00:01:07.570 --> 00:01:09.645
+Here's what the clients already share.
+
+18
+00:01:09.645 --> 00:01:12.163
+Configuration comes from the environment,
+
+19
+00:01:12.163 --> 00:01:15.170
+and a settings file that
+carries a secret is refused.
+
+20
+00:01:15.170 --> 00:01:19.113
+The token comes from a vault if one
+is set, otherwise from the OAuth
+
+21
+00:01:19.113 --> 00:01:20.719
+client-credentials grant,
+
+22
+00:01:20.719 --> 00:01:24.370
+and only on a developer instance
+from basic authentication.
+
+23
+00:01:24.370 --> 00:01:28.357
+Paging reads a hundred rows
+a page through the Table API.
+
+24
+00:01:28.357 --> 00:01:34.407
+And one wrapper retries throttling and
+unavailable responses, honoring Retry-After.
+
+25
+00:01:34.407 --> 00:01:38.595
+The clients make three kinds of
+ServiceNow call: posting findings,
+
+26
+00:01:38.595 --> 00:01:42.240
+closing them with evidence,
+and reading closed ones.
+
+27
+00:01:45.990 --> 00:01:49.365
+This is the file the chapter
+adds: one row per call.
+
+28
+00:01:49.365 --> 00:01:54.652
+Every task first gets a token from its
+own OAuth client and integration user.
+
+29
+00:01:54.652 --> 00:01:57.116
+The drift push posts findings through the
+
+30
+00:01:57.116 --> 00:01:59.791
+scripted REST resource,
+as the finding writer.
+
+31
+00:01:59.791 --> 00:02:02.500
+The re-read task lists waiting findings,
+
+32
+00:02:02.500 --> 00:02:07.428
+patches each one and uploads an evidence
+attachment, all as the verifier.
+
+33
+00:02:07.428 --> 00:02:11.328
+And the evidence export reads the
+same table under its own role,
+
+34
+00:02:11.328 --> 00:02:15.003
+the evidence reader, which can
+read but not change anything.
+
+35
+00:02:15.003 --> 00:02:18.520
+Every row names the vendor
+page that justifies it.
+
+36
+00:02:22.270 --> 00:02:25.345
+The roles are custom roles
+in the scoped application,
+
+37
+00:02:25.345 --> 00:02:27.582
+and splitting them by task is the point.
+
+38
+00:02:27.582 --> 00:02:30.932
+The finding writer can create
+findings and nothing else.
+
+39
+00:02:30.932 --> 00:02:33.833
+The verifier can close them,
+which is why Chapter 5's
+
+40
+00:02:33.833 --> 00:02:36.871
+business rule accepts a
+close only from that account.
+
+41
+00:02:36.871 --> 00:02:39.786
+And the evidence reader,
+new in this workbook,
+
+42
+00:02:39.786 --> 00:02:43.333
+can read a record but never
+change one it's about to hash.
+
+43
+00:02:43.333 --> 00:02:44.883
+Why custom roles at all?
+
+44
+00:02:44.883 --> 00:02:48.957
+ServiceNow says the caller needs
+roles that allow access to the table,
+
+45
+00:02:48.957 --> 00:02:52.620
+and no single role allows
+adding attachments by default.
+
+46
+00:02:56.370 --> 00:02:57.920
+Two tools read that file.
+
+47
+00:02:57.920 --> 00:03:01.503
+The first, kit calls, prints what
+a task needs on each system,
+
+48
+00:03:01.503 --> 00:03:06.130
+and with the granted option it compares
+what an integration user actually
+
+49
+00:03:06.130 --> 00:03:10.832
+holds against that need, exiting with
+a failure on anything missing or extra.
+
+50
+00:03:10.832 --> 00:03:15.307
+Grants are typed or exported by the
+operator; it never touches the network.
+
+51
+00:03:15.307 --> 00:03:18.787
+The second is the test that
+holds the code to the list:
+
+52
+00:03:18.787 --> 00:03:23.642
+it runs every client against a fake
+HTTP session and checks each request,
+
+53
+00:03:23.642 --> 00:03:27.650
+by method and whole path,
+against the rows for that task.
+
+54
+00:03:31.400 --> 00:03:34.009
+The chapter's own test
+file has nine tests:
+
+55
+00:03:34.009 --> 00:03:37.923
+every client's requests matched
+to a declared row for its task,
+
+56
+00:03:37.923 --> 00:03:42.450
+and the assertion that no task asks
+SailPoint or Graph for a write scope.
+
+57
+00:03:42.450 --> 00:03:46.825
+The kit's original ServiceNow
+client tests still pass unchanged.
+
+58
+00:03:46.825 --> 00:03:49.523
+Lab 1 runs seven of them: the base URLs,
+
+59
+00:03:49.523 --> 00:03:54.918
+the order of OAuth before basic
+authentication, Retry-After read both as
+
+60
+00:03:54.918 --> 00:04:00.670
+seconds and as a date, a throttled
+request retried, and every paging style.
+
+61
+00:04:04.420 --> 00:04:08.532
+The vendor facts behind the code,
+each read on November first.
+
+62
+00:04:08.532 --> 00:04:13.001
+The token request is a post to the
+instance's OAuth token endpoint
+
+63
+00:04:13.001 --> 00:04:17.057
+with the grant type, client ID
+and secret; a scope is optional.
+
+64
+00:04:17.057 --> 00:04:21.202
+The Table API's read takes an
+encoded query, a field list,
+
+65
+00:04:21.202 --> 00:04:25.070
+a limit that defaults to
+ten thousand, and an offset.
+
+66
+00:04:25.070 --> 00:04:28.947
+The Attachment API needs the
+table, the record and a file name,
+
+67
+00:04:28.947 --> 00:04:34.220
+and a content type header, and no single
+role allows adding attachments by default.
+
+68
+00:04:34.220 --> 00:04:38.290
+And ServiceNow's Government
+Community Cloud is FedRAMP High.
+
+69
+00:04:42.040 --> 00:04:43.465
+Three points stay open.
+
+70
+00:04:43.465 --> 00:04:48.165
+First, which inbound client-credentials
+setup applies depends on the release:
+
+71
+00:04:48.165 --> 00:04:50.913
+Zurich documents a
+Machine Identity Console,
+
+72
+00:04:50.913 --> 00:04:54.890
+and an older page documents a system
+property that's off by default.
+
+73
+00:04:54.890 --> 00:04:59.661
+Second, the token's optional scope:
+ServiceNow's examples narrow incident
+
+74
+00:04:59.661 --> 00:05:04.353
+reads and writes, but nothing found
+says a scope can narrow a custom table.
+
+75
+00:05:04.353 --> 00:05:08.714
+And third, API access policies:
+whether an instance's policies
+
+76
+00:05:08.714 --> 00:05:12.990
+add roles the kit doesn't list is
+still on the kit's verify list.
+
+77
+00:05:12.990 --> 00:05:15.270
+Lab 2 is where you settle them.
+
+78
+00:05:19.020 --> 00:05:20.133
+What does this prove?
+
+79
+00:05:20.133 --> 00:05:25.843
+That each integration user holds exactly
+the roles its calls need and the code calls
+
+80
+00:05:25.843 --> 00:05:30.085
+nothing else, which is least
+privilege and account management,
+
+81
+00:05:30.085 --> 00:05:32.695
+AC-6 and AC-2, in the Moderate baseline.
+
+82
+00:05:32.695 --> 00:05:35.770
+Keep the comparison's output
+with the access approval.
+
+83
+00:05:35.770 --> 00:05:39.797
+That the account that closes
+findings is separate from the ones
+
+84
+00:05:39.797 --> 00:05:43.445
+that raise and read them, which
+is separation of duties, AC-5.
+
+85
+00:05:43.445 --> 00:05:47.355
+And that any change to what the
+integration may call is reviewed,
+
+86
+00:05:47.355 --> 00:05:50.590
+because it arrives as a
+new row in a pull request.
+
+87
+00:05:54.340 --> 00:05:55.265
+Who does what?
+
+88
+00:05:55.265 --> 00:05:59.778
+Developers build or change the ServiceNow
+side, and need to read Python.
+
+89
+00:05:59.778 --> 00:06:03.520
+ServiceNow administrators
+create the integration users,
+
+90
+00:06:03.520 --> 00:06:06.040
+their OAuth clients and the three roles.
+
+91
+00:06:06.040 --> 00:06:08.304
+And the I S S O approves the access,
+
+92
+00:06:08.304 --> 00:06:12.077
+with the comparison's output
+kept beside the approval.
+
+93
+00:06:12.077 --> 00:06:15.838
+The rule for the users is
+simple: three separate users,
+
+94
+00:06:15.838 --> 00:06:19.940
+each with its own OAuth client
+and exactly one custom role.
+
+95
+00:06:19.940 --> 00:06:23.271
+None of them holds the broad
+I T I L or admin roles,
+
+96
+00:06:23.271 --> 00:06:27.400
+and the evidence reader
+never borrows the verifier's.
+
+97
+00:06:31.150 --> 00:06:33.050
+Lab 1 runs on a laptop.
+
+98
+00:06:33.050 --> 00:06:37.375
+Step one proves every call is
+declared: the nine tests pass.
+
+99
+00:06:37.375 --> 00:06:41.035
+Step two lists what the re-read
+client needs on ServiceNow:
+
+100
+00:06:41.035 --> 00:06:45.077
+a token from its own OAuth client,
+then a read of the finding table,
+
+101
+00:06:45.077 --> 00:06:47.975
+a patch of one record,
+and an attachment upload.
+
+102
+00:06:47.975 --> 00:06:51.750
+Every one of those maps to
+a single role, the verifier.
+
+103
+00:06:51.750 --> 00:06:54.580
+That's the whole of what
+this account should hold.
+
+104
+00:06:58.330 --> 00:06:59.855
+Now catch the mistakes.
+
+105
+00:06:59.855 --> 00:07:04.305
+An administrator gave the verifier
+the I T I L role as well.
+
+106
+00:07:04.305 --> 00:07:07.898
+The comparison finds nothing
+missing, one role extra,
+
+107
+00:07:07.898 --> 00:07:11.818
+says least privilege doesn't
+hold, and exits with a failure.
+
+108
+00:07:11.818 --> 00:07:15.654
+Then try the evidence export
+reusing the verifier's account.
+
+109
+00:07:15.654 --> 00:07:19.880
+It would work, which is the trap: it
+would also be able to close findings.
+
+110
+00:07:19.880 --> 00:07:24.555
+The tool reports the evidence reader role
+missing and the verifier role extra.
+
+111
+00:07:24.555 --> 00:07:29.160
+Finally, the original ServiceNow
+client tests: seven pass.
+
+112
+00:07:32.910 --> 00:07:36.640
+Lab 2 builds the split for real
+on your developer instance;
+
+113
+00:07:36.640 --> 00:07:38.272
+the authors haven't run it.
+
+114
+00:07:38.272 --> 00:07:42.222
+Create the three custom roles with
+exactly the grants on the slide.
+
+115
+00:07:42.222 --> 00:07:47.198
+Create one integration user per
+role, each with its own OAuth client.
+
+116
+00:07:47.198 --> 00:07:51.035
+Compare each user's roles with
+the tool, one task at a time.
+
+117
+00:07:51.035 --> 00:07:55.212
+Then exercise them: get a token as
+the verifier and list findings,
+
+118
+00:07:55.212 --> 00:07:58.285
+and try to patch a record
+as the evidence reader.
+
+119
+00:07:58.285 --> 00:07:59.735
+That should be refused.
+
+120
+00:07:59.735 --> 00:08:05.900
+Finally, delete the integrations, users
+and roles, and revoke any saved token.
+
+121
+00:08:09.650 --> 00:08:13.175
+The dangers are mostly about
+privilege creeping in sideways.
+
+122
+00:08:13.175 --> 00:08:17.431
+A client gains a call nobody listed,
+and someone grants a broad role in
+
+123
+00:08:17.431 --> 00:08:21.837
+production to make the error go away;
+the test stops that before release.
+
+124
+00:08:21.837 --> 00:08:27.013
+One user for everything lets the evidence
+reader close findings; the split stops it.
+
+125
+00:08:27.013 --> 00:08:30.701
+A broad role granted to make
+it work is caught as an extra.
+
+126
+00:08:30.701 --> 00:08:36.000
+Basic authentication outside a developer
+instance puts a password in a pipeline.
+
+127
+00:08:36.000 --> 00:08:38.888
+A secret in the config file is refused.
+
+128
+00:08:38.888 --> 00:08:42.850
+And paging is tested, so no
+waiting finding is skipped.
+
+129
+00:08:46.600 --> 00:08:47.950
+Here's what done looks like.
+
+130
+00:08:47.950 --> 00:08:51.300
+Every ServiceNow call has
+a row and the test passes.
+
+131
+00:08:51.300 --> 00:08:55.388
+Each integration user's roles
+match the tool's list exactly.
+
+132
+00:08:55.388 --> 00:08:58.310
+The finding writer, the
+verifier and the evidence
+
+133
+00:08:58.310 --> 00:09:01.588
+reader are separate users
+with separate OAuth clients.
+
+134
+00:09:01.588 --> 00:09:03.000
+None holds a broad role.
+
+135
+00:09:03.000 --> 00:09:06.838
+Basic authentication exists
+only on a developer instance,
+
+136
+00:09:06.838 --> 00:09:11.537
+and tokens come from a vault or the
+client-credentials grant, never a file.
+
+137
+00:09:11.537 --> 00:09:15.108
+Next, Chapter 3 adds the
+SailPoint and Graph rows
+
+138
+00:09:15.108 --> 00:09:18.588
+and compares an API client's
+scopes the same way.
+
+139
+00:09:18.588 --> 00:09:19.740
+Thanks for watching.

@@ -1,0 +1,1118 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.361
+Welcome to Part 2 of Cloud DNS
+on AWS, Azure and Oracle Cloud,
+
+2
+00:00:04.361 --> 00:00:09.750
+a Federal Modernization Workbook
+evaluation that's still under review.
+
+3
+00:00:09.750 --> 00:00:12.062
+Part 1 covered the native resolvers.
+
+4
+00:00:12.062 --> 00:00:16.524
+Part 2 asks when an agency should
+run its own DNS servers in a cloud,
+
+5
+00:00:16.524 --> 00:00:21.400
+and how to run BIND there so it stays
+inside Book 08's single policy plane.
+
+6
+00:00:21.400 --> 00:00:23.716
+We'll start with the test that matters:
+
+7
+00:00:23.716 --> 00:00:27.525
+does a cloud BIND server align
+with that plane, or create a silo?
+
+8
+00:00:27.525 --> 00:00:34.062
+Then the criteria, vNIOS or BIND, and BIND
+itself, from roles to patching and Git.
+
+9
+00:00:34.062 --> 00:00:36.995
+Then a seven-question
+checklist for an agency
+
+10
+00:00:36.995 --> 00:00:40.237
+adding BIND servers in AWS,
+and the federal mapping.
+
+11
+00:00:40.237 --> 00:00:45.920
+The labels carry over from Part 1:
+design guidance, inference, and confirm.
+
+12
+00:00:49.670 --> 00:00:55.123
+Additional BIND servers in AWS align
+with Book 08 when they are forwarders or
+
+13
+00:00:55.123 --> 00:01:00.832
+resolvers under central configuration,
+logged to the SOC, owned and with a reason.
+
+14
+00:01:00.832 --> 00:01:05.671
+BIND aligns when it's a resolver or
+forwarder whose configuration comes from
+
+15
+00:01:05.671 --> 00:01:10.433
+the policy plane: its forwarding, its
+addresses and its logging all governed.
+
+16
+00:01:10.433 --> 00:01:14.557
+It aligns as a deliberate bridge,
+with an owner and an end date.
+
+17
+00:01:14.557 --> 00:01:18.795
+It aligns when Git configures it, and
+when it's hardened and inventoried.
+
+18
+00:01:18.795 --> 00:01:23.735
+It creates a silo when it hosts zones
+authored apart from the DDI platform,
+
+19
+00:01:23.735 --> 00:01:28.755
+when it's edited by hand, when it skips
+the shared Protective DNS, validation
+
+20
+00:01:28.755 --> 00:01:34.220
+and logging, or when it duplicates the
+Route 53 Resolver for no stated reason.
+
+21
+00:01:37.970 --> 00:01:42.108
+When should an agency run its own
+DNS servers in a cloud at all?
+
+22
+00:01:42.108 --> 00:01:46.375
+Microsoft's guidance is direct:
+use DNS Private Resolver
+
+23
+00:01:46.375 --> 00:01:51.096
+instead of custom DNS server
+software like BIND when possible.
+
+24
+00:01:51.096 --> 00:01:55.808
+AWS steers hybrid DNS to
+Resolver endpoints too.
+
+25
+00:01:55.808 --> 00:01:58.445
+So the criteria, as design guidance.
+
+26
+00:01:58.445 --> 00:02:01.214
+Run your own when a zone
+must be authoritative
+
+27
+00:02:01.214 --> 00:02:03.545
+in the cloud and reached by delegation.
+
+28
+00:02:03.545 --> 00:02:06.401
+When the agency's response policy zones,
+
+29
+00:02:06.401 --> 00:02:11.854
+or its encrypted-DNS logging at the
+agency resolver, must apply exactly as on
+
+30
+00:02:11.854 --> 00:02:17.307
+premises and the native filter can't carry
+them, or, as on Oracle, there isn't one.
+
+31
+00:02:17.307 --> 00:02:21.958
+When workloads need encrypted DNS
+the native endpoints don't offer.
+
+32
+00:02:21.958 --> 00:02:24.208
+For a migration bridge with an end date.
+
+33
+00:02:24.208 --> 00:02:26.996
+Or when load would exceed
+the per-instance quotas.
+
+34
+00:02:26.996 --> 00:02:29.920
+Otherwise, stay with the native resolver.
+
+35
+00:02:33.670 --> 00:02:36.933
+If the agency does run its
+own servers, which ones?
+
+36
+00:02:36.933 --> 00:02:42.407
+Where its DNS runs on an Infoblox
+Grid, vNIOS is the natural choice.
+
+37
+00:02:42.407 --> 00:02:46.332
+It joins the same Grid and takes
+its policy from the Grid Master.
+
+38
+00:02:46.332 --> 00:02:51.908
+One caution: vNIOS failover in GovCloud
+and Azure Government is a point to confirm.
+
+39
+00:02:51.908 --> 00:02:54.364
+BIND is the choice when there's no Grid,
+
+40
+00:02:54.364 --> 00:02:58.008
+for a small footprint, or when
+a tool expects BIND itself.
+
+41
+00:02:58.008 --> 00:03:01.614
+BIND has no policy plane
+of its own; for Book 08,
+
+42
+00:03:01.614 --> 00:03:05.319
+its policy comes from
+the DDI platform and Git.
+
+43
+00:03:05.319 --> 00:03:06.308
+Which BIND?
+
+44
+00:03:06.308 --> 00:03:10.333
+ISC supports each even-numbered
+branch for four years.
+
+45
+00:03:10.333 --> 00:03:16.137
+As of October twenty-ninth, 9.20 is
+the supported production branch,
+
+46
+00:03:16.137 --> 00:03:21.520
+with end of life in 2028, and 9.18
+reached end of life in June 2026.
+
+47
+00:03:21.520 --> 00:03:26.860
+Operating-system packages follow their
+vendor, so record which support you rely on.
+
+48
+00:03:30.610 --> 00:03:35.397
+BIND does three jobs, and NIST and
+ISC both say to keep them apart.
+
+49
+00:03:35.397 --> 00:03:40.760
+NIST says an internet-facing server shouldn't
+serve in both roles, and ISC agrees.
+
+50
+00:03:40.760 --> 00:03:43.898
+In a cloud, the forwarder
+is the common case.
+
+51
+00:03:43.898 --> 00:03:47.786
+It holds no zones; it applies
+agency policy and logging,
+
+52
+00:03:47.786 --> 00:03:50.810
+then forwards each name
+to the right place.
+
+53
+00:03:50.810 --> 00:03:56.051
+A recursive resolver fits where agency
+policy and logging must apply at the first
+
+54
+00:03:56.051 --> 00:04:01.060
+hop, with the same response policy zones,
+validation and logging as on premises.
+
+55
+00:04:01.060 --> 00:04:05.962
+And authoritative service fits only for
+a delegated zone the native services
+
+56
+00:04:05.962 --> 00:04:10.110
+can't answer, or as a secondary of
+a zone mastered on the DDI platform.
+
+57
+00:04:10.110 --> 00:04:12.760
+Never a separately authored primary.
+
+58
+00:04:16.510 --> 00:04:17.822
+Where do the servers go?
+
+59
+00:04:17.822 --> 00:04:22.986
+As design guidance: in the shared-services
+or network hub VPC or virtual network
+
+60
+00:04:22.986 --> 00:04:28.148
+that already holds the native resolver's
+endpoints, never in workload accounts.
+
+61
+00:04:28.148 --> 00:04:29.998
+Each cloud adds a constraint.
+
+62
+00:04:29.998 --> 00:04:36.159
+On AWS, a BIND server can forward only
+to its own VPC's plus-two address.
+
+63
+00:04:36.159 --> 00:04:42.435
+On Azure, a custom DNS server sits
+in the same virtual network as the
+
+64
+00:04:42.435 --> 00:04:48.710
+VMs whose hostnames it resolves,
+and forwards those to 168.63.129.16.
+
+65
+00:04:48.710 --> 00:04:53.709
+On Oracle Cloud, it forwards the VCN's own
+
+66
+00:04:53.709 --> 00:04:58.860
+names and private views
+to 169.254.169.254.
+
+67
+00:04:58.860 --> 00:05:01.714
+For high availability,
+NIST asks for at least two
+
+68
+00:05:01.714 --> 00:05:05.210
+servers on different segments,
+dispersed geographically.
+
+69
+00:05:05.210 --> 00:05:08.727
+In practice: two or more per
+Region in different zones,
+
+70
+00:05:08.727 --> 00:05:13.090
+a second Region, and every client
+configured with all of them.
+
+71
+00:05:16.840 --> 00:05:18.215
+How does BIND forward?
+
+72
+00:05:18.215 --> 00:05:22.303
+The native resolver stays the only
+path to the cloud's own names.
+
+73
+00:05:22.303 --> 00:05:24.853
+BIND's forward setting defaults to first,
+
+74
+00:05:24.853 --> 00:05:28.528
+which falls back to its own
+recursion when forwarders fail.
+
+75
+00:05:28.528 --> 00:05:33.283
+For private names, that fallback can
+return the public answer or NXDOMAIN,
+
+76
+00:05:33.283 --> 00:05:37.415
+so the AWS whitepaper says it's
+critical to specify forward only.
+
+77
+00:05:37.415 --> 00:05:39.792
+Per-instance limits: on AWS,
+
+78
+00:05:39.792 --> 00:05:46.709
+the 1,024-packet-per-second quota covers
+everything BIND sends to VPC plus two;
+
+79
+00:05:46.709 --> 00:05:50.707
+on Azure, a VM may send
+1,000 queries per second,
+
+80
+00:05:50.707 --> 00:05:54.165
+and queries over the limit are dropped.
+
+81
+00:05:54.165 --> 00:05:57.527
+Size the fleet so no server
+forwards near the limit.
+
+82
+00:05:57.527 --> 00:06:01.377
+Visibility: the VPC Resolver
+sees BIND as the source,
+
+83
+00:06:01.377 --> 00:06:04.689
+never the client, so BIND's
+logs are the record.
+
+84
+00:06:04.689 --> 00:06:07.544
+And loops: don't forward
+a domain to an inbound
+
+85
+00:06:07.544 --> 00:06:10.920
+endpoint from inside the
+network that holds it.
+
+86
+00:06:14.670 --> 00:06:18.758
+Here's the forwarder role on
+AWS, from the evaluation.
+
+87
+00:06:18.758 --> 00:06:20.070
+It's illustrative.
+
+88
+00:06:20.070 --> 00:06:25.027
+It passed BIND's configuration
+checker on version 9.18.39
+
+89
+00:06:25.027 --> 00:06:29.457
+but it hasn't run against a
+VPC or been checked on 9.20.
+
+90
+00:06:29.457 --> 00:06:33.148
+And in practice it's rendered
+from the policy plane and Git,
+
+91
+00:06:33.148 --> 00:06:34.608
+never typed on the host.
+
+92
+00:06:34.608 --> 00:06:38.384
+Version none hides the version,
+queries and recursion are
+
+93
+00:06:38.384 --> 00:06:41.845
+limited to the agency's
+clients, and transfers are off.
+
+94
+00:06:41.845 --> 00:06:46.300
+Validation is on, with an exceptions
+list for the private namespaces,
+
+95
+00:06:46.300 --> 00:06:48.020
+which have no DNSSEC chain.
+
+96
+00:06:48.020 --> 00:06:50.803
+Internet-bound queries go forward only,
+
+97
+00:06:50.803 --> 00:06:55.358
+to the agency resolvers, the
+governed upstream to Protective DNS.
+
+98
+00:06:55.358 --> 00:06:59.070
+The cloud's names go to this
+VPC's own plus-two resolver,
+
+99
+00:06:59.070 --> 00:07:02.445
+and on-premises names go
+to the agency resolvers.
+
+100
+00:07:02.445 --> 00:07:09.689
+On Oracle Cloud and Azure,
+the same file sends those
+
+101
+00:07:09.689 --> 00:07:16.430
+clouds' names to 169.254.169.254
+or 168.63.129.16.
+
+102
+00:07:20.180 --> 00:07:21.742
+DNSSEC has two halves.
+
+103
+00:07:21.742 --> 00:07:23.531
+BIND validates by default.
+
+104
+00:07:23.531 --> 00:07:27.159
+But behind the VPC Resolver,
+BIND can't validate:
+
+105
+00:07:27.159 --> 00:07:32.743
+the VPC Resolver ignores the DNSSEC
+OK bit and returns no DNSSEC records.
+
+106
+00:07:32.743 --> 00:07:35.064
+So validate in the VPC Resolver,
+
+107
+00:07:35.064 --> 00:07:39.081
+or in BIND toward an upstream
+that returns DNSSEC data.
+
+108
+00:07:39.081 --> 00:07:41.439
+Oracle's VCN resolver validates,
+
+109
+00:07:41.439 --> 00:07:46.418
+but whether it passes that data back
+to BIND isn't documented; confirm.
+
+110
+00:07:46.418 --> 00:07:50.566
+Private zones under a signed parent
+go on BIND's exceptions list,
+
+111
+00:07:50.566 --> 00:07:52.131
+held in the policy plane.
+
+112
+00:07:52.131 --> 00:07:55.561
+And whether Protective
+DNS returns DNSSEC records
+
+113
+00:07:55.561 --> 00:07:58.593
+to forwarders is a point
+to confirm with CISA.
+
+114
+00:07:58.593 --> 00:08:01.480
+Signing: no cloud signs private zones.
+
+115
+00:08:01.480 --> 00:08:06.170
+NIST says signing internal zones is
+not recommended except where required,
+
+116
+00:08:06.170 --> 00:08:08.255
+and notes agencies may require it.
+
+117
+00:08:08.255 --> 00:08:12.666
+The design guidance is that the
+zone's one writable owner signs it,
+
+118
+00:08:12.666 --> 00:08:18.080
+with keys on the Grid Master or an HSM,
+so a cloud BIND secondary holds no keys.
+
+119
+00:08:21.830 --> 00:08:24.368
+Response policy zones are BIND's filter.
+
+120
+00:08:24.368 --> 00:08:28.113
+They're ordinary DNS zones,
+up to 64 per server,
+
+121
+00:08:28.113 --> 00:08:32.467
+whose triggers map to actions
+like NXDOMAIN or drop.
+
+122
+00:08:32.467 --> 00:08:34.981
+They stay in sync through zone transfers.
+
+123
+00:08:34.981 --> 00:08:40.030
+CISA's Protective DNS Resolver is
+mandatory for civilian agencies.
+
+124
+00:08:40.030 --> 00:08:45.103
+CISA says agency DNS should use only
+Protective DNS as its upstream,
+
+125
+00:08:45.103 --> 00:08:51.155
+and cloud infrastructure should use
+Protective DNS or agency DNS as its upstream.
+
+126
+00:08:51.155 --> 00:08:54.462
+CISA's pages don't mention
+response policy zones,
+
+127
+00:08:54.462 --> 00:08:57.205
+so the layering is NIST's
+and the program's.
+
+128
+00:08:57.205 --> 00:09:02.050
+As design guidance: the agency's
+own policy zones run on cloud BIND,
+
+129
+00:09:02.050 --> 00:09:05.818
+from the same feed as on
+premises, in front of CISA's.
+
+130
+00:09:05.818 --> 00:09:10.001
+Internet-bound queries leave
+only toward Protective DNS.
+
+131
+00:09:10.001 --> 00:09:12.006
+Hits and blocks go to the SOC.
+
+132
+00:09:12.006 --> 00:09:16.716
+And BIND 9.20 can forward
+over DNS over TLS;
+
+133
+00:09:16.716 --> 00:09:22.060
+CISA's 2024 note that it
+can't was true of 9.18.
+
+134
+00:09:25.810 --> 00:09:29.510
+Logging is where cloud
+DNS most often goes dark.
+
+135
+00:09:29.510 --> 00:09:35.660
+NIST asks for robust DNS traffic logging,
+with blocked queries always logged.
+
+136
+00:09:35.660 --> 00:09:42.641
+OMB's M-22-09 expects agencies to keep
+visibility by logging at their designated
+
+137
+00:09:42.641 --> 00:09:45.634
+resolvers, and M-26-14 sets the retention:
+
+138
+00:09:45.634 --> 00:09:49.623
+searchable for six months
+and retrievable for a year.
+
+139
+00:09:49.623 --> 00:09:51.636
+BIND offers two mechanisms.
+
+140
+00:09:51.636 --> 00:09:55.639
+The logging statement writes
+categories such as queries,
+
+141
+00:09:55.639 --> 00:09:59.059
+responses and policy-zone
+hits to files or syslog,
+
+142
+00:09:59.059 --> 00:10:04.397
+and dnstap records messages to a file or
+socket, in a build with dnstap enabled.
+
+143
+00:10:04.397 --> 00:10:09.060
+ISC warns that query logging adds
+heavy overhead, so plan for it.
+
+144
+00:10:09.060 --> 00:10:12.560
+Send them to the SIEM,
+where ASIM's DNS parser
+
+145
+00:10:12.560 --> 00:10:16.060
+already handles BIND,
+as Book 12 describes.
+
+146
+00:10:16.060 --> 00:10:19.782
+Because the native resolver sees
+BIND rather than the client,
+
+147
+00:10:19.782 --> 00:10:21.898
+BIND's log is the record of who asked.
+
+148
+00:10:21.898 --> 00:10:25.460
+Without it, cloud DNS is a blind spot.
+
+149
+00:10:29.210 --> 00:10:33.135
+The patching sources are ISC's,
+and the clock is CISA's.
+
+150
+00:10:33.135 --> 00:10:36.176
+Subscribe to ISC's
+bind-announce list and check
+
+151
+00:10:36.176 --> 00:10:39.372
+its vulnerability matrix
+for each version in use.
+
+152
+00:10:39.372 --> 00:10:44.862
+And patch to CISA's clock: Binding
+Operational Directive 26-04, from June 2026,
+
+153
+00:10:44.862 --> 00:10:49.923
+replaced the older remediation
+directives with risk-based timelines,
+
+154
+00:10:49.923 --> 00:10:55.498
+the shortest three days for the highest-risk
+flaws in publicly exposed assets.
+
+155
+00:10:55.498 --> 00:10:57.584
+Version none hides the version.
+
+156
+00:10:57.584 --> 00:11:01.025
+Query access defaults to
+all hosts, so restrict it,
+
+157
+00:11:01.025 --> 00:11:04.298
+and restrict recursion
+to the agency's clients.
+
+158
+00:11:04.298 --> 00:11:08.636
+Restrict zone transfers and
+authenticate them with TSIG keys.
+
+159
+00:11:08.636 --> 00:11:13.360
+Run named unprivileged, and
+keep the host to DNS only.
+
+160
+00:11:13.360 --> 00:11:20.334
+For a baseline, CIS has benchmarks
+only for BIND 9.11 and 9.9,
+
+161
+00:11:20.334 --> 00:11:22.560
+none for 9.20 or 9.18.
+
+162
+00:11:22.560 --> 00:11:28.670
+So the agency states its own profile,
+approved by the CISO, as design guidance.
+
+163
+00:11:32.420 --> 00:11:35.145
+Who owns a cloud BIND
+server's configuration?
+
+164
+00:11:35.145 --> 00:11:38.158
+The workbook's Ansible
+guide manages such Linux
+
+165
+00:11:38.158 --> 00:11:41.020
+hosts by playbook from
+a reviewed repository.
+
+166
+00:11:41.020 --> 00:11:44.158
+Four practices make it
+work, as design guidance.
+
+167
+00:11:44.158 --> 00:11:47.962
+Rendered, not typed: BIND's
+configuration is a template
+
+168
+00:11:47.962 --> 00:11:51.345
+rendered from data the
+DDI policy plane exports.
+
+169
+00:11:51.345 --> 00:11:56.305
+Checked before it lands: every change
+arrives by reviewed pull request,
+
+170
+00:11:56.305 --> 00:11:59.583
+and CI and the playbook
+both run BIND's checkers.
+
+171
+00:11:59.583 --> 00:12:04.068
+Git is the evidence: the commit
+and tag are the CM-2 baseline,
+
+172
+00:12:04.068 --> 00:12:09.770
+the pull request is the CM-3 change
+record, and check-mode runs report drift.
+
+173
+00:12:09.770 --> 00:12:15.545
+One owning tool: Ansible owns named.conf on
+these hosts, and nothing else writes it.
+
+174
+00:12:15.545 --> 00:12:18.120
+A hand edit is drift, to be reverted.
+
+175
+00:12:18.120 --> 00:12:19.785
+And secrets stay out of Git:
+
+176
+00:12:19.785 --> 00:12:24.010
+keys and certificates come from
+the secrets store at run time.
+
+177
+00:12:27.760 --> 00:12:31.435
+Here's the checklist, seven
+questions an agency asks
+
+178
+00:12:31.435 --> 00:12:35.110
+of each BIND server it adds
+in AWS, as design guidance.
+
+179
+00:12:35.110 --> 00:12:40.610
+First establish whether they're EC2
+instances or VMware guests on AWS.
+
+180
+00:12:40.610 --> 00:12:46.635
+One, role: a forwarder, resolver or
+secondary aligns; a primary doesn't.
+
+181
+00:12:46.635 --> 00:12:52.285
+Two, source of truth: no zones, or
+zones transferred from the DDI platform.
+
+182
+00:12:52.285 --> 00:12:57.860
+Three, why BIND: a stated need from the
+criteria, or a bridge with an end date.
+
+183
+00:12:57.860 --> 00:13:00.009
+Four, configuration: rendered,
+
+184
+00:13:00.009 --> 00:13:04.135
+reviewed and applied by
+automation, not edited on the host.
+
+185
+00:13:04.135 --> 00:13:07.599
+Five, placement: the
+hub VPC of each Region,
+
+186
+00:13:07.599 --> 00:13:10.860
+at least two servers, rules shared once.
+
+187
+00:13:10.860 --> 00:13:15.942
+Six, shared policy: logs in the
+SIEM with the M-26-14 retention,
+
+188
+00:13:15.942 --> 00:13:21.660
+the same policy-zone feed, and
+Protective DNS as the only upstream.
+
+189
+00:13:21.660 --> 00:13:27.822
+Seven: a supported branch, a stated
+baseline, a CMDB record and a named owner.
+
+190
+00:13:27.822 --> 00:13:30.659
+Rows two and four are the serious signals.
+
+191
+00:13:30.659 --> 00:13:34.780
+Row three alone means the
+servers may not be needed at all.
+
+192
+00:13:38.530 --> 00:13:43.567
+The federal mapping reuses the
+controls Book 08 has already verified.
+
+193
+00:13:43.567 --> 00:13:48.756
+It's illustrative, so validate it against
+the system's own authorization boundary.
+
+194
+00:13:48.756 --> 00:13:51.330
+Configuration and inventory first.
+
+195
+00:13:51.330 --> 00:13:54.508
+CM-2, the baseline:
+the evidence is the Git
+
+196
+00:13:54.508 --> 00:13:58.168
+commit and tag of the
+rendered configuration.
+
+197
+00:13:58.168 --> 00:14:03.043
+CM-3, change control: pull
+requests with required review.
+
+198
+00:14:03.043 --> 00:14:09.642
+CM-6, configuration settings: the agency's
+stated profile, plus drift reports.
+
+199
+00:14:09.642 --> 00:14:14.963
+CM-7, least functionality: a dedicated
+DNS host, one role per server,
+
+200
+00:14:14.963 --> 00:14:19.593
+the version hidden, and
+recursion and transfers limited.
+
+201
+00:14:19.593 --> 00:14:23.444
+CM-8, inventory: a CMDB
+record for each server
+
+202
+00:14:23.444 --> 00:14:27.830
+and an IPAM entry for each
+address, with an owner.
+
+203
+00:14:27.830 --> 00:14:31.795
+And SI-2, flaw remediation:
+a supported BIND branch,
+
+204
+00:14:31.795 --> 00:14:35.856
+ISC's announcement list
+and vulnerability matrix,
+
+205
+00:14:35.856 --> 00:14:42.500
+and remediation inside the timelines of
+Binding Operational Directive 26-04.
+
+206
+00:14:46.250 --> 00:14:49.570
+Then resolution, logging
+and Protective DNS.
+
+207
+00:14:49.570 --> 00:14:54.683
+SC-20 asks for signed authoritative
+data: the zone's one owner signs it,
+
+208
+00:14:54.683 --> 00:14:58.900
+and cloud secondaries serve
+signed data and hold no keys.
+
+209
+00:14:58.900 --> 00:15:05.151
+SC-21 asks for validation: validation on,
+the exceptions list from the policy plane,
+
+210
+00:15:05.151 --> 00:15:09.287
+and VPC Resolver validation
+where BIND forwards to it.
+
+211
+00:15:09.287 --> 00:15:14.524
+SC-22: at least two servers
+per Region, roles separated.
+
+212
+00:15:14.524 --> 00:15:20.363
+SI-4 treats DNS as a detection source,
+with every filter's hits in the SIEM.
+
+213
+00:15:20.363 --> 00:15:27.138
+AU-2 and AU-12: BIND's logs beside
+the three clouds' resolver logs,
+
+214
+00:15:27.138 --> 00:15:30.326
+kept for the M-26-14 retention.
+
+215
+00:15:30.326 --> 00:15:37.781
+For M-22-09's encrypted DNS and resolver
+logging: encrypted DNS to clients,
+
+216
+00:15:37.781 --> 00:15:43.137
+DNS over TLS upstream from BIND
+9.20, and logs at the BIND server.
+
+217
+00:15:43.137 --> 00:15:47.981
+CISA's guidance: internet-bound
+forwarding only to Protective
+
+218
+00:15:47.981 --> 00:15:52.001
+DNS or agency resolvers, and
+other DNS egress blocked.
+
+219
+00:15:52.001 --> 00:15:58.880
+And Emergency Directive 19-01 is sunset,
+but its four actions remain sound practice.
+
+220
+00:16:02.630 --> 00:16:04.230
+Where does Infoblox fit?
+
+221
+00:16:04.230 --> 00:16:08.674
+Where the Grid already runs the
+agency's DNS, vNIOS is the choice,
+
+222
+00:16:08.674 --> 00:16:13.630
+because it joins the same Grid and
+gets its policy from the Grid Master.
+
+223
+00:16:13.630 --> 00:16:16.092
+The same criteria apply as for BIND.
+
+224
+00:16:16.092 --> 00:16:19.592
+Confirm its failover in
+GovCloud and Azure Government.
+
+225
+00:16:19.592 --> 00:16:21.560
+The open points for this part:
+
+226
+00:16:21.560 --> 00:16:26.481
+whether Oracle's VCN resolver passes
+DNSSEC data to a resolver behind it,
+
+227
+00:16:26.481 --> 00:16:31.729
+and whether CISA's Protective DNS
+returns DNSSEC data to agency forwarders.
+
+228
+00:16:31.729 --> 00:16:35.805
+And the illustrative configuration
+hasn't yet run in a VPC.
+
+229
+00:16:35.805 --> 00:16:40.132
+The next steps: ask the seven
+questions of every cloud BIND server,
+
+230
+00:16:40.132 --> 00:16:44.779
+build the forwarder pattern in a test
+account in each Region and realm,
+
+231
+00:16:44.779 --> 00:16:48.305
+and run Book 08's validation
+matrix from every origin.
+
+232
+00:16:48.305 --> 00:16:53.230
+This is research under review, not an
+endorsement by any federal agency.
+
+233
+00:16:53.230 --> 00:16:54.060
+Thank you.

@@ -32,7 +32,7 @@ The client pattern every Graph caller in this workbook should follow, for the wo
 ## Narrated tour
 {{< fmw-video DW_ADM_02_Graph_Clients_Narrated >}}
 
-[Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11/DW_ADM_02_Graph_Clients.pptx) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11/DW_ADM_02_Graph_Clients_Narrated.pptx) (about 11 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-adm-02-graph-clients/DW_ADM_02_Graph_Clients_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-adm-02-graph-clients/DW_ADM_02_Graph_Clients_Narrated.vtt). Recorded on October 31, 2026 from the approved chapter.
+[Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/DW_ADM_02_Graph_Clients.pptx) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/DW_ADM_02_Graph_Clients_Narrated.pptx) (about 11 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-adm-02-graph-clients/DW_ADM_02_Graph_Clients_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-adm-02-graph-clients/DW_ADM_02_Graph_Clients_Narrated.vtt). Recorded on October 31, 2026 from the approved chapter.
 :::
 
 <!-- tour:end -->

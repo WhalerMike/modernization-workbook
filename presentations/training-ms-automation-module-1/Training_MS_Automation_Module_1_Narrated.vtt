@@ -1,0 +1,1043 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.207
+Welcome to Module 1 of the
+Microsoft Automation learning path:
+
+2
+00:00:04.207 --> 00:00:06.125
+Graph and Azure foundations.
+
+3
+00:00:06.125 --> 00:00:11.384
+The books keep asking for evidence a script
+collects: Conditional Access exported
+
+4
+00:00:11.384 --> 00:00:16.262
+as code, device compliance read back,
+control evidence gathered on a schedule.
+
+5
+00:00:16.262 --> 00:00:18.887
+Almost all of it goes
+through Microsoft Graph.
+
+6
+00:00:18.887 --> 00:00:24.003
+This module covers what every such script
+has to get right before it does anything
+
+7
+00:00:24.003 --> 00:00:27.689
+useful: which cloud it calls,
+how it signs in without a secret,
+
+8
+00:00:27.689 --> 00:00:31.225
+which permissions it asks for,
+and four request patterns.
+
+9
+00:00:31.225 --> 00:00:36.087
+Then you'll see the example client prove
+each rule on a laptop, with no tenant.
+
+10
+00:00:36.087 --> 00:00:41.390
+Modules 2 and 3 apply all of
+this to Entra ID and Intune.
+
+11
+00:00:45.140 --> 00:00:46.178
+Why start here?
+
+12
+00:00:46.178 --> 00:00:48.302
+Picture your first evidence collector.
+
+13
+00:00:48.302 --> 00:00:50.414
+It works in a commercial test tenant.
+
+14
+00:00:50.414 --> 00:00:53.747
+Then, the day it points
+at a GCC High tenant,
+
+15
+00:00:53.747 --> 00:00:57.765
+it fails, or worse, sends
+its token to the wrong host.
+
+16
+00:00:57.765 --> 00:01:02.078
+It reads the first page of users and
+reports a tenant of a hundred people,
+
+17
+00:01:02.078 --> 00:01:05.440
+and nobody notices because
+the number looks plausible.
+
+18
+00:01:05.440 --> 00:01:08.643
+It signs in with a client
+secret that nobody rotates,
+
+19
+00:01:08.643 --> 00:01:12.665
+though ScubaGear says application
+passwords should be blocked.
+
+20
+00:01:12.665 --> 00:01:17.365
+And it asks for broad permissions, so a
+compromised job could do more than read.
+
+21
+00:01:17.365 --> 00:01:21.740
+Each of those has a fix, and each
+fix is a unit in this module.
+
+22
+00:01:21.740 --> 00:01:25.813
+The cost of skipping them is simple:
+a collector that doesn't page,
+
+23
+00:01:25.813 --> 00:01:30.940
+retry and keep delta links produces
+evidence that looks complete, and isn't.
+
+24
+00:01:34.690 --> 00:01:37.428
+Here's what you'll be able to
+do by the end of the module,
+
+25
+00:01:37.428 --> 00:01:40.102
+which takes about eighty-five
+minutes with the lab.
+
+26
+00:01:40.102 --> 00:01:44.934
+You'll choose the right sign-in
+host, Graph host and PowerShell
+
+27
+00:01:44.934 --> 00:01:49.291
+environment for a commercial,
+GCC, GCC High or DoD tenant.
+
+28
+00:01:49.291 --> 00:01:51.760
+You'll pick a credential
+for a scheduled script
+
+29
+00:01:51.760 --> 00:01:54.040
+and know who can consent
+to its permissions.
+
+30
+00:01:54.040 --> 00:01:57.061
+You'll find the least-privileged
+permission for a call,
+
+31
+00:01:57.061 --> 00:01:59.277
+and know what a narrow permission hides.
+
+32
+00:01:59.277 --> 00:02:01.677
+You'll describe the four request patterns.
+
+33
+00:02:01.677 --> 00:02:04.341
+And you'll run the example
+client's checks yourself.
+
+34
+00:02:04.341 --> 00:02:07.740
+For the lab you need Python
+and PowerShell on a laptop.
+
+35
+00:02:07.740 --> 00:02:10.320
+You don't need a tenant until Lab 2.
+
+36
+00:02:14.070 --> 00:02:18.699
+Microsoft Graph and Entra ID run as
+separate national cloud deployments,
+
+37
+00:02:18.699 --> 00:02:22.720
+and a script has to call the hosts
+of the cloud its tenant lives in.
+
+38
+00:02:22.720 --> 00:02:27.745
+Commercial and Microsoft 365 GCC
+tenants use the same worldwide hosts:
+
+39
+00:02:27.745 --> 00:02:32.685
+login dot microsoftonline dot com
+for sign-in and graph dot microsoft
+
+40
+00:02:32.685 --> 00:02:37.370
+dot com for Graph, with the Global
+environment in Graph PowerShell.
+
+41
+00:02:37.370 --> 00:02:40.445
+Microsoft's own words are
+that a GCC environment
+
+42
+00:02:40.445 --> 00:02:43.520
+should continue using
+the worldwide endpoints.
+
+43
+00:02:43.520 --> 00:02:49.272
+GCC High and DoD both sign in at
+login dot microsoftonline dot U S.
+
+44
+00:02:49.272 --> 00:02:53.721
+GCC High's Graph host is
+graph dot microsoft dot U S,
+
+45
+00:02:53.721 --> 00:02:57.845
+and DoD's is dod dash graph
+dot microsoft dot U S.
+
+46
+00:02:57.845 --> 00:03:02.615
+In Graph PowerShell those are the U
+S Gov and U S Gov DoD environments,
+
+47
+00:03:02.615 --> 00:03:07.840
+and Azure PowerShell and the Azure
+CLI switch to Azure U S Government.
+
+48
+00:03:11.590 --> 00:03:14.103
+Beyond the hosts, five things change.
+
+49
+00:03:14.103 --> 00:03:18.454
+The token's scope names the
+cloud, so app-only tokens for GCC
+
+50
+00:03:18.454 --> 00:03:22.715
+High ask for graph dot microsoft
+dot U S slash dot default.
+
+51
+00:03:22.715 --> 00:03:26.097
+The Python azure-identity
+credential signs in to the public
+
+52
+00:03:26.097 --> 00:03:29.277
+cloud unless you give it the
+Azure Government authority.
+
+53
+00:03:29.277 --> 00:03:32.785
+Apps are registered per
+cloud: an app registered in a
+
+54
+00:03:32.785 --> 00:03:36.291
+commercial tenant can't read
+a GCC High tenant's data.
+
+55
+00:03:36.291 --> 00:03:41.553
+Graph Explorer isn't supported on the GCC
+High, DoD or China endpoints, so a query
+
+56
+00:03:41.553 --> 00:03:46.978
+you proved in Graph Explorer has to be
+retested against the government endpoint.
+
+57
+00:03:46.978 --> 00:03:48.516
+That's design guidance.
+
+58
+00:03:48.516 --> 00:03:52.920
+And every Graph API reference
+page has a national cloud table;
+
+59
+00:03:52.920 --> 00:03:56.203
+check it before you rely
+on an API in a new cloud.
+
+60
+00:03:56.203 --> 00:03:59.215
+GCC needs none of this,
+but it can lack features,
+
+61
+00:03:59.215 --> 00:04:03.780
+which is the Federal Modernization
+Workbook's Book 10's subject.
+
+62
+00:04:07.530 --> 00:04:12.799
+A scheduled script signs in as itself, not
+as a person: an app registration and its
+
+63
+00:04:12.799 --> 00:04:18.468
+service principal, with application
+permissions, using the client credentials flow.
+
+64
+00:04:18.468 --> 00:04:21.406
+What matters is what the app
+proves its identity with.
+
+65
+00:04:21.406 --> 00:04:25.307
+In order of preference, which is
+design guidance from the sources:
+
+66
+00:04:25.307 --> 00:04:29.209
+a managed identity when the script
+runs on an Azure resource or an
+
+67
+00:04:29.209 --> 00:04:33.255
+Arc-enabled server, because there's
+no credential to store or rotate.
+
+68
+00:04:33.255 --> 00:04:36.556
+Workload identity federation
+for GitHub Actions,
+
+69
+00:04:36.556 --> 00:04:40.093
+Kubernetes, or any platform
+that issues its own tokens.
+
+70
+00:04:40.093 --> 00:04:43.909
+A certificate issued by a
+certificate authority anywhere else,
+
+71
+00:04:43.909 --> 00:04:46.430
+which Microsoft recommends over a secret.
+
+72
+00:04:46.430 --> 00:04:48.685
+And a client secret, which you avoid:
+
+73
+00:04:48.685 --> 00:04:52.417
+ScubaGear says application
+passwords should be blocked.
+
+74
+00:04:52.417 --> 00:04:53.593
+Then consent.
+
+75
+00:04:53.593 --> 00:04:57.380
+Graph application permissions need
+a Privileged Role Administrator.
+
+76
+00:04:57.380 --> 00:05:00.009
+Plan that approval step:
+it's the moment someone
+
+77
+00:05:00.009 --> 00:05:03.080
+with privilege decides
+what the script may read.
+
+78
+00:05:06.830 --> 00:05:08.892
+Graph has two kinds of permission.
+
+79
+00:05:08.892 --> 00:05:11.437
+Delegated permissions act for a signed-in
+
+80
+00:05:11.437 --> 00:05:14.054
+user and are limited by
+what that user can do.
+
+81
+00:05:14.054 --> 00:05:18.167
+Application permissions act as
+the app, across the whole tenant.
+
+82
+00:05:18.167 --> 00:05:21.527
+Every API reference page
+lists permissions in order,
+
+83
+00:05:21.527 --> 00:05:25.880
+least privileged first, and you ask
+for the least one that does the job.
+
+84
+00:05:25.880 --> 00:05:29.414
+In Graph PowerShell, Find
+dash Mg Graph Command and
+
+85
+00:05:29.414 --> 00:05:32.780
+Find dash Mg Graph Permission
+help you find them.
+
+86
+00:05:32.780 --> 00:05:35.590
+Where a narrower
+permission exists, use it:
+
+87
+00:05:35.590 --> 00:05:40.408
+enabling and disabling accounts
+needs User dot Enable Disable Account
+
+88
+00:05:40.408 --> 00:05:44.342
+dot All plus User dot Read dot
+All, not read-write on all users.
+
+89
+00:05:44.342 --> 00:05:46.642
+And watch what a narrow permission hides.
+
+90
+00:05:46.642 --> 00:05:51.554
+Objects you can't fully read still
+come back, with only an ID and a type.
+
+91
+00:05:51.554 --> 00:05:54.755
+A null property may mean
+not permitted, not empty.
+
+92
+00:05:54.755 --> 00:05:58.924
+The example kit keeps every call
+and its permission in one file,
+
+93
+00:05:58.924 --> 00:06:03.860
+graph-calls dot JSON, and a task can
+make only the calls listed for it.
+
+94
+00:06:07.610 --> 00:06:09.010
+Use the current tools.
+
+95
+00:06:09.010 --> 00:06:15.033
+The Microsoft Graph PowerShell S D K, for
+interactive and scheduled administration,
+
+96
+00:06:15.033 --> 00:06:18.647
+with Invoke dash Mg Graph
+Request for any endpoint.
+
+97
+00:06:18.647 --> 00:06:22.792
+The Microsoft Graph Python S D
+K for services and pipelines,
+
+98
+00:06:22.792 --> 00:06:25.836
+where a page iterator
+follows pages for you.
+
+99
+00:06:25.836 --> 00:06:28.880
+azure-identity in Python,
+for managed identity,
+
+100
+00:06:28.880 --> 00:06:31.535
+certificate and federated credentials.
+
+101
+00:06:31.535 --> 00:06:35.627
+Az PowerShell and the Azure
+CLI for Azure Resource Manager,
+
+102
+00:06:35.627 --> 00:06:37.798
+which a planned Module 4 covers.
+
+103
+00:06:37.798 --> 00:06:41.936
+And not AzureAD, AzureAD
+Preview or MSOnline.
+
+104
+00:06:41.936 --> 00:06:48.473
+Microsoft deprecated them on March 30,
+2024, said they'd work only until March 30,
+
+105
+00:06:48.473 --> 00:06:52.597
+2025, and recommends
+Microsoft Graph PowerShell.
+
+106
+00:06:52.597 --> 00:06:57.635
+The example client calls the REST API
+directly with the standard library.
+
+107
+00:06:57.635 --> 00:07:00.372
+That isn't advice against the S D Ks.
+
+108
+00:07:00.372 --> 00:07:06.060
+It keeps every request visible, so you can
+read and test each pattern line by line.
+
+109
+00:07:09.810 --> 00:07:12.897
+Every Graph script needs
+the same four patterns.
+
+110
+00:07:12.897 --> 00:07:14.123
+One, paging.
+
+111
+00:07:14.123 --> 00:07:18.837
+Collections come back a page at a time:
+a hundred users by default, up to nine
+
+112
+00:07:18.837 --> 00:07:23.784
+hundred ninety-nine with top, or five
+hundred when you select sign-in activity.
+
+113
+00:07:23.784 --> 00:07:27.685
+Follow the next link, unchanged,
+until it stops appearing.
+
+114
+00:07:27.685 --> 00:07:28.973
+Two, throttling.
+
+115
+00:07:28.973 --> 00:07:33.735
+Over a limit, Graph answers four
+twenty-nine with a Retry-After header.
+
+116
+00:07:33.735 --> 00:07:37.760
+Wait that long, because retrying at
+once keeps counting against you.
+
+117
+00:07:37.760 --> 00:07:39.110
+Three, batching.
+
+118
+00:07:39.110 --> 00:07:44.130
+A batch takes at most twenty requests, and
+each one is still throttled on its own,
+
+119
+00:07:44.130 --> 00:07:47.760
+so a batch can succeed while
+some requests inside it fail.
+
+120
+00:07:47.760 --> 00:07:49.347
+Check every status.
+
+121
+00:07:49.347 --> 00:07:50.510
+Four, delta.
+
+122
+00:07:50.510 --> 00:07:53.334
+Follow the next links
+until you get a delta link,
+
+123
+00:07:53.334 --> 00:07:56.085
+store it, and next time
+you get only the changes.
+
+124
+00:07:56.085 --> 00:07:59.886
+And some advanced Entra queries,
+like count and search, need the
+
+125
+00:07:59.886 --> 00:08:05.070
+ConsistencyLevel eventual header, or
+they fail or return something different.
+
+126
+00:08:08.820 --> 00:08:12.083
+The limits are layered, and the
+first one you reach applies.
+
+127
+00:08:12.083 --> 00:08:15.232
+Every service allows a
+hundred thirty thousand
+
+128
+00:08:15.232 --> 00:08:18.619
+requests per ten seconds
+per app, across all tenants.
+
+129
+00:08:18.619 --> 00:08:22.216
+Entra ID objects, like users,
+groups and applications,
+
+130
+00:08:22.216 --> 00:08:27.364
+use cost-based resource units instead:
+thirty-five hundred, five thousand or
+
+131
+00:08:27.364 --> 00:08:32.757
+eight thousand per ten seconds per app and
+tenant, depending on the tenant's size.
+
+132
+00:08:32.757 --> 00:08:34.358
+Writes have their own limits.
+
+133
+00:08:34.358 --> 00:08:37.132
+A request's cost changes
+with what you ask for.
+
+134
+00:08:37.132 --> 00:08:40.437
+Select lowers it by one,
+expand raises it by one,
+
+135
+00:08:40.437 --> 00:08:43.133
+and a top under twenty lowers it by one.
+
+136
+00:08:43.133 --> 00:08:48.645
+Listing a group's transitive members costs
+five, against three for direct members.
+
+137
+00:08:48.645 --> 00:08:53.545
+And a background job, like an evidence
+collector, can send a low throttle priority.
+
+138
+00:08:53.545 --> 00:08:58.510
+Microsoft recommends high priority
+only for requests a user started.
+
+139
+00:09:02.260 --> 00:09:02.985
+Try it.
+
+140
+00:09:02.985 --> 00:09:08.735
+Lab 1 runs on a laptop in the examples
+folder, against fixtures, with no tenant.
+
+141
+00:09:08.735 --> 00:09:12.921
+Ask for a cloud name the client
+doesn't know, G C C High with capitals,
+
+142
+00:09:12.921 --> 00:09:16.797
+and you get a value error that
+lists the four names it accepts.
+
+143
+00:09:16.797 --> 00:09:19.836
+An unknown name is an
+error, never a default.
+
+144
+00:09:19.836 --> 00:09:24.976
+List the permissions the stale-users task
+needs, and you get exactly two: AuditLog
+
+145
+00:09:24.976 --> 00:09:29.810
+dot Read dot All and User dot Read dot
+All, computed from the calls it declares.
+
+146
+00:09:29.810 --> 00:09:34.013
+Make a call the Conditional Access
+task doesn't declare, and it refuses,
+
+147
+00:09:34.013 --> 00:09:37.998
+telling you to add it to graph-calls
+dot JSON with its permission.
+
+148
+00:09:37.998 --> 00:09:43.735
+Send a GCC High token to the worldwide
+Graph host, and it refuses again.
+
+149
+00:09:43.735 --> 00:09:45.622
+Nothing was sent in either case.
+
+150
+00:09:45.622 --> 00:09:48.960
+Then nine tests prove
+paging, retries, batching,
+
+151
+00:09:48.960 --> 00:09:53.323
+delta and the advanced-query
+header against a fake transport.
+
+152
+00:09:53.323 --> 00:09:57.628
+The lab repeats the rules in
+PowerShell, and the full suites pass:
+
+153
+00:09:57.628 --> 00:10:00.830
+seventy in pytest and
+forty-four in Pester.
+
+154
+00:10:04.580 --> 00:10:08.624
+Lab 2 moves to your own test
+tenant, worldwide or GCC,
+
+155
+00:10:08.624 --> 00:10:11.705
+never production, with fictional data.
+
+156
+00:10:11.705 --> 00:10:16.843
+You register one app in the tenant's own
+cloud, with a certificate and no secret.
+
+157
+00:10:16.843 --> 00:10:20.620
+You grant it one application
+permission, Policy dot Read dot All,
+
+158
+00:10:20.620 --> 00:10:24.042
+with admin consent from a
+Privileged Role Administrator.
+
+159
+00:10:24.042 --> 00:10:27.629
+You run the Conditional Access
+export, which only reads.
+
+160
+00:10:27.629 --> 00:10:32.074
+The developer workbook's Chapter 02
+then has you see the token check work,
+
+161
+00:10:32.074 --> 00:10:36.667
+by adding a permission the task doesn't
+need, and the wrong cloud fail closed.
+
+162
+00:10:36.667 --> 00:10:41.089
+And you back it out: remove the permission,
+delete the app registration and its
+
+163
+00:10:41.089 --> 00:10:45.718
+certificate, and delete the output folder,
+because it holds the tenant's policies.
+
+164
+00:10:45.718 --> 00:10:50.960
+The authors haven't run Lab 2; it follows
+the workbook chapter step by step.
+
+165
+00:10:54.710 --> 00:10:56.022
+Where are agencies?
+
+166
+00:10:56.022 --> 00:11:02.060
+Most on this path run a Microsoft
+365 GCC tenant with commercial Azure.
+
+167
+00:11:02.060 --> 00:11:06.474
+Their scripts are often older than
+the current tools: AzureAD cmdlets,
+
+168
+00:11:06.474 --> 00:11:10.735
+a client secret in a scheduled task,
+a host name written into the code.
+
+169
+00:11:10.735 --> 00:11:12.748
+Some run GCC High.
+
+170
+00:11:12.748 --> 00:11:17.726
+For what this module relies on: in GCC
+High and DoD, the app is registered
+
+171
+00:11:17.726 --> 00:11:22.447
+in the government cloud itself,
+and Graph Explorer isn't supported.
+
+172
+00:11:22.447 --> 00:11:26.936
+Microsoft's Azure Government
+roadmap lists workload identities as
+
+173
+00:11:26.936 --> 00:11:31.661
+generally available at FedRAMP High
+and DoD impact levels four and five.
+
+174
+00:11:31.661 --> 00:11:36.198
+And when a managed identity is an app's
+federated credential, the audience
+
+175
+00:11:36.198 --> 00:11:40.735
+value differs: the U S Gov token exchange
+audience in the government cloud.
+
+176
+00:11:40.735 --> 00:11:45.566
+The interim paths: rewrite retired-module
+scripts on Graph PowerShell,
+
+177
+00:11:45.566 --> 00:11:49.333
+use a certificate on premises
+until the server is on Arc,
+
+178
+00:11:49.333 --> 00:11:53.140
+and treat a GCC High move
+as a configuration change.
+
+179
+00:11:56.890 --> 00:11:59.545
+This module's subject is
+the collector itself,
+
+180
+00:11:59.545 --> 00:12:03.528
+so its requirements are the ones the
+collector's identity has to meet.
+
+181
+00:12:03.528 --> 00:12:08.521
+Least privilege, A C six in NIST special
+publication eight hundred fifty-three:
+
+182
+00:12:08.521 --> 00:12:11.978
+each script holds only the
+permissions its calls need.
+
+183
+00:12:11.978 --> 00:12:15.536
+Authenticator management, I
+A five: no long-lived secret,
+
+184
+00:12:15.536 --> 00:12:20.952
+and ScubaGear's application-credential
+policies apply to the program's own apps too.
+
+185
+00:12:20.952 --> 00:12:23.064
+Continuous monitoring, C A seven,
+
+186
+00:12:23.064 --> 00:12:26.503
+depends on collectors that
+return complete results.
+
+187
+00:12:26.503 --> 00:12:30.732
+And BOD 25-01 requires
+the SCuBA assessment tools
+
+188
+00:12:30.732 --> 00:12:33.903
+and continuous reporting
+for in-scope tenants.
+
+189
+00:12:33.903 --> 00:12:36.777
+Book 02's Appendix A has the mapping.
+
+190
+00:12:36.777 --> 00:12:41.572
+The evidence an ISSO keeps: for each
+collector, its cloud, endpoint,
+
+191
+00:12:41.572 --> 00:12:46.988
+app registration, credential type,
+exact permissions and consent record,
+
+192
+00:12:46.988 --> 00:12:51.000
+plus the call list and its
+tests in the repository.
+
+193
+00:12:54.750 --> 00:12:58.250
+Check yourself with two questions
+from the module's knowledge check.
+
+194
+00:12:58.250 --> 00:13:03.150
+First: your tenant is Microsoft 365 GCC.
+
+195
+00:13:03.150 --> 00:13:05.288
+Which Graph host does your collector call?
+
+196
+00:13:05.288 --> 00:13:08.638
+The answer is b, graph
+dot microsoft dot com,
+
+197
+00:13:08.638 --> 00:13:11.988
+because GCC uses the worldwide endpoints.
+
+198
+00:13:11.988 --> 00:13:14.397
+Second: a batch returns two hundred,
+
+199
+00:13:14.397 --> 00:13:18.300
+but two of its twenty requests
+returned four twenty-nine.
+
+200
+00:13:18.300 --> 00:13:19.650
+What should the client do?
+
+201
+00:13:19.650 --> 00:13:20.862
+The answer is c.
+
+202
+00:13:20.862 --> 00:13:23.690
+Each request in a batch
+is throttled on its own,
+
+203
+00:13:23.690 --> 00:13:28.525
+so check every response's status and
+retry the throttled ones after their wait.
+
+204
+00:13:28.525 --> 00:13:33.810
+The module page has three more questions,
+each linked to the unit that answers it.
+
+205
+00:13:37.560 --> 00:13:38.385
+To sum up.
+
+206
+00:13:38.385 --> 00:13:43.554
+You matched each cloud to its hosts, its
+scope and its PowerShell environment,
+
+207
+00:13:43.554 --> 00:13:46.623
+and learned that GCC is
+the worldwide service.
+
+208
+00:13:46.623 --> 00:13:50.755
+You put the credentials in order,
+managed identity, federation,
+
+209
+00:13:50.755 --> 00:13:55.523
+certificate, never a secret, and found
+who consents to Graph permissions.
+
+210
+00:13:55.523 --> 00:13:59.535
+You found least-privileged permissions
+and what a narrow one hides.
+
+211
+00:13:59.535 --> 00:14:01.660
+You learned the four request patterns.
+
+212
+00:14:01.660 --> 00:14:05.304
+And in the lab you saw the
+client refuse an unknown cloud,
+
+213
+00:14:05.304 --> 00:14:07.760
+an undeclared call and the wrong host.
+
+214
+00:14:07.760 --> 00:14:09.481
+Before you ship a collector,
+
+215
+00:14:09.481 --> 00:14:13.223
+work through the developer
+workbook's Chapter 02 checklist.
+
+216
+00:14:13.223 --> 00:14:19.401
+Next is Module 2, Entra ID through
+Microsoft Graph: users, groups, Conditional
+
+217
+00:14:19.401 --> 00:14:26.040
+Access, PIM, applications and logs, with
+five read-only checks mapped to ScubaGear.

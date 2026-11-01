@@ -7175,6 +7175,530 @@
    "Done when: the chapter's checklist"
   ]
  ],
+ "DW_TTM_01_Loop_Typed_Task_Narrated": [
+  [
+   0,
+   "Chapter 01: The Loop and the Typed Task"
+  ],
+  [
+   37,
+   "Why the record comes first"
+  ],
+  [
+   72,
+   "Book 13's loop and where the kit sits"
+  ],
+  [
+   112,
+   "The data contract: what every payload carries"
+  ],
+  [
+   146,
+   "What exists: the contract, enforced in one place"
+  ],
+  [
+   188,
+   "What the chapter adds: finding_contract.py"
+  ],
+  [
+   222,
+   "The empty intended state that looks present"
+  ],
+  [
+   257,
+   "The tests: 22 for the contract, 107 in all"
+  ],
+  [
+   289,
+   "The verified facts the code depends on"
+  ],
+  [
+   327,
+   "What couldn't be verified"
+  ],
+  [
+   362,
+   "What the typed finding proves, and for whom"
+  ],
+  [
+   401,
+   "Who builds it and who approves it"
+  ],
+  [
+   433,
+   "Lab 1: five sample payloads, checked"
+  ],
+  [
+   469,
+   "Lab 1: the script's tests and the drift payloads"
+  ],
+  [
+   507,
+   "Lab 2: post one finding to a developer instance"
+  ],
+  [
+   541,
+   "Dangers, and the guard for each"
+  ],
+  [
+   575,
+   "Done when: the chapter's checklist"
+  ]
+ ],
+ "DW_TTM_02_ServiceNow_Least_Privilege_Narrated": [
+  [
+   0,
+   "Chapter 02: The ServiceNow Client and Least Privilege"
+  ],
+  [
+   34,
+   "Why write the calls down"
+  ],
+  [
+   67,
+   "What exists: tokens, paging and retries"
+  ],
+  [
+   105,
+   "config/calls.json: the ServiceNow rows"
+  ],
+  [
+   142,
+   "Three custom roles, split by task"
+  ],
+  [
+   176,
+   "kit_calls.py and the test that holds the code"
+  ],
+  [
+   211,
+   "The tests: nine new, the originals unchanged"
+  ],
+  [
+   244,
+   "The verified facts: token, Table and Attachment"
+  ],
+  [
+   281,
+   "What couldn't be verified on ServiceNow"
+  ],
+  [
+   318,
+   "What the call list proves, and for whom"
+  ],
+  [
+   354,
+   "Who builds, who grants, who approves"
+  ],
+  [
+   391,
+   "Lab 1: every call declared, and what reread needs"
+  ],
+  [
+   418,
+   "Lab 1: catching a grant that's too wide"
+  ],
+  [
+   452,
+   "Lab 2: three users, three roles, one instance"
+  ],
+  [
+   489,
+   "Dangers, and the guard for each"
+  ],
+  [
+   526,
+   "Done when: the ServiceNow checklist"
+  ]
+ ],
+ "DW_TTM_03_SailPoint_Scopes_Narrated": [
+  [
+   0,
+   "Chapter 03: The SailPoint Client and Its Scopes"
+  ],
+  [
+   35,
+   "Why the SailPoint client reads and never writes"
+  ],
+  [
+   73,
+   "What exists: base URL, token, search and lists"
+  ],
+  [
+   112,
+   "The ISC and Graph rows of the call list"
+  ],
+  [
+   146,
+   "Read scopes, the workflow client, required-only"
+  ],
+  [
+   182,
+   "The tests: the same file, now for ISC and Graph"
+  ],
+  [
+   215,
+   "The verified facts: ISC token, Search, Accounts"
+  ],
+  [
+   255,
+   "The verified facts: Graph, GCC and FedRAMP"
+  ],
+  [
+   295,
+   "What couldn't be verified on SailPoint and Graph"
+  ],
+  [
+   328,
+   "What the scopes prove, and for whom"
+  ],
+  [
+   369,
+   "Who owns the SailPoint side"
+  ],
+  [
+   403,
+   "Lab 1: what the drift client needs from ISC"
+  ],
+  [
+   436,
+   "Lab 1: two jobs, two clients; the Graph app"
+  ],
+  [
+   468,
+   "Lab 2: two API clients in a sandbox tenant"
+  ],
+  [
+   504,
+   "Dangers, and the guard for each"
+  ],
+  [
+   541,
+   "Done when: the SailPoint and Graph checklist"
+  ]
+ ],
+ "DW_TTM_04_Drift_Typed_Task_Narrated": [
+  [
+   0,
+   "Chapter 04: Drift to a Typed Task"
+  ],
+  [
+   30,
+   "Why run the body before it runs for real"
+  ],
+  [
+   65,
+   "What exists: three workflows and one script"
+  ],
+  [
+   103,
+   "workflow_payload.py: the body, resolved offline"
+  ],
+  [
+   138,
+   "Fix 1: multivalued changes, reverted"
+  ],
+  [
+   176,
+   "Fix 2: the attribute joins the de-duplication key"
+  ],
+  [
+   212,
+   "The tests: seven new, two node tests, one rule"
+  ],
+  [
+   246,
+   "The verified facts: the three triggers"
+  ],
+  [
+   283,
+   "What couldn't be verified about the workflows"
+  ],
+  [
+   318,
+   "What Build 1 proves, and for whom"
+  ],
+  [
+   356,
+   "Who builds the workflows and the resource"
+  ],
+  [
+   389,
+   "Lab 1: the native change, resolved"
+  ],
+  [
+   427,
+   "Lab 1: the mover, the signal, the script tests"
+  ],
+  [
+   462,
+   "Lab 2: one workflow, one sandbox, one capture"
+  ],
+  [
+   496,
+   "Dangers, and the guard for each"
+  ],
+  [
+   533,
+   "Done when: the Build 1 checklist"
+  ]
+ ],
+ "DW_TTM_05_Reread_Rule_Narrated": [
+  [
+   0,
+   "Chapter 05: The Re-read Rule"
+  ],
+  [
+   33,
+   "Why a success response isn't closure"
+  ],
+  [
+   68,
+   "The business rule: every close becomes a wait"
+  ],
+  [
+   107,
+   "The re-read client: read, compare, close or reopen"
+  ],
+  [
+   145,
+   "The guard: never verify against nothing"
+  ],
+  [
+   179,
+   "The offline mode, and six waiting records"
+  ],
+  [
+   216,
+   "The tests: six offline, nine re-read, six rule"
+  ],
+  [
+   254,
+   "The verified facts behind every re-read"
+  ],
+  [
+   291,
+   "What couldn't be verified about the rule"
+  ],
+  [
+   322,
+   "What the re-read proves, and for whom"
+  ],
+  [
+   357,
+   "Who owns the rule, the client and the evidence"
+  ],
+  [
+   392,
+   "Lab 1: six waiting findings at noon"
+  ],
+  [
+   426,
+   "Lab 1: a day later, and the rule's own tests"
+  ],
+  [
+   458,
+   "Lab 2: close one finding with evidence"
+  ],
+  [
+   494,
+   "Dangers, and the guard for each"
+  ],
+  [
+   530,
+   "Done when: the re-read checklist"
+  ]
+ ],
+ "DW_TTM_06_Drift_Reconciliation_Narrated": [
+  [
+   0,
+   "Chapter 06: Drift Reconciliation"
+  ],
+  [
+   36,
+   "Why measure the state, not just the events"
+  ],
+  [
+   71,
+   "identity_drift.py: inputs, classes, IDs"
+  ],
+  [
+   110,
+   "drift_compare.py: new, persisting, resolved"
+  ],
+  [
+   147,
+   "Day two of the fictional estate"
+  ],
+  [
+   182,
+   "The tests: four new, thirteen unchanged"
+  ],
+  [
+   217,
+   "The verified facts behind the join"
+  ],
+  [
+   255,
+   "What couldn't be verified about the join"
+  ],
+  [
+   288,
+   "What the reconciliation proves, and for whom"
+  ],
+  [
+   327,
+   "Who schedules it and who reads it"
+  ],
+  [
+   362,
+   "Lab 1: day one and day two"
+  ],
+  [
+   405,
+   "Lab 1: comparing the days, and the refusal"
+  ],
+  [
+   443,
+   "Lab 2: a live run on synthetic data"
+  ],
+  [
+   479,
+   "Dangers, and the guard for each"
+  ],
+  [
+   516,
+   "Done when: the reconciliation checklist"
+  ]
+ ],
+ "DW_TTM_07_Evidence_Records_Narrated": [
+  [
+   0,
+   "Chapter 07: Evidence Records for Book 13 and the ISSO"
+  ],
+  [
+   37,
+   "Why the ISSO needs records, not the tracker"
+  ],
+  [
+   71,
+   "One record per finding, in Book 13's shape"
+  ],
+  [
+   109,
+   "Four checks per record, each reported by name"
+  ],
+  [
+   144,
+   "The package: a hash per file and a chain"
+  ],
+  [
+   179,
+   "The verifier, the live read, five records"
+  ],
+  [
+   215,
+   "The tests: eight, from fields to chains"
+  ],
+  [
+   252,
+   "The verified facts, and what isn't verified"
+  ],
+  [
+   289,
+   "What the package proves, for the ISSO"
+  ],
+  [
+   327,
+   "Who builds the pipeline and who reads it"
+  ],
+  [
+   361,
+   "Lab 1: exporting October's closed findings"
+  ],
+  [
+   398,
+   "Lab 1: verify, continue the chain, tamper"
+  ],
+  [
+   434,
+   "Lab 2: a live export from a developer instance"
+  ],
+  [
+   468,
+   "Dangers, and the guard for each"
+  ],
+  [
+   505,
+   "Done when: the evidence checklist"
+  ]
+ ],
+ "DW_TTM_08_One_Writer_Per_Attribute_Narrated": [
+  [
+   0,
+   "Chapter 08: One Writer per Attribute"
+  ],
+  [
+   37,
+   "Why two writers is drift you've scheduled"
+  ],
+  [
+   76,
+   "Why only this Pass 2 item is built"
+  ],
+  [
+   111,
+   "Export one: the inbound job's schema"
+  ],
+  [
+   144,
+   "Export two: SailPoint's provisioning policies"
+  ],
+  [
+   178,
+   "Three severities, and aliases a reviewer checks"
+  ],
+  [
+   214,
+   "The tests: six, from flow types to the CLI"
+  ],
+  [
+   247,
+   "The verified facts behind the two exports"
+  ],
+  [
+   286,
+   "What couldn't be verified about the writers"
+  ],
+  [
+   323,
+   "What the writer check proves, and for whom"
+  ],
+  [
+   357,
+   "Who owns each writer, and who decides"
+  ],
+  [
+   396,
+   "Lab 1: department has two writers"
+  ],
+  [
+   428,
+   "Lab 1: the alias, the guard, the reads"
+  ],
+  [
+   461,
+   "Lab 2: your own exports, reviewed"
+  ],
+  [
+   496,
+   "Dangers, and the guard for each"
+  ],
+  [
+   532,
+   "Done when: the writer checklist"
+  ]
+ ],
  "Guide_Ansible_Technical_Narrated": [
   [
    0,
@@ -7867,6 +8391,146 @@
   [
    965,
    "What to verify, decide, and read next"
+  ]
+ ],
+ "Research_Cloud_DNS_Part_1_Narrated": [
+  [
+   0,
+   "Cloud DNS, Part 1: The Native Resolvers"
+  ],
+  [
+   53,
+   "Why cloud DNS belongs to one policy plane"
+  ],
+  [
+   103,
+   "The answer in brief: native resolvers as the bridge"
+  ],
+  [
+   162,
+   "AWS: what the Route 53 VPC Resolver answers"
+  ],
+  [
+   228,
+   "AWS: inbound and outbound endpoints"
+  ],
+  [
+   291,
+   "AWS: rules, sharing, Profiles and private zones"
+  ],
+  [
+   348,
+   "AWS: DNS Firewall, query logging and DNSSEC"
+  ],
+  [
+   413,
+   "AWS GovCloud (US) beside the commercial Regions"
+  ],
+  [
+   474,
+   "Azure: the DNS Private Resolver"
+  ],
+  [
+   529,
+   "Azure: DNS resolver policy, logging and DNSSEC"
+  ],
+  [
+   591,
+   "Oracle Cloud: how the VCN resolver answers"
+  ],
+  [
+   652,
+   "Oracle Cloud: endpoints, rules and what's missing"
+  ],
+  [
+   714,
+   "Who authorizes it: AWS and Azure FedRAMP scope"
+  ],
+  [
+   774,
+   "Who authorizes it: Oracle US Government Cloud"
+  ],
+  [
+   840,
+   "How the three resolvers meet on-premises DNS"
+  ],
+  [
+   901,
+   "How Protective DNS, policy and logs reach each cloud"
+  ],
+  [
+   970,
+   "What to confirm, and what Part 2 covers"
+  ]
+ ],
+ "Research_Cloud_DNS_Part_2_Narrated": [
+  [
+   0,
+   "Cloud DNS, Part 2: BIND and the Federal Fit"
+  ],
+  [
+   49,
+   "BIND in AWS: aligned, or a new silo?"
+  ],
+  [
+   97,
+   "When to run your own DNS servers in a cloud"
+  ],
+  [
+   153,
+   "vNIOS or BIND, and which BIND to run"
+  ],
+  [
+   210,
+   "Three roles, kept apart"
+  ],
+  [
+   256,
+   "Placement and high availability in each cloud"
+  ],
+  [
+   316,
+   "Forwarding to and from the native resolver"
+  ],
+  [
+   374,
+   "An illustrative forwarder configuration"
+  ],
+  [
+   440,
+   "DNSSEC validation and signing in the cloud"
+  ],
+  [
+   501,
+   "Response policy zones and CISA Protective DNS"
+  ],
+  [
+   565,
+   "Query and response logging into the SOC"
+  ],
+  [
+   629,
+   "Patching, settings and hardening baselines"
+  ],
+  [
+   692,
+   "Who owns the configuration: Git and Ansible"
+  ],
+  [
+   747,
+   "The alignment checklist: seven questions"
+  ],
+  [
+   818,
+   "Federal mapping: configuration and inventory"
+  ],
+  [
+   886,
+   "Federal mapping: resolution, logging and Protective DNS"
+  ],
+  [
+   962,
+   "Where Infoblox fits, and what to confirm"
   ]
  ],
  "Research_CyberArk_CLM_Narrated": [
@@ -8697,6 +9361,306 @@
   [
    853,
    "From Draft to Proved, and where to go next"
+  ]
+ ],
+ "TTM_Story_One_Drift_Case_Narrated": [
+  [
+   0,
+   "One Drift Case, End to End"
+  ],
+  [
+   66,
+   "The cast and the stakes"
+  ],
+  [
+   140,
+   "Erin's path through the loop and the gates"
+  ],
+  [
+   212,
+   "Scene 1: the drift run finds Erin"
+  ],
+  [
+   283,
+   "Try it: day one finds Erin's four findings"
+  ],
+  [
+   336,
+   "Check 1: which of Erin's findings needs a person?"
+  ],
+  [
+   364,
+   "Scene 2: Erin's drift becomes a typed task"
+  ],
+  [
+   437,
+   "Try it: what ServiceNow will do with Erin's payloads"
+  ],
+  [
+   493,
+   "Check 2: why does Erin need two keys?"
+  ],
+  [
+   516,
+   "Scene 3: who may touch Erin's record"
+  ],
+  [
+   587,
+   "Try it: catching a grant that's too wide"
+  ],
+  [
+   641,
+   "Check 3: why not reuse the verifier's account?"
+  ],
+  [
+   656,
+   "Scene 4: why Erin's department keeps drifting"
+  ],
+  [
+   725,
+   "Try it: two writers on department"
+  ],
+  [
+   775,
+   "Check 4: Finding, Warn or Info?"
+  ],
+  [
+   793,
+   "Scene 5: the fix, on the native surface"
+  ],
+  [
+   863,
+   "Try it: a provisioning success only signals"
+  ],
+  [
+   913,
+   "Check 5: SailPoint says SUCCESS. Now what?"
+  ],
+  [
+   930,
+   "Scene 6: the re-read closes Erin's finding"
+  ],
+  [
+   986,
+   "Try it: day two, and the re-read"
+  ],
+  [
+   1041,
+   "Check 6: resolved means closed?"
+  ],
+  [
+   1060,
+   "Scene 7: Erin's closure becomes evidence"
+  ],
+  [
+   1111,
+   "Try it: the package, verified and tampered"
+  ],
+  [
+   1169,
+   "Check 7: one record deleted from the period"
+  ],
+  [
+   1186,
+   "Your turn: Lab 2, and where to go next"
+  ]
+ ],
+ "Training_MS_Automation_Module_1_Narrated": [
+  [
+   0,
+   "Module 1: Graph and Azure foundations"
+  ],
+  [
+   45,
+   "Why the collector has to be right first"
+  ],
+  [
+   94,
+   "What you'll be able to do in Module 1"
+  ],
+  [
+   134,
+   "Clouds and endpoints: pick the cloud first"
+  ],
+  [
+   191,
+   "What changes in a government cloud beyond hosts"
+  ],
+  [
+   247,
+   "Sign in as a workload, without a secret"
+  ],
+  [
+   306,
+   "Least-privileged permissions, and what they hide"
+  ],
+  [
+   367,
+   "Use the current tools; the old modules are retired"
+  ],
+  [
+   429,
+   "Four request patterns every Graph script needs"
+  ],
+  [
+   488,
+   "Throttling limits, and what changes a request's cost"
+  ],
+  [
+   542,
+   "Try it: the client refuses the wrong cloud and call"
+  ],
+  [
+   604,
+   "Lab 2: one permission, in your own test tenant"
+  ],
+  [
+   654,
+   "Where agencies are: GCC, GCC High and DoD"
+  ],
+  [
+   716,
+   "The federal requirement, and the evidence to keep"
+  ],
+  [
+   774,
+   "Check yourself: two questions on foundations"
+  ],
+  [
+   817,
+   "Summary, and next: Module 2, Entra ID"
+  ]
+ ],
+ "Training_MS_Automation_Module_2_Narrated": [
+  [
+   0,
+   "Module 2: Microsoft Entra ID through Graph"
+  ],
+  [
+   52,
+   "Why script the evidence your ISSO asks for"
+  ],
+  [
+   93,
+   "What you'll be able to do in Module 2"
+  ],
+  [
+   139,
+   "Evidence questions mapped to Graph APIs"
+  ],
+  [
+   194,
+   "Sign-in activity and membership: the traps"
+  ],
+  [
+   246,
+   "Conditional Access: read it with one permission"
+  ],
+  [
+   295,
+   "PIM: eligible, active, and permanent active"
+  ],
+  [
+   345,
+   "Application credentials against three ScubaGear rules"
+  ],
+  [
+   385,
+   "Logs, retention, and authentication methods"
+  ],
+  [
+   438,
+   "The five checks, and a reader's permissions"
+  ],
+  [
+   493,
+   "Try it: find permanent privileged assignments"
+  ],
+  [
+   541,
+   "Lab 2: run the checks read-only in a test tenant"
+  ],
+  [
+   595,
+   "Where agencies are: Entra ID in GCC High and DoD"
+  ],
+  [
+   655,
+   "The federal requirement and evidence for Entra ID"
+  ],
+  [
+   714,
+   "Check yourself: two questions on Entra ID"
+  ],
+  [
+   752,
+   "Summary, and next: Module 3, Intune"
+  ]
+ ],
+ "Training_MS_Automation_Module_3_Narrated": [
+  [
+   0,
+   "Module 3: Intune through Microsoft Graph"
+  ],
+  [
+   50,
+   "Why compliance records decide device access"
+  ],
+  [
+   101,
+   "What you'll be able to do in Module 3"
+  ],
+  [
+   147,
+   "Book 05's questions mapped to Intune APIs"
+  ],
+  [
+   197,
+   "Three things the program relies on are beta-only"
+  ],
+  [
+   249,
+   "Managed devices: what the checks read and leave out"
+  ],
+  [
+   298,
+   "Compliance status, coverage, and the name join"
+  ],
+  [
+   353,
+   "Keep remote actions and exports out of a collector"
+  ],
+  [
+   404,
+   "The five checks and the controls they evidence"
+  ],
+  [
+   463,
+   "Try it: find the devices no policy reaches"
+  ],
+  [
+   521,
+   "Lab 2: read your test tenant's fleet, read-only"
+  ],
+  [
+   577,
+   "Where agencies are: one Intune for GCC, one for High"
+  ],
+  [
+   637,
+   "Autopilot in GCC High and DoD, and interim paths"
+  ],
+  [
+   695,
+   "The federal requirement and evidence for Intune"
+  ],
+  [
+   755,
+   "Check yourself: two questions on Intune"
+  ],
+  [
+   795,
+   "Summary: you've finished the path"
   ]
  ]
 }

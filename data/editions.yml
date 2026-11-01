@@ -289,6 +289,126 @@ editions:
           - "Learning path: Ticket-to-Machine on ServiceNow and SailPoint (#277)"
           - "Learning path: HR-Driven Identity in Microsoft Entra ID (#278)"
           - "Gate-level deck series for HR-Driven Identity and Ticket-to-Machine (sources) (#280)"
+  - id: edition-2026.11.1
+    date: 2026-11-01
+    commit: 99c735bb268a71dcbe48ed65276889a30ea533e7
+    summary: "Adds the Ticket-to-Machine story deck and eight chapter tours, the completed Microsoft Automation learning path with a narrated deck per module, and a two-part narrated deck for the Cloud DNS evaluation."
+    units:
+      b00-orientation:
+        changes:
+          - "Edition 2026.11: record the edition, and publish the four gate-level decks and videos (#282)"
+      b01-transformation-arc:
+        changes:
+          - "Edition 2026.11: record the edition, and publish the four gate-level decks and videos (#282)"
+      b02-identity:
+        changes:
+          - "Edition 2026.11: record the edition, and publish the four gate-level decks and videos (#282)"
+      b03-hr-identity:
+        changes:
+          - "Edition 2026.11: record the edition, and publish the four gate-level decks and videos (#282)"
+      b04-access:
+        changes:
+          - "Edition 2026.11: record the edition, and publish the four gate-level decks and videos (#282)"
+      b05-devices:
+        changes:
+          - "Edition 2026.11: record the edition, and publish the four gate-level decks and videos (#282)"
+      b06-data-platform:
+        changes:
+          - "Edition 2026.11: record the edition, and publish the four gate-level decks and videos (#282)"
+      b07-pki:
+        changes:
+          - "Edition 2026.11: record the edition, and publish the four gate-level decks and videos (#282)"
+      b08-ddi:
+        changes:
+          - "Edition 2026.11: record the edition, and publish the four gate-level decks and videos (#282)"
+      b09-network:
+        changes:
+          - "Edition 2026.11: record the edition, and publish the four gate-level decks and videos (#282)"
+      b10-cloud-boundary:
+        changes:
+          - "Edition 2026.11: record the edition, and publish the four gate-level decks and videos (#282)"
+      b11-zero-trust:
+        changes:
+          - "Edition 2026.11: record the edition, and publish the four gate-level decks and videos (#282)"
+      b12-security-operations:
+        changes:
+          - "Edition 2026.11: record the edition, and publish the four gate-level decks and videos (#282)"
+      b13-governance:
+        changes:
+          - "Edition 2026.11: record the edition, and publish the four gate-level decks and videos (#282)"
+      b14-compliance:
+        changes:
+          - "Edition 2026.11: record the edition, and publish the four gate-level decks and videos (#282)"
+      b15-day2-operations:
+        changes:
+          - "Edition 2026.11: record the edition, and publish the four gate-level decks and videos (#282)"
+      b16-people:
+        changes:
+          - "Edition 2026.11: record the edition, and publish the four gate-level decks and videos (#282)"
+      b17-ai-identity:
+        changes:
+          - "Edition 2026.11: record the edition, and publish the four gate-level decks and videos (#282)"
+      b18-application-modernization:
+        changes:
+          - "Edition 2026.11: record the edition, and publish the four gate-level decks and videos (#282)"
+      b19-developer-workbook:
+        changes:
+          - "Edition 2026.11: record the edition, and publish the four gate-level decks and videos (#282)"
+      guides/ansible-configuration-automation:
+        changes:
+          - "Edition 2026.11: record the edition, and publish the four gate-level decks and videos (#282)"
+      guides/arc-track-implementation:
+        changes:
+          - "Edition 2026.11: record the edition, and publish the four gate-level decks and videos (#282)"
+      guides/attribute-driven-migration-implementation:
+        changes:
+          - "Edition 2026.11: record the edition, and publish the four gate-level decks and videos (#282)"
+      guides/attribute-driven-migration:
+        changes:
+          - "Edition 2026.11: record the edition, and publish the four gate-level decks and videos (#282)"
+      guides/cisco-sdwan-implementation:
+        changes:
+          - "Edition 2026.11: record the edition, and publish the four gate-level decks and videos (#282)"
+      guides/cyberark-certificate-lifecycle:
+        changes:
+          - "Edition 2026.11: record the edition, and publish the four gate-level decks and videos (#282)"
+      guides/effective-meetings:
+        changes:
+          - "Edition 2026.11: record the edition, and publish the four gate-level decks and videos (#282)"
+      guides/hcm-entra-implementation:
+        changes:
+          - "Edition 2026.11: record the edition, and publish the four gate-level decks and videos (#282)"
+      guides/hr-driven-identity-implementation:
+        changes:
+          - "Edition 2026.11: record the edition, and publish the four gate-level decks and videos (#282)"
+      guides/infoblox-nios-implementation:
+        changes:
+          - "Edition 2026.11: record the edition, and publish the four gate-level decks and videos (#282)"
+      guides/intune-track-implementation:
+        changes:
+          - "Edition 2026.11: record the edition, and publish the four gate-level decks and videos (#282)"
+      guides/non-person-identity-implementation:
+        changes:
+          - "Edition 2026.11: record the edition, and publish the four gate-level decks and videos (#282)"
+      guides/snow-sailpoint-integration-kit:
+        changes:
+          - "Edition 2026.11: record the edition, and publish the four gate-level decks and videos (#282)"
+      guides/ttm-servicenow-sailpoint:
+        changes:
+          - "Edition 2026.11: record the edition, and publish the four gate-level decks and videos (#282)"
+      developer-workbooks/hr-driven-identity:
+        changes:
+          - "Edition 2026.11: record the edition, and publish the four gate-level decks and videos (#282)"
+      developer-workbooks/non-person-identity:
+        changes:
+          - "Edition 2026.11: record the edition, and publish the four gate-level decks and videos (#282)"
+      developer-workbooks/privileged-access:
+        changes:
+          - "Edition 2026.11: record the edition, and publish the four gate-level decks and videos (#282)"
+      developer-workbooks/ticket-to-machine:
+        changes:
+          - "Edition 2026.11: record the edition, and publish the four gate-level decks and videos (#282)"
+          - "Building Ticket-to-Machine: a narrated story deck and eight chapter tours (sources) (#283)"
 # (scripts/cut_edition.py adds each new edition at the end of the list above.)
 
 # Releases that aren't editions (kits, video sets), listed on the Archive page.

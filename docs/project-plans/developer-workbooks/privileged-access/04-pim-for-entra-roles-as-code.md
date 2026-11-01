@@ -29,7 +29,7 @@ The code behind the plan's tasks A1.6, A2.1 and A2.2: "role settings for every t
 ## Narrated tour
 {{< fmw-video DW_PA_04_PIM_Entra_Roles_Narrated >}}
 
-[Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11/DW_PA_04_PIM_Entra_Roles.pptx) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11/DW_PA_04_PIM_Entra_Roles_Narrated.pptx) (about 11 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-pa-04-pim-entra-roles/DW_PA_04_PIM_Entra_Roles_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-pa-04-pim-entra-roles/DW_PA_04_PIM_Entra_Roles_Narrated.vtt). Recorded on October 31, 2026 from the approved chapter.
+[Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/DW_PA_04_PIM_Entra_Roles.pptx) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/DW_PA_04_PIM_Entra_Roles_Narrated.pptx) (about 11 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-pa-04-pim-entra-roles/DW_PA_04_PIM_Entra_Roles_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-pa-04-pim-entra-roles/DW_PA_04_PIM_Entra_Roles_Narrated.vtt). Recorded on October 31, 2026 from the approved chapter.
 :::
 
 <!-- tour:end -->
