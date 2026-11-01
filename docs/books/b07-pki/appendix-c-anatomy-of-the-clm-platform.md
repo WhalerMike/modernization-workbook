@@ -23,7 +23,7 @@ lifecycle_review: 2027-04-01
 - How they map to CyberArk Certificate Manager, Self-Hosted 26.1, the program's CLM platform ([Chapter 04](04-the-target-pki.md))
 - The platform's server roles, what it connects to, a two-site reference topology, and one certificate's journey through it
 
-The program chose CyberArk Certificate Manager, Self-Hosted as the CLM platform, the system of record for every certificate that Intune and the PIV system don't manage ([Chapter 04](04-the-target-pki.md)). This appendix describes what that platform is made of. The build itself, phase by phase, is in the Research section's implementation guide, [Certificate Lifecycle on CyberArk Certificate Manager](../../research/cyberark-certificate-lifecycle.md), which is under review; the component facts here come from CyberArk's 26.1 documentation, checked on October 23, 2026.
+The program chose CyberArk Certificate Manager, Self-Hosted as the CLM platform, the system of record for every certificate that Intune and the PIV system don't manage ([Chapter 04](04-the-target-pki.md)). This appendix describes what that platform is made of. The build itself, phase by phase, is in the Research section's implementation guide, [Certificate Lifecycle on CyberArk Certificate Manager](../guides/cyberark-certificate-lifecycle.md), which is under review; the component facts here come from CyberArk's 26.1 documentation, checked on October 23, 2026.
 
 ## What every CLM platform is made of
 

@@ -15,7 +15,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import check_changed as cc  # noqa: E402
 from check_changed import Change  # noqa: E402
 
-PUBLISHED_ROOTS = ("docs/books/", "docs/research/", "docs/presentations/")
+PUBLISHED_ROOTS = ("docs/books/", "docs/evaluations/", "docs/training/", "docs/research/", "docs/presentations/")
 
 
 def published(path: str) -> bool:
@@ -112,7 +112,7 @@ class ChangedTier(unittest.TestCase):
         self.assertEqual(plan.pages, ["docs/books/b07-pki/03-x.md"])
 
     def test_added_page_is_changed_not_full(self):
-        plan = decide([Change("A", "docs/research/new-topic.md")])
+        plan = decide([Change("A", "docs/evaluations/new-topic.md")])
         self.assertEqual(plan.tier, "CHANGED")
 
     def test_exactly_at_threshold(self):

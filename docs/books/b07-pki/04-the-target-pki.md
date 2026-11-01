@@ -141,7 +141,7 @@ What the target PKI has to do for PIV is trust, not issue:
 
 ### The contractor PIV path {#the-contractor-piv-path}
 
-**Pending proof.** The contractor PIV path is the program's design and hasn't yet been validated in practice; the criteria for Proved are in the research page's [Status and review](../../research/oracle-contingent-worker-contractor-source.md#status-and-review).
+**Pending proof.** The contractor PIV path is the program's design and hasn't yet been validated in practice; the criteria for Proved are in the research page's [Status and review](../../evaluations/oracle-contingent-worker-contractor-source.md#status-and-review).
 
 Contractors get PIV cards from the same issuers, but no HR record starts or ends them. [Book 03, Chapter 09](../b03-hr-identity/09-credentials-and-certificates.md#the-contractor-piv-path) sets the path; in PKI terms it has four points *(design guidance)*:
 
@@ -150,7 +150,7 @@ Contractors get PIV cards from the same issuers, but no HR record starts or ends
 - **Revoke and report.** The card management system publishes termination, revocation and expiry events back to the identity pipeline, where a contractor's termination or expiry ends the engagement. A revocation reaches Entra CBA only when the CA publishes a newer CRL and Entra's cache refreshes,[^c04-cba-crl] so the account disable, not the CRL, is what stops sign-in ([Chapter 08](08-lifecycle-monitoring-and-decommissioning.md#what-entra-cba-checks)).
 - **End.** The contractor's end date, capped by the contract's completion date, is the notification that starts FIPS 201-3's 18-hour termination clock for a card that can't be collected.[^c04-fips201] The pipeline sends it on the date; nobody has to remember.
 
-The comparison of contractor sources, and the agency evidence behind these points, is in the research page [Contractors as Oracle Contingent Workers](../../research/oracle-contingent-worker-contractor-source.md#part-5-the-contractor-piv-path).
+The comparison of contractor sources, and the agency evidence behind these points, is in the research page [Contractors as Oracle Contingent Workers](../../evaluations/oracle-contingent-worker-contractor-source.md#part-5-the-contractor-piv-path).
 
 ## Certificate lifecycle management
 

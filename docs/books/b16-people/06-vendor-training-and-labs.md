@@ -47,7 +47,7 @@ The table lists other vendors whose products the books configure. Each entry was
 
 | Book and subject | Vendor and offering | What the vendor's site describes |
 |---|---|---|
-| [Book 08](../b08-ddi/index.md), DNS, DHCP and IPAM | Infoblox, Launchpad | Its official learning platform, with product training, hands-on labs and certifications; free access included with all Infoblox products, and free industry-focused learning for non-customers[^c06-infoblox]; a role-by-role learning path is under review in [Research](../../research/infoblox-training.md) |
+| [Book 08](../b08-ddi/index.md), DNS, DHCP and IPAM | Infoblox, Launchpad | Its official learning platform, with product training, hands-on labs and certifications; free access included with all Infoblox products, and free industry-focused learning for non-customers[^c06-infoblox]; a role-by-role learning path is under review in [Research](../../training/infoblox-training.md) |
 | [Book 08](../b08-ddi/index.md), DNS, DHCP and IPAM | BlueCat, BlueCat Learning | Self-paced online learning and hands-on lab training in a personal environment; Associate, Professional and Advanced certifications; a product-agnostic DDI stream on DNS, DHCP and IP address management basics[^c06-bluecat] |
 | [Book 09](../b09-network/index.md), network and network access control | Cisco, Cisco U. and Networking Academy | Cisco U. offers certification preparation, tutorials, hands-on labs, learning paths and continuing education credits; Networking Academy is aimed at beginners[^c06-cisco] |
 | [Book 09](../b09-network/index.md), SD-WAN and SASE | Fortinet, Training Institute | Self-paced and instructor-led courses; the NSE certification program, with updates announced for July 15, 2026[^c06-fortinet] |

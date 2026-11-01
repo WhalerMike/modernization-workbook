@@ -41,7 +41,7 @@ Manual checks:
 
 ## For the crosswalk
 
-Ready for the editor to add TOGAF and Zachman rows to `docs/research/federal-framework-crosswalk.md`.
+Ready for the editor to add TOGAF and Zachman rows to `docs/reference/federal-framework-crosswalk.md`.
 
 ### TOGAF
 

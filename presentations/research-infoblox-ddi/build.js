@@ -1276,7 +1276,7 @@ srcSlide("Sources behind Part 2 — Divisions and operating model", [
 ]);
 
 srcSlide("Learn more: official Infoblox training", [
-  "Learning paths by role, costs and links: the workbook's Research page \"Infoblox Training and Learning Paths\" (docs/research/infoblox-training).",
+  "Learning paths by role, costs and links: the workbook's Research page \"Infoblox Training and Learning Paths\" (docs/training/infoblox-training).",
   "Launchpad, Infoblox's learning portal: launchpad.education.infoblox.com (free with Infoblox products; organizational .gov email required; catalog behind sign-in).",
   "Certifications: NIOS Operator → Administrator → Expert (INO → INA → INE); vendor-neutral DDIA/DDIP and DSA/DSP; exams $29 / $69 / $99 per attempt (Education KB, Oct. 2026).",
   "Version currency: NIOS courses were \"refreshed against NIOS 8.6\"; pair them with the NIOS 9.1.x documentation at docs.infoblox.com and confirm the lab version with Infoblox Education.",

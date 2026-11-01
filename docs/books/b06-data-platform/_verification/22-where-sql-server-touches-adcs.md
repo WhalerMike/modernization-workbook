@@ -59,7 +59,7 @@ At the user's request, every certificate-dependent book maps its certificates to
 
 ## Addition, October 23, 2026: hybrid credentials research
 
-From the research explainer *Certificates, Tokens and Keys Across the Hybrid Estate* (docs/research/hybrid-credentials.md), sources opened October 23, 2026.
+From the research explainer *Certificates, Tokens and Keys Across the Hybrid Estate* (docs/books/explainers/hybrid-credentials.md), sources opened October 23, 2026.
 
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|

@@ -1,89 +1,23 @@
 ---
-title: "Research"
-subtitle: "The staging area for the workbook: explainers, product deep dives and implementation guides, reviewed and proved before they are published"
-description: "The Federal Modernization Workbook's research area: explainers, product deep dives and implementation guides published for review and validation before they are moved into the workbook's production guidance."
+title: "Research has moved"
+subtitle: "Research pages now live by type: guides, explainers, evaluations, training and reference"
+description: "The Federal Modernization Workbook's research area has been retired. Each research page now lives in the section for its type, and keeps its status label until it is reviewed and proved."
 doc-type: section-landing
 fmw-eyebrow: "Research"
-listing:
-  - id: research-explainers
-    contents:
-      - "*.md"
-      - "!index.md"
-    include:
-      research-type: "explainer"
-    type: table
-    fields: [title, research-book, research-status, date-modified, last-reviewed, description]
-    field-display-names: &names
-      research-book: "Book"
-      research-status: "Status"
-      date-modified: "Updated"
-      last-reviewed: "Reviewed"
-    sort: "title asc"
-    sort-ui: false
-    filter-ui: false
-  - id: research-deep-dives
-    contents:
-      - "*.md"
-      - "!index.md"
-    include:
-      research-type: "product deep dive"
-    type: table
-    fields: [title, research-book, research-status, date-modified, last-reviewed, description]
-    field-display-names: *names
-    sort: "title asc"
-    sort-ui: false
-    filter-ui: false
-  - id: research-implementation
-    contents:
-      - "*.md"
-      - "!index.md"
-    include:
-      research-type: "implementation guide"
-    type: table
-    fields: [title, research-book, research-status, date-modified, last-reviewed, description]
-    field-display-names: *names
-    sort: "title asc"
-    sort-ui: false
-    filter-ui: false
 ---
 
-# Research {.unnumbered}
+# Research has moved {.unnumbered}
 
-Research is the workbook's staging area. New work starts here, in the open: an explainer, a product deep dive or an implementation guide is written, reviewed and proved before it is published into the workbook's production guidance. Nothing here is production guidance until it is published.
+The Research area was the workbook's staging area. Its pages now live in the section that matches what each page is, in the same way Microsoft Learn sorts its content by type. Old links to research pages still work: each one forwards to the page's new address.
 
-::: {.callout-note}
-## How research moves to production
-1. **Draft:** being written. Expect gaps and changes.
-2. **In review:** complete and sourced, open for comment. Its conclusions may still change.
-3. **Proved:** reviewed, and validated in practice, for example in a lab, a pilot or a test tenant, with the evidence recorded on the item's page.
-4. **Published:** moved into production. The research page stays as the record of its sources, review and evidence.
-:::
-
-**Reviewed** is the date someone last checked a page against its sources. The sources themselves are checked every week: when one changes, moves or disappears, the source-watch issue lists it under the research page that cites it. A page not reviewed for more than 90 days says so in its status box, and it is listed in the weekly source-watch issue until it is reviewed again.
-
-Each type of research has its own home in production:
-
-| Type | What it is | Where it is published |
+| Type | What it is | Where it lives now |
 |---|---|---|
-| **Explainer** | A plain-language account of a concept, for people learning the area | A book chapter or appendix, or a deck on the [Presentations](../presentations/index.md) page |
-| **Product deep dive** | One product judged against a book's requirements, with the evidence for and against it | A production *Product evaluations* section |
-| **Implementation guide** | How to build one book's design on a named product, following the book's phases and gates | A production *Implementation* set, one guide per book and product, linked from the book |
+| **How-to guide** | How to build one book's design on a named product, step by step | [Companion guides](../books/index.md#companion-guides), under Books |
+| **Explainer** | A plain-language account of a concept, for people learning the area | [Explainers](../books/explainers/index.md), under Books |
+| **Evaluation** | A product or technology choice, judged against a book's requirements | [Evaluations](../evaluations/index.md) |
+| **Training** | A learning path: modules to work through in order | [Training](../training/index.md) |
+| **Reference** | Lookup tables to check facts against | Reference: the [Federal Framework Crosswalk](../reference/federal-framework-crosswalk.md) and the [Microsoft Practice Crosswalk](../reference/graph-practice-crosswalk.md), beside the [Command Reference](../reference/commands.md) |
 
-The workbook books themselves stay vendor-neutral: they set out what to achieve and why. Product deep dives and implementation guides add the "how, on this product", and reach production only by passing through review and proof here.
+Each page keeps its status label (Draft or In review) until it is reviewed and proved. The labels, and what moves a page from one to the next, are explained in [Status labels](../about/sources-and-verification.md#status-labels).
 
-Research follows the same rules as the books: every external claim is checked against a primary source and noted, no specific agency is named, and the site is independent analysis, not an official government publication. Where research recommends a product, the recommendation is the program's own analysis, with the evidence for and against it; it is not an endorsement by any agency. Comments and corrections are welcome as [issues on GitHub](https://github.com/WhalerMike/modernization-workbook/issues).
-
-## Explainers
-
-::: {#research-explainers}
-:::
-
-## Product deep dives
-
-::: {#research-deep-dives}
-:::
-
-## Implementation guides
-
-::: {#research-implementation}
-:::
+Comments and corrections are welcome as [issues on GitHub](https://github.com/WhalerMike/modernization-workbook/issues).

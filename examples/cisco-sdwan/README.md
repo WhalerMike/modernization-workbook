@@ -1,7 +1,7 @@
 # Cisco Catalyst SD-WAN: read-only ED 26-03 gate and evidence collector
 
 > **Status: illustrative. Unit-tested against mocked responses, not proven against a live fabric.**
-> This is one way to produce some of the evidence [Book 09](../../docs/books/b09-network/index.md) asks of an SD-WAN fabric, on one named product. It is not an endorsement of the product by any agency, and no agency has adopted it. Product and API facts were checked against Cisco's documentation on October 24, 2026. The explanation, with sources, is the research page [Building Book 09's SD-WAN Design on Cisco Catalyst SD-WAN](../../docs/research/cisco-sdwan-implementation.md).
+> This is one way to produce some of the evidence [Book 09](../../docs/books/b09-network/index.md) asks of an SD-WAN fabric, on one named product. It is not an endorsement of the product by any agency, and no agency has adopted it. Product and API facts were checked against Cisco's documentation on October 24, 2026. The explanation, with sources, is the research page [Building Book 09's SD-WAN Design on Cisco Catalyst SD-WAN](../../docs/books/guides/cisco-sdwan-implementation.md).
 
 ## What it does
 

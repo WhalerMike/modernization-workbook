@@ -124,7 +124,7 @@ Book-internal consistency fixes. Factual changes were checked against sources op
 
 ## Additions, October 29, 2026 (contractors and the PIV path)
 
-Added at the author's request: paragraph "Contractors and the PIV path" at the end of "Authentication strengths". Research page: `docs/research/oracle-contingent-worker-contractor-source.md` (its log: `docs/research/_verification/oracle-contingent-worker-contractor-source.md`).
+Added at the author's request: paragraph "Contractors and the PIV path" at the end of "Authentication strengths". Research page: `docs/evaluations/oracle-contingent-worker-contractor-source.md` (its log: `docs/evaluations/_verification/oracle-contingent-worker-contractor-source.md`).
 
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
@@ -137,8 +137,8 @@ Added at the author's request: paragraph "Contractors and the PIV path" at the e
 
 ## Additions, October 30, 2026 (contractor PIV path marked pending proof)
 
-Added at the author's request during the independent verification pass (`docs/research/_verification/verification-pass-2026-10.md`). No content removed.
+Added at the author's request during the independent verification pass (`docs/about/_verification/verification-pass-2026-10.md`). No content removed.
 
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
-| 1 | "Pending proof": the contractor PIV path is the program's design and hasn't yet been validated in practice; links to the Proved criteria | Authentication strengths, after "Contractors and the PIV path" | restated-as-design (status statement; nothing external claimed) | `docs/research/oracle-contingent-worker-contractor-source.md#status-and-review` |
+| 1 | "Pending proof": the contractor PIV path is the program's design and hasn't yet been validated in practice; links to the Proved criteria | Authentication strengths, after "Contractors and the PIV path" | restated-as-design (status statement; nothing external claimed) | `docs/evaluations/oracle-contingent-worker-contractor-source.md#status-and-review` |

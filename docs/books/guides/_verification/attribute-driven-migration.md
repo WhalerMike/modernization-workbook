@@ -1,6 +1,6 @@
 # Verification — Guide: Attribute-Driven Migration from Active Directory to Microsoft Entra ID
 
-New guide, first pass of 2026-10-29. The guide is a map over Book 01 Ch 04, Book 02 Ch 05–10 and Appendix C, Book 03 Ch 03–08 and 10–13 and Appendix C, Book 04 Ch 03, Book 05 Ch 08, Book 06 Ch 16–17 and R07, Book 07 Ch 06–07, Book 03 Ch 09, Book 05 Ch 09, Book 00 Ch 09 and the research page `docs/research/hcm-entra-implementation.md`. Facts carried from those pages are cited by link to the section that states them and rely on those chapters' own verification logs. Every Microsoft Learn page footnoted in the guide was opened on 2026-10-29 through the Microsoft Learn documentation service. No personal name or email address was sent in any request.
+New guide, first pass of 2026-10-29. The guide is a map over Book 01 Ch 04, Book 02 Ch 05–10 and Appendix C, Book 03 Ch 03–08 and 10–13 and Appendix C, Book 04 Ch 03, Book 05 Ch 08, Book 06 Ch 16–17 and R07, Book 07 Ch 06–07, Book 03 Ch 09, Book 05 Ch 09, Book 00 Ch 09 and the research page `docs/books/guides/hcm-entra-implementation.md`. Facts carried from those pages are cited by link to the section that states them and rely on those chapters' own verification logs. Every Microsoft Learn page footnoted in the guide was opened on 2026-10-29 through the Microsoft Learn documentation service. No personal name or email address was sent in any request.
 
 ## Claims log: new external claims (footnoted)
 
@@ -135,7 +135,7 @@ The Limits section's Lifecycle Workflows sentence (100 workflows) and Stage 5's 
 
 - **Stage 1:** a one-line link to the contractor-source research page. No new claims.
 - **PIV and CAC certificates as attributes:** a new paragraph, "Contractors", added at the author's request. The three links (sponsorship from the contractor joiner, card-system events back to the pipeline, the end date as the notification) are design guidance, restated from Book 03 Ch09 and linked. The 18-hour clock is verified against FIPS 201-3 §2.9.4, and footnote adm-fips201 was added. The Temporary Access Pass to FIDO2 bridge is restated from Book 04 Ch03 and linked.
-- Research page: `docs/research/oracle-contingent-worker-contractor-source.md` (its log: `docs/research/_verification/oracle-contingent-worker-contractor-source.md`).
+- Research page: `docs/evaluations/oracle-contingent-worker-contractor-source.md` (its log: `docs/evaluations/_verification/oracle-contingent-worker-contractor-source.md`).
 
 ## Revision 2026-10-29 — four tracks, end state, attributes, dynamic group dangers, coverage, limits and federal requirements
 
@@ -215,8 +215,8 @@ Same day, second pass. The guide gained: "What this migration accomplishes" (goa
 
 ## Additions, October 30, 2026 (contractor PIV path marked pending proof)
 
-Added at the author's request during the independent verification pass (`docs/research/_verification/verification-pass-2026-10.md`). No content removed.
+Added at the author's request during the independent verification pass (`docs/about/_verification/verification-pass-2026-10.md`). No content removed.
 
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
-| 1 | "Pending proof": the contractor PIV path is the program's design and hasn't yet been validated in practice; links to the Proved criteria | PKI binding, after the "Contractors" paragraph | restated-as-design (status statement; nothing external claimed) | `docs/research/oracle-contingent-worker-contractor-source.md#status-and-review` |
+| 1 | "Pending proof": the contractor PIV path is the program's design and hasn't yet been validated in practice; links to the Proved criteria | PKI binding, after the "Contractors" paragraph | restated-as-design (status statement; nothing external claimed) | `docs/evaluations/oracle-contingent-worker-contractor-source.md#status-and-review` |

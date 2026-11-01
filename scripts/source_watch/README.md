@@ -15,14 +15,17 @@ Python (see Limits).
 ## What it checks
 
 **Cited sources.** Every URL in a footnote definition (`[^key]: ...`) in
-a book chapter, `docs/books/bNN-*/*.md`, or a research page,
-`docs/research/*.md` (not the index). Research pages are reported together
-under **RES — Research pages**, after the books, by page. Files and folders
-starting with `_` are skipped.
+a book chapter, `docs/books/bNN-*/*.md`, a developer workbook page, or a
+status-labeled page: any other page under `docs/` (not an index) whose front
+matter has `research-status`, wherever it lives (guides and explainers under
+`docs/books/`, `docs/training/`, `docs/evaluations/`, `docs/reference/`).
+Status-labeled pages are reported together under **RES — Guides,
+explainers, evaluations and training**, after the books, by page. Files and
+folders starting with `_` are skipped.
 So are URLs in inline code (`https://graph.microsoft.com`) and URL
 templates (`.../products/{id}/`), which the text quotes rather than cites.
 On October 29, 2026 that was 3,020 URLs in 5,780 citations (441 of them on
-research pages), 1,850 of the URLs on learn.microsoft.com. A URL first cited
+what were then the research pages), 1,850 of the URLs on learn.microsoft.com. A URL first cited
 since the last run is fingerprinted silently and reported from the next
 change on. Run
 `python scripts/source_watch/citations.py` for the current counts.
@@ -106,22 +109,22 @@ can also name books of its own, in which case every new item is reported
 (B12 Security Operations, B17 AI Identity Governance); the issue marks those
 "(planned)".
 
-**Research review dates.** Every research page (`docs/research/*.md`)
-carries `last-reviewed: YYYY-MM-DD` in its front matter: the date someone
+**Review dates for status-labeled pages.** Every status-labeled page (front
+matter `research-status`, as above) carries `last-reviewed: YYYY-MM-DD` in its front matter: the date someone
 last checked it against its sources. A page last reviewed more than 90
 days ago, or never, is listed in the issue. Unlike sources and feeds,
 this isn't a one-time report: a due page is listed **every week** until
-someone reviews it and updates the date. The research banner
+someone reviews it and updates the date. The status banner
 (`assets/research-banner.lua`) shows the date in the page's status box
-and says when it's overdue, and the Research page lists it in a Reviewed
-column. Run `python scripts/source_watch/review_dates.py` to see what's
+and says when it's overdue, and the section landing pages (Training,
+Evaluations, Explainers) list it in a Reviewed column. Run `python scripts/source_watch/review_dates.py` to see what's
 due now.
 
 **Lifecycle review dates.** Other published pages may carry
 `lifecycle_review: YYYY-MM-DD` in their front matter, the date by which the
 page should be checked again. Once that date has passed, the page is listed
 in the issue every week until someone checks it and moves the date. Pages
-under a folder or file starting with `_`, and the research pages (which
+under a folder or file starting with `_`, and the status-labeled pages (which
 have their own date, above), are skipped, and a page without the field is
 never listed. On October 31, 2026, 366 published pages had the field; the
 first 17 come due on November 22, 2026. The same command lists them.
@@ -179,7 +182,7 @@ label is `source-watch`. The issue has four sections:
    (bot blocking, sign-in walls, repeated timeouts), sources that answer
    again after failing, and feeds that started failing. Open each one in a
    browser.
-4. **Research due for review**: each research page past its 90-day
+4. **Status-labeled pages due for review**: each one past its 90-day
    review, with its status and last-reviewed date. Review the page,
    update `last-reviewed` (and any row dates on the page), and it drops
    off the next week's issue.
@@ -246,7 +249,7 @@ next run then opens a new "baseline established" issue.
 ```sh
 python scripts/source_watch/citations.py                      # counts
 python scripts/source_watch/citations.py --json               # url -> citations
-python scripts/source_watch/review_dates.py                    # research pages due for review, pages past their lifecycle review date
+python scripts/source_watch/review_dates.py                    # status-labeled pages due for review, pages past their lifecycle review date
 
 # Check 60 sources, mixed across hosts, into a scratch state file; print the report.
 python scripts/source_watch/watch.py --state /tmp/sw.json --no-feeds --dry-run --limit 60
@@ -275,7 +278,7 @@ Files:
 | `watch.py` | Fingerprints and classifies each source, polls the feeds, and writes the state and results. |
 | `feeds.py` | The feed readers and the topic matching. |
 | `report.py` | Renders the Markdown digest and opens the issue. |
-| `review_dates.py` | Lists the research pages due for review (`last-reviewed` older than 90 days, or missing), and the pages whose `lifecycle_review` date has passed. |
+| `review_dates.py` | Lists the status-labeled pages due for review (`last-reviewed` older than 90 days, or missing), and the pages whose `lifecycle_review` date has passed. |
 | `data/source-watch/config.json` | Threshold, concurrency, timeouts, per-host delays, skipped hosts and curl hosts. |
 | `data/source-watch/feeds.json` | The feeds and the topic → book map. |
 | `source-watch-state` branch | `data/source-watch/state.json`: per-source fingerprints and per-feed seen ids. Kept off main, because every push to main redeploys the site. |

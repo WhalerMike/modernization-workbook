@@ -33,7 +33,7 @@ This is an illustrative plan built from the workbook's books, in the form a proj
 
 : Plan at a glance {.striped}
 
-This plan builds [Book 03](../books/b03-hr-identity/index.md)'s pipeline: HR as the source of authority, a middleware in the agency's boundary, provisioning into Active Directory or Entra ID, and Lifecycle Workflows acting on the accounts. It follows Book 03's [phase model](../books/b03-hr-identity/12-execution-plan.md) gate for gate, and it feeds the [program master schedule](program-master-schedule.md): the program's Gate G1 needs this plan's Gate 3, the HR feed live for the foundation scope. The [implementation guide for Oracle Fusion Cloud HCM](../research/hcm-entra-implementation.md) shows the same pipeline on named products.
+This plan builds [Book 03](../books/b03-hr-identity/index.md)'s pipeline: HR as the source of authority, a middleware in the agency's boundary, provisioning into Active Directory or Entra ID, and Lifecycle Workflows acting on the accounts. It follows Book 03's [phase model](../books/b03-hr-identity/12-execution-plan.md) gate for gate, and it feeds the [program master schedule](program-master-schedule.md): the program's Gate G1 needs this plan's Gate 3, the HR feed live for the foundation scope. The [implementation guide for Oracle Fusion Cloud HCM](../books/guides/hcm-entra-implementation.md) shows the same pipeline on named products.
 
 ## Schedule
 

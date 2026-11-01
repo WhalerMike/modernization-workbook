@@ -294,7 +294,7 @@ def render(results: dict, budget: int | None = None) -> str:
         f"# {title_for(results)}",
         "",
         f"**{n['changed']} changed, {n['moved']} moved, {n['gone']} gone** of {c.get('checked', 0):,} cited sources checked; "
-        f"**{len(results.get('feed_items', []))} new publications**; **{len(manual)} need a manual check**; **{len(reviews)} research pages due for review**; **{len(lifecycle)} pages past their lifecycle review date**; **{len(gated)} developer workbook pages awaiting review**.",
+        f"**{len(results.get('feed_items', []))} new publications**; **{len(manual)} need a manual check**; **{len(reviews)} status-labeled pages due for review**; **{len(lifecycle)} pages past their lifecycle review date**; **{len(gated)} developer workbook pages awaiting review**.",
         "",
         "Each run compares against the previous one, so each change is reported once. Review the chapters below, "
         "then close this issue. See [how to read this issue](https://github.com/"
@@ -345,7 +345,7 @@ def render(results: dict, budget: int | None = None) -> str:
             add(row, "manual")
     if reviews:
         add(
-            "\n## Research due for review\n\nThese research pages were last reviewed more than 90 days ago, or never. "
+            "\n## Status-labeled pages due for review\n\nThese guides, explainers, evaluations, training and reference pages were last reviewed more than 90 days ago, or never. "
             "Check each against its sources and update its `last-reviewed` date; a page is listed every week until then.\n\n"
             "| Page | Status | Last reviewed |\n|---|---|---|",
             "reviews",
@@ -374,7 +374,7 @@ def render(results: dict, budget: int | None = None) -> str:
     if any(omitted.values()):
         parts.append(
             f"\n---\n**Truncated to fit an issue:** {omitted['sources']} more source entries, "
-            f"{omitted['publications']} more publications, {omitted['manual']} more manual checks, {omitted['reviews']} more research pages, {omitted['lifecycle']} more pages past their lifecycle review date and {omitted['gated']} more gated pages are not shown. "
+            f"{omitted['publications']} more publications, {omitted['manual']} more manual checks, {omitted['reviews']} more status-labeled pages, {omitted['lifecycle']} more pages past their lifecycle review date and {omitted['gated']} more gated pages are not shown. "
             "The full report is attached to the workflow run as the `source-watch-report` artifact."
             + (f" {run_url()}" if run_url() else "")
         )

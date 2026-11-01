@@ -2,7 +2,7 @@
 
 A 15-minute plain-language explainer on one question: can an agency's on-premises Infoblox Trinzic (NIOS) Grid handle DNS, DHCP and IPAM for AWS, Azure and Google Cloud by itself, or should it work with cloud-based DDI? It's for a federal architect who is still learning DDI, so every term is defined the first time it's used. It is built with the shared deck kit in [`../_build/`](../_build/README.md).
 
-It belongs to the workbook's **Research — under review** section, next to the [Infoblox DDI for Federal Agencies](../../docs/research/infoblox-ddi-federal.md) deep dive. It is not part of the vendor-neutral workbook books. The title slide says "Research — under review". Recommendations are labeled design guidance, not endorsements. The closing notes say this is research under review, not an endorsement by any federal agency. No specific federal agency is named. This folder sits outside `docs/`, so the site doesn't render it.
+It belongs to the workbook's [Evaluations](../../docs/evaluations/index.md) section (under review), next to the [Infoblox DDI for Federal Agencies](../../docs/evaluations/infoblox-ddi-federal.md) deep dive. It is not part of the vendor-neutral workbook books. The title slide says "Research — under review". Recommendations are labeled design guidance, not endorsements. The closing notes say this is research under review, not an endorsement by any federal agency. No specific federal agency is named. This folder sits outside `docs/`, so the site doesn't render it.
 
 | # | Slide | Minutes |
 |---|---|---|

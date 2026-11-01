@@ -4,7 +4,7 @@
 // Build (Git Bash):  source /c/tmp/deckenv.sh && node build.js Research_Hybrid_Credentials.pptx
 // Modeled on presentations/research-cyberark-clm/build.js and reuses the shared kit in ../_build/.
 // Every fact comes from the verified research brief on hybrid credentials (all sources opened 2026-10-23),
-// mirrored with notes on docs/research/hybrid-credentials.md, and Books 03, 04, 06, 07 and 09.
+// mirrored with notes on docs/books/explainers/hybrid-credentials.md, and Books 03, 04, 06, 07 and 09.
 // Program recommendations are labeled design guidance; inferences are labeled as inferences.
 // Narration: narration.js holds the spoken text; narrate.py, captions.py and build_narrated.ps1 from ../_build/.
 const path = require("path");

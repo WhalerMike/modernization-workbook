@@ -42,7 +42,7 @@ Editor pass 2026-10-20. The appendix had no footnotes. The privacy-basis section
 
 ## Addition, October 25, 2026: Oracle Core HCM to Entra implementation research
 
-Applied from the research page `docs/research/hcm-entra-implementation.md`; every source below was opened on Oct 25, 2026.
+Applied from the research page `docs/books/guides/hcm-entra-implementation.md`; every source below was opened on Oct 25, 2026.
 
 | # | Claim | Where | Verdict | Source note |
 |---|---|---|---|---|

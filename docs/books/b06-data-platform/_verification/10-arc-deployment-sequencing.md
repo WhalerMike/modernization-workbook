@@ -54,7 +54,7 @@ Diagram source edited: `book-04-ch02-arc-deployment-sequence` step 3 (claim 10: 
 
 ## Addition, October 23, 2026: hybrid credentials research
 
-From the research explainer *Certificates, Tokens and Keys Across the Hybrid Estate* (docs/research/hybrid-credentials.md), sources opened October 23, 2026.
+From the research explainer *Certificates, Tokens and Keys Across the Hybrid Estate* (docs/books/explainers/hybrid-credentials.md), sources opened October 23, 2026.
 
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|

@@ -5,7 +5,7 @@
 // Build (Git Bash):  source /c/tmp/deckenv.sh && node build.js Research_TTM_ServiceNow_SailPoint.pptx
 // Code model: ../b13-ticket-to-machine/build.js (its vendor-neutral companion): narration.js keyed by slide
 // title, Detail block in the notes, the same table, panel, flow, fact-box and callout helpers.
-// Every fact comes from docs/research/ttm-servicenow-sailpoint.md and its footnotes (vendor and Marketplace
+// Every fact comes from docs/books/guides/ttm-servicenow-sailpoint.md and its footnotes (vendor and Marketplace
 // sources opened October 24, 2026). Its labels are kept: "An example, not a recommendation", (inference) and
 // (design guidance). Agency-neutral; an example, not an endorsement.
 // Narration: narrate.py and captions.py, then build_narrated.ps1 from ../_build/ (the editor runs those).

@@ -1,11 +1,11 @@
 # ServiceNow + SailPoint ISC integration kit (Pass 1: identity)
 
 > **Status: illustrative. Unit-tested against mocked responses, not yet proven against live tenants.**
-> This is an example of one way to build the [Ticket-to-Machine loop](../../docs/books/b13-governance/appendix-b-ticket-to-machine-reference.md) on two named products. It is not an endorsement of either product, and no agency has adopted it. Product and API facts were checked against vendor documentation on October 24, 2026; the explanation, with sources, is the research page [Integrating ServiceNow and SailPoint: An Implementation Example (Pass 1)](../../docs/research/snow-sailpoint-integration-kit.md).
+> This is an example of one way to build the [Ticket-to-Machine loop](../../docs/books/b13-governance/appendix-b-ticket-to-machine-reference.md) on two named products. It is not an endorsement of either product, and no agency has adopted it. Product and API facts were checked against vendor documentation on October 24, 2026; the explanation, with sources, is the research page [Integrating ServiceNow and SailPoint: An Implementation Example (Pass 1)](../../docs/books/guides/snow-sailpoint-integration-kit.md).
 
 If the agency has no identity-governance product and no funding for one, [Book 15, Chapter 13 — Building Day-Two Automation In-House](../../docs/books/b15-day2-operations/13-building-day-two-automation-in-house.md) describes how agency staff can build the ServiceNow side of this loop on the instance they already own: AI-assisted drafting under the agency's AI-use policy, a named reviewer for every line, and a sandbox-to-production path under change control. It also says what that build doesn't replace.
 
-It implements three builds from the example page [Ticket-to-Machine on ServiceNow and SailPoint](../../docs/research/ttm-servicenow-sailpoint.md):
+It implements three builds from the example page [Ticket-to-Machine on ServiceNow and SailPoint](../../docs/books/guides/ttm-servicenow-sailpoint.md):
 
 | Build | Loop step (Book 13) | Gap it closes | Files |
 |---|---|---|---|

@@ -108,7 +108,7 @@ No appendices.
 - **06 (What):** compliance by design for modernized applications — NIST SP 800-53 Rev. 5 (current release number)
   control families most touched by application work (SA, SR, AC, AU, CM, SC, SI, PT); SP 800-218 SSDF; privacy (Privacy Act,
   E-Government Act §208 PIAs, the PT family); data governance (the Evidence Act and chief data officers); OMB Circular
-  A-130 (enterprise architecture §5.a(2), privacy, records). **Read `docs/research/federal-framework-crosswalk.md`
+  A-130 (enterprise architecture §5.a(2), privacy, records). **Read `docs/reference/federal-framework-crosswalk.md`
   "Framework status" first:** M-22-18 and M-23-16 were rescinded by M-26-05 (January 23, 2026); the Federal Data
   Strategy is being retired; FEAF v2 is historical. Link [Book 14](../b14-compliance/index.md) (especially
   [Ch07 supply chain](../b14-compliance/07-supply-chain-risk-management.md) and [Ch08 privacy](../b14-compliance/08-privacy-pii-processing.md))
@@ -141,7 +141,7 @@ No appendices.
   alone accepts residual risk ([Book 14](../b14-compliance/index.md)); FedRAMP 2026 Consolidated Rules
   ([Book 10 Ch03](../b10-cloud-boundary/03-what-changed-at-fedramp.md)).
 - Framework status (M-26-05, Federal Data Strategy, FEAF v2, A-130, FITARA M-26-10, TMF):
-  `docs/research/federal-framework-crosswalk.md`.
+  `docs/reference/federal-framework-crosswalk.md`.
 - AI rules and AI identity: [Book 17](../b17-ai-identity/index.md).
 - Book links: `../bNN-folder/index.md` for B00–B17.
 

@@ -10,7 +10,7 @@
 //   Close:                      the handoff to Part 2 (Gates 4–6).
 // Sources: docs/project-plans/developer-workbooks/attribute-driven-migration/implementation-guide.md and its plan
 // (data/project-plans/attribute-driven-migration.yaml), the companion guide, the chapters they cite, the research page
-// docs/research/hcm-entra-implementation.md, and examples/ (start-kit, validation-kit, hcm-entra). No new external facts.
+// docs/books/guides/hcm-entra-implementation.md, and examples/ (start-kit, validation-kit, hcm-entra). No new external facts.
 // The slide helpers come from the technical deep dive's shared builders (../attribute-driven-migration-technical-part-1/slides.js).
 // Build (Git Bash):  source /c/tmp/deckenv.sh && FIT=1 node presentations/attribute-driven-migration-deeper-dive-part-1/build.js \
 //                      presentations/attribute-driven-migration-deeper-dive-part-1/Attribute_Driven_Migration_Deeper_Dive_Part_1.pptx

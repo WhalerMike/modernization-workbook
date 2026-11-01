@@ -2,7 +2,7 @@
 
 A short plain-language explainer on what happens to the credential work Active Directory does today (PIV trust and mapping, Kerberos for SQL Server, certificate autoenrollment, NPS for RADIUS) as the estate moves to Entra ID, Intune and Azure Arc. It follows four paths through three stages (today, coexistence, after AD): SQL Server with Entra ID, the clouds' key vaults, PIV from AD to Entra, and RADIUS, 802.1X and NAC. It then sums up who issues and who renews each credential. It's built with the shared deck kit in [`../_build/`](../_build/README.md).
 
-It belongs to the workbook's **Research — under review** section, with its page at [`docs/research/hybrid-credentials.md`](../../docs/research/hybrid-credentials.md). It is not part of the vendor-neutral workbook books. The title slide says "Explainer · Research — under review". Recommendations are labeled program design guidance, and inferences are labeled as inferences. The closing notes say this is research under review, not an endorsement by any federal agency. No specific federal agency is named.
+It belongs to the workbook's [Explainers](../../docs/books/explainers/index.md) section (under review), with its page at [`docs/books/explainers/hybrid-credentials.md`](../../docs/books/explainers/hybrid-credentials.md). It is not part of the vendor-neutral workbook books. The title slide says "Explainer · Research — under review". Recommendations are labeled program design guidance, and inferences are labeled as inferences. The closing notes say this is research under review, not an endorsement by any federal agency. No specific federal agency is named.
 
 | # | Slide |
 |---|---|

@@ -73,7 +73,7 @@ The system inventory or CMDB is the master for this track *(design guidance)*. B
 
 ### Roles
 
-Collection needs reader roles only. The checks sign in as an app registration with a certificate or a managed identity, never a secret, and follow the house Graph pattern of paging, `Retry-After` and `$select` ([Microsoft Automation, Module 1](../../research/ms-automation-foundations.md#four-request-patterns)). The permission set is `Application.Read.All`, `Directory.Read.All`, `RoleManagement.Read.Directory`, `AuditLog.Read.All` and `Policy.Read.All`, plus Azure Reader on the subscriptions in scope for managed identities. Grant only what you run ([Module 2](../../research/ms-automation-entra.md#the-five-checks)).
+Collection needs reader roles only. The checks sign in as an app registration with a certificate or a managed identity, never a secret, and follow the house Graph pattern of paging, `Retry-After` and `$select` ([Microsoft Automation, Module 1](../../training/ms-automation-foundations.md#four-request-patterns)). The permission set is `Application.Read.All`, `Directory.Read.All`, `RoleManagement.Read.Directory`, `AuditLog.Read.All` and `Policy.Read.All`, plus Azure Reader on the subscriptions in scope for managed identities. Grant only what you run ([Module 2](../../training/ms-automation-entra.md#the-five-checks)).
 
 The roles that change configuration come in later steps and are activated through PIM:
 
@@ -230,7 +230,7 @@ NIST's least privilege applies to processes acting on behalf of users, not only 
 
 ### 4a. Graph: application versus delegated permissions
 
-1. For each service principal, list its application permissions (app role assignments) and its delegated grants (`oauth2PermissionGrants`), the reads in [Module 2](../../research/ms-automation-entra.md#applications-and-their-credentials).
+1. For each service principal, list its application permissions (app role assignments) and its delegated grants (`oauth2PermissionGrants`), the reads in [Module 2](../../training/ms-automation-entra.md#applications-and-their-credentials).
 2. Prefer delegated permissions where a user is present. A delegated grant gives the app the intersection of the user's rights and the scope. An application permission gives everything the scope allows, across the tenant ([Book 04, Chapter 05](../b04-access/05-applications-and-workload-identities.md#permissions-what-an-application-can-be-granted)).
 3. Classify each grant against the program's risk table, and judge it by type, not by name. `Mail.ReadWrite` and `Mail.Send` are critical application permissions with the same names as their delegated versions. Any mail application permission the program approves needs an Exchange application access policy that narrows it to named mailboxes (same section).
 4. Remove grants that aren't used. Removing a permission from the app registration doesn't revoke an existing grant: revoke it on the enterprise application too. Tokens already issued stay valid for their lifetime ([Book 04, Chapter 05](../b04-access/05-applications-and-workload-identities.md#admin-consent)).

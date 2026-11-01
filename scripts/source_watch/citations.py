@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
-"""List every source URL the workbook books and research pages cite, and where each is cited.
+"""List every source URL the workbook books and status-labeled pages cite, and where each is cited.
 
 A citation is a URL in a footnote definition (a line starting `[^key]:`) in
-a book chapter, `docs/books/bNN-*/*.md`, or a research page,
-`docs/research/*.md` (not the index). Research citations carry the code `RES`
-in place of a book code. Files and folders whose names start
+a book chapter, `docs/books/bNN-*/*.md`, a developer workbook page, or a
+status-labeled page: any other page under `docs/` (not an index) whose front
+matter has `research-status`, wherever it lives (guides and explainers under
+`docs/books/`, `docs/training/`, `docs/evaluations/`, `docs/reference/`).
+Status-labeled pages carry the code `RES` in place of a book code. Files and folders whose names start
 with `_` (briefs, verification notes) are skipped. URLs inside inline code
 (`https://graph.microsoft.com`) are literals the chapter quotes, not sources,
 so they are skipped too.
@@ -31,8 +33,8 @@ from urllib.parse import urlsplit
 
 ROOT = Path(__file__).resolve().parents[2]
 BOOKS = ROOT / "docs" / "books"
-RESEARCH = ROOT / "docs" / "research"
-RESEARCH_CODE = "RES"  # research pages are reported together, after the books
+DOCS = ROOT / "docs"
+RESEARCH_CODE = "RES"  # status-labeled pages are reported together, after the books
 WORKBOOKS = ROOT / "docs" / "project-plans" / "developer-workbooks"
 WORKBOOKS_CODE = "DW"  # developer workbooks (under Projects) are reported together, after the books
 
@@ -103,9 +105,33 @@ def chapter_title(path: Path) -> str:
     return m.group(1) if m else path.stem
 
 
+FRONT_MATTER = re.compile(r"\A---[ \t]*\n(.*?)\n---[ \t]*\n", re.S)
+RESEARCH_STATUS = re.compile(r"^research-status:", re.M)
+
+
+def has_research_status(path: Path) -> bool:
+    text = path.read_text(encoding="utf-8").replace("\r\n", "\n")
+    m = FRONT_MATTER.match(text)
+    return bool(m and RESEARCH_STATUS.search(m.group(1)))
+
+
 def research_files() -> list[Path]:
-    """Research pages, not the index; `_verification` and other `_` files are skipped."""
-    return [p for p in chapter_files(RESEARCH) if p.name != "index.md"] if RESEARCH.is_dir() else []
+    """Pages with `research-status` in their front matter (guides, explainers,
+    evaluations, training, reference), wherever they live under docs/: not index
+    pages, not book chapters (`docs/books/bNN-*/`, already listed under their
+    book) and not developer workbook pages; `_` files and folders are skipped."""
+    out = []
+    for p in sorted(DOCS.rglob("*.md")):
+        rel = p.relative_to(DOCS)
+        if p.name == "index.md" or any(part.startswith("_") for part in rel.parts):
+            continue
+        if p.parent.parent == BOOKS and re.fullmatch(r"b\d\d-.*", p.parent.name):
+            continue
+        if WORKBOOKS in p.parents:
+            continue
+        if has_research_status(p):
+            out.append(p)
+    return out
 
 
 def workbook_files() -> list[Path]:
@@ -117,15 +143,15 @@ def workbook_files() -> list[Path]:
 
 
 def sources() -> list[tuple[str, Path]]:
-    """(code, file) for every book chapter, then every developer workbook page, then every research page."""
+    """(code, file) for every book chapter, then every developer workbook page, then every status-labeled page."""
     out = [(book_code(folder), path) for folder in book_folders() for path in chapter_files(folder)]
     out += [(WORKBOOKS_CODE, path) for path in workbook_files()]
     return out + [(RESEARCH_CODE, path) for path in research_files()]
 
 
 def collect() -> dict[str, list[dict[str, str]]]:
-    """url -> [{book, chapter, footnote}], in book and chapter order, then research pages.
-    For a research page, `book` is RESEARCH_CODE and `chapter` is the page."""
+    """url -> [{book, chapter, footnote}], in book and chapter order, then status-labeled pages.
+    For a status-labeled page, `book` is RESEARCH_CODE and `chapter` is the page."""
     cited: dict[str, list[dict[str, str]]] = {}
     for code, path in sources():
         rel = path.relative_to(ROOT).as_posix()
@@ -164,7 +190,7 @@ def books() -> dict[str, dict[str, str]]:
     if workbook_files():
         out[WORKBOOKS_CODE] = {"title": "Developer workbooks (Projects)", "folder": "", "status": ""}
     if research_files():
-        out[RESEARCH_CODE] = {"title": "Research pages", "folder": "", "status": ""}
+        out[RESEARCH_CODE] = {"title": "Guides, explainers, evaluations and training", "folder": "", "status": ""}
     return out
 
 

@@ -95,7 +95,7 @@ At the user's request, every certificate-dependent book maps its certificates to
 
 ## Additions, October 29, 2026 (the contractor PIV path)
 
-Added at the author's request: new subsection "The contractor PIV path" after "Binding the PIV certificate to the Entra user". Research page: `docs/research/oracle-contingent-worker-contractor-source.md` (its log: `docs/research/_verification/oracle-contingent-worker-contractor-source.md`).
+Added at the author's request: new subsection "The contractor PIV path" after "Binding the PIV certificate to the Entra user". Research page: `docs/evaluations/oracle-contingent-worker-contractor-source.md` (its log: `docs/evaluations/_verification/oracle-contingent-worker-contractor-source.md`).
 
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
@@ -110,8 +110,8 @@ Added at the author's request: new subsection "The contractor PIV path" after "B
 
 ## Additions, October 30, 2026 (contractor PIV path marked pending proof)
 
-Added at the author's request during the independent verification pass (`docs/research/_verification/verification-pass-2026-10.md`). No content removed.
+Added at the author's request during the independent verification pass (`docs/about/_verification/verification-pass-2026-10.md`). No content removed.
 
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
-| 1 | "Pending proof": the contractor PIV path is the program's design and hasn't yet been validated in practice; links to the Proved criteria | "The contractor PIV path", first line | restated-as-design (status statement; nothing external claimed) | `docs/research/oracle-contingent-worker-contractor-source.md#status-and-review` |
+| 1 | "Pending proof": the contractor PIV path is the program's design and hasn't yet been validated in practice; links to the Proved criteria | "The contractor PIV path", first line | restated-as-design (status statement; nothing external claimed) | `docs/evaluations/oracle-contingent-worker-contractor-source.md#status-and-review` |

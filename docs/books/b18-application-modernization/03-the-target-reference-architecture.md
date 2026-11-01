@@ -65,7 +65,7 @@ Why Java for a federal services layer, and not something newer? Because the serv
 
 React is the front-end layer for new and rebuilt user interfaces. React 19 was released in December 2024, and 19.3 in September 2026.[^c03-react] The program's design keeps front ends thin: they render, validate input for usability, and call APIs. Business rules belong in services, where they are tested and authorized once, not in each user interface.
 
-Federal front ends carry requirements that the framework doesn't solve on its own: Section 508 accessibility, the 21st Century IDEA criteria for public-facing services, and, for public sign-in, OMB's direction toward Login.gov. Those are covered where the workbook treats them; the workbook's [federal framework crosswalk](../../research/federal-framework-crosswalk.md) summarizes their status. A shared component library that builds accessibility in once is worth more to a portfolio than any framework choice.
+Federal front ends carry requirements that the framework doesn't solve on its own: Section 508 accessibility, the 21st Century IDEA criteria for public-facing services, and, for public sign-in, OMB's direction toward Login.gov. Those are covered where the workbook treats them; the workbook's [federal framework crosswalk](../../reference/federal-framework-crosswalk.md) summarizes their status. A shared component library that builds accessibility in once is worth more to a portfolio than any framework choice.
 
 ## Node.js where it fits
 

@@ -1,7 +1,7 @@
 # Microsoft automation reference: Graph client, Entra ID and Intune checks
 
 > **Status: illustrative. Unit-tested against fixtures, not proven against live tenants.**
-> This is the example code for three research pages: [Module 1: Graph and Azure Automation Foundations](../../docs/research/ms-automation-foundations.md), [Module 2: Microsoft Entra ID through Microsoft Graph](../../docs/research/ms-automation-entra.md) and [Module 3: Intune through Microsoft Graph](../../docs/research/ms-automation-intune.md). Every API, permission and limit it relies on was checked against Microsoft Learn: on October 25, 2026 for Modules 1 and 2, and on October 30, 2026 for Module 3. The pages give the sources. It isn't an endorsement by any agency, and no agency has adopted it.
+> This is the example code for the three modules of the [Microsoft Automation learning path](../../docs/training/index.md): [Module 1: Graph and Azure Automation Foundations](../../docs/training/ms-automation-foundations.md), [Module 2: Microsoft Entra ID through Microsoft Graph](../../docs/training/ms-automation-entra.md) and [Module 3: Intune through Microsoft Graph](../../docs/training/ms-automation-intune.md). Every API, permission and limit it relies on was checked against Microsoft Learn: on October 25, 2026 for Modules 1 and 2, and on October 30, 2026 for Module 3. The pages give the sources. It isn't an endorsement by any agency, and no agency has adopted it.
 
 ## What it does
 

@@ -74,7 +74,7 @@ Applied from the verified review of Books 02–05. Sources were opened again on 
 
 ## Addition, October 25, 2026: Oracle Core HCM to Entra implementation research
 
-Applied from the research page `docs/research/hcm-entra-implementation.md`; every source below was opened on Oct 25, 2026.
+Applied from the research page `docs/books/guides/hcm-entra-implementation.md`; every source below was opened on Oct 25, 2026.
 
 | # | Claim | Where | Verdict | Source note |
 |---|---|---|---|---|

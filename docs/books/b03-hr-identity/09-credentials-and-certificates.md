@@ -69,7 +69,7 @@ Microsoft's warning about synced users belongs in the security plan: **Active Di
 
 ### The contractor PIV path {#the-contractor-piv-path}
 
-**Pending proof.** The contractor PIV path is the program's design and hasn't yet been validated in practice; the criteria for Proved are in the research page's [Status and review](../../research/oracle-contingent-worker-contractor-source.md#status-and-review).
+**Pending proof.** The contractor PIV path is the program's design and hasn't yet been validated in practice; the criteria for Proved are in the research page's [Status and review](../../evaluations/oracle-contingent-worker-contractor-source.md#status-and-review).
 
 For an employee, the HR joiner starts sponsorship and HR's separation starts the leaver. A contractor has neither: there's no HR record, and the contractor source chosen in Chapter 06 has to supply both ends. Three links make the path whole; they are the program's design, built on the requirements cited.
 
@@ -77,7 +77,7 @@ For an employee, the HR joiner starts sponsorship and HR's separation starts the
 2. **The card management system reports back.** The CMS publishes termination, revocation, suspension and expiry events to the middleware, keyed on the enterprise person key (Chapter 04). For a contractor, a termination or an expiry is one of the earliest-end conditions in Chapter 06 and ends the engagement; a suspension or a reissue doesn't, and only rewrites the binding above. For an employee the same events are credential drift (Chapter 11), never a leaver, because HR owns employment.
 3. **The end date is the notice.** The 18-hour clock for a card that can't be collected runs from notification.[^c09-fips201] The FAR clause on contractor PIV requires the card's return upon contract completion or termination,[^c09-far52049] and SP 800-53 PS-7 asks the provider to notify the agency of terminations within a defined time.[^c09-sp80053-ps7] Don't wait for either notice. At the contractor's earliest end date, capped by the contract's current completion date, the pipeline itself notifies the PIV office and starts the leaver sequence below, so the 18 hours start on the date the engagement ends and the evidence shows when.
 
-The options for the contractor source, how agencies run them today and the evidence for each link are in the research page [Contractors as Oracle Contingent Workers](../../research/oracle-contingent-worker-contractor-source.md#part-5-the-contractor-piv-path).
+The options for the contractor source, how agencies run them today and the evidence for each link are in the research page [Contractors as Oracle Contingent Workers](../../evaluations/oracle-contingent-worker-contractor-source.md#part-5-the-contractor-piv-path).
 
 ### Revocation checking
 
@@ -174,7 +174,7 @@ For each leaver: the HR effective date; the disable and token-revocation timesta
 
 ![This book's certificates and the engine that renews each.](../../images/diagrams/b03-hr-identity/svg/certs-clm.svg){fig-alt="PIV authentication certificates bound to the Entra user, Derived PIV credentials go to PIV card system (renews piv credentials); Device certificates through Intune go to Intune (renews device certificates); TLS on agency-hosted HR middleware (Core HCM to Graph) go to CyberArk Certificate Manager (renews and installs); Middleware service principal certificate go to the app's owner or Key Vault (outside book 07's classes)."}
 
-The leaver sequence's certificate steps touch PIV and Intune only; the CLM platform holds none of a worker's personal certificates. Book 07 owns the issuer and renewal decisions for every class above ([Chapter 04](../b07-pki/04-the-target-pki.md), [Chapter 05](../b07-pki/05-who-owns-the-certificate-estate.md)). The research explainer [Certificates, Tokens and Keys Across the Hybrid Estate](../../research/hybrid-credentials.md) follows the PIV card from AD to Entra, including who writes `certificateUserIds` once Entra Connect no longer syncs it.
+The leaver sequence's certificate steps touch PIV and Intune only; the CLM platform holds none of a worker's personal certificates. Book 07 owns the issuer and renewal decisions for every class above ([Chapter 04](../b07-pki/04-the-target-pki.md), [Chapter 05](../b07-pki/05-who-owns-the-certificate-estate.md)). The research explainer [Certificates, Tokens and Keys Across the Hybrid Estate](../explainers/hybrid-credentials.md) follows the PIV card from AD to Entra, including who writes `certificateUserIds` once Entra Connect no longer syncs it.
 
 
 ::: {.callout-tip}
