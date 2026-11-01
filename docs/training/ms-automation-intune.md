@@ -1,23 +1,30 @@
 ---
 title: "Microsoft Automation, Module 3: Intune through Microsoft Graph"
-subtitle: "An implementation guide: the Graph APIs, least-privileged permissions and v1.0-versus-beta status behind managed devices, compliance, configuration, assignment filters, Autopilot, apps and remote actions, with five tested read-only checks mapped to NIST SP 800-53 Moderate, ScubaGear and M-22-09"
-description: "Research draft: how to read and evidence Microsoft Intune through Microsoft Graph for Book 05. It covers managed devices, compliance policies and per-device compliance status, configuration profiles and the beta-only Settings Catalog, assignment filters, Windows Autopilot device identities and profiles, apps, remote actions and their privileged permission, which endpoints are beta-only, Intune's throttling limits and the reports export-jobs API, what differs in US Government clouds, and five read-only checks in Python and PowerShell that complement the validation kit's VK-INT checks."
+subtitle: "Learn the Graph APIs, least-privileged permissions and v1.0-versus-beta status behind managed devices, compliance, configuration, assignment filters, Autopilot, apps and remote actions, then run five read-only checks mapped to NIST SP 800-53 Moderate, ScubaGear and M-22-09 on fixtures and in your test tenant"
+description: "Research draft: Module 3 of the Microsoft Automation learning path, for Book 05. You learn managed devices, compliance policies and per-device compliance status, configuration profiles and the beta-only Settings Catalog, assignment filters, Windows Autopilot device identities and profiles, apps, remote actions and their privileged permission, which endpoints are beta-only, Intune's throttling limits and the reports export-jobs API, and what differs in US Government clouds. Lab 1 runs five read-only checks, which complement the validation kit's VK-INT checks, in Python and PowerShell against fixtures; Lab 2 runs them read-only against your test tenant."
 research-status: draft
 research-type: training module
 research-book: "Book 05"
-date-modified: 2026-10-30
-last-reviewed: 2026-10-30
+series-order: 3
+date-modified: 2026-11-01
+last-reviewed: 2026-11-01
 aliases:
   - /docs/research/ms-automation-intune.html
 ---
 
 # Microsoft Automation, Module 3: Intune through Microsoft Graph {.unnumbered}
 
-[Book 05](../books/b05-devices/index.md) moves the fleet from Group Policy to Intune and then has to prove, continuously, what each device is. Its [Chapter 10](../books/b05-devices/10-operating-and-evidencing-the-fleet.md) asks for evidence a script can collect: which devices are failing which compliance policy, which devices no policy reaches, which have stopped checking in, which aren't encrypted or are below the OS floor, and which Autopilot registrations won't get a profile. This module maps each of those questions to the Graph API that answers it, the least-privileged permission, and whether the API is in v1.0 or only in beta. Five of them are built as tested, read-only checks.
+**Learning path:** [Microsoft Automation](index.md#microsoft-automation-learning-path) · Module 3 of 3 · 85 minutes · Code: [examples/ms-automation](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/ms-automation) (`intune_tasks.py`, `FmwGraph.psm1`) · Guide: [Intune track, Gate 6](../books/guides/intune-track-implementation.md#gate-6-operating-it)
 
-It assumes [Module 1](ms-automation-foundations.md): the right cloud's endpoints, app-only sign-in without a secret, paging, throttling and batching. [Module 2](ms-automation-entra.md) covers the Entra ID side, including the Conditional Access policies that consume device compliance.
+**Watch:** a narrated deck for this module, about 14 minutes with captions, comes with the next edition; its [narration script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-ms-automation-module-3/Training_MS_Automation_Module_3_Narration_Script.md) is here now.
 
-**The example code:** [examples/ms-automation on GitHub](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/ms-automation). Equivalent Python (`intune_tasks.py`) and PowerShell (`FmwGraph.psm1`) implement the five checks under [The five checks](#the-five-checks). They're **illustrative: unit-tested against fixtures, not proven against live tenants**.
+## Unit 1: Introduction
+
+*5 minutes, with the objectives and prerequisites*
+
+[Book 05](../books/b05-devices/index.md) moves the fleet from Group Policy to Intune and then has to prove, continuously, what each device is. Its [Chapter 10](../books/b05-devices/10-operating-and-evidencing-the-fleet.md) asks for evidence a script can collect: which devices are failing which compliance policy, which devices no policy reaches, which have stopped checking in, which aren't encrypted or are below the OS floor, and which Autopilot registrations won't get a profile.
+
+Your Conditional Access policies already require a compliant device. That's only as good as Intune's compliance records, and by default a device with no policy assigned counts as compliant. In this module you map each of Book 05's questions to the Graph API that answers it, the least-privileged permission, and whether the API is in v1.0 or only in beta. Five of them are built as tested, read-only checks, in Python and PowerShell, which you run in the labs. They're **illustrative: unit-tested against fixtures, not proven against live tenants**.
 
 **How this relates to the validation kit.** The [validation kit](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/validation-kit) already has six Intune-track checks, VK-INT-01 to VK-INT-06:
 
@@ -30,7 +37,27 @@ It assumes [Module 1](ms-automation-foundations.md): the right cloud's endpoints
 
 This module doesn't repeat them. Its checks read Intune's own records instead: compliance status per policy, compliance coverage, the Intune sync time, encryption and OS posture, and Autopilot profile assignment.
 
-## The APIs at a glance
+**The federal requirement.** Each check evidences NIST SP 800-53 Rev. 5 controls in the Moderate baseline: configuration settings and the baseline (CM-6, CM-2), the component inventory (CM-8, CM-8(1)), protection of information at rest and encryption on mobile devices (SC-28(1), AC-19(5)), and flaw remediation for the OS floor (SI-2). Through Entra ID, compliance is the device-level signal that OMB M-22-09 asks agencies to consider, and that ScubaGear MS.AAD.3.7v1 relies on. [Unit 7](#the-five-checks) maps each check to its controls. Don't restate the requirements: the M-22-09 mapping is [Book 11, Appendix A](../books/b11-zero-trust/appendix-a-requirements-mapping.md#omb-m-22-09-objectives-and-actions), and what an assessor reads is [Book 05, Chapter 10](../books/b05-devices/10-operating-and-evidencing-the-fleet.md#reporting-and-the-evidence-an-assessor-reads).
+
+### Learning objectives
+
+In this module, you'll:
+
+- Name the Graph API, least-privileged application permission and stage (v1.0 or beta) for each of Book 05's evidence questions.
+- Explain which three things the program relies on are beta-only, and what that means for evidence.
+- Read managed devices and per-policy compliance status, and the traps in each, including the join on device name.
+- Explain why remote actions and report export jobs don't belong in a read-only collector.
+- Say what differs in GCC High and DoD, why Windows Autopilot is a GCC and commercial check, and why GCC follows commercial Intune.
+- Run the five checks on fixtures in Python and PowerShell, and read each finding against its control.
+
+### Prerequisites
+
+- [Module 1](ms-automation-foundations.md): the right cloud's endpoints, app-only sign-in without a secret, paging, throttling and batching. [Module 2](ms-automation-entra.md) covers the Entra ID side, including the Conditional Access policies that consume device compliance.
+- For Lab 1: the [lab tools](index.md#what-you-need-for-the-microsoft-automation-labs). No tenant until Lab 2.
+
+## Unit 2: The APIs, and v1.0 versus beta
+
+*10 minutes*
 
 Every Intune API in Graph needs an active Intune license for the tenant.[^m3-mdlist] The permission is the least-privileged *application* permission the API's reference page lists. Each page's national cloud table lists the API in the global service (which GCC uses) and in US Government L4 and L5.[^m3-cloudtables] The Stage column says whether the API is in v1.0 or only in beta. The Book column is where the workbook uses it.
 
@@ -50,9 +77,9 @@ Every Intune API in Graph needs an active Intune license for the tenant.[^m3-mdl
 | Export a large report | `POST /deviceManagement/reports/exportJobs` | `DeviceManagementConfiguration.ReadWrite.All` (a write permission)[^m3-exportcreate] | v1.0 and beta | B05 Ch 10 |
 | Sync, retire or wipe a device | `POST .../managedDevices/{id}/syncDevice`, `/retire`, `/wipe` | `DeviceManagementManagedDevices.PrivilegedOperations.All`[^m3-sync][^m3-retire][^m3-wipe] | v1.0 | B05 Ch 10 |
 
-The last two rows aren't read-only, and the example code doesn't use them. Both are explained below.
+The last two rows aren't read-only, and the example code doesn't use them. [Unit 5](#unit-5-remote-actions-limits-and-large-exports) explains both.
 
-## v1.0 versus beta
+### v1.0 versus beta
 
 Microsoft supports the Intune beta APIs but says they "are subject to more frequent change", and recommends v1.0 where it can be used.[^m3-sclist] Three things the program relies on are beta-only today:
 
@@ -62,7 +89,11 @@ Microsoft supports the Intune beta APIs but says they "are subject to more frequ
 
 The example code calls v1.0 for everything except the Autopilot profile check, which reads the beta endpoint on the same Graph host. A beta-dependent check should be re-run after each Graph beta change, before its result is used as evidence *(design guidance)*.
 
-## Managed devices
+## Unit 3: Managed devices and compliance
+
+*10 minutes*
+
+### Managed devices
 
 `managedDevice` is Intune's record of an enrolled device. The properties the checks read are:[^m3-mdres]
 
@@ -77,7 +108,7 @@ The same resource also returns `userPrincipalName`, `emailAddress`, `userDisplay
 
 Some properties, such as `ethernetMacAddress`, `physicalMemoryInBytes`, `iccid` and `udid`, return a default value when the device is listed. Their real values come only from a GET of one device that names them in `$select`.[^m3-mdres] A script that reads them from the list sees blanks or zeros that look like data.
 
-## Compliance policies and compliance status
+### Compliance policies and compliance status
 
 A compliance policy's `assignments` list its targets. In v1.0 a group target is `groupAssignmentTarget` with a `groupId`.[^m3-grouptarget] Beta documents `exclusionGroupAssignmentTarget`, a group excluded from the assignment.[^m3-exclbeta] A policy with no assignments, or with only exclusions, applies to no device.
 
@@ -85,15 +116,19 @@ A compliance policy's `assignments` list its targets. In v1.0 a group target is 
 
 Two tenant-wide settings sit above every policy ([Book 05, Chapter 10](../books/b05-devices/10-operating-and-evidencing-the-fleet.md#tenant-wide-compliance-settings)). By default, Intune marks a device with no compliance policy assigned as *Compliant*. Microsoft recommends changing that setting to *Not compliant*, and recommends that every device be targeted by a compliance policy.[^m3-reports] In Graph the two settings are `deviceManagementSettings.secureByDefault` (the device is noncompliant when no policy targets it) and `deviceComplianceCheckinThresholdDays` (how many days a device may go without checking in and remain compliant).[^m3-dmsettings] The permission for reading them, through the `deviceManagement` singleton, wasn't confirmed on Learn on October 30, 2026, so the checks don't read them.
 
-## Configuration profiles and the Settings Catalog
+## Unit 4: Configuration, filters, Autopilot and apps
+
+*8 minutes*
+
+### Configuration profiles and the Settings Catalog
 
 Template-based profiles are `deviceConfigurations`, in v1.0, read with `DeviceManagementConfiguration.Read.All`.[^m3-dclist] Settings Catalog and endpoint security policies are `configurationPolicies`, in beta. They're read with `DeviceManagementConfiguration.Read.All`, and the page also lists `DeviceManagementEndpointSecurity.Read.All`.[^m3-sclist] A complete export of the policy library, for CM-2, needs both lists, so it depends on beta *(inference)*. Per-setting conflict detection is VK-INT-05's job, and the conflict rules are in [Book 05, Chapter 10](../books/b05-devices/10-operating-and-evidencing-the-fleet.md#configuration-status-and-conflicts).
 
-## Assignment filters
+### Assignment filters
 
 Filters let a policy reach part of a group by device properties, without changing group membership. Book 05 uses them for time-sensitive assignment ([Chapter 08](../books/b05-devices/08-gpo-to-intune-policy-migration.md#assignment-filter-examples)), and VK-INT-04 checks the design. The filter list (`/deviceManagement/assignmentFilters`, `DeviceManagementConfiguration.Read.All`) is **beta**. Each filter has a `platform`, a `rule` and `payloads` that say which policies and groups use it.[^m3-filters]
 
-## Windows Autopilot
+### Windows Autopilot
 
 `windowsAutopilotDeviceIdentities` is the registration record: serial number, group tag, purchase order, enrollment state, last contact and the managed device ID. It's in v1.0 and needs `DeviceManagementServiceConfig.Read.All`.[^m3-aplist][^m3-apv1] The v1.0 resource has no profile assignment status. Beta adds:[^m3-apbeta]
 
@@ -103,11 +138,15 @@ Filters let a policy reach part of a group by device properties, without changin
 
 The deployment profiles themselves (`windowsAutopilotDeploymentProfiles`) are listed only in beta, with the same permission.[^m3-approfiles] Both resources also return `userPrincipalName` and `addressableUserName`,[^m3-apbeta] so the check leaves them out of `$select`. Group tags, and the vocabulary they draw on, are VK-INT-03's job ([Book 05, Chapter 04](../books/b05-devices/04-intune-first-onboarding.md#registration-and-group-tags)).
 
-## Apps
+### Apps
 
 `GET /deviceAppManagement/mobileApps` lists the apps Intune manages, with `publishingState` among their properties. The page lists `DeviceManagementConfiguration.Read.All` first, then `DeviceManagementApps.Read.All`, as read permissions.[^m3-apps] A script that reads only apps should still ask for `DeviceManagementApps.Read.All`. It's the permission named for apps, and it doesn't also grant configuration reads *(design guidance)*. None of the five checks reads apps.
 
-## Remote actions
+## Unit 5: Remote actions, limits and large exports
+
+*8 minutes*
+
+### Remote actions
 
 Graph exposes Intune's device actions on `managedDevice`, including `retire`, `wipe`, `syncDevice`, `remoteLock`, `rebootNow`, `shutDown`, `locateDevice`, `windowsDefenderScan` and `cleanWindowsDevice`.[^m3-mdres] The ones checked for this page all need **`DeviceManagementManagedDevices.PrivilegedOperations.All`**, delegated or application. Each returns `204 No Content`:
 
@@ -117,7 +156,7 @@ Graph exposes Intune's device actions on `managedDevice`, including `retire`, `w
 
 That makes the permission an operator's permission, not a reader's. A collector that holds it could wipe the fleet. The example code never asks for it. Keep it in a separate pipeline with its own approval step and Book 05's retirement order ([Chapter 10](../books/b05-devices/10-operating-and-evidencing-the-fleet.md#retirement-and-wipe)): keys exported first, and the tenant's daily retire and delete limits planned for *(design guidance)*.
 
-## Paging, limits and large exports
+### Paging and limits
 
 **Paging.** Follow `@odata.nextLink` until it stops, as in Module 1. Microsoft notes that "different APIs might have different default and maximum page sizes".[^m3-paging] The `managedDevices` page doesn't state its page size or a `$top` maximum.[^m3-mdlist] The example code doesn't set `$top`, and doesn't assume a page size *(unverified: Intune's page size for `managedDevices`)*.
 
@@ -128,7 +167,9 @@ That makes the permission an operator's permission, not a reader's. A collector 
 
 The coverage and noncompliance checks make one request for the policy list and two for each policy, so 100 policies cost about 201 requests. That's well under the limit. The Retry-After handling from Module 1 covers the rest.
 
-**Reports export jobs.** For data sets too large to page comfortably, Intune exports its reports through `deviceManagement/reports/exportJobs`. The export page lists both the beta and the v1.0 endpoint.[^m3-export] The flow:
+### Reports export jobs
+
+For data sets too large to page comfortably, Intune exports its reports through `deviceManagement/reports/exportJobs`. The export page lists both the beta and the v1.0 endpoint.[^m3-export] The flow:
 
 1. `POST` a job with a `reportName`, an optional `filter`, the `select` columns and `format` (`csv` by default, or `json`).
 2. Poll the job by its `id` until `status` is `completed`.
@@ -149,7 +190,11 @@ The report names include:[^m3-reportnames]
 
 The `Devices` and `DevicesWithInventory` exports ignore the `localizationType` parameter.[^m3-export]
 
-## What differs in US Government clouds
+## Unit 6: Where agencies are
+
+*7 minutes*
+
+**The starting state.** Book 05's agency manages Windows with Group Policy and, often, Configuration Manager, and is moving the fleet to Intune in a Microsoft 365 GCC tenant. During the move some devices have no compliance policy, the tenant-wide default may still mark them compliant, and stale records pile up.
 
 **GCC.** Intune has no separate GCC instance. "GCC is the same instance as Microsoft Intune in the commercial space," and Intune's government feature table doesn't apply to GCC.[^m3-govsvc] GCC uses the worldwide Graph endpoint, `https://graph.microsoft.com`, as Module 1 sets out.[^m3-deploy] The Intune feature gaps a GCC tenant does have are Book 05's subject ([Chapter 10, GCC (Moderate) boundary facts](../books/b05-devices/10-operating-and-evidencing-the-fleet.md#gcc-moderate-boundary-facts)). For example, Windows Update for Business reports don't meet GCC requirements.
 
@@ -174,9 +219,18 @@ The `Devices` and `DevicesWithInventory` exports ignore the `localizationType` p
   - Endpoint Privilege Management and some other add-ons.
   - Cloud PKI and Remote Help are listed for GCC High only, not DoD.
 
-One discrepancy to note. The Graph reference pages for Autopilot device identities list the API as available in US Government L4 and L5,[^m3-aplist] while the service description lists Windows Autopilot as not available in GCC High and DoD.[^m3-govsvc] The service description decides whether the feature can be used. That an endpoint answers doesn't mean the feature is supported *(inference)*. The `autopilot-profiles` check is therefore for GCC and commercial tenants.
+One discrepancy to note. The Graph reference pages for Autopilot device identities list the API as available in US Government L4 and L5,[^m3-aplist] while the service description lists Windows Autopilot as not available in GCC High and DoD.[^m3-govsvc] The service description decides whether the feature can be used. That an endpoint answers doesn't mean the feature is supported *(inference)*. The `autopilot-profiles` check is therefore for GCC and commercial tenants: in `gcchigh` and `dod` it reports "not evaluated" without calling Graph, as Lab 1 shows.
 
-## The five checks
+**Interim paths** *(design guidance)*:
+
+- **Devices with no compliance policy yet.** Run `compliance-coverage` until it lists none, then change the tenant-wide setting to *Not compliant*, as Microsoft recommends;[^m3-reports] until then, Conditional Access treats an unassigned device as compliant.
+- **Devices still managed by Group Policy or Configuration Manager.** Their records aren't in Intune yet, so these checks don't see them; VK-INT-06's platform inventory and Book 05's coverage matrix track what's left.
+- **A GCC High or DoD tenant.** Classic Autopilot isn't available; [Book 05, Chapter 04](../books/b05-devices/04-intune-first-onboarding.md#windows-autopilot-or-autopilot-device-preparation) compares it with Autopilot device preparation, which its table lists for GCC High and DoD. Evidence the enrollment with the other four checks.
+- **Settings Catalog export depends on beta.** Keep the export, label it beta in the evidence, and re-run it after a beta change before relying on it.
+
+## Unit 7: The five checks {#the-five-checks}
+
+*5 minutes*
 
 Each check is read-only, and each is tied to the federal requirement it evidences. The mapping is the program's reading; the agency's assessor decides whether a control is satisfied ([Book 05, Chapter 10](../books/b05-devices/10-operating-and-evidencing-the-fleet.md#reporting-and-the-evidence-an-assessor-reads)). Every control named below is in the NIST SP 800-53 Rev. 5 Moderate baseline.[^m3-nistmod] ScubaGear has no Intune baseline. Its baselines cover Entra ID, Exchange Online, Power BI, Power Platform, SharePoint, the security suite and Teams.[^m3-scubalist] The ScubaGear tie is through Entra ID: MS.AAD.3.7v1, "Managed devices SHOULD be required for authentication", rests on M-22-09's requirement that agencies "consider at least one device-level signal" when authorizing users.[^m3-scuba] Intune compliance is that signal. The M-22-09 mapping is [Book 11, Appendix A](../books/b11-zero-trust/appendix-a-requirements-mapping.md#omb-m-22-09-objectives-and-actions).
 
@@ -197,9 +251,205 @@ Some notes on what the checks can and can't say:
 - **Personal iOS and Android devices** aren't held to the encryption rule by default. The platforms are a parameter.
 - **A placeholder date counts as no sync.** A `lastSyncDateTime` before 1971 is treated as no sync. That guards against a default date, which wasn't confirmed in Microsoft's documentation *(design guidance)*.
 
+## Unit 8: Exercise: Lab 1 (fixtures, no tenant)
+
+*25 minutes*
+
+You run each check against the kit's fictional fleet of nine devices and six Autopilot registrations. Work in `examples/ms-automation`. `--from-json` evaluates a saved Graph response instead of calling Graph, and `--as-of` fixes the evaluation time so your output matches this page. Every result starts with the task's name and the controls it evidences.
+
+1. Find the devices that need attention.
+
+   ```bash
+   python python/intune_tasks.py --from-json tests/fixtures/intune.json --as-of 2026-10-30T00:00:00Z noncompliant-devices
+   ```
+
+   Expected: four devices, `IPH-0001`, `WS-0002`, `WS-0003` and `WS-0005`, each with its failing policy, ending with:
+
+   ```text
+       "counts": {
+         "noncompliant": 2,
+         "inGracePeriod": 1,
+         "error": 1,
+         "conflict": 0
+       }
+   ```
+
+   `WS-0003`'s grace period ends `2026-10-31T00:00:00Z`. `WS-0002` has `"nameNotUnique": true`: two devices share that name, so its policy status may belong to the other one.
+
+2. Find what no policy reaches.
+
+   ```bash
+   python python/intune_tasks.py --from-json tests/fixtures/intune.json --as-of 2026-10-30T00:00:00Z compliance-coverage
+   ```
+
+   Expected: `"policyFindings": 2`. `CP-005 Kiosk and shared devices` is `exclusionOnly` and `CP-099 Old macOS pilot` is `unassigned`. `KSK-0001` and `MAC-0001` are in `devicesWithNoPolicyReported`, and `"ambiguousNames"` lists `WS-0002`. With the tenant's default setting, those two devices count as compliant.
+
+3. Find devices that stopped checking in.
+
+   ```bash
+   python python/intune_tasks.py --from-json tests/fixtures/intune.json --as-of 2026-10-30T00:00:00Z stale-checkin
+   ```
+
+   Expected result:
+
+   ```text
+     "result": [
+       {
+         "id": "md9",
+         "deviceName": "KSK-0001",
+         "operatingSystem": "Windows",
+         "lastSync": null,
+         "daysSinceSync": null,
+         "band": "noSync"
+       },
+       {
+         "id": "md5",
+         "deviceName": "WS-0005",
+         "operatingSystem": "Windows",
+         "lastSync": "2026-07-01T00:00:00Z",
+         "daysSinceSync": 121,
+         "band": "beyondCleanup"
+       },
+       {
+         "id": "md4",
+         "deviceName": "WS-0004",
+         "operatingSystem": "Windows",
+         "lastSync": "2026-10-10T00:00:00Z",
+         "daysSinceSync": 20,
+         "band": "beyondValidity"
+       }
+     ]
+   ```
+
+   `KSK-0001`'s fixture date is a placeholder before 1971, so it counts as no sync. Run it again with `--validity-days 30` after `stale-checkin`: `WS-0004`, at 20 days, drops out.
+
+4. Check encryption and the OS floor.
+
+   ```bash
+   python python/intune_tasks.py --from-json tests/fixtures/intune.json --as-of 2026-10-30T00:00:00Z device-posture
+   ```
+
+   Expected: `"devices": 9`, `"notEncrypted": 3` and `"belowOsFloor": 1`. `KSK-0001` reports no encryption state (`null`), `MAC-0001` reports `false`, and `WS-0002`, on `10.0.22631.4317`, is both unencrypted and below the Windows floor of `10.0.26100`.
+
+5. Read Autopilot profile assignment, on beta.
+
+   ```bash
+   python python/intune_tasks.py --from-json tests/fixtures/intune.json --as-of 2026-10-30T00:00:00Z autopilot-profiles
+   ```
+
+   Expected: `"stage": "beta"`, `"evaluated": true`, `"total": 6`, with two `assignedInSync` and four in `notInSync`: `SN-1004` (`assignedOutOfSync`), `SN-1003` (`failed`, `hardwareRequirementsNotMet`), `SN-1002` (`notAssigned`) and `SN-1005` (`pending`, with no group tag).
+
+6. See why the Autopilot check is for GCC and commercial tenants. Ask the client to read the beta collection as a GCC High run would:
+
+   ```bash
+   python -c "import sys; sys.path.insert(0, 'python'); from graphkit import GraphClient, try_beta; print(try_beta(GraphClient('gcchigh', lambda s: 't'), '/deviceManagement/windowsAutopilotDeviceIdentities'))"
+   ```
+
+   Expected output:
+
+   ```text
+   {'stage': 'beta', 'available': False, 'items': [], 'reason': "autopilot-device-identities isn't offered in gcchigh (graph-calls.json not_in_clouds)"}
+   ```
+
+   No request was made: `graph-calls.json` follows the service description, not the API page.
+
+7. Run two of the same checks in PowerShell. Start `pwsh` in `examples/ms-automation`, then:
+
+   ```powershell
+   Import-Module ./powershell/FmwGraph.psm1
+   $intune = Get-Content -Raw tests/fixtures/intune.json | ConvertFrom-Json -AsHashtable -DateKind String
+   Test-FmwIntuneStaleCheckin -Devices $intune.managedDevices -AsOf '2026-10-30T00:00:00Z' | ConvertTo-Json
+   (Test-FmwIntunePosture -Devices $intune.managedDevices).findings.deviceName
+   ```
+
+   Expected: the same three stale devices as step 3, then `KSK-0001`, `MAC-0001` and `WS-0002` on three lines.
+
+8. Run the Intune tests.
+
+   ```bash
+   python -m pytest -q -p no:cacheprovider tests/python/test_intune_tasks.py
+   ```
+
+   Expected: `17 passed`. Two of them, `test_permissions_are_read_only` and `test_fetch_devices_selects_no_personal_fields`, prove the checks ask for no write permission and select no person's name or address.
+
+**Check your work:** for each finding, you can name the Graph property it came from, the control it evidences, and whether it depends on beta.
+
+## Unit 9: Exercise: Lab 2 (your test tenant)
+
+*Not timed. Not run by the authors.*
+
+You run the checks read-only against a test tenant and compare them with the Intune admin center.
+
+- **You need:** a test tenant in the worldwide or GCC cloud, never production, with an active Intune license and a few enrolled test devices; a Privileged Role Administrator to grant admin consent ([Module 1](ms-automation-foundations.md#signing-in-as-a-workload)); Python with `pip install azure-identity`, or Microsoft Graph PowerShell.
+
+1. **Register one app** in the tenant's own cloud, with a certificate credential and no secret.
+2. **Grant only the application permissions for the checks you run**, and admin consent:
+
+   | Check | Permissions |
+   |---|---|
+   | `noncompliant-devices`, `compliance-coverage` | `DeviceManagementManagedDevices.Read.All`, `DeviceManagementConfiguration.Read.All` |
+   | `stale-checkin`, `device-posture` | `DeviceManagementManagedDevices.Read.All` |
+   | `autopilot-profiles` (beta) | `DeviceManagementServiceConfig.Read.All` |
+
+   Never grant `DeviceManagementManagedDevices.PrivilegedOperations.All` to this app ([Unit 5](#remote-actions)).
+3. **Run the checks.** In Python: `python python/intune_tasks.py --cloud gcc --tenant <tenant-id> --client <app-id> --cert app.pem noncompliant-devices`, and the same for each task. In PowerShell: `Connect-FmwGraph -Cloud gcc -TenantId <tenant-id> -ClientId <app-id> -CertificateThumbprint <thumbprint>`, then `Invoke-FmwIntuneTask -Task device-posture`. A missing permission stops the run before any Graph call.
+4. **Compare** each result with the Intune admin center's compliance, device and Autopilot views, and record the open review items: whether a status row's `id` matches a managed device's, and whether `$select` returns every selected property ([Status and review](#status-and-review)).
+5. **Back it out.** Remove the permissions, delete the app registration and its certificate, and delete the saved results: they hold device names and serial numbers.
+
+## Unit 10: Knowledge check
+
+*5 minutes*
+
+1. Which of these is beta-only today?
+   a. Listing managed devices.
+   b. Listing compliance policies' device statuses.
+   c. Reading an Autopilot registration's `deploymentProfileAssignmentStatus`.
+
+2. A compliance policy's only assignment is an exclusion group. Which check reports it, and why does it matter?
+   a. `stale-checkin`, because its devices stop syncing.
+   b. `compliance-coverage`, because the policy applies to no device and, by default, an unassigned device counts as compliant.
+   c. `device-posture`, because its devices aren't encrypted.
+
+3. Why doesn't the example code start a report export job?
+   a. Creating a job needs a write permission, and the download is on a host the client won't send its token to.
+   b. Export jobs aren't available in v1.0.
+   c. Export jobs can't return JSON.
+
+4. What does `autopilot-profiles` report in a GCC High tenant?
+   a. Every registration as `notAssigned`.
+   b. An error from Graph.
+   c. "Not evaluated," without calling Graph, because the service description lists Windows Autopilot as not available there.
+
+5. Why do both compliance checks flag device names held by more than one device?
+   a. Intune rejects duplicate names.
+   b. Status rows are joined to devices on the name, because the status row's `id` isn't documented as the managed device ID.
+   c. M-22-09 forbids duplicate device names.
+
+::: {.callout-tip collapse="true"}
+## Check your answers
+1. **c.** The profile assignment status, the profiles, the Settings Catalog and assignment filters are beta-only. See [v1.0 versus beta](#v1.0-versus-beta).
+2. **b.** A policy with only exclusions reaches no device. See [Compliance policies and compliance status](#compliance-policies-and-compliance-status), and `CP-005` in Lab 1, step 2.
+3. **a.** See [Reports export jobs](#reports-export-jobs).
+4. **c.** See [Unit 6: Where agencies are](#unit-6-where-agencies-are), and Lab 1, step 6.
+5. **b.** See [Compliance policies and compliance status](#compliance-policies-and-compliance-status), and `WS-0002` in Lab 1, step 1.
+:::
+
+## Unit 11: Summary
+
+*3 minutes*
+
+You mapped Book 05's evidence questions to Graph APIs, their least-privileged permissions and their stage, learned the traps in managed devices and compliance status, kept remote actions and export jobs out of the collector, and saw why Autopilot is a GCC and commercial check. In Lab 1 you ran the five checks on fixtures in Python and PowerShell and read each finding against its control.
+
+**Evidence an ISSO keeps from this module:** each check's dated output, with its `evidences` list, the app's permissions and consent record, and the beta label on `autopilot-profiles`; the coverage result showing every device under a policy, and the record of the tenant-wide setting changed to *Not compliant*; the encryption findings confirmed in Intune's encryption report; and the validation kit's VK-INT results beside them. [Book 05, Chapter 10](../books/b05-devices/10-operating-and-evidencing-the-fleet.md#reporting-and-the-evidence-an-assessor-reads) lists what an assessor reads, and the [Intune track guide's Gate 6](../books/guides/intune-track-implementation.md#gate-6-operating-it) puts it on a schedule.
+
+::: {.callout-tip}
+## You've finished the path
+[Previous: Module 2](ms-automation-entra.md) · [Learning path](index.md#microsoft-automation-learning-path). Modules 4 to 6 are planned ([Module 1](ms-automation-foundations.md#unit-1-introduction) lists them).
+:::
+
 ## Status and review
 
-**Draft.** Every API, permission, property, limit and cloud difference was checked against Microsoft Learn on October 30, 2026. The ScubaGear baseline and the NIST SP 800-53 Moderate baseline were checked the same day. Inferences, design guidance and unverified points are labeled, and the [verification log](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/training/_verification/ms-automation-intune.md) lists each claim with its source. The checks are tested against fixtures only.
+**Draft.** Every API, permission, property, limit and cloud difference was checked against Microsoft Learn on October 30, 2026. The ScubaGear baseline and the NIST SP 800-53 Moderate baseline were checked the same day. Inferences, design guidance and unverified points are labeled, and the [verification log](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/training/_verification/ms-automation-intune.md) lists each claim with its source. The checks are tested against fixtures only, and the Lab 1 commands were run on November 1, 2026; the output shown is what they printed.
 
 To move this page to **In review**:
 - a reviewer confirms the permissions table and the beta list;

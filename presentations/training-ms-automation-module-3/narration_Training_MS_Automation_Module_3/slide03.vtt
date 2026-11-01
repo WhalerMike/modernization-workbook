@@ -1,0 +1,56 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.838
+Here's what you'll be able to
+do by the end of this module,
+
+2
+00:00:02.838 --> 00:00:05.500
+which takes about eighty-five
+minutes with the lab.
+
+3
+00:00:05.500 --> 00:00:09.320
+You'll name the Graph API,
+least-privileged permission
+
+4
+00:00:09.320 --> 00:00:12.800
+and stage for each of Book
+05's evidence questions.
+
+5
+00:00:12.800 --> 00:00:16.600
+You'll explain which three things
+the program relies on are beta-only.
+
+6
+00:00:16.600 --> 00:00:20.302
+You'll read managed devices and
+per-policy compliance status,
+
+7
+00:00:20.302 --> 00:00:22.988
+including why the checks
+join on device name.
+
+8
+00:00:22.988 --> 00:00:27.263
+You'll keep remote actions and export
+jobs out of a read-only collector.
+
+9
+00:00:27.263 --> 00:00:32.587
+And you'll say what differs in GCC
+High and DoD, and run the five checks.
+
+10
+00:00:32.587 --> 00:00:36.712
+You need Module 1, and Module 2
+for the Conditional Access side.
+
+11
+00:00:36.712 --> 00:00:41.400
+Lab 2 needs a test tenant with an
+Intune license and a few test devices.

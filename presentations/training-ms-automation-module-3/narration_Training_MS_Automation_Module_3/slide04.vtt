@@ -1,0 +1,55 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.725
+Here are six of Book 05's questions
+with the Intune API that answers each.
+
+2
+00:00:05.725 --> 00:00:10.609
+Enrolled devices, with their OS, compliance
+state, encryption and last sync,
+
+3
+00:00:10.609 --> 00:00:15.100
+come from managed devices, with the
+managed devices read permission.
+
+4
+00:00:15.100 --> 00:00:19.341
+Compliance policies, their assignments
+and their per-device statuses
+
+5
+00:00:19.341 --> 00:00:23.150
+need the configuration read
+permission, in version one point oh.
+
+6
+00:00:23.150 --> 00:00:26.475
+The Settings Catalog and
+endpoint security policies,
+
+7
+00:00:26.475 --> 00:00:30.687
+and assignment filters, use the same
+permission, but they're beta only.
+
+8
+00:00:30.687 --> 00:00:35.600
+Autopilot registrations are in version one
+point oh with the service configuration
+
+9
+00:00:35.600 --> 00:00:37.953
+read permission, but whether each one has
+
+10
+00:00:37.953 --> 00:00:40.513
+been given a deployment
+profile is beta only.
+
+11
+00:00:40.513 --> 00:00:46.220
+And every Intune API in Graph needs an
+active Intune license for the tenant.

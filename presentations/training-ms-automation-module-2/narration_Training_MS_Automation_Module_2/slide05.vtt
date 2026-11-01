@@ -1,0 +1,61 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.875
+Sign-in activity is how a script finds
+dormant accounts, and it has traps.
+
+2
+00:00:04.875 --> 00:00:08.838
+Use both dates, the interactive
+and the non-interactive sign-in,
+
+3
+00:00:08.838 --> 00:00:13.563
+because Microsoft notes some users
+reach resources only through clients.
+
+4
+00:00:13.563 --> 00:00:18.862
+It needs Entra ID P1 or P2 and the
+AuditLog dot Read dot All permission.
+
+5
+00:00:18.862 --> 00:00:21.975
+Selecting it caps the page
+at five hundred users.
+
+6
+00:00:21.975 --> 00:00:24.725
+And it's returned only when
+you name it in select.
+
+7
+00:00:24.725 --> 00:00:28.469
+For groups, transitive members
+is effective membership,
+
+8
+00:00:28.469 --> 00:00:31.575
+nested groups included;
+members is direct only.
+
+9
+00:00:31.575 --> 00:00:35.600
+The transitive call costs five
+resource units against three.
+
+10
+00:00:35.600 --> 00:00:38.600
+The basic membership read
+permission is enough,
+
+11
+00:00:38.600 --> 00:00:42.800
+and members of a type you can't read
+come back with only an ID and a type.
+
+12
+00:00:42.800 --> 00:00:47.300
+For change tracking, the users delta
+call follows Module 1's pattern.

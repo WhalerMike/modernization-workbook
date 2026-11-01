@@ -1,0 +1,78 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.319
+A scheduled script signs in as itself, not
+as a person: an app registration and its
+
+2
+00:00:05.319 --> 00:00:10.988
+service principal, with application
+permissions, using the client credentials flow.
+
+3
+00:00:10.988 --> 00:00:13.926
+What matters is what the app
+proves its identity with.
+
+4
+00:00:13.926 --> 00:00:17.827
+In order of preference, which is
+design guidance from the sources:
+
+5
+00:00:17.827 --> 00:00:21.729
+a managed identity when the script
+runs on an Azure resource or an
+
+6
+00:00:21.729 --> 00:00:25.775
+Arc-enabled server, because there's
+no credential to store or rotate.
+
+7
+00:00:25.775 --> 00:00:29.076
+Workload identity federation
+for GitHub Actions,
+
+8
+00:00:29.076 --> 00:00:32.613
+Kubernetes, or any platform
+that issues its own tokens.
+
+9
+00:00:32.613 --> 00:00:36.429
+A certificate issued by a
+certificate authority anywhere else,
+
+10
+00:00:36.429 --> 00:00:38.950
+which Microsoft recommends over a secret.
+
+11
+00:00:38.950 --> 00:00:41.205
+And a client secret, which you avoid:
+
+12
+00:00:41.205 --> 00:00:44.937
+ScubaGear says application
+passwords should be blocked.
+
+13
+00:00:44.937 --> 00:00:46.113
+Then consent.
+
+14
+00:00:46.113 --> 00:00:49.900
+Graph application permissions need
+a Privileged Role Administrator.
+
+15
+00:00:49.900 --> 00:00:52.529
+Plan that approval step:
+it's the moment someone
+
+16
+00:00:52.529 --> 00:00:55.300
+with privilege decides
+what the script may read.

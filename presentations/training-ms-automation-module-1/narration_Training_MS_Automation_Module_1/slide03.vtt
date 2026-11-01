@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.788
+Here's what you'll be able to
+do by the end of the module,
+
+2
+00:00:02.788 --> 00:00:05.462
+which takes about eighty-five
+minutes with the lab.
+
+3
+00:00:05.462 --> 00:00:10.294
+You'll choose the right sign-in
+host, Graph host and PowerShell
+
+4
+00:00:10.294 --> 00:00:14.651
+environment for a commercial,
+GCC, GCC High or DoD tenant.
+
+5
+00:00:14.651 --> 00:00:17.120
+You'll pick a credential
+for a scheduled script
+
+6
+00:00:17.120 --> 00:00:19.400
+and know who can consent
+to its permissions.
+
+7
+00:00:19.400 --> 00:00:22.421
+You'll find the least-privileged
+permission for a call,
+
+8
+00:00:22.421 --> 00:00:24.637
+and know what a narrow permission hides.
+
+9
+00:00:24.637 --> 00:00:27.037
+You'll describe the four request patterns.
+
+10
+00:00:27.037 --> 00:00:29.701
+And you'll run the example
+client's checks yourself.
+
+11
+00:00:29.701 --> 00:00:33.100
+For the lab you need Python
+and PowerShell on a laptop.
+
+12
+00:00:33.100 --> 00:00:35.380
+You don't need a tenant until Lab 2.

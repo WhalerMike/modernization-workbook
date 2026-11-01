@@ -1,0 +1,61 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.679
+Microsoft Graph and Entra ID run as
+separate national cloud deployments,
+
+2
+00:00:04.679 --> 00:00:08.700
+and a script has to call the hosts
+of the cloud its tenant lives in.
+
+3
+00:00:08.700 --> 00:00:13.725
+Commercial and Microsoft 365 GCC
+tenants use the same worldwide hosts:
+
+4
+00:00:13.725 --> 00:00:18.665
+login dot microsoftonline dot com
+for sign-in and graph dot microsoft
+
+5
+00:00:18.665 --> 00:00:23.350
+dot com for Graph, with the Global
+environment in Graph PowerShell.
+
+6
+00:00:23.350 --> 00:00:26.425
+Microsoft's own words are
+that a GCC environment
+
+7
+00:00:26.425 --> 00:00:29.500
+should continue using
+the worldwide endpoints.
+
+8
+00:00:29.500 --> 00:00:35.252
+GCC High and DoD both sign in at
+login dot microsoftonline dot U S.
+
+9
+00:00:35.252 --> 00:00:39.701
+GCC High's Graph host is
+graph dot microsoft dot U S,
+
+10
+00:00:39.701 --> 00:00:43.825
+and DoD's is dod dash graph
+dot microsoft dot U S.
+
+11
+00:00:43.825 --> 00:00:48.595
+In Graph PowerShell those are the U
+S Gov and U S Gov DoD environments,
+
+12
+00:00:48.595 --> 00:00:53.520
+and Azure PowerShell and the Azure
+CLI switch to Azure U S Government.

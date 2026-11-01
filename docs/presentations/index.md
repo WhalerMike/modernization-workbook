@@ -160,6 +160,18 @@ Each chapter of [Book 19](../books/b19-developer-workbook/index.md) and of the t
 
 : Building Non-Person Identity, chapter tours {.striped .hover}
 
+## Training: learning path modules
+
+Each module of the [Microsoft Automation learning path](../training/index.md#microsoft-automation-learning-path) has a narrated deck that teaches it the way Microsoft Learn does: objectives, the concepts, a **Try it** slide with the real Lab 1 command and output, the government-cloud differences, the federal requirement and evidence, a short knowledge check and the summary. The decks, videos and video caption tracks come with the next edition; the narration scripts are in the repository now.
+
+| Module | Deck | Narrated | Script |
+|---|---|---|---|
+| [Module 1: Graph and Azure Foundations](../training/ms-automation-foundations.md) []{#training-ms-automation-module-1} | With the next edition | With the next edition (about 14 min, captions) | [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-ms-automation-module-1/Training_MS_Automation_Module_1_Narration_Script.md) |
+| [Module 2: Microsoft Entra ID through Microsoft Graph](../training/ms-automation-entra.md) []{#training-ms-automation-module-2} | With the next edition | With the next edition (about 13 min, captions) | [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-ms-automation-module-2/Training_MS_Automation_Module_2_Narration_Script.md) |
+| [Module 3: Intune through Microsoft Graph](../training/ms-automation-intune.md) []{#training-ms-automation-module-3} | With the next edition | With the next edition (about 14 min, captions) | [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-ms-automation-module-3/Training_MS_Automation_Module_3_Narration_Script.md) |
+
+: Microsoft Automation learning path, module decks {.striped .hover}
+
 ## HR-driven identity talk set
 
 A presentation set built from [Book 03 — HR-Driven Identity](../books/b03-hr-identity/index.md) for a 15-minute enterprise data architecture talk. It's the agency-neutral edition: the examples are generic, so any agency can adapt it. The narrated videos (MP4, with captions) are attached to the repository release [hr-identity-interview-2026-10-20](https://github.com/WhalerMike/modernization-workbook/releases/tag/hr-identity-interview-2026-10-20).

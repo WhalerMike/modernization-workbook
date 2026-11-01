@@ -1,0 +1,619 @@
+{
+ "1": [
+  [
+   0.05,
+   7.362,
+   "Welcome to Module 2 of the Microsoft Automation learning path: Microsoft Entra I D through Microsoft Graph."
+  ],
+  [
+   7.412,
+   11.075,
+   "The Federal Modernization Workbook's Book 02 builds the Entra I D target, and Book 04 puts access behind Conditional Access, pim and application governance."
+  ],
+  [
+   18.488,
+   2.513,
+   "Both ask for evidence a script can collect."
+  ],
+  [
+   21.0,
+   9.1,
+   "In this module you'll map each of those evidence questions to the Graph A P I that answers it, its least-privileged permission, and the shape of its data."
+  ],
+  [
+   30.1,
+   5.938,
+   "Then you'll run five read-only checks, in Python and PowerShell, against a fictional tenant."
+  ],
+  [
+   36.038,
+   5.438,
+   "They're illustrative: unit-tested against fixtures, not proven against lyve tenants."
+  ],
+  [
+   41.475,
+   7.088,
+   "Module 1's foundations, the right cloud, sign-in without a secret, and paging, apply throughout."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   0.975,
+   "Why script it?"
+  ],
+  [
+   1.025,
+   3.388,
+   "Your I S S O asks the same questions every month."
+  ],
+  [
+   4.412,
+   1.25,
+   "Who hasn't signed in?"
+  ],
+  [
+   5.662,
+   2.487,
+   "What do the Conditional Access policies say?"
+  ],
+  [
+   8.15,
+   2.163,
+   "Who holds a privileged role permanently?"
+  ],
+  [
+   10.312,
+   2.225,
+   "Which applications still have passwords?"
+  ],
+  [
+   12.537,
+   3.862,
+   "And who can't yet use phishing-resistant multifactor authentication?"
+  ],
+  [
+   16.4,
+   7.625,
+   "Too often, someone answers by clicking through the admin center and pasting screenshots, and the answer can't be reproduced next month."
+  ],
+  [
+   24.025,
+   12.363,
+   "In this module each question becomes a Graph call with a least-privileged permission, and five of them become read-only checks you can rerun on a schedule, with output an assessor can diff from one month to the next."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   5.537,
+   "Here's what you'll be able to do by the end of this module, which takes about ninety-five minutes with the lab."
+  ],
+  [
+   5.588,
+   5.8,
+   "You'll name the Graph A P I and least-privileged permission for each of the books' evidence questions."
+  ],
+  [
+   11.387,
+   10.0,
+   "You'll read sign-in activity, group membership, Conditional Access, pim schedules, application credentials and registration details, and know the trap in each."
+  ],
+  [
+   21.387,
+   3.875,
+   "You'll explain why a script checks Entra's logs but doesn't keep them."
+  ],
+  [
+   25.262,
+   3.638,
+   "You'll say what differs in G C C High and D O D."
+  ],
+  [
+   28.9,
+   4.875,
+   "And you'll run the five checks and read each finding against its ScubaGear policy."
+  ],
+  [
+   33.775,
+   1.75,
+   "You need Module 1 first."
+  ],
+  [
+   35.525,
+   6.5,
+   "Lab 1 needs no tenant; Lab 2 needs a test tenant with Entra I D P1 or P2."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   7.562,
+   "Here are six of the module's sixteen evidence questions, with the Graph call and the least-privileged application permission for each."
+  ],
+  [
+   7.612,
+   8.4,
+   "Who signed in, and when: list users with sign-in activity selected, which needs User dot Read dot All plus AuditLog dot Read dot All."
+  ],
+  [
+   16.012,
+   6.55,
+   "Who's in a group, nested groups included: transitive members, with GroupMember dot ReadBasic dot All."
+  ],
+  [
+   22.562,
+   4.025,
+   "What the Conditional Access policies say: Policy dot Read dot All."
+  ],
+  [
+   26.587,
+   3.2,
+   "Who holds a role now: the role assignment schedules."
+  ],
+  [
+   29.788,
+   5.037,
+   "Which applications have secrets or certificates: Application dot Read dot All."
+  ],
+  [
+   34.825,
+   4.825,
+   "And who registered which authentication methods: the registration details report."
+  ],
+  [
+   39.65,
+   11.838,
+   "Every one of these is generally available in Graph version one point oh, and each page lists it in the global service, which G C C uses, and in the G C C High and D O D clouds."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   4.825,
+   "Sign-in activity is how a script finds dormant accounts, and it has traps."
+  ],
+  [
+   4.875,
+   8.688,
+   "Use both dates, the interactive and the non-interactive sign-in, because Microsoft notes some users reach resources only through clients."
+  ],
+  [
+   13.562,
+   5.3,
+   "It needs Entra I D P1 or P2 and the AuditLog dot Read dot All permission."
+  ],
+  [
+   18.863,
+   3.112,
+   "Selecting it caps the page at five hundred users."
+  ],
+  [
+   21.975,
+   2.75,
+   "And it's returned only when you name it in select."
+  ],
+  [
+   24.725,
+   6.85,
+   "For groups, transitive members is effective membership, nested groups included; members is direct only."
+  ],
+  [
+   31.575,
+   4.025,
+   "The transitive call costs five resource units against three."
+  ],
+  [
+   35.6,
+   7.2,
+   "The basic membership read permission is enough, and members of a type you can't read come back with only an I D and a type."
+  ],
+  [
+   42.8,
+   4.45,
+   "For change tracking, the users delta call follows Module 1's pattern."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   6.125,
+   "Conditional Access is the easiest read in the module: it needs only Policy dot Read dot All."
+  ],
+  [
+   6.175,
+   7.188,
+   "Each policy's state is enabled, disabled, or enabled for reporting but not enforced, which is report-only."
+  ],
+  [
+   13.363,
+   7.888,
+   "Book 04's rollout depends on knowing which policies are report-only; its phishing-resistant policy for everyone starts that way."
+  ],
+  [
+   21.25,
+   1.35,
+   "The collector reads."
+  ],
+  [
+   22.6,
+   7.975,
+   "The ca-export check writes one sorted jay-son file per policy, so any change shows up as a readable diff between two exports."
+  ],
+  [
+   30.575,
+   5.562,
+   "Writing is different: creating a policy needs the Conditional Access read-write permission too."
+  ],
+  [
+   36.138,
+   9.375,
+   "Book 04 keeps the policies as code, so as design guidance, a pipeline holds the write permission and the evidence collector holds only the read."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   6.987,
+   "Privileged Identity Management's current A P I's are under role management slash directory, and two schedules matter."
+  ],
+  [
+   7.037,
+   3.237,
+   "Eligibility schedules say who may activate a role."
+  ],
+  [
+   10.275,
+   2.625,
+   "Assignment schedules say who holds it now."
+  ],
+  [
+   12.9,
+   9.725,
+   "The assignment type is Assigned for a direct assignment, or Activated for an activation, and the member type says whether it's direct, through a group, or inherited."
+  ],
+  [
+   22.625,
+   4.888,
+   "An assignment's end is in its expiration, whose type can be no expiration."
+  ],
+  [
+   27.512,
+   9.688,
+   "Put those together: an Assigned schedule with no expiration is permanent active, which ScubaGear's policy seven point four forbids for highly privileged roles."
+  ],
+  [
+   37.2,
+   4.775,
+   "Role template I D's are stable; Global Administrator's is on the slide."
+  ],
+  [
+   41.975,
+   4.263,
+   "Changes need a read-write permission, which the collector never asks for."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   18.675,
+   "An application's secrets and certificates each carry a start and an end date, in U T C, and those dates are enough to test ScubaGear's three application rules: no application passwords, passwords valid for at most a hundred eighty days, and certificates valid for at most three hundred sixty-five days."
+  ],
+  [
+   18.725,
+   7.438,
+   "Microsoft's app management policies enforce the same limits going forward; the check finds what existed before they were turned on."
+  ],
+  [
+   26.163,
+   9.8,
+   "Two related reads support consent review: who has been given an application's roles, and which delegated permissions have been consented, which needs Directory dot Read dot All."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   1.113,
+   "Logs first."
+  ],
+  [
+   1.163,
+   11.55,
+   "Directory audits and sign-ins both need AuditLog dot Read dot All, and the Conditional Access policies applied to a sign-in show up only for callers allowed to read Conditional Access data."
+  ],
+  [
+   12.713,
+   6.55,
+   "Entra keeps audit and sign-in logs for seven days on the free tier and thirty days with P1 or P2."
+  ],
+  [
+   19.262,
+   4.612,
+   "That's why ScubaGear requires sending the logs to the security operations center."
+  ],
+  [
+   23.875,
+   3.038,
+   "A Graph script checks logs; it doesn't keep them."
+  ],
+  [
+   26.913,
+   10.863,
+   "Authentication methods: the registration details report gives one row per user, with M F A registration, admin status, user type and the methods registered."
+  ],
+  [
+   37.775,
+   11.213,
+   "One caution: Microsoft documents the method names only by example, so a count of phishing-resistant users has to choose which names to count, and should be confirmed against a real report."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   2.35,
+   "Five of those reads are built as checks."
+  ],
+  [
+   2.4,
+   7.938,
+   "Stale-users lists enabled members with no sign-in of either kind in ninety days, and never-signed-in accounts older than that."
+  ],
+  [
+   10.338,
+   8.05,
+   "Ca-export writes every policy as sorted jay-son with counts by state, evidence for ScubaGear's Conditional Access settings."
+  ],
+  [
+   18.387,
+   10.488,
+   "Pim-report counts Global Administrators and lists every permanent active assignment to a role you name as privileged, for policies seven point one and seven point four."
+  ],
+  [
+   28.875,
+   5.662,
+   "App-credentials lists every secret and certificate with its lifetime and days to expiry."
+  ],
+  [
+   34.538,
+   8.238,
+   "And mfa-registration counts members without M F A or without a phishing-resistant method, and names administrators without one."
+  ],
+  [
+   42.775,
+   2.862,
+   "The permissions for all five are a reader's set."
+  ],
+  [
+   45.638,
+   4.55,
+   "None of them can change the tenant, and you grant only the ones for the checks you run."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   9.2,
+   "In the lab, you run each check against a fictional tenant with the from-json option, which evaluates a saved Graph response instead of calling Graph."
+  ],
+  [
+   9.975,
+   5.15,
+   "Here's step three: the pim report, with the Privileged Role Administrator role added."
+  ],
+  [
+   15.125,
+   2.737,
+   "Global Administrator is always included."
+  ],
+  [
+   17.863,
+   6.925,
+   "The fixture has three Global Administrators, which is within two to eight, so policy seven point one passes."
+  ],
+  [
+   24.788,
+   7.275,
+   "But two principals hold privileged roles permanently, with no expiration, so policy seven point four fails."
+  ],
+  [
+   32.062,
+   9.675,
+   "The PowerShell function returns exactly the same jay-son, and the Pester tests compare every PowerShell check with the Python results, so the two can't drift apart."
+  ],
+  [
+   41.737,
+   2.587,
+   "The lab runs all five checks this way."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   11.938,
+   "Lab 2 runs the same checks read-only against your own test tenant, worldwide or G C C, never production, with Entra I D P1 or P2 for sign-in and pim data."
+  ],
+  [
+   11.988,
+   11.012,
+   "Register one app in the tenant's own cloud with a certificate, and grant only the read permissions for the checks you run; the module lists them per check, straight from graph-calls dot jay-son."
+  ],
+  [
+   23.0,
+   5.05,
+   "Run each task in Python, or connect in PowerShell and run the same task there."
+  ],
+  [
+   28.05,
+   7.65,
+   "The client checks the token first: a missing permission stops the run before any Graph call, and an extra one prints a warning."
+  ],
+  [
+   35.7,
+   2.513,
+   "Compare each result with the admin center."
+  ],
+  [
+   38.212,
+   9.512,
+   "Then back it out: remove the permissions, delete the app registration and its certificate, and delete the saved output, which holds user names and policies."
+  ],
+  [
+   47.725,
+   2.15,
+   "The authors haven't run Lab 2."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   1.312,
+   "Where are agencies?"
+  ],
+  [
+   1.363,
+   13.925,
+   "Most on this path run a G C C tenant synchronized from Active Directory, with some Conditional Access policies still report-only, permanent role assignments left from before pim, and applications that still hold secrets."
+  ],
+  [
+   15.287,
+   7.5,
+   "The A P I's are the same in G C C High and D O D; the endpoints differ, and so do some features."
+  ],
+  [
+   22.788,
+   14.412,
+   "Microsoft's U S Government feature table lists Conditional Access, pim, access reviews, entitlement management and Lifecycle Workflows as available, H R-driven provisioning as partial, and two features as not available."
+  ],
+  [
+   37.2,
+   4.838,
+   "G C C uses the commercial Entra service, so the table doesn't apply to it."
+  ],
+  [
+   42.038,
+   11.838,
+   "One Azure Government difference matters for the export: multifactor authentication's Trusted IPs isn't supported there, so network-based exceptions liv in Conditional Access named locations."
+  ],
+  [
+   53.875,
+   1.962,
+   "The interim paths are on the right."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   1.387,
+   "The federal requirement."
+  ],
+  [
+   1.438,
+   9.438,
+   "B O D twenty-five oh-one makes ScubaGear's mandatory Entra I D policies required for in-scope tenants, with continuous reporting to sis-uh."
+  ],
+  [
+   10.875,
+   10.238,
+   "Four of the checks produce evidence for those: the Conditional Access settings, the Global Administrator count, permanent privileged assignments, and phishing-resistant registration."
+  ],
+  [
+   21.113,
+   12.113,
+   "In nist special publication eight hundred fifty-three terms, that's account management, A C two; least privilege for privileged accounts; multifactor authentication; and continuous monitoring."
+  ],
+  [
+   33.225,
+   6.138,
+   "M twenty-two oh-nine's phishing-resistant requirement is what the registration check measures progress toward."
+  ],
+  [
+   39.362,
+   4.65,
+   "Book 02's Appendix A has which policies are mandatory, and the mapping."
+  ],
+  [
+   44.013,
+   11.125,
+   "The evidence an I S S O keeps: each check's dated output with the app's permissions, the Conditional Access export in Git, and the findings with the change records that closed them."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   1.975,
+   "Check yourself with two questions."
+  ],
+  [
+   2.025,
+   4.825,
+   "First: an Assigned role schedule has an expiration type of no expiration."
+  ],
+  [
+   6.85,
+   0.8,
+   "What is it?"
+  ],
+  [
+   7.65,
+   5.787,
+   "The answer is b: it's permanent active, which ScubaGear forbids for highly privileged roles."
+  ],
+  [
+   13.438,
+   5.375,
+   "Second: why doesn't a Graph script replace sending the logs to the security operations center?"
+  ],
+  [
+   18.812,
+   10.25,
+   "The answer is a. Entra keeps audit and sign-in logs for seven days on the free tier and thirty days with P1 or P2, so the record has to be kept somewhere else."
+  ],
+  [
+   29.062,
+   4.912,
+   "The module page has three more questions, each linked to the unit that answers it."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   0.825,
+   "To sum up."
+  ],
+  [
+   0.875,
+   6.938,
+   "You mapped the books' Entra I D evidence questions to Graph A P I's and their least-privileged permissions."
+  ],
+  [
+   7.812,
+   7.825,
+   "You learned the traps in sign-in activity, group membership, pim schedules, application credentials and registration details."
+  ],
+  [
+   15.637,
+   6.725,
+   "You saw why a script checks Entra's logs but doesn't keep them, and what differs in G C C High and D O D."
+  ],
+  [
+   22.363,
+   3.062,
+   "And you ran the five checks in Python and PowerShell."
+  ],
+  [
+   25.425,
+   4.688,
+   "Book 04's Chapter 10 assembles the evidence package for a period."
+  ],
+  [
+   30.113,
+   14.912,
+   "Next is Module 3, Intune through Microsoft Graph: devices, compliance, configuration and Autopilot, which A P I's are only in beta, and five checks mapped to nist special publication eight hundred fifty-three Moderate."
+  ]
+ ]
+}

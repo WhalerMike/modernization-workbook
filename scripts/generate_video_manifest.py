@@ -73,6 +73,7 @@ GROUPS = [
     ("book", "Book presentations and briefings"),
     ("research", "Research"),
     ("developer", "Developer workbook chapter tours"),
+    ("training", "Training: learning path modules"),
     ("interview", "HR-driven identity interview set"),
 ]
 
@@ -86,6 +87,8 @@ def group_of(folder: str) -> str:
         return "interview"   # the talk set; the implementation guide's deck series is a book presentation
     if folder.startswith("dw-"):
         return "developer"
+    if folder.startswith("training-"):
+        return "training"
     return "book"
 
 

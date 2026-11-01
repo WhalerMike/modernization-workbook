@@ -1,0 +1,78 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.112
+Graph has two kinds of permission.
+
+2
+00:00:02.112 --> 00:00:04.657
+Delegated permissions act for a signed-in
+
+3
+00:00:04.657 --> 00:00:07.274
+user and are limited by
+what that user can do.
+
+4
+00:00:07.274 --> 00:00:11.387
+Application permissions act as
+the app, across the whole tenant.
+
+5
+00:00:11.387 --> 00:00:14.747
+Every API reference page
+lists permissions in order,
+
+6
+00:00:14.747 --> 00:00:19.100
+least privileged first, and you ask
+for the least one that does the job.
+
+7
+00:00:19.100 --> 00:00:22.634
+In Graph PowerShell, Find
+dash Mg Graph Command and
+
+8
+00:00:22.634 --> 00:00:26.000
+Find dash Mg Graph Permission
+help you find them.
+
+9
+00:00:26.000 --> 00:00:28.810
+Where a narrower
+permission exists, use it:
+
+10
+00:00:28.810 --> 00:00:33.628
+enabling and disabling accounts
+needs User dot Enable Disable Account
+
+11
+00:00:33.628 --> 00:00:37.562
+dot All plus User dot Read dot
+All, not read-write on all users.
+
+12
+00:00:37.562 --> 00:00:39.862
+And watch what a narrow permission hides.
+
+13
+00:00:39.862 --> 00:00:44.774
+Objects you can't fully read still
+come back, with only an ID and a type.
+
+14
+00:00:44.774 --> 00:00:47.975
+A null property may mean
+not permitted, not empty.
+
+15
+00:00:47.975 --> 00:00:52.144
+The example kit keeps every call
+and its permission in one file,
+
+16
+00:00:52.144 --> 00:00:56.780
+graph-calls dot JSON, and a task can
+make only the calls listed for it.

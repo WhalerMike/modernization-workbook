@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.692
+Conditional Access is the
+easiest read in the module:
+
+2
+00:00:03.692 --> 00:00:06.175
+it needs only Policy dot Read dot All.
+
+3
+00:00:06.175 --> 00:00:08.966
+Each policy's state is enabled, disabled,
+
+4
+00:00:08.966 --> 00:00:13.363
+or enabled for reporting but not
+enforced, which is report-only.
+
+5
+00:00:13.363 --> 00:00:17.530
+Book 04's rollout depends on knowing
+which policies are report-only;
+
+6
+00:00:17.530 --> 00:00:21.251
+its phishing-resistant policy
+for everyone starts that way.
+
+7
+00:00:21.251 --> 00:00:22.600
+The collector reads.
+
+8
+00:00:22.600 --> 00:00:26.588
+The ca-export check writes one
+sorted JSON file per policy,
+
+9
+00:00:26.588 --> 00:00:30.575
+so any change shows up as a
+readable diff between two exports.
+
+10
+00:00:30.575 --> 00:00:33.217
+Writing is different:
+creating a policy needs
+
+11
+00:00:33.217 --> 00:00:36.137
+the Conditional Access
+read-write permission too.
+
+12
+00:00:36.137 --> 00:00:40.545
+Book 04 keeps the policies as code,
+so as design guidance, a pipeline
+
+13
+00:00:40.545 --> 00:00:45.580
+holds the write permission and the
+evidence collector holds only the read.

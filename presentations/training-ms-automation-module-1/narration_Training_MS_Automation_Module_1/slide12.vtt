@@ -1,0 +1,55 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.094
+Lab 2 moves to your own test
+tenant, worldwide or GCC,
+
+2
+00:00:04.094 --> 00:00:07.175
+never production, with fictional data.
+
+3
+00:00:07.175 --> 00:00:12.313
+You register one app in the tenant's own
+cloud, with a certificate and no secret.
+
+4
+00:00:12.313 --> 00:00:16.090
+You grant it one application
+permission, Policy dot Read dot All,
+
+5
+00:00:16.090 --> 00:00:19.512
+with admin consent from a
+Privileged Role Administrator.
+
+6
+00:00:19.512 --> 00:00:23.099
+You run the Conditional Access
+export, which only reads.
+
+7
+00:00:23.099 --> 00:00:27.544
+The developer workbook's Chapter 02
+then has you see the token check work,
+
+8
+00:00:27.544 --> 00:00:32.137
+by adding a permission the task doesn't
+need, and the wrong cloud fail closed.
+
+9
+00:00:32.137 --> 00:00:36.559
+And you back it out: remove the permission,
+delete the app registration and its
+
+10
+00:00:36.559 --> 00:00:41.188
+certificate, and delete the output folder,
+because it holds the tenant's policies.
+
+11
+00:00:41.188 --> 00:00:46.130
+The authors haven't run Lab 2; it follows
+the workbook chapter step by step.

@@ -1,0 +1,69 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:04.151
+Lab 1 runs each check
+against a fictional fleet
+
+3
+00:00:04.151 --> 00:00:07.700
+of nine devices and six
+Autopilot registrations.
+
+4
+00:00:07.700 --> 00:00:10.162
+Here's step two, compliance coverage.
+
+5
+00:00:10.162 --> 00:00:14.871
+Two policies reach no device: the
+kiosk policy has only an exclusion,
+
+6
+00:00:14.871 --> 00:00:17.899
+and an old Mac pilot has
+no assignment at all.
+
+7
+00:00:17.899 --> 00:00:21.806
+Two devices, a kiosk and a Mac,
+have no policy reporting on them,
+
+8
+00:00:21.806 --> 00:00:25.712
+so with the tenant's default
+setting they count as compliant.
+
+9
+00:00:25.712 --> 00:00:29.398
+And W S zero zero zero two
+is flagged as ambiguous:
+
+10
+00:00:29.398 --> 00:00:34.374
+two devices share that name, so a
+status row could belong to either.
+
+11
+00:00:34.374 --> 00:00:40.550
+Step six asks the client to read the
+Autopilot collection as a GCC High run would.
+
+12
+00:00:40.550 --> 00:00:45.352
+It returns not available, with the
+reason, and makes no request, because the
+
+13
+00:00:45.352 --> 00:00:50.312
+call list follows Intune's government
+service description, not the API page.
+
+14
+00:00:50.312 --> 00:00:54.500
+The lab repeats two checks in
+PowerShell, with the same results.

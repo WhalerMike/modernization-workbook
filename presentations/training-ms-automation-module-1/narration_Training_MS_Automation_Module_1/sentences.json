@@ -1,0 +1,714 @@
+{
+ "1": [
+  [
+   0.05,
+   6.075,
+   "Welcome to Module 1 of the Microsoft Automation learning path: Graph and Azure foundations."
+  ],
+  [
+   6.125,
+   10.137,
+   "The books keep asking for evidence a script collects: Conditional Access exported as code, device compliance read back, control evidence gathered on a schedule."
+  ],
+  [
+   16.262,
+   2.625,
+   "Almost all of it goes through Microsoft Graph."
+  ],
+  [
+   18.887,
+   12.338,
+   "This module covers what every such script has to get right before it does anything useful: which cloud it calls, how it signs in without a secret, which permissions it asks for, and four request patterns."
+  ],
+  [
+   31.225,
+   4.862,
+   "Then you'll see the example client prove each rule on a laptop, with no tenant."
+  ],
+  [
+   36.087,
+   4.938,
+   "Modules 2 and 3 apply all of this to Entra I D and Intune."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.038,
+   "Why start here?"
+  ],
+  [
+   1.087,
+   2.125,
+   "Picture your first evidence collector."
+  ],
+  [
+   3.212,
+   2.112,
+   "It works in a commercial test tenant."
+  ],
+  [
+   5.325,
+   7.35,
+   "Then, the day it points at a G C C High tenant, it fails, or worse, sends its token to the wrong host."
+  ],
+  [
+   12.675,
+   7.675,
+   "It reads the first page of users and reports a tenant of a hundred people, and nobody notices because the number looks plausible."
+  ],
+  [
+   20.35,
+   7.225,
+   "It signs in with a client secret that nobody rotates, though ScubaGear says application passwords should be blocked."
+  ],
+  [
+   27.575,
+   4.7,
+   "And it asks for broad permissions, so a compromised job could do more than read."
+  ],
+  [
+   32.275,
+   4.375,
+   "Each of those has a fix, and each fix is a unit in this module."
+  ],
+  [
+   36.65,
+   8.838,
+   "The cost of skipping them is simple: a collector that doesn't page, retry and keep delta links produces evidence that looks complete, and isn't."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   5.412,
+   "Here's what you'll be able to do by the end of the module, which takes about eighty-five minutes with the lab."
+  ],
+  [
+   5.463,
+   9.188,
+   "You'll choose the right sign-in host, Graph host and PowerShell environment for a commercial, G C C, G C C High or D O D tenant."
+  ],
+  [
+   14.65,
+   4.75,
+   "You'll pick a credential for a scheduled script and know who can consent to its permissions."
+  ],
+  [
+   19.4,
+   5.237,
+   "You'll find the least-privileged permission for a call, and know what a narrow permission hides."
+  ],
+  [
+   24.637,
+   2.4,
+   "You'll describe the four request patterns."
+  ],
+  [
+   27.038,
+   2.663,
+   "And you'll run the example client's checks yourself."
+  ],
+  [
+   29.7,
+   3.4,
+   "For the lab you need Python and PowerShell on a laptop."
+  ],
+  [
+   33.1,
+   2.225,
+   "You don't need a tenant until Lab 2."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   8.65,
+   "Microsoft Graph and Entra I D run as separate national cloud deployments, and a script has to call the hosts of the cloud its tenant lives in."
+  ],
+  [
+   8.7,
+   14.65,
+   "Commercial and Microsoft 365 G C C tenants use the same worldwide hosts: login dot microsoftonline dot com for sign-in and graph dot microsoft dot com for Graph, with the Global environment in Graph PowerShell."
+  ],
+  [
+   23.35,
+   6.15,
+   "Microsoft's own words are that a G C C environment should continue using the worldwide endpoints."
+  ],
+  [
+   29.5,
+   14.325,
+   "G C C High and D O D both sign in at login dot microsoftonline dot U S. G C C High's Graph host is graph dot microsoft dot U S, and D O D's is dod dash graph dot microsoft dot U S."
+  ],
+  [
+   43.825,
+   9.625,
+   "In Graph PowerShell those are the U S Gov and U S Gov D O D environments, and Azure PowerShell and the Azure CLI switch to Azure U S Government."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   2.513,
+   "Beyond the hosts, five things change."
+  ],
+  [
+   2.562,
+   8.613,
+   "The token's scope names the cloud, so app-only tokens for G C C High ask for graph dot microsoft dot U S slash dot default."
+  ],
+  [
+   11.175,
+   6.562,
+   "The Python azure-identity credential signs in to the public cloud unless you give it the Azure Government authority."
+  ],
+  [
+   17.738,
+   7.013,
+   "Apps are registered per cloud: an app registered in a commercial tenant can't read a G C C High tenant's data."
+  ],
+  [
+   24.75,
+   10.688,
+   "Graph Explorer isn't supported on the G C C High, D O D or China endpoints, so a query you proved in Graph Explorer has to be retested against the government endpoint."
+  ],
+  [
+   35.438,
+   1.538,
+   "That's design guidance."
+  ],
+  [
+   36.975,
+   7.688,
+   "And every Graph A P I reference page has a national cloud table; check it before you rely on an A P I in a new cloud."
+  ],
+  [
+   44.663,
+   7.213,
+   "G C C needs none of this, but it can lack features, which is the Federal Modernization Workbook's Book 10's subject."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   10.938,
+   "A scheduled script signs in as itself, not as a person: an app registration and its service principal, with application permissions, using the client credentials flow."
+  ],
+  [
+   10.988,
+   2.938,
+   "What matters is what the app proves its identity with."
+  ],
+  [
+   13.925,
+   11.85,
+   "In order of preference, which is design guidance from the sources: a managed identity when the script runs on an Azure resource or an Arc-enabled server, because there's no credential to store or rotate."
+  ],
+  [
+   25.775,
+   6.838,
+   "Workload identity federation for GitHub Actions, Kubernetes, or any platform that issues its own tokens."
+  ],
+  [
+   32.612,
+   6.338,
+   "A certificate issued by a certificate authority anywhere else, which Microsoft recommends over a secret."
+  ],
+  [
+   38.95,
+   5.987,
+   "And a client secret, which you avoid: ScubaGear says application passwords should be blocked."
+  ],
+  [
+   44.938,
+   1.175,
+   "Then consent."
+  ],
+  [
+   46.112,
+   3.788,
+   "Graph application permissions need a Privileged Role Administrator."
+  ],
+  [
+   49.9,
+   5.325,
+   "Plan that approval step: it's the moment someone with privilege decides what the script may read."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   2.062,
+   "Graph has two kinds of permission."
+  ],
+  [
+   2.112,
+   5.162,
+   "Delegated permissions act for a signed-in user and are limited by what that user can do."
+  ],
+  [
+   7.275,
+   4.112,
+   "Application permissions act as the app, across the whole tenant."
+  ],
+  [
+   11.387,
+   7.713,
+   "Every A P I reference page lists permissions in order, least privileged first, and you ask for the least one that does the job."
+  ],
+  [
+   19.1,
+   6.9,
+   "In Graph PowerShell, Find dash Mg Graph Command and Find dash Mg Graph Permission help you find them."
+  ],
+  [
+   26.0,
+   11.562,
+   "Where a narrower permission exists, use it: enabling and disabling accounts needs User dot Enable Disable Account dot All plus User dot Read dot All, not read-write on all users."
+  ],
+  [
+   37.562,
+   2.3,
+   "And watch what a narrow permission hides."
+  ],
+  [
+   39.862,
+   4.912,
+   "Objects you can't fully read still come back, with only an I D and a type."
+  ],
+  [
+   44.775,
+   3.2,
+   "A null property may mean not permitted, not empty."
+  ],
+  [
+   47.975,
+   8.738,
+   "The example kit keeps every call and its permission in one file, graph-calls dot jay-son, and a task can make only the calls listed for it."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   1.4,
+   "Use the current tools."
+  ],
+  [
+   1.45,
+   9.637,
+   "The Microsoft Graph PowerShell S D K, for interactive and scheduled administration, with Invoke dash Mg Graph Request for any endpoint."
+  ],
+  [
+   11.088,
+   7.188,
+   "The Microsoft Graph Python S D K for services and pipelines, where a page iterator follows pages for you."
+  ],
+  [
+   18.275,
+   5.7,
+   "azure-identity in Python, for managed identity, certificate and federated credentials."
+  ],
+  [
+   23.975,
+   6.263,
+   "Az PowerShell and the Azure CLI for Azure Resource Manager, which a planned Module 4 covers."
+  ],
+  [
+   30.238,
+   4.138,
+   "And not AzureAD, AzureAD Preview or MSOnline."
+  ],
+  [
+   34.375,
+   10.662,
+   "Microsoft deprecated them on March 30, 2024, said they'd work only until March 30, 2025, and recommends Microsoft Graph PowerShell."
+  ],
+  [
+   45.038,
+   5.037,
+   "The example client calls the REST A P I directly with the standard library."
+  ],
+  [
+   50.075,
+   2.737,
+   "That isn't advice against the S D Ks."
+  ],
+  [
+   52.812,
+   5.338,
+   "It keeps every request visible, so you can read and test each pattern line by line."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   3.087,
+   "Every Graph script needs the same four patterns."
+  ],
+  [
+   3.138,
+   1.225,
+   "One, paging."
+  ],
+  [
+   4.362,
+   9.662,
+   "Collections come back a page at a time: a hundred users by default, up to nine hundred ninety-nine with top, or five hundred when you select sign-in activity."
+  ],
+  [
+   14.025,
+   3.9,
+   "Follow the next link, unchanged, until it stops appearing."
+  ],
+  [
+   17.925,
+   1.288,
+   "Two, throttling."
+  ],
+  [
+   19.212,
+   4.763,
+   "Over a limit, Graph answers four twenty-nine with a Retry-After header."
+  ],
+  [
+   23.975,
+   4.025,
+   "Wait that long, because retrying at once keeps counting against you."
+  ],
+  [
+   28.0,
+   1.35,
+   "Three, batching."
+  ],
+  [
+   29.35,
+   8.65,
+   "A batch takes at most twenty requests, and each one is still throttled on its own, so a batch can succeed while some requests inside it fail."
+  ],
+  [
+   38.0,
+   1.587,
+   "Check every status."
+  ],
+  [
+   39.587,
+   1.163,
+   "Four, delta."
+  ],
+  [
+   40.75,
+   5.575,
+   "Follow the next links until you get a delta link, store it, and next time you get only the changes."
+  ],
+  [
+   46.325,
+   8.625,
+   "And some advanced Entra queries, like count and search, need the ConsistencyLevel eventual header, or they fail or return something different."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   3.263,
+   "The limits are layered, and the first one you reach applies."
+  ],
+  [
+   3.312,
+   6.537,
+   "Every service allows a hundred thirty thousand requests per ten seconds per app, across all tenants."
+  ],
+  [
+   9.85,
+   14.137,
+   "Entra I D objects, like users, groups and applications, use cost-based resource units instead: thirty-five hundred, five thousand or eight thousand per ten seconds per app and tenant, depending on the tenant's size."
+  ],
+  [
+   23.988,
+   1.6,
+   "Writes have their own limits."
+  ],
+  [
+   25.587,
+   2.775,
+   "A request's cost changes with what you ask for."
+  ],
+  [
+   28.363,
+   6.0,
+   "Select lowers it by one, expand raises it by one, and a top under twenty lowers it by one."
+  ],
+  [
+   34.362,
+   5.513,
+   "Listing a group's transitive members costs five, against three for direct members."
+  ],
+  [
+   39.875,
+   4.9,
+   "And a background job, like an evidence collector, can send a low throttle priority."
+  ],
+  [
+   44.775,
+   4.6,
+   "Microsoft recommends high priority only for requests a user started."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   5.75,
+   "Lab 1 runs on a laptop in the examples folder, against fixtures, with no tenant."
+  ],
+  [
+   6.525,
+   8.062,
+   "Ask for a cloud name the client doesn't know, G C C High with capitals, and you get a value error that lists the four names it accepts."
+  ],
+  [
+   14.588,
+   3.038,
+   "An unknown name is an error, never a default."
+  ],
+  [
+   17.625,
+   9.975,
+   "List the permissions the stale-users task needs, and you get exactly two: AuditLog dot Read dot All and User dot Read dot All, computed from the calls it declares."
+  ],
+  [
+   27.6,
+   8.188,
+   "Make a call the Conditional Access task doesn't declare, and it refuses, telling you to add it to graph-calls dot jay-son with its permission."
+  ],
+  [
+   35.788,
+   5.737,
+   "Send a G C C High token to the worldwide Graph host, and it refuses again."
+  ],
+  [
+   41.525,
+   1.887,
+   "Nothing was sent in either case."
+  ],
+  [
+   43.413,
+   7.7,
+   "Then nine tests prove paging, retries, batching, delta and the advanced-query header against a fake transport."
+  ],
+  [
+   51.112,
+   7.15,
+   "The lab repeats the rules in PowerShell, and the full suites pass: seventy in pytest and forty-four in Pester."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   7.125,
+   "Lab 2 moves to your own test tenant, worldwide or G C C, never production, with fictional data."
+  ],
+  [
+   7.175,
+   5.138,
+   "You register one app in the tenant's own cloud, with a certificate and no secret."
+  ],
+  [
+   12.312,
+   7.2,
+   "You grant it one application permission, Policy dot Read dot All, with admin consent from a Privileged Role Administrator."
+  ],
+  [
+   19.512,
+   3.587,
+   "You run the Conditional Access export, which only reads."
+  ],
+  [
+   23.1,
+   9.037,
+   "The developer workbook's Chapter 02 then has you see the token check work, by adding a permission the task doesn't need, and the wrong cloud fail closed."
+  ],
+  [
+   32.138,
+   9.05,
+   "And you back it out: remove the permission, delete the app registration and its certificate, and delete the output folder, because it holds the tenant's policies."
+  ],
+  [
+   41.188,
+   4.888,
+   "The authors haven't run Lab 2; it follows the workbook chapter step by step."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   1.312,
+   "Where are agencies?"
+  ],
+  [
+   1.363,
+   6.037,
+   "Most on this path run a Microsoft 365 G C C tenant with commercial Azure."
+  ],
+  [
+   7.4,
+   8.675,
+   "Their scripts are often older than the current tools: AzureAD cmdlets, a client secret in a scheduled task, a host name written into the code."
+  ],
+  [
+   16.075,
+   2.013,
+   "Some run G C C High."
+  ],
+  [
+   18.087,
+   9.7,
+   "For what this module relies on: in G C C High and D O D, the app is registered in the government cloud itself, and Graph Explorer isn't supported."
+  ],
+  [
+   27.788,
+   9.213,
+   "Microsoft's Azure Government roadmap lists workload identities as generally available at fed-ramp High and D O D impact levels four and five."
+  ],
+  [
+   37.0,
+   9.075,
+   "And when a managed identity is an app's federated credential, the audience value differs: the U S Gov token exchange audience in the government cloud."
+  ],
+  [
+   46.075,
+   12.037,
+   "The interim paths: rewrite retired-module scripts on Graph PowerShell, use a certificate on premises until the server is on Arc, and treat a G C C High move as a configuration change."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   6.638,
+   "This module's subject is the collector itself, so its requirements are the ones the collector's identity has to meet."
+  ],
+  [
+   6.688,
+   8.45,
+   "Least privilege, A C six in nist special publication eight hundred fifty-three: each script holds only the permissions its calls need."
+  ],
+  [
+   15.137,
+   8.975,
+   "Authenticator management, I A five: no long-lived secret, and ScubaGear's application-credential policies apply to the program's own apps too."
+  ],
+  [
+   24.113,
+   5.55,
+   "Continuous monitoring, C A seven, depends on collectors that return complete results."
+  ],
+  [
+   29.663,
+   7.4,
+   "And B O D twenty-five oh-one requires the scuba assessment tools and continuous reporting for in-scope tenants."
+  ],
+  [
+   37.062,
+   2.875,
+   "Book 02's Appendix A has the mapping."
+  ],
+  [
+   39.938,
+   13.85,
+   "The evidence an I S S O keeps: for each collector, its cloud, endpoint, app registration, credential type, exact permissions and consent record, plus the call list and its tests in the repository."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   3.5,
+   "Check yourself with two questions from the module's knowledge check."
+  ],
+  [
+   3.55,
+   4.9,
+   "First: your tenant is Microsoft 365 G C C."
+  ],
+  [
+   8.45,
+   2.138,
+   "Which Graph host does your collector call?"
+  ],
+  [
+   10.588,
+   6.7,
+   "The answer is b, graph dot microsoft dot com, because G C C uses the worldwide endpoints."
+  ],
+  [
+   17.288,
+   6.312,
+   "Second: a batch returns two hundred, but two of its twenty requests returned four twenty-nine."
+  ],
+  [
+   23.6,
+   1.35,
+   "What should the client do?"
+  ],
+  [
+   24.95,
+   1.212,
+   "The answer is c."
+  ],
+  [
+   26.163,
+   7.662,
+   "Each request in a batch is throttled on its own, so check every response's status and retry the throttled ones after their wait."
+  ],
+  [
+   33.825,
+   4.912,
+   "The module page has three more questions, each linked to the unit that answers it."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   0.825,
+   "To sum up."
+  ],
+  [
+   0.875,
+   8.238,
+   "You matched each cloud to its hosts, its scope and its PowerShell environment, and learned that G C C is the worldwide service."
+  ],
+  [
+   9.113,
+   8.9,
+   "You put the credentials in order, managed identity, federation, certificate, never a secret, and found who consents to Graph permissions."
+  ],
+  [
+   18.012,
+   4.013,
+   "You found least-privileged permissions and what a narrow one hides."
+  ],
+  [
+   22.025,
+   2.125,
+   "You learned the four request patterns."
+  ],
+  [
+   24.15,
+   6.1,
+   "And in the lab you saw the client refuse an unknown cloud, an undeclared call and the wrong host."
+  ],
+  [
+   30.25,
+   5.463,
+   "Before you ship a collector, work through the developer workbook's Chapter 02 checklist."
+  ],
+  [
+   35.712,
+   12.75,
+   "Next is Module 2, Entra I D through Microsoft Graph: users, groups, Conditional Access, pim, applications and logs, with five read-only checks mapped to ScubaGear."
+  ]
+ ]
+}

@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.412
+Lab 2 runs the same checks read-only
+against your own test tenant,
+
+2
+00:00:05.412 --> 00:00:11.988
+worldwide or GCC, never production, with
+Entra ID P1 or P2 for sign-in and PIM data.
+
+3
+00:00:11.988 --> 00:00:15.540
+Register one app in the tenant's
+own cloud with a certificate,
+
+4
+00:00:15.540 --> 00:00:18.950
+and grant only the read
+permissions for the checks you run;
+
+5
+00:00:18.950 --> 00:00:23.000
+the module lists them per check,
+straight from graph-calls dot JSON.
+
+6
+00:00:23.000 --> 00:00:28.050
+Run each task in Python, or connect in
+PowerShell and run the same task there.
+
+7
+00:00:28.050 --> 00:00:31.875
+The client checks the token
+first: a missing permission stops
+
+8
+00:00:31.875 --> 00:00:35.700
+the run before any Graph call,
+and an extra one prints a warning.
+
+9
+00:00:35.700 --> 00:00:38.213
+Compare each result with the admin center.
+
+10
+00:00:38.213 --> 00:00:42.931
+Then back it out: remove the permissions,
+delete the app registration and its
+
+11
+00:00:42.931 --> 00:00:47.724
+certificate, and delete the saved output,
+which holds user names and policies.
+
+12
+00:00:47.724 --> 00:00:49.940
+The authors haven't run Lab 2.

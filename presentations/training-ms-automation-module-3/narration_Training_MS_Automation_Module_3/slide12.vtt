@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.362
+Where are agencies?
+
+2
+00:00:01.362 --> 00:00:05.293
+Book 05's agency manages
+Windows with Group Policy,
+
+3
+00:00:05.293 --> 00:00:10.813
+and often Configuration Manager, and
+is moving to Intune in a GCC tenant.
+
+4
+00:00:10.813 --> 00:00:13.737
+GCC has no separate Intune instance.
+
+5
+00:00:13.737 --> 00:00:18.005
+In Microsoft's words, GCC is
+the same instance as Intune in
+
+6
+00:00:18.005 --> 00:00:22.363
+the commercial space, and it
+uses the worldwide Graph host.
+
+7
+00:00:22.363 --> 00:00:27.879
+GCC High and DoD share a separate government
+instance, with their own Graph hosts,
+
+8
+00:00:27.879 --> 00:00:33.313
+and moving between instances means
+unenrolling and re-enrolling every device.
+
+9
+00:00:33.313 --> 00:00:37.239
+Microsoft's service description
+lists what isn't available there,
+
+10
+00:00:37.239 --> 00:00:41.665
+with no plans to add it: Windows Autopilot,
+Remediations, feature update and
+
+11
+00:00:41.665 --> 00:00:46.449
+compatibility reports, the ServiceNow
+connector and Subscription Activation.
+
+12
+00:00:46.449 --> 00:00:50.897
+Standard device management, compliance,
+configuration and app policies,
+
+13
+00:00:50.897 --> 00:00:56.060
+is available, with Log Analytics export
+and Defender security settings management.

@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.313
+The limits are layered, and the
+first one you reach applies.
+
+2
+00:00:03.313 --> 00:00:06.462
+Every service allows a
+hundred thirty thousand
+
+3
+00:00:06.462 --> 00:00:09.849
+requests per ten seconds
+per app, across all tenants.
+
+4
+00:00:09.849 --> 00:00:13.446
+Entra ID objects, like users,
+groups and applications,
+
+5
+00:00:13.446 --> 00:00:18.594
+use cost-based resource units instead:
+thirty-five hundred, five thousand or
+
+6
+00:00:18.594 --> 00:00:23.987
+eight thousand per ten seconds per app and
+tenant, depending on the tenant's size.
+
+7
+00:00:23.987 --> 00:00:25.588
+Writes have their own limits.
+
+8
+00:00:25.588 --> 00:00:28.362
+A request's cost changes
+with what you ask for.
+
+9
+00:00:28.362 --> 00:00:31.667
+Select lowers it by one,
+expand raises it by one,
+
+10
+00:00:31.667 --> 00:00:34.363
+and a top under twenty lowers it by one.
+
+11
+00:00:34.363 --> 00:00:39.875
+Listing a group's transitive members costs
+five, against three for direct members.
+
+12
+00:00:39.875 --> 00:00:44.775
+And a background job, like an evidence
+collector, can send a low throttle priority.
+
+13
+00:00:44.775 --> 00:00:49.440
+Microsoft recommends high priority
+only for requests a user started.

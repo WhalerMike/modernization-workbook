@@ -1,0 +1,62 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:05.869
+In the lab, you run each check against a
+fictional tenant with the from-json option,
+
+3
+00:00:05.869 --> 00:00:09.975
+which evaluates a saved Graph
+response instead of calling Graph.
+
+4
+00:00:09.975 --> 00:00:11.916
+Here's step three: the PIM report,
+
+5
+00:00:11.916 --> 00:00:15.125
+with the Privileged Role
+Administrator role added.
+
+6
+00:00:15.125 --> 00:00:17.862
+Global Administrator is always included.
+
+7
+00:00:17.862 --> 00:00:20.853
+The fixture has three
+Global Administrators,
+
+8
+00:00:20.853 --> 00:00:24.788
+which is within two to eight, so
+policy seven point one passes.
+
+9
+00:00:24.788 --> 00:00:28.548
+But two principals hold
+privileged roles permanently,
+
+10
+00:00:28.548 --> 00:00:32.063
+with no expiration, so policy
+seven point four fails.
+
+11
+00:00:32.063 --> 00:00:37.261
+The PowerShell function returns exactly
+the same JSON, and the Pester tests compare
+
+12
+00:00:37.261 --> 00:00:41.737
+every PowerShell check with the Python
+results, so the two can't drift apart.
+
+13
+00:00:41.737 --> 00:00:44.380
+The lab runs all five checks this way.

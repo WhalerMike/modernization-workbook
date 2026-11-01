@@ -1,0 +1,51 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.025
+Check yourself with two questions.
+
+2
+00:00:02.025 --> 00:00:06.850
+First: an Assigned role schedule has
+an expiration type of no expiration.
+
+3
+00:00:06.850 --> 00:00:07.650
+What is it?
+
+4
+00:00:07.650 --> 00:00:09.965
+The answer is b: it's permanent active,
+
+5
+00:00:09.965 --> 00:00:13.437
+which ScubaGear forbids for
+highly privileged roles.
+
+6
+00:00:13.437 --> 00:00:15.811
+Second: why doesn't a Graph script replace
+
+7
+00:00:15.811 --> 00:00:18.813
+sending the logs to the
+security operations center?
+
+8
+00:00:18.813 --> 00:00:19.812
+The answer is a.
+
+9
+00:00:19.812 --> 00:00:24.479
+Entra keeps audit and sign-in logs
+for seven days on the free tier and
+
+10
+00:00:24.479 --> 00:00:29.062
+thirty days with P1 or P2, so the
+record has to be kept somewhere else.
+
+11
+00:00:29.062 --> 00:00:34.030
+The module page has three more questions,
+each linked to the unit that answers it.
