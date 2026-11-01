@@ -69,7 +69,7 @@ Microsoft's warning about synced users belongs in the security plan: **Active Di
 
 ### The contractor PIV path {#the-contractor-piv-path}
 
-**Pending proof.** The contractor PIV path is the program's design and hasn't yet been validated in practice; the criteria for Proved are in the research page's [Status and review](../../evaluations/oracle-contingent-worker-contractor-source.md#status-and-review).
+**Pending proof.** The contractor PIV path is the program's design and hasn't yet been validated in practice; the criteria for Proved are in the evaluation's [Status and review](../../evaluations/oracle-contingent-worker-contractor-source.md#status-and-review).
 
 For an employee, the HR joiner starts sponsorship and HR's separation starts the leaver. A contractor has neither: there's no HR record, and the contractor source chosen in Chapter 06 has to supply both ends. Three links make the path whole; they are the program's design, built on the requirements cited.
 
@@ -77,7 +77,7 @@ For an employee, the HR joiner starts sponsorship and HR's separation starts the
 2. **The card management system reports back.** The CMS publishes termination, revocation, suspension and expiry events to the middleware, keyed on the enterprise person key (Chapter 04). For a contractor, a termination or an expiry is one of the earliest-end conditions in Chapter 06 and ends the engagement; a suspension or a reissue doesn't, and only rewrites the binding above. For an employee the same events are credential drift (Chapter 11), never a leaver, because HR owns employment.
 3. **The end date is the notice.** The 18-hour clock for a card that can't be collected runs from notification.[^c09-fips201] The FAR clause on contractor PIV requires the card's return upon contract completion or termination,[^c09-far52049] and SP 800-53 PS-7 asks the provider to notify the agency of terminations within a defined time.[^c09-sp80053-ps7] Don't wait for either notice. At the contractor's earliest end date, capped by the contract's current completion date, the pipeline itself notifies the PIV office and starts the leaver sequence below, so the 18 hours start on the date the engagement ends and the evidence shows when.
 
-The options for the contractor source, how agencies run them today and the evidence for each link are in the research page [Contractors as Oracle Contingent Workers](../../evaluations/oracle-contingent-worker-contractor-source.md#part-5-the-contractor-piv-path).
+The options for the contractor source, how agencies run them today and the evidence for each link are in the evaluation [Contractors as Oracle Contingent Workers](../../evaluations/oracle-contingent-worker-contractor-source.md#part-5-the-contractor-piv-path).
 
 ### Revocation checking
 

@@ -113,7 +113,7 @@ Each request below follows the same layout: what to ask, why the provider can an
 | A7 | Change notifications as a feed | SCN-CSO-HRM, -HIS, -NOM |
 | A8 | Cryptographic modules per service | CMU-CSO-CMD, -UVM, -CAT |
 
-Each request is answerable, none needs a boundary argument, and A1, A5, A6, A7 and A8 rest on obligations the 2026 rules already place on providers. Record each request, its date and the provider's answer in the authorization package ([Chapter 11](11-the-authorization-package.md)): a documented "no" is evidence too. The research page [Federal HR 2.0 Across Agencies and Boundaries](../explainers/hr2-shared-governance-fedramp-boundary.md#questions-to-ask) works through A6 and A8 against one Rev5 SaaS platform, with the questions an agency would put to its provider.
+Each request is answerable, none needs a boundary argument, and A1, A5, A6, A7 and A8 rest on obligations the 2026 rules already place on providers. Record each request, its date and the provider's answer in the authorization package ([Chapter 11](11-the-authorization-package.md)): a documented "no" is evidence too. The explainer [Federal HR 2.0 Across Agencies and Boundaries](../explainers/hr2-shared-governance-fedramp-boundary.md#questions-to-ask) works through A6 and A8 against one Rev5 SaaS platform, with the questions an agency would put to its provider.
 
 ::: {.callout-tip}
 ## Continue the book
