@@ -29,7 +29,7 @@ The groups behind the plan's task A2.1, "PRV role-assignable groups hold the eli
 ## Narrated tour
 {{< fmw-video DW_PA_05_PIM_for_Groups_Narrated >}}
 
-[Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.10/DW_PA_05_PIM_for_Groups.pptx) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.10/DW_PA_05_PIM_for_Groups_Narrated.pptx) (about 11 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-pa-05-pim-for-groups/DW_PA_05_PIM_for_Groups_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-pa-05-pim-for-groups/DW_PA_05_PIM_for_Groups_Narrated.vtt). Recorded on October 31, 2026 from the approved chapter.
+[Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11/DW_PA_05_PIM_for_Groups.pptx) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11/DW_PA_05_PIM_for_Groups_Narrated.pptx) (about 11 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-pa-05-pim-for-groups/DW_PA_05_PIM_for_Groups_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-pa-05-pim-for-groups/DW_PA_05_PIM_for_Groups_Narrated.vtt). Recorded on October 31, 2026 from the approved chapter.
 :::
 
 <!-- tour:end -->

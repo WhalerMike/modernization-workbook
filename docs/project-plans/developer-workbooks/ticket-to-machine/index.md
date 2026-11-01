@@ -51,7 +51,7 @@ The estate is a FedRAMP Moderate civilian one: ServiceNow's Government Community
 | Implementation example | Pass 1 of the kit: drift to a typed task, the re-read rule, the drift reconciliation; and what Pass 2 plans | [Integrating ServiceNow and SailPoint (Pass 1)](../../../books/guides/snow-sailpoint-integration-kit.md) |
 | Developer workbook | This workbook: eight chapters, each building on the kit with labs and tests | [Chapters](#chapters-table) below |
 | Code | The kit: ISC workflows, the ServiceNow Scripted REST resource and business rule, Python and PowerShell clients, fixtures and tests, and this workbook's additions | [`examples/servicenow-sailpoint` on GitHub](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/servicenow-sailpoint) |
-| Decks and videos | The narrated deck for Book 13's Appendix B, the narrated research deck for the example guide, and the guide's two-part implementation series (decks and videos with the next edition) | [Presentations](../../../presentations/index.md#reference-b13) · [Implementation series](../../../presentations/index.md#implementation-ttm-servicenow-sailpoint-part-1) · [▶ Watch the example guide's deck](../../../presentations/watch.html?v=Research_TTM_ServiceNow_SailPoint_Narrated) |
+| Decks and videos | The narrated deck for Book 13's Appendix B, the narrated research deck for the example guide, and the guide's two-part implementation series | [Presentations](../../../presentations/index.md#reference-b13) · [Implementation series](../../../presentations/index.md#implementation-ttm-servicenow-sailpoint-part-1) · [▶ Watch the example guide's deck](../../../presentations/watch.html?v=Research_TTM_ServiceNow_SailPoint_Narrated) |
 | Training | A learning path built from the example guide, the decks and this workbook's labs: seven modules with exercises and knowledge checks | [Learning path: Ticket-to-Machine on ServiceNow and SailPoint](../../../training/ticket-to-machine/index.md) |
 | Word edition | This workbook as one document | [building-ticket-to-machine-bundle.docx](../../../../downloads/building-ticket-to-machine-bundle.docx) |
 
@@ -109,7 +109,13 @@ This is one of the [developer workbooks](../index.md) under Projects in the Fede
 
 ## Version and revision history {#version-history}
 
-This workbook has not been published in an edition yet. Each edition is kept, with its Word editions, decks and videos, on the [Archive](../../../about/archive.md) page. Every change so far is in the [commit history](https://github.com/WhalerMike/modernization-workbook/commits/main/docs/project-plans/developer-workbooks/ticket-to-machine).
+**Version 1.0**, in [edition 2026.11](../../../about/archive.md#edition-2026-11) (November 1, 2026). Every edition is kept on the [Archive](../../../about/archive.md) page; every change between editions is in the [commit history](https://github.com/WhalerMike/modernization-workbook/commits/main/docs/project-plans/developer-workbooks/ticket-to-machine).
+
+| Version | Edition | Date | Changes |
+|---|---|---|---|
+| 1.0 | [2026.11](../../../about/archive.md#edition-2026-11) | 2026-11-01 | Building Ticket-to-Machine: a developer workbook with labs ([#275](https://github.com/WhalerMike/modernization-workbook/pull/275)); Learning path: Ticket-to-Machine on ServiceNow and SailPoint ([#277](https://github.com/WhalerMike/modernization-workbook/pull/277)); Learning path: HR-Driven Identity in Microsoft Entra ID ([#278](https://github.com/WhalerMike/modernization-workbook/pull/278)); Gate-level deck series for HR-Driven Identity and Ticket-to-Machine (sources) ([#280](https://github.com/WhalerMike/modernization-workbook/pull/280)) |
+
+: Versions of this workbook, newest first {.striped .hover}
 
 <!-- revisions:end -->
 

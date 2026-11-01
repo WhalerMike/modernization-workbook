@@ -94,6 +94,8 @@
  "HR_Driven_Identity_AnyAgency_Narrated": 983.9,
  "HR_Driven_Identity_Contractor_Source_AnyAgency_Narrated": 609.5,
  "HR_Driven_Identity_Exec_AnyAgency_Narrated": 729.7,
+ "HR_Driven_Identity_Implementation_Part_1_Narrated": 963.6,
+ "HR_Driven_Identity_Implementation_Part_2_Narrated": 958.3,
  "Infoblox_DDI_Federal_Deep_Dive_Narrated": 1643.7,
  "Research_Cisco_SDWAN_Narrated": 1012.1,
  "Research_CyberArk_CLM_Narrated": 1208.2,
@@ -106,5 +108,7 @@
  "Start_02_First_Four_Weeks_Narrated": 379.0,
  "Start_03_Foundation_to_G1_Narrated": 379.0,
  "Start_04_Making_the_Case_Narrated": 363.6,
- "Start_Here_Narrated": 367.1
+ "Start_Here_Narrated": 367.1,
+ "TTM_ServiceNow_SailPoint_Implementation_Part_1_Narrated": 972.5,
+ "TTM_ServiceNow_SailPoint_Implementation_Part_2_Narrated": 918.6
 }

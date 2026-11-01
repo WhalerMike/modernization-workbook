@@ -554,10 +554,11 @@ This is a companion guide, not part of a numbered book. [← The Workbook Books]
 
 ## Version and revision history {#version-history}
 
-**Version 1.0**, in [edition 2026.10](../../about/archive.md#edition-2026-10) (October 31, 2026). Every edition is kept on the [Archive](../../about/archive.md) page; every change between editions is in the [commit history](https://github.com/WhalerMike/modernization-workbook/commits/main/docs/books/guides/attribute-driven-migration-implementation.md).
+**Version 1.1**, in [edition 2026.11](../../about/archive.md#edition-2026-11) (November 1, 2026). Every edition is kept on the [Archive](../../about/archive.md) page; every change between editions is in the [commit history](https://github.com/WhalerMike/modernization-workbook/commits/main/docs/books/guides/attribute-driven-migration-implementation.md).
 
 | Version | Edition | Date | Changes |
 |---|---|---|---|
+| 1.1 | [2026.11](../../about/archive.md#edition-2026-11) | 2026-11-01 | Restore the developer workbook as Book 19, and the ADM implementation guide to Books > Guides ([#270](https://github.com/WhalerMike/modernization-workbook/pull/270)); Content rules: one home per type, and the federal layers every guide carries ([#271](https://github.com/WhalerMike/modernization-workbook/pull/271)); HR-Driven Identity: An Implementation Guide (draft) ([#272](https://github.com/WhalerMike/modernization-workbook/pull/272)) |
 | 1.0 | [2026.10](../../about/archive.md#edition-2026-10) | 2026-10-31 | First edition (7 merged changes since the guide began) |
 
 : Versions of this guide, newest first {.striped .hover}

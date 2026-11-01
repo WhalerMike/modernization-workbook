@@ -29,7 +29,7 @@ The check and the alert behind the plan's tasks A0.4 and A1.1: "existing emergen
 ## Narrated tour
 {{< fmw-video DW_PA_02_Emergency_Access_Narrated >}}
 
-[Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.10/DW_PA_02_Emergency_Access.pptx) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.10/DW_PA_02_Emergency_Access_Narrated.pptx) (about 10 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-pa-02-emergency-access/DW_PA_02_Emergency_Access_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-pa-02-emergency-access/DW_PA_02_Emergency_Access_Narrated.vtt). Recorded on October 31, 2026 from the approved chapter.
+[Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11/DW_PA_02_Emergency_Access.pptx) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11/DW_PA_02_Emergency_Access_Narrated.pptx) (about 10 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-pa-02-emergency-access/DW_PA_02_Emergency_Access_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-pa-02-emergency-access/DW_PA_02_Emergency_Access_Narrated.vtt). Recorded on October 31, 2026 from the approved chapter.
 :::
 
 <!-- tour:end -->

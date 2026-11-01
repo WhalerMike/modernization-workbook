@@ -7517,6 +7517,138 @@
    "More modernizations I’ve designed"
   ]
  ],
+ "HR_Driven_Identity_Implementation_Part_1_Narrated": [
+  [
+   0,
+   "Part 1: Writers, sources and joiners"
+  ],
+  [
+   53,
+   "The seven gates on one page: done when, proved by"
+  ],
+  [
+   108,
+   "Before G1: what the gates assume, and where they run"
+  ],
+  [
+   175,
+   "G1: the lifecycle rows of the writer register"
+  ],
+  [
+   236,
+   "G1: version the scope, remove the other writers"
+  ],
+  [
+   293,
+   "G1 in code: check the register, scan the audit log"
+  ],
+  [
+   349,
+   "G1: requirement, evidence, availability, rollback"
+  ],
+  [
+   409,
+   "G2: employees from HR, contractors from their own source"
+  ],
+  [
+   472,
+   "G2: ship the contractor leaver first: the earliest end"
+  ],
+  [
+   530,
+   "G2 in code: extract, build the requests, reconcile"
+  ],
+  [
+   590,
+   "G2: requirement, evidence, availability, rollback"
+  ],
+  [
+   654,
+   "G3: few workflows, scoped by code, with limits"
+  ],
+  [
+   714,
+   "G3: the Temporary Access Pass bridge and day-one access"
+  ],
+  [
+   772,
+   "G3 in code: lint, plan, and measure day one"
+  ],
+  [
+   833,
+   "G3: requirement, evidence, availability, rollback"
+  ],
+  [
+   896,
+   "Handing G1–G3 to Part 2"
+  ]
+ ],
+ "HR_Driven_Identity_Implementation_Part_2_Narrated": [
+  [
+   0,
+   "Part 2: Access, credentials, separation and drift"
+  ],
+  [
+   56,
+   "G4–G7 on one page: done when, proved by, rollback"
+  ],
+  [
+   114,
+   "G4: department packages by automatic assignment"
+  ],
+  [
+   179,
+   "G4: approvals, the mover's residual, and privilege"
+  ],
+  [
+   234,
+   "G4 in code: lint the policies, list a mover's residual"
+  ],
+  [
+   291,
+   "G4: requirement, evidence, availability, rollback"
+  ],
+  [
+   356,
+   "G5: trust the issuing CAs, each with a CRL"
+  ],
+  [
+   410,
+   "G5: issuance and revocation follow HR events"
+  ],
+  [
+   466,
+   "G5 in code: measure the CRLs, check the settings"
+  ],
+  [
+   524,
+   "G5: requirement, evidence, availability, rollback"
+  ],
+  [
+   589,
+   "G6: block first, revoke in parallel, dispose last"
+  ],
+  [
+   649,
+   "G6 in code: separation timing from the logs"
+  ],
+  [
+   707,
+   "G6: requirement, evidence, availability, rollback"
+  ],
+  [
+   770,
+   "G7: lifecycle drift, six metrics, the sole source"
+  ],
+  [
+   830,
+   "G7 in code: package, chain, period; the evidence"
+  ],
+  [
+   889,
+   "One evidence file per population, and what's next"
+  ]
+ ],
  "Infoblox_DDI_Federal_Deep_Dive_Narrated": [
   [
    0,
@@ -8433,6 +8565,138 @@
   [
    331,
    "Where to go next"
+  ]
+ ],
+ "TTM_ServiceNow_SailPoint_Implementation_Part_1_Narrated": [
+  [
+   0,
+   "Part 1: Boundary, writers, sources and the front door"
+  ],
+  [
+   55,
+   "The seven gates on one page: done when, gap, proof"
+  ],
+  [
+   108,
+   "The loop on two products, and the four gaps"
+  ],
+  [
+   168,
+   "G1: FedRAMP status, and what runs from a vendor cloud"
+  ],
+  [
+   225,
+   "G1 in code: every call declared, least privilege checked"
+  ],
+  [
+   283,
+   "G1: requirement, evidence, availability, rollback"
+  ],
+  [
+   343,
+   "G2: one writer per attribute, one approver per class"
+  ],
+  [
+   397,
+   "G2: a lane for every change class"
+  ],
+  [
+   450,
+   "G2 in code: find the attribute with two writers"
+  ],
+  [
+   505,
+   "G2: requirement, evidence, availability, rollback"
+  ],
+  [
+   563,
+   "G3: aggregate, correlate on employeeId, detect change"
+  ],
+  [
+   623,
+   "G3 in code: the starting drift, day one and day two"
+  ],
+  [
+   682,
+   "G3: requirement, evidence, availability, rollback"
+  ],
+  [
+   742,
+   "G4: one front door for findings and requests"
+  ],
+  [
+   802,
+   "G4 in code: the contract, and what a workflow posts"
+  ],
+  [
+   857,
+   "G4: requirement, evidence, availability, rollback"
+  ],
+  [
+   919,
+   "Handing G1–G4 to Part 2"
+  ]
+ ],
+ "TTM_ServiceNow_SailPoint_Implementation_Part_2_Narrated": [
+  [
+   0,
+   "Part 2: Actuation, re-read, tempo and evidence"
+  ],
+  [
+   51,
+   "G5–G7 on one page: done when, proved by, rollback"
+  ],
+  [
+   108,
+   "G5: the ticket authorizes a machine, by authority"
+  ],
+  [
+   172,
+   "G5: change records, and the declared-exception lane"
+  ],
+  [
+   237,
+   "G5: requirement, evidence, availability, rollback"
+  ],
+  [
+   301,
+   "G6: Awaiting verification, and the business rule"
+  ],
+  [
+   363,
+   "G6 in code: six waiting findings, re-read offline"
+  ],
+  [
+   426,
+   "G6: requirement, evidence, availability, rollback"
+  ],
+  [
+   486,
+   "G7: the tempo, the five measures, the schedules"
+  ],
+  [
+   549,
+   "G7: the identity fixes, routed through the loop"
+  ],
+  [
+   607,
+   "G7 in code: evidence records and the hash chain"
+  ],
+  [
+   669,
+   "G7: requirement, evidence, availability, rollback"
+  ],
+  [
+   725,
+   "The evidence record on ServiceNow and SailPoint"
+  ],
+  [
+   789,
+   "Dangers across the seven gates"
+  ],
+  [
+   853,
+   "From Draft to Proved, and where to go next"
   ]
  ]
 }

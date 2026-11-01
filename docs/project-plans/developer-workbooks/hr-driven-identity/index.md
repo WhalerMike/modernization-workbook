@@ -49,7 +49,7 @@ The target estate is Microsoft 365 GCC (Moderate) with commercial Azure. GCC use
 | Design | Why HR is the source of authority, the attribute authority map, joiner, mover and leaver, credentials, access, drift and the phase model | [Book 03](../../../books/b03-hr-identity/index.md) |
 | Schedule | The project's tasks, decisions and gates | [Identity Lifecycle & Provisioning plan](../../identity-lifecycle.md) |
 | Code it builds on | The middleware, Graph clients, validation kit, dynamic rules, custom task extensions and drift pipeline | [Book 19](../../../books/b19-developer-workbook/index.md) |
-| Decks | One deck series per guide, at the level of its gates: two narrated parts, G1–G3 and G4–G7; the decks and videos come with the next edition | [Presentations](../../../presentations/index.md#implementation-hr-driven-identity-part-1) |
+| Decks | One deck series per guide, at the level of its gates: two narrated parts, G1–G3 and G4–G7; each with a deck, a narrated deck and a video | [Presentations](../../../presentations/index.md#implementation-hr-driven-identity-part-1) |
 | Training | A learning path in seven modules built from the guide, these chapters and their labs, with knowledge checks | [Learning path: HR-Driven Identity in Microsoft Entra ID](../../../training/hr-driven-identity/index.md) |
 
 : The pieces of HR-driven identity and where each lives {.striped .hover}
@@ -106,7 +106,13 @@ This is the developer workbook for the [HR-driven identity implementation guide]
 
 ## Version and revision history {#version-history}
 
-This workbook has not been published in an edition yet. Each edition is kept, with its Word editions, decks and videos, on the [Archive](../../../about/archive.md) page. Every change so far is in the [commit history](https://github.com/WhalerMike/modernization-workbook/commits/main/docs/project-plans/developer-workbooks/hr-driven-identity).
+**Version 1.0**, in [edition 2026.11](../../../about/archive.md#edition-2026-11) (November 1, 2026). Every edition is kept on the [Archive](../../../about/archive.md) page; every change between editions is in the [commit history](https://github.com/WhalerMike/modernization-workbook/commits/main/docs/project-plans/developer-workbooks/hr-driven-identity).
+
+| Version | Edition | Date | Changes |
+|---|---|---|---|
+| 1.0 | [2026.11](../../../about/archive.md#edition-2026-11) | 2026-11-01 | Building HR-Driven Identity: a developer workbook with labs ([#276](https://github.com/WhalerMike/modernization-workbook/pull/276)); Learning path: HR-Driven Identity in Microsoft Entra ID ([#278](https://github.com/WhalerMike/modernization-workbook/pull/278)); Gate-level deck series for HR-Driven Identity and Ticket-to-Machine (sources) ([#280](https://github.com/WhalerMike/modernization-workbook/pull/280)) |
+
+: Versions of this workbook, newest first {.striped .hover}
 
 <!-- revisions:end -->
 

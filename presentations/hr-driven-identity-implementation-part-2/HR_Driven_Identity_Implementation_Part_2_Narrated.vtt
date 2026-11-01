@@ -1,0 +1,1172 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.850
+Welcome to Part 2 of the implementation
+series for HR-driven identity.
+
+2
+00:00:04.850 --> 00:00:08.995
+Part 1 named one writer for every
+account state, brought employees and
+
+3
+00:00:08.995 --> 00:00:12.925
+contractors in from their sources,
+and got joiners ready on day one.
+
+4
+00:00:12.925 --> 00:00:15.338
+Part 2 covers the last four gates.
+
+5
+00:00:15.338 --> 00:00:18.381
+First, access assigned from HR attributes,
+
+6
+00:00:18.381 --> 00:00:21.338
+with a review of what
+a move leaves behind.
+
+7
+00:00:21.338 --> 00:00:25.275
+Then PIV and CAC credentials
+tied to HR events.
+
+8
+00:00:25.275 --> 00:00:28.675
+Then separations, timed
+and proven from the logs.
+
+9
+00:00:28.675 --> 00:00:33.537
+And finally drift, metrics and
+the evidence an ISSO files.
+
+10
+00:00:33.537 --> 00:00:35.663
+The format is the same as Part 1.
+
+11
+00:00:35.663 --> 00:00:41.477
+Each gate gets its steps, the workbook's
+lab commands, the federal requirement
+
+12
+00:00:41.477 --> 00:00:47.200
+and evidence, availability in GCC and GCC
+High, an interim path, and a rollback.
+
+13
+00:00:47.200 --> 00:00:49.024
+Design guidance is labeled,
+
+14
+00:00:49.024 --> 00:00:53.100
+and the code is tested against
+fixtures, not a live tenant.
+
+15
+00:00:56.850 --> 00:00:59.325
+Here are Part 2's four gates on one page.
+
+16
+00:00:59.325 --> 00:01:04.048
+The access gate is done when department
+access is assigned automatically, the
+
+17
+00:01:04.048 --> 00:01:06.446
+supervisor HR names approves requests,
+
+18
+00:01:06.446 --> 00:01:09.425
+and anything left over
+after a move gets reviewed.
+
+19
+00:01:09.425 --> 00:01:13.782
+The credentials gate is done when
+every card issuer is trusted with a
+
+20
+00:01:13.782 --> 00:01:18.675
+revocation list, and cards are issued
+and revoked by HR and contractor events.
+
+21
+00:01:18.675 --> 00:01:22.747
+The separation gate is done when a
+leaver's access is blocked first,
+
+22
+00:01:22.747 --> 00:01:25.783
+credentials and devices
+are revoked in parallel,
+
+23
+00:01:25.783 --> 00:01:29.263
+and the account is deleted
+last, with the timing measured.
+
+24
+00:01:29.263 --> 00:01:32.956
+The drift gate is done when drift
+is found and fixed at its source,
+
+25
+00:01:32.956 --> 00:01:36.162
+and the metrics are reported
+on the monitoring cadence.
+
+26
+00:01:36.162 --> 00:01:40.862
+Each gate has its own rollback, except
+the last, which is a standing loop.
+
+27
+00:01:40.862 --> 00:01:42.687
+Together they finish the track.
+
+28
+00:01:42.687 --> 00:01:46.170
+Every entitlement traces
+back to a rule and a record,
+
+29
+00:01:46.170 --> 00:01:50.330
+and every separation blocks
+in time and leaves evidence.
+
+30
+00:01:54.080 --> 00:01:57.968
+Dynamic groups carry access that
+a rule can decide on its own.
+
+31
+00:01:57.968 --> 00:02:02.606
+Access packages carry what a rule
+can't, with approvals and reviews.
+
+32
+00:02:02.606 --> 00:02:05.630
+Department packages are
+assigned automatically.
+
+33
+00:02:05.630 --> 00:02:10.168
+A policy gives the package to everyone
+who matches a rule on user attributes,
+
+34
+00:02:10.168 --> 00:02:12.617
+and takes it away when they stop matching.
+
+35
+00:02:12.617 --> 00:02:15.942
+Each policy covers up to
+fifteen thousand users.
+
+36
+00:02:15.942 --> 00:02:19.456
+Write the rules on the
+coded attributes HR owns.
+
+37
+00:02:19.456 --> 00:02:22.030
+Keep one automatic policy per package.
+
+38
+00:02:22.030 --> 00:02:27.080
+If a user matches two policies, or moves
+between them, they can lose access.
+
+39
+00:02:27.080 --> 00:02:31.280
+Each policy also creates a hidden
+dynamic group, so leave it alone.
+
+40
+00:02:31.280 --> 00:02:32.555
+One date matters.
+
+41
+00:02:32.555 --> 00:02:36.650
+From November 3, 2026, any
+policy whose rule uses group
+
+42
+00:02:36.650 --> 00:02:41.768
+membership is quarantined, and it
+stops adding or removing anyone.
+
+43
+00:02:41.768 --> 00:02:46.092
+Microsoft publishes a read-only script
+that finds them, so run it now.
+
+44
+00:02:46.092 --> 00:02:50.629
+Finally, a policy can keep access for
+a grace period after someone moves.
+
+45
+00:02:50.629 --> 00:02:55.480
+Use that for standard access, and give
+privileged access no grace period.
+
+46
+00:02:59.230 --> 00:03:00.862
+Next, decide who approves,
+
+47
+00:03:00.862 --> 00:03:04.592
+what happens when someone moves,
+and where privilege goes.
+
+48
+00:03:04.592 --> 00:03:09.667
+Requests go to the manager as approver,
+with a fallback for anyone without one.
+
+49
+00:03:09.667 --> 00:03:13.280
+That makes the supervisor HR
+names the one who approves.
+
+50
+00:03:13.280 --> 00:03:17.120
+When someone changes organization,
+the mover workflow removes
+
+51
+00:03:17.120 --> 00:03:20.380
+the old department's packages
+and requests the new one.
+
+52
+00:03:20.380 --> 00:03:24.730
+Then it starts a review of everything
+the person holds outside packages.
+
+53
+00:03:24.730 --> 00:03:27.093
+That leftover access is the residual,
+
+54
+00:03:27.093 --> 00:03:31.743
+and the time from transfer to review
+is the metric for personnel transfer.
+
+55
+00:03:31.743 --> 00:03:34.755
+Privileged access stays
+out of rules altogether.
+
+56
+00:03:34.755 --> 00:03:38.045
+HR attributes decide who
+may request eligibility,
+
+57
+00:03:38.045 --> 00:03:40.943
+and the role itself is
+activated through PIM.
+
+58
+00:03:40.943 --> 00:03:43.918
+And treat a reorganization as a mass move.
+
+59
+00:03:43.918 --> 00:03:47.073
+Rehearse it, let the
+execution limit quarantine it,
+
+60
+00:03:47.073 --> 00:03:50.740
+and release it only after
+you've checked it against HR.
+
+61
+00:03:54.490 --> 00:03:58.365
+The workbook's fourth chapter keeps
+the policies as reviewed files.
+
+62
+00:03:58.365 --> 00:04:03.301
+Run against five broken ones, its lint
+catches a rule built on group membership,
+
+63
+00:04:03.301 --> 00:04:07.478
+and two policies on one package
+that the same employees both match.
+
+64
+00:04:07.478 --> 00:04:10.931
+It also catches a policy
+that adds but never removes,
+
+65
+00:04:10.931 --> 00:04:15.590
+an approval with no fallback, and
+privileged access assigned by a rule.
+
+66
+00:04:15.590 --> 00:04:18.751
+A separate scan reads the
+tenant's existing policies
+
+67
+00:04:18.751 --> 00:04:21.553
+and finds the one still
+using group membership.
+
+68
+00:04:21.553 --> 00:04:22.815
+Then the residual.
+
+69
+00:04:22.815 --> 00:04:26.003
+A fictional employee moved
+departments in October.
+
+70
+00:04:26.003 --> 00:04:30.739
+For each package they hold, the code checks
+the rule against their new attributes.
+
+71
+00:04:30.739 --> 00:04:34.953
+The old baseline goes after the
+grace period, and the new one stays.
+
+72
+00:04:34.953 --> 00:04:37.382
+Three items go to the manager of record:
+
+73
+00:04:37.382 --> 00:04:41.178
+one requested package, and two
+groups held outside packages.
+
+74
+00:04:41.178 --> 00:04:44.324
+One finding stands out:
+the review is still open
+
+75
+00:04:44.324 --> 00:04:48.070
+thirteen days after the
+move, past the program's ten.
+
+76
+00:04:51.820 --> 00:04:56.684
+On the federal side, account management,
+least privilege and separation of duties
+
+77
+00:04:56.684 --> 00:05:01.620
+call for the policy exports, with their
+rules and the separation-of-duties settings.
+
+78
+00:05:01.620 --> 00:05:06.657
+Personnel transfer calls for the
+transfer-to-review times and the review decisions.
+
+79
+00:05:06.657 --> 00:05:11.782
+Account review results must be exported
+before Entra's thirty-day history closes.
+
+80
+00:05:11.782 --> 00:05:17.231
+CISA's baseline requires highly privileged
+roles to come only through a privileged
+
+81
+00:05:17.231 --> 00:05:21.451
+access system, so the ISSO shows
+PIM eligibility through packages,
+
+82
+00:05:21.451 --> 00:05:23.907
+and no standing role assigned by a rule.
+
+83
+00:05:23.907 --> 00:05:27.821
+To validate, compare membership
+before and after a test move.
+
+84
+00:05:27.821 --> 00:05:30.146
+No kit check reads the policies yet,
+
+85
+00:05:30.146 --> 00:05:33.595
+so keep the export and a
+clean group-membership scan.
+
+86
+00:05:33.595 --> 00:05:37.420
+Most features are available in
+Azure Government, with one gap.
+
+87
+00:05:37.420 --> 00:05:42.026
+Administrative units with dynamic
+membership aren't available there,
+
+88
+00:05:42.026 --> 00:05:45.695
+so GCC High uses assigned units,
+filled by a scheduled job.
+
+89
+00:05:45.695 --> 00:05:49.266
+To roll back, remove the
+policy, but keep the old dynamic
+
+90
+00:05:49.266 --> 00:05:53.130
+group until the package has
+run clean for a full cycle.
+
+91
+00:05:56.880 --> 00:06:00.818
+A PIV card without a binding to
+the account is just a badge.
+
+92
+00:06:00.818 --> 00:06:05.367
+The binding names one specific
+certificate, so any reissue changes it.
+
+93
+00:06:05.367 --> 00:06:08.699
+The first step is to trust
+each issuing authority,
+
+94
+00:06:08.699 --> 00:06:11.055
+and give each one a revocation list.
+
+95
+00:06:11.055 --> 00:06:14.330
+Without a list, Entra doesn't
+check revocation at all.
+
+96
+00:06:14.330 --> 00:06:16.118
+The limits depend on the cloud.
+
+97
+00:06:16.118 --> 00:06:20.673
+For interactive sign-in, a list
+can be twenty megabytes in GCC and
+
+98
+00:06:20.673 --> 00:06:25.056
+forty-five in GCC High, and it
+must download within ten seconds.
+
+99
+00:06:25.056 --> 00:06:27.480
+If Entra can't download a configured list,
+
+100
+00:06:27.480 --> 00:06:31.617
+certificate sign-in fails for every
+certificate from that authority.
+
+101
+00:06:31.617 --> 00:06:36.768
+So host the lists on highly available
+endpoints, ideally over HTTP.
+
+102
+00:06:36.768 --> 00:06:41.648
+Next, raise PIV certificates to
+multifactor strength by issuer or policy,
+
+103
+00:06:41.648 --> 00:06:46.330
+and require phishing-resistant
+strength in Conditional Access.
+
+104
+00:06:50.080 --> 00:06:53.630
+The rest of this gate ties the
+card's life to the person's.
+
+105
+00:06:53.630 --> 00:06:57.380
+No card is requested without
+a joiner record and a sponsor.
+
+106
+00:06:57.380 --> 00:07:00.777
+The card system writes the
+binding when the card is issued,
+
+107
+00:07:00.777 --> 00:07:03.042
+and removes it when the card is revoked.
+
+108
+00:07:03.042 --> 00:07:07.877
+Once the binding lands, the temporary pass
+from gate three isn't needed anymore,
+
+109
+00:07:07.877 --> 00:07:10.704
+and the proofing level
+is recorded per person.
+
+110
+00:07:10.704 --> 00:07:14.655
+The card system's events flow
+back in, keyed on the person key.
+
+111
+00:07:14.655 --> 00:07:18.827
+Those events are termination,
+revocation, suspension and expiry,
+
+112
+00:07:18.827 --> 00:07:21.918
+and the same event can
+mean two different things.
+
+113
+00:07:21.918 --> 00:07:26.592
+For a contractor, a terminated or
+expired card ends the engagement.
+
+114
+00:07:26.592 --> 00:07:30.305
+For an employee, it's credential
+drift, not a separation,
+
+115
+00:07:30.305 --> 00:07:33.605
+because only HR decides
+when an employee leaves.
+
+116
+00:07:33.605 --> 00:07:36.255
+And a legal name change
+rewrites the binding.
+
+117
+00:07:36.255 --> 00:07:39.354
+The guide is open that the
+card system's interface,
+
+118
+00:07:39.354 --> 00:07:42.960
+and the contractor PIV path,
+are still pending proof.
+
+119
+00:07:46.710 --> 00:07:49.310
+The workbook's fifth
+chapter does two things.
+
+120
+00:07:49.310 --> 00:07:52.606
+First, it measures each
+revocation list once,
+
+121
+00:07:52.606 --> 00:07:56.347
+recording its size, its
+download time, and any error.
+
+122
+00:07:56.347 --> 00:08:00.510
+A failed download is the finding,
+so it's recorded, not raised.
+
+123
+00:08:00.510 --> 00:08:04.235
+Then it checks the tenant's settings
+against the limits for a named cloud.
+
+124
+00:08:04.235 --> 00:08:06.485
+The fictional tenant tells a story.
+
+125
+00:08:06.485 --> 00:08:08.896
+One certificate authority was renewed,
+
+126
+00:08:08.896 --> 00:08:13.060
+so the card program's expected
+authority is gone from the trust store.
+
+127
+00:08:13.060 --> 00:08:16.847
+The renewed list is eighteen
+and a half million bytes,
+
+128
+00:08:16.847 --> 00:08:21.322
+takes over eleven seconds to
+download, and is served over HTTPS.
+
+129
+00:08:21.322 --> 00:08:24.223
+The slow download fails in every cloud.
+
+130
+00:08:24.223 --> 00:08:27.809
+The policy mapping points at
+the wrong PIV identifier.
+
+131
+00:08:27.809 --> 00:08:31.748
+And the phishing-resistant policy
+is still in report-only mode.
+
+132
+00:08:31.748 --> 00:08:35.734
+Run the same check for GCC High
+and one warning disappears.
+
+133
+00:08:35.734 --> 00:08:40.650
+That size is close to the commercial
+limit, but well under Azure Government's.
+
+134
+00:08:44.400 --> 00:08:49.407
+On the federal side, accepting PIV
+credentials and public-key authentication call
+
+135
+00:08:49.407 --> 00:08:53.978
+for the certificate sign-in configuration
+export: the trusted authorities,
+
+136
+00:08:53.978 --> 00:08:58.187
+the revocation settings, the binding
+rules, and the required affinity.
+
+137
+00:08:58.187 --> 00:09:02.272
+CISA's baseline requires
+phishing-resistant MFA for all
+
+138
+00:09:02.272 --> 00:09:06.526
+users and for privileged roles,
+so keep the ScubaGear report.
+
+139
+00:09:06.526 --> 00:09:11.563
+FIPS 201 allows issuance only once
+a proper authority authorizes it,
+
+140
+00:09:11.563 --> 00:09:16.513
+so the card system's records are
+joined to the HR or contractor event.
+
+141
+00:09:16.513 --> 00:09:21.825
+To validate, one kit check lists card
+holders with no binding, or only weak ones.
+
+142
+00:09:21.825 --> 00:09:24.162
+No kit check reads the configuration,
+
+143
+00:09:24.162 --> 00:09:28.987
+so the evidence includes a revoked test
+certificate being refused at sign-in.
+
+144
+00:09:28.987 --> 00:09:33.676
+Everything here is available in both
+clouds, though the size limits differ.
+
+145
+00:09:33.676 --> 00:09:36.876
+Until there's a clear way
+to write the binding after
+
+146
+00:09:36.876 --> 00:09:40.000
+Active Directory retires,
+keep it in AD and sync it.
+
+147
+00:09:40.000 --> 00:09:43.336
+To roll back, restore the
+bindings from the card system,
+
+148
+00:09:43.336 --> 00:09:45.630
+never by editing the directory.
+
+149
+00:09:49.380 --> 00:09:53.393
+The separation gate puts the leaver
+in the Federal Modernization
+
+150
+00:09:53.393 --> 00:09:56.530
+Workbook's Book 03's order
+and then proves the timing.
+
+151
+00:09:56.530 --> 00:09:59.668
+Disable the account and
+revoke its sessions first.
+
+152
+00:09:59.668 --> 00:10:03.098
+Then one custom task starts
+the device retire and the
+
+153
+00:10:03.098 --> 00:10:06.606
+card revocation together,
+and waits for both to report.
+
+154
+00:10:06.606 --> 00:10:11.285
+That wait can run from thirty minutes
+to three hours, and if it times out,
+
+155
+00:10:11.285 --> 00:10:14.755
+it goes to a high-priority
+exception, not a retry loop.
+
+156
+00:10:14.755 --> 00:10:18.630
+Then come the removals, and a
+read-back to confirm the block took.
+
+157
+00:10:18.630 --> 00:10:21.942
+A disabled account with live
+sessions is an incident.
+
+158
+00:10:21.942 --> 00:10:26.955
+Deletion comes last, in a separate
+workflow, after the devices are retired.
+
+159
+00:10:26.955 --> 00:10:28.775
+Set the leave time late in the day,
+
+160
+00:10:28.775 --> 00:10:31.742
+and remember the schedule is
+part of the time allowed.
+
+161
+00:10:31.742 --> 00:10:34.943
+An emergency means an
+immediate out-of-band block,
+
+162
+00:10:34.943 --> 00:10:38.143
+then the same sequence on
+demand, behind approval.
+
+163
+00:10:38.143 --> 00:10:40.722
+A separation entered more than three days
+
+164
+00:10:40.722 --> 00:10:43.155
+late misses the trigger,
+so run it by hand.
+
+165
+00:10:43.155 --> 00:10:45.810
+Privileged leavers need their own path.
+
+166
+00:10:49.560 --> 00:10:54.010
+The workbook's sixth chapter measures
+each separation from the audit logs.
+
+167
+00:10:54.010 --> 00:10:56.362
+A leaver counts as blocked once both the
+
+168
+00:10:56.362 --> 00:10:59.285
+disable and the session
+revocation are recorded.
+
+169
+00:10:59.285 --> 00:11:03.097
+They count as fully revoked when the
+card and the devices are done too.
+
+170
+00:11:03.097 --> 00:11:05.523
+Nine fictional separations are measured.
+
+171
+00:11:05.523 --> 00:11:08.522
+The typical block lands
+in about fifteen minutes.
+
+172
+00:11:08.522 --> 00:11:11.694
+But the slowest ten percent
+take over five hours,
+
+173
+00:11:11.694 --> 00:11:16.134
+against a sample limit of four, and
+full revocation takes far longer.
+
+174
+00:11:16.134 --> 00:11:17.697
+Three stories stand out.
+
+175
+00:11:17.697 --> 00:11:21.622
+One leaver was blocked late, and
+that person's card was revoked
+
+176
+00:11:21.622 --> 00:11:25.623
+twenty-three hours after notice,
+past the eighteen FIPS allows.
+
+177
+00:11:25.623 --> 00:11:28.723
+Another separation was
+entered almost a week late,
+
+178
+00:11:28.723 --> 00:11:32.784
+and its only disable failed, so that
+person was never blocked at all.
+
+179
+00:11:32.784 --> 00:11:37.135
+And the pipeline re-enabled a third
+leaver two days after the disable.
+
+180
+00:11:37.135 --> 00:11:39.110
+These limits are only samples.
+
+181
+00:11:39.110 --> 00:11:43.910
+The agency sets the real period, and
+sets it together with the schedule.
+
+182
+00:11:47.660 --> 00:11:52.405
+On the federal side, personnel termination
+and account disabling call for both
+
+183
+00:11:52.405 --> 00:11:55.928
+measured times for each leaver,
+along with the workflow run,
+
+184
+00:11:55.928 --> 00:12:00.385
+the device actions, and the card revocation
+with the list that published it.
+
+185
+00:12:00.385 --> 00:12:03.560
+Contractors add the time
+from end date to block.
+
+186
+00:12:03.560 --> 00:12:07.539
+FIPS 201 says a card that can't
+be collected must be revoked
+
+187
+00:12:07.539 --> 00:12:11.435
+within eighteen hours of
+notice, so keep both timestamps.
+
+188
+00:12:11.435 --> 00:12:14.422
+Emergency disables are logged as changes.
+
+189
+00:12:14.422 --> 00:12:18.143
+To validate, run a full pay
+period with no missed leavers,
+
+190
+00:12:18.143 --> 00:12:21.622
+blocks within the limit,
+and every exception closed.
+
+191
+00:12:21.622 --> 00:12:23.486
+Security owns this gate.
+
+192
+00:12:23.486 --> 00:12:27.623
+Lifecycle Workflows and PIM are
+available in Azure Government.
+
+193
+00:12:27.623 --> 00:12:30.370
+The guide infers that a GCC tenant's Logic
+
+194
+00:12:30.370 --> 00:12:33.360
+App sits in a commercial
+Azure subscription.
+
+195
+00:12:33.360 --> 00:12:38.772
+Until the extensions exist, use a leaver
+checklist with a named owner for each row.
+
+196
+00:12:38.772 --> 00:12:43.223
+To roll back a cancelled separation,
+re-enable from the corrected record.
+
+197
+00:12:43.223 --> 00:12:46.930
+A deleted cloud user can be
+restored for thirty days.
+
+198
+00:12:50.680 --> 00:12:52.755
+The last gate keeps the record true.
+
+199
+00:12:52.755 --> 00:12:57.911
+Run the lifecycle drift checks: missing
+identity, stale access, orphan accounts,
+
+200
+00:12:57.911 --> 00:13:02.755
+unauthorized writes, and credential
+drift for employees and contractors.
+
+201
+00:13:02.755 --> 00:13:06.248
+Fix each finding at its source,
+and let the fix flow back
+
+202
+00:13:06.248 --> 00:13:09.742
+through the pipeline, never
+as a direct directory edit.
+
+203
+00:13:09.742 --> 00:13:12.506
+Report six metrics on
+the monitoring cadence.
+
+204
+00:13:12.506 --> 00:13:18.567
+Prove HR is the only source, using seven
+days of logs, then close the ticket path.
+
+205
+00:13:18.567 --> 00:13:23.406
+And keep the evidence outside the directory,
+because it has to outlive the accounts.
+
+206
+00:13:23.406 --> 00:13:25.818
+The table shows the workbook's lab run.
+
+207
+00:13:25.818 --> 00:13:29.893
+Blocking, revocation, joiner
+readiness, correlation coverage,
+
+208
+00:13:29.893 --> 00:13:34.830
+and the share of access granted by rules
+are all out of bounds on this fixture.
+
+209
+00:13:34.830 --> 00:13:39.067
+Transfer-to-review isn't measured,
+because a review is still open.
+
+210
+00:13:39.067 --> 00:13:43.618
+A metric with no input is reported
+as not measured, never as zero.
+
+211
+00:13:43.618 --> 00:13:46.610
+And the thresholds are
+for the agency to choose.
+
+212
+00:13:50.360 --> 00:13:53.858
+The workbook's seventh chapter
+makes this gate one run,
+
+213
+00:13:53.858 --> 00:13:56.035
+plus a chain of evidence packages.
+
+214
+00:13:56.035 --> 00:14:01.535
+The run reads the earlier labs' outputs,
+checking each one against its own manifest.
+
+215
+00:14:01.535 --> 00:14:05.151
+It insists on knowing whether
+it's a fixture or a tenant run,
+
+216
+00:14:05.151 --> 00:14:07.185
+so a lab can't pass for production.
+
+217
+00:14:07.185 --> 00:14:12.097
+The evidence tool packages each run with
+checksums, chained to the one before.
+
+218
+00:14:12.097 --> 00:14:15.036
+Then the period report
+verifies the whole chain.
+
+219
+00:14:15.036 --> 00:14:18.154
+Here the chain is unbroken
+and nothing is missing,
+
+220
+00:14:18.154 --> 00:14:22.110
+but twenty findings are still
+open, so the period isn't complete.
+
+221
+00:14:22.110 --> 00:14:26.710
+On the federal side, continuous monitoring
+calls for the six metrics per period.
+
+222
+00:14:26.710 --> 00:14:29.865
+Audit review and retention
+call for the log export,
+
+223
+00:14:29.865 --> 00:14:34.372
+findings closed at the source, and
+retention set to the records schedule.
+
+224
+00:14:34.372 --> 00:14:38.310
+CISA's continuous reporting
+calls for ScubaGear results.
+
+225
+00:14:38.310 --> 00:14:42.085
+The kit checks run on the drift
+cadence, and the CISO owns it.
+
+226
+00:14:42.085 --> 00:14:46.120
+There's no rollback here, because
+this is the loop that keeps running.
+
+227
+00:14:49.870 --> 00:14:54.133
+Put together, the gates make one
+evidence file for each population.
+
+228
+00:14:54.133 --> 00:14:58.094
+It holds the register, the
+sources and the reconciliations.
+
+229
+00:14:58.094 --> 00:15:03.320
+It holds the workflows and their run history,
+and the access policies and reviews.
+
+230
+00:15:03.320 --> 00:15:06.782
+It holds the certificate
+configuration and the card records.
+
+231
+00:15:06.782 --> 00:15:10.007
+It holds the separation
+times and their exceptions.
+
+232
+00:15:10.007 --> 00:15:14.383
+And it holds the drift findings, the
+metrics and the sole-source proof.
+
+233
+00:15:14.383 --> 00:15:18.357
+File every kit run with its
+date, tenant and check version.
+
+234
+00:15:18.357 --> 00:15:22.854
+To build the code for these four
+gates, use the developer workbook,
+
+235
+00:15:22.854 --> 00:15:27.683
+Building HR-Driven Identity, chapters
+four to seven, each with its labs.
+
+236
+00:15:27.683 --> 00:15:30.320
+For the design, see Book 03.
+
+237
+00:15:30.320 --> 00:15:32.542
+For the attributes these gates read,
+
+238
+00:15:32.542 --> 00:15:36.170
+see the attribute-driven
+migration implementation guide.
+
+239
+00:15:36.170 --> 00:15:40.893
+To learn it all in order, use the
+learning path for HR-driven identity:
+
+240
+00:15:40.893 --> 00:15:45.870
+seven modules, one per gate, each with
+a fixture lab and a knowledge check.
+
+241
+00:15:45.870 --> 00:15:48.082
+The pipeline makes the account exist.
+
+242
+00:15:48.082 --> 00:15:51.624
+These seven gates make the HR
+record decide what happens to it,
+
+243
+00:15:51.624 --> 00:15:53.900
+and they leave the evidence that it did.

@@ -29,7 +29,7 @@ The policies behind the project plan's Phase 5 and its Gate 5, "workload identit
 ## Narrated tour
 {{< fmw-video DW_NPI_08_Workload_CA_Narrated >}}
 
-[Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.10/DW_NPI_08_Workload_CA.pptx) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.10/DW_NPI_08_Workload_CA_Narrated.pptx) (about 11 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-npi-08-workload-ca/DW_NPI_08_Workload_CA_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-npi-08-workload-ca/DW_NPI_08_Workload_CA_Narrated.vtt). Recorded on October 31, 2026 from the approved chapter.
+[Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11/DW_NPI_08_Workload_CA.pptx) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11/DW_NPI_08_Workload_CA_Narrated.pptx) (about 11 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-npi-08-workload-ca/DW_NPI_08_Workload_CA_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-npi-08-workload-ca/DW_NPI_08_Workload_CA_Narrated.vtt). Recorded on October 31, 2026 from the approved chapter.
 :::
 
 <!-- tour:end -->

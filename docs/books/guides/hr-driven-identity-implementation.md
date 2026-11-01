@@ -25,12 +25,12 @@ How an agency makes its HR system of record decide who exists in Microsoft Entra
 
 ## Watch or download
 
-A two-part narrated deck series follows this guide at the level of its gates: for each gate, what done means, the steps, the commands from the developer workbook's first lab, the federal requirement and evidence, government-cloud availability and rollback. The decks, the narrated decks and the videos come with the next edition; the narration scripts are here now.
+A two-part narrated deck series follows this guide at the level of its gates: for each gate, what done means, the steps, the commands from the developer workbook's first lab, the federal requirement and evidence, government-cloud availability and rollback. Each part has a deck for presenting live, a narrated self-running deck with captions, a video and its narration script.
 
 | Part | Gates | Deck, narrated deck and video | Narration script |
 |---|---|---|---|
-| Part 1: writers, sources and joiners (about 16 minutes) | G1–G3 | With the next edition | [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/hr-driven-identity-implementation-part-1/HR_Driven_Identity_Implementation_Part_1_Narration_Script.md) |
-| Part 2: access, credentials, separation and drift (about 16 minutes) | G4–G7 | With the next edition | [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/hr-driven-identity-implementation-part-2/HR_Driven_Identity_Implementation_Part_2_Narration_Script.md) |
+| Part 1: writers, sources and joiners (about 16 minutes) | G1–G3 | [Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11/HR_Driven_Identity_Implementation_Part_1.pptx) · [Narrated](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11/HR_Driven_Identity_Implementation_Part_1_Narrated.pptx) (about 16 min, captions) · [▶ Watch](../../presentations/watch.html?v=HR_Driven_Identity_Implementation_Part_1_Narrated) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/HR_Driven_Identity_Implementation_Part_1_Narrated.mp4) | [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/hr-driven-identity-implementation-part-1/HR_Driven_Identity_Implementation_Part_1_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/hr-driven-identity-implementation-part-1/HR_Driven_Identity_Implementation_Part_1_Narrated.vtt) |
+| Part 2: access, credentials, separation and drift (about 16 minutes) | G4–G7 | [Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11/HR_Driven_Identity_Implementation_Part_2.pptx) · [Narrated](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11/HR_Driven_Identity_Implementation_Part_2_Narrated.pptx) (about 16 min, captions) · [▶ Watch](../../presentations/watch.html?v=HR_Driven_Identity_Implementation_Part_2_Narrated) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/HR_Driven_Identity_Implementation_Part_2_Narrated.mp4) | [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/hr-driven-identity-implementation-part-2/HR_Driven_Identity_Implementation_Part_2_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/hr-driven-identity-implementation-part-2/HR_Driven_Identity_Implementation_Part_2_Narrated.vtt) |
 
 : The implementation deck series {.striped .hover}
 
@@ -475,7 +475,13 @@ Book 03's [control support table](../b03-hr-identity/11-drift-metrics-and-eviden
 
 ## Version and revision history {#version-history}
 
-This guide has not been published in an edition yet. Each edition is kept, with its Word editions, decks and videos, on the [Archive](../../about/archive.md) page. Every change so far is in the [commit history](https://github.com/WhalerMike/modernization-workbook/commits/main/docs/books/guides/hr-driven-identity-implementation.md).
+**Version 1.0**, in [edition 2026.11](../../about/archive.md#edition-2026-11) (November 1, 2026). Every edition is kept on the [Archive](../../about/archive.md) page; every change between editions is in the [commit history](https://github.com/WhalerMike/modernization-workbook/commits/main/docs/books/guides/hr-driven-identity-implementation.md).
+
+| Version | Edition | Date | Changes |
+|---|---|---|---|
+| 1.0 | [2026.11](../../about/archive.md#edition-2026-11) | 2026-11-01 | HR-Driven Identity: An Implementation Guide (draft) ([#272](https://github.com/WhalerMike/modernization-workbook/pull/272)); Building HR-Driven Identity: a developer workbook with labs ([#276](https://github.com/WhalerMike/modernization-workbook/pull/276)); Gate-level deck series for HR-Driven Identity and Ticket-to-Machine (sources) ([#280](https://github.com/WhalerMike/modernization-workbook/pull/280)) |
+
+: Versions of this guide, newest first {.striped .hover}
 
 <!-- revisions:end -->
 

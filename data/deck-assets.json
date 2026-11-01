@@ -1,5 +1,5 @@
 {
- "edition": "edition-2026.10",
+ "edition": "edition-2026.11",
  "files": [
   {
    "path": "presentations/attribute-driven-migration-deeper-dive-part-1/Attribute_Driven_Migration_Deeper_Dive_Part_1.pptx",
@@ -1731,6 +1731,44 @@
    "members": 22
   },
   {
+   "path": "presentations/hr-driven-identity-implementation-part-1/HR_Driven_Identity_Implementation_Part_1.pptx",
+   "asset": "HR_Driven_Identity_Implementation_Part_1.pptx",
+   "size": 218896,
+   "sha256": "bb3cd1a96a2e2c903c944313fabad358e19f1ee21feb69f17fdcfc78221f4ec9"
+  },
+  {
+   "path": "presentations/hr-driven-identity-implementation-part-1/HR_Driven_Identity_Implementation_Part_1_Narrated.pptx",
+   "asset": "HR_Driven_Identity_Implementation_Part_1_Narrated.pptx",
+   "size": 5649686,
+   "sha256": "4cfeeb655a555e4f3d16bffe3884aca3140ed7a9a9ceebff5a1d91ccc5ffb8a1"
+  },
+  {
+   "path": "presentations/hr-driven-identity-implementation-part-1/narration_HR_Driven_Identity_Implementation_Part_1",
+   "asset": "HR_Driven_Identity_Implementation_Part_1_narration_audio.zip",
+   "size": 5399334,
+   "sha256": "a7d7548b7ea71bdebc0e6e9ac5643d4f04d0d9fd0a60d1eff28361efd9d3a6ae",
+   "members": 16
+  },
+  {
+   "path": "presentations/hr-driven-identity-implementation-part-2/HR_Driven_Identity_Implementation_Part_2.pptx",
+   "asset": "HR_Driven_Identity_Implementation_Part_2.pptx",
+   "size": 225333,
+   "sha256": "6dea2ead5fb0e1e07ca6d5768d7d1326452345956b0c6ec34fa39e0c64e16593"
+  },
+  {
+   "path": "presentations/hr-driven-identity-implementation-part-2/HR_Driven_Identity_Implementation_Part_2_Narrated.pptx",
+   "asset": "HR_Driven_Identity_Implementation_Part_2_Narrated.pptx",
+   "size": 5623144,
+   "sha256": "f79889e0ec23bd819693757355cbb62a430f913fe01a1e20eb0cc7dc1947654c"
+  },
+  {
+   "path": "presentations/hr-driven-identity-implementation-part-2/narration_HR_Driven_Identity_Implementation_Part_2",
+   "asset": "HR_Driven_Identity_Implementation_Part_2_narration_audio.zip",
+   "size": 5366646,
+   "sha256": "9c5a966833af667cae5225c154dbbde3574e86c5a6bb8ef6aecfe27842467b4f",
+   "members": 16
+  },
+  {
    "path": "presentations/hr-driven-identity-interview/HR_Driven_Identity_AnyAgency.pptx",
    "asset": "HR_Driven_Identity_AnyAgency.pptx",
    "size": 380102,
@@ -2052,6 +2090,44 @@
    "size": 1963278,
    "sha256": "1bb17424d2a094d1c7e2ee78346ac9ad7368eaf5da6438441ccbde63437d7552",
    "members": 10
+  },
+  {
+   "path": "presentations/ttm-servicenow-sailpoint-implementation-part-1/TTM_ServiceNow_SailPoint_Implementation_Part_1.pptx",
+   "asset": "TTM_ServiceNow_SailPoint_Implementation_Part_1.pptx",
+   "size": 230913,
+   "sha256": "b81d0d8a3269659c60cc5b54d996f53542984cb1e8c662122b9d85b2d9665beb"
+  },
+  {
+   "path": "presentations/ttm-servicenow-sailpoint-implementation-part-1/TTM_ServiceNow_SailPoint_Implementation_Part_1_Narrated.pptx",
+   "asset": "TTM_ServiceNow_SailPoint_Implementation_Part_1_Narrated.pptx",
+   "size": 5692892,
+   "sha256": "59a38a790f607a9d2ebe7c7f38a942d7e04bace675e573f21724e5e611980e81"
+  },
+  {
+   "path": "presentations/ttm-servicenow-sailpoint-implementation-part-1/narration_TTM_ServiceNow_SailPoint_Implementation_Part_1",
+   "asset": "TTM_ServiceNow_SailPoint_Implementation_Part_1_narration_audio.zip",
+   "size": 5429402,
+   "sha256": "aa6c8913bdb6c6ff66a842e5aca5cecfa9460a3063cdf536b088b6aebcee3f36",
+   "members": 17
+  },
+  {
+   "path": "presentations/ttm-servicenow-sailpoint-implementation-part-2/TTM_ServiceNow_SailPoint_Implementation_Part_2.pptx",
+   "asset": "TTM_ServiceNow_SailPoint_Implementation_Part_2.pptx",
+   "size": 220507,
+   "sha256": "739bbdd36b9da50c3ca87b1cc8c62fb9e99b3b9f81f0ef81466898082b57cd08"
+  },
+  {
+   "path": "presentations/ttm-servicenow-sailpoint-implementation-part-2/TTM_ServiceNow_SailPoint_Implementation_Part_2_Narrated.pptx",
+   "asset": "TTM_ServiceNow_SailPoint_Implementation_Part_2_Narrated.pptx",
+   "size": 5404147,
+   "sha256": "7163b49b22f3356ce3911dab4300054531fa354a287049b38f64ed4005060731"
+  },
+  {
+   "path": "presentations/ttm-servicenow-sailpoint-implementation-part-2/narration_TTM_ServiceNow_SailPoint_Implementation_Part_2",
+   "asset": "TTM_ServiceNow_SailPoint_Implementation_Part_2_narration_audio.zip",
+   "size": 5153650,
+   "sha256": "30c053b8e646ad5f8742628081a548828bb8924e5da7ab88b72108ffa5909fe8",
+   "members": 15
   }
  ]
 }

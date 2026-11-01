@@ -1,0 +1,1230 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.763
+Welcome to Part 1 of the implementation
+series for HR-driven identity.
+
+2
+00:00:04.763 --> 00:00:07.401
+The HR pipeline makes an account exist.
+
+3
+00:00:07.401 --> 00:00:10.462
+This guide makes the HR
+record decide everything that
+
+4
+00:00:10.462 --> 00:00:13.387
+happens to that account
+afterward, and proves it did.
+
+5
+00:00:13.387 --> 00:00:15.112
+It does that in seven gates.
+
+6
+00:00:15.112 --> 00:00:18.680
+For each gate, we'll cover
+what done means, the steps,
+
+7
+00:00:18.680 --> 00:00:22.509
+the commands from the
+developer workbook's first lab,
+
+8
+00:00:22.509 --> 00:00:26.511
+the federal requirement and
+the evidence an ISSO keeps,
+
+9
+00:00:26.511 --> 00:00:30.601
+what's available in GCC and GCC
+High, and how to roll it back.
+
+10
+00:00:30.601 --> 00:00:35.007
+Part 1 takes the first three gates:
+one writer for every account state,
+
+11
+00:00:35.007 --> 00:00:39.800
+employees and contractors from their
+sources, and joiners ready on day one.
+
+12
+00:00:39.800 --> 00:00:41.675
+Part 2 takes the other four.
+
+13
+00:00:41.675 --> 00:00:45.825
+Design guidance is labeled, and the
+workbook's code is illustrative,
+
+14
+00:00:45.825 --> 00:00:49.310
+tested against fixtures
+rather than a live tenant.
+
+15
+00:00:53.060 --> 00:00:55.297
+Here are all seven gates on one page.
+
+16
+00:00:55.297 --> 00:00:59.236
+The first is done when every
+account state and HR attribute has
+
+17
+00:00:59.236 --> 00:01:03.173
+exactly one recorded writer, and
+the other write paths are gone.
+
+18
+00:01:03.173 --> 00:01:05.894
+The second is done when
+employees come from HR,
+
+19
+00:01:05.894 --> 00:01:09.834
+and contractors come from a named
+source with an enforced end date.
+
+20
+00:01:09.834 --> 00:01:14.311
+The third is done when the pre-hire
+and day-one workflows run with limits,
+
+21
+00:01:14.311 --> 00:01:16.435
+and day-one readiness is measured.
+
+22
+00:01:16.435 --> 00:01:20.391
+Part 2 picks up from there:
+access assigned from attributes,
+
+23
+00:01:20.391 --> 00:01:23.136
+with a review of what
+a move leaves behind;
+
+24
+00:01:23.136 --> 00:01:28.384
+PIV and CAC credentials tied to HR events;
+separations that block access first
+
+25
+00:01:28.384 --> 00:01:33.147
+and dispose of the account last; and
+drift found and closed at the source.
+
+26
+00:01:33.147 --> 00:01:36.914
+Each gate names the validation
+kit checks that prove part of it,
+
+27
+00:01:36.914 --> 00:01:39.448
+and says plainly where
+no check exists yet.
+
+28
+00:01:39.448 --> 00:01:45.100
+Every threshold is a proposed starting
+point the agency approves or replaces.
+
+29
+00:01:48.850 --> 00:01:51.375
+The gates assume some things
+are already in place.
+
+30
+00:01:51.375 --> 00:01:52.988
+The HR pipeline is live,
+
+31
+00:01:52.988 --> 00:01:57.487
+with shadow differences explained
+and no unmatched creations.
+
+32
+00:01:57.487 --> 00:02:01.321
+The attribute foundation is done:
+the slot register is signed,
+
+33
+00:02:01.321 --> 00:02:03.951
+and the attributes are
+proven on the pilot.
+
+34
+00:02:03.951 --> 00:02:09.055
+The Federal Modernization Workbook's Book
+03's first-phase decisions are made:
+
+35
+00:02:09.055 --> 00:02:13.688
+the person key, the authority map, the
+worker types and the privacy basis.
+
+36
+00:02:13.688 --> 00:02:15.087
+Licensing matters.
+
+37
+00:02:15.087 --> 00:02:20.585
+Inbound provisioning needs Entra ID P1,
+but workflows, entitlement management,
+
+38
+00:02:20.585 --> 00:02:25.250
+access reviews and automatic
+assignment need Entra ID Governance.
+
+39
+00:02:25.250 --> 00:02:29.987
+Roles go through PIM, with the workflows
+administrator role behind approval.
+
+40
+00:02:29.987 --> 00:02:32.929
+And logs leave Entra ID
+before the first gate,
+
+41
+00:02:32.929 --> 00:02:37.063
+because its own retention is short
+and can't be recovered later.
+
+42
+00:02:37.063 --> 00:02:41.765
+As for where things run: the HR platform
+runs on Oracle Cloud Infrastructure,
+
+43
+00:02:41.765 --> 00:02:44.526
+and the lifecycle's
+automation runs in Azure.
+
+44
+00:02:44.526 --> 00:02:47.523
+Apps on AWS or Oracle Cloud only see these
+
+45
+00:02:47.523 --> 00:02:51.400
+changes through the access
+Entra ID grants them.
+
+46
+00:02:55.150 --> 00:02:57.138
+The first gate starts from one idea.
+
+47
+00:02:57.138 --> 00:02:59.906
+Whoever can write an attribute effectively
+
+48
+00:02:59.906 --> 00:03:02.675
+decides any access that
+a rule grants from it.
+
+49
+00:03:02.675 --> 00:03:06.417
+Account state works the same
+way, and two systems can set it:
+
+50
+00:03:06.417 --> 00:03:08.912
+the pipeline, and Lifecycle Workflows.
+
+51
+00:03:08.912 --> 00:03:12.025
+So the register gets a
+row for every transition,
+
+52
+00:03:12.025 --> 00:03:14.500
+each with one writer and one backstop.
+
+53
+00:03:14.500 --> 00:03:18.300
+Inbound provisioning creates the
+account, and nothing else does.
+
+54
+00:03:18.300 --> 00:03:21.250
+At hire, pick one writer
+to enable the account,
+
+55
+00:03:21.250 --> 00:03:26.513
+either the pipeline or the day-one workflow,
+and record the other as the backstop.
+
+56
+00:03:26.513 --> 00:03:29.133
+At separation, the pipeline disables the
+
+57
+00:03:29.133 --> 00:03:32.138
+account before the leaver
+workflow first runs.
+
+58
+00:03:32.138 --> 00:03:35.676
+Only the pipeline can re-enable
+a cancelled separation.
+
+59
+00:03:35.676 --> 00:03:40.675
+Deletion belongs to a separate post-separation
+workflow, never to a bulk upload.
+
+60
+00:03:40.675 --> 00:03:45.600
+The hire and leave dates, and the manager,
+are written only by provisioning.
+
+61
+00:03:45.600 --> 00:03:49.238
+HR, not IT, records a new supervisor.
+
+62
+00:03:49.238 --> 00:03:52.620
+And the certificate binding
+belongs to the card system.
+
+63
+00:03:56.370 --> 00:03:58.595
+Three more steps finish the first gate.
+
+64
+00:03:58.595 --> 00:04:02.749
+First, write down which records
+provision at all, including leave,
+
+65
+00:04:02.749 --> 00:04:06.595
+secondments and pre-hire lookahead,
+and version that filter.
+
+66
+00:04:06.595 --> 00:04:09.095
+Remember, someone on leave hasn't left.
+
+67
+00:04:09.095 --> 00:04:14.108
+Second, remove every other way to write
+these values: the help desk, self-service,
+
+68
+00:04:14.108 --> 00:04:15.805
+Exchange administrators,
+
+69
+00:04:15.805 --> 00:04:19.970
+and the permissions on Active
+Directory's organizational units.
+
+70
+00:04:19.970 --> 00:04:21.833
+One path is easy to miss.
+
+71
+00:04:21.833 --> 00:04:25.260
+Whoever can write the
+certificate mapping attribute in
+
+72
+00:04:25.260 --> 00:04:28.470
+AD decides which card can
+sign in as which synced user.
+
+73
+00:04:28.470 --> 00:04:31.885
+Third, save an audit query
+for each protected value,
+
+74
+00:04:31.885 --> 00:04:35.382
+one that finds writes by
+anyone but the named writer.
+
+75
+00:04:35.382 --> 00:04:37.594
+Gate seven will run those queries.
+
+76
+00:04:37.594 --> 00:04:40.320
+The interim path matters
+for most agencies.
+
+77
+00:04:40.320 --> 00:04:45.045
+Until AD retires, sync is a writer too,
+so record the sync agent's managed
+
+78
+00:04:45.045 --> 00:04:50.280
+service account as a writer, and review
+those permissions every quarter.
+
+79
+00:04:54.030 --> 00:04:57.537
+The workbook's first chapter
+turns the register into code,
+
+80
+00:04:57.537 --> 00:05:01.043
+and its lab runs on fictional
+audit records with no tenant.
+
+81
+00:05:01.043 --> 00:05:04.413
+The check reads the register
+itself: one writer per row,
+
+82
+00:05:04.413 --> 00:05:08.383
+every required transition present,
+no deletes by provisioning,
+
+83
+00:05:08.383 --> 00:05:11.454
+and the register signed
+with its scope versioned.
+
+84
+00:05:11.454 --> 00:05:14.055
+The program's own register
+comes back clean.
+
+85
+00:05:14.055 --> 00:05:17.693
+Then the scan compares a month of
+audit records with the register.
+
+86
+00:05:17.693 --> 00:05:19.867
+It finds eleven protected writes.
+
+87
+00:05:19.867 --> 00:05:22.920
+Five came from the right
+writer, one from the backstop,
+
+88
+00:05:22.920 --> 00:05:26.805
+four from a second writer, and one
+from a writer the register forbids.
+
+89
+00:05:26.805 --> 00:05:29.389
+So a help desk account disabled a leaver,
+
+90
+00:05:29.389 --> 00:05:33.930
+a fix-up script wrote a coded slot,
+and provisioning deleted an account.
+
+91
+00:05:33.930 --> 00:05:35.180
+Two limits apply.
+
+92
+00:05:35.180 --> 00:05:37.680
+The scan doesn't read Active Directory.
+
+93
+00:05:37.680 --> 00:05:41.799
+And the audit property names it
+matches aren't documented by Microsoft,
+
+94
+00:05:41.799 --> 00:05:45.450
+so confirm them in a test tenant
+before you trust the scan.
+
+95
+00:05:49.200 --> 00:05:51.437
+Here's the federal side of the first gate.
+
+96
+00:05:51.437 --> 00:05:56.188
+Account management and identifier management
+are both in the Moderate baseline.
+
+97
+00:05:56.188 --> 00:05:59.319
+For those, the ISSO keeps
+the signed register,
+
+98
+00:05:59.319 --> 00:06:03.212
+with its lifecycle rows and
+its versioned scope filter.
+
+99
+00:06:03.212 --> 00:06:06.864
+Audit review covers writes
+made outside the named writer,
+
+100
+00:06:06.864 --> 00:06:11.124
+and the evidence is the saved queries
+plus the AD auditing settings.
+
+101
+00:06:11.124 --> 00:06:14.763
+The feed also needs a privacy
+determination for each flow.
+
+102
+00:06:14.763 --> 00:06:17.575
+To validate, two kit checks
+confirm there are no
+
+103
+00:06:17.575 --> 00:06:20.675
+duplicate keys and that the
+key fields are filled in.
+
+104
+00:06:20.675 --> 00:06:23.113
+But they measure values, not writers.
+
+105
+00:06:23.113 --> 00:06:25.449
+Nothing in the kit
+reads who can write yet.
+
+106
+00:06:25.449 --> 00:06:29.944
+So the evidence for writers is the
+delegation export, the permission review,
+
+107
+00:06:29.944 --> 00:06:33.938
+and a clean run of the saved queries
+over the pilot's last thirty days.
+
+108
+00:06:33.938 --> 00:06:38.151
+Everything this gate uses is
+available in both government clouds.
+
+109
+00:06:38.151 --> 00:06:40.938
+To roll back, make a
+signed register change.
+
+110
+00:06:40.938 --> 00:06:46.110
+A removed permission comes back only
+through a recorded change, with an end date.
+
+111
+00:06:49.860 --> 00:06:53.548
+The second gate brings each
+population in from its own source.
+
+112
+00:06:53.548 --> 00:06:56.622
+For employees, the
+pipeline already exists.
+
+113
+00:06:56.622 --> 00:07:01.151
+This gate checks one thing: that the feed
+reads hires and separations by their
+
+114
+00:07:01.151 --> 00:07:05.610
+published date, so the pre-hire and
+pre-separation workflows have time to run.
+
+115
+00:07:05.610 --> 00:07:10.147
+Contractors are different, because
+they aren't in Federal HR 2.0.
+
+116
+00:07:10.147 --> 00:07:15.040
+The program's decision is an agency-owned
+contractor system of record for now,
+
+117
+00:07:15.040 --> 00:07:18.022
+with Oracle's contingent
+worker as a later swap.
+
+118
+00:07:18.022 --> 00:07:19.885
+Measure before you change anything.
+
+119
+00:07:19.885 --> 00:07:23.801
+Reconcile the contractor
+register, the card system and the
+
+120
+00:07:23.801 --> 00:07:27.797
+accounts in both directories,
+read-only, using the person key.
+
+121
+00:07:27.797 --> 00:07:32.965
+Then settle six questions with the
+register's owner: who owns it, what's in it,
+
+122
+00:07:32.965 --> 00:07:37.285
+how fresh it is, its privacy basis,
+the join key, and its coverage.
+
+123
+00:07:37.285 --> 00:07:41.504
+Contractors map into the same record,
+with their own worker type code,
+
+124
+00:07:41.504 --> 00:07:44.835
+the sponsor as manager, and
+their own provisioning app.
+
+125
+00:07:44.835 --> 00:07:48.410
+The contractor PIV path
+is still pending proof.
+
+126
+00:07:52.160 --> 00:07:55.210
+For contractors, ship the
+leaver before the joiner.
+
+127
+00:07:55.210 --> 00:07:59.660
+An end date in a spreadsheet that
+nobody updates keeps access alive.
+
+128
+00:07:59.660 --> 00:08:02.260
+So the middleware works
+out the earliest end.
+
+129
+00:08:02.260 --> 00:08:07.139
+That's the contract end, capped by the
+completion date; suitability withdrawn;
+
+130
+00:08:07.139 --> 00:08:10.722
+the card terminated; the sponsor
+gone past a grace period;
+
+131
+00:08:10.722 --> 00:08:13.085
+or a missed sponsor recertification.
+
+132
+00:08:13.085 --> 00:08:15.708
+Whichever comes first,
+the middleware sends
+
+133
+00:08:15.708 --> 00:08:18.473
+the leave date and disables
+the account itself.
+
+134
+00:08:18.473 --> 00:08:20.723
+The table comes from the workbook's lab.
+
+135
+00:08:20.723 --> 00:08:24.673
+Four fictional contractors go
+inactive, each for a different reason.
+
+136
+00:08:24.673 --> 00:08:27.512
+One of them had a card
+expiring in late October,
+
+137
+00:08:27.512 --> 00:08:31.772
+but a recertification that came due
+earlier, so the earlier date wins.
+
+138
+00:08:31.772 --> 00:08:33.739
+Two records are quarantined,
+
+139
+00:08:33.739 --> 00:08:37.835
+one with no contract end and one
+with a sponsor HR doesn't know.
+
+140
+00:08:37.835 --> 00:08:41.560
+Sponsors recertify through a
+twice-yearly access review.
+
+141
+00:08:41.560 --> 00:08:46.940
+Here's the design choice: if the sponsor
+doesn't respond, access is removed.
+
+142
+00:08:50.690 --> 00:08:53.944
+The workbook's second
+chapter builds this in code,
+
+143
+00:08:53.944 --> 00:08:57.040
+reusing the HR middleware
+that already exists.
+
+144
+00:08:57.040 --> 00:09:01.632
+The extract step takes nine fictional
+records and finds three active,
+
+145
+00:09:01.632 --> 00:09:04.878
+four past their earliest
+end, and two quarantined.
+
+146
+00:09:04.878 --> 00:09:09.915
+Every record carries its end date, so the
+leaver workflow fires on the right day.
+
+147
+00:09:09.915 --> 00:09:12.632
+The middleware turns that extract into one
+
+148
+00:09:12.632 --> 00:09:15.727
+batch of seven requests,
+including four disables.
+
+149
+00:09:15.727 --> 00:09:19.152
+Nothing is sent, because
+a dry run is its default.
+
+150
+00:09:19.152 --> 00:09:22.827
+Then the read-only reconciliation
+finds seven issues.
+
+151
+00:09:22.827 --> 00:09:26.221
+Four are accounts still enabled
+past their earliest end,
+
+152
+00:09:26.221 --> 00:09:29.253
+and they're exactly the four
+disables waiting to go.
+
+153
+00:09:29.253 --> 00:09:33.507
+The others are an orphan account, a card
+for someone the source doesn't know,
+
+154
+00:09:33.507 --> 00:09:36.227
+and a leave date that would
+fire on the wrong day.
+
+155
+00:09:36.227 --> 00:09:40.064
+Finally, the review step writes
+the sponsor review settings.
+
+156
+00:09:40.064 --> 00:09:43.853
+Once the disables go out, the
+next reconciliation is clean.
+
+157
+00:09:43.853 --> 00:09:46.960
+That clean re-run is the
+evidence for the gate.
+
+158
+00:09:50.710 --> 00:09:55.679
+On the federal side, account management and
+external personnel security call for the
+
+159
+00:09:55.679 --> 00:09:58.269
+source decision, the
+reconciliation report,
+
+160
+00:09:58.269 --> 00:10:02.398
+and how long each contractor's access
+took to block after their end date.
+
+161
+00:10:02.398 --> 00:10:05.289
+Identifying each person
+by status means the
+
+162
+00:10:05.289 --> 00:10:08.023
+worker type code appears on every account.
+
+163
+00:10:08.023 --> 00:10:11.923
+OMB's zero trust memo says
+enterprise identity draws on HR,
+
+164
+00:10:11.923 --> 00:10:15.011
+contract management
+and personnel security,
+
+165
+00:10:15.011 --> 00:10:20.048
+so the governance body signs a table
+that names one authority for each fact.
+
+166
+00:10:20.048 --> 00:10:23.776
+To validate, one kit check lists
+enabled accounts with no key,
+
+167
+00:10:23.776 --> 00:10:26.685
+which is where contractors
+without one show up.
+
+168
+00:10:26.685 --> 00:10:31.614
+No check reads end dates, so the
+evidence is the reconciliation re-run,
+
+169
+00:10:31.614 --> 00:10:34.035
+with no contractor past their end.
+
+170
+00:10:34.035 --> 00:10:36.713
+In Azure Government, API-driven inbound
+
+171
+00:10:36.713 --> 00:10:39.960
+provisioning and access
+reviews are available.
+
+172
+00:10:39.960 --> 00:10:42.580
+Until the contractor source is automated,
+
+173
+00:10:42.580 --> 00:10:46.848
+keep the contract end date as the
+leave date so the leaver still fires.
+
+174
+00:10:46.848 --> 00:10:49.473
+To roll back, pause the contractor app.
+
+175
+00:10:49.473 --> 00:10:51.100
+It keeps its state.
+
+176
+00:10:54.850 --> 00:10:57.562
+The third gate makes
+joiners ready on day one.
+
+177
+00:10:57.562 --> 00:11:02.138
+The account already exists, disabled,
+because the pipeline sent it early.
+
+178
+00:11:02.138 --> 00:11:05.921
+Build just a few workflows:
+pre-hire, day-one, mover,
+
+179
+00:11:05.921 --> 00:11:10.650
+leaver, post-leaver, and the
+rehire and conversion workflows.
+
+180
+00:11:10.650 --> 00:11:14.612
+Scope them by coded attributes,
+never one per organization.
+
+181
+00:11:14.612 --> 00:11:18.171
+Microsoft gives two different
+ceilings for workflows,
+
+182
+00:11:18.171 --> 00:11:21.962
+fifty on one page and a hundred
+on another, so budget to fifty.
+
+183
+00:11:21.962 --> 00:11:24.726
+A workflow can hold up
+to twenty-five tasks.
+
+184
+00:11:24.726 --> 00:11:27.964
+The tenant schedule runs
+every three hours by default
+
+185
+00:11:27.964 --> 00:11:30.700
+and can be set anywhere
+from one to twenty-four.
+
+186
+00:11:30.700 --> 00:11:34.987
+Every workflow shares it, so set
+it once, with the leaver in mind.
+
+187
+00:11:34.987 --> 00:11:37.288
+Set the hire time early in the day.
+
+188
+00:11:37.288 --> 00:11:41.124
+Give every scheduled workflow
+an execution limit a little
+
+189
+00:11:41.124 --> 00:11:44.412
+above a normal week, so an
+anomaly gets quarantined.
+
+190
+00:11:44.412 --> 00:11:48.800
+In the workbook's files, the day-one
+workflow doesn't enable the account.
+
+191
+00:11:48.800 --> 00:11:50.490
+The pipeline does.
+
+192
+00:11:54.240 --> 00:11:57.590
+A new hire needs a way to sign
+in before their card arrives.
+
+193
+00:11:57.590 --> 00:12:00.909
+The pre-hire workflow has a
+built-in task that creates
+
+194
+00:12:00.909 --> 00:12:04.152
+a Temporary Access Pass and
+emails it to the manager.
+
+195
+00:12:04.152 --> 00:12:05.790
+It starts on the hire date.
+
+196
+00:12:05.790 --> 00:12:09.127
+It needs the manager and the
+manager's email filled in.
+
+197
+00:12:09.127 --> 00:12:12.701
+And it only works for someone
+with no other sign-in methods,
+
+198
+00:12:12.701 --> 00:12:15.753
+no earlier sign-ins and no
+Entra role assignments.
+
+199
+00:12:15.753 --> 00:12:20.577
+So a rehire who kept their old methods
+won't qualify, and needs a separate path.
+
+200
+00:12:20.577 --> 00:12:24.226
+Microsoft recommends a pass
+sent to a new hire last no more
+
+201
+00:12:24.226 --> 00:12:27.952
+than twenty-four hours, and the
+tenant can force one-time use.
+
+202
+00:12:27.952 --> 00:12:30.909
+Day-one access comes from
+an onboarding package,
+
+203
+00:12:30.909 --> 00:12:34.678
+with department access assigned
+automatically in gate four.
+
+204
+00:12:34.678 --> 00:12:37.802
+Never add a new hire straight
+to an application group.
+
+205
+00:12:37.802 --> 00:12:41.652
+Then measure the share of hires who are
+fully ready at the start of day one.
+
+206
+00:12:41.652 --> 00:12:43.502
+The pass is only a bridge.
+
+207
+00:12:43.502 --> 00:12:48.390
+Once the card is bound, an account
+still running on a pass is a finding.
+
+208
+00:12:52.140 --> 00:12:56.153
+The workbook's third chapter keeps
+the workflows as reviewed files.
+
+209
+00:12:56.153 --> 00:12:58.864
+Its lint passes the program's six files.
+
+210
+00:12:58.864 --> 00:13:03.864
+Against three broken copies, it catches
+an offset outside Microsoft's range,
+
+211
+00:13:03.864 --> 00:13:07.832
+too many workflows for the
+budget, a missing execution limit,
+
+212
+00:13:07.832 --> 00:13:10.133
+a joiner that adds groups directly,
+
+213
+00:13:10.133 --> 00:13:14.815
+delete and disable in the same workflow,
+and a pass that lasts three days.
+
+214
+00:13:14.815 --> 00:13:18.665
+The plan step refuses to run
+if any file has a finding.
+
+215
+00:13:18.665 --> 00:13:21.740
+Then it compares each file
+with the tenant's export.
+
+216
+00:13:21.740 --> 00:13:26.346
+A missing workflow becomes a create,
+and a changed one becomes a new version,
+
+217
+00:13:26.346 --> 00:13:29.615
+because workflows are
+versioned, not edited in place.
+
+218
+00:13:29.615 --> 00:13:32.390
+It reads with one permission
+and sends nothing.
+
+219
+00:13:32.390 --> 00:13:36.927
+Execution limits aren't in the
+API, so record them in the file.
+
+220
+00:13:36.927 --> 00:13:41.241
+Last, readiness checks each hire
+for an enabled, licensed account,
+
+221
+00:13:41.241 --> 00:13:44.677
+the onboarding package, and
+a completed pre-hire run.
+
+222
+00:13:44.677 --> 00:13:47.077
+One of four fictional hires is ready.
+
+223
+00:13:47.077 --> 00:13:49.800
+Run it on an export from
+the start of the day.
+
+224
+00:13:53.550 --> 00:13:57.871
+On the federal side, automated account
+management calls for the workflow
+
+225
+00:13:57.871 --> 00:13:59.571
+definitions, their versions,
+
+226
+00:13:59.571 --> 00:14:03.325
+and run history exported before
+Entra's thirty-day view drops it.
+
+227
+00:14:03.325 --> 00:14:06.984
+Authenticator management requires
+that the first authenticator
+
+228
+00:14:06.984 --> 00:14:09.663
+is time-limited and goes
+to an accountable person.
+
+229
+00:14:09.663 --> 00:14:14.051
+So the ISSO keeps the pass
+policy and the task's settings.
+
+230
+00:14:14.051 --> 00:14:16.738
+To validate, one kit
+check flags hires whose
+
+231
+00:14:16.738 --> 00:14:19.725
+start date has passed with
+no processing record.
+
+232
+00:14:19.725 --> 00:14:24.837
+Another confirms execution limits are set,
+and counts workflows against the ceiling.
+
+233
+00:14:24.837 --> 00:14:28.987
+Add the run history for the last group
+of hires, and the readiness rate.
+
+234
+00:14:28.987 --> 00:14:34.075
+Lifecycle Workflows and entitlement
+management are available in Azure Government.
+
+235
+00:14:34.075 --> 00:14:39.024
+But Microsoft's government table has
+no row for the Temporary Access Pass,
+
+236
+00:14:39.024 --> 00:14:42.188
+so its availability in
+GCC High isn't confirmed.
+
+237
+00:14:42.188 --> 00:14:45.701
+Before Governance is licensed,
+the pipeline enables the
+
+238
+00:14:45.701 --> 00:14:49.213
+account on the hire date and
+the help desk issues the pass.
+
+239
+00:14:49.213 --> 00:14:52.500
+To roll back, disable
+the workflow's schedule.
+
+240
+00:14:56.250 --> 00:15:01.150
+To close Part 1, here's what each gate
+leaves behind, and where Part 2 picks it up.
+
+241
+00:15:01.150 --> 00:15:05.937
+The first gate leaves the register, the
+scope filter and the saved audit queries.
+
+242
+00:15:05.937 --> 00:15:10.311
+The separation gate relies on its rule
+that the pipeline disables first,
+
+243
+00:15:10.311 --> 00:15:12.425
+and the drift gate runs its queries.
+
+244
+00:15:12.425 --> 00:15:15.057
+The second gate leaves
+the source decisions,
+
+245
+00:15:15.057 --> 00:15:18.188
+the authority table and
+the reconciliation reports.
+
+246
+00:15:18.188 --> 00:15:22.263
+The credentials gate reads contractor
+card events, and the separation
+
+247
+00:15:22.263 --> 00:15:26.200
+gate measures how fast contractors
+are blocked after their end date.
+
+248
+00:15:26.200 --> 00:15:29.475
+The third gate leaves the
+workflows and their run history.
+
+249
+00:15:29.475 --> 00:15:32.364
+The mover workflow, the
+end of the pass bridge,
+
+250
+00:15:32.364 --> 00:15:34.863
+and the leaver sequence all build on it.
+
+251
+00:15:34.863 --> 00:15:40.925
+Part 2 covers access and movers, credentials,
+separation, and drift and evidence.
+
+252
+00:15:40.925 --> 00:15:44.570
+To build Part 1's code,
+use the developer workbook,
+
+253
+00:15:44.570 --> 00:15:49.763
+Building HR-Driven Identity, chapters
+one to three, each with its labs.
+
+254
+00:15:49.763 --> 00:15:54.394
+And to learn it in order, use the
+learning path for HR-driven identity:
+
+255
+00:15:54.394 --> 00:15:59.340
+seven modules, one per gate, each with
+a fixture lab and a knowledge check.

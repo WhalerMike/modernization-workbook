@@ -21,8 +21,8 @@ While a device is joined to Active Directory, AD quietly does two jobs at once: 
 
 | Edition | File |
 |---|---|
-| Deck, presented live (about 17 minutes) | [Research_Device_Naming.pptx](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.10/Research_Device_Naming.pptx) |
-| Narrated, self-running (about 10 minutes, captions) | [Research_Device_Naming_Narrated.pptx](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.10/Research_Device_Naming_Narrated.pptx) |
+| Deck, presented live (about 17 minutes) | [Research_Device_Naming.pptx](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11/Research_Device_Naming.pptx) |
+| Narrated, self-running (about 10 minutes, captions) | [Research_Device_Naming_Narrated.pptx](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11/Research_Device_Naming_Narrated.pptx) |
 | Narration script and caption track | [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/research-device-naming/Research_Device_Naming_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/research-device-naming/Research_Device_Naming_Narrated.vtt) |
 
 ## The answer in brief
