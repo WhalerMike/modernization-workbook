@@ -207,16 +207,8 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: department has two writers",
       body: [
-        { code: [
-          "$ python -m pytest tests/python/test_writer_check.py -q                       # 6 passed",
-          "$ python clients/python/writer_check.py --entra-schema tests/fixtures/writers/entra_inbound_schema.json \\",
-          "    --isc-policies tests/fixtures/writers/isc_entra_source_policies.json",
-          "Entra inbound writes 8 attributes; SailPoint writes 7; 1 Finding, 1 Warn, 2 Info",
-          "  Finding department         Entra update SailPoint update both update it: each overwrites the other, …",
-          "  Warn    displayName        Entra update SailPoint create one updates it and the other sets it at creation: …",
-          "  Info    mailNickname       Entra create SailPoint create both set it only at creation",
-          "  Info    userPrincipalName  Entra create SailPoint create both set it only at creation",
-        ], label: "PYTHON 3.10+ WITH PYTEST, IN examples/servicenow-sailpoint (LONG REASONS TRIMMED)", pt: 10.5 },
+        { terminal: "08-1" },
+        { terminal: "08-2" },
         { lead: "The command exits 1: department is updated by both, so drift on it never settles." },
       ],
       sources: "Sources: examples/servicenow-sailpoint (fictional exports). Chapter 08, “Lab 1: fixtures, no tenant,” steps 1–2.",
@@ -228,17 +220,8 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: the alias, the guard, the reads",
       body: [
-        { code: [
-          "$ python clients/python/writer_check.py … --alias title=jobTitle",
-          "Entra inbound writes 8 attributes; SailPoint writes 7; 2 Finding, 1 Warn, 2 Info",
-          "  Finding jobTitle           Entra update SailPoint update both update it: …",
-          "$ python clients/python/writer_check.py … --entra-directory \"Microsoft Entra ID\"",
-          "error: No synchronization rule targets 'Microsoft Entra ID'; the schema's targets are ['Azure Active Directory']",
-          "$ python clients/python/kit_calls.py --task writer-check",
-          "isc     GET  /v3/sources/{sourceId}/provisioning-policies   idn:provisioning-policy:read",
-          "graph   GET  /v1.0/servicePrincipals/{id}/synchronization/jobs/{jobId}/schema",
-          "                                                     CustomSecAttributeProvisioning.Read.All",
-        ], label: "STEPS 3–5 (EXPORT PATHS SHORTENED TO …; LISTING REFLOWED)", pt: 10.5 },
+        { terminal: "08-3", lines: "1-2,5,8" },
+        { cols: [[{ terminal: "08-4" }], [{ terminal: "08-5", lines: "1,6,10"}]] },
         { callout: "without the alias the second writer was invisible: the alias list is part of what a reviewer checks. And a wrong directory name exits 2 rather than passing as “no overlap.”", label: "Read it: ", icon: "FaScaleBalanced", color: "teal" },
       ],
       sources: "Sources: examples/servicenow-sailpoint. Chapter 08, “Lab 1: fixtures, no tenant,” steps 3–5.",

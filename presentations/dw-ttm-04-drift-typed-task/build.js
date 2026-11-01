@@ -199,18 +199,8 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: the native change, resolved",
       body: [
-        { code: [
-          "$ python -m pytest tests/python/test_workflow_payload.py tests/python/test_contract.py -q   # 11 passed",
-          "$ python clients/python/workflow_payload.py --trigger idn:native-change-account-updated \\",
-          "    --event tests/fixtures/events/native-change-account-updated.json",
-          "Workflow: Drift to ServiceNow - native change (provenance)",
-          "kind finding, drift_class unauthorized_write, system isc_account",
-          "intended_state {\"attributes\": {\"title\": \"Analyst\"}, \"entitlements_absent\": [{\"attribute\":",
-          "  \"proxyAddresses\", \"value\": \"smtp:ap-approver@contoso.example\"}, {\"attribute\": \"memberOf\",",
-          "  \"value\": \"CN=Payables Approvers,OU=Groups,DC=contoso,DC=example\"}], \"entitlements_present\": []}",
-          "contract: accepted: P2, priority 2, key sailpoint-isc|2c91800000000000000000000a1001ad|unauthorized_write",
-          "input fields not sent: eventType",
-        ], label: "PYTHON 3.10+ AND NODE.JS 18+, IN examples/servicenow-sailpoint (LONG LINE WRAPPED)", pt: 10.5 },
+        { terminal: "04-1" },
+        { terminal: "04-2" },
         { lead: "Title back to Analyst; the group and the proxy address must be gone. eventType is always ACCOUNT_UPDATED here." },
       ],
       sources: "Sources: examples/servicenow-sailpoint (fictional events). Chapter 04, “Lab 1: fixtures, no tenant,” steps 1–2.",
@@ -222,20 +212,8 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: the mover, the signal, the script tests",
       body: [
-        { code: [
-          "$ python clients/python/workflow_payload.py --trigger idn:identity-attributes-changed \\",
-          "    --event tests/fixtures/events/identity-attributes-changed.json",
-          "intended_state {\"attributes\": {\"department\": \"Finance\"}}",
-          "contract: accepted: P3, priority 3, key sailpoint-isc|2c9180000000000000000000000e1004|attribute_drift|department",
-          "input fields not sent: none",
-          "$ python clients/python/workflow_payload.py --trigger idn:post-provisioning \\",
-          "    --event tests/fixtures/events/provisioning-completed.json",
-          "kind closure_signal, drift_class -, system -",
-          "contract: accepted",
-          "input fields not sent: action, requester, sources, warnings",
-          "$ node --test --test-name-pattern=\"attribute is in the key|multivalued\" \\",
-          "    tests/servicenow/servicenow_scripts.test.js                    # tests 2, pass 2, fail 0",
-        ], label: "STEPS 3–5 (WORKFLOW NAME LINES OMITTED)", pt: 10.5 },
+        { terminal: "04-3" },
+        { cols: [[{ terminal: "04-4" }], [{ terminal: "04-5", lines: "1-3,6-7"}]] },
         { lead: "Erin's department change: kept as Finance, P3, the attribute in the key. A closure signal never closes a finding." },
       ],
       sources: "Sources: examples/servicenow-sailpoint (fictional events). Chapter 04, “Lab 1: fixtures, no tenant,” steps 3–5.",

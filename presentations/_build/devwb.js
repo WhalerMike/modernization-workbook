@@ -14,6 +14,7 @@
 //               { bullets: [..], label?, color? }          (with a label it is a tinted panel)
 //               { table: { head: [..], rows: [[..]], w: [relative widths] }, pt? }
 //               { code: [lines], label?, pt? }             (Consolas; "#" lines in teal)
+//               { terminal: "NN-k", lines?, label?, pt? }  (a real Lab 1 capture, data/kit-captures/; see below)
 //               { cards: [{ title, text, color? }] }       (two to four across)
 //               { steps: [{ title, text }] }               (numbered)
 //               { callout: text, label, color?, icon? }
@@ -36,7 +37,7 @@ const WORKBOOKS = {
   adm: { dir: "docs/books/b19-developer-workbook", name: "Building the Attribute-Driven Migration" },
   pa: { dir: "docs/project-plans/developer-workbooks/privileged-access", name: "Building Privileged Access" },
   npi: { dir: "docs/project-plans/developer-workbooks/non-person-identity", name: "Building Non-Person Identity" },
-  ttm: { dir: "docs/project-plans/developer-workbooks/ticket-to-machine", name: "Building Ticket-to-Machine" },
+  ttm: { dir: "docs/project-plans/developer-workbooks/ticket-to-machine", name: "Building Ticket-to-Machine", kit: "examples/servicenow-sailpoint" },
 };
 const ICONS = new Set(fs.readdirSync(path.join(__dirname, "icons")).map((f) => f.replace(/\.png$/, "")));
 const BANNED = /\bUIAO\b|\bSSA\b|Social Security|Mainframe PIN|\bDISA\b|\bSTIGs?\b/i;
@@ -151,6 +152,60 @@ module.exports = function build(spec) {
         if (e.label) { txt(sl, "Code label", e.label, { x: x + 0.18, y: y + 0.08, w: w - 0.36, h: 0.25, fontSize: 10.5, bold: true, color: HEX.slate }); top += 0.27; }
         const runs = e.code.map((l, k) => ({ text: l.length ? l : " ", options: { breakLine: k < e.code.length - 1, color: /^\s*(#|\/\/)/.test(l) ? HEX.teal : HEX.ink } }));
         txt(sl, "Code", runs, { x: x + 0.18, y: top, w: w - 0.3, h: y + h - top - 0.05, fontFace: "Consolas", fontSize: pt, valign: "top" });
+      },
+    },
+    // A real capture from scripts/kit_captures.py, drawn as a terminal window. lines picks capture lines
+    // ("1-8,15"); a gap between picks shows as "…". Long lines wrap as a window this wide would wrap them.
+    terminal: {
+      pt: (e, s) => size(e.pt || 11.5, 9, s),
+      raw: (e) => {
+        const f = path.join(ROOT, "data", "kit-captures", spec.workbook, `${e.terminal}.txt`);
+        if (!fs.existsSync(f)) { fail(`no kit capture ${e.terminal}: run scripts/kit_captures.py ${spec.workbook}`); return ["(missing capture)"]; }
+        const all = fs.readFileSync(f, "utf8").replace(/\n$/, "").split("\n");
+        if (!e.lines) return all;
+        const out = [];
+        let prev = 0;
+        for (const part of String(e.lines).split(",")) {
+          const [a, b] = part.split("-").map(Number);
+          if (prev && a > prev + 1) out.push("…");
+          out.push(...all.slice(a - 1, b || a));
+          prev = b || a;
+        }
+        return out;
+      },
+      lines: (e, w, s) => {
+        const cols = Math.floor((w - 0.4) / (0.55 * E.terminal.pt(e, s) / 72));
+        const out = [];
+        for (const l of E.terminal.raw(e)) {
+          if (l.length <= cols) { out.push(l); continue; }
+          if (!l.startsWith("$ ")) { for (let i = 0; i < l.length; i += cols) out.push(l.slice(i, i + cols)); continue; }
+          let cur = "";
+          for (const word of l.split(" ")) {
+            if (cur && cur.length + 1 + word.length > cols - 2) { out.push(cur + " \\"); cur = "    " + word; } else cur = cur ? `${cur} ${word}` : word;
+          }
+          out.push(cur);
+        }
+        return out;
+      },
+      h: (e, w, s) => 0.36 + E.terminal.lines(e, w, s).length * lh(E.terminal.pt(e, s)) + 0.2,
+      draw: (sl, e, x, y, w, h, s) => {
+        const pt = E.terminal.pt(e, s), lines = E.terminal.lines(e, w, s);
+        box(sl, "Terminal", x, y, w, h, "0F172A", "0F172A");
+        sl.addShape(pres.shapes.RECTANGLE, { objectName: "Terminal title bar", x, y, w, h: 0.3, fill: { color: "1E293B" }, line: { color: "1E293B" } });
+        ["F87171", "FBBF24", "34D399"].forEach((c, k) => sl.addShape(pres.shapes.OVAL, { objectName: `Terminal dot ${k + 1}`, x: x + 0.14 + k * 0.2, y: y + 0.09, w: 0.12, h: 0.12, fill: { color: c }, line: { color: c } }));
+        txt(sl, "Terminal title", e.label || `${wb.kit || "the kit"}  ·  fixture data  ·  real output`,
+          { x: x + 0.8, y, w: w - 1.0, h: 0.3, fontSize: 9.5, color: "94A3B8", align: "center", valign: "middle" });
+        let command = false;
+        const runs = [];
+        lines.forEach((l, k) => {
+          const br = k < lines.length - 1;
+          command = l.startsWith("$ ") || (command && l.startsWith("    "));
+          if (l.startsWith("$ ")) {
+            runs.push({ text: "$ ", options: { color: "5EEAD4", bold: true } });
+            runs.push({ text: l.slice(2), options: { color: "F8FAFC", bold: true, breakLine: br } });
+          } else runs.push({ text: l.length ? l : " ", options: { color: command ? "F8FAFC" : (/^\(exit code|^…$/.test(l) ? "94A3B8" : "E2E8F0"), bold: command, breakLine: br } });
+        });
+        txt(sl, "Terminal output", runs, { x: x + 0.15, y: y + 0.38, w: w - 0.25, h: h - 0.45, fontFace: "Consolas", fontSize: pt, valign: "top" });
       },
     },
     cards: {

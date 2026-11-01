@@ -224,18 +224,8 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: six waiting findings at noon",
       body: [
-        { code: [
-          "$ python -m pytest tests/python/test_reread_verification.py tests/python/test_reread_offline.py -q   # 15 passed",
-          "$ python clients/python/reread_verification.py --records-json tests/fixtures/reread/awaiting_records.json \\",
-          "    --observations-json tests/fixtures/reread/observations.json --now 2026-11-01T12:00:00Z",
-          "[dry-run] IDF0001001: verified; would PATCH state=3",
-          "[dry-run] IDF0001002: mismatch; would PATCH state=1 (accountEnabled: intended False, observed True)",
-          "IDF0001003: pending, the ISC copy predates the change; re-run after the next aggregation",
-          "[dry-run] IDF0001004: verified; would PATCH state=3",
-          "IDF0001005: skipped, the intended state names nothing a re-read can check",
-          "[dry-run] IDF0001006: verified; would PATCH state=3",
-          "1 mismatch, 1 pending, 1 skipped, 3 verified",
-        ], label: "PYTHON 3.10+ AND NODE.JS 18+, IN examples/servicenow-sailpoint", pt: 10.5 },
+        { terminal: "05-1" },
+        { terminal: "05-2" },
         { lead: "IDF0001003's account was last modified 22:00 on October 31; the finding started waiting at 06:00 on November 1." },
       ],
       sources: "Sources: examples/servicenow-sailpoint (fictional records and reads). Chapter 05, “Lab 1: fixtures, no tenant,” steps 1–2.",
@@ -247,14 +237,8 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: a day later, and the rule's own tests",
       body: [
-        { code: [
-          "$ python clients/python/reread_verification.py --records-json tests/fixtures/reread/awaiting_records.json \\",
-          "    --observations-json tests/fixtures/reread/observations.json --now 2026-11-02T12:00:00Z --out-json out/reread.json",
-          "[dry-run] IDF0001003: mismatch; would PATCH state=1 (disabled: intended True, observed False)",
-          "2 mismatch, 1 skipped, 3 verified",
-          "$ node --test --test-name-pattern=\"redirected|verifier|exception approver|evidence alone|non-closing|SDIM\" \\",
-          "    tests/servicenow/servicenow_scripts.test.js                         # tests 6, pass 6",
-        ], label: "STEPS 3–4 (THE OTHER FIVE RECORDS PRINT AS BEFORE)", pt: 10.5 },
+        { terminal: "05-3" },
+        { terminal: "05-4", lines: "1-2,10-11" },
         { callout: "after the grace period a stale read is a mismatch, and the record reopens. out/reread.json holds each result with its evidence hash. Delete out when you're done.", label: "Read it: ", icon: "FaArrowsRotate", color: "teal" },
       ],
       sources: "Sources: examples/servicenow-sailpoint. Chapter 05, “Lab 1: fixtures, no tenant,” steps 3–4.",

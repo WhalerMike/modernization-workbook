@@ -198,17 +198,8 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: every call declared, and what reread needs",
       body: [
-        { code: [
-          "$ python -m pytest tests/python/test_kit_calls.py -q                     # 9 passed",
-          "$ python clients/python/kit_calls.py --task reread --system servicenow",
-          "Task reread: reread_verification.py: list waiting findings, re-read each subject, …",
-          "servicenow",
-          "  POST   /oauth_token.do                              an inbound OAuth client (client credentials) …",
-          "  GET    /api/now/table/u_identity_finding            x_example_idkit.verifier (read on u_identity_finding)",
-          "  PATCH  /api/now/table/u_identity_finding/{sys_id}   x_example_idkit.verifier (write on u_identity_finding)",
-          "  POST   /api/now/attachment/file                     x_example_idkit.verifier (create on sys_attachment)",
-          "  needs: x_example_idkit.verifier",
-        ], label: "PYTHON 3.10+ WITH PYTEST AND REQUESTS, IN examples/servicenow-sailpoint (COLUMNS NARROWED)", pt: 11 },
+        { terminal: "02-1" },
+        { terminal: "02-2" },
         { lead: "Four calls, one role: the verifier." },
       ],
       sources: "Sources: examples/servicenow-sailpoint (fake session, fictional fixtures). Chapter 02, “Lab 1: fixtures, no tenant,” steps 1–2.",
@@ -220,19 +211,8 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: catching a grant that's too wide",
       body: [
-        { code: [
-          "$ python clients/python/kit_calls.py --task reread --system servicenow \\",
-          "    --granted \"x_example_idkit.verifier,itil\"",
-          "missing: none",
-          "extra:   itil",
-          "Least privilege does not hold: fix the grant.                             # exit 1",
-          "$ python clients/python/kit_calls.py --task evidence --system servicenow \\",
-          "    --granted \"x_example_idkit.verifier\"",
-          "missing: x_example_idkit.evidence_reader",
-          "extra:   x_example_idkit.verifier                                         # exit 1",
-          "$ python -m pytest tests/python/test_kit_common.py -q -k \"sn_ or retry or paging or base_urls\"",
-          "7 passed, 12 deselected",
-        ], label: "STEPS 3–5 (THE TASK LISTING BEFORE EACH RESULT IS OMITTED)", pt: 11.5 },
+        { cols: [[{ terminal: "02-3", lines: "1,11-14" }], [{ terminal: "02-4", lines: "1,9-12"}]] },
+        { terminal: "02-5" },
         { callout: "the export would work with the verifier's role; it would also be able to close findings.", label: "Step 4's point: ", icon: "FaTriangleExclamation", color: "red" },
       ],
       sources: "Sources: examples/servicenow-sailpoint. Chapter 02, “Lab 1: fixtures, no tenant,” steps 3–5.",
