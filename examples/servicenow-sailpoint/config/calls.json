@@ -1,0 +1,30 @@
+{
+  "description": "Every HTTP call the Python clients make, with the task that makes it and the least privilege it needs. Read by clients/python/kit_calls.py; tests/python/test_kit_calls.py fails if a client makes a call that isn't declared here for its task. Sources were read November 1, 2026; see the developer workbook Building Ticket-to-Machine, Chapters 02 and 03.",
+  "tasks": {
+    "drift": "identity_drift.py: read Graph users, the Entra audit, ISC identities and uncorrelated accounts",
+    "drift-push": "identity_drift.py --push-to-servicenow --apply: post findings to the Scripted REST endpoint",
+    "reread": "reread_verification.py: list waiting findings, re-read each subject, close or reopen with evidence",
+    "evidence": "evidence_export.py: read closed findings for the evidence export",
+    "workflows": "create the three ISC workflows from sailpoint/workflows/drift-to-servicenow.json (by hand or a pipeline; no client in the kit makes this call)",
+    "writer-check": "export the two provisioning mappings writer_check.py compares (by hand; writer_check.py reads files only)"
+  },
+  "calls": [
+    {"id": "isc-token", "kind": "token", "system": "isc", "method": "POST", "path": "/oauth/token", "tasks": ["drift", "reread"], "permission": "API client (client credentials) or a personal access token", "source": "SailPoint Developer, Authentication"},
+    {"id": "isc-search", "system": "isc", "method": "POST", "path": "/v3/search", "tasks": ["drift", "reread"], "permission": "sp:search:read", "source": "SailPoint API spec v3, searchPost"},
+    {"id": "isc-accounts-list", "system": "isc", "method": "GET", "path": "/v3/accounts", "tasks": ["drift"], "permission": "idn:accounts:read", "source": "SailPoint API spec v3, listAccounts"},
+    {"id": "isc-account-get", "system": "isc", "method": "GET", "path": "/v3/accounts/{id}", "tasks": ["reread"], "permission": "idn:accounts:read", "source": "SailPoint API spec v3, getAccount"},
+    {"id": "isc-workflow-create", "system": "isc", "method": "POST", "path": "/v2025/workflows", "tasks": ["workflows"], "permission": "sp:workflow:manage", "source": "SailPoint API spec v2025, createWorkflow"},
+    {"id": "isc-provisioning-policies", "system": "isc", "method": "GET", "path": "/v3/sources/{sourceId}/provisioning-policies", "tasks": ["writer-check"], "permission": "idn:provisioning-policy:read", "source": "SailPoint API spec v3, listProvisioningPolicies"},
+    {"id": "sn-token", "kind": "token", "system": "servicenow", "method": "POST", "path": "/oauth_token.do", "tasks": ["drift-push", "reread", "evidence"], "permission": "an inbound OAuth client (client credentials) with its own integration user", "source": "ServiceNow, Client credentials grant workflow (Zurich)"},
+    {"id": "sn-finding-post", "system": "servicenow", "method": "POST", "path": "/api/x_example_idkit/identity_findings/finding", "tasks": ["drift-push"], "permission": "x_example_idkit.finding_writer (REST_Endpoint ACL on the Scripted REST API)", "source": "ServiceNow, Scripted REST APIs (Zurich)"},
+    {"id": "sn-table-list", "system": "servicenow", "method": "GET", "path": "/api/now/table/u_identity_finding", "tasks": ["reread"], "permission": "x_example_idkit.verifier (read on u_identity_finding)", "source": "ServiceNow, Table API (Zurich)"},
+    {"id": "sn-table-list-evidence", "system": "servicenow", "method": "GET", "path": "/api/now/table/u_identity_finding", "tasks": ["evidence"], "permission": "x_example_idkit.evidence_reader (read only on u_identity_finding)", "source": "ServiceNow, Table API (Zurich)"},
+    {"id": "sn-table-patch", "system": "servicenow", "method": "PATCH", "path": "/api/now/table/u_identity_finding/{sys_id}", "tasks": ["reread"], "permission": "x_example_idkit.verifier (write on u_identity_finding)", "source": "ServiceNow, Table API (Zurich)"},
+    {"id": "sn-attachment-post", "system": "servicenow", "method": "POST", "path": "/api/now/attachment/file", "tasks": ["reread"], "permission": "x_example_idkit.verifier (create on sys_attachment)", "source": "ServiceNow, Attachment API (Zurich)"},
+    {"id": "graph-token", "kind": "token", "system": "graph", "method": "POST", "path": "/{tenant}/oauth2/v2.0/token", "tasks": ["drift", "reread"], "permission": "app registration with a certificate (client credentials)", "source": "Microsoft Learn, OAuth 2.0 client credentials flow"},
+    {"id": "graph-users-list", "system": "graph", "method": "GET", "path": "/v1.0/users", "tasks": ["drift"], "permission": "User.Read.All", "source": "Microsoft Learn, List users"},
+    {"id": "graph-user-get", "system": "graph", "method": "GET", "path": "/v1.0/users/{id}", "tasks": ["reread"], "permission": "User.Read.All", "source": "Microsoft Learn, Get a user"},
+    {"id": "graph-audit-list", "system": "graph", "method": "GET", "path": "/v1.0/auditLogs/directoryAudits", "tasks": ["drift"], "permission": "AuditLog.Read.All", "optional": true, "source": "Microsoft Learn, List directoryAudits"},
+    {"id": "graph-sync-schema", "system": "graph", "method": "GET", "path": "/v1.0/servicePrincipals/{id}/synchronization/jobs/{jobId}/schema", "tasks": ["writer-check"], "permission": "CustomSecAttributeProvisioning.Read.All", "source": "Microsoft Learn, Get synchronizationSchema"}
+  ]
+}

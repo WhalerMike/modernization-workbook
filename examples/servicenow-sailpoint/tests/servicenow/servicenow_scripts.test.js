@@ -115,6 +115,28 @@ test('de-duplicates an open finding on (source, subject, class)', () => {
   assert.strictEqual(runRestWith(db, NCD).res.status, 201);
 });
 
+test('two attributes drifting on one subject are two findings (attribute is in the key)', () => {
+  const db = makeDb();
+  const base = { kind: 'finding', source: 'drift-reconciliation', drift_class: 'attribute_drift',
+    system: 'entra_user', subject_id: 'u1', origin: { finding_id: 'f1' } };
+  const dept = runRestWith(db, { ...base, attribute: 'department', intended_state: { attributes: { department: 'HR' } } }).res;
+  const mgr = runRestWith(db, { ...base, attribute: 'manager', intended_state: { attributes: { manager: 'E1000' } } }).res;
+  assert.strictEqual(dept.status, 201);
+  assert.strictEqual(mgr.status, 201);
+  assert.strictEqual(db.rows.length, 2);
+  assert.strictEqual(db.rows[1].u_dedupe_key, 'drift-reconciliation|u1|attribute_drift|manager');
+  assert.strictEqual(runRestWith(db, { ...base, attribute: 'manager', intended_state: {} }).res.status, 200);
+});
+
+test('multivalued attribute changes become entitlements absent and present', () => {
+  const { res, db } = runRest({ ...NCD, single_value_changes: [], entitlement_changes: [],
+    multi_value_changes: [{ name: 'proxyAddresses', addedValues: ['smtp:x@contoso.example'], removedValues: ['smtp:a@contoso.example'] }] });
+  assert.strictEqual(res.status, 201);
+  const intended = JSON.parse(db.rows[0].u_intended_state);
+  assert.deepStrictEqual(intended.entitlements_absent, [{ attribute: 'proxyAddresses', value: 'smtp:x@contoso.example' }]);
+  assert.deepStrictEqual(intended.entitlements_present, [{ attribute: 'proxyAddresses', value: 'smtp:a@contoso.example' }]);
+});
+
 test('attribute-change event becomes attribute drift on the identity', () => {
   const { res, db } = runRest({ kind: 'finding', source: 'sailpoint-isc', drift_class: 'attribute_drift',
     origin: { trigger_id: 'idn:identity-attributes-changed' }, identity_id: 'id9',

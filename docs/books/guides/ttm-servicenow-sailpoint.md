@@ -51,7 +51,7 @@ This guide owns the order of work and the gates. It links to the pages that hold
 | The drift classes and their severities | [Book 03, Chapter 11](../b03-hr-identity/11-drift-metrics-and-evidence.md#drift-between-hr-and-the-directory) |
 | **The order of work on ServiceNow and SailPoint, the gates, the federal evidence per gate, availability and rollback** | **This guide** |
 | The code for Pass 1 (drift to a typed task, re-read before close, drift reconciliation), its permissions and its tests | The [integration kit page](snow-sailpoint-integration-kit.md) and the kit's [README on GitHub](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/servicenow-sailpoint) |
-| Building the kit step by step, as a developer | The developer workbook (coming), *Building Ticket-to-Machine* |
+| Building the kit step by step, as a developer | The developer workbook, [*Building Ticket-to-Machine*](../../project-plans/developer-workbooks/ticket-to-machine/index.md) |
 | Building the ServiceNow side in-house when there's no identity governance product | [Book 15, Chapter 13](../b15-day2-operations/13-building-day-two-automation-in-house.md#the-no-funding-path) |
 
 : What this guide owns and what it hands off {.striped .hover}

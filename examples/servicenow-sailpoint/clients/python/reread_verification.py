@@ -14,6 +14,9 @@ For each ServiceNow record in the awaiting-verification state:
                    waiting; leave it alone until the grace period ends.
 
 Read-only by default: prints what it would do. Pass --apply to write.
+An intended state that names nothing a re-read can check is skipped, never
+verified. --records-json and --observations-json run the same decisions
+offline, against saved records and saved reads, with no tenant (dry run only).
 Illustrative: unit-tested against mocked responses, not yet proven against
 live tenants.
 
@@ -21,6 +24,9 @@ Examples (from the kit root):
 
   # Dry run: print what would be closed or reopened
   python clients/python/reread_verification.py --config config/config.example.json
+
+  # Offline, against saved records and saved reads of each subject
+  python clients/python/reread_verification.py --records-json tests/fixtures/reread/awaiting_records.json --observations-json tests/fixtures/reread/observations.json --now 2026-11-01T12:00:00Z
 
   # Write outcomes, with a 12-hour grace period for ISC aggregation
   python clients/python/reread_verification.py --config config/config.example.json --apply --grace-hours 12 --out-json reread-results.json
@@ -34,6 +40,7 @@ import sys
 from datetime import datetime, timedelta, timezone
 from typing import Any, Mapping
 
+import finding_contract as fc
 import kit_common as kc
 
 RECORD_FIELDS = ["sys_id", "number", "state", "u_system", "u_account_id", "u_identity_id",
@@ -59,10 +66,44 @@ def list_awaiting(cfg: Mapping[str, str], http: kc.Http, sn: Mapping[str, str], 
     return list(kc.sn_table_all(http, kc.sn_base_url(cfg), table, sn, query, RECORD_FIELDS))
 
 
+def subject_system(record: Mapping[str, Any]) -> str:
+    return record.get("u_system") or ("isc_account" if record.get("u_account_id") else "isc_identity")
+
+
+def subject_id(record: Mapping[str, Any]) -> str | None:
+    system = subject_system(record)
+    if system == "isc_account":
+        return record.get("u_account_id") or record.get("u_subject_id")
+    if system == "isc_identity":
+        return record.get("u_identity_id") or record.get("u_subject_id")
+    return record.get("u_subject_id") or record.get("u_account_id")
+
+
+def offline_reader(observations: Mapping[str, Any]):
+    """A reread() stand-in that answers from saved reads keyed by subject ID.
+
+    A subject mapped to null is a read that found nothing (404, or no search
+    hit). A subject with no entry is an error: a missing read is not a match.
+    """
+    def read(record: Mapping[str, Any], cfg: Mapping[str, str], http: Any, isc: Any, graph: Any) -> dict:
+        system, sid = subject_system(record), subject_id(record)
+        if system not in ("isc_account", "isc_identity", "entra_user"):
+            raise kc.KitError(f"Unsupported u_system {system!r} on {record.get('number')}")
+        if sid not in observations:
+            raise kc.KitError(f"No saved read for {system} {sid} ({record.get('number')})")
+        query = {"isc_account": f"GET /v3/accounts/{sid}",
+                 "isc_identity": "POST /v3/search " + kc.canonical_json(
+                     {"indices": ["identities"], "query": {"query": f'id:"{sid}"'}}),
+                 "entra_user": f"GET /v1.0/users/{sid}?$select=id,accountEnabled,department,employeeId,jobTitle"}[system]
+        observed = observations[sid]
+        return {"system": system, "query": query + " (saved read)", "observed": observed, "exists": observed is not None}
+    return read
+
+
 def reread(record: Mapping[str, Any], cfg: Mapping[str, str], http: kc.Http,
            isc: Mapping[str, str] | None, graph: Mapping[str, str] | None) -> dict:
     """Return {"system", "query", "observed", "exists"} for the record's subject."""
-    system = record.get("u_system") or ("isc_account" if record.get("u_account_id") else "isc_identity")
+    system = subject_system(record)
     if system == "isc_account":
         account_id = record.get("u_account_id") or record.get("u_subject_id")
         query = f"GET /v3/accounts/{account_id}"
@@ -164,11 +205,12 @@ def build_evidence(record: Mapping[str, Any], intended: Mapping[str, Any], obser
 def verify_records(records: list[dict], cfg: Mapping[str, str], http: kc.Http, sn: Mapping[str, str],
                    isc: Mapping[str, str] | None, graph: Mapping[str, str] | None, table: str,
                    apply: bool, grace_hours: float = 24.0, now: datetime | None = None,
-                   out=sys.stdout) -> list[dict]:
+                   out=sys.stdout, reader=None) -> list[dict]:
     now = now or datetime.now(timezone.utc)
     checked_at = now.replace(microsecond=0).isoformat().replace("+00:00", "Z")
     base = kc.sn_base_url(cfg)
     checker_identity = cfg.get("SAILPOINT_CLIENT_ID") or "unknown"
+    reader = reader or reread
     results = []
     for record in records:
         number = record.get("number")
@@ -180,7 +222,13 @@ def verify_records(records: list[dict], cfg: Mapping[str, str], http: kc.Http, s
             results.append({"record": number, "outcome": "skipped", "reason": "no u_intended_state"})
             print(f"{number}: skipped, no intended state recorded", file=out)
             continue
-        observation = reread(record, cfg, http, isc, graph)
+        if not fc.is_checkable(intended):
+            # {"attributes": {}} compares equal to anything: closing on it would close on nothing.
+            results.append({"record": number, "outcome": "skipped",
+                            "reason": "intended state names nothing a re-read can check"})
+            print(f"{number}: skipped, the intended state names nothing a re-read can check", file=out)
+            continue
+        observation = reader(record, cfg, http, isc, graph)
         if is_stale(record, observation, now, timedelta(hours=grace_hours)):
             results.append({"record": number, "outcome": "pending", "reason": "not aggregated since waiting began"})
             print(f"{number}: pending, the ISC copy predates the change; re-run after the next aggregation", file=out)
@@ -225,8 +273,34 @@ def main(argv: list[str] | None = None, http: kc.Http | None = None) -> int:
                         help="How long to wait for an aggregation before treating a stale read as a mismatch")
     parser.add_argument("--apply", action="store_true", help="Write outcomes to ServiceNow (default: dry run)")
     parser.add_argument("--out-json", help="Write the results list here")
+    parser.add_argument("--records-json", help="Offline: saved waiting records (Table API shape) instead of ServiceNow")
+    parser.add_argument("--observations-json", help="Offline: saved reads keyed by subject ID (null = not found)")
+    parser.add_argument("--now", help="Offline: the UTC time to judge the grace period against")
     args = parser.parse_args(argv)
     cfg = kc.load_config(args.config)
+    if bool(args.records_json) != bool(args.observations_json):
+        parser.error("--records-json and --observations-json go together")
+    if args.records_json:
+        if args.apply:
+            parser.error("--apply writes to ServiceNow; an offline run is a dry run only")
+        with open(args.records_json, encoding="utf-8") as handle:
+            data = json.load(handle)
+        records = data.get("result", data) if isinstance(data, dict) else data
+        with open(args.observations_json, encoding="utf-8") as handle:
+            observations = json.load(handle)
+        cfg = {**cfg, "SN_BASE_URL": cfg.get("SN_BASE_URL") or "https://offline.invalid"}
+        now = _parse_time(args.now) if args.now else None
+        results = verify_records(records, cfg, None, {}, None, None, args.table or cfg["SN_FINDING_TABLE"],
+                                 False, args.grace_hours, now=now, out=sys.stdout,
+                                 reader=offline_reader(observations))
+        counts: dict[str, int] = {}
+        for result in results:
+            counts[result["outcome"]] = counts.get(result["outcome"], 0) + 1
+        print(", ".join(f"{counts[k]} {k}" for k in sorted(counts)))
+        if args.out_json:
+            with open(args.out_json, "w", encoding="utf-8") as handle:
+                json.dump(results, handle, indent=2)
+        return 0
     http = http or kc.Http()
     table = args.table or cfg["SN_FINDING_TABLE"]
     sn = kc.sn_headers(cfg, http)

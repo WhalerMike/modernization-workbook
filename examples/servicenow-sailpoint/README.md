@@ -17,12 +17,19 @@ It implements three builds from the example page [Ticket-to-Machine on ServiceNo
 examples/servicenow-sailpoint/
   README.md
   config/config.example.json            placeholders only; the loader refuses secrets in a file
+  config/calls.json                     every HTTP call, its task and its least privilege
   sailpoint/workflows/drift-to-servicenow.json
   servicenow/scripted-rest-identity-finding.js
   servicenow/business-rule-await-verification.js
   clients/python/kit_common.py           config, tokens, retries, paging
   clients/python/identity_drift.py       build 3
-  clients/python/reread_verification.py  build 2
+  clients/python/reread_verification.py  build 2 (also offline, from saved records and reads)
+  clients/python/finding_contract.py     the data contract, checked before posting
+  clients/python/kit_calls.py            least privilege per task, and a grant comparison
+  clients/python/workflow_payload.py     what a workflow would post for a sample event
+  clients/python/drift_compare.py        drift run over run: new, persisting, resolved
+  clients/python/evidence_export.py      closed findings as Book 13 evidence records, with a hash chain
+  clients/python/writer_check.py         one writer per attribute (gap 4), over two exports
   clients/powershell/IdentityKit.psm1    the same pieces in PowerShell 7
   clients/powershell/Get-IdentityDrift.ps1
   clients/powershell/Invoke-ReReadVerification.ps1
@@ -58,11 +65,11 @@ The Scripted REST resource accepts this JSON (`POST /api/x_example_idkit/identit
 | `intended_state` | no | What the re-read must find, for example `{"disabled": true}`, `{"attributes": {"department": "Finance"}}`, `{"entitlements_absent": [{"attribute": "memberOf", "value": "CN=..."}]}`, `{"exists": false}`. Derived from the event when absent (a native change is reverted; an attribute change is kept) |
 | `origin` | yes | Trigger ID and workflow, or the drift finding ID and checker |
 | `detected_at`, `evidence` | no | When, and the raw facts |
-| `single_value_changes`, `entitlement_changes`, `changes` | no | Raw ISC event fields; the script derives `intended_state` from them |
+| `single_value_changes`, `multi_value_changes`, `entitlement_changes`, `changes` | no | Raw ISC event fields; the script derives `intended_state` from them |
 
 A `closure_signal` carries `recipient_id`, `account_requests` (each with `source.id` and `provisioningResult`), `tracking_number` and `errors`.
 
-Responses: `201` with `sys_id`, `number`, `priority` on insert; `200` with `deduplicated: true` and the existing `sys_id` when an active finding has the same (source, subject, class); `400` with the reason on a validation failure.
+Responses: `201` with `sys_id`, `number`, `priority` on insert; `200` with `deduplicated: true` and the existing `sys_id` when an active finding has the same (source, subject, class, attribute); `400` with the reason on a validation failure.
 
 **Severity and tempo** (Book 13 Appendix B; *program design, not a federal requirement*): P1 immediate, P2 1 hour, P3 24 hours, P4 72 hours. The script sets `priority` 1–4 and `due_date` = now + the window.
 
@@ -161,6 +168,9 @@ Python certificate auth needs the optional `cryptography` package; without it, u
 | Re-read client (build 2) | ISC | `idn:accounts:read`, `sp:search:read` | `GET /v3/accounts/{id}`; identities search |
 | Re-read client (build 2) | Microsoft Graph | `User.Read.All` | `GET /users/{id}` |
 | Business rule | ServiceNow | the verifier account named in `x_example_idkit.verifier_user` | only it can close with evidence |
+| Evidence export (`evidence_export.py`) | ServiceNow | read only on `u_identity_finding` (custom role, for example `x_example_idkit.evidence_reader`) | read closed findings |
+
+`config/calls.json` declares every call above with its task and least privilege; `python clients/python/kit_calls.py --task <task>` lists them, and `--system <system> --granted "<list>"` compares a grant with them.
 
 Nothing in Pass 1 needs write access to Entra ID, Active Directory or ISC. ISC notes that a client-credentials token carries no user context, so some APIs may return 403; a personal access token for a least-privileged user is the alternative (see the verify list).
 
@@ -188,6 +198,12 @@ Offline runs: pass saved exports with `--graph-users-json`, `--isc-identities-js
 **HR extract columns:** `employeeId` (required, the join key), `status` (required: `Active`, `Leave` count as active; `Terminated`, `Separated`, `Inactive`, `Retired` as separated), `department`, `managerEmployeeId`, `displayName`, `email`. Other columns are ignored.
 
 **Drift classes computed:** missing identity, stale access, orphan account, attribute drift (department and manager), and unauthorized write only when an Entra audit extract is supplied or fetched; otherwise it's listed under `not_computed`. Credential drift (card system, Intune) and schema drift (middleware validation) are always listed as not computed.
+
+## Offline tools from the developer workbook
+
+The developer workbook [Building Ticket-to-Machine](../../docs/project-plans/developer-workbooks/ticket-to-machine/index.md) builds these Python tools on the kit, one or two per chapter, each with tests and a lab that runs on a laptop against `tests/fixtures/` with no tenant: `finding_contract.py` (Chapter 01), `kit_calls.py` and `config/calls.json` (Chapters 02 and 03), `workflow_payload.py` (Chapter 04), the offline mode and the empty-intended-state guard in `reread_verification.py` (Chapter 05), `drift_compare.py` (Chapter 06), `evidence_export.py` (Chapter 07) and `writer_check.py` (Chapter 08). They are Python only; the PowerShell module has no counterparts yet. `tests/fixtures/config.fixtures.json` holds the fixture settings (no secrets) for offline drift runs.
+
+The same chapters changed two behaviors, in both the ServiceNow script and the Python mirror: the de-duplication key now includes the attribute, so two attributes drifting on one subject are two findings, each with its own intended state; and the native-change workflow now sends `multiValueAttributeChanges`, so a change to a multivalued attribute is reverted like any other. The re-read client skips, and never verifies, an intended state that names nothing it can check.
 
 ## Tests
 

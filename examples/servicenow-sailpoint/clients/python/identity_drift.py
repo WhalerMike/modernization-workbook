@@ -35,6 +35,7 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+import os
 import sys
 from typing import Any, Iterable, Mapping
 
@@ -322,13 +323,21 @@ def compute_findings(hr: Mapping[str, dict], graph_users: Iterable[dict] | None,
 # Outputs
 # --------------------------------------------------------------------------
 
+def _ensure_parent(path: str) -> None:
+    parent = os.path.dirname(path)
+    if parent:
+        os.makedirs(parent, exist_ok=True)
+
+
 def write_json(result: Mapping[str, Any], path: str) -> None:
+    _ensure_parent(path)
     with open(path, "w", encoding="utf-8") as handle:
         json.dump(result, handle, indent=2, sort_keys=True, default=str)
         handle.write("\n")
 
 
 def write_csv(findings: Iterable[Mapping[str, Any]], path: str) -> None:
+    _ensure_parent(path)
     with open(path, "w", encoding="utf-8", newline="") as handle:
         writer = csv.DictWriter(handle, fieldnames=CSV_FIELDS)
         writer.writeheader()

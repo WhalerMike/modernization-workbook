@@ -1,0 +1,185 @@
+---
+title: "Chapter 08 — One Writer per Attribute"
+description: "Gap 4 of the Ticket-to-Machine example and an item planned for the kit's Pass 2: if Entra inbound provisioning from HR and SailPoint's Entra source both write the same user attribute, each overwrites the other and drift never settles. Compare the inbound provisioning job's synchronization schema from Microsoft Graph with the ISC source's provisioning policies, offline, and report every attribute with two writers by how each writes it, update or create only; with labs against fixtures and exports from a test tenant and a SailPoint sandbox."
+doc-type: workbook-chapter
+audience: [Technical]
+family: dw-ticket-to-machine
+part: How
+series-order: 8
+status: draft
+lifecycle: active
+tiers_adopted: []
+lifecycle_review: 2027-05-01
+review-status: pending
+---
+# Chapter 08 — One Writer per Attribute
+
+*Two writers on one attribute isn't drift you can fix. It's drift you've scheduled.*
+
+::: {.callout-note}
+## In this chapter
+The fourth gap the example guide found, and the one Pass 2 item that can be built offline today. Book 03's design makes Entra inbound provisioning the one writer into the directory; SailPoint ISC can also provision Entra ID through its connector. If both write `department`, the reconciliation in [Chapter 06](06-drift-reconciliation.md) reports drift that the next sync recreates. `writer_check.py` compares the two configurations, Microsoft Graph's synchronization schema for the inbound job and the ISC source's provisioning policies, and reports each attribute with two writers. Lab 1 runs on a laptop; Lab 2 exports the two configurations from a test tenant and a sandbox.
+:::
+
+## Goal and audience
+
+**Goal.** By the end of this chapter you can export the two provisioning configurations, run the check, and say for each Entra ID user attribute which system writes it, or show that two do.
+
+**Audience.** Identity engineers who own Entra inbound provisioning or the SailPoint Entra source, the data architect who decides which writer owns each attribute, and the ISSO. You should read JSON. You don't need a tenant until Lab 2.
+
+## Why this is a build, and why now
+
+The fourth gap in the [example guide](../../../books/guides/ttm-servicenow-sailpoint.md): SailPoint reads the HR system and can provision the directory, while [Book 03](../../../books/b03-hr-identity/05-the-provisioning-pipeline.md) makes Entra inbound provisioning the one writer. Its design guidance is to pick one writer per attribute: either Entra inbound provisioning stays the door and SailPoint governs entitlements, or SailPoint becomes the provisioning service and takes on Book 03's middleware duties. Not both. The implementation example plans "a read-only check of SailPoint and Entra provisioning mappings that flags any attribute with two writers" for [Pass 2](../../../books/guides/snow-sailpoint-integration-kit.md#planned-for-pass-2). Both configurations can be exported as JSON through documented reads, so the check runs on files, offline, today.
+
+Pass 2's other items need more than files: one approver per authority class needs the catalog app's internals, which the example guide lists as unverified; change records on demand need a ServiceNow flow on an instance; the SailPoint half of the evidence export needs event retention; and email intake needs a mailbox, an inbound action and a workflow's external trigger. No chapter builds them yet.
+
+## The code: `examples/servicenow-sailpoint`
+
+### What exists
+
+Nothing in Pass 1 read either provisioning configuration. The drift client sees the result of two writers, attribute drift that comes back, but not the cause.
+
+### What this chapter adds
+
+`clients/python/writer_check.py` reads two exports:
+
+- **The inbound job's schema**, from `GET /servicePrincipals/{id}/synchronization/jobs/{jobId}/schema`.[^ttm08-schema] It takes the synchronization rules whose `targetDirectoryName` is the Entra directory (`--entra-directory`, default `Azure Active Directory`, the name Learn's examples use), the enabled object mappings to `User`, and each attribute mapping's `targetAttributeName` and `flowType`. `Always`, the default, updates the attribute on every change; `ObjectAddOnly` sets it only when the object is created.[^ttm08-mapping]
+- **The ISC source's provisioning policies**, from `GET /v3/sources/{sourceId}/provisioning-policies` on the source that writes to Entra ID.[^ttm08-policies] Each policy has a `usageType` and `fields[].name`. `UPDATE` is the update account profile, used for attribute sync; `CREATE` is the create account profile, used when the account is made.[^ttm08-usage] Other usage types (enable, disable and the rest) don't write user attributes this way and are ignored.
+
+Then, per attribute both write: **Finding** when both update it (each overwrites the other); **Warn** when one updates it and the other sets it at creation (two sources for its first value); **Info** when both set it only at creation. The command exits 1 on any Finding.
+
+SailPoint's field names are the connector's, not necessarily Entra ID's; the check matches names case-insensitively and takes `--alias field=attribute` for each pair that differs. It doesn't guess: which connector field writes which Entra attribute is something to confirm in the source's schema, and the alias list is a reviewed input (*design guidance*). Two fictional exports in `tests/fixtures/writers/` show the shapes: an HR-to-Entra job and an ISC source that creates accounts and updates `department`, `title` and `officeLocation`.
+
+### The tests
+
+`tests/python/test_writer_check.py`, 6 tests: flow types, usage types and aliases, the three severities, disabled mappings ignored, a wrong directory name refused, and the command line.
+
+::: {.callout-important}
+## Illustrative code
+The check reads fictional exports. It shows the comparison, not that your schema names the Entra directory the same way or that SailPoint's field names match Entra's. Run Lab 2 on your own exports, and review the alias list, before acting on a result.
+:::
+
+## Lab 1: fixtures, no tenant
+
+Work in `examples/servicenow-sailpoint`, with Python 3.10 or later and `pytest`.
+
+1. **Run this chapter's tests:**
+
+   ```bash
+   python -m pytest tests/python/test_writer_check.py -q
+   ```
+
+   `6 passed`.
+
+2. **Check the two fictional exports:**
+
+   ```bash
+   python clients/python/writer_check.py --entra-schema tests/fixtures/writers/entra_inbound_schema.json --isc-policies tests/fixtures/writers/isc_entra_source_policies.json
+   ```
+
+   ```text
+   Entra inbound writes 8 attributes; SailPoint writes 7; 1 Finding, 1 Warn, 2 Info
+     Finding department         Entra update SailPoint update both update it: each overwrites the other, so drift never settles
+     Warn    displayName        Entra update SailPoint create one updates it and the other sets it at creation: two sources for its first value
+     Info    mailNickname       Entra create SailPoint create both set it only at creation
+     Info    userPrincipalName  Entra create SailPoint create both set it only at creation
+   ```
+
+   The command exits 1.
+
+3. **Map SailPoint's `title` to Entra ID's `jobTitle`,** and run it again:
+
+   ```bash
+   python clients/python/writer_check.py --entra-schema tests/fixtures/writers/entra_inbound_schema.json --isc-policies tests/fixtures/writers/isc_entra_source_policies.json --alias title=jobTitle
+   ```
+
+   The summary becomes `2 Finding, 1 Warn, 2 Info`, with `Finding jobTitle` added. Without the alias the second writer was invisible: the alias list is part of what a reviewer checks.
+
+4. **See the directory-name guard:**
+
+   ```bash
+   python clients/python/writer_check.py --entra-schema tests/fixtures/writers/entra_inbound_schema.json --isc-policies tests/fixtures/writers/isc_entra_source_policies.json --entra-directory "Microsoft Entra ID"
+   ```
+
+   `error: No synchronization rule targets 'Microsoft Entra ID'; the schema's targets are ['Azure Active Directory']`, exit 2. A wrong name doesn't pass as "no overlap."
+
+5. **List the reads the exports need:**
+
+   ```bash
+   python clients/python/kit_calls.py --task writer-check
+   ```
+
+   `idn:provisioning-policy:read` on ISC and `CustomSecAttributeProvisioning.Read.All` on Graph.
+
+## Lab 2: exports from a test tenant and a SailPoint sandbox
+
+Not run by the authors. Use a test Entra tenant with an inbound provisioning job and a SailPoint sandbox with an Entra source, never production. Both reads are GET only.
+
+1. **Export the inbound job's schema.** Find the provisioning app's service principal and job (`GET /servicePrincipals/{id}/synchronization/jobs`), then `GET /servicePrincipals/{id}/synchronization/jobs/{jobId}/schema` and save the response.[^ttm08-overview][^ttm08-schema] Learn lists `CustomSecAttributeProvisioning.Read.All` as the least-privileged application permission for that read, and `Synchronization.Read.All` among the higher ones; in delegated use the least-privileged roles are Application Administrator, Cloud Application Administrator and Hybrid Identity Administrator.[^ttm08-schema] Note the rule's `targetDirectoryName` for `--entra-directory`.
+2. **Export the ISC source's policies.** With an API client holding only `idn:provisioning-policy:read`, `GET /v3/sources/{sourceId}/provisioning-policies` for the Entra source, and save the response. The documented user level for that endpoint is `ORG_ADMIN`, so a personal access token is the wrong tool here; use an API client.[^ttm08-policies]
+3. **Build the alias list** from the Entra source's account schema: for each SailPoint field the policies name, the Entra attribute it writes. Keep the list in the repository and have the data architect review it.
+4. **Run the check** on the two exports with the aliases, and give each Finding to the data architect to decide which system owns the attribute. Book 03's default keeps Entra inbound provisioning as the writer.
+5. **Back it out.** Delete the two exports if they hold anything beyond mappings, and remove the Graph permission and the ISC API client.
+
+## The verified facts
+
+| Item | Value | Source |
+|---|---|---|
+| Get synchronizationSchema | `GET /servicePrincipals/{id}/synchronization/jobs/{jobId}/schema`; application: `CustomSecAttributeProvisioning.Read.All` least privileged, `Synchronization.Read.All` higher; delegated: `Synchronization.Read.All`; available in US Government L4 and L5 | [^ttm08-schema] |
+| Schema shape | `synchronizationRules` with `sourceDirectoryName`, `targetDirectoryName`, `objectMappings` (`sourceObjectName`, `targetObjectName`, `attributeMappings` with `targetAttributeName`) | [^ttm08-schema] |
+| attributeMapping `flowType` | `Always` (default), `ObjectAddOnly` (only when a new object is created), `MultiValueAddOnly`, `ValueAddOnly`, `AttributeAddOnly`; AD-to-Entra jobs don't respect it | [^ttm08-mapping] |
+| objectMapping | `enabled`; `flowTypes` (`Add`, `Update`, `Delete`) | [^ttm08-objmap] |
+| ISC provisioning policies | `GET /v3/sources/{sourceId}/provisioning-policies`; `idn:provisioning-policy:read` or `:manage`; user level `ORG_ADMIN`; items have `name`, `usageType`, `fields` | [^ttm08-policies] |
+| Usage types | `CREATE` (create account profile), `UPDATE` (update account profile, used for attribute sync), `ENABLE`, `DISABLE` and others | [^ttm08-usage] |
+| GCC endpoints | Microsoft 365 GCC uses `graph.microsoft.com` | [^ttm08-deployments] |
+| SailPoint Identity Security Cloud | FedRAMP Certified, Moderate | [^ttm08-fedramp] |
+
+### What couldn't be verified
+
+- **Why Learn lists `CustomSecAttributeProvisioning.Read.All` as the least-privileged application permission** for reading a synchronization schema, rather than `Synchronization.Read.All`. The code follows Learn's table; confirm in a test tenant that the schema read works with it (research gaps, row 71).
+- **The `targetDirectoryName` an HR inbound provisioning job uses** for the Entra directory. Learn's examples use `Azure Active Directory` and one page says "Microsoft Entra ID"; the check refuses a name it doesn't find rather than guess (research gaps, row 72).
+- **How SailPoint's Entra connector field names map to Entra attributes.** Not checked here; the alias list is a reviewed input (research gaps, row 73).
+- **Whether other SailPoint paths write Entra attributes** outside provisioning policies (attribute sync settings, transforms or workflows). The check covers policies only (research gaps, row 74).
+
+## Federal requirements and evidence
+
+| What the output proves | Requirement it supports | Who keeps it |
+|---|---|---|
+| Each Entra ID user attribute has one authoritative writer, or the overlap is named and assigned | NIST SP 800-53 CM-6 (configuration settings) and CM-3 at Moderate;[^ttm08-moderate] Book 13's one-authoritative-record principle | The check's output and the data architect's decisions, kept with the provisioning configuration |
+| Attribute drift that the next sync recreates is traced to its cause | CA-7 and SI-4 at Moderate;[^ttm08-moderate] Book 03's drift measures | The check, run whenever either provisioning configuration changes |
+| A change to either provisioning configuration is checked before it lands | CM-3 (change control), CM-4 (impact analyses) at Moderate[^ttm08-moderate] | The pull request or change record that runs the check |
+
+## Dangers
+
+| Danger | What happens | The guard |
+|---|---|---|
+| Two systems update one attribute | Drift is fixed and recreated on the next sync, forever | A Finding, exit 1 |
+| Field names that differ hide a second writer | The check reports no overlap | `--alias`, reviewed; Lab 1, step 3 |
+| The wrong directory name | Every attribute looks unwritten | The check refuses a name the schema doesn't target |
+| A disabled mapping counted | False findings | Disabled object mappings are skipped |
+| Exports with personal data | A schema with expressions is fine; a policy with values may not be | Export mappings only; delete lab copies |
+| Writers outside provisioning policies | The check misses them | Listed under what couldn't be verified; a person confirms |
+
+## Checklist
+
+- [ ] The check runs on current exports of both configurations, with the reviewed alias list.
+- [ ] Every Finding has a decision: which system owns the attribute, and the other's mapping removed.
+- [ ] Every Warn is understood, and the create-time value has one source.
+- [ ] `--entra-directory` matches the inbound job's schema.
+- [ ] The Graph app and the ISC API client used for the exports hold only the reads in `kit_calls.py --task writer-check`.
+- [ ] `test_writer_check.py` passes.
+
+::: {.callout-tip}
+## Continue the book
+[← Previous: Chapter 07 — Evidence Records for Book 13 and the ISSO](07-evidence-records.md) · [Workbook index](index.md)
+:::
+
+[^ttm08-schema]: Microsoft Learn, "Get synchronizationSchema," national cloud availability, permissions, HTTP request and example response, <https://learn.microsoft.com/graph/api/synchronization-synchronizationschema-get?view=graph-rest-1.0> (read November 1, 2026).
+[^ttm08-mapping]: Microsoft Learn, "attributeMapping resource type," properties, <https://learn.microsoft.com/graph/api/resources/synchronization-attributemapping?view=graph-rest-1.0> (read November 1, 2026).
+[^ttm08-objmap]: Microsoft Learn, "objectMapping resource type," properties, <https://learn.microsoft.com/graph/api/resources/synchronization-objectmapping?view=graph-rest-1.0> (read November 1, 2026).
+[^ttm08-overview]: Microsoft Learn, "Microsoft Entra ID synchronization API overview," working with the synchronization API, <https://learn.microsoft.com/graph/api/resources/synchronization-overview?view=graph-rest-1.0> (read November 1, 2026).
+[^ttm08-policies]: SailPoint, Identity Security Cloud OpenAPI specification, v3, `listProvisioningPolicies` (path `/sources/{sourceId}/provisioning-policies`, scopes, user level) and `ProvisioningPolicyDto`, <https://github.com/sailpoint-oss/api-specs/blob/main/idn/v3/paths/provisioning-policies.yaml> and <https://github.com/sailpoint-oss/api-specs/blob/main/idn/v3/schemas/ProvisioningPolicyDto.yaml> (read November 1, 2026, at commit `7f6741e`).
+[^ttm08-usage]: SailPoint, Identity Security Cloud OpenAPI specification, v3, `UsageType`, <https://github.com/sailpoint-oss/api-specs/blob/main/idn/v3/schemas/UsageType.yaml> (read November 1, 2026).
+[^ttm08-deployments]: Microsoft Learn, "Microsoft Graph national cloud deployments," <https://learn.microsoft.com/graph/deployments> (read November 1, 2026).
+[^ttm08-fedramp]: FedRAMP Marketplace data, <https://www.fedramp.gov/marketplace/products.json> (last change November 1, 2026): SailPoint Identity Security Cloud, FR2001938710A (read November 1, 2026).
+[^ttm08-moderate]: National Institute of Standards and Technology, SP 800-53B Moderate baseline, release 5.2.0 OSCAL profile (includes CA-7, CM-3, CM-4, CM-6 and SI-4), <https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_MODERATE-baseline_profile.json> (read November 1, 2026).

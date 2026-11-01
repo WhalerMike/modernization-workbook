@@ -1,0 +1,184 @@
+---
+title: "Chapter 01 — The Loop and the Typed Task"
+description: "Where the kit sits in Book 13's five-step loop, and the one record every step writes or reads: the typed identity finding. Check the data contract on a laptop before anything reaches ServiceNow, with the drift classes, severities, systems, subject rules, tempo and de-duplication key mirrored from the Scripted REST script by a test, and a warning when an intended state gives the re-read nothing to check; with labs against fixtures and a ServiceNow developer instance."
+doc-type: workbook-chapter
+audience: [Technical]
+family: dw-ticket-to-machine
+part: How
+series-order: 1
+status: draft
+lifecycle: active
+tiers_adopted: []
+lifecycle_review: 2027-05-01
+review-status: pending
+---
+# Chapter 01 — The Loop and the Typed Task
+
+*Every step of the loop writes or reads one record. If its shape is wrong, the clock, the owner and the re-read are all wrong with it.*
+
+::: {.callout-note}
+## In this chapter
+Where `examples/servicenow-sailpoint` sits in Book 13's five-step loop, and the record at its center: the identity finding, a typed task with a class, a severity, an owner, a clock and an intended state. You check that record on a laptop with `finding_contract.py`, which applies the Scripted REST script's own rules, so a malformed payload fails in a test instead of as a 400 from ServiceNow, and an intended state that gives the re-read nothing to check is flagged before it is stored. Lab 1 runs on a laptop with no tenant; Lab 2 posts one finding to a ServiceNow Personal Developer Instance.
+:::
+
+## Goal and audience
+
+**Goal.** By the end of this chapter you can name which of the loop's five steps each file in the kit performs, read a finding payload and say what ServiceNow will do with it (accept, reject, de-duplicate, and when it falls due), and run that check in a test.
+
+**Audience.** Developers who build either side of the integration, and the reviewers who approve their changes. You should read Python and JSON. You don't need a ServiceNow instance or a SailPoint tenant until Lab 2.
+
+## The loop, and where the kit sits
+
+[Book 13, Appendix B](../../../books/b13-governance/appendix-b-ticket-to-machine-reference.md#the-coordination-loop) gives the loop: test, detect drift, raise a typed task, actuate on the native surface, close with evidence. The kit builds the identity half of three steps and leaves actuation to a later pass, as [the implementation example](../../../books/guides/snow-sailpoint-integration-kit.md#what-pass-1-builds) says.
+
+| Loop step | What does it in the kit | Chapter |
+|---|---|---|
+| 1 Test | `identity_drift.py` joins the HR extract, Microsoft Graph and ISC on `employeeId` | 06 |
+| 2 Detect drift | ISC event triggers (native change, attribute change) and the drift client | 04, 06 |
+| 3 Raise a typed task | The ISC workflows' HTTP Request step and the ServiceNow Scripted REST resource, which writes `u_identity_finding` | 01, 04 |
+| 4 Actuate | Not in Pass 1: no code writes to Entra ID, Active Directory or ISC | — |
+| 5 Close with evidence | The business rule turns any close into *Awaiting verification*; `reread_verification.py` closes on a re-read | 05, 07 |
+
+The record those steps share is the identity finding. Its data contract is in the [kit's README](https://github.com/WhalerMike/modernization-workbook/blob/main/examples/servicenow-sailpoint/README.md#the-identity-finding-data-contract): `kind`, `source`, `drift_class` (Book 03's seven classes), `severity` (P1 to P4), `system` (where the re-read happens), one subject identifier, `origin`, and an `intended_state` that says what a re-read must find. Where the fields land in Book 13's evidence record is in the implementation example's [table](../../../books/guides/snow-sailpoint-integration-kit.md#the-identity-finding-and-book-13s-evidence-record). This chapter doesn't repeat them; it makes them checkable.
+
+## The code: `examples/servicenow-sailpoint`
+
+### What exists
+
+The contract is enforced in one place, the Scripted REST resource `servicenow/scripted-rest-identity-finding.js`, which runs inside ServiceNow. It validates the payload and answers 400 with the reason, maps severity to `priority` 1 to 4 and a `due_date` from the program's tempo (Book 13: P1 immediate, P2 one hour, P3 24 hours, P4 72 hours; program design, not a federal requirement), defaults the severity by class (Book 03 High to P2, Medium to P3, *design guidance*), de-duplicates against an active finding, and derives an intended state from an ISC event when the payload has none. The node:test suite in `tests/servicenow/` runs that script against stubbed Glide APIs. Until now nothing outside ServiceNow applied the same rules, so a Python client learned a payload was wrong only from a 400 on a live instance.
+
+### What this chapter adds
+
+`clients/python/finding_contract.py`:
+
+- **`validate(payload)`** applies the script's rules and returns the errors the script would answer 400 to, warnings for what it would accept but the loop can't use, and the normalized values: severity, priority, system, subject, de-duplication key and response window.
+- **The constants** (`DRIFT_CLASSES`, `DEFAULT_SEVERITY`, `PRIORITY`, `WINDOW_SECONDS`, `SYSTEMS`) mirror the script's. A test reads the JavaScript and fails if they drift apart, so the mirror can't silently go stale.
+- **`is_checkable(intended)`** is true only when an intended state names something the re-read client can compare. `{"attributes": {}, "entitlements_absent": []}` is a non-empty object, so it looks present, but a re-read finds no difference against it and would close the record on nothing. The check warns; for the two classes Book 13 routes to a person first, missing identity and an unauthorized write, the warning says the empty intent is expected until that person sets it.
+- **The command line** checks a payload file, or turns a drift run into the payloads `identity_drift.py --push-to-servicenow` would post and checks each, printing the priority and the due date each would get.
+
+The de-duplication key the module reports is the one [Chapter 04](04-drift-to-a-typed-task.md) changes: source, subject, class and, when the payload names one, the attribute.
+
+### The tests
+
+`tests/python/test_finding_contract.py`, 22 tests: the constants against the script, every rejection the script makes, the closure-signal rules, the system defaults, the checkable and vacuous intended states, the tempo, and every payload the drift client builds from the fixtures accepted. With the rest of the kit, 107 pytest tests pass, plus 15 node:test and 40 Pester tests, with no tenant or network.
+
+::: {.callout-important}
+## Illustrative code
+The commands below run the kit's code against fictional fixtures. They show what the code does, not that a ServiceNow instance returns the same responses. Review the code and run Lab 2 on a developer instance before any of it touches production.
+:::
+
+## Lab 1: fixtures, no tenant
+
+You need Python 3.10 or later with `pytest` and `requests`, and Node.js 18 or later for step 3. Work in `examples/servicenow-sailpoint`.
+
+1. **Run this chapter's tests:**
+
+   ```bash
+   python -m pytest tests/python/test_finding_contract.py -q
+   ```
+
+   `22 passed`.
+
+2. **Check five sample payloads:**
+
+   ```bash
+   python clients/python/finding_contract.py --validate tests/fixtures/payloads/samples.json --now 2026-11-01T12:00:00Z
+   ```
+
+   ```text
+   sample-1-good: ok stale_access P2 priority 2 due 2026-11-01T13:00:00Z system entra_user
+   sample-2-typo: 400 drift_class must be one of missing_identity, stale_access, orphan_account, attribute_drift, unauthorized_write, credential_drift, schema_drift
+   sample-3-empty-intent: ok unauthorized_write P2 priority 2 due 2026-11-01T13:00:00Z system isc_account
+   sample-3-empty-intent: warning: intended_state names nothing a re-read can check (expected: Book 13 routes this class to a person, who sets it)
+   sample-4-bad-severity: 400 severity must be P1, P2, P3 or P4
+   sample-5-closure: ok closure_signal (moves matches to Awaiting verification; never closes)
+   3 accepted, 2 rejected, 0 would de-duplicate
+   ```
+
+   The command exits 1 because two payloads would be rejected. The first sample got no severity, and the class default gave it P2 and a one-hour window.
+
+3. **Run the script's own tests,** the rules the Python mirrors:
+
+   ```bash
+   node --test tests/servicenow/servicenow_scripts.test.js
+   ```
+
+   `tests 15`, `pass 15`, `fail 0`.
+
+4. **Check what the drift client would post.** Run the drift reconciliation over the fixtures, then check its payloads:
+
+   ```bash
+   python clients/python/identity_drift.py --hr-csv tests/fixtures/hr_extract.csv --config tests/fixtures/config.fixtures.json --graph-users-json tests/fixtures/graph_users.json --isc-identities-json tests/fixtures/isc_identities.json --isc-accounts-json tests/fixtures/isc_uncorrelated_accounts.json --entra-audit-json tests/fixtures/entra_audit.json --out-json out/day1.json --out-csv out/day1.csv
+   python clients/python/finding_contract.py --from-drift out/day1.json --now 2026-11-01T12:00:00Z
+   ```
+
+   Twelve lines start `ok`, three carry the warning (two missing identities and the unauthorized write), and the last line is `12 accepted, 0 rejected, 0 would de-duplicate`. Erin's two attribute drifts in Entra ID, department and manager, have their own keys; before Chapter 04's fix they shared one, and the second would have been folded into the first.
+
+**Expected result:** you can say, for any payload, what the Scripted REST resource will do with it. Delete `out` when you're done.
+
+## Lab 2: a ServiceNow developer instance
+
+Not run by the authors. Use a ServiceNow Personal Developer Instance, free to Developer Program members,[^ttm01-pdi] never production.
+
+1. **Build the table and the resource** as the kit's README describes: the scoped application, `u_identity_finding` extending Task, the *Awaiting verification* state, and the Scripted REST API `identity_findings` with one `POST /finding` resource whose script is the kit's file. Creating a Scripted REST API needs the `web_service_admin` role; calling it doesn't.[^ttm01-srapi]
+2. **Lock the resource down.** Require authentication and add an ACL of type `REST_Endpoint` granting a custom role, for example `x_example_idkit.finding_writer`, to one integration user.[^ttm01-srapi]
+3. **Check a payload first, then post it.** Run step 2 of Lab 1 on `tests/fixtures/payloads/valid_finding.json`, then post the same file as the integration user to `https://<instance>.service-now.com/api/x_example_idkit/identity_findings/finding`. Expect `201` with a `sys_id`, `number`, priority `2`, and a due date one hour after the insert. Post it again: `200` with `deduplicated: true`.
+4. **Post `samples.json`'s second payload.** Expect `400` with the same reason Lab 1 printed.
+5. **Back it out.** Delete the test records, the ACL and the role, and the Scripted REST API; delete the scoped application if you made it for the lab. A developer instance returns to the pool after a period without use, and is reset when it does.[^ttm01-pdi]
+
+## The verified facts
+
+| Item | Value | Source |
+|---|---|---|
+| Scripted REST API URL | `https://<instance>/api/<name_space>/<version>/<api_id>/<relative_path>`; the version is optional | [^ttm01-srapi] |
+| Scripted REST API access | Authentication through API access policies; ACLs of type `REST_Endpoint`, one of which must be satisfied; resources inherit the API's ACLs unless they set their own | [^ttm01-srapi] |
+| Role to create one | `web_service_admin`, not needed to call one | [^ttm01-srapi] |
+| SailPoint event triggers the kit uses | Identity Attributes Changed (`idn:identity-attributes-changed`) and Provisioning Action Completed (`idn:post-provisioning`), both fire-and-forget | [^ttm01-triggers] |
+| ServiceNow Government Community Cloud | FedRAMP Certified, High, JAB | [^ttm01-fedramp] |
+| SailPoint Identity Security Cloud | FedRAMP Certified, Moderate, agency path | [^ttm01-fedramp] |
+| Personal Developer Instance | Free to Developer Program members; returned to the pool and reset after ten days unused, hibernates when idle (page dated January 30, 2025) | [^ttm01-pdi] |
+
+### What couldn't be verified
+
+- Which identity `gs.getUserName()` returns for an OAuth client-credentials call, which the business rule relies on ([Chapter 05](05-the-re-read-rule.md)); kit README verify list, item 10.
+- The current developer-instance reclamation rule. ServiceNow's page says ten days unused; community posts from July 2026 describe a rule that also considers the instance's age. Check the Developer Site before relying on an instance for more than a few days (research gaps, row 1).
+
+## Federal requirements and evidence
+
+A typed finding is the "owned, clocked" half of the record Book 13 says an assessor reads: who owns the drift, by when, and against what intended state. The approval and the re-read are added in later chapters.
+
+| What the output proves | Requirement it supports | Who keeps it |
+|---|---|---|
+| Every drift becomes one record with a class, a severity, an owner and a due date, rejected at the door if malformed | NIST SP 800-53 CM-3 (the record of configuration-controlled changes) and CA-7 (continuous monitoring), both in the Moderate baseline[^ttm01-moderate] | The ServiceNow record; the contract tests in the repository |
+| The response window per severity is applied by code, not chosen per ticket | The program's tempo (Book 13, design guidance); an external clock, such as a CISA directive's, overrides it when shorter | The record's `due_date`; Chapter 07's window adherence |
+
+The control-by-control mapping is Book 13's [Appendix A](../../../books/b13-governance/appendix-a-requirements-mapping.md); the federal sources are in the [federal framework crosswalk](../../../reference/federal-framework-crosswalk.md).
+
+## Dangers
+
+| Danger | What happens | The guard |
+|---|---|---|
+| The Python mirror drifts from the script | A payload passes locally and fails in ServiceNow, or the reverse | `test_constants_match_the_scripted_rest_script` reads the JavaScript |
+| A typo in a drift class | The finding is rejected and the drift goes unrecorded | 400 locally first; the CLI exits 1 |
+| An intended state with nothing to check | A re-read finds no difference and closes the record on nothing | `is_checkable` warns; Chapter 05's guard skips the record |
+| Severity chosen per ticket | Windows stop meaning anything | Class defaults in one table; a payload may only raise or lower it explicitly |
+| A test instance treated as permanent | Work is lost when the instance is reclaimed | Keep the scoped application in source control or an update set |
+
+## Checklist
+
+- [ ] `finding_contract.py`'s constants match the deployed Scripted REST script, and the parity test passes.
+- [ ] Every client that posts findings runs its payloads through `validate()` in its tests.
+- [ ] No payload a client builds is rejected, and every warning is understood (expected only for missing identity and unauthorized writes).
+- [ ] The tempo windows in the script are the program's current ones, and the severity defaults match Book 03's classes.
+- [ ] The Scripted REST API requires authentication and a `REST_Endpoint` ACL with a custom role.
+
+::: {.callout-tip}
+## Continue the book
+[Workbook index](index.md) · [Next: Chapter 02 — The ServiceNow Client and Least Privilege →](02-servicenow-client-and-least-privilege.md)
+:::
+
+[^ttm01-srapi]: ServiceNow, "Scripted REST APIs" (Zurich API reference: URL format, API access policies, `REST_Endpoint` ACLs, the `web_service_admin` role), <https://www.servicenow.com/docs/bundle/zurich-api-reference/page/integrate/custom-web-services/concept/c_CustomWebServices.html> (read November 1, 2026).
+[^ttm01-triggers]: SailPoint Developer, "Triggers," Available Event Triggers table, <https://developer.sailpoint.com/docs/api/triggers> (read November 1, 2026).
+[^ttm01-fedramp]: FedRAMP Marketplace data, <https://www.fedramp.gov/marketplace/products.json> (last change November 1, 2026): ServiceNow Government Community Cloud, F1305072116; SailPoint Identity Security Cloud, FR2001938710A (read November 1, 2026).
+[^ttm01-pdi]: ServiceNow, "Understanding PDIs" (Yokohama, last updated January 30, 2025), <https://www.servicenow.com/docs/r/SmYvGPN0OygSQs53fsexIQ/yG_RdLKb649OcfnDiGEkwQ> (read November 1, 2026).
+[^ttm01-moderate]: National Institute of Standards and Technology, SP 800-53B Moderate baseline, release 5.2.0 OSCAL profile (includes AC-2, AC-6, AU-9, CA-7, CM-3, CM-6, SA-11 and SI-4), <https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_MODERATE-baseline_profile.json> (read November 1, 2026).

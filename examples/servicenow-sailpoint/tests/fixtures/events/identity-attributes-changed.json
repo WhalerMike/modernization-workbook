@@ -1,0 +1,5 @@
+{
+  "_comment": "Fictional input for Identity Attributes Changed, in the shape of SailPoint's published example input (field names read November 1, 2026). Every identifier is invented.",
+  "identity": {"id": "2c9180000000000000000000000e1004", "name": "erin.example", "type": "IDENTITY"},
+  "changes": [{"attribute": "department", "oldValue": "HR", "newValue": "Finance"}]
+}

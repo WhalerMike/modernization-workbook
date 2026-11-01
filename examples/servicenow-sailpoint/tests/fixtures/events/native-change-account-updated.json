@@ -1,0 +1,11 @@
+{
+  "_comment": "Fictional input for Native Change Account Updated, in the shape of SailPoint's published example input (field names read November 1, 2026). Every identifier is invented.",
+  "eventType": "ACCOUNT_UPDATED",
+  "accountChangeTypes": ["ATTRIBUTES_CHANGED", "ENTITLEMENTS_ADDED"],
+  "account": {"id": "2c91800000000000000000000a1001ad", "uuid": "{0f6d1a52-0000-4000-8000-000000001001}", "name": "alice.example", "nativeIdentity": "CN=Alice Example,OU=Users,DC=contoso,DC=example", "type": "IDENTITY", "correlated": true},
+  "identity": {"id": "2c9180000000000000000000000e1001", "name": "alice.example", "alias": "alice.example", "type": "IDENTITY", "email": "alice@contoso.example", "manager": {"id": "2c9180000000000000000000000e1000", "name": "bob.example", "type": "IDENTITY"}},
+  "source": {"id": "src-ad", "name": "Corp AD", "alias": "Corp AD", "type": "SOURCE", "owner": {"id": "2c9180000000000000000000000e1000", "name": "bob.example", "type": "IDENTITY"}, "governanceGroup": null},
+  "singleValueAttributeChanges": [{"name": "title", "oldValue": "Analyst", "newValue": "Director"}],
+  "entitlementChanges": [{"attributeName": "memberOf", "added": [{"value": "CN=Payables Approvers,OU=Groups,DC=contoso,DC=example"}], "removed": []}],
+  "multiValueAttributeChanges": [{"name": "proxyAddresses", "addedValues": ["smtp:ap-approver@contoso.example"], "removedValues": []}]
+}

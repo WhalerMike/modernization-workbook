@@ -49,6 +49,7 @@
               "source_name.$": "$.source.name",
               "change_types.$": "$.accountChangeTypes",
               "single_value_changes.$": "$.singleValueAttributeChanges",
+              "multi_value_changes.$": "$.multiValueAttributeChanges",
               "entitlement_changes.$": "$.entitlementChanges"
             }
           },

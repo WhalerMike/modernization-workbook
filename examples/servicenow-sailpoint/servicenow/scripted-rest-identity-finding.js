@@ -17,8 +17,8 @@
  *   2. maps severity P1..P4 to priority 1..4 and a due date per the
  *      program's tempo (Book 13: P1 immediate, P2 1 h, P3 24 h, P4 72 h;
  *      program design, not a federal requirement);
- *   3. de-duplicates on (source, subject, drift class) while a record is
- *      active: a repeat adds a work note and bumps the counter;
+ *   3. de-duplicates on (source, subject, drift class, attribute) while a
+ *      record is active: a repeat adds a work note and bumps the counter;
  *   4. returns the sys_id (201 on insert, 200 on de-duplication).
  *
  * Written in ES5 so it runs in global or scoped applications.
@@ -62,6 +62,18 @@
         var single = isArray(body.single_value_changes) ? body.single_value_changes : [];
         for (i = 0; i < single.length; i++) {
             intended.attributes[single[i].name] = single[i].oldValue;
+        }
+        // Multivalued non-entitlement attributes (multiValueAttributeChanges):
+        // values added out of band must go, values removed must come back.
+        var multi = isArray(body.multi_value_changes) ? body.multi_value_changes : [];
+        for (i = 0; i < multi.length; i++) {
+            change = multi[i];
+            for (j = 0; change.addedValues && j < change.addedValues.length; j++) {
+                intended.entitlements_absent.push({ attribute: change.name, value: change.addedValues[j] });
+            }
+            for (j = 0; change.removedValues && j < change.removedValues.length; j++) {
+                intended.entitlements_present.push({ attribute: change.name, value: change.removedValues[j] });
+            }
         }
         var ents = isArray(body.entitlement_changes) ? body.entitlement_changes : [];
         for (i = 0; i < ents.length; i++) {
@@ -147,7 +159,9 @@
             fail(problem);
             return;
         }
-        var key = [f.source, f.subject_id, f.drift_class].join('|');
+        // The attribute is part of the key: two attributes drifting on one
+        // subject are two pieces of work, each with its own intended state.
+        var key = [f.source, f.subject_id, f.drift_class].join('|') + (f.attribute ? '|' + f.attribute : '');
         var existing = new GlideRecord(TABLE);
         existing.addActiveQuery();
         existing.addQuery('u_dedupe_key', key);

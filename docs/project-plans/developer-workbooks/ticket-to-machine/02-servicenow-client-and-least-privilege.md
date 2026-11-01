@@ -1,0 +1,193 @@
+---
+title: "Chapter 02 — The ServiceNow Client and Least Privilege"
+description: "The ServiceNow half of the kit's shared client: OAuth client-credentials tokens at oauth_token.do, Table API paging, the Attachment API and retries on 429 and 503. Declare every HTTP call the clients make, with the task that makes it and its least privilege, in one reviewed file; fail a test when a client makes a call that isn't declared; and split the ServiceNow roles by task so the evidence reader can't close a finding; with labs against fixtures and a ServiceNow developer instance."
+doc-type: workbook-chapter
+audience: [Technical]
+family: dw-ticket-to-machine
+part: How
+series-order: 2
+status: draft
+lifecycle: active
+tiers_adopted: []
+lifecycle_review: 2027-05-01
+review-status: pending
+---
+# Chapter 02 — The ServiceNow Client and Least Privilege
+
+*An integration user with more roles than its calls need is a standing privilege nobody requested. Write the calls down, and make the tests hold the code to the list.*
+
+::: {.callout-note}
+## In this chapter
+How the kit's clients authenticate to ServiceNow and page through its tables, and the file that makes their privilege reviewable: `config/calls.json`, every HTTP call a Python client makes, the task that makes it, the least privilege it needs and the vendor page that says so. A test runs the clients against a fake HTTP session and fails on any call the file doesn't declare for that task, and `kit_calls.py` prints what each task needs and compares it with a grant. This chapter covers the ServiceNow rows; [Chapter 03](03-sailpoint-client-and-scopes.md) covers SailPoint's and Microsoft Graph's. Lab 1 runs on a laptop; Lab 2 creates the integration users and roles on a developer instance.
+:::
+
+## Goal and audience
+
+**Goal.** By the end of this chapter you can say which ServiceNow role each kit component needs and why, show from a test that the code calls nothing else, and compare an integration user's roles with that list before it goes live.
+
+**Audience.** Developers who build or change the ServiceNow side, the ServiceNow administrators who create the integration users, and the ISSO who approves the access. You should read Python. You don't need an instance until Lab 2.
+
+## The code: `examples/servicenow-sailpoint`
+
+### What exists
+
+`clients/python/kit_common.py` holds what every client shares, as the implementation example's [shared client pieces](../../../books/guides/snow-sailpoint-integration-kit.md#shared-client-pieces) table summarizes:
+
+- **Configuration.** Environment variables, or a JSON file for non-secret settings; a file that carries a secret is refused.
+- **The token.** `sn_headers` uses a token from a vault (`SN_ACCESS_TOKEN`) if one is set; otherwise it requests one with the OAuth client-credentials grant, a form post to `/oauth_token.do` with `grant_type=client_credentials`, the client ID and the secret; otherwise basic authentication, for a developer instance only.[^ttm02-cc]
+- **Paging.** `sn_table_all` reads `/api/now/table/{table}` with `sysparm_query`, `sysparm_fields`, `sysparm_limit` (100 a page here; the API's default is 10,000) and `sysparm_offset`, and `sysparm_exclude_reference_link`.[^ttm02-table]
+- **Retries.** One wrapper retries 429 and 503, waiting the `Retry-After` seconds or date, up to five times.
+
+The clients make three kinds of ServiceNow call: the drift client posts findings to the Scripted REST resource; the re-read client lists waiting findings, patches each one and attaches the evidence through the Attachment API;[^ttm02-attach] and [Chapter 07](07-evidence-records.md)'s export reads closed findings. The kit's README listed the roles in prose. Nothing tied that list to the code.
+
+### What this chapter adds
+
+**`config/calls.json`**, one row per call: an ID, the system, the method, the path (with `{placeholders}`), the tasks that make it, the least privilege, and the vendor page. The ServiceNow rows:
+
+| Call | Tasks | Least privilege | Source |
+|---|---|---|---|
+| `POST /oauth_token.do` | drift-push, reread, evidence | An inbound OAuth client (client credentials) with its own integration user | [^ttm02-cc] |
+| `POST /api/x_example_idkit/identity_findings/finding` | drift-push | `x_example_idkit.finding_writer`, through the `REST_Endpoint` ACL | [^ttm02-srapi] |
+| `GET /api/now/table/u_identity_finding` | reread | `x_example_idkit.verifier` (read) | [^ttm02-table] |
+| `PATCH /api/now/table/u_identity_finding/{sys_id}` | reread | `x_example_idkit.verifier` (write) | [^ttm02-table] |
+| `POST /api/now/attachment/file` | reread | `x_example_idkit.verifier` (create on `sys_attachment`) | [^ttm02-attach] |
+| `GET /api/now/table/u_identity_finding` | evidence | `x_example_idkit.evidence_reader` (read only) | [^ttm02-table] |
+
+The roles are custom roles in the scoped application, *design guidance*: ServiceNow's pages say the calling user needs roles that allow access to the table, and that no single role allows adding attachments by default, so a custom role has to grant it.[^ttm02-table][^ttm02-attach] Splitting them by task is the point. The finding writer can create findings and nothing else; the verifier can close them, which is why the business rule ([Chapter 05](05-the-re-read-rule.md)) accepts a close only from that account; and the evidence reader, new in this workbook, reads but can't change a record it is about to hash.
+
+**`clients/python/kit_calls.py`** reads the file:
+
+- `--task NAME` prints the task's calls and the permissions it needs on each system;
+- `--system S --granted "a,b"` compares what an integration user or API client actually holds with what the task needs and exits 1 on anything missing or extra. Grants are typed or exported by the operator; the tool calls no network.
+
+**`tests/python/test_kit_calls.py`** runs the drift client, the push, the re-read client with `--apply` and the evidence export's live read against a fake HTTP session, then checks every recorded request against the file, by method and whole path, for that task. A new call in a client fails the test until someone adds its row, its privilege and its source, and a reviewer sees that row in the pull request. It also asserts that no task asks ISC or Graph for a write scope.
+
+### The tests
+
+`test_kit_calls.py`, 9 tests. The ServiceNow token, paging and retry tests from the kit's original suite, `test_kit_common.py`, still pass unchanged.
+
+::: {.callout-important}
+## Illustrative code
+The commands below run against a fake session and fictional fixtures. They show that the code calls only what the file declares, not that a ServiceNow instance grants exactly those roles. Run Lab 2 before trusting the role list on your release.
+:::
+
+## Lab 1: fixtures, no tenant
+
+Work in `examples/servicenow-sailpoint`, with Python 3.10 or later, `pytest` and `requests`.
+
+1. **Prove every call is declared:**
+
+   ```bash
+   python -m pytest tests/python/test_kit_calls.py -q
+   ```
+
+   `9 passed`.
+
+2. **List what the re-read client needs on ServiceNow:**
+
+   ```bash
+   python clients/python/kit_calls.py --task reread --system servicenow
+   ```
+
+   ```text
+   Task reread: reread_verification.py: list waiting findings, re-read each subject, close or reopen with evidence
+
+   servicenow
+     POST   /oauth_token.do                                            an inbound OAuth client (client credentials) with its own integration user
+     GET    /api/now/table/u_identity_finding                          x_example_idkit.verifier (read on u_identity_finding)
+     PATCH  /api/now/table/u_identity_finding/{sys_id}                 x_example_idkit.verifier (write on u_identity_finding)
+     POST   /api/now/attachment/file                                   x_example_idkit.verifier (create on sys_attachment)
+     needs: x_example_idkit.verifier
+   ```
+
+3. **Catch a grant that is too wide.** An administrator gave the verifier `itil` as well:
+
+   ```bash
+   python clients/python/kit_calls.py --task reread --system servicenow --granted "x_example_idkit.verifier,itil"
+   ```
+
+   The listing, then `missing: none`, `extra:   itil` and `Least privilege does not hold: fix the grant.` The command exits 1.
+
+4. **Catch the evidence export reusing the verifier:**
+
+   ```bash
+   python clients/python/kit_calls.py --task evidence --system servicenow --granted "x_example_idkit.verifier"
+   ```
+
+   `missing: x_example_idkit.evidence_reader`, `extra:   x_example_idkit.verifier`, exit 1. The export would work with the verifier's role; it would also be able to close findings.
+
+5. **Run the original ServiceNow client tests:**
+
+   ```bash
+   python -m pytest tests/python/test_kit_common.py -q -k "sn_ or retry or paging or base_urls"
+   ```
+
+   `7 passed, 12 deselected`: the base URLs, the OAuth-then-basic order, Retry-After as seconds and as a date, a 429 retried after its Retry-After, and every paging style.
+
+## Lab 2: a ServiceNow developer instance
+
+Not run by the authors. Use a Personal Developer Instance, never production. You need the instance from [Chapter 01](01-the-loop-and-the-typed-task.md)'s Lab 2.
+
+1. **Create three custom roles** in the scoped application: `x_example_idkit.finding_writer`, `x_example_idkit.verifier` and `x_example_idkit.evidence_reader`. Give the verifier read and write ACLs on `u_identity_finding` and create on `sys_attachment`; the evidence reader read on `u_identity_finding` only; the finding writer only the Scripted REST resource's `REST_Endpoint` ACL.[^ttm02-srapi][^ttm02-attach]
+2. **Create one integration user per role,** and one inbound OAuth client-credentials integration per user. On Zurich, ServiceNow documents this in the Machine Identity Console; older releases enable the grant with a system property (see what couldn't be verified).[^ttm02-cc]
+3. **Compare each user's roles** with `kit_calls.py --granted`, one task at a time, and fix anything extra.
+4. **Exercise each user.** Request a token as the verifier: `POST https://<instance>.service-now.com/oauth_token.do` with `grant_type=client_credentials`, the client ID and the secret. List `u_identity_finding` with the token. Then try, as the evidence reader, to `PATCH` a record: expect a refusal.
+5. **Back it out.** Delete the OAuth integrations, the three users and the three roles, and revoke any token you saved.
+
+## The verified facts
+
+| Item | Value | Source |
+|---|---|---|
+| Client-credentials token | `POST https://<instance>/oauth_token.do`; `grant_type` (`client_credentials`), `client_id` and `client_secret` required; `scope` optional (Zurich, updated October 8, 2026) | [^ttm02-cc] |
+| Table API, read | `GET /api/now/table/{tableName}`; `sysparm_query` (encoded query with `^`, `^OR`, `ORDERBY`), `sysparm_fields`, `sysparm_limit` (default 10,000), `sysparm_offset` (default 0), `sysparm_exclude_reference_link` (default false); the caller needs roles that allow access to the table | [^ttm02-table] |
+| Attachment API, upload | `POST /api/now/attachment/file` with `table_name`, `table_sys_id` and `file_name` required; a `Content-Type` header is mandatory; create on `sys_attachment` plus read and write on the target table, and no single role allows adding attachments by default | [^ttm02-attach] |
+| Scripted REST API | `REST_Endpoint` ACLs; `web_service_admin` to create, not to call | [^ttm02-srapi] |
+| ServiceNow Government Community Cloud | FedRAMP Certified, High, JAB | [^ttm02-fedramp] |
+
+### What couldn't be verified
+
+- **Which inbound client-credentials setup applies on a given release.** The Zurich pages document the token request and the Machine Identity Console; an older page documents a system property, false by default. Kit README verify list, item 10.
+- **What the token request's optional `scope` restricts** for the Table and Attachment APIs. ServiceNow's example scopes are `incident_read` and `incident_write`; whether a scope can narrow a custom table wasn't found (research gaps, row 11).
+- **API access policies.** The Scripted REST page says authentication is set through API access policies; whether an instance's policies add roles the kit doesn't list is on the verify list, item 13.
+
+## Federal requirements and evidence
+
+| What the output proves | Requirement it supports | Who keeps it |
+|---|---|---|
+| Each integration user holds exactly the roles its calls need, and the code calls nothing else | NIST SP 800-53 AC-6 (least privilege) and AC-2 (account management), in the Moderate baseline[^ttm02-moderate] | `config/calls.json` and the test in the repository; the `kit_calls.py --granted` output kept with the access approval |
+| The account that closes findings is separate from the ones that raise and read them | AC-5 (separation of duties), in the Moderate baseline;[^ttm02-moderate] Book 13's rule that the deciding and acting identities are separate | The role definitions on the instance; the business rule's verifier property |
+| A change to what the integration may call is reviewed | CM-3 (configuration change control) | The pull request that adds a row to `calls.json` |
+
+Book 13 maps the loop's controls in [Appendix A](../../../books/b13-governance/appendix-a-requirements-mapping.md).
+
+## Dangers
+
+| Danger | What happens | The guard |
+|---|---|---|
+| A client gains a call nobody listed | The integration needs a role nobody approved, and someone grants it in production to make the error go away | `test_kit_calls.py` fails on any undeclared call |
+| One integration user for everything | The account that reads evidence can also close findings, or the workflow's account can close what it raised | Roles split by task; `--granted` flags extras |
+| `itil` or `admin` granted "to make it work" | Broad access to every ITSM table | `--granted` lists the extra role and exits 1 |
+| Basic authentication left on outside a developer instance | A password in a pipeline, no token expiry | The README limits basic to developer instances; prefer a vault-fed token |
+| A secret in the config file | It reaches the repository | `load_config` refuses secret keys in a file |
+| Paging stops early | A waiting finding is never re-read | `sn_table_all` pages until a short page; tested |
+
+## Checklist
+
+- [ ] Every ServiceNow call in the clients has a row in `config/calls.json`, and `test_kit_calls.py` passes.
+- [ ] Each integration user's roles match `kit_calls.py --task <task> --system servicenow` exactly.
+- [ ] The finding writer, the verifier and the evidence reader are separate users with separate OAuth clients.
+- [ ] No integration user holds `itil`, `admin` or any role beyond its custom role.
+- [ ] Basic authentication isn't configured on any instance but a developer instance.
+- [ ] Tokens come from a vault or the client-credentials grant; no secret is in a file.
+
+::: {.callout-tip}
+## Continue the book
+[← Previous: Chapter 01 — The Loop and the Typed Task](01-the-loop-and-the-typed-task.md) · [Workbook index](index.md) · [Next: Chapter 03 — The SailPoint Client and Its Scopes →](03-sailpoint-client-and-scopes.md)
+:::
+
+[^ttm02-cc]: ServiceNow, "Client credentials grant workflow" (Zurich, last updated October 8, 2026: `POST /oauth_token.do`, `grant_type`, `client_id`, `client_secret`, optional `scope`), <https://www.servicenow.com/docs/r/oJu9n0q6rU~F9UHAnNCt5w/nEdqo82hKBPEeGDqhx~hqw> (read November 1, 2026).
+[^ttm02-table]: ServiceNow, "Table API" (Zurich API reference: `GET /now/table/{tableName}` and its query parameters, defaults and roles), <https://www.servicenow.com/docs/bundle/zurich-api-reference/page/integrate/inbound-rest/concept/c_TableAPI.html> (read November 1, 2026).
+[^ttm02-attach]: ServiceNow, "Attachment API" (Zurich: `POST /now/attachment/file`, its query parameters, the mandatory `Content-Type` header and the roles), <https://www.servicenow.com/docs/r/MVRCUFVyKWd7vUoUukbW6g/lfpHTMPdNaq_xdajhuTwEg> (read November 1, 2026).
+[^ttm02-srapi]: ServiceNow, "Scripted REST APIs" (Zurich API reference), <https://www.servicenow.com/docs/bundle/zurich-api-reference/page/integrate/custom-web-services/concept/c_CustomWebServices.html> (read November 1, 2026).
+[^ttm02-fedramp]: FedRAMP Marketplace data, <https://www.fedramp.gov/marketplace/products.json> (last change November 1, 2026): ServiceNow Government Community Cloud, F1305072116 (read November 1, 2026).
+[^ttm02-moderate]: National Institute of Standards and Technology, SP 800-53B Moderate baseline, release 5.2.0 OSCAL profile (includes AC-2, AC-5, AC-6 and CM-3), <https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_MODERATE-baseline_profile.json> (read November 1, 2026).
