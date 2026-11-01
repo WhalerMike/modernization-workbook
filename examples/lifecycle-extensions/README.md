@@ -1,6 +1,6 @@
 # Lifecycle Workflows custom task extensions
 
-One reusable Logic App per integration, called by Microsoft Entra ID Governance Lifecycle Workflows through a custom task extension, with its own managed identity and a callback that resumes the task. It is the code for the [developer workbook *Building the Attribute-Driven Migration*, Chapter 05](../../docs/project-plans/developer-workbooks/attribute-driven-migration/05-lifecycle-workflows-custom-extensions.md).
+One reusable Logic App per integration, called by Microsoft Entra ID Governance Lifecycle Workflows through a custom task extension, with its own managed identity and a callback that resumes the task. It is the code for the [developer workbook *Building the Attribute-Driven Migration*, Chapter 05](../../docs/books/b19-developer-workbook/05-lifecycle-workflows-custom-extensions.md).
 
 Illustrative: tested against fixtures and fakes, not proven against a production tenant. Nothing here signs in or sends a request off the machine.
 

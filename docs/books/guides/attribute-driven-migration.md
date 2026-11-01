@@ -27,7 +27,7 @@ What the migration accomplishes and how you know you're there, and the four trac
 
 **Deeper Dive Implementation, in three parts (about 15 minutes narrated each)**: the three-part **Deeper Dive Implementation** series (about 15 minutes narrated each) walks the ten gates at working level: [Part 1, Gates 0–3](../../presentations/index.md#deeper-dive-attribute-driven-migration-part-1), [Part 2, Gates 4–6](../../presentations/index.md#deeper-dive-attribute-driven-migration-part-2) and [Part 3, Gates 7–9](../../presentations/index.md#deeper-dive-attribute-driven-migration-part-3).
 
-**Step by step, the shared foundation**: [Attribute-Driven Migration: An Implementation Guide](../../project-plans/developer-workbooks/attribute-driven-migration/implementation-guide.md) runs the stages the four tracks share as ten gates, in the decks' order, each with the validation kit check that proves it, and the [Attribute-Driven Migration project plan](../../project-plans/attribute-driven-migration.md) schedules them against the track plans and the program's gates.
+**Step by step, the shared foundation**: [Attribute-Driven Migration: An Implementation Guide](attribute-driven-migration-implementation.md) runs the stages the four tracks share as ten gates, in the decks' order, each with the validation kit check that proves it, and the [Attribute-Driven Migration project plan](../../project-plans/attribute-driven-migration.md) schedules them against the track plans and the program's gates.
 :::
 
 ## How to read this guide
@@ -419,7 +419,7 @@ The stages above move people. This section is the home of the other three [track
 
 **Done when** *(design guidance)*: every managed device carries attributes written by provisioning, its policy is targeted by them, and computer-side GPO links are disabled population by population, with rollback tested ([Book 05's gates](../b05-devices/08-gpo-to-intune-policy-migration.md#testing-at-each-gate)). **Federal requirement:** CM-2, CM-6, CM-8 and IA-3, and M-22-09's device inventory and signal ([mapping](#federal-requirements)).
 
-**Step by step:** the [Intune Track Implementation guide](intune-track-implementation.md) runs this track as seven gates, each with the validation kit checks that prove it. The device targeting conventions it builds on are set in [Gate 5 of the Attribute-Driven Migration implementation guide](../../project-plans/developer-workbooks/attribute-driven-migration/implementation-guide.md#gate-5-personas-and-targeting-conventions).
+**Step by step:** the [Intune Track Implementation guide](intune-track-implementation.md) runs this track as seven gates, each with the validation kit checks that prove it. The device targeting conventions it builds on are set in [Gate 5 of the Attribute-Driven Migration implementation guide](attribute-driven-migration-implementation.md#gate-5-personas-and-targeting-conventions).
 
 **What Microsoft documents for targeting by attribute: yes.**
 
@@ -461,7 +461,7 @@ Intune isn't only for Microsoft platforms: it manages Apple, Android and Linux d
 
 **Done when** *(design guidance)*: every in-scope server is Arc-enabled with its tag taxonomy applied, and its baseline is assigned and evaluated by Azure Policy ([the day-one baseline](../b05-devices/09-servers-under-azure-arc.md#the-day-one-baseline)). **Federal requirement:** CM-2, CM-6 and CM-8; IA-9 for the server's workload identity ([mapping](#federal-requirements)).
 
-**Step by step:** the [Azure Arc Track: Implementation Guide](arc-track-implementation.md) runs this track as eight gated steps, and the [Endpoint & Device plan's Phase 4](../../project-plans/endpoint-device.md#phase-4-servers-under-azure-arc) schedules it. The server targeting conventions it builds on are set in [Gate 5 of the Attribute-Driven Migration implementation guide](../../project-plans/developer-workbooks/attribute-driven-migration/implementation-guide.md#gate-5-personas-and-targeting-conventions).
+**Step by step:** the [Azure Arc Track: Implementation Guide](arc-track-implementation.md) runs this track as eight gated steps, and the [Endpoint & Device plan's Phase 4](../../project-plans/endpoint-device.md#phase-4-servers-under-azure-arc) schedules it. The server targeting conventions it builds on are set in [Gate 5 of the Attribute-Driven Migration implementation guide](attribute-driven-migration-implementation.md#gate-5-personas-and-targeting-conventions).
 
 **What Microsoft documents for targeting by attribute: yes, through Azure Resource Manager.**
 
@@ -517,7 +517,7 @@ The tiers are how the inventory meets CM-8, System Component Inventory, in the p
 
 **Done when** *(design guidance)*: every service account and service principal has an owner and sponsor, a reason and a target; each one is retired, re-platformed to a managed identity or gMSA, or made a certificate or federated-credential workload identity; none holds a password that never expires, and none is orphaned. Book 02's Phase 4 is the gate for service accounts ([Chapter 10](../b02-identity/10-migrating-and-governing.md#phase-4-service-account-modernization)). **Federal requirement:** AC-2, AC-6(5), IA-4, IA-5 and IA-9, and M-25-21 for AI ([mapping](#federal-requirements)).
 
-**Step by step:** [Non-Person Identity: An Implementation Guide](non-person-identity-implementation.md) runs this track as six gated steps, and the [Non-Person Identity Modernization plan](../../project-plans/non-person-identity.md) schedules it. Owners and sponsors are recorded by the enterprise person key, a convention set in [Gate 5 of the Attribute-Driven Migration implementation guide](../../project-plans/developer-workbooks/attribute-driven-migration/implementation-guide.md#gate-5-personas-and-targeting-conventions).
+**Step by step:** [Non-Person Identity: An Implementation Guide](non-person-identity-implementation.md) runs this track as six gated steps, and the [Non-Person Identity Modernization plan](../../project-plans/non-person-identity.md) schedules it. Owners and sponsors are recorded by the enterprise person key, a convention set in [Gate 5 of the Attribute-Driven Migration implementation guide](attribute-driven-migration-implementation.md#gate-5-personas-and-targeting-conventions).
 
 #### Service accounts, MSAs, gMSAs and dMSAs
 

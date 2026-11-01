@@ -88,6 +88,9 @@ editions:
       b18-application-modernization:
         changes:
           - "First edition (5 merged changes since the book began)"
+      b19-developer-workbook:                # was developer-workbooks/attribute-driven-migration in this edition
+        changes:
+          - "First edition (18 merged changes since the workbook began)"
       guides/ansible-configuration-automation:
         changes:
           - "First edition (4 merged changes since the guide began)"
@@ -97,6 +100,9 @@ editions:
       guides/attribute-driven-migration:
         changes:
           - "First edition (9 merged changes since the guide began)"
+      guides/attribute-driven-migration-implementation:   # was in developer-workbooks/attribute-driven-migration in this edition
+        changes:
+          - "First edition (7 merged changes since the guide began)"
       guides/effective-meetings:
         changes:
           - "First edition (3 merged changes since the guide began)"
@@ -106,9 +112,6 @@ editions:
       guides/non-person-identity-implementation:
         changes:
           - "First edition (2 merged changes since the guide began)"
-      developer-workbooks/attribute-driven-migration:
-        changes:
-          - "First edition (18 merged changes since the workbook began)"
       developer-workbooks/non-person-identity:
         changes:
           - "First edition (15 merged changes since the workbook began)"

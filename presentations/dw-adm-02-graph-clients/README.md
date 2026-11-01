@@ -1,6 +1,6 @@
 # Building the Attribute-Driven Migration, Chapter 02 — Graph Clients for the Government Clouds: narrated tour
 
-**Deck name: DW_ADM_02_Graph_Clients.** A narrated tour of [Chapter 02 — Graph Clients for the Government Clouds](../../docs/project-plans/developer-workbooks/attribute-driven-migration/02-graph-clients-for-government-clouds.md) in the developer workbook *Building the Attribute-Driven Migration*. It is built with the shared kit in [`../_build/`](../_build/README.md): the slides and notes are data in `build.js`, laid out by [`../_build/devwb.js`](../_build/devwb.js). This folder sits outside `docs/`, so the site doesn't render it.
+**Deck name: DW_ADM_02_Graph_Clients.** A narrated tour of [Chapter 02 — Graph Clients for the Government Clouds](../../docs/books/b19-developer-workbook/02-graph-clients-for-government-clouds.md) in the developer workbook *Building the Attribute-Driven Migration*. It is built with the shared kit in [`../_build/`](../_build/README.md): the slides and notes are data in `build.js`, laid out by [`../_build/devwb.js`](../_build/devwb.js). This folder sits outside `docs/`, so the site doesn't render it.
 
 | File | Use |
 |---|---|

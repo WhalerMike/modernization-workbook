@@ -1,6 +1,6 @@
 # Group Policy as code
 
-Moving Group Policy settings to Intune settings catalog policies from reviewed JSON in Git: a move plan read from Intune's Group Policy analytics, a policy library with a linter, a diff against the tenant, and a sync that creates only what is missing. It is the code for the [developer workbook *Building the Attribute-Driven Migration*, Chapter 06](../../docs/project-plans/developer-workbooks/attribute-driven-migration/06-group-policy-as-code.md). The gate check on whole GPOs stays in the validation kit (VK-INT-07). The operator procedure is [Book 05, Chapter 08](../../docs/books/b05-devices/08-gpo-to-intune-policy-migration.md).
+Moving Group Policy settings to Intune settings catalog policies from reviewed JSON in Git: a move plan read from Intune's Group Policy analytics, a policy library with a linter, a diff against the tenant, and a sync that creates only what is missing. It is the code for the [developer workbook *Building the Attribute-Driven Migration*, Chapter 06](../../docs/books/b19-developer-workbook/06-group-policy-as-code.md). The gate check on whole GPOs stays in the validation kit (VK-INT-07). The operator procedure is [Book 05, Chapter 08](../../docs/books/b05-devices/08-gpo-to-intune-policy-migration.md).
 
 Illustrative: tested against fixtures and a fake Graph, not proven against a production tenant. The Group Policy analytics and settings catalog APIs it calls are Microsoft Graph **beta**.
 

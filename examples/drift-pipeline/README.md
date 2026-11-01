@@ -3,7 +3,7 @@
 > **Status: illustrative. Unit-tested against fixtures, not run against a live tenant or Azure.**
 > Review every line, and run it first against a test tenant and a test subscription.
 
-A scheduled pipeline runs the [validation kit](../validation-kit/README.md) read-only, compares each run with the last, opens findings for what's new or changed, and hands the ISSO an evidence package with a SHA-256 per file and the provenance from the other kits. The [developer workbook *Building the Attribute-Driven Migration*, Chapter 09](../../docs/project-plans/developer-workbooks/attribute-driven-migration/09-drift-pipelines-and-evidence.md) walks through it.
+A scheduled pipeline runs the [validation kit](../validation-kit/README.md) read-only, compares each run with the last, opens findings for what's new or changed, and hands the ISSO an evidence package with a SHA-256 per file and the provenance from the other kits. The [developer workbook *Building the Attribute-Driven Migration*, Chapter 09](../../docs/books/b19-developer-workbook/09-drift-pipelines-and-evidence.md) walks through it.
 
 It starts from Microsoft's sample: Learn's [Use the Azure Login action with OpenID Connect](https://learn.microsoft.com/azure/developer/github/connect-from-azure-openid-connect), whose three workflows are pinned in [`../third_party/azure-login-oidc-sample`](../third_party/azure-login-oidc-sample/SNAPSHOT.md), and the Azure Login action's `action.yml`, pinned in [`../third_party/azure-login-action`](../third_party/azure-login-action/SNAPSHOT.md). Both are checked offline; nothing here signs in.
 

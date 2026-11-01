@@ -1,5 +1,5 @@
 // Building the Attribute-Driven Migration, Chapter 09 — Drift Pipelines and Evidence to the ISSO: the narrated tour.
-// Every fact comes from docs/project-plans/developer-workbooks/attribute-driven-migration/09-drift-pipelines-and-evidence.md;
+// Every fact comes from docs/books/b19-developer-workbook/09-drift-pipelines-and-evidence.md;
 // cite names are that chapter's footnotes. Layout and notes: ../_build/devwb.js.
 // Build (Git Bash): source /c/tmp/deckenv.sh && DATECODE="…" node presentations/dw-adm-09-drift-pipelines-evidence/build.js
 require("../_build/devwb.js")({

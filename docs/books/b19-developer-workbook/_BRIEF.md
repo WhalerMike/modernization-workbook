@@ -1,6 +1,6 @@
-# Building the Attribute-Driven Migration (developer workbook) — chapter-writer brief
+# Book 19 — Building the Attribute-Driven Migration (developer workbook) — chapter-writer brief
 
-Workbook folder: `docs/project-plans/developer-workbooks/attribute-driven-migration/`. Files and folders starting with `_` aren't rendered. The workbook index (`index.md`) holds the full outline; write chapters with the file names below.
+Workbook folder: `docs/books/b19-developer-workbook/`. Files and folders starting with `_` aren't rendered. The workbook index (`index.md`) holds the full outline; write chapters with the file names below.
 
 | File | Title | Code |
 |---|---|---|

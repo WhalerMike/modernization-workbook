@@ -375,9 +375,9 @@
       "repo": "AzureAD/entra-id-inbound-provisioning",
       "path": "PowerShell/CSV2SCIM",
       "books": [
-        "DW"
+        "B19"
       ],
-      "source": "Commits to Microsoft's CSV2SCIM sample, which examples/third_party/csv2scim pins at one commit (developer workbook Building the Attribute-Driven Migration, Chapter 01). A new commit means: review it, and update the snapshot only in a reviewed pull request."
+      "source": "Commits to Microsoft's CSV2SCIM sample, which examples/third_party/csv2scim pins at one commit (Book 19, Building the Attribute-Driven Migration, Chapter 01). A new commit means: review it, and update the snapshot only in a reviewed pull request."
     },
     {
       "id": "guest-configuration-samples-commits",
@@ -386,9 +386,9 @@
       "repo": "Azure/azure-policy",
       "path": "samples/GuestConfiguration",
       "books": [
-        "DW"
+        "B19"
       ],
-      "source": "Commits to Microsoft's guest configuration package samples, which examples/third_party/guest-configuration-samples pins at one commit (developer workbook Building the Attribute-Driven Migration, Chapter 07). A new commit means: review it, and update the snapshot only in a reviewed pull request."
+      "source": "Commits to Microsoft's guest configuration package samples, which examples/third_party/guest-configuration-samples pins at one commit (Book 19, Building the Attribute-Driven Migration, Chapter 07). A new commit means: review it, and update the snapshot only in a reviewed pull request."
     },
     {
       "id": "guestconfiguration-module-commits",
@@ -397,9 +397,9 @@
       "repo": "Azure/GuestConfiguration",
       "path": "source",
       "books": [
-        "DW"
+        "B19"
       ],
-      "source": "Commits to the GuestConfiguration module's source. examples/machine-configuration pins version 4.12.0 in RequiredModules.psd1 (developer workbook Building the Attribute-Driven Migration, Chapter 07). A change here means: rerun tests/LearnBaseline.Tests.ps1 against the new version before moving the pin, in a reviewed pull request."
+      "source": "Commits to the GuestConfiguration module's source. examples/machine-configuration pins version 4.12.0 in RequiredModules.psd1 (Book 19, Building the Attribute-Driven Migration, Chapter 07). A change here means: rerun tests/LearnBaseline.Tests.ps1 against the new version before moving the pin, in a reviewed pull request."
     },
     {
       "id": "dynamic-membership-samples-commits",
@@ -408,9 +408,9 @@
       "repo": "MicrosoftDocs/entra-docs",
       "path": "docs/identity/users/scripts",
       "books": [
-        "DW"
+        "B19"
       ],
-      "source": "Commits to the Learn source pages that hold the five pause and resume samples, which examples/third_party/dynamic-membership-samples pins at one commit (developer workbook Building the Attribute-Driven Migration, Chapter 04). A new commit means: review it, rerun examples/dynamic-rules/tests/LearnSamples.Tests.ps1 on the new pages, and update the snapshot only in a reviewed pull request."
+      "source": "Commits to the Learn source pages that hold the five pause and resume samples, which examples/third_party/dynamic-membership-samples pins at one commit (Book 19, Building the Attribute-Driven Migration, Chapter 04). A new commit means: review it, rerun examples/dynamic-rules/tests/LearnSamples.Tests.ps1 on the new pages, and update the snapshot only in a reviewed pull request."
     },
     {
       "id": "lifecycle-workflows-logic-app-commits",
@@ -419,9 +419,9 @@
       "repo": "MicrosoftDocs/entra-docs",
       "path": "docs/id-governance/configure-logic-app-lifecycle-workflows.md",
       "books": [
-        "DW"
+        "B19"
       ],
-      "source": "Commits to the Learn source page that holds Microsoft's Logic App definition and authorization policies for custom task extensions, which examples/third_party/lifecycle-workflows-logic-app pins at one commit (developer workbook Building the Attribute-Driven Migration, Chapter 05). A new commit means: review it, rerun examples/lifecycle-extensions/tests/test_learn_sample.py on the new page, and update the snapshot only in a reviewed pull request."
+      "source": "Commits to the Learn source page that holds Microsoft's Logic App definition and authorization policies for custom task extensions, which examples/third_party/lifecycle-workflows-logic-app pins at one commit (Book 19, Building the Attribute-Driven Migration, Chapter 05). A new commit means: review it, rerun examples/lifecycle-extensions/tests/test_learn_sample.py on the new page, and update the snapshot only in a reviewed pull request."
     },
     {
       "id": "msgraph-snippets-python-commits",
@@ -430,9 +430,9 @@
       "repo": "microsoftgraph/msgraph-snippets-python",
       "path": "src/snippets",
       "books": [
-        "DW"
+        "B19"
       ],
-      "source": "Commits to the Graph SDK snippets that Learn's national cloud and authentication provider pages render, which examples/third_party/msgraph-snippets-python pins at one commit (developer workbook Building the Attribute-Driven Migration, Chapter 02). A new commit means: review it, rerun examples/ms-automation/tests/python/test_learn_sample.py on the new files, and update the snapshot only in a reviewed pull request."
+      "source": "Commits to the Graph SDK snippets that Learn's national cloud and authentication provider pages render, which examples/third_party/msgraph-snippets-python pins at one commit (Book 19, Building the Attribute-Driven Migration, Chapter 02). A new commit means: review it, rerun examples/ms-automation/tests/python/test_learn_sample.py on the new files, and update the snapshot only in a reviewed pull request."
     },
     {
       "id": "mggraph-intune-samples-commits",
@@ -441,9 +441,9 @@
       "repo": "microsoft/mggraph-intune-samples",
       "path": "SettingsCatalog",
       "books": [
-        "DW"
+        "B19"
       ],
-      "source": "Commits to Microsoft's settings catalog export and import samples, which examples/third_party/mggraph-intune-samples pins at one commit (developer workbook Building the Attribute-Driven Migration, Chapter 06). A new commit means: review it, rerun examples/group-policy-as-code/tests/MicrosoftSamples.Tests.ps1 on the new scripts, and update the snapshot only in a reviewed pull request."
+      "source": "Commits to Microsoft's settings catalog export and import samples, which examples/third_party/mggraph-intune-samples pins at one commit (Book 19, Building the Attribute-Driven Migration, Chapter 06). A new commit means: review it, rerun examples/group-policy-as-code/tests/MicrosoftSamples.Tests.ps1 on the new scripts, and update the snapshot only in a reviewed pull request."
     },
     {
       "id": "azure-login-oidc-sample-commits",
@@ -452,9 +452,9 @@
       "repo": "MicrosoftDocs/azure-dev-docs",
       "path": "articles/github/connect-from-azure-openid-connect.md",
       "books": [
-        "DW"
+        "B19"
       ],
-      "source": "Commits to the Learn source page that holds the three sample workflows for signing in from GitHub Actions with a federated credential, which examples/third_party/azure-login-oidc-sample pins at one commit (developer workbook Building the Attribute-Driven Migration, Chapter 09). A new commit means: review it, rerun examples/drift-pipeline/tests/test_workflow_lint.py on the new page, and update the snapshot only in a reviewed pull request."
+      "source": "Commits to the Learn source page that holds the three sample workflows for signing in from GitHub Actions with a federated credential, which examples/third_party/azure-login-oidc-sample pins at one commit (Book 19, Building the Attribute-Driven Migration, Chapter 09). A new commit means: review it, rerun examples/drift-pipeline/tests/test_workflow_lint.py on the new page, and update the snapshot only in a reviewed pull request."
     },
     {
       "id": "azure-login-action-commits",
@@ -463,9 +463,9 @@
       "repo": "Azure/login",
       "path": "action.yml",
       "books": [
-        "DW"
+        "B19"
       ],
-      "source": "Commits to the Azure Login action's declared inputs and defaults, which examples/third_party/azure-login-action pins at release v3.1.0 and examples/drift-pipeline/workflow/drift-pipeline.yml pins by commit (developer workbook Building the Attribute-Driven Migration, Chapter 09). A new commit means: review it, rerun examples/drift-pipeline/tests, and move both pins only in a reviewed pull request."
+      "source": "Commits to the Azure Login action's declared inputs and defaults, which examples/third_party/azure-login-action pins at release v3.1.0 and examples/drift-pipeline/workflow/drift-pipeline.yml pins by commit (Book 19, Building the Attribute-Driven Migration, Chapter 09). A new commit means: review it, rerun examples/drift-pipeline/tests, and move both pins only in a reviewed pull request."
     },
     {
       "id": "azure-arc-role-commits",
@@ -474,9 +474,9 @@
       "repo": "ansible-collections/azure",
       "path": "roles/azure_arc",
       "books": [
-        "DW"
+        "B19"
       ],
-      "source": "Commits to the azure.azcollection azure_arc role, which examples/third_party/azure-arc-role pins at the v4.2.0 release and examples/ansible/requirements.yml installs (developer workbook Building the Attribute-Driven Migration, Chapter 08). A new commit means: review it, rerun examples/ansible/tests/test_microsoft_role.py against the new role, and move the snapshot and the pin only in a reviewed pull request."
+      "source": "Commits to the azure.azcollection azure_arc role, which examples/third_party/azure-arc-role pins at the v4.2.0 release and examples/ansible/requirements.yml installs (Book 19, Building the Attribute-Driven Migration, Chapter 08). A new commit means: review it, rerun examples/ansible/tests/test_microsoft_role.py against the new role, and move the snapshot and the pin only in a reviewed pull request."
     },
     {
       "id": "entra-role-assignments-page-commits",

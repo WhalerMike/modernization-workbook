@@ -43,7 +43,7 @@ The Python version also has a small Graph client, `python/graphkit.py`, standard
 
 The PowerShell module, `powershell/FmwGraph.psm1`, uses `Connect-MgGraph -Environment` and `Invoke-MgGraphRequest` from Microsoft Graph PowerShell for the same thing, and reads the same `graph-calls.json` (`Assert-FmwGraphCall`, `Get-FmwCallPermission`, `Test-FmwTokenRole`, `Test-FmwSessionRole`, `Get-FmwBetaCollection`).
 
-The [developer workbook's Chapter 02](../../docs/project-plans/developer-workbooks/attribute-driven-migration/02-graph-clients-for-government-clouds.md) explains each rule, starting from Microsoft's own Graph SDK snippets, which `examples/third_party/msgraph-snippets-python` pins and `tests/python/test_learn_sample.py` runs against stand-ins.
+The [developer workbook's Chapter 02](../../docs/books/b19-developer-workbook/02-graph-clients-for-government-clouds.md) explains each rule, starting from Microsoft's own Graph SDK snippets, which `examples/third_party/msgraph-snippets-python` pins and `tests/python/test_learn_sample.py` runs against stand-ins.
 
 ## Run it
 

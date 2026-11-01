@@ -3,13 +3,16 @@ title: "Chapter 02 — Graph Clients for the Government Clouds"
 description: "One Microsoft Graph client pattern for worldwide, GCC, GCC High and DoD, starting from Microsoft's own Graph SDK snippets for national clouds (pinned in the repository) and adding what they leave to you: a cloud table with the token authority, Graph host and Resource Manager host for each, least-privileged permissions declared per call and checked against the token, paging with @odata.nextLink, Retry-After, and beta calls the run doesn't depend on, with labs against fixtures and a test tenant."
 doc-type: workbook-chapter
 audience: [Technical]
-family: dw-attribute-driven-migration
+family: b19-developer-workbook
+book: B19
 part: How
 series-order: 2
 status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
+aliases:
+  - /docs/project-plans/developer-workbooks/attribute-driven-migration/02-graph-clients-for-government-clouds.html
 review-status: approved
 reviewed-sha256: c440789141ea2c283abf9b27b77fb8d858b7bbda7a1cdcfd0880fcc2dc5e7b08
 last-reviewed: 2026-10-31

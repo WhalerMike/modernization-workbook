@@ -11,8 +11,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
 review-status: approved
-reviewed-sha256: 81badc234450e1e320de2b0ccdfc64af6656e241e51134bd3d4e39d3ec331064
-last-reviewed: 2026-10-31
+reviewed-sha256: 35a03ec43fb92a49c3cbe96e765f6e3b1af143858b8d0aca320b0e4c60fe9e44
+last-reviewed: 2026-11-01
 ---
 # Chapter 10 — Drift and Evidence for the ISSO
 
@@ -362,7 +362,7 @@ Use a test tenant in the worldwide or GCC cloud with Microsoft Entra ID P1 or P2
 4. **Check what the fixture assumed.** In `drift/events.json`, record the exact `activityDisplayName` of each credential event, hyphen or dash (research gaps, row 91); whether a secret added to the service principal is logged as `Add service principal credentials`, `Update service principal`, or both (row 92); and whether `KeysAdded` holds the key IDs, which means the `KeyDescription` format is the one Microsoft's rule parses. NPI-DRF-07 should list both secrets, NPI-DRF-08 the consent. In `drift/signin-activity.json`, record whether the beta report returned rows (row 93).
 5. **Cross-check against Learn's procedure.** In the admin center, open **Monitoring & health** > **Audit logs**, filter on the ApplicationManagement category and the window, as Learn's security operations guide describes:[^np10-secops] every credential and consent event there should be in `events.json`. If the tenant sends audit logs to a Log Analytics workspace, run Microsoft's rule there: it should return the first secret's event and not the second.
 6. **Package and verify locally.** Run Lab 1, steps 7 and 8, on the test run.
-7. **Back it out.** Remove both secrets and the consent grant from the test apps, remove the four permissions and the Reader assignment, delete the reader app's registration and certificate, and delete `out/runs-test` and the packages: they hold the tenant's identities and owners. If you ran the sample workflow in a test repository, follow the first workbook's [Chapter 09, Lab 2](../attribute-driven-migration/09-drift-pipelines-and-evidence.md#lab-2-test-tenant-and-test-subscription) for its federated credential, an unlocked retention policy, and its back-out.
+7. **Back it out.** Remove both secrets and the consent grant from the test apps, remove the four permissions and the Reader assignment, delete the reader app's registration and certificate, and delete `out/runs-test` and the packages: they hold the tenant's identities and owners. If you ran the sample workflow in a test repository, follow the first workbook's [Chapter 09, Lab 2](../../../books/b19-developer-workbook/09-drift-pipelines-and-evidence.md#lab-2-test-tenant-and-test-subscription) for its federated credential, an unlocked retention policy, and its back-out.
 
 In production, lock the evidence container's retention policy once Lab 2 passes; Learn says an unlocked policy is for testing only.[^np10-immutable]
 

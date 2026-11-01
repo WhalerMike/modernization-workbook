@@ -59,8 +59,8 @@ bundles:
   - output: attribute-driven-migration-implementation-guide.docx
     title: "Attribute-Driven Migration: An Implementation Guide"
     subtitle: "The cross-track implementation guide — Federal Modernization Workbook companion guide"
-    root: docs/project-plans/developer-workbooks/attribute-driven-migration
-    pages: [implementation-guide.md]
+    root: docs/books/guides
+    pages: [attribute-driven-migration-implementation.md]
   - output: intune-track-implementation-guide.docx
     title: "Intune Track Implementation: Attribute-Driven Management of End-User Devices"
     subtitle: "A track implementation guide — Federal Modernization Workbook companion guide"
@@ -76,17 +76,14 @@ bundles:
     subtitle: "A track implementation guide — Federal Modernization Workbook companion guide"
     root: docs/books/guides
     pages: [non-person-identity-implementation.md]
-  - output: building-the-attribute-driven-migration-bundle.docx
-    aliases: [b19-developer-workbook-bundle.docx]
-    title: "Building the Attribute-Driven Migration"
+  - output: b19-developer-workbook-bundle.docx
+    aliases: [building-the-attribute-driven-migration-bundle.docx]
+    title: "Book 19 — Building the Attribute-Driven Migration"
     subtitle: "A developer workbook for the Attribute-Driven Migration project — Federal Modernization Workbook, combined edition"
-    root: docs/project-plans/developer-workbooks/attribute-driven-migration
+    root: docs/books/b19-developer-workbook
     image_dir: docs/images/diagrams/developer-workbooks/attribute-driven-migration
     warn_unlisted: ["*.md"]
     pages: [index.md, "[0-9][0-9]-*.md"]
-    # The implementation guide lives in this folder but has its own Word edition
-    # (attribute-driven-migration-implementation-guide.docx above).
-    exclude: [implementation-guide.md]
   - output: building-privileged-access-bundle.docx
     title: "Building Privileged Access"
     subtitle: "A developer workbook for the Privileged Access & Administrative Identity project — Federal Modernization Workbook, combined edition"

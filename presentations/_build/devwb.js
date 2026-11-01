@@ -1,4 +1,5 @@
-// Narrated chapter tours for the developer workbooks (docs/project-plans/developer-workbooks/<workbook>/).
+// Narrated chapter tours for the developer workbooks: Book 19 (docs/books/b19-developer-workbook/) and the
+// workbooks under Projects (docs/project-plans/developer-workbooks/<workbook>/).
 // Each tour's folder, presentations/dw-<workbook>-<NN>-<slug>/, holds only build.js, which calls
 //
 //   require("../_build/devwb.js")({ workbook: "pa", chapter: 2, base: "DW_PA_02_Emergency_Access", title, subtitle, slides })
@@ -32,16 +33,16 @@ const path = require("path");
 
 const ROOT = path.join(__dirname, "..", "..");
 const WORKBOOKS = {
-  adm: { dir: "attribute-driven-migration", name: "Building the Attribute-Driven Migration" },
-  pa: { dir: "privileged-access", name: "Building Privileged Access" },
-  npi: { dir: "non-person-identity", name: "Building Non-Person Identity" },
+  adm: { dir: "docs/books/b19-developer-workbook", name: "Building the Attribute-Driven Migration" },
+  pa: { dir: "docs/project-plans/developer-workbooks/privileged-access", name: "Building Privileged Access" },
+  npi: { dir: "docs/project-plans/developer-workbooks/non-person-identity", name: "Building Non-Person Identity" },
 };
 const ICONS = new Set(fs.readdirSync(path.join(__dirname, "icons")).map((f) => f.replace(/\.png$/, "")));
 const BANNED = /\bUIAO\b|\bSSA\b|Social Security|Mainframe PIN|\bDISA\b|\bSTIGs?\b/i;
 
 // The chapter page: title, review status and footnotes ([^name]: text, one line each).
 function readChapter(wb, n) {
-  const dir = path.join(ROOT, "docs", "project-plans", "developer-workbooks", WORKBOOKS[wb].dir);
+  const dir = path.join(ROOT, ...WORKBOOKS[wb].dir.split("/"));
   const file = fs.readdirSync(dir).find((f) => f.startsWith(String(n).padStart(2, "0") + "-") && f.endsWith(".md"));
   if (!file) throw new Error(`no chapter ${n} in ${dir}`);
   const md = fs.readFileSync(path.join(dir, file), "utf8");

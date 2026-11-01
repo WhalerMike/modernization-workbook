@@ -1,4 +1,4 @@
-"""The source watch keeps watching moved pages: the developer workbooks after their move to Projects,
+"""The source watch keeps watching moved pages: the developer workbooks under Projects as DW, Book 19 as a book,
 and the status-labeled pages after the research area was split by type.
 
     python -m unittest discover -s scripts/tests -v
@@ -24,10 +24,16 @@ class WorkbookCitations(unittest.TestCase):
         got = sorted(p for code, p in citations.sources() if code == citations.WORKBOOKS_CODE)
         self.assertEqual(got, expected)
 
-    def test_dw_has_a_report_heading_and_no_book_code(self):
-        books = citations.books()
-        self.assertIn(citations.WORKBOOKS_CODE, books)
-        self.assertNotIn("B19", books)
+    def test_dw_has_a_report_heading(self):
+        self.assertIn(citations.WORKBOOKS_CODE, citations.books())
+
+    def test_book_19_is_watched_as_a_book(self):
+        folder = ROOT / "docs" / "books" / "b19-developer-workbook"
+        expected = sorted(p for p in folder.glob("*.md") if not p.name.startswith("_"))
+        self.assertTrue(expected)
+        got = sorted(p for code, p in citations.sources() if code == "B19")
+        self.assertEqual(got, expected)
+        self.assertEqual(citations.books()["B19"]["folder"], "b19-developer-workbook")
 
 
 class StatusLabeledCitations(unittest.TestCase):

@@ -11,8 +11,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
 review-status: approved
-reviewed-sha256: 01e39aae02bf88b486d52a4dacd50723a20772479bc98caf721f1f25f8f50606
-last-reviewed: 2026-10-31
+reviewed-sha256: c95fbacfe278f1da3023aebbeb84f0b9dbe16d75242294aa888dce5abc1ee2da
+last-reviewed: 2026-11-01
 ---
 # Chapter 08 — Evidence and Drift for the ISSO
 
@@ -132,7 +132,7 @@ An approval logged before the window started looks missing to PA-AUD-02, so its 
 
 ### Compare, by fingerprint
 
-`pa_evidence.py compare` loads both runs and checks them first: `run.json`, each task manifest by its hash, every file against its manifest, nothing extra, every recorded request a GET, and one tenant, cloud and mode throughout. It refuses runs from different modes, clouds or tenants, or a current run that isn't later, as the first workbook's pipeline does ([Chapter 09](../attribute-driven-migration/09-drift-pipelines-and-evidence.md#compare)).
+`pa_evidence.py compare` loads both runs and checks them first: `run.json`, each task manifest by its hash, every file against its manifest, nothing extra, every recorded request a GET, and one tenant, cloud and mode throughout. It refuses runs from different modes, clouds or tenants, or a current run that isn't later, as the first workbook's pipeline does ([Chapter 09](../../../books/b19-developer-workbook/09-drift-pipelines-and-evidence.md#compare)).
 
 | Result | Meaning |
 |---|---|
@@ -149,7 +149,7 @@ Each result has a fingerprint: the first 16 hex characters of a SHA-256 over the
 
 ### Findings without names
 
-`pa_evidence.py issues` drafts what to open, comment on and close. A title uses a fixed rule title from a catalog, or a role name, never a finding's own text, because Chapter 01's issue text can name a person. A body carries the rule, severity, tier, object ID and fingerprint, and the run and its `run.json` hash. Names stay in the drift report, which goes to the access-controlled evidence store. `--include-names` turns them on for a reviewed exception. A test checks that no name or user principal name from either run appears in the drafts. *Design guidance*, as in the first workbook's [Chapter 09](../attribute-driven-migration/09-drift-pipelines-and-evidence.md#findings-without-names).
+`pa_evidence.py issues` drafts what to open, comment on and close. A title uses a fixed rule title from a catalog, or a role name, never a finding's own text, because Chapter 01's issue text can name a person. A body carries the rule, severity, tier, object ID and fingerprint, and the run and its `run.json` hash. Names stay in the drift report, which goes to the access-controlled evidence store. `--include-names` turns them on for a reviewed exception. A test checks that no name or user principal name from either run appears in the drafts. *Design guidance*, as in the first workbook's [Chapter 09](../../../books/b19-developer-workbook/09-drift-pipelines-and-evidence.md#findings-without-names).
 
 ### The package and the chain
 
@@ -316,7 +316,7 @@ Use a test tenant in the worldwide or GCC cloud with Microsoft Entra ID P2 or ID
 4. **Check what the fixture assumed.** In the second run's `pim-audit/events.json`, record which `loggedByService` value the events carry (research gaps, row 81), whether `RequestId` is filled, which means the `additionalDetails` key is `roleAssignmentRequestId` (row 82), and whether `RoleId` is the role's template ID (row 83). In `requests.json`, the activation should show `Requested` and `Activated`.
 5. **Cross-check against Learn's procedure.** In the admin center, open **ID Governance** > **Privileged Identity Management** > **Microsoft Entra roles** > **Resource audit** for the same window, as Learn's page describes.[^pa08-pim-audit] Every activation there should be in `requests.json`. If the tenant sends audit logs to a workspace (Chapter 02, Lab 2), run Learn's second query there with the real request ID: it should return the same events (row 84).
 6. **Compare and package locally.** Run step 5 to 8 of Lab 1 on the two test runs. The second compare should show the activation in the audit summary and no assignment drift for it.
-7. **Back it out.** Let the activation expire or deactivate it, remove the test eligibility, remove the nine permissions and the Reader assignment, delete the app registration and its certificate, and delete `out/runs-test` and the packages: they hold the tenant's privileged holders. If you ran the sample workflow in a test repository, follow the first workbook's [Chapter 09, Lab 2](../attribute-driven-migration/09-drift-pipelines-and-evidence.md#lab-2-test-tenant-and-test-subscription) for its federated credential and an unlocked retention policy, and its back-out.
+7. **Back it out.** Let the activation expire or deactivate it, remove the test eligibility, remove the nine permissions and the Reader assignment, delete the app registration and its certificate, and delete `out/runs-test` and the packages: they hold the tenant's privileged holders. If you ran the sample workflow in a test repository, follow the first workbook's [Chapter 09, Lab 2](../../../books/b19-developer-workbook/09-drift-pipelines-and-evidence.md#lab-2-test-tenant-and-test-subscription) for its federated credential and an unlocked retention policy, and its back-out.
 
 In production, lock the evidence container's retention policy once Lab 2 passes; Learn says an unlocked policy is for testing only.[^pa08-immutable]
 
@@ -332,7 +332,7 @@ In production, lock the evidence container's retention policy once Lab 2 passes;
 | Monitoring PIM | Alert on roles assigned outside PIM (high); always alert on PIM setting changes for Privileged Role Administrator and Global Administrator; baseline requires approval to activate | — | — | [^pa08-secops] |
 | Graph hosts | GCC `graph.microsoft.com`; GCC High `graph.microsoft.us`; DoD `dod-graph.microsoft.us` | — | — | [^pa08-deployments] |
 | Microsoft Entra ID Governance | Available in GCC, GCC High and DoD | Available | GA | [^pa08-availability] |
-| Sign-in from GitHub Actions | Azure Login with a federated credential; the job needs `id-token: write`; US Government audience `api://AzureADTokenExchangeUSGov` | Azure Government environment | Learn's samples use `azure/login@v2`; the sample workflow pins v3.1.0 by commit, as the first workbook's [Chapter 09](../attribute-driven-migration/09-drift-pipelines-and-evidence.md#verified-facts) does | [^pa08-oidc] |
+| Sign-in from GitHub Actions | Azure Login with a federated credential; the job needs `id-token: write`; US Government audience `api://AzureADTokenExchangeUSGov` | Azure Government environment | Learn's samples use `azure/login@v2`; the sample workflow pins v3.1.0 by commit, as the first workbook's [Chapter 09](../../../books/b19-developer-workbook/09-drift-pipelines-and-evidence.md#verified-facts) does | [^pa08-oidc] |
 | Immutable evidence | Time-based retention; a locked policy can't be deleted or shortened; unlocked is for testing | — | GA | [^pa08-immutable] |
 
 Two places where Learn's pages differ, recorded so a later edit doesn't loosen the code:
