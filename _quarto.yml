@@ -383,6 +383,8 @@ website:
     right:
       - href: https://github.com/WhalerMike/modernization-workbook
         text: "Source"
+      - href: https://github.com/WhalerMike/modernization-workbook/blob/main/LICENSE.md
+        text: "© 2026 Michael F. Stratton · License"
 
 format:
   html:
