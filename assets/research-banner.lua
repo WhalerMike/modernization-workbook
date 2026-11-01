@@ -29,6 +29,7 @@ local TYPE = {
   ["product deep dive"] = "Product deep dive",
   ["implementation guide"] = "Implementation guide",
   ["training module"] = "Training module",
+  ["external learning path"] = "External learning path",
   ["reference"] = "Reference",
   ["evaluation"] = "Evaluation",
 }

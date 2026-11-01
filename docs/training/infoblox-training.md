@@ -3,7 +3,7 @@ title: "Infoblox Training and Learning Paths"
 subtitle: "Official Infoblox courses, certifications, labs, documentation and videos, organized by role, for an agency adopting NIOS, Universal DDI and Threat Defense"
 description: "Research under review: a verified catalog of official Infoblox training resources organized as learning paths for Grid administrators, division administrators, security operations, automation engineers, help desk staff and architects, with costs, formats and version currency."
 research-status: in review
-research-type: training module
+research-type: external learning path
 research-book: "Books 08, 16"
 date-modified: 2026-10-22
 last-reviewed: 2026-10-22
