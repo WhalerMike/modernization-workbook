@@ -197,7 +197,7 @@ For each control the period gives the open Findings and Warns at the period's en
 
 ### The tests
 
-Pester 5 under PowerShell 7: `tests/NpiDrift.Tests.ps1`, 51 tests, 11 of them Microsoft's rule as published, beside Chapters 01 and 02's tests, unchanged: 148 in `examples/non-person-identity`. pytest: `tests/test_npi_evidence.py`, 21 tests over the two fixture runs and the vintage comparison; with the first two workbooks', 136 in `examples/drift-pipeline`. A Pester test reruns the drift run and the vintage comparison from the fixtures and checks that their data files match the fixtures the Python tests read. None of them needs a tenant or a network.
+Pester 5 under PowerShell 7: `tests/NpiDrift.Tests.ps1`, 51 tests, 11 of them Microsoft's rule as published, beside Chapters 01 and 02's tests, unchanged: 148 in `examples/non-person-identity`. pytest: `tests/test_npi_evidence.py`, 21 tests over the two fixture runs and the vintage comparison; with the other workbooks' tests, 142 in `examples/drift-pipeline`. A Pester test reruns the drift run and the vintage comparison from the fixtures and checks that their data files match the fixtures the Python tests read. None of them needs a tenant or a network.
 
 ::: {.callout-important}
 ## Illustrative code
