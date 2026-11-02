@@ -232,6 +232,18 @@ website:
             - docs/training/hr-driven-identity/05-certificate-based-authentication.md
             - docs/training/hr-driven-identity/06-separation-timing.md
             - docs/training/hr-driven-identity/07-drift-and-evidence.md
+        - section: "Attribute-Driven Migration learning path"
+          href: docs/training/attribute-driven-migration/index.md
+          contents:
+            - docs/training/attribute-driven-migration/01-the-hr-middleware.md
+            - docs/training/attribute-driven-migration/02-a-validation-kit-check.md
+            - docs/training/attribute-driven-migration/03-dynamic-rules-as-code.md
+            - docs/training/attribute-driven-migration/04-group-policy-as-code.md
+            - docs/training/attribute-driven-migration/05-machine-configuration.md
+            - docs/training/attribute-driven-migration/06-ansible-beside-arc.md
+            - docs/training/attribute-driven-migration/07-lifecycle-workflows-extensions.md
+            - docs/training/attribute-driven-migration/08-drift-and-evidence.md
+            - docs/training/attribute-driven-migration/09-deploying-to-test-and-production.md
         - section: "External learning paths"
           contents:
             - docs/training/infoblox-training.md
