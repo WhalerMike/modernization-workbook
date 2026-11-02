@@ -1,7 +1,7 @@
 ---
 title: "Building HR-Driven Identity"
 subtitle: "A developer workbook for the Identity Lifecycle & Provisioning project"
-description: "A developer workbook for the Identity Lifecycle & Provisioning project and the HR-driven identity implementation guide: a code-first companion for the developers who build the writer register and its audit scan, the contractor source with enforced end dates, Lifecycle Workflows definitions as code with the Temporary Access Pass bridge, access packages assigned from HR attributes with the mover's residual review, the certificate-based authentication checks, separation timing from the logs, and the lifecycle drift classes and metrics that reach the ISSO. Each chapter starts from Microsoft Learn's own procedure, builds tested code in the repository's examples folder, runs a lab against fixtures with no tenant, then a step in a test tenant, and lists the verified Graph facts, the federal requirements and evidence, the dangers and a checklist."
+description: "A developer workbook for the Identity Lifecycle & Provisioning project and the HR-driven identity implementation guide: a code-first companion for the developers who build the writer register and its audit scan, the contractor source with enforced end dates, Lifecycle Workflows definitions as code with the Temporary Access Pass bridge, access packages assigned from HR attributes with the mover's residual review, the certificate-based authentication checks, separation timing from the logs, and the lifecycle drift classes and metrics that reach the ISSO, then a runbook that deploys all of it to a test tenant and on to production. Each chapter starts from Microsoft Learn's own procedure, builds tested code in the repository's examples folder, runs a lab against fixtures with no tenant, then a step in a test tenant, and lists the verified Graph facts, the federal requirements and evidence, the dangers and a checklist."
 doc-type: section-landing
 fmw-eyebrow: "Projects · Developer workbook"
 audience: [Technical]
@@ -28,7 +28,7 @@ last-reviewed: 2026-11-01
 
 ::: {.callout-important appearance="default"}
 ## Status: draft, under review
-This workbook is new material. All seven chapters are written. Every page is held for the owner's review: until a page is approved it is listed in the weekly source watch issue, and an approved page that changes goes back on that list. Narrated chapter tours will be recorded only after a chapter is approved. Every external claim was checked against Microsoft Learn, a federal source or a workbook chapter on November 1, 2026 and carries a note, and each chapter keeps its verification log in the repository. The code is illustrative. Its tests pass against fixtures, but it has not been run against a production tenant.
+This workbook is new material. All eight chapters are written; Chapter 08, the deployment runbook, is the newest and hasn't been run against a live tenant. Every page is held for the owner's review: until a page is approved it is listed in the weekly source watch issue, and an approved page that changes goes back on that list. Narrated chapter tours will be recorded only after a chapter is approved. Every external claim was checked against Microsoft Learn, a federal source or a workbook chapter on November 1, 2026 and carries a note, and each chapter keeps its verification log in the repository. The code is illustrative. Its tests pass against fixtures, but it has not been run against a production tenant.
 :::
 
 The [HR-driven identity implementation guide](../../../books/guides/hr-driven-identity-implementation.md) runs the lifecycle that happens to a person after the HR pipeline makes the account exist, as seven gates: one writer for every account state, employees and contractors from their sources, joiners ready on day one, access assigned from HR attributes with a review of what a move leaves behind, PIV and CAC credentials tied to HR events, separations timed, and the record kept true with evidence. It says what to configure and what the ISSO keeps. It doesn't teach anyone to build the software that holds those settings as reviewed code, reads the logs that prove each gate, and hands the ISSO numbers a reviewer can check.
@@ -44,8 +44,8 @@ The target estate is Microsoft 365 GCC (Moderate) with commercial Azure. GCC use
 | Piece | What it is | Where |
 |---|---|---|
 | Implementation guide | The seven gates: steps, federal requirements and evidence, government-cloud availability, interim paths, **Validate** and rollback | [HR-Driven Identity: An Implementation Guide](../../../books/guides/hr-driven-identity-implementation.md) |
-| This workbook | One chapter per gate: the code the gate needs, labs, verified facts, evidence | This page and its seven chapters |
-| Code | `examples/hr-lifecycle`: eight Python tools, configuration as reviewed JSON, fixtures and 57 pytest tests; `examples/drift-pipeline/python/hr_evidence.py` packages its runs | [`examples/hr-lifecycle`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/hr-lifecycle) |
+| This workbook | One chapter per gate: the code the gate needs, labs, verified facts, evidence; and a runbook for test and production | This page and its eight chapters |
+| Code | `examples/hr-lifecycle`: eight Python tools, configuration as reviewed JSON, the runbook's `deploy/` scripts, fixtures and 76 pytest tests; `examples/drift-pipeline/python/hr_evidence.py` packages its runs | [`examples/hr-lifecycle`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/hr-lifecycle) |
 | Design | Why HR is the source of authority, the attribute authority map, joiner, mover and leaver, credentials, access, drift and the phase model | [Book 03](../../../books/b03-hr-identity/index.md) |
 | Schedule | The project's tasks, decisions and gates | [Identity Lifecycle & Provisioning plan](../../identity-lifecycle.md) |
 | Code it builds on | The middleware, Graph clients, validation kit, dynamic rules, custom task extensions and drift pipeline | [Book 19](../../../books/b19-developer-workbook/index.md) |
@@ -68,11 +68,13 @@ The target estate is Microsoft 365 GCC (Moderate) with commercial Azure. GCC use
 | Dangers | What breaks in production, and the guard the code has for it |
 | Checklist | What a reviewer checks before the code ships |
 
+Chapter 08 is built differently: it is a runbook, not a gate, so it has no labs. It takes the code from the seven chapters to a live test environment and then to production, every step a command block or an exact admin center path, with its outputs shown from fixture mode and its live results written as expectations.
+
 *Design guidance* in this workbook is marked as such: it is the program's position, not a vendor statement. Preview and beta features carry their stage wherever they appear. None of the chapters pins a Microsoft sample under `examples/third_party`: Learn's procedures for these features are portal steps and request examples, which the chapters cite and the code follows, rather than runnable samples to keep.
 
 ## Chapters
 
-The outline follows the guide's gates, in order. Chapter 07 reads the outputs of Chapters 01, 03, 04 and 06.
+The outline follows the guide's gates, in order. Chapter 07 reads the outputs of Chapters 01, 03, 04 and 06. Chapter 08 runs all of them, first against a test tenant and then in production.
 
 | # | Chapter | Gate | Plan tasks | Starts from | What you build | Status |
 |---|---|---|---|---|---|---|
@@ -83,6 +85,7 @@ The outline follows the guide's gates, in order. Chapter 07 reads the outputs of
 | 05 | [Certificate-based authentication checks](05-certificate-based-authentication-checks.md) | G5 Credentials | I1.6 | Learn's CRL page and the PKI and X.509 method APIs | A CRL measurement, and a check (CB-01 to CB-13) of the trust store, each CRL against the cloud's limit, the multifactor mapping and the phishing-resistant strength | Written |
 | 06 | [Separation timing from the logs](06-separation-timing.md) | G6 Separation | I4.1, I4.2, I4.6 | Learn's audit activities, userProcessingResults and the catch-up window | Separation-to-block and separation-to-revocation per leaver, late separations, uncollected cards, re-enables and failed runs (ST-01 to ST-09) | Written |
 | 07 | [Lifecycle drift, metrics and evidence](07-lifecycle-drift-and-evidence.md) | G7 Drift and evidence | IG5 | Book 19, Chapter 09's drift pipeline | The six lifecycle drift classes and six metrics as one run (LD-01 to LD-08), packaged with a hash chain and assembled into a period by `hr_evidence.py` | Written |
+| 08 | [Deploying to a test tenant, then to production](08-deploying-to-test-and-production.md) | G1 to G7, in order | — | The guide's gate order and rollback table; Learn's pilot and on-demand guidance | One settings file per environment with no secrets (DS-01 to DS-05), a pre-flight (PF-01 to PF-06), a smoke test with a synthetic joiner, mover and leaver (SM-01 to SM-07), go/no-go criteria, first-week monitoring and a rehearsed rollback (RB-01, RB-02) | Written; not run against a live tenant |
 
 Microsoft Entra ID Governance, which Lifecycle Workflows, entitlement management and access reviews use, is available in GCC, GCC High and DoD.[^hwi-availability]
 
@@ -110,6 +113,7 @@ Every chapter has a narrated tour: a deck in Why, What, Who and How order, a sel
 - **Developers building the lifecycle automation:** Chapters 03, 04 and 06, with Book 19's [Chapter 05](../../../books/b19-developer-workbook/05-lifecycle-workflows-custom-extensions.md) for the custom task extensions.
 - **Credentialing and PKI engineers:** Chapter 05, then Chapter 06's card rules.
 - **ISSOs and reviewers of the code:** each chapter's federal requirements and checklist, then Chapter 07's period summary.
+- **Whoever runs the change:** Chapter 08, after every chapter's labs.
 
 ## Where this workbook sits
 
