@@ -35,3 +35,16 @@ Microsoft Learn pages opened on October 30, 2026 through the Microsoft Learn MCP
 |---|---|---|
 | `examples/validation-kit/README.md` (result shape, permissions, inputs, read-only enforcement, tests) | The anatomy of a check; The safety tests | The full permission table stays in the README; the chapter links it |
 | First outline's plan to walk through an existing check | Replaced by building VK-SYNC-02 | A new check shows every step, and its privileged read teaches the least-privilege rule |
+
+## Federal requirements and evidence (added November 2, 2026)
+
+New section before Dangers: 12 rows, one per Lab 1 and Lab 2 scripted step or kit output file, plus one row for the FedRAMP Marketplace listings. Which output supports which control is labeled design guidance in the chapter.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | Every control cited is in the SP 800-53B Moderate baseline: AC-2, AC-6, AU-3, CA-7, CM-3, CM-5, CM-6, CM-7, SA-11, SA-9, SI-7 | Federal requirements and evidence | verified | NIST OSCAL `NIST_SP-800-53_rev5_MODERATE-baseline_profile.json`, release 5.2.0, last modified 2026-10-22, downloaded and parsed November 2, 2026 |
+| 2 | Every indicator cited exists with the name given: KSI-CMT-LMC, KSI-CMT-VTD, KSI-IAM-ELP, KSI-MLA-EVC, KSI-SVC-VRI | Federal requirements and evidence | verified | fedramp.gov/2026/reference/key-security-indicators, read November 2, 2026 (latest changelog entry 2026-10-13); all were already cited in the repository, none is new |
+| 3 | Indicator pairings with controls follow the repository's verified mappings | Federal requirements and evidence | carried from verified sources | Book 04, Chapter 10; Book 02, Chapter 10; Book 05, Chapter 10; Book 13, Appendix A and Chapter 04; Book 14, Chapter 03 |
+| 4 | FedRAMP Marketplace listings, status, class and impact level | Federal requirements and evidence | verified | `products.json`, `last_change` 2026-11-01T05:02:56Z, downloaded and parsed November 2, 2026 |
+| 5 | KSIs are provider-side; the agency doesn't report them | Under the table | carried from verified source | Book 00, Appendix B |
+

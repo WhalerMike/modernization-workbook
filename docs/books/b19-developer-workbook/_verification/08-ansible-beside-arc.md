@@ -56,3 +56,16 @@ Non-Learn sources, used only where Learn has nothing: the role's code on GitHub 
 | Chapter 07, owner tag filter (MC-POL-08) | Where Ansible sits | — |
 | The existing `02_arc_onboarding.yml` | Kept for Azure Government and as the spelled-out version; now imports the wave plan | Not replaced: Microsoft's role requests a commercial token |
 | Index outline row 08 ("read `config_owner` and `patch_owner` from the CMDB, and onboard servers to Arc in waves") | The whole chapter | — |
+
+## Federal requirements and evidence (added November 2, 2026)
+
+New section before Dangers: 13 rows, one per Lab 1 and Lab 2 scripted step or kit output file, plus one row for the FedRAMP Marketplace listings. Which output supports which control is labeled design guidance in the chapter.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | Every control cited is in the SP 800-53B Moderate baseline: AC-6, CA-7, CM-3, CM-3(2), CM-4, CM-8, CM-8(1), IA-5, SA-10, SA-11, SA-9, SR-3 | Federal requirements and evidence | verified | NIST OSCAL `NIST_SP-800-53_rev5_MODERATE-baseline_profile.json`, release 5.2.0, last modified 2026-10-22, downloaded and parsed November 2, 2026 |
+| 2 | Every indicator cited exists with the name given: KSI-CMT-LMC, KSI-CMT-VTD, KSI-IAM-ELP, KSI-IAM-SNU, KSI-MLA-EVC, KSI-PIY-GIV, KSI-SCR-MIT | Federal requirements and evidence | verified | fedramp.gov/2026/reference/key-security-indicators, read November 2, 2026 (latest changelog entry 2026-10-13); all were already cited in the repository, none is new |
+| 3 | Indicator pairings with controls follow the repository's verified mappings | Federal requirements and evidence | carried from verified sources | Book 04, Chapter 10; Book 02, Chapter 10; Book 05, Chapter 10; Book 13, Appendix A and Chapter 04; Book 14, Chapter 03 |
+| 4 | FedRAMP Marketplace listings, status, class and impact level | Federal requirements and evidence | verified | `products.json`, `last_change` 2026-11-01T05:02:56Z, downloaded and parsed November 2, 2026 |
+| 5 | KSIs are provider-side; the agency doesn't report them | Under the table | carried from verified source | Book 00, Appendix B |
+| 6 | M-22-09 statement cited in the section intro | Federal requirements and evidence | verified | M-22-09 PDF text extracted and read November 2, 2026 |

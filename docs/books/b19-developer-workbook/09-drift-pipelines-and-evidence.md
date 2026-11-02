@@ -514,6 +514,33 @@ Three places where sources state things differently, recorded so a later edit do
 - **Issuer with a trailing slash.** Learn's federated credential page shows the GitHub issuer both with and without a trailing slash in its examples.[^c09-fic] It also says the issuer must match the token's `iss` claim, which GitHub documents without the slash.[^c09-gh-oidc] The lab uses the form without the slash.
 - **Pull request subject.** Learn writes the pull request subject as `repo:<org>/<repo>:pull-request`;[^c09-fic] GitHub documents `pull_request`.[^c09-gh-oidc] The pipeline doesn't run on pull requests, so it uses neither.
 
+## Federal requirements and evidence
+
+This chapter turns the other chapters' outputs into continuous monitoring: a run every day, a comparison with the last, and a package the ISSO can check. Each row names the file or command that proves it. Controls are from the Moderate baseline[^c09-moderate]; indicators are from FedRAMP's list[^c09-ksi]. Which output supports which control is the program's reading (design guidance).
+
+| What the output proves | Requirement it supports | KSI it aligns to | Who keeps it |
+|---|---|---|---|
+| Learn's sample workflows are checked as published: no schedule, tags not commits, one that doesn't parse (Lab 1, step 1: `workflow_lint.py --learn-samples`) | SA-11; SR-3 | KSI-SCR-MIT; KSI-CMT-VTD | The repository: `snapshot.json` and the test results |
+| The pipeline's workflow pins every action, and the job that reads the tenant can't write to the tracker (step 2: `0 finding(s)`) | SA-10; AC-6 | KSI-SCR-MIT; KSI-IAM-ELP | The workflow file in Git |
+| Each cloud's sign-in, audience and Graph host come from one table, and an unknown name stops the run (step 3: `cloud --name dod`, exit `1`) | CM-6; IA-5 | KSI-IAM-SNU | The repository |
+| The first run is a baseline, packaged (step 4: `out/day1/drift-report.json`, `EVIDENCE-MANIFEST.json`) | CA-7; CM-2 | KSI-MLA-EVC | The immutable evidence container |
+| The next run says what is new, resolved, changed and unverified; a failed read never resolves a finding (step 5: `out/day2/drift-report.json`, `drift-summary.md`) | CA-7; SI-4 (System Monitoring) | KSI-MLA-EVC; KSI-MLA-RVL | The evidence package |
+| Each finding is opened or closed by fingerprint, with object IDs and no names (step 6: `out/day2/issues.json`) | CA-7: response actions; AU-6: reporting to the people who act | KSI-MLA-RVL | The issue tracker |
+| The package hashes every file, carries the other kits' provenance, and chains to the day before (step 7: `EVIDENCE-MANIFEST.json`, `SHA256SUMS`, `provenance/`; `verify`, `sha256sum -c`) | AU-9 (Protection of Audit Information); SI-7; CM-3 for the provenance of Chapters 01, 04 and 07 | KSI-SVC-VRI; KSI-CMT-LMC | The immutable evidence container |
+| An edit after packaging and runs out of order are refused (step 8: exit `1` twice) | SI-7; AU-9 | KSI-SVC-VRI | The test results |
+| The comparator, packager and linter pass (step 9: 142 tests) | SA-11 | KSI-CMT-VTD | The repository's test results |
+| The pipeline signs in with a federated credential; no secret is stored (Lab 2, step 1: `credential.json`, `az ad app federated-credential create`) | IA-5 | KSI-IAM-SNU | The app registration; the Entra audit log |
+| The pipeline identity can only read (Lab 2, step 2: Graph read permissions and Reader) | AC-6 | KSI-IAM-ELP | The app registration and role assignments |
+| Evidence can be created and read, but not changed or deleted, until retention ends (Lab 2, step 3: the `drift-evidence` container's time-based retention, locked in production) | AU-9; AU-11 (Audit Record Retention) | No indicator pairing in this repository's verified mappings | The storage account |
+| The workflow copied into the repository passes the linter before it runs (Lab 2, step 4) | CM-3(2) | KSI-CMT-VTD | The test repository's history |
+| A run by hand writes the baseline package and one issue (Lab 2, step 5) | CA-7 | KSI-MLA-EVC | The evidence container; the tracker |
+| A real change becomes one new finding, in a package chained to the first that `sha256sum -c` verifies (Lab 2, step 6) | CA-7; SI-4; SI-7 | KSI-MLA-EVC; KSI-SVC-VRI | The evidence container |
+| A package arrives every day, and a missing day breaks the chain (Lab 2, step 7) | CA-7: monitoring at a defined frequency | KSI-MLA-EVC | The evidence container |
+| The federated credential and the app are removed (Lab 2, step 8) | AC-2 | KSI-IAM-SNU | The Entra audit log |
+| GitHub Actions, Azure Storage and Microsoft Graph run on cloud services with FedRAMP Marketplace listings[^c09-fedramp] | SA-9 (External System Services); the agency confirms each service it uses is inside the listing's scope (design guidance) | None: the provider reports against the indicators for its own offering | The system security plan's list of external services |
+
+Key Security Indicators are FedRAMP 20x indicators for cloud service providers. The agency authorizes its own system: it lines this evidence up with what Microsoft, GitHub and the other providers whose services the system uses report against the indicators, and doesn't report KSIs itself ([Book 00, Appendix B](../b00-orientation/appendix-b-engagement-archetype.md)). The control-by-control mapping is in Book 13's [Appendix A](../b13-governance/appendix-a-requirements-mapping.md) and Book 14's [Appendix A](../b14-compliance/appendix-a-control-crosswalk.md); the indicator pairings follow [Book 04, Chapter 10](../b04-access/10-access-as-code-and-evidence.md) and [Book 05, Chapter 10](../b05-devices/10-operating-and-evidencing-the-fleet.md).
+
 ## Dangers
 
 | Danger | What happens | The guard |
@@ -577,3 +604,6 @@ Three places where sources state things differently, recorded so a later edit do
 [^c09-gh-oidc]: GitHub Docs, "OpenID Connect reference," <https://docs.github.com/en/actions/reference/security/oidc> (accessed Oct 30, 2026). Learn's Azure Login page points here for the token's claims.
 [^c09-gh-secure]: GitHub Docs, "Secure use reference," <https://docs.github.com/en/actions/reference/security/secure-use> (accessed Oct 30, 2026).
 [^c09-gh-artifacts]: GitHub Docs, "Store and share data with workflow artifacts," <https://docs.github.com/en/actions/how-tos/writing-workflows/choosing-what-your-workflow-does/storing-and-sharing-data-from-a-workflow> (accessed Oct 30, 2026).
+[^c09-moderate]: National Institute of Standards and Technology, SP 800-53B Moderate baseline, release 5.2.0 OSCAL profile, last modified October 22, 2026 (includes AC-2, AC-6, AU-6, AU-9, AU-11, CA-7, CM-2, CM-3, CM-3(2), CM-6, IA-5, SA-9, SA-10, SA-11, SI-4, SI-7 and SR-3), <https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_MODERATE-baseline_profile.json> (accessed Nov 2, 2026).
+[^c09-ksi]: FedRAMP, "Key Security Indicators," *FedRAMP Consolidated Rules for 2026* (indicators KSI-CMT-LMC, KSI-CMT-VTD, KSI-IAM-ELP, KSI-IAM-SNU, KSI-MLA-EVC, KSI-MLA-RVL, KSI-SCR-MIT and KSI-SVC-VRI; control mappings updated October 13, 2026), <https://www.fedramp.gov/2026/reference/key-security-indicators/> (accessed Nov 2, 2026).
+[^c09-fedramp]: FedRAMP Marketplace product data, <https://www.fedramp.gov/marketplace/products.json>, `last_change` 2026-11-01T05:02:56Z (accessed Nov 2, 2026): FR1812058188, GitHub Enterprise Cloud, FedRAMP Certified, Class B, LI-SaaS; MSO365MT, Microsoft 365 Government Community Cloud & Supporting Services, FedRAMP Certified, Class C, Moderate; FR1824057433, Microsoft 365 Government Community Cloud-High, FedRAMP Certified, Class D, High; F1209051525, Azure Commercial Cloud, FedRAMP Certified, Class D, High; F1603087869, Azure Government (includes Dynamics 365), FedRAMP Certified, Class D, High.

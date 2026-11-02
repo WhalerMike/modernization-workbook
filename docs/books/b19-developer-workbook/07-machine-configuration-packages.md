@@ -469,6 +469,32 @@ To try an enforcing version, rebuild with the registry mode set to `ApplyAndMoni
 
 The GuestConfiguration module version, its command list and its behavior described above come from the PowerShell Gallery and from running it, not from Learn.[^c07-module]
 
+## Federal requirements and evidence
+
+A machine configuration package is the server baseline in a file, so what was built, from what, and what shipped is the evidence. Each row names the file or command that proves it. Controls are from the Moderate baseline[^c07-moderate]; indicators are from FedRAMP's list[^c07-ksi]. Which output supports which control is the program's reading (design guidance).
+
+| What the output proves | Requirement it supports | KSI it aligns to | Who keeps it |
+|---|---|---|---|
+| The build compiles against pinned module versions (Lab 1, step 1: `Save-Module ... -RequiredVersion`; `RequiredModules.psd1`) | SR-3; SA-10 (Developer Configuration Management) | KSI-SCR-MIT | The repository |
+| Learn's cmdlets alone give two package hashes from one MOF, and the MOF carries the build host (step 2) | SA-11 | KSI-CMT-VTD | The test results: `LearnBaseline.Tests.ps1` |
+| The package check refuses build-host data (step 3: MC-PKG-04) | SA-11; CM-3(2) | KSI-CMT-VTD | The check output |
+| Microsoft's pinned sample still packages, and its MOF has no build-host data (step 4: `Test-McMofText`) | SR-3 | KSI-SCR-MIT | The repository: `snapshot.json` |
+| The checked build passes, and its findings are recorded (step 5: `findings.json`, exit `0`) | CM-3(2) | KSI-CMT-VTD | The evidence store |
+| The same commit gives the same cleaned MOF hash; the package and definition hashes identify what shipped (step 5: `provenance.json`) | SA-10; SI-7; CM-2 | KSI-SVC-VRI; KSI-CMT-LMC | The evidence store; [Chapter 09](09-drift-pipelines-and-evidence.md)'s package |
+| The definition carries the package's `contentHash`, and the build reminds that Arc servers are out of scope by default (step 5: the `_AuditIfNotExists.json` definition, MC-POL-09) | CM-6; SI-7 | KSI-SVC-ACM; KSI-SVC-VRI | The repository; the published definition |
+| A version that didn't rise, a mode in the wrong case and an enforcing definition with no owner filter are refused (step 6: MC-POL-06, exit `1`, MC-POL-08) | CM-3; CM-6: one owning tool per setting | KSI-CMT-VTD | The pull request's check run |
+| The checks and the offline cmdlet runs pass (step 7: 65 tests) | SA-11 | KSI-CMT-VTD | The repository's test results |
+| The agent reports non-compliant, then compliant once the setting is made (Lab 2, step 1: `Get-GuestConfigurationPackageComplianceStatus`) | CM-6; CA-7 | KSI-MLA-EVC | The test record |
+| The published blob is the built package, byte for byte (Lab 2, step 3: downloaded SHA-256 equals `package.sha256`) | SI-7 | KSI-SVC-VRI | The change record |
+| Machines read the package with their own identity, and no SAS goes in the definition (Lab 2, step 4: Storage Blob Data Reader) | AC-6; IA-5 | KSI-IAM-ELP; KSI-IAM-SNU | The Azure role assignment record |
+| The definition is published under the registry's fixed ID, so the next version updates it (Lab 2, step 5: `New-AzPolicyDefinition -Name <policyId>`) | CM-3; CM-5 | KSI-CMT-RMV | The Azure activity log |
+| The assignment includes Arc-enabled servers (Lab 2, step 6: `IncludeArcMachines` `true`) | CM-6 | KSI-SVC-ACM | The assignment's parameters |
+| Each machine reports compliance against the package whose hash is in `provenance.json` (Lab 2, step 7) | CA-7; SI-7 | KSI-MLA-EVC; KSI-SVC-VRI | The guest assignment; Resource Graph; the evidence store |
+| The assignment, its guest assignments, the definition and the blob are removed (Lab 2, step 8) | CM-3 | KSI-CMT-LMC | The Azure activity log |
+| Azure Policy and machine configuration run on cloud services with FedRAMP Marketplace listings[^c07-fedramp] | SA-9 (External System Services); the agency confirms each service it uses is inside the listing's scope (design guidance) | None: the provider reports against the indicators for its own offering | The system security plan's list of external services |
+
+Key Security Indicators are FedRAMP 20x indicators for cloud service providers. The agency authorizes its own system: it lines this evidence up with what Microsoft report against the indicators, and doesn't report KSIs itself ([Book 00, Appendix B](../b00-orientation/appendix-b-engagement-archetype.md)). The control-by-control mapping is in Book 13's [Appendix A](../b13-governance/appendix-a-requirements-mapping.md) and Book 14's [Appendix A](../b14-compliance/appendix-a-control-crosswalk.md); the indicator pairings follow [Book 04, Chapter 10](../b04-access/10-access-as-code-and-evidence.md) and [Book 05, Chapter 10](../b05-devices/10-operating-and-evidencing-the-fleet.md).
+
 ## Dangers
 
 | Danger | What happens | The guard |
@@ -522,3 +548,6 @@ The GuestConfiguration module version, its command list and its behavior describ
 [^c07-gcrole]: Microsoft, Azure/Azure-Sentinel, `Sample Data/Feeds/AzureBuiltInRole.csv` at commit `16a027b6208ceb97869df85ea2e1ce4d0cad3408` (August 28, 2026), row "Guest Configuration Resource Contributor", and MicrosoftDocs/entra-docs, `.docutune/dictionaries/known-guids.json` at commit `4ed6827815ecbf4e021fc736d75fdda6a2fd6272` (October 28, 2026), both mapping the name to `088ab73d-1256-47ae-bea9-9de8e7131f31`, read with `gh api` (accessed Oct 30, 2026). Not Learn pages: Learn's "Azure built-in roles" and its Management and governance page don't list the ID (searched Oct 30, 2026).
 [^c07-gcrole-learn]: Microsoft Learn, "Enable Insights for Azure Local at scale using Azure policies," <https://learn.microsoft.com/azure/azure-local/manage/monitor-multi-azure-policies> (accessed Oct 30, 2026); it names the role but not its ID.
 [^c07-module]: PowerShell Gallery, "GuestConfiguration 4.12.0," <https://www.powershellgallery.com/packages/GuestConfiguration/4.12.0> (accessed Oct 30, 2026). Not a Learn page: Learn's setup page installs the module from the gallery without naming a current version.
+[^c07-moderate]: National Institute of Standards and Technology, SP 800-53B Moderate baseline, release 5.2.0 OSCAL profile, last modified October 22, 2026 (includes AC-6, CA-7, CM-2, CM-3, CM-3(2), CM-5, CM-6, IA-5, SA-9, SA-10, SA-11, SI-7 and SR-3), <https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_MODERATE-baseline_profile.json> (accessed Nov 2, 2026).
+[^c07-ksi]: FedRAMP, "Key Security Indicators," *FedRAMP Consolidated Rules for 2026* (indicators KSI-CMT-LMC, KSI-CMT-RMV, KSI-CMT-VTD, KSI-IAM-ELP, KSI-IAM-SNU, KSI-MLA-EVC, KSI-SCR-MIT, KSI-SVC-ACM and KSI-SVC-VRI; control mappings updated October 13, 2026), <https://www.fedramp.gov/2026/reference/key-security-indicators/> (accessed Nov 2, 2026).
+[^c07-fedramp]: FedRAMP Marketplace product data, <https://www.fedramp.gov/marketplace/products.json>, `last_change` 2026-11-01T05:02:56Z (accessed Nov 2, 2026): F1209051525, Azure Commercial Cloud, FedRAMP Certified, Class D, High; F1603087869, Azure Government (includes Dynamics 365), FedRAMP Certified, Class D, High.
