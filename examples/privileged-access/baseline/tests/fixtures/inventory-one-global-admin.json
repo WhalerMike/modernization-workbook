@@ -1,0 +1,65 @@
+{
+  "_comment": "CISA baseline checks: a fictional tenant (contoso.example) with one Global Administrator, Emergency Access 01, and the PRV-T0-GlobalAdmin group eligible with no members. The fail case for the floor in PA-INV-04 (MS.AAD.7.1v1, at least two). Every name and ID is invented.",
+  "roleDefinitions": [
+    {
+      "id": "62e90394-69f5-4237-9190-012177145e10",
+      "templateId": "62e90394-69f5-4237-9190-012177145e10",
+      "displayName": "Global Administrator",
+      "isBuiltIn": true
+    }
+  ],
+  "roleAssignments": [
+    {
+      "id": "ra-ea01-ga",
+      "principalId": "0e000000-0000-4000-8000-000000000001",
+      "roleDefinitionId": "62e90394-69f5-4237-9190-012177145e10",
+      "directoryScopeId": "/"
+    }
+  ],
+  "roleAssignmentScheduleInstances": [
+    {
+      "id": "rasi-ea01-ga",
+      "principalId": "0e000000-0000-4000-8000-000000000001",
+      "roleDefinitionId": "62e90394-69f5-4237-9190-012177145e10",
+      "directoryScopeId": "/",
+      "startDateTime": null,
+      "endDateTime": null,
+      "assignmentType": "Assigned",
+      "memberType": "Direct",
+      "principal": {
+        "@odata.type": "#microsoft.graph.user",
+        "id": "0e000000-0000-4000-8000-000000000001",
+        "displayName": "Emergency Access 01",
+        "userPrincipalName": "ea01@contosoexample.onmicrosoft.com"
+      }
+    }
+  ],
+  "roleEligibilitySchedules": [
+    {
+      "id": "res-prv-t0-ga",
+      "principalId": "9e000000-0000-4000-8000-000000000006",
+      "roleDefinitionId": "62e90394-69f5-4237-9190-012177145e10",
+      "directoryScopeId": "/",
+      "memberType": "Direct",
+      "status": "Provisioned",
+      "scheduleInfo": {
+        "startDateTime": "2026-10-30T00:00:00Z",
+        "expiration": {
+          "type": "afterDateTime",
+          "endDateTime": "2027-01-28T00:00:00Z"
+        }
+      },
+      "principal": {
+        "@odata.type": "#microsoft.graph.group",
+        "id": "9e000000-0000-4000-8000-000000000006",
+        "displayName": "PRV-T0-GlobalAdmin"
+      }
+    }
+  ],
+  "groupMembers": {
+    "9e000000-0000-4000-8000-000000000006": []
+  },
+  "users": {},
+  "conditionalAccessPolicies": [],
+  "azure": {}
+}
