@@ -1,8 +1,6 @@
 $ python -c "import sys; sys.path.insert(0, 'python'); from graphkit import endpoints; print(endpoints('GCCHigh'))"
 Traceback (most recent call last):
   File "<string>", line 1, in <module>
-    import sys; sys.path.insert(0, 'python'); from graphkit import endpoints; print(endpoints('GCCHigh'))
-                                                                                    ~~~~~~~~~^^^^^^^^^^^
   File "python/graphkit.py", line 73, in endpoints
     raise ValueError(f"unknown cloud {cloud!r}; one of {sorted(CLOUDS)}")
 ValueError: unknown cloud 'GCCHigh'; one of ['dod', 'gcc', 'gcchigh', 'global']

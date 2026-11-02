@@ -152,6 +152,10 @@ def clean(out: str, cwd: Path, root: Path) -> str:
     # Pester puts a file's timing on the file's line, or on a line of its own.
     out = re.sub(r"^(\[[+-]\] [^\n]*?) [\d.]+m?s \([\d.]+m?s\|[\d.]+m?s\)$", r"\1", out, flags=re.M)
     out = re.sub(r"^ *[\d.]+m?s \([\d.]+m?s\|[\d.]+m?s\)\n", "", out, flags=re.M)
+    # A Python traceback as every version prints it: newer ones add the `python -c` source line and
+    # ~~~^^^ markers under each call.
+    out = re.sub(r'^(  File "<string>", line \d+, in <module>\n)    [^\n]*\n', r"\1", out, flags=re.M)
+    out = re.sub(r"^ *[~^]+ *\n", "", out, flags=re.M)
     return "\n".join(l.rstrip() for l in out.split("\n")).strip("\n")
 
 

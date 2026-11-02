@@ -5,8 +5,7 @@ DryRun against https://graph.microsoft.com (2 library file(s))
 
 Severity Rule   File                              Issue
 -------- ----   ----                              -----
-Info     GPC-08 fmp-sc-202-sign-in-and-power.json Setting device_vendor_msft_policy_config_power_allowhibernate has conflicting GPO values (FMP-Workstation-Baseline=Disabled;
-                                                  Workstation-Power=Enabled); decision DR-0105 picks the value
+Info     GPC-08 fmp-sc-202-sign-in-and-power.json Setting device_vendor_msft_policy_config_power_allowhibernate has conflicting GPO values (FMP-Workstation-Baseline=Disabled; Workstation-Power=Enabled); decision DR-0105 picks the value
 
 
 Create          FMP-SC-201-Error-reporting-and-dumps
