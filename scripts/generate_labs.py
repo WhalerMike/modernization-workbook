@@ -13,7 +13,8 @@ labs:end markers (the review gate leaves them out, as it does the tour blocks):
 
   - after "How to read this guide", a "Labs for this guide" box that links the guide's labs on the Labs page;
   - after each gate's Validate callout, where a learning path maps its modules to the guide's gates
-    (Ticket-to-Machine and HR-Driven Identity), a "Try it" box with that gate's labs and module;
+    (Ticket-to-Machine and HR-Driven Identity), a "Try it" box with that gate's labs and module, or,
+    where a workbook maps the guide's gates to its chapters (Privileged Access), one with that chapter's labs;
 
 and, at the top of every lab and module exercise, "Every command in Lab N": each of the lab's own
 ```bash and ```powershell blocks, in order, under the step it belongs to, so a reader can follow the lab
@@ -44,6 +45,7 @@ class Workbook:
     zip: str
     guide: str | None = None
     training: str | None = None         # the learning path's folder, whose index maps modules to gates
+    gates: dict | None = None           # without a learning path: the guide's gate number -> its workbook chapters
     chapters: list = field(default_factory=list)
 
 
@@ -55,7 +57,8 @@ WORKBOOKS = [
     Workbook("adm", "Building the Attribute-Driven Migration (Book 19)", "docs/books/b19-developer-workbook",
              "attribute-driven-migration-code.zip", "docs/books/guides/attribute-driven-migration-implementation.md"),
     Workbook("pa", "Building Privileged Access", "docs/project-plans/developer-workbooks/privileged-access",
-             "privileged-access-code.zip"),
+             "privileged-access-code.zip", "docs/books/guides/privileged-access-implementation.md",
+             gates={str(n): [f"{n:02d}"] for n in range(1, 9)}),
     Workbook("npi", "Building Non-Person Identity", "docs/project-plans/developer-workbooks/non-person-identity",
              "non-person-identity-code.zip", "docs/books/guides/non-person-identity-implementation.md"),
 ]
@@ -251,6 +254,22 @@ def place(wb: Workbook, md: str) -> str:
                         lines.append(f"- **In {ch['lab2'][1] or 'a test tenant'}:** [Chapter {nn}, Lab 2]({lab_link(src, ch, 'lab2')})")
                 lines.append(f"- **As training:** [Module {x['n']}: {x['title']}]({rel(src, x['path'])}), with a knowledge check")
             md = md[:m.end()] + block(f"try-{gate.split()[0].lower()}", lines, f"Try it: {gate}") + md[m.end():]
+    elif wb.gates:
+        # No learning path: each gate's Try it box links its workbook chapter's two labs.
+        for m in reversed(list(re.finditer(r"^## Validate \((G(\d)[^)]*)\)\n.*?^:::\n\n", md, re.S | re.M))):
+            gate, num = m.group(1), m.group(2)
+            lines = []
+            for nn in wb.gates.get(num, []):
+                ch = by_nn.get(nn)
+                if not ch:
+                    continue
+                t = re.sub(r"^Chapter \d+ — ", "", ch["title"])
+                if "lab1" in ch:
+                    lines.append(f"- **On a laptop, no tenant:** [Chapter {nn}, Lab 1]({lab_link(src, ch, 'lab1')}) of *{t}*")
+                if "lab2" in ch:
+                    lines.append(f"- **In {ch['lab2'][1] or 'a test tenant'}:** [Chapter {nn}, Lab 2]({lab_link(src, ch, 'lab2')})")
+            if lines:
+                md = md[:m.end()] + block(f"try-{gate.split()[0].lower()}", lines, f"Try it: {gate}") + md[m.end():]
     # After "How to read (or use) this guide": the guide's labs on the Labs page.
     h = next((p for t, _, p in headings(md) if t.startswith(("How to read this guide", "How to use this guide"))), None)
     if h is not None:
@@ -258,7 +277,7 @@ def place(wb: Workbook, md: str) -> str:
         lines = [f"Every gate's hands-on work is a lab in the developer workbook [*{wb.title}*]({rel(src, wb.docs + '/index.md')}): "
                  f"Lab 1 on a laptop with the kit's fixtures, Lab 2 in a non-production environment. "
                  f"[The Labs page]({labs}) lists them chapter by chapter, with what each needs and a direct link"
-                 + ("; each gate below ends with a *Try it* box that links its own." if mods else ".")]
+                 + ("; each gate below ends with a *Try it* box that links its own." if mods or wb.gates else ".")]
         md = md[:nxt] + block("labs", lines, "Labs for this guide") + md[nxt:]
     return md
 
