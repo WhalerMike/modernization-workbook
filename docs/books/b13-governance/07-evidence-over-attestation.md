@@ -144,7 +144,7 @@ For the people who run the program, three things change.
 
 - **Attestation moves up a level.** People stop signing that each control was in place on each cycle, and sign instead for what the machines can't decide: changes to the rules and the record ([Chapter 04](04-change-control-and-provenance.md)), exceptions, and the acceptance of risk.
 - **Audit preparation shrinks.** A bundle assembles the same way every time. The team keeps the record truthful and the inputs retained, and the package follows; it doesn't rebuild the package for each audit.
-- **Evidence is regenerated, not hoarded.** A past window's bundle can be rebuilt from the record version and the archived inputs, as [Chapter 05](05-deterministic-governance.md#what-changes-for-the-program) explains. The inputs still have to be kept for as long as the records schedule requires.
+- **Evidence is regenerated, not hoarded.** A past window's bundle can be rebuilt from the record version and the archived inputs, as [Chapter 05](05-deterministic-governance.md#what-changes-for-the-program) explains. The inputs still have to be kept for as long as the records schedule requires; [Chapter 13](13-records-evidence-and-retention.md) says which schedule items commonly apply and who decides.
 
 Three things don't change, by design.
 
