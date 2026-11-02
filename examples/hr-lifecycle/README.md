@@ -39,6 +39,14 @@ python/access_assignment.py    Chapter 04: lint policies, the memberOf scan, the
 python/cba_check.py            Chapter 05: measure CRLs; check the CBA configuration
 python/separation_timing.py    Chapter 06: separation-to-block and separation-to-revocation
 python/lifecycle_drift.py      Chapter 07: drift classes, the six metrics, the run folder
+deploy/settings.example.json   Chapter 08: one environment's settings, placeholders only, no secrets
+deploy/deploy_settings.py      Chapter 08: check the settings file; write the middleware's settings from it
+deploy/preflight.py            Chapter 08: licenses, PIM roles, the writer register, job and workflow state
+deploy/smoke-workers.json      Chapter 08: the synthetic joiner, mover and leaver for the test stage
+deploy/smoke_test.py           Chapter 08: the synthetic extract per phase; check the tenant against an extract
+deploy/rollback.py             Chapter 08: write the reviewed rollback PowerShell; verify the rollback took
+deploy/evidence.py             Chapter 08: one evidence record per step, with its controls and KSIs; the go/no-go check
+deploy/tests/                  pytest for the deploy scripts, with their fixtures
 tests/                         pytest, fixtures only (tests/fixtures/ch01 to ch07)
 ```
 
@@ -56,19 +64,39 @@ Python 3.10 or later, standard library only. Work in this folder. Every tool tak
 | `python python/cba_check.py measure` / `check` | CB-01 to CB-13 | 0, 2, 1 |
 | `python python/separation_timing.py measure` | ST-01 to ST-09 | 0, 2, 1 |
 | `python python/lifecycle_drift.py run` | LD-01 to LD-08 | 0, 2, 1 |
+| `python deploy/deploy_settings.py check` / `middleware` / `record-workflows` / `get` | DS-01 to DS-05 | 0, 2, 1 |
+| `python deploy/preflight.py --mode fixture` or `--mode tenant` | PF-01 to PF-06 | 0, 2, 1 |
+| `python deploy/smoke_test.py extract` / `check --mode fixture` or `--mode tenant` | SM-01 to SM-07 | 0, 2, 1 |
+| `python deploy/rollback.py plan` / `verify --mode fixture` or `--mode tenant` | RB-01, RB-02 | 0, 2, 1 |
+| `python deploy/evidence.py check --stage test` or `production` / `show --step <step>` | EV-01 to EV-04 | 0, 2, 1 |
 
 Clouds: `gcc` (`graph.microsoft.com`), `gcchigh` (`graph.microsoft.us`), `dod` (`dod-graph.microsoft.us`). There is no default.
+
+## Deploy: from Lab 2 to a test tenant, then production
+
+The workbook's [Chapter 08](../../docs/project-plans/developer-workbooks/hr-driven-identity/08-deploying-to-test-and-production.md) is the runbook; `deploy/` holds the code it runs. The same commands run against the HR test pod and the Entra test tenant, then the production feed and tenant, with only the settings file changed (`deploy/settings.test.json`, `deploy/settings.production.json`, copied from `settings.example.json`). The settings hold names and IDs; `deploy_settings.py check` refuses any key or value that looks like a secret, and certificates for the integration identities stay in the key vault the file names.
+
+Every deploy script has a fixture mode, which reads the exports in `deploy/tests/fixtures` and needs no tenant, and a tenant mode, which reads Microsoft Graph with the token in `HRLC_GRAPH_TOKEN` (tasks `deploy-preflight`, `deploy-job` and `deploy-smoke` in `config/calls.json`, GET only) and keeps what it read in its output folder. Each writes its output folder once, with a `manifest.json` that holds a SHA-256 per file: that folder is the evidence for the step.
+
+- `preflight.py` proves "ready but not running": licenses, PIM eligibility for the runbook's roles, the writer register, both provisioning jobs paused (or not yet run) and every workflow's scheduling off. A production run also needs the test stage's last smoke output, clean and from the same mode (PF-06).
+- `smoke_test.py extract` writes the synthetic workers' extract for the joiner, mover and leaver phases, for `examples/hcm-entra` to send; `check` derives what the directory, the workflows and the provisioning logs should show from any extract, so production checks its first scope with the same code.
+- `rollback.py plan` writes `rollback.ps1`, Microsoft's Graph PowerShell cmdlets in the guide's rollback order; without `-Apply` it only prints the commands. `verify` reads the tenant again and checks the jobs are paused and nothing is scheduled.
+
+Each script also writes an **evidence record** for its step (to `out/evidence`, or `--evidence-dir`): a JSON file with the time in UTC, the environment, tenant, cloud, mode and change record, the exact command, the result, the output folder's manifest SHA-256, and the NIST SP 800-53 controls, other federal requirements and FedRAMP 20x KSI IDs the step supports (`STEPS` in `evidence.py`), with `evidence-index.csv` and `SHA256SUMS` beside them. `evidence.py check` passes only when every step a stage needs has a passing record whose output is unchanged: the go/no-go's evidence criterion. KSIs are FedRAMP's indicators for cloud providers; the IDs line the agency's evidence up with what its providers report, and the agency doesn't report KSIs itself.
+
+The sync job read takes `Synchronization.Read.All`: Learn ranks `Application.ReadWrite.OwnedBy` least privileged for that GET, but it can write, and this kit takes no write permission.
 
 ## Test
 
 ```bash
 python -m pytest tests -q
+python -m pytest deploy/tests -q
 ```
 
-57 tests, no tenant and no network. `examples/drift-pipeline/tests/test_hr_evidence.py` also builds runs from this kit's fixtures, so the drift pipeline's suite runs when this kit changes.
+57 tests for the chapters' tools, and 23 for the runbook's scripts in `deploy/tests` (kept apart so the chapters' test step still counts the tools'), no tenant and no network. `examples/drift-pipeline/tests/test_hr_evidence.py` also builds runs from this kit's fixtures, so the drift pipeline's suite runs when this kit changes.
 
 ## Not covered
 
 - It doesn't write to a tenant. Plans and review settings are bodies for review; send them with Graph PowerShell or the reviewed pipeline.
 - The audit `modifiedProperties` names in the writer register, `requestorManager` as an access review reviewer, and the workflow execution limit (which Learn says isn't in the API) are unconfirmed; the workbook's verification logs list them.
-- It hasn't been run against a tenant.
+- It hasn't been run against a tenant, and neither has the runbook in `deploy/`.
