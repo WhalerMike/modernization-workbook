@@ -12,10 +12,13 @@ Workbook folder: `docs/project-plans/developer-workbooks/privileged-access/`. Fi
 | `06-pim-for-azure-resources.md` | Chapter 06 — PIM for Azure Resources | new code |
 | `07-access-reviews-of-privileged-roles.md` | Chapter 07 — Access Reviews of Privileged Roles | new code |
 | `08-evidence-and-drift.md` | Chapter 08 — Evidence and Drift for the ISSO | `examples/drift-pipeline` (extend only in its own reviewed change) |
+| `09-deploying-to-test-and-production.md` | Chapter 09 — Deploying to Test and Production | `examples/privileged-access/deploy` (new code); Chapters 02 to 08's entry scripts |
 
 ## Every chapter has
 
 In this chapter; goal and audience; the context the code depends on; Start with Microsoft's sample (what it gives, the pinned copy, what it leaves to you, as a gap table whose every row is pinned by a test); the code (what it builds on, what the chapter adds, the tests); an Illustrative code callout; Lab 1 against fixtures with no tenant; Lab 2 in a test tenant with a back-out step; a verified facts table (endpoint, least-privileged permission, role, US Government cloud availability, release stage) with the places Learn's pages differ; dangers with the guard for each; a checklist; Continue the book; footnotes. Run every lab command before writing its expected output.
+
+Chapter 09 is a runbook, not a code chapter: it has no Microsoft sample section and no labs of its own (no heading containing "Lab 1" or "Lab 2", which `scripts/kit_captures.py` and `scripts/generate_labs.py` key on). Its steps run the earlier chapters' entry scripts and its own `deploy` scripts, each a command block or an exact portal path, with fixture-mode output labeled with its date.
 
 ## Rules
 

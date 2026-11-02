@@ -58,7 +58,7 @@ WORKBOOKS = [
              "docs/training/attribute-driven-migration",
              {"02": ("Microsoft Automation, Module 1", "docs/training/ms-automation-foundations.md")}),
     Workbook("pa", "Building Privileged Access", "docs/project-plans/developer-workbooks/privileged-access",
-             "privileged-access-code.zip"),
+             "privileged-access-code.zip", None, "docs/training/privileged-access"),
     Workbook("npi", "Building Non-Person Identity", "docs/project-plans/developer-workbooks/non-person-identity",
              "non-person-identity-code.zip", "docs/books/guides/non-person-identity-implementation.md"),
 ]

@@ -713,7 +713,7 @@ Lab 2, step 5, the cross-check against PIM's resource audit in the admin center,
 
 ::: {.callout-tip}
 ## Continue the book
-[← Previous: Chapter 07 — Access Reviews of Privileged Roles](07-access-reviews-of-privileged-roles.md) · [Workbook index](index.md)
+[← Previous: Chapter 07 — Access Reviews of Privileged Roles](07-access-reviews-of-privileged-roles.md) · [Workbook index](index.md) · [Next: Chapter 09 — Deploying to Test and Production →](09-deploying-to-test-and-production.md)
 :::
 
 [^pa08-pim-audit]: Microsoft Learn, "View audit history for Microsoft Entra roles in Privileged Identity Management," <https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-how-to-use-audit-log> (accessed Oct 30, 2026).

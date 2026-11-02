@@ -1,0 +1,220 @@
+{
+  "_comment": "Chapter 09 fixture: a filled settings file for the fictional contoso.example test tenant. Every ID is invented. The tests and the chapter's fixture-mode commands read it.",
+  "environment": "test",
+  "changeRecord": "CHG-3001",
+  "cloud": "gcc",
+  "tenantId": "c0000000-0000-4000-8000-000000000009",
+  "outputRoot": "out/deploy-test",
+  "identity": {
+    "credential": "certificate",
+    "certificateThumbprint": "0A1B2C3D4E5F60718293A4B5C6D7E8F901234567",
+    "apps": {
+      "reader": "a9000000-0000-4000-8000-000000000001",
+      "caWriter": "a9000000-0000-4000-8000-000000000002",
+      "pimWriter": "a9000000-0000-4000-8000-000000000003",
+      "groupsWriter": "a9000000-0000-4000-8000-000000000004",
+      "reviewsWriter": "a9000000-0000-4000-8000-000000000005",
+      "azure": "a9000000-0000-4000-8000-000000000006"
+    },
+    "azureAppObjectId": "c3000000-0000-4000-8000-000000000003"
+  },
+  "emergencyAccess": {
+    "accounts": [
+      {
+        "id": "0e000000-0000-4000-8000-000000000001",
+        "userPrincipalName": "ea01@contosoexample.onmicrosoft.com"
+      },
+      {
+        "id": "0e000000-0000-4000-8000-000000000002",
+        "userPrincipalName": "ea02@contosoexample.onmicrosoft.com"
+      }
+    ],
+    "exclusionGroupId": "9e000000-0000-4000-8000-000000000001",
+    "minimumAccounts": 2,
+    "maxValidationAgeDays": 90,
+    "owner": "CISO",
+    "validations": [
+      {
+        "accountId": "0e000000-0000-4000-8000-000000000001",
+        "date": "2026-10-15",
+        "result": "Pass",
+        "ticket": "CHG-2950"
+      },
+      {
+        "accountId": "0e000000-0000-4000-8000-000000000002",
+        "date": "2026-10-15",
+        "result": "Pass",
+        "ticket": "CHG-2950"
+      }
+    ]
+  },
+  "monitoring": {
+    "workspaceResourceId": "/subscriptions/22222222-2222-4222-8222-222222222222/resourceGroups/rg-logs/providers/Microsoft.OperationalInsights/workspaces/law-identity",
+    "actionGroupResourceId": "/subscriptions/22222222-2222-4222-8222-222222222222/resourceGroups/rg-logs/providers/Microsoft.Insights/actionGroups/ag-soc",
+    "location": "eastus",
+    "resourceGroup": "rg-logs"
+  },
+  "conditionalAccess": {
+    "map": {
+      "{group:CA-Exclude-EmergencyAccess}": "9e000000-0000-4000-8000-000000000001",
+      "{group:CA-Persona-Admins}": "9e000000-0000-4000-8000-000000000021",
+      "{group:CA-Access-AzureOperators}": "9e000000-0000-4000-8000-000000000022",
+      "{location:NL-TrustedNetworks}": "1c000000-0000-4000-8000-000000000001",
+      "{aaguid:approved-key-model-1}": "aa000000-0000-4000-8000-000000000001",
+      "{aaguid:approved-key-model-2}": "aa000000-0000-4000-8000-000000000002"
+    }
+  },
+  "pimRoles": {
+    "_comment": "Test: the pilot role only.",
+    "roleFiles": [
+      "teams-administrator.json"
+    ],
+    "approverGroups": {
+      "PIM-Approvers-T0": "9e000000-0000-4000-8000-000000000010",
+      "PIM-Approvers-T1": "9e000000-0000-4000-8000-000000000011"
+    },
+    "eligibility": [
+      {
+        "roleTemplateId": "69091246-20e8-4a56-aa4d-066075b2a7a8",
+        "role": "Teams Administrator",
+        "groupId": "9e000000-0000-4000-8000-000000000114",
+        "groupName": "PRV-T1-TeamsAdmin",
+        "directoryScopeId": "/"
+      }
+    ],
+    "exceptions": [],
+    "confirmedActivations": []
+  },
+  "pimGroups": {
+    "approverGroups": {
+      "T0": "9e000000-0000-4000-8000-000000000010",
+      "T1": "9e000000-0000-4000-8000-000000000011"
+    },
+    "groups": [
+      {
+        "displayName": "PRV-T1-TeamsAdmin",
+        "id": "9e000000-0000-4000-8000-000000000114",
+        "tier": "T1",
+        "holds": "entraRole",
+        "member": {
+          "active": [
+            {
+              "principalId": "5d000000-0000-4000-8000-000000000001",
+              "principalName": "pim.smoke01@contoso.example",
+              "principalType": "user",
+              "endDateTime": "2026-11-30T00:00:00Z",
+              "ticket": "CHG-3001"
+            }
+          ],
+          "eligible": []
+        },
+        "owner": {
+          "active": [],
+          "eligible": []
+        }
+      }
+    ],
+    "previousDesiredPath": null
+  },
+  "azure": {
+    "scopes": [
+      "/subscriptions/11111111-1111-4111-8111-111111111111"
+    ],
+    "governedRoles": [
+      "8e3af657-a8ff-443c-a75c-2fe8c4bcb635",
+      "b24988ac-6180-42a0-ab88-20f7382dd24c",
+      "18d7d88d-d35e-4fb5-a5c3-7773c20a72d9"
+    ],
+    "controlPlaneSubscriptionIds": [],
+    "authenticationContextPolicyConfirmed": true,
+    "settings": {
+      "T0": {
+        "maxActivation": "PT4H",
+        "eligibilityMaxDuration": "P90D",
+        "activeAssignmentMaxDuration": "P15D",
+        "approval": true,
+        "approverGroupId": "9e000000-0000-4000-8000-000000000010",
+        "approverGroupName": "PIM-Approvers-T0",
+        "endUserEnabledRules": [
+          "Justification",
+          "Ticketing"
+        ],
+        "authenticationContext": "c1"
+      },
+      "T1": {
+        "maxActivation": "PT8H",
+        "eligibilityMaxDuration": "P180D",
+        "activeAssignmentMaxDuration": "P15D",
+        "approval": true,
+        "approverGroupId": "9e000000-0000-4000-8000-000000000011",
+        "approverGroupName": "PIM-Approvers-T1",
+        "endUserEnabledRules": [
+          "Justification",
+          "Ticketing"
+        ],
+        "authenticationContext": "c1"
+      }
+    },
+    "convertStanding": false,
+    "eligible": [
+      {
+        "scope": "/subscriptions/11111111-1111-4111-8111-111111111111",
+        "roleDefinitionId": "8e3af657-a8ff-443c-a75c-2fe8c4bcb635",
+        "principalId": "b2000000-0000-4000-8000-000000000002",
+        "principalType": "Group",
+        "name": "PRV-T1-Owner-Workload",
+        "justification": "Owners activate Owner through their PRV group (CHG-3001)"
+      }
+    ],
+    "standingExceptions": []
+  },
+  "accessReviews": {
+    "namePrefix": "PAR-",
+    "protectedRoleTemplateIds": [
+      "62e90394-69f5-4237-9190-012177145e10"
+    ],
+    "defaults": {
+      "startDate": "2026-11-09",
+      "instanceDurationInDays": 14,
+      "mailNotificationsEnabled": true,
+      "reminderNotificationsEnabled": true,
+      "justificationRequiredOnApproval": true,
+      "recommendationsEnabled": true,
+      "autoApplyDecisionsEnabled": true,
+      "defaultDecision": "Deny"
+    },
+    "reviews": [
+      {
+        "name": "PAR-T1-TeamsAdministrator-Pilot",
+        "kind": "entraRole",
+        "tier": "T1",
+        "roleTemplateId": "69091246-20e8-4a56-aa4d-066075b2a7a8",
+        "eligibleGroupIds": [],
+        "assignments": "activeAndEligible",
+        "cadence": "quarterly",
+        "reviewers": [
+          {
+            "group": "aa000000-0000-4000-8000-000000000010"
+          }
+        ],
+        "fallbackReviewers": [
+          {
+            "group": "aa000000-0000-4000-8000-000000000011"
+          }
+        ],
+        "descriptionForReviewers": "Pilot review of Teams Administrator. Approve only assignments with a current need, with a justification."
+      }
+    ],
+    "previousConfigPath": null
+  },
+  "smokeTest": {
+    "syntheticAdmin": {
+      "id": "5d000000-0000-4000-8000-000000000001",
+      "userPrincipalName": "pim.smoke01@contoso.example"
+    },
+    "approverUpn": "pim.approver01@contoso.example",
+    "roleTemplateId": "69091246-20e8-4a56-aa4d-066075b2a7a8",
+    "roleFile": "teams-administrator.json",
+    "reviewName": "PAR-T1-TeamsAdministrator-Pilot"
+  }
+}

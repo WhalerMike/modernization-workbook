@@ -1,0 +1,1740 @@
+{
+  "wave": 1,
+  "roles": [
+    "Application Administrator",
+    "Authentication Policy Administrator",
+    "Cloud Application Administrator",
+    "Compliance Administrator",
+    "Exchange Administrator",
+    "Hybrid Identity Administrator",
+    "Intune Administrator",
+    "SharePoint Administrator",
+    "Teams Administrator"
+  ],
+  "blocked": false,
+  "needsActivationGate": true,
+  "actions": [
+    {
+      "Kind": "PatchRule",
+      "Role": "Application Administrator",
+      "Tier": "T1",
+      "Call": "pim-policy-rule-update",
+      "Method": "PATCH",
+      "Uri": "https://graph.microsoft.com/v1.0/policies/roleManagementPolicies/DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000006/rules/Enablement_EndUser_Assignment",
+      "Bind": {
+        "policyId": "DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000006",
+        "ruleId": "Enablement_EndUser_Assignment"
+      },
+      "Body": {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyEnablementRule",
+        "id": "Enablement_EndUser_Assignment",
+        "enabledRules": [
+          "Justification",
+          "Ticketing"
+        ],
+        "target": {
+          "@odata.type": "microsoft.graph.unifiedRoleManagementPolicyRuleTarget",
+          "caller": "EndUser",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": []
+        }
+      },
+      "Status": "Sent",
+      "Detail": "enabledRules: MultiFactorAuthentication -> Justification,Ticketing"
+    },
+    {
+      "Kind": "PatchRule",
+      "Role": "Application Administrator",
+      "Tier": "T1",
+      "Call": "pim-policy-rule-update",
+      "Method": "PATCH",
+      "Uri": "https://graph.microsoft.com/v1.0/policies/roleManagementPolicies/DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000006/rules/AuthenticationContext_EndUser_Assignment",
+      "Bind": {
+        "policyId": "DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000006",
+        "ruleId": "AuthenticationContext_EndUser_Assignment"
+      },
+      "Body": {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyAuthenticationContextRule",
+        "id": "AuthenticationContext_EndUser_Assignment",
+        "isEnabled": true,
+        "claimValue": "c1",
+        "target": {
+          "@odata.type": "microsoft.graph.unifiedRoleManagementPolicyRuleTarget",
+          "caller": "EndUser",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": []
+        }
+      },
+      "Status": "Sent",
+      "Detail": "isEnabled: False -> True; claimValue:  -> c1"
+    },
+    {
+      "Kind": "PatchRule",
+      "Role": "Application Administrator",
+      "Tier": "T1",
+      "Call": "pim-policy-rule-update",
+      "Method": "PATCH",
+      "Uri": "https://graph.microsoft.com/v1.0/policies/roleManagementPolicies/DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000006/rules/Approval_EndUser_Assignment",
+      "Bind": {
+        "policyId": "DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000006",
+        "ruleId": "Approval_EndUser_Assignment"
+      },
+      "Body": {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyApprovalRule",
+        "id": "Approval_EndUser_Assignment",
+        "target": {
+          "@odata.type": "microsoft.graph.unifiedRoleManagementPolicyRuleTarget",
+          "caller": "EndUser",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": []
+        },
+        "setting": {
+          "@odata.type": "microsoft.graph.approvalSettings",
+          "isApprovalRequired": true,
+          "isApprovalRequiredForExtension": false,
+          "isRequestorJustificationRequired": true,
+          "approvalMode": "SingleStage",
+          "approvalStages": [
+            {
+              "approvalStageTimeOutInDays": 1,
+              "isApproverJustificationRequired": true,
+              "escalationTimeInMinutes": 0,
+              "isEscalationEnabled": false,
+              "primaryApprovers": [
+                {
+                  "@odata.type": "#microsoft.graph.groupMembers",
+                  "groupId": "9e000000-0000-4000-8000-000000000011"
+                }
+              ],
+              "escalationApprovers": []
+            }
+          ]
+        }
+      },
+      "Status": "Sent",
+      "Detail": "isApprovalRequired: False -> True; approvalMode:  -> SingleStage; isRequestorJustificationRequired:  -> True; stages:  -> 1; approvalStageTimeOutInDays:  -> 1; isApproverJustificationRequired:  -> True; primaryApprovers:  -> group:9e000000-0000-4000-8000-000000000011"
+    },
+    {
+      "Kind": "PatchRule",
+      "Role": "Application Administrator",
+      "Tier": "T1",
+      "Call": "pim-policy-rule-update",
+      "Method": "PATCH",
+      "Uri": "https://graph.microsoft.com/v1.0/policies/roleManagementPolicies/DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000006/rules/Expiration_Admin_Eligibility",
+      "Bind": {
+        "policyId": "DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000006",
+        "ruleId": "Expiration_Admin_Eligibility"
+      },
+      "Body": {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyExpirationRule",
+        "id": "Expiration_Admin_Eligibility",
+        "isExpirationRequired": true,
+        "maximumDuration": "P180D",
+        "target": {
+          "@odata.type": "microsoft.graph.unifiedRoleManagementPolicyRuleTarget",
+          "caller": "Admin",
+          "operations": [
+            "All"
+          ],
+          "level": "Eligibility",
+          "inheritableSettings": [],
+          "enforcedSettings": []
+        }
+      },
+      "Status": "Sent",
+      "Detail": "isExpirationRequired: False -> True; maximumDuration:  -> 180.00:00:00"
+    },
+    {
+      "Kind": "PatchRule",
+      "Role": "Application Administrator",
+      "Tier": "T1",
+      "Call": "pim-policy-rule-update",
+      "Method": "PATCH",
+      "Uri": "https://graph.microsoft.com/v1.0/policies/roleManagementPolicies/DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000006/rules/Expiration_Admin_Assignment",
+      "Bind": {
+        "policyId": "DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000006",
+        "ruleId": "Expiration_Admin_Assignment"
+      },
+      "Body": {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyExpirationRule",
+        "id": "Expiration_Admin_Assignment",
+        "isExpirationRequired": true,
+        "maximumDuration": "P15D",
+        "target": {
+          "@odata.type": "microsoft.graph.unifiedRoleManagementPolicyRuleTarget",
+          "caller": "Admin",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": []
+        }
+      },
+      "Status": "Sent",
+      "Detail": "maximumDuration: 180.00:00:00 -> 15.00:00:00"
+    },
+    {
+      "Kind": "RemoveStanding",
+      "Role": "Application Administrator",
+      "Tier": "T1",
+      "Call": "pim-assignment-request",
+      "Method": "POST",
+      "Uri": "https://graph.microsoft.com/v1.0/roleManagement/directory/roleAssignmentScheduleRequests",
+      "Bind": {},
+      "Body": {
+        "action": "adminRemove",
+        "principalId": "a4000000-0000-4000-8000-000000000005",
+        "roleDefinitionId": "9b895d92-2cd3-44c7-9d02-a6ac2d5ea5c3",
+        "directoryScopeId": "/",
+        "justification": "Converted to eligibility through the PRV group; activation confirmed (pending)"
+      },
+      "Status": "WaitingForConfirmedActivation",
+      "Detail": "Erin Patel standing Application Administrator"
+    },
+    {
+      "Kind": "PatchRule",
+      "Role": "Authentication Policy Administrator",
+      "Tier": "T1",
+      "Call": "pim-policy-rule-update",
+      "Method": "PATCH",
+      "Uri": "https://graph.microsoft.com/v1.0/policies/roleManagementPolicies/DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000007/rules/Enablement_EndUser_Assignment",
+      "Bind": {
+        "policyId": "DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000007",
+        "ruleId": "Enablement_EndUser_Assignment"
+      },
+      "Body": {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyEnablementRule",
+        "id": "Enablement_EndUser_Assignment",
+        "enabledRules": [
+          "Justification",
+          "Ticketing"
+        ],
+        "target": {
+          "@odata.type": "microsoft.graph.unifiedRoleManagementPolicyRuleTarget",
+          "caller": "EndUser",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": []
+        }
+      },
+      "Status": "Sent",
+      "Detail": "enabledRules: MultiFactorAuthentication -> Justification,Ticketing"
+    },
+    {
+      "Kind": "PatchRule",
+      "Role": "Authentication Policy Administrator",
+      "Tier": "T1",
+      "Call": "pim-policy-rule-update",
+      "Method": "PATCH",
+      "Uri": "https://graph.microsoft.com/v1.0/policies/roleManagementPolicies/DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000007/rules/AuthenticationContext_EndUser_Assignment",
+      "Bind": {
+        "policyId": "DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000007",
+        "ruleId": "AuthenticationContext_EndUser_Assignment"
+      },
+      "Body": {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyAuthenticationContextRule",
+        "id": "AuthenticationContext_EndUser_Assignment",
+        "isEnabled": true,
+        "claimValue": "c1",
+        "target": {
+          "@odata.type": "microsoft.graph.unifiedRoleManagementPolicyRuleTarget",
+          "caller": "EndUser",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": []
+        }
+      },
+      "Status": "Sent",
+      "Detail": "isEnabled: False -> True; claimValue:  -> c1"
+    },
+    {
+      "Kind": "PatchRule",
+      "Role": "Authentication Policy Administrator",
+      "Tier": "T1",
+      "Call": "pim-policy-rule-update",
+      "Method": "PATCH",
+      "Uri": "https://graph.microsoft.com/v1.0/policies/roleManagementPolicies/DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000007/rules/Approval_EndUser_Assignment",
+      "Bind": {
+        "policyId": "DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000007",
+        "ruleId": "Approval_EndUser_Assignment"
+      },
+      "Body": {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyApprovalRule",
+        "id": "Approval_EndUser_Assignment",
+        "target": {
+          "@odata.type": "microsoft.graph.unifiedRoleManagementPolicyRuleTarget",
+          "caller": "EndUser",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": []
+        },
+        "setting": {
+          "@odata.type": "microsoft.graph.approvalSettings",
+          "isApprovalRequired": true,
+          "isApprovalRequiredForExtension": false,
+          "isRequestorJustificationRequired": true,
+          "approvalMode": "SingleStage",
+          "approvalStages": [
+            {
+              "approvalStageTimeOutInDays": 1,
+              "isApproverJustificationRequired": true,
+              "escalationTimeInMinutes": 0,
+              "isEscalationEnabled": false,
+              "primaryApprovers": [
+                {
+                  "@odata.type": "#microsoft.graph.groupMembers",
+                  "groupId": "9e000000-0000-4000-8000-000000000011"
+                }
+              ],
+              "escalationApprovers": []
+            }
+          ]
+        }
+      },
+      "Status": "Sent",
+      "Detail": "isApprovalRequired: False -> True; approvalMode:  -> SingleStage; isRequestorJustificationRequired:  -> True; stages:  -> 1; approvalStageTimeOutInDays:  -> 1; isApproverJustificationRequired:  -> True; primaryApprovers:  -> group:9e000000-0000-4000-8000-000000000011"
+    },
+    {
+      "Kind": "PatchRule",
+      "Role": "Authentication Policy Administrator",
+      "Tier": "T1",
+      "Call": "pim-policy-rule-update",
+      "Method": "PATCH",
+      "Uri": "https://graph.microsoft.com/v1.0/policies/roleManagementPolicies/DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000007/rules/Expiration_Admin_Eligibility",
+      "Bind": {
+        "policyId": "DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000007",
+        "ruleId": "Expiration_Admin_Eligibility"
+      },
+      "Body": {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyExpirationRule",
+        "id": "Expiration_Admin_Eligibility",
+        "isExpirationRequired": true,
+        "maximumDuration": "P180D",
+        "target": {
+          "@odata.type": "microsoft.graph.unifiedRoleManagementPolicyRuleTarget",
+          "caller": "Admin",
+          "operations": [
+            "All"
+          ],
+          "level": "Eligibility",
+          "inheritableSettings": [],
+          "enforcedSettings": []
+        }
+      },
+      "Status": "Sent",
+      "Detail": "isExpirationRequired: False -> True; maximumDuration:  -> 180.00:00:00"
+    },
+    {
+      "Kind": "PatchRule",
+      "Role": "Authentication Policy Administrator",
+      "Tier": "T1",
+      "Call": "pim-policy-rule-update",
+      "Method": "PATCH",
+      "Uri": "https://graph.microsoft.com/v1.0/policies/roleManagementPolicies/DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000007/rules/Expiration_Admin_Assignment",
+      "Bind": {
+        "policyId": "DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000007",
+        "ruleId": "Expiration_Admin_Assignment"
+      },
+      "Body": {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyExpirationRule",
+        "id": "Expiration_Admin_Assignment",
+        "isExpirationRequired": true,
+        "maximumDuration": "P15D",
+        "target": {
+          "@odata.type": "microsoft.graph.unifiedRoleManagementPolicyRuleTarget",
+          "caller": "Admin",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": []
+        }
+      },
+      "Status": "Sent",
+      "Detail": "maximumDuration: 180.00:00:00 -> 15.00:00:00"
+    },
+    {
+      "Kind": "AssignEligibility",
+      "Role": "Authentication Policy Administrator",
+      "Tier": "T1",
+      "Call": "pim-eligibility-request",
+      "Method": "POST",
+      "Uri": "https://graph.microsoft.com/v1.0/roleManagement/directory/roleEligibilityScheduleRequests",
+      "Bind": {},
+      "Body": {
+        "action": "adminAssign",
+        "justification": "PIM as code: Authentication Policy Administrator eligibility for its PRV group (authentication-policy-administrator.json)",
+        "roleDefinitionId": "0526716b-113d-4c15-b2c8-68e3c22b9f80",
+        "directoryScopeId": "/",
+        "principalId": "9e000000-0000-4000-8000-000000000107",
+        "scheduleInfo": {
+          "startDateTime": "2026-10-30T00:00:00Z",
+          "expiration": {
+            "type": "afterDuration",
+            "duration": "P180D"
+          }
+        }
+      },
+      "Status": "Sent",
+      "Detail": "PRV-T1-AuthPolicyAdmin eligible at / for P180D"
+    },
+    {
+      "Kind": "PatchRule",
+      "Role": "Cloud Application Administrator",
+      "Tier": "T1",
+      "Call": "pim-policy-rule-update",
+      "Method": "PATCH",
+      "Uri": "https://graph.microsoft.com/v1.0/policies/roleManagementPolicies/DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000008/rules/Enablement_EndUser_Assignment",
+      "Bind": {
+        "policyId": "DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000008",
+        "ruleId": "Enablement_EndUser_Assignment"
+      },
+      "Body": {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyEnablementRule",
+        "id": "Enablement_EndUser_Assignment",
+        "enabledRules": [
+          "Justification",
+          "Ticketing"
+        ],
+        "target": {
+          "@odata.type": "microsoft.graph.unifiedRoleManagementPolicyRuleTarget",
+          "caller": "EndUser",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": []
+        }
+      },
+      "Status": "Sent",
+      "Detail": "enabledRules: MultiFactorAuthentication -> Justification,Ticketing"
+    },
+    {
+      "Kind": "PatchRule",
+      "Role": "Cloud Application Administrator",
+      "Tier": "T1",
+      "Call": "pim-policy-rule-update",
+      "Method": "PATCH",
+      "Uri": "https://graph.microsoft.com/v1.0/policies/roleManagementPolicies/DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000008/rules/AuthenticationContext_EndUser_Assignment",
+      "Bind": {
+        "policyId": "DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000008",
+        "ruleId": "AuthenticationContext_EndUser_Assignment"
+      },
+      "Body": {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyAuthenticationContextRule",
+        "id": "AuthenticationContext_EndUser_Assignment",
+        "isEnabled": true,
+        "claimValue": "c1",
+        "target": {
+          "@odata.type": "microsoft.graph.unifiedRoleManagementPolicyRuleTarget",
+          "caller": "EndUser",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": []
+        }
+      },
+      "Status": "Sent",
+      "Detail": "isEnabled: False -> True; claimValue:  -> c1"
+    },
+    {
+      "Kind": "PatchRule",
+      "Role": "Cloud Application Administrator",
+      "Tier": "T1",
+      "Call": "pim-policy-rule-update",
+      "Method": "PATCH",
+      "Uri": "https://graph.microsoft.com/v1.0/policies/roleManagementPolicies/DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000008/rules/Approval_EndUser_Assignment",
+      "Bind": {
+        "policyId": "DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000008",
+        "ruleId": "Approval_EndUser_Assignment"
+      },
+      "Body": {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyApprovalRule",
+        "id": "Approval_EndUser_Assignment",
+        "target": {
+          "@odata.type": "microsoft.graph.unifiedRoleManagementPolicyRuleTarget",
+          "caller": "EndUser",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": []
+        },
+        "setting": {
+          "@odata.type": "microsoft.graph.approvalSettings",
+          "isApprovalRequired": true,
+          "isApprovalRequiredForExtension": false,
+          "isRequestorJustificationRequired": true,
+          "approvalMode": "SingleStage",
+          "approvalStages": [
+            {
+              "approvalStageTimeOutInDays": 1,
+              "isApproverJustificationRequired": true,
+              "escalationTimeInMinutes": 0,
+              "isEscalationEnabled": false,
+              "primaryApprovers": [
+                {
+                  "@odata.type": "#microsoft.graph.groupMembers",
+                  "groupId": "9e000000-0000-4000-8000-000000000011"
+                }
+              ],
+              "escalationApprovers": []
+            }
+          ]
+        }
+      },
+      "Status": "Sent",
+      "Detail": "isApprovalRequired: False -> True; approvalMode:  -> SingleStage; isRequestorJustificationRequired:  -> True; stages:  -> 1; approvalStageTimeOutInDays:  -> 1; isApproverJustificationRequired:  -> True; primaryApprovers:  -> group:9e000000-0000-4000-8000-000000000011"
+    },
+    {
+      "Kind": "PatchRule",
+      "Role": "Cloud Application Administrator",
+      "Tier": "T1",
+      "Call": "pim-policy-rule-update",
+      "Method": "PATCH",
+      "Uri": "https://graph.microsoft.com/v1.0/policies/roleManagementPolicies/DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000008/rules/Expiration_Admin_Eligibility",
+      "Bind": {
+        "policyId": "DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000008",
+        "ruleId": "Expiration_Admin_Eligibility"
+      },
+      "Body": {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyExpirationRule",
+        "id": "Expiration_Admin_Eligibility",
+        "isExpirationRequired": true,
+        "maximumDuration": "P180D",
+        "target": {
+          "@odata.type": "microsoft.graph.unifiedRoleManagementPolicyRuleTarget",
+          "caller": "Admin",
+          "operations": [
+            "All"
+          ],
+          "level": "Eligibility",
+          "inheritableSettings": [],
+          "enforcedSettings": []
+        }
+      },
+      "Status": "Sent",
+      "Detail": "isExpirationRequired: False -> True; maximumDuration:  -> 180.00:00:00"
+    },
+    {
+      "Kind": "PatchRule",
+      "Role": "Cloud Application Administrator",
+      "Tier": "T1",
+      "Call": "pim-policy-rule-update",
+      "Method": "PATCH",
+      "Uri": "https://graph.microsoft.com/v1.0/policies/roleManagementPolicies/DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000008/rules/Expiration_Admin_Assignment",
+      "Bind": {
+        "policyId": "DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000008",
+        "ruleId": "Expiration_Admin_Assignment"
+      },
+      "Body": {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyExpirationRule",
+        "id": "Expiration_Admin_Assignment",
+        "isExpirationRequired": true,
+        "maximumDuration": "P15D",
+        "target": {
+          "@odata.type": "microsoft.graph.unifiedRoleManagementPolicyRuleTarget",
+          "caller": "Admin",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": []
+        }
+      },
+      "Status": "Sent",
+      "Detail": "maximumDuration: 180.00:00:00 -> 15.00:00:00"
+    },
+    {
+      "Kind": "AssignEligibility",
+      "Role": "Cloud Application Administrator",
+      "Tier": "T1",
+      "Call": "pim-eligibility-request",
+      "Method": "POST",
+      "Uri": "https://graph.microsoft.com/v1.0/roleManagement/directory/roleEligibilityScheduleRequests",
+      "Bind": {},
+      "Body": {
+        "action": "adminAssign",
+        "justification": "PIM as code: Cloud Application Administrator eligibility for its PRV group (cloud-application-administrator.json)",
+        "roleDefinitionId": "158c047a-c907-4556-b7ef-446551a6b5f7",
+        "directoryScopeId": "/",
+        "principalId": "9e000000-0000-4000-8000-000000000108",
+        "scheduleInfo": {
+          "startDateTime": "2026-10-30T00:00:00Z",
+          "expiration": {
+            "type": "afterDuration",
+            "duration": "P180D"
+          }
+        }
+      },
+      "Status": "Sent",
+      "Detail": "PRV-T1-CloudAppAdmin eligible at / for P180D"
+    },
+    {
+      "Kind": "PatchRule",
+      "Role": "Compliance Administrator",
+      "Tier": "T1",
+      "Call": "pim-policy-rule-update",
+      "Method": "PATCH",
+      "Uri": "https://graph.microsoft.com/v1.0/policies/roleManagementPolicies/DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000009/rules/Enablement_EndUser_Assignment",
+      "Bind": {
+        "policyId": "DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000009",
+        "ruleId": "Enablement_EndUser_Assignment"
+      },
+      "Body": {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyEnablementRule",
+        "id": "Enablement_EndUser_Assignment",
+        "enabledRules": [
+          "Justification",
+          "Ticketing"
+        ],
+        "target": {
+          "@odata.type": "microsoft.graph.unifiedRoleManagementPolicyRuleTarget",
+          "caller": "EndUser",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": []
+        }
+      },
+      "Status": "Sent",
+      "Detail": "enabledRules: MultiFactorAuthentication -> Justification,Ticketing"
+    },
+    {
+      "Kind": "PatchRule",
+      "Role": "Compliance Administrator",
+      "Tier": "T1",
+      "Call": "pim-policy-rule-update",
+      "Method": "PATCH",
+      "Uri": "https://graph.microsoft.com/v1.0/policies/roleManagementPolicies/DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000009/rules/AuthenticationContext_EndUser_Assignment",
+      "Bind": {
+        "policyId": "DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000009",
+        "ruleId": "AuthenticationContext_EndUser_Assignment"
+      },
+      "Body": {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyAuthenticationContextRule",
+        "id": "AuthenticationContext_EndUser_Assignment",
+        "isEnabled": true,
+        "claimValue": "c1",
+        "target": {
+          "@odata.type": "microsoft.graph.unifiedRoleManagementPolicyRuleTarget",
+          "caller": "EndUser",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": []
+        }
+      },
+      "Status": "Sent",
+      "Detail": "isEnabled: False -> True; claimValue:  -> c1"
+    },
+    {
+      "Kind": "PatchRule",
+      "Role": "Compliance Administrator",
+      "Tier": "T1",
+      "Call": "pim-policy-rule-update",
+      "Method": "PATCH",
+      "Uri": "https://graph.microsoft.com/v1.0/policies/roleManagementPolicies/DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000009/rules/Approval_EndUser_Assignment",
+      "Bind": {
+        "policyId": "DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000009",
+        "ruleId": "Approval_EndUser_Assignment"
+      },
+      "Body": {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyApprovalRule",
+        "id": "Approval_EndUser_Assignment",
+        "target": {
+          "@odata.type": "microsoft.graph.unifiedRoleManagementPolicyRuleTarget",
+          "caller": "EndUser",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": []
+        },
+        "setting": {
+          "@odata.type": "microsoft.graph.approvalSettings",
+          "isApprovalRequired": true,
+          "isApprovalRequiredForExtension": false,
+          "isRequestorJustificationRequired": true,
+          "approvalMode": "SingleStage",
+          "approvalStages": [
+            {
+              "approvalStageTimeOutInDays": 1,
+              "isApproverJustificationRequired": true,
+              "escalationTimeInMinutes": 0,
+              "isEscalationEnabled": false,
+              "primaryApprovers": [
+                {
+                  "@odata.type": "#microsoft.graph.groupMembers",
+                  "groupId": "9e000000-0000-4000-8000-000000000011"
+                }
+              ],
+              "escalationApprovers": []
+            }
+          ]
+        }
+      },
+      "Status": "Sent",
+      "Detail": "isApprovalRequired: False -> True; approvalMode:  -> SingleStage; isRequestorJustificationRequired:  -> True; stages:  -> 1; approvalStageTimeOutInDays:  -> 1; isApproverJustificationRequired:  -> True; primaryApprovers:  -> group:9e000000-0000-4000-8000-000000000011"
+    },
+    {
+      "Kind": "PatchRule",
+      "Role": "Compliance Administrator",
+      "Tier": "T1",
+      "Call": "pim-policy-rule-update",
+      "Method": "PATCH",
+      "Uri": "https://graph.microsoft.com/v1.0/policies/roleManagementPolicies/DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000009/rules/Expiration_Admin_Eligibility",
+      "Bind": {
+        "policyId": "DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000009",
+        "ruleId": "Expiration_Admin_Eligibility"
+      },
+      "Body": {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyExpirationRule",
+        "id": "Expiration_Admin_Eligibility",
+        "isExpirationRequired": true,
+        "maximumDuration": "P180D",
+        "target": {
+          "@odata.type": "microsoft.graph.unifiedRoleManagementPolicyRuleTarget",
+          "caller": "Admin",
+          "operations": [
+            "All"
+          ],
+          "level": "Eligibility",
+          "inheritableSettings": [],
+          "enforcedSettings": []
+        }
+      },
+      "Status": "Sent",
+      "Detail": "isExpirationRequired: False -> True; maximumDuration:  -> 180.00:00:00"
+    },
+    {
+      "Kind": "PatchRule",
+      "Role": "Compliance Administrator",
+      "Tier": "T1",
+      "Call": "pim-policy-rule-update",
+      "Method": "PATCH",
+      "Uri": "https://graph.microsoft.com/v1.0/policies/roleManagementPolicies/DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000009/rules/Expiration_Admin_Assignment",
+      "Bind": {
+        "policyId": "DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000009",
+        "ruleId": "Expiration_Admin_Assignment"
+      },
+      "Body": {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyExpirationRule",
+        "id": "Expiration_Admin_Assignment",
+        "isExpirationRequired": true,
+        "maximumDuration": "P15D",
+        "target": {
+          "@odata.type": "microsoft.graph.unifiedRoleManagementPolicyRuleTarget",
+          "caller": "Admin",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": []
+        }
+      },
+      "Status": "Sent",
+      "Detail": "maximumDuration: 180.00:00:00 -> 15.00:00:00"
+    },
+    {
+      "Kind": "AssignEligibility",
+      "Role": "Compliance Administrator",
+      "Tier": "T1",
+      "Call": "pim-eligibility-request",
+      "Method": "POST",
+      "Uri": "https://graph.microsoft.com/v1.0/roleManagement/directory/roleEligibilityScheduleRequests",
+      "Bind": {},
+      "Body": {
+        "action": "adminAssign",
+        "justification": "PIM as code: Compliance Administrator eligibility for its PRV group (compliance-administrator.json)",
+        "roleDefinitionId": "17315797-102d-40b4-93e0-432062caca18",
+        "directoryScopeId": "/",
+        "principalId": "9e000000-0000-4000-8000-000000000109",
+        "scheduleInfo": {
+          "startDateTime": "2026-10-30T00:00:00Z",
+          "expiration": {
+            "type": "afterDuration",
+            "duration": "P180D"
+          }
+        }
+      },
+      "Status": "Sent",
+      "Detail": "PRV-T1-ComplianceAdmin eligible at / for P180D"
+    },
+    {
+      "Kind": "PatchRule",
+      "Role": "Exchange Administrator",
+      "Tier": "T1",
+      "Call": "pim-policy-rule-update",
+      "Method": "PATCH",
+      "Uri": "https://graph.microsoft.com/v1.0/policies/roleManagementPolicies/DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000010/rules/AuthenticationContext_EndUser_Assignment",
+      "Bind": {
+        "policyId": "DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000010",
+        "ruleId": "AuthenticationContext_EndUser_Assignment"
+      },
+      "Body": {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyAuthenticationContextRule",
+        "id": "AuthenticationContext_EndUser_Assignment",
+        "isEnabled": true,
+        "claimValue": "c1",
+        "target": {
+          "@odata.type": "microsoft.graph.unifiedRoleManagementPolicyRuleTarget",
+          "caller": "EndUser",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": []
+        }
+      },
+      "Status": "Sent",
+      "Detail": "isEnabled: False -> True; claimValue:  -> c1"
+    },
+    {
+      "Kind": "PatchRule",
+      "Role": "Exchange Administrator",
+      "Tier": "T1",
+      "Call": "pim-policy-rule-update",
+      "Method": "PATCH",
+      "Uri": "https://graph.microsoft.com/v1.0/policies/roleManagementPolicies/DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000010/rules/Approval_EndUser_Assignment",
+      "Bind": {
+        "policyId": "DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000010",
+        "ruleId": "Approval_EndUser_Assignment"
+      },
+      "Body": {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyApprovalRule",
+        "id": "Approval_EndUser_Assignment",
+        "target": {
+          "@odata.type": "microsoft.graph.unifiedRoleManagementPolicyRuleTarget",
+          "caller": "EndUser",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": []
+        },
+        "setting": {
+          "@odata.type": "microsoft.graph.approvalSettings",
+          "isApprovalRequired": true,
+          "isApprovalRequiredForExtension": false,
+          "isRequestorJustificationRequired": true,
+          "approvalMode": "SingleStage",
+          "approvalStages": [
+            {
+              "approvalStageTimeOutInDays": 1,
+              "isApproverJustificationRequired": true,
+              "escalationTimeInMinutes": 0,
+              "isEscalationEnabled": false,
+              "primaryApprovers": [
+                {
+                  "@odata.type": "#microsoft.graph.groupMembers",
+                  "groupId": "9e000000-0000-4000-8000-000000000011"
+                }
+              ],
+              "escalationApprovers": []
+            }
+          ]
+        }
+      },
+      "Status": "Sent",
+      "Detail": "isApprovalRequired: False -> True; approvalMode:  -> SingleStage; isRequestorJustificationRequired:  -> True; stages:  -> 1; approvalStageTimeOutInDays:  -> 1; isApproverJustificationRequired:  -> True; primaryApprovers:  -> group:9e000000-0000-4000-8000-000000000011"
+    },
+    {
+      "Kind": "PatchRule",
+      "Role": "Exchange Administrator",
+      "Tier": "T1",
+      "Call": "pim-policy-rule-update",
+      "Method": "PATCH",
+      "Uri": "https://graph.microsoft.com/v1.0/policies/roleManagementPolicies/DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000010/rules/Expiration_Admin_Assignment",
+      "Bind": {
+        "policyId": "DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000010",
+        "ruleId": "Expiration_Admin_Assignment"
+      },
+      "Body": {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyExpirationRule",
+        "id": "Expiration_Admin_Assignment",
+        "isExpirationRequired": true,
+        "maximumDuration": "P15D",
+        "target": {
+          "@odata.type": "microsoft.graph.unifiedRoleManagementPolicyRuleTarget",
+          "caller": "Admin",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": []
+        }
+      },
+      "Status": "Sent",
+      "Detail": "maximumDuration: 180.00:00:00 -> 15.00:00:00"
+    },
+    {
+      "Kind": "AssignEligibility",
+      "Role": "Exchange Administrator",
+      "Tier": "T1",
+      "Call": "pim-eligibility-request",
+      "Method": "POST",
+      "Uri": "https://graph.microsoft.com/v1.0/roleManagement/directory/roleEligibilityScheduleRequests",
+      "Bind": {},
+      "Body": {
+        "action": "adminAssign",
+        "justification": "PIM as code: Exchange Administrator eligibility for its PRV group (exchange-administrator.json)",
+        "roleDefinitionId": "29232cdf-9323-42fd-ade2-1d097af3e4de",
+        "directoryScopeId": "/",
+        "principalId": "9e000000-0000-4000-8000-000000000110",
+        "scheduleInfo": {
+          "startDateTime": "2026-10-30T00:00:00Z",
+          "expiration": {
+            "type": "afterDuration",
+            "duration": "P180D"
+          }
+        }
+      },
+      "Status": "Sent",
+      "Detail": "PRV-T1-ExchangeAdmin eligible at / for P180D"
+    },
+    {
+      "Kind": "RemoveStanding",
+      "Role": "Exchange Administrator",
+      "Tier": "T1",
+      "Call": "pim-assignment-request",
+      "Method": "POST",
+      "Uri": "https://graph.microsoft.com/v1.0/roleManagement/directory/roleAssignmentScheduleRequests",
+      "Bind": {},
+      "Body": {
+        "action": "adminRemove",
+        "principalId": "a4000000-0000-4000-8000-000000000003",
+        "roleDefinitionId": "29232cdf-9323-42fd-ade2-1d097af3e4de",
+        "directoryScopeId": "/",
+        "justification": "Converted to eligibility through the PRV group; activation confirmed (CHG-2201)"
+      },
+      "Status": "WaitingForEligibility",
+      "Detail": "Carl Ops standing Exchange Administrator"
+    },
+    {
+      "Kind": "PatchRule",
+      "Role": "Hybrid Identity Administrator",
+      "Tier": "T1",
+      "Call": "pim-policy-rule-update",
+      "Method": "PATCH",
+      "Uri": "https://graph.microsoft.com/v1.0/policies/roleManagementPolicies/DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000011/rules/Enablement_EndUser_Assignment",
+      "Bind": {
+        "policyId": "DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000011",
+        "ruleId": "Enablement_EndUser_Assignment"
+      },
+      "Body": {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyEnablementRule",
+        "id": "Enablement_EndUser_Assignment",
+        "enabledRules": [
+          "Justification",
+          "Ticketing"
+        ],
+        "target": {
+          "@odata.type": "microsoft.graph.unifiedRoleManagementPolicyRuleTarget",
+          "caller": "EndUser",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": []
+        }
+      },
+      "Status": "Sent",
+      "Detail": "enabledRules: MultiFactorAuthentication -> Justification,Ticketing"
+    },
+    {
+      "Kind": "PatchRule",
+      "Role": "Hybrid Identity Administrator",
+      "Tier": "T1",
+      "Call": "pim-policy-rule-update",
+      "Method": "PATCH",
+      "Uri": "https://graph.microsoft.com/v1.0/policies/roleManagementPolicies/DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000011/rules/AuthenticationContext_EndUser_Assignment",
+      "Bind": {
+        "policyId": "DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000011",
+        "ruleId": "AuthenticationContext_EndUser_Assignment"
+      },
+      "Body": {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyAuthenticationContextRule",
+        "id": "AuthenticationContext_EndUser_Assignment",
+        "isEnabled": true,
+        "claimValue": "c1",
+        "target": {
+          "@odata.type": "microsoft.graph.unifiedRoleManagementPolicyRuleTarget",
+          "caller": "EndUser",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": []
+        }
+      },
+      "Status": "Sent",
+      "Detail": "isEnabled: False -> True; claimValue:  -> c1"
+    },
+    {
+      "Kind": "PatchRule",
+      "Role": "Hybrid Identity Administrator",
+      "Tier": "T1",
+      "Call": "pim-policy-rule-update",
+      "Method": "PATCH",
+      "Uri": "https://graph.microsoft.com/v1.0/policies/roleManagementPolicies/DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000011/rules/Approval_EndUser_Assignment",
+      "Bind": {
+        "policyId": "DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000011",
+        "ruleId": "Approval_EndUser_Assignment"
+      },
+      "Body": {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyApprovalRule",
+        "id": "Approval_EndUser_Assignment",
+        "target": {
+          "@odata.type": "microsoft.graph.unifiedRoleManagementPolicyRuleTarget",
+          "caller": "EndUser",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": []
+        },
+        "setting": {
+          "@odata.type": "microsoft.graph.approvalSettings",
+          "isApprovalRequired": true,
+          "isApprovalRequiredForExtension": false,
+          "isRequestorJustificationRequired": true,
+          "approvalMode": "SingleStage",
+          "approvalStages": [
+            {
+              "approvalStageTimeOutInDays": 1,
+              "isApproverJustificationRequired": true,
+              "escalationTimeInMinutes": 0,
+              "isEscalationEnabled": false,
+              "primaryApprovers": [
+                {
+                  "@odata.type": "#microsoft.graph.groupMembers",
+                  "groupId": "9e000000-0000-4000-8000-000000000011"
+                }
+              ],
+              "escalationApprovers": []
+            }
+          ]
+        }
+      },
+      "Status": "Sent",
+      "Detail": "isApprovalRequired: False -> True; approvalMode:  -> SingleStage; isRequestorJustificationRequired:  -> True; stages:  -> 1; approvalStageTimeOutInDays:  -> 1; isApproverJustificationRequired:  -> True; primaryApprovers:  -> group:9e000000-0000-4000-8000-000000000011"
+    },
+    {
+      "Kind": "PatchRule",
+      "Role": "Hybrid Identity Administrator",
+      "Tier": "T1",
+      "Call": "pim-policy-rule-update",
+      "Method": "PATCH",
+      "Uri": "https://graph.microsoft.com/v1.0/policies/roleManagementPolicies/DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000011/rules/Expiration_Admin_Eligibility",
+      "Bind": {
+        "policyId": "DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000011",
+        "ruleId": "Expiration_Admin_Eligibility"
+      },
+      "Body": {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyExpirationRule",
+        "id": "Expiration_Admin_Eligibility",
+        "isExpirationRequired": true,
+        "maximumDuration": "P180D",
+        "target": {
+          "@odata.type": "microsoft.graph.unifiedRoleManagementPolicyRuleTarget",
+          "caller": "Admin",
+          "operations": [
+            "All"
+          ],
+          "level": "Eligibility",
+          "inheritableSettings": [],
+          "enforcedSettings": []
+        }
+      },
+      "Status": "Sent",
+      "Detail": "isExpirationRequired: False -> True; maximumDuration:  -> 180.00:00:00"
+    },
+    {
+      "Kind": "PatchRule",
+      "Role": "Hybrid Identity Administrator",
+      "Tier": "T1",
+      "Call": "pim-policy-rule-update",
+      "Method": "PATCH",
+      "Uri": "https://graph.microsoft.com/v1.0/policies/roleManagementPolicies/DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000011/rules/Expiration_Admin_Assignment",
+      "Bind": {
+        "policyId": "DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000011",
+        "ruleId": "Expiration_Admin_Assignment"
+      },
+      "Body": {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyExpirationRule",
+        "id": "Expiration_Admin_Assignment",
+        "isExpirationRequired": true,
+        "maximumDuration": "P15D",
+        "target": {
+          "@odata.type": "microsoft.graph.unifiedRoleManagementPolicyRuleTarget",
+          "caller": "Admin",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": []
+        }
+      },
+      "Status": "Sent",
+      "Detail": "maximumDuration: 180.00:00:00 -> 15.00:00:00"
+    },
+    {
+      "Kind": "AssignEligibility",
+      "Role": "Hybrid Identity Administrator",
+      "Tier": "T1",
+      "Call": "pim-eligibility-request",
+      "Method": "POST",
+      "Uri": "https://graph.microsoft.com/v1.0/roleManagement/directory/roleEligibilityScheduleRequests",
+      "Bind": {},
+      "Body": {
+        "action": "adminAssign",
+        "justification": "PIM as code: Hybrid Identity Administrator eligibility for its PRV group (hybrid-identity-administrator.json)",
+        "roleDefinitionId": "8ac3fc64-6eca-42ea-9e69-59f4c7b60eb2",
+        "directoryScopeId": "/",
+        "principalId": "9e000000-0000-4000-8000-000000000111",
+        "scheduleInfo": {
+          "startDateTime": "2026-10-30T00:00:00Z",
+          "expiration": {
+            "type": "afterDuration",
+            "duration": "P180D"
+          }
+        }
+      },
+      "Status": "Sent",
+      "Detail": "PRV-T1-HybridIdentityAdmin eligible at / for P180D"
+    },
+    {
+      "Kind": "PatchRule",
+      "Role": "Intune Administrator",
+      "Tier": "T1",
+      "Call": "pim-policy-rule-update",
+      "Method": "PATCH",
+      "Uri": "https://graph.microsoft.com/v1.0/policies/roleManagementPolicies/DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000012/rules/Enablement_EndUser_Assignment",
+      "Bind": {
+        "policyId": "DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000012",
+        "ruleId": "Enablement_EndUser_Assignment"
+      },
+      "Body": {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyEnablementRule",
+        "id": "Enablement_EndUser_Assignment",
+        "enabledRules": [
+          "Justification",
+          "Ticketing"
+        ],
+        "target": {
+          "@odata.type": "microsoft.graph.unifiedRoleManagementPolicyRuleTarget",
+          "caller": "EndUser",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": []
+        }
+      },
+      "Status": "Sent",
+      "Detail": "enabledRules: MultiFactorAuthentication -> Justification,Ticketing"
+    },
+    {
+      "Kind": "PatchRule",
+      "Role": "Intune Administrator",
+      "Tier": "T1",
+      "Call": "pim-policy-rule-update",
+      "Method": "PATCH",
+      "Uri": "https://graph.microsoft.com/v1.0/policies/roleManagementPolicies/DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000012/rules/AuthenticationContext_EndUser_Assignment",
+      "Bind": {
+        "policyId": "DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000012",
+        "ruleId": "AuthenticationContext_EndUser_Assignment"
+      },
+      "Body": {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyAuthenticationContextRule",
+        "id": "AuthenticationContext_EndUser_Assignment",
+        "isEnabled": true,
+        "claimValue": "c1",
+        "target": {
+          "@odata.type": "microsoft.graph.unifiedRoleManagementPolicyRuleTarget",
+          "caller": "EndUser",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": []
+        }
+      },
+      "Status": "Sent",
+      "Detail": "isEnabled: False -> True; claimValue:  -> c1"
+    },
+    {
+      "Kind": "PatchRule",
+      "Role": "Intune Administrator",
+      "Tier": "T1",
+      "Call": "pim-policy-rule-update",
+      "Method": "PATCH",
+      "Uri": "https://graph.microsoft.com/v1.0/policies/roleManagementPolicies/DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000012/rules/Approval_EndUser_Assignment",
+      "Bind": {
+        "policyId": "DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000012",
+        "ruleId": "Approval_EndUser_Assignment"
+      },
+      "Body": {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyApprovalRule",
+        "id": "Approval_EndUser_Assignment",
+        "target": {
+          "@odata.type": "microsoft.graph.unifiedRoleManagementPolicyRuleTarget",
+          "caller": "EndUser",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": []
+        },
+        "setting": {
+          "@odata.type": "microsoft.graph.approvalSettings",
+          "isApprovalRequired": true,
+          "isApprovalRequiredForExtension": false,
+          "isRequestorJustificationRequired": true,
+          "approvalMode": "SingleStage",
+          "approvalStages": [
+            {
+              "approvalStageTimeOutInDays": 1,
+              "isApproverJustificationRequired": true,
+              "escalationTimeInMinutes": 0,
+              "isEscalationEnabled": false,
+              "primaryApprovers": [
+                {
+                  "@odata.type": "#microsoft.graph.groupMembers",
+                  "groupId": "9e000000-0000-4000-8000-000000000011"
+                }
+              ],
+              "escalationApprovers": []
+            }
+          ]
+        }
+      },
+      "Status": "Sent",
+      "Detail": "isApprovalRequired: False -> True; approvalMode:  -> SingleStage; isRequestorJustificationRequired:  -> True; stages:  -> 1; approvalStageTimeOutInDays:  -> 1; isApproverJustificationRequired:  -> True; primaryApprovers:  -> group:9e000000-0000-4000-8000-000000000011"
+    },
+    {
+      "Kind": "PatchRule",
+      "Role": "Intune Administrator",
+      "Tier": "T1",
+      "Call": "pim-policy-rule-update",
+      "Method": "PATCH",
+      "Uri": "https://graph.microsoft.com/v1.0/policies/roleManagementPolicies/DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000012/rules/Expiration_Admin_Eligibility",
+      "Bind": {
+        "policyId": "DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000012",
+        "ruleId": "Expiration_Admin_Eligibility"
+      },
+      "Body": {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyExpirationRule",
+        "id": "Expiration_Admin_Eligibility",
+        "isExpirationRequired": true,
+        "maximumDuration": "P180D",
+        "target": {
+          "@odata.type": "microsoft.graph.unifiedRoleManagementPolicyRuleTarget",
+          "caller": "Admin",
+          "operations": [
+            "All"
+          ],
+          "level": "Eligibility",
+          "inheritableSettings": [],
+          "enforcedSettings": []
+        }
+      },
+      "Status": "Sent",
+      "Detail": "isExpirationRequired: False -> True; maximumDuration:  -> 180.00:00:00"
+    },
+    {
+      "Kind": "PatchRule",
+      "Role": "Intune Administrator",
+      "Tier": "T1",
+      "Call": "pim-policy-rule-update",
+      "Method": "PATCH",
+      "Uri": "https://graph.microsoft.com/v1.0/policies/roleManagementPolicies/DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000012/rules/Expiration_Admin_Assignment",
+      "Bind": {
+        "policyId": "DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000012",
+        "ruleId": "Expiration_Admin_Assignment"
+      },
+      "Body": {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyExpirationRule",
+        "id": "Expiration_Admin_Assignment",
+        "isExpirationRequired": true,
+        "maximumDuration": "P15D",
+        "target": {
+          "@odata.type": "microsoft.graph.unifiedRoleManagementPolicyRuleTarget",
+          "caller": "Admin",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": []
+        }
+      },
+      "Status": "Sent",
+      "Detail": "maximumDuration: 180.00:00:00 -> 15.00:00:00"
+    },
+    {
+      "Kind": "AssignEligibility",
+      "Role": "Intune Administrator",
+      "Tier": "T1",
+      "Call": "pim-eligibility-request",
+      "Method": "POST",
+      "Uri": "https://graph.microsoft.com/v1.0/roleManagement/directory/roleEligibilityScheduleRequests",
+      "Bind": {},
+      "Body": {
+        "action": "adminAssign",
+        "justification": "PIM as code: Intune Administrator eligibility for its PRV group (intune-administrator.json)",
+        "roleDefinitionId": "3a2c62db-5318-420d-8d74-23affee5d9d5",
+        "directoryScopeId": "/",
+        "principalId": "9e000000-0000-4000-8000-000000000112",
+        "scheduleInfo": {
+          "startDateTime": "2026-10-30T00:00:00Z",
+          "expiration": {
+            "type": "afterDuration",
+            "duration": "P180D"
+          }
+        }
+      },
+      "Status": "Sent",
+      "Detail": "PRV-T1-IntuneAdmin eligible at / for P180D"
+    },
+    {
+      "Kind": "PatchRule",
+      "Role": "SharePoint Administrator",
+      "Tier": "T1",
+      "Call": "pim-policy-rule-update",
+      "Method": "PATCH",
+      "Uri": "https://graph.microsoft.com/v1.0/policies/roleManagementPolicies/DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000013/rules/Enablement_EndUser_Assignment",
+      "Bind": {
+        "policyId": "DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000013",
+        "ruleId": "Enablement_EndUser_Assignment"
+      },
+      "Body": {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyEnablementRule",
+        "id": "Enablement_EndUser_Assignment",
+        "enabledRules": [
+          "Justification",
+          "Ticketing"
+        ],
+        "target": {
+          "@odata.type": "microsoft.graph.unifiedRoleManagementPolicyRuleTarget",
+          "caller": "EndUser",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": []
+        }
+      },
+      "Status": "Sent",
+      "Detail": "enabledRules: MultiFactorAuthentication -> Justification,Ticketing"
+    },
+    {
+      "Kind": "PatchRule",
+      "Role": "SharePoint Administrator",
+      "Tier": "T1",
+      "Call": "pim-policy-rule-update",
+      "Method": "PATCH",
+      "Uri": "https://graph.microsoft.com/v1.0/policies/roleManagementPolicies/DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000013/rules/AuthenticationContext_EndUser_Assignment",
+      "Bind": {
+        "policyId": "DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000013",
+        "ruleId": "AuthenticationContext_EndUser_Assignment"
+      },
+      "Body": {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyAuthenticationContextRule",
+        "id": "AuthenticationContext_EndUser_Assignment",
+        "isEnabled": true,
+        "claimValue": "c1",
+        "target": {
+          "@odata.type": "microsoft.graph.unifiedRoleManagementPolicyRuleTarget",
+          "caller": "EndUser",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": []
+        }
+      },
+      "Status": "Sent",
+      "Detail": "isEnabled: False -> True; claimValue:  -> c1"
+    },
+    {
+      "Kind": "PatchRule",
+      "Role": "SharePoint Administrator",
+      "Tier": "T1",
+      "Call": "pim-policy-rule-update",
+      "Method": "PATCH",
+      "Uri": "https://graph.microsoft.com/v1.0/policies/roleManagementPolicies/DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000013/rules/Approval_EndUser_Assignment",
+      "Bind": {
+        "policyId": "DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000013",
+        "ruleId": "Approval_EndUser_Assignment"
+      },
+      "Body": {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyApprovalRule",
+        "id": "Approval_EndUser_Assignment",
+        "target": {
+          "@odata.type": "microsoft.graph.unifiedRoleManagementPolicyRuleTarget",
+          "caller": "EndUser",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": []
+        },
+        "setting": {
+          "@odata.type": "microsoft.graph.approvalSettings",
+          "isApprovalRequired": true,
+          "isApprovalRequiredForExtension": false,
+          "isRequestorJustificationRequired": true,
+          "approvalMode": "SingleStage",
+          "approvalStages": [
+            {
+              "approvalStageTimeOutInDays": 1,
+              "isApproverJustificationRequired": true,
+              "escalationTimeInMinutes": 0,
+              "isEscalationEnabled": false,
+              "primaryApprovers": [
+                {
+                  "@odata.type": "#microsoft.graph.groupMembers",
+                  "groupId": "9e000000-0000-4000-8000-000000000011"
+                }
+              ],
+              "escalationApprovers": []
+            }
+          ]
+        }
+      },
+      "Status": "Sent",
+      "Detail": "isApprovalRequired: False -> True; approvalMode:  -> SingleStage; isRequestorJustificationRequired:  -> True; stages:  -> 1; approvalStageTimeOutInDays:  -> 1; isApproverJustificationRequired:  -> True; primaryApprovers:  -> group:9e000000-0000-4000-8000-000000000011"
+    },
+    {
+      "Kind": "PatchRule",
+      "Role": "SharePoint Administrator",
+      "Tier": "T1",
+      "Call": "pim-policy-rule-update",
+      "Method": "PATCH",
+      "Uri": "https://graph.microsoft.com/v1.0/policies/roleManagementPolicies/DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000013/rules/Expiration_Admin_Eligibility",
+      "Bind": {
+        "policyId": "DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000013",
+        "ruleId": "Expiration_Admin_Eligibility"
+      },
+      "Body": {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyExpirationRule",
+        "id": "Expiration_Admin_Eligibility",
+        "isExpirationRequired": true,
+        "maximumDuration": "P180D",
+        "target": {
+          "@odata.type": "microsoft.graph.unifiedRoleManagementPolicyRuleTarget",
+          "caller": "Admin",
+          "operations": [
+            "All"
+          ],
+          "level": "Eligibility",
+          "inheritableSettings": [],
+          "enforcedSettings": []
+        }
+      },
+      "Status": "Sent",
+      "Detail": "isExpirationRequired: False -> True; maximumDuration:  -> 180.00:00:00"
+    },
+    {
+      "Kind": "PatchRule",
+      "Role": "SharePoint Administrator",
+      "Tier": "T1",
+      "Call": "pim-policy-rule-update",
+      "Method": "PATCH",
+      "Uri": "https://graph.microsoft.com/v1.0/policies/roleManagementPolicies/DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000013/rules/Expiration_Admin_Assignment",
+      "Bind": {
+        "policyId": "DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000013",
+        "ruleId": "Expiration_Admin_Assignment"
+      },
+      "Body": {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyExpirationRule",
+        "id": "Expiration_Admin_Assignment",
+        "isExpirationRequired": true,
+        "maximumDuration": "P15D",
+        "target": {
+          "@odata.type": "microsoft.graph.unifiedRoleManagementPolicyRuleTarget",
+          "caller": "Admin",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": []
+        }
+      },
+      "Status": "Sent",
+      "Detail": "maximumDuration: 180.00:00:00 -> 15.00:00:00"
+    },
+    {
+      "Kind": "AssignEligibility",
+      "Role": "SharePoint Administrator",
+      "Tier": "T1",
+      "Call": "pim-eligibility-request",
+      "Method": "POST",
+      "Uri": "https://graph.microsoft.com/v1.0/roleManagement/directory/roleEligibilityScheduleRequests",
+      "Bind": {},
+      "Body": {
+        "action": "adminAssign",
+        "justification": "PIM as code: SharePoint Administrator eligibility for its PRV group (sharepoint-administrator.json)",
+        "roleDefinitionId": "f28a1f50-f6e7-4571-818b-6a12f2af6b6c",
+        "directoryScopeId": "/",
+        "principalId": "9e000000-0000-4000-8000-000000000113",
+        "scheduleInfo": {
+          "startDateTime": "2026-10-30T00:00:00Z",
+          "expiration": {
+            "type": "afterDuration",
+            "duration": "P180D"
+          }
+        }
+      },
+      "Status": "Sent",
+      "Detail": "PRV-T1-SharePointAdmin eligible at / for P180D"
+    },
+    {
+      "Kind": "PatchRule",
+      "Role": "Teams Administrator",
+      "Tier": "T1",
+      "Call": "pim-policy-rule-update",
+      "Method": "PATCH",
+      "Uri": "https://graph.microsoft.com/v1.0/policies/roleManagementPolicies/DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000014/rules/Enablement_EndUser_Assignment",
+      "Bind": {
+        "policyId": "DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000014",
+        "ruleId": "Enablement_EndUser_Assignment"
+      },
+      "Body": {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyEnablementRule",
+        "id": "Enablement_EndUser_Assignment",
+        "enabledRules": [
+          "Justification",
+          "Ticketing"
+        ],
+        "target": {
+          "@odata.type": "microsoft.graph.unifiedRoleManagementPolicyRuleTarget",
+          "caller": "EndUser",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": []
+        }
+      },
+      "Status": "Sent",
+      "Detail": "enabledRules: MultiFactorAuthentication -> Justification,Ticketing"
+    },
+    {
+      "Kind": "PatchRule",
+      "Role": "Teams Administrator",
+      "Tier": "T1",
+      "Call": "pim-policy-rule-update",
+      "Method": "PATCH",
+      "Uri": "https://graph.microsoft.com/v1.0/policies/roleManagementPolicies/DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000014/rules/AuthenticationContext_EndUser_Assignment",
+      "Bind": {
+        "policyId": "DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000014",
+        "ruleId": "AuthenticationContext_EndUser_Assignment"
+      },
+      "Body": {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyAuthenticationContextRule",
+        "id": "AuthenticationContext_EndUser_Assignment",
+        "isEnabled": true,
+        "claimValue": "c1",
+        "target": {
+          "@odata.type": "microsoft.graph.unifiedRoleManagementPolicyRuleTarget",
+          "caller": "EndUser",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": []
+        }
+      },
+      "Status": "Sent",
+      "Detail": "isEnabled: False -> True; claimValue:  -> c1"
+    },
+    {
+      "Kind": "PatchRule",
+      "Role": "Teams Administrator",
+      "Tier": "T1",
+      "Call": "pim-policy-rule-update",
+      "Method": "PATCH",
+      "Uri": "https://graph.microsoft.com/v1.0/policies/roleManagementPolicies/DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000014/rules/Approval_EndUser_Assignment",
+      "Bind": {
+        "policyId": "DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000014",
+        "ruleId": "Approval_EndUser_Assignment"
+      },
+      "Body": {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyApprovalRule",
+        "id": "Approval_EndUser_Assignment",
+        "target": {
+          "@odata.type": "microsoft.graph.unifiedRoleManagementPolicyRuleTarget",
+          "caller": "EndUser",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": []
+        },
+        "setting": {
+          "@odata.type": "microsoft.graph.approvalSettings",
+          "isApprovalRequired": true,
+          "isApprovalRequiredForExtension": false,
+          "isRequestorJustificationRequired": true,
+          "approvalMode": "SingleStage",
+          "approvalStages": [
+            {
+              "approvalStageTimeOutInDays": 1,
+              "isApproverJustificationRequired": true,
+              "escalationTimeInMinutes": 0,
+              "isEscalationEnabled": false,
+              "primaryApprovers": [
+                {
+                  "@odata.type": "#microsoft.graph.groupMembers",
+                  "groupId": "9e000000-0000-4000-8000-000000000011"
+                }
+              ],
+              "escalationApprovers": []
+            }
+          ]
+        }
+      },
+      "Status": "Sent",
+      "Detail": "isApprovalRequired: False -> True; approvalMode:  -> SingleStage; isRequestorJustificationRequired:  -> True; stages:  -> 1; approvalStageTimeOutInDays:  -> 1; isApproverJustificationRequired:  -> True; primaryApprovers:  -> group:9e000000-0000-4000-8000-000000000011"
+    },
+    {
+      "Kind": "PatchRule",
+      "Role": "Teams Administrator",
+      "Tier": "T1",
+      "Call": "pim-policy-rule-update",
+      "Method": "PATCH",
+      "Uri": "https://graph.microsoft.com/v1.0/policies/roleManagementPolicies/DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000014/rules/Expiration_Admin_Eligibility",
+      "Bind": {
+        "policyId": "DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000014",
+        "ruleId": "Expiration_Admin_Eligibility"
+      },
+      "Body": {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyExpirationRule",
+        "id": "Expiration_Admin_Eligibility",
+        "isExpirationRequired": true,
+        "maximumDuration": "P180D",
+        "target": {
+          "@odata.type": "microsoft.graph.unifiedRoleManagementPolicyRuleTarget",
+          "caller": "Admin",
+          "operations": [
+            "All"
+          ],
+          "level": "Eligibility",
+          "inheritableSettings": [],
+          "enforcedSettings": []
+        }
+      },
+      "Status": "Sent",
+      "Detail": "isExpirationRequired: False -> True; maximumDuration:  -> 180.00:00:00"
+    },
+    {
+      "Kind": "PatchRule",
+      "Role": "Teams Administrator",
+      "Tier": "T1",
+      "Call": "pim-policy-rule-update",
+      "Method": "PATCH",
+      "Uri": "https://graph.microsoft.com/v1.0/policies/roleManagementPolicies/DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000014/rules/Expiration_Admin_Assignment",
+      "Bind": {
+        "policyId": "DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000014",
+        "ruleId": "Expiration_Admin_Assignment"
+      },
+      "Body": {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyExpirationRule",
+        "id": "Expiration_Admin_Assignment",
+        "isExpirationRequired": true,
+        "maximumDuration": "P15D",
+        "target": {
+          "@odata.type": "microsoft.graph.unifiedRoleManagementPolicyRuleTarget",
+          "caller": "Admin",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": []
+        }
+      },
+      "Status": "Sent",
+      "Detail": "maximumDuration: 180.00:00:00 -> 15.00:00:00"
+    },
+    {
+      "Kind": "AssignEligibility",
+      "Role": "Teams Administrator",
+      "Tier": "T1",
+      "Call": "pim-eligibility-request",
+      "Method": "POST",
+      "Uri": "https://graph.microsoft.com/v1.0/roleManagement/directory/roleEligibilityScheduleRequests",
+      "Bind": {},
+      "Body": {
+        "action": "adminAssign",
+        "justification": "PIM as code: Teams Administrator eligibility for its PRV group (teams-administrator.json)",
+        "roleDefinitionId": "69091246-20e8-4a56-aa4d-066075b2a7a8",
+        "directoryScopeId": "/",
+        "principalId": "9e000000-0000-4000-8000-000000000114",
+        "scheduleInfo": {
+          "startDateTime": "2026-10-30T00:00:00Z",
+          "expiration": {
+            "type": "afterDuration",
+            "duration": "P180D"
+          }
+        }
+      },
+      "Status": "Sent",
+      "Detail": "PRV-T1-TeamsAdmin eligible at / for P180D"
+    }
+  ]
+}
