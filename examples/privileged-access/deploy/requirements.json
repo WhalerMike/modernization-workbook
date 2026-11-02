@@ -1,0 +1,165 @@
+{
+  "_comment": "Chapter 09: what each runbook step supports, and how its result is judged. controls are NIST SP 800-53 Rev. 5 controls at the system's baseline; other names OMB M-22-09 and CISA BOD 25-01 (SCuBA) policies where they apply; ksi names FedRAMP 20x Key Security Indicators, which are provider-side indicators: the agency lines its own evidence up with what its providers report against them and doesn't report KSIs itself. The mapping of steps to requirements is the program's (Design guidance), built from the repository's verified mappings (Book 04, Chapter 10; Book 13, Appendix A; Book 12, Chapter 12; the Graph practice crosswalk). requiredFor lists the stages whose go/no-go needs a passing record of the step. check names how Add-PaEvidenceRecord judges a run folder.",
+  "steps": [
+    {
+      "step": "settings",
+      "title": "One environment settings file and the input files",
+      "controls": ["CM-3", "CM-5", "IA-5(2)"],
+      "other": [],
+      "ksi": ["KSI-CMT-LMC", "KSI-CMT-RMV", "KSI-IAM-SNU"],
+      "requiredFor": ["test", "production"],
+      "check": "self",
+      "evidence": "inputs/manifest.json; the settings check in the evidence record"
+    },
+    {
+      "step": "preflight",
+      "title": "Pre-flight: licenses, emergency access accounts and their exclusion from every policy",
+      "controls": ["AC-2", "AC-6", "CA-7", "CM-4(2)"],
+      "other": ["OMB M-22-09 (phishing-resistant MFA)", "BOD 25-01 MS.AAD.3.6v1"],
+      "ksi": ["KSI-IAM-ELP", "KSI-MLA-EVC", "KSI-CMT-VTD"],
+      "requiredFor": ["test", "production"],
+      "check": "self",
+      "evidence": "preflight/findings.json with no Finding, and its manifest"
+    },
+    {
+      "step": "emergency-access",
+      "title": "Emergency access accounts and their monitoring",
+      "controls": ["AC-2", "AC-2(4)", "AU-2", "CA-7"],
+      "other": ["BOD 25-01 MS.AAD.3.6v1"],
+      "ksi": ["KSI-MLA-LET", "KSI-MLA-EVC"],
+      "requiredFor": ["test", "production"],
+      "check": "findings-no-finding",
+      "evidence": "emergency/findings.json, emergency-alert.json, the drill row and alert email"
+    },
+    {
+      "step": "conditional-access",
+      "title": "Conditional Access for administrators, report-only first, then the activation gate",
+      "controls": ["AC-3", "IA-2(1)", "IA-2(2)", "CM-3(2)"],
+      "other": ["OMB M-22-09 (phishing-resistant MFA)", "BOD 25-01 MS.AAD.3.6v1"],
+      "ksi": ["KSI-IAM-APM", "KSI-IAM-ELP", "KSI-CMT-VTD"],
+      "requiredFor": ["test", "production"],
+      "check": "ca-plan-not-blocked",
+      "evidence": "ca-plan/, ca-apply*/, ca-enforce-gate/, seven days of report-only sign-in results"
+    },
+    {
+      "step": "pim-roles",
+      "title": "PIM role settings and eligible assignments",
+      "controls": ["AC-5", "AC-6", "CM-5"],
+      "other": ["BOD 25-01 MS.AAD.7.4v1 to MS.AAD.7.8v1"],
+      "ksi": ["KSI-IAM-JIT", "KSI-IAM-ELP"],
+      "requiredFor": ["test", "production"],
+      "check": "pim-verify-empty",
+      "evidence": "pim-plan*/, pim-apply*/ with before.json and an empty verify.csv"
+    },
+    {
+      "step": "pim-groups",
+      "title": "PIM for Groups",
+      "controls": ["AC-2", "AC-6"],
+      "other": ["BOD 25-01 MS.AAD.7.5v1"],
+      "ksi": ["KSI-IAM-JIT", "KSI-IAM-ELP"],
+      "requiredFor": ["test", "production"],
+      "check": "results-none-failed",
+      "evidence": "groups-plan/, groups-apply/results.json with none failed, groups-replan/"
+    },
+    {
+      "step": "azure-roles",
+      "title": "Azure resource roles",
+      "controls": ["AC-6", "CM-5"],
+      "other": ["FedRAMP: agency use of the authorized cloud service"],
+      "ksi": ["KSI-IAM-JIT", "KSI-IAM-ELP"],
+      "requiredFor": ["test", "production"],
+      "check": "azure-diff-after-empty",
+      "evidence": "azure-dry/state.json, azure-apply/ with an empty diff-after.txt"
+    },
+    {
+      "step": "access-reviews",
+      "title": "Access reviews",
+      "controls": ["AC-2", "AC-6(7)"],
+      "other": [],
+      "ksi": ["KSI-IAM-JIT", "KSI-IAM-ELP"],
+      "requiredFor": ["test", "production"],
+      "check": "results-none-failed",
+      "evidence": "reviews-plan/, reviews-apply/results.json with none failed"
+    },
+    {
+      "step": "smoke-activate",
+      "title": "Smoke test: activate",
+      "controls": ["AC-6", "CM-4(2)"],
+      "other": [],
+      "ksi": ["KSI-IAM-JIT", "KSI-CMT-VTD"],
+      "requiredFor": ["test", "production"],
+      "check": "self",
+      "evidence": "smoke-activate/results.json, every check passed"
+    },
+    {
+      "step": "smoke-approve",
+      "title": "Smoke test: approve",
+      "controls": ["AC-5", "AC-6", "CM-4(2)"],
+      "other": [],
+      "ksi": ["KSI-IAM-JIT", "KSI-CMT-VTD"],
+      "requiredFor": ["test", "production"],
+      "check": "self",
+      "evidence": "smoke-approve/results.json, every check passed"
+    },
+    {
+      "step": "smoke-expire",
+      "title": "Smoke test: expire",
+      "controls": ["AC-6", "CM-4(2)"],
+      "other": ["BOD 25-01 MS.AAD.7.4v1"],
+      "ksi": ["KSI-IAM-JIT", "KSI-CMT-VTD"],
+      "requiredFor": ["test", "production"],
+      "check": "self",
+      "evidence": "smoke-expire/results.json, every check passed"
+    },
+    {
+      "step": "smoke-review",
+      "title": "Smoke test: review",
+      "controls": ["AC-2", "AC-6(7)", "CM-4(2)"],
+      "other": [],
+      "ksi": ["KSI-IAM-ELP", "KSI-CMT-VTD"],
+      "requiredFor": ["test", "production"],
+      "check": "self",
+      "evidence": "smoke-review/results.json, every check passed"
+    },
+    {
+      "step": "evidence",
+      "title": "Capture the evidence",
+      "controls": ["AU-9", "CA-7", "CM-3"],
+      "other": ["FedRAMP: agency use of the authorized cloud service"],
+      "ksi": ["KSI-MLA-OSM", "KSI-MLA-EVC", "KSI-CMT-LMC"],
+      "requiredFor": ["test", "production"],
+      "check": "evidence-run-present",
+      "evidence": "evidence/ (Chapter 08's run), the package and its verify output, <outputRoot>.sha256"
+    },
+    {
+      "step": "rollback",
+      "title": "Rollback",
+      "controls": ["CM-3", "CM-4(2)"],
+      "other": [],
+      "ksi": ["KSI-CMT-RMV", "KSI-CMT-VTD"],
+      "requiredFor": ["test"],
+      "check": "self",
+      "evidence": "rollback/rollback-plan.json applied with 0 Blocked, then the checks after it"
+    },
+    {
+      "step": "pim-convert",
+      "title": "Convert standing assignments to eligible, in waves",
+      "controls": ["AC-2", "AC-6"],
+      "other": ["BOD 25-01 MS.AAD.7.4v1"],
+      "ksi": ["KSI-IAM-JIT", "KSI-IAM-ELP"],
+      "requiredFor": ["production"],
+      "check": "convert-sent-only-confirmed",
+      "evidence": "pim-convert-w*/plan.json, inputs/confirmed-activations.csv"
+    },
+    {
+      "step": "first-week",
+      "title": "First-week monitoring with drift",
+      "controls": ["CA-7", "CM-3", "IR-4"],
+      "other": ["FedRAMP: agency use of the authorized cloud service"],
+      "ksi": ["KSI-MLA-EVC", "KSI-CMT-LMC", "KSI-INR-RIR"],
+      "requiredFor": ["production"],
+      "check": "evidence-run-present",
+      "evidence": "week1/ (seven daily runs), week1-compare/, the week's package"
+    }
+  ]
+}

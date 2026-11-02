@@ -1,0 +1,34 @@
+{
+  "_comment": "Chapter 09 smoke fixture, phase Review: the pilot review's first instance, with the reviewer's decision on the synthetic administrator. Invented.",
+  "roleAssignmentScheduleInstances": [],
+  "directoryAudits": [],
+  "accessReviewDefinitions": [
+    {
+      "id": "ard00000-0000-4000-8000-000000000001",
+      "displayName": "PAR-T1-TeamsAdministrator-Pilot",
+      "status": "InProgress"
+    }
+  ],
+  "accessReviewInstances": [
+    {
+      "id": "ari00000-0000-4000-8000-000000000001",
+      "definitionId": "ard00000-0000-4000-8000-000000000001",
+      "startDateTime": "2026-11-09T00:00:00Z",
+      "endDateTime": "2026-11-23T00:00:00Z",
+      "status": "InProgress"
+    }
+  ],
+  "accessReviewDecisions": [
+    {
+      "id": "dec00000-0000-4000-8000-000000000001",
+      "instanceId": "ari00000-0000-4000-8000-000000000001",
+      "decision": "Approve",
+      "justification": "Pilot smoke test: keep until the pilot ends (CHG-3001)",
+      "applyResult": "New",
+      "principal": {
+        "id": "5d000000-0000-4000-8000-000000000001",
+        "userPrincipalName": "pim.smoke01@contoso.example"
+      }
+    }
+  ]
+}

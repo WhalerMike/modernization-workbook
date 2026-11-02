@@ -1,0 +1,36 @@
+{
+  "wave": 1,
+  "roles": [
+    "Application Administrator",
+    "Authentication Policy Administrator",
+    "Cloud Application Administrator",
+    "Compliance Administrator",
+    "Exchange Administrator",
+    "Hybrid Identity Administrator",
+    "Intune Administrator",
+    "SharePoint Administrator",
+    "Teams Administrator"
+  ],
+  "blocked": false,
+  "needsActivationGate": false,
+  "actions": [
+    {
+      "Kind": "RemoveStanding",
+      "Role": "Exchange Administrator",
+      "Tier": "T1",
+      "Call": "pim-assignment-request",
+      "Method": "POST",
+      "Uri": "https://graph.microsoft.com/v1.0/roleManagement/directory/roleAssignmentScheduleRequests",
+      "Bind": {},
+      "Body": {
+        "action": "adminRemove",
+        "principalId": "a4000000-0000-4000-8000-000000000003",
+        "roleDefinitionId": "29232cdf-9323-42fd-ade2-1d097af3e4de",
+        "directoryScopeId": "/",
+        "justification": "Converted to eligibility through the PRV group; activation confirmed (CHG-2201)"
+      },
+      "Status": "Sent",
+      "Detail": "Carl Ops standing Exchange Administrator"
+    }
+  ]
+}

@@ -236,6 +236,29 @@ website:
             - docs/training/hr-driven-identity/05-certificate-based-authentication.md
             - docs/training/hr-driven-identity/06-separation-timing.md
             - docs/training/hr-driven-identity/07-drift-and-evidence.md
+        - section: "Privileged Access learning path"
+          href: docs/training/privileged-access/index.md
+          contents:
+            - docs/training/privileged-access/01-privileged-inventory.md
+            - docs/training/privileged-access/02-emergency-access-first.md
+            - docs/training/privileged-access/03-conditional-access-and-the-activation-gate.md
+            - docs/training/privileged-access/04-pim-for-entra-roles.md
+            - docs/training/privileged-access/05-pim-for-groups.md
+            - docs/training/privileged-access/06-pim-for-azure-resources.md
+            - docs/training/privileged-access/07-access-reviews.md
+            - docs/training/privileged-access/08-evidence-and-drift.md
+        - section: "Attribute-Driven Migration learning path"
+          href: docs/training/attribute-driven-migration/index.md
+          contents:
+            - docs/training/attribute-driven-migration/01-the-hr-middleware.md
+            - docs/training/attribute-driven-migration/02-a-validation-kit-check.md
+            - docs/training/attribute-driven-migration/03-dynamic-rules-as-code.md
+            - docs/training/attribute-driven-migration/04-group-policy-as-code.md
+            - docs/training/attribute-driven-migration/05-machine-configuration.md
+            - docs/training/attribute-driven-migration/06-ansible-beside-arc.md
+            - docs/training/attribute-driven-migration/07-lifecycle-workflows-extensions.md
+            - docs/training/attribute-driven-migration/08-drift-and-evidence.md
+            - docs/training/attribute-driven-migration/09-deploying-to-test-and-production.md
         - section: "Non-Person Identity learning path"
           href: docs/training/non-person-identity/index.md
           contents:

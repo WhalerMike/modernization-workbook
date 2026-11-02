@@ -1,0 +1,9 @@
+[
+  {
+    "Name": "PAR-T1-TeamsAdministrator-Pilot",
+    "Api": "graph",
+    "Action": "Create",
+    "Result": "Sent",
+    "Note": "read back"
+  }
+]

@@ -44,6 +44,7 @@ class Workbook:
     zip: str
     guide: str | None = None
     training: str | None = None         # the learning path's folder, whose index maps modules to gates
+    elsewhere: dict = field(default_factory=dict)   # chapter -> (label, page): a module in another path teaches it
     chapters: list = field(default_factory=list)
 
 
@@ -53,9 +54,11 @@ WORKBOOKS = [
     Workbook("hr", "Building HR-Driven Identity", "docs/project-plans/developer-workbooks/hr-driven-identity",
              "hr-driven-identity-code.zip", "docs/books/guides/hr-driven-identity-implementation.md", "docs/training/hr-driven-identity"),
     Workbook("adm", "Building the Attribute-Driven Migration (Book 19)", "docs/books/b19-developer-workbook",
-             "attribute-driven-migration-code.zip", "docs/books/guides/attribute-driven-migration-implementation.md"),
+             "attribute-driven-migration-code.zip", "docs/books/guides/attribute-driven-migration-implementation.md",
+             "docs/training/attribute-driven-migration",
+             {"02": ("Microsoft Automation, Module 1", "docs/training/ms-automation-foundations.md")}),
     Workbook("pa", "Building Privileged Access", "docs/project-plans/developer-workbooks/privileged-access",
-             "privileged-access-code.zip"),
+             "privileged-access-code.zip", None, "docs/training/privileged-access"),
     Workbook("npi", "Building Non-Person Identity", "docs/project-plans/developer-workbooks/non-person-identity",
              "non-person-identity-code.zip", "docs/books/guides/non-person-identity-implementation.md",
              "docs/training/non-person-identity"),
@@ -201,7 +204,11 @@ def page_text() -> str:
                    (f"[{ch['lab2'][1] or 'Lab 2'}]({lab_link(src, ch, 'lab2')})" + (f" · [commands]({rel(src, ch['path'])}#lab-2-commands)" if ch.get("cmds2") else ""))
                    if "lab2" in ch else "—"]
             if mods:
-                row.append(", ".join(f"[Module {m['n']}]({rel(src, m['path'])})" for m in by_ch.get(ch["nn"], [])) or "—")
+                links = [f"[Module {m['n']}]({rel(src, m['path'])})" for m in by_ch.get(ch["nn"], [])]
+                if ch["nn"] in wb.elsewhere:
+                    label, page = wb.elsewhere[ch["nn"]]
+                    links.append(f"[{label}]({rel(src, page)})")
+                row.append(", ".join(links) or "—")
             out.append("| " + " | ".join(row) + " |")
         out += ["", f": {wb.title}: labs by chapter {{.striped .hover}}", ""]
     out += ["## Microsoft Automation learning path {#ms-automation}", "",
@@ -233,8 +240,9 @@ def place(wb: Workbook, md: str) -> str:
     mods = modules(wb)
     by_nn = {c["nn"]: c for c in wb.chapters}
     # After each gate's Validate callout: that gate's labs and module, where a learning path maps them.
+    # Guides name a gate "G1 Writers" or "Gate 1: schema and slots".
     if mods:
-        for m in reversed(list(re.finditer(r"^## Validate \((G(\d)[^)]*)\)\n.*?^:::\n\n", md, re.S | re.M))):
+        for m in reversed(list(re.finditer(r"^## Validate \(((?:G|Gate )(\d)[^)]*)\)\n.*?^:::\n\n", md, re.S | re.M))):
             gate, num = m.group(1), m.group(2)
             these = [x for x in mods if num in x["gates"]]
             if not these:
@@ -251,7 +259,8 @@ def place(wb: Workbook, md: str) -> str:
                     if "lab2" in ch:
                         lines.append(f"- **In {ch['lab2'][1] or 'a test tenant'}:** [Chapter {nn}, Lab 2]({lab_link(src, ch, 'lab2')})")
                 lines.append(f"- **As training:** [Module {x['n']}: {x['title']}]({rel(src, x['path'])}), with a knowledge check")
-            md = md[:m.end()] + block(f"try-{gate.split()[0].lower()}", lines, f"Try it: {gate}") + md[m.end():]
+            key = f"try-g{num}" if gate.startswith("Gate ") else f"try-{gate.split()[0].lower()}"
+            md = md[:m.end()] + block(key, lines, f"Try it: {gate}") + md[m.end():]
     # After "How to read (or use) this guide": the guide's labs on the Labs page.
     h = next((p for t, _, p in headings(md) if t.startswith(("How to read this guide", "How to use this guide"))), None)
     if h is not None:
