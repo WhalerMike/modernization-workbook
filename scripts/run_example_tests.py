@@ -45,6 +45,8 @@ ALSO = {
     "hr-lifecycle": ["drift-pipeline"],
     "non-person-identity": ["drift-pipeline"],
     "privileged-access": ["drift-pipeline"],
+    # The task catalog reads its vocabulary from the integration kit's finding_contract.py.
+    "servicenow-sailpoint": ["ttm-task-catalog"],
 }
 
 # Kit -> (test files that need Windows, relative to the kit; why).
