@@ -141,6 +141,10 @@ def clean(out: str, cwd: Path, root: Path) -> str:
     """One command's output, made stable: no timings, no scratch paths (the lab's folder becomes relative,
     the scratch copy's root "<scratch>"), and on Windows forward slashes."""
     out = out.replace("\r\n", "\n").rstrip("\n")
+    # As a terminal shows it: colour codes dropped, and a line rewritten after a carriage return
+    # (Pester's progress on Linux) shows only its last version.
+    out = re.sub(r"\x1b\[[0-9;?]*[A-Za-z]", "", out)
+    out = "\n".join(l.split("\r")[-1] for l in out.split("\n"))
     for d, to in ((cwd, ""), (root, "<scratch>/")):
         for p in sorted({str(d), d.as_posix()}, key=len, reverse=True):
             out = out.replace(p + "\\", to).replace(p + "/", to).replace(p, to.rstrip("/") or ".")
@@ -410,8 +414,9 @@ def main() -> int:
             print("kit captures: no longer what the kit prints: " + ", ".join(stale), file=sys.stderr)
             import difflib
             for k in stale:     # what changed, so a CI log shows it
-                old = (folder / f"{k}.txt").read_text(encoding="utf-8").splitlines() if (folder / f"{k}.txt").exists() else []
-                diff = list(difflib.unified_diff(old, found[k].splitlines(), f"committed {k}", f"now {k}", n=1, lineterm=""))
+                old = (folder / f"{k}.txt").read_bytes().decode("utf-8").split("\n") if (folder / f"{k}.txt").exists() else []
+                diff = list(difflib.unified_diff([repr(l) for l in old], [repr(l) for l in found[k].split("\n")],
+                                                 f"committed {k}", f"now {k}", n=1, lineterm=""))
                 print("\n".join(diff[:40]), file=sys.stderr)
             return 1
         print(f"kit captures: {len(found)} match the kit")
