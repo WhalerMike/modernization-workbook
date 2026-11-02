@@ -1,0 +1,74 @@
+{
+  "_comment": "One settings file per stage: copy this file to test.json, then to production.json, and replace every <placeholder>. No secrets: the deployment identities sign in with a certificate (the drift pipeline with a federated credential), and the loader refuses any key or value that looks like a secret. Keep the filled-in files with the change record, outside the repository.",
+  "schema": "adm-deploy-settings/1",
+  "environment": "<test-or-production>",
+  "cloud": "<cloud>",
+  "tenant_id": "<tenant-id>",
+  "tenant_domain": "<tenant-domain>",
+  "subscription_id": "<subscription-id>",
+  "location": "<azure-region>",
+  "resource_group": "<resource-group>",
+  "change_record": "<change-record-id>",
+  "evidence_dir": "<evidence-folder>",
+  "identities": {
+    "_comment": "deploy makes the changes (groups, workflows, policies, Azure); reader runs the validation kit read-only; provisioning sends HR batches and holds only SynchronizationData-User.Upload.",
+    "deploy": {
+      "client_id": "<deploy-app-id>",
+      "certificate_thumbprint": "<deploy-cert-thumbprint>",
+      "certificate_pem": "<deploy-cert-pem-path>"
+    },
+    "reader": {
+      "client_id": "<reader-app-id>",
+      "certificate_thumbprint": "<reader-cert-thumbprint>"
+    },
+    "provisioning": {
+      "client_id": "<provisioning-app-id>",
+      "certificate_pem": "<provisioning-cert-pem-path>"
+    }
+  },
+  "hcm_entra": {
+    "provisioning_app_object_id": "<provisioning-sp-object-id>",
+    "provisioning_job_id": "<provisioning-job-id>",
+    "provisioning_api_endpoint": "<provisioning-api-endpoint>",
+    "extract_path": "<hr-extract-path>",
+    "max_quarantined": 0
+  },
+  "dynamic_rules": {
+    "groups_admin_upn": "<groups-admin-upn>"
+  },
+  "lifecycle": {
+    "extension_id": "<custom-task-extension-id>",
+    "workflow_name": "<leaver-workflow-name>",
+    "test_user_id": "<lcw-test-user-object-id>"
+  },
+  "group_policy": {
+    "ad_domain": "<ad-domain>",
+    "target_ou": "<target-ou-dn>",
+    "gpo_backup_path": "<gpo-backup-folder>",
+    "gpo_names": ["<gpo-name>"],
+    "intune_group_id": "<intune-target-group-id>"
+  },
+  "machine_configuration": {
+    "configuration": "TlsServerProtocols",
+    "storage_account": "<mc-storage-account>",
+    "container": "<mc-container>",
+    "arc_server_name": "<arc-server-name>"
+  },
+  "ansible": {
+    "onboarding_wave": 0,
+    "cmdb_csv": "<cmdb-export-path>"
+  },
+  "drift": {
+    "repository": "<github-org>/<github-repo>",
+    "github_environment": "<github-environment>",
+    "evidence_storage_account": "<evidence-storage-account>",
+    "evidence_container": "<evidence-container>"
+  },
+  "smoke": {
+    "required_pass": ["VK-HR-01", "VK-HR-04", "VK-DG-01", "VK-DG-02", "VK-DG-06", "VK-CA-01"],
+    "allowed_unverified": ["VK-DG-03"]
+  },
+  "_production_only": "production.json also fills 'waves' (one {id, target_ou, intune_group_id, onboarding_wave} per wave) and 'promotion' ({test_smoke_report_sha256, approvals: [{role, reference}]}); test.json leaves both empty.",
+  "waves": [],
+  "promotion": {}
+}

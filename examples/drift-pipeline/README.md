@@ -19,6 +19,13 @@ tests/test_workflow_lint.py   pytest, Learn's pinned samples and the sample work
 tests/test_hr_evidence.py     pytest, runs that examples/hr-lifecycle writes from its own fixtures
 tests/make_fixtures.py        rewrites the two fictional kit runs in tests/fixtures/runs
 tests/fixtures/provenance/    provenance files the other kits wrote from their own fixtures
+deploy/adm_deploy.py          the deployment runbook's settings file: load, refuse secrets and placeholders, print ADM_* variables
+deploy/preflight.py           pre-flight checks before a stage; read-only live probes with --live
+deploy/smoke_test.py          go or no-go after a stage, from the files the kits wrote
+deploy/rollback.py            record each change a stage makes; write its rollback, newest first
+deploy/environment.example.json  the settings template (placeholders only, no secrets)
+tests/test_deploy.py          pytest, the four deploy scripts against fixtures and a fake runner
+tests/fixtures/deploy/        fictional test and production settings for contoso.example
 ```
 
 ## Commands
@@ -55,7 +62,22 @@ Runs are refused when the mode or cloud differs, when the current run isn't late
 python -m pytest tests -q
 ```
 
-142 tests, no tenant and no network. `tests/test_hr_evidence.py` builds its runs with `examples/hr-lifecycle`, so its suite also runs when that kit changes.
+179 tests, no tenant and no network. `tests/test_hr_evidence.py` builds its runs with `examples/hr-lifecycle`, so its suite also runs when that kit changes.
+
+## Deploying to test and production
+
+`deploy/` holds the scripts [Book 19, Chapter 10](../../docs/books/b19-developer-workbook/10-deploying-to-test-and-production.md) runs to take the Attribute-Driven Migration kits from Lab 2 to a live test environment and then production. One settings file per stage, copied from `deploy/environment.example.json`, carries every value the runbook's commands read; the same commands run against both stages. The file holds no secret: the deployment identities sign in with a certificate (the drift pipeline with a federated credential), and the loader refuses any key or value that looks like a secret, and any placeholder left unfilled. Python 3.10 or later, standard library only. Work in this folder.
+
+| Command | What it does | Exit codes |
+|---|---|---|
+| `python deploy/adm_deploy.py env --settings <file> --shell bash\|pwsh [--wave <id>]` | Prints the settings as `ADM_*` variables, with the per-cloud values (Graph host, Azure environment, Graph PowerShell environment, Arc playbook) derived from `cloud_profile()` | 0, 1 refused |
+| `python deploy/preflight.py --settings <file> [--other <file>] [--test-smoke-report <file>] [--live] [--out <dir>]` | Checks PF-01 to PF-10 offline: schema, no secret, no placeholder, cloud, certificates outside the repository, kits present, the machine configuration release and Lifecycle Workflows registry, test and production apart, and for production a go/no-go record that points at a passing live test smoke report with the CISO's and identity engineering's approvals. `--live` runs read-only probes PF-11 to PF-16 (Azure CLI cloud, tenant, subscription and identity; PowerShell modules; certificate files); without it they're printed, not run | 0, 2 failed, 1 |
+| `python deploy/smoke_test.py --settings <file> [--kit-run <dir>] [--hcm-provenance <file>] [--dynamic-rules <file>] [--mc-provenance <file> --mc-mode <mode>] [--deploy-record <file>] --out <dir> [--fixture]` | SM-01 to SM-13 on what the kits wrote: the validation kit run against its own manifest, the tenant, cloud and mode, the required checks `Pass` and no unexpected `Error`; the HR run not held and its quarantine within the limit; the rule library and machine configuration build clean; every recorded change with a rollback. Writes `smoke-report.json`. `--fixture` accepts the kits' fixture runs, and such a report can never promote | 0 go, 2 no-go, 1 |
+| `python deploy/rollback.py add --settings <file> --kind <kind> --id <id> [--name <name>] [--note <text>]` | Appends one change to the stage's `deploy-record.json` | 0, 1 |
+| `python deploy/rollback.py plan --settings <file> [--out <dir>]` | Writes `rollback-cloud.ps1`, `rollback-ad.ps1` and `rollback-manual.md`, newest change first, and runs nothing. Production re-enables and pauses; the test stage removes what it created | 0, 1 |
+| `python deploy/rollback.py kinds` | Lists the kinds of change the rollback knows | 0 |
+
+Nobody has run these scripts against a live tenant: the live probes and the rollback scripts are tested with a fake runner and read back, not executed.
 
 ## HR-driven identity evidence
 
