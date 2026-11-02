@@ -259,20 +259,10 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: Learn's snippets, the endpoints, the call list",
       body: [
-        { code: [
-          "# 1  Microsoft's sample against the stand-ins: 9 passed",
-          "python -m pytest -q -p no:cacheprovider tests/python/test_learn_sample.py",
-          "# 2  The endpoints for the target estate",
-          "python -c \"…from graphkit import endpoints, scope_for; print(endpoints('gcc')); …\"",
-          "{'login': 'https://login.microsoftonline.com', 'graph': 'https://graph.microsoft.com',",
-          " 'arm': 'https://management.azure.com', 'ps_env': 'Global', 'azure_env': 'AzureCloud'}",
-          "# endpoints('GCCHigh')  ->  ValueError: unknown cloud 'GCCHigh'",
-          "# 3  A task's permissions from its calls",
-          "print(permissions_for(load_calls('pim-report')))   # the README's three",
-          "# 4  A call the task doesn't declare",
-          "GraphClient('gcc', lambda s: 't', calls=load_calls('ca-export')).request('GET', '/users')",
-          "PermissionError: undeclared call: GET /v1.0/users; add it to graph-calls.json …",
-        ], label: "PYTHON 3.10+ WITH PYTEST, IN examples/ms-automation", pt: 11.5 },
+        { cols: [[{ terminal: "02-1", lines: "1,3", kit: "examples/ms-automation" }], [{ terminal: "02-4", lines: "1,8", kit: "examples/ms-automation" }]], split: 0.46 },
+        { terminal: "02-3", lines: "1-2", kit: "examples/ms-automation" },
+        { terminal: "02-5", kit: "examples/ms-automation" },
+        { terminal: "02-6", lines: "1,11", kit: "examples/ms-automation" },
       ],
       sources: "Sources: examples/ms-automation (tests and fixtures, fictional). Chapter 02, “Lab 1: fixtures, no tenant,” steps 1–4.",
       say: `Lab 1 needs only a laptop, with Python and PowerShell, and no tenant. First you run Microsoft's own snippets against the stand-ins, and read the test that proves the Python credential gets no authority. Then you print the endpoints for this estate, and see that nothing for GCC is a dot-u-s host, and that a misspelled cloud name is an error, not a default. Then you list a task's permissions from its calls, and try a call the task never declared. It's refused before anything is sent.`,
@@ -283,17 +273,8 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: beta, PowerShell, and the test suites",
       body: [
-        { code: [
-          "# 5  Beta where the feature isn't offered",
-          "print(try_beta(GraphClient('gcchigh', lambda s: 't'), '/deviceManagement/windowsAutopilotDeviceIdentities'))",
-          "{'stage': 'beta', 'available': False, 'items': [], 'reason': \"... isn't offered in gcchigh ...\"}",
-          "# 6  The same rules in PowerShell",
-          "Import-Module ./powershell/FmwGraph.psm1; (Get-FmwCloud gcc).Arm; Get-FmwCallPermission -Task pim-report",
-          "Assert-FmwGraphCall -Method GET -Uri '/beta/users' -Cloud gcc        # Undeclared beta call",
-          "Assert-FmwGraphCall -Method GET -Uri 'https://graph.microsoft.com/v1.0/users' -Cloud gcchigh",
-          "# Refusing to send the token to https://graph.microsoft.com/v1.0/users: not https://graph.microsoft.us",
-          "# 7  The tests: 70 Python and 44 Pester passing",
-        ], label: "STEPS 5–7", pt: 11 },
+        { terminal: "02-7", kit: "examples/ms-automation" },
+        { cols: [[{ terminal: "02-8", lines: "1,8-11", kit: "examples/ms-automation" }], [{ terminal: "02-9", lines: "1,3-4,6,11", kit: "examples/ms-automation" }]], split: 0.6 },
         { table: { head: ["Chapter 02's tests", "What they pin"], w: [3.6, 8.55], rows: [
           ["test_learn_sample.py, 9", "Microsoft's pinned snippets against stand-ins; our provider's authority for each cloud"],
           ["test_graph_clients.py, 24", "Endpoints, refused names, call list against permissions, token audit, headers per page, retries, beta"],

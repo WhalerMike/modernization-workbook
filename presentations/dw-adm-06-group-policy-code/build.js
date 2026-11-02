@@ -266,21 +266,8 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: the gate, the sample twice, the plan",
       body: [
-        { code: [
-          "# 1  In examples/validation-kit: VK-INT-07 on the fail fixture",
-          "$ctx = Get-VkRunContext -FixturePath ./tests/fixtures/fail -AsOf '2026-10-29T00:00:00Z' -IncludeBeta",
-          "(Invoke-VkCheck -CheckId VK-INT-07 -Context $ctx).Details | Format-Table Severity, Object, Issue",
-          "# 2  In examples/group-policy-as-code: Microsoft's import, twice, against the fake Graph",
-          "Invoke-MicrosoftSample -Name Import -Graph $g -Answers (Resolve-Path ./out/sc-201.json).Path",
-          "$g.Calls | Format-Table Method, Uri",
-          "# 3  The move plan",
-          "$plan = Get-GpcMovePlan -Invoke (New-GpcFixtureInvoke -Path ./tests/fixtures/tenant.json).Invoke",
-        ], label: "POWERSHELL 7.1+ WITH PESTER 5 (abridged)", pt: 11.5 },
-        { table: { head: ["Step", "Expected"], w: [1.4, 10.75], rows: [
-          ["1", "Fail, five rows: Workstation-Drive-Maps partial, Workstation-Scripts error, Workstation-Printers never imported; a warning on Workstation-Empty; FMP-Workstation-Baseline as context"],
-          ["2", "FMP-SC-201 listed twice: two POSTs to graph.microsoft.com/beta/…/configurationPolicies and no GET. The script never looked"],
-          ["3", "Eleven rows from three GPOs: five Candidate (one user-scope), Allow hibernate a Conflict on two rows, the firewall rule EndpointSecurity, two NotSupported, one Deprecated"],
-        ] }, pt: 12 },
+        { cols: [[{ terminal: "06-1", lines: "4-5,8-11", kit: "examples/validation-kit" }], [{ terminal: "06-2", lines: "9-10,13-14,18-19", kit: "examples/group-policy-as-code" }]], split: 0.58 },
+        { terminal: "06-3", lines: "2,5-15", kit: "examples/group-policy-as-code" },
       ],
       sources: "Sources: examples/validation-kit and examples/group-policy-as-code (fixtures, fictional). Chapter 06, “Lab 1: fixtures, no tenant,” steps 1–3.",
       say: `Lab 1 runs on a laptop with no tenant. First you run the validation kit's gate against its failing fixture, and see three real findings and a warning. Then comes the revealing step: you run Microsoft's own import sample twice against the fake Graph, and the policy appears twice. The call log shows two creates and not a single read; the script never looked. Then you build the move plan, and the eleven rows show every kind of disposition, including a hibernate setting where two old policies disagree. Next, the lint and the sync.`,
@@ -291,17 +278,10 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: lint, dry run, apply, break it on purpose",
       body: [
-        { code: [
-          "# 4  Lint the library against the plan",
-          "Test-GpcLibrary -Library (Read-GpcLibrary -Path ./policies) -Plan $plan | Format-List",
-          "# 5  Dry run, then apply",
-          "pwsh ./powershell/Invoke-GpcSync.ps1 -FixturePath ./tests/fixtures/tenant.json -WithPlan",
-          "pwsh ./powershell/Invoke-GpcSync.ps1 -FixturePath ./tests/fixtures/tenant.json -Apply",
-          "# 7  Invoke-Pester ./tests",
-        ], label: "IN examples/group-policy-as-code", pt: 12 },
+        { terminal: "06-4", lines: "1,5", kit: "examples/group-policy-as-code" },
+        { terminal: "06-5", lines: "1-2,10-15", kit: "examples/group-policy-as-code" },
         { table: { head: ["Step", "Expected"], w: [1.4, 10.75], rows: [
-          ["4", "One row, Info GPC-08: hibernate has conflicting GPO values, and decision DR-0105 picks the value"],
-          ["5", "Dry run exit 0: Create FMP-SC-201, NoChange FMP-SC-202. Apply exit 0: Created FMP-SC-201; sync-record.json shows ReadWrite.All and the new ID. -Cloud gcchigh names graph.microsoft.us; -Cloud usgov exits 1"],
+          ["5", "sync-record.json shows ReadWrite.All and the new ID. -Cloud gcchigh names graph.microsoft.us; -Cloud usgov exits 1"],
           ["6", "Change power_allowhibernate_0 to _1: Drift, exit 2, naming the setting. With -Apply still exit 2, and nothing created, not even SC-201. Put it back"],
           ["7", "46 tests passing: 34 in GroupPolicyAsCode.Tests.ps1, 12 in MicrosoftSamples.Tests.ps1"],
         ] }, pt: 12 },

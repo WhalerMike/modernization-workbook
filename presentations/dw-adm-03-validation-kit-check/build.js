@@ -274,17 +274,8 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: run the check on the fixtures",
       body: [
-        { code: [
-          "cd examples/validation-kit",
-          "Import-Module ./powershell/ValidationKit -Force",
-          "$r = Invoke-VkCheck -CheckId VK-SYNC-02 -Context (Get-VkRunContext -FixturePath ./tests/fixtures/fail -AsOf 2026-10-30)",
-          "$r | Select-Object CheckId, Status, Count        # Fail, 2",
-          "$r.Details | Format-Table Severity, Issue        # two Finding rows, one Info",
-          "$r.Evidence.Queries | Format-Table Source, Query # one query, Graph (fixture)",
-          "# 2  -Option @{ MatchWindowOpenUntil = '2026-10-31' }  -> Warn;  -AsOf 2026-11-01 -> Fail again",
-          "# 3  -InputPath with onprem-sync-export.json (soft match blocked, hard match not) -> one Finding, Input",
-        ], label: "POWERSHELL 7 WITH PESTER 5.5+; NOTHING SIGNS IN", pt: 11 },
-        { callout: "the window ends on its own: the same state, a day later, is a Fail again.", label: "What step 2 shows: ", icon: "FaUserClock", color: "teal" },
+        { terminal: "03-1", lines: "3-5,7-9,11-15,17", kit: "examples/validation-kit" },
+        { cols: [[{ terminal: "03-2", kit: "examples/validation-kit" }], [{ terminal: "03-3", lines: "3-4,7-9,11", kit: "examples/validation-kit" }]] },
       ],
       sources: "Sources: examples/validation-kit (fictional contoso.example fixtures). Chapter 03, “Lab 1: fixtures, no tenant,” steps 1–3.",
       say: `Lab 1 runs on a laptop with PowerShell 7 and Pester; nothing signs in. First you run the new check against the failing fixture and see a failure with a count of two: two findings, one informational row, and one read logged from the fixture. Then you open a matching window that ends tomorrow, and the result becomes a warning. Move the date a day past the window, and it's a failure again. Finally you hand it a small export file, and the evidence shows the result came from the input, not from Graph.`,

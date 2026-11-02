@@ -267,20 +267,8 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: lint the samples, record a baseline",
       body: [
-        { code: [
-          "python python/workflow_lint.py --learn-samples                   # 1",
-          "python python/workflow_lint.py workflow/drift-pipeline.yml       # 2",
-          "python python/drift_pipeline.py cloud --name dod                 # 3",
-          "python python/drift_pipeline.py compare --current $PREV --out out/day1                    # 4",
-          "python python/drift_pipeline.py package --kit-run $PREV --diff out/day1/drift-report.json $P \\",
-          "    --out out/evidence",
-        ], label: "PYTHON 3.10+, PyYAML, pytest, sha256sum; IN examples/drift-pipeline", pt: 11.5 },
-        { table: { head: ["Step", "Expected"], w: [1.2, 10.95], rows: [
-          ["1", "Exit 2. Sample 1: five findings (WF-02, WF-05 twice, WF-08, WF-09), four warnings; sample 2: seven findings; sample 3: WF-01, not valid YAML"],
-          ["2", "Exit 0: 0 findings, 0 warnings"],
-          ["3", "Authority login.microsoftonline.us, Graph dod-graph.microsoft.us, AzureUSGovernment; --name usgov exits 1"],
-          ["4", "Compare exits 2 with baseline true and ten new findings; the package's manifest hash is 6d9fffbc…"],
-        ] }, pt: 12 },
+        { terminal: "09-1", lines: "1-2,10-12,24-25", kit: "examples/drift-pipeline" },
+        { cols: [[{ terminal: "09-2", kit: "examples/drift-pipeline" }, { terminal: "09-3", lines: "1,4-6,10-11", kit: "examples/drift-pipeline" }], [{ terminal: "09-4", lines: "4-8", kit: "examples/drift-pipeline" }]], split: 0.45 },
       ],
       sources: "Sources: azure-dev-docs at 23900ce (pinned Learn page); examples/drift-pipeline fixtures (fictional). Chapter 09, “Lab 1: fixtures, no tenant,” steps 1–4.",
       say: `Lab 1 runs on a laptop with Python and no tenant. First, lint Learn's three samples as published: the first two have several findings each, unpinned actions and latest versions among them, and the Government sample fails because it isn't valid at all. Then lint the chapter's own workflow, and it's clean. Print the Defense cloud's profile to see its hosts, and try a cloud name that doesn't exist: refused. Then record the first day's run as a baseline and package it. Note the manifest hash; the next package will point back to it.`,
@@ -291,25 +279,19 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: the next day, issues, chain, tamper",
       body: [
-        { code: [
-          "python python/drift_pipeline.py compare --previous $PREV --current $CURR --out out/day2   # 5",
-          "python python/drift_pipeline.py issues --diff out/day2/drift-report.json \\",
-          "    --out out/day2/issues.json                                                       # 6",
-          "python python/drift_pipeline.py package --kit-run $CURR … --previous-manifest …       # 7",
-          "python python/drift_pipeline.py verify out/evidence/2026-10-29-0617-fixture-runner-fixture",
-          "python -m pytest tests -q                                                            # 9",
-        ], label: "IN examples/drift-pipeline (abridged)", pt: 11 },
+        { terminal: "09-5", lines: "1-3", kit: "examples/drift-pipeline" },
+        { cols: [[{ terminal: "09-6", kit: "examples/drift-pipeline" }], [{ terminal: "09-12", lines: "1,4", kit: "examples/drift-pipeline" }]] },
         { table: { head: ["Step", "Expected"], w: [1.2, 10.95], rows: [
           ["5", "Exit 2: new 3, resolved 1, changed 1, detail only 1, unchanged 6, unverified checks 2. VK-NPI-03 went Fail to Error (a 403): its finding is unverified, not resolved"],
           ["6", "Open 6, close 2, comment 0. gina@contoso.example isn't in issues.json; her object ID is"],
           ["7", "Manifest 0932f0a3…; verify reports 16 files; sha256sum exits 0; previous is 6d9fffbc…; tenant_id is the fixture placeholder"],
           ["8", "Append a line to drift-summary.md: verify exits 1. Swap the runs: compare exits 1, not later"],
-          ["9", "74 tests passing: 54 drift pipeline, 20 workflow lint"],
+          ["9", "142 tests passing"],
         ] }, pt: 11.5 },
       ],
       sources: "Sources: examples/drift-pipeline (two fictional kit runs for contoso.example, one day apart). Chapter 09, “Lab 1: fixtures, no tenant,” steps 5–9; “The tests.”",
-      say: `Now compare the second day with the first. You'll see each kind of result, and one matters most: a check whose read failed with an access-denied error. Its finding isn't resolved; it's unverified, and stays open. Draft the issues and search for a person's name: it isn't there, only the object identifier. Package the second run, chained to the first, and verify it with the pipeline and with the standard tool. Then tamper with one file, and verification fails. Swap the runs, and the comparison refuses. Run the tests, and seventy-four pass.`,
-      detail: `Step 5, compare the next day: python python/drift_pipeline.py compare --previous $PREV --current $CURR --out out/day2; cat out/day2/drift-summary.md. Exit 2: new 3, resolved 1, changed 1, detail only 1, unchanged 6, unverified checks 2. The table shows VK-CA-01 Pass to Fail, VK-NPI-03 Fail to Error, and VK-PIV-01 Pass to not run. VK-NPI-03's finding is unverified, not resolved: its read failed with a 403. Step 6, draft the findings: python python/drift_pipeline.py issues --diff out/day2/drift-report.json --out out/day2/issues.json gives {"close": 2, "comment": 0, "open": 6}: three new findings, one changed (VK-ARC-02, whose issue text moved from the agent version to "Status Disconnected"), two unverified checks, and two closes, one for frank (resolved) and one for the superseded VK-ARC-02 row. Search issues.json for gina@contoso.example: it isn't there. Her object ID is. Step 7, package and verify the second run, chained to the first: python python/drift_pipeline.py package --kit-run $CURR --diff out/day2/drift-report.json $P --previous-manifest out/evidence/2026-10-28-0617-fixture-runner-fixture/EVIDENCE-MANIFEST.json --out out/evidence; python python/drift_pipeline.py verify out/evidence/2026-10-29-0617-fixture-runner-fixture; (cd out/evidence/2026-10-29-0617-fixture-runner-fixture && sha256sum -c --quiet SHA256SUMS). The manifest hash is 0932f0a3…, verify reports 16 files, and sha256sum exits 0. Open EVIDENCE-MANIFEST.json: previous.evidence_manifest_sha256 is the day 1 hash, 6d9fffbc…, and tenant_id is the fixture tenant's placeholder, 11111111-1111-4111-8111-111111111111. Step 8, break it on purpose: append a line to out/evidence/2026-10-29-0617-fixture-runner-fixture/drift/drift-summary.md and run verify again: exit 1, drift/drift-summary.md doesn't match its SHA-256. Then swap the runs: compare --previous $CURR --current $PREV exits 1: the current run isn't later than the previous one. Step 9, run the tests: python -m pytest tests -q. Expected result: 74 tests passing, and each row of the gap table seen with your own eyes.`,
+      say: `Now compare the second day with the first. You'll see each kind of result, and one matters most: a check whose read failed with an access-denied error. Its finding isn't resolved; it's unverified, and stays open. Draft the issues and search for a person's name: it isn't there, only the object identifier. Package the second run, chained to the first, and verify it with the pipeline and with the standard tool. Then tamper with one file, and verification fails. Swap the runs, and the comparison refuses. Run the tests, and a hundred and forty-two pass.`,
+      detail: `Step 5, compare the next day: python python/drift_pipeline.py compare --previous $PREV --current $CURR --out out/day2; cat out/day2/drift-summary.md. Exit 2: new 3, resolved 1, changed 1, detail only 1, unchanged 6, unverified checks 2. The table shows VK-CA-01 Pass to Fail, VK-NPI-03 Fail to Error, and VK-PIV-01 Pass to not run. VK-NPI-03's finding is unverified, not resolved: its read failed with a 403. Step 6, draft the findings: python python/drift_pipeline.py issues --diff out/day2/drift-report.json --out out/day2/issues.json gives {"close": 2, "comment": 0, "open": 6}: three new findings, one changed (VK-ARC-02, whose issue text moved from the agent version to "Status Disconnected"), two unverified checks, and two closes, one for frank (resolved) and one for the superseded VK-ARC-02 row. Search issues.json for gina@contoso.example: it isn't there. Her object ID is. Step 7, package and verify the second run, chained to the first: python python/drift_pipeline.py package --kit-run $CURR --diff out/day2/drift-report.json $P --previous-manifest out/evidence/2026-10-28-0617-fixture-runner-fixture/EVIDENCE-MANIFEST.json --out out/evidence; python python/drift_pipeline.py verify out/evidence/2026-10-29-0617-fixture-runner-fixture; (cd out/evidence/2026-10-29-0617-fixture-runner-fixture && sha256sum -c --quiet SHA256SUMS). The manifest hash is 0932f0a3…, verify reports 16 files, and sha256sum exits 0. Open EVIDENCE-MANIFEST.json: previous.evidence_manifest_sha256 is the day 1 hash, 6d9fffbc…, and tenant_id is the fixture tenant's placeholder, 11111111-1111-4111-8111-111111111111. Step 8, break it on purpose: append a line to out/evidence/2026-10-29-0617-fixture-runner-fixture/drift/drift-summary.md and run verify again: exit 1, drift/drift-summary.md doesn't match its SHA-256. Then swap the runs: compare --previous $CURR --current $PREV exits 1: the current run isn't later than the previous one. Step 9, run the tests: python -m pytest tests -q. Expected result: 142 tests passing, and each row of the gap table seen with your own eyes.`,
       cite: [],
       ref: "“Lab 1: fixtures, no tenant,” steps 5–9; “The tests”",
     },

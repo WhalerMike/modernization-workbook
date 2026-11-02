@@ -262,18 +262,9 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: Learn's samples and the rules, offline",
       body: [
-        { code: [
-          "# 1  Learn's samples against a fake tenant: one group On, one 'Held for review' Paused",
-          ". ./tests/LearnSampleHarness.ps1",
-          "Invoke-LearnSample -Page \"$pages/powershell-pause-all-dynamic-membership.md\" -Tenant $t …",
-          "Invoke-LearnSample -Page \"$pages/powershell-resume-noncritical-dynamic-membership.md\" -Tenant $t …",
-          "# both end On; with GCCHigh as the cloud answer, $t.Calls[0].Uri is https://graph.microsoft.com/…",
-          "# 2  Lint Book 03's table: DR-05 on Legal employer, the DR-03 note on Direct reports",
-          "Get-Content ./tests/fixtures/book03-patterns.json -Raw | ConvertFrom-Json | ForEach-Object { … }",
-          "# 3  Evaluate the FIN-LED rule over the population: u01, u02, u06, u08, u09",
-          "Get-DrMembers -Population $pop -Rule '(user.accountEnabled -eq true) -and (… -eq \"FIN-LED\")'",
-        ], label: "POWERSHELL 7.1+ WITH PESTER 5, IN examples/dynamic-rules", pt: 11.5 },
-        { callout: "u04 (disabled) and u05 (guest) are out because of the guards; u08, whose code is fin-led in lower case, is in.", label: "What step 3 shows: ", icon: "FaListCheck", color: "teal" },
+        { cols: [[{ terminal: "04-1", lines: "9-14", kit: "examples/dynamic-rules" }], [{ terminal: "04-4", lines: "2-7", kit: "examples/dynamic-rules" }]], split: 0.55 },
+        { terminal: "04-2", lines: "3-5", kit: "examples/dynamic-rules" },
+        { terminal: "04-3", lines: "2-4,7-8", kit: "examples/dynamic-rules" },
       ],
       sources: "Sources: examples/dynamic-rules and the pinned Learn samples (tests and fixtures, fictional). Chapter 04, “Lab 1: fixtures, no tenant,” steps 1–3.",
       say: `Lab 1 needs only a laptop with PowerShell 7 and Pester. First you run Learn's own pause and resume scripts against a fake tenant with two groups, one of them already paused for review. After the resume, both are on: the held group came back to life. Try an unknown cloud name and you'll see it sign in to worldwide. Then you lint Book 3's table and evaluate a rule over the fictional people. The disabled account and the guest stay out, and the lower-case code gets in, just as Learn says.`,
@@ -284,20 +275,18 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: the pull request check, broken on purpose",
       body: [
-        { code: [
-          "# 4  The pull request check: exit 0, six rules, no findings, no changed files",
+        { cols: [[{ code: [
+          "# 4  The pull request check: exit 0, six rules, no findings",
           "pwsh ./powershell/Invoke-DrLibraryCheck.ps1 -BaseRef HEAD",
-          "# 5  In rules/fin-led-not-contractors.json delete:  -and (user.extensionAttribute11 -ne null)",
+          "# 5  Delete the empty-slot clause (right), then run it again",
           "pwsh ./powershell/Invoke-DrLibraryCheck.ps1 -BaseRef HEAD     # exit 2",
-          "# 6  The whole suite",
-          "Invoke-Pester ./tests",
-        ], label: "STEPS 4 TO 6", pt: 12.5 },
+        ], label: "STEPS 4 AND 5", pt: 12 }], [{ terminal: "04-6", kit: "examples/dynamic-rules" }]], split: 0.5 },
         { table: { head: ["Step 5 shows", "Why"], w: [3.4, 8.75], rows: [
           ["DR-10", "-ne on the worker-type slot now admits an empty slot"],
           ["DR-11: the test for u06 fails", "u06, the worker with no type, was expected out"],
           ["Shadow diff: adds u06", "The pull request shows exactly whom the change admits; put the clause back"],
         ] }, pt: 13 },
-        { lead: "Expected result: 70 tests passing, and each difference in the gap table seen with your own eyes." },
+        { terminal: "04-9", lines: "1,3,10-12,14", kit: "examples/dynamic-rules" },
       ],
       sources: "Sources: examples/dynamic-rules (tests and fixtures, fictional). Chapter 04, “Lab 1: fixtures, no tenant,” steps 4–6.",
       say: `Now the part that makes the case for all this. Run the pull request check and it passes cleanly: six rules, no findings. Then break a rule on purpose by deleting the clause that keeps out empty worker types, and run it again. Three things fire at once. The linter flags the empty-slot risk, the membership test for the worker with no type fails, and the shadow diff shows exactly who the change would let in. Put the clause back, run the whole suite, and seventy tests pass.`,
