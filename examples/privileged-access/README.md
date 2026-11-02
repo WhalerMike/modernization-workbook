@@ -4,6 +4,8 @@ Read-only code for the [developer workbook *Building Privileged Access*](../../d
 
 - **Chapter 01, the privileged inventory:** Microsoft Entra role assignments (active and eligible), role-assignable groups expanded to their members, and Azure role assignment and eligibility schedules, each row given a tier from `config/tiers.json`, with findings PA-INV-01 to PA-INV-09.
 - **Chapter 02, the emergency access accounts:** the accounts checked against Learn's standard and Book 04's (findings PA-EA-01 to PA-EA-10), and the alert on their use written as an ARM template for review.
+- **Chapters 03 to 08:** each chapter's code and notes are in `docs/ch03.md` to `docs/ch08.md`.
+- **Chapter 09, deploying to test and production:** the runbook's own scripts in `deploy/` (see [Deploy](#deploy) below).
 
 Illustrative: tested against fixtures and a fake Graph and Resource Manager, not proven against a production tenant. Every call is a GET. Nothing here writes to a tenant or deploys anything.
 
@@ -41,10 +43,30 @@ Grant only what the task you run needs; `Get-PaRequiredPermission -Task inventor
 
 `-Cloud gcc` (the default) uses the worldwide endpoints, `graph.microsoft.com` and commercial `management.azure.com`, as Microsoft 365 GCC with commercial Azure does. `gcchigh` and `dod` use `graph.microsoft.us` and `dod-graph.microsoft.us` with Azure Government's `management.usgovcloudapi.net`. Any other name throws; there is no default. The live invoker refuses to run if the Graph or Azure session is signed in to another cloud.
 
+## Deploy
+
+[Chapter 09](../../docs/project-plans/developer-workbooks/privileged-access/09-deploying-to-test-and-production.md) takes the kit from the labs to a live test tenant, then to production, with the same commands and one settings file per environment. Its own code is in `deploy/`. Nothing in it has been run against a live tenant.
+
+```
+deploy/environment.template.json   the settings file: copy it per environment, fill every <placeholder>; no secrets
+deploy/New-PaDeployInputs.ps1      writes every chapter's input files for that environment to <outputRoot>/inputs
+deploy/Test-PaPreflight.ps1        licenses, the emergency access accounts, their exclusion from every CA policy (PA-DEP-01 to -09)
+deploy/Invoke-PaSmokeTest.ps1      reads the evidence for the smoke test's Activate, Approve, Expire and Review phases
+deploy/Invoke-PaRollback.ps1       plans the stage's rollback in reverse order; runs it only with -Apply
+deploy/Add-PaEvidenceRecord.ps1    judges an earlier chapter's run folder and records it as a step's evidence
+deploy/Test-PaEvidence.ps1         the evidence half of the go/no-go: every required step present, passing, unchanged
+deploy/requirements.json           each step's NIST SP 800-53 controls, OMB and CISA requirements, and FedRAMP 20x KSIs
+deploy/PaDeploy.psm1               the module behind them; deploy/calls-deploy.json declares its GET calls
+deploy/tests/                      Pester 5 tests and fixtures (fictional contoso.example tenant)
+```
+
+Each script has a fixture mode (`-FixturePath`), and the rollback is a dry run unless `-Apply`. Each step writes an evidence record to `<outputRoot>/evidence`: the time, environment, change record, command, result, the step's controls and KSIs from `requirements.json`, the SHA-256 of every file in its run folder, and the hash of the record before it, listed in `records.csv`. KSIs are FedRAMP 20x indicators for cloud providers; the records line the agency's evidence up with them, and the agency doesn't report KSIs itself. The scripts only read; the writes are the earlier chapters' entry scripts. The pre-flight needs `LicenseAssignment.Read.All` and Chapter 02's six read permissions; the smoke test needs `RoleAssignmentSchedule.Read.Directory`, `AuditLog.Read.All` and `AccessReview.Read.All` (`Get-PaDeployRequiredPermission -Task preflight` or `smoke`).
+
 ## Run the tests
 
 ```powershell
 Invoke-Pester -Path tests
+Invoke-Pester -Path deploy/tests
 ```
 
-PowerShell 7.1 or later and Pester 5. No module, tenant or network is needed.
+PowerShell 7.1 or later and Pester 5. No module, tenant or network is needed. The deployment runbook's tests are a separate suite, so the chapters' test counts don't change.

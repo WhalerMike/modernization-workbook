@@ -1,0 +1,136 @@
+{
+  "_comment": "Chapter 09 smoke fixture, phase Expire: after 22:12Z the activation has ended and PIM logged the removal. Invented.",
+  "roleAssignmentScheduleInstances": [],
+  "directoryAudits": [
+    {
+      "id": "aud-0001",
+      "activityDateTime": "2026-11-02T14:05:12Z",
+      "activityDisplayName": "Add member to role requested (PIM activation)",
+      "category": "RoleManagement",
+      "loggedByService": "Privileged Identity Management",
+      "result": "success",
+      "initiatedBy": {
+        "user": {
+          "id": "5d000000-0000-4000-8000-000000000001",
+          "userPrincipalName": "pim.smoke01@contoso.example"
+        }
+      },
+      "targetResources": [
+        {
+          "id": "69091246-20e8-4a56-aa4d-066075b2a7a8",
+          "type": "Role",
+          "displayName": "Teams Administrator"
+        },
+        {
+          "id": "5d000000-0000-4000-8000-000000000001",
+          "type": "User",
+          "userPrincipalName": "pim.smoke01@contoso.example"
+        }
+      ]
+    },
+    {
+      "id": "aud-0002",
+      "activityDateTime": "2026-11-02T14:05:13Z",
+      "activityDisplayName": "Add member to role approval requested (PIM activation)",
+      "category": "RoleManagement",
+      "loggedByService": "Privileged Identity Management",
+      "result": "success",
+      "initiatedBy": {
+        "user": {
+          "id": "5d000000-0000-4000-8000-000000000001",
+          "userPrincipalName": "pim.smoke01@contoso.example"
+        }
+      },
+      "targetResources": [
+        {
+          "id": "69091246-20e8-4a56-aa4d-066075b2a7a8",
+          "type": "Role",
+          "displayName": "Teams Administrator"
+        },
+        {
+          "id": "5d000000-0000-4000-8000-000000000001",
+          "type": "User",
+          "userPrincipalName": "pim.smoke01@contoso.example"
+        }
+      ]
+    },
+    {
+      "id": "aud-0003",
+      "activityDateTime": "2026-11-02T14:12:38Z",
+      "activityDisplayName": "Add member to role request approved (PIM activation)",
+      "category": "RoleManagement",
+      "loggedByService": "Privileged Identity Management",
+      "result": "success",
+      "initiatedBy": {
+        "user": {
+          "id": "5d000000-0000-4000-8000-000000000002",
+          "userPrincipalName": "pim.approver01@contoso.example"
+        }
+      },
+      "targetResources": [
+        {
+          "id": "69091246-20e8-4a56-aa4d-066075b2a7a8",
+          "type": "Role",
+          "displayName": "Teams Administrator"
+        },
+        {
+          "id": "5d000000-0000-4000-8000-000000000001",
+          "type": "User",
+          "userPrincipalName": "pim.smoke01@contoso.example"
+        }
+      ]
+    },
+    {
+      "id": "aud-0004",
+      "activityDateTime": "2026-11-02T14:12:40Z",
+      "activityDisplayName": "Add member to role completed (PIM activation)",
+      "category": "RoleManagement",
+      "loggedByService": "Privileged Identity Management",
+      "result": "success",
+      "initiatedBy": {
+        "user": {
+          "id": "5d000000-0000-4000-8000-000000000001",
+          "userPrincipalName": "pim.smoke01@contoso.example"
+        }
+      },
+      "targetResources": [
+        {
+          "id": "69091246-20e8-4a56-aa4d-066075b2a7a8",
+          "type": "Role",
+          "displayName": "Teams Administrator"
+        },
+        {
+          "id": "5d000000-0000-4000-8000-000000000001",
+          "type": "User",
+          "userPrincipalName": "pim.smoke01@contoso.example"
+        }
+      ]
+    },
+    {
+      "id": "aud-0005",
+      "activityDateTime": "2026-11-02T22:12:41Z",
+      "activityDisplayName": "Remove member from role (PIM activation expired)",
+      "category": "RoleManagement",
+      "loggedByService": "Privileged Identity Management",
+      "result": "success",
+      "initiatedBy": {
+        "user": {
+          "id": "5d000000-0000-4000-8000-000000000001",
+          "userPrincipalName": "pim.smoke01@contoso.example"
+        }
+      },
+      "targetResources": [
+        {
+          "id": "69091246-20e8-4a56-aa4d-066075b2a7a8",
+          "type": "Role",
+          "displayName": "Teams Administrator"
+        },
+        {
+          "id": "5d000000-0000-4000-8000-000000000001",
+          "type": "User",
+          "userPrincipalName": "pim.smoke01@contoso.example"
+        }
+      ]
+    }
+  ]
+}

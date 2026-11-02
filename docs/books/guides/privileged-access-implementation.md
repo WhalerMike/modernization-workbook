@@ -163,6 +163,7 @@ The KSI column names the FedRAMP 20x Key Security Indicators whose related SP 80
 ## Try it: G1 Privileged inventory
 - **On a laptop, no tenant:** [Chapter 01, Lab 1](../../project-plans/developer-workbooks/privileged-access/01-privileged-inventory-as-code.md#lab-1-fixtures-no-tenant) of *Privileged Inventory as Code*
 - **In test tenant:** [Chapter 01, Lab 2](../../project-plans/developer-workbooks/privileged-access/01-privileged-inventory-as-code.md#lab-2-test-tenant)
+- **As training:** [Module 1: Inventory every privileged assignment](../../training/privileged-access/01-privileged-inventory.md), with a knowledge check
 :::
 
 <!-- labs:end -->
@@ -213,6 +214,7 @@ This is the one step that can't move. Learn documents the lockout: every Global 
 ## Try it: G2 Emergency access
 - **On a laptop, no tenant:** [Chapter 02, Lab 1](../../project-plans/developer-workbooks/privileged-access/02-emergency-access-as-code.md#lab-1-fixtures-no-tenant) of *Emergency Access Accounts as Code*
 - **In test tenant:** [Chapter 02, Lab 2](../../project-plans/developer-workbooks/privileged-access/02-emergency-access-as-code.md#lab-2-test-tenant)
+- **As training:** [Module 2: Emergency access first](../../training/privileged-access/02-emergency-access-first.md), with a knowledge check
 :::
 
 <!-- labs:end -->
@@ -263,6 +265,7 @@ Book 04's Wave 2 is the administrator set: CA003 (phishing-resistant MFA by grou
 ## Try it: G3 Conditional Access for administrators
 - **On a laptop, no tenant:** [Chapter 03, Lab 1](../../project-plans/developer-workbooks/privileged-access/03-conditional-access-for-administrators.md#lab-1-fixtures-no-tenant) of *Conditional Access for Administrators and the Activation Gate*
 - **In test tenant:** [Chapter 03, Lab 2](../../project-plans/developer-workbooks/privileged-access/03-conditional-access-for-administrators.md#lab-2-test-tenant)
+- **As training:** [Module 3: Conditional Access for administrators and the activation gate](../../training/privileged-access/03-conditional-access-and-the-activation-gate.md), with a knowledge check
 :::
 
 <!-- labs:end -->
@@ -314,6 +317,7 @@ Each role has its own settings, and in Graph each role's policy has 17 rules wit
 ## Try it: G4 PIM for Entra roles
 - **On a laptop, no tenant:** [Chapter 04, Lab 1](../../project-plans/developer-workbooks/privileged-access/04-pim-for-entra-roles-as-code.md#lab-1-fixtures-no-tenant) of *PIM for Microsoft Entra Roles as Code*
 - **In test tenant:** [Chapter 04, Lab 2](../../project-plans/developer-workbooks/privileged-access/04-pim-for-entra-roles-as-code.md#lab-2-test-tenant)
+- **As training:** [Module 4: PIM for Microsoft Entra roles as code](../../training/privileged-access/04-pim-for-entra-roles.md), with a knowledge check
 :::
 
 <!-- labs:end -->
@@ -364,6 +368,7 @@ Two Microsoft features meet in a PRV group. Only a group created role-assignable
 ## Try it: G5 PIM for Groups
 - **On a laptop, no tenant:** [Chapter 05, Lab 1](../../project-plans/developer-workbooks/privileged-access/05-pim-for-groups.md#lab-1-fixtures-no-tenant) of *PIM for Groups and the PRV Groups*
 - **In test tenant:** [Chapter 05, Lab 2](../../project-plans/developer-workbooks/privileged-access/05-pim-for-groups.md#lab-2-test-tenant)
+- **As training:** [Module 5: PIM for Groups and the PRV groups](../../training/privileged-access/05-pim-for-groups.md), with a knowledge check
 :::
 
 <!-- labs:end -->
@@ -413,6 +418,7 @@ PIM for Azure resources runs through Azure Resource Manager, not Graph. The call
 ## Try it: G6 PIM for Azure resources
 - **On a laptop, no tenant:** [Chapter 06, Lab 1](../../project-plans/developer-workbooks/privileged-access/06-pim-for-azure-resources.md#lab-1-fixtures-no-tenant) of *PIM for Azure Resources*
 - **In test tenant:** [Chapter 06, Lab 2](../../project-plans/developer-workbooks/privileged-access/06-pim-for-azure-resources.md#lab-2-test-tenant)
+- **As training:** [Module 6: PIM for Azure resources](../../training/privileged-access/06-pim-for-azure-resources.md), with a knowledge check
 :::
 
 <!-- labs:end -->
@@ -462,6 +468,7 @@ The approval gate controls the use of privilege; reviews control who keeps it. B
 ## Try it: G7 Access reviews
 - **On a laptop, no tenant:** [Chapter 07, Lab 1](../../project-plans/developer-workbooks/privileged-access/07-access-reviews-of-privileged-roles.md#lab-1-fixtures-no-tenant) of *Access Reviews of Privileged Roles*
 - **In test tenant:** [Chapter 07, Lab 2](../../project-plans/developer-workbooks/privileged-access/07-access-reviews-of-privileged-roles.md#lab-2-test-tenant)
+- **As training:** [Module 7: Access reviews of privileged roles](../../training/privileged-access/07-access-reviews.md), with a knowledge check
 :::
 
 <!-- labs:end -->
@@ -515,6 +522,7 @@ Configuration evidence proves a setting existed; operational evidence proves it 
 ## Try it: G8 Evidence and drift
 - **On a laptop, no tenant:** [Chapter 08, Lab 1](../../project-plans/developer-workbooks/privileged-access/08-evidence-and-drift.md#lab-1-fixtures-no-tenant) of *Evidence and Drift for the ISSO*
 - **In test tenant:** [Chapter 08, Lab 2](../../project-plans/developer-workbooks/privileged-access/08-evidence-and-drift.md#lab-2-test-tenant)
+- **As training:** [Module 8: Evidence and drift for the ISSO](../../training/privileged-access/08-evidence-and-drift.md), with a knowledge check
 :::
 
 <!-- labs:end -->

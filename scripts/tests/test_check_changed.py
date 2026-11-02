@@ -215,6 +215,11 @@ class NonSiteTasks(unittest.TestCase):
         self.assertEqual(ret.expand(["non-person-identity", "privileged-access"]),
                          ["non-person-identity", "drift-pipeline", "privileged-access"])
 
+    def test_the_runner_finds_a_kits_deploy_suite(self):
+        import run_example_tests as ret
+        self.assertIn(("pester", "deploy/tests"), ret.suites("privileged-access"))
+        self.assertIn(("pester", "tests"), ret.suites("privileged-access"))
+
     def test_every_windows_only_test_file_exists(self):
         import run_example_tests as ret
         for kit, (files, _why) in ret.WINDOWS_ONLY.items():
