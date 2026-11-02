@@ -22,7 +22,7 @@ last-reviewed: 2026-11-01
 
 Entra inbound provisioning writes `department` from HR. SailPoint's Entra connector also writes `department`. Each sync overwrites the other, and the drift you'll measure in Module 4 comes back the next day no matter how often someone fixes it. Gate 2 settles this on paper before anything is connected: one writer per attribute, and one approver system per authority class. In this module you learn those decisions and check two provisioning configurations against the first one.
 
-**The federal requirement.** The guide's [Gate 2 requirements and evidence table](../../books/guides/ttm-servicenow-sailpoint.md#step-2-decide-the-writers-and-the-approvers) maps the decisions to NIST SP 800-53 AC-5, CM-3 and AC-2, and Book 13's acceptance of any autonomous class. [Chapter 08's table](../../project-plans/developer-workbooks/ticket-to-machine/08-one-writer-per-attribute.md#federal-requirements-and-evidence) maps the check to CM-6, CM-3, CM-4, CA-7 and SI-4.
+**The federal requirement.** The guide's [Gate 2 requirements and evidence table](../../books/guides/ttm-servicenow-sailpoint.md#step-2-decide-the-writers-and-the-approvers) maps the decisions to NIST SP 800-53 AC-5, CM-3 and AC-2, and Book 13's acceptance of any autonomous class. [Chapter 08's table](../../project-plans/developer-workbooks/ticket-to-machine/08-one-writer-per-attribute.md#federal-requirements-and-evidence) maps the check to CM-6, CM-3, CM-4, CA-7 and SI-4. Each table's KSI column names the FedRAMP 20x Key Security Indicators to line your evidence up with; your cloud providers report against them, the agency doesn't.
 
 ### Learning objectives
 

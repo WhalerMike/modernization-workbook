@@ -23,6 +23,14 @@ In this module you fix that before any other gate: you name one writer, and a ba
 
 **The federal requirement.** This gate meets NIST SP 800-53 AC-2 and IA-4 for the register, and AU-6 for reviewing writes outside the named writer. The requirements and the evidence are in the [Gate 1 requirements table](../../books/guides/hr-driven-identity-implementation.md#step-1-name-one-writer-for-every-state-and-attribute) (under **Federal requirements and evidence** in Step 1) and in the workbook chapter's [Federal requirements and evidence](../../project-plans/developer-workbooks/hr-driven-identity/01-the-writer-register-as-code.md#federal-requirements-and-evidence).
 
+| Requirement | KSI | Evidence |
+|---|---|---|
+| AC-2 and IA-4, the register | KSI-IAM-ELP, KSI-IAM-JIT | The signed `config/writer-register.json` and the `check` output |
+| AU-6, writes outside the named writer | KSI-MLA-RVL | The scan's `findings.json`, `writes.json` and `queries.json` |
+| AU-9 and SI-7, evidence nobody edited | KSI-MLA-OSM; KSI-SVC-VRI | The scan folder's `manifest.json`, a SHA-256 per file |
+
+KSIs are FedRAMP 20x indicators for cloud service providers: the agency authorizes its own system and lines this evidence up with what its providers report against them, and it doesn't report KSIs itself ([Book 00, Appendix B](../../books/b00-orientation/appendix-b-engagement-archetype.md)). Each KSI lists the row's control among its related SP 800-53 controls on [FedRAMP's Key Security Indicators page](https://www.fedramp.gov/2026/reference/key-security-indicators/) (read November 2, 2026); which file supports which indicator is the program's mapping *(design guidance)*. The workbook chapter's table has a row for every lab step.
+
 ## Learning objectives (1 minute)
 
 After this module, you'll be able to:

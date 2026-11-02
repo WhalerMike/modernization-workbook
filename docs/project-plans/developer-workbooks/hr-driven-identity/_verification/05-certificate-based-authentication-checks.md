@@ -43,3 +43,14 @@ Microsoft Learn pages opened on November 1, 2026 through the Microsoft Learn MCP
 | Book 07, Chapter 06 (Entra CBA) | Linked | Trust store, bindings and modes not restated |
 | VK-PIV-01 (Book 19, Chapter 03) | The code | Per-user binding coverage stays the kit's check; CB-13 only flags the tenant's binding fields |
 | ADM guide, Gate 6 (affinity decision) | CB-13 | The decision itself isn't this chapter's |
+
+## KSI column (November 2, 2026)
+
+FedRAMP's Key Security Indicators page (<https://www.fedramp.gov/2026/reference/key-security-indicators/>) was read through WebFetch on November 2, 2026, for each indicator's "Related SP 800-53 Controls." Every KSI ID in this chapter's Federal requirements tables was already cited in the repo (Book 02, Chapter 10; Book 04, Chapter 10; Book 13, Chapter 04 and Appendix A; Book 14, Chapter 03); none is new. The framing (KSIs are provider-side; the agency lines its evidence up with them and doesn't report them) is carried from Book 00, Appendix B.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| K1 | IA-5(2) is related to KSI-IAM-APM, KSI-IAM-ELP, KSI-IAM-SNU and KSI-SVC-ASM; SC-17 to KSI-SVC-ASM; AC-6, AU-9, SI-7, CM-3(2) pairs | Both tables | carried forward | Book 13, Appendix A |
+| K2 | No indicator lists IA-2(12) | Requirement table | verified: the page lists IA-02, IA-02 (01), (02), (05), (06) and (08) only | FedRAMP KSI page |
+| K3 | SCuBA MS.AAD.3.1v1 and MS.AAD.3.6v1 line up with KSI-IAM-APM | Requirement table | carried forward (program mapping) | Book 04, Chapter 10 |
+| K4 | FIPS 201-3 and SP 800-63-4 have no indicator | Requirement table | verified: KSIs list only SP 800-53 controls | FedRAMP KSI page |

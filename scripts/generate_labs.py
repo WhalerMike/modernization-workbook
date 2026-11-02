@@ -286,12 +286,19 @@ def lab_commands(md: str) -> str:
             step = None
             for s in STEP.finditer(sec, 0, b.start()):
                 step = s
+            # A paragraph at the margin after the step's line ends the list: a block below it
+            # (the cleanup after "Expected result") belongs to no step.
+            after = bool(step and re.search(r"^[^\s\d]", sec[sec.find("\n", step.end()) + 1:b.start()], re.M))
+            if after:
+                step = None
             ind = b.group(1)
             code = "\n".join(l[len(ind):] if l.startswith(ind) else l for l in b.group(3).rstrip("\n").splitlines())
             lines = [code]
             if step:
                 title = re.sub(r"[`*]", "", step.group(2) or "").rstrip(":., ")
                 lines.insert(0, f"# Step {step.group(1)}" + (f": {title}" if title else ""))
+            elif after:
+                lines.insert(0, "# After the steps")
             if parts and parts[-1][0] == b.group(2):
                 parts[-1][1].extend([""] + lines)
             else:

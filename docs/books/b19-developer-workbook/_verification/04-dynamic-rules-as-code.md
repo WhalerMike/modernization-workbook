@@ -43,3 +43,16 @@ Microsoft Learn pages opened on October 30, 2026 through the Microsoft Learn MCP
 | Book 03, Chapter 10, rule patterns | The six library rules; the Book 03 lint fixture | The Legal employer and Direct reports patterns aren't in the library: one reads `companyName`, the other can't carry guards |
 | `examples/validation-kit` VK-DG-01 to VK-DG-07 | Lint rules DR-03 to DR-06 match VK-DG-01, -02 and -06; Lab 2 uses VK-DG-03 and VK-DG-04 | The live checks are unchanged; this chapter adds the pull-request half |
 | Index outline row 04 | The chapter | Agents' user accounts: still not documented on Learn; the chapter says so instead of giving a clause |
+
+## Federal requirements and evidence (added November 2, 2026)
+
+New section before Dangers: 13 rows, one per Lab 1 and Lab 2 scripted step or kit output file, plus one row for the FedRAMP Marketplace listings. Which output supports which control is labeled design guidance in the chapter.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | Every control cited is in the SP 800-53B Moderate baseline: AC-2, AC-3, AC-6, CA-7, CM-2, CM-3, CM-3(2), CM-4, CM-4(2), SA-11, SA-9, SR-3 | Federal requirements and evidence | verified | NIST OSCAL `NIST_SP-800-53_rev5_MODERATE-baseline_profile.json`, release 5.2.0, last modified 2026-10-22, downloaded and parsed November 2, 2026 |
+| 2 | Every indicator cited exists with the name given: KSI-CMT-LMC, KSI-CMT-RMV, KSI-CMT-VTD, KSI-IAM-ELP, KSI-MLA-EVC, KSI-SCR-MIT | Federal requirements and evidence | verified | fedramp.gov/2026/reference/key-security-indicators, read November 2, 2026 (latest changelog entry 2026-10-13); all were already cited in the repository, none is new |
+| 3 | Indicator pairings with controls follow the repository's verified mappings | Federal requirements and evidence | carried from verified sources | Book 04, Chapter 10; Book 02, Chapter 10; Book 05, Chapter 10; Book 13, Appendix A and Chapter 04; Book 14, Chapter 03 |
+| 4 | FedRAMP Marketplace listings, status, class and impact level | Federal requirements and evidence | verified | `products.json`, `last_change` 2026-11-01T05:02:56Z, downloaded and parsed November 2, 2026 |
+| 5 | KSIs are provider-side; the agency doesn't report them | Under the table | carried from verified source | Book 00, Appendix B |
+| 6 | M-22-09 statement cited in the section intro | Federal requirements and evidence | verified | M-22-09 PDF text extracted and read November 2, 2026 |

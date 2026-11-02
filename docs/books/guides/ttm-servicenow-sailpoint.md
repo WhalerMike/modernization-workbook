@@ -172,14 +172,16 @@ The guide assumes the starting state most agencies report, and gives an interim 
 
 **Federal requirements and evidence.**
 
-| Requirement | What this gate does | Evidence the ISSO keeps |
-|---|---|---|
-| NIST SP 800-53 SA-9 External System Services (Moderate) | Confirms each external service's authorization and the agency's oversight of it ([Book 13, Appendix A](../b13-governance/appendix-a-requirements-mapping.md#provenance-and-integrity-of-the-record-au-sa-sr-and-si)) | Marketplace listings with the date read; the vendor's written answers on feature scope |
-| FedRAMP authorization of cloud services used | Uses only listed offerings, or records the gap as a risk for the authorizing official ([Book 10](../b10-cloud-boundary/index.md)) | The authorization package or letter for each offering the agency relies on |
-| SP 800-53 CA-3 Information Exchange (Moderate) | Records each flow between the products and the tenant | The data-flow record: source, destination, identity, data |
-| SP 800-53 IA-5 Authenticator Management; AC-6 Least Privilege (Moderate) | Integration identities use certificates and least privilege | The identity register; VK-NPI-02 and VK-NPI-05 output |
+| Requirement | KSI | What this gate does | Evidence the ISSO keeps |
+|---|---|---|---|
+| NIST SP 800-53 SA-9 External System Services (Moderate) | KSI-SCR-MIT; KSI-SCR-MON | Confirms each external service's authorization and the agency's oversight of it ([Book 13, Appendix A](../b13-governance/appendix-a-requirements-mapping.md#provenance-and-integrity-of-the-record-au-sa-sr-and-si)) | Marketplace listings with the date read; the vendor's written answers on feature scope |
+| FedRAMP authorization of cloud services used | None: the agency's own authorization decision | Uses only listed offerings, or records the gap as a risk for the authorizing official ([Book 10](../b10-cloud-boundary/index.md)) | The authorization package or letter for each offering the agency relies on |
+| SP 800-53 CA-3 Information Exchange (Moderate) | KSI-SCR-MON | Records each flow between the products and the tenant | The data-flow record: source, destination, identity, data |
+| SP 800-53 IA-5 Authenticator Management; AC-6 Least Privilege (Moderate) | KSI-IAM-APM; KSI-IAM-ELP | Integration identities use certificates and least privilege | The identity register; VK-NPI-02 and VK-NPI-05 output |
 
 : Gate 1 requirements and evidence {.striped .hover}
+
+The KSI column names the FedRAMP 20x Key Security Indicators whose related SP 800-53 controls include the row's control.[^ttm-ksi] KSIs are indicators for cloud service providers: the agency authorizes its own system and lines its own evidence up with what ServiceNow and SailPoint report against them; it doesn't report KSIs itself. The later gates' tables use the same column.
 
 **Availability** (FedRAMP Marketplace, read November 1, 2026).[^ttm-fr]
 
@@ -248,12 +250,12 @@ This gate closes gaps 2 and 4 on paper before anything is connected. Every later
 
 **Federal requirements and evidence.**
 
-| Requirement | What this gate does | Evidence the ISSO keeps |
-|---|---|---|
-| SP 800-53 AC-5 Separation of Duties (Moderate) | One approver system per class; the requester never approves | The approver-per-class table, merged with its review |
-| SP 800-53 CM-3 Configuration Change Control (Moderate) | Each change class has a lane and a change-record type | The lane table |
-| SP 800-53 AC-2 Account Management (Low, Moderate, High) | One writer per attribute keeps account changes traceable to the source | The attribute map with each attribute's writer |
-| Book 13's L4 acceptance | Any autonomous class is accepted in writing by the authorizing official | The signed class acceptance |
+| Requirement | KSI | What this gate does | Evidence the ISSO keeps |
+|---|---|---|---|
+| SP 800-53 AC-5 Separation of Duties (Moderate) | KSI-IAM-JIT; KSI-PIY-RIS; KSI-PIY-RSD | One approver system per class; the requester never approves | The approver-per-class table, merged with its review |
+| SP 800-53 CM-3 Configuration Change Control (Moderate) | KSI-CMT-LMC; KSI-CMT-RVP | Each change class has a lane and a change-record type | The lane table |
+| SP 800-53 AC-2 Account Management (Low, Moderate, High) | KSI-IAM-JIT; KSI-IAM-SUS | One writer per attribute keeps account changes traceable to the source | The attribute map with each attribute's writer |
+| Book 13's L4 acceptance | None: program design | Any autonomous class is accepted in writing by the authorizing official | The signed class acceptance |
 
 : Gate 2 requirements and evidence {.striped .hover}
 
@@ -296,11 +298,11 @@ Loop steps 1 and 2 for identity: SailPoint reads the sources, and the kit measur
 
 **Federal requirements and evidence.**
 
-| Requirement | What this gate does | Evidence the ISSO keeps |
-|---|---|---|
-| SP 800-53 AC-2 Account Management | Finds accounts with no worker, and workers with no account | The baseline drift report |
-| SP 800-53 CA-7 Continuous Monitoring (Low, Moderate, High) | Starts a repeatable comparison of the record and the estate | The drift report, its date and the checker version |
-| SP 800-53 CM-8 System Component Inventory, read for identities *(inference)* | One correlated inventory of accounts per person | Correlation rate and uncorrelated-account list |
+| Requirement | KSI | What this gate does | Evidence the ISSO keeps |
+|---|---|---|---|
+| SP 800-53 AC-2 Account Management | KSI-IAM-SUS | Finds accounts with no worker, and workers with no account | The baseline drift report |
+| SP 800-53 CA-7 Continuous Monitoring (Low, Moderate, High) | KSI-MLA-EVC | Starts a repeatable comparison of the record and the estate | The drift report, its date and the checker version |
+| SP 800-53 CM-8 System Component Inventory, read for identities *(inference)* | KSI-PIY-GIV | One correlated inventory of accounts per person | Correlation rate and uncorrelated-account list |
 
 : Gate 3 requirements and evidence {.striped .hover}
 
@@ -347,12 +349,12 @@ Loop step 3: every drift event, request and residual manual step arrives in Serv
 
 **Federal requirements and evidence.**
 
-| Requirement | What this gate does | Evidence the ISSO keeps |
-|---|---|---|
-| SP 800-53 CM-3 Configuration Change Control | Every proposed change is a documented, owned record | Finding and request records with origin, owner, clock |
-| SP 800-53 RA-7 Risk Response (Low, Moderate, High) | Findings are responded to inside declared windows | Due dates by severity; overdue list |
-| SP 800-53 CA-7 Continuous Monitoring | Monitoring results become tracked work | The finding queue with origin records |
-| SP 800-53 AC-5 Separation of Duties | Requests pass an SoD check and an approver who isn't the requester | Approval history on each request |
+| Requirement | KSI | What this gate does | Evidence the ISSO keeps |
+|---|---|---|---|
+| SP 800-53 CM-3 Configuration Change Control | KSI-CMT-LMC | Every proposed change is a documented, owned record | Finding and request records with origin, owner, clock |
+| SP 800-53 RA-7 Risk Response (Low, Moderate, High) | None | Findings are responded to inside declared windows | Due dates by severity; overdue list |
+| SP 800-53 CA-7 Continuous Monitoring | KSI-MLA-EVC | Monitoring results become tracked work | The finding queue with origin records |
+| SP 800-53 AC-5 Separation of Duties | KSI-IAM-JIT | Requests pass an SoD check and an approver who isn't the requester | Approval history on each request |
 
 : Gate 4 requirements and evidence {.striped .hover}
 
@@ -401,14 +403,14 @@ Loop step 4: the ticket authorizes a machine. The fix runs through a connector u
 
 **Federal requirements and evidence.**
 
-| Requirement | What this gate does | Evidence the ISSO keeps |
-|---|---|---|
-| SP 800-53 CM-5 Access Restrictions for Change (Low, Moderate, High) | Changes run under scoped service identities, not personal admin accounts | Connector and spoke identities with their permissions |
-| SP 800-53 AC-3 Access Enforcement; AC-6 Least Privilege | Approved access is enforced by the connector; people activate just in time | SailPoint provisioning events; PIM activation records |
-| SP 800-53 CM-3 | Classes that need a change record get one | Change records linked from the request |
-| SP 800-53 AU-14 Session Audit (in no baseline; tailored in) | Declared-exception sessions are recorded, with counsel consulted | Session recordings attached to the ticket |
-| NIST SP 800-63B-4 | Resets and recovery follow the verification procedure | The verification rung on the ticket ([Book 15](../b15-day2-operations/03-intake-triage-and-routing.md#the-evidence-each-ticket-leaves)) |
-| SP 800-53 CA-5 Plan of Action and Milestones | Each declared exception has an end | The POA&M item |
+| Requirement | KSI | What this gate does | Evidence the ISSO keeps |
+|---|---|---|---|
+| SP 800-53 CM-5 Access Restrictions for Change (Low, Moderate, High) | KSI-CMT-RMV; KSI-CMT-RVP; KSI-IAM-JIT | Changes run under scoped service identities, not personal admin accounts | Connector and spoke identities with their permissions |
+| SP 800-53 AC-3 Access Enforcement; AC-6 Least Privilege | KSI-IAM-ELP; KSI-IAM-JIT | Approved access is enforced by the connector; people activate just in time | SailPoint provisioning events; PIM activation records |
+| SP 800-53 CM-3 | KSI-CMT-LMC | Classes that need a change record get one | Change records linked from the request |
+| SP 800-53 AU-14 Session Audit (in no baseline; tailored in) | None | Declared-exception sessions are recorded, with counsel consulted | Session recordings attached to the ticket |
+| NIST SP 800-63B-4 | None: not an SP 800-53 control | Resets and recovery follow the verification procedure | The verification rung on the ticket ([Book 15](../b15-day2-operations/03-intake-triage-and-routing.md#the-evidence-each-ticket-leaves)) |
+| SP 800-53 CA-5 Plan of Action and Milestones | None | Each declared exception has an end | The POA&M item |
 
 : Gate 5 requirements and evidence {.striped .hover}
 
@@ -450,12 +452,12 @@ Loop step 5, and gap 1. A finding, or a ticket SailPoint's Service Desk integrat
 
 **Federal requirements and evidence.**
 
-| Requirement | What this gate does | Evidence the ISSO keeps |
-|---|---|---|
-| SP 800-53 CM-3 (records of changes retained) | Each closure carries its proof | The evidence attachment and hash on each closed record |
-| SP 800-53 CM-4(2) Verification of Controls (Moderate) | The change is verified after it's made | The re-read result and time |
-| SP 800-53 CA-7 | Closure feeds monitoring | Closed and reopened counts per period |
-| SP 800-53 AU-12 Audit Record Generation (Low, Moderate, High) | The verifier's actions are attributable | The verifier account's audit trail |
+| Requirement | KSI | What this gate does | Evidence the ISSO keeps |
+|---|---|---|---|
+| SP 800-53 CM-3 (records of changes retained) | KSI-CMT-LMC | Each closure carries its proof | The evidence attachment and hash on each closed record |
+| SP 800-53 CM-4(2) Verification of Controls (Moderate) | KSI-CMT-LMC; KSI-CMT-VTD | The change is verified after it's made | The re-read result and time |
+| SP 800-53 CA-7 | KSI-MLA-EVC | Closure feeds monitoring | Closed and reopened counts per period |
+| SP 800-53 AU-12 Audit Record Generation (Low, Moderate, High) | KSI-MLA-LET | The verifier's actions are attributable | The verifier account's audit trail |
 
 : Gate 6 requirements and evidence {.striped .hover}
 
@@ -513,12 +515,12 @@ Once the loop runs, it runs on Book 13's tempo: P1 halts, P2 one hour, P3 24 hou
 
 **Federal requirements and evidence.**
 
-| Requirement | What this gate does | Evidence the ISSO keeps |
-|---|---|---|
-| SP 800-53 CA-7 Continuous Monitoring | The loop runs on a declared cadence | Scheduled run outputs; the five measures |
-| SP 800-53 RA-7 Risk Response | Windows are kept or escalated | Window adherence and the overdue list |
-| SP 800-53 CA-5 | Declared exceptions are tracked to closure | The exception register and POA&M items |
-| SP 800-53 AU-6 Audit Record Review (Low, Moderate, High) | Events and closures are reviewed | The monthly evidence package and its review |
+| Requirement | KSI | What this gate does | Evidence the ISSO keeps |
+|---|---|---|---|
+| SP 800-53 CA-7 Continuous Monitoring | KSI-MLA-EVC | The loop runs on a declared cadence | Scheduled run outputs; the five measures |
+| SP 800-53 RA-7 Risk Response | None | Windows are kept or escalated | Window adherence and the overdue list |
+| SP 800-53 CA-5 | None | Declared exceptions are tracked to closure | The exception register and POA&M items |
+| SP 800-53 AU-6 Audit Record Review (Low, Moderate, High) | KSI-MLA-RVL | Events and closures are reviewed | The monthly evidence package and its review |
 
 : Gate 7 requirements and evidence {.striped .hover}
 
@@ -667,3 +669,4 @@ From public documentation read on November 1, 2026, unless noted:
 [^ttm-chg]: ServiceNow, "Change types" (Zurich IT Service Management: standard changes pre-authorized, with no group, peer or CAB step; normal changes need two levels of approval; emergency changes go directly to CAB authorization; an unplanned change to a configuration item creates an unauthorized change request), <https://www.servicenow.com/docs/r/MlbQAgTiiiMOLOw9T36wJg/0mfA2AyAdGPOssbbVgOLLQ> (read November 1, 2026).
 [^ttm-appr]: SailPoint Developer, "Access Request Approvals," <https://developer.sailpoint.com/docs/api/access-request-approvals> (read October 24, 2026).
 [^ttm-hcm]: SailPoint, "Oracle HCM Cloud SaaS: Supported Features," <https://documentation.sailpoint.com/connectors/saas/oracle_hcm_cloud/help/saas_connectivity/oracle_hcm_cloud/supported_features.html> (read October 24, 2026).
+[^ttm-ksi]: FedRAMP, "Key Security Indicators," *FedRAMP Consolidated Rules for 2026*, indicator titles and "Related SP 800-53 Controls," <https://www.fedramp.gov/2026/reference/key-security-indicators/> (read November 2, 2026).

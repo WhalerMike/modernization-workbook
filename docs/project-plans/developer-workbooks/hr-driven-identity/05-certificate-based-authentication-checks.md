@@ -153,7 +153,7 @@ python python/cba_check.py check --cloud gcchigh --exports tests/fixtures/ch05/e
 # Step 5: Run the tests
 python -m pytest tests -q
 
-# Step 5: Run the tests
+# After the steps
 rm -rf out
 ```
 
@@ -374,12 +374,29 @@ Places Learn says nothing or differs, recorded so a later edit doesn't loosen th
 
 This chapter helps prove the guide's [Gate 5](../../../books/guides/hr-driven-identity-implementation.md#step-5-bind-credentials-to-hr-events); its requirements table is the source, and the [federal framework crosswalk](../../../reference/federal-framework-crosswalk.md) lists every federal source.
 
-| Requirement | What this code shows | What the ISSO keeps |
-|---|---|---|
-| NIST SP 800-53 IA-2(12), acceptance of PIV credentials, and IA-5(2), public key-based authentication (Moderate) | Every issuing CA trusted, with a CRL Entra can download in time, and revocation enforced | The `cba-read` export and the check's `findings.json` and `manifest.json`, dated; each CRL measurement |
-| CISA SCuBA MS.AAD.3.1v1 and MS.AAD.3.6v1, phishing-resistant MFA (BOD 25-01 required) | An enabled policy requires a phishing-resistant strength, and PIV certificates count as multifactor | The check's CB-09 and CB-10 rows, beside the ScubaGear report |
-| FIPS 201-3, termination of the card | A revoked card is refused, because its CA's CRL is reachable and enforced | Lab 2's refused sign-in, the revocation record and the CRL that published it |
-| NIST SP 800-63-4, authenticator assurance | The certificate counts at the strength the agency claims | The mode rules in the export |
+| Requirement | KSI | What this code shows | What the ISSO keeps |
+|---|---|---|---|
+| NIST SP 800-53 IA-2(12), acceptance of PIV credentials, and IA-5(2), public key-based authentication (Moderate) | None lists IA-2(12); KSI-IAM-APM, KSI-IAM-ELP, KSI-SVC-ASM (IA-5(2)) | Every issuing CA trusted, with a CRL Entra can download in time, and revocation enforced | The `cba-read` export and the check's `findings.json` and `manifest.json`, dated; each CRL measurement |
+| CISA SCuBA MS.AAD.3.1v1 and MS.AAD.3.6v1, phishing-resistant MFA (BOD 25-01 required) | KSI-IAM-APM, as [Book 04, Chapter 10](../../../books/b04-access/10-access-as-code-and-evidence.md) maps it | An enabled policy requires a phishing-resistant strength, and PIV certificates count as multifactor | The check's CB-09 and CB-10 rows, beside the ScubaGear report |
+| FIPS 201-3, termination of the card | None: not an SP 800-53 control | A revoked card is refused, because its CA's CRL is reachable and enforced | Lab 2's refused sign-in, the revocation record and the CRL that published it |
+| NIST SP 800-63-4, authenticator assurance | None: not an SP 800-53 control | The certificate counts at the strength the agency claims | The mode rules in the export |
+
+Each scripted step in the labs, and each file the code writes, with the evidence it leaves:
+
+| Lab step | What it runs or writes | Requirement | KSI | Evidence |
+|---|---|---|---|---|
+| Lab 1, step 1 | `graph_export.py --task cba-read --list` | AC-6, least privilege: GET calls only | KSI-IAM-ELP | The printed list, and `config/calls.json` as reviewed |
+| Lab 1, step 2 | `cba_check.py measure`, writing `crl-measurements.csv` | IA-5(2): revocation data Entra can download in time | KSI-IAM-APM, KSI-SVC-ASM | Each CRL's size, time and error, dated; this file has no manifest, so file it with the check that reads it |
+| Lab 1, steps 3 and 4 | `cba_check.py check` (CB-01 to CB-13) for GCC and for GCC High, writing `findings.json` | IA-5(2); SC-17 for the trusted CAs (CB-11, CB-12); MS.AAD.3.1v1 and MS.AAD.3.6v1 (CB-09, CB-10) | KSI-IAM-APM, KSI-SVC-ASM; KSI-SVC-ASM; KSI-IAM-APM | `out/ch05/check/findings.json`, with the cloud, tenant and date in `manifest.json` |
+| Lab 1, steps 3 and 4 | `manifest.json` | AU-9; SI-7 | KSI-MLA-OSM; KSI-SVC-VRI | A SHA-256 per file, written once |
+| Lab 1, step 5 | `python -m pytest tests -q` | CM-3(2) *(design guidance)* | KSI-CMT-VTD | `57 passed`, kept with the change |
+| Lab 1, clean-up | `rm -rf out` | None: fixture output isn't evidence | — | — |
+| Lab 2, step 2 | `curl` the PKI containers; `graph_export.py --task cba-read`, writing `pki-containers.json`, `pki-cas.json`, `x509-method.json`, `auth-strengths.json`, `ca-policies.json` and `export.json`; print the CAs | IA-5(2); SC-17; AC-6 for GET only | KSI-IAM-APM, KSI-SVC-ASM; KSI-SVC-ASM; KSI-IAM-ELP | `exports/cba/export.json` and the five call files, dated |
+| Lab 2, step 3 | Write `my-crl-urls.txt`; `measure`, writing `out/cba-test/crl-measurements.csv` | IA-5(2) | KSI-IAM-APM, KSI-SVC-ASM | The real CRLs' measurements, taken from outside the agency network |
+| Lab 2, step 4 | Write `my-cba-expected.json`; `check` into `out/cba-test/check` | IA-5(2); SC-17; MS.AAD.3.1v1 and MS.AAD.3.6v1 | KSI-IAM-APM, KSI-SVC-ASM; KSI-SVC-ASM; KSI-IAM-APM | `out/cba-test/check/findings.json` and its manifest |
+| Lab 2, step 6 | Remove the permissions and the reader app; `rm -rf` the lab files | AC-6: no reader permissions left after the test | KSI-IAM-ELP | The app's deletion in the directory audit log |
+
+KSIs are FedRAMP 20x indicators for cloud service providers: the agency authorizes its own system and lines this evidence up with what its providers report against them, and it doesn't report KSIs itself ([Book 00, Appendix B](../../../books/b00-orientation/appendix-b-engagement-archetype.md)). Each KSI shown lists the row's control among its related SP 800-53 controls on FedRAMP's page;[^hw05-ksi] which file supports which indicator is the program's mapping *(design guidance)*. Controls the guide's table doesn't name (AC-6, AU-9, CM-3(2), SC-17, SI-7) are in the Moderate baseline ([Book 13, Appendix A](../../../books/b13-governance/appendix-a-requirements-mapping.md); [Book 14, Appendix A](../../../books/b14-compliance/appendix-a-control-crosswalk.md)).
 
 ## Dangers
 
@@ -427,3 +444,4 @@ This chapter helps prove the guide's [Gate 5](../../../books/guides/hr-driven-id
 [^hw05-ca-policies]: Microsoft Learn, "List policies" (conditionalAccessRoot), <https://learn.microsoft.com/graph/api/conditionalaccessroot-list-policies?view=graph-rest-1.0> (read November 1, 2026; carried from the validation kit's VK-CA-01 and *Building Privileged Access*, Chapter 02).
 [^hw05-legacy]: Microsoft Learn, "Get certificateBasedAuthConfiguration" and "List certificateBasedAuthConfigurations," permissions, <https://learn.microsoft.com/graph/api/certificatebasedauthconfiguration-get?view=graph-rest-1.0> (read November 1, 2026).
 [^hw05-bod]: Cybersecurity and Infrastructure Security Agency, "BOD 25-01: Implementing Secure Practices for Cloud Services Required Configurations," MS.AAD.3.1v1 and MS.AAD.3.6v1, <https://www.cisa.gov/resources-tools/services/bod-25-01-implementing-secure-practices-cloud-services-required-configurations> (read November 1, 2026; carried from the HR-driven identity implementation guide).
+[^hw05-ksi]: FedRAMP, "Key Security Indicators," *FedRAMP Consolidated Rules for 2026*, indicator titles and "Related SP 800-53 Controls," including the mapping updates of October 13, 2026, <https://www.fedramp.gov/2026/reference/key-security-indicators/> (read November 2, 2026; the indicator IDs are carried from Book 13, Appendix A and Book 14, Chapter 03).

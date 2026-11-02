@@ -543,6 +543,32 @@ What the samples do, and what the module does, come from running them, not from 
 
 Two things Learn doesn't say yet, recorded so a later edit doesn't assume them, and one it now does. A policy's settings can be changed one at a time through the setting's own `PATCH`;[^c06-setting-update] the code still never updates, by design. Learn documents no Graph equivalent of the Migrate step, so Lab 2 compares the two by hand. And no Learn page states that the Group Policy analytics import works in GCC High and DoD, although the Graph pages list both clouds; confirm it in a GCC High test tenant first.
 
+## Federal requirements and evidence
+
+Moving Group Policy to Intune changes the baseline of every device, so the plan, the library and the sync record are configuration-management evidence. Each row names the file or command that proves it. Controls are from the Moderate baseline[^c06-moderate]; indicators are from FedRAMP's list[^c06-ksi]. Which output supports which control is the program's reading (design guidance).
+
+| What the output proves | Requirement it supports | KSI it aligns to | Who keeps it |
+|---|---|---|---|
+| Every in-scope GPO is imported and ready, or listed (Lab 1, step 1: VK-INT-07, five rows) | CM-2; CA-7 | KSI-MLA-EVC | The run's `Results/ValidationResults.json` |
+| Microsoft's import sample, run twice, creates a duplicate without reading the tenant (step 2: two POSTs, no GET) | SA-11; SR-3 | KSI-SCR-MIT; KSI-CMT-VTD | The repository: `snapshot.json` and `MicrosoftSamples.Tests.ps1` |
+| Each GPO setting has a disposition, and conflicts are shown (step 3: `Get-GpcMovePlan`) | CM-2; CM-6 | KSI-SVC-ACM | The plan saved with the pull request |
+| The library has one owner per setting and a decision record per setting (step 4: `Test-GpcLibrary`, GPC-02, GPC-06, GPC-08, GPC-09) | CM-3; CM-6: settings and deviations are documented | KSI-CMT-VTD | The library in Git; the decision records |
+| The sync shows what it would create, then writes only that, with the cloud, scopes, file hashes and created IDs (step 5: `out/sync-record.json`) | CM-3; AC-6: `Read.All` for the dry run, `ReadWrite.All` only with `-Apply` | KSI-CMT-LMC; KSI-CMT-RMV; KSI-IAM-ELP | The evidence store |
+| An unknown cloud name stops the run (step 5: `-Cloud usgov`, exit `1`) | CM-6 | KSI-CMT-VTD | The run log |
+| A library that differs from the tenant stops the release, and nothing is created (step 6: `Drift`, exit `2`) | CM-3; CA-7 | KSI-MLA-EVC; KSI-CMT-VTD | The run log; the pull request |
+| The module and the sample tests pass (step 7: 46 tests) | SA-11 | KSI-CMT-VTD | The repository's test results |
+| A test GPO is imported into Group Policy analytics (Lab 2, step 1) | CM-2 | KSI-CMT-LMC | The Intune audit log |
+| The gate runs live as a read-only operator (Lab 2, step 2: `out/vk`) | CA-7; AC-6 | KSI-MLA-EVC; KSI-IAM-ELP | The evidence store |
+| The live plan is saved, and every library setting is in it (Lab 2, step 3: `out/plan.csv`) | CM-2; CM-6 | KSI-SVC-ACM | The pull request |
+| The dry run asks for read only (Lab 2, step 4) | AC-6 | KSI-IAM-ELP | The Entra sign-in log |
+| The policies are created unassigned, then the dry run shows `NoChange` (Lab 2, step 5: `out/apply/sync-record.json`) | CM-3; CM-2 | KSI-CMT-RMV; KSI-CMT-LMC | The evidence store; the Intune audit log |
+| The synced policy matches what Migrate builds (Lab 2, step 6: `Compare-Object`) | CM-4(2); SA-11 | KSI-CMT-VTD | The test record; a difference is a finding |
+| A change made in the admin center is caught and named (Lab 2, step 7: exit `2`) | CA-7; CM-3 | KSI-MLA-EVC; KSI-CMT-LMC | The run log; the Intune audit log |
+| The created policies are deleted by the IDs the record kept (Lab 2, step 8) | CM-3 | KSI-CMT-LMC | The Intune audit log |
+| Intune and Microsoft Graph run on cloud services with FedRAMP Marketplace listings[^c06-fedramp] | SA-9 (External System Services); the agency confirms each service it uses is inside the listing's scope (design guidance) | None: the provider reports against the indicators for its own offering | The system security plan's list of external services |
+
+Key Security Indicators are FedRAMP 20x indicators for cloud service providers. The agency authorizes its own system: it lines this evidence up with what Microsoft report against the indicators, and doesn't report KSIs itself ([Book 00, Appendix B](../b00-orientation/appendix-b-engagement-archetype.md)). The control-by-control mapping is in Book 13's [Appendix A](../b13-governance/appendix-a-requirements-mapping.md) and Book 14's [Appendix A](../b14-compliance/appendix-a-control-crosswalk.md); the indicator pairings follow [Book 04, Chapter 10](../b04-access/10-access-as-code-and-evidence.md) and [Book 05, Chapter 10](../b05-devices/10-operating-and-evidencing-the-fleet.md).
+
 ## Dangers
 
 | Danger | What happens | The guard |
@@ -600,3 +626,6 @@ Two things Learn doesn't say yet, recorded so a later edit doesn't assume them, 
 [^c06-assign]: Microsoft Learn, "Assign policies in Microsoft Intune," section "Exclude groups from a policy assignment," <https://learn.microsoft.com/intune/device-configuration/assign-device-profile> (accessed Oct 30, 2026).
 [^c06-profiles]: Microsoft Learn, "Apply features and settings on your devices using device profiles in Microsoft Intune," section "Handle custom and imported device profile settings," <https://learn.microsoft.com/intune/device-configuration/overview> (accessed Oct 30, 2026).
 [^c06-pde]: Microsoft Learn, "Configure Personal Data Encryption," section "Configure Personal Data Encryption with Microsoft Intune" (its Graph example sets the error reporting, crash dump, live dump, automatic restart sign-in and hibernation settings), <https://learn.microsoft.com/windows/security/operating-system-security/data-protection/personal-data-encryption/configure> (accessed Oct 30, 2026).
+[^c06-moderate]: National Institute of Standards and Technology, SP 800-53B Moderate baseline, release 5.2.0 OSCAL profile, last modified October 22, 2026 (includes AC-6, CA-7, CM-2, CM-3, CM-4(2), CM-6, SA-9, SA-11 and SR-3), <https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_MODERATE-baseline_profile.json> (accessed Nov 2, 2026).
+[^c06-ksi]: FedRAMP, "Key Security Indicators," *FedRAMP Consolidated Rules for 2026* (indicators KSI-CMT-LMC, KSI-CMT-RMV, KSI-CMT-VTD, KSI-IAM-ELP, KSI-MLA-EVC, KSI-SCR-MIT and KSI-SVC-ACM; control mappings updated October 13, 2026), <https://www.fedramp.gov/2026/reference/key-security-indicators/> (accessed Nov 2, 2026).
+[^c06-fedramp]: FedRAMP Marketplace product data, <https://www.fedramp.gov/marketplace/products.json>, `last_change` 2026-11-01T05:02:56Z (accessed Nov 2, 2026): MSO365MT, Microsoft 365 Government Community Cloud & Supporting Services, FedRAMP Certified, Class C, Moderate; FR1824057433, Microsoft 365 Government Community Cloud-High, FedRAMP Certified, Class D, High; F1209051525, Azure Commercial Cloud, FedRAMP Certified, Class D, High; F1603087869, Azure Government (includes Dynamics 365), FedRAMP Certified, Class D, High.

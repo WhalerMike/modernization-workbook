@@ -146,7 +146,7 @@ def clean(out: str, cwd: Path, root: Path) -> str:
     if os.name == "nt":
         out = out.replace("\\", "/")
     # pytest, node and Pester print their own timings; keep the counts, drop the times.
-    out = re.sub(r" in \d+(?:\.\d+)?m?s\b", "", out)
+    out = re.sub(r" in \d+(?:\.\d+)?m?s\b(?: \(\d+:\d\d:\d\d\))?", "", out)    # pytest adds (h:mm:ss) past a minute
     out = re.sub(r"^(. duration_ms) [\d.]+$", r"\1 …", out, flags=re.M)
     out = re.sub(r" \(\d+(?:\.\d+)?ms\)$", "", out, flags=re.M)
     # Pester puts a file's timing on the file's line, or on a line of its own.

@@ -23,6 +23,15 @@ In this module you lint the policies before they reach the tenant, scan the tena
 
 **The federal requirement.** This gate meets NIST SP 800-53 AC-2 (authorize access on organization-defined attributes, and account review), AC-6 (least privilege), AC-5 (separation of duties), PS-5 (personnel transfer) and CISA SCuBA MS.AAD.7.5v1 (highly privileged roles only through a privileged access management system, required under BOD 25-01). The requirements and evidence are in the [Gate 4 requirements table](../../books/guides/hr-driven-identity-implementation.md#step-4-assign-access-from-attributes-and-review-what-a-move-leaves) (under **Federal requirements and evidence** in Step 4) and the workbook chapter's [Federal requirements and evidence](../../project-plans/developer-workbooks/hr-driven-identity/04-access-from-attributes-and-the-mover-review.md#federal-requirements-and-evidence).
 
+| Requirement | KSI | Evidence |
+|---|---|---|
+| AC-2 and AC-6 | KSI-IAM-JIT; KSI-IAM-ELP | The policy files and the lint's clean run; `memberof-scan` with zero rows |
+| SCuBA MS.AAD.7.5v1 | KSI-IAM-JIT, as Book 04, Chapter 10 maps PIM | AA-09's clean run |
+| PS-5, personnel transfer | KSI-IAM-ELP, KSI-IAM-JIT | `residual-review.csv`, the manager's decisions, and `summary.json` |
+| AC-5, separation of duties | KSI-IAM-JIT | The separation-of-duties settings in the package configuration |
+
+KSIs are FedRAMP 20x indicators for cloud service providers: the agency authorizes its own system and lines this evidence up with what its providers report against them, and it doesn't report KSIs itself ([Book 00, Appendix B](../../books/b00-orientation/appendix-b-engagement-archetype.md)). Each KSI lists the row's control among its related SP 800-53 controls on [FedRAMP's Key Security Indicators page](https://www.fedramp.gov/2026/reference/key-security-indicators/) (read November 2, 2026); which file supports which indicator is the program's mapping *(design guidance)*. The workbook chapter's table has a row for every lab step.
+
 ## Learning objectives (1 minute)
 
 After this module, you'll be able to:

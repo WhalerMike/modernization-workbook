@@ -47,3 +47,16 @@ Microsoft Learn pages opened on October 30, 2026 through the Microsoft Learn MCP
 | Book 04, Chapter 08, Step 0 | Why this comes first | — |
 | Book 04, Chapter 10 (pre-merge exclusion check) | PA-EA-08; differences | The pre-merge check reads the repository's files; PA-EA-08 reads the tenant. Chapter 03 (planned) carries the pre-merge check |
 | Book 04, Chapter 07 (CA090 report-only emergency policy) | Fixture policy `CA090-Emergency-accounts-Report-sign-ins` | — |
+
+## Federal requirements and evidence (added November 2, 2026)
+
+New section, 15 rows, one for each Lab 1 and Lab 2 scripted action and each output file the kit's code writes. No Lab 1 heading or command changed.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| F1 | AC-2, AC-2(2), AC-2(4), AC-6, AU-2, AU-6, AU-9, CM-3, CM-3(2), IA-2(1) and SI-4 are in the NIST SP 800-53B Moderate baseline | Federal requirements | verified November 2, 2026: each ID checked by script against the release 5.2.0 OSCAL Moderate profile, the source Book 04, Chapter 04 cites | `pa02-moderate` |
+| F2 | KSI IDs used: KSI-CMT-LMC, KSI-CMT-RMV, KSI-CMT-VTD, KSI-IAM-AAM, KSI-IAM-APM, KSI-IAM-ELP, KSI-IAM-JIT, KSI-IAM-SUS, KSI-MLA-LET, KSI-MLA-OSM and KSI-MLA-RVL; each row's indicator lists at least one of the row's controls among its "Related SP 800-53 Controls" | Federal requirements | verified November 2, 2026 on FedRAMP's Key Security Indicators page, checked row by row by script; every ID was already cited in Book 04, Chapter 10, Book 02, Chapter 10, Book 13, Appendix A or Book 14, Chapter 03, so none is new to the repository | `pa02-ksi` |
+| F3 | KSIs are FedRAMP 20x indicators for providers; the agency lines its evidence up with them and doesn't report them | Under the table | carried forward from Book 00, Appendix B | Book 00 |
+| F4 | MS.AAD.3.6v1, MS.AAD.7.3v1 and MS.AAD.7.4v1 are BOD 25-01 required configurations, with the policy text as the section states it | Federal requirements | verified November 2, 2026 on CISA's Required Configurations page | `pa02-bod` |
+| F5 | MS.AAD.7.4v1 lists emergency access accounts that need perpetual access as an exception; highly privileged roles include Global Administrator | Federal requirements | verified November 2, 2026 in ScubaGear's `aad.md` | `pa02-scuba` |
+| F6 | Which output supports which control, and who keeps it | Federal requirements | restated-as-design: the program's mapping, following Book 04, Chapters 02, 04, 08 and 10 | Book 04 |

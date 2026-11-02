@@ -196,7 +196,7 @@ $s.conditionalAccessEligibleNow.Count; $s.conditionalAccessEligibleAfter.Count; 
 # Step 8: Run the tests
 Invoke-Pester -Path tests
 
-# Step 8: Run the tests
+# After the steps
 Remove-Item -Recurse -Force out
 ```
 

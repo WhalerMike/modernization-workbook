@@ -260,12 +260,22 @@ unset SN_INSTANCE SN_CLIENT_ID SN_CLIENT_SECRET GRAPH_TENANT_ID GRAPH_CLIENT_ID 
 
 ## Federal requirements and evidence
 
-| What the output proves | Requirement it supports | Who keeps it |
-|---|---|---|
-| A finding closed only after a re-read showed the intended state, with the query, the time, a hash of the response and the checker | Book 13's clause 4, "a success response is not closure"; NIST SP 800-53 CM-3 (documented, verified changes) and CA-7 at Moderate[^ttm05-moderate] | `u_evidence`, `u_evidence_hash` and the attachment on each record; [Chapter 07](07-evidence-records.md) exports them |
-| No person can close a finding by setting its state; cancellation is a named exception with a note | AC-5 (separation of duties) at Moderate;[^ttm05-moderate] Book 13's declared-exception lane | The business rule and its properties; the work notes |
-| A read that predates the change doesn't count | CA-7: monitoring results that reflect the current state | The client's *pending* outcome and grace period |
-| An empty intended state never closes a record | CM-3: a verified change, not an asserted one | The guard and its test |
+| What the output proves | Requirement it supports | KSI | Who keeps it |
+|---|---|---|---|
+| A finding closed only after a re-read showed the intended state, with the query, the time, a hash of the response and the checker | Book 13's clause 4, "a success response is not closure"; NIST SP 800-53 CM-3 (documented, verified changes) and CA-7 at Moderate[^ttm05-moderate] | KSI-CMT-LMC; KSI-MLA-EVC | `u_evidence`, `u_evidence_hash` and the attachment on each record; [Chapter 07](07-evidence-records.md) exports them |
+| No person can close a finding by setting its state; cancellation is a named exception with a note | AC-5 (separation of duties) at Moderate;[^ttm05-moderate] Book 13's declared-exception lane | KSI-IAM-JIT | The business rule and its properties; the work notes |
+| A read that predates the change doesn't count | CA-7: monitoring results that reflect the current state | KSI-MLA-EVC | The client's *pending* outcome and grace period |
+| An empty intended state never closes a record | CM-3: a verified change, not an asserted one | KSI-CMT-VTD | The guard and its test |
+| Lab 1, step 1: the re-read decisions hold, online and offline, tested before a change merges | CM-3(2) (testing changes); SA-11 (developer testing), at Moderate[^ttm05-moderate] | KSI-CMT-VTD; KSI-SCR-MIT | The `pytest tests/python/test_reread_verification.py tests/python/test_reread_offline.py` run, in the pull request's checks |
+| Lab 1, step 2: each waiting finding is verified, left pending or skipped, and nothing is written | CM-4(2) (verification of controls) at Moderate;[^ttm05-moderate] CA-7 | KSI-CMT-VTD; KSI-MLA-EVC | The dry-run output of `reread_verification.py --records-json` |
+| Lab 1, step 3: after the grace period a stale read is a mismatch and the record would reopen | CM-4(2); CA-7 | KSI-CMT-VTD; KSI-MLA-EVC | `out/reread.json`: each record's outcome, differences and evidence hash. A live run's `--out-json` file is kept with the run |
+| Lab 1, step 4: a person's close is redirected; only the verifier with fresh evidence closes | AC-5; CM-3(2) | KSI-IAM-JIT; KSI-CMT-VTD | The `node --test --test-name-pattern` run, in the pull request's checks |
+| Lab 2, steps 1 and 2: a person's close lands in *Awaiting verification*, with a work note | AC-5; CM-3 | KSI-IAM-JIT; KSI-CMT-LMC | The test record's history and work note |
+| Lab 2, step 3: the user ServiceNow records for the verifier's OAuth client | AU-12 (audit record generation) at Moderate;[^ttm05-moderate] AC-5 | KSI-MLA-LET; KSI-IAM-JIT | The record's history, kept with the `x_example_idkit.verifier_user` property |
+| Lab 2, step 4: `reread_verification.py --apply` closes the record only after a Graph read shows the intended state | CM-3; CM-4(2); CA-7 | KSI-CMT-LMC; KSI-CMT-VTD; KSI-MLA-EVC | The record's `u_evidence`, `u_evidence_hash`, `u_verified_at` and close note, and the attachment `reread-evidence-<number>.json`; a mismatch reopens the record with a work note |
+| Lab 2, step 5: no test finding, attachment, rule, property or credential is left | None: lab clean-up | None | Nobody; the `unset` command clears the shell |
+
+The KSI column names the FedRAMP 20x Key Security Indicators whose related SP 800-53 controls include the row's control.[^ttm05-ksi] KSIs are indicators for cloud service providers: the agency authorizes its own system and lines its own evidence up with what its providers report against them; it doesn't report KSIs itself.
 
 ## Dangers
 
@@ -298,4 +308,5 @@ unset SN_INSTANCE SN_CLIENT_ID SN_CLIENT_SECRET GRAPH_TENANT_ID GRAPH_CLIENT_ID 
 [^ttm05-account]: SailPoint, Identity Security Cloud OpenAPI specification, v3, `getAccount`, <https://github.com/sailpoint-oss/api-specs/blob/main/idn/v3/paths/account.yaml> (read November 1, 2026).
 [^ttm05-search]: SailPoint, Identity Security Cloud OpenAPI specification, v3, `searchPost`, <https://github.com/sailpoint-oss/api-specs/blob/main/idn/v3/paths/search-post.yaml> (read November 1, 2026).
 [^ttm05-user-get]: Microsoft Learn, "Get a user," permissions and response, <https://learn.microsoft.com/graph/api/user-get?view=graph-rest-1.0> (read November 1, 2026).
-[^ttm05-moderate]: National Institute of Standards and Technology, SP 800-53B Moderate baseline, release 5.2.0 OSCAL profile (includes AC-5, CA-7 and CM-3), <https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_MODERATE-baseline_profile.json> (read November 1, 2026).
+[^ttm05-moderate]: National Institute of Standards and Technology, SP 800-53B Moderate baseline, release 5.2.0 OSCAL profile (includes AC-5, AU-12, CA-7, CM-3, CM-3(2), CM-4(2) and SA-11), <https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_MODERATE-baseline_profile.json> (read November 1, 2026).
+[^ttm05-ksi]: FedRAMP, "Key Security Indicators," *FedRAMP Consolidated Rules for 2026*, indicator titles and "Related SP 800-53 Controls," <https://www.fedramp.gov/2026/reference/key-security-indicators/> (read November 2, 2026).
