@@ -350,7 +350,7 @@ def test_rollback_refuses_unknown_kind_and_other_stage(tmp_path):
 
 
 def test_rollback_cli_plan_runs_nothing(tmp_path, capsys):
-    s, p = recorded(tmp_path, TEST, [("policy-assignment", "/subscriptions/x/providers/Microsoft.Authorization/policyAssignments/a", "", "")])
+    s, p = recorded(tmp_path, TEST, [("policy-assignment", "adm-mc-audit", "/subscriptions/x/resourceGroups/rg", "")])
     assert rb.main(["plan", "--settings", str(p), "--out", str(tmp_path / "out")]) == 0
     out = capsys.readouterr().out
     assert "nothing was run" in out and "Remove-AzPolicyAssignment" in out

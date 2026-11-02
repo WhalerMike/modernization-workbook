@@ -100,7 +100,7 @@ def k_intune_policy(e: dict, s: dict) -> list[Step]:
 
 
 def k_policy_assignment(e: dict, s: dict) -> list[Step]:
-    return [("cloud", f"Remove-AzPolicyAssignment -Id {_q(e['id'])}")]
+    return [("cloud", f"Remove-AzPolicyAssignment -Name {_q(e['id'])} -Scope {_q(e['name'])}")]
 
 
 def k_policy_definition(e: dict, s: dict) -> list[Step]:
@@ -140,7 +140,7 @@ KINDS: dict[str, tuple[str, Callable[[dict, dict], list[Step]]]] = {
     "gpo-link-created": ("a GPO link this stage created (id: GPO name, name: OU)", k_gpo_link_created),
     "gpo-link-disabled": ("a GPO link this stage disabled at cut-over (id: GPO name, name: OU)", k_gpo_link_disabled),
     "intune-policy": ("a settings catalog policy created or assigned (id: policy ID, name: policy name)", k_intune_policy),
-    "policy-assignment": ("an Azure Policy assignment (id: its resource ID)", k_policy_assignment),
+    "policy-assignment": ("an Azure Policy assignment (id: its name, name: its scope)", k_policy_assignment),
     "policy-definition": ("an Azure Policy definition (id: its name)", k_policy_definition),
     "role-assignment": ("an Azure role assignment (id: its resource ID)", k_role_assignment),
     "arc-server": ("a server connected to Azure Arc (id: its name)", k_arc_server),
