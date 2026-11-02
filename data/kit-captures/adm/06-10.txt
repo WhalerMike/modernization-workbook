@@ -3,12 +3,11 @@ Starting discovery in 2 files.
 Discovery found 46 tests.
 Running tests.
 [+] tests/GroupPolicyAsCode.Tests.ps1
- 16.01s (12.26s|3.02s)
 [+] tests/MicrosoftSamples.Tests.ps1
- 4.74s (4.26s|282ms)
 Tests completed
 Tests Passed: 46,
 Failed: 0,
-Skipped: 0
+Skipped: 0,
+Inconclusive: 0,
 
 NotRun: 0
