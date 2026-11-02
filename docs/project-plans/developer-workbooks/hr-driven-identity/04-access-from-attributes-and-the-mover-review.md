@@ -467,11 +467,32 @@ Places where Learn's pages differ or stop, recorded so a later edit doesn't loos
 
 This chapter supports the guide's Gate 4. The [Gate 4 requirements table](../../../books/guides/hr-driven-identity-implementation.md#step-4-assign-access-from-attributes-and-review-what-a-move-leaves) maps it to NIST SP 800-53 AC-2 (authorize access on organization-defined attributes, and account review), AC-6 (least privilege), AC-5 (separation of duties), PS-5 (personnel transfer) and CISA SCuBA MS.AAD.7.5v1 (highly privileged roles only through a privileged access management system, required under BOD 25-01); the [federal framework crosswalk](../../../reference/federal-framework-crosswalk.md) lists each source. What this code gives the ISSO:
 
-- the reviewed policy files, the lint's clean run and the hash of each body sent, as the assignment policy exports with their rules (AC-2, AC-6);
-- the `memberof-scan` output with zero rows, which the guide's Validate step asks for;
-- AA-09's clean run, showing no privileged role reached by rule (MS.AAD.7.5v1);
-- each mover's residual sheet, the manager's decisions and the transfer-to-review interval (PS-5);
-- the separation-of-duties settings themselves stay in the package configuration ([Book 04, Chapter 09](../../../books/b04-access/09-access-governance.md#separation-of-duties)); this code doesn't read them.
+| Requirement | KSI | What this code gives | What the ISSO keeps |
+|---|---|---|---|
+| AC-2 and AC-6, assignment on organization-defined attributes and least privilege, Moderate | KSI-IAM-JIT (AC-2); KSI-IAM-ELP, KSI-IAM-JIT (AC-6) | The reviewed policy files, the lint's clean run and the hash of each body sent | The assignment policy exports with their rules |
+| AC-2, the `memberOf` quarantine | KSI-IAM-JIT | The `memberof-scan` output | Zero rows, as the guide's Validate step asks |
+| CISA SCuBA MS.AAD.7.5v1 (BOD 25-01 required) | KSI-IAM-JIT, as [Book 04, Chapter 10](../../../books/b04-access/10-access-as-code-and-evidence.md) maps PIM | AA-09's clean run: no privileged role reached by rule | The lint output beside the ScubaGear report |
+| PS-5, personnel transfer, and AC-2 account review | KSI-IAM-ELP, KSI-IAM-JIT (PS-5) | Each mover's residual sheet and the transfer-to-review interval | `residual-review.csv`, the manager's decisions, and `summary.json` |
+| AC-5, separation of duties | KSI-IAM-JIT | None: this code doesn't read them | The separation-of-duties settings in the package configuration ([Book 04, Chapter 09](../../../books/b04-access/09-access-governance.md#separation-of-duties)) |
+
+Each scripted step in the labs, and each file the code writes, with the evidence it leaves:
+
+| Lab step | What it runs or writes | Requirement | KSI | Evidence |
+|---|---|---|---|---|
+| Lab 1, step 1 | `graph_export.py --task access-read --list` | AC-6, least privilege: GET calls only | KSI-IAM-ELP | The printed list, and `config/calls.json` as reviewed |
+| Lab 1, steps 2 and 3 | `access_assignment.py lint` (AA-01 to AA-09) on the program's policies and on the broken ones | AC-2; AC-6; MS.AAD.7.5v1 (AA-09); CM-3(2), validated before merge | KSI-IAM-JIT; KSI-IAM-ELP; KSI-CMT-VTD | The clean run on `config/access`, filed with the change |
+| Lab 1, step 4 | `access_assignment.py memberof-scan` | AC-2 | KSI-IAM-JIT | `using memberOf: 0` on the tenant's export |
+| Lab 1, step 5 | `access_assignment.py residual`, writing `residual.json`, `residual-review.csv`, `summary.json` and `findings.json` | PS-5; AC-2 account review | KSI-IAM-ELP, KSI-IAM-JIT | `out/ch04/residual/residual-review.csv` for the manager; `summary.json` with the transfer-to-review interval |
+| Lab 1, step 5 | `manifest.json` | AU-9; SI-7 | KSI-MLA-OSM; KSI-SVC-VRI | A SHA-256 per file, written once |
+| Lab 1, step 6 | `python -m pytest tests -q` | CM-3(2) *(design guidance)* | KSI-CMT-VTD | `57 passed`, kept with the change |
+| Lab 1, clean-up | `rm -rf out/ch04` | None: fixture output isn't evidence | — | — |
+| Lab 2, step 1 | `graph_export.py --task access-read`, writing `assignment-policies.json`, `mover-assignments.json`, `mover-memberships.json` and `export.json`; `memberof-scan` | AC-2; AC-6 for GET only | KSI-IAM-JIT; KSI-IAM-ELP | `exports/access/export.json` and the scan's zero rows |
+| Lab 2, step 2 | Copy the policy; `lint`; write `my-access-body.json`; `New-MgEntitlementManagementAssignmentPolicy` | AC-2; AC-6; CM-3 for the change | KSI-IAM-JIT; KSI-IAM-ELP; KSI-CMT-LMC | The lint output, the body file, and the directory audit record of the create |
+| Lab 2, step 3 | `Invoke-ValidationKit.ps1 -CheckId VK-DG-05`, before and after the move | PS-5 | KSI-IAM-ELP, KSI-IAM-JIT | The kit's run folders under `out/ch04-vk-before` and `out/ch04-vk-after` |
+| Lab 2, step 4 | Export again; `residual` into `out/ch04/residual-test`; record the review's completion; `residual` into `out/ch04/residual-test-2` | PS-5; AC-2 account review | KSI-IAM-ELP, KSI-IAM-JIT | Both folders' `residual-review.csv` and `summary.json`, with their manifests |
+| Lab 2, step 5 | `Remove-MgEntitlementManagementAssignmentPolicy`; `rm -rf` the lab files | CM-3: the change backed out | KSI-CMT-LMC | The directory audit record of the removal |
+
+KSIs are FedRAMP 20x indicators for cloud service providers: the agency authorizes its own system and lines this evidence up with what its providers report against them, and it doesn't report KSIs itself ([Book 00, Appendix B](../../../books/b00-orientation/appendix-b-engagement-archetype.md)). Each KSI shown lists the row's control among its related SP 800-53 controls on FedRAMP's page;[^hw04-ksi] which file supports which indicator is the program's mapping *(design guidance)*. Controls the guide's table doesn't name (AU-9, CM-3, CM-3(2), SI-7) are in the Moderate baseline ([Book 13, Appendix A](../../../books/b13-governance/appendix-a-requirements-mapping.md); [Book 14, Appendix A](../../../books/b14-compliance/appendix-a-control-crosswalk.md)).
 
 ## Dangers
 
@@ -516,3 +537,4 @@ This chapter supports the guide's Gate 4. The [Gate 4 requirements table](../../
 [^hw04-bod]: Cybersecurity and Infrastructure Security Agency, "BOD 25-01: Implementing Secure Practices for Cloud Services Required Configurations," MS.AAD.7.5v1, <https://www.cisa.gov/resources-tools/services/bod-25-01-implementing-secure-practices-cloud-services-required-configurations> (read November 1, 2026; carried from the HR-driven identity implementation guide's verification log).
 [^hw04-cmdlets]: Microsoft Learn, "New-MgEntitlementManagementAssignmentPolicy," <https://learn.microsoft.com/powershell/module/microsoft.graph.identity.governance/new-mgentitlementmanagementassignmentpolicy?view=graph-powershell-1.0> (read November 1, 2026).
 [^hw04-remove]: Microsoft Learn, "Remove-MgEntitlementManagementAssignmentPolicy," <https://learn.microsoft.com/powershell/module/microsoft.graph.identity.governance/remove-mgentitlementmanagementassignmentpolicy?view=graph-powershell-1.0> (read November 1, 2026).
+[^hw04-ksi]: FedRAMP, "Key Security Indicators," *FedRAMP Consolidated Rules for 2026*, indicator titles and "Related SP 800-53 Controls," including the mapping updates of October 13, 2026, <https://www.fedramp.gov/2026/reference/key-security-indicators/> (read November 2, 2026; the indicator IDs are carried from Book 13, Appendix A and Book 14, Chapter 03).

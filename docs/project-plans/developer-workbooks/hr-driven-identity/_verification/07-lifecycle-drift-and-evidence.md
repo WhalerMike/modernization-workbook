@@ -39,3 +39,16 @@ Pages relied on: Book 03, Chapter 11 (drift classes, the measured lifecycle, the
 | Book 03, Chapter 11, Account Discovery (orphans past the directory) | Not carried | Orphans in target applications are outside this run |
 | Book 19, Chapter 09, the workflow and sign-in | Lab 2, step 4 | Reused, not repeated |
 | Privileged Access, Chapter 08 and Non-Person Identity, Chapter 10 | Pattern for `hr_evidence.py` | Their modules are unchanged |
+
+## KSI column (November 2, 2026)
+
+FedRAMP's Key Security Indicators page (<https://www.fedramp.gov/2026/reference/key-security-indicators/>) was read through WebFetch on November 2, 2026, for each indicator's "Related SP 800-53 Controls." Every KSI ID in this chapter's Federal requirements tables was already cited in the repo (Book 02, Chapter 10; Book 04, Chapter 10; Book 13, Chapter 04 and Appendix A; Book 14, Chapter 03); none is new. The framing (KSIs are provider-side; the agency lines its evidence up with them and doesn't report them) is carried from Book 00, Appendix B.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| K1 | CA-7 to KSI-MLA-EVC; AC-2, AC-6, AU-9, SI-7, CM-3(2) pairs | Both tables | carried forward | Book 13, Appendix A |
+| K2 | AU-6 is related to KSI-MLA-RVL only | Both tables | verified (new pair) | FedRAMP KSI page |
+| K3 | AU-11 is related to KSI-MLA-OSM | Requirement table | verified (new pair) | same |
+| K4 | No indicator lists SI-12 (only SI-12 (03), under KSI-SVC-RUD, which is about removing data) | Requirement table | verified | same |
+| K5 | PS-4 and PS-5 are related to KSI-IAM-ELP and KSI-IAM-JIT; PS-4 also to KSI-IAM-SUS | Both tables | verified (new pair) | same |
+| K6 | BOD 25-01 continuous reporting has no indicator | Requirement table | verified: KSIs list only SP 800-53 controls | same |

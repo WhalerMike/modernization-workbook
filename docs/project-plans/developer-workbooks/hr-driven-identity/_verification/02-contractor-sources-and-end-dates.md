@@ -39,3 +39,16 @@ Microsoft Learn pages opened on November 1, 2026 through the Microsoft Learn MCP
 | Guide, pending proof of the contractor PIV path | Not carried | The card path is Chapter 05's and the evaluation's |
 | Plan decision D-I3, task I5.2 | In this chapter | The source decision itself is the governance body's |
 | Book 19, Chapter 01 and `examples/hcm-entra` | The code; Lab 1 step 4; Lab 2 step 2 | Not rebuilt |
+
+## KSI column (November 2, 2026)
+
+FedRAMP's Key Security Indicators page (<https://www.fedramp.gov/2026/reference/key-security-indicators/>) was read through WebFetch on November 2, 2026, for each indicator's "Related SP 800-53 Controls." Every KSI ID in this chapter's Federal requirements tables was already cited in the repo (Book 02, Chapter 10; Book 04, Chapter 10; Book 13, Chapter 04 and Appendix A; Book 14, Chapter 03); none is new. The framing (KSIs are provider-side; the agency lines its evidence up with them and doesn't report them) is carried from Book 00, Appendix B.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| K1 | AC-2, AC-6, AU-9, SI-7, CM-3, CM-3(2) pairs; SA-9 to KSI-SCR-MIT and KSI-SCR-MON | Both tables | carried forward | Book 13, Appendix A |
+| K2 | PS-7 is related to KSI-SCR-MON only | Both tables | verified (new pair) | FedRAMP KSI page |
+| K3 | IA-4(4) is related to KSI-IAM-AAM, KSI-IAM-ELP and KSI-IAM-JIT | Both tables | verified (new pair) | same |
+| K4 | AC-2(1) is related to KSI-IAM-JIT and KSI-IAM-SUS; the table shows KSI-IAM-JIT | Lab table | verified (new pair) | same |
+| K5 | The HR platform runs on Oracle Cloud Infrastructure; the agency relies on the platform's FedRAMP authorization | SA-9 row | carried forward | The guide, Where the parts run; HR 2.0 governance explainer |
+| K6 | OMB M-22-09, M-19-17 and the Privacy Act have no indicator | Requirement table | verified: KSIs list only SP 800-53 controls | FedRAMP KSI page |

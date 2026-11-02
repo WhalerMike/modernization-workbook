@@ -22,6 +22,7 @@ Method:
 | 6 | Each Lab 1 command's expected output | Every module's Lab 1 | carried and re-run | Workbook Chapters 01 to 07, Lab 1; re-run November 1, 2026 |
 | 7 | A tool refuses to write into an output folder that already holds a `manifest.json` | Module 7, Lab 1 step 1; Module 6, Lab 1 step 5 | observed in the re-run; carried | Chapter 01's output-folder row (`test_output_is_written_once_with_a_hash_per_file`); re-run November 1, 2026 |
 | 8 | The deck series for the guide is planned | Path | carried | Workbook index, pieces table |
+| 9 | Each module's requirement table: the KSI for each control and the evidence file | Every module's introduction | carried; KSI pairs checked on FedRAMP's Key Security Indicators page, read through WebFetch on November 2, 2026 (no new KSI ID) | Workbook Chapters 01 to 07, Federal requirements and evidence, and their verification logs; Book 00, Appendix B for the provider-side framing |
 
 ## Found during the re-run
 

@@ -23,6 +23,16 @@ In this module you write one read-only run of the lifecycle drift classes and th
 
 **The federal requirement.** This gate meets NIST SP 800-53 CA-7 (continuous monitoring: system-level metrics), AU-6 and AU-11 with SI-12 (review and retention of audit records), and BOD 25-01 continuous reporting. The requirements and evidence are in the [Gate 7 requirements table](../../books/guides/hr-driven-identity-implementation.md#step-7-keep-the-record-true-and-file-the-evidence) (under **Federal requirements and evidence** in Step 7) and the workbook chapter's [Federal requirements and evidence](../../project-plans/developer-workbooks/hr-driven-identity/07-lifecycle-drift-and-evidence.md#federal-requirements-and-evidence).
 
+| Requirement | KSI | Evidence |
+|---|---|---|
+| CA-7 | KSI-MLA-EVC | `metrics.json` per run; each period's `PERIOD-MANIFEST.json` and `period-summary.md` |
+| AU-6 | KSI-MLA-RVL | LD-04 findings, with their closure at the source |
+| AU-9 and SI-7, packages written once and chained | KSI-MLA-OSM; KSI-SVC-VRI | `EVIDENCE-MANIFEST.json`, `SHA256SUMS` and `hr_evidence.py verify` |
+| AU-11 and SI-12 | KSI-MLA-OSM (AU-11); none lists SI-12 | The storage container's retention and immutability settings |
+| BOD 25-01 continuous reporting | None: not an SP 800-53 control | The ScubaGear results beside the period |
+
+KSIs are FedRAMP 20x indicators for cloud service providers: the agency authorizes its own system and lines this evidence up with what its providers report against them, and it doesn't report KSIs itself ([Book 00, Appendix B](../../books/b00-orientation/appendix-b-engagement-archetype.md)). Each KSI lists the row's control among its related SP 800-53 controls on [FedRAMP's Key Security Indicators page](https://www.fedramp.gov/2026/reference/key-security-indicators/) (read November 2, 2026); which file supports which indicator is the program's mapping *(design guidance)*. The workbook chapter's table has a row for every lab step.
+
 ## Learning objectives (1 minute)
 
 After this module, you'll be able to:

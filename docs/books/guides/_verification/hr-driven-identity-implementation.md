@@ -49,6 +49,24 @@ New guide, first pass of 2026-11-01. The guide is a gated operator layer over Bo
 | Sole-source proof; acceptance rows | Steps 6, 7 | Book 03 Appendix C |
 | Validation kit check IDs and what each reports | Every Validate step | `examples/validation-kit/README.md` and its catalog |
 
+## KSI column (November 2, 2026)
+
+FedRAMP's Key Security Indicators page (<https://www.fedramp.gov/2026/reference/key-security-indicators/>) was read through WebFetch on November 2, 2026, for each indicator's "Related SP 800-53 Controls." Every KSI ID in the gate tables was already cited in the repo (Book 02, Chapter 10; Book 04, Chapter 10; Book 13, Chapter 04 and Appendix A; Book 14, Chapter 03); none is new. The provider-side framing is carried from Book 00, Appendix B.
+
+| Claim (short) | Where in the guide | Verdict | Source |
+|---|---|---|---|
+| AC-2, AC-5, AC-6, CA-7, IA-5(2), SA-9 pairs | Gates 1, 2, 4, 5, 7 | carried forward | Book 13, Appendix A |
+| IA-4 to KSI-IAM-ELP, KSI-IAM-JIT; IA-4(4) to KSI-IAM-AAM, KSI-IAM-ELP, KSI-IAM-JIT | Gates 1, 2 | verified (new pairs) | FedRAMP KSI page |
+| PS-7 to KSI-SCR-MON only | Gates 2, 6 | verified (new pair) | same |
+| AC-2(1) to KSI-IAM-JIT and KSI-IAM-SUS (KSI-IAM-JIT shown); IA-5 to KSI-IAM-APM | Gate 3 | verified (new pairs) | same |
+| PS-5 to KSI-IAM-ELP, KSI-IAM-JIT | Gate 4 | verified (new pair) | same |
+| No indicator lists IA-2(12) | Gate 5 | verified | same |
+| PS-4 to KSI-IAM-ELP, KSI-IAM-JIT, KSI-IAM-SUS; AC-2(3) to KSI-IAM-AAM, KSI-IAM-JIT, KSI-IAM-SUS; AC-2(13) to KSI-IAM-AAM, KSI-IAM-SUS | Gate 6 | verified (new pairs) | same |
+| AU-6 to KSI-MLA-RVL; AU-11 to KSI-MLA-OSM; no indicator lists SI-12 | Gates 1, 7 | verified (new pairs) | same |
+| M-22-09's phishing-resistant MFA and SCuBA MS.AAD.3.1v1 and MS.AAD.3.6v1 line up with KSI-IAM-APM; MS.AAD.7.5v1 with KSI-IAM-JIT | Gates 3, 4, 5 | carried forward (program mapping) | Book 02, Chapter 10; Book 04, Chapter 10 |
+| OMB memos, the Privacy Act, FIPS 201-3, SP 800-63-4 and BOD 25-01 have no indicator | Gates 1 to 7 | verified: KSIs list only SP 800-53 controls | FedRAMP KSI page |
+| The HR platform runs on Oracle Cloud Infrastructure; the agency relies on its FedRAMP authorization (SA-9) | Gate 2 | carried forward | Where the parts run; HR 2.0 governance explainer |
+
 ## Discrepancies
 
 - **D1.** Microsoft Learn gives two Lifecycle Workflows ceilings: 50 workflows on the licensing page, 100 on the service limits page (both read 2026-11-01). Book 03 Ch 08 and the validation kit use 100; Book 04 Ch 09 uses 50. The guide budgets to 50 and lists the conflict under What couldn't be verified.

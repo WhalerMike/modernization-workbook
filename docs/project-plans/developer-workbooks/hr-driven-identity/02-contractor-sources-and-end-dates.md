@@ -450,12 +450,34 @@ Places Learn's pages differ or say nothing:
 
 This chapter helps prove the guide's [Gate 2](../../../books/guides/hr-driven-identity-implementation.md#step-2-bring-in-employees-and-contractors-from-their-sources); its requirements table is the source, and the [federal framework crosswalk](../../../reference/federal-framework-crosswalk.md) lists every federal source.
 
-| Requirement | What this code gives | What the ISSO keeps |
-|---|---|---|
-| NIST SP 800-53 AC-2 and PS-7, Moderate | The decisions with each earliest end and its reason; the read-only reconciliation, run before the contractor leaver ships and again after, with zero CR-01 | Both reconciliation output folders with their manifests; end-date-to-block intervals from Chapter 06 |
-| IA-4(4) | Worker type `C` on every record, mapped to `CTR` by the middleware | The extract and the middleware's provenance manifest |
-| OMB M-22-09 and M-19-17 | The register as one named source per fact | The authority-per-fact table, signed by the governance body (not produced by code) |
-| Privacy Act basis for each contractor record flow | — | The privacy office's determination for the register and the card system |
+| Requirement | KSI | What this code gives | What the ISSO keeps |
+|---|---|---|---|
+| NIST SP 800-53 AC-2 and PS-7, Moderate | KSI-IAM-JIT (AC-2); KSI-SCR-MON (PS-7) | The decisions with each earliest end and its reason; the read-only reconciliation, run before the contractor leaver ships and again after, with zero CR-01 | Both reconciliation output folders with their manifests; end-date-to-block intervals from Chapter 06 |
+| IA-4(4) | KSI-IAM-AAM, KSI-IAM-ELP, KSI-IAM-JIT | Worker type `C` on every record, mapped to `CTR` by the middleware | The extract and the middleware's provenance manifest |
+| OMB M-22-09 and M-19-17 | None: not SP 800-53 controls | The register as one named source per fact | The authority-per-fact table, signed by the governance body (not produced by code) |
+| Privacy Act basis for each contractor record flow | None | — | The privacy office's determination for the register and the card system |
+| SA-9, external system services: FedRAMP use of the HR platform's cloud service, which runs on Oracle Cloud Infrastructure | KSI-SCR-MIT, KSI-SCR-MON (reported by the provider) | — | The FedRAMP authorization the agency relies on for the HR platform, as the guide's Gate 2 table says |
+
+Each scripted step in the labs, and each file the code writes, with the evidence it leaves:
+
+| Lab step | What it runs or writes | Requirement | KSI | Evidence |
+|---|---|---|---|---|
+| Lab 1, step 1 | `graph_export.py --task contractor-reconcile --list` | AC-6, least privilege: GET calls only | KSI-IAM-ELP | The printed list, and `config/calls.json` as reviewed |
+| Lab 1, step 2 | `contractor_source.py extract`, writing `contractors-extract.csv` | PS-7; IA-4(4) for worker type `C` | KSI-SCR-MON; KSI-IAM-AAM | `out/ch02/extract/contractors-extract.csv`, hashed in the folder's `manifest.json` |
+| Lab 1, steps 2 and 3 | `decisions.json` | AC-2 and PS-7: each earliest end and its reason | KSI-IAM-JIT; KSI-SCR-MON | Each `PersonKey` with its `Action`, `EarliestEnd` and `Reason`, as step 3 prints them |
+| Lab 1, step 2 | `findings.json` (CS-01 to CS-04) | AC-2 | KSI-IAM-JIT | The quarantined records and their owners |
+| Lab 1, steps 2, 5 and 6 | `manifest.json` in each output folder | AU-9; SI-7 | KSI-MLA-OSM; KSI-SVC-VRI | A SHA-256 per file, written once |
+| Lab 1, step 4 | `hcm_to_scim.py`, writing `bulk-request-001.json`, `validation-report.json`, `quarantine.json` and `provenance.json` | IA-4(4): `C` mapped to `CTR` | KSI-IAM-AAM, KSI-IAM-ELP, KSI-IAM-JIT | `out/ch02/scim/provenance.json` and `validation-report.json` |
+| Lab 1, step 5 | `contractor_source.py reconcile`, writing `decisions.json` and `findings.json` (CR-01 to CR-05) | AC-2 account review; PS-7 | KSI-IAM-JIT; KSI-SCR-MON | `out/ch02/reconcile/findings.json`, with zero CR-01 after the leaver ships |
+| Lab 1, step 6 | `contractor_source.py review`, writing `assignment-policy-review.json` | AC-2 account review: the sponsor recertifies, and no response removes access | KSI-IAM-JIT | `out/ch02/review/assignment-policy-review.json`, matched against the policy in the tenant |
+| Lab 1, step 7 | `python -m pytest tests -q` | CM-3(2) *(design guidance)* | KSI-CMT-VTD | `57 passed`, kept with the change |
+| Lab 1, clean-up | `rm -rf out` | None: fixture output isn't evidence | — | — |
+| Lab 2, step 2 | `extract` from your files; set the endpoint; `hcm_to_scim.py --apply`, writing `apply-results.json` | AC-2(1), automated account management; PS-7 | KSI-IAM-JIT; KSI-SCR-MON | `out/ch02-test-scim/apply-results.json`: each batch's status and provisioning log link |
+| Lab 2, step 3 | `graph_export.py --task contractor-reconcile`, writing `contractor-users.json` and `export.json`; `reconcile` into `out/ch02-test` | AC-2 account review; PS-7; AC-6 for GET only | KSI-IAM-JIT; KSI-SCR-MON; KSI-IAM-ELP | `out/ch02-test/findings.json` and its `manifest.json`; `exports/ch02/export.json` |
+| Lab 2, step 4 | `review`; read the policy into `policy-before.json`; write `policy-new.json`; `Set-MgEntitlementManagementAssignmentPolicy`; read back into `policy-portal.json` | AC-2 account review; CM-3 for the change | KSI-IAM-JIT; KSI-CMT-LMC | `policy-before.json`, `policy-new.json`, the reviewers read back, and the directory audit record of the update |
+| Lab 2, step 5 | Restore `policy-before.json`; `rm -rf` the lab files | CM-3: the change backed out | KSI-CMT-LMC | The directory audit record of the restore |
+
+KSIs are FedRAMP 20x indicators for cloud service providers: the agency authorizes its own system and lines this evidence up with what its providers report against them, and it doesn't report KSIs itself ([Book 00, Appendix B](../../../books/b00-orientation/appendix-b-engagement-archetype.md)). Each KSI shown lists the row's control among its related SP 800-53 controls on FedRAMP's page;[^hw02-ksi] which file supports which indicator is the program's mapping *(design guidance)*. Controls the guide's table doesn't name (AC-2(1), AC-6, AU-9, CM-3, CM-3(2), SA-9, SI-7) are in the Moderate baseline ([Book 13, Appendix A](../../../books/b13-governance/appendix-a-requirements-mapping.md); [Book 14, Appendix A](../../../books/b14-compliance/appendix-a-control-crosswalk.md)).
 
 ## Dangers
 
@@ -490,3 +512,4 @@ This chapter helps prove the guide's [Gate 2](../../../books/guides/hr-driven-id
 [^hw02-ar]: Microsoft Learn, "Create an access review of an access package in entitlement management," <https://learn.microsoft.com/entra/id-governance/entitlement-management-access-reviews-create> (read November 1, 2026; carried from the HR-driven identity implementation guide's verification log).
 [^hw02-mgr]: Microsoft Learn, "requestorManager resource type," <https://learn.microsoft.com/graph/api/resources/requestormanager?view=graph-rest-1.0> (read November 1, 2026).
 [^hw02-set]: Microsoft Learn, "Set-MgEntitlementManagementAssignmentPolicy," permissions and example, <https://learn.microsoft.com/powershell/module/microsoft.graph.identity.governance/set-mgentitlementmanagementassignmentpolicy?view=graph-powershell-1.0> (read November 1, 2026).
+[^hw02-ksi]: FedRAMP, "Key Security Indicators," *FedRAMP Consolidated Rules for 2026*, indicator titles and "Related SP 800-53 Controls," including the mapping updates of October 13, 2026, <https://www.fedramp.gov/2026/reference/key-security-indicators/> (read November 2, 2026; the indicator IDs are carried from Book 13, Appendix A and Book 14, Chapter 03).
