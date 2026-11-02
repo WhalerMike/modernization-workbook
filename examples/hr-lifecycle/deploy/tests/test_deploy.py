@@ -169,7 +169,7 @@ def test_production_preflight_needs_clean_test_evidence(tmp_path):
     assert _rules(rows) == []
     tampered = tmp_path / "tampered"
     shutil.copytree(ev, tampered)
-    (tampered / "findings.json").write_text("[]\n", encoding="utf-8")
+    (tampered / "findings.json").write_text('[{"Rule": "tampered"}]\n', encoding="utf-8")   # differs on every OS
     rows = _run_pf(tmp_path, FX / "preflight", "settings.production.json", evidence=tampered)
     assert _rules(rows) == ["PF-06"]
 
