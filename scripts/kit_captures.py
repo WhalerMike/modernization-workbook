@@ -194,7 +194,9 @@ foreach ($__b in (Get-Content -Raw -LiteralPath $args[0] | ConvertFrom-Json)) {
     "$([char]0x1e)SRC " + ($__st.Extent.Text -replace "`r?`n", [string][char]0x1f)
     $__shown++
     $global:LASTEXITCODE = 0
-    try { . ([scriptblock]::Create($__st.Extent.Text)) *>&1 | Out-String -Width 200 -Stream }
+    # Tables at full width: where PowerShell would wrap a column differs between machines, and the
+    # terminal images wrap long lines themselves.
+    try { . ([scriptblock]::Create($__st.Extent.Text)) *>&1 | Out-String -Width 1000 -Stream }
     # An error is one line, "Name: message", as a wide terminal shows it; otherwise PowerShell
     # wraps it to the console width, which differs between machines.
     catch {

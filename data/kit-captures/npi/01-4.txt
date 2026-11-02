@@ -2,10 +2,8 @@ PS> Get-Content out/inventory/findings.json -Raw | ConvertFrom-Json | Where-Obje
 Object                            Issue
 ------                            -----
 svc-hrsync (Traditional)          HIGH risk: password never expires; password not changed in 2800 days. Candidate: gMSA, or a dMSA on a Windows Server 2025 domain (Kerberos service)
-svc-sqlprod (Traditional)         HIGH risk: password never expires; password not changed in 1968 days. Candidate: Data Platform plan (SPN MSSQLSvc/sql01.corp.contoso.example:1433): gMSA, or a dMSA
-                                  on a Windows Server 2025 domain (Kerberos service)
-svc-backup (Traditional)          HIGH risk: member of Backup Operators. Candidate: Managed identity if the workload runs in Azure; otherwise an app registration with a federated credential or
-                                  certificate
+svc-sqlprod (Traditional)         HIGH risk: password never expires; password not changed in 1968 days. Candidate: Data Platform plan (SPN MSSQLSvc/sql01.corp.contoso.example:1433): gMSA, or a dMSA on a Windows Server 2025 domain (Kerberos service)
+svc-backup (Traditional)          HIGH risk: member of Backup Operators. Candidate: Managed identity if the workload runs in Azure; otherwise an app registration with a federated credential or certificate
 svc-oldftp (Traditional)          HIGH risk: password never expires; password not changed in 3215 days. Candidate: Verify use first (stale lead); retirement candidate if unused
 jdoe (Traditional)                HIGH risk: password never expires. Candidate: Managed identity if the workload runs in Azure; otherwise an app registration with a federated credential or certificate
 svc-webfront (Traditional)        HIGH risk: trusted for unconstrained delegation. Candidate: gMSA, or a dMSA on a Windows Server 2025 domain (Kerberos service)
