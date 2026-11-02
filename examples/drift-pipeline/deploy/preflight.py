@@ -26,6 +26,7 @@ from typing import Any, Callable
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 import adm_deploy as ad  # noqa: E402
+import evidence as ev  # noqa: E402
 
 EXIT_OK, EXIT_ERROR, EXIT_FINDINGS = 0, 1, 2
 # Files each kit must have for the runbook's commands to work, relative to examples/.
@@ -138,7 +139,8 @@ def check_kits(s: dict[str, Any], report: Report) -> None:
                if names else "no integration in lifecycle-extensions/config/integrations.json")
 
 
-def check_environment(s: dict[str, Any], report: Report, other: Path | None, smoke: Path | None) -> None:
+def check_environment(s: dict[str, Any], report: Report, other: Path | None, smoke: Path | None,
+                      evidence_check: Path | None = None) -> None:
     if other is not None:
         o = json.loads(Path(other).read_text(encoding="utf-8"))
         same = [k for k in ("tenant_id", "subscription_id", "identities.deploy.client_id")
@@ -165,6 +167,15 @@ def check_environment(s: dict[str, Any], report: Report, other: Path | None, smo
             problems.append(f"the test smoke report is {rep.get('environment')}/{rep.get('result')}, not test/pass")
         if rep.get("fixture"):
             problems.append("the test smoke report ran in fixture mode; promotion needs a live test run")
+    if evidence_check is None:
+        problems.append("pass --test-evidence-check with the test stage's evidence-check.json")
+    else:
+        chk = json.loads(Path(evidence_check).read_text(encoding="utf-8"))
+        if ad.sha256_file(evidence_check) != ad.get(s, "promotion.test_evidence_check_sha256"):
+            problems.append("the test evidence check's SHA-256 isn't the one in promotion.test_evidence_check_sha256")
+        if chk.get("environment") != "test" or chk.get("result") != "pass":
+            problems.append(f"the test evidence check is {chk.get('environment')}/{chk.get('result')}: "
+                            f"{chk.get('missing')} requirement row(s) without passing evidence")
     report.add("FAIL" if problems else "PASS", "PF-10", "; ".join(problems) if problems else
                f"go/no-go: test smoke report {expected[:12]}... passed; approvals {', '.join(sorted(roles))}")
 
@@ -208,7 +219,8 @@ def run_live(s: dict[str, Any], report: Report, runner: Runner | None, live: boo
 
 
 def preflight(settings_path: Path, other: Path | None = None, smoke: Path | None = None,
-              live: bool = False, runner: Runner | None = None) -> tuple[Report, dict[str, Any] | None]:
+              live: bool = False, runner: Runner | None = None,
+              evidence_check: Path | None = None) -> tuple[Report, dict[str, Any] | None]:
     report = Report()
     s = check_settings(settings_path, report)
     if s is None:
@@ -216,7 +228,7 @@ def preflight(settings_path: Path, other: Path | None = None, smoke: Path | None
     check_cloud(s, report)
     check_certificates(s, report)
     check_kits(s, report)
-    check_environment(s, report, other, smoke)
+    check_environment(s, report, other, smoke, evidence_check)
     if not report.failed:
         run_live(s, report, runner, live)
     else:
@@ -229,11 +241,13 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--settings", required=True, type=Path)
     ap.add_argument("--other", type=Path, help="the other stage's settings file, to prove they don't share a tenant")
     ap.add_argument("--test-smoke-report", type=Path, help="production only: the test stage's smoke-report.json")
+    ap.add_argument("--test-evidence-check", type=Path, help="production only: the test stage's evidence-check.json")
     ap.add_argument("--live", action="store_true", help="run the read-only probes (Azure CLI, modules, files)")
     ap.add_argument("--out", type=Path, help="write preflight.json here")
     args = ap.parse_args(argv)
     try:
-        report, s = preflight(args.settings, args.other, args.test_smoke_report, args.live)
+        report, s = preflight(args.settings, args.other, args.test_smoke_report, args.live,
+                              evidence_check=args.test_evidence_check)
     except (OSError, json.JSONDecodeError, KeyError) as exc:
         print(f"error: {exc}", file=sys.stderr)
         return EXIT_ERROR
@@ -243,12 +257,29 @@ def main(argv: list[str] | None = None) -> int:
     warns = sum(r["result"] == "WARN" for r in report.rows)
     mode = "live" if args.live else "dry run (nothing signed in, nothing called)"
     print(f"preflight: {fails} failed, {warns} warning(s); {mode}")
+    files = []
     if args.out:
         args.out.mkdir(parents=True, exist_ok=True)
         doc = {"schema": "adm-preflight/1", "settings": str(args.settings), "settings_sha256": ad.sha256_file(args.settings),
                "environment": (s or {}).get("environment"), "live": args.live, "rows": report.rows,
                "result": "fail" if fails else "pass"}
-        (args.out / "preflight.json").write_text(json.dumps(doc, indent=2) + "\n", encoding="utf-8", newline="\n")
+        target = args.out / "preflight.json"
+        target.write_text(json.dumps(doc, indent=2) + "\n", encoding="utf-8", newline="\n")
+        files.append(target)
+    try:
+        loaded = ad.load_settings(args.settings)
+    except ad.SettingsError:
+        print("no evidence record: the settings file doesn't load")
+    else:
+        command = "preflight.py " + " ".join(argv if argv is not None else sys.argv[1:])
+        rec = ev.add(loaded, args.settings, "preflight", command, "fail" if fails else "pass", files,
+                     {"live": args.live, "failed": fails, "warnings": warns})
+        print(f"evidence {rec.name}: preflight {'fail' if fails else 'pass'}")
+        pf10 = [r for r in report.rows if r["check"] == "PF-10"]
+        if loaded["environment"] == "production" and pf10 and pf10[-1]["result"] == "PASS":
+            cited = [p for p in (args.test_smoke_report, args.test_evidence_check) if p]
+            rec = ev.add(loaded, args.settings, "promotion", command, "pass", cited, {"approvals": ad.get(loaded, "promotion.approvals")})
+            print(f"evidence {rec.name}: promotion pass")
     return EXIT_FINDINGS if fails else EXIT_OK
 
 

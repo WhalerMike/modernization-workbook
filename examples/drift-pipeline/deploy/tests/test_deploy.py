@@ -14,6 +14,7 @@ KIT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(KIT / "deploy"))
 
 import adm_deploy as ad  # noqa: E402
+import evidence as ev  # noqa: E402
 import preflight as pf  # noqa: E402
 import rollback as rb  # noqa: E402
 import smoke_test as sm  # noqa: E402
@@ -211,17 +212,35 @@ def passing_test_report(tmp_path: Path) -> Path:
     return p
 
 
+def passing_evidence_check(tmp_path: Path) -> Path:
+    t = write_settings(tmp_path, settings(), "t.json")
+    s = ad.load_settings(t)
+    proof = tmp_path / "proof.txt"
+    proof.write_text("evidence", encoding="utf-8")
+    for step in {r["step"] for r in ev.rows_for("test")}:
+        ev.add(s, t, step, f"step {step}", "pass", [proof])
+    chk = ev.check(s, t)
+    assert chk["result"] == "pass", chk
+    p = tmp_path / "evidence-check.json"
+    p.write_text(json.dumps(chk, indent=2) + "\n", encoding="utf-8")
+    return p
+
+
 def test_preflight_production_promotes_only_on_matching_live_pass(tmp_path):
     report_file = passing_test_report(tmp_path)
+    check_file = passing_evidence_check(tmp_path)
     data = settings(PROD)
     data["promotion"]["test_smoke_report_sha256"] = ad.sha256_file(report_file)
+    data["promotion"]["test_evidence_check_sha256"] = ad.sha256_file(check_file)
     prod = write_settings(tmp_path, data, "p.json")
-    report, _ = pf.preflight(prod, smoke=report_file)
+    report, _ = pf.preflight(prod, smoke=report_file, evidence_check=check_file)
     assert results(report)["PF-10"] == {"PASS"}
+    report, _ = pf.preflight(prod, smoke=report_file)
+    assert results(report)["PF-10"] == {"FAIL"}  # no evidence check
     data["promotion"]["approvals"] = data["promotion"]["approvals"][:1]
-    report, _ = pf.preflight(write_settings(tmp_path, data, "p2.json"), smoke=report_file)
+    report, _ = pf.preflight(write_settings(tmp_path, data, "p2.json"), smoke=report_file, evidence_check=check_file)
     assert results(report)["PF-10"] == {"FAIL"}
-    report, _ = pf.preflight(prod, smoke=None)
+    report, _ = pf.preflight(prod, smoke=None, evidence_check=check_file)
     assert results(report)["PF-10"] == {"FAIL"}
 
 
@@ -366,3 +385,108 @@ def test_smoke_record_check_uses_rollback_kinds(tmp_path):
     rb.record_path(s, p).write_text(json.dumps(rec), encoding="utf-8")
     rep = sm.smoke(p, record=rb.record_path(s, p))
     assert ("SM-13", "FAIL") in {(r["check"], r["result"]) for r in rep["rows"]}
+
+
+# ---------------------------------------------------------------- evidence records
+
+def test_requirements_use_only_ksis_the_workbook_cites():
+    cited = {"KSI-IAM-AAM", "KSI-IAM-APM", "KSI-IAM-ELP", "KSI-IAM-JIT", "KSI-IAM-SNU", "KSI-IAM-SUS", "KSI-CMT-LMC",
+             "KSI-CMT-RMV", "KSI-CMT-RVP", "KSI-CMT-VTD", "KSI-MLA-EVC", "KSI-MLA-LET", "KSI-MLA-OSM", "KSI-MLA-RVL",
+             "KSI-SVC-ACM", "KSI-SVC-VRI", "KSI-PIY-GIV", "KSI-PIY-RIS", "KSI-CED-RAT", "KSI-INR-RIR"}
+    rows = ev.requirements()
+    assert {k for r in rows for k in r["ksis"]} <= cited
+    assert all(r["controls"] and r["ksis"] and r["evidence"] for r in rows)
+    assert len({r["id"] for r in rows}) == len(rows)
+
+
+def test_evidence_record_carries_controls_ksis_and_hashes(tmp_path):
+    p = write_settings(tmp_path, settings())
+    s = ad.load_settings(p)
+    f = tmp_path / "vk.json"
+    f.write_text("{}", encoding="utf-8")
+    rec_path = ev.add(s, p, "baseline", "Invoke-ValidationKit.ps1", "pass", [f], when="2026-11-02T10:00:00Z")
+    rec = json.loads(rec_path.read_text(encoding="utf-8"))
+    assert rec_path.name == "001-baseline.json"
+    assert rec["controls"] == ["AC-3", "CA-7", "CM-2"] and "KSI-MLA-EVC" in rec["ksis"] and rec["mandates"] == ["BOD 25-01"]
+    assert rec["files"][0]["sha256"] == ad.sha256_file(f)
+    sums = (rec_path.parent / "SHA256SUMS").read_text(encoding="utf-8")
+    assert f"{ad.sha256_file(rec_path)}  001-baseline.json" in sums
+
+
+def test_evidence_refuses_unknown_step_result_or_file(tmp_path):
+    p = write_settings(tmp_path, settings())
+    s = ad.load_settings(p)
+    with pytest.raises(ev.EvidenceError, match="unknown step"):
+        ev.add(s, p, "dns", "x", "pass")
+    with pytest.raises(ev.EvidenceError, match="result"):
+        ev.add(s, p, "hr", "x", "ok")
+    with pytest.raises(ev.EvidenceError, match="no such file"):
+        ev.add(s, p, "hr", "x", "pass", [tmp_path / "missing.json"])
+
+
+def test_evidence_check_finds_missing_failed_changed_and_fixture(tmp_path):
+    p = write_settings(tmp_path, settings())
+    s = ad.load_settings(p)
+    chk = ev.check(s, p)
+    assert chk["result"] == "fail" and chk["missing"] == len(ev.rows_for("test"))
+    f = tmp_path / "out.json"
+    f.write_text("1", encoding="utf-8")
+    for step in {r["step"] for r in ev.rows_for("test")}:
+        ev.add(s, p, step, step, "pass", [f])
+    assert ev.check(s, p)["result"] == "pass"
+    ev.add(s, p, "hr", "smoke", "fail")
+    ev.add(s, p, "hr", "rollback add", "recorded")  # a later 'recorded' doesn't hide the failure
+    assert {r["id"] for r in ev.check(s, p)["rows"] if r["status"] != "evidenced"} == {"R-HR-1", "R-HR-2"}
+    ev.add(s, p, "hr", "smoke again", "pass")
+    assert ev.check(s, p)["result"] == "pass"
+    f.write_text("2", encoding="utf-8")
+    assert ev.check(s, p)["result"] == "fail"  # a cited file changed
+    f.write_text("1", encoding="utf-8")
+    ev.add(s, p, "smoke", "fixture", "pass", details={"fixture": True})
+    assert any("fixture" in x for r in ev.check(s, p)["rows"] for x in r["problems"])
+
+
+def test_evidence_check_detects_an_edited_record(tmp_path):
+    p = write_settings(tmp_path, settings())
+    s = ad.load_settings(p)
+    rec = ev.add(s, p, "preflight", "preflight.py", "pass")
+    rec.write_text(rec.read_text(encoding="utf-8").replace('"pass"', '"fail"'), encoding="utf-8")
+    assert ev.check(s, p)["sums_problems"] == ["001-preflight.json doesn't match its SHA-256"]
+
+
+def test_production_rows_add_promotion_waves_and_monitoring():
+    test_steps = {r["step"] for r in ev.rows_for("test")}
+    prod_steps = {r["step"] for r in ev.rows_for("production")}
+    assert {"promotion", "waves", "monitor"} <= prod_steps and not {"promotion", "waves", "monitor"} & test_steps
+    assert "R-DR-2" in {r["id"] for r in ev.rows_for("production")}
+
+
+def test_scripts_write_their_own_evidence(tmp_path, capsys):
+    p = write_settings(tmp_path, settings())
+    s = ad.load_settings(p)
+    assert pf.main(["--settings", str(p), "--out", str(tmp_path / "pf")]) == 0
+    rb.main(["add", "--settings", str(p), "--kind", "dynamic-group", "--id", "g1"])
+    rb.main(["plan", "--settings", str(p)])
+    sm.main(["--settings", str(p), "--fixture", "--kit-run", str(FIXTURE_RUN), "--out", str(tmp_path / "sm")])
+    names = [r["_file"] for r in ev.records(ev.evidence_dir(s, p))]
+    assert names == ["001-preflight.json", "002-rules.json", "003-rollback.json", "004-smoke.json"]
+    assert "evidence 004-smoke.json" in capsys.readouterr().out
+
+
+def test_table_prints_the_chapter_rows():
+    t = ev.table("production", "drift")
+    assert t.splitlines()[0] == "| Requirement | What this step does | KSI it aligns to | Evidence the ISSO keeps |"
+    assert "KSI-MLA-OSM" in t and "KSI-MLA-OSM" not in ev.table("test", "drift")
+
+
+def test_recorded_changes_alone_dont_evidence_a_step(tmp_path):
+    p = write_settings(tmp_path, settings())
+    s = ad.load_settings(p)
+    ev.add(s, p, "rules", "rollback.py add", "recorded")
+    row = next(r for r in ev.check(s, p)["rows"] if r["id"] == "R-DG-1")
+    assert row["status"] == "missing" and "no passing record" in row["problems"][0]
+    f = tmp_path / "dr.json"
+    f.write_text("{}", encoding="utf-8")
+    rec = json.loads(ev.add(s, p, "rules", "evaluate", "pass", [f]).read_text(encoding="utf-8"))
+    assert rec["files"][0]["path"] == "../../../dr.json"
+    assert next(r for r in ev.check(s, p)["rows"] if r["id"] == "R-DG-1")["status"] == "evidenced"

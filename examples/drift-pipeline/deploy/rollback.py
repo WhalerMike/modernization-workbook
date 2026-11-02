@@ -35,6 +35,7 @@ from typing import Any, Callable
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 import adm_deploy as ad  # noqa: E402
+import evidence as ev  # noqa: E402
 
 RECORD_SCHEMA = "adm-deploy-record/1"
 EXIT_OK, EXIT_ERROR = 0, 1
@@ -150,6 +151,13 @@ KINDS: dict[str, tuple[str, Callable[[dict, dict], list[Step]]]] = {
 }
 
 
+# The runbook step whose evidence a recorded change belongs to (deploy/requirements.json); --step overrides.
+KIND_STEP = {"provisioning-job": "hr", "hr-batch": "hr", "dynamic-group": "rules", "lcw-workflow": "lcw",
+             "gpo-link-created": "gpo", "gpo-link-disabled": "gpo", "intune-policy": "gpo",
+             "policy-assignment": "mc", "policy-definition": "mc", "role-assignment": "mc", "arc-server": "arc",
+             "federated-credential": "drift", "retention-policy": "drift"}
+
+
 def record_path(s: dict, settings_path: Path) -> Path:
     return Path(ad.derived(s, settings_path)["ADM_EVIDENCE_DIR"]) / "deploy-record.json"
 
@@ -250,6 +258,7 @@ def main(argv: list[str] | None = None) -> int:
     a.add_argument("--id", required=True)
     a.add_argument("--name", default="")
     a.add_argument("--note", default="")
+    a.add_argument("--step", help="the runbook step this change belongs to (default from the kind)")
     p = sub.add_parser("plan", help="write the rollback scripts; runs nothing")
     p.add_argument("--settings", required=True, type=Path)
     p.add_argument("--out", type=Path, help="default: the stage's evidence folder")
@@ -263,12 +272,17 @@ def main(argv: list[str] | None = None) -> int:
         s = ad.load_settings(args.settings)
         if args.cmd == "add":
             path = add(s, args.settings, args.kind, args.id, args.name, args.note)
-            print(f"recorded {args.kind} {args.id} in {_rel(path)}")
+            step = args.step or KIND_STEP[args.kind]
+            rec = ev.add(s, args.settings, step, f"rollback.py add --kind {args.kind} --id {args.id}", "recorded",
+                         details={"kind": args.kind, "id": args.id, "name": args.name, "note": args.note})
+            print(f"recorded {args.kind} {args.id} in {_rel(path)}; evidence {rec.name}")
             return EXIT_OK
         rec_path = record_path(s, args.settings)
         steps = plan(s, load_record(rec_path))
         files = write_plan(s, steps, args.out or rec_path.parent)
-    except (ad.SettingsError, RecordError, OSError, json.JSONDecodeError) as exc:
+        rec = ev.add(s, args.settings, "rollback", "rollback.py plan", "recorded", list(files.values()) + [rec_path],
+                     {"steps": len(steps)})
+    except (ad.SettingsError, RecordError, ev.EvidenceError, OSError, json.JSONDecodeError) as exc:
         print(f"refused: {exc}", file=sys.stderr)
         return EXIT_ERROR
     for st in steps:
@@ -277,6 +291,7 @@ def main(argv: list[str] | None = None) -> int:
     print(f"rollback plan: {len(steps)} step(s), newest first: " + ", ".join(f"{v} {k}" for k, v in counts.items() if v))
     for key, path in files.items():
         print(f"wrote {_rel(path)}")
+    print(f"evidence {rec.name}: rollback plan recorded")
     print("nothing was run: review the scripts, then run them in a signed-in session")
     return EXIT_OK
 

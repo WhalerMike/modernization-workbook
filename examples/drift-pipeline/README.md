@@ -23,6 +23,8 @@ deploy/adm_deploy.py          the deployment runbook's settings file: load, refu
 deploy/preflight.py           pre-flight checks before a stage; read-only live probes with --live
 deploy/smoke_test.py          go or no-go after a stage, from the files the kits wrote
 deploy/rollback.py            record each change a stage makes; write its rollback, newest first
+deploy/evidence.py            an evidence record per step (controls, KSI IDs, file hashes), SHA256SUMS, and the check that every requirement row has one
+deploy/requirements.json      the runbook's requirement rows: SP 800-53 controls, mandates and the KSI IDs the workbook maps to them
 deploy/environment.example.json  the settings template (placeholders only, no secrets)
 deploy/tests/test_deploy.py   pytest, the deploy scripts against fixtures and a fake runner (its own suite: python -m pytest deploy/tests -q)
 deploy/tests/fixtures/        fictional test and production settings for contoso.example
@@ -76,8 +78,13 @@ python -m pytest tests -q
 | `python deploy/rollback.py add --settings <file> --kind <kind> --id <id> [--name <name>] [--note <text>]` | Appends one change to the stage's `deploy-record.json` | 0, 1 |
 | `python deploy/rollback.py plan --settings <file> [--out <dir>]` | Writes `rollback-cloud.ps1`, `rollback-ad.ps1` and `rollback-manual.md`, newest change first, and runs nothing. Production re-enables and pauses; the test stage removes what it created | 0, 1 |
 | `python deploy/rollback.py kinds` | Lists the kinds of change the rollback knows | 0 |
+| `python deploy/evidence.py add --settings <file> --step <step> --command <text> --result pass\|fail\|recorded [--file <path> ...]` | Writes `evidence/NNN-<step>.json` in the stage's evidence folder: time, stage, change record, command, result, each cited file's SHA-256, and the controls, mandates and KSI IDs of the step's rows in `requirements.json`; refreshes `evidence/SHA256SUMS`. `preflight.py`, `smoke_test.py` (`--step`) and `rollback.py` write their own | 0, 1 |
+| `python deploy/evidence.py check --settings <file> [--out <dir>]` | For every requirement row of the stage: a passing record whose cited files still match, none from fixture mode, and `SHA256SUMS` intact. Writes `evidence-check.json`, which production's pre-flight requires (`--test-evidence-check`) | 0, 2 missing, 1 |
+| `python deploy/evidence.py table --stage test\|production --step <step>` | Prints a step's requirement table in Markdown | 0 |
 
-Test them with `python -m pytest deploy/tests -q` (37 tests, kept apart from the 142 above so the chapters that run `tests` keep their count). Nobody has run these scripts against a live tenant: the live probes and the rollback scripts are tested with a fake runner and read back, not executed.
+The KSI IDs are FedRAMP 20x indicators for cloud service providers. The agency lines its evidence up with what its providers report against them; it doesn't report KSIs itself.
+
+Test them with `python -m pytest deploy/tests -q` (46 tests, kept apart from the 142 above so the chapters that run `tests` keep their count). Nobody has run these scripts against a live tenant: the live probes and the rollback scripts are tested with a fake runner and read back, not executed.
 
 ## HR-driven identity evidence
 

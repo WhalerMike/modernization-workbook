@@ -81,7 +81,7 @@
       "VK-DG-03"
     ]
   },
-  "_production_only": "production.json also fills 'waves' (one {id, target_ou, intune_group_id, onboarding_wave} per wave) and 'promotion' ({test_smoke_report_sha256, approvals: [{role, reference}]}); test.json leaves both empty.",
+  "_production_only": "production.json also fills 'waves' (one {id, target_ou, intune_group_id, onboarding_wave} per wave) and 'promotion' ({test_smoke_report_sha256, test_evidence_check_sha256, approvals: [{role, reference}]}); test.json leaves both empty.",
   "waves": [],
   "promotion": {}
 }

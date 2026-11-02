@@ -34,6 +34,7 @@ from typing import Any
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 import adm_deploy as ad  # noqa: E402
+import evidence as ev  # noqa: E402
 import rollback as rb  # noqa: E402
 
 EXIT_OK, EXIT_ERROR, EXIT_NOGO = 0, 1, 2
@@ -145,6 +146,7 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--deploy-record", type=Path)
     ap.add_argument("--fixture", action="store_true", help="accept the kits' fixture runs; the report can't promote")
     ap.add_argument("--out", required=True, type=Path)
+    ap.add_argument("--step", default="smoke", help="the runbook step this smoke test evidences (default smoke)")
     args = ap.parse_args(argv)
     try:
         rep = smoke(args.settings, args.kit_run, args.hcm_provenance, args.dynamic_rules, args.mc_provenance,
@@ -157,6 +159,13 @@ def main(argv: list[str] | None = None) -> int:
     args.out.mkdir(parents=True, exist_ok=True)
     out = args.out / "smoke-report.json"
     out.write_text(json.dumps(rep, indent=2) + "\n", encoding="utf-8", newline="\n")
+    try:
+        rec = ev.add(ad.load_settings(args.settings), args.settings, args.step, "smoke_test.py " + " ".join(argv or sys.argv[1:]),
+                     rep["result"], [out], {"fixture": rep["fixture"], "failed": rep["failed"]})
+        print(f"evidence {rec.name}: {args.step} {rep['result']}, controls {', '.join(json.loads(rec.read_text(encoding='utf-8'))['controls'])}")
+    except ev.EvidenceError as exc:
+        print(f"error: {exc}", file=sys.stderr)
+        return EXIT_ERROR
     verdict = "GO" if rep["result"] == "pass" else "NO-GO"
     print(f"smoke test: {verdict} ({rep['failed']} failed) for {rep['environment']}/{rep['change_record']}"
           f"{', fixture mode' if rep['fixture'] else ''}; report sha256 {ad.sha256_file(out)}")
