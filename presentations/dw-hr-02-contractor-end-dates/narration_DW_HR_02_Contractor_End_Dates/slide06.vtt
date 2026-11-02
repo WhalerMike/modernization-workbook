@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.787
+The heart of the chapter
+is the earliest end.
+
+2
+00:00:02.787 --> 00:00:08.050
+For each register row, the extract computes
+every end condition that applies and
+
+3
+00:00:08.050 --> 00:00:12.134
+takes the first: the contract end
+or an earlier completion date,
+
+4
+00:00:12.134 --> 00:00:16.140
+suitability withdrawn, a card
+terminated, revoked or expired,
+
+5
+00:00:16.140 --> 00:00:21.088
+a sponsor gone past the grace period, or
+a sponsor recertification that's due.
+
+6
+00:00:21.088 --> 00:00:24.361
+The thirty-day grace period
+and the hundred-and-eighty-day
+
+7
+00:00:24.361 --> 00:00:26.749
+cycle are design guidance the agency sets.
+
+8
+00:00:26.749 --> 00:00:30.868
+A record past its end goes out
+inactive, and every record carries
+
+9
+00:00:30.868 --> 00:00:34.730
+its end as the termination date,
+so the leaver fires that day.

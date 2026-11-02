@@ -1,0 +1,615 @@
+{
+ "1": [
+  [
+   0.05,
+   3.25,
+   "Welcome back to Building H R-Driven Identity."
+  ],
+  [
+   3.3,
+   3.725,
+   "This is Chapter 6: separation timing from the logs."
+  ],
+  [
+   7.025,
+   2.675,
+   "Saying the leaver workflow ran is a claim."
+  ],
+  [
+   9.7,
+   7.562,
+   "Saying the account was blocked fifteen minutes after the effective time, and the card revoked eleven hours after, is evidence."
+  ],
+  [
+   17.262,
+   5.338,
+   "This chapter computes that evidence for every leaver, from Microsoft's records alone."
+  ],
+  [
+   22.6,
+   7.75,
+   "We'll see what Learn gives you, the two intervals, the nine rules, the read and its permissions, two labs and the dangers."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.587,
+   "Why does this gate need code?"
+  ],
+  [
+   1.637,
+   6.05,
+   "The guide's Gate 6 configures the leaver in Book 3's order and asks for the timing to be proved."
+  ],
+  [
+   7.688,
+   2.3,
+   "But no Microsoft report computes it."
+  ],
+  [
+   9.988,
+   3.075,
+   "Lifecycle Workflows records that a run completed."
+  ],
+  [
+   13.062,
+   2.913,
+   "The audit log records when the account was disabled."
+  ],
+  [
+   15.975,
+   4.5,
+   "The card system and Intune record the rest, each in its own place."
+  ],
+  [
+   20.475,
+   11.2,
+   "So this chapter computes the intervals: each leaver's time to block and time to revocation, the period's percentiles against the thresholds, and the separations that need someone's attention."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   1.975,
+   "Start with what Microsoft gives you."
+  ],
+  [
+   2.025,
+   13.075,
+   "The audit trail names four activities: disable account, enable account, delete user, and an update to the refresh token valid-from timestamp, each with its time, result, initiator and target."
+  ],
+  [
+   15.1,
+   6.088,
+   "Each workflow run has its own record, with its status, its times and its count of failed tasks."
+  ],
+  [
+   21.188,
+   5.625,
+   "The schedule moves the timing: every three hours by default, with a three-day catch-up window."
+  ],
+  [
+   26.812,
+   4.088,
+   "And the disable task doesn't support users who hold directory roles."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   4.3,
+   "Here's what those records leave to you, and each row is pinned by a test."
+  ],
+  [
+   4.35,
+   8.625,
+   "The disable and the session update are separate records, and a disabled account with lyve sessions isn't blocked, so the block is the later of the two."
+  ],
+  [
+   12.975,
+   4.287,
+   "A run's completion says the workflow finished, not when access stopped."
+  ],
+  [
+   17.262,
+   4.537,
+   "The catch-up window is only prose, so a late entry gets its own rule."
+  ],
+  [
+   21.8,
+   4.662,
+   "A failed disable sits in the same log, so only successful records count."
+  ],
+  [
+   26.462,
+   3.612,
+   "And a failed task, or a re-enable, each gets a rule."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   2.125,
+   "The code is one command, measure."
+  ],
+  [
+   2.175,
+   13.0,
+   "It reads the exports, the H R separations, the card system's revocations, Intune's device actions and the privileged role holders, and writes the intervals, a summary and the findings with a manifest."
+  ],
+  [
+   15.175,
+   5.237,
+   "For each passed separation, blocked is the later of the disable and the session update."
+  ],
+  [
+   20.413,
+   5.013,
+   "Revoked is the latest of the block, the card revocation and the last device action."
+  ],
+  [
+   25.425,
+   3.263,
+   "A cancelled separation is listed, not measured."
+  ],
+  [
+   28.688,
+   4.638,
+   "One open point: Lab 2 confirms which task writes the session update."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   3.038,
+   "Nine rules turn the intervals into a work list."
+  ],
+  [
+   3.087,
+   8.213,
+   "S T 1 flags a block slower than the threshold, which is P S 4's organization-defined period; the sample is four hours."
+  ],
+  [
+   11.3,
+   3.1,
+   "S T 2 flags a leaver who was never blocked."
+  ],
+  [
+   14.4,
+   8.562,
+   "S T 3 flags a separation entered more than three days late: a finding if nothing caught it, a warning if an on-demand run did."
+  ],
+  [
+   22.962,
+   7.938,
+   "S T 4 flags an uncollected card revoked more than eighteen hours after notice, from FIPS 201-3."
+  ],
+  [
+   30.9,
+   3.712,
+   "And S T 5 flags a re-enable that H R didn't cancel."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   7.35,
+   "S T 6 warns when a privileged role holder leaves, because Learn says the disable task doesn't support role holders."
+  ],
+  [
+   7.4,
+   6.35,
+   "S T 7 sends a failed leaver run, or one with failed tasks, to a high-priority exception."
+  ],
+  [
+   13.75,
+   7.112,
+   "S T 8 flags a user deleted before the device retire or wipe completed, since disposal comes last."
+  ],
+  [
+   20.863,
+   6.037,
+   "And S T 9 flags revocation slower than its threshold; the sample is twenty-four hours."
+  ],
+  [
+   26.9,
+   1.688,
+   "The thresholds are samples."
+  ],
+  [
+   28.587,
+   5.513,
+   "The agency sets the period, and the tenant schedule is part of it, so set them together."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   11.8,
+   "The read needs two permissions, each the least privileged for its call: audit log read for the directory audits, and the Lifecycle Workflows reports read permission for a workflow's processing results."
+  ],
+  [
+   11.85,
+   8.887,
+   "Both come from Microsoft Graph, on the endpoint for your cloud, and both A P I's are listed for the U S Government L4 and L5 clouds."
+  ],
+  [
+   20.738,
+   4.287,
+   "Lifecycle Workflows is available in Azure for U S Government."
+  ],
+  [
+   25.025,
+   5.787,
+   "The card system's and Intune's records arrive as exports; the code reads neither service."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   10.938,
+   "Four tests cover this chapter: the intervals and the summary, every rule on the fixture, a failed audit record that isn't a block, and a cancelled separation that isn't flagged."
+  ],
+  [
+   10.988,
+   8.5,
+   "With the other chapters' tests, fifty-seven pass under Python 3.10 or later, with no package, tenant or network."
+  ],
+  [
+   19.488,
+   2.45,
+   "Remember that the code is illustrative."
+  ],
+  [
+   21.938,
+   8.037,
+   "It runs against fictional leavers and exports, so review it and run Lab 2 in a test tenant before it reports a real leaver."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   4.65,
+   "These are the facts behind the code, each read on Learn on November first."
+  ],
+  [
+   4.7,
+   2.913,
+   "The four audit activities are generally available."
+  ],
+  [
+   7.612,
+   8.463,
+   "The directory audits list needs audit log read and filters on equals, greater or equal, less or equal, and starts with."
+  ],
+  [
+   16.075,
+   6.963,
+   "The processing results list needs the reports read permission, and both are in the L4 and L5 clouds."
+  ],
+  [
+   23.038,
+   4.075,
+   "The schedule runs every three hours by default with a three-day catch-up."
+  ],
+  [
+   27.113,
+   2.75,
+   "The disable task excludes role holders."
+  ],
+  [
+   29.863,
+   3.675,
+   "And Lifecycle Workflows is available for U S Government."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   6.213,
+   "Two places where Learn says nothing or differs are written down, so a later edit doesn't loosen the code."
+  ],
+  [
+   6.263,
+   8.363,
+   "First, what records the revocation: Learn lists the timestamp update but doesn't tie it to the revoke task, and Lab 2 confirms it."
+  ],
+  [
+   14.625,
+   1.913,
+   "Second, the preview trigger."
+  ],
+  [
+   16.538,
+   6.838,
+   "Learn says version two of the time-based attribute trigger, still in preview, has no three-day catch-up window."
+  ],
+  [
+   23.375,
+   8.062,
+   "Rule S T 3 assumes the standard trigger, so a workflow on version two skips a late separation even inside three days."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   1.113,
+   "What does this prove?"
+  ],
+  [
+   1.163,
+   11.412,
+   "Each leaver's two intervals against the organization-defined period, which is personnel termination and disabling accounts, P S 4 and A C 2 enhancement 3, in the Moderate baseline."
+  ],
+  [
+   12.575,
+   5.65,
+   "The I S S O keeps each run's outputs with the manifest and the exports behind them."
+  ],
+  [
+   18.225,
+   3.475,
+   "The same intervals cover contractors under P S 7."
+  ],
+  [
+   21.7,
+   6.075,
+   "Rule S T 4 shows FIPS 201-3's eighteen-hour card rule."
+  ],
+  [
+   27.775,
+   3.775,
+   "And the on-demand emergency path supports high-risk disables."
+  ],
+  [
+   31.55,
+   3.438,
+   "The summary's percentiles feed Chapter 7's metrics."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   0.925,
+   "Who does what?"
+  ],
+  [
+   0.975,
+   5.963,
+   "Developers build the leaver's evidence, and need to read Python, but no tenant until Lab 2."
+  ],
+  [
+   6.938,
+   7.15,
+   "The security team owns the leaver path end to end, including the privileged leavers the disable task can't handle."
+  ],
+  [
+   14.088,
+   7.575,
+   "And the I S S O reports P S 4, keeping each run's intervals, summary and findings with the manifest."
+  ],
+  [
+   21.663,
+   11.762,
+   "The checklist makes ownership concrete: every late entry, re-enable, failed run and early delete has an owner and a closure, and every privileged leaver has a recorded verified path."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   4.588,
+   "Lab 1 runs on a laptop with Python 3.10 or later."
+  ],
+  [
+   4.638,
+   5.463,
+   "Step one lists the read: two calls, two read permissions, nothing that writes."
+  ],
+  [
+   10.1,
+   6.175,
+   "Step two measures the fictional leavers: seven separated, one cancelled, one not blocked."
+  ],
+  [
+   16.275,
+   12.075,
+   "The median block is a quarter of an hour, but the ninetieth percentile is five and a half hours against a four-hour threshold, and revocation's ninetieth percentile is a hundred and ten hours against twenty-four."
+  ],
+  [
+   28.35,
+   3.938,
+   "Ten findings and two warnings, so it exits with code two."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   4.4,
+   "Steps three and four read the findings and the intervals side by side."
+  ],
+  [
+   4.45,
+   2.388,
+   "Every fictional leaver tells a story."
+  ],
+  [
+   6.838,
+   7.15,
+   "Casey blocked after five and a half hours, and Casey's uncollected card was revoked twenty-three hours after notice."
+  ],
+  [
+   13.988,
+   6.213,
+   "Drew was entered almost seven days late, and the only disable failed, so Drew was never blocked."
+  ],
+  [
+   20.2,
+   4.088,
+   "Emery was caught on demand, but blocked after eighty-five hours."
+  ],
+  [
+   24.288,
+   3.65,
+   "Harper was re-enabled by the pipeline and had a failed task."
+  ],
+  [
+   27.938,
+   1.562,
+   "Kai holds a privileged role."
+  ],
+  [
+   29.5,
+   3.538,
+   "And Blake was deleted before the device retire completed."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   3.35,
+   "Step five runs the tests: fifty-seven pass."
+  ],
+  [
+   3.4,
+   2.275,
+   "Then delete the output folder either way."
+  ],
+  [
+   5.675,
+   8.887,
+   "The tool refuses to write into a folder that already holds a run, and Chapter 7's first step measures the separations again into the same place."
+  ]
+ ],
+ "17": [
+  [
+   0.05,
+   5.938,
+   "Lab 2 uses a test tenant with a leaver workflow in Book 3's order; the authors haven't run it."
+  ],
+  [
+   5.987,
+   3.225,
+   "Register a reader app with only the two permissions."
+  ],
+  [
+   9.213,
+   7.588,
+   "Give one test user a leave date a few hours ahead and wait for the scheduled run, and run the leaver on demand for a second."
+  ],
+  [
+   16.8,
+   6.162,
+   "Export the logs, and confirm which activity the revoke task really wrote, and who initiated it."
+  ],
+  [
+   22.962,
+   0.975,
+   "Then measure."
+  ],
+  [
+   23.938,
+   3.138,
+   "Each block should include the wait for the tenant schedule."
+  ],
+  [
+   27.075,
+   1.95,
+   "Finally, back everything out."
+  ]
+ ],
+ "18": [
+  [
+   0.05,
+   1.775,
+   "The dangers are quiet ones."
+  ],
+  [
+   1.825,
+   5.625,
+   "A disable with lyve sessions lets the leaver keep working, so the block needs both records."
+  ],
+  [
+   7.45,
+   5.912,
+   "A late H R entry is never processed by the schedule, so S T 3 runs every time."
+  ],
+  [
+   13.363,
+   2.425,
+   "A late re-send brings the account back."
+  ],
+  [
+   15.787,
+   3.825,
+   "A failed revocation leaves the card valid with nobody hearing."
+  ],
+  [
+   19.613,
+   2.812,
+   "A privileged leaver's disable task can't run."
+  ],
+  [
+   22.425,
+   3.85,
+   "Deleting before devices are retired leaves certificates valid."
+  ],
+  [
+   26.275,
+   3.138,
+   "A threshold set without the schedule passes everyone."
+  ],
+  [
+   29.413,
+   3.862,
+   "And logs that age out before export can't prove anything later."
+  ]
+ ],
+ "19": [
+  [
+   0.05,
+   1.35,
+   "Here's what done looks like."
+  ],
+  [
+   1.4,
+   6.925,
+   "The configuration holds the agency's approved thresholds, and the tenant schedule fits inside the block threshold."
+  ],
+  [
+   8.325,
+   3.788,
+   "Lab 2 confirmed which activity the revoke task writes."
+  ],
+  [
+   12.113,
+   5.25,
+   "The run covers every separation in the period, with no leaver left unblocked."
+  ],
+  [
+   17.363,
+   6.013,
+   "Every late entry, re-enable, failed run and early delete has an owner and a closure."
+  ],
+  [
+   23.375,
+   2.913,
+   "Every privileged leaver has a verified path."
+  ],
+  [
+   26.288,
+   3.062,
+   "And the reader app holds exactly two permissions."
+  ],
+  [
+   29.35,
+   4.588,
+   "Next, Chapter 7: lifecycle drift, metrics and evidence."
+  ],
+  [
+   33.938,
+   1.1,
+   "Thanks for watching."
+  ]
+ ]
+}

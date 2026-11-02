@@ -1,0 +1,608 @@
+{
+ "1": [
+  [
+   0.05,
+   3.25,
+   "Welcome back to Building H R-Driven Identity."
+  ],
+  [
+   3.3,
+   4.275,
+   "This is Chapter 7: lifecycle drift, metrics and evidence."
+  ],
+  [
+   7.575,
+   2.175,
+   "Six gates set the lifecycle up."
+  ],
+  [
+   9.75,
+   8.812,
+   "This one proves, every day, that it still runs the way the first six said, and leaves a record that outlives the accounts it describes."
+  ],
+  [
+   18.562,
+   13.075,
+   "We'll see the run that finds six drift classes and computes six metrics, the packager that hashes and chains each run, the period an I S S O signs, who does what, two labs and the dangers."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.488,
+   "Why does this gate exist?"
+  ],
+  [
+   1.538,
+   4.737,
+   "Because the first six only set things up; something has to show they keep working."
+  ],
+  [
+   6.275,
+   1.95,
+   "And the evidence has to survive."
+  ],
+  [
+   8.225,
+   13.037,
+   "Entra's own retention is short: thirty days for audit logs with P1 or P2, thirty for provisioning logs with a premium edition, and up to thirty days of Lifecycle Workflows history, none of it retroactive."
+  ],
+  [
+   21.262,
+   4.325,
+   "The accounts get disposed of; the record of what happened to them must outlive them."
+  ],
+  [
+   25.587,
+   5.088,
+   "Attribute drift and schema drift are out of scope on purpose; other tools find them."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   11.012,
+   "Microsoft documents log retention and routing, but publishes no sample that computes lifecycle metrics or joins H R, the directory and a card system into drift classes."
+  ],
+  [
+   11.062,
+   7.325,
+   "So the nearest start is the program's own drift pipeline from the Federal Modernization Workbook's Book 19, Chapter 9."
+  ],
+  [
+   18.387,
+   6.638,
+   "It compares validation kit runs, keeps names out of the tracker and writes hashed, chained evidence packages."
+  ],
+  [
+   25.025,
+   6.325,
+   "What it can't do is read lifecycle inputs, compute metrics against thresholds, or assemble a period."
+  ],
+  [
+   31.35,
+   6.425,
+   "The verdict: keep it as the scheduler, the sign-in and the hashing, and give it a run shaped for the lifecycle."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   10.075,
+   "The run reads the H R export and the contractor decisions from Chapter 2, the workforce users, the validation kit's exceptions and the card system's status export."
+  ],
+  [
+   10.125,
+   8.588,
+   "Optionally it reads the outputs of Chapters 1, 3, 4 and 6, and checks each against its own manifest before reading it."
+  ],
+  [
+   18.712,
+   2.775,
+   "Thresholds come from a reviewed config file."
+  ],
+  [
+   21.488,
+   11.6,
+   "It writes its folder once, refusing one that exists: a run file recording the tenant, cloud, mode, window and the hash of every input, plus the findings and metrics."
+  ],
+  [
+   33.087,
+   3.237,
+   "And the mode, fixture or tenant, is required."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   2.788,
+   "Here are the six classes, all from Book 3."
+  ],
+  [
+   2.837,
+   3.125,
+   "A worker record with no account is missing identity."
+  ],
+  [
+   5.963,
+   6.537,
+   "An enabled account for someone terminated, or a contractor past the earliest end, is stale access."
+  ],
+  [
+   12.5,
+   4.625,
+   "An enabled account that matches nobody and no owned exception is an orphan."
+  ],
+  [
+   17.125,
+   8.338,
+   "A second writer or forbidden write from Chapter 1's scan is an unauthorized write, keeping Chapter 1's object key so the fingerprint matches."
+  ],
+  [
+   25.462,
+   7.388,
+   "And an active piv card for a separated worker, or for a contractor the source no longer holds, is credential drift."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   3.175,
+   "The six metrics are Book 3's measured lifecycle."
+  ],
+  [
+   3.225,
+   6.088,
+   "Separation-to-block and separation-to-revocation come from Chapter 6, at the ninetieth percentile."
+  ],
+  [
+   9.312,
+   5.088,
+   "Transfer-to-review comes from Chapter 4, and stays open while the review is open."
+  ],
+  [
+   14.4,
+   2.525,
+   "Joiner readiness comes from Chapter 3."
+  ],
+  [
+   16.925,
+   4.612,
+   "Correlation coverage and derivation purity this run computes itself."
+  ],
+  [
+   21.538,
+   2.6,
+   "A metric over its threshold is a warning."
+  ],
+  [
+   24.137,
+   5.838,
+   "And the key rule: a metric with no input is reported as not measured, never as zero."
+  ],
+  [
+   29.975,
+   5.375,
+   "The thresholds are proposed starting values; choosing them is the agency's decision."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   2.013,
+   "The packager has three commands."
+  ],
+  [
+   2.062,
+   15.1,
+   "Package checks the run, every file and nothing extra, one tenant, cloud and mode, only read requests, and writes a summary with fingerprints but no names, an evidence manifest that names the previous package, and a checksum file."
+  ],
+  [
+   17.163,
+   2.35,
+   "It refuses a chain for another tenant."
+  ],
+  [
+   19.512,
+   2.237,
+   "Verify rechecks every file."
+  ],
+  [
+   21.75,
+   9.787,
+   "And period verifies every package in the window, reports chain breaks and coverage gaps, gives each metric's series, and maps what's still open to the controls."
+  ],
+  [
+   31.538,
+   4.438,
+   "That mapping is design guidance; the assessor decides each control."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   3.688,
+   "The facts behind the code, each read on November first."
+  ],
+  [
+   3.737,
+   8.137,
+   "The run's only new Graph read lists users with their leave date, which needs User Read All with the lifecycle info read permission."
+  ],
+  [
+   11.875,
+   10.3,
+   "The Graph host depends on the cloud: graph dot microsoft dot com for G C C, graph dot microsoft dot U S for G C C High, and its D o D variant."
+  ],
+  [
+   22.175,
+   7.987,
+   "Audit and provisioning logs keep thirty days with a premium edition, seven with Free, and Lifecycle Workflows history up to thirty."
+  ],
+  [
+   30.163,
+   4.062,
+   "Reporting and sim connectivity are available in Azure Government."
+  ],
+  [
+   34.225,
+   3.513,
+   "The metrics and classes themselves are Book 3's design."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   4.487,
+   "Some points stay open, recorded so a later edit doesn't loosen the code."
+  ],
+  [
+   4.537,
+   12.512,
+   "The guide's Step 7 joins credential drift from the card system with Intune reports; this run reads the card system only, and says so, until the agency's Intune report is in the evidence store."
+  ],
+  [
+   17.05,
+   3.812,
+   "The thresholds are proposed starting values, not approved ones."
+  ],
+  [
+   20.863,
+   4.463,
+   "The period's control mapping is design guidance; the assessor decides."
+  ],
+  [
+   25.325,
+   7.1,
+   "And Gate 7's fourth criterion, proof that H R is the sole source, is reported as not decided by this code."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   1.113,
+   "What does this prove?"
+  ],
+  [
+   1.163,
+   8.525,
+   "For continuous monitoring, CA-7, the metrics per run and their series per period, against thresholds in a reviewed file."
+  ],
+  [
+   9.688,
+   7.175,
+   "For audit review, AU-6, the unauthorized writes from Chapter 1's scan, closed at the source."
+  ],
+  [
+   16.863,
+   8.225,
+   "For retention, AU-11 and S I twelve, packages written once, hash-chained and kept outside the directory."
+  ],
+  [
+   25.087,
+   7.95,
+   "Continuous reporting under B O D twenty-five oh-one is not this code; ScubaGear results sit beside the period."
+  ],
+  [
+   33.038,
+   7.375,
+   "And account management and personnel controls come from the other classes, in a table the assessor reads, not decides from."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   0.925,
+   "Who does what?"
+  ],
+  [
+   0.975,
+   3.587,
+   "Platform and pipeline engineers own the scheduled checks."
+  ],
+  [
+   4.562,
+   9.475,
+   "Identity engineers close findings, and they close them at the source, the owner of the fact, because a fix made in the directory just comes back on the next feed."
+  ],
+  [
+   14.037,
+   3.725,
+   "The next run closes a finding only if the source changed."
+  ],
+  [
+   17.762,
+   7.6,
+   "And the I S S O receives the evidence, checks every package with nothing more than a checksum tool, and signs the period."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   1.9,
+   "Lab 1 runs on a laptop."
+  ],
+  [
+   1.95,
+   7.925,
+   "Step one writes the outputs the run reads, one command each from Chapters 1, 2, 3, 4 and 6."
+  ],
+  [
+   9.875,
+   12.2,
+   "Each exits with code two because each fixture holds findings: one of four hires ready on day one, and a ninetieth percentile separation-to-block of five and a half hours against a threshold of four."
+  ],
+  [
+   22.075,
+   2.038,
+   "Step two writes the first run."
+  ],
+  [
+   24.113,
+   4.075,
+   "It reads four chapter outputs, and five metrics are out of bounds."
+  ],
+  [
+   28.188,
+   3.45,
+   "Transfer-to-review shows not measured, not zero."
+  ],
+  [
+   31.637,
+   2.625,
+   "Fourteen findings and six warnings."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   2.25,
+   "Step three reads the findings."
+  ],
+  [
+   2.3,
+   2.812,
+   "Worker one-oh-oh-one-oh-four has no account."
+  ],
+  [
+   5.112,
+   6.2,
+   "Two people terminated in H R are still enabled, and one contractor is past the earliest end."
+  ],
+  [
+   11.312,
+   10.062,
+   "Two orphans: a print kiosk whose exception has no owner, and an old temp account; a scanner service account isn't flagged, because its exception has an owner."
+  ],
+  [
+   21.375,
+   3.5,
+   "Five unauthorized writes carry over from Chapter 1."
+  ],
+  [
+   24.875,
+   4.3,
+   "Then one active card for a separated worker, and two contractor cards."
+  ],
+  [
+   29.175,
+   4.825,
+   "The warnings are the five metrics out of bounds and the mover's review, still open."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   7.05,
+   "Step four writes the next day's run with the same inputs and a one-day window; it prints the same metrics and counts."
+  ],
+  [
+   7.1,
+   1.875,
+   "Step five packages both."
+  ],
+  [
+   8.975,
+   3.462,
+   "The first package opens all twenty counted findings."
+  ],
+  [
+   12.438,
+   6.65,
+   "The second names the first package's manifest, opens none and closes none, because nothing changed."
+  ],
+  [
+   19.087,
+   2.237,
+   "Verify rechecks the six files."
+  ],
+  [
+   21.325,
+   7.6,
+   "Then the check an I S S O runs needs nothing but the standard checksum tool: every file in the second package reports OK."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   2.15,
+   "Step six assembles the period."
+  ],
+  [
+   2.2,
+   10.537,
+   "Two packages, no chain breaks, no coverage gaps, but it isn't complete: drift is open, five metrics are out of bounds, and transfer-to-review isn't measured."
+  ],
+  [
+   12.738,
+   1.775,
+   "So it exits with code two."
+  ],
+  [
+   14.512,
+   11.287,
+   "The summary lists the controls with their open findings, and scores Gate 7: drift classes and metrics not met, evidence unbroken met, sole source not decided by this code."
+  ],
+  [
+   25.8,
+   11.35,
+   "Step seven runs the tests, including the chapter's four drift tests and six package tests: fifty-seven pass, then a hundred and forty-two, with no tenant and no network."
+  ],
+  [
+   37.15,
+   4.062,
+   "Delete the output folder afterwards; it holds fictional names."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   5.25,
+   "Lab 2 runs it against a test tenant, never production; the authors haven't run it."
+  ],
+  [
+   5.3,
+   7.1,
+   "Register a reader app with a certificate or federated credential, and grant only the two permissions the export lists."
+  ],
+  [
+   12.4,
+   4.463,
+   "Run Chapters 1 through 6 against the test tenant and keep their folders."
+  ],
+  [
+   16.863,
+   3.337,
+   "Write a run in tenant mode and read every finding."
+  ],
+  [
+   20.2,
+   8.875,
+   "Schedule it in Book 19's workflow with no secret, writing packages to an immutable container outside the directory, each naming the last."
+  ],
+  [
+   29.075,
+   3.5,
+   "After a few runs, check that a skipped day shows as a gap."
+  ],
+  [
+   32.575,
+   1.212,
+   "Then back it all out."
+  ]
+ ],
+ "17": [
+  [
+   0.05,
+   3.337,
+   "The dangers are about evidence that looks fine but isn't."
+  ],
+  [
+   3.388,
+   5.888,
+   "A metric from an edited chapter output proves nothing, so each input is checked against its manifest."
+  ],
+  [
+   9.275,
+   5.162,
+   "A missing input read as zero looks met, so it's a not-measured warning instead."
+  ],
+  [
+   14.438,
+   5.775,
+   "A lab run filed as tenant evidence puts fiction in the package, so the mode is required."
+  ],
+  [
+   20.212,
+   1.913,
+   "Two tenants can't share a chain."
+  ],
+  [
+   22.125,
+   1.562,
+   "Names stay out of the summary."
+  ],
+  [
+   23.688,
+   1.825,
+   "A skipped day shows as a gap."
+  ],
+  [
+   25.512,
+   1.75,
+   "Fix findings at the source."
+  ],
+  [
+   27.262,
+   3.862,
+   "And route logs out from the pilot's first day, before they expire."
+  ]
+ ],
+ "18": [
+  [
+   0.05,
+   1.35,
+   "Here's what done looks like."
+  ],
+  [
+   1.4,
+   4.188,
+   "Every input is the latest run of its chapter, and its hash matches."
+  ],
+  [
+   5.588,
+   4.013,
+   "The thresholds are the agency's approved values, not the samples."
+  ],
+  [
+   9.6,
+   3.875,
+   "Every finding has an owner of the fact and a ticket at the source."
+  ],
+  [
+   13.475,
+   4.35,
+   "Each package names the one before, and verify passes on all of them."
+  ],
+  [
+   17.825,
+   4.838,
+   "The period has no gaps or breaks, and the I S S O has signed it."
+  ],
+  [
+   22.663,
+   3.413,
+   "The evidence sits outside the directory, immutable."
+  ],
+  [
+   26.075,
+   1.637,
+   "That closes the workbook."
+  ],
+  [
+   27.712,
+   1.1,
+   "Thanks for watching."
+  ]
+ ]
+}

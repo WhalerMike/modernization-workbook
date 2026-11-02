@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.935
+Lab 2 uses a test tenant in
+the worldwide or G C C cloud,
+
+2
+00:00:03.935 --> 00:00:07.188
+never production; the
+authors haven't run it.
+
+3
+00:00:07.188 --> 00:00:11.951
+Register a reader app with a certificate
+and exactly the two read permissions.
+
+4
+00:00:11.951 --> 00:00:16.775
+As a test administrator, change a user's
+hire date and disable another user.
+
+5
+00:00:16.775 --> 00:00:18.050
+Export the window.
+
+6
+00:00:18.050 --> 00:00:21.401
+Then confirm the property
+names against the real records,
+
+7
+00:00:21.401 --> 00:00:24.612
+and correct any that differ
+in your copy of the register.
+
+8
+00:00:24.612 --> 00:00:29.072
+Write the tenant's real service
+principal IDs into the copy and scan:
+
+9
+00:00:29.072 --> 00:00:32.576
+both of your changes should
+appear as second writers.
+
+10
+00:00:32.576 --> 00:00:33.840
+Then back it all out.

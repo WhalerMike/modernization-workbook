@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.900
+What does this give the I S S O?
+
+2
+00:00:01.900 --> 00:00:07.543
+The reviewed policy files, the lint's
+clean run and the hash of each body sent,
+
+3
+00:00:07.543 --> 00:00:11.912
+for account management and
+least privilege, AC-2 and AC-6.
+
+4
+00:00:11.912 --> 00:00:16.762
+The member-of scan with zero rows, which
+the guide's validate step asks for.
+
+5
+00:00:16.762 --> 00:00:19.621
+A clean run of the
+privileged-package rule,
+
+6
+00:00:19.621 --> 00:00:25.912
+showing no privileged role reached by
+rule, which SCuBA requires under BOD 25-01.
+
+7
+00:00:25.912 --> 00:00:28.177
+And each mover's residual sheet,
+
+8
+00:00:28.177 --> 00:00:33.400
+the manager's decisions and the
+interval, for personnel transfer, PS-5.
+
+9
+00:00:33.400 --> 00:00:37.080
+Separation of duties stays in
+the package configuration.

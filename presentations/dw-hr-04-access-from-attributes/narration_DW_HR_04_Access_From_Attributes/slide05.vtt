@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.088
+Learn gives the portal
+steps and one request body.
+
+2
+00:00:03.088 --> 00:00:06.433
+It doesn't keep policies where
+a reviewer approves them,
+
+3
+00:00:06.433 --> 00:00:09.707
+test a rule against the
+population before it goes live,
+
+4
+00:00:09.707 --> 00:00:14.362
+find overlap between two policies, or
+say what a move leaves outside the rules.
+
+5
+00:00:14.362 --> 00:00:19.358
+So the kit keeps one file per policy,
+turns Learn's warnings into lint rules,
+
+6
+00:00:19.358 --> 00:00:21.978
+scans the tenant's export for member-of,
+
+7
+00:00:21.978 --> 00:00:26.563
+refuses privileged packages by rule,
+and lists the mover's residual.
+
+8
+00:00:26.563 --> 00:00:30.146
+The verdict: keep Learn's body
+and checkboxes as they are,
+
+9
+00:00:30.146 --> 00:00:32.300
+and enforce its warnings in code.

@@ -1,0 +1,46 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.887
+The lint has fifteen rules, and
+each one says where it comes from.
+
+2
+00:00:03.887 --> 00:00:07.730
+Some are Learn's own limits:
+the category, the offset range,
+
+3
+00:00:07.730 --> 00:00:11.653
+more than twenty-five tasks,
+more than a hundred workflows,
+
+4
+00:00:11.653 --> 00:00:15.413
+an unknown task I D, or a scope
+property Learn doesn't list.
+
+5
+00:00:15.413 --> 00:00:19.846
+Some are the program's design: scope
+by code rather than by a display name,
+
+6
+00:00:19.846 --> 00:00:23.377
+record an execution limit
+for every scheduled workflow,
+
+7
+00:00:23.377 --> 00:00:28.337
+give access by package rather than group
+add, and keep delete apart from disable.
+
+8
+00:00:28.337 --> 00:00:32.094
+And the pass rule mixes both:
+Learn's range is a finding,
+
+9
+00:00:32.094 --> 00:00:35.500
+over twenty-four hours or
+reusable is a warning.

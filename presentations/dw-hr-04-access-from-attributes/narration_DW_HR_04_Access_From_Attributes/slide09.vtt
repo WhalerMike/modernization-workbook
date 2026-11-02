@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.650
+The reads are one task.
+
+2
+00:00:01.650 --> 00:00:05.525
+Listing policies and assignments
+needs entitlement management read.
+
+3
+00:00:05.525 --> 00:00:09.774
+Group memberships use the transitive
+call on purpose, because it needs
+
+4
+00:00:09.774 --> 00:00:14.312
+only user read, while another user's
+direct memberships need directory read.
+
+5
+00:00:14.312 --> 00:00:16.750
+The tools read Graph
+on the cloud you name.
+
+6
+00:00:16.750 --> 00:00:21.781
+One gap matters here: administrative
+units with dynamic rules exist
+
+7
+00:00:21.781 --> 00:00:26.812
+only in global Azure, so a GCC High
+tenant uses the guide's interim path.
+
+8
+00:00:26.812 --> 00:00:28.801
+Nine tests cover this chapter,
+
+9
+00:00:28.801 --> 00:00:32.520
+and all fifty-seven of the
+kit's tests pass with no tenant.

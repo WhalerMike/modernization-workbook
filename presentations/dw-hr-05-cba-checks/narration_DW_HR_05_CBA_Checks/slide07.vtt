@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.575
+Here are the thirteen rules,
+each labeled with its source.
+
+2
+00:00:03.575 --> 00:00:09.052
+Most come straight from Learn: a CA with
+no CRL, an endpoint that isn't HTTP,
+
+3
+00:00:09.052 --> 00:00:12.951
+a CRL over the size limit
+or slower than ten seconds,
+
+4
+00:00:12.951 --> 00:00:18.800
+the certificate method switched off,
+and CRL validation off or a CA exempted.
+
+5
+00:00:18.800 --> 00:00:23.519
+Some are the program's own design:
+an early warning at eighty percent,
+
+6
+00:00:23.519 --> 00:00:27.311
+a CRL nobody measured, a CA
+expiring within ninety days,
+
+7
+00:00:27.311 --> 00:00:30.513
+and an issuing CA missing
+from the trust store.
+
+8
+00:00:30.513 --> 00:00:34.221
+And two protect the strength:
+PIV mapped to multifactor,
+
+9
+00:00:34.221 --> 00:00:37.180
+and an enforced phishing-resistant policy.

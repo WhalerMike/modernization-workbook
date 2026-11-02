@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.763
+Step three lints five broken policies,
+and the lint exits with code two.
+
+2
+00:00:04.763 --> 00:00:07.551
+A rule using member-of
+would be quarantined.
+
+3
+00:00:07.551 --> 00:00:12.326
+Two Program Operations policies
+overlap on two employees of ORG-100,
+
+4
+00:00:12.326 --> 00:00:15.846
+because one rule reads the
+department name and the
+
+5
+00:00:15.846 --> 00:00:19.700
+other matches every employee;
+those two can lose access.
+
+6
+00:00:19.700 --> 00:00:25.075
+One automatic policy doesn't remove, and
+it also hands tier one access out by rule.
+
+7
+00:00:25.075 --> 00:00:27.963
+A request policy has no fallback approver.
+
+8
+00:00:27.963 --> 00:00:33.550
+And the department-name rule warns twice:
+no coded slot, and a thirty-day grace.

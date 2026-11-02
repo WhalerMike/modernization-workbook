@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.650
+Learn's page on automatic assignment
+policies is the procedure.
+
+2
+00:00:03.650 --> 00:00:07.687
+A policy carries a membership
+rule in the dynamic group syntax.
+
+3
+00:00:07.687 --> 00:00:12.363
+Entitlement management creates assignments
+for users who match, removes them
+
+4
+00:00:12.363 --> 00:00:16.613
+for users who stop matching, and a grace
+period can keep access for a while.
+
+5
+00:00:16.613 --> 00:00:19.766
+Learn suggests one automatic
+policy per package,
+
+6
+00:00:19.766 --> 00:00:24.149
+warns that overlap can lose users
+their access, caps a rule at fifteen
+
+7
+00:00:24.149 --> 00:00:28.763
+thousand identities, and needs the
+Identity Governance Administrator.
+
+8
+00:00:28.763 --> 00:00:31.035
+And from November third, 2026,
+
+9
+00:00:31.035 --> 00:00:36.220
+a policy using member-of is quarantined:
+it stays, but does nothing.

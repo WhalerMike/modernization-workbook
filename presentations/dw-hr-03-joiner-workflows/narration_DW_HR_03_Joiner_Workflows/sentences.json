@@ -1,0 +1,598 @@
+{
+ "1": [
+  [
+   0.05,
+   3.25,
+   "Welcome back to Building H R-Driven Identity."
+  ],
+  [
+   3.3,
+   5.713,
+   "This is Chapter 3: joiner workflows as code, and the Temporary Access Pass bridge."
+  ],
+  [
+   9.012,
+   3.675,
+   "A workflow edited in the portal is a change nobody reviewed."
+  ],
+  [
+   12.688,
+   7.763,
+   "A workflow kept as a file is one a reviewer can read, a test can lint, and a plan can turn into exactly one new version."
+  ],
+  [
+   20.45,
+   8.963,
+   "We'll start from Microsoft Learn's procedure, then see what the kit adds: the workflow files, a lint, a plan, and a measure of day-one readiness."
+  ],
+  [
+   29.413,
+   2.35,
+   "Then two labs and the dangers."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.587,
+   "Why does this gate need code?"
+  ],
+  [
+   1.637,
+   12.725,
+   "The guide's Step 3 asks for few workflows scoped by code, a pass that bridges to the card, baseline access by package, execution limits on every scheduled workflow, and a measured readiness rate."
+  ],
+  [
+   14.363,
+   3.413,
+   "Each of those is a property of a workflow definition."
+  ],
+  [
+   17.775,
+   4.65,
+   "And Learn makes a definition change a new version rather than an in-place update."
+  ],
+  [
+   22.425,
+   4.925,
+   "That's what makes code the right home: the file is the version, and the plan is the diff."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   1.413,
+   "Here's what Learn gives you."
+  ],
+  [
+   1.462,
+   7.138,
+   "The Create workflow request: a category, a name, flags, a scope, a trigger and the tasks."
+  ],
+  [
+   8.6,
+   3.55,
+   "A changed definition goes to the create new version action."
+  ],
+  [
+   12.15,
+   6.7,
+   "Triggers run on the hire date, the leave date or the creation date, within a hundred and eighty days either way."
+  ],
+  [
+   18.85,
+   7.062,
+   "The pass task takes a lifetime and a one-time-use flag, and Learn recommends at most twenty-four hours for a new hire."
+  ],
+  [
+   25.913,
+   6.375,
+   "And execution limits quarantine a scheduled run, though a workflow's limit isn't in the A P I."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   1.363,
+   "What does Learn leave to you?"
+  ],
+  [
+   1.413,
+   3.237,
+   "It gives one request at a time, written by hand."
+  ],
+  [
+   4.65,
+   11.175,
+   "It doesn't keep the definitions where a reviewer approves them, check a definition against its own limits before the request, decide between create and new version, or measure what the workflows achieved."
+  ],
+  [
+   15.825,
+   8.5,
+   "So the kit keeps one file per workflow, lints it, plans create or new version, and counts readiness, each pinned by a test."
+  ],
+  [
+   24.325,
+   6.7,
+   "The verdict: keep Learn's bodies exactly as Learn shapes them, and add the file, lint and plan in front."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   2.15,
+   "The kit holds six workflow files."
+  ],
+  [
+   2.2,
+   8.625,
+   "Two joiners: a pre-hire workflow that sends the pass seven days before day one, and a day-one workflow that requests the onboarding package."
+  ],
+  [
+   10.825,
+   2.1,
+   "A mover on the organization code."
+  ],
+  [
+   12.925,
+   5.45,
+   "And three leavers, including a post-separation delete thirty days after the leave date."
+  ],
+  [
+   18.375,
+   4.625,
+   "All of them scope on the employee type and a worker type code, never on a name."
+  ],
+  [
+   23.0,
+   6.65,
+   "The day-one workflow doesn't enable the account; the pipeline is that writer, as Chapter 1's register records."
+  ],
+  [
+   29.65,
+   4.263,
+   "And each file records its version, owner and execution limit."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   3.837,
+   "The lint has fifteen rules, and each one says where it comes from."
+  ],
+  [
+   3.888,
+   11.525,
+   "Some are Learn's own limits: the category, the offset range, more than twenty-five tasks, more than a hundred workflows, an unknown task I D, or a scope property Learn doesn't list."
+  ],
+  [
+   15.412,
+   12.925,
+   "Some are the program's design: scope by code rather than by a display name, record an execution limit for every scheduled workflow, give access by package rather than group add, and keep delete apart from disable."
+  ],
+  [
+   28.337,
+   7.088,
+   "And the pass rule mixes both: Learn's range is a finding, over twenty-four hours or reusable is a warning."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   2.612,
+   "The plan is where the file becomes a change."
+  ],
+  [
+   2.663,
+   5.05,
+   "It lints the folder first, and refuses to go on if any file has a finding."
+  ],
+  [
+   7.713,
+   6.263,
+   "Then it matches each file to the tenant's export by display name and compares the parts a definition owns."
+  ],
+  [
+   13.975,
+   2.763,
+   "A file with no match becomes a create body."
+  ],
+  [
+   16.738,
+   3.2,
+   "A changed one becomes a body for create new version."
+  ],
+  [
+   19.938,
+   2.35,
+   "An unchanged one is left alone."
+  ],
+  [
+   22.288,
+   5.838,
+   "It writes the plan, one body per change and a manifest with a hash per file, and sends nothing."
+  ],
+  [
+   28.125,
+   3.075,
+   "Its one read needs only workflow read permission."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   12.3,
+   "Readiness counts the hires whose hire date is today, and calls a hire ready when the account exists and is enabled, holds a license, has the onboarding package delivered, and has a completed pre-hire run."
+  ],
+  [
+   12.35,
+   5.65,
+   "It reads the hires from H R and three exports, each with a read-only permission."
+  ],
+  [
+   18.0,
+   5.7,
+   "Run it on an export taken at the start of the day, because it measures state, not timestamps."
+  ],
+  [
+   23.7,
+   6.237,
+   "The chapter adds nine tests, and all fifty-seven of the kit's tests pass with no tenant or network."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   3.7,
+   "The facts behind the code, read on Learn on November first."
+  ],
+  [
+   3.75,
+   8.775,
+   "Create and create new version share one permission and the Lifecycle Workflows Administrator role, and both are available at L4 and L5."
+  ],
+  [
+   12.525,
+   6.9,
+   "Changes are versions, not in-place updates, and the tenant runs one schedule, every three hours by default."
+  ],
+  [
+   19.425,
+   7.175,
+   "The pass task has a fixed I D and a lifetime range, and its availability in G C C High wasn't confirmed."
+  ],
+  [
+   26.6,
+   4.7,
+   "Execution limits quarantine a scheduled run but not an on-demand one."
+  ],
+  [
+   31.3,
+   4.763,
+   "And a scheduled workflow catches up on a user for three days after the trigger date."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   5.938,
+   "Learn's own pages disagree in four places, recorded so a later edit doesn't loosen the code."
+  ],
+  [
+   5.987,
+   4.2,
+   "The pass's lifetime argument has two names, and the lint reads either."
+  ],
+  [
+   10.188,
+   2.987,
+   "The custom task extension has two I Ds."
+  ],
+  [
+   13.175,
+   4.4,
+   "The mover category appears in an example but not in the property table."
+  ],
+  [
+   17.575,
+   5.65,
+   "And the workflow ceiling is a hundred on two pages and fifty on another, so the budget is fifty."
+  ],
+  [
+   23.225,
+   9.575,
+   "Still open: the trigger name for an extension attribute, the execution limit the A P I doesn't carry, and the pass's availability in G C C High."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   1.85,
+   "What does this give the I S S O?"
+  ],
+  [
+   1.9,
+   9.512,
+   "The reviewed files and the plan that changed each version, with its manifest hash: the definitions and versions A C two enhancement 1 asks for."
+  ],
+  [
+   11.412,
+   9.588,
+   "The lint's clean run, showing a one-time pass of at most twenty-four hours and an execution limit on every scheduled workflow, which supports IA-5."
+  ],
+  [
+   21.0,
+   2.487,
+   "And the readiness summary for each start date."
+  ],
+  [
+   23.488,
+   9.35,
+   "The pass is a bridge to phishing-resistant M F A, so an account still on a pass after the agreed window is a finding, though this code doesn't read it."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   0.925,
+   "Who does what?"
+  ],
+  [
+   0.975,
+   5.037,
+   "Developers build the lifecycle automation, and need to read Python and jay-son."
+  ],
+  [
+   6.013,
+   9.6,
+   "Identity engineers own the workflows: they set each execution limit in the admin center, and send each change as a Lifecycle Workflows Administrator."
+  ],
+  [
+   15.613,
+   6.162,
+   "Reviewers approve each file and its plan, and the I S S O receives the evidence."
+  ],
+  [
+   21.775,
+   9.062,
+   "The code itself only reads: the planning app holds a single workflow read permission, and the readiness reads hold only their four read permissions."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   1.9,
+   "Lab 1 runs on a laptop."
+  ],
+  [
+   1.95,
+   3.163,
+   "Step one lists the reads and their permissions."
+  ],
+  [
+   5.112,
+   4.775,
+   "The plan needs one read, of the workflows, with workflow read permission."
+  ],
+  [
+   9.887,
+   7.475,
+   "Readiness reads the users, the pre-hire processing results and the package assignments, with four read permissions in all."
+  ],
+  [
+   17.363,
+   7.0,
+   "Step two lints the program's six workflow files against a budget of fifty: no findings, no warnings."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   6.025,
+   "Step three lints three broken copies, with a budget of two so the ceiling rule fires."
+  ],
+  [
+   6.075,
+   2.487,
+   "Seven findings and four warnings."
+  ],
+  [
+   8.562,
+   5.487,
+   "The day-one copy has an offset of two hundred days and adds the user to groups directly."
+  ],
+  [
+   14.05,
+   7.5,
+   "The leaver triggers on the hire date, deletes and disables in one workflow, and scopes on the manager, which Learn doesn't list."
+  ],
+  [
+   21.55,
+   7.938,
+   "The pre-hire copy has no execution limit, scopes on a department name, and sends a three-day pass that isn't one-time use."
+  ],
+  [
+   29.488,
+   1.5,
+   "The exit code is two."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   2.65,
+   "Step four plans against the tenant's export."
+  ],
+  [
+   2.7,
+   4.938,
+   "The day-one workflow in the tenant requests a different package, so it gets a new version."
+  ],
+  [
+   7.638,
+   3.763,
+   "The employee leaver doesn't exist yet, so it gets a create."
+  ],
+  [
+   11.4,
+   4.75,
+   "The one warning is a legacy workflow made in the portal that no file defines."
+  ],
+  [
+   16.15,
+   1.175,
+   "Nothing is sent."
+  ],
+  [
+   17.325,
+   2.625,
+   "Plan the broken folder and it refuses."
+  ],
+  [
+   19.95,
+   3.6,
+   "Step five measures day one: one of four hires ready."
+  ],
+  [
+   23.55,
+   5.812,
+   "One lacks only the package, one is disabled and unlicensed, and one has no account at all."
+  ],
+  [
+   29.363,
+   2.05,
+   "The fifty-seven tests pass."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   4.787,
+   "Lab 2 uses a test tenant, never production; the authors haven't run it."
+  ],
+  [
+   4.838,
+   2.362,
+   "Export the workflows with a reader app."
+  ],
+  [
+   7.2,
+   6.537,
+   "Make one example edit, moving the pre-hire trigger from seven days to five, and plan against the export."
+  ],
+  [
+   13.738,
+   6.062,
+   "As a Lifecycle Workflows Administrator, send that one change with Graph PowerShell, scheduling off."
+  ],
+  [
+   19.8,
+   4.912,
+   "Set the execution limit in the admin center, and read it back with the validation kit."
+  ],
+  [
+   24.712,
+   5.312,
+   "Check the pass policy and the manager's mailbox, then measure readiness on the start date."
+  ],
+  [
+   30.025,
+   5.75,
+   "Finally, back it out: remove what you created, or send the previous body as a further version."
+  ]
+ ],
+ "17": [
+  [
+   0.05,
+   2.6,
+   "The dangers are mostly drift and scale."
+  ],
+  [
+   2.65,
+   4.9,
+   "A workflow edited in the portal drifts from its file; every plan warns on it."
+  ],
+  [
+   7.55,
+   4.225,
+   "A scope on a department name silently stops after a reorganization."
+  ],
+  [
+   11.775,
+   3.775,
+   "A long or reusable pass outlives the card's arrival."
+  ],
+  [
+   15.55,
+   5.825,
+   "A rehire whose old account kept its methods can't get a pass, so rehires need their own path."
+  ],
+  [
+   21.375,
+   4.162,
+   "With no execution limit, a bad H R load runs to the end."
+  ],
+  [
+   25.538,
+   4.162,
+   "A delete in the leaver removes the account before devices are retired."
+  ],
+  [
+   29.7,
+   4.15,
+   "And a readiness figure from a midday export counts late fixes as ready."
+  ]
+ ],
+ "18": [
+  [
+   0.05,
+   1.35,
+   "Here's what done looks like."
+  ],
+  [
+   1.4,
+   5.6,
+   "Every workflow in the tenant has a file, and the last plan showed no unknown workflows."
+  ],
+  [
+   7.0,
+   2.65,
+   "The lint is clean against a budget of fifty."
+  ],
+  [
+   9.65,
+   4.6,
+   "Every execution limit matches its file, and the validation kit agrees."
+  ],
+  [
+   14.25,
+   3.487,
+   "The pass is one-time and lasts at most twenty-four hours."
+  ],
+  [
+   17.738,
+   4.425,
+   "Each change reached the tenant as a reviewed body with its hash recorded."
+  ],
+  [
+   22.163,
+   2.45,
+   "The readers hold only read permissions."
+  ],
+  [
+   24.613,
+   3.325,
+   "And the readiness rate is reported for every start date."
+  ],
+  [
+   27.938,
+   5.487,
+   "Next, Chapter 4: access from attributes, and the mover's residual review."
+  ],
+  [
+   33.425,
+   1.1,
+   "Thanks for watching."
+  ]
+ ]
+}

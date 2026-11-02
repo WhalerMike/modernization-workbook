@@ -273,7 +273,7 @@ require("../_build/devwb.js")({
           "Three HandedOff; two Kept; two AwaitOwnerDecision; one RescopeByOwner",
         ], label: "Step 6: the plan's 11 actions", color: "navy", pt: 13 }], [{ terminal: "07-8", lines: "2-6" }]], split: 0.47 },
         { callout: "both removals go through 5b000000-…-000000000010, Microsoft Graph's service principal: the resource, not the app.", label: "The point of step 7: ", icon: "FaCodeBranch", color: "teal" },
-        { terminal: "07-9", lines: "6-8" },
+        { terminal: "07-9", lines: "6-7" },
         { lead: "Step 8, -Apply: Apply: 3 Sent. Step 9: 513 tests passing; the manifest lists 45 reads. Delete out: the review names owners." },
       ],
       sources: "Sources: examples/non-person-identity fixtures (fictional); Learn, Delete appRoleAssignedTo. Chapter 07, “Lab 1: fixtures, no tenant,” steps 6–9 and expected result.",

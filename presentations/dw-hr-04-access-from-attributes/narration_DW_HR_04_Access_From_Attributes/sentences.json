@@ -1,0 +1,583 @@
+{
+ "1": [
+  [
+   0.05,
+   3.25,
+   "Welcome back to Building H R-Driven Identity."
+  ],
+  [
+   3.3,
+   5.213,
+   "This is Chapter 4: access from attributes and the mover's residual review."
+  ],
+  [
+   8.512,
+   3.112,
+   "An automatic policy removes what its rule granted."
+  ],
+  [
+   11.625,
+   6.575,
+   "It never removes what someone granted by hand, and a move is exactly when that access stops being right."
+  ],
+  [
+   18.2,
+   14.463,
+   "So this chapter starts from Learn's procedure for an automatic assignment policy, then adds what Learn leaves to you: the policies as reviewed files, a lint of nine rules, a scan for the member-of operator, and the mover's residual review."
+  ],
+  [
+   32.663,
+   2.312,
+   "Then two labs, and the dangers."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.587,
+   "Why does this gate need code?"
+  ],
+  [
+   1.637,
+   14.137,
+   "The guide's Step 4 assigns department packages by rule, one automatic policy per package, with no member-of operator, a grace period for movers, manager approval for requests, and a review of what's left after a move."
+  ],
+  [
+   15.775,
+   4.987,
+   "Each of those is a property of a policy body or a fact about what a user holds."
+  ],
+  [
+   20.762,
+   4.525,
+   "That means code can check it every time, instead of someone checking it once."
+  ],
+  [
+   25.288,
+   6.312,
+   "And for every rule, you'll know whether it's Learn's contract, Learn's warning, or the program's own design."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   3.6,
+   "Learn's page on automatic assignment policies is the procedure."
+  ],
+  [
+   3.65,
+   4.037,
+   "A policy carries a membership rule in the dynamic group syntax."
+  ],
+  [
+   7.688,
+   8.925,
+   "Entitlement management creates assignments for users who match, removes them for users who stop matching, and a grace period can keep access for a while."
+  ],
+  [
+   16.613,
+   12.15,
+   "Learn suggests one automatic policy per package, warns that overlap can lose users their access, caps a rule at fifteen thousand identities, and needs the Identity Governance Administrator."
+  ],
+  [
+   28.762,
+   7.388,
+   "And from November third, 2026, a policy using member-of is quarantined: it stays, but does nothing."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   16.087,
+   "Learn's Create assignment policies page, example three, gives the request: a post to the assignment policies endpoint, scoped to specific directory users, with an attribute rule target holding the rule, the automatic request settings and the access package."
+  ],
+  [
+   16.137,
+   7.175,
+   "Those settings have just three properties: create for those in scope, remove when they leave, and the grace period."
+  ],
+  [
+   23.312,
+   9.25,
+   "For request policies, the requestor manager setting makes the requester's manager the approver, and Learn says to add another approver in case there's no manager."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   3.038,
+   "Learn gives the portal steps and one request body."
+  ],
+  [
+   3.087,
+   11.275,
+   "It doesn't keep policies where a reviewer approves them, test a rule against the population before it goes lyve, find overlap between two policies, or say what a move leaves outside the rules."
+  ],
+  [
+   14.363,
+   12.2,
+   "So the kit keeps one file per policy, turns Learn's warnings into lint rules, scans the tenant's export for member-of, refuses privileged packages by rule, and lists the mover's residual."
+  ],
+  [
+   26.562,
+   5.688,
+   "The verdict: keep Learn's body and checkboxes as they are, and enforce its warnings in code."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   1.438,
+   "Here's what the kit ships."
+  ],
+  [
+   1.488,
+   10.238,
+   "The config access folder holds two automatic policies, one per department package, each written on the organization code and the worker type, with a seven-day grace."
+  ],
+  [
+   11.725,
+   7.037,
+   "And one request policy for infrastructure administrator eligibility, which the manager approves, with a fallback."
+  ],
+  [
+   18.762,
+   4.388,
+   "It grants eligibility only; the role is activated through pim."
+  ],
+  [
+   23.15,
+   4.013,
+   "Each file's program block records its tier and the groups it grants."
+  ],
+  [
+   27.163,
+   6.975,
+   "A small evaluator reads only the rule operators these policies use, and raises an error on anything else."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   1.587,
+   "The lint has nine rules."
+  ],
+  [
+   1.637,
+   2.225,
+   "Member-of in a rule is a finding."
+  ],
+  [
+   3.862,
+   6.8,
+   "Two automatic policies on one package that a user matches at once is a finding, and two disjoint ones a warning."
+  ],
+  [
+   10.662,
+   3.263,
+   "More than fifteen thousand identities is a finding."
+  ],
+  [
+   13.925,
+   5.987,
+   "A rule with no coded slot or worker type warns, because a department name breaks on a rename."
+  ],
+  [
+   19.913,
+   2.688,
+   "A policy must both create and remove."
+  ],
+  [
+   22.6,
+   2.4,
+   "A grace over fourteen days warns."
+  ],
+  [
+   25.0,
+   2.775,
+   "Requests need the manager and a fallback."
+  ],
+  [
+   27.775,
+   2.95,
+   "And no privileged package may be assigned by rule."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   9.525,
+   "The residual review takes the mover's old and new attributes, the effective date, their package assignments, their group memberships and the policy files."
+  ],
+  [
+   9.575,
+   7.95,
+   "For each automatic assignment, it re-evaluates the rule on the new attributes: kept, or removed at the end of the grace."
+  ],
+  [
+   17.525,
+   3.112,
+   "Anything from another policy is marked for review."
+  ],
+  [
+   20.637,
+   7.025,
+   "Dynamic groups are rule-managed, groups a held package grants are package-managed, and anything else goes to review."
+  ],
+  [
+   27.663,
+   5.4,
+   "The sheet goes to the manager of record, and the interval from transfer to review is measured."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   1.6,
+   "The reads are one task."
+  ],
+  [
+   1.65,
+   3.875,
+   "Listing policies and assignments needs entitlement management read."
+  ],
+  [
+   5.525,
+   8.787,
+   "Group memberships use the transitive call on purpose, because it needs only user read, while another user's direct memberships need directory read."
+  ],
+  [
+   14.312,
+   2.438,
+   "The tools read Graph on the cloud you name."
+  ],
+  [
+   16.75,
+   10.062,
+   "One gap matters here: administrative units with dynamic rules exist only in global Azure, so a G C C High tenant uses the guide's interim path."
+  ],
+  [
+   26.812,
+   5.65,
+   "Nine tests cover this chapter, and all fifty-seven of the kit's tests pass with no tenant."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   3.575,
+   "The verified facts, each read on November first."
+  ],
+  [
+   3.625,
+   4.263,
+   "The automatic policy is generally available, with the limits we've seen."
+  ],
+  [
+   7.888,
+   3.0,
+   "Member-of rules are quarantined from November third."
+  ],
+  [
+   10.887,
+   6.15,
+   "The create call is in version one point oh, available in the L4 and L5 clouds."
+  ],
+  [
+   17.038,
+   4.25,
+   "And dynamic administrative units aren't available in Azure Government."
+  ],
+  [
+   21.288,
+   11.975,
+   "Two places where Learn stops are recorded so a later edit doesn't loosen the code: the fallback approver is required, not optional, and overlap is found only among the users the population holds."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   1.85,
+   "What does this give the I S S O?"
+  ],
+  [
+   1.9,
+   10.012,
+   "The reviewed policy files, the lint's clean run and the hash of each body sent, for account management and least privilege, A C two and AC-6."
+  ],
+  [
+   11.912,
+   4.85,
+   "The member-of scan with zero rows, which the guide's validate step asks for."
+  ],
+  [
+   16.762,
+   9.15,
+   "A clean run of the privileged-package rule, showing no privileged role reached by rule, which scuba requires under B O D twenty-five oh-one."
+  ],
+  [
+   25.913,
+   7.487,
+   "And each mover's residual sheet, the manager's decisions and the interval, for personnel transfer, P S five."
+  ],
+  [
+   33.4,
+   3.612,
+   "Separation of duties stays in the package configuration."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   0.925,
+   "Who does what?"
+  ],
+  [
+   0.975,
+   6.525,
+   "Developers build the access automation; they read Python and jay-son and know dynamic membership rules."
+  ],
+  [
+   7.5,
+   7.463,
+   "Entitlement management owners keep the packages, and only an Identity Governance Administrator can create an automatic policy."
+  ],
+  [
+   14.963,
+   3.938,
+   "Policy reviewers approve each file before it reaches the tenant."
+  ],
+  [
+   18.9,
+   5.575,
+   "The manager of record approves requests and decides each item on a mover's residual sheet."
+  ],
+  [
+   24.475,
+   7.45,
+   "And the I S S O files the evidence: the lint runs, the empty scan, the sheets and the intervals."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   3.487,
+   "Lab 1 runs on a laptop with Python and no tenant."
+  ],
+  [
+   3.538,
+   10.35,
+   "Step one lists the reads and their permissions: the assignment policies and the assignments under entitlement management read, and the transitive memberships under user read."
+  ],
+  [
+   13.887,
+   1.087,
+   "Nothing writes."
+  ],
+  [
+   14.975,
+   6.675,
+   "Step two lints the program's three policy files, evaluating each rule over the fixture population."
+  ],
+  [
+   21.65,
+   2.5,
+   "Zero findings, zero warnings."
+  ],
+  [
+   24.15,
+   3.425,
+   "That's the baseline every new policy file has to keep."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   4.713,
+   "Step three lints five broken policies, and the lint exits with code two."
+  ],
+  [
+   4.763,
+   2.788,
+   "A rule using member-of would be quarantined."
+  ],
+  [
+   7.55,
+   12.15,
+   "Two Program Operations policies overlap on two employees of ORG-100, because one rule reads the department name and the other matches every employee; those two can lose access."
+  ],
+  [
+   19.7,
+   5.375,
+   "One automatic policy doesn't remove, and it also hands tier one access out by rule."
+  ],
+  [
+   25.075,
+   2.888,
+   "A request policy has no fallback approver."
+  ],
+  [
+   27.962,
+   5.525,
+   "And the department-name rule warns twice: no coded slot, and a thirty-day grace."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   7.8,
+   "Step four scans an export of the tenant's policies: four read, one uses member-of, the legacy shared drives policy."
+  ],
+  [
+   7.85,
+   5.188,
+   "Learn's own script runs the same test against a tenant; this one runs in the pipeline."
+  ],
+  [
+   13.037,
+   2.375,
+   "Step five lists a mover's residual."
+  ],
+  [
+   15.412,
+   8.012,
+   "Jordan moved from ORG-100 to ORG-210 on October nineteenth: eight items held, three go to review."
+  ],
+  [
+   23.425,
+   5.9,
+   "A requested package and two groups granted outside any package land on the sheet for the manager."
+  ],
+  [
+   29.325,
+   4.438,
+   "The one finding: the review is still open thirteen days after the move."
+  ],
+  [
+   33.763,
+   2.837,
+   "Step six: fifty-seven tests pass."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   4.787,
+   "Lab 2 uses a test tenant, never production; the authors haven't run it."
+  ],
+  [
+   4.838,
+   6.338,
+   "Export with a read-only app, and run the member-of scan beside Learn's script: the lists must match."
+  ],
+  [
+   11.175,
+   8.625,
+   "Create one policy from a copy of the program's file, with a one-hour grace, linted first and sent by an Identity Governance Administrator."
+  ],
+  [
+   19.8,
+   6.562,
+   "Move a test user through the pipeline, never by hand, with the validation kit's snapshot before and after."
+  ],
+  [
+   26.363,
+   4.438,
+   "Run the residual, give the sheet to the test manager, and measure the interval."
+  ],
+  [
+   30.8,
+   1.475,
+   "Then back everything out."
+  ]
+ ],
+ "17": [
+  [
+   0.05,
+   1.025,
+   "The dangers."
+  ],
+  [
+   1.075,
+   6.138,
+   "Member-of in a rule after November third quietly stops removal; the lint and the scan catch it."
+  ],
+  [
+   7.213,
+   2.85,
+   "Two policies a user can match lose access."
+  ],
+  [
+   10.062,
+   3.587,
+   "A rule on a display name drops everyone on a rename."
+  ],
+  [
+   13.65,
+   5.275,
+   "A policy that never removes, or a long grace, lets access outlive the move."
+  ],
+  [
+   18.925,
+   3.112,
+   "Privileged access by rule is standing privilege."
+  ],
+  [
+   22.038,
+   5.112,
+   "Hand-granted access on a mover stays forever, which is what the residual sheet is for."
+  ],
+  [
+   27.15,
+   1.65,
+   "Never edit the hidden group."
+  ],
+  [
+   28.8,
+   4.213,
+   "And a rule the evaluator can't read raises an error instead of pretending."
+  ]
+ ],
+ "18": [
+  [
+   0.05,
+   1.35,
+   "Here's what done looks like."
+  ],
+  [
+   1.4,
+   6.05,
+   "Every policy in the tenant has a reviewed file, and the lint is clean over a current population."
+  ],
+  [
+   7.45,
+   3.538,
+   "The member-of scan and Learn's script both come back empty."
+  ],
+  [
+   10.988,
+   5.275,
+   "Each package has one automatic policy, or two whose disjointness is recorded."
+  ],
+  [
+   16.262,
+   5.562,
+   "No privileged package is assigned by rule, and every request has a fallback approver."
+  ],
+  [
+   21.825,
+   6.237,
+   "Every move has a residual sheet, a decision for each item, and an interval within the threshold."
+  ],
+  [
+   28.062,
+   4.25,
+   "Next, Chapter 5 covers certificate-based authentication checks."
+  ],
+  [
+   32.312,
+   1.1,
+   "Thanks for watching."
+  ]
+ ]
+}

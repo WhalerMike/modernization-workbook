@@ -1,0 +1,43 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.637
+Why does this gate need code?
+
+2
+00:00:01.637 --> 00:00:05.232
+The guide's Gate 5 ties the
+card's lifecycle to the person's:
+
+3
+00:00:05.232 --> 00:00:09.287
+the card is issued from a joiner
+record and revoked from a leaver.
+
+4
+00:00:09.287 --> 00:00:13.137
+But revocation only reaches
+sign-in through the CRL,
+
+5
+00:00:13.137 --> 00:00:15.912
+and a CRL grows with every revocation.
+
+6
+00:00:15.912 --> 00:00:20.712
+The day it crosses the limit is the day
+sign-in fails for every card from that CA.
+
+7
+00:00:20.712 --> 00:00:22.537
+So the check runs every day.
+
+8
+00:00:22.537 --> 00:00:25.686
+Per-user binding coverage is
+the validation kit's job;
+
+9
+00:00:25.686 --> 00:00:29.830
+this chapter checks the tenant's
+settings, which that kit doesn't read.

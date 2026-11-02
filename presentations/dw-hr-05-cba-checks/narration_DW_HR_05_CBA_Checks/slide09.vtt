@@ -1,0 +1,46 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.375
+The verified facts, all
+read on November first.
+
+2
+00:00:03.375 --> 00:00:07.950
+The CRL limits are generally available:
+twenty and forty-five megabytes
+
+3
+00:00:07.950 --> 00:00:12.525
+for interactive sign-in, a ten-second
+download, and larger service limits.
+
+4
+00:00:12.525 --> 00:00:16.262
+Entra checks CRLs up to
+ten CAs toward the root.
+
+5
+00:00:16.262 --> 00:00:20.918
+The trust store, the certificate method,
+the strengths and the Conditional Access
+
+6
+00:00:20.918 --> 00:00:25.437
+policies are all in Graph version one point
+oh, with the permissions you just saw.
+
+7
+00:00:25.437 --> 00:00:28.230
+The certificate method's
+bindings include the
+
+8
+00:00:28.230 --> 00:00:30.951
+low-affinity principal
+name and email fields.
+
+9
+00:00:30.951 --> 00:00:34.680
+And both features are available
+in Azure for US Government.

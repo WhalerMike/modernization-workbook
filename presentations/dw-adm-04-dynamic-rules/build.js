@@ -286,7 +286,7 @@ require("../_build/devwb.js")({
           ["DR-11: the test for u06 fails", "u06, the worker with no type, was expected out"],
           ["Shadow diff: adds u06", "The pull request shows exactly whom the change admits; put the clause back"],
         ] }, pt: 13 },
-        { terminal: "04-9", lines: "1,3,10-12,14", kit: "examples/dynamic-rules" },
+        { terminal: "04-9", lines: "1,3,8-11,13", kit: "examples/dynamic-rules" },
       ],
       sources: "Sources: examples/dynamic-rules (tests and fixtures, fictional). Chapter 04, “Lab 1: fixtures, no tenant,” steps 4–6.",
       say: `Now the part that makes the case for all this. Run the pull request check and it passes cleanly: six rules, no findings. Then break a rule on purpose by deleting the clause that keeps out empty worker types, and run it again. Three things fire at once. The linter flags the empty-slot risk, the membership test for the worker with no type fails, and the shadow diff shows exactly who the change would let in. Put the clause back, run the whole suite, and seventy tests pass.`,

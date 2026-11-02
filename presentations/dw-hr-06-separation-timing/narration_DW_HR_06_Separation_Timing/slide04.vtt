@@ -1,0 +1,36 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.350
+Here's what those records leave to
+you, and each row is pinned by a test.
+
+2
+00:00:04.350 --> 00:00:08.556
+The disable and the session update
+are separate records, and a disabled
+
+3
+00:00:08.556 --> 00:00:12.975
+account with live sessions isn't blocked,
+so the block is the later of the two.
+
+4
+00:00:12.975 --> 00:00:17.262
+A run's completion says the workflow
+finished, not when access stopped.
+
+5
+00:00:17.262 --> 00:00:21.799
+The catch-up window is only prose,
+so a late entry gets its own rule.
+
+6
+00:00:21.799 --> 00:00:26.462
+A failed disable sits in the same log,
+so only successful records count.
+
+7
+00:00:26.462 --> 00:00:30.140
+And a failed task, or a
+re-enable, each gets a rule.

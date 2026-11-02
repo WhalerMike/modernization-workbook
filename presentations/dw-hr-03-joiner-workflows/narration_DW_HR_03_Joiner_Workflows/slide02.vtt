@@ -1,0 +1,39 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.637
+Why does this gate need code?
+
+2
+00:00:01.637 --> 00:00:05.284
+The guide's Step 3 asks for
+few workflows scoped by code,
+
+3
+00:00:05.284 --> 00:00:09.175
+a pass that bridges to the card,
+baseline access by package,
+
+4
+00:00:09.175 --> 00:00:14.362
+execution limits on every scheduled
+workflow, and a measured readiness rate.
+
+5
+00:00:14.362 --> 00:00:17.776
+Each of those is a property
+of a workflow definition.
+
+6
+00:00:17.776 --> 00:00:22.425
+And Learn makes a definition change a new
+version rather than an in-place update.
+
+7
+00:00:22.425 --> 00:00:24.598
+That's what makes code the right home:
+
+8
+00:00:24.598 --> 00:00:27.410
+the file is the version,
+and the plan is the diff.

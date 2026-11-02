@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.488
+Here's what the kit ships.
+
+2
+00:00:01.488 --> 00:00:06.721
+The config access folder holds two automatic
+policies, one per department package,
+
+3
+00:00:06.721 --> 00:00:11.726
+each written on the organization code and
+the worker type, with a seven-day grace.
+
+4
+00:00:11.726 --> 00:00:16.123
+And one request policy for infrastructure
+administrator eligibility,
+
+5
+00:00:16.123 --> 00:00:18.762
+which the manager
+approves, with a fallback.
+
+6
+00:00:18.762 --> 00:00:23.150
+It grants eligibility only; the
+role is activated through PIM.
+
+7
+00:00:23.150 --> 00:00:27.163
+Each file's program block records
+its tier and the groups it grants.
+
+8
+00:00:27.163 --> 00:00:31.705
+A small evaluator reads only the
+rule operators these policies use,
+
+9
+00:00:31.705 --> 00:00:34.200
+and raises an error on anything else.

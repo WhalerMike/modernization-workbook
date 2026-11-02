@@ -1,0 +1,35 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.950
+Lab 1 runs on a laptop.
+
+2
+00:00:01.950 --> 00:00:05.113
+Step one lists the reads
+and their permissions.
+
+3
+00:00:05.113 --> 00:00:09.887
+The plan needs one read, of the
+workflows, with workflow read permission.
+
+4
+00:00:09.887 --> 00:00:13.513
+Readiness reads the users, the
+pre-hire processing results
+
+5
+00:00:13.513 --> 00:00:17.362
+and the package assignments, with
+four read permissions in all.
+
+6
+00:00:17.362 --> 00:00:20.776
+Step two lints the
+program's six workflow files
+
+7
+00:00:20.776 --> 00:00:24.430
+against a budget of fifty:
+no findings, no warnings.

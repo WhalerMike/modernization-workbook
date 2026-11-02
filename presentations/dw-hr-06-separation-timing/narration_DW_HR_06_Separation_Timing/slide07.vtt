@@ -1,0 +1,52 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.132
+S T 6 warns when a privileged
+role holder leaves,
+
+2
+00:00:03.132 --> 00:00:07.400
+because Learn says the disable
+task doesn't support role holders.
+
+3
+00:00:07.400 --> 00:00:09.641
+S T 7 sends a failed leaver run,
+
+4
+00:00:09.641 --> 00:00:13.750
+or one with failed tasks, to
+a high-priority exception.
+
+5
+00:00:13.750 --> 00:00:16.941
+S T 8 flags a user
+deleted before the device
+
+6
+00:00:16.941 --> 00:00:20.862
+retire or wipe completed,
+since disposal comes last.
+
+7
+00:00:20.862 --> 00:00:24.625
+And S T 9 flags revocation
+slower than its threshold;
+
+8
+00:00:24.625 --> 00:00:26.900
+the sample is twenty-four hours.
+
+9
+00:00:26.900 --> 00:00:28.588
+The thresholds are samples.
+
+10
+00:00:28.588 --> 00:00:30.345
+The agency sets the period,
+
+11
+00:00:30.345 --> 00:00:34.150
+and the tenant schedule is part
+of it, so set them together.

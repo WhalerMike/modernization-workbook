@@ -1,0 +1,778 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.300
+Welcome back to Building
+HR-Driven Identity.
+
+2
+00:00:03.300 --> 00:00:07.337
+This is Chapter 5: certificate-based
+authentication checks.
+
+3
+00:00:07.337 --> 00:00:10.447
+A revoked card is only
+revoked if Entra can
+
+4
+00:00:10.447 --> 00:00:14.000
+download the list that says
+so, in time, every time.
+
+5
+00:00:14.000 --> 00:00:18.338
+So this chapter checks the configuration
+behind card sign-in as code.
+
+6
+00:00:18.338 --> 00:00:23.897
+It starts from Learn's certificate revocation
+list page and the Graph resources that
+
+7
+00:00:23.897 --> 00:00:27.342
+hold the trust store and the
+X.509 certificate method,
+
+8
+00:00:27.342 --> 00:00:32.275
+and adds what they leave to you: a
+measurement of every CRL, and thirteen rules.
+
+9
+00:00:32.275 --> 00:00:37.640
+We'll see why, what the code does,
+who runs it, two labs and the dangers.
+
+10
+00:00:41.390 --> 00:00:42.977
+Why does this gate need code?
+
+11
+00:00:42.977 --> 00:00:46.573
+The guide's Gate 5 ties the
+card's lifecycle to the person's:
+
+12
+00:00:46.573 --> 00:00:50.627
+the card is issued from a joiner
+record and revoked from a leaver.
+
+13
+00:00:50.627 --> 00:00:54.477
+But revocation only reaches
+sign-in through the CRL,
+
+14
+00:00:54.477 --> 00:00:57.252
+and a CRL grows with every revocation.
+
+15
+00:00:57.252 --> 00:01:02.052
+The day it crosses the limit is the day
+sign-in fails for every card from that CA.
+
+16
+00:01:02.052 --> 00:01:03.877
+So the check runs every day.
+
+17
+00:01:03.877 --> 00:01:07.026
+Per-user binding coverage is
+the validation kit's job;
+
+18
+00:01:07.026 --> 00:01:11.470
+this chapter checks the tenant's
+settings, which that kit doesn't read.
+
+19
+00:01:15.220 --> 00:01:17.220
+Which cloud you're in changes the answer.
+
+20
+00:01:17.220 --> 00:01:23.226
+For interactive sign-in, a CRL must stay
+under twenty megabytes in public Entra ID,
+
+21
+00:01:23.226 --> 00:01:29.232
+which includes GCC, and forty-five in Azure
+US Government, which includes GCC High.
+
+22
+00:01:29.232 --> 00:01:32.082
+Either way it must download
+within ten seconds.
+
+23
+00:01:32.082 --> 00:01:35.282
+So the expected-configuration
+file holds both sets,
+
+24
+00:01:35.282 --> 00:01:38.183
+and the check takes a
+cloud name with no default.
+
+25
+00:01:38.183 --> 00:01:40.621
+Learn doesn't say which megabyte it means,
+
+26
+00:01:40.621 --> 00:01:44.850
+so the configuration reads the
+decimal one, the stricter reading.
+
+27
+00:01:48.600 --> 00:01:52.712
+Learn's CRL page is Microsoft's
+procedure and its limits.
+
+28
+00:01:52.712 --> 00:01:57.475
+Without a configured CRL, Entra
+doesn't check revocation for that CA.
+
+29
+00:01:57.475 --> 00:02:02.988
+There's one endpoint per CA, and
+HTTP is recommended over HTTPS.
+
+30
+00:02:02.988 --> 00:02:08.043
+A configured CRL that can't be downloaded
+fails sign-in for that CA's certificates,
+
+31
+00:02:08.043 --> 00:02:12.946
+so Learn asks for highly available
+endpoints and for CRL validation enforced,
+
+32
+00:02:12.946 --> 00:02:15.813
+with exemptions only
+while troubleshooting.
+
+33
+00:02:15.813 --> 00:02:20.896
+Graph holds the configuration in three
+places: the PKI trust store, the X.509
+
+34
+00:02:20.896 --> 00:02:23.930
+certificate method, and the authentication
+
+35
+00:02:23.930 --> 00:02:27.150
+strengths with the policies that use them.
+
+36
+00:02:30.900 --> 00:02:32.263
+What does Learn leave to you?
+
+37
+00:02:32.263 --> 00:02:36.422
+The limits are prose, and nobody
+measures a CRL until sign-in fails,
+
+38
+00:02:36.422 --> 00:02:41.351
+so the kit measures bytes and seconds
+and compares them with the cloud's limit.
+
+39
+00:02:41.351 --> 00:02:44.912
+An unreachable endpoint
+becomes a finding, not a skip.
+
+40
+00:02:44.912 --> 00:02:48.974
+A renewed CA with a new thumbprint
+would be silently missing,
+
+41
+00:02:48.974 --> 00:02:51.737
+so each issuing CA is named by thumbprint.
+
+42
+00:02:51.737 --> 00:02:54.375
+PIV could sign in as single-factor.
+
+43
+00:02:54.375 --> 00:02:56.437
+An exemption could stay forever.
+
+44
+00:02:56.437 --> 00:03:01.450
+And a phishing-resistant strength could
+exist that no enforced policy requires.
+
+45
+00:03:01.450 --> 00:03:03.690
+Each row is pinned by a test.
+
+46
+00:03:07.440 --> 00:03:10.040
+The code is one script with two commands.
+
+47
+00:03:10.040 --> 00:03:14.260
+Measure takes a list of CRL
+URLs, downloads each once,
+
+48
+00:03:14.260 --> 00:03:17.990
+and writes the bytes, the
+seconds and any error.
+
+49
+00:03:17.990 --> 00:03:20.898
+A failed download is recorded, not raised,
+
+50
+00:03:20.898 --> 00:03:24.490
+because the unreachable
+CRL is itself the finding.
+
+51
+00:03:24.490 --> 00:03:27.811
+Run it from the internet-facing
+path Entra uses,
+
+52
+00:03:27.811 --> 00:03:30.365
+not from inside the PKI's own network.
+
+53
+00:03:30.365 --> 00:03:35.199
+Check reads the configuration export,
+the measurements and the expected file,
+
+54
+00:03:35.199 --> 00:03:37.727
+and applies thirteen rules for one cloud.
+
+55
+00:03:37.727 --> 00:03:43.350
+Five tests cover the chapter, and with the
+other chapters' tests, fifty-seven pass.
+
+56
+00:03:47.100 --> 00:03:50.625
+Here are the thirteen rules,
+each labeled with its source.
+
+57
+00:03:50.625 --> 00:03:56.102
+Most come straight from Learn: a CA with
+no CRL, an endpoint that isn't HTTP,
+
+58
+00:03:56.102 --> 00:04:00.001
+a CRL over the size limit
+or slower than ten seconds,
+
+59
+00:04:00.001 --> 00:04:05.850
+the certificate method switched off,
+and CRL validation off or a CA exempted.
+
+60
+00:04:05.850 --> 00:04:10.569
+Some are the program's own design:
+an early warning at eighty percent,
+
+61
+00:04:10.569 --> 00:04:14.361
+a CRL nobody measured, a CA
+expiring within ninety days,
+
+62
+00:04:14.361 --> 00:04:17.563
+and an issuing CA missing
+from the trust store.
+
+63
+00:04:17.563 --> 00:04:21.271
+And two protect the strength:
+PIV mapped to multifactor,
+
+64
+00:04:21.271 --> 00:04:24.530
+and an enforced phishing-resistant policy.
+
+65
+00:04:28.280 --> 00:04:32.789
+The read needs three permissions, each
+the least-privileged for its call:
+
+66
+00:04:32.789 --> 00:04:37.372
+one to read the public key infrastructure,
+one to read the authentication
+
+67
+00:04:37.372 --> 00:04:41.280
+method policy, and one to read
+policies, for Conditional Access.
+
+68
+00:04:41.280 --> 00:04:44.659
+The code reads the newer
+PKI trust store on purpose,
+
+69
+00:04:44.659 --> 00:04:50.292
+because the older configuration's delegated
+read names only Global Administrator.
+
+70
+00:04:50.292 --> 00:04:54.885
+One judgment call: a root CA with
+no CRL is a warning, not a finding,
+
+71
+00:04:54.885 --> 00:04:59.655
+because a root that issues only
+CA certificates may publish none.
+
+72
+00:04:59.655 --> 00:05:05.300
+Learn's prerequisite is wider, so Lab
+2 confirms the root's revocation path.
+
+73
+00:05:09.050 --> 00:05:12.375
+The verified facts, all
+read on November first.
+
+74
+00:05:12.375 --> 00:05:16.950
+The CRL limits are generally available:
+twenty and forty-five megabytes
+
+75
+00:05:16.950 --> 00:05:21.525
+for interactive sign-in, a ten-second
+download, and larger service limits.
+
+76
+00:05:21.525 --> 00:05:25.262
+Entra checks CRLs up to
+ten CAs toward the root.
+
+77
+00:05:25.262 --> 00:05:29.918
+The trust store, the certificate method,
+the strengths and the Conditional Access
+
+78
+00:05:29.918 --> 00:05:34.437
+policies are all in Graph version one point
+oh, with the permissions you just saw.
+
+79
+00:05:34.437 --> 00:05:37.230
+The certificate method's
+bindings include the
+
+80
+00:05:37.230 --> 00:05:39.951
+low-affinity principal
+name and email fields.
+
+81
+00:05:39.951 --> 00:05:43.980
+And both features are available
+in Azure for US Government.
+
+82
+00:05:47.730 --> 00:05:51.616
+Four places where Learn says
+nothing or disagrees with itself,
+
+83
+00:05:51.616 --> 00:05:54.530
+recorded so a later edit
+doesn't loosen the code.
+
+84
+00:05:54.530 --> 00:05:59.157
+Learn never says which megabyte it means,
+so the code takes the stricter one;
+
+85
+00:05:59.157 --> 00:06:01.918
+Learn also says it plans
+to remove the limits.
+
+86
+00:06:01.918 --> 00:06:06.118
+The federation page still gives
+a single twenty-megabyte limit,
+
+87
+00:06:06.118 --> 00:06:10.555
+so the code follows the CRL page and
+applies twenty to GCC either way.
+
+88
+00:06:10.555 --> 00:06:15.355
+Learn wants a CRL on every CA, but
+the check only warns on a root.
+
+89
+00:06:15.355 --> 00:06:18.789
+And Learn never says which
+way binding priority runs,
+
+90
+00:06:18.789 --> 00:06:21.800
+so the check flags any low-affinity field.
+
+91
+00:06:25.550 --> 00:06:27.088
+What does this prove federally?
+
+92
+00:06:27.088 --> 00:06:32.384
+That every issuing CA is trusted with
+a CRL Entra can download in time,
+
+93
+00:06:32.384 --> 00:06:36.845
+which supports acceptance of
+PIV credentials and public
+
+94
+00:06:36.845 --> 00:06:40.562
+key-based authentication,
+IA-2 twelve and IA-5 two.
+
+95
+00:06:40.562 --> 00:06:45.706
+That an enabled policy requires a
+phishing-resistant strength and PIV counts as
+
+96
+00:06:45.706 --> 00:06:48.778
+multifactor, which the
+SCuBA baseline requires;
+
+97
+00:06:48.778 --> 00:06:51.849
+keep those two rows beside
+the ScubaGear report.
+
+98
+00:06:51.849 --> 00:06:57.650
+That a revoked card is refused, which
+is FIPS 201's termination of the card.
+
+99
+00:06:57.650 --> 00:07:00.890
+And that the certificate counts
+at the assurance claimed.
+
+100
+00:07:04.640 --> 00:07:05.565
+Who does what?
+
+101
+00:07:05.565 --> 00:07:09.253
+Developers build the credential
+checks, and need to read Python.
+
+102
+00:07:09.253 --> 00:07:14.632
+The PKI and credentialing engineers run
+the issuing CAs, so they own the list
+
+103
+00:07:14.632 --> 00:07:19.927
+of CAs by thumbprint, the PIV policy
+OIDs, and endpoints that stay available.
+
+104
+00:07:19.927 --> 00:07:23.480
+And the I S S O keeps
+the configuration export,
+
+105
+00:07:23.480 --> 00:07:27.128
+the findings and every
+CRL measurement, dated.
+
+106
+00:07:27.128 --> 00:07:30.508
+The reader app holds exactly
+the three read permissions,
+
+107
+00:07:30.508 --> 00:07:32.953
+with a certificate or a managed identity.
+
+108
+00:07:32.953 --> 00:07:37.630
+The code measures and compares; it
+never changes the configuration.
+
+109
+00:07:41.380 --> 00:07:44.180
+Lab 1 runs on a laptop with no tenant.
+
+110
+00:07:44.180 --> 00:07:50.167
+Step one lists the configuration read: five
+calls, under exactly three permissions.
+
+111
+00:07:50.167 --> 00:07:52.893
+Step two measures the fixture CRLs.
+
+112
+00:07:52.893 --> 00:07:56.292
+Two are read, with their sizes;
+the third file is missing,
+
+113
+00:07:56.292 --> 00:07:59.617
+and that's recorded with its
+error rather than raised.
+
+114
+00:07:59.617 --> 00:08:00.930
+Your times will differ.
+
+115
+00:08:00.930 --> 00:08:03.937
+The check in the next step
+reads a different file,
+
+116
+00:08:03.937 --> 00:08:08.071
+the fictional tenant's own
+measurements, where one CRL is eighteen
+
+117
+00:08:08.071 --> 00:08:12.110
+and a half million bytes and
+took eleven point four seconds.
+
+118
+00:08:15.860 --> 00:08:21.685
+Step three checks the fictional tenant for
+GCC, with its twenty-million-byte limit.
+
+119
+00:08:21.685 --> 00:08:25.660
+Five findings and seven warnings,
+and the exit code is two.
+
+120
+00:08:25.660 --> 00:08:27.635
+Read the story in the fixture.
+
+121
+00:08:27.635 --> 00:08:33.631
+Issuing CA 2 was renewed, so the thumbprint
+the card program expects is gone from
+
+122
+00:08:33.631 --> 00:08:39.172
+the trust store, and the renewed CA's
+CRL is large, slow and served over HTTPS.
+
+123
+00:08:39.172 --> 00:08:42.148
+A legacy intermediate has no CRL at all.
+
+124
+00:08:42.148 --> 00:08:46.772
+The mode rule maps the wrong
+OID, so PIV is single-factor.
+
+125
+00:08:46.772 --> 00:08:50.480
+And the phishing-resistant
+policy is still report-only.
+
+126
+00:08:54.230 --> 00:08:57.323
+Step four runs the same
+tenant for GCC High,
+
+127
+00:08:57.323 --> 00:09:00.505
+where the limit is
+forty-five million bytes.
+
+128
+00:09:00.505 --> 00:09:03.030
+Now it's five findings and six warnings.
+
+129
+00:09:03.030 --> 00:09:06.500
+The same eighteen and a half
+million bytes is under eighty
+
+130
+00:09:06.500 --> 00:09:10.043
+percent of the larger limit, so
+the early warning drops away.
+
+131
+00:09:10.043 --> 00:09:13.993
+But the eleven-second download
+is a finding in every cloud.
+
+132
+00:09:13.993 --> 00:09:16.592
+That's why the cloud is
+a required argument.
+
+133
+00:09:16.592 --> 00:09:19.993
+Step five runs the
+tests: fifty-seven pass.
+
+134
+00:09:19.993 --> 00:09:22.200
+Then delete the output folder.
+
+135
+00:09:25.950 --> 00:09:30.171
+Lab 2 uses a test tenant with
+certificate-based authentication
+
+136
+00:09:30.171 --> 00:09:33.038
+set up for a test CA; the
+authors haven't run it.
+
+137
+00:09:33.038 --> 00:09:37.438
+Register a reader app with a certificate
+and only the three permissions.
+
+138
+00:09:37.438 --> 00:09:41.237
+Export the configuration and check
+its shape matches the fixture.
+
+139
+00:09:41.237 --> 00:09:44.888
+Measure the real CRLs from
+outside the agency network.
+
+140
+00:09:44.888 --> 00:09:50.076
+Run the check with your test PKI's
+thumbprints and policy OIDs, and your cloud.
+
+141
+00:09:50.076 --> 00:09:55.750
+Then the real proof: revoke a test certificate,
+wait for the next CRL, and sign in.
+
+142
+00:09:55.750 --> 00:09:57.137
+Entra should refuse it.
+
+143
+00:09:57.137 --> 00:09:59.440
+Finally, back everything out.
+
+144
+00:10:03.190 --> 00:10:05.502
+The dangers, and the guard for each.
+
+145
+00:10:05.502 --> 00:10:09.994
+A CRL that grows past the limit
+takes down every card from that CA,
+
+146
+00:10:09.994 --> 00:10:13.639
+so the size rule and its
+early warning run every time.
+
+147
+00:10:13.639 --> 00:10:18.515
+A slow or unreachable endpoint causes
+the same outage from the network side.
+
+148
+00:10:18.515 --> 00:10:22.040
+A CA without a CRL lets
+revoked cards sign in.
+
+149
+00:10:22.040 --> 00:10:25.228
+A renewed CA nobody added
+locks out new cards.
+
+150
+00:10:25.228 --> 00:10:29.177
+A troubleshooting exemption that
+stays turns revocation off.
+
+151
+00:10:29.177 --> 00:10:34.215
+PIV mapped as single-factor means
+the card isn't what meets MFA.
+
+152
+00:10:34.215 --> 00:10:38.240
+And a report-only policy is
+a requirement only on paper.
+
+153
+00:10:41.990 --> 00:10:43.340
+Here's what done looks like.
+
+154
+00:10:43.340 --> 00:10:47.321
+The expected file names every
+issuing CA by thumbprint
+
+155
+00:10:47.321 --> 00:10:51.215
+and every PIV policy OID, with
+the limits for your cloud.
+
+156
+00:10:51.215 --> 00:10:55.467
+Every CRL was measured from outside
+the network within the last day,
+
+157
+00:10:55.467 --> 00:10:58.353
+none near the limit or
+slower than ten seconds.
+
+158
+00:10:58.353 --> 00:11:03.053
+The check shows no finding, and every
+exemption has a ticket and an end date.
+
+159
+00:11:03.053 --> 00:11:06.653
+An enabled policy requires a
+phishing-resistant strength.
+
+160
+00:11:06.653 --> 00:11:10.327
+A revoked test card was refused,
+with the evidence filed.
+
+161
+00:11:10.327 --> 00:11:14.327
+Next, Chapter 6: separation
+timing from the logs.
+
+162
+00:11:14.327 --> 00:11:15.490
+Thanks for watching.

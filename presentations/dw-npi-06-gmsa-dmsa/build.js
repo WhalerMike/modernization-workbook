@@ -293,7 +293,7 @@ require("../_build/devwb.js")({
           ["svc-webfront", "Traditional", "web.owner@contoso.example", "2027-06-30", "True", "—"],
         ] }, pt: 11.5 },
         { terminal: "06-8", lines: "2-3" },
-        { terminal: "06-9", lines: "7-9" },
+        { terminal: "06-9", lines: "7-8" },
         { lead: "Step 8, -Apply to the fake: Apply: 4 Sent. Step 9, Invoke-Pester -Path tests: 513 tests passing." },
       ],
       sources: "Sources: examples/non-person-identity fixtures (fictional). Chapter 06, “Lab 1: fixtures, no tenant,” steps 6–9 and expected result.",

@@ -1,0 +1,790 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.300
+Welcome back to Building
+HR-Driven Identity.
+
+2
+00:00:03.300 --> 00:00:07.575
+This is Chapter 7: lifecycle
+drift, metrics and evidence.
+
+3
+00:00:07.575 --> 00:00:09.750
+Six gates set the lifecycle up.
+
+4
+00:00:09.750 --> 00:00:14.444
+This one proves, every day, that it
+still runs the way the first six said,
+
+5
+00:00:14.444 --> 00:00:18.562
+and leaves a record that outlives
+the accounts it describes.
+
+6
+00:00:18.562 --> 00:00:23.756
+We'll see the run that finds six drift
+classes and computes six metrics,
+
+7
+00:00:23.756 --> 00:00:27.070
+the packager that hashes
+and chains each run,
+
+8
+00:00:27.070 --> 00:00:32.000
+the period an I S S O signs, who
+does what, two labs and the dangers.
+
+9
+00:00:35.750 --> 00:00:37.238
+Why does this gate exist?
+
+10
+00:00:37.238 --> 00:00:41.975
+Because the first six only set things up;
+something has to show they keep working.
+
+11
+00:00:41.975 --> 00:00:43.925
+And the evidence has to survive.
+
+12
+00:00:43.925 --> 00:00:48.456
+Entra's own retention is short: thirty
+days for audit logs with P1 or P2,
+
+13
+00:00:48.456 --> 00:00:51.954
+thirty for provisioning logs
+with a premium edition,
+
+14
+00:00:51.954 --> 00:00:56.962
+and up to thirty days of Lifecycle
+Workflows history, none of it retroactive.
+
+15
+00:00:56.962 --> 00:01:01.287
+The accounts get disposed of; the record of
+what happened to them must outlive them.
+
+16
+00:01:01.287 --> 00:01:06.740
+Attribute drift and schema drift are out of
+scope on purpose; other tools find them.
+
+17
+00:01:10.490 --> 00:01:16.194
+Microsoft documents log retention and routing,
+but publishes no sample that computes
+
+18
+00:01:16.194 --> 00:01:21.502
+lifecycle metrics or joins HR, the directory
+and a card system into drift classes.
+
+19
+00:01:21.502 --> 00:01:25.012
+So the nearest start is the
+program's own drift pipeline
+
+20
+00:01:25.012 --> 00:01:28.827
+from the Federal Modernization
+Workbook's Book 19, Chapter 9.
+
+21
+00:01:28.827 --> 00:01:30.818
+It compares validation kit runs,
+
+22
+00:01:30.818 --> 00:01:35.465
+keeps names out of the tracker and writes
+hashed, chained evidence packages.
+
+23
+00:01:35.465 --> 00:01:38.042
+What it can't do is read lifecycle inputs,
+
+24
+00:01:38.042 --> 00:01:41.790
+compute metrics against
+thresholds, or assemble a period.
+
+25
+00:01:41.790 --> 00:01:45.675
+The verdict: keep it as the scheduler,
+the sign-in and the hashing,
+
+26
+00:01:45.675 --> 00:01:48.560
+and give it a run shaped
+for the lifecycle.
+
+27
+00:01:52.310 --> 00:01:57.042
+The run reads the HR export and the
+contractor decisions from Chapter 2, the
+
+28
+00:01:57.042 --> 00:01:59.408
+workforce users, the validation kit's
+
+29
+00:01:59.408 --> 00:02:02.385
+exceptions and the card
+system's status export.
+
+30
+00:02:02.385 --> 00:02:06.448
+Optionally it reads the outputs
+of Chapters 1, 3, 4 and 6,
+
+31
+00:02:06.448 --> 00:02:10.973
+and checks each against its
+own manifest before reading it.
+
+32
+00:02:10.973 --> 00:02:13.747
+Thresholds come from a
+reviewed config file.
+
+33
+00:02:13.747 --> 00:02:19.280
+It writes its folder once, refusing one
+that exists: a run file recording the
+
+34
+00:02:19.280 --> 00:02:23.117
+tenant, cloud, mode, window
+and the hash of every input,
+
+35
+00:02:23.117 --> 00:02:25.348
+plus the findings and metrics.
+
+36
+00:02:25.348 --> 00:02:28.940
+And the mode, fixture
+or tenant, is required.
+
+37
+00:02:32.690 --> 00:02:35.478
+Here are the six classes, all from Book 3.
+
+38
+00:02:35.478 --> 00:02:38.602
+A worker record with no
+account is missing identity.
+
+39
+00:02:38.602 --> 00:02:41.545
+An enabled account for someone terminated,
+
+40
+00:02:41.545 --> 00:02:45.140
+or a contractor past the
+earliest end, is stale access.
+
+41
+00:02:45.140 --> 00:02:49.765
+An enabled account that matches nobody
+and no owned exception is an orphan.
+
+42
+00:02:49.765 --> 00:02:54.623
+A second writer or forbidden write from
+Chapter 1's scan is an unauthorized write,
+
+43
+00:02:54.623 --> 00:02:58.103
+keeping Chapter 1's object key
+so the fingerprint matches.
+
+44
+00:02:58.103 --> 00:03:01.073
+And an active PIV card
+for a separated worker,
+
+45
+00:03:01.073 --> 00:03:05.840
+or for a contractor the source no
+longer holds, is credential drift.
+
+46
+00:03:09.590 --> 00:03:12.765
+The six metrics are Book
+3's measured lifecycle.
+
+47
+00:03:12.765 --> 00:03:17.071
+Separation-to-block and
+separation-to-revocation come from Chapter 6,
+
+48
+00:03:17.071 --> 00:03:18.853
+at the ninetieth percentile.
+
+49
+00:03:18.853 --> 00:03:23.940
+Transfer-to-review comes from Chapter 4,
+and stays open while the review is open.
+
+50
+00:03:23.940 --> 00:03:26.465
+Joiner readiness comes from Chapter 3.
+
+51
+00:03:26.465 --> 00:03:31.077
+Correlation coverage and derivation
+purity this run computes itself.
+
+52
+00:03:31.077 --> 00:03:33.678
+A metric over its threshold is a warning.
+
+53
+00:03:33.678 --> 00:03:39.515
+And the key rule: a metric with no input is
+reported as not measured, never as zero.
+
+54
+00:03:39.515 --> 00:03:45.240
+The thresholds are proposed starting values;
+choosing them is the agency's decision.
+
+55
+00:03:48.990 --> 00:03:51.003
+The packager has three commands.
+
+56
+00:03:51.003 --> 00:03:56.254
+Package checks the run, every file and
+nothing extra, one tenant, cloud and mode,
+
+57
+00:03:56.254 --> 00:04:01.096
+only read requests, and writes a
+summary with fingerprints but no names,
+
+58
+00:04:01.096 --> 00:04:06.102
+an evidence manifest that names the
+previous package, and a checksum file.
+
+59
+00:04:06.102 --> 00:04:08.453
+It refuses a chain for another tenant.
+
+60
+00:04:08.453 --> 00:04:10.689
+Verify rechecks every file.
+
+61
+00:04:10.689 --> 00:04:15.925
+And period verifies every package in the
+window, reports chain breaks and coverage
+
+62
+00:04:15.925 --> 00:04:20.477
+gaps, gives each metric's series, and
+maps what's still open to the controls.
+
+63
+00:04:20.477 --> 00:04:25.260
+That mapping is design guidance;
+the assessor decides each control.
+
+64
+00:04:29.010 --> 00:04:32.698
+The facts behind the code,
+each read on November first.
+
+65
+00:04:32.698 --> 00:04:36.612
+The run's only new Graph read
+lists users with their leave date,
+
+66
+00:04:36.612 --> 00:04:40.834
+which needs User Read All with the
+lifecycle info read permission.
+
+67
+00:04:40.834 --> 00:04:46.471
+The Graph host depends on the cloud:
+graph dot microsoft dot com for G C C,
+
+68
+00:04:46.471 --> 00:04:51.135
+graph dot microsoft dot U S for G
+C C High, and its D o D variant.
+
+69
+00:04:51.135 --> 00:04:55.350
+Audit and provisioning logs keep
+thirty days with a premium edition,
+
+70
+00:04:55.350 --> 00:04:59.122
+seven with Free, and Lifecycle
+Workflows history up to thirty.
+
+71
+00:04:59.122 --> 00:05:03.185
+Reporting and SIEM connectivity
+are available in Azure Government.
+
+72
+00:05:03.185 --> 00:05:07.060
+The metrics and classes
+themselves are Book 3's design.
+
+73
+00:05:10.810 --> 00:05:15.297
+Some points stay open, recorded so a
+later edit doesn't loosen the code.
+
+74
+00:05:15.297 --> 00:05:20.858
+The guide's Step 7 joins credential drift
+from the card system with Intune reports;
+
+75
+00:05:20.858 --> 00:05:23.965
+this run reads the card
+system only, and says so,
+
+76
+00:05:23.965 --> 00:05:27.809
+until the agency's Intune report
+is in the evidence store.
+
+77
+00:05:27.809 --> 00:05:31.622
+The thresholds are proposed
+starting values, not approved ones.
+
+78
+00:05:31.622 --> 00:05:36.086
+The period's control mapping is design
+guidance; the assessor decides.
+
+79
+00:05:36.086 --> 00:05:40.414
+And Gate 7's fourth criterion,
+proof that HR is the sole source,
+
+80
+00:05:40.414 --> 00:05:43.560
+is reported as not decided by this code.
+
+81
+00:05:47.310 --> 00:05:48.423
+What does this prove?
+
+82
+00:05:48.423 --> 00:05:52.378
+For continuous monitoring,
+CA-7, the metrics per run and
+
+83
+00:05:52.378 --> 00:05:56.948
+their series per period, against
+thresholds in a reviewed file.
+
+84
+00:05:56.948 --> 00:06:00.735
+For audit review, AU-6,
+the unauthorized writes
+
+85
+00:06:00.735 --> 00:06:04.123
+from Chapter 1's scan,
+closed at the source.
+
+86
+00:06:04.123 --> 00:06:08.681
+For retention, AU-11 and
+SI-12, packages written once,
+
+87
+00:06:08.681 --> 00:06:12.348
+hash-chained and kept
+outside the directory.
+
+88
+00:06:12.348 --> 00:06:17.260
+Continuous reporting under
+BOD 25-01 is not this code;
+
+89
+00:06:17.260 --> 00:06:20.297
+ScubaGear results sit beside the period.
+
+90
+00:06:20.297 --> 00:06:24.898
+And account management and personnel
+controls come from the other classes,
+
+91
+00:06:24.898 --> 00:06:28.020
+in a table the assessor
+reads, not decides from.
+
+92
+00:06:31.770 --> 00:06:32.695
+Who does what?
+
+93
+00:06:32.695 --> 00:06:36.282
+Platform and pipeline engineers
+own the scheduled checks.
+
+94
+00:06:36.282 --> 00:06:41.056
+Identity engineers close findings, and
+they close them at the source, the owner
+
+95
+00:06:41.056 --> 00:06:45.757
+of the fact, because a fix made in the
+directory just comes back on the next feed.
+
+96
+00:06:45.757 --> 00:06:49.482
+The next run closes a finding
+only if the source changed.
+
+97
+00:06:49.482 --> 00:06:51.778
+And the I S S O receives the evidence,
+
+98
+00:06:51.778 --> 00:06:57.440
+checks every package with nothing more than
+a checksum tool, and signs the period.
+
+99
+00:07:01.190 --> 00:07:03.090
+Lab 1 runs on a laptop.
+
+100
+00:07:03.090 --> 00:07:07.053
+Step one writes the outputs the run reads,
+
+101
+00:07:07.053 --> 00:07:11.015
+one command each from
+Chapters 1, 2, 3, 4 and 6.
+
+102
+00:07:11.015 --> 00:07:14.904
+Each exits with code two because
+each fixture holds findings:
+
+103
+00:07:14.904 --> 00:07:18.716
+one of four hires ready on day
+one, and a ninetieth percentile
+
+104
+00:07:18.716 --> 00:07:23.215
+separation-to-block of five and a half
+hours against a threshold of four.
+
+105
+00:07:23.215 --> 00:07:25.253
+Step two writes the first run.
+
+106
+00:07:25.253 --> 00:07:29.328
+It reads four chapter outputs, and
+five metrics are out of bounds.
+
+107
+00:07:29.328 --> 00:07:32.778
+Transfer-to-review shows
+not measured, not zero.
+
+108
+00:07:32.778 --> 00:07:35.760
+Fourteen findings and six warnings.
+
+109
+00:07:39.510 --> 00:07:41.760
+Step three reads the findings.
+
+110
+00:07:41.760 --> 00:07:44.572
+Worker one-oh-oh-one-oh-four
+has no account.
+
+111
+00:07:44.572 --> 00:07:47.756
+Two people terminated in
+HR are still enabled,
+
+112
+00:07:47.756 --> 00:07:50.772
+and one contractor is
+past the earliest end.
+
+113
+00:07:50.772 --> 00:07:55.883
+Two orphans: a print kiosk whose exception
+has no owner, and an old temp account;
+
+114
+00:07:55.883 --> 00:08:00.834
+a scanner service account isn't flagged,
+because its exception has an owner.
+
+115
+00:08:00.834 --> 00:08:04.335
+Five unauthorized writes
+carry over from Chapter 1.
+
+116
+00:08:04.335 --> 00:08:08.635
+Then one active card for a separated
+worker, and two contractor cards.
+
+117
+00:08:08.635 --> 00:08:13.820
+The warnings are the five metrics out of
+bounds and the mover's review, still open.
+
+118
+00:08:17.570 --> 00:08:22.244
+Step four writes the next day's run with
+the same inputs and a one-day window;
+
+119
+00:08:22.244 --> 00:08:24.620
+it prints the same metrics and counts.
+
+120
+00:08:24.620 --> 00:08:26.495
+Step five packages both.
+
+121
+00:08:26.495 --> 00:08:29.957
+The first package opens all
+twenty counted findings.
+
+122
+00:08:29.957 --> 00:08:33.078
+The second names the
+first package's manifest,
+
+123
+00:08:33.078 --> 00:08:36.608
+opens none and closes none,
+because nothing changed.
+
+124
+00:08:36.608 --> 00:08:38.844
+Verify rechecks the six files.
+
+125
+00:08:38.844 --> 00:08:43.595
+Then the check an I S S O runs needs
+nothing but the standard checksum tool:
+
+126
+00:08:43.595 --> 00:08:46.810
+every file in the second
+package reports OK.
+
+127
+00:08:50.560 --> 00:08:52.710
+Step six assembles the period.
+
+128
+00:08:52.710 --> 00:08:57.892
+Two packages, no chain breaks, no coverage
+gaps, but it isn't complete: drift
+
+129
+00:08:57.892 --> 00:09:03.247
+is open, five metrics are out of bounds,
+and transfer-to-review isn't measured.
+
+130
+00:09:03.247 --> 00:09:05.023
+So it exits with code two.
+
+131
+00:09:05.023 --> 00:09:10.011
+The summary lists the controls with
+their open findings, and scores Gate 7:
+
+132
+00:09:10.011 --> 00:09:13.855
+drift classes and metrics not
+met, evidence unbroken met,
+
+133
+00:09:13.855 --> 00:09:16.309
+sole source not decided by this code.
+
+134
+00:09:16.309 --> 00:09:22.070
+Step seven runs the tests, including the
+chapter's four drift tests and six package
+
+135
+00:09:22.070 --> 00:09:25.627
+tests: fifty-seven pass, then
+a hundred and forty-two,
+
+136
+00:09:25.627 --> 00:09:27.660
+with no tenant and no network.
+
+137
+00:09:27.660 --> 00:09:32.090
+Delete the output folder afterwards;
+it holds fictional names.
+
+138
+00:09:35.840 --> 00:09:41.090
+Lab 2 runs it against a test tenant, never
+production; the authors haven't run it.
+
+139
+00:09:41.090 --> 00:09:45.075
+Register a reader app with a
+certificate or federated credential,
+
+140
+00:09:45.075 --> 00:09:48.190
+and grant only the two
+permissions the export lists.
+
+141
+00:09:48.190 --> 00:09:52.653
+Run Chapters 1 through 6 against the
+test tenant and keep their folders.
+
+142
+00:09:52.653 --> 00:09:55.990
+Write a run in tenant mode
+and read every finding.
+
+143
+00:09:55.990 --> 00:10:00.269
+Schedule it in Book 19's workflow
+with no secret, writing packages
+
+144
+00:10:00.269 --> 00:10:04.865
+to an immutable container outside
+the directory, each naming the last.
+
+145
+00:10:04.865 --> 00:10:08.365
+After a few runs, check that
+a skipped day shows as a gap.
+
+146
+00:10:08.365 --> 00:10:09.930
+Then back it all out.
+
+147
+00:10:13.680 --> 00:10:17.017
+The dangers are about evidence
+that looks fine but isn't.
+
+148
+00:10:17.017 --> 00:10:20.210
+A metric from an edited
+chapter output proves nothing,
+
+149
+00:10:20.210 --> 00:10:22.906
+so each input is checked
+against its manifest.
+
+150
+00:10:22.906 --> 00:10:28.067
+A missing input read as zero looks met,
+so it's a not-measured warning instead.
+
+151
+00:10:28.067 --> 00:10:32.275
+A lab run filed as tenant evidence
+puts fiction in the package,
+
+152
+00:10:32.275 --> 00:10:33.843
+so the mode is required.
+
+153
+00:10:33.843 --> 00:10:35.755
+Two tenants can't share a chain.
+
+154
+00:10:35.755 --> 00:10:37.317
+Names stay out of the summary.
+
+155
+00:10:37.317 --> 00:10:39.143
+A skipped day shows as a gap.
+
+156
+00:10:39.143 --> 00:10:40.892
+Fix findings at the source.
+
+157
+00:10:40.892 --> 00:10:45.110
+And route logs out from the pilot's
+first day, before they expire.
+
+158
+00:10:48.860 --> 00:10:50.210
+Here's what done looks like.
+
+159
+00:10:50.210 --> 00:10:54.398
+Every input is the latest run of
+its chapter, and its hash matches.
+
+160
+00:10:54.398 --> 00:10:58.411
+The thresholds are the agency's
+approved values, not the samples.
+
+161
+00:10:58.411 --> 00:11:02.285
+Every finding has an owner of the
+fact and a ticket at the source.
+
+162
+00:11:02.285 --> 00:11:06.635
+Each package names the one before,
+and verify passes on all of them.
+
+163
+00:11:06.635 --> 00:11:11.473
+The period has no gaps or breaks,
+and the I S S O has signed it.
+
+164
+00:11:11.473 --> 00:11:14.886
+The evidence sits outside
+the directory, immutable.
+
+165
+00:11:14.886 --> 00:11:16.522
+That closes the workbook.
+
+166
+00:11:16.522 --> 00:11:17.680
+Thanks for watching.

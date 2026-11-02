@@ -1,0 +1,34 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.975
+Who does what?
+
+2
+00:00:00.975 --> 00:00:04.562
+Platform and pipeline engineers
+own the scheduled checks.
+
+3
+00:00:04.562 --> 00:00:09.336
+Identity engineers close findings, and
+they close them at the source, the owner
+
+4
+00:00:09.336 --> 00:00:14.037
+of the fact, because a fix made in the
+directory just comes back on the next feed.
+
+5
+00:00:14.037 --> 00:00:17.762
+The next run closes a finding
+only if the source changed.
+
+6
+00:00:17.762 --> 00:00:20.058
+And the I S S O receives the evidence,
+
+7
+00:00:20.058 --> 00:00:25.420
+checks every package with nothing more than
+a checksum tool, and signs the period.

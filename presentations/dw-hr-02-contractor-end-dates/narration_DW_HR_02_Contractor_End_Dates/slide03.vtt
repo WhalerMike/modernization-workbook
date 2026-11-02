@@ -1,0 +1,43 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.950
+Which cloud?
+
+2
+00:00:00.950 --> 00:00:05.723
+The records reach Entra ID through the
+contractor source's own provisioning app,
+
+3
+00:00:05.723 --> 00:00:08.288
+through the same middleware employees use.
+
+4
+00:00:08.288 --> 00:00:14.077
+Learn's feature availability page lists
+API-driven inbound provisioning as available
+
+5
+00:00:14.077 --> 00:00:19.074
+in Azure Government, and access reviews
+too; GCC uses the commercial service.
+
+6
+00:00:19.074 --> 00:00:22.863
+The bulk upload page itself
+has no national cloud table.
+
+7
+00:00:22.863 --> 00:00:26.053
+The middleware accepts only
+the three Graph endpoints,
+
+8
+00:00:26.053 --> 00:00:29.451
+and the reconciliation reads
+users from the cloud you name.
+
+9
+00:00:29.451 --> 00:00:30.700
+There's no default.

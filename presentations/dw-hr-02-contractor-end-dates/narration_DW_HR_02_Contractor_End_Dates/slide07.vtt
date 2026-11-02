@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.950
+Two sets of rules sit
+around that computation.
+
+2
+00:00:02.950 --> 00:00:06.717
+The source checks quarantine
+a record with no contract end,
+
+3
+00:00:06.717 --> 00:00:11.252
+or whose sponsor isn't in the HR export,
+warn when a sponsor has separated,
+
+4
+00:00:11.252 --> 00:00:14.250
+and note an engagement
+ending within two weeks.
+
+5
+00:00:14.250 --> 00:00:19.140
+The reconciliation compares the register,
+the card system and the directory:
+
+6
+00:00:19.140 --> 00:00:22.272
+an enabled account past
+its end, an orphan account,
+
+7
+00:00:22.272 --> 00:00:25.023
+a card for someone the
+register doesn't hold,
+
+8
+00:00:25.023 --> 00:00:29.225
+a record with no account, and a leave
+date that isn't the earliest end.
+
+9
+00:00:29.225 --> 00:00:31.850
+It's read only, joined on the person key.

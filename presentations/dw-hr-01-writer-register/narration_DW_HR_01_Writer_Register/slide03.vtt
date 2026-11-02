@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.800
+Which cloud matters for this read.
+
+2
+00:00:01.800 --> 00:00:06.853
+The scan reads two Graph collections, the
+directory audits and the provisioning log,
+
+3
+00:00:06.853 --> 00:00:11.400
+and both are listed for the global
+service and for both US Government levels.
+
+4
+00:00:11.400 --> 00:00:17.462
+G C C uses the global Graph host; G
+C C High and level 5 have their own.
+
+5
+00:00:17.462 --> 00:00:21.524
+The export script takes the cloud
+as an argument and has no default.
+
+6
+00:00:21.524 --> 00:00:25.774
+And Entra keeps audit records for
+only thirty days with P1 or P2,
+
+7
+00:00:25.774 --> 00:00:29.860
+so the export has to run on a
+schedule well inside that window,
+
+8
+00:00:29.860 --> 00:00:33.600
+with the logs already flowing
+to the agency's own store.

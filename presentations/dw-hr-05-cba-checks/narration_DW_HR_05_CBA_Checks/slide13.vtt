@@ -1,0 +1,43 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.850
+Lab 1 runs on a laptop with no tenant.
+
+2
+00:00:02.850 --> 00:00:08.837
+Step one lists the configuration read: five
+calls, under exactly three permissions.
+
+3
+00:00:08.837 --> 00:00:11.563
+Step two measures the fixture CRLs.
+
+4
+00:00:11.563 --> 00:00:14.962
+Two are read, with their sizes;
+the third file is missing,
+
+5
+00:00:14.962 --> 00:00:18.287
+and that's recorded with its
+error rather than raised.
+
+6
+00:00:18.287 --> 00:00:19.600
+Your times will differ.
+
+7
+00:00:19.600 --> 00:00:22.607
+The check in the next step
+reads a different file,
+
+8
+00:00:22.607 --> 00:00:26.741
+the fictional tenant's own
+measurements, where one CRL is eighteen
+
+9
+00:00:26.741 --> 00:00:30.480
+and a half million bytes and
+took eleven point four seconds.

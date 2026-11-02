@@ -1,0 +1,47 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.650
+The code is one script with two commands.
+
+2
+00:00:02.650 --> 00:00:06.870
+Measure takes a list of CRL
+URLs, downloads each once,
+
+3
+00:00:06.870 --> 00:00:10.600
+and writes the bytes, the
+seconds and any error.
+
+4
+00:00:10.600 --> 00:00:13.508
+A failed download is recorded, not raised,
+
+5
+00:00:13.508 --> 00:00:17.100
+because the unreachable
+CRL is itself the finding.
+
+6
+00:00:17.100 --> 00:00:20.421
+Run it from the internet-facing
+path Entra uses,
+
+7
+00:00:20.421 --> 00:00:22.975
+not from inside the PKI's own network.
+
+8
+00:00:22.975 --> 00:00:27.809
+Check reads the configuration export,
+the measurements and the expected file,
+
+9
+00:00:27.809 --> 00:00:30.337
+and applies thirteen rules for one cloud.
+
+10
+00:00:30.337 --> 00:00:35.660
+Five tests cover the chapter, and with the
+other chapters' tests, fifty-seven pass.

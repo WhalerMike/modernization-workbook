@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.588
+What does this prove federally?
+
+2
+00:00:01.588 --> 00:00:06.884
+That every issuing CA is trusted with
+a CRL Entra can download in time,
+
+3
+00:00:06.884 --> 00:00:11.345
+which supports acceptance of
+PIV credentials and public
+
+4
+00:00:11.345 --> 00:00:15.062
+key-based authentication,
+IA-2 twelve and IA-5 two.
+
+5
+00:00:15.062 --> 00:00:20.206
+That an enabled policy requires a
+phishing-resistant strength and PIV counts as
+
+6
+00:00:20.206 --> 00:00:23.278
+multifactor, which the
+SCuBA baseline requires;
+
+7
+00:00:23.278 --> 00:00:26.349
+keep those two rows beside
+the ScubaGear report.
+
+8
+00:00:26.349 --> 00:00:32.150
+That a revoked card is refused, which
+is FIPS 201's termination of the card.
+
+9
+00:00:32.150 --> 00:00:35.090
+And that the certificate counts
+at the assurance claimed.

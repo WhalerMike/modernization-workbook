@@ -287,7 +287,7 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: the samples, then the policy plan",
       body: [
-        { cols: [[{ terminal: "04-2" }], [{ terminal: "04-6", lines: "3,13,23-24" }]] },
+        { cols: [[{ terminal: "04-2" }], [{ terminal: "04-6", lines: "3,13,23" }]] },
         { terminal: "04-4", lines: "1,3-6" },
         { callout: "the tenant's customPasswordAddition stays in the body (KeepExisting); the one Warn is an unreviewed policy on Vendor Portal; five apps get the lock.", label: "Step 4, the diff: ", icon: "FaListCheck", color: "teal" },
       ],

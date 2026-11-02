@@ -1,0 +1,43 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.025
+Start with what Microsoft gives you.
+
+2
+00:00:02.025 --> 00:00:07.883
+The audit trail names four activities:
+disable account, enable account, delete user,
+
+3
+00:00:07.883 --> 00:00:11.789
+and an update to the refresh
+token valid-from timestamp,
+
+4
+00:00:11.789 --> 00:00:15.100
+each with its time, result,
+initiator and target.
+
+5
+00:00:15.100 --> 00:00:18.590
+Each workflow run has its
+own record, with its status,
+
+6
+00:00:18.590 --> 00:00:21.188
+its times and its count of failed tasks.
+
+7
+00:00:21.188 --> 00:00:24.863
+The schedule moves the timing:
+every three hours by default,
+
+8
+00:00:24.863 --> 00:00:26.813
+with a three-day catch-up window.
+
+9
+00:00:26.813 --> 00:00:30.960
+And the disable task doesn't support
+users who hold directory roles.

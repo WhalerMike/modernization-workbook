@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.025
+Start with what Microsoft gives you.
+
+2
+00:00:02.025 --> 00:00:06.931
+Learn's bulk upload page is the contract:
+a SCIM post to the provisioning job,
+
+3
+00:00:06.931 --> 00:00:11.363
+at most fifty user operations a
+request and forty requests a second.
+
+4
+00:00:11.363 --> 00:00:15.927
+The service matches on the attributes
+the job maps, resolves the manager,
+
+5
+00:00:15.927 --> 00:00:19.350
+and disables the user when
+a record sends active false.
+
+6
+00:00:19.350 --> 00:00:24.550
+A successful call returns accepted, with a
+header pointing to the provisioning logs.
+
+7
+00:00:24.550 --> 00:00:29.425
+For recertification, an assignment
+policy's review settings carry reviewers,
+
+8
+00:00:29.425 --> 00:00:32.570
+a schedule, and what happens
+when nobody responds.

@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.936
+Four places where Learn says
+nothing or disagrees with itself,
+
+2
+00:00:03.936 --> 00:00:06.850
+recorded so a later edit
+doesn't loosen the code.
+
+3
+00:00:06.850 --> 00:00:11.477
+Learn never says which megabyte it means,
+so the code takes the stricter one;
+
+4
+00:00:11.477 --> 00:00:14.238
+Learn also says it plans
+to remove the limits.
+
+5
+00:00:14.238 --> 00:00:18.438
+The federation page still gives
+a single twenty-megabyte limit,
+
+6
+00:00:18.438 --> 00:00:22.875
+so the code follows the CRL page and
+applies twenty to GCC either way.
+
+7
+00:00:22.875 --> 00:00:27.675
+Learn wants a CRL on every CA, but
+the check only warns on a root.
+
+8
+00:00:27.675 --> 00:00:31.109
+And Learn never says which
+way binding priority runs,
+
+9
+00:00:31.109 --> 00:00:33.820
+so the check flags any low-affinity field.

@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.143
+Step four runs the same
+tenant for GCC High,
+
+2
+00:00:03.143 --> 00:00:06.325
+where the limit is
+forty-five million bytes.
+
+3
+00:00:06.325 --> 00:00:08.850
+Now it's five findings and six warnings.
+
+4
+00:00:08.850 --> 00:00:12.320
+The same eighteen and a half
+million bytes is under eighty
+
+5
+00:00:12.320 --> 00:00:15.863
+percent of the larger limit, so
+the early warning drops away.
+
+6
+00:00:15.863 --> 00:00:19.813
+But the eleven-second download
+is a finding in every cloud.
+
+7
+00:00:19.813 --> 00:00:22.412
+That's why the cloud is
+a required argument.
+
+8
+00:00:22.412 --> 00:00:25.813
+Step five runs the
+tests: fifty-seven pass.
+
+9
+00:00:25.813 --> 00:00:27.720
+Then delete the output folder.

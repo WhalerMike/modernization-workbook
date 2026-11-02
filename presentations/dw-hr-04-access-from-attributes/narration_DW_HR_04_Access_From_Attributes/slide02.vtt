@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.637
+Why does this gate need code?
+
+2
+00:00:01.637 --> 00:00:05.314
+The guide's Step 4 assigns
+department packages by rule,
+
+3
+00:00:05.314 --> 00:00:10.626
+one automatic policy per package, with no
+member-of operator, a grace period for
+
+4
+00:00:10.626 --> 00:00:15.774
+movers, manager approval for requests,
+and a review of what's left after a move.
+
+5
+00:00:15.774 --> 00:00:20.762
+Each of those is a property of a policy
+body or a fact about what a user holds.
+
+6
+00:00:20.762 --> 00:00:25.287
+That means code can check it every time,
+instead of someone checking it once.
+
+7
+00:00:25.287 --> 00:00:28.938
+And for every rule, you'll know
+whether it's Learn's contract,
+
+8
+00:00:28.938 --> 00:00:31.660
+Learn's warning, or the
+program's own design.

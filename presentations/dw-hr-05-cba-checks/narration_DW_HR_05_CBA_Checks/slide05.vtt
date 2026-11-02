@@ -1,0 +1,46 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.413
+What does Learn leave to you?
+
+2
+00:00:01.413 --> 00:00:05.572
+The limits are prose, and nobody
+measures a CRL until sign-in fails,
+
+3
+00:00:05.572 --> 00:00:10.501
+so the kit measures bytes and seconds
+and compares them with the cloud's limit.
+
+4
+00:00:10.501 --> 00:00:14.062
+An unreachable endpoint
+becomes a finding, not a skip.
+
+5
+00:00:14.062 --> 00:00:18.124
+A renewed CA with a new thumbprint
+would be silently missing,
+
+6
+00:00:18.124 --> 00:00:20.887
+so each issuing CA is named by thumbprint.
+
+7
+00:00:20.887 --> 00:00:23.525
+PIV could sign in as single-factor.
+
+8
+00:00:23.525 --> 00:00:25.587
+An exemption could stay forever.
+
+9
+00:00:25.587 --> 00:00:30.600
+And a phishing-resistant strength could
+exist that no enforced policy requires.
+
+10
+00:00:30.600 --> 00:00:32.540
+Each row is pinned by a test.

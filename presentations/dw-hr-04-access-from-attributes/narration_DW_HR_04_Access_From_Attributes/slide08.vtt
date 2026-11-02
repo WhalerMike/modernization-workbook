@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.000
+The residual review takes the mover's old
+and new attributes, the effective date,
+
+2
+00:00:05.000 --> 00:00:09.575
+their package assignments, their group
+memberships and the policy files.
+
+3
+00:00:09.575 --> 00:00:14.931
+For each automatic assignment, it
+re-evaluates the rule on the new attributes:
+
+4
+00:00:14.931 --> 00:00:17.525
+kept, or removed at the end of the grace.
+
+5
+00:00:17.525 --> 00:00:20.637
+Anything from another policy
+is marked for review.
+
+6
+00:00:20.637 --> 00:00:23.965
+Dynamic groups are rule-managed,
+groups a held package
+
+7
+00:00:23.965 --> 00:00:27.662
+grants are package-managed, and
+anything else goes to review.
+
+8
+00:00:27.662 --> 00:00:29.937
+The sheet goes to the manager of record,
+
+9
+00:00:29.937 --> 00:00:33.120
+and the interval from transfer
+to review is measured.

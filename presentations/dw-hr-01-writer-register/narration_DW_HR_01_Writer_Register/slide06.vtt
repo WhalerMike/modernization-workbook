@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.912
+The register holds the
+guide's lifecycle rows.
+
+2
+00:00:02.912 --> 00:00:05.273
+Each row names the audited activity,
+
+3
+00:00:05.273 --> 00:00:08.813
+and for an update user record,
+the property it protects.
+
+4
+00:00:08.813 --> 00:00:11.340
+It names one writer, an optional backstop,
+
+5
+00:00:11.340 --> 00:00:14.612
+and for deletion, a list of
+writers that are forbidden.
+
+6
+00:00:14.612 --> 00:00:19.850
+Writers are named groups of service principal
+IDs: inbound provisioning, Lifecycle
+
+7
+00:00:19.850 --> 00:00:24.488
+Workflows, the card system's binding
+writer, and the interim directory sync.
+
+8
+00:00:24.488 --> 00:00:28.001
+One caution: the property names
+aren't documented on Learn.
+
+9
+00:00:28.001 --> 00:00:31.730
+They're the program's best
+reading, and Lab 2 confirms them.

@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.271
+Lab 2 uses a test tenant with
+certificate-based authentication
+
+2
+00:00:04.271 --> 00:00:07.138
+set up for a test CA; the
+authors haven't run it.
+
+3
+00:00:07.138 --> 00:00:11.538
+Register a reader app with a certificate
+and only the three permissions.
+
+4
+00:00:11.538 --> 00:00:15.337
+Export the configuration and check
+its shape matches the fixture.
+
+5
+00:00:15.337 --> 00:00:18.988
+Measure the real CRLs from
+outside the agency network.
+
+6
+00:00:18.988 --> 00:00:24.176
+Run the check with your test PKI's
+thumbprints and policy OIDs, and your cloud.
+
+7
+00:00:24.176 --> 00:00:29.850
+Then the real proof: revoke a test certificate,
+wait for the next CRL, and sign in.
+
+8
+00:00:29.850 --> 00:00:31.237
+Entra should refuse it.
+
+9
+00:00:31.237 --> 00:00:33.240
+Finally, back everything out.

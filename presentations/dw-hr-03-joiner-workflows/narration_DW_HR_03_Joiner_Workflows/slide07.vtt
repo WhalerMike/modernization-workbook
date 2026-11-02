@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.662
+The plan is where the
+file becomes a change.
+
+2
+00:00:02.662 --> 00:00:07.713
+It lints the folder first, and refuses
+to go on if any file has a finding.
+
+3
+00:00:07.713 --> 00:00:10.699
+Then it matches each file
+to the tenant's export by
+
+4
+00:00:10.699 --> 00:00:13.976
+display name and compares
+the parts a definition owns.
+
+5
+00:00:13.976 --> 00:00:16.738
+A file with no match
+becomes a create body.
+
+6
+00:00:16.738 --> 00:00:19.938
+A changed one becomes a body
+for create new version.
+
+7
+00:00:19.938 --> 00:00:22.288
+An unchanged one is left alone.
+
+8
+00:00:22.288 --> 00:00:25.049
+It writes the plan, one
+body per change and a
+
+9
+00:00:25.049 --> 00:00:28.126
+manifest with a hash per
+file, and sends nothing.
+
+10
+00:00:28.126 --> 00:00:31.250
+Its one read needs only
+workflow read permission.

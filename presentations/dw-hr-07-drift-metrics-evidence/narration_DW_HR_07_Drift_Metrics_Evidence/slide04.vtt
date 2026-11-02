@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.782
+The run reads the HR export and the
+contractor decisions from Chapter 2, the
+
+2
+00:00:04.782 --> 00:00:07.148
+workforce users, the validation kit's
+
+3
+00:00:07.148 --> 00:00:10.125
+exceptions and the card
+system's status export.
+
+4
+00:00:10.125 --> 00:00:14.188
+Optionally it reads the outputs
+of Chapters 1, 3, 4 and 6,
+
+5
+00:00:14.188 --> 00:00:18.713
+and checks each against its
+own manifest before reading it.
+
+6
+00:00:18.713 --> 00:00:21.487
+Thresholds come from a
+reviewed config file.
+
+7
+00:00:21.487 --> 00:00:27.020
+It writes its folder once, refusing one
+that exists: a run file recording the
+
+8
+00:00:27.020 --> 00:00:30.857
+tenant, cloud, mode, window
+and the hash of every input,
+
+9
+00:00:30.857 --> 00:00:33.088
+plus the findings and metrics.
+
+10
+00:00:33.088 --> 00:00:36.380
+And the mode, fixture
+or tenant, is required.

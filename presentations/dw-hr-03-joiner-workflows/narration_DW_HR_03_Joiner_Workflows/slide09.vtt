@@ -1,0 +1,46 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.750
+The facts behind the code, read
+on Learn on November first.
+
+2
+00:00:03.750 --> 00:00:08.294
+Create and create new version share
+one permission and the Lifecycle
+
+3
+00:00:08.294 --> 00:00:12.525
+Workflows Administrator role, and
+both are available at L4 and L5.
+
+4
+00:00:12.525 --> 00:00:15.333
+Changes are versions,
+not in-place updates,
+
+5
+00:00:15.333 --> 00:00:19.425
+and the tenant runs one schedule,
+every three hours by default.
+
+6
+00:00:19.425 --> 00:00:22.923
+The pass task has a fixed
+I D and a lifetime range,
+
+7
+00:00:22.923 --> 00:00:26.600
+and its availability in
+GCC High wasn't confirmed.
+
+8
+00:00:26.600 --> 00:00:31.300
+Execution limits quarantine a
+scheduled run but not an on-demand one.
+
+9
+00:00:31.300 --> 00:00:36.120
+And a scheduled workflow catches up on a
+user for three days after the trigger date.
