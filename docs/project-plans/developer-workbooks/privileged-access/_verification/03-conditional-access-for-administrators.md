@@ -51,3 +51,16 @@ Microsoft Learn pages opened on October 30, 2026 through the Microsoft Learn MCP
 | Book 04, Appendix A, Wave 2 JSON and the custom strength | Policy and strength files, byte for byte in their controls | Appendix A's deploy script isn't used: it updates by name and sets every policy back to report-only, which the plan replaces with a diff, a dry run and a held enforcement |
 | Validation kit VK-CA-01 | Read; not changed | VK-CA-01 reads the tenant and counts report-only policies for the exclusion; this chapter's check reads the files. Their report-only handling differs only for a named instrument |
 | Chapter 02, PA-EA-08 | Report-only section | PA-EA-08 still reports a report-only policy without the group as Info |
+
+## Federal requirements and evidence (added November 2, 2026)
+
+New section, 16 rows, one for each Lab 1 and Lab 2 scripted action and each output file the kit's code writes. No Lab 1 heading or command changed.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| F1 | AC-2, AC-3, AC-6, AC-6(1), AC-6(10), CM-3, CM-3(2), CM-4, CM-6 and IA-2(1) are in the NIST SP 800-53B Moderate baseline | Federal requirements | verified November 2, 2026: each ID checked by script against the release 5.2.0 OSCAL Moderate profile, the source Book 04, Chapter 04 cites | `pa03-moderate` |
+| F2 | KSI IDs used: KSI-CMT-LMC, KSI-CMT-RMV, KSI-CMT-VTD, KSI-IAM-APM, KSI-IAM-ELP, KSI-IAM-JIT and KSI-MLA-EVC; each row's indicator lists at least one of the row's controls among its "Related SP 800-53 Controls" | Federal requirements | verified November 2, 2026 on FedRAMP's Key Security Indicators page, checked row by row by script; every ID was already cited in Book 04, Chapter 10, Book 02, Chapter 10, Book 13, Appendix A or Book 14, Chapter 03, so none is new to the repository | `pa03-ksi` |
+| F3 | KSIs are FedRAMP 20x indicators for providers; the agency lines its evidence up with them and doesn't report them | Under the table | carried forward from Book 00, Appendix B | Book 00 |
+| F4 | MS.AAD.3.6v1 is BOD 25-01 required configuration, with the policy text as the section states it | Federal requirements | verified November 2, 2026 on CISA's Required Configurations page | `pa03-bod` |
+| F5 | OMB M-22-09 claim as stated in the section | Federal requirements | carried forward from Book 02, Chapter 10 (read October 20, 2026) | `pa03-m2209` |
+| F6 | Which output supports which control, and who keeps it | Federal requirements | restated-as-design: the program's mapping, following Book 04, Chapters 02, 04, 08 and 10 | Book 04 |
