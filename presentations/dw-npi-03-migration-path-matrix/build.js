@@ -230,20 +230,8 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: Learn's tables, then the matrix run",
       body: [
-        { code: [
-          "# 1  Learn's tables as published: PassedCount 12, FailedCount 0, NotRunCount 31",
-          "Invoke-Pester -Path tests/NpiMatrix.Tests.ps1 -FullNameFilter '*Chapter 03*' -Output None -PassThru",
-          "# 2  What the task needs: LicenseAssignment.Read.All, User.Read.All; GET",
-          "$p = Get-NpiMatrixRequiredPermission; $p.GraphPermissions -join ', '; $p.Methods -join ', '",
-          "# 3  Chapters 01 and 02, then the matrix",
-          "./Invoke-NpiInventory.ps1 -Cloud gcc -FixturePath tests/fixtures/estate.json -OutputPath out/inventory",
-          "./Invoke-NpiOwnership.ps1 -Cloud gcc -RegisterRun out/inventory … -OutputPath out/ownership",
-          "./Invoke-NpiMatrix.ps1 -Cloud gcc -RegisterRun out/inventory -OwnershipRun out/ownership …",
-          "Matrix: 21 identities in scope, 20 proposed; 3 handed off, 1 to confirm first, 10 out of scope",
-          "Dispositions: 18 decided of 22; waves 1 (1, 1 HIGH), 2 (3, 1 HIGH)",
-          "Workload ID Premium (D-N4): Tier1, 2 in scope; tenant holds 2 enabled units",
-          "Findings: 7 Finding, 4 Warn, 1 Info    Gate 2: not met",
-        ], label: "POWERSHELL 7.1+ WITH PESTER 5, IN examples/non-person-identity", pt: 11 },
+        { cols: [[{ terminal: "03-1" }], [{ terminal: "03-2" }]] },
+        { terminal: "03-3", lines: "3-8" },
         { callout: "read the test “admits a user account in every situation”: Learn's table never rules one out.", label: "What step 1 shows: ", icon: "FaListCheck", color: "teal", pt: 13.5 },
       ],
       sources: "Sources: examples/non-person-identity (tests and fixtures, fictional). Chapter 03, “Lab 1: fixtures, no tenant,” steps 1–3.",
@@ -282,15 +270,7 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: the waves, the D-N4 scope, the tests",
       body: [
-        { code: [
-          "Wave 1: Mail Automation; rollback owner 'carol@contoso.example'",
-          "  AppRegistrationFederated: Re-enable the legacy account or credential; revert the app's",
-          "  configuration; remove the federated credential",
-          "Wave 2: svc-hrsync, msa-print01$, Payroll Export; rollback owner ''",
-          "  dMSA: Undo-ADServiceAccountMigration; the superseded account is kept, never deleted",
-          "  gMSA: Re-enable the legacy account; set the service back to it",
-          "  ManagedIdentity: Re-enable the legacy account; revert the application's configuration",
-        ], label: "STEP 6: THE WAVES AND THEIR ROLLBACK", pt: 11.5 },
+        { terminal: "03-6", lines: "1-7" },
         { cols: [[{ bullets: [
           "Six single-tenant app registrations CA can cover today; four after conversion",
           "Payroll Export moves to a managed identity; Legacy Reports is retired",
