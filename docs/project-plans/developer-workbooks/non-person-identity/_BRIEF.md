@@ -14,8 +14,13 @@ Workbook folder: `docs/project-plans/developer-workbooks/non-person-identity/`. 
 | `08-conditional-access-for-workload-identities.md` | Chapter 08 — Conditional Access for Workload Identities | N5.1 to N5.3, D-N5, Gate 5 | new code | 71 to 79 |
 | `09-ai-agent-identities.md` | Chapter 09 — AI Agent Identities | N6.1 to N6.7, D-N6, Gate 6 | new code; reads the sponsor fields Chapter 02 records | 81 to 89 |
 | `10-drift-and-evidence.md` | Chapter 10 — Drift and Evidence for the ISSO | N7.1, N7.2, N7.4, Gate 7 | `examples/drift-pipeline` (extend only in its own reviewed change) | 91 to 99 |
+| `11-deploying-to-test-and-production.md` | Chapter 11 — Deploying to Test and Production | the guide's G1 to G6, rollback and evidence | `examples/non-person-identity/deploy` (new: preflight, smoke test, rollback) | 101 to 109 |
 
 ## Every chapter has
+
+Chapter 11 is a deployment runbook, not a build chapter: it has no Microsoft sample to pin and no headings named "Lab 1" or "Lab 2" (scripts/kit_captures.py and scripts/generate_labs.py key on those headings). Every step is a copy-paste command with its expected result, labeled as an expectation until it has been run live, and the kit's dry-run output is labeled with its date.
+
+Chapters 01 to 10 have:
 
 In this chapter; goal and audience; the context the code depends on; Start with Microsoft's sample (what it gives, the pinned copy, what it leaves to you, as a gap table whose every row is pinned by a test); the code (what it builds on, what the chapter adds, the tests); an Illustrative code callout; Lab 1 against fixtures with no tenant; Lab 2 in a test tenant with a back-out step; a verified facts table (endpoint, least-privileged permission, Azure role or Active Directory right, role, US Government cloud availability, release stage) with the places Learn's pages differ; dangers with the guard for each; a checklist; Continue the book (previous, index, next); footnotes. Run every lab command before writing its expected output.
 
