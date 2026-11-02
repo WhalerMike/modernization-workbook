@@ -93,7 +93,7 @@ Every gate's hands-on work is a lab in the developer workbook [*Building Privile
 | Inventory (G1) | `RoleManagement.Read.Directory`, `RoleAssignmentSchedule.Read.Directory`, `RoleEligibilitySchedule.Read.Directory`, `GroupMember.ReadBasic.All`, `User.ReadBasic.All`; Azure Reader | None |
 | Emergency access (G2) | `User.Read.All`, `UserAuthenticationMethod.Read.All`, `RoleAssignmentSchedule.Read.Directory`, `GroupMember.ReadBasic.All`, `User.ReadBasic.All`, `Policy.Read.All` | None |
 | Conditional Access (G3) | `Policy.Read.All`, `AuthenticationContext.Read.All`, `Policy.Read.AuthenticationMethod` | `Policy.ReadWrite.ConditionalAccess`, `AuthenticationContext.ReadWrite.All` |
-| PIM for Entra roles (G4) | `RoleManagementPolicy.Read.Directory`, `RoleEligibilitySchedule.Read.Directory`, `RoleAssignmentSchedule.Read.Directory` | `RoleManagementPolicy.ReadWrite.Directory`, `RoleEligibilitySchedule.ReadWrite.Directory`; converting adds `RoleAssignmentSchedule.ReadWrite.Directory` |
+| PIM for Entra roles (G4) | `RoleManagementPolicy.Read.Directory`, `RoleEligibilitySchedule.Read.Directory`, `RoleAssignmentSchedule.Read.Directory`; the alert check adds `RoleManagementPolicy.Read.AzureADGroup` | `RoleManagementPolicy.ReadWrite.Directory`, `RoleEligibilitySchedule.ReadWrite.Directory`; converting adds `RoleAssignmentSchedule.ReadWrite.Directory` |
 | PIM for Groups (G5) | `Group.ReadBasic.All` and three `*.Read.AzureADGroup` permissions | The `*.ReadWrite.AzureADGroup` permissions the plan lists |
 | Azure PIM (G6) | Reader | User Access Administrator, time-bound |
 | Access reviews (G7) | `AccessReview.Read.All`; Azure Reader | `AccessReview.ReadWrite.All`; User Access Administrator for Azure series |
@@ -295,7 +295,7 @@ Each role has its own settings, and in Graph each role's policy has 17 rules wit
 | AC-3; MS.AAD.7.6v1, approval to activate Global Administrator[^pag-bod] | KSI-IAM-JIT | `global-administrator.json` and its rows in `diff.csv` |
 | AC-5 (separation of duties): no approver group approves its own role; reader and writer are different identities | KSI-IAM-JIT | PA-PIM-03 clear; the two apps' consent records |
 | AC-6(5); MS.AAD.7.4v1 and MS.AAD.7.5v1, no permanent active assignment and provisioning only through a PAM system[^pag-bod] | KSI-IAM-JIT | PA-PIM-08 and PA-PIM-09; `confirmed-activations.csv` with tickets |
-| AU-6; MS.AAD.7.7v1 and MS.AAD.7.8v1, an alert on every eligible or active highly privileged assignment and on Global Administrator activation[^pag-bod] | KSI-MLA-RVL | PA-PIM-10 and PA-PIM-11 clear in `out/pim-alerts/findings.json` |
+| AU-6; MS.AAD.7.7v1 and MS.AAD.7.8v1, an alert on every eligible or active highly privileged assignment and on Global Administrator activation[^pag-bod] | KSI-MLA-RVL | PA-PIM-10 to PA-PIM-13 clear in `out/pim-alerts/findings.json` |
 | CM-3 and CM-4(2): the change reviewed, applied in order, and verified | KSI-CMT-LMC, KSI-CMT-RMV, KSI-CMT-VTD | `plan.json`, `diff.csv`, `before.json`, an empty `verify.csv`, and `manifest.json` with each write body's SHA-256 |
 
 : Gate 4 requirements and evidence. Mapping from [Chapter 04](../../project-plans/developer-workbooks/privileged-access/04-pim-for-entra-roles-as-code.md#federal-requirements-and-evidence) {.striped .hover}
@@ -308,7 +308,7 @@ Each role has its own settings, and in Graph each role's policy has 17 rules wit
 ## Validate (G4 PIM for Entra roles)
 - **`Invoke-PaPimRoleSettings.ps1`**, as a dry run by the reader app, shows an empty `diff.csv` for every applied wave and no Finding: PA-PIM-01 (approval with no approver) and PA-PIM-02 (emergency accounts) clear.
 - PA-PIM-09 lists no standing human assignment outside an exception in the converted waves.
-- **`Invoke-PaPimAlertCheck.ps1`** reports no PA-PIM-10 (a highly privileged role with no added recipient on its assignment alert, MS.AAD.7.7v1) and no PA-PIM-11 (Global Administrator activation with no added recipient, MS.AAD.7.8v1). It only reads ([Chapter 04](../../project-plans/developer-workbooks/privileged-access/04-pim-for-entra-roles-as-code.md#the-alert-check)).
+- **`Invoke-PaPimAlertCheck.ps1`** reports no PA-PIM-10 (a highly privileged role with no added recipient on its assignment alert, MS.AAD.7.7v1) and no PA-PIM-11 (Global Administrator activation with no added recipient, MS.AAD.7.8v1). For each group that holds one of those roles, such as a PRV group, it reports no PA-PIM-12 or PA-PIM-13: the same two alerts on the group's PIM for Groups member policy, as CISA's baseline asks. It only reads ([Chapter 04](../../project-plans/developer-workbooks/privileged-access/04-pim-for-entra-roles-as-code.md#the-alert-check)).
 - Book 04's validation tests 1 to 12 pass for the pilot class (plan task A2.8).
 - Gate owner: the CISO (plan Gate 2 for the pilot class, Gate 3 for every tier).
 :::
@@ -543,7 +543,7 @@ Configuration evidence proves a setting existed; operational evidence proves it 
 | **A standing Azure Owner removed before eligibility exists** | The holder loses access mid-task | Eligible first, removal last, in one ordered plan (G6) |
 | **Whoever edits Conditional Access edits the gate** | The activation gate is weakened | Conditional Access Administrator is Tier 0; protected actions on `c2`; G8's drift |
 | **A day nobody read** | An activation in the gap has no evidence | Each audit window starts where the last ended; coverage gaps reported |
-| **An alert nobody reads** | MS.AAD.7.7v1 and MS.AAD.7.8v1 ask for alerts on highly privileged assignments and on Global Administrator activation ([Book 02, Appendix A](../b02-identity/appendix-a-federal-requirements-crosswalk.md#cisa-bod-25-01-and-the-scuba-baselines)); PA-PIM-10 and PA-PIM-11 prove a recipient is set, not that the mail arrives or is acted on | Send the recipient to a monitored mailbox; route PIM's own alerts to the SIEM (A2.4); test with one activation in the test tenant |
+| **An alert nobody reads** | MS.AAD.7.7v1 and MS.AAD.7.8v1 ask for alerts on highly privileged assignments and on Global Administrator activation ([Book 02, Appendix A](../b02-identity/appendix-a-federal-requirements-crosswalk.md#cisa-bod-25-01-and-the-scuba-baselines)); PA-PIM-10 to PA-PIM-13 prove a recipient is set, not that the mail arrives or is acted on | Send the recipient to a monitored mailbox; route PIM's own alerts to the SIEM (A2.4); test with one activation in the test tenant |
 | **Names in the tracker** | Privileged holders listed for everyone with repository access | Rule titles and object IDs only (G8) |
 
 : Dangers in privileged access {.striped .hover}
@@ -595,7 +595,7 @@ Every control named is in the NIST SP 800-53B Moderate baseline.[^pag-moderate] 
 
 ## What couldn't be verified {#what-couldnt-be-verified}
 
-- **The alert check's reach (MS.AAD.7.7v1, MS.AAD.7.8v1).** `Invoke-PaPimAlertCheck.ps1` reads the PIM notification settings of the eight highly privileged roles ([Chapter 04](../../project-plans/developer-workbooks/privileged-access/04-pim-for-entra-roles-as-code.md#the-alert-check)). It doesn't read the same settings for PIM for Groups when a PRV group holds one of those roles, which CISA's baseline also asks for. That a recipient is set doesn't show the mail arrives; only a live activation in the test tenant does. The check hasn't been run in GCC High or DoD.
+- **The alert check's reach (MS.AAD.7.7v1, MS.AAD.7.8v1).** `Invoke-PaPimAlertCheck.ps1` reads the PIM notification settings of the eight highly privileged roles ([Chapter 04](../../project-plans/developer-workbooks/privileged-access/04-pim-for-entra-roles-as-code.md#the-alert-check)). It reads the same settings in the PIM for Groups member policy of each group that holds one of those roles, as CISA's baseline asks. That a recipient is set doesn't show the mail arrives; only a live activation in the test tenant does. The check hasn't been run in GCC High or DoD, where the PIM for Groups read isn't confirmed either (Chapter 04's research gaps, row 113).
 - **G3 to G7 in the scheduled run.** The evidence run reads the inventory, emergency access and the PIM audit only. Conditional Access, PIM settings, PIM for Groups, Azure PIM and reviews aren't in it yet (research gaps, row 88).
 - **Azure PIM activations and elevate access in the audit evidence.** The directory audit log covers Entra roles; the run doesn't read Azure's own logs, and no alert is built on the elevate-access event (rows 69 and 89).
 - **Azure Government.** Not confirmed: the alert template's API version (row 7), the PIM Resource Manager API (row 65), the Azure review API (row 72), and protected actions (row 38).

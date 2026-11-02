@@ -68,15 +68,16 @@ Each script has a fixture mode (`-FixturePath`), and the rollback is a dry run u
 Two checks for policies in CISA's Microsoft Entra ID baseline (BOD 25-01 required configurations) that the chapters' code didn't cover. Both only read.
 
 - **MS.AAD.7.1v1, two to eight Global Administrators.** Chapter 01's PA-INV-04 flags five or more (Learn's stricter ceiling) and now also fewer than two users, active or eligible, group members counted.
-- **MS.AAD.7.7v1 and MS.AAD.7.8v1, alerts on highly privileged assignments and on Global Administrator activation.** `Invoke-PaPimAlertCheck.ps1` (Chapter 04's module, task `pim-alerts`, `RoleManagementPolicy.Read.Directory` only) reads the PIM policy of CISA's eight highly privileged roles and reports PA-PIM-10 when a role's role assignment alert, for eligible or active assignments, has no additional recipient, and PA-PIM-11 when Global Administrator's role activation alert has none. PIM's default recipients don't count. PIM for Groups member settings, which the baseline also covers, aren't read.
+- **MS.AAD.7.7v1 and MS.AAD.7.8v1, alerts on highly privileged assignments and on Global Administrator activation.** `Invoke-PaPimAlertCheck.ps1` (Chapter 04's module, task `pim-alerts`, four read permissions) reads the PIM policy of CISA's eight highly privileged roles and reports PA-PIM-10 when a role's role assignment alert, for eligible or active assignments, has no additional recipient, and PA-PIM-11 when Global Administrator's role activation alert has none. It then finds the groups that hold one of the eight roles, eligible or active, reads each group's PIM for Groups member policy, and applies the same rules: PA-PIM-12 for the member assignment alerts, PA-PIM-13 for the member activation alert of a group that holds Global Administrator. PIM's default recipients don't count.
 
 ```
-Invoke-PaPimAlertCheck.ps1                  read the eight roles' notification rules, write findings.json and a manifest
+Invoke-PaPimAlertCheck.ps1                  read the eight roles' and their groups' notification rules, write findings.json and a manifest
 baseline/tests/CisaBaseline.Tests.ps1       Pester 5: both checks, pass and fail
-baseline/tests/fixtures/                    pim-alerts-set.json (pass), pim-alerts-partial.json (fail), two small inventory tenants
+baseline/tests/fixtures/                    pim-alerts-set.json and pim-alerts-groups-set.json (pass), pim-alerts-partial.json and
+                                            pim-alerts-groups-partial.json (fail), two small inventory tenants
 ```
 
-The calls are the ones Chapter 04 already declares, sent to the cloud's own Graph host. The call's Learn page lists US Government L4 and L5 as available, but the check hasn't been run in GCC High or DoD, and how PIM's alert mail behaves there isn't confirmed.
+The calls are declared in Chapter 04's `config/calls-ch04.json` and sent to the cloud's own Graph host: the roles' policies (`RoleManagementPolicy.Read.Directory`), the eligibility schedules and active assignment instances that show which groups hold the roles (`RoleEligibilitySchedule.Read.Directory`, `RoleAssignmentSchedule.Read.Directory`), and each group's member policy (`RoleManagementPolicy.Read.AzureADGroup`, Learn's least privileged for PIM for Groups). Signed in as a user, the group read needs Privileged Role Administrator, or ownership or membership of the group, not Global Reader (Learn, Configure PIM for Groups settings); an app with the four application permissions avoids the role. The Learn page for the policy call lists US Government L4 and L5 as available, but the check hasn't been run in GCC High or DoD: the group filter there, and how PIM's alert mail behaves, aren't confirmed (Chapter 04's research gaps, row 113).
 
 ## Run the tests
 
