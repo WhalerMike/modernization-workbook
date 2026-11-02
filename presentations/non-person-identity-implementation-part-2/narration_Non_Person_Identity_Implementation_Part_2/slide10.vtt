@@ -1,0 +1,70 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.675
+Retirement always disables first, so
+nothing breaks silently, and deletes later.
+
+2
+00:00:05.675 --> 00:00:07.525
+The mechanics differ by type.
+
+3
+00:00:07.525 --> 00:00:09.939
+An Active Directory account is disabled,
+
+4
+00:00:09.939 --> 00:00:14.625
+and its service principal names are
+removed only after the observation period.
+
+5
+00:00:14.625 --> 00:00:17.087
+An app registration is deactivated.
+
+6
+00:00:17.087 --> 00:00:22.387
+New tokens stop at once, but tokens already
+issued stay valid until they expire.
+
+7
+00:00:22.387 --> 00:00:25.275
+A deleted app can be
+restored for thirty days.
+
+8
+00:00:25.275 --> 00:00:28.813
+A service principal is blocked
+from signing in to this tenant.
+
+9
+00:00:28.813 --> 00:00:33.612
+If it's deleted and restored, its
+Conditional Access policies don't come back.
+
+10
+00:00:33.612 --> 00:00:37.132
+A managed identity loses
+its role assignments first,
+
+11
+00:00:37.132 --> 00:00:39.612
+and once deleted, it can't be recovered.
+
+12
+00:00:39.612 --> 00:00:43.300
+An agent can be disabled by its
+sponsor, but not re-enabled.
+
+13
+00:00:43.300 --> 00:00:46.100
+Deleting a blueprint
+removes its agents too.
+
+14
+00:00:46.100 --> 00:00:49.050
+Every deactivation shows in the audit log.
+
+15
+00:00:49.050 --> 00:00:51.050
+File that entry with the decision.

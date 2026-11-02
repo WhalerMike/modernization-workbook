@@ -103,7 +103,7 @@ Work through the steps in order.
 
 ::: {.callout-tip}
 ## Continue the book
-[← Previous: Chapter 08 — Lifecycle, Monitoring and Decommissioning](08-lifecycle-monitoring-and-decommissioning.md) · [Book index](index.md) · [Next: Appendix B — Certificate Template Migration Matrix →](appendix-b-template-migration-matrix.md)
+[← Previous: Chapter 09 — Federal Workforce Credentials: PIV, Derived PIV and Cloud Authentication](09-federal-workforce-credentials.md) · [Book index](index.md) · [Next: Appendix B — Certificate Template Migration Matrix →](appendix-b-template-migration-matrix.md)
 :::
 
 [^aA-cpki]: Microsoft Learn, "Overview of Microsoft Cloud PKI for Microsoft Intune" (prerequisites, features, trial, known issues and limitations), <https://learn.microsoft.com/intune/cloud-pki/> (accessed Oct 20, 2026).

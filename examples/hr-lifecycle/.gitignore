@@ -1,2 +1,5 @@
 out/
 __pycache__/
+evidence/
+deploy/settings.*.json
+!deploy/settings.example.json

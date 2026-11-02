@@ -186,7 +186,7 @@ The control text below is NIST SP 800-53 Rev. 5.[^c08-sp80053] The evidence colu
 
 ::: {.callout-tip}
 ## Continue the book
-[← Previous: Chapter 07 — Coexistence and Migration](07-coexistence-and-migration.md) · [Book index](index.md) · [Next: Appendix A — Cloud PKI and CBA Deployment Checklists →](appendix-a-deployment-checklists.md)
+[← Previous: Chapter 07 — Coexistence and Migration](07-coexistence-and-migration.md) · [Book index](index.md) · [Next: Chapter 09 — Federal Workforce Credentials: PIV, Derived PIV and Cloud Authentication →](09-federal-workforce-credentials.md)
 :::
 
 [^c08-cabf-ballot]: CA/Browser Forum, "Ballot SC081v3: Introduce Schedule of Reducing Validity and Data Reuse Periods," voting April 4–11, 2025, <https://cabforum.org/2025/04/11/ballot-sc081v3-introduce-schedule-of-reducing-validity-and-data-reuse-periods/> (accessed Oct 20, 2026).

@@ -1,0 +1,82 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.325
+AI agents follow this guide, with
+a few additions from Book 17.
+
+2
+00:00:04.325 --> 00:00:06.963
+Every agent needs a
+sponsor when it's created.
+
+3
+00:00:06.963 --> 00:00:09.148
+The blueprint holds the credentials,
+
+4
+00:00:09.148 --> 00:00:12.813
+so one action on the blueprint
+reaches every agent made from it.
+
+5
+00:00:12.813 --> 00:00:15.382
+Ordinary users can't create blueprints,
+
+6
+00:00:15.382 --> 00:00:19.275
+and a production handshake comes
+before any agent goes live.
+
+7
+00:00:19.275 --> 00:00:22.257
+No production blueprint holds a secret,
+
+8
+00:00:22.257 --> 00:00:25.600
+and every API key is
+recorded as an exception.
+
+9
+00:00:25.600 --> 00:00:28.371
+Access comes through
+packages with end dates,
+
+10
+00:00:28.371 --> 00:00:31.288
+so a sponsor who does
+nothing lets access expire.
+
+11
+00:00:31.288 --> 00:00:36.024
+The agent platform has been
+generally available since April 2026,
+
+12
+00:00:36.024 --> 00:00:38.004
+with a partial subset in GCC.
+
+13
+00:00:38.004 --> 00:00:41.276
+Agent Conditional Access
+is still in preview.
+
+14
+00:00:41.276 --> 00:00:44.152
+The workbook's ninth
+chapter checks all of this,
+
+15
+00:00:44.152 --> 00:00:47.988
+and here it finds twenty-two
+findings, four of them top priority.
+
+16
+00:00:47.988 --> 00:00:51.978
+For GCC High and DoD, Microsoft
+has published nothing,
+
+17
+00:00:51.978 --> 00:00:55.850
+so govern the service
+principals the agents run as.

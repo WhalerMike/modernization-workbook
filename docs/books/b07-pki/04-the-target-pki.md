@@ -139,6 +139,8 @@ What the target PKI has to do for PIV is trust, not issue:
 - **Keep NTAuth right while the domain exists.** Smart card logon to the domain with certificates from a non-Microsoft CA needs that issuing CA published to the forest's NTAuth store, and each authenticating domain controller needs a domain controller certificate.[^c04-ntauth-3p] That's one more reason AD CS stays for domain controllers until they retire.
 - **Upload the chain to Entra ID.** Entra CBA validates PIV certificates against the CAs in its trust store and checks the issuing CA's HTTP CRL ([Chapter 06](06-device-and-user-certificates.md)); it doesn't issue anything.[^c04-cba-overview]
 
+What the PIV credential is, derived PIV, and accepting other agencies' PIV through federation are in [Chapter 09](09-federal-workforce-credentials.md).
+
 ### The contractor PIV path {#the-contractor-piv-path}
 
 **Pending proof.** The contractor PIV path is the program's design and hasn't yet been validated in practice; the criteria for Proved are in the evaluation's [Status and review](../../evaluations/oracle-contingent-worker-contractor-source.md#status-and-review).

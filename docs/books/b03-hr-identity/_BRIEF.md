@@ -57,6 +57,7 @@ to **verify and upgrade it in place, not to rewrite it**:
 | `11-drift-metrics-and-evidence.md` | How | Chapter 11 — Drift, Metrics and Evidence |
 | `12-execution-plan.md` | How | Chapter 12 — Execution Plan |
 | `13-reference-deployment.md` | How | Chapter 13 — Reference Deployment (Illustrative) |
+| `14-privacy-for-workforce-identity.md` | How | Chapter 14 — Privacy for Workforce Identity (**new**, November 2, 2026) |
 | `appendix-a-lifecycle-rules.md` | Appendix | Appendix A — Lifecycle Rules |
 | `appendix-b-security-and-privacy.md` | Appendix | Appendix B — Security and Privacy Assessment |
 | `appendix-c-acceptance-and-cutover.md` | Appendix | Appendix C — Acceptance and Cutover |

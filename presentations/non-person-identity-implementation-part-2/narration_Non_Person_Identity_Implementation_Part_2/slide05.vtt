@@ -1,0 +1,78 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.126
+On the federal side, least privilege and
+the review of privileged accounts call for
+
+2
+00:00:05.126 --> 00:00:08.436
+the kit runs, with a justification
+for every high grant,
+
+3
+00:00:08.436 --> 00:00:10.937
+and the results of the PIM access reviews.
+
+4
+00:00:10.937 --> 00:00:15.302
+CISA's baseline requires that only
+administrators register apps,
+
+5
+00:00:15.302 --> 00:00:18.497
+that user consent is
+restricted, and that an admin
+
+6
+00:00:18.497 --> 00:00:22.238
+consent workflow is in place,
+so keep the ScubaGear report.
+
+7
+00:00:22.238 --> 00:00:24.863
+To validate, run three kit checks.
+
+8
+00:00:24.863 --> 00:00:29.913
+One lists every high-privilege grant,
+and each must be justified or removed.
+
+9
+00:00:29.913 --> 00:00:34.585
+One lists single-tenant apps
+outside a directly assigned policy,
+
+10
+00:00:34.585 --> 00:00:36.488
+and no Tier 1 app may be on it.
+
+11
+00:00:36.488 --> 00:00:39.912
+One looks for managed identities
+with broad Azure roles.
+
+12
+00:00:39.912 --> 00:00:43.192
+Workload ID Premium is
+available in Azure Government
+
+13
+00:00:43.192 --> 00:00:46.325
+through the account manager,
+but its free trial isn't.
+
+14
+00:00:46.325 --> 00:00:50.713
+Without Premium, existing policies
+keep working but can't be edited.
+
+15
+00:00:50.713 --> 00:00:53.768
+To roll back, set the
+policy back to report-only,
+
+16
+00:00:53.768 --> 00:00:56.880
+and restore a removed
+grant through approval.

@@ -51,8 +51,20 @@ drawing on the Federal Compliance book on certificates and tokens
 | `06-device-and-user-certificates.md` | How | Chapter 06 — Device and User Certificates: Intune and Entra CBA |
 | `07-coexistence-and-migration.md` | How | Chapter 07 — Coexistence and Migration |
 | `08-lifecycle-monitoring-and-decommissioning.md` | How | Chapter 08 — Lifecycle, Monitoring and Decommissioning |
+| `09-federal-workforce-credentials.md` | What | Chapter 09 — Federal Workforce Credentials: PIV, Derived PIV and Cloud Authentication (added November 2, 2026) |
 | `appendix-a-deployment-checklists.md` | Appendix | Appendix A — Cloud PKI and CBA Deployment Checklists |
 | `appendix-b-template-migration-matrix.md` | Appendix | Appendix B — Certificate Template Migration Matrix |
 
 Appendix series-orders are 90 and 91. Every section of the source guide must land in a chapter or be logged in a
 carry-forward ledger as not carried (with the reason).
+
+## Chapter 09 addition (November 2, 2026)
+
+Chapter 09 closes the gap between the book's PKI chapters and the federal workforce credential: HSPD-12 and FIPS 201-3,
+derived PIV (SP 800-157; Rev. 1 still a final public draft), Entra CBA as acceptance of the PIV credential rather than a
+replacement, Federal PKI trust and PIV-I, federation with other agencies through Entra B2B cross-tenant access or
+SAML/WS-Fed, SP 800-63-4 assurance levels, and the ISSO's evidence. Series-order 9, part What; it sits after Chapter 08
+in the reading order so the appendices keep 90–92. Sources were read on November 2, 2026 and logged in
+`_verification/09-federal-workforce-credentials.md`. KSIs come only from Book 13, Appendix A and Book 04, Chapter 10.
+Revocation at separation stays with the HR leaver gate (Book 03, Chapter 09; HR-Driven Identity guide, Gate 6); this
+chapter links to it and doesn't restate the sequence.

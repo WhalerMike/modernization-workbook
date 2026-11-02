@@ -1,0 +1,50 @@
+[
+  {
+    "IdentityId": "app:0a000000-0000-4000-8000-0000000000f4",
+    "Source": "Entra",
+    "Type": "AppRegistration",
+    "Name": "npi-smoke-production",
+    "ObjectId": "0a000000-0000-4000-8000-0000000000f4",
+    "AppId": "1a000000-0000-4000-8000-0000000000f4",
+    "Enabled": true,
+    "OwnerCount": 2,
+    "Secrets": 0,
+    "Certificates": 0,
+    "CredentialKind": "Federated",
+    "FederatedCredentials": 1,
+    "Risk": "LOW",
+    "RiskReasons": ""
+  },
+  {
+    "IdentityId": "app:0a000000-0000-4000-8000-0000000000f3",
+    "Source": "Entra",
+    "Type": "AppRegistration",
+    "Name": "Payroll Export",
+    "ObjectId": "0a000000-0000-4000-8000-0000000000f3",
+    "AppId": "1a000000-0000-4000-8000-0000000000f3",
+    "Enabled": true,
+    "OwnerCount": 2,
+    "Secrets": 1,
+    "Certificates": 0,
+    "CredentialKind": "Secret+Federated",
+    "FederatedCredentials": 1,
+    "Risk": "MEDIUM",
+    "RiskReasons": "client secret"
+  },
+  {
+    "IdentityId": "ad:ad000000-0000-4000-8000-0000000000f4",
+    "Source": "AD",
+    "Type": "Traditional",
+    "Name": "svc-npi-smoke",
+    "ObjectId": "ad000000-0000-4000-8000-0000000000f4",
+    "AppId": "",
+    "Enabled": true,
+    "OwnerCount": "",
+    "Secrets": 0,
+    "Certificates": 0,
+    "CredentialKind": "Password",
+    "FederatedCredentials": 0,
+    "Risk": "HIGH",
+    "RiskReasons": "password never expires"
+  }
+]

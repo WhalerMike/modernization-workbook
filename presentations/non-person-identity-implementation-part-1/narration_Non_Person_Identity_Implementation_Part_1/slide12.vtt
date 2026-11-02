@@ -1,0 +1,82 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.450
+The third gate sets the credential rules.
+
+2
+00:00:02.450 --> 00:00:04.425
+They're design guidance from the books.
+
+3
+00:00:04.425 --> 00:00:06.250
+No long-lived secrets.
+
+4
+00:00:06.250 --> 00:00:11.150
+Managed identities first, then federated
+credentials, then certificates.
+
+5
+00:00:11.150 --> 00:00:14.962
+And every certificate in a
+vault, on a rotation calendar.
+
+6
+00:00:14.962 --> 00:00:18.663
+Step one turns on the tenant's
+default app management policy.
+
+7
+00:00:18.663 --> 00:00:21.716
+It blocks new password
+secrets and symmetric keys,
+
+8
+00:00:21.716 --> 00:00:24.988
+and caps new certificates at
+a hundred and eighty days.
+
+9
+00:00:24.988 --> 00:00:27.475
+Those are Microsoft's
+recommended settings.
+
+10
+00:00:27.475 --> 00:00:31.600
+Each restriction applies only to
+apps created after a chosen date,
+
+11
+00:00:31.600 --> 00:00:34.000
+so set it to the policy's effective date.
+
+12
+00:00:34.000 --> 00:00:37.550
+The panel shows the workbook's
+diff against a fictional tenant.
+
+13
+00:00:37.550 --> 00:00:40.979
+Its default policy is off, so
+turning it on is a change,
+
+14
+00:00:40.979 --> 00:00:46.562
+and every restriction is an add, for both
+application and service principal objects.
+
+15
+00:00:46.562 --> 00:00:50.312
+A restriction the tenant already
+had is kept, never dropped.
+
+16
+00:00:50.312 --> 00:00:54.274
+Existing workloads rotate at
+least yearly while they're fixed.
+
+17
+00:00:54.274 --> 00:00:58.580
+New ones start under the cap, which
+meets the SCuBA certificate policy.

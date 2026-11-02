@@ -1,0 +1,10 @@
+{
+  "_comment": "A fixture: the three register rows the smoke test reads, as Chapter 01's Invoke-NpiInventory.ps1 writes them, with its manifest's tenant, cloud and date.",
+  "task": "inventory",
+  "mode": "Fixture",
+  "cloud": "gcc",
+  "tenantId": "c0ffee00-0000-4000-8000-0000000000f1",
+  "domain": "corp.contoso.example",
+  "asOf": "2026-11-16",
+  "files": {}
+}

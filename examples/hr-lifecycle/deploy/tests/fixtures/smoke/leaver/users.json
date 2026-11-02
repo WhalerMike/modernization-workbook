@@ -1,0 +1,52 @@
+{
+  "value": [
+    {
+      "id": "77777777-7777-4777-8777-777777779000",
+      "userPrincipalName": "sam.smoke-manager@contoso.example",
+      "accountEnabled": true,
+      "employeeId": "990000",
+      "employeeType": "Employee",
+      "employeeHireDate": "2026-10-10T10:00:00Z",
+      "employeeLeaveDateTime": null,
+      "onPremisesExtensionAttributes": {
+        "extensionAttribute10": "ORG-100"
+      }
+    },
+    {
+      "id": "77777777-7777-4777-8777-777777779001",
+      "userPrincipalName": "jo.smoke-joiner@contoso.example",
+      "accountEnabled": true,
+      "employeeId": "990001",
+      "employeeType": "Employee",
+      "employeeHireDate": "2026-11-10T10:00:00Z",
+      "employeeLeaveDateTime": null,
+      "onPremisesExtensionAttributes": {
+        "extensionAttribute10": "ORG-100"
+      }
+    },
+    {
+      "id": "77777777-7777-4777-8777-777777779002",
+      "userPrincipalName": "mo.smoke-mover@contoso.example",
+      "accountEnabled": true,
+      "employeeId": "990002",
+      "employeeType": "Employee",
+      "employeeHireDate": "2026-10-20T10:00:00Z",
+      "employeeLeaveDateTime": null,
+      "onPremisesExtensionAttributes": {
+        "extensionAttribute10": "ORG-210"
+      }
+    },
+    {
+      "id": "77777777-7777-4777-8777-777777779003",
+      "userPrincipalName": "lee.smoke-leaver@contoso.example",
+      "accountEnabled": false,
+      "employeeId": "990003",
+      "employeeType": "Employee",
+      "employeeHireDate": "2026-10-20T10:00:00Z",
+      "employeeLeaveDateTime": "2026-11-12T04:00:00Z",
+      "onPremisesExtensionAttributes": {
+        "extensionAttribute10": "ORG-100"
+      }
+    }
+  ]
+}
