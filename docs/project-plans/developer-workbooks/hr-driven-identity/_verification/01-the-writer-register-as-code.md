@@ -37,3 +37,16 @@ Microsoft Learn pages opened on November 1, 2026 through the Microsoft Learn MCP
 | Book 03, Chapters 04, 06, 11 | Why this gate comes first | Design not restated |
 | Validation kit VK-HR-04, VK-HR-07 | The code section | They measure values, not writers; not rebuilt |
 | Plan tasks I1.2, I1.4 | In this chapter | — |
+
+## KSI column (November 2, 2026)
+
+FedRAMP's Key Security Indicators page (<https://www.fedramp.gov/2026/reference/key-security-indicators/>) was read through WebFetch on November 2, 2026, for each indicator's "Related SP 800-53 Controls." Every KSI ID in this chapter's Federal requirements tables was already cited in the repo (Book 02, Chapter 10; Book 04, Chapter 10; Book 13, Chapter 04 and Appendix A; Book 14, Chapter 03); none is new. The framing (KSIs are provider-side; the agency lines its evidence up with them and doesn't report them) is carried from Book 00, Appendix B.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| K1 | AC-2 and AC-6 pairs; AU-9 to KSI-MLA-OSM; SI-7 to KSI-SVC-VRI; CM-3 to KSI-CMT-LMC and KSI-CMT-RMV; CM-3(2) to KSI-CMT-VTD | Both tables | carried forward | Book 13, Appendix A |
+| K2 | IA-4 is related to KSI-IAM-ELP and KSI-IAM-JIT | Requirement table | verified (new pair) | FedRAMP KSI page |
+| K3 | AU-6 is related to KSI-MLA-RVL only | Both tables | verified (new pair) | same |
+| K4 | AU-2 and AU-12 are related to KSI-MLA-LET | Lab table | verified (AU-2 also in Book 02, Chapter 10) | same |
+| K5 | AC-6, AU-2, AU-9, AU-12, CM-3, CM-3(2), SI-7 are Moderate | Note under the tables | carried forward | Book 13, Appendix A; Book 14, Appendix A |
+| K6 | Which file supports which indicator | Lab table | design guidance (labeled) | — |

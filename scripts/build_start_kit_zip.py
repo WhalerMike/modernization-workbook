@@ -9,8 +9,9 @@ and the track implementation guides link the validation kit (--kit validation-ki
 The developer workbook Building the Attribute-Driven Migration links the code its nine
 chapters build on (--kit attribute-driven-migration-code), a bundle of several examples
 folders rather than one: see BUNDLES. The other developer workbooks and the Microsoft
-Automation learning path have their own bundles (ticket-to-machine-code and the rest), and
-the Downloads page links every kit, Cisco SD-WAN included.
+Automation learning path have their own bundles (ticket-to-machine-code and the rest), the
+Ticket-to-Machine task catalog guide links its pack (ticket-to-machine-task-catalog: the catalog
+kit with the finding contract it reads), and the Downloads page links every kit, Cisco SD-WAN included.
 This packs the folder as
 it is in the repository, scripts, README, fixtures and tests, under a top-level <kit>/
 folder. The archive is reproducible: entries are sorted, timestamps fixed and
@@ -38,7 +39,7 @@ REPO = Path(__file__).resolve().parent.parent
 KITS = ("start-kit", "copilot-agent-pack", "app-modernization", "ansible", "validation-kit",
         "attribute-driven-migration-code", "ticket-to-machine-code", "hr-driven-identity-code",
         "privileged-access-code", "non-person-identity-code", "microsoft-automation-code",
-        "cisco-sdwan")
+        "cisco-sdwan", "ticket-to-machine-task-catalog")
 # Kits packed from several examples folders, each kept under its own path, instead of
 # from examples/<kit>. The Attribute-Driven Migration developer workbook's chapters 01-09
 # build on these folders and the Microsoft samples pinned under third_party/.
@@ -83,6 +84,9 @@ BUNDLES = {
         "third_party/azure-login-oidc-sample",
     ),
     "microsoft-automation-code": ("ms-automation", "third_party/msgraph-snippets-python"),
+    # The task catalog pack: the workbook and its checker, with the integration kit's clients
+    # folder, because check_catalog.py reads its vocabulary from finding_contract.py there.
+    "ticket-to-machine-task-catalog": ("ttm-task-catalog", "servicenow-sailpoint/clients/python"),
 }
 # Kits whose download name differs from their folder name.
 ZIP_NAMES = {"ansible": "ansible-examples"}

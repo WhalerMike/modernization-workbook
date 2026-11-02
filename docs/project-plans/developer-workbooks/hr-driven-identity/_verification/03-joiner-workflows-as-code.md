@@ -51,3 +51,15 @@ Microsoft Learn pages opened on November 1, 2026 through the Microsoft Learn MCP
 - The name an `attributeChangeTrigger` takes for an on-premises extension attribute.
 - Whether `createNewVersion` accepts a body that omits read-only fields the GET returns (the plan sends the reviewed body, not a merged one).
 - The execution limit's value through Graph: Learn says the per-workflow limit isn't reflected in the API, so the code records it and the validation kit reads what it can.
+
+## KSI column (November 2, 2026)
+
+FedRAMP's Key Security Indicators page (<https://www.fedramp.gov/2026/reference/key-security-indicators/>) was read through WebFetch on November 2, 2026, for each indicator's "Related SP 800-53 Controls." Every KSI ID in this chapter's Federal requirements tables was already cited in the repo (Book 02, Chapter 10; Book 04, Chapter 10; Book 13, Chapter 04 and Appendix A; Book 14, Chapter 03); none is new. The framing (KSIs are provider-side; the agency lines its evidence up with them and doesn't report them) is carried from Book 00, Appendix B.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| K1 | AC-6, AU-9, SI-7, CM-3, CM-3(2), CA-7, CM-6 pairs | Both tables | carried forward | Book 13, Appendix A |
+| K2 | AC-2(1) is related to KSI-IAM-JIT and KSI-IAM-SUS; the tables show KSI-IAM-JIT | Both tables | verified (new pair) | FedRAMP KSI page |
+| K3 | IA-5 is related to KSI-IAM-APM | Both tables | verified (new pair) | same |
+| K4 | M-22-09's phishing-resistant MFA lines up with KSI-IAM-APM | Requirement table | carried forward (program mapping) | Book 02, Chapter 10 |
+| K5 | A workflow change is a new version, not an edit in place, so the plan supports KSI-CMT-RMV | Lab table | design guidance (labeled), on CM-3's pairing in Book 13, Appendix A | — |

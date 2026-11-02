@@ -215,7 +215,7 @@ Import-Csv out/inventory/data-platform-handoff.csv | Format-Table Name, Type, Sp
 # Step 7: Run the tests
 Invoke-Pester -Path tests
 
-# Step 7: Run the tests
+# After the steps
 Remove-Item -Recurse -Force out
 ```
 

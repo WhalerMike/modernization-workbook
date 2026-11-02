@@ -268,10 +268,21 @@ python -c "import json; print(json.dumps(json.load(open('tests/fixtures/payloads
 
 A typed finding is the "owned, clocked" half of the record Book 13 says an assessor reads: who owns the drift, by when, and against what intended state. The approval and the re-read are added in later chapters.
 
-| What the output proves | Requirement it supports | Who keeps it |
-|---|---|---|
-| Every drift becomes one record with a class, a severity, an owner and a due date, rejected at the door if malformed | NIST SP 800-53 CM-3 (the record of configuration-controlled changes) and CA-7 (continuous monitoring), both in the Moderate baseline[^ttm01-moderate] | The ServiceNow record; the contract tests in the repository |
-| The response window per severity is applied by code, not chosen per ticket | The program's tempo (Book 13, design guidance); an external clock, such as a CISA directive's, overrides it when shorter | The record's `due_date`; Chapter 07's window adherence |
+| What the output proves | Requirement it supports | KSI | Who keeps it |
+|---|---|---|---|
+| Every drift becomes one record with a class, a severity, an owner and a due date, rejected at the door if malformed | NIST SP 800-53 CM-3 (the record of configuration-controlled changes) and CA-7 (continuous monitoring), both in the Moderate baseline[^ttm01-moderate] | KSI-CMT-LMC; KSI-MLA-EVC | The ServiceNow record; the contract tests in the repository |
+| The response window per severity is applied by code, not chosen per ticket | The program's tempo (Book 13, design guidance); an external clock, such as a CISA directive's, overrides it when shorter | None: program design | The record's `due_date`; Chapter 07's window adherence |
+| Lab 1, steps 1 and 3: the Python mirror and the Scripted REST script apply the same rules, tested before a change merges | CM-3(2) (testing, validation and documentation of changes) and SA-11 (developer testing), at Moderate[^ttm01-moderate] | KSI-CMT-VTD; KSI-SCR-MIT | The `pytest tests/python/test_finding_contract.py` and `node --test tests/servicenow/servicenow_scripts.test.js` runs, in the pull request's checks |
+| Lab 1, step 2: a malformed payload is refused with its reason, and an accepted one gets its priority and due date | CM-3 | KSI-CMT-LMC | The `finding_contract.py --validate` output, kept with the pull request that changes a client |
+| Lab 1, step 4: every payload the drift client builds is accepted before it reaches ServiceNow | CM-3(2); CA-7 | KSI-CMT-VTD; KSI-MLA-EVC | The `finding_contract.py --from-drift` output. `out/day1.json` and `out/day1.csv` are fixture output; the live run's files are Chapter 06's |
+| Lab 1, step 5: fixture output isn't kept | None | None | Nobody: `rm -rf out` deletes fictional data |
+| Lab 2, steps 1 and 2: the Scripted REST API requires authentication and a `REST_Endpoint` ACL that grants one custom role to one integration user | AC-3 (access enforcement), AC-6 (least privilege) and AC-2 (account management), at Moderate[^ttm01-moderate] | KSI-IAM-ELP; KSI-IAM-SNU | The ACL, the role and the user, in the scoped application's update set |
+| Lab 2, step 3: a checked payload creates one `u_identity_finding` record with priority and due date, and a repeat de-duplicates | CM-3; CA-7 | KSI-CMT-LMC; KSI-MLA-EVC | The record on the instance; the `201` and then `200` with `deduplicated: true` |
+| Lab 2, step 4: the instance refuses the payload Lab 1 refused, for the same reason | CM-3 | KSI-CMT-LMC | The `400` response, beside Lab 1's output |
+| Lab 2, step 5: no test record, ACL, role or API is left on the instance | AC-2 | KSI-IAM-SNU | The instance's deletion history; a developer instance holds no agency data |
+| Production runs on the FedRAMP Certified offerings in the verified facts, not on a developer instance | FedRAMP authorization of the cloud services used; SA-9 (external system services) at Moderate[^ttm01-moderate] | KSI-SCR-MIT; KSI-SCR-MON | The ISSO, with each offering's authorization package and the Marketplace listing with its read date |
+
+The KSI column names the FedRAMP 20x Key Security Indicators whose related SP 800-53 controls include the row's control.[^ttm01-ksi] KSIs are indicators for cloud service providers: the agency authorizes its own system and lines its own evidence up with what its providers report against them; it doesn't report KSIs itself.
 
 The control-by-control mapping is Book 13's [Appendix A](../../../books/b13-governance/appendix-a-requirements-mapping.md); the federal sources are in the [federal framework crosswalk](../../../reference/federal-framework-crosswalk.md).
 
@@ -302,4 +313,5 @@ The control-by-control mapping is Book 13's [Appendix A](../../../books/b13-gove
 [^ttm01-triggers]: SailPoint Developer, "Triggers," Available Event Triggers table, <https://developer.sailpoint.com/docs/api/triggers> (read November 1, 2026).
 [^ttm01-fedramp]: FedRAMP Marketplace data, <https://www.fedramp.gov/marketplace/products.json> (last change November 1, 2026): ServiceNow Government Community Cloud, F1305072116; SailPoint Identity Security Cloud, FR2001938710A (read November 1, 2026).
 [^ttm01-pdi]: ServiceNow, "Understanding PDIs" (Yokohama, last updated January 30, 2025), <https://www.servicenow.com/docs/r/SmYvGPN0OygSQs53fsexIQ/yG_RdLKb649OcfnDiGEkwQ> (read November 1, 2026).
-[^ttm01-moderate]: National Institute of Standards and Technology, SP 800-53B Moderate baseline, release 5.2.0 OSCAL profile (includes AC-2, AC-6, AU-9, CA-7, CM-3, CM-6, SA-11 and SI-4), <https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_MODERATE-baseline_profile.json> (read November 1, 2026).
+[^ttm01-moderate]: National Institute of Standards and Technology, SP 800-53B Moderate baseline, release 5.2.0 OSCAL profile (includes AC-2, AC-3, AC-6, AU-9, CA-7, CM-3, CM-3(2), CM-6, SA-9, SA-11 and SI-4), <https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_MODERATE-baseline_profile.json> (read November 1, 2026).
+[^ttm01-ksi]: FedRAMP, "Key Security Indicators," *FedRAMP Consolidated Rules for 2026*, indicator titles and "Related SP 800-53 Controls," <https://www.fedramp.gov/2026/reference/key-security-indicators/> (read November 2, 2026).

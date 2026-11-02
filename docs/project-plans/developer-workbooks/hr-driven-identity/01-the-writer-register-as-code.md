@@ -150,7 +150,7 @@ python -c "import json; print(json.load(open('out/ch01/queries.json'))[2])"
 # Step 6: Run the tests
 python -m pytest tests -q
 
-# Step 6: Run the tests
+# After the steps
 rm -rf out
 ```
 
@@ -373,10 +373,29 @@ Places Learn's pages say nothing, recorded so a later edit doesn't loosen the co
 
 This chapter helps prove the guide's [Gate 1](../../../books/guides/hr-driven-identity-implementation.md#step-1-name-one-writer-for-every-state-and-attribute); its requirements table is the source, and the [federal framework crosswalk](../../../reference/federal-framework-crosswalk.md) lists every federal source.
 
-| Requirement | What this code gives | What the ISSO keeps |
-|---|---|---|
-| NIST SP 800-53 AC-2 and IA-4, Moderate | The register's rows, version, signature and scope filter, checked by WR-01 to WR-09 | The signed register file and the `check` output |
-| AU-6, for writes outside the named writer | The scan's findings and `writes.json` for the window | The scan's output folder with its manifest, the saved `queries.json`, and the AD auditing settings, which this code doesn't read |
+| Requirement | KSI | What this code gives | What the ISSO keeps |
+|---|---|---|---|
+| NIST SP 800-53 AC-2 and IA-4, Moderate | KSI-IAM-ELP, KSI-IAM-JIT | The register's rows, version, signature and scope filter, checked by WR-01 to WR-09 | The signed register file and the `check` output |
+| AU-6, for writes outside the named writer | KSI-MLA-RVL | The scan's findings and `writes.json` for the window | The scan's output folder with its manifest, the saved `queries.json`, and the AD auditing settings, which this code doesn't read |
+
+Each scripted step in the labs, and each file the code writes, with the evidence it leaves:
+
+| Lab step | What it runs or writes | Requirement | KSI | Evidence |
+|---|---|---|---|---|
+| Lab 1, step 1 | `graph_export.py --task writers-scan --list` | AC-6, least privilege: GET calls only, each with its least-privileged permission | KSI-IAM-ELP | The printed list, and `config/calls.json` as reviewed |
+| Lab 1, step 2 | `writer_register.py check` on `config/writer-register.json` | AC-2 and IA-4; CM-3 for each reviewed change to the register | KSI-IAM-ELP, KSI-IAM-JIT; KSI-CMT-LMC | `Register: 0 Finding, 0 Warn, 0 Info` and exit code 0, filed with the signed register |
+| Lab 1, steps 3 and 4 | `writer_register.py scan`, writing `findings.json` | AU-6; AC-2 for writes by an unnamed writer | KSI-MLA-RVL; KSI-IAM-SUS | `out/ch01/findings.json`: each WS-01, WS-02 and WS-04 row |
+| Lab 1, step 3 | `writes.json` | AU-6 | KSI-MLA-RVL | Every protected write in the window, with its verdict |
+| Lab 1, steps 3 and 5 | `queries.json` | AU-6; AU-2 for the events the queries read | KSI-MLA-RVL, KSI-MLA-LET | One `directoryAudits` filter per register row, which Gate 7 runs again |
+| Lab 1, step 3 | `manifest.json` | AU-9, protection of audit information; SI-7, information integrity | KSI-MLA-OSM; KSI-SVC-VRI | A SHA-256 per file; the tool refuses to write into a folder that already holds one |
+| Lab 1, step 6 | `python -m pytest tests -q` | CM-3(2), test and validate changes *(design guidance)* | KSI-CMT-VTD | `57 passed`, kept with the change that edited the code or the register |
+| Lab 1, clean-up | `rm -rf out` | None: fixture output isn't evidence | — | — |
+| Lab 2, step 3 | `graph_export.py --task writers-scan --cloud gcc`, writing `directory-audits.json`, `provisioning-logs.json` and `export.json` | AU-2 and AU-12 for the records read; AC-6 for GET only | KSI-MLA-LET; KSI-IAM-ELP | `exports/ch01/export.json`: the task, the cloud, and each call's URL and record count |
+| Lab 2, step 4 | Print each record's properties; copy the register and correct an `auditProperty` | CM-3, a reviewed change to the register | KSI-CMT-LMC | The pull request that changed `auditProperty`, with the record that showed the name |
+| Lab 2, step 5 | List the initiating apps; write their IDs into the copy; `scan` into `out/ch01-test` | AU-6; AC-2 | KSI-MLA-RVL; KSI-IAM-SUS | `out/ch01-test/findings.json` with both admin center changes as WS-01, and its `manifest.json` |
+| Lab 2, step 6 | Remove the permissions and the reader app; `rm -rf exports/ch01 out/ch01-test` | AC-6: no reader permissions left after the test | KSI-IAM-ELP | The app's deletion in the directory audit log |
+
+KSIs are FedRAMP 20x indicators for cloud service providers: the agency authorizes its own system and lines this evidence up with what its providers report against them, and it doesn't report KSIs itself ([Book 00, Appendix B](../../../books/b00-orientation/appendix-b-engagement-archetype.md)). Each KSI shown lists the row's control among its related SP 800-53 controls on FedRAMP's page;[^hw01-ksi] which file supports which indicator is the program's mapping *(design guidance)*. Controls the guide's table doesn't name (AC-6, AU-2, AU-9, AU-12, CM-3, CM-3(2), SI-7) are in the Moderate baseline ([Book 13, Appendix A](../../../books/b13-governance/appendix-a-requirements-mapping.md); [Book 14, Appendix A](../../../books/b14-compliance/appendix-a-control-crosswalk.md)).
 
 The privacy basis for the feed is the privacy office's determination; no code produces it.
 
@@ -411,3 +430,4 @@ The privacy basis for the feed is the privacy office's determination; no code pr
 [^hw01-prov]: Microsoft Learn, "List provisioningObjectSummary," permissions, <https://learn.microsoft.com/graph/api/provisioningobjectsummary-list?view=graph-rest-1.0> (read November 1, 2026).
 [^hw01-deployments]: Microsoft Learn, "Microsoft Graph national cloud deployments," <https://learn.microsoft.com/graph/deployments> (read November 1, 2026; carried from Book 19, Chapter 02).
 [^hw01-feat]: Microsoft Learn, "Microsoft Entra feature availability," <https://learn.microsoft.com/entra/identity/authentication/feature-availability> (read November 1, 2026; carried from the HR-driven identity implementation guide's verification log).
+[^hw01-ksi]: FedRAMP, "Key Security Indicators," *FedRAMP Consolidated Rules for 2026*, indicator titles and "Related SP 800-53 Controls," including the mapping updates of October 13, 2026, <https://www.fedramp.gov/2026/reference/key-security-indicators/> (read November 2, 2026; the indicator IDs are carried from Book 13, Appendix A and Book 14, Chapter 03).

@@ -292,11 +292,23 @@ unset GRAPH_TENANT_ID GRAPH_CLIENT_ID GRAPH_CERT_PATH GRAPH_CLOUD GRAPH_ACCESS_T
 
 ## Federal requirements and evidence
 
-| What the output proves | Requirement it supports | Who keeps it |
-|---|---|---|
-| Each Entra ID user attribute has one authoritative writer, or the overlap is named and assigned | NIST SP 800-53 CM-6 (configuration settings) and CM-3 at Moderate;[^ttm08-moderate] Book 13's one-authoritative-record principle | The check's output and the data architect's decisions, kept with the provisioning configuration |
-| Attribute drift that the next sync recreates is traced to its cause | CA-7 and SI-4 at Moderate;[^ttm08-moderate] Book 03's drift measures | The check, run whenever either provisioning configuration changes |
-| A change to either provisioning configuration is checked before it lands | CM-3 (change control), CM-4 (impact analyses) at Moderate[^ttm08-moderate] | The pull request or change record that runs the check |
+| What the output proves | Requirement it supports | KSI | Who keeps it |
+|---|---|---|---|
+| Each Entra ID user attribute has one authoritative writer, or the overlap is named and assigned | NIST SP 800-53 CM-6 (configuration settings) and CM-3 at Moderate;[^ttm08-moderate] Book 13's one-authoritative-record principle | KSI-MLA-EVC; KSI-CMT-LMC | The check's output and the data architect's decisions, kept with the provisioning configuration |
+| Attribute drift that the next sync recreates is traced to its cause | CA-7 and SI-4 at Moderate;[^ttm08-moderate] Book 03's drift measures | KSI-MLA-EVC; KSI-MLA-RVL | The check, run whenever either provisioning configuration changes |
+| A change to either provisioning configuration is checked before it lands | CM-3 (change control), CM-4 (impact analyses) at Moderate[^ttm08-moderate] | KSI-CMT-VTD; none cites CM-4 | The pull request or change record that runs the check |
+| Lab 1, step 1: the check holds, tested before a change merges | SA-11 (developer testing) at Moderate[^ttm08-moderate] | KSI-SCR-MIT | The `pytest tests/python/test_writer_check.py` run, in the pull request's checks |
+| Lab 1, step 2: an attribute both systems write is a Finding, and the command exits 1 | CM-6; CM-3 | KSI-MLA-EVC; KSI-CMT-LMC | The `writer_check.py` output, given to the data architect |
+| Lab 1, step 3: a second writer under another name shows only with the alias | CM-6 | KSI-MLA-EVC | The `--alias` list in the repository, and the output it gives |
+| Lab 1, step 4: a wrong directory name stops the check instead of passing as no overlap | CM-6 | KSI-MLA-EVC | The `--entra-directory` error, exit 2 |
+| Lab 1, step 5: the reads the two exports need, and nothing more | AC-6 (least privilege) at Moderate[^ttm08-moderate] | KSI-IAM-ELP | The `kit_calls.py --task writer-check` output, attached to the access requests |
+| Lab 2, step 1: the inbound provisioning job's mappings, read with the least-privileged Graph permission | CM-6; AC-6 | KSI-MLA-EVC; KSI-IAM-ELP | `out/entra_inbound_schema.json`, kept with the check's output if it holds only mappings |
+| Lab 2, step 2: the Entra source's provisioning policies, read with one scope | CM-6; AC-6 | KSI-MLA-EVC; KSI-IAM-ELP | `out/isc_entra_source_policies.json`, kept the same way |
+| Lab 2, step 3: the alias list is reviewed before it is used | CM-3 | KSI-CMT-LMC | The alias list's pull request and the data architect's review |
+| Lab 2, step 4: each attribute both systems write is named and given to an owner | CM-6; CM-3 | KSI-MLA-EVC; KSI-CMT-LMC | The `writer_check.py` output on the two exports, with the data architect's decisions |
+| Lab 2, step 5: no export, permission or API client is left beyond what is kept | AC-2 (account management) and AC-6 at Moderate[^ttm08-moderate] | KSI-IAM-SNU; KSI-IAM-ELP | The app registration and API client lists; the `rm -f` command |
+
+The KSI column names the FedRAMP 20x Key Security Indicators whose related SP 800-53 controls include the row's control.[^ttm08-ksi] KSIs are indicators for cloud service providers: the agency authorizes its own system and lines its own evidence up with what its providers report against them; it doesn't report KSIs itself.
 
 ## Dangers
 
@@ -320,7 +332,7 @@ unset GRAPH_TENANT_ID GRAPH_CLIENT_ID GRAPH_CERT_PATH GRAPH_CLOUD GRAPH_ACCESS_T
 
 ::: {.callout-tip}
 ## Continue the book
-[← Previous: Chapter 07 — Evidence Records for Book 13 and the ISSO](07-evidence-records.md) · [Workbook index](index.md)
+[← Previous: Chapter 07 — Evidence Records for Book 13 and the ISSO](07-evidence-records.md) · [Workbook index](index.md) · [Next: Chapter 09 — Deploying to Test and Production →](09-deploying-to-test-and-production.md)
 :::
 
 [^ttm08-schema]: Microsoft Learn, "Get synchronizationSchema," national cloud availability, permissions, HTTP request and example response, <https://learn.microsoft.com/graph/api/synchronization-synchronizationschema-get?view=graph-rest-1.0> (read November 1, 2026).
@@ -331,4 +343,5 @@ unset GRAPH_TENANT_ID GRAPH_CLIENT_ID GRAPH_CERT_PATH GRAPH_CLOUD GRAPH_ACCESS_T
 [^ttm08-usage]: SailPoint, Identity Security Cloud OpenAPI specification, v3, `UsageType`, <https://github.com/sailpoint-oss/api-specs/blob/main/idn/v3/schemas/UsageType.yaml> (read November 1, 2026).
 [^ttm08-deployments]: Microsoft Learn, "Microsoft Graph national cloud deployments," <https://learn.microsoft.com/graph/deployments> (read November 1, 2026).
 [^ttm08-fedramp]: FedRAMP Marketplace data, <https://www.fedramp.gov/marketplace/products.json> (last change November 1, 2026): SailPoint Identity Security Cloud, FR2001938710A (read November 1, 2026).
-[^ttm08-moderate]: National Institute of Standards and Technology, SP 800-53B Moderate baseline, release 5.2.0 OSCAL profile (includes CA-7, CM-3, CM-4, CM-6 and SI-4), <https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_MODERATE-baseline_profile.json> (read November 1, 2026).
+[^ttm08-moderate]: National Institute of Standards and Technology, SP 800-53B Moderate baseline, release 5.2.0 OSCAL profile (includes AC-2, AC-6, CA-7, CM-3, CM-4, CM-6, SA-11 and SI-4), <https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_MODERATE-baseline_profile.json> (read November 1, 2026).
+[^ttm08-ksi]: FedRAMP, "Key Security Indicators," *FedRAMP Consolidated Rules for 2026*, indicator titles and "Related SP 800-53 Controls," <https://www.fedramp.gov/2026/reference/key-security-indicators/> (read November 2, 2026).

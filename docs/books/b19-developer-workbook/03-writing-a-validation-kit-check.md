@@ -432,6 +432,27 @@ Remove-Item ./inputs/onprem-sync-export.json
 | Throttling | on `429`, wait `Retry-After`, then retry; back off exponentially if the header is missing[^c03-throttling] | — | — | — | — |
 | Graph host per cloud | `graph.microsoft.com` (worldwide and Microsoft 365 GCC), `graph.microsoft.us` (GCC High), `dod-graph.microsoft.us` (DoD)[^c03-deployments] | — | — | — | — |
 
+## Federal requirements and evidence
+
+A validation kit check is monitoring evidence only if it can't change what it reads and can't pass when it didn't look. Each row names the file or command that proves it. Controls are from the Moderate baseline[^c03-moderate]; indicators are from FedRAMP's list[^c03-ksi]. Which output supports which control is the program's reading (design guidance).
+
+| What the output proves | Requirement it supports | KSI it aligns to | Who keeps it |
+|---|---|---|---|
+| The check fails on open soft and hard match, and logs every read it made (Lab 1, step 1: `Status`, `Details`, `Evidence.Queries`) | CM-6; CA-7; AC-2: an AD object can't take over a cloud account unnoticed | KSI-MLA-EVC | The run's `Results/ValidationResults.json` |
+| An approved matching window is a warning only until its last day (step 2: `Warn`, then `Fail`) | CM-6: deviations are approved and documented, with an end | KSI-MLA-EVC | The window date in the run's options; the change record |
+| An export can stand in for a live read, and the evidence says which path it took (step 3: `Input` in `Evidence.Queries`) | AC-6: no standing Global Administrator identity for a scheduled check; AU-3 | KSI-IAM-ELP | The run's evidence block |
+| The privileged role a live read would need is stated before anyone runs it, and the check is out of a default run (steps 4 and 5: `Get-VkRequiredScope`, `DelegatedRole`, `False`) | AC-6 | KSI-IAM-ELP | The kit's catalog and README in the repository |
+| The kit passes its tests, including the safety tests that fail any state-changing command (step 6: `Invoke-Pester`, `Safety.Tests.ps1`) | SA-11; CM-7 (Least Functionality): the kit can only read | KSI-CMT-VTD | The repository's test results |
+| A misread property fails the pass fixture, because a missing value reads as off (step 7) | SA-11 | KSI-CMT-VTD | The test results |
+| The privileged read happens once, by a named administrator, into a file (Lab 2, step 1: `inputs/onprem-sync-export.json`) | AC-6 | KSI-IAM-ELP | The Entra sign-in log; the export is deleted after the run |
+| The run writes results, details and a summary (Lab 2, step 2: `Results/ValidationResults.json` and `.csv`, `Details/VK-SYNC-02.csv`, `Summary/ValidationSummary.md`) | CA-7; CM-6 | KSI-MLA-EVC | The evidence store |
+| Every file of the run has a SHA-256, and the run records its cloud, tenant and read-only mode (Lab 2: `ValidationManifest.json`) | SI-7 (Software, Firmware, and Information Integrity); AU-3 | KSI-SVC-VRI, Validating Resource Integrity | The evidence store; [Chapter 09](09-drift-pipelines-and-evidence.md) refuses an edited run |
+| The result matches the source line by line (Lab 2, step 3) | SA-11 | KSI-CMT-VTD | The test record |
+| The remediation is a write made under change control, never by the check | CM-3; CM-5 (Access Restrictions for Change) | KSI-CMT-LMC | The change record the finding opens |
+| Microsoft Entra ID and Microsoft Graph run on cloud services with FedRAMP Marketplace listings[^c03-fedramp] | SA-9 (External System Services); the agency confirms each service it uses is inside the listing's scope (design guidance) | None: the provider reports against the indicators for its own offering | The system security plan's list of external services |
+
+Key Security Indicators are FedRAMP 20x indicators for cloud service providers. The agency authorizes its own system: it lines this evidence up with what Microsoft report against the indicators, and doesn't report KSIs itself ([Book 00, Appendix B](../b00-orientation/appendix-b-engagement-archetype.md)). The control-by-control mapping is in Book 13's [Appendix A](../b13-governance/appendix-a-requirements-mapping.md) and Book 14's [Appendix A](../b14-compliance/appendix-a-control-crosswalk.md); the indicator pairings follow [Book 04, Chapter 10](../b04-access/10-access-as-code-and-evidence.md) and [Book 05, Chapter 10](../b05-devices/10-operating-and-evidencing-the-fleet.md).
+
 ## Dangers
 
 | Danger | What happens | The guard |
@@ -469,3 +490,6 @@ Remove-Item ./inputs/onprem-sync-export.json
 [^c03-paging]: Microsoft Learn, "Best practices for working with Microsoft Graph," <https://learn.microsoft.com/graph/best-practices-concept> (accessed Oct 30, 2026).
 [^c03-throttling]: Microsoft Learn, "Microsoft Graph throttling guidance," <https://learn.microsoft.com/graph/throttling> (accessed Oct 30, 2026).
 [^c03-deployments]: Microsoft Learn, "Microsoft Graph national cloud deployments," <https://learn.microsoft.com/graph/deployments> (accessed Oct 30, 2026).
+[^c03-moderate]: National Institute of Standards and Technology, SP 800-53B Moderate baseline, release 5.2.0 OSCAL profile, last modified October 22, 2026 (includes AC-2, AC-6, AU-3, CA-7, CM-3, CM-5, CM-6, CM-7, SA-9, SA-11 and SI-7), <https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_MODERATE-baseline_profile.json> (accessed Nov 2, 2026).
+[^c03-ksi]: FedRAMP, "Key Security Indicators," *FedRAMP Consolidated Rules for 2026* (indicators KSI-CMT-LMC, KSI-CMT-VTD, KSI-IAM-ELP, KSI-MLA-EVC and KSI-SVC-VRI; control mappings updated October 13, 2026), <https://www.fedramp.gov/2026/reference/key-security-indicators/> (accessed Nov 2, 2026).
+[^c03-fedramp]: FedRAMP Marketplace product data, <https://www.fedramp.gov/marketplace/products.json>, `last_change` 2026-11-01T05:02:56Z (accessed Nov 2, 2026): MSO365MT, Microsoft 365 Government Community Cloud & Supporting Services, FedRAMP Certified, Class C, Moderate; FR1824057433, Microsoft 365 Government Community Cloud-High, FedRAMP Certified, Class D, High; F1209051525, Azure Commercial Cloud, FedRAMP Certified, Class D, High; F1603087869, Azure Government (includes Dynamics 365), FedRAMP Certified, Class D, High.

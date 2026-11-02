@@ -314,11 +314,24 @@ unset SAILPOINT_ACCESS_TOKEN
 
 ## Federal requirements and evidence
 
-| What the output proves | Requirement it supports | Who keeps it |
-|---|---|---|
-| The drift and re-read clients hold read scopes only, and the workflow client holds one scope, removed after use | NIST SP 800-53 AC-6 (least privilege) and AC-2 (account management) at Moderate[^ttm03-moderate] | The `kit_calls.py --granted` output with the API client's approval |
-| The Graph app registration holds `User.Read.All` and, only if the audit is read, `AuditLog.Read.All`, with a certificate | AC-6; IA-5 (authenticator management) for the certificate | The app registration's permissions and credential, reviewed with the call list |
-| No component of Pass 1 can write to ISC, Entra ID or Active Directory | AC-6; Book 13's rule that the coordination layer never writes the configuration itself | The call list and its test |
+| What the output proves | Requirement it supports | KSI | Who keeps it |
+|---|---|---|---|
+| The drift and re-read clients hold read scopes only, and the workflow client holds one scope, removed after use | NIST SP 800-53 AC-6 (least privilege) and AC-2 (account management) at Moderate[^ttm03-moderate] | KSI-IAM-ELP; KSI-IAM-SNU | The `kit_calls.py --granted` output with the API client's approval |
+| The Graph app registration holds `User.Read.All` and, only if the audit is read, `AuditLog.Read.All`, with a certificate | AC-6; IA-5 (authenticator management) for the certificate | KSI-IAM-ELP; KSI-IAM-APM | The app registration's permissions and credential, reviewed with the call list |
+| No component of Pass 1 can write to ISC, Entra ID or Active Directory | AC-6; Book 13's rule that the coordination layer never writes the configuration itself | KSI-IAM-ELP | The call list and its test |
+| Lab 1, step 1: the ISC client handles tokens, paging and the search cursor as tested | SA-11 (developer testing) at Moderate[^ttm03-moderate] | KSI-SCR-MIT | The `pytest tests/python/test_kit_common.py -k isc` run, in the pull request's checks |
+| Lab 1, step 2: the scopes the drift client needs from ISC, each with the vendor page that says so | AC-6 | KSI-IAM-ELP | The `kit_calls.py --task drift --system isc` output, attached to the API client request |
+| Lab 1, step 3: a manage scope on a read client is named, and the command exits 1 | AC-6 | KSI-IAM-ELP | The `kit_calls.py --granted` output that lists `extra:`, kept until the grant is fixed |
+| Lab 1, step 4: the workflow scope needs its own client | AC-6; AC-5 (separation of duties) at Moderate[^ttm03-moderate] | KSI-IAM-ELP; KSI-IAM-JIT | The `kit_calls.py --task workflows --granted` output |
+| Lab 1, step 5: the Graph app registration needs `AuditLog.Read.All` only when the drift run reads the audit | AC-6 | KSI-IAM-ELP | The two `kit_calls.py --system graph` outputs, kept with the app registration's approval |
+| Lab 2, step 1: the tenant's API base, the end of the flow from the kit to ISC | CA-3 (information exchange) at Moderate[^ttm03-moderate] | KSI-SCR-MON | The `/oauth/info` response, kept with the data-flow record |
+| Lab 2, step 2: a reader client and a separate workflow client, each matching the call list | AC-2; AC-6; IA-5 for each client secret | KSI-IAM-SNU; KSI-IAM-ELP | The two `kit_calls.py --granted` outputs, kept with the API client approvals |
+| Lab 2, step 3: the reader's scopes are enough for the drift client to read ISC | AC-6 | KSI-IAM-ELP | The terminal output, with any 403 recorded. `out/sandbox.json` and `out/sandbox.csv` hold fixture HR data and are deleted in step 5 |
+| Lab 2, step 4: the attribute that holds the HR key, so accounts correlate to one person | CM-8 (system component inventory) at Moderate, read for identities *(inference)*[^ttm03-moderate] | KSI-PIY-GIV | The `ISC_EMPLOYEE_ID_ATTRIBUTE` value, recorded in the deployment's configuration |
+| Lab 2, step 5: no test API client, token or output is left | AC-2; IA-5 | KSI-IAM-SNU | The tenant's API client list; `rm -rf out` and `unset SAILPOINT_ACCESS_TOKEN` clear the laptop |
+| Production runs on SailPoint Identity Security Cloud, which the verified facts list as FedRAMP Certified, not on a sandbox | FedRAMP authorization of the cloud services used; SA-9 (external system services) at Moderate[^ttm03-moderate] | KSI-SCR-MIT; KSI-SCR-MON | The ISSO, with the authorization package and the Marketplace listing with its read date |
+
+The KSI column names the FedRAMP 20x Key Security Indicators whose related SP 800-53 controls include the row's control.[^ttm03-ksi] KSIs are indicators for cloud service providers: the agency authorizes its own system and lines its own evidence up with what its providers report against them; it doesn't report KSIs itself.
 
 ## Dangers
 
@@ -358,4 +371,5 @@ unset SAILPOINT_ACCESS_TOKEN
 [^ttm03-manager]: Microsoft Learn, "List manager," permissions and HTTP request, <https://learn.microsoft.com/graph/api/user-list-manager?view=graph-rest-1.0> (read November 1, 2026).
 [^ttm03-deployments]: Microsoft Learn, "Microsoft Graph national cloud deployments," service root endpoints, <https://learn.microsoft.com/graph/deployments> (read November 1, 2026).
 [^ttm03-fedramp]: FedRAMP Marketplace data, <https://www.fedramp.gov/marketplace/products.json> (last change November 1, 2026): SailPoint Identity Security Cloud, FR2001938710A (read November 1, 2026).
-[^ttm03-moderate]: National Institute of Standards and Technology, SP 800-53B Moderate baseline, release 5.2.0 OSCAL profile (includes AC-2, AC-6 and IA-5), <https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_MODERATE-baseline_profile.json> (read November 1, 2026).
+[^ttm03-moderate]: National Institute of Standards and Technology, SP 800-53B Moderate baseline, release 5.2.0 OSCAL profile (includes AC-2, AC-5, AC-6, CA-3, CM-8, IA-5, SA-9 and SA-11), <https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_MODERATE-baseline_profile.json> (read November 1, 2026).
+[^ttm03-ksi]: FedRAMP, "Key Security Indicators," *FedRAMP Consolidated Rules for 2026*, indicator titles and "Related SP 800-53 Controls," <https://www.fedramp.gov/2026/reference/key-security-indicators/> (read November 2, 2026).

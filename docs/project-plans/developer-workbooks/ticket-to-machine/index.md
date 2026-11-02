@@ -1,7 +1,7 @@
 ---
 title: "Building Ticket-to-Machine"
 subtitle: "A developer workbook for the Ticket-to-Machine loop on ServiceNow and SailPoint"
-description: "A developer workbook for the Ticket-to-Machine loop on ServiceNow and SailPoint Identity Security Cloud: a code-first companion for the developers who build the typed identity finding, the ServiceNow and SailPoint clients and their least privilege, drift events raised as typed tasks, the re-read rule that closes a finding only on evidence, the drift reconciliation, the evidence records an ISSO reads, and the one-writer-per-attribute check. Each chapter builds tested code in the repository's examples folder, runs a lab against fixtures with no tenant, then a step in a ServiceNow developer instance or a SailPoint sandbox, and lists the verified vendor facts, the federal requirements and evidence, the dangers and a checklist."
+description: "A developer workbook for the Ticket-to-Machine loop on ServiceNow and SailPoint Identity Security Cloud: a code-first companion for the developers who build the typed identity finding, the ServiceNow and SailPoint clients and their least privilege, drift events raised as typed tasks, the re-read rule that closes a finding only on evidence, the drift reconciliation, the evidence records an ISSO reads, the one-writer-per-attribute check, and a runbook that deploys the kit to a test environment and then to production. Each chapter builds tested code in the repository's examples folder, runs a lab against fixtures with no tenant, then a step in a ServiceNow developer instance or a SailPoint sandbox, and lists the verified vendor facts, the federal requirements and evidence, the dangers and a checklist."
 doc-type: section-landing
 fmw-eyebrow: "Projects · Developer workbook"
 audience: [Technical]
@@ -28,7 +28,7 @@ last-reviewed: 2026-11-01
 
 ::: {.callout-important appearance="default"}
 ## Status: draft, under review
-This workbook is new material. All eight chapters are written. Every page is held for the owner's review: until a page is approved it is listed in the weekly source watch issue, and an approved page that changes goes back on that list. Narrated chapter tours will be recorded only after a chapter is approved. Every vendor fact was checked against ServiceNow's, SailPoint's or Microsoft's own documentation, or the FedRAMP Marketplace, on November 1, 2026 and carries a note, and each chapter keeps its verification log in the repository. The code is illustrative. Its tests pass against fixtures and mocked responses, but it has not been run against a live ServiceNow instance or SailPoint tenant.
+This workbook is new material. All nine chapters are written. Every page is held for the owner's review: until a page is approved it is listed in the weekly source watch issue, and an approved page that changes goes back on that list. Narrated chapter tours will be recorded only after a chapter is approved. Every vendor fact was checked against ServiceNow's, SailPoint's or Microsoft's own documentation, or the FedRAMP Marketplace, on November 1, 2026 (Chapter 09 on November 2, 2026) and carries a note, and each chapter keeps its verification log in the repository. The code is illustrative. Its tests pass against fixtures and mocked responses, but it has not been run against a live ServiceNow instance or SailPoint tenant, and nobody has yet followed Chapter 09's deployment runbook on one.
 :::
 
 ::: {.callout-note}
@@ -49,7 +49,7 @@ The estate is a FedRAMP Moderate civilian one: ServiceNow's Government Community
 | Book chapters | The vendor-neutral design: the tempo, the qualifying change classes, the actuation ladder and the five-clause chain, the lanes and the evidence record | [Book 13, Chapter 10](../../../books/b13-governance/10-ticket-to-machine.md) and [Appendix B](../../../books/b13-governance/appendix-b-ticket-to-machine-reference.md); the drift classes in [Book 03, Chapter 11](../../../books/b03-hr-identity/11-drift-metrics-and-evidence.md) |
 | Example guide | The loop on ServiceNow and SailPoint, the four gaps, and each product's federal status | [Ticket-to-Machine on ServiceNow and SailPoint](../../../books/guides/ttm-servicenow-sailpoint.md) |
 | Implementation example | Pass 1 of the kit: drift to a typed task, the re-read rule, the drift reconciliation; and what Pass 2 plans | [Integrating ServiceNow and SailPoint (Pass 1)](../../../books/guides/snow-sailpoint-integration-kit.md) |
-| Developer workbook | This workbook: eight chapters, each building on the kit with labs and tests | [Chapters](#chapters-table) below |
+| Developer workbook | This workbook: nine chapters, eight building on the kit with labs and tests and a deployment runbook for a test environment and production | [Chapters](#chapters-table) below |
 | Code | The kit: ISC workflows, the ServiceNow Scripted REST resource and business rule, Python and PowerShell clients, fixtures and tests, and this workbook's additions | [`examples/servicenow-sailpoint` on GitHub](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/servicenow-sailpoint) |
 | Decks and videos | The narrated deck for Book 13's Appendix B, the narrated research deck for the example guide, and the guide's two-part implementation series | [Presentations](../../../presentations/index.md#reference-b13) · [Implementation series](../../../presentations/index.md#implementation-ttm-servicenow-sailpoint-part-1) · [▶ Watch the example guide's deck](../../../presentations/watch.html?v=Research_TTM_ServiceNow_SailPoint_Narrated) |
 | Story deck | One narrated deck, about 20 minutes, that follows one fictional person's drifted department through every chapter, with the kit's own fixtures, a "Try it" command and a one-question check per scene | *One Drift Case, End to End*: [Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/TTM_Story_One_Drift_Case.pptx) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/TTM_Story_One_Drift_Case_Narrated.pptx) (about 21 minutes, captions) · [▶ Watch](../../../presentations/watch.html?v=TTM_Story_One_Drift_Case_Narrated) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/TTM_Story_One_Drift_Case_Narrated.mp4) |
@@ -75,7 +75,7 @@ How they connect: the book chapters set what the loop must prove. The example gu
 
 ## Chapters {#chapters-table}
 
-The arc follows the loop's five steps and the kit's three builds. Chapter 01 sets the record every other chapter writes or reads. Chapters 02 and 03 build the two clients and fix their least privilege before any call is made. Chapters 04 to 06 are the kit's Builds 1 to 3. Chapter 07 turns closed findings into the evidence an ISSO reads, and Chapter 08 builds the one Pass 2 check that runs offline today.
+The arc follows the loop's five steps and the kit's three builds. Chapter 01 sets the record every other chapter writes or reads. Chapters 02 and 03 build the two clients and fix their least privilege before any call is made. Chapters 04 to 06 are the kit's Builds 1 to 3. Chapter 07 turns closed findings into the evidence an ISSO reads, and Chapter 08 builds the one Pass 2 check that runs offline today. Chapter 09 is the runbook that takes the kit from a developer instance to a test environment and then to production.
 
 | # | Chapter | Loop step | Builds on | What you build | Status |
 |---|---|---|---|---|---|
@@ -87,6 +87,7 @@ The arc follows the loop's five steps and the kit's three builds. Chapter 01 set
 | 06 | [Drift reconciliation](06-drift-reconciliation.md) | 1, 2 (Build 3) | `identity_drift.py` | `drift_compare.py`: run over run, new, persisting and resolved, refusing runs that computed different classes | Written |
 | 07 | [Evidence records for Book 13 and the ISSO](07-evidence-records.md) | 5, clause 5 | The re-read client's evidence and Book 13's record shape | `evidence_export.py`: one record per closed finding, integrity and window checks, a manifest and a hash chain, and a verifier | Written |
 | 08 | [One writer per attribute](08-one-writer-per-attribute.md) | Pass 2, gap 4 | The kit page's plan for Pass 2 | `writer_check.py`: Entra inbound provisioning's mappings and SailPoint's provisioning policies compared, offline | Written |
+| 09 | [Deploying to test and production](09-deploying-to-test-and-production.md) | All five, gates G1 to G7 | Chapters 01 to 08 and the guide's gates and rollback | The runbook, and `deploy/`: one settings file per environment, a pre-flight check, the workflows rendered per environment, a synthetic-worker smoke test, a rollback plan and check | Written; not run live |
 
 Pass 2's other items, one approver per authority class, change records on demand, the SailPoint half of the evidence export and email intake, need a live instance or product internals the documentation doesn't give, so no chapter builds them yet.
 
@@ -115,6 +116,7 @@ Every chapter has a narrated tour: a deck in Why, What, Who and How order, a sel
 - **Developers building the ServiceNow side:** Chapters 01, 02, 04 and 05, in that order.
 - **Identity engineers on the SailPoint side:** Chapters 03, 04 and 06, then 08.
 - **ISSOs and reviewers of the code:** Chapter 07, then the checklist and the federal requirements section of every chapter.
+- **Deployers and change managers:** Chapter 09, after Chapters 02 and 03 for the integration identities.
 
 ## Where this workbook sits
 

@@ -45,3 +45,13 @@ Microsoft Learn pages opened on November 1, 2026 through the Microsoft Learn MCP
 - Whether `requestorManager` is accepted as a **reviewer** in `reviewSettings` (Learn documents it for approvals). This chapter uses it only as an approver; Chapter 02's sponsor review records the open question.
 - Overlap over time: AA-02 sees overlap only among the users in the population file, not a user moving between two policies later.
 - How the portal's two removal checkboxes, offered when a policy is deleted, map to the Remove cmdlet; Lab 2 uses the portal for that choice.
+
+## KSI column (November 2, 2026)
+
+FedRAMP's Key Security Indicators page (<https://www.fedramp.gov/2026/reference/key-security-indicators/>) was read through WebFetch on November 2, 2026, for each indicator's "Related SP 800-53 Controls." Every KSI ID in this chapter's Federal requirements tables was already cited in the repo (Book 02, Chapter 10; Book 04, Chapter 10; Book 13, Chapter 04 and Appendix A; Book 14, Chapter 03); none is new. The framing (KSIs are provider-side; the agency lines its evidence up with them and doesn't report them) is carried from Book 00, Appendix B.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| K1 | AC-2, AC-5, AC-6, AU-9, SI-7, CM-3, CM-3(2) pairs | Both tables | carried forward | Book 13, Appendix A |
+| K2 | PS-5 is related to KSI-IAM-ELP and KSI-IAM-JIT | Both tables | verified (new pair) | FedRAMP KSI page |
+| K3 | SCuBA MS.AAD.7.5v1 (privileged roles through PIM) lines up with KSI-IAM-JIT | Requirement table | carried forward (program mapping) | Book 04, Chapter 10 |

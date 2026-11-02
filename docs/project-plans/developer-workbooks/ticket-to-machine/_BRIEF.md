@@ -12,8 +12,11 @@ Workbook folder: `docs/project-plans/developer-workbooks/ticket-to-machine/`. Fi
 | `06-drift-reconciliation.md` | Chapter 06 — Drift Reconciliation | `clients/python/drift_compare.py`, `tests/fixtures/hr_extract_day2.csv` |
 | `07-evidence-records.md` | Chapter 07 — Evidence Records for Book 13 and the ISSO | `clients/python/evidence_export.py`, `tests/fixtures/evidence/` |
 | `08-one-writer-per-attribute.md` | Chapter 08 — One Writer per Attribute | `clients/python/writer_check.py`, `tests/fixtures/writers/` |
+| `09-deploying-to-test-and-production.md` | Chapter 09 — Deploying to Test and Production | `deploy/` (preflight, render, smoke test, rollback, record), `tests/python/test_deploy.py`, `tests/fixtures/deploy/`; the deployment rows of `config/calls.json` |
 
 ## Every chapter has
+
+Chapter 09 is the exception: a deployment runbook, not a build. It has no lab sections (no heading may contain "Lab 1" or "Lab 2", which `scripts/kit_captures.py` and `scripts/generate_labs.py` key on); its steps run in a test environment and production, each as a command or an exact menu path, and its scripts' fixture output is shown with its date. Otherwise:
 
 In this chapter; goal and audience; the code (what exists in the kit, what the chapter adds, the tests); an Illustrative code callout; Lab 1 against fixtures with no tenant; Lab 2 in a ServiceNow Personal Developer Instance or a SailPoint sandbox, with a back-out step, marked as not run by the authors; the verified facts (endpoint, authentication, least-privileged role or scope, FedRAMP status) with footnotes; What couldn't be verified; Federal requirements and evidence (what the output proves, for which control at Moderate, who keeps it; link Book 13, Appendix A and the federal framework crosswalk rather than restating them); dangers with the guard for each; a checklist; Continue the book; footnotes. Run every lab command before writing its expected output.
 

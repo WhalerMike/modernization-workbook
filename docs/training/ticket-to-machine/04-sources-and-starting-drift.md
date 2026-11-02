@@ -22,7 +22,7 @@ last-reviewed: 2026-11-01
 
 Before you fix anything, you need to know how far the directory is from HR. A terminated employee still enabled in Entra ID, an account that matches nobody, a department someone typed by hand: each is drift, and each needs a number before it needs a ticket. Gate 3 connects the sources, correlates them on one key, and files the first measurement as the baseline. In this module you run that measurement twice and compare the days.
 
-**The federal requirement.** The guide's [Gate 3 requirements and evidence table](../../books/guides/ttm-servicenow-sailpoint.md#step-3-connect-the-sources-and-measure-the-starting-drift) maps it to NIST SP 800-53 AC-2, CA-7 and, by inference, CM-8. [Chapter 06's table](../../project-plans/developer-workbooks/ticket-to-machine/06-drift-reconciliation.md#federal-requirements-and-evidence) maps the reconciliation and the comparison to AC-2, CA-7 and SI-4.
+**The federal requirement.** The guide's [Gate 3 requirements and evidence table](../../books/guides/ttm-servicenow-sailpoint.md#step-3-connect-the-sources-and-measure-the-starting-drift) maps it to NIST SP 800-53 AC-2, CA-7 and, by inference, CM-8. [Chapter 06's table](../../project-plans/developer-workbooks/ticket-to-machine/06-drift-reconciliation.md#federal-requirements-and-evidence) maps the reconciliation and the comparison to AC-2, CA-7 and SI-4. Each table's KSI column names the FedRAMP 20x Key Security Indicators to line your evidence up with; your cloud providers report against them, the agency doesn't.
 
 ### Learning objectives
 

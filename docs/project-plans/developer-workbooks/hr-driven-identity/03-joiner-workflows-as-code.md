@@ -159,7 +159,7 @@ python python/joiner_workflows.py readiness --hires tests/fixtures/ch03/hr-hires
 # Step 6: Run the tests
 python -m pytest tests -q
 
-# Step 6: Run the tests
+# After the steps
 rm -rf out/ch03
 ```
 
@@ -510,10 +510,32 @@ What couldn't be verified: the name a mover's `attributeChangeTrigger` takes for
 
 This chapter supports the guide's Gate 3. The [Gate 3 requirements table](../../../books/guides/hr-driven-identity-implementation.md#step-3-make-joiners-ready-on-day-one) maps it to NIST SP 800-53 AC-2(1) (automated system account management), IA-5 (the initial authenticator is time-limited and reaches an accountable person) and OMB M-22-09's phishing-resistant MFA, which the pass bridges to; the [federal framework crosswalk](../../../reference/federal-framework-crosswalk.md) lists each source. What this code gives the ISSO:
 
-- the reviewed workflow files and the plan that changed each version, with its manifest's SHA-256, as the definitions and versions AC-2(1) asks for;
-- the lint's clean run, showing a one-time pass of at most 24 hours and an execution limit on every scheduled workflow (IA-5 and the guardrails);
-- the readiness summary per start date, the day-one readiness rate Book 03, Chapter 11 measures;
-- the run history the workflows leave, exported past Entra's 30-day view, which this code doesn't keep (the guide's evidence list says where it goes).
+| Requirement | KSI | What this code gives | What the ISSO keeps |
+|---|---|---|---|
+| AC-2(1), automated system account management, Moderate | KSI-IAM-JIT | The reviewed workflow files and the plan that changed each version | The files and each plan's output folder, with its manifest's SHA-256, as the definitions and versions AC-2(1) asks for |
+| IA-5, the initial authenticator | KSI-IAM-APM | The lint's clean run: a one-time pass of at most 24 hours, and an execution limit on every scheduled workflow (the guardrails) | The lint output, filed with the change, and the TAP policy export |
+| OMB M-22-09, phishing-resistant MFA, which the pass bridges to | KSI-IAM-APM, as [Book 02, Chapter 10](../../../books/b02-identity/10-migrating-and-governing.md) maps it | The pass ends when the card is bound (Chapter 05) | Accounts still on a pass past the agreed window, as findings |
+| AC-2(1) and CA-7, the day-one readiness rate Book 03, Chapter 11 measures | KSI-IAM-JIT; KSI-MLA-EVC | The readiness summary per start date | `summary.json` per start date |
+| AC-2(1), run history | KSI-IAM-JIT | None: this code doesn't keep it | The run history the workflows leave, exported past Entra's 30-day view (the guide's evidence list says where it goes) |
+
+Each scripted step in the labs, and each file the code writes, with the evidence it leaves:
+
+| Lab step | What it runs or writes | Requirement | KSI | Evidence |
+|---|---|---|---|---|
+| Lab 1, step 1 | `graph_export.py --task joiner-plan --list` and `--task joiner-readiness --list` | AC-6, least privilege: GET calls only | KSI-IAM-ELP | The printed lists, and `config/calls.json` as reviewed |
+| Lab 1, steps 2 and 3 | `joiner_workflows.py lint` (JW-01 to JW-14) on the program's files and on the broken copies | AC-2(1); IA-5 for the pass (JW-05); CM-3(2), validated before merge | KSI-IAM-JIT; KSI-IAM-APM; KSI-CMT-VTD | The clean run on `config/workflows`, filed with the change |
+| Lab 1, step 4 | `joiner_workflows.py plan`, writing `plan.json`, `findings.json` (JW-15) and `bodies/` | CM-3: each change a new workflow or a new version, not an edit in place | KSI-CMT-RMV, KSI-CMT-LMC | `out/ch03/plan/plan.json` and the body sent for each step |
+| Lab 1, steps 4 and 5 | `manifest.json` in each output folder | AU-9; SI-7 | KSI-MLA-OSM; KSI-SVC-VRI | A SHA-256 per file, written once |
+| Lab 1, step 5 | `joiner_workflows.py readiness`, writing `readiness.json`, `summary.json` and `findings.json` | AC-2(1); CA-7 | KSI-IAM-JIT; KSI-MLA-EVC | `out/ch03/readiness/summary.json`: the day-one readiness rate |
+| Lab 1, step 6 | `python -m pytest tests -q` | CM-3(2) *(design guidance)* | KSI-CMT-VTD | `57 passed`, kept with the change |
+| Lab 1, clean-up | `rm -rf out/ch03` | None: fixture output isn't evidence | — | — |
+| Lab 2, steps 1 and 2 | `graph_export.py --task joiner-plan`, writing `workflows.json` and `export.json`; edit one file; `plan` | CM-3; AC-6 for GET only | KSI-CMT-RMV, KSI-CMT-LMC; KSI-IAM-ELP | `exports/joiner/export.json`; `out/ch03/plan/plan.json` with its manifest |
+| Lab 2, step 3 | `New-MgIdentityGovernanceLifecycleWorkflow` or `New-MgIdentityGovernanceLifecycleWorkflowNewVersion` with the planned body | CM-3; AC-2(1) | KSI-CMT-RMV, KSI-CMT-LMC; KSI-IAM-JIT | The body file from `bodies/`, the new version in the tenant and its directory audit record |
+| Lab 2, step 4 | `Invoke-ValidationKit.ps1 -CheckId VK-HR-06` | CM-6, configuration settings: the execution limit read back | KSI-MLA-EVC | The kit's run folder under `out/ch03-vk` |
+| Lab 2, step 6 | `graph_export.py --task joiner-readiness`, writing `hire-users.json`, `joiner-results.json`, `joiner-assignments.json` and `export.json`; `readiness` into `out/ch03/readiness-test` | AC-2(1); CA-7 | KSI-IAM-JIT; KSI-MLA-EVC | `out/ch03/readiness-test/summary.json` and its manifest |
+| Lab 2, step 7 | `Remove-MgIdentityGovernanceLifecycleWorkflow`; restore the file; export again; plan and send the restore; `rm -rf` the lab files | CM-3: the change backed out | KSI-CMT-RMV, KSI-CMT-LMC | `out/ch03/plan-restore/plan.json` and the directory audit records of the delete and the new version |
+
+KSIs are FedRAMP 20x indicators for cloud service providers: the agency authorizes its own system and lines this evidence up with what its providers report against them, and it doesn't report KSIs itself ([Book 00, Appendix B](../../../books/b00-orientation/appendix-b-engagement-archetype.md)). Each KSI shown lists the row's control among its related SP 800-53 controls on FedRAMP's page;[^hw03-ksi] which file supports which indicator is the program's mapping *(design guidance)*. Controls the guide's table doesn't name (AC-6, AU-9, CA-7, CM-3, CM-3(2), CM-6, SI-7) are in the Moderate baseline ([Book 13, Appendix A](../../../books/b13-governance/appendix-a-requirements-mapping.md); [Book 14, Appendix A](../../../books/b14-compliance/appendix-a-control-crosswalk.md)).
 
 Accounts still on a pass after the agreed window, when the card should have been bound ([Chapter 05](05-certificate-based-authentication-checks.md)), are a finding for the ISSO; this chapter's code doesn't read them.
 
@@ -565,3 +587,4 @@ Accounts still on a pass after the agreed window, when the card should have been
 [^hw03-tap]: Microsoft Learn, "Configure Temporary Access Pass to register passwordless authentication methods," enable the Temporary Access Pass policy, <https://learn.microsoft.com/entra/identity/authentication/howto-authentication-temporary-access-pass> (read November 1, 2026; carried from the HR-driven identity implementation guide's verification log).
 [^hw03-cmdlets]: Microsoft Learn, "New-MgIdentityGovernanceLifecycleWorkflow," <https://learn.microsoft.com/powershell/module/microsoft.graph.identity.governance/new-mgidentitygovernancelifecycleworkflow?view=graph-powershell-1.0>, and "New-MgIdentityGovernanceLifecycleWorkflowNewVersion," <https://learn.microsoft.com/powershell/module/microsoft.graph.identity.governance/new-mgidentitygovernancelifecycleworkflownewversion?view=graph-powershell-1.0> (read November 1, 2026).
 [^hw03-remove]: Microsoft Learn, "Remove-MgIdentityGovernanceLifecycleWorkflow," <https://learn.microsoft.com/powershell/module/microsoft.graph.identity.governance/remove-mgidentitygovernancelifecycleworkflow?view=graph-powershell-1.0> (read November 1, 2026).
+[^hw03-ksi]: FedRAMP, "Key Security Indicators," *FedRAMP Consolidated Rules for 2026*, indicator titles and "Related SP 800-53 Controls," including the mapping updates of October 13, 2026, <https://www.fedramp.gov/2026/reference/key-security-indicators/> (read November 2, 2026; the indicator IDs are carried from Book 13, Appendix A and Book 14, Chapter 03).

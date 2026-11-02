@@ -23,6 +23,15 @@ In this module you give contractors an end date that can't be left open. You com
 
 **The federal requirement.** This gate meets NIST SP 800-53 AC-2 and PS-7 (external personnel security), IA-4(4) (identify each person by status, such as contractor), and OMB M-22-09's expectation that enterprise identity draws on HR, contract management and personnel security. The requirements and evidence are in the [Gate 2 requirements table](../../books/guides/hr-driven-identity-implementation.md#step-2-bring-in-employees-and-contractors-from-their-sources) (under **Federal requirements and evidence** in Step 2) and the workbook chapter's [Federal requirements and evidence](../../project-plans/developer-workbooks/hr-driven-identity/02-contractor-sources-and-end-dates.md#federal-requirements-and-evidence).
 
+| Requirement | KSI | Evidence |
+|---|---|---|
+| AC-2 and PS-7 | KSI-IAM-JIT; KSI-SCR-MON | `decisions.json`, and the reconciliation's `findings.json` with zero CR-01 |
+| IA-4(4), worker type | KSI-IAM-AAM, KSI-IAM-ELP, KSI-IAM-JIT | `contractors-extract.csv` and the middleware's `provenance.json` |
+| SA-9, FedRAMP use of the HR platform's cloud (Oracle Cloud Infrastructure) | KSI-SCR-MIT, KSI-SCR-MON, which the provider reports | The FedRAMP authorization the agency relies on |
+| OMB M-22-09 and M-19-17; the Privacy Act | None: not SP 800-53 controls | The signed authority-per-fact table; the privacy office's determination |
+
+KSIs are FedRAMP 20x indicators for cloud service providers: the agency authorizes its own system and lines this evidence up with what its providers report against them, and it doesn't report KSIs itself ([Book 00, Appendix B](../../books/b00-orientation/appendix-b-engagement-archetype.md)). Each KSI lists the row's control among its related SP 800-53 controls on [FedRAMP's Key Security Indicators page](https://www.fedramp.gov/2026/reference/key-security-indicators/) (read November 2, 2026); which file supports which indicator is the program's mapping *(design guidance)*. The workbook chapter's table has a row for every lab step.
+
 ## Learning objectives (1 minute)
 
 After this module, you'll be able to:

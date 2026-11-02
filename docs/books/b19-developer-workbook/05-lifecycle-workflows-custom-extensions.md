@@ -490,6 +490,31 @@ Learn states several things differently on different pages, recorded here so a l
 - The callback data type lists `completed` and `failed`; Learn's definition and the resume example send `Completed`. The code sends the listed values, and Lab 2 confirms the service accepts them.
 - The configure page prints a placeholder GUID for `appid`; the code uses the `azp` value from the same page, and Lab 2 checks it.
 
+## Federal requirements and evidence
+
+A custom task extension carries the part of a leaver that the built-in tasks don't, so its evidence is account and credential removal. Each row names the file or command that proves it. Controls are from the Moderate baseline[^c05-moderate]; indicators are from FedRAMP's list[^c05-ksi]. Which output supports which control is the program's reading (design guidance).
+
+| What the output proves | Requirement it supports | KSI it aligns to | Who keeps it |
+|---|---|---|---|
+| Learn's definition is extracted unchanged and linted: eight results (Lab 1, step 1: `out/learn-sample.workflow.json`, exit `2`) | SA-11; SR-3 | KSI-SCR-MIT; KSI-CMT-VTD | The repository: `snapshot.json` and the test results |
+| Learn's definition fails a GCC High leaver at the end of the wait (step 2: `failed (no callback within PT1H)`) | SA-11 | KSI-CMT-VTD | The test results |
+| The program's definition passes, and retries that reach the timeout are refused (step 3: `0 result(s)`; LX-11 at `PT15M`) | CM-3(2) | KSI-CMT-VTD | The pull request's check run |
+| The callback reports what really happened, at once, and a repeat delivery has one effect (step 4: `completed`, `failed`, `1 effect(s)`) | AC-2; PS-4: a failed revocation is recorded as failed | KSI-IAM-AAM | The task processing result in Lifecycle Workflows |
+| The deployment pieces are built from the reviewed registry, SAS off and proof-of-possession on, and an Azure Government guess is refused (step 5: `out/arm-cms-revocation.json`, `out/extension-cms-revocation.json`, exit `1`) | CM-2; CM-6; AC-3 | KSI-CMT-RMV; KSI-IAM-SNU | The repository; the deployment record |
+| The extension read back matches the registry, and the leaver blocks before the custom task (step 6: `check-extension`, `check-workflow`, WX-03) | CM-6; PS-4; AC-2 | KSI-MLA-EVC; KSI-IAM-AAM | The check output, filed with the change |
+| The callback identity holds no tenant-wide Lifecycle Workflows permission (step 6: CX-04) | AC-6 | KSI-IAM-ELP; KSI-IAM-SNU | The extension's `authorizedApps`; the check output |
+| The definition, interpreter and builders pass (step 7: 55 tests) | SA-11 | KSI-CMT-VTD | The repository's test results |
+| The extension and Logic App are created by a named administrator (Lab 2, step 1) | CM-3 | KSI-CMT-LMC | The Entra and Azure activity logs |
+| What the admin center made is recorded and compared with the builder's output (Lab 2, step 2: `tests/fixtures/extension-get.json`, `az rest ... accessControl`) | CM-6; CM-4(2) | KSI-MLA-EVC | The change record; a difference is a finding |
+| The deployed definition is the reviewed one (Lab 2, step 3) | CM-3 | KSI-CMT-RMV | The repository commit and the Logic App's version history |
+| The test workflow blocks first, then runs the extension (Lab 2, step 4: `workflow-get-test.json`) | PS-4; AC-2 | KSI-IAM-AAM | The check output |
+| An on-demand run completes, and run history holds no personal data (Lab 2, step 5: `Check_request`, secured outputs) | AU-12 (Audit Record Generation); AC-2 | KSI-MLA-LET, Logging Event Types | The Logic App run history; the task processing result |
+| A downstream failure is reported in minutes, once per task processing result (Lab 2, step 6) | PS-4; AC-2 | KSI-IAM-AAM | The drill record; the receiver's log |
+| The extension, workflow and role assignments are removed (Lab 2, step 7) | CM-3; AC-6 | KSI-CMT-LMC | The Entra and Azure activity logs |
+| Lifecycle Workflows and Azure Logic Apps run on cloud services with FedRAMP Marketplace listings[^c05-fedramp] | SA-9 (External System Services); the agency confirms each service it uses is inside the listing's scope (design guidance) | None: the provider reports against the indicators for its own offering | The system security plan's list of external services |
+
+Key Security Indicators are FedRAMP 20x indicators for cloud service providers. The agency authorizes its own system: it lines this evidence up with what Microsoft report against the indicators, and doesn't report KSIs itself ([Book 00, Appendix B](../b00-orientation/appendix-b-engagement-archetype.md)). The control-by-control mapping is in Book 13's [Appendix A](../b13-governance/appendix-a-requirements-mapping.md) and Book 14's [Appendix A](../b14-compliance/appendix-a-control-crosswalk.md); the indicator pairings follow [Book 04, Chapter 10](../b04-access/10-access-as-code-and-evidence.md) and [Book 05, Chapter 10](../b05-devices/10-operating-and-evidencing-the-fleet.md).
+
 ## Dangers
 
 | Danger | What happens | The guard |
@@ -549,3 +574,6 @@ Learn states several things differently on different pages, recorded here so a l
 [^c05-claims]: Microsoft Learn, "Access token claims reference," section "Payload claims," <https://learn.microsoft.com/entra/identity-platform/access-token-claims-reference#payload-claims> (accessed Oct 30, 2026).
 [^c05-known-guids]: Microsoft, MicrosoftDocs/entra-docs, `.docutune/dictionaries/known-guids.json` at commit `4ed6827815ecbf4e021fc736d75fdda6a2fd6272` (October 28, 2026), entry "Lifecycle Workflows", read with `gh api` (accessed Oct 30, 2026). Not a Learn page: the repository's list of GUIDs its documentation tooling treats as real values.
 [^c05-sample-code]: Microsoft, MicrosoftDocs/entra-docs, `docs/id-governance/configure-logic-app-lifecycle-workflows.md` and `docs/id-governance/lifecycle-workflow-extensibility.md` at commit `07cb73d6c6380414eecd040ba5e14c1c94d48b66` (October 30, 2026), code under the MIT License, <https://github.com/MicrosoftDocs/entra-docs/tree/07cb73d6c6380414eecd040ba5e14c1c94d48b66/docs/id-governance>; commit `b7e8790374026b37be320fe091aefb0747e54809` (May 15, 2024) replaced the `appid` rows' `ce79fdc4-…` with the placeholder (accessed Oct 30, 2026); pinned copy in `examples/third_party/lifecycle-workflows-logic-app`.
+[^c05-moderate]: National Institute of Standards and Technology, SP 800-53B Moderate baseline, release 5.2.0 OSCAL profile, last modified October 22, 2026 (includes AC-2, AC-3, AC-6, AU-12, CM-2, CM-3, CM-3(2), CM-4(2), CM-6, PS-4, SA-9, SA-11 and SR-3), <https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_MODERATE-baseline_profile.json> (accessed Nov 2, 2026).
+[^c05-ksi]: FedRAMP, "Key Security Indicators," *FedRAMP Consolidated Rules for 2026* (indicators KSI-CMT-LMC, KSI-CMT-RMV, KSI-CMT-VTD, KSI-IAM-AAM, KSI-IAM-ELP, KSI-IAM-SNU, KSI-MLA-EVC, KSI-MLA-LET and KSI-SCR-MIT; control mappings updated October 13, 2026), <https://www.fedramp.gov/2026/reference/key-security-indicators/> (accessed Nov 2, 2026).
+[^c05-fedramp]: FedRAMP Marketplace product data, <https://www.fedramp.gov/marketplace/products.json>, `last_change` 2026-11-01T05:02:56Z (accessed Nov 2, 2026): MSO365MT, Microsoft 365 Government Community Cloud & Supporting Services, FedRAMP Certified, Class C, Moderate; FR1824057433, Microsoft 365 Government Community Cloud-High, FedRAMP Certified, Class D, High; F1209051525, Azure Commercial Cloud, FedRAMP Certified, Class D, High; F1603087869, Azure Government (includes Dynamics 365), FedRAMP Certified, Class D, High.
