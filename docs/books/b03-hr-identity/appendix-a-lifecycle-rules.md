@@ -90,7 +90,7 @@ The evidence for each rule, and how agencies source contractors today, is in the
 
 ::: {.callout-tip}
 ## Continue the book
-[← Previous: Chapter 13 — Reference Deployment (Illustrative)](13-reference-deployment.md) · [Book index](index.md) · [Next: Appendix B — Security and Privacy Assessment →](appendix-b-security-and-privacy.md)
+[← Previous: Chapter 14 — Privacy for Workforce Identity](14-privacy-for-workforce-identity.md) · [Book index](index.md) · [Next: Appendix B — Security and Privacy Assessment →](appendix-b-security-and-privacy.md)
 :::
 
 [^aA-api-faqs]: Microsoft Learn, "Frequently asked questions about API-driven inbound provisioning" (scoping filters; matching attribute pair, by default `externalId` to `employeeId`), <https://learn.microsoft.com/en-us/entra/identity/app-provisioning/inbound-provisioning-api-faqs> (accessed Oct 20, 2026).

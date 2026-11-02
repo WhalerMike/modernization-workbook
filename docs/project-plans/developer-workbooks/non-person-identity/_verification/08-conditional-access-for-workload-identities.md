@@ -57,3 +57,14 @@ Microsoft Learn pages opened on October 30, 2026 through the Microsoft Learn MCP
 | Book 02, Chapter 09 (Conditional Access for workload identities) | Context | — |
 | Building Privileged Access, Chapter 03 (diff, dry run, report-only on create, `-AllowEnforce`, no delete) | The plan and writes | Copied as a pattern, not as code: this example has its own module |
 | Chapter 01's register (service principal types, owner tenant, audience) | The scope's recorded fields; the tenant check | The tenant check reads Graph directly, so the chapter runs without Chapter 01's output |
+
+## Federal requirements and evidence (November 2, 2026)
+
+The chapter's new section has 15 rows: each Lab 1 and Lab 2 step that produces evidence, and each file the kit's code writes for this chapter. Lab steps that only delete `out`, make test objects or rerun earlier chapters have no row, and the section says so.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| F1 | The controls cited (AC-3, AC-6, AU-6, AU-9, CA-7, CM-3, CM-3(2) are in the SP 800-53B Moderate baseline | Federal requirements and evidence | verified: each ID checked in the release 5.2.0 OSCAL Moderate profile (287 controls) | [^np08-moderate], read November 2, 2026 |
+| F2 | Each KSI named (KSI-CMT-LMC, KSI-CMT-RMV, KSI-CMT-RVP, KSI-CMT-VTD, KSI-IAM-ELP, KSI-IAM-JIT, KSI-IAM-SUS, KSI-MLA-EVC, KSI-MLA-OSM, KSI-MLA-RVL, KSI-PIY-GIV, KSI-SVC-ACM, KSI-SVC-EIS, KSI-SVC-VRI) lists the row's control, or one of its enhancements, among its related SP 800-53 controls | Federal requirements and evidence | verified against FedRAMP's page. IA-9 is in no NIST baseline; no indicator lists it, so its rows say so. Every ID was already cited in the repository (Book 02, Chapter 10; Book 04, Chapter 10; Book 13, Appendix A; Book 14, Chapter 03); none is new | [^np08-ksi], read November 2, 2026 |
+| F3 | KSIs are provider-side FedRAMP 20x indicators; the agency doesn't report them | The sentence under the table | carried forward | Book 00, Appendix B |
+| F4 | Which output supports which indicator, and how SCuBA or M-25-21 rows map through a control | The KSI column | restated-as-design (labeled) | the program's mapping |

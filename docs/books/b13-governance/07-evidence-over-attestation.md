@@ -144,13 +144,29 @@ For the people who run the program, three things change.
 
 - **Attestation moves up a level.** People stop signing that each control was in place on each cycle, and sign instead for what the machines can't decide: changes to the rules and the record ([Chapter 04](04-change-control-and-provenance.md)), exceptions, and the acceptance of risk.
 - **Audit preparation shrinks.** A bundle assembles the same way every time. The team keeps the record truthful and the inputs retained, and the package follows; it doesn't rebuild the package for each audit.
-- **Evidence is regenerated, not hoarded.** A past window's bundle can be rebuilt from the record version and the archived inputs, as [Chapter 05](05-deterministic-governance.md#what-changes-for-the-program) explains. The inputs still have to be kept for as long as the records schedule requires.
+- **Evidence is regenerated, not hoarded.** A past window's bundle can be rebuilt from the record version and the archived inputs, as [Chapter 05](05-deterministic-governance.md#what-changes-for-the-program) explains. The inputs still have to be kept for as long as the records schedule requires; [Chapter 13](13-records-evidence-and-retention.md) says which schedule items commonly apply and who decides.
 
 Three things don't change, by design.
 
 - **The authorizing official still authorizes.** Evidence makes the posture checkable. Only the authorizing official accepts residual risk ([Book 01, Chapter 09](../b01-transformation-arc/09-who-leads-the-transformation.md)).
 - **People still own the rules.** Determinism is faithful to the record, not a check on it. A wrong rule produces the same wrong evidence every time, which is why rule changes go through governance review and not just a test suite. [Chapter 09](09-who-governs.md) names who reviews what.
 - **Some controls remain attestations.** A policy's approval, a training record, a physical inspection or a contract clause isn't a machine-observable state. SP 800-37 expects manual assessment to cover what tools can't,[^c07-sp80037] and the package should say plainly which controls are evidenced by machines and which by people, instead of implying full automation.
+
+## Privacy: evidence contains identifiers
+
+An evidence package proves controls by showing what happened to whom. Access review results name reviewers and reviewees, provisioning records carry person keys, approval chains name approvers, and screenshots show whatever was on the screen. That makes the evidence store a store of PII, and often the most complete copy outside the systems it describes. Handing it to an assessor under contract is a disclosure to a contractor working for the agency, so the privacy office decides its basis and whether the Privacy Act's accounting of disclosures applies.[^c07-pa] Circular A-108 has the Senior Agency Official for Privacy review, before award, every contract that involves information that identifies and is about individuals.[^c07-a108]
+
+The provenance envelope helps: evidence can prove a control with a key and a hash rather than a name and a payload. The program's design is to collect the least identifying form that still lets an assessor verify the control, and to resolve keys to names only on request, inside the agency's boundary. A-130's minimization principle and SP 800-53 AU-3(3), SI-12(1) and SI-19, De-identification, all in the privacy baseline that applies at every impact level, are the requirements behind it.[^c07-a130][^c07-sp80053-priv] [Book 03, Chapter 14](../b03-hr-identity/14-privacy-for-workforce-identity.md) covers the identity side.
+
+| Obligation | What the engineer does | Who signs off |
+|---|---|---|
+| Minimization (SI-12(1); AU-3(3)) | Collects person keys and hashes instead of names and payloads wherever the control can still be verified; redacts screenshots | Evidence owner; privacy office |
+| De-identification (SI-19) | Where an assessor needs samples rather than people, provides de-identified or keyed samples and keeps the key in the boundary | Privacy office |
+| Disclosure basis and contract terms (Privacy Act (b), (m); A-108 §6.j) | Lists the assessor and every other recipient of the package; confirms the contract carries privacy clauses before evidence leaves | Privacy office; contracting officer |
+| Accounting of disclosures (Privacy Act (c)) | Records what personal data went to which recipient, when and why, where the privacy office says an accounting is required | Privacy office |
+| Retention (SI-12) | Gives the evidence store a records schedule item and disposes of packages when it runs out | Records officer |
+
+: Privacy obligations for evidence stores {.striped .hover}
 
 ## Honest limits
 
@@ -183,3 +199,7 @@ Three things don't change, by design.
 [^c07-fips1865]: National Institute of Standards and Technology, FIPS 186-5, *Digital Signature Standard (DSS)*, February 3, 2023, abstract, <https://csrc.nist.gov/pubs/fips/186-5/final> (accessed Oct 21, 2026).
 [^c07-sp80053]: National Institute of Standards and Technology, SP 800-53 Rev. 5, *Security and Privacy Controls for Information Systems and Organizations*, controls AU-9, AU-9(3), AU-10, SI-7 and SR-4, <https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final>; control text checked against the release 5.2.0 OSCAL catalog, <https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json> (both accessed Oct 21, 2026).
 [^c07-m2614]: Office of Management and Budget, M-26-14, *Ensuring Effective and Efficient Agency Logging and Network Visibility to Defend Against Evolving Cyber Threats*, May 22, 2026, Appendix C (Logging Maturity Model), <https://www.whitehouse.gov/wp-content/uploads/2026/05/M-26-14-Ensuring-Effective-and-Efficient-Agency-Logging-and-Network-Visibility-to-Defend-Against-Evolving-Cyber-Threats.pdf> (accessed Oct 21, 2026).
+[^c07-pa]: Privacy Act of 1974, 5 U.S.C. §552a (2023 edition), subsections (b)(1), (b)(3), (c) and (m)(1), <https://www.govinfo.gov/content/pkg/USCODE-2023-title5/html/USCODE-2023-title5-partI-chap5-subchapII-sec552a.htm> (accessed Nov 2, 2026).
+[^c07-a108]: Office of Management and Budget, Circular A-108, *Federal Agency Responsibilities for Review, Reporting, and Publication under the Privacy Act*, December 2016 (§6.j, systems of records operated by a contractor, and SAOP review of contracts before award), <https://www.whitehouse.gov/wp-content/uploads/legacy_drupal_files/omb/circulars/A108/omb_circular_a-108.pdf> (accessed Nov 2, 2026).
+[^c07-a130]: Office of Management and Budget, Circular A-130, *Managing Information as a Strategic Resource*, July 28, 2016 (Appendix II §3, Fair Information Practice Principles, Minimization), <https://www.whitehouse.gov/wp-content/uploads/legacy_drupal_files/omb/circulars/A130/a130revised.pdf> (accessed Nov 2, 2026).
+[^c07-sp80053-priv]: National Institute of Standards and Technology, SP 800-53 Rev. 5, *Security and Privacy Controls for Information Systems and Organizations*, Release 5.2.0 (controls AU-3(3), SI-12, SI-12(1) and SI-19), <https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final>; and SP 800-53B, *Control Baselines for Information Systems and Organizations* (the privacy baseline, "applied to systems irrespective of impact level"), <https://csrc.nist.gov/pubs/sp/800/53/b/upd1/final>; control text and privacy-baseline membership read from NIST's OSCAL Release 5.2.0 catalog and privacy baseline profile, <https://github.com/usnistgov/oscal-content/tree/main/nist.gov/SP800-53/rev5> (accessed Nov 2, 2026).

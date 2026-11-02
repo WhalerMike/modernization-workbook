@@ -147,6 +147,8 @@ website:
             text: "Guide: Ticket-to-Machine on ServiceNow and SailPoint"
           - href: docs/books/guides/snow-sailpoint-integration-kit.md
             text: "Guide: ServiceNow and SailPoint Integration Kit"
+          - href: docs/books/guides/ttm-task-catalog.md
+            text: "Guide: Internal Ticket-to-Machine Task Catalog"
           - href: docs/books/explainers/index.md
             text: "Explainers"
       - text: "Projects"
@@ -375,6 +377,7 @@ website:
             - docs/books/guides/cisco-sdwan-implementation.md
             - docs/books/guides/ttm-servicenow-sailpoint.md
             - docs/books/guides/snow-sailpoint-integration-kit.md
+            - docs/books/guides/ttm-task-catalog.md
         - section: "Explainers"
           href: docs/books/explainers/index.md
           contents:

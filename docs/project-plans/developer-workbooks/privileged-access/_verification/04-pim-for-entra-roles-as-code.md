@@ -56,3 +56,16 @@ Microsoft Learn pages opened on October 30, 2026 through the Microsoft Learn MCP
 | Research gaps, row 10 (custom roles and the beta privileged label) | Research gaps, row 46 | Chapter 04 doesn't read the beta label |
 
 Chapters 03 and 06 merged to main while this chapter was written. Its text now names Chapter 03's PA-CA-04 as the evidence behind `-ActivationGateChecked`, and research gaps row 42 answers row 67's question for Microsoft Entra roles.
+
+## Federal requirements and evidence (added November 2, 2026)
+
+New section, 13 rows, one for each Lab 1 and Lab 2 scripted action and each output file the kit's code writes. No Lab 1 heading or command changed.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| F1 | AC-2, AC-3, AC-5, AC-6, AC-6(5), CM-3, CM-3(2) and CM-4(2) are in the NIST SP 800-53B Moderate baseline; AC-2(7) isn't | Federal requirements | verified November 2, 2026: each ID checked by script against the release 5.2.0 OSCAL Moderate profile, the source Book 04, Chapter 04 cites | `pa04-moderate` |
+| F2 | KSI IDs used: KSI-CMT-LMC, KSI-CMT-RMV, KSI-CMT-VTD, KSI-IAM-ELP and KSI-IAM-JIT; each row's indicator lists at least one of the row's controls among its "Related SP 800-53 Controls" | Federal requirements | verified November 2, 2026 on FedRAMP's Key Security Indicators page, checked row by row by script; every ID was already cited in Book 04, Chapter 10, Book 02, Chapter 10, Book 13, Appendix A or Book 14, Chapter 03, so none is new to the repository | `pa04-ksi` |
+| F3 | KSIs are FedRAMP 20x indicators for providers; the agency lines its evidence up with them and doesn't report them | Under the table | carried forward from Book 00, Appendix B | Book 00 |
+| F4 | MS.AAD.7.4v1, MS.AAD.7.5v1 and MS.AAD.7.6v1 are BOD 25-01 required configurations, with the policy text as the section states it | Federal requirements | verified November 2, 2026 on CISA's Required Configurations page | `pa04-bod` |
+| F5 | OMB M-22-09 claim as stated in the section | Federal requirements | carried forward from Book 04, Chapter 02 (read October 20, 2026) | `pa04-m2209` |
+| F6 | Which output supports which control, and who keeps it | Federal requirements | restated-as-design: the program's mapping, following Book 04, Chapters 02, 04, 08 and 10 | Book 04 |

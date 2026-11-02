@@ -1,7 +1,7 @@
 ---
 title: "Book 13 — Governance, Drift & Evidence"
 subtitle: "Why compliance decays the day after the audit: one authoritative record, controlled and provenanced change, deterministic rules, continuous drift detection, system-produced evidence, adapters, and a tempo where routine remediation goes to a machine"
-description: "Book 13 of the Federal Modernization Workbook: why point-in-time compliance decays, drift as the primary threat, one authoritative record and its six planes, change control and provenance, deterministic governance and the three-layer rule model, the drift engine, evidence over attestation, the adapter model, who governs, ticket to machine, reciprocity and ongoing authorization, and governance at scale."
+description: "Book 13 of the Federal Modernization Workbook: why point-in-time compliance decays, drift as the primary threat, one authoritative record and its six planes, change control and provenance, deterministic governance and the three-layer rule model, the drift engine, evidence over attestation, the adapter model, who governs, ticket to machine, reciprocity and ongoing authorization, governance at scale, and records, evidence and retention."
 doc-type: section-landing
 audience: [Executive, Technical, Customer]
 family: b13-governance
@@ -41,7 +41,7 @@ This book replaces the workbook's executive governance series, its architecture 
 **Executive briefing (about 30 minutes live, 14 narrated)**: for the CIO, CISO, authorizing officials and program office: why compliance decays, one record and one change path, no new AD dependencies from G0, evidence that re-runs, the drift engine, exceptions and ongoing authorization, with each decision's owner and timing, on the [Presentations](../../presentations/index.md#executive-b13) page.
 :::
 
-A point-in-time assessment measures a moment. The estate starts drifting the next morning: a setting changes, an exception outlives its reason, a copy of the record starts being written to, and nothing fails loudly. NIST's own guidance calls traditional reauthorization "static" and says ongoing authorization isn't practical without substantial automation. Book 13 is about the governance that makes it practical. It starts from one authoritative record, a single source of truth whose every change is controlled and provenanced. Rules evaluate deterministically against that record, and a drift engine compares the actual state of every platform to it, continuously. Evidence is produced by the systems rather than attested by people, and adapters translate each platform into the same evidence. Routine remediation becomes a ticket to a machine, with people kept on the decisions that matter and the actuation ladder setting how far automation may go. Done that way, one body of continuously produced evidence supports each agency's ongoing authorization, and reuse of authorizations across agencies becomes a matter of evidence rather than paperwork.
+A point-in-time assessment measures a moment. The estate starts drifting the next morning: a setting changes, an exception outlives its reason, a copy of the record starts being written to, and nothing fails loudly. NIST's own guidance calls traditional reauthorization "static" and says ongoing authorization isn't practical without substantial automation. Book 13 is about the governance that makes it practical. It starts from one authoritative record, a single source of truth whose every change is controlled and provenanced. Rules evaluate deterministically against that record, and a drift engine compares the actual state of every platform to it, continuously. Evidence is produced by the systems rather than attested by people, and adapters translate each platform into the same evidence. Routine remediation becomes a ticket to a machine, with people kept on the decisions that matter and the actuation ladder setting how far automation may go. Done that way, one body of continuously produced evidence supports each agency's ongoing authorization, and reuse of authorizations across agencies becomes a matter of evidence rather than paperwork. That evidence, and the authoritative record itself, are also federal records: [Chapter 13](13-records-evidence-and-retention.md) separates the program's meanings of "record" from the legal one and sets out the retention, hold and transfer rules that apply.
 
 ## Why, what, who, how
 
@@ -50,7 +50,7 @@ A point-in-time assessment measures a moment. The estate starts drifting the nex
 | **Why** | Why does compliance decay the day after the audit, and why is drift the primary threat? | [01](01-why-governance-decays.md), [02](02-drift-is-the-primary-threat.md) |
 | **What** | One authoritative record, controlled change, deterministic rules, the drift engine, evidence over attestation, and the adapters that make it platform-neutral | [03](03-one-authoritative-record.md), [04](04-change-control-and-provenance.md), [05](05-deterministic-governance.md), [06](06-the-drift-engine.md), [07](07-evidence-over-attestation.md), [08](08-the-adapter-model.md) |
 | **Who** | Who keeps the record, approves rule changes, reviews drift and accepts exceptions | [09](09-who-governs.md) |
-| **How** | Run at machine tempo, support reciprocity and ongoing authorization, and govern at scale | [10](10-ticket-to-machine.md), [11](11-reciprocity-and-one-authorization.md), [12](12-governance-at-scale.md) |
+| **How** | Run at machine tempo, support reciprocity and ongoing authorization, govern at scale, and keep the evidence as federal records | [10](10-ticket-to-machine.md), [11](11-reciprocity-and-one-authorization.md), [12](12-governance-at-scale.md), [13](13-records-evidence-and-retention.md) |
 
 Appendices: [A — Requirements mapping](appendix-a-requirements-mapping.md) · [B — Ticket-to-machine reference](appendix-b-ticket-to-machine-reference.md)
 
@@ -60,6 +60,7 @@ Appendices: [A — Requirements mapping](appendix-a-requirements-mapping.md) · 
 - **Governance leads and stewards:** Chapters 03, 04, 06 and 09, then 12.
 - **Engineers building the platform:** Chapters 05, 06, 07 and 08, with Appendix B.
 - **ISSOs and authorizing officials:** Chapters 01, 07, 09 and 11, with Appendix A.
+- **Records officers:** Chapter 13, which separates the authoritative record and audit evidence from a federal record and says which records rules apply to the evidence the kits produce, then Chapter 09.
 
 ## Where this book sits in the workbook
 

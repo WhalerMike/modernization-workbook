@@ -49,3 +49,16 @@ Microsoft Learn pages opened on October 30, 2026 through the Microsoft Learn MCP
 | Book 04, Chapter 05 (app registrations inventory, plan task A0.3) | Not carried | Service principals' Graph app permissions are covered by the validation kit's VK-NPI-05; directory role assignments to service principals are in this inventory |
 | The first workbook's Chapter 02 (cloud table, declared calls, no default, host check) | The reader | Python client there; the same rules in PowerShell here |
 | The validation kit's VK-ARC-06 (role assignments on Arc scopes) | Not carried | The kit's check stays the Arc gate; this inventory reads every scope listed, not only Arc ones |
+
+## Federal requirements and evidence (added November 2, 2026)
+
+New section, 12 rows, one for each Lab 1 and Lab 2 scripted action and each output file the kit's code writes. No Lab 1 heading or command changed.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| F1 | AC-2, AC-6, AC-6(5), AU-9, CM-3(2) and IA-5(2) are in the NIST SP 800-53B Moderate baseline; AC-2(7) isn't | Federal requirements | verified November 2, 2026: each ID checked by script against the release 5.2.0 OSCAL Moderate profile, the source Book 04, Chapter 04 cites | `pa01-moderate` |
+| F2 | KSI IDs used: KSI-CMT-VTD, KSI-IAM-ELP, KSI-IAM-JIT, KSI-IAM-SNU and KSI-MLA-OSM; each row's indicator lists at least one of the row's controls among its "Related SP 800-53 Controls" | Federal requirements | verified November 2, 2026 on FedRAMP's Key Security Indicators page, checked row by row by script; every ID was already cited in Book 04, Chapter 10, Book 02, Chapter 10, Book 13, Appendix A or Book 14, Chapter 03, so none is new to the repository | `pa01-ksi` |
+| F3 | KSIs are FedRAMP 20x indicators for providers; the agency lines its evidence up with them and doesn't report them | Under the table | carried forward from Book 00, Appendix B | Book 00 |
+| F4 | MS.AAD.7.1v1 and MS.AAD.7.4v1 are BOD 25-01 required configurations, with the policy text as the section states it | Federal requirements | verified November 2, 2026 on CISA's Required Configurations page | `pa01-bod` |
+| F5 | MS.AAD.7.4v1 lists emergency access accounts that need perpetual access as an exception; highly privileged roles include Global Administrator | Federal requirements | verified November 2, 2026 in ScubaGear's `aad.md` | `pa01-scuba` |
+| F6 | Which output supports which control, and who keeps it | Federal requirements | restated-as-design: the program's mapping, following Book 04, Chapters 02, 04, 08 and 10 | Book 04 |

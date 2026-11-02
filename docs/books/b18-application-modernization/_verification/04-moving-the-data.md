@@ -49,3 +49,14 @@ All opened October 28, 2026: PostgreSQL versioning policy page and postgresql.or
 | 39 | One writer per table; no app dual writes; reverse replication fallback; continuous validation | Coexistence | restated-as-design | — |
 | 40 | SQL Server identity work is in Book 06 Ch12 and Ch19 | SQL Server target | verified against Book 06 chapter titles and descriptions | Workbook |
 | 41 | SSMA supports Microsoft Entra authentication to the target | SQL Server target | verified (SSMA for Db2 v8.5) | SSMA Db2 What's new |
+
+## Privacy section, November 2, 2026
+
+A short "Privacy in the move" section was added (additive; no existing text changed). Every source was opened on November 2, 2026. SP 800-53 control titles and privacy-baseline membership were read from NIST's OSCAL Release 5.2.0 catalog and privacy baseline profile; the SP 800-53B abstract states the privacy baseline applies irrespective of impact level. The "Who signs off" column and every "program's design" sentence are design guidance, not external fact. The fuller treatment is Book 03, Chapter 14, whose verification file logs the same sources in more detail.
+
+| # | Claim (short) | Verdict | Source |
+|---|---|---|---|
+| 1 | A-108 significant changes: location or operation affecting rights; access-control changes that substantially increase access | verified | A-108 §6.b(6), (7) |
+| 2 | M-03-22 PIA update triggers: significant merging; significant system management changes | verified | M-03-22 §II.B.2 |
+| 3 | PM-5(1), PM-25, SI-12(2), SI-12(3) titles; privacy baseline | verified | OSCAL catalog and privacy profile 5.2.0 |
+| 4 | Validation reports and CDC copies as exposures; obligations table | restated-as-design | - |
