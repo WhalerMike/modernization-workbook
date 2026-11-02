@@ -1,0 +1,84 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.787
+The guide's evidence table maps
+by requirement, not by gate.
+
+2
+00:00:03.787 --> 00:00:06.451
+So which rows this gate
+feeds is our reading.
+
+3
+00:00:06.451 --> 00:00:10.698
+The decisions set the order that
+authenticator management asks for:
+
+4
+00:00:10.698 --> 00:00:14.425
+managed identities and federation
+first, and no new secrets.
+
+5
+00:00:14.425 --> 00:00:19.275
+Retire decisions lead to disabled accounts,
+which account management asks for.
+
+6
+00:00:19.275 --> 00:00:23.512
+And Book 02's fourth phase is the
+books' gate for service accounts.
+
+7
+00:00:23.512 --> 00:00:28.062
+To validate, every row in the record
+has a target and a decide-by date.
+
+8
+00:00:28.062 --> 00:00:31.180
+The kit check for Active
+Directory accounts shows
+
+9
+00:00:31.180 --> 00:00:34.075
+every high-risk one in the
+first wave, or retired.
+
+10
+00:00:34.075 --> 00:00:37.187
+The check for secrets lists
+each app that holds one.
+
+11
+00:00:37.187 --> 00:00:41.350
+Each has a credential target, or an
+exception that says why it can't move.
+
+12
+00:00:41.350 --> 00:00:44.629
+Workload ID Premium is
+available in Azure Government
+
+13
+00:00:44.629 --> 00:00:47.762
+through the account manager,
+but its free trial isn't.
+
+14
+00:00:47.762 --> 00:00:51.454
+The interim path is an account
+kept on Kerberos, islanded,
+
+15
+00:00:51.454 --> 00:00:55.538
+with an owner and an end date
+the authorizing official accepts.
+
+16
+00:00:55.538 --> 00:00:57.413
+To roll back, re-decide.
+
+17
+00:00:57.413 --> 00:00:59.260
+The record keeps the history.

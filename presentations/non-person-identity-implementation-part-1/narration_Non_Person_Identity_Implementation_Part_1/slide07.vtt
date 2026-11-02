@@ -1,0 +1,77 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.262
+The second chapter checks
+ownership against that register.
+
+2
+00:00:03.262 --> 00:00:05.076
+It reads each owner once,
+
+3
+00:00:05.076 --> 00:00:09.338
+and counts an owner only if it's
+a user, a member, and enabled.
+
+4
+00:00:09.338 --> 00:00:12.363
+A guest or another service
+principal doesn't count.
+
+5
+00:00:12.363 --> 00:00:14.176
+Against the fictional estate,
+
+6
+00:00:14.176 --> 00:00:18.238
+it checks twenty-two identities
+and finds seven orphan candidates.
+
+7
+00:00:18.238 --> 00:00:21.763
+Two apps have no valid owner,
+and four have only one.
+
+8
+00:00:21.763 --> 00:00:24.351
+Six have no service management reference,
+
+9
+00:00:24.351 --> 00:00:28.124
+and three point at a record that's
+free text, retired or unknown.
+
+10
+00:00:28.124 --> 00:00:31.862
+Five Active Directory accounts
+have no valid application owner.
+
+11
+00:00:31.862 --> 00:00:35.438
+Then it writes the orphan rule
+as a plan, and sends nothing.
+
+12
+00:00:35.438 --> 00:00:38.397
+There are ten actions,
+and three are writes:
+
+13
+00:00:38.397 --> 00:00:41.526
+two disables, and one
+owner added from a claim.
+
+14
+00:00:41.526 --> 00:00:44.800
+Another claim is refused,
+because it named a guest.
+
+15
+00:00:44.800 --> 00:00:47.425
+A reviewer approves the plan by its hash.
+
+16
+00:00:47.425 --> 00:00:52.680
+The writes themselves belong to the orphan
+rule in gate six, which Part 2 covers.

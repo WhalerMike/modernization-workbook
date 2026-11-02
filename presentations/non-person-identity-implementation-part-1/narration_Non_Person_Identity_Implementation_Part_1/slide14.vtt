@@ -1,0 +1,74 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.804
+The workbook's fourth chapter holds
+the policy as a reviewed file,
+
+2
+00:00:03.804 --> 00:00:06.862
+compares it with the tenant,
+and plans the difference.
+
+3
+00:00:06.862 --> 00:00:11.412
+Against the fictional tenant, the
+diff has six adds and one change.
+
+4
+00:00:11.412 --> 00:00:14.334
+The plan has eight writes:
+the default policy,
+
+5
+00:00:14.334 --> 00:00:19.625
+one dated exception policy and its assignment,
+and the property lock on five apps.
+
+6
+00:00:19.625 --> 00:00:23.800
+Nothing is sent, and the write path
+can't loosen or drop a restriction.
+
+7
+00:00:23.800 --> 00:00:27.787
+Then the rotation plan joins Key
+Vault to the app registrations.
+
+8
+00:00:27.787 --> 00:00:32.575
+A rotation is raised sixty days before
+expiry, and an owner approves it.
+
+9
+00:00:32.575 --> 00:00:34.375
+The vault makes the next version.
+
+10
+00:00:34.375 --> 00:00:37.125
+The new certificate goes
+on beside the old one.
+
+11
+00:00:37.125 --> 00:00:40.139
+The owner confirms the
+workload signs in with it,
+
+12
+00:00:40.139 --> 00:00:42.700
+and seven days later
+the old one comes off.
+
+13
+00:00:42.700 --> 00:00:48.150
+Here, one certificate renews in the vault,
+one is attached, and one is removed.
+
+14
+00:00:48.150 --> 00:00:52.900
+One app's certificate isn't in the vault
+at all, and three apps still hold secrets.
+
+15
+00:00:52.900 --> 00:00:55.420
+Secrets are replaced, not rotated.

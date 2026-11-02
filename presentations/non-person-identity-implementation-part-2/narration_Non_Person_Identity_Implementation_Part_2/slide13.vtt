@@ -1,0 +1,73 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.175
+SQL Server follows the same logic,
+with three kinds of principal.
+
+2
+00:00:04.175 --> 00:00:08.650
+The engine's service account works only
+while Active Directory is in charge.
+
+3
+00:00:08.650 --> 00:00:10.450
+Azure Arc doesn't replace it.
+
+4
+00:00:10.450 --> 00:00:13.613
+It only changes what
+Entra ID and Azure see.
+
+5
+00:00:13.613 --> 00:00:16.938
+The instance's own Entra
+identity is a managed
+
+6
+00:00:16.938 --> 00:00:21.051
+identity on SQL Server 2025,
+with no credential at all.
+
+7
+00:00:21.051 --> 00:00:26.053
+On SQL Server 2022 it's an app
+registration with a Key Vault certificate,
+
+8
+00:00:26.053 --> 00:00:28.313
+which needs a named renewal owner.
+
+9
+00:00:28.313 --> 00:00:33.966
+Application logins move from SQL passwords
+to Entra logins: a managed identity
+
+10
+00:00:33.966 --> 00:00:38.637
+first, then a certificate, and a
+secret only as a documented exception.
+
+11
+00:00:38.637 --> 00:00:41.475
+And the same thirty-day
+parallel run applies.
+
+12
+00:00:41.475 --> 00:00:42.987
+Two dangers stand out.
+
+13
+00:00:42.987 --> 00:00:48.325
+A renewed certificate that nobody uploaded
+fails at expiry, so automate the upload.
+
+14
+00:00:48.325 --> 00:00:53.031
+And on an Arc server, every allowed
+process presents the same identity,
+
+15
+00:00:53.031 --> 00:00:56.830
+so treat one login per server
+as the unit of attribution.

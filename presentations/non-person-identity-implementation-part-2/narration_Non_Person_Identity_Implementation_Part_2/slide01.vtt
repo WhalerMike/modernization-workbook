@@ -1,0 +1,76 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.537
+Welcome to Part 2 of the implementation
+series for non-person identity.
+
+2
+00:00:04.537 --> 00:00:07.605
+That means every identity
+that isn't a person,
+
+3
+00:00:07.605 --> 00:00:10.425
+from an old service
+account to an AI agent.
+
+4
+00:00:10.425 --> 00:00:14.627
+Part 1 listed every one of them,
+gave each an owner and a sponsor,
+
+5
+00:00:14.627 --> 00:00:18.500
+decided where each one goes,
+and set the credential rules.
+
+6
+00:00:18.500 --> 00:00:21.050
+Part 2 covers the last three gates.
+
+7
+00:00:21.050 --> 00:00:22.913
+First, cutting privilege.
+
+8
+00:00:22.913 --> 00:00:27.025
+Then converting each identity to
+its target, with a parallel run.
+
+9
+00:00:27.025 --> 00:00:31.275
+Then running the lifecycle, from an
+owner change to a clean decommission.
+
+10
+00:00:31.275 --> 00:00:37.113
+After that come SQL Server and AI agents,
+and finally the evidence and the rollback.
+
+11
+00:00:37.113 --> 00:00:39.237
+The format is the same as Part 1.
+
+12
+00:00:39.237 --> 00:00:43.980
+Each gate gets its steps, the workbook's
+lab commands with the kit's real output,
+
+13
+00:00:43.980 --> 00:00:46.351
+the federal requirement and evidence,
+
+14
+00:00:46.351 --> 00:00:50.649
+availability in the government clouds,
+an interim path, and a rollback.
+
+15
+00:00:50.649 --> 00:00:52.474
+Design guidance is labeled,
+
+16
+00:00:52.474 --> 00:00:56.260
+and the code is tested against
+fixtures, not a live tenant.

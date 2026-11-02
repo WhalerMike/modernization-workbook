@@ -1,0 +1,78 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.012
+The first gate starts with a warning.
+
+2
+00:00:02.012 --> 00:00:07.013
+Consent creates service principals, and
+Microsoft's own services provision more.
+
+3
+00:00:07.013 --> 00:00:11.750
+So the inventory is always larger than
+the list of apps anyone asked for.
+
+4
+00:00:11.750 --> 00:00:15.640
+In Active Directory, the read finds
+user accounts used as services,
+
+5
+00:00:15.640 --> 00:00:19.812
+and the managed, group managed and
+delegated managed service accounts.
+
+6
+00:00:19.812 --> 00:00:25.212
+It records passwords that never expire,
+password age and service principal names.
+
+7
+00:00:25.212 --> 00:00:29.949
+Treat stale as a lead, not a verdict,
+until sign-in logs confirm it.
+
+8
+00:00:29.949 --> 00:00:34.050
+Record which hosts can retrieve each
+group managed account's password.
+
+9
+00:00:34.050 --> 00:00:36.612
+That list is its real blast radius.
+
+10
+00:00:36.612 --> 00:00:39.837
+In Entra, record each
+service principal's type.
+
+11
+00:00:39.837 --> 00:00:43.639
+A legacy one can hold credentials
+with no app registration,
+
+12
+00:00:43.639 --> 00:00:45.812
+so an app-only review never sees it.
+
+13
+00:00:45.812 --> 00:00:48.799
+List managed identities with
+their role assignments.
+
+14
+00:00:48.799 --> 00:00:53.150
+User-assigned ones outlive their resources,
+so they're the type that orphans.
+
+15
+00:00:53.150 --> 00:00:57.038
+Export every federated
+credential's issuer and subject.
+
+16
+00:00:57.038 --> 00:01:02.230
+And list AI agents, including the ones
+that run as ordinary service principals.
