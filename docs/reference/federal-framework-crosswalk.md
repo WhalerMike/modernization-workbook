@@ -80,7 +80,7 @@ The frameworks the workbook relies on most are not on the usual modernization li
 | NIST SP 800-53 Rev. 5 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 |
 | FedRAMP | 2 | 3 | 2 | 1 | 3 | 3 | 3 | 1 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 2 | 3 | 1 |
 | NIST RMF (SP 800-37 Rev. 2) | 2 | 2 | 2 | 2 | 0 | 1 | 3 | 2 | 2 | 2 | 3 | 2 | 3 | 3 | 3 | 2 | 2 | 3 | 1 |
-| EO 14028 and M-22-09 | 2 | 3 | 3 | 2 | 2 | 0 | 3 | 1 | 3 | 3 | 0 | 3 | 0 | 0 | 2 | 1 | 1 | 0 | 0 |
+| EO 14028 and M-22-09 | 2 | 3 | 3 | 2 | 2 | 0 | 3 | 3 | 3 | 3 | 0 | 3 | 0 | 0 | 2 | 1 | 1 | 0 | 0 |
 | CISA ZTMM 2.0 | 1 | 3 | 1 | 1 | 1 | 0 | 3 | 0 | 3 | 3 | 0 | 3 | 0 | 1 | 0 | 0 | 0 | 0 | 0 |
 | HSPD-12 and FIPS 201 | 0 | 3 | 3 | 3 | 1 | 1 | 2 | 3 | 0 | 0 | 0 | 3 | 0 | 0 | 0 | 1 | 2 | 0 | 0 |
 | OMB M-26-14 (logging) | 2 | 3 | 1 | 0 | 0 | 0 | 0 | 0 | 3 | 3 | 0 | 3 | 3 | 1 | 2 | 0 | 0 | 0 | 0 |
@@ -138,6 +138,10 @@ Each gap was closed in the books with endnoted text, checked against the primary
 ## Additions made, October 30, 2026
 
 - **OMB's AI memoranda.** M-25-21 and M-25-22 were rechecked against OMB's memoranda list: neither has been amended or rescinded, and the only later AI memorandum is M-26-04. Book 15, Chapter 13 cites all three of M-24-10, M-25-21 and M-25-22, and Book 18, Chapter 05 cites M-25-21 and M-25-22; the citing-book lists below now include them. No page in the workbook cites M-24-10 or M-24-18 as current. The explainer [Governing and Buying AI Under M-25-21 and M-25-22](../books/explainers/omb-ai-memos-m-25-21-m-25-22.md) covers the parts of both memos that Book 17 doesn't: the governance structure, the AI strategy and compliance plan, and M-25-22's acquisition lifecycle and contract terms.
+
+## Additions made, November 2, 2026
+
+- **HSPD-12, FIPS 201 and M-19-17 in Book 07.** A new chapter, [Book 07, Chapter 09 — Federal Workforce Credentials: PIV, Derived PIV and Cloud Authentication](../books/b07-pki/09-federal-workforce-credentials.md), treats the PIV credential as the federal workforce credential that cloud authentication sits under. It covers HSPD-12 and FIPS 201-3 (the PIV authentication certificate, the background investigation link, reissuance, and termination tied to the HR leaver gate), derived PIV under SP 800-157 (Rev. 1 still a final public draft), Entra certificate-based authentication as acceptance of the credential, Federal PKI trust and PIV-I, M-19-17's call to accept other agencies' PIV through federation, SP 800-63-4 assurance levels, and an evidence table mapping IA-2(12), IA-5(2), IA-8(1), IA-12, PS-4 and SC-17 to the records the ISSO keeps. Book 07 is added to the citing books for HSPD-12, M-19-17, SP 800-157, SP 800-157 Rev. 1 and SP 800-63-4, and SP 800-217 (PIV federation, a final public draft) is added to the NIST list. Book 07's HSPD-12 and FIPS 201 score stays 3; its EO 14028 and M-22-09 score rises from 1 to 3, because the chapter maps M-22-09's phishing-resistant requirement to the authentication strength and its evidence. Every source was read on November 2, 2026 and is logged in the chapter's verification file.
 
 ## Every federal source the books cite
 
@@ -217,7 +221,7 @@ The sweep also found and corrected five inconsistencies on October 23, 2026: Boo
 | EO 14412 | Securing the Nation against advanced cryptographic attacks (June 22, 2026) | Book 09 (Network & Transport) | Cited as current |
 | EO 14434 | AI terminology order (Sept 29, 2026) | Book 17 (AI Identity Governance) | Cited as current |
 | Federal Continuity Directive 1 | Continuity of mission essential functions | Book 14 (Federal Compliance & Authorization) | Cited as current |
-| HSPD-12 | Common identification standard for federal employees and contractors | Book 03 (HR-Driven Identity) | Cited as current |
+| HSPD-12 | Common identification standard for federal employees and contractors | Book 03 (HR-Driven Identity); Book 07 (PKI & Certificates) | Cited as current |
 | NITTF Insider Threat Minimum Standards | National insider threat policy minimum standards | Book 14 (Federal Compliance & Authorization) | Cited as current |
 | White House AI Action Plan (July 2025) | America's AI Action Plan; NIST AI RMF revision is tied to it | Book 17 (AI Identity Governance) | Cited as current |
 
@@ -238,7 +242,7 @@ The sweep also found and corrected five inconsistencies on October 23, 2026: Boo
 | M-10-22 | Online use of web measurement and customization technologies | Book 14 (Federal Compliance & Authorization) | Cited as current |
 | M-17-12 | Preparing for and responding to a breach of PII | Book 14 (Federal Compliance & Authorization) | Cited as current |
 | M-19-16 | Centralized mission support capabilities (QSMOs) | Book 03 (HR-Driven Identity) | Cited as current |
-| M-19-17 | Improved identity, credential and access management | Book 00 (Orientation & Program); Book 01 (The Transformation Arc); Book 02 (Identity & Directory); Book 03 (HR-Driven Identity); Book 13 (Governance, Drift & Evidence); Book 15 (Compliance Automation & Day-2 Operations) | Cited as current |
+| M-19-17 | Improved identity, credential and access management | Book 00 (Orientation & Program); Book 01 (The Transformation Arc); Book 02 (Identity & Directory); Book 03 (HR-Driven Identity); Book 07 (PKI & Certificates); Book 13 (Governance, Drift & Evidence); Book 15 (Compliance Automation & Day-2 Operations) | Cited as current |
 | M-19-18 (Federal Data Strategy) | Federal Data Strategy: a framework for consistency | Book 01 (The Transformation Arc); Book 03 (HR-Driven Identity) | Memo not rescinded; the strategy's website is being retired |
 | M-19-23 | Phase 1 implementation of the Evidence Act | Book 03 (HR-Driven Identity) | Cited as current |
 | M-19-26 | Update to the TIC initiative (TIC 3.0) | Book 03 (HR-Driven Identity); Book 09 (Network & Transport); Book 12 (Security Operations & Telemetry) | Operative; no rescinding instrument found |
@@ -320,7 +324,7 @@ The sweep also found and corrected five inconsistencies on October 23, 2026: Boo
 :::
 
 ::: {.callout-note collapse="true"}
-## NIST (52)
+## NIST (53)
 
 | Instrument | What it is | Books citing it | Status, as the books state it |
 |---|---|---|---|
@@ -344,14 +348,15 @@ The sweep also found and corrected five inconsistencies on October 23, 2026: Boo
 | SP 800-128 | Security-focused configuration management | Book 13 (Governance, Drift & Evidence); Book 15 (Compliance Automation & Day-2 Operations); Book 16 (People: Training & Education) | Cited as current |
 | SP 800-137 | Information security continuous monitoring | Book 00 (Orientation & Program); Book 12 (Security Operations & Telemetry); Book 13 (Governance, Drift & Evidence); Book 14 (Federal Compliance & Authorization); Book 15 (Compliance Automation & Day-2 Operations); Book 16 (People: Training & Education) | Cited as current |
 | SP 800-153 | Securing WLANs | Book 09 (Network & Transport) | Cited as current |
-| SP 800-157 | Derived PIV credentials (2014, current final) | Book 03 (HR-Driven Identity) | Cited as current |
-| SP 800-157 Rev. 1 (final public draft) | Derived PIV credentials (draft) | Book 03 (HR-Driven Identity) | Draft only (Nov 2024) |
+| SP 800-157 | Derived PIV credentials (2014, current final) | Book 03 (HR-Driven Identity); Book 07 (PKI & Certificates) | Cited as current |
+| SP 800-157 Rev. 1 (final public draft) | Derived PIV credentials (draft) | Book 03 (HR-Driven Identity); Book 07 (PKI & Certificates) | Draft only (Nov 2024) |
 | SP 800-16 | IT security training requirements (1998) | Book 14 (Federal Compliance & Authorization); Book 16 (People: Training & Education) | Withdrawn; superseded by SP 800-50 Rev. 1 (Sept 2024) |
 | SP 800-161 Rev. 1 | Cybersecurity supply chain risk management | Book 14 (Federal Compliance & Authorization) | Cited as current |
 | SP 800-171 | CUI in nonfederal systems | Book 12 (Security Operations & Telemetry); Book 15 (Compliance Automation & Day-2 Operations) | Cited as current |
 | SP 800-181 Rev. 1 (NICE Framework) | Workforce Framework for Cybersecurity | Book 14 (Federal Compliance & Authorization); Book 16 (People: Training & Education) | Supersedes SP 800-181 (2017) |
 | SP 800-190 | Application container security | Book 12 (Security Operations & Telemetry) | Cited as current |
 | SP 800-207 | Zero Trust Architecture | Book 00 (Orientation & Program); Book 01 (The Transformation Arc); Book 02 (Identity & Directory); Book 03 (HR-Driven Identity); Book 04 (Access & Privilege); Book 06 (Data Platform: SQL Server Identity); Book 08 (DNS, DHCP & IPAM); Book 09 (Network & Transport); Book 11 (Zero Trust & Assessment); Book 13 (Governance, Drift & Evidence) | Cited as current |
+| SP 800-217 (final public draft) | Guidelines for PIV federation (draft) | Book 07 (PKI & Certificates) | Draft only (Nov 2024) |
 | SP 800-218 (SSDF v1.1) | Secure Software Development Framework | Book 12 (Security Operations & Telemetry); Book 14 (Federal Compliance & Authorization) | Cited as current |
 | SP 800-218 Rev. 1 (SSDF v1.2 draft) | SSDF v1.2 initial public draft | Book 12 (Security Operations & Telemetry); Book 14 (Federal Compliance & Authorization) | Draft only (Dec 2025) |
 | SP 800-30 Rev. 1 | Risk assessments | Book 00 (Orientation & Program) | Cited as current |
@@ -370,7 +375,7 @@ The sweep also found and corrected five inconsistencies on October 23, 2026: Boo
 | SP 800-61 Rev. 2 | Incident handling guide (prior) | Book 12 (Security Operations & Telemetry) | Superseded by Rev. 3 (Apr 2025) |
 | SP 800-61 Rev. 3 | Incident response (CSF 2.0 community profile) | Book 12 (Security Operations & Telemetry); Book 14 (Federal Compliance & Authorization) | Supersedes Rev. 2 |
 | SP 800-63-3 | Digital Identity Guidelines (prior) | Book 01 (The Transformation Arc); Book 02 (Identity & Directory); Book 03 (HR-Driven Identity) | Superseded by SP 800-63-4 (July 2025) |
-| SP 800-63-4 (incl. 63A-4, 63B-4) | Digital Identity Guidelines | Book 01 (The Transformation Arc); Book 02 (Identity & Directory); Book 03 (HR-Driven Identity); Book 09 (Network & Transport); Book 15 (Compliance Automation & Day-2 Operations); Book 16 (People: Training & Education) | Cited as current |
+| SP 800-63-4 (incl. 63A-4, 63B-4) | Digital Identity Guidelines | Book 01 (The Transformation Arc); Book 02 (Identity & Directory); Book 03 (HR-Driven Identity); Book 07 (PKI & Certificates); Book 09 (Network & Transport); Book 15 (Compliance Automation & Day-2 Operations); Book 16 (People: Training & Education) | Cited as current |
 | SP 800-79 | PIV card and derived credential issuer authorization | Book 03 (HR-Driven Identity) | Cited as current |
 | SP 800-81 Rev. 3 | Secure DNS deployment guide (Mar 2026) | Book 08 (DNS, DHCP & IPAM) | Supersedes SP 800-81-2 |
 | SP 800-81-2 | Secure DNS deployment guide (2013) | Book 08 (DNS, DHCP & IPAM) | Superseded by SP 800-81r3 |
