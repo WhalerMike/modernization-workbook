@@ -253,19 +253,7 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: replay the examples and plan a dry run",
       body: [
-        { code: [
-          "# 1  Microsoft's examples: PassedCount 6, FailedCount 0, NotRunCount 32",
-          "Invoke-Pester -Path tests/AzurePim.Tests.ps1 -FullNameFilter \"*Microsoft's examples*\" -Output None -PassThru",
-          "# 2  Roles per task: Reader; then Reader, User Access Administrator",
-          "(Get-PaAzRequiredRole -Task azure-pim-apply).AzureRoles -join ', '",
-          "# 3  Plan, as a dry run",
-          "./Invoke-PaAzurePim.ps1 -Cloud gcc -FixturePath …/ch06/estate.json -DesiredPath …/ch06/desired.json `",
-          "    -CallerPrincipalId c3000000-0000-4000-8000-000000000003 -OutputPath out/ch06 -RunId lab",
-          "Read: 9 assignment and 2 eligibility schedules, 12 policies at 4 scopes",
-          "Plan: 11 policy updates, 5 eligible assignments to add, 3 standing assignments to remove",
-          "Findings: 7 Finding, 2 Warn, 1 Info",
-          "Dry run: 19 requests written to plan.json, none sent. Review diff.txt, then rerun with -Apply.",
-        ], label: "POWERSHELL 7.1+ WITH PESTER 5, IN examples/privileged-access", pt: 11 },
+        { cols: [[{ terminal: "06-1" }], [{ terminal: "06-2", lines: "2-5" }]] }, { terminal: "06-3", lines: "1-6" },
         { callout: "a management group, a workload and a control-plane subscription, rg-payroll; the apply would run as sp-pim-automation. The manifest lists 23 requests, every one a GET.", label: "The fixture estate: ", icon: "FaLaptop", color: "teal" },
       ],
       sources: "Sources: examples/privileged-access (tests and fixtures, fictional). Chapter 06, “Lab 1: fixtures, no tenant,” steps 1–3.",

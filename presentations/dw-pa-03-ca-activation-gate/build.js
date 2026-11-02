@@ -254,17 +254,7 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: check the template and the files offline",
       body: [
-        { code: [
-          "# 1  Microsoft's template as published: PassedCount 7, FailedCount 0",
-          "Invoke-Pester -Path tests/ConditionalAccess.Tests.ps1 -FullNameFilter '*Get conditionalAccessTemplate*' …",
-          "# 2  Permissions: ca-read three; ca-apply adds AuthenticationContext.ReadWrite.All, Policy.ReadWrite.CA…",
-          "(Get-PaCaRequiredPermission -Task ca-read).GraphPermissions -join ', '",
-          "# 3  The pre-merge check on the repository's files",
-          "./Invoke-PaCaAdmin.ps1 -CheckOnly -MapPath tests/fixtures/ch03/tenant-map.json",
-          "Pre-merge check: 0 Finding, 5 Warn, 0 Info",
-          "# 4  The same check on Microsoft's template",
-          "Test-PaCaPolicyBody -Body (ConvertFrom-PaCaTemplate -Template $t) -Repository $repo",
-        ], label: "POWERSHELL 7.1+ WITH PESTER 5, IN examples/privileged-access", pt: 11.5 },
+        { cols: [[{ terminal: "03-1" }, { terminal: "03-3" }], [{ terminal: "03-4", lines: "3-9" }]] }, { terminal: "03-2", lines: "2-5" },
         { callout: "PA-CA-01 Finding (no emergency exclusion), PA-CA-03 Finding (display text in excludeUsers), PA-CA-06 Warn (plain MFA), PA-CA-07 Warn (12 of 14 roles missing).", label: "Step 4, four rows: ", icon: "FaListCheck", color: "teal" },
       ],
       sources: "Sources: examples/privileged-access (tests and fixtures, fictional). Chapter 03, “Lab 1: fixtures, no tenant,” steps 1–4.",
@@ -276,14 +266,7 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: plan, dry run, and three applies to the fake",
       body: [
-        { code: [
-          "# 5  Plan against the fictional tenant, sending nothing",
-          "./Invoke-PaCaAdmin.ps1 -Cloud gcc -MapPath …/tenant-map.json -FixturePath …/tenant.json -OutputPath out/ca",
-          "Plan: 3 Blocked, 4 Create, 1 NoChange, 1 NotInRepository, 2 Update",
-          "Dry run: 6 request(s) written to requests.json, none sent; rerun with -Apply to send them",
-          "# 6  Apply against the fake, three times",
-          "Run 1: 6 sent   Run 2: 3 sent   Run 3: 0 sent   -> enabledForReportingButNotEnforced",
-        ], label: "LAB 1, STEPS 5 AND 6", pt: 11.5 },
+        { cols: [[{ terminal: "03-5", lines: "1,3-4" }], [{ terminal: "03-6", lines: "3,9-13" }]] },
         { table: { head: ["Plan line", "Why"], w: [3.6, 8.55], rows: [
           ["c1 and the strength: Create; c2: Update", "c2's description differs"],
           ["CA004 Update; CA005 NoChange; CA025, CA027 Create", "CA004's persistent browser control differs"],

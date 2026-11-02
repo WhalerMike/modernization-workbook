@@ -277,22 +277,7 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: Microsoft's samples, then a dry run",
       body: [
-        { code: [
-          "# 1  Microsoft's samples against the fake: PassedCount 10, FailedCount 0",
-          "Invoke-Pester -Path tests/PimForGroups.Tests.ps1 -FullNameFilter '*as published*' -Output None -PassThru",
-          "# 2  Learn's Example 1: titled ownership, sends member; the fake refuses the 2023 end",
-          "$learn = Get-PgLearnRequest -Page eligibility",
-          "(Invoke-PgLearnRequest -Request $learn[0] -Fixture tests/fixtures/ch05/tenant.json -Policy).Status",
-          "# 3  Read permissions: four, none ending in ReadWrite",
-          "(Get-PaPgRequiredPermission -Task pim-groups-read).GraphPermissions -join ', '",
-          "# 4  Plan against the fictional tenant, as a dry run",
-          "./Invoke-PaPimGroups.ps1 -Cloud gcc -FixturePath tests/fixtures/ch05/tenant.json `",
-          "    -DesiredPath tests/fixtures/ch05/inputs/prv-groups.json -AsOf 2026-10-30 -OutputPath out/pim-groups",
-          "PIM for Groups: 9 Finding, 3 Warn, 0 Info",
-          "Plan: 8 change(s) (3 assignment, 2 eligibility, 3 policy rule)",
-          "Guards: all passed",
-          "Dry run: nothing sent. Review diff.txt and plan.json, then rerun with -Apply",
-        ], label: "POWERSHELL 7.1+ WITH PESTER 5, IN examples/privileged-access", pt: 11 },
+        { cols: [[{ terminal: "05-1" }], [{ terminal: "05-2", lines: "3-9" }]] }, { terminal: "05-3" }, { terminal: "05-4", lines: "1-6" },
       ],
       sources: "Sources: examples/privileged-access (tests and fixtures, fictional); pinned Learn pages at a693031. Chapter 05, “Lab 1: fixtures, no tenant,” steps 1–4.",
       say: `Lab 1 runs on a laptop: PowerShell 7 and Pester, no tenant and no network. First you send Microsoft's samples, as published, to the fake, and the tests confirm each gap from the table. Then you send the first example by hand and see it for yourself: it's titled ownership, it asks for membership, and the fake refuses it because its end date passed in 2023. Next you list the read permissions, four and none that can write. Finally you plan against a fictional tenant, as a dry run. Let's read what it found.`,
