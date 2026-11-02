@@ -1,0 +1,11 @@
+PS> Get-Content out/agent-id/ai-identities.json -Raw | ConvertFrom-Json | Format-Table Name, FederalSponsor, TechnicalOwner, InventoryRecord, Handshake, SponsorState
+Name                     FederalSponsor        TechnicalOwner        InventoryRecord Handshake      SponsorState
+----                     --------------        --------------        --------------- ---------      ------------
+Benefits Q&A Agent       erin@contoso.example  alice@contoso.example CMDB-4001       HS-001         None
+Case Triage Agent        carol@contoso.example carol@contoso.example CMDB-4002       HS-002         AwaitingConfirmation until 2026-11-10
+Records Search Agent     carol@contoso.example alice@contoso.example CMDB-4003       HS-003         Orphaned
+Sandbox Helper                                 alice@contoso.example                                None
+Benefits Agent Blueprint erin@contoso.example  alice@contoso.example CMDB-4001       HS-001; HS-003
+Case Triage Blueprint    carol@contoso.example carol@contoso.example CMDB-4002       HS-002
+Pilot Sandbox Blueprint                        alice@contoso.example
+Correspondence Drafting  erin@contoso.example  alice@contoso.example CMDB-1100       HS-004         None

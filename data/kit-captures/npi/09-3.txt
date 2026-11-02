@@ -1,0 +1,4 @@
+PS> Import-Module ./powershell/NpiAgentId/NpiAgentId.psm1
+PS> foreach ($t in 'agent-id', 'agent-ca-apply') { $p = Get-NpiAgentRequiredPermission -Task $t; "$t : " + ($p.GraphPermissions -join ', ') }
+agent-id : AgentIdentity.Read.All, AgentIdentityBlueprint.Read.All, Application.Read.All, AuditLog.Read.All, CustomSecAttributeAssignment.Read.All, LifecycleWorkflows-Workflow.Read.All, LifecycleWorkflows-Workflow.ReadBasic.All, Policy.Read.All, RoleManagement.Read.Directory, User.Read.All
+agent-ca-apply : Policy.Read.All, Policy.ReadWrite.ConditionalAccess

@@ -1,0 +1,7 @@
+PS> $base = 'out/runs/2026-10-29T0600Z-fixture/drift/baseline-candidate.json'
+PS> $sha = (Get-FileHash $base -Algorithm SHA256).Hash.ToLower()
+PS> ./Invoke-NpiDriftRun.ps1 @lab -FixturePath tests/fixtures/ch10/estate-day2.json -AsOf 2026-10-30T06:00:00Z -BaselinePath $base -ApprovedBaselineSha256 $sha
+Run 2026-10-30T0600Z-fixture (Fixture, gcc): inventory OK, ownership OK, drift OK
+Audit window 2026-10-29T06:00:00Z to 2026-10-30T06:00:00Z; baseline 2026-10-29T0600Z-fixture (604ee088ae43…)
+Drift findings: 18 Finding, 11 Warn, 5 Info; baseline candidate SHA-256 fbe346457c070d6bb7de0fbb43f35d54315b42d46e6ba26b245d33efa6dc840c
+Written to out/runs/2026-10-30T0600Z-fixture (run.json lists each task's manifest hash)

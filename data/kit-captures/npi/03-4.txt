@@ -1,0 +1,24 @@
+PS> Get-Content out/matrix/proposals.json -Raw | ConvertFrom-Json | Where-Object Scope -eq 'Matrix' | Format-Table Name, Risk, Location, MatrixRow, Proposed
+Name               Risk   Location         MatrixRow Proposed
+----               ----   --------         --------- --------
+svc-hrsync         HIGH   OnPremKerberos   M06       dMSA
+svc-backup         HIGH                    R         Retire
+svc-oldftp         HIGH                    R         Retire
+svc-reports        LOW                     R         Retire
+sa-printsvc        LOW                     R         Retire
+svc-webfront       HIGH   OnPremKerberos   M06       dMSA
+svc-intranet       MEDIUM OnPremKerberos   M07       gMSA
+msa-print01$       MEDIUM OnPremKerberos   M08       gMSA
+gmsa-web$          MEDIUM OnPremKerberos   M11       Keep
+gmsa-ops$          HIGH   OnPremKerberos   M11       Keep
+dmsa-hrsync$       LOW    OnPremKerberos   M13       Keep
+Payroll Export     MEDIUM Azure            M14       ManagedIdentity
+HR Connector       LOW
+Legacy Reports     MEDIUM                  R         Retire
+Build Pipeline     LOW    OidcIssuer       M18       Keep
+Vendor Portal      LOW    EntraApiNoIssuer M18       Keep
+Mail Automation    HIGH   OidcIssuer       M15       AppRegistrationFederated
+Deploy Bot         LOW    Azure            M14       ManagedIdentity
+Old SAML Connector MEDIUM                  R         Retire
+vm-batch01         LOW    Azure            M19       Keep
+id-deploy          LOW    Azure            M19       Keep

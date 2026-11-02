@@ -1,0 +1,11 @@
+PS> Get-Content out/federation/conversion-records.json -Raw | ConvertFrom-Json | ForEach-Object { [pscustomobject]@{ Id = $_.ConversionId; Target = $_.TargetKind; Gate = $_.CutoverGate; Run = $_.ParallelRun.Status; Day = $_.ParallelRun.Day } } | Format-Table
+Id      Target              Gate     Run                  Day
+--      ------              ----     ---                  ---
+conv-01 managedIdentity     Ready    ReadyToDisableLegacy  40
+conv-02 federatedCredential Blocked  AwaitingCutover
+conv-03 federatedCredential Blocked  AwaitingCutover
+conv-04 managedIdentity     NotReady AwaitingCutover
+conv-05 certificate         NotReady AwaitingCutover
+conv-06 certificate         Blocked  AwaitingCutover
+conv-07 managedIdentity     Ready    ParallelRunning       15
+conv-08 federatedCredential Ready    LegacyStillInUse      59

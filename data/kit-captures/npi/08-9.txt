@@ -1,0 +1,6 @@
+PS> Copy-Item out/wca-signins/signin-summary.json out/signin-summary-edited.json
+PS> Add-Content out/signin-summary-edited.json ' ' -NoNewline
+PS> ./Invoke-NpiWorkloadCa.ps1 -Mode Plan -Cloud gcc -ScopePath out/scope-ring1.json -FixturePath tests/fixtures/ch08/tenant.json -OutputPath out/wca-edited -AllowEnforce -SignInSummaryPath out/signin-summary-edited.json
+Checks: 0 Finding, 0 Warn, 2 Info
+Plan: 3 Create, 1 Held, 1 NotInRepository, 1 Update
+Dry run: 4 request(s) written to requests.json, none sent; rerun with -Apply to send them

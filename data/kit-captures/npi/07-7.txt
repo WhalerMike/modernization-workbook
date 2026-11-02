@@ -1,0 +1,14 @@
+PS> Get-Content out/least-privilege/lp-plan.json -Raw | ConvertFrom-Json | Select-Object -ExpandProperty actions | Format-Table Action, Name, Write
+Action             Name            Write
+------             ----            -----
+HandedOff          Build Pipeline  False
+HandedOff          Deploy Bot      False
+HandedOff          id-deploy       False
+RemoveAppRole      HR Connector     True
+Kept               Vendor Portal   False
+RemoveAppRole      Mail Automation  True
+Kept               Mail Automation False
+AwaitOwnerDecision Mail Automation False
+RescopeByOwner     vm-batch01      False
+AwaitOwnerDecision vm-batch01      False
+NarrowGrant        Partner CRM      True

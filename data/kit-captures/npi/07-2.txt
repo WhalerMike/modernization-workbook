@@ -1,0 +1,5 @@
+PS> Invoke-Pester -Path tests/NpiLeastPrivilegeSamples.Tests.ps1 -Output None -PassThru |
+>>     Select-Object PassedCount, FailedCount, NotRunCount
+PassedCount FailedCount NotRunCount
+----------- ----------- -----------
+         10           0           0

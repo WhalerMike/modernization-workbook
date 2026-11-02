@@ -1,0 +1,7 @@
+PS> $sha = (Get-FileHash out/kerberos/kerberos-plan.json -Algorithm SHA256).Hash.ToLower()
+PS> ./Invoke-NpiKerberosIslandAction.ps1 -PlanPath out/kerberos/kerberos-plan.json -ApprovedSha256 $sha -FixturePath tests/fixtures/estate.json -KerberosFixturePath tests/fixtures/ch06/ad-kerberos.json -OutputPath out/kerberos-dryrun
+DryRun: 4 WouldSend
+  WouldSend SetRetrievers         gmsa-web$       Set-ADServiceAccount
+  WouldSend CreateGmsa            msa-print01$    New-ADServiceAccount
+  WouldSend CompleteDmsaMigration svc-hrsync      Complete-ADServiceAccountMigration
+  WouldSend CreateGmsa            svc-intranet    New-ADServiceAccount

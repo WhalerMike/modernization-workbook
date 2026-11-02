@@ -1,0 +1,9 @@
+PS> ./Invoke-NpiInventory.ps1 -Cloud gcc -FixturePath tests/fixtures/estate.json -OutputPath out/inventory
+Register: 35 identities (AD 15, Entra 20); risk HIGH 8, LOW 19, MEDIUM 8
+Findings: 8 Finding, 11 Warn, 3 Info; 3 handed to the Data Platform plan
+Written to out/inventory (manifest.json: tenant c0ffee00-0000-4000-8000-000000000001, every request, a SHA-256 per file)
+PS> ./Invoke-NpiOwnership.ps1 -Cloud gcc -RegisterRun out/inventory -FixturePath tests/fixtures/estate.json -InputPath tests/fixtures/inputs -OutputPath out/ownership
+Ownership: 22 identities checked; 7 orphan candidates
+Findings: 20 Finding, 3 Warn, 1 Info. AI sponsor fields recorded for Chapter 09: 2
+Orphan plan: 10 actions, 3 of them writes (1 AddOwner, 2 Disable); nothing sent
+Plan SHA-256: 1e1799d7181bd1a3dc271c645fff8a60fc741ab1ebc219bb3011cc25953bad3e

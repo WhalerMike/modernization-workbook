@@ -1,0 +1,8 @@
+PS> ./Invoke-NpiInventory.ps1 -Cloud gcc -FixturePath tests/fixtures/estate.json -OutputPath out/inventory | Out-Null
+PS> ./Invoke-NpiOwnership.ps1 -Cloud gcc -RegisterRun out/inventory -FixturePath tests/fixtures/estate.json -InputPath tests/fixtures/inputs -OutputPath out/ownership | Out-Null
+PS> ./Invoke-NpiMatrix.ps1 -Cloud gcc -RegisterRun out/inventory -OwnershipRun out/ownership -InputPath tests/fixtures/ch03/inputs -FixturePath tests/fixtures/estate.json -SkuFixturePath tests/fixtures/ch03/subscribed-skus.json -OutputPath out/matrix
+Matrix: 21 identities in scope, 20 proposed (1 AppRegistrationFederated, 2 dMSA, 2 gMSA, 7 Keep, 2 ManagedIdentity, 6 Retire); 3 handed off, 1 to confirm first, 10 out of scope
+Dispositions: 18 decided of 22; waves 1 (1, 1 HIGH), 2 (3, 1 HIGH)
+Workload ID Premium (D-N4): Tier1, 2 in scope; tenant holds 2 enabled units
+Findings: 7 Finding, 4 Warn, 1 Info
+Gate 2: not met (Every account has a disposition and a target from the matrix: 3; HIGH-risk accounts in the first wave: 1; Every kept Kerberos account has an SPN owner: 1; Waves and their rollback recorded: 1; Workload ID Premium scope decided (D-N4): 1)

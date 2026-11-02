@@ -1,0 +1,24 @@
+PS> $sha = (Get-FileHash out/policy/policy-plan.json -Algorithm SHA256).Hash.ToLower()
+PS> ./Invoke-NpiCredentialAction.ps1 -Cloud gcc -PlanPath out/policy/policy-plan.json -ApprovedSha256 $sha -FixturePath tests/fixtures/ch04/tenant.json -OutputPath out/policy-dryrun
+DryRun: 8 WouldSend
+  WouldSend PatchDefaultPolicy   PATCH https://graph.microsoft.com/v1.0/policies/defaultAppManagementPolicy
+  WouldSend CreateAppPolicy      POST  https://graph.microsoft.com/v1.0/policies/appManagementPolicies
+  WouldSend AssignAppPolicy      POST  https://graph.microsoft.com/v1.0/applications/0a000000-0000-4000-8000-000000000006/appManagementPolicies/$ref
+  WouldSend LockApp              PATCH https://graph.microsoft.com/v1.0/applications/0a000000-0000-4000-8000-000000000001
+  WouldSend LockApp              PATCH https://graph.microsoft.com/v1.0/applications/0a000000-0000-4000-8000-000000000003
+  WouldSend LockApp              PATCH https://graph.microsoft.com/v1.0/applications/0a000000-0000-4000-8000-000000000004
+  WouldSend LockApp              PATCH https://graph.microsoft.com/v1.0/applications/0a000000-0000-4000-8000-000000000005
+  WouldSend LockApp              PATCH https://graph.microsoft.com/v1.0/applications/0a000000-0000-4000-8000-000000000006
+PS> ./Invoke-NpiCredentialAction.ps1 -Cloud gcc -PlanPath out/policy/policy-plan.json -ApprovedSha256 $sha -FixturePath tests/fixtures/ch04/tenant.json -OutputPath out/policy-apply -Apply
+Apply: 8 Sent
+  Sent      PatchDefaultPolicy   PATCH https://graph.microsoft.com/v1.0/policies/defaultAppManagementPolicy
+  Sent      CreateAppPolicy      POST  https://graph.microsoft.com/v1.0/policies/appManagementPolicies
+  Sent      AssignAppPolicy      POST  https://graph.microsoft.com/v1.0/applications/0a000000-0000-4000-8000-000000000006/appManagementPolicies/$ref
+  Sent      LockApp              PATCH https://graph.microsoft.com/v1.0/applications/0a000000-0000-4000-8000-000000000001
+  Sent      LockApp              PATCH https://graph.microsoft.com/v1.0/applications/0a000000-0000-4000-8000-000000000003
+  Sent      LockApp              PATCH https://graph.microsoft.com/v1.0/applications/0a000000-0000-4000-8000-000000000004
+  Sent      LockApp              PATCH https://graph.microsoft.com/v1.0/applications/0a000000-0000-4000-8000-000000000005
+  Sent      LockApp              PATCH https://graph.microsoft.com/v1.0/applications/0a000000-0000-4000-8000-000000000006
+PS> ./Invoke-NpiCredentialAction.ps1 -Cloud gcc -PlanPath out/policy/policy-plan.json -ApprovedSha256 ('0' * 64) -FixturePath tests/fixtures/ch04/tenant.json -OutputPath out/policy-x
+Exception: The plan's SHA-256 is 2d4c419a05b7792470e59a5969f94f1b6452cba079a47595336c4d451cbfa809, not the approved
+0000000000000000000000000000000000000000000000000000000000000000; refusing to run a plan nobody reviewed.

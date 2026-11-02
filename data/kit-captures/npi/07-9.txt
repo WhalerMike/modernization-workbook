@@ -1,0 +1,8 @@
+PS> ./Invoke-NpiLeastPrivilegeAction.ps1 -Cloud gcc -PlanPath out/least-privilege/lp-plan.json -ApprovedSha256 $sha -FixturePath tests/fixtures/ch07/estate-ch07.json -OutputPath out/lp-apply -Apply
+Apply: 3 Sent
+  Sent      RemoveAppRole DELETE https://graph.microsoft.com/v1.0/servicePrincipals/5b000000-0000-4000-8000-000000000010/appRoleAssignedTo/ar-10
+  Sent      RemoveAppRole DELETE https://graph.microsoft.com/v1.0/servicePrincipals/5b000000-0000-4000-8000-000000000010/appRoleAssignedTo/ar-01
+  Sent      NarrowGrant   PATCH  https://graph.microsoft.com/v1.0/oauth2PermissionGrants/og-01
+PS> ./Invoke-NpiLeastPrivilegeAction.ps1 -Cloud gcc -PlanPath out/least-privilege/lp-plan.json -ApprovedSha256 ('0' * 64) -FixturePath tests/fixtures/ch07/estate-ch07.json -OutputPath out/lp-x
+Exception: The plan's SHA-256 is fca44f9f423c5c3590bf1b90b36e13a8cc9c4565dc0fdb30c9d6ef4ce1a1a0f8, not the approved
+0000000000000000000000000000000000000000000000000000000000000000; refusing to run a plan nobody reviewed.

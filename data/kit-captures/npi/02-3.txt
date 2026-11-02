@@ -1,0 +1,4 @@
+PS> Import-Module ./powershell/NpiOwnership/NpiOwnership.psm1
+PS> foreach ($t in 'ownership', 'orphan-apply') { $p = Get-NpiRequiredPermission -Task $t; "$t : " + ($p.GraphPermissions -join ', ') }
+ownership : User.Read.All
+orphan-apply : Application.Read.All, Application.ReadWrite.All, Directory.Read.All, User.Read.All

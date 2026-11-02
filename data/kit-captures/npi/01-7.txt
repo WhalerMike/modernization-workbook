@@ -1,0 +1,38 @@
+PS> Invoke-Pester -Path tests
+Starting discovery in 14 files.
+Discovery found 513 tests.
+Running tests.
+[+] tests/KerberosIslandSamples.Tests.ps1
+ 3.14s (2.11s|613ms)
+[+] tests/MicrosoftSamples.Tests.ps1
+ 3.02s (2.39s|490ms)
+[+] tests/NpiAgentId.Tests.ps1
+ 24.72s (23.09s|979ms)
+[+] tests/NpiCredentialPolicy.Tests.ps1
+ 16.88s (15.62s|428ms)
+[+] tests/NpiDrift.Tests.ps1
+ 14.74s (13.68s|502ms)
+[+] tests/NpiFederation.Tests.ps1
+ 8.57s (7.61s|329ms)
+[+] tests/NpiFederationSamples.Tests.ps1
+ 2.16s (1.58s|230ms)
+[+] tests/NpiInventory.Tests.ps1
+ 4.86s (3.88s|475ms)
+[+] tests/NpiKerberosIsland.Tests.ps1
+ 11.36s (10.1s|650ms)
+[+] tests/NpiLeastPrivilege.Tests.ps1
+ 7.47s (6.79s|318ms)
+[+] tests/NpiLeastPrivilegeSamples.Tests.ps1
+ 1.88s (1.29s|227ms)
+[+] tests/NpiMatrix.Tests.ps1
+ 9.33s (8.3s|576ms)
+[+] tests/NpiOwnership.Tests.ps1
+ 4.21s (3.46s|324ms)
+[+] tests/NpiWorkloadCa.Tests.ps1
+ 10.91s (9.74s|565ms)
+Tests completed
+Tests Passed: 513,
+Failed: 0,
+Skipped: 0
+
+NotRun: 0

@@ -1,0 +1,19 @@
+PS> $scope = Read-NpiWcaScope -Path tests/fixtures/ch08/scope.json
+PS> $repo = Read-NpiWcaRepository
+PS> $asOf = [datetime]'2026-10-30T12:00:00'
+PS> $fake = New-NpiWcaFixtureInvoker -Path tests/fixtures/ch08/tenant.json -Cloud gcc
+PS> $findings = @(Test-NpiWcaRepository -Repository $repo -Scope $scope -AsOf $asOf)
+PS> foreach ($run in 1..2) {
+>>     $client = New-NpiWcaClient -Cloud gcc -Task wca-apply -Invoke $fake.Invoke
+>>     $plan = Get-NpiWcaPlan -Repository $repo -Scope $scope -Tenant (Get-NpiWcaTenant -Client $client) -Enforcement (Get-NpiWcaEnforcement -Scope $scope) -AsOf $asOf
+>>     $sent = @(Invoke-NpiWcaPlan -Client $client -Plan $plan -Findings $findings | Where-Object Sent)
+>>     "Run ${run}: $($sent.Count) sent"
+>> }
+Run 1: 4 sent
+Run 2: 0 sent
+PS> $fake.Tenant.policies | Where-Object { $_.displayName -like 'CA0*' } | ForEach-Object { '{0,-50} {1}' -f $_.displayName, $_.state }
+CA001-AllUsers-BlockLegacyAuthentication           enabled
+CA015-ServiceAccounts-LocationRestriction-Ring1    enabledForReportingButNotEnforced
+CA037-WorkloadIdentities-HighRisk-Block-Ring1      enabledForReportingButNotEnforced
+CA015-ServiceAccounts-LocationRestriction-Ring2    enabledForReportingButNotEnforced
+CA037-WorkloadIdentities-HighRisk-Block-Ring2      enabledForReportingButNotEnforced

@@ -1,0 +1,5 @@
+PS> Invoke-Pester -Path tests/NpiDrift.Tests.ps1 -FullNameFilter '*as published*' -Output None -PassThru |
+>>     Select-Object PassedCount, FailedCount, NotRunCount
+PassedCount FailedCount NotRunCount
+----------- ----------- -----------
+         11           0          40

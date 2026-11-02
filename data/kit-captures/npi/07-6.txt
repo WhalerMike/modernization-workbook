@@ -1,0 +1,9 @@
+PS> Import-Csv out/least-privilege/owner-review.csv | Where-Object { -not $_.Decision } | Format-Table Name, Kind, Permission, Broad, LastDecision -AutoSize
+Name            Kind        Permission                                   Broad LastDecision
+----            ----        ----------                                   ----- ------------
+Legacy Reports  Application unknown:a0000000-0000-4000-8000-0000000000ff False
+Mail Automation Application Mail.ReadWrite                               True
+vm-batch01      Application User.Read.All                                False Keep on 2026-07-15, an earlier quarter
+vm-batch01      AzureRole   Reader                                       False
+vm-batch01      AzureRole   Reader                                       True
+Mail Automation Delegated   User.Read                                    False

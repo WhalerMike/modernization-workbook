@@ -1,0 +1,9 @@
+PS> ./Invoke-NpiWorkloadCa.ps1 -Mode SignIns -Cloud gcc -ScopePath tests/fixtures/ch08/scope.json -FixturePath tests/fixtures/ch08/tenant.json -From 2026-10-12 -To 2026-10-30T12:00:00 -OutputPath out/wca-signins
+Service principal sign-ins 2026-10-12T00:00:00Z to 2026-10-30T12:00:00Z (18 days): 6 read
+Ring1: ready for enforcement
+  Mail Automation  Clear        sign-ins 1
+  Payroll Export   Clear        sign-ins 2
+Ring2: not ready
+  Deploy Bot       WouldBlock   sign-ins 2; outside the egress ranges: 203.0.113.7
+  HR Connector     NoSignIns    sign-ins 0
+Summary SHA-256: d7767949b75e1e5d3f6a6bef6501eb7de8e98ddd8a9f22e1eb82698969d8752e

@@ -1,0 +1,15 @@
+PS> Get-Content out/runs/2026-10-30T0600Z-fixture/drift/findings.json -Raw | ConvertFrom-Json | Group-Object Rule, Severity | Sort-Object Name | Format-Table Name, Count
+Name                Count
+----                -----
+NPI-DRF-01, Warn        2
+NPI-DRF-02, Warn        6
+NPI-DRF-03, Finding     7
+NPI-DRF-04, Warn        2
+NPI-DRF-06, Finding     3
+NPI-DRF-07, Finding     3
+NPI-DRF-08, Finding     1
+NPI-DRF-09, Info        5
+NPI-DRF-09, Warn        1
+NPI-REV-01, Finding     2
+NPI-REV-02, Finding     1
+NPI-REV-03, Finding     1

@@ -1,0 +1,7 @@
+PS> $sha = (Get-FileHash out/federation/plan.json -Algorithm SHA256).Hash.ToLower()
+PS> ./Invoke-NpiFederation.ps1 -Cloud gcc -PlanPath out/federation/plan.json -ApprovedSha256 $sha -FixturePath tests/fixtures/ch05/tenant.json -OutputPath out/federation-dryrun
+DryRun: 4 WouldSend
+  WouldSend DisableLegacy    WRITE Disable-ADAccount -Identity ad000000-0000-4000-8000-000000000001
+  WouldSend CreateCredential POST  https://graph.microsoft.com/v1.0/applications/0a000000-0000-4000-8000-000000000004/federatedIdentityCredentials
+  WouldSend CreateIdentity   PUT   https://management.azure.com/subscriptions/11111111-1111-4111-8111-111111111111/resourceGroups/rg-identity/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-webfront?api-version=2024-11-30
+  WouldSend CreateCredential PUT   https://management.azure.com/subscriptions/11111111-1111-4111-8111-111111111111/resourceGroups/rg-identity/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-webfront/federatedIdentityCredentials/aks-webfront?api-version=2024-11-30

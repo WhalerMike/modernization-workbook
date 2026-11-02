@@ -1,0 +1,4 @@
+PS> Import-Module ./powershell/NpiFederation/NpiFederation.psm1
+PS> foreach ($t in 'federation', 'federation-apply') { $p = Get-NpiWifRequiredPermission -Task $t; "$t : " + ($p.GraphPermissions -join ', ') + ' | ' + ($p.AzureRoles -join ', ') }
+federation : Application.Read.All, AuditLog.Read.All | Reader
+federation-apply : Application.Read.All, Application.ReadWrite.All | Managed Identity Contributor, Reader

@@ -1,0 +1,6 @@
+PS> $sha = (Get-FileHash out/least-privilege/lp-plan.json -Algorithm SHA256).Hash.ToLower()
+PS> ./Invoke-NpiLeastPrivilegeAction.ps1 -Cloud gcc -PlanPath out/least-privilege/lp-plan.json -ApprovedSha256 $sha -FixturePath tests/fixtures/ch07/estate-ch07.json -OutputPath out/lp-dryrun
+DryRun: 3 WouldSend
+  WouldSend RemoveAppRole DELETE https://graph.microsoft.com/v1.0/servicePrincipals/5b000000-0000-4000-8000-000000000010/appRoleAssignedTo/ar-10
+  WouldSend RemoveAppRole DELETE https://graph.microsoft.com/v1.0/servicePrincipals/5b000000-0000-4000-8000-000000000010/appRoleAssignedTo/ar-01
+  WouldSend NarrowGrant   PATCH  https://graph.microsoft.com/v1.0/oauth2PermissionGrants/og-01

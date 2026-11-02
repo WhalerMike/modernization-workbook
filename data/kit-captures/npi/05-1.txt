@@ -1,0 +1,5 @@
+PS> Invoke-Pester -Path tests/NpiFederationSamples.Tests.ps1 -Output None -PassThru |
+>>     Select-Object PassedCount, FailedCount, NotRunCount
+PassedCount FailedCount NotRunCount
+----------- ----------- -----------
+         17           0           0

@@ -1,0 +1,5 @@
+PS> ./Invoke-NpiRotation.ps1 -Cloud gcc -RegisterRun out/inventory -InputPath tests/fixtures/ch04/inputs -FixturePath tests/fixtures/ch04/tenant.json -OutputPath out/rotation
+Rotation: 7 app registrations read; 7 steps
+Findings: 2 Finding, 0 Warn, 3 Info; 0 requests for owners
+Rotation plan: 3 writes (1 AttachNewCertificate, 1 RemoveOldCertificate, 1 RenewInKeyVault); nothing sent
+Plan SHA-256: d54726465dddc6ccdf03d9df2137e77e31547e9aade890d11bd7053653fa0d8f

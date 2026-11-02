@@ -1,0 +1,6 @@
+PS> Import-Module ./powershell/NpiCredentialPolicy/NpiCredentialPolicy.psm1
+PS> foreach ($t in 'app-policy', 'policy-apply', 'rotation', 'rotation-apply') { $p = Get-NpiCh04RequiredPermission -Task $t; "$t : " + (($p.GraphPermissions + $p.AzureRoles) -join ', ') }
+app-policy : Application.Read.All, Policy.Read.All
+policy-apply : Application.Read.All, Application.ReadWrite.All, Policy.Read.All, Policy.ReadWrite.ApplicationConfiguration
+rotation : Application.Read.All, User.Read.All, Key Vault Reader
+rotation-apply : Application.Read.All, Application.ReadWrite.All, Key Vault Certificates Officer, Key Vault Reader

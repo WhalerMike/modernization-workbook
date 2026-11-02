@@ -1,0 +1,13 @@
+PS> ./Invoke-NpiWorkloadCa.ps1 -Mode Plan -Cloud gcc -ScopePath tests/fixtures/ch08/scope.json -FixturePath tests/fixtures/ch08/tenant.json -OutputPath out/wca
+Checks: 0 Finding, 0 Warn, 2 Info
+Plan: 3 Create, 1 NoChange, 1 NotInRepository, 1 Update
+Dry run: 4 request(s) written to requests.json, none sent; rerun with -Apply to send them
+PS> Get-Content out/wca/plan.json -Raw | ConvertFrom-Json | Format-Table Kind, Name, Action
+Kind     Name                                                  Action
+----     ----                                                  ------
+location NL-WorkloadEgress                                     Update
+policy   CA015-ServiceAccounts-LocationRestriction-Ring1       NoChange
+policy   CA037-WorkloadIdentities-HighRisk-Block-Ring1         Create
+policy   CA015-ServiceAccounts-LocationRestriction-Ring2       Create
+policy   CA037-WorkloadIdentities-HighRisk-Block-Ring2         Create
+policy   Workloads - block outside office (made in the portal) NotInRepository

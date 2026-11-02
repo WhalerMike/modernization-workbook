@@ -1,0 +1,8 @@
+PS> Get-Content out/ownership/findings.json -Raw | ConvertFrom-Json | Where-Object Severity -eq 'Finding' | Group-Object Rule | Format-Table Name, Count
+Name       Count
+----       -----
+NPI-OWN-01     2
+NPI-OWN-02     4
+NPI-OWN-06     6
+NPI-OWN-07     3
+NPI-OWN-08     5

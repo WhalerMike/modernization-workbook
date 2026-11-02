@@ -1,0 +1,3 @@
+PS> Import-Module ./powershell/NpiDrift/NpiDrift.psm1
+PS> (Get-NpiDriftPermission -Task drift-run).GraphPermissions -join ', '
+Application.Read.All, AuditLog.Read.All, Directory.Read.All, User.Read.All

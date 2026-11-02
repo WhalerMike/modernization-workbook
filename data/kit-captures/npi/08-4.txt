@@ -1,0 +1,9 @@
+PS> Test-NpiWcaPolicyBody -Body (Read-NpiWcaLearnSample -Path ../third_party/entra-workload-identity-ca-page/workload-identity.md) -EgressName NL-WorkloadEgress -Name learn-sample |
+>>     Format-Table Rule, Severity
+Rule       Severity
+----       --------
+NPI-WCA-01 Finding
+NPI-WCA-01 Finding
+NPI-WCA-07 Finding
+NPI-WCA-07 Finding
+NPI-WCA-08 Finding

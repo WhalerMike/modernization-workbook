@@ -1,0 +1,5 @@
+PS> (Get-Content out/wca/alert-rule.json -Raw | ConvertFrom-Json).query
+AADServicePrincipalSignInLogs
+| where tostring(ResultType) == "53003"
+| where ServicePrincipalId in ("5b000000-0000-4000-8000-000000000001", "5b000000-0000-4000-8000-000000000002", "5b000000-0000-4000-8000-000000000006", "5b000000-0000-4000-8000-000000000007")
+| project TimeGenerated, ServicePrincipalId, AppId, IPAddress, ResultType, ConditionalAccessPolicies

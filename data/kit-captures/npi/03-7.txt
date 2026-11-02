@@ -1,0 +1,7 @@
+PS> $s = Get-Content out/matrix/workload-id-premium.json -Raw | ConvertFrom-Json
+PS> $s.conditionalAccessEligibleNow.Count
+6
+PS> $s.conditionalAccessEligibleAfter.Count
+4
+PS> $s.options | ConvertTo-Json -Compress
+{"Tier1":2,"Wide":4,"None":0}

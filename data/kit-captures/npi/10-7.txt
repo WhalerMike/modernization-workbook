@@ -1,0 +1,6 @@
+$ DAY1=tests/fixtures/npi-runs/2026-10-29T0600Z-fixture
+$ DAY2=tests/fixtures/npi-runs/2026-10-30T0600Z-fixture
+$ python python/npi_evidence.py package --run $DAY1 --out out/evidence
+{"evidence_manifest_sha256": "574efc052d254f1e0046ad4e85985f6a6604a9ecc5bc52d1cf4ac3405a3a5169", "new": 62, "open": 62, "package": "2026-10-29T0600Z-fixture", "resolved": 0}
+$ python python/npi_evidence.py package --run $DAY2 --previous-manifest out/evidence/2026-10-29T0600Z-fixture/EVIDENCE-MANIFEST.json --out out/evidence
+{"evidence_manifest_sha256": "35993595b6a84a8c911d5127d3627fda40eb1bbdaadebf1fd0eeed5d4225d1a0", "new": 19, "open": 80, "package": "2026-10-30T0600Z-fixture", "resolved": 1}

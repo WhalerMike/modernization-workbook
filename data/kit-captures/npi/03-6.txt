@@ -1,0 +1,7 @@
+PS> Get-Content out/matrix/waves.json -Raw | ConvertFrom-Json | ForEach-Object { "Wave $($_.Wave): $(@($_.Members.Name) -join ', '); rollback owner '$($_.RollbackOwner)'"; $_.Rollback | ForEach-Object { "  $_" } }
+Wave 1: Mail Automation; rollback owner 'carol@contoso.example'
+  AppRegistrationFederated: Re-enable the legacy account or credential; revert the application's configuration; remove the federated credential
+Wave 2: svc-hrsync, msa-print01$, Payroll Export; rollback owner ''
+  dMSA: Undo-ADServiceAccountMigration (Learn's undo for a dMSA migration); the superseded account is kept, never deleted
+  gMSA: Re-enable the legacy account; set the service back to it
+  ManagedIdentity: Re-enable the legacy account; revert the application's configuration to it

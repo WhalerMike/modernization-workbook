@@ -1,0 +1,7 @@
+PS> ./Invoke-NpiKerberosIsland.ps1 -Cloud gcc -RegisterRun out/inventory -FixturePath tests/fixtures/estate.json -KerberosFixturePath tests/fixtures/ch06/ad-kerberos.json -InputPath tests/fixtures/ch06/inputs -OutputPath out/kerberos
+Kerberos accounts: 9 in scope; KDS root key Ready
+Findings: 6 Finding, 1 Warn, 2 Info
+Plan: 9 actions, 4 of them writes (1 CompleteDmsaMigration, 2 CreateGmsa, 1 SetRetrievers); nothing sent
+Island list: 5 accounts, 3 ready for P4.6; hand-off ready: False
+Reconciliation (D11 KerberosIsland): 1 HandedOff, 1 MovesToWorkloadIdentity, 3 OnIslandList, 1 Unreconciled
+Plan SHA-256: 5e1f7c33491948026603746e933fafed0572fb77532ff1477ad452397c353746

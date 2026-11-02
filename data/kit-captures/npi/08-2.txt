@@ -1,0 +1,5 @@
+PS> Import-Module ./powershell/NpiWorkloadCa/NpiWorkloadCa.psm1
+PS> foreach ($t in 'wca-read', 'wca-signins', 'wca-apply') { "$t : " + ((Get-NpiWcaRequiredPermission -Task $t).GraphPermissions -join ', ') }
+wca-read : Application.Read.All, Policy.Read.All
+wca-signins : AuditLog.Read.All, Policy.Read.ConditionalAccess
+wca-apply : Application.Read.All, Policy.Read.All, Policy.ReadWrite.ConditionalAccess

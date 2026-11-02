@@ -1,0 +1,11 @@
+PS> Get-Content out/policy/policy-diff.json -Raw | ConvertFrom-Json | Format-Table Scope, RestrictionType, Change, Desired
+Scope                        RestrictionType        Change       Desired
+-----                        ---------------        ------       -------
+policy                       isEnabled              Change       true
+applicationRestrictions      passwordAddition       Add          enabled for apps created after 2026-11-15
+applicationRestrictions      symmetricKeyAddition   Add          enabled for apps created after 2026-11-15
+applicationRestrictions      customPasswordAddition KeepExisting (not in the reviewed file)
+applicationRestrictions      asymmetricKeyLifetime  Add          enabled P180D for apps created after 2026-11-15
+servicePrincipalRestrictions passwordAddition       Add          enabled for apps created after 2026-11-15
+servicePrincipalRestrictions symmetricKeyAddition   Add          enabled for apps created after 2026-11-15
+servicePrincipalRestrictions asymmetricKeyLifetime  Add          enabled P180D for apps created after 2026-11-15

@@ -1,0 +1,13 @@
+PS> $sha = (Get-FileHash out/wca-signins/signin-summary.json -Algorithm SHA256).Hash.ToLower()
+PS> $s = Get-Content tests/fixtures/ch08/scope.json -Raw | ConvertFrom-Json -AsHashtable
+PS> $s.enforcement = @{ decision = @{ id = 'D-N5'; outcome = 'Enforce'; decidedBy = 'CISO'; decidedOn = '2026-10-30' }
+>>                     rings = @(@{ ring = 'Ring1'; enforce = $true; signInReview = $sha; reviewedBy = 'ISSO'; reviewedOn = '2026-10-30' }); exclusions = @() }
+PS> $s | ConvertTo-Json -Depth 10 | Set-Content out/scope-ring1.json
+PS> ./Invoke-NpiWorkloadCa.ps1 -Mode Plan -Cloud gcc -ScopePath out/scope-ring1.json -FixturePath tests/fixtures/ch08/tenant.json -OutputPath out/wca-held
+Checks: 0 Finding, 0 Warn, 2 Info
+Plan: 3 Create, 1 Held, 1 NotInRepository, 1 Update
+Dry run: 4 request(s) written to requests.json, none sent; rerun with -Apply to send them
+PS> ./Invoke-NpiWorkloadCa.ps1 -Mode Plan -Cloud gcc -ScopePath out/scope-ring1.json -FixturePath tests/fixtures/ch08/tenant.json -OutputPath out/wca-enforce -AllowEnforce -SignInSummaryPath out/wca-signins/signin-summary.json
+Checks: 0 Finding, 0 Warn, 2 Info
+Plan: 3 Create, 1 NotInRepository, 2 Update
+Dry run: 5 request(s) written to requests.json, none sent; rerun with -Apply to send them
