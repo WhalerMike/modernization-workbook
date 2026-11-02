@@ -96,7 +96,8 @@ def test_preflight_on_the_test_fixtures_is_a_go():
     text = out.getvalue()
     assert rc == 0, text
     assert "WARN  G1  features" in text and "PASS  G4  workflows   3 of 3 found; disabled" in text
-    assert "Result: 8 PASS, 1 WARN, 0 FAIL, 0 SKIP: go" in text
+    assert "PASS  G4  executions  0 executions, 0 failed" in text
+    assert "Result: 9 PASS, 1 WARN, 0 FAIL, 0 SKIP: go" in text
     assert_declared(session, "deploy-check")
 
 
@@ -289,3 +290,10 @@ def test_each_step_refuses_the_wrong_integration_identity():
     settings = dc.load_settings(TEST, env={})
     assert dc.role_mismatch(settings, {"SAILPOINT_CLIENT_ID": "x"}, None, "isc_deploy_checker")
     assert dc.role_mismatch(settings, {"SN_ACCESS_TOKEN": "t"}, "evidence_reader", None) == []
+
+
+def test_preflight_warns_on_a_failed_workflow_execution():
+    rc, out = run(preflight, ["--settings", TEST, "--expect-workflows", "enabled", "--fixtures",
+                              str(DEPLOY / "preflight-week1.json"), "--today", "2026-11-02"])
+    assert rc == 0, out
+    assert "WARN  G4  executions  56 executions, 1 failed; read the failed executions of: "            "Drift to ServiceNow - identity attributes changed (mover)" in out

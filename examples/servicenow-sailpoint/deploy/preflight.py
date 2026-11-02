@@ -23,6 +23,8 @@ Live checks (skipped with --dry-run, answered from a file with --fixtures):
   instance    the finding table answers the evidence reader (GET, one row)
   workflows   the three kit workflows are absent, disabled or enabled, as
               --expect-workflows says
+  executions  each workflow's execution and failure counts (WARN on a
+              failure: read that workflow's failed executions)
 
 Read-only: it only reads. Credentials for the live checks: the evidence
 reader's ServiceNow OAuth client and the ISC deploy checker's API client.
@@ -190,7 +192,9 @@ def live_checks(settings: dc.Settings, env: Mapping[str, str], http: kc.Http, ex
     by_name = {w.get("name"): w for w in listed}
     for name in names:
         if name in by_name:
-            found[name] = {"id": by_name[name].get("id"), "enabled": bool(by_name[name].get("enabled"))}
+            found[name] = {"id": by_name[name].get("id"), "enabled": bool(by_name[name].get("enabled")),
+                           "executions": int(by_name[name].get("executionCount") or 0),
+                           "failures": int(by_name[name].get("failureCount") or 0)}
     states = {name: ("absent" if name not in found else "enabled" if found[name]["enabled"] else "disabled")
               for name in names}
     wrong = {n: s for n, s in states.items() if expect != "any" and s != expect}
@@ -199,6 +203,14 @@ def live_checks(settings: dc.Settings, env: Mapping[str, str], http: kc.Http, ex
         report.add("FAIL", "G4", "workflows", summary + "; " + "; ".join(f"{n}: {s}" for n, s in wrong.items()))
     else:
         report.add("PASS", "G4", "workflows", summary)
+    failing = {n: f for n, f in found.items() if f["failures"]}
+    if found:
+        counts = f"{sum(f['executions'] for f in found.values())} executions, " \
+                 f"{sum(f['failures'] for f in found.values())} failed"
+        if failing:
+            report.add("WARN", "G4", "executions", counts + "; read the failed executions of: " + "; ".join(failing))
+        else:
+            report.add("PASS", "G4", "executions", counts)
     return found
 
 
