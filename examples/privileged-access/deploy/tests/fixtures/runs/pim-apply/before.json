@@ -1,0 +1,1227 @@
+[
+  {
+    "role": "Application Administrator",
+    "roleTemplateId": "9b895d92-2cd3-44c7-9d02-a6ac2d5ea5c3",
+    "policyId": "DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000006",
+    "rules": [
+      {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyExpirationRule",
+        "id": "Expiration_EndUser_Assignment",
+        "isExpirationRequired": true,
+        "maximumDuration": "PT8H",
+        "target": {
+          "caller": "EndUser",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": [],
+          "targetObjects": null
+        }
+      },
+      {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyEnablementRule",
+        "id": "Enablement_EndUser_Assignment",
+        "enabledRules": [
+          "MultiFactorAuthentication"
+        ],
+        "target": {
+          "caller": "EndUser",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": [],
+          "targetObjects": null
+        }
+      },
+      {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyAuthenticationContextRule",
+        "id": "AuthenticationContext_EndUser_Assignment",
+        "isEnabled": false,
+        "claimValue": null,
+        "target": {
+          "caller": "EndUser",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": [],
+          "targetObjects": null
+        }
+      },
+      {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyApprovalRule",
+        "id": "Approval_EndUser_Assignment",
+        "target": {
+          "caller": "EndUser",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": [],
+          "targetObjects": null
+        },
+        "setting": {
+          "isApprovalRequired": false,
+          "isApprovalRequiredForExtension": false,
+          "isRequestorJustificationRequired": true,
+          "approvalMode": "SingleStage",
+          "approvalStages": [
+            {
+              "approvalStageTimeOutInDays": 1,
+              "isApproverJustificationRequired": true,
+              "escalationTimeInMinutes": 0,
+              "isEscalationEnabled": false,
+              "primaryApprovers": [],
+              "escalationApprovers": []
+            }
+          ]
+        }
+      },
+      {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyExpirationRule",
+        "id": "Expiration_Admin_Eligibility",
+        "isExpirationRequired": false,
+        "maximumDuration": "P365D",
+        "target": {
+          "caller": "Admin",
+          "operations": [
+            "All"
+          ],
+          "level": "Eligibility",
+          "inheritableSettings": [],
+          "enforcedSettings": [],
+          "targetObjects": null
+        }
+      },
+      {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyExpirationRule",
+        "id": "Expiration_Admin_Assignment",
+        "isExpirationRequired": true,
+        "maximumDuration": "P180D",
+        "target": {
+          "caller": "Admin",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": [],
+          "targetObjects": null
+        }
+      },
+      {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyEnablementRule",
+        "id": "Enablement_Admin_Assignment",
+        "enabledRules": [
+          "Justification",
+          "MultiFactorAuthentication"
+        ],
+        "target": {
+          "caller": "Admin",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": [],
+          "targetObjects": null
+        }
+      }
+    ]
+  },
+  {
+    "role": "Authentication Policy Administrator",
+    "roleTemplateId": "0526716b-113d-4c15-b2c8-68e3c22b9f80",
+    "policyId": "DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000007",
+    "rules": [
+      {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyExpirationRule",
+        "id": "Expiration_EndUser_Assignment",
+        "isExpirationRequired": true,
+        "maximumDuration": "PT8H",
+        "target": {
+          "caller": "EndUser",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": [],
+          "targetObjects": null
+        }
+      },
+      {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyEnablementRule",
+        "id": "Enablement_EndUser_Assignment",
+        "enabledRules": [
+          "MultiFactorAuthentication"
+        ],
+        "target": {
+          "caller": "EndUser",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": [],
+          "targetObjects": null
+        }
+      },
+      {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyAuthenticationContextRule",
+        "id": "AuthenticationContext_EndUser_Assignment",
+        "isEnabled": false,
+        "claimValue": null,
+        "target": {
+          "caller": "EndUser",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": [],
+          "targetObjects": null
+        }
+      },
+      {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyApprovalRule",
+        "id": "Approval_EndUser_Assignment",
+        "target": {
+          "caller": "EndUser",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": [],
+          "targetObjects": null
+        },
+        "setting": {
+          "isApprovalRequired": false,
+          "isApprovalRequiredForExtension": false,
+          "isRequestorJustificationRequired": true,
+          "approvalMode": "SingleStage",
+          "approvalStages": [
+            {
+              "approvalStageTimeOutInDays": 1,
+              "isApproverJustificationRequired": true,
+              "escalationTimeInMinutes": 0,
+              "isEscalationEnabled": false,
+              "primaryApprovers": [],
+              "escalationApprovers": []
+            }
+          ]
+        }
+      },
+      {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyExpirationRule",
+        "id": "Expiration_Admin_Eligibility",
+        "isExpirationRequired": false,
+        "maximumDuration": "P365D",
+        "target": {
+          "caller": "Admin",
+          "operations": [
+            "All"
+          ],
+          "level": "Eligibility",
+          "inheritableSettings": [],
+          "enforcedSettings": [],
+          "targetObjects": null
+        }
+      },
+      {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyExpirationRule",
+        "id": "Expiration_Admin_Assignment",
+        "isExpirationRequired": true,
+        "maximumDuration": "P180D",
+        "target": {
+          "caller": "Admin",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": [],
+          "targetObjects": null
+        }
+      },
+      {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyEnablementRule",
+        "id": "Enablement_Admin_Assignment",
+        "enabledRules": [
+          "Justification",
+          "MultiFactorAuthentication"
+        ],
+        "target": {
+          "caller": "Admin",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": [],
+          "targetObjects": null
+        }
+      }
+    ]
+  },
+  {
+    "role": "Cloud Application Administrator",
+    "roleTemplateId": "158c047a-c907-4556-b7ef-446551a6b5f7",
+    "policyId": "DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000008",
+    "rules": [
+      {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyExpirationRule",
+        "id": "Expiration_EndUser_Assignment",
+        "isExpirationRequired": true,
+        "maximumDuration": "PT8H",
+        "target": {
+          "caller": "EndUser",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": [],
+          "targetObjects": null
+        }
+      },
+      {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyEnablementRule",
+        "id": "Enablement_EndUser_Assignment",
+        "enabledRules": [
+          "MultiFactorAuthentication"
+        ],
+        "target": {
+          "caller": "EndUser",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": [],
+          "targetObjects": null
+        }
+      },
+      {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyAuthenticationContextRule",
+        "id": "AuthenticationContext_EndUser_Assignment",
+        "isEnabled": false,
+        "claimValue": null,
+        "target": {
+          "caller": "EndUser",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": [],
+          "targetObjects": null
+        }
+      },
+      {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyApprovalRule",
+        "id": "Approval_EndUser_Assignment",
+        "target": {
+          "caller": "EndUser",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": [],
+          "targetObjects": null
+        },
+        "setting": {
+          "isApprovalRequired": false,
+          "isApprovalRequiredForExtension": false,
+          "isRequestorJustificationRequired": true,
+          "approvalMode": "SingleStage",
+          "approvalStages": [
+            {
+              "approvalStageTimeOutInDays": 1,
+              "isApproverJustificationRequired": true,
+              "escalationTimeInMinutes": 0,
+              "isEscalationEnabled": false,
+              "primaryApprovers": [],
+              "escalationApprovers": []
+            }
+          ]
+        }
+      },
+      {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyExpirationRule",
+        "id": "Expiration_Admin_Eligibility",
+        "isExpirationRequired": false,
+        "maximumDuration": "P365D",
+        "target": {
+          "caller": "Admin",
+          "operations": [
+            "All"
+          ],
+          "level": "Eligibility",
+          "inheritableSettings": [],
+          "enforcedSettings": [],
+          "targetObjects": null
+        }
+      },
+      {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyExpirationRule",
+        "id": "Expiration_Admin_Assignment",
+        "isExpirationRequired": true,
+        "maximumDuration": "P180D",
+        "target": {
+          "caller": "Admin",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": [],
+          "targetObjects": null
+        }
+      },
+      {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyEnablementRule",
+        "id": "Enablement_Admin_Assignment",
+        "enabledRules": [
+          "Justification",
+          "MultiFactorAuthentication"
+        ],
+        "target": {
+          "caller": "Admin",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": [],
+          "targetObjects": null
+        }
+      }
+    ]
+  },
+  {
+    "role": "Compliance Administrator",
+    "roleTemplateId": "17315797-102d-40b4-93e0-432062caca18",
+    "policyId": "DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000009",
+    "rules": [
+      {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyExpirationRule",
+        "id": "Expiration_EndUser_Assignment",
+        "isExpirationRequired": true,
+        "maximumDuration": "PT8H",
+        "target": {
+          "caller": "EndUser",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": [],
+          "targetObjects": null
+        }
+      },
+      {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyEnablementRule",
+        "id": "Enablement_EndUser_Assignment",
+        "enabledRules": [
+          "MultiFactorAuthentication"
+        ],
+        "target": {
+          "caller": "EndUser",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": [],
+          "targetObjects": null
+        }
+      },
+      {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyAuthenticationContextRule",
+        "id": "AuthenticationContext_EndUser_Assignment",
+        "isEnabled": false,
+        "claimValue": null,
+        "target": {
+          "caller": "EndUser",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": [],
+          "targetObjects": null
+        }
+      },
+      {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyApprovalRule",
+        "id": "Approval_EndUser_Assignment",
+        "target": {
+          "caller": "EndUser",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": [],
+          "targetObjects": null
+        },
+        "setting": {
+          "isApprovalRequired": false,
+          "isApprovalRequiredForExtension": false,
+          "isRequestorJustificationRequired": true,
+          "approvalMode": "SingleStage",
+          "approvalStages": [
+            {
+              "approvalStageTimeOutInDays": 1,
+              "isApproverJustificationRequired": true,
+              "escalationTimeInMinutes": 0,
+              "isEscalationEnabled": false,
+              "primaryApprovers": [],
+              "escalationApprovers": []
+            }
+          ]
+        }
+      },
+      {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyExpirationRule",
+        "id": "Expiration_Admin_Eligibility",
+        "isExpirationRequired": false,
+        "maximumDuration": "P365D",
+        "target": {
+          "caller": "Admin",
+          "operations": [
+            "All"
+          ],
+          "level": "Eligibility",
+          "inheritableSettings": [],
+          "enforcedSettings": [],
+          "targetObjects": null
+        }
+      },
+      {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyExpirationRule",
+        "id": "Expiration_Admin_Assignment",
+        "isExpirationRequired": true,
+        "maximumDuration": "P180D",
+        "target": {
+          "caller": "Admin",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": [],
+          "targetObjects": null
+        }
+      },
+      {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyEnablementRule",
+        "id": "Enablement_Admin_Assignment",
+        "enabledRules": [
+          "Justification",
+          "MultiFactorAuthentication"
+        ],
+        "target": {
+          "caller": "Admin",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": [],
+          "targetObjects": null
+        }
+      }
+    ]
+  },
+  {
+    "role": "Exchange Administrator",
+    "roleTemplateId": "29232cdf-9323-42fd-ade2-1d097af3e4de",
+    "policyId": "DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000010",
+    "rules": [
+      {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyExpirationRule",
+        "id": "Expiration_EndUser_Assignment",
+        "isExpirationRequired": true,
+        "maximumDuration": "PT8H",
+        "target": {
+          "caller": "EndUser",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": [],
+          "targetObjects": null
+        }
+      },
+      {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyEnablementRule",
+        "id": "Enablement_EndUser_Assignment",
+        "enabledRules": [
+          "Justification",
+          "Ticketing"
+        ],
+        "target": {
+          "caller": "EndUser",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": [],
+          "targetObjects": null
+        }
+      },
+      {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyAuthenticationContextRule",
+        "id": "AuthenticationContext_EndUser_Assignment",
+        "isEnabled": false,
+        "claimValue": null,
+        "target": {
+          "caller": "EndUser",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": [],
+          "targetObjects": null
+        }
+      },
+      {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyApprovalRule",
+        "id": "Approval_EndUser_Assignment",
+        "target": {
+          "caller": "EndUser",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": [],
+          "targetObjects": null
+        },
+        "setting": {
+          "isApprovalRequired": false,
+          "isApprovalRequiredForExtension": false,
+          "isRequestorJustificationRequired": true,
+          "approvalMode": "SingleStage",
+          "approvalStages": [
+            {
+              "approvalStageTimeOutInDays": 1,
+              "isApproverJustificationRequired": true,
+              "escalationTimeInMinutes": 0,
+              "isEscalationEnabled": false,
+              "primaryApprovers": [],
+              "escalationApprovers": []
+            }
+          ]
+        }
+      },
+      {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyExpirationRule",
+        "id": "Expiration_Admin_Eligibility",
+        "isExpirationRequired": true,
+        "maximumDuration": "P180D",
+        "target": {
+          "caller": "Admin",
+          "operations": [
+            "All"
+          ],
+          "level": "Eligibility",
+          "inheritableSettings": [],
+          "enforcedSettings": [],
+          "targetObjects": null
+        }
+      },
+      {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyExpirationRule",
+        "id": "Expiration_Admin_Assignment",
+        "isExpirationRequired": true,
+        "maximumDuration": "P180D",
+        "target": {
+          "caller": "Admin",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": [],
+          "targetObjects": null
+        }
+      },
+      {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyEnablementRule",
+        "id": "Enablement_Admin_Assignment",
+        "enabledRules": [
+          "Justification",
+          "MultiFactorAuthentication"
+        ],
+        "target": {
+          "caller": "Admin",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": [],
+          "targetObjects": null
+        }
+      }
+    ]
+  },
+  {
+    "role": "Hybrid Identity Administrator",
+    "roleTemplateId": "8ac3fc64-6eca-42ea-9e69-59f4c7b60eb2",
+    "policyId": "DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000011",
+    "rules": [
+      {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyExpirationRule",
+        "id": "Expiration_EndUser_Assignment",
+        "isExpirationRequired": true,
+        "maximumDuration": "PT8H",
+        "target": {
+          "caller": "EndUser",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": [],
+          "targetObjects": null
+        }
+      },
+      {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyEnablementRule",
+        "id": "Enablement_EndUser_Assignment",
+        "enabledRules": [
+          "MultiFactorAuthentication"
+        ],
+        "target": {
+          "caller": "EndUser",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": [],
+          "targetObjects": null
+        }
+      },
+      {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyAuthenticationContextRule",
+        "id": "AuthenticationContext_EndUser_Assignment",
+        "isEnabled": false,
+        "claimValue": null,
+        "target": {
+          "caller": "EndUser",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": [],
+          "targetObjects": null
+        }
+      },
+      {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyApprovalRule",
+        "id": "Approval_EndUser_Assignment",
+        "target": {
+          "caller": "EndUser",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": [],
+          "targetObjects": null
+        },
+        "setting": {
+          "isApprovalRequired": false,
+          "isApprovalRequiredForExtension": false,
+          "isRequestorJustificationRequired": true,
+          "approvalMode": "SingleStage",
+          "approvalStages": [
+            {
+              "approvalStageTimeOutInDays": 1,
+              "isApproverJustificationRequired": true,
+              "escalationTimeInMinutes": 0,
+              "isEscalationEnabled": false,
+              "primaryApprovers": [],
+              "escalationApprovers": []
+            }
+          ]
+        }
+      },
+      {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyExpirationRule",
+        "id": "Expiration_Admin_Eligibility",
+        "isExpirationRequired": false,
+        "maximumDuration": "P365D",
+        "target": {
+          "caller": "Admin",
+          "operations": [
+            "All"
+          ],
+          "level": "Eligibility",
+          "inheritableSettings": [],
+          "enforcedSettings": [],
+          "targetObjects": null
+        }
+      },
+      {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyExpirationRule",
+        "id": "Expiration_Admin_Assignment",
+        "isExpirationRequired": true,
+        "maximumDuration": "P180D",
+        "target": {
+          "caller": "Admin",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": [],
+          "targetObjects": null
+        }
+      },
+      {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyEnablementRule",
+        "id": "Enablement_Admin_Assignment",
+        "enabledRules": [
+          "Justification",
+          "MultiFactorAuthentication"
+        ],
+        "target": {
+          "caller": "Admin",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": [],
+          "targetObjects": null
+        }
+      }
+    ]
+  },
+  {
+    "role": "Intune Administrator",
+    "roleTemplateId": "3a2c62db-5318-420d-8d74-23affee5d9d5",
+    "policyId": "DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000012",
+    "rules": [
+      {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyExpirationRule",
+        "id": "Expiration_EndUser_Assignment",
+        "isExpirationRequired": true,
+        "maximumDuration": "PT8H",
+        "target": {
+          "caller": "EndUser",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": [],
+          "targetObjects": null
+        }
+      },
+      {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyEnablementRule",
+        "id": "Enablement_EndUser_Assignment",
+        "enabledRules": [
+          "MultiFactorAuthentication"
+        ],
+        "target": {
+          "caller": "EndUser",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": [],
+          "targetObjects": null
+        }
+      },
+      {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyAuthenticationContextRule",
+        "id": "AuthenticationContext_EndUser_Assignment",
+        "isEnabled": false,
+        "claimValue": null,
+        "target": {
+          "caller": "EndUser",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": [],
+          "targetObjects": null
+        }
+      },
+      {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyApprovalRule",
+        "id": "Approval_EndUser_Assignment",
+        "target": {
+          "caller": "EndUser",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": [],
+          "targetObjects": null
+        },
+        "setting": {
+          "isApprovalRequired": false,
+          "isApprovalRequiredForExtension": false,
+          "isRequestorJustificationRequired": true,
+          "approvalMode": "SingleStage",
+          "approvalStages": [
+            {
+              "approvalStageTimeOutInDays": 1,
+              "isApproverJustificationRequired": true,
+              "escalationTimeInMinutes": 0,
+              "isEscalationEnabled": false,
+              "primaryApprovers": [],
+              "escalationApprovers": []
+            }
+          ]
+        }
+      },
+      {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyExpirationRule",
+        "id": "Expiration_Admin_Eligibility",
+        "isExpirationRequired": false,
+        "maximumDuration": "P365D",
+        "target": {
+          "caller": "Admin",
+          "operations": [
+            "All"
+          ],
+          "level": "Eligibility",
+          "inheritableSettings": [],
+          "enforcedSettings": [],
+          "targetObjects": null
+        }
+      },
+      {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyExpirationRule",
+        "id": "Expiration_Admin_Assignment",
+        "isExpirationRequired": true,
+        "maximumDuration": "P180D",
+        "target": {
+          "caller": "Admin",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": [],
+          "targetObjects": null
+        }
+      },
+      {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyEnablementRule",
+        "id": "Enablement_Admin_Assignment",
+        "enabledRules": [
+          "Justification",
+          "MultiFactorAuthentication"
+        ],
+        "target": {
+          "caller": "Admin",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": [],
+          "targetObjects": null
+        }
+      }
+    ]
+  },
+  {
+    "role": "SharePoint Administrator",
+    "roleTemplateId": "f28a1f50-f6e7-4571-818b-6a12f2af6b6c",
+    "policyId": "DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000013",
+    "rules": [
+      {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyExpirationRule",
+        "id": "Expiration_EndUser_Assignment",
+        "isExpirationRequired": true,
+        "maximumDuration": "PT8H",
+        "target": {
+          "caller": "EndUser",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": [],
+          "targetObjects": null
+        }
+      },
+      {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyEnablementRule",
+        "id": "Enablement_EndUser_Assignment",
+        "enabledRules": [
+          "MultiFactorAuthentication"
+        ],
+        "target": {
+          "caller": "EndUser",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": [],
+          "targetObjects": null
+        }
+      },
+      {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyAuthenticationContextRule",
+        "id": "AuthenticationContext_EndUser_Assignment",
+        "isEnabled": false,
+        "claimValue": null,
+        "target": {
+          "caller": "EndUser",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": [],
+          "targetObjects": null
+        }
+      },
+      {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyApprovalRule",
+        "id": "Approval_EndUser_Assignment",
+        "target": {
+          "caller": "EndUser",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": [],
+          "targetObjects": null
+        },
+        "setting": {
+          "isApprovalRequired": false,
+          "isApprovalRequiredForExtension": false,
+          "isRequestorJustificationRequired": true,
+          "approvalMode": "SingleStage",
+          "approvalStages": [
+            {
+              "approvalStageTimeOutInDays": 1,
+              "isApproverJustificationRequired": true,
+              "escalationTimeInMinutes": 0,
+              "isEscalationEnabled": false,
+              "primaryApprovers": [],
+              "escalationApprovers": []
+            }
+          ]
+        }
+      },
+      {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyExpirationRule",
+        "id": "Expiration_Admin_Eligibility",
+        "isExpirationRequired": false,
+        "maximumDuration": "P365D",
+        "target": {
+          "caller": "Admin",
+          "operations": [
+            "All"
+          ],
+          "level": "Eligibility",
+          "inheritableSettings": [],
+          "enforcedSettings": [],
+          "targetObjects": null
+        }
+      },
+      {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyExpirationRule",
+        "id": "Expiration_Admin_Assignment",
+        "isExpirationRequired": true,
+        "maximumDuration": "P180D",
+        "target": {
+          "caller": "Admin",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": [],
+          "targetObjects": null
+        }
+      },
+      {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyEnablementRule",
+        "id": "Enablement_Admin_Assignment",
+        "enabledRules": [
+          "Justification",
+          "MultiFactorAuthentication"
+        ],
+        "target": {
+          "caller": "Admin",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": [],
+          "targetObjects": null
+        }
+      }
+    ]
+  },
+  {
+    "role": "Teams Administrator",
+    "roleTemplateId": "69091246-20e8-4a56-aa4d-066075b2a7a8",
+    "policyId": "DirectoryRole_c0000000-0000-4000-8000-000000000001_d4000000-0000-4000-8000-000000000014",
+    "rules": [
+      {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyExpirationRule",
+        "id": "Expiration_EndUser_Assignment",
+        "isExpirationRequired": true,
+        "maximumDuration": "PT8H",
+        "target": {
+          "caller": "EndUser",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": [],
+          "targetObjects": null
+        }
+      },
+      {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyEnablementRule",
+        "id": "Enablement_EndUser_Assignment",
+        "enabledRules": [
+          "MultiFactorAuthentication"
+        ],
+        "target": {
+          "caller": "EndUser",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": [],
+          "targetObjects": null
+        }
+      },
+      {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyAuthenticationContextRule",
+        "id": "AuthenticationContext_EndUser_Assignment",
+        "isEnabled": false,
+        "claimValue": null,
+        "target": {
+          "caller": "EndUser",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": [],
+          "targetObjects": null
+        }
+      },
+      {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyApprovalRule",
+        "id": "Approval_EndUser_Assignment",
+        "target": {
+          "caller": "EndUser",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": [],
+          "targetObjects": null
+        },
+        "setting": {
+          "isApprovalRequired": false,
+          "isApprovalRequiredForExtension": false,
+          "isRequestorJustificationRequired": true,
+          "approvalMode": "SingleStage",
+          "approvalStages": [
+            {
+              "approvalStageTimeOutInDays": 1,
+              "isApproverJustificationRequired": true,
+              "escalationTimeInMinutes": 0,
+              "isEscalationEnabled": false,
+              "primaryApprovers": [],
+              "escalationApprovers": []
+            }
+          ]
+        }
+      },
+      {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyExpirationRule",
+        "id": "Expiration_Admin_Eligibility",
+        "isExpirationRequired": false,
+        "maximumDuration": "P365D",
+        "target": {
+          "caller": "Admin",
+          "operations": [
+            "All"
+          ],
+          "level": "Eligibility",
+          "inheritableSettings": [],
+          "enforcedSettings": [],
+          "targetObjects": null
+        }
+      },
+      {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyExpirationRule",
+        "id": "Expiration_Admin_Assignment",
+        "isExpirationRequired": true,
+        "maximumDuration": "P180D",
+        "target": {
+          "caller": "Admin",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": [],
+          "targetObjects": null
+        }
+      },
+      {
+        "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyEnablementRule",
+        "id": "Enablement_Admin_Assignment",
+        "enabledRules": [
+          "Justification",
+          "MultiFactorAuthentication"
+        ],
+        "target": {
+          "caller": "Admin",
+          "operations": [
+            "All"
+          ],
+          "level": "Assignment",
+          "inheritableSettings": [],
+          "enforcedSettings": [],
+          "targetObjects": null
+        }
+      }
+    ]
+  }
+]

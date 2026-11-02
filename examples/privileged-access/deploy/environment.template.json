@@ -1,0 +1,134 @@
+{
+  "_comment": "Chapter 09: one environment settings file. Copy it to environment.test.json for the live test stage and to environment.production.json for production; the runbook's commands are the same for both and read only this file. Replace every <placeholder>. It names identities and objects and never holds a secret: each app signs in with a certificate (credential 'certificate' and its thumbprint) or a federated credential ('federated'). Keep the filled files in the program's private repository, reviewed like code, never in this kit.",
+  "environment": "<test-or-production>",
+  "changeRecord": "<change-record>",
+  "cloud": "gcc",
+  "tenantId": "<tenant-id>",
+  "outputRoot": "out/deploy-<test-or-production>",
+  "identity": {
+    "credential": "certificate",
+    "certificateThumbprint": "<thumbprint>",
+    "apps": {
+      "reader": "<reader-app-id>",
+      "caWriter": "<ca-writer-app-id>",
+      "pimWriter": "<pim-writer-app-id>",
+      "groupsWriter": "<groups-writer-app-id>",
+      "reviewsWriter": "<reviews-writer-app-id>",
+      "azure": "<azure-app-id>"
+    },
+    "azureAppObjectId": "<azure-app-object-id>"
+  },
+  "emergencyAccess": {
+    "accounts": [
+      { "id": "<ea1-object-id>", "userPrincipalName": "<ea1-upn>" },
+      { "id": "<ea2-object-id>", "userPrincipalName": "<ea2-upn>" }
+    ],
+    "exclusionGroupId": "<exclusion-group-id>",
+    "minimumAccounts": 2,
+    "maxValidationAgeDays": 90,
+    "owner": "<emergency-access-owner>",
+    "validations": [
+      { "accountId": "<ea1-object-id>", "date": "<ea1-last-drill-date>", "result": "Pass", "ticket": "<ea1-drill-ticket>" },
+      { "accountId": "<ea2-object-id>", "date": "<ea2-last-drill-date>", "result": "Pass", "ticket": "<ea2-drill-ticket>" }
+    ]
+  },
+  "monitoring": {
+    "workspaceResourceId": "<workspace-resource-id>",
+    "actionGroupResourceId": "<action-group-resource-id>",
+    "location": "<region>",
+    "resourceGroup": "<monitoring-resource-group>"
+  },
+  "conditionalAccess": {
+    "map": {
+      "{group:CA-Exclude-EmergencyAccess}": "<exclusion-group-id>",
+      "{group:CA-Persona-Admins}": "<admins-group-id>",
+      "{group:CA-Access-AzureOperators}": "<azure-operators-group-id>",
+      "{location:NL-TrustedNetworks}": "<trusted-location-id>",
+      "{aaguid:approved-key-model-1}": "<key-model-1-aaguid>",
+      "{aaguid:approved-key-model-2}": "<key-model-2-aaguid>"
+    }
+  },
+  "pimRoles": {
+    "_comment": "Test: the pilot role only. Production: \"roleFiles\": [\"*\"] and one eligibility row per role, in the shape of tests/fixtures/ch04/inputs/pim-bindings.json.",
+    "roleFiles": ["teams-administrator.json"],
+    "approverGroups": {
+      "PIM-Approvers-T0": "<t0-approvers-group-id>",
+      "PIM-Approvers-T1": "<t1-approvers-group-id>"
+    },
+    "eligibility": [
+      { "roleTemplateId": "69091246-20e8-4a56-aa4d-066075b2a7a8", "role": "Teams Administrator", "groupId": "<pilot-prv-group-id>", "groupName": "PRV-T1-TeamsAdmin", "directoryScopeId": "/" }
+    ],
+    "exceptions": [],
+    "confirmedActivations": []
+  },
+  "pimGroups": {
+    "approverGroups": { "T0": "<t0-approvers-group-id>", "T1": "<t1-approvers-group-id>" },
+    "groups": [
+      {
+        "displayName": "PRV-T1-TeamsAdmin",
+        "id": "<pilot-prv-group-id>",
+        "tier": "T1",
+        "holds": "entraRole",
+        "member": {
+          "active": [
+            { "principalId": "<synthetic-admin-object-id>", "principalName": "<synthetic-admin-upn>", "principalType": "user", "endDateTime": "<synthetic-admin-end-date>T00:00:00Z", "ticket": "<change-record>" }
+          ],
+          "eligible": []
+        },
+        "owner": { "active": [], "eligible": [] }
+      }
+    ],
+    "previousDesiredPath": null
+  },
+  "azure": {
+    "scopes": ["/subscriptions/<subscription-id>"],
+    "governedRoles": ["8e3af657-a8ff-443c-a75c-2fe8c4bcb635", "b24988ac-6180-42a0-ab88-20f7382dd24c", "18d7d88d-d35e-4fb5-a5c3-7773c20a72d9"],
+    "controlPlaneSubscriptionIds": [],
+    "authenticationContextPolicyConfirmed": true,
+    "settings": {
+      "T0": { "maxActivation": "PT4H", "eligibilityMaxDuration": "P90D", "activeAssignmentMaxDuration": "P15D", "approval": true, "approverGroupId": "<t0-approvers-group-id>", "approverGroupName": "PIM-Approvers-T0", "endUserEnabledRules": ["Justification", "Ticketing"], "authenticationContext": "c1" },
+      "T1": { "maxActivation": "PT8H", "eligibilityMaxDuration": "P180D", "activeAssignmentMaxDuration": "P15D", "approval": true, "approverGroupId": "<t1-approvers-group-id>", "approverGroupName": "PIM-Approvers-T1", "endUserEnabledRules": ["Justification", "Ticketing"], "authenticationContext": "c1" }
+    },
+    "convertStanding": false,
+    "eligible": [
+      { "scope": "/subscriptions/<subscription-id>", "roleDefinitionId": "8e3af657-a8ff-443c-a75c-2fe8c4bcb635", "principalId": "<azure-owner-group-id>", "principalType": "Group", "name": "<azure-owner-group-name>", "justification": "Owners activate Owner through their PRV group (<change-record>)" }
+    ],
+    "standingExceptions": []
+  },
+  "accessReviews": {
+    "namePrefix": "PAR-",
+    "protectedRoleTemplateIds": ["62e90394-69f5-4237-9190-012177145e10"],
+    "defaults": {
+      "startDate": "<review-start-date>",
+      "instanceDurationInDays": 14,
+      "mailNotificationsEnabled": true,
+      "reminderNotificationsEnabled": true,
+      "justificationRequiredOnApproval": true,
+      "recommendationsEnabled": true,
+      "autoApplyDecisionsEnabled": true,
+      "defaultDecision": "Deny"
+    },
+    "reviews": [
+      {
+        "name": "PAR-T1-TeamsAdministrator-Pilot",
+        "kind": "entraRole",
+        "tier": "T1",
+        "roleTemplateId": "69091246-20e8-4a56-aa4d-066075b2a7a8",
+        "eligibleGroupIds": [],
+        "assignments": "activeAndEligible",
+        "cadence": "quarterly",
+        "reviewers": [{ "group": "<reviewers-group-id>" }],
+        "fallbackReviewers": [{ "group": "<fallback-reviewers-group-id>" }],
+        "descriptionForReviewers": "Pilot review of Teams Administrator. Approve only assignments with a current need, with a justification."
+      }
+    ],
+    "previousConfigPath": null
+  },
+  "smokeTest": {
+    "syntheticAdmin": { "id": "<synthetic-admin-object-id>", "userPrincipalName": "<synthetic-admin-upn>" },
+    "approverUpn": "<approver-upn>",
+    "roleTemplateId": "69091246-20e8-4a56-aa4d-066075b2a7a8",
+    "roleFile": "teams-administrator.json",
+    "reviewName": "PAR-T1-TeamsAdministrator-Pilot"
+  }
+}

@@ -1,0 +1,181 @@
+{
+  "_comment": "Chapter 09 fixture: the fictional contoso.example test tenant for the pre-flight checks (Chapter 01's fake format, plus subscribedSkus). Every ID is invented. Both emergency accounts meet Chapter 02's standard; one disabled policy, CA099-Pilot-Block-Unknown-Platforms, doesn't exclude them, which Chapter 02 doesn't flag and the pre-flight blocks. tenant-ready.json is the same tenant with that exclusion added.",
+  "subscribedSkus": [
+    {
+      "skuId": "8a180c2b-f4cf-4d44-897c-3d32acc4a60b",
+      "skuPartNumber": "EMSPREMIUM_GOV",
+      "capabilityStatus": "Enabled",
+      "prepaidUnits": {
+        "enabled": 25,
+        "suspended": 0,
+        "warning": 0
+      },
+      "consumedUnits": 12,
+      "servicePlans": [
+        {
+          "servicePlanId": "41781fb2-bc02-4b7c-bd55-b576c07bb09d",
+          "servicePlanName": "AAD_PREMIUM",
+          "provisioningStatus": "Success",
+          "appliesTo": "User"
+        },
+        {
+          "servicePlanId": "eec0eb4f-6444-4f95-aba0-50c24d67f998",
+          "servicePlanName": "AAD_PREMIUM_P2",
+          "provisioningStatus": "Success",
+          "appliesTo": "User"
+        }
+      ]
+    },
+    {
+      "skuId": "00000000-0000-4000-8000-0000000000f1",
+      "skuPartNumber": "FLOW_FREE",
+      "capabilityStatus": "Enabled",
+      "prepaidUnits": {
+        "enabled": 10000,
+        "suspended": 0,
+        "warning": 0
+      },
+      "consumedUnits": 3,
+      "servicePlans": []
+    }
+  ],
+  "roleAssignmentScheduleInstances": [
+    {
+      "id": "rasi-ea01-ga",
+      "principalId": "0e000000-0000-4000-8000-000000000001",
+      "roleDefinitionId": "62e90394-69f5-4237-9190-012177145e10",
+      "directoryScopeId": "/",
+      "startDateTime": null,
+      "endDateTime": null,
+      "assignmentType": "Assigned",
+      "memberType": "Direct",
+      "principal": {
+        "@odata.type": "#microsoft.graph.user",
+        "id": "0e000000-0000-4000-8000-000000000001",
+        "displayName": "Emergency Access 01",
+        "userPrincipalName": "ea01@contosoexample.onmicrosoft.com"
+      }
+    },
+    {
+      "id": "rasi-ea02-ga",
+      "principalId": "0e000000-0000-4000-8000-000000000002",
+      "roleDefinitionId": "62e90394-69f5-4237-9190-012177145e10",
+      "directoryScopeId": "/",
+      "startDateTime": null,
+      "endDateTime": null,
+      "assignmentType": "Assigned",
+      "memberType": "Direct",
+      "principal": {
+        "@odata.type": "#microsoft.graph.user",
+        "id": "0e000000-0000-4000-8000-000000000002",
+        "displayName": "Emergency Access 02",
+        "userPrincipalName": "ea02@contosoexample.onmicrosoft.com"
+      }
+    }
+  ],
+  "groupMembers": {
+    "9e000000-0000-4000-8000-000000000001": [
+      {
+        "@odata.type": "#microsoft.graph.user",
+        "id": "0e000000-0000-4000-8000-000000000001",
+        "displayName": "Emergency Access 01",
+        "userPrincipalName": "ea01@contosoexample.onmicrosoft.com"
+      },
+      {
+        "@odata.type": "#microsoft.graph.user",
+        "id": "0e000000-0000-4000-8000-000000000002",
+        "displayName": "Emergency Access 02",
+        "userPrincipalName": "ea02@contosoexample.onmicrosoft.com"
+      }
+    ]
+  },
+  "users": {
+    "0e000000-0000-4000-8000-000000000001": {
+      "id": "0e000000-0000-4000-8000-000000000001",
+      "userPrincipalName": "ea01@contosoexample.onmicrosoft.com",
+      "accountEnabled": true,
+      "onPremisesSyncEnabled": null
+    },
+    "0e000000-0000-4000-8000-000000000002": {
+      "id": "0e000000-0000-4000-8000-000000000002",
+      "userPrincipalName": "ea02@contosoexample.onmicrosoft.com",
+      "accountEnabled": true,
+      "onPremisesSyncEnabled": null
+    }
+  },
+  "authMethods": {
+    "0e000000-0000-4000-8000-000000000001": [
+      {
+        "@odata.type": "#microsoft.graph.passwordAuthenticationMethod",
+        "id": "28c10230-6103-485e-b985-444c60001490"
+      },
+      {
+        "@odata.type": "#microsoft.graph.fido2AuthenticationMethod",
+        "id": "f1d00000-0000-4000-8000-000000000001",
+        "displayName": "Security key A"
+      }
+    ],
+    "0e000000-0000-4000-8000-000000000002": [
+      {
+        "@odata.type": "#microsoft.graph.passwordAuthenticationMethod",
+        "id": "28c10230-6103-485e-b985-444c60001490"
+      },
+      {
+        "@odata.type": "#microsoft.graph.fido2AuthenticationMethod",
+        "id": "f1d00000-0000-4000-8000-000000000002",
+        "displayName": "Security key B"
+      }
+    ]
+  },
+  "conditionalAccessPolicies": [
+    {
+      "id": "ca000000-0000-4000-8000-000000000001",
+      "displayName": "CA001-All-Block-legacy-authentication",
+      "state": "enabled",
+      "conditions": {
+        "users": {
+          "includeUsers": [
+            "All"
+          ],
+          "excludeUsers": [],
+          "includeGroups": [],
+          "excludeGroups": [
+            "9e000000-0000-4000-8000-000000000001"
+          ]
+        }
+      }
+    },
+    {
+      "id": "ca000000-0000-4000-8000-000000000090",
+      "displayName": "CA090-Emergency-accounts-Report-sign-ins",
+      "state": "enabledForReportingButNotEnforced",
+      "conditions": {
+        "users": {
+          "includeUsers": [
+            "All"
+          ],
+          "excludeUsers": [],
+          "includeGroups": [],
+          "excludeGroups": [
+            "9e000000-0000-4000-8000-000000000001"
+          ]
+        }
+      }
+    },
+    {
+      "id": "ca000000-0000-4000-8000-000000000099",
+      "displayName": "CA099-Pilot-Block-Unknown-Platforms",
+      "state": "disabled",
+      "conditions": {
+        "users": {
+          "includeUsers": [
+            "All"
+          ],
+          "excludeUsers": [],
+          "includeGroups": [],
+          "excludeGroups": []
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+[
+  {
+    "Seq": 1,
+    "Op": "policy-rule",
+    "Status": "Sent",
+    "Diff": "~ PRV-T0-PrivRoleAdmin member Expiration_EndUser_Assignment: required=True max=PT8H -> required=True max=PT4H"
+  },
+  {
+    "Seq": 2,
+    "Op": "policy-rule",
+    "Status": "Sent",
+    "Diff": "~ PRV-T0-PrivRoleAdmin member Approval_EndUser_Assignment: approval=False approvers=groupMembers:5a000000-0000-4000-8000-0000000000a0 -> approval=True approvers=groupMembers:5a000000-0000-4000-8000-0000000000a0"
+  },
+  {
+    "Seq": 3,
+    "Op": "policy-rule",
+    "Status": "Sent",
+    "Diff": "~ PRV-T1-AzureOwner-SubWorkload owner Expiration_Admin_Eligibility: required=False max=P90D -> required=True max=P90D"
+  },
+  {
+    "Seq": 4,
+    "Op": "assignment-adminUpdate",
+    "Status": "Sent",
+    "Diff": "~ active member PRV-T1-ExchangeAdmin eve.exch@contoso.example end 2026-12-31 -> 2027-04-28 (CHG-1002)"
+  },
+  {
+    "Seq": 5,
+    "Op": "assignment-adminAssign",
+    "Status": "Sent",
+    "Diff": "+ active member PRV-T1-ExchangeAdmin ben.ops@contoso.example until 2027-04-28 (CHG-1005)"
+  },
+  {
+    "Seq": 6,
+    "Op": "assignment-adminRemove",
+    "Status": "Sent",
+    "Diff": "- active member PRV-T0-PrivRoleAdmin ben.ops@contoso.example"
+  },
+  {
+    "Seq": 7,
+    "Op": "eligibility-adminRemove",
+    "Status": "Sent",
+    "Diff": "- eligible owner PRV-T0-PrivRoleAdmin cara.cloud@contoso.example"
+  },
+  {
+    "Seq": 8,
+    "Op": "eligibility-adminRemove",
+    "Status": "Sent",
+    "Diff": "- eligible member PRV-T1-AzureOwner-SubWorkload Helpdesk-Admins-Legacy"
+  }
+]

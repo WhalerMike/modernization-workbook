@@ -1,0 +1,84 @@
+[
+  {
+    "Kind": "context",
+    "Name": "c1",
+    "Action": "Create",
+    "Changes": [],
+    "Note": ""
+  },
+  {
+    "Kind": "context",
+    "Name": "c2",
+    "Action": "Update",
+    "Changes": [
+      "description"
+    ],
+    "Note": ""
+  },
+  {
+    "Kind": "strength",
+    "Name": "FMP-Privileged-SeparateDevice",
+    "Action": "Create",
+    "Changes": [],
+    "Note": ""
+  },
+  {
+    "Kind": "policy",
+    "Name": "CA003-Admins-RequirePhishResistantMFA",
+    "Action": "Blocked",
+    "Changes": [],
+    "Note": "Needs authentication strength FMP-Privileged-SeparateDevice in the tenant first; rerun after they're created"
+  },
+  {
+    "Kind": "policy",
+    "Name": "CA004-Admins-RequireCompliantDevice",
+    "Action": "Update",
+    "Changes": [
+      "sessionControls.persistentBrowser.isEnabled",
+      "sessionControls.persistentBrowser.mode"
+    ],
+    "Note": ""
+  },
+  {
+    "Kind": "policy",
+    "Name": "CA005-Admins-BlockUntrustedLocations",
+    "Action": "NoChange",
+    "Changes": [],
+    "Note": ""
+  },
+  {
+    "Kind": "policy",
+    "Name": "CA025-Admins-BlockNonPAW",
+    "Action": "Create",
+    "Changes": [],
+    "Note": "Created report-only"
+  },
+  {
+    "Kind": "policy",
+    "Name": "CA027-AllUsers-AzureManagement-BlockNonOperators",
+    "Action": "Create",
+    "Changes": [],
+    "Note": "Created report-only"
+  },
+  {
+    "Kind": "policy",
+    "Name": "PIM-Activation-c1",
+    "Action": "Blocked",
+    "Changes": [],
+    "Note": "Needs authentication context c1 and authentication strength FMP-Privileged-SeparateDevice in the tenant first; rerun after they're created"
+  },
+  {
+    "Kind": "policy",
+    "Name": "ProtectedActions-c2",
+    "Action": "Blocked",
+    "Changes": [],
+    "Note": "Needs authentication strength FMP-Privileged-SeparateDevice in the tenant first; rerun after they're created"
+  },
+  {
+    "Kind": "policy",
+    "Name": "CA001-AllUsers-BlockLegacyAuth",
+    "Action": "NotInRepository",
+    "Changes": [],
+    "Note": "In the tenant (enabled) but not in the repository: reported, never deleted"
+  }
+]
