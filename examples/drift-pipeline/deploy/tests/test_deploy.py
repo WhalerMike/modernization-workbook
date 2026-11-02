@@ -10,7 +10,7 @@ from pathlib import Path
 
 import pytest
 
-KIT = Path(__file__).resolve().parents[1]
+KIT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(KIT / "deploy"))
 
 import adm_deploy as ad  # noqa: E402
@@ -19,8 +19,8 @@ import rollback as rb  # noqa: E402
 import smoke_test as sm  # noqa: E402
 
 FX = KIT / "tests" / "fixtures"
-TEST = FX / "deploy" / "test.json"
-PROD = FX / "deploy" / "production.json"
+TEST = KIT / "deploy" / "tests" / "fixtures" / "test.json"
+PROD = KIT / "deploy" / "tests" / "fixtures" / "production.json"
 TEMPLATE = KIT / "deploy" / "environment.example.json"
 FIXTURE_RUN = FX / "runs" / "current" / "2026-10-29-0617-fixture-runner-fixture"
 HCM = FX / "provenance" / "hcm-entra" / "provenance.json"

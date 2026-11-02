@@ -24,8 +24,8 @@ deploy/preflight.py           pre-flight checks before a stage; read-only live p
 deploy/smoke_test.py          go or no-go after a stage, from the files the kits wrote
 deploy/rollback.py            record each change a stage makes; write its rollback, newest first
 deploy/environment.example.json  the settings template (placeholders only, no secrets)
-tests/test_deploy.py          pytest, the four deploy scripts against fixtures and a fake runner
-tests/fixtures/deploy/        fictional test and production settings for contoso.example
+deploy/tests/test_deploy.py   pytest, the deploy scripts against fixtures and a fake runner (its own suite: python -m pytest deploy/tests -q)
+deploy/tests/fixtures/        fictional test and production settings for contoso.example
 ```
 
 ## Commands
@@ -62,7 +62,7 @@ Runs are refused when the mode or cloud differs, when the current run isn't late
 python -m pytest tests -q
 ```
 
-179 tests, no tenant and no network. `tests/test_hr_evidence.py` builds its runs with `examples/hr-lifecycle`, so its suite also runs when that kit changes.
+142 tests, no tenant and no network. `tests/test_hr_evidence.py` builds its runs with `examples/hr-lifecycle`, so its suite also runs when that kit changes.
 
 ## Deploying to test and production
 
@@ -77,7 +77,7 @@ python -m pytest tests -q
 | `python deploy/rollback.py plan --settings <file> [--out <dir>]` | Writes `rollback-cloud.ps1`, `rollback-ad.ps1` and `rollback-manual.md`, newest change first, and runs nothing. Production re-enables and pauses; the test stage removes what it created | 0, 1 |
 | `python deploy/rollback.py kinds` | Lists the kinds of change the rollback knows | 0 |
 
-Nobody has run these scripts against a live tenant: the live probes and the rollback scripts are tested with a fake runner and read back, not executed.
+Test them with `python -m pytest deploy/tests -q` (37 tests, kept apart from the 142 above so the chapters that run `tests` keep their count). Nobody has run these scripts against a live tenant: the live probes and the rollback scripts are tested with a fake runner and read back, not executed.
 
 ## HR-driven identity evidence
 
