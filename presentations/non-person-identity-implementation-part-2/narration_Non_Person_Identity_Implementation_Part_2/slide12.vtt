@@ -1,0 +1,74 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.394
+On the federal side, account management
+calls for the identity record, the
+
+2
+00:00:04.394 --> 00:00:06.744
+owner-change and decommission tickets,
+
+3
+00:00:06.744 --> 00:00:09.450
+and the kit runs for
+owners and agent sponsors.
+
+4
+00:00:09.450 --> 00:00:14.713
+Identifier management calls for a record
+keyed by object ID, never reused.
+
+5
+00:00:14.713 --> 00:00:18.351
+Audit controls call for the
+logs routed out of Entra ID,
+
+6
+00:00:18.351 --> 00:00:22.313
+including every credential
+added and every deactivation.
+
+7
+00:00:22.313 --> 00:00:26.149
+To validate, run the owner
+and expiry checks every week.
+
+8
+00:00:26.149 --> 00:00:30.050
+A new app with fewer than two
+owners opens a ticket that week.
+
+9
+00:00:30.050 --> 00:00:34.138
+No agent may go past ten business
+days without a confirmed sponsor.
+
+10
+00:00:34.138 --> 00:00:38.425
+An optional preview check lists service
+principals idle for ninety days.
+
+11
+00:00:38.425 --> 00:00:43.125
+Then run one test owner change and
+one test decommission, end to end.
+
+12
+00:00:43.125 --> 00:00:48.261
+The sign-in activity report is listed
+only for the commercial service,
+
+13
+00:00:48.261 --> 00:00:50.563
+so GCC has it, and GCC High doesn't.
+
+14
+00:00:50.563 --> 00:00:53.855
+To roll back, reactivate,
+or restore within thirty
+
+15
+00:00:53.855 --> 00:00:57.600
+days and re-create the
+Conditional Access assignments.

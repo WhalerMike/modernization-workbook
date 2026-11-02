@@ -35,3 +35,15 @@ Checked October 20, 2026. Source: the existing page (former Book 02, Chapter 2) 
 | "What Book 02 establishes — Chapter 2" | "What this chapter establishes" | edited (point 3 updated) |
 | Footnote `b02c02-spn` | `c04-spn` | kept; re-opened |
 | Diagram `book-02-ch02-discovery-instruments` | Same position | kept; source edited: `setspn -Q` → `setspn -F -Q`; "Every instance ever set up for Kerberos" → "Every instance with a registered SPN, forest-wide"; "Azure Migrate, MAP, DMA" → "Azure Migrate, MAP, SSMS migration"; "Chapter 3" → "Chapter 05". fig-alt updated to match |
+
+## Privacy section, November 2, 2026
+
+A short "Privacy in the inventory" section was added (additive; no existing text changed). Every source was opened on November 2, 2026. SP 800-53 control titles and privacy-baseline membership were read from NIST's OSCAL Release 5.2.0 catalog and privacy baseline profile; the SP 800-53B abstract states the privacy baseline applies irrespective of impact level. The "Who signs off" column and every "program's design" sentence are design guidance, not external fact. The fuller treatment is Book 03, Chapter 14, whose verification file logs the same sources in more detail.
+
+| # | Claim (short) | Verdict | Source |
+|---|---|---|---|
+| 1 | A-130 requires an inventory of systems that process PII to reduce PII to the minimum necessary | verified | A-130 §5.a(1)(a)(ii) |
+| 2 | PM-5(1) Inventory of PII; SI-12(3); both in the privacy baseline | verified | OSCAL catalog and privacy profile 5.2.0 |
+| 3 | M-03-22 PIA update triggers: significant merging; significant system management changes | verified | M-03-22 §II.B.2 |
+| 4 | A-108 significant changes: combining systems; access-control changes that substantially increase access | verified | A-108 §6.b(3), (7) |
+| 5 | Three inventory fields; metadata-only discovery; shared instance as a possible significant change | restated-as-design | - |

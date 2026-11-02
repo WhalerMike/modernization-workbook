@@ -1,0 +1,74 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.025
+Before the first gate, agree the record
+that every non-person identity joins to.
+
+2
+00:00:05.025 --> 00:00:09.988
+For this track, the source of truth is
+the owning system's record, not HR.
+
+3
+00:00:09.988 --> 00:00:14.076
+The system inventory is the
+master, and that's design guidance.
+
+4
+00:00:14.076 --> 00:00:18.500
+Each record carries a system or
+application ID as the join key.
+
+5
+00:00:18.500 --> 00:00:21.965
+Entra apps point at it through
+a service management reference,
+
+6
+00:00:21.965 --> 00:00:25.763
+which Microsoft recommends because
+it survives one person leaving.
+
+7
+00:00:25.763 --> 00:00:30.775
+The record also names two technical owners,
+and a sponsor who is a federal employee.
+
+8
+00:00:30.775 --> 00:00:35.590
+It holds the identity's type and object
+ID, its target and decision date,
+
+9
+00:00:35.590 --> 00:00:39.325
+its credential and where that's
+vaulted, and a risk tier.
+
+10
+00:00:39.325 --> 00:00:41.863
+Collecting all this
+needs reader roles only.
+
+11
+00:00:41.863 --> 00:00:46.337
+The checks sign in with a certificate
+or a managed identity, never a secret.
+
+12
+00:00:46.337 --> 00:00:48.162
+Most of this track is free.
+
+13
+00:00:48.162 --> 00:00:51.276
+Workload ID Premium
+adds Conditional Access
+
+14
+00:00:51.276 --> 00:00:54.225
+and ID Protection for workload identities.
+
+15
+00:00:54.225 --> 00:00:59.020
+And in GCC, Entra ID runs in
+Microsoft's commercial cloud.

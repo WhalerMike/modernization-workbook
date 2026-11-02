@@ -1,0 +1,77 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.438
+Welcome to Part 1 of the implementation
+series for non-person identity.
+
+2
+00:00:04.438 --> 00:00:06.988
+When a person leaves, HR tells you.
+
+3
+00:00:06.988 --> 00:00:10.125
+When a service account's owner
+leaves, nothing tells you.
+
+4
+00:00:10.125 --> 00:00:14.412
+So this track has to build the record
+that HR provides for everyone else.
+
+5
+00:00:14.412 --> 00:00:16.412
+The guide does that in six gates.
+
+6
+00:00:16.412 --> 00:00:19.545
+For each gate, we'll cover
+what done means, the steps,
+
+7
+00:00:19.545 --> 00:00:24.663
+the commands from the developer workbook's
+first labs and what they really print,
+
+8
+00:00:24.663 --> 00:00:28.177
+the federal requirement and
+the evidence an ISSO keeps,
+
+9
+00:00:28.177 --> 00:00:32.225
+what's available in the government
+clouds, and how to roll it back.
+
+10
+00:00:32.225 --> 00:00:37.323
+Part 1 takes the first three gates:
+inventory every non-person identity,
+
+11
+00:00:37.323 --> 00:00:41.125
+decide each one's target,
+and set the credential rules.
+
+12
+00:00:41.125 --> 00:00:45.490
+Part 2 takes least privilege,
+conversion and the lifecycle,
+
+13
+00:00:45.490 --> 00:00:49.588
+and then SQL Server, AI
+agents, evidence and rollback.
+
+14
+00:00:49.588 --> 00:00:51.975
+Design guidance is labeled as such.
+
+15
+00:00:51.975 --> 00:00:54.500
+And the workbook's code is illustrative.
+
+16
+00:00:54.500 --> 00:00:58.080
+It's tested against fixtures,
+not against a live tenant.

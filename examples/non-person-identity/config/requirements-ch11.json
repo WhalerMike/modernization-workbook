@@ -1,0 +1,43 @@
+{
+  "_comment": "Chapter 11's requirements catalog: for each preflight, smoke-test and rollback check, and for each runbook step recorded with Write-NpiDeployEvidence.ps1, the NIST SP 800-53 Rev 5 controls (FedRAMP Moderate baseline, the guide's audience; IA-9 is in no baseline and is tailored in, as the implementation guide says), the other requirements that apply (OMB M-22-09, CISA BOD 25-01 / SCuBA) and the FedRAMP 20x Key Security Indicators each aligns to. The control mappings are the implementation guide's evidence table and Book 13, Appendix A; the KSI IDs are the ones Book 02 (Chapter 10), Book 04 (Chapter 10), Book 13 and Book 14 already cite, checked on https://www.fedramp.gov/2026/reference/key-security-indicators/ on November 2, 2026. KSIs are FedRAMP's indicators for cloud service providers: the agency lines its own evidence up with them and doesn't report them. The alignment is the program's reading (design guidance). 'stages' lists the rows each stage's evidence must cover before the go/no-go (Test-NpiDeployEvidence.ps1).",
+  "version": 1,
+  "checks": {
+    "PF-01": { "controls": ["CM-3", "CM-6"], "other": [], "ksis": ["KSI-CMT-LMC"] },
+    "PF-02": { "controls": ["IA-5", "IA-5(2)", "IA-9"], "other": [], "ksis": ["KSI-IAM-SNU"] },
+    "PF-03": { "controls": ["AC-3", "AC-6"], "other": [], "ksis": ["KSI-IAM-ELP"] },
+    "PF-04": { "controls": ["AU-2", "AU-12"], "other": [], "ksis": ["KSI-MLA-LET"] },
+    "PF-05": { "controls": ["AC-6", "AC-6(5)"], "other": [], "ksis": ["KSI-IAM-ELP", "KSI-IAM-SNU"] },
+    "PF-06": { "controls": ["AC-2", "AC-5", "AC-6(5)", "CM-5"], "other": [], "ksis": ["KSI-IAM-JIT"] },
+    "PF-07": { "controls": ["CM-8", "IA-4"], "other": [], "ksis": ["KSI-PIY-GIV"] },
+    "PF-08": { "controls": ["CM-3(2)", "CM-4(2)"], "other": [], "ksis": ["KSI-CMT-VTD"] },
+    "PF-09": { "controls": ["CA-7", "CM-2"], "other": [], "ksis": ["KSI-MLA-EVC"] },
+    "PF-10": { "controls": ["IA-5", "IA-9"], "other": [], "ksis": ["KSI-IAM-SNU"] },
+    "PF-11": { "controls": ["CM-3(2)", "CM-4(2)"], "other": [], "ksis": ["KSI-CMT-VTD"] },
+    "ST-01": { "controls": ["AC-2", "CM-8", "IA-4"], "other": ["OMB M-22-09 §III.A"], "ksis": ["KSI-PIY-GIV", "KSI-IAM-SNU"] },
+    "ST-02": { "controls": ["AC-2", "CM-8"], "other": [], "ksis": ["KSI-PIY-GIV"] },
+    "ST-03": { "controls": ["IA-5"], "other": ["SCuBA MS.AAD.5.5v1 (SHOULD)"], "ksis": ["KSI-IAM-SNU"] },
+    "ST-04": { "controls": ["IA-5", "IA-9"], "other": [], "ksis": ["KSI-IAM-SNU"] },
+    "ST-05": { "controls": ["AC-3", "AC-6", "IA-9"], "other": [], "ksis": ["KSI-IAM-ELP"] },
+    "ST-06": { "controls": ["AU-2", "AU-12", "CA-7"], "other": [], "ksis": ["KSI-MLA-LET", "KSI-MLA-EVC"] },
+    "ST-07": { "controls": ["IA-5", "IA-9"], "other": [], "ksis": ["KSI-IAM-SNU"] },
+    "RB": { "controls": ["CM-3", "CP-10"], "other": [], "ksis": ["KSI-CMT-RMV", "KSI-RPL-ABO"] }
+  },
+  "steps": {
+    "S0": { "title": "Change record, approvals and settings file", "controls": ["CM-3", "CM-5"], "other": [], "ksis": ["KSI-CMT-LMC", "KSI-IAM-JIT"], "evidence": "Write-NpiDeployEvidence.ps1 over the preflight run (the settings file's SHA-256 and change record in its manifest)" },
+    "PRE": { "title": "Preflight", "controls": [], "other": [], "ksis": [], "evidence": "Test-NpiDeployPreflight.ps1: PRE-preflight.json", "fromChecks": "PF-" },
+    "S1.1": { "title": "Inventory and owners", "controls": ["AC-2", "CM-8", "IA-4"], "other": ["OMB M-22-09 §III.A"], "ksis": ["KSI-PIY-GIV", "KSI-IAM-SNU"], "evidence": "Chapter 01's and Chapter 02's run folders" },
+    "S1.2": { "title": "App management policy", "controls": ["IA-5", "CM-6", "CM-3"], "other": ["SCuBA MS.AAD.5.5v1 to 5.7v1 (SHOULD)"], "ksis": ["KSI-IAM-SNU", "KSI-CMT-LMC"], "evidence": "Chapter 04's policy plan (test) or apply (production) run folder" },
+    "S1.3": { "title": "Federated credential and managed identity, parallel run", "controls": ["IA-5", "IA-9", "AC-2(3)"], "other": [], "ksis": ["KSI-IAM-SNU", "KSI-CMT-VTD"], "evidence": "Chapter 05's plan and apply run folders" },
+    "S1.4": { "title": "gMSA on a test host", "controls": ["IA-5", "IA-9"], "other": [], "ksis": ["KSI-IAM-SNU"], "evidence": "ST-07 in the smoke test" },
+    "S1.5": { "title": "Workload Conditional Access, report-only", "controls": ["AC-3", "AC-6", "CM-3(2)", "CM-4(2)"], "other": [], "ksis": ["KSI-IAM-ELP", "KSI-CMT-VTD"], "evidence": "Chapter 08's plan and apply run folders" },
+    "SMOKE": { "title": "Smoke test", "controls": [], "other": [], "ksis": [], "evidence": "Invoke-NpiDeploySmokeTest.ps1: SMOKE-smoke.json", "fromChecks": "ST-" },
+    "ROLLBACK": { "title": "Rollback", "controls": [], "other": [], "ksis": [], "evidence": "Invoke-NpiDeployRollback.ps1 -Mode Apply: ROLLBACK-rollback.json", "fromChecks": "RB" },
+    "S2.3": { "title": "Staged enable by wave", "controls": ["AC-6", "CM-3", "CM-4(2)"], "other": [], "ksis": ["KSI-IAM-ELP", "KSI-CMT-LMC"], "evidence": "Chapter 08's sign-in summary and enforce run folders" },
+    "S2.5": { "title": "First-week drift monitoring", "controls": ["CA-7", "CM-3", "AU-6"], "other": [], "ksis": ["KSI-MLA-EVC", "KSI-CMT-LMC"], "evidence": "Chapter 10's drift run folders" },
+    "EVIDENCE": { "title": "Evidence integrity", "controls": ["AU-9"], "other": [], "ksis": ["KSI-MLA-OSM"], "evidence": "SHA256SUMS over the evidence folder, checked by Test-NpiDeployEvidence.ps1" }
+  },
+  "stages": {
+    "test": ["PRE", "S0", "S1.1", "S1.2", "S1.3", "S1.5", "SMOKE", "ROLLBACK"],
+    "production": ["PRE", "S0", "S1.1", "S1.2", "S1.3", "S1.5", "SMOKE", "S2.3", "S2.5"]
+  }
+}

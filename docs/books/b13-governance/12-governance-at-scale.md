@@ -223,7 +223,7 @@ The coverage report is how these limits reach the people who decide. It distingu
 
 ::: {.callout-tip}
 ## Continue the book
-[← Previous: Chapter 11 — Reciprocity, Indicators and One Authorization](11-reciprocity-and-one-authorization.md) · [Book index](index.md) · [Next: Appendix A — Requirements Mapping: Controls, Mandates and Books →](appendix-a-requirements-mapping.md)
+[← Previous: Chapter 11 — Reciprocity, Indicators and One Authorization](11-reciprocity-and-one-authorization.md) · [Book index](index.md) · [Next: Chapter 13 — Records, Evidence and Retention →](13-records-evidence-and-retention.md)
 :::
 
 [^c12-sp80053]: National Institute of Standards and Technology, SP 800-53 Rev. 5, *Security and Privacy Controls for Information Systems and Organizations*, controls CA-5, CA-7, PM-4 and PM-31, <https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final>; control text checked against the release 5.2.0 OSCAL catalog, <https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json> (both accessed Oct 21, 2026).

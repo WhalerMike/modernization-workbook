@@ -1,0 +1,36 @@
+# Chapter 09 — the PIV credential sits under cloud authentication. HSPD-12 and
+# FIPS 201-3 define the credential; the Federal PKI issues the card's certificates;
+# a derived PIV credential is bound from the card for a mobile device. Entra CBA is
+# how the agency accepts either; Conditional Access requires the phishing-resistant
+# strength. Users from other agencies arrive through B2B (home-tenant MFA claim) or a
+# partner SAML/WS-Fed identity provider. The HR leaver gate blocks sign-in at once and
+# revokes the card, whose CRL reaches Entra later.
+rankdir: TB
+graph: {nodesep: 0.15, ranksep: 0.35}
+nodes:
+  pol: {tone: violet, width: 200, tag: "Policy", title: "HSPD-12 and FIPS 201-3", body: ["=One credential for employees and contractors; M-19-17 makes it primary"], size: 12}
+  card: {tone: blue, width: 200, tag: "Credential", title: "PIV card", body: ["=PIV authentication certificate from a Federal PKI issuing CA under the Common Policy root"], size: 12}
+  der: {tone: blue, width: 200, tag: "Credential", title: "Derived PIV credential", body: ["=Bound by proving possession of the card; on a phone, delivered through Intune"], size: 12}
+  cba: {tone: blue, width: 200, tag: "Acceptance", title: "Entra certificate-based authentication", body: ["=Trust store and a CRL per CA, username binding, authentication binding"], size: 12}
+  ca: {tone: green, width: 200, tag: "Policy enforcement", title: "Conditional Access", body: ["=Phishing-resistant MFA authentication strength"], size: 12}
+  hr: {tone: red, width: 200, tag: "HR leaver gate", title: "Separation", body: ["=Disable and revoke sessions now; revoke the card and every derived credential"], size: 12}
+  apps: {tone: green, width: 200, title: "Agency applications", body: ["=SAML or OIDC, with Entra as the agency's identity provider"], size: 12}
+  b2b: {tone: slate, width: 200, title: "Another agency's Entra tenant", body: ["=B2B collaboration; inbound trust of its MFA claim"], size: 12}
+  saml: {tone: slate, width: 200, title: "Partner SAML or WS-Fed provider", body: ["=Guest federation; MFA grant control, not a strength"], size: 12}
+order:
+  - [pol]
+  - [card, der]
+  - [hr, cba]
+  - [b2b, ca, saml]
+  - [apps]
+edges:
+  - [pol, card]
+  - [card, der]
+  - [card, cba, {label: "PIV auth certificate", lw: 90}]
+  - [der, cba, {label: "own policy OID", lw: 90}]
+  - [cba, ca]
+  - [ca, apps]
+  - [b2b, ca, {style: dashed, label: "MFA claim", lw: 60}]
+  - [saml, ca, {style: dashed, label: "assertion", lw: 60}]
+  - [hr, card, {style: dashed, tone: red, label: "revoke, then CRL", lw: 100}]
+  - [hr, cba, {style: dashed, tone: red}]

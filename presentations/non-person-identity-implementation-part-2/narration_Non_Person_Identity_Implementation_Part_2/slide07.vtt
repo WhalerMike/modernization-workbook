@@ -1,0 +1,76 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.525
+A federated credential with the wrong
+subject is created without any error.
+
+2
+00:00:04.525 --> 00:00:07.900
+It fails only later, when
+the token exchange runs.
+
+3
+00:00:07.900 --> 00:00:12.322
+So the workbook's fifth chapter
+tests every exchange before cutover,
+
+4
+00:00:12.322 --> 00:00:14.262
+against a fake token endpoint.
+
+5
+00:00:14.262 --> 00:00:16.099
+Here two of six tests fail.
+
+6
+00:00:16.099 --> 00:00:19.925
+One credential copied a sample's
+issuer with a trailing slash,
+
+7
+00:00:19.925 --> 00:00:22.250
+and wrote Production with a capital P.
+
+8
+00:00:22.250 --> 00:00:25.038
+Another copied an audience
+with a leading space.
+
+9
+00:00:25.038 --> 00:00:28.076
+The conversion records
+track each parallel run.
+
+10
+00:00:28.076 --> 00:00:31.561
+One has run forty days cleanly,
+and its owner approved,
+
+11
+00:00:31.561 --> 00:00:33.700
+so it's the one disable in the plan.
+
+12
+00:00:33.700 --> 00:00:35.412
+Another is on day fifteen.
+
+13
+00:00:35.412 --> 00:00:39.825
+A third still signed in with its old
+secret eight weeks after cutover.
+
+14
+00:00:39.825 --> 00:00:42.725
+The sixth chapter plans
+the Kerberos accounts.
+
+15
+00:00:42.725 --> 00:00:47.781
+It creates group managed service accounts,
+completes one migration, and builds
+
+16
+00:00:47.781 --> 00:00:52.300
+the island list of accounts that stay,
+each with an owner and an end date.

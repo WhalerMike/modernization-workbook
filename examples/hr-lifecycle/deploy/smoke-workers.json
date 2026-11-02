@@ -1,0 +1,20 @@
+{
+  "_comment": "Synthetic workers for the test stage's smoke test (Building HR-Driven Identity, Chapter 08). Fictional people at a fictional employer; person numbers 990000 to 990003 are reserved for them in the HR test pod and match the test settings' personNumberPattern. hireOffsetDays counts from the joiner phase's date (--start). Never load these into a production HR feed.",
+  "schema": "fmp-hrlc-smoke-workers/1",
+  "legalEmployer": "Contoso Agency",
+  "workers": [
+    {"PersonNumber": "990000", "role": "manager", "FirstName": "Sam", "LastName": "Smoke-Manager", "JobName": "Program Manager", "JobCode": "PM-0100",
+     "DepartmentName": "Program Operations", "DepartmentCode": "ORG-100", "BusinessUnit": "Operations", "CostCenter": "CC-4100",
+     "ManagerPersonNumber": "", "PositionCategory": "PRO", "hireOffsetDays": -30},
+    {"PersonNumber": "990001", "role": "joiner", "FirstName": "Jo", "LastName": "Smoke-Joiner", "JobName": "Program Analyst", "JobCode": "PA-0343",
+     "DepartmentName": "Program Operations", "DepartmentCode": "ORG-100", "BusinessUnit": "Operations", "CostCenter": "CC-4100",
+     "ManagerPersonNumber": "990000", "PositionCategory": "PRO", "hireOffsetDays": 1},
+    {"PersonNumber": "990002", "role": "mover", "FirstName": "Mo", "LastName": "Smoke-Mover", "JobName": "Management Analyst", "JobCode": "MA-0343",
+     "DepartmentName": "Program Operations", "DepartmentCode": "ORG-100", "BusinessUnit": "Operations", "CostCenter": "CC-4100",
+     "ManagerPersonNumber": "990000", "PositionCategory": "PRO", "hireOffsetDays": -20,
+     "moveTo": {"DepartmentName": "Infrastructure Services", "DepartmentCode": "ORG-210", "BusinessUnit": "Technology", "CostCenter": "CC-5200"}},
+    {"PersonNumber": "990003", "role": "leaver", "FirstName": "Lee", "LastName": "Smoke-Leaver", "JobName": "IT Specialist", "JobCode": "IT-2210",
+     "DepartmentName": "Program Operations", "DepartmentCode": "ORG-100", "BusinessUnit": "Operations", "CostCenter": "CC-4100",
+     "ManagerPersonNumber": "990000", "PositionCategory": "TEC", "hireOffsetDays": -20}
+  ]
+}

@@ -1,0 +1,79 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.899
+A service account's events
+come from its owning
+
+2
+00:00:02.899 --> 00:00:05.675
+system and from credential
+expiry, not from HR.
+
+3
+00:00:05.675 --> 00:00:07.600
+The one exception is the sponsor.
+
+4
+00:00:07.600 --> 00:00:09.894
+When an owner leaves or changes roles,
+
+5
+00:00:09.894 --> 00:00:13.150
+the transfer starts at least
+ten business days ahead.
+
+6
+00:00:13.150 --> 00:00:17.029
+Make it a step in that person's
+HR mover and leaver workflows,
+
+7
+00:00:17.029 --> 00:00:18.850
+so nobody has to remember it.
+
+8
+00:00:18.850 --> 00:00:21.400
+An app with no named owner is an orphan.
+
+9
+00:00:21.400 --> 00:00:24.677
+It becomes Tier 1, the
+governance office takes it over,
+
+10
+00:00:24.677 --> 00:00:28.475
+and there are thirty days to find
+an owner or start retiring it.
+
+11
+00:00:28.475 --> 00:00:31.475
+On day thirty-one, access is suspended.
+
+12
+00:00:31.475 --> 00:00:35.401
+An AI agent is disabled as soon
+as the finding is confirmed,
+
+13
+00:00:35.401 --> 00:00:37.037
+because an agent can act.
+
+14
+00:00:37.037 --> 00:00:39.552
+Inactivity is a second orphan signal,
+
+15
+00:00:39.552 --> 00:00:43.688
+from a preview report of each
+service principal's last sign-in.
+
+16
+00:00:43.688 --> 00:00:47.076
+And owners review their app's
+permissions every quarter,
+
+17
+00:00:47.076 --> 00:00:49.940
+with at least two owners
+per app where possible.

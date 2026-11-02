@@ -1,0 +1,1024 @@
+{
+ "1": [
+  [
+   0.05,
+   4.388,
+   "Welcome to Part 1 of the implementation series for non-person identity."
+  ],
+  [
+   4.438,
+   2.55,
+   "When a person leaves, H R tells you."
+  ],
+  [
+   6.987,
+   3.138,
+   "When a service account's owner leaves, nothing tells you."
+  ],
+  [
+   10.125,
+   4.287,
+   "So this track has to build the record that H R provides for everyone else."
+  ],
+  [
+   14.412,
+   2.0,
+   "The guide does that in six gates."
+  ],
+  [
+   16.413,
+   15.812,
+   "For each gate, we'll cover what done means, the steps, the commands from the developer workbook's first labs and what they really print, the federal requirement and the evidence an I S S O keeps, what's available in the government clouds, and how to roll it back."
+  ],
+  [
+   32.225,
+   8.9,
+   "Part 1 takes the first three gates: inventory every non-person identity, decide each one's target, and set the credential rules."
+  ],
+  [
+   41.125,
+   8.463,
+   "Part 2 takes least privilege, conversion and the lifecycle, and then sequel Server, A I agents, evidence and rollback."
+  ],
+  [
+   49.587,
+   2.388,
+   "Design guidance is labeled as such."
+  ],
+  [
+   51.975,
+   2.525,
+   "And the workbook's code is illustrative."
+  ],
+  [
+   54.5,
+   3.513,
+   "It's tested against fixtures, not against a lyve tenant."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   2.087,
+   "Here are all six gates on one page."
+  ],
+  [
+   2.138,
+   7.537,
+   "The first is done when every non-person identity is listed, typed, and joined to a record with an owner and a sponsor."
+  ],
+  [
+   9.675,
+   5.763,
+   "The second is done when every identity has a target and a date, with high-risk accounts first."
+  ],
+  [
+   15.438,
+   9.238,
+   "The third is done when the tenant blocks new secrets and caps credential lifetimes, and existing credentials sit in a vault on a rotation calendar."
+  ],
+  [
+   24.675,
+   1.45,
+   "Part 2 picks up from there."
+  ],
+  [
+   26.125,
+   2.962,
+   "High-privilege grants are justified or removed."
+  ],
+  [
+   29.087,
+   5.287,
+   "Converted identities sign in without stored secrets, after a clean parallel run."
+  ],
+  [
+   34.375,
+   6.175,
+   "And the paths for owner changes, orphans, reviews and decommissioning run and leave records."
+  ],
+  [
+   40.55,
+   3.725,
+   "Each gate names the read-only validation kit checks that prove it."
+  ],
+  [
+   44.275,
+   1.425,
+   "One note on numbering."
+  ],
+  [
+   45.7,
+   3.075,
+   "The workbook's chapters use the project plan's gates."
+  ],
+  [
+   48.775,
+   6.25,
+   "Its Gate 0 and Gate 1 both fall inside the guide's first gate, and its Gate 2 is the second."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   4.975,
+   "Before the first gate, agree the record that every non-person identity joins to."
+  ],
+  [
+   5.025,
+   4.963,
+   "For this track, the source of truth is the owning system's record, not H R."
+  ],
+  [
+   9.988,
+   4.088,
+   "The system inventory is the master, and that's design guidance."
+  ],
+  [
+   14.075,
+   4.425,
+   "Each record carries a system or application I D as the join key."
+  ],
+  [
+   18.5,
+   7.263,
+   "Entra apps point at it through a service management reference, which Microsoft recommends because it survives one person leaving."
+  ],
+  [
+   25.762,
+   5.013,
+   "The record also names two technical owners, and a sponsor who is a federal employee."
+  ],
+  [
+   30.775,
+   8.55,
+   "It holds the identity's type and object I D, its target and decision date, its credential and where that's vaulted, and a risk tier."
+  ],
+  [
+   39.325,
+   2.538,
+   "Collecting all this needs reader roles only."
+  ],
+  [
+   41.862,
+   4.475,
+   "The checks sign in with a certificate or a managed identity, never a secret."
+  ],
+  [
+   46.337,
+   1.825,
+   "Most of this track is free."
+  ],
+  [
+   48.163,
+   6.062,
+   "Workload I D Premium adds Conditional Access and I D Protection for workload identities."
+  ],
+  [
+   54.225,
+   4.737,
+   "And in G C C, Entra I D runs in Microsoft's commercial cloud."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   1.962,
+   "The first gate starts with a warning."
+  ],
+  [
+   2.013,
+   5.0,
+   "Consent creates service principals, and Microsoft's own services provision more."
+  ],
+  [
+   7.013,
+   4.737,
+   "So the inventory is always larger than the list of apps anyone asked for."
+  ],
+  [
+   11.75,
+   8.062,
+   "In Active Directory, the read finds user accounts used as services, and the managed, group managed and delegated managed service accounts."
+  ],
+  [
+   19.812,
+   5.4,
+   "It records passwords that never expire, password age and service principal names."
+  ],
+  [
+   25.212,
+   4.737,
+   "Treat stale as a lead, not a verdict, until sign-in logs confirm it."
+  ],
+  [
+   29.95,
+   4.1,
+   "Record which hosts can retrieve each group managed account's password."
+  ],
+  [
+   34.05,
+   2.562,
+   "That list is its real blast radius."
+  ],
+  [
+   36.612,
+   3.225,
+   "In Entra, record each service principal's type."
+  ],
+  [
+   39.837,
+   5.975,
+   "A legacy one can hold credentials with no app registration, so an app-only review never sees it."
+  ],
+  [
+   45.812,
+   2.987,
+   "List managed identities with their role assignments."
+  ],
+  [
+   48.8,
+   4.35,
+   "User-assigned ones outlive their resources, so they're the type that orphans."
+  ],
+  [
+   53.15,
+   3.888,
+   "Export every federated credential's issuer and subject."
+  ],
+  [
+   57.038,
+   5.138,
+   "And list A I agents, including the ones that run as ordinary service principals."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   4.275,
+   "Next, every identity joins to a record in the system inventory."
+  ],
+  [
+   4.325,
+   4.3,
+   "For an app registration, use its service management reference where it's set."
+  ],
+  [
+   8.625,
+   4.088,
+   "Otherwise, search by name and owner, and then interview people."
+  ],
+  [
+   12.713,
+   3.663,
+   "Find the application owner before anyone touches the account."
+  ],
+  [
+   16.375,
+   3.325,
+   "An account nobody will own becomes a retirement candidate."
+  ],
+  [
+   19.7,
+   5.55,
+   "Every app registration and service principal gets two human owners, never service accounts."
+  ],
+  [
+   25.25,
+   4.713,
+   "Keep that list short, because an owner can add a credential and act as the app."
+  ],
+  [
+   29.962,
+   3.025,
+   "The business approver goes in the registry instead."
+  ],
+  [
+   32.987,
+   5.362,
+   "Every identity also gets a sponsor, who is a federal employee mastered in H R."
+  ],
+  [
+   38.35,
+   4.638,
+   "A contractor can build or run a workload, but can't be its only sponsor."
+  ],
+  [
+   42.987,
+   6.95,
+   "The Federal Modernization Workbook's Book 17 sets that rule for agents, and the program applies it to everything here."
+  ],
+  [
+   49.938,
+   6.375,
+   "And where the tenant doesn't expose the agent features, govern agents as the service principals they run as."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   3.288,
+   "The workbook's first chapter builds the register in code."
+  ],
+  [
+   3.337,
+   6.8,
+   "It starts from Microsoft Learn's own commands and export script, kept as pinned copies, and adds what they leave out."
+  ],
+  [
+   10.137,
+   4.425,
+   "Its lab runs on a fictional estate, with no tenant and no domain."
+  ],
+  [
+   14.562,
+   3.625,
+   "One run reads both directories and writes one register."
+  ],
+  [
+   18.188,
+   5.5,
+   "Here it finds thirty-five identities, fifteen in Active Directory and twenty in Entra."
+  ],
+  [
+   23.688,
+   1.45,
+   "Eight are high risk."
+  ],
+  [
+   25.137,
+   7.688,
+   "There are eight findings, eleven warnings, and three accounts handed to the Data Platform plan, because they belong to sequel Server."
+  ],
+  [
+   32.825,
+   2.725,
+   "The second command lists the high-risk rows."
+  ],
+  [
+   35.55,
+   3.712,
+   "A sync account's password hasn't changed in twenty-eight hundred days."
+  ],
+  [
+   39.263,
+   2.725,
+   "A backup account sits in Backup Operators."
+  ],
+  [
+   41.987,
+   3.525,
+   "A web front end is trusted for unconstrained delegation."
+  ],
+  [
+   45.513,
+   3.025,
+   "And one app holds a directory-wide write permission."
+  ],
+  [
+   48.538,
+   7.025,
+   "One account was found only because its password never expires, so it may be a person, and someone confirms that first."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   3.212,
+   "The second chapter checks ownership against that register."
+  ],
+  [
+   3.263,
+   6.075,
+   "It reads each owner once, and counts an owner only if it's a user, a member, and enabled."
+  ],
+  [
+   9.338,
+   3.025,
+   "A guest or another service principal doesn't count."
+  ],
+  [
+   12.363,
+   5.875,
+   "Against the fictional estate, it checks twenty-two identities and finds seven orphan candidates."
+  ],
+  [
+   18.238,
+   3.525,
+   "Two apps have no valid owner, and four have only one."
+  ],
+  [
+   21.762,
+   6.362,
+   "Six have no service management reference, and three point at a record that's free text, retired or unknown."
+  ],
+  [
+   28.125,
+   3.737,
+   "Five Active Directory accounts have no valid application owner."
+  ],
+  [
+   31.863,
+   3.575,
+   "Then it writes the orphan rule as a plan, and sends nothing."
+  ],
+  [
+   35.438,
+   6.088,
+   "There are ten actions, and three are writes: two disables, and one owner added from a claim."
+  ],
+  [
+   41.525,
+   3.275,
+   "Another claim is refused, because it named a guest."
+  ],
+  [
+   44.8,
+   2.625,
+   "A reviewer approves the plan by its hash."
+  ],
+  [
+   47.425,
+   5.2,
+   "The writes themselves belong to the orphan rule in gate six, which Part 2 covers."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   2.237,
+   "Here's the federal side of the first gate."
+  ],
+  [
+   2.288,
+   6.537,
+   "Account management treats non-person identities as a defined account type, each with an owner and a sponsor."
+  ],
+  [
+   8.825,
+   5.438,
+   "The evidence is this gate's record, plus the kit runs for owners and agent sponsors."
+  ],
+  [
+   14.262,
+   6.713,
+   "Identifier management means each identity has its own identifier, joined to its record and never reused."
+  ],
+  [
+   20.975,
+   2.625,
+   "To validate, four read-only checks run."
+  ],
+  [
+   23.6,
+   8.15,
+   "One lists Active Directory accounts whose passwords never expire or are too old, each joined to a record or listed as unowned."
+  ],
+  [
+   31.75,
+   5.325,
+   "One reports zero apps with no owner, and a dated finding for any with just one."
+  ],
+  [
+   37.075,
+   3.913,
+   "One lists every managed identity and its role assignments."
+  ],
+  [
+   40.987,
+   5.013,
+   "And one lists agent identities with their sponsors, where the tenant exposes them."
+  ],
+  [
+   46.0,
+   3.737,
+   "The inventory's Graph reads are listed for the government clouds."
+  ],
+  [
+   49.737,
+   6.213,
+   "Agent identities are generally available in commercial, and in G C C with documented gaps."
+  ],
+  [
+   55.95,
+   4.075,
+   "And there's nothing to roll back, because the inventory only reads."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   3.8,
+   "The second gate gives every identity one of five ends."
+  ],
+  [
+   3.85,
+   1.0,
+   "Retire it."
+  ],
+  [
+   4.85,
+   6.7,
+   "Convert it to a group managed service account, or a delegated one on a Windows Server 2025 domain."
+  ],
+  [
+   11.55,
+   4.9,
+   "Or move it to a managed identity, a federated credential, or a certificate."
+  ],
+  [
+   16.45,
+   4.95,
+   "Book 02's matrix decides by account type, and by where the workload runs."
+  ],
+  [
+   21.4,
+   1.55,
+   "No stored secrets."
+  ],
+  [
+   22.95,
+   2.737,
+   "Managed identities for workloads in Azure."
+  ],
+  [
+   25.688,
+   8.363,
+   "Federation where the workload already has a trusted issuer, such as GitHub Actions, Kubernetes, Google Cloud or AWS."
+  ],
+  [
+   34.05,
+   2.688,
+   "And certificates only where neither applies."
+  ],
+  [
+   36.737,
+   7.213,
+   "A managed service account is upgraded to a group managed one first, because neither can move to a delegated account later."
+  ],
+  [
+   43.95,
+   5.925,
+   "An app with a client secret moves to a managed identity, then federation, then a certificate."
+  ],
+  [
+   49.875,
+   1.762,
+   "High-risk accounts go first."
+  ],
+  [
+   51.638,
+   2.312,
+   "And plan ahead for group managed accounts."
+  ],
+  [
+   53.95,
+   6.025,
+   "They need a key distribution root key, and domain controllers can wait up to ten hours after it's created."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   5.55,
+   "The workbook's third chapter holds the matrix as reviewed data, and keeps three things apart."
+  ],
+  [
+   5.6,
+   3.275,
+   "The proposal is the matrix's target for each account."
+  ],
+  [
+   8.875,
+   6.875,
+   "The disposition is the application owner's decision: retire, re-platform, or keep, with an end date."
+  ],
+  [
+   15.75,
+   2.612,
+   "And the gate is the I S S O's."
+  ],
+  [
+   18.363,
+   3.587,
+   "The lab runs the first two chapters, then the matrix."
+  ],
+  [
+   21.95,
+   3.712,
+   "Twenty-one identities are in scope, and twenty get a proposal."
+  ],
+  [
+   25.663,
+   3.575,
+   "Eighteen of twenty-two have a decision, and two waves are planned."
+  ],
+  [
+   29.238,
+   2.812,
+   "The gate isn't met, and the findings say why."
+  ],
+  [
+   32.05,
+   3.612,
+   "A high-risk sync account sits in wave two, not wave one."
+  ],
+  [
+   35.663,
+   1.775,
+   "One account has no decision."
+  ],
+  [
+   37.438,
+   4.25,
+   "An account kept on Kerberos has no owner for its service principal name."
+  ],
+  [
+   41.688,
+   4.85,
+   "A kept delegated account has no end date before Active Directory retires."
+  ],
+  [
+   46.538,
+   3.975,
+   "One app has no proposal, because nobody recorded where it runs."
+  ],
+  [
+   50.513,
+   2.188,
+   "Wave two has no rollback owner."
+  ],
+  [
+   52.7,
+   4.963,
+   "And a multitenant app is on the premium list, though Conditional Access can't cover it."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   3.737,
+   "The guide's evidence table maps by requirement, not by gate."
+  ],
+  [
+   3.788,
+   2.663,
+   "So which rows this gate feeds is our reading."
+  ],
+  [
+   6.45,
+   7.975,
+   "The decisions set the order that authenticator management asks for: managed identities and federation first, and no new secrets."
+  ],
+  [
+   14.425,
+   4.85,
+   "Retire decisions lead to disabled accounts, which account management asks for."
+  ],
+  [
+   19.275,
+   4.237,
+   "And Book 02's fourth phase is the books' gate for service accounts."
+  ],
+  [
+   23.512,
+   4.55,
+   "To validate, every row in the record has a target and a decide-by date."
+  ],
+  [
+   28.062,
+   6.013,
+   "The kit check for Active Directory accounts shows every high-risk one in the first wave, or retired."
+  ],
+  [
+   34.075,
+   3.112,
+   "The check for secrets lists each app that holds one."
+  ],
+  [
+   37.188,
+   4.162,
+   "Each has a credential target, or an exception that says why it can't move."
+  ],
+  [
+   41.35,
+   6.412,
+   "Workload I D Premium is available in Azure Government through the account manager, but its free trial isn't."
+  ],
+  [
+   47.763,
+   7.775,
+   "The interim path is an account kept on Kerberos, islanded, with an owner and an end date the authorizing official accepts."
+  ],
+  [
+   55.538,
+   1.875,
+   "To roll back, re-decide."
+  ],
+  [
+   57.413,
+   1.775,
+   "The record keeps the history."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   2.4,
+   "The third gate sets the credential rules."
+  ],
+  [
+   2.45,
+   1.975,
+   "They're design guidance from the books."
+  ],
+  [
+   4.425,
+   1.825,
+   "No long-lived secrets."
+  ],
+  [
+   6.25,
+   4.9,
+   "Managed identities first, then federated credentials, then certificates."
+  ],
+  [
+   11.15,
+   3.812,
+   "And every certificate in a vault, on a rotation calendar."
+  ],
+  [
+   14.963,
+   3.7,
+   "Step one turns on the tenant's default app management policy."
+  ],
+  [
+   18.663,
+   6.325,
+   "It blocks new password secrets and symmetric keys, and caps new certificates at a hundred and eighty days."
+  ],
+  [
+   24.988,
+   2.487,
+   "Those are Microsoft's recommended settings."
+  ],
+  [
+   27.475,
+   6.525,
+   "Each restriction applies only to apps created after a chosen date, so set it to the policy's effective date."
+  ],
+  [
+   34.0,
+   3.55,
+   "The panel shows the workbook's diff against a fictional tenant."
+  ],
+  [
+   37.55,
+   9.012,
+   "Its default policy is off, so turning it on is a change, and every restriction is an add, for both application and service principal objects."
+  ],
+  [
+   46.562,
+   3.75,
+   "A restriction the tenant already had is kept, never dropped."
+  ],
+  [
+   50.312,
+   3.962,
+   "Existing workloads rotate at least yearly while they're fixed."
+  ],
+  [
+   54.275,
+   4.237,
+   "New ones start under the cap, which meets the scuba certificate policy."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   3.112,
+   "The rest of the third gate is about where credentials liv."
+  ],
+  [
+   3.163,
+   5.138,
+   "Keep private keys in Azure Key Vault or a hardware module, never on a file share."
+  ],
+  [
+   8.3,
+   8.3,
+   "Key Vault renews a certificate automatically only when it's self-signed, or comes from a partnered authority, DigiCert or GlobalSign."
+  ],
+  [
+   16.6,
+   6.263,
+   "Certificates from an agency's own authority aren't renewed, though the vault can email before they expire."
+  ],
+  [
+   22.863,
+   4.7,
+   "And a renewed certificate in the vault doesn't change the app registration by itself."
+  ],
+  [
+   27.562,
+   6.05,
+   "Microsoft's own procedure for sequel Server on Arc uploads the new certificate as a separate step."
+  ],
+  [
+   33.612,
+   4.338,
+   "So automate that upload, or make it a named owner's task with a date."
+  ],
+  [
+   37.95,
+   2.263,
+   "A client secret is an exception."
+  ],
+  [
+   40.212,
+   6.65,
+   "The governance office and the see-so approve it, it lasts at most six months, and it's never renewed automatically."
+  ],
+  [
+   46.862,
+   6.013,
+   "A traditional account that has to stay gets a long random password in the vault, an owner and a date."
+  ],
+  [
+   52.875,
+   5.75,
+   "And a new federated credential is a credential change, approved and recorded like any other."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   6.812,
+   "The workbook's fourth chapter holds the policy as a reviewed file, compares it with the tenant, and plans the difference."
+  ],
+  [
+   6.862,
+   4.55,
+   "Against the fictional tenant, the diff has six adds and one change."
+  ],
+  [
+   11.412,
+   8.213,
+   "The plan has eight writes: the default policy, one dated exception policy and its assignment, and the property lock on five apps."
+  ],
+  [
+   19.625,
+   4.175,
+   "Nothing is sent, and the write path can't loosen or drop a restriction."
+  ],
+  [
+   23.8,
+   3.987,
+   "Then the rotation plan joins Key Vault to the app registrations."
+  ],
+  [
+   27.788,
+   4.787,
+   "A rotation is raised sixty days before expiry, and an owner approves it."
+  ],
+  [
+   32.575,
+   1.8,
+   "The vault makes the next version."
+  ],
+  [
+   34.375,
+   2.75,
+   "The new certificate goes on beside the old one."
+  ],
+  [
+   37.125,
+   5.575,
+   "The owner confirms the workload signs in with it, and seven days later the old one comes off."
+  ],
+  [
+   42.7,
+   5.45,
+   "Here, one certificate renews in the vault, one is attached, and one is removed."
+  ],
+  [
+   48.15,
+   4.75,
+   "One app's certificate isn't in the vault at all, and three apps still hold secrets."
+  ],
+  [
+   52.9,
+   2.45,
+   "Secrets are replaced, not rotated."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   4.15,
+   "On the federal side, authenticator management is the main requirement."
+  ],
+  [
+   4.2,
+   6.688,
+   "The evidence is the policy export, the kit runs for credentials and secrets, and the rotation calendar."
+  ],
+  [
+   10.887,
+   7.562,
+   "The policy also meets three scuba policies: no app passwords, and capped password and certificate lifetimes."
+  ],
+  [
+   18.45,
+   6.412,
+   "They're SHOULD policies in ScubaGear, not required configurations, and their report is filed with the gate."
+  ],
+  [
+   24.863,
+   6.162,
+   "Audit requirements cover credential changes, so the entries for added credentials are logged and reviewed."
+  ],
+  [
+   31.025,
+   6.225,
+   "To validate, the credential check shows nothing issued after the effective date that runs longer than the cap."
+  ],
+  [
+   37.25,
+   5.062,
+   "Every credential that expires within sixty days has an owner and a renewal date."
+  ],
+  [
+   42.312,
+   6.85,
+   "The secrets check shows each app still on a secret is in a conversion wave, or has an exception with an end date."
+  ],
+  [
+   49.163,
+   5.438,
+   "App management policies are free, and Microsoft lists their calls for the government clouds."
+  ],
+  [
+   54.6,
+   6.412,
+   "To roll back, give one application a policy exception with an end date, in the exception register."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   4.9,
+   "To close Part 1, here's what each gate leaves behind, and where Part 2 picks it up."
+  ],
+  [
+   4.95,
+   7.3,
+   "The first gate leaves the record, with owners, sponsors and risk, plus the register and the sequel Server hand-off."
+  ],
+  [
+   12.25,
+   3.812,
+   "Gate four restores a removed grant only from that export."
+  ],
+  [
+   16.062,
+   2.225,
+   "Gate six runs the orphan rule."
+  ],
+  [
+   18.288,
+   6.862,
+   "The second gate leaves a target and a date for every row, the waves and their rollback, and the premium license scope."
+  ],
+  [
+   25.15,
+   5.487,
+   "Gate four puts the most important single-tenant service principals under workload policies."
+  ],
+  [
+   30.637,
+   4.463,
+   "Gate five converts wave by wave, with a thirty-day parallel run."
+  ],
+  [
+   35.1,
+   5.825,
+   "The third gate leaves the policy, the rotation calendar, the exceptions and the scuba result."
+  ],
+  [
+   40.925,
+   7.463,
+   "Gate five drops a secret only after the new credential carries real traffic, and gate six checks credentials every week."
+  ],
+  [
+   48.388,
+   6.875,
+   "To build Part 1's code, use the developer workbook, Building Non-Person Identity, chapters one to four."
+  ],
+  [
+   55.263,
+   2.612,
+   "Each has its labs and a narrated tour."
+  ]
+ ]
+}

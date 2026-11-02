@@ -1,0 +1,95 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.653
+Least privilege applies to software too,
+
+2
+00:00:02.653 --> 00:00:06.175
+and a workload can use its
+access faster than any person.
+
+3
+00:00:06.175 --> 00:00:08.887
+The guide cuts privilege in five places.
+
+4
+00:00:08.887 --> 00:00:10.837
+First, Graph permissions.
+
+5
+00:00:10.837 --> 00:00:14.163
+Prefer delegated permissions
+where a user is present.
+
+6
+00:00:14.163 --> 00:00:16.752
+Judge each grant by
+its type, not its name,
+
+7
+00:00:16.752 --> 00:00:20.675
+because Mail Send as an
+application permission is critical.
+
+8
+00:00:20.675 --> 00:00:23.850
+An application permission
+reaches across the whole tenant.
+
+9
+00:00:23.850 --> 00:00:27.421
+And removing a permission from
+the app doesn't revoke the grant,
+
+10
+00:00:27.421 --> 00:00:29.550
+so revoke it on the enterprise app too.
+
+11
+00:00:29.550 --> 00:00:31.550
+Second, directory roles.
+
+12
+00:00:31.550 --> 00:00:35.200
+No standing privileged role
+unless the record justifies it.
+
+13
+00:00:35.200 --> 00:00:38.638
+A privileged service principal
+is a control-plane asset.
+
+14
+00:00:38.638 --> 00:00:43.513
+Third, Azure roles, scoped to
+the one resource a workload uses.
+
+15
+00:00:43.513 --> 00:00:48.800
+Fourth, custom security attributes, so
+Conditional Access can pick apps by fact.
+
+16
+00:00:48.800 --> 00:00:52.563
+Fifth, workload Conditional
+Access, with real limits.
+
+17
+00:00:52.563 --> 00:00:54.374
+Block is the only control.
+
+18
+00:00:54.374 --> 00:00:58.437
+It covers only single-tenant
+apps, never managed identities,
+
+19
+00:00:58.437 --> 00:01:01.362
+and only when each one
+is assigned directly.
+
+20
+00:01:01.362 --> 00:01:03.720
+And new grants go through
+the tiered approval.
