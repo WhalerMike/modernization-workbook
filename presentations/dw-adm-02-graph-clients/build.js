@@ -259,10 +259,10 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: Learn's snippets, the endpoints, the call list",
       body: [
-        { cols: [[{ terminal: "02-1", lines: "1,3", kit: "examples/ms-automation" }], [{ terminal: "02-4", lines: "1,8", kit: "examples/ms-automation" }]], split: 0.46 },
+        { cols: [[{ terminal: "02-1", lines: "1,3", kit: "examples/ms-automation" }], [{ terminal: "02-4", lines: "1,6", kit: "examples/ms-automation" }]], split: 0.46 },
         { terminal: "02-3", lines: "1-2", kit: "examples/ms-automation" },
         { terminal: "02-5", kit: "examples/ms-automation" },
-        { terminal: "02-6", lines: "1,11", kit: "examples/ms-automation" },
+        { terminal: "02-6", lines: "1,8", kit: "examples/ms-automation" },
       ],
       sources: "Sources: examples/ms-automation (tests and fixtures, fictional). Chapter 02, “Lab 1: fixtures, no tenant,” steps 1–4.",
       say: `Lab 1 needs only a laptop, with Python and PowerShell, and no tenant. First you run Microsoft's own snippets against the stand-ins, and read the test that proves the Python credential gets no authority. Then you print the endpoints for this estate, and see that nothing for GCC is a dot-u-s host, and that a misspelled cloud name is an error, not a default. Then you list a task's permissions from its calls, and try a call the task never declared. It's refused before anything is sent.`,
