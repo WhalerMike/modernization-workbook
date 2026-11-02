@@ -1,7 +1,7 @@
 ---
 title: "Training"
 subtitle: "Learning paths: modules to work through in order, and the vendors' own training mapped to the workbook's roles"
-description: "The Federal Modernization Workbook's training: the Microsoft Automation learning path in three modules, the Ticket-to-Machine and HR-Driven Identity learning paths in seven modules each, the Privileged Access learning path in eight modules, and external learning paths from product vendors."
+description: "The Federal Modernization Workbook's training: the Microsoft Automation learning path in three modules, the Ticket-to-Machine and HR-Driven Identity learning paths in seven modules each, the Privileged Access learning path in eight modules, the Attribute-Driven Migration learning path in nine modules, and external learning paths from product vendors."
 doc-type: section-landing
 fmw-eyebrow: "Training"
 listing:
@@ -33,6 +33,7 @@ listing:
       - "!ticket-to-machine/**"
       - "!hr-driven-identity/**"
       - "!privileged-access/**"
+      - "!attribute-driven-migration/**"
     type: table
     fields: [title, research-status, last-reviewed, description]
     field-display-names: *names
@@ -106,6 +107,10 @@ Seven modules, one per gate of the [HR-driven identity implementation guide](../
 ## Privileged Access learning path
 
 Eight modules, one per chapter of the developer workbook [*Building Privileged Access*](../project-plans/developer-workbooks/privileged-access/index.md), each with a lab on fixtures and a lab in your own test tenant. There's no implementation guide for this track, so the path follows the workbook and the [project plan](../project-plans/privileged-access.md). Emergency access comes first, and every module that writes has a guard against locking people out. Start at the [learning path](privileged-access/index.md).
+
+## Attribute-Driven Migration learning path
+
+Nine modules that teach [Book 19, *Building the Attribute-Driven Migration*](../books/b19-developer-workbook/index.md), one chapter each, in the order of the [implementation guide's](../books/guides/attribute-driven-migration-implementation.md) gates. Each runs the chapter's Lab 1 on fixtures, points to its Lab 2 in a non-production environment, names the federal requirement with its KSI and evidence, and ends with a knowledge check. Chapter 02 is taught by the Microsoft Automation path's [Module 1](ms-automation-foundations.md). Start at the [learning path](attribute-driven-migration/index.md).
 
 ## External learning paths
 
