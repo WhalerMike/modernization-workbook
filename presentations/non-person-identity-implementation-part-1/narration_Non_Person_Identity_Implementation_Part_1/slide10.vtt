@@ -1,0 +1,86 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.847
+The workbook's third chapter
+holds the matrix as reviewed data,
+
+2
+00:00:03.847 --> 00:00:05.600
+and keeps three things apart.
+
+3
+00:00:05.600 --> 00:00:08.875
+The proposal is the matrix's
+target for each account.
+
+4
+00:00:08.875 --> 00:00:12.704
+The disposition is the
+application owner's decision:
+
+5
+00:00:12.704 --> 00:00:15.750
+retire, re-platform, or
+keep, with an end date.
+
+6
+00:00:15.750 --> 00:00:18.362
+And the gate is the ISSO's.
+
+7
+00:00:18.362 --> 00:00:21.950
+The lab runs the first two
+chapters, then the matrix.
+
+8
+00:00:21.950 --> 00:00:25.662
+Twenty-one identities are in
+scope, and twenty get a proposal.
+
+9
+00:00:25.662 --> 00:00:29.238
+Eighteen of twenty-two have a
+decision, and two waves are planned.
+
+10
+00:00:29.238 --> 00:00:32.050
+The gate isn't met, and
+the findings say why.
+
+11
+00:00:32.050 --> 00:00:35.662
+A high-risk sync account sits
+in wave two, not wave one.
+
+12
+00:00:35.662 --> 00:00:37.438
+One account has no decision.
+
+13
+00:00:37.438 --> 00:00:41.688
+An account kept on Kerberos has no
+owner for its service principal name.
+
+14
+00:00:41.688 --> 00:00:46.538
+A kept delegated account has no end
+date before Active Directory retires.
+
+15
+00:00:46.538 --> 00:00:50.513
+One app has no proposal, because
+nobody recorded where it runs.
+
+16
+00:00:50.513 --> 00:00:52.701
+Wave two has no rollback owner.
+
+17
+00:00:52.701 --> 00:00:55.252
+And a multitenant app
+is on the premium list,
+
+18
+00:00:55.252 --> 00:00:57.720
+though Conditional Access can't cover it.

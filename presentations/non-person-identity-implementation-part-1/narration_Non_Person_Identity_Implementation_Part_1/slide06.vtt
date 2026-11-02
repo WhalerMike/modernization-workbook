@@ -1,0 +1,83 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.338
+The workbook's first chapter
+builds the register in code.
+
+2
+00:00:03.338 --> 00:00:07.171
+It starts from Microsoft Learn's
+own commands and export script,
+
+3
+00:00:07.171 --> 00:00:10.137
+kept as pinned copies, and
+adds what they leave out.
+
+4
+00:00:10.137 --> 00:00:14.562
+Its lab runs on a fictional estate,
+with no tenant and no domain.
+
+5
+00:00:14.562 --> 00:00:18.187
+One run reads both directories
+and writes one register.
+
+6
+00:00:18.187 --> 00:00:20.589
+Here it finds thirty-five identities,
+
+7
+00:00:20.589 --> 00:00:23.688
+fifteen in Active Directory
+and twenty in Entra.
+
+8
+00:00:23.688 --> 00:00:25.138
+Eight are high risk.
+
+9
+00:00:25.138 --> 00:00:28.734
+There are eight findings, eleven
+warnings, and three accounts
+
+10
+00:00:28.734 --> 00:00:32.825
+handed to the Data Platform plan,
+because they belong to SQL Server.
+
+11
+00:00:32.825 --> 00:00:35.550
+The second command lists
+the high-risk rows.
+
+12
+00:00:35.550 --> 00:00:39.262
+A sync account's password hasn't
+changed in twenty-eight hundred days.
+
+13
+00:00:39.262 --> 00:00:41.988
+A backup account sits in Backup Operators.
+
+14
+00:00:41.988 --> 00:00:45.512
+A web front end is trusted
+for unconstrained delegation.
+
+15
+00:00:45.512 --> 00:00:48.538
+And one app holds a
+directory-wide write permission.
+
+16
+00:00:48.538 --> 00:00:52.383
+One account was found only because
+its password never expires,
+
+17
+00:00:52.383 --> 00:00:55.630
+so it may be a person, and
+someone confirms that first.

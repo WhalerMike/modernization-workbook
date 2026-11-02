@@ -1,0 +1,79 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.958
+On the federal side, authenticator management
+calls for the kit runs on expiring
+
+2
+00:00:04.958 --> 00:00:10.013
+secrets and secret use, the app management
+policy export, and the rotation calendar.
+
+3
+00:00:10.013 --> 00:00:13.783
+Service identification calls
+for each workload's permission
+
+4
+00:00:13.783 --> 00:00:17.337
+grants and its sign-in log, which
+also shows the parallel run.
+
+5
+00:00:17.337 --> 00:00:21.764
+Book 02 adds three tests: no
+stored secrets where possible,
+
+6
+00:00:21.764 --> 00:00:26.099
+no outage during the run, and
+workload policies enforced.
+
+7
+00:00:26.099 --> 00:00:29.148
+To validate, one kit check
+confirms no high-risk
+
+8
+00:00:29.148 --> 00:00:32.275
+account still has a password
+that never expires.
+
+9
+00:00:32.275 --> 00:00:36.025
+Another confirms the converted
+apps no longer hold secrets.
+
+10
+00:00:36.025 --> 00:00:38.835
+Creating a federated
+credential and reading
+
+11
+00:00:38.835 --> 00:00:41.350
+sign-ins work in the US Government clouds.
+
+12
+00:00:41.350 --> 00:00:46.063
+A delegated managed service
+account needs Windows Server 2025.
+
+13
+00:00:46.063 --> 00:00:49.889
+Until an account can move, it
+stays on the Kerberos island,
+
+14
+00:00:49.889 --> 00:00:51.762
+with an owner and an end date.
+
+15
+00:00:51.762 --> 00:00:55.438
+To roll back, re-enable the
+old account and revert the app.
+
+16
+00:00:55.438 --> 00:00:58.390
+That stays possible until
+the account is deleted.

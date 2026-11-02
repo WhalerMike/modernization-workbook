@@ -1,0 +1,929 @@
+{
+ "1": [
+  [
+   0.05,
+   4.487,
+   "Welcome to Part 2 of the implementation series for non-person identity."
+  ],
+  [
+   4.537,
+   5.888,
+   "That means every identity that isn't a person, from an old service account to an A I agent."
+  ],
+  [
+   10.425,
+   8.075,
+   "Part 1 listed every one of them, gave each an owner and a sponsor, decided where each one goes, and set the credential rules."
+  ],
+  [
+   18.5,
+   2.55,
+   "Part 2 covers the last three gates."
+  ],
+  [
+   21.05,
+   1.863,
+   "First, cutting privilege."
+  ],
+  [
+   22.913,
+   4.112,
+   "Then converting each identity to its target, with a parallel run."
+  ],
+  [
+   27.025,
+   4.25,
+   "Then running the lifecycle, from an owner change to a clean decommission."
+  ],
+  [
+   31.275,
+   5.838,
+   "After that come sequel Server and A I agents, and finally the evidence and the rollback."
+  ],
+  [
+   37.112,
+   2.125,
+   "The format is the same as Part 1."
+  ],
+  [
+   39.237,
+   11.412,
+   "Each gate gets its steps, the workbook's lab commands with the kit's real output, the federal requirement and evidence, availability in the government clouds, an interim path, and a rollback."
+  ],
+  [
+   50.65,
+   5.55,
+   "Design guidance is labeled, and the code is tested against fixtures, not a lyve tenant."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   2.538,
+   "Here are Part 2's three gates on one page."
+  ],
+  [
+   2.587,
+   10.662,
+   "The least privilege gate is done when every high-privilege grant is justified or removed, and every Tier 1 app registered in your own tenant has a workload Conditional Access policy."
+  ],
+  [
+   13.25,
+   8.938,
+   "The conversion gate is done when converted identities sign in without stored secrets, and the legacy accounts are disabled after a clean parallel run."
+  ],
+  [
+   22.188,
+   7.388,
+   "The lifecycle gate is done when the owner change, orphan, review and decommission paths have all run and left records."
+  ],
+  [
+   29.575,
+   4.475,
+   "Each gate names the read-only kit checks that prove it, and each has a rollback."
+  ],
+  [
+   34.05,
+   1.825,
+   "Together they finish the track."
+  ],
+  [
+   35.875,
+   4.775,
+   "Every identity has an owner, a sponsor, a reason and a target."
+  ],
+  [
+   40.65,
+   6.25,
+   "Each one is retired, moved to a managed identity, or given a certificate or a federated credential."
+  ],
+  [
+   46.9,
+   4.7,
+   "And none holds a password that never expires, or is left without an owner."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   6.125,
+   "Least privilege applies to software too, and a workload can use its access faster than any person."
+  ],
+  [
+   6.175,
+   2.712,
+   "The guide cuts privilege in five places."
+  ],
+  [
+   8.887,
+   1.95,
+   "First, Graph permissions."
+  ],
+  [
+   10.838,
+   3.325,
+   "Prefer delegated permissions where a user is present."
+  ],
+  [
+   14.162,
+   6.513,
+   "Judge each grant by its type, not its name, because Mail Send as an application permission is critical."
+  ],
+  [
+   20.675,
+   3.175,
+   "An application permission reaches across the whole tenant."
+  ],
+  [
+   23.85,
+   5.7,
+   "And removing a permission from the app doesn't revoke the grant, so revoke it on the enterprise app too."
+  ],
+  [
+   29.55,
+   2.0,
+   "Second, directory roles."
+  ],
+  [
+   31.55,
+   3.65,
+   "No standing privileged role unless the record justifies it."
+  ],
+  [
+   35.2,
+   3.438,
+   "A privileged service principal is a control-plane asset."
+  ],
+  [
+   38.638,
+   4.875,
+   "Third, Azure roles, scoped to the one resource a workload uses."
+  ],
+  [
+   43.513,
+   5.287,
+   "Fourth, custom security attributes, so Conditional Access can pick apps by fact."
+  ],
+  [
+   48.8,
+   3.763,
+   "Fifth, workload Conditional Access, with real limits."
+  ],
+  [
+   52.562,
+   1.812,
+   "Block is the only control."
+  ],
+  [
+   54.375,
+   6.987,
+   "It covers only single-tenant apps, never managed identities, and only when each one is assigned directly."
+  ],
+  [
+   61.362,
+   2.3,
+   "And new grants go through the tiered approval."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   3.312,
+   "The workbook's seventh chapter sweeps every grant."
+  ],
+  [
+   3.362,
+   6.213,
+   "It reads app roles, delegated grants, directory roles and Azure roles for each service principal."
+  ],
+  [
+   9.575,
+   6.062,
+   "On the fictional estate it finds eleven service principals and twenty grants, with seven findings."
+  ],
+  [
+   15.637,
+   6.088,
+   "Three can grant themselves more, or hold an admin role, so they go to the Privileged Access plan instead."
+  ],
+  [
+   21.725,
+   4.812,
+   "The plan has three writes: two app role removals and one narrowed grant."
+  ],
+  [
+   26.538,
+   6.775,
+   "Each removal goes through the resource, never the app, and nothing is sent until a reviewer approves the plan's hash."
+  ],
+  [
+   33.312,
+   5.05,
+   "The eighth chapter keeps the two workload policies as reviewed files, one per ring."
+  ],
+  [
+   38.362,
+   3.038,
+   "Every policy is created in report-only mode."
+  ],
+  [
+   41.4,
+   1.775,
+   "Then it reads the sign-ins."
+  ],
+  [
+   43.175,
+   1.163,
+   "Ring one is ready."
+  ],
+  [
+   44.337,
+   4.85,
+   "Ring two isn't, because one workload signed in from outside its known networks."
+  ],
+  [
+   49.188,
+   4.425,
+   "Enforcement waits for the see-so's decision and a reviewed sign-in summary."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   10.887,
+   "On the federal side, least privilege and the review of privileged accounts call for the kit runs, with a justification for every high grant, and the results of the pim access reviews."
+  ],
+  [
+   10.938,
+   11.3,
+   "sis-uh's baseline requires that only administrators register apps, that user consent is restricted, and that an admin consent workflow is in place, so keep the ScubaGear report."
+  ],
+  [
+   22.238,
+   2.625,
+   "To validate, run three kit checks."
+  ],
+  [
+   24.863,
+   5.05,
+   "One lists every high-privilege grant, and each must be justified or removed."
+  ],
+  [
+   29.913,
+   6.575,
+   "One lists single-tenant apps outside a directly assigned policy, and no Tier 1 app may be on it."
+  ],
+  [
+   36.487,
+   3.425,
+   "One looks for managed identities with broad Azure roles."
+  ],
+  [
+   39.913,
+   6.412,
+   "Workload I D Premium is available in Azure Government through the account manager, but its free trial isn't."
+  ],
+  [
+   46.325,
+   4.388,
+   "Without Premium, existing policies keep working but can't be edited."
+  ],
+  [
+   50.712,
+   6.112,
+   "To roll back, set the policy back to report-only, and restore a removed grant through approval."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   5.412,
+   "Conversion follows the Federal Modernization Workbook's Book 02's fourth phase."
+  ],
+  [
+   5.463,
+   7.475,
+   "It takes six to eight weeks, and the order is a managed identity first, then a federated credential, then a certificate."
+  ],
+  [
+   12.938,
+   1.938,
+   "Step one builds the target."
+  ],
+  [
+   14.875,
+   4.237,
+   "A federated credential must be tested with a real token exchange."
+  ],
+  [
+   19.113,
+   3.837,
+   "Step two names two human owners and a rotation schedule."
+  ],
+  [
+   22.95,
+   3.975,
+   "Step three runs old and new side by side for thirty days."
+  ],
+  [
+   26.925,
+   4.537,
+   "The application uses the new identity, and the old account stays enabled."
+  ],
+  [
+   31.462,
+   5.925,
+   "Watch the new identity's sign-ins in Entra, and the old account's logons on the domain controllers."
+  ],
+  [
+   37.388,
+   3.6,
+   "Step four disables the old account, but never deletes it."
+  ],
+  [
+   40.987,
+   3.35,
+   "An Active Directory account moves to a holding container."
+  ],
+  [
+   44.337,
+   4.675,
+   "A secret is removed only after the new credential has carried real traffic."
+  ],
+  [
+   49.013,
+   5.525,
+   "Step five records the result: the target, the date, and the disabled object's I D."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   4.475,
+   "A federated credential with the wrong subject is created without any error."
+  ],
+  [
+   4.525,
+   3.375,
+   "It fails only later, when the token exchange runs."
+  ],
+  [
+   7.9,
+   6.362,
+   "So the workbook's fifth chapter tests every exchange before cutover, against a fake token endpoint."
+  ],
+  [
+   14.262,
+   1.837,
+   "Here two of six tests fail."
+  ],
+  [
+   16.1,
+   6.15,
+   "One credential copied a sample's issuer with a trailing slash, and wrote Production with a capital P."
+  ],
+  [
+   22.25,
+   2.788,
+   "Another copied an audience with a leading space."
+  ],
+  [
+   25.038,
+   3.038,
+   "The conversion records track each parallel run."
+  ],
+  [
+   28.075,
+   5.625,
+   "One has run forty days cleanly, and its owner approved, so it's the one disable in the plan."
+  ],
+  [
+   33.7,
+   1.712,
+   "Another is on day fifteen."
+  ],
+  [
+   35.413,
+   4.412,
+   "A third still signed in with its old secret eight weeks after cutover."
+  ],
+  [
+   39.825,
+   2.9,
+   "The sixth chapter plans the Kerberos accounts."
+  ],
+  [
+   42.725,
+   9.5,
+   "It creates group managed service accounts, completes one migration, and builds the island list of accounts that stay, each with an owner and an end date."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   9.963,
+   "On the federal side, authenticator management calls for the kit runs on expiring secrets and secret use, the app management policy export, and the rotation calendar."
+  ],
+  [
+   10.012,
+   7.325,
+   "Service identification calls for each workload's permission grants and its sign-in log, which also shows the parallel run."
+  ],
+  [
+   17.337,
+   8.762,
+   "Book 02 adds three tests: no stored secrets where possible, no outage during the run, and workload policies enforced."
+  ],
+  [
+   26.1,
+   6.175,
+   "To validate, one kit check confirms no high-risk account still has a password that never expires."
+  ],
+  [
+   32.275,
+   3.75,
+   "Another confirms the converted apps no longer hold secrets."
+  ],
+  [
+   36.025,
+   5.325,
+   "Creating a federated credential and reading sign-ins work in the U S Government clouds."
+  ],
+  [
+   41.35,
+   4.713,
+   "A delegated managed service account needs Windows Server 2025."
+  ],
+  [
+   46.062,
+   5.7,
+   "Until an account can move, it stays on the Kerberos island, with an owner and an end date."
+  ],
+  [
+   51.763,
+   3.675,
+   "To roll back, re-enable the old account and revert the app."
+  ],
+  [
+   55.438,
+   2.888,
+   "That stays possible until the account is deleted."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   5.625,
+   "A service account's events come from its owning system and from credential expiry, not from H R."
+  ],
+  [
+   5.675,
+   1.925,
+   "The one exception is the sponsor."
+  ],
+  [
+   7.6,
+   5.55,
+   "When an owner leaves or changes roles, the transfer starts at least ten business days ahead."
+  ],
+  [
+   13.15,
+   5.7,
+   "Make it a step in that person's H R mover and leaver workflows, so nobody has to remember it."
+  ],
+  [
+   18.85,
+   2.55,
+   "An app with no named owner is an orphan."
+  ],
+  [
+   21.4,
+   7.075,
+   "It becomes Tier 1, the governance office takes it over, and there are thirty days to find an owner or start retiring it."
+  ],
+  [
+   28.475,
+   3.0,
+   "On day thirty-one, access is suspended."
+  ],
+  [
+   31.475,
+   5.562,
+   "An A I agent is disabled as soon as the finding is confirmed, because an agent can act."
+  ],
+  [
+   37.038,
+   6.65,
+   "Inactivity is a second orphan signal, from a preview report of each service principal's last sign-in."
+  ],
+  [
+   43.688,
+   6.2,
+   "And owners review their app's permissions every quarter, with at least two owners per app where possible."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   5.625,
+   "Retirement always disables first, so nothing breaks silently, and deletes later."
+  ],
+  [
+   5.675,
+   1.85,
+   "The mechanics differ by type."
+  ],
+  [
+   7.525,
+   7.1,
+   "An Active Directory account is disabled, and its service principal names are removed only after the observation period."
+  ],
+  [
+   14.625,
+   2.462,
+   "An app registration is deactivated."
+  ],
+  [
+   17.087,
+   5.3,
+   "New tokens stop at once, but tokens already issued stay valid until they expire."
+  ],
+  [
+   22.387,
+   2.888,
+   "A deleted app can be restored for thirty days."
+  ],
+  [
+   25.275,
+   3.538,
+   "A service principal is blocked from signing in to this tenant."
+  ],
+  [
+   28.812,
+   4.8,
+   "If it's deleted and restored, its Conditional Access policies don't come back."
+  ],
+  [
+   33.612,
+   6.0,
+   "A managed identity loses its role assignments first, and once deleted, it can't be recovered."
+  ],
+  [
+   39.612,
+   3.688,
+   "An agent can be disabled by its sponsor, but not re-enabled."
+  ],
+  [
+   43.3,
+   2.8,
+   "Deleting a blueprint removes its agents too."
+  ],
+  [
+   46.1,
+   2.95,
+   "Every deactivation shows in the audit log."
+  ],
+  [
+   49.05,
+   1.938,
+   "File that entry with the decision."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   3.975,
+   "The workbook's tenth chapter turns this gate into a scheduled run."
+  ],
+  [
+   4.025,
+   5.263,
+   "Each run compares every identity with a baseline that someone approved by its hash."
+  ],
+  [
+   9.287,
+   7.188,
+   "On the second fixture day it finds seven ownerless orphan candidates, and two apps unused for over ninety days."
+  ],
+  [
+   16.475,
+   6.312,
+   "It finds three accounts whose password never expires, and three credentials added outside the pipeline."
+  ],
+  [
+   22.788,
+   4.513,
+   "A credential counts as the pipeline's only when two separate records agree."
+  ],
+  [
+   27.3,
+   4.963,
+   "The review check finds an app whose last owner review was in May, too long ago."
+  ],
+  [
+   32.263,
+   5.338,
+   "Then each run is packaged with a checksum for every file, chained to the day before."
+  ],
+  [
+   37.6,
+   3.538,
+   "So a swapped package or a missing day shows up as a break."
+  ],
+  [
+   41.138,
+   3.475,
+   "The period report is what the I S S O receives."
+  ],
+  [
+   44.612,
+   3.825,
+   "Here the chain is unbroken, but the period isn't complete."
+  ],
+  [
+   48.438,
+   3.487,
+   "Orphans and passwords that never expire are still open."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   9.4,
+   "On the federal side, account management calls for the identity record, the owner-change and decommission tickets, and the kit runs for owners and agent sponsors."
+  ],
+  [
+   9.45,
+   5.263,
+   "Identifier management calls for a record keyed by object I D, never reused."
+  ],
+  [
+   14.713,
+   7.6,
+   "Audit controls call for the logs routed out of Entra I D, including every credential added and every deactivation."
+  ],
+  [
+   22.312,
+   3.837,
+   "To validate, run the owner and expiry checks every week."
+  ],
+  [
+   26.15,
+   3.9,
+   "A new app with fewer than two owners opens a ticket that week."
+  ],
+  [
+   30.05,
+   4.088,
+   "No agent may go past ten business days without a confirmed sponsor."
+  ],
+  [
+   34.138,
+   4.287,
+   "An optional preview check lists service principals idle for ninety days."
+  ],
+  [
+   38.425,
+   4.7,
+   "Then run one test owner change and one test decommission, end to end."
+  ],
+  [
+   43.125,
+   7.438,
+   "The sign-in activity report is listed only for the commercial service, so G C C has it, and G C C High doesn't."
+  ],
+  [
+   50.562,
+   6.987,
+   "To roll back, reactivate, or restore within thirty days and re-create the Conditional Access assignments."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   4.125,
+   "sequel Server follows the same logic, with three kinds of principal."
+  ],
+  [
+   4.175,
+   4.475,
+   "The engine's service account works only while Active Directory is in charge."
+  ],
+  [
+   8.65,
+   1.8,
+   "Azure Arc doesn't replace it."
+  ],
+  [
+   10.45,
+   3.163,
+   "It only changes what Entra I D and Azure see."
+  ],
+  [
+   13.613,
+   7.438,
+   "The instance's own Entra identity is a managed identity on sequel Server 2025, with no credential at all."
+  ],
+  [
+   21.05,
+   7.263,
+   "On sequel Server 2022 it's an app registration with a Key Vault certificate, which needs a named renewal owner."
+  ],
+  [
+   28.312,
+   10.325,
+   "Application logins move from sequel passwords to Entra logins: a managed identity first, then a certificate, and a secret only as a documented exception."
+  ],
+  [
+   38.638,
+   2.837,
+   "And the same thirty-day parallel run applies."
+  ],
+  [
+   41.475,
+   1.512,
+   "Two dangers stand out."
+  ],
+  [
+   42.987,
+   5.338,
+   "A renewed certificate that nobody uploaded fails at expiry, so automate the upload."
+  ],
+  [
+   48.325,
+   8.438,
+   "And on an Arc server, every allowed process presents the same identity, so treat one login per server as the unit of attribution."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   4.275,
+   "A I agents follow this guide, with a few additions from Book 17."
+  ],
+  [
+   4.325,
+   2.638,
+   "Every agent needs a sponsor when it's created."
+  ],
+  [
+   6.963,
+   5.85,
+   "The blueprint holds the credentials, so one action on the blueprint reaches every agent made from it."
+  ],
+  [
+   12.812,
+   6.463,
+   "Ordinary users can't create blueprints, and a production handshake comes before any agent goes lyve."
+  ],
+  [
+   19.275,
+   6.325,
+   "No production blueprint holds a secret, and every A P I key is recorded as an exception."
+  ],
+  [
+   25.6,
+   5.688,
+   "Access comes through packages with end dates, so a sponsor who does nothing lets access expire."
+  ],
+  [
+   31.288,
+   9.988,
+   "The agent platform has been generally available since April 2026, with a partial subset in G C C. Agent Conditional Access is still in preview."
+  ],
+  [
+   41.275,
+   6.713,
+   "The workbook's ninth chapter checks all of this, and here it finds twenty-two findings, four of them top priority."
+  ],
+  [
+   47.987,
+   7.8,
+   "For G C C High and D O D, Microsoft has published nothing, so govern the service principals the agents run as."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   9.3,
+   "Across the whole track, the evidence covers account management, least privilege, identifiers, authenticators, service identification and audit."
+  ],
+  [
+   9.35,
+   8.5,
+   "It's the record, the tickets, the kit runs with their justifications, the access review results, the policy export, and the logs."
+  ],
+  [
+   17.85,
+   2.513,
+   "Two sis-uh items sit across the track."
+  ],
+  [
+   20.363,
+   5.525,
+   "ScubaGear also checks that apps have no passwords, and that credential lifetimes are capped."
+  ],
+  [
+   25.887,
+   6.875,
+   "And it marks blocking risky A I agents as required, though sis-uh's own list didn't include it in late October."
+  ],
+  [
+   32.763,
+   4.987,
+   "So record it now, and enforce it when agent risk is generally available in your cloud."
+  ],
+  [
+   37.75,
+   5.963,
+   "Run the checks on the monitoring cadence, and file each run with its date, tenant and check version."
+  ],
+  [
+   43.712,
+   2.513,
+   "Rollback is defined for every step."
+  ],
+  [
+   46.225,
+   4.925,
+   "Part 1's steps roll back by re-deciding, or by an exception with an end date."
+  ],
+  [
+   51.15,
+   2.487,
+   "Least privilege goes back to report-only."
+  ],
+  [
+   53.638,
+   2.425,
+   "Conversion re-enables the old account."
+  ],
+  [
+   56.062,
+   4.325,
+   "And decommissioning reactivates, or restores within thirty days."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   1.762,
+   "Keep five dangers in view."
+  ],
+  [
+   1.812,
+   6.275,
+   "Every app owner can add a credential and act as the app, so keep owners to the two people who configure it."
+  ],
+  [
+   8.088,
+   7.463,
+   "Disabled isn't revoked, because issued tokens stay valid, so in an incident, also remove the credentials."
+  ],
+  [
+   15.55,
+   4.912,
+   "A privileged service principal is a control-plane asset, not an ordinary app."
+  ],
+  [
+   20.462,
+   7.525,
+   "Workload Conditional Access silently skips managed identities, multitenant apps, and anything assigned through a group."
+  ],
+  [
+   27.988,
+   7.188,
+   "And by default, whoever builds an agent becomes its sponsor, so close blueprint creation and set the sponsor on purpose."
+  ],
+  [
+   35.175,
+   5.138,
+   "Where to go next: Part 1 covers inventory, decisions and credential rules."
+  ],
+  [
+   40.312,
+   7.525,
+   "The developer workbook, Building Non-Person Identity, has chapters five to ten for these gates, each with its labs."
+  ],
+  [
+   47.837,
+   1.887,
+   "The Labs page lists them all."
+  ],
+  [
+   49.725,
+   2.163,
+   "A person leaves and H R tells you."
+  ],
+  [
+   51.888,
+   3.0,
+   "A service account's owner leaves and nothing tells you."
+  ],
+  [
+   54.888,
+   2.188,
+   "These gates build the record that does."
+  ]
+ ]
+}

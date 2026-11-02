@@ -1,0 +1,65 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.025
+The workbook's tenth chapter turns
+this gate into a scheduled run.
+
+2
+00:00:04.025 --> 00:00:09.288
+Each run compares every identity with a
+baseline that someone approved by its hash.
+
+3
+00:00:09.288 --> 00:00:13.868
+On the second fixture day it finds
+seven ownerless orphan candidates,
+
+4
+00:00:13.868 --> 00:00:16.475
+and two apps unused for over ninety days.
+
+5
+00:00:16.475 --> 00:00:19.740
+It finds three accounts
+whose password never expires,
+
+6
+00:00:19.740 --> 00:00:22.787
+and three credentials
+added outside the pipeline.
+
+7
+00:00:22.787 --> 00:00:27.301
+A credential counts as the pipeline's
+only when two separate records agree.
+
+8
+00:00:27.301 --> 00:00:32.263
+The review check finds an app whose last
+owner review was in May, too long ago.
+
+9
+00:00:32.263 --> 00:00:37.601
+Then each run is packaged with a checksum
+for every file, chained to the day before.
+
+10
+00:00:37.601 --> 00:00:41.138
+So a swapped package or a
+missing day shows up as a break.
+
+11
+00:00:41.138 --> 00:00:44.613
+The period report is
+what the ISSO receives.
+
+12
+00:00:44.613 --> 00:00:48.437
+Here the chain is unbroken,
+but the period isn't complete.
+
+13
+00:00:48.437 --> 00:00:51.980
+Orphans and passwords that
+never expire are still open.
