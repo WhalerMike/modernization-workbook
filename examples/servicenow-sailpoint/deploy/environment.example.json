@@ -1,0 +1,68 @@
+{
+  "_comment": "One environment's settings for the deployment runbook (Building Ticket-to-Machine, Chapter 09). Copy to deploy/environment.test.json and deploy/environment.production.json and replace every <placeholder>. No secrets: client secrets and tokens come from the vault into environment variables, and the kit's loader refuses a secret key in this file. The upper-case keys are the kit's own config keys, so this file also works as --config for the kit's clients.",
+  "SN_BASE_URL": "https://<servicenow-instance-host>",
+  "SAILPOINT_API_BASE": "https://<isc-api-host>",
+  "GRAPH_CLOUD": "Global",
+  "GRAPH_TENANT_ID": "<entra-tenant-id>",
+  "GRAPH_CLIENT_ID": "<graph-reader-client-id>",
+  "GRAPH_CERT_PATH": "<graph-reader-cert.pem>",
+  "SN_FINDING_API_PATH": "/api/x_example_idkit/identity_findings/finding",
+  "SN_FINDING_TABLE": "u_identity_finding",
+  "SN_STATE_AWAITING_VERIFICATION": "18",
+  "SN_STATE_CLOSED": "3",
+  "SN_STATE_REOPENED": "1",
+  "ISC_EMPLOYEE_ID_ATTRIBUTE": "employeeNumber",
+  "deploy": {
+    "environment": "<test-or-production>",
+    "change_record": "<change-record-number>",
+    "app": {
+      "scope": "x_example_idkit",
+      "version": "<app-version>"
+    },
+    "workflow_owner": {
+      "id": "<workflow-owner-identity-id>",
+      "name": "<workflow-owner-name>"
+    },
+    "clients": {
+      "finding_writer": "<finding-writer-client-id>",
+      "verifier": "<verifier-client-id>",
+      "evidence_reader": "<evidence-reader-client-id>",
+      "isc_reader": "<isc-reader-client-id>",
+      "isc_deploy_checker": "<isc-deploy-checker-client-id>",
+      "isc_workflow_admin": "<isc-workflow-admin-client-id>",
+      "isc_workflow_tester": "<isc-workflow-tester-pat-client-id>"
+    },
+    "g1": {
+      "marketplace_checked_on": "<yyyy-mm-dd>",
+      "servicenow_listing": "F1305072116",
+      "sailpoint_listing": "FR2001938710A",
+      "sailpoint_confirmed": {
+        "workflows": false,
+        "native_change_detection": false,
+        "http_request_step": false
+      },
+      "sailpoint_reference": "<sailpoint-written-answer-reference>"
+    },
+    "granted": {
+      "finding_writer": "<finding-writer-roles>",
+      "verifier": "<verifier-roles>",
+      "evidence_reader": "<evidence-reader-roles>",
+      "isc_reader": "<isc-reader-scopes>",
+      "isc_deploy_checker": "<isc-deploy-checker-scopes>",
+      "isc_workflow_admin": "<isc-workflow-admin-scopes>",
+      "isc_workflow_tester": "<isc-workflow-tester-scopes>"
+    },
+    "synthetic": {
+      "name": "<synthetic-worker-name>",
+      "identity_id": "<synthetic-identity-id>",
+      "account_id": "<synthetic-entra-account-id-in-isc>",
+      "entra_user_id": "<synthetic-entra-user-object-id>",
+      "native_identity": "<synthetic-entra-native-identity>",
+      "source_id": "<entra-source-id>",
+      "source_name": "<entra-source-name>",
+      "attribute": "department",
+      "baseline": "Smoke Test",
+      "changed": "Smoke Test Changed"
+    }
+  }
+}

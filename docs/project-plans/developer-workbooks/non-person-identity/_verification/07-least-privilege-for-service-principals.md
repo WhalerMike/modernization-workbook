@@ -53,3 +53,14 @@ Microsoft Learn pages opened on October 30, 2026 through the Microsoft Learn MCP
 | Privileged Access workbook, Chapter 07 (access reviews of privileged roles, service principal reviews need Workload ID Premium) | The review; research gaps, row 66 | Not repeated: this chapter hands privileged service principals off |
 | Chapter 01's register and manifest | `Import-NpiLpRegister`; the sweep | Chapter 01's Graph-only `GraphAppRoles` column is not reused: the sweep reads every resource |
 | Chapter 02's ownership check | The review's owners | Ownerless identities are Chapter 02's orphan rule; the review shows "none in the tenant" for them |
+
+## Federal requirements and evidence (November 2, 2026)
+
+The chapter's new section has 14 rows: each Lab 1 and Lab 2 step that produces evidence, and each file the kit's code writes for this chapter. Lab steps that only delete `out`, make test objects or rerun earlier chapters have no row, and the section says so.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| F1 | The controls cited (AC-2, AC-5, AC-6, AC-6(5) are in the SP 800-53B Moderate baseline | Federal requirements and evidence | verified: each ID checked in the release 5.2.0 OSCAL Moderate profile (287 controls) | [^np07-moderate], read November 2, 2026 |
+| F2 | Each KSI named (KSI-CMT-LMC, KSI-CMT-RVP, KSI-CMT-VTD, KSI-IAM-AAM, KSI-IAM-ELP, KSI-IAM-JIT, KSI-IAM-SNU, KSI-MLA-LET, KSI-MLA-OSM, KSI-SVC-VRI) lists the row's control, or one of its enhancements, among its related SP 800-53 controls | Federal requirements and evidence | verified against FedRAMP's page. Every ID was already cited in the repository (Book 02, Chapter 10; Book 04, Chapter 10; Book 13, Appendix A; Book 14, Chapter 03); none is new | [^np07-ksi], read November 2, 2026 |
+| F3 | KSIs are provider-side FedRAMP 20x indicators; the agency doesn't report them | The sentence under the table | carried forward | Book 00, Appendix B |
+| F4 | Which output supports which indicator, and how SCuBA or M-25-21 rows map through a control | The KSI column | restated-as-design (labeled) | the program's mapping |

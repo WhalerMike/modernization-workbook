@@ -159,3 +159,13 @@ A short "Privacy" section was added (additive; no existing text changed). Every 
 | 4 | Review history and request records are system access records under GRS 3.2 | verified | GRS 3.2 items 030, 031 |
 | 5 | Guests and connected organizations are outside the government, relevant to the PIA | restated-as-design | - |
 | 6 | Obligations table | restated-as-design | - |
+
+## Additions, November 2, 2026 (Section 508 follow-up)
+
+Opened November 2, 2026: Microsoft Learn, "Change approval and requestor information settings for an access package in entitlement management" and "Create an access package in entitlement management" (MCP search), section on requestor questions.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 5 | Access package policies can ask requestor questions: short text, long text or multiple choice; required or optional; optional regex pattern check on text answers | Request portal and 508 | verified | Learn, requestor information settings |
+| 6 | Each question states the expected answer and its format | Request portal and 508 | restated-as-design | — |
+| 7 | Book 18 Ch 06 sets the test method and the form rules | Request portal and 508 | cross-reference; sources logged in Book 18's Chapter 06 verification file | — |

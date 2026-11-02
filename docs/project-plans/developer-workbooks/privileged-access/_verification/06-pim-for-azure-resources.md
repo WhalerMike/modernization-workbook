@@ -60,3 +60,14 @@ Microsoft Learn pages opened on October 30, 2026 through the Microsoft Learn MCP
 | Chapter 01, research gaps row 4 (discovering every Azure scope) | Research gaps, row 61 | The desired state is the list of scopes for now |
 | Chapter 03 (planned): authentication context `c1` and `PIM-Activation-c1` | The desired-state guard | The policy itself is Chapter 03's |
 | Book 04, Chapter 04: Virtual Machine Administrator Login held as eligible on resource groups | Not carried | Not a privileged administrator role; the desired state can add it by role definition ID |
+
+## Federal requirements and evidence (added November 2, 2026)
+
+New section, 11 rows, one for each Lab 1 and Lab 2 scripted action and each output file the kit's code writes. No Lab 1 heading or command changed.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| F1 | AC-2, AC-6, AC-6(1), AC-6(5), CM-3, CM-3(2) and CM-4(2) are in the NIST SP 800-53B Moderate baseline | Federal requirements | verified November 2, 2026: each ID checked by script against the release 5.2.0 OSCAL Moderate profile, the source Book 04, Chapter 04 cites | `pa06-moderate` |
+| F2 | KSI IDs used: KSI-CMT-LMC, KSI-CMT-RMV, KSI-CMT-VTD, KSI-IAM-ELP and KSI-IAM-JIT; each row's indicator lists at least one of the row's controls among its "Related SP 800-53 Controls" | Federal requirements | verified November 2, 2026 on FedRAMP's Key Security Indicators page, checked row by row by script; every ID was already cited in Book 04, Chapter 10, Book 02, Chapter 10, Book 13, Appendix A or Book 14, Chapter 03, so none is new to the repository | `pa06-ksi` |
+| F3 | KSIs are FedRAMP 20x indicators for providers; the agency lines its evidence up with them and doesn't report them | Under the table | carried forward from Book 00, Appendix B | Book 00 |
+| F4 | Which output supports which control, and who keeps it | Federal requirements | restated-as-design: the program's mapping, following Book 04, Chapters 02, 04, 08 and 10 | Book 04 |

@@ -120,10 +120,11 @@ jobs:
         # downloads/<name>.zip for the Ticket-to-Machine, HR-Driven Identity, Privileged
         # Access and Non-Person Identity workbooks, the Microsoft Automation learning path
         # (each a bundle of its examples folders and pinned Microsoft samples: BUNDLES in
-        # build_start_kit_zip.py) and the Cisco SD-WAN kit, linked from the Downloads page,
+        # build_start_kit_zip.py), the Cisco SD-WAN kit and the Ticket-to-Machine task catalog
+        # pack (the catalog kit with the finding contract it reads), linked from the Downloads page,
         # the workbooks' landing pages and the Watch page.
         run: |
-          for kit in ticket-to-machine-code hr-driven-identity-code privileged-access-code non-person-identity-code microsoft-automation-code cisco-sdwan; do
+          for kit in ticket-to-machine-code hr-driven-identity-code privileged-access-code non-person-identity-code microsoft-automation-code cisco-sdwan ticket-to-machine-task-catalog; do
             python3 scripts/build_start_kit_zip.py --kit "$kit" --out _site/downloads
           done
 

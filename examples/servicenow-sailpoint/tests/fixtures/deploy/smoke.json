@@ -1,0 +1,63 @@
+{
+  "_comment": "Saved responses for deploy/smoke_test.py raise and signal --apply --fixtures, run as the finding writer: created, then de-duplicated; then a closure signal that moves two findings. The Scripted REST resource's body is shown inside 'result'. 'env' stands in for the environment (fictional; no real secret). Every value is invented.",
+  "env": {
+    "SN_CLIENT_ID": "a1b2c3d4e5f60718293a4b5c6d7e8f90",
+    "SN_CLIENT_SECRET": "fixture-not-a-secret"
+  },
+  "responses": [
+    {
+      "method": "POST",
+      "path": "/oauth_token.do",
+      "repeat": true,
+      "body": {
+        "access_token": "fixture-sn-token",
+        "token_type": "Bearer",
+        "expires_in": 1799
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/x_example_idkit/identity_findings/finding",
+      "status": 201,
+      "body": {
+        "result": {
+          "sys_id": "5f0c0000000000000000000000000d01",
+          "number": "IDF0001001",
+          "deduplicated": false,
+          "priority": "4",
+          "severity": "P4"
+        }
+      },
+      "body_contains": "\"kind\": \"finding\""
+    },
+    {
+      "method": "POST",
+      "path": "/api/x_example_idkit/identity_findings/finding",
+      "status": 200,
+      "body": {
+        "result": {
+          "sys_id": "5f0c0000000000000000000000000d01",
+          "number": "IDF0001001",
+          "deduplicated": true,
+          "occurrences": 2
+        }
+      },
+      "body_contains": "\"kind\": \"finding\""
+    },
+    {
+      "method": "POST",
+      "path": "/api/x_example_idkit/identity_findings/finding",
+      "status": 200,
+      "body": {
+        "result": {
+          "moved_to_awaiting_verification": [
+            "5f0c0000000000000000000000000d01",
+            "5f0c0000000000000000000000000d03"
+          ],
+          "noted": []
+        }
+      },
+      "body_contains": "\"kind\": \"closure_signal\""
+    }
+  ]
+}

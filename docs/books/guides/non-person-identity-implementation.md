@@ -169,6 +169,7 @@ For every app registration and user-assigned managed identity, export its federa
 - **VK-NPI-07** lists every managed identity with its role assignments, and every user-assigned identity is joined to a record.
 - **VK-NPI-08** lists every agent identity with a sponsor, where the tenant exposes Agent ID. State the availability: Agent ID is generally available in commercial and, with documented gaps, in GCC ([Book 17, Chapter 04](../b17-ai-identity/04-kinds-of-ai-identity.md#release-stage-licensing-and-government-clouds)).
 - Gate owner: the identity governance office, with the CMDB owner signing that the join is complete *(design guidance)*.
+- Requirements: AC-2, IA-4 and CM-8; KSIs KSI-IAM-SNU and KSI-PIY-GIV ([evidence](#evidence)).
 :::
 
 ## Step 2: Decide each identity's target {#step-2-decide-each-identitys-target}
@@ -203,6 +204,7 @@ Microsoft suggests a managed identity instead of an app registration when the se
 - **VK-NPI-06**: every high-risk AD account (password never expires, or password older than the threshold) is scheduled in the first conversion wave or retired.
 - **VK-NPI-03** lists apps that hold secrets. Each one has a credential target, or an exception record naming why it can't move.
 - Gate owner: the application owner, with the identity governance office.
+- Requirements: AC-2 and IA-5; KSI KSI-IAM-SNU ([evidence](#evidence)).
 :::
 
 ## Step 3: Set the credential rules {#step-3-set-the-credential-rules}
@@ -231,6 +233,7 @@ The program's rules *(design guidance, from the books)*:
 - **VK-NPI-02** reports, for every app registration and service principal, each secret and certificate with its lifetime and days to expiry. Pass: no credential issued after the policy's effective date runs longer than the cap (180 days for certificates; no new secrets). Every credential that expires within N days (the program uses 60, *design guidance*) has an owner and a renewal date.
 - **VK-NPI-03** reports apps that still use secrets. Each one is either in a Step 5 wave or has an exception with an end date.
 - The ScubaGear result for MS.AAD.5.5v1 to 5.7v1 is filed with the gate ([evidence](#evidence)).
+- Requirements: IA-5(2), SC-12, SC-17 and SCuBA MS.AAD.5.5v1 to 5.7v1; KSIs KSI-SVC-ASM and KSI-IAM-SNU ([evidence](#evidence)).
 :::
 
 ## Step 4: Cut privilege {#step-4-cut-privilege}
@@ -275,6 +278,7 @@ Steps: for each Tier 1 single-tenant service principal, assign it directly to a 
 - **VK-NPI-05** lists every service principal holding a critical or high Graph application permission, or a privileged directory role. Each row is justified in its record with an approver and a review date, or removed. Read the permission type, not the suffix.
 - **VK-NPI-04** lists single-tenant service principals not assigned directly to a workload identity policy. Pass: no Tier 1 service principal is on the list, and the report-only results have been reviewed before switching to On.
 - **VK-NPI-07**: no managed identity holds Owner, Contributor or User Access Administrator above resource-group scope without a recorded reason.
+- Requirements: AC-6, AC-6(5) and IA-9; KSIs KSI-IAM-ELP, KSI-IAM-JIT and KSI-IAM-SNU ([evidence](#evidence)).
 :::
 
 ## Step 5: Convert with a parallel run {#step-5-convert-with-a-parallel-run}
@@ -297,6 +301,7 @@ This is [Book 02's Phase 4](../b02-identity/10-migrating-and-governing.md#phase-
 - **VK-NPI-03** shows the converted apps no longer hold secrets.
 - New identities authenticate without stored secrets where possible, there was no service disruption during the parallel run, and workload identity policies are enforced. These are Book 02's validation criteria.
 - Rollback: re-enable the legacy account and revert the application's configuration (Book 02, same phase). Rollback stays possible until Step 6 deletes the account.
+- Requirements: IA-5, IA-9 and AU-2; KSIs KSI-IAM-SNU and KSI-MLA-LET ([evidence](#evidence)).
 :::
 
 ## Step 6: Run the lifecycle {#step-6-run-the-lifecycle}
@@ -350,6 +355,7 @@ In the Entra audit log, a deactivation or reactivation appears as **Update appli
 - **VK-NPI-08**: no agent identity without a confirmed sponsor beyond the ten-business-day grace period ([Book 17, Chapter 05](../b17-ai-identity/05-owners-sponsors-and-lifecycle.md#when-the-sponsor-moves-or-leaves)).
 - **VK-NPI-09** (*optional, preview*; off by default, run it with `-IncludePreview`): every service principal with no sign-in in N days (the program uses 90, *design guidance*) is in an orphan or decommission ticket. The check is preview because its API is.
 - One test owner change and one test decommission have run end to end and left their records.
+- Requirements: AC-2(3), AC-6(7), AU-6 and CA-7; KSIs KSI-IAM-AAM, KSI-MLA-RVL and KSI-MLA-EVC ([evidence](#evidence)).
 :::
 
 ## SQL Server service and application principals {#sql-server}
@@ -401,21 +407,27 @@ AI agents are non-person identities and follow this guide, with these additions 
 
 ## Evidence {#evidence}
 
-The mapping is the program's, from the books cited. Where a book maps a control, that book governs.
+The mapping is the program's, from the books cited. Where a book maps a control, that book governs. The Gate column names the validation that produces each row's evidence; the workbook's chapters map each kit output to its row.
 
-| Requirement | What this track does | Evidence to file | Book |
-|---|---|---|---|
-| AC-2 Account Management; AC-2(3) Disable Accounts | Non-person identities are a defined account type with an owner and a sponsor; orphaned and retired identities are disabled | The Step 1 record; owner-change and decommission tickets; VK-NPI-01 and VK-NPI-08 runs | [Book 17, App. A](../b17-ai-identity/appendix-a-requirements-mapping.md#account-management-and-access-ac); [Book 02, Ch. 10](../b02-identity/10-migrating-and-governing.md#compliance-manager-and-the-fedramp-20x-indicators) |
-| AC-6 Least Privilege; AC-6(5) Privileged Accounts; AC-6(7) Review | Scoped grants; no standing privileged roles; reviews of privileged service principals | VK-NPI-05 and VK-NPI-07 runs with justifications; PIM access review results | [Book 17, App. A](../b17-ai-identity/appendix-a-requirements-mapping.md#account-management-and-access-ac); [Book 02, App. A](../b02-identity/appendix-a-federal-requirements-crosswalk.md#nist-sp-800-53-rev.-5-control-mapping) |
-| IA-4 Identifier Management | Each identity has its own identifier, joined to its record and never reused | The record, keyed by object ID and system ID | [Book 17, App. A](../b17-ai-identity/appendix-a-requirements-mapping.md#identification-and-authentication-ia) |
-| IA-5 Authenticator Management; IA-5(2) | Managed identities and federation first; certificates in a vault and rotated; no new secrets | The application management policy export; VK-NPI-02 and VK-NPI-03 runs; the rotation calendar | Same; [Book 04, Ch. 05](../b04-access/05-applications-and-workload-identities.md#governing-app-registrations) |
-| IA-9 Service Identification and Authentication (in no baseline, so tailored in) | Services and workloads authenticate as themselves to Entra ID | Graph permission grants per workload identity; the service principal sign-in log | [Book 17, App. A](../b17-ai-identity/appendix-a-requirements-mapping.md#identification-and-authentication-ia); [companion guide](attribute-driven-migration.md#federal-requirements) |
-| AU-2, AU-6, AU-12 | Service principal sign-ins, credential changes and deactivations are logged and reviewed | Logs routed out of Entra ID to the SIEM; audit entries for credential adds and `isDisabled` changes | [Book 17, App. A](../b17-ai-identity/appendix-a-requirements-mapping.md#audit-monitoring-and-assessment-au-ca-si); [Book 12, Ch. 03](../b12-security-operations/03-identity-telemetry.md) |
-| CISA SCuBA MS.AAD.5.1v1 to 5.3v1 (BOD 25-01 required): app registration limited to administrators, user consent restricted, admin consent workflow configured | Users can't register apps or consent beyond low-classified permissions; the workflow is the intake | ScubaGear report | [Book 02, App. A](../b02-identity/appendix-a-federal-requirements-crosswalk.md#the-crosswalk-identity-controls); [Book 04, Ch. 05](../b04-access/05-applications-and-workload-identities.md#consent) |
-| CISA SCuBA MS.AAD.5.5v1 to 5.7v1 (SHOULD, ScubaGear 2.0.0): no app passwords, password and certificate lifetimes capped | The application management policy | ScubaGear report; VK-NPI-02 | [Book 17, Ch. 06](../b17-ai-identity/06-credentials-and-least-privilege.md#enforcing-the-order) |
-| CISA SCuBA MS.AAD.9.1v1, risky AI agents blocked: marked as a BOD 25-01 requirement in ScubaGear but not on CISA's Required Configurations page on October 26, 2026 | Recorded per tenant now; enforced when the agent risk condition is generally available in the agency's cloud | ScubaGear result | [Book 17, Ch. 06](../b17-ai-identity/06-credentials-and-least-privilege.md#enforcing-the-order) |
+| Requirement | Gate | What this track does | Evidence to file | KSI it aligns to | Book |
+|---|---|---|---|---|---|
+| AC-2 Account Management; AC-2(3) Disable Accounts | G1, G6 | Non-person identities are a defined account type with an owner and a sponsor; orphaned and retired identities are disabled | The Step 1 record; owner-change and decommission tickets; VK-NPI-01 and VK-NPI-08 runs | KSI-IAM-SNU, KSI-IAM-JIT (AC-2); KSI-IAM-AAM (AC-2(3)) | [Book 17, App. A](../b17-ai-identity/appendix-a-requirements-mapping.md#account-management-and-access-ac); [Book 02, Ch. 10](../b02-identity/10-migrating-and-governing.md#compliance-manager-and-the-fedramp-20x-indicators) |
+| AC-6 Least Privilege; AC-6(5) Privileged Accounts; AC-6(7) Review | G4, G6 | Scoped grants; no standing privileged roles; reviews of privileged service principals | VK-NPI-05 and VK-NPI-07 runs with justifications; PIM access review results | KSI-IAM-ELP, KSI-IAM-JIT (AC-6); KSI-IAM-SNU (AC-6(5)); KSI-IAM-AAM (AC-6(7)) | [Book 17, App. A](../b17-ai-identity/appendix-a-requirements-mapping.md#account-management-and-access-ac); [Book 02, App. A](../b02-identity/appendix-a-federal-requirements-crosswalk.md#nist-sp-800-53-rev.-5-control-mapping) |
+| IA-4 Identifier Management | G1 | Each identity has its own identifier, joined to its record and never reused | The record, keyed by object ID and system ID | KSI-IAM-ELP, KSI-IAM-JIT | [Book 17, App. A](../b17-ai-identity/appendix-a-requirements-mapping.md#identification-and-authentication-ia) |
+| CM-8 System Component Inventory | G1 | Every non-person identity is in one register, joined to the system inventory or CMDB | The Step 1 record; VK-NPI-06 and VK-NPI-07 runs | KSI-PIY-GIV | [Book 13, App. A](../b13-governance/appendix-a-requirements-mapping.md) |
+| IA-5 Authenticator Management; IA-5(2) | G2, G3, G5 | Managed identities and federation first; certificates in a vault and rotated; no new secrets | The application management policy export; VK-NPI-02 and VK-NPI-03 runs; the rotation calendar | KSI-IAM-SNU, KSI-SVC-ASM (IA-5(2)) | Same; [Book 04, Ch. 05](../b04-access/05-applications-and-workload-identities.md#governing-app-registrations) |
+| SC-12 Cryptographic Key Establishment and Management; SC-17 Public Key Infrastructure Certificates | G3 | Workload certificates come from the vault and are renewed with an owner's approval | The rotation plan and its applied changes; VK-NPI-02 runs | KSI-SVC-ASM | [Book 13, App. A](../b13-governance/appendix-a-requirements-mapping.md); [Book 07](../b07-pki/index.md) |
+| IA-9 Service Identification and Authentication (in no baseline, so tailored in) | G4, G5 | Services and workloads authenticate as themselves to Entra ID | Graph permission grants per workload identity; the service principal sign-in log | None: no indicator lists IA-9 | [Book 17, App. A](../b17-ai-identity/appendix-a-requirements-mapping.md#identification-and-authentication-ia); [companion guide](attribute-driven-migration.md#federal-requirements) |
+| CM-3 Configuration Change Control | G3 to G6 | Every write is a reviewed plan, approved by its SHA-256, sent by a person and recorded | The approved plan; the apply run's manifest | KSI-CMT-LMC, KSI-CMT-RVP | [Book 13, App. A](../b13-governance/appendix-a-requirements-mapping.md) |
+| AU-2, AU-6, AU-12 | G5, G6 | Service principal sign-ins, credential changes and deactivations are logged and reviewed | Logs routed out of Entra ID to the SIEM; audit entries for credential adds and `isDisabled` changes | KSI-MLA-LET (AU-2, AU-12); KSI-MLA-RVL (AU-2, AU-6); KSI-MLA-OSM (AU-2) | [Book 17, App. A](../b17-ai-identity/appendix-a-requirements-mapping.md#audit-monitoring-and-assessment-au-ca-si); [Book 12, Ch. 03](../b12-security-operations/03-identity-telemetry.md) |
+| CA-7 Continuous Monitoring | G6 | The checks run on the continuous monitoring cadence and their drift is reviewed | Each run's output with its date, tenant and check version | KSI-MLA-EVC | [Book 13, App. A](../b13-governance/appendix-a-requirements-mapping.md) |
+| CISA SCuBA MS.AAD.5.1v1 to 5.3v1 (BOD 25-01 required): app registration limited to administrators, user consent restricted, admin consent workflow configured | Prerequisites; G1 | Users can't register apps or consent beyond low-classified permissions; the workflow is the intake | ScubaGear report | KSI-IAM-ELP, through AC-6, to which Book 02 maps MS.AAD.5.1v1 (design guidance) | [Book 02, App. A](../b02-identity/appendix-a-federal-requirements-crosswalk.md#the-crosswalk-identity-controls); [Book 04, Ch. 05](../b04-access/05-applications-and-workload-identities.md#consent) |
+| CISA SCuBA MS.AAD.5.5v1 to 5.7v1 (SHOULD, ScubaGear 2.0.0): no app passwords, password and certificate lifetimes capped | G3 | The application management policy | ScubaGear report; VK-NPI-02 | KSI-SVC-ACM, through CM-6 (design guidance) | [Book 17, Ch. 06](../b17-ai-identity/06-credentials-and-least-privilege.md#enforcing-the-order) |
+| CISA SCuBA MS.AAD.9.1v1, risky AI agents blocked: marked as a BOD 25-01 requirement in ScubaGear but not on CISA's Required Configurations page on October 26, 2026 | [AI agents](#ai-agents) | Recorded per tenant now; enforced when the agent risk condition is generally available in the agency's cloud | ScubaGear result | KSI-IAM-ELP, through AC-3 (design guidance) | [Book 17, Ch. 06](../b17-ai-identity/06-credentials-and-least-privilege.md#enforcing-the-order) |
 
 : Evidence for the non-person identity track {.striped .hover}
+
+KSIs are FedRAMP 20x indicators for cloud service providers. The KSI column names the indicators whose related controls, as FedRAMP lists them, include the row's control or one of its enhancements; which evidence supports which indicator is the program's mapping (design guidance).[^npi-ksi] The agency authorizes its own system and lines this evidence up with what its providers report against KSIs; it doesn't report KSIs itself ([Book 00, Appendix B](../b00-orientation/appendix-b-engagement-archetype.md)).
 
 Run the checks on the continuous monitoring cadence and file their output with the date, the tenant and the check version. The scheduled drift comparison in [Book 02, Chapter 10](../b02-identity/10-migrating-and-governing.md#git-based-drift-detection) is where a regression shows up as an issue.
 
@@ -482,3 +494,4 @@ Run the checks on the continuous monitoring cadence and file their output with t
 [^npi-restore-app]: Microsoft Learn, "Restore or remove a recently deleted application with the Microsoft identity platform," <https://learn.microsoft.com/entra/identity-platform/howto-restore-app> (accessed Oct 29, 2026).
 [^npi-recover]: Microsoft Learn, "Recover from deletions," "Hard deletions" (multitenant application objects not hard-deleted automatically after 30 days), <https://learn.microsoft.com/entra/architecture/recover-from-deletions> (accessed Oct 29, 2026).
 [^npi-restore-sp]: Microsoft Learn, "Restore a soft deleted enterprise application" (30-day window; previous policies such as Conditional Access not restored; soft-deleted managed identity service principals can't be recovered by customers), <https://learn.microsoft.com/entra/identity/enterprise-apps/restore-application> (accessed Oct 29, 2026).
+[^npi-ksi]: FedRAMP, "Key Security Indicators," *FedRAMP Consolidated Rules for 2026*, indicator statements and "Related SP 800-53 Controls" (no indicator lists IA-9), <https://www.fedramp.gov/2026/reference/key-security-indicators/> (read November 2, 2026).

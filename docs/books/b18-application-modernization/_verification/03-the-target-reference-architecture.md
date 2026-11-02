@@ -44,3 +44,7 @@ Manual checks: Oracle's Java SE Support Roadmap returned HTTP 403 to the fetch t
 - `docs/images/diagrams/b18-application-modernization/src/ch03-strangler-fig.flow.yaml` — the four stages of the strangler-fig pattern (after the Azure Architecture Center page).
 
 Neither is rendered.
+
+## November 2, 2026 addition
+
+The front-end paragraph now points to Chapter 06's Section 508 gate. No new external claim; the gate's sources are logged in the Chapter 06 verification file.

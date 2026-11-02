@@ -43,3 +43,13 @@ Manual checks: none needed for this chapter. All sources opened without sign-in.
 
 - No agency, program or system names. A case-insensitive grep of all three chapters, their verification files and diagram sources for the coordinator's list of agency terms returned zero hits on Oct 28, 2026.
 - The word "requires" is used only with a cited requirement (A-130, M-26-10/FITARA). Controls are described as what the control "asks."
+
+## November 2, 2026 addition: the accessibility gate
+
+Opened November 2, 2026: OMB M-24-08 PDF (text extracted locally), read at §III.C and §III.E. The full Section 508 verification is in the Chapter 06 log.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| A1 | M-24-08 encourages accessibility experts as authoritative decision-makers at development checkpoints | Board membership | verified | M-24-08 §III.C |
+| A2 | The Section 508 program manager's delegate sits on the board for user-facing designs | Board membership | restated-as-design | — |
+| A3 | Accessibility review at Gate 2, automated rules at Gate 3, manual results or a signed exception at Gate 4; the evidence row | Gates; evidence table | restated-as-design (follows M-24-08 §III.E's design, development and production release reviews) | — |

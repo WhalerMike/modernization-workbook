@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Run the test suites that ship with the example kits in `examples/`.
 
-Each kit keeps its tests under `examples/<kit>/tests/`: Pester files
+Each kit keeps its tests under `examples/<kit>/tests/` (and a kit's deploy scripts under `examples/<kit>/deploy/tests/`): Pester files
 (`*.Tests.ps1`) and Python files (`test_*.py`, run with pytest, which also
 runs unittest cases). A suite runs from its kit's folder, as the kit's README
 says to run it. The pull request checks (scripts/check_changed.py) run the
@@ -45,6 +45,8 @@ ALSO = {
     "hr-lifecycle": ["drift-pipeline"],
     "non-person-identity": ["drift-pipeline"],
     "privileged-access": ["drift-pipeline"],
+    # The task catalog reads its vocabulary from the integration kit's finding_contract.py.
+    "servicenow-sailpoint": ["ttm-task-catalog"],
 }
 
 # Kit -> (test files that need Windows, relative to the kit; why).
@@ -63,18 +65,24 @@ PESTER = (
 )
 
 
+# Test folders in a kit, relative to it. A kit's deploy/ scripts keep their own suite under deploy/tests,
+# so a chapter lab that runs `pytest tests` and states the kit's test count isn't changed by them.
+TEST_DIRS = ("tests", "deploy/tests")
+
+
 def suites(kit: str) -> list[tuple[str, str]]:
     """(kind, tests folder relative to the kit) for each suite the kit has: 'pester' or 'pytest'."""
-    tests = EXAMPLES / kit / "tests"
-    if not tests.is_dir():
-        return []
     out = []
-    pester = sorted({p.parent for p in tests.rglob("*.Tests.ps1")})
-    python = sorted({p.parent for p in tests.rglob("test_*.py")})
-    for d in pester:
-        out.append(("pester", d.relative_to(EXAMPLES / kit).as_posix()))
-    for d in python:
-        out.append(("pytest", d.relative_to(EXAMPLES / kit).as_posix()))
+    for sub in TEST_DIRS:
+        tests = EXAMPLES / kit / sub
+        if not tests.is_dir():
+            continue
+        pester = sorted({p.parent for p in tests.rglob("*.Tests.ps1")})
+        python = sorted({p.parent for p in tests.rglob("test_*.py")})
+        for d in pester:
+            out.append(("pester", d.relative_to(EXAMPLES / kit).as_posix()))
+        for d in python:
+            out.append(("pytest", d.relative_to(EXAMPLES / kit).as_posix()))
     return out
 
 
