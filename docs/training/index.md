@@ -1,7 +1,7 @@
 ---
 title: "Training"
 subtitle: "Learning paths: modules to work through in order, and the vendors' own training mapped to the workbook's roles"
-description: "The Federal Modernization Workbook's training: the Microsoft Automation learning path in three modules, the Ticket-to-Machine and HR-Driven Identity learning paths in seven modules each, and external learning paths from product vendors."
+description: "The Federal Modernization Workbook's training: the Microsoft Automation learning path in three modules, the Ticket-to-Machine and HR-Driven Identity learning paths in seven modules each, the Privileged Access learning path in eight modules, and external learning paths from product vendors."
 doc-type: section-landing
 fmw-eyebrow: "Training"
 listing:
@@ -32,6 +32,7 @@ listing:
       - "!ms-automation-*.md"
       - "!ticket-to-machine/**"
       - "!hr-driven-identity/**"
+      - "!privileged-access/**"
     type: table
     fields: [title, research-status, last-reviewed, description]
     field-display-names: *names
@@ -101,6 +102,10 @@ Run every command from `examples/ms-automation`. Module 2's lab writes an `out` 
 ## HR-Driven Identity learning path
 
 Seven modules, one per gate of the [HR-driven identity implementation guide](../books/guides/hr-driven-identity-implementation.md), each with a lab on fixtures and a lab in your own test tenant. Start at the [learning path](hr-driven-identity/index.md).
+
+## Privileged Access learning path
+
+Eight modules, one per chapter of the developer workbook [*Building Privileged Access*](../project-plans/developer-workbooks/privileged-access/index.md), each with a lab on fixtures and a lab in your own test tenant. There's no implementation guide for this track, so the path follows the workbook and the [project plan](../project-plans/privileged-access.md). Emergency access comes first, and every module that writes has a guard against locking people out. Start at the [learning path](privileged-access/index.md).
 
 ## External learning paths
 
