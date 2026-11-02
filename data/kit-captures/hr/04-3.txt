@@ -1,0 +1,11 @@
+$ python python/access_assignment.py lint tests/fixtures/ch04/bad-access --population tests/fixtures/ch04/population.json
+Policies: 5 files
+Lint: 5 Finding, 2 Warn, 0 Info
+  AA-01 Finding: AUTO via group membership: rule uses memberOf; from November 3, 2026 the policy is quarantined and adds and removes nothing
+  AA-02 Finding: auto-by-department.json, auto-second-policy.json: 2 users match more than one automatic policy on one package; they can lose access
+  AA-05 Finding: AUTO infra admin eligibility: automatic policy doesn't both create and remove assignments
+  AA-07 Finding: REQUEST with no fallback: request policy doesn't route to the manager with a fallback approver
+  AA-09 Finding: AUTO infra admin eligibility: tier T1 access assigned by rule; privileged access is requested and activated through PIM
+  AA-04 Warn: AUTO Program Ops by department name: rule reads no coded slot or worker type; write it on the codes HR owns
+  AA-06 Warn: AUTO Program Ops by department name: grace period 30 days is over the program's 14
+(exit code 2)

@@ -1,0 +1,6 @@
+$ python -c "p='out/evidence/records.jsonl'; l=open(p).readlines(); del l[1]; open(p,'w').writelines(l)"
+$ python clients/python/evidence_export.py --verify-dir out/evidence
+  records.jsonl: SHA-256 doesn't match the manifest
+  line 2 (IDF0000903): prev_sha256 doesn't match the line before
+Package does not hold: 2 problem(s).
+(exit code 1)

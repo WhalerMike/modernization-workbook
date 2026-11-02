@@ -1,0 +1,6 @@
+$ python ../drift-pipeline/python/hr_evidence.py package --run out/ch07/runs/2026-11-01T0600Z --out out/ch07/evidence
+{"evidence_manifest_sha256": "342c65f7af3d61bdaeb7b5e17147400341f1145bb88c6fbc26fbef9b3418008e", "new": 20, "open": 20, "package": "2026-11-01T0600Z", "resolved": 0}
+$ python ../drift-pipeline/python/hr_evidence.py package --run out/ch07/runs/2026-11-02T0600Z --previous-manifest out/ch07/evidence/2026-11-01T0600Z/EVIDENCE-MANIFEST.json --out out/ch07/evidence
+{"evidence_manifest_sha256": "2892017a07f7214696c1048cfa40e6ccb14927f7c7bdc85cc23cac1a8be739c9", "new": 0, "open": 20, "package": "2026-11-02T0600Z", "resolved": 0}
+$ python ../drift-pipeline/python/hr_evidence.py verify out/ch07/evidence/2026-11-02T0600Z
+{"evidence_manifest_sha256": "2892017a07f7214696c1048cfa40e6ccb14927f7c7bdc85cc23cac1a8be739c9", "files": 6, "run_id": "2026-11-02T0600Z"}

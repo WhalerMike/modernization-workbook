@@ -1,0 +1,4 @@
+$ python python/graph_export.py --task writers-scan --list
+Task writers-scan: AuditLog.Read.All, Directory.Read.All
+  GET /auditLogs/directoryAudits  [AuditLog.Read.All]
+  GET /auditLogs/provisioning  [AuditLog.Read.All, Directory.Read.All]

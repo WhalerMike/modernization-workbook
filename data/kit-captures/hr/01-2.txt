@@ -1,0 +1,2 @@
+$ python python/writer_register.py check --register config/writer-register.json
+Register: 0 Finding, 0 Warn, 0 Info

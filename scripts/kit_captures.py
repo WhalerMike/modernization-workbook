@@ -63,13 +63,6 @@ CHAPTERS: dict[str, dict] = {
     "npi-07": {"needs": ["01"]}, "npi-09": {"needs": ["01", "02"]},
     "npi-10": {"lang_cwd": {"bash": "examples/drift-pipeline"}},
     "pa-08": {"lang_cwd": {"bash": "examples/drift-pipeline"}},
-    # Step 4 gives the next day's run in prose: step 2's command with the next window and folder.
-    "hr-07": {"hidden": {3: (
-        "python python/lifecycle_drift.py run --hr tests/fixtures/ch07/hr-export.csv --contractors out/ch02/extract/decisions.json"
-        " --users tests/fixtures/ch07/workforce-users.json --exceptions tests/fixtures/ch07/exceptions.csv --cards tests/fixtures/ch07/cards.csv"
-        " --derivation tests/fixtures/ch07/derivation.json --writers out/ch01 --readiness out/ch03/readiness --residual out/ch04/residual"
-        " --timing out/ch06 --config config/drift.json --since 2026-11-01 --until 2026-11-02 --cloud gcc"
-        " --tenant-id 00000000-0000-4000-8000-00000000c0de --mode fixture --out out/ch07/runs/2026-11-02T0600Z")}},
 }
 OUT = ROOT / "data" / "kit-captures"
 GH = "https://github.com/WhalerMike/modernization-workbook/blob/main"
@@ -79,6 +72,7 @@ END = "<!-- capture:end -->"
 # by one blank line, so deleting it gives back the page byte for byte (scripts/source_watch/review_gate.py).
 MARKED = re.compile(r"^( *)<!-- capture:begin[^\n]*-->\n(?:(?!<!-- capture:begin).)*?^\1<!-- capture:end -->\n\n", re.S | re.M)
 BLOCK = re.compile(r"^( *)```(\w+)\n(.*?)^\1```", re.S | re.M)
+GENERATED = re.compile(r"^( *)<!-- (capture|labs):begin[^\n]*-->\n.*?^\1<!-- \2:end -->\n", re.S | re.M)
 LAB1 = re.compile(r"^## [^\n]*Lab 1[^\n]*\n", re.M)
 WORK_IN = re.compile(r"(?:[Ww]orks? in|[Ff]rom) `(examples/[\w./-]+?)/?`")
 MARK = "\x1e"           # starts a marker line in a shell's output
@@ -104,8 +98,12 @@ def commands(md: str, cfg: dict) -> list[tuple[int, str, str, re.Match]]:
     span = lab_span(md)
     if not span:
         return []
+    # Generated blocks (the lab's "Every command" list, its captures) repeat or show commands; skip them.
+    generated = [(m.start(), m.end()) for m in GENERATED.finditer(md)]
     out, k, t = [], 0, 0
     for b in BLOCK.finditer(md, *span):
+        if any(s <= b.start() < e for s, e in generated):
+            continue
         lang = b.group(2)
         if lang == "text":
             t += 1

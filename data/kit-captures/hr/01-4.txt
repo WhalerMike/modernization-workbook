@@ -1,0 +1,7 @@
+$ python -c "import json; [print(r['Rule'], r['Severity'], r['Object'], '|', r['Issue']) for r in json.load(open('out/ch01/findings.json'))]"
+WS-01 Finding casey.ng@contoso.example | disabled-at-separation written by pat.helpdesk@contoso.example, not by inbound-provisioning
+WS-01 Finding morgan.lee@contoso.example | employeeLeaveDateTime written by sam.exchange@contoso.example, not by inbound-provisioning
+WS-01 Finding drew.park@contoso.example | manager written by pat.helpdesk@contoso.example, not by inbound-provisioning
+WS-01 Finding quinn.ross@contoso.example | orgCode written by OrgCode fix-up script, not by inbound-provisioning
+WS-04 Finding blake.ito@contoso.example | deleted-at-disposition written by inbound-provisioning, which the register forbids
+WS-02 Warn jordan.diaz@contoso.example | enabled-at-hire written by the backstop (lifecycle-workflows); confirm the writer (inbound-provisioning) acted or was late

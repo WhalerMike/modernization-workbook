@@ -1,0 +1,4 @@
+$ python python/access_assignment.py memberof-scan --policies tests/fixtures/ch04/assignment-policies.json
+Assignment policies read: 4; using memberOf: 1
+  MS-01 Finding: Shared drives (legacy): AUTO via group membership
+(exit code 2)

@@ -1,0 +1,4 @@
+$ python python/graph_export.py --task separation-read --list
+Task separation-read: AuditLog.Read.All, LifecycleWorkflows-Reports.Read.All
+  GET /auditLogs/directoryAudits  [AuditLog.Read.All]
+  GET /identityGovernance/lifecycleWorkflows/workflows/{workflowId}/userProcessingResults  [LifecycleWorkflows-Reports.Read.All]

@@ -1,0 +1,5 @@
+$ python python/cba_check.py measure --urls tests/fixtures/ch05/crl-urls.txt --out out/ch05/crl-measurements.csv
+         4,096 bytes    0.000 s  tests/fixtures/ch05/crl/piv-ca1.crl
+         8,192 bytes    0.000 s  tests/fixtures/ch05/crl/piv-ca2.crl
+             0 bytes    0.000 s  tests/fixtures/ch05/crl/missing.crl  FileNotFoundError
+Measured 3 CRL(s) -> out/ch05/crl-measurements.csv

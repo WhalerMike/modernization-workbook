@@ -13,7 +13,11 @@ labs:end markers (the review gate leaves them out, as it does the tour blocks):
 
   - after "How to read this guide", a "Labs for this guide" box that links the guide's labs on the Labs page;
   - after each gate's Validate callout, where a learning path maps its modules to the guide's gates
-    (Ticket-to-Machine and HR-Driven Identity), a "Try it" box with that gate's labs and module.
+    (Ticket-to-Machine and HR-Driven Identity), a "Try it" box with that gate's labs and module;
+
+and, at the top of every lab and module exercise, "Every command in Lab N": each of the lab's own
+```bash and ```powershell blocks, in order, under the step it belongs to, so a reader can follow the lab
+top to bottom (labs give every action as an exact command; see CONTRIBUTING).
 
     python scripts/generate_labs.py            # write the page and the guide blocks
     python scripts/generate_labs.py --check    # exit 1 if either is stale
@@ -119,8 +123,10 @@ def read_workbooks() -> None:
             for text, hid, pos in headings(md):
                 if re.match(r"Lab 1\b", text):
                     ch["lab1"] = (hid, needs(section(md, pos)))
+                    ch["cmds1"] = bool(FENCE.search(section(md, pos)))
                 elif re.match(r"Lab 2\b", text):
                     ch["lab2"] = (hid, text.split(":", 1)[1].strip() if ":" in text else "", first_sentence(section(md, pos)))
+                    ch["cmds2"] = bool(FENCE.search(section(md, pos)))
             wb.chapters.append(ch)
 
 
@@ -165,7 +171,7 @@ def page_text() -> str:
            "Every developer workbook chapter ends with two labs, and every learning path module has an exercise built on them.", "",
            "- **Lab 1: fixtures, no tenant.** It runs on a laptop against the kit's fictional fixtures. Nothing signs in, and nothing leaves the machine. Where a chapter shows a terminal image after a command, that image is the kit's real output on those fixtures.",
            "- **Lab 2.** It repeats the chapter in a non-production tenant, instance or subscription, never production. The authors haven't run the Lab 2s; each says so, and says how to back out what it built.", "",
-           "Start with Lab 1. Each workbook's code downloads as one zip from its section below, or from [Downloads](../downloads.md#kits).", ""]
+           "Every lab opens with the list of every command it runs, in order: follow it top to bottom. *commands* in the tables below links straight to that list. Start with Lab 1. Each workbook's code downloads as one zip from its section below, or from [Downloads](../downloads.md#kits).", ""]
     for wb in WORKBOOKS:
         mods = modules(wb)
         by_ch = {}
@@ -188,9 +194,11 @@ def page_text() -> str:
                 continue
             title = re.sub(r"^Chapter \d+ — ", "", ch["title"])
             row = [f"[{ch['nn']} {title}]({rel(src, ch['path'])})",
-                   f"[Lab 1]({lab_link(src, ch, 'lab1')})" if "lab1" in ch else "—",
+                   (f"[Lab 1]({lab_link(src, ch, 'lab1')})" + (f" · [commands]({rel(src, ch['path'])}#lab-1-commands)" if ch.get("cmds1") else ""))
+                   if "lab1" in ch else "—",
                    ch.get("lab1", ("", ""))[1].replace("|", "\\|") or "—",
-                   f"[{ch['lab2'][1] or 'Lab 2'}]({lab_link(src, ch, 'lab2')})" if "lab2" in ch else "—"]
+                   (f"[{ch['lab2'][1] or 'Lab 2'}]({lab_link(src, ch, 'lab2')})" + (f" · [commands]({rel(src, ch['path'])}#lab-2-commands)" if ch.get("cmds2") else ""))
+                   if "lab2" in ch else "—"]
             if mods:
                 row.append(", ".join(f"[Module {m['n']}]({rel(src, m['path'])})" for m in by_ch.get(ch["nn"], [])) or "—")
             out.append("| " + " | ".join(row) + " |")
@@ -255,6 +263,68 @@ def place(wb: Workbook, md: str) -> str:
     return md
 
 
+FENCE = re.compile(r"^( *)```(bash|powershell)\n(.*?)^\1```", re.S | re.M)
+STEP = re.compile(r"^(\d+)\. (?:\*\*(.+?)\*\*)?", re.M)
+SHELL = {"bash": "a POSIX shell (Git Bash on Windows)", "powershell": "PowerShell 7"}
+
+
+def lab_commands(md: str) -> str:
+    """Each lab (and module exercise) opened by the list of every command it runs, in order, taken from
+    its own command blocks, each under the step it belongs to."""
+    md = MARKED.sub("", md)
+    for text, hid, pos in reversed(headings(md)):
+        lab = re.search(r"\bLab ([12])\b", text)
+        if not lab:
+            continue
+        sec = section(md, pos)
+        blocks = list(FENCE.finditer(sec))
+        if not blocks:
+            continue
+        # The step each block sits in: the last "N. **Title**" line before it.
+        parts: list[tuple[str, list[str]]] = []          # (language, lines), consecutive blocks merged
+        for b in blocks:
+            step = None
+            for s in STEP.finditer(sec, 0, b.start()):
+                step = s
+            ind = b.group(1)
+            code = "\n".join(l[len(ind):] if l.startswith(ind) else l for l in b.group(3).rstrip("\n").splitlines())
+            lines = [code]
+            if step:
+                title = re.sub(r"[`*]", "", step.group(2) or "").rstrip(":., ")
+                lines.insert(0, f"# Step {step.group(1)}" + (f": {title}" if title else ""))
+            if parts and parts[-1][0] == b.group(2):
+                parts[-1][1].extend([""] + lines)
+            else:
+                parts.append((b.group(2), lines))
+        n = lab.group(1)
+        body = []
+        for lang, lines in parts:
+            if len(parts) > 1:
+                body += [f"In {SHELL[lang]}:", ""]
+            body += [f"```{lang}", *lines, "```", ""]
+        # After the lab's opening paragraph (or right after its heading if it opens with a step).
+        at = pos + len(sec.split("\n", 1)[0]) + 2          # past the heading line and its blank line
+        if not re.match(r"\d+\. ", md[at:]):
+            at = md.index("\n\n", at) + 2                   # past the opening paragraph
+        first_dir = re.search(r"[Ww]ork in `(examples/[\w/-]+)`", sec)
+        intro = (f"Every command in this lab, in order{', from `' + first_dir.group(1) + '`' if first_dir else ''}. "
+                 "Each step below says what it does and what to look for.")
+        new = "\n".join([BEGIN.format(f"lab-{n}-commands"), "",
+                         f'::: {{.callout-note #lab-{n}-commands collapse="false" title="Every command in Lab {n}"}}',
+                         intro, "", *body, ":::", "", END, "", ""])
+        md = md[:at] + new + md[at:]
+    return md
+
+
+def lab_pages() -> list[Path]:
+    pages = []
+    for wb in WORKBOOKS:
+        pages += sorted((ROOT / wb.docs).glob("[0-9][0-9]-*.md"))
+        if wb.training:
+            pages += sorted((ROOT / wb.training).glob("[0-9][0-9]-*.md"))
+    return pages + [ROOT / p for p in MS_AUTOMATION]
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     ap.add_argument("--check", action="store_true")
@@ -265,6 +335,8 @@ def main() -> int:
         if wb.guide:
             p = ROOT / wb.guide
             files[p] = place(wb, p.read_bytes().decode("utf-8"))
+    for p in lab_pages():
+        files[p] = lab_commands(p.read_bytes().decode("utf-8"))
     stale = [p for p, t in files.items() if not p.exists() or p.read_bytes().decode("utf-8") != t]
     if a.check:
         if stale:

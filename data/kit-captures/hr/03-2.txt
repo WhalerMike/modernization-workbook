@@ -1,0 +1,3 @@
+$ python python/joiner_workflows.py lint config/workflows --budget 50
+Workflows: 6 files, budget 50
+Lint: 0 Finding, 0 Warn, 0 Info

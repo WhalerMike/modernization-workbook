@@ -1,0 +1,3 @@
+$ python python/access_assignment.py lint config/access --population tests/fixtures/ch04/population.json
+Policies: 3 files
+Lint: 0 Finding, 0 Warn, 0 Info

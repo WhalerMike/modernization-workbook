@@ -1,2 +1,4 @@
-$ python clients/python/evidence_export.py --verify-dir out/evidence
-Package holds: every file matches the manifest and the chain is unbroken.
+$ python -c "import json; r=json.loads(open('out/evidence/records.jsonl', encoding='utf-8').readline()); [print(k, json.dumps(r[k])) for k in ('approval', 'executing_identity', 'what_ran')]"
+approval {"reason": "not recorded in Pass 1: the change or catalog record that authorizes and runs the fix is a later pass", "value": null}
+executing_identity {"reason": "not recorded in Pass 1: the change or catalog record that authorizes and runs the fix is a later pass", "value": null}
+what_ran {"reason": "not recorded in Pass 1: the change or catalog record that authorizes and runs the fix is a later pass", "value": null}

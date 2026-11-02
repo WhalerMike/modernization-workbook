@@ -1,0 +1,15 @@
+$ python python/cba_check.py check --cloud gcchigh --exports tests/fixtures/ch05/exports --crl tests/fixtures/ch05/crl-measurements.csv --expected config/cba-expected.json --as-of 2026-11-01 --out out/ch05/check-gcchigh
+Cloud gcchigh: interactive CRL limit 45,000,000 bytes, download within 10 s
+CBA: 5 Finding, 6 Warn, 0 Info
+  CB-01 Finding: Contoso Example Legacy Intermediate: no CRL configured: Entra doesn't check revocation for this CA
+  CB-04 Finding: Contoso Example PIV Issuing CA 2 (renewed): CRL took 11.4 s to download; the limit is 10 s
+  CB-09 Finding: authentication mode: PIV policy OID(s) 2.16.840.1.101.3.2.1.48.11 not mapped to multifactor, and the default is single-factor
+  CB-10 Finding: Conditional Access: no enabled policy for all users and all resources requires a phishing-resistant authentication strength (SCuBA MS.AAD.3.1v1)
+  CB-12 Finding: Contoso Example PIV Issuing CA 2: issuing CA the card program uses isn't in the trust store
+  CB-01 Warn: Contoso Example PIV Root CA: root CA with no CRL configured; Learn asks for a CRL on each CA; confirm the root's revocation path
+  CB-02 Warn: Contoso Example PIV Issuing CA 2 (renewed): CRL endpoint https://pki.contoso.example/crl/piv-ca2.crl isn't HTTP; Learn recommends HTTP
+  CB-08 Warn: CRL validation: CBA doesn't require a CRL from every CA (crlValidationConfiguration isn't enabled)
+  CB-08 Warn: CA 5A5B5C5D5E5F60616263646566676869: exempted from CRL validation; allowed only while its CRL is fixed, with an end date
+  CB-11 Warn: Contoso Example Legacy Intermediate: CA certificate expires 2026-12-15
+  CB-13 Warn: username bindings: low-affinity binding fields configured (PrincipalName); align with the affinity decision (ADM Gate 6) and VK-PIV-01
+(exit code 2)

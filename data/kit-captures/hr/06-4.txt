@@ -1,0 +1,10 @@
+$ cut -d, -f1,7,8,10 out/ch06/intervals.csv
+PersonNumber,separationToBlockHours,separationToRevocationHours,status
+100301,0.25,11.0,measured
+100302,5.52,21.0,measured
+100303,,,not blocked
+100304,84.68,110.0,measured
+100305,0.1,10.0,measured
+100306,0.35,9.0,measured
+100307,,,cancelled
+100308,0.1,395.0,measured

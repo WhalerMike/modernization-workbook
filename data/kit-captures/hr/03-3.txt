@@ -1,0 +1,15 @@
+$ python python/joiner_workflows.py lint tests/fixtures/ch03/bad-workflows --budget 2
+Workflows: 3 files, budget 2
+Lint: 7 Finding, 4 Warn, 0 Info
+  JW-03 Finding: Bad-DayOne-GroupAdd: offsetInDays 200 is outside -180 to 180
+  JW-04 Finding: Bad-Leaver-DeleteSameDay: a leaver workflow triggered on employeeHireDate
+  JW-07 Finding: workflow count: 3 workflows over the budget of 2 (Learn's licensing page says 50, its limits page 100)
+  JW-08 Finding: Bad-PreHire-ByDepartment: scheduled with no execution limit recorded; set it in the admin center (Learn: not in the API) and record it in _program
+  JW-09 Finding: Bad-DayOne-GroupAdd: joiner adds the user to groups directly; give baseline access by access package
+  JW-11 Finding: Bad-Leaver-DeleteSameDay: delete and disable in one workflow; delete in a separate post-separation workflow
+  JW-12 Finding: Bad-Leaver-DeleteSameDay: scope rule uses manager, which Learn doesn't list for a workflow scope
+  JW-02 Warn: Bad-PreHire-ByDepartment: scope rule uses no coded attribute (employeeType or the coded extension slots); scope by code, not by name
+  JW-02 Warn: Bad-PreHire-ByDepartment: scope rule reads the display value department; a renamed organization silently drops users
+  JW-05 Warn: Bad-PreHire-ByDepartment: TAP lifetime 4320 minutes; Learn recommends at most 24 hours for a new hire
+  JW-05 Warn: Bad-PreHire-ByDepartment: TAP isn't one-time use; the tenant policy can force it (design guidance: do)
+(exit code 2)

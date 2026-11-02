@@ -1,0 +1,5 @@
+$ python python/graph_export.py --task access-read --list
+Task access-read: EntitlementManagement.Read.All, User.Read.All
+  GET /identityGovernance/entitlementManagement/assignmentPolicies  [EntitlementManagement.Read.All]
+  GET /identityGovernance/entitlementManagement/assignments  [EntitlementManagement.Read.All]
+  GET /users/{userId}/transitiveMemberOf/microsoft.graph.group  [User.Read.All]

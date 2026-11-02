@@ -1,0 +1,13 @@
+$ python -c "import json; [print(r['Rule'], r['Severity'], r['Object']) for r in json.load(open('out/ch06/findings.json'))]"
+ST-01 Finding casey.ng@contoso.example
+ST-01 Finding emery.sol@contoso.example
+ST-02 Finding drew.park@contoso.example
+ST-03 Finding drew.park@contoso.example
+ST-04 Finding casey.ng@contoso.example
+ST-05 Finding harper.vu@contoso.example
+ST-07 Finding harper.vu@contoso.example
+ST-08 Finding blake.ito@contoso.example
+ST-09 Finding emery.sol@contoso.example
+ST-09 Finding blake.ito@contoso.example
+ST-03 Warn emery.sol@contoso.example
+ST-06 Warn kai.oto@contoso.example

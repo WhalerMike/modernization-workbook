@@ -1,0 +1,10 @@
+$ python -c "import json; [print(d['PersonKey'], d['Action'], d['EarliestEnd'], d['Reason']) for d in json.load(open('out/ch02/extract/decisions.json'))]"
+900001 active 2027-01-11 contract end
+900002 inactive 2026-10-15 completion date
+900003 inactive 2026-10-20 suitability withdrawn
+900004 inactive 2026-10-30 sponsor gone past the grace period
+900005 inactive 2026-10-25 sponsor recertification due
+900006 active 2026-11-10 contract end
+900007 quarantine  no contract end
+900008 quarantine 2027-03-31 contract end
+900009 active 2027-03-01 sponsor recertification due

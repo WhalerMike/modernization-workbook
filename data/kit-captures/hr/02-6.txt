@@ -1,0 +1,2 @@
+$ python python/contractor_source.py review --rules config/contractor-rules.json --out out/ch02/review
+Review settings written to out/ch02/review/assignment-policy-review.json for review; nothing was sent
