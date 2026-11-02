@@ -159,7 +159,7 @@ python python/joiner_workflows.py readiness --hires tests/fixtures/ch03/hr-hires
 # Step 6: Run the tests
 python -m pytest tests -q
 
-# Step 6: Run the tests
+# After the steps
 rm -rf out/ch03
 ```
 

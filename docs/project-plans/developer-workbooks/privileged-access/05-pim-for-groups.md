@@ -220,7 +220,7 @@ Get-Content out/pim-groups/diff.txt
 # Step 9: Run the tests
 Invoke-Pester -Path tests
 
-# Step 9: Run the tests
+# After the steps
 Remove-Item -Recurse -Force out
 ```
 

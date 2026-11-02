@@ -154,7 +154,7 @@ cat out/ch04/residual/residual-review.csv
 # Step 6: Run the tests
 python -m pytest tests -q
 
-# Step 6: Run the tests
+# After the steps
 rm -rf out/ch04
 ```
 

@@ -270,14 +270,14 @@ python -m pytest tests -q
 In PowerShell 7:
 
 ```powershell
-# Step 11: Run the tests
+# After the steps
 Remove-Item -Recurse -Force out
 ```
 
 In a POSIX shell (Git Bash on Windows):
 
 ```bash
-# Step 11: Run the tests
+# After the steps
 rm -rf out
 ```
 

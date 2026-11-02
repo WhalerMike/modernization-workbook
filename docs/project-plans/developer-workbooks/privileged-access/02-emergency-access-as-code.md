@@ -173,7 +173,7 @@ $t.resources[0].type, $t.resources[0].apiVersion, $t.resources[0].properties.sev
 # Step 7: Run the tests
 Invoke-Pester -Path tests
 
-# Step 7: Run the tests
+# After the steps
 Remove-Item -Recurse -Force out
 ```
 

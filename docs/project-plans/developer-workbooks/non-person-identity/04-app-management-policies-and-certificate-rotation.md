@@ -261,7 +261,7 @@ $sha = (Get-FileHash out/rotation/rotation-plan.json -Algorithm SHA256).Hash.ToL
 # Step 9: Run the tests
 Invoke-Pester -Path tests
 
-# Step 9: Run the tests
+# After the steps
 Remove-Item -Recurse -Force out
 ```
 
