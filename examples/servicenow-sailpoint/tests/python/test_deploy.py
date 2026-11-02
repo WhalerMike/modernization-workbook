@@ -108,8 +108,11 @@ def test_preflight_wrong_workflow_state_fails():
 
 
 def test_production_needs_the_features_confirmed_and_a_change_record(tmp_path):
-    rc, out = run(preflight, ["--settings", PROD, "--dry-run", "--today", "2026-11-02"])
+    path = write_settings(tmp_path, lambda d: d["deploy"].update({"environment": "production"}))
+    rc, out = run(preflight, ["--settings", path, "--dry-run", "--today", "2026-11-02"])
     assert rc == 1 and "FAIL  G1  features" in out and "production waits" in out
+    rc, out = run(preflight, ["--settings", PROD, "--dry-run", "--today", "2026-11-02"])
+    assert "PASS  G1  features" in out
     path = write_settings(tmp_path, lambda d: d["deploy"].update({"environment": "production", "change_record": ""}))
     rc, out = run(preflight, ["--settings", path, "--dry-run", "--today", "2026-11-02"])
     assert "FAIL  G1  change" in out

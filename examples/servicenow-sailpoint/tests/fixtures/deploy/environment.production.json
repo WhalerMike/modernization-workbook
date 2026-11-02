@@ -39,9 +39,9 @@
       "sailpoint_confirmed": {
         "workflows": true,
         "native_change_detection": true,
-        "http_request_step": false
+        "http_request_step": true
       },
-      "sailpoint_reference": "SP-CASE-0000-EXAMPLE"
+      "sailpoint_reference": "SP-CASE-0000-EXAMPLE-2"
     },
     "granted": {
       "finding_writer": "x_example_idkit.finding_writer",
