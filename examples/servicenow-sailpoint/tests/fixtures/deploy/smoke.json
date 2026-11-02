@@ -1,0 +1,113 @@
+{
+  "_comment": "Saved responses for deploy/smoke_test.py --fixtures: raise (created, then de-duplicated), signal (two findings moved), and the direct and native findings read back after the signal's predecessor steps. The Scripted REST resource's body is shown inside 'result'. Every value is invented.",
+  "env": {
+    "SN_CLIENT_ID": "0f1e2d3c4b5a69788796a5b4c3d2e1f0",
+    "SN_CLIENT_SECRET": "fixture-not-a-secret"
+  },
+  "responses": [
+    {
+      "method": "POST",
+      "path": "/oauth_token.do",
+      "repeat": true,
+      "body": {
+        "access_token": "fixture-sn-token",
+        "token_type": "Bearer",
+        "expires_in": 1799
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/x_example_idkit/identity_findings/finding",
+      "status": 201,
+      "body": {
+        "result": {
+          "sys_id": "5f0c0000000000000000000000000d01",
+          "number": "IDF0001001",
+          "deduplicated": false,
+          "priority": "4",
+          "severity": "P4"
+        }
+      },
+      "body_contains": "\"kind\": \"finding\""
+    },
+    {
+      "method": "POST",
+      "path": "/api/x_example_idkit/identity_findings/finding",
+      "status": 200,
+      "body": {
+        "result": {
+          "sys_id": "5f0c0000000000000000000000000d01",
+          "number": "IDF0001001",
+          "deduplicated": true,
+          "occurrences": 2
+        }
+      },
+      "body_contains": "\"kind\": \"finding\""
+    },
+    {
+      "method": "POST",
+      "path": "/api/x_example_idkit/identity_findings/finding",
+      "status": 200,
+      "body": {
+        "result": {
+          "moved_to_awaiting_verification": [
+            "5f0c0000000000000000000000000d01",
+            "5f0c0000000000000000000000000d03"
+          ],
+          "noted": []
+        }
+      },
+      "body_contains": "\"kind\": \"closure_signal\""
+    },
+    {
+      "method": "GET",
+      "path": "/api/now/table/u_identity_finding",
+      "body": {
+        "result": [
+          {
+            "sys_id": "5f0c0000000000000000000000000d01",
+            "number": "IDF0001001",
+            "state": "1",
+            "priority": "4",
+            "u_severity": "P4",
+            "u_source": "drift-reconciliation",
+            "u_drift_class": "attribute_drift",
+            "u_dedupe_key": "drift-reconciliation|00000000-0000-4000-8000-00000000c501|attribute_drift|department",
+            "u_occurrences": "2",
+            "u_intended_state": "{\"attributes\":{\"department\":\"Smoke Test\"}}",
+            "u_evidence_hash": "",
+            "u_verified_at": "",
+            "sys_created_on": "2026-11-02 15:04:11"
+          }
+        ]
+      },
+      "query_contains": "drift-reconciliation|",
+      "repeat": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/now/table/u_identity_finding",
+      "body": {
+        "result": [
+          {
+            "sys_id": "5f0c0000000000000000000000000d02",
+            "number": "IDF0001000",
+            "state": "18",
+            "priority": "2",
+            "u_severity": "P2",
+            "u_source": "sailpoint-isc",
+            "u_drift_class": "unauthorized_write",
+            "u_dedupe_key": "sailpoint-isc|2c91800000000000000000000a5001ad|unauthorized_write",
+            "u_occurrences": "3",
+            "u_intended_state": "{\"attributes\":{\"department\":\"Smoke Test\"},\"entitlements_absent\":[],\"entitlements_present\":[]}",
+            "u_evidence_hash": "",
+            "u_verified_at": "",
+            "sys_created_on": "2026-11-02 14:31:52"
+          }
+        ]
+      },
+      "query_contains": "unauthorized_write",
+      "repeat": true
+    }
+  ]
+}

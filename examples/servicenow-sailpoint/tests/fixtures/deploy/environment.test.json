@@ -1,0 +1,50 @@
+{
+  "_comment": "Fictional test-stage settings for the deployment scripts' tests and the runbook's printed output. Every value is invented.",
+  "SN_BASE_URL": "https://contosotest.service-now.com",
+  "SAILPOINT_API_BASE": "https://example-sb.api.identitynow.com",
+  "GRAPH_CLOUD": "Global",
+  "GRAPH_TENANT_ID": "00000000-0000-4000-8000-0000000000a1",
+  "GRAPH_CLIENT_ID": "00000000-0000-4000-8000-0000000000a2",
+  "GRAPH_CERT_PATH": "C:/secure/graph-reader-test.pem",
+  "SN_FINDING_API_PATH": "/api/x_example_idkit/identity_findings/finding",
+  "SN_FINDING_TABLE": "u_identity_finding",
+  "SN_STATE_AWAITING_VERIFICATION": "18",
+  "SN_STATE_CLOSED": "3",
+  "SN_STATE_REOPENED": "1",
+  "ISC_EMPLOYEE_ID_ATTRIBUTE": "employeeNumber",
+  "deploy": {
+    "environment": "test",
+    "change_record": "CHG0040101",
+    "app": {"scope": "x_example_idkit", "version": "1.0.0"},
+    "workflow_owner": {"id": "2c9180000000000000000000000e9001", "name": "ttm.owner.example"},
+    "workflow_client_id": "a1b2c3d4e5f60718293a4b5c6d7e8f90",
+    "g1": {
+      "marketplace_checked_on": "2026-11-02",
+      "servicenow_listing": "F1305072116",
+      "sailpoint_listing": "FR2001938710A",
+      "sailpoint_confirmed": {"workflows": true, "native_change_detection": true, "http_request_step": false},
+      "sailpoint_reference": "SP-CASE-0000-EXAMPLE"
+    },
+    "granted": {
+      "finding_writer": "x_example_idkit.finding_writer",
+      "verifier": "x_example_idkit.verifier",
+      "evidence_reader": "x_example_idkit.evidence_reader",
+      "isc_reader": "sp:search:read,idn:accounts:read",
+      "isc_deploy_checker": "sp:workflow:read",
+      "isc_workflow_admin": "sp:workflow:manage",
+      "isc_workflow_tester": "sp:workflow-execute:external,sp:workflow-execution:read"
+    },
+    "synthetic": {
+      "name": "smoke.test.example",
+      "identity_id": "2c9180000000000000000000000e5001",
+      "account_id": "2c91800000000000000000000a5001ad",
+      "entra_user_id": "00000000-0000-4000-8000-00000000c501",
+      "native_identity": "00000000-0000-4000-8000-00000000c501",
+      "source_id": "src-entra",
+      "source_name": "Contoso Entra ID",
+      "attribute": "department",
+      "baseline": "Smoke Test",
+      "changed": "Smoke Test Changed"
+    }
+  }
+}

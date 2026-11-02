@@ -33,6 +33,11 @@ examples/servicenow-sailpoint/
   clients/powershell/IdentityKit.psm1    the same pieces in PowerShell 7
   clients/powershell/Get-IdentityDrift.ps1
   clients/powershell/Invoke-ReReadVerification.ps1
+  deploy/environment.example.json        one environment's settings (template; no secrets)
+  deploy/preflight.py                    pre-flight checks before each deployment step
+  deploy/render_workflows.py             the ISC workflows rendered for one environment
+  deploy/smoke_test.py                   the synthetic-worker smoke test
+  deploy/rollback.py                     the rollback commands for one environment, and a check they took
   tests/fixtures/                        HR CSV, Graph, ISC and Entra audit samples, expected results
   tests/python/                          pytest, mocked HTTP
   tests/powershell/                      Pester 5, mocked Invoke-RestMethod
@@ -169,6 +174,11 @@ Python certificate auth needs the optional `cryptography` package; without it, u
 | Re-read client (build 2) | Microsoft Graph | `User.Read.All` | `GET /users/{id}` |
 | Business rule | ServiceNow | the verifier account named in `x_example_idkit.verifier_user` | only it can close with evidence |
 | Evidence export (`evidence_export.py`) | ServiceNow | read only on `u_identity_finding` (custom role, for example `x_example_idkit.evidence_reader`) | read closed findings |
+| Deployment checks (`deploy/preflight.py`, `rollback.py`, `smoke_test.py check`) | ServiceNow | the evidence reader's role | read the finding table |
+| Deployment checks | ISC | `sp:workflow:read` (a separate deploy-checker API client) | list the workflows and their enabled state |
+| Smoke test (`deploy/smoke_test.py raise`, `signal`) | ServiceNow | the finding-writer role | post the synthetic finding and closure signal |
+| Workflow update (enable, disable; by hand with curl) | ISC | `sp:workflow:manage` | `PATCH /v2025/workflows/{id}` |
+| Workflow test run (by hand with curl) | ISC | `sp:workflow-execute:external` and `sp:workflow-execution:read`, user level `ORG_ADMIN` (a personal access token) | `POST /v2025/workflows/{id}/test`; read the execution |
 
 `config/calls.json` declares every call above with its task and least privilege; `python clients/python/kit_calls.py --task <task>` lists them, and `--system <system> --granted "<list>"` compares a grant with them.
 
@@ -201,9 +211,22 @@ Offline runs: pass saved exports with `--graph-users-json`, `--isc-identities-js
 
 ## Offline tools from the developer workbook
 
-The developer workbook [Building Ticket-to-Machine](../../docs/project-plans/developer-workbooks/ticket-to-machine/index.md) builds these Python tools on the kit, one or two per chapter, each with tests and a lab that runs on a laptop against `tests/fixtures/` with no tenant: `finding_contract.py` (Chapter 01), `kit_calls.py` and `config/calls.json` (Chapters 02 and 03), `workflow_payload.py` (Chapter 04), the offline mode and the empty-intended-state guard in `reread_verification.py` (Chapter 05), `drift_compare.py` (Chapter 06), `evidence_export.py` (Chapter 07) and `writer_check.py` (Chapter 08). They are Python only; the PowerShell module has no counterparts yet. `tests/fixtures/config.fixtures.json` holds the fixture settings (no secrets) for offline drift runs.
+The developer workbook [Building Ticket-to-Machine](../../docs/project-plans/developer-workbooks/ticket-to-machine/index.md) builds these Python tools on the kit, one or two per chapter, each with tests and a lab that runs on a laptop against `tests/fixtures/` with no tenant: `finding_contract.py` (Chapter 01), `kit_calls.py` and `config/calls.json` (Chapters 02 and 03), `workflow_payload.py` (Chapter 04), the offline mode and the empty-intended-state guard in `reread_verification.py` (Chapter 05), `drift_compare.py` (Chapter 06), `evidence_export.py` (Chapter 07) and `writer_check.py` (Chapter 08). Chapter 09 adds the deployment scripts in `deploy/` (below). They are Python only; the PowerShell module has no counterparts yet. `tests/fixtures/config.fixtures.json` holds the fixture settings (no secrets) for offline drift runs.
 
 The same chapters changed two behaviors, in both the ServiceNow script and the Python mirror: the de-duplication key now includes the attribute, so two attributes drifting on one subject are two findings, each with its own intended state; and the native-change workflow now sends `multiValueAttributeChanges`, so a change to a multivalued attribute is reverted like any other. The re-read client skips, and never verifies, an intended state that names nothing it can check.
+
+## Deploying to a test environment and production
+
+The developer workbook's [Chapter 09, Deploying to Test and Production](../../docs/project-plans/developer-workbooks/ticket-to-machine/09-deploying-to-test-and-production.md) is the runbook: a ServiceNow sub-production instance and a SailPoint sandbox tenant first, then the production instance and tenant, with the same commands and only the settings file changed. It has not been run against a live instance or tenant. The scripts it uses are in `deploy/`; each reads one settings file, copied from `deploy/environment.example.json`, which holds endpoints, names and recorded grants but never a secret (credentials come from the vault into environment variables, and the kit's loader refuses a secret in the file).
+
+| Script | Runs as | What it does |
+|---|---|---|
+| `deploy/preflight.py` | the evidence reader (ServiceNow) and the deploy checker (ISC) | The settings file, Gate 1 (the Marketplace record and SailPoint's written feature confirmation), OAuth instead of basic authentication, a change record in production, each integration identity's grant against `config/calls.json`, the finding table, and the workflows' state. Exits 1 on any FAIL |
+| `deploy/render_workflows.py` | nobody (reads files) | Prints one of the three workflows with the environment's ServiceNow URL, owner and client ID, disabled, for `POST /v2025/workflows`; the client secret only from an environment variable, to standard output; and a synthetic test input for each workflow |
+| `deploy/smoke_test.py` | the finding writer (`raise`, `signal`); the evidence reader (`check`) | Posts a synthetic finding twice (created, then de-duplicated) and a closure signal, with `--apply`; reads each synthetic finding back and checks its state |
+| `deploy/rollback.py` | the deploy checker and the evidence reader | Prints the rollback commands with the environment's workflow IDs, and verifies that the workflows are disabled and no finding from ISC arrived since |
+
+Every script takes `--dry-run` (no network) and `--fixtures FILE` (calls answered from a saved file; `tests/fixtures/deploy/` holds fictional settings and responses). They are Python only; the PowerShell module has no counterparts. Environment variables that name an endpoint (`SN_BASE_URL`, `SN_INSTANCE`, `SAILPOINT_API_BASE`, `SAILPOINT_TENANT`) would override a settings file in the kit's other clients, so the pre-flight check fails while one is set and differs.
 
 ## Tests
 
@@ -252,6 +275,11 @@ These couldn't be confirmed from public documentation on October 24, 2026. Check
 17. **Freshness of ISC reads.** An ISC account reflects the last aggregation. The re-read client treats an account not modified since the record started waiting as *pending* for `--grace-hours` (default 24), then as a mismatch. Tune it to your aggregation schedule.
 18. **Reachability.** ISC workflows call out from SailPoint's cloud, so the ServiceNow endpoint must be reachable from it (*inference*).
 19. **FedRAMP feature parity.** Whether Workflows, Native Change Detection and the HTTP Request step are available in the ISC FedRAMP environment; ask SailPoint.
+20. **The Scripted REST response body.** `deploy/smoke_test.py` reads the resource's answer either inside `result` or at the top level; check which your instance returns.
+21. **The workflow's OAuth secret through the API.** The deployment runbook sends the ServiceNow client secret in `oAuthClientSecret` when it creates a workflow (item 2 covers the attribute names); confirm that ISC stores it as a sensitive field, or enter it in the workflow editor instead.
+22. **The production instance's address** in ServiceNow's Government Community Cloud, for `SN_BASE_URL`; take it from the instance, not from this kit.
+23. **Rolling back an application install on Zurich.** ServiceNow's legacy page says the rollback removes the application's code, tables and files, and that source-control installs aren't recorded for rollback; the Zurich steps weren't found. The runbook's rollback disables intake and keeps the records instead.
+24. **Date and time in an encoded query.** `deploy/rollback.py --verify` filters on `sys_created_on>` the time you give; check the instance's time zone for that comparison (workbook research gaps, row 61).
 
 ## Not in Pass 1
 

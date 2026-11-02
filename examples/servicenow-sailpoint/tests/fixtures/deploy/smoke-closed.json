@@ -1,0 +1,42 @@
+{
+  "_comment": "Saved responses for deploy/smoke_test.py check --expect closed --fixtures: the direct finding after the re-read client closed it with evidence. Every value is invented.",
+  "env": {
+    "SN_CLIENT_ID": "0f1e2d3c4b5a69788796a5b4c3d2e1f0",
+    "SN_CLIENT_SECRET": "fixture-not-a-secret"
+  },
+  "responses": [
+    {
+      "method": "POST",
+      "path": "/oauth_token.do",
+      "repeat": true,
+      "body": {
+        "access_token": "fixture-sn-token",
+        "token_type": "Bearer",
+        "expires_in": 1799
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/now/table/u_identity_finding",
+      "body": {
+        "result": [
+          {
+            "sys_id": "5f0c0000000000000000000000000d01",
+            "number": "IDF0001001",
+            "state": "3",
+            "priority": "4",
+            "u_severity": "P4",
+            "u_source": "drift-reconciliation",
+            "u_drift_class": "attribute_drift",
+            "u_dedupe_key": "drift-reconciliation|00000000-0000-4000-8000-00000000c501|attribute_drift|department",
+            "u_occurrences": "2",
+            "u_intended_state": "{\"attributes\":{\"department\":\"Smoke Test\"}}",
+            "u_evidence_hash": "9b1d5c0e7a3f4e21b8c6d0a2f5e7c9b1a3d5f7e9c1b3a5d7f9e1c3b5a7d9f1e3",
+            "u_verified_at": "2026-11-02T16:10:00Z",
+            "sys_created_on": "2026-11-02 15:04:11"
+          }
+        ]
+      }
+    }
+  ]
+}

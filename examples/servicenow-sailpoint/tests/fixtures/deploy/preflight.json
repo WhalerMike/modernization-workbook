@@ -1,0 +1,61 @@
+{
+  "_comment": "Saved responses for deploy/preflight.py --fixtures: the test stage after the three workflows were created, disabled. 'env' stands in for the environment variables (fictional; no real secret). Every value is invented.",
+  "env": {
+    "SN_CLIENT_ID": "0f1e2d3c4b5a69788796a5b4c3d2e1f0",
+    "SN_CLIENT_SECRET": "fixture-not-a-secret",
+    "SAILPOINT_CLIENT_ID": "9a8b7c6d5e4f30211203f4e5d6c7b8a9",
+    "SAILPOINT_CLIENT_SECRET": "fixture-not-a-secret"
+  },
+  "responses": [
+    {
+      "method": "POST",
+      "path": "/oauth_token.do",
+      "body": {
+        "access_token": "fixture-sn-token",
+        "token_type": "Bearer",
+        "expires_in": 1799
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/now/table/u_identity_finding",
+      "body": {
+        "result": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/oauth/token",
+      "body": {
+        "access_token": "fixture-isc-token",
+        "token_type": "bearer"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/v2025/workflows",
+      "body": [
+        {
+          "id": "wf-0000-0001",
+          "name": "Drift to ServiceNow - native change (provenance)",
+          "enabled": false
+        },
+        {
+          "id": "wf-0000-0002",
+          "name": "Drift to ServiceNow - identity attributes changed (mover)",
+          "enabled": false
+        },
+        {
+          "id": "wf-0000-0003",
+          "name": "Drift to ServiceNow - provisioning completed (closure signal)",
+          "enabled": false
+        },
+        {
+          "id": "wf-other",
+          "name": "Send Email",
+          "enabled": true
+        }
+      ]
+    }
+  ]
+}
