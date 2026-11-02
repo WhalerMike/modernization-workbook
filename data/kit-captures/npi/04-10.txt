@@ -3,36 +3,23 @@ Starting discovery in 14 files.
 Discovery found 513 tests.
 Running tests.
 [+] tests/KerberosIslandSamples.Tests.ps1
- 1.47s (967ms|373ms)
 [+] tests/MicrosoftSamples.Tests.ps1
- 2.48s (1.95s|405ms)
 [+] tests/NpiAgentId.Tests.ps1
- 16.06s (15.1s|726ms)
 [+] tests/NpiCredentialPolicy.Tests.ps1
- 7.17s (6.62s|428ms)
 [+] tests/NpiDrift.Tests.ps1
- 10.21s (9.53s|430ms)
 [+] tests/NpiFederation.Tests.ps1
- 4.1s (3.58s|341ms)
 [+] tests/NpiFederationSamples.Tests.ps1
- 1.14s (746ms|239ms)
 [+] tests/NpiInventory.Tests.ps1
- 2.84s (2.35s|329ms)
 [+] tests/NpiKerberosIsland.Tests.ps1
- 5.74s (5.05s|488ms)
 [+] tests/NpiLeastPrivilege.Tests.ps1
- 5.4s (4.96s|283ms)
 [+] tests/NpiLeastPrivilegeSamples.Tests.ps1
- 813ms (546ms|188ms)
 [+] tests/NpiMatrix.Tests.ps1
- 4.97s (4.44s|338ms)
 [+] tests/NpiOwnership.Tests.ps1
- 2.27s (1.87s|269ms)
 [+] tests/NpiWorkloadCa.Tests.ps1
- 5.62s (5.1s|338ms)
 Tests completed
 Tests Passed: 513,
 Failed: 0,
-Skipped: 0
+Skipped: 0,
+Inconclusive: 0,
 
 NotRun: 0

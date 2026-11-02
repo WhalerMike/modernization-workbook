@@ -20,5 +20,4 @@ Apply: 8 Sent
   Sent      LockApp              PATCH https://graph.microsoft.com/v1.0/applications/0a000000-0000-4000-8000-000000000005
   Sent      LockApp              PATCH https://graph.microsoft.com/v1.0/applications/0a000000-0000-4000-8000-000000000006
 PS> ./Invoke-NpiCredentialAction.ps1 -Cloud gcc -PlanPath out/policy/policy-plan.json -ApprovedSha256 ('0' * 64) -FixturePath tests/fixtures/ch04/tenant.json -OutputPath out/policy-x
-Exception: The plan's SHA-256 is 2d4c419a05b7792470e59a5969f94f1b6452cba079a47595336c4d451cbfa809, not the approved
-0000000000000000000000000000000000000000000000000000000000000000; refusing to run a plan nobody reviewed.
+Exception: The plan's SHA-256 is 2d4c419a05b7792470e59a5969f94f1b6452cba079a47595336c4d451cbfa809, not the approved 0000000000000000000000000000000000000000000000000000000000000000; refusing to run a plan nobody reviewed.

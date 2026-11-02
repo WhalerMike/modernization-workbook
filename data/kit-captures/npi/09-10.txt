@@ -2,5 +2,4 @@ PS> ./Invoke-NpiAgentCaAction.ps1 -Cloud gcc -PlanPath out/agent-id/agent-ca-pla
 Apply: 1 Sent
   Sent HighRisk Created ca000000-0000-4000-8000-000000000103 report-only; review its report-only results before any change of state
 PS> ./Invoke-NpiAgentCaAction.ps1 -Cloud gcc -PlanPath out/agent-id/agent-ca-plan.json -ApprovedSha256 ('0' * 64) -FixturePath tests/fixtures/ch09/agent-estate.json -OutputPath out/agent-ca-x
-Exception: The plan's SHA-256 is 754fda6b79d55b514ea438039da2ca764e14dc98a88f0c70a60f4ac9762ce450, not the approved
-0000000000000000000000000000000000000000000000000000000000000000; refusing to run a plan nobody reviewed.
+Exception: The plan's SHA-256 is 754fda6b79d55b514ea438039da2ca764e14dc98a88f0c70a60f4ac9762ce450, not the approved 0000000000000000000000000000000000000000000000000000000000000000; refusing to run a plan nobody reviewed.

@@ -4,5 +4,4 @@ Apply: 3 Sent
   Sent      Disable  PATCH https://graph.microsoft.com/v1.0/servicePrincipals/5b000000-0000-4000-8000-000000000003
   Sent      AddOwner POST https://graph.microsoft.com/v1.0/applications/0a000000-0000-4000-8000-000000000002/owners/$ref
 PS> ./Invoke-NpiOrphanAction.ps1 -Cloud gcc -PlanPath out/ownership/orphan-plan.json -ApprovedSha256 ('0' * 64) -FixturePath tests/fixtures/estate.json -OutputPath out/orphan-x
-Exception: The plan's SHA-256 is 1e1799d7181bd1a3dc271c645fff8a60fc741ab1ebc219bb3011cc25953bad3e, not the approved
-0000000000000000000000000000000000000000000000000000000000000000; refusing to run a plan nobody reviewed.
+Exception: The plan's SHA-256 is 1e1799d7181bd1a3dc271c645fff8a60fc741ab1ebc219bb3011cc25953bad3e, not the approved 0000000000000000000000000000000000000000000000000000000000000000; refusing to run a plan nobody reviewed.
