@@ -14,6 +14,7 @@ import deploy_common as dc  # noqa: E402
 import kit_calls as kcalls  # noqa: E402
 import kit_common as kc  # noqa: E402
 import preflight  # noqa: E402
+import record  # noqa: E402
 import render_workflows as rw  # noqa: E402
 import rollback  # noqa: E402
 import smoke_test  # noqa: E402
@@ -300,3 +301,22 @@ def test_preflight_warns_on_a_failed_workflow_execution():
                               str(DEPLOY / "preflight-week1.json"), "--today", "2026-11-02"])
     assert rc == 0, out
     assert "WARN  G4  executions  56 executions, 1 failed; read the failed executions of: "            "Drift to ServiceNow - identity attributes changed (mover)" in out
+
+
+def test_record_keeps_a_response_without_its_secret(tmp_path):
+    workflow = rw.render(dc.load_settings(TEST, env={}), 1, secret="s3cret")
+    workflow.update({"id": "wf-0000-0001"})
+    out = io.StringIO()
+    path = tmp_path / "evidence" / "workflow-1.json"
+    assert record.main([str(path)], stdin=io.StringIO(json.dumps(workflow)), out=out) == 0
+    kept = path.read_text(encoding="utf-8")
+    assert "s3cret" not in kept and "[removed]" in kept
+    assert "id=wf-0000-0001 name=Drift to ServiceNow - native change (provenance) enabled=False" in out.getvalue()
+    assert dc.get_setting(str(path), "id") == "wf-0000-0001"
+
+
+def test_record_stops_on_an_error_or_a_body_that_is_not_json(tmp_path):
+    out = io.StringIO()
+    assert record.main([str(tmp_path / "e.json")], stdin=io.StringIO('{"detailCode": "403 Forbidden"}'), out=out) == 1
+    assert record.main([str(tmp_path / "t.json")], stdin=io.StringIO("<html>bad gateway</html>"), out=out) == 1
+    assert "stop and read it" in out.getvalue()

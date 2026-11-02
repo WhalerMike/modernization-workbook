@@ -38,6 +38,7 @@ examples/servicenow-sailpoint/
   deploy/render_workflows.py             the ISC workflows rendered for one environment
   deploy/smoke_test.py                   the synthetic-worker smoke test
   deploy/rollback.py                     the rollback commands for one environment, and a check they took
+  deploy/record.py                       an API response kept as evidence, secrets removed
   tests/fixtures/                        HR CSV, Graph, ISC and Entra audit samples, expected results
   tests/python/                          pytest, mocked HTTP
   tests/powershell/                      Pester 5, mocked Invoke-RestMethod
@@ -225,6 +226,8 @@ The developer workbook's [Chapter 09, Deploying to Test and Production](../../do
 | `deploy/render_workflows.py` | nobody (reads files) | Prints one of the three workflows with the environment's ServiceNow URL, owner and client ID, disabled, for `POST /v2025/workflows`; the client secret only from an environment variable, to standard output; and a synthetic test input for each workflow |
 | `deploy/smoke_test.py` | the finding writer (`raise`, `signal`); the evidence reader (`check`) | Posts a synthetic finding twice (created, then de-duplicated) and a closure signal, with `--apply`; reads each synthetic finding back and checks its state |
 | `deploy/rollback.py` | the deploy checker and the evidence reader | Prints the rollback commands with the environment's workflow IDs, and verifies that the workflows are disabled and no finding from ISC arrived since |
+| `deploy/record.py` | nobody (reads standard input) | Keeps an ISC response piped to it in the stage's evidence folder with any secret field removed, and prints its ID, name, enabled flag or execution status; stops on an error body |
+| `deploy/deploy_common.py` | nobody (reads files) | Run directly, prints one value from a settings file or a kept response (`python deploy/deploy_common.py <file> deploy.clients.verifier`) |
 
 Every script takes `--dry-run` (no network) and `--fixtures FILE` (calls answered from a saved file; `tests/fixtures/deploy/` holds fictional settings and responses). They are Python only; the PowerShell module has no counterparts. Environment variables that name an endpoint (`SN_BASE_URL`, `SN_INSTANCE`, `SAILPOINT_API_BASE`, `SAILPOINT_TENANT`) would override a settings file in the kit's other clients, so the pre-flight check fails while one is set and differs.
 
