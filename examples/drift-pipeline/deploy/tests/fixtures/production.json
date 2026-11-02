@@ -1,0 +1,111 @@
+{
+  "_comment": "Fictional production settings for contoso.example, for the dry runs and the tests. The promotion hash is a stand-in: a live test-stage smoke report's SHA-256 goes there.",
+  "schema": "adm-deploy-settings/1",
+  "environment": "production",
+  "cloud": "gcc",
+  "tenant_id": "77777777-7777-4777-8777-777777777701",
+  "tenant_domain": "contoso.example",
+  "subscription_id": "22222222-2222-4222-8222-222222222202",
+  "location": "eastus2",
+  "resource_group": "rg-adm-prod",
+  "change_record": "CHG-PROD-0201",
+  "evidence_dir": "../../../out/deploy-evidence",
+  "validation_inputs": "D:\\Adm\\Inputs",
+  "identities": {
+    "deploy": {
+      "client_id": "33333333-3333-4333-8333-333333333311",
+      "certificate_thumbprint": "0B1B2C3D4E5F60718293A4B5C6D7E8F901234567",
+      "certificate_pem": "/etc/adm/certs/adm-deploy-prod.pem"
+    },
+    "reader": {
+      "client_id": "33333333-3333-4333-8333-333333333312",
+      "certificate_thumbprint": "1B1B2C3D4E5F60718293A4B5C6D7E8F901234567"
+    },
+    "provisioning": {
+      "client_id": "33333333-3333-4333-8333-333333333313",
+      "certificate_pem": "/etc/adm/certs/adm-provisioning-prod.pem"
+    }
+  },
+  "hcm_entra": {
+    "provisioning_app_object_id": "44444444-4444-4444-8444-444444444411",
+    "provisioning_job_id": "API2AAD.00000000000000000000000000000000.44444444-4444-4444-8444-444444444411",
+    "provisioning_api_endpoint": "https://graph.microsoft.com/v1.0/servicePrincipals/44444444-4444-4444-8444-444444444411/synchronization/jobs/API2AAD.00000000000000000000000000000000.44444444-4444-4444-8444-444444444411/bulkUpload",
+    "extract_path": "/srv/adm/hr/extract.csv",
+    "max_quarantined": 0
+  },
+  "dynamic_rules": {
+    "groups_admin_upn": "groups.admin@contoso.example",
+    "member_map": "D:\\Adm\\member-map.json"
+  },
+  "lifecycle": {
+    "extension_id": "55555555-5555-4555-8555-555555555511",
+    "workflow_name": "ADM leaver",
+    "test_user_id": "00000000-0000-4000-8000-000000000099"
+  },
+  "group_policy": {
+    "ad_domain": "contoso.example",
+    "target_ou": "OU=Pilot,OU=Finance,DC=contoso,DC=example",
+    "gpo_backup_path": "D:\\GpoBackups",
+    "gpo_names": [
+      "FMP-Workstation-Baseline"
+    ],
+    "intune_group_id": "66666666-6666-4666-8666-666666666611"
+  },
+  "machine_configuration": {
+    "configuration": "TlsServerProtocols",
+    "storage_account": "stadmmcprod",
+    "container": "machine-configuration",
+    "arc_server_name": "arc-pilot-01"
+  },
+  "ansible": {
+    "onboarding_wave": 0,
+    "cmdb_csv": "/srv/adm/cmdb.csv"
+  },
+  "drift": {
+    "repository": "contoso-example/estate-checks",
+    "github_environment": "drift-gcc",
+    "evidence_storage_account": "stadmevidence",
+    "evidence_container": "drift-evidence"
+  },
+  "smoke": {
+    "required_pass": [
+      "VK-HR-01",
+      "VK-HR-04",
+      "VK-DG-01",
+      "VK-DG-02",
+      "VK-DG-06",
+      "VK-CA-01"
+    ],
+    "allowed_unverified": [
+      "VK-DG-03"
+    ]
+  },
+  "waves": [
+    {
+      "id": "1",
+      "target_ou": "OU=Pilot,OU=Finance,DC=contoso,DC=example",
+      "intune_group_id": "66666666-6666-4666-8666-666666666611",
+      "onboarding_wave": 0
+    },
+    {
+      "id": "2",
+      "target_ou": "OU=Ledger,OU=Finance,DC=contoso,DC=example",
+      "intune_group_id": "66666666-6666-4666-8666-666666666612",
+      "onboarding_wave": 1
+    }
+  ],
+  "promotion": {
+    "test_smoke_report_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+    "test_evidence_check_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+    "approvals": [
+      {
+        "role": "CISO",
+        "reference": "CHG-PROD-0201/approval-1"
+      },
+      {
+        "role": "Identity engineering",
+        "reference": "CHG-PROD-0201/approval-2"
+      }
+    ]
+  }
+}

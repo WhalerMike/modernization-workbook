@@ -13,6 +13,7 @@ Workbook folder: `docs/books/b19-developer-workbook/`. Files and folders startin
 | `07-machine-configuration-packages.md` | Chapter 07 — Machine Configuration Packages | `examples/machine-configuration` (written) |
 | `08-ansible-beside-arc.md` | Chapter 08 — Ansible Beside Arc | `examples/ansible` |
 | `09-drift-pipelines-and-evidence.md` | Chapter 09 — Drift Pipelines and Evidence to the ISSO | the kits' run outputs |
+| `10-deploying-to-test-and-production.md` | Chapter 10 — Deploying to Test and Production | `examples/drift-pipeline/deploy` (new), and the other kits' commands |
 
 ## Every chapter has
 
