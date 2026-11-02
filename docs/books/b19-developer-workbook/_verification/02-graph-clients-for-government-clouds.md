@@ -54,3 +54,16 @@ Microsoft Learn pages opened on October 30, 2026 through the Microsoft Learn MCP
 | Chapter 03's data path and declared beta list | The reference table; the beta rule here is the same idea for this example | Chapter 03 is unchanged |
 | Chapter 04's finding that Learn's samples default an unknown cloud to worldwide | The "no default" rule | Chapter 04 is unchanged |
 | Research Module 1 (Graph and Azure Automation foundations) | Background only | The chapter cites Learn directly |
+
+## Federal requirements and evidence (added November 2, 2026)
+
+New section before Dangers: 13 rows, one per Lab 1 and Lab 2 scripted step or kit output file, plus one row for the FedRAMP Marketplace listings. Which output supports which control is labeled design guidance in the chapter.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | Every control cited is in the SP 800-53B Moderate baseline: AC-2, AC-3, AC-6, CA-7, CM-2, CM-6, IA-5, SA-11, SA-9, SR-3 | Federal requirements and evidence | verified | NIST OSCAL `NIST_SP-800-53_rev5_MODERATE-baseline_profile.json`, release 5.2.0, last modified 2026-10-22, downloaded and parsed November 2, 2026 |
+| 2 | Every indicator cited exists with the name given: KSI-CMT-VTD, KSI-IAM-ELP, KSI-IAM-SNU, KSI-MLA-EVC, KSI-SCR-MIT, KSI-SVC-ACM | Federal requirements and evidence | verified | fedramp.gov/2026/reference/key-security-indicators, read November 2, 2026 (latest changelog entry 2026-10-13); all were already cited in the repository, none is new |
+| 3 | Indicator pairings with controls follow the repository's verified mappings | Federal requirements and evidence | carried from verified sources | Book 04, Chapter 10; Book 02, Chapter 10; Book 05, Chapter 10; Book 13, Appendix A and Chapter 04; Book 14, Chapter 03 |
+| 4 | FedRAMP Marketplace listings, status, class and impact level | Federal requirements and evidence | verified | `products.json`, `last_change` 2026-11-01T05:02:56Z, downloaded and parsed November 2, 2026 |
+| 5 | KSIs are provider-side; the agency doesn't report them | Under the table | carried from verified source | Book 00, Appendix B |
+| 6 | BOD 25-01's required Microsoft Entra ID configurations are assessed against Conditional Access policies | Federal requirements and evidence | carried from verified source | Book 02, Appendix A, and its CISA required-configurations note (read Oct 21 and Oct 26, 2026) |

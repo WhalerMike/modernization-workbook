@@ -487,6 +487,28 @@ Get-DrDynamicCollections -Invoke $invoke -Endpoint (Get-DrGraphEndpoint -Cloud U
 
 One thing Learn states differently on two pages, recorded so a later edit doesn't loosen the code: the samples page says to resume noncritical collections after at least 12 hours, and the processing guidance says to wait a minimum of 24 hours and check the audit logs first. The code defaults to 24. Separately, the rules page says a condition can exclude agents' user accounts but names no property; the code doesn't invent one.
 
+## Federal requirements and evidence
+
+A dynamic rule is access policy, so a rule change is a configuration change and its review is the evidence. Each row names the file or command that proves it. Controls are from the Moderate baseline[^c04-moderate]; indicators are from FedRAMP's list[^c04-ksi]. Which output supports which control is the program's reading (design guidance). OMB M-22-09 notes that many federal authorization models rely on static, predefined roles,[^c04-m2209] which attribute-based rules replace.
+
+| What the output proves | Requirement it supports | KSI it aligns to | Who keeps it |
+|---|---|---|---|
+| Learn's samples run unchanged: a resume turns on a group paused on purpose, and an unknown cloud answer signs in to the worldwide host (Lab 1, step 1) | SA-11; SR-3 | KSI-SCR-MIT; KSI-CMT-VTD | The repository: `snapshot.json` and `LearnSamples.Tests.ps1` |
+| Book 03's rule patterns are linted on the parsed rule (step 2: DR-05 and the DR-03 note) | CM-3(2) (Testing, Validation, and Documentation of Changes) | KSI-CMT-VTD | The test results |
+| The guards keep disabled accounts and guests out (step 3: `Get-DrMembers`) | AC-2; AC-3 | KSI-IAM-ELP | The rule library and fixture in the repository |
+| Every rule passes its tests, and each changed rule's adds and removes are listed (step 4: `out/check-results.json`, exit `0`) | CM-3; CM-4 (Impact Analyses) | KSI-CMT-VTD; KSI-CMT-LMC | The pull request; the evidence package of [Chapter 09](09-drift-pipelines-and-evidence.md) |
+| A broken rule fails the check and shows whom it would add (step 5: exit `2`, `adds u06`) | CM-4; CM-3(2) | KSI-CMT-VTD | The pull request's check run |
+| The parser, linter, evaluator and pause code pass (step 6: 70 tests) | SA-11 | KSI-CMT-VTD | The repository's test results |
+| The session asks for only what creating groups and evaluating rules need (Lab 2, step 1: `Group.ReadWrite.All`, `User.Read.All`) | AC-6 | KSI-IAM-ELP | The Entra sign-in and audit logs |
+| Groups are created from the reviewed library, paused (Lab 2, step 2: `New-MgGroup ... -MembershipRuleProcessingState 'Paused'`) | CM-3: only approved changes are implemented; CM-2 | KSI-CMT-RMV, Redeploying vs Modifying | The library commit; the Entra audit log |
+| The offline evaluator agrees with Graph's for every test (Lab 2, step 3: the loop prints disagreements) | CM-4(2) (Verification of Controls); SA-11 | KSI-CMT-VTD | The test record; a disagreement is a finding |
+| A one-clause change is shadow-diffed live (Lab 2, step 4: VK-DG-04, `out/vk`) | CM-4(2); CA-7 | KSI-MLA-EVC | The evidence store |
+| The incident pause records each collection's state first, and the resume touches only what it paused (Lab 2, step 5: `drill-manifest.json`) | CM-3: the change and its reversal are recorded | KSI-CMT-LMC | The incident or drill record |
+| Nothing is left paused that the record didn't pause before (Lab 2, step 6: `Get-DrDynamicCollections`) | CM-4(2) | KSI-CMT-VTD | The drill record |
+| Microsoft Entra ID and Microsoft Graph run on cloud services with FedRAMP Marketplace listings[^c04-fedramp] | SA-9 (External System Services); the agency confirms each service it uses is inside the listing's scope (design guidance) | None: the provider reports against the indicators for its own offering | The system security plan's list of external services |
+
+Key Security Indicators are FedRAMP 20x indicators for cloud service providers. The agency authorizes its own system: it lines this evidence up with what Microsoft report against the indicators, and doesn't report KSIs itself ([Book 00, Appendix B](../b00-orientation/appendix-b-engagement-archetype.md)). The control-by-control mapping is in Book 13's [Appendix A](../b13-governance/appendix-a-requirements-mapping.md) and Book 14's [Appendix A](../b14-compliance/appendix-a-control-crosswalk.md); the indicator pairings follow [Book 04, Chapter 10](../b04-access/10-access-as-code-and-evidence.md) and [Book 05, Chapter 10](../b05-devices/10-operating-and-evidencing-the-fleet.md).
+
 ## Dangers
 
 | Danger | What happens | The guard |
@@ -528,3 +550,7 @@ One thing Learn states differently on two pages, recorded so a later edit doesn'
 [^c04-create]: Microsoft Learn, "Create or update a dynamic membership group in Microsoft Entra ID," <https://learn.microsoft.com/entra/identity/users/groups-create-rule> (accessed Oct 30, 2026).
 [^c04-group]: Microsoft Learn, "group resource type," <https://learn.microsoft.com/graph/api/resources/group?view=graph-rest-1.0> (accessed Oct 30, 2026).
 [^c04-newgroup]: Microsoft Learn, "New-MgGroup," <https://learn.microsoft.com/powershell/module/microsoft.graph.groups/new-mggroup?view=graph-powershell-1.0> (accessed Oct 30, 2026).
+[^c04-moderate]: National Institute of Standards and Technology, SP 800-53B Moderate baseline, release 5.2.0 OSCAL profile, last modified October 22, 2026 (includes AC-2, AC-3, AC-6, CA-7, CM-2, CM-3, CM-3(2), CM-4, CM-4(2), SA-9, SA-11 and SR-3), <https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_MODERATE-baseline_profile.json> (accessed Nov 2, 2026).
+[^c04-ksi]: FedRAMP, "Key Security Indicators," *FedRAMP Consolidated Rules for 2026* (indicators KSI-CMT-LMC, KSI-CMT-RMV, KSI-CMT-VTD, KSI-IAM-ELP, KSI-MLA-EVC and KSI-SCR-MIT; control mappings updated October 13, 2026), <https://www.fedramp.gov/2026/reference/key-security-indicators/> (accessed Nov 2, 2026).
+[^c04-fedramp]: FedRAMP Marketplace product data, <https://www.fedramp.gov/marketplace/products.json>, `last_change` 2026-11-01T05:02:56Z (accessed Nov 2, 2026): MSO365MT, Microsoft 365 Government Community Cloud & Supporting Services, FedRAMP Certified, Class C, Moderate; FR1824057433, Microsoft 365 Government Community Cloud-High, FedRAMP Certified, Class D, High; F1209051525, Azure Commercial Cloud, FedRAMP Certified, Class D, High; F1603087869, Azure Government (includes Dynamics 365), FedRAMP Certified, Class D, High.
+[^c04-m2209]: Office of Management and Budget, M-22-09, *Moving the U.S. Government Toward Zero Trust Cybersecurity Principles*, January 26, 2022, §III.A, "Identity," on authorization models that rely on static pre-defined roles, <https://www.whitehouse.gov/wp-content/uploads/2022/01/M-22-09.pdf> (accessed Nov 2, 2026).

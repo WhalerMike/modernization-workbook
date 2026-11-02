@@ -448,6 +448,28 @@ az group delete --name rg-arc-test-dev
 
 `serial` and `max_fail_percentage` are Ansible's, and Learn has no page on them.[^c08-ans-strategy] The role's behavior in check mode, its token scope, its default tag and its signal come from the pinned code and from running it, not from Learn.[^c08-rolecode]
 
+## Federal requirements and evidence
+
+Onboarding to Arc writes each server's owners into Azure from the CMDB, so the plan, the result and the tags are inventory and change evidence. Each row names the file or command that proves it. Controls are from the Moderate baseline[^c08-moderate]; indicators are from FedRAMP's list[^c08-ksi]. Which output supports which control is the program's reading (design guidance). OMB M-22-09 asks for a complete inventory of every device the government operates and authorizes,[^c08-m2209] which the CMDB and the Arc resource IDs feed.
+
+| What the output proves | Requirement it supports | KSI it aligns to | Who keeps it |
+|---|---|---|---|
+| The collections are the pinned versions, and nothing leaves the control node (Lab 1, step 1; Lab 2, step 3: `requirements.yml`, the dead proxy) | SR-3; SA-10 | KSI-SCR-MIT | The repository: `requirements.yml` and `snapshot.json` |
+| Each server's configuration and patch owner become groups and tags (step 2: `ansible-inventory --host aws01.contoso.example`) | CM-8 (System Component Inventory): accountability information per component | KSI-PIY-GIV, Generating Inventories | The CMDB export |
+| Microsoft's role can't dry-run a server without the agent (step 3: `failed=1`) | SA-11 | KSI-CMT-VTD | The test results: `test_microsoft_role.py` |
+| The wave is planned and written before anything runs (step 4: `reports/arc-wave-0-plan-<time>.json` and `.csv`) | CM-3; CM-4 | KSI-CMT-LMC | The change record |
+| The dry run shows what each server would get, without contacting it (step 5: `Would connect ...`) | CM-3(2) | KSI-CMT-VTD | The change record |
+| Production in the pilot, an unknown owner and a missing owner each stop or block (step 6: exit `2`, exit `1`, `no patch_owner`) | CM-8; CM-3 | KSI-PIY-GIV; KSI-CMT-VTD | The plan; the CMDB ticket for the missing owner |
+| The playbooks pass the linters and the tests (step 7: `tests/run_all.sh`) | SA-11 | KSI-CMT-VTD | The repository's test results |
+| The onboarding identity holds one role, on one resource group, with a managed identity (Lab 2, steps 1 and 2) | AC-6; IA-5 | KSI-IAM-ELP; KSI-IAM-SNU | The Azure role assignment record |
+| The lab server enters the inventory with both owners (Lab 2, step 4: `/tmp/lab-cmdb.csv`) | CM-8 | KSI-PIY-GIV | The CMDB |
+| The wave is planned, dry-run and connected, and each server's Arc resource ID is recorded (Lab 2, step 5: `reports/arc-wave-0-result-<time>.json`) | CM-8(1) (Updates During Installation and Removal); CM-3 | KSI-PIY-GIV; KSI-CMT-LMC | The change record; the evidence store |
+| The server is connected, its tags equal the CMDB's, and nothing enforcing is assigned (Lab 2, step 6: `azcmagent show`, VK-ARC-01, VK-ARC-07) | CM-8(1); CA-7 | KSI-PIY-GIV; KSI-MLA-EVC | The evidence store |
+| The server leaves Azure and the role assignment is removed (Lab 2, step 7: `azcmagent disconnect`, `az role assignment delete`) | CM-8(1); AC-6 | KSI-IAM-ELP | The back-out record filed with the change |
+| Azure Arc and Azure Resource Manager run on cloud services with FedRAMP Marketplace listings[^c08-fedramp] | SA-9 (External System Services); the agency confirms each service it uses is inside the listing's scope (design guidance) | None: the provider reports against the indicators for its own offering | The system security plan's list of external services |
+
+Key Security Indicators are FedRAMP 20x indicators for cloud service providers. The agency authorizes its own system: it lines this evidence up with what Microsoft report against the indicators, and doesn't report KSIs itself ([Book 00, Appendix B](../b00-orientation/appendix-b-engagement-archetype.md)). The control-by-control mapping is in Book 13's [Appendix A](../b13-governance/appendix-a-requirements-mapping.md) and Book 14's [Appendix A](../b14-compliance/appendix-a-control-crosswalk.md); the indicator pairings follow [Book 04, Chapter 10](../b04-access/10-access-as-code-and-evidence.md) and [Book 05, Chapter 10](../b05-devices/10-operating-and-evidencing-the-fleet.md).
+
 ## Dangers
 
 | Danger | What happens | The guard |
@@ -497,3 +519,7 @@ az group delete --name rg-arc-test-dev
 [^c08-ansiblevm]: Microsoft Learn, "Get Started: Configure Ansible on an Azure VM," <https://learn.microsoft.com/azure/developer/ansible/install-on-linux-vm> (accessed Oct 30, 2026).
 [^c08-rolecode]: Microsoft and the Ansible community, `azure.azcollection` `azure_arc` role, ansible-collections/azure, `roles/azure_arc` at commit `afa62c3bcf3e283645336039e13c8e3019b8fcdd` (release v4.2.0, October 30, 2026), GPL-3.0-or-later, <https://github.com/ansible-collections/azure/tree/afa62c3bcf3e283645336039e13c8e3019b8fcdd/roles/azure_arc> (accessed Oct 30, 2026); pinned copy in `examples/third_party/azure-arc-role`. Not a Learn page: Learn's role page links the role's Galaxy listing.
 [^c08-ans-strategy]: Ansible documentation, "Controlling playbook execution: strategies and more," <https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_strategies.html> (accessed Oct 30, 2026). Not a Learn page: Learn has no page on Ansible's batch keywords.
+[^c08-moderate]: National Institute of Standards and Technology, SP 800-53B Moderate baseline, release 5.2.0 OSCAL profile, last modified October 22, 2026 (includes AC-6, CA-7, CM-3, CM-3(2), CM-4, CM-8, CM-8(1), IA-5, SA-9, SA-10, SA-11 and SR-3), <https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_MODERATE-baseline_profile.json> (accessed Nov 2, 2026).
+[^c08-ksi]: FedRAMP, "Key Security Indicators," *FedRAMP Consolidated Rules for 2026* (indicators KSI-CMT-LMC, KSI-CMT-VTD, KSI-IAM-ELP, KSI-IAM-SNU, KSI-MLA-EVC, KSI-PIY-GIV and KSI-SCR-MIT; control mappings updated October 13, 2026), <https://www.fedramp.gov/2026/reference/key-security-indicators/> (accessed Nov 2, 2026).
+[^c08-fedramp]: FedRAMP Marketplace product data, <https://www.fedramp.gov/marketplace/products.json>, `last_change` 2026-11-01T05:02:56Z (accessed Nov 2, 2026): F1209051525, Azure Commercial Cloud, FedRAMP Certified, Class D, High; F1603087869, Azure Government (includes Dynamics 365), FedRAMP Certified, Class D, High.
+[^c08-m2209]: Office of Management and Budget, M-22-09, *Moving the U.S. Government Toward Zero Trust Cybersecurity Principles*, January 26, 2022, §II, the Devices pillar of the vision (a complete inventory of every device the government operates and authorizes for use), <https://www.whitehouse.gov/wp-content/uploads/2022/01/M-22-09.pdf> (accessed Nov 2, 2026).
