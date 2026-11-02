@@ -1,0 +1,65 @@
+{
+  "_comment": "Chapter 09: the calls the deployment runbook's own scripts send. Every call is a GET; the scripts read and never write. The writes are the earlier chapters' entry scripts, each with its own call list. Each call names its least-privileged permission and the Learn page that states it (read on November 2, 2026, or carried from the chapter named).",
+  "calls": [
+    {
+      "id": "subscribed-skus",
+      "method": "GET",
+      "api": "graph",
+      "version": "v1.0",
+      "path": "/subscribedSkus",
+      "permissions": ["LicenseAssignment.Read.All"],
+      "tasks": ["preflight"],
+      "learn": "https://learn.microsoft.com/graph/api/subscribedsku-list?view=graph-rest-1.0"
+    },
+    {
+      "id": "entra-active-assignments",
+      "method": "GET",
+      "api": "graph",
+      "version": "v1.0",
+      "path": "/roleManagement/directory/roleAssignmentScheduleInstances",
+      "permissions": ["RoleAssignmentSchedule.Read.Directory"],
+      "tasks": ["smoke"],
+      "learn": "https://learn.microsoft.com/graph/api/rbacapplication-list-roleassignmentscheduleinstances?view=graph-rest-1.0 (Chapter 02)"
+    },
+    {
+      "id": "directory-audits",
+      "method": "GET",
+      "api": "graph",
+      "version": "v1.0",
+      "path": "/auditLogs/directoryAudits",
+      "permissions": ["AuditLog.Read.All"],
+      "tasks": ["smoke"],
+      "learn": "https://learn.microsoft.com/graph/api/directoryaudit-list?view=graph-rest-1.0 (Chapter 08)"
+    },
+    {
+      "id": "ar-definitions-list",
+      "method": "GET",
+      "api": "graph",
+      "version": "v1.0",
+      "path": "/identityGovernance/accessReviews/definitions",
+      "permissions": ["AccessReview.Read.All"],
+      "tasks": ["smoke"],
+      "learn": "https://learn.microsoft.com/graph/api/accessreviewset-list-definitions?view=graph-rest-1.0 (Chapter 07)"
+    },
+    {
+      "id": "ar-instances-list",
+      "method": "GET",
+      "api": "graph",
+      "version": "v1.0",
+      "path": "/identityGovernance/accessReviews/definitions/{definitionId}/instances",
+      "permissions": ["AccessReview.Read.All"],
+      "tasks": ["smoke"],
+      "learn": "https://learn.microsoft.com/graph/api/accessreviewscheduledefinition-list-instances?view=graph-rest-1.0 (Chapter 07)"
+    },
+    {
+      "id": "ar-decisions-list",
+      "method": "GET",
+      "api": "graph",
+      "version": "v1.0",
+      "path": "/identityGovernance/accessReviews/definitions/{definitionId}/instances/{instanceId}/decisions",
+      "permissions": ["AccessReview.Read.All"],
+      "tasks": ["smoke"],
+      "learn": "https://learn.microsoft.com/graph/api/accessreviewinstance-list-decisions?view=graph-rest-1.0 (Chapter 07)"
+    }
+  ]
+}

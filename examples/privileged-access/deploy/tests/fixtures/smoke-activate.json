@@ -1,0 +1,58 @@
+{
+  "_comment": "Chapter 09 smoke fixture, phase Activate: the synthetic administrator asked to activate Teams Administrator at 14:05Z; approval is pending, so no instance is active. Invented.",
+  "roleAssignmentScheduleInstances": [],
+  "directoryAudits": [
+    {
+      "id": "aud-0001",
+      "activityDateTime": "2026-11-02T14:05:12Z",
+      "activityDisplayName": "Add member to role requested (PIM activation)",
+      "category": "RoleManagement",
+      "loggedByService": "Privileged Identity Management",
+      "result": "success",
+      "initiatedBy": {
+        "user": {
+          "id": "5d000000-0000-4000-8000-000000000001",
+          "userPrincipalName": "pim.smoke01@contoso.example"
+        }
+      },
+      "targetResources": [
+        {
+          "id": "69091246-20e8-4a56-aa4d-066075b2a7a8",
+          "type": "Role",
+          "displayName": "Teams Administrator"
+        },
+        {
+          "id": "5d000000-0000-4000-8000-000000000001",
+          "type": "User",
+          "userPrincipalName": "pim.smoke01@contoso.example"
+        }
+      ]
+    },
+    {
+      "id": "aud-0002",
+      "activityDateTime": "2026-11-02T14:05:13Z",
+      "activityDisplayName": "Add member to role approval requested (PIM activation)",
+      "category": "RoleManagement",
+      "loggedByService": "Privileged Identity Management",
+      "result": "success",
+      "initiatedBy": {
+        "user": {
+          "id": "5d000000-0000-4000-8000-000000000001",
+          "userPrincipalName": "pim.smoke01@contoso.example"
+        }
+      },
+      "targetResources": [
+        {
+          "id": "69091246-20e8-4a56-aa4d-066075b2a7a8",
+          "type": "Role",
+          "displayName": "Teams Administrator"
+        },
+        {
+          "id": "5d000000-0000-4000-8000-000000000001",
+          "type": "User",
+          "userPrincipalName": "pim.smoke01@contoso.example"
+        }
+      ]
+    }
+  ]
+}
