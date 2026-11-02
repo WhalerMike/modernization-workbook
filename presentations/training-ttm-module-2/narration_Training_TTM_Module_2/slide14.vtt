@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.437
+The federal requirement.
+
+2
+00:00:01.437 --> 00:00:05.925
+The guide maps Gate 1 to NIST special
+publication eight hundred fifty-three.
+
+3
+00:00:05.925 --> 00:00:10.972
+S A nine, external system services, and
+FedRAMP authorization: each service's
+
+4
+00:00:10.972 --> 00:00:12.895
+authorization is confirmed,
+
+5
+00:00:12.895 --> 00:00:16.900
+or the gap is recorded as a risk
+for the authorizing official.
+
+6
+00:00:16.900 --> 00:00:21.462
+C A three, information
+exchange: each flow is recorded.
+
+7
+00:00:21.462 --> 00:00:22.719
+I A five and A C six:
+
+8
+00:00:22.719 --> 00:00:27.749
+the integration identities use
+certificates and least privilege.
+
+9
+00:00:27.749 --> 00:00:32.349
+The chapters map the call list to A C
+six, A C two for account management,
+
+10
+00:00:32.349 --> 00:00:36.465
+A C five because the account that
+closes findings is separate,
+
+11
+00:00:36.465 --> 00:00:41.387
+and C M three because a change to what
+the integration may call is reviewed.
+
+12
+00:00:41.387 --> 00:00:45.969
+The evidence an ISSO keeps: Gate
+1's record, plus the call list,
+
+13
+00:00:45.969 --> 00:00:50.810
+its test, and the comparison
+output with each access approval.

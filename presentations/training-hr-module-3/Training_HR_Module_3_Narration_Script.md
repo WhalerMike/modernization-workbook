@@ -1,0 +1,61 @@
+# HR-Driven Identity learning path — Module 3: Make joiners ready on day one — narration script (practice copy)
+
+## Slide 1 — Module 3: Make joiners ready on day one
+
+Welcome to Module 3 of the HR-Driven Identity learning path: make joiners ready on day one. This is Gate 3, Joiners, with Chapter 03 of the developer workbook. Modules 1 and 2 settled who writes each account state, and brought contractors in from their own source. Now the new hire's first morning. In this module you'll keep the Lifecycle Workflows definitions as reviewed files, lint them before they reach the tenant, plan each change against what the tenant already holds, and measure how many hires were actually ready on day one. You'll also see why the Temporary Access Pass a new hire gets should be short-lived and one-time use. The code runs on your laptop against fictional fixtures. It's illustrative: unit-tested against fixtures, not run against a live tenant.
+
+## Slide 2 — Why the first morning needs workflows as code
+
+Why does the first morning need code? The pipeline sends a new hire's account early, and disabled. On the first morning, that person needs an enabled account, a license, baseline access, and a way to sign in before their PIV card is bound. Lifecycle Workflows can do all of that. But here's the catch. Each workflow is a definition that someone can change in the portal. And Learn makes every change a new version, rather than an in-place update. So in this module you keep the workflows as reviewed files. You lint them before they reach the tenant. You plan each change against what the tenant holds. And then you measure how many hires were actually ready on day one, because a workflow that ran isn't the same as a person who can work.
+
+## Slide 3 — What you'll be able to do in Module 3
+
+Here's what you'll be able to do by the end of this module, which takes about fifty minutes with the lab. You'll explain why workflows belong in reviewed files, and how the plan decides between creating a workflow and making a new version. You'll run the workflow lint and explain its Temporary Access Pass findings, the J W oh five rule. You'll explain why the workflow budget is held to fifty. And you'll measure the day-one readiness rate, and say what makes a hire ready. Two modules come first. From Module 1: in this program, the pipeline's active value, not the day-one workflow, enables the account at hire. From Module 2: the contractor leaver workflow, which the files include. Lab 2 needs a worldwide or G C C test tenant with Entra ID Governance trial or test licenses.
+
+## Slide 4 — The joiner in the guide: three things to notice
+
+Read the guide's Step 3, and notice three things. First, the workflow budget. Learn gives two tenant ceilings: fifty workflows on its licensing page, and a hundred on its service limits page. The guide budgets to fifty until Microsoft reconciles them; that's design guidance. Second, the Temporary Access Pass. The tenant allows a pass from ten minutes to thirty days, but Learn recommends at most twenty-four hours for a pass sent to a new hire. Third, baseline access comes by access package, never by adding the user to a group directly. Then read the design in the Federal Modernization Workbook's Book 03's Chapter 08: its guardrails at agency scale, and its triggers and schedule. And keep Module 1's rule in mind: in this program, the pipeline's active value enables the account at hire, not a workflow.
+
+## Slide 5 — Six workflow files, all scoped on codes
+
+Here are the six workflow files, as reviewed version one point oh bodies. Two are joiners. The pre-hire workflow runs seven days before the hire date and generates the Temporary Access Pass and sends it by email. The day-one workflow runs on the hire date and requests the onboarding access package. One is the mover, triggered by an attribute change: it notifies the manager and removes an access package assignment. And three are leavers. On the leave date, employees are disabled, their refresh tokens revoked and their package assignments removed; contractors are disabled and their tokens revoked. Thirty days after the leave date, a separate post-separation workflow deletes the user. Notice the scopes. Every one reads the worker type and a coded slot, never a name, so renaming an organization can't silently drop anyone.
+
+## Slide 6 — The lint: JW-01 to JW-15, before the tenant
+
+The lint, rules J W oh one to fifteen, checks the files before anything reaches the tenant. A few to know. J W oh two warns when a scope uses no coded attribute, or reads a display value like department. J W oh three and oh six catch an offset beyond a hundred eighty days either way, and more than Learn's twenty-five tasks in a workflow. J W oh five is the pass: a lifetime outside ten minutes to thirty days is a finding, and over twenty-four hours, or not one-time use, is a warning. J W oh seven is over budget. J W oh eight is a scheduled workflow with no execution limit recorded; Learn says the limit isn't in the API, so you set it in the admin center and record it. J W oh nine is a direct group add. J W eleven is delete and disable together. Some rules come from Learn, and some are design guidance.
+
+## Slide 7 — The plan, and what makes a hire ready
+
+Two more ideas. The plan compares the files with an export of the tenant's workflows, matching them by display name. A file with no match becomes a create. A file that changed becomes a body for create new version, because Learn makes a definition change a new version. An unchanged file is left alone. A workflow in the tenant that no file defines gets the J W fifteen warning. And the plan refuses to run on files that still have lint findings. Then readiness. A hire is ready on day one only with all four: an account that exists and is enabled, a license, the onboarding package delivered, and a completed pre-hire run. The readiness rate is ready hires over hires for each start date, and it's saved in a summary file that Module 7 reads.
+
+## Slide 8 — Try it: the reads, and the lint on the program's files
+
+Try it. Lab 1 runs in the hr-lifecycle folder, and nothing signs in or sends a request. Step one lists two tasks' reads. The plan needs only one permission, the Lifecycle Workflows workflow read, for one GET on the workflows. Readiness needs four permissions, for three GET calls: the users, each workflow's user processing results, and the access package assignments. Step two lints the program's own six workflow files with a budget of fifty. Zero findings, zero warnings, zero information items. That's the clean run an ISSO keeps: it shows a one-time pass of at most twenty-four hours, and an execution limit on every scheduled workflow.
+
+## Slide 9 — Try it: lint three broken workflows
+
+Step three lints three broken copies, with a budget of two so you can see J W oh seven. Seven findings and four warnings, and an exit code of two. Read a few. One offset is two hundred days, beyond the limit. A leaver is triggered on the hire date. Three workflows are over the budget of two, and the message quotes both of Learn's ceilings. A scheduled workflow has no execution limit recorded. A joiner adds the user to groups directly, instead of giving baseline access by package. The slide trims a few more. Now find the two J W oh five warnings, the ones this module cares most about. One pass lasts four thousand three hundred twenty minutes, which is three days, well over the twenty-four hours Learn recommends for a new hire. The other pass isn't one-time use.
+
+## Slide 10 — Try it: plan the files against the tenant's export
+
+Step four plans the program's files against an export of the tenant's workflows. The day-one workflow changed, so it gets a new version. The employee last-day leaver isn't in the tenant yet, so it's a create. The other four are unchanged and left alone. There's one warning, J W fifteen, for a workflow called Onboard Marketing, legacy: someone made it in the portal, and no file defines it. The plan is written to a file, and nothing is sent. Now try planning the broken folder. It stops with an error: the files have lint findings, fix them before planning. So the order is enforced. Lint first, then plan, then a reviewed send.
+
+## Slide 11 — Try it: measure day one
+
+Step five measures day one. You give it the HR hires, the hire accounts, the pre-hire workflow's results, the access package assignments, the workflow files, a moment, eight in the morning U T C on the second of November, the cloud, and an output folder. One of four hires was ready: twenty-five percent. Three hires get a readiness warning, because each one is missing at least one of the four things a ready hire has. The summary file holds the rate, zero point two five, and Module 7 reads it as one of the lifecycle metrics. Step six runs the tests, fifty-seven pass, and you delete the chapter's output folder.
+
+## Slide 12 — Lab 2: plan and send one change in a test tenant
+
+Lab 2 runs one change in your own test tenant: worldwide or G C C, never production, with Entra ID Governance trial or test licenses, and test users whose hire date is a few days away. Export the tenant's workflows, plan one change, and send it with Graph PowerShell as a Lifecycle Workflows Administrator. Set the execution limit in the admin center, since it isn't in the API. Check that the manager receives the pass. And on the start date, measure readiness. The reader app needs a certificate and one permission, the workflow read. To back it out, delete a workflow the lab created, which can be restored for thirty days, or send the previous file's body as a further version. Then remove the reader app, its permission and certificate, and delete the export and output. The authors haven't run Lab 2.
+
+## Slide 13 — The federal requirement and evidence for Gate 3
+
+The federal requirement. This gate meets NIST special publication eight hundred fifty-three A C two, enhancement one, automated system account management. It meets I A five: the initial authenticator is time-limited, and goes to an accountable person; that's the short, one-time pass sent to the manager. And it meets O M B M-22-09's phishing-resistant multifactor authentication, which the Temporary Access Pass bridges to until the PIV card is bound. The evidence an ISSO keeps for Gate 3: the reviewed workflow files, and the plan that changed each version, with its manifest. The lint's clean run, showing a one-time pass of at most twenty-four hours and an execution limit on every scheduled workflow. The readiness summary for each start date. And the workflows' run history, exported past Entra's thirty-day view.
+
+## Slide 14 — Check yourself: two questions on joiners
+
+Check yourself with two questions. First: you change the pre-hire workflow's offset in its file. What does the plan produce for it? The answer is a: a body for create new version, because Learn makes a definition change a new version. There's no in-place update. A file with no match in the tenant would become a create. Second: which hire counts as ready on day one? The answer is c: one whose account exists and is enabled, holds a license, has the onboarding package delivered, and has a completed pre-hire run. All four. An account that exists but is disabled isn't ready, and neither is a pre-hire run that didn't complete. The module page has two more questions, each linked to the section that answers it.
+
+## Slide 15 — Summary, and next: Module 4, access and movers
+
+To sum up. You linted the program's six workflow files and three broken ones. You planned a create and a new version against a tenant export, and saw a portal-made workflow flagged. And you measured a day-one readiness rate of twenty-five percent. Carry one thing forward: the day-one workflow requests the onboarding package, but department access comes from the next gate. Next is Module 4: assign access from attributes and review what a move leaves. You'll lint access package assignment policies before they reach the tenant, scan the tenant's policies for the member-of operator, and list what a move leaves behind for the manager of record to review.

@@ -1,0 +1,69 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:04.675
+Lab 1 runs in the kit's folder
+against fictional fixtures.
+
+3
+00:00:04.675 --> 00:00:09.175
+Step one runs the drift and
+comparison tests: seventeen pass.
+
+4
+00:00:09.175 --> 00:00:10.900
+Step two runs day one.
+
+5
+00:00:10.900 --> 00:00:15.192
+The summary counts four attribute
+drifts, two missing identities,
+
+6
+00:00:15.192 --> 00:00:19.563
+three orphan accounts, two stale
+access and one unauthorized write,
+
+7
+00:00:19.563 --> 00:00:23.075
+and lists credential and
+schema drift as not computed.
+
+8
+00:00:23.075 --> 00:00:26.375
+Then a one-line script prints
+Erin's and Carol's rows.
+
+9
+00:00:26.375 --> 00:00:30.692
+Erin's department: HR expects
+HR, but Entra ID holds Finance,
+
+10
+00:00:30.692 --> 00:00:34.200
+and the audit shows a
+help-desk account wrote it.
+
+11
+00:00:34.200 --> 00:00:37.687
+That's both attribute drift
+and an unauthorized write.
+
+12
+00:00:37.687 --> 00:00:41.738
+Her manager differs too, in
+Entra ID and in SailPoint.
+
+13
+00:00:41.738 --> 00:00:45.700
+Carol is terminated in HR,
+but enabled in Entra ID
+
+14
+00:00:45.700 --> 00:00:49.820
+and not disabled in SailPoint:
+stale access, twice.

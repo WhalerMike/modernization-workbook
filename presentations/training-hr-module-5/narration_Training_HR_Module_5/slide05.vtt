@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.200
+Here are the limits the
+check holds each cloud to.
+
+2
+00:00:03.200 --> 00:00:05.415
+GCC uses the commercial service,
+
+3
+00:00:05.415 --> 00:00:10.500
+so its interactive sign-in limit for
+a revocation list is twenty megabytes.
+
+4
+00:00:10.500 --> 00:00:14.649
+GCC High is Azure Government,
+at forty-five megabytes,
+
+5
+00:00:14.649 --> 00:00:17.100
+and the kit holds DoD to the same.
+
+6
+00:00:17.100 --> 00:00:20.675
+In every cloud a list must
+download within ten seconds.
+
+7
+00:00:20.675 --> 00:00:25.596
+Learn gives those limits in megabytes;
+the kit reads them as decimal megabytes,
+
+8
+00:00:25.596 --> 00:00:28.775
+a million bytes each, which
+is the stricter reading.
+
+9
+00:00:28.775 --> 00:00:32.922
+There's no default cloud in the
+kit: you name it every time,
+
+10
+00:00:32.922 --> 00:00:37.250
+so a GCC High check can't silently
+run against GCC's numbers.
+
+11
+00:00:37.250 --> 00:00:40.770
+Two thresholds are the program's
+design guidance, not Learn's:
+
+12
+00:00:40.770 --> 00:00:43.868
+a warning at eighty percent
+of the interactive limit,
+
+13
+00:00:43.868 --> 00:00:48.220
+and a warning when an authority's
+certificate expires within ninety days.

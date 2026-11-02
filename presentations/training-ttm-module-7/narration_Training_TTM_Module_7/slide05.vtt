@@ -1,0 +1,73 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.156
+Gate 7 reports five measures to the
+governance board, from Book 13's Chapter 10:
+
+2
+00:00:05.156 --> 00:00:08.825
+detection coverage, window
+adherence, escalation rate,
+
+3
+00:00:08.825 --> 00:00:12.575
+machine-closure share, and
+the declared-exception count.
+
+4
+00:00:12.575 --> 00:00:14.475
+How is Gate 7 validated?
+
+5
+00:00:14.475 --> 00:00:16.712
+The automated checks are read-only.
+
+6
+00:00:16.712 --> 00:00:19.867
+The evidence export writes
+and checks the records,
+
+7
+00:00:19.867 --> 00:00:24.600
+and the drift comparison from Module
+4 classifies findings across two runs.
+
+8
+00:00:24.600 --> 00:00:27.888
+The five measures themselves
+have no automated check yet.
+
+9
+00:00:27.888 --> 00:00:32.839
+The manual validation is that the scheduled
+runs have run for a month with outputs
+
+10
+00:00:32.839 --> 00:00:36.698
+kept, the measures have been
+reported once, and the first monthly
+
+11
+00:00:36.698 --> 00:00:40.412
+package has been assembled end
+to end and accepted by the ISSO.
+
+12
+00:00:40.412 --> 00:00:42.672
+Until the export exists in your estate,
+
+13
+00:00:42.672 --> 00:00:45.637
+the interim path is to
+assemble the package by hand,
+
+14
+00:00:45.637 --> 00:00:49.450
+from a ServiceNow report of closed
+findings with their evidence
+
+15
+00:00:49.450 --> 00:00:53.110
+attachments and a SailPoint
+event search for the same period.

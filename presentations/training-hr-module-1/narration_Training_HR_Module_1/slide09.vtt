@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:05.935
+Lab 1 runs in the hr-lifecycle folder
+of the examples, on fictional fixtures,
+
+3
+00:00:05.935 --> 00:00:09.763
+and nothing in it signs in to
+anything or sends a request.
+
+4
+00:00:09.763 --> 00:00:13.337
+Step one lists what the scan
+reads, and with what permission.
+
+5
+00:00:13.337 --> 00:00:16.932
+The list option prints the task's
+calls without making them:
+
+6
+00:00:16.932 --> 00:00:21.773
+two GET calls against the audit logs,
+the directory audits and the provisioning
+
+7
+00:00:21.773 --> 00:00:26.100
+logs, which need AuditLog dot Read dot
+All and Directory dot Read dot All.
+
+8
+00:00:26.100 --> 00:00:29.275
+Those are the only two
+permissions a real run would need.
+
+9
+00:00:29.275 --> 00:00:31.725
+Step two checks the program's register.
+
+10
+00:00:31.725 --> 00:00:36.998
+It comes back with zero findings, zero
+warnings and zero information items,
+
+11
+00:00:36.998 --> 00:00:41.675
+and an exit code of zero, so the
+register's shape passes every W R rule.
+
+12
+00:00:41.675 --> 00:00:43.805
+That's the precondition for the scan:
+
+13
+00:00:43.805 --> 00:00:47.690
+a register you've checked is one
+you can test the audit log against.

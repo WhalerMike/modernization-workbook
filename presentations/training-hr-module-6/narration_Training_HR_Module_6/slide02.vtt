@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.637
+Why does this gate need code?
+
+2
+00:00:01.637 --> 00:00:05.068
+Your ISSO has to show that each
+leaver's access was blocked
+
+3
+00:00:05.068 --> 00:00:08.999
+within the approved interval and
+that the credential was revoked.
+
+4
+00:00:08.999 --> 00:00:11.562
+No Microsoft report gives that number.
+
+5
+00:00:11.562 --> 00:00:15.087
+Lifecycle Workflows records
+that a leaver run completed.
+
+6
+00:00:15.087 --> 00:00:18.001
+The audit log records when
+the account was disabled.
+
+7
+00:00:18.001 --> 00:00:20.999
+The card system records
+the card's revocation,
+
+8
+00:00:20.999 --> 00:00:24.550
+and Intune records the devices
+being retired or wiped.
+
+9
+00:00:24.550 --> 00:00:26.375
+Each lives in its own place.
+
+10
+00:00:26.375 --> 00:00:31.853
+So in this module you join those records
+for each leaver, compute the two intervals,
+
+11
+00:00:31.853 --> 00:00:36.525
+and find the separations that went
+wrong: an entry made late, a re-enable,
+
+12
+00:00:36.525 --> 00:00:41.660
+a failed run, a card revoked too late, a
+delete before the devices were retired.

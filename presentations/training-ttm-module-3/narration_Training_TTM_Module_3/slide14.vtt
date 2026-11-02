@@ -1,0 +1,66 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.437
+The federal requirement.
+
+2
+00:00:01.437 --> 00:00:06.013
+The guide maps Gate 2 to NIST special
+publication eight hundred fifty-three.
+
+3
+00:00:06.013 --> 00:00:10.205
+A C five, separation of duties:
+one approver system per class,
+
+4
+00:00:10.205 --> 00:00:12.601
+and the requester never approves.
+
+5
+00:00:12.601 --> 00:00:15.390
+C M three, configuration change control:
+
+6
+00:00:15.390 --> 00:00:19.025
+each change class has a lane
+and a change-record type.
+
+7
+00:00:19.025 --> 00:00:20.732
+A C two, account management:
+
+8
+00:00:20.732 --> 00:00:25.387
+one writer per attribute keeps account
+changes traceable to the source.
+
+9
+00:00:25.387 --> 00:00:28.464
+And Book 13 requires
+the authorizing official
+
+10
+00:00:28.464 --> 00:00:31.225
+to accept any autonomous class in writing.
+
+11
+00:00:31.225 --> 00:00:35.876
+Chapter 08 maps the check to
+configuration settings, change control,
+
+12
+00:00:35.876 --> 00:00:40.200
+impact analysis, continuous
+monitoring and system monitoring.
+
+13
+00:00:40.200 --> 00:00:45.455
+The evidence an ISSO keeps: the attribute
+map with each writer, the approver
+
+14
+00:00:45.455 --> 00:00:50.690
+and lane tables, and the check's output
+with the data architect's decisions.

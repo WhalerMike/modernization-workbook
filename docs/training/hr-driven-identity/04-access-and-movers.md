@@ -13,6 +13,8 @@ series-order: 4
 
 *Part of the [HR-Driven Identity learning path](index.md). Gate G4 Access and movers. Workbook [Chapter 04](../../project-plans/developer-workbooks/hr-driven-identity/04-access-from-attributes-and-the-mover-review.md). About 50 minutes.*
 
+**Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-hr-module-4) (the deck files come with the next edition) · [▶ Watch](../../presentations/watch.html?v=Training_HR_Module_4_Narrated) (about 13 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_HR_Module_4_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-hr-module-4/Training_HR_Module_4_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-hr-module-4/Training_HR_Module_4_Narrated.vtt).
+
 ## Introduction (3 minutes)
 
 When HR moves a person to a new organization, a rule on the organization code should take away the old department's access and give the new one. Automatic assignment policies in entitlement management do that. But a rule can be wrong in ways the portal won't tell you: two policies on one package that a user matches at once, a rule that reads a display name, or a rule on `memberOf`, which Learn quarantines from November 3, 2026. And a rule can't see access the person was given by hand.

@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.537
+Part B turns to SailPoint and Graph.
+
+2
+00:00:02.537 --> 00:00:06.350
+Step six runs the SailPoint
+client tests: four pass.
+
+3
+00:00:06.350 --> 00:00:10.091
+Step seven lists what the drift
+client needs from SailPoint:
+
+4
+00:00:10.091 --> 00:00:11.962
+search read and accounts read.
+
+5
+00:00:11.962 --> 00:00:15.471
+Step eight catches a manage
+scope on that read client:
+
+6
+00:00:15.471 --> 00:00:19.138
+nothing missing, accounts
+manage extra, and it exits one.
+
+7
+00:00:19.138 --> 00:00:23.199
+Step nine checks the drift client's
+scopes against the workflow task.
+
+8
+00:00:23.199 --> 00:00:27.100
+The workflow scope is missing,
+and both read scopes are extra.
+
+9
+00:00:27.100 --> 00:00:30.812
+That's the point of the step:
+the two jobs need two clients.
+
+10
+00:00:30.812 --> 00:00:34.237
+Step ten checks the Graph
+app registration twice.
+
+11
+00:00:34.237 --> 00:00:39.312
+For a drift run that reads the audit,
+AuditLog dot Read dot All is missing.
+
+12
+00:00:39.312 --> 00:00:43.533
+With the required-only option, for
+a run that doesn't read the audit,
+
+13
+00:00:43.533 --> 00:00:46.800
+least privilege holds, and
+the command exits zero.

@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.362
+Where are agencies?
+
+2
+00:00:01.362 --> 00:00:04.913
+The guide assumes one of two
+starting points for the HR feed.
+
+3
+00:00:04.913 --> 00:00:09.375
+Either Book 03's pipeline, Entra
+inbound provisioning from HR,
+
+4
+00:00:09.375 --> 00:00:13.662
+is already live, or accounts
+are still created from tickets.
+
+5
+00:00:13.662 --> 00:00:17.399
+Either way, Gate 2 decides
+who writes each attribute.
+
+6
+00:00:17.399 --> 00:00:20.600
+For availability, Gate 2 uses nothing new.
+
+7
+00:00:20.600 --> 00:00:25.199
+If Book 03's API-driven inbound
+provisioning is the writer,
+
+8
+00:00:25.199 --> 00:00:31.235
+it's available in Azure for U S Government,
+as are PIM, entitlement management,
+
+9
+00:00:31.235 --> 00:00:36.313
+access reviews and Lifecycle
+Workflows, read on November 1, 2026.
+
+10
+00:00:36.313 --> 00:00:40.500
+In GCC, Entra ID is
+the commercial service.
+
+11
+00:00:40.500 --> 00:00:43.867
+The interim path: where the
+HR pipeline isn't live yet,
+
+12
+00:00:43.867 --> 00:00:47.625
+SailPoint can't be measured
+against a source of authority.
+
+13
+00:00:47.625 --> 00:00:53.570
+Decide the writers now, and run Gates 3 to
+6 against the HR extract the kit reads.

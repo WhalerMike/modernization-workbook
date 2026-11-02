@@ -1,0 +1,67 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.025
+Check yourself with two questions.
+
+2
+00:00:02.025 --> 00:00:06.025
+First: you change the pre-hire
+workflow's offset in its file.
+
+3
+00:00:06.025 --> 00:00:07.750
+What does the plan produce for it?
+
+4
+00:00:07.750 --> 00:00:10.611
+The answer is a: a body
+for create new version,
+
+5
+00:00:10.611 --> 00:00:14.188
+because Learn makes a definition
+change a new version.
+
+6
+00:00:14.188 --> 00:00:15.926
+There's no in-place update.
+
+7
+00:00:15.926 --> 00:00:19.150
+A file with no match in the
+tenant would become a create.
+
+8
+00:00:19.150 --> 00:00:22.200
+Second: which hire counts
+as ready on day one?
+
+9
+00:00:22.200 --> 00:00:26.913
+The answer is c: one whose account
+exists and is enabled, holds a license,
+
+10
+00:00:26.913 --> 00:00:31.625
+has the onboarding package delivered,
+and has a completed pre-hire run.
+
+11
+00:00:31.625 --> 00:00:32.588
+All four.
+
+12
+00:00:32.588 --> 00:00:35.706
+An account that exists but
+is disabled isn't ready,
+
+13
+00:00:35.706 --> 00:00:38.749
+and neither is a pre-hire
+run that didn't complete.
+
+14
+00:00:38.749 --> 00:00:43.700
+The module page has two more questions,
+each linked to the section that answers it.

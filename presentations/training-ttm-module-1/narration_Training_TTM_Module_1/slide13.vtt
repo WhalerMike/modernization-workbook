@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.900
+Lab 2 moves to a ServiceNow Personal
+Developer Instance, never production.
+
+2
+00:00:04.900 --> 00:00:09.387
+You need the web service admin role
+to create the Scripted REST API.
+
+3
+00:00:09.387 --> 00:00:12.892
+You build the finding table
+and the Scripted REST resource,
+
+4
+00:00:12.892 --> 00:00:16.612
+and lock the resource down with
+a REST endpoint access control.
+
+5
+00:00:16.612 --> 00:00:21.338
+Then you post a payload you already
+checked in Lab 1, and confirm two things on
+
+6
+00:00:21.338 --> 00:00:26.288
+the instance: a repeat de-duplicates, and
+a malformed payload gets a four hundred.
+
+7
+00:00:26.288 --> 00:00:31.660
+Back it out before you leave the module:
+step five of the chapter's Lab 2 deletes
+
+8
+00:00:31.660 --> 00:00:37.200
+the test records, the access control, the
+role, the API and the scoped application.
+
+9
+00:00:37.200 --> 00:00:39.084
+The authors haven't run Lab 2,
+
+10
+00:00:39.084 --> 00:00:43.660
+and the workbook has no hosted
+sandbox: you bring your own instance.

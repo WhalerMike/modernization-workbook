@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.887
+Not every number in the
+rules is a requirement.
+
+2
+00:00:02.887 --> 00:00:04.113
+Two are samples.
+
+3
+00:00:04.113 --> 00:00:08.008
+The four-hour separation-to-block
+threshold and the twenty-four-hour
+
+4
+00:00:08.008 --> 00:00:11.016
+separation-to-revocation
+threshold stand in for the
+
+5
+00:00:11.016 --> 00:00:14.024
+agency's organization-defined
+periods under P S four.
+
+6
+00:00:14.024 --> 00:00:16.700
+The agency approves them or replaces them.
+
+7
+00:00:16.700 --> 00:00:18.675
+Two are fixed by their sources.
+
+8
+00:00:18.675 --> 00:00:23.752
+The eighteen hours for an uncollected card
+is FIPS two oh one dash three's rule:
+
+9
+00:00:23.752 --> 00:00:29.225
+a card that can't be collected is terminated
+within eighteen hours of notification.
+
+10
+00:00:29.225 --> 00:00:31.789
+And the three-day catch-up
+window is Learn's,
+
+11
+00:00:31.789 --> 00:00:35.525
+the window in which a scheduled
+workflow still picks up a user.
+
+12
+00:00:35.525 --> 00:00:38.550
+So the tool measures,
+and the agency decides.
+
+13
+00:00:38.550 --> 00:00:43.300
+Approve the block and revocation periods,
+and set the tenant schedule inside them.

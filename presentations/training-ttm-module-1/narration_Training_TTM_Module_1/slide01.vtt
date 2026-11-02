@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.599
+Welcome to Module 1 of the
+Ticket-to-Machine learning path:
+
+2
+00:00:03.599 --> 00:00:05.225
+the loop and the typed task.
+
+3
+00:00:05.225 --> 00:00:10.280
+This path builds the identity half of the
+Federal Modernization Workbook's Book 13's
+
+4
+00:00:10.280 --> 00:00:14.684
+Ticket-to-Machine loop on two named
+products: ServiceNow as the front door
+
+5
+00:00:14.684 --> 00:00:19.450
+and the record, and SailPoint Identity
+Security Cloud for identity governance.
+
+6
+00:00:19.450 --> 00:00:21.888
+They're an example, not an endorsement.
+
+7
+00:00:21.888 --> 00:00:25.905
+This module starts at the guide's
+Gate 4, because every other gate
+
+8
+00:00:25.905 --> 00:00:30.075
+writes or reads the record that
+gate defines: the identity finding.
+
+9
+00:00:30.075 --> 00:00:32.952
+You'll map the kit's files
+to the loop's five steps,
+
+10
+00:00:32.952 --> 00:00:36.862
+learn the finding's data contract,
+and check payloads on a laptop
+
+11
+00:00:36.862 --> 00:00:40.680
+the way ServiceNow will, before
+anything reaches an instance.

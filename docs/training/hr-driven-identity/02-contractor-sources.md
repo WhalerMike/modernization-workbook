@@ -13,6 +13,8 @@ series-order: 2
 
 *Part of the [HR-Driven Identity learning path](index.md). Gate G2 Sources. Workbook [Chapter 02](../../project-plans/developer-workbooks/hr-driven-identity/02-contractor-sources-and-end-dates.md). About 50 minutes.*
 
+**Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-hr-module-2) (the deck files come with the next edition) · [▶ Watch](../../presentations/watch.html?v=Training_HR_Module_2_Narrated) (about 13 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_HR_Module_2_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-hr-module-2/Training_HR_Module_2_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-hr-module-2/Training_HR_Module_2_Narrated.vtt).
+
 ## Introduction (3 minutes)
 
 Employees come from HR. Your contractors don't: they live on COR spreadsheets, a suitability register or the PIV sponsorship records, and nobody updates the end date in a spreadsheet when a contract is cut short. That end date keeps access alive.

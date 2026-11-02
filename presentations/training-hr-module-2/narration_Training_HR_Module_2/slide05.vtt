@@ -1,0 +1,73 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.950
+Here's the heart of the
+gate: the earliest end.
+
+2
+00:00:02.950 --> 00:00:06.375
+A contractor can stop needing
+access for several reasons,
+
+3
+00:00:06.375 --> 00:00:08.088
+and the rules file lists them.
+
+4
+00:00:08.088 --> 00:00:09.563
+The contract ends.
+
+5
+00:00:09.563 --> 00:00:12.712
+The completion date comes
+earlier than the contract end.
+
+6
+00:00:12.712 --> 00:00:14.675
+Suitability is withdrawn.
+
+7
+00:00:14.675 --> 00:00:17.875
+The card is terminated,
+revoked or expired.
+
+8
+00:00:17.875 --> 00:00:22.850
+The sponsor separates, plus a grace
+period, thirty days in the program's file.
+
+9
+00:00:22.850 --> 00:00:27.800
+Or the sponsor misses a recertification,
+every hundred eighty days in the file.
+
+10
+00:00:27.800 --> 00:00:30.812
+The extract computes every
+condition that applies
+
+11
+00:00:30.812 --> 00:00:33.263
+to each contractor and
+takes the first one.
+
+12
+00:00:33.263 --> 00:00:36.776
+That's the earliest end, and
+it becomes the leave date.
+
+13
+00:00:36.776 --> 00:00:41.080
+A missing contract end isn't treated
+as no end; the record doesn't go
+
+14
+00:00:41.080 --> 00:00:45.625
+through at all, because a contractor
+is never provisioned open-ended.
+
+15
+00:00:45.625 --> 00:00:50.980
+The grace and recertification periods are
+design guidance: your agency sets them.

@@ -1,0 +1,62 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.463
+What differs by cloud?
+
+2
+00:00:01.463 --> 00:00:06.862
+Step four runs the same check on the
+same tenant, naming GCC High instead.
+
+3
+00:00:06.862 --> 00:00:10.140
+The limit line now says
+forty-five million bytes,
+
+4
+00:00:10.140 --> 00:00:13.500
+and the count drops to five
+Findings and six Warns.
+
+5
+00:00:13.500 --> 00:00:16.175
+One warning went away: C B five.
+
+6
+00:00:16.175 --> 00:00:21.475
+The eighteen and a half million byte list
+was over eighty percent of GCC's twenty
+
+7
+00:00:21.475 --> 00:00:25.330
+megabytes, but it's well under
+eighty percent of forty-five,
+
+8
+00:00:25.330 --> 00:00:26.775
+so in GCC High it's fine.
+
+9
+00:00:26.775 --> 00:00:28.537
+The download time is different.
+
+10
+00:00:28.537 --> 00:00:31.302
+The ten-second limit
+applies in every cloud,
+
+11
+00:00:31.302 --> 00:00:35.063
+so the eleven point four second
+download is still a Finding.
+
+12
+00:00:35.063 --> 00:00:39.255
+That's the lesson of this step: the
+same list can be a warning in one cloud
+
+13
+00:00:39.255 --> 00:00:43.510
+and not in another, which is why the
+check always takes the cloud by name.

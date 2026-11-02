@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.387
+Why start with a record?
+
+2
+00:00:01.387 --> 00:00:03.699
+Picture your agency's service desk.
+
+3
+00:00:03.699 --> 00:00:06.900
+An access ticket closes when
+a technician types done.
+
+4
+00:00:06.900 --> 00:00:09.738
+Nobody can say who owned
+the drift, when it fell due,
+
+5
+00:00:09.738 --> 00:00:12.437
+or what the account should
+look like afterward.
+
+6
+00:00:12.437 --> 00:00:16.823
+Book 13 says an assessor asks four
+questions about every finding:
+
+7
+00:00:16.823 --> 00:00:21.776
+who owns it, by when, under whose approval,
+and with what evidence of closure.
+
+8
+00:00:21.776 --> 00:00:25.975
+A ticket closed on done answers
+none of them; it records a claim.
+
+9
+00:00:25.975 --> 00:00:30.901
+Book 13's answer is a typed task:
+one record with a class, a severity,
+
+10
+00:00:30.901 --> 00:00:36.012
+an owner, a clock, and an intended
+state that a later re-read can check.
+
+11
+00:00:36.012 --> 00:00:38.151
+Approval comes in later modules.
+
+12
+00:00:38.151 --> 00:00:42.720
+Every step of the loop writes or reads
+this record, so it's where you start.

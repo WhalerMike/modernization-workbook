@@ -1,0 +1,68 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.182
+The kit comes with six
+fictional waiting records,
+
+2
+00:00:03.182 --> 00:00:06.162
+one per outcome, and the
+lab runs them on two days.
+
+3
+00:00:06.162 --> 00:00:09.874
+The first is a reverted native
+change, and it verifies.
+
+4
+00:00:09.874 --> 00:00:15.037
+The second is a terminated user still
+enabled in Entra ID: a mismatch.
+
+5
+00:00:15.037 --> 00:00:18.937
+The third is an ISC account read
+before it was re-aggregated.
+
+6
+00:00:18.937 --> 00:00:23.638
+At noon on November first it's pending;
+by noon the next day it's a mismatch.
+
+7
+00:00:23.638 --> 00:00:26.712
+The fourth, an attribute change, verifies.
+
+8
+00:00:26.712 --> 00:00:30.144
+The fifth is a native change
+with an empty intended state,
+
+9
+00:00:30.144 --> 00:00:31.824
+and it's skipped by the guard.
+
+10
+00:00:31.824 --> 00:00:35.537
+The sixth, an orphan account
+that was disabled, verifies.
+
+11
+00:00:35.537 --> 00:00:37.413
+Why does the third one change?
+
+12
+00:00:37.413 --> 00:00:40.867
+It started waiting at six in
+the morning on November first,
+
+13
+00:00:40.867 --> 00:00:45.257
+so by noon on November second its
+twenty-four-hour grace period has passed,
+
+14
+00:00:45.257 --> 00:00:47.830
+and the stale read now
+counts as a mismatch.

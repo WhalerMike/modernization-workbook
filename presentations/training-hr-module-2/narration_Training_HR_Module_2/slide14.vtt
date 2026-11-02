@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.025
+Check yourself with two questions.
+
+2
+00:00:02.025 --> 00:00:05.281
+First: a contractor's
+contract runs to January,
+
+3
+00:00:05.281 --> 00:00:09.137
+but their sponsor recertification
+was due in October.
+
+4
+00:00:09.137 --> 00:00:10.962
+Which end does the extract use?
+
+5
+00:00:10.962 --> 00:00:16.413
+The answer is b: the earliest condition
+that applies, the recertification due date.
+
+6
+00:00:16.413 --> 00:00:20.313
+The extract computes every end
+condition and takes the first.
+
+7
+00:00:20.313 --> 00:00:23.787
+Second: what does a C
+R oh one finding mean?
+
+8
+00:00:23.787 --> 00:00:27.763
+The answer is a: an enabled
+account past its earliest end.
+
+9
+00:00:27.763 --> 00:00:31.399
+An account with no register
+record is the orphan,
+
+10
+00:00:31.399 --> 00:00:35.037
+C R oh two, and a record with
+no account is C R oh four.
+
+11
+00:00:35.037 --> 00:00:40.150
+Once the disables are sent, the next
+reconciliation shows no C R oh one.
+
+12
+00:00:40.150 --> 00:00:45.120
+The module page has two more questions,
+each linked to the section that answers it.

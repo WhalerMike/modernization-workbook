@@ -1,0 +1,73 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.525
+Unit 2 defines the two intervals.
+
+2
+00:00:02.525 --> 00:00:04.987
+Both start at the HR effective time.
+
+3
+00:00:04.987 --> 00:00:08.298
+Separation-to-block ends
+when the person was blocked,
+
+4
+00:00:08.298 --> 00:00:11.760
+and the code takes that as the
+later of two audit records:
+
+5
+00:00:11.760 --> 00:00:15.522
+the first Disable account, and
+the first session revocation,
+
+6
+00:00:15.522 --> 00:00:20.037
+which the audit log calls Update S T
+S Refresh Token Valid From Timestamp.
+
+7
+00:00:20.037 --> 00:00:23.201
+Disabled but still holding
+a session isn't blocked.
+
+8
+00:00:23.201 --> 00:00:26.982
+Separation-to-revocation ends
+at the last of three things:
+
+9
+00:00:26.982 --> 00:00:31.000
+the block, the card system's
+revocation and the device actions.
+
+10
+00:00:31.000 --> 00:00:34.695
+To compute them, the measurement
+reads the HR separations,
+
+11
+00:00:34.695 --> 00:00:39.698
+the audit records and leaver run results
+exported from Graph, the card system's
+
+12
+00:00:39.698 --> 00:00:44.625
+revocations, Intune's device actions,
+and the list of privileged role holders.
+
+13
+00:00:44.625 --> 00:00:45.837
+It never guesses.
+
+14
+00:00:45.837 --> 00:00:50.050
+A leaver missing either audit record
+is not blocked, and that's a finding.
+
+15
+00:00:50.050 --> 00:00:52.900
+A cancelled separation
+isn't measured at all.

@@ -13,6 +13,8 @@ series-order: 5
 
 *Part of the [HR-Driven Identity learning path](index.md). Gate G5 Credentials. Workbook [Chapter 05](../../project-plans/developer-workbooks/hr-driven-identity/05-certificate-based-authentication-checks.md). About 45 minutes.*
 
+**Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-hr-module-5) (the deck files come with the next edition) · [▶ Watch](../../presentations/watch.html?v=Training_HR_Module_5_Narrated) (about 13 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_HR_Module_5_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-hr-module-5/Training_HR_Module_5_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-hr-module-5/Training_HR_Module_5_Narrated.vtt).
+
 ## Introduction (3 minutes)
 
 A PIV card's revocation reaches sign-in only through the certificate revocation list. If a CA has no CRL configured, Entra doesn't check revocation for it. If a configured CRL can't be downloaded in time, certificate-based authentication fails for every card from that CA. And a CRL grows with every revocation, so a list that fits today can cross your cloud's limit next month.

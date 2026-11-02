@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.841
+Here's what you'll be able to
+do by the end of this module,
+
+2
+00:00:02.841 --> 00:00:05.188
+which takes about forty
+minutes with the lab.
+
+3
+00:00:05.188 --> 00:00:08.287
+You'll explain the two writer
+patterns Gate 2 allows,
+
+4
+00:00:08.287 --> 00:00:10.738
+and why it allows only
+one of them at a time.
+
+5
+00:00:10.738 --> 00:00:15.376
+You'll explain why Gate 2 names one
+approver system for each authority class.
+
+6
+00:00:15.376 --> 00:00:19.237
+You'll run the writer check
+over two configuration exports,
+
+7
+00:00:19.237 --> 00:00:22.862
+and interpret each Finding,
+Warn and Info line it prints.
+
+8
+00:00:22.862 --> 00:00:26.404
+And you'll verify that the alias
+list and the directory name
+
+9
+00:00:26.404 --> 00:00:29.801
+are inputs a reviewer checks,
+not things the tool guesses.
+
+10
+00:00:29.801 --> 00:00:31.637
+You need Module 2 first.
+
+11
+00:00:31.637 --> 00:00:37.424
+For the Graph export in Lab 2, the Microsoft
+Automation path's first module helps.
+
+12
+00:00:37.424 --> 00:00:40.580
+Lab 1 runs on fixtures, with no tenant.

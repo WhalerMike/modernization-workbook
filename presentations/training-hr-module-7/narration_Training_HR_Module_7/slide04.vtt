@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.138
+Unit 1 reads the guide's Step
+7, which asks for five things.
+
+2
+00:00:04.138 --> 00:00:10.175
+Run the drift classes: that's the run
+command, with classes L D one to L D six.
+
+3
+00:00:10.175 --> 00:00:14.760
+Fix at the source, not in the directory:
+the period counts findings opened
+
+4
+00:00:14.760 --> 00:00:19.650
+and closed, and keeps each unauthorized-write
+finding's closure at the source.
+
+5
+00:00:19.650 --> 00:00:21.197
+Report the six metrics:
+
+6
+00:00:21.197 --> 00:00:25.512
+the run computes them and flags
+any out of bounds or not measured.
+
+7
+00:00:25.512 --> 00:00:30.662
+Prove the sole source for each
+population: this code doesn't decide that;
+
+8
+00:00:30.662 --> 00:00:36.424
+it's seven days of provisioning logs against
+the audit log, in Book 03's Appendix C.
+
+9
+00:00:36.424 --> 00:00:39.453
+And keep the evidence
+outside the directory:
+
+10
+00:00:39.453 --> 00:00:42.563
+that's the package, verify
+and period commands.
+
+11
+00:00:42.563 --> 00:00:45.575
+Book 03's Chapter 11 has the design.
+
+12
+00:00:45.575 --> 00:00:47.924
+Attribute drift isn't this module's;
+
+13
+00:00:47.924 --> 00:00:52.030
+it belongs to Gate 9 of the
+attribute-driven migration guide.

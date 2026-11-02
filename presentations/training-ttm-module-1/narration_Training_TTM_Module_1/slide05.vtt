@@ -1,0 +1,62 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.913
+Now map the kit onto that loop.
+
+2
+00:00:01.913 --> 00:00:06.298
+Step one, test, is the drift
+client, which joins the HR extract,
+
+3
+00:00:06.298 --> 00:00:09.698
+Microsoft Graph and
+SailPoint on employee I D.
+
+4
+00:00:09.698 --> 00:00:13.546
+Step two, detect drift, is
+SailPoint's event triggers,
+
+5
+00:00:13.546 --> 00:00:18.288
+for a native change or an attribute
+change, plus the drift client.
+
+6
+00:00:18.288 --> 00:00:23.515
+Step three, raise a typed task, is the
+SailPoint workflows' HTTP Request step and
+
+7
+00:00:23.515 --> 00:00:29.063
+the Scripted REST resource in ServiceNow,
+which writes the identity finding table.
+
+8
+00:00:29.063 --> 00:00:34.127
+Step five, close with evidence, is a
+business rule that turns any close into
+
+9
+00:00:34.127 --> 00:00:39.275
+Awaiting verification, and the re-read
+client, which closes only on a re-read.
+
+10
+00:00:39.275 --> 00:00:40.513
+Notice step four.
+
+11
+00:00:40.513 --> 00:00:42.820
+Actuation has no code in Pass 1:
+
+12
+00:00:42.820 --> 00:00:47.988
+nothing in the kit writes to Entra
+ID, Active Directory or SailPoint.
+
+13
+00:00:47.988 --> 00:00:50.570
+You'll meet that step again in Module 6.

@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.800
+Step three checks the
+fictional tenant for GCC.
+
+2
+00:00:03.800 --> 00:00:08.962
+The first line names the limits it's using:
+twenty million bytes, and ten seconds.
+
+3
+00:00:08.962 --> 00:00:13.500
+Then the count: five Findings,
+seven Warns, and exit code two.
+
+4
+00:00:13.500 --> 00:00:15.550
+The lab asks you to find four of them.
+
+5
+00:00:15.550 --> 00:00:20.562
+C B four: one authority's list took
+eleven point four seconds to download,
+
+6
+00:00:20.562 --> 00:00:25.575
+over the ten-second limit, so in real
+life sign-in would fail for its cards.
+
+7
+00:00:25.575 --> 00:00:29.775
+C B five: that same list is
+eighteen and a half million bytes,
+
+8
+00:00:29.775 --> 00:00:32.750
+more than eighty percent of the GCC limit.
+
+9
+00:00:32.750 --> 00:00:37.938
+C B nine: the PIV policy O I
+D isn't mapped to multifactor.
+
+10
+00:00:37.938 --> 00:00:42.913
+And C B ten: no enabled policy requires
+a phishing-resistant strength.
+
+11
+00:00:42.913 --> 00:00:46.350
+You'll also see a legacy
+intermediate with no list at all,
+
+12
+00:00:46.350 --> 00:00:49.780
+and an issuing authority
+missing from the trust store.

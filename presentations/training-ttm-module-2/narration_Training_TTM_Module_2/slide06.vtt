@@ -1,0 +1,65 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.512
+Here's how the kit makes
+privilege checkable.
+
+2
+00:00:02.512 --> 00:00:07.544
+A file called calls dot JSON lists
+every HTTP call a Python client makes:
+
+3
+00:00:07.544 --> 00:00:11.090
+the system, the method and
+path, the tasks that make it,
+
+4
+00:00:11.090 --> 00:00:15.213
+the least privilege it needs,
+and the vendor page that says so.
+
+5
+00:00:15.213 --> 00:00:18.782
+A test runs the clients
+against a fake HTTP session
+
+6
+00:00:18.782 --> 00:00:21.926
+and fails on any call
+the file doesn't declare.
+
+7
+00:00:21.926 --> 00:00:25.343
+So a new call fails the test
+until someone adds its row,
+
+8
+00:00:25.343 --> 00:00:30.237
+its privilege and its source, and a
+reviewer sees that row in the pull request.
+
+9
+00:00:30.237 --> 00:00:33.624
+The test also asserts that
+no task asks SailPoint
+
+10
+00:00:33.624 --> 00:00:37.176
+or Graph for a write scope,
+except workflow creation.
+
+11
+00:00:37.176 --> 00:00:39.600
+Then the kit calls tool reads the file.
+
+12
+00:00:39.600 --> 00:00:42.613
+Give it a task and it
+lists what that task needs.
+
+13
+00:00:42.613 --> 00:00:48.070
+Give it a grant and it compares, and
+exits one on anything missing or extra.

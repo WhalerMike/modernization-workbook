@@ -1,0 +1,57 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.550
+Check yourself with two questions
+from the module's knowledge check.
+
+2
+00:00:03.550 --> 00:00:07.950
+First: why did adding the alias from
+title to job title add a Finding?
+
+3
+00:00:07.950 --> 00:00:08.896
+The answer is a.
+
+4
+00:00:08.896 --> 00:00:11.732
+SailPoint's field names
+are the connector's,
+
+5
+00:00:11.732 --> 00:00:15.987
+so without the alias the second
+writer of job title was invisible.
+
+6
+00:00:15.987 --> 00:00:20.813
+The check doesn't guess name pairs;
+the alias list is a reviewed input.
+
+7
+00:00:20.813 --> 00:00:24.149
+Second: Gate 2 offers two writer patterns.
+
+8
+00:00:24.149 --> 00:00:25.813
+Which choice does it rule out?
+
+9
+00:00:25.813 --> 00:00:29.084
+The answer is c: both
+Entra inbound provisioning
+
+10
+00:00:29.084 --> 00:00:32.275
+and SailPoint writing
+HR-mastered attributes.
+
+11
+00:00:32.275 --> 00:00:34.438
+In the guide's words, not both.
+
+12
+00:00:34.438 --> 00:00:39.410
+The module page has two more questions,
+each linked to the section that answers it.

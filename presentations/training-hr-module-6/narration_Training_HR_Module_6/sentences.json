@@ -1,0 +1,657 @@
+{
+ "1": [
+  [
+   0.05,
+   6.487,
+   "Welcome to Module 6 of the H R-Driven Identity learning path: time separations from the logs."
+  ],
+  [
+   6.537,
+   6.912,
+   "This is Gate 6 of the implementation guide, separation, and it goes with Chapter 06 of the developer workbook."
+  ],
+  [
+   13.45,
+   8.262,
+   "When a person separates, two things have to be shown: that access was blocked within the approved interval, and that the credential was revoked."
+  ],
+  [
+   21.712,
+   11.738,
+   "In this module you'll join the records each system keeps about a leaver, compute two intervals for every one of them, separation-to-block and separation-to-revocation, and find the separations that went wrong."
+  ],
+  [
+   33.45,
+   3.675,
+   "You'll run the measurement on fictional leavers, with no tenant."
+  ],
+  [
+   37.125,
+   3.163,
+   "The module takes about forty-five minutes with its lab."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.587,
+   "Why does this gate need code?"
+  ],
+  [
+   1.637,
+   7.362,
+   "Your I S S O has to show that each leaver's access was blocked within the approved interval and that the credential was revoked."
+  ],
+  [
+   9.0,
+   2.562,
+   "No Microsoft report gives that number."
+  ],
+  [
+   11.562,
+   3.525,
+   "Lifecycle Workflows records that a leaver run completed."
+  ],
+  [
+   15.088,
+   2.913,
+   "The audit log records when the account was disabled."
+  ],
+  [
+   18.0,
+   6.55,
+   "The card system records the card's revocation, and Intune records the devices being retired or wiped."
+  ],
+  [
+   24.55,
+   1.825,
+   "Each lives in its own place."
+  ],
+  [
+   26.375,
+   15.225,
+   "So in this module you join those records for each leaver, compute the two intervals, and find the separations that went wrong: an entry made late, a re-enable, a failed run, a card revoked too late, a delete before the devices were retired."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   2.913,
+   "Here's what you'll be able to do by the end of the module."
+  ],
+  [
+   2.962,
+   7.062,
+   "You'll describe the leaver order: block first, revoke in parallel, reconcile, and dispose last."
+  ],
+  [
+   10.025,
+   6.338,
+   "You'll define separation-to-block and separation-to-revocation, and say which records each one reads."
+  ],
+  [
+   16.363,
+   4.612,
+   "You'll run the measurement and explain its findings, including the catch-up window."
+  ],
+  [
+   20.975,
+   4.888,
+   "And you'll explain why the tenant's workflow schedule belongs inside the approved interval."
+  ],
+  [
+   25.863,
+   2.65,
+   "This module builds on three earlier ones."
+  ],
+  [
+   28.512,
+   5.688,
+   "Module 1: the pipeline sends active false no later than the leaver workflow's first run."
+  ],
+  [
+   34.2,
+   4.237,
+   "Module 3: the leaver and post-separation workflow files."
+  ],
+  [
+   38.438,
+   5.325,
+   "And Module 5: a card's revocation reaches sign-in through the revocation list."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   2.4,
+   "Unit 1 reads the guide's Step 6."
+  ],
+  [
+   2.45,
+   7.3,
+   "It orders the leaver as a sequence: block first, revoke in parallel, reconcile, and dispose last."
+  ],
+  [
+   9.75,
+   2.462,
+   "It times the leave date late in the day."
+  ],
+  [
+   12.213,
+   10.175,
+   "It coordinates the two writers, so one can't undo the other; in the lab, a re-enable after the disable with no cancellation in H R is rule S T five."
+  ],
+  [
+   22.387,
+   4.662,
+   "It builds an emergency path, whose on-demand runs are logged as changes."
+  ],
+  [
+   27.05,
+   4.162,
+   "It catches separations that were entered late, which is S T three."
+  ],
+  [
+   31.212,
+   4.112,
+   "It verifies the block, which is S T one and S T two."
+  ],
+  [
+   35.325,
+   5.85,
+   "And it disposes last: deleting a user before the devices are retired is S T eight."
+  ],
+  [
+   41.175,
+   12.725,
+   "The Federal Modernization Workbook's Book 03 has the canonical leaver sequence, and Book 19's Chapter 05 has already built the custom task extension that revokes the card and retires the devices."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   2.388,
+   "Two timing facts shape the measurement."
+  ],
+  [
+   2.438,
+   1.738,
+   "First, late entries."
+  ],
+  [
+   4.175,
+   6.487,
+   "Learn says a scheduled workflow still processes a user whose trigger date passed no more than three days ago."
+  ],
+  [
+   10.662,
+   3.575,
+   "Past three days, the scheduled trigger skips the user."
+  ],
+  [
+   14.238,
+   5.425,
+   "Book 03's Chapter 08 explains why a separation entered late misses it."
+  ],
+  [
+   19.663,
+   10.988,
+   "So rule S T three flags any separation entered more than three days after its effective date: a Finding if nobody ran the leaver on demand, and only a Warn if someone did."
+  ],
+  [
+   30.65,
+   2.013,
+   "Second, the tenant's schedule."
+  ],
+  [
+   32.663,
+   5.138,
+   "Lifecycle Workflows runs on a schedule, and that can delay a scheduled leaver's run."
+  ],
+  [
+   37.8,
+   6.025,
+   "The wait is part of separation-to-block, so the guide says the schedule belongs inside the approved interval."
+  ],
+  [
+   43.825,
+   2.638,
+   "Set the threshold and the schedule together."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   2.475,
+   "Unit 2 defines the two intervals."
+  ],
+  [
+   2.525,
+   2.462,
+   "Both start at the H R effective time."
+  ],
+  [
+   4.987,
+   15.05,
+   "Separation-to-block ends when the person was blocked, and the code takes that as the later of two audit records: the first Disable account, and the first session revocation, which the audit log calls Update S T S Refresh Token Valid From Timestamp."
+  ],
+  [
+   20.038,
+   3.163,
+   "Disabled but still holding a session isn't blocked."
+  ],
+  [
+   23.2,
+   7.8,
+   "Separation-to-revocation ends at the last of three things: the block, the card system's revocation and the device actions."
+  ],
+  [
+   31.0,
+   13.625,
+   "To compute them, the measurement reads the H R separations, the audit records and leaver run results exported from Graph, the card system's revocations, Intune's device actions, and the list of privileged role holders."
+  ],
+  [
+   44.625,
+   1.212,
+   "It never guesses."
+  ],
+  [
+   45.837,
+   4.213,
+   "A leaver missing either audit record is not blocked, and that's a finding."
+  ],
+  [
+   50.05,
+   2.775,
+   "A cancelled separation isn't measured at all."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   1.462,
+   "Here are the nine rules."
+  ],
+  [
+   1.512,
+   4.575,
+   "S T one and S T nine compare the two intervals with their thresholds."
+  ],
+  [
+   6.088,
+   4.6,
+   "S T two: no block was recorded, or there's no account to measure."
+  ],
+  [
+   10.688,
+   4.3,
+   "S T three is the late entry, past the three-day catch-up window."
+  ],
+  [
+   14.988,
+   5.787,
+   "S T four: a card that couldn't be collected was revoked more than eighteen hours after notice."
+  ],
+  [
+   20.775,
+   15.938,
+   "S T five: the account was re-enabled after the disable, with no cancellation in H R. S T six is a warning for a privileged leaver, because the disable task doesn't support users with role assignments, so someone has to confirm the verified path ran."
+  ],
+  [
+   36.712,
+   4.65,
+   "S T seven: a leaver run failed, and goes to the exception queue."
+  ],
+  [
+   41.362,
+   5.463,
+   "And S T eight: the user was deleted before the device retire or wipe completed."
+  ],
+  [
+   46.825,
+   1.637,
+   "Disposal comes last."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   2.837,
+   "Not every number in the rules is a requirement."
+  ],
+  [
+   2.888,
+   1.225,
+   "Two are samples."
+  ],
+  [
+   4.112,
+   9.912,
+   "The four-hour separation-to-block threshold and the twenty-four-hour separation-to-revocation threshold stand in for the agency's organization-defined periods under P S four."
+  ],
+  [
+   14.025,
+   2.675,
+   "The agency approves them or replaces them."
+  ],
+  [
+   16.7,
+   1.975,
+   "Two are fixed by their sources."
+  ],
+  [
+   18.675,
+   10.55,
+   "The eighteen hours for an uncollected card is FIPS two oh one dash three's rule: a card that can't be collected is terminated within eighteen hours of notification."
+  ],
+  [
+   29.225,
+   6.3,
+   "And the three-day catch-up window is Learn's, the window in which a scheduled workflow still picks up a user."
+  ],
+  [
+   35.525,
+   3.025,
+   "So the tool measures, and the agency decides."
+  ],
+  [
+   38.55,
+   4.688,
+   "Approve the block and revocation periods, and set the tenant schedule inside them."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   6.25,
+   "Lab 1 runs in the h r lifecycle examples folder, on fictional leavers, with no tenant."
+  ],
+  [
+   7.025,
+   10.613,
+   "Step one lists what the reader would call in a real tenant: two GET calls, the directory audits and the leaver workflow's processing results, for two read permissions."
+  ],
+  [
+   17.637,
+   12.325,
+   "Step two runs the measurement over every input: the separations, the users, the audit records, the run results, the card revocations, the device actions and the role holders."
+  ],
+  [
+   29.962,
+   5.062,
+   "It reports seven separated leavers, one cancelled, and one never blocked."
+  ],
+  [
+   35.025,
+   10.738,
+   "The median separation-to-block is a quarter of an hour, but the ninetieth percentile is five point five two hours, over the four-hour sample, and the worst is nearly eighty-five."
+  ],
+  [
+   45.763,
+   5.638,
+   "Revocation is worse: a ninetieth percentile of a hundred ten hours against twenty-four."
+  ],
+  [
+   51.4,
+   3.225,
+   "Ten Findings, two Warns, exit code two."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   4.6,
+   "Step three prints the findings, one line each: twelve of them."
+  ],
+  [
+   4.65,
+   1.925,
+   "Read them as stories about people."
+  ],
+  [
+   6.575,
+   10.887,
+   "Casey was blocked after five and a half hours, over the threshold, and Casey's card, which couldn't be collected, was revoked twenty-three hours after notice, past FIPS's eighteen."
+  ],
+  [
+   17.462,
+   7.763,
+   "Drew's separation was entered six point eight days late, nobody ran the leaver on demand, and Drew was never blocked at all."
+  ],
+  [
+   25.225,
+   6.075,
+   "Harper was re-enabled after the disable with no cancellation in H R, and Harper's leaver run failed."
+  ],
+  [
+   31.3,
+   8.45,
+   "Kai holds a privileged role, and the disable task doesn't support users with role assignments, so someone has to confirm the verified path ran."
+  ],
+  [
+   39.75,
+   3.538,
+   "And Blake was deleted before the device retire completed."
+  ],
+  [
+   43.288,
+   7.325,
+   "Emery shows the other side of S T three: entered late, but caught by an on-demand run, so it's only a Warn."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   6.5,
+   "Step four cuts four columns from the intervals file: the person number, the two intervals and the status."
+  ],
+  [
+   6.55,
+   1.988,
+   "There's a header and eight rows."
+  ],
+  [
+   8.537,
+   1.125,
+   "Six are measured."
+  ],
+  [
+   9.662,
+   6.912,
+   "One, person one hundred three oh three, is not blocked, and its interval columns are empty rather than guessed."
+  ],
+  [
+   16.575,
+   5.263,
+   "One, one hundred three oh seven, is a cancelled separation, so it isn't measured."
+  ],
+  [
+   21.837,
+   9.887,
+   "Look at one hundred three oh eight: blocked in six minutes, but not fully revoked for three hundred ninety-five hours, because the card and the devices came much later."
+  ],
+  [
+   31.725,
+   4.925,
+   "Step five runs the tests, fifty-seven passed, and deletes the out folder."
+  ],
+  [
+   36.65,
+   8.5,
+   "Module 7 rebuilds this output and reads its summary, where the two ninetieth percentiles become two of its six lifecycle metrics."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   8.863,
+   "Lab 2 moves to your own test tenant, never production, with Lifecycle Workflows licensed and a leaver workflow in Book 03's order."
+  ],
+  [
+   8.912,
+   5.825,
+   "The reader app holds a certificate and just the two permissions from step one, with admin consent."
+  ],
+  [
+   14.738,
+   12.225,
+   "You make two test leavers, one scheduled and one run on demand, export the logs, and confirm which audit activity the session revoke task actually writes, because the measurement depends on that name."
+  ],
+  [
+   26.962,
+   1.0,
+   "Then you measure."
+  ],
+  [
+   27.962,
+   5.537,
+   "Expect each test user's separation-to-block to include the wait for the tenant schedule."
+  ],
+  [
+   33.5,
+   3.4,
+   "That's the lesson from Unit 1, now in your own numbers."
+  ],
+  [
+   36.9,
+   10.225,
+   "To back it out, remove the leave dates, re-enable or restore the users if you need them, remove the permissions, and delete the reader app, its certificate and the folders."
+  ],
+  [
+   47.125,
+   2.15,
+   "The authors haven't run Lab 2."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   1.387,
+   "The federal requirement."
+  ],
+  [
+   1.438,
+   18.375,
+   "In nist special publication eight hundred fifty-three terms, this gate meets P S four, personnel termination; A C two, enhancement three, disable accounts; P S seven for contractors; and A C two, enhancement thirteen, disabling accounts for high-risk individuals."
+  ],
+  [
+   19.812,
+   8.762,
+   "It also meets FIPS two oh one dash three's rule that a card that can't be collected is terminated within eighteen hours of notification."
+  ],
+  [
+   28.575,
+   9.325,
+   "The evidence an I S S O keeps for Gate 6: the intervals, the summary and the findings, with their manifest, for every run."
+  ],
+  [
+   37.9,
+   6.1,
+   "The exported workflow runs, audit records, card revocations and device actions behind them."
+  ],
+  [
+   44.0,
+   2.312,
+   "The contractor rows of the intervals."
+  ],
+  [
+   46.312,
+   3.5,
+   "The notice and revocation times for uncollected cards."
+  ],
+  [
+   49.812,
+   4.112,
+   "And the emergency path's on-demand runs, logged as changes."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   3.5,
+   "Check yourself with two questions from the module's knowledge check."
+  ],
+  [
+   3.55,
+   3.962,
+   "First: what does the code take as the moment a leaver was blocked?"
+  ],
+  [
+   7.513,
+   6.4,
+   "The answer is b: the later of the first Disable account record and the first session revocation record."
+  ],
+  [
+   13.912,
+   6.287,
+   "Not the workflow's completion time, and not the H R effective time, which is where the interval starts."
+  ],
+  [
+   20.2,
+   8.188,
+   "Second: a separation is entered in H R more than three days after its effective date, and nobody runs the leaver on demand."
+  ],
+  [
+   28.387,
+   1.663,
+   "What does the measurement report?"
+  ],
+  [
+   30.05,
+   7.05,
+   "The answer is b: an S T three Finding, because past three days the scheduled trigger skips the user."
+  ],
+  [
+   37.1,
+   2.987,
+   "With an on-demand run, it would be only a Warn."
+  ],
+  [
+   40.087,
+   4.875,
+   "The module page has two more questions, each linked to the section that teaches it."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   0.825,
+   "To sum up."
+  ],
+  [
+   0.875,
+   6.825,
+   "You put the leaver in order: block first, revoke in parallel, reconcile, and dispose last."
+  ],
+  [
+   7.7,
+   5.862,
+   "You defined separation-to-block and separation-to-revocation, and the records each one reads."
+  ],
+  [
+   13.562,
+   7.787,
+   "You measured fictional leavers and found the ones that were blocked late, never blocked, re-enabled, failed, or deleted too early."
+  ],
+  [
+   21.35,
+   4.013,
+   "And you saw why the tenant schedule belongs inside the approved interval."
+  ],
+  [
+   25.363,
+   6.287,
+   "Next is Module 7, the last in the path: find lifecycle drift and file the evidence."
+  ],
+  [
+   31.65,
+   12.125,
+   "It writes one read-only run of six drift classes and six metrics, reads this module's percentiles as two of them, and packages each run with a hash chain an I S S O can verify."
+  ]
+ ]
+}

@@ -1,0 +1,68 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.564
+Gate 2's first step is to choose
+one writer per attribute,
+
+2
+00:00:03.564 --> 00:00:06.925
+and the guide offers two
+patterns, as design guidance.
+
+3
+00:00:06.925 --> 00:00:10.425
+In the first, Entra inbound
+provisioning stays the door.
+
+4
+00:00:10.425 --> 00:00:15.233
+SailPoint aggregates HR read-only,
+and governs entitlements:
+
+5
+00:00:15.233 --> 00:00:19.475
+groups, roles, access packages
+and application access.
+
+6
+00:00:19.475 --> 00:00:23.307
+In the second, SailPoint becomes
+the provisioning service,
+
+7
+00:00:23.307 --> 00:00:25.887
+and takes on Book 03's middleware duties.
+
+8
+00:00:25.887 --> 00:00:27.599
+Pick one and write it down.
+
+9
+00:00:27.599 --> 00:00:28.575
+Not both.
+
+10
+00:00:28.575 --> 00:00:32.825
+Then record each attribute's writer
+in the program's attribute map.
+
+11
+00:00:32.825 --> 00:00:38.542
+One fact helps the choice: SailPoint's
+Oracle HCM Cloud connector reads Core HCM
+
+12
+00:00:38.542 --> 00:00:41.660
+directly, without an
+on-premises appliance,
+
+13
+00:00:41.660 --> 00:00:45.125
+and writes back only the
+user name and work email.
+
+14
+00:00:45.125 --> 00:00:50.470
+For the first pattern's build, the guide
+points to its Oracle HCM to Entra guide.

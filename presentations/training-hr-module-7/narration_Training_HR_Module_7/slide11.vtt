@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.841
+Step four writes the next day's
+run, for the first of November,
+
+2
+00:00:03.841 --> 00:00:07.013
+and it prints the same
+metrics and the same counts.
+
+3
+00:00:07.013 --> 00:00:09.401
+Step five packages both runs.
+
+4
+00:00:09.401 --> 00:00:14.687
+The first package opens twenty findings,
+the fourteen Findings and six Warns.
+
+5
+00:00:14.687 --> 00:00:17.086
+The second package names the first one's
+
+6
+00:00:17.086 --> 00:00:19.701
+manifest as its previous,
+which chains them.
+
+7
+00:00:19.701 --> 00:00:22.218
+It opens nothing new and closes nothing,
+
+8
+00:00:22.218 --> 00:00:25.575
+because the inputs didn't
+change between the two runs.
+
+9
+00:00:25.575 --> 00:00:28.892
+Then verify confirms the
+second package: six files,
+
+10
+00:00:28.892 --> 00:00:32.525
+and the same manifest hash
+the package command printed.
+
+11
+00:00:32.525 --> 00:00:36.337
+Your hashes match these only if your
+fixtures are the committed ones.
+
+12
+00:00:36.337 --> 00:00:41.189
+Finally, the ISSO's own check,
+with no kit at all: sha256sum,
+
+13
+00:00:41.189 --> 00:00:45.790
+run inside the package
+folder, reports every file OK.

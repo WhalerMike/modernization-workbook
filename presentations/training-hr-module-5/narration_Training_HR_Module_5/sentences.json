@@ -1,0 +1,617 @@
+{
+ "1": [
+  [
+   0.05,
+   6.763,
+   "Welcome to Module 5 of the H R-Driven Identity learning path: check certificate-based authentication."
+  ],
+  [
+   6.812,
+   7.05,
+   "This is Gate 5 of the implementation guide, credentials, and it goes with Chapter 05 of the developer workbook."
+  ],
+  [
+   13.863,
+   5.463,
+   "A piv card's revocation reaches sign-in only through the certificate revocation list."
+  ],
+  [
+   19.325,
+   16.6,
+   "So in this module you'll measure every revocation list and check the tenant's certificate-based authentication settings against the limits for your cloud: the trust store, each list against the cloud's limit, the multifactor mapping, revocation list validation and the phishing-resistant strength."
+  ],
+  [
+   35.925,
+   6.713,
+   "You'll run the check on a fictional tenant for G C C and then for G C C High, and see the findings change."
+  ],
+  [
+   42.638,
+   3.163,
+   "The module takes about forty-five minutes with its lab."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.587,
+   "Why does this gate need code?"
+  ],
+  [
+   1.637,
+   3.913,
+   "Because revocation is where card sign-in quietly breaks."
+  ],
+  [
+   5.55,
+   9.012,
+   "If an issuing certificate authority in the trust store has no revocation list configured, Entra doesn't check revocation for that authority's certificates at all."
+  ],
+  [
+   14.562,
+   1.913,
+   "A revoked card keeps working."
+  ],
+  [
+   16.475,
+   7.55,
+   "If a list is configured but can't be downloaded in time, certificate-based authentication fails for every card from that authority."
+  ],
+  [
+   24.025,
+   1.375,
+   "Nobody can sign in."
+  ],
+  [
+   25.4,
+   7.263,
+   "And a revocation list grows with every revocation, so a list that fits today can cross your cloud's limit next month."
+  ],
+  [
+   32.663,
+   3.4,
+   "None of those shows up in a one-time configuration review."
+  ],
+  [
+   36.062,
+   7.275,
+   "So this module measures each list and checks the tenant's settings against your cloud's limits, every day rather than once."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   2.913,
+   "Here's what you'll be able to do by the end of the module."
+  ],
+  [
+   2.962,
+   6.912,
+   "You'll state the interactive revocation list limits for G C C and G C C High, and the download time limit."
+  ],
+  [
+   9.875,
+   3.775,
+   "You'll measure a set of lists and record the failures as findings."
+  ],
+  [
+   13.65,
+   5.588,
+   "You'll run the certificate-based authentication check for a named cloud and explain what it finds."
+  ],
+  [
+   19.238,
+   4.975,
+   "And you'll explain why the same list can be a warning in one cloud and not in another."
+  ],
+  [
+   24.212,
+   9.025,
+   "Before you start, finish Module 3: there, the Temporary Access Pass bridges a new hire to the card, and this gate ends that bridge."
+  ],
+  [
+   33.237,
+   13.037,
+   "Some familiarity with P K I terms helps, like issuing authority, revocation list and policy O I D; the Federal Modernization Workbook's Book 07's Chapter 06 explains them for Entra."
+  ],
+  [
+   46.275,
+   3.225,
+   "Lab 1 needs Python and pytest, and no tenant."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   5.037,
+   "Unit 1 starts in the guide's Step 5, bind credentials to H R events."
+  ],
+  [
+   5.088,
+   9.9,
+   "Its first step gives the revocation list limits for each cloud, and its later steps tie card issuance and revocation to H R and contractor events."
+  ],
+  [
+   14.988,
+   10.387,
+   "Book 03's Chapter 09 explains why revocation checking matters, and that a reissued card changes the binding between the piv certificate and the Entra user."
+  ],
+  [
+   25.375,
+   2.2,
+   "Notice what this module doesn't cover."
+  ],
+  [
+   27.575,
+   10.125,
+   "Binding coverage and affinity for each user belong to the validation kit's check, V K piv oh one, and to Gate 6 of the attribute-driven migration guide."
+  ],
+  [
+   37.7,
+   14.025,
+   "This module checks the tenant's settings: the certificate authorities in the trust store, the X dot five-oh-nine certificate method, the authentication strengths and the Conditional Access policies, plus a measurement of each revocation list."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   3.15,
+   "Here are the limits the check holds each cloud to."
+  ],
+  [
+   3.2,
+   7.3,
+   "G C C uses the commercial service, so its interactive sign-in limit for a revocation list is twenty megabytes."
+  ],
+  [
+   10.5,
+   6.6,
+   "G C C High is Azure Government, at forty-five megabytes, and the kit holds D O D to the same."
+  ],
+  [
+   17.1,
+   3.575,
+   "In every cloud a list must download within ten seconds."
+  ],
+  [
+   20.675,
+   8.1,
+   "Learn gives those limits in megabytes; the kit reads them as decimal megabytes, a million bytes each, which is the stricter reading."
+  ],
+  [
+   28.775,
+   8.475,
+   "There's no default cloud in the kit: you name it every time, so a G C C High check can't silently run against G C C's numbers."
+  ],
+  [
+   37.25,
+   10.912,
+   "Two thresholds are the program's design guidance, not Learn's: a warning at eighty percent of the interactive limit, and a warning when an authority's certificate expires within ninety days."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   3.587,
+   "Unit 2 has two parts, the measurement and the check."
+  ],
+  [
+   3.638,
+   8.975,
+   "The measurement downloads each revocation list once and records its size in bytes, the seconds it took and any error, with the time it was measured."
+  ],
+  [
+   12.613,
+   7.912,
+   "An unreachable list isn't an exception that stops the run: it's recorded, because the failure is exactly the finding you want."
+  ],
+  [
+   20.525,
+   6.513,
+   "For the lab, a local path is read as a file, which is how Lab 1 runs on a laptop with no network."
+  ],
+  [
+   27.038,
+   4.237,
+   "In Lab 2 you measure the real lists from outside the agency network."
+  ],
+  [
+   31.275,
+   2.163,
+   "And the check insists on the measurement."
+  ],
+  [
+   33.438,
+   7.263,
+   "A configured list with no measurement row is C B six, a Finding, so you can't pass the check by skipping the download."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   4.05,
+   "The check runs thirteen rules, C B one to C B thirteen."
+  ],
+  [
+   4.1,
+   2.688,
+   "Eight of them look at the trust store and the lists."
+  ],
+  [
+   6.787,
+   5.463,
+   "C B twelve: an issuing authority the card program uses isn't in the trust store."
+  ],
+  [
+   12.25,
+   6.763,
+   "C B one: an authority has no revocation list configured, so Entra doesn't check revocation for it."
+  ],
+  [
+   19.012,
+   7.6,
+   "A root with no list is only a warning to confirm, since a root that issues only authority certificates may publish none."
+  ],
+  [
+   26.613,
+   6.013,
+   "C B two: the list's endpoint isn't plain H T T P, which Learn recommends."
+  ],
+  [
+   32.625,
+   2.275,
+   "C B six: no measurement."
+  ],
+  [
+   34.9,
+   4.938,
+   "C B four: the list couldn't be downloaded, or took longer than ten seconds."
+  ],
+  [
+   39.837,
+   4.025,
+   "C B three: the list is over the cloud's interactive limit."
+  ],
+  [
+   43.862,
+   2.6,
+   "C B five warns at eighty percent of it."
+  ],
+  [
+   46.462,
+   4.975,
+   "And C B eleven warns when an authority's certificate expires within ninety days."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   3.087,
+   "The other five rules look at the method and the policy."
+  ],
+  [
+   3.138,
+   4.938,
+   "C B seven: the X dot five-oh-nine certificate method isn't enabled."
+  ],
+  [
+   8.075,
+   8.213,
+   "C B eight warns when revocation list validation isn't required of every authority, or when an authority is exempted from it."
+  ],
+  [
+   16.288,
+   5.338,
+   "An exemption is allowed only while that authority's list is being fixed, and with an end date."
+  ],
+  [
+   21.625,
+   10.512,
+   "C B nine: a piv policy O I D isn't mapped to multifactor, and the default mode is single-factor, so a card sign-in may not count as multifactor."
+  ],
+  [
+   32.138,
+   4.075,
+   "C B thirteen warns about low-affinity username bindings."
+  ],
+  [
+   36.212,
+   9.438,
+   "And C B ten is the scuba rule: no enabled Conditional Access policy for all users and all resources requires a phishing-resistant strength."
+  ],
+  [
+   45.65,
+   7.938,
+   "A strength counts only if every combination it allows is fido two, Windows Hello for Business, or multifactor certificate."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   6.875,
+   "Lab 1 runs in the h r lifecycle examples folder, against a fictional P K I, with no tenant."
+  ],
+  [
+   7.65,
+   2.312,
+   "Step one lists what the reader will call."
+  ],
+  [
+   9.963,
+   11.662,
+   "The task asks for three permissions, Policy dot Read dot All, Policy dot Read dot Authentication Method, and Public Key Infrastructure dot Read dot All, for five calls, and every one of them is a GET."
+  ],
+  [
+   21.625,
+   1.837,
+   "Nothing here can change the tenant."
+  ],
+  [
+   23.462,
+   3.15,
+   "Step two measures the fixture revocation lists."
+  ],
+  [
+   26.613,
+   2.913,
+   "Two files measure at four and eight kilobytes."
+  ],
+  [
+   29.525,
+   6.65,
+   "The third doesn't exist, and the tool records it as zero bytes with a file-not-found error, rather than stopping."
+  ],
+  [
+   36.175,
+   2.65,
+   "That row is what becomes a finding in the check."
+  ],
+  [
+   38.825,
+   6.125,
+   "Your times may differ from the slide; the fixtures are local files, so they read almost instantly."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   3.75,
+   "Step three checks the fictional tenant for G C C."
+  ],
+  [
+   3.8,
+   5.162,
+   "The first line names the limits it's using: twenty million bytes, and ten seconds."
+  ],
+  [
+   8.963,
+   4.537,
+   "Then the count: five Findings, seven Warns, and exit code two."
+  ],
+  [
+   13.5,
+   2.05,
+   "The lab asks you to find four of them."
+  ],
+  [
+   15.55,
+   10.025,
+   "C B four: one authority's list took eleven point four seconds to download, over the ten-second limit, so in real life sign-in would fail for its cards."
+  ],
+  [
+   25.575,
+   7.175,
+   "C B five: that same list is eighteen and a half million bytes, more than eighty percent of the G C C limit."
+  ],
+  [
+   32.75,
+   5.188,
+   "C B nine: the piv policy O I D isn't mapped to multifactor."
+  ],
+  [
+   37.938,
+   4.975,
+   "And C B ten: no enabled policy requires a phishing-resistant strength."
+  ],
+  [
+   42.913,
+   6.8,
+   "You'll also see a legacy intermediate with no list at all, and an issuing authority missing from the trust store."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   1.413,
+   "What differs by cloud?"
+  ],
+  [
+   1.462,
+   5.4,
+   "Step four runs the same check on the same tenant, naming G C C High instead."
+  ],
+  [
+   6.862,
+   6.638,
+   "The limit line now says forty-five million bytes, and the count drops to five Findings and six Warns."
+  ],
+  [
+   13.5,
+   2.675,
+   "One warning went away: C B five."
+  ],
+  [
+   16.175,
+   10.6,
+   "The eighteen and a half million byte list was over eighty percent of G C C's twenty megabytes, but it's well under eighty percent of forty-five, so in G C C High it's fine."
+  ],
+  [
+   26.775,
+   1.762,
+   "The download time is different."
+  ],
+  [
+   28.538,
+   6.525,
+   "The ten-second limit applies in every cloud, so the eleven point four second download is still a Finding."
+  ],
+  [
+   35.062,
+   8.387,
+   "That's the lesson of this step: the same list can be a warning in one cloud and not in another, which is why the check always takes the cloud by name."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   8.15,
+   "Lab 2 moves to your own test tenant, never production, with certificate-based authentication configured for a test certificate authority."
+  ],
+  [
+   8.2,
+   6.975,
+   "You create a reader app with a certificate that holds only the three permissions you listed in step one, with admin consent."
+  ],
+  [
+   15.175,
+   10.787,
+   "You export the configuration, measure the real revocation lists from outside the agency network, and run the check with your test P K I's thumbprints and policy O I Ds."
+  ],
+  [
+   25.962,
+   7.175,
+   "Then the proof: revoke a test certificate, and confirm Entra refuses it after the next revocation list is published."
+  ],
+  [
+   33.138,
+   10.275,
+   "To back it out, remove the permissions, delete the reader app and its certificate, reissue the test user's certificate if you need it, and delete the export and output folders."
+  ],
+  [
+   43.413,
+   2.15,
+   "The authors haven't run Lab 2."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   1.387,
+   "The federal requirement."
+  ],
+  [
+   1.438,
+   14.213,
+   "This gate meets two controls in nist special publication eight hundred fifty-three: I A two, enhancement twelve, acceptance of piv credentials, and I A five, enhancement two, public key-based authentication."
+  ],
+  [
+   15.65,
+   9.575,
+   "It meets scuba's two phishing-resistant multifactor policies, three point one and three point six, which B O D twenty-five oh-one requires."
+  ],
+  [
+   25.225,
+   8.863,
+   "And it meets FIPS two oh one dash three's issuance and termination rules, and special publication eight hundred sixty-three dash four."
+  ],
+  [
+   34.087,
+   10.05,
+   "The evidence an I S S O keeps for Gate 5: the configuration export and the check's findings and manifest, dated, with each list's measurement."
+  ],
+  [
+   44.138,
+   4.5,
+   "The C B nine and C B ten rows, beside the ScubaGear report."
+  ],
+  [
+   48.638,
+   5.388,
+   "Lab 2's refused sign-in, with the revocation record and the list that published it."
+  ],
+  [
+   54.025,
+   2.038,
+   "And the mode rules in the export."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   3.5,
+   "Check yourself with two questions from the module's knowledge check."
+  ],
+  [
+   3.55,
+   6.775,
+   "First: what happens when an issuing certificate authority in the trust store has no revocation list configured?"
+  ],
+  [
+   10.325,
+   6.662,
+   "The answer is b. Entra doesn't check revocation for that authority's certificates, which is rule C B one."
+  ],
+  [
+   16.988,
+   7.312,
+   "Second: an eighteen and a half million byte list raises C B five for G C C but not for G C C High."
+  ],
+  [
+   24.3,
+   0.688,
+   "Why?"
+  ],
+  [
+   24.988,
+   10.762,
+   "The answer is b. C B five warns at eighty percent of the cloud's interactive limit, and G C C High's limit is forty-five megabytes, so the same size is under the line."
+  ],
+  [
+   35.75,
+   4.875,
+   "The module page has two more questions, each linked to the section that teaches it."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   0.825,
+   "To sum up."
+  ],
+  [
+   0.875,
+   10.512,
+   "You learned the interactive revocation list limits, twenty megabytes for G C C and forty-five for G C C High, with ten seconds to download in every cloud."
+  ],
+  [
+   11.387,
+   5.487,
+   "You measured three lists, and the missing one became a recorded finding instead of a crash."
+  ],
+  [
+   16.875,
+   8.812,
+   "You checked a fictional tenant for G C C and then for G C C High, and saw how the cloud's limit changes the findings while the download limit doesn't."
+  ],
+  [
+   25.688,
+   6.612,
+   "Keep the measurement and the check running every day, because a list that fits today can cross the limit next month."
+  ],
+  [
+   32.3,
+   8.15,
+   "Next is Module 6, time separations from the logs: separation-to-block and separation-to-revocation for every leaver."
+  ],
+  [
+   40.45,
+   5.65,
+   "It builds on this module, because a card's revocation reaches sign-in through the revocation list."
+  ]
+ ]
+}

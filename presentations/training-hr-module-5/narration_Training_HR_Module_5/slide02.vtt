@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.637
+Why does this gate need code?
+
+2
+00:00:01.637 --> 00:00:05.550
+Because revocation is where
+card sign-in quietly breaks.
+
+3
+00:00:05.550 --> 00:00:09.889
+If an issuing certificate authority in
+the trust store has no revocation list
+
+4
+00:00:09.889 --> 00:00:14.562
+configured, Entra doesn't check revocation
+for that authority's certificates at all.
+
+5
+00:00:14.562 --> 00:00:16.475
+A revoked card keeps working.
+
+6
+00:00:16.475 --> 00:00:19.551
+If a list is configured but
+can't be downloaded in time,
+
+7
+00:00:19.551 --> 00:00:24.025
+certificate-based authentication fails
+for every card from that authority.
+
+8
+00:00:24.025 --> 00:00:25.400
+Nobody can sign in.
+
+9
+00:00:25.400 --> 00:00:28.645
+And a revocation list grows
+with every revocation,
+
+10
+00:00:28.645 --> 00:00:32.663
+so a list that fits today can cross
+your cloud's limit next month.
+
+11
+00:00:32.663 --> 00:00:36.063
+None of those shows up in a
+one-time configuration review.
+
+12
+00:00:36.063 --> 00:00:39.481
+So this module measures each
+list and checks the tenant's
+
+13
+00:00:39.481 --> 00:00:43.390
+settings against your cloud's
+limits, every day rather than once.

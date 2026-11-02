@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.437
+The federal requirement.
+
+2
+00:00:01.437 --> 00:00:07.325
+This gate meets two controls in NIST special
+publication eight hundred fifty-three:
+
+3
+00:00:07.325 --> 00:00:11.362
+I A two, enhancement twelve,
+acceptance of PIV credentials,
+
+4
+00:00:11.362 --> 00:00:15.651
+and I A five, enhancement two,
+public key-based authentication.
+
+5
+00:00:15.651 --> 00:00:20.096
+It meets SCuBA's two phishing-resistant
+multifactor policies,
+
+6
+00:00:20.096 --> 00:00:25.225
+three point one and three point
+six, which BOD 25-01 requires.
+
+7
+00:00:25.225 --> 00:00:29.979
+And it meets FIPS two oh one dash
+three's issuance and termination rules,
+
+8
+00:00:29.979 --> 00:00:34.088
+and special publication eight
+hundred sixty-three dash four.
+
+9
+00:00:34.088 --> 00:00:39.022
+The evidence an ISSO keeps for Gate
+5: the configuration export and
+
+10
+00:00:39.022 --> 00:00:44.137
+the check's findings and manifest,
+dated, with each list's measurement.
+
+11
+00:00:44.137 --> 00:00:48.638
+The C B nine and C B ten rows,
+beside the ScubaGear report.
+
+12
+00:00:48.638 --> 00:00:54.026
+Lab 2's refused sign-in, with the revocation
+record and the list that published it.
+
+13
+00:00:54.026 --> 00:00:56.110
+And the mode rules in the export.

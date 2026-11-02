@@ -1,0 +1,719 @@
+{
+ "1": [
+  [
+   0.05,
+   5.4,
+   "Welcome to Module 3 of the Ticket-to-Machine learning path: one writer per attribute."
+  ],
+  [
+   5.45,
+   11.338,
+   "This module follows the guide's Gate 2, which settles two decisions on paper before anything is connected: who writes each attribute, and which system approves each authority class."
+  ],
+  [
+   16.788,
+   11.8,
+   "Then you'll use the developer workbook's Chapter 08 check, which reads two provisioning configurations, Entra inbound provisioning's and SailPoint's, and reports every attribute both of them write."
+  ],
+  [
+   28.587,
+   8.312,
+   "You'll run it on fictional exports, add an alias, and see why the alias list and the directory name are inputs a reviewer has to confirm."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.75,
+   "Why does this module exist?"
+  ],
+  [
+   1.8,
+   1.125,
+   "Here's the story."
+  ],
+  [
+   2.925,
+   7.013,
+   "Entra inbound provisioning writes department from H R. SailPoint's Entra connector also writes department."
+  ],
+  [
+   9.938,
+   2.05,
+   "Each sync overwrites the other."
+  ],
+  [
+   11.988,
+   5.787,
+   "And the drift you'll measure in Module 4 comes back the next day, no matter how often someone fixes it."
+  ],
+  [
+   17.775,
+   6.362,
+   "The reconciliation sees the result, attribute drift that keeps coming back, but not the cause."
+  ],
+  [
+   24.137,
+   5.425,
+   "Fixing the value by hand never settles it, because the next sync recreates the drift."
+  ],
+  [
+   29.562,
+   8.1,
+   "Gate 2 settles it on paper, before anything is connected: one writer per attribute, and one approver system per authority class."
+  ],
+  [
+   37.663,
+   6.188,
+   "In this module you learn those decisions, and you check two provisioning configurations against the first one."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   5.138,
+   "Here's what you'll be able to do by the end of this module, which takes about forty minutes with the lab."
+  ],
+  [
+   5.188,
+   5.55,
+   "You'll explain the two writer patterns Gate 2 allows, and why it allows only one of them at a time."
+  ],
+  [
+   10.738,
+   4.638,
+   "You'll explain why Gate 2 names one approver system for each authority class."
+  ],
+  [
+   15.375,
+   7.487,
+   "You'll run the writer check over two configuration exports, and interpret each Finding, Warn and Info line it prints."
+  ],
+  [
+   22.863,
+   6.938,
+   "And you'll verify that the alias list and the directory name are inputs a reviewer checks, not things the tool guesses."
+  ],
+  [
+   29.8,
+   1.837,
+   "You need Module 2 first."
+  ],
+  [
+   31.637,
+   5.787,
+   "For the Graph export in Lab 2, the Microsoft Automation path's first module helps."
+  ],
+  [
+   37.425,
+   3.1,
+   "Lab 1 runs on fixtures, with no tenant."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   7.1,
+   "Used as shipped, the two products fall short of the loop in four places, and Gate 2 closes two of them on paper."
+  ],
+  [
+   7.15,
+   16.488,
+   "Gap two: with SailPoint's Service Catalog app, requests follow the approval process defined in ServiceNow, while the Federal Modernization Workbook's Book 15 decides owner-governed access, classes A two and A three, in the identity governance platform."
+  ],
+  [
+   23.637,
+   3.763,
+   "Gate 2 answers with one approver system per authority class."
+  ],
+  [
+   27.4,
+   2.837,
+   "Gap four: two doors into the directory."
+  ],
+  [
+   30.238,
+   10.225,
+   "SailPoint can provision Entra I D and Active Directory, while Book 03 makes Entra inbound provisioning the one writer of H R-mastered attributes."
+  ],
+  [
+   40.462,
+   2.962,
+   "Gate 2 answers with one writer per attribute."
+  ],
+  [
+   43.425,
+   3.812,
+   "It also gives each change class a lane and a change-record type."
+  ],
+  [
+   47.237,
+   2.85,
+   "Every later gate builds what this one decides."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   6.875,
+   "Gate 2's first step is to choose one writer per attribute, and the guide offers two patterns, as design guidance."
+  ],
+  [
+   6.925,
+   3.5,
+   "In the first, Entra inbound provisioning stays the door."
+  ],
+  [
+   10.425,
+   9.05,
+   "SailPoint aggregates H R read-only, and governs entitlements: groups, roles, access packages and application access."
+  ],
+  [
+   19.475,
+   6.412,
+   "In the second, SailPoint becomes the provisioning service, and takes on Book 03's middleware duties."
+  ],
+  [
+   25.887,
+   1.712,
+   "Pick one and write it down."
+  ],
+  [
+   27.6,
+   0.975,
+   "Not both."
+  ],
+  [
+   28.575,
+   4.25,
+   "Then record each attribute's writer in the program's attribute map."
+  ],
+  [
+   32.825,
+   12.3,
+   "One fact helps the choice: SailPoint's Oracle H C M Cloud connector reads Core H C M directly, without an on-premises appliance, and writes back only the user name and work email."
+  ],
+  [
+   45.125,
+   5.287,
+   "For the first pattern's build, the guide points to its Oracle H C M to Entra guide."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   3.663,
+   "Step two chooses one approver system per authority class."
+  ],
+  [
+   3.712,
+   7.35,
+   "The guide's example, design guidance: ServiceNow approves A zero and A one through its Ask for Approval flow."
+  ],
+  [
+   11.062,
+   7.725,
+   "SailPoint approves A two and A three, through access-request approvals by an owner, a manager or a governance group."
+  ],
+  [
+   18.788,
+   4.513,
+   "The Service Catalog app only collects A two and A three requests."
+  ],
+  [
+   23.3,
+   4.825,
+   "And every approval's timeout outcome is reject or cancel, never approve."
+  ],
+  [
+   28.125,
+   5.175,
+   "Step three gives each change class a lane, from Book 13's Appendix B."
+  ],
+  [
+   33.3,
+   3.212,
+   "The mapping onto these products is the program's inference."
+  ],
+  [
+   36.513,
+   6.75,
+   "An autonomous class runs as a standard change, and the authorizing official accepts any class run that way."
+  ],
+  [
+   43.263,
+   3.288,
+   "A gated class is an access request with approval."
+  ],
+  [
+   46.55,
+   4.112,
+   "Step four writes the decisions to the record as a reviewed change."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   5.362,
+   "The guide names the automated check for Gate 2, built in the workbook's Chapter 08."
+  ],
+  [
+   5.412,
+   0.838,
+   "Why now?"
+  ],
+  [
+   6.25,
+   13.125,
+   "The implementation example planned a read-only check of the two provisioning mappings for Pass 2, and both configurations export as jay-son through documented reads, so the check runs on files, offline, today."
+  ],
+  [
+   19.375,
+   1.688,
+   "It reads two exports."
+  ],
+  [
+   21.062,
+   4.763,
+   "The first is the inbound job's synchronization schema, from Microsoft Graph."
+  ],
+  [
+   25.825,
+   12.412,
+   "It takes the rules that target the Entra directory, the enabled mappings to User, and each attribute's flow type: Always updates it on every change, and Object Add Only sets it only at creation."
+  ],
+  [
+   38.237,
+   3.487,
+   "The second is the SailPoint source's provisioning policies."
+  ],
+  [
+   41.725,
+   7.7,
+   "An Update policy is used for attribute sync, a Create policy when the account is made, and other usage types are ignored."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   4.8,
+   "For each attribute both systems write, the check gives one of three results."
+  ],
+  [
+   4.85,
+   5.35,
+   "A Finding when both update it: each overwrites the other, and the command exits one."
+  ],
+  [
+   10.2,
+   5.737,
+   "A Warn when one updates it and the other sets it at creation: two sources for its first value."
+  ],
+  [
+   15.938,
+   2.862,
+   "And Info when both set it only at creation."
+  ],
+  [
+   18.8,
+   1.762,
+   "Two inputs need a reviewer."
+  ],
+  [
+   20.562,
+   1.95,
+   "First, the alias list."
+  ],
+  [
+   22.512,
+   4.9,
+   "SailPoint's field names are the connector's, not necessarily Entra I D's."
+  ],
+  [
+   27.413,
+   5.513,
+   "The check matches names case-insensitively, and takes an alias for each pair that differs."
+  ],
+  [
+   32.925,
+   1.188,
+   "It doesn't guess."
+  ],
+  [
+   34.112,
+   5.3,
+   "Which connector field writes which Entra attribute is something to confirm in the source's schema."
+  ],
+  [
+   39.413,
+   1.988,
+   "Second, the directory name."
+  ],
+  [
+   41.4,
+   6.513,
+   "A wrong name would make every attribute look unwritten, so the check refuses a name the schema doesn't target."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   4.325,
+   "Here's what the check guards against, from Chapter 08's dangers table."
+  ],
+  [
+   4.375,
+   9.188,
+   "Two systems updating one attribute means drift that's fixed and recreated on every sync, forever; that's a Finding, and an exit code of one."
+  ],
+  [
+   13.562,
+   7.638,
+   "Field names that differ can hide a second writer, so the check would report no overlap; the guard is the reviewed alias list."
+  ],
+  [
+   21.2,
+   5.188,
+   "A wrong directory name makes every attribute look unwritten; the check refuses it."
+  ],
+  [
+   26.387,
+   5.3,
+   "A disabled mapping counted would give false findings, so disabled object mappings are skipped."
+  ],
+  [
+   31.688,
+   4.037,
+   "And here's what it misses: writers outside provisioning policies."
+  ],
+  [
+   35.725,
+   1.913,
+   "A person has to confirm those."
+  ],
+  [
+   37.638,
+   2.275,
+   "The guide is clear about scope, too."
+  ],
+  [
+   39.913,
+   1.637,
+   "The check reads exports."
+  ],
+  [
+   41.55,
+   5.763,
+   "It doesn't check approver systems or lanes; those stay a manual validation of Gate 2."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   11.775,
+   "Lab 1 runs in the kit's folder against two fictional exports: an H R-to-Entra inbound job, and a SailPoint source that creates accounts and updates department, title and office location."
+  ],
+  [
+   12.55,
+   3.438,
+   "Step one runs the chapter's tests: six pass."
+  ],
+  [
+   15.988,
+   2.3,
+   "Step two checks the two exports."
+  ],
+  [
+   18.288,
+   7.275,
+   "Entra inbound writes eight attributes and SailPoint writes seven, with one Finding, one Warn and two Info."
+  ],
+  [
+   25.562,
+   6.237,
+   "The Finding is department: both update it, so each overwrites the other and the drift never settles."
+  ],
+  [
+   31.8,
+   1.5,
+   "The command exits one."
+  ],
+  [
+   33.3,
+   5.575,
+   "Step three maps SailPoint's title to Entra I D's job title, and runs it again."
+  ],
+  [
+   38.875,
+   3.362,
+   "Now there are two Findings: job title joins department."
+  ],
+  [
+   42.237,
+   3.975,
+   "Without the alias, the second writer of job title was invisible."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   2.5,
+   "Step four shows the directory-name guard."
+  ],
+  [
+   2.55,
+   4.95,
+   "The fixture's rules target Azure Active Directory, the name Learn's examples use."
+  ],
+  [
+   7.5,
+   8.062,
+   "Ask for Microsoft Entra I D instead, and the check stops with an error that names the targets the schema does have, and exits two."
+  ],
+  [
+   15.562,
+   5.588,
+   "That matters, because a wrong name would otherwise look like no overlap at all, and pass."
+  ],
+  [
+   21.15,
+   3.2,
+   "Step five lists the reads the two exports need."
+  ],
+  [
+   24.35,
+   5.362,
+   "On SailPoint, the provisioning policy read scope, for the source's provisioning policies."
+  ],
+  [
+   29.712,
+   5.562,
+   "On Graph, the custom security attribute provisioning read permission, for the job's schema."
+  ],
+  [
+   35.275,
+   6.737,
+   "Both are reads, and the writer check itself reads files only: you export the two configurations by hand."
+  ],
+  [
+   42.013,
+   6.25,
+   "Check your work: given two exports and an alias list, you can say which attributes have two writers."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   2.7,
+   "Lab 2 runs the check on your own exports."
+  ],
+  [
+   2.75,
+   6.188,
+   "You need a test Entra tenant with an inbound provisioning job, and a SailPoint sandbox with an Entra source."
+  ],
+  [
+   8.938,
+   1.562,
+   "Both reads are GET only."
+  ],
+  [
+   10.5,
+   6.375,
+   "Export the inbound job's schema from the tenant, and the Entra source's provisioning policies from the sandbox."
+  ],
+  [
+   16.875,
+   6.588,
+   "Build the alias list, run the check, and hand each Finding to the data architect, who decides the writer."
+  ],
+  [
+   23.462,
+   6.525,
+   "Export mappings only: a schema with expressions is fine, but a policy with values may not be."
+  ],
+  [
+   29.988,
+   9.037,
+   "Back it out in step five: delete the exports if they hold anything beyond mappings, and remove the Graph permission and the SailPoint A P I client."
+  ],
+  [
+   39.025,
+   5.45,
+   "The authors haven't run Lab 2; follow Chapter 08's Lab 2 step by step."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   1.312,
+   "Where are agencies?"
+  ],
+  [
+   1.363,
+   3.55,
+   "The guide assumes one of two starting points for the H R feed."
+  ],
+  [
+   4.912,
+   8.75,
+   "Either Book 03's pipeline, Entra inbound provisioning from H R, is already lyve, or accounts are still created from tickets."
+  ],
+  [
+   13.662,
+   3.737,
+   "Either way, Gate 2 decides who writes each attribute."
+  ],
+  [
+   17.4,
+   3.2,
+   "For availability, Gate 2 uses nothing new."
+  ],
+  [
+   20.6,
+   15.713,
+   "If Book 03's A P I-driven inbound provisioning is the writer, it's available in Azure for U S Government, as are pim, entitlement management, access reviews and Lifecycle Workflows, read on November 1, 2026."
+  ],
+  [
+   36.312,
+   4.188,
+   "In G C C, Entra I D is the commercial service."
+  ],
+  [
+   40.5,
+   7.125,
+   "The interim path: where the H R pipeline isn't lyve yet, SailPoint can't be measured against a source of authority."
+  ],
+  [
+   47.625,
+   5.888,
+   "Decide the writers now, and run Gates 3 to 6 against the H R extract the kit reads."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   1.387,
+   "The federal requirement."
+  ],
+  [
+   1.438,
+   4.575,
+   "The guide maps Gate 2 to nist special publication eight hundred fifty-three."
+  ],
+  [
+   6.013,
+   6.588,
+   "A C five, separation of duties: one approver system per class, and the requester never approves."
+  ],
+  [
+   12.6,
+   6.425,
+   "C M three, configuration change control: each change class has a lane and a change-record type."
+  ],
+  [
+   19.025,
+   6.362,
+   "A C two, account management: one writer per attribute keeps account changes traceable to the source."
+  ],
+  [
+   25.387,
+   5.838,
+   "And Book 13 requires the authorizing official to accept any autonomous class in writing."
+  ],
+  [
+   31.225,
+   8.975,
+   "Chapter 08 maps the check to configuration settings, change control, impact analysis, continuous monitoring and system monitoring."
+  ],
+  [
+   40.2,
+   10.425,
+   "The evidence an I S S O keeps: the attribute map with each writer, the approver and lane tables, and the check's output with the data architect's decisions."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   3.5,
+   "Check yourself with two questions from the module's knowledge check."
+  ],
+  [
+   3.55,
+   4.4,
+   "First: why did adding the alias from title to job title add a Finding?"
+  ],
+  [
+   7.95,
+   8.037,
+   "The answer is a. SailPoint's field names are the connector's, so without the alias the second writer of job title was invisible."
+  ],
+  [
+   15.988,
+   4.825,
+   "The check doesn't guess name pairs; the alias list is a reviewed input."
+  ],
+  [
+   20.812,
+   3.337,
+   "Second: Gate 2 offers two writer patterns."
+  ],
+  [
+   24.15,
+   1.663,
+   "Which choice does it rule out?"
+  ],
+  [
+   25.812,
+   6.463,
+   "The answer is c: both Entra inbound provisioning and SailPoint writing H R-mastered attributes."
+  ],
+  [
+   32.275,
+   2.163,
+   "In the guide's words, not both."
+  ],
+  [
+   34.438,
+   4.9,
+   "The module page has two more questions, each linked to the section that answers it."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   0.825,
+   "To sum up."
+  ],
+  [
+   0.875,
+   9.537,
+   "You learned Gate 2's decisions: one writer per attribute, one approver system per authority class, and a lane and change-record type for each change class."
+  ],
+  [
+   10.412,
+   7.612,
+   "You checked two provisioning configurations for attributes with two writers, and read each Finding, Warn and Info line."
+  ],
+  [
+   18.025,
+   5.475,
+   "And you saw why the alias list and the directory name are inputs a reviewer has to confirm."
+  ],
+  [
+   23.5,
+   7.5,
+   "Before you ship, work through the Chapter 08 checklist, and run the check whenever either provisioning configuration changes."
+  ],
+  [
+   31.0,
+   15.225,
+   "Next is Module 4, sources and the starting drift: Gate 3 connects H R, Entra I D and SailPoint on one key, and you'll measure how far the directory is from H R over two days, and compare the runs without hiding what wasn't measured."
+  ]
+ ]
+}

@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.538
+Why does this gate exist?
+
+2
+00:00:01.538 --> 00:00:04.354
+Because accounts drift from the HR record,
+
+3
+00:00:04.354 --> 00:00:07.251
+even after every earlier
+gate is done right.
+
+4
+00:00:07.251 --> 00:00:09.737
+A worker shows up in HR with no account.
+
+5
+00:00:09.737 --> 00:00:12.538
+A terminated worker's
+account is still enabled.
+
+6
+00:00:12.538 --> 00:00:14.849
+An account turns up that nobody owns.
+
+7
+00:00:14.849 --> 00:00:17.763
+Someone other than the named
+writer changes a value.
+
+8
+00:00:17.763 --> 00:00:20.175
+A card stays active after a separation.
+
+9
+00:00:20.175 --> 00:00:24.487
+Each of those is a drift class, and
+the run in this module finds them all.
+
+10
+00:00:24.487 --> 00:00:26.575
+There's a second problem: time.
+
+11
+00:00:26.575 --> 00:00:30.541
+Entra keeps its own logs for only
+thirty days, and the evidence has
+
+12
+00:00:30.541 --> 00:00:34.875
+to outlive the accounts it describes,
+which are eventually disposed of.
+
+13
+00:00:34.875 --> 00:00:38.676
+So the findings and metrics
+have to leave the directory,
+
+14
+00:00:38.676 --> 00:00:40.900
+in a form an ISSO can check later.

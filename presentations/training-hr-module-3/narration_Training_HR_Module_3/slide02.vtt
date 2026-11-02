@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.050
+Why does the first morning need code?
+
+2
+00:00:02.050 --> 00:00:05.700
+The pipeline sends a new hire's
+account early, and disabled.
+
+3
+00:00:05.700 --> 00:00:10.110
+On the first morning, that person
+needs an enabled account, a license,
+
+4
+00:00:10.110 --> 00:00:14.362
+baseline access, and a way to sign
+in before their PIV card is bound.
+
+5
+00:00:14.362 --> 00:00:16.863
+Lifecycle Workflows can do all of that.
+
+6
+00:00:16.863 --> 00:00:18.175
+But here's the catch.
+
+7
+00:00:18.175 --> 00:00:21.838
+Each workflow is a definition that
+someone can change in the portal.
+
+8
+00:00:21.838 --> 00:00:26.525
+And Learn makes every change a new
+version, rather than an in-place update.
+
+9
+00:00:26.525 --> 00:00:30.200
+So in this module you keep the
+workflows as reviewed files.
+
+10
+00:00:30.200 --> 00:00:32.450
+You lint them before
+they reach the tenant.
+
+11
+00:00:32.450 --> 00:00:35.475
+You plan each change against
+what the tenant holds.
+
+12
+00:00:35.475 --> 00:00:39.374
+And then you measure how many hires
+were actually ready on day one,
+
+13
+00:00:39.374 --> 00:00:43.250
+because a workflow that ran isn't
+the same as a person who can work.

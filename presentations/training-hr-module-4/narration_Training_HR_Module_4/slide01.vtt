@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.201
+Welcome to Module 4 of the
+HR-Driven Identity learning path:
+
+2
+00:00:04.201 --> 00:00:08.437
+assign access from attributes,
+and review what a move leaves.
+
+3
+00:00:08.437 --> 00:00:14.376
+This is Gate 4, Access and movers, with
+Chapter 04 of the developer workbook.
+
+4
+00:00:14.376 --> 00:00:19.013
+Module 3 got a new hire ready on
+day one, with an onboarding package.
+
+5
+00:00:19.013 --> 00:00:21.487
+Department access comes from this gate.
+
+6
+00:00:21.487 --> 00:00:26.214
+In this module you'll lint access package
+assignment policies before they reach the
+
+7
+00:00:26.214 --> 00:00:29.590
+tenant, scan the tenant's policies
+for the member-of operator,
+
+8
+00:00:29.590 --> 00:00:33.438
+and list what a move leaves behind
+for the manager of record to review.
+
+9
+00:00:33.438 --> 00:00:38.538
+The code runs on your laptop, against a
+fictional population and a fictional mover.
+
+10
+00:00:38.538 --> 00:00:43.920
+It's illustrative: unit-tested against
+fixtures, not run against a live tenant.

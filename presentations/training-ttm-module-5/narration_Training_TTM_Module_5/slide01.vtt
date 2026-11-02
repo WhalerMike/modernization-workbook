@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.525
+Welcome to Module 5 of the Ticket-to-Machine
+learning path: drift to a typed task.
+
+2
+00:00:05.525 --> 00:00:08.600
+This module covers the
+guide's Gates 3 and 4,
+
+3
+00:00:08.600 --> 00:00:11.500
+and the developer workbook's Chapter 04.
+
+4
+00:00:11.500 --> 00:00:13.650
+In Module 4 you measured drift.
+
+5
+00:00:13.650 --> 00:00:18.267
+Now you follow one change from
+SailPoint Identity Security Cloud,
+
+6
+00:00:18.267 --> 00:00:21.625
+ISC for short, into ServiceNow
+as a typed finding.
+
+7
+00:00:21.625 --> 00:00:24.460
+You'll learn what the
+three ISC workflows send,
+
+8
+00:00:24.460 --> 00:00:29.086
+what the ServiceNow script does with
+each payload, and how a small tool lets
+
+9
+00:00:29.086 --> 00:00:33.563
+you see the exact payload on a laptop,
+before any workflow runs in a tenant.
+
+10
+00:00:33.563 --> 00:00:37.350
+Running that tool found two
+gaps, and you'll see both fixes.
+
+11
+00:00:37.350 --> 00:00:41.420
+The code is illustrative, tested
+against fictional fixtures.

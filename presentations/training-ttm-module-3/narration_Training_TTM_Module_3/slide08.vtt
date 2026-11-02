@@ -1,0 +1,76 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.850
+For each attribute both systems write,
+the check gives one of three results.
+
+2
+00:00:04.850 --> 00:00:10.200
+A Finding when both update it: each overwrites
+the other, and the command exits one.
+
+3
+00:00:10.200 --> 00:00:13.921
+A Warn when one updates it and
+the other sets it at creation:
+
+4
+00:00:13.921 --> 00:00:15.937
+two sources for its first value.
+
+5
+00:00:15.937 --> 00:00:18.800
+And Info when both set
+it only at creation.
+
+6
+00:00:18.800 --> 00:00:20.562
+Two inputs need a reviewer.
+
+7
+00:00:20.562 --> 00:00:22.512
+First, the alias list.
+
+8
+00:00:22.512 --> 00:00:27.412
+SailPoint's field names are the
+connector's, not necessarily Entra ID's.
+
+9
+00:00:27.412 --> 00:00:30.169
+The check matches names
+case-insensitively,
+
+10
+00:00:30.169 --> 00:00:32.926
+and takes an alias for
+each pair that differs.
+
+11
+00:00:32.926 --> 00:00:34.113
+It doesn't guess.
+
+12
+00:00:34.113 --> 00:00:36.956
+Which connector field writes
+which Entra attribute
+
+13
+00:00:36.956 --> 00:00:39.412
+is something to confirm
+in the source's schema.
+
+14
+00:00:39.412 --> 00:00:41.401
+Second, the directory name.
+
+15
+00:00:41.401 --> 00:00:44.766
+A wrong name would make every
+attribute look unwritten,
+
+16
+00:00:44.766 --> 00:00:47.980
+so the check refuses a name
+the schema doesn't target.

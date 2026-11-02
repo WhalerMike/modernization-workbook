@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.512
+Here are the nine rules.
+
+2
+00:00:01.512 --> 00:00:06.087
+S T one and S T nine compare the
+two intervals with their thresholds.
+
+3
+00:00:06.087 --> 00:00:10.688
+S T two: no block was recorded,
+or there's no account to measure.
+
+4
+00:00:10.688 --> 00:00:14.988
+S T three is the late entry, past
+the three-day catch-up window.
+
+5
+00:00:14.988 --> 00:00:17.766
+S T four: a card that
+couldn't be collected was
+
+6
+00:00:17.766 --> 00:00:20.775
+revoked more than eighteen
+hours after notice.
+
+7
+00:00:20.775 --> 00:00:26.034
+S T five: the account was re-enabled after
+the disable, with no cancellation in HR.
+
+8
+00:00:26.034 --> 00:00:31.050
+S T six is a warning for a privileged
+leaver, because the disable task doesn't
+
+9
+00:00:31.050 --> 00:00:33.558
+support users with role assignments,
+
+10
+00:00:33.558 --> 00:00:36.713
+so someone has to confirm
+the verified path ran.
+
+11
+00:00:36.713 --> 00:00:41.362
+S T seven: a leaver run failed,
+and goes to the exception queue.
+
+12
+00:00:41.362 --> 00:00:46.825
+And S T eight: the user was deleted before
+the device retire or wipe completed.
+
+13
+00:00:46.825 --> 00:00:48.530
+Disposal comes last.

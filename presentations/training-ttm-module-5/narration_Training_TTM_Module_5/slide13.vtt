@@ -1,0 +1,72 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.846
+Lab 2 takes this into your own test
+instances: a SailPoint sandbox tenant,
+
+2
+00:00:04.846 --> 00:00:08.523
+the ServiceNow developer
+instance from Modules 1 and 2,
+
+3
+00:00:08.523 --> 00:00:11.400
+and the workflow client
+from Module 2's Lab 2.
+
+4
+00:00:11.400 --> 00:00:12.525
+Never production.
+
+5
+00:00:12.525 --> 00:00:15.875
+Turn on Native Change
+Detection on one test source.
+
+6
+00:00:15.875 --> 00:00:19.112
+Build one HTTP Request
+step by hand, export it,
+
+7
+00:00:19.112 --> 00:00:22.787
+and compare its attribute
+names with the kit's file.
+
+8
+00:00:22.787 --> 00:00:27.306
+Point it at a capture endpoint or your
+developer instance, change a monitored
+
+9
+00:00:27.306 --> 00:00:31.825
+attribute on a test account, and confirm
+the payload matches the tool's output.
+
+10
+00:00:31.825 --> 00:00:35.525
+If it doesn't, the dollar keys
+or the input's root differ.
+
+11
+00:00:35.525 --> 00:00:38.387
+Repeat the change, and
+it should de-duplicate.
+
+12
+00:00:38.387 --> 00:00:39.600
+Then back it all out.
+
+13
+00:00:39.600 --> 00:00:43.691
+The ServiceNow endpoint has to be
+reachable from SailPoint's cloud,
+
+14
+00:00:43.691 --> 00:00:46.175
+which the workbook marks as an inference.
+
+15
+00:00:46.175 --> 00:00:48.380
+The authors haven't run Lab 2.

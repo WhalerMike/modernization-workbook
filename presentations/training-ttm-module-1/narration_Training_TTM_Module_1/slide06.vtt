@@ -1,0 +1,65 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.275
+The example guide shows
+which product does each step.
+
+2
+00:00:03.275 --> 00:00:05.620
+For raising a typed task, which is Gate 4,
+
+3
+00:00:05.620 --> 00:00:10.162
+it's a SailPoint workflow posting to a
+ServiceNow endpoint, which is a build;
+
+4
+00:00:10.162 --> 00:00:12.946
+the Service Catalog app
+for people's requests;
+
+5
+00:00:12.946 --> 00:00:16.463
+and Service Desk tickets for
+disconnected applications.
+
+6
+00:00:16.463 --> 00:00:21.074
+Used as shipped, the two products fall
+short of the loop in four places.
+
+7
+00:00:21.074 --> 00:00:25.579
+One: SailPoint's Service Desk
+integration treats its task as complete
+
+8
+00:00:25.579 --> 00:00:29.462
+from the ServiceNow status, and
+a ticket status isn't a re-read.
+
+9
+00:00:29.462 --> 00:00:33.824
+Two: the catalog app moves
+access approval into ServiceNow.
+
+10
+00:00:33.824 --> 00:00:37.582
+Three: SailPoint's Service
+Desk integration raises only
+
+11
+00:00:37.582 --> 00:00:41.100
+service requests and incidents,
+not change requests.
+
+12
+00:00:41.100 --> 00:00:44.225
+And four: there are two
+doors into the directory.
+
+13
+00:00:44.225 --> 00:00:48.260
+Each gate that closes a gap
+says so; the slide shows which.

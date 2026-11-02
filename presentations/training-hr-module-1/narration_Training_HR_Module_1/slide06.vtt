@@ -1,0 +1,73 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.500
+The kit checks the register in two ways.
+
+2
+00:00:02.500 --> 00:00:06.427
+The first is the register check,
+rules W R oh one to oh nine,
+
+3
+00:00:06.427 --> 00:00:10.013
+which test the register's
+shape before you trust it.
+
+4
+00:00:10.013 --> 00:00:13.412
+A row must name a single
+writer and appear only once.
+
+5
+00:00:13.412 --> 00:00:16.287
+Every writer and backstop must be defined.
+
+6
+00:00:16.287 --> 00:00:18.682
+A writer with no
+identities gets a warning,
+
+7
+00:00:18.682 --> 00:00:21.350
+because the scan couldn't
+attribute its writes.
+
+8
+00:00:21.350 --> 00:00:25.062
+Every required account-state
+transition, created,
+
+9
+00:00:25.062 --> 00:00:28.863
+enabled, disabled, re-enabled
+and deleted, needs a row.
+
+10
+00:00:28.863 --> 00:00:32.200
+Deletion must never be written
+by inbound provisioning.
+
+11
+00:00:32.200 --> 00:00:34.575
+A backstop can't be the writer itself.
+
+12
+00:00:34.575 --> 00:00:38.525
+Two rows for the same audited change
+can't name different writers.
+
+13
+00:00:38.525 --> 00:00:42.875
+And the register should be recorded as
+signed, with a versioned scope filter.
+
+14
+00:00:42.875 --> 00:00:46.394
+Every tool in the kit
+uses the same exit codes:
+
+15
+00:00:46.394 --> 00:00:51.220
+zero when clean, two for findings
+or warnings, one for an error.

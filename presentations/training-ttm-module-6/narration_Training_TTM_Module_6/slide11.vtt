@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.618
+Step three runs the same records a
+day later, at noon on November second,
+
+2
+00:00:04.618 --> 00:00:09.738
+and keeps the results in a JSON file in
+an out folder, which the client creates.
+
+3
+00:00:09.738 --> 00:00:13.251
+On the slide, the five
+unchanged lines are trimmed.
+
+4
+00:00:13.251 --> 00:00:15.538
+The one that changed is the third record.
+
+5
+00:00:15.538 --> 00:00:19.793
+Its grace period has passed, so
+the stale read is now a mismatch:
+
+6
+00:00:19.793 --> 00:00:24.049
+the intended state says disabled
+true, and the read says false.
+
+7
+00:00:24.049 --> 00:00:28.625
+The summary is now two mismatches,
+one skipped and three verified.
+
+8
+00:00:28.625 --> 00:00:32.437
+The JSON file holds each
+result with its evidence hash.
+
+9
+00:00:32.437 --> 00:00:37.432
+Step four runs the business rule's six
+tests, and they read like the rule itself:
+
+10
+00:00:37.432 --> 00:00:42.191
+a person's close is redirected, the
+verifier with fresh evidence may close,
+
+11
+00:00:42.191 --> 00:00:46.872
+evidence alone or the verifier alone
+isn't enough, an exception approver
+
+12
+00:00:46.872 --> 00:00:51.788
+may cancel with a note, and only tickets
+the integration opened are governed.
+
+13
+00:00:51.788 --> 00:00:54.050
+Step five deletes the out folder.

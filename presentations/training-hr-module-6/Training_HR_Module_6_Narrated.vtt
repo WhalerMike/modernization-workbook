@@ -1,0 +1,961 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.288
+Welcome to Module 6 of the
+HR-Driven Identity learning path:
+
+2
+00:00:04.288 --> 00:00:06.537
+time separations from the logs.
+
+3
+00:00:06.537 --> 00:00:10.032
+This is Gate 6 of the
+implementation guide, separation,
+
+4
+00:00:10.032 --> 00:00:13.449
+and it goes with Chapter 06
+of the developer workbook.
+
+5
+00:00:13.449 --> 00:00:17.334
+When a person separates, two things
+have to be shown: that access was
+
+6
+00:00:17.334 --> 00:00:21.712
+blocked within the approved interval,
+and that the credential was revoked.
+
+7
+00:00:21.712 --> 00:00:25.717
+In this module you'll join the records
+each system keeps about a leaver,
+
+8
+00:00:25.717 --> 00:00:29.583
+compute two intervals for every one
+of them, separation-to-block and
+
+9
+00:00:29.583 --> 00:00:33.450
+separation-to-revocation, and find
+the separations that went wrong.
+
+10
+00:00:33.450 --> 00:00:37.125
+You'll run the measurement on
+fictional leavers, with no tenant.
+
+11
+00:00:37.125 --> 00:00:40.640
+The module takes about
+forty-five minutes with its lab.
+
+12
+00:00:44.390 --> 00:00:45.977
+Why does this gate need code?
+
+13
+00:00:45.977 --> 00:00:49.408
+Your ISSO has to show that each
+leaver's access was blocked
+
+14
+00:00:49.408 --> 00:00:53.339
+within the approved interval and
+that the credential was revoked.
+
+15
+00:00:53.339 --> 00:00:55.902
+No Microsoft report gives that number.
+
+16
+00:00:55.902 --> 00:00:59.427
+Lifecycle Workflows records
+that a leaver run completed.
+
+17
+00:00:59.427 --> 00:01:02.341
+The audit log records when
+the account was disabled.
+
+18
+00:01:02.341 --> 00:01:05.339
+The card system records
+the card's revocation,
+
+19
+00:01:05.339 --> 00:01:08.890
+and Intune records the devices
+being retired or wiped.
+
+20
+00:01:08.890 --> 00:01:10.715
+Each lives in its own place.
+
+21
+00:01:10.715 --> 00:01:16.193
+So in this module you join those records
+for each leaver, compute the two intervals,
+
+22
+00:01:16.193 --> 00:01:20.865
+and find the separations that went
+wrong: an entry made late, a re-enable,
+
+23
+00:01:20.865 --> 00:01:26.300
+a failed run, a card revoked too late, a
+delete before the devices were retired.
+
+24
+00:01:30.050 --> 00:01:32.963
+Here's what you'll be able to
+do by the end of the module.
+
+25
+00:01:32.963 --> 00:01:36.400
+You'll describe the leaver
+order: block first,
+
+26
+00:01:36.400 --> 00:01:40.024
+revoke in parallel,
+reconcile, and dispose last.
+
+27
+00:01:40.024 --> 00:01:44.072
+You'll define separation-to-block
+and separation-to-revocation,
+
+28
+00:01:44.072 --> 00:01:46.363
+and say which records each one reads.
+
+29
+00:01:46.363 --> 00:01:50.975
+You'll run the measurement and explain its
+findings, including the catch-up window.
+
+30
+00:01:50.975 --> 00:01:53.290
+And you'll explain why
+the tenant's workflow
+
+31
+00:01:53.290 --> 00:01:55.863
+schedule belongs inside
+the approved interval.
+
+32
+00:01:55.863 --> 00:01:58.513
+This module builds on three earlier ones.
+
+33
+00:01:58.513 --> 00:02:01.396
+Module 1: the pipeline
+sends active false no
+
+34
+00:02:01.396 --> 00:02:04.200
+later than the leaver
+workflow's first run.
+
+35
+00:02:04.200 --> 00:02:08.437
+Module 3: the leaver and
+post-separation workflow files.
+
+36
+00:02:08.437 --> 00:02:14.120
+And Module 5: a card's revocation reaches
+sign-in through the revocation list.
+
+37
+00:02:17.870 --> 00:02:20.270
+Unit 1 reads the guide's Step 6.
+
+38
+00:02:20.270 --> 00:02:23.873
+It orders the leaver as
+a sequence: block first,
+
+39
+00:02:23.873 --> 00:02:27.570
+revoke in parallel,
+reconcile, and dispose last.
+
+40
+00:02:27.570 --> 00:02:30.032
+It times the leave date late in the day.
+
+41
+00:02:30.032 --> 00:02:34.985
+It coordinates the two writers, so
+one can't undo the other; in the lab,
+
+42
+00:02:34.985 --> 00:02:40.208
+a re-enable after the disable with no
+cancellation in HR is rule S T five.
+
+43
+00:02:40.208 --> 00:02:44.869
+It builds an emergency path, whose
+on-demand runs are logged as changes.
+
+44
+00:02:44.869 --> 00:02:49.032
+It catches separations that were
+entered late, which is S T three.
+
+45
+00:02:49.032 --> 00:02:53.144
+It verifies the block, which
+is S T one and S T two.
+
+46
+00:02:53.144 --> 00:02:58.995
+And it disposes last: deleting a user before
+the devices are retired is S T eight.
+
+47
+00:02:58.995 --> 00:03:04.290
+The Federal Modernization Workbook's Book
+03 has the canonical leaver sequence,
+
+48
+00:03:04.290 --> 00:03:08.005
+and Book 19's Chapter 05 has
+already built the custom task
+
+49
+00:03:08.005 --> 00:03:12.070
+extension that revokes the
+card and retires the devices.
+
+50
+00:03:15.820 --> 00:03:18.208
+Two timing facts shape the measurement.
+
+51
+00:03:18.208 --> 00:03:19.946
+First, late entries.
+
+52
+00:03:19.946 --> 00:03:23.261
+Learn says a scheduled workflow
+still processes a user
+
+53
+00:03:23.261 --> 00:03:26.432
+whose trigger date passed no
+more than three days ago.
+
+54
+00:03:26.432 --> 00:03:30.007
+Past three days, the scheduled
+trigger skips the user.
+
+55
+00:03:30.007 --> 00:03:35.433
+Book 03's Chapter 08 explains why a
+separation entered late misses it.
+
+56
+00:03:35.433 --> 00:03:40.523
+So rule S T three flags any separation
+entered more than three days after its
+
+57
+00:03:40.523 --> 00:03:44.482
+effective date: a Finding if
+nobody ran the leaver on demand,
+
+58
+00:03:44.482 --> 00:03:46.421
+and only a Warn if someone did.
+
+59
+00:03:46.421 --> 00:03:48.433
+Second, the tenant's schedule.
+
+60
+00:03:48.433 --> 00:03:53.571
+Lifecycle Workflows runs on a schedule, and
+that can delay a scheduled leaver's run.
+
+61
+00:03:53.571 --> 00:03:55.736
+The wait is part of separation-to-block,
+
+62
+00:03:55.736 --> 00:03:59.595
+so the guide says the schedule
+belongs inside the approved interval.
+
+63
+00:03:59.595 --> 00:04:02.580
+Set the threshold and
+the schedule together.
+
+64
+00:04:06.330 --> 00:04:08.805
+Unit 2 defines the two intervals.
+
+65
+00:04:08.805 --> 00:04:11.267
+Both start at the HR effective time.
+
+66
+00:04:11.267 --> 00:04:14.578
+Separation-to-block ends
+when the person was blocked,
+
+67
+00:04:14.578 --> 00:04:18.039
+and the code takes that as the
+later of two audit records:
+
+68
+00:04:18.039 --> 00:04:21.802
+the first Disable account, and
+the first session revocation,
+
+69
+00:04:21.802 --> 00:04:26.317
+which the audit log calls Update S T
+S Refresh Token Valid From Timestamp.
+
+70
+00:04:26.317 --> 00:04:29.481
+Disabled but still holding
+a session isn't blocked.
+
+71
+00:04:29.481 --> 00:04:33.262
+Separation-to-revocation ends
+at the last of three things:
+
+72
+00:04:33.262 --> 00:04:37.280
+the block, the card system's
+revocation and the device actions.
+
+73
+00:04:37.280 --> 00:04:40.975
+To compute them, the measurement
+reads the HR separations,
+
+74
+00:04:40.975 --> 00:04:45.978
+the audit records and leaver run results
+exported from Graph, the card system's
+
+75
+00:04:45.978 --> 00:04:50.905
+revocations, Intune's device actions,
+and the list of privileged role holders.
+
+76
+00:04:50.905 --> 00:04:52.117
+It never guesses.
+
+77
+00:04:52.117 --> 00:04:56.330
+A leaver missing either audit record
+is not blocked, and that's a finding.
+
+78
+00:04:56.330 --> 00:04:59.480
+A cancelled separation
+isn't measured at all.
+
+79
+00:05:03.230 --> 00:05:04.692
+Here are the nine rules.
+
+80
+00:05:04.692 --> 00:05:09.267
+S T one and S T nine compare the
+two intervals with their thresholds.
+
+81
+00:05:09.267 --> 00:05:13.868
+S T two: no block was recorded,
+or there's no account to measure.
+
+82
+00:05:13.868 --> 00:05:18.168
+S T three is the late entry, past
+the three-day catch-up window.
+
+83
+00:05:18.168 --> 00:05:20.946
+S T four: a card that
+couldn't be collected was
+
+84
+00:05:20.946 --> 00:05:23.955
+revoked more than eighteen
+hours after notice.
+
+85
+00:05:23.955 --> 00:05:29.214
+S T five: the account was re-enabled after
+the disable, with no cancellation in HR.
+
+86
+00:05:29.214 --> 00:05:34.230
+S T six is a warning for a privileged
+leaver, because the disable task doesn't
+
+87
+00:05:34.230 --> 00:05:36.738
+support users with role assignments,
+
+88
+00:05:36.738 --> 00:05:39.893
+so someone has to confirm
+the verified path ran.
+
+89
+00:05:39.893 --> 00:05:44.542
+S T seven: a leaver run failed,
+and goes to the exception queue.
+
+90
+00:05:44.542 --> 00:05:50.005
+And S T eight: the user was deleted before
+the device retire or wipe completed.
+
+91
+00:05:50.005 --> 00:05:52.010
+Disposal comes last.
+
+92
+00:05:55.760 --> 00:05:58.597
+Not every number in the
+rules is a requirement.
+
+93
+00:05:58.597 --> 00:05:59.823
+Two are samples.
+
+94
+00:05:59.823 --> 00:06:03.718
+The four-hour separation-to-block
+threshold and the twenty-four-hour
+
+95
+00:06:03.718 --> 00:06:06.726
+separation-to-revocation
+threshold stand in for the
+
+96
+00:06:06.726 --> 00:06:09.734
+agency's organization-defined
+periods under P S four.
+
+97
+00:06:09.734 --> 00:06:12.410
+The agency approves them or replaces them.
+
+98
+00:06:12.410 --> 00:06:14.385
+Two are fixed by their sources.
+
+99
+00:06:14.385 --> 00:06:19.462
+The eighteen hours for an uncollected card
+is FIPS two oh one dash three's rule:
+
+100
+00:06:19.462 --> 00:06:24.935
+a card that can't be collected is terminated
+within eighteen hours of notification.
+
+101
+00:06:24.935 --> 00:06:27.499
+And the three-day catch-up
+window is Learn's,
+
+102
+00:06:27.499 --> 00:06:31.235
+the window in which a scheduled
+workflow still picks up a user.
+
+103
+00:06:31.235 --> 00:06:34.260
+So the tool measures,
+and the agency decides.
+
+104
+00:06:34.260 --> 00:06:39.310
+Approve the block and revocation periods,
+and set the tenant schedule inside them.
+
+105
+00:06:43.060 --> 00:06:43.785
+Try it.
+
+106
+00:06:43.785 --> 00:06:47.278
+Lab 1 runs in the h r
+lifecycle examples folder,
+
+107
+00:06:47.278 --> 00:06:50.035
+on fictional leavers, with no tenant.
+
+108
+00:06:50.035 --> 00:06:54.831
+Step one lists what the reader would call
+in a real tenant: two GET calls, the
+
+109
+00:06:54.831 --> 00:06:58.997
+directory audits and the leaver
+workflow's processing results,
+
+110
+00:06:58.997 --> 00:07:00.648
+for two read permissions.
+
+111
+00:07:00.648 --> 00:07:06.017
+Step two runs the measurement over
+every input: the separations, the users,
+
+112
+00:07:06.017 --> 00:07:10.067
+the audit records, the run
+results, the card revocations,
+
+113
+00:07:10.067 --> 00:07:12.972
+the device actions and the role holders.
+
+114
+00:07:12.972 --> 00:07:18.034
+It reports seven separated leavers,
+one cancelled, and one never blocked.
+
+115
+00:07:18.034 --> 00:07:21.362
+The median separation-to-block
+is a quarter of an hour,
+
+116
+00:07:21.362 --> 00:07:24.992
+but the ninetieth percentile
+is five point five two hours,
+
+117
+00:07:24.992 --> 00:07:28.773
+over the four-hour sample, and
+the worst is nearly eighty-five.
+
+118
+00:07:28.773 --> 00:07:31.670
+Revocation is worse:
+a ninetieth percentile
+
+119
+00:07:31.670 --> 00:07:34.411
+of a hundred ten hours
+against twenty-four.
+
+120
+00:07:34.411 --> 00:07:38.010
+Ten Findings, two Warns, exit code two.
+
+121
+00:07:41.760 --> 00:07:46.360
+Step three prints the findings,
+one line each: twelve of them.
+
+122
+00:07:46.360 --> 00:07:48.285
+Read them as stories about people.
+
+123
+00:07:48.285 --> 00:07:53.310
+Casey was blocked after five and a half
+hours, over the threshold, and Casey's card,
+
+124
+00:07:53.310 --> 00:07:55.061
+which couldn't be collected,
+
+125
+00:07:55.061 --> 00:07:59.172
+was revoked twenty-three hours
+after notice, past FIPS's eighteen.
+
+126
+00:07:59.172 --> 00:08:02.779
+Drew's separation was entered
+six point eight days late,
+
+127
+00:08:02.779 --> 00:08:06.935
+nobody ran the leaver on demand,
+and Drew was never blocked at all.
+
+128
+00:08:06.935 --> 00:08:11.112
+Harper was re-enabled after the
+disable with no cancellation in HR,
+
+129
+00:08:11.112 --> 00:08:13.010
+and Harper's leaver run failed.
+
+130
+00:08:13.010 --> 00:08:17.235
+Kai holds a privileged role, and the
+disable task doesn't support users
+
+131
+00:08:17.235 --> 00:08:21.460
+with role assignments, so someone
+has to confirm the verified path ran.
+
+132
+00:08:21.460 --> 00:08:24.998
+And Blake was deleted before
+the device retire completed.
+
+133
+00:08:24.998 --> 00:08:28.844
+Emery shows the other side
+of S T three: entered late,
+
+134
+00:08:28.844 --> 00:08:32.670
+but caught by an on-demand
+run, so it's only a Warn.
+
+135
+00:08:36.420 --> 00:08:39.708
+Step four cuts four columns
+from the intervals file:
+
+136
+00:08:39.708 --> 00:08:42.920
+the person number, the two
+intervals and the status.
+
+137
+00:08:42.920 --> 00:08:44.908
+There's a header and eight rows.
+
+138
+00:08:44.908 --> 00:08:46.032
+Six are measured.
+
+139
+00:08:46.032 --> 00:08:49.372
+One, person one hundred three
+oh three, is not blocked,
+
+140
+00:08:49.372 --> 00:08:52.944
+and its interval columns are
+empty rather than guessed.
+
+141
+00:08:52.944 --> 00:08:58.208
+One, one hundred three oh seven, is a
+cancelled separation, so it isn't measured.
+
+142
+00:08:58.208 --> 00:09:02.967
+Look at one hundred three oh eight: blocked
+in six minutes, but not fully revoked
+
+143
+00:09:02.967 --> 00:09:05.165
+for three hundred ninety-five hours,
+
+144
+00:09:05.165 --> 00:09:08.094
+because the card and the
+devices came much later.
+
+145
+00:09:08.094 --> 00:09:13.020
+Step five runs the tests, fifty-seven
+passed, and deletes the out folder.
+
+146
+00:09:13.020 --> 00:09:16.436
+Module 7 rebuilds this output
+and reads its summary,
+
+147
+00:09:16.436 --> 00:09:21.890
+where the two ninetieth percentiles
+become two of its six lifecycle metrics.
+
+148
+00:09:25.640 --> 00:09:29.270
+Lab 2 moves to your own test
+tenant, never production,
+
+149
+00:09:29.270 --> 00:09:34.503
+with Lifecycle Workflows licensed and
+a leaver workflow in Book 03's order.
+
+150
+00:09:34.503 --> 00:09:37.342
+The reader app holds a
+certificate and just the
+
+151
+00:09:37.342 --> 00:09:40.327
+two permissions from step
+one, with admin consent.
+
+152
+00:09:40.327 --> 00:09:45.053
+You make two test leavers, one scheduled
+and one run on demand, export the logs,
+
+153
+00:09:45.053 --> 00:09:49.703
+and confirm which audit activity the
+session revoke task actually writes,
+
+154
+00:09:49.703 --> 00:09:52.553
+because the measurement
+depends on that name.
+
+155
+00:09:52.553 --> 00:09:53.552
+Then you measure.
+
+156
+00:09:53.552 --> 00:09:56.320
+Expect each test user's
+separation-to-block
+
+157
+00:09:56.320 --> 00:09:59.089
+to include the wait for
+the tenant schedule.
+
+158
+00:09:59.089 --> 00:10:02.490
+That's the lesson from Unit
+1, now in your own numbers.
+
+159
+00:10:02.490 --> 00:10:04.746
+To back it out, remove the leave dates,
+
+160
+00:10:04.746 --> 00:10:09.106
+re-enable or restore the users if you
+need them, remove the permissions,
+
+161
+00:10:09.106 --> 00:10:12.715
+and delete the reader app, its
+certificate and the folders.
+
+162
+00:10:12.715 --> 00:10:15.230
+The authors haven't run Lab 2.
+
+163
+00:10:18.980 --> 00:10:20.367
+The federal requirement.
+
+164
+00:10:20.367 --> 00:10:24.768
+In NIST special publication
+eight hundred fifty-three terms,
+
+165
+00:10:24.768 --> 00:10:29.944
+this gate meets P S four, personnel
+termination; A C two, enhancement three,
+
+166
+00:10:29.944 --> 00:10:33.739
+disable accounts; P S seven
+for contractors; and A C two,
+
+167
+00:10:33.739 --> 00:10:38.743
+enhancement thirteen, disabling
+accounts for high-risk individuals.
+
+168
+00:10:38.743 --> 00:10:42.725
+It also meets FIPS two oh one dash
+three's rule that a card that
+
+169
+00:10:42.725 --> 00:10:47.504
+can't be collected is terminated
+within eighteen hours of notification.
+
+170
+00:10:47.504 --> 00:10:51.671
+The evidence an ISSO keeps
+for Gate 6: the intervals,
+
+171
+00:10:51.671 --> 00:10:56.830
+the summary and the findings, with
+their manifest, for every run.
+
+172
+00:10:56.830 --> 00:10:59.639
+The exported workflow runs, audit records,
+
+173
+00:10:59.639 --> 00:11:02.930
+card revocations and device
+actions behind them.
+
+174
+00:11:02.930 --> 00:11:05.242
+The contractor rows of the intervals.
+
+175
+00:11:05.242 --> 00:11:08.742
+The notice and revocation
+times for uncollected cards.
+
+176
+00:11:08.742 --> 00:11:13.210
+And the emergency path's
+on-demand runs, logged as changes.
+
+177
+00:11:16.960 --> 00:11:20.460
+Check yourself with two questions
+from the module's knowledge check.
+
+178
+00:11:20.460 --> 00:11:24.422
+First: what does the code take as
+the moment a leaver was blocked?
+
+179
+00:11:24.422 --> 00:11:27.242
+The answer is b: the
+later of the first Disable
+
+180
+00:11:27.242 --> 00:11:30.823
+account record and the first
+session revocation record.
+
+181
+00:11:30.823 --> 00:11:33.045
+Not the workflow's completion time,
+
+182
+00:11:33.045 --> 00:11:37.109
+and not the HR effective time,
+which is where the interval starts.
+
+183
+00:11:37.109 --> 00:11:41.037
+Second: a separation is entered
+in HR more than three days
+
+184
+00:11:41.037 --> 00:11:45.298
+after its effective date, and
+nobody runs the leaver on demand.
+
+185
+00:11:45.298 --> 00:11:46.960
+What does the measurement report?
+
+186
+00:11:46.960 --> 00:11:49.459
+The answer is b: an S T three Finding,
+
+187
+00:11:49.459 --> 00:11:54.010
+because past three days the
+scheduled trigger skips the user.
+
+188
+00:11:54.010 --> 00:11:56.997
+With an on-demand run,
+it would be only a Warn.
+
+189
+00:11:56.997 --> 00:12:02.230
+The module page has two more questions,
+each linked to the section that teaches it.
+
+190
+00:12:05.980 --> 00:12:06.805
+To sum up.
+
+191
+00:12:06.805 --> 00:12:09.881
+You put the leaver in order: block first,
+
+192
+00:12:09.881 --> 00:12:13.630
+revoke in parallel,
+reconcile, and dispose last.
+
+193
+00:12:13.630 --> 00:12:17.589
+You defined separation-to-block
+and separation-to-revocation,
+
+194
+00:12:17.589 --> 00:12:19.492
+and the records each one reads.
+
+195
+00:12:19.492 --> 00:12:24.016
+You measured fictional leavers and
+found the ones that were blocked late,
+
+196
+00:12:24.016 --> 00:12:27.279
+never blocked, re-enabled,
+failed, or deleted too early.
+
+197
+00:12:27.279 --> 00:12:31.293
+And you saw why the tenant schedule
+belongs inside the approved interval.
+
+198
+00:12:31.293 --> 00:12:37.580
+Next is Module 7, the last in the path:
+find lifecycle drift and file the evidence.
+
+199
+00:12:37.580 --> 00:12:42.182
+It writes one read-only run of
+six drift classes and six metrics,
+
+200
+00:12:42.182 --> 00:12:45.545
+reads this module's
+percentiles as two of them,
+
+201
+00:12:45.545 --> 00:12:49.750
+and packages each run with a
+hash chain an ISSO can verify.

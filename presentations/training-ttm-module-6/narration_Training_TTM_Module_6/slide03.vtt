@@ -1,0 +1,65 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.890
+Here's what you'll be able to
+do by the end of this module,
+
+2
+00:00:02.890 --> 00:00:05.537
+which takes about fifty-five
+minutes with the lab.
+
+3
+00:00:05.537 --> 00:00:10.599
+You'll explain how Gate 5 actuates by
+lane, and why the kit has no test for it.
+
+4
+00:00:10.599 --> 00:00:13.517
+You'll describe what the
+business rule does with a close,
+
+5
+00:00:13.517 --> 00:00:14.912
+and who can close a finding.
+
+6
+00:00:14.912 --> 00:00:19.567
+You'll run the re-read client offline
+and interpret its four outcomes:
+
+7
+00:00:19.567 --> 00:00:22.262
+verified, mismatch, pending and skipped.
+
+8
+00:00:22.262 --> 00:00:24.954
+And you'll explain why a stale read waits,
+
+9
+00:00:24.954 --> 00:00:28.299
+and why an empty intended
+state is never verified.
+
+10
+00:00:28.299 --> 00:00:33.077
+Before you start, finish Module 5, and
+review Module 2's ServiceNow roles,
+
+11
+00:00:33.077 --> 00:00:35.425
+because the verifier is one of them.
+
+12
+00:00:35.425 --> 00:00:37.125
+Lab 1 needs no tenant.
+
+13
+00:00:37.125 --> 00:00:40.853
+Lab 2 needs your developer
+instance, the verifier user,
+
+14
+00:00:40.853 --> 00:00:43.390
+and a test user in a test Entra tenant.

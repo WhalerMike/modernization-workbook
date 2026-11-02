@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.412
+The guide names the automated check for
+Gate 2, built in the workbook's Chapter 08.
+
+2
+00:00:05.412 --> 00:00:06.250
+Why now?
+
+3
+00:00:06.250 --> 00:00:11.239
+The implementation example planned a
+read-only check of the two provisioning
+
+4
+00:00:11.239 --> 00:00:15.691
+mappings for Pass 2, and both
+configurations export as JSON through
+
+5
+00:00:15.691 --> 00:00:19.375
+documented reads, so the check
+runs on files, offline, today.
+
+6
+00:00:19.375 --> 00:00:21.063
+It reads two exports.
+
+7
+00:00:21.063 --> 00:00:25.825
+The first is the inbound job's
+synchronization schema, from Microsoft Graph.
+
+8
+00:00:25.825 --> 00:00:31.110
+It takes the rules that target the Entra
+directory, the enabled mappings to User,
+
+9
+00:00:31.110 --> 00:00:35.354
+and each attribute's flow type:
+Always updates it on every change,
+
+10
+00:00:35.354 --> 00:00:38.237
+and Object Add Only sets
+it only at creation.
+
+11
+00:00:38.237 --> 00:00:41.724
+The second is the SailPoint
+source's provisioning policies.
+
+12
+00:00:41.724 --> 00:00:44.583
+An Update policy is used
+for attribute sync,
+
+13
+00:00:44.583 --> 00:00:49.490
+a Create policy when the account is
+made, and other usage types are ignored.

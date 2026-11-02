@@ -1,0 +1,692 @@
+{
+ "1": [
+  [
+   0.05,
+   7.2,
+   "Welcome to Module 1 of the H R-Driven Identity learning path: name one writer for every account state."
+  ],
+  [
+   7.25,
+   2.638,
+   "The H R pipeline makes an account exist."
+  ],
+  [
+   9.887,
+   7.838,
+   "This path teaches what happens to that account afterward, how the H R record decides every change, and how you prove that it did."
+  ],
+  [
+   17.725,
+   11.175,
+   "There are seven modules, one for each gate of the H R-driven identity implementation guide, and this one is Gate 1, Writers, with Chapter 01 of the developer workbook."
+  ],
+  [
+   28.9,
+   2.075,
+   "It comes before every other gate."
+  ],
+  [
+   30.975,
+   9.525,
+   "In it you'll read the lifecycle rows of a writer register, check the register's shape, and scan a month of directory audit records for writes by anyone but the named writer."
+  ],
+  [
+   40.5,
+   3.413,
+   "The code runs on your laptop against fictional fixtures."
+  ],
+  [
+   43.913,
+   5.312,
+   "It's illustrative: unit-tested against fixtures, not run against a lyve tenant."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.475,
+   "Why does this come first?"
+  ],
+  [
+   1.525,
+   1.65,
+   "Picture three writers."
+  ],
+  [
+   3.175,
+   2.9,
+   "Your H R feed sets an account's active value."
+  ],
+  [
+   6.075,
+   3.4,
+   "A Lifecycle Workflows leaver can disable the same account."
+  ],
+  [
+   9.475,
+   4.15,
+   "And a help desk technician can still edit a user's organization code."
+  ],
+  [
+   13.625,
+   5.362,
+   "Each of those is a writer, and when two of them write the same value, the later one wins."
+  ],
+  [
+   18.988,
+   4.55,
+   "So a late active true from the pipeline undoes the workflow's disable."
+  ],
+  [
+   23.538,
+   5.888,
+   "A help desk edit to the organization code moves the person's access, and H R never knows."
+  ],
+  [
+   29.425,
+   3.1,
+   "In this module you fix that before any other gate."
+  ],
+  [
+   32.525,
+   9.85,
+   "You name one writer, and a backstop, for every account-state transition and every H R-mastered value, and then you test the directory audit log against that list."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   5.175,
+   "Here's what you'll be able to do by the end of this module, which takes about fifty minutes with the lab."
+  ],
+  [
+   5.225,
+   4.375,
+   "You'll explain why one writer per account state comes before every other gate."
+  ],
+  [
+   9.6,
+   6.45,
+   "You'll read the lifecycle rows of the writer register and say which writer and which backstop each row names."
+  ],
+  [
+   16.05,
+   4.275,
+   "You'll run the register check and the audit-log scan, and read what they find."
+  ],
+  [
+   20.325,
+   3.125,
+   "And you'll say what the scan can't see, and what covers it."
+  ],
+  [
+   23.45,
+   13.45,
+   "Before you start, you need the path's prerequisites: at least the overview of the Federal Modernization Workbook's Book 03, Microsoft Automation Modules 1 and 2, and enough Python to run a script and read jay-son."
+  ],
+  [
+   36.9,
+   6.888,
+   "Lab 1 needs Python 3.10 or later, pytest and a clone of the repository, and no tenant."
+  ],
+  [
+   43.788,
+   4.825,
+   "Lab 2 needs a worldwide or G C C test tenant, never production."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   2.05,
+   "Here's the register you'll check in the lab."
+  ],
+  [
+   2.1,
+   4.338,
+   "It's the guide's table of lifecycle rows, kept as reviewed jay-son."
+  ],
+  [
+   6.438,
+   9.125,
+   "Each row is an account-state transition or an H R-mastered value, and each names exactly one writer and, where there is one, a backstop."
+  ],
+  [
+   15.562,
+   2.425,
+   "Inbound provisioning creates the account."
+  ],
+  [
+   17.988,
+   9.4,
+   "It enables it at hire, disables it at separation, and re-enables it if a separation is cancelled, with Lifecycle Workflows as the backstop for all three."
+  ],
+  [
+   27.387,
+   3.413,
+   "It writes the hire date, the leave date and the manager."
+  ],
+  [
+   30.8,
+   8.675,
+   "The organization code and worker type code have the directory sync as an interim backstop, for synced users until Active Directory retires."
+  ],
+  [
+   39.475,
+   4.125,
+   "The card management system's integration writes the certificate binding."
+  ],
+  [
+   43.6,
+   5.85,
+   "And notice deletion: the post-separation workflow writes it, and inbound provisioning never does."
+  ],
+  [
+   49.45,
+   1.525,
+   "The register forbids it."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   7.2,
+   "The register names four writers, and each one is a named group of identities, so the scan can tell who made a write."
+  ],
+  [
+   7.25,
+   5.9,
+   "Inbound provisioning is the H R app and the contractor-source app, which come through the same middleware."
+  ],
+  [
+   13.15,
+   5.375,
+   "Lifecycle Workflows is the set of workflow tasks that enable, disable and delete."
+  ],
+  [
+   18.525,
+   5.162,
+   "The card management integration writes the piv binding, which is Gate 5's business."
+  ],
+  [
+   23.688,
+   5.812,
+   "And the sync agent is an interim writer, for synced users until Active Directory retires."
+  ],
+  [
+   29.5,
+   3.138,
+   "Why does Book 03 treat this so seriously?"
+  ],
+  [
+   32.638,
+   3.975,
+   "Because whoever can write a slot decides what a rule on that slot grants."
+  ],
+  [
+   36.612,
+   2.125,
+   "A writer is an access decision."
+  ],
+  [
+   38.737,
+   7.15,
+   "And the pipeline's active value and the workflows' tasks can both write account state, so without a register, they collide."
+  ],
+  [
+   45.888,
+   3.7,
+   "The register is signed, and carries a versioned scope filter."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   2.45,
+   "The kit checks the register in two ways."
+  ],
+  [
+   2.5,
+   7.513,
+   "The first is the register check, rules W R oh one to oh nine, which test the register's shape before you trust it."
+  ],
+  [
+   10.012,
+   3.4,
+   "A row must name a single writer and appear only once."
+  ],
+  [
+   13.412,
+   2.875,
+   "Every writer and backstop must be defined."
+  ],
+  [
+   16.288,
+   5.062,
+   "A writer with no identities gets a warning, because the scan couldn't attribute its writes."
+  ],
+  [
+   21.35,
+   7.513,
+   "Every required account-state transition, created, enabled, disabled, re-enabled and deleted, needs a row."
+  ],
+  [
+   28.863,
+   3.337,
+   "Deletion must never be written by inbound provisioning."
+  ],
+  [
+   32.2,
+   2.375,
+   "A backstop can't be the writer itself."
+  ],
+  [
+   34.575,
+   3.95,
+   "Two rows for the same audited change can't name different writers."
+  ],
+  [
+   38.525,
+   4.35,
+   "And the register should be recorded as signed, with a versioned scope filter."
+  ],
+  [
+   42.875,
+   8.275,
+   "Every tool in the kit uses the same exit codes: zero when clean, two for findings or warnings, one for an error."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   1.875,
+   "The second check is the scan."
+  ],
+  [
+   1.925,
+   15.787,
+   "It reads an export of the directory audit log, keeps the successful records inside the window you give it, and matches each one to a row of the register: by the activity, such as Disable account, and for an Update user record, by the name of the property that changed."
+  ],
+  [
+   17.712,
+   1.837,
+   "Then it judges who made the write."
+  ],
+  [
+   19.55,
+   1.575,
+   "The row's writer is fine."
+  ],
+  [
+   21.125,
+   6.562,
+   "The backstop gets W S oh two, a warning: confirm the writer acted, or find out why it was late."
+  ],
+  [
+   27.688,
+   4.9,
+   "Anyone else is W S oh one, a second writer, and that's a finding."
+  ],
+  [
+   32.587,
+   6.362,
+   "And a writer the row forbids, like inbound provisioning deleting an account, is W S oh four."
+  ],
+  [
+   38.95,
+   8.662,
+   "The scan writes an output folder with a manifest that holds each file's hash, and a saved query for every row, which Module 7 runs."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   0.963,
+   "Two limits."
+  ],
+  [
+   1.012,
+   2.05,
+   "First, what the scan can't see."
+  ],
+  [
+   3.062,
+   6.55,
+   "For synced users, a write made in Active Directory never reaches the Entra audit log this scan reads."
+  ],
+  [
+   9.613,
+   3.2,
+   "Only Active Directory's own change auditing sees it."
+  ],
+  [
+   12.812,
+   9.625,
+   "The guide's interim path covers that: it names the sync agent as a writer in the register, and reviews the access control lists on the organizational units."
+  ],
+  [
+   22.438,
+   2.325,
+   "Second, what the scan can't confirm."
+  ],
+  [
+   24.762,
+   4.8,
+   "To match an Update user record, the register names the property that changed."
+  ],
+  [
+   29.562,
+   4.362,
+   "Learn doesn't document those names, so each one is the program's reading."
+  ],
+  [
+   33.925,
+   6.412,
+   "If a name is wrong, the scan reports nothing for that value, and silence looks exactly like a clean month."
+  ],
+  [
+   40.337,
+   3.375,
+   "That's why Lab 2 matters more here than in most modules."
+  ],
+  [
+   43.712,
+   5.737,
+   "Confirm every property name against a real audit record before the scan counts as evidence."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   8.988,
+   "Lab 1 runs in the hr-lifecycle folder of the examples, on fictional fixtures, and nothing in it signs in to anything or sends a request."
+  ],
+  [
+   9.762,
+   3.575,
+   "Step one lists what the scan reads, and with what permission."
+  ],
+  [
+   13.338,
+   12.762,
+   "The list option prints the task's calls without making them: two GET calls against the audit logs, the directory audits and the provisioning logs, which need AuditLog dot Read dot All and Directory dot Read dot All."
+  ],
+  [
+   26.1,
+   3.175,
+   "Those are the only two permissions a real run would need."
+  ],
+  [
+   29.275,
+   2.45,
+   "Step two checks the program's register."
+  ],
+  [
+   31.725,
+   9.95,
+   "It comes back with zero findings, zero warnings and zero information items, and an exit code of zero, so the register's shape passes every W R rule."
+  ],
+  [
+   41.675,
+   5.963,
+   "That's the precondition for the scan: a register you've checked is one you can test the audit log against."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   3.85,
+   "Step three scans October's audit records against the register."
+  ],
+  [
+   3.9,
+   7.612,
+   "You give it the register, the audit export, a window from the first to the thirty-first of October, the cloud, and an output folder."
+  ],
+  [
+   11.512,
+   7.188,
+   "The cloud option has no default; G C C, G C C High or D O D picks the Graph host."
+  ],
+  [
+   18.7,
+   2.438,
+   "The scan found eleven protected writes."
+  ],
+  [
+   21.137,
+   3.388,
+   "Five were by the writer the row names, which is what you want."
+  ],
+  [
+   24.525,
+   1.475,
+   "One was by the backstop."
+  ],
+  [
+   26.0,
+   3.8,
+   "Four were by a second writer, someone the register doesn't name at all."
+  ],
+  [
+   29.8,
+   2.775,
+   "And one was by a writer the register forbids."
+  ],
+  [
+   32.575,
+   4.025,
+   "That's five findings and one warning, so the exit code is two."
+  ],
+  [
+   36.6,
+   5.325,
+   "The output folder's manifest lists every file's hash, so the run can be checked later."
+  ],
+  [
+   41.925,
+   2.675,
+   "The output on the slide is wrapped to fit."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   3.225,
+   "Step four prints the findings, one line each."
+  ],
+  [
+   3.275,
+   13.2,
+   "Four are W S oh one, second writers: a help desk technician disabled an account, an Exchange administrator edited a leave date, the help desk changed a manager, and a fix-up script wrote an organization code."
+  ],
+  [
+   16.475,
+   4.95,
+   "None of them is inbound provisioning, the writer every one of those rows names."
+  ],
+  [
+   21.425,
+   6.5,
+   "One is W S oh four: inbound provisioning deleted an account, which the register forbids."
+  ],
+  [
+   27.925,
+   9.725,
+   "And one is the W S oh two warning: the backstop, Lifecycle Workflows, enabled a hire, so you confirm the pipeline acted or find out why it was late."
+  ],
+  [
+   37.65,
+   11.062,
+   "Step five prints one saved query, the third, for the disabled-at-separation row: a filter on Disable account inside the window, with the pipeline and the workflows allowed."
+  ],
+  [
+   48.712,
+   5.263,
+   "Step six runs the tests, fifty-seven pass, and you delete the output folder."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   6.862,
+   "Lab 2 runs the same scan against your own test tenant, worldwide or G C C, never production."
+  ],
+  [
+   6.912,
+   5.037,
+   "Make two known writes in the admin center, then export the audit window that holds them."
+  ],
+  [
+   11.95,
+   5.537,
+   "Before you scan, confirm the property names the register expects against the real records."
+  ],
+  [
+   17.488,
+   2.975,
+   "That's the step that turns the scan into evidence."
+  ],
+  [
+   20.462,
+   5.138,
+   "Then put your tenant's service principal I D's in a copy of the register, and scan."
+  ],
+  [
+   25.6,
+   5.612,
+   "Both of your admin center changes should come back as W S oh one, second writers."
+  ],
+  [
+   31.212,
+   9.363,
+   "The reader app needs a certificate and two application permissions with admin consent, AuditLog dot Read dot All and Directory dot Read dot All, and nothing else."
+  ],
+  [
+   40.575,
+   8.537,
+   "To back it out, restore the test users' values, remove the permissions, and delete the app, its certificate, the export and the output."
+  ],
+  [
+   49.112,
+   2.15,
+   "The authors haven't run Lab 2."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   1.387,
+   "The federal requirement."
+  ],
+  [
+   1.438,
+   9.988,
+   "This gate meets nist special publication eight hundred fifty-three A C two, account management, and I A four, identifier management, through the register."
+  ],
+  [
+   11.425,
+   7.162,
+   "And it meets A U six, audit review, by reviewing writes made outside the named writer, which is what the scan does."
+  ],
+  [
+   18.587,
+   4.9,
+   "The guide's Gate 1 requirements table and the workbook chapter carry the details."
+  ],
+  [
+   23.488,
+   21.587,
+   "The evidence an I S S O keeps for Gate 1: the signed register, with its lifecycle rows and the versioned scope filter; the output of the register check; the scan's output folder, with its manifest and the saved queries; and the Active Directory auditing settings, which this code doesn't read, because writes in Active Directory never reach the scan."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   1.975,
+   "Check yourself with two questions."
+  ],
+  [
+   2.025,
+   4.875,
+   "First: your H R feed and the leaver workflow can both disable an account."
+  ],
+  [
+   6.9,
+   3.388,
+   "What does the register record for the disabled-at-separation row?"
+  ],
+  [
+   10.287,
+   4.775,
+   "The answer is b: one writer, with the other recorded as its backstop."
+  ],
+  [
+   15.062,
+   6.062,
+   "The register check enforces it: one writer per row, and a backstop that isn't the writer itself."
+  ],
+  [
+   21.125,
+   3.7,
+   "Second: which writes does the Entra audit-log scan not see?"
+  ],
+  [
+   24.825,
+   4.35,
+   "The answer is c: writes made in Active Directory for synced users."
+  ],
+  [
+   29.175,
+   9.575,
+   "Only Active Directory's change auditing sees those, and the guide's interim path names the sync agent as a writer and reviews the access control lists."
+  ],
+  [
+   38.75,
+   4.9,
+   "The module page has two more questions, each linked to the section that answers it."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   0.825,
+   "To sum up."
+  ],
+  [
+   0.875,
+   7.562,
+   "You checked a writer register's shape, scanned a month of audit records against it, and read the saved query that Gate 7 runs."
+  ],
+  [
+   8.438,
+   6.062,
+   "Along the way you saw four second writers, one forbidden delete, and one backstop that acted first."
+  ],
+  [
+   14.5,
+   7.625,
+   "Carry one thing forward: inbound provisioning writes the leave date and the active value, and that's true for contractors too."
+  ],
+  [
+   22.125,
+   4.05,
+   "Next is Module 2: run contractors from their own source."
+  ],
+  [
+   26.175,
+   5.537,
+   "Contractors don't come from H R, and an end date nobody updates keeps access alive."
+  ],
+  [
+   31.712,
+   13.15,
+   "In Module 2 you'll compute each contractor's earliest end, reconcile the register, the card system and the directory without changing anything, and write a sponsor review that removes access when nobody responds."
+  ]
+ ]
+}

@@ -13,6 +13,8 @@ series-order: 1
 
 *Part of the [HR-Driven Identity learning path](index.md). Gate G1 Writers. Workbook [Chapter 01](../../project-plans/developer-workbooks/hr-driven-identity/01-the-writer-register-as-code.md). About 50 minutes.*
 
+**Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-hr-module-1) (the deck files come with the next edition) · [▶ Watch](../../presentations/watch.html?v=Training_HR_Module_1_Narrated) (about 13 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_HR_Module_1_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-hr-module-1/Training_HR_Module_1_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-hr-module-1/Training_HR_Module_1_Narrated.vtt).
+
 ## Introduction (3 minutes)
 
 Your agency's HR feed sets an account's `active` value. A Lifecycle Workflows leaver can disable the same account. A help desk technician can still edit a user's organization code. Each of those is a writer, and when two of them write the same value, the later one wins. A late `active` true from the pipeline undoes the workflow's disable; a help desk edit moves a person's access without HR knowing.
@@ -27,7 +29,7 @@ After this module, you'll be able to:
 
 - explain why one writer per account state comes before every other gate;
 - read the lifecycle rows of the writer register and say which writer and backstop each names;
-- run the register check (WR-01 to WR-09) and the audit-log scan (WS-01 to WS-04), and read their findings;
+- run the register check (WR-01 to WR-09) and the audit-log scan (WS-01, WS-02 and WS-04), and read their findings;
 - say what the scan can't see, and what covers it.
 
 ## Prerequisites (1 minute)

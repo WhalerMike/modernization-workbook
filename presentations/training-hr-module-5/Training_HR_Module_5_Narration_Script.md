@@ -1,0 +1,61 @@
+# HR-Driven Identity learning path — Module 5: Check certificate-based authentication — narration script (practice copy)
+
+## Slide 1 — Module 5: Check certificate-based authentication
+
+Welcome to Module 5 of the HR-Driven Identity learning path: check certificate-based authentication. This is Gate 5 of the implementation guide, credentials, and it goes with Chapter 05 of the developer workbook. A PIV card's revocation reaches sign-in only through the certificate revocation list. So in this module you'll measure every revocation list and check the tenant's certificate-based authentication settings against the limits for your cloud: the trust store, each list against the cloud's limit, the multifactor mapping, revocation list validation and the phishing-resistant strength. You'll run the check on a fictional tenant for GCC and then for GCC High, and see the findings change. The module takes about forty-five minutes with its lab.
+
+## Slide 2 — Why revocation is the weak link in card sign-in
+
+Why does this gate need code? Because revocation is where card sign-in quietly breaks. If an issuing certificate authority in the trust store has no revocation list configured, Entra doesn't check revocation for that authority's certificates at all. A revoked card keeps working. If a list is configured but can't be downloaded in time, certificate-based authentication fails for every card from that authority. Nobody can sign in. And a revocation list grows with every revocation, so a list that fits today can cross your cloud's limit next month. None of those shows up in a one-time configuration review. So this module measures each list and checks the tenant's settings against your cloud's limits, every day rather than once.
+
+## Slide 3 — What you'll be able to do in Module 5
+
+Here's what you'll be able to do by the end of the module. You'll state the interactive revocation list limits for GCC and GCC High, and the download time limit. You'll measure a set of lists and record the failures as findings. You'll run the certificate-based authentication check for a named cloud and explain what it finds. And you'll explain why the same list can be a warning in one cloud and not in another. Before you start, finish Module 3: there, the Temporary Access Pass bridges a new hire to the card, and this gate ends that bridge. Some familiarity with P K I terms helps, like issuing authority, revocation list and policy O I D; the Federal Modernization Workbook's Book 07's Chapter 06 explains them for Entra. Lab 1 needs Python and pytest, and no tenant.
+
+## Slide 4 — Credentials follow HR events
+
+Unit 1 starts in the guide's Step 5, bind credentials to HR events. Its first step gives the revocation list limits for each cloud, and its later steps tie card issuance and revocation to HR and contractor events. Book 03's Chapter 09 explains why revocation checking matters, and that a reissued card changes the binding between the PIV certificate and the Entra user. Notice what this module doesn't cover. Binding coverage and affinity for each user belong to the validation kit's check, V K PIV oh one, and to Gate 6 of the attribute-driven migration guide. This module checks the tenant's settings: the certificate authorities in the trust store, the X dot five-oh-nine certificate method, the authentication strengths and the Conditional Access policies, plus a measurement of each revocation list.
+
+## Slide 5 — The CRL limits the check holds each cloud to
+
+Here are the limits the check holds each cloud to. GCC uses the commercial service, so its interactive sign-in limit for a revocation list is twenty megabytes. GCC High is Azure Government, at forty-five megabytes, and the kit holds DoD to the same. In every cloud a list must download within ten seconds. Learn gives those limits in megabytes; the kit reads them as decimal megabytes, a million bytes each, which is the stricter reading. There's no default cloud in the kit: you name it every time, so a GCC High check can't silently run against GCC's numbers. Two thresholds are the program's design guidance, not Learn's: a warning at eighty percent of the interactive limit, and a warning when an authority's certificate expires within ninety days.
+
+## Slide 6 — The measurement: download each CRL once
+
+Unit 2 has two parts, the measurement and the check. The measurement downloads each revocation list once and records its size in bytes, the seconds it took and any error, with the time it was measured. An unreachable list isn't an exception that stops the run: it's recorded, because the failure is exactly the finding you want. For the lab, a local path is read as a file, which is how Lab 1 runs on a laptop with no network. In Lab 2 you measure the real lists from outside the agency network. And the check insists on the measurement. A configured list with no measurement row is C B six, a Finding, so you can't pass the check by skipping the download.
+
+## Slide 7 — The check, part 1: the trust store and each CRL
+
+The check runs thirteen rules, C B one to C B thirteen. Eight of them look at the trust store and the lists. C B twelve: an issuing authority the card program uses isn't in the trust store. C B one: an authority has no revocation list configured, so Entra doesn't check revocation for it. A root with no list is only a warning to confirm, since a root that issues only authority certificates may publish none. C B two: the list's endpoint isn't plain H T T P, which Learn recommends. C B six: no measurement. C B four: the list couldn't be downloaded, or took longer than ten seconds. C B three: the list is over the cloud's interactive limit. C B five warns at eighty percent of it. And C B eleven warns when an authority's certificate expires within ninety days.
+
+## Slide 8 — The check, part 2: the method and the policy
+
+The other five rules look at the method and the policy. C B seven: the X dot five-oh-nine certificate method isn't enabled. C B eight warns when revocation list validation isn't required of every authority, or when an authority is exempted from it. An exemption is allowed only while that authority's list is being fixed, and with an end date. C B nine: a PIV policy O I D isn't mapped to multifactor, and the default mode is single-factor, so a card sign-in may not count as multifactor. C B thirteen warns about low-affinity username bindings. And C B ten is the SCuBA rule: no enabled Conditional Access policy for all users and all resources requires a phishing-resistant strength. A strength counts only if every combination it allows is FIDO2, Windows Hello for Business, or multifactor certificate.
+
+## Slide 9 — Try it: list the reads and measure the CRLs
+
+Try it. Lab 1 runs in the h r lifecycle examples folder, against a fictional P K I, with no tenant. Step one lists what the reader will call. The task asks for three permissions, Policy dot Read dot All, Policy dot Read dot Authentication Method, and Public Key Infrastructure dot Read dot All, for five calls, and every one of them is a GET. Nothing here can change the tenant. Step two measures the fixture revocation lists. Two files measure at four and eight kilobytes. The third doesn't exist, and the tool records it as zero bytes with a file-not-found error, rather than stopping. That row is what becomes a finding in the check. Your times may differ from the slide; the fixtures are local files, so they read almost instantly.
+
+## Slide 10 — Try it: check the fictional tenant for GCC
+
+Step three checks the fictional tenant for GCC. The first line names the limits it's using: twenty million bytes, and ten seconds. Then the count: five Findings, seven Warns, and exit code two. The lab asks you to find four of them. C B four: one authority's list took eleven point four seconds to download, over the ten-second limit, so in real life sign-in would fail for its cards. C B five: that same list is eighteen and a half million bytes, more than eighty percent of the GCC limit. C B nine: the PIV policy O I D isn't mapped to multifactor. And C B ten: no enabled policy requires a phishing-resistant strength. You'll also see a legacy intermediate with no list at all, and an issuing authority missing from the trust store.
+
+## Slide 11 — Try it: the same tenant, checked for GCC High
+
+What differs by cloud? Step four runs the same check on the same tenant, naming GCC High instead. The limit line now says forty-five million bytes, and the count drops to five Findings and six Warns. One warning went away: C B five. The eighteen and a half million byte list was over eighty percent of GCC's twenty megabytes, but it's well under eighty percent of forty-five, so in GCC High it's fine. The download time is different. The ten-second limit applies in every cloud, so the eleven point four second download is still a Finding. That's the lesson of this step: the same list can be a warning in one cloud and not in another, which is why the check always takes the cloud by name.
+
+## Slide 12 — Lab 2: revoke a test card and watch Entra refuse it
+
+Lab 2 moves to your own test tenant, never production, with certificate-based authentication configured for a test certificate authority. You create a reader app with a certificate that holds only the three permissions you listed in step one, with admin consent. You export the configuration, measure the real revocation lists from outside the agency network, and run the check with your test P K I's thumbprints and policy O I Ds. Then the proof: revoke a test certificate, and confirm Entra refuses it after the next revocation list is published. To back it out, remove the permissions, delete the reader app and its certificate, reissue the test user's certificate if you need it, and delete the export and output folders. The authors haven't run Lab 2.
+
+## Slide 13 — The federal requirement, and the evidence to keep
+
+The federal requirement. This gate meets two controls in NIST special publication eight hundred fifty-three: I A two, enhancement twelve, acceptance of PIV credentials, and I A five, enhancement two, public key-based authentication. It meets SCuBA's two phishing-resistant multifactor policies, three point one and three point six, which BOD 25-01 requires. And it meets FIPS two oh one dash three's issuance and termination rules, and special publication eight hundred sixty-three dash four. The evidence an ISSO keeps for Gate 5: the configuration export and the check's findings and manifest, dated, with each list's measurement. The C B nine and C B ten rows, beside the ScubaGear report. Lab 2's refused sign-in, with the revocation record and the list that published it. And the mode rules in the export.
+
+## Slide 14 — Check yourself: two questions on card sign-in
+
+Check yourself with two questions from the module's knowledge check. First: what happens when an issuing certificate authority in the trust store has no revocation list configured? The answer is b. Entra doesn't check revocation for that authority's certificates, which is rule C B one. Second: an eighteen and a half million byte list raises C B five for GCC but not for GCC High. Why? The answer is b. C B five warns at eighty percent of the cloud's interactive limit, and GCC High's limit is forty-five megabytes, so the same size is under the line. The module page has two more questions, each linked to the section that teaches it.
+
+## Slide 15 — Summary, and next: Module 6, separation timing
+
+To sum up. You learned the interactive revocation list limits, twenty megabytes for GCC and forty-five for GCC High, with ten seconds to download in every cloud. You measured three lists, and the missing one became a recorded finding instead of a crash. You checked a fictional tenant for GCC and then for GCC High, and saw how the cloud's limit changes the findings while the download limit doesn't. Keep the measurement and the check running every day, because a list that fits today can cross the limit next month. Next is Module 6, time separations from the logs: separation-to-block and separation-to-revocation for every leaver. It builds on this module, because a card's revocation reaches sign-in through the revocation list.

@@ -1,0 +1,76 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:04.268
+Lab 1 runs in the h r
+lifecycle examples folder,
+
+3
+00:00:04.268 --> 00:00:07.025
+on fictional leavers, with no tenant.
+
+4
+00:00:07.025 --> 00:00:11.821
+Step one lists what the reader would call
+in a real tenant: two GET calls, the
+
+5
+00:00:11.821 --> 00:00:15.987
+directory audits and the leaver
+workflow's processing results,
+
+6
+00:00:15.987 --> 00:00:17.638
+for two read permissions.
+
+7
+00:00:17.638 --> 00:00:23.007
+Step two runs the measurement over
+every input: the separations, the users,
+
+8
+00:00:23.007 --> 00:00:27.057
+the audit records, the run
+results, the card revocations,
+
+9
+00:00:27.057 --> 00:00:29.962
+the device actions and the role holders.
+
+10
+00:00:29.962 --> 00:00:35.024
+It reports seven separated leavers,
+one cancelled, and one never blocked.
+
+11
+00:00:35.024 --> 00:00:38.352
+The median separation-to-block
+is a quarter of an hour,
+
+12
+00:00:38.352 --> 00:00:41.982
+but the ninetieth percentile
+is five point five two hours,
+
+13
+00:00:41.982 --> 00:00:45.763
+over the four-hour sample, and
+the worst is nearly eighty-five.
+
+14
+00:00:45.763 --> 00:00:48.660
+Revocation is worse:
+a ninetieth percentile
+
+15
+00:00:48.660 --> 00:00:51.401
+of a hundred ten hours
+against twenty-four.
+
+16
+00:00:51.401 --> 00:00:54.700
+Ten Findings, two Warns, exit code two.

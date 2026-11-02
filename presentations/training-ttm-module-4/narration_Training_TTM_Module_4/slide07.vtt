@@ -1,0 +1,71 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.292
+A scheduled run should
+raise only what's new,
+
+2
+00:00:03.292 --> 00:00:06.625
+so Chapter 06 adds a
+comparison by finding I D.
+
+3
+00:00:06.625 --> 00:00:07.800
+New means raise it.
+
+4
+00:00:07.800 --> 00:00:12.462
+Persisting means it's already raised,
+and the de-duplication adds a counter.
+
+5
+00:00:12.462 --> 00:00:14.700
+Resolved means it's no longer measured.
+
+6
+00:00:14.700 --> 00:00:17.420
+That's a lead for the
+re-read, not a closure:
+
+7
+00:00:17.420 --> 00:00:20.800
+its record still closes
+only on the re-read client.
+
+8
+00:00:20.800 --> 00:00:24.572
+And the comparison refuses runs
+that computed different classes,
+
+9
+00:00:24.572 --> 00:00:26.492
+one with the audit and one without,
+
+10
+00:00:26.492 --> 00:00:30.950
+because every finding of the class the
+second run skipped would look resolved.
+
+11
+00:00:30.950 --> 00:00:33.762
+The lab's day-two fixture
+tells a small story.
+
+12
+00:00:33.762 --> 00:00:37.280
+HR corrects Erin's department
+from HR to Finance,
+
+13
+00:00:37.280 --> 00:00:41.413
+the value someone had already
+typed into Entra ID by hand.
+
+14
+00:00:41.413 --> 00:00:43.389
+Graph now agrees with HR.
+
+15
+00:00:43.389 --> 00:00:46.700
+SailPoint, not yet re-aggregated, doesn't.

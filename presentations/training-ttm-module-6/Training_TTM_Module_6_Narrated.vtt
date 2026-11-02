@@ -1,0 +1,1055 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.814
+Welcome to Module 6 of the
+Ticket-to-Machine learning path:
+
+2
+00:00:03.814 --> 00:00:05.775
+actuation and the re-read rule.
+
+3
+00:00:05.775 --> 00:00:08.825
+This module covers the
+guide's Gates 5 and 6,
+
+4
+00:00:08.825 --> 00:00:11.700
+and the developer workbook's Chapter 05.
+
+5
+00:00:11.700 --> 00:00:16.062
+In Module 5, an event became a
+finding with an intended state.
+
+6
+00:00:16.062 --> 00:00:19.274
+Now the fix has to happen,
+and the finding has to close.
+
+7
+00:00:19.274 --> 00:00:22.975
+You'll see where the fix runs on
+these products, lane by lane.
+
+8
+00:00:22.975 --> 00:00:27.868
+Then you'll see how a ServiceNow business
+rule and a re-read client enforce one
+
+9
+00:00:27.868 --> 00:00:32.838
+rule: a finding closes only when a re-read
+of the target shows the intended state.
+
+10
+00:00:32.838 --> 00:00:37.350
+In the lab, you'll watch the client
+decide six waiting findings on two days.
+
+11
+00:00:37.350 --> 00:00:41.720
+The code is illustrative, tested
+against fictional fixtures.
+
+12
+00:00:45.470 --> 00:00:46.620
+Why does this matter?
+
+13
+00:00:46.620 --> 00:00:50.375
+SailPoint's Service Desk
+integration treats a provisioning
+
+14
+00:00:50.375 --> 00:00:53.982
+task as complete when the mapped
+ServiceNow status says so.
+
+15
+00:00:53.982 --> 00:00:57.645
+So a technician sets a ticket to
+Closed, and nothing was checked.
+
+16
+00:00:57.645 --> 00:00:59.670
+The account might still be enabled.
+
+17
+00:00:59.670 --> 00:01:01.208
+The group might still be there.
+
+18
+00:01:01.208 --> 00:01:05.565
+The Federal Modernization Workbook's
+Book 13's rule is different:
+
+19
+00:01:05.565 --> 00:01:07.744
+a success response isn't closure.
+
+20
+00:01:07.744 --> 00:01:12.570
+A finding closes only when a re-read of
+the target shows the intended state.
+
+21
+00:01:12.570 --> 00:01:14.799
+Gate 6 enforces that in ServiceNow,
+
+22
+00:01:14.799 --> 00:01:19.795
+for identity findings and for the tickets
+the Service Desk integration opens.
+
+23
+00:01:19.795 --> 00:01:22.300
+In this module you see where the fix runs,
+
+24
+00:01:22.300 --> 00:01:27.530
+and then you enforce the rule and watch
+the re-read client decide six findings.
+
+25
+00:01:31.280 --> 00:01:34.120
+Here's what you'll be able to
+do by the end of this module,
+
+26
+00:01:34.120 --> 00:01:36.767
+which takes about fifty-five
+minutes with the lab.
+
+27
+00:01:36.767 --> 00:01:41.829
+You'll explain how Gate 5 actuates by
+lane, and why the kit has no test for it.
+
+28
+00:01:41.829 --> 00:01:44.747
+You'll describe what the
+business rule does with a close,
+
+29
+00:01:44.747 --> 00:01:46.142
+and who can close a finding.
+
+30
+00:01:46.142 --> 00:01:50.797
+You'll run the re-read client offline
+and interpret its four outcomes:
+
+31
+00:01:50.797 --> 00:01:53.492
+verified, mismatch, pending and skipped.
+
+32
+00:01:53.492 --> 00:01:56.184
+And you'll explain why a stale read waits,
+
+33
+00:01:56.184 --> 00:01:59.529
+and why an empty intended
+state is never verified.
+
+34
+00:01:59.529 --> 00:02:04.307
+Before you start, finish Module 5, and
+review Module 2's ServiceNow roles,
+
+35
+00:02:04.307 --> 00:02:06.655
+because the verifier is one of them.
+
+36
+00:02:06.655 --> 00:02:08.355
+Lab 1 needs no tenant.
+
+37
+00:02:08.355 --> 00:02:12.083
+Lab 2 needs your developer
+instance, the verifier user,
+
+38
+00:02:12.083 --> 00:02:14.920
+and a test user in a test Entra tenant.
+
+39
+00:02:18.670 --> 00:02:21.770
+Gate 5 is where the ticket
+authorizes a machine.
+
+40
+00:02:21.770 --> 00:02:25.216
+The fix runs through a connector
+under a service identity,
+
+41
+00:02:25.216 --> 00:02:27.370
+and a person's role stops at approval.
+
+42
+00:02:27.370 --> 00:02:28.658
+There are four lanes.
+
+43
+00:02:28.658 --> 00:02:33.920
+SailPoint's connectors provision
+owner-governed access: creating, updating,
+
+44
+00:02:33.920 --> 00:02:36.880
+enabling, disabling and deleting accounts,
+
+45
+00:02:36.880 --> 00:02:40.745
+and changing groups, roles,
+licenses and access packages.
+
+46
+00:02:40.745 --> 00:02:43.595
+When the Entra connector
+disables an account,
+
+47
+00:02:43.595 --> 00:02:46.520
+it also signs the user
+out of existing sessions.
+
+48
+00:02:46.520 --> 00:02:50.201
+ServiceNow's Entra spoke
+handles low-authority tasks
+
+49
+00:02:50.201 --> 00:02:53.882
+where its actions cover them;
+it has no MFA-reset action.
+
+50
+00:02:53.882 --> 00:02:57.516
+Disconnected applications
+run as declared exceptions,
+
+51
+00:02:57.516 --> 00:03:01.071
+with a named approver, a recorded
+session and an end date.
+
+52
+00:03:01.071 --> 00:03:04.895
+And people act only through a
+just-in-time PIM activation.
+
+53
+00:03:04.895 --> 00:03:08.780
+The kit's Pass 1 doesn't actuate,
+so Gate 5 is configuration
+
+54
+00:03:08.780 --> 00:03:12.940
+of the products themselves,
+with no automated check yet.
+
+55
+00:03:16.690 --> 00:03:18.802
+Gate 6 starts with a business rule.
+
+56
+00:03:18.802 --> 00:03:21.354
+It runs before update, on the state field,
+
+57
+00:03:21.354 --> 00:03:24.600
+and it turns any close into
+Awaiting verification,
+
+58
+00:03:24.600 --> 00:03:29.778
+unless the same update carries new evidence
+and comes from the verifier account.
+
+59
+00:03:29.778 --> 00:03:31.140
+Walk through the cases.
+
+60
+00:03:31.140 --> 00:03:34.365
+A person sets the state
+to Closed: redirected.
+
+61
+00:03:34.365 --> 00:03:38.554
+An update that carries new evidence
+but comes from someone else:
+
+62
+00:03:38.554 --> 00:03:41.715
+redirected, because evidence
+alone isn't enough.
+
+63
+00:03:41.715 --> 00:03:44.666
+The verifier account without new evidence:
+
+64
+00:03:44.666 --> 00:03:48.190
+redirected, because the
+verifier alone isn't enough.
+
+65
+00:03:48.190 --> 00:03:51.940
+The verifier with a new evidence
+hash: the close stands.
+
+66
+00:03:51.940 --> 00:03:55.672
+And a named exception approver can
+still cancel with a close note,
+
+67
+00:03:55.672 --> 00:03:57.815
+which is the declared-exception lane.
+
+68
+00:03:57.815 --> 00:04:00.677
+The rule covers the
+identity finding table and,
+
+69
+00:04:00.677 --> 00:04:05.081
+on the incident and request item
+tables, the tickets SailPoint's Service
+
+70
+00:04:05.081 --> 00:04:10.150
+Desk integration opened, so its status
+mapping no longer decides completion.
+
+71
+00:04:13.900 --> 00:04:15.987
+The re-read client does the checking.
+
+72
+00:04:15.987 --> 00:04:20.208
+It lists the waiting findings
+through ServiceNow's Table API,
+
+73
+00:04:20.208 --> 00:04:22.938
+then re-reads each subject by its system.
+
+74
+00:04:22.938 --> 00:04:25.750
+An ISC account is read by its ID.
+
+75
+00:04:25.750 --> 00:04:28.663
+An ISC identity is found with a Search.
+
+76
+00:04:28.663 --> 00:04:32.431
+And an Entra user is read
+through Microsoft Graph,
+
+77
+00:04:32.431 --> 00:04:35.925
+which returns a 404 when
+the user doesn't exist.
+
+78
+00:04:35.925 --> 00:04:39.625
+Each read has its own least
+permission, shown on the slide.
+
+79
+00:04:39.625 --> 00:04:43.475
+Then the client compares what it read
+with the finding's intended state.
+
+80
+00:04:43.475 --> 00:04:48.551
+On a match, it closes the record with
+the evidence: the query, the time,
+
+81
+00:04:48.551 --> 00:04:53.442
+a SHA-256 hash of the response,
+the intended state and the checker,
+
+82
+00:04:53.442 --> 00:04:56.487
+and it attaches that evidence as JSON.
+
+83
+00:04:56.487 --> 00:05:00.200
+On a mismatch, it reopens the
+record with the differences.
+
+84
+00:05:00.200 --> 00:05:03.420
+And it writes nothing unless
+you pass the apply option.
+
+85
+00:05:07.170 --> 00:05:08.895
+Two kinds of read need care.
+
+86
+00:05:08.895 --> 00:05:10.470
+First, a stale read.
+
+87
+00:05:10.470 --> 00:05:15.032
+An ISC read reflects the last
+aggregation, not the source right now.
+
+88
+00:05:15.032 --> 00:05:18.685
+So if the read is older than the
+time the finding started waiting,
+
+89
+00:05:18.685 --> 00:05:19.995
+it can't show the fix yet.
+
+90
+00:05:19.995 --> 00:05:23.344
+The client calls it pending,
+and waits for a grace period,
+
+91
+00:05:23.344 --> 00:05:26.620
+twenty-four hours by default,
+which is design guidance.
+
+92
+00:05:26.620 --> 00:05:31.133
+After the grace period, a read that
+still disagrees is a mismatch.
+
+93
+00:05:31.133 --> 00:05:35.843
+Tune the grace period to the longest
+aggregation interval on your sources,
+
+94
+00:05:35.843 --> 00:05:39.870
+and record the setting; how long
+the lag really is wasn't verified.
+
+95
+00:05:39.870 --> 00:05:41.620
+Second, a missing read.
+
+96
+00:05:41.620 --> 00:05:45.045
+A subject nobody read must
+never count as a match.
+
+97
+00:05:45.045 --> 00:05:49.107
+In offline mode, a subject with
+no saved read is an error.
+
+98
+00:05:49.107 --> 00:05:52.770
+The live reader raises
+on anything but a 404.
+
+99
+00:05:52.770 --> 00:05:56.480
+And a saved read of null
+means the read found nothing.
+
+100
+00:06:00.230 --> 00:06:02.743
+Chapter 05 adds two things.
+
+101
+00:06:02.743 --> 00:06:03.980
+The first is a guard.
+
+102
+00:06:03.980 --> 00:06:08.368
+The client already skipped a record whose
+intended state was completely empty.
+
+103
+00:06:08.368 --> 00:06:12.219
+But it didn't skip one that was a
+non-empty object naming nothing,
+
+104
+00:06:12.219 --> 00:06:16.293
+with empty attributes and an empty
+list of entitlements to remove.
+
+105
+00:06:16.293 --> 00:06:19.209
+That's exactly what the
+script stores for a native
+
+106
+00:06:19.209 --> 00:06:22.268
+change the workflow didn't
+describe, the Module 5 gap.
+
+107
+00:06:22.268 --> 00:06:24.916
+Comparing any read with it always matches,
+
+108
+00:06:24.916 --> 00:06:29.230
+so the client would have closed that
+record, with evidence, on nothing.
+
+109
+00:06:29.230 --> 00:06:33.620
+Now, before reading anything, the
+client checks the intended state, and a
+
+110
+00:06:33.620 --> 00:06:38.530
+record that names nothing checkable is
+skipped with the reason, never verified.
+
+111
+00:06:38.530 --> 00:06:40.605
+The second is an offline mode.
+
+112
+00:06:40.605 --> 00:06:44.304
+It takes saved waiting records,
+saved reads and a fixed clock,
+
+113
+00:06:44.304 --> 00:06:47.855
+and makes the same decisions
+with only the reader swapped.
+
+114
+00:06:47.855 --> 00:06:51.860
+It's a dry run only; the
+apply option is refused.
+
+115
+00:06:55.610 --> 00:06:58.742
+The kit comes with six
+fictional waiting records,
+
+116
+00:06:58.742 --> 00:07:01.722
+one per outcome, and the
+lab runs them on two days.
+
+117
+00:07:01.722 --> 00:07:05.434
+The first is a reverted native
+change, and it verifies.
+
+118
+00:07:05.434 --> 00:07:10.597
+The second is a terminated user still
+enabled in Entra ID: a mismatch.
+
+119
+00:07:10.597 --> 00:07:14.497
+The third is an ISC account read
+before it was re-aggregated.
+
+120
+00:07:14.497 --> 00:07:19.198
+At noon on November first it's pending;
+by noon the next day it's a mismatch.
+
+121
+00:07:19.198 --> 00:07:22.272
+The fourth, an attribute change, verifies.
+
+122
+00:07:22.272 --> 00:07:25.704
+The fifth is a native change
+with an empty intended state,
+
+123
+00:07:25.704 --> 00:07:27.384
+and it's skipped by the guard.
+
+124
+00:07:27.384 --> 00:07:31.097
+The sixth, an orphan account
+that was disabled, verifies.
+
+125
+00:07:31.097 --> 00:07:32.973
+Why does the third one change?
+
+126
+00:07:32.973 --> 00:07:36.427
+It started waiting at six in
+the morning on November first,
+
+127
+00:07:36.427 --> 00:07:40.817
+so by noon on November second its
+twenty-four-hour grace period has passed,
+
+128
+00:07:40.817 --> 00:07:43.690
+and the stale read now
+counts as a mismatch.
+
+129
+00:07:47.440 --> 00:07:48.165
+Try it.
+
+130
+00:07:48.165 --> 00:07:52.815
+Lab 1 runs in the kit's servicenow-sailpoint
+folder, with no tenant.
+
+131
+00:07:52.815 --> 00:07:56.515
+Step one runs the re-read
+tests, and fifteen pass.
+
+132
+00:07:56.515 --> 00:08:00.541
+Step two runs the client offline
+over the six waiting records,
+
+133
+00:08:00.541 --> 00:08:03.540
+with the clock fixed at
+noon on November first.
+
+134
+00:08:03.540 --> 00:08:04.690
+Read the output.
+
+135
+00:08:04.690 --> 00:08:09.102
+Three records verify, and the client
+would patch each one to closed.
+
+136
+00:08:09.102 --> 00:08:14.127
+The terminated user is a mismatch: the
+intended state says account enabled false,
+
+137
+00:08:14.127 --> 00:08:18.627
+and the read says true, so the client
+would reopen it with that difference.
+
+138
+00:08:18.627 --> 00:08:23.394
+The third record is pending, because
+the ISC copy predates the change,
+
+139
+00:08:23.394 --> 00:08:25.903
+so re-run after the next aggregation.
+
+140
+00:08:25.903 --> 00:08:31.265
+The fifth is skipped, because its intended
+state names nothing a re-read can check.
+
+141
+00:08:31.265 --> 00:08:34.127
+Every line says what the
+client would do and why.
+
+142
+00:08:34.127 --> 00:08:36.262
+It's a dry run, so nothing is written,
+
+143
+00:08:36.262 --> 00:08:39.820
+and pending and skipped
+records are never patched.
+
+144
+00:08:43.570 --> 00:08:48.138
+Step three runs the same records a
+day later, at noon on November second,
+
+145
+00:08:48.138 --> 00:08:53.258
+and keeps the results in a JSON file in
+an out folder, which the client creates.
+
+146
+00:08:53.258 --> 00:08:56.771
+On the slide, the five
+unchanged lines are trimmed.
+
+147
+00:08:56.771 --> 00:08:59.058
+The one that changed is the third record.
+
+148
+00:08:59.058 --> 00:09:03.313
+Its grace period has passed, so
+the stale read is now a mismatch:
+
+149
+00:09:03.313 --> 00:09:07.569
+the intended state says disabled
+true, and the read says false.
+
+150
+00:09:07.569 --> 00:09:12.145
+The summary is now two mismatches,
+one skipped and three verified.
+
+151
+00:09:12.145 --> 00:09:15.957
+The JSON file holds each
+result with its evidence hash.
+
+152
+00:09:15.957 --> 00:09:20.952
+Step four runs the business rule's six
+tests, and they read like the rule itself:
+
+153
+00:09:20.952 --> 00:09:25.711
+a person's close is redirected, the
+verifier with fresh evidence may close,
+
+154
+00:09:25.711 --> 00:09:30.392
+evidence alone or the verifier alone
+isn't enough, an exception approver
+
+155
+00:09:30.392 --> 00:09:35.308
+may cancel with a note, and only tickets
+the integration opened are governed.
+
+156
+00:09:35.308 --> 00:09:37.870
+Step five deletes the out folder.
+
+157
+00:09:41.620 --> 00:09:45.845
+Lab 2 enforces the rule in your
+own ServiceNow developer instance.
+
+158
+00:09:45.845 --> 00:09:48.775
+You need the instance
+from Modules 1 and 2,
+
+159
+00:09:48.775 --> 00:09:54.033
+the verifier user from Module 2's Lab 2,
+and a test user in a test Entra tenant.
+
+160
+00:09:54.033 --> 00:09:57.308
+Configure the business rule
+and its system properties.
+
+161
+00:09:57.308 --> 00:10:01.845
+Close a finding as a person, and watch
+it land in Awaiting verification.
+
+162
+00:10:01.845 --> 00:10:06.770
+Then confirm which user ServiceNow
+records for the verifier's OAuth client.
+
+163
+00:10:06.770 --> 00:10:10.837
+That matters, because the rule compares
+it with the verifier property,
+
+164
+00:10:10.837 --> 00:10:12.870
+and the workbook couldn't verify it.
+
+165
+00:10:12.870 --> 00:10:17.770
+If it's wrong, every close is refused,
+and people look for a way around the rule.
+
+166
+00:10:17.770 --> 00:10:22.845
+Finally, close a finding with evidence
+from a Graph read of a disabled test user.
+
+167
+00:10:22.845 --> 00:10:26.562
+Then back it out: delete the test
+findings and their attachments,
+
+168
+00:10:26.562 --> 00:10:30.770
+deactivate the rule if you built it
+for the lab, and delete the properties.
+
+169
+00:10:30.770 --> 00:10:33.280
+The authors haven't run Lab 2.
+
+170
+00:10:37.030 --> 00:10:39.092
+What differs in the government clouds?
+
+171
+00:10:39.092 --> 00:10:42.980
+The guide's availability notes
+for Gates 5 and 6 answer it.
+
+172
+00:10:42.980 --> 00:10:46.192
+PIM is available in
+Azure for U S Government.
+
+173
+00:10:46.192 --> 00:10:51.092
+ServiceNow's Entra spoke points at
+the worldwide Graph host by default,
+
+174
+00:10:51.092 --> 00:10:54.746
+and its page doesn't mention
+the U S Government clouds,
+
+175
+00:10:54.746 --> 00:10:59.230
+so it fits GCC, but for GCC High,
+confirm with ServiceNow before use.
+
+176
+00:10:59.230 --> 00:11:03.455
+SailPoint's connector endpoints
+for GCC High are documented.
+
+177
+00:11:03.455 --> 00:11:08.608
+For the re-read itself, GCC uses
+the worldwide Graph endpoint,
+
+178
+00:11:08.608 --> 00:11:12.318
+and GCC High uses graph
+dot microsoft dot u s.
+
+179
+00:11:12.318 --> 00:11:16.905
+And the ISC API domain for a
+FedRAMP tenant wasn't confirmed.
+
+180
+00:11:16.905 --> 00:11:18.417
+There are interim paths.
+
+181
+00:11:18.417 --> 00:11:23.405
+Until the change-record flow exists, the
+approver raises the change record by hand.
+
+182
+00:11:23.405 --> 00:11:28.313
+And until the re-read client runs on a
+schedule, the verifier runs it by hand
+
+183
+00:11:28.313 --> 00:11:33.340
+once a day, dry run first; the business
+rule still blocks a person's close.
+
+184
+00:11:37.090 --> 00:11:38.477
+The federal requirement.
+
+185
+00:11:38.477 --> 00:11:43.757
+The guide's Gate 5 table maps actuation
+to NIST special publication eight hundred
+
+186
+00:11:43.757 --> 00:11:49.037
+fifty-three: access restrictions for
+change, access enforcement, least privilege,
+
+187
+00:11:49.037 --> 00:11:54.316
+change control, session audit and the plan
+of action and milestones, and to special
+
+188
+00:11:54.316 --> 00:11:59.440
+publication eight hundred sixty-three B,
+revision four, for resets and recovery.
+
+189
+00:11:59.440 --> 00:12:02.635
+The Gate 6 table maps the
+re-read to change control,
+
+190
+00:12:02.635 --> 00:12:07.778
+verification of controls, continuous
+monitoring and audit record generation.
+
+191
+00:12:07.778 --> 00:12:10.490
+Chapter 05 adds separation of duties:
+
+192
+00:12:10.490 --> 00:12:14.078
+no person can close a
+finding by setting its state.
+
+193
+00:12:14.078 --> 00:12:19.791
+The evidence an ISSO keeps: connector and
+spoke identities with their permissions,
+
+194
+00:12:19.791 --> 00:12:24.676
+provisioning events, activation
+records and change records for Gate 5;
+
+195
+00:12:24.676 --> 00:12:29.395
+and for Gate 6, the evidence attachment
+and hash on each closed record,
+
+196
+00:12:29.395 --> 00:12:33.866
+the re-read result and time, and
+the verifier account's audit trail.
+
+197
+00:12:33.866 --> 00:12:37.920
+Before shipping, work through
+the Chapter 05 checklist.
+
+198
+00:12:41.670 --> 00:12:43.645
+Check yourself with two questions.
+
+199
+00:12:43.645 --> 00:12:48.483
+First: at noon on November first, record
+one thousand and three is pending.
+
+200
+00:12:48.483 --> 00:12:49.170
+Why?
+
+201
+00:12:49.170 --> 00:12:50.307
+The answer is a.
+
+202
+00:12:50.307 --> 00:12:53.336
+The ISC copy of the account
+predates the change,
+
+203
+00:12:53.336 --> 00:12:56.208
+so the client waits for
+the next aggregation.
+
+204
+00:12:56.208 --> 00:12:59.195
+After the grace period,
+it becomes a mismatch.
+
+205
+00:12:59.195 --> 00:13:03.108
+Second: under the business rule,
+which update can close a finding?
+
+206
+00:13:03.108 --> 00:13:08.071
+The answer is c: an update from the
+verifier account that carries new evidence.
+
+207
+00:13:08.071 --> 00:13:11.907
+Evidence alone, or the
+verifier alone, isn't enough.
+
+208
+00:13:11.907 --> 00:13:14.566
+The module page has two more questions,
+
+209
+00:13:14.566 --> 00:13:19.070
+on a missing saved read and on why
+the kit has no test for Gate 5.
+
+210
+00:13:22.820 --> 00:13:23.645
+To sum up.
+
+211
+00:13:23.645 --> 00:13:28.349
+You learned where actuation runs on
+these products: SailPoint's connectors,
+
+212
+00:13:28.349 --> 00:13:31.709
+ServiceNow's Entra spoke,
+the declared-exception lane,
+
+213
+00:13:31.709 --> 00:13:34.695
+and people only through
+just-in-time activation.
+
+214
+00:13:34.695 --> 00:13:37.118
+You saw how the business
+rule and the re-read
+
+215
+00:13:37.118 --> 00:13:39.945
+client keep a ticket status
+from closing a finding.
+
+216
+00:13:39.945 --> 00:13:45.383
+You saw how the client treats stale reads,
+missing reads and empty intended states.
+
+217
+00:13:45.383 --> 00:13:48.595
+And you ran it offline over
+six findings on two days.
+
+218
+00:13:48.595 --> 00:13:52.295
+Before shipping, work through
+the Chapter 05 checklist.
+
+219
+00:13:52.295 --> 00:13:57.758
+Next is Module 7, the last in
+the path: evidence for the ISSO.
+
+220
+00:13:57.758 --> 00:14:00.720
+You'll learn what Gate 7 runs and reports,
+
+221
+00:14:00.720 --> 00:14:04.672
+export closed findings as
+Book 13's evidence records,
+
+222
+00:14:04.672 --> 00:14:10.030
+chain one period to the next, and verify
+the package the way an ISSO would.

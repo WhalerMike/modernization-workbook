@@ -1,0 +1,79 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.663
+Read the guide's Step 4.
+
+2
+00:00:01.663 --> 00:00:03.801
+It sets six rules for this gate.
+
+3
+00:00:03.801 --> 00:00:06.025
+One automatic policy per package.
+
+4
+00:00:06.025 --> 00:00:07.063
+No member-of.
+
+5
+00:00:07.063 --> 00:00:11.762
+A grace period for movers, so a move
+doesn't cut someone off mid-handover.
+
+6
+00:00:11.762 --> 00:00:14.612
+Manager approval, with
+a fallback approver.
+
+7
+00:00:14.612 --> 00:00:17.013
+The mover workflow's residual review.
+
+8
+00:00:17.013 --> 00:00:20.074
+And privileged access kept
+out of rules altogether.
+
+9
+00:00:20.074 --> 00:00:21.287
+Why no member-of?
+
+10
+00:00:21.287 --> 00:00:24.578
+From November 3, 2026,
+Learn quarantines an
+
+11
+00:00:24.578 --> 00:00:28.338
+automatic assignment
+policy whose rule uses it.
+
+12
+00:00:28.338 --> 00:00:33.275
+The policy stays, but it adds and removes
+nothing until the operator is removed,
+
+13
+00:00:33.275 --> 00:00:37.149
+and Learn publishes a read-only
+script to find those policies.
+
+14
+00:00:37.149 --> 00:00:42.493
+Then read the design in the Federal
+Modernization Workbook's Book 03's Chapter 10:
+
+15
+00:00:42.493 --> 00:00:46.082
+its rule patterns, access
+packages and access reviews,
+
+16
+00:00:46.082 --> 00:00:48.475
+and where dynamic membership stops.
+
+17
+00:00:48.475 --> 00:00:51.600
+Its Chapter 08 says
+what a move must start.

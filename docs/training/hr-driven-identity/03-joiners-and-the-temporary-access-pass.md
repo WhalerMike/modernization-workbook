@@ -13,6 +13,8 @@ series-order: 3
 
 *Part of the [HR-Driven Identity learning path](index.md). Gate G3 Joiners. Workbook [Chapter 03](../../project-plans/developer-workbooks/hr-driven-identity/03-joiner-workflows-as-code.md). About 50 minutes.*
 
+**Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-hr-module-3) (the deck files come with the next edition) · [▶ Watch](../../presentations/watch.html?v=Training_HR_Module_3_Narrated) (about 13 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_HR_Module_3_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-hr-module-3/Training_HR_Module_3_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-hr-module-3/Training_HR_Module_3_Narrated.vtt).
+
 ## Introduction (3 minutes)
 
 The pipeline sends a new hire's account early, disabled. On the first morning, that person needs an enabled account, a license, baseline access and a way to sign in before their PIV card is bound. Lifecycle Workflows can do all of that, but each workflow is a definition someone can change in the portal, and Learn makes every change a new version rather than an in-place update.

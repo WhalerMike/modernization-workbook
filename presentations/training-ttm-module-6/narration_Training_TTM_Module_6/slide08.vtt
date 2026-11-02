@@ -1,0 +1,72 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.563
+Chapter 05 adds two things.
+
+2
+00:00:02.563 --> 00:00:03.800
+The first is a guard.
+
+3
+00:00:03.800 --> 00:00:08.188
+The client already skipped a record whose
+intended state was completely empty.
+
+4
+00:00:08.188 --> 00:00:12.039
+But it didn't skip one that was a
+non-empty object naming nothing,
+
+5
+00:00:12.039 --> 00:00:16.113
+with empty attributes and an empty
+list of entitlements to remove.
+
+6
+00:00:16.113 --> 00:00:19.029
+That's exactly what the
+script stores for a native
+
+7
+00:00:19.029 --> 00:00:22.088
+change the workflow didn't
+describe, the Module 5 gap.
+
+8
+00:00:22.088 --> 00:00:24.736
+Comparing any read with it always matches,
+
+9
+00:00:24.736 --> 00:00:29.050
+so the client would have closed that
+record, with evidence, on nothing.
+
+10
+00:00:29.050 --> 00:00:33.440
+Now, before reading anything, the
+client checks the intended state, and a
+
+11
+00:00:33.440 --> 00:00:38.350
+record that names nothing checkable is
+skipped with the reason, never verified.
+
+12
+00:00:38.350 --> 00:00:40.425
+The second is an offline mode.
+
+13
+00:00:40.425 --> 00:00:44.124
+It takes saved waiting records,
+saved reads and a fixed clock,
+
+14
+00:00:44.124 --> 00:00:47.675
+and makes the same decisions
+with only the reader swapped.
+
+15
+00:00:47.675 --> 00:00:51.380
+It's a dry run only; the
+apply option is refused.

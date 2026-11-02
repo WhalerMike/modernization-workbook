@@ -1,0 +1,68 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.350
+Read the guide's Step 3,
+and notice three things.
+
+2
+00:00:03.350 --> 00:00:05.275
+First, the workflow budget.
+
+3
+00:00:05.275 --> 00:00:09.772
+Learn gives two tenant ceilings:
+fifty workflows on its licensing page,
+
+4
+00:00:09.772 --> 00:00:12.288
+and a hundred on its service limits page.
+
+5
+00:00:12.288 --> 00:00:17.637
+The guide budgets to fifty until Microsoft
+reconciles them; that's design guidance.
+
+6
+00:00:17.637 --> 00:00:20.224
+Second, the Temporary Access Pass.
+
+7
+00:00:20.224 --> 00:00:23.562
+The tenant allows a pass from
+ten minutes to thirty days,
+
+8
+00:00:23.562 --> 00:00:27.988
+but Learn recommends at most twenty-four
+hours for a pass sent to a new hire.
+
+9
+00:00:27.988 --> 00:00:31.277
+Third, baseline access
+comes by access package,
+
+10
+00:00:31.277 --> 00:00:34.313
+never by adding the user
+to a group directly.
+
+11
+00:00:34.313 --> 00:00:39.834
+Then read the design in the Federal
+Modernization Workbook's Book 03's Chapter 08:
+
+12
+00:00:39.834 --> 00:00:44.037
+its guardrails at agency scale,
+and its triggers and schedule.
+
+13
+00:00:44.037 --> 00:00:47.160
+And keep Module 1's rule
+in mind: in this program,
+
+14
+00:00:47.160 --> 00:00:51.980
+the pipeline's active value enables
+the account at hire, not a workflow.

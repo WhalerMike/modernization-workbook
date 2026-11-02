@@ -1,0 +1,72 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.775
+Two kinds of read need care.
+
+2
+00:00:01.775 --> 00:00:03.350
+First, a stale read.
+
+3
+00:00:03.350 --> 00:00:07.912
+An ISC read reflects the last
+aggregation, not the source right now.
+
+4
+00:00:07.912 --> 00:00:11.565
+So if the read is older than the
+time the finding started waiting,
+
+5
+00:00:11.565 --> 00:00:12.875
+it can't show the fix yet.
+
+6
+00:00:12.875 --> 00:00:16.224
+The client calls it pending,
+and waits for a grace period,
+
+7
+00:00:16.224 --> 00:00:19.500
+twenty-four hours by default,
+which is design guidance.
+
+8
+00:00:19.500 --> 00:00:24.013
+After the grace period, a read that
+still disagrees is a mismatch.
+
+9
+00:00:24.013 --> 00:00:28.723
+Tune the grace period to the longest
+aggregation interval on your sources,
+
+10
+00:00:28.723 --> 00:00:32.750
+and record the setting; how long
+the lag really is wasn't verified.
+
+11
+00:00:32.750 --> 00:00:34.500
+Second, a missing read.
+
+12
+00:00:34.500 --> 00:00:37.925
+A subject nobody read must
+never count as a match.
+
+13
+00:00:37.925 --> 00:00:41.987
+In offline mode, a subject with
+no saved read is an error.
+
+14
+00:00:41.987 --> 00:00:45.650
+The live reader raises
+on anything but a 404.
+
+15
+00:00:45.650 --> 00:00:49.060
+And a saved read of null
+means the read found nothing.

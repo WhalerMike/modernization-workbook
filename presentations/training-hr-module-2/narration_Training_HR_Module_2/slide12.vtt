@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:06.313
+Lab 2 runs the gate in your own test tenant,
+worldwide or G C C, never production.
+
+2
+00:00:06.313 --> 00:00:08.637
+Set up a contractor provisioning app.
+
+3
+00:00:08.637 --> 00:00:12.256
+Send two test contractors through
+the middleware's apply path,
+
+4
+00:00:12.256 --> 00:00:14.275
+then reconcile against the tenant.
+
+5
+00:00:14.275 --> 00:00:17.742
+And apply the review settings
+to a test contractor package;
+
+6
+00:00:17.742 --> 00:00:21.775
+the chapter names the cmdlet and
+permission for updating the policy.
+
+7
+00:00:21.775 --> 00:00:25.782
+The middleware's identity holds
+one permission, the synchronization
+
+8
+00:00:25.782 --> 00:00:29.650
+upload permission, scoped to the
+contractor provisioning app only.
+
+9
+00:00:29.650 --> 00:00:34.588
+The reader app holds User dot Read dot
+All and the lifecycle information read.
+
+10
+00:00:34.588 --> 00:00:39.416
+To back it out, restore the policy's previous
+review settings from your read-back,
+
+11
+00:00:39.416 --> 00:00:44.173
+pause the provisioning job, which keeps
+its state, delete the test contractors,
+
+12
+00:00:44.173 --> 00:00:48.124
+remove the permissions, and delete
+the export and output folders.
+
+13
+00:00:48.124 --> 00:00:50.330
+The authors haven't run Lab 2.

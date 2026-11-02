@@ -13,6 +13,8 @@ series-order: 6
 
 *Part of the [HR-Driven Identity learning path](index.md). Gate G6 Separation. Workbook [Chapter 06](../../project-plans/developer-workbooks/hr-driven-identity/06-separation-timing.md). About 45 minutes.*
 
+**Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-hr-module-6) (the deck files come with the next edition) · [▶ Watch](../../presentations/watch.html?v=Training_HR_Module_6_Narrated) (about 13 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_HR_Module_6_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-hr-module-6/Training_HR_Module_6_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-hr-module-6/Training_HR_Module_6_Narrated.vtt).
+
 ## Introduction (3 minutes)
 
 When a person separates, your ISSO has to show that access was blocked within the approved interval and the credential was revoked. No Microsoft report gives that number. Lifecycle Workflows records that a run completed, the audit log records when the account was disabled, and the card system and Intune record the rest, each in its own place.
@@ -182,7 +184,7 @@ rm -rf out
 
 ## Summary (2 minutes)
 
-You measured nine separations, found the ones that blocked late, never blocked, were re-enabled, failed or were deleted too early, and produced the percentiles Module 7 reports.
+You measured seven separations and a cancellation, found the ones that blocked late, never blocked, were re-enabled, failed or were deleted too early, and produced the percentiles Module 7 reports.
 
 **The evidence an ISSO keeps** for Gate 6: `intervals.csv`, `summary.json` and `findings.json` with the manifest, per run, and the exported workflow runs, audit records, card revocations and device actions behind them; the contractor rows of the intervals; the notice and revocation timestamps for uncollected cards; and the emergency path's on-demand runs, logged as changes. The full list is in the workbook's [Federal requirements and evidence](../../project-plans/developer-workbooks/hr-driven-identity/06-separation-timing.md#federal-requirements-and-evidence).
 

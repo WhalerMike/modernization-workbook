@@ -1,0 +1,60 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.400
+Here's the first gap.
+
+2
+00:00:01.400 --> 00:00:06.097
+SailPoint's Native Change Account
+Updated input has three kinds of change:
+
+3
+00:00:06.097 --> 00:00:10.566
+single-value attribute changes,
+entitlement changes, and multivalued
+
+4
+00:00:10.566 --> 00:00:15.263
+attribute changes, each with a name,
+the values added and the values removed.
+
+5
+00:00:15.263 --> 00:00:18.374
+The workflow sent the first
+two, but not the third.
+
+6
+00:00:18.374 --> 00:00:21.501
+So a native change only to
+a multivalued attribute,
+
+7
+00:00:21.501 --> 00:00:25.744
+say a proxy address added out of
+band, produced an intended state with
+
+8
+00:00:25.744 --> 00:00:29.912
+nothing in it, and a re-read would
+have found nothing to disagree with.
+
+9
+00:00:29.912 --> 00:00:32.913
+That's exactly the story from
+the start of this module.
+
+10
+00:00:32.913 --> 00:00:37.596
+Now the workflow sends the multivalued
+changes, and the script reverts them:
+
+11
+00:00:37.596 --> 00:00:42.651
+values that were added must be absent, and
+values that were removed must be present.
+
+12
+00:00:42.651 --> 00:00:47.380
+Each fix went into the workflow or
+script, the Python mirror, and a test.

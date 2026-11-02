@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.437
+The federal requirement.
+
+2
+00:00:01.437 --> 00:00:06.260
+This gate meets NIST special publication
+eight hundred fifty-three A C two,
+
+3
+00:00:06.260 --> 00:00:09.838
+enhancement one, automated
+system account management.
+
+4
+00:00:09.838 --> 00:00:14.529
+It meets I A five: the initial
+authenticator is time-limited, and goes to
+
+5
+00:00:14.529 --> 00:00:19.301
+an accountable person; that's the short,
+one-time pass sent to the manager.
+
+6
+00:00:19.301 --> 00:00:25.074
+And it meets O M B M-22-09's
+phishing-resistant multifactor authentication,
+
+7
+00:00:25.074 --> 00:00:29.725
+which the Temporary Access Pass
+bridges to until the PIV card is bound.
+
+8
+00:00:29.725 --> 00:00:34.610
+The evidence an ISSO keeps for Gate
+3: the reviewed workflow files,
+
+9
+00:00:34.610 --> 00:00:38.862
+and the plan that changed each
+version, with its manifest.
+
+10
+00:00:38.862 --> 00:00:42.236
+The lint's clean run, showing
+a one-time pass of at most
+
+11
+00:00:42.236 --> 00:00:46.787
+twenty-four hours and an execution
+limit on every scheduled workflow.
+
+12
+00:00:46.787 --> 00:00:49.275
+The readiness summary for each start date.
+
+13
+00:00:49.275 --> 00:00:53.980
+And the workflows' run history,
+exported past Entra's thirty-day view.

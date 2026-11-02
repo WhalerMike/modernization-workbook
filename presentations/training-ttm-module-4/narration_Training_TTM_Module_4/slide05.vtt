@@ -1,0 +1,60 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.173
+Here are Book 03's drift classes,
+
+2
+00:00:02.173 --> 00:00:06.500
+the ones the finding contract
+carries, and what the kit computes.
+
+3
+00:00:06.500 --> 00:00:10.763
+Missing identity: an active HR
+record with no matching account.
+
+4
+00:00:10.763 --> 00:00:15.225
+Stale access: terminated in
+HR, enabled in the directory.
+
+5
+00:00:15.225 --> 00:00:19.488
+Orphan account: an enabled account
+with no known employee I D.
+
+6
+00:00:19.488 --> 00:00:22.363
+Those three are High, and
+the kit computes them.
+
+7
+00:00:22.363 --> 00:00:27.225
+Attribute drift is Medium, and the
+kit compares department and manager.
+
+8
+00:00:27.225 --> 00:00:31.613
+Unauthorized write, a write by
+anyone but the provisioning service,
+
+9
+00:00:31.613 --> 00:00:35.688
+is High, and it's computed only
+when the run reads the Entra audit.
+
+10
+00:00:35.688 --> 00:00:40.069
+Credential drift and schema drift
+are always reported as not computed,
+
+11
+00:00:40.069 --> 00:00:44.301
+because they need the card system,
+Intune and the middleware's output.
+
+12
+00:00:44.301 --> 00:00:48.480
+The severities are the program's
+defaults, not an external standard.

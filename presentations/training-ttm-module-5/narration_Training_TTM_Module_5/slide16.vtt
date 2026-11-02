@@ -1,0 +1,65 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.875
+To sum up.
+
+2
+00:00:00.875 --> 00:00:05.769
+You saw the exact payload each ISC
+workflow sends, and the intended state
+
+3
+00:00:05.769 --> 00:00:10.662
+each finding carries: a native change
+reverted, an attribute change kept.
+
+4
+00:00:10.662 --> 00:00:15.565
+You saw the two fixes that keep a finding
+from reaching the re-read with nothing to
+
+5
+00:00:15.565 --> 00:00:18.565
+check: multivalued changes
+now sent and reverted,
+
+6
+00:00:18.565 --> 00:00:21.199
+and the attribute in
+the de-duplication key.
+
+7
+00:00:21.199 --> 00:00:23.934
+And you confirmed that
+a closure signal moves a
+
+8
+00:00:23.934 --> 00:00:27.088
+finding to Awaiting verification
+but never closes it.
+
+9
+00:00:27.088 --> 00:00:30.762
+Before shipping, work through
+the Chapter 04 checklist.
+
+10
+00:00:30.762 --> 00:00:36.217
+Next is Module 6, actuation and the
+re-read rule: how Gate 5 actuates by lane,
+
+11
+00:00:36.217 --> 00:00:39.307
+and how Gate 6 closes
+a finding only when a
+
+12
+00:00:39.307 --> 00:00:42.762
+re-read of the target
+shows the intended state.
+
+13
+00:00:42.762 --> 00:00:47.060
+You'll watch the re-read client decide
+six waiting findings on two days.

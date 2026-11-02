@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.437
+The federal requirement.
+
+2
+00:00:01.437 --> 00:00:06.353
+This gate meets NIST special publication
+eight hundred fifty-three A C two,
+
+3
+00:00:06.353 --> 00:00:11.426
+account management, and I A four, identifier
+management, through the register.
+
+4
+00:00:11.426 --> 00:00:13.494
+And it meets A U six, audit review,
+
+5
+00:00:13.494 --> 00:00:18.587
+by reviewing writes made outside the
+named writer, which is what the scan does.
+
+6
+00:00:18.587 --> 00:00:23.487
+The guide's Gate 1 requirements table and
+the workbook chapter carry the details.
+
+7
+00:00:23.487 --> 00:00:27.112
+The evidence an ISSO keeps for
+Gate 1: the signed register,
+
+8
+00:00:27.112 --> 00:00:30.658
+with its lifecycle rows and
+the versioned scope filter;
+
+9
+00:00:30.658 --> 00:00:34.282
+the output of the register
+check; the scan's output folder,
+
+10
+00:00:34.282 --> 00:00:39.678
+with its manifest and the saved queries;
+and the Active Directory auditing settings,
+
+11
+00:00:39.678 --> 00:00:41.451
+which this code doesn't read,
+
+12
+00:00:41.451 --> 00:00:45.140
+because writes in Active
+Directory never reach the scan.

@@ -1,0 +1,68 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.650
+Where do the due dates come from?
+
+2
+00:00:01.650 --> 00:00:04.512
+Book 13's severity and tempo table.
+
+3
+00:00:04.512 --> 00:00:07.669
+A P one, critical, isn't
+fixed by a machine:
+
+4
+00:00:07.669 --> 00:00:11.613
+the run halts and alerts,
+and a named role decides.
+
+5
+00:00:11.613 --> 00:00:13.450
+Its window is immediate.
+
+6
+00:00:13.450 --> 00:00:16.488
+P two, high, has a one-hour window.
+
+7
+00:00:16.488 --> 00:00:19.350
+P three, medium, twenty-four hours.
+
+8
+00:00:19.350 --> 00:00:22.488
+And P four, low, seventy-two hours.
+
+9
+00:00:22.488 --> 00:00:26.126
+The script turns those windows
+into each record's due date.
+
+10
+00:00:26.126 --> 00:00:27.288
+Two cautions.
+
+11
+00:00:27.288 --> 00:00:32.450
+These are the program's internal windows,
+program design, not a federal requirement.
+
+12
+00:00:32.450 --> 00:00:35.175
+They bound the response,
+not the occurrence.
+
+13
+00:00:35.175 --> 00:00:37.878
+And they don't replace external timelines:
+
+14
+00:00:37.878 --> 00:00:42.513
+where a CISA directive sets a shorter
+clock, the external clock governs.
+
+15
+00:00:42.513 --> 00:00:48.220
+Book 13 also notes that a program with no
+findings is more likely blind than clean.

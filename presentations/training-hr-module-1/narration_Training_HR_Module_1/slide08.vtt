@@ -1,0 +1,72 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.013
+Two limits.
+
+2
+00:00:01.013 --> 00:00:03.062
+First, what the scan can't see.
+
+3
+00:00:03.062 --> 00:00:06.337
+For synced users, a write
+made in Active Directory
+
+4
+00:00:06.337 --> 00:00:09.612
+never reaches the Entra
+audit log this scan reads.
+
+5
+00:00:09.612 --> 00:00:12.813
+Only Active Directory's own
+change auditing sees it.
+
+6
+00:00:12.813 --> 00:00:17.395
+The guide's interim path covers that:
+it names the sync agent as a writer in
+
+7
+00:00:17.395 --> 00:00:22.437
+the register, and reviews the access
+control lists on the organizational units.
+
+8
+00:00:22.437 --> 00:00:24.763
+Second, what the scan can't confirm.
+
+9
+00:00:24.763 --> 00:00:29.562
+To match an Update user record, the
+register names the property that changed.
+
+10
+00:00:29.562 --> 00:00:33.924
+Learn doesn't document those names,
+so each one is the program's reading.
+
+11
+00:00:33.924 --> 00:00:37.513
+If a name is wrong, the scan
+reports nothing for that value,
+
+12
+00:00:37.513 --> 00:00:40.337
+and silence looks exactly
+like a clean month.
+
+13
+00:00:40.337 --> 00:00:43.712
+That's why Lab 2 matters more
+here than in most modules.
+
+14
+00:00:43.712 --> 00:00:46.430
+Confirm every property name against a real
+
+15
+00:00:46.430 --> 00:00:49.510
+audit record before the
+scan counts as evidence.

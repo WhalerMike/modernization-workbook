@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.963
+Here's what you'll be able to
+do by the end of the module.
+
+2
+00:00:02.963 --> 00:00:06.400
+You'll describe the leaver
+order: block first,
+
+3
+00:00:06.400 --> 00:00:10.024
+revoke in parallel,
+reconcile, and dispose last.
+
+4
+00:00:10.024 --> 00:00:14.072
+You'll define separation-to-block
+and separation-to-revocation,
+
+5
+00:00:14.072 --> 00:00:16.363
+and say which records each one reads.
+
+6
+00:00:16.363 --> 00:00:20.975
+You'll run the measurement and explain its
+findings, including the catch-up window.
+
+7
+00:00:20.975 --> 00:00:23.290
+And you'll explain why
+the tenant's workflow
+
+8
+00:00:23.290 --> 00:00:25.863
+schedule belongs inside
+the approved interval.
+
+9
+00:00:25.863 --> 00:00:28.513
+This module builds on three earlier ones.
+
+10
+00:00:28.513 --> 00:00:31.396
+Module 1: the pipeline
+sends active false no
+
+11
+00:00:31.396 --> 00:00:34.200
+later than the leaver
+workflow's first run.
+
+12
+00:00:34.200 --> 00:00:38.437
+Module 3: the leaver and
+post-separation workflow files.
+
+13
+00:00:38.437 --> 00:00:43.820
+And Module 5: a card's revocation reaches
+sign-in through the revocation list.

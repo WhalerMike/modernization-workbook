@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:06.400
+Lab 1 runs on a laptop, in the kit's
+servicenow-sailpoint folder, with no tenant.
+
+3
+00:00:06.400 --> 00:00:09.975
+Step one runs the chapter's
+tests: eleven pass.
+
+4
+00:00:09.975 --> 00:00:15.219
+Step two resolves the native-change workflow
+against Alice's fictional event, where
+
+5
+00:00:15.219 --> 00:00:20.163
+her title was changed to Director, a group
+was added, and a proxy address was added.
+
+6
+00:00:20.163 --> 00:00:22.125
+Read the output line by line.
+
+7
+00:00:22.125 --> 00:00:26.112
+It's a finding, an unauthorized
+write on the ISC account.
+
+8
+00:00:26.112 --> 00:00:29.143
+The intended state puts
+the title back to Analyst,
+
+9
+00:00:29.143 --> 00:00:33.725
+and says the proxy address and the
+Payables Approvers group must be absent.
+
+10
+00:00:33.725 --> 00:00:39.212
+The contract accepts it at priority 2,
+with a key of source, account and class.
+
+11
+00:00:39.212 --> 00:00:42.166
+And the only input field
+not sent is the event type,
+
+12
+00:00:42.166 --> 00:00:46.850
+which is always account updated for this
+trigger, so dropping it loses nothing.
+
+13
+00:00:46.850 --> 00:00:50.140
+Before the fix, the proxy
+address was missing here.

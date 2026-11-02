@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.975
+Lab 2 runs the client live.
+
+2
+00:00:01.975 --> 00:00:06.064
+You need a test Entra tenant
+in the worldwide or GCC cloud,
+
+3
+00:00:06.064 --> 00:00:10.413
+a SailPoint sandbox, and synthetic
+HR data like the fixtures.
+
+4
+00:00:10.413 --> 00:00:13.925
+Grant the read permissions from
+Module 2, and nothing more.
+
+5
+00:00:13.925 --> 00:00:17.598
+Write a synthetic HR extract
+that matches your test users,
+
+6
+00:00:17.598 --> 00:00:22.725
+run the client against the tenant and the
+sandbox on two days, and compare the runs.
+
+7
+00:00:22.725 --> 00:00:24.400
+Push nothing to ServiceNow.
+
+8
+00:00:24.400 --> 00:00:28.057
+Two things the fixtures can't
+prove are on the verify list:
+
+9
+00:00:28.057 --> 00:00:32.025
+the manager expansion, and
+SailPoint's employee I D attribute.
+
+10
+00:00:32.025 --> 00:00:36.810
+Back it out in step five: delete the
+output folder, the synthetic extract,
+
+11
+00:00:36.810 --> 00:00:42.162
+the app registration's permissions and
+certificate, and the sandbox API client.
+
+12
+00:00:42.162 --> 00:00:46.920
+The authors haven't run Lab
+2; follow Chapter 06's Lab 2.

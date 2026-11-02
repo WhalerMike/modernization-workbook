@@ -1,0 +1,55 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.865
+Here's what you'll be able to
+do by the end of this module,
+
+2
+00:00:02.865 --> 00:00:05.488
+which takes about forty-five
+minutes with the lab.
+
+3
+00:00:05.488 --> 00:00:10.575
+You'll describe the three ISC workflows
+and what each event becomes in ServiceNow.
+
+4
+00:00:10.575 --> 00:00:14.400
+You'll resolve a workflow's body
+against a saved trigger input,
+
+5
+00:00:14.400 --> 00:00:18.525
+and read the payload, the intended
+state and the de-duplication key.
+
+6
+00:00:18.525 --> 00:00:22.637
+You'll explain the two gaps the
+tool found, and how each was fixed.
+
+7
+00:00:22.637 --> 00:00:26.212
+And you'll verify that a closure
+signal never closes a finding.
+
+8
+00:00:26.212 --> 00:00:28.644
+Before you start, finish Module 4,
+
+9
+00:00:28.644 --> 00:00:33.237
+and review the identity finding
+contract from Module 1, Unit 3.
+
+10
+00:00:33.237 --> 00:00:37.700
+Lab 1 needs only the kit, Python
+and Node, with no tenant.
+
+11
+00:00:37.700 --> 00:00:42.720
+Lab 2 needs a SailPoint sandbox tenant
+and a ServiceNow developer instance.

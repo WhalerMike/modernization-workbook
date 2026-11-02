@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:06.337
+Lab 1 runs in the hr-lifecycle folder,
+and nothing signs in or sends a request.
+
+3
+00:00:06.337 --> 00:00:08.900
+Step one lists two tasks' reads.
+
+4
+00:00:08.900 --> 00:00:11.160
+The plan needs only one permission,
+
+5
+00:00:11.160 --> 00:00:15.525
+the Lifecycle Workflows workflow
+read, for one GET on the workflows.
+
+6
+00:00:15.525 --> 00:00:19.766
+Readiness needs four permissions,
+for three GET calls: the users,
+
+7
+00:00:19.766 --> 00:00:24.888
+each workflow's user processing results,
+and the access package assignments.
+
+8
+00:00:24.888 --> 00:00:29.749
+Step two lints the program's own six
+workflow files with a budget of fifty.
+
+9
+00:00:29.749 --> 00:00:33.900
+Zero findings, zero warnings,
+zero information items.
+
+10
+00:00:33.900 --> 00:00:38.583
+That's the clean run an ISSO keeps:
+it shows a one-time pass of at most
+
+11
+00:00:38.583 --> 00:00:43.680
+twenty-four hours, and an execution
+limit on every scheduled workflow.

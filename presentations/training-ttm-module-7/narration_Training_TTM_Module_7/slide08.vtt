@@ -1,0 +1,74 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.025
+The export packages the
+period in three files.
+
+2
+00:00:03.025 --> 00:00:08.878
+Records dot J S O N L holds one record
+per line, and each line carries the
+
+3
+00:00:08.878 --> 00:00:15.450
+SHA-256 of the line before it, so a removed
+or reordered record breaks the chain.
+
+4
+00:00:15.450 --> 00:00:18.094
+Summary dot JSON holds window adherence,
+
+5
+00:00:18.094 --> 00:00:21.987
+the count of declared exceptions
+and the records with problems.
+
+6
+00:00:21.987 --> 00:00:27.313
+And the manifest holds a SHA-256
+for each file and the chain head.
+
+7
+00:00:27.313 --> 00:00:31.974
+The previous-manifest option continues
+last period's chain into this one.
+
+8
+00:00:31.974 --> 00:00:34.855
+The generated-at option
+fixes the timestamp,
+
+9
+00:00:34.855 --> 00:00:37.813
+so the same records always
+give the same bytes.
+
+10
+00:00:37.813 --> 00:00:41.799
+And verify-dir recomputes
+every hash and walks the chain.
+
+11
+00:00:41.799 --> 00:00:45.637
+That's the check an ISSO runs
+on a package they receive.
+
+12
+00:00:45.637 --> 00:00:49.388
+One caution: the package is
+tamper-evident, not signed.
+
+13
+00:00:49.388 --> 00:00:54.125
+Anyone who can rewrite every file and
+the manifest can rewrite the chain.
+
+14
+00:00:54.125 --> 00:00:58.852
+So, as design guidance, keep each
+manifest where the exporter can't write,
+
+15
+00:00:58.852 --> 00:01:01.220
+and sign it if the program requires.

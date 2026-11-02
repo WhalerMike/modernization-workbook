@@ -1,0 +1,68 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.825
+On the ServiceNow side, a Scripted
+REST script receives every post.
+
+2
+00:00:04.825 --> 00:00:08.641
+It validates the payload, sets
+the priority and the due date,
+
+3
+00:00:08.641 --> 00:00:11.288
+and de-duplicates against open findings.
+
+4
+00:00:11.288 --> 00:00:15.340
+When the payload carries no
+intended state, it derives one:
+
+5
+00:00:15.340 --> 00:00:19.225
+a native change is reverted,
+an attribute change is kept.
+
+6
+00:00:19.225 --> 00:00:21.630
+And on a successful provisioning signal,
+
+7
+00:00:21.630 --> 00:00:24.813
+it moves matching findings
+to Awaiting verification.
+
+8
+00:00:24.813 --> 00:00:28.712
+The guide's Gate 4 validation
+lists what the kit already checks.
+
+9
+00:00:28.712 --> 00:00:33.561
+The contract test checks the workflow
+file's shape, that it holds no secrets,
+
+10
+00:00:33.561 --> 00:00:37.237
+and that every field its bodies
+send is read by the script.
+
+11
+00:00:37.237 --> 00:00:40.294
+The Node tests check
+priority and due date,
+
+12
+00:00:40.294 --> 00:00:43.700
+de-duplication, and that
+a bad payload gets a 400.
+
+13
+00:00:43.700 --> 00:00:46.117
+But none of it showed the payload itself,
+
+14
+00:00:46.117 --> 00:00:50.570
+because SailPoint resolves the body's
+dollar keys at run time, in a tenant.

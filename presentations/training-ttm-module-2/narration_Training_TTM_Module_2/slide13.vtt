@@ -1,0 +1,60 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.725
+What does the boundary look
+like on the Marketplace?
+
+2
+00:00:02.725 --> 00:00:07.339
+Read on November 1, 2026:
+ServiceNow's Government Community
+
+3
+00:00:07.339 --> 00:00:11.200
+Cloud is FedRAMP certified
+at High, on the JAB path.
+
+4
+00:00:11.200 --> 00:00:14.870
+ServiceNow's commercial cloud
+has no listing of its own,
+
+5
+00:00:14.870 --> 00:00:16.625
+and some agencies run on it.
+
+6
+00:00:16.625 --> 00:00:21.813
+SailPoint Identity Security Cloud is
+certified at Moderate, on the agency path.
+
+7
+00:00:21.813 --> 00:00:26.674
+And IdentityIQ, the self-hosted
+product, has no listing of its own.
+
+8
+00:00:26.674 --> 00:00:30.102
+The interim path: on
+ServiceNow's commercial cloud,
+
+9
+00:00:30.102 --> 00:00:35.896
+the authorizing official decides whether
+identity tasks may run there before a move,
+
+10
+00:00:35.896 --> 00:00:39.487
+and, as design guidance,
+payloads stay to identifiers.
+
+11
+00:00:39.487 --> 00:00:44.530
+Where a feature's presence in SailPoint's
+authorized environment is unconfirmed,
+
+12
+00:00:44.530 --> 00:00:49.560
+build Gates 3 to 6 in the sandbox and hold
+production until SailPoint confirms it.

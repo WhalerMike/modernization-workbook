@@ -1,0 +1,707 @@
+{
+ "1": [
+  [
+   0.05,
+   8.387,
+   "Welcome to Module 4 of the H R-Driven Identity learning path: assign access from attributes, and review what a move leaves."
+  ],
+  [
+   8.438,
+   5.938,
+   "This is Gate 4, Access and movers, with Chapter 04 of the developer workbook."
+  ],
+  [
+   14.375,
+   4.638,
+   "Module 3 got a new hire ready on day one, with an onboarding package."
+  ],
+  [
+   19.012,
+   2.475,
+   "Department access comes from this gate."
+  ],
+  [
+   21.488,
+   11.95,
+   "In this module you'll lint access package assignment policies before they reach the tenant, scan the tenant's policies for the member-of operator, and list what a move leaves behind for the manager of record to review."
+  ],
+  [
+   33.438,
+   5.1,
+   "The code runs on your laptop, against a fictional population and a fictional mover."
+  ],
+  [
+   38.538,
+   5.312,
+   "It's illustrative: unit-tested against fixtures, not run against a lyve tenant."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.637,
+   "Why does this gate need checks?"
+  ],
+  [
+   1.688,
+   8.625,
+   "When H R moves a person to a new organization, a rule on the organization code should take away the old department's access and give the new one."
+  ],
+  [
+   10.312,
+   3.688,
+   "Automatic assignment policies in entitlement management do that."
+  ],
+  [
+   14.0,
+   3.1,
+   "But a rule can be wrong in ways the portal won't tell you."
+  ],
+  [
+   17.1,
+   3.75,
+   "Two policies on one package can both match the same user."
+  ],
+  [
+   20.85,
+   1.9,
+   "A rule can read a display name."
+  ],
+  [
+   22.75,
+   6.475,
+   "Or a rule can use the member-of operator, which Learn quarantines from November 3, 2026."
+  ],
+  [
+   29.225,
+   3.5,
+   "And no rule can see access the person was given by hand."
+  ],
+  [
+   32.725,
+   12.137,
+   "So in this module, the lint catches the first three before a policy reaches the tenant, a scan finds member-of in the tenant's existing policies, and the residual review lists what a move leaves behind."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   5.175,
+   "Here's what you'll be able to do by the end of this module, which takes about fifty minutes with the lab."
+  ],
+  [
+   5.225,
+   6.463,
+   "You'll explain why each access package gets one automatic policy, and why no rule uses member-of."
+  ],
+  [
+   11.688,
+   7.85,
+   "You'll run the policy lint over a population, and explain three of its rules: A A oh one, oh two and oh nine."
+  ],
+  [
+   19.538,
+   4.1,
+   "You'll run the member-of scan on an export of the tenant's policies."
+  ],
+  [
+   23.637,
+   6.638,
+   "And you'll list a mover's residual access, classify each item, and read the transfer-to-review interval."
+  ],
+  [
+   30.275,
+   1.738,
+   "Two modules come first."
+  ],
+  [
+   32.013,
+   5.225,
+   "From Module 1: a move reaches the directory through the pipeline, never by hand."
+  ],
+  [
+   37.237,
+   7.0,
+   "From Module 3: the day-one workflow requests the onboarding package, and department access comes from this gate."
+  ],
+  [
+   44.237,
+   7.125,
+   "Lab 2 needs a worldwide or G C C test tenant with Entra I D Governance trial or test licenses."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   1.613,
+   "Read the guide's Step 4."
+  ],
+  [
+   1.663,
+   2.138,
+   "It sets six rules for this gate."
+  ],
+  [
+   3.8,
+   2.225,
+   "One automatic policy per package."
+  ],
+  [
+   6.025,
+   1.038,
+   "No member-of."
+  ],
+  [
+   7.062,
+   4.7,
+   "A grace period for movers, so a move doesn't cut someone off mid-handover."
+  ],
+  [
+   11.762,
+   2.85,
+   "Manager approval, with a fallback approver."
+  ],
+  [
+   14.613,
+   2.4,
+   "The mover workflow's residual review."
+  ],
+  [
+   17.012,
+   3.062,
+   "And privileged access kept out of rules altogether."
+  ],
+  [
+   20.075,
+   1.212,
+   "Why no member-of?"
+  ],
+  [
+   21.288,
+   7.05,
+   "From November 3, 2026, Learn quarantines an automatic assignment policy whose rule uses it."
+  ],
+  [
+   28.337,
+   8.812,
+   "The policy stays, but it adds and removes nothing until the operator is removed, and Learn publishes a read-only script to find those policies."
+  ],
+  [
+   37.15,
+   11.325,
+   "Then read the design in the Federal Modernization Workbook's Book 03's Chapter 10: its rule patterns, access packages and access reviews, and where dynamic membership stops."
+  ],
+  [
+   48.475,
+   3.075,
+   "Its Chapter 08 says what a move must start."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   4.95,
+   "Here are the program's policy files, kept as reviewed version one point oh bodies."
+  ],
+  [
+   5.0,
+   3.087,
+   "Two are automatic policies, one per package."
+  ],
+  [
+   8.088,
+   10.65,
+   "Program Operations matches organization code O R G one hundred, and Infrastructure Services matches O R G two ten, each for employees and contractors."
+  ],
+  [
+   18.738,
+   8.688,
+   "Each one both creates assignments when a user enters scope and removes them when the user leaves it, with a seven-day grace period before removal."
+  ],
+  [
+   27.425,
+   4.5,
+   "The third is a request policy for infrastructure administrator eligibility."
+  ],
+  [
+   31.925,
+   6.162,
+   "It's scoped to employees in O R G two ten, but it doesn't assign anything automatically."
+  ],
+  [
+   38.087,
+   2.812,
+   "It only decides who may request eligibility."
+  ],
+  [
+   40.9,
+   2.65,
+   "It's marked tier T one, privileged."
+  ],
+  [
+   43.55,
+   8.0,
+   "Notice that every rule is written on the codes H R owns, the organization code and the worker type, never on a department name."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   6.612,
+   "The lint has nine rules, and it checks each rule over a population of users, which is how it finds overlap."
+  ],
+  [
+   6.662,
+   2.587,
+   "A A oh one is a rule on member-of."
+  ],
+  [
+   9.25,
+   6.775,
+   "A A oh two is users who match more than one automatic policy on one package; they can lose access."
+  ],
+  [
+   16.025,
+   5.213,
+   "A A oh three is more identities in scope than Learn's fifteen thousand per policy."
+  ],
+  [
+   21.238,
+   4.463,
+   "A A oh four warns on a rule that reads no coded slot or worker type."
+  ],
+  [
+   25.7,
+   4.812,
+   "A A oh five is an automatic policy that doesn't both create and remove."
+  ],
+  [
+   30.512,
+   5.925,
+   "A A oh six warns on a grace period over the program's fourteen days, which is design guidance."
+  ],
+  [
+   36.438,
+   4.975,
+   "A A oh seven is a request policy without the manager and a fallback approver."
+  ],
+  [
+   41.413,
+   4.875,
+   "A A oh eight sends a rule the evaluator can't read to the dynamic-rules kit."
+  ],
+  [
+   46.288,
+   3.837,
+   "And A A oh nine is tier one access assigned by rule."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   4.375,
+   "The residual review classifies everything a mover holds after the move."
+  ],
+  [
+   4.425,
+   5.175,
+   "Take the lab's mover, from O R G one hundred to O R G two ten."
+  ],
+  [
+   9.6,
+   2.725,
+   "The new department's baseline is kept by rule."
+  ],
+  [
+   12.325,
+   6.775,
+   "The old department's baseline is removed by rule after the seven-day grace period, by October 26."
+  ],
+  [
+   19.1,
+   5.225,
+   "Groups that sit behind a package are package-managed, and a dynamic group is rule-managed."
+  ],
+  [
+   24.325,
+   2.112,
+   "None of those need a person to decide."
+  ],
+  [
+   26.438,
+   1.25,
+   "Two classes do."
+  ],
+  [
+   27.688,
+   5.438,
+   "Access the mover requested, here a grants reporting workspace, goes to review."
+  ],
+  [
+   33.125,
+   5.675,
+   "And groups held outside packages, by direct or nested assignment, go to review too."
+  ],
+  [
+   38.8,
+   4.312,
+   "Those are the items a rule can't see, and they go to the manager of record."
+  ],
+  [
+   43.112,
+   8.425,
+   "The time from the transfer to a finished review is P S five's metric, and R V oh two flags a review still open ten days after the move."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   5.562,
+   "Lab 1 runs in the hr-lifecycle folder, and nothing signs in or sends a request."
+  ],
+  [
+   6.338,
+   3.263,
+   "Step one lists the reads, and their permissions."
+  ],
+  [
+   9.6,
+   12.5,
+   "Three GET calls: the assignment policies and the assignments in entitlement management, which need EntitlementManagement dot Read dot All, and each user's transitive group memberships, which need User dot Read dot All."
+  ],
+  [
+   22.1,
+   4.05,
+   "Those are what the scan and the residual review read from a real tenant."
+  ],
+  [
+   26.15,
+   5.088,
+   "Step two lints the program's three policy files over the fixture population."
+  ],
+  [
+   31.238,
+   4.15,
+   "Zero findings, zero warnings, zero information items."
+  ],
+  [
+   35.388,
+   6.475,
+   "That clean run is part of the evidence an I S S O keeps, beside the hash of each body sent."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   6.25,
+   "Step three lints five broken policies: five findings and two warnings, and an exit code of two."
+  ],
+  [
+   6.3,
+   2.3,
+   "Find the three this module cares about."
+  ],
+  [
+   8.6,
+   5.325,
+   "A A oh one: a policy whose rule uses member-of, which will be quarantined."
+  ],
+  [
+   13.925,
+   8.45,
+   "A A oh two: two automatic policies on one package, and two users in the population match both, so they can lose access."
+  ],
+  [
+   22.375,
+   9.325,
+   "And A A oh nine: tier one administrator eligibility assigned by rule, when privileged access should be requested and activated through pim."
+  ],
+  [
+   31.7,
+   2.013,
+   "The slide trims the other four."
+  ],
+  [
+   33.712,
+   2.925,
+   "Step four turns from the files to the tenant."
+  ],
+  [
+   36.638,
+   9.088,
+   "The member-of scan reads an export of the tenant's assignment policies, four of them, and one still uses member-of: a legacy shared drives package."
+  ],
+  [
+   45.725,
+   5.7,
+   "That's the M S oh one finding, and the evidence you want is this scan with zero rows."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   2.625,
+   "Step five lists one mover's residual."
+  ],
+  [
+   2.675,
+   9.562,
+   "You give it the mover, the mover's assignments and group memberships, the program's policies, a moment, the first of November, the cloud and an output folder."
+  ],
+  [
+   12.238,
+   4.2,
+   "The mover holds eight items, and three go to the residual review."
+  ],
+  [
+   16.438,
+   10.95,
+   "Print the review sheet: one requested package, the grants reporting workspace, and two groups held outside packages, a legacy timekeeping approvers group and a finance share."
+  ],
+  [
+   27.387,
+   1.962,
+   "Those three are the warnings."
+  ],
+  [
+   29.35,
+   9.375,
+   "The finding is R V oh two: the move took effect on October 19, and the review is still open thirteen days later, past the program's ten."
+  ],
+  [
+   38.725,
+   6.162,
+   "That sheet goes to the manager of record, and the manager's decisions and the interval are evidence too."
+  ],
+  [
+   44.888,
+   5.325,
+   "Step six runs the tests, fifty-seven pass, and you delete the chapter's output."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   14.287,
+   "Lab 2 runs the gate in your own test tenant: worldwide or G C C, never production, with Entra I D Governance trial or test licenses, two test access packages, and three test users with coded attributes."
+  ],
+  [
+   14.338,
+   6.05,
+   "Export the tenant's policies, and run the scan beside Learn's read-only script, so you can compare them."
+  ],
+  [
+   20.387,
+   2.013,
+   "Create one automatic policy."
+  ],
+  [
+   22.4,
+   5.25,
+   "Move a test user through the pipeline, never by hand, and run the residual review."
+  ],
+  [
+   27.65,
+   6.875,
+   "The reader app needs a certificate and two permissions, EntitlementManagement dot Read dot All and User dot Read dot All."
+  ],
+  [
+   34.525,
+   4.025,
+   "Creating the policy takes the Identity Governance Administrator role."
+  ],
+  [
+   38.55,
+   13.613,
+   "To back it out, remove the test policy, choosing whether its assignments are removed, restore the test user's code through the pipeline, remove the reader app, its permissions and certificate, and delete the export and output."
+  ],
+  [
+   52.163,
+   2.15,
+   "The authors haven't run Lab 2."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   2.875,
+   "Two things differ by where you are and what you grant."
+  ],
+  [
+   2.925,
+   1.875,
+   "First, government clouds."
+  ],
+  [
+   4.8,
+   9.662,
+   "If your agency is in G C C High, note the gate's availability gap: administrative units with dynamic membership rules aren't available in Azure Government."
+  ],
+  [
+   14.463,
+   3.6,
+   "The guide's Step 4 gives the gap and its interim path."
+  ],
+  [
+   18.062,
+   3.15,
+   "Second, privileged access, wherever you are."
+  ],
+  [
+   21.212,
+   8.037,
+   "A package that grants tier one administrator eligibility to everyone whose organization code matches is the A A oh nine finding."
+  ],
+  [
+   29.25,
+   6.188,
+   "H R attributes should decide who may request eligibility, and the role is activated through pim."
+  ],
+  [
+   35.438,
+   2.562,
+   "That's what the program's request policy does."
+  ],
+  [
+   38.0,
+   10.688,
+   "sis-uh's scuba policy seven point five keeps highly privileged roles only in a privileged access management system, and under B O D twenty-five oh-one it's required."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   1.387,
+   "The federal requirement."
+  ],
+  [
+   1.438,
+   10.75,
+   "This gate meets nist special publication eight hundred fifty-three A C two, which asks you to authorize access on organization-defined attributes and to review accounts."
+  ],
+  [
+   12.188,
+   5.675,
+   "It meets A C six, least privilege, and A C five, separation of duties."
+  ],
+  [
+   17.863,
+   5.4,
+   "It meets P S five, personnel transfer, which is what the residual review is for."
+  ],
+  [
+   23.262,
+   10.5,
+   "And it meets scuba policy seven point five, highly privileged roles only through a privileged access management system, required under B O D twenty-five oh-one."
+  ],
+  [
+   33.763,
+   8.887,
+   "The evidence an I S S O keeps for Gate 4: the reviewed policy files, the lint's clean run, and the hash of each body sent."
+  ],
+  [
+   42.65,
+   2.8,
+   "The member-of scan's output with zero rows."
+  ],
+  [
+   45.45,
+   1.788,
+   "A A oh nine's clean run."
+  ],
+  [
+   47.237,
+   5.55,
+   "Each mover's residual sheet, the manager's decisions and the transfer-to-review interval."
+  ],
+  [
+   52.788,
+   3.862,
+   "And the separation-of-duties settings in the package configuration."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   1.975,
+   "Check yourself with two questions."
+  ],
+  [
+   2.025,
+   8.137,
+   "First: from November 3, 2026, what happens to an automatic assignment policy whose rule uses member-of?"
+  ],
+  [
+   10.162,
+   2.475,
+   "The answer is b: it's quarantined."
+  ],
+  [
+   12.637,
+   8.387,
+   "It stays, but it adds and removes nothing until the operator is removed, and Learn publishes a read-only script to find those policies."
+  ],
+  [
+   21.025,
+   4.612,
+   "Second: in the residual review, which items go to the manager of record?"
+  ],
+  [
+   25.637,
+   6.125,
+   "The answer is c: assignments that came from request policies, and groups held outside packages."
+  ],
+  [
+   31.762,
+   7.675,
+   "Everything a rule manages, kept, removed after grace, package-managed or rule-managed, takes care of itself."
+  ],
+  [
+   39.438,
+   4.9,
+   "The module page has two more questions, each linked to the section that answers it."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   0.825,
+   "To sum up."
+  ],
+  [
+   0.875,
+   4.925,
+   "You linted three good and five broken assignment policies over a population."
+  ],
+  [
+   5.8,
+   2.938,
+   "You found a member-of policy in a tenant export."
+  ],
+  [
+   8.738,
+   4.575,
+   "And you listed one mover's residual access, with a review that's overdue."
+  ],
+  [
+   13.312,
+   8.875,
+   "Carry one thing forward: a move reaches the directory through the pipeline, never by hand, and then the rules and the residual review do the rest."
+  ],
+  [
+   22.188,
+   4.138,
+   "Next is Module 5: check certificate-based authentication."
+  ],
+  [
+   26.325,
+   7.375,
+   "You'll check the certificate-based authentication trust store, and each certificate revocation list, against your cloud's limits."
+  ]
+ ]
+}

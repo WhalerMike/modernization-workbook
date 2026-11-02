@@ -1,0 +1,68 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.148
+Lab 2 runs the same scan
+against your own test tenant,
+
+2
+00:00:04.148 --> 00:00:06.912
+worldwide or G C C, never production.
+
+3
+00:00:06.912 --> 00:00:09.324
+Make two known writes in the admin center,
+
+4
+00:00:09.324 --> 00:00:11.949
+then export the audit
+window that holds them.
+
+5
+00:00:11.949 --> 00:00:14.608
+Before you scan, confirm
+the property names
+
+6
+00:00:14.608 --> 00:00:17.487
+the register expects
+against the real records.
+
+7
+00:00:17.487 --> 00:00:20.463
+That's the step that turns
+the scan into evidence.
+
+8
+00:00:20.463 --> 00:00:25.600
+Then put your tenant's service principal
+I D's in a copy of the register, and scan.
+
+9
+00:00:25.600 --> 00:00:31.212
+Both of your admin center changes should
+come back as W S oh one, second writers.
+
+10
+00:00:31.212 --> 00:00:35.858
+The reader app needs a certificate and
+two application permissions with admin
+
+11
+00:00:35.858 --> 00:00:40.575
+consent, AuditLog dot Read dot All and
+Directory dot Read dot All, and nothing else.
+
+12
+00:00:40.575 --> 00:00:45.085
+To back it out, restore the test
+users' values, remove the permissions,
+
+13
+00:00:45.085 --> 00:00:49.112
+and delete the app, its certificate,
+the export and the output.
+
+14
+00:00:49.112 --> 00:00:51.310
+The authors haven't run Lab 2.

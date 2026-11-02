@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.875
+To sum up.
+
+2
+00:00:00.875 --> 00:00:05.579
+You learned where actuation runs on
+these products: SailPoint's connectors,
+
+3
+00:00:05.579 --> 00:00:08.939
+ServiceNow's Entra spoke,
+the declared-exception lane,
+
+4
+00:00:08.939 --> 00:00:11.925
+and people only through
+just-in-time activation.
+
+5
+00:00:11.925 --> 00:00:14.348
+You saw how the business
+rule and the re-read
+
+6
+00:00:14.348 --> 00:00:17.175
+client keep a ticket status
+from closing a finding.
+
+7
+00:00:17.175 --> 00:00:22.613
+You saw how the client treats stale reads,
+missing reads and empty intended states.
+
+8
+00:00:22.613 --> 00:00:25.825
+And you ran it offline over
+six findings on two days.
+
+9
+00:00:25.825 --> 00:00:29.525
+Before shipping, work through
+the Chapter 05 checklist.
+
+10
+00:00:29.525 --> 00:00:34.988
+Next is Module 7, the last in
+the path: evidence for the ISSO.
+
+11
+00:00:34.988 --> 00:00:37.950
+You'll learn what Gate 7 runs and reports,
+
+12
+00:00:37.950 --> 00:00:41.902
+export closed findings as
+Book 13's evidence records,
+
+13
+00:00:41.902 --> 00:00:47.260
+chain one period to the next, and verify
+the package the way an ISSO would.

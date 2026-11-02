@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.217
+Welcome to Module 2 of the
+HR-Driven Identity learning path:
+
+2
+00:00:04.217 --> 00:00:06.938
+run contractors from their own source.
+
+3
+00:00:06.938 --> 00:00:12.026
+This is Gate 2, Sources, with
+Chapter 02 of the developer workbook.
+
+4
+00:00:12.026 --> 00:00:15.281
+In Module 1 you named one
+writer for every account state,
+
+5
+00:00:15.281 --> 00:00:19.812
+and saw that inbound provisioning writes
+the leave date and the active value.
+
+6
+00:00:19.812 --> 00:00:24.212
+This module applies that to the
+people HR doesn't hold: contractors.
+
+7
+00:00:24.212 --> 00:00:28.328
+You'll compute each contractor's
+earliest end from several conditions,
+
+8
+00:00:28.328 --> 00:00:31.676
+send the result through the
+same middleware as employees,
+
+9
+00:00:31.676 --> 00:00:36.210
+reconcile what the contractor register,
+the card system and the directory say,
+
+10
+00:00:36.210 --> 00:00:37.815
+without changing anything,
+
+11
+00:00:37.815 --> 00:00:41.512
+and write a sponsor review that
+ends access when nobody answers.
+
+12
+00:00:41.512 --> 00:00:44.988
+The code runs on fictional
+contractors, on your laptop.
+
+13
+00:00:44.988 --> 00:00:50.350
+It's illustrative: unit-tested against
+fixtures, not run against a live tenant.

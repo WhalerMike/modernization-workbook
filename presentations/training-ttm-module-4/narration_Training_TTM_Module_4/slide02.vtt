@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.288
+Why measure first?
+
+2
+00:00:01.288 --> 00:00:06.338
+Because drift comes in kinds, and each kind
+needs a number before it needs a ticket.
+
+3
+00:00:06.338 --> 00:00:10.920
+A terminated employee who's still
+enabled in Entra ID is stale access,
+
+4
+00:00:10.920 --> 00:00:15.100
+which the Federal Modernization
+Workbook's Book 03 rates High.
+
+5
+00:00:15.100 --> 00:00:19.087
+An account that matches nobody
+is an orphan account, also High.
+
+6
+00:00:19.087 --> 00:00:23.725
+A department someone typed in by hand
+is attribute drift, rated Medium.
+
+7
+00:00:23.725 --> 00:00:26.528
+Without a measurement you
+can't say how many there are,
+
+8
+00:00:26.528 --> 00:00:29.012
+whether they're growing,
+or whether a fix worked.
+
+9
+00:00:29.012 --> 00:00:32.983
+So Gate 3 connects the sources,
+correlates them on one key,
+
+10
+00:00:32.983 --> 00:00:36.362
+and files the first
+measurement as the baseline.
+
+11
+00:00:36.362 --> 00:00:38.924
+Every later gate is measured against it.
+
+12
+00:00:38.924 --> 00:00:43.920
+In this module you run that measurement
+twice, on two days, and compare the days.

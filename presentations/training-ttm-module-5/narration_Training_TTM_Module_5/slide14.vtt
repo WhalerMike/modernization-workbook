@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.437
+The federal requirement.
+
+2
+00:00:01.437 --> 00:00:05.921
+Chapter 04's table maps an out-of-process
+write, raised as an owned,
+
+3
+00:00:05.921 --> 00:00:11.587
+clocked finding, to NIST special publication
+eight hundred fifty-three C M three,
+
+4
+00:00:11.587 --> 00:00:15.901
+configuration change control,
+and S I four, system monitoring.
+
+5
+00:00:15.901 --> 00:00:21.825
+It maps a tested workflow change to C M
+three and S A eleven, developer testing.
+
+6
+00:00:21.825 --> 00:00:24.741
+The evidence an ISSO
+keeps from this module:
+
+7
+00:00:24.741 --> 00:00:29.924
+the ServiceNow finding with its origin
+and raw event; the finding records, one
+
+8
+00:00:29.924 --> 00:00:35.350
+per drifting attribute; and the pull request
+and test run for any workflow change.
+
+9
+00:00:35.350 --> 00:00:36.975
+One label carries over.
+
+10
+00:00:36.975 --> 00:00:41.875
+Treating a native change as an unauthorized
+write is the program's inference.
+
+11
+00:00:41.875 --> 00:00:46.507
+And provenance drift on a claim in
+active use is P1, but the workflow
+
+12
+00:00:46.507 --> 00:00:50.887
+can't know whether a claim is in use,
+so a person or a rule raises it.
+
+13
+00:00:50.887 --> 00:00:54.550
+Before shipping, work through
+Chapter 04's checklist.

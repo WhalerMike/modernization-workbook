@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.275
+Lab 2 enforces the rule in your
+own ServiceNow developer instance.
+
+2
+00:00:04.275 --> 00:00:07.205
+You need the instance
+from Modules 1 and 2,
+
+3
+00:00:07.205 --> 00:00:12.463
+the verifier user from Module 2's Lab 2,
+and a test user in a test Entra tenant.
+
+4
+00:00:12.463 --> 00:00:15.738
+Configure the business rule
+and its system properties.
+
+5
+00:00:15.738 --> 00:00:20.275
+Close a finding as a person, and watch
+it land in Awaiting verification.
+
+6
+00:00:20.275 --> 00:00:25.200
+Then confirm which user ServiceNow
+records for the verifier's OAuth client.
+
+7
+00:00:25.200 --> 00:00:29.267
+That matters, because the rule compares
+it with the verifier property,
+
+8
+00:00:29.267 --> 00:00:31.300
+and the workbook couldn't verify it.
+
+9
+00:00:31.300 --> 00:00:36.200
+If it's wrong, every close is refused,
+and people look for a way around the rule.
+
+10
+00:00:36.200 --> 00:00:41.275
+Finally, close a finding with evidence
+from a Graph read of a disabled test user.
+
+11
+00:00:41.275 --> 00:00:44.992
+Then back it out: delete the test
+findings and their attachments,
+
+12
+00:00:44.992 --> 00:00:49.200
+deactivate the rule if you built it
+for the lab, and delete the properties.
+
+13
+00:00:49.200 --> 00:00:51.410
+The authors haven't run Lab 2.

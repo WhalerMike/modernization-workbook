@@ -1,0 +1,68 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.875
+Gate 3 has six steps.
+
+2
+00:00:01.875 --> 00:00:06.361
+One: aggregate HR into SailPoint
+as the authoritative source,
+
+3
+00:00:06.361 --> 00:00:09.088
+read-only under Gate 2's first pattern.
+
+4
+00:00:09.088 --> 00:00:13.524
+Two: connect Entra ID and Active
+Directory as SailPoint sources, the Entra
+
+5
+00:00:13.524 --> 00:00:18.250
+connector and the Active Directory
+connector through the virtual appliance.
+
+6
+00:00:18.250 --> 00:00:22.550
+Three: correlate on employee
+I D, the key Book 03 joins on,
+
+7
+00:00:22.550 --> 00:00:28.762
+and treat uncorrelated accounts as orphan
+candidates, not errors to suppress.
+
+8
+00:00:28.762 --> 00:00:33.924
+Four: turn on Native Change Detection on
+the Entra and Active Directory sources.
+
+9
+00:00:33.924 --> 00:00:37.394
+It compares stored and newly
+read data on aggregation,
+
+10
+00:00:37.394 --> 00:00:39.938
+and fires one event per changed account.
+
+11
+00:00:39.938 --> 00:00:43.838
+Five: run the kit's drift
+reconciliation, read-only.
+
+12
+00:00:43.838 --> 00:00:46.899
+And six: file the first
+run as the baseline.
+
+13
+00:00:46.899 --> 00:00:50.012
+Expect a burst of High
+findings in the first month.
+
+14
+00:00:50.012 --> 00:00:52.920
+Book 03 calls that the
+measurement working.

@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.787
+Step three runs day two,
+after HR's correction.
+
+2
+00:00:03.787 --> 00:00:07.650
+The counts are exactly the same,
+and the totals hide what moved.
+
+3
+00:00:07.650 --> 00:00:13.025
+Step four compares the days: one new,
+eleven persisting, one resolved.
+
+4
+00:00:13.025 --> 00:00:18.887
+The resolved finding is Erin's department
+in Entra ID, which now agrees with HR.
+
+5
+00:00:18.887 --> 00:00:22.112
+It's a lead for the re-read,
+and the tool says so:
+
+6
+00:00:22.112 --> 00:00:25.337
+its record closes only
+on the re-read client.
+
+7
+00:00:25.337 --> 00:00:28.423
+The new finding is Erin's
+department in SailPoint,
+
+8
+00:00:28.423 --> 00:00:32.187
+which hasn't been re-aggregated
+and still holds the old value.
+
+9
+00:00:32.187 --> 00:00:37.069
+Step five runs day two without the audit,
+so unauthorized write moves to not
+
+10
+00:00:37.069 --> 00:00:41.950
+computed, and the comparison refuses:
+the runs computed different classes.
+
+11
+00:00:41.950 --> 00:00:43.100
+It exits two.
+
+12
+00:00:43.100 --> 00:00:47.262
+Without that refusal, the unauthorized
+write would have looked resolved.
+
+13
+00:00:47.262 --> 00:00:49.780
+Step six deletes the output folder.

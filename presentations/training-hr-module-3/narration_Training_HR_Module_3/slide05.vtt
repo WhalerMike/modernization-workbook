@@ -1,0 +1,76 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.688
+Here are the six workflow files, as
+reviewed version one point oh bodies.
+
+2
+00:00:04.688 --> 00:00:05.938
+Two are joiners.
+
+3
+00:00:05.938 --> 00:00:09.465
+The pre-hire workflow runs
+seven days before the hire date
+
+4
+00:00:09.465 --> 00:00:13.213
+and generates the Temporary Access
+Pass and sends it by email.
+
+5
+00:00:13.213 --> 00:00:15.805
+The day-one workflow runs on the hire date
+
+6
+00:00:15.805 --> 00:00:18.625
+and requests the
+onboarding access package.
+
+7
+00:00:18.625 --> 00:00:21.727
+One is the mover, triggered
+by an attribute change:
+
+8
+00:00:21.727 --> 00:00:25.888
+it notifies the manager and removes
+an access package assignment.
+
+9
+00:00:25.888 --> 00:00:27.449
+And three are leavers.
+
+10
+00:00:27.449 --> 00:00:32.314
+On the leave date, employees are disabled,
+their refresh tokens revoked and their
+
+11
+00:00:32.314 --> 00:00:37.250
+package assignments removed; contractors
+are disabled and their tokens revoked.
+
+12
+00:00:37.250 --> 00:00:39.261
+Thirty days after the leave date,
+
+13
+00:00:39.261 --> 00:00:42.612
+a separate post-separation
+workflow deletes the user.
+
+14
+00:00:42.612 --> 00:00:43.900
+Notice the scopes.
+
+15
+00:00:43.900 --> 00:00:48.001
+Every one reads the worker type
+and a coded slot, never a name,
+
+16
+00:00:48.001 --> 00:00:51.910
+so renaming an organization
+can't silently drop anyone.

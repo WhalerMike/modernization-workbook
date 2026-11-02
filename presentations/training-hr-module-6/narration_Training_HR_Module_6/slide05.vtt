@@ -1,0 +1,66 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.438
+Two timing facts shape the measurement.
+
+2
+00:00:02.438 --> 00:00:04.176
+First, late entries.
+
+3
+00:00:04.176 --> 00:00:07.491
+Learn says a scheduled workflow
+still processes a user
+
+4
+00:00:07.491 --> 00:00:10.662
+whose trigger date passed no
+more than three days ago.
+
+5
+00:00:10.662 --> 00:00:14.237
+Past three days, the scheduled
+trigger skips the user.
+
+6
+00:00:14.237 --> 00:00:19.663
+Book 03's Chapter 08 explains why a
+separation entered late misses it.
+
+7
+00:00:19.663 --> 00:00:24.753
+So rule S T three flags any separation
+entered more than three days after its
+
+8
+00:00:24.753 --> 00:00:28.712
+effective date: a Finding if
+nobody ran the leaver on demand,
+
+9
+00:00:28.712 --> 00:00:30.651
+and only a Warn if someone did.
+
+10
+00:00:30.651 --> 00:00:32.663
+Second, the tenant's schedule.
+
+11
+00:00:32.663 --> 00:00:37.801
+Lifecycle Workflows runs on a schedule, and
+that can delay a scheduled leaver's run.
+
+12
+00:00:37.801 --> 00:00:39.966
+The wait is part of separation-to-block,
+
+13
+00:00:39.966 --> 00:00:43.825
+so the guide says the schedule
+belongs inside the approved interval.
+
+14
+00:00:43.825 --> 00:00:46.510
+Set the threshold and
+the schedule together.

@@ -1,0 +1,71 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:04.507
+Lab 1 runs in the h r
+lifecycle examples folder,
+
+3
+00:00:04.507 --> 00:00:07.650
+against a fictional P K I, with no tenant.
+
+4
+00:00:07.650 --> 00:00:09.962
+Step one lists what the reader will call.
+
+5
+00:00:09.962 --> 00:00:13.557
+The task asks for three permissions,
+Policy dot Read dot All,
+
+6
+00:00:13.557 --> 00:00:18.104
+Policy dot Read dot Authentication
+Method, and Public Key Infrastructure
+
+7
+00:00:18.104 --> 00:00:21.625
+dot Read dot All, for five calls,
+and every one of them is a GET.
+
+8
+00:00:21.625 --> 00:00:23.462
+Nothing here can change the tenant.
+
+9
+00:00:23.462 --> 00:00:26.612
+Step two measures the
+fixture revocation lists.
+
+10
+00:00:26.612 --> 00:00:29.526
+Two files measure at four
+and eight kilobytes.
+
+11
+00:00:29.526 --> 00:00:32.813
+The third doesn't exist, and
+the tool records it as zero
+
+12
+00:00:32.813 --> 00:00:36.175
+bytes with a file-not-found
+error, rather than stopping.
+
+13
+00:00:36.175 --> 00:00:38.825
+That row is what becomes
+a finding in the check.
+
+14
+00:00:38.825 --> 00:00:41.151
+Your times may differ from the slide;
+
+15
+00:00:41.151 --> 00:00:45.000
+the fixtures are local files,
+so they read almost instantly.

@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.875
+To sum up.
+
+2
+00:00:00.875 --> 00:00:05.800
+You linted three good and five broken
+assignment policies over a population.
+
+3
+00:00:05.800 --> 00:00:08.738
+You found a member-of
+policy in a tenant export.
+
+4
+00:00:08.738 --> 00:00:13.313
+And you listed one mover's residual
+access, with a review that's overdue.
+
+5
+00:00:13.313 --> 00:00:18.015
+Carry one thing forward: a move reaches
+the directory through the pipeline,
+
+6
+00:00:18.015 --> 00:00:22.187
+never by hand, and then the rules
+and the residual review do the rest.
+
+7
+00:00:22.187 --> 00:00:26.326
+Next is Module 5: check
+certificate-based authentication.
+
+8
+00:00:26.326 --> 00:00:29.944
+You'll check the certificate-based
+authentication trust store,
+
+9
+00:00:29.944 --> 00:00:33.770
+and each certificate revocation
+list, against your cloud's limits.

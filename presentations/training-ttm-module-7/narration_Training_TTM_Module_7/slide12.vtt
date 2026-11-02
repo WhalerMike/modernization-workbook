@@ -1,0 +1,69 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.238
+Step four starts November's
+chain from October's head.
+
+2
+00:00:03.238 --> 00:00:06.948
+The export runs over the same
+fixture for period November,
+
+3
+00:00:06.948 --> 00:00:11.200
+with the previous-manifest option
+pointing at October's manifest.
+
+4
+00:00:11.200 --> 00:00:16.138
+On the slide, its first five lines are
+trimmed, because they repeat step two.
+
+5
+00:00:16.138 --> 00:00:18.885
+The last line reports
+November's chain head,
+
+6
+00:00:18.885 --> 00:00:23.237
+and November's manifest records
+October's head as its chain previous.
+
+7
+00:00:23.237 --> 00:00:26.738
+So a period can't be swapped out
+without breaking the next one.
+
+8
+00:00:26.738 --> 00:00:30.388
+Step five is the test
+that matters to an ISSO.
+
+9
+00:00:30.388 --> 00:00:33.464
+A one-line Python command
+deletes the second record
+
+10
+00:00:33.464 --> 00:00:36.612
+from October's records file,
+and then you verify again.
+
+11
+00:00:36.612 --> 00:00:42.387
+The verifier finds two problems: the file's
+SHA-256 no longer matches the manifest,
+
+12
+00:00:42.387 --> 00:00:47.300
+and the next line's previous hash no
+longer matches the line before it.
+
+13
+00:00:47.300 --> 00:00:48.988
+The package does not hold.
+
+14
+00:00:48.988 --> 00:00:51.190
+Step six deletes the out folder.

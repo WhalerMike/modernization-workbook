@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.713
+Step five reconciles.
+
+2
+00:00:01.713 --> 00:00:06.432
+You give it the same register, cards,
+sponsors and rules, plus an export of the
+
+3
+00:00:06.432 --> 00:00:11.762
+contractor accounts in the directory, and
+it reports seven findings and one warning.
+
+4
+00:00:11.762 --> 00:00:16.387
+Four are C R oh one: accounts still
+enabled past their earliest end.
+
+5
+00:00:16.387 --> 00:00:20.899
+Those four are exactly the four disables
+the middleware built in step four,
+
+6
+00:00:20.899 --> 00:00:24.975
+so once those disables are sent,
+the next reconciliation shows none.
+
+7
+00:00:24.975 --> 00:00:26.900
+There's one orphan, C R oh two,
+
+8
+00:00:26.900 --> 00:00:30.925
+an enabled contractor account
+with no register record.
+
+9
+00:00:30.925 --> 00:00:35.400
+One C R oh three, an active card
+for someone the source doesn't hold.
+
+10
+00:00:35.400 --> 00:00:39.060
+One C R oh five, a leave date
+that isn't the earliest end,
+
+11
+00:00:39.060 --> 00:00:42.550
+so the leaver workflow
+would fire on the wrong day.
+
+12
+00:00:42.550 --> 00:00:47.138
+And one warning, C R oh four, a
+register record with no account.
+
+13
+00:00:47.138 --> 00:00:50.780
+The reconciliation changes
+nothing; it only reports.

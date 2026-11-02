@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.875
+To sum up.
+
+2
+00:00:00.875 --> 00:00:05.138
+You linted the program's six workflow
+files and three broken ones.
+
+3
+00:00:05.138 --> 00:00:08.725
+You planned a create and a new
+version against a tenant export,
+
+4
+00:00:08.725 --> 00:00:10.976
+and saw a portal-made workflow flagged.
+
+5
+00:00:10.976 --> 00:00:14.550
+And you measured a day-one readiness
+rate of twenty-five percent.
+
+6
+00:00:14.550 --> 00:00:19.339
+Carry one thing forward: the day-one
+workflow requests the onboarding package,
+
+7
+00:00:19.339 --> 00:00:22.212
+but department access
+comes from the next gate.
+
+8
+00:00:22.212 --> 00:00:27.637
+Next is Module 4: assign access from
+attributes and review what a move leaves.
+
+9
+00:00:27.637 --> 00:00:31.942
+You'll lint access package assignment
+policies before they reach the tenant,
+
+10
+00:00:31.942 --> 00:00:34.902
+scan the tenant's policies
+for the member-of operator,
+
+11
+00:00:34.902 --> 00:00:38.810
+and list what a move leaves behind
+for the manager of record to review.

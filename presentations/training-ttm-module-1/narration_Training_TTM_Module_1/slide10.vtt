@@ -1,0 +1,67 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.962
+Chapter 01 adds finding contract dot py,
+
+2
+00:00:02.962 --> 00:00:06.138
+which applies the script's
+rules on a laptop.
+
+3
+00:00:06.138 --> 00:00:11.667
+Its validate function returns the errors
+ServiceNow would answer four hundred to,
+
+4
+00:00:11.667 --> 00:00:17.036
+warnings for what it would accept but the
+loop can't use, and the normalized values:
+
+5
+00:00:17.036 --> 00:00:21.363
+severity, priority, system, subject,
+de-duplication key and window.
+
+6
+00:00:21.363 --> 00:00:23.495
+Its constants mirror the script's,
+
+7
+00:00:23.495 --> 00:00:27.301
+and a test reads the JavaScript
+and fails if they drift apart.
+
+8
+00:00:27.301 --> 00:00:28.650
+Then there's is checkable.
+
+9
+00:00:28.650 --> 00:00:32.248
+An intended state of empty
+attributes and an empty list
+
+10
+00:00:32.248 --> 00:00:35.925
+of entitlements is a non-empty
+object, so it looks present.
+
+11
+00:00:35.925 --> 00:00:40.425
+But a re-read finds no difference against
+it, and would close the record on nothing.
+
+12
+00:00:40.425 --> 00:00:41.775
+So the check warns.
+
+13
+00:00:41.775 --> 00:00:47.495
+For missing identity and unauthorized write,
+which Book 13 routes to a person first,
+
+14
+00:00:47.495 --> 00:00:51.290
+the empty intent is expected
+until that person sets it.

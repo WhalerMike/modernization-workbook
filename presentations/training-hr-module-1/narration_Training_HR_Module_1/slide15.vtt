@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.875
+To sum up.
+
+2
+00:00:00.875 --> 00:00:05.942
+You checked a writer register's shape,
+scanned a month of audit records against it,
+
+3
+00:00:05.942 --> 00:00:08.437
+and read the saved query that Gate 7 runs.
+
+4
+00:00:08.437 --> 00:00:11.014
+Along the way you saw four second writers,
+
+5
+00:00:11.014 --> 00:00:14.500
+one forbidden delete, and one
+backstop that acted first.
+
+6
+00:00:14.500 --> 00:00:18.424
+Carry one thing forward: inbound
+provisioning writes the leave
+
+7
+00:00:18.424 --> 00:00:22.125
+date and the active value, and
+that's true for contractors too.
+
+8
+00:00:22.125 --> 00:00:26.175
+Next is Module 2: run contractors
+from their own source.
+
+9
+00:00:26.175 --> 00:00:31.712
+Contractors don't come from HR, and an end
+date nobody updates keeps access alive.
+
+10
+00:00:31.712 --> 00:00:36.747
+In Module 2 you'll compute each contractor's
+earliest end, reconcile the register,
+
+11
+00:00:36.747 --> 00:00:40.579
+the card system and the directory
+without changing anything,
+
+12
+00:00:40.579 --> 00:00:44.930
+and write a sponsor review that
+removes access when nobody responds.

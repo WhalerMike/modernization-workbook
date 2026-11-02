@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.556
+Welcome to Module 3 of the
+HR-Driven Identity learning path:
+
+2
+00:00:04.556 --> 00:00:06.763
+make joiners ready on day one.
+
+3
+00:00:06.763 --> 00:00:12.151
+This is Gate 3, Joiners, with
+Chapter 03 of the developer workbook.
+
+4
+00:00:12.151 --> 00:00:15.476
+Modules 1 and 2 settled who
+writes each account state,
+
+5
+00:00:15.476 --> 00:00:18.575
+and brought contractors
+in from their own source.
+
+6
+00:00:18.575 --> 00:00:20.537
+Now the new hire's first morning.
+
+7
+00:00:20.537 --> 00:00:25.321
+In this module you'll keep the Lifecycle
+Workflows definitions as reviewed files,
+
+8
+00:00:25.321 --> 00:00:29.541
+lint them before they reach the tenant,
+plan each change against what the
+
+9
+00:00:29.541 --> 00:00:34.113
+tenant already holds, and measure how many
+hires were actually ready on day one.
+
+10
+00:00:34.113 --> 00:00:37.123
+You'll also see why the
+Temporary Access Pass a new
+
+11
+00:00:37.123 --> 00:00:39.987
+hire gets should be
+short-lived and one-time use.
+
+12
+00:00:39.987 --> 00:00:43.400
+The code runs on your laptop
+against fictional fixtures.
+
+13
+00:00:43.400 --> 00:00:48.770
+It's illustrative: unit-tested against
+fixtures, not run against a live tenant.

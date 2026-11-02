@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.682
+Welcome to Module 2 of the
+Ticket-to-Machine learning path:
+
+2
+00:00:03.682 --> 00:00:05.800
+the boundary and least privilege.
+
+3
+00:00:05.800 --> 00:00:10.438
+Before any call is made, you need to know
+which actions run from a vendor's cloud,
+
+4
+00:00:10.438 --> 00:00:12.975
+and which non-person identities make them.
+
+5
+00:00:12.975 --> 00:00:17.563
+Then each identity has to hold exactly
+what its calls need, and no more.
+
+6
+00:00:17.563 --> 00:00:20.407
+This module follows the guide's Gate 1,
+
+7
+00:00:20.407 --> 00:00:23.987
+and the developer workbook's
+Chapters 02 and 03.
+
+8
+00:00:23.987 --> 00:00:27.774
+You'll confirm the boundary on
+paper, learn the ServiceNow roles,
+
+9
+00:00:27.774 --> 00:00:32.774
+SailPoint scopes and Graph permissions each
+kit task needs, and then make privilege
+
+10
+00:00:32.774 --> 00:00:37.540
+something a test can check, by catching
+three kinds of over-wide grant on a laptop.

@@ -1,0 +1,56 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.550
+Check yourself with two questions
+from the module's knowledge check.
+
+2
+00:00:03.550 --> 00:00:08.263
+First: a payload has a drift class
+of stale access and no severity.
+
+3
+00:00:08.263 --> 00:00:10.587
+What does the Scripted REST resource do?
+
+4
+00:00:10.587 --> 00:00:11.800
+The answer is c.
+
+5
+00:00:11.800 --> 00:00:16.025
+It accepts it with the class default,
+P two, and a one-hour window.
+
+6
+00:00:16.025 --> 00:00:18.443
+The script defaults severity by class,
+
+7
+00:00:18.443 --> 00:00:21.238
+and sample one in the
+lab showed exactly that.
+
+8
+00:00:21.238 --> 00:00:25.388
+Second: what does a closure signal
+payload do to matching findings?
+
+9
+00:00:25.388 --> 00:00:26.612
+The answer is b.
+
+10
+00:00:26.612 --> 00:00:30.376
+It moves them to Awaiting
+verification, and it never closes them.
+
+11
+00:00:30.376 --> 00:00:32.650
+Only a re-read closes a finding.
+
+12
+00:00:32.650 --> 00:00:37.610
+The module page has two more questions,
+each linked to the section that answers it.

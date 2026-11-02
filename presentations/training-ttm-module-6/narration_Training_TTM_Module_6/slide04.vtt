@@ -1,0 +1,78 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.150
+Gate 5 is where the ticket
+authorizes a machine.
+
+2
+00:00:03.150 --> 00:00:06.596
+The fix runs through a connector
+under a service identity,
+
+3
+00:00:06.596 --> 00:00:08.750
+and a person's role stops at approval.
+
+4
+00:00:08.750 --> 00:00:10.038
+There are four lanes.
+
+5
+00:00:10.038 --> 00:00:15.300
+SailPoint's connectors provision
+owner-governed access: creating, updating,
+
+6
+00:00:15.300 --> 00:00:18.260
+enabling, disabling and deleting accounts,
+
+7
+00:00:18.260 --> 00:00:22.125
+and changing groups, roles,
+licenses and access packages.
+
+8
+00:00:22.125 --> 00:00:24.975
+When the Entra connector
+disables an account,
+
+9
+00:00:24.975 --> 00:00:27.900
+it also signs the user
+out of existing sessions.
+
+10
+00:00:27.900 --> 00:00:31.581
+ServiceNow's Entra spoke
+handles low-authority tasks
+
+11
+00:00:31.581 --> 00:00:35.262
+where its actions cover them;
+it has no MFA-reset action.
+
+12
+00:00:35.262 --> 00:00:38.896
+Disconnected applications
+run as declared exceptions,
+
+13
+00:00:38.896 --> 00:00:42.451
+with a named approver, a recorded
+session and an end date.
+
+14
+00:00:42.451 --> 00:00:46.275
+And people act only through a
+just-in-time PIM activation.
+
+15
+00:00:46.275 --> 00:00:50.160
+The kit's Pass 1 doesn't actuate,
+so Gate 5 is configuration
+
+16
+00:00:50.160 --> 00:00:54.020
+of the products themselves,
+with no automated check yet.

@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.162
+The packaging is three commands
+in the drift pipeline.
+
+2
+00:00:03.162 --> 00:00:07.774
+Package seals one run: a SHA-256
+for every file, the tenant I D,
+
+3
+00:00:07.774 --> 00:00:13.538
+and the hash of the previous package's
+manifest, which is what chains them.
+
+4
+00:00:13.538 --> 00:00:18.175
+A package is written once, and a run
+from a different tenant is refused.
+
+5
+00:00:18.175 --> 00:00:20.113
+Verify rechecks a package.
+
+6
+00:00:20.113 --> 00:00:24.785
+But the ISSO doesn't need the
+kit to trust it: sha256sum,
+
+7
+00:00:24.785 --> 00:00:30.201
+checking the SHA256SUMS file,
+is their own independent check.
+
+8
+00:00:30.201 --> 00:00:33.463
+Period assembles the packages
+in a reporting window.
+
+9
+00:00:33.463 --> 00:00:36.888
+If there's a gap in coverage
+or a broken link in the chain,
+
+10
+00:00:36.888 --> 00:00:38.487
+the period isn't complete.
+
+11
+00:00:38.487 --> 00:00:44.149
+It also scores Gate 7's criteria and maps
+the findings and metrics to five controls.
+
+12
+00:00:44.149 --> 00:00:49.300
+That mapping is the program's design
+guidance; the assessor decides each control.

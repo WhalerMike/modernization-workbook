@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.713
+Step one runs the chapter's
+tests: twenty-two pass.
+
+2
+00:00:03.713 --> 00:00:07.334
+Step three runs the ServiceNow
+script's own tests,
+
+3
+00:00:07.334 --> 00:00:12.987
+the rules the Python mirrors, under Node:
+fifteen tests, fifteen pass, none fail.
+
+4
+00:00:12.987 --> 00:00:16.046
+Then step four runs the
+drift reconciliation over
+
+5
+00:00:16.046 --> 00:00:19.176
+the fixtures and checks
+every payload it would post.
+
+6
+00:00:19.176 --> 00:00:20.788
+Twelve lines start ok.
+
+7
+00:00:20.788 --> 00:00:25.982
+Attribute drift is P three, due in
+twenty-four hours; missing identities,
+
+8
+00:00:25.982 --> 00:00:31.175
+orphans, stale access and the unauthorized
+write are P two, due in an hour.
+
+9
+00:00:31.175 --> 00:00:36.329
+Three carry the warning: the two missing
+identities and the unauthorized write,
+
+10
+00:00:36.329 --> 00:00:38.750
+the classes Book 13 routes to a person.
+
+11
+00:00:38.750 --> 00:00:43.625
+And the last line is twelve accepted,
+none rejected, none de-duplicated.
+
+12
+00:00:43.625 --> 00:00:49.437
+Erin's two drifts in Entra ID, her department
+and her manager, have their own keys.
+
+13
+00:00:49.437 --> 00:00:51.980
+Step five deletes the output folder.

@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.687
+Why does this gate need checks?
+
+2
+00:00:01.687 --> 00:00:06.038
+When HR moves a person to a new
+organization, a rule on the organization
+
+3
+00:00:06.038 --> 00:00:10.313
+code should take away the old
+department's access and give the new one.
+
+4
+00:00:10.313 --> 00:00:14.000
+Automatic assignment policies in
+entitlement management do that.
+
+5
+00:00:14.000 --> 00:00:17.100
+But a rule can be wrong in ways
+the portal won't tell you.
+
+6
+00:00:17.100 --> 00:00:20.850
+Two policies on one package
+can both match the same user.
+
+7
+00:00:20.850 --> 00:00:22.750
+A rule can read a display name.
+
+8
+00:00:22.750 --> 00:00:25.710
+Or a rule can use the member-of operator,
+
+9
+00:00:25.710 --> 00:00:29.225
+which Learn quarantines
+from November 3, 2026.
+
+10
+00:00:29.225 --> 00:00:32.725
+And no rule can see access
+the person was given by hand.
+
+11
+00:00:32.725 --> 00:00:37.520
+So in this module, the lint catches the
+first three before a policy reaches the
+
+12
+00:00:37.520 --> 00:00:41.416
+tenant, a scan finds member-of in
+the tenant's existing policies,
+
+13
+00:00:41.416 --> 00:00:44.930
+and the residual review lists
+what a move leaves behind.

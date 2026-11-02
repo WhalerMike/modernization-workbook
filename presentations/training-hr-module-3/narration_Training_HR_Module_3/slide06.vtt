@@ -1,0 +1,70 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.568
+The lint, rules J W oh one to fifteen,
+
+2
+00:00:02.568 --> 00:00:06.525
+checks the files before
+anything reaches the tenant.
+
+3
+00:00:06.525 --> 00:00:07.500
+A few to know.
+
+4
+00:00:07.500 --> 00:00:11.320
+J W oh two warns when a scope
+uses no coded attribute,
+
+5
+00:00:11.320 --> 00:00:14.412
+or reads a display value like department.
+
+6
+00:00:14.412 --> 00:00:19.828
+J W oh three and oh six catch an offset
+beyond a hundred eighty days either way,
+
+7
+00:00:19.828 --> 00:00:23.525
+and more than Learn's
+twenty-five tasks in a workflow.
+
+8
+00:00:23.525 --> 00:00:29.423
+J W oh five is the pass: a lifetime outside
+ten minutes to thirty days is a finding,
+
+9
+00:00:29.423 --> 00:00:33.687
+and over twenty-four hours, or
+not one-time use, is a warning.
+
+10
+00:00:33.687 --> 00:00:36.288
+J W oh seven is over budget.
+
+11
+00:00:36.288 --> 00:00:41.788
+J W oh eight is a scheduled workflow
+with no execution limit recorded; Learn
+
+12
+00:00:41.788 --> 00:00:47.200
+says the limit isn't in the API, so you
+set it in the admin center and record it.
+
+13
+00:00:47.200 --> 00:00:50.062
+J W oh nine is a direct group add.
+
+14
+00:00:50.062 --> 00:00:53.325
+J W eleven is delete and disable together.
+
+15
+00:00:53.325 --> 00:00:56.740
+Some rules come from Learn,
+and some are design guidance.

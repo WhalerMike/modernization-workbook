@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.400
+Lab 2 builds the real
+thing in test instances.
+
+2
+00:00:03.400 --> 00:00:08.425
+In your ServiceNow developer instance,
+from Module 1, you create the three custom
+
+3
+00:00:08.425 --> 00:00:13.225
+roles, one integration user and one
+client-credentials integration per role.
+
+4
+00:00:13.225 --> 00:00:16.169
+Then you compare each user's
+roles with the call list,
+
+5
+00:00:16.169 --> 00:00:19.113
+and confirm the evidence
+reader can't patch a record.
+
+6
+00:00:19.113 --> 00:00:23.968
+In a SailPoint sandbox tenant, you create
+a reader API client and a separate
+
+7
+00:00:23.968 --> 00:00:28.275
+workflow client, compare each with
+the call list, and try the reader.
+
+8
+00:00:28.275 --> 00:00:32.063
+How an agency gets a sandbox
+is between it and SailPoint.
+
+9
+00:00:32.063 --> 00:00:37.281
+Back it out before you leave: delete
+the OAuth integrations, users and roles,
+
+10
+00:00:37.281 --> 00:00:39.133
+and revoke any saved token;
+
+11
+00:00:39.133 --> 00:00:43.762
+then delete both API clients and
+anything under the output folder.
+
+12
+00:00:43.762 --> 00:00:45.980
+The authors haven't run Lab 2.

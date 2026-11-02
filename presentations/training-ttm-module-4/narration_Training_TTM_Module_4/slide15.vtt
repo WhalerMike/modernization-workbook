@@ -1,0 +1,62 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.550
+Check yourself with two questions
+from the module's knowledge check.
+
+2
+00:00:03.550 --> 00:00:08.625
+First: on day two, Entra ID
+matches HR for Erin's department.
+
+3
+00:00:08.625 --> 00:00:12.112
+How does the comparison report
+the day-one Entra finding?
+
+4
+00:00:12.112 --> 00:00:13.250
+The answer is a.
+
+5
+00:00:13.250 --> 00:00:15.725
+As resolved, a lead for the re-read.
+
+6
+00:00:15.725 --> 00:00:19.138
+Its record still closes
+only on the re-read client.
+
+7
+00:00:19.138 --> 00:00:22.374
+A resolved finding is
+a lead, not a closure.
+
+8
+00:00:22.374 --> 00:00:26.312
+Second: why does the comparison
+refuse to compare day one,
+
+9
+00:00:26.312 --> 00:00:28.825
+with the audit, and day two, without it?
+
+10
+00:00:28.825 --> 00:00:30.050
+The answer is b.
+
+11
+00:00:30.050 --> 00:00:33.373
+Every unauthorized-write
+finding would look resolved,
+
+12
+00:00:33.373 --> 00:00:36.263
+because the second run
+didn't compute that class.
+
+13
+00:00:36.263 --> 00:00:41.230
+The module page has two more questions,
+each linked to the section that answers it.

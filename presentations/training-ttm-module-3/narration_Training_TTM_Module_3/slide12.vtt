@@ -1,0 +1,62 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.750
+Lab 2 runs the check on your own exports.
+
+2
+00:00:02.750 --> 00:00:06.336
+You need a test Entra tenant with
+an inbound provisioning job,
+
+3
+00:00:06.336 --> 00:00:08.938
+and a SailPoint sandbox
+with an Entra source.
+
+4
+00:00:08.938 --> 00:00:10.500
+Both reads are GET only.
+
+5
+00:00:10.500 --> 00:00:13.232
+Export the inbound job's
+schema from the tenant,
+
+6
+00:00:13.232 --> 00:00:16.875
+and the Entra source's provisioning
+policies from the sandbox.
+
+7
+00:00:16.875 --> 00:00:19.097
+Build the alias list, run the check,
+
+8
+00:00:19.097 --> 00:00:23.463
+and hand each Finding to the data
+architect, who decides the writer.
+
+9
+00:00:23.463 --> 00:00:27.518
+Export mappings only: a schema
+with expressions is fine,
+
+10
+00:00:27.518 --> 00:00:29.987
+but a policy with values may not be.
+
+11
+00:00:29.987 --> 00:00:35.119
+Back it out in step five: delete the exports
+if they hold anything beyond mappings,
+
+12
+00:00:35.119 --> 00:00:39.025
+and remove the Graph permission
+and the SailPoint API client.
+
+13
+00:00:39.025 --> 00:00:44.540
+The authors haven't run Lab 2; follow
+Chapter 08's Lab 2 step by step.

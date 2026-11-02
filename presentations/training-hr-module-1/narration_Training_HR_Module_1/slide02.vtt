@@ -1,0 +1,62 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.525
+Why does this come first?
+
+2
+00:00:01.525 --> 00:00:03.175
+Picture three writers.
+
+3
+00:00:03.175 --> 00:00:06.075
+Your HR feed sets an
+account's active value.
+
+4
+00:00:06.075 --> 00:00:09.475
+A Lifecycle Workflows leaver
+can disable the same account.
+
+5
+00:00:09.475 --> 00:00:13.625
+And a help desk technician can still
+edit a user's organization code.
+
+6
+00:00:13.625 --> 00:00:15.202
+Each of those is a writer,
+
+7
+00:00:15.202 --> 00:00:18.987
+and when two of them write the
+same value, the later one wins.
+
+8
+00:00:18.987 --> 00:00:23.538
+So a late active true from the pipeline
+undoes the workflow's disable.
+
+9
+00:00:23.538 --> 00:00:26.398
+A help desk edit to the organization code
+
+10
+00:00:26.398 --> 00:00:29.426
+moves the person's access,
+and HR never knows.
+
+11
+00:00:29.426 --> 00:00:32.525
+In this module you fix that
+before any other gate.
+
+12
+00:00:32.525 --> 00:00:37.526
+You name one writer, and a backstop, for
+every account-state transition and every
+
+13
+00:00:37.526 --> 00:00:42.430
+HR-mastered value, and then you test the
+directory audit log against that list.

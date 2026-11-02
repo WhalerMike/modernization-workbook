@@ -1,0 +1,719 @@
+{
+ "1": [
+  [
+   0.05,
+   8.838,
+   "Welcome to Module 7, the last module of the H R-Driven Identity learning path: find lifecycle drift and file the evidence."
+  ],
+  [
+   8.887,
+   6.5,
+   "This is Gate 7 of the implementation guide, and it goes with Chapter 07 of the developer workbook."
+  ],
+  [
+   15.387,
+   2.775,
+   "The first six gates each produce a result."
+  ],
+  [
+   18.163,
+   5.763,
+   "This gate keeps those results true over time, and hands the I S S O something they can check."
+  ],
+  [
+   23.925,
+   12.025,
+   "In this module you'll write one read-only run of the lifecycle drift classes and the six lifecycle metrics, from the H R export, the directory, the card system and the earlier modules' outputs."
+  ],
+  [
+   35.95,
+   5.737,
+   "Then you'll package each run with a hash chain, verify it, and assemble a reporting period."
+  ],
+  [
+   41.688,
+   2.487,
+   "The module takes about an hour with its lab."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.488,
+   "Why does this gate exist?"
+  ],
+  [
+   1.538,
+   5.713,
+   "Because accounts drift from the H R record, even after every earlier gate is done right."
+  ],
+  [
+   7.25,
+   2.487,
+   "A worker shows up in H R with no account."
+  ],
+  [
+   9.738,
+   2.8,
+   "A terminated worker's account is still enabled."
+  ],
+  [
+   12.537,
+   2.312,
+   "An account turns up that nobody owns."
+  ],
+  [
+   14.85,
+   2.913,
+   "Someone other than the named writer changes a value."
+  ],
+  [
+   17.762,
+   2.413,
+   "A card stays active after a separation."
+  ],
+  [
+   20.175,
+   4.312,
+   "Each of those is a drift class, and the run in this module finds them all."
+  ],
+  [
+   24.488,
+   2.087,
+   "There's a second problem: time."
+  ],
+  [
+   26.575,
+   8.3,
+   "Entra keeps its own logs for only thirty days, and the evidence has to outlive the accounts it describes, which are eventually disposed of."
+  ],
+  [
+   34.875,
+   5.95,
+   "So the findings and metrics have to leave the directory, in a form an I S S O can check later."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   2.175,
+   "Here's what you'll be able to do by the end."
+  ],
+  [
+   2.225,
+   6.475,
+   "You'll name the six lifecycle drift classes and the six metrics, and say which module's output feeds each."
+  ],
+  [
+   8.7,
+   4.225,
+   "You'll write a run from the earlier modules' outputs and read its findings."
+  ],
+  [
+   12.925,
+   6.25,
+   "You'll package runs with a hash chain, verify a package, and check it yourself with sha256sum."
+  ],
+  [
+   19.175,
+   6.1,
+   "And you'll assemble a reporting period, and explain why it can be incomplete even when its chain is whole."
+  ],
+  [
+   25.275,
+   5.85,
+   "This run reads the outputs of Modules 1, 2, 3, 4 and 6."
+  ],
+  [
+   31.125,
+   3.612,
+   "You don't need to have kept them: the first step of the lab rebuilds them."
+  ],
+  [
+   34.737,
+   8.887,
+   "The packaging builds on the drift pipeline in the Federal Modernization Workbook's Book 19's Chapter 09, and the lab calls it from the same clone."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   4.088,
+   "Unit 1 reads the guide's Step 7, which asks for five things."
+  ],
+  [
+   4.138,
+   6.037,
+   "Run the drift classes: that's the run command, with classes L D one to L D six."
+  ],
+  [
+   10.175,
+   9.475,
+   "Fix at the source, not in the directory: the period counts findings opened and closed, and keeps each unauthorized-write finding's closure at the source."
+  ],
+  [
+   19.65,
+   5.862,
+   "Report the six metrics: the run computes them and flags any out of bounds or not measured."
+  ],
+  [
+   25.512,
+   10.912,
+   "Prove the sole source for each population: this code doesn't decide that; it's seven days of provisioning logs against the audit log, in Book 03's Appendix C."
+  ],
+  [
+   36.425,
+   6.138,
+   "And keep the evidence outside the directory: that's the package, verify and period commands."
+  ],
+  [
+   42.562,
+   3.013,
+   "Book 03's Chapter 11 has the design."
+  ],
+  [
+   45.575,
+   6.4,
+   "Attribute drift isn't this module's; it belongs to Gate 9 of the attribute-driven migration guide."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   2.388,
+   "Unit 2 turns to the workbook chapter."
+  ],
+  [
+   2.438,
+   1.288,
+   "Here are the classes."
+  ],
+  [
+   3.725,
+   4.6,
+   "L D one, missing identity: an active worker record with no account."
+  ],
+  [
+   8.325,
+   9.488,
+   "L D two, stale access: a worker terminated in H R whose account is still enabled, or a contractor past the earliest end and still enabled."
+  ],
+  [
+   17.812,
+   6.312,
+   "L D three, orphan account: an enabled account that matches no worker or contractor record."
+  ],
+  [
+   24.125,
+   6.562,
+   "L D four, unauthorized write: Module 1's audit scan found a second writer or a forbidden write."
+  ],
+  [
+   30.688,
+   5.2,
+   "L D five, credential drift: an active piv card for a separated worker."
+  ],
+  [
+   35.888,
+   8.537,
+   "And L D six, the contractor version: an active card for someone whose engagement ended, or whom the contractor source doesn't hold at all."
+  ],
+  [
+   44.425,
+   1.488,
+   "Those six are Findings."
+  ],
+  [
+   45.913,
+   6.975,
+   "Two more rules are warnings about the metrics: L D seven, out of bounds, and L D eight, not measured."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   1.275,
+   "The six metrics."
+  ],
+  [
+   1.325,
+   9.2,
+   "Two come from Module 6: the ninetieth percentiles of separation-to-block, at most four hours, and separation-to-revocation, at most twenty-four."
+  ],
+  [
+   10.525,
+   5.525,
+   "Transfer-to-review comes from Module 4's mover review, at most two hundred forty hours."
+  ],
+  [
+   16.05,
+   4.888,
+   "The joiner readiness rate comes from Module 3, at least ninety-five percent."
+  ],
+  [
+   20.938,
+   16.575,
+   "And two are computed by this run: correlation coverage, the share of enabled accounts that resolve to a current worker or contractor, at least ninety-nine percent; and derivation purity, the share of access-granting memberships computed by rule, at least eighty percent."
+  ],
+  [
+   37.513,
+   5.812,
+   "Module 1's scan and Module 2's contractor decisions feed the drift classes instead."
+  ],
+  [
+   43.325,
+   5.525,
+   "One rule matters most here: a metric with no input is not measured, never zero."
+  ],
+  [
+   48.85,
+   2.938,
+   "And the thresholds are the program's starting values."
+  ],
+  [
+   51.788,
+   3.8,
+   "Choosing them is the agency's decision under C A seven."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   2.75,
+   "A run is one folder, and it only reads."
+  ],
+  [
+   2.8,
+   11.525,
+   "Its run dot jay-son records the tenant, the cloud and the mode, and a SHA-256 of each module output it read, so anyone can tell exactly which inputs produced it."
+  ],
+  [
+   14.325,
+   5.263,
+   "Beside it, the lifecycle folder holds the findings, the metrics and a manifest."
+  ],
+  [
+   19.587,
+   8.912,
+   "Before the run reads an earlier module's output, it checks that output against its own manifest, so a changed file is caught, not silently used."
+  ],
+  [
+   28.5,
+   6.237,
+   "The tools also write each output folder once: they refuse a folder that already holds a manifest."
+  ],
+  [
+   34.737,
+   5.575,
+   "That's why the lab's first step deletes the out folder and rebuilds the five module outputs."
+  ],
+  [
+   40.312,
+   2.663,
+   "Lab 1 writes its runs in fixture mode."
+  ],
+  [
+   42.975,
+   4.338,
+   "Lab 2 writes them in tenant mode, from your test tenant's exports."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   3.112,
+   "The packaging is three commands in the drift pipeline."
+  ],
+  [
+   3.163,
+   10.375,
+   "Package seals one run: a SHA-256 for every file, the tenant I D, and the hash of the previous package's manifest, which is what chains them."
+  ],
+  [
+   13.537,
+   4.638,
+   "A package is written once, and a run from a different tenant is refused."
+  ],
+  [
+   18.175,
+   1.938,
+   "Verify rechecks a package."
+  ],
+  [
+   20.113,
+   10.088,
+   "But the I S S O doesn't need the kit to trust it: sha256sum, checking the SHA256SUMS file, is their own independent check."
+  ],
+  [
+   30.2,
+   3.263,
+   "Period assembles the packages in a reporting window."
+  ],
+  [
+   33.462,
+   5.025,
+   "If there's a gap in coverage or a broken link in the chain, the period isn't complete."
+  ],
+  [
+   38.487,
+   5.662,
+   "It also scores Gate 7's criteria and maps the findings and metrics to five controls."
+  ],
+  [
+   44.15,
+   5.075,
+   "That mapping is the program's design guidance; the assessor decides each control."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   16.637,
+   "Step one deletes any out folder, then rebuilds five inputs, one command each: Module 1's writer scan, Module 2's contractor extract, Module 3's readiness, Module 4's mover residual and Module 6's separation timing."
+  ],
+  [
+   17.413,
+   6.6,
+   "The full commands are on the module page; each one exits two, because each fixture holds findings."
+  ],
+  [
+   24.012,
+   3.2,
+   "Step two writes the first run, for October."
+  ],
+  [
+   27.212,
+   3.812,
+   "It reads four module outputs and prints the six metrics."
+  ],
+  [
+   31.025,
+   6.638,
+   "Separation-to-block at five point five two hours, and revocation at a hundred ten, both out of bounds."
+  ],
+  [
+   37.663,
+   4.787,
+   "Transfer-to-review isn't measured, because the mover's review is still open."
+  ],
+  [
+   42.45,
+   8.912,
+   "Readiness is twenty-five percent, correlation coverage fifty-eight percent, and derivation purity seventy-six percent: all out of bounds."
+  ],
+  [
+   51.362,
+   2.375,
+   "Fourteen Findings, six Warns."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   3.4,
+   "Step three prints the findings, one line each."
+  ],
+  [
+   3.45,
+   1.675,
+   "There are fourteen Findings."
+  ],
+  [
+   5.125,
+   2.95,
+   "One missing identity, a worker with no account."
+  ],
+  [
+   8.075,
+   8.925,
+   "Three stale accounts, among them Drew and Harper, two of Module 6's leavers, still enabled, and a contractor past the earliest end."
+  ],
+  [
+   17.0,
+   3.513,
+   "Two orphans, a print kiosk and an old temp account."
+  ],
+  [
+   20.512,
+   7.0,
+   "Five unauthorized writes, which are Module 1's four second writers and its forbidden delete, carried forward."
+  ],
+  [
+   27.512,
+   4.787,
+   "One active card for a separated worker, and two contractor cards that should be gone."
+  ],
+  [
+   32.3,
+   8.637,
+   "Then six Warns: five L D seven, one for each metric out of bounds, and one L D eight, for the metric that wasn't measured."
+  ],
+  [
+   40.938,
+   3.3,
+   "Notice how the earlier modules' results reappear here."
+  ],
+  [
+   44.237,
+   1.925,
+   "This run is where they all meet."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   6.963,
+   "Step four writes the next day's run, for the first of November, and it prints the same metrics and the same counts."
+  ],
+  [
+   7.013,
+   2.388,
+   "Step five packages both runs."
+  ],
+  [
+   9.4,
+   5.287,
+   "The first package opens twenty findings, the fourteen Findings and six Warns."
+  ],
+  [
+   14.688,
+   5.013,
+   "The second package names the first one's manifest as its previous, which chains them."
+  ],
+  [
+   19.7,
+   5.875,
+   "It opens nothing new and closes nothing, because the inputs didn't change between the two runs."
+  ],
+  [
+   25.575,
+   6.95,
+   "Then verify confirms the second package: six files, and the same manifest hash the package command printed."
+  ],
+  [
+   32.525,
+   3.812,
+   "Your hashes match these only if your fixtures are the committed ones."
+  ],
+  [
+   36.337,
+   9.387,
+   "Finally, the I S S O's own check, with no kit at all: sha256sum, run inside the package folder, reports every file OK."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   5.275,
+   "Step six assembles the period, from the first of October to the second of November."
+  ],
+  [
+   5.325,
+   7.312,
+   "Two packages, no chain breaks, no coverage gaps, twenty findings open at the end, and complete is false."
+  ],
+  [
+   12.637,
+   1.25,
+   "Exit code two."
+  ],
+  [
+   13.887,
+   2.513,
+   "Print the period summary and you see why."
+  ],
+  [
+   16.4,
+   2.175,
+   "It scores Gate 7's criteria."
+  ],
+  [
+   18.575,
+   5.5,
+   "The evidence criterion is met: kept outside the directory, with an unbroken chain."
+  ],
+  [
+   24.075,
+   7.463,
+   "But drift is still open, so the first criterion isn't met, and five metrics are out of bounds, so the second isn't either."
+  ],
+  [
+   31.538,
+   4.037,
+   "The fourth, the sole source, isn't decided by this code at all."
+  ],
+  [
+   35.575,
+   6.513,
+   "That's the point of this step: an unbroken chain proves the record is intact, not that the gate is passed."
+  ],
+  [
+   42.087,
+   7.1,
+   "Step seven runs both test suites, fifty-seven and a hundred forty-two tests, and deletes the out folder."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   6.7,
+   "Lab 2 runs the same thing for real, in a worldwide or G C C test tenant, never production."
+  ],
+  [
+   6.75,
+   8.65,
+   "The reader app uses a certificate or a federated credential, and holds only the two permissions the drift-read task lists, with admin consent."
+  ],
+  [
+   15.4,
+   7.537,
+   "You export the workforce users, run Lab 2 of Modules 1 to 6 against the test tenant, and write a run in tenant mode."
+  ],
+  [
+   22.938,
+   10.025,
+   "Then you schedule it in Book 19's Chapter 09 workflow, with each package written to an immutable test storage container, and assemble a period from the scheduled runs."
+  ],
+  [
+   32.962,
+   10.3,
+   "To back it out, remove the schedule, delete the reader app, its credential and its consent, delete the test container if you created it for the lab, and delete the local folders."
+  ],
+  [
+   43.263,
+   2.15,
+   "The authors haven't run Lab 2."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   1.387,
+   "The federal requirement."
+  ],
+  [
+   1.438,
+   15.325,
+   "In nist special publication eight hundred fifty-three terms, this gate meets C A seven, continuous monitoring with system-level metrics, and A U six and A U eleven with S I twelve: the review and retention of audit records."
+  ],
+  [
+   16.762,
+   4.362,
+   "It also meets B O D twenty-five oh-one's continuous reporting."
+  ],
+  [
+   21.125,
+   9.175,
+   "The evidence an I S S O keeps for Gate 7: every period's manifest, summary and checksum file, with the approved thresholds."
+  ],
+  [
+   30.3,
+   4.775,
+   "The packages, with each unauthorized-write finding's closure at the source."
+  ],
+  [
+   35.075,
+   5.375,
+   "The storage container's retention and immutability settings, set to the records schedule."
+  ],
+  [
+   40.45,
+   2.625,
+   "And the ScubaGear results beside the period."
+  ],
+  [
+   43.075,
+   5.425,
+   "The guide's Evidence section gathers all seven gates into one file per population."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   3.5,
+   "Check yourself with two questions from the module's knowledge check."
+  ],
+  [
+   3.55,
+   5.963,
+   "First: Module 4's mover review is still open, so there's no transfer-to-review value."
+  ],
+  [
+   9.512,
+   1.488,
+   "How does the run report it?"
+  ],
+  [
+   11.0,
+   5.438,
+   "The answer is c: as not measured, rule L D eight, never as zero."
+  ],
+  [
+   16.438,
+   4.0,
+   "A zero would look like the best possible result, and it would be false."
+  ],
+  [
+   20.438,
+   6.487,
+   "Second: the period reports zero chain breaks and zero coverage gaps, but complete is false."
+  ],
+  [
+   26.925,
+   0.688,
+   "Why?"
+  ],
+  [
+   27.613,
+   6.588,
+   "The answer is a. Drift is still open and metrics are out of bounds, so Gate 7's criteria aren't met."
+  ],
+  [
+   34.2,
+   5.787,
+   "The period scores the criteria, and an unbroken chain meets only the evidence criterion."
+  ],
+  [
+   39.987,
+   4.938,
+   "The module page has three more questions, each linked to the section that teaches it."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   0.825,
+   "To sum up."
+  ],
+  [
+   0.875,
+   6.987,
+   "You rebuilt the earlier modules' outputs, and wrote two daily runs of the lifecycle drift classes and metrics."
+  ],
+  [
+   7.862,
+   11.688,
+   "You packaged them with a hash chain, verified a package with the kit and with sha256sum, and assembled a period that shows exactly which of Gate 7's criteria are met, and which aren't."
+  ],
+  [
+   19.55,
+   4.3,
+   "And with that, you've finished the H R-Driven Identity learning path."
+  ],
+  [
+   23.85,
+   14.7,
+   "Across seven modules you named one writer for every account state, ran contractors from their own source, made joiners ready on day one, assigned access from attributes, checked card sign-in, timed separations, and filed the evidence."
+  ],
+  [
+   38.55,
+   5.1,
+   "Go back to the learning path, or check your agency's progress against the guide's checklist."
+  ]
+ ]
+}
