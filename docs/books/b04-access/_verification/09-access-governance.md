@@ -146,3 +146,13 @@ Every claim was checked against the primary source on October 23, 2026. Sources:
 | 2 | Revised 508 Standards scope E201.1; WCAG 2.0 A and AA (E207.2); best meets with written market research (E202.7, E202.7.1) | Request portal and 508 | verified | 36 CFR 1194 App. A |
 | 3 | Validate vendor conformance documentation before purchase and after change | Request portal and 508 | verified | OMB M-24-08 §III.B |
 | 4 | Test the whole flow with assistive technology; record the ACR | Request portal and 508 | restated-as-design | — |
+
+## Additions, November 2, 2026 (Section 508 follow-up)
+
+Opened November 2, 2026: Microsoft Learn, "Change approval and requestor information settings for an access package in entitlement management" and "Create an access package in entitlement management" (MCP search), section on requestor questions.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 5 | Access package policies can ask requestor questions: short text, long text or multiple choice; required or optional; optional regex pattern check on text answers | Request portal and 508 | verified | Learn, requestor information settings |
+| 6 | Each question states the expected answer and its format | Request portal and 508 | restated-as-design | — |
+| 7 | Book 18 Ch 06 sets the test method and the form rules | Request portal and 508 | cross-reference; sources logged in Book 18's Chapter 06 verification file | — |
