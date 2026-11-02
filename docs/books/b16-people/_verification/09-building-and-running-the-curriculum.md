@@ -80,3 +80,36 @@ Writer W5. Sources: `docs/compliance/training-index.md` (2,333 words), `docs/pro
 | Vol V Book 00: Relationship to Vol IV Book 05 | Book 14 Ch09 link (Ch09 in-chapter note) | The controls/people division is the brief's settled split |
 | Vol V Book 00: How This Volume Fits the Program (records feed the package) | Ch09, LMS records; Ch10, training records as evidence | Internal plane vocabulary not carried |
 | Vol V Book 00: Where This Volume's Evidence Lands — Volume X | — | Internal binding layer; not workbook content |
+
+## November 2, 2026 addition: accessible content, module by module
+
+### Sources opened
+
+All opened November 2, 2026: U.S. Access Board, "Information and Communication Technology" (Revised 508 Standards, Appendix A to 36 CFR part 1194), downloaded and text extracted locally, read at E205.3, E205.4 and E205.4.1; W3C WCAG 2.0 Recommendation (11 December 2008), downloaded and searched for each success criterion cited; OMB M-24-08 PDF, text extracted locally and read in full; the workbook's own `presentations/_build/a11y_check.py` (read in full), `captions.py` (docstring), `build_narrated.ps1` (comments), `presentations/_build/README.md` (Accessibility section), `docs/presentations/watch.md` (player code) and `docs/presentations/videos.json` (counted: 147 videos, 0 with a YouTube id, 147 with a `.vtt`). `a11y_check.py` was run against the built decks `B16_People.pptx`, `B16_People_Narrated.pptx`, `B16_People_Executive.pptx`, `B16_People_Executive_Narrated.pptx`, `B18_Application_Modernization.pptx` and `B18_Application_Modernization_Narrated.pptx`: "0 of 6 decks have problems." The first cue of `B16_People_Executive_Narrated.vtt` was read to confirm the caption format.
+
+### Claims log
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| A1 | E205.3 covers "Educational or training materials"; E205.4 holds content to WCAG 2.0 A and AA; non-Web documents excused from four SC; E205.4.1 substitutes "document" for "web page" | Accessible content | verified (quote) | Revised 508 Standards |
+| A2 | SC numbers, names and levels: 1.2.1, 1.2.2, 1.2.3, 1.2.4, 1.2.5, 2.1.1, 2.1.2, 2.4.3, 2.4.7, 1.1.1, 1.3.1, 4.1.2, 2.2.1 (turn off, adjust ten times, extend), 3.3.4 (incl. "submit user test responses"), 3.3.2, 3.3.1 | Table | verified (quote for 3.3.4) | WCAG 2.0 |
+| A3 | "What the program checks" column | Table | restated-as-design | — |
+| A4 | M-24-08: HTML as the default for online content; text alternatives incl. captions or transcripts | Table | verified | M-24-08 §III.D |
+| A5 | M-24-08: Section 501 may require modifying ICT or providing AT as a reasonable accommodation | Assessments | verified | M-24-08 §III.F |
+| A6 | M-24-08: training for all staff on steps such as creating accessible documents | Assessments | verified | M-24-08 §III.F |
+| A7 | Accommodation requests through the reasonable accommodation process; vendor courses need a validated ACR | Assessments | restated-as-design; ACR practice is Book 18 Ch 06's, linked | Book 18 Ch 06 |
+| A8 | Captions generated from the narration script, timed to recorded sentence timings; per-slide tracks embedded; one `.vtt` per MP4 | Workbook videos | verified | `captions.py`, build README |
+| A9 | 147 library videos play in the page's own player with the `.vtt` as an English captions track; none set to YouTube | Workbook videos | verified | `watch.md`, `videos.json` |
+| A10 | Each MP4's captions ship as a separate `.vtt` to load with the video | Workbook videos | verified | build README; `build_narrated.ps1`; Presentations page |
+| A11 | Narration script published beside each deck; speaker notes carry it | Workbook videos | verified | build README; Presentations page links |
+| A12 | The list of what `a11y_check.py` checks | Workbook videos | verified (read in full) | `a11y_check.py` |
+| A13 | Run result: six decks, no problems | Workbook videos | verified (run Nov 2, 2026) | Local run |
+| A14 | The build marks icons and textless shapes decorative automatically | Limits | verified | build README (`a11y_fix.py` row) |
+| A15 | Contrast checked only for explicitly colored text and only against white; reading order checked only for the title; caption presence, not content | Limits | verified | `a11y_check.py` code |
+| A16 | No human review of each caption track is recorded; videos not assessed against 1.2.3 or 1.2.5 | Limits | verified as far as checked: no review record found in the build folder or READMEs | — |
+| A17 | The check isn't PowerPoint's Accessibility Checker | Limits | verified: the script parses the deck XML itself; its docstring says it applies the rules "as PowerPoint's Accessibility Checker applies them" | `a11y_check.py` |
+
+### Not verified
+
+- The exported MP4 files weren't opened, so whether any also carries an embedded caption stream wasn't checked; the chapter says only that the captions ship as a separate file.
+- Keyboard and screen-reader operation of the video page wasn't tested.
