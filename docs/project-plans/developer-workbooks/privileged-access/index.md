@@ -73,7 +73,7 @@ The samples named for Chapters 03 to 08 are candidates. Each chapter checks Lear
 
 ## Narrated chapter tours
 
-Every chapter has a narrated tour: a deck in Why, What, Who and How order, a self-running edition with captions, and a video. The tours were recorded on October 31, 2026 from the approved chapters, and a tour is re-recorded when its chapter changes. All of them are also on the [Watch page](../../../presentations/watch.md).
+Every chapter has a narrated tour: a deck in Why, What, Who and How order, a self-running edition with captions, and a video. The tours were recorded on November 2, 2026 from the approved chapters, and a tour is re-recorded when its chapter changes. All of them are also on the [Watch page](../../../presentations/watch.md).
 
 | # | Chapter | Watch | Length | Deck | Narrated deck |
 |---|---|---|---|---|---|

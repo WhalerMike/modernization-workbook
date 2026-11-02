@@ -6,7 +6,7 @@
 |---|---|
 | `DW_HR_05_CBA_Checks.pptx` | The deck: 18 narrated slides (the title and 17 content slides in Why, What, Who and How order), then a backup section with the chapter's footnotes in full |
 | `DW_HR_05_CBA_Checks_Narrated.pptx` | The self-running edition: narration audio and a caption track on every slide, backup section dropped |
-| `DW_HR_05_CBA_Checks_Narrated.mp4` | The video, about 10 minutes, on the [videos release](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_HR_05_CBA_Checks_Narrated.mp4) |
+| `DW_HR_05_CBA_Checks_Narrated.mp4` | The video, about 11 minutes, on the [videos release](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_HR_05_CBA_Checks_Narrated.mp4) |
 | `DW_HR_05_CBA_Checks_Narrated.vtt` | The video's caption track |
 | `DW_HR_05_CBA_Checks_Narration_Script.md` | The spoken narration, slide by slide (about 1,568 words) |
 | `build.js` | The slides, the spoken narration (`say`), the presenter detail (`detail`) and the chapter footnotes each slide cites (`cite`) |
@@ -15,6 +15,6 @@ Build (Git Bash): `source /c/tmp/deckenv.sh`, then `DATECODE="YYYY-MM-DD HH:MM E
 
 ## Notes and sourcing
 
-Each slide's speaker notes have three parts: the narration (the only part spoken), a Detail part with the chapter's full content for a presenter, and the chapter footnotes the slide relies on, in full, ending with the chapter sections it draws on. Every fact comes from the chapter; the deck adds none. The chapter's own labels carry over: design guidance, preview and beta stages, and points not confirmed. The example code is illustrative and tested against fixtures, not proven against a production tenant. The Lab 1 slides show real output from the kit's fixtures, `data/kit-captures/hr/05-*.txt`.
+Each slide's speaker notes have three parts: the narration (the only part spoken), a Detail part with the chapter's full content for a presenter, and the chapter footnotes the slide relies on, in full, ending with the chapter sections it draws on. Every fact comes from the chapter; the deck adds none. The chapter's own labels carry over: design guidance, preview and beta stages, and points not confirmed. The example code is illustrative and tested against fixtures, not proven against a production tenant.
 
-The title slide carries the Date Code of the build and the chapter's review status. The tour was built on November 2, 2026 from the chapter as approved at the review gate; if the chapter changes, the tour is rebuilt and re-recorded.
+The title slide carries the Date Code of the build and the chapter's review status. The tour was recorded on November 2, 2026 from the chapter as approved at the review gate; if the chapter changes, the tour is rebuilt and re-recorded.

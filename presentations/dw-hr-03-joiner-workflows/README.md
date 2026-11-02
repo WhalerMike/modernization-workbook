@@ -15,6 +15,6 @@ Build (Git Bash): `source /c/tmp/deckenv.sh`, then `DATECODE="YYYY-MM-DD HH:MM E
 
 ## Notes and sourcing
 
-Each slide's speaker notes have three parts: the narration (the only part spoken), a Detail part with the chapter's full content for a presenter, and the chapter footnotes the slide relies on, in full, ending with the chapter sections it draws on. Every fact comes from the chapter; the deck adds none. The chapter's own labels carry over: design guidance, preview and beta stages, and points not confirmed. The example code is illustrative and tested against fixtures, not proven against a production tenant. The Lab 1 slides show real output: the chapter's Lab 1 commands run on the kit's fixtures, from `data/kit-captures/hr/`.
+Each slide's speaker notes have three parts: the narration (the only part spoken), a Detail part with the chapter's full content for a presenter, and the chapter footnotes the slide relies on, in full, ending with the chapter sections it draws on. Every fact comes from the chapter; the deck adds none. The chapter's own labels carry over: design guidance, preview and beta stages, and points not confirmed. The example code is illustrative and tested against fixtures, not proven against a production tenant.
 
-The title slide carries the Date Code of the build and the chapter's review status. The tour was built on November 2, 2026 from the chapter as approved at the review gate; if the chapter changes, the tour is rebuilt and re-recorded.
+The title slide carries the Date Code of the build and the chapter's review status. The tour was recorded on November 2, 2026 from the chapter as approved at the review gate; if the chapter changes, the tour is rebuilt and re-recorded.
