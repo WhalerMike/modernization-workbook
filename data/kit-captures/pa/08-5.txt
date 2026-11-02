@@ -1,0 +1,7 @@
+$ DAY1=tests/fixtures/pa-runs/2026-10-29T0600Z-fixture
+$ DAY2=tests/fixtures/pa-runs/2026-10-30T0600Z-fixture
+$ python python/pa_evidence.py compare --current $DAY1 --out out/day1
+{"baseline": true, "counts": {"assignments_added": 0, "assignments_changed": 0, "assignments_removed": 0, "audit": 0, "changed": 0, "coverage_gaps": 0, "incidents": 0, "new": 26, "resolved": 0, "unchanged": 0, "unverified": 0}, "drift": true}
+(exit code 2)
+$ python python/pa_evidence.py package --run $DAY1 --diff out/day1/pa-drift-report.json --out out/evidence
+{"evidence_manifest_sha256": "e10d8543ed3bfa05f4cf4fa7aa873242958be5ea0db463c2760f901fbe3c19b7", "package": "2026-10-29T0600Z-fixture"}

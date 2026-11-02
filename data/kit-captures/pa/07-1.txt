@@ -1,0 +1,5 @@
+PS> Invoke-Pester -Path tests/AccessReviews.Tests.ps1 -FullNameFilter '*(Learn), run as published*' -Output None -PassThru |
+>>     Select-Object PassedCount, FailedCount
+PassedCount FailedCount
+----------- -----------
+         11           0

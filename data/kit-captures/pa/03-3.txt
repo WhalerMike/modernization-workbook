@@ -1,0 +1,2 @@
+PS> ./Invoke-PaCaAdmin.ps1 -CheckOnly -MapPath tests/fixtures/ch03/tenant-map.json
+Pre-merge check: 0 Finding, 5 Warn, 0 Info

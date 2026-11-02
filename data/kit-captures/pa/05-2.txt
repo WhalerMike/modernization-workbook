@@ -1,0 +1,9 @@
+PS> Import-Module ./powershell/PimGroups/PimGroups.psm1
+PS> . ./tests/PimForGroupsSampleHarness.ps1
+PS> $learn = Get-PgLearnRequest -Page eligibility
+PS> $learn[0].Title
+Example 1: An admin creates an eligible group ownership request for a principal
+PS> $learn[0].Body.accessId
+member
+PS> (Invoke-PgLearnRequest -Request $learn[0] -Fixture tests/fixtures/ch05/tenant.json -Policy).Status
+400 Bad Request from the fake: the schedule ended at 2023-02-07T19:56:00.0000000Z, before the fake's clock

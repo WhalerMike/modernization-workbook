@@ -1,0 +1,5 @@
+PS> $c = Read-PaArConfig tests/fixtures/ch07/access-reviews.json
+PS> ($c.reviews | Where-Object name -EQ 'PAR-T0-GlobalAdministrator-Monthly').defaultDecision = 'Deny'
+PS> $client = New-PaArClient -Cloud gcc -Task access-reviews-apply -Invoke (New-PaArFake -Path tests/fixtures/ch07/tenant.json).Invoke
+PS> Invoke-PaArApply -Client $client -Plan (Get-PaArPlan -Client $client -Config $c -AsOf 2026-10-30) -Apply
+Exception: Refusing -Apply: the plan has 1 Finding(s): PA-AR-06 PAR-T0-GlobalAdministrator-Monthly

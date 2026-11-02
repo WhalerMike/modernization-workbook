@@ -1,0 +1,5 @@
+PS> Get-PaEmergencyQuery -AccountId ea01@contosoexample.onmicrosoft.com
+Exception: 'ea01@contosoexample.onmicrosoft.com' isn't an object ID
+PS> $t = Get-Content out/emergency/emergency-alert.json -Raw | ConvertFrom-Json
+PS> $t.resources[0].type, $t.resources[0].apiVersion, $t.resources[0].properties.severity -join ' | '
+Microsoft.Insights/scheduledQueryRules | 2023-12-01 | 0

@@ -1,0 +1,16 @@
+PS> ./Invoke-PaAccessReviews.ps1 -Cloud gcc -Mode Evidence -ConfigPath tests/fixtures/ch07/access-reviews.json `
+>>     -FixturePath tests/fixtures/ch07/tenant.json -AsOf 2026-10-30 -OutputPath out/reviews-evidence
+Evidence: 18 decisions in 7 instances; 7 Finding, 2 Warn
+Written to out/reviews-evidence (manifest.json lists every request and file hash)
+PS> Get-Content out/reviews-evidence/findings.json -Raw | ConvertFrom-Json | Format-Table Rule, Severity, Object
+Rule      Severity Object
+----      -------- ------
+PA-AR-E01 Finding  PAR-T0-PrivilegedRoleAdministrator-Monthly
+PA-AR-E02 Finding  PAR-PRV-T0-GlobalAdmin-Monthly
+PA-AR-E08 Finding  PAR-T0-GlobalAdministrator-Monthly / Emergency Access 02
+PA-AR-E04 Finding  PAR-T0-GlobalAdministrator-Monthly / Frank Ode
+PA-AR-E05 Finding  PAR-T1-ExchangeAdministrator-Quarterly / Carl Ops
+PA-AR-E03 Finding  PAR-T1-ExchangeAdministrator-Quarterly / Frank Ode
+PA-AR-E04 Warn     PAR-T1-ExchangeAdministrator-Quarterly / Gina Lee
+PA-AR-E06 Finding  PAR-PRV-T0-GlobalAdmin-Monthly / Bo Chen
+PA-AR-E07 Warn     PAR-T1-ExchangeAdministrator-Quarterly / reviewer a0000000-0000-4000-8000-000000000013

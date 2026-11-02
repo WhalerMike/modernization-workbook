@@ -1,0 +1,3 @@
+PS> Import-Module ./powershell/PrivilegedAccess/PrivilegedAccess.psm1
+PS> (Get-PaRequiredPermission -Task emergency-access).GraphPermissions -join ', '
+GroupMember.ReadBasic.All, Policy.Read.All, RoleAssignmentSchedule.Read.Directory, User.Read.All, User.ReadBasic.All, UserAuthenticationMethod.Read.All

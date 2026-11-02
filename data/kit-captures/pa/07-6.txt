@@ -1,0 +1,17 @@
+PS> ./Invoke-PaAccessReviews.ps1 -Cloud gcc -Mode Plan -ConfigPath tests/fixtures/ch07/access-reviews.json `
+>>     -FixturePath tests/fixtures/ch07/tenant.json -AsOf 2026-10-30 -OutputPath out/reviews-apply -Apply
+Plan: 1 Create, 2 Update, 1 Replace, 3 NoChange, 1 Unmanaged
+Checks: 0 Finding, 1 Warn, 1 Info
+Applied: 2 write(s) sent; Replace and Unmanaged series are left for a person
+Written to out/reviews-apply (manifest.json lists every request and file hash)
+PS> Get-Content out/reviews-apply/results.json -Raw | ConvertFrom-Json | Format-Table Name, Action, Result, Note
+Name                                       Action    Result  Note
+----                                       ------    ------  ----
+PAR-T0-GlobalAdministrator-Monthly         Update    Sent    read back
+PAR-T0-PrivilegedRoleAdministrator-Monthly Create    Sent    read back
+PAR-T1-ExchangeAdministrator-Quarterly     Replace   Skipped needs a person: export its evidence, delete it in the portal, rerun
+PAR-PRV-T0-GlobalAdmin-Monthly             NoChange  Skipped matches the tenant
+PAR-PRV-T0-PrivRoleAdmin-Monthly           NoChange  Skipped matches the tenant
+PAR-PRV-T1-ExchangeAdmin-Quarterly         NoChange  Skipped matches the tenant
+PAR-AZ-T0-Owner-Platform-Monthly           Update    Skipped Azure role reviews use a preview API; pass -IncludePreview
+PAR-T0-SecurityAdministrator-Monthly       Unmanaged Skipped not in the reviewed JSON; never deleted

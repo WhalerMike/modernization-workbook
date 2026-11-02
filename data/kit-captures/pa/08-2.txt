@@ -1,0 +1,3 @@
+PS> Import-Module ./powershell/PaEvidence/PaEvidence.psm1
+PS> (Get-PaEvidencePermission -Task evidence-run).GraphPermissions -join ', '
+AuditLog.Read.All, GroupMember.ReadBasic.All, Policy.Read.All, RoleAssignmentSchedule.Read.Directory, RoleEligibilitySchedule.Read.Directory, RoleManagement.Read.Directory, User.Read.All, User.ReadBasic.All, UserAuthenticationMethod.Read.All

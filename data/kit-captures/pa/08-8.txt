@@ -1,0 +1,5 @@
+$ python python/pa_evidence.py package --run $DAY2 --diff out/day2/pa-drift-report.json --previous-manifest out/evidence/2026-10-29T0600Z-fixture/EVIDENCE-MANIFEST.json --out out/evidence
+{"evidence_manifest_sha256": "763d4a1f11274ba77b1ed5d7d299143544a94d4d160d1113efb30c50930fc7a2", "package": "2026-10-30T0600Z-fixture"}
+$ python python/pa_evidence.py verify out/evidence/2026-10-30T0600Z-fixture
+{"evidence_manifest_sha256": "763d4a1f11274ba77b1ed5d7d299143544a94d4d160d1113efb30c50930fc7a2", "files": 15, "run_id": "2026-10-30T0600Z-fixture"}
+$ (cd out/evidence/2026-10-30T0600Z-fixture && sha256sum -c --quiet SHA256SUMS)

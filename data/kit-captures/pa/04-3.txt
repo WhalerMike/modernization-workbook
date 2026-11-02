@@ -1,0 +1,8 @@
+PS> $lab = @{ Cloud = 'gcc'; FixturePath = 'tests/fixtures/ch04/tenant.json'; BindingsPath = 'tests/fixtures/ch04/inputs/pim-bindings.json'
+>>     EmergencyConfigPath = 'tests/fixtures/inputs/emergency-access.json'; ExceptionsPath = 'tests/fixtures/inputs/exceptions.csv'
+>>     ConfirmedPath = 'tests/fixtures/ch04/inputs/confirmed-activations.csv'; AsOf = '2026-10-30' }
+PS> ./Invoke-PaPimRoleSettings.ps1 @lab -Wave 1 -OutputPath out/pim-wave1
+Wave 1 (9 roles): 0 Finding, 13 Warn, 0 Info
+Plan: 43 rule updates, 8 eligibility requests, 2 standing assignments to convert (0 confirmed)
+Dry run: nothing was sent
+Written to out/pim-wave1 (manifest.json lists every request and file hash)

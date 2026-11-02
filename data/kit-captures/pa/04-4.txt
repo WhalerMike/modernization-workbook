@@ -1,0 +1,20 @@
+PS> Import-Csv out/pim-wave1/diff.csv | Where-Object Role -EQ 'Exchange Administrator' | Format-Table RuleId, Property, Tenant, Desired
+RuleId                                   Property                         Tenant       Desired
+------                                   --------                         ------       -------
+AuthenticationContext_EndUser_Assignment isEnabled                        False        True
+AuthenticationContext_EndUser_Assignment claimValue                                    c1
+Approval_EndUser_Assignment              isApprovalRequired               False        True
+Approval_EndUser_Assignment              approvalMode                                  SingleStage
+Approval_EndUser_Assignment              isRequestorJustificationRequired              True
+Approval_EndUser_Assignment              stages                                        1
+Approval_EndUser_Assignment              approvalStageTimeOutInDays                    1
+Approval_EndUser_Assignment              isApproverJustificationRequired               True
+Approval_EndUser_Assignment              primaryApprovers                              group:9e000000-0000-4000-8000-000000000011
+Expiration_Admin_Assignment              maximumDuration                  180.00:00:00 15.00:00:00
+PS> Get-Content out/pim-wave1/findings.json -Raw | ConvertFrom-Json | Where-Object Rule -NE 'PA-PIM-05' | Format-Table Rule, Severity, Object, Issue
+Rule      Severity Object                    Issue
+----      -------- ------                    -----
+PA-PIM-09 Warn     Application Administrator Erin Patel holds the role standing: convert to eligibility through the PRV group
+PA-PIM-08 Warn     Exchange Administrator    Dana Reyes is eligible outside the PRV group (schedule res-dana-exchange); the access review removes it (Chapter 07), this code doesn't
+PA-PIM-09 Warn     Exchange Administrator    Carl Ops holds the role standing: convert to eligibility through the PRV group
+PA-PIM-09 Warn     Exchange Administrator    Contoso-Mail-Automation (#microsoft.graph.servicePrincipal) holds the role standing: document it as an exception or replace it; this code removes users on…

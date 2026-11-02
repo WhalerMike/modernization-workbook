@@ -141,17 +141,22 @@ def clean(out: str, cwd: Path, root: Path) -> str:
     """One command's output, made stable: no timings, no scratch paths (the lab's folder becomes relative,
     the scratch copy's root "<scratch>"), and on Windows forward slashes."""
     out = out.replace("\r\n", "\n").rstrip("\n")
+    # As a terminal shows it: colour codes dropped, and a line rewritten after a carriage return
+    # (Pester's progress on Linux) shows only its last version.
+    out = re.sub(r"\x1b\[[0-9;?]*[A-Za-z]", "", out)
+    out = "\n".join(l.split("\r")[-1] for l in out.split("\n"))
     for d, to in ((cwd, ""), (root, "<scratch>/")):
         for p in sorted({str(d), d.as_posix()}, key=len, reverse=True):
             out = out.replace(p + "\\", to).replace(p + "/", to).replace(p, to.rstrip("/") or ".")
     if os.name == "nt":
         out = out.replace("\\", "/")
     # pytest, node and Pester print their own timings; keep the counts, drop the times.
-    out = re.sub(r" in \d+\.\d+s\b", "", out)
+    out = re.sub(r" in \d+(?:\.\d+)?m?s\b", "", out)
     out = re.sub(r"^(. duration_ms) [\d.]+$", r"\1 …", out, flags=re.M)
     out = re.sub(r" \(\d+(?:\.\d+)?ms\)$", "", out, flags=re.M)
-    out = re.sub(r"^((?:Tests completed|Discovery found [^\n]*?) in) [\d.]+m?s", r"\1 …", out, flags=re.M)
+    # Pester puts a file's timing on the file's line, or on a line of its own.
     out = re.sub(r"^(\[[+-]\] [^\n]*?) [\d.]+m?s \([\d.]+m?s\|[\d.]+m?s\)$", r"\1", out, flags=re.M)
+    out = re.sub(r"^ *[\d.]+m?s \([\d.]+m?s\|[\d.]+m?s\)\n", "", out, flags=re.M)
     return "\n".join(l.rstrip() for l in out.split("\n")).strip("\n")
 
 
@@ -193,7 +198,13 @@ foreach ($__b in (Get-Content -Raw -LiteralPath $args[0] | ConvertFrom-Json)) {
     $__shown++
     $global:LASTEXITCODE = 0
     try { . ([scriptblock]::Create($__st.Extent.Text)) *>&1 | Out-String -Width 200 -Stream }
-    catch { $_ | Out-String -Width 200 -Stream }
+    # An error is one line, "Name: message", as a wide terminal shows it; otherwise PowerShell
+    # wraps it to the console width, which differs between machines.
+    catch {
+      $__r = @($_ | Out-String -Width 200 -Stream | Where-Object { $_ })
+      $__p = if ($__r.Count -and $__r[0] -match '^([^:]+): ') { $Matches[1] } else { 'Exception' }
+      "${__p}: $(if ($_.ErrorDetails.Message) { $_.ErrorDetails.Message } else { $_.Exception.Message })"
+    }
     if ($global:LASTEXITCODE) { "(exit code $global:LASTEXITCODE)" }
   }
 }
@@ -408,6 +419,12 @@ def main() -> int:
     if a.check:
         if stale:
             print("kit captures: no longer what the kit prints: " + ", ".join(stale), file=sys.stderr)
+            import difflib
+            for k in stale:     # what changed, so a CI log shows it
+                old = (folder / f"{k}.txt").read_bytes().decode("utf-8").split("\n") if (folder / f"{k}.txt").exists() else []
+                diff = list(difflib.unified_diff([repr(l) for l in old], [repr(l) for l in found[k].split("\n")],
+                                                 f"committed {k}", f"now {k}", n=1, lineterm=""))
+                print("\n".join(diff[:40]), file=sys.stderr)
             return 1
         print(f"kit captures: {len(found)} match the kit")
         return 0

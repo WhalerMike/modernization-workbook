@@ -1,0 +1,5 @@
+PS> Invoke-Pester -Path tests/EvidenceDrift.Tests.ps1 -FullNameFilter '*as published*' -Output None -PassThru |
+>>     Select-Object PassedCount, FailedCount, NotRunCount
+PassedCount FailedCount NotRunCount
+----------- ----------- -----------
+          8           0          24

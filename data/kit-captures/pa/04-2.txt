@@ -1,0 +1,5 @@
+PS> Import-Module ./powershell/PimEntraRoles/PimEntraRoles.psm1
+PS> 'pim-plan', 'pim-apply', 'pim-convert' | ForEach-Object { "$_`: " + ((Get-PaPimRequiredPermission -Task $_).GraphPermissions -join ', ') }
+pim-plan: RoleAssignmentSchedule.Read.Directory, RoleEligibilitySchedule.Read.Directory, RoleManagementPolicy.Read.Directory
+pim-apply: RoleAssignmentSchedule.Read.Directory, RoleEligibilitySchedule.Read.Directory, RoleEligibilitySchedule.ReadWrite.Directory, RoleManagementPolicy.Read.Directory, RoleManagementPolicy.ReadWrite.Directory
+pim-convert: RoleAssignmentSchedule.Read.Directory, RoleAssignmentSchedule.ReadWrite.Directory, RoleEligibilitySchedule.Read.Directory, RoleManagementPolicy.Read.Directory

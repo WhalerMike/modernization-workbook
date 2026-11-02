@@ -1,0 +1,15 @@
+PS> Get-Content out/pim-groups/findings.json -Raw | ConvertFrom-Json | Format-Table Rule, Severity, Object
+Rule     Severity Object
+----     -------- ------
+PA-PG-09 Warn     Helpdesk-Admins-Legacy
+PA-PG-09 Warn     PRV-T1-IntuneAdmin
+PA-PG-09 Finding  PRV-T0-PrivRoleAdmin
+PA-PG-06 Finding  PRV-T0-PrivRoleAdmin
+PA-PG-09 Finding  PRV-T0-PrivRoleAdmin
+PA-PG-07 Finding  PRV-T0-PrivRoleAdmin
+PA-PG-08 Finding  PRV-T0-PrivRoleAdmin
+PA-PG-08 Finding  PRV-T0-PrivRoleAdmin
+PA-PG-02 Warn     PRV-T1-AzureOwner-SubWorkload
+PA-PG-05 Finding  PRV-T1-AzureOwner-SubWorkload
+PA-PG-09 Finding  PRV-T1-AzureOwner-SubWorkload
+PA-PG-08 Finding  PRV-T1-AzureOwner-SubWorkload

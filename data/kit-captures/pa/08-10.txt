@@ -1,0 +1,9 @@
+$ echo edited >> out/evidence/2026-10-30T0600Z-fixture/drift/pa-drift-summary.md
+$ python python/pa_evidence.py verify out/evidence/2026-10-30T0600Z-fixture
+error: out/evidence/2026-10-30T0600Z-fixture: drift/pa-drift-summary.md doesn't match its SHA-256
+(exit code 1)
+$ python python/pa_evidence.py compare --previous $DAY2 --current $DAY1 --out out/swap
+error: the current run (2026-10-29T06:00:00Z) isn't later than the previous one (2026-10-30T06:00:00Z)
+(exit code 1)
+$ python python/workflow_lint.py workflow/pa-evidence.yml
+workflow/pa-evidence.yml: 0 finding(s), 0 warning(s)

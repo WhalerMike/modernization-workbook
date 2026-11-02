@@ -1,0 +1,19 @@
+PS> ./Invoke-PaCaAdmin.ps1 -Cloud gcc -MapPath tests/fixtures/ch03/tenant-map.json -FixturePath tests/fixtures/ch03/tenant.json -OutputPath out/ca
+Pre-merge check: 0 Finding, 5 Warn, 0 Info
+Plan: 3 Blocked, 4 Create, 1 NoChange, 1 NotInRepository, 2 Update
+Dry run: 6 request(s) written to requests.json, none sent; rerun with -Apply to send them
+Written to out/ca (manifest.json lists every request and file hash)
+PS> Get-Content out/ca/plan.json -Raw | ConvertFrom-Json | Format-Table Kind, Name, Action
+Kind     Name                                             Action
+----     ----                                             ------
+context  c1                                               Create
+context  c2                                               Update
+strength FMP-Privileged-SeparateDevice                    Create
+policy   CA003-Admins-RequirePhishResistantMFA            Blocked
+policy   CA004-Admins-RequireCompliantDevice              Update
+policy   CA005-Admins-BlockUntrustedLocations             NoChange
+policy   CA025-Admins-BlockNonPAW                         Create
+policy   CA027-AllUsers-AzureManagement-BlockNonOperators Create
+policy   PIM-Activation-c1                                Blocked
+policy   ProtectedActions-c2                              Blocked
+policy   CA001-AllUsers-BlockLegacyAuth                   NotInRepository

@@ -1,0 +1,6 @@
+PS> Get-Content out/runs/2026-10-30T0600Z-fixture/pim-audit/findings.json -Raw | ConvertFrom-Json | Format-Table Rule, Severity, Tier, ObjectId
+Rule      Severity Tier ObjectId
+----      -------- ---- --------
+PA-AUD-01 Finding  T0   a0000000-0000-4000-8000-000000000020
+PA-AUD-02 Finding  T0   a0000000-0000-4000-8000-000000000013
+PA-AUD-04 Finding  T0   62e90394-69f5-4237-9190-012177145e10

@@ -1,0 +1,5 @@
+PS> Import-Module ./powershell/PaAzurePim/PaAzurePim.psm1
+PS> (Get-PaAzRequiredRole -Task azure-pim-read).AzureRoles -join ', '
+Reader
+PS> (Get-PaAzRequiredRole -Task azure-pim-apply).AzureRoles -join ', '
+Reader, User Access Administrator

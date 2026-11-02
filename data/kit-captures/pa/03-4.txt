@@ -1,0 +1,9 @@
+PS> $t = Read-PaCaTemplatePage -Path ../third_party/conditional-access-template-page/conditionalaccesstemplate-get.md
+PS> $repo = Read-PaCaRepository -Path ca-policies -MapPath tests/fixtures/ch03/tenant-map.json
+PS> Test-PaCaPolicyBody -Body (ConvertFrom-PaCaTemplate -Template $t) -Repository $repo | Format-Table Rule, Severity
+Rule     Severity
+----     --------
+PA-CA-01 Finding
+PA-CA-03 Finding
+PA-CA-06 Warn
+PA-CA-07 Warn

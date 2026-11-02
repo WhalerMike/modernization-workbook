@@ -1,0 +1,9 @@
+PS> . ./tests/AccessReviewsSampleHarness.ps1
+PS> Test-PaArDefinition -Body (Get-ArTutorialCreateRequest).Body -AsOf 2026-10-30 | Format-Table Rule, Severity
+Rule     Severity
+----     --------
+PA-AR-02 Finding
+PA-AR-03 Finding
+PA-AR-05 Finding
+PA-AR-07 Warn
+PA-AR-10 Warn
