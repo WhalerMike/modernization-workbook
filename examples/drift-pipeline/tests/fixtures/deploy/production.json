@@ -10,6 +10,7 @@
   "resource_group": "rg-adm-prod",
   "change_record": "CHG-PROD-0201",
   "evidence_dir": "../../../out/deploy-evidence",
+  "validation_inputs": "D:\\Adm\\Inputs",
   "identities": {
     "deploy": {
       "client_id": "33333333-3333-4333-8333-333333333311",
@@ -33,7 +34,8 @@
     "max_quarantined": 0
   },
   "dynamic_rules": {
-    "groups_admin_upn": "groups.admin@contoso.example"
+    "groups_admin_upn": "groups.admin@contoso.example",
+    "member_map": "D:\\Adm\\member-map.json"
   },
   "lifecycle": {
     "extension_id": "55555555-5555-4555-8555-555555555511",
@@ -44,7 +46,9 @@
     "ad_domain": "contoso.example",
     "target_ou": "OU=Pilot,OU=Finance,DC=contoso,DC=example",
     "gpo_backup_path": "D:\\GpoBackups",
-    "gpo_names": ["FMP-Workstation-Baseline"],
+    "gpo_names": [
+      "FMP-Workstation-Baseline"
+    ],
     "intune_group_id": "66666666-6666-4666-8666-666666666611"
   },
   "machine_configuration": {
@@ -64,8 +68,17 @@
     "evidence_container": "drift-evidence"
   },
   "smoke": {
-    "required_pass": ["VK-HR-01", "VK-HR-04", "VK-DG-01", "VK-DG-02", "VK-DG-06", "VK-CA-01"],
-    "allowed_unverified": ["VK-DG-03"]
+    "required_pass": [
+      "VK-HR-01",
+      "VK-HR-04",
+      "VK-DG-01",
+      "VK-DG-02",
+      "VK-DG-06",
+      "VK-CA-01"
+    ],
+    "allowed_unverified": [
+      "VK-DG-03"
+    ]
   },
   "waves": [
     {
@@ -84,8 +97,14 @@
   "promotion": {
     "test_smoke_report_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
     "approvals": [
-      {"role": "CISO", "reference": "CHG-PROD-0201/approval-1"},
-      {"role": "Identity engineering", "reference": "CHG-PROD-0201/approval-2"}
+      {
+        "role": "CISO",
+        "reference": "CHG-PROD-0201/approval-1"
+      },
+      {
+        "role": "Identity engineering",
+        "reference": "CHG-PROD-0201/approval-2"
+      }
     ]
   }
 }

@@ -114,6 +114,7 @@ def test_env_bash_and_pwsh_quote_values():
     assert "export ADM_AZ_CLOUD=AzureCloud" in bash
     assert "export ADM_LCW_WORKFLOW_NAME='ADM leaver (test)'" in bash
     assert "$env:ADM_MG_ENV = 'Global'" in pwsh
+    assert vals["ADM_MC_CONTENT_URI"] == "https://stadmmctest.blob.core.windows.net/machine-configuration"
     assert "$env:ADM_ARC_PLAYBOOK = 'playbooks/06_arc_onboarding_role.yml'" in pwsh
     assert vals["ADM_EVIDENCE_DIR"].replace("\\", "/").endswith("out/deploy-evidence/test/CHG-TEST-0101")
     quoted = ad.render({"X": "it's"}, "pwsh")
@@ -136,6 +137,7 @@ def test_gcchigh_derives_government_values(tmp_path):
     assert vals["ADM_GRAPH"] == "https://graph.microsoft.us"
     assert vals["ADM_AZ_CLOUD"] == "AzureUSGovernment" and vals["ADM_MG_ENV"] == "USGov"
     assert vals["ADM_ARC_PLAYBOOK"] == "playbooks/02_arc_onboarding.yml"
+    assert vals["ADM_MC_CONTENT_URI"] == "https://stadmmctest.blob.core.usgovcloudapi.net/machine-configuration"
 
 
 def test_env_cli_refuses_template(capsys):

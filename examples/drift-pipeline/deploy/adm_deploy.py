@@ -44,13 +44,13 @@ GUID = re.compile(r"^[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}$")
 # Keys every settings file has; a dotted path is a nested key.
 REQUIRED = (
     "schema", "environment", "cloud", "tenant_id", "tenant_domain", "subscription_id", "location",
-    "resource_group", "change_record", "evidence_dir",
+    "resource_group", "change_record", "evidence_dir", "validation_inputs",
     "identities.deploy.client_id", "identities.deploy.certificate_thumbprint", "identities.deploy.certificate_pem",
     "identities.reader.client_id", "identities.reader.certificate_thumbprint",
     "identities.provisioning.client_id", "identities.provisioning.certificate_pem",
     "hcm_entra.provisioning_app_object_id", "hcm_entra.provisioning_job_id",
     "hcm_entra.provisioning_api_endpoint", "hcm_entra.extract_path", "hcm_entra.max_quarantined",
-    "dynamic_rules.groups_admin_upn",
+    "dynamic_rules.groups_admin_upn", "dynamic_rules.member_map",
     "lifecycle.extension_id", "lifecycle.workflow_name", "lifecycle.test_user_id",
     "group_policy.ad_domain", "group_policy.target_ou", "group_policy.gpo_backup_path", "group_policy.gpo_names",
     "group_policy.intune_group_id",
@@ -68,6 +68,8 @@ GUID_KEYS = ("tenant_id", "subscription_id", "identities.deploy.client_id", "ide
 ARC_PLAYBOOK = {"AzureCloud": "playbooks/06_arc_onboarding_role.yml",
                 "AzureUSGovernment": "playbooks/02_arc_onboarding.yml"}
 VK_CLOUD = {"gcc": "gcc", "gcchigh": "gcchigh", "dod": "dod"}
+# Learn, "Managing Storage in the Azure independent clouds using PowerShell": StorageEndpointSuffix per environment.
+STORAGE_SUFFIX = {"AzureCloud": "core.windows.net", "AzureUSGovernment": "core.usgovcloudapi.net"}
 
 
 class SettingsError(Exception):
@@ -215,6 +217,8 @@ def derived(settings: dict[str, Any], settings_path: Path, wave_id: str | None =
         "ADM_PROV_ENDPOINT": settings["hcm_entra"]["provisioning_api_endpoint"],
         "ADM_HR_EXTRACT": settings["hcm_entra"]["extract_path"],
         "ADM_GROUPS_ADMIN_UPN": settings["dynamic_rules"]["groups_admin_upn"],
+        "ADM_DR_MEMBER_MAP": settings["dynamic_rules"]["member_map"],
+        "ADM_VK_INPUTS": settings["validation_inputs"],
         "ADM_LCW_EXTENSION_ID": settings["lifecycle"]["extension_id"],
         "ADM_LCW_WORKFLOW_NAME": settings["lifecycle"]["workflow_name"],
         "ADM_LCW_TEST_USER_ID": settings["lifecycle"]["test_user_id"],
@@ -226,6 +230,7 @@ def derived(settings: dict[str, Any], settings_path: Path, wave_id: str | None =
         "ADM_MC_NAME": mc["configuration"],
         "ADM_MC_STORAGE": mc["storage_account"],
         "ADM_MC_CONTAINER": mc["container"],
+        "ADM_MC_CONTENT_URI": f"https://{mc['storage_account']}.blob.{STORAGE_SUFFIX[cloud['azure_environment']]}/{mc['container']}",
         "ADM_ARC_SERVER": mc["arc_server_name"],
         "ADM_ARC_WAVE": str((w or an)["onboarding_wave"]),
         "ADM_CMDB_CSV": an["cmdb_csv"],

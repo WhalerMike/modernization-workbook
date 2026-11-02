@@ -10,6 +10,7 @@
   "resource_group": "rg-adm-test",
   "change_record": "CHG-TEST-0101",
   "evidence_dir": "../../../out/deploy-evidence",
+  "validation_inputs": "D:\\AdmTest\\Inputs",
   "identities": {
     "deploy": {
       "client_id": "33333333-3333-4333-8333-333333333301",
@@ -33,7 +34,8 @@
     "max_quarantined": 0
   },
   "dynamic_rules": {
-    "groups_admin_upn": "groups.admin@test.contoso.example"
+    "groups_admin_upn": "groups.admin@test.contoso.example",
+    "member_map": "D:\\AdmTest\\member-map.json"
   },
   "lifecycle": {
     "extension_id": "55555555-5555-4555-8555-555555555501",
@@ -44,7 +46,9 @@
     "ad_domain": "test.contoso.example",
     "target_ou": "OU=ADM-Test,DC=test,DC=contoso,DC=example",
     "gpo_backup_path": "D:\\GpoBackups",
-    "gpo_names": ["FMP-Workstation-Baseline"],
+    "gpo_names": [
+      "FMP-Workstation-Baseline"
+    ],
     "intune_group_id": "66666666-6666-4666-8666-666666666601"
   },
   "machine_configuration": {
@@ -64,8 +68,14 @@
     "evidence_container": "drift-evidence"
   },
   "smoke": {
-    "required_pass": ["VK-HR-01", "VK-DG-01", "VK-CA-01"],
-    "allowed_unverified": ["VK-DG-03"]
+    "required_pass": [
+      "VK-HR-01",
+      "VK-DG-01",
+      "VK-CA-01"
+    ],
+    "allowed_unverified": [
+      "VK-DG-03"
+    ]
   },
   "waves": [],
   "promotion": {}
