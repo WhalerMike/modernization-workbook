@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.975
+Who does what?
+
+2
+00:00:00.975 --> 00:00:04.663
+Developers build the credential
+checks, and need to read Python.
+
+3
+00:00:04.663 --> 00:00:10.042
+The PKI and credentialing engineers run
+the issuing CAs, so they own the list
+
+4
+00:00:10.042 --> 00:00:15.337
+of CAs by thumbprint, the PIV policy
+OIDs, and endpoints that stay available.
+
+5
+00:00:15.337 --> 00:00:18.890
+And the I S S O keeps
+the configuration export,
+
+6
+00:00:18.890 --> 00:00:22.538
+the findings and every
+CRL measurement, dated.
+
+7
+00:00:22.538 --> 00:00:25.918
+The reader app holds exactly
+the three read permissions,
+
+8
+00:00:25.918 --> 00:00:28.363
+with a certificate or a managed identity.
+
+9
+00:00:28.363 --> 00:00:32.740
+The code measures and compares; it
+never changes the configuration.

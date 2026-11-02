@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.804
+The reconciliation makes one
+Graph call: a filtered read of
+
+2
+00:00:03.804 --> 00:00:08.325
+contractor users with their leave
+dates, needing two read permissions.
+
+3
+00:00:08.325 --> 00:00:09.738
+Then the sponsor review.
+
+4
+00:00:09.738 --> 00:00:14.410
+The review command writes the review
+settings for the contractor package's
+
+5
+00:00:14.410 --> 00:00:18.860
+assignment policy: every six months,
+the requestor's manager as reviewer,
+
+6
+00:00:18.860 --> 00:00:21.900
+a named fallback, and remove
+access on no response.
+
+7
+00:00:21.900 --> 00:00:27.025
+So a missed recertification ends access,
+just as the earliest-end rule says.
+
+8
+00:00:27.025 --> 00:00:28.500
+The code sends nothing.
+
+9
+00:00:28.500 --> 00:00:30.729
+Learn's cmdlet takes the whole policy,
+
+10
+00:00:30.729 --> 00:00:33.820
+so you merge the block into
+the policy you read back.

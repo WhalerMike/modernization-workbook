@@ -58,7 +58,7 @@ Lab 1 runs on a laptop with Python and no tenant. First, lint Learn's three samp
 
 ## Slide 15 — Lab 1: the next day, issues, chain, tamper
 
-Now compare the second day with the first. You'll see each kind of result, and one matters most: a check whose read failed with an access-denied error. Its finding isn't resolved; it's unverified, and stays open. Draft the issues and search for a person's name: it isn't there, only the object identifier. Package the second run, chained to the first, and verify it with the pipeline and with the standard tool. Then tamper with one file, and verification fails. Swap the runs, and the comparison refuses. Run the tests, and seventy-four pass.
+Now compare the second day with the first. You'll see each kind of result, and one matters most: a check whose read failed with an access-denied error. Its finding isn't resolved; it's unverified, and stays open. Draft the issues and search for a person's name: it isn't there, only the object identifier. Package the second run, chained to the first, and verify it with the pipeline and with the standard tool. Then tamper with one file, and verification fails. Swap the runs, and the comparison refuses. Run the tests, and a hundred and forty-two pass.
 
 ## Slide 16 — Lab 2: a test tenant, a federated credential
 

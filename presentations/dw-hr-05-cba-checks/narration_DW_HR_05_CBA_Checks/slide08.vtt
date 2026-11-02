@@ -1,0 +1,41 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.559
+The read needs three permissions, each
+the least-privileged for its call:
+
+2
+00:00:04.559 --> 00:00:09.142
+one to read the public key infrastructure,
+one to read the authentication
+
+3
+00:00:09.142 --> 00:00:13.050
+method policy, and one to read
+policies, for Conditional Access.
+
+4
+00:00:13.050 --> 00:00:16.430
+The code reads the newer
+PKI trust store on purpose,
+
+5
+00:00:16.430 --> 00:00:22.062
+because the older configuration's delegated
+read names only Global Administrator.
+
+6
+00:00:22.062 --> 00:00:26.655
+One judgment call: a root CA with
+no CRL is a warning, not a finding,
+
+7
+00:00:26.655 --> 00:00:31.425
+because a root that issues only
+CA certificates may publish none.
+
+8
+00:00:31.425 --> 00:00:36.770
+Learn's prerequisite is wider, so Lab
+2 confirms the root's revocation path.

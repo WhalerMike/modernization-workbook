@@ -1,0 +1,43 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.970
+Two places where Learn says nothing
+or differs are written down,
+
+2
+00:00:03.970 --> 00:00:06.263
+so a later edit doesn't loosen the code.
+
+3
+00:00:06.263 --> 00:00:10.404
+First, what records the revocation:
+Learn lists the timestamp
+
+4
+00:00:10.404 --> 00:00:14.626
+update but doesn't tie it to the
+revoke task, and Lab 2 confirms it.
+
+5
+00:00:14.626 --> 00:00:16.538
+Second, the preview trigger.
+
+6
+00:00:16.538 --> 00:00:20.303
+Learn says version two of the
+time-based attribute trigger,
+
+7
+00:00:20.303 --> 00:00:23.376
+still in preview, has no
+three-day catch-up window.
+
+8
+00:00:23.376 --> 00:00:26.120
+Rule S T 3 assumes the standard trigger,
+
+9
+00:00:26.120 --> 00:00:31.490
+so a workflow on version two skips a
+late separation even inside three days.

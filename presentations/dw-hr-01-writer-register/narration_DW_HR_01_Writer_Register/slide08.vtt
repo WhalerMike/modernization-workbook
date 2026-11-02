@@ -1,0 +1,41 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.287
+The scan tests every protected write
+in the window against the register.
+
+2
+00:00:04.287 --> 00:00:07.473
+A write by an identity that's
+neither the writer nor
+
+3
+00:00:07.473 --> 00:00:10.962
+the backstop is a finding:
+that's the unauthorized write.
+
+4
+00:00:10.962 --> 00:00:15.388
+A write by the backstop is a warning,
+because the writer should have acted first.
+
+5
+00:00:15.388 --> 00:00:18.849
+And a write by a writer the
+row forbids is a finding.
+
+6
+00:00:18.849 --> 00:00:22.684
+The scan reads only successful
+records inside the window,
+
+7
+00:00:22.684 --> 00:00:27.716
+takes the first app or user as the
+initiator, and counts an enable record once,
+
+8
+00:00:27.716 --> 00:00:31.200
+not against both the hire
+and the cancellation rows.

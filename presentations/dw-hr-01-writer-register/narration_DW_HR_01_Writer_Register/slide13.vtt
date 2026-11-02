@@ -1,0 +1,38 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.975
+Who does what?
+
+2
+00:00:00.975 --> 00:00:03.923
+Developers build the
+HR lifecycle's checks;
+
+3
+00:00:03.923 --> 00:00:08.837
+they need to read Python and JSON, and
+they don't need a tenant until Lab 2.
+
+4
+00:00:08.837 --> 00:00:11.226
+The data architect owns the register.
+
+5
+00:00:11.226 --> 00:00:16.532
+Identity engineers remove the other write
+paths, which is how every second-writer
+
+6
+00:00:16.532 --> 00:00:20.825
+finding closes: by removing the
+write path, not by editing the value.
+
+7
+00:00:20.825 --> 00:00:23.420
+And the I S S O keeps the signed register,
+
+8
+00:00:23.420 --> 00:00:27.380
+the check's output, and the
+scan's output folder as evidence.

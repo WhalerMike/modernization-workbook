@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.537
+Lab 1 runs on a laptop
+with Python and no tenant.
+
+2
+00:00:03.537 --> 00:00:06.284
+Step one lists the reads
+and their permissions:
+
+3
+00:00:06.284 --> 00:00:11.072
+the assignment policies and the assignments
+under entitlement management read,
+
+4
+00:00:11.072 --> 00:00:13.888
+and the transitive
+memberships under user read.
+
+5
+00:00:13.888 --> 00:00:14.974
+Nothing writes.
+
+6
+00:00:14.974 --> 00:00:18.189
+Step two lints the program's
+three policy files,
+
+7
+00:00:18.189 --> 00:00:21.650
+evaluating each rule over
+the fixture population.
+
+8
+00:00:21.650 --> 00:00:24.150
+Zero findings, zero warnings.
+
+9
+00:00:24.150 --> 00:00:27.620
+That's the baseline every
+new policy file has to keep.

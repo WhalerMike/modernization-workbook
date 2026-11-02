@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.338
+The tests hold all of this in place.
+
+2
+00:00:02.338 --> 00:00:07.473
+Nine belong to this chapter: the shipped
+register is clean, the shape rules work,
+
+3
+00:00:07.473 --> 00:00:10.633
+rows for one change agree,
+one enable counts once,
+
+4
+00:00:10.633 --> 00:00:14.820
+second writers and the forbidden
+delete are found, and failures,
+
+5
+00:00:14.820 --> 00:00:19.087
+unprotected changes and records
+outside the window are ignored.
+
+6
+00:00:19.087 --> 00:00:22.343
+Ten more are shared: the
+call list, the cloud table,
+
+7
+00:00:22.343 --> 00:00:25.600
+the output folder and the
+export that only reads.
+
+8
+00:00:25.600 --> 00:00:30.829
+All fifty-seven tests in the kit
+pass under Python 3.10 or later,
+
+9
+00:00:30.829 --> 00:00:33.770
+with no package, tenant or network.

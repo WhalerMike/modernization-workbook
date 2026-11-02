@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.050
+Start with Microsoft's procedure.
+
+2
+00:00:02.050 --> 00:00:05.208
+Learn's list directory
+audits page gives the read,
+
+3
+00:00:05.208 --> 00:00:10.138
+its least-privileged permission, audit
+log read all, and the filter operators.
+
+4
+00:00:10.138 --> 00:00:14.562
+Its example shows the record: the
+activity name and time, the result,
+
+5
+00:00:14.562 --> 00:00:19.148
+who initiated it, either an app with
+its service principal ID or a user,
+
+6
+00:00:19.148 --> 00:00:22.125
+and the target with its
+modified properties.
+
+7
+00:00:22.125 --> 00:00:25.934
+The audit activity reference
+names the six user activities
+
+8
+00:00:25.934 --> 00:00:29.362
+this chapter watches, from
+add user to set user manager.
+
+9
+00:00:29.362 --> 00:00:32.413
+What Learn doesn't give is a
+test of who may write what.
+
+10
+00:00:32.413 --> 00:00:34.580
+There's no Microsoft sample for that.

@@ -221,16 +221,7 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: run Learn's queries and the check offline",
       body: [
-        { code: [
-          "# 1  Learn's queries over the export: PassedCount 7, FailedCount 0",
-          "Invoke-Pester -Path tests/MicrosoftSamples.Tests.ps1 -FullNameFilter '*Chapter 02*' -Output None -PassThru",
-          "# 2  The permissions the check needs: six, the same as the table",
-          "(Get-PaRequiredPermission -Task emergency-access).GraphPermissions -join ', '",
-          "# 3  Check the fictional tenant and write the alert template",
-          "./Invoke-PaEmergencyCheck.ps1 -FixturePath tests/fixtures/tenant.json -ConfigPath …/emergency-access.json `",
-          "    -ValidationsPath …/emergency-validations.csv -AsOf 2026-10-30 -OutputPath out/emergency …",
-          "Emergency access: 9 Finding, 0 Warn, 1 Info",
-        ], label: "POWERSHELL 7.1+ WITH PESTER 5, IN examples/privileged-access", pt: 11.5 },
+        { cols: [[{ terminal: "02-1" }], [{ terminal: "02-2" }]] }, { terminal: "02-3" },
         { callout: "of five emergency events in the export, Learn's two-ID query finds only the two interactive sign-ins.", label: "What step 1 shows: ", icon: "FaListCheck", color: "teal" },
       ],
       sources: "Sources: examples/privileged-access (tests and fixtures, fictional). Chapter 02, “Lab 1: fixtures, no tenant,” steps 1–3.",

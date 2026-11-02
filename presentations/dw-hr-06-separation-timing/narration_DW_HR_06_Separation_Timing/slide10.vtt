@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.700
+These are the facts behind the code,
+each read on Learn on November first.
+
+2
+00:00:04.700 --> 00:00:07.613
+The four audit activities
+are generally available.
+
+3
+00:00:07.613 --> 00:00:12.690
+The directory audits list needs
+audit log read and filters on equals,
+
+4
+00:00:12.690 --> 00:00:16.075
+greater or equal, less or
+equal, and starts with.
+
+5
+00:00:16.075 --> 00:00:20.631
+The processing results list needs
+the reports read permission,
+
+6
+00:00:20.631 --> 00:00:23.038
+and both are in the L4 and L5 clouds.
+
+7
+00:00:23.038 --> 00:00:27.113
+The schedule runs every three hours
+by default with a three-day catch-up.
+
+8
+00:00:27.113 --> 00:00:29.863
+The disable task excludes role holders.
+
+9
+00:00:29.863 --> 00:00:33.600
+And Lifecycle Workflows is
+available for US Government.

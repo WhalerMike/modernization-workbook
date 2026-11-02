@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.162
+Learn's CRL page is Microsoft's
+procedure and its limits.
+
+2
+00:00:04.162 --> 00:00:08.925
+Without a configured CRL, Entra
+doesn't check revocation for that CA.
+
+3
+00:00:08.925 --> 00:00:14.438
+There's one endpoint per CA, and
+HTTP is recommended over HTTPS.
+
+4
+00:00:14.438 --> 00:00:19.493
+A configured CRL that can't be downloaded
+fails sign-in for that CA's certificates,
+
+5
+00:00:19.493 --> 00:00:24.396
+so Learn asks for highly available
+endpoints and for CRL validation enforced,
+
+6
+00:00:24.396 --> 00:00:27.263
+with exemptions only
+while troubleshooting.
+
+7
+00:00:27.263 --> 00:00:32.346
+Graph holds the configuration in three
+places: the PKI trust store, the X.509
+
+8
+00:00:32.346 --> 00:00:35.380
+certificate method, and the authentication
+
+9
+00:00:35.380 --> 00:00:38.300
+strengths with the policies that use them.

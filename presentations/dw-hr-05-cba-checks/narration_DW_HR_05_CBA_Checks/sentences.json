@@ -1,0 +1,588 @@
+{
+ "1": [
+  [
+   0.05,
+   3.25,
+   "Welcome back to Building H R-Driven Identity."
+  ],
+  [
+   3.3,
+   4.037,
+   "This is Chapter 5: certificate-based authentication checks."
+  ],
+  [
+   7.338,
+   6.662,
+   "A revoked card is only revoked if Entra can download the list that says so, in time, every time."
+  ],
+  [
+   14.0,
+   4.338,
+   "So this chapter checks the configuration behind card sign-in as code."
+  ],
+  [
+   18.337,
+   13.938,
+   "It starts from Learn's certificate revocation list page and the Graph resources that hold the trust store and the X.509 certificate method, and adds what they leave to you: a measurement of every CRL, and thirteen rules."
+  ],
+  [
+   32.275,
+   5.0,
+   "We'll see why, what the code does, who runs it, two labs and the dangers."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.587,
+   "Why does this gate need code?"
+  ],
+  [
+   1.637,
+   7.65,
+   "The guide's Gate 5 ties the card's lifecycle to the person's: the card is issued from a joiner record and revoked from a leaver."
+  ],
+  [
+   9.287,
+   6.625,
+   "But revocation only reaches sign-in through the CRL, and a CRL grows with every revocation."
+  ],
+  [
+   15.912,
+   4.8,
+   "The day it crosses the limit is the day sign-in fails for every card from that CA."
+  ],
+  [
+   20.712,
+   1.825,
+   "So the check runs every day."
+  ],
+  [
+   22.538,
+   7.225,
+   "Per-user binding coverage is the validation kit's job; this chapter checks the tenant's settings, which that kit doesn't read."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   2.0,
+   "Which cloud you're in changes the answer."
+  ],
+  [
+   2.05,
+   12.012,
+   "For interactive sign-in, a CRL must stay under twenty megabytes in public Entra I D, which includes G C C, and forty-five in Azure U S Government, which includes G C C High."
+  ],
+  [
+   14.062,
+   2.85,
+   "Either way it must download within ten seconds."
+  ],
+  [
+   16.913,
+   6.1,
+   "So the expected-configuration file holds both sets, and the check takes a cloud name with no default."
+  ],
+  [
+   23.012,
+   6.312,
+   "Learn doesn't say which megabyte it means, so the configuration reads the decimal one, the stricter reading."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   4.112,
+   "Learn's CRL page is Microsoft's procedure and its limits."
+  ],
+  [
+   4.162,
+   4.763,
+   "Without a configured CRL, Entra doesn't check revocation for that CA."
+  ],
+  [
+   8.925,
+   5.513,
+   "There's one endpoint per CA, and HTTP is recommended over HTTPS."
+  ],
+  [
+   14.438,
+   12.825,
+   "A configured CRL that can't be downloaded fails sign-in for that CA's certificates, so Learn asks for highly available endpoints and for CRL validation enforced, with exemptions only while troubleshooting."
+  ],
+  [
+   27.262,
+   10.988,
+   "Graph holds the configuration in three places: the P K I trust store, the X.509 certificate method, and the authentication strengths with the policies that use them."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   1.363,
+   "What does Learn leave to you?"
+  ],
+  [
+   1.413,
+   9.088,
+   "The limits are prose, and nobody measures a CRL until sign-in fails, so the kit measures bytes and seconds and compares them with the cloud's limit."
+  ],
+  [
+   10.5,
+   3.562,
+   "An unreachable endpoint becomes a finding, not a skip."
+  ],
+  [
+   14.062,
+   6.825,
+   "A renewed CA with a new thumbprint would be silently missing, so each issuing CA is named by thumbprint."
+  ],
+  [
+   20.887,
+   2.638,
+   "piv could sign in as single-factor."
+  ],
+  [
+   23.525,
+   2.062,
+   "An exemption could stay forever."
+  ],
+  [
+   25.587,
+   5.013,
+   "And a phishing-resistant strength could exist that no enforced policy requires."
+  ],
+  [
+   30.6,
+   1.875,
+   "Each row is pinned by a test."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   2.6,
+   "The code is one script with two commands."
+  ],
+  [
+   2.65,
+   7.95,
+   "Measure takes a list of CRL URLs, downloads each once, and writes the bytes, the seconds and any error."
+  ],
+  [
+   10.6,
+   6.5,
+   "A failed download is recorded, not raised, because the unreachable CRL is itself the finding."
+  ],
+  [
+   17.1,
+   5.875,
+   "Run it from the internet-facing path Entra uses, not from inside the P K I's own network."
+  ],
+  [
+   22.975,
+   7.362,
+   "Check reads the configuration export, the measurements and the expected file, and applies thirteen rules for one cloud."
+  ],
+  [
+   30.337,
+   5.263,
+   "Five tests cover the chapter, and with the other chapters' tests, fifty-seven pass."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   3.525,
+   "Here are the thirteen rules, each labeled with its source."
+  ],
+  [
+   3.575,
+   15.225,
+   "Most come straight from Learn: a CA with no CRL, an endpoint that isn't HTTP, a CRL over the size limit or slower than ten seconds, the certificate method switched off, and CRL validation off or a CA exempted."
+  ],
+  [
+   18.8,
+   11.713,
+   "Some are the program's own design: an early warning at eighty percent, a CRL nobody measured, a CA expiring within ninety days, and an issuing CA missing from the trust store."
+  ],
+  [
+   30.512,
+   6.612,
+   "And two protect the strength: piv mapped to multifactor, and an enforced phishing-resistant policy."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   13.0,
+   "The read needs three permissions, each the least-privileged for its call: one to read the public key infrastructure, one to read the authentication method policy, and one to read policies, for Conditional Access."
+  ],
+  [
+   13.05,
+   9.012,
+   "The code reads the newer P K I trust store on purpose, because the older configuration's delegated read names only Global Administrator."
+  ],
+  [
+   22.062,
+   9.363,
+   "One judgment call: a root CA with no CRL is a warning, not a finding, because a root that issues only CA certificates may publish none."
+  ],
+  [
+   31.425,
+   5.287,
+   "Learn's prerequisite is wider, so Lab 2 confirms the root's revocation path."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   3.325,
+   "The verified facts, all read on November first."
+  ],
+  [
+   3.375,
+   9.15,
+   "The CRL limits are generally available: twenty and forty-five megabytes for interactive sign-in, a ten-second download, and larger service limits."
+  ],
+  [
+   12.525,
+   3.737,
+   "Entra checks CRLs up to ten CAs toward the root."
+  ],
+  [
+   16.262,
+   9.175,
+   "The trust store, the certificate method, the strengths and the Conditional Access policies are all in Graph version one point oh, with the permissions you just saw."
+  ],
+  [
+   25.438,
+   5.513,
+   "The certificate method's bindings include the low-affinity principal name and email fields."
+  ],
+  [
+   30.95,
+   3.663,
+   "And both features are available in Azure for U S Government."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   6.8,
+   "Four places where Learn says nothing or disagrees with itself, recorded so a later edit doesn't loosen the code."
+  ],
+  [
+   6.85,
+   7.388,
+   "Learn never says which megabyte it means, so the code takes the stricter one; Learn also says it plans to remove the limits."
+  ],
+  [
+   14.238,
+   8.637,
+   "The federation page still gives a single twenty-megabyte limit, so the code follows the CRL page and applies twenty to G C C either way."
+  ],
+  [
+   22.875,
+   4.8,
+   "Learn wants a CRL on every CA, but the check only warns on a root."
+  ],
+  [
+   27.675,
+   6.088,
+   "And Learn never says which way binding priority runs, so the check flags any low-affinity field."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   1.538,
+   "What does this prove federally?"
+  ],
+  [
+   1.587,
+   13.475,
+   "That every issuing CA is trusted with a CRL Entra can download in time, which supports acceptance of piv credentials and public key-based authentication, IA-2 twelve and IA-5 two."
+  ],
+  [
+   15.062,
+   11.287,
+   "That an enabled policy requires a phishing-resistant strength and piv counts as multifactor, which the scuba baseline requires; keep those two rows beside the ScubaGear report."
+  ],
+  [
+   26.35,
+   5.8,
+   "That a revoked card is refused, which is FIPS 201's termination of the card."
+  ],
+  [
+   32.15,
+   2.888,
+   "And that the certificate counts at the assurance claimed."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   0.925,
+   "Who does what?"
+  ],
+  [
+   0.975,
+   3.688,
+   "Developers build the credential checks, and need to read Python."
+  ],
+  [
+   4.662,
+   10.675,
+   "The P K I and credentialing engineers run the issuing CAs, so they own the list of CAs by thumbprint, the piv policy OIDs, and endpoints that stay available."
+  ],
+  [
+   15.338,
+   7.2,
+   "And the I S S O keeps the configuration export, the findings and every CRL measurement, dated."
+  ],
+  [
+   22.538,
+   5.825,
+   "The reader app holds exactly the three read permissions, with a certificate or a managed identity."
+  ],
+  [
+   28.363,
+   4.312,
+   "The code measures and compares; it never changes the configuration."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   2.8,
+   "Lab 1 runs on a laptop with no tenant."
+  ],
+  [
+   2.85,
+   5.987,
+   "Step one lists the configuration read: five calls, under exactly three permissions."
+  ],
+  [
+   8.838,
+   2.725,
+   "Step two measures the fixture CRLs."
+  ],
+  [
+   11.562,
+   6.725,
+   "Two are read, with their sizes; the third file is missing, and that's recorded with its error rather than raised."
+  ],
+  [
+   18.288,
+   1.312,
+   "Your times will differ."
+  ],
+  [
+   19.6,
+   10.825,
+   "The check in the next step reads a different file, the fictional tenant's own measurements, where one CRL is eighteen and a half million bytes and took eleven point four seconds."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   5.825,
+   "Step three checks the fictional tenant for G C C, with its twenty-million-byte limit."
+  ],
+  [
+   5.875,
+   3.975,
+   "Five findings and seven warnings, and the exit code is two."
+  ],
+  [
+   9.85,
+   1.975,
+   "Read the story in the fixture."
+  ],
+  [
+   11.825,
+   11.537,
+   "Issuing CA 2 was renewed, so the thumbprint the card program expects is gone from the trust store, and the renewed CA's CRL is large, slow and served over HTTPS."
+  ],
+  [
+   23.363,
+   2.975,
+   "A legacy intermediate has no CRL at all."
+  ],
+  [
+   26.337,
+   4.625,
+   "The mode rule maps the wrong OID, so piv is single-factor."
+  ],
+  [
+   30.962,
+   3.35,
+   "And the phishing-resistant policy is still report-only."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   6.275,
+   "Step four runs the same tenant for G C C High, where the limit is forty-five million bytes."
+  ],
+  [
+   6.325,
+   2.525,
+   "Now it's five findings and six warnings."
+  ],
+  [
+   8.85,
+   7.013,
+   "The same eighteen and a half million bytes is under eighty percent of the larger limit, so the early warning drops away."
+  ],
+  [
+   15.863,
+   3.95,
+   "But the eleven-second download is a finding in every cloud."
+  ],
+  [
+   19.812,
+   2.6,
+   "That's why the cloud is a required argument."
+  ],
+  [
+   22.413,
+   3.4,
+   "Step five runs the tests: fifty-seven pass."
+  ],
+  [
+   25.812,
+   1.837,
+   "Then delete the output folder."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   7.088,
+   "Lab 2 uses a test tenant with certificate-based authentication set up for a test CA; the authors haven't run it."
+  ],
+  [
+   7.138,
+   4.4,
+   "Register a reader app with a certificate and only the three permissions."
+  ],
+  [
+   11.537,
+   3.8,
+   "Export the configuration and check its shape matches the fixture."
+  ],
+  [
+   15.338,
+   3.65,
+   "Measure the real CRLs from outside the agency network."
+  ],
+  [
+   18.988,
+   5.188,
+   "Run the check with your test P K I's thumbprints and policy OIDs, and your cloud."
+  ],
+  [
+   24.175,
+   5.675,
+   "Then the real proof: revoke a test certificate, wait for the next CRL, and sign in."
+  ],
+  [
+   29.85,
+   1.387,
+   "Entra should refuse it."
+  ],
+  [
+   31.238,
+   1.95,
+   "Finally, back everything out."
+  ]
+ ],
+ "17": [
+  [
+   0.05,
+   2.312,
+   "The dangers, and the guard for each."
+  ],
+  [
+   2.362,
+   8.137,
+   "A CRL that grows past the limit takes down every card from that CA, so the size rule and its early warning run every time."
+  ],
+  [
+   10.5,
+   4.875,
+   "A slow or unreachable endpoint causes the same outage from the network side."
+  ],
+  [
+   15.375,
+   3.525,
+   "A CA without a CRL lets revoked cards sign in."
+  ],
+  [
+   18.9,
+   3.188,
+   "A renewed CA nobody added locks out new cards."
+  ],
+  [
+   22.087,
+   3.95,
+   "A troubleshooting exemption that stays turns revocation off."
+  ],
+  [
+   26.038,
+   5.037,
+   "piv mapped as single-factor means the card isn't what meets M F A."
+  ],
+  [
+   31.075,
+   3.675,
+   "And a report-only policy is a requirement only on paper."
+  ]
+ ],
+ "18": [
+  [
+   0.05,
+   1.35,
+   "Here's what done looks like."
+  ],
+  [
+   1.4,
+   7.875,
+   "The expected file names every issuing CA by thumbprint and every piv policy OID, with the limits for your cloud."
+  ],
+  [
+   9.275,
+   7.138,
+   "Every CRL was measured from outside the network within the last day, none near the limit or slower than ten seconds."
+  ],
+  [
+   16.413,
+   4.7,
+   "The check shows no finding, and every exemption has a ticket and an end date."
+  ],
+  [
+   21.113,
+   3.6,
+   "An enabled policy requires a phishing-resistant strength."
+  ],
+  [
+   24.712,
+   3.675,
+   "A revoked test card was refused, with the evidence filed."
+  ],
+  [
+   28.387,
+   4.0,
+   "Next, Chapter 6: separation timing from the logs."
+  ],
+  [
+   32.388,
+   1.1,
+   "Thanks for watching."
+  ]
+ ]
+}

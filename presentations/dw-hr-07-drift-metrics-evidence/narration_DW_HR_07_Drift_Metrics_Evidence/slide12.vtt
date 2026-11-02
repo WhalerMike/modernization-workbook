@@ -1,0 +1,47 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.950
+Lab 1 runs on a laptop.
+
+2
+00:00:01.950 --> 00:00:05.912
+Step one writes the outputs the run reads,
+
+3
+00:00:05.912 --> 00:00:09.875
+one command each from
+Chapters 1, 2, 3, 4 and 6.
+
+4
+00:00:09.875 --> 00:00:13.764
+Each exits with code two because
+each fixture holds findings:
+
+5
+00:00:13.764 --> 00:00:17.576
+one of four hires ready on day
+one, and a ninetieth percentile
+
+6
+00:00:17.576 --> 00:00:22.075
+separation-to-block of five and a half
+hours against a threshold of four.
+
+7
+00:00:22.075 --> 00:00:24.113
+Step two writes the first run.
+
+8
+00:00:24.113 --> 00:00:28.188
+It reads four chapter outputs, and
+five metrics are out of bounds.
+
+9
+00:00:28.188 --> 00:00:31.638
+Transfer-to-review shows
+not measured, not zero.
+
+10
+00:00:31.638 --> 00:00:34.320
+Fourteen findings and six warnings.

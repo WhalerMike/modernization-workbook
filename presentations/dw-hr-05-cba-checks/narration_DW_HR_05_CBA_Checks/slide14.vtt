@@ -1,0 +1,39 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.875
+Step three checks the fictional tenant for
+GCC, with its twenty-million-byte limit.
+
+2
+00:00:05.875 --> 00:00:09.850
+Five findings and seven warnings,
+and the exit code is two.
+
+3
+00:00:09.850 --> 00:00:11.825
+Read the story in the fixture.
+
+4
+00:00:11.825 --> 00:00:17.821
+Issuing CA 2 was renewed, so the thumbprint
+the card program expects is gone from
+
+5
+00:00:17.821 --> 00:00:23.362
+the trust store, and the renewed CA's
+CRL is large, slow and served over HTTPS.
+
+6
+00:00:23.362 --> 00:00:26.338
+A legacy intermediate has no CRL at all.
+
+7
+00:00:26.338 --> 00:00:30.962
+The mode rule maps the wrong
+OID, so PIV is single-factor.
+
+8
+00:00:30.962 --> 00:00:34.370
+And the phishing-resistant
+policy is still report-only.

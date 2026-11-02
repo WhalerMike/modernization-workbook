@@ -1,0 +1,52 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.564
+Step four scans an export
+of the tenant's policies:
+
+2
+00:00:03.564 --> 00:00:07.850
+four read, one uses member-of,
+the legacy shared drives policy.
+
+3
+00:00:07.850 --> 00:00:11.207
+Learn's own script runs the
+same test against a tenant;
+
+4
+00:00:11.207 --> 00:00:13.038
+this one runs in the pipeline.
+
+5
+00:00:13.038 --> 00:00:15.412
+Step five lists a mover's residual.
+
+6
+00:00:15.412 --> 00:00:20.406
+Jordan moved from ORG-100 to
+ORG-210 on October nineteenth:
+
+7
+00:00:20.406 --> 00:00:23.424
+eight items held, three go to review.
+
+8
+00:00:23.424 --> 00:00:26.596
+A requested package and
+two groups granted outside
+
+9
+00:00:26.596 --> 00:00:29.325
+any package land on the
+sheet for the manager.
+
+10
+00:00:29.325 --> 00:00:33.763
+The one finding: the review is still
+open thirteen days after the move.
+
+11
+00:00:33.763 --> 00:00:36.650
+Step six: fifty-seven tests pass.

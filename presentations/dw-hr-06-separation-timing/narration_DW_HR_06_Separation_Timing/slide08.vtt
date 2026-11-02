@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.173
+The read needs two permissions, each
+the least privileged for its call:
+
+2
+00:00:04.173 --> 00:00:08.225
+audit log read for the directory
+audits, and the Lifecycle Workflows
+
+3
+00:00:08.225 --> 00:00:11.850
+reports read permission for a
+workflow's processing results.
+
+4
+00:00:11.850 --> 00:00:16.294
+Both come from Microsoft Graph,
+on the endpoint for your cloud,
+
+5
+00:00:16.294 --> 00:00:20.737
+and both APIs are listed for the
+US Government L4 and L5 clouds.
+
+6
+00:00:20.737 --> 00:00:25.025
+Lifecycle Workflows is available
+in Azure for US Government.
+
+7
+00:00:25.025 --> 00:00:28.722
+The card system's and Intune's
+records arrive as exports;
+
+8
+00:00:28.722 --> 00:00:30.860
+the code reads neither service.

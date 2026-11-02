@@ -1,0 +1,51 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.637
+The lint has nine rules.
+
+2
+00:00:01.637 --> 00:00:03.862
+Member-of in a rule is a finding.
+
+3
+00:00:03.862 --> 00:00:07.489
+Two automatic policies on one
+package that a user matches
+
+4
+00:00:07.489 --> 00:00:10.662
+at once is a finding, and
+two disjoint ones a warning.
+
+5
+00:00:10.662 --> 00:00:13.925
+More than fifteen thousand
+identities is a finding.
+
+6
+00:00:13.925 --> 00:00:16.919
+A rule with no coded slot
+or worker type warns,
+
+7
+00:00:16.919 --> 00:00:19.912
+because a department
+name breaks on a rename.
+
+8
+00:00:19.912 --> 00:00:22.601
+A policy must both create and remove.
+
+9
+00:00:22.601 --> 00:00:25.000
+A grace over fourteen days warns.
+
+10
+00:00:25.000 --> 00:00:27.775
+Requests need the manager and a fallback.
+
+11
+00:00:27.775 --> 00:00:30.790
+And no privileged package
+may be assigned by rule.

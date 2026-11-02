@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.300
+Lab 2 runs it against a test tenant, never
+production; the authors haven't run it.
+
+2
+00:00:05.300 --> 00:00:09.285
+Register a reader app with a
+certificate or federated credential,
+
+3
+00:00:09.285 --> 00:00:12.400
+and grant only the two
+permissions the export lists.
+
+4
+00:00:12.400 --> 00:00:16.863
+Run Chapters 1 through 6 against the
+test tenant and keep their folders.
+
+5
+00:00:16.863 --> 00:00:20.200
+Write a run in tenant mode
+and read every finding.
+
+6
+00:00:20.200 --> 00:00:24.479
+Schedule it in Book 19's workflow
+with no secret, writing packages
+
+7
+00:00:24.479 --> 00:00:29.075
+to an immutable container outside
+the directory, each naming the last.
+
+8
+00:00:29.075 --> 00:00:32.575
+After a few runs, check that
+a skipped day shows as a gap.
+
+9
+00:00:32.575 --> 00:00:33.840
+Then back it all out.

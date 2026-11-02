@@ -1,0 +1,47 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.038
+The check reads the register's shape.
+
+2
+00:00:02.038 --> 00:00:06.825
+The first rule flags a row without a
+single writer, or a row listed twice.
+
+3
+00:00:06.825 --> 00:00:09.380
+Others flag a writer that isn't defined,
+
+4
+00:00:09.380 --> 00:00:13.213
+or one with no identities, so
+its writes can't be attributed.
+
+5
+00:00:13.213 --> 00:00:17.188
+A required account-state transition
+with no row is a finding.
+
+6
+00:00:17.188 --> 00:00:19.435
+So is deletion by inbound provisioning,
+
+7
+00:00:19.435 --> 00:00:22.975
+since the guide deletes through
+the post-separation workflow.
+
+8
+00:00:22.975 --> 00:00:25.296
+A backstop can't be the writer itself,
+
+9
+00:00:25.296 --> 00:00:28.313
+and rows for the same
+audited change must agree.
+
+10
+00:00:28.313 --> 00:00:32.620
+An unsigned register and an
+unversioned scope filter are warnings.

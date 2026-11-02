@@ -1,0 +1,35 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.975
+Who does what?
+
+2
+00:00:00.975 --> 00:00:06.012
+Developers build the lifecycle automation,
+and need to read Python and JSON.
+
+3
+00:00:06.012 --> 00:00:10.813
+Identity engineers own the workflows:
+they set each execution limit in the
+
+4
+00:00:10.813 --> 00:00:15.613
+admin center, and send each change as
+a Lifecycle Workflows Administrator.
+
+5
+00:00:15.613 --> 00:00:21.775
+Reviewers approve each file and its plan,
+and the I S S O receives the evidence.
+
+6
+00:00:21.775 --> 00:00:26.232
+The code itself only reads: the planning
+app holds a single workflow read
+
+7
+00:00:26.232 --> 00:00:30.890
+permission, and the readiness reads
+hold only their four read permissions.

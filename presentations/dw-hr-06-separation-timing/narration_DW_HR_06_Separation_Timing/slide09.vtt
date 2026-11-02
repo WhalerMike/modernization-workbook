@@ -1,0 +1,39 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.929
+Four tests cover this chapter:
+the intervals and the summary,
+
+2
+00:00:03.929 --> 00:00:08.040
+every rule on the fixture, a failed
+audit record that isn't a block,
+
+3
+00:00:08.040 --> 00:00:10.988
+and a cancelled separation
+that isn't flagged.
+
+4
+00:00:10.988 --> 00:00:16.783
+With the other chapters' tests, fifty-seven
+pass under Python 3.10 or later,
+
+5
+00:00:16.783 --> 00:00:19.488
+with no package, tenant or network.
+
+6
+00:00:19.488 --> 00:00:21.938
+Remember that the code is illustrative.
+
+7
+00:00:21.938 --> 00:00:25.136
+It runs against fictional
+leavers and exports,
+
+8
+00:00:25.136 --> 00:00:30.020
+so review it and run Lab 2 in a test
+tenant before it reports a real leaver.

@@ -1,0 +1,42 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.638
+Lab 1 runs on a laptop
+with Python 3.10 or later.
+
+2
+00:00:04.638 --> 00:00:10.101
+Step one lists the read: two calls, two
+read permissions, nothing that writes.
+
+3
+00:00:10.101 --> 00:00:12.976
+Step two measures the fictional leavers:
+
+4
+00:00:12.976 --> 00:00:16.275
+seven separated, one
+cancelled, one not blocked.
+
+5
+00:00:16.275 --> 00:00:18.522
+The median block is a quarter of an hour,
+
+6
+00:00:18.522 --> 00:00:23.366
+but the ninetieth percentile is five and a
+half hours against a four-hour threshold,
+
+7
+00:00:23.366 --> 00:00:25.893
+and revocation's ninetieth percentile is a
+
+8
+00:00:25.893 --> 00:00:28.350
+hundred and ten hours against twenty-four.
+
+9
+00:00:28.350 --> 00:00:32.350
+Ten findings and two warnings,
+so it exits with code two.

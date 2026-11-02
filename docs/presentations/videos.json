@@ -8196,6 +8196,707 @@
   ]
  },
  {
+  "id": "DW_HR_01_Writer_Register_Narrated",
+  "title": "Building HR-Driven Identity, Chapter 01 — The Writer Register as Code: narrated tour",
+  "group": "developer",
+  "minutes": 11,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_HR_01_Writer_Register_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/dw-hr-01-writer-register/DW_HR_01_Writer_Register_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-hr-01-writer-register/DW_HR_01_Writer_Register_Narration_Script.md",
+  "page": "docs/project-plans/developer-workbooks/hr-driven-identity/01-the-writer-register-as-code.html",
+  "source": "docs/project-plans/developer-workbooks/hr-driven-identity/01-the-writer-register-as-code.md",
+  "kits": [
+   {
+    "name": "hr-lifecycle",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/hr-lifecycle",
+    "zip": "downloads/hr-driven-identity-code.zip"
+   },
+   {
+    "name": "hcm-entra",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/hcm-entra",
+    "zip": null
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Chapter 01: The Writer Register as Code"
+   ],
+   [
+    37,
+    "Why this gate comes first"
+   ],
+   [
+    64,
+    "Which cloud, for this read"
+   ],
+   [
+    102,
+    "What Microsoft Learn gives you"
+   ],
+   [
+    140,
+    "What Learn leaves to you, and what the kit adds"
+   ],
+   [
+    178,
+    "The register: one writer and a backstop per row"
+   ],
+   [
+    214,
+    "The register checks: WR-01 to WR-09"
+   ],
+   [
+    251,
+    "The scan: every protected write, tested"
+   ],
+   [
+    286,
+    "Two GET permissions, and what the scan can't see"
+   ],
+   [
+    321,
+    "The tests: nine for this chapter, 57 in all"
+   ],
+   [
+    359,
+    "The verified facts, and where Learn is silent"
+   ],
+   [
+    394,
+    "What the register and scan prove, and for whom"
+   ],
+   [
+    434,
+    "Who builds, who owns, who removes"
+   ],
+   [
+    466,
+    "Lab 1: what the scan reads, and October's scan"
+   ],
+   [
+    502,
+    "Lab 1: the findings, a saved query, the tests"
+   ],
+   [
+    542,
+    "Lab 2: real records in a test tenant"
+   ],
+   [
+    580,
+    "Dangers, and the guard for each"
+   ],
+   [
+    619,
+    "Done when: the writer register checklist"
+   ]
+  ]
+ },
+ {
+  "id": "DW_HR_02_Contractor_End_Dates_Narrated",
+  "title": "Building HR-Driven Identity, Chapter 02 — Contractor Sources and Enforced End Dates: narrated tour",
+  "group": "developer",
+  "minutes": 11,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_HR_02_Contractor_End_Dates_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/dw-hr-02-contractor-end-dates/DW_HR_02_Contractor_End_Dates_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-hr-02-contractor-end-dates/DW_HR_02_Contractor_End_Dates_Narration_Script.md",
+  "page": "docs/project-plans/developer-workbooks/hr-driven-identity/02-contractor-sources-and-end-dates.html",
+  "source": "docs/project-plans/developer-workbooks/hr-driven-identity/02-contractor-sources-and-end-dates.md",
+  "kits": [
+   {
+    "name": "hr-lifecycle",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/hr-lifecycle",
+    "zip": "downloads/hr-driven-identity-code.zip"
+   },
+   {
+    "name": "hcm-entra",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/hcm-entra",
+    "zip": null
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Chapter 02: Contractor Sources and Enforced End Dates"
+   ],
+   [
+    38,
+    "Why contractors need their own code"
+   ],
+   [
+    71,
+    "Which cloud, for these reads and writes"
+   ],
+   [
+    106,
+    "What Microsoft gives you"
+   ],
+   [
+    142,
+    "What it leaves to you, and the kit adds"
+   ],
+   [
+    178,
+    "The earliest end: the first condition wins"
+   ],
+   [
+    217,
+    "The source checks and the reconciliation"
+   ],
+   [
+    253,
+    "One read, and the sponsor review as code"
+   ],
+   [
+    291,
+    "The tests: seven new, 57 in the kit"
+   ],
+   [
+    328,
+    "The verified facts"
+   ],
+   [
+    365,
+    "Where Learn differs or says nothing"
+   ],
+   [
+    402,
+    "What the output proves, and for whom"
+   ],
+   [
+    442,
+    "Who builds, who owns, who runs it"
+   ],
+   [
+    478,
+    "Lab 1: the read, the extract, the decisions"
+   ],
+   [
+    517,
+    "Lab 1: the SCIM requests and the reconciliation"
+   ],
+   [
+    553,
+    "Lab 1: the review settings and the tests"
+   ],
+   [
+    577,
+    "Lab 2: a test tenant"
+   ],
+   [
+    612,
+    "Dangers, and the guard for each"
+   ],
+   [
+    648,
+    "Done when: the contractor checklist"
+   ]
+  ]
+ },
+ {
+  "id": "DW_HR_03_Joiner_Workflows_Narrated",
+  "title": "Building HR-Driven Identity, Chapter 03 — Joiner Workflows as Code and the Temporary Access Pass Bridge: narrated tour",
+  "group": "developer",
+  "minutes": 11,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_HR_03_Joiner_Workflows_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/dw-hr-03-joiner-workflows/DW_HR_03_Joiner_Workflows_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-hr-03-joiner-workflows/DW_HR_03_Joiner_Workflows_Narration_Script.md",
+  "page": "docs/project-plans/developer-workbooks/hr-driven-identity/03-joiner-workflows-as-code.html",
+  "source": "docs/project-plans/developer-workbooks/hr-driven-identity/03-joiner-workflows-as-code.md",
+  "kits": [
+   {
+    "name": "hr-lifecycle",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/hr-lifecycle",
+    "zip": "downloads/hr-driven-identity-code.zip"
+   },
+   {
+    "name": "lifecycle-extensions",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/lifecycle-extensions",
+    "zip": null
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Chapter 03: Joiner Workflows as Code"
+   ],
+   [
+    35,
+    "Why the workflows belong in code"
+   ],
+   [
+    67,
+    "What Microsoft gives you"
+   ],
+   [
+    103,
+    "What Learn leaves to you"
+   ],
+   [
+    138,
+    "Six workflow files, scoped by code"
+   ],
+   [
+    176,
+    "The lint: Learn's limits and the program's rules"
+   ],
+   [
+    216,
+    "The plan: create, new version, or none"
+   ],
+   [
+    251,
+    "Day-one readiness, and the tests"
+   ],
+   [
+    285,
+    "The verified facts"
+   ],
+   [
+    325,
+    "Where Learn differs, and what stays open"
+   ],
+   [
+    362,
+    "What the output proves, and for whom"
+   ],
+   [
+    399,
+    "Who builds, who owns, who approves"
+   ],
+   [
+    434,
+    "Lab 1: the reads, and a clean lint"
+   ],
+   [
+    462,
+    "Lab 1: three broken copies"
+   ],
+   [
+    497,
+    "Lab 1: the plan, and day one measured"
+   ],
+   [
+    533,
+    "Lab 2: one change, through the plan"
+   ],
+   [
+    572,
+    "Dangers, and the guard for each"
+   ],
+   [
+    610,
+    "Done when: the Gate 3 checklist"
+   ]
+  ]
+ },
+ {
+  "id": "DW_HR_04_Access_From_Attributes_Narrated",
+  "title": "Building HR-Driven Identity, Chapter 04 — Access from Attributes and the Mover's Residual Review: narrated tour",
+  "group": "developer",
+  "minutes": 11,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_HR_04_Access_From_Attributes_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/dw-hr-04-access-from-attributes/DW_HR_04_Access_From_Attributes_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-hr-04-access-from-attributes/DW_HR_04_Access_From_Attributes_Narration_Script.md",
+  "page": "docs/project-plans/developer-workbooks/hr-driven-identity/04-access-from-attributes-and-the-mover-review.html",
+  "source": "docs/project-plans/developer-workbooks/hr-driven-identity/04-access-from-attributes-and-the-mover-review.md",
+  "kits": [
+   {
+    "name": "hr-lifecycle",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/hr-lifecycle",
+    "zip": "downloads/hr-driven-identity-code.zip"
+   },
+   {
+    "name": "dynamic-rules",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/dynamic-rules",
+    "zip": null
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Chapter 04: Access from Attributes and the Mover's Review"
+   ],
+   [
+    39,
+    "Why Gate 4 needs code"
+   ],
+   [
+    74,
+    "What Learn gives you: the automatic policy"
+   ],
+   [
+    114,
+    "The request body, and the manager as approver"
+   ],
+   [
+    151,
+    "What Learn leaves to you"
+   ],
+   [
+    187,
+    "The policy files and the evaluator"
+   ],
+   [
+    226,
+    "The lint: nine rules"
+   ],
+   [
+    260,
+    "The mover's residual review"
+   ],
+   [
+    297,
+    "The reads, the clouds and the tests"
+   ],
+   [
+    334,
+    "The verified facts, and where Learn stops"
+   ],
+   [
+    371,
+    "What the output proves, and for whom"
+   ],
+   [
+    412,
+    "Who builds, who owns, who reviews"
+   ],
+   [
+    448,
+    "Lab 1: the reads, and a clean lint"
+   ],
+   [
+    480,
+    "Lab 1: five broken policies"
+   ],
+   [
+    518,
+    "Lab 1: the memberOf scan and a mover's residual"
+   ],
+   [
+    558,
+    "Lab 2: one policy and one move, in a test tenant"
+   ],
+   [
+    595,
+    "Dangers, and the guard for each"
+   ],
+   [
+    632,
+    "Done when: the Gate 4 checklist"
+   ]
+  ]
+ },
+ {
+  "id": "DW_HR_05_CBA_Checks_Narrated",
+  "title": "Building HR-Driven Identity, Chapter 05 — Certificate-Based Authentication Checks: narrated tour",
+  "group": "developer",
+  "minutes": 11,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_HR_05_CBA_Checks_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/dw-hr-05-cba-checks/DW_HR_05_CBA_Checks_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-hr-05-cba-checks/DW_HR_05_CBA_Checks_Narration_Script.md",
+  "page": "docs/project-plans/developer-workbooks/hr-driven-identity/05-certificate-based-authentication-checks.html",
+  "source": "docs/project-plans/developer-workbooks/hr-driven-identity/05-certificate-based-authentication-checks.md",
+  "kits": [
+   {
+    "name": "hr-lifecycle",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/hr-lifecycle",
+    "zip": "downloads/hr-driven-identity-code.zip"
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Chapter 05: Certificate-Based Authentication Checks"
+   ],
+   [
+    41,
+    "Why this gate needs code"
+   ],
+   [
+    75,
+    "Which cloud: the limit depends on it"
+   ],
+   [
+    108,
+    "What Microsoft gives you"
+   ],
+   [
+    150,
+    "What it leaves to you"
+   ],
+   [
+    187,
+    "cba_check.py: measure, then check"
+   ],
+   [
+    227,
+    "The check: CB-01 to CB-13"
+   ],
+   [
+    268,
+    "Three read permissions, and the root CA"
+   ],
+   [
+    309,
+    "The verified facts"
+   ],
+   [
+    347,
+    "Where Learn says nothing, or differs"
+   ],
+   [
+    385,
+    "What the check proves, and for whom"
+   ],
+   [
+    424,
+    "Who builds, who runs the CAs, who keeps it"
+   ],
+   [
+    461,
+    "Lab 1: the read, and the measurement"
+   ],
+   [
+    495,
+    "Lab 1: the fictional tenant, checked for GCC"
+   ],
+   [
+    534,
+    "Lab 1: the same tenant for GCC High, and the tests"
+   ],
+   [
+    565,
+    "Lab 2: a test tenant, and a revoked card"
+   ],
+   [
+    603,
+    "Dangers, and the guard for each"
+   ],
+   [
+    641,
+    "Done when: the CBA checklist"
+   ]
+  ]
+ },
+ {
+  "id": "DW_HR_06_Separation_Timing_Narrated",
+  "title": "Building HR-Driven Identity, Chapter 06 — Separation Timing from the Logs: narrated tour",
+  "group": "developer",
+  "minutes": 11,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_HR_06_Separation_Timing_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/dw-hr-06-separation-timing/DW_HR_06_Separation_Timing_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-hr-06-separation-timing/DW_HR_06_Separation_Timing_Narration_Script.md",
+  "page": "docs/project-plans/developer-workbooks/hr-driven-identity/06-separation-timing.html",
+  "source": "docs/project-plans/developer-workbooks/hr-driven-identity/06-separation-timing.md",
+  "kits": [
+   {
+    "name": "hr-lifecycle",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/hr-lifecycle",
+    "zip": "downloads/hr-driven-identity-code.zip"
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Chapter 06: Separation Timing from the Logs"
+   ],
+   [
+    34,
+    "Why this gate needs code"
+   ],
+   [
+    70,
+    "What Microsoft gives you"
+   ],
+   [
+    105,
+    "What it leaves to you"
+   ],
+   [
+    139,
+    "The two intervals"
+   ],
+   [
+    176,
+    "The rules: ST-01 to ST-05"
+   ],
+   [
+    215,
+    "The rules: ST-06 to ST-09, and the thresholds"
+   ],
+   [
+    253,
+    "The read: two permissions, which cloud"
+   ],
+   [
+    288,
+    "The tests: four for this chapter"
+   ],
+   [
+    322,
+    "The verified facts"
+   ],
+   [
+    359,
+    "Where Learn says nothing or differs"
+   ],
+   [
+    395,
+    "What the intervals prove, and for whom"
+   ],
+   [
+    434,
+    "Who builds, who owns, who reports"
+   ],
+   [
+    471,
+    "Lab 1: the read and the measurement"
+   ],
+   [
+    508,
+    "Lab 1: the findings and the intervals"
+   ],
+   [
+    545,
+    "Lab 1: the tests, then clean up"
+   ],
+   [
+    564,
+    "Lab 2: measure a real test leaver"
+   ],
+   [
+    597,
+    "Dangers, and the guard for each"
+   ],
+   [
+    634,
+    "Done when: the separation checklist"
+   ]
+  ]
+ },
+ {
+  "id": "DW_HR_07_Drift_Metrics_Evidence_Narrated",
+  "title": "Building HR-Driven Identity, Chapter 07 — Lifecycle Drift, Metrics and Evidence: narrated tour",
+  "group": "developer",
+  "minutes": 11,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_HR_07_Drift_Metrics_Evidence_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/dw-hr-07-drift-metrics-evidence/DW_HR_07_Drift_Metrics_Evidence_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-hr-07-drift-metrics-evidence/DW_HR_07_Drift_Metrics_Evidence_Narration_Script.md",
+  "page": "docs/project-plans/developer-workbooks/hr-driven-identity/07-lifecycle-drift-and-evidence.html",
+  "source": "docs/project-plans/developer-workbooks/hr-driven-identity/07-lifecycle-drift-and-evidence.md",
+  "kits": [
+   {
+    "name": "hr-lifecycle",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/hr-lifecycle",
+    "zip": "downloads/hr-driven-identity-code.zip"
+   },
+   {
+    "name": "drift-pipeline",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/drift-pipeline",
+    "zip": null
+   },
+   {
+    "name": "validation-kit",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/validation-kit",
+    "zip": "downloads/validation-kit.zip"
+   },
+   {
+    "name": "hcm-entra",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/hcm-entra",
+    "zip": null
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Chapter 07: Lifecycle Drift, Metrics and Evidence"
+   ],
+   [
+    35,
+    "Why a daily proof, and a record that outlives accounts"
+   ],
+   [
+    70,
+    "Start from Book 19's pipeline, and what it leaves"
+   ],
+   [
+    112,
+    "The run: what it reads and writes"
+   ],
+   [
+    152,
+    "Six lifecycle drift classes"
+   ],
+   [
+    189,
+    "Six metrics, each against a threshold"
+   ],
+   [
+    228,
+    "The package, the chain and the period"
+   ],
+   [
+    268,
+    "The verified facts"
+   ],
+   [
+    310,
+    "What stays open, and what's design guidance"
+   ],
+   [
+    347,
+    "What the evidence proves, and for whom"
+   ],
+   [
+    391,
+    "Who runs the checks, who fixes, who signs"
+   ],
+   [
+    421,
+    "Lab 1: the chapter outputs, then the first run"
+   ],
+   [
+    459,
+    "Lab 1: reading the findings"
+   ],
+   [
+    497,
+    "Lab 1: package both runs, chained, and verify"
+   ],
+   [
+    530,
+    "Lab 1: the period, and the tests"
+   ],
+   [
+    575,
+    "Lab 2: a run against a test tenant"
+   ],
+   [
+    613,
+    "Dangers, and the guard for each"
+   ],
+   [
+    648,
+    "Done when: the Gate 7 checklist"
+   ]
+  ]
+ },
+ {
   "id": "DW_NPI_01_Inventory_as_Code_Narrated",
   "title": "Building Non-Person Identity, Chapter 01 — Non-Person Identity Inventory as Code: narrated tour",
   "group": "developer",
@@ -9962,15 +10663,15 @@
     "Lab 1: compare, break it, hold it, test it"
    ],
    [
-    548,
+    550,
     "Lab 2: a test tenant, five records, reconciled"
    ],
    [
-    586,
+    587,
     "Dangers, and the guard for each"
    ],
    [
-    620,
+    621,
     "Done when: the chapter's checklist"
    ]
   ]

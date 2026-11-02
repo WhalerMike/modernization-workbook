@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.362
+The dangers, and the guard for each.
+
+2
+00:00:02.362 --> 00:00:06.854
+A CRL that grows past the limit
+takes down every card from that CA,
+
+3
+00:00:06.854 --> 00:00:10.499
+so the size rule and its
+early warning run every time.
+
+4
+00:00:10.499 --> 00:00:15.375
+A slow or unreachable endpoint causes
+the same outage from the network side.
+
+5
+00:00:15.375 --> 00:00:18.900
+A CA without a CRL lets
+revoked cards sign in.
+
+6
+00:00:18.900 --> 00:00:22.088
+A renewed CA nobody added
+locks out new cards.
+
+7
+00:00:22.088 --> 00:00:26.037
+A troubleshooting exemption that
+stays turns revocation off.
+
+8
+00:00:26.037 --> 00:00:31.075
+PIV mapped as single-factor means
+the card isn't what meets MFA.
+
+9
+00:00:31.075 --> 00:00:34.800
+And a report-only policy is
+a requirement only on paper.

@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.300
+Welcome back to Building
+HR-Driven Identity.
+
+2
+00:00:03.300 --> 00:00:08.513
+This is Chapter 4: access from attributes
+and the mover's residual review.
+
+3
+00:00:08.513 --> 00:00:11.624
+An automatic policy removes
+what its rule granted.
+
+4
+00:00:11.624 --> 00:00:14.599
+It never removes what
+someone granted by hand,
+
+5
+00:00:14.599 --> 00:00:18.200
+and a move is exactly when
+that access stops being right.
+
+6
+00:00:18.200 --> 00:00:23.349
+So this chapter starts from Learn's
+procedure for an automatic assignment policy,
+
+7
+00:00:23.349 --> 00:00:27.968
+then adds what Learn leaves to you: the
+policies as reviewed files, a lint of
+
+8
+00:00:27.968 --> 00:00:32.663
+nine rules, a scan for the member-of
+operator, and the mover's residual review.
+
+9
+00:00:32.663 --> 00:00:35.040
+Then two labs, and the dangers.

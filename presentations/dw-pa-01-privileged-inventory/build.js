@@ -261,17 +261,7 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: run Learn's samples and the inventory offline",
       body: [
-        { code: [
-          "# 1  Learn's samples against the stand-ins: Passed 9, Failed 0, NotRun 7 (Chapter 02's)",
-          "Invoke-Pester -Path tests/MicrosoftSamples.Tests.ps1 -FullNameFilter '*Chapter 01*' -Output None -PassThru",
-          "# 2  The permissions: five, nothing ends in ReadWrite",
-          "(Get-PaRequiredPermission -Task inventory).GraphPermissions -join ', '",
-          "# 3  The inventory against the fictional tenant",
-          "./Invoke-PaInventory.ps1 -FixturePath tests/fixtures/tenant.json -OutputPath out/inventory `",
-          "    -AzureScope <three scopes> -ExceptionsPath …/exceptions.csv -ControlPlaneSubscriptionId 2222…",
-          "Assignments: 30 rows (Azure T0=4, T1=5, T2=1; Entra T0=8, T1=2, T2=2, Unclassified=1)",
-          "Findings: 10 Finding, 7 Warn, 1 Info",
-        ], label: "POWERSHELL 7.1+ WITH PESTER 5, IN examples/privileged-access", pt: 11.5 },
+        { cols: [[{ terminal: "01-1" }], [{ terminal: "01-2" }]] }, { terminal: "01-3" },
         { callout: "the second sample test shows the fixture's eligible-only holders never appear in the sample's output.", label: "What step 1 shows: ", icon: "FaListCheck", color: "teal" },
       ],
       sources: "Sources: examples/privileged-access (tests and fixtures, fictional). Chapter 01, “Lab 1: fixtures, no tenant,” steps 1–3.",

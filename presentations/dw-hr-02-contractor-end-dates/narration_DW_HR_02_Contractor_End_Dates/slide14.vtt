@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.950
+Lab 1 runs on a laptop.
+
+2
+00:00:01.950 --> 00:00:06.463
+Step one lists the reconciliation's
+one read and its two permissions.
+
+3
+00:00:06.463 --> 00:00:10.684
+Step two computes the earliest
+ends: nine records, three active,
+
+4
+00:00:10.684 --> 00:00:14.661
+four inactive past their earliest
+end, and two quarantined,
+
+5
+00:00:14.661 --> 00:00:18.151
+with an exit code of two
+because the run has findings.
+
+6
+00:00:18.151 --> 00:00:20.425
+Step three reads the decisions.
+
+7
+00:00:20.425 --> 00:00:25.825
+One record has no contract end;
+another's sponsor isn't in the HR export.
+
+8
+00:00:25.825 --> 00:00:30.187
+And one shows the rule at work: its
+card expired on October twenty-eighth,
+
+9
+00:00:30.187 --> 00:00:34.540
+but its recertification was due three
+days earlier, which comes first.

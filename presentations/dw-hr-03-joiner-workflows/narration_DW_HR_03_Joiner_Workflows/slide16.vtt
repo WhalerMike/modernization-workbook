@@ -1,0 +1,57 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.837
+Lab 2 uses a test tenant, never
+production; the authors haven't run it.
+
+2
+00:00:04.837 --> 00:00:07.200
+Export the workflows with a reader app.
+
+3
+00:00:07.200 --> 00:00:10.429
+Make one example edit,
+moving the pre-hire trigger
+
+4
+00:00:10.429 --> 00:00:13.737
+from seven days to five,
+and plan against the export.
+
+5
+00:00:13.737 --> 00:00:16.221
+As a Lifecycle Workflows Administrator,
+
+6
+00:00:16.221 --> 00:00:19.800
+send that one change with Graph
+PowerShell, scheduling off.
+
+7
+00:00:19.800 --> 00:00:22.363
+Set the execution limit
+in the admin center,
+
+8
+00:00:22.363 --> 00:00:24.712
+and read it back with the validation kit.
+
+9
+00:00:24.712 --> 00:00:27.550
+Check the pass policy and
+the manager's mailbox,
+
+10
+00:00:27.550 --> 00:00:30.024
+then measure readiness on the start date.
+
+11
+00:00:30.024 --> 00:00:32.822
+Finally, back it out:
+remove what you created,
+
+12
+00:00:32.822 --> 00:00:35.830
+or send the previous body
+as a further version.

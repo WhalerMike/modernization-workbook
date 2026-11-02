@@ -1,0 +1,43 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.063
+The packager has three commands.
+
+2
+00:00:02.063 --> 00:00:07.314
+Package checks the run, every file and
+nothing extra, one tenant, cloud and mode,
+
+3
+00:00:07.314 --> 00:00:12.156
+only read requests, and writes a
+summary with fingerprints but no names,
+
+4
+00:00:12.156 --> 00:00:17.162
+an evidence manifest that names the
+previous package, and a checksum file.
+
+5
+00:00:17.162 --> 00:00:19.513
+It refuses a chain for another tenant.
+
+6
+00:00:19.513 --> 00:00:21.749
+Verify rechecks every file.
+
+7
+00:00:21.749 --> 00:00:26.985
+And period verifies every package in the
+window, reports chain breaks and coverage
+
+8
+00:00:26.985 --> 00:00:31.537
+gaps, gives each metric's series, and
+maps what's still open to the controls.
+
+9
+00:00:31.537 --> 00:00:36.020
+That mapping is design guidance;
+the assessor decides each control.

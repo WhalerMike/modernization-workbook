@@ -1,0 +1,46 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.088
+Nine rules turn the
+intervals into a work list.
+
+2
+00:00:03.088 --> 00:00:06.301
+S T 1 flags a block slower
+than the threshold,
+
+3
+00:00:06.301 --> 00:00:11.300
+which is P S 4's organization-defined
+period; the sample is four hours.
+
+4
+00:00:11.300 --> 00:00:14.400
+S T 2 flags a leaver
+who was never blocked.
+
+5
+00:00:14.400 --> 00:00:18.506
+S T 3 flags a separation entered
+more than three days late:
+
+6
+00:00:18.506 --> 00:00:22.962
+a finding if nothing caught it, a
+warning if an on-demand run did.
+
+7
+00:00:22.962 --> 00:00:26.722
+S T 4 flags an uncollected
+card revoked more
+
+8
+00:00:26.722 --> 00:00:30.900
+than eighteen hours after
+notice, from FIPS 201-3.
+
+9
+00:00:30.900 --> 00:00:34.680
+And S T 5 flags a re-enable
+that HR didn't cancel.

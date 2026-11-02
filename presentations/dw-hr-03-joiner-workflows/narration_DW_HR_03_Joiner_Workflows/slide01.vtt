@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.300
+Welcome back to Building
+HR-Driven Identity.
+
+2
+00:00:03.300 --> 00:00:09.013
+This is Chapter 3: joiner workflows as
+code, and the Temporary Access Pass bridge.
+
+3
+00:00:09.013 --> 00:00:12.687
+A workflow edited in the portal
+is a change nobody reviewed.
+
+4
+00:00:12.687 --> 00:00:16.148
+A workflow kept as a file
+is one a reviewer can read,
+
+5
+00:00:16.148 --> 00:00:20.451
+a test can lint, and a plan can
+turn into exactly one new version.
+
+6
+00:00:20.451 --> 00:00:25.092
+We'll start from Microsoft Learn's
+procedure, then see what the kit adds:
+
+7
+00:00:25.092 --> 00:00:29.413
+the workflow files, a lint, a plan,
+and a measure of day-one readiness.
+
+8
+00:00:29.413 --> 00:00:31.820
+Then two labs and the dangers.

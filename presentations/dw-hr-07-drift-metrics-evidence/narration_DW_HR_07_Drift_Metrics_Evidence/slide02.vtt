@@ -1,0 +1,39 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.538
+Why does this gate exist?
+
+2
+00:00:01.538 --> 00:00:06.275
+Because the first six only set things up;
+something has to show they keep working.
+
+3
+00:00:06.275 --> 00:00:08.225
+And the evidence has to survive.
+
+4
+00:00:08.225 --> 00:00:12.756
+Entra's own retention is short: thirty
+days for audit logs with P1 or P2,
+
+5
+00:00:12.756 --> 00:00:16.254
+thirty for provisioning logs
+with a premium edition,
+
+6
+00:00:16.254 --> 00:00:21.262
+and up to thirty days of Lifecycle
+Workflows history, none of it retroactive.
+
+7
+00:00:21.262 --> 00:00:25.587
+The accounts get disposed of; the record of
+what happened to them must outlive them.
+
+8
+00:00:25.587 --> 00:00:30.740
+Attribute drift and schema drift are out of
+scope on purpose; other tools find them.

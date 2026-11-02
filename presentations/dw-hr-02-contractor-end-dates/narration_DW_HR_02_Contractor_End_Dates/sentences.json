@@ -1,0 +1,565 @@
+{
+ "1": [
+  [
+   0.05,
+   3.25,
+   "Welcome back to Building H R-Driven Identity."
+  ],
+  [
+   3.3,
+   4.438,
+   "This is Chapter 2: contractor sources and enforced end dates."
+  ],
+  [
+   7.737,
+   4.875,
+   "A contractor's end date in a spreadsheet nobody updates keeps access alive."
+  ],
+  [
+   12.613,
+   5.287,
+   "The end date the code computes, from every fact that can end an engagement, doesn't."
+  ],
+  [
+   17.9,
+   16.913,
+   "So this chapter computes each contractor's earliest end, writes the records as an extract the H R middleware sends, reconciles the register, the card system and the directory without changing anything, and builds a sponsor review that removes access when no one responds."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   2.1,
+   "Why do contractors need their own code?"
+  ],
+  [
+   2.15,
+   2.625,
+   "Because they aren't in the H R system's scope."
+  ],
+  [
+   4.775,
+   5.838,
+   "They come from a register the agency owns, mapped into the same canonical record as employees."
+  ],
+  [
+   10.613,
+   9.075,
+   "The guide ships the contractor leaver first: the middleware computes the earliest end and sends the leave date, and an inactive status, itself."
+  ],
+  [
+   19.688,
+   3.288,
+   "This chapter is that computation and the checks around it."
+  ],
+  [
+   22.975,
+   5.812,
+   "Which register to use is the governance body's decision; the code works with whichever one is named."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   0.9,
+   "Which cloud?"
+  ],
+  [
+   0.95,
+   7.338,
+   "The records reach Entra I D through the contractor source's own provisioning app, through the same middleware employees use."
+  ],
+  [
+   8.287,
+   10.787,
+   "Learn's feature availability page lists A P I-driven inbound provisioning as available in Azure Government, and access reviews too; G C C uses the commercial service."
+  ],
+  [
+   19.075,
+   3.788,
+   "The bulk upload page itself has no national cloud table."
+  ],
+  [
+   22.863,
+   6.588,
+   "The middleware accepts only the three Graph endpoints, and the reconciliation reads users from the cloud you name."
+  ],
+  [
+   29.45,
+   1.175,
+   "There's no default."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   1.975,
+   "Start with what Microsoft gives you."
+  ],
+  [
+   2.025,
+   9.338,
+   "Learn's bulk upload page is the contract: a skim post to the provisioning job, at most fifty user operations a request and forty requests a second."
+  ],
+  [
+   11.363,
+   7.987,
+   "The service matches on the attributes the job maps, resolves the manager, and disables the user when a record sends active false."
+  ],
+  [
+   19.35,
+   5.2,
+   "A successful call returns accepted, with a header pointing to the provisioning logs."
+  ],
+  [
+   24.55,
+   7.95,
+   "For recertification, an assignment policy's review settings carry reviewers, a schedule, and what happens when nobody responds."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   1.65,
+   "Here's what Learn leaves to you."
+  ],
+  [
+   1.7,
+   4.513,
+   "It disables an account when told to, but not when an engagement has ended."
+  ],
+  [
+   6.213,
+   5.975,
+   "It accepts any record, so refusing a contractor with no end or no sponsor is yours."
+  ],
+  [
+   12.188,
+   9.062,
+   "Mapping the register into the canonical record, reconciling before anything changes, and writing the review settings as a reviewed body are yours too."
+  ],
+  [
+   21.25,
+   1.875,
+   "Each row is pinned by a test."
+  ],
+  [
+   23.125,
+   2.913,
+   "And the verdict: don't write a second skim client."
+  ],
+  [
+   26.038,
+   5.675,
+   "The existing middleware already validates, batches, paces and records provenance."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   2.737,
+   "The heart of the chapter is the earliest end."
+  ],
+  [
+   2.788,
+   18.3,
+   "For each register row, the extract computes every end condition that applies and takes the first: the contract end or an earlier completion date, suitability withdrawn, a card terminated, revoked or expired, a sponsor gone past the grace period, or a sponsor recertification that's due."
+  ],
+  [
+   21.087,
+   5.662,
+   "The thirty-day grace period and the hundred-and-eighty-day cycle are design guidance the agency sets."
+  ],
+  [
+   26.75,
+   7.925,
+   "A record past its end goes out inactive, and every record carries its end as the termination date, so the leaver fires that day."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   2.9,
+   "Two sets of rules sit around that computation."
+  ],
+  [
+   2.95,
+   11.3,
+   "The source checks quarantine a record with no contract end, or whose sponsor isn't in the H R export, warn when a sponsor has separated, and note an engagement ending within two weeks."
+  ],
+  [
+   14.25,
+   14.975,
+   "The reconciliation compares the register, the card system and the directory: an enabled account past its end, an orphan account, a card for someone the register doesn't hold, a record with no account, and a leave date that isn't the earliest end."
+  ],
+  [
+   29.225,
+   2.575,
+   "It's read only, joined on the person key."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   8.275,
+   "The reconciliation makes one Graph call: a filtered read of contractor users with their leave dates, needing two read permissions."
+  ],
+  [
+   8.325,
+   1.413,
+   "Then the sponsor review."
+  ],
+  [
+   9.738,
+   12.162,
+   "The review command writes the review settings for the contractor package's assignment policy: every six months, the requestor's manager as reviewer, a named fallback, and remove access on no response."
+  ],
+  [
+   21.9,
+   5.125,
+   "So a missed recertification ends access, just as the earliest-end rule says."
+  ],
+  [
+   27.025,
+   1.475,
+   "The code sends nothing."
+  ],
+  [
+   28.5,
+   5.25,
+   "Learn's cmdlet takes the whole policy, so you merge the block into the policy you read back."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   4.463,
+   "The chapter's tests are seven, in the writers-and-contractors test file."
+  ],
+  [
+   4.513,
+   23.325,
+   "They check that the earliest end takes the first condition, that an expired card ends an engagement, that a record with no end or no sponsor is quarantined, that a duplicate person key is refused, that the extract matches the middleware's layout and marks past ends inactive, that the reconciliation finds every class, and that the review removes access when no one responds."
+  ],
+  [
+   27.837,
+   5.0,
+   "All fifty-seven tests in the kit pass with no package, tenant or network."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   3.575,
+   "The verified facts, each read on November first."
+  ],
+  [
+   3.625,
+   9.988,
+   "Bulk upload is a version one point oh A P I: fifty operations a request, forty requests a second, and an accepted response pointing to the logs."
+  ],
+  [
+   13.613,
+   3.237,
+   "Its least permission is the owned-by upload permission."
+  ],
+  [
+   16.85,
+   7.838,
+   "The review settings and the access review procedure are both documented, and access reviews are available in Azure Government."
+  ],
+  [
+   24.688,
+   4.312,
+   "The requestor manager subject set is documented for approval stages."
+  ],
+  [
+   29.0,
+   4.725,
+   "And the policy update cmdlet needs the entitlement management read-write permission."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   2.888,
+   "Two places Learn's pages differ or say nothing."
+  ],
+  [
+   2.938,
+   11.15,
+   "First, the requestor's manager as a reviewer: Learn documents that subject set for approvals, and the portal offers Manager as a reviewer, but no page shows it in review settings."
+  ],
+  [
+   14.088,
+   1.538,
+   "Lab 2 confirms it."
+  ],
+  [
+   15.625,
+   9.787,
+   "Second, bulk upload in the national clouds: the A P I page has no table, and the program reads the feature availability page as saying it's available there."
+  ],
+  [
+   25.413,
+   7.125,
+   "And remember the code is illustrative: it runs on fictional data and doesn't prove a tenant maps the same attributes."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   1.45,
+   "What does the output prove?"
+  ],
+  [
+   1.5,
+   16.5,
+   "For account management and third-party personnel security, A C two and PS-7, the code gives every earliest end with its reason, and a reconciliation run before the contractor leaver ships and again after, with no enabled account past its end."
+  ],
+  [
+   18.0,
+   2.763,
+   "Keep both output folders with their manifests."
+  ],
+  [
+   20.762,
+   4.025,
+   "The worker type on every record supports identifier management."
+  ],
+  [
+   24.788,
+   7.15,
+   "The register as one named source per fact supports the O M B memos, though the signed authority table isn't code."
+  ],
+  [
+   31.938,
+   3.675,
+   "And the privacy office's determination covers the data flows."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   0.925,
+   "Who does what?"
+  ],
+  [
+   0.975,
+   6.8,
+   "Developers build the contractor source's integration, and need to read Python, C S V and jay-son."
+  ],
+  [
+   7.775,
+   7.025,
+   "The owner of the contractor register signs the authority table, and the governance body names which register is the source."
+  ],
+  [
+   14.8,
+   7.713,
+   "Identity engineers run the provisioning app, and the middleware's identity holds the upload permission on the contractor app only."
+  ],
+  [
+   22.512,
+   10.137,
+   "The I S S O keeps the reconciliation folders and the provenance manifest, the privacy office covers the data flows, and every quarantined record has an owner."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   1.9,
+   "Lab 1 runs on a laptop."
+  ],
+  [
+   1.95,
+   4.513,
+   "Step one lists the reconciliation's one read and its two permissions."
+  ],
+  [
+   6.463,
+   11.688,
+   "Step two computes the earliest ends: nine records, three active, four inactive past their earliest end, and two quarantined, with an exit code of two because the run has findings."
+  ],
+  [
+   18.15,
+   2.275,
+   "Step three reads the decisions."
+  ],
+  [
+   20.425,
+   5.4,
+   "One record has no contract end; another's sponsor isn't in the H R export."
+  ],
+  [
+   25.825,
+   8.65,
+   "And one shows the rule at work: its card expired on October twenty-eighth, but its recertification was due three days earlier, which comes first."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   6.675,
+   "Step four hands the extract to the middleware, which builds seven records in one batch, four of them disables."
+  ],
+  [
+   6.725,
+   3.8,
+   "Nothing is sent: the middleware's dry run is its default."
+  ],
+  [
+   10.525,
+   6.713,
+   "Step five reconciles the register, the cards and the directory: seven findings and one warning."
+  ],
+  [
+   17.238,
+   3.263,
+   "Four accounts are still enabled past their earliest end."
+  ],
+  [
+   20.5,
+   8.662,
+   "There's an orphan account, a card for someone the source doesn't hold, a leave date that would fire the leaver on the wrong day, and a record with no account."
+  ],
+  [
+   29.163,
+   3.125,
+   "Those four accounts are exactly the four disables."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   4.375,
+   "Step six writes the sponsor review settings for review, and sends nothing."
+  ],
+  [
+   4.425,
+   9.1,
+   "The block removes access on no response, names the requestor's manager at level one as the primary reviewer, and recurs every six months."
+  ],
+  [
+   13.525,
+   4.0,
+   "Step seven runs the whole kit's tests: fifty-seven pass."
+  ],
+  [
+   17.525,
+   1.837,
+   "Then delete the output folder."
+  ]
+ ],
+ "17": [
+  [
+   0.05,
+   3.612,
+   "Lab 2 uses a test tenant; the authors haven't run it."
+  ],
+  [
+   3.663,
+   6.55,
+   "Set up the contractor provisioning app, and grant the middleware the owned-by upload permission on that app only."
+  ],
+  [
+   10.213,
+   6.2,
+   "Send two test contractors, one active and one past its end, and read the provisioning logs."
+  ],
+  [
+   16.413,
+   4.875,
+   "Reconcile against the tenant: there should be no finding for the account you just disabled."
+  ],
+  [
+   21.288,
+   6.65,
+   "Then apply the review settings by merging them into the policy you read back, and confirm the reviewer is the manager."
+  ],
+  [
+   27.938,
+   2.9,
+   "Finally, restore the policy and clean up."
+  ]
+ ],
+ "18": [
+  [
+   0.05,
+   4.075,
+   "The dangers all come down to access outliving the reason for it."
+  ],
+  [
+   4.125,
+   6.987,
+   "A trusted spreadsheet end date lets access outlive the engagement; the computed earliest end stops it."
+  ],
+  [
+   11.113,
+   3.612,
+   "An open-ended contractor never leaves, so it's quarantined."
+  ],
+  [
+   14.725,
+   5.175,
+   "A sponsor who left leaves nobody accountable, so access ends after the grace period."
+  ],
+  [
+   19.9,
+   2.812,
+   "A missed recertification removes access."
+  ],
+  [
+   22.712,
+   4.737,
+   "A drifted leave date is caught, and so is a card for someone nobody sponsors."
+  ],
+  [
+   27.45,
+   4.975,
+   "And a second skim client means two writers, so everything goes through the one middleware."
+  ]
+ ],
+ "19": [
+  [
+   0.05,
+   1.35,
+   "Here's what done looks like."
+  ],
+  [
+   1.4,
+   4.325,
+   "The contractor source is named and its owner signed the authority table."
+  ],
+  [
+   5.725,
+   4.688,
+   "The rules file holds the agency's grace period and recertification cycle."
+  ],
+  [
+   10.412,
+   4.612,
+   "The extract runs on the middleware's schedule, and quarantined records have an owner."
+  ],
+  [
+   15.025,
+   7.213,
+   "The reconciliation ran before and after the contractor leaver shipped, with no account left enabled past its end."
+  ],
+  [
+   22.238,
+   8.012,
+   "The review settings are confirmed by read-back, the upload permission is scoped to the contractor app, and the privacy office has signed off."
+  ],
+  [
+   30.25,
+   3.487,
+   "Next, Chapter 3: joiner workflows as code."
+  ],
+  [
+   33.737,
+   1.1,
+   "Thanks for watching."
+  ]
+ ]
+}

@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.150
+Why do contractors need their own code?
+
+2
+00:00:02.150 --> 00:00:04.775
+Because they aren't in
+the HR system's scope.
+
+3
+00:00:04.775 --> 00:00:07.353
+They come from a register the agency owns,
+
+4
+00:00:07.353 --> 00:00:10.613
+mapped into the same
+canonical record as employees.
+
+5
+00:00:10.613 --> 00:00:15.344
+The guide ships the contractor leaver
+first: the middleware computes the
+
+6
+00:00:15.344 --> 00:00:19.688
+earliest end and sends the leave
+date, and an inactive status, itself.
+
+7
+00:00:19.688 --> 00:00:22.976
+This chapter is that computation
+and the checks around it.
+
+8
+00:00:22.976 --> 00:00:26.276
+Which register to use is the
+governance body's decision;
+
+9
+00:00:26.276 --> 00:00:28.850
+the code works with
+whichever one is named.

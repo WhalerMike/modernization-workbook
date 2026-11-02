@@ -4,7 +4,7 @@
 //
 //   require("../_build/devwb.js")({ workbook: "pa", chapter: 2, base: "DW_PA_02_Emergency_Access", title, subtitle, slides })
 //
-// and this file lays the slides out with the shared kit (lib.js), so all 35 tours look alike.
+// and this file lays the slides out with the shared kit (lib.js), so all 42 tours look alike.
 //
 // A slide is { part, title, body: [elements], sources, say, detail, cite: [footnote names], ref }:
 //   part      Why | What | Who | How: the tag, and the deck section
@@ -38,6 +38,7 @@ const WORKBOOKS = {
   pa: { dir: "docs/project-plans/developer-workbooks/privileged-access", name: "Building Privileged Access", kit: "examples/privileged-access" },
   npi: { dir: "docs/project-plans/developer-workbooks/non-person-identity", name: "Building Non-Person Identity", kit: "examples/non-person-identity" },
   ttm: { dir: "docs/project-plans/developer-workbooks/ticket-to-machine", name: "Building Ticket-to-Machine", kit: "examples/servicenow-sailpoint" },
+  hr: { dir: "docs/project-plans/developer-workbooks/hr-driven-identity", name: "Building HR-Driven Identity", kit: "examples/hr-lifecycle" },
 };
 const ICONS = new Set(fs.readdirSync(path.join(__dirname, "icons")).map((f) => f.replace(/\.png$/, "")));
 const BANNED = /\bUIAO\b|\bSSA\b|Social Security|Mainframe PIN|\bDISA\b|\bSTIGs?\b/i;

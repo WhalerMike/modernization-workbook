@@ -58,7 +58,7 @@ Lab 1 runs on a laptop with no tenant and no network. First you run Microsoft's 
 
 ## Slide 15 — Lab 1: compare, break it, hold it, test it
 
-Now the comparison makes the gap table real. The pending worker sits in quarantine with its reason. Our first operation is the leaver, while the sample starts at the top of the file, and the future hire is disabled in ours but active in the sample's. Hash the extract yourself and it matches the manifest; run each tool twice and only ours gives identical batches. Then break things on purpose: a lower-case department code is refused, and a strict disable limit holds the run. Finish with the tests, forty-eight in each language.
+Now the comparison makes the gap table real. The pending worker sits in quarantine with its reason. Our first operation is the leaver, while the sample starts at the top of the file, and the future hire is disabled in ours but active in the sample's. Hash the extract yourself and it matches the manifest; run each tool twice and only ours gives identical batches. Then break things on purpose: a lower-case department code is refused, and a strict disable limit holds the run. Finish with the tests: seventy in Python and sixty-two in Pester.
 
 ## Slide 16 — Lab 2: a test tenant, five records, reconciled
 

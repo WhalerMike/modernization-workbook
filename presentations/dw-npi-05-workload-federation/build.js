@@ -260,20 +260,9 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: Microsoft's samples, then the plan",
       body: [
-        { code: [
-          "# 1  Microsoft's samples against the fakes: PassedCount 17, FailedCount 0, NotRunCount 0",
-          "Invoke-Pester -Path tests/NpiFederationSamples.Tests.ps1 -Output None -PassThru",
-          "# 2  What each task needs",
-          "federation : Application.Read.All, AuditLog.Read.All | Reader",
-          "federation-apply : Application.Read.All, Application.ReadWrite.All | Managed Identity Contributor, Reader",
-          "# 3  Build the plan from the fixtures",
-          "./Invoke-NpiFederation.ps1 -Cloud gcc -ConversionsPath tests/fixtures/ch05/conversions.json …",
-          "Conversions: 8 in 2 wave(s); token exchange tests: 4 passed, 2 failed",
-          "Findings: 7 Finding, 1 Warn",
-          "Plan: 20 actions, 4 of them writes (2 CreateCredential, 1 CreateIdentity, 1 DisableLegacy)",
-          "Plan SHA-256: 5ec0a52c70dc49ac6904c6923ac9b292e3c312d38594b6210cc9178c9f188bf2",
-        ], label: "POWERSHELL 7.1+ WITH PESTER 5, IN examples/non-person-identity", pt: 11.5 },
-        { callout: "the test that sends the Graph sample, then exchanges a token with another subject: the create succeeds, the exchange fails with AADSTS70021.", label: "Read in step 1: ", icon: "FaListCheck", color: "teal" },
+        { cols: [[{ terminal: "05-1" }], [{ callout: "the test that sends the Graph sample, then exchanges a token with another subject: the create succeeds, the exchange fails with AADSTS70021.", label: "Read in step 1: ", icon: "FaListCheck", color: "teal" }]] },
+        { terminal: "05-2" },
+        { terminal: "05-3", lines: "1-4,6" },
       ],
       sources: "Sources: examples/non-person-identity (tests and fixtures, fictional). Chapter 05, “Lab 1: fixtures, no tenant,” steps 1–3.",
       say: `Lab 1 needs only a laptop with PowerShell 7 and Pester; no tenant, no network. First you run Microsoft's own samples against the fakes. Find the test that creates a credential with Graph's sample and then exchanges a token with a different subject: the create succeeds and the exchange fails. That's the whole risk, in one test. Then you list what each task needs, and build the plan from the fixtures: eight conversions in two waves, two failed exchange tests, and twenty actions, of which only four would write. The plan's hash is the same on every run.`,

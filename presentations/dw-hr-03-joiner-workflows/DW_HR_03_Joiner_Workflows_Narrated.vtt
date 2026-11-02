@@ -1,0 +1,789 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.300
+Welcome back to Building
+HR-Driven Identity.
+
+2
+00:00:03.300 --> 00:00:09.013
+This is Chapter 3: joiner workflows as
+code, and the Temporary Access Pass bridge.
+
+3
+00:00:09.013 --> 00:00:12.687
+A workflow edited in the portal
+is a change nobody reviewed.
+
+4
+00:00:12.687 --> 00:00:16.148
+A workflow kept as a file
+is one a reviewer can read,
+
+5
+00:00:16.148 --> 00:00:20.451
+a test can lint, and a plan can
+turn into exactly one new version.
+
+6
+00:00:20.451 --> 00:00:25.092
+We'll start from Microsoft Learn's
+procedure, then see what the kit adds:
+
+7
+00:00:25.092 --> 00:00:29.413
+the workflow files, a lint, a plan,
+and a measure of day-one readiness.
+
+8
+00:00:29.413 --> 00:00:32.120
+Then two labs and the dangers.
+
+9
+00:00:35.870 --> 00:00:37.457
+Why does this gate need code?
+
+10
+00:00:37.457 --> 00:00:41.104
+The guide's Step 3 asks for
+few workflows scoped by code,
+
+11
+00:00:41.104 --> 00:00:44.995
+a pass that bridges to the card,
+baseline access by package,
+
+12
+00:00:44.995 --> 00:00:50.182
+execution limits on every scheduled
+workflow, and a measured readiness rate.
+
+13
+00:00:50.182 --> 00:00:53.596
+Each of those is a property
+of a workflow definition.
+
+14
+00:00:53.596 --> 00:00:58.245
+And Learn makes a definition change a new
+version rather than an in-place update.
+
+15
+00:00:58.245 --> 00:01:00.418
+That's what makes code the right home:
+
+16
+00:01:00.418 --> 00:01:03.530
+the file is the version,
+and the plan is the diff.
+
+17
+00:01:07.280 --> 00:01:08.693
+Here's what Learn gives you.
+
+18
+00:01:08.693 --> 00:01:12.156
+The Create workflow request: a category,
+
+19
+00:01:12.156 --> 00:01:15.830
+a name, flags, a scope,
+a trigger and the tasks.
+
+20
+00:01:15.830 --> 00:01:19.380
+A changed definition goes to
+the create new version action.
+
+21
+00:01:19.380 --> 00:01:23.370
+Triggers run on the hire date, the
+leave date or the creation date,
+
+22
+00:01:23.370 --> 00:01:26.080
+within a hundred and
+eighty days either way.
+
+23
+00:01:26.080 --> 00:01:29.345
+The pass task takes a lifetime
+and a one-time-use flag,
+
+24
+00:01:29.345 --> 00:01:33.142
+and Learn recommends at most
+twenty-four hours for a new hire.
+
+25
+00:01:33.142 --> 00:01:36.675
+And execution limits
+quarantine a scheduled run,
+
+26
+00:01:36.675 --> 00:01:39.880
+though a workflow's
+limit isn't in the API.
+
+27
+00:01:43.630 --> 00:01:44.993
+What does Learn leave to you?
+
+28
+00:01:44.993 --> 00:01:48.230
+It gives one request at
+a time, written by hand.
+
+29
+00:01:48.230 --> 00:01:51.689
+It doesn't keep the definitions
+where a reviewer approves them,
+
+30
+00:01:51.689 --> 00:01:55.081
+check a definition against its
+own limits before the request,
+
+31
+00:01:55.081 --> 00:01:59.405
+decide between create and new version,
+or measure what the workflows achieved.
+
+32
+00:01:59.405 --> 00:02:02.770
+So the kit keeps one file
+per workflow, lints it,
+
+33
+00:02:02.770 --> 00:02:07.905
+plans create or new version, and counts
+readiness, each pinned by a test.
+
+34
+00:02:07.905 --> 00:02:12.041
+The verdict: keep Learn's bodies
+exactly as Learn shapes them,
+
+35
+00:02:12.041 --> 00:02:14.960
+and add the file, lint and plan in front.
+
+36
+00:02:18.710 --> 00:02:20.860
+The kit holds six workflow files.
+
+37
+00:02:20.860 --> 00:02:25.669
+Two joiners: a pre-hire workflow that
+sends the pass seven days before day one,
+
+38
+00:02:25.669 --> 00:02:29.485
+and a day-one workflow that
+requests the onboarding package.
+
+39
+00:02:29.485 --> 00:02:31.585
+A mover on the organization code.
+
+40
+00:02:31.585 --> 00:02:34.537
+And three leavers,
+including a post-separation
+
+41
+00:02:34.537 --> 00:02:37.035
+delete thirty days after the leave date.
+
+42
+00:02:37.035 --> 00:02:41.660
+All of them scope on the employee type
+and a worker type code, never on a name.
+
+43
+00:02:41.660 --> 00:02:44.607
+The day-one workflow
+doesn't enable the account;
+
+44
+00:02:44.607 --> 00:02:48.310
+the pipeline is that writer, as
+Chapter 1's register records.
+
+45
+00:02:48.310 --> 00:02:52.940
+And each file records its version,
+owner and execution limit.
+
+46
+00:02:56.690 --> 00:03:00.527
+The lint has fifteen rules, and
+each one says where it comes from.
+
+47
+00:03:00.527 --> 00:03:04.370
+Some are Learn's own limits:
+the category, the offset range,
+
+48
+00:03:04.370 --> 00:03:08.293
+more than twenty-five tasks,
+more than a hundred workflows,
+
+49
+00:03:08.293 --> 00:03:12.053
+an unknown task I D, or a scope
+property Learn doesn't list.
+
+50
+00:03:12.053 --> 00:03:16.486
+Some are the program's design: scope
+by code rather than by a display name,
+
+51
+00:03:16.486 --> 00:03:20.017
+record an execution limit
+for every scheduled workflow,
+
+52
+00:03:20.017 --> 00:03:24.977
+give access by package rather than group
+add, and keep delete apart from disable.
+
+53
+00:03:24.977 --> 00:03:28.734
+And the pass rule mixes both:
+Learn's range is a finding,
+
+54
+00:03:28.734 --> 00:03:32.440
+over twenty-four hours or
+reusable is a warning.
+
+55
+00:03:36.190 --> 00:03:38.802
+The plan is where the
+file becomes a change.
+
+56
+00:03:38.802 --> 00:03:43.853
+It lints the folder first, and refuses
+to go on if any file has a finding.
+
+57
+00:03:43.853 --> 00:03:46.839
+Then it matches each file
+to the tenant's export by
+
+58
+00:03:46.839 --> 00:03:50.116
+display name and compares
+the parts a definition owns.
+
+59
+00:03:50.116 --> 00:03:52.878
+A file with no match
+becomes a create body.
+
+60
+00:03:52.878 --> 00:03:56.078
+A changed one becomes a body
+for create new version.
+
+61
+00:03:56.078 --> 00:03:58.428
+An unchanged one is left alone.
+
+62
+00:03:58.428 --> 00:04:01.189
+It writes the plan, one
+body per change and a
+
+63
+00:04:01.189 --> 00:04:04.266
+manifest with a hash per
+file, and sends nothing.
+
+64
+00:04:04.266 --> 00:04:07.690
+Its one read needs only
+workflow read permission.
+
+65
+00:04:11.440 --> 00:04:14.665
+Readiness counts the hires
+whose hire date is today,
+
+66
+00:04:14.665 --> 00:04:19.390
+and calls a hire ready when the account
+exists and is enabled, holds a license,
+
+67
+00:04:19.390 --> 00:04:23.740
+has the onboarding package delivered,
+and has a completed pre-hire run.
+
+68
+00:04:23.740 --> 00:04:29.390
+It reads the hires from H R and three
+exports, each with a read-only permission.
+
+69
+00:04:29.390 --> 00:04:32.357
+Run it on an export taken
+at the start of the day,
+
+70
+00:04:32.357 --> 00:04:35.090
+because it measures state, not timestamps.
+
+71
+00:04:35.090 --> 00:04:36.929
+The chapter adds nine tests,
+
+72
+00:04:36.929 --> 00:04:41.690
+and all fifty-seven of the kit's
+tests pass with no tenant or network.
+
+73
+00:04:45.440 --> 00:04:49.140
+The facts behind the code, read
+on Learn on November first.
+
+74
+00:04:49.140 --> 00:04:53.684
+Create and create new version share
+one permission and the Lifecycle
+
+75
+00:04:53.684 --> 00:04:57.915
+Workflows Administrator role, and
+both are available at L4 and L5.
+
+76
+00:04:57.915 --> 00:05:00.723
+Changes are versions,
+not in-place updates,
+
+77
+00:05:00.723 --> 00:05:04.815
+and the tenant runs one schedule,
+every three hours by default.
+
+78
+00:05:04.815 --> 00:05:08.313
+The pass task has a fixed
+I D and a lifetime range,
+
+79
+00:05:08.313 --> 00:05:11.990
+and its availability in
+GCC High wasn't confirmed.
+
+80
+00:05:11.990 --> 00:05:16.690
+Execution limits quarantine a
+scheduled run but not an on-demand one.
+
+81
+00:05:16.690 --> 00:05:21.810
+And a scheduled workflow catches up on a
+user for three days after the trigger date.
+
+82
+00:05:25.560 --> 00:05:28.326
+Learn's own pages disagree in four places,
+
+83
+00:05:28.326 --> 00:05:31.498
+recorded so a later edit
+doesn't loosen the code.
+
+84
+00:05:31.498 --> 00:05:35.697
+The pass's lifetime argument has two
+names, and the lint reads either.
+
+85
+00:05:35.697 --> 00:05:38.685
+The custom task extension has two I Ds.
+
+86
+00:05:38.685 --> 00:05:43.085
+The mover category appears in an
+example but not in the property table.
+
+87
+00:05:43.085 --> 00:05:45.761
+And the workflow ceiling
+is a hundred on two
+
+88
+00:05:45.761 --> 00:05:48.735
+pages and fifty on another,
+so the budget is fifty.
+
+89
+00:05:48.735 --> 00:05:52.668
+Still open: the trigger name
+for an extension attribute,
+
+90
+00:05:52.668 --> 00:05:58.670
+the execution limit the API doesn't carry,
+and the pass's availability in GCC High.
+
+91
+00:06:02.420 --> 00:06:04.270
+What does this give the I S S O?
+
+92
+00:06:04.270 --> 00:06:08.206
+The reviewed files and the plan
+that changed each version,
+
+93
+00:06:08.206 --> 00:06:13.782
+with its manifest hash: the definitions
+and versions AC-2 enhancement 1 asks for.
+
+94
+00:06:13.782 --> 00:06:18.535
+The lint's clean run, showing a one-time
+pass of at most twenty-four hours
+
+95
+00:06:18.535 --> 00:06:23.370
+and an execution limit on every
+scheduled workflow, which supports IA-5.
+
+96
+00:06:23.370 --> 00:06:25.857
+And the readiness summary
+for each start date.
+
+97
+00:06:25.857 --> 00:06:30.413
+The pass is a bridge to phishing-resistant
+MFA, so an account still on a
+
+98
+00:06:30.413 --> 00:06:35.570
+pass after the agreed window is a finding,
+though this code doesn't read it.
+
+99
+00:06:39.320 --> 00:06:40.245
+Who does what?
+
+100
+00:06:40.245 --> 00:06:45.282
+Developers build the lifecycle automation,
+and need to read Python and JSON.
+
+101
+00:06:45.282 --> 00:06:50.083
+Identity engineers own the workflows:
+they set each execution limit in the
+
+102
+00:06:50.083 --> 00:06:54.883
+admin center, and send each change as
+a Lifecycle Workflows Administrator.
+
+103
+00:06:54.883 --> 00:07:01.045
+Reviewers approve each file and its plan,
+and the I S S O receives the evidence.
+
+104
+00:07:01.045 --> 00:07:05.502
+The code itself only reads: the planning
+app holds a single workflow read
+
+105
+00:07:05.502 --> 00:07:10.460
+permission, and the readiness reads
+hold only their four read permissions.
+
+106
+00:07:14.210 --> 00:07:16.110
+Lab 1 runs on a laptop.
+
+107
+00:07:16.110 --> 00:07:19.273
+Step one lists the reads
+and their permissions.
+
+108
+00:07:19.273 --> 00:07:24.047
+The plan needs one read, of the
+workflows, with workflow read permission.
+
+109
+00:07:24.047 --> 00:07:27.673
+Readiness reads the users, the
+pre-hire processing results
+
+110
+00:07:27.673 --> 00:07:31.522
+and the package assignments, with
+four read permissions in all.
+
+111
+00:07:31.522 --> 00:07:34.935
+Step two lints the
+program's six workflow files
+
+112
+00:07:34.935 --> 00:07:38.890
+against a budget of fifty:
+no findings, no warnings.
+
+113
+00:07:42.640 --> 00:07:45.387
+Step three lints three broken copies,
+
+114
+00:07:45.387 --> 00:07:48.665
+with a budget of two so
+the ceiling rule fires.
+
+115
+00:07:48.665 --> 00:07:51.152
+Seven findings and four warnings.
+
+116
+00:07:51.152 --> 00:07:53.974
+The day-one copy has an
+offset of two hundred
+
+117
+00:07:53.974 --> 00:07:56.639
+days and adds the user to groups directly.
+
+118
+00:07:56.639 --> 00:08:01.125
+The leaver triggers on the hire date,
+deletes and disables in one workflow,
+
+119
+00:08:01.125 --> 00:08:04.140
+and scopes on the manager,
+which Learn doesn't list.
+
+120
+00:08:04.140 --> 00:08:08.819
+The pre-hire copy has no execution
+limit, scopes on a department name,
+
+121
+00:08:08.819 --> 00:08:12.078
+and sends a three-day pass
+that isn't one-time use.
+
+122
+00:08:12.078 --> 00:08:13.950
+The exit code is two.
+
+123
+00:08:17.700 --> 00:08:20.350
+Step four plans against
+the tenant's export.
+
+124
+00:08:20.350 --> 00:08:23.985
+The day-one workflow in the tenant
+requests a different package,
+
+125
+00:08:23.985 --> 00:08:25.288
+so it gets a new version.
+
+126
+00:08:25.288 --> 00:08:29.051
+The employee leaver doesn't
+exist yet, so it gets a create.
+
+127
+00:08:29.051 --> 00:08:33.800
+The one warning is a legacy workflow
+made in the portal that no file defines.
+
+128
+00:08:33.800 --> 00:08:34.975
+Nothing is sent.
+
+129
+00:08:34.975 --> 00:08:37.600
+Plan the broken folder and it refuses.
+
+130
+00:08:37.600 --> 00:08:41.200
+Step five measures day one:
+one of four hires ready.
+
+131
+00:08:41.200 --> 00:08:45.129
+One lacks only the package,
+one is disabled and unlicensed,
+
+132
+00:08:45.129 --> 00:08:47.012
+and one has no account at all.
+
+133
+00:08:47.012 --> 00:08:49.410
+The fifty-seven tests pass.
+
+134
+00:08:53.160 --> 00:08:57.947
+Lab 2 uses a test tenant, never
+production; the authors haven't run it.
+
+135
+00:08:57.947 --> 00:09:00.310
+Export the workflows with a reader app.
+
+136
+00:09:00.310 --> 00:09:03.539
+Make one example edit,
+moving the pre-hire trigger
+
+137
+00:09:03.539 --> 00:09:06.847
+from seven days to five,
+and plan against the export.
+
+138
+00:09:06.847 --> 00:09:09.331
+As a Lifecycle Workflows Administrator,
+
+139
+00:09:09.331 --> 00:09:12.910
+send that one change with Graph
+PowerShell, scheduling off.
+
+140
+00:09:12.910 --> 00:09:15.473
+Set the execution limit
+in the admin center,
+
+141
+00:09:15.473 --> 00:09:17.822
+and read it back with the validation kit.
+
+142
+00:09:17.822 --> 00:09:20.660
+Check the pass policy and
+the manager's mailbox,
+
+143
+00:09:20.660 --> 00:09:23.134
+then measure readiness on the start date.
+
+144
+00:09:23.134 --> 00:09:25.932
+Finally, back it out:
+remove what you created,
+
+145
+00:09:25.932 --> 00:09:29.240
+or send the previous body
+as a further version.
+
+146
+00:09:32.990 --> 00:09:35.590
+The dangers are mostly drift and scale.
+
+147
+00:09:35.590 --> 00:09:40.490
+A workflow edited in the portal drifts
+from its file; every plan warns on it.
+
+148
+00:09:40.490 --> 00:09:44.715
+A scope on a department name silently
+stops after a reorganization.
+
+149
+00:09:44.715 --> 00:09:48.490
+A long or reusable pass
+outlives the card's arrival.
+
+150
+00:09:48.490 --> 00:09:52.320
+A rehire whose old account kept
+its methods can't get a pass,
+
+151
+00:09:52.320 --> 00:09:54.315
+so rehires need their own path.
+
+152
+00:09:54.315 --> 00:09:58.477
+With no execution limit, a
+bad H R load runs to the end.
+
+153
+00:09:58.477 --> 00:10:02.640
+A delete in the leaver removes the
+account before devices are retired.
+
+154
+00:10:02.640 --> 00:10:07.150
+And a readiness figure from a midday
+export counts late fixes as ready.
+
+155
+00:10:10.900 --> 00:10:12.250
+Here's what done looks like.
+
+156
+00:10:12.250 --> 00:10:14.810
+Every workflow in the tenant has a file,
+
+157
+00:10:14.810 --> 00:10:17.850
+and the last plan showed
+no unknown workflows.
+
+158
+00:10:17.850 --> 00:10:20.500
+The lint is clean against
+a budget of fifty.
+
+159
+00:10:20.500 --> 00:10:25.100
+Every execution limit matches its
+file, and the validation kit agrees.
+
+160
+00:10:25.100 --> 00:10:28.587
+The pass is one-time and lasts
+at most twenty-four hours.
+
+161
+00:10:28.587 --> 00:10:33.013
+Each change reached the tenant as a
+reviewed body with its hash recorded.
+
+162
+00:10:33.013 --> 00:10:35.463
+The readers hold only read permissions.
+
+163
+00:10:35.463 --> 00:10:38.788
+And the readiness rate is
+reported for every start date.
+
+164
+00:10:38.788 --> 00:10:44.275
+Next, Chapter 4: access from attributes,
+and the mover's residual review.
+
+165
+00:10:44.275 --> 00:10:45.430
+Thanks for watching.

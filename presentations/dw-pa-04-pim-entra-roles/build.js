@@ -266,18 +266,7 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: Learn's samples, permissions, a dry run",
       body: [
-        { code: [
-          "# 1  Learn's samples to the fake: PassedCount 13, FailedCount 0",
-          "Invoke-Pester -Path tests/PimEntraRoles.Tests.ps1 -FullNameFilter '*(Learn), run as published*' …",
-          "# 2  The permissions each task needs",
-          "'pim-plan','pim-apply','pim-convert' | % { (Get-PaPimRequiredPermission -Task $_).GraphPermissions }",
-          "pim-plan: three Read.Directory permissions; pim-apply adds two ReadWrite; pim-convert one",
-          "# 3  Dry-run wave 1, the pilot class (Tier 1)",
-          "./Invoke-PaPimRoleSettings.ps1 @lab -Wave 1 -OutputPath out/pim-wave1",
-          "Wave 1 (9 roles): 0 Finding, 13 Warn, 0 Info",
-          "Plan: 43 rule updates, 8 eligibility requests, 2 standing assignments to convert (0 confirmed)",
-          "Dry run: nothing was sent",
-        ], label: "POWERSHELL 7.1+ WITH PESTER 5, IN examples/privileged-access", pt: 11.5 },
+        { cols: [[{ terminal: "04-1" }], [{ terminal: "04-3", lines: "4-7" }]] }, { terminal: "04-2", lines: "2-5" },
         { callout: "with the policy ID from the read, all six of Learn's updates apply, and Application Administrator still differs from its file in six of seven rules.", label: "Read the fourth test: ", icon: "FaListCheck", color: "teal" },
       ],
       sources: "Sources: examples/privileged-access (tests and fixtures, fictional). Chapter 04, “Lab 1: fixtures, no tenant,” steps 1–3.",

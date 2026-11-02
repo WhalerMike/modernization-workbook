@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.900
+Lab 1 runs on a laptop,
+in the H R lifecycle kit.
+
+2
+00:00:03.900 --> 00:00:07.382
+Step one lists what the
+scan reads: two GET calls,
+
+3
+00:00:07.382 --> 00:00:10.775
+with audit log read all
+and directory read all.
+
+4
+00:00:10.775 --> 00:00:14.900
+Step two checks the register:
+no findings, no warnings.
+
+5
+00:00:14.900 --> 00:00:17.875
+Step three scans October's audit records.
+
+6
+00:00:17.875 --> 00:00:21.310
+It counts eleven protected
+writes: five by the writer,
+
+7
+00:00:21.310 --> 00:00:25.213
+one by the backstop, four by a
+second writer and one forbidden.
+
+8
+00:00:25.213 --> 00:00:29.223
+That's five findings and one
+warning, the exit code is two,
+
+9
+00:00:29.223 --> 00:00:32.160
+and the manifest lists every file's hash.

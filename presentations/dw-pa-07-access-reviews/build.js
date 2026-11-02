@@ -265,19 +265,7 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: run the tutorial and the dry run offline",
       body: [
-        { code: [
-          "# 1  Learn's tutorial against the fake: PassedCount 11, FailedCount 0",
-          "Invoke-Pester -Path tests/AccessReviews.Tests.ps1 -FullNameFilter '*(Learn), run as published*' …",
-          "# 2  Each task's permissions",
-          "'access-reviews-plan', 'access-reviews-apply', 'access-reviews-evidence' |",
-          "    ForEach-Object { Get-PaArRequiredPermission -Task $_ } | Format-Table Task, GraphPermissions, AzureRoles",
-          "# 3  The dry run",
-          "./Invoke-PaAccessReviews.ps1 -Cloud gcc -Mode Plan -ConfigPath tests/fixtures/ch07/access-reviews.json `",
-          "    -FixturePath tests/fixtures/ch07/tenant.json -AsOf 2026-10-30 -OutputPath out/reviews-plan",
-          "Plan: 1 Create, 2 Update, 1 Replace, 3 NoChange, 1 Unmanaged",
-          "Checks: 0 Finding, 1 Warn, 1 Info",
-          "Dry run: nothing sent (2 write(s) would be sent with -Apply)",
-        ], label: "POWERSHELL 7.1+ WITH PESTER 5, IN examples/privileged-access", pt: 11 },
+        { cols: [[{ terminal: "07-1" }], [{ terminal: "07-3", lines: "1,3-5" }]] }, { terminal: "07-2", lines: "2-8" },
         { table: { head: ["Step 4, the diff", "Why"], w: [4.6, 7.55], rows: [
           ["Global Administrator, Azure Owner: Update", "settings.instanceDurationInDays: the tenant has 7 days, the file 14"],
           ["Privileged Role Administrator: Create; Exchange: Replace", "Not in the tenant; an old reviewer group"],

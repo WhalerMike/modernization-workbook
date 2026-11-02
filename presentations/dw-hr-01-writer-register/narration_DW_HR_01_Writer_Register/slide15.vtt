@@ -1,0 +1,56 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.125
+Step four reads the findings.
+
+2
+00:00:02.125 --> 00:00:05.692
+A help desk administrator
+disabled a user at separation,
+
+3
+00:00:05.692 --> 00:00:07.513
+and edited another's manager.
+
+4
+00:00:07.513 --> 00:00:09.588
+Another account wrote a leave date.
+
+5
+00:00:09.588 --> 00:00:12.413
+A fix-up script wrote
+an organization code.
+
+6
+00:00:12.413 --> 00:00:14.150
+All four are second writers.
+
+7
+00:00:14.150 --> 00:00:18.400
+Inbound provisioning deleted an
+account, which the register forbids.
+
+8
+00:00:18.400 --> 00:00:22.394
+And Lifecycle Workflows, the
+backstop, enabled a new hire,
+
+9
+00:00:22.394 --> 00:00:25.113
+so confirm the writer acted or was late.
+
+10
+00:00:25.113 --> 00:00:28.481
+Three records aren't counted:
+an unprotected change,
+
+11
+00:00:28.481 --> 00:00:31.301
+a failed disable and
+one outside the window.
+
+12
+00:00:31.301 --> 00:00:36.550
+Step five reads a saved query, and
+step six: fifty-seven tests pass.

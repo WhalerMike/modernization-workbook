@@ -265,17 +265,8 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: Learn's samples, the permissions, the run",
       body: [
-        { code: [
-          "# 1  Learn's samples against the stand-ins: PassedCount 20, FailedCount 0, NotRunCount 10",
-          "Invoke-Pester -Path tests/MicrosoftSamples.Tests.ps1 -FullNameFilter '*Chapter 01*' -Output None -PassThru",
-          "# 2  What the inventory needs: nothing ends in ReadWrite",
-          "$p = Get-NpiRequiredPermission -Task inventory",
-          "Application.Read.All, Directory.Read.All  |  Reader  |  Read (default for authenticated domain users)",
-          "# 3  Run the inventory against the fictional estate",
-          "./Invoke-NpiInventory.ps1 -Cloud gcc -FixturePath tests/fixtures/estate.json -OutputPath out/inventory",
-          "Register: 35 identities (AD 15, Entra 20); risk HIGH 8, LOW 19, MEDIUM 8",
-          "Findings: 8 Finding, 11 Warn, 3 Info; 3 handed to the Data Platform plan",
-        ], label: "POWERSHELL 7.1+ WITH PESTER 5, IN examples/non-person-identity", pt: 11.5 },
+        { cols: [[{ terminal: "01-1" }], [{ terminal: "01-2" }]] },
+        { terminal: "01-3" },
         { callout: "Learn's command returns the dMSA, and nothing in the sample says what it is.", label: "Read the dMSA test: ", icon: "FaListCheck", color: "teal" },
       ],
       sources: "Sources: examples/non-person-identity (tests and fixtures, fictional). Chapter 01, “Lab 1: fixtures, no tenant,” steps 1–3.",

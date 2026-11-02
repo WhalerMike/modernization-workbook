@@ -1,0 +1,46 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.662
+Lab 2 uses a test tenant;
+the authors haven't run it.
+
+2
+00:00:03.662 --> 00:00:05.987
+Set up the contractor provisioning app,
+
+3
+00:00:05.987 --> 00:00:10.213
+and grant the middleware the owned-by
+upload permission on that app only.
+
+4
+00:00:10.213 --> 00:00:14.205
+Send two test contractors, one
+active and one past its end,
+
+5
+00:00:14.205 --> 00:00:16.413
+and read the provisioning logs.
+
+6
+00:00:16.413 --> 00:00:18.038
+Reconcile against the tenant:
+
+7
+00:00:18.038 --> 00:00:21.288
+there should be no finding for
+the account you just disabled.
+
+8
+00:00:21.288 --> 00:00:25.652
+Then apply the review settings by merging
+them into the policy you read back,
+
+9
+00:00:25.652 --> 00:00:27.938
+and confirm the reviewer is the manager.
+
+10
+00:00:27.938 --> 00:00:30.890
+Finally, restore the policy and clean up.

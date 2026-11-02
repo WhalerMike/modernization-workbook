@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.900
+Step four hands the
+extract to the middleware,
+
+2
+00:00:02.900 --> 00:00:06.725
+which builds seven records in
+one batch, four of them disables.
+
+3
+00:00:06.725 --> 00:00:10.525
+Nothing is sent: the middleware's
+dry run is its default.
+
+4
+00:00:10.525 --> 00:00:13.021
+Step five reconciles the register,
+
+5
+00:00:13.021 --> 00:00:17.238
+the cards and the directory:
+seven findings and one warning.
+
+6
+00:00:17.238 --> 00:00:20.501
+Four accounts are still enabled
+past their earliest end.
+
+7
+00:00:20.501 --> 00:00:24.796
+There's an orphan account, a card for
+someone the source doesn't hold, a leave
+
+8
+00:00:24.796 --> 00:00:29.162
+date that would fire the leaver on the
+wrong day, and a record with no account.
+
+9
+00:00:29.162 --> 00:00:32.350
+Those four accounts are
+exactly the four disables.

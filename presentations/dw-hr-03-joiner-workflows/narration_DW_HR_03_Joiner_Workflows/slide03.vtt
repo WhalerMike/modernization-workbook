@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.463
+Here's what Learn gives you.
+
+2
+00:00:01.463 --> 00:00:04.926
+The Create workflow request: a category,
+
+3
+00:00:04.926 --> 00:00:08.600
+a name, flags, a scope,
+a trigger and the tasks.
+
+4
+00:00:08.600 --> 00:00:12.150
+A changed definition goes to
+the create new version action.
+
+5
+00:00:12.150 --> 00:00:16.140
+Triggers run on the hire date, the
+leave date or the creation date,
+
+6
+00:00:16.140 --> 00:00:18.850
+within a hundred and
+eighty days either way.
+
+7
+00:00:18.850 --> 00:00:22.115
+The pass task takes a lifetime
+and a one-time-use flag,
+
+8
+00:00:22.115 --> 00:00:25.912
+and Learn recommends at most
+twenty-four hours for a new hire.
+
+9
+00:00:25.912 --> 00:00:29.445
+And execution limits
+quarantine a scheduled run,
+
+10
+00:00:29.445 --> 00:00:32.350
+though a workflow's
+limit isn't in the API.

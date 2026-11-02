@@ -1,0 +1,43 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.513
+The chapter's tests are seven, in the
+writers-and-contractors test file.
+
+2
+00:00:04.513 --> 00:00:08.260
+They check that the earliest
+end takes the first condition,
+
+3
+00:00:08.260 --> 00:00:10.784
+that an expired card ends an engagement,
+
+4
+00:00:10.784 --> 00:00:14.149
+that a record with no end or
+no sponsor is quarantined,
+
+5
+00:00:14.149 --> 00:00:16.596
+that a duplicate person key is refused,
+
+6
+00:00:16.596 --> 00:00:21.567
+that the extract matches the middleware's
+layout and marks past ends inactive,
+
+7
+00:00:21.567 --> 00:00:24.320
+that the reconciliation finds every class,
+
+8
+00:00:24.320 --> 00:00:27.838
+and that the review removes
+access when no one responds.
+
+9
+00:00:27.838 --> 00:00:32.900
+All fifty-seven tests in the kit pass
+with no package, tenant or network.

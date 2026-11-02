@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.400
+Here's what done looks like.
+
+2
+00:00:01.400 --> 00:00:05.788
+The register file matches the signed
+register, and the check reports nothing.
+
+3
+00:00:05.788 --> 00:00:09.772
+Every writer group lists the
+tenant's real service principal IDs,
+
+4
+00:00:09.772 --> 00:00:13.462
+and every property name was
+confirmed against a real record.
+
+5
+00:00:13.462 --> 00:00:16.851
+The reader app holds exactly
+the two read permissions.
+
+6
+00:00:16.851 --> 00:00:21.400
+The scan runs on a schedule inside the
+thirty days, into the evidence store.
+
+7
+00:00:21.400 --> 00:00:25.613
+Every finding has an owner and
+closes by removing the write path.
+
+8
+00:00:25.613 --> 00:00:29.626
+And A D change auditing covers
+every population still synced.
+
+9
+00:00:29.626 --> 00:00:34.287
+Next, Chapter 2: contractor
+sources and enforced end dates.
+
+10
+00:00:34.287 --> 00:00:35.450
+Thanks for watching.

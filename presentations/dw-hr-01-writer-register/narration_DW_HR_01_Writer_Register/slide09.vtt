@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.921
+The writers scan task needs two permissions,
+each the least-privileged for its call:
+
+2
+00:00:04.921 --> 00:00:07.462
+audit log read all for
+the directory audits,
+
+3
+00:00:07.462 --> 00:00:10.850
+and that plus directory read
+all for the provisioning log.
+
+4
+00:00:10.850 --> 00:00:12.000
+Both are reads.
+
+5
+00:00:12.000 --> 00:00:13.913
+And here's what the scan can't see.
+
+6
+00:00:13.913 --> 00:00:17.187
+The Entra log records
+writes made in Entra I D.
+
+7
+00:00:17.187 --> 00:00:21.244
+For synced users, the slots are
+mastered in Active Directory,
+
+8
+00:00:21.244 --> 00:00:24.651
+and those writes show up
+only in A D change auditing.
+
+9
+00:00:24.651 --> 00:00:28.183
+So the register names the sync
+agent as the interim writer,
+
+10
+00:00:28.183 --> 00:00:31.340
+and the O U permissions
+are reviewed every quarter.

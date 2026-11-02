@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.037
+Welcome to Building HR-Driven Identity.
+
+2
+00:00:03.037 --> 00:00:06.100
+This is Chapter 1: the
+writer register as code.
+
+3
+00:00:06.100 --> 00:00:10.462
+A rule that reads an attribute hands
+the decision to whoever can write it.
+
+4
+00:00:10.462 --> 00:00:14.801
+The register names that writer, and the
+audit log says whether anyone else did.
+
+5
+00:00:14.801 --> 00:00:18.787
+This chapter keeps the register's
+lifecycle rows as a reviewed file,
+
+6
+00:00:18.787 --> 00:00:22.346
+checks its shape, and scans the
+directory audit log for every
+
+7
+00:00:22.346 --> 00:00:26.475
+protected write that didn't come from
+the named writer or its backstop.
+
+8
+00:00:26.475 --> 00:00:30.488
+We'll see what Microsoft Learn
+gives you, what it leaves to you,
+
+9
+00:00:30.488 --> 00:00:33.600
+the register, the scan,
+two labs and the dangers.

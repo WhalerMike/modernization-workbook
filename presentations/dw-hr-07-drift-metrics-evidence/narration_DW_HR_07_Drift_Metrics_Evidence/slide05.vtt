@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.838
+Here are the six classes, all from Book 3.
+
+2
+00:00:02.838 --> 00:00:05.962
+A worker record with no
+account is missing identity.
+
+3
+00:00:05.962 --> 00:00:08.905
+An enabled account for someone terminated,
+
+4
+00:00:08.905 --> 00:00:12.500
+or a contractor past the
+earliest end, is stale access.
+
+5
+00:00:12.500 --> 00:00:17.125
+An enabled account that matches nobody
+and no owned exception is an orphan.
+
+6
+00:00:17.125 --> 00:00:21.983
+A second writer or forbidden write from
+Chapter 1's scan is an unauthorized write,
+
+7
+00:00:21.983 --> 00:00:25.463
+keeping Chapter 1's object key
+so the fingerprint matches.
+
+8
+00:00:25.463 --> 00:00:28.433
+And an active PIV card
+for a separated worker,
+
+9
+00:00:28.433 --> 00:00:32.900
+or for a contractor the source no
+longer holds, is credential drift.

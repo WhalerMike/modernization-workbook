@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.175
+The code is one command, measure.
+
+2
+00:00:02.175 --> 00:00:06.858
+It reads the exports, the HR separations,
+the card system's revocations,
+
+3
+00:00:06.858 --> 00:00:10.653
+Intune's device actions and
+the privileged role holders,
+
+4
+00:00:10.653 --> 00:00:15.175
+and writes the intervals, a summary
+and the findings with a manifest.
+
+5
+00:00:15.175 --> 00:00:16.871
+For each passed separation,
+
+6
+00:00:16.871 --> 00:00:20.412
+blocked is the later of the
+disable and the session update.
+
+7
+00:00:20.412 --> 00:00:25.426
+Revoked is the latest of the block, the
+card revocation and the last device action.
+
+8
+00:00:25.426 --> 00:00:28.688
+A cancelled separation
+is listed, not measured.
+
+9
+00:00:28.688 --> 00:00:33.380
+One open point: Lab 2 confirms which
+task writes the session update.

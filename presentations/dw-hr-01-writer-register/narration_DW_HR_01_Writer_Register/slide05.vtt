@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.950
+Here's what Learn leaves to
+you, and what the kit adds.
+
+2
+00:00:02.950 --> 00:00:06.124
+The log records every
+write and its initiator,
+
+3
+00:00:06.124 --> 00:00:10.550
+but not which identity may write
+which value: that's the register.
+
+4
+00:00:10.550 --> 00:00:13.904
+One enable activity covers
+two lifecycle rows,
+
+5
+00:00:13.904 --> 00:00:17.688
+hire and cancellation, which
+must agree on one writer.
+
+6
+00:00:17.688 --> 00:00:22.901
+Every change is logged, but testing each
+successful protected write is yours.
+
+7
+00:00:22.901 --> 00:00:27.863
+So are the saved queries, least privilege
+per task, and evidence nobody edited.
+
+8
+00:00:27.863 --> 00:00:30.377
+The verdict: use Learn's API as it is,
+
+9
+00:00:30.377 --> 00:00:33.840
+and build the register
+and the test against it.

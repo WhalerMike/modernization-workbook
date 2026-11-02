@@ -1,0 +1,43 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.724
+Step four writes the next day's run with
+the same inputs and a one-day window;
+
+2
+00:00:04.724 --> 00:00:07.100
+it prints the same metrics and counts.
+
+3
+00:00:07.100 --> 00:00:08.975
+Step five packages both.
+
+4
+00:00:08.975 --> 00:00:12.437
+The first package opens all
+twenty counted findings.
+
+5
+00:00:12.437 --> 00:00:15.558
+The second names the
+first package's manifest,
+
+6
+00:00:15.558 --> 00:00:19.088
+opens none and closes none,
+because nothing changed.
+
+7
+00:00:19.088 --> 00:00:21.324
+Verify rechecks the six files.
+
+8
+00:00:21.324 --> 00:00:26.075
+Then the check an I S S O runs needs
+nothing but the standard checksum tool:
+
+9
+00:00:26.075 --> 00:00:28.990
+every file in the second
+package reports OK.

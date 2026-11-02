@@ -1,0 +1,39 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.050
+Which cloud you're in changes the answer.
+
+2
+00:00:02.050 --> 00:00:08.056
+For interactive sign-in, a CRL must stay
+under twenty megabytes in public Entra ID,
+
+3
+00:00:08.056 --> 00:00:14.062
+which includes GCC, and forty-five in Azure
+US Government, which includes GCC High.
+
+4
+00:00:14.062 --> 00:00:16.912
+Either way it must download
+within ten seconds.
+
+5
+00:00:16.912 --> 00:00:20.112
+So the expected-configuration
+file holds both sets,
+
+6
+00:00:20.112 --> 00:00:23.013
+and the check takes a
+cloud name with no default.
+
+7
+00:00:23.013 --> 00:00:25.451
+Learn doesn't say which megabyte it means,
+
+8
+00:00:25.451 --> 00:00:29.380
+so the configuration reads the
+decimal one, the stricter reading.

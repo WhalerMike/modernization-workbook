@@ -1,0 +1,52 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.200
+Step six assembles the period.
+
+2
+00:00:02.200 --> 00:00:07.382
+Two packages, no chain breaks, no coverage
+gaps, but it isn't complete: drift
+
+3
+00:00:07.382 --> 00:00:12.737
+is open, five metrics are out of bounds,
+and transfer-to-review isn't measured.
+
+4
+00:00:12.737 --> 00:00:14.513
+So it exits with code two.
+
+5
+00:00:14.513 --> 00:00:19.501
+The summary lists the controls with
+their open findings, and scores Gate 7:
+
+6
+00:00:19.501 --> 00:00:23.345
+drift classes and metrics not
+met, evidence unbroken met,
+
+7
+00:00:23.345 --> 00:00:25.799
+sole source not decided by this code.
+
+8
+00:00:25.799 --> 00:00:31.560
+Step seven runs the tests, including the
+chapter's four drift tests and six package
+
+9
+00:00:31.560 --> 00:00:35.117
+tests: fifty-seven pass, then
+a hundred and forty-two,
+
+10
+00:00:35.117 --> 00:00:37.150
+with no tenant and no network.
+
+11
+00:00:37.150 --> 00:00:41.280
+Delete the output folder afterwards;
+it holds fictional names.

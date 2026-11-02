@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.300
+Step three reads the findings.
+
+2
+00:00:02.300 --> 00:00:05.112
+Worker one-oh-oh-one-oh-four
+has no account.
+
+3
+00:00:05.112 --> 00:00:08.296
+Two people terminated in
+HR are still enabled,
+
+4
+00:00:08.296 --> 00:00:11.312
+and one contractor is
+past the earliest end.
+
+5
+00:00:11.312 --> 00:00:16.423
+Two orphans: a print kiosk whose exception
+has no owner, and an old temp account;
+
+6
+00:00:16.423 --> 00:00:21.374
+a scanner service account isn't flagged,
+because its exception has an owner.
+
+7
+00:00:21.374 --> 00:00:24.875
+Five unauthorized writes
+carry over from Chapter 1.
+
+8
+00:00:24.875 --> 00:00:29.175
+Then one active card for a separated
+worker, and two contractor cards.
+
+9
+00:00:29.175 --> 00:00:34.060
+The warnings are the five metrics out of
+bounds and the mover's review, still open.

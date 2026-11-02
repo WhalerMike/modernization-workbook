@@ -1,0 +1,39 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.275
+Readiness counts the hires
+whose hire date is today,
+
+2
+00:00:03.275 --> 00:00:08.000
+and calls a hire ready when the account
+exists and is enabled, holds a license,
+
+3
+00:00:08.000 --> 00:00:12.350
+has the onboarding package delivered,
+and has a completed pre-hire run.
+
+4
+00:00:12.350 --> 00:00:18.000
+It reads the hires from H R and three
+exports, each with a read-only permission.
+
+5
+00:00:18.000 --> 00:00:20.967
+Run it on an export taken
+at the start of the day,
+
+6
+00:00:20.967 --> 00:00:23.700
+because it measures state, not timestamps.
+
+7
+00:00:23.700 --> 00:00:25.539
+The chapter adds nine tests,
+
+8
+00:00:25.539 --> 00:00:30.000
+and all fifty-seven of the kit's
+tests pass with no tenant or network.

@@ -25,7 +25,8 @@ DATES = dict(a.split("=", 1) for a in sys.argv[2:] if "=" in a)
 WB = {"adm": ("docs/books/b19-developer-workbook", "Building the Attribute-Driven Migration"),
       "pa": ("docs/project-plans/developer-workbooks/privileged-access", "Building Privileged Access"),
       "npi": ("docs/project-plans/developer-workbooks/non-person-identity", "Building Non-Person Identity"),
-      "ttm": ("docs/project-plans/developer-workbooks/ticket-to-machine", "Building Ticket-to-Machine")}
+      "ttm": ("docs/project-plans/developer-workbooks/ticket-to-machine", "Building Ticket-to-Machine"),
+      "hr": ("docs/project-plans/developer-workbooks/hr-driven-identity", "Building HR-Driven Identity")}
 GH = "https://github.com/WhalerMike/modernization-workbook/blob/main"
 TREE = "https://github.com/WhalerMike/modernization-workbook/tree/main"
 REL = "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23"
@@ -56,7 +57,7 @@ def write(p: Path, text: str):
 
 tours = {k: [] for k in WB}
 for folder in sorted((ROOT / "presentations").glob("dw-*")):
-    m = re.match(r"dw-(adm|pa|npi|ttm)-(\d\d)-", folder.name)
+    m = re.match(r"dw-(adm|pa|npi|ttm|hr)-(\d\d)-", folder.name)
     wb, nn = m.group(1), m.group(2)
     src = (folder / "build.js").read_text(encoding="utf-8")
     base = re.search(r'base:\s*"([^"]+)"', src).group(1)

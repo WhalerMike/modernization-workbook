@@ -1,0 +1,41 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.679
+Learn's Create assignment policies
+page, example three, gives the request:
+
+2
+00:00:04.679 --> 00:00:09.687
+a post to the assignment policies endpoint,
+scoped to specific directory users,
+
+3
+00:00:09.687 --> 00:00:12.646
+with an attribute rule
+target holding the rule,
+
+4
+00:00:12.646 --> 00:00:16.137
+the automatic request settings
+and the access package.
+
+5
+00:00:16.137 --> 00:00:20.535
+Those settings have just three
+properties: create for those in scope,
+
+6
+00:00:20.535 --> 00:00:23.312
+remove when they leave,
+and the grace period.
+
+7
+00:00:23.312 --> 00:00:28.111
+For request policies, the requestor manager
+setting makes the requester's manager
+
+8
+00:00:28.111 --> 00:00:32.620
+the approver, and Learn says to add another
+approver in case there's no manager.
