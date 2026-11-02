@@ -1,0 +1,44 @@
+{
+  "value": [
+    {
+      "id": "44444444-4444-4444-8444-444444444401",
+      "displayName": "Contoso pre-hire",
+      "category": "joiner",
+      "isEnabled": true,
+      "isSchedulingEnabled": false,
+      "version": 1
+    },
+    {
+      "id": "44444444-4444-4444-8444-444444444402",
+      "displayName": "Contoso day-one",
+      "category": "joiner",
+      "isEnabled": true,
+      "isSchedulingEnabled": false,
+      "version": 1
+    },
+    {
+      "id": "44444444-4444-4444-8444-444444444403",
+      "displayName": "Contoso mover",
+      "category": "mover",
+      "isEnabled": true,
+      "isSchedulingEnabled": false,
+      "version": 1
+    },
+    {
+      "id": "44444444-4444-4444-8444-444444444404",
+      "displayName": "Contoso leaver",
+      "category": "leaver",
+      "isEnabled": true,
+      "isSchedulingEnabled": false,
+      "version": 1
+    },
+    {
+      "id": "44444444-4444-4444-8444-444444444405",
+      "displayName": "Contoso post-leaver",
+      "category": "leaver",
+      "isEnabled": true,
+      "isSchedulingEnabled": false,
+      "version": 1
+    }
+  ]
+}

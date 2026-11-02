@@ -1,5 +1,5 @@
 {
-  "_comment": "Every Microsoft Graph call the HR lifecycle example makes, with the least-privileged application permission from the Learn page for that call, read on November 1, 2026. Every call is a GET: the example reads and plans; it never writes to a tenant. 'tasks' declares what each task needs; tests/test_core.py fails when a task's declaration isn't exactly the union of its calls, or when any call isn't a GET. Paths are relative to https://{graph-host}/v1.0.",
+  "_comment": "Every Microsoft Graph call the HR lifecycle example makes, with the least-privileged application permission from the Learn page for that call, read on November 1, 2026 (the deploy tasks on November 2, 2026). Every call is a GET: the example reads and plans; it never writes to a tenant. 'tasks' declares what each task needs; tests/test_core.py fails when a task's declaration isn't exactly the union of its calls, or when any call isn't a GET. Paths are relative to https://{graph-host}/v1.0.",
   "tasks": {
     "writers-scan":   {"chapter": "01", "graphPermissions": ["AuditLog.Read.All", "Directory.Read.All"]},
     "contractor-reconcile": {"chapter": "02", "graphPermissions": ["User-LifeCycleInfo.Read.All", "User.Read.All"]},
@@ -8,7 +8,10 @@
     "access-read":    {"chapter": "04", "graphPermissions": ["EntitlementManagement.Read.All", "User.Read.All"]},
     "cba-read":       {"chapter": "05", "graphPermissions": ["Policy.Read.All", "Policy.Read.AuthenticationMethod", "PublicKeyInfrastructure.Read.All"]},
     "separation-read": {"chapter": "06", "graphPermissions": ["AuditLog.Read.All", "LifecycleWorkflows-Reports.Read.All"]},
-    "drift-read":     {"chapter": "07", "graphPermissions": ["User-LifeCycleInfo.Read.All", "User.Read.All"]}
+    "drift-read":     {"chapter": "07", "graphPermissions": ["User-LifeCycleInfo.Read.All", "User.Read.All"]},
+    "deploy-preflight": {"chapter": "08", "graphPermissions": ["LicenseAssignment.Read.All", "LifecycleWorkflows-Workflow.Read.All", "RoleEligibilitySchedule.Read.Directory"]},
+    "deploy-job":     {"chapter": "08", "graphPermissions": ["Synchronization.Read.All"]},
+    "deploy-smoke":   {"chapter": "08", "graphPermissions": ["AuditLog.Read.All", "Directory.Read.All", "LifecycleWorkflows-Reports.Read.All", "User-LifeCycleInfo.Read.All", "User.Read.All"]}
   },
   "calls": [
     {"id": "directory-audits", "task": "writers-scan", "method": "GET", "path": "/auditLogs/directoryAudits", "query": "$filter=activityDateTime ge {since} and activityDateTime le {until}", "permission": "AuditLog.Read.All", "learn": "https://learn.microsoft.com/graph/api/directoryaudit-list?view=graph-rest-1.0"},
@@ -35,6 +38,16 @@
     {"id": "separation-audits", "task": "separation-read", "method": "GET", "path": "/auditLogs/directoryAudits", "query": "$filter=activityDateTime ge {since} and category eq 'UserManagement'", "permission": "AuditLog.Read.All", "learn": "https://learn.microsoft.com/graph/api/directoryaudit-list?view=graph-rest-1.0"},
     {"id": "leaver-results", "task": "separation-read", "method": "GET", "path": "/identityGovernance/lifecycleWorkflows/workflows/{workflowId}/userProcessingResults", "query": "$expand=subject", "permission": "LifecycleWorkflows-Reports.Read.All", "learn": "https://learn.microsoft.com/graph/api/identitygovernance-workflow-list-userprocessingresults?view=graph-rest-1.0"},
 
-    {"id": "workforce-users", "task": "drift-read", "method": "GET", "path": "/users", "query": "$select=id,userPrincipalName,accountEnabled,employeeId,employeeType,employeeLeaveDateTime,userType&$filter=userType eq 'Member'&$count=true", "headers": {"ConsistencyLevel": "eventual"}, "permission": "User.Read.All, User-LifeCycleInfo.Read.All", "learn": "https://learn.microsoft.com/graph/api/user-list?view=graph-rest-1.0"}
+    {"id": "workforce-users", "task": "drift-read", "method": "GET", "path": "/users", "query": "$select=id,userPrincipalName,accountEnabled,employeeId,employeeType,employeeLeaveDateTime,userType&$filter=userType eq 'Member'&$count=true", "headers": {"ConsistencyLevel": "eventual"}, "permission": "User.Read.All, User-LifeCycleInfo.Read.All", "learn": "https://learn.microsoft.com/graph/api/user-list?view=graph-rest-1.0"},
+
+    {"id": "subscribed-skus", "task": "deploy-preflight", "method": "GET", "path": "/subscribedSkus", "query": "$select=skuId,skuPartNumber,capabilityStatus,prepaidUnits,consumedUnits", "permission": "LicenseAssignment.Read.All", "learn": "https://learn.microsoft.com/graph/api/subscribedsku-list?view=graph-rest-1.0"},
+    {"id": "role-eligibility", "task": "deploy-preflight", "method": "GET", "path": "/roleManagement/directory/roleEligibilitySchedules", "permission": "RoleEligibilitySchedule.Read.Directory", "learn": "https://learn.microsoft.com/graph/api/rbacapplication-list-roleeligibilityschedules?view=graph-rest-1.0"},
+    {"id": "deploy-workflows", "task": "deploy-preflight", "method": "GET", "path": "/identityGovernance/lifecycleWorkflows/workflows", "query": "$select=id,displayName,category,isEnabled,isSchedulingEnabled,version", "permission": "LifecycleWorkflows-Workflow.Read.All", "learn": "https://learn.microsoft.com/graph/api/identitygovernance-lifecycleworkflowscontainer-list-workflows?view=graph-rest-1.0"},
+
+    {"id": "sync-job", "task": "deploy-job", "method": "GET", "path": "/servicePrincipals/{servicePrincipalId}/synchronization/jobs/{jobId}", "permission": "Synchronization.Read.All", "note": "Learn ranks Application.ReadWrite.OwnedBy least privileged for this GET; it can write, so the kit takes the read-only Synchronization.Read.All", "learn": "https://learn.microsoft.com/graph/api/synchronization-synchronizationjob-get?view=graph-rest-1.0"},
+
+    {"id": "smoke-user", "task": "deploy-smoke", "method": "GET", "path": "/users", "query": "$select=id,userPrincipalName,accountEnabled,employeeId,employeeType,employeeHireDate,employeeLeaveDateTime,onPremisesExtensionAttributes&$filter=employeeId eq '{employeeId}'", "permission": "User.Read.All, User-LifeCycleInfo.Read.All", "learn": "https://learn.microsoft.com/graph/api/user-list?view=graph-rest-1.0"},
+    {"id": "smoke-results", "task": "deploy-smoke", "method": "GET", "path": "/identityGovernance/lifecycleWorkflows/workflows/{workflowId}/userProcessingResults", "query": "$expand=subject", "permission": "LifecycleWorkflows-Reports.Read.All", "learn": "https://learn.microsoft.com/graph/api/identitygovernance-workflow-list-userprocessingresults?view=graph-rest-1.0"},
+    {"id": "smoke-provisioning", "task": "deploy-smoke", "method": "GET", "path": "/auditLogs/provisioning", "query": "$filter=jobId eq '{jobId}' and activityDateTime ge {since}", "permission": "AuditLog.Read.All, Directory.Read.All", "learn": "https://learn.microsoft.com/graph/api/provisioningobjectsummary-list?view=graph-rest-1.0"}
   ]
 }

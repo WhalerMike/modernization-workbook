@@ -1,0 +1,62 @@
+{
+  "_comment": "Fixture: fictional IDs for the contoso.example test tenant. Not a real tenant.",
+  "schema": "fmp-hrlc-deploy/1",
+  "environment": "test",
+  "cloud": "gcc",
+  "tenantId": "00000000-0000-4000-8000-0000000c0de8",
+  "changeRecord": "CHG-0001-TEST",
+  "hr": {
+    "pod": "hcm-test.contoso.example",
+    "integrationUser": "svc-entra-feed-test",
+    "assertionKeyName": "hcm-feed-test-assertion"
+  },
+  "identities": {
+    "keyVault": "kv-contoso-idm-test",
+    "uploader": {
+      "appId": "11111111-1111-4111-8111-111111111111",
+      "certificateName": "hrlc-uploader-test"
+    },
+    "reader": {
+      "appId": "22222222-2222-4222-8222-222222222222",
+      "certificateName": "hrlc-reader-test"
+    }
+  },
+  "provisioning": {
+    "employee": {
+      "servicePrincipalId": "33333333-3333-4333-8333-333333333301",
+      "jobId": "API2AAD.0000000000000000000000000000000a.33333333-3333-4333-8333-333333333301"
+    },
+    "contractor": {
+      "servicePrincipalId": "33333333-3333-4333-8333-333333333302",
+      "jobId": "API2AAD.0000000000000000000000000000000b.33333333-3333-4333-8333-333333333302"
+    }
+  },
+  "workflows": {
+    "pre-hire": "44444444-4444-4444-8444-444444444401",
+    "day-one": "44444444-4444-4444-8444-444444444402",
+    "mover": "44444444-4444-4444-8444-444444444403",
+    "leaver": "44444444-4444-4444-8444-444444444404",
+    "post-leaver": "44444444-4444-4444-8444-444444444405"
+  },
+  "automaticAssignmentPolicies": [],
+  "licenses": [
+    {
+      "skuPartNumber": "CONTOSO_P1_SAMPLE",
+      "minimum": 50
+    },
+    {
+      "skuPartNumber": "CONTOSO_GOVERNANCE_SAMPLE",
+      "minimum": 50
+    }
+  ],
+  "roles": [
+    "Application Administrator",
+    "Lifecycle Workflows Administrator",
+    "Identity Governance Administrator",
+    "Authentication Policy Administrator"
+  ],
+  "scope": {
+    "personNumberPattern": "99[0-9]{4}",
+    "departmentCodes": []
+  }
+}

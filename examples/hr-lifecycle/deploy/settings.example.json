@@ -1,0 +1,46 @@
+{
+  "_comment": "One environment's settings for the deployment runbook (Building HR-Driven Identity, Chapter 08). Copy to settings.test.json or settings.production.json and replace every <placeholder>. Names and IDs only: no secret, token, password or key goes in this file, and deploy_settings.py check refuses one. Certificates for the integration identities stay in the key vault named here; the runbook reads a token into an environment variable for the length of a step.",
+  "schema": "fmp-hrlc-deploy/1",
+  "environment": "<test-or-production>",
+  "cloud": "<cloud>",
+  "tenantId": "<tenant-id>",
+  "changeRecord": "<change-record-id>",
+  "hr": {
+    "_comment": "The Oracle Fusion Cloud HCM pod the middleware reads, on Oracle Cloud Infrastructure. Its integration user signs a JWT assertion with a key held in the key vault; no client secret.",
+    "pod": "<hcm-pod-host>",
+    "integrationUser": "<hcm-integration-user>",
+    "assertionKeyName": "<hcm-assertion-key-name>"
+  },
+  "identities": {
+    "keyVault": "<key-vault-name>",
+    "uploader": {"appId": "<uploader-app-id>", "certificateName": "<uploader-cert-name>"},
+    "reader": {"appId": "<reader-app-id>", "certificateName": "<reader-cert-name>"}
+  },
+  "provisioning": {
+    "employee": {"servicePrincipalId": "<employee-app-sp-id>", "jobId": "<employee-job-id>"},
+    "contractor": {"servicePrincipalId": "<contractor-app-sp-id>", "jobId": "<contractor-job-id>"}
+  },
+  "workflows": {
+    "pre-hire": "<prehire-workflow-id>",
+    "day-one": "<dayone-workflow-id>",
+    "mover": "<mover-workflow-id>",
+    "leaver": "<leaver-workflow-id>",
+    "post-leaver": "<postleaver-workflow-id>"
+  },
+  "automaticAssignmentPolicies": [],
+  "licenses": [
+    {"skuPartNumber": "<p1-sku-part-number>", "minimum": "<p1-seat-count>"},
+    {"skuPartNumber": "<governance-sku-part-number>", "minimum": "<governance-seat-count>"}
+  ],
+  "roles": [
+    "Application Administrator",
+    "Lifecycle Workflows Administrator",
+    "Identity Governance Administrator",
+    "Authentication Policy Administrator"
+  ],
+  "scope": {
+    "_comment": "Who the staged enable covers. personNumberPattern selects the synthetic smoke workers in the test stage; departmentCodes lists the first production scope.",
+    "personNumberPattern": "<person-number-pattern>",
+    "departmentCodes": ["<first-department-code>"]
+  }
+}
