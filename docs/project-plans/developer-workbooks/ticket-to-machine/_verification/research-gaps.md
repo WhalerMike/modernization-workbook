@@ -15,3 +15,7 @@ Open questions the chapters couldn't settle from vendor documentation on Novembe
 | 72 | 08 | The `targetDirectoryName` an HR inbound provisioning job uses for Entra ID | `--entra-directory` | A test tenant's schema export |
 | 73 | 08 | How SailPoint's Entra connector field names map to Entra attributes | The alias list | The source's account schema in a sandbox |
 | 74 | 08 | Whether SailPoint writes Entra attributes outside provisioning policies | A writer the check misses | SailPoint documentation for the Entra source |
+| 81 | 09 | How a ServiceNow Government Community Cloud instance installs from the application repository (the repository page names a separate sign-in route for the Federal Store only) | Stage 2, step 3 | Ask ServiceNow; the production instance's My Company Applications list |
+| 82 | 09 | The names of the ISC account attribute and identity attribute that carry Entra's `department` | The smoke test's re-read of the native and mover findings | A sandbox account and identity read (`GET /v3/accounts/{id}`, identities search) |
+| 83 | 09 | Whether `POST /v2025/workflows` keeps an HTTP Request step's OAuth client secret sent in the body | Step 1.3 sends it; otherwise it's entered in the editor | Create one workflow in the sandbox and test-run it |
+| 84 | 09 | Whether the Scripted REST resource's answer arrives inside `result` | `deploy/smoke_test.py` reads both | The smoke test's first live run, Step 1.6 |

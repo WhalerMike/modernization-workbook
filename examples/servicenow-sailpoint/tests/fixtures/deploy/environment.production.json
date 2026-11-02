@@ -1,0 +1,68 @@
+{
+  "_comment": "Fictional production settings for the deployment scripts' tests and the runbook's printed output. Every value is invented. Only this file differs from the test stage's.",
+  "SN_BASE_URL": "https://contoso.service-now.com",
+  "SAILPOINT_API_BASE": "https://example.api.identitynow.com",
+  "GRAPH_CLOUD": "Global",
+  "GRAPH_TENANT_ID": "00000000-0000-4000-8000-0000000000b1",
+  "GRAPH_CLIENT_ID": "00000000-0000-4000-8000-0000000000b2",
+  "GRAPH_CERT_PATH": "C:/secure/graph-reader-prod.pem",
+  "SN_FINDING_API_PATH": "/api/x_example_idkit/identity_findings/finding",
+  "SN_FINDING_TABLE": "u_identity_finding",
+  "SN_STATE_AWAITING_VERIFICATION": "18",
+  "SN_STATE_CLOSED": "3",
+  "SN_STATE_REOPENED": "1",
+  "ISC_EMPLOYEE_ID_ATTRIBUTE": "employeeNumber",
+  "deploy": {
+    "environment": "production",
+    "change_record": "CHG0040188",
+    "app": {
+      "scope": "x_example_idkit",
+      "version": "1.0.0"
+    },
+    "workflow_owner": {
+      "id": "2c9180000000000000000000000e9101",
+      "name": "ttm.owner.example"
+    },
+    "clients": {
+      "finding_writer": "f0e1d2c3b4a5968778695a4b3c2d1e0f",
+      "verifier": "1a09f8e7d6c5b4a39281706f5e4d3c2b",
+      "evidence_reader": "0f1e2d3c4b5a69788796a5b4c3d2e1f0",
+      "isc_reader": "7a6b5c4d3e2f10011001f2e3d4c5b6a7",
+      "isc_deploy_checker": "9a8b7c6d5e4f30211203f4e5d6c7b8a9",
+      "isc_workflow_admin": "9a8b7c6d5e4f0312211203f4e5d6c7b8",
+      "isc_workflow_tester": "6c5d4e3f2a1b09988990b1a2f3e4d5c6"
+    },
+    "g1": {
+      "marketplace_checked_on": "2026-11-02",
+      "servicenow_listing": "F1305072116",
+      "sailpoint_listing": "FR2001938710A",
+      "sailpoint_confirmed": {
+        "workflows": true,
+        "native_change_detection": true,
+        "http_request_step": true
+      },
+      "sailpoint_reference": "SP-CASE-0000-EXAMPLE-2"
+    },
+    "granted": {
+      "finding_writer": "x_example_idkit.finding_writer",
+      "verifier": "x_example_idkit.verifier",
+      "evidence_reader": "x_example_idkit.evidence_reader",
+      "isc_reader": "sp:search:read,idn:accounts:read",
+      "isc_deploy_checker": "sp:workflow:read",
+      "isc_workflow_admin": "sp:workflow:manage",
+      "isc_workflow_tester": "sp:workflow-execute:external,sp:workflow-execution:read"
+    },
+    "synthetic": {
+      "name": "smoke.test.example",
+      "identity_id": "2c9180000000000000000000000e6001",
+      "account_id": "2c91800000000000000000000a6001ad",
+      "entra_user_id": "00000000-0000-4000-8000-00000000d601",
+      "native_identity": "00000000-0000-4000-8000-00000000d601",
+      "source_id": "src-entra",
+      "source_name": "Contoso Entra ID",
+      "attribute": "department",
+      "baseline": "Smoke Test",
+      "changed": "Smoke Test Changed"
+    }
+  }
+}

@@ -44,7 +44,7 @@ def test_required_permissions_per_task():
     for task in DATA["tasks"]:
         for system in ("isc", "graph"):
             for perm in kcalls.required(DATA, task, system):
-                assert not perm.endswith((":manage", "ReadWrite.All")) or task == "workflows", (task, perm)
+                assert not perm.endswith((":manage", "ReadWrite.All")) or task in ("workflows", "workflow-enable"), (task, perm)
 
 
 def test_match_call_distinguishes_list_and_item():

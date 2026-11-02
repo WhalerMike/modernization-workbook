@@ -332,7 +332,7 @@ The KSI column names the FedRAMP 20x Key Security Indicators whose related SP 80
 
 ::: {.callout-tip}
 ## Continue the book
-[← Previous: Chapter 07 — Evidence Records for Book 13 and the ISSO](07-evidence-records.md) · [Workbook index](index.md)
+[← Previous: Chapter 07 — Evidence Records for Book 13 and the ISSO](07-evidence-records.md) · [Workbook index](index.md) · [Next: Chapter 09 — Deploying to Test and Production →](09-deploying-to-test-and-production.md)
 :::
 
 [^ttm08-schema]: Microsoft Learn, "Get synchronizationSchema," national cloud availability, permissions, HTTP request and example response, <https://learn.microsoft.com/graph/api/synchronization-synchronizationschema-get?view=graph-rest-1.0> (read November 1, 2026).
