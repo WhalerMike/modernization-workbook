@@ -18,7 +18,7 @@ review-status: pending
 
 ::: {.callout-note}
 ## In this chapter
-The runbook that takes the kit from the second lab of Chapters 01 to 10 to a live test environment, then to production. It is one ordered set of copy-paste commands, run twice: once against an Entra test tenant, an Azure test subscription and an Active Directory test forest, and again, unchanged, against the production tenant, subscriptions and forest. Only the environment settings file changes between the two. You prepare the change record and the settings file, run a read-only preflight, deploy in a safe order (inventory and owners, the app management policy scoped to a pilot, a federated credential and a managed identity beside the old secret, a gMSA on a test host, Conditional Access for workload identities report-only), run a smoke test with a synthetic service principal and service account, file the evidence and rehearse the rollback. Then you check the go/no-go criteria and repeat the run in production, enabling Conditional Access wave by wave and watching the first week with the drift run. Each step names the [implementation guide](../../../books/guides/non-person-identity-implementation.md)'s gate it fulfils. The chapter adds a preflight, a smoke test and a rollback to `examples/non-person-identity/deploy`, each with a fixture mode and tests.
+The runbook that takes the kit from the second lab of Chapters 01 to 10 to a live test environment, then to production. It is one ordered set of copy-paste commands, run twice: once against an Entra test tenant, an Azure test subscription and an Active Directory test forest, and again, unchanged, against the production tenant, subscriptions and forest. Only the environment settings file changes between the two. You prepare the change record and the settings file, run a read-only preflight, deploy in a safe order (inventory and owners, the app management policy scoped to a pilot, a federated credential and a managed identity beside the old secret, a gMSA on a test host, Conditional Access for workload identities report-only), run a smoke test with a synthetic service principal and service account, file the evidence and rehearse the rollback. Then you check the go/no-go criteria and repeat the run in production, enabling Conditional Access wave by wave and watching the first week with the drift run. Each step names the [implementation guide](../../../books/guides/non-person-identity-implementation.md)'s gate it fulfils. Each step has a table of the federal requirements it helps meet, the FedRAMP 20x KSI it aligns to and the evidence the ISSO keeps, and the kit writes that evidence as it runs. The chapter adds a preflight, a smoke test, a rollback and two evidence scripts to `examples/non-person-identity/deploy`, each with a fixture mode and tests.
 :::
 
 ::: {.callout-important}
@@ -52,6 +52,28 @@ The policies that can block a sign-in come last, and only in report-only mode in
 
 The target estate is Microsoft 365 GCC (Moderate) with commercial Azure: `graph.microsoft.com`, `management.azure.com` and `login.microsoftonline.com` ([Chapter 01](01-non-person-identity-inventory-as-code.md#which-cloud-and-which-directory-for-this-read)). The settings file names the cloud, and every command takes the Graph and Azure environment names from the kit's cloud table, so the same command would point at GCC High or DoD hosts for those clouds. This runbook covers `gcc` only. Learn gives a different token-exchange audience for Entra ID for US Government (`api://AzureADTokenExchangeUSGov`),[^np11-mi-trust-app] and Chapter 05's checks accept only `api://AzureADTokenExchange`, so a GCC High or DoD deployment needs that change first (research gaps, row 106).
 
+## Requirements, KSIs and evidence
+
+Each step below ends with a table of the requirements it helps meet, the FedRAMP 20x Key Security Indicator (KSI) it aligns to, and the evidence the ISSO keeps. The requirements are NIST SP 800-53 Rev 5 controls at the system's FedRAMP Moderate baseline, the audience the [implementation guide](../../../books/guides/non-person-identity-implementation.md#evidence) writes for (IA-9 is in no baseline and is tailored in, as the guide says), plus OMB M-22-09[^np11-m2209] and CISA BOD 25-01's SCuBA baselines[^np11-bod2501] where they apply. The control mappings are the guide's evidence table and Book 13's [requirements mapping](../../../books/b13-governance/appendix-a-requirements-mapping.md); the KSI IDs are the ones Book 02, [Chapter 10](../../../books/b02-identity/10-migrating-and-governing.md), Book 04, [Chapter 10](../../../books/b04-access/10-access-as-code-and-evidence.md), Book 13 and Book 14, [Chapter 03](../../../books/b14-compliance/03-the-baseline-and-the-crosswalk.md) already cite, each checked again on FedRAMP's page on November 2, 2026.[^np11-ksi]
+
+**KSIs belong to the cloud providers.** They are FedRAMP's 20x indicators for cloud service providers. The agency authorizes its own system, and its system uses FedRAMP-authorized cloud services (Entra ID, Azure) under the customer responsibilities its system security plan records; it lines its own evidence up with what its providers report against KSIs, and it doesn't report KSIs itself ([Book 00, Appendix B](../../../books/b00-orientation/appendix-b-engagement-archetype.md)). Every alignment below is the program's reading (*Design guidance*); the assessor and the authorizing official decide each control.
+
+| KSI | Name, as FedRAMP gives it | Steps that align to it |
+|---|---|---|
+| KSI-IAM-SNU | Securing Non-User Authentication | Preflight, 1.1, 1.2, 1.3, 1.4, smoke test |
+| KSI-IAM-JIT | Authorizing Just-in-Time | Before you start, preflight |
+| KSI-IAM-ELP | Ensuring Least Privilege | Preflight, 1.5, smoke test, 2.3 |
+| KSI-PIY-GIV | Generating Inventories | Prepare, 1.1, smoke test |
+| KSI-CMT-LMC | Logging Changes | Before you start, 1.2, 2.3, 2.5 |
+| KSI-CMT-VTD | Validating Throughout Deployment | Preflight, 1.3, 1.5, promotion |
+| KSI-CMT-RMV | Redeploying vs Modifying | 1.8, 2.6 |
+| KSI-MLA-EVC | Evaluating Configurations | Preflight, smoke test, 2.5 |
+| KSI-MLA-LET | Logging Event Types | Preflight, smoke test |
+| KSI-MLA-OSM | Operating SIEM Capability | 1.7 (the evidence folder's integrity) |
+| KSI-RPL-ABO | Aligning Backups with Objectives | 1.8, 2.6 (CP-10, as Book 13 maps it) |
+
+**The evidence is produced, not only named.** The kit's catalog, [`config/requirements-ch11.json`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/non-person-identity/config/requirements-ch11.json), holds every mapping. The preflight, the smoke test and the rollback each write an evidence record beside their output, in `<outputRoot>/evidence`: a JSON file with the time, the environment, tenant and change record, the command as typed, the result, each check with the controls, other requirements and KSIs it supports, and the SHA-256 of every run file it covers. For the steps that run an earlier chapter's script, `deploy/Write-NpiDeployEvidence.ps1` copies that script's run folders into the evidence folder, re-hashes every file their manifests list, and writes the step's record. Each record rewrites `SHA256SUMS` over the folder, and `deploy/Test-NpiDeployEvidence.ps1` checks that every requirement row the stage needs has its record, passing, with every hash unchanged: the promotion go/no-go runs it.
+
 ## Before you start
 
 ### Roles
@@ -82,6 +104,12 @@ Activate a role in the Microsoft Entra admin center: **ID Governance** > **Privi
 ### The change record
 
 Open one change record per stage. It names the stage, the window, the operators, the pilot, the synthetic objects, the rollback plan and the evidence folder. Its number goes into the settings file's `changeRecord`, and every manifest the `deploy/` scripts write repeats it.
+
+| Requirement | What this step does | KSI it aligns to | Evidence the ISSO keeps |
+|---|---|---|---|
+| CM-3 Configuration Change Control | One approved change record per stage; the settings file reviewed and its SHA-256 recorded | KSI-CMT-LMC | `S0-change-record-approvals-and-settings-file.json` (written by the preflight), with the change record number and the settings file's SHA-256 |
+| CM-5 Access Restrictions for Change; AC-6(5) Privileged Accounts | Each write by a named person with a role activated through PIM for the window | KSI-IAM-JIT | PF-06 in `PRE-preflight.json`; PIM's activation audit records |
+| AC-5 Separation of Duties | Each plan's SHA-256 approved by someone other than the operator | KSI-IAM-JIT | The approval recorded with each plan's manifest |
 
 ## The environment settings file
 
@@ -182,15 +210,17 @@ az account set --subscription $s.azure.subscriptionId
 
 ## The code this chapter adds
 
-The runbook's own code is in [`examples/non-person-identity/deploy`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/non-person-identity/deploy), in PowerShell like the rest of the kit, with its calls declared in `config/calls-ch11.json` and its tests in `tests/NpiDeploy.Tests.ps1` (Pester 5). Every script has a fixture mode, `-FixturePath`, that serves Graph and Active Directory from a file and sends nothing anywhere.
+The runbook's own code is in [`examples/non-person-identity/deploy`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/non-person-identity/deploy), in PowerShell like the rest of the kit, with its calls declared in `config/calls-ch11.json` and its tests in `tests/NpiDeploy.Tests.ps1` (Pester 5). Every script has a fixture mode, `-FixturePath`, that serves Graph and Active Directory from a file and sends nothing anywhere. The preflight, smoke test and rollback write their evidence records to `-EvidencePath`, by default an `evidence` folder beside their output folder.
 
 | Script | What it does | Reads | Writes |
 |---|---|---|---|
 | `Test-NpiDeployPreflight.ps1` | PF-01 to PF-11 below; writes `results.json`, `snapshot.json` (what the rollback restores) and a manifest; exits 1 on any Fail | Graph (8 read permissions), AD (default read) | Nothing |
 | `Invoke-NpiDeploySmokeTest.ps1` | ST-01 to ST-07 below, against the synthetic service principal and service account; exits 1 on any Fail | The register run, Graph, AD, `Test-ADServiceAccount` on the gMSA host | One probe expected to be refused: a new secret on the synthetic app. If it isn't refused, the secret is removed at once by its key ID, its value is never kept, and ST-03 fails |
 | `Invoke-NpiDeployRollback.ps1` | `-Mode Plan` writes `rollback-plan.json` and prints its SHA-256; `-Mode Apply` checks the approved SHA-256, the tenant and a seven-day age, then dry-runs, or sends with `-Apply` | The policies' current state | PATCH on workload policies and app management policies, `accountEnabled` on the synthetic service principal, `Enable-ADAccount` and `Disable-ADAccount`. Never a delete |
+| `Write-NpiDeployEvidence.ps1` | Records a step that ran an earlier chapter's script: copies its run folders under `evidence/runs/<step>/`, re-hashes every file their manifests list (and refuses another tenant's run), and writes the step's record | The run folders | Only the evidence folder |
+| `Test-NpiDeployEvidence.ps1` | The go/no-go's evidence check: every requirement row of the stage present and passing, and `SHA256SUMS` matching every file; exits 1 on a gap | The evidence folder | Nothing |
 
-`tests/NpiDeploy.Tests.ps1` has 48 tests: each task's declaration equals the union of its calls and none is a DELETE; the settings rules; each preflight check failing on a bad tenant (a deployment identity with a secret, no Workload ID Premium, a reader with a ReadWrite permission, an operator with no role, no baseline, a missing gMSA host, production with no test evidence or with evidence from its own tenant); the smoke test's probe sent only to the synthetic app, the removal when a secret gets through, the secret's value absent from every output, a case-only subject difference failing, the wrong Conditional Access state failing; the rollback refusing an unapproved hash, another tenant and an old plan, dry-running with no write, and applying with PATCH and the two AD cmdlets only; the live invoker refusing an app-only sign-in for a write task.
+`tests/NpiDeploy.Tests.ps1` has 55 tests: each task's declaration equals the union of its calls and none is a DELETE; the settings rules; each preflight check failing on a bad tenant (a deployment identity with a secret, no Workload ID Premium, a reader with a ReadWrite permission, an operator with no role, no baseline, a missing gMSA host, production with no test evidence or with evidence from its own tenant); the smoke test's probe sent only to the synthetic app, the removal when a secret gets through, the secret's value absent from every output, a case-only subject difference failing, the wrong Conditional Access state failing; the rollback refusing an unapproved hash, another tenant and an old plan, dry-running with no write, and applying with PATCH and the two AD cmdlets only; the live invoker refusing an app-only sign-in for a write task; and the evidence records: every check and step mapped, only KSI IDs the repository already cites, each record's time, environment, command, result, controls and KSIs, a changed run file or another tenant's run failing the record, and the go/no-go check failing on a missing row, a dry-run rollback, a changed evidence file or the wrong environment.
 
 ::: {.callout-warning}
 ## Illustrative code
@@ -208,7 +238,8 @@ Set-Location <kit-folder>
 ./deploy/Invoke-NpiDeployRollback.ps1 -Mode Plan -SettingsPath tests/fixtures/deploy/settings.test.json -Stage test -SnapshotPath out/dryrun/test-preflight/snapshot.json -To Disabled -IncludeSmokeCleanup -FixturePath tests/fixtures/deploy/tenant-test.json -OutputPath out/dryrun/test-rollback
 $sha = (Get-FileHash out/dryrun/test-rollback/rollback-plan.json -Algorithm SHA256).Hash.ToLower()
 ./deploy/Invoke-NpiDeployRollback.ps1 -Mode Apply -SettingsPath tests/fixtures/deploy/settings.test.json -Stage test -PlanPath out/dryrun/test-rollback/rollback-plan.json -ApprovedSha256 $sha -FixturePath tests/fixtures/deploy/tenant-test.json -OutputPath out/dryrun/test-rollback-dry
-./deploy/Test-NpiDeployPreflight.ps1 -SettingsPath tests/fixtures/deploy/settings.production.json -Stage production -BaselinePath tests/fixtures/deploy/vk-baseline.json -PromotionEvidencePath out/dryrun/test-smoke -FixturePath tests/fixtures/deploy/tenant-production.json -OutputPath out/dryrun/prod-preflight
+./deploy/Test-NpiDeployPreflight.ps1 -SettingsPath tests/fixtures/deploy/settings.production.json -Stage production -BaselinePath tests/fixtures/deploy/vk-baseline.json -PromotionEvidencePath out/dryrun/test-smoke -FixturePath tests/fixtures/deploy/tenant-production.json -OutputPath out/dryrun/prod-preflight -EvidencePath out/dryrun/evidence-production
+./deploy/Test-NpiDeployEvidence.ps1 -SettingsPath tests/fixtures/deploy/settings.test.json -Stage test -EvidencePath out/dryrun/evidence
 ```
 
 **Dry run, November 2, 2026** (Windows 11, PowerShell 7.6, the kit's fixtures):
@@ -228,6 +259,8 @@ Preflight (Fixture, test, CHG-2026-1102-T): 12 Pass, 1 Warn
   PF-08 Pass   G4        Workload policy CA037-WorkloadIdentities-HighRisk-Block-Ring1: enabledForReportingButNotEnforced
   PF-09 Pass   G1-G6     VK-NPI baseline recorded before the change: 01 Fail 4; 02 Fail 2; 03 Fail 1; 04 Fail 3; 05 Warn 3; 06 Fail 2; 07 Warn 1; 08 Fail 1
   PF-10 Pass   G5        gMSA test host and retriever group exist: app-test-01.corp-test.contoso.example; gg-gmsa-hrsync-hosts
+Evidence: PRE-preflight.json (Warn)
+Evidence: S0-change-record-approvals-and-settings-file.json (Pass)
 Result: GO for this stage. File results.json, snapshot.json and manifest.json with the change record.
 Smoke test (Fixture, test, Conditional Access expected ReportOnly): 8 Pass
   ST-01 Pass   G1        Synthetic app is in the register with two owners and no secret: OwnerCount 2, Secrets 0, CredentialKind Federated
@@ -238,6 +271,7 @@ Smoke test (Fixture, test, Conditional Access expected ReportOnly): 8 Pass
   ST-05 Pass   G4        Workload policy CA037-WorkloadIdentities-HighRisk-Block-Ring1 assigns the synthetic service principal directly: state enabledForReportingButNotEnforced; assigned directly: True
   ST-06 Pass   G4        Synthetic sign-ins show the workload policies' result (Graph beta): 2 sign-in(s) since 2026-11-01T12:00:00Z; results: reportOnlyFailure, reportOnlyNotApplied
   ST-07 Pass   G5        gMSA test host can retrieve the gMSA's password: Test-ADServiceAccount True; svc-npi-smoke enabled True
+Evidence: SMOKE-smoke-test.json (Pass)
 Result: PASS. File results.json and manifest.json with the change record.
 Rollback plan (test, to Disabled): 7 action(s)
   RB-01 G4      ConditionalAccessState CA015-ServiceAccounts-LocationRestriction-Ring1
@@ -256,6 +290,7 @@ Rollback DryRun (Fixture, test): 7 WouldApply
   RB-05 WouldApply  AdEnable svc-payexport
   RB-06 WouldApply  SpDisable synthetic service principal
   RB-07 WouldApply  AdDisable svc-npi-smoke
+Evidence: ROLLBACK-rollback.json (DryRun)
 Preflight (Fixture, production, CHG-2026-1116-P): 14 Pass
   PF-01 Pass   All       Settings file: no secret, no placeholder, this stage: production, gcc, sha256 32c7f79976b7
   PF-02 Pass   G3        Deployment identity uses a certificate or federated credential, no secret: 0 secret(s), 1 certificate(s)
@@ -271,8 +306,53 @@ Preflight (Fixture, production, CHG-2026-1116-P): 14 Pass
   PF-09 Pass   G1-G6     VK-NPI baseline recorded before the change: 01 Fail 4; 02 Fail 2; 03 Fail 1; 04 Fail 3; 05 Warn 3; 06 Fail 2; 07 Warn 1; 08 Fail 1
   PF-10 Pass   G5        gMSA test host and retriever group exist: app-prd-01.corp.contoso.example; gg-gmsa-hrsync-hosts
   PF-11 Pass   Promotion Test stage smoke test passed, in another tenant: test, tenant c0ffee00-0000-4000-8000-0000000000e1, 8/8 Pass
+Evidence: PRE-preflight.json (Pass)
+Evidence: S0-change-record-approvals-and-settings-file.json (Pass)
 Result: GO for this stage. File results.json, snapshot.json and manifest.json with the change record.
+Evidence for the test stage (CHG-2026-1102-T): 4 of 9 requirement rows present and passing
+  PRE       Present          Warn   KSI-CMT-LMC, KSI-CMT-VTD, KSI-IAM-ELP, KSI-IAM-JIT, KSI-IAM-SNU, KSI-MLA-EVC, KSI-MLA-LET, KSI-PIY-GIV
+  S0        Present          Pass   KSI-CMT-LMC, KSI-IAM-JIT
+  S1.1      Missing                 
+  S1.2      Missing                 
+  S1.3      Missing                 
+  S1.5      Missing                 
+  SMOKE     Present          Pass   KSI-IAM-ELP, KSI-IAM-SNU, KSI-MLA-EVC, KSI-MLA-LET, KSI-PIY-GIV
+  ROLLBACK  Failing          DryRun KSI-CMT-RMV, KSI-RPL-ABO
+  EVIDENCE  Present          Pass   KSI-MLA-OSM
+  Gap: S1.1: no S1.1 record: Chapter 01's and Chapter 02's run folders
+  Gap: S1.2: no S1.2 record: Chapter 04's policy plan (test) or apply (production) run folder
+  Gap: S1.3: no S1.3 record: Chapter 05's plan and apply run folders
+  Gap: S1.5: no S1.5 record: Chapter 08's plan and apply run folders
+  Gap: ROLLBACK: ROLLBACK-rollback.json
+Result: NO-GO on evidence.
 ```
+
+The evidence check's `NO-GO` is right for a dry run: Steps 1.1 to 1.5 record their own evidence when they run against a tenant, and a dry-run rollback records `DryRun`, which the go/no-go doesn't accept. Each record is a JSON file; the smoke test's begins like this (the dry run's, with its real time):
+
+```json
+{
+  "schema": "fmp-npi-deploy-evidence/1",
+  "step": "SMOKE",
+  "title": "Smoke test",
+  "recordedAt": "2026-11-02T12:28:29.7390594Z",
+  "environment": "test",
+  "cloud": "gcc",
+  "tenantId": "c0ffee00-0000-4000-8000-0000000000e1",
+  "changeRecord": "CHG-2026-1102-T",
+  "settingsSha256": "a1aec69cd4fb8efc2050e564790db1c8857d43fb7d92f6abc29827de407af02e",
+  "mode": "Fixture",
+  "command": "./deploy/Invoke-NpiDeploySmokeTest.ps1 -SettingsPath tests/fixtures/deploy/settings.test.json -Stage test -RegisterRun tests/fixtures/deploy/register-run -ExpectCaState ReportOnly -FixturePath tests/fixtures/deploy/tenant-test.json -OutputPath out/dryrun/test-smoke",
+  "result": "Pass",
+  "note": "",
+  ...
+  "controls": ["AC-2", "AC-3", "AC-6", "AU-12", "AU-2", "CA-7", "CM-8", "IA-4", "IA-5", "IA-9"],
+  "other": ["OMB M-22-09 §III.A", "SCuBA MS.AAD.5.5v1 (SHOULD)"],
+  "ksis": ["KSI-IAM-ELP", "KSI-IAM-SNU", "KSI-MLA-EVC", "KSI-MLA-LET", "KSI-PIY-GIV"],
+  "checks": [ { "id": "ST-01", "status": "Pass", ... } ]
+}
+```
+
+and `SHA256SUMS` lists every file in the folder, starting with `0c71b3b06453a3776c1934e0f62cf5e7ae51dad18823cfa32a4269c96497976d  PRE-preflight.json`.
 
 The test preflight's one Warn is deliberate: the fixture's Conditional Access administrator holds a standing assignment instead of a PIM-eligible one, which the preflight reports but doesn't block (*Design guidance*). An approved hash other than the plan's stops the rollback before it sends anything:
 
@@ -360,6 +440,11 @@ Run once per stage, after the change record is approved and before the preflight
 
    **Expected:** three GUIDs.
 
+| Requirement | What this step does | KSI it aligns to | Evidence the ISSO keeps |
+|---|---|---|---|
+| CM-8 System Component Inventory; IA-4 Identifier Management | The synthetic objects created with their own identifiers, two owners and a record in the change record | KSI-PIY-GIV | PF-07 in `PRE-preflight.json`; ST-01 in `SMOKE-smoke-test.json` |
+| IA-5 Authenticator Management | The synthetic app has a federated credential and no secret; the service account's random password is never recorded | KSI-IAM-SNU | PF-07 (0 secrets); ST-03 and ST-04 |
+
 ## Pre-flight checks
 
 Run these before each stage, in the session block, after the Prepare step.
@@ -412,12 +497,26 @@ Run these before each stage, in the session block, after the Prepare step.
 
    Learn's backdated key (`-EffectiveTime ((Get-Date).AddHours(-10))`) is for a test environment with one domain controller only;[^np11-kds] don't use it in a forest with more than one.
 
-4. **File the preflight** with the change record:
+4. **Check the evidence records** the preflight wrote, in `$out/evidence`:
 
    ```powershell
-   Copy-Item -Recurse -Force "$out/preflight" "$out/evidence/01-preflight"
-   Get-ChildItem "$out/evidence/01-preflight" -File | Get-FileHash -Algorithm SHA256 | Format-Table Hash, Path -AutoSize
+   Get-ChildItem "$out/evidence" -Filter *.json | ForEach-Object { $r = Get-Content $_.FullName -Raw | ConvertFrom-Json; '{0}: {1}; KSIs {2}' -f $_.Name, $r.result, ($r.ksis -join ', ') }
    ```
+
+   **Expected:** `PRE-preflight.json` (Pass, or Warn with each Warn understood) and `S0-change-record-approvals-and-settings-file.json` (Pass), each with its KSIs.
+
+| Requirement | What this step does | KSI it aligns to | Evidence the ISSO keeps |
+|---|---|---|---|
+| CM-3, CM-6 | PF-01: the settings file complete for this stage, with no secret | KSI-CMT-LMC | PF-01 in `PRE-preflight.json` |
+| IA-5, IA-5(2), IA-9 | PF-02: the deployment identity signs in with a certificate or federated credential | KSI-IAM-SNU | PF-02 |
+| AC-3, AC-6 | PF-03: the license that workload Conditional Access needs | KSI-IAM-ELP | PF-03 |
+| AU-2, AU-12 | PF-04: the license the service principal sign-in logs need | KSI-MLA-LET | PF-04 |
+| AC-6, AC-6(5) | PF-05: the reader app holds reads only | KSI-IAM-ELP, KSI-IAM-SNU | PF-05 |
+| AC-2, AC-5, AC-6(5), CM-5 | PF-06: operators eligible through PIM | KSI-IAM-JIT | PF-06 |
+| CM-8, IA-4 | PF-07: the pilot and synthetic objects exist | KSI-PIY-GIV | PF-07 |
+| CM-3(2), CM-4(2) | PF-08: workload policies not enforced before the stage | KSI-CMT-VTD | PF-08 |
+| CA-7, CM-2 | PF-09: the VK-NPI baseline before the change | KSI-MLA-EVC | PF-09; the validation kit's `ValidationResults.json` under `runs/PRE` |
+| IA-5, IA-9 | PF-10 and the KDS root key: the forest can issue a gMSA | KSI-IAM-SNU | PF-10; the `Get-KdsRootKey` output filed with the change record |
 
 ## Stage 1: live test
 
@@ -435,6 +534,17 @@ Import-Csv "$out/inventory/data-platform-handoff.csv" | Format-Table
 ```
 
 **Expected:** the register shows the synthetic app with `OwnerCount 2`, `Secrets 0` and `CredentialKind Federated`; the pilot with its one secret; and `svc-npi-smoke` with `Risk HIGH`. Chapter 02's findings list every ownerless identity; none is the synthetic. SQL Server's service and application principals are in `data-platform-handoff.csv`: the guide's [SQL Server section](../../../books/guides/non-person-identity-implementation.md#sql-server) hands them to the Data Platform plan, and this runbook doesn't convert them. The orphan plan Chapter 02 writes is not applied in this runbook.
+
+Record the step's evidence:
+
+```powershell
+./deploy/Write-NpiDeployEvidence.ps1 -SettingsPath <settings-file> -Stage $stage -Step S1.1 -RunPath "$out/inventory", "$out/ownership" -EvidencePath "$out/evidence" -Command "Invoke-NpiInventory.ps1; Invoke-NpiOwnership.ps1"
+```
+
+| Requirement | What this step does | KSI it aligns to | Evidence the ISSO keeps |
+|---|---|---|---|
+| AC-2 Account Management; CM-8; IA-4 | Every non-person identity read into one register, with its owners; the orphans found | KSI-PIY-GIV, KSI-IAM-SNU | `S1.1-inventory-and-owners.json` and `runs/S1.1/` (Chapter 01's register and Chapter 02's findings, re-hashed) |
+| OMB M-22-09 §III.A (enterprise-managed identities) | Each workload identity tied to an owner and a record in the enterprise directory | KSI-PIY-GIV | Same |
 
 ### Step 1.2: App management policy, scoped to the pilot (G3)
 
@@ -460,6 +570,18 @@ Copy-Item config/app-management-policy.json $s.appManagementPolicy.configPath
 ```
 
 **Expected:** Chapter 04's findings and a plan that sets the tenant default policy with the effective date in the copied file; nothing is sent. Hand the hash to the reviewer for Stage 2.
+
+Record the step's evidence:
+
+```powershell
+./deploy/Write-NpiDeployEvidence.ps1 -SettingsPath <settings-file> -Stage $stage -Step S1.2 -RunPath "$out/policy-plan" -EvidencePath "$out/evidence" -Command "pilot policy PATCH and appliesTo; Invoke-NpiCredentialPolicy.ps1"
+```
+
+| Requirement | What this step does | KSI it aligns to | Evidence the ISSO keeps |
+|---|---|---|---|
+| IA-5 Authenticator Management | New secrets and symmetric keys refused on the pilot and synthetic apps; certificates capped at 180 days | KSI-IAM-SNU | `S1.2-app-management-policy.json` with Chapter 04's plan; ST-03 in the smoke test |
+| CM-3, CM-6 | The tenant-wide policy planned and reviewed now, applied in Stage 2 | KSI-CMT-LMC | The policy plan and its approved SHA-256 under `runs/S1.2` |
+| CISA SCuBA MS.AAD.5.5v1 to 5.7v1 (SHOULD in ScubaGear 2.0.0, not a BOD 25-01 required configuration, as the guide records) | No app passwords; lifetimes capped | KSI-IAM-SNU | The ScubaGear result the guide files with G3 |
 
 ### Step 1.3: Federated credential and managed identity on the pilot, beside the old secret (G5)
 
@@ -522,6 +644,18 @@ Fulfils [G5 Conversion](../../../books/guides/non-person-identity-implementation
 
    **Expected:** in the test stage, the run lasts as long as the smoke test needs; the 30-day run and the disable belong to production (Step 2.2). The old secret stays on the app: the pilot's app management policy doesn't remove it, and Chapter 04's change does, after the run.
 
+Record the step's evidence:
+
+```powershell
+./deploy/Write-NpiDeployEvidence.ps1 -SettingsPath <settings-file> -Stage $stage -Step S1.3 -RunPath "$out/federation", "$out/federation-apply" -EvidencePath "$out/evidence" -Command "az identity create; Invoke-NpiFederation.ps1 plan and -Apply"
+```
+
+| Requirement | What this step does | KSI it aligns to | Evidence the ISSO keeps |
+|---|---|---|---|
+| IA-5; IA-9 Service Identification and Authentication (tailored in) | The pilot authenticates with a federated credential and a managed identity, no stored secret, after an exchange test | KSI-IAM-SNU | `S1.3-federated-credential-and-managed-identity-parallel-run.json` and `runs/S1.3/` (Chapter 05's plan, exchange tests and apply) |
+| CM-3(2), CM-4(2) | The token exchange tested before the cutover | KSI-CMT-VTD | `exchange-tests.json` in Chapter 05's run, re-hashed |
+| AC-2(3) Disable Accounts | The legacy account stays enabled through the parallel run and is disabled, never deleted, after it (production, day 31) | KSI-IAM-SNU | The cutover log; the day-31 apply run (Step 2.2) |
+
 ### Step 1.4: gMSA on a test host (G5)
 
 Fulfils the AD half of [G5](../../../books/guides/non-person-identity-implementation.md#step-5-convert-with-a-parallel-run). As a member of Domain Admins in the test forest (or with a delegated right to create gMSAs), after the KDS root key's 10 hours:
@@ -541,6 +675,10 @@ Test-ADServiceAccount -Identity <gmsa-name>
 Here `<gmsa-name>` is `ad.gmsaName` from the settings file (the host has no session block). Then set the test service to run as the gMSA: **Services** (`services.msc`) > the service named in `ad.gmsaService` > **Properties** > **Log On** > **This account**: `<netbios-domain>\<gmsa-name>$`, with both password boxes empty > **OK**, then restart the service. The console steps are not on Learn's gMSA page, which says only that services using the Service Control Manager support gMSAs (research gaps, row 105).
 
 **Expected:** `Get-ADServiceAccount` shows the retriever group; `Test-ADServiceAccount` prints `True`; the service starts as the gMSA. A gMSA name must be unique in the forest, not only the domain; the password interval can be set only at creation (30 days by default).[^np11-gmsa] A gMSA used too soon after the root key can fail to retrieve its password on a domain controller the key hasn't reached.[^np11-kds] Chapter 06's plan is the path for converting existing accounts, MSAs and dMSAs in production; this step proves the forest, the host and the service accept a gMSA.
+
+| Requirement | What this step does | KSI it aligns to | Evidence the ISSO keeps |
+|---|---|---|---|
+| IA-5, IA-9 | A Kerberos service runs as a gMSA whose password the domain manages | KSI-IAM-SNU | ST-07 in `SMOKE-smoke-test.json`; the `Test-ADServiceAccount` output on the host |
 
 ### Step 1.5: Conditional Access for workload identities, report-only (G4)
 
@@ -584,6 +722,17 @@ Fulfils the Conditional Access half of [G4 Least privilege](../../../books/guide
    The same check in the admin center: **Entra ID** > **Conditional Access** > **Policies**, each `CA015-` and `CA037-` policy showing **Report-only**.[^np11-wid]
 
 **Expected:** `Pre-merge check` with no Finding; a plan that creates the egress named location and the Ring 1 policies; the apply sends them; every listed policy is `enabledForReportingButNotEnforced`. The policy is assigned by the service principal's object ID from **Enterprise apps**, not the app registration's.[^np11-wid] AI agent identities stay out of this step: their policies are Chapter 09's, preview and report-only, as the guide's [AI agents section](../../../books/guides/non-person-identity-implementation.md#ai-agents) says.
+
+Record the step's evidence:
+
+```powershell
+./deploy/Write-NpiDeployEvidence.ps1 -SettingsPath <settings-file> -Stage $stage -Step S1.5 -RunPath "$out/wca-plan", "$out/wca-apply" -EvidencePath "$out/evidence" -Command "Invoke-NpiWorkloadCa.ps1 -Mode Check, Plan, Plan -Apply"
+```
+
+| Requirement | What this step does | KSI it aligns to | Evidence the ISSO keeps |
+|---|---|---|---|
+| AC-3 Access Enforcement; AC-6 Least Privilege | Tier 1 single-tenant service principals assigned directly to workload policies | KSI-IAM-ELP | `S1.5-workload-conditional-access-report-only.json` and `runs/S1.5/` (Chapter 08's plan and apply) |
+| CM-3(2), CM-4(2) | Every policy created report-only; enforcement waits for a reviewed sign-in summary | KSI-CMT-VTD | Same; PF-08 and ST-05 |
 
 ### Step 1.6: Smoke test
 
@@ -649,22 +798,31 @@ Prove the deployment end to end with objects nobody depends on. Write each expec
 
 The last line is `Result: PASS`, or `Result: FAIL. Stop here and run the rollback.` with exit code 1.
 
+| Requirement | What this step does | KSI it aligns to | Evidence the ISSO keeps |
+|---|---|---|---|
+| AC-2, CM-8, IA-4; OMB M-22-09 §III.A | ST-01, ST-02: a new app and a risky account appear in the register | KSI-PIY-GIV, KSI-IAM-SNU | `SMOKE-smoke-test.json`, written by the smoke test |
+| IA-5; SCuBA MS.AAD.5.5v1 (SHOULD) | ST-03: a new secret refused | KSI-IAM-SNU | Same, ST-03 |
+| IA-5, IA-9 | ST-04, ST-07: the federated credential and the gMSA | KSI-IAM-SNU | Same, ST-04 and ST-07 |
+| AC-3, AC-6, IA-9 | ST-05: direct assignment, the expected state | KSI-IAM-ELP | Same, ST-05 |
+| AU-2, AU-12, CA-7 | ST-06: the sign-ins logged with the policies' result | KSI-MLA-LET, KSI-MLA-EVC | Same, ST-06 |
+
 ### Step 1.7: Capture the evidence
 
-File every run folder with the change record, with a hash of each file:
+The scripts wrote their records as they ran, and each step's `Write-NpiDeployEvidence.ps1` call wrote the rest. Copy the files the operator wrote by hand into the folder, rebuild `SHA256SUMS`, then check the stage's coverage:
 
 ```powershell
-$i = 2
-foreach ($d in 'inventory', 'ownership', 'policy-plan', 'federation', 'federation-apply', 'wca-plan', 'wca-apply', 'inventory-smoke', 'smoke-final') { Copy-Item -Recurse -Force "$out/$d" ("$out/evidence/{0:00}-$d" -f $i); $i++ }
-Copy-Item <settings-file>, $s.conditionalAccess.scopePath, $s.pilot.conversionsPath, $s.pilot.cutoverLogPath "$out/evidence/"
-Push-Location "$out/evidence"
-$lines = Get-ChildItem -Recurse -File | Where-Object Name -ne 'SHA256SUMS' | ForEach-Object { '{0}  {1}' -f (Get-FileHash -LiteralPath $_.FullName -Algorithm SHA256).Hash.ToLower(), ((Resolve-Path -Relative $_.FullName) -replace '\\', '/' -replace '^\./', '') }
-[IO.File]::WriteAllText((Join-Path $PWD 'SHA256SUMS'), ($lines -join "`n") + "`n")
-Pop-Location
-$lines.Count
+New-Item -ItemType Directory -Force "$out/evidence/inputs" | Out-Null
+Copy-Item <settings-file>, $s.conditionalAccess.scopePath, $s.pilot.conversionsPath, $s.pilot.cutoverLogPath "$out/evidence/inputs/"
+Update-NpiDeployEvidenceSums -EvidencePath "$out/evidence"
+./deploy/Test-NpiDeployEvidence.ps1 -SettingsPath <settings-file> -Stage $stage -EvidencePath "$out/evidence"
 ```
 
-**Expected:** the number of files hashed; `SHA256SUMS` has one line per file, with LF line endings and paths relative to the folder. The ISSO checks the folder with `sha256sum -c SHA256SUMS` from a POSIX shell in the folder, as Chapter 10's packages are checked.
+**Expected:** before the rollback, every row `Present` except `ROLLBACK`, which is `Missing` until Step 1.8, so the script ends `Result: NO-GO on evidence.` The ISSO checks the folder independently with `sha256sum -c SHA256SUMS` from a POSIX shell inside it.
+
+| Requirement | What this step does | KSI it aligns to | Evidence the ISSO keeps |
+|---|---|---|---|
+| AU-9 Protection of Audit Information | Every evidence file hashed in `SHA256SUMS`; any change or unlisted file found | KSI-MLA-OSM | `SHA256SUMS`; the `EVIDENCE` row of `Test-NpiDeployEvidence.ps1` |
+
 
 ### Step 1.8: Roll back the test stage
 
@@ -699,10 +857,10 @@ Rehearse the rollback now, in the test stage, so the production rollback is a co
 
    ```powershell
    ../validation-kit/Invoke-ValidationKit.ps1 -OutputPath "$out/vk-after-rollback" -Track NPI -IncludePreview -SkipConnect -TenantId $s.tenantId
-   ./deploy/Test-NpiDeployPreflight.ps1 -SettingsPath <settings-file> -Stage $stage -BaselinePath (Get-ChildItem "$out/vk-after-rollback" -Recurse -Filter ValidationResults.json | Select-Object -Last 1).FullName -OutputPath "$out/preflight-after-rollback"
+   ./deploy/Test-NpiDeployPreflight.ps1 -SettingsPath <settings-file> -Stage $stage -BaselinePath (Get-ChildItem "$out/vk-after-rollback" -Recurse -Filter ValidationResults.json | Select-Object -Last 1).FullName -OutputPath "$out/preflight-after-rollback" -EvidencePath "$out/evidence-after-rollback"
    ```
 
-   **Expected:** the VK-NPI statuses match the baseline from the preflight, except VK-NPI-04, which is expected to count the principals of the two disabled policies as uncovered (research gaps, row 107). PF-08 shows each policy `disabled`. File both folders in the evidence with Step 1.7's commands.
+   **Expected:** the VK-NPI statuses match the baseline from the preflight, except VK-NPI-04, which is expected to count the principals of the two disabled policies as uncovered (research gaps, row 107). PF-08 shows each policy `disabled`. The after-rollback records go to their own folder, `$out/evidence-after-rollback`, so they don't replace the deployment's `PRE` record.
 
 5. **Re-deploy.** Repeat Steps 1.2 to 1.7, so the second smoke test is filed as `smoke-final`. That folder is `<test-evidence>` for Stage 2.
 
@@ -714,6 +872,10 @@ Rehearse the rollback now, in the test stage, so the production rollback is a co
    ```
 
    The same with the kit: plan the rollback with `-IncludeSmokeCleanup`, which adds both actions to the plan, as the dry run above shows.
+
+| Requirement | What this step does | KSI it aligns to | Evidence the ISSO keeps |
+|---|---|---|---|
+| CM-3 Configuration Change Control; CP-10 System Recovery and Reconstitution | The rollback planned from the preflight's snapshot, approved by hash, applied, and the tenant shown back at its starting state | KSI-CMT-RMV, KSI-RPL-ABO | `ROLLBACK-rollback.json` (written by the apply; a dry run records `DryRun`, which the go/no-go doesn't accept); `evidence-after-rollback/PRE-preflight.json` |
 
 ## Promotion go/no-go criteria
 
@@ -729,8 +891,17 @@ Production starts only when every row is met and signed. *Design guidance.*
 | 6 | The production settings file reviewed, for a different tenant, with its own operators | Its SHA-256 | Identity governance officer |
 | 7 | Production licenses and PIM eligibility in place | A production preflight run before the window, no Fail | Identity engineer |
 | 8 | The change record approved, with the window, the waves and the rollback plan | The change record | Change advisory board |
+| 9 | Every requirement row for the test stage has its evidence file present and passing, and every hash matches | `Test-NpiDeployEvidence.ps1` for the test stage, exit 0: `Result: every requirement row has its evidence, and every hash matches.` | ISSO |
 
-Check rows 1 and 2 from the test evidence with one command, in a session started with the test settings file:
+Check row 9 in a session started with the test settings file:
+
+```powershell
+./deploy/Test-NpiDeployEvidence.ps1 -SettingsPath <settings-file> -Stage test -EvidencePath "$out/evidence"
+```
+
+**Expected:** one `Present` row for each of `PRE`, `S0`, `S1.1`, `S1.2`, `S1.3`, `S1.5`, `SMOKE`, `ROLLBACK` and `EVIDENCE`, with their KSIs, and exit code 0. Any `Missing`, `Failing` or `WrongEnvironment` row is a no-go.
+
+Check rows 1 and 2 from the test evidence with one command:
 
 ```powershell
 foreach ($f in "$out/smoke-final/results.json", "$out/rollback-apply/results.json") { $r = Get-Content $f -Raw | ConvertFrom-Json; '{0}: {1}' -f $f, (($r | Group-Object Status | ForEach-Object { "$($_.Count) $($_.Name)" }) -join ', ') }
@@ -758,6 +929,11 @@ Open the production change record, set its number in the settings file's `change
 
 **Expected:** `Result: GO`, with PF-11 `Pass`: "test, tenant `<test tenant ID>`, 8/8 Pass". PF-11 fails when the evidence is missing, from the production tenant itself, or has any check other than `Pass`.
 
+| Requirement | What this step does | KSI it aligns to | Evidence the ISSO keeps |
+|---|---|---|---|
+| CM-3(2), CM-4(2) | PF-11: production starts only after the test stage's smoke test passed in another tenant | KSI-CMT-VTD | PF-11 in production's `PRE-preflight.json` |
+| The preflight rows, CM-3, CM-5, AC-6(5) | As in the test stage, against the production tenant | As in the test stage | Production's `PRE` and `S0` records |
+
 ### Step 2.2: Deploy
 
 Run Steps 1.1 to 1.5 unchanged, in this session. Then apply the tenant-wide app management policy that Step 1.2 planned, with the hash the identity governance officer approved, as the identity engineer:
@@ -784,6 +960,18 @@ $log | Export-Csv $s.pilot.cutoverLogPath -NoTypeInformation -UseQuotes AsNeeded
 
 Then apply that plan with its approved hash, as in Step 1.3. The legacy account is disabled, never deleted ([G5](../../../books/guides/non-person-identity-implementation.md#step-5-convert-with-a-parallel-run)).
 
+Record the step's evidence:
+
+```powershell
+./deploy/Write-NpiDeployEvidence.ps1 -SettingsPath <settings-file> -Stage $stage -Step S1.2 -RunPath "$out/policy-apply" -EvidencePath "$out/evidence" -Command "Invoke-NpiCredentialAction.ps1 -Apply"
+```
+
+| Requirement | What this step does | KSI it aligns to | Evidence the ISSO keeps |
+|---|---|---|---|
+| AC-2, CM-8, IA-4; IA-5, IA-9; AC-3, AC-6; CM-3, CM-6 | Steps 1.1 to 1.5 in production, each recorded with the same `Write-NpiDeployEvidence.ps1` command | As in Steps 1.1 to 1.5 | Production's `S1.1`, `S1.2` (with `-RunPath "$out/policy-apply"`), `S1.3` and `S1.5` records |
+| IA-5; SCuBA MS.AAD.5.5v1 to 5.7v1 (SHOULD) | The tenant-wide app management policy applied | KSI-IAM-SNU, KSI-CMT-LMC | Production's `S1.2` record over `policy-apply`; the ScubaGear result |
+| AC-2(3) Disable Accounts | The legacy account disabled on day 31, never deleted | KSI-IAM-SNU | Production's `S1.3` record, re-run with `-RunPath "$out/federation", "$out/federation-apply", "$out/federation-day31"` and the day-31 apply folder |
+
 ### Step 2.3: Staged enable by wave
 
 Each wave is one of Chapter 08's rings, listed in the settings file's `waves`. For each wave in turn, after its 14 days of report-only sign-ins:
@@ -808,6 +996,16 @@ Each wave is one of Chapter 08's rings, listed in the settings file's `waves`. F
 
    **Expected:** the first apply turns CA015 for Ring 1 on and creates anything new report-only; the second turns the rest of Ring 1 on (Chapter 08 creates a policy report-only and enforces it on the next run). For the next wave, repeat with `Ring2` in place of `Ring1`, adding its entry to `rings` beside Ring 1's.
 
+Record the step's evidence:
+
+```powershell
+./deploy/Write-NpiDeployEvidence.ps1 -SettingsPath <settings-file> -Stage $stage -Step S2.3 -RunPath "$out/wca-signins-Ring1", "$out/wca-enforce-Ring1", "$out/wca-enforce-Ring1-2" -EvidencePath "$out/evidence" -Command "Invoke-NpiWorkloadCa.ps1 -Mode SignIns; -Apply -AllowEnforce"
+```
+
+| Requirement | What this step does | KSI it aligns to | Evidence the ISSO keeps |
+|---|---|---|---|
+| AC-6 Least Privilege; CM-3; CM-4(2) | Each wave enforced only after its reviewed 14-day summary and D-N5, one wave at a time | KSI-IAM-ELP, KSI-CMT-LMC | `S2.3-staged-enable-by-wave.json` and `runs/S2.3/` (the sign-in summary and the enforce runs) |
+
 ### Step 2.4: Smoke test in production
 
 Run Step 1.6 with the production settings, first before any wave is enforced (`-ExpectCaState ReportOnly`), then after each wave, for that wave only:
@@ -817,6 +1015,10 @@ Run Step 1.6 with the production settings, first before any wave is enforced (`-
 ```
 
 **Expected:** every check `Pass`. ST-05 shows Ring 1's policies `enabled`. ST-06 shows `failure` for CA015 from the outside run, which is now a block: the outside workflow run fails with the message Learn gives, "Access has been blocked due to Conditional Access policies",[^np11-wid] and the inside run succeeds with `notApplied`.
+
+| Requirement | What this step does | KSI it aligns to | Evidence the ISSO keeps |
+|---|---|---|---|
+| AC-2, CM-8, IA-4, IA-5, IA-9, AC-3, AC-6, AU-2, AU-12, CA-7 | The smoke test's checks in production, before and after each wave | KSI-PIY-GIV, KSI-IAM-SNU, KSI-IAM-ELP, KSI-MLA-LET, KSI-MLA-EVC | Production's `SMOKE-smoke-test.json` (each run replaces it; keep each wave's copy under `runs/SMOKE`) |
 
 ### Step 2.5: First-week monitoring with drift
 
@@ -839,6 +1041,16 @@ Get-Content "$($last.FullName)/drift/findings.json" -Raw | ConvertFrom-Json | Fo
 ```
 
 **Expected:** no NPI-DRF finding for a credential added outside the pipeline, and no new consent grant; any finding goes to its owner the same day ([Chapter 10](10-drift-and-evidence.md)). In the sign-in summary, a principal with `failure` from inside the egress range means the egress list is wrong: roll the wave back to report-only (Step 2.6) and fix the scope file. Package each day with Chapter 10's evidence pipeline.
+
+Record the step's evidence:
+
+```powershell
+./deploy/Write-NpiDeployEvidence.ps1 -SettingsPath <settings-file> -Stage $stage -Step S2.5 -RunPath "$out/drift" -EvidencePath "$out/evidence" -Command "Invoke-NpiDriftRun.ps1, daily for seven days"
+```
+
+| Requirement | What this step does | KSI it aligns to | Evidence the ISSO keeps |
+|---|---|---|---|
+| CA-7 Continuous Monitoring; CM-3; AU-6 Audit Record Review | Daily drift against the approved baseline and daily sign-in summaries for the first week | KSI-MLA-EVC, KSI-CMT-LMC | `S2.5-first-week-drift-monitoring.json` and `runs/S2.5/` (Chapter 10's run folders); Chapter 10's packages |
 
 ### Step 2.6: Rollback in production
 
@@ -863,24 +1075,30 @@ Two levels, both planned from the production preflight's snapshot and applied on
 
 **Expected:** the wave rollback has two actions, both to `enabledForReportingButNotEnforced`; the dry-run and apply print them. The guide's [rollback](../../../books/guides/non-person-identity-implementation.md#rollback) for Step 4 is "workload identity policy back to report-only", and for Step 5 "re-enable the legacy account and revert the application's configuration": the full plan does the first and the re-enable; the owner reverts the configuration. Tokens issued before the rollback stay valid for their lifetime.
 
+| Requirement | What this step does | KSI it aligns to | Evidence the ISSO keeps |
+|---|---|---|---|
+| CM-3; CP-10 | A wave back to report-only, or the whole stage back, by an approved plan; nothing deleted | KSI-CMT-RMV, KSI-RPL-ABO | `ROLLBACK-rollback.json` in production's evidence folder; the rollback run folders |
+
 ## Evidence the ISSO keeps
 
-Each stage's evidence folder holds these, with `SHA256SUMS` beside them. The mapping to controls is the guide's ([Evidence](../../../books/guides/non-person-identity-implementation.md#evidence)).
+Each stage's evidence folder, `<outputRoot>/evidence`, holds one record per requirement row (`PRE`, `S0`, `S1.1`, `S1.2`, `S1.3`, `S1.5`, `SMOKE`, `ROLLBACK` in test; `S2.3` and `S2.5` as well in production), the run folders they cover under `runs/`, the operator's input files under `inputs/`, and `SHA256SUMS`. The mapping to controls is the guide's ([Evidence](../../../books/guides/non-person-identity-implementation.md#evidence)), with the KSIs above. The table lists what each holds:
 
-| Stage | File | What it proves | Gate | Controls (guide's mapping) |
-|---|---|---|---|---|
-| Both | `01-preflight/results.json`, `snapshot.json`, `manifest.json` | Licenses, roles, the deployment identity without a secret, the starting state the rollback restores, the settings file's SHA-256 | All | AC-2, AC-6(5), IA-5 |
-| Both | `vk-baseline/.../ValidationResults.json` | The VK-NPI baseline before the change | G1–G6 | AC-2, AC-6, IA-5 |
-| Both | `inventory/`, `ownership/` | Every non-person identity and its owners; SQL Server handed off | G1 | AC-2, IA-4 |
-| Both | `policy-plan/` (test), `policy-apply/` (production) | The tenant app management policy reviewed, then applied | G3 | IA-5, SCuBA MS.AAD.5.5v1 to 5.7v1 |
-| Both | `federation/`, `federation-apply/`, the conversion file and cutover log | The pilot's federated credential and managed identity, the parallel run | G5 | IA-5, IA-9 |
-| Both | `wca-plan/`, `wca-apply/`, the scope file | Workload policies created report-only, assigned directly | G4 | AC-6, IA-9 |
-| Both | `smoke-final/results.json` and manifest | Every control worked on objects nobody depends on | G1, G3, G4, G5 | AU-6, CA-7 |
-| Test | `rollback/`, `rollback-apply/`, `preflight-after-rollback/` | The rollback was rehearsed and returned the tenant to its starting state | All | CP-10 |
-| Production | `wca-signins-Ring*/`, the D-N5 record in the scope file, `wca-enforce-Ring*/` | Each wave enforced only after a reviewed 14-day summary | G4 | AC-6, IA-9 |
-| Production | `drift/` runs and Chapter 10's packages for the first week | No unreviewed change after the deployment | G6 | AC-2, AU-6, CM-3 |
+| Stage | Record (and what it covers) | What it proves | Gate | Controls | KSIs |
+|---|---|---|---|---|---|
+| Both | `PRE-preflight.json` (`runs/PRE/`: results, snapshot, manifest) | Licenses, roles, the deployment identity without a secret, the starting state the rollback restores; in production, PF-11 | All | AC-2, AC-3, AC-5, AC-6, AC-6(5), AU-2, AU-12, CA-7, CM-2, CM-3, CM-3(2), CM-4(2), CM-5, CM-6, CM-8, IA-4, IA-5, IA-5(2), IA-9 | KSI-CMT-LMC, KSI-CMT-VTD, KSI-IAM-ELP, KSI-IAM-JIT, KSI-IAM-SNU, KSI-MLA-EVC, KSI-MLA-LET, KSI-PIY-GIV |
+| Both | `S0-change-record-approvals-and-settings-file.json` | The change record and the reviewed settings file's SHA-256 | All | CM-3, CM-5 | KSI-CMT-LMC, KSI-IAM-JIT |
+| Both | The VK-NPI `ValidationResults.json` (PF-09) | The baseline before the change | G1–G6 | CA-7, CM-2 | KSI-MLA-EVC |
+| Both | `S1.1-inventory-and-owners.json` (`runs/S1.1/`) | Every non-person identity and its owners; SQL Server handed off | G1 | AC-2, CM-8, IA-4; M-22-09 §III.A | KSI-PIY-GIV, KSI-IAM-SNU |
+| Both | `S1.2-app-management-policy.json` (policy plan in test, apply in production) | The app management policy reviewed, then applied | G3 | IA-5, CM-3, CM-6; SCuBA MS.AAD.5.5v1 to 5.7v1 (SHOULD) | KSI-IAM-SNU, KSI-CMT-LMC |
+| Both | `S1.3-federated-credential-and-managed-identity-parallel-run.json` (`runs/S1.3/`), the conversion file and cutover log under `inputs/` | The pilot's federated credential and managed identity, the parallel run and, in production, the day-31 disable | G5 | IA-5, IA-9, AC-2(3) | KSI-IAM-SNU, KSI-CMT-VTD |
+| Both | `S1.5-workload-conditional-access-report-only.json` (`runs/S1.5/`), the scope file under `inputs/` | Workload policies created report-only, assigned directly | G4 | AC-3, AC-6, CM-3(2), CM-4(2) | KSI-IAM-ELP, KSI-CMT-VTD |
+| Both | `SMOKE-smoke-test.json` (`runs/SMOKE/`) | Every control worked on objects nobody depends on | G1, G3, G4, G5 | AC-2, AC-3, AC-6, AU-2, AU-12, CA-7, CM-8, IA-4, IA-5, IA-9 | KSI-IAM-ELP, KSI-IAM-SNU, KSI-MLA-EVC, KSI-MLA-LET, KSI-PIY-GIV |
+| Test | `ROLLBACK-rollback.json` (`runs/ROLLBACK/`); `evidence-after-rollback/` | The rollback was rehearsed and returned the tenant to its starting state | All | CM-3, CP-10 | KSI-CMT-RMV, KSI-RPL-ABO |
+| Production | `S2.3-staged-enable-by-wave.json` (sign-in summaries, enforce runs), the D-N5 record in the scope file | Each wave enforced only after a reviewed 14-day summary | G4 | AC-6, CM-3, CM-4(2) | KSI-IAM-ELP, KSI-CMT-LMC |
+| Production | `S2.5-first-week-drift-monitoring.json` (`runs/S2.5/`) and Chapter 10's packages | No unreviewed change after the deployment | G6 | CA-7, CM-3, AU-6 | KSI-MLA-EVC, KSI-CMT-LMC |
+| Both | `SHA256SUMS`, checked by `Test-NpiDeployEvidence.ps1` | Nobody edited the evidence afterwards | All | AU-9 | KSI-MLA-OSM |
 
-AU-6, CA-7, CM-3 and CP-10 are the program's reading for the smoke test, the drift runs and the rollback rehearsal (*Design guidance*); the assessor decides each control.
+AU-6, AU-9, CA-7, CM-3 and CP-10 are the program's reading for the smoke test, the evidence folder, the drift runs and the rollback rehearsal, and every KSI alignment is the program's reading (*Design guidance*); the assessor and the authorizing official decide each control.
 
 ## Verified facts
 
@@ -907,6 +1125,7 @@ AU-6, CA-7, CM-3 and CP-10 are the program's reading for the smoke test, the dri
 | Token-exchange audience by cloud | `api://AzureADTokenExchange` for the global service, `api://AzureADTokenExchangeUSGov` for Entra ID for US Government | Different | GA | [^np11-mi-trust-app] |
 | Azure Login action | `audience` defaults to `api://AzureADTokenExchange` in public clouds; `environment` for Azure Government | `AzureUSGovernment` | GA | [^np11-oidc] |
 | Create a user | `New-ADUser -AccountPassword -Enabled -PasswordNeverExpires`; not on a read-only DC | — | — | [^np11-new-aduser] |
+| FedRAMP 20x KSIs | 46 indicators in ten themes; the eleven above exist with the names given; related controls include AC-2, AC-6(5) and IA-5(2) for KSI-IAM-SNU, CM-3 and CM-4(2) for KSI-CMT-VTD, CA-7 for KSI-MLA-EVC, AU-9 for KSI-MLA-OSM and CP-10 for KSI-RPL-ABO; changelog last dated October 13, 2026 | — | — | [^np11-ksi] |
 
 Facts carried from earlier chapters, not re-read: the federated credential rules and the `AADSTS70021` propagation delay ([Chapter 05](05-workload-identity-federation-and-managed-identities.md#verified-facts)), the sign-in log's P1 or P2 license ([Chapter 05](05-workload-identity-federation-and-managed-identities.md#verified-facts)), the app management policy create and assign requests ([Chapter 04](04-app-management-policies-and-certificate-rotation.md#verified-facts)), the Workload ID service plan IDs ([Chapter 03](03-the-migration-path-matrix-as-code.md#verified-facts)), and the guide's rollback, evidence and deactivation facts.
 
@@ -943,13 +1162,16 @@ Facts carried from earlier chapters, not re-read: the federated credential rules
 - [ ] Every go/no-go criterion is signed before production starts.
 - [ ] Production waves were enforced one at a time, each after its 14-day summary and D-N5.
 - [ ] The first week's drift runs show no unreviewed change, and their packages are filed.
-- [ ] Every evidence folder checks with `sha256sum -c SHA256SUMS`.
+- [ ] Every evidence folder checks with `sha256sum -c SHA256SUMS`, and `Test-NpiDeployEvidence.ps1` shows every requirement row present and passing for its stage.
 
 ::: {.callout-tip}
 ## Continue the book
 [← Previous: Chapter 10 — Drift and Evidence for the ISSO](10-drift-and-evidence.md) · [Workbook index](index.md)
 :::
 
+[^np11-ksi]: FedRAMP, "Key Security Indicators," *FedRAMP Consolidated Rules for 2026* (46 indicators; each indicator's name and related SP 800-53 controls; changelog entries of June 24 and October 13, 2026), <https://www.fedramp.gov/2026/reference/key-security-indicators/> (accessed Nov 2, 2026).
+[^np11-m2209]: Office of Management and Budget, M-22-09, *Moving the U.S. Government Toward Zero Trust Cybersecurity Principles*, January 26, 2022, §III.A (Identity: enterprise-managed identities), <https://www.whitehouse.gov/wp-content/uploads/2022/01/M-22-09.pdf> (accessed Oct 21, 2026, as verified for the Attribute-Driven Migration guide; carried forward, not re-read).
+[^np11-bod2501]: Cybersecurity and Infrastructure Security Agency, BOD 25-01, *Implementing Secure Practices for Cloud Services*, December 17, 2024, <https://www.cisa.gov/news-events/directives/bod-25-01-implementing-secure-practices-cloud-services> (accessed Oct 21, 2026, as verified for Book 11; carried forward, not re-read). Which SCuBA policies it requires is the implementation guide's evidence table.
 [^np11-wid]: Microsoft Learn, "Conditional Access for workload identities," overview (license, scope, direct assignment), implementation, roll back, sign-in logs and finding the object ID, <https://learn.microsoft.com/entra/identity/conditional-access/workload-identity> (accessed Nov 2, 2026).
 [^np11-amp-configure]: Microsoft Learn, "Configure restrictions on how applications can be configured," prerequisites; enable a restriction for all applications; apply a restriction to a specific application, <https://learn.microsoft.com/entra/identity/enterprise-apps/configure-app-management-policies> (accessed Nov 2, 2026).
 [^np11-amp-overview]: Microsoft Learn, "Microsoft Entra application management policies API overview" (v1.0), tenant default policy; app management policy for applications and service principals, <https://learn.microsoft.com/graph/api/resources/applicationauthenticationmethodpolicy?view=graph-rest-1.0> (accessed Nov 2, 2026).
