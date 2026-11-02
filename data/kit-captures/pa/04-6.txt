@@ -1,6 +1,5 @@
 PS> ./Invoke-PaPimRoleSettings.ps1 @lab -Wave 1 -OutputPath out/pim-apply -Apply
-Exception: The plan sets an authentication context: confirm its Conditional Access policy is On (Chapter 03), then pass
--ActivationGateChecked
+Exception: The plan sets an authentication context: confirm its Conditional Access policy is On (Chapter 03), then pass -ActivationGateChecked
 PS> ./Invoke-PaPimRoleSettings.ps1 @lab -Wave 1 -OutputPath out/pim-apply -Apply -ActivationGateChecked
 Wave 1 (9 roles): 0 Finding, 13 Warn, 0 Info
 Plan: 43 rule updates, 8 eligibility requests, 2 standing assignments to convert (0 confirmed)

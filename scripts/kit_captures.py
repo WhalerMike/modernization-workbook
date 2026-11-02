@@ -151,11 +151,12 @@ def clean(out: str, cwd: Path, root: Path) -> str:
     if os.name == "nt":
         out = out.replace("\\", "/")
     # pytest, node and Pester print their own timings; keep the counts, drop the times.
-    out = re.sub(r" in \d+\.\d+s\b", "", out)
+    out = re.sub(r" in \d+(?:\.\d+)?m?s\b", "", out)
     out = re.sub(r"^(. duration_ms) [\d.]+$", r"\1 …", out, flags=re.M)
     out = re.sub(r" \(\d+(?:\.\d+)?ms\)$", "", out, flags=re.M)
-    out = re.sub(r"^((?:Tests completed|Discovery found [^\n]*?) in) [\d.]+m?s", r"\1 …", out, flags=re.M)
+    # Pester puts a file's timing on the file's line, or on a line of its own.
     out = re.sub(r"^(\[[+-]\] [^\n]*?) [\d.]+m?s \([\d.]+m?s\|[\d.]+m?s\)$", r"\1", out, flags=re.M)
+    out = re.sub(r"^ *[\d.]+m?s \([\d.]+m?s\|[\d.]+m?s\)\n", "", out, flags=re.M)
     return "\n".join(l.rstrip() for l in out.split("\n")).strip("\n")
 
 
@@ -197,7 +198,13 @@ foreach ($__b in (Get-Content -Raw -LiteralPath $args[0] | ConvertFrom-Json)) {
     $__shown++
     $global:LASTEXITCODE = 0
     try { . ([scriptblock]::Create($__st.Extent.Text)) *>&1 | Out-String -Width 200 -Stream }
-    catch { $_ | Out-String -Width 200 -Stream }
+    # An error is one line, "Name: message", as a wide terminal shows it; otherwise PowerShell
+    # wraps it to the console width, which differs between machines.
+    catch {
+      $__r = @($_ | Out-String -Width 200 -Stream | Where-Object { $_ })
+      $__p = if ($__r.Count -and $__r[0] -match '^([^:]+): ') { $Matches[1] } else { 'Exception' }
+      "${__p}: $(if ($_.ErrorDetails.Message) { $_.ErrorDetails.Message } else { $_.Exception.Message })"
+    }
     if ($global:LASTEXITCODE) { "(exit code $global:LASTEXITCODE)" }
   }
 }

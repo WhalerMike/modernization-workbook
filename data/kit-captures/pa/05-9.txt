@@ -3,26 +3,18 @@ Starting discovery in 9 files.
 Discovery found 330 tests.
 Running tests.
 [+] tests/AccessReviews.Tests.ps1
- 8.54s (7.31s|720ms)
 [+] tests/AzurePim.Tests.ps1
- 9.24s (8.66s|387ms)
 [+] tests/ConditionalAccess.Tests.ps1
- 8.11s (7.63s|309ms)
 [+] tests/EmergencyAccess.Tests.ps1
- 2.03s (1.57s|283ms)
 [+] tests/EvidenceDrift.Tests.ps1
- 4.44s (3.87s|352ms)
 [+] tests/MicrosoftSamples.Tests.ps1
- 948ms (669ms|204ms)
 [+] tests/PimEntraRoles.Tests.ps1
- 8.78s (8.15s|393ms)
 [+] tests/PimForGroups.Tests.ps1
- 6.91s (6.44s|357ms)
 [+] tests/PrivilegedInventory.Tests.ps1
- 1.41s (1.02s|254ms)
 Tests completed
 Tests Passed: 330,
 Failed: 0,
-Skipped: 0
+Skipped: 0,
+Inconclusive: 0,
 
 NotRun: 0
