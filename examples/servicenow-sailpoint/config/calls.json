@@ -1,5 +1,5 @@
 {
-  "description": "Every HTTP call the Python clients make, with the task that makes it and the least privilege it needs. Read by clients/python/kit_calls.py; tests/python/test_kit_calls.py fails if a client makes a call that isn't declared here for its task. Sources were read November 1, 2026; see the developer workbook Building Ticket-to-Machine, Chapters 02 and 03; the deployment rows (deploy-check, smoke-raise, workflow-test, and the workflow update) were read November 2, 2026, Chapter 09.",
+  "description": "Every HTTP call the Python clients make, with the task that makes it and the least privilege it needs. Read by clients/python/kit_calls.py; tests/python/test_kit_calls.py fails if a client makes a call that isn't declared here for its task. Sources were read November 1, 2026; see the developer workbook Building Ticket-to-Machine, Chapters 02 and 03; the deployment rows (deploy-check, smoke-raise, workflow-enable, workflow-test) were read November 2, 2026, Chapter 09.",
   "tasks": {
     "drift": "identity_drift.py: read Graph users, the Entra audit, ISC identities and uncorrelated accounts",
     "drift-push": "identity_drift.py --push-to-servicenow --apply: post findings to the Scripted REST endpoint",
@@ -9,6 +9,7 @@
     "writer-check": "export the two provisioning mappings writer_check.py compares (by hand; writer_check.py reads files only)",
     "deploy-check": "deploy/preflight.py, deploy/rollback.py and deploy/smoke_test.py check: read the finding table and list the ISC workflows",
     "smoke-raise": "deploy/smoke_test.py raise and signal --apply: post the synthetic finding and closure signal to the Scripted REST endpoint",
+    "workflow-enable": "enable or disable the three ISC workflows (by hand, with curl, in the deployment runbook and its rollback)",
     "workflow-test": "test-run a disabled ISC workflow and read the execution (by hand, with curl; a personal access token of an ORG_ADMIN user)"
   },
   "calls": [
@@ -18,7 +19,7 @@
     {"id": "isc-account-get", "system": "isc", "method": "GET", "path": "/v3/accounts/{id}", "tasks": ["reread"], "permission": "idn:accounts:read", "source": "SailPoint API spec v3, getAccount"},
     {"id": "isc-workflow-create", "system": "isc", "method": "POST", "path": "/v2025/workflows", "tasks": ["workflows"], "permission": "sp:workflow:manage", "source": "SailPoint API spec v2025, createWorkflow"},
     {"id": "isc-workflows-list", "system": "isc", "method": "GET", "path": "/v2025/workflows", "tasks": ["deploy-check"], "permission": "sp:workflow:read", "source": "SailPoint API spec v2025, listWorkflows"},
-    {"id": "isc-workflow-patch", "system": "isc", "method": "PATCH", "path": "/v2025/workflows/{id}", "tasks": ["workflows"], "permission": "sp:workflow:manage", "source": "SailPoint API spec v2025, patchWorkflow"},
+    {"id": "isc-workflow-patch", "system": "isc", "method": "PATCH", "path": "/v2025/workflows/{id}", "tasks": ["workflow-enable"], "permission": "sp:workflow:manage", "source": "SailPoint API spec v2025, patchWorkflow"},
     {"id": "isc-workflow-test", "system": "isc", "method": "POST", "path": "/v2025/workflows/{id}/test", "tasks": ["workflow-test"], "permission": "sp:workflow-execute:external (user level ORG_ADMIN; the workflow must be disabled)", "source": "SailPoint API spec v2025, testWorkflow"},
     {"id": "isc-workflow-execution", "system": "isc", "method": "GET", "path": "/v2025/workflow-executions/{id}", "tasks": ["workflow-test"], "permission": "sp:workflow-execution:read (user level ORG_ADMIN)", "source": "SailPoint API spec v2025, getWorkflowExecution"},
     {"id": "isc-provisioning-policies", "system": "isc", "method": "GET", "path": "/v3/sources/{sourceId}/provisioning-policies", "tasks": ["writer-check"], "permission": "idn:provisioning-policy:read", "source": "SailPoint API spec v3, listProvisioningPolicies"},

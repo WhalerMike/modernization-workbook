@@ -268,6 +268,7 @@ def test_deployment_tasks_least_privilege():
     assert kcalls.required(CALLS, "deploy-check", "servicenow") == {"x_example_idkit.evidence_reader"}
     assert kcalls.required(CALLS, "smoke-raise", "servicenow") == {"x_example_idkit.finding_writer"}
     assert kcalls.required(CALLS, "workflows", "isc") == {"sp:workflow:manage"}
+    assert kcalls.required(CALLS, "workflow-enable", "isc") == {"sp:workflow:manage"}
     assert kcalls.required(CALLS, "workflow-test", "isc") == {"sp:workflow-execute:external", "sp:workflow-execution:read"}
     # The deploy checker can't change a workflow.
     assert kcalls.match_call(CALLS, "PATCH", "https://t.api.identitynow.com/v2025/workflows/abc", "deploy-check") is None

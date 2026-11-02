@@ -55,7 +55,7 @@ IDENTITIES = {
     "evidence_reader": ("servicenow", ["evidence", "deploy-check"]),
     "isc_reader": ("isc", ["drift", "reread"]),
     "isc_deploy_checker": ("isc", ["deploy-check"]),
-    "isc_workflow_admin": ("isc", ["workflows"]),
+    "isc_workflow_admin": ("isc", ["workflows", "workflow-enable"]),
     "isc_workflow_tester": ("isc", ["workflow-test"]),
 }
 G1_FEATURES = ("workflows", "native_change_detection", "http_request_step")
