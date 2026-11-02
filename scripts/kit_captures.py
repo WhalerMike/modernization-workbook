@@ -408,6 +408,11 @@ def main() -> int:
     if a.check:
         if stale:
             print("kit captures: no longer what the kit prints: " + ", ".join(stale), file=sys.stderr)
+            import difflib
+            for k in stale:     # what changed, so a CI log shows it
+                old = (folder / f"{k}.txt").read_text(encoding="utf-8").splitlines() if (folder / f"{k}.txt").exists() else []
+                diff = list(difflib.unified_diff(old, found[k].splitlines(), f"committed {k}", f"now {k}", n=1, lineterm=""))
+                print("\n".join(diff[:40]), file=sys.stderr)
             return 1
         print(f"kit captures: {len(found)} match the kit")
         return 0
