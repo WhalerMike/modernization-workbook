@@ -5,7 +5,7 @@ description: "Research under review: a crosswalk of the Federal Modernization Wo
 research-status: in review
 research-type: reference
 research-book: "Books 00–17"
-date-modified: 2026-10-30
+date-modified: 2026-11-02
 last-reviewed: 2026-10-23
 aliases:
   - /docs/research/federal-framework-crosswalk.html
@@ -85,8 +85,8 @@ The frameworks the workbook relies on most are not on the usual modernization li
 | HSPD-12 and FIPS 201 | 0 | 3 | 3 | 3 | 1 | 1 | 2 | 3 | 0 | 0 | 0 | 3 | 0 | 0 | 0 | 1 | 2 | 0 | 0 |
 | OMB M-26-14 (logging) | 2 | 3 | 1 | 0 | 0 | 0 | 0 | 0 | 3 | 3 | 0 | 3 | 3 | 1 | 2 | 0 | 0 | 0 | 0 |
 | FISMA 2014 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 1 | 1 | 1 | 2 | 1 | 2 | 3 | 0 |
-| OMB Circular A-130 | 2 | 0 | 0 | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 3 | 3 | 0 | 2 | 3 | 3 |
-| Privacy Act and E-Gov §208 PIAs | 0 | 0 | 0 | 3 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | 0 | 3 | 0 | 0 | 3 | 2 |
+| OMB Circular A-130 | 2 | 0 | 0 | 2 | 2 | 0 | 2 | 0 | 0 | 0 | 1 | 0 | 2 | 3 | 3 | 0 | 2 | 3 | 3 |
+| Privacy Act and E-Gov §208 PIAs | 0 | 0 | 0 | 3 | 2 | 0 | 2 | 0 | 0 | 0 | 0 | 0 | 2 | 2 | 3 | 0 | 0 | 3 | 2 |
 | Federal records | 3 | 2 | 0 | 2 | 0 | 0 | 0 | 2 | 2 | 0 | 2 | 0 | 3 | 2 | 2 | 1 | 2 | 0 | 1 |
 | M-26-05 (was M-22-18) | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 3 | 0 | 0 | 0 | 2 |
 | Evidence Act (was the Federal Data Strategy) | 0 | 3 | 2 | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 2 |
@@ -141,12 +141,18 @@ Each gap was closed in the books with endnoted text, checked against the primary
 
 ## Additions made, November 2, 2026
 
+Before these additions the Privacy Act and E-Government Act §208 row scored 0 in fourteen of the nineteen books, and no book treated privacy as a design obligation of identity work. Each addition below was checked against its primary source on November 2, 2026, and is logged in the chapter's verification file:
+
+- **Book 03, [Chapter 14 — Privacy for Workforce Identity](../books/b03-hr-identity/14-privacy-for-workforce-identity.md)**, a new chapter: which identity data is PII; whether the HR-to-directory flow is covered by an existing system-of-records notice, through the government-wide notices OPM/GOVT-1, General Personnel Records, and, for agencies on the shared PIV service, GSA/GOVT-7;[^pa-govt1] when a PIA is required under E-Government Act §208, M-03-22 and A-130, and which identity changes reopen it; minimization and purpose limits for directory attributes; routine uses and disclosures to SaaS and cloud providers under Privacy Act subsection (m) and A-108 §6.j; accounting of disclosures; correction through HR, not the directory; retention; the Senior Agency Official for Privacy; and the PT family. It ends with a checklist an engineer runs before adding an attribute or an integration. Book 03 already scored 3, and still does.
+- **The PT family is not in the Moderate baseline.** NIST's OSCAL Release 5.2.0 profiles show no PT control in the Moderate security baseline; PT-1 to PT-8 and five PT enhancements are in the privacy baseline, which SP 800-53B applies "irrespective of impact level." Of the privacy baseline's 96 controls and enhancements, 43 are also in the Moderate baseline.[^pa-53b] Book 14, Chapter 03 lists the PT controls in the privacy baseline as PT-1 to PT-5 and PT-7; the profile also includes PT-6 and PT-8. That sentence wasn't changed in this round.
+- **A short Privacy section**, each with a table of obligation, what the engineer does and who signs off, in the chapter of each book where identity data collects: [Book 04, Chapter 09](../books/b04-access/09-access-governance.md#privacy) (attributes read by access policies, review records, correction through HR); [Book 06, Chapter 04](../books/b06-data-platform/04-the-estate-inventory.md#privacy-in-the-inventory) (the inventory of systems that process PII, consolidation as a PIA and SORN trigger); [Book 12, Chapter 03](../books/b12-security-operations/03-identity-telemetry.md#privacy-identity-telemetry-is-pii) (sign-in logs are PII, purpose limits, AU-3(3)); [Book 13, Chapter 07](../books/b13-governance/07-evidence-over-attestation.md#privacy-evidence-contains-identifiers) (evidence stores contain identifiers, disclosure to assessors); [Book 17, Chapter 03](../books/b17-ai-identity/03-the-inventory-as-an-identity-source.md#privacy-ai-identities-and-the-inventory) (the inventory's PII and PIA fields as a gate for AI identities, M-25-21's impact assessment); and [Book 18, Chapter 04](../books/b18-application-modernization/04-moving-the-data.md#privacy-in-the-move) (a data move as a SORN and PIA event, test data and validation reports).
+- **Rescored.** The Privacy Act and §208 row rises from 0 to 2 for Books 04, 06 and 13; Book 12 stays at 2, now with actionable guidance in its telemetry chapter, and Books 17 and 18 keep 3 and 2. The A-130 row rises from 0 to 2 for Books 04, 06 and 12, which now apply its minimization principle and PII inventory. None of the new sections maps privacy to evidence in a requirements appendix, so none scores 3.
 - **Section 508.** Accessibility was cited across the books but thin where applications are built and bought. [Book 18, Chapter 06](../books/b18-application-modernization/06-compliance-by-design.md#section-508-gate) now sets an accessibility gate: the Revised 508 Standards and the WCAG version they incorporate; OMB M-24-08; a design, build, test, deploy and operate table with the evidence and the sign-off at each stage; automated testing plus manual testing with assistive technology; accessible sign-in, multifactor enrollment, password reset and recovery as Microsoft Learn documents them; forms and error messages; the vendor's Accessibility Conformance Report at procurement; and documented exceptions for undue burden, fundamental alteration and best meets. [Chapter 07](../books/b18-application-modernization/07-who-governs-the-architecture.md#four-gates) adds the accessibility evidence to Gates 2 to 4, so Book 18 scores 3. [Book 16, Chapter 09](../books/b16-people/09-building-and-running-the-curriculum.md#accessible-content) adds accessible training content (captions, transcripts, keyboard navigation, screen readers, documents and assessments) and says plainly what the workbook's own narrated videos and its deck accessibility check do and don't establish. Book 04 Chapter 09 adds a note on access-package request questions, and Book 15 Chapter 03 one on accessible verification and recovery at the help desk; neither changes those books' scores.
 - **The WCAG version was rechecked.** The Revised 508 Standards still incorporate WCAG 2.0 (December 11, 2008) at Level A and AA; neither the Access Board nor Section508.gov mentions an update to WCAG 2.1 or 2.2. The books treat WCAG 2.0 Level AA as the requirement and WCAG 2.2 as design guidance.[^s508-nov2]
 
 ## Every federal source the books cite
 
-The status table above covers the frameworks a modernization program is usually measured against. The books cite far more. A sweep of all 18 books on October 23, 2026 found **229 distinct federal instruments**: laws, regulations, executive orders, OMB memoranda and circulars, CISA directives and programs, NIST publications, FedRAMP rules, NARA schedules and other federal sources. They are listed below by category, with the books that cite each and its status as the books state it; each book checked its own citations against the primary source on the date it was built. Vendor documents, IETF RFCs and GAO reports are not listed.
+The status table above covers the frameworks a modernization program is usually measured against. The books cite far more. A sweep of all 18 books on October 23, 2026 found **229 distinct federal instruments** (230 with the NIST Privacy Framework, added November 2, 2026): laws, regulations, executive orders, OMB memoranda and circulars, CISA directives and programs, NIST publications, FedRAMP rules, NARA schedules and other federal sources. They are listed below by category, with the books that cite each and its status as the books state it; each book checked its own citations against the primary source on the date it was built. Vendor documents, IETF RFCs and GAO reports are not listed.
 
 The sweep also found and corrected five inconsistencies on October 23, 2026: Book 07 accepted FIPS 140-2 modules for new certificate authorities after the date NIST moved 140-2 certificates to its Historical List; Books 01, 06 and 09 described Azure's FedRAMP status in the pre-2026 "P-ATO" vocabulary without saying so; a Book 16 description cited the superseded 2003 SP 800-50; and two Book 09 notes cited the July 2025 TIC Program Guidebook after its September 2026 reissue.
 
@@ -180,7 +186,7 @@ The sweep also found and corrected five inconsistencies on October 23, 2026: Boo
 | Modernizing Government Technology Act (Pub. L. 115-91, §1078) | MGT Act; created the Technology Modernization Fund | Book 00 (Orientation & Program) | Cited as current |
 | NDAA for FY2021 (Pub. L. 116-283), §9401(g) | Amended the Workforce Assessment Act | Book 16 (People: Training & Education) | Cited as current |
 | OPEN Government Data Act (Evidence Act Title II) | Open, Public, Electronic and Necessary Government Data Act | Book 02 (Identity & Directory) | Cited as current |
-| Privacy Act of 1974 (5 U.S.C. §552a; Pub. L. 93-579) | Privacy Act | Book 03 (HR-Driven Identity); Book 12 (Security Operations & Telemetry); Book 14 (Federal Compliance & Authorization) | Cited as current |
+| Privacy Act of 1974 (5 U.S.C. §552a; Pub. L. 93-579) | Privacy Act | Book 03 (HR-Driven Identity); Book 04 (Access & Privilege); Book 12 (Security Operations & Telemetry); Book 13 (Governance, Drift & Evidence); Book 14 (Federal Compliance & Authorization) | Cited as current |
 | Section 508 of the Rehabilitation Act (29 U.S.C. §794d) | Accessibility of federal ICT | Book 00 (Orientation & Program); Book 04 (Access & Privilege); Book 15 (Compliance Automation & Day-2 Operations); Book 16 (People: Training & Education); Book 18 (Application Modernization) | Cited as current |
 | Social Security Number Fraud Prevention Act of 2017 (Pub. L. 115-59) | Limits SSNs on mailed documents | Book 14 (Federal Compliance & Authorization) | Cited as current |
 
@@ -234,7 +240,7 @@ The sweep also found and corrected five inconsistencies on October 23, 2026: Boo
 | Instrument | What it is | Books citing it | Status, as the books state it |
 |---|---|---|---|
 | 25-Point Implementation Plan to Reform Federal IT Management (2010), incl. 'Cloud First' | OMB IT reform plan | Book 01 (The Transformation Arc) | Cited as history |
-| M-03-22 | Privacy provisions of the E-Government Act (PIAs, web privacy policies) | Book 03 (HR-Driven Identity); Book 14 (Federal Compliance & Authorization) | Tracking rules (§III(D)(2)(v)) rescinded by M-10-22; rest cited as in force |
+| M-03-22 | Privacy provisions of the E-Government Act (PIAs, web privacy policies) | Book 03 (HR-Driven Identity); Book 06 (Data Platform: SQL Server Identity); Book 14 (Federal Compliance & Authorization); Book 17 (AI Identity Governance); Book 18 (Application Modernization) | Tracking rules (§III(D)(2)(v)) rescinded by M-10-22; rest cited as in force |
 | M-08-05 | Implementation of Trusted Internet Connections | Book 09 (Network & Transport) | Rescinded by M-19-26 |
 | M-08-16 | TIC guidance | Book 09 (Network & Transport) | Rescinded by M-19-26 |
 | M-08-23 | Securing the federal government's DNS infrastructure (DNSSEC) | Book 08 (DNS, DHCP & IPAM) | Cited as current |
@@ -276,9 +282,9 @@ The sweep also found and corrected five inconsistencies on October 23, 2026: Boo
 
 | Instrument | What it is | Books citing it | Status, as the books state it |
 |---|---|---|---|
-| Circular A-108 | Privacy Act review, reporting and publication (SORNs, matching notices) | Book 03 (HR-Driven Identity); Book 14 (Federal Compliance & Authorization) | Cited as current |
+| Circular A-108 | Privacy Act review, reporting and publication (SORNs, matching notices) | Book 03 (HR-Driven Identity); Book 06 (Data Platform: SQL Server Identity); Book 13 (Governance, Drift & Evidence); Book 14 (Federal Compliance & Authorization); Book 18 (Application Modernization) | Cited as current |
 | Circular A-11 (2025), incl. §51, §55 and the Capital Programming Guide v3.0 | Preparation, submission and execution of the budget | Book 00 (Orientation & Program); Book 09 (Network & Transport) | 2025 edition has no Exhibit 300 or Section 300 |
-| Circular A-130 (2016) | Managing information as a strategic resource | Book 00 (Orientation & Program); Book 03 (HR-Driven Identity); Book 10 (Cloud Boundary & Landing Zone); Book 13 (Governance, Drift & Evidence); Book 14 (Federal Compliance & Authorization); Book 16 (People: Training & Education); Book 17 (AI Identity Governance) | Cited as current |
+| Circular A-130 (2016) | Managing information as a strategic resource | Book 00 (Orientation & Program); Book 03 (HR-Driven Identity); Book 04 (Access & Privilege); Book 06 (Data Platform: SQL Server Identity); Book 10 (Cloud Boundary & Landing Zone); Book 12 (Security Operations & Telemetry); Book 13 (Governance, Drift & Evidence); Book 14 (Federal Compliance & Authorization); Book 16 (People: Training & Education); Book 17 (AI Identity Governance) | Cited as current |
 
 :::
 
@@ -325,7 +331,7 @@ The sweep also found and corrected five inconsistencies on October 23, 2026: Boo
 :::
 
 ::: {.callout-note collapse="true"}
-## NIST (52)
+## NIST (53)
 
 | Instrument | What it is | Books citing it | Status, as the books state it |
 |---|---|---|---|
@@ -344,6 +350,7 @@ The sweep also found and corrected five inconsistencies on October 23, 2026: Boo
 | NIST National Checklist Program | Configuration checklist repository (SP 800-70) | Book 12 (Security Operations & Telemetry) | Cited as current; SP 800-70 Rev. 5 (May 2026) superseded Rev. 4[^ncp] |
 | NIST National Vulnerability Database | NVD | Book 11 (Zero Trust & Assessment); Book 14 (Federal Compliance & Authorization) | Cited as current |
 | NIST OSCAL | Open Security Controls Assessment Language | All 18 books | Cited as current |
+| NIST Privacy Framework 1.0 | Privacy risk management (voluntary) | Book 03 (HR-Driven Identity) | Version 1.0 (Jan 2020) current; Version 1.1 is an initial public draft |
 | SP 1800-35 | Implementing a Zero Trust Architecture | Book 09 (Network & Transport); Book 11 (Zero Trust & Assessment) | Cited as current |
 | SP 800-120 | EAP methods for wireless authentication | Book 09 (Network & Transport) | Withdrawn Oct 19, 2018 |
 | SP 800-128 | Security-focused configuration management | Book 13 (Governance, Drift & Evidence); Book 15 (Compliance Automation & Day-2 Operations); Book 16 (People: Training & Education) | Cited as current |
@@ -420,7 +427,7 @@ The sweep also found and corrected five inconsistencies on October 23, 2026: Boo
 | Instrument | What it is | Books citing it | Status, as the books state it |
 |---|---|---|---|
 | GRS 3.1 | General Technology Management Records | Book 00 (Orientation & Program); Book 08 (DNS, DHCP & IPAM); Book 13 (Governance, Drift & Evidence) | Cited as current |
-| GRS 3.2 | Information Systems Security Records | Book 00 (Orientation & Program); Book 01 (The Transformation Arc); Book 03 (HR-Driven Identity); Book 07 (PKI & Certificates); Book 08 (DNS, DHCP & IPAM); Book 12 (Security Operations & Telemetry); Book 13 (Governance, Drift & Evidence) | Items 035-036 under revision (Transmittal 38) after M-21-31's rescission |
+| GRS 3.2 | Information Systems Security Records | Book 00 (Orientation & Program); Book 01 (The Transformation Arc); Book 03 (HR-Driven Identity); Book 04 (Access & Privilege); Book 07 (PKI & Certificates); Book 08 (DNS, DHCP & IPAM); Book 12 (Security Operations & Telemetry); Book 13 (Governance, Drift & Evidence) | Items 035-036 under revision (Transmittal 38) after M-21-31's rescission |
 | NARA CUI Registry | CUI categories | Book 12 (Security Operations & Telemetry) | Cited as current |
 | NARA General Records Schedules (generic) | GRS, unspecified | Book 00 (Orientation & Program); Book 12 (Security Operations & Telemetry); Book 14 (Federal Compliance & Authorization) | Cited as current |
 
@@ -486,4 +493,6 @@ The 0-to-3 depth would be derived rather than typed by hand: 3 where a requireme
 [^cis]: Center for Internet Security, "CIS Benchmarks" (prescriptive configuration recommendations for more than 25 vendor product families), <https://www.cisecurity.org/cis-benchmarks> (accessed Oct 29, 2026).
 [^ncp]: National Institute of Standards and Technology, SP 800-70 Rev. 5, *National Checklist Program for IT Products: Guidelines for Checklist Users and Developers*, May 2026, <https://csrc.nist.gov/pubs/sp/800/70/r5/final>; and NIST, "National Checklist Program," <https://csrc.nist.gov/projects/national-checklist-program> (repository at <https://ncp.nist.gov/>) (accessed Oct 29, 2026).
 [^also]: NIST SP 800-53 Rev. 5, <https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final>; FedRAMP, <https://www.fedramp.gov/>, and 44 U.S.C. §3607, <https://www.govinfo.gov/content/pkg/USCODE-2023-title44/html/USCODE-2023-title44-chap36-sec3607.htm>; OMB M-26-14, May 22, 2026, <https://www.whitehouse.gov/wp-content/uploads/2026/05/M-26-14-Ensuring-Effective-and-Efficient-Agency-Logging-and-Network-Visibility-to-Defend-Against-Evolving-Cyber-Threats.pdf>; CISA, Zero Trust Maturity Model, <https://www.cisa.gov/zero-trust-maturity-model>; NIST FIPS 201-3, <https://csrc.nist.gov/pubs/fips/201-3/final> (all accessed Oct 23, 2026).
+[^pa-govt1]: Office of Personnel Management, OPM/GOVT-1, General Personnel Records, *Federal Register* 77 FR 73694 (December 11, 2012), <https://www.govinfo.gov/content/pkg/FR-2012-12-11/html/2012-29777.htm>, as modified by 88 FR 56058 (August 17, 2023), <https://www.govinfo.gov/content/pkg/FR-2023-08-17/html/2023-17651.htm>, and 91 FR 25937 (May 12, 2026), <https://www.govinfo.gov/content/pkg/FR-2026-05-12/html/2026-09339.htm>; General Services Administration, GSA/GOVT-7, HSPD-12 USAccess, 80 FR 64416 (October 23, 2015), <https://www.govinfo.gov/content/pkg/FR-2015-10-23/html/2015-26940.htm> (all accessed Nov 2, 2026).
+[^pa-53b]: National Institute of Standards and Technology, SP 800-53B, *Control Baselines for Information Systems and Organizations*, abstract and the Release 5.2.0 note of August 27, 2025, <https://csrc.nist.gov/pubs/sp/800/53/b/upd1/final>; OSCAL Release 5.2.0 profiles `NIST_SP-800-53_rev5_MODERATE-baseline_profile.json` and `NIST_SP-800-53_rev5_PRIVACY-baseline_profile.json`, <https://github.com/usnistgov/oscal-content/tree/main/nist.gov/SP800-53/rev5/json> (accessed Nov 2, 2026).
 [^s508-nov2]: U.S. Access Board, Revised 508 Standards, Appendix A to 36 CFR part 1194, E205.4, E207.2 and 702.10.1, <https://www.access-board.gov/ict/>; Section508.gov, "Applicability & Conformance Requirements," <https://www.section508.gov/develop/applicability-conformance/>, and "Laws and Policies," <https://www.section508.gov/manage/laws-and-policies/>; Office of Management and Budget, Memoranda, <https://www.whitehouse.gov/omb/information-resources/guidance/memoranda/> (all accessed Nov 2, 2026).

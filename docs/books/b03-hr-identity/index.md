@@ -1,7 +1,7 @@
 ---
 title: "Book 03 — HR-Driven Identity"
 subtitle: "HR-Driven Identity Modernization — an enterprise data architecture case study: using Federal HR 2.0 and the Entra ID migration to start HR-driven Entra ID, Active Directory and ICAM on OPM standard attributes"
-description: "Book 03 of the Federal Modernization Workbook, one book for HR-driven identity modernization in a federal civilian agency: the modernization outcomes, why the HR system of record is the source of authority, the Federal HR 2.0 program, attribute authority, provisioning services, the canonical workforce identity model, joiner-mover-leaver with Lifecycle Workflows, credentials and certificates, attribute-derived access, drift and evidence, the phased execution plan, and an illustrative reference deployment."
+description: "Book 03 of the Federal Modernization Workbook, one book for HR-driven identity modernization in a federal civilian agency: the modernization outcomes, why the HR system of record is the source of authority, the Federal HR 2.0 program, attribute authority, provisioning services, the canonical workforce identity model, joiner-mover-leaver with Lifecycle Workflows, credentials and certificates, attribute-derived access, drift and evidence, the phased execution plan, an illustrative reference deployment, and privacy for workforce identity."
 doc-type: section-landing
 audience: [Executive, Technical, Customer]
 family: b03-hr-identity
@@ -25,14 +25,14 @@ lifecycle_review: 2027-04-01
 
 ::: {.callout-important appearance="default"}
 ## Status — draft book
-This book is the former HR-Driven Identity series, which had already consolidated nine separate pages. It now reads Why / What / Who / How, with a new chapter on who owns workforce identity. Every external claim was checked against a primary source on October 20, 2026 and carries a footnote. The previous pages are kept in the repository's [`archive/b03-hr-identity/`](https://github.com/WhalerMike/modernization-workbook/tree/main/archive/b03-hr-identity) folder, and their old addresses forward here. Federal HR 2.0 program facts change; check them at engagement time.
+This book is the former HR-Driven Identity series, which had already consolidated nine separate pages. It now reads Why / What / Who / How, with a new chapter on who owns workforce identity. Every external claim was checked against a primary source on October 20, 2026 and carries a footnote. The previous pages are kept in the repository's [`archive/b03-hr-identity/`](https://github.com/WhalerMike/modernization-workbook/tree/main/archive/b03-hr-identity) folder, and their old addresses forward here. Federal HR 2.0 program facts change; check them at engagement time. Chapter 14, Privacy for Workforce Identity, was added on November 2, 2026 and checked against its primary sources that day.
 :::
 
 ::: {.callout-tip}
 ## Download and present
 **[b03-hr-identity-bundle.docx](../../../downloads/b03-hr-identity-bundle.docx)**: the whole book as one Word document, regenerated on every site deploy. The old `hr-driven-iam-*.docx` file names still work.
 
-One chapter at a time: [01](../../../downloads/b03-hr-identity-01.docx) · [02](../../../downloads/b03-hr-identity-02.docx) · [03](../../../downloads/b03-hr-identity-03.docx) · [04](../../../downloads/b03-hr-identity-04.docx) · [05](../../../downloads/b03-hr-identity-05.docx) · [06](../../../downloads/b03-hr-identity-06.docx) · [07](../../../downloads/b03-hr-identity-07.docx) · [08](../../../downloads/b03-hr-identity-08.docx) · [09](../../../downloads/b03-hr-identity-09.docx) · [10](../../../downloads/b03-hr-identity-10.docx) · [11](../../../downloads/b03-hr-identity-11.docx) · [12](../../../downloads/b03-hr-identity-12.docx) · [13](../../../downloads/b03-hr-identity-13.docx)
+One chapter at a time: [01](../../../downloads/b03-hr-identity-01.docx) · [02](../../../downloads/b03-hr-identity-02.docx) · [03](../../../downloads/b03-hr-identity-03.docx) · [04](../../../downloads/b03-hr-identity-04.docx) · [05](../../../downloads/b03-hr-identity-05.docx) · [06](../../../downloads/b03-hr-identity-06.docx) · [07](../../../downloads/b03-hr-identity-07.docx) · [08](../../../downloads/b03-hr-identity-08.docx) · [09](../../../downloads/b03-hr-identity-09.docx) · [10](../../../downloads/b03-hr-identity-10.docx) · [11](../../../downloads/b03-hr-identity-11.docx) · [12](../../../downloads/b03-hr-identity-12.docx) · [13](../../../downloads/b03-hr-identity-13.docx) · [14](../../../downloads/b03-hr-identity-14.docx)
 
 **15-minute presentation (about 12 minutes narrated)**: the Why / What / Who / How deck and its narrated, self-running edition are on the [Presentations](../../presentations/index.md#book-03) page.
 
@@ -87,7 +87,7 @@ The goal across all four is set out in the guide's [What this migration accompli
 | **Why** | Why should HR, not IT, decide who exists, and why now? | [01](01-overview-and-applicability.md), [02](02-why-hr-is-the-source-of-authority.md), [03](03-federal-hr-2-0.md) |
 | **What** | What data, owned by whom, flowing how? | [04](04-attribute-authority.md), [05](05-the-provisioning-pipeline.md), [06](06-canonical-attribute-schema.md) |
 | **Who** | Who owns, uses and guards workforce identity data | [07](07-who-owns-workforce-identity.md) |
-| **How** | Lifecycle, credentials, access, evidence, the plan and a reference deployment | [08](08-joiner-mover-leaver.md), [09](09-credentials-and-certificates.md), [10](10-from-attributes-to-access.md), [11](11-drift-metrics-and-evidence.md), [12](12-execution-plan.md), [13](13-reference-deployment.md) |
+| **How** | Lifecycle, credentials, access, evidence, the plan, a reference deployment, and privacy | [08](08-joiner-mover-leaver.md), [09](09-credentials-and-certificates.md), [10](10-from-attributes-to-access.md), [11](11-drift-metrics-and-evidence.md), [12](12-execution-plan.md), [13](13-reference-deployment.md), [14](14-privacy-for-workforce-identity.md) |
 
 Appendices: [A — Lifecycle rules](appendix-a-lifecycle-rules.md) · [B — Security and privacy assessment](appendix-b-security-and-privacy.md) · [C — Acceptance and cutover](appendix-c-acceptance-and-cutover.md)
 

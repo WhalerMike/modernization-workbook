@@ -88,3 +88,16 @@ Checked October 21, 2026 by writer W2. Source: `docs/operational-guides/siem-tel
 | Sentinel data connector | Verify emission, final paragraph | Carried in part; no-duplication and EPS claims removed; link to Vol III Book 06 on GitHub |
 | What this page does not cover | What this chapter doesn't cover | Carried; links to Ch04, Book 04, Book 10; B.1.3 reference removed |
 | (new) Retention | Retention: what the logging baseline asks for | Added from M-26-14 and Log Analytics retention pages, replacing the source's forward reference to a crosswalk page |
+
+## Privacy section, November 2, 2026
+
+A short "Privacy: identity telemetry is PII" section was added (additive; no existing text changed). Every source was opened on November 2, 2026. SP 800-53 control titles and privacy-baseline membership were read from NIST's OSCAL Release 5.2.0 catalog and privacy baseline profile; the SP 800-53B abstract states the privacy baseline applies irrespective of impact level. The "Who signs off" column and every "program's design" sentence are design guidance, not external fact. The fuller treatment is Book 03, Chapter 14, whose verification file logs the same sources in more detail.
+
+| # | Claim (short) | Verdict | Source |
+|---|---|---|---|
+| 1 | Sign-in logs carry user, username, user ID, application, resource, IP address and location, device browser, OS and compliance state | verified | Microsoft Learn, Learn about the sign-in log activity details |
+| 2 | A-130 definition of PII | verified | A-130 §10, definition 57 |
+| 3 | M-26-14 doesn't address privacy | verified (full-text search of the eight-page PDF for privacy and personally identifiable found no match) | OMB M-26-14, May 22, 2026 |
+| 4 | System of records: retrieved by name or identifier | verified | 5 U.S.C. §552a(a)(5) |
+| 5 | AU-3(3), PT-3, SI-12 titles; privacy baseline | verified | OSCAL catalog and privacy profile 5.2.0 |
+| 6 | Logs are for security monitoring; productivity use is a new purpose; obligations table | restated-as-design | - |
