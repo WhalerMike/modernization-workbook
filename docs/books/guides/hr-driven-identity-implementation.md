@@ -151,13 +151,15 @@ A rule that reads an attribute hands the access decision to whoever can write it
 
 **Federal requirements and evidence.**
 
-| Requirement | What the ISSO keeps |
-|---|---|
-| NIST SP 800-53 AC-2 (account types, conditions of membership, account managers) and IA-4 (identifier management), both in the Moderate baseline[^hri-nist-mod] | The signed register with the lifecycle rows; the scope filter, versioned |
-| AU-6 (audit record review) for writes outside the named writer | The saved audit queries and the AD auditing settings |
-| The privacy basis for the feed (Privacy Act; the agency's SORNs and PIA) | The privacy office's determination for each flow ([Book 03, Appendix B](../b03-hr-identity/appendix-b-security-and-privacy.md#the-privacy-basis)) |
+| Requirement | KSI | What the ISSO keeps |
+|---|---|---|
+| NIST SP 800-53 AC-2 (account types, conditions of membership, account managers) and IA-4 (identifier management), both in the Moderate baseline[^hri-nist-mod] | KSI-IAM-ELP, KSI-IAM-JIT | The signed register with the lifecycle rows; the scope filter, versioned |
+| AU-6 (audit record review) for writes outside the named writer | KSI-MLA-RVL | The saved audit queries and the AD auditing settings |
+| The privacy basis for the feed (Privacy Act; the agency's SORNs and PIA) | None | The privacy office's determination for each flow ([Book 03, Appendix B](../b03-hr-identity/appendix-b-security-and-privacy.md#the-privacy-basis)) |
 
 : Gate 1 requirements and evidence. The control mapping is Book 03's ([Chapter 11](../b03-hr-identity/11-drift-metrics-and-evidence.md#control-support-nist-sp-800-53-rev.-5)) {.striped .hover}
+
+The KSI column in each gate's table names the FedRAMP 20x Key Security Indicators whose related SP 800-53 controls include the row's control.[^hri-ksi] KSIs are indicators for cloud service providers: the agency authorizes its own system and lines its evidence up with what its providers report against them, and it doesn't report KSIs itself ([Book 00, Appendix B](../b00-orientation/appendix-b-engagement-archetype.md)). Which record supports which indicator is the program's mapping *(design guidance)*.
 
 **Government-cloud availability.** User and group management, dynamic groups and directory synchronization (Connect Sync and cloud sync): commercial service in GCC; available in Azure Government for GCC High.[^hri-feat]
 
@@ -202,12 +204,13 @@ Employees come from HR through the pipeline. Contractors aren't in Federal HR 2.
 
 **Federal requirements and evidence.**
 
-| Requirement | What the ISSO keeps |
-|---|---|
-| AC-2 and PS-7 (external personnel security), in the Moderate baseline[^hri-nist-mod] | The contractor source decision record; the read-only reconciliation report; end-date-to-block intervals for contractors ([Book 03, Chapter 11](../b03-hr-identity/11-drift-metrics-and-evidence.md#control-support-nist-sp-800-53-rev.-5)) |
-| IA-4(4) (identify each individual by status, such as contractor) | The worker type code on every account, from the source record |
-| OMB M-22-09: enterprise identity draws on HR, contract management and personnel security[^hri-m2209]; OMB M-19-17 for the agency's ICAM governance ([contractor evaluation, decisions](../../evaluations/oracle-contingent-worker-contractor-source.md#decisions-and-owners)) | The authority-per-fact table, signed by the governance body |
-| The Privacy Act basis for each contractor record flow | The privacy office's determination for the register and the card system ([Book 03, Chapter 06](../b03-hr-identity/06-canonical-attribute-schema.md#before-a-register-becomes-an-authority)) |
+| Requirement | KSI | What the ISSO keeps |
+|---|---|---|
+| AC-2 and PS-7 (external personnel security), in the Moderate baseline[^hri-nist-mod] | KSI-IAM-JIT (AC-2); KSI-SCR-MON (PS-7) | The contractor source decision record; the read-only reconciliation report; end-date-to-block intervals for contractors ([Book 03, Chapter 11](../b03-hr-identity/11-drift-metrics-and-evidence.md#control-support-nist-sp-800-53-rev.-5)) |
+| IA-4(4) (identify each individual by status, such as contractor) | KSI-IAM-AAM, KSI-IAM-ELP, KSI-IAM-JIT | The worker type code on every account, from the source record |
+| OMB M-22-09: enterprise identity draws on HR, contract management and personnel security[^hri-m2209]; OMB M-19-17 for the agency's ICAM governance ([contractor evaluation, decisions](../../evaluations/oracle-contingent-worker-contractor-source.md#decisions-and-owners)) | None | The authority-per-fact table, signed by the governance body |
+| The Privacy Act basis for each contractor record flow | None | The privacy office's determination for the register and the card system ([Book 03, Chapter 06](../b03-hr-identity/06-canonical-attribute-schema.md#before-a-register-becomes-an-authority)) |
+| SA-9 (external system services): FedRAMP use of the HR platform's cloud service, which runs on Oracle Cloud Infrastructure; Moderate[^hri-ksi-sa9] | KSI-SCR-MIT, KSI-SCR-MON, which the provider reports | The FedRAMP authorization the agency relies on for the HR platform ([HR 2.0 governance explainer](../explainers/hr2-shared-governance-fedramp-boundary.md#oracles-hr-platform-today)); the agency's own system holds the feed |
 
 : Gate 2 requirements and evidence {.striped .hover}
 
@@ -252,11 +255,11 @@ The account exists, disabled, before day one, because the pipeline sent it early
 
 **Federal requirements and evidence.**
 
-| Requirement | What the ISSO keeps |
-|---|---|
-| AC-2(1) (automated system account management), Moderate baseline[^hri-nist-mod] | Workflow definitions and versions; run history exported past Entra's 30-day view ([Book 03, Chapter 11](../b03-hr-identity/11-drift-metrics-and-evidence.md#the-evidence-each-event-leaves)) |
-| IA-5 (authenticator management): the initial authenticator is time-limited and goes to an accountable person | The TAP policy export (lifetime, one-time use) and the task's arguments |
-| OMB M-22-09: phishing-resistant MFA for agency staff, contractors and partners[^hri-m2209] | The bridge ends when the card is bound (Gate 5); accounts still on a pass past the agreed window are a finding |
+| Requirement | KSI | What the ISSO keeps |
+|---|---|---|
+| AC-2(1) (automated system account management), Moderate baseline[^hri-nist-mod] | KSI-IAM-JIT | Workflow definitions and versions; run history exported past Entra's 30-day view ([Book 03, Chapter 11](../b03-hr-identity/11-drift-metrics-and-evidence.md#the-evidence-each-event-leaves)) |
+| IA-5 (authenticator management): the initial authenticator is time-limited and goes to an accountable person | KSI-IAM-APM | The TAP policy export (lifetime, one-time use) and the task's arguments |
+| OMB M-22-09: phishing-resistant MFA for agency staff, contractors and partners[^hri-m2209] | KSI-IAM-APM, as [Book 02, Chapter 10](../b02-identity/10-migrating-and-governing.md) maps it | The bridge ends when the card is bound (Gate 5); accounts still on a pass past the agreed window are a finding |
 
 : Gate 3 requirements and evidence {.striped .hover}
 
@@ -303,12 +306,12 @@ Dynamic groups carry rule-decided access ([ADM Gate 4](attribute-driven-migratio
 
 **Federal requirements and evidence.**
 
-| Requirement | What the ISSO keeps |
-|---|---|
-| AC-2 (authorize access on organization-defined attributes), AC-6 (least privilege), AC-5 (separation of duties), Moderate baseline[^hri-nist-mod] | Assignment policy exports with their rules; the separation-of-duties settings ([Book 04, Chapter 09](../b04-access/09-access-governance.md#separation-of-duties)) |
-| PS-5 (personnel transfer) | Transfer-to-review intervals; the residual-review decisions |
-| AC-2 account review | Access review results, exported before the 30-day history window closes ([Book 04, Chapter 09](../b04-access/09-access-governance.md#how-the-program-evidences-reviews)) |
-| CISA SCuBA MS.AAD.7.5v1: highly privileged roles provisioned only through a privileged access management system (BOD 25-01 required)[^hri-bod] | PIM eligibility through packages; no standing role from a rule |
+| Requirement | KSI | What the ISSO keeps |
+|---|---|---|
+| AC-2 (authorize access on organization-defined attributes), AC-6 (least privilege), AC-5 (separation of duties), Moderate baseline[^hri-nist-mod] | KSI-IAM-JIT (AC-2, AC-5, AC-6); KSI-IAM-ELP (AC-6) | Assignment policy exports with their rules; the separation-of-duties settings ([Book 04, Chapter 09](../b04-access/09-access-governance.md#separation-of-duties)) |
+| PS-5 (personnel transfer) | KSI-IAM-ELP, KSI-IAM-JIT | Transfer-to-review intervals; the residual-review decisions |
+| AC-2 account review | KSI-IAM-JIT | Access review results, exported before the 30-day history window closes ([Book 04, Chapter 09](../b04-access/09-access-governance.md#how-the-program-evidences-reviews)) |
+| CISA SCuBA MS.AAD.7.5v1: highly privileged roles provisioned only through a privileged access management system (BOD 25-01 required)[^hri-bod] | KSI-IAM-JIT, as [Book 04, Chapter 10](../b04-access/10-access-as-code-and-evidence.md) maps PIM | PIM eligibility through packages; no standing role from a rule |
 
 : Gate 4 requirements and evidence {.striped .hover}
 
@@ -353,12 +356,12 @@ A PIV card without the binding to the account is a badge. The binding identifies
 
 **Federal requirements and evidence.**
 
-| Requirement | What the ISSO keeps |
-|---|---|
-| IA-2(12) (acceptance of PIV credentials) and IA-5(2) (public key-based authentication), Moderate baseline[^hri-nist-mod] | The CBA configuration export: trusted CAs, CRL settings, binding rules, required affinity |
-| CISA SCuBA MS.AAD.3.1v1 (phishing-resistant MFA for all users) and MS.AAD.3.6v1 (for highly privileged roles), BOD 25-01 required[^hri-bod] | The ScubaGear report; the authentication strength policy |
-| FIPS 201-3: issuance only after a proper authority authorizes it; termination and reissuance rules ([Book 03, Chapter 09](../b03-hr-identity/09-credentials-and-certificates.md#the-canonical-leaver-sequence)) | The card system's issuance and revocation records, joined to the HR or contractor event |
-| NIST SP 800-63-4 (proofing and authentication assurance) | Proofing level and authenticator assurance as attributes, per person |
+| Requirement | KSI | What the ISSO keeps |
+|---|---|---|
+| IA-2(12) (acceptance of PIV credentials) and IA-5(2) (public key-based authentication), Moderate baseline[^hri-nist-mod] | None lists IA-2(12); KSI-IAM-APM, KSI-IAM-ELP, KSI-SVC-ASM (IA-5(2)) | The CBA configuration export: trusted CAs, CRL settings, binding rules, required affinity |
+| CISA SCuBA MS.AAD.3.1v1 (phishing-resistant MFA for all users) and MS.AAD.3.6v1 (for highly privileged roles), BOD 25-01 required[^hri-bod] | KSI-IAM-APM, as [Book 04, Chapter 10](../b04-access/10-access-as-code-and-evidence.md) maps it | The ScubaGear report; the authentication strength policy |
+| FIPS 201-3: issuance only after a proper authority authorizes it; termination and reissuance rules ([Book 03, Chapter 09](../b03-hr-identity/09-credentials-and-certificates.md#the-canonical-leaver-sequence)) | None | The card system's issuance and revocation records, joined to the HR or contractor event |
+| NIST SP 800-63-4 (proofing and authentication assurance) | None | Proofing level and authenticator assurance as attributes, per person |
 
 : Gate 5 requirements and evidence {.striped .hover}
 
@@ -406,12 +409,12 @@ The leaver blocks first, then revokes credentials, devices and access in paralle
 
 **Federal requirements and evidence.**
 
-| Requirement | What the ISSO keeps |
-|---|---|
-| PS-4 (personnel termination): access disabled within the organization-defined period, authenticators revoked; AC-2(3) (disable accounts); both Moderate[^hri-nist-mod] | Separation-to-block and separation-to-revocation intervals per leaver; the workflow run, the Intune action records, the card system's revocation record and the CRL that published it ([Book 03, Chapter 09](../b03-hr-identity/09-credentials-and-certificates.md#what-the-evidence-must-show)) |
-| PS-7 for contractors | End-date-to-block intervals |
-| FIPS 201-3: a card that can't be collected is terminated within 18 hours of notification ([Book 03, Chapter 09](../b03-hr-identity/09-credentials-and-certificates.md#the-canonical-leaver-sequence)) | The notice timestamp and the revocation timestamp |
-| AC-2(13) (disable accounts for high-risk individuals), Moderate[^hri-nist-mod] | The emergency path's runs, logged as changes, with the out-of-band actions |
+| Requirement | KSI | What the ISSO keeps |
+|---|---|---|
+| PS-4 (personnel termination): access disabled within the organization-defined period, authenticators revoked; AC-2(3) (disable accounts); both Moderate[^hri-nist-mod] | KSI-IAM-ELP (PS-4); KSI-IAM-AAM (AC-2(3)); KSI-IAM-JIT, KSI-IAM-SUS (both) | Separation-to-block and separation-to-revocation intervals per leaver; the workflow run, the Intune action records, the card system's revocation record and the CRL that published it ([Book 03, Chapter 09](../b03-hr-identity/09-credentials-and-certificates.md#what-the-evidence-must-show)) |
+| PS-7 for contractors | KSI-SCR-MON | End-date-to-block intervals |
+| FIPS 201-3: a card that can't be collected is terminated within 18 hours of notification ([Book 03, Chapter 09](../b03-hr-identity/09-credentials-and-certificates.md#the-canonical-leaver-sequence)) | None | The notice timestamp and the revocation timestamp |
+| AC-2(13) (disable accounts for high-risk individuals), Moderate[^hri-nist-mod] | KSI-IAM-AAM, KSI-IAM-SUS | The emergency path's runs, logged as changes, with the out-of-band actions |
 
 : Gate 6 requirements and evidence {.striped .hover}
 
@@ -455,11 +458,11 @@ Attribute drift is ADM Gate 9's. This gate adds the lifecycle classes, the metri
 
 **Federal requirements and evidence.**
 
-| Requirement | What the ISSO keeps |
-|---|---|
-| CA-7 (continuous monitoring: system-level metrics), Moderate[^hri-nist-mod] | The six metrics per reporting period, with thresholds |
-| AU-6 and AU-11 (review and retention of audit records), SI-12 | The log export configuration; findings with closure at the source; retention set to the records schedule |
-| BOD 25-01 continuous reporting ([Book 02, Appendix A](../b02-identity/appendix-a-federal-requirements-crosswalk.md#cisa-bod-25-01-and-the-scuba-baselines)) | ScubaGear results for the identity policies in Gates 4 and 5 |
+| Requirement | KSI | What the ISSO keeps |
+|---|---|---|
+| CA-7 (continuous monitoring: system-level metrics), Moderate[^hri-nist-mod] | KSI-MLA-EVC | The six metrics per reporting period, with thresholds |
+| AU-6 and AU-11 (review and retention of audit records), SI-12 | KSI-MLA-RVL (AU-6); KSI-MLA-OSM (AU-11); none lists SI-12 | The log export configuration; findings with closure at the source; retention set to the records schedule |
+| BOD 25-01 continuous reporting ([Book 02, Appendix A](../b02-identity/appendix-a-federal-requirements-crosswalk.md#cisa-bod-25-01-and-the-scuba-baselines)) | None | ScubaGear results for the identity policies in Gates 4 and 5 |
 
 : Gate 7 requirements and evidence {.striped .hover}
 
@@ -588,3 +591,5 @@ Book 03's [control support table](../b03-hr-identity/11-drift-metrics-and-eviden
 [^hri-m2209]: Office of Management and Budget, M-22-09, *Moving the U.S. Government Toward Zero Trust Cybersecurity Principles*, January 26, 2022, section A, Identity (actions: centralized identity management; phishing-resistant MFA for agency staff, contractors and partners; enterprise identity systems draw on human resources, contract management and personnel security systems), pages 5 and 6, <https://www.whitehouse.gov/wp-content/uploads/2022/01/M-22-09.pdf> (read November 1, 2026).
 [^hri-bod]: Cybersecurity and Infrastructure Security Agency, "BOD 25-01: Implementing Secure Practices for Cloud Services Required Configurations," Microsoft Entra ID policies MS.AAD.3.1v1, MS.AAD.3.6v1 and MS.AAD.7.5v1, <https://www.cisa.gov/resources-tools/services/bod-25-01-implementing-secure-practices-cloud-services-required-configurations> (read November 1, 2026).
 [^hri-nist-mod]: National Institute of Standards and Technology, SP 800-53B Moderate baseline, OSCAL profile (AC-2, AC-2(1), AC-2(3), AC-2(13), AC-5, AC-6, AU-6, AU-11, CA-7, IA-2(12), IA-4, IA-4(4), IA-5(2), PS-4, PS-5, PS-7 and SI-12 all included), <https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_MODERATE-baseline_profile.json> (read November 1, 2026). Control text: SP 800-53 Rev. 5, <https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final>, as checked for [Book 03, Chapter 11](../b03-hr-identity/11-drift-metrics-and-evidence.md#control-support-nist-sp-800-53-rev.-5).
+[^hri-ksi]: FedRAMP, "Key Security Indicators," *FedRAMP Consolidated Rules for 2026*, indicator titles and "Related SP 800-53 Controls," including the mapping updates of October 13, 2026, <https://www.fedramp.gov/2026/reference/key-security-indicators/> (read November 2, 2026; the indicator IDs are carried from Book 13, Appendix A and Book 14, Chapter 03).
+[^hri-ksi-sa9]: SA-9 in the Moderate baseline, with KSI-SCR-MIT and KSI-SCR-MON: [Book 13, Appendix A](../b13-governance/appendix-a-requirements-mapping.md) and [Book 14, Appendix A](../b14-compliance/appendix-a-control-crosswalk.md), each carrying FedRAMP's control and indicator pages (accessed Oct 21, 2026).

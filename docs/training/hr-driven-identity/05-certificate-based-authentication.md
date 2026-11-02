@@ -23,6 +23,15 @@ In this module you measure each CRL and check the tenant's certificate-based aut
 
 **The federal requirement.** This gate meets NIST SP 800-53 IA-2(12) (acceptance of PIV credentials) and IA-5(2) (public key-based authentication), CISA SCuBA MS.AAD.3.1v1 and MS.AAD.3.6v1 (phishing-resistant MFA, required under BOD 25-01), FIPS 201-3's issuance and termination rules, and NIST SP 800-63-4. The requirements and evidence are in the [Gate 5 requirements table](../../books/guides/hr-driven-identity-implementation.md#step-5-bind-credentials-to-hr-events) (under **Federal requirements and evidence** in Step 5) and the workbook chapter's [Federal requirements and evidence](../../project-plans/developer-workbooks/hr-driven-identity/05-certificate-based-authentication-checks.md#federal-requirements-and-evidence).
 
+| Requirement | KSI | Evidence |
+|---|---|---|
+| IA-2(12) and IA-5(2) | None lists IA-2(12); KSI-IAM-APM, KSI-IAM-ELP, KSI-SVC-ASM (IA-5(2)) | The `cba-read` export, `crl-measurements.csv`, and the check's `findings.json` and `manifest.json` |
+| SC-17, trusted CAs | KSI-SVC-ASM | The check's CB-11 and CB-12 rows |
+| SCuBA MS.AAD.3.1v1 and MS.AAD.3.6v1 | KSI-IAM-APM, as Book 04, Chapter 10 maps it | The CB-09 and CB-10 rows beside the ScubaGear report |
+| FIPS 201-3 and SP 800-63-4 | None: not SP 800-53 controls | Lab 2's refused sign-in; the mode rules in the export |
+
+KSIs are FedRAMP 20x indicators for cloud service providers: the agency authorizes its own system and lines this evidence up with what its providers report against them, and it doesn't report KSIs itself ([Book 00, Appendix B](../../books/b00-orientation/appendix-b-engagement-archetype.md)). Each KSI lists the row's control among its related SP 800-53 controls on [FedRAMP's Key Security Indicators page](https://www.fedramp.gov/2026/reference/key-security-indicators/) (read November 2, 2026); which file supports which indicator is the program's mapping *(design guidance)*. The workbook chapter's table has a row for every lab step.
+
 ## Learning objectives (1 minute)
 
 After this module, you'll be able to:

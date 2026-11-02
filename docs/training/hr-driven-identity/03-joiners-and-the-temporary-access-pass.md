@@ -23,6 +23,15 @@ In this module you keep the workflows as reviewed files, lint them before they r
 
 **The federal requirement.** This gate meets NIST SP 800-53 AC-2(1) (automated system account management), IA-5 (the initial authenticator is time-limited and goes to an accountable person) and OMB M-22-09's phishing-resistant MFA, which the Temporary Access Pass bridges to. The requirements and evidence are in the [Gate 3 requirements table](../../books/guides/hr-driven-identity-implementation.md#step-3-make-joiners-ready-on-day-one) (under **Federal requirements and evidence** in Step 3) and the workbook chapter's [Federal requirements and evidence](../../project-plans/developer-workbooks/hr-driven-identity/03-joiner-workflows-as-code.md#federal-requirements-and-evidence).
 
+| Requirement | KSI | Evidence |
+|---|---|---|
+| AC-2(1), automated account management | KSI-IAM-JIT | The workflow files, and each plan's `plan.json` with its `manifest.json` |
+| IA-5, the initial authenticator | KSI-IAM-APM | The lint's clean run; the TAP policy export |
+| OMB M-22-09, phishing-resistant MFA | KSI-IAM-APM, as Book 02, Chapter 10 maps it | Accounts still on a pass past the agreed window, as findings |
+| CA-7, the day-one readiness rate | KSI-MLA-EVC | The readiness `summary.json` per start date |
+
+KSIs are FedRAMP 20x indicators for cloud service providers: the agency authorizes its own system and lines this evidence up with what its providers report against them, and it doesn't report KSIs itself ([Book 00, Appendix B](../../books/b00-orientation/appendix-b-engagement-archetype.md)). Each KSI lists the row's control among its related SP 800-53 controls on [FedRAMP's Key Security Indicators page](https://www.fedramp.gov/2026/reference/key-security-indicators/) (read November 2, 2026); which file supports which indicator is the program's mapping *(design guidance)*. The workbook chapter's table has a row for every lab step.
+
 ## Learning objectives (1 minute)
 
 After this module, you'll be able to:
