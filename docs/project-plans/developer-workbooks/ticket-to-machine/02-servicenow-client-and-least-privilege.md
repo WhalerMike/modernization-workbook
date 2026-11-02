@@ -276,11 +276,23 @@ unset SN_ACCESS_TOKEN
 
 ## Federal requirements and evidence
 
-| What the output proves | Requirement it supports | Who keeps it |
-|---|---|---|
-| Each integration user holds exactly the roles its calls need, and the code calls nothing else | NIST SP 800-53 AC-6 (least privilege) and AC-2 (account management), in the Moderate baseline[^ttm02-moderate] | `config/calls.json` and the test in the repository; the `kit_calls.py --granted` output kept with the access approval |
-| The account that closes findings is separate from the ones that raise and read them | AC-5 (separation of duties), in the Moderate baseline;[^ttm02-moderate] Book 13's rule that the deciding and acting identities are separate | The role definitions on the instance; the business rule's verifier property |
-| A change to what the integration may call is reviewed | CM-3 (configuration change control) | The pull request that adds a row to `calls.json` |
+| What the output proves | Requirement it supports | KSI | Who keeps it |
+|---|---|---|---|
+| Each integration user holds exactly the roles its calls need, and the code calls nothing else | NIST SP 800-53 AC-6 (least privilege) and AC-2 (account management), in the Moderate baseline[^ttm02-moderate] | KSI-IAM-ELP; KSI-IAM-SNU | `config/calls.json` and the test in the repository; the `kit_calls.py --granted` output kept with the access approval |
+| The account that closes findings is separate from the ones that raise and read them | AC-5 (separation of duties), in the Moderate baseline;[^ttm02-moderate] Book 13's rule that the deciding and acting identities are separate | KSI-IAM-JIT | The role definitions on the instance; the business rule's verifier property |
+| A change to what the integration may call is reviewed | CM-3 (configuration change control) | KSI-CMT-LMC; KSI-CMT-RVP | The pull request that adds a row to `calls.json` |
+| Lab 1, step 1: every HTTP call a client makes is declared, with its task and least privilege | AC-6; CM-3(2) (testing changes) at Moderate[^ttm02-moderate] | KSI-IAM-ELP; KSI-CMT-VTD | The `pytest tests/python/test_kit_calls.py` run, in the pull request's checks |
+| Lab 1, step 2: the roles the re-read client needs on ServiceNow, each with the vendor page that says so | AC-6; AC-2 | KSI-IAM-ELP; KSI-IAM-SNU | The `kit_calls.py --task reread --system servicenow` output, attached to the access request |
+| Lab 1, step 3: a grant wider than the calls need is named, and the command exits 1 | AC-6 | KSI-IAM-ELP | The `kit_calls.py --granted` output that lists `extra:`, kept until the grant is fixed |
+| Lab 1, step 4: the evidence export can't reuse the role that closes findings | AC-5; AC-6 | KSI-IAM-JIT; KSI-IAM-ELP | The `kit_calls.py --task evidence --granted` output |
+| Lab 1, step 5: the ServiceNow client handles base URLs, retries and paging as tested | SA-11 (developer testing) at Moderate[^ttm02-moderate] | KSI-SCR-MIT | The `pytest tests/python/test_kit_common.py` run, in the pull request's checks |
+| Lab 2, steps 1 and 2: three custom roles, one integration user and one OAuth client per role | AC-2; AC-5; IA-5 (authenticator management) for each client secret, at Moderate[^ttm02-moderate] | KSI-IAM-SNU; KSI-IAM-JIT | The roles, users and inbound integrations on the instance, in the update set |
+| Lab 2, step 3: each user's real roles match the call list | AC-6; AC-2 | KSI-IAM-ELP; KSI-IAM-SNU | The three `kit_calls.py --granted` outputs ending `Least privilege holds.`, kept with the access approval |
+| Lab 2, step 4: the verifier can read findings, and the evidence reader's `PATCH` is refused | AC-3 (access enforcement) and AC-6 at Moderate[^ttm02-moderate] | KSI-IAM-ELP | The `curl` responses, including the refused `PATCH`, kept with the access test |
+| Lab 2, step 5: no test integration, user, role or saved token is left | AC-2; IA-5 | KSI-IAM-SNU | The instance's deletion history; `unset SN_ACCESS_TOKEN` clears the shell |
+| Production runs on ServiceNow Government Community Cloud, which the verified facts list as FedRAMP Certified, not on a developer instance | FedRAMP authorization of the cloud services used; SA-9 (external system services) at Moderate[^ttm02-moderate] | KSI-SCR-MIT; KSI-SCR-MON | The ISSO, with the authorization package and the Marketplace listing with its read date |
+
+The KSI column names the FedRAMP 20x Key Security Indicators whose related SP 800-53 controls include the row's control.[^ttm02-ksi] KSIs are indicators for cloud service providers: the agency authorizes its own system and lines its own evidence up with what its providers report against them; it doesn't report KSIs itself.
 
 Book 13 maps the loop's controls in [Appendix A](../../../books/b13-governance/appendix-a-requirements-mapping.md).
 
@@ -314,4 +326,5 @@ Book 13 maps the loop's controls in [Appendix A](../../../books/b13-governance/a
 [^ttm02-attach]: ServiceNow, "Attachment API" (Zurich: `POST /now/attachment/file`, its query parameters, the mandatory `Content-Type` header and the roles), <https://www.servicenow.com/docs/r/MVRCUFVyKWd7vUoUukbW6g/lfpHTMPdNaq_xdajhuTwEg> (read November 1, 2026).
 [^ttm02-srapi]: ServiceNow, "Scripted REST APIs" (Zurich API reference), <https://www.servicenow.com/docs/bundle/zurich-api-reference/page/integrate/custom-web-services/concept/c_CustomWebServices.html> (read November 1, 2026).
 [^ttm02-fedramp]: FedRAMP Marketplace data, <https://www.fedramp.gov/marketplace/products.json> (last change November 1, 2026): ServiceNow Government Community Cloud, F1305072116 (read November 1, 2026).
-[^ttm02-moderate]: National Institute of Standards and Technology, SP 800-53B Moderate baseline, release 5.2.0 OSCAL profile (includes AC-2, AC-5, AC-6 and CM-3), <https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_MODERATE-baseline_profile.json> (read November 1, 2026).
+[^ttm02-moderate]: National Institute of Standards and Technology, SP 800-53B Moderate baseline, release 5.2.0 OSCAL profile (includes AC-2, AC-3, AC-5, AC-6, CM-3, CM-3(2), IA-5, SA-9 and SA-11), <https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_MODERATE-baseline_profile.json> (read November 1, 2026).
+[^ttm02-ksi]: FedRAMP, "Key Security Indicators," *FedRAMP Consolidated Rules for 2026*, indicator titles and "Related SP 800-53 Controls," <https://www.fedramp.gov/2026/reference/key-security-indicators/> (read November 2, 2026).

@@ -291,11 +291,23 @@ unset SN_ACCESS_TOKEN
 
 ## Federal requirements and evidence
 
-| What the output proves | Requirement it supports | Who keeps it |
-|---|---|---|
-| A write made outside the governed process is detected and raised as an owned, clocked finding whose intended state is the revert | NIST SP 800-53 CM-3 and SI-4 (system monitoring) at Moderate;[^ttm04-moderate] SP 800-37's call to monitor for unauthorized changes, as [Book 13, Chapter 10](../../../books/b13-governance/10-ticket-to-machine.md#native-tools-change-state-they-dont-close-findings) cites | The ServiceNow finding, with `u_origin` and `u_raw_event` |
-| Each drifting attribute is its own piece of work with its own intended state | CM-3; Book 13's evidence record, one result per finding | The finding records; `test_workflow_payload.py` and the node tests |
-| A workflow change is tested before it runs | CM-3 (change control), SA-11 (developer testing) at Moderate[^ttm04-moderate] | The pull request and its test run |
+| What the output proves | Requirement it supports | KSI | Who keeps it |
+|---|---|---|---|
+| A write made outside the governed process is detected and raised as an owned, clocked finding whose intended state is the revert | NIST SP 800-53 CM-3 and SI-4 (system monitoring) at Moderate;[^ttm04-moderate] SP 800-37's call to monitor for unauthorized changes, as [Book 13, Chapter 10](../../../books/b13-governance/10-ticket-to-machine.md#native-tools-change-state-they-dont-close-findings) cites | KSI-CMT-LMC; KSI-IAM-SUS | The ServiceNow finding, with `u_origin` and `u_raw_event` |
+| Each drifting attribute is its own piece of work with its own intended state | CM-3; Book 13's evidence record, one result per finding | KSI-CMT-LMC | The finding records; `test_workflow_payload.py` and the node tests |
+| A workflow change is tested before it runs | CM-3 (change control), SA-11 (developer testing) at Moderate[^ttm04-moderate] | KSI-CMT-VTD; KSI-SCR-MIT | The pull request and its test run |
+| Lab 1, step 1: the workflow payloads and the kit's contract hold, tested before a change merges | CM-3(2) (testing, validation and documentation of changes); SA-11, at Moderate[^ttm04-moderate] | KSI-CMT-VTD; KSI-SCR-MIT | The `pytest tests/python/test_workflow_payload.py tests/python/test_contract.py` run, in the pull request's checks |
+| Lab 1, step 2: a native change becomes an unauthorized-write finding whose intended state is the revert | CM-3; SI-4 | KSI-CMT-LMC; KSI-IAM-SUS | The `workflow_payload.py --trigger idn:native-change-account-updated` output, the reference Lab 2 compares against |
+| Lab 1, step 3: a mover's attribute changes become one finding per attribute | CM-3 | KSI-CMT-LMC | The `workflow_payload.py --trigger idn:identity-attributes-changed` output |
+| Lab 1, step 4: a completed provisioning action moves matching findings to *Awaiting verification* and never closes them | CM-3; CM-4(2) (verification of controls) at Moderate[^ttm04-moderate] | KSI-CMT-LMC; KSI-CMT-VTD | The `workflow_payload.py --trigger idn:post-provisioning` output |
+| Lab 1, step 5: the attribute is in the de-duplication key, and multivalued changes are handled | CM-3(2) | KSI-CMT-VTD | The `node --test --test-name-pattern` run, in the pull request's checks |
+| Lab 2, step 1: Native Change Detection watches account updates and the chosen attributes on the test source | CM-3; SI-4 | KSI-CMT-LMC; KSI-IAM-SUS | The source's Native Change Detection settings, recorded with the workflow |
+| Lab 2, step 2: the hand-built HTTP Request step and the kit's workflow file name the same attributes | CM-3: the workflow in the tenant matches the version-controlled one | KSI-CMT-RMV | The comparison's output, kept with the workflow's pull request |
+| Lab 2, step 3: the live workflow posts the payload `workflow_payload.py` predicts | CM-3(2) | KSI-CMT-VTD | The captured request beside the `workflow_payload.py` output for the same trigger input |
+| Lab 2, step 4: a repeat of the change de-duplicates into the open finding | CM-3; CA-7 (continuous monitoring) at Moderate[^ttm04-moderate] | KSI-CMT-LMC; KSI-MLA-EVC | The finding's `u_dedupe_key` and `u_occurrences`, from the Table API query |
+| Lab 2, step 5: no test workflow, finding, workflow client or token is left | AC-2 (account management) at Moderate[^ttm04-moderate] | KSI-IAM-SNU | The tenant's workflow and API client lists; `unset SN_ACCESS_TOKEN` clears the shell |
+
+The KSI column names the FedRAMP 20x Key Security Indicators whose related SP 800-53 controls include the row's control.[^ttm04-ksi] KSIs are indicators for cloud service providers: the agency authorizes its own system and lines its own evidence up with what its providers report against them; it doesn't report KSIs itself.
 
 Treating a native change as Book 03's unauthorized write is the program's *(inference)*, as the example guide says. Provenance drift on a claim in active use is P1 in [Book 13, Appendix B](../../../books/b13-governance/appendix-b-ticket-to-machine-reference.md#drift-classes-and-their-default-lanes); the workflow can't know whether a claim is in use, so a person or a rule raises it to P1.
 
@@ -331,4 +343,5 @@ Treating a native change as Book 03's unauthorized write is the program's *(infe
 [^ttm04-wfbody]: SailPoint, Identity Security Cloud OpenAPI specification, v2025, `WorkflowBody` ("Workflows cannot be created in an enabled state"), <https://github.com/sailpoint-oss/api-specs/blob/main/idn/v2025/schemas/workflows/WorkflowBody.yaml> (read November 1, 2026).
 [^ttm04-workflows]: SailPoint, Identity Security Cloud OpenAPI specification, v2025, `createWorkflow`, <https://github.com/sailpoint-oss/api-specs/blob/main/idn/v2025/paths/workflows/workflows.yaml> (read November 1, 2026).
 [^ttm04-srapi]: ServiceNow, "Scripted REST APIs" (Zurich API reference), <https://www.servicenow.com/docs/bundle/zurich-api-reference/page/integrate/custom-web-services/concept/c_CustomWebServices.html> (read November 1, 2026).
-[^ttm04-moderate]: National Institute of Standards and Technology, SP 800-53B Moderate baseline, release 5.2.0 OSCAL profile (includes CM-3, SA-11 and SI-4), <https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_MODERATE-baseline_profile.json> (read November 1, 2026).
+[^ttm04-moderate]: National Institute of Standards and Technology, SP 800-53B Moderate baseline, release 5.2.0 OSCAL profile (includes AC-2, CA-7, CM-3, CM-3(2), CM-4(2), SA-11 and SI-4), <https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_MODERATE-baseline_profile.json> (read November 1, 2026).
+[^ttm04-ksi]: FedRAMP, "Key Security Indicators," *FedRAMP Consolidated Rules for 2026*, indicator titles and "Related SP 800-53 Controls," <https://www.fedramp.gov/2026/reference/key-security-indicators/> (read November 2, 2026).

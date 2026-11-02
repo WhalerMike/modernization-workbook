@@ -301,11 +301,24 @@ unset SAILPOINT_API_BASE SAILPOINT_CLIENT_ID SAILPOINT_CLIENT_SECRET GRAPH_TENAN
 
 ## Federal requirements and evidence
 
-| What the output proves | Requirement it supports | Who keeps it |
-|---|---|---|
-| Every active HR record has its accounts, every terminated one has none enabled, and every enabled account has a person | NIST SP 800-53 AC-2 (account management) at Moderate;[^ttm06-moderate] Book 03's leaver and orphan measures | The drift JSON and CSV of each run |
-| Drift is measured on a schedule, and what changed between runs is reported | CA-7 (continuous monitoring) and SI-4 at Moderate[^ttm06-moderate] | The comparison output, kept with each run |
-| What wasn't measured is said, not implied | CA-7; Book 13's detection coverage measure | `not_computed` in every run; the comparison's refusal |
+| What the output proves | Requirement it supports | KSI | Who keeps it |
+|---|---|---|---|
+| Every active HR record has its accounts, every terminated one has none enabled, and every enabled account has a person | NIST SP 800-53 AC-2 (account management) and AC-2(3) (disable accounts) at Moderate;[^ttm06-moderate] Book 03's leaver and orphan measures | KSI-IAM-SUS; KSI-IAM-AAM | The drift JSON and CSV of each run |
+| Drift is measured on a schedule, and what changed between runs is reported | CA-7 (continuous monitoring) and SI-4 at Moderate[^ttm06-moderate] | KSI-MLA-EVC; KSI-MLA-RVL | The comparison output, kept with each run |
+| What wasn't measured is said, not implied | CA-7; Book 13's detection coverage measure | KSI-MLA-EVC | `not_computed` in every run; the comparison's refusal |
+| Lab 1, step 1: the reconciliation and the comparison hold, tested before a change merges | SA-11 (developer testing) at Moderate[^ttm06-moderate] | KSI-SCR-MIT | The `pytest tests/python/test_identity_drift.py tests/python/test_drift_compare.py` run, in the pull request's checks |
+| Lab 1, step 2: one run finds each drift by class, with expected and observed values and, for a write, who made it | AC-2; AC-2(3); SI-4 | KSI-IAM-SUS; KSI-IAM-AAM; KSI-MLA-RVL | `identity_drift.py --out-json out/day1.json --out-csv out/day1.csv`; the fixture run's files are deleted, a live run's are kept |
+| Lab 1, step 3: a second run on the next day's HR extract | CA-7 | KSI-MLA-EVC | `out/day2.json` and `out/day2.csv` |
+| Lab 1, step 4: what was resolved, what persists and what is new between the runs | CA-7; SI-4 | KSI-MLA-EVC; KSI-MLA-RVL | The `drift_compare.py --previous --current` output, kept with the second run |
+| Lab 1, step 5: a run without the audit says so, and the comparison refuses to call the write resolved | CA-7 | KSI-MLA-EVC | `not_computed` in `out/day2-noaudit.json`; the comparison's exit 2 |
+| Lab 2, step 1: the Graph permissions and ISC scopes are reads only | AC-6 (least privilege) and AC-2 at Moderate[^ttm06-moderate] | KSI-IAM-ELP; KSI-IAM-SNU | The two `kit_calls.py --granted` outputs, kept with the approvals |
+| Lab 2, step 2: the test uses a synthetic HR extract, never real HR records *(design guidance)* | None | None | Nobody; `hr_synthetic.csv` is deleted in step 5 |
+| Lab 2, step 3: a live run finds the terminated user still enabled and the department that differs | AC-2; AC-2(3); SI-4 | KSI-IAM-SUS; KSI-IAM-AAM; KSI-MLA-RVL | `out/day1.json` and `out/day1.csv` from the live run, with the hand count of the extract |
+| Lab 2, step 4: the next day's live run, compared with the first; nothing is pushed | CA-7; SI-4 | KSI-MLA-EVC; KSI-MLA-RVL | `out/day2.json`, `out/day2.csv` and the `drift_compare.py` output |
+| Lab 2, step 5: no test output, extract, permission, certificate or API client is left | AC-2 | KSI-IAM-SNU | The app registration and API client lists; `rm -rf out hr_synthetic.csv` |
+| Not run in the labs: `identity_drift.py --push-to-servicenow --apply` posts each finding to the Scripted REST resource | CM-3 (configuration change control) at Moderate[^ttm06-moderate] | KSI-CMT-LMC | The `u_identity_finding` records ([Chapter 01](01-the-loop-and-the-typed-task.md)) |
+
+The KSI column names the FedRAMP 20x Key Security Indicators whose related SP 800-53 controls include the row's control.[^ttm06-ksi] KSIs are indicators for cloud service providers: the agency authorizes its own system and lines its own evidence up with what its providers report against them; it doesn't report KSIs itself.
 
 ## Dangers
 
@@ -338,4 +351,5 @@ unset SAILPOINT_API_BASE SAILPOINT_CLIENT_ID SAILPOINT_CLIENT_SECRET GRAPH_TENAN
 [^ttm06-search]: SailPoint, Identity Security Cloud OpenAPI specification, v3, `searchPost`, <https://github.com/sailpoint-oss/api-specs/blob/main/idn/v3/paths/search-post.yaml> (read November 1, 2026).
 [^ttm06-accounts]: SailPoint, Identity Security Cloud OpenAPI specification, v3, `listAccounts` and the `limit` parameter, <https://github.com/sailpoint-oss/api-specs/blob/main/idn/v3/paths/accounts.yaml> and <https://github.com/sailpoint-oss/api-specs/blob/main/idn/v3/parameters/limit.yaml> (read November 1, 2026).
 [^ttm06-deployments]: Microsoft Learn, "Microsoft Graph national cloud deployments," <https://learn.microsoft.com/graph/deployments> (read November 1, 2026).
-[^ttm06-moderate]: National Institute of Standards and Technology, SP 800-53B Moderate baseline, release 5.2.0 OSCAL profile (includes AC-2, CA-7 and SI-4), <https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_MODERATE-baseline_profile.json> (read November 1, 2026).
+[^ttm06-moderate]: National Institute of Standards and Technology, SP 800-53B Moderate baseline, release 5.2.0 OSCAL profile (includes AC-2, AC-2(3), AC-6, CA-7, CM-3, SA-11 and SI-4), <https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_MODERATE-baseline_profile.json> (read November 1, 2026).
+[^ttm06-ksi]: FedRAMP, "Key Security Indicators," *FedRAMP Consolidated Rules for 2026*, indicator titles and "Related SP 800-53 Controls," <https://www.fedramp.gov/2026/reference/key-security-indicators/> (read November 2, 2026).
