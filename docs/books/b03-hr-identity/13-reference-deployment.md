@@ -82,7 +82,7 @@ The schema, the code lists, the workflows, the rules and the evidence belong to 
 
 ::: {.callout-tip}
 ## Continue the book
-[← Previous: Chapter 12 — Execution Plan](12-execution-plan.md) · [Book index](index.md) · [Next: Appendix A — Lifecycle Rules →](appendix-a-lifecycle-rules.md)
+[← Previous: Chapter 12 — Execution Plan](12-execution-plan.md) · [Book index](index.md) · [Next: Chapter 14 — Privacy for Workforce Identity →](14-privacy-for-workforce-identity.md)
 :::
 
 [^c13-hr20memo]: Office of Management and Budget and Office of Personnel Management, *Creating "Federal HR 2.0" by Consolidating Core Human Capital Management Across the Federal Government*, December 10, 2025 (§I and Appendix A, Agency Transitions: Wave 2 is all remaining agencies, transitioning fully in FY 2027; wave membership is listed in the memo's Appendix A), <https://www.opm.gov/chcoc/latest-memos/creating-federal-hr-20-by-consolidating-core-human-capital-management-across-the-federal-government.pdf> (accessed Oct 20, 2026).
