@@ -96,6 +96,8 @@ Every chapter has a narrated tour: a deck in Why, What, Who and How order, a sel
 - **Platform engineers for Azure:** Chapter 01's Azure section, then Chapter 06.
 - **ISSOs and reviewers of the code:** the checklists at the end of each chapter, and the manifests the runs write.
 - **Operators deploying the kit:** Chapter 09, after Lab 2 of Chapters 02 to 08.
+- **Operators and ISSOs running the rollout:** the [Privileged Access implementation guide](../../../books/guides/privileged-access-implementation.md), which takes Chapters 01 to 08 as eight gates, emergency access first, each with its federal requirements, a read-only check from the kit and rollback.
+- **Learners:** the [Privileged Access learning path](../../../training/privileged-access/index.md), one module per chapter, each ending with a knowledge check.
 
 ## Where this workbook sits
 
