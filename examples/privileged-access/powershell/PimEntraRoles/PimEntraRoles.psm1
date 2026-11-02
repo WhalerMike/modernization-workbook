@@ -82,7 +82,8 @@ function Get-PaPimRequiredPermission {
     .SYNOPSIS
         Returns a task's Graph permissions (all of them, and the reads and writes separately) and
         the delegated role it needs: Privileged Role Administrator for a task that writes, Global
-        Reader for pim-plan and pim-alerts.
+        Reader for pim-plan, and for pim-alerts the role its PIM for Groups read needs (a call's
+        delegatedReadRole): Learn names Privileged Role Administrator, not Global Reader.
     .EXAMPLE
         # Sign in for a dry run with exactly the scopes pim-plan needs.
         Connect-MgGraph -Environment Global -Scopes (Get-PaPimRequiredPermission -Task pim-plan).GraphPermissions
@@ -97,7 +98,9 @@ function Get-PaPimRequiredPermission {
         GraphPermissions = @($calls | ForEach-Object { $_.permissions } | Sort-Object -Unique)
         Read             = @($calls | Where-Object method -EQ 'GET' | ForEach-Object { $_.permissions } | Sort-Object -Unique)
         Write            = @($calls | Where-Object method -NE 'GET' | ForEach-Object { $_.permissions } | Sort-Object -Unique)
-        DelegatedRole    = if (@($calls | Where-Object method -NE 'GET').Count) { 'Privileged Role Administrator' } else { 'Global Reader' }
+        DelegatedRole    = if (@($calls | Where-Object method -NE 'GET').Count) { 'Privileged Role Administrator' }
+        elseif (@($calls | Where-Object { $_.ContainsKey('delegatedReadRole') }).Count) { @($calls | Where-Object { $_.ContainsKey('delegatedReadRole') })[0].delegatedReadRole }
+        else { 'Global Reader' }
     }
 }
 
@@ -666,6 +669,114 @@ function Test-PaPimAlertSetting {
     $f.ToArray()
 }
 
+function Get-PaPimPrivilegedGroup {
+    <#
+    .SYNOPSIS
+        The groups that hold a highly privileged role, eligible or active, at any scope: every
+        eligibility schedule and every active assignment instance, with its principal, whose
+        principal is a group (a role-assignable group: no other group can hold an Entra role).
+        One object per group with its ID, name and the roles it holds. ScubaGear finds the same
+        groups the same way, from both the eligible and the active assignments. GET only.
+    .EXAMPLE
+        # The PRV groups of the fictional tenant that hold one of CISA's eight roles.
+        $fake = New-PaPimFixtureInvoker -Path tests/fixtures/ch04/tenant.json
+        $client = New-PaPimClient -Cloud gcc -Task pim-alerts -Invoke $fake.Invoke
+        Get-PaPimPrivilegedGroup -Client $client -RoleTemplateId (Get-PaPimHighlyPrivilegedRole).RoleTemplateId
+    #>
+    [CmdletBinding()]
+    param([Parameter(Mandatory)]$Client, [Parameter(Mandatory)][string[]]$RoleTemplateId)
+    $rows = @(Invoke-PaPimRequest -Client $Client -CallId 'pim-eligibility-schedules' -Query "`$expand=principal" | ForEach-Object { @{ Row = $_; Kind = 'eligible' } }) +
+    @(Invoke-PaPimRequest -Client $Client -CallId 'pim-active-instances' -Query "`$expand=principal" | ForEach-Object { @{ Row = $_; Kind = 'active' } })
+    $groups = [ordered]@{}
+    foreach ($x in $rows) {
+        $r = $x.Row
+        if ($RoleTemplateId -notcontains $r.roleDefinitionId) { continue }
+        if (-not ($r.ContainsKey('principal') -and $r.principal -and "$($r.principal['@odata.type'])" -eq '#microsoft.graph.group')) { continue }
+        $gid = $r.principalId
+        if (-not $groups.Contains($gid)) {
+            $name = if ($r.principal.ContainsKey('displayName') -and $r.principal.displayName) { $r.principal.displayName } else { $gid }
+            $groups[$gid] = [pscustomobject]@{ GroupId = $gid; Name = $name; RoleTemplateIds = [Collections.Generic.List[string]]::new(); Holds = [Collections.Generic.List[string]]::new() }
+        }
+        $g = $groups[$gid]
+        $role = if ($script:HighlyPrivileged.Contains($r.roleDefinitionId)) { $script:HighlyPrivileged[$r.roleDefinitionId] } else { $r.roleDefinitionId }
+        if (-not $g.RoleTemplateIds.Contains($r.roleDefinitionId)) { $g.RoleTemplateIds.Add($r.roleDefinitionId) }
+        $hold = "$role ($($x.Kind))"
+        if (-not $g.Holds.Contains($hold)) { $g.Holds.Add($hold) }
+    }
+    @($groups.Values)
+}
+
+function Get-PaPimGroupPolicy {
+    <#
+    .SYNOPSIS
+        Read the PIM for Groups member policy of each group, with its rules (Learn's List
+        roleManagementPolicyAssignments, Example 4, with roleDefinitionId 'member' in place of
+        'owner'; one call per group). Returns a hashtable of group ID to @{ PolicyId; Rules }, rules
+        by ID. A group with no single member policy is left out. GET only.
+    .EXAMPLE
+        $groups = @(Get-PaPimPrivilegedGroup -Client $client -RoleTemplateId (Get-PaPimHighlyPrivilegedRole).RoleTemplateId)
+        (Get-PaPimGroupPolicy -Client $client -GroupId $groups.GroupId).Keys
+    #>
+    [CmdletBinding()]
+    param([Parameter(Mandatory)]$Client, [Parameter(Mandatory)][AllowEmptyCollection()][string[]]$GroupId)
+    $policies = @{}
+    foreach ($id in $GroupId) {
+        $q = "`$filter=" + [Uri]::EscapeDataString("scopeId eq '$id' and scopeType eq 'Group' and roleDefinitionId eq 'member'") + "&`$expand=" + [Uri]::EscapeDataString('policy($expand=rules)')
+        $rows = @(Invoke-PaPimRequest -Client $Client -CallId 'pim-group-policy-assignment' -Query $q)
+        if ($rows.Count -eq 1 -and $rows[0].ContainsKey('policy') -and $rows[0].policy) {
+            $rules = @{}; foreach ($r in @($rows[0].policy.rules)) { $rules[$r.id] = $r }
+            $policies[$id] = [pscustomobject]@{ PolicyId = $rows[0].policyId; Rules = $rules }
+        }
+    }
+    $policies
+}
+
+function Test-PaPimGroupAlertSetting {
+    <#
+    .SYNOPSIS
+        The same alert rules on PIM for Groups, as CISA's baseline asks: "apply the same
+        configurations" to each PIM group's Member settings when a group holds a highly privileged
+        role. PA-PIM-12 (MS.AAD.7.7v1): a group holding one of the eight roles whose member policy
+        has no additional recipient on the assignment alert, eligible or active. PA-PIM-13
+        (MS.AAD.7.8v1): a group holding Global Administrator whose member policy has none on the
+        activation alert. A group whose member policy wasn't read is a Finding, as a role's is.
+        Each group that passes gets an Info row with the recipients.
+    .EXAMPLE
+        $groups = @(Get-PaPimPrivilegedGroup -Client $client -RoleTemplateId (Get-PaPimHighlyPrivilegedRole).RoleTemplateId)
+        Test-PaPimGroupAlertSetting -Groups $groups -Policies (Get-PaPimGroupPolicy -Client $client -GroupId $groups.GroupId)
+    #>
+    [CmdletBinding()]
+    param([Parameter(Mandatory)][AllowEmptyCollection()][object[]]$Groups, [Parameter(Mandatory)][AllowEmptyCollection()][hashtable]$Policies)
+    $f = [Collections.Generic.List[object]]::new()
+    $recipients = { param($p, $id) if ($p.Rules.ContainsKey($id)) { @($p.Rules[$id]['notificationRecipients'] | Where-Object { $_ }) } else { @() } }
+    foreach ($g in $Groups) {
+        $holds = $g.Holds -join ', '
+        $ga = $g.RoleTemplateIds -contains $script:GlobalAdmin
+        $p = $Policies[$g.GroupId]
+        if (-not $p) {
+            $f.Add((New-PaPimFinding 'PA-PIM-12' 'Finding' $g.Name "Holds $holds; no PIM for Groups member policy read for the group, so its assignment alerts can't be shown (MS.AAD.7.7v1)"))
+            if ($ga) { $f.Add((New-PaPimFinding 'PA-PIM-13' 'Finding' $g.Name 'Holds Global Administrator; no PIM for Groups member policy read, so the activation alert can''t be shown (MS.AAD.7.8v1)')) }
+            continue
+        }
+        $missing = @(); $to = @()
+        foreach ($n in $script:AssignmentAlertRules.Keys) {
+            $r = @(& $recipients $p $n)
+            if (-not $r.Count) { $missing += $script:AssignmentAlertRules[$n] } else { $to += $r }
+        }
+        if ($missing) {
+            $f.Add((New-PaPimFinding 'PA-PIM-12' 'Finding' $g.Name "Holds $holds; no additional recipient for the member assignment alert on $($missing -join ' or '): add the security monitoring mailbox under the group's PIM settings > Member > Notifications (MS.AAD.7.7v1)"))
+        } else {
+            $f.Add((New-PaPimFinding 'PA-PIM-12' 'Info' $g.Name "Holds $holds; eligible and active member assignment alerts go to $(@($to | Sort-Object -Unique) -join ', ')"))
+        }
+        if ($ga) {
+            $r = @(& $recipients $p $script:ActivationAlertRule)
+            if (-not $r.Count) { $f.Add((New-PaPimFinding 'PA-PIM-13' 'Finding' $g.Name 'Holds Global Administrator; no additional recipient for the member activation alert: add the security monitoring mailbox under the group''s PIM settings > Member > Notifications (MS.AAD.7.8v1)')) }
+            else { $f.Add((New-PaPimFinding 'PA-PIM-13' 'Info' $g.Name "Holds Global Administrator; member activation alerts go to $(@($r | Sort-Object -Unique) -join ', ')")) }
+        }
+    }
+    $f.ToArray()
+}
+
 function Test-PaPimEmergencyAccess {
     # PA-PIM-02: the other half of the documented lockout. Each emergency account must hold Global
     # Administrator active, permanent and direct before any role setting changes.
@@ -973,6 +1084,19 @@ function Invoke-PaPimFake {
             switch -Regex ($path) {
                 '^/v1\.0/policies/roleManagementPolicyAssignments$' {
                     $f = $q['$filter']
+                    if ($f -match "^scopeId eq '([^']+)' and scopeType eq 'Group'") {
+                        # PIM for Groups (Learn's Example 4): the group's member or owner policy.
+                        $gid = $Matches[1]
+                        $rows = @(@($(if ($t.ContainsKey('groupPolicyAssignments')) { $t.groupPolicyAssignments } else { @() })) | Where-Object { $_.groupId -eq $gid })
+                        if ($f -match "roleDefinitionId eq '([^']+)'") { $rd = $Matches[1]; $rows = @($rows | Where-Object { $_.roleDefinitionId -eq $rd }) }
+                        $expand = $q['$expand'] -eq 'policy($expand=rules)'
+                        $out = @(foreach ($r in $rows) {
+                                $o = @{ id = "$($r.policy.id)_$($r.roleDefinitionId)_$gid"; policyId = $r.policy.id; scopeId = $gid; scopeType = 'Group'; roleDefinitionId = $r.roleDefinitionId }
+                                if ($expand) { $o['policy'] = $r.policy }
+                                $o
+                            })
+                        return & $page $out
+                    }
                     if (-not $f -or $f -notmatch "scopeId eq '/' and scopeType eq '(Directory|DirectoryRole)'") { throw "400 the request needs `$filter on scopeId and scopeType" }
                     $rows = @($t.policyAssignments)
                     if ($f -match "roleDefinitionId eq '([^']+)'") { $rid = $Matches[1]; $rows = @($rows | Where-Object { $_.roleDefinitionId -eq $rid }) }
@@ -1042,6 +1166,6 @@ function Invoke-PaPimFake {
 
 Export-ModuleMember -Function Get-PaPimCall, Get-PaPimRequiredPermission, ConvertTo-PaPimDuration, Read-PaPimTierConfig, Read-PaPimRoleSetting,
     Read-PaPimBinding, Get-PaPimWaveRole, ConvertTo-PaPimRule, Test-PaPimSetting, New-PaPimClient, Invoke-PaPimRequest, New-PaPimLiveInvoker,
-    Get-PaPimRolePolicy, Get-PaPimTenantState, Get-PaPimHighlyPrivilegedRole, Test-PaPimAlertSetting, Get-PaPimRuleView, Compare-PaPimPolicy, New-PaPimEligibilityRequest, New-PaPimPlan, Invoke-PaPimPlan, Export-PaPimRun,
+    Get-PaPimRolePolicy, Get-PaPimTenantState, Get-PaPimHighlyPrivilegedRole, Test-PaPimAlertSetting, Get-PaPimPrivilegedGroup, Get-PaPimGroupPolicy, Test-PaPimGroupAlertSetting, Get-PaPimRuleView, Compare-PaPimPolicy, New-PaPimEligibilityRequest, New-PaPimPlan, Invoke-PaPimPlan, Export-PaPimRun,
     Get-PaPimBefore, New-PaPimRestorePlan,
     New-PaPimFixtureInvoker, Invoke-PaPimFake
