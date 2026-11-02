@@ -66,3 +66,14 @@ None. Every external claim cites Microsoft Learn or a workbook chapter.
 | Book 04, Chapter 10 (review definitions as code; the Graph PowerShell example) | Why reviews as code | Its example reviews an application group; this chapter covers privileged roles |
 | Book 04, Appendix B (review cadence by tier; pairing with `PRV-*` reviews) | Fixture; dangers | Tier 2 and read-only reviewers (role owner, security office) are the agency's to fill in |
 | Chapter 02 (emergency accounts) | PA-AR-06; PA-AR-E08 | — |
+
+## Federal requirements and evidence (added November 2, 2026)
+
+New section, 13 rows, one for each Lab 1 and Lab 2 scripted action and each output file the kit's code writes. No Lab 1 heading or command changed.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| F1 | AC-2, AC-5, AC-6, AC-6(7), AU-11, CM-3 and CM-3(2) are in the NIST SP 800-53B Moderate baseline | Federal requirements | verified November 2, 2026: each ID checked by script against the release 5.2.0 OSCAL Moderate profile, the source Book 04, Chapter 04 cites | `pa07-moderate` |
+| F2 | KSI IDs used: KSI-CMT-LMC, KSI-CMT-RMV, KSI-CMT-VTD, KSI-IAM-AAM, KSI-IAM-ELP, KSI-IAM-JIT and KSI-MLA-OSM; each row's indicator lists at least one of the row's controls among its "Related SP 800-53 Controls" | Federal requirements | verified November 2, 2026 on FedRAMP's Key Security Indicators page, checked row by row by script; every ID was already cited in Book 04, Chapter 10, Book 02, Chapter 10, Book 13, Appendix A or Book 14, Chapter 03, so none is new to the repository | `pa07-ksi` |
+| F3 | KSIs are FedRAMP 20x indicators for providers; the agency lines its evidence up with them and doesn't report them | Under the table | carried forward from Book 00, Appendix B | Book 00 |
+| F4 | Which output supports which control, and who keeps it | Federal requirements | restated-as-design: the program's mapping, following Book 04, Chapters 02, 04, 08 and 10 | Book 04 |
