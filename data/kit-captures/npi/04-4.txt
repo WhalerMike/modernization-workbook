@@ -1,0 +1,6 @@
+PS> ./Invoke-NpiCredentialPolicy.ps1 -Cloud gcc -RegisterRun out/inventory -FixturePath tests/fixtures/ch04/tenant.json -OutputPath out/policy
+Policy: tenant default disabled; 1 app management policies; 7 app registrations
+Diff: 6 Add, 1 Change, 1 KeepExisting
+Findings: 12 Finding, 1 Warn, 1 Info
+Policy plan: 10 actions, 8 of them writes (1 AssignAppPolicy, 1 CreateAppPolicy, 5 LockApp, 1 PatchDefaultPolicy); nothing sent
+Plan SHA-256: 2d4c419a05b7792470e59a5969f94f1b6452cba079a47595336c4d451cbfa809

@@ -1,0 +1,12 @@
+PS> Get-Content out/kerberos/kerberos-plan.json -Raw | ConvertFrom-Json | Select-Object -ExpandProperty actions | Format-Table Action, Account, Write, Cmdlet
+Action                  Account      Write Cmdlet
+------                  -------      ----- ------
+MovesToWorkloadIdentity gmsa-ops$    False
+HandedOff               gmsa-sql$    False
+Island                  gmsa-web$    False
+SetRetrievers           gmsa-web$     True Set-ADServiceAccount
+CreateGmsa              msa-print01$  True New-ADServiceAccount
+CompleteDmsaMigration   svc-hrsync    True Complete-ADServiceAccountMigration
+CreateGmsa              svc-intranet  True New-ADServiceAccount
+HandedOff               svc-sqlprod  False
+Blocked                 svc-webfront False

@@ -1,0 +1,5 @@
+PS> ./Invoke-NpiVintage.ps1 -RegisterRun out/runs/2026-10-30T0600Z-fixture/inventory -Vintage 2026 `
+>>     -CurrentPath tests/fixtures/ch10/vintage/ai-inventory-2026.csv -PriorPath tests/fixtures/ch10/vintage/ai-inventory-2025.csv `
+>>     -UseCaseMapPath tests/fixtures/ch10/vintage/ai-use-cases.csv -ServiceRecordsPath tests/fixtures/inputs/service-records.csv -OutputPath out/vintage
+Vintage 2026: 5 changes (1 AuthorizationChanged, 1 Left, 2 New, 1 Retired); findings 3 Finding, 2 Warn, 1 Info
+Written to out/vintage/vintage-2026 (manifest.json: tenant c0ffee00-0000-4000-8000-000000000001, the register's and each input's SHA-256)

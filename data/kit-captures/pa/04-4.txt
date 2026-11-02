@@ -17,4 +17,4 @@ Rule      Severity Object                    Issue
 PA-PIM-09 Warn     Application Administrator Erin Patel holds the role standing: convert to eligibility through the PRV group
 PA-PIM-08 Warn     Exchange Administrator    Dana Reyes is eligible outside the PRV group (schedule res-dana-exchange); the access review removes it (Chapter 07), this code doesn't
 PA-PIM-09 Warn     Exchange Administrator    Carl Ops holds the role standing: convert to eligibility through the PRV group
-PA-PIM-09 Warn     Exchange Administrator    Contoso-Mail-Automation (#microsoft.graph.servicePrincipal) holds the role standing: document it as an exception or replace it; this code removes users on…
+PA-PIM-09 Warn     Exchange Administrator    Contoso-Mail-Automation (#microsoft.graph.servicePrincipal) holds the role standing: document it as an exception or replace it; this code removes users only

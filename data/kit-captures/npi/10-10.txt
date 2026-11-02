@@ -1,0 +1,9 @@
+$ echo edited >> out/evidence/2026-10-30T0600Z-fixture/summary.md
+$ python python/npi_evidence.py verify out/evidence/2026-10-30T0600Z-fixture
+error: out/evidence/2026-10-30T0600Z-fixture: summary.md doesn't match its SHA-256
+(exit code 1)
+$ python python/npi_evidence.py package --run $DAY1 --previous-manifest out/evidence/2026-10-30T0600Z-fixture/EVIDENCE-MANIFEST.json --out out/swap
+error: this run (2026-10-29T06:00:00Z) isn't later than the previous package (2026-10-30T06:00:00Z)
+(exit code 1)
+$ python python/workflow_lint.py workflow/npi-evidence.yml
+workflow/npi-evidence.yml: 0 finding(s), 0 warning(s)

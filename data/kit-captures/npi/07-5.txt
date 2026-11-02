@@ -1,0 +1,18 @@
+PS> Get-Content out/least-privilege/findings.json -Raw | ConvertFrom-Json | Group-Object Rule | Format-Table Name, Count
+Name      Count
+----      -----
+NPI-LP-01     2
+NPI-LP-02     1
+NPI-LP-03     1
+NPI-LP-04     1
+NPI-LP-05     1
+NPI-LP-06     2
+NPI-LP-07     1
+NPI-LP-08     3
+NPI-LP-09     1
+PS> Get-Content out/least-privilege/pa-handoff.json -Raw | ConvertFrom-Json | Format-Table Name, Reasons -Wrap
+Name           Reasons
+----           -------
+Build Pipeline RoleManagement.ReadWrite.Directory (can grant itself more)
+Deploy Bot     directory role: Cloud Application Administrator; Application.ReadWrite.All (can grant itself more)
+id-deploy      Contributor at subscription scope (a privileged administrator role)

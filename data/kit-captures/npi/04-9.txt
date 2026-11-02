@@ -1,0 +1,11 @@
+PS> $sha = (Get-FileHash out/rotation/rotation-plan.json -Algorithm SHA256).Hash.ToLower()
+PS> ./Invoke-NpiCredentialAction.ps1 -Cloud gcc -PlanPath out/rotation/rotation-plan.json -ApprovedSha256 $sha -FixturePath tests/fixtures/ch04/tenant.json -OutputPath out/rotation-dryrun
+DryRun: 3 WouldSend
+  WouldSend AttachNewCertificate PATCH https://graph.microsoft.com/v1.0/applications/0a000000-0000-4000-8000-000000000007
+  WouldSend RemoveOldCertificate PATCH https://graph.microsoft.com/v1.0/applications/0a000000-0000-4000-8000-000000000002
+  WouldSend RenewInKeyVault      POST  https://kv-npi-contoso.vault.azure.net/certificates/vendor-portal/create?api-version=2025-07-01
+PS> ./Invoke-NpiCredentialAction.ps1 -Cloud gcc -PlanPath out/rotation/rotation-plan.json -ApprovedSha256 $sha -FixturePath tests/fixtures/ch04/tenant.json -OutputPath out/rotation-apply -Apply
+Apply: 3 Sent
+  Sent      AttachNewCertificate PATCH https://graph.microsoft.com/v1.0/applications/0a000000-0000-4000-8000-000000000007
+  Sent      RemoveOldCertificate PATCH https://graph.microsoft.com/v1.0/applications/0a000000-0000-4000-8000-000000000002
+  Sent      RenewInKeyVault      POST  https://kv-npi-contoso.vault.azure.net/certificates/vendor-portal/create?api-version=2025-07-01

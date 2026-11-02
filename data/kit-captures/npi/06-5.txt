@@ -1,0 +1,12 @@
+PS> Get-Content out/kerberos/findings.json -Raw | ConvertFrom-Json | Sort-Object Rule | Format-Table Rule, Severity, ObjectKey
+Rule       Severity ObjectKey
+----       -------- ---------
+NPI-KRB-03 Finding  gmsa-web$
+NPI-KRB-04 Finding  svc-webfront
+NPI-KRB-05 Finding  svc-intranet
+NPI-KRB-06 Finding  gmsa-web$
+NPI-KRB-06 Finding  svc-intranet
+NPI-KRB-07 Finding  gmsa-intranet$
+NPI-KRB-08 Warn     gmsa-ops$
+NPI-KRB-09 Info     gmsa-sql$
+NPI-KRB-09 Info     svc-sqlprod

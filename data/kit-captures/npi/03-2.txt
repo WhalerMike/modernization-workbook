@@ -1,0 +1,6 @@
+PS> Import-Module ./powershell/NpiMatrix/NpiMatrix.psm1
+PS> $p = Get-NpiMatrixRequiredPermission
+PS> $p.GraphPermissions -join ', '
+LicenseAssignment.Read.All, User.Read.All
+PS> $p.Methods -join ', '
+GET

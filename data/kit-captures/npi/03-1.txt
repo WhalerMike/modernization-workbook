@@ -1,0 +1,5 @@
+PS> Invoke-Pester -Path tests/NpiMatrix.Tests.ps1 -FullNameFilter '*Chapter 03*' -Output None -PassThru |
+>>     Select-Object PassedCount, FailedCount, NotRunCount
+PassedCount FailedCount NotRunCount
+----------- ----------- -----------
+         12           0          31

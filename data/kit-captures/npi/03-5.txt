@@ -1,0 +1,15 @@
+PS> Get-Content out/matrix/findings.json -Raw | ConvertFrom-Json | Format-Table Rule, Severity, Object
+Rule       Severity Object
+----       -------- ------
+NPI-MAT-07 Finding  svc-hrsync (Traditional)
+NPI-MAT-01 Finding  svc-oldftp (Traditional)
+NPI-MAT-01 Info     jdoe (Traditional)
+NPI-MAT-06 Finding  svc-webfront (Traditional)
+NPI-MAT-07 Warn     svc-webfront (Traditional)
+NPI-MAT-07 Warn     gmsa-ops$ (gMSA)
+NPI-MAT-05 Finding  dmsa-hrsync$ (dMSA)
+NPI-MAT-02 Finding  HR Connector (AppRegistration)
+NPI-MAT-04 Warn     Deploy Bot (AppRegistration)
+NPI-MAT-08 Finding  Wave 2
+NPI-MAT-09 Warn     Payroll Export (AppRegistration)
+NPI-MAT-09 Finding  Vendor Portal (AppRegistration)

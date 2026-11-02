@@ -1,0 +1,8 @@
+PS> ./Invoke-NpiFederation.ps1 -Cloud gcc -PlanPath out/federation/plan.json -ApprovedSha256 $sha -FixturePath tests/fixtures/ch05/tenant.json -OutputPath out/federation-apply -Apply
+Apply: 4 Sent
+  Sent      DisableLegacy    WRITE Disable-ADAccount -Identity ad000000-0000-4000-8000-000000000001
+  Sent      CreateCredential POST  https://graph.microsoft.com/v1.0/applications/0a000000-0000-4000-8000-000000000004/federatedIdentityCredentials
+  Sent      CreateIdentity   PUT   https://management.azure.com/subscriptions/11111111-1111-4111-8111-111111111111/resourceGroups/rg-identity/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-webfront?api-version=2024-11-30
+  Sent      CreateCredential PUT   https://management.azure.com/subscriptions/11111111-1111-4111-8111-111111111111/resourceGroups/rg-identity/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-webfront/federatedIdentityCredentials/aks-webfront?api-version=2024-11-30
+PS> ./Invoke-NpiFederation.ps1 -Cloud gcc -PlanPath out/federation/plan.json -ApprovedSha256 ('0' * 64) -FixturePath tests/fixtures/ch05/tenant.json -OutputPath out/federation-x
+Exception: The plan's SHA-256 is 5ec0a52c70dc49ac6904c6923ac9b292e3c312d38594b6210cc9178c9f188bf2, not the approved 0000000000000000000000000000000000000000000000000000000000000000; refusing to run a plan nobody reviewed.

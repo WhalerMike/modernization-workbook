@@ -1,0 +1,15 @@
+PS> ./Invoke-NpiInventory.ps1 -Cloud gcchigh -FixturePath tests/fixtures/estate.json -OutputPath out/inventory-gcchigh
+Register: 35 identities (AD 15, Entra 20); risk HIGH 8, LOW 19, MEDIUM 8
+Findings: 8 Finding, 11 Warn, 3 Info; 3 handed to the Data Platform plan
+Written to out/inventory-gcchigh (manifest.json: tenant c0ffee00-0000-4000-8000-000000000001, every request, a SHA-256 per file)
+PS> ./Invoke-NpiOwnership.ps1 -Cloud gcchigh -RegisterRun out/inventory-gcchigh -FixturePath tests/fixtures/estate.json -InputPath tests/fixtures/inputs -OutputPath out/ownership-gcchigh
+Ownership: 22 identities checked; 7 orphan candidates
+Findings: 20 Finding, 3 Warn, 1 Info. AI sponsor fields recorded for Chapter 09: 2
+Orphan plan: 10 actions, 3 of them writes (1 AddOwner, 2 Disable); nothing sent
+Plan SHA-256: ee98c43685fceab18463da9bcd21ce540b8029d152195f98323e0fccc7abd1eb
+PS> ./Invoke-NpiAgentId.ps1 -Cloud gcchigh -RegisterRun out/inventory-gcchigh -OwnershipRun out/ownership-gcchigh -FixturePath tests/fixtures/ch09/agent-estate.json -InputPath tests/fixtures/ch09/inputs -OutputPath out/agent-id-gcchigh
+D-N6 (Proposed): Fallback mode in cloud 'gcchigh'; agent Conditional Access Not published; agent risk Not published
+AI identities: 1 checked (1 ServicePrincipal); Chapter 02 sponsor fields filled: 0 of 2
+Findings: 7 Finding (2 P1, 0 P2), 1 Warn, 2 Info. Orphan candidates for Chapter 02: 0
+Agent CA plan: Unapproved NotAvailable, HighRisk NotAvailable; nothing sent
+Plan SHA-256: 11f0e34d16a6bba70be08161df5c42a70f1a6899b28b30a50e2c8d5fff3d7cfe

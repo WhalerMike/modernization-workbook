@@ -1,0 +1,8 @@
+PS> Import-Module ./powershell/NpiInventory/NpiInventory.psm1
+PS> $p = Get-NpiRequiredPermission -Task inventory
+PS> $p.GraphPermissions -join ', '
+Application.Read.All, Directory.Read.All
+PS> $p.AzureRoles -join ', '
+Reader
+PS> $p.AdRights -join ', '
+Read (default for authenticated domain users)

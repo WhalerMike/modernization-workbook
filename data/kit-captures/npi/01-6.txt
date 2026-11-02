@@ -1,0 +1,6 @@
+PS> Import-Csv out/inventory/data-platform-handoff.csv | Format-Table Name, Type, Spns, Risk
+Name         Type        Spns                                     Risk
+----         ----        ----                                     ----
+svc-sqlprod  Traditional MSSQLSvc/sql01.corp.contoso.example:1433 HIGH
+svc-ldapbind Traditional                                          MEDIUM
+gmsa-sql$    gMSA        MSSQLSvc/sql02.corp.contoso.example:1433 MEDIUM

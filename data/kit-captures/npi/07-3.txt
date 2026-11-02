@@ -1,0 +1,4 @@
+PS> Import-Module ./powershell/NpiLeastPrivilege/NpiLeastPrivilege.psm1
+PS> foreach ($t in 'least-privilege', 'least-privilege-apply') { $p = Get-NpiLpRequiredPermission -Task $t; "$t : " + (@($p.GraphPermissions) + @($p.AzureRoles) -join ', ') }
+least-privilege : Application.Read.All, Directory.Read.All, RoleManagement.Read.Directory, Reader
+least-privilege-apply : Application.Read.All, AppRoleAssignment.ReadWrite.All, DelegatedPermissionGrant.ReadWrite.All, Directory.Read.All

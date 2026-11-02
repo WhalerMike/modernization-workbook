@@ -57,10 +57,7 @@ CHAPTERS: dict[str, dict] = {
     "adm-06": {"hidden": {1: "Set-Location ../validation-kit", 2: "Set-Location ../group-policy-as-code"}},
     "adm-07": {"off": "needs Windows and three modules saved from the PowerShell Gallery"},
     "adm-08": {"off": "needs a Linux control node with ansible-core and collections from Ansible Galaxy"},
-    # Labs that start from an earlier chapter's out folder ("needs": its lab runs first, unshown), and
-    # labs whose bash steps work in the drift pipeline.
-    "npi-02": {"needs": ["01"]}, "npi-04": {"needs": ["01"]}, "npi-06": {"needs": ["01"]},
-    "npi-07": {"needs": ["01"]}, "npi-09": {"needs": ["01", "02"]},
+    # Labs whose bash steps work in the drift pipeline.
     "npi-10": {"lang_cwd": {"bash": "examples/drift-pipeline"}},
     "pa-08": {"lang_cwd": {"bash": "examples/drift-pipeline"}},
 }
@@ -197,7 +194,9 @@ foreach ($__b in (Get-Content -Raw -LiteralPath $args[0] | ConvertFrom-Json)) {
     "$([char]0x1e)SRC " + ($__st.Extent.Text -replace "`r?`n", [string][char]0x1f)
     $__shown++
     $global:LASTEXITCODE = 0
-    try { . ([scriptblock]::Create($__st.Extent.Text)) *>&1 | Out-String -Width 200 -Stream }
+    # Tables at full width: where PowerShell would wrap a column differs between machines, and the
+    # terminal images wrap long lines themselves.
+    try { . ([scriptblock]::Create($__st.Extent.Text)) *>&1 | Out-String -Width 1000 -Stream }
     # An error is one line, "Name: message", as a wide terminal shows it; otherwise PowerShell
     # wraps it to the console width, which differs between machines.
     catch {

@@ -1,0 +1,5 @@
+PS> ./Invoke-NpiOwnership.ps1 -Cloud gcc -RegisterRun out/inventory -FixturePath tests/fixtures/estate.json -InputPath tests/fixtures/inputs -OutputPath out/ownership
+Ownership: 22 identities checked; 7 orphan candidates
+Findings: 20 Finding, 3 Warn, 1 Info. AI sponsor fields recorded for Chapter 09: 2
+Orphan plan: 10 actions, 3 of them writes (1 AddOwner, 2 Disable); nothing sent
+Plan SHA-256: 1e1799d7181bd1a3dc271c645fff8a60fc741ab1ebc219bb3011cc25953bad3e

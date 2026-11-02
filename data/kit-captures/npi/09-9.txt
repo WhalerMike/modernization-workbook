@@ -1,0 +1,4 @@
+PS> $sha = (Get-FileHash out/agent-id/agent-ca-plan.json -Algorithm SHA256).Hash.ToLower()
+PS> ./Invoke-NpiAgentCaAction.ps1 -Cloud gcc -PlanPath out/agent-id/agent-ca-plan.json -ApprovedSha256 $sha -FixturePath tests/fixtures/ch09/agent-estate.json -OutputPath out/agent-ca-dryrun
+DryRun: 1 WouldSend
+  WouldSend HighRisk POST https://graph.microsoft.com/beta/identity/conditionalAccess/policies

@@ -1,0 +1,19 @@
+PS> Get-Content out/agent-id/findings.json -Raw | ConvertFrom-Json | Where-Object Severity -eq 'Finding' | Group-Object Rule | Format-Table Name, Count
+Name      Count
+----      -----
+NPI-AI-05     1
+NPI-AI-06     1
+NPI-AI-07     2
+NPI-AI-08     1
+NPI-AI-09     4
+NPI-AI-10     2
+NPI-AI-12     1
+NPI-AI-13     1
+NPI-AI-14     1
+NPI-AI-15     1
+NPI-AI-16     1
+NPI-AI-17     1
+NPI-AI-20     1
+NPI-AI-21     1
+NPI-AI-22     2
+NPI-AI-23     1

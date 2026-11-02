@@ -1,0 +1,2 @@
+PS> ./Invoke-NpiWorkloadCa.ps1 -Mode Check -ScopePath tests/fixtures/ch08/scope.json
+Pre-merge check: 0 Finding, 0 Warn, 0 Info

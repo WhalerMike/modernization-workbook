@@ -1,0 +1,8 @@
+PS> ./Invoke-NpiKerberosIslandAction.ps1 -PlanPath out/kerberos/kerberos-plan.json -ApprovedSha256 $sha -FixturePath tests/fixtures/estate.json -KerberosFixturePath tests/fixtures/ch06/ad-kerberos.json -OutputPath out/kerberos-apply -Apply
+Apply: 4 Sent
+  Sent      SetRetrievers         gmsa-web$       Set-ADServiceAccount
+  Sent      CreateGmsa            msa-print01$    New-ADServiceAccount
+  Sent      CompleteDmsaMigration svc-hrsync      Complete-ADServiceAccountMigration
+  Sent      CreateGmsa            svc-intranet    New-ADServiceAccount
+PS> ./Invoke-NpiKerberosIslandAction.ps1 -PlanPath out/kerberos/kerberos-plan.json -ApprovedSha256 ('0' * 64) -FixturePath tests/fixtures/estate.json -KerberosFixturePath tests/fixtures/ch06/ad-kerberos.json -OutputPath out/kerberos-x
+Exception: The plan's SHA-256 is 5e1f7c33491948026603746e933fafed0572fb77532ff1477ad452397c353746, not the approved 0000000000000000000000000000000000000000000000000000000000000000; refusing to run a plan nobody reviewed.

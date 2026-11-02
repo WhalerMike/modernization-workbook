@@ -1,0 +1,6 @@
+PS> $sha = (Get-FileHash out/ownership/orphan-plan.json -Algorithm SHA256).Hash.ToLower()
+PS> ./Invoke-NpiOrphanAction.ps1 -Cloud gcc -PlanPath out/ownership/orphan-plan.json -ApprovedSha256 $sha -FixturePath tests/fixtures/estate.json -OutputPath out/orphan-dryrun
+DryRun: 3 WouldSend
+  WouldSend Disable  WRITE Disable-ADAccount -Identity ad000000-0000-4000-8000-000000000003
+  WouldSend Disable  PATCH https://graph.microsoft.com/v1.0/servicePrincipals/5b000000-0000-4000-8000-000000000003
+  WouldSend AddOwner POST https://graph.microsoft.com/v1.0/applications/0a000000-0000-4000-8000-000000000002/owners/$ref

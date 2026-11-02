@@ -1,0 +1,11 @@
+PS> Get-Content out/federation/findings.json -Raw | ConvertFrom-Json | Format-Table Rule, Severity, ObjectKey
+Rule       Severity ObjectKey
+----       -------- ---------
+NPI-WIF-03 Finding  conv-02/payroll-prod
+NPI-WIF-02 Finding  conv-02/payroll-prod
+NPI-WIF-08 Finding  conv-02/payroll-prod
+NPI-WIF-07 Warn     conv-02/payroll-test
+NPI-WIF-04 Finding  conv-03/github-intranet-tag
+NPI-WIF-08 Finding  conv-03/github-intranet-tag
+NPI-WIF-01 Finding  conv-06
+NPI-WIF-09 Finding  conv-08

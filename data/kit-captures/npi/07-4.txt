@@ -1,0 +1,6 @@
+PS> ./Invoke-NpiLeastPrivilege.ps1 -Cloud gcc -RegisterRun out/inventory -FixturePath tests/fixtures/ch07/estate-ch07.json -InputPath tests/fixtures/ch07/inputs -OutputPath out/least-privilege
+Sweep: 11 service principals, 20 grants (12 Application, 5 AzureRole, 3 Delegated); 2 skipped; 3 handed to the Privileged Access plan
+Findings: 7 Finding, 3 Warn, 3 Info
+Owner review 2026-Q4: 15 rows, 9 decided, 6 open, 4 changes pending; closed: False
+Plan: 11 actions, 3 of them writes (1 NarrowGrant, 2 RemoveAppRole); nothing sent
+Plan SHA-256: fca44f9f423c5c3590bf1b90b36e13a8cc9c4565dc0fdb30c9d6ef4ce1a1a0f8

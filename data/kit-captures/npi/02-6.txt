@@ -1,0 +1,13 @@
+PS> Get-Content out/ownership/orphan-plan.json -Raw | ConvertFrom-Json | Select-Object -ExpandProperty actions | Format-Table Action, Name, Write
+Action              Name               Write
+------              ----               -----
+Disable             svc-backup          True
+AwaitConfirmation   svc-oldftp         False
+RetirementCandidate svc-reports        False
+ClaimWindowOpen     sa-printsvc        False
+Exception           gmsa-ops$          False
+Disable             Legacy Reports      True
+AwaitConfirmation   Old SAML Connector False
+AddOwner            HR Connector        True
+NomineeRefused      Build Pipeline     False
+RecordOwner         svc-oldftp         False

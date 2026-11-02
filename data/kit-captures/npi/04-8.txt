@@ -1,0 +1,10 @@
+PS> (Get-Content out/rotation/rotation-plan.json -Raw | ConvertFrom-Json).actions | Format-Table Action, Name, Write
+Action               Name            Write
+------               ----            -----
+AttachNewCertificate Deploy Bot       True
+RemoveOldCertificate HR Connector     True
+ReplaceSecret        Legacy Reports  False
+NoKeyVaultBinding    Legacy Reports  False
+ReplaceSecret        Mail Automation False
+ReplaceSecret        Payroll Export  False
+RenewInKeyVault      Vendor Portal    True

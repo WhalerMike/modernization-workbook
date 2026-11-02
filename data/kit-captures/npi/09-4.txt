@@ -1,0 +1,8 @@
+PS> 'global','gcc','gcchigh','dod' | ForEach-Object { $c = Get-NpiAgentCapability -Cloud $_
+>>     [pscustomobject]@{ Cloud = $_; Mode = $c.Mode; AgentIdentities = $c.AgentIdentities.stage; AgentCA = $c.AgentConditionalAccess.stage; SponsorWorkflows = $c.SponsorWorkflows.stage } } | Format-Table
+Cloud   Mode     AgentIdentities AgentCA                        SponsorWorkflows
+-----   ----     --------------- -------                        ----------------
+global  AgentId  GA (April 2026) Preview (policy builder label) GA (May 2026)
+gcc     AgentId  GA (April 2026) Preview (policy builder label) GA (May 2026)
+gcchigh Fallback Not published   Not published                  Not published
+dod     Fallback Not published   Not published                  Not published

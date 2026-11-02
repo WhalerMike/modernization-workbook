@@ -1,0 +1,33 @@
+$ python python/npi_evidence.py period --evidence out/evidence --since 2026-10-28T06:00:00Z --until 2026-10-30T06:00:00Z --vintage tests/fixtures/npi-vintage/vintage-2026 --out out/periods
+{"chain_breaks": 0, "closed": 1, "complete": false, "coverage_gaps": 0, "opened": 19, "packages": 2, "period": "period-2026-10-28_2026-10-30"}
+(exit code 2)
+$ cat out/periods/period-2026-10-28_2026-10-30/period-summary.md
+# Non-person identity evidence for the period
+
+Period 2026-10-28T06:00:00Z to 2026-10-30T06:00:00Z; tenant c0ffee00-0000-4000-8000-000000000001 (gcc, Fixture); 2 package(s), chain breaks 0, coverage gaps 0, unverified task runs 0. Findings opened 19, closed 1, open at the end 85.
+
+| Control | Open findings | Open warnings | Status |
+|---|---|---|---|
+| AC-2 Account Management | 20 | 15 | evidence incomplete: Chapter 03 |
+| AC-6(5) Least Privilege, Privileged Accounts | 12 | 2 | evidence present; the assessor decides |
+| IA-4 Identifier Management | 11 | 3 | evidence present; the assessor decides |
+| IA-5 Authenticator Management | 6 | 8 | evidence incomplete: Chapter 04, Chapter 06 |
+| IA-9 Service Identification and Authentication | 3 | 0 | evidence incomplete: Chapter 05, Chapter 08 |
+| M-25-21 AI use-case inventory and governance (OMB) | 5 | 3 | evidence present; the assessor decides |
+
+| Gate 7 criterion | From this code | Status |
+|---|---|---|
+| Every service account and service principal has an owner and sponsor, a reason and a target | ownerless 7 (NPI-DRF-03); agents without a sponsor attestation 1; Chapter 03 decisions not received | not decided by this code (Chapter 03) |
+| None holds a password that never expires | 3 enabled AD account(s) (NPI-DRF-06) | not met |
+| None is orphaned | 7 orphan candidate(s) (NPI-DRF-03) | not met |
+| Drift checks and review cycles running | 2 package(s), coverage gaps 0, chain breaks 0, unverified task runs 0; review records missing 0, review findings 4 | not met |
+| Every remaining gMSA and dMSA moved or in the dated Kerberos island | Chapter 06 findings not received | not decided by this code (Chapter 06) |
+
+| Package | Audit window | EVIDENCE-MANIFEST.json SHA-256 |
+|---|---|---|
+| 2026-10-29T0600Z-fixture | 2026-10-28T06:00:00Z to 2026-10-29T06:00:00Z | `574efc052d254f1e0046ad4e85985f6a6604a9ecc5bc52d1cf4ac3405a3a5169` |
+| 2026-10-30T0600Z-fixture | 2026-10-29T06:00:00Z to 2026-10-30T06:00:00Z | `35993595b6a84a8c911d5127d3627fda40eb1bbdaadebf1fd0eeed5d4225d1a0` |
+
+AI use-case inventory vintage 2026: 5 open finding(s); manifest SHA-256 `4146b751be8a8c96fcacac4bb4ad131f878f70f16fc6f12313b8cf09bfb08a96`.
+
+Object keys and fingerprints only. The packages hold the names, under the evidence store's access control. The control mapping is the program's (design guidance); the assessor and the authorizing official decide each control.

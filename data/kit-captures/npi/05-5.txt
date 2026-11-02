@@ -1,0 +1,9 @@
+PS> Get-Content out/federation/exchange-tests.json -Raw | ConvertFrom-Json | Format-Table Credential, SubjectSource, Passed
+Credential          SubjectSource Passed
+----------          ------------- ------
+payroll-prod        derived        False
+github-main         derived         True
+github-intranet     derived         True
+github-intranet-tag derived        False
+aks-webfront        derived         True
+gh-reports          derived         True
