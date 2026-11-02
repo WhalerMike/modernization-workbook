@@ -236,6 +236,17 @@ website:
             - docs/training/hr-driven-identity/05-certificate-based-authentication.md
             - docs/training/hr-driven-identity/06-separation-timing.md
             - docs/training/hr-driven-identity/07-drift-and-evidence.md
+        - section: "Privileged Access learning path"
+          href: docs/training/privileged-access/index.md
+          contents:
+            - docs/training/privileged-access/01-privileged-inventory.md
+            - docs/training/privileged-access/02-emergency-access-first.md
+            - docs/training/privileged-access/03-conditional-access-and-the-activation-gate.md
+            - docs/training/privileged-access/04-pim-for-entra-roles.md
+            - docs/training/privileged-access/05-pim-for-groups.md
+            - docs/training/privileged-access/06-pim-for-azure-resources.md
+            - docs/training/privileged-access/07-access-reviews.md
+            - docs/training/privileged-access/08-evidence-and-drift.md
         - section: "External learning paths"
           contents:
             - docs/training/infoblox-training.md
