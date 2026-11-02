@@ -22,7 +22,7 @@ last-reviewed: 2026-11-01
 
 At the end of the month, your ISSO needs to show an assessor that every identity finding was owned, clocked, re-read and closed, that nothing was edited after it closed, and that nothing was quietly dropped. Ticket history and screenshots don't prove that. In this module you learn what Gate 7 runs and reports, then build and verify the evidence package for a period.
 
-**The federal requirement.** The guide's [Gate 7 requirements and evidence table](../../books/guides/ttm-servicenow-sailpoint.md#step-7-operate-the-tempo) maps the tempo to NIST SP 800-53 CA-7, RA-7, CA-5 and AU-6. [Chapter 07's table](../../project-plans/developer-workbooks/ticket-to-machine/07-evidence-records.md#federal-requirements-and-evidence) maps the records and the package to CM-3, CA-7 and AU-9, and says what isn't evidenced yet.
+**The federal requirement.** The guide's [Gate 7 requirements and evidence table](../../books/guides/ttm-servicenow-sailpoint.md#step-7-operate-the-tempo) maps the tempo to NIST SP 800-53 CA-7, RA-7, CA-5 and AU-6. [Chapter 07's table](../../project-plans/developer-workbooks/ticket-to-machine/07-evidence-records.md#federal-requirements-and-evidence) maps the records and the package to CM-3, CA-7 and AU-9, and says what isn't evidenced yet. Each table's KSI column names the FedRAMP 20x Key Security Indicators to line your evidence up with; your cloud providers report against them, the agency doesn't.
 
 ### Learning objectives
 

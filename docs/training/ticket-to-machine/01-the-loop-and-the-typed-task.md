@@ -22,7 +22,7 @@ last-reviewed: 2026-11-01
 
 Your agency's service desk closes an access ticket when a technician types "done." Nobody can say who owned the drift, when it fell due, or what the account should look like afterward. Book 13's answer is a typed task: one record with a class, a severity, an owner, a clock and an intended state that a later re-read can check. Every step of the loop writes or reads that record, so you start with it.
 
-**The federal requirement.** Gate 4 turns findings and requests into documented, owned, clocked records. The guide's [Gate 4 requirements and evidence table](../../books/guides/ttm-servicenow-sailpoint.md#step-4-open-the-front-door) maps it to NIST SP 800-53 CM-3, RA-7, CA-7 and AC-5, and the chapter's [federal requirements and evidence](../../project-plans/developer-workbooks/ticket-to-machine/01-the-loop-and-the-typed-task.md#federal-requirements-and-evidence) says what the contract check proves and who keeps it.
+**The federal requirement.** Gate 4 turns findings and requests into documented, owned, clocked records. The guide's [Gate 4 requirements and evidence table](../../books/guides/ttm-servicenow-sailpoint.md#step-4-open-the-front-door) maps it to NIST SP 800-53 CM-3, RA-7, CA-7 and AC-5, and the chapter's [federal requirements and evidence](../../project-plans/developer-workbooks/ticket-to-machine/01-the-loop-and-the-typed-task.md#federal-requirements-and-evidence) says what the contract check proves and who keeps it. Each table's KSI column names the FedRAMP 20x Key Security Indicators to line your evidence up with; your cloud providers report against them, the agency doesn't.
 
 ### Learning objectives
 

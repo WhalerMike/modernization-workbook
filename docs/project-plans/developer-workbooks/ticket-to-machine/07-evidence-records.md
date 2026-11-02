@@ -301,13 +301,28 @@ The record shape, the window and the lanes are Book 13's (program design); the h
 
 This chapter's output is the evidence. What each part proves, and for whom:
 
-| What the output proves | Requirement it supports | Who keeps it |
-|---|---|---|
-| Each identity finding has one record: its origin, owner, clock, intended state, re-read and closure | NIST SP 800-53 CM-3 (retained records of changes) and CA-7 at Moderate;[^ttm07-moderate] Book 13's evidence record | The ISSO, as part of the continuous-monitoring evidence for the period |
-| Records weren't changed after closure, and none was removed from the period | AU-9 (protection of audit information) at Moderate;[^ttm07-moderate] the integrity half of Book 13's "verified, secured evidence" | The manifest and the chain, verified with `--verify-dir` |
-| Closures happened inside the program's windows, and late ones are named | Book 13's window adherence; CA-7's monitoring results | `summary.json`, reviewed by the governance board |
-| Exceptions are declared, with a note | Book 13's declared-exception lane; the POA&M item it needs | The cancelled records, and the exception register |
-| What isn't evidenced yet is stated | Honest scope for the assessor: no approval, executing identity or run log until actuation is built | The null fields and their reason |
+| What the output proves | Requirement it supports | KSI | Who keeps it |
+|---|---|---|---|
+| Each identity finding has one record: its origin, owner, clock, intended state, re-read and closure | NIST SP 800-53 CM-3 (retained records of changes) and CA-7 at Moderate;[^ttm07-moderate] Book 13's evidence record | KSI-CMT-LMC; KSI-MLA-EVC | The ISSO, as part of the continuous-monitoring evidence for the period |
+| Records weren't changed after closure, and none was removed from the period | AU-9 (protection of audit information) at Moderate;[^ttm07-moderate] the integrity half of Book 13's "verified, secured evidence" | KSI-MLA-OSM | The manifest and the chain, verified with `--verify-dir` |
+| Closures happened inside the program's windows, and late ones are named | Book 13's window adherence; CA-7's monitoring results | KSI-MLA-EVC | `summary.json`, reviewed by the governance board |
+| Exceptions are declared, with a note | Book 13's declared-exception lane; the POA&M item it needs | None | The cancelled records, and the exception register |
+| What isn't evidenced yet is stated | Honest scope for the assessor: no approval, executing identity or run log until actuation is built | None | The null fields and their reason |
+| Lab 1, step 1: the export, its checks and the chain hold, tested before a change merges | SA-11 (developer testing) at Moderate[^ttm07-moderate] | KSI-SCR-MIT | The `pytest tests/python/test_evidence_export.py` run, in the pull request's checks |
+| Lab 1, step 2: one record per closed or cancelled finding, each carrying the hash of the one before | CM-3; AU-9 | KSI-CMT-LMC; KSI-MLA-OSM | `out/evidence/records.jsonl` |
+| Lab 1, step 2: counts, window adherence, and the records with problems, named; the run exits 1 | CA-7 | KSI-MLA-EVC | `out/evidence/summary.json` and the run's output |
+| Lab 1, step 2: a SHA-256 per file and the chain head | AU-9 | KSI-MLA-OSM | `out/evidence/manifest.json` |
+| Lab 1, step 3: the package holds as written | AU-9 | KSI-MLA-OSM | The `evidence_export.py --verify-dir` output, kept with the package |
+| Lab 1, step 4: November's chain starts from October's head, so a gap between periods shows | AU-9 | KSI-MLA-OSM | `chain_previous` in `out/evidence-2026-11/manifest.json` |
+| Lab 1, step 5: a removed record breaks the package | AU-9 | KSI-MLA-OSM | The `--verify-dir` output, `Package does not hold` |
+| Lab 1, step 6: fixture output isn't kept | None | None | Nobody: `rm -rf out` deletes fictional data |
+| Lab 2, step 1: the evidence reader can read findings and nothing else | AC-6 (least privilege) and AC-5 at Moderate[^ttm07-moderate] | KSI-IAM-ELP; KSI-IAM-JIT | The `kit_calls.py --task evidence --granted` output, kept with the access approval |
+| Lab 2, step 2: a live package for the period, read by the reader's token | CM-3; CA-7; AU-9 | KSI-CMT-LMC; KSI-MLA-EVC; KSI-MLA-OSM | `out/evidence-live/records.jsonl`, `summary.json` and `manifest.json`, given to the ISSO |
+| Lab 2, step 3: `due` and `finished` are the UTC times expected, so window adherence is right | CA-7 | KSI-MLA-EVC | The printed dates, recorded with the first live package |
+| Lab 2, step 4: the live package holds | AU-9 | KSI-MLA-OSM | The `--verify-dir` output, kept with the package |
+| Lab 2, step 5: no test package, client, user or role is left | AC-2 (account management) at Moderate[^ttm07-moderate] | KSI-IAM-SNU | The instance's deletion history; `rm -rf out/evidence-live` |
+
+The KSI column names the FedRAMP 20x Key Security Indicators whose related SP 800-53 controls include the row's control.[^ttm07-ksi] KSIs are indicators for cloud service providers: the agency authorizes its own system and lines its own evidence up with what its providers report against them; it doesn't report KSIs itself.
 
 AU-10 (non-repudiation) and CM-5(1), which Book 13 maps to the loop, aren't in the Moderate baseline;[^ttm07-moderate] at Moderate the chain supports AU-9's integrity, and signing the package is a further step. The control mapping is Book 13's [Appendix A](../../../books/b13-governance/appendix-a-requirements-mapping.md), and the federal sources are in the [federal framework crosswalk](../../../reference/federal-framework-crosswalk.md).
 
@@ -340,4 +355,5 @@ AU-10 (non-repudiation) and CM-5(1), which Book 13 maps to the loop, aren't in t
 [^ttm07-table]: ServiceNow, "Table API" (Zurich API reference), <https://www.servicenow.com/docs/bundle/zurich-api-reference/page/integrate/inbound-rest/concept/c_TableAPI.html> (read November 1, 2026).
 [^ttm07-fedramp]: FedRAMP Marketplace data, <https://www.fedramp.gov/marketplace/products.json> (last change November 1, 2026): ServiceNow Government Community Cloud, F1305072116 (read November 1, 2026).
 [^ttm07-index]: SailPoint, Identity Security Cloud OpenAPI specification, v3, search `Index` enumeration, <https://github.com/sailpoint-oss/api-specs/blob/main/idn/v3/schemas/search/Index.yaml> (read November 1, 2026).
-[^ttm07-moderate]: National Institute of Standards and Technology, SP 800-53B Moderate baseline, release 5.2.0 OSCAL profile (includes AU-9, CA-7 and CM-3; doesn't include AU-10 or CM-5(1)), <https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_MODERATE-baseline_profile.json> (read November 1, 2026).
+[^ttm07-moderate]: National Institute of Standards and Technology, SP 800-53B Moderate baseline, release 5.2.0 OSCAL profile (includes AC-2, AC-5, AC-6, AU-9, CA-7, CM-3 and SA-11; doesn't include AU-10 or CM-5(1)), <https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_MODERATE-baseline_profile.json> (read November 1, 2026).
+[^ttm07-ksi]: FedRAMP, "Key Security Indicators," *FedRAMP Consolidated Rules for 2026*, indicator titles and "Related SP 800-53 Controls," <https://www.fedramp.gov/2026/reference/key-security-indicators/> (read November 2, 2026).
