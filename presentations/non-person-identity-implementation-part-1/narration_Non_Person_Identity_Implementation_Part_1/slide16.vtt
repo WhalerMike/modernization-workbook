@@ -1,0 +1,83 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.950
+To close Part 1, here's what each gate
+leaves behind, and where Part 2 picks it up.
+
+2
+00:00:04.950 --> 00:00:07.886
+The first gate leaves
+the record, with owners,
+
+3
+00:00:07.886 --> 00:00:12.250
+sponsors and risk, plus the register
+and the SQL Server hand-off.
+
+4
+00:00:12.250 --> 00:00:16.062
+Gate four restores a removed
+grant only from that export.
+
+5
+00:00:16.062 --> 00:00:18.287
+Gate six runs the orphan rule.
+
+6
+00:00:18.287 --> 00:00:21.573
+The second gate leaves a target
+and a date for every row,
+
+7
+00:00:21.573 --> 00:00:25.150
+the waves and their rollback,
+and the premium license scope.
+
+8
+00:00:25.150 --> 00:00:27.964
+Gate four puts the most
+important single-tenant
+
+9
+00:00:27.964 --> 00:00:30.637
+service principals
+under workload policies.
+
+10
+00:00:30.637 --> 00:00:35.100
+Gate five converts wave by wave,
+with a thirty-day parallel run.
+
+11
+00:00:35.100 --> 00:00:38.626
+The third gate leaves the
+policy, the rotation calendar,
+
+12
+00:00:38.626 --> 00:00:40.925
+the exceptions and the SCuBA result.
+
+13
+00:00:40.925 --> 00:00:45.674
+Gate five drops a secret only after the
+new credential carries real traffic,
+
+14
+00:00:45.674 --> 00:00:48.388
+and gate six checks
+credentials every week.
+
+15
+00:00:48.388 --> 00:00:51.742
+To build Part 1's code,
+use the developer workbook,
+
+16
+00:00:51.742 --> 00:00:55.263
+Building Non-Person Identity,
+chapters one to four.
+
+17
+00:00:55.263 --> 00:00:57.940
+Each has its labs and a narrated tour.

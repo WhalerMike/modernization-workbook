@@ -183,6 +183,10 @@ website:
             text: "Commands"
           - href: docs/reference/federal-framework-crosswalk.md
             text: "Federal Framework Crosswalk"
+          - href: docs/reference/rmf-map.md
+            text: "RMF Map"
+          - href: docs/reference/m-19-17-ficam-crosswalk.md
+            text: "M-19-17 and FICAM Crosswalk"
           - href: docs/reference/graph-practice-crosswalk.md
             text: "Microsoft Practice Crosswalk"
       - text: "About"
@@ -258,6 +262,8 @@ website:
       contents:
         - docs/reference/commands.md
         - docs/reference/federal-framework-crosswalk.md
+        - docs/reference/rmf-map.md
+        - docs/reference/m-19-17-ficam-crosswalk.md
         - docs/reference/graph-practice-crosswalk.md
     - id: projects
       title: "Projects"

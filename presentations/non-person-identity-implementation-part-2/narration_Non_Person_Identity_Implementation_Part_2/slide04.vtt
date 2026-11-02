@@ -1,0 +1,78 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.362
+The workbook's seventh
+chapter sweeps every grant.
+
+2
+00:00:03.362 --> 00:00:05.692
+It reads app roles, delegated grants,
+
+3
+00:00:05.692 --> 00:00:09.575
+directory roles and Azure roles
+for each service principal.
+
+4
+00:00:09.575 --> 00:00:12.532
+On the fictional estate
+it finds eleven service
+
+5
+00:00:12.532 --> 00:00:15.637
+principals and twenty
+grants, with seven findings.
+
+6
+00:00:15.637 --> 00:00:18.826
+Three can grant themselves
+more, or hold an admin role,
+
+7
+00:00:18.826 --> 00:00:21.725
+so they go to the Privileged
+Access plan instead.
+
+8
+00:00:21.725 --> 00:00:26.537
+The plan has three writes: two app
+role removals and one narrowed grant.
+
+9
+00:00:26.537 --> 00:00:29.709
+Each removal goes through
+the resource, never the app,
+
+10
+00:00:29.709 --> 00:00:33.313
+and nothing is sent until a
+reviewer approves the plan's hash.
+
+11
+00:00:33.313 --> 00:00:38.362
+The eighth chapter keeps the two workload
+policies as reviewed files, one per ring.
+
+12
+00:00:38.362 --> 00:00:41.400
+Every policy is created
+in report-only mode.
+
+13
+00:00:41.400 --> 00:00:43.175
+Then it reads the sign-ins.
+
+14
+00:00:43.175 --> 00:00:44.338
+Ring one is ready.
+
+15
+00:00:44.338 --> 00:00:49.187
+Ring two isn't, because one workload
+signed in from outside its known networks.
+
+16
+00:00:49.187 --> 00:00:53.660
+Enforcement waits for the CISO's
+decision and a reviewed sign-in summary.

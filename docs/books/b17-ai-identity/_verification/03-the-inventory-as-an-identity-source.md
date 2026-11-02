@@ -100,3 +100,16 @@ Re-checked after the weekly source watch (issue #160) reported a change in a cit
 | Finding | Change |
 |---|---|
 | OMB memoranda index now runs to M-27-01 | `c03-memos` updated |
+
+## Privacy section, November 2, 2026
+
+A short "Privacy: AI identities and the inventory" section was added (additive; no existing text changed). Every source was opened on November 2, 2026. SP 800-53 control titles and privacy-baseline membership were read from NIST's OSCAL Release 5.2.0 catalog and privacy baseline profile; the SP 800-53B abstract states the privacy baseline applies irrespective of impact level. The "Who signs off" column and every "program's design" sentence are design guidance, not external fact. The fuller treatment is Book 03, Chapter 14, whose verification file logs the same sources in more detail.
+
+| # | Claim (short) | Verdict | Source |
+|---|---|---|---|
+| 1 | `has_pii` asks whether the use case involves PII as A-130 defines it (required for pilot and deployed); `pia_url` optional | verified | OMB data dictionary, columns 23 and 24 |
+| 2 | Agencies may replace `contact_email` with a public-inquiry address in public inventories | verified | OMB data dictionary, column 6 |
+| 3 | M-03-22 PIA update trigger: new uses or technologies | verified | M-03-22 §II.B.2 |
+| 4 | M-25-21: AI impact assessment before deploying high-impact AI, should reference PIAs; privacy on CFO Act agencies' AI governance boards | verified | M-25-21 §3(a)(ii)(B), §4(b)(ii)(C) and note 30 |
+| 5 | RA-8, PT-3 in the privacy baseline | verified | OSCAL privacy profile 5.2.0 |
+| 6 | `has_pii` as a privacy gate; sponsor records stay out of the public file; obligations table | restated-as-design | - |

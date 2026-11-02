@@ -75,3 +75,7 @@ Notes:
 | Ch 12 Phase 0/1/6 items; Roles table | OPM owns; privacy timing; failure table; pointer to Roles table | Roles table left in Ch 12 (it lists who does each phase's work) |
 | Appendix A quarantine contract; manager links | Help desk bullet; HR owns; matrix | — |
 | Appendix B privacy basis, ISSO checklist | Privacy section; ISSO and AO section | See note 1 |
+
+## Change, November 2, 2026
+
+- "The privacy office": one sentence added pointing to the new Chapter 14, Privacy for Workforce Identity. It makes no external claim; Chapter 14's claims are logged in `14-privacy-for-workforce-identity.md`.

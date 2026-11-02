@@ -1,0 +1,84 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.124
+Across the whole track, the
+evidence covers account management,
+
+2
+00:00:04.124 --> 00:00:09.350
+least privilege, identifiers, authenticators,
+service identification and audit.
+
+3
+00:00:09.350 --> 00:00:13.933
+It's the record, the tickets, the
+kit runs with their justifications,
+
+4
+00:00:13.933 --> 00:00:17.850
+the access review results, the
+policy export, and the logs.
+
+5
+00:00:17.850 --> 00:00:20.363
+Two CISA items sit across the track.
+
+6
+00:00:20.363 --> 00:00:23.377
+ScubaGear also checks that
+apps have no passwords,
+
+7
+00:00:23.377 --> 00:00:25.888
+and that credential lifetimes are capped.
+
+8
+00:00:25.888 --> 00:00:29.127
+And it marks blocking risky
+AI agents as required,
+
+9
+00:00:29.127 --> 00:00:32.762
+though CISA's own list didn't
+include it in late October.
+
+10
+00:00:32.762 --> 00:00:35.220
+So record it now, and
+enforce it when agent
+
+11
+00:00:35.220 --> 00:00:37.750
+risk is generally available in your cloud.
+
+12
+00:00:37.750 --> 00:00:40.284
+Run the checks on the monitoring cadence,
+
+13
+00:00:40.284 --> 00:00:43.713
+and file each run with its
+date, tenant and check version.
+
+14
+00:00:43.713 --> 00:00:46.225
+Rollback is defined for every step.
+
+15
+00:00:46.225 --> 00:00:51.150
+Part 1's steps roll back by re-deciding,
+or by an exception with an end date.
+
+16
+00:00:51.150 --> 00:00:53.637
+Least privilege goes back to report-only.
+
+17
+00:00:53.637 --> 00:00:56.063
+Conversion re-enables the old account.
+
+18
+00:00:56.063 --> 00:01:00.460
+And decommissioning reactivates,
+or restores within thirty days.

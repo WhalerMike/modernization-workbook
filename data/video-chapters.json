@@ -8837,6 +8837,138 @@
    "Rollout sequence, decisions and next steps"
   ]
  ],
+ "Non_Person_Identity_Implementation_Part_1_Narrated": [
+  [
+   0,
+   "Part 1: Inventory, decisions and credential rules"
+  ],
+  [
+   62,
+   "The six gates on one page: done when, proved by"
+  ],
+  [
+   121,
+   "Before G1: the record, the roles and the licenses"
+  ],
+  [
+   184,
+   "G1: inventory every kind of non-person identity"
+  ],
+  [
+   250,
+   "G1: join each identity to a record, owner and sponsor"
+  ],
+  [
+   310,
+   "G1 in code: one register, and the HIGH-risk rows"
+  ],
+  [
+   370,
+   "G1 in code: two human owners and the orphan plan"
+  ],
+  [
+   427,
+   "G1: requirement, evidence, availability, rollback"
+  ],
+  [
+   491,
+   "G2: five targets, decided by type and where it runs"
+  ],
+  [
+   555,
+   "G2 in code: propose, check each decision, plan waves"
+  ],
+  [
+   616,
+   "G2: requirement, evidence, availability, rollback"
+  ],
+  [
+   680,
+   "G3: the tenant policy blocks secrets, caps certificates"
+  ],
+  [
+   742,
+   "G3: the vault, the upload, and secrets by exception"
+  ],
+  [
+   805,
+   "G3 in code: compare the policy, plan the rotation"
+  ],
+  [
+   864,
+   "G3: requirement, evidence, availability, rollback"
+  ],
+  [
+   929,
+   "Handing G1–G3 to Part 2"
+  ]
+ ],
+ "Non_Person_Identity_Implementation_Part_2_Narrated": [
+  [
+   0,
+   "Part 2: Privilege, conversion and lifecycle"
+  ],
+  [
+   60,
+   "G4–G6 on one page: done when, validate with, rollback"
+  ],
+  [
+   115,
+   "G4: cut privilege across five surfaces"
+  ],
+  [
+   183,
+   "G4 in code: sweep the grants, ring the policies"
+  ],
+  [
+   241,
+   "G4: requirement, evidence, availability, rollback"
+  ],
+  [
+   302,
+   "G5: build the target, run in parallel, then disable"
+  ],
+  [
+   360,
+   "G5 in code: test the exchange, plan the Kerberos moves"
+  ],
+  [
+   417,
+   "G5: requirement, evidence, availability, rollback"
+  ],
+  [
+   479,
+   "G6: owner change, orphans and owner reviews"
+  ],
+  [
+   533,
+   "G6: disable first, then delete"
+  ],
+  [
+   588,
+   "G6 in code: drift, the review cycle, the evidence chain"
+  ],
+  [
+   644,
+   "G6: requirement, evidence, availability, rollback"
+  ],
+  [
+   706,
+   "SQL Server: the engine, the instance, the applications"
+  ],
+  [
+   766,
+   "AI agents: sponsors, blueprints and gated creation"
+  ],
+  [
+   826,
+   "Evidence and rollback across the track"
+  ],
+  [
+   891,
+   "The dangers to keep in view, and where to go next"
+  ]
+ ],
  "Research_Cisco_SDWAN_Narrated": [
   [
    0,

@@ -1,0 +1,52 @@
+{
+  "value": [
+    {
+      "id": "prov-leaver-990000",
+      "activityDateTime": "2026-11-11T14:30:00Z",
+      "provisioningAction": "update",
+      "sourceIdentity": {
+        "id": "990000",
+        "identityType": "User"
+      },
+      "provisioningStatusInfo": {
+        "status": "success"
+      }
+    },
+    {
+      "id": "prov-leaver-990001",
+      "activityDateTime": "2026-11-11T14:30:00Z",
+      "provisioningAction": "update",
+      "sourceIdentity": {
+        "id": "990001",
+        "identityType": "User"
+      },
+      "provisioningStatusInfo": {
+        "status": "success"
+      }
+    },
+    {
+      "id": "prov-leaver-990002",
+      "activityDateTime": "2026-11-11T14:30:00Z",
+      "provisioningAction": "update",
+      "sourceIdentity": {
+        "id": "990002",
+        "identityType": "User"
+      },
+      "provisioningStatusInfo": {
+        "status": "success"
+      }
+    },
+    {
+      "id": "prov-leaver-990003",
+      "activityDateTime": "2026-11-11T14:30:00Z",
+      "provisioningAction": "disable",
+      "sourceIdentity": {
+        "id": "990003",
+        "identityType": "User"
+      },
+      "provisioningStatusInfo": {
+        "status": "success"
+      }
+    }
+  ]
+}

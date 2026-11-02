@@ -11,12 +11,15 @@ Workbook folder: `docs/project-plans/developer-workbooks/hr-driven-identity/`. F
 | `05-certificate-based-authentication-checks.md` | Chapter 05 — Certificate-Based Authentication Checks | G5 Credentials | `cba_check.py`, `config/cba-expected.json` |
 | `06-separation-timing.md` | Chapter 06 — Separation Timing from the Logs | G6 Separation | `separation_timing.py`, `config/separation.json` |
 | `07-lifecycle-drift-and-evidence.md` | Chapter 07 — Lifecycle Drift, Metrics and Evidence | G7 Drift and evidence | `lifecycle_drift.py`, `config/drift.json`; `examples/drift-pipeline/python/hr_evidence.py` |
+| `08-deploying-to-test-and-production.md` | Chapter 08 — Deploying to a Test Tenant, Then to Production | G1 to G7, in order | `examples/hr-lifecycle/deploy/`: `deploy_settings.py`, `preflight.py`, `smoke_test.py`, `rollback.py`, `settings.example.json`, `smoke-workers.json` |
 
 ## Link, don't repeat
 
 Book 19 already builds the middleware (Ch01), the Graph client pattern (Ch02), validation kit checks (Ch03), dynamic rules as code (Ch04), Lifecycle Workflows custom task extensions and the leaver order check (Ch05) and the drift pipeline (Ch09). *Building Privileged Access* builds PIM and reviews of privileged roles. A chapter links to them and builds only what its gate needs that they don't. It links Book 03 for the design and the guide for the steps, and doesn't restate either.
 
 ## Every chapter has
+
+Chapter 08 is the exception: a runbook, not a gate. It has no heading with "Lab 1" or "Lab 2" (`scripts/kit_captures.py` and `scripts/generate_labs.py` key on those headings); every step is a command block or an exact admin center path, its outputs come from fixture mode, labeled with the date, and its live results are written as expected results. It keeps the verified facts, dangers, checklist, footnotes and verification log the others have. The other seven chapters have:
 
 In this chapter; goal and audience; Start with Microsoft's procedure (what Learn gives, what it leaves to you, as a gap table whose rows are pinned by tests); the code (what exists, what the chapter adds, the tests); an Illustrative code callout; Lab 1 against fixtures with no tenant (every command run before its expected output is written); Lab 2 in a test tenant with a back-out step, marked not run by the authors; a verified facts table (endpoint, least-privileged permission, US Government availability, release stage) with the places Learn's pages differ; Federal requirements and evidence (the gate and requirement, what the ISSO keeps; link the guide's gate table and the federal framework crosswalk, don't restate); dangers with the guard for each; a checklist; Continue the book; footnotes.
 

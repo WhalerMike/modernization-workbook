@@ -147,6 +147,19 @@ Every claim was checked against the primary source on October 23, 2026. Sources:
 | 3 | Validate vendor conformance documentation before purchase and after change | Request portal and 508 | verified | OMB M-24-08 §III.B |
 | 4 | Test the whole flow with assistive technology; record the ACR | Request portal and 508 | restated-as-design | — |
 
+## Privacy section, November 2, 2026
+
+A short "Privacy" section was added (additive; no existing text changed). Every source was opened on November 2, 2026. SP 800-53 control titles and privacy-baseline membership were read from NIST's OSCAL Release 5.2.0 catalog and privacy baseline profile; the SP 800-53B abstract states the privacy baseline applies irrespective of impact level. The "Who signs off" column and every "program's design" sentence are design guidance, not external fact. The fuller treatment is Book 03, Chapter 14, whose verification file logs the same sources in more detail.
+
+| # | Claim (short) | Verdict | Source |
+|---|---|---|---|
+| 1 | Disclosure to employees who need the record is permitted; records used in decisions must be accurate enough for fairness | verified | 5 U.S.C. §552a(b)(1), (e)(5) |
+| 2 | Minimization principle | verified | A-130 Appendix II §3 |
+| 3 | PT-3, SI-12, SI-12(1), SI-18 titles; in the privacy baseline at every impact level | verified | OSCAL catalog and privacy profile 5.2.0; SP 800-53B abstract |
+| 4 | Review history and request records are system access records under GRS 3.2 | verified | GRS 3.2 items 030, 031 |
+| 5 | Guests and connected organizations are outside the government, relevant to the PIA | restated-as-design | - |
+| 6 | Obligations table | restated-as-design | - |
+
 ## Additions, November 2, 2026 (Section 508 follow-up)
 
 Opened November 2, 2026: Microsoft Learn, "Change approval and requestor information settings for an access package in entitlement management" and "Create an access package in entitlement management" (MCP search), section on requestor questions.

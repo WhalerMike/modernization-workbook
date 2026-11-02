@@ -1,0 +1,52 @@
+{
+  "value": [
+    {
+      "id": "prov-joiner-990000",
+      "activityDateTime": "2026-11-09T14:30:00Z",
+      "provisioningAction": "create",
+      "sourceIdentity": {
+        "id": "990000",
+        "identityType": "User"
+      },
+      "provisioningStatusInfo": {
+        "status": "success"
+      }
+    },
+    {
+      "id": "prov-joiner-990001",
+      "activityDateTime": "2026-11-09T14:30:00Z",
+      "provisioningAction": "create",
+      "sourceIdentity": {
+        "id": "990001",
+        "identityType": "User"
+      },
+      "provisioningStatusInfo": {
+        "status": "success"
+      }
+    },
+    {
+      "id": "prov-joiner-990002",
+      "activityDateTime": "2026-11-09T14:30:00Z",
+      "provisioningAction": "create",
+      "sourceIdentity": {
+        "id": "990002",
+        "identityType": "User"
+      },
+      "provisioningStatusInfo": {
+        "status": "success"
+      }
+    },
+    {
+      "id": "prov-joiner-990003",
+      "activityDateTime": "2026-11-09T14:30:00Z",
+      "provisioningAction": "create",
+      "sourceIdentity": {
+        "id": "990003",
+        "identityType": "User"
+      },
+      "provisioningStatusInfo": {
+        "status": "success"
+      }
+    }
+  ]
+}

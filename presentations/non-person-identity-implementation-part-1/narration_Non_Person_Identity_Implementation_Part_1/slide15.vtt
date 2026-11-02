@@ -1,0 +1,87 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.200
+On the federal side, authenticator
+management is the main requirement.
+
+2
+00:00:04.200 --> 00:00:06.429
+The evidence is the policy export,
+
+3
+00:00:06.429 --> 00:00:10.888
+the kit runs for credentials and
+secrets, and the rotation calendar.
+
+4
+00:00:10.888 --> 00:00:15.088
+The policy also meets three
+SCuBA policies: no app passwords,
+
+5
+00:00:15.088 --> 00:00:18.449
+and capped password and
+certificate lifetimes.
+
+6
+00:00:18.449 --> 00:00:22.530
+They're SHOULD policies in ScubaGear,
+not required configurations,
+
+7
+00:00:22.530 --> 00:00:24.862
+and their report is filed with the gate.
+
+8
+00:00:24.862 --> 00:00:27.533
+Audit requirements cover
+credential changes,
+
+9
+00:00:27.533 --> 00:00:31.025
+so the entries for added
+credentials are logged and reviewed.
+
+10
+00:00:31.025 --> 00:00:34.172
+To validate, the credential
+check shows nothing issued
+
+11
+00:00:34.172 --> 00:00:37.250
+after the effective date that
+runs longer than the cap.
+
+12
+00:00:37.250 --> 00:00:42.312
+Every credential that expires within sixty
+days has an owner and a renewal date.
+
+13
+00:00:42.312 --> 00:00:46.930
+The secrets check shows each app still
+on a secret is in a conversion wave,
+
+14
+00:00:46.930 --> 00:00:49.162
+or has an exception with an end date.
+
+15
+00:00:49.162 --> 00:00:51.140
+App management policies are free,
+
+16
+00:00:51.140 --> 00:00:54.601
+and Microsoft lists their calls
+for the government clouds.
+
+17
+00:00:54.601 --> 00:00:57.441
+To roll back, give one
+application a policy
+
+18
+00:00:57.441 --> 00:01:01.080
+exception with an end date,
+in the exception register.

@@ -74,3 +74,15 @@ Checked October 21, 2026 by writer W4. Sources: `docs/executive-governance/ch06-
 | evidence-fabric "Evidence outputs available today" | Stage 4 of the chain | KSI dashboards not listed separately (claims log 15) |
 | evidence-fabric "Maturity and current-state honesty" | "Honest limits" | — |
 | evidence-fabric "Where to go deeper" | Links to Ch05, Ch11, Book 11 Ch09, Book 12 Ch02/Ch12 | — |
+
+## Privacy section, November 2, 2026
+
+A short "Privacy: evidence contains identifiers" section was added (additive; no existing text changed). Every source was opened on November 2, 2026. SP 800-53 control titles and privacy-baseline membership were read from NIST's OSCAL Release 5.2.0 catalog and privacy baseline profile; the SP 800-53B abstract states the privacy baseline applies irrespective of impact level. The "Who signs off" column and every "program's design" sentence are design guidance, not external fact. The fuller treatment is Book 03, Chapter 14, whose verification file logs the same sources in more detail.
+
+| # | Claim (short) | Verdict | Source |
+|---|---|---|---|
+| 1 | Disclosure to a contractor; accounting of disclosures; contractor-operated systems | verified | 5 U.S.C. §552a(b)(1), (b)(3), (c), (m)(1) |
+| 2 | SAOP reviews and approves PII contracts before award | verified | A-108 §6.j |
+| 3 | Minimization principle | verified | A-130 Appendix II §3 |
+| 4 | AU-3(3), SI-12, SI-12(1), SI-19 titles; privacy baseline | verified | OSCAL catalog and privacy profile 5.2.0 |
+| 5 | Key-and-hash evidence; resolve keys only inside the boundary; obligations table | restated-as-design | - |

@@ -1,0 +1,89 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.850
+The second gate gives every
+identity one of five ends.
+
+2
+00:00:03.850 --> 00:00:04.850
+Retire it.
+
+3
+00:00:04.850 --> 00:00:08.073
+Convert it to a group
+managed service account,
+
+4
+00:00:08.073 --> 00:00:11.550
+or a delegated one on a
+Windows Server 2025 domain.
+
+5
+00:00:11.550 --> 00:00:16.450
+Or move it to a managed identity, a
+federated credential, or a certificate.
+
+6
+00:00:16.450 --> 00:00:21.400
+Book 02's matrix decides by account
+type, and by where the workload runs.
+
+7
+00:00:21.400 --> 00:00:22.950
+No stored secrets.
+
+8
+00:00:22.950 --> 00:00:25.687
+Managed identities for workloads in Azure.
+
+9
+00:00:25.687 --> 00:00:30.090
+Federation where the workload
+already has a trusted issuer,
+
+10
+00:00:30.090 --> 00:00:34.051
+such as GitHub Actions,
+Kubernetes, Google Cloud or AWS.
+
+11
+00:00:34.051 --> 00:00:36.738
+And certificates only
+where neither applies.
+
+12
+00:00:36.738 --> 00:00:40.704
+A managed service account is upgraded
+to a group managed one first,
+
+13
+00:00:40.704 --> 00:00:43.950
+because neither can move to
+a delegated account later.
+
+14
+00:00:43.950 --> 00:00:47.505
+An app with a client secret
+moves to a managed identity,
+
+15
+00:00:47.505 --> 00:00:49.875
+then federation, then a certificate.
+
+16
+00:00:49.875 --> 00:00:51.637
+High-risk accounts go first.
+
+17
+00:00:51.637 --> 00:00:53.950
+And plan ahead for group managed accounts.
+
+18
+00:00:53.950 --> 00:00:56.147
+They need a key distribution root key,
+
+19
+00:00:56.147 --> 00:01:00.020
+and domain controllers can wait up
+to ten hours after it's created.

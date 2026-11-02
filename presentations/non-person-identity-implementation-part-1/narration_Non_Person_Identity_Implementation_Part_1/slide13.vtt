@@ -1,0 +1,88 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.162
+The rest of the third gate is
+about where credentials live.
+
+2
+00:00:03.162 --> 00:00:08.301
+Keep private keys in Azure Key Vault or
+a hardware module, never on a file share.
+
+3
+00:00:08.301 --> 00:00:12.827
+Key Vault renews a certificate
+automatically only when it's self-signed,
+
+4
+00:00:12.827 --> 00:00:16.600
+or comes from a partnered
+authority, DigiCert or GlobalSign.
+
+5
+00:00:16.600 --> 00:00:20.127
+Certificates from an agency's
+own authority aren't renewed,
+
+6
+00:00:20.127 --> 00:00:22.863
+though the vault can
+email before they expire.
+
+7
+00:00:22.863 --> 00:00:25.012
+And a renewed certificate in the vault
+
+8
+00:00:25.012 --> 00:00:27.563
+doesn't change the app
+registration by itself.
+
+9
+00:00:27.563 --> 00:00:30.699
+Microsoft's own procedure
+for SQL Server on Arc
+
+10
+00:00:30.699 --> 00:00:33.612
+uploads the new certificate
+as a separate step.
+
+11
+00:00:33.612 --> 00:00:37.950
+So automate that upload, or make it
+a named owner's task with a date.
+
+12
+00:00:37.950 --> 00:00:40.213
+A client secret is an exception.
+
+13
+00:00:40.213 --> 00:00:43.031
+The governance office
+and the CISO approve it,
+
+14
+00:00:43.031 --> 00:00:46.862
+it lasts at most six months, and
+it's never renewed automatically.
+
+15
+00:00:46.862 --> 00:00:49.944
+A traditional account that
+has to stay gets a long
+
+16
+00:00:49.944 --> 00:00:52.875
+random password in the
+vault, an owner and a date.
+
+17
+00:00:52.875 --> 00:00:56.280
+And a new federated credential
+is a credential change,
+
+18
+00:00:56.280 --> 00:00:58.680
+approved and recorded like any other.

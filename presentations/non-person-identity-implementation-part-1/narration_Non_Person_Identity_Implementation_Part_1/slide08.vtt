@@ -1,0 +1,76 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.287
+Here's the federal side of the first gate.
+
+2
+00:00:02.287 --> 00:00:06.915
+Account management treats non-person
+identities as a defined account type,
+
+3
+00:00:06.915 --> 00:00:08.825
+each with an owner and a sponsor.
+
+4
+00:00:08.825 --> 00:00:14.263
+The evidence is this gate's record, plus
+the kit runs for owners and agent sponsors.
+
+5
+00:00:14.263 --> 00:00:18.583
+Identifier management means each
+identity has its own identifier,
+
+6
+00:00:18.583 --> 00:00:20.975
+joined to its record and never reused.
+
+7
+00:00:20.975 --> 00:00:23.600
+To validate, four read-only checks run.
+
+8
+00:00:23.600 --> 00:00:28.901
+One lists Active Directory accounts whose
+passwords never expire or are too old,
+
+9
+00:00:28.901 --> 00:00:31.750
+each joined to a record
+or listed as unowned.
+
+10
+00:00:31.750 --> 00:00:37.075
+One reports zero apps with no owner, and
+a dated finding for any with just one.
+
+11
+00:00:37.075 --> 00:00:40.988
+One lists every managed identity
+and its role assignments.
+
+12
+00:00:40.988 --> 00:00:46.000
+And one lists agent identities with their
+sponsors, where the tenant exposes them.
+
+13
+00:00:46.000 --> 00:00:49.737
+The inventory's Graph reads are
+listed for the government clouds.
+
+14
+00:00:49.737 --> 00:00:53.767
+Agent identities are generally
+available in commercial,
+
+15
+00:00:53.767 --> 00:00:55.950
+and in GCC with documented gaps.
+
+16
+00:00:55.950 --> 00:01:00.100
+And there's nothing to roll back,
+because the inventory only reads.
