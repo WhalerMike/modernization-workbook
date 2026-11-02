@@ -265,7 +265,7 @@ Describe 'Chapter 09: rollback' {
     }
     It 'restores standing Entra assignments before putting the role rules back' {
         $pim = @($script:Plan.Steps | Where-Object Area -EQ 'pim-roles')
-        $pim[0].Commands[1] | Should -Match "^New-MgRoleManagementDirectoryRoleAssignmentScheduleRequest .*Action = 'adminAssign'.*a4000000-0000-4000-8000-000000000003.*noExpiration"
+        $pim[0].Commands[1] | Should -Match "^New-MgRoleManagementDirectoryRoleAssignmentScheduleRequest .*Action = 'adminAssign'.*a4000000-0000-4000-8000-000000000003.*afterDuration.*P14D"
         $pim[1].Commands[1] | Should -Match '-RestoreFrom .*pim-apply'
     }
     It 'restores Azure standing assignments first, then removes eligibility, then policies' {
@@ -273,6 +273,7 @@ Describe 'Chapter 09: rollback' {
         $kinds = @($az | Select-Object -Skip 1 | ForEach-Object { if ($_ -match 'AdminAssign') { 'restore' } elseif ($_ -match 'AdminRemove') { 'remove' } else { 'policy' } })
         ($kinds -join ',') | Should -Be ((@('restore') * 3 + @('remove') * 5 + @('policy') * 11) -join ',')
         $az[0] | Should -Match '^Connect-AzAccount -ServicePrincipal -Environment AzureCloud .*-CertificateThumbprint'
+        $az[1] | Should -Match '"type":"AfterDuration","duration":"P14D"'
     }
     It 'turns off only what the stage created, never deletes, and keeps the emergency exclusion' {
         $ca = $script:Plan.Steps | Where-Object Area -EQ 'conditional-access'

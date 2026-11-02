@@ -37,6 +37,10 @@ $script:Activity = @{
     Expired     = 'Remove member from role (PIM activation expired)'
 }
 $script:PimService = @('Privileged Identity Management', 'PIM')
+# A restored standing assignment is time-bound: while the stage's role settings still hold, an
+# active assignment may last at most 15 days (Chapter 04), so a permanent one would be refused.
+# Make it permanent again, if the change record says so, after the settings are put back.
+$script:RestoreFor = 'P14D'
 
 function Get-PaDeployValue { param($Hash, [string]$Key) if ($Hash -is [Collections.IDictionary] -and $Hash.Contains($Key)) { $Hash[$Key] } else { $null } }
 
@@ -621,7 +625,7 @@ function New-PaRollbackPlan {
         foreach ($r in @($sent | Where-Object { $_.call -eq 'azpim-assignment-request' -and $_.body.properties.requestType -eq 'AdminRemove' })) {
             $u = [Uri]$r.uri; $scope = $u.AbsolutePath -replace '/providers/Microsoft\.Authorization/roleAssignmentScheduleRequests/.*$', ''
             $name = [guid]::NewGuid().ToString()
-            $body = @{ properties = [ordered]@{ principalId = $r.body.properties.principalId; roleDefinitionId = $r.body.properties.roleDefinitionId; requestType = 'AdminAssign'; justification = "Rollback of $($Settings.changeRecord): standing assignment restored"; scheduleInfo = @{ expiration = @{ type = 'NoExpiration' } } } }
+            $body = @{ properties = [ordered]@{ principalId = $r.body.properties.principalId; roleDefinitionId = $r.body.properties.roleDefinitionId; requestType = 'AdminAssign'; justification = "Rollback of $($Settings.changeRecord): standing assignment restored, time-bound under the stage's active maximum"; scheduleInfo = @{ expiration = @{ type = 'AfterDuration'; duration = $script:RestoreFor } } } }
             $cmds.Add("Invoke-AzRestMethod -Method PUT -Path '$scope/providers/Microsoft.Authorization/roleAssignmentScheduleRequests/$name`?api-version=2020-10-01' -Payload '$(& $azBody $body)'")
             $restore++
         }
@@ -643,7 +647,7 @@ function New-PaRollbackPlan {
         }
         if ($restore + $remove + $policies) {
             $kind = if ($azState -or $policies -eq 0) { 'Automatic' } else { 'Blocked' }
-            & $step 'azure' $kind "Restore $restore standing assignment(s), then remove $remove eligible assignment(s), then put back $policies policy(ies) from azure-dry/state.json; wait five minutes after the stage's last assignment first" $cmds.ToArray()
+            & $step 'azure' $kind "Restore $restore standing assignment(s) for $($script:RestoreFor), then remove $remove eligible assignment(s), then put back $policies policy(ies) from azure-dry/state.json; wait five minutes after the stage's last assignment first" $cmds.ToArray()
         }
     }
 
@@ -677,9 +681,9 @@ function New-PaRollbackPlan {
     if ($converted.Count) {
         $cmds = @((& $connect $apps.pimWriter))
         foreach ($r in $converted) {
-            $cmds += "New-MgRoleManagementDirectoryRoleAssignmentScheduleRequest -BodyParameter @{ Action = 'adminAssign'; PrincipalId = '$($r.Body.principalId)'; RoleDefinitionId = '$($r.Body.roleDefinitionId)'; DirectoryScopeId = '/'; Justification = 'Rollback of $($Settings.changeRecord): standing assignment restored'; ScheduleInfo = @{ StartDateTime = (Get-Date).ToUniversalTime(); Expiration = @{ Type = 'noExpiration' } } }"
+            $cmds += "New-MgRoleManagementDirectoryRoleAssignmentScheduleRequest -BodyParameter @{ Action = 'adminAssign'; PrincipalId = '$($r.Body.principalId)'; RoleDefinitionId = '$($r.Body.roleDefinitionId)'; DirectoryScopeId = '/'; Justification = 'Rollback of $($Settings.changeRecord): standing assignment restored, time-bound under the stage''s active maximum'; ScheduleInfo = @{ StartDateTime = (Get-Date).ToUniversalTime(); Expiration = @{ Type = 'afterDuration'; Duration = '$($script:RestoreFor)' } } }"
         }
-        & $step 'pim-roles' 'Automatic' "Restore $($converted.Count) standing Microsoft Entra role assignment(s) the conversion removed, before anything else in this area" $cmds
+        & $step 'pim-roles' 'Automatic' "Restore $($converted.Count) standing Microsoft Entra role assignment(s) the conversion removed, for $($script:RestoreFor), before anything else in this area" $cmds
     }
     $pimApplies = @(Get-ChildItem -LiteralPath $root -Directory -Filter 'pim-apply*' -ErrorAction SilentlyContinue | Sort-Object Name -Descending)
     foreach ($dir in $pimApplies) {
