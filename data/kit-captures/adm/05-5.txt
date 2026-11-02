@@ -1,0 +1,4 @@
+$ python tools/lcwext.py lint logicapp/integration.workflow.json --timeout PT15M
+LX-11  Finding retryPolicy        worst-case retry waits (960s) reach the callback timeout PT15M
+1 result(s); findings
+(exit code 2)

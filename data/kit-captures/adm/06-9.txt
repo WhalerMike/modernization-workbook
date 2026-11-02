@@ -1,0 +1,1 @@
+PS> (Get-Content -Raw $f).Replace('power_allowhibernate_1', 'power_allowhibernate_0') | Set-Content -NoNewline $f

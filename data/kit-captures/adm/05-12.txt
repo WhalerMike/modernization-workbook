@@ -1,0 +1,6 @@
+$ sed 's/"executionSequence": 3, "displayName": "CMS/"executionSequence": 0, "displayName": "CMS/' tests/fixtures/workflow-get-leaver.json > workflow-seq0.json
+$ python tools/lcwext.py check-workflow config/integrations.json --name cms-revocation --extension-id c1d2e3f4-a5b6-4c7d-8e9f-0a1b2c3d4e01 workflow-seq0.json
+WX-03  Finding tasks              'Disable user account' doesn't run before the custom task (Book 03: block first)
+WX-03  Finding tasks              'Revoke all refresh tokens for user' doesn't run before the custom task (Book 03: block first)
+2 result(s); findings
+(exit code 2)

@@ -1,0 +1,5 @@
+PS> Test-GpcLibrary -Library (Read-GpcLibrary -Path ./policies) -Plan $plan | Format-List
+Severity : Info
+Rule     : GPC-08
+File     : fmp-sc-202-sign-in-and-power.json
+Issue    : Setting device_vendor_msft_policy_config_power_allowhibernate has conflicting GPO values (FMP-Workstation-Baseline=Disabled; Workstation-Power=Enabled); decision DR-0105 picks the value

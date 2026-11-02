@@ -1,0 +1,9 @@
+$ python -c "import sys; sys.path.insert(0, 'python'); from graphkit import GraphClient, load_calls; GraphClient('gcc', lambda s: 't', calls=load_calls('ca-export')).request('GET', '/users')"
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "python/graphkit.py", line 239, in request
+    self.check_call(method, url)
+  File "python/graphkit.py", line 226, in check_call
+    raise PermissionError(f"undeclared {kind}: {method} /{version}{path}; add it to graph-calls.json with its permission")
+PermissionError: undeclared call: GET /v1.0/users; add it to graph-calls.json with its permission
+(exit code 1)

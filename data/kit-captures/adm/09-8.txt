@@ -1,0 +1,5 @@
+$ python python/drift_pipeline.py package --kit-run $CURR --diff out/day2/drift-report.json $P --previous-manifest out/evidence/2026-10-28-0617-fixture-runner-fixture/EVIDENCE-MANIFEST.json --out out/evidence
+{"evidence_manifest_sha256": "0932f0a3cd710c19bdfce05ff4f7595bf2d8d5e3b652921223d12fa49aada6ee", "package": "2026-10-29-0617-fixture-runner-fixture"}
+$ python python/drift_pipeline.py verify out/evidence/2026-10-29-0617-fixture-runner-fixture
+{"evidence_manifest_sha256": "0932f0a3cd710c19bdfce05ff4f7595bf2d8d5e3b652921223d12fa49aada6ee", "files": 16, "run_id": "2026-10-29-0617-fixture-runner-fixture"}
+$ (cd out/evidence/2026-10-29-0617-fixture-runner-fixture && sha256sum -c --quiet SHA256SUMS)

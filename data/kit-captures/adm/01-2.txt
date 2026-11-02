@@ -1,0 +1,7 @@
+$ cd hcm-entra
+$ python python/hcm_to_scim.py --extract tests/fixtures/hcm_extract_sample.csv --as-of 2026-10-25 --out out
+{"counts": {"ready": 9, "quarantined": 9, "superseded": 1}, "batches": 1, "disables": 3, "held": false, "hold_reason": ""}
+(exit code 2)
+$ pwsh -File powershell/Invoke-HcmToScim.ps1 -Extract tests/fixtures/hcm_extract_sample.csv -AsOf 2026-10-25 -Out out-ps
+{"counts":{"ready":9,"quarantined":9,"superseded":1},"batches":1,"disables":3,"held":false,"hold_reason":""}
+(exit code 2)

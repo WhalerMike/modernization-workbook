@@ -14,7 +14,7 @@ lifecycle_review: 2027-04-01
 aliases:
   - /docs/project-plans/developer-workbooks/attribute-driven-migration/07-machine-configuration-packages.html
 review-status: approved
-reviewed-sha256: 899ca4705cd70ff6f1bfe387f02305ecf9eded3a3722c7ceb8be37f51a48d439
+reviewed-sha256: 25e329d26fab7cd62f0cdf2259b42e4dba1e91fb35389bde94ce15c4877e8094
 last-reviewed: 2026-11-01
 ---
 # Chapter 07 — Machine Configuration Packages
@@ -200,6 +200,9 @@ New-GuestConfigurationPackage -Name TlsServerProtocols -Configuration ./lab/comp
 New-GuestConfigurationPackage -Name TlsServerProtocols -Configuration ./lab/compiled/localhost.mof -Type Audit -Path ./lab/p2 -Force
 Get-FileHash ./lab/p1/TlsServerProtocols.zip, ./lab/p2/TlsServerProtocols.zip
 
+# Step 2: Follow Learn's steps by hand
+Select-String -Path ./lab/compiled/localhost.mof -Pattern '@GeneratedBy|@GenerationHost|SourceInfo'
+
 # Step 3: See what the checks say about Learn's output
 Import-Module ./powershell/McPipeline.psm1
 Test-McPackage -Path ./lab/p1/TlsServerProtocols.zip -Name TlsServerProtocols -ExpectedType Audit
@@ -211,9 +214,35 @@ New-GuestConfigurationPackage -Name AdministratorsGroupMembers -Configuration ./
 Get-Command Test-GuestConfigurationPackage -ErrorAction SilentlyContinue   # nothing: renamed
 cd ../../../../machine-configuration
 
+# Step 4: Run Microsoft's pinned sample with the current module
+Test-McMofText -Text (Get-Content ../third_party/guest-configuration-samples/package-samples/.example-project/AdministratorsGroupMembers.mof -Raw)
+
 # Step 5: Run the checked build
 pwsh ./powershell/Invoke-McBuild.ps1 -Name TlsServerProtocols -Version 1.0.0 `
     -ContentUri https://stcontosomc.blob.core.windows.net/machine-configuration -ModulePath ./mcmods -OutputPath ./out
+
+# Step 5: Run the checked build
+Select-String -Path ./out/TlsServerProtocols_1.0.0/policy/TlsServerProtocols_1.0.0_AuditIfNotExists.json -Pattern 'contentHash|IncludeArcMachines'
+
+# Step 5: Run the checked build
+pwsh ./powershell/Invoke-McBuild.ps1 -Name TlsServerProtocols -Version 1.0.0 `
+    -ContentUri https://stcontosomc.blob.core.windows.net/machine-configuration -ModulePath ./mcmods -OutputPath ./out2
+foreach ($o in './out', './out2') { $p = Get-Content "$o/TlsServerProtocols_1.0.0/provenance.json" -Raw | ConvertFrom-Json; '{0}  mof {1}  package {2}' -f $o, $p.mof.sha256, $p.package.sha256 }
+
+# Step 6: Break something on purpose
+(Get-Content -Raw ./config/releases.json).Replace('"published": "0.0.0"', '"published": "1.0.0"') | Set-Content -NoNewline ./lab/releases.json
+pwsh ./powershell/Invoke-McBuild.ps1 -Name TlsServerProtocols -Version 1.0.0 -Registry ./lab/releases.json `
+    -ContentUri https://stcontosomc.blob.core.windows.net/machine-configuration -ModulePath ./mcmods -OutputPath ./lab/out-registry
+
+# Step 6: Break something on purpose
+(Get-Content -Raw ./lab/releases.json).Replace('"mode": "Audit"', '"mode": "applyAndAutoCorrect"') | Set-Content -NoNewline ./lab/releases.json
+pwsh ./powershell/Invoke-McBuild.ps1 -Name TlsServerProtocols -Version 1.0.0 -Registry ./lab/releases.json `
+    -ContentUri https://stcontosomc.blob.core.windows.net/machine-configuration -ModulePath ./mcmods -OutputPath ./lab/out-registry
+
+# Step 6: Break something on purpose
+(Get-Content -Raw ./lab/releases.json).Replace('"mode": "applyAndAutoCorrect"', '"mode": "ApplyAndAutoCorrect"') -replace ',\r?\n\s*"owner_tag": \{[^}]*\}', '' | Set-Content -NoNewline ./lab/releases.json
+pwsh ./powershell/Invoke-McBuild.ps1 -Name TlsServerProtocols -Version 1.0.0 -Registry ./lab/releases.json `
+    -ContentUri https://stcontosomc.blob.core.windows.net/machine-configuration -ModulePath ./mcmods -OutputPath ./lab/out-registry
 
 # Step 7: Run the tests
 $env:MC_MODULE_PATH = (Resolve-Path ./mcmods).Path
@@ -244,7 +273,13 @@ Invoke-Pester ./tests
    Get-FileHash ./lab/p1/TlsServerProtocols.zip, ./lab/p2/TlsServerProtocols.zip
    ```
 
-   Two packages from one MOF, with two different hashes. Open `./lab/compiled/localhost.mof`: your user name and computer name are in the header, and your folder path is in every `SourceInfo`.
+   Two packages from one MOF, with two different hashes. Now look inside the MOF:
+
+   ```powershell
+   Select-String -Path ./lab/compiled/localhost.mof -Pattern '@GeneratedBy|@GenerationHost|SourceInfo'
+   ```
+
+   Your user name and computer name are in the header, and your folder path is in every `SourceInfo`.
 
 3. **See what the checks say about Learn's output:**
 
@@ -265,7 +300,13 @@ Invoke-Pester ./tests
    cd ../../../../machine-configuration
    ```
 
-   The package builds. `Test-McMofText -Text (Get-Content ../third_party/guest-configuration-samples/package-samples/.example-project/AdministratorsGroupMembers.mof -Raw)` returns nothing: Microsoft's published MOF carries no build-host data, which is the form the cleaner produces.
+   The package builds. Now check Microsoft's published MOF:
+
+   ```powershell
+   Test-McMofText -Text (Get-Content ../third_party/guest-configuration-samples/package-samples/.example-project/AdministratorsGroupMembers.mof -Raw)
+   ```
+
+   It returns nothing: Microsoft's published MOF carries no build-host data, which is the form the cleaner produces.
 
 5. **Run the checked build:**
 
@@ -274,9 +315,47 @@ Invoke-Pester ./tests
        -ContentUri https://stcontosomc.blob.core.windows.net/machine-configuration -ModulePath ./mcmods -OutputPath ./out
    ```
 
-   It exits `0` with one information row, MC-POL-09: `IncludeArcMachines` defaults to false. Open `out/TlsServerProtocols_1.0.0/TlsServerProtocols_1.0.0_AuditIfNotExists.json` under `policy`, and find `contentHash` and the `IncludeArcMachines` parameter. Run the build again into `./out2` and compare the two `provenance.json` files: the `mof.sha256` values match (`ecffd795…`), and the package hashes don't.
+   It exits `0` with one information row, MC-POL-09: `IncludeArcMachines` defaults to false. Find `contentHash` and the `IncludeArcMachines` parameter in the policy definition:
 
-6. **Break something on purpose.** In a copy of `config/releases.json`, change `published` to `1.0.0` and pass it with `-Registry`: exit `2`, MC-POL-06. Change `mode` to `applyAndAutoCorrect` (lower-case a): exit `1`, because the mode is case sensitive. Change it to `ApplyAndAutoCorrect` and remove `owner_tag`: exit `2`, MC-POL-08.
+   ```powershell
+   Select-String -Path ./out/TlsServerProtocols_1.0.0/policy/TlsServerProtocols_1.0.0_AuditIfNotExists.json -Pattern 'contentHash|IncludeArcMachines'
+   ```
+
+   Run the build again into `./out2` and compare the two `provenance.json` files:
+
+   ```powershell
+   pwsh ./powershell/Invoke-McBuild.ps1 -Name TlsServerProtocols -Version 1.0.0 `
+       -ContentUri https://stcontosomc.blob.core.windows.net/machine-configuration -ModulePath ./mcmods -OutputPath ./out2
+   foreach ($o in './out', './out2') { $p = Get-Content "$o/TlsServerProtocols_1.0.0/provenance.json" -Raw | ConvertFrom-Json; '{0}  mof {1}  package {2}' -f $o, $p.mof.sha256, $p.package.sha256 }
+   ```
+
+   The `mof.sha256` values match (`ecffd795…`), and the package hashes don't.
+
+6. **Break something on purpose.** The first command writes a copy of `config/releases.json` to `./lab/releases.json` with `published` changed to `1.0.0`; the build passes it with `-Registry` and writes to `./lab/out-registry`, leaving `./out` alone:
+
+   ```powershell
+   (Get-Content -Raw ./config/releases.json).Replace('"published": "0.0.0"', '"published": "1.0.0"') | Set-Content -NoNewline ./lab/releases.json
+   pwsh ./powershell/Invoke-McBuild.ps1 -Name TlsServerProtocols -Version 1.0.0 -Registry ./lab/releases.json `
+       -ContentUri https://stcontosomc.blob.core.windows.net/machine-configuration -ModulePath ./mcmods -OutputPath ./lab/out-registry
+   ```
+
+   Exit `2`, MC-POL-06. Now change `mode` in the copy to `applyAndAutoCorrect` (lower-case a) and build again:
+
+   ```powershell
+   (Get-Content -Raw ./lab/releases.json).Replace('"mode": "Audit"', '"mode": "applyAndAutoCorrect"') | Set-Content -NoNewline ./lab/releases.json
+   pwsh ./powershell/Invoke-McBuild.ps1 -Name TlsServerProtocols -Version 1.0.0 -Registry ./lab/releases.json `
+       -ContentUri https://stcontosomc.blob.core.windows.net/machine-configuration -ModulePath ./mcmods -OutputPath ./lab/out-registry
+   ```
+
+   Exit `1`, because the mode is case sensitive. Change it to `ApplyAndAutoCorrect`, remove `owner_tag`, and build again:
+
+   ```powershell
+   (Get-Content -Raw ./lab/releases.json).Replace('"mode": "applyAndAutoCorrect"', '"mode": "ApplyAndAutoCorrect"') -replace ',\r?\n\s*"owner_tag": \{[^}]*\}', '' | Set-Content -NoNewline ./lab/releases.json
+   pwsh ./powershell/Invoke-McBuild.ps1 -Name TlsServerProtocols -Version 1.0.0 -Registry ./lab/releases.json `
+       -ContentUri https://stcontosomc.blob.core.windows.net/machine-configuration -ModulePath ./mcmods -OutputPath ./lab/out-registry
+   ```
+
+   Exit `2`, MC-POL-08.
 
 7. **Run the tests:**
 
@@ -289,13 +368,81 @@ Invoke-Pester ./tests
 
 ## Lab 2: test subscription and a disposable server
 
-Use a test subscription and a server you can rebuild, never production. Learn says local testing runs the same agent as the machines, installs it under `C:\ProgramData\GuestConfig\bin` on first use, and needs elevation; `Start-GuestConfigurationPackageRemediation` changes the machine it runs on.[^c07-test]
+Use a test subscription and a server you can rebuild, never production. Learn says local testing runs the same agent as the machines, installs it under `C:\ProgramData\GuestConfig\bin` on first use, and needs elevation; `Start-GuestConfigurationPackageRemediation` changes the machine it runs on.[^c07-test] You'll replace: `<storage-account>` and `<container>` (the test storage account and container you create in step 3).
 
-1. **Test the package on the disposable server.** Copy `TlsServerProtocols_1.0.0.zip` from Lab 1 to it and, in an elevated PowerShell 7 session with the pinned modules, run `Get-GuestConfigurationPackageComplianceStatus -Path ./TlsServerProtocols_1.0.0.zip`.[^c07-test] Expect `complianceStatus` `False` on a default server, with a reason per registry key, and `True` after you set both `Enabled` values to `0`. This is the step that shows the agent accepts the cleaned MOF.
-2. **Sign in to the right cloud.** In Azure Government, `Connect-AzAccount -Environment AzureUSGovernment`. Check the server can reach the cloud's machine configuration endpoints. For Azure Government, Learn lists `*.guestconfiguration.azure.us` for Arc-enabled servers[^c07-arcnet] and regional endpoints for US Gov Arizona, Texas and Virginia.[^c07-network]
-3. **Publish the exact bytes.** Create a storage account and container in the test subscription with anonymous blob access disabled, and upload the package Lab 1 built with Learn's `Set-AzStorageBlobContent` step.[^c07-publish] Don't rebuild it. Download it back and compare its SHA-256 with `package.sha256` in `provenance.json`.
+<!-- labs:begin lab-2-commands (generated by scripts/generate_labs.py; not part of the reviewed page) -->
+
+::: {.callout-note #lab-2-commands collapse="false" title="Every command in Lab 2"}
+Every command in this lab, in order. Each step below says what it does and what to look for.
+
+```powershell
+# Step 1: Test the package on the disposable server
+Get-GuestConfigurationPackageComplianceStatus -Path ./TlsServerProtocols_1.0.0.zip
+
+# Step 1: Test the package on the disposable server
+foreach ($p in 'TLS 1.0', 'TLS 1.1') { $k = "HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\$p\Server"; New-Item -Path $k -Force | Out-Null; Set-ItemProperty -Path $k -Name Enabled -Value 0 -Type DWord }
+Get-GuestConfigurationPackageComplianceStatus -Path ./TlsServerProtocols_1.0.0.zip
+
+# Step 2: Sign in to the right cloud
+Connect-AzAccount -Environment AzureUSGovernment
+
+# Step 3: Publish the exact bytes
+$ctx = New-AzStorageContext -StorageAccountName <storage-account> -UseConnectedAccount
+Set-AzStorageBlobContent -Container <container> -File ./out/TlsServerProtocols_1.0.0/TlsServerProtocols_1.0.0.zip -Blob TlsServerProtocols_1.0.0.zip -Context $ctx
+New-Item -ItemType Directory -Force ./lab/download | Out-Null
+Get-AzStorageBlobContent -Container <container> -Blob TlsServerProtocols_1.0.0.zip -Destination ./lab/download/ -Context $ctx
+(Get-FileHash ./lab/download/TlsServerProtocols_1.0.0.zip -Algorithm SHA256).Hash.ToLowerInvariant()
+(Get-Content ./out/TlsServerProtocols_1.0.0/provenance.json -Raw | ConvertFrom-Json).package.sha256
+
+# Step 5: Publish the definition
+New-AzPolicyDefinition -Name ca593085-dfcb-425d-ac9c-12870a55bbaa -Policy ./out/TlsServerProtocols_1.0.0/policy/TlsServerProtocols_1.0.0_AuditIfNotExists.json
+```
+
+:::
+
+<!-- labs:end -->
+
+1. **Test the package on the disposable server.** Copy `TlsServerProtocols_1.0.0.zip` from Lab 1 to it and, in an elevated PowerShell 7 session with the pinned modules, run:[^c07-test]
+
+   ```powershell
+   Get-GuestConfigurationPackageComplianceStatus -Path ./TlsServerProtocols_1.0.0.zip
+   ```
+
+   Expect `complianceStatus` `False` on a default server, with a reason per registry key. The first command sets both `Enabled` values to `0` (the keys the configuration audits); then test again:
+
+   ```powershell
+   foreach ($p in 'TLS 1.0', 'TLS 1.1') { $k = "HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\$p\Server"; New-Item -Path $k -Force | Out-Null; Set-ItemProperty -Path $k -Name Enabled -Value 0 -Type DWord }
+   Get-GuestConfigurationPackageComplianceStatus -Path ./TlsServerProtocols_1.0.0.zip
+   ```
+
+   Expect `True`. This is the step that shows the agent accepts the cleaned MOF.
+2. **Sign in to the right cloud.** In Azure Government:
+
+   ```powershell
+   Connect-AzAccount -Environment AzureUSGovernment
+   ```
+
+   Check the server can reach the cloud's machine configuration endpoints. For Azure Government, Learn lists `*.guestconfiguration.azure.us` for Arc-enabled servers[^c07-arcnet] and regional endpoints for US Gov Arizona, Texas and Virginia.[^c07-network]
+3. **Publish the exact bytes.** Create a storage account and container in the test subscription with anonymous blob access disabled, and upload the package Lab 1 built with Learn's `Set-AzStorageBlobContent` step.[^c07-publish] Don't rebuild it. Download it back and compare its SHA-256 with `package.sha256` in `provenance.json`. From `examples/machine-configuration`:
+
+   ```powershell
+   $ctx = New-AzStorageContext -StorageAccountName <storage-account> -UseConnectedAccount
+   Set-AzStorageBlobContent -Container <container> -File ./out/TlsServerProtocols_1.0.0/TlsServerProtocols_1.0.0.zip -Blob TlsServerProtocols_1.0.0.zip -Context $ctx
+   New-Item -ItemType Directory -Force ./lab/download | Out-Null
+   Get-AzStorageBlobContent -Container <container> -Blob TlsServerProtocols_1.0.0.zip -Destination ./lab/download/ -Context $ctx
+   (Get-FileHash ./lab/download/TlsServerProtocols_1.0.0.zip -Algorithm SHA256).Hash.ToLowerInvariant()
+   (Get-Content ./out/TlsServerProtocols_1.0.0/provenance.json -Raw | ConvertFrom-Json).package.sha256
+   ```
+
+   The two hashes match.
 4. **Grant read access to the machines, not a token.** The definition uses each machine's system-assigned identity, so assign **Storage Blob Data Reader** on the storage account to the test server's identity, as Learn describes for this option.[^c07-policy] No SAS token goes in the definition.
-5. **Publish the definition.** With Resource Policy Contributor on the test subscription,[^c07-policy] run `New-AzPolicyDefinition -Name <registry policyId> -Policy ./out/TlsServerProtocols_1.0.0/policy/TlsServerProtocols_1.0.0_AuditIfNotExists.json`. Using the registry's policy ID as the name means the next version updates this definition.
+5. **Publish the definition.** With Resource Policy Contributor on the test subscription,[^c07-policy] run it with the registry's `policyId` from `config/releases.json` as the name:
+
+   ```powershell
+   New-AzPolicyDefinition -Name ca593085-dfcb-425d-ac9c-12870a55bbaa -Policy ./out/TlsServerProtocols_1.0.0/policy/TlsServerProtocols_1.0.0_AuditIfNotExists.json
+   ```
+
+   Using the registry's policy ID as the name means the next version updates this definition.
 6. **Assign it to the test resource group with `IncludeArcMachines` set to `true`.** If the test server is Arc-enabled and you leave the default, nothing happens and nothing says so.
 7. **Read the result.** Within a few evaluation cycles the guest assignment appears with a compliance status. Read it in the portal's guest assignments page or through Resource Graph, the way VK-ARC-03 and VK-ARC-07 in [Chapter 03](03-writing-a-validation-kit-check.md)'s validation kit do. Record the assignment's `contentHash` and compare it with `provenance.json`.
 8. **Back it out.** Delete the policy assignment; Learn says that deletes the guest assignment it created, but a definition removed from an initiative leaves its guest assignments behind to delete by hand.[^c07-assignments] Then delete the definition, the blob and the role assignment, and rebuild the disposable server.

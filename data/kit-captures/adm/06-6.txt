@@ -1,0 +1,16 @@
+PS> Get-Content ./out/sync-record.json -Raw | ConvertFrom-Json | Format-List Scopes, Created
+Scopes  : {DeviceManagementConfiguration.ReadWrite.All}
+Created : {00000000-0000-4000-9000-000000000001}
+PS> pwsh ./powershell/Invoke-GpcSync.ps1 -FixturePath ./tests/fixtures/tenant.json -WithPlan -Cloud gcchigh
+DryRun against https://graph.microsoft.us (2 library file(s))
+
+Severity Rule   File                              Issue
+-------- ----   ----                              -----
+Info     GPC-08 fmp-sc-202-sign-in-and-power.json Setting device_vendor_msft_policy_config_power_allowhibernate has conflicting GPO values (FMP-Workstation-Baseline=Disabled; Workstation-Power=Enabled); decision DR-0105 picks the value
+
+
+Create          FMP-SC-201-Error-reporting-and-dumps
+NoChange        FMP-SC-202-Sign-in-and-power
+PS> pwsh ./powershell/Invoke-GpcSync.ps1 -FixturePath ./tests/fixtures/tenant.json -WithPlan -Cloud usgov
+Invoke-GpcSync.ps1: Cannot validate argument on parameter 'Cloud'. The argument "usgov" does not belong to the set "gcc,global,gcchigh,dod" specified by the ValidateSet attribute. Supply an argument that is in the set and then try the command again.
+(exit code 1)

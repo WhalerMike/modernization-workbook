@@ -1,0 +1,9 @@
+$ grep -n -A7 "def test_sample_us_gov_credential_names_no_authority" tests/python/test_learn_sample.py
+109:def test_sample_us_gov_credential_names_no_authority(sdk):
+110-    # Gap: azure-identity's default authority is the public cloud (login.microsoftonline.com).
+111-    # The C# and TypeScript tabs of the same Learn page set the US Government authority; this one doesn't.
+112-    load("national_clouds").NationalCloudClients.create_client_for_us_gov()
+113-    (cred,) = made("InteractiveBrowserCredential")
+114-    assert "authority" not in cred.kwargs
+115-    assert set(cred.kwargs) == {"tenant_id", "client_id", "redirect_uri"}
+116-

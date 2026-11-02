@@ -1,0 +1,2 @@
+$ python tools/lcwext.py lint logicapp/integration.workflow.json --timeout PT1H
+0 result(s); no findings

@@ -1,0 +1,7 @@
+PS> $pop = Get-Content ./tests/fixtures/population.json -Raw | ConvertFrom-Json
+PS> Get-DrMembers -Population $pop -Rule '(user.accountEnabled -eq true) -and (user.userType -eq "Member") -and (user.extensionAttribute10 -eq "FIN-LED")'
+u01
+u02
+u06
+u08
+u09
