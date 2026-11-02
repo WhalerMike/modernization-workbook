@@ -1,0 +1,2 @@
+$ python -c "import sys; sys.path.insert(0, 'python'); from graphkit import GraphClient, try_beta; print(try_beta(GraphClient('gcchigh', lambda s: 't'), '/deviceManagement/windowsAutopilotDeviceIdentities'))"
+{'stage': 'beta', 'available': False, 'items': [], 'reason': "autopilot-device-identities isn't offered in gcchigh (graph-calls.json not_in_clouds)"}

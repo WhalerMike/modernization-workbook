@@ -1,0 +1,19 @@
+PS> Set-Location ../group-policy-as-code
+PS> Import-Module ./powershell/GroupPolicyAsCode.psm1
+PS> . ./tests/MicrosoftSampleHarness.ps1
+PS> New-Item -ItemType Directory -Force ./out | Out-Null
+PS> (Get-Content ./policies/fmp-sc-201-error-reporting-and-dumps.json -Raw | ConvertFrom-Json).policy |
+>>     ConvertTo-Json -Depth 20 | Set-Content ./out/sc-201.json
+PS> $g = New-GpcFixtureInvoke -Path ./tests/fixtures/tenant.json
+PS> Invoke-MicrosoftSample -Name Import -Graph $g -Answers (Resolve-Path ./out/sc-201.json).Path | Out-Null
+PS> Invoke-MicrosoftSample -Name Import -Graph $g -Answers (Resolve-Path ./out/sc-201.json).Path | Out-Null
+PS> $g.Policies | ForEach-Object { $_['name'] }
+FMP-SC-202-Sign-in-and-power
+Contoso kiosk lockdown (portal)
+FMP-SC-201-Error-reporting-and-dumps
+FMP-SC-201-Error-reporting-and-dumps
+PS> $g.Calls | Format-Table Method, Uri
+Method Uri
+------ ---
+POST   https://graph.microsoft.com/beta/deviceManagement/configurationPolicies
+POST   https://graph.microsoft.com/beta/deviceManagement/configurationPolicies

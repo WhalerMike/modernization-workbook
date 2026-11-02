@@ -1,0 +1,2 @@
+PS> (Get-VkCheckCatalog).Id -contains 'VK-SYNC-02'
+False

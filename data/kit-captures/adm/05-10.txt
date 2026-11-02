@@ -1,0 +1,1 @@
+$ sed -i 's/"azureCloud": "AzureUSGovernment"/"azureCloud": "AzureCloud"/' config/integrations.json

@@ -71,7 +71,7 @@ try {
     [IO.File]::WriteAllText((Join-Path $OutputPath 'sync-record.json'), (($record | ConvertTo-Json -Depth 20) -replace "`r`n", "`n") + "`n")
 
     "{0} against {1} ({2} library file(s))" -f $record.Mode, $record.GraphHost, $library.Count
-    if (@($record.Findings).Count) { $record.Findings | Format-Table Severity, Rule, File, Issue -AutoSize -Wrap | Out-String -Width 200 }
+    if (@($record.Findings).Count) { $record.Findings | Format-Table Severity, Rule, File, Issue -AutoSize -Wrap | Out-String -Width 1000 }
     $record.Results | ForEach-Object {
         $detail = @()
         if (@($_.Added).Count) { $detail += 'adds ' + ($_.Added -join ', ') }

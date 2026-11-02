@@ -1,0 +1,2 @@
+$ python python/workflow_lint.py workflow/drift-pipeline.yml
+workflow/drift-pipeline.yml: 0 finding(s), 0 warning(s)

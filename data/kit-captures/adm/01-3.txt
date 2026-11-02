@@ -1,0 +1,16 @@
+$ python -c "import json; [print(q['person_key'], '|', '; '.join(q['reasons'])) for q in json.load(open('out/quarantine.json', encoding='utf-8'))]"
+100006 | worker type P refused: pending worker: provision from the hire record, not the pending record
+100007 | unknown worker type X
+(missing) | required column PersonNumber is empty
+12345678901234567 | PersonNumber doesn't fit employeeId (letters, digits and hyphens, at most 16 characters)
+100009 | worker is recorded as their own manager
+100010 | inactive assignment with no termination date: the leave date can't be set
+100014 | DepartmentName is longer than 64 characters
+100015 | PositionCategory 'ZZZ' isn't in the approved code list
+100016 | DepartmentCode 'org 300' isn't a code (A-Z, 0-9, hyphen)
+$ python -c "import json; [print(f, o['data']['externalId'], o['data']['active']) for f in ('out/bulk-request-001.json', '../baseline.json') for o in json.load(open(f, encoding='utf-8-sig'))['Operations'][:1]]"
+out/bulk-request-001.json 100003 False
+../baseline.json 100000 True
+$ python -c "import json; [print(f, o['data']['externalId'], o['data']['active']) for f in ('out/bulk-request-001.json', '../baseline.json') for o in json.load(open(f, encoding='utf-8-sig'))['Operations'] if o['data']['externalId'] == '100001']"
+out/bulk-request-001.json 100001 False
+../baseline.json 100001 True

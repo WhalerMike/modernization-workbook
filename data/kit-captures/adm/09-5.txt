@@ -1,0 +1,17 @@
+$ python python/drift_pipeline.py compare --previous $PREV --current $CURR --out out/day2
+{"baseline": false, "counts": {"changed": 1, "detail_only": 1, "new": 3, "resolved": 1, "unchanged": 6, "unverified": 2}, "drift": true}
+(exit code 2)
+$ cat out/day2/drift-summary.md
+# Drift report
+
+Current run **2026-10-29-0617-fixture-runner-fixture** (gcc, Fixture); previous run **2026-10-28-0617-fixture-runner-fixture**.
+
+New 3, resolved 1, changed 1, detail only 1, unchanged 6, unverified checks 2.
+
+| Check | Before | After |
+|---|---|---|
+| VK-CA-01 | Pass | Fail |
+| VK-NPI-03 | Fail | Error |
+| VK-PIV-01 | Pass | not run |
+
+Object names are in drift-report.json, which goes to the evidence store, not to the issue tracker.

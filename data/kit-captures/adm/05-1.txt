@@ -1,0 +1,13 @@
+$ python tools/lcwext.py learn-sample
+wrote out/learn-sample.workflow.json
+$ python tools/lcwext.py lint out/learn-sample.workflow.json --timeout PT1H
+LX-03  Finding HTTP               hard-codes graph.microsoft.com; take the Graph host from a parameter checked against the tenant's cloud
+LX-04  Finding HTTP               calls back on /beta; resume is in v1.0
+LX-06  Finding HTTP               uses callbackUriPath without checking it first
+LX-07  Finding HTTP               no callback when the work fails; Lifecycle Workflows waits out the whole timeout
+LX-08  Finding HTTP               always reports 'Completed', whatever happened
+LX-10  Warn    manual             trigger outputs (the subject's name, UPN and email) show in run history; secure them
+LX-10  Warn    HTTP               inputs or outputs not secured in run history
+LX-11  Warn    HTTP               no explicit retryPolicy; the Default policy applies (up to 4 retries)
+8 result(s); findings
+(exit code 2)

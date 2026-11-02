@@ -1,0 +1,8 @@
+$ PREV=tests/fixtures/runs/previous/2026-10-28-0617-fixture-runner-fixture
+$ CURR=tests/fixtures/runs/current/2026-10-29-0617-fixture-runner-fixture
+$ P="--provenance hcm-entra=tests/fixtures/provenance/hcm-entra/provenance.json --provenance machine-configuration=tests/fixtures/provenance/machine-configuration/provenance.json --provenance dynamic-rules=tests/fixtures/provenance/dynamic-rules/check-results.json"
+$ python python/drift_pipeline.py compare --current $PREV --out out/day1
+{"baseline": true, "counts": {"changed": 0, "detail_only": 0, "new": 10, "resolved": 0, "unchanged": 0, "unverified": 0}, "drift": true}
+(exit code 2)
+$ python python/drift_pipeline.py package --kit-run $PREV --diff out/day1/drift-report.json $P --out out/evidence
+{"evidence_manifest_sha256": "6d9fffbc86009c18673ea37a3a5ed3805541331a8e921955380c1b1143374cd1", "package": "2026-10-28-0617-fixture-runner-fixture"}

@@ -1,0 +1,17 @@
+PS> cd examples/validation-kit
+PS> Import-Module ./powershell/ValidationKit -Force
+PS> $r = Invoke-VkCheck -CheckId VK-SYNC-02 -Context (Get-VkRunContext -FixturePath ./tests/fixtures/fail -AsOf 2026-10-30)
+PS> $r | Select-Object CheckId, Status, Count
+CheckId    Status Count
+-------    ------ -----
+VK-SYNC-02 Fail       2
+PS> $r.Details | Format-Table Severity, Issue
+Severity Issue
+-------- -----
+Finding  Soft match is not blocked
+Finding  Cloud object takeover through hard match is not blocked
+Info     Soft match on UPN is on; it cannot be turned off once enabled
+PS> $r.Evidence.Queries | Format-Table Source, Query
+Source          Query
+------          -----
+Graph (fixture) fixture:onPremisesSynchronization.json <= /v1.0/directory/onPremisesSynchronization

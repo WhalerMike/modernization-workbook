@@ -1,0 +1,5 @@
+$ grep -c "gina@contoso.example" out/day2/issues.json
+0
+(exit code 1)
+$ grep -c "00000000-0000-4000-8000-000000000011" out/day2/issues.json
+1

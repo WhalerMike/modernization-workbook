@@ -1,0 +1,15 @@
+PS> $plan = Get-GpcMovePlan -Invoke (New-GpcFixtureInvoke -Path ./tests/fixtures/tenant.json).Invoke
+PS> $plan | Format-Table Gpo, Setting, Scope, Disposition
+Gpo                      Setting                                                              Scope  Disposition
+---                      -------                                                              -----  -----------
+FMP-Workstation-Baseline Disable Windows Error Reporting                                      device Candidate
+FMP-Workstation-Baseline Allow crash dump                                                     device Candidate
+FMP-Workstation-Baseline Allow live dump                                                      device Candidate
+FMP-Workstation-Baseline Sign-in and lock last interactive user automatically after a restart device Candidate
+FMP-Workstation-Baseline Allow hibernate                                                      device Conflict
+FMP-Workstation-Baseline Inbound rule: Contoso line-of-business app                           device EndpointSecurity
+FMP-Workstation-Baseline Configure Windows NTP Client                                         device NotSupported
+FMP-Workstation-Baseline Turn off Internet Explorer 11 First Run                              user   Deprecated
+Workstation-Power        Allow hibernate                                                      device Conflict
+Workstation-Power        Prohibit access to Control Panel and PC settings                     user   Candidate
+Workstation-Drive-Maps   Drive map H: to the home share on fs01.contoso.example               user   NotSupported

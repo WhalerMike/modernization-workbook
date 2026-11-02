@@ -1,0 +1,12 @@
+$ python tools/lcwext.py run logicapp/integration.workflow.json tests/fixtures/trigger-leaver.json --cloud GCCHigh --fail 503,503,503,503,503
+run 1: Succeeded
+  POST https://graph.microsoft.us/v1.0/identityGovernance/lifecycleWorkflows/workflows/0d6f5b1c-3a2e-4f7d-9c1b-1e2a3b4c5d01/tasks/7a1e2b3c-4d5e-4f60-8a9b-0c1d2e3f4a01/taskProcessingResults/9b8c7d6e-5f4a-4b3c-9d2e-1f0a9b8c7d01/resume  audience=https://graph.microsoft.us  operationStatus=failed
+downstream: 5 call(s), 0 effect(s)
+Lifecycle Workflows task: failed
+$ python tools/lcwext.py run logicapp/integration.workflow.json tests/fixtures/trigger-leaver.json --cloud GCCHigh --deliveries 2
+run 1: Succeeded
+run 2: Failed
+  POST https://graph.microsoft.us/v1.0/identityGovernance/lifecycleWorkflows/workflows/0d6f5b1c-3a2e-4f7d-9c1b-1e2a3b4c5d01/tasks/7a1e2b3c-4d5e-4f60-8a9b-0c1d2e3f4a01/taskProcessingResults/9b8c7d6e-5f4a-4b3c-9d2e-1f0a9b8c7d01/resume  audience=https://graph.microsoft.us  operationStatus=completed
+  POST https://graph.microsoft.us/v1.0/identityGovernance/lifecycleWorkflows/workflows/0d6f5b1c-3a2e-4f7d-9c1b-1e2a3b4c5d01/tasks/7a1e2b3c-4d5e-4f60-8a9b-0c1d2e3f4a01/taskProcessingResults/9b8c7d6e-5f4a-4b3c-9d2e-1f0a9b8c7d01/resume  audience=https://graph.microsoft.us  operationStatus=completed
+downstream: 2 call(s), 1 effect(s)
+Lifecycle Workflows task: completed

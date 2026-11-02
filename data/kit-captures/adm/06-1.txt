@@ -1,0 +1,11 @@
+PS> Set-Location ../validation-kit
+PS> Import-Module ./powershell/ValidationKit/ValidationKit.psd1
+PS> $ctx = Get-VkRunContext -FixturePath ./tests/fixtures/fail -AsOf '2026-10-29T00:00:00Z' -IncludeBeta
+PS> (Invoke-VkCheck -CheckId VK-INT-07 -Context $ctx).Details | Format-Table Severity, Object, Issue
+Severity Object                   Issue
+-------- ------                   -----
+Info     FMP-Workstation-Baseline Imported GPO
+Finding  Workstation-Drive-Maps   Targeted in AD, migration readiness 'partial': settings Intune can't take over
+Finding  Workstation-Scripts      Targeted in AD, migration readiness 'error': settings Intune can't take over
+Warn     Workstation-Empty        Targeted in AD, readiness notApplicable: confirm where its settings go
+Finding  Workstation-Printers     In scope, but not imported into Group Policy analytics

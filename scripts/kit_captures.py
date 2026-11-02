@@ -45,16 +45,14 @@ WORKBOOKS = {
 }
 # Per chapter ("<workbook>-<NN>"): "cwd" overrides the lab's folder; "text" lists the ```text blocks of the
 # lab (1-based among its text blocks) that are commands, and "text_lang" their shell; "skip" lists command
-# blocks (by k) not to run; "hidden" maps a block k to commands a step gives only in prose, run (unshown)
+# blocks (by k) not to run; "copy" lists repository folders a lab's tests read, copied into the scratch
+# copy beside examples/; "hidden" maps a block k to commands a step gives only in prose, run (unshown)
 # just before it; "local" is the reason a lab can't run in CI (its captures are kept, not checked
 # there); "off" is the reason a lab isn't captured at all.
 CHAPTERS: dict[str, dict] = {
-    "adm-01": {"text": [1, 2, 3]},
-    "adm-02": {"text": [1, 2, 4, 5, 6, 7]},
-    "adm-03": {"cwd": ".", "text": [1], "text_lang": "powershell"},
-    "adm-04": {"skip": [4]},   # Invoke-DrLibraryCheck diffs against git HEAD; the scratch copy isn't a repository
-    # Step 1 runs in examples/validation-kit, the rest in examples/group-policy-as-code, as the chapter says.
-    "adm-06": {"hidden": {1: "Set-Location ../validation-kit", 2: "Set-Location ../group-policy-as-code"}},
+    "adm-03": {"cwd": "."},
+    # Invoke-DrLibraryCheck diffs against git HEAD (the scratch copy isn't a repository); a test reads Book 03.
+    "adm-04": {"skip": [5, 7], "copy": ["docs/books/b03-hr-identity"]},
     "adm-07": {"off": "needs Windows and three modules saved from the PowerShell Gallery"},
     "adm-08": {"off": "needs a Linux control node with ansible-core and collections from Ansible Galaxy"},
     # Labs whose bash steps work in the drift pipeline.
@@ -154,6 +152,10 @@ def clean(out: str, cwd: Path, root: Path) -> str:
     # Pester puts a file's timing on the file's line, or on a line of its own.
     out = re.sub(r"^(\[[+-]\] [^\n]*?) [\d.]+m?s \([\d.]+m?s\|[\d.]+m?s\)$", r"\1", out, flags=re.M)
     out = re.sub(r"^ *[\d.]+m?s \([\d.]+m?s\|[\d.]+m?s\)\n", "", out, flags=re.M)
+    # A Python traceback as every version prints it: newer ones add the `python -c` source line and
+    # ~~~^^^ markers under each call.
+    out = re.sub(r'^(  File "<string>", line \d+, in <module>\n)    [^\n]*\n', r"\1", out, flags=re.M)
+    out = re.sub(r"^ *[~^]+ *\n", "", out, flags=re.M)
     return "\n".join(l.rstrip() for l in out.split("\n")).strip("\n")
 
 
@@ -302,6 +304,8 @@ def capture(wb: str, ci: bool = False) -> dict[str, str]:
             root = Path(tmp)
             shutil.copytree(ROOT / "examples", root / "examples", ignore=shutil.ignore_patterns(
                 "out", "__pycache__", ".pytest_cache", "node_modules", "target", ".gradle"))
+            for extra in cfg.get("copy", []):          # repository files a lab's tests read
+                shutil.copytree(ROOT / extra, root / extra)
             for before in cfg.get("needs", []):
                 run_lab(wb, before, root)
             for k, lang, pairs in run_lab(wb, nn, root):

@@ -1,0 +1,2 @@
+$ python python/drift_pipeline.py issues --diff out/day2/drift-report.json --out out/day2/issues.json
+{"close": 2, "comment": 0, "open": 6}

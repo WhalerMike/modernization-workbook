@@ -1,0 +1,4 @@
+PS> (Invoke-VkCheck -CheckId VK-SYNC-02 -Context (Get-VkRunContext -FixturePath ./tests/fixtures/fail -AsOf 2026-10-30 -Option @{ MatchWindowOpenUntil = '2026-10-31' })).Status
+Warn
+PS> (Invoke-VkCheck -CheckId VK-SYNC-02 -Context (Get-VkRunContext -FixturePath ./tests/fixtures/fail -AsOf 2026-11-01 -Option @{ MatchWindowOpenUntil = '2026-10-31' })).Status
+Fail

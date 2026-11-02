@@ -1,0 +1,9 @@
+$ sed '/^100005,/s/ORG-100/org-100/' tests/fixtures/hcm_extract_sample.csv > extract-broken.csv
+$ python python/hcm_to_scim.py --extract extract-broken.csv --as-of 2026-10-25 --out out-broken
+{"counts": {"ready": 8, "quarantined": 10, "superseded": 1}, "batches": 1, "disables": 3, "held": false, "hold_reason": ""}
+(exit code 2)
+$ python -c "import json; [print(q['person_key'], '|', '; '.join(q['reasons'])) for q in json.load(open('out-broken/quarantine.json', encoding='utf-8')) if q['person_key'] == '100005']"
+100005 | DepartmentCode 'org-100' isn't a code (A-Z, 0-9, hyphen)
+$ pwsh -NoProfile -Command '$map = Import-PowerShellDataFile ./config/csv2scim/AttributeMapping.psd1; ../third_party/csv2scim/src/CSV2SCIM.ps1 -Path ./extract-broken.csv -AttributeMapping $map -ScimSchemaNamespace "urn:ietf:params:scim:schemas:extension:contoso:1.0:User" > baseline-broken.json'
+$ grep -n '"org-100"' baseline-broken.json
+346:          "DepartmentCode": "org-100",

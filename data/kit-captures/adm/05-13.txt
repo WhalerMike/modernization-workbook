@@ -1,0 +1,72 @@
+$ python -m unittest discover -s tests -v
+test_access_control_turns_sas_off_and_holds_learns_pop_claims (test_extension.Builders.test_access_control_turns_sas_off_and_holds_learns_pop_claims) ... ok
+test_arm_resource_has_a_system_assigned_identity_and_the_cloud_parameters (test_extension.Builders.test_arm_resource_has_a_system_assigned_identity_and_the_cloud_parameters) ... ok
+test_azure_government_policy_values_are_refused_until_learn_documents_them (test_extension.Builders.test_azure_government_policy_values_are_refused_until_learn_documents_them) ... ok
+test_build_writes_both_files_and_refuses_a_definition_with_findings (test_extension.Builders.test_build_writes_both_files_and_refuses_a_definition_with_findings) ... ok
+test_extension_body_uses_proof_of_possession_and_learns_ranges (test_extension.Builders.test_extension_body_uses_proof_of_possession_and_learns_ranges) ... ok
+test_out_of_range_settings_are_refused (test_extension.Builders.test_out_of_range_settings_are_refused) ... ok
+test_the_documentation_placeholder_appid_is_refused (test_extension.Builders.test_the_documentation_placeholder_appid_is_refused) ... ok
+test_the_policy_appid_is_the_azp_value_learn_prints (test_extension.Builders.test_the_policy_appid_is_the_azp_value_learn_prints) ... ok
+test_each_cloud_calls_back_to_its_own_graph_on_v1 (test_extension.Clouds.test_each_cloud_calls_back_to_its_own_graph_on_v1) ... ok
+test_gcc_uses_the_worldwide_graph (test_extension.Clouds.test_gcc_uses_the_worldwide_graph) ... ok
+test_lint_is_clean_within_the_registry_timeout (test_extension.Definition.test_lint_is_clean_within_the_registry_timeout) ... ok
+test_retries_must_fit_inside_the_callback_timeout (test_extension.Definition.test_retries_must_fit_inside_the_callback_timeout) ... ok
+test_the_graph_host_parameter_only_takes_the_three_us_relevant_roots (test_extension.Definition.test_the_graph_host_parameter_only_takes_the_three_us_relevant_roots) ... ok
+test_trigger_schema_is_learns_schema_unchanged (test_extension.Definition.test_trigger_schema_is_learns_schema_unchanged) ... ok
+test_a_malformed_callback_path_is_rejected_without_any_call (test_extension.Outcomes.test_a_malformed_callback_path_is_rejected_without_any_call) ... ok
+test_a_missing_subject_is_rejected (test_extension.Outcomes.test_a_missing_subject_is_rejected) ... ok
+test_a_permanent_error_is_not_retried_and_calls_back_failed (test_extension.Outcomes.test_a_permanent_error_is_not_retried_and_calls_back_failed) ... ok
+test_a_repeat_delivery_does_the_work_once (test_extension.Outcomes.test_a_repeat_delivery_does_the_work_once) ... ok
+test_an_unregistered_workflow_gets_a_failed_callback_and_no_work (test_extension.Outcomes.test_an_unregistered_workflow_gets_a_failed_callback_and_no_work) ... ok
+test_exhausted_retries_call_back_failed_instead_of_timing_out (test_extension.Outcomes.test_exhausted_retries_call_back_failed_instead_of_timing_out) ... ok
+test_only_the_object_id_goes_downstream (test_extension.Outcomes.test_only_the_object_id_goes_downstream) ... ok
+test_run_history_hides_the_subject (test_extension.Outcomes.test_run_history_hides_the_subject) ... ok
+test_the_idempotency_key_is_the_task_processing_result (test_extension.Outcomes.test_the_idempotency_key_is_the_task_processing_result) ... ok
+test_transient_failures_are_retried_then_completed (test_extension.Outcomes.test_transient_failures_are_retried_then_completed) ... ok
+test_a_bearer_extension_or_one_without_authorized_apps_is_a_finding (test_extension.ReadBack.test_a_bearer_extension_or_one_without_authorized_apps_is_a_finding) ... ok
+test_a_custom_task_before_the_block_is_a_finding (test_extension.ReadBack.test_a_custom_task_before_the_block_is_a_finding) ... ok
+test_a_workflow_missing_from_the_registry_is_a_finding (test_extension.ReadBack.test_a_workflow_missing_from_the_registry_is_a_finding) ... ok
+test_revoke_before_disable_and_stop_on_error_are_flagged (test_extension.ReadBack.test_revoke_before_disable_and_stop_on_error_are_flagged) ... ok
+test_the_extension_read_back_matches_the_registry (test_extension.ReadBack.test_the_extension_read_back_matches_the_registry) ... ok
+test_the_leaver_workflow_blocks_first_then_runs_the_custom_task (test_extension.ReadBack.test_the_leaver_workflow_blocks_first_then_runs_the_custom_task) ... ok
+test_the_task_builder_uses_learns_definition_id_and_argument (test_extension.ReadBack.test_the_task_builder_uses_learns_definition_id_and_argument) ... ok
+test_gap_a_repeat_delivery_repeats_the_work (test_learn_sample.LearnSample.test_gap_a_repeat_delivery_repeats_the_work) ... ok
+test_gap_hard_coded_worldwide_graph_misses_a_gcc_high_tenant (test_learn_sample.LearnSample.test_gap_hard_coded_worldwide_graph_misses_a_gcc_high_tenant) ... ok
+test_gap_it_reports_completed_without_checking_anything (test_learn_sample.LearnSample.test_gap_it_reports_completed_without_checking_anything) ... ok
+test_gap_lint_finds_what_the_runs_show (test_learn_sample.LearnSample.test_gap_lint_finds_what_the_runs_show) ... ok
+test_gap_the_callback_path_is_used_unchecked (test_learn_sample.LearnSample.test_gap_the_callback_path_is_used_unchecked) ... ok
+test_gap_work_added_before_the_callback_that_fails_leaves_no_callback (test_learn_sample.LearnSample.test_gap_work_added_before_the_callback_that_fails_leaves_no_callback) ... ok
+test_in_the_worldwide_cloud_it_resumes_the_task_with_its_managed_identity (test_learn_sample.LearnSample.test_in_the_worldwide_cloud_it_resumes_the_task_with_its_managed_identity) ... ok
+test_the_pinned_page_holds_a_definition_that_parses (test_learn_sample.LearnSample.test_the_pinned_page_holds_a_definition_that_parses) ... ok
+test_the_policy_appid_on_the_page_is_the_documentation_placeholder (test_learn_sample.LearnSample.test_the_policy_appid_on_the_page_is_the_documentation_placeholder) ... ok
+test_interpolation_builds_a_string_and_whole_expressions_keep_their_type (test_wdl.Expressions.test_interpolation_builds_a_string_and_whole_expressions_keep_their_type) ... ok
+test_null_interpolates_as_empty (test_wdl.Expressions.test_null_interpolates_as_empty) ... ok
+test_null_safe_index_returns_null_and_strict_index_fails (test_wdl.Expressions.test_null_safe_index_returns_null_and_strict_index_fails) ... ok
+test_parameters_dynamic_index_and_coalesce (test_wdl.Expressions.test_parameters_dynamic_index_and_coalesce) ... ok
+test_quoted_strings_escape_by_doubling (test_wdl.Expressions.test_quoted_strings_escape_by_doubling) ... ok
+test_starts_and_ends_with_ignore_case_as_learn_says (test_wdl.Expressions.test_starts_and_ends_with_ignore_case_as_learn_says) ... ok
+test_unknown_function_is_refused_not_guessed (test_wdl.Expressions.test_unknown_function_is_refused_not_guessed) ... ok
+test_an_unhandled_failure_fails_the_run (test_wdl.Runs.test_an_unhandled_failure_fails_the_run) ... ok
+test_default_retry_policy_retries_retryable_codes_four_times (test_wdl.Runs.test_default_retry_policy_retries_retryable_codes_four_times) ... ok
+test_if_runs_one_branch_and_terminate_stops_the_run (test_wdl.Runs.test_if_runs_one_branch_and_terminate_stops_the_run) ... ok
+test_non_retryable_codes_are_not_retried (test_wdl.Runs.test_non_retryable_codes_are_not_retried) ... ok
+test_parameters_are_bound_like_a_deployment (test_wdl.Runs.test_parameters_are_bound_like_a_deployment) ... ok
+test_retry_budget (test_wdl.Runs.test_retry_budget) ... ok
+test_run_after_failed_handles_a_failure (test_wdl.Runs.test_run_after_failed_handles_a_failure) ... ok
+test_unsupported_action_types_are_refused (test_wdl.Runs.test_unsupported_action_types_are_refused) ... ok
+
+----------------------------------------------------------------------
+Ran 55 tests
+
+OK
+wrote out/test-build/arm-cms-revocation.json
+wrote out/test-build/extension-cms-revocation.json
+LX-03  Finding HTTP               hard-codes graph.microsoft.com; take the Graph host from a parameter checked against the tenant's cloud
+LX-04  Finding HTTP               calls back on /beta; resume is in v1.0
+LX-06  Finding HTTP               uses callbackUriPath without checking it first
+LX-07  Finding HTTP               no callback when the work fails; Lifecycle Workflows waits out the whole timeout
+LX-08  Finding HTTP               always reports 'Completed', whatever happened
+LX-10  Warn    manual             trigger outputs (the subject's name, UPN and email) show in run history; secure them
+LX-10  Warn    HTTP               inputs or outputs not secured in run history
+LX-11  Warn    HTTP               no explicit retryPolicy; the Default policy applies (up to 4 retries)
+8 result(s); findings

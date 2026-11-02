@@ -1,0 +1,25 @@
+PS> $map = Import-PowerShellDataFile ./hcm-entra/config/csv2scim/AttributeMapping.psd1
+PS> ./third_party/csv2scim/src/CSV2SCIM.ps1 -Path ./hcm-entra/tests/fixtures/hcm_extract_sample.csv -AttributeMapping $map -ValidateAttributeMapping
+True
+PS> ./third_party/csv2scim/src/CSV2SCIM.ps1 -Path ./hcm-entra/tests/fixtures/hcm_extract_sample.csv -AttributeMapping $map `
+>>     -ScimSchemaNamespace 'urn:ietf:params:scim:schemas:extension:contoso:1.0:User' > baseline.json
+PS> python -c "import json; [print(o['data']['externalId'] or '(empty)', o['data']['active']) for o in json.load(open('baseline.json', encoding='utf-8-sig'))['Operations']]"
+100000 True
+100001 True
+100002 True
+100003 False
+100004 True
+100005 True
+100006 True
+100007 True
+(empty) True
+12345678901234567 True
+100008 True
+100008 False
+100009 True
+100010 False
+100011 True
+100013 False
+100014 True
+100015 True
+100016 True

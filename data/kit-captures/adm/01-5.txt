@@ -1,0 +1,8 @@
+$ pwsh -NoProfile -Command '$map = Import-PowerShellDataFile ./config/csv2scim/AttributeMapping.psd1; ../third_party/csv2scim/src/CSV2SCIM.ps1 -Path ./tests/fixtures/hcm_extract_sample.csv -AttributeMapping $map -ScimSchemaNamespace "urn:ietf:params:scim:schemas:extension:contoso:1.0:User" > baseline-2.json'
+$ python -c "import json; a, b = (json.load(open(f, encoding='utf-8-sig'))['Operations'] for f in ('../baseline.json', 'baseline-2.json')); print(sum(x['bulkId'] == y['bulkId'] for x, y in zip(a, b)), 'of', len(a), 'bulkId values match')"
+0 of 19 bulkId values match
+$ python python/hcm_to_scim.py --extract tests/fixtures/hcm_extract_sample.csv --as-of 2026-10-25 --out out-2
+{"counts": {"ready": 9, "quarantined": 9, "superseded": 1}, "batches": 1, "disables": 3, "held": false, "hold_reason": ""}
+(exit code 2)
+$ cmp out/bulk-request-001.json out-2/bulk-request-001.json && cmp out/provenance.json out-2/provenance.json && echo identical
+identical

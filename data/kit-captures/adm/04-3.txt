@@ -1,0 +1,8 @@
+PS> Import-Module ./powershell/DynamicRules.psm1
+PS> Get-Content ./tests/fixtures/book03-patterns.json -Raw | ConvertFrom-Json |
+>>     ForEach-Object { Test-DrRule -Rule $_.membershipRule -Kind $_.kind -Group $_.pattern } |
+>>     Format-Table Severity, Rule, Group, Issue
+Severity Rule  Group          Issue
+-------- ----  -----          -----
+Finding  DR-05 Legal employer Rule reads a display-name attribute instead of a coded slot
+Info     DR-03 Direct reports Direct reports rule: Learn says it cannot be combined with other rules, so it carries no guards; the group must not grant access on its own

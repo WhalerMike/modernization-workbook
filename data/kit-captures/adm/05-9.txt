@@ -1,0 +1,4 @@
+$ sed -i 's/"azureCloud": "AzureCloud"/"azureCloud": "AzureUSGovernment"/' config/integrations.json
+$ python tools/lcwext.py build config/integrations.json --name cms-revocation --tenant-id 6e3a1f2b-8c4d-4e5f-9a0b-1c2d3e4f5a6b
+error: cms-revocation: Learn documents the PoP policy only for Azure commercial; no values for AzureUSGovernment (research gap), so nothing is built
+(exit code 1)
