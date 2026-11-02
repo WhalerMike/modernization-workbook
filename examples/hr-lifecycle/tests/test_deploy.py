@@ -80,6 +80,21 @@ def test_the_middleware_endpoint_follows_the_cloud_and_passes_the_middlewares_ow
     hcm_to_scim.validate_settings(out)
 
 
+def test_get_prints_one_value_and_record_workflows_fills_the_ids(tmp_path):
+    s = _settings()
+    assert ds.get(s, "graphResource") == "https://graph.microsoft.com"
+    assert ds.get(s, "identities.uploader.certificateName") == "hrlc-uploader-test"
+    s["cloud"] = "gcchigh"
+    assert ds.get(s, "azureCloud") == "AzureUSGovernment" and ds.get(s, "mgEnvironment") == "USGov"
+    with pytest.raises(HrlcError):
+        ds.get(s, "identities")
+    path = shutil.copy(FX / "settings.test.json", tmp_path / "s.json")
+    after = ds.record_workflows(Path(path), {"mover": "44444444-4444-4444-8444-0000000000aa"})
+    assert after["workflows"]["mover"].endswith("aa") and ds.check(after) == []
+    with pytest.raises(HrlcError):
+        ds.record_workflows(Path(path), {"onboarding": "x"})
+
+
 # ---------------------------------------------------------------- pre-flight
 
 def _preflight_copy(tmp_path):
@@ -265,7 +280,7 @@ def test_the_smoke_check_reads_the_tenant_with_gets_on_the_clouds_host(tmp_path,
     exp = smoke_test.expectations(_extract("joiner", 0), None, s["scope"], START)
     exports = smoke_test.export_tenant(s, exp, "2026-11-09T00:00:00Z", tmp_path, "test-token")
     assert all(h == "graph.microsoft.com" and a == "Bearer test-token" for _, h, a in seen)
-    assert len(seen) == 4 + 5 + 2
+    assert len(seen) == 4 + 6 + 2
     assert len(read_json(exports / "users.json")["value"]) == 4
 
 
@@ -276,7 +291,7 @@ def test_the_rollback_plan_pauses_and_unschedules_but_never_restarts_or_disables
     steps, scopes = rollback.plan(s, None)
     text = rollback.script(s, steps, scopes)
     assert text.count("Suspend-MgServicePrincipalSynchronizationJob") == 2
-    assert text.count("isSchedulingEnabled = $false") == 5
+    assert text.count("isSchedulingEnabled = $false") == 6
     assert "Restart" not in text and "isEnabled = $false" not in text and "Remove-MgUser" not in text
     assert "-Environment Global" in text and "if (-not $Apply)" in text
     s["cloud"] = "gcchigh"

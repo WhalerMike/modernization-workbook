@@ -62,7 +62,7 @@ Python 3.10 or later, standard library only. Work in this folder. Every tool tak
 | `python python/cba_check.py measure` / `check` | CB-01 to CB-13 | 0, 2, 1 |
 | `python python/separation_timing.py measure` | ST-01 to ST-09 | 0, 2, 1 |
 | `python python/lifecycle_drift.py run` | LD-01 to LD-08 | 0, 2, 1 |
-| `python deploy/deploy_settings.py check` / `middleware` | DS-01 to DS-05 | 0, 2, 1 |
+| `python deploy/deploy_settings.py check` / `middleware` / `record-workflows` / `get` | DS-01 to DS-05 | 0, 2, 1 |
 | `python deploy/preflight.py --mode fixture` or `--mode tenant` | PF-01 to PF-06 | 0, 2, 1 |
 | `python deploy/smoke_test.py extract` / `check --mode fixture` or `--mode tenant` | SM-01 to SM-07 | 0, 2, 1 |
 | `python deploy/rollback.py plan` / `verify --mode fixture` or `--mode tenant` | RB-01, RB-02 | 0, 2, 1 |
@@ -87,7 +87,7 @@ The sync job read takes `Synchronization.Read.All`: Learn ranks `Application.Rea
 python -m pytest tests -q
 ```
 
-75 tests, no tenant and no network. `examples/drift-pipeline/tests/test_hr_evidence.py` also builds runs from this kit's fixtures, so the drift pipeline's suite runs when this kit changes.
+76 tests, no tenant and no network. `examples/drift-pipeline/tests/test_hr_evidence.py` also builds runs from this kit's fixtures, so the drift pipeline's suite runs when this kit changes.
 
 ## Not covered
 

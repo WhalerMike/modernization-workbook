@@ -39,6 +39,14 @@
       "isEnabled": true,
       "isSchedulingEnabled": false,
       "version": 1
+    },
+    {
+      "id": "44444444-4444-4444-8444-444444444406",
+      "displayName": "Contoso contractor-leaver",
+      "category": "leaver",
+      "isEnabled": true,
+      "isSchedulingEnabled": false,
+      "version": 1
     }
   ]
 }

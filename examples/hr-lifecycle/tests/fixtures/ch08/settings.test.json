@@ -36,9 +36,14 @@
     "day-one": "44444444-4444-4444-8444-444444444402",
     "mover": "44444444-4444-4444-8444-444444444403",
     "leaver": "44444444-4444-4444-8444-444444444404",
-    "post-leaver": "44444444-4444-4444-8444-444444444405"
+    "post-leaver": "44444444-4444-4444-8444-444444444405",
+    "contractor-leaver": "44444444-4444-4444-8444-444444444406"
   },
   "automaticAssignmentPolicies": [],
+  "evidence": {
+    "storageAccount": "stcontosoevidtest",
+    "container": "hr-identity-evidence"
+  },
   "licenses": [
     {
       "skuPartNumber": "CONTOSO_P1_SAMPLE",
@@ -53,7 +58,8 @@
     "Application Administrator",
     "Lifecycle Workflows Administrator",
     "Identity Governance Administrator",
-    "Authentication Policy Administrator"
+    "Authentication Policy Administrator",
+    "User Administrator"
   ],
   "scope": {
     "personNumberPattern": "99[0-9]{4}",

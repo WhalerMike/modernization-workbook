@@ -77,7 +77,8 @@ def plan(settings: dict[str, Any], smoke: Path | None) -> tuple[list[dict[str, A
         steps.append({"gate": "G2", "say": f"Pause the {app} provisioning job (keeps its state)",
                       "run": f"Suspend-MgServicePrincipalSynchronizationJob -ServicePrincipalId {_q(job['servicePrincipalId'])} -SynchronizationJobId {_q(job['jobId'])}"})
     for key, wid in settings["workflows"].items():
-        steps.append({"gate": "G3" if key in ("pre-hire", "day-one") else ("G4" if key == "mover" else "G6"),
+        gate = {"pre-hire": "G3", "day-one": "G3", "mover": "G4", "contractor-leaver": "G2"}.get(key, "G6")
+        steps.append({"gate": gate,
                       "say": f"Turn off scheduling for the {key} workflow (stays enabled for on-demand runs)",
                       "run": f"Update-MgIdentityGovernanceLifecycleWorkflow -WorkflowId {_q(wid)} -BodyParameter @{{ isSchedulingEnabled = $false }}"})
     for pid in settings.get("automaticAssignmentPolicies", []):

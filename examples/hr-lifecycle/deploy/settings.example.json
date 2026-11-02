@@ -25,18 +25,26 @@
     "day-one": "<dayone-workflow-id>",
     "mover": "<mover-workflow-id>",
     "leaver": "<leaver-workflow-id>",
-    "post-leaver": "<postleaver-workflow-id>"
+    "post-leaver": "<postleaver-workflow-id>",
+    "contractor-leaver": "<contractor-leaver-workflow-id>"
   },
   "automaticAssignmentPolicies": [],
+  "evidence": {
+    "_comment": "The storage account and container outside the directory where each stage's evidence is kept (Chapter 07), with immutability set to the records schedule.",
+    "storageAccount": "<evidence-storage-account>",
+    "container": "<evidence-container>"
+  },
   "licenses": [
     {"skuPartNumber": "<p1-sku-part-number>", "minimum": "<p1-seat-count>"},
     {"skuPartNumber": "<governance-sku-part-number>", "minimum": "<governance-seat-count>"}
   ],
+  "_rolesComment": "Directory roles the runbook's operators activate through PIM. Keep User Administrator in the test settings (the rollback removes the synthetic accounts); drop it from production, which deletes no account.",
   "roles": [
     "Application Administrator",
     "Lifecycle Workflows Administrator",
     "Identity Governance Administrator",
-    "Authentication Policy Administrator"
+    "Authentication Policy Administrator",
+    "User Administrator"
   ],
   "scope": {
     "_comment": "Who the staged enable covers. personNumberPattern selects the synthetic smoke workers in the test stage; departmentCodes lists the first production scope.",

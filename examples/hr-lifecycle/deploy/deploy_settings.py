@@ -6,7 +6,9 @@ changes. The file holds names and IDs, never a secret: certificates for the inte
 stay in a key vault, and tokens live only in environment variables for the length of a step.
 
     python deploy/deploy_settings.py check --settings deploy/settings.test.json
-    python deploy/deploy_settings.py middleware --settings deploy/settings.test.json --app employee --out ../hcm-entra/config/settings.test-employee.json
+    python deploy/deploy_settings.py middleware --settings deploy/settings.test.json --app employee --out evidence/test/middleware-employee.json
+    python deploy/deploy_settings.py record-workflows --settings deploy/settings.test.json --ids evidence/test/workflow-ids.json
+    python deploy/deploy_settings.py get --settings deploy/settings.test.json identities.keyVault
 
 Illustrative: unit-tested against fixtures, not run against a live tenant. Standard library only.
 Exit codes: 0 clean, 2 findings, 1 error or refusal.
@@ -31,7 +33,7 @@ from hrlc_core import (  # noqa: E402
 SCHEMA = "fmp-hrlc-deploy/1"
 ENVIRONMENTS = ("test", "production")
 APPS = ("employee", "contractor")
-WORKFLOW_KEYS = ("pre-hire", "day-one", "mover", "leaver", "post-leaver")
+WORKFLOW_KEYS = ("pre-hire", "day-one", "mover", "leaver", "post-leaver", "contractor-leaver")  # config/workflows stems
 # The same key pattern examples/hcm-entra refuses in its settings, plus values that are secrets.
 SECRET_KEY = re.compile(r"(secret|password|passwd|token|credential|private|apikey|api_key|bearer)", re.I)
 SECRET_VALUE = re.compile(r"(^eyJ[A-Za-z0-9_-]{10,}\.|-----BEGIN [A-Z ]*(PRIVATE KEY|CERTIFICATE)-----)")
@@ -43,9 +45,13 @@ ROLE_TEMPLATES = {
     "Lifecycle Workflows Administrator": "59d46f88-662b-457b-bceb-5c3809e5908f",
     "Identity Governance Administrator": "45d8d3c5-c802-45c6-b32a-1d70b5e1e86e",
     "Authentication Policy Administrator": "0526716b-113d-4c15-b2c8-68e3c22b9f80",
+    "User Administrator": "fe930be7-5e62-47db-91af-98c3a49a38b1",  # the test stage's rollback removes smoke accounts
 }
 # Graph PowerShell -Environment name per cloud (Learn, "Authentication module cmdlets").
 MG_ENVIRONMENT = {"gcc": "Global", "gcchigh": "USGov", "dod": "USGovDoD"}
+# Azure CLI cloud per tenant cloud (Learn, "Connect to Azure Government with Azure CLI"). A GCC tenant is a
+# commercial Entra tenant, so its key vault sits in a commercial subscription (the guide's inference).
+AZURE_CLOUD = {"gcc": "AzureCloud", "gcchigh": "AzureUSGovernment", "dod": "AzureUSGovernment"}
 
 
 def load(path: Path) -> dict[str, Any]:
@@ -121,6 +127,40 @@ def middleware_settings(settings: dict[str, Any], app: str, example: Path) -> di
     return out
 
 
+def record_workflows(path: Path, ids: dict[str, str]) -> dict[str, Any]:
+    """Put the IDs of the workflows a stage created (file stem to ID) into the settings file."""
+    settings = load(path)
+    unknown = sorted(set(ids) - set(WORKFLOW_KEYS))
+    if unknown:
+        raise HrlcError(f"not a workflow this runbook deploys: {', '.join(unknown)}")
+    settings.setdefault("workflows", {}).update(ids)
+    write_text(path, dump_json_ordered(settings))
+    return settings
+
+
+def dump_json_ordered(obj: Any) -> str:
+    return json.dumps(obj, indent=2, ensure_ascii=False) + "\n"
+
+
+def get(settings: dict[str, Any], key: str) -> str:
+    """One value for a shell command: a dotted path in the file, or a value derived from the cloud."""
+    derived = {
+        "graphResource": lambda: "https://" + cloud(settings["cloud"])["graph"],
+        "azureCloud": lambda: AZURE_CLOUD[cloud(settings["cloud"])["name"]],
+        "mgEnvironment": lambda: MG_ENVIRONMENT[cloud(settings["cloud"])["name"]],
+    }
+    if key in derived:
+        return derived[key]()
+    value: Any = settings
+    for part in key.split("."):
+        if not isinstance(value, dict) or part not in value:
+            raise HrlcError(f"no {key} in the settings file")
+        value = value[part]
+    if isinstance(value, (dict, list)):
+        raise HrlcError(f"{key} isn't a single value")
+    return str(value)
+
+
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     sub = ap.add_subparsers(dest="cmd", required=True)
@@ -131,9 +171,22 @@ def main(argv: list[str] | None = None) -> int:
     m.add_argument("--app", required=True, choices=APPS)
     m.add_argument("--example", type=Path, default=KIT.parent / "hcm-entra" / "config" / "settings.example.json")
     m.add_argument("--out", type=Path, required=True)
+    r = sub.add_parser("record-workflows", help="put created workflows' IDs (file stem to ID, JSON) into the settings file")
+    r.add_argument("--settings", type=Path, required=True)
+    r.add_argument("--ids", type=Path, required=True)
+    g = sub.add_parser("get", help="print one value: a dotted path, or graphResource, azureCloud, mgEnvironment")
+    g.add_argument("--settings", type=Path, required=True)
+    g.add_argument("key")
     args = ap.parse_args(argv)
     try:
+        if args.cmd == "record-workflows":
+            s = record_workflows(args.settings, read_json(args.ids))
+            print(f"Recorded {len(read_json(args.ids))} workflow IDs in {args.settings.as_posix()}")
+            return exit_code(check(s))
         s = load(args.settings)
+        if args.cmd == "get":
+            print(get(s, args.key))
+            return 0
         rows = check(s)
         if args.cmd == "check":
             for r in rows:
