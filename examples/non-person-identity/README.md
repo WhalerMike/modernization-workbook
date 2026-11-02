@@ -12,7 +12,7 @@ Code for the [developer workbook *Building Non-Person Identity*](../../docs/proj
 - **Chapter 08, Conditional Access for workload identities:** the scope file, CA015 and CA037 per ring created report-only, a pre-merge check (NPI-WCA-01 to NPI-WCA-09), a summary of service principal sign-ins (Graph beta), and enforcement only with `-AllowEnforce`, a D-N5 record and a reviewed summary.
 - **Chapter 09, AI agent identities (preview):** agent identity blueprints and agent identities checked against the production handshake, credentials, least privilege, sponsors and drift rules, the D-N6 mode (`config/agent-id-capabilities-ch09.json`), and the two agent block policies created report-only by `Invoke-NpiAgentCaAction.ps1`.
 - **Chapter 10, drift and evidence:** Chapters 01 and 02 run again and compared with an approved baseline (NPI-DRF-01 to NPI-DRF-09), the review records from Chapters 07 and 09 (NPI-REV-01 to NPI-REV-04), the annual vintage comparison (`Invoke-NpiVintage.ps1`), and the input contract for the other chapters' findings (`docs/ch10-contract.md`). The evidence package is written by `examples/drift-pipeline`.
-- **Chapter 11, deploying to test and production:** the runbook's own code in `deploy/`: one environment settings file per stage (`deploy/settings.template.json`; names and IDs only, never a secret), a read-only preflight (`deploy/Test-NpiDeployPreflight.ps1`: licenses, the deployment identity's credential, the reader's permissions, the operators' roles, the pilot and synthetic objects, the VK-NPI baseline, and in production the test stage's evidence), a smoke test with a synthetic service principal and service account (`deploy/Invoke-NpiDeploySmokeTest.ps1`), and a rollback plan applied only with an approved SHA-256 and `-Apply` (`deploy/Invoke-NpiDeployRollback.ps1`; PATCH and enable or disable only, never a delete). Each writes an evidence record per step (time, environment, command, result, and the SP 800-53 controls and FedRAMP 20x KSIs from `config/requirements-ch11.json`) to an `evidence` folder with a `SHA256SUMS`; `deploy/Write-NpiDeployEvidence.ps1` records the steps that run earlier chapters' scripts, and `deploy/Test-NpiDeployEvidence.ps1` checks a stage's coverage before promotion. Each has a fixture mode (`-FixturePath`) that sends nothing; `tests/NpiDeploy.Tests.ps1` runs them against a fictional test and production tenant.
+- **Chapter 11, deploying to test and production:** the runbook's own code in `deploy/`: one environment settings file per stage (`deploy/settings.template.json`; names and IDs only, never a secret), a read-only preflight (`deploy/Test-NpiDeployPreflight.ps1`: licenses, the deployment identity's credential, the reader's permissions, the operators' roles, the pilot and synthetic objects, the VK-NPI baseline, and in production the test stage's evidence), a smoke test with a synthetic service principal and service account (`deploy/Invoke-NpiDeploySmokeTest.ps1`), and a rollback plan applied only with an approved SHA-256 and `-Apply` (`deploy/Invoke-NpiDeployRollback.ps1`; PATCH and enable or disable only, never a delete). Each writes an evidence record per step (time, environment, command, result, and the SP 800-53 controls and FedRAMP 20x KSIs from `config/requirements-ch11.json`) to an `evidence` folder with a `SHA256SUMS`; `deploy/Write-NpiDeployEvidence.ps1` records the steps that run earlier chapters' scripts, and `deploy/Test-NpiDeployEvidence.ps1` checks a stage's coverage before promotion. Each has a fixture mode (`-FixturePath`) that sends nothing; `deploy/tests/NpiDeploy.Tests.ps1` runs them against a fictional test and production tenant.
 
 Illustrative: tested against fixtures and fakes of Microsoft Graph, Resource Manager and Active Directory, not against a production tenant or domain. Nobody has run Chapter 11's deployment code against a live tenant, subscription or forest.
 
@@ -50,6 +50,7 @@ deploy/Invoke-NpiDeployRollback.ps1
 deploy/settings.template.json           the environment settings file, with a placeholder for every value
 deploy/Write-NpiDeployEvidence.ps1
 deploy/Test-NpiDeployEvidence.ps1
+deploy/tests/NpiDeploy.Tests.ps1        Chapter 11's Pester tests, run by tests/test_deploy.py (kept out of tests/ so the chapters' Lab 1 count holds)
 config/requirements-ch11.json           Chapter 11: controls, other requirements and KSIs per check and step
 powershell/NpiAgentId/
 powershell/NpiCore/
@@ -72,7 +73,6 @@ tests/LeastPrivilegeSampleHarness.ps1
 tests/MicrosoftSamples.Tests.ps1
 tests/NpiAgentId.Tests.ps1
 tests/NpiCredentialPolicy.Tests.ps1
-tests/NpiDeploy.Tests.ps1
 tests/NpiDrift.Tests.ps1
 tests/NpiFederation.Tests.ps1
 tests/NpiFederationSamples.Tests.ps1
@@ -85,6 +85,7 @@ tests/NpiMatrixSampleHarness.ps1
 tests/NpiOwnership.Tests.ps1
 tests/NpiWorkloadCa.Tests.ps1
 tests/SentinelRuleHarness.ps1
+tests/test_deploy.py
 tests/fixtures/                         a fictional estate (contoso.example, corp.contoso.example); one folder per chapter from 03
 ```
 
@@ -126,6 +127,9 @@ tests/fixtures/                         a fictional estate (contoso.example, cor
 
 ```powershell
 Invoke-Pester -Path tests
+Invoke-Pester -Path deploy/tests
 ```
+
+The second line is Chapter 11's suite; `python -m pytest tests` runs it too, as `scripts/run_example_tests.py` does in CI.
 
 PowerShell 7.1 or later and Pester 5. No module, tenant, domain or network is needed.

@@ -3,11 +3,13 @@
 # Chapter 11: deploying to a live test environment, then production. The settings file, the call
 # list, the preflight, the smoke test and the rollback, against the fictional test and production
 # tenants and forests served by NpiDeploy's fake. Nothing leaves the machine.
+# Kept beside the deploy scripts, not in tests/, so the chapters' Lab 1 test count (Invoke-Pester -Path
+# tests) doesn't change; tests/test_deploy.py runs this file in the kit's pytest suite.
 
 BeforeAll {
-    Import-Module (Join-Path $PSScriptRoot '../deploy/NpiDeploy.psm1') -Force
-    $script:Root = (Resolve-Path (Join-Path $PSScriptRoot '..')).Path
-    $script:Fx = Join-Path $PSScriptRoot 'fixtures/deploy'
+    Import-Module (Join-Path $PSScriptRoot '../NpiDeploy.psm1') -Force
+    $script:Root = (Resolve-Path (Join-Path $PSScriptRoot '../..')).Path
+    $script:Fx = Join-Path $script:Root 'tests/fixtures/deploy'
     $script:TestSettings = Join-Path $script:Fx 'settings.test.json'
     $script:ProdSettings = Join-Path $script:Fx 'settings.production.json'
     $script:TestTenant = Join-Path $script:Fx 'tenant-test.json'
