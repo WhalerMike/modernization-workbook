@@ -32,6 +32,7 @@ KIT = HERE.parent
 sys.path.insert(0, str(KIT / "python"))
 sys.path.insert(0, str(HERE))
 import deploy_settings as ds  # noqa: E402
+import evidence as ev  # noqa: E402
 import graph_export  # noqa: E402
 from hrlc_core import (  # noqa: E402
     EXIT_ERROR, HrlcError, cloud, csv_text, dump_json, exit_code, finding, parse_time, read_csv,
@@ -248,6 +249,8 @@ def main(argv: list[str] | None = None) -> int:
     c.add_argument("--mode", required=True, choices=("fixture", "tenant"))
     c.add_argument("--fixture", type=Path)
     c.add_argument("--out", type=Path, required=True)
+    c.add_argument("--evidence-dir", type=Path, default=ev.DEFAULT_DIR, help="where the step's evidence record goes")
+    argv = list(sys.argv[1:] if argv is None else argv)
     args = ap.parse_args(argv)
     try:
         as_of = dt.date.fromisoformat(args.as_of)
@@ -297,6 +300,8 @@ def main(argv: list[str] | None = None) -> int:
             "changeRecord": settings.get("changeRecord"), "mode": args.mode, "phase": args.phase,
             "asOf": args.as_of, "since": args.since, "extractSha256": sha256_file(args.extract), "counts": counts})
         print(f"Smoke evidence written to {args.out.as_posix()}")
+        rec = ev.record(args.evidence_dir, f"smoke-{args.phase}", settings, args.mode, ev.command_line("smoke_test.py", argv), rows, args.out)
+        print(f"Evidence record: {rec.as_posix()}")
         return exit_code(rows)
     except (HrlcError, ValueError, KeyError, OSError) as e:
         print(f"error: {e}", file=sys.stderr)

@@ -45,7 +45,7 @@ The target estate is Microsoft 365 GCC (Moderate) with commercial Azure. GCC use
 |---|---|---|
 | Implementation guide | The seven gates: steps, federal requirements and evidence, government-cloud availability, interim paths, **Validate** and rollback | [HR-Driven Identity: An Implementation Guide](../../../books/guides/hr-driven-identity-implementation.md) |
 | This workbook | One chapter per gate: the code the gate needs, labs, verified facts, evidence; and a runbook for test and production | This page and its eight chapters |
-| Code | `examples/hr-lifecycle`: eight Python tools, configuration as reviewed JSON, the runbook's `deploy/` scripts, fixtures and 76 pytest tests; `examples/drift-pipeline/python/hr_evidence.py` packages its runs | [`examples/hr-lifecycle`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/hr-lifecycle) |
+| Code | `examples/hr-lifecycle`: eight Python tools, configuration as reviewed JSON, the runbook's `deploy/` scripts, fixtures and 80 pytest tests (57 in `tests`, 23 in `deploy/tests`); `examples/drift-pipeline/python/hr_evidence.py` packages its runs | [`examples/hr-lifecycle`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/hr-lifecycle) |
 | Design | Why HR is the source of authority, the attribute authority map, joiner, mover and leaver, credentials, access, drift and the phase model | [Book 03](../../../books/b03-hr-identity/index.md) |
 | Schedule | The project's tasks, decisions and gates | [Identity Lifecycle & Provisioning plan](../../identity-lifecycle.md) |
 | Code it builds on | The middleware, Graph clients, validation kit, dynamic rules, custom task extensions and drift pipeline | [Book 19](../../../books/b19-developer-workbook/index.md) |

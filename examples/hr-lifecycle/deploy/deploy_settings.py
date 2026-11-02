@@ -162,10 +162,13 @@ def get(settings: dict[str, Any], key: str) -> str:
 
 
 def main(argv: list[str] | None = None) -> int:
+    import evidence as ev
+    argv = list(sys.argv[1:] if argv is None else argv)
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     sub = ap.add_subparsers(dest="cmd", required=True)
     c = sub.add_parser("check", help="check the settings file (DS-01 to DS-05)")
     c.add_argument("--settings", type=Path, required=True)
+    c.add_argument("--evidence-dir", type=Path, default=ev.DEFAULT_DIR, help="where the step's evidence record goes")
     m = sub.add_parser("middleware", help="write examples/hcm-entra settings for one provisioning app")
     m.add_argument("--settings", type=Path, required=True)
     m.add_argument("--app", required=True, choices=APPS)
@@ -174,6 +177,7 @@ def main(argv: list[str] | None = None) -> int:
     r = sub.add_parser("record-workflows", help="put created workflows' IDs (file stem to ID, JSON) into the settings file")
     r.add_argument("--settings", type=Path, required=True)
     r.add_argument("--ids", type=Path, required=True)
+    r.add_argument("--evidence-dir", type=Path, default=ev.DEFAULT_DIR, help="where the step's evidence record goes")
     g = sub.add_parser("get", help="print one value: a dotted path, or graphResource, azureCloud, mgEnvironment")
     g.add_argument("--settings", type=Path, required=True)
     g.add_argument("key")
@@ -182,7 +186,10 @@ def main(argv: list[str] | None = None) -> int:
         if args.cmd == "record-workflows":
             s = record_workflows(args.settings, read_json(args.ids))
             print(f"Recorded {len(read_json(args.ids))} workflow IDs in {args.settings.as_posix()}")
-            return exit_code(check(s))
+            rows = check(s)
+            rec = ev.record(args.evidence_dir, "workflows-recorded", s, "file", ev.command_line("deploy_settings.py", argv), rows)
+            print(f"Evidence record: {rec.as_posix()}")
+            return exit_code(rows)
         s = load(args.settings)
         if args.cmd == "get":
             print(get(s, args.key))
@@ -192,6 +199,9 @@ def main(argv: list[str] | None = None) -> int:
             for r in rows:
                 print(f"{r['Rule']} {r['Severity']} {r['Object']}: {r['Issue']}")
             print(summary_line(f"Settings {args.settings.name} ({s.get('environment')}, {s.get('cloud')})", rows))
+            if s.get("environment") in ENVIRONMENTS:  # the template itself leaves no record
+                rec = ev.record(args.evidence_dir, "settings-check", s, "file", ev.command_line("deploy_settings.py", argv), rows)
+                print(f"Evidence record: {rec.as_posix()}")
             return exit_code(rows)
         if rows:
             raise HrlcError(f"the settings file has {len(rows)} findings; run check first")

@@ -1,7 +1,8 @@
 """Chapter 08: the deployment runbook's settings check, pre-flight, smoke test and rollback, against
-the fixtures in tests/fixtures/ch08. No tenant, no network.
+the fixtures in deploy/tests/fixtures. No tenant, no network. They sit beside the runbook's code, not
+in the kit's tests/ folder, so the chapters' `python -m pytest tests -q` still counts the kit's own.
 
-    python -m pytest tests -q
+    python -m pytest deploy/tests -q
 """
 import copy
 import csv
@@ -14,8 +15,8 @@ from pathlib import Path
 
 import pytest
 
-KIT = Path(__file__).resolve().parents[1]
-FX = KIT / "tests" / "fixtures" / "ch08"
+KIT = Path(__file__).resolve().parents[2]
+FX = KIT / "deploy" / "tests" / "fixtures"
 sys.path.insert(0, str(KIT / "python"))
 sys.path.insert(0, str(KIT / "deploy"))
 import deploy_settings as ds  # noqa: E402
@@ -155,7 +156,7 @@ def _smoke_evidence(tmp_path, phase="leaver", mode="fixture"):
     rc = smoke_test.main(["check", "--settings", str(FX / "settings.test.json"), "--extract", str(ex / "smoke-extract.csv"),
                           "--previous-extract", str(prev / "smoke-extract.csv"), "--phase", phase,
                           "--as-of", (START + dt.timedelta(days=2)).isoformat(), "--since", "2026-11-11T00:00:00Z",
-                          "--mode", "fixture", "--fixture", str(FX / "smoke" / "leaver"), "--out", str(out)])
+                          "--mode", "fixture", "--fixture", str(FX / "smoke" / "leaver"), "--out", str(out), "--evidence-dir", str(tmp_path / "ev")])
     assert rc == 0
     return out
 
@@ -335,3 +336,101 @@ def test_rollback_verify_finds_a_running_job_and_a_schedule(tmp_path):
     wf["value"][0]["isSchedulingEnabled"] = True
     _write(fx / "deploy-workflows.json", wf)
     assert _rules(rollback.verify(s, fx)) == ["RB-01", "RB-02"]
+
+
+# ---------------------------------------------------------------- evidence records
+
+import evidence  # noqa: E402
+
+# KSI IDs the program's pages already cite (Book 04, Chapter 10; Book 13, Appendix A and Chapter 04;
+# Book 14, Chapter 03), all listed on fedramp.gov's KSI page read November 2, 2026.
+CITED_KSIS = {"KSI-IAM-AAM", "KSI-IAM-ELP", "KSI-IAM-JIT", "KSI-IAM-SNU", "KSI-IAM-APM", "KSI-CMT-LMC", "KSI-CMT-RMV",
+              "KSI-CMT-RVP", "KSI-CMT-VTD", "KSI-MLA-EVC", "KSI-MLA-OSM", "KSI-MLA-LET", "KSI-MLA-RVL", "KSI-SVC-ACM",
+              "KSI-SVC-ASM", "KSI-PIY-GIV", "KSI-INR-RIR"}
+
+
+def test_every_step_maps_to_controls_and_only_to_cited_ksis():
+    for step, m in evidence.STEPS.items():
+        assert m["nist"] and m["ksi"], step
+        assert set(m["ksi"]) <= CITED_KSIS, step
+    for stage, steps in evidence.REQUIRED.items():
+        assert set(steps) <= set(evidence.STEPS), stage
+
+
+def _run_test_stage(tmp_path, monkeypatch, skip=()):
+    """Every scripted test-stage step in fixture mode, in order, each writing its evidence record."""
+    monkeypatch.chdir(tmp_path)
+    monkeypatch.setenv(evidence.NOW_ENV, "2026-11-02T15:00:00Z")
+    ev = tmp_path / "out" / "evidence"
+    settings = tmp_path / "settings.test.json"
+    shutil.copy(FX / "settings.test.json", settings)
+    w = str(KIT / "deploy" / "smoke-workers.json")
+    E = ["--evidence-dir", str(ev)]
+    calls = [
+        ("settings-check", lambda: ds.main(["check", "--settings", str(settings)] + E)),
+        ("workflows-recorded", lambda: ds.main(["record-workflows", "--settings", str(settings),
+                                                "--ids", str(_write(tmp_path / "ids.json", {"mover": "44444444-4444-4444-8444-444444444403"}))] + E)),
+        ("preflight", lambda: preflight.main(["--settings", str(settings), "--mode", "fixture", "--fixture", str(FX / "preflight"),
+                                              "--out", "out/preflight"] + E)),
+    ]
+    for phase, day in (("joiner", "2026-11-09"), ("mover", "2026-11-10"), ("leaver", "2026-11-11")):
+        calls.append((f"x-{phase}", lambda phase=phase, day=day: smoke_test.main(
+            ["extract", "--workers", w, "--start", "2026-11-09", "--phase", phase, "--as-of", day, "--out", f"out/x-{phase}"])))
+    prev = {"joiner": [], "mover": ["--previous-extract", "out/x-joiner/smoke-extract.csv"],
+            "leaver": ["--previous-extract", "out/x-mover/smoke-extract.csv"]}
+    for phase, day in (("joiner", "2026-11-09"), ("mover", "2026-11-10"), ("leaver", "2026-11-11")):
+        calls.append((f"smoke-{phase}", lambda phase=phase, day=day: smoke_test.main(
+            ["check", "--settings", str(settings), "--extract", f"out/x-{phase}/smoke-extract.csv"] + prev[phase]
+            + ["--phase", phase, "--as-of", day, "--since", f"{day}T00:00:00Z", "--mode", "fixture",
+               "--fixture", str(FX / "smoke" / phase), "--out", f"out/smoke-{phase}"] + E)))
+    calls += [
+        ("rollback-plan", lambda: rollback.main(["plan", "--settings", str(settings), "--out", "out/rollback-plan"] + E)),
+        ("rollback-verify", lambda: rollback.main(["verify", "--settings", str(settings), "--mode", "fixture",
+                                                   "--fixture", str(FX / "preflight"), "--out", "out/rollback-verify"] + E)),
+    ]
+    for name, call in calls:
+        if name not in skip:
+            assert call() == 0, name
+    return ev
+
+
+def test_each_step_writes_a_hashed_record_with_its_requirements(tmp_path, monkeypatch):
+    ev = _run_test_stage(tmp_path, monkeypatch)
+    rec = read_json(next(ev.glob("smoke-leaver-*.json")))
+    assert rec["result"] == "pass" and rec["environment"] == "test" and rec["timestamp"] == "2026-11-02T15:00:00Z"
+    assert rec["requirements"]["nist80053"] == ["PS-4", "AC-2(3)", "CM-4(2)"] and "KSI-IAM-AAM" in rec["ksi"]
+    assert rec["command"].startswith("python deploy/smoke_test.py check --settings ")
+    assert rec["outputManifestSha256"] == core_sha(tmp_path / "out" / "smoke-leaver" / "manifest.json")
+    rows = list(csv.DictReader(open(ev / "evidence-index.csv", encoding="utf-8")))
+    assert [r["step"] for r in rows] == ["settings-check", "workflows-recorded", "preflight", "smoke-joiner", "smoke-mover",
+                                         "smoke-leaver", "rollback-plan", "rollback-verify"]
+    for line in (ev / "SHA256SUMS").read_text(encoding="utf-8").splitlines():
+        digest, name = line.split("  ", 1)
+        assert core_sha(ev / name) == digest
+
+
+def core_sha(p):
+    import hrlc_core
+    return hrlc_core.sha256_file(p)
+
+
+def test_the_go_no_go_evidence_check(tmp_path, monkeypatch):
+    ev = _run_test_stage(tmp_path, monkeypatch)
+    assert _rules(evidence.check(ev, "test", tmp_path)) == []
+    assert _rules(evidence.check(ev, "production", tmp_path)) == ["EV-01", "EV-02"]   # no smoke-scope; records are test's
+    # an output changed after its record was written
+    (tmp_path / "out" / "smoke-mover" / "manifest.json").write_text("{}", encoding="utf-8")
+    assert _rules(evidence.check(ev, "test", tmp_path)) == ["EV-03"]
+
+
+def test_the_evidence_check_finds_a_missing_step_a_failure_and_a_tampered_record(tmp_path, monkeypatch):
+    ev = _run_test_stage(tmp_path, monkeypatch, skip=("rollback-verify",))
+    assert _rules(evidence.check(ev, "test", tmp_path)) == ["EV-01"]
+    monkeypatch.setenv(evidence.NOW_ENV, "2026-11-03T09:00:00Z")
+    s = _settings()
+    evidence.record(ev, "smoke-joiner", s, "fixture", "python deploy/smoke_test.py check ...",
+                    [{"Rule": "SM-02", "Severity": "Finding"}])
+    assert _rules(evidence.check(ev, "test", tmp_path)) == ["EV-01", "EV-02"]
+    rec = next(ev.glob("preflight-*.json"))
+    rec.write_text(rec.read_text(encoding="utf-8").replace('"pass"', '"pass" '), encoding="utf-8")
+    assert "EV-04" in _rules(evidence.check(ev, "test", tmp_path))

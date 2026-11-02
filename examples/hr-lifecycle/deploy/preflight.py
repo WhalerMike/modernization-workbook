@@ -5,7 +5,7 @@ writer register, the provisioning apps' state and the workflows' schedules, in o
 started. A production run also needs the test stage's smoke evidence, clean, from the same mode.
 
     python deploy/preflight.py --settings deploy/settings.test.json --mode tenant --out evidence/test/preflight
-    python deploy/preflight.py --settings tests/fixtures/ch08/settings.test.json --mode fixture --fixture tests/fixtures/ch08/preflight --out out/ch08/preflight
+    python deploy/preflight.py --settings deploy/tests/fixtures/settings.test.json --mode fixture --fixture deploy/tests/fixtures/preflight --out out/ch08/preflight
 
 In tenant mode it reads Microsoft Graph with the token in HRLC_GRAPH_TOKEN (the reader identity's,
 GET only, the calls of tasks deploy-preflight and deploy-job in config/calls.json) and keeps what it
@@ -27,6 +27,7 @@ KIT = HERE.parent
 sys.path.insert(0, str(KIT / "python"))
 sys.path.insert(0, str(HERE))
 import deploy_settings as ds  # noqa: E402
+import evidence as ev  # noqa: E402
 import graph_export  # noqa: E402
 import writer_register  # noqa: E402
 from hrlc_core import (  # noqa: E402
@@ -199,6 +200,8 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--register", type=Path, default=KIT / "config" / "writer-register.json")
     ap.add_argument("--test-evidence", type=Path, help="the test stage's last smoke output (production only)")
     ap.add_argument("--out", type=Path, required=True)
+    ap.add_argument("--evidence-dir", type=Path, default=ev.DEFAULT_DIR, help="where the step's evidence record goes")
+    argv = list(sys.argv[1:] if argv is None else argv)
     args = ap.parse_args(argv)
     try:
         rows, settings = run(args.settings, args.mode, args.out, args.fixture, args.register,
@@ -218,6 +221,8 @@ def main(argv: list[str] | None = None) -> int:
             "tenantId": settings.get("tenantId"), "changeRecord": settings.get("changeRecord"),
             "mode": args.mode, "settingsSha256": sha256_file(args.settings), "counts": counts})
         print(f"Pre-flight written to {args.out.as_posix()}")
+        rec = ev.record(args.evidence_dir, "preflight", settings, args.mode, ev.command_line("preflight.py", argv), rows, args.out)
+        print(f"Evidence record: {rec.as_posix()}")
         return exit_code(rows)
     except (HrlcError, ValueError, KeyError, OSError) as e:
         print(f"error: {e}", file=sys.stderr)

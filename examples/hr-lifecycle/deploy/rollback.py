@@ -31,6 +31,7 @@ KIT = HERE.parent
 sys.path.insert(0, str(KIT / "python"))
 sys.path.insert(0, str(HERE))
 import deploy_settings as ds  # noqa: E402
+import evidence as ev  # noqa: E402
 import graph_export  # noqa: E402
 from hrlc_core import (  # noqa: E402
     EXIT_ERROR, HrlcError, exit_code, finding, read_json, sha256_file, sort_findings, summary_line,
@@ -148,11 +149,14 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--settings", type=Path, required=True)
     p.add_argument("--smoke", type=Path, help="the last tenant-mode smoke output (test stage: its synthetic accounts are removed)")
     p.add_argument("--out", type=Path, required=True)
+    p.add_argument("--evidence-dir", type=Path, default=ev.DEFAULT_DIR, help="where the step's evidence record goes")
     v = sub.add_parser("verify", help="read the tenant and check the rollback took (RB-01, RB-02)")
     v.add_argument("--settings", type=Path, required=True)
     v.add_argument("--mode", required=True, choices=("fixture", "tenant"))
     v.add_argument("--fixture", type=Path)
     v.add_argument("--out", type=Path, required=True)
+    v.add_argument("--evidence-dir", type=Path, default=ev.DEFAULT_DIR, help="where the step's evidence record goes")
+    argv = list(sys.argv[1:] if argv is None else argv)
     args = ap.parse_args(argv)
     try:
         settings = ds.load(args.settings)
@@ -170,6 +174,8 @@ def main(argv: list[str] | None = None) -> int:
                 print(f"  {s['gate']}  {s['say']}")
             print(f"Rollback plan, {settings['environment']}: {len(steps)} steps, Graph scopes {', '.join(scopes)}")
             print(f"Written to {(args.out / 'rollback.ps1').as_posix()}; nothing was sent")
+            rec = ev.record(args.evidence_dir, "rollback-plan", settings, "plan", ev.command_line("rollback.py", argv), [], args.out)
+            print(f"Evidence record: {rec.as_posix()}")
             return 0
         if (args.out / "manifest.json").exists():
             raise HrlcError(f"{args.out} already holds a manifest.json; write each run to a new folder")
@@ -196,6 +202,8 @@ def main(argv: list[str] | None = None) -> int:
                 files[f.relative_to(args.out).as_posix()] = f.read_text(encoding="utf-8")
         write_output(args.out, "deploy-rollback-verify", files, dict(meta, mode=args.mode))
         print(f"Verification written to {args.out.as_posix()}")
+        rec = ev.record(args.evidence_dir, "rollback-verify", settings, args.mode, ev.command_line("rollback.py", argv), rows, args.out)
+        print(f"Evidence record: {rec.as_posix()}")
         return exit_code(rows)
     except (HrlcError, ValueError, KeyError, OSError) as e:
         print(f"error: {e}", file=sys.stderr)

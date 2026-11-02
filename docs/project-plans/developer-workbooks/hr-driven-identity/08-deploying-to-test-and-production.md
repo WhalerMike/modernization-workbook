@@ -34,7 +34,7 @@ The order of work for the guide's [seven gates](../../../books/guides/hr-driven-
 
 ## What this chapter adds
 
-Every earlier chapter ends with a step in a test tenant and a way to back it out. None of them says what order to run the whole lifecycle in, how to change environments without editing commands, how to prove a deployment is ready before anything starts, or what to check once real records flow. The guide's gates give the order and each gate's rollback in prose. This chapter makes them a runbook, and adds four scripts where a command needed code the kit lacked.
+Every earlier chapter ends with a step in a test tenant and a way to back it out. None of them says what order to run the whole lifecycle in, how to change environments without editing commands, how to prove a deployment is ready before anything starts, or what to check once real records flow. The guide's gates give the order and each gate's rollback in prose. This chapter makes them a runbook, and adds five scripts where a command needed code the kit lacked.
 
 | Need | Where it was | What this chapter adds | Pinned by |
 |---|---|---|---|
@@ -42,8 +42,72 @@ Every earlier chapter ends with a step in a test tenant and a way to back it out
 | Ready but not running | Not checked anywhere | `preflight.py`: licenses, PIM eligibility, the writer register, both provisioning jobs paused, every workflow's schedule off, and for production the test evidence (PF-01 to PF-06) | `test_preflight_finds_a_running_job_a_schedule_a_missing_role_and_short_licenses`, `test_production_preflight_needs_clean_test_evidence` |
 | A joiner, a mover and a leaver end to end | Chapter 03 measures readiness; Chapter 06 measures timing | `smoke_test.py`: the synthetic workers' extract per phase, and a check of the directory, the workflows and the provisioning logs against any extract (SM-01 to SM-07) | `test_the_smoke_check_finds_each_kind_of_failure` |
 | A rollback someone can rehearse | The guide's rollback table, in prose | `rollback.py`: the reviewed Graph PowerShell in the table's order, a dry run by default, and a verify (RB-01, RB-02) | `test_the_rollback_plan_pauses_and_unschedules_but_never_restarts_or_disables` |
+| Evidence that each step met its requirements | The guide's per-gate tables name what the ISSO keeps | `evidence.py`: a hashed record per scripted step with its controls and KSI IDs, and a check of a stage's records (EV-01 to EV-04) | `test_each_step_writes_a_hashed_record_with_its_requirements`, `test_the_go_no_go_evidence_check` |
 
-The kit still never writes to a tenant. Changes go through Microsoft's Graph PowerShell cmdlets, run by an operator who has activated a role through PIM, or through the admin center paths given here; the scripts read and check. The kit's 76 tests pass under Python 3.10 or later with no package beyond pytest, no tenant and no network.
+The kit still never writes to a tenant. Changes go through Microsoft's Graph PowerShell cmdlets, run by an operator who has activated a role through PIM, or through the admin center paths given here; the scripts read and check. The runbook's 23 tests, in `deploy/tests`, and the kit's 57 pass under Python 3.10 or later with no package beyond pytest, no tenant and no network.
+
+## Requirements, KSIs and the evidence each step leaves
+
+Every scripted step in this runbook names the federal requirements it helps meet and leaves a record that proves it ran. Each step group below ends with a table: the requirement, what the step does for it, the FedRAMP 20x Key Security Indicator it aligns to, and the file or output the ISSO keeps.
+
+- **The requirements** are NIST SP 800-53 Rev. 5 controls at the system's Moderate baseline,[^hw08-nist][^hw08-nist-cm] OMB M-22-09[^hw08-m2209] and CISA BOD 25-01's SCuBA policies[^hw08-bod] where they apply, and FedRAMP's rule for agency use of certified cloud services: the agency completes the ATO for its own system that uses them (AGU-USE-ABU).[^hw08-agu] The controls per gate are the guide's [requirement tables](../../../books/guides/hr-driven-identity-implementation.md#the-path-on-one-page); the change-control controls (CM-3, CM-3(2), CM-4(2), CM-5, CM-6) and AU-9 come from [Book 13, Appendix A](../../../books/b13-governance/appendix-a-requirements-mapping.md).
+- **Key Security Indicators belong to the providers.** KSIs are FedRAMP 20x indicators for cloud service providers.[^hw08-ksi] The agency authorizes its own system and lines its evidence up with what its providers report against KSIs; it doesn't report KSIs itself ([Book 00, Appendix B](../../../books/b00-orientation/appendix-b-engagement-archetype.md)). The KSI column says which indicator a step's evidence sits beside. Each pairing follows the control-to-KSI mapping in Book 13, Appendix A, or Book 04, Chapter 10's indicator table; the two pairings neither gives are marked *(design guidance)*.
+- **The evidence is produced, not just named.** `preflight.py`, `smoke_test.py`, `rollback.py` and `deploy_settings.py` (`check`, `record-workflows`) each write an evidence record for the step: a JSON file with the time in UTC, the environment, tenant, cloud, mode and change record, the exact command, the result and its counts, the output folder and the SHA-256 of its manifest, and the control and KSI IDs. They go to `out/evidence` by default and to `"$EVIDENCE/records"` in this runbook, with `evidence-index.csv` (one row per record) and `SHA256SUMS` over the folder, so `sha256sum -c` checks it, as Chapter 07's packages do. `evidence.py check` reads the folder and passes only when every step a stage needs has a record that passed, for that stage, whose output folder still has the manifest it was recorded with (EV-01 to EV-04). That check is a go/no-go criterion.
+
+The records a fixture-mode run of the whole test stage wrote on November 2, 2026, and the check over them:
+
+```text
+$ ls out/evidence
+SHA256SUMS
+evidence-index.csv
+preflight-20261102T122224Z.json
+rollback-plan-20261102T122239Z.json
+rollback-verify-20261102T122241Z.json
+settings-check-20261102T122220Z.json
+smoke-joiner-20261102T122235Z.json
+smoke-leaver-20261102T122238Z.json
+smoke-mover-20261102T122236Z.json
+workflows-recorded-20261102T122221Z.json
+$ python deploy/evidence.py check --stage test
+EV-01 Info    preflight-20261102T122224Z.json: passed at 2026-11-02T12:22:24Z: preflight (AC-2, AC-5, AC-6, CM-3(2), CM-6; KSI-IAM-JIT, KSI-IAM-ELP, KSI-CMT-VTD, KSI-MLA-EVC)
+EV-01 Info    rollback-plan-20261102T122239Z.json: passed at 2026-11-02T12:22:39Z: rollback-plan (CM-3, CM-5; KSI-CMT-RMV, KSI-CMT-RVP, KSI-IAM-JIT)
+EV-01 Info    rollback-verify-20261102T122241Z.json: passed at 2026-11-02T12:22:41Z: rollback-verify (CM-3, CM-4(2); KSI-CMT-LMC, KSI-CMT-VTD)
+EV-01 Info    settings-check-20261102T122220Z.json: passed at 2026-11-02T12:22:20Z: settings-check (CM-3, CM-6, IA-5; KSI-SVC-ACM, KSI-SVC-ASM, KSI-CMT-LMC)
+EV-01 Info    smoke-joiner-20261102T122235Z.json: passed at 2026-11-02T12:22:35Z: smoke-joiner (AC-2, AC-2(1), IA-4(4), IA-5, CM-4(2); KSI-IAM-AAM, KSI-IAM-APM, KSI-CMT-VTD)
+EV-01 Info    smoke-leaver-20261102T122238Z.json: passed at 2026-11-02T12:22:38Z: smoke-leaver (PS-4, AC-2(3), CM-4(2); KSI-IAM-AAM, KSI-CMT-VTD)
+EV-01 Info    smoke-mover-20261102T122236Z.json: passed at 2026-11-02T12:22:36Z: smoke-mover (AC-2, AC-6, PS-5, CM-4(2); KSI-IAM-AAM, KSI-IAM-ELP, KSI-CMT-VTD)
+EV-01 Info    workflows-recorded-20261102T122221Z.json: passed at 2026-11-02T12:22:21Z: workflows-recorded (AC-2(1), CM-3; KSI-IAM-AAM, KSI-CMT-RMV, KSI-CMT-LMC)
+Evidence for the test stage in out/evidence: 0 Finding, 0 Warn, 8 Info
+```
+
+One record, the leaver phase's (fixture mode, November 2, 2026):
+
+```text
+{
+  "changeRecord": "CHG-0001-TEST",
+  "cloud": "gcc",
+  "command": "python deploy/smoke_test.py check --settings out/settings.test.json --extract out/ch08/extract-leaver/smoke-extract.csv --previous-extract out/ch08/extract-mover/smoke-extract.csv --phase leaver --as-of 2026-11-11 --since 2026-11-11T00:00:00Z --mode fixture --fixture deploy/tests/fixtures/smoke/leaver --out out/ch08/smoke-leaver",
+  "counts": {"Finding": 0, "Info": 0, "Warn": 0},
+  "environment": "test",
+  "gate": "G6",
+  "ksi": ["KSI-IAM-AAM", "KSI-CMT-VTD"],
+  "mode": "fixture",
+  "output": "out/ch08/smoke-leaver",
+  "outputManifestSha256": "59fabd734e99371e83bdad572972e1eb7e3131d1ae92bcd057d56cbafee5a778",
+  "requirements": {
+    "nist80053": ["PS-4", "AC-2(3)", "CM-4(2)"],
+    "other": []
+  },
+  "result": "pass",
+  "rules": [],
+  "schema": "fmp-hrlc-evidence/1",
+  "step": "smoke-leaver",
+  "tenantId": "00000000-0000-4000-8000-0000000c0de8",
+  "timestamp": "2026-11-02T12:22:38Z"
+}
+```
+
+The record is shown with its short lists folded onto one line; the file has one value per line. Steps that are admin center actions, or Graph PowerShell run by an operator, leave the evidence the tables name (an audit log entry, a PIM activation, the change record) rather than a record of their own.
 
 ## Before you start
 
@@ -113,7 +177,7 @@ Every value that differs between environments lives in the settings file, and th
 2. **Check each file.** The check refuses any key that looks like a secret (the same pattern `examples/hcm-entra` refuses), any value that looks like a token, a private key or a certificate, any placeholder left in, an unknown environment or cloud, a production file without a change record, and a missing provisioning or workflow ID:
 
    ```bash
-   python deploy/deploy_settings.py check --settings deploy/settings.test.json
+   python deploy/deploy_settings.py check --settings deploy/settings.test.json --evidence-dir evidence/test/records
    ```
 
    The template itself fails, as it should. Fixture mode, run on November 2, 2026:
@@ -124,7 +188,7 @@ Every value that differs between environments lives in the settings file, and th
    DS-03 Finding cloud: unknown cloud '<cloud>'; expected gcc, gcchigh or dod
    DS-03 Finding environment: environment must be test or production, not '<test-or-production>'
    Settings settings.example.json (<test-or-production>, <cloud>): 32 Finding, 0 Warn, 0 Info
-   $ python deploy/deploy_settings.py check --settings tests/fixtures/ch08/settings.test.json
+   $ python deploy/deploy_settings.py check --settings deploy/tests/fixtures/settings.test.json
    Settings settings.test.json (test, gcc): 0 Finding, 0 Warn, 0 Info
    ```
 
@@ -166,6 +230,17 @@ Every value that differs between environments lives in the settings file, and th
 
    `Global`, `USGov` and `USGovDoD` are Graph PowerShell's names for the three clouds.[^hw08-mgenv]
 
+**Requirements and evidence for this step.**
+
+| Requirement | What this step does | KSI it aligns to | Evidence the ISSO keeps |
+|---|---|---|---|
+| CM-6, configuration settings | One reviewed settings file per environment; `check` refuses a placeholder, an unknown cloud or a missing ID | KSI-SVC-ACM | `settings-check-*.json`; the settings file's SHA-256 in every later manifest |
+| IA-5, authenticator management for the integration identities | Refuses any secret in the file; certificates stay in the key vault and reach the session as PEM files deleted at its end | KSI-SVC-ASM *(design guidance: the crosswalk pairs IA-5(2) with it)* | `settings-check-*.json` with no DS-01; the key vault's access log |
+| CM-3, configuration change control | The change record's ID is in the file, and in every manifest and record | KSI-CMT-LMC | Every record's `changeRecord`; the change record |
+| FedRAMP AGU-USE-ABU, agency use of certified cloud services | The file names the cloud (`gcc`, `gcchigh`, `dod`) whose providers' authorizations the system's package relies on | — (an agency rule, not an indicator) | The system's ATO package listing the providers' authorizations |
+
+: One environment settings file: requirements, KSIs and evidence {.striped .hover}
+
 ## Pre-flight checks
 
 **Gates:** the guide's [prerequisites](../../../books/guides/hr-driven-identity-implementation.md#prerequisites), G1 (the register) and the starting state of G2, G3 and G6.
@@ -189,10 +264,10 @@ Every value that differs between environments lives in the settings file, and th
 
    ```bash
    export HRLC_GRAPH_TOKEN=$(hrlc_token reader)
-   python deploy/preflight.py --settings "$SETTINGS" --mode tenant --out "$EVIDENCE/preflight"
+   python deploy/preflight.py --settings "$SETTINGS" --mode tenant --out "$EVIDENCE/preflight" --evidence-dir "$EVIDENCE/records"
    ```
 
-   Fixture mode, run on November 2, 2026 (`--mode fixture --fixture tests/fixtures/ch08/preflight`, the test fixture settings):
+   Fixture mode, run on November 2, 2026 (`--mode fixture --fixture deploy/tests/fixtures/preflight`, the test fixture settings):
 
    ```text
    PF-01 Info    CONTOSO_GOVERNANCE_SAMPLE: 500 enabled, 398 consumed
@@ -227,6 +302,19 @@ Every value that differs between environments lives in the settings file, and th
    | PF-06 | Production only: the test stage's last smoke output is missing, changed since it was written, from another mode, not the leaver phase, or not clean | The test evidence's `manifest.json` |
 
    The deletion threshold check reads the setting `QuarantineTooManyDeletesThreshold`, which Learn shows in its example response for the job but doesn't describe; it is a Warn, and the admin center step above is the control.
+
+**Requirements and evidence for this step.**
+
+| Requirement | What this step does | KSI it aligns to | Evidence the ISSO keeps |
+|---|---|---|---|
+| AC-2, account management (G1: one writer per state) | PF-03: the writer register passes WR-01 to WR-09 | KSI-IAM-AAM | `preflight-*.json`; `preflight/findings.json` |
+| AC-5 and AC-6, separation of duties and least privilege | PF-02: every runbook role is a PIM eligibility, not a standing assignment; the reader identity holds only GET permissions | KSI-IAM-JIT, KSI-IAM-ELP | `preflight/exports/role-eligibility.json`; the reader app's permission list from `graph_export.py --list` |
+| CISA BOD 25-01, MS.AAD.7.5v1: highly privileged roles only through a privileged access management system | PF-02 | KSI-IAM-JIT | The same export; the tenant's ScubaGear report |
+| CM-3(2) and CM-6, changes tested and validated; settings verified | PF-04 and PF-05: jobs paused and schedules off before any change; PF-06 gates production on the test evidence | KSI-CMT-VTD, KSI-MLA-EVC | `preflight-*.json` with result `pass` |
+| AU-9 and AU-11, with SI-12: audit records protected and kept | Logs routed out before the first send | KSI-MLA-OSM (AU-9); no indicator in the crosswalk for AU-11 or SI-12 | The diagnostic setting's name and destination, recorded in the change record |
+| FedRAMP AGU-USE-ABU | PF-01: the licensed services the system relies on are present | — | `preflight/exports/subscribed-skus.json` |
+
+: Pre-flight checks: requirements, KSIs and evidence {.striped .hover}
 
 ## Stage 1: the live test
 
@@ -281,8 +369,8 @@ The HCM test pod holds four synthetic workers, person numbers 990000 to 990003, 
 4. **Record the IDs in the settings file, and check it again:**
 
    ```bash
-   python deploy/deploy_settings.py record-workflows --settings "$SETTINGS" --ids "$EVIDENCE/workflow-ids.json"
-   python deploy/deploy_settings.py check --settings "$SETTINGS"
+   python deploy/deploy_settings.py record-workflows --settings "$SETTINGS" --ids "$EVIDENCE/workflow-ids.json" --evidence-dir "$EVIDENCE/records"
+   python deploy/deploy_settings.py check --settings "$SETTINGS" --evidence-dir "$EVIDENCE/records"
    ```
 
    **Expected result:** `Recorded 6 workflow IDs`, then `0 Finding, 0 Warn, 0 Info`.
@@ -291,7 +379,7 @@ The HCM test pod holds four synthetic workers, person numbers 990000 to 990003, 
 
    ```bash
    export HRLC_GRAPH_TOKEN=$(hrlc_token reader)
-   python deploy/preflight.py --settings "$SETTINGS" --mode tenant --out "$EVIDENCE/preflight-after-deploy"
+   python deploy/preflight.py --settings "$SETTINGS" --mode tenant --out "$EVIDENCE/preflight-after-deploy" --evidence-dir "$EVIDENCE/records"
    ```
 
    Automatic assignment policies (G4) go in after the smoke test passes, with Chapter 04's [test tenant steps](04-access-from-attributes-and-the-mover-review.md#lab-2-test-tenant). Record each policy's ID so the rollback removes it:
@@ -301,6 +389,16 @@ The HCM test pod holds four synthetic workers, person numbers 990000 to 990003, 
    ```
 
    Replace `<policy-id>` with the ID `New-MgEntitlementManagementAssignmentPolicy` returned.
+
+**Requirements and evidence for this step.**
+
+| Requirement | What this step does | KSI it aligns to | Evidence the ISSO keeps |
+|---|---|---|---|
+| AC-2(1), automated account management (G3, G6) | The workflows are created from the reviewed bodies in `config/workflows`, scheduling off | KSI-IAM-AAM | `workflow-plan/plan.json` and its manifest; `workflow-ids.json`; `workflows-recorded-*.json` |
+| CM-3, configuration change control | Created from the repository's files, not edited in the admin center; the IDs go back into the reviewed settings | KSI-CMT-RMV, KSI-CMT-LMC | `workflow-plan/bodies/`; the directory audit log's workflow entries |
+| AC-2, PS-7 and IA-4(4) (G2) | The middleware's settings are written from the settings file; worker type comes from the record | KSI-IAM-AAM | `middleware-employee.json`, `middleware-contractor.json` |
+
+: Stage 1 deploy: requirements, KSIs and evidence {.striped .hover}
 
 ### Staged enable
 
@@ -318,6 +416,15 @@ The HCM test pod holds four synthetic workers, person numbers 990000 to 990003, 
    ```
 
    Starting puts an API-driven job in listen mode.[^hw08-config][^hw08-start] **Expected result:** the job's status reads `Active` on the app's **Provisioning** > **Overview** page. Don't use **Restart provisioning**: it purges payloads waiting to be processed.[^hw08-config] *Provision on demand* isn't supported for API-driven apps,[^hw08-config] so the smoke test sends real extracts.
+
+**Requirements and evidence for this step.**
+
+| Requirement | What this step does | KSI it aligns to | Evidence the ISSO keeps |
+|---|---|---|---|
+| CM-3(2), changes tested before they're finalized | Only the synthetic workers are in scope; workflows run on demand only | KSI-CMT-VTD | The scoping filter, recorded in the change record; `preflight-after-deploy` with every schedule off |
+| AC-6 and CM-5, least privilege and access restrictions for change | The operator activates Application Administrator only for the start | KSI-IAM-JIT | The PIM activation audit records |
+
+: Stage 1 staged enable: requirements, KSIs and evidence {.striped .hover}
 
 ### Smoke test
 
@@ -375,10 +482,10 @@ The HR pod administrator makes the same change in the HCM test pod each day, so 
    ```bash
    export HRLC_GRAPH_TOKEN=$(hrlc_token reader)
    python deploy/smoke_test.py check --settings "$SETTINGS" --extract "$EVIDENCE/extract-joiner/smoke-extract.csv" \
-       --phase joiner --as-of "$START" --since "${START}T00:00:00Z" --mode tenant --out "$EVIDENCE/smoke-joiner"
+       --phase joiner --as-of "$START" --since "${START}T00:00:00Z" --mode tenant --out "$EVIDENCE/smoke-joiner" --evidence-dir "$EVIDENCE/records"
    ```
 
-   Fixture mode, run on November 2, 2026 (`--mode fixture --fixture tests/fixtures/ch08/smoke/joiner`):
+   Fixture mode, run on November 2, 2026 (`--mode fixture --fixture deploy/tests/fixtures/smoke/joiner`):
 
    ```text
      expect 990000 enabled=true  org=ORG-100  workflows: none
@@ -416,7 +523,7 @@ The HR pod administrator makes the same change in the HCM test pod each day, so 
    export HRLC_GRAPH_TOKEN=$(hrlc_token reader)
    python deploy/smoke_test.py check --settings "$SETTINGS" --extract "$EVIDENCE/extract-mover/smoke-extract.csv" \
        --previous-extract "$EVIDENCE/extract-joiner/smoke-extract.csv" --phase mover --as-of "$DAY2" --since "${DAY2}T00:00:00Z" \
-       --mode tenant --out "$EVIDENCE/smoke-mover"
+       --mode tenant --out "$EVIDENCE/smoke-mover" --evidence-dir "$EVIDENCE/records"
    ```
 
    Fixture mode, run on November 2, 2026:
@@ -458,7 +565,7 @@ The HR pod administrator makes the same change in the HCM test pod each day, so 
    export HRLC_GRAPH_TOKEN=$(hrlc_token reader)
    python deploy/smoke_test.py check --settings "$SETTINGS" --extract "$EVIDENCE/extract-leaver/smoke-extract.csv" \
        --previous-extract "$EVIDENCE/extract-mover/smoke-extract.csv" --phase leaver --as-of "$DAY3" --since "${DAY3}T00:00:00Z" \
-       --mode tenant --out "$EVIDENCE/smoke-leaver"
+       --mode tenant --out "$EVIDENCE/smoke-leaver" --evidence-dir "$EVIDENCE/records"
    ```
 
    Fixture mode, run on November 2, 2026:
@@ -488,6 +595,19 @@ What each rule means:
 
 The check reads one user per worker by `employeeId` (a filterable property),[^hw08-users] the workflows' `userProcessingResults`,[^hw08-upr] and the provisioning logs filtered by job.[^hw08-prov] It matches a log entry to a worker by `sourceIdentity.id`, which for an API-driven app is expected to carry the `externalId`; confirm it on the first live run (verification log).
 
+**Requirements and evidence for this step.**
+
+| Requirement | What this step does | KSI it aligns to | Evidence the ISSO keeps |
+|---|---|---|---|
+| AC-2, AC-2(1) and IA-4(4) (G2, G3) | The joiner's account exists disabled before day one and is enabled on day one, with the worker type from the record | KSI-IAM-AAM | `smoke-joiner-*.json`; `smoke-mover-*.json` (the joiner's day one) |
+| IA-5, authenticator management (G3: the Temporary Access Pass bridge) | The pre-hire workflow issues the pass to the manager | KSI-IAM-APM | `smoke-joiner-*.json`; the pre-hire run in `exports/results/pre-hire.json` |
+| OMB M-22-09: enterprise identity drawn from HR | The account is made and changed only by the HR record through the middleware | KSI-IAM-AAM | The middleware's provenance and apply results; `smoke-joiner-*.json` |
+| PS-5 and AC-6 (G4) | The mover's organization code changes and the mover workflow completes | KSI-IAM-AAM, KSI-IAM-ELP | `smoke-mover-*.json` |
+| PS-4 and AC-2(3) (G6) | The leaver is disabled, the leave date set, the leaver workflow completed | KSI-IAM-AAM | `smoke-leaver-*.json` |
+| CM-4(2), verification of controls after a change | Each phase is checked from a fresh read of the tenant | KSI-CMT-VTD | The three records, each with its `exports/` |
+
+: Stage 1 smoke test: requirements, KSIs and evidence {.striped .hover}
+
 ### Capture the evidence
 
 **Gate:** G7 (evidence kept outside the directory).
@@ -506,6 +626,16 @@ The check reads one user per worker by `employeeId` (a filterable property),[^hw
 
    `--auth-mode login` uses the operator's Entra sign-in, not a storage key.[^hw08-upload] The container keeps the immutability and retention Chapter 07 set *(design guidance)*.
 
+**Requirements and evidence for this step.**
+
+| Requirement | What this step does | KSI it aligns to | Evidence the ISSO keeps |
+|---|---|---|---|
+| AU-9, protection of audit information | The stage's folder is hashed and uploaded to the immutable container | KSI-MLA-OSM | `SHA256SUMS`; the container's immutability setting |
+| AU-11 and SI-12, retention | Kept for the records schedule's period | No indicator in the crosswalk | The container's retention setting |
+| CA-7, continuous monitoring (G7) | Chapter 07's drift run over the test tenant | KSI-MLA-EVC | `drift/` with its package |
+
+: Stage 1 evidence capture: requirements, KSIs and evidence {.striped .hover}
+
 ### Roll back (rehearsal)
 
 **Gates:** the guide's [rollback table](../../../books/guides/hr-driven-identity-implementation.md#rollback) for G2, G3, G4 and G6.
@@ -515,7 +645,7 @@ The rollback is rehearsed in the test stage, in full, before promotion. It pause
 1. **Write the plan** from the leaver phase's smoke output, whose export lists the synthetic accounts. The plan refuses any account whose `employeeId` is outside the synthetic pattern, and refuses to remove accounts at all in production:
 
    ```bash
-   python deploy/rollback.py plan --settings "$SETTINGS" --smoke "$EVIDENCE/smoke-leaver" --out "$EVIDENCE/rollback-plan"
+   python deploy/rollback.py plan --settings "$SETTINGS" --smoke "$EVIDENCE/smoke-leaver" --out "$EVIDENCE/rollback-plan" --evidence-dir "$EVIDENCE/records"
    ```
 
    Fixture mode, run on November 2, 2026, without `--smoke` (the fixture smoke output has no tenant export):
@@ -562,7 +692,7 @@ The rollback is rehearsed in the test stage, in full, before promotion. It pause
 
    ```bash
    export HRLC_GRAPH_TOKEN=$(hrlc_token reader)
-   python deploy/rollback.py verify --settings "$SETTINGS" --mode tenant --out "$EVIDENCE/rollback-verify"
+   python deploy/rollback.py verify --settings "$SETTINGS" --mode tenant --out "$EVIDENCE/rollback-verify" --evidence-dir "$EVIDENCE/records"
    ```
 
    Fixture mode, run on November 2, 2026:
@@ -588,6 +718,16 @@ The rollback is rehearsed in the test stage, in full, before promotion. It pause
    az account clear
    ```
 
+**Requirements and evidence for this step.**
+
+| Requirement | What this step does | KSI it aligns to | Evidence the ISSO keeps |
+|---|---|---|---|
+| CM-3, configuration change control | A documented, reviewed back-out in the guide's order, dry-run before it's applied | KSI-CMT-RMV, KSI-CMT-RVP | `rollback-plan-*.json`; `rollback.ps1` and its dry-run output |
+| CM-5, access restrictions for change | Applied only with activated roles and a second operator | KSI-IAM-JIT | The PIM activation records; the change record's witness entry |
+| CM-4(2), verification of controls | The tenant is read again: jobs paused, schedules off | KSI-CMT-VTD, KSI-CMT-LMC | `rollback-verify-*.json` |
+
+: Stage 1 rollback: requirements, KSIs and evidence {.striped .hover}
+
 ## Promotion go/no-go
 
 **Gate:** the hand-off between the guide's pilot and production. The criteria are *design guidance*: the agency's change board may add to them, never remove one.
@@ -603,8 +743,15 @@ The rollback is rehearsed in the test stage, in full, before promotion. It pause
 | 7 | The ISSO has accepted the test evidence | The production change record | All |
 | 8 | The production change record is approved, with the window, the first scope and the rollback plan | The production change record | All |
 | 9 | The production pre-flight, with the test evidence, has 0 Finding | `evidence/production/preflight` | All |
+| 10 | Every requirement row of the test stage has its evidence present and passing: `evidence.py check --stage test` has 0 Finding | The command's output, kept with the go/no-go record | All |
 
-Any criterion not met is a no-go; the stage stays in test.
+Criterion 10 is one command over the test stage's records:
+
+```bash
+python deploy/evidence.py check --evidence-dir evidence/test/records --stage test
+```
+
+It passes only when the settings check, the pre-flight after deploy, the recorded workflows, all three smoke phases, the rollback plan and the rollback verify each have a newest record that passed, for the test environment, and whose output folder is unchanged; a record edited after it was written fails `SHA256SUMS` (EV-04). The table rows that are admin center or PowerShell actions are checked against the change record by the ISSO. Any criterion not met is a no-go; the stage stays in test.
 
 ## Stage 2: production
 
@@ -617,7 +764,7 @@ The production HR feed and the production tenant: Microsoft 365 GCC (Moderate) f
 1. **Open the production session**: the session block in *One environment settings file*, step 3, with `SETTINGS=deploy/settings.production.json`, and the PowerShell block in step 4 with `$SETTINGS = 'deploy/settings.production.json'`. Check the file:
 
    ```bash
-   python deploy/deploy_settings.py check --settings "$SETTINGS"
+   python deploy/deploy_settings.py check --settings "$SETTINGS" --evidence-dir "$EVIDENCE/records"
    ```
 
 2. **Run the pre-flight with the test evidence.** Download the test stage's last smoke output from the evidence container first, so the check reads the kept copy:
@@ -627,7 +774,7 @@ The production HR feed and the production tenant: Microsoft 365 GCC (Moderate) f
        --pattern "*/test/smoke-leaver/*" --destination evidence/kept --auth-mode login
    export HRLC_GRAPH_TOKEN=$(hrlc_token reader)
    python deploy/preflight.py --settings "$SETTINGS" --mode tenant --test-evidence "$(find evidence/kept -type d -path '*/test/smoke-leaver' | head -1)" \
-       --out "$EVIDENCE/preflight"
+       --out "$EVIDENCE/preflight" --evidence-dir "$EVIDENCE/records"
    ```
 
    Fixture mode, run on November 2, 2026, first without the test evidence, then with the fixture-mode leaver output:
@@ -642,11 +789,21 @@ The production HR feed and the production tenant: Microsoft 365 GCC (Moderate) f
 
    A tenant-mode production run refuses fixture-mode evidence: the modes must match (a test pins that).
 
+**Requirements and evidence for this step.**
+
+| Requirement | What this step does | KSI it aligns to | Evidence the ISSO keeps |
+|---|---|---|---|
+| CM-3, configuration change control | The approved production change record's ID is in the settings file and every record | KSI-CMT-LMC, KSI-CMT-RVP | `settings-check-*.json` for production; the change record |
+| CM-3(2) | The production pre-flight needs the test stage's clean evidence, from the same mode (PF-06) | KSI-CMT-VTD | `preflight-*.json` with PF-06 Info; criterion 10's output |
+| AC-5, AC-6 and BOD 25-01 MS.AAD.7.5v1 | PF-02 in the production tenant | KSI-IAM-JIT, KSI-IAM-ELP | `preflight/exports/role-eligibility.json` |
+
+: Stage 2 change record and pre-flight: requirements, KSIs and evidence {.striped .hover}
+
 ### Deploy
 
 **Gates:** G2, G3, G6, G1.
 
-Run the same five deploy steps as Stage 1 (*Deploy*, steps 1 to 5), in the production session. **Expected result:** six workflows created with scheduling off, the IDs recorded in `deploy/settings.production.json`, and a pre-flight after deploy with 0 Finding.
+Run the same five deploy steps as Stage 1 (*Deploy*, steps 1 to 5), in the production session. **Expected result:** six workflows created with scheduling off, the IDs recorded in `deploy/settings.production.json`, and a pre-flight after deploy with 0 Finding. Stage 1's deploy table applies row for row; its evidence is the production session's `workflow-plan`, `workflow-ids.json` and `workflows-recorded-*.json`.
 
 ### Staged enable by scope
 
@@ -671,7 +828,7 @@ Run the same five deploy steps as Stage 1 (*Deploy*, steps 1 to 5), in the produ
    ```bash
    export HRLC_GRAPH_TOKEN=$(hrlc_token reader)
    python deploy/smoke_test.py check --settings "$SETTINGS" --extract <production-extract-csv> --phase scope \
-       --as-of <today> --since <today>T00:00:00Z --mode tenant --out "$EVIDENCE/smoke-first-scope"
+       --as-of <today> --since <today>T00:00:00Z --mode tenant --out "$EVIDENCE/smoke-first-scope" --evidence-dir "$EVIDENCE/records"
    ```
 
    **Expected result:** one `expect` line per worker in the first department, 0 Finding; SM-07 Warns only until the cycle has run. Then run each workflow on demand for one worker the day's records call for (at most 10 users per on-demand run),[^hw08-ondemand] and check again into `"$EVIDENCE/smoke-first-scope-2"`.
@@ -689,6 +846,16 @@ Run the same five deploy steps as Stage 1 (*Deploy*, steps 1 to 5), in the produ
 
 6. **Widen the scope** one department at a time, after a clean first week (below): add a scoping filter for the next code, send that scope's records, and repeat steps 4 and 5's checks for it.
 
+**Requirements and evidence for this step.**
+
+| Requirement | What this step does | KSI it aligns to | Evidence the ISSO keeps |
+|---|---|---|---|
+| AC-2, AC-2(1), PS-4 and PS-5 (G2 to G6) | Only the first department is in scope, and every worker in it is checked against the day's HR extract | KSI-IAM-AAM | `smoke-scope-*.json` with `smoke-first-scope/expectations.json` |
+| OMB M-22-09 | Production accounts come only from the HR feed through the middleware | KSI-IAM-AAM | `scim-first-scope/provenance.json` and `apply-results.json` |
+| CM-3(2) and CM-4(2) | Schedules go on only after a clean scope check; scopes are only widened | KSI-CMT-VTD | The `smoke-scope-*.json` record dated before the schedules went on; the audit log's workflow updates |
+
+: Stage 2 staged enable by scope: requirements, KSIs and evidence {.striped .hover}
+
 ### First-week monitoring
 
 **Gate:** G7 (the metrics on the continuous monitoring cadence), with G6's timing.
@@ -700,7 +867,7 @@ Every day of the first week, the operator runs the drift run and the scope check
    ```bash
    export HRLC_GRAPH_TOKEN=$(hrlc_token reader)
    python deploy/smoke_test.py check --settings "$SETTINGS" --extract <production-extract-csv> --phase scope \
-       --as-of <today> --since <yesterday>T00:00:00Z --mode tenant --out "$EVIDENCE/monitor/<today>/scope"
+       --as-of <today> --since <yesterday>T00:00:00Z --mode tenant --out "$EVIDENCE/monitor/<today>/scope" --evidence-dir "$EVIDENCE/records"
    ```
 
 2. **The day's drift run and package**, with the commands of Chapter 07's [test tenant steps](07-lifecycle-drift-and-evidence.md#lab-2-test-tenant) 1 and 3, `--mode tenant`, the production tenant's ID, and `--out "$EVIDENCE/monitor/<today>/drift"`; then `hr_evidence.py package` with `--previous-manifest` from the day before.
@@ -721,6 +888,18 @@ Every day of the first week, the operator runs the drift run and the scope check
 
 4. **Hash and upload the day's folder**, with the commands in Stage 1's *Capture the evidence*, step 2.
 
+**Requirements and evidence for this step.**
+
+| Requirement | What this step does | KSI it aligns to | Evidence the ISSO keeps |
+|---|---|---|---|
+| CA-7, continuous monitoring (G7) | The six metrics every day against `config/drift.json` | KSI-MLA-EVC | The daily packages and the week's period summary |
+| AU-6, audit record review | LD-04 from the audit log; the day's findings read by the operator | KSI-MLA-RVL *(design guidance)* | The daily packages; the review entries in the change record |
+| PS-4 (G6) | Separation-to-block and separation-to-revocation, 90th percentile | KSI-IAM-AAM | `metrics.json` in each day's run |
+| CISA BOD 25-01, continuous reporting | ScubaGear for the identity policies, as Chapter 07 says | — (not this code) | The ScubaGear results beside the period |
+| AU-9 and AU-11 | Each day's folder hashed and uploaded | KSI-MLA-OSM (AU-9) | `SHA256SUMS`; the container |
+
+: Stage 2 first-week monitoring: requirements, KSIs and evidence {.striped .hover}
+
 ### Roll back (production)
 
 **Gates:** the guide's rollback table.
@@ -730,7 +909,7 @@ The production plan has no `--smoke`: production deletes no account, and never n
 1. **Write the plan, dry-run it, and have the second operator read it.** Do this at the start of the window, before any change, so the plan is ready:
 
    ```bash
-   python deploy/rollback.py plan --settings "$SETTINGS" --out "$EVIDENCE/rollback-plan"
+   python deploy/rollback.py plan --settings "$SETTINGS" --out "$EVIDENCE/rollback-plan" --evidence-dir "$EVIDENCE/records"
    pwsh -NoProfile -File "$EVIDENCE/rollback-plan/rollback.ps1"
    ```
 
@@ -741,12 +920,29 @@ The production plan has no `--smoke`: production deletes no account, and never n
    ```bash
    pwsh -NoProfile -File "$EVIDENCE/rollback-plan/rollback.ps1" -Apply
    export HRLC_GRAPH_TOKEN=$(hrlc_token reader)
-   python deploy/rollback.py verify --settings "$SETTINGS" --mode tenant --out "$EVIDENCE/rollback-verify"
+   python deploy/rollback.py verify --settings "$SETTINGS" --mode tenant --out "$EVIDENCE/rollback-verify" --evidence-dir "$EVIDENCE/records"
    ```
 
    **Expected result:** RB-01 and RB-02 Info only. The accounts the scope created stay, as their HR records say; workers separated while the jobs are paused are the guide's emergency path: an out-of-band block, then the leaver workflow on demand ([Book 03, Chapter 08](../../../books/b03-hr-identity/08-joiner-mover-leaver.md#emergency-termination)). Resume with `Start-MgServicePrincipalSynchronizationJob`, which continues from where the job paused,[^hw08-start] once the cause is fixed at the source.
 
-3. **Close the session** with Stage 1's step 5 commands.
+3. **Check the production stage's evidence** before the change record closes, and keep the output with it:
+
+   ```bash
+   python deploy/evidence.py check --evidence-dir "$EVIDENCE/records" --stage production
+   ```
+
+   **Expected result:** EV-01 Info for the settings check, the pre-flight, the recorded workflows, the first scope's check and the rollback plan, and 0 Finding.
+
+4. **Close the session** with Stage 1's step 5 commands.
+
+**Requirements and evidence for this step.**
+
+| Requirement | What this step does | KSI it aligns to | Evidence the ISSO keeps |
+|---|---|---|---|
+| CM-3 and CM-5 | The plan is written and dry-run at the start of the window; applied only with activated roles | KSI-CMT-RMV, KSI-CMT-RVP, KSI-IAM-JIT | `rollback-plan-*.json`; the dry-run output; PIM activation records |
+| CM-4(2) | If applied, verified from a fresh read | KSI-CMT-VTD, KSI-CMT-LMC | `rollback-verify-*.json` |
+
+: Stage 2 rollback: requirements, KSIs and evidence {.striped .hover}
 
 ## Evidence the ISSO keeps
 
@@ -754,6 +950,7 @@ Each folder below is written once by a script, with a `manifest.json` holding a 
 
 | Stage | What | From | Gate and requirement |
 |---|---|---|---|
+| Both | The evidence records, `evidence-index.csv` and `SHA256SUMS` in `records/` | Every deploy script | Each record names its controls and KSIs; criterion 10 |
 | Both | The settings file, its `check` output, and its SHA-256 in every manifest | `deploy_settings.py` | All; ties every output to the change record *(design guidance)* |
 | Both | The pre-flight before and after deploy, with what it read | `preflight.py` | Prerequisites; G1 (AC-2) |
 | Both | The workflow plan, the bodies sent and the IDs created | `joiner_workflows.py plan`, `workflow-ids.json` | G3 (AC-2(1)) |
@@ -815,7 +1012,7 @@ Places the sources differ or say nothing, recorded so a later edit doesn't loose
 - [ ] Both provisioning apps have a notification email, accidental-deletion prevention and the **Delete** action off.
 - [ ] Logs leave the directory before the first send.
 - [ ] The test stage ran all three smoke phases clean, and the rollback was applied and verified.
-- [ ] All nine go/no-go criteria are met and signed.
+- [ ] All ten go/no-go criteria are met and signed, with `evidence.py check --stage test` clean.
 - [ ] The production rollback plan was written and dry-run at the start of the window.
 - [ ] Production scopes were only ever widened, and each widening followed a clean week.
 - [ ] Each stage's evidence is hashed, uploaded, and accepted by the ISSO.
@@ -857,3 +1054,9 @@ Places the sources differ or say nothing, recorded so a later edit doesn't loose
 [^hw08-ora-ems]: Oracle, *Oracle Fusion Cloud HCM Integration with External Entitlement Management Systems* ("PersonID can vary across environments, so you must use PersonNumber"; "Use JWT to access HCM data feeds and SCIM APIs"), <https://docs.oracle.com/en/applications/fusion-apps/fusion-human-capital-management/hcmintegration/index.html> (read November 2, 2026).
 [^hw08-ora-oauth]: Oracle, *REST API for Oracle Fusion Cloud HCM*, "Configure OAuth" (tokens from the OCI IAM identity domain of the Fusion instance; Client Credentials only for Spectra services; client assertion recommended over a client secret), <https://docs.oracle.com/en/cloud/saas/human-resources/farws/configure_oauth.html> (read November 2, 2026).
 [^hw08-oracle-seq]: Microsoft Learn, "Configure Oracle Human Capital Management (HCM) for automatic user provisioning" (initial sync, then the feeds; five to ten records first), <https://learn.microsoft.com/entra/identity/saas-apps/oracle-hcm-provisioning-tutorial> (read October 25, 2026; carried from *Building Book 03's HR Pipeline*).
+[^hw08-ksi]: FedRAMP, "Key Security Indicators," *FedRAMP Consolidated Rules for 2026* (the indicator IDs and names used here: KSI-IAM-AAM, IAM-APM, IAM-ELP, IAM-JIT, CMT-LMC, CMT-RMV, CMT-RVP, CMT-VTD, MLA-EVC, MLA-OSM, MLA-RVL, SVC-ACM, SVC-ASM), <https://www.fedramp.gov/2026/reference/key-security-indicators/> (read November 2, 2026; the same source Book 13, Appendix A and Book 14, Chapter 03 cite).
+[^hw08-nist]: National Institute of Standards and Technology, SP 800-53B Moderate baseline, OSCAL profile (AC-2, AC-2(1), AC-2(3), AC-5, AC-6, AU-6, AU-11, CA-7, IA-4(4), PS-4, PS-5, PS-7 and SI-12 included), <https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_MODERATE-baseline_profile.json> (read November 1, 2026; carried from the HR-driven identity implementation guide). IA-5 is carried from the guide's Gate 3 table.
+[^hw08-nist-cm]: Book 13, Appendix A, baseline and KSI columns for CM-3, CM-3(2), CM-4(2), CM-5, CM-6 and AU-9, from NIST SP 800-53B and FedRAMP's KSI "Related SP 800-53 Controls" (read October 21, 2026; carried from [Book 13, Appendix A](../../../books/b13-governance/appendix-a-requirements-mapping.md)).
+[^hw08-m2209]: Office of Management and Budget, M-22-09, *Moving the U.S. Government Toward Zero Trust Cybersecurity Principles*, January 26, 2022, section A, Identity (enterprise identity systems draw on human resources, contract management and personnel security systems), <https://www.whitehouse.gov/wp-content/uploads/2022/01/M-22-09.pdf> (read November 1, 2026; carried from the HR-driven identity implementation guide).
+[^hw08-bod]: Cybersecurity and Infrastructure Security Agency, "BOD 25-01: Implementing Secure Practices for Cloud Services Required Configurations," MS.AAD.7.5v1, <https://www.cisa.gov/resources-tools/services/bod-25-01-implementing-secure-practices-cloud-services-required-configurations> (read November 1, 2026; carried from the HR-driven identity implementation guide).
+[^hw08-agu]: FedRAMP, "Agency Use of FedRAMP Certified Cloud Services," *FedRAMP Consolidated Rules for 2026*, AGU-USE-ABU (complete the ATO process for federal information systems that use FedRAMP Certified offerings), <https://www.fedramp.gov/2026/reference/agency-use/> (read October 21, 2026; carried from Book 13, Appendix A and Chapter 11).
