@@ -129,3 +129,13 @@ Every claim was checked against the primary source on October 23, 2026. Sources:
 | 1 | Help desks and self-service support conform to 603; accommodate communication needs; forms are covered | One front door | verified (quoted) | 36 CFR 1194 App. C 603.1, 603.3; App. A E205.3(G), E208.1 |
 | 2 | IDEA §3(c) for post-2018 intranets | One front door | verified (quoted) | Pub. L. 115-336 §3(c) |
 | 3 | Train help-desk staff on assistive technology | One front door | verified (quoted) | OMB M-24-08 §III.F |
+
+## Additions, November 2, 2026 (Section 508 follow-up)
+
+Opened November 2, 2026: OMB M-24-08 PDF (text extracted locally), read at §III.A; Microsoft Learn, "Configure Temporary Access Pass to register passwordless authentication methods" (MCP fetch), sections "Enable the Temporary Access Pass policy," "Device enrollment and passwordless registration" and "Limitations."
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 4 | M-24-08: the accessibility statement includes "Instructions on the use of the telecommunications relay service" | Verification ladder | verified (quote) | OMB M-24-08 §III.A |
+| 5 | A one-time TAP used to register a passwordless method must be used within 10 minutes of sign-in; the limit doesn't apply to a multi-use TAP | Verification ladder | verified | Learn TAP, Limitations |
+| 6 | Captioning or interpreter on video calls; relay calls accepted; help desk stays on the session; the CISO's ladder sets when a multi-use pass may be an accommodation | Verification ladder | restated-as-design | — |
