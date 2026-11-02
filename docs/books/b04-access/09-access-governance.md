@@ -330,6 +330,22 @@ Detections that guard the governance process itself run in the SIEM; the detecti
 
 Every deviation (a combined package that overrides separation of duties, a review schedule moved, a package without expiry) is recorded in the exception register with its approver, its justification, and an end date. Deviations from the Tier 3 review schedule need the governance office's approval; deviations for Tier 1 or Tier 2 also need the CISO's concurrence. The register is reviewed quarterly and is part of the evidence for each cycle.
 
+## Privacy
+
+Access governance runs on personnel data and produces more of it. Automatic assignment policies and dynamic groups read HR attributes such as organization code, worker type and manager; every request, approval, review decision and justification is a record about a named person; and reviewers see the reviewee's attributes and, where recommendations are on, sign-in activity. Inside the agency, showing a reviewer what the review needs is a disclosure to an employee who needs the record for their duties, which the Privacy Act permits, and the Act also requires records used in decisions about people to be accurate enough to be fair.[^c09-pa] The privacy risk is drift: an attribute added to a policy without a purpose, a justification field that collects a medical or disciplinary detail, or review records kept with no end date.
+
+The program's design treats access governance as one more consumer of [Book 03, Chapter 14](../b03-hr-identity/14-privacy-for-workforce-identity.md)'s attribute purpose register, and runs that chapter's checklist before a policy reads a new attribute. A-130's minimization principle and SP 800-53 controls PT-3 (processing purposes), SI-12(1) (limit PII elements) and SI-18 (PII quality), all in the privacy baseline that applies at every impact level, are the requirements behind it.[^c09-a130][^c09-sp80053-priv] A wrong manager produces a wrong reviewer, and the fix is in HR, not in the review. Guests and connected organizations in a review are people outside the government, which the system's privacy impact assessment has to reflect. Review history and request records are system access records, which General Records Schedule 3.2 covers.[^c09-grs32]
+
+| Obligation | What the engineer does | Who signs off |
+|---|---|---|
+| Purpose limitation (PT-3) | Lists every attribute an assignment policy or dynamic group reads in the attribute purpose register; adds none without a row | Privacy office |
+| Minimization (SI-12(1)) | Keeps justification fields short, and tells reviewers and approvers not to record health, disciplinary or other sensitive details | Governance office; privacy office for the wording |
+| Accuracy (Privacy Act (e)(5); SI-18) | Routes a wrong manager or organization to HR; reruns the affected review once HR corrects it | HR; governance office |
+| PIA scope | Tells the privacy office when packages, catalogs or reviews extend to guests or connected organizations | Privacy office |
+| Retention (SI-12; GRS 3.2) | Maps review history, request records and their evidence-store copies to a schedule item, and disposes of them on schedule | Records officer |
+
+: Privacy obligations in access governance {.striped .hover}
+
 ::: {.callout-tip}
 ## Continue the book
 [← Previous: Chapter 08 — PIM Self-Request with Approval](08-pim-self-request-with-approval.md) · [Book index](index.md) · [Next: Chapter 10 — Access as Code, and the Evidence It Produces →](10-access-as-code-and-evidence.md)
@@ -363,3 +379,7 @@ Every deviation (a combined package that overrides separation of duties, a revie
 [^c09-794d]: 29 U.S.C. §794d(a)(1)(A)(i) (2023 edition), <https://www.govinfo.gov/content/pkg/USCODE-2023-title29/html/USCODE-2023-title29-chap16-subchapV-sec794d.htm> (accessed Oct 23, 2026).
 [^c09-1194]: U.S. Access Board, Revised 508 Standards, 36 CFR part 1194, Appendix A, E201.1, E202.7 and E202.7.1 (best meets), and E207.2, <https://www.ecfr.gov/current/title-36/chapter-XI/part-1194> (accessed Oct 23, 2026).
 [^c09-m2408]: Office of Management and Budget, M-24-08, *Strengthening Digital Accessibility and the Management of Section 508 of the Rehabilitation Act*, December 21, 2023, §III.B, <https://www.whitehouse.gov/wp-content/uploads/2023/12/M-24-08-Strengthening-Digital-Accessibility-and-the-Management-of-Section-508-of-the-Rehabilitation-Act.pdf> (accessed Oct 23, 2026).
+[^c09-pa]: Privacy Act of 1974, 5 U.S.C. §552a (2023 edition), subsections (b)(1), disclosure to the agency's officers and employees who need the record, and (e)(5), accuracy, <https://www.govinfo.gov/content/pkg/USCODE-2023-title5/html/USCODE-2023-title5-partI-chap5-subchapII-sec552a.htm> (accessed Nov 2, 2026).
+[^c09-a130]: Office of Management and Budget, Circular A-130, *Managing Information as a Strategic Resource*, July 28, 2016 (Appendix II §3, Fair Information Practice Principles, Minimization), <https://www.whitehouse.gov/wp-content/uploads/legacy_drupal_files/omb/circulars/A130/a130revised.pdf> (accessed Nov 2, 2026).
+[^c09-sp80053-priv]: National Institute of Standards and Technology, SP 800-53 Rev. 5, *Security and Privacy Controls for Information Systems and Organizations*, Release 5.2.0 (controls PT-3, SI-12, SI-12(1) and SI-18), <https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final>; and SP 800-53B, *Control Baselines for Information Systems and Organizations* (the privacy baseline, "applied to systems irrespective of impact level"), <https://csrc.nist.gov/pubs/sp/800/53/b/upd1/final>; control text and privacy-baseline membership read from NIST's OSCAL Release 5.2.0 catalog and privacy baseline profile, <https://github.com/usnistgov/oscal-content/tree/main/nist.gov/SP800-53/rev5> (accessed Nov 2, 2026).
+[^c09-grs32]: National Archives, General Records Schedule 3.2, *Information Systems Security Records*, Transmittal 33, items 030 and 031 (system access records, including user profiles, log-in files and audit trails), <https://www.archives.gov/files/records-mgmt/grs/grs03-2.pdf> (accessed Nov 2, 2026).
