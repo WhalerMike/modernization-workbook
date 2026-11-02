@@ -79,3 +79,9 @@ Method, all on October 21, 2026. The 149 crosswalk rows were parsed from the sou
 | Questionnaire §4 discovery tables (Vols I–IV, VII–IX) and Vol V/VI note | Ch03 category list and working columns; full tables in Appendix B (W7) | — |
 | Questionnaire §5 Flags & Gaps Summary | Ch03 "flags-and-gaps list" and use step 2 | Named-product rows not carried (dated vendor status) |
 | Questionnaire §6 References — FedRAMP status sources | Ch03 Marketplace footnote | Vendor press-release links not carried; Marketplace is the authority |
+
+## Correction, November 2, 2026
+
+| Claim | Before | After | Source |
+|---|---|---|---|
+| PT controls in the privacy baseline | "PT-1 to PT-5 and PT-7" | All eight, PT-1 to PT-8, with PT-5(2), PT-6(1), PT-6(2), PT-7(1) and PT-7(2) | NIST OSCAL Release 5.2.0, `NIST_SP-800-53_rev5_PRIVACY-baseline_profile.json`, read November 2, 2026 (found by the Book 03 Chapter 14 privacy pass) |
