@@ -98,7 +98,8 @@ REVISIONS = re.compile(r"data/editions\.yml|data/edition-assets/[^/]+\.json|scri
 # Workbooks whose Lab 1 output is captured (scripts/kit_captures.py): the chapters and the kit.
 KIT_CAPTURES = {"ttm": ("docs/project-plans/developer-workbooks/ticket-to-machine", "examples/servicenow-sailpoint"),
                 "hr": ("docs/project-plans/developer-workbooks/hr-driven-identity", "examples/hr-lifecycle"),
-                "pa": ("docs/project-plans/developer-workbooks/privileged-access", "examples/privileged-access")}
+                "pa": ("docs/project-plans/developer-workbooks/privileged-access", "examples/privileged-access"),
+                "npi": ("docs/project-plans/developer-workbooks/non-person-identity", "examples/non-person-identity")}
 
 
 @dataclass(frozen=True)
