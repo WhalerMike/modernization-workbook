@@ -1,0 +1,294 @@
+{
+  "_comment": "A fictional production tenant and forest for contoso.example, served by NpiDeploy's fake (Chapter 11): Graph responses keyed by method and path (and query, where it selects), Active Directory results keyed by cmdlet and identity. Documentation IP ranges (RFC 5737) and invented IDs only. The shapes follow Learn's response examples; nobody has compared them with a live tenant.",
+  "asOf": "2026-11-16T12:00:00Z",
+  "graph": {
+    "GET /v1.0/applications(appId='d0000000-0000-4000-8000-0000000000f1')": {
+      "id": "0d000000-0000-4000-8000-0000000000f1",
+      "appId": "d0000000-0000-4000-8000-0000000000f1",
+      "displayName": "npi-deploy-production",
+      "passwordCredentials": [],
+      "keyCredentials": [
+        {
+          "keyId": "4c000000-0000-4000-8000-0000000000f1",
+          "type": "AsymmetricX509Cert",
+          "usage": "Verify",
+          "customKeyIdentifier": "sbLD1OX2BxgpOktcbX6PkBI0Vng=",
+          "endDateTime": "2027-04-30T00:00:00Z"
+        }
+      ]
+    },
+    "GET /v1.0/subscribedSkus": {
+      "value": [
+        {
+          "skuId": "06ebc4ee-1bb5-47dd-8120-11324bc54e06",
+          "skuPartNumber": "SPE_E5",
+          "capabilityStatus": "Enabled",
+          "prepaidUnits": {
+            "enabled": 25
+          },
+          "servicePlans": [
+            {
+              "servicePlanId": "eec0eb4f-6444-4f95-aba0-50c24d67f998",
+              "servicePlanName": "AAD_PREMIUM_P2"
+            }
+          ]
+        },
+        {
+          "skuId": "52cdf00e-8303-4223-a749-ff69a13e2dd0",
+          "skuPartNumber": "Workload_Identities_P2",
+          "capabilityStatus": "Enabled",
+          "prepaidUnits": {
+            "enabled": 5
+          },
+          "servicePlans": [
+            {
+              "servicePlanId": "7dc0e92d-bf15-401d-907e-0884efe7c760",
+              "servicePlanName": "AAD_WRKLDID_P2"
+            }
+          ]
+        }
+      ]
+    },
+    "GET /v1.0/servicePrincipals(appId='00000003-0000-0000-c000-000000000000')": {
+      "id": "5b000000-0000-4000-8000-00000000ff00",
+      "appRoles": [
+        {
+          "id": "a7000000-0000-4000-8000-000000000001",
+          "value": "Application.Read.All"
+        },
+        {
+          "id": "a7000000-0000-4000-8000-000000000002",
+          "value": "AuditLog.Read.All"
+        },
+        {
+          "id": "a7000000-0000-4000-8000-000000000003",
+          "value": "Directory.Read.All"
+        },
+        {
+          "id": "a7000000-0000-4000-8000-000000000004",
+          "value": "Policy.Read.All"
+        },
+        {
+          "id": "a7000000-0000-4000-8000-000000000005",
+          "value": "User.Read.All"
+        },
+        {
+          "id": "a7000000-0000-4000-8000-000000000006",
+          "value": "Application.ReadWrite.All"
+        },
+        {
+          "id": "a7000000-0000-4000-8000-000000000007",
+          "value": "LicenseAssignment.Read.All"
+        },
+        {
+          "id": "a7000000-0000-4000-8000-000000000008",
+          "value": "RoleManagement.Read.Directory"
+        }
+      ]
+    },
+    "GET /v1.0/servicePrincipals(appId='d0000000-0000-4000-8000-0000000000f2')/appRoleAssignments": {
+      "value": [
+        {
+          "resourceId": "5b000000-0000-4000-8000-00000000ff00",
+          "appRoleId": "a7000000-0000-4000-8000-000000000001"
+        },
+        {
+          "resourceId": "5b000000-0000-4000-8000-00000000ff00",
+          "appRoleId": "a7000000-0000-4000-8000-000000000002"
+        },
+        {
+          "resourceId": "5b000000-0000-4000-8000-00000000ff00",
+          "appRoleId": "a7000000-0000-4000-8000-000000000003"
+        },
+        {
+          "resourceId": "5b000000-0000-4000-8000-00000000ff00",
+          "appRoleId": "a7000000-0000-4000-8000-000000000004"
+        },
+        {
+          "resourceId": "5b000000-0000-4000-8000-00000000ff00",
+          "appRoleId": "a7000000-0000-4000-8000-000000000005"
+        }
+      ]
+    },
+    "GET /v1.0/roleManagement/directory/roleEligibilityScheduleInstances?$filter=principalId eq '0b000000-0000-4000-8000-0000000000f1'": {
+      "value": [
+        {
+          "principalId": "0b000000-0000-4000-8000-0000000000f1",
+          "roleDefinitionId": "158c047a-c907-4556-b7ef-446551a6b5f7",
+          "directoryScopeId": "/"
+        },
+        {
+          "principalId": "0b000000-0000-4000-8000-0000000000f1",
+          "roleDefinitionId": "194ae4cb-b126-40b2-bd5b-6091b380977d",
+          "directoryScopeId": "/"
+        }
+      ]
+    },
+    "GET /v1.0/roleManagement/directory/roleAssignments?$filter=principalId eq '0b000000-0000-4000-8000-0000000000f1'": {
+      "value": []
+    },
+    "GET /v1.0/roleManagement/directory/roleEligibilityScheduleInstances?$filter=principalId eq '0b000000-0000-4000-8000-0000000000f2'": {
+      "value": [
+        {
+          "principalId": "0b000000-0000-4000-8000-0000000000f2",
+          "roleDefinitionId": "b1be1c3e-b65d-4f19-8427-f6fa0d97feb9",
+          "directoryScopeId": "/"
+        }
+      ]
+    },
+    "GET /v1.0/roleManagement/directory/roleAssignments?$filter=principalId eq '0b000000-0000-4000-8000-0000000000f2'": {
+      "value": []
+    },
+    "GET /v1.0/applications/0a000000-0000-4000-8000-0000000000f3": {
+      "id": "0a000000-0000-4000-8000-0000000000f3",
+      "appId": "1a000000-0000-4000-8000-0000000000f3",
+      "displayName": "Payroll Export",
+      "signInAudience": "AzureADMyOrg",
+      "passwordCredentials": [
+        {
+          "keyId": "4c000000-0000-4000-8000-0000000000f3",
+          "endDateTime": "2027-01-31T00:00:00Z"
+        }
+      ],
+      "keyCredentials": []
+    },
+    "GET /v1.0/applications/0a000000-0000-4000-8000-0000000000f4": {
+      "id": "0a000000-0000-4000-8000-0000000000f4",
+      "appId": "1a000000-0000-4000-8000-0000000000f4",
+      "displayName": "npi-smoke-production",
+      "signInAudience": "AzureADMyOrg",
+      "passwordCredentials": [],
+      "keyCredentials": []
+    },
+    "GET /v1.0/policies/defaultAppManagementPolicy": {
+      "id": "00000000-0000-0000-0000-000000000000",
+      "displayName": "Default app management tenant policy",
+      "isEnabled": false,
+      "applicationRestrictions": {
+        "passwordCredentials": [],
+        "keyCredentials": []
+      },
+      "servicePrincipalRestrictions": {
+        "passwordCredentials": [],
+        "keyCredentials": []
+      }
+    },
+    "GET /v1.0/policies/appManagementPolicies/a9000000-0000-4000-8000-0000000000f1": {
+      "id": "a9000000-0000-4000-8000-0000000000f1",
+      "displayName": "npi-pilot-block-secrets",
+      "isEnabled": false
+    },
+    "POST /v1.0/applications/0a000000-0000-4000-8000-0000000000f4/addPassword": {
+      "__status": 400,
+      "error": {
+        "code": "BadRequest",
+        "message": "(fixture) Refused by the app management policy (real code unverified)."
+      }
+    },
+    "GET /v1.0/applications/0a000000-0000-4000-8000-0000000000f4/federatedIdentityCredentials": {
+      "value": [
+        {
+          "id": "fc000000-0000-4000-8000-0000000000f4",
+          "name": "npi-smoke-production",
+          "issuer": "https://token.actions.githubusercontent.com",
+          "subject": "repo:contoso-example/npi-smoke:environment:production",
+          "audiences": [
+            "api://AzureADTokenExchange"
+          ]
+        }
+      ]
+    },
+    "GET /beta/auditLogs/signIns": {
+      "value": [
+        {
+          "id": "51000000-0000-4000-8000-0000000000f1",
+          "appId": "1a000000-0000-4000-8000-0000000000f4",
+          "createdDateTime": "2026-11-02T10:05:00Z",
+          "ipAddress": "192.0.2.10",
+          "appliedConditionalAccessPolicies": [
+            {
+              "id": "ca000000-0000-4000-8000-0000000f0015",
+              "displayName": "CA015-ServiceAccounts-LocationRestriction-Ring1",
+              "result": "reportOnlyNotApplied"
+            },
+            {
+              "id": "ca000000-0000-4000-8000-0000000f0037",
+              "displayName": "CA037-WorkloadIdentities-HighRisk-Block-Ring1",
+              "result": "reportOnlyNotApplied"
+            }
+          ]
+        },
+        {
+          "id": "51000000-0000-4000-8000-0000000000f2",
+          "appId": "1a000000-0000-4000-8000-0000000000f4",
+          "createdDateTime": "2026-11-02T10:20:00Z",
+          "ipAddress": "203.0.113.50",
+          "appliedConditionalAccessPolicies": [
+            {
+              "id": "ca000000-0000-4000-8000-0000000f0015",
+              "displayName": "CA015-ServiceAccounts-LocationRestriction-Ring1",
+              "result": "reportOnlyFailure"
+            },
+            {
+              "id": "ca000000-0000-4000-8000-0000000f0037",
+              "displayName": "CA037-WorkloadIdentities-HighRisk-Block-Ring1",
+              "result": "reportOnlyNotApplied"
+            }
+          ]
+        }
+      ]
+    },
+    "GET /v1.0/identity/conditionalAccess/policies/ca000000-0000-4000-8000-0000000f0015": {
+      "id": "ca000000-0000-4000-8000-0000000f0015",
+      "displayName": "CA015-ServiceAccounts-LocationRestriction-Ring1",
+      "state": "enabledForReportingButNotEnforced",
+      "conditions": {
+        "clientApplications": {
+          "includeServicePrincipals": [
+            "5b000000-0000-4000-8000-0000000000f3",
+            "5b000000-0000-4000-8000-0000000000f4"
+          ],
+          "excludeServicePrincipals": []
+        },
+        "applications": {
+          "includeApplications": [
+            "All"
+          ]
+        }
+      }
+    },
+    "GET /v1.0/identity/conditionalAccess/policies/ca000000-0000-4000-8000-0000000f0037": {
+      "id": "ca000000-0000-4000-8000-0000000f0037",
+      "displayName": "CA037-WorkloadIdentities-HighRisk-Block-Ring1",
+      "state": "enabledForReportingButNotEnforced",
+      "conditions": {
+        "clientApplications": {
+          "includeServicePrincipals": [
+            "5b000000-0000-4000-8000-0000000000f3",
+            "5b000000-0000-4000-8000-0000000000f4"
+          ],
+          "excludeServicePrincipals": []
+        },
+        "applications": {
+          "includeApplications": [
+            "All"
+          ]
+        }
+      }
+    }
+  },
+  "ad": {
+    "Get-ADComputer|APP-PRD-01": {
+      "Name": "APP-PRD-01",
+      "DNSHostName": "app-prd-01.corp.contoso.example"
+    },
+    "Get-ADGroup|gg-gmsa-hrsync-hosts": {
+      "Name": "gg-gmsa-hrsync-hosts"
+    },
+    "Get-ADUser|svc-npi-smoke": {
+      "SamAccountName": "svc-npi-smoke",
+      "Enabled": true
+    },
+    "Test-ADServiceAccount|gmsa-hrsync": true
+  }
+}

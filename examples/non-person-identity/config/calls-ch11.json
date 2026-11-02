@@ -1,0 +1,180 @@
+{
+  "_comment": "Chapter 11's calls (deploying to a live test environment, then production), in the same schema as calls.json. Each call names the least-privileged Microsoft Graph permission or Active Directory right from its Learn page, read on November 2, 2026, or carried from the chapter that first declared the same call. deploy-preflight reads only. deploy-smoke sends one write that is expected to fail (addPassword on the synthetic app, which the app management policy must refuse) and, only if it doesn't, the removePassword that takes the new secret straight off. deploy-rollback writes only PATCH and Enable-ADAccount or Disable-ADAccount: it never deletes. tests/NpiDeploy.Tests.ps1 fails when a task's declaration isn't exactly the union of its calls.",
+  "tasks": {
+    "deploy-preflight": {
+      "mode": "read",
+      "chapter": "11",
+      "graphPermissions": ["Application.Read.All", "LicenseAssignment.Read.All", "Policy.Read.All", "RoleEligibilitySchedule.Read.Directory", "RoleManagement.Read.Directory"],
+      "azureRoles": [],
+      "adRights": ["Read (default for authenticated domain users)"]
+    },
+    "deploy-smoke": {
+      "mode": "write",
+      "chapter": "11",
+      "delegatedOnly": "Cloud Application Administrator",
+      "graphPermissions": ["Application.Read.All", "Application.ReadWrite.All", "AuditLog.Read.All", "Policy.Read.All"],
+      "azureRoles": [],
+      "adRights": ["Read (default for authenticated domain users)", "Run on a host allowed to retrieve the gMSA's password (PrincipalsAllowedToRetrieveManagedPassword)"]
+    },
+    "deploy-rollback": {
+      "mode": "write",
+      "chapter": "11",
+      "delegatedOnly": "Conditional Access Administrator and Cloud Application Administrator",
+      "graphPermissions": ["Application.ReadWrite.All", "Policy.Read.All", "Policy.ReadWrite.ApplicationConfiguration", "Policy.ReadWrite.ConditionalAccess"],
+      "azureRoles": [],
+      "adRights": ["Delegated right to enable and disable accounts in the account's OU"]
+    }
+  },
+  "calls": [
+    {
+      "id": "deploy-subscribed-skus", "api": "graph", "method": "GET", "version": "v1.0", "path": "/subscribedSkus",
+      "permissions": ["LicenseAssignment.Read.All"], "stage": "v1.0", "tasks": ["deploy-preflight"],
+      "learn": "https://learn.microsoft.com/graph/api/subscribedsku-list?view=graph-rest-1.0",
+      "note": "Workload ID Premium (AAD_WRKLDID_P1 or P2) for Conditional Access for workload identities, and Entra ID P1 or P2 for the sign-in logs. Declared for the same call in Chapter 03."
+    },
+    {
+      "id": "deploy-app-by-appid", "api": "graph", "method": "GET", "version": "v1.0", "path": "/applications(appId='{appId}')",
+      "permissions": ["Application.Read.All"], "stage": "v1.0", "tasks": ["deploy-preflight"],
+      "learn": "https://learn.microsoft.com/graph/api/application-get?view=graph-rest-1.0",
+      "note": "The deployment and reader identities' own registrations, with $select=id,appId,displayName,passwordCredentials,keyCredentials: a client secret on either fails the preflight."
+    },
+    {
+      "id": "deploy-app", "api": "graph", "method": "GET", "version": "v1.0", "path": "/applications/{id}",
+      "permissions": ["Application.Read.All"], "stage": "v1.0", "tasks": ["deploy-preflight", "deploy-smoke"],
+      "learn": "https://learn.microsoft.com/graph/api/application-get?view=graph-rest-1.0",
+      "note": "The pilot and synthetic app registrations exist and hold no secret."
+    },
+    {
+      "id": "deploy-app-fic", "api": "graph", "method": "GET", "version": "v1.0", "path": "/applications/{id}/federatedIdentityCredentials",
+      "permissions": ["Application.Read.All"], "stage": "v1.0", "tasks": ["deploy-preflight", "deploy-smoke"],
+      "learn": "https://learn.microsoft.com/graph/api/federatedidentitycredential-list?view=graph-rest-1.0",
+      "note": "The deployment identity's federated credential (preflight) and the synthetic app's (smoke), compared exactly with the settings file."
+    },
+    {
+      "id": "deploy-sp-approles", "api": "graph", "method": "GET", "version": "v1.0", "path": "/servicePrincipals(appId='{appId}')/appRoleAssignments",
+      "permissions": ["Application.Read.All"], "stage": "v1.0", "tasks": ["deploy-preflight"],
+      "learn": "https://learn.microsoft.com/graph/api/serviceprincipal-list-approleassignments?view=graph-rest-1.0",
+      "note": "The reader identity's Graph application permissions: any ReadWrite role fails the preflight."
+    },
+    {
+      "id": "deploy-graph-sp", "api": "graph", "method": "GET", "version": "v1.0", "path": "/servicePrincipals(appId='00000003-0000-0000-c000-000000000000')",
+      "permissions": ["Application.Read.All"], "stage": "v1.0", "tasks": ["deploy-preflight"],
+      "learn": "https://learn.microsoft.com/graph/api/serviceprincipal-get?view=graph-rest-1.0",
+      "note": "Microsoft Graph's own service principal, with $select=id,appRoles, to name the reader's app role IDs."
+    },
+    {
+      "id": "deploy-role-assignments", "api": "graph", "method": "GET", "version": "v1.0", "path": "/roleManagement/directory/roleAssignments",
+      "permissions": ["RoleManagement.Read.Directory"], "stage": "v1.0", "tasks": ["deploy-preflight"],
+      "learn": "https://learn.microsoft.com/graph/api/rbacapplication-list-roleassignments?view=graph-rest-1.0",
+      "note": "Active Entra role assignments for each operator, filtered by principalId. Declared for the same call in Chapter 07."
+    },
+    {
+      "id": "deploy-role-eligibility", "api": "graph", "method": "GET", "version": "v1.0", "path": "/roleManagement/directory/roleEligibilityScheduleInstances",
+      "permissions": ["RoleEligibilitySchedule.Read.Directory"], "stage": "v1.0", "tasks": ["deploy-preflight"],
+      "learn": "https://learn.microsoft.com/graph/api/rbacapplication-list-roleeligibilityscheduleinstances?view=graph-rest-1.0",
+      "note": "PIM-eligible Entra roles for each operator, filtered by principalId: the write steps' roles are activated through PIM."
+    },
+    {
+      "id": "deploy-tenant-app-policy", "api": "graph", "method": "GET", "version": "v1.0", "path": "/policies/defaultAppManagementPolicy",
+      "permissions": ["Policy.Read.All"], "stage": "v1.0", "tasks": ["deploy-preflight", "deploy-rollback"],
+      "learn": "https://learn.microsoft.com/graph/api/tenantappmanagementpolicy-get?view=graph-rest-1.0",
+      "note": "Snapshotted before the change, so the rollback can restore it exactly. Declared for the same call in Chapter 04."
+    },
+    {
+      "id": "deploy-app-mgmt-policy", "api": "graph", "method": "GET", "version": "v1.0", "path": "/policies/appManagementPolicies/{id}",
+      "permissions": ["Policy.Read.All"], "stage": "v1.0", "tasks": ["deploy-preflight", "deploy-rollback"],
+      "learn": "https://learn.microsoft.com/graph/api/appmanagementpolicy-list?view=graph-rest-1.0",
+      "note": "The pilot's app-specific policy, when it exists already."
+    },
+    {
+      "id": "deploy-ca-policy", "api": "graph", "method": "GET", "version": "v1.0", "path": "/identity/conditionalAccess/policies/{id}",
+      "permissions": ["Policy.Read.All"], "stage": "v1.0", "tasks": ["deploy-preflight", "deploy-smoke", "deploy-rollback"],
+      "learn": "https://learn.microsoft.com/graph/api/conditionalaccessroot-list-policies?view=graph-rest-1.0",
+      "note": "Each workload policy's state and its directly assigned service principals."
+    },
+    {
+      "id": "deploy-app-policies", "api": "graph", "method": "GET", "version": "v1.0", "path": "/applications/{id}/appManagementPolicies",
+      "permissions": ["Policy.Read.All"], "stage": "v1.0", "tasks": ["deploy-smoke"],
+      "learn": "https://learn.microsoft.com/graph/api/appmanagementpolicy-list-appliesto?view=graph-rest-1.0",
+      "note": "Which app-specific policy is assigned to the synthetic app, if any."
+    },
+    {
+      "id": "deploy-signins", "api": "graph", "method": "GET", "version": "beta", "path": "/auditLogs/signIns",
+      "permissions": ["AuditLog.Read.All"], "stage": "beta", "tasks": ["deploy-smoke"],
+      "learn": "https://learn.microsoft.com/graph/api/signin-list?view=graph-rest-beta",
+      "note": "The synthetic service principal's sign-ins, filtered by appId and signInEventTypes, with the Prefer: include-unknown-enum-members header so the report-only results are returned. Beta; needs Entra ID P1 or P2."
+    },
+    {
+      "id": "deploy-app-addpassword", "api": "graph", "method": "POST", "version": "v1.0", "path": "/applications/{id}/addPassword",
+      "permissions": ["Application.ReadWrite.All"], "stage": "v1.0", "tasks": ["deploy-smoke"],
+      "learn": "https://learn.microsoft.com/graph/api/application-addpassword?view=graph-rest-1.0",
+      "note": "The probe: sent only to the synthetic app, expected to be refused by the app management policy. The response's secretText is never kept or written."
+    },
+    {
+      "id": "deploy-app-removepassword", "api": "graph", "method": "POST", "version": "v1.0", "path": "/applications/{id}/removePassword",
+      "permissions": ["Application.ReadWrite.All"], "stage": "v1.0", "tasks": ["deploy-smoke"],
+      "learn": "https://learn.microsoft.com/graph/api/application-removepassword?view=graph-rest-1.0",
+      "note": "Sent only if the probe wasn't refused: takes the new secret off the synthetic app at once, by its keyId, and the check fails."
+    },
+    {
+      "id": "deploy-ca-policy-update", "api": "graph", "method": "PATCH", "version": "v1.0", "path": "/identity/conditionalAccess/policies/{id}",
+      "permissions": ["Policy.Read.All", "Policy.ReadWrite.ConditionalAccess"], "stage": "v1.0", "tasks": ["deploy-rollback"],
+      "learn": "https://learn.microsoft.com/graph/api/conditionalaccesspolicy-update?view=graph-rest-1.0",
+      "note": "Sets a workload policy back to enabledForReportingButNotEnforced, or to disabled. Never deletes it."
+    },
+    {
+      "id": "deploy-tenant-app-policy-update", "api": "graph", "method": "PATCH", "version": "v1.0", "path": "/policies/defaultAppManagementPolicy",
+      "permissions": ["Policy.ReadWrite.ApplicationConfiguration"], "stage": "v1.0", "tasks": ["deploy-rollback"],
+      "learn": "https://learn.microsoft.com/graph/api/tenantappmanagementpolicy-update?view=graph-rest-1.0",
+      "note": "Restores the tenant default policy from the preflight's snapshot."
+    },
+    {
+      "id": "deploy-app-mgmt-policy-update", "api": "graph", "method": "PATCH", "version": "v1.0", "path": "/policies/appManagementPolicies/{id}",
+      "permissions": ["Policy.ReadWrite.ApplicationConfiguration"], "stage": "v1.0", "tasks": ["deploy-rollback"],
+      "learn": "https://learn.microsoft.com/graph/api/appmanagementpolicy-update?view=graph-rest-1.0",
+      "note": "Turns the pilot's app-specific policy off (isEnabled false). Never deletes it."
+    },
+    {
+      "id": "deploy-sp-update", "api": "graph", "method": "PATCH", "version": "v1.0", "path": "/servicePrincipals/{id}",
+      "permissions": ["Application.ReadWrite.All"], "stage": "v1.0", "tasks": ["deploy-rollback"],
+      "learn": "https://learn.microsoft.com/graph/api/serviceprincipal-update?view=graph-rest-1.0",
+      "note": "Disables the synthetic service principal's sign-in (accountEnabled false) after the smoke test. Declared for the same call in Chapter 02."
+    },
+    {
+      "id": "ad-computer", "api": "ad", "method": "READ", "cmdlet": "Get-ADComputer",
+      "adRight": "Read (default for authenticated domain users)", "tasks": ["deploy-preflight"],
+      "learn": "https://learn.microsoft.com/powershell/module/activedirectory/get-adcomputer",
+      "note": "The gMSA test host exists."
+    },
+    {
+      "id": "ad-group", "api": "ad", "method": "READ", "cmdlet": "Get-ADGroup",
+      "adRight": "Read (default for authenticated domain users)", "tasks": ["deploy-preflight"],
+      "learn": "https://learn.microsoft.com/powershell/module/activedirectory/get-adgroup",
+      "note": "The group allowed to retrieve the gMSA's password exists."
+    },
+    {
+      "id": "ad-user", "api": "ad", "method": "READ", "cmdlet": "Get-ADUser",
+      "adRight": "Read (default for authenticated domain users)", "tasks": ["deploy-smoke"],
+      "learn": "https://learn.microsoft.com/powershell/module/activedirectory/get-aduser",
+      "note": "The synthetic service account is enabled, with the attributes the smoke test expects the register to flag."
+    },
+    {
+      "id": "ad-test-gmsa", "api": "ad", "method": "READ", "cmdlet": "Test-ADServiceAccount",
+      "adRight": "Run on a host allowed to retrieve the gMSA's password (PrincipalsAllowedToRetrieveManagedPassword)", "tasks": ["deploy-smoke"],
+      "learn": "https://learn.microsoft.com/windows-server/identity/ad-ds/manage/group-managed-service-accounts/group-managed-service-accounts/manage-group-managed-service-accounts",
+      "note": "Returns True on the test host when the host can retrieve the gMSA's password."
+    },
+    {
+      "id": "ad-enable", "api": "ad", "method": "WRITE", "cmdlet": "Enable-ADAccount",
+      "adRight": "Delegated right to enable and disable accounts in the account's OU", "tasks": ["deploy-rollback"],
+      "learn": "https://learn.microsoft.com/powershell/module/activedirectory/enable-adaccount",
+      "note": "Re-enables a legacy account the conversion disabled (the guide's Step 5 rollback)."
+    },
+    {
+      "id": "ad-disable", "api": "ad", "method": "WRITE", "cmdlet": "Disable-ADAccount",
+      "adRight": "Delegated right to enable and disable accounts in the account's OU", "tasks": ["deploy-rollback"],
+      "learn": "https://learn.microsoft.com/powershell/module/activedirectory/disable-adaccount",
+      "note": "Disables the synthetic service account after the smoke test. Never deletes it."
+    }
+  ]
+}

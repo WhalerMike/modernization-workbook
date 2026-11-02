@@ -12,8 +12,9 @@ Code for the [developer workbook *Building Non-Person Identity*](../../docs/proj
 - **Chapter 08, Conditional Access for workload identities:** the scope file, CA015 and CA037 per ring created report-only, a pre-merge check (NPI-WCA-01 to NPI-WCA-09), a summary of service principal sign-ins (Graph beta), and enforcement only with `-AllowEnforce`, a D-N5 record and a reviewed summary.
 - **Chapter 09, AI agent identities (preview):** agent identity blueprints and agent identities checked against the production handshake, credentials, least privilege, sponsors and drift rules, the D-N6 mode (`config/agent-id-capabilities-ch09.json`), and the two agent block policies created report-only by `Invoke-NpiAgentCaAction.ps1`.
 - **Chapter 10, drift and evidence:** Chapters 01 and 02 run again and compared with an approved baseline (NPI-DRF-01 to NPI-DRF-09), the review records from Chapters 07 and 09 (NPI-REV-01 to NPI-REV-04), the annual vintage comparison (`Invoke-NpiVintage.ps1`), and the input contract for the other chapters' findings (`docs/ch10-contract.md`). The evidence package is written by `examples/drift-pipeline`.
+- **Chapter 11, deploying to test and production:** the runbook's own code in `deploy/`: one environment settings file per stage (`deploy/settings.template.json`; names and IDs only, never a secret), a read-only preflight (`deploy/Test-NpiDeployPreflight.ps1`: licenses, the deployment identity's credential, the reader's permissions, the operators' roles, the pilot and synthetic objects, the VK-NPI baseline, and in production the test stage's evidence), a smoke test with a synthetic service principal and service account (`deploy/Invoke-NpiDeploySmokeTest.ps1`), and a rollback plan applied only with an approved SHA-256 and `-Apply` (`deploy/Invoke-NpiDeployRollback.ps1`; PATCH and enable or disable only, never a delete). Each has a fixture mode (`-FixturePath`) that sends nothing; `tests/NpiDeploy.Tests.ps1` runs them against a fictional test and production tenant.
 
-Illustrative: tested against fixtures and fakes of Microsoft Graph, Resource Manager and Active Directory, not against a production tenant or domain.
+Illustrative: tested against fixtures and fakes of Microsoft Graph, Resource Manager and Active Directory, not against a production tenant or domain. Nobody has run Chapter 11's deployment code against a live tenant, subscription or forest.
 
 ## Start with Microsoft's samples
 
@@ -40,8 +41,13 @@ Invoke-NpiRotation.ps1
 Invoke-NpiVintage.ps1
 Invoke-NpiWorkloadCa.ps1
 config/calls.json                       Chapters 01 and 02: every call and task, with its least-privileged permission, Azure role or AD right and Learn page
-config/calls-chNN.json                  the same for Chapters 03 to 10, one file per chapter
+config/calls-chNN.json                  the same for Chapters 03 to 11, one file per chapter
 config/                                 the reviewed data each chapter reads (register rules, matrix, policies, rotation, least privilege, agent rules, drift)
+deploy/NpiDeploy.psm1                   Chapter 11: settings, preflight, smoke test and rollback
+deploy/Test-NpiDeployPreflight.ps1
+deploy/Invoke-NpiDeploySmokeTest.ps1
+deploy/Invoke-NpiDeployRollback.ps1
+deploy/settings.template.json           the environment settings file, with a placeholder for every value
 powershell/NpiAgentId/
 powershell/NpiCore/
 powershell/NpiCredentialPolicy/
@@ -63,6 +69,7 @@ tests/LeastPrivilegeSampleHarness.ps1
 tests/MicrosoftSamples.Tests.ps1
 tests/NpiAgentId.Tests.ps1
 tests/NpiCredentialPolicy.Tests.ps1
+tests/NpiDeploy.Tests.ps1
 tests/NpiDrift.Tests.ps1
 tests/NpiFederation.Tests.ps1
 tests/NpiFederationSamples.Tests.ps1
@@ -80,7 +87,7 @@ tests/fixtures/                         a fictional estate (contoso.example, cor
 
 ## Permissions
 
-`Get-NpiRequiredPermission -Task <task>` prints a task's needs. Each chapter's tests keep every task's declaration equal to the union of its calls, and each call names the Learn page that states its permission; the pages were read on October 30, 2026. This table is generated from the call lists.
+`Get-NpiRequiredPermission -Task <task>` prints a task's needs. Each chapter's tests keep every task's declaration equal to the union of its calls, and each call names the Learn page that states its permission; the pages were read on October 30, 2026 (Chapter 11's on November 2, 2026). This table is generated from the call lists.
 
 | Task | Chapter | Mode | Microsoft Graph | Azure | Active Directory |
 |---|---|---|---|---|---|
@@ -104,6 +111,9 @@ tests/fixtures/                         a fictional estate (contoso.example, cor
 | `agent-id` | 09 | read | `AgentIdentity.Read.All`, `AgentIdentityBlueprint.Read.All`, `Application.Read.All`, `AuditLog.Read.All`, `CustomSecAttributeAssignment.Read.All`, `LifecycleWorkflows-Workflow.Read.All`, `LifecycleWorkflows-Workflow.ReadBasic.All`, `Policy.Read.All`, `RoleManagement.Read.Directory`, `User.Read.All` | none | none |
 | `agent-ca-apply` | 09 | write, delegated only (Conditional Access Administrator) | `Policy.Read.All`, `Policy.ReadWrite.ConditionalAccess` | none | none |
 | `drift` | 10 | read | `AuditLog.Read.All` | none | none |
+| `deploy-preflight` | 11 | read | `Application.Read.All`, `LicenseAssignment.Read.All`, `Policy.Read.All`, `RoleEligibilitySchedule.Read.Directory`, `RoleManagement.Read.Directory` | none | Read (default for authenticated domain users) |
+| `deploy-smoke` | 11 | write, delegated only (Cloud Application Administrator): one probe expected to be refused | `Application.Read.All`, `Application.ReadWrite.All`, `AuditLog.Read.All`, `Policy.Read.All` | none | Read (default for authenticated domain users); Run on a host allowed to retrieve the gMSA's password (PrincipalsAllowedToRetrieveManagedPassword) |
+| `deploy-rollback` | 11 | write, delegated only (Conditional Access Administrator and Cloud Application Administrator) | `Application.ReadWrite.All`, `Policy.Read.All`, `Policy.ReadWrite.ApplicationConfiguration`, `Policy.ReadWrite.ConditionalAccess` | none | Delegated right to enable and disable accounts in the account's OU |
 
 ## Clouds
 

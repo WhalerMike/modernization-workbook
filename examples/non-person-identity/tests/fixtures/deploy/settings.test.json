@@ -1,0 +1,119 @@
+{
+  "_comment": "A fictional test environment for contoso.example (Chapter 11). Names and IDs only, never a credential: the deployment and reader identities sign in with a certificate whose private key stays in the operator's certificate store. The same runbook commands run against this file and its production twin; only the file changes.",
+  "environment": "test",
+  "cloud": "gcc",
+  "tenantId": "c0ffee00-0000-4000-8000-0000000000e1",
+  "initialDomain": "contosoexampletest.onmicrosoft.com",
+  "changeRecord": "CHG-2026-1102-T",
+  "deployIdentity": {
+    "clientId": "d0000000-0000-4000-8000-0000000000e1",
+    "credential": "certificate",
+    "certificateThumbprint": "A1B2C3D4E5F60718293A4B5C6D7E8F9012345678",
+    "certificatePemPath": "C:/certs/npi-deploy-test.pem",
+    "federatedIssuer": "",
+    "federatedSubject": ""
+  },
+  "readerIdentity": {
+    "clientId": "d0000000-0000-4000-8000-0000000000e2",
+    "certificateThumbprint": "C1B2C3D4E5F60718293A4B5C6D7E8F9012345678"
+  },
+  "operators": [
+    {
+      "name": "Identity engineer",
+      "upn": "idm-engineer@test.contoso.example",
+      "objectId": "0b000000-0000-4000-8000-0000000000e1",
+      "roles": [
+        "Cloud Application Administrator",
+        "Security Administrator"
+      ],
+      "steps": [
+        "app management policy",
+        "federated credentials",
+        "smoke test"
+      ]
+    },
+    {
+      "name": "Conditional Access administrator",
+      "upn": "ca-admin@test.contoso.example",
+      "objectId": "0b000000-0000-4000-8000-0000000000e2",
+      "roles": [
+        "Conditional Access Administrator"
+      ],
+      "steps": [
+        "workload Conditional Access",
+        "rollback"
+      ]
+    }
+  ],
+  "azure": {
+    "environment": "AzureCloud",
+    "subscriptionId": "dd000000-0000-4000-8000-0000000000e1",
+    "resourceGroup": "rg-npi-test",
+    "location": "eastus2"
+  },
+  "ad": {
+    "domain": "corp-test.contoso.example",
+    "server": "dc01.corp-test.contoso.example",
+    "gmsaName": "gmsa-hrsync",
+    "gmsaTestHost": "APP-TEST-01",
+    "gmsaRetrieverGroup": "gg-gmsa-hrsync-hosts",
+    "gmsaService": "HRSyncSvc",
+    "kerberosInputs": "inputs/kerberos-test"
+  },
+  "pilot": {
+    "name": "Payroll Export",
+    "appObjectId": "0a000000-0000-4000-8000-0000000000e3",
+    "appClientId": "1a000000-0000-4000-8000-0000000000e3",
+    "spObjectId": "5b000000-0000-4000-8000-0000000000e3",
+    "managedIdentityName": "id-payroll-export",
+    "conversionsPath": "inputs/conversions-test.json",
+    "cutoverLogPath": "inputs/cutover-test.csv",
+    "legacyAdAccounts": [
+      "svc-payexport"
+    ]
+  },
+  "smoke": {
+    "appObjectId": "0a000000-0000-4000-8000-0000000000e4",
+    "appClientId": "1a000000-0000-4000-8000-0000000000e4",
+    "spObjectId": "5b000000-0000-4000-8000-0000000000e4",
+    "adAccount": "svc-npi-smoke",
+    "federatedIssuer": "https://token.actions.githubusercontent.com",
+    "federatedSubject": "repo:contoso-example/npi-smoke:environment:test"
+  },
+  "appManagementPolicy": {
+    "configPath": "inputs/app-management-policy-test.json",
+    "pilotPolicyId": "a9000000-0000-4000-8000-0000000000e1",
+    "pilotPolicyName": "npi-pilot-block-secrets"
+  },
+  "conditionalAccess": {
+    "scopePath": "inputs/wca-scope-test.json",
+    "policies": [
+      {
+        "id": "ca000000-0000-4000-8000-0000000e0015",
+        "name": "CA015-ServiceAccounts-LocationRestriction-Ring1",
+        "wave": "Ring1"
+      },
+      {
+        "id": "ca000000-0000-4000-8000-0000000e0037",
+        "name": "CA037-WorkloadIdentities-HighRisk-Block-Ring1",
+        "wave": "Ring1"
+      }
+    ]
+  },
+  "waves": [
+    {
+      "name": "Ring1",
+      "servicePrincipals": [
+        "5b000000-0000-4000-8000-0000000000e3",
+        "5b000000-0000-4000-8000-0000000000e4"
+      ]
+    },
+    {
+      "name": "Ring2",
+      "servicePrincipals": [
+        "5b000000-0000-4000-8000-0000000000e5"
+      ]
+    }
+  ],
+  "outputRoot": "out/deploy-test"
+}

@@ -1,0 +1,108 @@
+{
+  "_comment": "The environment settings file for Chapter 11's runbook. Copy it once per environment (settings.test.json, settings.production.json), replace every <placeholder>, and file each copy with the change record. It holds names and IDs only, never a secret: the deployment and reader identities sign in with a certificate or a federated credential, and Read-NpiDeploySettings refuses a file with a secret-like name or value, or a placeholder left in it. The runbook's commands are the same for test and production; only this file changes.",
+  "environment": "<test-or-production>",
+  "cloud": "gcc",
+  "tenantId": "<tenant-id>",
+  "initialDomain": "<initial-domain>",
+  "changeRecord": "<change-record>",
+  "deployIdentity": {
+    "clientId": "<deploy-app-client-id>",
+    "credential": "certificate",
+    "certificateThumbprint": "<deploy-cert-thumbprint>",
+    "certificatePemPath": "<deploy-cert-pem-path>",
+    "federatedIssuer": "",
+    "federatedSubject": ""
+  },
+  "readerIdentity": {
+    "clientId": "<reader-app-client-id>",
+    "certificateThumbprint": "<reader-cert-thumbprint>"
+  },
+  "operators": [
+    {
+      "name": "Identity engineer",
+      "upn": "<engineer-upn>",
+      "objectId": "<engineer-object-id>",
+      "roles": [
+        "Cloud Application Administrator",
+        "Security Administrator"
+      ],
+      "steps": [
+        "app management policy",
+        "federated credentials",
+        "smoke test"
+      ]
+    },
+    {
+      "name": "Conditional Access administrator",
+      "upn": "<ca-admin-upn>",
+      "objectId": "<ca-admin-object-id>",
+      "roles": [
+        "Conditional Access Administrator"
+      ],
+      "steps": [
+        "workload Conditional Access",
+        "rollback"
+      ]
+    }
+  ],
+  "azure": {
+    "environment": "AzureCloud",
+    "subscriptionId": "<subscription-id>",
+    "resourceGroup": "<resource-group>",
+    "location": "<location>"
+  },
+  "ad": {
+    "domain": "<ad-domain>",
+    "server": "<domain-controller>",
+    "gmsaName": "<gmsa-name>",
+    "gmsaTestHost": "<gmsa-host>",
+    "gmsaRetrieverGroup": "<gmsa-host-group>",
+    "gmsaService": "<gmsa-service>",
+    "kerberosInputs": "<kerberos-inputs-folder>"
+  },
+  "pilot": {
+    "name": "<pilot-app-name>",
+    "appObjectId": "<pilot-app-object-id>",
+    "appClientId": "<pilot-app-client-id>",
+    "spObjectId": "<pilot-sp-object-id>",
+    "managedIdentityName": "<pilot-identity-name>",
+    "conversionsPath": "<conversions-file>",
+    "cutoverLogPath": "<cutover-log>",
+    "legacyAdAccounts": [
+      "<legacy-account>"
+    ]
+  },
+  "smoke": {
+    "appObjectId": "<smoke-app-object-id>",
+    "appClientId": "<smoke-app-client-id>",
+    "spObjectId": "<smoke-sp-object-id>",
+    "adAccount": "svc-npi-smoke",
+    "federatedIssuer": "https://token.actions.githubusercontent.com",
+    "federatedSubject": "<smoke-federated-subject>"
+  },
+  "appManagementPolicy": {
+    "configPath": "<app-policy-config>",
+    "pilotPolicyId": "<pilot-policy-id>",
+    "pilotPolicyName": "npi-pilot-block-secrets"
+  },
+  "conditionalAccess": {
+    "scopePath": "<wca-scope-file>",
+    "policies": []
+  },
+  "waves": [
+    {
+      "name": "Ring1",
+      "servicePrincipals": [
+        "<pilot-sp-object-id>",
+        "<smoke-sp-object-id>"
+      ]
+    },
+    {
+      "name": "Ring2",
+      "servicePrincipals": [
+        "<ring2-sp-object-id>"
+      ]
+    }
+  ],
+  "outputRoot": "<output-folder>"
+}
