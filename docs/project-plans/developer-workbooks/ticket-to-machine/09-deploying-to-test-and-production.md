@@ -1,6 +1,6 @@
 ---
 title: "Chapter 09 — Deploying to Test and Production"
-description: "The deployment runbook: take the kit from a developer instance to a ServiceNow sub-production instance and a SailPoint sandbox tenant, then to the production instance in ServiceNow's Government Community Cloud and the production ISC tenant. One settings file per environment and no secret in it; pre-flight checks for Gate 1, OAuth client credentials and least privilege; the application installed by the vendor's documented method; the ISC workflows created disabled, test-run and enabled in stages; a smoke test with a synthetic worker and the expected result of each step; promotion criteria, first-week monitoring, rollback and the evidence the ISSO keeps. Every step is a command or an exact menu path, and nobody has yet run it against a live tenant."
+description: "The deployment runbook: take the kit from a developer instance to a ServiceNow sub-production instance and a SailPoint sandbox tenant, then to the production instance in ServiceNow's Government Community Cloud and the production ISC tenant. One settings file per environment and no secret in it; pre-flight checks for Gate 1, OAuth client credentials and least privilege; the application installed by the vendor's documented method; the ISC workflows created disabled, test-run and enabled in stages; a smoke test with a synthetic worker and the expected result of each step; promotion criteria, first-week monitoring and rollback; and for each step the federal requirement it serves, the FedRAMP 20x KSI it aligns to, and the hash-chained evidence record the scripts write for the ISSO. Every step is a command or an exact menu path, and nobody has yet run it against a live tenant."
 doc-type: workbook-chapter
 audience: [Technical]
 family: dw-ticket-to-machine
@@ -24,6 +24,11 @@ The runbook that takes the kit past the developer instance. Stage 1 deploys it t
 ::: {.callout-important}
 ## Status: a runbook nobody has run on a live tenant
 This chapter has not been run against a live ServiceNow instance or SailPoint tenant, by the authors or anyone else. The scripts in `deploy/` were run on November 2, 2026 against the kit's fictional fixtures, and that output is shown below with its date. Every "expect" in Stage 1 and Stage 2 is what the kit's code and the vendors' documentation say should happen, not something anyone has seen happen. Run Stage 1 completely, and keep its evidence, before trusting any step of Stage 2.
+:::
+
+::: {.callout-note}
+## Requirements, Key Security Indicators and evidence
+Each step, or group of steps, ends with a table: the federal requirement it serves (NIST SP 800-53 Rev. 5 controls at the Moderate baseline, OMB M-22-09 and CISA BOD 25-01 where they apply, and FedRAMP use of the cloud services), what the step does for it, the FedRAMP 20x Key Security Indicator (KSI) it aligns to, and the file or output that proves it. The control for each row comes from the example guide's per-gate requirement tables; the KSI is one whose "Related SP 800-53 Controls" on FedRAMP's page include that control.[^ttm09-ksi] KSIs are FedRAMP's indicators for cloud service providers. The agency authorizes its own system and lines its evidence up with what ServiceNow and SailPoint report against the KSIs; it doesn't report KSIs itself ([Book 00, Appendix B](../../../books/b00-orientation/appendix-b-engagement-archetype.md)). The scripted steps produce their own evidence: each writes a hash-chained record of the step, its command, its result and the controls and KSIs it supports, and the [promotion go/no-go](#go-no-go) checks that every record for the test stage is present and passing. The mappings are the program's; the authorizing official and assessors decide whether a control is met.
 :::
 
 ## Goal and audience
@@ -105,13 +110,14 @@ The kit's clients, their call list and their tests (Chapters 01 to 08), the thre
 | `deploy/smoke_test.py` | `raise`: the synthetic finding posted twice; `signal`: a closure signal; `check`: one synthetic finding read back and its state compared | `finding_writer`; `evidence_reader` for `check` |
 | `deploy/rollback.py` | The rollback commands for this environment, with its workflow IDs; and a check that the workflows are disabled and no finding from ISC arrived since | `isc_deploy_checker`, `evidence_reader` |
 | `deploy/record.py` | Keeps an ISC response in the evidence folder with any secret field removed, prints its ID, enabled flag or status, and stops on an error | — |
+| `deploy/step_evidence.py` | Every `--out-json` of the three checking scripts also appends a record to `steps.jsonl` beside it: the UTC time, the environment, the exact command, the result, the output file's SHA-256, and the controls and KSIs the step supports, hash-chained the way `evidence_export.py` chains its records ([Chapter 07](07-evidence-records.md)). `--verify <folder> --stage test` checks the chain, every required step record (live, passing, its output file unchanged) and every required file | — (reads files) |
 | `deploy/deploy_common.py` | The shared code; run directly, it prints one value from a settings file or a kept response | — |
 
 `config/calls.json` gains three tasks and four calls, each with its least privilege and the SailPoint specification as its source: `deploy-check` (list the workflows, `sp:workflow:read`; read the finding table as the evidence reader), `smoke-raise` (post to the Scripted REST resource as the finding writer), `workflow-test` (`POST /v2025/workflows/{id}/test` and `GET /v2025/workflow-executions/{id}`), and the workflow `PATCH` under the existing `workflows` task.[^ttm09-wf-spec][^ttm09-wf-test][^ttm09-wf-exec] Every script refuses to run when the client ID in the environment isn't the identity its step runs as. Nothing in `deploy/` writes to ISC: the workflow changes are `curl` commands a person runs with the workflow administrator's client, as the README already had it.
 
 ### The tests
 
-`tests/python/test_deploy.py`, 28 tests against fictional settings and saved responses in `tests/fixtures/deploy/`: the template's placeholders and the refusal of a secret; that only the settings file differs between the stages; endpoint overrides; each pre-flight check, passing and failing; the rendered workflows and the secret's path; the test inputs; the smoke test's three phases and a wrong state; the wrong integration identity refused; the rollback plan and check; the kept responses; the least privilege of the new tasks; and that every call the scripts make is declared in `config/calls.json` for its task. The kit's whole suite, 135 tests, passes.
+`tests/python/test_deploy.py`, 32 tests against fictional settings and saved responses in `tests/fixtures/deploy/`: the template's placeholders and the refusal of a secret; that only the settings file differs between the stages; endpoint overrides; each pre-flight check, passing and failing; the rendered workflows and the secret's path; the test inputs; the smoke test's three phases and a wrong state; the wrong integration identity refused; the rollback plan and check; the kept responses; the step evidence records and their chain, a complete stage passing, and a gap, a tampered file, a fixture record or a failed execution failing; the least privilege of the new tasks; and that every call the scripts make is declared in `config/calls.json` for its task. The kit's whole suite, 139 tests, passes.
 
 ::: {.callout-important}
 ## Illustrative code
@@ -127,8 +133,8 @@ python -m pytest tests/python/test_deploy.py -q
 ```
 
 ```text
-............................                                             [100%]
-28 passed in 2.78s
+................................                                         [100%]
+32 passed in 5.00s
 ```
 
 The pre-flight check on the test stage after the three workflows were created. The WARN is SailPoint's missing written confirmation of the HTTP Request step: the test stage may go on, production may not.
@@ -259,6 +265,48 @@ Rollback verify: test, fixtures
 Result: rolled back
 ```
 
+Each checking script, given `--out-json`, also writes the step's evidence record. Run on November 2, 2026: a fixture pre-flight and a dry-run `raise` into an evidence folder, the first record, and the completeness check the go/no-go uses. The check fails, as it should: the records were made on fixtures and in a dry run, not live, and most of the stage's evidence doesn't exist yet. The listing below is cut after its first eight lines; the other twenty-three read `no step record` or `missing` in the same way.
+
+```bash
+python deploy/preflight.py --settings tests/fixtures/deploy/environment.test.json --expect-workflows disabled --fixtures tests/fixtures/deploy/preflight.json --today 2026-11-02 --out-json out/evidence/test/preflight-3-created.json
+python deploy/smoke_test.py raise --settings tests/fixtures/deploy/environment.test.json --run-id test-smoke --out-json out/evidence/test/smoke-1-raise.json
+python -c "import json; r=json.loads(open('out/evidence/test/steps.jsonl').readlines()[0]); print(json.dumps({k: r[k] for k in ('record','timestamp','environment','mode','command','result','summary','output_sha256','requirements','prev_sha256','record_sha256')}, indent=2))"
+python deploy/step_evidence.py --verify out/evidence/test --stage test
+```
+
+```text
+{
+  "record": "preflight-3-created",
+  "timestamp": "2026-11-02T12:18:18Z",
+  "environment": "test",
+  "mode": "fixtures",
+  "command": "python deploy/preflight.py --settings tests/fixtures/deploy/environment.test.json --expect-workflows disabled --fixtures tests/fixtures/deploy/preflight.json --today 2026-11-02 --out-json out/evidence/test/preflight-3-created.json",
+  "result": "pass",
+  "summary": "9 PASS, 1 WARN, 0 FAIL, 0 SKIP: go",
+  "output_sha256": "a59ba9075225575885fad51e90331e0832005cecce0ac882a74bae8930c90170",
+  "requirements": [
+    {"control": "SA-9", "ksi": ["KSI-SCR-MIT"]},
+    {"control": "AC-6", "ksi": ["KSI-IAM-ELP", "KSI-IAM-JIT"]},
+    {"control": "IA-5 (non-user)", "ksi": ["KSI-IAM-SNU"]},
+    {"control": "CM-3", "ksi": ["KSI-CMT-LMC", "KSI-CMT-RMV", "KSI-CMT-RVP", "KSI-CMT-VTD"]},
+    {"control": "CA-7", "ksi": ["KSI-MLA-EVC"]}
+  ],
+  "prev_sha256": null,
+  "record_sha256": "9d8d13b938dc42b7342798ccb0f356093dea828305bf7fc5157db2ccaea6bf82"
+}
+  PASS  steps.jsonl chain            2 records, chain unbroken
+  FAIL  preflight-2-installed        no step record
+  FAIL  preflight-3-created          pass, fixtures, 2026-11-02T12:18:18Z; SA-9, AC-6, IA-5 (non-user), CM-3, CA-7; KSI-CMT-LMC, KSI-CMT-RMV, KSI-CMT-RVP, KSI-CMT-VTD, KSI-IAM-ELP, KSI-IAM-JIT, KSI-IAM-SNU, KSI-MLA-EVC, KSI-SCR-MIT
+  FAIL  check-1-native               no step record
+  FAIL  check-2-mover                no step record
+  FAIL  check-3-native               no step record
+  FAIL  preflight-4-enabled          no step record
+  FAIL  smoke-1-raise                pass, dry run (no --apply), 2026-11-02T12:18:24Z; CM-3(2), CM-4(2), AU-12; KSI-CMT-LMC, KSI-CMT-RVP, KSI-CMT-VTD, KSI-MLA-LET
+Result: 1 of 32 present and passing: evidence incomplete
+```
+
+The record's `requirements` entries are printed one per line here; the file holds the same values.
+
 ## One environment settings file {#settings}
 
 Everything that differs between the test stage and production lives in one JSON file per environment: the ServiceNow and ISC addresses, the Graph app registration, each integration identity's client ID and recorded grant, the workflow owner, the Gate 1 record, the change record and the synthetic worker. It never holds a secret: the kit's loader refuses a secret key in a file, as [Chapter 02](02-servicenow-client-and-least-privilege.md) shows, and every secret comes from the vault into an environment variable for the length of one step. Keep both files in the agency's repository, reviewed like code (*design guidance*). The upper-case keys are the kit's own configuration keys, so the same file is the `--config` of the kit's re-read client and evidence export.
@@ -328,6 +376,16 @@ Run these before Stage 1, and again before Stage 2 with the production settings.
 
    Before the application is installed, expect one FAIL, `instance`, because the finding table doesn't exist yet, and `workflows   0 of 3 found; absent (expected absent)`; [Step 1.1](#step-1-1) runs the check again after the install, when it should end `go`. Fix every other FAIL and run it again; don't go on with one.
 
+**Requirements and evidence: pre-flight** ([G1](../../../books/guides/ttm-servicenow-sailpoint.md#step-1-confirm-the-authorization-boundary)).
+
+| Requirement | What this step does | KSI it aligns to | Evidence the ISSO keeps |
+|---|---|---|---|
+| SA-9 External System Services; FedRAMP use of authorized cloud services | Re-reads both Marketplace listings on the day; records SailPoint's written feature scope; fails production without it | KSI-SCR-MIT | `fedramp-products.json`; the `marketplace` and `features` rows of `preflight-*.json`; their records in `steps.jsonl` |
+| AC-6 Least Privilege | Compares each integration identity's recorded grant with what its tasks need in `config/calls.json` | KSI-IAM-ELP, KSI-IAM-JIT | The `roles` row of every `preflight-*.json` |
+| AC-2 and IA-5 for non-user accounts | Seven integration identities, one per task; OAuth client credentials or a vault token; basic authentication refused; no secret in the settings file | KSI-IAM-SNU | The `auth` and `settings` rows of `preflight-*.json` |
+| CM-3 Configuration Change Control | Checks the change record (required in production) | KSI-CMT-LMC, KSI-CMT-RVP | The `change` row of `preflight-*.json`; the change record |
+| OMB M-22-09, section III.A: phishing-resistant MFA for agency staff and contractors[^ttm09-m2209] | The people who make this runbook's console changes sign in to ServiceNow, ISC and Entra with phishing-resistant MFA. The runbook assumes it and doesn't check it (*design guidance*) | KSI-IAM-APM | The agency's sign-in records for those sessions; not produced by the kit |
+
 ## Stage 1: the live test {#stage-1}
 
 **Where:** the ServiceNow sub-production instance and the ISC sandbox tenant named in `deploy/environment.test.json`. Start the session block with that file.
@@ -351,9 +409,24 @@ ServiceNow's update set guidance says update sets aren't meant for installing ap
 
 The business rule is active from the install, so a person's close becomes *Awaiting verification* before any finding exists ([G6](../../../books/guides/ttm-servicenow-sailpoint.md#step-6-close-only-on-a-re-read)) (*design guidance*).
 
+**Requirements and evidence: Step 1.1** ([G4](../../../books/guides/ttm-servicenow-sailpoint.md#step-4-open-the-front-door), [G6](../../../books/guides/ttm-servicenow-sailpoint.md#step-6-close-only-on-a-re-read)).
+
+| Requirement | What this step does | KSI it aligns to | Evidence the ISSO keeps |
+|---|---|---|---|
+| CM-3 Configuration Change Control; SA-10 Developer Configuration Management | Publishes one version, committed and tagged in source control, and installs that version; nothing is changed in place on the test instance | KSI-CMT-RMV, KSI-SCR-MIT | The source-control tag; `deploy.app.version` in the settings file; the instance's application record |
+| CM-5 Access Restrictions for Change | Only an administrator installs and sets properties; the integration identities can't | KSI-CMT-RVP, KSI-IAM-JIT | The installer's audit trail on the instance; the `roles` row of `preflight-2-installed.json` |
+| CM-4(2) Verification of Controls | Re-runs the pre-flight check against the installed table | KSI-CMT-VTD | `preflight-2-installed.json` and its record in `steps.jsonl` |
+
 ### Step 1.2: Turn on Native Change Detection ([G3](../../../books/guides/ttm-servicenow-sailpoint.md#step-3-connect-the-sources-and-measure-the-starting-drift)) {#step-1-2}
 
 A console action, by the SailPoint administrator, on the Entra source named in `deploy.synthetic.source_name`: **Admin** > **Connections** > **Sources**; select the source; in **Account Management**, select **Native Change Detection**; turn on **Enable Native Change Detection**; choose the account operations and the attributes to watch, including `department`; select **Save**. SailPoint recommends watching all entitlement attributes for all account operations, notes that its workflow templates need that, and says to run an aggregation afterwards.[^ttm09-ncd] Then start one: on the same source, in **Account Management**, select **Account Aggregation**, then **Start Aggregation** at the top of the page.[^ttm09-agg]
+
+**Requirements and evidence: Step 1.2** ([G3](../../../books/guides/ttm-servicenow-sailpoint.md#step-3-connect-the-sources-and-measure-the-starting-drift)).
+
+| Requirement | What this step does | KSI it aligns to | Evidence the ISSO keeps |
+|---|---|---|---|
+| CA-7 Continuous Monitoring | Turns on detection of changes made outside SailPoint on the Entra source | KSI-MLA-EVC | Step 1.4's and Step 1.6's native-change findings (`check-1-native.json`, `smoke-3-native-changed.json`), which show the detection working |
+| CM-6 Configuration Settings | Records the source's detection setting as a reviewed change | KSI-CMT-LMC | The change record's note of the setting and its date (the kit doesn't export it) |
 
 ### Step 1.3: Create the three workflows, disabled ([G4](../../../books/guides/ttm-servicenow-sailpoint.md#step-4-open-the-front-door)) {#step-1-3}
 
@@ -439,6 +512,15 @@ use_role
 
 Expect three `enabled=True` lines, then `3 of 3 found; enabled (expected enabled)`. The re-read client and the drift reconciliation stay unscheduled in Stage 1; they run by hand in the smoke test.
 
+**Requirements and evidence: Steps 1.3 to 1.5** ([G4](../../../books/guides/ttm-servicenow-sailpoint.md#step-4-open-the-front-door)).
+
+| Requirement | What this step does | KSI it aligns to | Evidence the ISSO keeps |
+|---|---|---|---|
+| CM-3(2) Testing, Validation, and Documentation of Changes | Creates the workflows disabled, test-runs each with the synthetic worker, reads each execution, then enables | KSI-CMT-VTD, KSI-CMT-LMC | `workflow-1.json` to `workflow-3.json`, `test-*.json`, `execution-*.json` (`status=Completed`), `check-1-native.json` to `check-3-native.json`, `enable-*.json` |
+| CM-5 Access Restrictions for Change | Only the workflow administrator's client changes a workflow; only an `ORG_ADMIN` token test-runs one; the deploy checker only reads | KSI-CMT-RMV, KSI-IAM-JIT | The `roles` row of `preflight-3-created.json` and `preflight-4-enabled.json`; the workflows' `modifiedBy` in the kept responses |
+| CM-3 Configuration Change Control | Records the workflows' state after each change | KSI-CMT-LMC | `preflight-3-created.json` (`disabled`), `preflight-4-enabled.json` (`enabled`) and their records |
+| IA-5 for non-user accounts | The finding writer's secret goes from the vault to the workflow without touching a file; kept responses have it removed | KSI-IAM-SNU | The `[removed]` field in `workflow-*.json` |
+
 ### Step 1.6: Smoke test with the synthetic worker ([G4](../../../books/guides/ttm-servicenow-sailpoint.md#step-4-open-the-front-door), [G6](../../../books/guides/ttm-servicenow-sailpoint.md#step-6-close-only-on-a-re-read), [G7](../../../books/guides/ttm-servicenow-sailpoint.md#step-7-operate-the-tempo)) {#step-1-6}
 
 The smoke test follows three synthetic findings from raised to closed: *direct* (posted by the script, as the drift client would), *native* (raised by the native-change workflow) and *mover* (raised by the mover workflow). Each step below says what to expect.
@@ -517,6 +599,16 @@ The smoke test follows three synthetic findings from raised to closed: *direct* 
 
    Expect `Result: PASS` three times.
 
+**Requirements and evidence: Step 1.6** ([G4](../../../books/guides/ttm-servicenow-sailpoint.md#step-4-open-the-front-door), [G6](../../../books/guides/ttm-servicenow-sailpoint.md#step-6-close-only-on-a-re-read), [G7](../../../books/guides/ttm-servicenow-sailpoint.md#step-7-operate-the-tempo)).
+
+| Requirement | What this step does | KSI it aligns to | Evidence the ISSO keeps |
+|---|---|---|---|
+| CM-4(2) Verification of Controls | Follows three synthetic findings from raised to closed; each closes only on a re-read that matches | KSI-CMT-VTD, KSI-CMT-LMC | `smoke-1-raise.json` to `smoke-8-*-closed.json`, `smoke-6-reread-dry-run.json`, `smoke-7-reread-applied.json`, and their records |
+| CM-3(2) Testing, Validation, and Documentation of Changes | Proves de-duplication, the closure signal and the native-change path on the deployed version | KSI-CMT-VTD | `smoke-1-raise.json` (201, then 200), `smoke-4-native-reverted.json` (`occurrences 3`), `smoke-5-signal.json` (`moved 2`) |
+| AC-5 Separation of Duties | The finding writer raises; only the verifier closes; the evidence reader reads | KSI-IAM-JIT | The identity each step ran as, in its record's command and output; the checker identity in each closed record's re-read evidence |
+| CA-7 Continuous Monitoring; AU-12 Audit Record Generation | Each step leaves a timestamped, attributable record | KSI-MLA-EVC, KSI-MLA-LET | `steps.jsonl` |
+| CISA BOD 25-01 (required configurations for Microsoft Entra ID)[^ttm09-bod2501] | Changes only the synthetic worker's `department`; changes no tenant setting the required configurations cover (*inference*) | KSI-MLA-EVC | The agency's current SCuBA assessment results, unchanged; not produced by the kit |
+
 ### Step 1.7: Capture the evidence ([G7](../../../books/guides/ttm-servicenow-sailpoint.md#step-7-operate-the-tempo)) {#step-1-7}
 
 Export the closed synthetic findings as Book 13 evidence records ([Chapter 07](07-evidence-records.md)), verify the package, and list what the stage kept:
@@ -530,6 +622,13 @@ ls -1 "$EVIDENCE"
 ```
 
 Expect `3 evidence records: 3 closed on a re-read, ...`, then `Package holds: every file matches the manifest and the chain is unbroken.` The listing is the stage's evidence; the [evidence table](#evidence) says what each file proves.
+
+**Requirements and evidence: Step 1.7** ([G7](../../../books/guides/ttm-servicenow-sailpoint.md#step-7-operate-the-tempo)).
+
+| Requirement | What this step does | KSI it aligns to | Evidence the ISSO keeps |
+|---|---|---|---|
+| AU-12 Audit Record Generation; CM-3 (records of changes retained) | Exports the closed synthetic findings as Book 13 evidence records | KSI-MLA-LET, KSI-CMT-LMC | `evidence-package/` (`records.jsonl`, `summary.json`, `manifest.json`) |
+| AU-9 Protection of Audit Information | Hash-chains the records and verifies the package; `steps.jsonl` is chained the same way | KSI-MLA-OSM | The `--verify-dir` result; the `steps.jsonl chain` row of `step_evidence.py --verify` |
 
 ### Step 1.8: Roll back, and prove it ([G4](../../../books/guides/ttm-servicenow-sailpoint.md#step-4-open-the-front-door), [Rollback](../../../books/guides/ttm-servicenow-sailpoint.md#rollback)) {#step-1-8}
 
@@ -568,12 +667,21 @@ Rehearse the rollback in the test stage, so production's is a second run. The gu
 
 If the business rule itself is at fault, the guide's [Gate 6](../../../books/guides/ttm-servicenow-sailpoint.md#step-6-close-only-on-a-re-read) rollback is to deactivate it: an administrator clears the rule's **Active** flag, which ServiceNow defines as whether the rule is enforced.[^ttm09-sn-br] Closures then lose their evidence until it's back, so record it in the change record.
 
+**Requirements and evidence: Step 1.8** ([G4](../../../books/guides/ttm-servicenow-sailpoint.md#step-4-open-the-front-door), [Rollback](../../../books/guides/ttm-servicenow-sailpoint.md#rollback)).
+
+| Requirement | What this step does | KSI it aligns to | Evidence the ISSO keeps |
+|---|---|---|---|
+| CP-10 System Recovery and Reconstitution, read for the integration (*inference*) | Rehearses the rollback and proves it took: workflows off, no new findings, records kept | KSI-RPL-ARP, KSI-RPL-TRC | `rollback-plan.txt`, `disable-*.json`, `rollback-verify.json` and its record |
+| CM-3 Configuration Change Control | Each rollback action is a recorded change with its before and after state | KSI-CMT-LMC | `rollback-plan.txt` (`now enabled`), `disable-*.json` (`enabled=False`) |
+| CM-5 Access Restrictions for Change | The rollback's writes are the workflow administrator's; the check is read-only | KSI-CMT-RMV, KSI-IAM-JIT | The commands in `rollback-plan.txt`; the `rollback-verify` record's command |
+
 ## Promotion go/no-go {#go-no-go}
 
 The ISSO and the change manager decide on these, with Stage 1's evidence folder in front of them. Every row must hold (*design guidance*).
 
 | Criterion | The evidence that shows it |
 |---|---|
+| Every requirement row for the test stage has its evidence present and passing | `python deploy/step_evidence.py --verify out/evidence/test --stage test` ends `evidence complete` |
 | Every pre-flight run in Stage 1 ended `go`, with no FAIL | `preflight-1-before.json` to `preflight-4-enabled.json` |
 | SailPoint confirmed in writing that Workflows, Native Change Detection and the HTTP Request step are in the production tenant's authorized environment | `deploy.g1` in `environment.production.json`; the answer itself, filed with the Gate 1 record |
 | Each workflow's test run ended `Completed` and raised or moved the finding expected | `execution-1.json` to `execution-3.json`; `check-1-native.json` to `check-3-native.json` |
@@ -583,6 +691,14 @@ The ISSO and the change manager decide on these, with Stage 1's evidence folder 
 | No workflow execution failed during the soak | A pre-flight run on the day of the meeting: `executions ... 0 failed` |
 | Nothing outside the kit's declared calls was granted to make it work | `roles` PASS in every pre-flight; no change to `config/calls.json` without a reviewed pull request |
 | The production change record is approved | The change record |
+
+Run the completeness check on the test stage's evidence folder, from `examples/servicenow-sailpoint`, and file its output with the decision:
+
+```bash
+python deploy/step_evidence.py --verify out/evidence/test --stage test | tee out/evidence/test/go-no-go-evidence.txt
+```
+
+Expect one `PASS` line per requirement and `Result: 32 of 32 present and passing: evidence complete`. It checks the `steps.jsonl` chain; that each required step's record is live, passed, and still matches its output file's SHA-256; that every workflow, execution, enable and disable file is there and shows `Completed`, `enabled=True` or `enabled=False`; and that the evidence package verifies. A record made on fixtures or in a dry run doesn't count.
 
 A no-go leaves the test stage running, or rolled back, and names what must change. Any change to the application means a new published version and Stage 1 again from [Step 1.1](#step-1-1).
 
@@ -617,6 +733,50 @@ A no-go leaves the test stage running, or rolled back, and names what must chang
    The first shows the workflows still enabled and their failure count; a `WARN  G4  executions` names the workflow whose failed executions to read in ISC, which keeps them for 90 days.[^ttm09-wf-exec] The second is a dry run: it lists every record waiting for verification and what a re-read would do now. Expect the waiting list to empty between runs, and a burst of findings in the first days, which the guide calls the measurement working ([Gate 3](../../../books/guides/ttm-servicenow-sailpoint.md#step-3-connect-the-sources-and-measure-the-starting-drift)). At the end of the week, run [Step 1.7](#step-1-7) with `--period "$STAGE-week1"` and `--since` set to the go-live date, and give the folder to the ISSO.
 9. **Rollback** ([G4](../../../books/guides/ttm-servicenow-sailpoint.md#step-4-open-the-front-door), [Rollback](../../../books/guides/ttm-servicenow-sailpoint.md#rollback)). [Step 1.8](#step-1-8), items 1 to 3, and stop the two scheduled runs in the job runner. The application stays installed and every record stays. A fault in the application itself is fixed forward with a corrected version through Stage 1 again, because a source-control install can't be rolled back (*design guidance*).[^ttm09-sn-rollback]
 
+### Requirements and evidence in production {#stage-2-requirements}
+
+The scripted steps write the same records to `out/evidence/production/steps.jsonl`, and the same check runs with `--stage production` at the end of item 6:
+
+```bash
+python deploy/step_evidence.py --verify out/evidence/production --stage production | tee out/evidence/production/go-live-evidence.txt
+```
+
+Expect `Result: 27 of 27 present and passing: evidence complete`; production has no rollback rehearsal, so the rollback record and files aren't required.
+
+**Items 1 to 3: change record, pre-flight, install.**
+
+| Requirement | What this step does | KSI it aligns to | Evidence the ISSO keeps |
+|---|---|---|---|
+| CM-3 Configuration Change Control; CM-3(4) Security and Privacy Representatives | An approved normal change, with the ISSO's acceptance of Stage 1's evidence, before anything is installed | KSI-CMT-RVP, KSI-CMT-LMC | The change record; `out/evidence/test/go-no-go-evidence.txt` |
+| SA-9 External System Services; FedRAMP use of authorized cloud services | Pre-flight fails in production without SailPoint's written feature confirmation and a Marketplace read within 30 days | KSI-SCR-MIT | `fedramp-products.json`; the `marketplace` and `features` rows of production's `preflight-*.json` |
+| AC-6; AC-2 and IA-5 for non-user accounts | Production's seven identities checked as in the test stage | KSI-IAM-ELP, KSI-IAM-JIT, KSI-IAM-SNU | The `roles` and `auth` rows of production's `preflight-*.json` |
+| CM-3(2); SA-10 | Installs the version Stage 1 tested, not a rebuild | KSI-CMT-VTD, KSI-CMT-RMV, KSI-SCR-MIT | The version on the production instance equals `deploy.app.version` and the source-control tag; `preflight-2-installed.json` |
+| OMB M-22-09, section III.A[^ttm09-m2209] | Console changes by people with phishing-resistant MFA (*design guidance*) | KSI-IAM-APM | The agency's sign-in records; not produced by the kit |
+
+**Items 4 to 6: detection, workflows, smoke test, evidence.**
+
+| Requirement | What this step does | KSI it aligns to | Evidence the ISSO keeps |
+|---|---|---|---|
+| CA-7; CM-6 | Native Change Detection on the production Entra source | KSI-MLA-EVC, KSI-CMT-LMC | Production's `check-1-native.json` and `smoke-3-native-changed.json`; the change record's note |
+| CM-3(2); CM-5 | Workflows created disabled, test-run, then enabled, by the workflow administrator | KSI-CMT-VTD, KSI-CMT-LMC, KSI-CMT-RMV, KSI-IAM-JIT | Production's `workflow-*.json`, `execution-*.json`, `enable-*.json`, `preflight-3-created.json`, `preflight-4-enabled.json` |
+| CM-4(2); AC-5 | The synthetic findings close only on the verifier's re-read | KSI-CMT-VTD, KSI-IAM-JIT | Production's `smoke-*.json`; `smoke-7-reread-applied.json` |
+| AU-12; AU-9 | Each step recorded and chained; the evidence package verifies | KSI-MLA-LET, KSI-MLA-OSM | `steps.jsonl`; `evidence-package/`; `go-live-evidence.txt` |
+| CISA BOD 25-01[^ttm09-bod2501] | No tenant setting the required configurations cover is changed (*inference*) | KSI-MLA-EVC | The agency's SCuBA results, unchanged |
+
+**Items 7 and 8: schedules and the first week.**
+
+| Requirement | What this step does | KSI it aligns to | Evidence the ISSO keeps |
+|---|---|---|---|
+| CA-7 Continuous Monitoring | The drift reconciliation and the re-read client run on a schedule; a daily pre-flight shows workflow failures | KSI-MLA-EVC | `out/runs/drift-*.json`, `out/runs/reread-*.json`; `week1-*-preflight.json` and their records |
+| CM-4(2) Verification of Controls | Every closure in production comes from a re-read; the daily dry run lists what's waiting | KSI-CMT-VTD, KSI-CMT-LMC | `week1-*-waiting.json`; the week's evidence package |
+| AU-12 Audit Record Generation | The week's closed findings exported as evidence records | KSI-MLA-LET | The week-one evidence package and its `--verify-dir` result |
+
+**Item 9: rollback, if used.**
+
+| Requirement | What this step does | KSI it aligns to | Evidence the ISSO keeps |
+|---|---|---|---|
+| CP-10, read for the integration (*inference*); CM-3; CM-5 | The rehearsed rollback, on production: intake stopped, records kept | KSI-RPL-ARP, KSI-RPL-TRC, KSI-CMT-LMC, KSI-CMT-RMV | Production's `rollback-plan.txt`, `disable-*.json`, `rollback-verify.json` and its record; the change record |
+
 ## Evidence the ISSO keeps {#evidence}
 
 Each stage leaves `out/evidence/<stage>/`. Copy it to the agency's evidence store with the change record. The control mappings are the program's, made the way Book 13's [Appendix A](../../../books/b13-governance/appendix-a-requirements-mapping.md) and the [federal framework crosswalk](../../../reference/federal-framework-crosswalk.md) make them; the authorizing official and assessors decide whether a control is satisfied.
@@ -627,6 +787,7 @@ Each stage leaves `out/evidence/<stage>/`. Copy it to the agency's evidence stor
 | `preflight-*.json` | Least privilege per identity, OAuth instead of basic authentication, no secret in a file, the change record, the workflow state at each step | AC-6, IA-5, CM-3 (G1, G4)[^ttm09-moderate] | Both |
 | `workflow-*.json`, `test-*.json`, `execution-*.json`, `enable-*.json` | What was deployed, that it was tested disabled before it was enabled, and by which identity | CM-3(2) testing, validation and documentation of changes; CM-5 access restrictions for change (G4)[^ttm09-moderate] | Both |
 | `check-*.json`, `smoke-*.json` | The front door, de-duplication, the closure signal and the re-read work end to end on a synthetic worker | CM-4(2) verification of controls; CA-7 (G4, G6)[^ttm09-moderate] | Both |
+| `steps.jsonl`, and `go-no-go-evidence.txt` (test) or `go-live-evidence.txt` (production) | One chained record per scripted step, with its command, result, controls and KSIs; the stage's evidence complete | AU-9, AU-12, CM-3 (KSI-MLA-OSM, KSI-MLA-LET, KSI-CMT-LMC)[^ttm09-moderate] | Both |
 | `evidence-package/` | The synthetic findings as Book 13 evidence records, hash-chained and verified | AU-12; CM-3 records of changes (G7)[^ttm09-moderate] | Both |
 | `rollback-plan.txt`, `disable-*.json`, `rollback-verify.json` | The rollback works and was proven | CM-3; CP-10 system recovery and reconstitution, read for the integration *(inference)*[^ttm09-moderate] | Test; production if used |
 | The change record and the published application version's source-control tag | Production received the version that was tested, under approval | CM-3, CM-3(4) security representatives, SA-10 developer configuration management[^ttm09-moderate] | Production |
@@ -658,6 +819,7 @@ Each stage leaves `out/evidence/<stage>/`. Copy it to the agency's evidence stor
 | Account aggregation | Source > **Account Management** > **Account Aggregation** > **Start Aggregation** | [^ttm09-agg] |
 | Entra user, create and edit | **Entra ID** > **Users** > **New user** > **Create new user** (Account enabled can be cleared); select a user > **Edit properties** > **Job information**; User Administrator | [^ttm09-entra-create][^ttm09-entra-edit] |
 | GCC endpoints | Microsoft 365 GCC keeps the worldwide `graph.microsoft.com` | [^ttm09-graph] |
+| FedRAMP 20x KSIs | 46 indicators, each listing its related SP 800-53 controls; the pairs this chapter uses as the page gives them, for example KSI-CMT-VTD with CM-3(2) and CM-4(2), KSI-SCR-MIT with SA-9 and SA-10, KSI-RPL-TRC with CP-10, KSI-IAM-SNU with AC-2; the latest mapping change October 13, 2026 | [^ttm09-ksi] |
 
 ### What couldn't be verified
 
@@ -704,6 +866,7 @@ Book 13 maps the loop's controls in [Appendix A](../../../books/b13-governance/a
 - [ ] Each FedRAMP listing was read on the day, and SailPoint's written answer covers Workflows, Native Change Detection and the HTTP Request step before Stage 2.
 - [ ] Seven integration identities exist per environment, each with only its role or scopes, recorded in `deploy.granted`, and every pre-flight run shows `roles` PASS.
 - [ ] Stage 1 ran in full: install, Native Change Detection, workflows created disabled, test-run, enabled, smoke test, evidence, rollback rehearsed.
+- [ ] `step_evidence.py --verify` ends `evidence complete` for the test stage before promotion, and for production after go-live.
 - [ ] Every go/no-go criterion holds, and the ISSO and the change manager signed the decision.
 - [ ] Production installed the version Stage 1 tested, under an approved normal change.
 - [ ] The schedules started only after the production smoke test passed.
@@ -737,4 +900,7 @@ Book 13 maps the loop's controls in [Appendix A](../../../books/b13-governance/a
 [^ttm09-entra-create]: Microsoft Learn, "How to create, invite, and delete users" (at least User Administrator; **Entra ID** > **Users** > **New user** > **Create new user**; **Account enabled** checked by default and can be cleared; job information on the Properties tab), <https://learn.microsoft.com/entra/fundamentals/how-to-create-delete-users> (read November 2, 2026).
 [^ttm09-entra-edit]: Microsoft Learn, "Add or update a user's profile information and settings in the Microsoft Entra admin center" (at least User Administrator; **Entra ID** > **Users**, select a user, **Edit properties**, the **Job information** category including department, **Save**), <https://learn.microsoft.com/entra/fundamentals/how-to-manage-user-profile-info> (read November 2, 2026).
 [^ttm09-graph]: Microsoft Learn, "Microsoft Graph national cloud deployments" (Microsoft 365 GCC continues to use the worldwide endpoints, `https://graph.microsoft.com`), <https://learn.microsoft.com/graph/deployments> (read November 2, 2026).
-[^ttm09-moderate]: National Institute of Standards and Technology, SP 800-53B Moderate baseline, release 5.2.0 OSCAL profile (includes AC-6, AU-6, AU-12, CA-7, CM-3, CM-3(2), CM-3(4), CM-4, CM-4(2), CM-5, CP-10, IA-5, SA-9 and SA-10), <https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_MODERATE-baseline_profile.json> (read November 2, 2026).
+[^ttm09-moderate]: National Institute of Standards and Technology, SP 800-53B Moderate baseline, release 5.2.0 OSCAL profile (includes AC-2, AC-5, AC-6, AU-6, AU-9, AU-12, CA-7, CM-3, CM-3(2), CM-3(4), CM-4, CM-4(2), CM-5, CM-6, CP-10, IA-5, SA-9 and SA-10), <https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_MODERATE-baseline_profile.json> (read November 2, 2026).
+[^ttm09-ksi]: FedRAMP, "Key Security Indicators," *FedRAMP Consolidated Rules for 2026* (46 indicators, each with its statement and "Related SP 800-53 Controls"; the changelogs' latest control mapping update October 13, 2026), <https://www.fedramp.gov/2026/reference/key-security-indicators/> (read November 2, 2026).
+[^ttm09-m2209]: Office of Management and Budget, M-22-09, *Moving the U.S. Government Toward Zero Trust Cybersecurity Principles*, January 26, 2022, section III.A (Identity: phishing-resistant MFA is required for agency staff, contractors and partners), <https://www.whitehouse.gov/wp-content/uploads/2022/01/M-22-09.pdf> (accessed October 21, 2026, as cited in Book 01, Chapter 04).
+[^ttm09-bod2501]: Cybersecurity and Infrastructure Security Agency, "BOD 25-01: Implementing Secure Practices for Cloud Services Required Configurations," Microsoft Entra ID policies, <https://www.cisa.gov/resources-tools/services/bod-25-01-implementing-secure-practices-cloud-services-required-configurations> (accessed October 21, 2026, as cited in Book 01, Chapter 04).
