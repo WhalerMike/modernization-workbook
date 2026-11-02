@@ -53,3 +53,14 @@ Microsoft Learn pages opened on October 30, 2026 through the Microsoft Learn MCP
 | Book 17, Chapters 05, 09 and 10 | NPI-REV-02, -03; the vintage comparison; M-25-21 | The OSCAL and authorization package mechanics stay in Book 17 |
 | The companion guide's federal requirements | The control table | The control decisions are the assessor's |
 | Chapters 03 to 09 | The contract (`docs/ch10-contract.md`) and its samples | Their own outputs, not yet fixed; each can adopt the contract in its own change |
+
+## Federal requirements and evidence (November 2, 2026)
+
+The chapter's new section has 20 rows: each Lab 1 and Lab 2 step that produces evidence, and each file the kit's code writes for this chapter. Lab steps that only delete `out`, make test objects or rerun earlier chapters have no row, and the section says so.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| F1 | The controls cited (AC-2, AC-2(3) are in the SP 800-53B Moderate baseline | Federal requirements and evidence | verified: each ID checked in the release 5.2.0 OSCAL Moderate profile (287 controls) | [^np10-moderate], read November 2, 2026 |
+| F2 | Each KSI named (KSI-CMT-RMV, KSI-CMT-RVP, KSI-CMT-VTD, KSI-IAM-AAM, KSI-IAM-ELP, KSI-IAM-JIT, KSI-IAM-SNU, KSI-IAM-SUS, KSI-MLA-EVC, KSI-MLA-LET, KSI-MLA-OSM, KSI-MLA-RVL, KSI-PIY-GIV, KSI-SVC-ACM, KSI-SVC-EIS, KSI-SVC-VRI) lists the row's control, or one of its enhancements, among its related SP 800-53 controls | Federal requirements and evidence | verified against FedRAMP's page. IA-9 is in no NIST baseline; no indicator lists it, so its rows say so. Every ID was already cited in the repository (Book 02, Chapter 10; Book 04, Chapter 10; Book 13, Appendix A; Book 14, Chapter 03); none is new | [^np10-ksi], read November 2, 2026 |
+| F3 | KSIs are provider-side FedRAMP 20x indicators; the agency doesn't report them | The sentence under the table | carried forward | Book 00, Appendix B |
+| F4 | Which output supports which indicator, and how SCuBA or M-25-21 rows map through a control | The KSI column | restated-as-design (labeled) | the program's mapping |
