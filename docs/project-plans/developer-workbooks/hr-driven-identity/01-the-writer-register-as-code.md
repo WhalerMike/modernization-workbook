@@ -150,7 +150,7 @@ python -c "import json; print(json.load(open('out/ch01/queries.json'))[2])"
 # Step 6: Run the tests
 python -m pytest tests -q
 
-# Step 6: Run the tests
+# After the steps
 rm -rf out
 ```
 

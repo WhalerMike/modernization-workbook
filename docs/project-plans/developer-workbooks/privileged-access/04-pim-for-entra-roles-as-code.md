@@ -218,7 +218,7 @@ Get-Content out/pim-wave1/findings.json -Raw | ConvertFrom-Json | Where-Object R
 # Step 7: Run the tests
 Invoke-Pester -Path tests
 
-# Step 7: Run the tests
+# After the steps
 Remove-Item -Recurse -Force out
 ```
 

@@ -233,7 +233,7 @@ Invoke-PaArApply -Client $client -Plan (Get-PaArPlan -Client $client -Config $c 
 # Step 9: Run the tests
 Invoke-Pester -Path tests
 
-# Step 9: Run the tests
+# After the steps
 Remove-Item -Recurse -Force out
 ```
 

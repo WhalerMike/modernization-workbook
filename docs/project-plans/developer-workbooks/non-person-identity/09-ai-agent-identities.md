@@ -232,7 +232,7 @@ $sha = (Get-FileHash out/agent-id/agent-ca-plan.json -Algorithm SHA256).Hash.ToL
 # Step 10: Run the tests
 Invoke-Pester -Path tests
 
-# Step 10: Run the tests
+# After the steps
 Remove-Item -Recurse -Force out
 ```
 

@@ -146,7 +146,7 @@ cut -d, -f1,7,8,10 out/ch06/intervals.csv
 # Step 5: Run the tests
 python -m pytest tests -q
 
-# Step 5: Run the tests
+# After the steps
 rm -rf out
 ```
 

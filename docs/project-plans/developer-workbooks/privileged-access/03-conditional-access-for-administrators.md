@@ -213,7 +213,7 @@ foreach ($run in 1..3) {
 # Step 7: Run the tests
 Invoke-Pester -Path tests
 
-# Step 7: Run the tests
+# After the steps
 Remove-Item -Recurse -Force out
 ```
 

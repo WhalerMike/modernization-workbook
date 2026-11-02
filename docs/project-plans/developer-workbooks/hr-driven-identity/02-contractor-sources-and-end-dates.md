@@ -145,7 +145,7 @@ python python/contractor_source.py review --rules config/contractor-rules.json -
 # Step 7: Run the tests
 python -m pytest tests -q
 
-# Step 7: Run the tests
+# After the steps
 rm -rf out
 ```
 

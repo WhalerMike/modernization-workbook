@@ -191,7 +191,7 @@ Get-PaCloud GCCHigh
 # Step 6: Run the tests
 Invoke-Pester -Path tests
 
-# Step 6: Run the tests
+# After the steps
 Remove-Item -Recurse -Force out
 ```
 

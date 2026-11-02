@@ -261,7 +261,7 @@ Add-Content out/signin-summary-edited.json ' ' -NoNewline
 # Step 10: Run the tests
 Invoke-Pester -Path tests
 
-# Step 10: Run the tests
+# After the steps
 Remove-Item -Recurse -Force out
 ```
 

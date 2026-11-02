@@ -208,7 +208,7 @@ ConvertTo-PaAzScope '/subscriptions/11111111-1111-4111-8111-111111111111/resourc
 # Step 7: Run the tests
 Invoke-Pester -Path tests
 
-# Step 7: Run the tests
+# After the steps
 Remove-Item -Recurse -Force out
 ```
 

@@ -180,7 +180,7 @@ python ../drift-pipeline/python/hr_evidence.py period --evidence out/ch07/eviden
 python -m pytest tests -q
 cd ../drift-pipeline && python -m pytest tests -q
 
-# Step 7: Run the tests
+# After the steps
 cd ../hr-lifecycle && rm -rf out
 ```
 

@@ -153,7 +153,7 @@ python python/cba_check.py check --cloud gcchigh --exports tests/fixtures/ch05/e
 # Step 5: Run the tests
 python -m pytest tests -q
 
-# Step 5: Run the tests
+# After the steps
 rm -rf out
 ```
 
