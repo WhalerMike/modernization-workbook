@@ -1,0 +1,6 @@
+PS> $read = New-PaAzClient -Cloud gcc -Task azure-pim-read -Invoke (New-PaAzFixtureInvoker -Path tests/fixtures/ch06/estate.json).Invoke
+PS> Invoke-PaAzWrite -Client $read -CallId azpim-policy-update -Bind @{ scope = '/subscriptions/11111111-1111-4111-8111-111111111111'; name = 'f6000000-0000-4000-8000-000000000004' } -Body @{} -Apply
+Exception: Undeclared call 'azpim-policy-update' for task 'azure-pim-read'; add it to config/calls-ch06.json with its role.
+PS> ConvertTo-PaAzScope '/subscriptions/11111111-1111-4111-8111-111111111111/resourceGroups/rg-payroll/providers/Microsoft.Web/sites/payroll'
+Exception: '/subscriptions/11111111-1111-4111-8111-111111111111/resourceGroups/rg-payroll/providers/Microsoft.Web/sites/payroll'
+isn't a management group, subscription or resource group scope

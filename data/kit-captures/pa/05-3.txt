@@ -1,0 +1,2 @@
+PS> (Get-PaPgRequiredPermission -Task pim-groups-read).GraphPermissions -join ', '
+Group.ReadBasic.All, PrivilegedAssignmentSchedule.Read.AzureADGroup, PrivilegedEligibilitySchedule.Read.AzureADGroup, RoleManagementPolicy.Read.AzureADGroup

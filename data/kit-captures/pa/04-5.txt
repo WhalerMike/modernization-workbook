@@ -1,0 +1,6 @@
+PS> ./Invoke-PaPimRoleSettings.ps1 @lab -Wave 2 -OutputPath out/pim-wave2
+Wave 2 (5 roles): 9 Finding, 5 Warn, 2 Info
+Plan: 30 rule updates, 4 eligibility requests, 0 standing assignments to convert (0 confirmed)
+Blocked: fix every Finding before -Apply
+Dry run: nothing was sent
+Written to out/pim-wave2 (manifest.json lists every request and file hash)

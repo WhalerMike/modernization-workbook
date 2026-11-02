@@ -1,0 +1,12 @@
+PS> Get-Content out/pim-groups/diff.txt
+# PIM for Groups plan, cloud gcc, 8 change(s), dry run: nothing sent
+~ PRV-T0-PrivRoleAdmin member Expiration_EndUser_Assignment: required=True max=PT8H -> required=True max=PT4H
+~ PRV-T0-PrivRoleAdmin member Approval_EndUser_Assignment: approval=False approvers=groupMembers:5a000000-0000-4000-8000-0000000000a0 -> approval=True approvers=groupMembers:5a000000-0000-4000-8000-0000000000a0
+~ PRV-T1-AzureOwner-SubWorkload owner Expiration_Admin_Eligibility: required=False max=P90D -> required=True max=P90D
+~ active member PRV-T1-ExchangeAdmin eve.exch@contoso.example end 2026-12-31 -> 2027-04-28 (CHG-1002)
++ active member PRV-T1-ExchangeAdmin ben.ops@contoso.example until 2027-04-28 (CHG-1005)
+- active member PRV-T0-PrivRoleAdmin ben.ops@contoso.example
+- eligible owner PRV-T0-PrivRoleAdmin cara.cloud@contoso.example
+- eligible member PRV-T1-AzureOwner-SubWorkload Helpdesk-Admins-Legacy
+PS> (Get-Content out/pim-groups/plan.json -Raw | ConvertFrom-Json).Permissions -join ', '
+PrivilegedAssignmentSchedule.ReadWrite.AzureADGroup, PrivilegedEligibilitySchedule.ReadWrite.AzureADGroup, RoleManagementPolicy.ReadWrite.AzureADGroup

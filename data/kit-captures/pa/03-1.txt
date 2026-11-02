@@ -1,0 +1,5 @@
+PS> Invoke-Pester -Path tests/ConditionalAccess.Tests.ps1 -FullNameFilter '*Get conditionalAccessTemplate*' -Output None -PassThru |
+>>     Select-Object PassedCount, FailedCount
+PassedCount FailedCount
+----------- -----------
+          7           0

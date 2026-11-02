@@ -1,0 +1,3 @@
+PS> Import-Module ./powershell/PrivilegedAccess/PrivilegedAccess.psm1
+PS> (Get-PaRequiredPermission -Task inventory).GraphPermissions -join ', '
+GroupMember.ReadBasic.All, RoleAssignmentSchedule.Read.Directory, RoleEligibilitySchedule.Read.Directory, RoleManagement.Read.Directory, User.ReadBasic.All

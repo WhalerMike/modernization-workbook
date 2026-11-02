@@ -1,0 +1,7 @@
+PS> ./Invoke-PaAzurePim.ps1 -Cloud gcc -FixturePath tests/fixtures/ch06/estate.json -DesiredPath tests/fixtures/ch06/desired.json `
+>>     -CallerPrincipalId c3000000-0000-4000-8000-000000000003 -OutputPath out/ch06 -RunId lab
+Read: 9 assignment and 2 eligibility schedules, 12 policies at 4 scopes
+Plan: 11 policy updates, 5 eligible assignments to add, 3 standing assignments to remove
+Findings: 7 Finding, 2 Warn, 1 Info
+Dry run: 19 requests written to plan.json, none sent. Review diff.txt, then rerun with -Apply.
+Written to out/ch06 (manifest.json lists every request and file hash)

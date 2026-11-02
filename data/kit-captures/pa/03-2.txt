@@ -1,0 +1,5 @@
+PS> Import-Module ./powershell/PaConditionalAccess/PaConditionalAccess.psm1
+PS> (Get-PaCaRequiredPermission -Task ca-read).GraphPermissions -join ', '
+AuthenticationContext.Read.All, Policy.Read.All, Policy.Read.AuthenticationMethod
+PS> (Get-PaCaRequiredPermission -Task ca-apply).GraphPermissions -join ', '
+AuthenticationContext.Read.All, AuthenticationContext.ReadWrite.All, Policy.Read.All, Policy.Read.AuthenticationMethod, Policy.ReadWrite.ConditionalAccess

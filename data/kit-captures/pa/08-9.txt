@@ -1,0 +1,23 @@
+$ python python/pa_evidence.py period --evidence out/evidence --since 2026-10-28T06:00:00Z --until 2026-10-30T06:00:00Z --out out/periods
+{"chain_breaks": 0, "complete": false, "coverage_gaps": 0, "incidents": 6, "packages": 2, "period": "period-2026-10-28_2026-10-30"}
+(exit code 2)
+$ cat out/periods/period-2026-10-28_2026-10-30/period-summary.md
+# Privileged access evidence for the period
+
+Period 2026-10-28T06:00:00Z to 2026-10-30T06:00:00Z; tenant 11111111-1111-4111-8111-111111111111 (gcc, Fixture); 2 package(s), chain breaks 0, audit coverage gaps 0, unverified task runs 0.
+
+Activations 3 (T0 2, T1 1, T2 0); requests 4, approved 2, denied 1; T0 or T1 activations without approval 1; role assignments outside PIM 2 event(s); role setting changes 1; Tier 0 incidents 6.
+
+| Gate 4 criterion | From this code | Status |
+|---|---|---|
+| Residual standing privilege named with a rationale and accepted by the authorizing official | 1 on the exceptions list with a reason, 8 outside it (PA-INV-01 at period end) | not met: standing privilege outside the exceptions list |
+| Evidence for every elevation in the period | 3 activation(s); audit coverage gaps 0; chain breaks 0; T0 or T1 activations without approval 1 | not met |
+| Exception register current | the exceptions list the inventory read; its currency is the governance office's | not decided by this code |
+| Access-related GPO settings retired | nothing | not decided by this code |
+
+| Package | Audit window | EVIDENCE-MANIFEST.json SHA-256 |
+|---|---|---|
+| 2026-10-29T0600Z-fixture | 2026-10-28T06:00:00Z to 2026-10-29T06:00:00Z | `e10d8543ed3bfa05f4cf4fa7aa873242958be5ea0db463c2760f901fbe3c19b7` |
+| 2026-10-30T0600Z-fixture | 2026-10-29T06:00:00Z to 2026-10-30T06:00:00Z | `763d4a1f11274ba77b1ed5d7d299143544a94d4d160d1113efb30c50930fc7a2` |
+
+Object IDs only. The packages hold the names, under the evidence store's access control.

@@ -1,0 +1,5 @@
+$ python python/pa_evidence.py issues --diff out/day2/pa-drift-report.json --out out/day2/issues.json
+{"close": 9, "comment": 0, "open": 7}
+$ grep -c contoso out/day2/issues.json
+0
+(exit code 1)

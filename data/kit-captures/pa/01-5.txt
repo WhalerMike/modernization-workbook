@@ -1,0 +1,5 @@
+PS> $r = New-PaReader -Cloud gcc -Task inventory -Invoke (New-PaFixtureInvoker -Path tests/fixtures/tenant.json).Invoke
+PS> Invoke-PaList -Reader $r -CallId ca-policies
+Exception: Undeclared call 'ca-policies' for task 'inventory'; add it to config/calls.json with its permission.
+PS> Get-PaCloud GCCHigh
+Exception: Unknown cloud 'GCCHigh'. Use global, gcc, gcchigh or dod.

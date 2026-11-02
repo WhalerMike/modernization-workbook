@@ -1,0 +1,6 @@
+PS> ./Invoke-PaAccessReviews.ps1 -Cloud gcc -Mode Plan -ConfigPath tests/fixtures/ch07/access-reviews.json `
+>>     -FixturePath tests/fixtures/ch07/tenant.json -AsOf 2026-10-30 -OutputPath out/reviews-plan
+Plan: 1 Create, 2 Update, 1 Replace, 3 NoChange, 1 Unmanaged
+Checks: 0 Finding, 1 Warn, 1 Info
+Dry run: nothing sent (2 write(s) would be sent with -Apply)
+Written to out/reviews-plan (manifest.json lists every request and file hash)

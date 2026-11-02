@@ -1,0 +1,7 @@
+PS> ./Invoke-PaEmergencyCheck.ps1 -FixturePath tests/fixtures/tenant.json -ConfigPath tests/fixtures/inputs/emergency-access.json `
+>>     -ValidationsPath tests/fixtures/inputs/emergency-validations.csv -AsOf 2026-10-30 -OutputPath out/emergency `
+>>     -WorkspaceResourceId /subscriptions/22222222-2222-4222-8222-222222222222/resourceGroups/rg-logs/providers/Microsoft.OperationalInsights/workspaces/law-identity `
+>>     -ActionGroupResourceId /subscriptions/22222222-2222-4222-8222-222222222222/resourceGroups/rg-logs/providers/Microsoft.Insights/actionGroups/ag-soc -Location eastus
+Emergency access: 9 Finding, 0 Warn, 1 Info
+Alert rule written to emergency-alert.json for review; deploy it with your reviewed pipeline
+Written to out/emergency (manifest.json lists every request and file hash)

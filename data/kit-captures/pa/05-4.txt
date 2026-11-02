@@ -1,0 +1,7 @@
+PS> ./Invoke-PaPimGroups.ps1 -Cloud gcc -FixturePath tests/fixtures/ch05/tenant.json `
+>>     -DesiredPath tests/fixtures/ch05/inputs/prv-groups.json -AsOf 2026-10-30 -OutputPath out/pim-groups
+PIM for Groups: 9 Finding, 3 Warn, 0 Info
+Plan: 8 change(s) (3 assignment, 2 eligibility, 3 policy rule)
+Guards: all passed
+Dry run: nothing sent. Review diff.txt and plan.json, then rerun with -Apply
+Written to out/pim-groups (manifest.json lists every request and file hash)

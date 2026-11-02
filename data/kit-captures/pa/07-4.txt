@@ -1,0 +1,11 @@
+PS> Get-Content out/reviews-plan/plan.json -Raw | ConvertFrom-Json | Format-Table name, action, @{ n = 'changes'; e = { $_.changes -join ', ' } }
+name                                       action    changes
+----                                       ------    -------
+PAR-T0-GlobalAdministrator-Monthly         Update    settings.instanceDurationInDays
+PAR-T0-PrivilegedRoleAdministrator-Monthly Create
+PAR-T1-ExchangeAdministrator-Quarterly     Replace   reviewers
+PAR-PRV-T0-GlobalAdmin-Monthly             NoChange
+PAR-PRV-T0-PrivRoleAdmin-Monthly           NoChange
+PAR-PRV-T1-ExchangeAdmin-Quarterly         NoChange
+PAR-AZ-T0-Owner-Platform-Monthly           Update    settings.instanceDurationInDays
+PAR-T0-SecurityAdministrator-Monthly       Unmanaged

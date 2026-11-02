@@ -1,0 +1,28 @@
+PS> Invoke-Pester -Path tests
+Starting discovery in 9 files.
+Discovery found 330 tests.
+Running tests.
+[+] tests/AccessReviews.Tests.ps1
+ 7.21s (6.11s|821ms)
+[+] tests/AzurePim.Tests.ps1
+ 9.27s (8.38s|375ms)
+[+] tests/ConditionalAccess.Tests.ps1
+ 8.63s (8.15s|290ms)
+[+] tests/EmergencyAccess.Tests.ps1
+ 2.13s (1.67s|293ms)
+[+] tests/EvidenceDrift.Tests.ps1
+ 4.49s (3.82s|434ms)
+[+] tests/MicrosoftSamples.Tests.ps1
+ 1.1s (764ms|217ms)
+[+] tests/PimEntraRoles.Tests.ps1
+ 9.91s (9.16s|458ms)
+[+] tests/PimForGroups.Tests.ps1
+ 8.74s (8.17s|384ms)
+[+] tests/PrivilegedInventory.Tests.ps1
+ 1.35s (977ms|242ms)
+Tests completed
+Tests Passed: 330,
+Failed: 0,
+Skipped: 0
+
+NotRun: 0

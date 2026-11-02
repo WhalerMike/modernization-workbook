@@ -1,0 +1,10 @@
+PS> $rows = (Get-Content tests/fixtures/signin-export.json -Raw | ConvertFrom-Json).rows
+PS> Find-PaEmergencyActivity -Rows $rows -AccountId 0e000000-0000-4000-8000-000000000001, 0e000000-0000-4000-8000-000000000002 |
+>>     Format-Table Source, AccountId, OperationName
+Source                          AccountId                            OperationName
+------                          ---------                            -------------
+SigninLogs                      0e000000-0000-4000-8000-000000000001 Sign-in activity
+AADNonInteractiveUserSignInLogs 0e000000-0000-4000-8000-000000000001 Sign-in activity
+AuditLogs                       0e000000-0000-4000-8000-000000000002 Add member to role
+AuditLogs                       0e000000-0000-4000-8000-000000000001 User registered security info
+SigninLogs                      0e000000-0000-4000-8000-000000000002 Sign-in activity

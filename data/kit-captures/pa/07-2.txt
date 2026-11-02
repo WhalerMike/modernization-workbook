@@ -1,0 +1,8 @@
+PS> Import-Module ./powershell/PaAccessReviews/PaAccessReviews.psm1
+PS> 'access-reviews-plan', 'access-reviews-apply', 'access-reviews-evidence' | ForEach-Object { Get-PaArRequiredPermission -Task $_ } |
+>>     Format-Table Task, GraphPermissions, AzureRoles
+Task                    GraphPermissions             AzureRoles
+----                    ----------------             ----------
+access-reviews-plan     {AccessReview.Read.All}      {Reader}
+access-reviews-apply    {AccessReview.ReadWrite.All} {User Access Administrator}
+access-reviews-evidence {AccessReview.Read.All}      {Reader}
