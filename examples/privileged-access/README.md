@@ -53,11 +53,14 @@ deploy/New-PaDeployInputs.ps1      writes every chapter's input files for that e
 deploy/Test-PaPreflight.ps1        licenses, the emergency access accounts, their exclusion from every CA policy (PA-DEP-01 to -09)
 deploy/Invoke-PaSmokeTest.ps1      reads the evidence for the smoke test's Activate, Approve, Expire and Review phases
 deploy/Invoke-PaRollback.ps1       plans the stage's rollback in reverse order; runs it only with -Apply
+deploy/Add-PaEvidenceRecord.ps1    judges an earlier chapter's run folder and records it as a step's evidence
+deploy/Test-PaEvidence.ps1         the evidence half of the go/no-go: every required step present, passing, unchanged
+deploy/requirements.json           each step's NIST SP 800-53 controls, OMB and CISA requirements, and FedRAMP 20x KSIs
 deploy/PaDeploy.psm1               the module behind them; deploy/calls-deploy.json declares its GET calls
 deploy/tests/                      Pester 5 tests and fixtures (fictional contoso.example tenant)
 ```
 
-Each script has a fixture mode (`-FixturePath`), and the rollback is a dry run unless `-Apply`. The scripts only read; the writes are the earlier chapters' entry scripts. The pre-flight needs `LicenseAssignment.Read.All` and Chapter 02's six read permissions; the smoke test needs `RoleAssignmentSchedule.Read.Directory`, `AuditLog.Read.All` and `AccessReview.Read.All` (`Get-PaDeployRequiredPermission -Task preflight` or `smoke`).
+Each script has a fixture mode (`-FixturePath`), and the rollback is a dry run unless `-Apply`. Each step writes an evidence record to `<outputRoot>/evidence`: the time, environment, change record, command, result, the step's controls and KSIs from `requirements.json`, the SHA-256 of every file in its run folder, and the hash of the record before it, listed in `records.csv`. KSIs are FedRAMP 20x indicators for cloud providers; the records line the agency's evidence up with them, and the agency doesn't report KSIs itself. The scripts only read; the writes are the earlier chapters' entry scripts. The pre-flight needs `LicenseAssignment.Read.All` and Chapter 02's six read permissions; the smoke test needs `RoleAssignmentSchedule.Read.Directory`, `AuditLog.Read.All` and `AccessReview.Read.All` (`Get-PaDeployRequiredPermission -Task preflight` or `smoke`).
 
 ## Run the tests
 

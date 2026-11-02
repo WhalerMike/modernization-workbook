@@ -36,5 +36,8 @@ $null = Export-PaDeployRun -OutputPath $OutputPath -Step "smoke-$($Phase.ToLower
 foreach ($r in $rows) { Write-Output ("  {0} {1}: expected {2}; observed {3}" -f $(if ($r.Pass) { 'PASS' } else { 'FAIL' }), $r.Check, $r.Expected, $r.Observed) }
 $passed = @($rows | Where-Object Pass).Count
 Write-Output ("Smoke test {0} ({1}, {2}): {3} of {4} checks passed" -f $Phase, $s.environment, $mode, $passed, $rows.Count)
+$cmd = Format-PaDeployCommand -Name $MyInvocation.MyCommand.Name -Parameters $PSBoundParameters
+$e = Write-PaEvidenceRecord -Settings $s -Step "smoke-$($Phase.ToLowerInvariant())" -Command $cmd -Result $(if ($passed -eq $rows.Count) { 'Pass' } else { 'Fail' }) -Reason "$passed of $($rows.Count) checks passed" -RunPath $OutputPath -Mode $mode
 Write-Output "Written to $OutputPath (manifest.json lists every request and file hash)"
+Write-Output "Evidence: $($s.outputRoot)/evidence/$($e.Record) ($($e.Result), sha256 $($e.Sha256.Substring(0, 12)))"
 exit $(if ($passed -ne $rows.Count) { 1 } else { 0 })

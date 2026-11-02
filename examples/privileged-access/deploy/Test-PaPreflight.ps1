@@ -43,5 +43,8 @@ Write-Output ("Pre-flight ({0}, {1}): {2} Finding, {3} Warn, {4} Info" -f $s.env
 foreach ($f in $findings) { Write-Output "  $($f.Severity.PadRight(7)) $($f.Rule) $($f.Object): $($f.Issue)" }
 if ($block.Count) { Write-Output 'BLOCKED: fix every Finding, then run the pre-flight again. Nothing in this stage may run.' }
 else { Write-Output 'PASS: the emergency access accounts are verified and excluded; the stage may start.' }
+$cmd = Format-PaDeployCommand -Name $MyInvocation.MyCommand.Name -Parameters $PSBoundParameters
+$e = Write-PaEvidenceRecord -Settings $s -Step preflight -Command $cmd -Result $(if ($block.Count) { 'Fail' } else { 'Pass' }) -Reason "$($block.Count) Finding" -RunPath $OutputPath -Mode $mode
 Write-Output "Written to $OutputPath (manifest.json lists every request and file hash)"
+Write-Output "Evidence: $($s.outputRoot)/evidence/$($e.Record) ($($e.Result), sha256 $($e.Sha256.Substring(0, 12)))"
 exit $(if ($block.Count) { 1 } else { 0 })

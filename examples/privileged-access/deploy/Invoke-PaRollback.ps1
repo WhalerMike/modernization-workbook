@@ -29,7 +29,15 @@ foreach ($st in $plan.Steps) {
     if ($st.Portal) { Write-Output "     Portal: $($st.Portal)" }
     if (@($st.Commands).Count) { Write-Output ("     {0} command(s) in rollback-plan.json" -f @($st.Commands).Count) }
 }
-$r = Invoke-PaRollbackPlan -Plan $plan -Apply:$Apply
+$cmd = Format-PaDeployCommand -Name $MyInvocation.MyCommand.Name -Parameters $PSBoundParameters
+try { $r = Invoke-PaRollbackPlan -Plan $plan -Apply:$Apply }
+catch {
+    $null = Write-PaEvidenceRecord -Settings $s -Step rollback -Command $cmd -Result Fail -Reason "$_" -RunPath $OutputPath
+    throw
+}
 Write-Output ("Rollback plan ({0}, {1}): {2} steps, {3} Automatic, {4} Manual, {5} Blocked" -f $s.environment, $s.changeRecord, $r.Steps, $r.Automatic, $r.Manual, $r.Blocked)
 if ($Apply) { Write-Output "Applied: $($r.CommandsRun) command(s) run. Do the Manual steps, then run the pre-flight and Chapter 02's check again" }
 else { Write-Output "Dry run: nothing was sent. Review $OutputPath/rollback-plan.json, then rerun with -Apply" }
+$result = if (-not $Apply) { 'Planned' } elseif ($r.Blocked -eq 0) { 'Pass' } else { 'Fail' }
+$e = Write-PaEvidenceRecord -Settings $s -Step rollback -Command $cmd -Result $result -Reason ("{0} steps, {1} Blocked, {2} command(s) run" -f $r.Steps, $r.Blocked, $r.CommandsRun) -RunPath $OutputPath
+Write-Output "Evidence: $($s.outputRoot)/evidence/$($e.Record) ($($e.Result), sha256 $($e.Sha256.Substring(0, 12)))"

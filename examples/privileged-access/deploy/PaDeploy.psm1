@@ -625,7 +625,7 @@ function New-PaRollbackPlan {
         foreach ($r in @($sent | Where-Object { $_.call -eq 'azpim-assignment-request' -and $_.body.properties.requestType -eq 'AdminRemove' })) {
             $u = [Uri]$r.uri; $scope = $u.AbsolutePath -replace '/providers/Microsoft\.Authorization/roleAssignmentScheduleRequests/.*$', ''
             $name = [guid]::NewGuid().ToString()
-            $body = @{ properties = [ordered]@{ principalId = $r.body.properties.principalId; roleDefinitionId = $r.body.properties.roleDefinitionId; requestType = 'AdminAssign'; justification = "Rollback of $($Settings.changeRecord): standing assignment restored, time-bound under the stage's active maximum"; scheduleInfo = @{ expiration = @{ type = 'AfterDuration'; duration = $script:RestoreFor } } } }
+            $body = @{ properties = [ordered]@{ principalId = $r.body.properties.principalId; roleDefinitionId = $r.body.properties.roleDefinitionId; requestType = 'AdminAssign'; justification = "Rollback of $($Settings.changeRecord): standing assignment restored, time-bound under the stage's active maximum"; scheduleInfo = [ordered]@{ expiration = [ordered]@{ type = 'AfterDuration'; duration = $script:RestoreFor } } } }
             $cmds.Add("Invoke-AzRestMethod -Method PUT -Path '$scope/providers/Microsoft.Authorization/roleAssignmentScheduleRequests/$name`?api-version=2020-10-01' -Payload '$(& $azBody $body)'")
             $restore++
         }
@@ -763,6 +763,227 @@ function Invoke-PaRollbackPlan {
     [pscustomobject]@{ Steps = @($Plan.Steps).Count; Automatic = @($Plan.Steps | Where-Object Kind -EQ 'Automatic').Count; Manual = @($Plan.Steps | Where-Object Kind -EQ 'Manual').Count; Blocked = $blocked.Count; CommandsRun = $ran; Path = (Join-Path $out 'rollback-plan.json') }
 }
 
+# ----------------------------------------------------------------------------- requirements and evidence records
+
+function Get-PaDeployRequirement {
+    <#
+    .SYNOPSIS
+        Returns what each runbook step supports (deploy/requirements.json): its NIST SP 800-53
+        Rev. 5 controls, the OMB and CISA requirements where they apply, the FedRAMP 20x Key
+        Security Indicators the evidence lines up with, the stages whose go/no-go needs it, and
+        how its result is judged. Optionally only one step, or only the steps a stage requires.
+    .EXAMPLE
+        # The steps the test stage's go/no-go needs, with their controls and indicators.
+        Get-PaDeployRequirement -Stage test | Format-Table step, @{ n = 'controls'; e = { $_.controls -join ', ' } }, @{ n = 'ksi'; e = { $_.ksi -join ', ' } }
+    #>
+    [CmdletBinding()]
+    param([string]$Step, [ValidateSet('test', 'production')][string]$Stage)
+    $all = @((Get-Content -LiteralPath (Join-Path $PSScriptRoot 'requirements.json') -Raw | ConvertFrom-Json -AsHashtable).steps)
+    if ($Step) { $all = @($all | Where-Object { $_.step -eq $Step }) }
+    if ($Stage) { $all = @($all | Where-Object { $_.requiredFor -contains $Stage }) }
+    foreach ($r in $all) { [pscustomobject]$r }
+}
+
+function Format-PaDeployCommand {
+    <#
+    .SYNOPSIS
+        Renders the command a runbook script was run with, for its evidence record: the script's
+        path from the kit folder and each bound parameter. A date given as a day prints as the day;
+        a time with a zone prints in UTC.
+    .EXAMPLE
+        # Inside a deploy script.
+        $cmd = Format-PaDeployCommand -Name $MyInvocation.MyCommand.Name -Parameters $PSBoundParameters
+    #>
+    [CmdletBinding()]
+    param([Parameter(Mandatory)][string]$Name, [Parameter(Mandatory)][Collections.IDictionary]$Parameters)
+    $parts = foreach ($k in $Parameters.Keys) {
+        $v = $Parameters[$k]
+        if ($v -is [switch]) { if ($v) { "-$k" } }
+        elseif ($v -is [datetime]) {
+            $t = if ($v.Kind -eq [DateTimeKind]::Unspecified -and $v.TimeOfDay -eq [TimeSpan]::Zero) { $v.ToString('yyyy-MM-dd') }
+                 elseif ($v.Kind -eq [DateTimeKind]::Unspecified) { $v.ToString('yyyy-MM-ddTHH:mm:ss') }
+                 else { $v.ToUniversalTime().ToString('yyyy-MM-ddTHH:mm:ssZ') }
+            "-$k $t"
+        } else { "-$k $v" }
+    }
+    (@("./deploy/$Name") + @($parts)) -join ' '
+}
+
+function Get-PaDeployFileHash { param([string]$Path) (Get-FileHash -LiteralPath $Path -Algorithm SHA256).Hash.ToLowerInvariant() }
+
+function ConvertTo-PaDeploySlash { param([string]$Path) $Path -replace '\\', '/' }
+
+function Test-PaStepResult {
+    <#
+    .SYNOPSIS
+        Judges an earlier chapter's run folder for one runbook step, the way requirements.json
+        names it: Chapter 02's findings with no Finding, Chapter 03's plan with nothing Blocked,
+        Chapter 04's empty verify.csv, Chapter 05's and 07's results with none failed, Chapter
+        06's empty diff-after.txt, a conversion that sent only confirmed rows, or Chapter 08's run
+        present. Returns Result (Pass or Fail) and Reason. Reads files only.
+    .EXAMPLE
+        # The Chapter 06 apply in the fixture runs.
+        Test-PaStepResult -Step azure-roles -RunPath deploy/tests/fixtures/runs/azure-apply
+    #>
+    [CmdletBinding()]
+    param([Parameter(Mandatory)][string]$Step, [Parameter(Mandatory)][string]$RunPath)
+    $req = Get-PaDeployRequirement -Step $Step
+    if (-not $req) { throw "No step '$Step' in deploy/requirements.json" }
+    $p = Resolve-PaDeployPath $RunPath
+    $r = { param([bool]$Ok, [string]$Why) [pscustomobject]@{ Result = $(if ($Ok) { 'Pass' } else { 'Fail' }); Reason = $Why } }
+    if (-not (Test-Path -LiteralPath $p)) { return & $r $false "No run folder at $RunPath" }
+    switch ($req.check) {
+        'findings-no-finding' {
+            if (-not (Test-Path -LiteralPath (Join-Path $p 'findings.json'))) { return & $r $false 'findings.json is missing' }
+            $f = @(Read-PaDeployJsonFile (Join-Path $p 'findings.json'))
+            $n = @($f | Where-Object { (Get-PaDeployValue $_ 'Severity') -eq 'Finding' }).Count
+            return & $r ($n -eq 0) "$n Finding in findings.json"
+        }
+        'ca-plan-not-blocked' {
+            if (-not (Test-Path -LiteralPath (Join-Path $p 'plan.json'))) { return & $r $false 'plan.json is missing' }
+            $f = @(Read-PaDeployJsonFile (Join-Path $p 'plan.json'))
+            $n = @($f | Where-Object { (Get-PaDeployValue $_ 'Action') -eq 'Blocked' }).Count
+            return & $r ($n -eq 0) "$n Blocked in plan.json"
+        }
+        'pim-verify-empty' {
+            $v = Join-Path $p 'verify.csv'
+            if (-not (Test-Path -LiteralPath $v)) { return & $r $false 'verify.csv is missing (not an -Apply run)' }
+            $n = @(Import-Csv -LiteralPath $v).Count
+            return & $r ($n -eq 0) "$n difference(s) in verify.csv after reading back"
+        }
+        'results-none-failed' {
+            if (-not (Test-Path -LiteralPath (Join-Path $p 'results.json'))) { return & $r $false 'results.json is missing (not an -Apply run)' }
+            $f = @(Read-PaDeployJsonFile (Join-Path $p 'results.json'))
+            $n = @($f | Where-Object { (Get-PaDeployValue $_ 'Status') -eq 'Failed' -or (Get-PaDeployValue $_ 'Result') -eq 'Failed' }).Count
+            return & $r ($n -eq 0) "$n failed in results.json"
+        }
+        'azure-diff-after-empty' {
+            $d = Join-Path $p 'diff-after.txt'
+            if (-not (Test-Path -LiteralPath $d)) { return & $r $false 'diff-after.txt is missing (not an -Apply run)' }
+            $raw = [string](Get-Content -LiteralPath $d -Raw)
+            $n = 0
+            if (-not [string]::IsNullOrWhiteSpace($raw) -and $raw -notmatch '^\s*\[\s*\]\s*$') {
+                $n = @(try { $raw | ConvertFrom-Json } catch { $raw -split "`n" | Where-Object { $_.Trim() } }).Count
+            }
+            return & $r ($n -eq 0) "$n line(s) left in diff-after.txt"
+        }
+        'convert-sent-only-confirmed' {
+            if (-not (Test-Path -LiteralPath (Join-Path $p 'plan.json'))) { return & $r $false 'plan.json is missing' }
+            $f = Read-PaDeployJsonFile (Join-Path $p 'plan.json')
+            $sent = @($f.actions | Where-Object { $_.Kind -eq 'RemoveStanding' -and $_.Status -eq 'Sent' }).Count
+            $bad = @($f.actions | Where-Object { $_.Kind -eq 'RemoveStanding' -and $_.Status -notin 'Sent', 'WaitingForEligibility', 'WaitingForConfirmedActivation' }).Count
+            return & $r ($bad -eq 0) "$sent standing assignment(s) removed after confirmed activation; $bad in another state"
+        }
+        'evidence-run-present' {
+            $runs = @(Get-ChildItem -LiteralPath $p -Recurse -Filter 'run.json' -File -ErrorAction SilentlyContinue)
+            return & $r ($runs.Count -gt 0) "$($runs.Count) evidence run(s) with run.json"
+        }
+        default { throw "Step '$Step' is judged by its own script ('$($req.check)')" }
+    }
+}
+
+function Write-PaEvidenceRecord {
+    <#
+    .SYNOPSIS
+        Writes one evidence record for a runbook step to <outputRoot>/evidence: a JSON file with
+        the time, the environment, the change record, the tenant, the command, the result and its
+        reason, the step's controls, other requirements and FedRAMP 20x indicators, the SHA-256 of
+        every file in the step's run folder, and the SHA-256 of the record before it, so the
+        records form a hash chain as Chapter 08's packages do. Appends the record and its SHA-256
+        to evidence/records.csv.
+    .EXAMPLE
+        # Record a passing pre-flight for the fictional test stage.
+        $s = Read-PaDeploySettings -Path deploy/tests/fixtures/environment.test.json
+        Write-PaEvidenceRecord -Settings $s -Step preflight -Command './deploy/Test-PaPreflight.ps1' -Result Pass -Reason '0 Finding' -RunPath out/deploy-test/preflight
+    #>
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory)][hashtable]$Settings, [Parameter(Mandatory)][string]$Step, [Parameter(Mandatory)][string]$Command,
+        [Parameter(Mandatory)][ValidateSet('Pass', 'Fail', 'Planned')][string]$Result, [string]$Reason = '', [string]$RunPath, [string]$Mode = 'Live'
+    )
+    $req = Get-PaDeployRequirement -Step $Step
+    if (-not $req) { throw "No step '$Step' in deploy/requirements.json" }
+    $dir = Join-Path (Resolve-PaDeployPath $Settings.outputRoot) 'evidence'
+    New-Item -ItemType Directory -Force -Path $dir | Out-Null
+    $index = Join-Path $dir 'records.csv'
+    $prev = $null
+    if (Test-Path -LiteralPath $index) { $last = @(Import-Csv -LiteralPath $index) | Select-Object -Last 1; if ($last) { $prev = $last.Sha256 } }
+    $files = [ordered]@{}
+    if ($RunPath -and (Test-Path -LiteralPath $RunPath)) {
+        $root = Resolve-PaDeployPath $RunPath
+        foreach ($fi in (Get-ChildItem -LiteralPath $root -Recurse -File | Sort-Object FullName)) {
+            $files[(ConvertTo-PaDeploySlash ([IO.Path]::GetRelativePath($root, $fi.FullName)))] = Get-PaDeployFileHash $fi.FullName
+        }
+    }
+    $now = [DateTime]::UtcNow
+    $name = '{0}-{1}.json' -f $now.ToString('yyyyMMddTHHmmssfffZ'), $Step
+    $record = [ordered]@{
+        recordedAt = $now.ToString('yyyy-MM-ddTHH:mm:ssZ'); environment = $Settings.environment; changeRecord = $Settings.changeRecord
+        tenantId = $Settings.tenantId; cloud = $Settings.cloud; mode = $Mode; step = $Step; title = $req.title
+        command = $Command; result = $Result; reason = $Reason
+        controls = @($req.controls); other = @($req.other); ksi = @($req.ksi)
+        runPath = $(if ($RunPath) { ConvertTo-PaDeploySlash $RunPath } else { $null }); files = $files
+        previousRecordSha256 = $prev
+    }
+    $path = Join-Path $dir $name
+    Write-PaDeployJson $path $record
+    $sha = Get-PaDeployFileHash $path
+    $line = [pscustomobject]@{ RecordedAt = $record.recordedAt; Step = $Step; Result = $Result; Record = $name; Sha256 = $sha }
+    $csv = @($line | ConvertTo-Csv -NoTypeInformation)
+    if (Test-Path -LiteralPath $index) { [IO.File]::AppendAllText($index, $csv[1] + "`n", [Text.UTF8Encoding]::new($false)) }
+    else { [IO.File]::WriteAllText($index, ($csv -join "`n") + "`n", [Text.UTF8Encoding]::new($false)) }
+    [pscustomobject]@{ Path = $path; Record = $name; Sha256 = $sha; Step = $Step; Result = $Result }
+}
+
+function Test-PaEvidenceComplete {
+    <#
+    .SYNOPSIS
+        Checks a stage's evidence records against requirements.json for the go/no-go: for every
+        step the stage requires, the latest record is present and passing, its file still has the
+        SHA-256 in records.csv, the chain of previous-record hashes is unbroken, and every file it
+        hashed in the step's run folder is unchanged. Returns one row per step with its controls
+        and indicators, and Ok. Reads files only.
+    .EXAMPLE
+        # The fictional test stage's evidence after the fixture runs.
+        $s = Read-PaDeploySettings -Path deploy/tests/fixtures/environment.test.json
+        Test-PaEvidenceComplete -Settings $s | Format-Table Step, Status, Ok
+    #>
+    [CmdletBinding()]
+    param([Parameter(Mandatory)][hashtable]$Settings)
+    $dir = Join-Path (Resolve-PaDeployPath $Settings.outputRoot) 'evidence'
+    $index = Join-Path $dir 'records.csv'
+    $rows = @(); if (Test-Path -LiteralPath $index) { $rows = @(Import-Csv -LiteralPath $index) }
+    $chainOk = $true; $prev = $null; $chainWhy = 'intact'
+    foreach ($x in $rows) {
+        $p = Join-Path $dir $x.Record
+        if (-not (Test-Path -LiteralPath $p)) { $chainOk = $false; $chainWhy = "record $($x.Record) is missing"; break }
+        if ((Get-PaDeployFileHash $p) -ne $x.Sha256) { $chainOk = $false; $chainWhy = "record $($x.Record) changed after it was written"; break }
+        $j = Get-Content -LiteralPath $p -Raw | ConvertFrom-Json -AsHashtable
+        if ($j.previousRecordSha256 -ne $prev) { $chainOk = $false; $chainWhy = "record $($x.Record) doesn't chain to the one before it"; break }
+        $prev = $x.Sha256
+    }
+    foreach ($req in @(Get-PaDeployRequirement -Stage $Settings.environment)) {
+        $mine = @($rows | Where-Object { $_.Step -eq $req.step })
+        $status = 'Missing'; $why = 'no evidence record'; $ok = $false; $rec = $null
+        if ($mine.Count) {
+            $rec = $mine[-1]
+            $j = $null
+            $rp = Join-Path $dir $rec.Record
+            if (Test-Path -LiteralPath $rp) { $j = Get-Content -LiteralPath $rp -Raw | ConvertFrom-Json -AsHashtable }
+            $status = $rec.Result; $why = if ($j) { $j.reason } else { 'record missing' }
+            $ok = ($rec.Result -eq 'Pass') -and $chainOk -and ($null -ne $j) -and ($j.environment -eq $Settings.environment)
+            if ($ok -and $j.runPath) {
+                foreach ($k in $j.files.Keys) {
+                    $f = Join-Path (Resolve-PaDeployPath $j.runPath) $k
+                    if (-not (Test-Path -LiteralPath $f) -or (Get-PaDeployFileHash $f) -ne $j.files[$k]) { $ok = $false; $status = 'Changed'; $why = "$k changed or missing since it was recorded"; break }
+                }
+            }
+            if (-not $chainOk) { $status = 'Chain broken'; $why = $chainWhy }
+        }
+        [pscustomobject]@{ Step = $req.step; Title = $req.title; Controls = ($req.controls -join ', '); Other = ($req.other -join '; '); Ksi = ($req.ksi -join ', '); Status = $status; Reason = $why; Record = $(if ($rec) { $rec.Record } else { '' }); Ok = [bool]$ok }
+    }
+}
+
 # ----------------------------------------------------------------------------- evidence
 
 function Export-PaDeployRun {
@@ -800,4 +1021,5 @@ function Export-PaDeployRun {
 
 Export-ModuleMember -Function Get-PaDeployCall, Get-PaDeployRequiredPermission, Read-PaDeploySettings, Test-PaDeploySettings, New-PaDeployInputs,
 New-PaDeployReader, Invoke-PaDeployList, New-PaDeployFixtureInvoker, New-PaDeployLiveInvoker, Test-PaDeployPreflight, Get-PaSmokeResult,
-New-PaRollbackPlan, Invoke-PaRollbackPlan, Export-PaDeployRun
+New-PaRollbackPlan, Invoke-PaRollbackPlan, Export-PaDeployRun,
+Get-PaDeployRequirement, Test-PaStepResult, Write-PaEvidenceRecord, Test-PaEvidenceComplete, Format-PaDeployCommand

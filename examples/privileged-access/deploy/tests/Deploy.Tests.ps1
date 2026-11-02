@@ -313,3 +313,98 @@ Describe 'Chapter 09: rollback' {
         ($pl.Steps | Where-Object Area -EQ 'access-reviews').Kind | Should -Be 'Blocked'
     }
 }
+
+Describe 'Chapter 09: requirements and evidence records' {
+    BeforeAll {
+        $script:Allowed = @('KSI-IAM-JIT', 'KSI-IAM-ELP', 'KSI-IAM-APM', 'KSI-IAM-SNU', 'KSI-CMT-LMC', 'KSI-CMT-RMV', 'KSI-CMT-VTD', 'KSI-MLA-EVC', 'KSI-MLA-OSM', 'KSI-MLA-LET', 'KSI-SVC-ACM', 'KSI-PIY-GIV', 'KSI-CED-RAT', 'KSI-INR-RIR')
+        function New-EvSettings { param([string]$Name) Get-TestSettings -Root (Join-Path $TestDrive $Name) }
+    }
+    It 'maps every step to controls and to KSI IDs the repository already cites' {
+        foreach ($r in Get-PaDeployRequirement) {
+            @($r.controls).Count | Should -BeGreaterThan 0
+            foreach ($k in $r.ksi) { $script:Allowed | Should -Contain $k }
+            foreach ($c in $r.controls) { $c | Should -Match '^[A-Z]{2}-\d+(\(\d+\))?$' }
+        }
+        @(Get-PaDeployRequirement -Stage test).Count | Should -Be 14
+        (Get-PaDeployRequirement -Stage production).step | Should -Contain 'first-week'
+        (Get-PaDeployRequirement -Stage test).step | Should -Not -Contain 'pim-convert'
+    }
+    It "judges each earlier chapter's run folder" {
+        (Test-PaStepResult -Step pim-roles -RunPath (Join-Path $script:Fx 'runs/pim-apply')).Result | Should -Be 'Pass'
+        (Test-PaStepResult -Step pim-groups -RunPath (Join-Path $script:Fx 'runs/groups-apply')).Result | Should -Be 'Pass'
+        (Test-PaStepResult -Step azure-roles -RunPath (Join-Path $script:Fx 'runs/azure-apply')).Result | Should -Be 'Pass'
+        (Test-PaStepResult -Step access-reviews -RunPath (Join-Path $script:Fx 'runs/reviews-apply')).Result | Should -Be 'Pass'
+        (Test-PaStepResult -Step pim-convert -RunPath (Join-Path $script:Fx 'runs/pim-convert-w1')).Result | Should -Be 'Pass'
+        $ca = Test-PaStepResult -Step conditional-access -RunPath (Join-Path $script:Fx 'runs/ca-plan')
+        $ca.Result | Should -Be 'Fail'; $ca.Reason | Should -Be '3 Blocked in plan.json'
+        (Test-PaStepResult -Step pim-roles -RunPath (Join-Path $script:Fx 'runs/pim-convert-w1')).Reason | Should -Match 'verify.csv is missing'
+        (Test-PaStepResult -Step evidence -RunPath (Join-Path $TestDrive 'nowhere')).Result | Should -Be 'Fail'
+        { Test-PaStepResult -Step preflight -RunPath $script:Fx } | Should -Throw '*judged by its own script*'
+    }
+    It "writes a record with the step's controls and KSIs, file hashes, and a hash chain" {
+        $s = New-EvSettings 'ev1'
+        $a = Write-PaEvidenceRecord -Settings $s -Step pim-roles -Command 'cmd a' -Result Pass -Reason 'ok' -RunPath (Join-Path $script:Fx 'runs/pim-apply')
+        $b = Write-PaEvidenceRecord -Settings $s -Step pim-groups -Command 'cmd b' -Result Pass -Reason 'ok' -RunPath (Join-Path $script:Fx 'runs/groups-apply')
+        $ja = Get-Content $a.Path -Raw | ConvertFrom-Json -AsHashtable
+        $jb = Get-Content $b.Path -Raw | ConvertFrom-Json -AsHashtable
+        $ja.controls -join ',' | Should -Be 'AC-5,AC-6,CM-5'
+        $ja.ksi | Should -Contain 'KSI-IAM-JIT'
+        $ja.environment | Should -Be 'test'; $ja.changeRecord | Should -Be 'CHG-3001'
+        $ja.files['before.json'] | Should -Be (Get-FileHash (Join-Path $script:Fx 'runs/pim-apply/before.json') -Algorithm SHA256).Hash.ToLowerInvariant()
+        $ja.previousRecordSha256 | Should -BeNullOrEmpty
+        $jb.previousRecordSha256 | Should -Be $a.Sha256
+        $idx = @(Import-Csv (Join-Path $s.outputRoot 'evidence/records.csv'))
+        $idx.Count | Should -Be 2; $idx[1].Sha256 | Should -Be $b.Sha256
+    }
+    It 'reports Missing, then OK, for a required step' {
+        $s = New-EvSettings 'ev2'
+        (Test-PaEvidenceComplete -Settings $s | Where-Object Step -EQ 'azure-roles').Status | Should -Be 'Missing'
+        $null = Write-PaEvidenceRecord -Settings $s -Step azure-roles -Command 'c' -Result Pass -Reason 'ok' -RunPath (Join-Path $script:Fx 'runs/azure-apply')
+        $row = Test-PaEvidenceComplete -Settings $s | Where-Object Step -EQ 'azure-roles'
+        $row.Ok | Should -BeTrue; $row.Ksi | Should -Be 'KSI-IAM-JIT, KSI-IAM-ELP'
+        @(Test-PaEvidenceComplete -Settings $s | Where-Object Ok).Count | Should -Be 1
+    }
+    It 'fails a step whose latest record failed, or was only planned' {
+        $s = New-EvSettings 'ev3'
+        $null = Write-PaEvidenceRecord -Settings $s -Step rollback -Command 'c' -Result Planned -Reason 'dry run'
+        (Test-PaEvidenceComplete -Settings $s | Where-Object Step -EQ 'rollback').Ok | Should -BeFalse
+        $null = Write-PaEvidenceRecord -Settings $s -Step rollback -Command 'c' -Result Pass -Reason 'applied'
+        (Test-PaEvidenceComplete -Settings $s | Where-Object Step -EQ 'rollback').Ok | Should -BeTrue
+    }
+    It 'detects a changed run file, then an edited record' {
+        $s = New-EvSettings 'ev4'
+        $run = Join-Path $TestDrive 'ev4-run'; Copy-Item -Recurse (Join-Path $script:Fx 'runs/groups-apply') $run
+        $a = Write-PaEvidenceRecord -Settings $s -Step pim-groups -Command 'c' -Result Pass -Reason 'ok' -RunPath $run
+        'tampered' | Add-Content (Join-Path $run 'results.json')
+        (Test-PaEvidenceComplete -Settings $s | Where-Object Step -EQ 'pim-groups').Status | Should -Be 'Changed'
+        (Get-Content $a.Path -Raw) -replace '"reason": "ok"', '"reason": "edited"' | Set-Content $a.Path -NoNewline
+        $row = Test-PaEvidenceComplete -Settings $s | Where-Object Step -EQ 'pim-groups'
+        $row.Status | Should -Be 'Chain broken'; $row.Ok | Should -BeFalse
+    }
+    It "records each deploy script's own run, with the command and mode" {
+        $root = Join-Path $TestDrive 'ev5'
+        $p = Join-Path $TestDrive 'env-ev5.json'
+        $j = Get-Content $script:SettingsPath -Raw | ConvertFrom-Json -AsHashtable; $j.outputRoot = $root; $j | ConvertTo-Json -Depth 30 | Set-Content $p
+        Push-Location $script:Kit
+        try {
+            $null = & ./deploy/New-PaDeployInputs.ps1 -SettingsPath $p
+            $null = & ./deploy/Test-PaPreflight.ps1 -SettingsPath $p -FixturePath (Join-Path $script:Fx 'tenant.json') -AsOf 2026-11-02
+            $null = & ./deploy/Invoke-PaSmokeTest.ps1 -SettingsPath $p -Phase Expire -Since 2026-11-02T14:00:00Z -AsOf 2026-11-02T22:20:00Z -FixturePath (Join-Path $script:Fx 'smoke-expire.json')
+            $null = & ./deploy/Invoke-PaRollback.ps1 -SettingsPath $p -RunRoot (Join-Path $script:Fx 'runs')
+            $idx = @(Import-Csv (Join-Path $root 'evidence/records.csv'))
+            ($idx.Step -join ',') | Should -Be 'settings,preflight,smoke-expire,rollback'
+            ($idx.Result -join ',') | Should -Be 'Pass,Fail,Pass,Planned'
+            $pf = Get-Content (Join-Path $root "evidence/$($idx[1].Record)") -Raw | ConvertFrom-Json
+            $pf.mode | Should -Be 'Fixture'
+            $pf.command | Should -Match '^\./deploy/Test-PaPreflight\.ps1 .*-AsOf 2026-11-02( |$)'
+            $out = & ./deploy/Test-PaEvidence.ps1 -SettingsPath $p
+            $LASTEXITCODE | Should -Be 1
+            ($out -join "`n") | Should -Match 'NO-GO on evidence'
+            Join-Path $root 'evidence/coverage.csv' | Should -Exist
+        } finally { Pop-Location }
+    }
+    It 'renders dates in the command as given' {
+        $c = Format-PaDeployCommand -Name 'X.ps1' -Parameters ([ordered]@{ AsOf = [datetime]'2026-11-02'; Since = [datetime]::new(2026, 11, 2, 14, 0, 0, [DateTimeKind]::Utc); Apply = [switch]$true; Path = 'a b' })
+        $c | Should -Be './deploy/X.ps1 -AsOf 2026-11-02 -Since 2026-11-02T14:00:00Z -Apply -Path a b'
+    }
+}
