@@ -1,7 +1,7 @@
 ---
 title: "Training"
 subtitle: "Learning paths: modules to work through in order, and the vendors' own training mapped to the workbook's roles"
-description: "The Federal Modernization Workbook's training: the Microsoft Automation learning path in three modules, the Ticket-to-Machine and HR-Driven Identity learning paths in seven modules each, the Privileged Access learning path in eight modules, the Attribute-Driven Migration learning path in nine modules, the Non-Person Identity learning path in ten modules, and external learning paths from product vendors."
+description: "The Federal Modernization Workbook's training: the Microsoft Automation learning path in three modules, the Ticket-to-Machine and HR-Driven Identity learning paths in seven modules each, the Privileged Access learning path in eight modules, the Attribute-Driven Migration learning path in nine modules, the Non-Person Identity learning path in eleven modules, and external learning paths from product vendors."
 doc-type: section-landing
 fmw-eyebrow: "Training"
 listing:
@@ -115,7 +115,7 @@ Nine modules that teach [Book 19, *Building the Attribute-Driven Migration*](../
 
 ## Non-Person Identity learning path
 
-Ten modules, one per chapter of the developer workbook *Building Non-Person Identity*, in the order of the six gates of the [non-person identity implementation guide](../books/guides/non-person-identity-implementation.md): inventory, ownership and the orphan rule, the decision, credential rules, least privilege and Conditional Access for workload identities, conversion, AI agent identities, and drift and evidence. Each has a lab on fixtures and a lab in your own test tenant. Start at the [learning path](non-person-identity/index.md).
+Eleven modules, one per chapter of the developer workbook *Building Non-Person Identity*, in the order of the six gates of the [non-person identity implementation guide](../books/guides/non-person-identity-implementation.md): inventory, ownership and the orphan rule, the decision, credential rules, least privilege and Conditional Access for workload identities, conversion, AI agent identities, drift and evidence, and the deployment to test, then production. Each has a lab on fixtures and a lab in your own test tenant. Start at the [learning path](non-person-identity/index.md).
 
 ## Attribute-Driven Migration learning path
 
@@ -123,7 +123,7 @@ Nine modules that teach [Book 19, *Building the Attribute-Driven Migration*](../
 
 ## Non-Person Identity learning path
 
-Ten modules, one per chapter of the developer workbook *Building Non-Person Identity*, in the order of the six gates of the [non-person identity implementation guide](../books/guides/non-person-identity-implementation.md): inventory, ownership and the orphan rule, the decision, credential rules, least privilege and Conditional Access for workload identities, conversion, AI agent identities, and drift and evidence. Each has a lab on fixtures and a lab in your own test tenant. Start at the [learning path](non-person-identity/index.md).
+Eleven modules, one per chapter of the developer workbook *Building Non-Person Identity*, in the order of the six gates of the [non-person identity implementation guide](../books/guides/non-person-identity-implementation.md): inventory, ownership and the orphan rule, the decision, credential rules, least privilege and Conditional Access for workload identities, conversion, AI agent identities, drift and evidence, and the deployment to test, then production. Each has a lab on fixtures and a lab in your own test tenant. Start at the [learning path](non-person-identity/index.md).
 
 ## External learning paths
 

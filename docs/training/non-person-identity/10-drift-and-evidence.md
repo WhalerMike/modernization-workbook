@@ -346,4 +346,4 @@ You ran two days of drift against an approved baseline, found three credentials 
 
 **The evidence an ISSO keeps** for G6: each day's package (`EVIDENCE-MANIFEST.json`, `SHA256SUMS`, `summary.md` and the run), the approved baseline's SHA-256, the vintage comparison, and the period's `PERIOD-MANIFEST.json` and `period-summary.md`, signed by the identity governance officer. Before shipping, work through the chapter's [Checklist](../../project-plans/developer-workbooks/non-person-identity/10-drift-and-evidence.md#checklist).
 
-**Next:** you've finished the path. Go back to the [learning path](index.md), or the [Labs](../labs.md#npi) page for every lab in the workbook.
+**Next:** [Module 11: Deploy to test, then production](11-deploying-to-test-and-production.md).

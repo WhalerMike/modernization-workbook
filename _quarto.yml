@@ -274,6 +274,7 @@ website:
             - docs/training/non-person-identity/08-gmsa-dmsa-and-the-kerberos-island.md
             - docs/training/non-person-identity/09-ai-agent-identities.md
             - docs/training/non-person-identity/10-drift-and-evidence.md
+            - docs/training/non-person-identity/11-deploying-to-test-and-production.md
         - section: "External learning paths"
           contents:
             - docs/training/infoblox-training.md

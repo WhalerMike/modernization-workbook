@@ -1,7 +1,7 @@
 ---
 title: "Learning path: Non-Person Identity in Microsoft Entra ID"
-subtitle: "Ten modules, one per chapter of the developer workbook, in the order of the implementation guide's six gates, each with a lab on fixtures and a lab in your own test tenant"
-description: "A learning path in ten modules for identity engineers, Active Directory engineers, developers, AI governance staff and ISSO reviewers: inventory every service account and workload identity, give each one owners and a sponsor, decide its target, set the credential rules, cut its privilege, put Conditional Access on it, convert it with a parallel run, govern AI agent identities, and find drift and file the evidence. Each module links the guide's gate, the developer workbook's chapter and its exact-command Lab 1 with no tenant, points to Lab 2 for a test tenant, and ends with a knowledge check."
+subtitle: "Eleven modules, one per chapter of the developer workbook, in the order of the implementation guide's six gates, then the deployment runbook, each with a lab on fixtures and a lab in your own test tenant"
+description: "A learning path in eleven modules for identity engineers, Active Directory engineers, developers, AI governance staff and ISSO reviewers: inventory every service account and workload identity, give each one owners and a sponsor, decide its target, set the credential rules, cut its privilege, put Conditional Access on it, convert it with a parallel run, govern AI agent identities, find drift and file the evidence, then deploy it all to a test environment and production. Each module links the guide's gate, the developer workbook's chapter and its exact-command Lab 1 with no tenant, points to Lab 2 for a test tenant, and ends with a knowledge check."
 doc-type: training-path
 research-status: draft
 research-type: training module
@@ -55,11 +55,12 @@ When you finish the path, you'll be able to:
 - sweep service principals for broad permissions and roles, and put Tier 1 service principals under Conditional Access for workload identities, report-only first;
 - plan conversions to managed identities, federated credentials, gMSAs and dMSAs, with a parallel run and a way back;
 - check AI agent identities and blueprints against the program's sponsor and credential rules;
-- find drift against an approved baseline and hand the ISSO an evidence package they can verify.
+- find drift against an approved baseline and hand the ISSO an evidence package they can verify;
+- deploy the kit to a live test environment, then production, with a preflight, a smoke test, an evidence record per requirement and a rehearsed rollback.
 
 ## Modules
 
-Work through them in order. They follow the guide's gates, G1 to G6, with the guide's AI agents section after the gates it builds on. So the workbook's chapters come in a slightly different order: Chapters 07 and 08 (G4) come before Chapters 05 and 06 (G5).
+Work through them in order. They follow the guide's gates, G1 to G6, with the guide's AI agents section after the gates it builds on. So the workbook's chapters come in a slightly different order: Chapters 07 and 08 (G4) come before Chapters 05 and 06 (G5). Module 11, the deployment runbook, comes last: it runs every gate's code in one safe order, and each of its steps names its gate.
 
 | # | Module | Gate | Workbook chapter | Time |
 |---|---|---|---|---|
@@ -73,14 +74,15 @@ Work through them in order. They follow the guide's gates, G1 to G6, with the gu
 | 8 | [Convert Kerberos accounts to gMSAs and dMSAs](08-gmsa-dmsa-and-the-kerberos-island.md) | G5 Conversion | [06](../../project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.md) | 60 min |
 | 9 | [Govern AI agent identities](09-ai-agent-identities.md) | AI agents | [09](../../project-plans/developer-workbooks/non-person-identity/09-ai-agent-identities.md) | 65 min |
 | 10 | [Find drift and file the evidence](10-drift-and-evidence.md) | G6 Lifecycle | [10](../../project-plans/developer-workbooks/non-person-identity/10-drift-and-evidence.md) | 75 min |
+| 11 | [Deploy to test, then production](11-deploying-to-test-and-production.md) | Every gate, through the [stage steps](../../project-plans/developer-workbooks/non-person-identity/11-deploying-to-test-and-production.md#stage-1-live-test) | [11](../../project-plans/developer-workbooks/non-person-identity/11-deploying-to-test-and-production.md) | 60 min |
 
 : The modules of the Non-Person Identity learning path {.striped .hover}
 
-**Total time:** about 10 hours 20 minutes, with each module's Lab 1. Lab 2, in your own test tenant, isn't counted: how long it takes depends on your tenant and your approvals.
+**Total time:** about 11 hours 20 minutes, with each module's Lab 1. Lab 2, in your own test tenant, isn't counted: how long it takes depends on your tenant and your approvals.
 
-**Why ten modules.** The guide has six gates, but G1, G4 and G5 each need two workbook chapters, and every chapter's Lab 1 is 7 to 14 steps. A module that ran two of those labs would take two hours. So each module teaches one chapter, and the gate column shows where it sits in the guide. The guide's [SQL Server](../../books/guides/non-person-identity-implementation.md#sql-server) section has no chapter of its own: Module 1 shows its accounts handed to the Data Platform plan.
+**Why eleven modules.** The guide has six gates, but G1, G4 and G5 each need two workbook chapters, and every chapter's Lab 1 is 7 to 14 steps. A module that ran two of those labs would take two hours. So each module teaches one chapter, and the gate column shows where it sits in the guide. Chapter 11, the runbook, serves every gate, so it's a module of its own. The guide's [SQL Server](../../books/guides/non-person-identity-implementation.md#sql-server) section has no chapter of its own: Module 1 shows its accounts handed to the Data Platform plan.
 
-**If you're an ISSO reviewer,** read each module's introduction, its federal requirement table and its summary, and skip the labs. Module 10 is yours in full. The workbook's [reading paths](../../project-plans/developer-workbooks/non-person-identity/index.md#reading-paths) suggest an order for each role.
+**If you're an ISSO reviewer,** read each module's introduction, its federal requirement table and its summary, and skip the labs. Modules 10 and 11 are yours in full. The workbook's [reading paths](../../project-plans/developer-workbooks/non-person-identity/index.md#reading-paths) suggest an order for each role.
 
 Each module follows the same units: an introduction with the federal requirement it meets, learning objectives, prerequisites, one to three concept units, Lab 1, Lab 2, a knowledge check and a summary.
 
@@ -98,7 +100,7 @@ Run every command from `examples/non-person-identity`, in PowerShell 7. Each lab
 
 ## How this path fits with the other pieces
 
-The guide is finished when it has [four pieces](https://github.com/WhalerMike/modernization-workbook/blob/main/CONTRIBUTING.md#an-implementation-guide-is-finished-when-it-has-all-four-pieces): the guide, a narrated deck series, a developer workbook and a training path. This path is the training piece. Each workbook chapter already has a narrated tour, and each module links it. Narrated decks for the modules themselves come later.
+The guide is finished when it has [four pieces](https://github.com/WhalerMike/modernization-workbook/blob/main/CONTRIBUTING.md#an-implementation-guide-is-finished-when-it-has-all-four-pieces): the guide, a narrated deck series, a developer workbook and a training path. This path is the training piece. Chapters 01 to 10 already have a narrated tour each, and each module links it; Chapter 11's comes later. Narrated decks for the modules themselves come later.
 
 | Piece | Where |
 |---|---|
