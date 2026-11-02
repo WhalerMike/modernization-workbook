@@ -37,4 +37,4 @@ foreach ($r in $rows) { Write-Output ("  {0} {1}: expected {2}; observed {3}" -f
 $passed = @($rows | Where-Object Pass).Count
 Write-Output ("Smoke test {0} ({1}, {2}): {3} of {4} checks passed" -f $Phase, $s.environment, $mode, $passed, $rows.Count)
 Write-Output "Written to $OutputPath (manifest.json lists every request and file hash)"
-if ($passed -ne $rows.Count) { exit 1 }
+exit $(if ($passed -ne $rows.Count) { 1 } else { 0 })

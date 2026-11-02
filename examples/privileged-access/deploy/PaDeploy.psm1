@@ -403,7 +403,7 @@ function Test-PaDeployPreflight {
 
     # 1. Licenses: PIM needs Microsoft Entra ID P2 or Microsoft Entra ID Governance (Learn).
     $reader = New-PaDeployReader -Cloud $Settings.cloud -Task preflight -Invoke $Invoke
-    $skus = @(Invoke-PaDeployList -Reader $reader -CallId subscribed-skus -Query '$select=skuPartNumber,capabilityStatus,prepaidUnits,consumedUnits,servicePlans')
+    $skus = @(Invoke-PaDeployList -Reader $reader -CallId subscribed-skus)
     $licensed = @()
     foreach ($sku in $skus) {
         if ((Get-PaDeployValue $sku 'capabilityStatus') -ne 'Enabled') { continue }

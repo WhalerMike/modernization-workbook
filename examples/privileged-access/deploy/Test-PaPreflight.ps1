@@ -44,4 +44,4 @@ foreach ($f in $findings) { Write-Output "  $($f.Severity.PadRight(7)) $($f.Rule
 if ($block.Count) { Write-Output 'BLOCKED: fix every Finding, then run the pre-flight again. Nothing in this stage may run.' }
 else { Write-Output 'PASS: the emergency access accounts are verified and excluded; the stage may start.' }
 Write-Output "Written to $OutputPath (manifest.json lists every request and file hash)"
-if ($block.Count) { exit 1 }
+exit $(if ($block.Count) { 1 } else { 0 })
