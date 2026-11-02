@@ -4,7 +4,7 @@ New material; it replaces no workbook page. The owner asked for a runbook that t
 
 **Nobody has run the runbook against a live tenant, subscription or forest.** The page says so in its Status callout, and every result after a live command is written as an expectation.
 
-Test results on November 2, 2026, Windows 11, Python 3.14.3, pytest 9.0.2: `python -m pytest deploy/tests -q` 37 passed; `python -m pytest tests -q` 142 passed (unchanged); `python scripts/run_example_tests.py --list` shows `drift-pipeline: tests (pytest), deploy/tests (pytest)`. The live probes are tested with a fake runner; the rollback scripts are written and read back by the tests, not executed.
+Test results on November 2, 2026, Windows 11, Python 3.14.3, pytest 9.0.2: `python -m pytest deploy/tests -q` 46 passed (37 before the owner's requirements-and-evidence addition the same day); `python -m pytest tests -q` 142 passed (unchanged); `python scripts/run_example_tests.py --list` shows `drift-pipeline: tests (pytest), deploy/tests (pytest)`. The live probes are tested with a fake runner; the rollback scripts are written and read back by the tests, not executed.
 
 Dry-run output in the chapter: produced on November 2, 2026 by the commands exactly as printed, in Git Bash on Windows from `examples/drift-pipeline`, with `MSYS_NO_PATHCONV=1` (Git Bash otherwise rewrote the `/subscriptions/...` argument to a Windows path in a first run, which is why the chapter's bash setup exports it). The smoke report's hash differs on every run because the report records when it ran; the chapter says so.
 
@@ -47,7 +47,10 @@ Microsoft Learn pages opened on November 2, 2026 through the Microsoft Learn MCP
 | 29 | Federated credential issuer, subject and audience | Step 8 | carried forward from Chapter 09 (accessed Oct 30, 2026); not reread | Learn, create trust |
 | 30 | Three identities; one delegated step; test before production with separate tenants; promotion approvals by CISO and identity engineering; roll back at the end of the test stage; ApplyAndAutoCorrect left for later; plan a reverse configuration; when to roll back a wave | Throughout | restated-as-design (labeled) | — |
 | 31 | The kits' commands, outputs and exit codes (hcm_to_scim, Invoke-ValidationKit, FmwGraph, DynamicRules, lcwext, Invoke-GpcSync, Invoke-McBuild, the Ansible playbooks, drift_pipeline) | Stage 1 | verified by reading each kit's code and README and its chapter; not run live | the kits; Chapters 01 to 09 |
-| 32 | Deploy scripts' dry-run output | Try the scripts | verified by running the commands as printed, November 2, 2026 | local run |
+| 32 | Deploy scripts' dry-run output, including the evidence records, the evidence check and `sha256sum -c` | Try the scripts | verified by running the commands as printed, November 2, 2026 | local run |
+| 33 | Each requirement row's controls (SP 800-53 Rev. 5, all in the Moderate baseline) and the KSI IDs aligned to them | Requirements tables; `deploy/requirements.json` | carried forward: control-to-KSI pairs from Book 13, Appendix A (FedRAMP's related-control lists, accessed Oct 21, 2026), AC-2 to KSI-IAM-AAM and AU-2 to KSI-MLA-LET and IA-5 (non-user) to KSI-IAM-SNU from Book 02, Chapter 10; baselines from Book 13, Appendix A. No new KSI ID; a test pins the set | Book 13, Appendix A; Book 02, Chapter 10; Book 04, Chapter 10 |
+| 34 | KSIs are provider indicators; the agency lines its evidence up and doesn't report them | Requirements section | carried forward | Book 00, Appendix B; FedRAMP KSI page as cited there |
+| 35 | M-22-09 device inventory and signal; BOD 25-01 required SCuBA policies; GCC at FedRAMP Moderate; FedRAMP agency use | Requirements section; rows R-GPO-2, R-BL-2, R-PR-1 | carried forward from the companion guide's footnotes (accessed Oct 20 and 21, 2026); not reread | Attribute-Driven Migration guide; Book 13, Appendix A |
 
 ## Commands not confirmed on a Learn page
 
@@ -59,6 +62,7 @@ These appear in the runbook's commands. Each is a standard parameter or cmdlet, 
 - `az policy assignment show --query identity.principalId` (step 6d).
 - `az storage blob list … --query "sort_by(…, &properties.creationTime)"` and `az storage blob download-batch --pattern` (first-week monitoring).
 - `Update-AzTag -Operation Merge` (step 6b).
+- `Get-GPInheritance -Target -Domain` and its `GpoLinks` property (step 5's evidence command).
 - `Update-MgGroup -MembershipRuleProcessingState`, `Remove-MgGroup` (step 3d; rollback): the property values are Chapter 04's verified facts; the cmdlet names follow the Graph PowerShell SDK's naming and Chapter 04's test-tenant step.
 - `Remove-MgIdentityGovernanceLifecycleWorkflow` and `Remove-AzPolicyDefinition -Force` (test-stage rollback).
 - The **Real-time employee termination** template name and its default tasks in the admin center (step 4a): Learn's activate page names the template; the admin center's template list wasn't opened.
@@ -79,3 +83,4 @@ These appear in the runbook's commands. Each is a standard parameter or cmdlet, 
 | Chapter 08, test-tenant steps | Step 7 | — |
 | Chapter 09, test-tenant steps | Step 8; first-week monitoring; evidence package | Signing the evidence package stays open (research-gaps.md row 22) |
 | Index outline | The chapter; the index's chapter table gains row 10 | — |
+| The owner's requirement (November 2, 2026): requirements and KSIs per step, evidence produced, promotion on a passing evidence check | `deploy/requirements.json`, `deploy/evidence.py`, a table per step, step 12, promotion criterion 0 | The guide itself has no per-gate requirement tables; its companion guide's federal requirements table and Book 13, Appendix A supplied the controls |
