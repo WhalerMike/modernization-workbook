@@ -1,7 +1,7 @@
 ---
 title: "Training"
 subtitle: "Learning paths: modules to work through in order, and the vendors' own training mapped to the workbook's roles"
-description: "The Federal Modernization Workbook's training: the Microsoft Automation learning path in three modules, the Ticket-to-Machine and HR-Driven Identity learning paths in seven modules each, the Privileged Access learning path in eight modules, the Attribute-Driven Migration learning path in nine modules, and external learning paths from product vendors."
+description: "The Federal Modernization Workbook's training: the Microsoft Automation learning path in three modules, the Ticket-to-Machine and HR-Driven Identity learning paths in seven modules each, the Privileged Access learning path in eight modules, the Attribute-Driven Migration learning path in nine modules, the Non-Person Identity learning path in ten modules, and external learning paths from product vendors."
 doc-type: section-landing
 fmw-eyebrow: "Training"
 listing:
@@ -34,6 +34,7 @@ listing:
       - "!hr-driven-identity/**"
       - "!privileged-access/**"
       - "!attribute-driven-migration/**"
+      - "!non-person-identity/**"
     type: table
     fields: [title, research-status, last-reviewed, description]
     field-display-names: *names
@@ -73,7 +74,7 @@ Three modules that teach you to script Microsoft Entra ID and Intune through Mic
 
 : The Microsoft Automation modules in order {.striped .hover}
 
-Work through them in order: Module 1 sets up what the other two use. The developer workbook's [Chapter 02](../books/b19-developer-workbook/02-graph-clients-for-government-clouds.md) goes deeper on the Graph client, and the [Ticket-to-Machine](ticket-to-machine/index.md) and [HR-Driven Identity](hr-driven-identity/index.md) paths build on Module 1. **If you're an ISSO reviewer,** read each module's introduction, Where agencies are and summary, and skip the labs.
+Work through them in order: Module 1 sets up what the other two use. The developer workbook's [Chapter 02](../books/b19-developer-workbook/02-graph-clients-for-government-clouds.md) goes deeper on the Graph client, and the [Ticket-to-Machine](ticket-to-machine/index.md), [HR-Driven Identity](hr-driven-identity/index.md) and [Non-Person Identity](non-person-identity/index.md) paths build on Module 1. **If you're an ISSO reviewer,** read each module's introduction, Where agencies are and summary, and skip the labs.
 
 ### What you need for the Microsoft Automation labs
 
@@ -111,6 +112,10 @@ Eight modules, one per chapter of the developer workbook [*Building Privileged A
 ## Attribute-Driven Migration learning path
 
 Nine modules that teach [Book 19, *Building the Attribute-Driven Migration*](../books/b19-developer-workbook/index.md), one chapter each, in the order of the [implementation guide's](../books/guides/attribute-driven-migration-implementation.md) gates. Each runs the chapter's Lab 1 on fixtures, points to its Lab 2 in a non-production environment, names the federal requirement with its KSI and evidence, and ends with a knowledge check. Chapter 02 is taught by the Microsoft Automation path's [Module 1](ms-automation-foundations.md). Start at the [learning path](attribute-driven-migration/index.md).
+
+## Non-Person Identity learning path
+
+Ten modules, one per chapter of the developer workbook *Building Non-Person Identity*, in the order of the six gates of the [non-person identity implementation guide](../books/guides/non-person-identity-implementation.md): inventory, ownership and the orphan rule, the decision, credential rules, least privilege and Conditional Access for workload identities, conversion, AI agent identities, and drift and evidence. Each has a lab on fixtures and a lab in your own test tenant. Start at the [learning path](non-person-identity/index.md).
 
 ## External learning paths
 

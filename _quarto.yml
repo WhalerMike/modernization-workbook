@@ -259,6 +259,19 @@ website:
             - docs/training/attribute-driven-migration/07-lifecycle-workflows-extensions.md
             - docs/training/attribute-driven-migration/08-drift-and-evidence.md
             - docs/training/attribute-driven-migration/09-deploying-to-test-and-production.md
+        - section: "Non-Person Identity learning path"
+          href: docs/training/non-person-identity/index.md
+          contents:
+            - docs/training/non-person-identity/01-inventory.md
+            - docs/training/non-person-identity/02-owners-and-the-orphan-rule.md
+            - docs/training/non-person-identity/03-decide-the-target.md
+            - docs/training/non-person-identity/04-credential-rules.md
+            - docs/training/non-person-identity/05-least-privilege.md
+            - docs/training/non-person-identity/06-conditional-access.md
+            - docs/training/non-person-identity/07-federation-and-managed-identities.md
+            - docs/training/non-person-identity/08-gmsa-dmsa-and-the-kerberos-island.md
+            - docs/training/non-person-identity/09-ai-agent-identities.md
+            - docs/training/non-person-identity/10-drift-and-evidence.md
         - section: "External learning paths"
           contents:
             - docs/training/infoblox-training.md
