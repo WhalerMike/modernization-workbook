@@ -598,7 +598,7 @@ function New-PaRollbackPlan {
     $rev = Read-PaDeployJsonFile (Join-Path $root 'reviews-apply/results.json')
     $made = @($rev | Where-Object { $_ -and $_.Action -eq 'Create' -and $_.Result -eq 'Sent' } | ForEach-Object { $_.Name })
     if ($made.Count) {
-        & $step 'access-reviews' 'Manual' "Export the evidence, then delete $($made.Count) series the stage created: $($made -join ', ')" @() 'ID Governance > Access reviews > select the series > Delete'
+        & $step 'access-reviews' 'Manual' "Export the evidence, then delete $($made.Count) series the stage created: $($made -join ', ')" @() 'ID Governance > Privileged Identity Management > Microsoft Entra roles > select the access review > Delete'
     }
     $upd = @($rev | Where-Object { $_ -and $_.Action -eq 'Update' -and $_.Result -eq 'Sent' } | ForEach-Object { $_.Name })
     if ($upd.Count) {
