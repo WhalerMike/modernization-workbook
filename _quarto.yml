@@ -232,6 +232,19 @@ website:
             - docs/training/hr-driven-identity/05-certificate-based-authentication.md
             - docs/training/hr-driven-identity/06-separation-timing.md
             - docs/training/hr-driven-identity/07-drift-and-evidence.md
+        - section: "Non-Person Identity learning path"
+          href: docs/training/non-person-identity/index.md
+          contents:
+            - docs/training/non-person-identity/01-inventory.md
+            - docs/training/non-person-identity/02-owners-and-the-orphan-rule.md
+            - docs/training/non-person-identity/03-decide-the-target.md
+            - docs/training/non-person-identity/04-credential-rules.md
+            - docs/training/non-person-identity/05-least-privilege.md
+            - docs/training/non-person-identity/06-conditional-access.md
+            - docs/training/non-person-identity/07-federation-and-managed-identities.md
+            - docs/training/non-person-identity/08-gmsa-dmsa-and-the-kerberos-island.md
+            - docs/training/non-person-identity/09-ai-agent-identities.md
+            - docs/training/non-person-identity/10-drift-and-evidence.md
         - section: "External learning paths"
           contents:
             - docs/training/infoblox-training.md
