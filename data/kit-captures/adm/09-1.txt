@@ -1,0 +1,26 @@
+$ python python/workflow_lint.py --learn-samples
+Learn sample 1: 5 finding(s), 4 warning(s)
+  Finding WF-02  on: No schedule trigger (triggers: push): drift checks must run without a person
+  Warn    WF-03  permissions: No workflow-level permissions block: a job without its own block gets the repository's default token permissions
+  Warn    WF-11  concurrency: No concurrency group: a slow run and the next scheduled run can overlap and compare against each other
+  Warn    WF-10  jobs.test: The job that signs in names no environment: the token's subject then depends on the branch or event, and a federated credential matches one subject exactly
+  Warn    WF-11  jobs.test: No timeout-minutes
+  Finding WF-05  jobs.test.steps[0]: azure/login@v2 isn't pinned to a full commit SHA
+  Finding WF-08  jobs.test.steps[0]: azure/login@v2: an older major version than the pinned release (v3)
+  Finding WF-05  jobs.test.steps[1]: azure/cli@v2 isn't pinned to a full commit SHA
+  Finding WF-09  jobs.test.steps[1]: azcliversion: latest; the tool version changes under the evidence without a review
+Learn sample 2: 7 finding(s), 4 warning(s)
+  Finding WF-02  on: No schedule trigger (triggers: push): drift checks must run without a person
+  Warn    WF-03  permissions: No workflow-level permissions block: a job without its own block gets the repository's default token permissions
+  Warn    WF-11  concurrency: No concurrency group: a slow run and the next scheduled run can overlap and compare against each other
+  Warn    WF-10  jobs.test: The job that signs in names no environment: the token's subject then depends on the branch or event, and a federated credential matches one subject exactly
+  Warn    WF-11  jobs.test: No timeout-minutes
+  Finding WF-05  jobs.test.steps[0]: azure/login@v2 isn't pinned to a full commit SHA
+  Finding WF-08  jobs.test.steps[0]: azure/login@v2: an older major version than the pinned release (v3)
+  Finding WF-05  jobs.test.steps[1]: azure/cli@v2 isn't pinned to a full commit SHA
+  Finding WF-09  jobs.test.steps[1]: azcliversion: latest; the tool version changes under the evidence without a review
+  Finding WF-05  jobs.test.steps[2]: azure/powershell@v2 isn't pinned to a full commit SHA
+  Finding WF-09  jobs.test.steps[2]: azPSVersion: latest; the tool version changes under the evidence without a review
+Learn sample 3: 1 finding(s), 0 warning(s)
+  Finding WF-01  file: Not valid YAML (mapping values are not allowed here); a workflow file that doesn't parse can't run
+(exit code 2)

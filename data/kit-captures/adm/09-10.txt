@@ -1,0 +1,4 @@
+$ echo "edited after packaging" >> out/evidence/2026-10-29-0617-fixture-runner-fixture/drift/drift-summary.md
+$ python python/drift_pipeline.py verify out/evidence/2026-10-29-0617-fixture-runner-fixture
+error: out/evidence/2026-10-29-0617-fixture-runner-fixture: drift/drift-summary.md doesn't match its SHA-256
+(exit code 1)

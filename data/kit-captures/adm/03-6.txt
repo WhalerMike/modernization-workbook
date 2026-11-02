@@ -1,0 +1,10 @@
+PS> pwsh -NoProfile -Command "Invoke-Pester -Path tests/powershell"
+Starting discovery in 4 files.
+Discovery found 297 tests.
+Running tests.
+[+] examples/validation-kit/tests/powershell/Checks.Tests.ps1
+[+] examples/validation-kit/tests/powershell/Client.Tests.ps1
+[+] examples/validation-kit/tests/powershell/Runner.Tests.ps1
+[+] examples/validation-kit/tests/powershell/Safety.Tests.ps1
+Tests completed
+Tests Passed: 297, Failed: 0, Skipped: 0 NotRun: 0

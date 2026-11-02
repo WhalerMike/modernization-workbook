@@ -1,0 +1,5 @@
+PS> pwsh ./powershell/Invoke-GpcSync.ps1 -FixturePath ./tests/fixtures/tenant.json -Apply
+Apply against https://graph.microsoft.com (2 library file(s))
+Create          FMP-SC-201-Error-reporting-and-dumps
+Drift           FMP-SC-202-Sign-in-and-power: changes device_vendor_msft_policy_config_power_allowhibernate
+(exit code 2)

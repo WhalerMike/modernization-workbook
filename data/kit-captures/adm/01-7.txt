@@ -1,0 +1,4 @@
+$ echo '{"max_disables_per_run": 1}' > settings-hold.json
+$ python python/hcm_to_scim.py --extract tests/fixtures/hcm_extract_sample.csv --as-of 2026-10-25 --settings settings-hold.json --out out-hold
+{"counts": {"ready": 9, "quarantined": 9, "superseded": 1}, "batches": 1, "disables": 3, "held": true, "hold_reason": "3 disables exceed max_disables_per_run (1): held for confirmation (Book 03, Appendix B pause switch)"}
+(exit code 3)

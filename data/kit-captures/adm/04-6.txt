@@ -1,0 +1,2 @@
+PS> $f = './rules/fin-led-not-contractors.json'
+PS> (Get-Content -Raw $f).Replace(' -and (user.extensionAttribute11 -ne null)', '') | Set-Content -NoNewline $f

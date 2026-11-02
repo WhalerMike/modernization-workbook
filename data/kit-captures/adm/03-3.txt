@@ -1,0 +1,11 @@
+PS> New-Item -ItemType Directory -Force -Path ./inputs | Out-Null
+PS> Set-Content -Path ./inputs/onprem-sync-export.json -Value '{"value":[{"id":"x","features":{"blockSoftMatchEnabled":true,"blockCloudObjectTakeoverThroughHardMatchEnabled":false}}]}'
+PS> $r = Invoke-VkCheck -CheckId VK-SYNC-02 -Context (Get-VkRunContext -InputPath ./inputs -AsOf 2026-10-30)
+PS> $r | Select-Object CheckId, Status, Count
+CheckId    Status Count
+-------    ------ -----
+VK-SYNC-02 Fail       1
+PS> $r.Evidence.Queries | Format-Table Source, Query
+Source Query
+------ -----
+Input  onprem-sync-export.json

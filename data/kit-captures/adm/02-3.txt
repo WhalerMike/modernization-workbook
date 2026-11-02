@@ -1,0 +1,4 @@
+$ python -c "import sys; sys.path.insert(0, 'python'); from graphkit import endpoints, scope_for; print(endpoints('gcc')); print(scope_for('gcc', 'arm')); print(scope_for('dod'))"
+{'login': 'https://login.microsoftonline.com', 'graph': 'https://graph.microsoft.com', 'arm': 'https://management.azure.com', 'ps_env': 'Global', 'azure_env': 'AzureCloud'}
+https://management.azure.com/.default
+https://dod-graph.microsoft.us/.default

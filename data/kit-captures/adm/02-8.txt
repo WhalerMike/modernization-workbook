@@ -1,0 +1,11 @@
+PS> Import-Module ./powershell/FmwGraph.psm1
+PS> (Get-FmwCloud gcc).Arm
+https://management.azure.com
+PS> Get-FmwCallPermission -Task pim-report
+RoleAssignmentSchedule.Read.Directory
+RoleEligibilitySchedule.Read.Directory
+RoleManagement.Read.Directory
+PS> Assert-FmwGraphCall -Method GET -Uri '/beta/users' -Cloud gcc
+Exception: Undeclared beta call: GET /beta/users; add it to graph-calls.json with its permission
+PS> Assert-FmwGraphCall -Method GET -Uri 'https://graph.microsoft.com/v1.0/users' -Cloud gcchigh
+Exception: Refusing to send the token to https://graph.microsoft.com/v1.0/users: not https://graph.microsoft.us

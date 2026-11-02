@@ -1,0 +1,5 @@
+PS> $t = New-FakeTenant -Collections @(
+>>     @{ id = '11111111-1111-1111-1111-111111111111'; displayName = 'FIN-LED all members'; kind = 'group'; state = 'On' })
+PS> Invoke-LearnSample -Page "$pages/powershell-pause-all-dynamic-membership.md" -Tenant $t -Answers 'yes', 'GCCHigh', 'yes', 'yes', 'yes' | Out-Null
+PS> $t.Calls[0].Uri
+https://graph.microsoft.com/v1.0/groups?$filter=groupTypes%2Fany%28c%3Ac%20eq%20%27DynamicMembership%27%29&$count=true

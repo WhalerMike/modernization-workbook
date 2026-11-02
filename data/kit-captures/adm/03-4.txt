@@ -1,0 +1,4 @@
+PS> Get-VkRequiredScope -Checks (Get-VkCheckCatalog -CheckId VK-SYNC-02)
+OnPremDirectorySynchronization.Read.All
+PS> (Get-VkCheckCatalog -CheckId VK-SYNC-02).DelegatedRole
+Global Administrator (the only role Learn lists; delegated only, no application permission)
