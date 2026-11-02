@@ -21,6 +21,7 @@ param(
     [string]$FixturePath,
     [string]$Server,
     [datetime]$AsOf,
+    [string]$EvidencePath,
     [switch]$SkipAd
 )
 $ErrorActionPreference = 'Stop'
@@ -42,5 +43,8 @@ $r = Invoke-NpiDeploySmokeTest -Client $client -Settings $s -RegisterRun $Regist
 $null = Export-NpiDeployRun -OutputPath $OutputPath -Task deploy-smoke -Settings $s -Mode $mode -Evidence $client.Evidence.ToArray() -AsOf $AsOf.ToUniversalTime().ToString('o') `
     -Extra @{ expectCaState = $ExpectCaState; waves = @($Wave); registerRunManifestSha256 = (Get-NpiFileHash -Path (Join-Path $RegisterRun 'manifest.json')) } -Files @{ 'results.json' = @($r.Results) }
 Write-NpiDeploySummary -Title "Smoke test ($mode, $Stage, Conditional Access expected $ExpectCaState$(if ($Wave) { " for $($Wave -join ', ')" }))" -Results $r.Results
+if (-not $EvidencePath) { $EvidencePath = Join-Path (Split-Path -Parent $OutputPath) 'evidence' }
+$e = Write-NpiDeployEvidence -EvidencePath $EvidencePath -Step SMOKE -Settings $s -Mode $mode -Command $MyInvocation.Line -Results $r.Results -RunPaths $OutputPath
+Write-Output ("Evidence: {0} ({1})" -f $e.Name, (Get-Content $e.FullName -Raw | ConvertFrom-Json).result)
 if (@($r.Results | Where-Object Status -EQ 'Fail').Count) { Write-Output 'Result: FAIL. Stop here and run the rollback.'; exit 1 }
 Write-Output 'Result: PASS. File results.json and manifest.json with the change record.'

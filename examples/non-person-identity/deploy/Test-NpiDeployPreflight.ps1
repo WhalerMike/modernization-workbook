@@ -19,6 +19,7 @@ param(
     [string]$PromotionEvidencePath,
     [string]$FixturePath,
     [string]$Server,
+    [string]$EvidencePath,
     [switch]$SkipAd
 )
 $ErrorActionPreference = 'Stop'
@@ -39,5 +40,9 @@ $r.Snapshot.takenAt = if ($FixturePath) { $fake.Fixture.asOf } else { [DateTime]
 $null = Export-NpiDeployRun -OutputPath $OutputPath -Task deploy-preflight -Settings $s -Mode $mode -Evidence $client.Evidence.ToArray() -AsOf $r.Snapshot.takenAt `
     -Files @{ 'results.json' = @($r.Results); 'snapshot.json' = $r.Snapshot }
 Write-NpiDeploySummary -Title "Preflight ($mode, $Stage, $($s.changeRecord))" -Results $r.Results
+if (-not $EvidencePath) { $EvidencePath = Join-Path (Split-Path -Parent $OutputPath) 'evidence' }
+$e1 = Write-NpiDeployEvidence -EvidencePath $EvidencePath -Step PRE -Settings $s -Mode $mode -Command $MyInvocation.Line -Results $r.Results -RunPaths $OutputPath
+$e0 = Write-NpiDeployEvidence -EvidencePath $EvidencePath -Step S0 -Settings $s -Mode $mode -Command $MyInvocation.Line -RunPaths $OutputPath -Note "Change record $($s.changeRecord); settings file SHA-256 $($s._sha256)"
+foreach ($e in $e1, $e0) { Write-Output ("Evidence: {0} ({1})" -f $e.Name, (Get-Content $e.FullName -Raw | ConvertFrom-Json).result) }
 if (@($r.Results | Where-Object Status -EQ 'Fail').Count) { Write-Output 'Result: NO-GO. Fix every Fail before the stage starts.'; exit 1 }
 Write-Output 'Result: GO for this stage. File results.json, snapshot.json and manifest.json with the change record.'

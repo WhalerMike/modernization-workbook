@@ -373,3 +373,102 @@ Describe 'The scripts, in fixture mode' {
         } finally { Pop-Location }
     }
 }
+
+Describe 'Requirements and evidence records' {
+    BeforeAll {
+        $script:Cat = Get-NpiDeployRequirements
+        # The KSI IDs Books 02, 04, 13 and 14 cite, checked on fedramp.gov on November 2, 2026.
+        $script:KnownKsis = @('KSI-CED-RAT', 'KSI-CMT-LMC', 'KSI-CMT-RMV', 'KSI-CMT-VTD', 'KSI-IAM-AAM', 'KSI-IAM-APM', 'KSI-IAM-ELP', 'KSI-IAM-JIT', 'KSI-IAM-SNU',
+            'KSI-INR-RIR', 'KSI-MLA-EVC', 'KSI-MLA-LET', 'KSI-MLA-OSM', 'KSI-PIY-GIV', 'KSI-RPL-ABO', 'KSI-SVC-ACM')
+        function New-RunFolder([string]$Name, [hashtable]$S) {
+            $p = Join-Path $script:Tmp "runs-$Name"
+            $null = Export-NpiDeployRun -OutputPath $p -Task deploy-preflight -Settings $S -Files @{ 'results.json' = @(@{ id = $Name }) }
+            $p
+        }
+        function New-FullEvidence([string]$Name) {
+            $ev = Join-Path $script:Tmp "evidence-$Name"
+            $s = Get-Settings
+            $fake = New-NpiDeployFixtureInvoker -Path $script:TestTenant
+            $pre = Invoke-NpiDeployPreflight -Client (New-Client 'deploy-preflight' $fake) -Settings $s -BaselinePath $script:Baseline
+            $null = Write-NpiDeployEvidence -EvidencePath $ev -Step PRE -Settings $s -Mode Fixture -Command 'preflight' -Results $pre.Results -RunPaths (New-RunFolder "$Name-pre" $s)
+            $null = Write-NpiDeployEvidence -EvidencePath $ev -Step S0 -Settings $s -Mode Fixture -Command 'preflight' -RunPaths (New-RunFolder "$Name-s0" $s)
+            foreach ($st in 'S1.1', 'S1.2', 'S1.3', 'S1.5') { $null = Write-NpiDeployEvidence -EvidencePath $ev -Step $st -Settings $s -Mode Fixture -Command $st -RunPaths (New-RunFolder "$Name-$st" $s) }
+            $smoke = Invoke-NpiDeploySmokeTest -Client (New-Client 'deploy-smoke' (New-NpiDeployFixtureInvoker -Path $script:TestTenant)) -Settings $s -RegisterRun $script:Register -AsOf $script:AsOf
+            $null = Write-NpiDeployEvidence -EvidencePath $ev -Step SMOKE -Settings $s -Mode Fixture -Command 'smoke' -Results $smoke.Results
+            $null = Write-NpiDeployEvidence -EvidencePath $ev -Step ROLLBACK -Settings $s -Mode Fixture -Command 'rollback' -Results @([pscustomobject]@{ ActionId = 'RB-01'; Status = 'Applied'; Detail = 'x' })
+            $ev
+        }
+    }
+    It 'maps every preflight, smoke and rollback check, and names only KSIs the repository already cites' {
+        foreach ($id in @(1..11 | ForEach-Object { 'PF-{0:00}' -f $_ }) + @(1..7 | ForEach-Object { 'ST-{0:00}' -f $_ }) + 'RB') { $script:Cat.checks.ContainsKey($id) | Should -BeTrue -Because $id }
+        $all = @($script:Cat.checks.Values | ForEach-Object { $_.ksis }) + @($script:Cat.steps.Values | ForEach-Object { $_.ksis })
+        foreach ($k in ($all | Sort-Object -Unique)) { $k | Should -BeIn $script:KnownKsis }
+        foreach ($stage in 'test', 'production') { foreach ($st in $script:Cat.stages[$stage]) { $script:Cat.steps.ContainsKey($st) | Should -BeTrue -Because $st } }
+    }
+    It 'records a step with its timestamp, environment, command, result, controls and KSIs, and hashes the folder' {
+        $ev = Join-Path $script:Tmp 'evidence-one'
+        $s = Get-Settings
+        $f = Write-NpiDeployEvidence -EvidencePath $ev -Step S1.1 -Settings $s -Mode Fixture -Command './Invoke-NpiInventory.ps1 ...' -RunPaths (New-RunFolder 'one' $s)
+        $rec = Get-Content $f.FullName -Raw | ConvertFrom-Json
+        $rec.result | Should -Be 'Pass'
+        $rec.environment | Should -Be 'test'; $rec.tenantId | Should -Be $s.tenantId; $rec.command | Should -Be './Invoke-NpiInventory.ps1 ...'
+        [datetime]::Parse($rec.recordedAt) | Should -BeOfType [datetime]
+        @($rec.controls) | Should -Contain 'CM-8'; @($rec.ksis) | Should -Contain 'KSI-PIY-GIV'; @($rec.other) | Should -Contain 'OMB M-22-09 §III.A'
+        $sums = Get-Content (Join-Path $ev 'SHA256SUMS')
+        ($sums | Where-Object { $_ -like '*  S1.1-inventory-and-owners.json' }) | Should -Match ('^' + (Get-NpiFileHash -Path $f.FullName))
+        ($sums | Where-Object { $_ -like '*runs/S1.1/runs-one/manifest.json' }).Count | Should -Be 1
+    }
+    It 'fails a step whose run folder no longer matches its manifest, or is for another tenant' {
+        $s = Get-Settings
+        $p = New-RunFolder 'tamper' $s
+        Add-Content (Join-Path $p 'results.json') ' '
+        $f = Write-NpiDeployEvidence -EvidencePath (Join-Path $script:Tmp 'evidence-tamper') -Step S1.1 -Settings $s -RunPaths $p
+        (Get-Content $f.FullName -Raw | ConvertFrom-Json).result | Should -Be 'Fail'
+        $p2 = New-RunFolder 'prod' (Get-Settings $script:ProdSettings 'production')
+        $f = Write-NpiDeployEvidence -EvidencePath (Join-Path $script:Tmp 'evidence-prodrun') -Step S1.1 -Settings $s -RunPaths $p2
+        (Get-Content $f.FullName -Raw | ConvertFrom-Json).runs[0].detail | Should -Match 'is for tenant'
+    }
+    It 'gives the preflight''s and smoke test''s records each check''s controls and KSIs' {
+        $ev = New-FullEvidence 'checks'
+        $pre = Get-Content (Join-Path $ev 'PRE-preflight.json') -Raw | ConvertFrom-Json
+        ($pre.checks | Where-Object id -EQ 'PF-06')[0].ksis | Should -Contain 'KSI-IAM-JIT'
+        $pre.result | Should -Be 'Warn'
+        $sm = Get-Content (Join-Path $ev 'SMOKE-smoke-test.json') -Raw | ConvertFrom-Json
+        ($sm.checks | Where-Object id -EQ 'ST-03')[0].other | Should -Contain 'SCuBA MS.AAD.5.5v1 (SHOULD)'
+    }
+    It 'passes the go/no-go evidence check when every test-stage row is present and every hash matches' {
+        $ev = New-FullEvidence 'full'
+        $rows = Test-NpiDeployEvidence -EvidencePath $ev -Settings (Get-Settings) -Stage test
+        @($rows | Where-Object Status -NE 'Present').Count | Should -Be 0
+        @($rows.Step) | Should -Contain 'EVIDENCE'
+    }
+    It 'fails the go/no-go evidence check on a missing row, a dry-run rollback, a changed file or the wrong environment' {
+        $ev = New-FullEvidence 'gaps'
+        Remove-Item (Join-Path $ev 'S1.3-*.json')
+        $null = Write-NpiDeployEvidence -EvidencePath $ev -Step ROLLBACK -Settings (Get-Settings) -Results @([pscustomobject]@{ ActionId = 'RB-01'; Status = 'WouldApply'; Detail = 'x' })
+        $rows = Test-NpiDeployEvidence -EvidencePath $ev -Settings (Get-Settings) -Stage test
+        ($rows | Where-Object Step -EQ 'S1.3').Status | Should -Be 'Missing'
+        ($rows | Where-Object Step -EQ 'ROLLBACK').Result | Should -Be 'DryRun'
+        ($rows | Where-Object Step -EQ 'ROLLBACK').Status | Should -Be 'Failing'
+        Add-Content (Join-Path $ev 'S0-change-record-approvals-and-settings-file.json') ' '
+        ($rows = Test-NpiDeployEvidence -EvidencePath $ev -Settings (Get-Settings) -Stage test) | Out-Null
+        ($rows | Where-Object Step -EQ 'EVIDENCE').Detail | Should -Match 'S0-change-record-approvals-and-settings-file.json changed'
+        $rows = Test-NpiDeployEvidence -EvidencePath $ev -Settings (Get-Settings $script:ProdSettings 'production') -Stage production
+        ($rows | Where-Object Step -EQ 'PRE').Status | Should -Be 'WrongEnvironment'
+    }
+    It 'has the scripts write their records next to their output, and the evidence script exit 1 on gaps' {
+        $out = Join-Path $script:Tmp 'scripts-ev'
+        Push-Location $script:Root
+        try {
+            $null = & ./deploy/Test-NpiDeployPreflight.ps1 -SettingsPath $script:TestSettings -Stage test -BaselinePath $script:Baseline -FixturePath $script:TestTenant -OutputPath "$out/preflight"
+            $null = & ./deploy/Invoke-NpiDeploySmokeTest.ps1 -SettingsPath $script:TestSettings -Stage test -RegisterRun $script:Register -FixturePath $script:TestTenant -OutputPath "$out/smoke"
+            @(Get-ChildItem "$out/evidence" -Filter *.json).Name | Should -Be @('PRE-preflight.json', 'S0-change-record-approvals-and-settings-file.json', 'SMOKE-smoke-test.json')
+            (Get-Content "$out/evidence/SMOKE-smoke-test.json" -Raw | ConvertFrom-Json).command | Should -Match 'Invoke-NpiDeploySmokeTest\.ps1'
+            $lines = & ./deploy/Test-NpiDeployEvidence.ps1 -SettingsPath $script:TestSettings -Stage test -EvidencePath "$out/evidence"
+            $LASTEXITCODE | Should -Be 1
+            ($lines -join "`n") | Should -Match 'Result: NO-GO on evidence'
+            $lines = & ./deploy/Write-NpiDeployEvidence.ps1 -SettingsPath $script:TestSettings -Stage test -Step S1.1 -RunPath "$out/preflight" -EvidencePath "$out/evidence" -Command 'x'
+            ($lines -join "`n") | Should -Match 'S1.1-inventory-and-owners.json \(Pass\)'
+        } finally { Pop-Location }
+    }
+}

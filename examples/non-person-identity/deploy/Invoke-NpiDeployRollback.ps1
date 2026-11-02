@@ -26,6 +26,7 @@ param(
     [string]$FixturePath,
     [string]$Server,
     [datetime]$AsOf,
+    [string]$EvidencePath,
     [switch]$Apply
 )
 $ErrorActionPreference = 'Stop'
@@ -63,4 +64,7 @@ $null = Export-NpiDeployRun -OutputPath $OutputPath -Task deploy-rollback -Setti
     -Extra @{ planSha256 = $r.PlanSha256; applied = [bool]$Apply } -Files @{ 'results.json' = @($r.Results) }
 Write-Output ("Rollback {0} ({1}, {2}): {3}" -f $(if ($Apply) { 'Apply' } else { 'DryRun' }), $runMode, $Stage, ((@($r.Results) | Group-Object Status | ForEach-Object { "$($_.Count) $($_.Name)" }) -join ', '))
 foreach ($x in @($r.Results)) { Write-Output ('  {0} {1,-11} {2}' -f $x.ActionId, $x.Status, $x.Detail) }
+if (-not $EvidencePath) { $EvidencePath = Join-Path (Split-Path -Parent $OutputPath) 'evidence' }
+$e = Write-NpiDeployEvidence -EvidencePath $EvidencePath -Step ROLLBACK -Settings $s -Mode $runMode -Command $MyInvocation.Line -Results $r.Results -RunPaths $OutputPath
+Write-Output ("Evidence: {0} ({1})" -f $e.Name, (Get-Content $e.FullName -Raw | ConvertFrom-Json).result)
 if (@($r.Results | Where-Object Status -EQ 'Error').Count) { exit 1 }

@@ -690,6 +690,177 @@ function Write-NpiDeploySummary {
     foreach ($x in $Results) { Write-Output ('  {0} {1,-6} {2,-9} {3}: {4}' -f $x.Id, $x.Status, $x.Gate, $x.Check, $x.Actual) }
 }
 
+# ----------------------------------------------------------------------------- requirements and evidence records
+
+function Get-NpiDeployRequirements {
+    <#
+    .SYNOPSIS
+        Reads Chapter 11's requirements catalog (config/requirements-ch11.json): the SP 800-53 controls,
+        other requirements and FedRAMP 20x KSIs for each check and each runbook step, and the steps each
+        stage's evidence must cover.
+    .EXAMPLE
+        (Get-NpiDeployRequirements).stages.test
+    #>
+    [CmdletBinding()]
+    param([string]$Path = (Join-Path $script:ConfigRoot 'requirements-ch11.json'))
+    Get-Content -LiteralPath $Path -Raw | ConvertFrom-Json -AsHashtable -Depth 20
+}
+
+function Get-NpiDeployEvidenceStatus {
+    # One status for a record: Fail on any Fail or Error, DryRun on a dry run, Warn on any Warn, else Pass.
+    param([string[]]$Statuses)
+    if (@($Statuses | Where-Object { $_ -in 'Fail', 'Error' }).Count) { return 'Fail' }
+    if (@($Statuses | Where-Object { $_ -eq 'WouldApply' }).Count) { return 'DryRun' }
+    if (-not @($Statuses).Count) { return 'Fail' }
+    if (@($Statuses | Where-Object { $_ -in 'Warn', 'NotRun' }).Count) { return 'Warn' }
+    'Pass'
+}
+
+function Test-NpiDeployRunFolder {
+    # Every manifest.json under a run folder, with each file it lists re-hashed. Returns @{ Ok; Detail; Manifests }.
+    param([string]$Path, [string]$TenantId)
+    $mans = @(Get-ChildItem -LiteralPath $Path -Recurse -Filter manifest.json -File -ErrorAction SilentlyContinue)
+    if (-not $mans.Count) { return @{ Ok = $false; Detail = "no manifest.json under $Path"; Manifests = @() } }
+    $bad = @(); $list = @()
+    foreach ($m in $mans) {
+        $j = Get-Content -LiteralPath $m.FullName -Raw | ConvertFrom-Json -AsHashtable -Depth 20
+        if ($TenantId -and $j['tenantId'] -and "$($j['tenantId'])" -ne $TenantId) { $bad += "$($m.Name) is for tenant $($j['tenantId']), not $TenantId" }
+        $list += [ordered]@{ manifest = $m.Name; sha256 = (Get-NpiFileHash -Path $m.FullName); task = "$($j['task'])"; tenantId = "$($j['tenantId'])" }
+        if ($j.ContainsKey('files') -and $j['files']) {
+            foreach ($f in $j['files'].Keys) {
+                $fp = Join-Path $m.DirectoryName $f
+                if (-not (Test-Path -LiteralPath $fp)) { $bad += "$f missing" }
+                elseif ((Get-NpiFileHash -Path $fp) -ne "$($j['files'][$f])") { $bad += "$f changed since its manifest" }
+            }
+        }
+    }
+    @{ Ok = (-not $bad.Count); Detail = $(if ($bad.Count) { $bad -join '; ' } else { "$($mans.Count) manifest(s), every listed file matches" }); Manifests = $list }
+}
+
+function Update-NpiDeployEvidenceSums {
+    <#
+    .SYNOPSIS
+        Rewrites SHA256SUMS in the evidence folder: one "sha256  relative/path" line per file, LF line
+        endings, so the ISSO can check the folder with sha256sum -c SHA256SUMS. Returns the line count.
+    .EXAMPLE
+        Update-NpiDeployEvidenceSums -EvidencePath out/deploy-test/evidence
+    #>
+    [CmdletBinding()]
+    param([Parameter(Mandatory)][string]$EvidencePath)
+    $EvidencePath = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($EvidencePath)
+    $root = (Resolve-Path -LiteralPath $EvidencePath).Path.TrimEnd('\', '/')
+    $lines = @(Get-ChildItem -LiteralPath $root -Recurse -File | Where-Object Name -NE 'SHA256SUMS' | Sort-Object FullName | ForEach-Object {
+            '{0}  {1}' -f (Get-NpiFileHash -Path $_.FullName), $_.FullName.Substring($root.Length + 1).Replace('\', '/') })
+    [IO.File]::WriteAllText((Join-Path $root 'SHA256SUMS'), ($lines -join "`n") + "`n", [Text.UTF8Encoding]::new($false))
+    $lines.Count
+}
+
+function Write-NpiDeployEvidence {
+    <#
+    .SYNOPSIS
+        Writes one evidence record for a runbook step to the evidence folder: when, which environment,
+        tenant and change record, the command, the result, each check with the SP 800-53 controls, other
+        requirements and FedRAMP 20x KSIs it supports (from config/requirements-ch11.json), and each run
+        folder it covers (copied under runs/<step>/, with its manifests re-hashed). Then rewrites
+        SHA256SUMS. Returns the record's file.
+    .EXAMPLE
+        Write-NpiDeployEvidence -EvidencePath out/deploy-test/evidence -Step PRE -Settings $s -Mode Fixture -Command './deploy/Test-NpiDeployPreflight.ps1 ...' -Results $r.Results -RunPaths out/deploy-test/preflight
+    #>
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory)][string]$EvidencePath, [Parameter(Mandatory)][string]$Step, [Parameter(Mandatory)][hashtable]$Settings,
+        [string]$Mode = 'Live', [string]$Command = '', [object[]]$Results = @(), [string[]]$RunPaths = @(), [string]$Note = ''
+    )
+    $EvidencePath = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($EvidencePath)
+    $Command = "$Command".Trim()
+    $cat = Get-NpiDeployRequirements
+    if (-not $cat.steps.ContainsKey($Step)) { throw "Unknown step '$Step'; the catalog has $($cat.steps.Keys -join ', ')." }
+    $row = $cat.steps[$Step]
+    New-Item -ItemType Directory -Force -Path $EvidencePath | Out-Null
+    $checks = [Collections.Generic.List[object]]::new()
+    foreach ($r in @($Results)) {
+        $id = if ($r.PSObject.Properties['Id']) { "$($r.Id)" } else { "$($r.ActionId)" }
+        $key = if ($cat.checks.ContainsKey($id)) { $id } elseif ($id -like 'RB-*') { 'RB' } else { $null }
+        $m = if ($key) { $cat.checks[$key] } else { @{ controls = @(); other = @(); ksis = @() } }
+        $actual = if ($r.PSObject.Properties['Actual']) { "$($r.Actual)" } else { "$($r.Detail)" }
+        $checks.Add([ordered]@{ id = $id; status = "$($r.Status)"; actual = $actual; controls = @($m.controls); other = @($m.other); ksis = @($m.ksis) })
+    }
+    $runs = [Collections.Generic.List[object]]::new(); $runOk = $true
+    foreach ($rp in @($RunPaths | Where-Object { $_ })) {
+        $t = Test-NpiDeployRunFolder -Path $rp -TenantId $Settings.tenantId
+        if (-not $t.Ok) { $runOk = $false }
+        $leaf = Split-Path -Leaf $rp
+        $dest = Join-Path (Join-Path $EvidencePath "runs/$Step") $leaf
+        if (Test-Path -LiteralPath $rp) {
+            if (Test-Path -LiteralPath $dest) { Remove-Item -Recurse -Force -LiteralPath $dest }
+            New-Item -ItemType Directory -Force -Path (Split-Path $dest) | Out-Null
+            Copy-Item -Recurse -Force -LiteralPath $rp -Destination $dest
+        }
+        $runs.Add([ordered]@{ path = "runs/$Step/$leaf"; verified = $t.Ok; detail = $t.Detail; manifests = @($t.Manifests) })
+    }
+    $statuses = @($checks | ForEach-Object { $_.status })
+    if (-not $checks.Count) { $statuses = @($(if ($runs.Count -and $runOk) { 'Pass' } else { 'Fail' })) }
+    elseif ($runs.Count -and -not $runOk) { $statuses += 'Fail' }
+    $controls = @(@($row.controls) + @($checks | ForEach-Object { $_.controls }) | Where-Object { $_ } | Sort-Object -Unique)
+    $other = @(@($row.other) + @($checks | ForEach-Object { $_.other }) | Where-Object { $_ } | Sort-Object -Unique)
+    $ksis = @(@($row.ksis) + @($checks | ForEach-Object { $_.ksis }) | Where-Object { $_ } | Sort-Object -Unique)
+    $rec = [ordered]@{
+        schema = 'fmp-npi-deploy-evidence/1'; step = $Step; title = $row.title; recordedAt = [DateTime]::UtcNow.ToString('o')
+        environment = $Settings.environment; cloud = $Settings.cloud; tenantId = $Settings.tenantId; changeRecord = $Settings.changeRecord; settingsSha256 = $Settings._sha256
+        mode = $Mode; command = $Command; result = (Get-NpiDeployEvidenceStatus -Statuses $statuses); note = $Note
+        controls = $controls; other = $other; ksis = $ksis; checks = $checks.ToArray(); runs = $runs.ToArray()
+    }
+    $slug = ($row.title.ToLowerInvariant() -replace '[^a-z0-9]+', '-').Trim('-')
+    $path = Join-Path $EvidencePath ("{0}-{1}.json" -f $Step, $slug)
+    Write-NpiJson -Path $path -Value $rec
+    $null = Update-NpiDeployEvidenceSums -EvidencePath $EvidencePath
+    Get-Item -LiteralPath $path
+}
+
+function Test-NpiDeployEvidence {
+    <#
+    .SYNOPSIS
+        The go/no-go's evidence check: for every step the stage's catalog row lists, an evidence record
+        for this environment and tenant whose result is Pass (or Warn, which the go/no-go record must
+        explain); and SHA256SUMS present, with every file it lists unchanged and every file listed.
+        Returns one row per step, plus EVIDENCE for the folder's integrity.
+    .EXAMPLE
+        Test-NpiDeployEvidence -EvidencePath out/deploy-test/evidence -Settings $s -Stage test | Format-Table Step, Status, Ksis
+    #>
+    [CmdletBinding()]
+    param([Parameter(Mandatory)][string]$EvidencePath, [Parameter(Mandatory)][hashtable]$Settings, [Parameter(Mandatory)][ValidateSet('test', 'production')][string]$Stage)
+    $EvidencePath = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($EvidencePath)
+    $cat = Get-NpiDeployRequirements
+    $rows = [Collections.Generic.List[object]]::new()
+    foreach ($step in @($cat.stages[$Stage])) {
+        $row = $cat.steps[$step]
+        $f = @(Get-ChildItem -LiteralPath $EvidencePath -Filter "$step-*.json" -File -ErrorAction SilentlyContinue | Where-Object { $_.Name -match "^$([regex]::Escape($step))-[a-z0-9-]+\.json$" })
+        if (-not $f.Count) { $rows.Add([pscustomobject][ordered]@{ Step = $step; Title = $row.title; Status = 'Missing'; Result = ''; Controls = ''; Ksis = ''; Detail = "no $step record: $($row.evidence)" }); continue }
+        $rec = Get-Content -LiteralPath $f[0].FullName -Raw | ConvertFrom-Json
+        $status = if ($rec.environment -ne $Settings.environment -or $rec.tenantId -ne $Settings.tenantId) { 'WrongEnvironment' } elseif ($rec.result -in 'Pass', 'Warn') { 'Present' } else { 'Failing' }
+        $rows.Add([pscustomobject][ordered]@{ Step = $step; Title = $row.title; Status = $status; Result = $rec.result; Controls = (@($rec.controls) -join ', '); Ksis = (@($rec.ksis) -join ', '); Detail = $f[0].Name })
+    }
+    $sums = Join-Path $EvidencePath 'SHA256SUMS'
+    $ev = $cat.steps['EVIDENCE']
+    if (-not (Test-Path -LiteralPath $sums)) {
+        $rows.Add([pscustomobject][ordered]@{ Step = 'EVIDENCE'; Title = $ev.title; Status = 'Missing'; Result = ''; Controls = ($ev.controls -join ', '); Ksis = ($ev.ksis -join ', '); Detail = 'no SHA256SUMS' })
+    } else {
+        $root = (Resolve-Path -LiteralPath $EvidencePath).Path.TrimEnd('\', '/')
+        $listed = @{}; $bad = @()
+        foreach ($l in (Get-Content -LiteralPath $sums | Where-Object { $_ })) {
+            $parts = $l -split '  ', 2; $listed[$parts[1]] = $true
+            $fp = Join-Path $root $parts[1]
+            if (-not (Test-Path -LiteralPath $fp)) { $bad += "$($parts[1]) missing" } elseif ((Get-NpiFileHash -Path $fp) -ne $parts[0]) { $bad += "$($parts[1]) changed" }
+        }
+        foreach ($x in (Get-ChildItem -LiteralPath $root -Recurse -File | Where-Object Name -NE 'SHA256SUMS')) {
+            $rel = $x.FullName.Substring($root.Length + 1).Replace('\', '/'); if (-not $listed.ContainsKey($rel)) { $bad += "$rel not listed" }
+        }
+        $rows.Add([pscustomobject][ordered]@{ Step = 'EVIDENCE'; Title = $ev.title; Status = $(if ($bad.Count) { 'Failing' } else { 'Present' }); Result = $(if ($bad.Count) { 'Fail' } else { 'Pass' }); Controls = ($ev.controls -join ', '); Ksis = ($ev.ksis -join ', '); Detail = $(if ($bad.Count) { $bad -join '; ' } else { "$($listed.Count) file(s), every hash matches" }) })
+    }
+    $rows.ToArray()
+}
+
 Export-ModuleMember -Function Test-NpiDeploySettings, Read-NpiDeploySettings, Get-NpiDeployCallList, Get-NpiDeployRequiredPermission, New-NpiDeployClient,
     Invoke-NpiDeployWrite, Invoke-NpiDeployAd, New-NpiDeployFixtureInvoker, New-NpiDeployLiveInvoker, New-NpiDeployLiveAdInvoker, Invoke-NpiDeployPreflight,
-    Invoke-NpiDeploySmokeTest, New-NpiDeployRollbackPlan, Invoke-NpiDeployRollbackPlan, Export-NpiDeployRun, Write-NpiDeploySummary
+    Invoke-NpiDeploySmokeTest, New-NpiDeployRollbackPlan, Invoke-NpiDeployRollbackPlan, Export-NpiDeployRun, Write-NpiDeploySummary,
+    Get-NpiDeployRequirements, Update-NpiDeployEvidenceSums, Write-NpiDeployEvidence, Test-NpiDeployEvidence
