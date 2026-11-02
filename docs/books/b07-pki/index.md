@@ -1,7 +1,7 @@
 ---
 title: "Book 07 — PKI & Certificates"
 subtitle: "AD CS to Cloud PKI, Entra CBA and Federal PKI: why certificates outlive every migration, what the target PKI is, who owns the certificate estate, and how to migrate and retire the old CAs"
-description: "Book 07 of the Federal Modernization Workbook: why certificates outlive every migration, what AD CS holds up, hardening the CAs that stay, the target PKI of Cloud PKI, AD CS and Federal PKI, who owns the certificate estate, device and user certificates through Intune and Entra CBA, coexistence and migration, and lifecycle, monitoring and decommissioning."
+description: "Book 07 of the Federal Modernization Workbook: why certificates outlive every migration, what AD CS holds up, hardening the CAs that stay, the target PKI of Cloud PKI, AD CS and Federal PKI, who owns the certificate estate, device and user certificates through Intune and Entra CBA, coexistence and migration, lifecycle, monitoring and decommissioning, and the federal workforce PIV credential that cloud authentication accepts."
 doc-type: section-landing
 audience: [Executive, Technical, Customer]
 family: b07-pki
@@ -48,7 +48,7 @@ Every other migration in this workbook changes which system answers "who is this
 | | Question | Chapters |
 |---|---|---|
 | **Why** | Why do certificates outlive every migration? | [01](01-why-certificates-outlive-every-migration.md) |
-| **What** | What AD CS holds up today, how to harden what stays, and what the target PKI is | [02](02-what-ad-cs-holds-up.md), [03](03-hardening-what-stays.md), [04](04-the-target-pki.md) |
+| **What** | What AD CS holds up today, how to harden what stays, what the target PKI is, and the PIV credential that cloud authentication accepts | [02](02-what-ad-cs-holds-up.md), [03](03-hardening-what-stays.md), [04](04-the-target-pki.md), [09](09-federal-workforce-credentials.md) |
 | **Who** | Who decides and who does the work for the certificate estate | [05](05-who-owns-the-certificate-estate.md) |
 | **How** | Issue device and user certificates, run both PKIs through the migration, and keep the estate renewed and checkable until the old CAs retire | [06](06-device-and-user-certificates.md), [07](07-coexistence-and-migration.md), [08](08-lifecycle-monitoring-and-decommissioning.md) |
 
@@ -59,7 +59,8 @@ Appendices: [A — Cloud PKI and CBA deployment checklists](appendix-a-deploymen
 - **Executives (20 minutes):** Chapters 01, 04 and 05, or the 15-minute presentation.
 - **Architects:** Chapters 01–05, then 07.
 - **PKI, identity and endpoint engineers:** Chapters 02–03 and 06–08, with both appendices at hand.
-- **Security operations and assessors:** Chapters 03, 05 and 08.
+- **Security operations and assessors:** Chapters 03, 05, 08 and 09.
+- **Identity and credentialing teams:** Chapters 04, 06 and 09.
 
 ## Where this book sits in the workbook
 
@@ -85,3 +86,4 @@ This is Book 07 of the [Federal Modernization Workbook](../index.md). [Book 02 �
 : Versions of this book, newest first {.striped .hover}
 
 <!-- revisions:end -->
+
