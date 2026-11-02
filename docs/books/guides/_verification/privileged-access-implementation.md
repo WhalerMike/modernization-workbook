@@ -57,6 +57,11 @@ Facts carried from the chapters and books are cited by link and rely on those pa
 - **MS.AAD.7.7v1.** No kit artifact alerts on every eligible or active highly privileged assignment. Chapter 02's alert covers the emergency accounts; Chapter 08's PA-AUD-01 flags outside-PIM assignments on a schedule. Recorded in Dangers and What couldn't be verified. MS.AAD.7.8v1 (alert on Global Administrator activation) is noted beside it.
 - **MS.AAD.7.1v1 minimum of two.** Chapter 01's federal table says PA-INV-04 doesn't check the minimum. The guide notes that two emergency accounts with Global Administrator meet the floor in practice, marked *(inference)*.
 
+### Closed by PR #326 (2026-11-02)
+
+- **MS.AAD.7.1v1.** PA-INV-04 now also flags fewer than two users (Chapter 01's rule table). The guide's G1 row, Dangers and What couldn't be verified were updated; the *(inference)* note is gone.
+- **MS.AAD.7.7v1 and MS.AAD.7.8v1.** `Invoke-PaPimAlertCheck.ps1` adds PA-PIM-10 and PA-PIM-11 (Chapter 04, "The alert check"; AU-6 and KSI-MLA-RVL as Chapter 04 cites them). The guide adds a G4 Validate line, a G4 requirement row and the evidence row. The danger is reworded to the alert nobody reads. What couldn't be verified keeps what the check doesn't reach: PIM for Groups member settings, delivery of the mail, and GCC High and DoD.
+
 ## Neutrality
 
 Fictional data only (`contoso.example`). No agency named. No prohibited terms.

@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Run the test suites that ship with the example kits in `examples/`.
 
-Each kit keeps its tests under `examples/<kit>/tests/` (and a kit's deploy scripts under `examples/<kit>/deploy/tests/`): Pester files
+Each kit keeps its tests under `examples/<kit>/tests/` (and a kit's deploy scripts under `examples/<kit>/deploy/tests/`,
+its CISA baseline checks under `examples/<kit>/baseline/tests/`): Pester files
 (`*.Tests.ps1`) and Python files (`test_*.py`, run with pytest, which also
 runs unittest cases). A suite runs from its kit's folder, as the kit's README
 says to run it. The pull request checks (scripts/check_changed.py) run the
@@ -66,8 +67,10 @@ PESTER = (
 
 
 # Test folders in a kit, relative to it. A kit's deploy/ scripts keep their own suite under deploy/tests,
-# so a chapter lab that runs `pytest tests` and states the kit's test count isn't changed by them.
-TEST_DIRS = ("tests", "deploy/tests")
+# so a chapter lab that runs `pytest tests` and states the kit's test count isn't changed by them. The
+# CISA baseline checks added to a kit after its chapters were written keep theirs under baseline/tests
+# for the same reason.
+TEST_DIRS = ("tests", "deploy/tests", "baseline/tests")
 
 
 def suites(kit: str) -> list[tuple[str, str]]:

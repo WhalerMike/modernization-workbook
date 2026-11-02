@@ -1,5 +1,5 @@
 {
-  "_comment": "Chapter 04: every call the PIM role settings code makes, with the least-privileged Graph permission from the Learn page for that call, read on October 30, 2026. Reads and writes are separate tasks: pim-plan only reads; pim-apply adds the two writes for role settings and eligibility; pim-convert adds the removal of a standing assignment. Get-PaPimRequiredPermission returns the union for a task, and a test keeps it equal to the union of the task's calls. A call that isn't listed here, or a method other than the one listed, throws before anything is sent.",
+  "_comment": "Chapter 04: every call the PIM role settings code makes, with the least-privileged Graph permission from the Learn page for that call, read on October 30, 2026. Reads and writes are separate tasks: pim-plan only reads; pim-apply adds the two writes for role settings and eligibility; pim-convert adds the removal of a standing assignment; pim-alerts reads only the policies, for the CISA alert check. Get-PaPimRequiredPermission returns the union for a task, and a test keeps it equal to the union of the task's calls. A call that isn't listed here, or a method other than the one listed, throws before anything is sent.",
   "calls": [
     {
       "id": "pim-policy-assignment",
@@ -10,9 +10,9 @@
       "permissions": ["RoleManagementPolicy.Read.Directory"],
       "delegatedRole": "Global Reader, Security Operator, Security Reader, Security Administrator or Privileged Role Administrator",
       "stage": "v1.0",
-      "tasks": ["pim-plan", "pim-apply", "pim-convert"],
+      "tasks": ["pim-plan", "pim-apply", "pim-convert", "pim-alerts"],
       "learn": "https://learn.microsoft.com/graph/api/policyroot-list-rolemanagementpolicyassignments?view=graph-rest-1.0",
-      "note": "Learn's Example 2: $filter on scopeId '/', scopeType 'DirectoryRole' and roleDefinitionId, with $expand=policy($expand=rules). One call per role returns the policy ID and all 17 rules."
+      "note": "Learn's Example 2: $filter on scopeId '/', scopeType 'DirectoryRole' and roleDefinitionId, with $expand=policy($expand=rules). One call per role returns the policy ID and all 17 rules. pim-alerts, the read-only alert check (Invoke-PaPimAlertCheck.ps1), makes only this call."
     },
     {
       "id": "pim-eligibility-schedules",

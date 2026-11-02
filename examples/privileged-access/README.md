@@ -6,6 +6,7 @@ Read-only code for the [developer workbook *Building Privileged Access*](../../d
 - **Chapter 02, the emergency access accounts:** the accounts checked against Learn's standard and Book 04's (findings PA-EA-01 to PA-EA-10), and the alert on their use written as an ARM template for review.
 - **Chapters 03 to 08:** each chapter's code and notes are in `docs/ch03.md` to `docs/ch08.md`.
 - **Chapter 09, deploying to test and production:** the runbook's own scripts in `deploy/` (see [Deploy](#deploy) below).
+- **CISA baseline checks:** the Global Administrator floor and the PIM alerts, added after the chapters (see [CISA baseline checks](#cisa-baseline-checks) below).
 
 Illustrative: tested against fixtures and a fake Graph and Resource Manager, not proven against a production tenant. Every call is a GET. Nothing here writes to a tenant or deploys anything.
 
@@ -62,11 +63,27 @@ deploy/tests/                      Pester 5 tests and fixtures (fictional contos
 
 Each script has a fixture mode (`-FixturePath`), and the rollback is a dry run unless `-Apply`. Each step writes an evidence record to `<outputRoot>/evidence`: the time, environment, change record, command, result, the step's controls and KSIs from `requirements.json`, the SHA-256 of every file in its run folder, and the hash of the record before it, listed in `records.csv`. KSIs are FedRAMP 20x indicators for cloud providers; the records line the agency's evidence up with them, and the agency doesn't report KSIs itself. The scripts only read; the writes are the earlier chapters' entry scripts. The pre-flight needs `LicenseAssignment.Read.All` and Chapter 02's six read permissions; the smoke test needs `RoleAssignmentSchedule.Read.Directory`, `AuditLog.Read.All` and `AccessReview.Read.All` (`Get-PaDeployRequiredPermission -Task preflight` or `smoke`).
 
+## CISA baseline checks
+
+Two checks for policies in CISA's Microsoft Entra ID baseline (BOD 25-01 required configurations) that the chapters' code didn't cover. Both only read.
+
+- **MS.AAD.7.1v1, two to eight Global Administrators.** Chapter 01's PA-INV-04 flags five or more (Learn's stricter ceiling) and now also fewer than two users, active or eligible, group members counted.
+- **MS.AAD.7.7v1 and MS.AAD.7.8v1, alerts on highly privileged assignments and on Global Administrator activation.** `Invoke-PaPimAlertCheck.ps1` (Chapter 04's module, task `pim-alerts`, `RoleManagementPolicy.Read.Directory` only) reads the PIM policy of CISA's eight highly privileged roles and reports PA-PIM-10 when a role's role assignment alert, for eligible or active assignments, has no additional recipient, and PA-PIM-11 when Global Administrator's role activation alert has none. PIM's default recipients don't count. PIM for Groups member settings, which the baseline also covers, aren't read.
+
+```
+Invoke-PaPimAlertCheck.ps1                  read the eight roles' notification rules, write findings.json and a manifest
+baseline/tests/CisaBaseline.Tests.ps1       Pester 5: both checks, pass and fail
+baseline/tests/fixtures/                    pim-alerts-set.json (pass), pim-alerts-partial.json (fail), two small inventory tenants
+```
+
+The calls are the ones Chapter 04 already declares, sent to the cloud's own Graph host. The call's Learn page lists US Government L4 and L5 as available, but the check hasn't been run in GCC High or DoD, and how PIM's alert mail behaves there isn't confirmed.
+
 ## Run the tests
 
 ```powershell
 Invoke-Pester -Path tests
 Invoke-Pester -Path deploy/tests
+Invoke-Pester -Path baseline/tests
 ```
 
-PowerShell 7.1 or later and Pester 5. No module, tenant or network is needed. The deployment runbook's tests are a separate suite, so the chapters' test counts don't change.
+PowerShell 7.1 or later and Pester 5. No module, tenant or network is needed. The deployment runbook's tests and the CISA baseline checks' tests are separate suites, so the chapters' test counts don't change.

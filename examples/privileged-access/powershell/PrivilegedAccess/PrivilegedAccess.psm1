@@ -517,14 +517,15 @@ function Test-PaInventory {
     .SYNOPSIS
         The inventory's findings, PA-INV-01 to PA-INV-09. Thresholds follow Learn where Learn
         gives one (fewer than five Global Administrators; at most three subscription owners) and
-        the program's design elsewhere.
+        the program's design elsewhere. PA-INV-04 also flags fewer than two users with Global
+        Administrator, CISA's floor in MS.AAD.7.1v1.
     .EXAMPLE
         # Findings for an inventory from Get-PaPrivilegedInventory, with the documented exceptions.
         $findings = Test-PaInventory -Inventory $inventory -Exceptions (Import-PaExceptions -Path tests/fixtures/inputs/exceptions.csv)
         $findings | Where-Object Severity -EQ 'Finding'
     #>
     [CmdletBinding()]
-    param([Parameter(Mandatory)]$Inventory, [object[]]$Exceptions = @(), [int]$MaxGlobalAdmins = 4, [int]$MaxSubscriptionOwners = 3)
+    param([Parameter(Mandatory)]$Inventory, [object[]]$Exceptions = @(), [int]$MaxGlobalAdmins = 4, [int]$MinGlobalAdmins = 2, [int]$MaxSubscriptionOwners = 3)
     $f = [Collections.Generic.List[object]]::new()
     $exc = @{}; foreach ($e in $Exceptions) { $exc[$e.PrincipalId] = $e }
     $rows = @($Inventory.Rows)
@@ -569,6 +570,11 @@ function Test-PaInventory {
     $ga = @($rows | Where-Object { $_.Plane -eq 'Entra' -and $_.RoleId -eq $script:GlobalAdminTemplateId -and $_.PrincipalType -ne 'group' } | Select-Object -ExpandProperty PrincipalId -Unique)
     if ($ga.Count -gt $MaxGlobalAdmins) {
         $f.Add((New-PaFinding 'PA-INV-04' 'Finding' 'Global Administrator' $script:GlobalAdminTemplateId "$($ga.Count) principals hold or are eligible for Global Administrator; Learn advises fewer than five"))
+    }
+    # The floor: CISA's MS.AAD.7.1v1 asks for at least two users, active or eligible, group members counted.
+    $gaUsers = @($rows | Where-Object { $_.Plane -eq 'Entra' -and $_.RoleId -eq $script:GlobalAdminTemplateId -and $_.PrincipalType -eq 'user' } | Select-Object -ExpandProperty PrincipalId -Unique)
+    if ($gaUsers.Count -lt $MinGlobalAdmins) {
+        $f.Add((New-PaFinding 'PA-INV-04' 'Finding' 'Global Administrator' $script:GlobalAdminTemplateId "$($gaUsers.Count) user(s) hold or are eligible for Global Administrator; MS.AAD.7.1v1 asks for at least $MinGlobalAdmins"))
     }
 
     # PA-INV-08: more than three owners on a subscription (direct, active or eligible).

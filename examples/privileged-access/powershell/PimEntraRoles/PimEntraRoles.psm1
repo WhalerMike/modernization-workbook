@@ -24,7 +24,25 @@ $script:ConfigRoot = Join-Path $PSScriptRoot '../../config'
 $script:Guid = '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
 $script:GlobalAdmin = '62e90394-69f5-4237-9190-012177145e10'
 $script:PrivRoleAdmin = 'e8611ab8-c189-46e8-94e1-60213ab1f814'
-$script:Tasks = @('pim-plan', 'pim-apply', 'pim-convert')
+$script:Tasks = @('pim-plan', 'pim-apply', 'pim-convert', 'pim-alerts')
+
+# CISA's highly privileged roles (ScubaGear's Microsoft Entra ID baseline, aad.md, the list under
+# MS.AAD.7), by template ID. MS.AAD.7.7v1 asks for an alert on every eligible and active assignment
+# to them; MS.AAD.7.8v1 asks for an alert when Global Administrator is activated.
+$script:HighlyPrivileged = [ordered]@{
+    '62e90394-69f5-4237-9190-012177145e10' = 'Global Administrator'
+    'e8611ab8-c189-46e8-94e1-60213ab1f814' = 'Privileged Role Administrator'
+    'fe930be7-5e62-47db-91af-98c3a49a38b1' = 'User Administrator'
+    'f28a1f50-f6e7-4571-818b-6a12f2af6b6c' = 'SharePoint Administrator'
+    '29232cdf-9323-42fd-ade2-1d097af3e4de' = 'Exchange Administrator'
+    '8ac3fc64-6eca-42ea-9e69-59f4c7b60eb2' = 'Hybrid Identity Administrator'
+    '9b895d92-2cd3-44c7-9d02-a6ac2d5ea5c3' = 'Application Administrator'
+    '158c047a-c907-4556-b7ef-446551a6b5f7' = 'Cloud Application Administrator'
+}
+# The notification rules behind those alerts (Learn, Rules in PIM): the role assignment alert when a
+# member is assigned eligible or active, and the role activation alert when an eligible member activates.
+$script:AssignmentAlertRules = [ordered]@{ 'Notification_Admin_Admin_Eligibility' = 'eligible assignment'; 'Notification_Admin_Admin_Assignment' = 'active assignment' }
+$script:ActivationAlertRule = 'Notification_Admin_EndUser_Assignment'
 
 # The seven rules this chapter manages, with the target each one carries (Learn, Rules in PIM).
 # The other ten (Enablement_Admin_Eligibility and the nine notification rules) are read and left alone.
@@ -44,7 +62,7 @@ function Get-PaPimCall {
     <#
     .SYNOPSIS
         Returns the calls declared in config/calls-ch04.json, optionally only those for one task
-        (pim-plan, pim-apply or pim-convert) or the one with -Id.
+        (pim-plan, pim-apply, pim-convert or pim-alerts) or the one with -Id.
     .EXAMPLE
         # The permission the rule update needs.
         (Get-PaPimCall -Id pim-policy-rule-update).permissions
@@ -64,7 +82,7 @@ function Get-PaPimRequiredPermission {
     .SYNOPSIS
         Returns a task's Graph permissions (all of them, and the reads and writes separately) and
         the delegated role it needs: Privileged Role Administrator for a task that writes, Global
-        Reader for pim-plan.
+        Reader for pim-plan and pim-alerts.
     .EXAMPLE
         # Sign in for a dry run with exactly the scopes pim-plan needs.
         Connect-MgGraph -Environment Global -Scopes (Get-PaPimRequiredPermission -Task pim-plan).GraphPermissions
@@ -72,7 +90,7 @@ function Get-PaPimRequiredPermission {
 
     <# The union of a task's Graph permissions, split into reads and writes. #>
     [CmdletBinding()]
-    param([Parameter(Mandatory)][ValidateSet('pim-plan', 'pim-apply', 'pim-convert')][string]$Task)
+    param([Parameter(Mandatory)][ValidateSet('pim-plan', 'pim-apply', 'pim-convert', 'pim-alerts')][string]$Task)
     $calls = Get-PaPimCall -Task $Task
     [pscustomobject]@{
         Task             = $Task
@@ -341,11 +359,11 @@ function New-PaPimClient {
     [CmdletBinding()]
     param(
         [Parameter(Mandatory)][string]$Cloud,
-        [Parameter(Mandatory)][ValidateSet('pim-plan', 'pim-apply', 'pim-convert')][string]$Task,
+        [Parameter(Mandatory)][ValidateSet('pim-plan', 'pim-apply', 'pim-convert', 'pim-alerts')][string]$Task,
         [Parameter(Mandatory)][scriptblock]$Invoke,
         [switch]$AllowWrite
     )
-    if ($AllowWrite -and $Task -eq 'pim-plan') { throw 'pim-plan only reads; -AllowWrite needs pim-apply or pim-convert' }
+    if ($AllowWrite -and $Task -in 'pim-plan', 'pim-alerts') { throw "$Task only reads; -AllowWrite needs pim-apply or pim-convert" }
     [pscustomobject]@{
         Cloud      = Get-PaCloud -Cloud $Cloud
         Task       = $Task
@@ -422,6 +440,32 @@ function New-PaPimLiveInvoker {
 
 # ----------------------------------------------------------------------------- the tenant
 
+function Get-PaPimRolePolicy {
+    <#
+    .SYNOPSIS
+        Read each role's policy at tenant scope with its rules (Learn's Example 2, one call per
+        role). Returns a hashtable of role template ID to @{ PolicyId; Rules }, rules by ID. A role
+        with no single policy is left out. GET only.
+    .EXAMPLE
+        # The Global Administrator policy's rule IDs from the fictional tenant.
+        $fake = New-PaPimFixtureInvoker -Path tests/fixtures/ch04/tenant.json
+        $client = New-PaPimClient -Cloud gcc -Task pim-alerts -Invoke $fake.Invoke
+        (Get-PaPimRolePolicy -Client $client -RoleTemplateId 62e90394-69f5-4237-9190-012177145e10).Values.Rules.Keys
+    #>
+    [CmdletBinding()]
+    param([Parameter(Mandatory)]$Client, [Parameter(Mandatory)][string[]]$RoleTemplateId)
+    $policies = @{}
+    foreach ($id in $RoleTemplateId) {
+        $q = "`$filter=" + [Uri]::EscapeDataString("scopeId eq '/' and scopeType eq 'DirectoryRole' and roleDefinitionId eq '$id'") + "&`$expand=" + [Uri]::EscapeDataString('policy($expand=rules)')
+        $rows = @(Invoke-PaPimRequest -Client $Client -CallId 'pim-policy-assignment' -Query $q)
+        if ($rows.Count -eq 1 -and $rows[0].ContainsKey('policy') -and $rows[0].policy) {
+            $rules = @{}; foreach ($r in @($rows[0].policy.rules)) { $rules[$r.id] = $r }
+            $policies[$id] = [pscustomobject]@{ PolicyId = $rows[0].policyId; Rules = $rules }
+        }
+    }
+    $policies
+}
+
 function Get-PaPimTenantState {
     <#
     .SYNOPSIS
@@ -433,17 +477,8 @@ function Get-PaPimTenantState {
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)]$Client, [Parameter(Mandatory)][object[]]$Settings)
-    $policies = @{}
-    foreach ($s in $Settings) {
-        $q = "`$filter=" + [Uri]::EscapeDataString("scopeId eq '/' and scopeType eq 'DirectoryRole' and roleDefinitionId eq '$($s.roleTemplateId)'") + "&`$expand=" + [Uri]::EscapeDataString('policy($expand=rules)')
-        $rows = @(Invoke-PaPimRequest -Client $Client -CallId 'pim-policy-assignment' -Query $q)
-        if ($rows.Count -eq 1 -and $rows[0].ContainsKey('policy') -and $rows[0].policy) {
-            $rules = @{}; foreach ($r in @($rows[0].policy.rules)) { $rules[$r.id] = $r }
-            $policies[$s.roleTemplateId] = [pscustomobject]@{ PolicyId = $rows[0].policyId; Rules = $rules }
-        }
-    }
     [pscustomobject]@{
-        Policies    = $policies
+        Policies    = Get-PaPimRolePolicy -Client $Client -RoleTemplateId @($Settings | ForEach-Object { $_.roleTemplateId })
         Eligibility = @(Invoke-PaPimRequest -Client $Client -CallId 'pim-eligibility-schedules' -Query "`$expand=principal")
         Active      = @(Invoke-PaPimRequest -Client $Client -CallId 'pim-active-instances' -Query "`$expand=principal")
     }
@@ -570,6 +605,66 @@ function New-PaPimEligibilityRequest {
 }
 
 # ----------------------------------------------------------------------------- the plan
+
+function Get-PaPimHighlyPrivilegedRole {
+    <#
+    .SYNOPSIS
+        CISA's highly privileged roles (ScubaGear's Microsoft Entra ID baseline, the list under
+        MS.AAD.7) as template ID and name: the roles Test-PaPimAlertSetting checks.
+    .EXAMPLE
+        Get-PaPimHighlyPrivilegedRole | Format-Table Name, RoleTemplateId
+    #>
+    [CmdletBinding()]
+    param()
+    foreach ($k in $script:HighlyPrivileged.Keys) { [pscustomobject]@{ RoleTemplateId = $k; Name = $script:HighlyPrivileged[$k] } }
+}
+
+function Test-PaPimAlertSetting {
+    <#
+    .SYNOPSIS
+        Read-only check of the PIM alerts CISA's baseline asks for. PA-PIM-10 (MS.AAD.7.7v1): a
+        highly privileged role whose role assignment alert, for eligible or for active assignments
+        (Notification_Admin_Admin_Eligibility, Notification_Admin_Admin_Assignment), names no
+        additional recipient. PA-PIM-11 (MS.AAD.7.8v1): Global Administrator's role activation alert
+        (Notification_Admin_EndUser_Assignment) names none. A role whose policy wasn't read is a
+        Finding too, because the alert can't be shown. Each role that passes gets an Info row with
+        the recipients, as evidence. The default recipients (the role's administrators) don't
+        count, as in ScubaGear's own check: the alert has to reach the security monitoring mailbox.
+    .EXAMPLE
+        # The alert findings for the fictional tenant, whose roles keep PIM's default notifications.
+        $policies = Get-PaPimRolePolicy -Client $client -RoleTemplateId (Get-PaPimHighlyPrivilegedRole).RoleTemplateId
+        Test-PaPimAlertSetting -Policies $policies | Where-Object Severity -EQ 'Finding'
+    #>
+    [CmdletBinding()]
+    param([Parameter(Mandatory)][AllowEmptyCollection()][hashtable]$Policies)
+    $f = [Collections.Generic.List[object]]::new()
+    $recipients = { param($p, $id) if ($p.Rules.ContainsKey($id)) { @($p.Rules[$id]['notificationRecipients'] | Where-Object { $_ }) } else { @() } }
+    foreach ($rid in $script:HighlyPrivileged.Keys) {
+        $role = $script:HighlyPrivileged[$rid]
+        $p = $Policies[$rid]
+        if (-not $p) {
+            $f.Add((New-PaPimFinding 'PA-PIM-10' 'Finding' $role 'No role management policy read for the role at tenant scope, so its assignment alerts can''t be shown (MS.AAD.7.7v1)'))
+            if ($rid -eq $script:GlobalAdmin) { $f.Add((New-PaPimFinding 'PA-PIM-11' 'Finding' $role 'No role management policy read, so the activation alert can''t be shown (MS.AAD.7.8v1)')) }
+            continue
+        }
+        $missing = @(); $to = @()
+        foreach ($n in $script:AssignmentAlertRules.Keys) {
+            $r = @(& $recipients $p $n)
+            if (-not $r.Count) { $missing += $script:AssignmentAlertRules[$n] } else { $to += $r }
+        }
+        if ($missing) {
+            $f.Add((New-PaPimFinding 'PA-PIM-10' 'Finding' $role "No additional recipient for the role assignment alert on $($missing -join ' or '): add the security monitoring mailbox under Role settings > Notifications (MS.AAD.7.7v1)"))
+        } else {
+            $f.Add((New-PaPimFinding 'PA-PIM-10' 'Info' $role "Eligible and active assignment alerts go to $(@($to | Sort-Object -Unique) -join ', ')"))
+        }
+        if ($rid -eq $script:GlobalAdmin) {
+            $r = @(& $recipients $p $script:ActivationAlertRule)
+            if (-not $r.Count) { $f.Add((New-PaPimFinding 'PA-PIM-11' 'Finding' $role 'No additional recipient for the role activation alert: add the security monitoring mailbox under Role settings > Notifications (MS.AAD.7.8v1)')) }
+            else { $f.Add((New-PaPimFinding 'PA-PIM-11' 'Info' $role "Activation alerts go to $(@($r | Sort-Object -Unique) -join ', ')")) }
+        }
+    }
+    $f.ToArray()
+}
 
 function Test-PaPimEmergencyAccess {
     # PA-PIM-02: the other half of the documented lockout. Each emergency account must hold Global
@@ -947,6 +1042,6 @@ function Invoke-PaPimFake {
 
 Export-ModuleMember -Function Get-PaPimCall, Get-PaPimRequiredPermission, ConvertTo-PaPimDuration, Read-PaPimTierConfig, Read-PaPimRoleSetting,
     Read-PaPimBinding, Get-PaPimWaveRole, ConvertTo-PaPimRule, Test-PaPimSetting, New-PaPimClient, Invoke-PaPimRequest, New-PaPimLiveInvoker,
-    Get-PaPimTenantState, Get-PaPimRuleView, Compare-PaPimPolicy, New-PaPimEligibilityRequest, New-PaPimPlan, Invoke-PaPimPlan, Export-PaPimRun,
+    Get-PaPimRolePolicy, Get-PaPimTenantState, Get-PaPimHighlyPrivilegedRole, Test-PaPimAlertSetting, Get-PaPimRuleView, Compare-PaPimPolicy, New-PaPimEligibilityRequest, New-PaPimPlan, Invoke-PaPimPlan, Export-PaPimRun,
     Get-PaPimBefore, New-PaPimRestorePlan,
     New-PaPimFixtureInvoker, Invoke-PaPimFake
