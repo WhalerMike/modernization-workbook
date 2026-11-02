@@ -16,6 +16,11 @@ Three run modes, the same in every script:
   --fixtures   the calls are answered from a saved file (tests, and the
                runbook chapter's printed output), with the file's "env"
                standing in for the environment.
+
+Run directly, it prints one value from a settings file, so the runbook's
+commands read client IDs and endpoints from the file instead of retyping them:
+
+  python deploy/deploy_common.py deploy/environment.test.json deploy.clients.evidence_reader
 """
 
 from __future__ import annotations
@@ -125,6 +130,19 @@ def endpoint_overrides(settings: Settings, env: Mapping[str, str]) -> list[str]:
     return out
 
 
+def role_mismatch(settings: Settings, env: Mapping[str, str], sn_role: str | None, isc_role: str | None) -> list[str]:
+    """Messages when the client IDs in the environment aren't the ones this step should run as.
+
+    Only checked when a client ID is set; a vault-fed token can't be checked here.
+    """
+    clients = settings.deploy.get("clients") or {}
+    out = []
+    for key, role in (("SN_CLIENT_ID", sn_role), ("SAILPOINT_CLIENT_ID", isc_role)):
+        if role and env.get(key) and env[key] != clients.get(role):
+            out.append(f"{key} is not the {role} client in the settings file")
+    return out
+
+
 def required_for(identity: str) -> tuple[str, set[str]]:
     system, tasks = IDENTITIES[identity]
     data = kcalls.load_calls()
@@ -208,6 +226,21 @@ def mode_setup(args: Any, http: kc.Http | None) -> tuple[dict[str, str] | Mappin
     return os.environ, http or kc.Http(), "live"
 
 
+def get_setting(path: str, dotted: str) -> str:
+    """One value from a settings file by its dotted path, for example deploy.clients.verifier."""
+    with open(path, encoding="utf-8") as handle:
+        value: Any = json.load(handle)
+    for part in dotted.split("."):
+        if not isinstance(value, dict) or part not in value:
+            raise KeyError(f"{dotted!r} is not in {path}")
+        value = value[part]
+    if isinstance(value, (dict, list)):
+        raise KeyError(f"{dotted!r} in {path} is not a single value")
+    if isinstance(value, str) and PLACEHOLDER.search(value):
+        raise KeyError(f"{dotted!r} in {path} is still a placeholder: {value}")
+    return str(value)
+
+
 def write_json(path: str | None, value: Any) -> None:
     if not path:
         return
@@ -217,3 +250,21 @@ def write_json(path: str | None, value: Any) -> None:
     with open(path, "w", encoding="utf-8", newline="\n") as handle:
         json.dump(value, handle, indent=2, sort_keys=True)
         handle.write("\n")
+
+
+def main(argv: list[str] | None = None, out=None) -> int:
+    out = out or sys.stdout
+    argv = sys.argv[1:] if argv is None else argv
+    if len(argv) != 2:
+        print("usage: python deploy/deploy_common.py <settings.json> <dotted.path>", file=sys.stderr)
+        return 2
+    try:
+        print(get_setting(argv[0], argv[1]), file=out)
+    except (KeyError, OSError, ValueError) as exc:
+        print(f"error: {exc}", file=sys.stderr)
+        return 2
+    return 0
+
+
+if __name__ == "__main__":  # pragma: no cover
+    sys.exit(main())

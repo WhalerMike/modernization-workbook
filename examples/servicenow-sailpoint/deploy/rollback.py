@@ -103,6 +103,10 @@ def main(argv: list[str] | None = None, http: kc.Http | None = None, out=None) -
     if left:
         print("error: placeholders left in the settings file: " + ", ".join(left), file=sys.stderr)
         return 2
+    wrong = dc.role_mismatch(settings, env, "evidence_reader", "isc_deploy_checker")
+    if wrong:
+        print("error: " + "; ".join(wrong), file=sys.stderr)
+        return 2
     if http is None:
         workflows = [{"name": w["name"], "id": None, "enabled": None} for w in dc.load_workflows()]
         if args.verify:

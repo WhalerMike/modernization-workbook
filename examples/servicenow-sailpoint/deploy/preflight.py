@@ -130,6 +130,7 @@ def check_auth(env: Mapping[str, str], settings: dc.Settings, report: Report) ->
         problems.append("ServiceNow: set SN_CLIENT_ID and SN_CLIENT_SECRET (or SN_ACCESS_TOKEN) from the vault")
     if not isc_ok:
         problems.append("ISC: set SAILPOINT_CLIENT_ID and SAILPOINT_CLIENT_SECRET (or SAILPOINT_ACCESS_TOKEN) from the vault")
+    problems += dc.role_mismatch(settings, env, "evidence_reader", "isc_deploy_checker")
     if problems:
         report.add("FAIL", "G1", "auth", "; ".join(problems))
     else:

@@ -23,7 +23,15 @@
       "id": "2c9180000000000000000000000e9101",
       "name": "ttm.owner.example"
     },
-    "workflow_client_id": "f0e1d2c3b4a5968778695a4b3c2d1e0f",
+    "clients": {
+      "finding_writer": "f0e1d2c3b4a5968778695a4b3c2d1e0f",
+      "verifier": "1a09f8e7d6c5b4a39281706f5e4d3c2b",
+      "evidence_reader": "0f1e2d3c4b5a69788796a5b4c3d2e1f0",
+      "isc_reader": "7a6b5c4d3e2f10011001f2e3d4c5b6a7",
+      "isc_deploy_checker": "9a8b7c6d5e4f30211203f4e5d6c7b8a9",
+      "isc_workflow_admin": "9a8b7c6d5e4f0312211203f4e5d6c7b8",
+      "isc_workflow_tester": "6c5d4e3f2a1b09988990b1a2f3e4d5c6"
+    },
     "g1": {
       "marketplace_checked_on": "2026-11-02",
       "servicenow_listing": "F1305072116",

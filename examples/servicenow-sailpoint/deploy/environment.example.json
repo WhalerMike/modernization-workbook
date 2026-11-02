@@ -15,14 +15,32 @@
   "deploy": {
     "environment": "<test-or-production>",
     "change_record": "<change-record-number>",
-    "app": {"scope": "x_example_idkit", "version": "<app-version>"},
-    "workflow_owner": {"id": "<workflow-owner-identity-id>", "name": "<workflow-owner-name>"},
-    "workflow_client_id": "<workflow-servicenow-client-id>",
+    "app": {
+      "scope": "x_example_idkit",
+      "version": "<app-version>"
+    },
+    "workflow_owner": {
+      "id": "<workflow-owner-identity-id>",
+      "name": "<workflow-owner-name>"
+    },
+    "clients": {
+      "finding_writer": "<finding-writer-client-id>",
+      "verifier": "<verifier-client-id>",
+      "evidence_reader": "<evidence-reader-client-id>",
+      "isc_reader": "<isc-reader-client-id>",
+      "isc_deploy_checker": "<isc-deploy-checker-client-id>",
+      "isc_workflow_admin": "<isc-workflow-admin-client-id>",
+      "isc_workflow_tester": "<isc-workflow-tester-pat-client-id>"
+    },
     "g1": {
       "marketplace_checked_on": "<yyyy-mm-dd>",
       "servicenow_listing": "F1305072116",
       "sailpoint_listing": "FR2001938710A",
-      "sailpoint_confirmed": {"workflows": false, "native_change_detection": false, "http_request_step": false},
+      "sailpoint_confirmed": {
+        "workflows": false,
+        "native_change_detection": false,
+        "http_request_step": false
+      },
       "sailpoint_reference": "<sailpoint-written-answer-reference>"
     },
     "granted": {

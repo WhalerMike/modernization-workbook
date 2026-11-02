@@ -3,7 +3,7 @@
 The kit's sailpoint/workflows/drift-to-servicenow.json posts to an example
 instance and carries placeholders. This prints one workflow, ready for
 POST /v2025/workflows, with the environment's ServiceNow URL and token URL,
-the owner and the ServiceNow OAuth client ID from the settings file, and
+the owner and the finding writer's ServiceNow OAuth client ID from the settings file, and
 "enabled": false (SailPoint creates workflows disabled in any case).
 
 The client secret is never written to a file. With --secret-env NAME it is
@@ -65,7 +65,7 @@ def render(settings: dc.Settings, index: int, secret: str | None = None) -> dict
     for step in workflow["definition"]["steps"].values():
         attributes = step.get("attributes") or {}
         if "oAuthClientId" in attributes:
-            attributes["oAuthClientId"] = settings.deploy.get("workflow_client_id")
+            attributes["oAuthClientId"] = (settings.deploy.get("clients") or {}).get("finding_writer")
             if secret:
                 attributes["oAuthClientSecret"] = secret
     return workflow

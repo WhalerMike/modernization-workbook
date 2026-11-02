@@ -183,6 +183,12 @@ def main(argv: list[str] | None = None, http: kc.Http | None = None, out=None) -
         mode = "dry run (no --apply)"
     print(f"Smoke test {args.phase}: {settings.environment}, {mode}", file=out)
     res = Results(out)
+    role = "evidence_reader" if args.phase == "check" else "finding_writer"
+    wrong = dc.role_mismatch(settings, env, role, None)
+    if wrong:
+        res.expect(False, f"running as the {role}", "; ".join(wrong))
+        print("Result: FAIL", file=out)
+        return 1
     if args.phase == "raise":
         detail = run_raise(settings, http, env, args.apply, args.run_id, res)
     elif args.phase == "signal":

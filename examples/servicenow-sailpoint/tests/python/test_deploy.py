@@ -149,7 +149,7 @@ def test_render_points_each_workflow_at_the_environment():
         assert "contoso.service-now.com" not in text and "https://contosotest.service-now.com/oauth_token.do" in text
         assert workflow["enabled"] is False and workflow["owner"]["id"] == "2c9180000000000000000000000e9001"
         attrs = next(iter(workflow["definition"]["steps"].values()))["attributes"]
-        assert attrs["oAuthClientId"] == "a1b2c3d4e5f60718293a4b5c6d7e8f90"
+        assert attrs["oAuthClientId"] == "a1b2c3d4e5f60718293a4b5c6d7e8f90"  # the finding writer
         assert attrs["oAuthClientSecret"] == "REPLACE-IN-THE-UI"
     with_secret = rw.render(settings, 1, secret="s3")
     assert next(iter(with_secret["definition"]["steps"].values()))["attributes"]["oAuthClientSecret"] == "s3"
@@ -204,7 +204,7 @@ def test_raise_signal_and_check_on_fixtures():
         posted = [c for c in session.calls if c["method"] == "POST" and "identity_findings" in c["url"]]
         assert [c["json"]["kind"] for c in posted] == ["finding", "finding", "closure_signal"]
         assert_declared(session, "smoke-raise")
-    env, session, http = replay("smoke.json")
+    env, session, http = replay("smoke-check.json")
     with pytest.MonkeyPatch.context() as mp:
         mp.setattr(dc, "load_fixture", lambda path: (env, session))
         rc, out = run(smoke_test, ["check", "--settings", TEST, "--finding", "native", "--expect", "awaiting",
@@ -215,7 +215,7 @@ def test_raise_signal_and_check_on_fixtures():
 
 def test_check_fails_on_the_wrong_state():
     rc, out = run(smoke_test, ["check", "--settings", TEST, "--finding", "direct", "--expect", "closed",
-                               "--fixtures", str(DEPLOY / "smoke.json")])
+                               "--fixtures", str(DEPLOY / "smoke-check.json")])
     assert rc == 1 and "FAIL  state is closed" in out
     rc, out = run(smoke_test, ["check", "--settings", TEST, "--finding", "direct", "--expect", "closed",
                                "--fixtures", str(DEPLOY / "smoke-closed.json")])
@@ -266,3 +266,26 @@ def test_deployment_tasks_least_privilege():
     assert kcalls.required(CALLS, "workflow-test", "isc") == {"sp:workflow-execute:external", "sp:workflow-execution:read"}
     # The deploy checker can't change a workflow.
     assert kcalls.match_call(CALLS, "PATCH", "https://t.api.identitynow.com/v2025/workflows/abc", "deploy-check") is None
+
+
+def test_get_setting_reads_one_value_and_refuses_placeholders():
+    assert dc.get_setting(TEST, "deploy.clients.evidence_reader") == "0f1e2d3c4b5a69788796a5b4c3d2e1f0"
+    assert dc.get_setting(TEST, "SAILPOINT_API_BASE") == "https://example-sb.api.identitynow.com"
+    with pytest.raises(KeyError):
+        dc.get_setting(str(KIT / "deploy" / "environment.example.json"), "deploy.clients.verifier")
+    with pytest.raises(KeyError):
+        dc.get_setting(TEST, "deploy.clients")
+    out = io.StringIO()
+    assert dc.main([TEST, "deploy.environment"], out=out) == 0 and out.getvalue() == "test\n"
+    assert dc.main([TEST, "deploy.nothing"], out=io.StringIO()) == 2
+
+
+def test_each_step_refuses_the_wrong_integration_identity():
+    # The smoke check must read as the evidence reader, not the finding writer.
+    rc, out = run(smoke_test, ["check", "--settings", TEST, "--fixtures", str(DEPLOY / "smoke.json")])
+    assert rc == 1 and "SN_CLIENT_ID is not the evidence_reader client" in out
+    rc, out = run(smoke_test, ["raise", "--settings", TEST, "--apply", "--fixtures", str(DEPLOY / "smoke-check.json")])
+    assert rc == 1 and "SN_CLIENT_ID is not the finding_writer client" in out
+    settings = dc.load_settings(TEST, env={})
+    assert dc.role_mismatch(settings, {"SAILPOINT_CLIENT_ID": "x"}, None, "isc_deploy_checker")
+    assert dc.role_mismatch(settings, {"SN_ACCESS_TOKEN": "t"}, "evidence_reader", None) == []
