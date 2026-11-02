@@ -373,14 +373,31 @@ Places Learn says nothing or differs, recorded so a later edit doesn't loosen th
 
 This chapter helps prove the guide's [Gate 6](../../../books/guides/hr-driven-identity-implementation.md#step-6-time-separations-and-deprovisioning); its requirements table is the source, and the [federal framework crosswalk](../../../reference/federal-framework-crosswalk.md) lists every federal source.
 
-| Requirement | What this code shows | What the ISSO keeps |
-|---|---|---|
-| NIST SP 800-53 PS-4, personnel termination, and AC-2(3), disable accounts (Moderate) | Each leaver's separation-to-block and separation-to-revocation, against the organization-defined period | `intervals.csv`, `summary.json` and `findings.json` with the manifest, per run, and the exported workflow runs, audit records, card revocations and device actions behind them |
-| PS-7, external personnel security | The same intervals for contractors, from the earliest end the middleware sends (Chapter 02) | The contractor rows of `intervals.csv` |
-| FIPS 201-3: a card that can't be collected is terminated within 18 hours of notification | ST-04 per uncollected card | The notice and revocation timestamps |
-| AC-2(13), disable accounts for high-risk individuals | The emergency path runs on demand; ST-03 and ST-06 show the separations that need it | The on-demand runs, logged as changes |
+| Requirement | KSI | What this code shows | What the ISSO keeps |
+|---|---|---|---|
+| NIST SP 800-53 PS-4, personnel termination, and AC-2(3), disable accounts (Moderate) | KSI-IAM-ELP (PS-4); KSI-IAM-AAM (AC-2(3)); KSI-IAM-JIT, KSI-IAM-SUS (both) | Each leaver's separation-to-block and separation-to-revocation, against the organization-defined period | `intervals.csv`, `summary.json` and `findings.json` with the manifest, per run, and the exported workflow runs, audit records, card revocations and device actions behind them |
+| PS-7, external personnel security | KSI-SCR-MON | The same intervals for contractors, from the earliest end the middleware sends (Chapter 02) | The contractor rows of `intervals.csv` |
+| FIPS 201-3: a card that can't be collected is terminated within 18 hours of notification | None: not an SP 800-53 control | ST-04 per uncollected card | The notice and revocation timestamps |
+| AC-2(13), disable accounts for high-risk individuals | KSI-IAM-AAM, KSI-IAM-SUS | The emergency path runs on demand; ST-03 and ST-06 show the separations that need it | The on-demand runs, logged as changes |
 
 The summary's percentiles feed Chapter 07's metrics, which the ISSO reports on the continuous monitoring cadence.
+
+Each scripted step in the labs, and each file the code writes, with the evidence it leaves:
+
+| Lab step | What it runs or writes | Requirement | KSI | Evidence |
+|---|---|---|---|---|
+| Lab 1, step 1 | `graph_export.py --task separation-read --list` | AC-6, least privilege: GET calls only | KSI-IAM-ELP | The printed list, and `config/calls.json` as reviewed |
+| Lab 1, steps 2 and 4 | `separation_timing.py measure`, writing `intervals.csv` | PS-4; AC-2(3); PS-7 for the contractor rows | KSI-IAM-ELP, KSI-IAM-JIT, KSI-IAM-SUS; KSI-IAM-AAM; KSI-SCR-MON | `out/ch06/intervals.csv`: each leaver's separation-to-block and separation-to-revocation |
+| Lab 1, step 2 | `summary.json` | CA-7: the percentiles Chapter 07 reports | KSI-MLA-EVC | The run's percentiles against the thresholds in `config/separation.json` |
+| Lab 1, steps 2 and 3 | `findings.json` (ST-01 to ST-09) | PS-4; AC-2(3); AC-2(13) for ST-03 and ST-06 | KSI-IAM-ELP, KSI-IAM-JIT; KSI-IAM-AAM; KSI-IAM-SUS | Each ST row, with its owner and closure |
+| Lab 1, step 2 | `manifest.json` | AU-9; SI-7 | KSI-MLA-OSM; KSI-SVC-VRI | A SHA-256 per file, written once |
+| Lab 1, step 5 | `python -m pytest tests -q` | CM-3(2) *(design guidance)* | KSI-CMT-VTD | `57 passed`, kept with the change |
+| Lab 1, clean-up | `rm -rf out` | None: fixture output isn't evidence | — | — |
+| Lab 2, step 3 | `graph_export.py --task separation-read`, writing `separation-audits.json`, `leaver-results.json` and `export.json`; print the records; copy the settings and set `sessionRevokeActivity` | AU-2 and AU-12 for the records read; AC-6 for GET only; CM-3 for the settings change | KSI-MLA-LET; KSI-IAM-ELP; KSI-CMT-LMC | `exports/separation/export.json`; the reviewed change to `my-separation.json` |
+| Lab 2, step 4 | Write the separations, card, device and role-holder files; `measure` into `out/separation-test` | PS-4; AC-2(3) | KSI-IAM-ELP, KSI-IAM-JIT, KSI-IAM-SUS; KSI-IAM-AAM | `out/separation-test/intervals.csv` and `findings.json`, with their manifest |
+| Lab 2, step 5 | Remove the permissions and the reader app; `rm -rf` the lab files | AC-6: no reader permissions left after the test | KSI-IAM-ELP | The app's deletion in the directory audit log |
+
+KSIs are FedRAMP 20x indicators for cloud service providers: the agency authorizes its own system and lines this evidence up with what its providers report against them, and it doesn't report KSIs itself ([Book 00, Appendix B](../../../books/b00-orientation/appendix-b-engagement-archetype.md)). Each KSI shown lists the row's control among its related SP 800-53 controls on FedRAMP's page;[^hw06-ksi] which file supports which indicator is the program's mapping *(design guidance)*. Controls the guide's table doesn't name (AC-6, AU-2, AU-9, AU-12, CA-7, CM-3, CM-3(2), SI-7) are in the Moderate baseline ([Book 13, Appendix A](../../../books/b13-governance/appendix-a-requirements-mapping.md); [Book 14, Appendix A](../../../books/b14-compliance/appendix-a-control-crosswalk.md)).
 
 ## Dangers
 
@@ -418,3 +435,4 @@ The summary's percentiles feed Chapter 07's metrics, which the ISSO reports on t
 [^hw06-conditions]: Microsoft Learn, "Lifecycle workflows execution conditions and scheduling," workflow scheduling, catch-up window and time-based attribute trigger, <https://learn.microsoft.com/entra/id-governance/lifecycle-workflow-execution-conditions> (read November 1, 2026).
 [^hw06-understanding]: Microsoft Learn, "Understanding lifecycle workflows," scheduling and on-demand scheduling, <https://learn.microsoft.com/entra/id-governance/understanding-lifecycle-workflows> (read November 1, 2026).
 [^hw06-tasks]: Microsoft Learn, "Lifecycle Workflow built-in tasks," Disable user account, <https://learn.microsoft.com/entra/id-governance/lifecycle-workflow-tasks> (read November 1, 2026).
+[^hw06-ksi]: FedRAMP, "Key Security Indicators," *FedRAMP Consolidated Rules for 2026*, indicator titles and "Related SP 800-53 Controls," including the mapping updates of October 13, 2026, <https://www.fedramp.gov/2026/reference/key-security-indicators/> (read November 2, 2026; the indicator IDs are carried from Book 13, Appendix A and Book 14, Chapter 03).

@@ -37,3 +37,16 @@ Microsoft Learn pages opened on November 1, 2026 through the Microsoft Learn MCP
 | Book 03, Chapter 09 (canonical leaver sequence) | Linked; the block definition | — |
 | *Building Privileged Access*, Chapter 01 | `--role-holders` | The inventory itself isn't rebuilt |
 | Guide, Gate 1 (two writers of account state) | ST-05 | Chapter 01 scans the writers; ST-05 flags the effect on a leaver |
+
+## KSI column (November 2, 2026)
+
+FedRAMP's Key Security Indicators page (<https://www.fedramp.gov/2026/reference/key-security-indicators/>) was read through WebFetch on November 2, 2026, for each indicator's "Related SP 800-53 Controls." Every KSI ID in this chapter's Federal requirements tables was already cited in the repo (Book 02, Chapter 10; Book 04, Chapter 10; Book 13, Chapter 04 and Appendix A; Book 14, Chapter 03); none is new. The framing (KSIs are provider-side; the agency lines its evidence up with them and doesn't report them) is carried from Book 00, Appendix B.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| K1 | AC-6, AU-9, SI-7, CM-3, CM-3(2), CA-7 pairs | Both tables | carried forward | Book 13, Appendix A |
+| K2 | PS-4 is related to KSI-IAM-ELP, KSI-IAM-JIT and KSI-IAM-SUS | Both tables | verified (new pair) | FedRAMP KSI page |
+| K3 | AC-2(3) is related to KSI-IAM-AAM, KSI-IAM-JIT and KSI-IAM-SUS | Both tables | verified (new pair) | same |
+| K4 | AC-2(13) is related to KSI-IAM-AAM and KSI-IAM-SUS | Both tables | verified (new pair) | same |
+| K5 | PS-7 is related to KSI-SCR-MON only | Requirement table | verified (new pair) | same |
+| K6 | AU-2 and AU-12 are related to KSI-MLA-LET | Lab table | verified | same |

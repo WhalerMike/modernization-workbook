@@ -437,13 +437,32 @@ One place where the sources leave a choice, recorded so a later edit doesn't loo
 
 This chapter helps prove [Gate 7](../../../books/guides/hr-driven-identity-implementation.md#step-7-keep-the-record-true-and-file-the-evidence). The guide's Gate 7 table names the requirements: CA-7 for system-level metrics, AU-6 and AU-11 with SI-12 for the review and retention of audit records, and BOD 25-01 continuous reporting; the [federal framework crosswalk](../../../reference/federal-framework-crosswalk.md) lists their sources.
 
-| Requirement | What the code gives | What the ISSO keeps |
-|---|---|---|
-| CA-7 | `metrics.json` per run, each metric's series per period, thresholds in a reviewed file | Every period's `PERIOD-MANIFEST.json`, `period-summary.md` and `SHA256SUMS`, with the approved thresholds |
-| AU-6 | LD-04 from Chapter 01's scan of the audit log, by fingerprint | The packages, with each LD-04 finding's closure at the source |
-| AU-11, SI-12 | Packages written once, hash-chained, outside the directory | The storage container's retention and immutability settings, set to the records schedule |
-| BOD 25-01 continuous reporting | Not this code: ScubaGear reports for the policies in Gates 4 and 5 | The ScubaGear results beside the period |
-| AC-2, PS-4, PS-5 (from the other gates) | LD-01 to LD-03 and LD-05 to LD-06; the separation and transfer metrics | The period's control table, which the assessor reads, not decides from |
+| Requirement | KSI | What the code gives | What the ISSO keeps |
+|---|---|---|---|
+| CA-7 | KSI-MLA-EVC | `metrics.json` per run, each metric's series per period, thresholds in a reviewed file | Every period's `PERIOD-MANIFEST.json`, `period-summary.md` and `SHA256SUMS`, with the approved thresholds |
+| AU-6 | KSI-MLA-RVL | LD-04 from Chapter 01's scan of the audit log, by fingerprint | The packages, with each LD-04 finding's closure at the source |
+| AU-11, SI-12 | KSI-MLA-OSM (AU-11); none lists SI-12 | Packages written once, hash-chained, outside the directory | The storage container's retention and immutability settings, set to the records schedule |
+| BOD 25-01 continuous reporting | None: not an SP 800-53 control | Not this code: ScubaGear reports for the policies in Gates 4 and 5 | The ScubaGear results beside the period |
+| AC-2, PS-4, PS-5 (from the other gates) | KSI-IAM-JIT (all three); KSI-IAM-ELP (PS-4, PS-5); KSI-IAM-SUS (AC-2, PS-4) | LD-01 to LD-03 and LD-05 to LD-06; the separation and transfer metrics | The period's control table, which the assessor reads, not decides from |
+
+Each scripted step in the labs, and each file the code writes, with the evidence it leaves:
+
+| Lab step | What it runs or writes | Requirement | KSI | Evidence |
+|---|---|---|---|---|
+| Lab 1, step 1 | The Chapter 01, 02, 03, 04 and 06 commands, each into its own folder | As each chapter's table says | As each chapter's table says | Each folder's `manifest.json`, whose SHA-256 the run records |
+| Lab 1, steps 2 to 4 | `lifecycle_drift.py run`, writing `lifecycle/findings.json` (LD-01 to LD-06) | AC-2, PS-4, PS-5; AU-6 for LD-04 | KSI-IAM-JIT, KSI-IAM-ELP, KSI-IAM-SUS; KSI-MLA-RVL | Each run's `lifecycle/findings.json`, as step 3 prints it |
+| Lab 1, steps 2 and 4 | `lifecycle/metrics.json` | CA-7 | KSI-MLA-EVC | Each metric's value, threshold and status, against `config/drift.json` |
+| Lab 1, steps 2 and 4 | `lifecycle/manifest.json` and `run.json` | AU-9; SI-7 | KSI-MLA-OSM; KSI-SVC-VRI | The run's inputs by manifest SHA-256, written once |
+| Lab 1, step 5 | `hr_evidence.py package`, twice and chained, writing `run/`, `summary.md`, `EVIDENCE-MANIFEST.json` and `SHA256SUMS` | AU-9; SI-7; AU-11 once stored | KSI-MLA-OSM; KSI-SVC-VRI | Each package's `EVIDENCE-MANIFEST.json`, chained to the one before |
+| Lab 1, step 5 | `hr_evidence.py verify`; `sha256sum -c SHA256SUMS` | SI-7; AU-9 | KSI-SVC-VRI; KSI-MLA-OSM | `verify`'s result and every `OK` line |
+| Lab 1, step 6 | `hr_evidence.py period`, writing `PERIOD-MANIFEST.json`, `period-summary.md` and `SHA256SUMS` | CA-7; AU-6 | KSI-MLA-EVC; KSI-MLA-RVL | The period folder under `out/ch07/periods`, which the ISSO signs |
+| Lab 1, step 7 | `python -m pytest tests -q` in both kits | CM-3(2) *(design guidance)* | KSI-CMT-VTD | Both kits' pass counts, kept with the change |
+| Lab 1, clean-up | `rm -rf out` | None: fixture output isn't evidence | — | — |
+| Lab 2, step 1 | `graph_export.py --task drift-read --list`; export, writing `workforce-users.json` and `export.json` | AC-6, least privilege: GET calls only | KSI-IAM-ELP | The printed list; `exports/drift/export.json` |
+| Lab 2, step 3 | `lifecycle_drift.py run --mode tenant`; print the findings | AC-2, PS-4, PS-5; AU-6; CA-7 | KSI-IAM-JIT, KSI-IAM-ELP, KSI-IAM-SUS; KSI-MLA-RVL; KSI-MLA-EVC | `out/ch07-test/runs/<run-id>/run.json`, `lifecycle/findings.json` and `lifecycle/metrics.json` |
+| Lab 2, step 6 | Remove the schedule and the reader app; `rm -rf exports out` | AC-6: no reader permissions left after the test | KSI-IAM-ELP | The app's deletion in the directory audit log |
+
+KSIs are FedRAMP 20x indicators for cloud service providers: the agency authorizes its own system and lines this evidence up with what its providers report against them, and it doesn't report KSIs itself ([Book 00, Appendix B](../../../books/b00-orientation/appendix-b-engagement-archetype.md)). Each KSI shown lists the row's control among its related SP 800-53 controls on FedRAMP's page;[^hw07-ksi] which file supports which indicator is the program's mapping *(design guidance)*. Controls the guide's table doesn't name (AC-6, AU-9, CM-3(2), SI-7) are in the Moderate baseline ([Book 13, Appendix A](../../../books/b13-governance/appendix-a-requirements-mapping.md); [Book 14, Appendix A](../../../books/b14-compliance/appendix-a-control-crosswalk.md)).
 
 ## Dangers
 
@@ -478,3 +497,4 @@ This chapter helps prove [Gate 7](../../../books/guides/hr-driven-identity-imple
 [^hw07-feat]: Microsoft Learn, "Microsoft Entra feature availability" (Azure for US Government: basic and advanced reports and SIEM connectivity available), <https://learn.microsoft.com/entra/identity/authentication/feature-availability> (read November 1, 2026; carried from the HR-driven identity implementation guide's verification log).
 [^hw07-retention]: Microsoft Learn, "Microsoft Entra data retention," <https://learn.microsoft.com/entra/identity/monitoring-health/reference-reports-data-retention>, with the provisioning and Lifecycle Workflows history pages cited in Book 03, Chapter 11 (read November 1, 2026; carried from Book 03, Chapter 11).
 [^hw07-users]: Microsoft Learn, "List users," <https://learn.microsoft.com/graph/api/user-list?view=graph-rest-1.0>, and the user resource (`employeeLeaveDateTime` needs `User-LifeCycleInfo.Read.All`), as read for the validation kit's VK-HR-05 (read November 1, 2026; carried from `examples/validation-kit/README.md`).
+[^hw07-ksi]: FedRAMP, "Key Security Indicators," *FedRAMP Consolidated Rules for 2026*, indicator titles and "Related SP 800-53 Controls," including the mapping updates of October 13, 2026, <https://www.fedramp.gov/2026/reference/key-security-indicators/> (read November 2, 2026; the indicator IDs are carried from Book 13, Appendix A and Book 14, Chapter 03).
