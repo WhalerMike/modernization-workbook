@@ -226,6 +226,17 @@ def mode_setup(args: Any, http: kc.Http | None) -> tuple[dict[str, str] | Mappin
     return os.environ, http or kc.Http(), "live"
 
 
+def write_evidence(out_json: str | None, value: Any, script: str, argv: list[str] | None, environment: str | None,
+                   settings: str, mode: str, ok: bool, summary: str, now: str | None = None) -> None:
+    """Write the step's --out-json file and append its chained record to steps.jsonl beside it."""
+    if not out_json:
+        return
+    write_json(out_json, value)
+    import step_evidence
+    step_evidence.append(out_json, script, sys.argv[1:] if argv is None else argv, environment, settings, mode, ok,
+                         summary, now)
+
+
 def get_setting(path: str, dotted: str) -> str:
     """One value from a settings file by its dotted path, for example deploy.clients.verifier."""
     with open(path, encoding="utf-8") as handle:

@@ -93,7 +93,8 @@ def main(argv: list[str] | None = None, http: kc.Http | None = None, out=None) -
     parser.add_argument("--since", help="--verify: the UTC time the rollback started, 'YYYY-MM-DD HH:MM:SS'")
     parser.add_argument("--dry-run", action="store_true", help="No network (the plan shows <workflow-id>)")
     parser.add_argument("--fixtures", help="Answer the calls from this file (tests and the runbook's output)")
-    parser.add_argument("--out-json", help="--verify: write the results here, for the evidence folder")
+    parser.add_argument("--out-json", help="--verify: write the results here, and a chained step record to steps.jsonl")
+    parser.add_argument("--now", help="The step record's UTC timestamp (fixtures and tests; default now)")
     args = parser.parse_args(argv)
     if args.verify and not args.since:
         parser.error("--verify needs --since")
@@ -122,8 +123,10 @@ def main(argv: list[str] | None = None, http: kc.Http | None = None, out=None) -
     print(f"Rollback verify: {settings.environment}, {mode}", file=out)
     result = verify(settings, workflows, http, env, args.since, out)
     print(f"Result: {result['verdict']}", file=out)
-    dc.write_json(args.out_json, {"checker": f"deploy/rollback.py/{kc.KIT_VERSION}", "mode": mode,
-                                  "environment": settings.environment, **result})
+    dc.write_evidence(args.out_json, {"checker": f"deploy/rollback.py/{kc.KIT_VERSION}", "mode": mode,
+                                      "environment": settings.environment, **result},
+                      "deploy/rollback.py", argv, settings.environment, args.settings, mode,
+                      result["verdict"] == "rolled back", result["verdict"], args.now)
     return 0 if result["verdict"] == "rolled back" else 1
 
 

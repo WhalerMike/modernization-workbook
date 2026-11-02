@@ -18,6 +18,7 @@ import record  # noqa: E402
 import render_workflows as rw  # noqa: E402
 import rollback  # noqa: E402
 import smoke_test  # noqa: E402
+import step_evidence as se  # noqa: E402
 
 DEPLOY = FIXTURES / "deploy"
 TEST = str(DEPLOY / "environment.test.json")
@@ -321,3 +322,80 @@ def test_record_stops_on_an_error_or_a_body_that_is_not_json(tmp_path):
     assert record.main([str(tmp_path / "e.json")], stdin=io.StringIO('{"detailCode": "403 Forbidden"}'), out=out) == 1
     assert record.main([str(tmp_path / "t.json")], stdin=io.StringIO("<html>bad gateway</html>"), out=out) == 1
     assert "stop and read it" in out.getvalue()
+
+
+
+# --- step evidence ----------------------------------------------------------------
+
+def test_each_scripted_step_writes_a_chained_evidence_record(tmp_path):
+    folder = tmp_path / "evidence" / "test"
+    rc, _ = run(preflight, ["--settings", TEST, "--expect-workflows", "disabled", "--fixtures",
+                            str(DEPLOY / "preflight.json"), "--today", "2026-11-02", "--now", "2026-11-02T15:00:00Z",
+                            "--out-json", str(folder / "preflight-3-created.json")])
+    assert rc == 0
+    rc, _ = run(smoke_test, ["raise", "--settings", TEST, "--apply", "--fixtures", str(DEPLOY / "smoke.json"),
+                             "--out-json", str(folder / "smoke-1-raise.json")])
+    assert rc == 0
+    rc, _ = run(rollback, ["--settings", TEST, "--verify", "--since", "2026-11-02 16:30:00", "--fixtures",
+                           str(DEPLOY / "rollback-plan.json"), "--out-json", str(folder / "rollback-verify.json")])
+    assert rc == 1
+    steps = se.read_steps(str(folder))
+    assert [s["record"] for s in steps] == ["preflight-3-created", "smoke-1-raise", "rollback-verify"]
+    assert [s["result"] for s in steps] == ["pass", "pass", "fail"]
+    first = steps[0]
+    assert first["timestamp"] == "2026-11-02T15:00:00Z" and first["environment"] == "test" and first["mode"] == "fixtures"
+    assert first["command"].startswith("python deploy/preflight.py --settings ")
+    assert {"control": "SA-9", "ksi": ["KSI-SCR-MIT"]} in first["requirements"]
+    assert {"control": "CP-10", "ksi": ["KSI-RPL-ARP", "KSI-RPL-TRC"]} in steps[2]["requirements"]
+    assert steps[1]["prev_sha256"] == first["record_sha256"]
+    import evidence_export as ee
+    assert ee.verify_chain(steps) == []
+
+
+def test_every_ksi_is_one_the_workbook_cites():
+    cited = {"KSI-SCR-MIT", "KSI-IAM-ELP", "KSI-IAM-JIT", "KSI-IAM-SNU", "KSI-CMT-LMC", "KSI-CMT-RMV", "KSI-CMT-RVP",
+             "KSI-CMT-VTD", "KSI-MLA-EVC", "KSI-MLA-LET", "KSI-RPL-ARP", "KSI-RPL-TRC"}
+    assert {k for ksis in se.KSI.values() for k in ksis} <= cited
+    for controls in se.SCRIPT_REQUIREMENTS.values():
+        assert all(c in se.KSI for c in controls)
+
+
+def _complete_stage(folder, stage="test"):
+    folder.mkdir(parents=True, exist_ok=True)
+    for name in se.STAGE_STEPS[stage]:
+        script = ("deploy/preflight.py" if name.startswith("preflight") else "deploy/rollback.py"
+                  if name.startswith("rollback") else "deploy/smoke_test.py check")
+        out = folder / f"{name}.json"
+        out.write_text("{}", encoding="utf-8")
+        se.append(str(out), script, ["--settings", "s.json"], stage, "s.json", "live", True, "ok", "2026-11-02T15:00:00Z")
+    for name, key, expected in se.STAGE_FILES[stage]:
+        body = {} if key is None else {key: expected if expected is not None else "wf-1"}
+        (folder / name).write_text(json.dumps(body), encoding="utf-8")
+    import evidence_export as ee
+    ee.write_package([], str(folder / "evidence-package"), "test", generated_at="2026-11-02T16:00:00Z")
+
+
+def test_a_complete_stage_verifies_and_a_gap_or_tamper_fails(tmp_path):
+    folder = tmp_path / "test"
+    _complete_stage(folder)
+    out = io.StringIO()
+    assert se.main(["--verify", str(folder), "--stage", "test"], out=out) == 0, out.getvalue()
+    assert "evidence complete" in out.getvalue()
+    (folder / "execution-2.json").write_text(json.dumps({"status": "Failed"}), encoding="utf-8")
+    (folder / "smoke-5-signal.json").write_text('{"edited": true}', encoding="utf-8")
+    out = io.StringIO()
+    assert se.main(["--verify", str(folder), "--stage", "test"], out=out) == 1
+    text = out.getvalue()
+    assert "FAIL  execution-2.json             status=Failed" in text
+    assert "smoke-5-signal" in text and "missing or changed since it was recorded" in text
+
+
+def test_fixture_or_failed_records_do_not_count_for_promotion(tmp_path):
+    folder = tmp_path / "test"
+    _complete_stage(folder)
+    out = folder / "rollback-verify.json"
+    se.append(str(out), "deploy/rollback.py", [], "test", "s.json", "fixtures", True, "rolled back")
+    rows = {r["item"]: r for r in se.verify_stage(str(folder), "test")}
+    assert not rows["rollback-verify"]["ok"]
+    production = {r["item"] for r in se.verify_stage(str(folder), "production")}
+    assert "rollback-verify" not in production and "disable-1.json" not in production

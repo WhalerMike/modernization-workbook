@@ -223,7 +223,8 @@ def main(argv: list[str] | None = None, http: kc.Http | None = None, out=None) -
     parser.add_argument("--dry-run", action="store_true", help="No network: offline checks, and list the live calls")
     parser.add_argument("--fixtures", help="Answer the live calls from this file (tests and the runbook's output)")
     parser.add_argument("--today", help="The date to judge the Marketplace record against (YYYY-MM-DD; default today)")
-    parser.add_argument("--out-json", help="Write the results here, for the evidence folder")
+    parser.add_argument("--out-json", help="Write the results here, and a chained step record to steps.jsonl beside it")
+    parser.add_argument("--now", help="The step record's UTC timestamp (fixtures and tests; default now)")
     args = parser.parse_args(argv)
     env, http, mode = dc.mode_setup(args, http)
     today = date.fromisoformat(args.today) if args.today else date.today()
@@ -256,10 +257,13 @@ def main(argv: list[str] | None = None, http: kc.Http | None = None, out=None) -
     verdict = "no-go" if counts["FAIL"] else "go"
     print(f"Result: {counts['PASS']} PASS, {counts['WARN']} WARN, {counts['FAIL']} FAIL, {counts['SKIP']} SKIP: {verdict}",
           file=out)
-    dc.write_json(args.out_json, {"checker": f"deploy/preflight.py/{kc.KIT_VERSION}", "mode": mode,
-                                  "settings": args.settings, "date": str(today),
-                                  "environment": settings.environment if settings else None,
-                                  "results": report.rows, "verdict": verdict})
+    dc.write_evidence(args.out_json, {"checker": f"deploy/preflight.py/{kc.KIT_VERSION}", "mode": mode,
+                                      "settings": args.settings, "date": str(today),
+                                      "environment": settings.environment if settings else None,
+                                      "results": report.rows, "verdict": verdict},
+                      "deploy/preflight.py", argv, settings.environment if settings else None, args.settings, mode,
+                      not counts["FAIL"], f"{counts['PASS']} PASS, {counts['WARN']} WARN, {counts['FAIL']} FAIL, "
+                      f"{counts['SKIP']} SKIP: {verdict}", args.now)
     return 1 if counts["FAIL"] else 0
 
 

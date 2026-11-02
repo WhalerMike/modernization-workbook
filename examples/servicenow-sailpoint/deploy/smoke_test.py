@@ -171,7 +171,8 @@ def main(argv: list[str] | None = None, http: kc.Http | None = None, out=None) -
     parser.add_argument("--run-id", default="smoke", help="A label kept in the finding's origin (default smoke)")
     parser.add_argument("--dry-run", action="store_true", help="No network")
     parser.add_argument("--fixtures", help="Answer the calls from this file (tests and the runbook's output)")
-    parser.add_argument("--out-json", help="Write the results here, for the evidence folder")
+    parser.add_argument("--out-json", help="Write the results here, and a chained step record to steps.jsonl beside it")
+    parser.add_argument("--now", help="The step record's UTC timestamp (fixtures and tests; default now)")
     args = parser.parse_args(argv)
     env, http, mode = dc.mode_setup(args, http)
     settings = dc.load_settings(args.settings, env)
@@ -196,8 +197,11 @@ def main(argv: list[str] | None = None, http: kc.Http | None = None, out=None) -
     else:
         detail = run_check(settings, http, env, args.finding, args.expect, args.occurrences, res)
     print("Result: " + ("FAIL" if res.failed else "PASS"), file=out)
-    dc.write_json(args.out_json, {"checker": f"deploy/smoke_test.py/{kc.KIT_VERSION}", "phase": args.phase, "mode": mode,
-                                  "environment": settings.environment, "results": res.rows, "detail": detail})
+    dc.write_evidence(args.out_json, {"checker": f"deploy/smoke_test.py/{kc.KIT_VERSION}", "phase": args.phase,
+                                      "mode": mode, "environment": settings.environment, "results": res.rows,
+                                      "detail": detail},
+                      f"deploy/smoke_test.py {args.phase}", argv, settings.environment, args.settings, mode,
+                      not res.failed, f"{sum(r['ok'] for r in res.rows)} of {len(res.rows)} expectations met", args.now)
     return 1 if res.failed else 0
 
 
