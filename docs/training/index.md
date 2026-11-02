@@ -107,7 +107,15 @@ Seven modules, one per gate of the [HR-driven identity implementation guide](../
 
 ## Privileged Access learning path
 
-Eight modules, one per chapter of the developer workbook [*Building Privileged Access*](../project-plans/developer-workbooks/privileged-access/index.md), each with a lab on fixtures and a lab in your own test tenant. There's no implementation guide for this track, so the path follows the workbook and the [project plan](../project-plans/privileged-access.md). Emergency access comes first, and every module that writes has a guard against locking people out. Start at the [learning path](privileged-access/index.md).
+Eight modules, one per chapter of the developer workbook [*Building Privileged Access*](../project-plans/developer-workbooks/privileged-access/index.md), each with a lab on fixtures and a lab in your own test tenant. It follows the workbook and the [project plan](../project-plans/privileged-access.md), and its modules match the gates of the [implementation guide](../books/guides/privileged-access-implementation.md) one for one. Emergency access comes first, and every module that writes has a guard against locking people out. Start at the [learning path](privileged-access/index.md).
+
+## Attribute-Driven Migration learning path
+
+Nine modules that teach [Book 19, *Building the Attribute-Driven Migration*](../books/b19-developer-workbook/index.md), one chapter each, in the order of the [implementation guide's](../books/guides/attribute-driven-migration-implementation.md) gates. Each runs the chapter's Lab 1 on fixtures, points to its Lab 2 in a non-production environment, names the federal requirement with its KSI and evidence, and ends with a knowledge check. Chapter 02 is taught by the Microsoft Automation path's [Module 1](ms-automation-foundations.md). Start at the [learning path](attribute-driven-migration/index.md).
+
+## Non-Person Identity learning path
+
+Ten modules, one per chapter of the developer workbook *Building Non-Person Identity*, in the order of the six gates of the [non-person identity implementation guide](../books/guides/non-person-identity-implementation.md): inventory, ownership and the orphan rule, the decision, credential rules, least privilege and Conditional Access for workload identities, conversion, AI agent identities, and drift and evidence. Each has a lab on fixtures and a lab in your own test tenant. Start at the [learning path](non-person-identity/index.md).
 
 ## Attribute-Driven Migration learning path
 

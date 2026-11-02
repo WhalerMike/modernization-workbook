@@ -26,7 +26,7 @@ Method:
 | 8 | KSIs are FedRAMP 20x indicators for providers; the agency doesn't report them | Every module | carried | Workbook chapters' KSI note; Book 00, Appendix B |
 | 9 | Lab 2's environment, licenses, permissions and back-out for each module | Each module, "Exercise: Lab 2" | carried; not run | Workbook Chapters 01 to 08, Lab 2 |
 | 10 | The workbook's code hasn't been run against a production tenant | Path | carried | Workbook index, status callout |
-| 11 | There is no implementation guide for this track | Path | design (a statement about the repository on 2026-11-02: `docs/books/guides/` has none for privileged access, and `generate_labs.py` registers the workbook with no guide) | — |
+| 11 | The path was written before the implementation guide; its modules match the guide's gates one for one | Path | design (updated 2026-11-02 when `docs/books/guides/privileged-access-implementation.md` was added: gates G1 to G8 cover the same chapters 01 to 08 as Modules 1 to 8) | — |
 | 12 | Eight modules, one per chapter, and why none were merged | Path, "Why eight modules" | design | — |
 | 13 | Module and path times | Every module; the path | design (estimates) | — |
 | 14 | Narrated decks for the modules are planned | Path | design (the owner's plan; decks come in a separate step) | — |

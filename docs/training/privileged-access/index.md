@@ -26,8 +26,8 @@ Privilege should be just-in-time, by tier, and provable. This learning path teac
 Like a [Microsoft Learn learning path](https://learn.microsoft.com/training/), it is a short series of modules, each built on the one before. The modules don't repeat the workbook, the project plan or [Book 04](../../books/b04-access/index.md). They tell you what to read, in what order, what to run, and what to check you understood.
 
 ::: {.callout-note}
-## There's no implementation guide for this track
-The other learning paths follow an implementation guide gate by gate. Privileged access has none. This path follows two sources instead:
+## Where this path comes from
+The path was written before the [Privileged Access implementation guide](../../books/guides/privileged-access-implementation.md) existed, so it follows the workbook rather than the guide. Its eight modules match the guide's eight gates one for one: Module N teaches gate GN. The path draws on two sources:
 
 - the developer workbook [*Building Privileged Access*](../../project-plans/developer-workbooks/privileged-access/index.md), for the code, the labs and the federal requirements and evidence;
 - the project plan [Privileged Access & Administrative Identity](../../project-plans/privileged-access.md), for the phases, the gates and the decisions.
@@ -133,7 +133,7 @@ Run every PowerShell command from `examples/privileged-access`, in one PowerShel
 
 : Where each piece of privileged access lives {.striped .hover}
 
-There is no implementation guide for this track. Narrated decks for the modules are planned; when they exist, each module will link its deck. Until then, each workbook chapter's narrated tour is on the [workbook index](../../project-plans/developer-workbooks/privileged-access/index.md).
+The [implementation guide](../../books/guides/privileged-access-implementation.md) runs the same eight steps as gated work for an operator. Narrated decks for the modules are planned; when they exist, each module will link its deck. Until then, each workbook chapter's narrated tour is on the [workbook index](../../project-plans/developer-workbooks/privileged-access/index.md).
 
 ## Status and review
 

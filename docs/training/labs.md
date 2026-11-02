@@ -70,7 +70,7 @@ Every lab opens with the list of every command it runs, in order: follow it top 
 
 ## Building Privileged Access {#pa}
 
-[The workbook](../project-plans/developer-workbooks/privileged-access/index.md) · [its learning path](privileged-access/index.md) · [the code: privileged-access-code.zip](../../downloads/privileged-access-code.zip)
+[The workbook](../project-plans/developer-workbooks/privileged-access/index.md) · [its implementation guide](../books/guides/privileged-access-implementation.md) · [its learning path](privileged-access/index.md) · [the code: privileged-access-code.zip](../../downloads/privileged-access-code.zip)
 
 | Chapter | Lab 1, no tenant | You need | Lab 2 runs in | Module |
 |---|---|---|---|---|
