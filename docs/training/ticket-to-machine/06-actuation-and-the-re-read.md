@@ -14,6 +14,8 @@ last-reviewed: 2026-11-01
 
 **Learning path:** [Ticket-to-Machine on ServiceNow and SailPoint](index.md) · Module 6 of 7 · 55 minutes · Guide [Gate 5](../../books/guides/ttm-servicenow-sailpoint.md#step-5-actuate-on-the-native-surface) and [Gate 6](../../books/guides/ttm-servicenow-sailpoint.md#step-6-close-only-on-a-re-read) · Workbook [Chapter 05](../../project-plans/developer-workbooks/ticket-to-machine/05-the-re-read-rule.md)
 
+**Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-ttm-module-6) (the deck files come with the next edition) · [▶ Watch](../../presentations/watch.html?v=Training_TTM_Module_6_Narrated) (about 14 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_TTM_Module_6_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-ttm-module-6/Training_TTM_Module_6_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-ttm-module-6/Training_TTM_Module_6_Narrated.vtt).
+
 ## Unit 1: Introduction
 
 *3 minutes, with the objectives and prerequisites*

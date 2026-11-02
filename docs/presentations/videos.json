@@ -12148,6 +12148,599 @@
   ]
  },
  {
+  "id": "Training_HR_Module_1_Narrated",
+  "title": "HR-Driven Identity learning path, Module 1: Name one writer for every account state",
+  "group": "training",
+  "minutes": 13,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_HR_Module_1_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/training-hr-module-1/Training_HR_Module_1_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-hr-module-1/Training_HR_Module_1_Narration_Script.md",
+  "page": "docs/training/hr-driven-identity/01-one-writer-per-state.html",
+  "source": "docs/training/hr-driven-identity/01-one-writer-per-state.md",
+  "kits": [
+   {
+    "name": "hr-lifecycle",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/hr-lifecycle",
+    "zip": "downloads/hr-driven-identity-code.zip"
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Module 1: Name one writer for every account state"
+   ],
+   [
+    53,
+    "Why two writers on one value is a problem"
+   ],
+   [
+    99,
+    "What you'll be able to do in Module 1"
+   ],
+   [
+    152,
+    "The lifecycle rows: one writer and a backstop each"
+   ],
+   [
+    207,
+    "Four named writers, and why a writer is access"
+   ],
+   [
+    261,
+    "The register check: WR-01 to WR-09"
+   ],
+   [
+    316,
+    "The audit-log scan: every protected write, judged"
+   ],
+   [
+    367,
+    "What the scan can't see, and what it can't confirm"
+   ],
+   [
+    421,
+    "Try it: what the scan reads, and the register check"
+   ],
+   [
+    473,
+    "Try it: scan a month of audit records"
+   ],
+   [
+    521,
+    "Try it: read the findings and a saved query"
+   ],
+   [
+    579,
+    "Lab 2: scan your own test tenant"
+   ],
+   [
+    635,
+    "The federal requirement and evidence for Gate 1"
+   ],
+   [
+    684,
+    "Check yourself: two questions on writers"
+   ],
+   [
+    731,
+    "Summary, and next: Module 2, contractor sources"
+   ]
+  ]
+ },
+ {
+  "id": "Training_HR_Module_2_Narrated",
+  "title": "HR-Driven Identity learning path, Module 2: Run contractors from their own source",
+  "group": "training",
+  "minutes": 13,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_HR_Module_2_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/training-hr-module-2/Training_HR_Module_2_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-hr-module-2/Training_HR_Module_2_Narration_Script.md",
+  "page": "docs/training/hr-driven-identity/02-contractor-sources.html",
+  "source": "docs/training/hr-driven-identity/02-contractor-sources.md",
+  "kits": [
+   {
+    "name": "hr-lifecycle",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/hr-lifecycle",
+    "zip": "downloads/hr-driven-identity-code.zip"
+   },
+   {
+    "name": "hcm-entra",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/hcm-entra",
+    "zip": null
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Module 2: Run contractors from their own source"
+   ],
+   [
+    54,
+    "Why a contractor's end date keeps access alive"
+   ],
+   [
+    100,
+    "What you'll be able to do in Module 2"
+   ],
+   [
+    151,
+    "The guide's order: measure, settle, then the leaver"
+   ],
+   [
+    205,
+    "The earliest end: the first condition that applies"
+   ],
+   [
+    260,
+    "The source checks and the reconciliation's rules"
+   ],
+   [
+    317,
+    "The middleware sends it; the sponsor review ends it"
+   ],
+   [
+    371,
+    "Try it: compute the earliest ends"
+   ],
+   [
+    426,
+    "Try it: read the decisions and build the requests"
+   ],
+   [
+    480,
+    "Try it: reconcile the register, cards and directory"
+   ],
+   [
+    535,
+    "Try it: write the sponsor review settings"
+   ],
+   [
+    590,
+    "Lab 2: send two test contractors in a test tenant"
+   ],
+   [
+    644,
+    "The federal requirement and evidence for Gate 2"
+   ],
+   [
+    700,
+    "Check yourself: two questions on contractors"
+   ],
+   [
+    749,
+    "Summary, and next: Module 3, joiners on day one"
+   ]
+  ]
+ },
+ {
+  "id": "Training_HR_Module_3_Narrated",
+  "title": "HR-Driven Identity learning path, Module 3: Make joiners ready on day one",
+  "group": "training",
+  "minutes": 13,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_HR_Module_3_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/training-hr-module-3/Training_HR_Module_3_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-hr-module-3/Training_HR_Module_3_Narration_Script.md",
+  "page": "docs/training/hr-driven-identity/03-joiners-and-the-temporary-access-pass.html",
+  "source": "docs/training/hr-driven-identity/03-joiners-and-the-temporary-access-pass.md",
+  "kits": [
+   {
+    "name": "hr-lifecycle",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/hr-lifecycle",
+    "zip": "downloads/hr-driven-identity-code.zip"
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Module 3: Make joiners ready on day one"
+   ],
+   [
+    52,
+    "Why the first morning needs workflows as code"
+   ],
+   [
+    100,
+    "What you'll be able to do in Module 3"
+   ],
+   [
+    152,
+    "The joiner in the guide: three things to notice"
+   ],
+   [
+    208,
+    "Six workflow files, all scoped on codes"
+   ],
+   [
+    264,
+    "The lint: JW-01 to JW-15, before the tenant"
+   ],
+   [
+    325,
+    "The plan, and what makes a hire ready"
+   ],
+   [
+    375,
+    "Try it: the reads, and the lint on the program's files"
+   ],
+   [
+    423,
+    "Try it: lint three broken workflows"
+   ],
+   [
+    476,
+    "Try it: plan the files against the tenant's export"
+   ],
+   [
+    520,
+    "Try it: measure day one"
+   ],
+   [
+    563,
+    "Lab 2: plan and send one change in a test tenant"
+   ],
+   [
+    619,
+    "The federal requirement and evidence for Gate 3"
+   ],
+   [
+    677,
+    "Check yourself: two questions on joiners"
+   ],
+   [
+    724,
+    "Summary, and next: Module 4, access and movers"
+   ]
+  ]
+ },
+ {
+  "id": "Training_HR_Module_4_Narrated",
+  "title": "HR-Driven Identity learning path, Module 4: Assign access from attributes and review what a move leaves",
+  "group": "training",
+  "minutes": 13,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_HR_Module_4_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/training-hr-module-4/Training_HR_Module_4_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-hr-module-4/Training_HR_Module_4_Narration_Script.md",
+  "page": "docs/training/hr-driven-identity/04-access-and-movers.html",
+  "source": "docs/training/hr-driven-identity/04-access-and-movers.md",
+  "kits": [
+   {
+    "name": "hr-lifecycle",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/hr-lifecycle",
+    "zip": "downloads/hr-driven-identity-code.zip"
+   },
+   {
+    "name": "dynamic-rules",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/dynamic-rules",
+    "zip": null
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Module 4: Access from attributes, and what a move leaves"
+   ],
+   [
+    47,
+    "Why a rule on the organization code isn't enough"
+   ],
+   [
+    96,
+    "What you'll be able to do in Module 4"
+   ],
+   [
+    152,
+    "Access from attributes: the guide's rules for Gate 4"
+   ],
+   [
+    207,
+    "The program's three policy files"
+   ],
+   [
+    263,
+    "The lint: AA-01 to AA-09, over a population"
+   ],
+   [
+    317,
+    "The mover's residual review: what a rule can't see"
+   ],
+   [
+    373,
+    "Try it: the reads, and the lint on the program's policies"
+   ],
+   [
+    419,
+    "Try it: lint broken policies and scan for memberOf"
+   ],
+   [
+    474,
+    "Try it: list a mover's residual access"
+   ],
+   [
+    528,
+    "Lab 2: one automatic policy in a test tenant"
+   ],
+   [
+    587,
+    "GCC High's gap, and privileged access out of rules"
+   ],
+   [
+    640,
+    "The federal requirement and evidence for Gate 4"
+   ],
+   [
+    700,
+    "Check yourself: two questions on access and movers"
+   ],
+   [
+    749,
+    "Summary, and next: Module 5, certificate checks"
+   ]
+  ]
+ },
+ {
+  "id": "Training_HR_Module_5_Narrated",
+  "title": "HR-Driven Identity learning path, Module 5: Check certificate-based authentication",
+  "group": "training",
+  "minutes": 13,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_HR_Module_5_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/training-hr-module-5/Training_HR_Module_5_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-hr-module-5/Training_HR_Module_5_Narration_Script.md",
+  "page": "docs/training/hr-driven-identity/05-certificate-based-authentication.html",
+  "source": "docs/training/hr-driven-identity/05-certificate-based-authentication.md",
+  "kits": [
+   {
+    "name": "hr-lifecycle",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/hr-lifecycle",
+    "zip": "downloads/hr-driven-identity-code.zip"
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Module 5: Check certificate-based authentication"
+   ],
+   [
+    49,
+    "Why revocation is the weak link in card sign-in"
+   ],
+   [
+    97,
+    "What you'll be able to do in Module 5"
+   ],
+   [
+    150,
+    "Credentials follow HR events"
+   ],
+   [
+    206,
+    "The CRL limits the check holds each cloud to"
+   ],
+   [
+    258,
+    "The measurement: download each CRL once"
+   ],
+   [
+    303,
+    "The check, part 1: the trust store and each CRL"
+   ],
+   [
+    359,
+    "The check, part 2: the method and the policy"
+   ],
+   [
+    416,
+    "Try it: list the reads and measure the CRLs"
+   ],
+   [
+    465,
+    "Try it: check the fictional tenant for GCC"
+   ],
+   [
+    519,
+    "Try it: the same tenant, checked for GCC High"
+   ],
+   [
+    567,
+    "Lab 2: revoke a test card and watch Entra refuse it"
+   ],
+   [
+    616,
+    "The federal requirement, and the evidence to keep"
+   ],
+   [
+    676,
+    "Check yourself: two questions on card sign-in"
+   ],
+   [
+    721,
+    "Summary, and next: Module 6, separation timing"
+   ]
+  ]
+ },
+ {
+  "id": "Training_HR_Module_6_Narrated",
+  "title": "HR-Driven Identity learning path, Module 6: Time separations from the logs",
+  "group": "training",
+  "minutes": 13,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_HR_Module_6_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/training-hr-module-6/Training_HR_Module_6_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-hr-module-6/Training_HR_Module_6_Narration_Script.md",
+  "page": "docs/training/hr-driven-identity/06-separation-timing.html",
+  "source": "docs/training/hr-driven-identity/06-separation-timing.md",
+  "kits": [
+   {
+    "name": "hr-lifecycle",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/hr-lifecycle",
+    "zip": "downloads/hr-driven-identity-code.zip"
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Module 6: Time separations from the logs"
+   ],
+   [
+    44,
+    "Why no single report tells you a leaver was blocked"
+   ],
+   [
+    90,
+    "What you'll be able to do in Module 6"
+   ],
+   [
+    137,
+    "The leaver sequence: block first, dispose last"
+   ],
+   [
+    195,
+    "The schedule, late entries and the catch-up window"
+   ],
+   [
+    246,
+    "The two intervals, and the records each reads"
+   ],
+   [
+    303,
+    "The rules: ST-01 to ST-09"
+   ],
+   [
+    355,
+    "Which thresholds are samples the agency replaces"
+   ],
+   [
+    403,
+    "Try it: measure the fictional leavers"
+   ],
+   [
+    461,
+    "Try it: read the twelve findings as stories"
+   ],
+   [
+    516,
+    "Try it: the intervals file Module 7 reads"
+   ],
+   [
+    565,
+    "Lab 2: one scheduled and one on-demand test leaver"
+   ],
+   [
+    618,
+    "The federal requirement, and the evidence to keep"
+   ],
+   [
+    676,
+    "Check yourself: two questions on separations"
+   ],
+   [
+    725,
+    "Summary, and next: Module 7, drift and evidence"
+   ]
+  ]
+ },
+ {
+  "id": "Training_HR_Module_7_Narrated",
+  "title": "HR-Driven Identity learning path, Module 7: Find lifecycle drift and file the evidence",
+  "group": "training",
+  "minutes": 14,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_HR_Module_7_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/training-hr-module-7/Training_HR_Module_7_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-hr-module-7/Training_HR_Module_7_Narration_Script.md",
+  "page": "docs/training/hr-driven-identity/07-drift-and-evidence.html",
+  "source": "docs/training/hr-driven-identity/07-drift-and-evidence.md",
+  "kits": [
+   {
+    "name": "hr-lifecycle",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/hr-lifecycle",
+    "zip": "downloads/hr-driven-identity-code.zip"
+   },
+   {
+    "name": "drift-pipeline",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/drift-pipeline",
+    "zip": null
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Module 7: Find lifecycle drift and file the evidence"
+   ],
+   [
+    48,
+    "Why accounts drift, and why the record must last"
+   ],
+   [
+    93,
+    "What you'll be able to do in Module 7"
+   ],
+   [
+    140,
+    "What the evidence has to show: the guide's Step 7"
+   ],
+   [
+    196,
+    "The drift classes: LD-01 to LD-08"
+   ],
+   [
+    253,
+    "The six metrics, and where each value comes from"
+   ],
+   [
+    313,
+    "The run: one read-only folder per run"
+   ],
+   [
+    364,
+    "The package, the chain and the period"
+   ],
+   [
+    418,
+    "Try it: rebuild the inputs and write the first run"
+   ],
+   [
+    475,
+    "Try it: read the run's findings"
+   ],
+   [
+    526,
+    "Try it: package two runs, chained, and verify"
+   ],
+   [
+    575,
+    "Try it: assemble the period, and read why it fails"
+   ],
+   [
+    629,
+    "Lab 2: schedule the run in a test tenant"
+   ],
+   [
+    678,
+    "The federal requirement, and the evidence to keep"
+   ],
+   [
+    731,
+    "Check yourself: two questions on drift and evidence"
+   ],
+   [
+    780,
+    "Summary: you've finished the learning path"
+   ]
+  ]
+ },
+ {
   "id": "Training_MS_Automation_Module_1_Narrated",
   "title": "Microsoft Automation learning path, Module 1: Graph and Azure Foundations",
   "group": "training",
@@ -12406,6 +12999,608 @@
    ],
    [
     795,
+    "Summary: you've finished the path"
+   ]
+  ]
+ },
+ {
+  "id": "Training_TTM_Module_1_Narrated",
+  "title": "Ticket-to-Machine learning path, Module 1: The Loop and the Typed Task",
+  "group": "training",
+  "minutes": 14,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_TTM_Module_1_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/training-ttm-module-1/Training_TTM_Module_1_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-ttm-module-1/Training_TTM_Module_1_Narration_Script.md",
+  "page": "docs/training/ticket-to-machine/01-the-loop-and-the-typed-task.html",
+  "source": "docs/training/ticket-to-machine/01-the-loop-and-the-typed-task.md",
+  "kits": [
+   {
+    "name": "servicenow-sailpoint",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/servicenow-sailpoint",
+    "zip": "downloads/ticket-to-machine-code.zip"
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Module 1: The loop and the typed task"
+   ],
+   [
+    44,
+    "Why a ticket marked done isn't a record"
+   ],
+   [
+    91,
+    "What you'll be able to do in Module 1"
+   ],
+   [
+    138,
+    "The loop: five steps, and a layer that never writes"
+   ],
+   [
+    189,
+    "Where the kit sits in the loop, in Pass 1"
+   ],
+   [
+    243,
+    "The products at each step, and four gaps"
+   ],
+   [
+    296,
+    "The identity finding's data contract"
+   ],
+   [
+    354,
+    "What the Scripted REST resource does with a payload"
+   ],
+   [
+    406,
+    "Severity and tempo: where the due dates come from"
+   ],
+   [
+    458,
+    "finding_contract.py, and an intent with nothing in it"
+   ],
+   [
+    514,
+    "Try it: check five sample payloads"
+   ],
+   [
+    562,
+    "Try it: every payload the drift client would post"
+   ],
+   [
+    618,
+    "Lab 2: post a checked payload to a developer instance"
+   ],
+   [
+    666,
+    "The federal requirement, and the evidence to keep"
+   ],
+   [
+    723,
+    "Check yourself: two questions on the typed task"
+   ],
+   [
+    764,
+    "Summary, and next: Module 2, least privilege"
+   ]
+  ]
+ },
+ {
+  "id": "Training_TTM_Module_2_Narrated",
+  "title": "Ticket-to-Machine learning path, Module 2: The Boundary and Least Privilege",
+  "group": "training",
+  "minutes": 13,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_TTM_Module_2_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/training-ttm-module-2/Training_TTM_Module_2_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-ttm-module-2/Training_TTM_Module_2_Narration_Script.md",
+  "page": "docs/training/ticket-to-machine/02-boundary-and-least-privilege.html",
+  "source": "docs/training/ticket-to-machine/02-boundary-and-least-privilege.md",
+  "kits": [
+   {
+    "name": "servicenow-sailpoint",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/servicenow-sailpoint",
+    "zip": "downloads/ticket-to-machine-code.zip"
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Module 2: The boundary and least privilege"
+   ],
+   [
+    41,
+    "Why \"to make it work\" is the wrong grant"
+   ],
+   [
+    86,
+    "What you'll be able to do in Module 2"
+   ],
+   [
+    132,
+    "Gate 1 records and decides; it builds nothing"
+   ],
+   [
+    186,
+    "Four integration identities, and the vendor-cloud flows"
+   ],
+   [
+    244,
+    "The call list: privilege a test can check"
+   ],
+   [
+    296,
+    "ServiceNow roles, split by task"
+   ],
+   [
+    348,
+    "ISC scopes and Graph permissions each task needs"
+   ],
+   [
+    398,
+    "What a client-credentials token can't do in ISC"
+   ],
+   [
+    450,
+    "Try it: catch two over-wide ServiceNow grants"
+   ],
+   [
+    505,
+    "Try it: a manage scope, one client, and the audit"
+   ],
+   [
+    556,
+    "Lab 2: build the roles and clients in test instances"
+   ],
+   [
+    606,
+    "Where agencies are: the boundary on the Marketplace"
+   ],
+   [
+    660,
+    "The federal requirement, and the evidence to keep"
+   ],
+   [
+    714,
+    "Check yourself: two questions on least privilege"
+   ],
+   [
+    758,
+    "Summary, and next: Module 3, one writer"
+   ]
+  ]
+ },
+ {
+  "id": "Training_TTM_Module_3_Narrated",
+  "title": "Ticket-to-Machine learning path, Module 3: One Writer per Attribute",
+  "group": "training",
+  "minutes": 14,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_TTM_Module_3_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/training-ttm-module-3/Training_TTM_Module_3_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-ttm-module-3/Training_TTM_Module_3_Narration_Script.md",
+  "page": "docs/training/ticket-to-machine/03-one-writer-per-attribute.html",
+  "source": "docs/training/ticket-to-machine/03-one-writer-per-attribute.md",
+  "kits": [
+   {
+    "name": "servicenow-sailpoint",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/servicenow-sailpoint",
+    "zip": "downloads/ticket-to-machine-code.zip"
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Module 3: One writer per attribute"
+   ],
+   [
+    40,
+    "Why drift that comes back means two writers"
+   ],
+   [
+    88,
+    "What you'll be able to do in Module 3"
+   ],
+   [
+    133,
+    "Gate 2 closes two of the four gaps on paper"
+   ],
+   [
+    187,
+    "Two writer patterns: pick one, not both"
+   ],
+   [
+    242,
+    "One approver system per class, and a lane for each"
+   ],
+   [
+    296,
+    "writer_check.py reads two provisioning exports"
+   ],
+   [
+    350,
+    "Finding, Warn and Info, and the inputs to review"
+   ],
+   [
+    402,
+    "What the check guards against, and what it misses"
+   ],
+   [
+    453,
+    "Try it: find the attribute with two writers"
+   ],
+   [
+    503,
+    "Try it: the directory guard and the two reads"
+   ],
+   [
+    556,
+    "Lab 2: export the real mappings and run the check"
+   ],
+   [
+    604,
+    "Where agencies are: the HR feed, and the clouds"
+   ],
+   [
+    662,
+    "The federal requirement, and the evidence to keep"
+   ],
+   [
+    717,
+    "Check yourself: two questions on two writers"
+   ],
+   [
+    760,
+    "Summary, and next: Module 4, the starting drift"
+   ]
+  ]
+ },
+ {
+  "id": "Training_TTM_Module_4_Narrated",
+  "title": "Ticket-to-Machine learning path, Module 4: Sources and the Starting Drift",
+  "group": "training",
+  "minutes": 14,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_TTM_Module_4_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/training-ttm-module-4/Training_TTM_Module_4_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-ttm-module-4/Training_TTM_Module_4_Narration_Script.md",
+  "page": "docs/training/ticket-to-machine/04-sources-and-starting-drift.html",
+  "source": "docs/training/ticket-to-machine/04-sources-and-starting-drift.md",
+  "kits": [
+   {
+    "name": "servicenow-sailpoint",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/servicenow-sailpoint",
+    "zip": "downloads/ticket-to-machine-code.zip"
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Module 4: Sources and the starting drift"
+   ],
+   [
+    38,
+    "Why each drift needs a number before a ticket"
+   ],
+   [
+    86,
+    "What you'll be able to do in Module 4"
+   ],
+   [
+    133,
+    "Gate 3: connect, correlate on employeeId, measure"
+   ],
+   [
+    190,
+    "Book 03's drift classes, and what the kit computes"
+   ],
+   [
+    242,
+    "The reconciliation: inputs, stable IDs, outputs"
+   ],
+   [
+    300,
+    "Run over run: new, persisting, resolved"
+   ],
+   [
+    351,
+    "Dangers of a nightly run, and the guards"
+   ],
+   [
+    404,
+    "Try it: measure day one"
+   ],
+   [
+    458,
+    "Try it: compare day two, then a run without the audit"
+   ],
+   [
+    511,
+    "Lab 2: measure your test tenant on two days"
+   ],
+   [
+    562,
+    "Where agencies are: GCC, GCC High, and interim paths"
+   ],
+   [
+    616,
+    "Validate Gate 3 before you file the baseline"
+   ],
+   [
+    666,
+    "The federal requirement, and the evidence to keep"
+   ],
+   [
+    719,
+    "Check yourself: two questions on drift runs"
+   ],
+   [
+    765,
+    "Summary, and next: Module 5, a typed task"
+   ]
+  ]
+ },
+ {
+  "id": "Training_TTM_Module_5_Narrated",
+  "title": "Ticket-to-Machine learning path, Module 5: Drift to a Typed Task",
+  "group": "training",
+  "minutes": 14,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_TTM_Module_5_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/training-ttm-module-5/Training_TTM_Module_5_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-ttm-module-5/Training_TTM_Module_5_Narration_Script.md",
+  "page": "docs/training/ticket-to-machine/05-drift-to-a-typed-task.html",
+  "source": "docs/training/ticket-to-machine/05-drift-to-a-typed-task.md",
+  "kits": [
+   {
+    "name": "servicenow-sailpoint",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/servicenow-sailpoint",
+    "zip": "downloads/ticket-to-machine-code.zip"
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Module 5: Drift to a typed task"
+   ],
+   [
+    45,
+    "Why a finding needs something to check"
+   ],
+   [
+    89,
+    "What you'll be able to do in Module 5"
+   ],
+   [
+    136,
+    "Three workflows, one front door"
+   ],
+   [
+    192,
+    "What the Scripted REST resource does with a payload"
+   ],
+   [
+    246,
+    "Seeing the payload before a tenant does"
+   ],
+   [
+    302,
+    "Fix 1: multivalued changes are now reverted"
+   ],
+   [
+    353,
+    "Fix 2: the attribute joins the de-duplication key"
+   ],
+   [
+    396,
+    "What couldn't be verified, and Lab 2 settles"
+   ],
+   [
+    449,
+    "Dangers between an event and a finding"
+   ],
+   [
+    508,
+    "Try it: what the native-change workflow posts"
+   ],
+   [
+    562,
+    "Try it: the mover's finding and the closure signal"
+   ],
+   [
+    622,
+    "Lab 2: one workflow in a SailPoint sandbox"
+   ],
+   [
+    674,
+    "The federal requirement, and the evidence to keep"
+   ],
+   [
+    733,
+    "Check yourself: two questions on drift to a task"
+   ],
+   [
+    777,
+    "Summary, and next: Module 6, the re-read rule"
+   ]
+  ]
+ },
+ {
+  "id": "Training_TTM_Module_6_Narrated",
+  "title": "Ticket-to-Machine learning path, Module 6: Actuation and the Re-read Rule",
+  "group": "training",
+  "minutes": 14,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_TTM_Module_6_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/training-ttm-module-6/Training_TTM_Module_6_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-ttm-module-6/Training_TTM_Module_6_Narration_Script.md",
+  "page": "docs/training/ticket-to-machine/06-actuation-and-the-re-read.html",
+  "source": "docs/training/ticket-to-machine/06-actuation-and-the-re-read.md",
+  "kits": [
+   {
+    "name": "servicenow-sailpoint",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/servicenow-sailpoint",
+    "zip": "downloads/ticket-to-machine-code.zip"
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Module 6: Actuation and the re-read rule"
+   ],
+   [
+    45,
+    "Why a closed ticket isn't a closed finding"
+   ],
+   [
+    91,
+    "What you'll be able to do in Module 6"
+   ],
+   [
+    138,
+    "Gate 5: the ticket authorizes a machine, by lane"
+   ],
+   [
+    196,
+    "Gate 6: the business rule decides who can close"
+   ],
+   [
+    253,
+    "The re-read client: read, compare, close or reopen"
+   ],
+   [
+    307,
+    "A stale read waits; a missing read is an error"
+   ],
+   [
+    360,
+    "Chapter 05 adds a guard and an offline mode"
+   ],
+   [
+    415,
+    "Six fictional waiting records, one per outcome"
+   ],
+   [
+    467,
+    "Try it: re-read six findings at noon on November 1"
+   ],
+   [
+    523,
+    "Try it: a day later, and the business rule's tests"
+   ],
+   [
+    581,
+    "Lab 2: enforce the rule in a developer instance"
+   ],
+   [
+    636,
+    "What differs in government clouds for Gates 5 and 6"
+   ],
+   [
+    697,
+    "The federal requirement, and the evidence to keep"
+   ],
+   [
+    761,
+    "Check yourself: two questions on the re-read rule"
+   ],
+   [
+    802,
+    "Summary, and next: Module 7, evidence for the ISSO"
+   ]
+  ]
+ },
+ {
+  "id": "Training_TTM_Module_7_Narrated",
+  "title": "Ticket-to-Machine learning path, Module 7: Evidence for the ISSO",
+  "group": "training",
+  "minutes": 14,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_TTM_Module_7_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/training-ttm-module-7/Training_TTM_Module_7_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-ttm-module-7/Training_TTM_Module_7_Narration_Script.md",
+  "page": "docs/training/ticket-to-machine/07-evidence-for-the-isso.html",
+  "source": "docs/training/ticket-to-machine/07-evidence-for-the-isso.md",
+  "kits": [
+   {
+    "name": "servicenow-sailpoint",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/servicenow-sailpoint",
+    "zip": "downloads/ticket-to-machine-code.zip"
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Module 7: Evidence for the ISSO"
+   ],
+   [
+    54,
+    "Why ticket history doesn't prove the month"
+   ],
+   [
+    93,
+    "What you'll be able to do in Module 7"
+   ],
+   [
+    143,
+    "Gate 7: operating the tempo"
+   ],
+   [
+    193,
+    "Five measures for the governance board"
+   ],
+   [
+    250,
+    "Book 13's evidence record, field by field"
+   ],
+   [
+    310,
+    "One record per finding, and four checks on each"
+   ],
+   [
+    368,
+    "The package: three files, a chain, and a verifier"
+   ],
+   [
+    433,
+    "Window adherence, and five fictional records"
+   ],
+   [
+    485,
+    "Dangers to the evidence, and the guard for each"
+   ],
+   [
+    538,
+    "Try it: export October and verify the package"
+   ],
+   [
+    598,
+    "Try it: chain November, then remove a record"
+   ],
+   [
+    653,
+    "Lab 2: export live from your developer instance"
+   ],
+   [
+    699,
+    "The federal requirement, and the evidence to keep"
+   ],
+   [
+    766,
+    "Check yourself: two questions on the evidence"
+   ],
+   [
+    814,
     "Summary: you've finished the path"
    ]
   ]

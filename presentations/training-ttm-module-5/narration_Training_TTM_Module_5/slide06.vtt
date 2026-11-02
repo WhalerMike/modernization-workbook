@@ -1,0 +1,72 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.650
+So Chapter 04 adds a tool:
+workflow payload dot p y.
+
+2
+00:00:04.650 --> 00:00:07.304
+It picks the workflow
+for the trigger you name,
+
+3
+00:00:07.304 --> 00:00:11.075
+and resolves the body's dollar keys
+against a saved trigger input.
+
+4
+00:00:11.075 --> 00:00:14.825
+It handles simple paths only,
+like dollar dot a dot b.
+
+5
+00:00:14.825 --> 00:00:20.312
+Anything more complex is refused,
+because the tool isn't a JSONPath engine.
+
+6
+00:00:20.312 --> 00:00:24.892
+Then it derives the intended state
+exactly as the ServiceNow script does,
+
+7
+00:00:24.892 --> 00:00:27.821
+checks the payload against
+Module 1's contract,
+
+8
+00:00:27.821 --> 00:00:31.425
+and lists the input's top-level
+fields the body doesn't send.
+
+9
+00:00:31.425 --> 00:00:33.688
+That last line is where gaps show up.
+
+10
+00:00:33.688 --> 00:00:38.440
+Three fictional trigger inputs come with
+it: a native change to Alice's account, a
+
+11
+00:00:38.440 --> 00:00:40.671
+department change on Erin's identity,
+
+12
+00:00:40.671 --> 00:00:43.551
+and a successful provisioning
+action for Alice.
+
+13
+00:00:43.551 --> 00:00:46.935
+One caution: the tool shows
+what the body says to send,
+
+14
+00:00:46.935 --> 00:00:49.612
+not what SailPoint's step actually sends.
+
+15
+00:00:49.612 --> 00:00:51.740
+Lab 2 settles that for your tenant.

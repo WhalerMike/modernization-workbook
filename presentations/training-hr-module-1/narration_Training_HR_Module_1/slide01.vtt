@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.352
+Welcome to Module 1 of the
+HR-Driven Identity learning path:
+
+2
+00:00:04.352 --> 00:00:07.250
+name one writer for every account state.
+
+3
+00:00:07.250 --> 00:00:09.888
+The HR pipeline makes an account exist.
+
+4
+00:00:09.888 --> 00:00:13.540
+This path teaches what happens
+to that account afterward,
+
+5
+00:00:13.540 --> 00:00:17.725
+how the HR record decides every
+change, and how you prove that it did.
+
+6
+00:00:17.725 --> 00:00:23.523
+There are seven modules, one for each gate
+of the HR-driven identity implementation
+
+7
+00:00:23.523 --> 00:00:28.900
+guide, and this one is Gate 1, Writers,
+with Chapter 01 of the developer workbook.
+
+8
+00:00:28.900 --> 00:00:30.975
+It comes before every other gate.
+
+9
+00:00:30.975 --> 00:00:34.150
+In it you'll read the lifecycle
+rows of a writer register,
+
+10
+00:00:34.150 --> 00:00:37.325
+check the register's shape,
+and scan a month of directory
+
+11
+00:00:37.325 --> 00:00:40.500
+audit records for writes by
+anyone but the named writer.
+
+12
+00:00:40.500 --> 00:00:43.913
+The code runs on your laptop
+against fictional fixtures.
+
+13
+00:00:43.913 --> 00:00:49.300
+It's illustrative: unit-tested against
+fixtures, not run against a live tenant.

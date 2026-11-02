@@ -1,0 +1,68 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.861
+Here's what you'll be able to
+do by the end of this module,
+
+2
+00:00:02.861 --> 00:00:05.225
+which takes about fifty
+minutes with the lab.
+
+3
+00:00:05.225 --> 00:00:09.771
+You'll name the end conditions that
+make up a contractor's earliest end,
+
+4
+00:00:09.771 --> 00:00:11.887
+and say why the earliest one wins.
+
+5
+00:00:11.887 --> 00:00:14.681
+You'll run the extract,
+read its decisions,
+
+6
+00:00:14.681 --> 00:00:17.475
+and hand the extract to the HR middleware.
+
+7
+00:00:17.475 --> 00:00:22.738
+You'll run the read-only reconciliation
+and explain each C R finding it reports.
+
+8
+00:00:22.738 --> 00:00:25.289
+And you'll describe the
+sponsor review settings
+
+9
+00:00:25.289 --> 00:00:27.713
+that end access when a
+sponsor doesn't respond.
+
+10
+00:00:27.713 --> 00:00:30.890
+You need Module 1 first,
+for one fact in particular:
+
+11
+00:00:30.890 --> 00:00:35.774
+inbound provisioning is the writer of
+the leave date and of the active value.
+
+12
+00:00:35.774 --> 00:00:38.016
+Lab 1 uses the path's usual setup,
+
+13
+00:00:38.016 --> 00:00:42.413
+and also calls the H C M to Entra
+middleware from the same clone.
+
+14
+00:00:42.413 --> 00:00:47.300
+Lab 2 needs a worldwide or G C
+C test tenant, never production.

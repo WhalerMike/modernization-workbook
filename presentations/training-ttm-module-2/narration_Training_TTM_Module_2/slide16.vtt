@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.875
+To sum up.
+
+2
+00:00:00.875 --> 00:00:04.874
+You confirmed what Gate 1 records:
+each product's FedRAMP status,
+
+3
+00:00:04.874 --> 00:00:06.911
+what's inside the authorization,
+
+4
+00:00:06.911 --> 00:00:11.363
+which actions run from a vendor's
+cloud, and the integration identities.
+
+5
+00:00:11.363 --> 00:00:13.101
+And you saw that it builds nothing.
+
+6
+00:00:13.101 --> 00:00:17.561
+You learned the ServiceNow roles,
+SailPoint scopes and Graph permissions
+
+7
+00:00:17.561 --> 00:00:21.662
+each kit task needs, and why the
+workflow scope gets a client of its own.
+
+8
+00:00:21.662 --> 00:00:25.556
+And on a laptop you caught
+three kinds of over-wide grant:
+
+9
+00:00:25.556 --> 00:00:29.788
+an extra role, a reused role, and
+a manage scope on a read client.
+
+10
+00:00:29.788 --> 00:00:35.013
+Before you ship, work through the
+Chapter 02 and Chapter 03 checklists.
+
+11
+00:00:35.013 --> 00:00:37.749
+Next is Module 3, one
+writer per attribute:
+
+12
+00:00:37.749 --> 00:00:42.978
+Gate 2's decisions about who writes each
+attribute and who approves each class,
+
+13
+00:00:42.978 --> 00:00:46.490
+and a check that finds an
+attribute with two writers.

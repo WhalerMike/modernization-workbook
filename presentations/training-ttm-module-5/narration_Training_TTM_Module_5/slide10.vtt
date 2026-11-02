@@ -1,0 +1,70 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.563
+Chapter 04 lists the dangers between an
+event and a finding, and the guard for each.
+
+2
+00:00:05.563 --> 00:00:09.729
+If the workflow doesn't send an
+event field, part of the change is
+
+3
+00:00:09.729 --> 00:00:14.137
+never reverted and the re-read
+passes; the tool lists unsent fields.
+
+4
+00:00:14.137 --> 00:00:17.944
+If two drifts fold into one
+record, the second is lost;
+
+5
+00:00:17.944 --> 00:00:20.600
+the attribute in the key prevents it.
+
+6
+00:00:20.600 --> 00:00:25.334
+If someone edits a workflow in the editor
+and not in the file, the repository
+
+7
+00:00:25.334 --> 00:00:29.762
+stops describing what runs, so export
+and diff after any editor change.
+
+8
+00:00:29.762 --> 00:00:32.955
+Credentials must never
+be in the workflow file;
+
+9
+00:00:32.955 --> 00:00:37.049
+it uses placeholders, and the
+contract test fails on a secret.
+
+10
+00:00:37.049 --> 00:00:40.475
+And a closure signal must
+never be treated as closure.
+
+11
+00:00:40.475 --> 00:00:43.857
+The Federal Modernization
+Workbook's Book 13's point is
+
+12
+00:00:43.857 --> 00:00:47.313
+that native tools change state;
+they don't close findings.
+
+13
+00:00:47.313 --> 00:00:51.279
+The script only moves a finding
+to Awaiting verification,
+
+14
+00:00:51.279 --> 00:00:54.820
+and Module 6's business rule
+blocks any other close.

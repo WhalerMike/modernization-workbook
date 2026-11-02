@@ -1,0 +1,67 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.850
+The kit has one ISC workflow per trigger.
+
+2
+00:00:02.850 --> 00:00:07.018
+A native change, where an account
+was updated directly on the source,
+
+3
+00:00:07.018 --> 00:00:09.847
+becomes an unauthorized
+write on the account,
+
+4
+00:00:09.847 --> 00:00:14.313
+and ServiceNow opens a finding whose
+intended state reverts the change.
+
+5
+00:00:14.313 --> 00:00:18.753
+An identity attribute change becomes
+attribute drift on the identity,
+
+6
+00:00:18.753 --> 00:00:21.387
+and its intended state
+keeps the new value.
+
+7
+00:00:21.387 --> 00:00:25.937
+A completed provisioning action is
+a closure signal, and only a signal.
+
+8
+00:00:25.937 --> 00:00:30.563
+It moves matching findings to Awaiting
+verification; it never closes one.
+
+9
+00:00:30.563 --> 00:00:33.112
+All three live in one workflow file.
+
+10
+00:00:33.112 --> 00:00:35.382
+Each is a name, an owner, a trigger,
+
+11
+00:00:35.382 --> 00:00:39.486
+and a definition whose one
+action is an HTTP Request step,
+
+12
+00:00:39.486 --> 00:00:44.812
+and every step posts to the same Scripted
+REST resource, the one front door.
+
+13
+00:00:44.812 --> 00:00:49.599
+Each is created disabled, because SailPoint
+workflows can't be created enabled.
+
+14
+00:00:49.599 --> 00:00:52.250
+You enable each one after a test run.

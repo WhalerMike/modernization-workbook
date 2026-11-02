@@ -1,0 +1,964 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.682
+Welcome to Module 2 of the
+Ticket-to-Machine learning path:
+
+2
+00:00:03.682 --> 00:00:05.800
+the boundary and least privilege.
+
+3
+00:00:05.800 --> 00:00:10.438
+Before any call is made, you need to know
+which actions run from a vendor's cloud,
+
+4
+00:00:10.438 --> 00:00:12.975
+and which non-person identities make them.
+
+5
+00:00:12.975 --> 00:00:17.563
+Then each identity has to hold exactly
+what its calls need, and no more.
+
+6
+00:00:17.563 --> 00:00:20.407
+This module follows the guide's Gate 1,
+
+7
+00:00:20.407 --> 00:00:23.987
+and the developer workbook's
+Chapters 02 and 03.
+
+8
+00:00:23.987 --> 00:00:27.774
+You'll confirm the boundary on
+paper, learn the ServiceNow roles,
+
+9
+00:00:27.774 --> 00:00:32.774
+SailPoint scopes and Graph permissions each
+kit task needs, and then make privilege
+
+10
+00:00:32.774 --> 00:00:37.840
+something a test can check, by catching
+three kinds of over-wide grant on a laptop.
+
+11
+00:00:41.590 --> 00:00:42.740
+Why does this matter?
+
+12
+00:00:42.740 --> 00:00:45.302
+Because the easy fix is the wrong one.
+
+13
+00:00:45.302 --> 00:00:48.706
+An administrator who grants
+the itil role to make
+
+14
+00:00:48.706 --> 00:00:52.191
+it work has given the
+integration every ITSM table.
+
+15
+00:00:52.191 --> 00:00:56.878
+An API client with a manage scope can
+change accounts if its token is stolen.
+
+16
+00:00:56.878 --> 00:00:59.632
+One integration user
+for everything means the
+
+17
+00:00:59.632 --> 00:01:02.740
+account that reads evidence
+can also close findings.
+
+18
+00:01:02.740 --> 00:01:05.367
+And when a client gains
+a call nobody listed,
+
+19
+00:01:05.367 --> 00:01:09.015
+someone grants a role in production
+to make the error go away.
+
+20
+00:01:09.015 --> 00:01:13.440
+Each of those has a guard in the kit, and
+you'll use every one of them in the lab.
+
+21
+00:01:13.440 --> 00:01:17.955
+The idea of the module is simple: confirm
+the boundary on paper first, then make
+
+22
+00:01:17.955 --> 00:01:22.900
+privilege something a test can check,
+instead of something someone remembers.
+
+23
+00:01:26.650 --> 00:01:29.502
+Here's what you'll be able to
+do by the end of this module,
+
+24
+00:01:29.502 --> 00:01:31.512
+which takes about an hour with the lab.
+
+25
+00:01:31.512 --> 00:01:34.811
+You'll explain what Gate 1
+records about each product's
+
+26
+00:01:34.811 --> 00:01:38.549
+authorization and each action
+that runs from a vendor's cloud.
+
+27
+00:01:38.549 --> 00:01:43.212
+You'll describe the ServiceNow roles the
+kit uses and why they're split by task.
+
+28
+00:01:43.212 --> 00:01:47.650
+You'll describe the SailPoint scopes
+and Graph permissions each task needs,
+
+29
+00:01:47.650 --> 00:01:50.538
+and why the workflow scope
+gets a client of its own.
+
+30
+00:01:50.538 --> 00:01:53.626
+And you'll verify a grant
+against the kit's call list,
+
+31
+00:01:53.626 --> 00:01:55.538
+and catch a grant that's too wide.
+
+32
+00:01:55.538 --> 00:01:57.288
+You need Module 1 first.
+
+33
+00:01:57.288 --> 00:02:02.638
+For the Graph rows, the Microsoft Automation
+path's first module covers permissions.
+
+34
+00:02:02.638 --> 00:02:08.850
+Lab 1 runs on fixtures; Lab 2 needs a
+developer instance and a sandbox tenant.
+
+35
+00:02:12.600 --> 00:02:15.575
+Gate 1 records and decides;
+it builds nothing.
+
+36
+00:02:15.575 --> 00:02:16.925
+It has six steps.
+
+37
+00:02:16.925 --> 00:02:22.393
+One: confirm each product's FedRAMP status
+on the Marketplace on the day you decide,
+
+38
+00:02:22.393 --> 00:02:26.413
+and record the listing, its impact
+level, its path and the date.
+
+39
+00:02:26.413 --> 00:02:29.400
+Two: confirm what's
+inside the authorization.
+
+40
+00:02:29.400 --> 00:02:34.183
+SailPoint doesn't publish a list of
+features missing from its authorized
+
+41
+00:02:34.183 --> 00:02:39.044
+environment, so ask in writing whether
+Workflows, Native Change Detection
+
+42
+00:02:39.044 --> 00:02:43.513
+and the workflow HTTP Request step,
+which Gates 3 to 6 rely on, are there.
+
+43
+00:02:43.513 --> 00:02:47.262
+Three: confirm the product you
+bought is the one authorized.
+
+44
+00:02:47.262 --> 00:02:50.762
+Four: record which actions
+run from a vendor's cloud.
+
+45
+00:02:50.762 --> 00:02:54.599
+Five: confirm the apps are in
+ServiceNow's government Store.
+
+46
+00:02:54.599 --> 00:02:57.658
+And six: register the
+integration identities,
+
+47
+00:02:57.658 --> 00:03:02.670
+with a certificate or federated
+credential, never a long-lived secret.
+
+48
+00:03:06.420 --> 00:03:09.458
+Four non-person identities
+carry the integration.
+
+49
+00:03:09.458 --> 00:03:13.757
+SailPoint's Entra connector app
+registration in the agency's tenant.
+
+50
+00:03:13.757 --> 00:03:16.483
+The ServiceNow Entra
+spoke's app registration.
+
+51
+00:03:16.483 --> 00:03:20.892
+The ServiceNow integration user
+that SailPoint's workflow posts as,
+
+52
+00:03:20.892 --> 00:03:25.533
+together with the verifier account
+the re-read client closes records as.
+
+53
+00:03:25.533 --> 00:03:29.258
+And the SailPoint API client
+the kit's clients read with.
+
+54
+00:03:29.258 --> 00:03:32.143
+As design guidance, each
+has two named owners
+
+55
+00:03:32.143 --> 00:03:35.107
+and a federal sponsor in
+the system inventory.
+
+56
+00:03:35.107 --> 00:03:36.271
+Now the flows.
+
+57
+00:03:36.271 --> 00:03:40.842
+SailPoint's cloud connectors call
+Microsoft Graph from SailPoint's cloud;
+
+58
+00:03:40.842 --> 00:03:45.708
+only the Active Directory path runs
+through its on-premises virtual appliance.
+
+59
+00:03:45.708 --> 00:03:50.682
+And, by inference, its workflows call
+out from SailPoint's cloud to ServiceNow.
+
+60
+00:03:50.682 --> 00:03:55.738
+The Federal Modernization Workbook's Book
+15 prefers execution through a connector
+
+61
+00:03:55.738 --> 00:04:00.650
+inside the boundary, so each vendor-cloud
+action becomes a recorded data flow.
+
+62
+00:04:04.400 --> 00:04:06.862
+Here's how the kit makes
+privilege checkable.
+
+63
+00:04:06.862 --> 00:04:11.894
+A file called calls dot JSON lists
+every HTTP call a Python client makes:
+
+64
+00:04:11.894 --> 00:04:15.440
+the system, the method and
+path, the tasks that make it,
+
+65
+00:04:15.440 --> 00:04:19.563
+the least privilege it needs,
+and the vendor page that says so.
+
+66
+00:04:19.563 --> 00:04:23.132
+A test runs the clients
+against a fake HTTP session
+
+67
+00:04:23.132 --> 00:04:26.276
+and fails on any call
+the file doesn't declare.
+
+68
+00:04:26.276 --> 00:04:29.693
+So a new call fails the test
+until someone adds its row,
+
+69
+00:04:29.693 --> 00:04:34.587
+its privilege and its source, and a
+reviewer sees that row in the pull request.
+
+70
+00:04:34.587 --> 00:04:37.974
+The test also asserts that
+no task asks SailPoint
+
+71
+00:04:37.974 --> 00:04:41.526
+or Graph for a write scope,
+except workflow creation.
+
+72
+00:04:41.526 --> 00:04:43.950
+Then the kit calls tool reads the file.
+
+73
+00:04:43.950 --> 00:04:46.963
+Give it a task and it
+lists what that task needs.
+
+74
+00:04:46.963 --> 00:04:52.720
+Give it a grant and it compares, and
+exits one on anything missing or extra.
+
+75
+00:04:56.470 --> 00:05:01.757
+On ServiceNow, the roles are custom roles
+in the scoped application, split by task.
+
+76
+00:05:01.757 --> 00:05:06.555
+That's design guidance: ServiceNow says
+the calling user needs roles that allow
+
+77
+00:05:06.555 --> 00:05:11.133
+access to the table, and no single role
+allows adding attachments by default.
+
+78
+00:05:11.133 --> 00:05:14.495
+The finding writer can create
+findings, and nothing else.
+
+79
+00:05:14.495 --> 00:05:19.108
+The verifier can read and write findings
+and attach evidence, so it can close them,
+
+80
+00:05:19.108 --> 00:05:23.032
+which is why the business rule accepts
+a close only from that account.
+
+81
+00:05:23.032 --> 00:05:27.296
+And the evidence reader reads, but can't
+change a record it's about to hash.
+
+82
+00:05:27.296 --> 00:05:31.508
+Each gets its own integration user
+and client-credentials client.
+
+83
+00:05:31.508 --> 00:05:36.186
+The client itself takes a token from a
+vault first, then client credentials,
+
+84
+00:05:36.186 --> 00:05:39.657
+and basic authentication only
+on a developer instance.
+
+85
+00:05:39.657 --> 00:05:44.860
+It pages, retries, and refuses
+a secret in its config file.
+
+86
+00:05:48.610 --> 00:05:50.422
+Now SailPoint and Graph.
+
+87
+00:05:50.422 --> 00:05:56.148
+The drift and re-read clients need read
+scopes only: search read, and accounts read.
+
+88
+00:05:56.148 --> 00:05:59.550
+The Accounts endpoints would
+accept the manage scope too,
+
+89
+00:05:59.550 --> 00:06:04.086
+so the call list names the read scope
+and the comparison flags manage as extra.
+
+90
+00:06:04.086 --> 00:06:07.994
+Creating SailPoint's workflows
+needs the workflow manage scope,
+
+91
+00:06:07.994 --> 00:06:10.310
+and no client in the kit makes that call.
+
+92
+00:06:10.310 --> 00:06:14.919
+So, as design guidance, that scope
+belongs to a separate client,
+
+93
+00:06:14.919 --> 00:06:19.347
+used once, by hand or by a reviewed
+pipeline, and then removed.
+
+94
+00:06:19.347 --> 00:06:24.133
+On Graph, the app registration needs
+User dot Read dot All, as an application
+
+95
+00:06:24.133 --> 00:06:28.686
+permission, and AuditLog dot Read dot
+All only if the run reads the audit.
+
+96
+00:06:28.686 --> 00:06:34.820
+Nothing in Pass 1 needs write access to
+Entra ID, Active Directory or SailPoint.
+
+97
+00:06:38.570 --> 00:06:43.720
+One thing a client-credentials token
+can't do in SailPoint: act as a user.
+
+98
+00:06:43.720 --> 00:06:47.751
+It has no user context, and
+SailPoint warns that calling
+
+99
+00:06:47.751 --> 00:06:51.520
+most admin APIs with one
+often returns four oh three.
+
+100
+00:06:51.520 --> 00:06:52.907
+It doesn't say which.
+
+101
+00:06:52.907 --> 00:06:56.839
+So if Search or Accounts returns
+four oh three in your sandbox,
+
+102
+00:06:56.839 --> 00:07:00.077
+use a personal access token
+for a dedicated user at
+
+103
+00:07:00.077 --> 00:07:03.469
+the lowest user level that
+works, and record which one.
+
+104
+00:07:03.469 --> 00:07:07.245
+Never an administrator's, or
+the kit runs as org admin.
+
+105
+00:07:07.245 --> 00:07:11.495
+Whether a client-credentials token
+gets data is on the verify list.
+
+106
+00:07:11.495 --> 00:07:15.818
+The client pages Search past ten
+thousand results with search after,
+
+107
+00:07:15.818 --> 00:07:19.458
+sorted on I D, and reads accounts
+two hundred fifty at a time.
+
+108
+00:07:19.458 --> 00:07:22.702
+For Graph, it signs in
+with a certificate first,
+
+109
+00:07:22.702 --> 00:07:26.820
+and the cloud setting is
+Global for worldwide and GCC.
+
+110
+00:07:30.570 --> 00:07:31.295
+Try it.
+
+111
+00:07:31.295 --> 00:07:35.145
+Part A of Lab 1 runs in the
+kit's folder against fixtures.
+
+112
+00:07:35.145 --> 00:07:39.358
+Step one proves every call is
+declared: nine tests pass.
+
+113
+00:07:39.358 --> 00:07:43.101
+Step two lists what the re-read
+client needs on ServiceNow:
+
+114
+00:07:43.101 --> 00:07:47.078
+a client-credentials token, then
+read and write on the finding
+
+115
+00:07:47.078 --> 00:07:51.133
+table and create on attachments,
+all from one role, the verifier.
+
+116
+00:07:51.133 --> 00:07:57.008
+Step three is the classic mistake: an
+administrator gave the verifier itil as well.
+
+117
+00:07:57.008 --> 00:08:00.719
+The tool lists the calls,
+then reports nothing missing,
+
+118
+00:08:00.719 --> 00:08:03.771
+itil extra, and least
+privilege does not hold.
+
+119
+00:08:03.771 --> 00:08:04.895
+It exits one.
+
+120
+00:08:04.895 --> 00:08:09.296
+Step four catches the evidence
+export reusing the verifier's role:
+
+121
+00:08:09.296 --> 00:08:13.057
+the evidence reader is missing
+and the verifier is extra.
+
+122
+00:08:13.057 --> 00:08:16.996
+With the verifier's role, the
+export could also close findings.
+
+123
+00:08:16.996 --> 00:08:22.110
+Step five reruns the original
+ServiceNow client tests: seven pass.
+
+124
+00:08:25.860 --> 00:08:28.347
+Part B turns to SailPoint and Graph.
+
+125
+00:08:28.347 --> 00:08:32.160
+Step six runs the SailPoint
+client tests: four pass.
+
+126
+00:08:32.160 --> 00:08:35.901
+Step seven lists what the drift
+client needs from SailPoint:
+
+127
+00:08:35.901 --> 00:08:37.772
+search read and accounts read.
+
+128
+00:08:37.772 --> 00:08:41.281
+Step eight catches a manage
+scope on that read client:
+
+129
+00:08:41.281 --> 00:08:44.948
+nothing missing, accounts
+manage extra, and it exits one.
+
+130
+00:08:44.948 --> 00:08:49.009
+Step nine checks the drift client's
+scopes against the workflow task.
+
+131
+00:08:49.009 --> 00:08:52.910
+The workflow scope is missing,
+and both read scopes are extra.
+
+132
+00:08:52.910 --> 00:08:56.622
+That's the point of the step:
+the two jobs need two clients.
+
+133
+00:08:56.622 --> 00:09:00.047
+Step ten checks the Graph
+app registration twice.
+
+134
+00:09:00.047 --> 00:09:05.122
+For a drift run that reads the audit,
+AuditLog dot Read dot All is missing.
+
+135
+00:09:05.122 --> 00:09:09.343
+With the required-only option, for
+a run that doesn't read the audit,
+
+136
+00:09:09.343 --> 00:09:12.910
+least privilege holds, and
+the command exits zero.
+
+137
+00:09:16.660 --> 00:09:20.010
+Lab 2 builds the real
+thing in test instances.
+
+138
+00:09:20.010 --> 00:09:25.035
+In your ServiceNow developer instance,
+from Module 1, you create the three custom
+
+139
+00:09:25.035 --> 00:09:29.835
+roles, one integration user and one
+client-credentials integration per role.
+
+140
+00:09:29.835 --> 00:09:32.779
+Then you compare each user's
+roles with the call list,
+
+141
+00:09:32.779 --> 00:09:35.723
+and confirm the evidence
+reader can't patch a record.
+
+142
+00:09:35.723 --> 00:09:40.578
+In a SailPoint sandbox tenant, you create
+a reader API client and a separate
+
+143
+00:09:40.578 --> 00:09:44.885
+workflow client, compare each with
+the call list, and try the reader.
+
+144
+00:09:44.885 --> 00:09:48.673
+How an agency gets a sandbox
+is between it and SailPoint.
+
+145
+00:09:48.673 --> 00:09:53.891
+Back it out before you leave: delete
+the OAuth integrations, users and roles,
+
+146
+00:09:53.891 --> 00:09:55.743
+and revoke any saved token;
+
+147
+00:09:55.743 --> 00:10:00.372
+then delete both API clients and
+anything under the output folder.
+
+148
+00:10:00.372 --> 00:10:02.890
+The authors haven't run Lab 2.
+
+149
+00:10:06.640 --> 00:10:09.315
+What does the boundary look
+like on the Marketplace?
+
+150
+00:10:09.315 --> 00:10:13.929
+Read on November 1, 2026:
+ServiceNow's Government Community
+
+151
+00:10:13.929 --> 00:10:17.790
+Cloud is FedRAMP certified
+at High, on the JAB path.
+
+152
+00:10:17.790 --> 00:10:21.460
+ServiceNow's commercial cloud
+has no listing of its own,
+
+153
+00:10:21.460 --> 00:10:23.215
+and some agencies run on it.
+
+154
+00:10:23.215 --> 00:10:28.403
+SailPoint Identity Security Cloud is
+certified at Moderate, on the agency path.
+
+155
+00:10:28.403 --> 00:10:33.264
+And IdentityIQ, the self-hosted
+product, has no listing of its own.
+
+156
+00:10:33.264 --> 00:10:36.692
+The interim path: on
+ServiceNow's commercial cloud,
+
+157
+00:10:36.692 --> 00:10:42.486
+the authorizing official decides whether
+identity tasks may run there before a move,
+
+158
+00:10:42.486 --> 00:10:46.077
+and, as design guidance,
+payloads stay to identifiers.
+
+159
+00:10:46.077 --> 00:10:51.120
+Where a feature's presence in SailPoint's
+authorized environment is unconfirmed,
+
+160
+00:10:51.120 --> 00:10:56.450
+build Gates 3 to 6 in the sandbox and hold
+production until SailPoint confirms it.
+
+161
+00:11:00.200 --> 00:11:01.587
+The federal requirement.
+
+162
+00:11:01.587 --> 00:11:06.075
+The guide maps Gate 1 to NIST special
+publication eight hundred fifty-three.
+
+163
+00:11:06.075 --> 00:11:11.122
+S A nine, external system services, and
+FedRAMP authorization: each service's
+
+164
+00:11:11.122 --> 00:11:13.045
+authorization is confirmed,
+
+165
+00:11:13.045 --> 00:11:17.050
+or the gap is recorded as a risk
+for the authorizing official.
+
+166
+00:11:17.050 --> 00:11:21.612
+C A three, information
+exchange: each flow is recorded.
+
+167
+00:11:21.612 --> 00:11:22.869
+I A five and A C six:
+
+168
+00:11:22.869 --> 00:11:27.899
+the integration identities use
+certificates and least privilege.
+
+169
+00:11:27.899 --> 00:11:32.499
+The chapters map the call list to A C
+six, A C two for account management,
+
+170
+00:11:32.499 --> 00:11:36.615
+A C five because the account that
+closes findings is separate,
+
+171
+00:11:36.615 --> 00:11:41.537
+and C M three because a change to what
+the integration may call is reviewed.
+
+172
+00:11:41.537 --> 00:11:46.120
+The evidence an ISSO keeps: Gate
+1's record, plus the call list,
+
+173
+00:11:46.120 --> 00:11:51.260
+its test, and the comparison
+output with each access approval.
+
+174
+00:11:55.010 --> 00:11:58.510
+Check yourself with two questions
+from the module's knowledge check.
+
+175
+00:11:58.510 --> 00:12:03.001
+First: why does the evidence export
+get its own evidence reader role,
+
+176
+00:12:03.001 --> 00:12:05.247
+instead of reusing the verifier's?
+
+177
+00:12:05.247 --> 00:12:06.472
+The answer is b.
+
+178
+00:12:06.472 --> 00:12:10.410
+With the verifier's role, the
+export could also close findings.
+
+179
+00:12:10.410 --> 00:12:13.110
+The reader can't change a
+record it's about to hash.
+
+180
+00:12:13.110 --> 00:12:14.835
+Roles are split by task.
+
+181
+00:12:14.835 --> 00:12:19.723
+Second: Gate 1 asks you to record which
+actions run from a vendor's cloud.
+
+182
+00:12:19.723 --> 00:12:20.410
+Why?
+
+183
+00:12:20.410 --> 00:12:21.374
+The answer is a.
+
+184
+00:12:21.374 --> 00:12:25.872
+Book 15 prefers execution through
+a connector inside the boundary,
+
+185
+00:12:25.872 --> 00:12:29.648
+so each vendor-cloud action
+becomes a recorded data flow.
+
+186
+00:12:29.648 --> 00:12:34.910
+The module page has two more questions,
+each linked to the section that answers it.
+
+187
+00:12:38.660 --> 00:12:39.485
+To sum up.
+
+188
+00:12:39.485 --> 00:12:43.484
+You confirmed what Gate 1 records:
+each product's FedRAMP status,
+
+189
+00:12:43.484 --> 00:12:45.521
+what's inside the authorization,
+
+190
+00:12:45.521 --> 00:12:49.973
+which actions run from a vendor's
+cloud, and the integration identities.
+
+191
+00:12:49.973 --> 00:12:51.711
+And you saw that it builds nothing.
+
+192
+00:12:51.711 --> 00:12:56.171
+You learned the ServiceNow roles,
+SailPoint scopes and Graph permissions
+
+193
+00:12:56.171 --> 00:13:00.272
+each kit task needs, and why the
+workflow scope gets a client of its own.
+
+194
+00:13:00.272 --> 00:13:04.166
+And on a laptop you caught
+three kinds of over-wide grant:
+
+195
+00:13:04.166 --> 00:13:08.398
+an extra role, a reused role, and
+a manage scope on a read client.
+
+196
+00:13:08.398 --> 00:13:13.623
+Before you ship, work through the
+Chapter 02 and Chapter 03 checklists.
+
+197
+00:13:13.623 --> 00:13:16.359
+Next is Module 3, one
+writer per attribute:
+
+198
+00:13:16.359 --> 00:13:21.588
+Gate 2's decisions about who writes each
+attribute and who approves each class,
+
+199
+00:13:21.588 --> 00:13:25.100
+and a check that finds an
+attribute with two writers.

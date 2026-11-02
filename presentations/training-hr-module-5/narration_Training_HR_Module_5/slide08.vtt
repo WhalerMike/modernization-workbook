@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.137
+The other five rules look at
+the method and the policy.
+
+2
+00:00:03.137 --> 00:00:08.076
+C B seven: the X dot five-oh-nine
+certificate method isn't enabled.
+
+3
+00:00:08.076 --> 00:00:13.605
+C B eight warns when revocation list
+validation isn't required of every authority,
+
+4
+00:00:13.605 --> 00:00:16.288
+or when an authority is exempted from it.
+
+5
+00:00:16.288 --> 00:00:19.348
+An exemption is allowed
+only while that authority's
+
+6
+00:00:19.348 --> 00:00:21.626
+list is being fixed, and with an end date.
+
+7
+00:00:21.626 --> 00:00:26.881
+C B nine: a PIV policy O I D isn't
+mapped to multifactor, and the default
+
+8
+00:00:26.881 --> 00:00:32.137
+mode is single-factor, so a card
+sign-in may not count as multifactor.
+
+9
+00:00:32.137 --> 00:00:36.213
+C B thirteen warns about
+low-affinity username bindings.
+
+10
+00:00:36.213 --> 00:00:40.683
+And C B ten is the SCuBA rule: no
+enabled Conditional Access policy
+
+11
+00:00:40.683 --> 00:00:45.650
+for all users and all resources
+requires a phishing-resistant strength.
+
+12
+00:00:45.650 --> 00:00:49.894
+A strength counts only if every
+combination it allows is FIDO2,
+
+13
+00:00:49.894 --> 00:00:53.640
+Windows Hello for Business,
+or multifactor certificate.

@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.097
+Lab 2 moves to your own test
+tenant, never production,
+
+2
+00:00:03.097 --> 00:00:08.200
+with certificate-based authentication
+configured for a test certificate authority.
+
+3
+00:00:08.200 --> 00:00:11.722
+You create a reader app with a
+certificate that holds only the
+
+4
+00:00:11.722 --> 00:00:15.175
+three permissions you listed in
+step one, with admin consent.
+
+5
+00:00:15.175 --> 00:00:20.608
+You export the configuration, measure the
+real revocation lists from outside the
+
+6
+00:00:20.608 --> 00:00:23.405
+agency network, and
+run the check with your
+
+7
+00:00:23.405 --> 00:00:25.962
+test P K I's thumbprints
+and policy O I Ds.
+
+8
+00:00:25.962 --> 00:00:28.530
+Then the proof: revoke a test certificate,
+
+9
+00:00:28.530 --> 00:00:33.137
+and confirm Entra refuses it after
+the next revocation list is published.
+
+10
+00:00:33.137 --> 00:00:37.948
+To back it out, remove the permissions,
+delete the reader app and its certificate,
+
+11
+00:00:37.948 --> 00:00:40.935
+reissue the test user's
+certificate if you need it,
+
+12
+00:00:40.935 --> 00:00:43.413
+and delete the export and output folders.
+
+13
+00:00:43.413 --> 00:00:45.620
+The authors haven't run Lab 2.

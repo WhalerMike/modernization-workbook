@@ -1,0 +1,71 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.550
+Step four shows the directory-name guard.
+
+2
+00:00:02.550 --> 00:00:07.500
+The fixture's rules target Azure Active
+Directory, the name Learn's examples use.
+
+3
+00:00:07.500 --> 00:00:11.492
+Ask for Microsoft Entra ID instead,
+and the check stops with an
+
+4
+00:00:11.492 --> 00:00:15.562
+error that names the targets the
+schema does have, and exits two.
+
+5
+00:00:15.562 --> 00:00:18.159
+That matters, because a wrong name would
+
+6
+00:00:18.159 --> 00:00:21.150
+otherwise look like no
+overlap at all, and pass.
+
+7
+00:00:21.150 --> 00:00:24.350
+Step five lists the reads
+the two exports need.
+
+8
+00:00:24.350 --> 00:00:27.321
+On SailPoint, the provisioning
+policy read scope,
+
+9
+00:00:27.321 --> 00:00:29.712
+for the source's provisioning policies.
+
+10
+00:00:29.712 --> 00:00:32.159
+On Graph, the custom security attribute
+
+11
+00:00:32.159 --> 00:00:35.274
+provisioning read permission,
+for the job's schema.
+
+12
+00:00:35.274 --> 00:00:39.205
+Both are reads, and the writer
+check itself reads files only:
+
+13
+00:00:39.205 --> 00:00:42.012
+you export the two configurations by hand.
+
+14
+00:00:42.012 --> 00:00:45.294
+Check your work: given two
+exports and an alias list,
+
+15
+00:00:45.294 --> 00:00:48.310
+you can say which attributes
+have two writers.

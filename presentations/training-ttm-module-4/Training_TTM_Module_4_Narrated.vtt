@@ -1,0 +1,985 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.731
+Welcome to Module 4 of the
+Ticket-to-Machine learning path:
+
+2
+00:00:03.731 --> 00:00:05.725
+sources and the starting drift.
+
+3
+00:00:05.725 --> 00:00:09.975
+Before you fix anything, you need to
+know how far the directory is from HR.
+
+4
+00:00:09.975 --> 00:00:14.288
+This module follows the guide's
+Gate 3, which connects the sources,
+
+5
+00:00:14.288 --> 00:00:19.239
+correlates them on one key, and files
+the first measurement as the baseline,
+
+6
+00:00:19.239 --> 00:00:21.875
+and the developer workbook's Chapter 06.
+
+7
+00:00:21.875 --> 00:00:26.970
+You'll run the kit's read-only drift
+reconciliation over two days of fictional data,
+
+8
+00:00:26.970 --> 00:00:29.967
+compare the runs as new,
+persisting and resolved,
+
+9
+00:00:29.967 --> 00:00:34.740
+and see the comparison refuse two
+runs that measured different things.
+
+10
+00:00:38.490 --> 00:00:39.728
+Why measure first?
+
+11
+00:00:39.728 --> 00:00:44.778
+Because drift comes in kinds, and each kind
+needs a number before it needs a ticket.
+
+12
+00:00:44.778 --> 00:00:49.360
+A terminated employee who's still
+enabled in Entra ID is stale access,
+
+13
+00:00:49.360 --> 00:00:53.540
+which the Federal Modernization
+Workbook's Book 03 rates High.
+
+14
+00:00:53.540 --> 00:00:57.527
+An account that matches nobody
+is an orphan account, also High.
+
+15
+00:00:57.527 --> 00:01:02.165
+A department someone typed in by hand
+is attribute drift, rated Medium.
+
+16
+00:01:02.165 --> 00:01:04.968
+Without a measurement you
+can't say how many there are,
+
+17
+00:01:04.968 --> 00:01:07.452
+whether they're growing,
+or whether a fix worked.
+
+18
+00:01:07.452 --> 00:01:11.423
+So Gate 3 connects the sources,
+correlates them on one key,
+
+19
+00:01:11.423 --> 00:01:14.802
+and files the first
+measurement as the baseline.
+
+20
+00:01:14.802 --> 00:01:17.364
+Every later gate is measured against it.
+
+21
+00:01:17.364 --> 00:01:22.660
+In this module you run that measurement
+twice, on two days, and compare the days.
+
+22
+00:01:26.410 --> 00:01:29.225
+Here's what you'll be able to
+do by the end of this module,
+
+23
+00:01:29.225 --> 00:01:31.848
+which takes about forty-five
+minutes with the lab.
+
+24
+00:01:31.848 --> 00:01:34.156
+You'll explain what Gate 3 connects,
+
+25
+00:01:34.156 --> 00:01:37.897
+the key it correlates on, and
+what it files as the baseline.
+
+26
+00:01:37.897 --> 00:01:43.172
+You'll name Book 03's drift classes, and
+say which ones the kit doesn't compute.
+
+27
+00:01:43.172 --> 00:01:46.587
+You'll run the drift
+reconciliation over fixtures
+
+28
+00:01:46.587 --> 00:01:50.084
+and compare two runs as new,
+persisting and resolved.
+
+29
+00:01:50.084 --> 00:01:52.601
+And you'll explain why
+a comparison of runs
+
+30
+00:01:52.601 --> 00:01:55.260
+that computed different
+classes is refused.
+
+31
+00:01:55.260 --> 00:01:57.198
+You need Module 3 first.
+
+32
+00:01:57.198 --> 00:02:00.145
+For the Graph reads,
+the Microsoft Automation
+
+33
+00:02:00.145 --> 00:02:03.559
+path's first module covers
+the four request patterns.
+
+34
+00:02:03.559 --> 00:02:09.620
+Lab 1 runs on fixtures; Lab 2 needs a
+test tenant and a SailPoint sandbox.
+
+35
+00:02:13.370 --> 00:02:15.195
+Gate 3 has six steps.
+
+36
+00:02:15.195 --> 00:02:19.681
+One: aggregate HR into SailPoint
+as the authoritative source,
+
+37
+00:02:19.681 --> 00:02:22.408
+read-only under Gate 2's first pattern.
+
+38
+00:02:22.408 --> 00:02:26.844
+Two: connect Entra ID and Active
+Directory as SailPoint sources, the Entra
+
+39
+00:02:26.844 --> 00:02:31.570
+connector and the Active Directory
+connector through the virtual appliance.
+
+40
+00:02:31.570 --> 00:02:35.870
+Three: correlate on employee
+I D, the key Book 03 joins on,
+
+41
+00:02:35.870 --> 00:02:42.082
+and treat uncorrelated accounts as orphan
+candidates, not errors to suppress.
+
+42
+00:02:42.082 --> 00:02:47.244
+Four: turn on Native Change Detection on
+the Entra and Active Directory sources.
+
+43
+00:02:47.244 --> 00:02:50.714
+It compares stored and newly
+read data on aggregation,
+
+44
+00:02:50.714 --> 00:02:53.258
+and fires one event per changed account.
+
+45
+00:02:53.258 --> 00:02:57.158
+Five: run the kit's drift
+reconciliation, read-only.
+
+46
+00:02:57.158 --> 00:03:00.219
+And six: file the first
+run as the baseline.
+
+47
+00:03:00.219 --> 00:03:03.332
+Expect a burst of High
+findings in the first month.
+
+48
+00:03:03.332 --> 00:03:06.540
+Book 03 calls that the
+measurement working.
+
+49
+00:03:10.290 --> 00:03:12.413
+Here are Book 03's drift classes,
+
+50
+00:03:12.413 --> 00:03:16.740
+the ones the finding contract
+carries, and what the kit computes.
+
+51
+00:03:16.740 --> 00:03:21.003
+Missing identity: an active HR
+record with no matching account.
+
+52
+00:03:21.003 --> 00:03:25.465
+Stale access: terminated in
+HR, enabled in the directory.
+
+53
+00:03:25.465 --> 00:03:29.728
+Orphan account: an enabled account
+with no known employee I D.
+
+54
+00:03:29.728 --> 00:03:32.603
+Those three are High, and
+the kit computes them.
+
+55
+00:03:32.603 --> 00:03:37.465
+Attribute drift is Medium, and the
+kit compares department and manager.
+
+56
+00:03:37.465 --> 00:03:41.853
+Unauthorized write, a write by
+anyone but the provisioning service,
+
+57
+00:03:41.853 --> 00:03:45.928
+is High, and it's computed only
+when the run reads the Entra audit.
+
+58
+00:03:45.928 --> 00:03:50.309
+Credential drift and schema drift
+are always reported as not computed,
+
+59
+00:03:50.309 --> 00:03:54.541
+because they need the card system,
+Intune and the middleware's output.
+
+60
+00:03:54.541 --> 00:03:59.020
+The severities are the program's
+defaults, not an external standard.
+
+61
+00:04:02.770 --> 00:04:05.482
+The reconciliation is the kit's Build 3.
+
+62
+00:04:05.482 --> 00:04:10.557
+It reads an HR extract, a C S V where
+employee I D and status are required;
+
+63
+00:04:10.557 --> 00:04:14.117
+Graph users with their
+employee I D, enabled flag,
+
+64
+00:04:14.117 --> 00:04:19.457
+department and manager's employee I
+D; SailPoint identities from Search
+
+65
+00:04:19.457 --> 00:04:24.620
+and uncorrelated accounts; and,
+optionally, the Entra directory audit.
+
+66
+00:04:24.620 --> 00:04:27.533
+In the labs each one is a saved export.
+
+67
+00:04:27.533 --> 00:04:31.987
+Each finding's I D is a hash of
+its class, system, employee I D,
+
+68
+00:04:31.987 --> 00:04:37.390
+object I D and attribute, so the same
+drift gets the same I D on every run,
+
+69
+00:04:37.390 --> 00:04:41.182
+and the PowerShell client
+produces the same I Ds.
+
+70
+00:04:41.182 --> 00:04:46.544
+It writes JSON and C S V, saying which
+classes were and weren't computed.
+
+71
+00:04:46.544 --> 00:04:49.107
+Why run it at all, when events exist?
+
+72
+00:04:49.107 --> 00:04:53.799
+Events catch changes as they happen;
+the reconciliation catches the state,
+
+73
+00:04:53.799 --> 00:04:56.660
+including drift whose event was missed.
+
+74
+00:05:00.410 --> 00:05:03.652
+A scheduled run should
+raise only what's new,
+
+75
+00:05:03.652 --> 00:05:06.985
+so Chapter 06 adds a
+comparison by finding I D.
+
+76
+00:05:06.985 --> 00:05:08.160
+New means raise it.
+
+77
+00:05:08.160 --> 00:05:12.822
+Persisting means it's already raised,
+and the de-duplication adds a counter.
+
+78
+00:05:12.822 --> 00:05:15.060
+Resolved means it's no longer measured.
+
+79
+00:05:15.060 --> 00:05:17.780
+That's a lead for the
+re-read, not a closure:
+
+80
+00:05:17.780 --> 00:05:21.160
+its record still closes
+only on the re-read client.
+
+81
+00:05:21.160 --> 00:05:24.932
+And the comparison refuses runs
+that computed different classes,
+
+82
+00:05:24.932 --> 00:05:26.852
+one with the audit and one without,
+
+83
+00:05:26.852 --> 00:05:31.310
+because every finding of the class the
+second run skipped would look resolved.
+
+84
+00:05:31.310 --> 00:05:34.122
+The lab's day-two fixture
+tells a small story.
+
+85
+00:05:34.122 --> 00:05:37.640
+HR corrects Erin's department
+from HR to Finance,
+
+86
+00:05:37.640 --> 00:05:41.773
+the value someone had already
+typed into Entra ID by hand.
+
+87
+00:05:41.773 --> 00:05:43.749
+Graph now agrees with HR.
+
+88
+00:05:43.749 --> 00:05:47.360
+SailPoint, not yet re-aggregated, doesn't.
+
+89
+00:05:51.110 --> 00:05:55.548
+Chapter 06's dangers are worth
+reading before you schedule anything.
+
+90
+00:05:55.548 --> 00:05:58.021
+A class one run skipped looks resolved:
+
+91
+00:05:58.021 --> 00:06:02.197
+unauthorized writes disappear on
+the night the audit read fails.
+
+92
+00:06:02.197 --> 00:06:04.460
+The guard is the comparison's refusal.
+
+93
+00:06:04.460 --> 00:06:06.990
+A resolved finding closes the record:
+
+94
+00:06:06.990 --> 00:06:11.398
+drift that left the measurement,
+not the estate, gets called fixed.
+
+95
+00:06:11.398 --> 00:06:14.085
+The guard is that only the re-read closes.
+
+96
+00:06:14.085 --> 00:06:18.302
+Pushing every finding every night
+fills the tracker with repeats,
+
+97
+00:06:18.302 --> 00:06:20.985
+so push only the
+comparison's new findings.
+
+98
+00:06:20.985 --> 00:06:23.505
+The first month's burst
+gets read as failure,
+
+99
+00:06:23.505 --> 00:06:26.235
+and the pipeline is turned
+off before it's tuned.
+
+100
+00:06:26.235 --> 00:06:31.248
+Book 03 expects that burst, so
+triage it by class and severity.
+
+101
+00:06:31.248 --> 00:06:35.785
+And an HR extract with names in a
+shared folder spreads personal data.
+
+102
+00:06:35.785 --> 00:06:40.490
+The run folder is evidence: keep
+it where HR data is allowed.
+
+103
+00:06:44.240 --> 00:06:44.965
+Try it.
+
+104
+00:06:44.965 --> 00:06:48.865
+Lab 1 runs in the kit's folder
+against fictional fixtures.
+
+105
+00:06:48.865 --> 00:06:53.365
+Step one runs the drift and
+comparison tests: seventeen pass.
+
+106
+00:06:53.365 --> 00:06:55.090
+Step two runs day one.
+
+107
+00:06:55.090 --> 00:06:59.382
+The summary counts four attribute
+drifts, two missing identities,
+
+108
+00:06:59.382 --> 00:07:03.753
+three orphan accounts, two stale
+access and one unauthorized write,
+
+109
+00:07:03.753 --> 00:07:07.265
+and lists credential and
+schema drift as not computed.
+
+110
+00:07:07.265 --> 00:07:10.565
+Then a one-line script prints
+Erin's and Carol's rows.
+
+111
+00:07:10.565 --> 00:07:14.882
+Erin's department: HR expects
+HR, but Entra ID holds Finance,
+
+112
+00:07:14.882 --> 00:07:18.390
+and the audit shows a
+help-desk account wrote it.
+
+113
+00:07:18.390 --> 00:07:21.877
+That's both attribute drift
+and an unauthorized write.
+
+114
+00:07:21.877 --> 00:07:25.928
+Her manager differs too, in
+Entra ID and in SailPoint.
+
+115
+00:07:25.928 --> 00:07:29.890
+Carol is terminated in HR,
+but enabled in Entra ID
+
+116
+00:07:29.890 --> 00:07:34.310
+and not disabled in SailPoint:
+stale access, twice.
+
+117
+00:07:38.060 --> 00:07:41.797
+Step three runs day two,
+after HR's correction.
+
+118
+00:07:41.797 --> 00:07:45.660
+The counts are exactly the same,
+and the totals hide what moved.
+
+119
+00:07:45.660 --> 00:07:51.035
+Step four compares the days: one new,
+eleven persisting, one resolved.
+
+120
+00:07:51.035 --> 00:07:56.897
+The resolved finding is Erin's department
+in Entra ID, which now agrees with HR.
+
+121
+00:07:56.897 --> 00:08:00.122
+It's a lead for the re-read,
+and the tool says so:
+
+122
+00:08:00.122 --> 00:08:03.347
+its record closes only
+on the re-read client.
+
+123
+00:08:03.347 --> 00:08:06.433
+The new finding is Erin's
+department in SailPoint,
+
+124
+00:08:06.433 --> 00:08:10.197
+which hasn't been re-aggregated
+and still holds the old value.
+
+125
+00:08:10.197 --> 00:08:15.079
+Step five runs day two without the audit,
+so unauthorized write moves to not
+
+126
+00:08:15.079 --> 00:08:19.960
+computed, and the comparison refuses:
+the runs computed different classes.
+
+127
+00:08:19.960 --> 00:08:21.110
+It exits two.
+
+128
+00:08:21.110 --> 00:08:25.272
+Without that refusal, the unauthorized
+write would have looked resolved.
+
+129
+00:08:25.272 --> 00:08:28.090
+Step six deletes the output folder.
+
+130
+00:08:31.840 --> 00:08:33.765
+Lab 2 runs the client live.
+
+131
+00:08:33.765 --> 00:08:37.854
+You need a test Entra tenant
+in the worldwide or GCC cloud,
+
+132
+00:08:37.854 --> 00:08:42.203
+a SailPoint sandbox, and synthetic
+HR data like the fixtures.
+
+133
+00:08:42.203 --> 00:08:45.715
+Grant the read permissions from
+Module 2, and nothing more.
+
+134
+00:08:45.715 --> 00:08:49.388
+Write a synthetic HR extract
+that matches your test users,
+
+135
+00:08:49.388 --> 00:08:54.515
+run the client against the tenant and the
+sandbox on two days, and compare the runs.
+
+136
+00:08:54.515 --> 00:08:56.190
+Push nothing to ServiceNow.
+
+137
+00:08:56.190 --> 00:08:59.847
+Two things the fixtures can't
+prove are on the verify list:
+
+138
+00:08:59.847 --> 00:09:03.815
+the manager expansion, and
+SailPoint's employee I D attribute.
+
+139
+00:09:03.815 --> 00:09:08.600
+Back it out in step five: delete the
+output folder, the synthetic extract,
+
+140
+00:09:08.600 --> 00:09:13.952
+the app registration's permissions and
+certificate, and the sandbox API client.
+
+141
+00:09:13.952 --> 00:09:19.010
+The authors haven't run Lab
+2; follow Chapter 06's Lab 2.
+
+142
+00:09:22.760 --> 00:09:24.072
+Where are agencies?
+
+143
+00:09:24.072 --> 00:09:30.560
+Most on this path run Microsoft
+365 GCC, and a minority GCC High.
+
+144
+00:09:30.560 --> 00:09:33.872
+GCC tenants use the worldwide endpoints.
+
+145
+00:09:33.872 --> 00:09:39.126
+In GCC High, you set the Entra source's
+Graph and token endpoints to graph dot
+
+146
+00:09:39.126 --> 00:09:42.939
+microsoft dot U S and login
+dot microsoftonline dot U S;
+
+147
+00:09:42.939 --> 00:09:46.922
+SailPoint's Entra connector
+documents those overrides.
+
+148
+00:09:46.922 --> 00:09:49.035
+One open question for every tenant:
+
+149
+00:09:49.035 --> 00:09:53.770
+Native Change Detection's presence in
+SailPoint's FedRAMP environment wasn't
+
+150
+00:09:53.770 --> 00:09:57.922
+confirmed, which is one of the things
+Gate 1 asks SailPoint in writing.
+
+151
+00:09:57.922 --> 00:10:01.851
+The interim path: without SailPoint,
+or before it's connected,
+
+152
+00:10:01.851 --> 00:10:06.251
+run the kit's reconciliation against
+the HR extract and Graph alone,
+
+153
+00:10:06.251 --> 00:10:09.472
+because the SailPoint
+inputs are optional files.
+
+154
+00:10:09.472 --> 00:10:13.070
+Active Directory-only groups
+wait for the appliance.
+
+155
+00:10:16.820 --> 00:10:19.758
+Before you file the
+baseline, validate the gate.
+
+156
+00:10:19.758 --> 00:10:21.557
+The guide names four checks.
+
+157
+00:10:21.557 --> 00:10:24.730
+The kit's tests prove the
+logic against mocked data:
+
+158
+00:10:24.730 --> 00:10:26.845
+the drift classes on the fixtures,
+
+159
+00:10:26.845 --> 00:10:30.622
+the same finding I Ds from the
+Python and PowerShell clients,
+
+160
+00:10:30.622 --> 00:10:35.607
+and unauthorized writes reported as not
+computed when there's no audit extract.
+
+161
+00:10:35.607 --> 00:10:38.345
+Live, the reconciliation's findings on a
+
+162
+00:10:38.345 --> 00:10:41.682
+synthetic HR extract
+should match a hand count.
+
+163
+00:10:41.682 --> 00:10:45.531
+The validation kit's two H R
+checks look at the key itself:
+
+164
+00:10:45.531 --> 00:10:50.383
+enabled members with no employee I D,
+and duplicate employee I D values.
+
+165
+00:10:50.383 --> 00:10:53.510
+Each should be clean, or each
+row should have an owner,
+
+166
+00:10:53.510 --> 00:10:55.619
+because the join depends on the key.
+
+167
+00:10:55.619 --> 00:10:58.879
+And rollback is simple,
+because the gate only reads:
+
+168
+00:10:58.879 --> 00:11:03.050
+disconnect the source, or turn
+off Native Change Detection.
+
+169
+00:11:06.800 --> 00:11:08.187
+The federal requirement.
+
+170
+00:11:08.187 --> 00:11:12.738
+The guide maps Gate 3 to NIST special
+publication eight hundred fifty-three.
+
+171
+00:11:12.738 --> 00:11:16.624
+A C two, account management: it
+finds accounts with no worker,
+
+172
+00:11:16.624 --> 00:11:21.462
+and workers with no account, and the
+baseline drift report is the evidence.
+
+173
+00:11:21.462 --> 00:11:25.865
+C A seven, continuous monitoring:
+it starts a repeatable comparison
+
+174
+00:11:25.865 --> 00:11:30.188
+of the record and the estate, kept
+with its date and checker version.
+
+175
+00:11:30.188 --> 00:11:35.287
+And, by inference, C M eight, read for
+identities: one correlated inventory of
+
+176
+00:11:35.287 --> 00:11:36.685
+accounts per person,
+
+177
+00:11:36.685 --> 00:11:41.126
+shown by the correlation rate and
+the uncorrelated-account list.
+
+178
+00:11:41.126 --> 00:11:46.215
+Chapter 06 maps the reconciliation and
+the comparison to account management,
+
+179
+00:11:46.215 --> 00:11:51.383
+continuous monitoring and system monitoring,
+and adds each run's JSON and C S V,
+
+180
+00:11:51.383 --> 00:11:56.270
+with what wasn't computed, and the
+comparison output kept with each run.
+
+181
+00:12:00.020 --> 00:12:03.520
+Check yourself with two questions
+from the module's knowledge check.
+
+182
+00:12:03.520 --> 00:12:08.595
+First: on day two, Entra ID
+matches HR for Erin's department.
+
+183
+00:12:08.595 --> 00:12:12.082
+How does the comparison report
+the day-one Entra finding?
+
+184
+00:12:12.082 --> 00:12:13.220
+The answer is a.
+
+185
+00:12:13.220 --> 00:12:15.695
+As resolved, a lead for the re-read.
+
+186
+00:12:15.695 --> 00:12:19.108
+Its record still closes
+only on the re-read client.
+
+187
+00:12:19.108 --> 00:12:22.344
+A resolved finding is
+a lead, not a closure.
+
+188
+00:12:22.344 --> 00:12:26.282
+Second: why does the comparison
+refuse to compare day one,
+
+189
+00:12:26.282 --> 00:12:28.795
+with the audit, and day two, without it?
+
+190
+00:12:28.795 --> 00:12:30.020
+The answer is b.
+
+191
+00:12:30.020 --> 00:12:33.343
+Every unauthorized-write
+finding would look resolved,
+
+192
+00:12:33.343 --> 00:12:36.233
+because the second run
+didn't compute that class.
+
+193
+00:12:36.233 --> 00:12:41.500
+The module page has two more questions,
+each linked to the section that answers it.
+
+194
+00:12:45.250 --> 00:12:46.075
+To sum up.
+
+195
+00:12:46.075 --> 00:12:51.643
+You learned how Gate 3 connects HR, Entra
+ID and Active Directory through SailPoint,
+
+196
+00:12:51.643 --> 00:12:53.984
+and correlates them on employee I D,
+
+197
+00:12:53.984 --> 00:12:57.938
+with uncorrelated accounts
+treated as orphan candidates.
+
+198
+00:12:57.938 --> 00:13:02.913
+You named Book 03's drift classes,
+and the two the kit never computes.
+
+199
+00:13:02.913 --> 00:13:05.099
+You measured drift over two days,
+
+200
+00:13:05.099 --> 00:13:08.662
+and compared the runs as new,
+persisting and resolved.
+
+201
+00:13:08.662 --> 00:13:12.716
+And you saw why the comparison refuses
+runs that measured different things,
+
+202
+00:13:12.716 --> 00:13:16.062
+so nothing looks fixed just
+because it stopped being measured.
+
+203
+00:13:16.062 --> 00:13:19.616
+Before you ship, work through
+the Chapter 06 checklist,
+
+204
+00:13:19.616 --> 00:13:22.063
+and file the first run as the baseline.
+
+205
+00:13:22.063 --> 00:13:26.322
+Next is Module 5, drift to a typed
+task: you'll predict the finding a
+
+206
+00:13:26.322 --> 00:13:31.280
+SailPoint event produces, and test a
+workflow change before you import it.

@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.950
+Step four plans the program's files against
+an export of the tenant's workflows.
+
+2
+00:00:04.950 --> 00:00:08.238
+The day-one workflow changed,
+so it gets a new version.
+
+3
+00:00:08.238 --> 00:00:12.576
+The employee last-day leaver isn't
+in the tenant yet, so it's a create.
+
+4
+00:00:12.576 --> 00:00:15.213
+The other four are
+unchanged and left alone.
+
+5
+00:00:15.213 --> 00:00:20.176
+There's one warning, J W fifteen, for
+a workflow called Onboard Marketing,
+
+6
+00:00:20.176 --> 00:00:24.213
+legacy: someone made it in the
+portal, and no file defines it.
+
+7
+00:00:24.213 --> 00:00:27.537
+The plan is written to a
+file, and nothing is sent.
+
+8
+00:00:27.537 --> 00:00:29.600
+Now try planning the broken folder.
+
+9
+00:00:29.600 --> 00:00:34.313
+It stops with an error: the files have
+lint findings, fix them before planning.
+
+10
+00:00:34.313 --> 00:00:36.024
+So the order is enforced.
+
+11
+00:00:36.024 --> 00:00:39.530
+Lint first, then plan,
+then a reviewed send.

@@ -1,0 +1,61 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.850
+Chapter 07 lists the dangers to the
+evidence, and the guard for each.
+
+2
+00:00:04.850 --> 00:00:09.063
+A record edited after closure would
+say something the re-read didn't,
+
+3
+00:00:09.063 --> 00:00:13.200
+so the export recomputes the evidence
+hash and reports a mismatch.
+
+4
+00:00:13.200 --> 00:00:16.605
+Evidence cut short by the
+field length can't be parsed,
+
+5
+00:00:16.605 --> 00:00:20.088
+so it's reported, and the
+attachment holds the full copy.
+
+6
+00:00:20.088 --> 00:00:25.537
+A close that bypassed the business rule is
+named: closed without re-read evidence.
+
+7
+00:00:25.537 --> 00:00:29.489
+A record deleted from the period
+would make the package look complete,
+
+8
+00:00:29.489 --> 00:00:32.213
+but the chain breaks and
+the verifier reports it.
+
+9
+00:00:32.213 --> 00:00:36.565
+Fields filled in to look complete would
+claim an approval that never happened,
+
+10
+00:00:36.565 --> 00:00:40.249
+so later-pass fields stay null with
+their reason, and tests pin that.
+
+11
+00:00:40.249 --> 00:00:44.500
+And if the export ran with the verifier's
+role, it could close findings,
+
+12
+00:00:44.500 --> 00:00:48.960
+so it runs under its own read-only role,
+which the kit's call list can check.

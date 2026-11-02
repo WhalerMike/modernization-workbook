@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.225
+Here's what you'll be
+able to do by the end.
+
+2
+00:00:02.225 --> 00:00:06.186
+You'll name the six lifecycle
+drift classes and the six metrics,
+
+3
+00:00:06.186 --> 00:00:08.700
+and say which module's output feeds each.
+
+4
+00:00:08.700 --> 00:00:12.925
+You'll write a run from the earlier
+modules' outputs and read its findings.
+
+5
+00:00:12.925 --> 00:00:15.425
+You'll package runs with a hash chain,
+
+6
+00:00:15.425 --> 00:00:19.175
+verify a package, and check
+it yourself with sha256sum.
+
+7
+00:00:19.175 --> 00:00:21.471
+And you'll assemble a reporting period,
+
+8
+00:00:21.471 --> 00:00:25.275
+and explain why it can be incomplete
+even when its chain is whole.
+
+9
+00:00:25.275 --> 00:00:31.125
+This run reads the outputs
+of Modules 1, 2, 3, 4 and 6.
+
+10
+00:00:31.125 --> 00:00:34.737
+You don't need to have kept them: the
+first step of the lab rebuilds them.
+
+11
+00:00:34.737 --> 00:00:39.331
+The packaging builds on the drift
+pipeline in the Federal Modernization
+
+12
+00:00:39.331 --> 00:00:43.680
+Workbook's Book 19's Chapter 09, and
+the lab calls it from the same clone.

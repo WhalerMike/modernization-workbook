@@ -1,0 +1,70 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.088
+Four non-person identities
+carry the integration.
+
+2
+00:00:03.088 --> 00:00:07.387
+SailPoint's Entra connector app
+registration in the agency's tenant.
+
+3
+00:00:07.387 --> 00:00:10.113
+The ServiceNow Entra
+spoke's app registration.
+
+4
+00:00:10.113 --> 00:00:14.522
+The ServiceNow integration user
+that SailPoint's workflow posts as,
+
+5
+00:00:14.522 --> 00:00:19.163
+together with the verifier account
+the re-read client closes records as.
+
+6
+00:00:19.163 --> 00:00:22.888
+And the SailPoint API client
+the kit's clients read with.
+
+7
+00:00:22.888 --> 00:00:25.773
+As design guidance, each
+has two named owners
+
+8
+00:00:25.773 --> 00:00:28.737
+and a federal sponsor in
+the system inventory.
+
+9
+00:00:28.737 --> 00:00:29.901
+Now the flows.
+
+10
+00:00:29.901 --> 00:00:34.472
+SailPoint's cloud connectors call
+Microsoft Graph from SailPoint's cloud;
+
+11
+00:00:34.472 --> 00:00:39.338
+only the Active Directory path runs
+through its on-premises virtual appliance.
+
+12
+00:00:39.338 --> 00:00:44.312
+And, by inference, its workflows call
+out from SailPoint's cloud to ServiceNow.
+
+13
+00:00:44.312 --> 00:00:49.368
+The Federal Modernization Workbook's Book
+15 prefers execution through a connector
+
+14
+00:00:49.368 --> 00:00:53.980
+inside the boundary, so each vendor-cloud
+action becomes a recorded data flow.

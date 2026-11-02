@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.362
+Where are agencies?
+
+2
+00:00:01.362 --> 00:00:07.850
+Most on this path run Microsoft
+365 GCC, and a minority GCC High.
+
+3
+00:00:07.850 --> 00:00:11.162
+GCC tenants use the worldwide endpoints.
+
+4
+00:00:11.162 --> 00:00:16.416
+In GCC High, you set the Entra source's
+Graph and token endpoints to graph dot
+
+5
+00:00:16.416 --> 00:00:20.229
+microsoft dot U S and login
+dot microsoftonline dot U S;
+
+6
+00:00:20.229 --> 00:00:24.212
+SailPoint's Entra connector
+documents those overrides.
+
+7
+00:00:24.212 --> 00:00:26.325
+One open question for every tenant:
+
+8
+00:00:26.325 --> 00:00:31.060
+Native Change Detection's presence in
+SailPoint's FedRAMP environment wasn't
+
+9
+00:00:31.060 --> 00:00:35.212
+confirmed, which is one of the things
+Gate 1 asks SailPoint in writing.
+
+10
+00:00:35.212 --> 00:00:39.141
+The interim path: without SailPoint,
+or before it's connected,
+
+11
+00:00:39.141 --> 00:00:43.541
+run the kit's reconciliation against
+the HR extract and Graph alone,
+
+12
+00:00:43.541 --> 00:00:46.762
+because the SailPoint
+inputs are optional files.
+
+13
+00:00:46.762 --> 00:00:50.060
+Active Directory-only groups
+wait for the appliance.

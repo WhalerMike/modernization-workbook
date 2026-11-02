@@ -1,0 +1,60 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.861
+Here's what you'll be able to
+do by the end of this module,
+
+2
+00:00:02.861 --> 00:00:05.225
+which takes about fifty
+minutes with the lab.
+
+3
+00:00:05.225 --> 00:00:07.828
+You'll explain the loop's
+five steps and name
+
+4
+00:00:07.828 --> 00:00:10.287
+the file in the kit
+that performs each one.
+
+5
+00:00:10.287 --> 00:00:12.782
+You'll describe the fields of the identity
+
+6
+00:00:12.782 --> 00:00:15.562
+finding's data contract
+and what each one is for.
+
+7
+00:00:15.562 --> 00:00:19.489
+You'll validate a finding payload
+on a laptop, and predict whether
+
+8
+00:00:19.489 --> 00:00:23.925
+ServiceNow accepts it, rejects it or
+de-duplicates it, and when it falls due.
+
+9
+00:00:23.925 --> 00:00:28.500
+And you'll recognize an intended state
+that gives the re-read nothing to check.
+
+10
+00:00:28.500 --> 00:00:33.325
+Before you start, read Book 13's
+Chapter 10 and skim Appendix B.
+
+11
+00:00:33.325 --> 00:00:38.263
+For Lab 1 you need Python, Node.js
+and a Bash-compatible shell.
+
+12
+00:00:38.263 --> 00:00:42.670
+You don't need a ServiceNow instance
+or a SailPoint tenant until Lab 2.

@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.437
+The federal requirement.
+
+2
+00:00:01.437 --> 00:00:05.988
+The guide maps Gate 3 to NIST special
+publication eight hundred fifty-three.
+
+3
+00:00:05.988 --> 00:00:09.874
+A C two, account management: it
+finds accounts with no worker,
+
+4
+00:00:09.874 --> 00:00:14.712
+and workers with no account, and the
+baseline drift report is the evidence.
+
+5
+00:00:14.712 --> 00:00:19.115
+C A seven, continuous monitoring:
+it starts a repeatable comparison
+
+6
+00:00:19.115 --> 00:00:23.438
+of the record and the estate, kept
+with its date and checker version.
+
+7
+00:00:23.438 --> 00:00:28.537
+And, by inference, C M eight, read for
+identities: one correlated inventory of
+
+8
+00:00:28.537 --> 00:00:29.935
+accounts per person,
+
+9
+00:00:29.935 --> 00:00:34.376
+shown by the correlation rate and
+the uncorrelated-account list.
+
+10
+00:00:34.376 --> 00:00:39.465
+Chapter 06 maps the reconciliation and
+the comparison to account management,
+
+11
+00:00:39.465 --> 00:00:44.633
+continuous monitoring and system monitoring,
+and adds each run's JSON and C S V,
+
+12
+00:00:44.633 --> 00:00:49.220
+with what wasn't computed, and the
+comparison output kept with each run.

@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.450
+Unit 1 reads the guide's Step 6.
+
+2
+00:00:02.450 --> 00:00:06.053
+It orders the leaver as
+a sequence: block first,
+
+3
+00:00:06.053 --> 00:00:09.750
+revoke in parallel,
+reconcile, and dispose last.
+
+4
+00:00:09.750 --> 00:00:12.212
+It times the leave date late in the day.
+
+5
+00:00:12.212 --> 00:00:17.165
+It coordinates the two writers, so
+one can't undo the other; in the lab,
+
+6
+00:00:17.165 --> 00:00:22.388
+a re-enable after the disable with no
+cancellation in HR is rule S T five.
+
+7
+00:00:22.388 --> 00:00:27.049
+It builds an emergency path, whose
+on-demand runs are logged as changes.
+
+8
+00:00:27.049 --> 00:00:31.212
+It catches separations that were
+entered late, which is S T three.
+
+9
+00:00:31.212 --> 00:00:35.324
+It verifies the block, which
+is S T one and S T two.
+
+10
+00:00:35.324 --> 00:00:41.175
+And it disposes last: deleting a user before
+the devices are retired is S T eight.
+
+11
+00:00:41.175 --> 00:00:46.470
+The Federal Modernization Workbook's Book
+03 has the canonical leaver sequence,
+
+12
+00:00:46.470 --> 00:00:50.185
+and Book 19's Chapter 05 has
+already built the custom task
+
+13
+00:00:50.185 --> 00:00:53.950
+extension that revokes the
+card and retires the devices.

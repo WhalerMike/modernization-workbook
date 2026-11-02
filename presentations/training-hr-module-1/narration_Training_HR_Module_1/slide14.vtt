@@ -1,0 +1,55 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.025
+Check yourself with two questions.
+
+2
+00:00:02.025 --> 00:00:06.900
+First: your HR feed and the leaver
+workflow can both disable an account.
+
+3
+00:00:06.900 --> 00:00:10.288
+What does the register record for
+the disabled-at-separation row?
+
+4
+00:00:10.288 --> 00:00:15.062
+The answer is b: one writer, with
+the other recorded as its backstop.
+
+5
+00:00:15.062 --> 00:00:18.332
+The register check enforces
+it: one writer per row,
+
+6
+00:00:18.332 --> 00:00:21.124
+and a backstop that
+isn't the writer itself.
+
+7
+00:00:21.124 --> 00:00:24.825
+Second: which writes does the
+Entra audit-log scan not see?
+
+8
+00:00:24.825 --> 00:00:29.175
+The answer is c: writes made in
+Active Directory for synced users.
+
+9
+00:00:29.175 --> 00:00:34.001
+Only Active Directory's change auditing
+sees those, and the guide's interim
+
+10
+00:00:34.001 --> 00:00:38.750
+path names the sync agent as a writer
+and reviews the access control lists.
+
+11
+00:00:38.750 --> 00:00:43.700
+The module page has two more questions,
+each linked to the section that answers it.

@@ -1,0 +1,67 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.924
+Step three prints the nine decisions:
+
+2
+00:00:02.924 --> 00:00:06.725
+each contractor's action,
+earliest end and reason.
+
+3
+00:00:06.725 --> 00:00:08.650
+Look at the four inactive ones.
+
+4
+00:00:08.650 --> 00:00:13.687
+Each is inactive for a different reason:
+a completion date, suitability withdrawn,
+
+5
+00:00:13.687 --> 00:00:18.650
+a sponsor gone past the grace period, and
+a sponsor recertification that came due.
+
+6
+00:00:18.650 --> 00:00:21.233
+The last one is the knowledge-check case:
+
+7
+00:00:21.233 --> 00:00:24.913
+whatever the contract says,
+the earliest condition wins.
+
+8
+00:00:24.913 --> 00:00:29.671
+The two quarantined records are nine
+hundred thousand and seven, which has no
+
+9
+00:00:29.671 --> 00:00:32.720
+contract end, and nine
+hundred thousand and eight,
+
+10
+00:00:32.720 --> 00:00:34.876
+whose sponsor isn't in the HR export.
+
+11
+00:00:34.876 --> 00:00:37.750
+Step four hands the
+extract to the middleware.
+
+12
+00:00:37.750 --> 00:00:40.654
+It reports seven records
+ready, in one batch,
+
+13
+00:00:40.654 --> 00:00:44.688
+and four of them are disables,
+the four inactive contractors.
+
+14
+00:00:44.688 --> 00:00:49.680
+Nothing is held, and nothing is sent:
+the middleware only builds the requests.

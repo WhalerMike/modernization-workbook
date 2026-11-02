@@ -1,0 +1,73 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.861
+Here's what you'll be able to
+do by the end of this module,
+
+2
+00:00:02.861 --> 00:00:05.225
+which takes about fifty
+minutes with the lab.
+
+3
+00:00:05.225 --> 00:00:09.699
+You'll explain why each access
+package gets one automatic policy,
+
+4
+00:00:09.699 --> 00:00:11.688
+and why no rule uses member-of.
+
+5
+00:00:11.688 --> 00:00:15.134
+You'll run the policy
+lint over a population,
+
+6
+00:00:15.134 --> 00:00:19.538
+and explain three of its rules:
+A A oh one, oh two and oh nine.
+
+7
+00:00:19.538 --> 00:00:23.638
+You'll run the member-of scan on an
+export of the tenant's policies.
+
+8
+00:00:23.638 --> 00:00:26.276
+And you'll list a mover's residual access,
+
+9
+00:00:26.276 --> 00:00:30.275
+classify each item, and read
+the transfer-to-review interval.
+
+10
+00:00:30.275 --> 00:00:32.013
+Two modules come first.
+
+11
+00:00:32.013 --> 00:00:37.238
+From Module 1: a move reaches the directory
+through the pipeline, never by hand.
+
+12
+00:00:37.238 --> 00:00:41.498
+From Module 3: the day-one workflow
+requests the onboarding package,
+
+13
+00:00:41.498 --> 00:00:44.237
+and department access
+comes from this gate.
+
+14
+00:00:44.237 --> 00:00:47.511
+Lab 2 needs a worldwide
+or G C C test tenant
+
+15
+00:00:47.511 --> 00:00:51.430
+with Entra ID Governance
+trial or test licenses.

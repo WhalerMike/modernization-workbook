@@ -1,0 +1,67 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.325
+Step six assembles the period, from the
+first of October to the second of November.
+
+2
+00:00:05.325 --> 00:00:08.713
+Two packages, no chain
+breaks, no coverage gaps,
+
+3
+00:00:08.713 --> 00:00:12.637
+twenty findings open at the
+end, and complete is false.
+
+4
+00:00:12.637 --> 00:00:13.887
+Exit code two.
+
+5
+00:00:13.887 --> 00:00:16.400
+Print the period summary and you see why.
+
+6
+00:00:16.400 --> 00:00:18.575
+It scores Gate 7's criteria.
+
+7
+00:00:18.575 --> 00:00:24.075
+The evidence criterion is met: kept outside
+the directory, with an unbroken chain.
+
+8
+00:00:24.075 --> 00:00:27.648
+But drift is still open, so
+the first criterion isn't met,
+
+9
+00:00:27.648 --> 00:00:31.538
+and five metrics are out of
+bounds, so the second isn't either.
+
+10
+00:00:31.538 --> 00:00:35.575
+The fourth, the sole source,
+isn't decided by this code at all.
+
+11
+00:00:35.575 --> 00:00:39.028
+That's the point of this
+step: an unbroken chain proves
+
+12
+00:00:39.028 --> 00:00:42.088
+the record is intact, not
+that the gate is passed.
+
+13
+00:00:42.088 --> 00:00:44.397
+Step seven runs both test suites,
+
+14
+00:00:44.397 --> 00:00:49.250
+fifty-seven and a hundred forty-two
+tests, and deletes the out folder.

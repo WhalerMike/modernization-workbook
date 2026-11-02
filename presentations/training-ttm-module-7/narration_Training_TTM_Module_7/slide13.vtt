@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.324
+Lab 2 runs the export live against your
+own ServiceNow developer instance,
+
+2
+00:00:05.324 --> 00:00:08.812
+with at least one finding
+closed in Module 6's Lab 2.
+
+3
+00:00:08.812 --> 00:00:12.937
+Create the evidence reader, and check
+its role against the kit's call list.
+
+4
+00:00:12.937 --> 00:00:16.765
+That matters: the export runs
+under its own read-only role,
+
+5
+00:00:16.765 --> 00:00:21.488
+never the verifier's, because the
+verifier's role could close findings.
+
+6
+00:00:21.488 --> 00:00:23.426
+Export live from your instance.
+
+7
+00:00:23.426 --> 00:00:26.366
+Check the date format of
+the due and finished values,
+
+8
+00:00:26.366 --> 00:00:29.650
+since that's one of the things
+the workbook couldn't verify.
+
+9
+00:00:29.650 --> 00:00:33.112
+Then verify the package,
+exactly as you did in Lab 1.
+
+10
+00:00:33.112 --> 00:00:36.244
+Back it out by deleting
+the live output folder and
+
+11
+00:00:36.244 --> 00:00:39.300
+the evidence reader's OAuth
+client, user and role.
+
+12
+00:00:39.300 --> 00:00:41.520
+The authors haven't run Lab 2.

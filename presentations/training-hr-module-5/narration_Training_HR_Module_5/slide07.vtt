@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.100
+The check runs thirteen rules,
+C B one to C B thirteen.
+
+2
+00:00:04.100 --> 00:00:06.788
+Eight of them look at the
+trust store and the lists.
+
+3
+00:00:06.788 --> 00:00:12.250
+C B twelve: an issuing authority the card
+program uses isn't in the trust store.
+
+4
+00:00:12.250 --> 00:00:16.152
+C B one: an authority has no
+revocation list configured,
+
+5
+00:00:16.152 --> 00:00:19.013
+so Entra doesn't check revocation for it.
+
+6
+00:00:19.013 --> 00:00:21.989
+A root with no list is
+only a warning to confirm,
+
+7
+00:00:21.989 --> 00:00:26.612
+since a root that issues only authority
+certificates may publish none.
+
+8
+00:00:26.612 --> 00:00:32.626
+C B two: the list's endpoint isn't
+plain H T T P, which Learn recommends.
+
+9
+00:00:32.626 --> 00:00:34.900
+C B six: no measurement.
+
+10
+00:00:34.900 --> 00:00:39.838
+C B four: the list couldn't be downloaded,
+or took longer than ten seconds.
+
+11
+00:00:39.838 --> 00:00:43.862
+C B three: the list is over
+the cloud's interactive limit.
+
+12
+00:00:43.862 --> 00:00:46.462
+C B five warns at eighty percent of it.
+
+13
+00:00:46.462 --> 00:00:51.500
+And C B eleven warns when an authority's
+certificate expires within ninety days.

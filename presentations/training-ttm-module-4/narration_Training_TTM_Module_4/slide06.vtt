@@ -1,0 +1,62 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.762
+The reconciliation is the kit's Build 3.
+
+2
+00:00:02.762 --> 00:00:07.837
+It reads an HR extract, a C S V where
+employee I D and status are required;
+
+3
+00:00:07.837 --> 00:00:11.397
+Graph users with their
+employee I D, enabled flag,
+
+4
+00:00:11.397 --> 00:00:16.737
+department and manager's employee I
+D; SailPoint identities from Search
+
+5
+00:00:16.737 --> 00:00:21.900
+and uncorrelated accounts; and,
+optionally, the Entra directory audit.
+
+6
+00:00:21.900 --> 00:00:24.813
+In the labs each one is a saved export.
+
+7
+00:00:24.813 --> 00:00:29.267
+Each finding's I D is a hash of
+its class, system, employee I D,
+
+8
+00:00:29.267 --> 00:00:34.670
+object I D and attribute, so the same
+drift gets the same I D on every run,
+
+9
+00:00:34.670 --> 00:00:38.462
+and the PowerShell client
+produces the same I Ds.
+
+10
+00:00:38.462 --> 00:00:43.824
+It writes JSON and C S V, saying which
+classes were and weren't computed.
+
+11
+00:00:43.824 --> 00:00:46.387
+Why run it at all, when events exist?
+
+12
+00:00:46.387 --> 00:00:51.079
+Events catch changes as they happen;
+the reconciliation catches the state,
+
+13
+00:00:51.079 --> 00:00:53.640
+including drift whose event was missed.

@@ -1,0 +1,61 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.538
+Why does this gate exist?
+
+2
+00:00:01.538 --> 00:00:03.413
+Employees come from HR.
+
+3
+00:00:03.413 --> 00:00:04.875
+Your contractors don't.
+
+4
+00:00:04.875 --> 00:00:09.001
+They live on C O R spreadsheets,
+on a suitability register,
+
+5
+00:00:09.001 --> 00:00:11.513
+or in the PIV sponsorship records.
+
+6
+00:00:11.513 --> 00:00:16.412
+And when a contract is cut short, nobody
+updates the end date in a spreadsheet.
+
+7
+00:00:16.412 --> 00:00:20.063
+That end date is what keeps
+the contractor's access alive.
+
+8
+00:00:20.063 --> 00:00:24.387
+So in this module you give contractors
+an end date that can't be left open.
+
+9
+00:00:24.387 --> 00:00:28.367
+You compute each contractor's
+earliest end from the contract,
+
+10
+00:00:28.367 --> 00:00:32.112
+the completion date, suitability,
+the card and the sponsor.
+
+11
+00:00:32.112 --> 00:00:35.012
+You send it through the same
+middleware as employees.
+
+12
+00:00:35.012 --> 00:00:39.307
+And you reconcile what the register,
+the card system and the directory say,
+
+13
+00:00:39.307 --> 00:00:41.760
+without changing anything in any of them.

@@ -1,0 +1,950 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.556
+Welcome to Module 3 of the
+HR-Driven Identity learning path:
+
+2
+00:00:04.556 --> 00:00:06.763
+make joiners ready on day one.
+
+3
+00:00:06.763 --> 00:00:12.151
+This is Gate 3, Joiners, with
+Chapter 03 of the developer workbook.
+
+4
+00:00:12.151 --> 00:00:15.476
+Modules 1 and 2 settled who
+writes each account state,
+
+5
+00:00:15.476 --> 00:00:18.575
+and brought contractors
+in from their own source.
+
+6
+00:00:18.575 --> 00:00:20.537
+Now the new hire's first morning.
+
+7
+00:00:20.537 --> 00:00:25.321
+In this module you'll keep the Lifecycle
+Workflows definitions as reviewed files,
+
+8
+00:00:25.321 --> 00:00:29.541
+lint them before they reach the tenant,
+plan each change against what the
+
+9
+00:00:29.541 --> 00:00:34.113
+tenant already holds, and measure how many
+hires were actually ready on day one.
+
+10
+00:00:34.113 --> 00:00:37.123
+You'll also see why the
+Temporary Access Pass a new
+
+11
+00:00:37.123 --> 00:00:39.987
+hire gets should be
+short-lived and one-time use.
+
+12
+00:00:39.987 --> 00:00:43.400
+The code runs on your laptop
+against fictional fixtures.
+
+13
+00:00:43.400 --> 00:00:49.070
+It's illustrative: unit-tested against
+fixtures, not run against a live tenant.
+
+14
+00:00:52.820 --> 00:00:54.820
+Why does the first morning need code?
+
+15
+00:00:54.820 --> 00:00:58.470
+The pipeline sends a new hire's
+account early, and disabled.
+
+16
+00:00:58.470 --> 00:01:02.880
+On the first morning, that person
+needs an enabled account, a license,
+
+17
+00:01:02.880 --> 00:01:07.132
+baseline access, and a way to sign
+in before their PIV card is bound.
+
+18
+00:01:07.132 --> 00:01:09.633
+Lifecycle Workflows can do all of that.
+
+19
+00:01:09.633 --> 00:01:10.945
+But here's the catch.
+
+20
+00:01:10.945 --> 00:01:14.608
+Each workflow is a definition that
+someone can change in the portal.
+
+21
+00:01:14.608 --> 00:01:19.295
+And Learn makes every change a new
+version, rather than an in-place update.
+
+22
+00:01:19.295 --> 00:01:22.970
+So in this module you keep the
+workflows as reviewed files.
+
+23
+00:01:22.970 --> 00:01:25.220
+You lint them before
+they reach the tenant.
+
+24
+00:01:25.220 --> 00:01:28.245
+You plan each change against
+what the tenant holds.
+
+25
+00:01:28.245 --> 00:01:32.144
+And then you measure how many hires
+were actually ready on day one,
+
+26
+00:01:32.144 --> 00:01:36.320
+because a workflow that ran isn't
+the same as a person who can work.
+
+27
+00:01:40.070 --> 00:01:42.881
+Here's what you'll be able to
+do by the end of this module,
+
+28
+00:01:42.881 --> 00:01:45.245
+which takes about fifty
+minutes with the lab.
+
+29
+00:01:45.245 --> 00:01:48.450
+You'll explain why workflows
+belong in reviewed files,
+
+30
+00:01:48.450 --> 00:01:53.008
+and how the plan decides between creating
+a workflow and making a new version.
+
+31
+00:01:53.008 --> 00:01:56.123
+You'll run the workflow
+lint and explain its
+
+32
+00:01:56.123 --> 00:01:59.758
+Temporary Access Pass
+findings, the J W oh five rule.
+
+33
+00:01:59.758 --> 00:02:02.808
+You'll explain why the workflow
+budget is held to fifty.
+
+34
+00:02:02.808 --> 00:02:06.858
+And you'll measure the day-one readiness
+rate, and say what makes a hire ready.
+
+35
+00:02:06.858 --> 00:02:08.595
+Two modules come first.
+
+36
+00:02:08.595 --> 00:02:12.655
+From Module 1: in this program,
+the pipeline's active value,
+
+37
+00:02:12.655 --> 00:02:16.370
+not the day-one workflow,
+enables the account at hire.
+
+38
+00:02:16.370 --> 00:02:21.333
+From Module 2: the contractor leaver
+workflow, which the files include.
+
+39
+00:02:21.333 --> 00:02:24.606
+Lab 2 needs a worldwide
+or G C C test tenant
+
+40
+00:02:24.606 --> 00:02:28.820
+with Entra ID Governance
+trial or test licenses.
+
+41
+00:02:32.570 --> 00:02:35.870
+Read the guide's Step 3,
+and notice three things.
+
+42
+00:02:35.870 --> 00:02:37.795
+First, the workflow budget.
+
+43
+00:02:37.795 --> 00:02:42.292
+Learn gives two tenant ceilings:
+fifty workflows on its licensing page,
+
+44
+00:02:42.292 --> 00:02:44.808
+and a hundred on its service limits page.
+
+45
+00:02:44.808 --> 00:02:50.157
+The guide budgets to fifty until Microsoft
+reconciles them; that's design guidance.
+
+46
+00:02:50.157 --> 00:02:52.744
+Second, the Temporary Access Pass.
+
+47
+00:02:52.744 --> 00:02:56.082
+The tenant allows a pass from
+ten minutes to thirty days,
+
+48
+00:02:56.082 --> 00:03:00.508
+but Learn recommends at most twenty-four
+hours for a pass sent to a new hire.
+
+49
+00:03:00.508 --> 00:03:03.797
+Third, baseline access
+comes by access package,
+
+50
+00:03:03.797 --> 00:03:06.833
+never by adding the user
+to a group directly.
+
+51
+00:03:06.833 --> 00:03:12.354
+Then read the design in the Federal
+Modernization Workbook's Book 03's Chapter 08:
+
+52
+00:03:12.354 --> 00:03:16.557
+its guardrails at agency scale,
+and its triggers and schedule.
+
+53
+00:03:16.557 --> 00:03:19.680
+And keep Module 1's rule
+in mind: in this program,
+
+54
+00:03:19.680 --> 00:03:24.800
+the pipeline's active value enables
+the account at hire, not a workflow.
+
+55
+00:03:28.550 --> 00:03:33.188
+Here are the six workflow files, as
+reviewed version one point oh bodies.
+
+56
+00:03:33.188 --> 00:03:34.438
+Two are joiners.
+
+57
+00:03:34.438 --> 00:03:37.965
+The pre-hire workflow runs
+seven days before the hire date
+
+58
+00:03:37.965 --> 00:03:41.713
+and generates the Temporary Access
+Pass and sends it by email.
+
+59
+00:03:41.713 --> 00:03:44.305
+The day-one workflow runs on the hire date
+
+60
+00:03:44.305 --> 00:03:47.125
+and requests the
+onboarding access package.
+
+61
+00:03:47.125 --> 00:03:50.227
+One is the mover, triggered
+by an attribute change:
+
+62
+00:03:50.227 --> 00:03:54.388
+it notifies the manager and removes
+an access package assignment.
+
+63
+00:03:54.388 --> 00:03:55.949
+And three are leavers.
+
+64
+00:03:55.949 --> 00:04:00.814
+On the leave date, employees are disabled,
+their refresh tokens revoked and their
+
+65
+00:04:00.814 --> 00:04:05.750
+package assignments removed; contractors
+are disabled and their tokens revoked.
+
+66
+00:04:05.750 --> 00:04:07.761
+Thirty days after the leave date,
+
+67
+00:04:07.761 --> 00:04:11.112
+a separate post-separation
+workflow deletes the user.
+
+68
+00:04:11.112 --> 00:04:12.400
+Notice the scopes.
+
+69
+00:04:12.400 --> 00:04:16.501
+Every one reads the worker type
+and a coded slot, never a name,
+
+70
+00:04:16.501 --> 00:04:20.710
+so renaming an organization
+can't silently drop anyone.
+
+71
+00:04:24.460 --> 00:04:26.978
+The lint, rules J W oh one to fifteen,
+
+72
+00:04:26.978 --> 00:04:30.935
+checks the files before
+anything reaches the tenant.
+
+73
+00:04:30.935 --> 00:04:31.910
+A few to know.
+
+74
+00:04:31.910 --> 00:04:35.730
+J W oh two warns when a scope
+uses no coded attribute,
+
+75
+00:04:35.730 --> 00:04:38.822
+or reads a display value like department.
+
+76
+00:04:38.822 --> 00:04:44.238
+J W oh three and oh six catch an offset
+beyond a hundred eighty days either way,
+
+77
+00:04:44.238 --> 00:04:47.935
+and more than Learn's
+twenty-five tasks in a workflow.
+
+78
+00:04:47.935 --> 00:04:53.833
+J W oh five is the pass: a lifetime outside
+ten minutes to thirty days is a finding,
+
+79
+00:04:53.833 --> 00:04:58.097
+and over twenty-four hours, or
+not one-time use, is a warning.
+
+80
+00:04:58.097 --> 00:05:00.698
+J W oh seven is over budget.
+
+81
+00:05:00.698 --> 00:05:06.198
+J W oh eight is a scheduled workflow
+with no execution limit recorded; Learn
+
+82
+00:05:06.198 --> 00:05:11.610
+says the limit isn't in the API, so you
+set it in the admin center and record it.
+
+83
+00:05:11.610 --> 00:05:14.472
+J W oh nine is a direct group add.
+
+84
+00:05:14.472 --> 00:05:17.735
+J W eleven is delete and disable together.
+
+85
+00:05:17.735 --> 00:05:21.450
+Some rules come from Learn,
+and some are design guidance.
+
+86
+00:05:25.200 --> 00:05:26.388
+Two more ideas.
+
+87
+00:05:26.388 --> 00:05:30.346
+The plan compares the files with an
+export of the tenant's workflows,
+
+88
+00:05:30.346 --> 00:05:32.113
+matching them by display name.
+
+89
+00:05:32.113 --> 00:05:34.563
+A file with no match becomes a create.
+
+90
+00:05:34.563 --> 00:05:37.832
+A file that changed becomes a
+body for create new version,
+
+91
+00:05:37.832 --> 00:05:40.962
+because Learn makes a definition
+change a new version.
+
+92
+00:05:40.962 --> 00:05:43.462
+An unchanged file is left alone.
+
+93
+00:05:43.462 --> 00:05:48.600
+A workflow in the tenant that no file
+defines gets the J W fifteen warning.
+
+94
+00:05:48.600 --> 00:05:52.538
+And the plan refuses to run on
+files that still have lint findings.
+
+95
+00:05:52.538 --> 00:05:53.674
+Then readiness.
+
+96
+00:05:53.674 --> 00:05:58.592
+A hire is ready on day one only with
+all four: an account that exists and is
+
+97
+00:05:58.592 --> 00:06:04.175
+enabled, a license, the onboarding package
+delivered, and a completed pre-hire run.
+
+98
+00:06:04.175 --> 00:06:08.453
+The readiness rate is ready hires
+over hires for each start date,
+
+99
+00:06:08.453 --> 00:06:12.130
+and it's saved in a summary
+file that Module 7 reads.
+
+100
+00:06:15.880 --> 00:06:16.605
+Try it.
+
+101
+00:06:16.605 --> 00:06:22.167
+Lab 1 runs in the hr-lifecycle folder,
+and nothing signs in or sends a request.
+
+102
+00:06:22.167 --> 00:06:24.730
+Step one lists two tasks' reads.
+
+103
+00:06:24.730 --> 00:06:26.990
+The plan needs only one permission,
+
+104
+00:06:26.990 --> 00:06:31.355
+the Lifecycle Workflows workflow
+read, for one GET on the workflows.
+
+105
+00:06:31.355 --> 00:06:35.596
+Readiness needs four permissions,
+for three GET calls: the users,
+
+106
+00:06:35.596 --> 00:06:40.718
+each workflow's user processing results,
+and the access package assignments.
+
+107
+00:06:40.718 --> 00:06:45.579
+Step two lints the program's own six
+workflow files with a budget of fifty.
+
+108
+00:06:45.579 --> 00:06:49.730
+Zero findings, zero warnings,
+zero information items.
+
+109
+00:06:49.730 --> 00:06:54.413
+That's the clean run an ISSO keeps:
+it shows a one-time pass of at most
+
+110
+00:06:54.413 --> 00:06:59.810
+twenty-four hours, and an execution
+limit on every scheduled workflow.
+
+111
+00:07:03.560 --> 00:07:06.533
+Step three lints three broken copies,
+
+112
+00:07:06.533 --> 00:07:09.985
+with a budget of two so
+you can see J W oh seven.
+
+113
+00:07:09.985 --> 00:07:13.722
+Seven findings and four warnings,
+and an exit code of two.
+
+114
+00:07:13.722 --> 00:07:14.610
+Read a few.
+
+115
+00:07:14.610 --> 00:07:17.873
+One offset is two hundred
+days, beyond the limit.
+
+116
+00:07:17.873 --> 00:07:20.073
+A leaver is triggered on the hire date.
+
+117
+00:07:20.073 --> 00:07:22.650
+Three workflows are
+over the budget of two,
+
+118
+00:07:22.650 --> 00:07:25.522
+and the message quotes
+both of Learn's ceilings.
+
+119
+00:07:25.522 --> 00:07:29.072
+A scheduled workflow has no
+execution limit recorded.
+
+120
+00:07:29.072 --> 00:07:31.764
+A joiner adds the user to groups directly,
+
+121
+00:07:31.764 --> 00:07:34.772
+instead of giving baseline
+access by package.
+
+122
+00:07:34.772 --> 00:07:36.422
+The slide trims a few more.
+
+123
+00:07:36.422 --> 00:07:41.923
+Now find the two J W oh five warnings,
+the ones this module cares most about.
+
+124
+00:07:41.923 --> 00:07:46.486
+One pass lasts four thousand three hundred
+twenty minutes, which is three days,
+
+125
+00:07:46.486 --> 00:07:50.136
+well over the twenty-four hours
+Learn recommends for a new hire.
+
+126
+00:07:50.136 --> 00:07:52.790
+The other pass isn't one-time use.
+
+127
+00:07:56.540 --> 00:08:01.440
+Step four plans the program's files against
+an export of the tenant's workflows.
+
+128
+00:08:01.440 --> 00:08:04.728
+The day-one workflow changed,
+so it gets a new version.
+
+129
+00:08:04.728 --> 00:08:09.066
+The employee last-day leaver isn't
+in the tenant yet, so it's a create.
+
+130
+00:08:09.066 --> 00:08:11.703
+The other four are
+unchanged and left alone.
+
+131
+00:08:11.703 --> 00:08:16.666
+There's one warning, J W fifteen, for
+a workflow called Onboard Marketing,
+
+132
+00:08:16.666 --> 00:08:20.703
+legacy: someone made it in the
+portal, and no file defines it.
+
+133
+00:08:20.703 --> 00:08:24.027
+The plan is written to a
+file, and nothing is sent.
+
+134
+00:08:24.027 --> 00:08:26.090
+Now try planning the broken folder.
+
+135
+00:08:26.090 --> 00:08:30.803
+It stops with an error: the files have
+lint findings, fix them before planning.
+
+136
+00:08:30.803 --> 00:08:32.514
+So the order is enforced.
+
+137
+00:08:32.514 --> 00:08:36.320
+Lint first, then plan,
+then a reviewed send.
+
+138
+00:08:40.070 --> 00:08:41.957
+Step five measures day one.
+
+139
+00:08:41.957 --> 00:08:46.944
+You give it the HR hires, the hire
+accounts, the pre-hire workflow's results,
+
+140
+00:08:46.944 --> 00:08:51.930
+the access package assignments, the
+workflow files, a moment, eight in the
+
+141
+00:08:51.930 --> 00:08:56.583
+morning U T C on the second of November,
+the cloud, and an output folder.
+
+142
+00:08:56.583 --> 00:08:59.694
+One of four hires was
+ready: twenty-five percent.
+
+143
+00:08:59.694 --> 00:09:01.982
+Three hires get a readiness warning,
+
+144
+00:09:01.982 --> 00:09:06.633
+because each one is missing at least
+one of the four things a ready hire has.
+
+145
+00:09:06.633 --> 00:09:10.203
+The summary file holds the
+rate, zero point two five,
+
+146
+00:09:10.203 --> 00:09:13.858
+and Module 7 reads it as one
+of the lifecycle metrics.
+
+147
+00:09:13.858 --> 00:09:16.641
+Step six runs the tests, fifty-seven pass,
+
+148
+00:09:16.641 --> 00:09:19.940
+and you delete the
+chapter's output folder.
+
+149
+00:09:23.690 --> 00:09:29.711
+Lab 2 runs one change in your own test
+tenant: worldwide or G C C, never production,
+
+150
+00:09:29.711 --> 00:09:33.416
+with Entra ID Governance
+trial or test licenses,
+
+151
+00:09:33.416 --> 00:09:37.028
+and test users whose hire
+date is a few days away.
+
+152
+00:09:37.028 --> 00:09:39.953
+Export the tenant's
+workflows, plan one change,
+
+153
+00:09:39.953 --> 00:09:44.727
+and send it with Graph PowerShell as
+a Lifecycle Workflows Administrator.
+
+154
+00:09:44.727 --> 00:09:49.207
+Set the execution limit in the admin
+center, since it isn't in the API.
+
+155
+00:09:49.207 --> 00:09:51.977
+Check that the manager receives the pass.
+
+156
+00:09:51.977 --> 00:09:54.427
+And on the start date, measure readiness.
+
+157
+00:09:54.427 --> 00:09:58.628
+The reader app needs a certificate
+and one permission, the workflow read.
+
+158
+00:09:58.628 --> 00:10:02.933
+To back it out, delete a workflow the
+lab created, which can be restored
+
+159
+00:10:02.933 --> 00:10:07.164
+for thirty days, or send the previous
+file's body as a further version.
+
+160
+00:10:07.164 --> 00:10:10.912
+Then remove the reader app,
+its permission and certificate,
+
+161
+00:10:10.912 --> 00:10:12.977
+and delete the export and output.
+
+162
+00:10:12.977 --> 00:10:15.490
+The authors haven't run Lab 2.
+
+163
+00:10:19.240 --> 00:10:20.627
+The federal requirement.
+
+164
+00:10:20.627 --> 00:10:25.450
+This gate meets NIST special publication
+eight hundred fifty-three A C two,
+
+165
+00:10:25.450 --> 00:10:29.028
+enhancement one, automated
+system account management.
+
+166
+00:10:29.028 --> 00:10:33.719
+It meets I A five: the initial
+authenticator is time-limited, and goes to
+
+167
+00:10:33.719 --> 00:10:38.491
+an accountable person; that's the short,
+one-time pass sent to the manager.
+
+168
+00:10:38.491 --> 00:10:44.264
+And it meets O M B M-22-09's
+phishing-resistant multifactor authentication,
+
+169
+00:10:44.264 --> 00:10:48.915
+which the Temporary Access Pass
+bridges to until the PIV card is bound.
+
+170
+00:10:48.915 --> 00:10:53.800
+The evidence an ISSO keeps for Gate
+3: the reviewed workflow files,
+
+171
+00:10:53.800 --> 00:10:58.052
+and the plan that changed each
+version, with its manifest.
+
+172
+00:10:58.052 --> 00:11:01.426
+The lint's clean run, showing
+a one-time pass of at most
+
+173
+00:11:01.426 --> 00:11:05.977
+twenty-four hours and an execution
+limit on every scheduled workflow.
+
+174
+00:11:05.977 --> 00:11:08.465
+The readiness summary for each start date.
+
+175
+00:11:08.465 --> 00:11:13.470
+And the workflows' run history,
+exported past Entra's thirty-day view.
+
+176
+00:11:17.220 --> 00:11:19.195
+Check yourself with two questions.
+
+177
+00:11:19.195 --> 00:11:23.195
+First: you change the pre-hire
+workflow's offset in its file.
+
+178
+00:11:23.195 --> 00:11:24.920
+What does the plan produce for it?
+
+179
+00:11:24.920 --> 00:11:27.781
+The answer is a: a body
+for create new version,
+
+180
+00:11:27.781 --> 00:11:31.358
+because Learn makes a definition
+change a new version.
+
+181
+00:11:31.358 --> 00:11:33.096
+There's no in-place update.
+
+182
+00:11:33.096 --> 00:11:36.320
+A file with no match in the
+tenant would become a create.
+
+183
+00:11:36.320 --> 00:11:39.370
+Second: which hire counts
+as ready on day one?
+
+184
+00:11:39.370 --> 00:11:44.082
+The answer is c: one whose account
+exists and is enabled, holds a license,
+
+185
+00:11:44.082 --> 00:11:48.795
+has the onboarding package delivered,
+and has a completed pre-hire run.
+
+186
+00:11:48.795 --> 00:11:49.758
+All four.
+
+187
+00:11:49.758 --> 00:11:52.876
+An account that exists but
+is disabled isn't ready,
+
+188
+00:11:52.876 --> 00:11:55.919
+and neither is a pre-hire
+run that didn't complete.
+
+189
+00:11:55.919 --> 00:12:01.170
+The module page has two more questions,
+each linked to the section that answers it.
+
+190
+00:12:04.920 --> 00:12:05.745
+To sum up.
+
+191
+00:12:05.745 --> 00:12:10.008
+You linted the program's six workflow
+files and three broken ones.
+
+192
+00:12:10.008 --> 00:12:13.595
+You planned a create and a new
+version against a tenant export,
+
+193
+00:12:13.595 --> 00:12:15.846
+and saw a portal-made workflow flagged.
+
+194
+00:12:15.846 --> 00:12:19.420
+And you measured a day-one readiness
+rate of twenty-five percent.
+
+195
+00:12:19.420 --> 00:12:24.209
+Carry one thing forward: the day-one
+workflow requests the onboarding package,
+
+196
+00:12:24.209 --> 00:12:27.082
+but department access
+comes from the next gate.
+
+197
+00:12:27.082 --> 00:12:32.507
+Next is Module 4: assign access from
+attributes and review what a move leaves.
+
+198
+00:12:32.507 --> 00:12:36.812
+You'll lint access package assignment
+policies before they reach the tenant,
+
+199
+00:12:36.812 --> 00:12:39.772
+scan the tenant's policies
+for the member-of operator,
+
+200
+00:12:39.772 --> 00:12:43.680
+and list what a move leaves behind
+for the manager of record to review.

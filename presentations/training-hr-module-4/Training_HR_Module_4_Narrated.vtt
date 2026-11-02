@@ -1,0 +1,942 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.201
+Welcome to Module 4 of the
+HR-Driven Identity learning path:
+
+2
+00:00:04.201 --> 00:00:08.437
+assign access from attributes,
+and review what a move leaves.
+
+3
+00:00:08.437 --> 00:00:14.376
+This is Gate 4, Access and movers, with
+Chapter 04 of the developer workbook.
+
+4
+00:00:14.376 --> 00:00:19.013
+Module 3 got a new hire ready on
+day one, with an onboarding package.
+
+5
+00:00:19.013 --> 00:00:21.487
+Department access comes from this gate.
+
+6
+00:00:21.487 --> 00:00:26.214
+In this module you'll lint access package
+assignment policies before they reach the
+
+7
+00:00:26.214 --> 00:00:29.590
+tenant, scan the tenant's policies
+for the member-of operator,
+
+8
+00:00:29.590 --> 00:00:33.438
+and list what a move leaves behind
+for the manager of record to review.
+
+9
+00:00:33.438 --> 00:00:38.538
+The code runs on your laptop, against a
+fictional population and a fictional mover.
+
+10
+00:00:38.538 --> 00:00:44.220
+It's illustrative: unit-tested against
+fixtures, not run against a live tenant.
+
+11
+00:00:47.970 --> 00:00:49.607
+Why does this gate need checks?
+
+12
+00:00:49.607 --> 00:00:53.958
+When HR moves a person to a new
+organization, a rule on the organization
+
+13
+00:00:53.958 --> 00:00:58.233
+code should take away the old
+department's access and give the new one.
+
+14
+00:00:58.233 --> 00:01:01.920
+Automatic assignment policies in
+entitlement management do that.
+
+15
+00:01:01.920 --> 00:01:05.020
+But a rule can be wrong in ways
+the portal won't tell you.
+
+16
+00:01:05.020 --> 00:01:08.770
+Two policies on one package
+can both match the same user.
+
+17
+00:01:08.770 --> 00:01:10.670
+A rule can read a display name.
+
+18
+00:01:10.670 --> 00:01:13.630
+Or a rule can use the member-of operator,
+
+19
+00:01:13.630 --> 00:01:17.145
+which Learn quarantines
+from November 3, 2026.
+
+20
+00:01:17.145 --> 00:01:20.645
+And no rule can see access
+the person was given by hand.
+
+21
+00:01:20.645 --> 00:01:25.440
+So in this module, the lint catches the
+first three before a policy reaches the
+
+22
+00:01:25.440 --> 00:01:29.336
+tenant, a scan finds member-of in
+the tenant's existing policies,
+
+23
+00:01:29.336 --> 00:01:33.150
+and the residual review lists
+what a move leaves behind.
+
+24
+00:01:36.900 --> 00:01:39.711
+Here's what you'll be able to
+do by the end of this module,
+
+25
+00:01:39.711 --> 00:01:42.075
+which takes about fifty
+minutes with the lab.
+
+26
+00:01:42.075 --> 00:01:46.549
+You'll explain why each access
+package gets one automatic policy,
+
+27
+00:01:46.549 --> 00:01:48.538
+and why no rule uses member-of.
+
+28
+00:01:48.538 --> 00:01:51.984
+You'll run the policy
+lint over a population,
+
+29
+00:01:51.984 --> 00:01:56.388
+and explain three of its rules:
+A A oh one, oh two and oh nine.
+
+30
+00:01:56.388 --> 00:02:00.488
+You'll run the member-of scan on an
+export of the tenant's policies.
+
+31
+00:02:00.488 --> 00:02:03.126
+And you'll list a mover's residual access,
+
+32
+00:02:03.126 --> 00:02:07.125
+classify each item, and read
+the transfer-to-review interval.
+
+33
+00:02:07.125 --> 00:02:08.863
+Two modules come first.
+
+34
+00:02:08.863 --> 00:02:14.088
+From Module 1: a move reaches the directory
+through the pipeline, never by hand.
+
+35
+00:02:14.088 --> 00:02:18.348
+From Module 3: the day-one workflow
+requests the onboarding package,
+
+36
+00:02:18.348 --> 00:02:21.087
+and department access
+comes from this gate.
+
+37
+00:02:21.087 --> 00:02:24.361
+Lab 2 needs a worldwide
+or G C C test tenant
+
+38
+00:02:24.361 --> 00:02:28.580
+with Entra ID Governance
+trial or test licenses.
+
+39
+00:02:32.330 --> 00:02:33.943
+Read the guide's Step 4.
+
+40
+00:02:33.943 --> 00:02:36.081
+It sets six rules for this gate.
+
+41
+00:02:36.081 --> 00:02:38.305
+One automatic policy per package.
+
+42
+00:02:38.305 --> 00:02:39.343
+No member-of.
+
+43
+00:02:39.343 --> 00:02:44.042
+A grace period for movers, so a move
+doesn't cut someone off mid-handover.
+
+44
+00:02:44.042 --> 00:02:46.892
+Manager approval, with
+a fallback approver.
+
+45
+00:02:46.892 --> 00:02:49.293
+The mover workflow's residual review.
+
+46
+00:02:49.293 --> 00:02:52.354
+And privileged access kept
+out of rules altogether.
+
+47
+00:02:52.354 --> 00:02:53.567
+Why no member-of?
+
+48
+00:02:53.567 --> 00:02:56.858
+From November 3, 2026,
+Learn quarantines an
+
+49
+00:02:56.858 --> 00:03:00.618
+automatic assignment
+policy whose rule uses it.
+
+50
+00:03:00.618 --> 00:03:05.555
+The policy stays, but it adds and removes
+nothing until the operator is removed,
+
+51
+00:03:05.555 --> 00:03:09.429
+and Learn publishes a read-only
+script to find those policies.
+
+52
+00:03:09.429 --> 00:03:14.773
+Then read the design in the Federal
+Modernization Workbook's Book 03's Chapter 10:
+
+53
+00:03:14.773 --> 00:03:18.362
+its rule patterns, access
+packages and access reviews,
+
+54
+00:03:18.362 --> 00:03:20.755
+and where dynamic membership stops.
+
+55
+00:03:20.755 --> 00:03:24.180
+Its Chapter 08 says
+what a move must start.
+
+56
+00:03:27.930 --> 00:03:32.880
+Here are the program's policy files, kept
+as reviewed version one point oh bodies.
+
+57
+00:03:32.880 --> 00:03:35.967
+Two are automatic
+policies, one per package.
+
+58
+00:03:35.967 --> 00:03:40.778
+Program Operations matches organization
+code O R G one hundred, and
+
+59
+00:03:40.778 --> 00:03:46.618
+Infrastructure Services matches O R G two
+ten, each for employees and contractors.
+
+60
+00:03:46.618 --> 00:03:50.925
+Each one both creates assignments
+when a user enters scope and removes
+
+61
+00:03:50.925 --> 00:03:55.306
+them when the user leaves it, with a
+seven-day grace period before removal.
+
+62
+00:03:55.306 --> 00:03:59.805
+The third is a request policy for
+infrastructure administrator eligibility.
+
+63
+00:03:59.805 --> 00:04:02.573
+It's scoped to employees in O R G two ten,
+
+64
+00:04:02.573 --> 00:04:05.967
+but it doesn't assign
+anything automatically.
+
+65
+00:04:05.967 --> 00:04:08.779
+It only decides who may
+request eligibility.
+
+66
+00:04:08.779 --> 00:04:11.430
+It's marked tier T one, privileged.
+
+67
+00:04:11.430 --> 00:04:14.915
+Notice that every rule is
+written on the codes HR owns,
+
+68
+00:04:14.915 --> 00:04:19.780
+the organization code and the worker
+type, never on a department name.
+
+69
+00:04:23.530 --> 00:04:26.836
+The lint has nine rules,
+and it checks each rule over
+
+70
+00:04:26.836 --> 00:04:30.142
+a population of users, which
+is how it finds overlap.
+
+71
+00:04:30.142 --> 00:04:32.729
+A A oh one is a rule on member-of.
+
+72
+00:04:32.729 --> 00:04:35.634
+A A oh two is users
+who match more than one
+
+73
+00:04:35.634 --> 00:04:39.505
+automatic policy on one
+package; they can lose access.
+
+74
+00:04:39.505 --> 00:04:44.718
+A A oh three is more identities in scope
+than Learn's fifteen thousand per policy.
+
+75
+00:04:44.718 --> 00:04:49.181
+A A oh four warns on a rule that
+reads no coded slot or worker type.
+
+76
+00:04:49.181 --> 00:04:53.992
+A A oh five is an automatic policy
+that doesn't both create and remove.
+
+77
+00:04:53.992 --> 00:04:56.634
+A A oh six warns on a
+grace period over the
+
+78
+00:04:56.634 --> 00:04:59.917
+program's fourteen days,
+which is design guidance.
+
+79
+00:04:59.917 --> 00:05:04.893
+A A oh seven is a request policy without
+the manager and a fallback approver.
+
+80
+00:05:04.893 --> 00:05:09.768
+A A oh eight sends a rule the evaluator
+can't read to the dynamic-rules kit.
+
+81
+00:05:09.768 --> 00:05:13.960
+And A A oh nine is tier one
+access assigned by rule.
+
+82
+00:05:17.710 --> 00:05:22.085
+The residual review classifies
+everything a mover holds after the move.
+
+83
+00:05:22.085 --> 00:05:27.260
+Take the lab's mover, from O R
+G one hundred to O R G two ten.
+
+84
+00:05:27.260 --> 00:05:29.985
+The new department's
+baseline is kept by rule.
+
+85
+00:05:29.985 --> 00:05:33.459
+The old department's
+baseline is removed by rule
+
+86
+00:05:33.459 --> 00:05:36.760
+after the seven-day grace
+period, by October 26.
+
+87
+00:05:36.760 --> 00:05:39.909
+Groups that sit behind a
+package are package-managed,
+
+88
+00:05:39.909 --> 00:05:41.985
+and a dynamic group is rule-managed.
+
+89
+00:05:41.985 --> 00:05:44.097
+None of those need a person to decide.
+
+90
+00:05:44.097 --> 00:05:45.348
+Two classes do.
+
+91
+00:05:45.348 --> 00:05:50.786
+Access the mover requested, here a grants
+reporting workspace, goes to review.
+
+92
+00:05:50.786 --> 00:05:56.460
+And groups held outside packages, by direct
+or nested assignment, go to review too.
+
+93
+00:05:56.460 --> 00:06:00.772
+Those are the items a rule can't see,
+and they go to the manager of record.
+
+94
+00:06:00.772 --> 00:06:05.147
+The time from the transfer to a
+finished review is P S five's metric,
+
+95
+00:06:05.147 --> 00:06:09.560
+and R V oh two flags a review
+still open ten days after the move.
+
+96
+00:06:13.310 --> 00:06:14.035
+Try it.
+
+97
+00:06:14.035 --> 00:06:19.597
+Lab 1 runs in the hr-lifecycle folder,
+and nothing signs in or sends a request.
+
+98
+00:06:19.597 --> 00:06:22.861
+Step one lists the reads,
+and their permissions.
+
+99
+00:06:22.861 --> 00:06:27.280
+Three GET calls: the assignment policies
+and the assignments in entitlement
+
+100
+00:06:27.280 --> 00:06:30.940
+management, which need
+EntitlementManagement dot Read dot All,
+
+101
+00:06:30.940 --> 00:06:35.360
+and each user's transitive group memberships,
+which need User dot Read dot All.
+
+102
+00:06:35.360 --> 00:06:39.410
+Those are what the scan and the residual
+review read from a real tenant.
+
+103
+00:06:39.410 --> 00:06:44.498
+Step two lints the program's three policy
+files over the fixture population.
+
+104
+00:06:44.498 --> 00:06:48.648
+Zero findings, zero warnings,
+zero information items.
+
+105
+00:06:48.648 --> 00:06:52.589
+That clean run is part of
+the evidence an ISSO keeps,
+
+106
+00:06:52.589 --> 00:06:55.490
+beside the hash of each body sent.
+
+107
+00:06:59.240 --> 00:07:01.872
+Step three lints five broken policies:
+
+108
+00:07:01.872 --> 00:07:05.490
+five findings and two warnings,
+and an exit code of two.
+
+109
+00:07:05.490 --> 00:07:07.790
+Find the three this module cares about.
+
+110
+00:07:07.790 --> 00:07:13.115
+A A oh one: a policy whose rule uses
+member-of, which will be quarantined.
+
+111
+00:07:13.115 --> 00:07:16.659
+A A oh two: two automatic
+policies on one package,
+
+112
+00:07:16.659 --> 00:07:21.565
+and two users in the population
+match both, so they can lose access.
+
+113
+00:07:21.565 --> 00:07:26.106
+And A A oh nine: tier one administrator
+eligibility assigned by rule,
+
+114
+00:07:26.106 --> 00:07:30.890
+when privileged access should be
+requested and activated through PIM.
+
+115
+00:07:30.890 --> 00:07:32.903
+The slide trims the other four.
+
+116
+00:07:32.903 --> 00:07:35.827
+Step four turns from
+the files to the tenant.
+
+117
+00:07:35.827 --> 00:07:40.333
+The member-of scan reads an export
+of the tenant's assignment policies,
+
+118
+00:07:40.333 --> 00:07:44.916
+four of them, and one still uses
+member-of: a legacy shared drives package.
+
+119
+00:07:44.916 --> 00:07:46.844
+That's the M S oh one finding,
+
+120
+00:07:46.844 --> 00:07:50.970
+and the evidence you want is
+this scan with zero rows.
+
+121
+00:07:54.720 --> 00:07:57.345
+Step five lists one mover's residual.
+
+122
+00:07:57.345 --> 00:08:01.858
+You give it the mover, the mover's
+assignments and group memberships, the
+
+123
+00:08:01.858 --> 00:08:06.907
+program's policies, a moment, the first of
+November, the cloud and an output folder.
+
+124
+00:08:06.907 --> 00:08:11.108
+The mover holds eight items, and
+three go to the residual review.
+
+125
+00:08:11.108 --> 00:08:16.051
+Print the review sheet: one requested
+package, the grants reporting workspace,
+
+126
+00:08:16.051 --> 00:08:18.408
+and two groups held outside packages,
+
+127
+00:08:18.408 --> 00:08:22.058
+a legacy timekeeping approvers
+group and a finance share.
+
+128
+00:08:22.058 --> 00:08:24.019
+Those three are the warnings.
+
+129
+00:08:24.019 --> 00:08:28.216
+The finding is R V oh two: the
+move took effect on October 19,
+
+130
+00:08:28.216 --> 00:08:33.395
+and the review is still open thirteen
+days later, past the program's ten.
+
+131
+00:08:33.395 --> 00:08:35.816
+That sheet goes to the manager of record,
+
+132
+00:08:35.816 --> 00:08:39.557
+and the manager's decisions and
+the interval are evidence too.
+
+133
+00:08:39.557 --> 00:08:45.250
+Step six runs the tests, fifty-seven
+pass, and you delete the chapter's output.
+
+134
+00:08:49.000 --> 00:08:54.626
+Lab 2 runs the gate in your own test tenant:
+worldwide or G C C, never production,
+
+135
+00:08:54.626 --> 00:08:58.197
+with Entra ID Governance
+trial or test licenses,
+
+136
+00:08:58.197 --> 00:09:03.287
+two test access packages, and three
+test users with coded attributes.
+
+137
+00:09:03.287 --> 00:09:06.461
+Export the tenant's policies,
+and run the scan beside
+
+138
+00:09:06.461 --> 00:09:09.338
+Learn's read-only script,
+so you can compare them.
+
+139
+00:09:09.338 --> 00:09:11.350
+Create one automatic policy.
+
+140
+00:09:11.350 --> 00:09:16.600
+Move a test user through the pipeline,
+never by hand, and run the residual review.
+
+141
+00:09:16.600 --> 00:09:19.763
+The reader app needs a
+certificate and two permissions,
+
+142
+00:09:19.763 --> 00:09:23.475
+EntitlementManagement dot Read
+dot All and User dot Read dot All.
+
+143
+00:09:23.475 --> 00:09:27.500
+Creating the policy takes the Identity
+Governance Administrator role.
+
+144
+00:09:27.500 --> 00:09:29.732
+To back it out, remove the test policy,
+
+145
+00:09:29.732 --> 00:09:32.633
+choosing whether its
+assignments are removed,
+
+146
+00:09:32.633 --> 00:09:37.022
+restore the test user's code through
+the pipeline, remove the reader app,
+
+147
+00:09:37.022 --> 00:09:41.113
+its permissions and certificate,
+and delete the export and output.
+
+148
+00:09:41.113 --> 00:09:43.630
+The authors haven't run Lab 2.
+
+149
+00:09:47.380 --> 00:09:50.255
+Two things differ by where
+you are and what you grant.
+
+150
+00:09:50.255 --> 00:09:52.130
+First, government clouds.
+
+151
+00:09:52.130 --> 00:09:57.038
+If your agency is in GCC High, note the
+gate's availability gap: administrative
+
+152
+00:09:57.038 --> 00:10:01.792
+units with dynamic membership rules
+aren't available in Azure Government.
+
+153
+00:10:01.792 --> 00:10:05.393
+The guide's Step 4 gives the
+gap and its interim path.
+
+154
+00:10:05.393 --> 00:10:08.542
+Second, privileged
+access, wherever you are.
+
+155
+00:10:08.542 --> 00:10:12.373
+A package that grants tier one
+administrator eligibility to
+
+156
+00:10:12.373 --> 00:10:16.579
+everyone whose organization code
+matches is the A A oh nine finding.
+
+157
+00:10:16.579 --> 00:10:20.340
+HR attributes should decide
+who may request eligibility,
+
+158
+00:10:20.340 --> 00:10:22.768
+and the role is activated through PIM.
+
+159
+00:10:22.768 --> 00:10:25.330
+That's what the program's
+request policy does.
+
+160
+00:10:25.330 --> 00:10:30.393
+CISA's scuba policy seven point five
+keeps highly privileged roles only in
+
+161
+00:10:30.393 --> 00:10:36.370
+a privileged access management system,
+and under BOD 25-01 it's required.
+
+162
+00:10:40.120 --> 00:10:41.507
+The federal requirement.
+
+163
+00:10:41.507 --> 00:10:46.235
+This gate meets NIST special publication
+eight hundred fifty-three A C two,
+
+164
+00:10:46.235 --> 00:10:48.598
+which asks you to authorize access on
+
+165
+00:10:48.598 --> 00:10:52.258
+organization-defined attributes
+and to review accounts.
+
+166
+00:10:52.258 --> 00:10:57.933
+It meets A C six, least privilege,
+and A C five, separation of duties.
+
+167
+00:10:57.933 --> 00:11:03.333
+It meets P S five, personnel transfer,
+which is what the residual review is for.
+
+168
+00:11:03.333 --> 00:11:08.141
+And it meets scuba policy seven point
+five, highly privileged roles only
+
+169
+00:11:08.141 --> 00:11:13.832
+through a privileged access management
+system, required under BOD 25-01.
+
+170
+00:11:13.832 --> 00:11:18.856
+The evidence an ISSO keeps for
+Gate 4: the reviewed policy files,
+
+171
+00:11:18.856 --> 00:11:22.720
+the lint's clean run, and
+the hash of each body sent.
+
+172
+00:11:22.720 --> 00:11:25.520
+The member-of scan's
+output with zero rows.
+
+173
+00:11:25.520 --> 00:11:27.308
+A A oh nine's clean run.
+
+174
+00:11:27.308 --> 00:11:29.056
+Each mover's residual sheet,
+
+175
+00:11:29.056 --> 00:11:32.857
+the manager's decisions and the
+transfer-to-review interval.
+
+176
+00:11:32.857 --> 00:11:37.080
+And the separation-of-duties settings
+in the package configuration.
+
+177
+00:11:40.830 --> 00:11:42.805
+Check yourself with two questions.
+
+178
+00:11:42.805 --> 00:11:44.962
+First: from November 3, 2026,
+
+179
+00:11:44.962 --> 00:11:50.942
+what happens to an automatic assignment
+policy whose rule uses member-of?
+
+180
+00:11:50.942 --> 00:11:53.417
+The answer is b: it's quarantined.
+
+181
+00:11:53.417 --> 00:11:57.880
+It stays, but it adds and removes
+nothing until the operator is removed,
+
+182
+00:11:57.880 --> 00:12:01.804
+and Learn publishes a read-only
+script to find those policies.
+
+183
+00:12:01.804 --> 00:12:06.417
+Second: in the residual review, which
+items go to the manager of record?
+
+184
+00:12:06.417 --> 00:12:10.343
+The answer is c: assignments
+that came from request policies,
+
+185
+00:12:10.343 --> 00:12:12.542
+and groups held outside packages.
+
+186
+00:12:12.542 --> 00:12:16.335
+Everything a rule manages,
+kept, removed after grace,
+
+187
+00:12:16.335 --> 00:12:20.217
+package-managed or rule-managed,
+takes care of itself.
+
+188
+00:12:20.217 --> 00:12:25.480
+The module page has two more questions,
+each linked to the section that answers it.
+
+189
+00:12:29.230 --> 00:12:30.055
+To sum up.
+
+190
+00:12:30.055 --> 00:12:34.980
+You linted three good and five broken
+assignment policies over a population.
+
+191
+00:12:34.980 --> 00:12:37.918
+You found a member-of
+policy in a tenant export.
+
+192
+00:12:37.918 --> 00:12:42.493
+And you listed one mover's residual
+access, with a review that's overdue.
+
+193
+00:12:42.493 --> 00:12:47.195
+Carry one thing forward: a move reaches
+the directory through the pipeline,
+
+194
+00:12:47.195 --> 00:12:51.367
+never by hand, and then the rules
+and the residual review do the rest.
+
+195
+00:12:51.367 --> 00:12:55.506
+Next is Module 5: check
+certificate-based authentication.
+
+196
+00:12:55.506 --> 00:12:59.124
+You'll check the certificate-based
+authentication trust store,
+
+197
+00:12:59.124 --> 00:13:02.950
+and each certificate revocation
+list, against your cloud's limits.

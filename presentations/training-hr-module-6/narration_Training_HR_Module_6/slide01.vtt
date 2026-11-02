@@ -1,0 +1,55 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.288
+Welcome to Module 6 of the
+HR-Driven Identity learning path:
+
+2
+00:00:04.288 --> 00:00:06.537
+time separations from the logs.
+
+3
+00:00:06.537 --> 00:00:10.032
+This is Gate 6 of the
+implementation guide, separation,
+
+4
+00:00:10.032 --> 00:00:13.449
+and it goes with Chapter 06
+of the developer workbook.
+
+5
+00:00:13.449 --> 00:00:17.334
+When a person separates, two things
+have to be shown: that access was
+
+6
+00:00:17.334 --> 00:00:21.712
+blocked within the approved interval,
+and that the credential was revoked.
+
+7
+00:00:21.712 --> 00:00:25.717
+In this module you'll join the records
+each system keeps about a leaver,
+
+8
+00:00:25.717 --> 00:00:29.583
+compute two intervals for every one
+of them, separation-to-block and
+
+9
+00:00:29.583 --> 00:00:33.450
+separation-to-revocation, and find
+the separations that went wrong.
+
+10
+00:00:33.450 --> 00:00:37.125
+You'll run the measurement on
+fictional leavers, with no tenant.
+
+11
+00:00:37.125 --> 00:00:40.340
+The module takes about
+forty-five minutes with its lab.

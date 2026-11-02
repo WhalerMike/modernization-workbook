@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.672
+Lab 2 runs the same thing for real,
+
+2
+00:00:02.672 --> 00:00:06.750
+in a worldwide or GCC test
+tenant, never production.
+
+3
+00:00:06.750 --> 00:00:10.478
+The reader app uses a certificate
+or a federated credential,
+
+4
+00:00:10.478 --> 00:00:15.400
+and holds only the two permissions the
+drift-read task lists, with admin consent.
+
+5
+00:00:15.400 --> 00:00:19.169
+You export the workforce users,
+run Lab 2 of Modules 1 to
+
+6
+00:00:19.169 --> 00:00:22.937
+6 against the test tenant, and
+write a run in tenant mode.
+
+7
+00:00:22.937 --> 00:00:27.877
+Then you schedule it in Book 19's Chapter
+09 workflow, with each package written to
+
+8
+00:00:27.877 --> 00:00:32.963
+an immutable test storage container, and
+assemble a period from the scheduled runs.
+
+9
+00:00:32.963 --> 00:00:36.322
+To back it out, remove the
+schedule, delete the reader app,
+
+10
+00:00:36.322 --> 00:00:39.829
+its credential and its consent,
+delete the test container
+
+11
+00:00:39.829 --> 00:00:43.262
+if you created it for the lab,
+and delete the local folders.
+
+12
+00:00:43.262 --> 00:00:45.480
+The authors haven't run Lab 2.

@@ -1,0 +1,68 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.362
+Two sets of rules.
+
+2
+00:00:01.362 --> 00:00:05.751
+The extract's source checks, C
+S, look at each register record.
+
+3
+00:00:05.751 --> 00:00:10.675
+No contract end is C S oh one,
+and the record is quarantined.
+
+4
+00:00:10.675 --> 00:00:17.037
+A sponsor who isn't in the HR export is
+C S oh two: no manager, so no account.
+
+5
+00:00:17.037 --> 00:00:20.636
+A sponsor who has separated
+is a C S oh three warning:
+
+6
+00:00:20.636 --> 00:00:25.776
+access ends after the grace period
+unless someone records a new sponsor.
+
+7
+00:00:25.776 --> 00:00:28.199
+Then the reconciliation's rules, C R,
+
+8
+00:00:28.199 --> 00:00:31.625
+compare the register, the
+cards and the directory.
+
+9
+00:00:31.625 --> 00:00:35.362
+C R oh one is an enabled
+account past its earliest end.
+
+10
+00:00:35.362 --> 00:00:40.625
+C R oh two is an orphan, an enabled
+contractor account with no register record.
+
+11
+00:00:40.625 --> 00:00:44.163
+C R oh three is an active
+card the source doesn't hold.
+
+12
+00:00:44.163 --> 00:00:46.913
+C R oh four is a record with no account.
+
+13
+00:00:46.913 --> 00:00:50.549
+And C R oh five is a leave date
+that isn't the earliest end,
+
+14
+00:00:50.549 --> 00:00:53.590
+so the leaver workflow
+fires on the wrong day.

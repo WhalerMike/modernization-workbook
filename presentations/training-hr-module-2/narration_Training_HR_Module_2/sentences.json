@@ -1,0 +1,747 @@
+{
+ "1": [
+  [
+   0.05,
+   6.888,
+   "Welcome to Module 2 of the H R-Driven Identity learning path: run contractors from their own source."
+  ],
+  [
+   6.938,
+   5.088,
+   "This is Gate 2, Sources, with Chapter 02 of the developer workbook."
+  ],
+  [
+   12.025,
+   7.787,
+   "In Module 1 you named one writer for every account state, and saw that inbound provisioning writes the leave date and the active value."
+  ],
+  [
+   19.812,
+   4.4,
+   "This module applies that to the people H R doesn't hold: contractors."
+  ],
+  [
+   24.212,
+   17.3,
+   "You'll compute each contractor's earliest end from several conditions, send the result through the same middleware as employees, reconcile what the contractor register, the card system and the directory say, without changing anything, and write a sponsor review that ends access when nobody answers."
+  ],
+  [
+   41.513,
+   3.475,
+   "The code runs on fictional contractors, on your laptop."
+  ],
+  [
+   44.987,
+   5.312,
+   "It's illustrative: unit-tested against fixtures, not run against a lyve tenant."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.488,
+   "Why does this gate exist?"
+  ],
+  [
+   1.538,
+   1.875,
+   "Employees come from H R."
+  ],
+  [
+   3.413,
+   1.462,
+   "Your contractors don't."
+  ],
+  [
+   4.875,
+   6.638,
+   "They liv on C O R spreadsheets, on a suitability register, or in the piv sponsorship records."
+  ],
+  [
+   11.512,
+   4.9,
+   "And when a contract is cut short, nobody updates the end date in a spreadsheet."
+  ],
+  [
+   16.413,
+   3.65,
+   "That end date is what keeps the contractor's access alive."
+  ],
+  [
+   20.062,
+   4.325,
+   "So in this module you give contractors an end date that can't be left open."
+  ],
+  [
+   24.387,
+   7.725,
+   "You compute each contractor's earliest end from the contract, the completion date, suitability, the card and the sponsor."
+  ],
+  [
+   32.112,
+   2.9,
+   "You send it through the same middleware as employees."
+  ],
+  [
+   35.013,
+   6.688,
+   "And you reconcile what the register, the card system and the directory say, without changing anything in any of them."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   5.175,
+   "Here's what you'll be able to do by the end of this module, which takes about fifty minutes with the lab."
+  ],
+  [
+   5.225,
+   6.662,
+   "You'll name the end conditions that make up a contractor's earliest end, and say why the earliest one wins."
+  ],
+  [
+   11.887,
+   5.588,
+   "You'll run the extract, read its decisions, and hand the extract to the H R middleware."
+  ],
+  [
+   17.475,
+   5.263,
+   "You'll run the read-only reconciliation and explain each C R finding it reports."
+  ],
+  [
+   22.738,
+   4.975,
+   "And you'll describe the sponsor review settings that end access when a sponsor doesn't respond."
+  ],
+  [
+   27.712,
+   8.062,
+   "You need Module 1 first, for one fact in particular: inbound provisioning is the writer of the leave date and of the active value."
+  ],
+  [
+   35.775,
+   6.638,
+   "Lab 1 uses the path's usual setup, and also calls the H C M to Entra middleware from the same clone."
+  ],
+  [
+   42.413,
+   4.825,
+   "Lab 2 needs a worldwide or G C C test tenant, never production."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   3.263,
+   "Start with the guide's Step 2, and notice its order."
+  ],
+  [
+   3.312,
+   6.075,
+   "First, measure before changing anything; the reconciliation you'll run in the lab is read-only."
+  ],
+  [
+   9.387,
+   3.4,
+   "Second, settle the six questions with the register's owner."
+  ],
+  [
+   12.787,
+   3.438,
+   "Third, ship the contractor leaver before the joiner."
+  ],
+  [
+   16.225,
+   1.413,
+   "Why the leaver first?"
+  ],
+  [
+   17.637,
+   8.963,
+   "Because the leaver closes the gap: a spreadsheet end date that nobody updates keeps access alive, and the middleware's earliest-end rule closes it."
+  ],
+  [
+   26.6,
+   2.0,
+   "Then read where the design comes from."
+  ],
+  [
+   28.6,
+   9.287,
+   "The Federal Modernization Workbook's Book 03's Chapter 06 explains why contractors fall outside Federal H R 2.0's scope."
+  ],
+  [
+   37.888,
+   4.2,
+   "Its Appendix A gives the contractor end conditions and their order."
+  ],
+  [
+   42.087,
+   7.85,
+   "And the contractor evaluation recommends an agency-owned register now, with the Oracle contingent worker as a later source swap."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   2.9,
+   "Here's the heart of the gate: the earliest end."
+  ],
+  [
+   2.95,
+   5.138,
+   "A contractor can stop needing access for several reasons, and the rules file lists them."
+  ],
+  [
+   8.088,
+   1.475,
+   "The contract ends."
+  ],
+  [
+   9.562,
+   3.15,
+   "The completion date comes earlier than the contract end."
+  ],
+  [
+   12.713,
+   1.962,
+   "Suitability is withdrawn."
+  ],
+  [
+   14.675,
+   3.2,
+   "The card is terminated, revoked or expired."
+  ],
+  [
+   17.875,
+   4.975,
+   "The sponsor separates, plus a grace period, thirty days in the program's file."
+  ],
+  [
+   22.85,
+   4.95,
+   "Or the sponsor misses a recertification, every hundred eighty days in the file."
+  ],
+  [
+   27.8,
+   5.463,
+   "The extract computes every condition that applies to each contractor and takes the first one."
+  ],
+  [
+   33.263,
+   3.513,
+   "That's the earliest end, and it becomes the leave date."
+  ],
+  [
+   36.775,
+   8.85,
+   "A missing contract end isn't treated as no end; the record doesn't go through at all, because a contractor is never provisioned open-ended."
+  ],
+  [
+   45.625,
+   5.287,
+   "The grace and recertification periods are design guidance: your agency sets them."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   1.312,
+   "Two sets of rules."
+  ],
+  [
+   1.363,
+   4.388,
+   "The extract's source checks, C S, look at each register record."
+  ],
+  [
+   5.75,
+   4.925,
+   "No contract end is C S oh one, and the record is quarantined."
+  ],
+  [
+   10.675,
+   6.362,
+   "A sponsor who isn't in the H R export is C S oh two: no manager, so no account."
+  ],
+  [
+   17.038,
+   8.738,
+   "A sponsor who has separated is a C S oh three warning: access ends after the grace period unless someone records a new sponsor."
+  ],
+  [
+   25.775,
+   5.85,
+   "Then the reconciliation's rules, C R, compare the register, the cards and the directory."
+  ],
+  [
+   31.625,
+   3.737,
+   "C R oh one is an enabled account past its earliest end."
+  ],
+  [
+   35.362,
+   5.263,
+   "C R oh two is an orphan, an enabled contractor account with no register record."
+  ],
+  [
+   40.625,
+   3.538,
+   "C R oh three is an active card the source doesn't hold."
+  ],
+  [
+   44.163,
+   2.75,
+   "C R oh four is a record with no account."
+  ],
+  [
+   46.913,
+   6.625,
+   "And C R oh five is a leave date that isn't the earliest end, so the leaver workflow fires on the wrong day."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   1.15,
+   "Two more pieces."
+  ],
+  [
+   1.2,
+   2.75,
+   "First, the extract doesn't send anything."
+  ],
+  [
+   3.95,
+   7.65,
+   "It writes a file in the H R middleware's layout, and the middleware from Book 19's Chapter 01 builds the skim requests."
+  ],
+  [
+   11.6,
+   5.0,
+   "Its dry run is its default, so nothing reaches a tenant unless you ask it to."
+  ],
+  [
+   16.6,
+   8.562,
+   "And in Module 1's register, inbound provisioning already names both the H R app and the contractor-source app, through that same middleware."
+  ],
+  [
+   25.163,
+   1.962,
+   "Second, the sponsor review."
+  ],
+  [
+   27.125,
+   3.625,
+   "It goes on the contractor access package's assignment policy."
+  ],
+  [
+   30.75,
+   1.45,
+   "It runs twice a year."
+  ],
+  [
+   32.2,
+   4.888,
+   "The manager, who is the sponsor, reviews, with a named fallback reviewer."
+  ],
+  [
+   37.087,
+   3.263,
+   "And when nobody responds, access is removed."
+  ],
+  [
+   40.35,
+   8.662,
+   "One caution from the kit: using the requestor's manager as a reviewer is among the things it lists as unconfirmed, so Lab 2 checks it."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   4.862,
+   "Lab 1 runs in the hr-lifecycle folder, on fictional contractors."
+  ],
+  [
+   5.638,
+   9.925,
+   "Step one lists the reconciliation's only read: one GET on users, with two read permissions, the lifecycle information read and User dot Read dot All."
+  ],
+  [
+   15.562,
+   2.775,
+   "Step two computes the earliest ends."
+  ],
+  [
+   18.337,
+   9.6,
+   "You give the extract the contractor register, the card records, the sponsors from the H R export, the rules file, and an as-of date, the first of November."
+  ],
+  [
+   27.938,
+   1.788,
+   "It finds nine contractors."
+  ],
+  [
+   29.725,
+   1.2,
+   "Three are active."
+  ],
+  [
+   30.925,
+   3.487,
+   "Four are inactive, already past their earliest end."
+  ],
+  [
+   34.413,
+   3.513,
+   "And two are quarantined, so they won't be provisioned at all."
+  ],
+  [
+   37.925,
+   6.45,
+   "The source checks report two findings, one warning and one information item, and the exit code is two."
+  ],
+  [
+   44.375,
+   4.725,
+   "The last line tells you the next step: build the skim requests with the middleware."
+  ],
+  [
+   49.1,
+   2.425,
+   "The output is wrapped and trimmed to fit."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   6.675,
+   "Step three prints the nine decisions: each contractor's action, earliest end and reason."
+  ],
+  [
+   6.725,
+   1.925,
+   "Look at the four inactive ones."
+  ],
+  [
+   8.65,
+   10.0,
+   "Each is inactive for a different reason: a completion date, suitability withdrawn, a sponsor gone past the grace period, and a sponsor recertification that came due."
+  ],
+  [
+   18.65,
+   6.263,
+   "The last one is the knowledge-check case: whatever the contract says, the earliest condition wins."
+  ],
+  [
+   24.913,
+   9.963,
+   "The two quarantined records are nine hundred thousand and seven, which has no contract end, and nine hundred thousand and eight, whose sponsor isn't in the H R export."
+  ],
+  [
+   34.875,
+   2.875,
+   "Step four hands the extract to the middleware."
+  ],
+  [
+   37.75,
+   6.938,
+   "It reports seven records ready, in one batch, and four of them are disables, the four inactive contractors."
+  ],
+  [
+   44.688,
+   4.925,
+   "Nothing is held, and nothing is sent: the middleware only builds the requests."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   1.663,
+   "Step five reconciles."
+  ],
+  [
+   1.712,
+   10.05,
+   "You give it the same register, cards, sponsors and rules, plus an export of the contractor accounts in the directory, and it reports seven findings and one warning."
+  ],
+  [
+   11.762,
+   4.625,
+   "Four are C R oh one: accounts still enabled past their earliest end."
+  ],
+  [
+   16.387,
+   8.588,
+   "Those four are exactly the four disables the middleware built in step four, so once those disables are sent, the next reconciliation shows none."
+  ],
+  [
+   24.975,
+   5.95,
+   "There's one orphan, C R oh two, an enabled contractor account with no register record."
+  ],
+  [
+   30.925,
+   4.475,
+   "One C R oh three, an active card for someone the source doesn't hold."
+  ],
+  [
+   35.4,
+   7.15,
+   "One C R oh five, a leave date that isn't the earliest end, so the leaver workflow would fire on the wrong day."
+  ],
+  [
+   42.55,
+   4.588,
+   "And one warning, C R oh four, a register record with no account."
+  ],
+  [
+   47.138,
+   3.575,
+   "The reconciliation changes nothing; it only reports."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   3.625,
+   "Step six writes the sponsor review settings, for review."
+  ],
+  [
+   3.675,
+   2.612,
+   "The tool says so: nothing was sent."
+  ],
+  [
+   6.287,
+   2.538,
+   "Print the file and read four values."
+  ],
+  [
+   8.825,
+   7.85,
+   "The expiration behavior is remove access, so a missed recertification ends access, just as the earliest-end rule says."
+  ],
+  [
+   16.675,
+   6.612,
+   "The primary reviewer is the requestor's manager, at level one, with a single named user as the fallback."
+  ],
+  [
+   23.288,
+   6.5,
+   "The recurrence is absolute monthly with an interval of six, so the review runs every six months."
+  ],
+  [
+   29.788,
+   2.65,
+   "And reviewers have fourteen days to answer."
+  ],
+  [
+   32.438,
+   10.3,
+   "The file also names its target: merge these settings into the contractor package's assignment policy, and send the whole policy with the Graph PowerShell cmdlet after review."
+  ],
+  [
+   42.737,
+   3.5,
+   "Step seven runs the tests, and fifty-seven pass."
+  ],
+  [
+   46.237,
+   1.837,
+   "Then delete the output folder."
+  ],
+  [
+   48.075,
+   3.0,
+   "The output on the slide is trimmed and reflowed."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   6.263,
+   "Lab 2 runs the gate in your own test tenant, worldwide or G C C, never production."
+  ],
+  [
+   6.312,
+   2.325,
+   "Set up a contractor provisioning app."
+  ],
+  [
+   8.637,
+   5.638,
+   "Send two test contractors through the middleware's apply path, then reconcile against the tenant."
+  ],
+  [
+   14.275,
+   7.5,
+   "And apply the review settings to a test contractor package; the chapter names the cmdlet and permission for updating the policy."
+  ],
+  [
+   21.775,
+   7.875,
+   "The middleware's identity holds one permission, the synchronization upload permission, scoped to the contractor provisioning app only."
+  ],
+  [
+   29.65,
+   4.938,
+   "The reader app holds User dot Read dot All and the lifecycle information read."
+  ],
+  [
+   34.587,
+   13.537,
+   "To back it out, restore the policy's previous review settings from your read-back, pause the provisioning job, which keeps its state, delete the test contractors, remove the permissions, and delete the export and output folders."
+  ],
+  [
+   48.125,
+   2.15,
+   "The authors haven't run Lab 2."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   1.387,
+   "The federal requirement."
+  ],
+  [
+   1.438,
+   9.375,
+   "This gate meets nist special publication eight hundred fifty-three A C two, account management, and P S seven, external personnel security."
+  ],
+  [
+   10.812,
+   6.775,
+   "It meets I A four, enhancement four, which identifies each person by status, such as contractor."
+  ],
+  [
+   17.587,
+   9.613,
+   "And it meets O M B M twenty-two oh-nine's expectation that enterprise identity draws on H R, contract management and personnel security."
+  ],
+  [
+   27.2,
+   13.338,
+   "The evidence an I S S O keeps for Gate 2 starts with both reconciliation output folders and their manifests: one run before the contractor leaver ships, and one after, with zero C R oh one."
+  ],
+  [
+   40.538,
+   3.312,
+   "Then the extract and the middleware's provenance manifest."
+  ],
+  [
+   43.85,
+   3.725,
+   "The authority-per-fact table, signed by the governance body."
+  ],
+  [
+   47.575,
+   4.275,
+   "And the privacy office's determination for the register and the card system."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   1.975,
+   "Check yourself with two questions."
+  ],
+  [
+   2.025,
+   7.112,
+   "First: a contractor's contract runs to January, but their sponsor recertification was due in October."
+  ],
+  [
+   9.137,
+   1.825,
+   "Which end does the extract use?"
+  ],
+  [
+   10.963,
+   5.45,
+   "The answer is b: the earliest condition that applies, the recertification due date."
+  ],
+  [
+   16.413,
+   3.9,
+   "The extract computes every end condition and takes the first."
+  ],
+  [
+   20.312,
+   3.475,
+   "Second: what does a C R oh one finding mean?"
+  ],
+  [
+   23.788,
+   3.975,
+   "The answer is a: an enabled account past its earliest end."
+  ],
+  [
+   27.762,
+   7.275,
+   "An account with no register record is the orphan, C R oh two, and a record with no account is C R oh four."
+  ],
+  [
+   35.038,
+   5.112,
+   "Once the disables are sent, the next reconciliation shows no C R oh one."
+  ],
+  [
+   40.15,
+   4.9,
+   "The module page has two more questions, each linked to the section that answers it."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   0.825,
+   "To sum up."
+  ],
+  [
+   0.875,
+   3.15,
+   "You computed nine contractors' earliest ends."
+  ],
+  [
+   4.025,
+   4.65,
+   "You built the skim requests that disable four of them, without sending anything."
+  ],
+  [
+   8.675,
+   10.225,
+   "You reconciled the register, the cards and the directory, and found the four accounts those disables will close, plus an orphan, a stray card and a wrong leave date."
+  ],
+  [
+   18.9,
+   4.263,
+   "And you wrote the sponsor review that removes access when nobody responds."
+  ],
+  [
+   23.163,
+   3.825,
+   "Next is Module 3: make joiners ready on day one."
+  ],
+  [
+   26.988,
+   4.275,
+   "Its workflow files include the contractor leaver workflow from this gate."
+  ],
+  [
+   31.262,
+   12.675,
+   "You'll keep Lifecycle Workflows definitions as reviewed files, lint them before they reach the tenant, plan each change against what the tenant holds, and measure how many new hires were actually ready on their first morning."
+  ]
+ ]
+}

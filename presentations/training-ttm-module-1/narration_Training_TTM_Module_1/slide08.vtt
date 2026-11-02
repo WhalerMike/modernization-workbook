@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.552
+The contract is enforced in one place:
+
+2
+00:00:02.552 --> 00:00:06.425
+the Scripted REST resource,
+which runs inside ServiceNow.
+
+3
+00:00:06.425 --> 00:00:08.743
+It validates the payload and answers four
+
+4
+00:00:08.743 --> 00:00:11.325
+hundred with the reason
+when something's wrong.
+
+5
+00:00:11.325 --> 00:00:16.950
+It maps severity to a priority, one to
+four, and a due date on the program's tempo.
+
+6
+00:00:16.950 --> 00:00:21.830
+It de-duplicates against an active finding:
+when one already has the same source,
+
+7
+00:00:21.830 --> 00:00:25.010
+subject, class and attribute,
+it answers two hundred
+
+8
+00:00:25.010 --> 00:00:28.337
+with the existing record
+instead of creating a second.
+
+9
+00:00:28.337 --> 00:00:33.175
+And when a SailPoint event arrives with
+no intended state, it derives one.
+
+10
+00:00:33.175 --> 00:00:37.150
+A new finding gets two oh one,
+with its number and priority.
+
+11
+00:00:37.150 --> 00:00:39.813
+Here's the problem Chapter 01 solved.
+
+12
+00:00:39.813 --> 00:00:44.095
+Until then, nothing outside ServiceNow
+applied the same rules, so a client
+
+13
+00:00:44.095 --> 00:00:48.500
+learned that a payload was wrong only
+from a four hundred on a live instance.

@@ -1,0 +1,55 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.637
+Unit 2 has two parts, the
+measurement and the check.
+
+2
+00:00:03.637 --> 00:00:08.799
+The measurement downloads each revocation
+list once and records its size in bytes,
+
+3
+00:00:08.799 --> 00:00:12.613
+the seconds it took and any error,
+with the time it was measured.
+
+4
+00:00:12.613 --> 00:00:16.295
+An unreachable list isn't an
+exception that stops the run:
+
+5
+00:00:16.295 --> 00:00:20.525
+it's recorded, because the failure
+is exactly the finding you want.
+
+6
+00:00:20.525 --> 00:00:23.420
+For the lab, a local
+path is read as a file,
+
+7
+00:00:23.420 --> 00:00:27.038
+which is how Lab 1 runs on
+a laptop with no network.
+
+8
+00:00:27.038 --> 00:00:31.275
+In Lab 2 you measure the real lists
+from outside the agency network.
+
+9
+00:00:31.275 --> 00:00:33.438
+And the check insists on the measurement.
+
+10
+00:00:33.438 --> 00:00:36.754
+A configured list with no
+measurement row is C B six,
+
+11
+00:00:36.754 --> 00:00:40.750
+a Finding, so you can't pass the
+check by skipping the download.

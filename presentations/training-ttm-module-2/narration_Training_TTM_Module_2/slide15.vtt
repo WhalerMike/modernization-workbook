@@ -1,0 +1,61 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.550
+Check yourself with two questions
+from the module's knowledge check.
+
+2
+00:00:03.550 --> 00:00:08.041
+First: why does the evidence export
+get its own evidence reader role,
+
+3
+00:00:08.041 --> 00:00:10.287
+instead of reusing the verifier's?
+
+4
+00:00:10.287 --> 00:00:11.512
+The answer is b.
+
+5
+00:00:11.512 --> 00:00:15.450
+With the verifier's role, the
+export could also close findings.
+
+6
+00:00:15.450 --> 00:00:18.150
+The reader can't change a
+record it's about to hash.
+
+7
+00:00:18.150 --> 00:00:19.875
+Roles are split by task.
+
+8
+00:00:19.875 --> 00:00:24.763
+Second: Gate 1 asks you to record which
+actions run from a vendor's cloud.
+
+9
+00:00:24.763 --> 00:00:25.450
+Why?
+
+10
+00:00:25.450 --> 00:00:26.414
+The answer is a.
+
+11
+00:00:26.414 --> 00:00:30.912
+Book 15 prefers execution through
+a connector inside the boundary,
+
+12
+00:00:30.912 --> 00:00:34.688
+so each vendor-cloud action
+becomes a recorded data flow.
+
+13
+00:00:34.688 --> 00:00:39.650
+The module page has two more questions,
+each linked to the section that answers it.

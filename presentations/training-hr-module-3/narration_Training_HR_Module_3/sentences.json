@@ -1,0 +1,717 @@
+{
+ "1": [
+  [
+   0.05,
+   6.713,
+   "Welcome to Module 3 of the H R-Driven Identity learning path: make joiners ready on day one."
+  ],
+  [
+   6.763,
+   5.388,
+   "This is Gate 3, Joiners, with Chapter 03 of the developer workbook."
+  ],
+  [
+   12.15,
+   6.425,
+   "Modules 1 and 2 settled who writes each account state, and brought contractors in from their own source."
+  ],
+  [
+   18.575,
+   1.962,
+   "Now the new hire's first morning."
+  ],
+  [
+   20.538,
+   13.575,
+   "In this module you'll keep the Lifecycle Workflows definitions as reviewed files, lint them before they reach the tenant, plan each change against what the tenant already holds, and measure how many hires were actually ready on day one."
+  ],
+  [
+   34.112,
+   5.875,
+   "You'll also see why the Temporary Access Pass a new hire gets should be short-lived and one-time use."
+  ],
+  [
+   39.987,
+   3.413,
+   "The code runs on your laptop against fictional fixtures."
+  ],
+  [
+   43.4,
+   5.312,
+   "It's illustrative: unit-tested against fixtures, not run against a lyve tenant."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   2.0,
+   "Why does the first morning need code?"
+  ],
+  [
+   2.05,
+   3.65,
+   "The pipeline sends a new hire's account early, and disabled."
+  ],
+  [
+   5.7,
+   8.662,
+   "On the first morning, that person needs an enabled account, a license, baseline access, and a way to sign in before their piv card is bound."
+  ],
+  [
+   14.363,
+   2.5,
+   "Lifecycle Workflows can do all of that."
+  ],
+  [
+   16.863,
+   1.312,
+   "But here's the catch."
+  ],
+  [
+   18.175,
+   3.663,
+   "Each workflow is a definition that someone can change in the portal."
+  ],
+  [
+   21.837,
+   4.688,
+   "And Learn makes every change a new version, rather than an in-place update."
+  ],
+  [
+   26.525,
+   3.675,
+   "So in this module you keep the workflows as reviewed files."
+  ],
+  [
+   30.2,
+   2.25,
+   "You lint them before they reach the tenant."
+  ],
+  [
+   32.45,
+   3.025,
+   "You plan each change against what the tenant holds."
+  ],
+  [
+   35.475,
+   7.725,
+   "And then you measure how many hires were actually ready on day one, because a workflow that ran isn't the same as a person who can work."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   5.175,
+   "Here's what you'll be able to do by the end of this module, which takes about fifty minutes with the lab."
+  ],
+  [
+   5.225,
+   7.763,
+   "You'll explain why workflows belong in reviewed files, and how the plan decides between creating a workflow and making a new version."
+  ],
+  [
+   12.988,
+   6.75,
+   "You'll run the workflow lint and explain its Temporary Access Pass findings, the J W oh five rule."
+  ],
+  [
+   19.738,
+   3.05,
+   "You'll explain why the workflow budget is held to fifty."
+  ],
+  [
+   22.788,
+   4.05,
+   "And you'll measure the day-one readiness rate, and say what makes a hire ready."
+  ],
+  [
+   26.837,
+   1.738,
+   "Two modules come first."
+  ],
+  [
+   28.575,
+   7.775,
+   "From Module 1: in this program, the pipeline's active value, not the day-one workflow, enables the account at hire."
+  ],
+  [
+   36.35,
+   4.963,
+   "From Module 2: the contractor leaver workflow, which the files include."
+  ],
+  [
+   41.312,
+   7.125,
+   "Lab 2 needs a worldwide or G C C test tenant with Entra I D Governance trial or test licenses."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   3.3,
+   "Read the guide's Step 3, and notice three things."
+  ],
+  [
+   3.35,
+   1.925,
+   "First, the workflow budget."
+  ],
+  [
+   5.275,
+   7.013,
+   "Learn gives two tenant ceilings: fifty workflows on its licensing page, and a hundred on its service limits page."
+  ],
+  [
+   12.287,
+   5.35,
+   "The guide budgets to fifty until Microsoft reconciles them; that's design guidance."
+  ],
+  [
+   17.637,
+   2.587,
+   "Second, the Temporary Access Pass."
+  ],
+  [
+   20.225,
+   7.763,
+   "The tenant allows a pass from ten minutes to thirty days, but Learn recommends at most twenty-four hours for a pass sent to a new hire."
+  ],
+  [
+   27.988,
+   6.325,
+   "Third, baseline access comes by access package, never by adding the user to a group directly."
+  ],
+  [
+   34.312,
+   9.725,
+   "Then read the design in the Federal Modernization Workbook's Book 03's Chapter 08: its guardrails at agency scale, and its triggers and schedule."
+  ],
+  [
+   44.038,
+   7.888,
+   "And keep Module 1's rule in mind: in this program, the pipeline's active value enables the account at hire, not a workflow."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   4.638,
+   "Here are the six workflow files, as reviewed version one point oh bodies."
+  ],
+  [
+   4.688,
+   1.25,
+   "Two are joiners."
+  ],
+  [
+   5.938,
+   7.275,
+   "The pre-hire workflow runs seven days before the hire date and generates the Temporary Access Pass and sends it by email."
+  ],
+  [
+   13.213,
+   5.412,
+   "The day-one workflow runs on the hire date and requests the onboarding access package."
+  ],
+  [
+   18.625,
+   7.263,
+   "One is the mover, triggered by an attribute change: it notifies the manager and removes an access package assignment."
+  ],
+  [
+   25.887,
+   1.562,
+   "And three are leavers."
+  ],
+  [
+   27.45,
+   9.8,
+   "On the leave date, employees are disabled, their refresh tokens revoked and their package assignments removed; contractors are disabled and their tokens revoked."
+  ],
+  [
+   37.25,
+   5.362,
+   "Thirty days after the leave date, a separate post-separation workflow deletes the user."
+  ],
+  [
+   42.612,
+   1.288,
+   "Notice the scopes."
+  ],
+  [
+   43.9,
+   7.95,
+   "Every one reads the worker type and a coded slot, never a name, so renaming an organization can't silently drop anyone."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   6.475,
+   "The lint, rules J W oh one to fifteen, checks the files before anything reaches the tenant."
+  ],
+  [
+   6.525,
+   0.975,
+   "A few to know."
+  ],
+  [
+   7.5,
+   6.912,
+   "J W oh two warns when a scope uses no coded attribute, or reads a display value like department."
+  ],
+  [
+   14.412,
+   9.113,
+   "J W oh three and oh six catch an offset beyond a hundred eighty days either way, and more than Learn's twenty-five tasks in a workflow."
+  ],
+  [
+   23.525,
+   10.162,
+   "J W oh five is the pass: a lifetime outside ten minutes to thirty days is a finding, and over twenty-four hours, or not one-time use, is a warning."
+  ],
+  [
+   33.688,
+   2.6,
+   "J W oh seven is over budget."
+  ],
+  [
+   36.288,
+   10.912,
+   "J W oh eight is a scheduled workflow with no execution limit recorded; Learn says the limit isn't in the A P I, so you set it in the admin center and record it."
+  ],
+  [
+   47.2,
+   2.862,
+   "J W oh nine is a direct group add."
+  ],
+  [
+   50.062,
+   3.263,
+   "J W eleven is delete and disable together."
+  ],
+  [
+   53.325,
+   3.35,
+   "Some rules come from Learn, and some are design guidance."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   1.188,
+   "Two more ideas."
+  ],
+  [
+   1.238,
+   5.725,
+   "The plan compares the files with an export of the tenant's workflows, matching them by display name."
+  ],
+  [
+   6.963,
+   2.45,
+   "A file with no match becomes a create."
+  ],
+  [
+   9.412,
+   6.4,
+   "A file that changed becomes a body for create new version, because Learn makes a definition change a new version."
+  ],
+  [
+   15.812,
+   2.5,
+   "An unchanged file is left alone."
+  ],
+  [
+   18.312,
+   5.138,
+   "A workflow in the tenant that no file defines gets the J W fifteen warning."
+  ],
+  [
+   23.45,
+   3.938,
+   "And the plan refuses to run on files that still have lint findings."
+  ],
+  [
+   27.387,
+   1.137,
+   "Then readiness."
+  ],
+  [
+   28.525,
+   10.5,
+   "A hire is ready on day one only with all four: an account that exists and is enabled, a license, the onboarding package delivered, and a completed pre-hire run."
+  ],
+  [
+   39.025,
+   7.588,
+   "The readiness rate is ready hires over hires for each start date, and it's saved in a summary file that Module 7 reads."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   5.562,
+   "Lab 1 runs in the hr-lifecycle folder, and nothing signs in or sends a request."
+  ],
+  [
+   6.338,
+   2.562,
+   "Step one lists two tasks' reads."
+  ],
+  [
+   8.9,
+   6.625,
+   "The plan needs only one permission, the Lifecycle Workflows workflow read, for one GET on the workflows."
+  ],
+  [
+   15.525,
+   9.363,
+   "Readiness needs four permissions, for three GET calls: the users, each workflow's user processing results, and the access package assignments."
+  ],
+  [
+   24.887,
+   4.862,
+   "Step two lints the program's own six workflow files with a budget of fifty."
+  ],
+  [
+   29.75,
+   4.15,
+   "Zero findings, zero warnings, zero information items."
+  ],
+  [
+   33.9,
+   9.713,
+   "That's the clean run an I S S O keeps: it shows a one-time pass of at most twenty-four hours, and an execution limit on every scheduled workflow."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   6.425,
+   "Step three lints three broken copies, with a budget of two so you can see J W oh seven."
+  ],
+  [
+   6.475,
+   3.737,
+   "Seven findings and four warnings, and an exit code of two."
+  ],
+  [
+   10.213,
+   0.887,
+   "Read a few."
+  ],
+  [
+   11.1,
+   3.263,
+   "One offset is two hundred days, beyond the limit."
+  ],
+  [
+   14.363,
+   2.2,
+   "A leaver is triggered on the hire date."
+  ],
+  [
+   16.562,
+   5.45,
+   "Three workflows are over the budget of two, and the message quotes both of Learn's ceilings."
+  ],
+  [
+   22.012,
+   3.55,
+   "A scheduled workflow has no execution limit recorded."
+  ],
+  [
+   25.562,
+   5.7,
+   "A joiner adds the user to groups directly, instead of giving baseline access by package."
+  ],
+  [
+   31.262,
+   1.65,
+   "The slide trims a few more."
+  ],
+  [
+   32.913,
+   5.5,
+   "Now find the two J W oh five warnings, the ones this module cares most about."
+  ],
+  [
+   38.413,
+   8.213,
+   "One pass lasts four thousand three hundred twenty minutes, which is three days, well over the twenty-four hours Learn recommends for a new hire."
+  ],
+  [
+   46.625,
+   2.3,
+   "The other pass isn't one-time use."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   4.9,
+   "Step four plans the program's files against an export of the tenant's workflows."
+  ],
+  [
+   4.95,
+   3.288,
+   "The day-one workflow changed, so it gets a new version."
+  ],
+  [
+   8.238,
+   4.338,
+   "The employee last-day leaver isn't in the tenant yet, so it's a create."
+  ],
+  [
+   12.575,
+   2.638,
+   "The other four are unchanged and left alone."
+  ],
+  [
+   15.213,
+   9.0,
+   "There's one warning, J W fifteen, for a workflow called Onboard Marketing, legacy: someone made it in the portal, and no file defines it."
+  ],
+  [
+   24.212,
+   3.325,
+   "The plan is written to a file, and nothing is sent."
+  ],
+  [
+   27.538,
+   2.062,
+   "Now try planning the broken folder."
+  ],
+  [
+   29.6,
+   4.713,
+   "It stops with an error: the files have lint findings, fix them before planning."
+  ],
+  [
+   34.312,
+   1.712,
+   "So the order is enforced."
+  ],
+  [
+   36.025,
+   3.438,
+   "Lint first, then plan, then a reviewed send."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   1.887,
+   "Step five measures day one."
+  ],
+  [
+   1.938,
+   14.625,
+   "You give it the H R hires, the hire accounts, the pre-hire workflow's results, the access package assignments, the workflow files, a moment, eight in the morning U T C on the second of November, the cloud, and an output folder."
+  ],
+  [
+   16.562,
+   3.112,
+   "One of four hires was ready: twenty-five percent."
+  ],
+  [
+   19.675,
+   6.938,
+   "Three hires get a readiness warning, because each one is missing at least one of the four things a ready hire has."
+  ],
+  [
+   26.613,
+   7.225,
+   "The summary file holds the rate, zero point two five, and Module 7 reads it as one of the lifecycle metrics."
+  ],
+  [
+   33.837,
+   5.737,
+   "Step six runs the tests, fifty-seven pass, and you delete the chapter's output folder."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   13.338,
+   "Lab 2 runs one change in your own test tenant: worldwide or G C C, never production, with Entra I D Governance trial or test licenses, and test users whose hire date is a few days away."
+  ],
+  [
+   13.387,
+   7.7,
+   "Export the tenant's workflows, plan one change, and send it with Graph PowerShell as a Lifecycle Workflows Administrator."
+  ],
+  [
+   21.087,
+   7.25,
+   "Set the execution limit in the admin center, since it isn't in the A P I. Check that the manager receives the pass."
+  ],
+  [
+   28.337,
+   2.45,
+   "And on the start date, measure readiness."
+  ],
+  [
+   30.788,
+   4.2,
+   "The reader app needs a certificate and one permission, the workflow read."
+  ],
+  [
+   34.987,
+   8.537,
+   "To back it out, delete a workflow the lab created, which can be restored for thirty days, or send the previous file's body as a further version."
+  ],
+  [
+   43.525,
+   5.812,
+   "Then remove the reader app, its permission and certificate, and delete the export and output."
+  ],
+  [
+   49.337,
+   2.15,
+   "The authors haven't run Lab 2."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   1.387,
+   "The federal requirement."
+  ],
+  [
+   1.438,
+   8.4,
+   "This gate meets nist special publication eight hundred fifty-three A C two, enhancement one, automated system account management."
+  ],
+  [
+   9.838,
+   9.463,
+   "It meets I A five: the initial authenticator is time-limited, and goes to an accountable person; that's the short, one-time pass sent to the manager."
+  ],
+  [
+   19.3,
+   10.425,
+   "And it meets O M B M twenty-two oh-nine's phishing-resistant multifactor authentication, which the Temporary Access Pass bridges to until the piv card is bound."
+  ],
+  [
+   29.725,
+   9.137,
+   "The evidence an I S S O keeps for Gate 3: the reviewed workflow files, and the plan that changed each version, with its manifest."
+  ],
+  [
+   38.862,
+   7.925,
+   "The lint's clean run, showing a one-time pass of at most twenty-four hours and an execution limit on every scheduled workflow."
+  ],
+  [
+   46.788,
+   2.487,
+   "The readiness summary for each start date."
+  ],
+  [
+   49.275,
+   4.638,
+   "And the workflows' run history, exported past Entra's thirty-day view."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   1.975,
+   "Check yourself with two questions."
+  ],
+  [
+   2.025,
+   4.0,
+   "First: you change the pre-hire workflow's offset in its file."
+  ],
+  [
+   6.025,
+   1.725,
+   "What does the plan produce for it?"
+  ],
+  [
+   7.75,
+   6.438,
+   "The answer is a: a body for create new version, because Learn makes a definition change a new version."
+  ],
+  [
+   14.188,
+   1.738,
+   "There's no in-place update."
+  ],
+  [
+   15.925,
+   3.225,
+   "A file with no match in the tenant would become a create."
+  ],
+  [
+   19.15,
+   3.05,
+   "Second: which hire counts as ready on day one?"
+  ],
+  [
+   22.2,
+   9.425,
+   "The answer is c: one whose account exists and is enabled, holds a license, has the onboarding package delivered, and has a completed pre-hire run."
+  ],
+  [
+   31.625,
+   0.963,
+   "All four."
+  ],
+  [
+   32.587,
+   6.162,
+   "An account that exists but is disabled isn't ready, and neither is a pre-hire run that didn't complete."
+  ],
+  [
+   38.75,
+   4.9,
+   "The module page has two more questions, each linked to the section that answers it."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   0.825,
+   "To sum up."
+  ],
+  [
+   0.875,
+   4.263,
+   "You linted the program's six workflow files and three broken ones."
+  ],
+  [
+   5.138,
+   5.838,
+   "You planned a create and a new version against a tenant export, and saw a portal-made workflow flagged."
+  ],
+  [
+   10.975,
+   3.575,
+   "And you measured a day-one readiness rate of twenty-five percent."
+  ],
+  [
+   14.55,
+   7.662,
+   "Carry one thing forward: the day-one workflow requests the onboarding package, but department access comes from the next gate."
+  ],
+  [
+   22.212,
+   5.425,
+   "Next is Module 4: assign access from attributes and review what a move leaves."
+  ],
+  [
+   27.637,
+   11.1,
+   "You'll lint access package assignment policies before they reach the tenant, scan the tenant's policies for the member-of operator, and list what a move leaves behind for the manager of record to review."
+  ]
+ ]
+}

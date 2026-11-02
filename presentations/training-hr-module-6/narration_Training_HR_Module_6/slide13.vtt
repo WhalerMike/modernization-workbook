@@ -1,0 +1,68 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.437
+The federal requirement.
+
+2
+00:00:01.437 --> 00:00:05.838
+In NIST special publication
+eight hundred fifty-three terms,
+
+3
+00:00:05.838 --> 00:00:11.014
+this gate meets P S four, personnel
+termination; A C two, enhancement three,
+
+4
+00:00:11.014 --> 00:00:14.809
+disable accounts; P S seven
+for contractors; and A C two,
+
+5
+00:00:14.809 --> 00:00:19.813
+enhancement thirteen, disabling
+accounts for high-risk individuals.
+
+6
+00:00:19.813 --> 00:00:23.795
+It also meets FIPS two oh one dash
+three's rule that a card that
+
+7
+00:00:23.795 --> 00:00:28.574
+can't be collected is terminated
+within eighteen hours of notification.
+
+8
+00:00:28.574 --> 00:00:32.741
+The evidence an ISSO keeps
+for Gate 6: the intervals,
+
+9
+00:00:32.741 --> 00:00:37.900
+the summary and the findings, with
+their manifest, for every run.
+
+10
+00:00:37.900 --> 00:00:40.709
+The exported workflow runs, audit records,
+
+11
+00:00:40.709 --> 00:00:44.000
+card revocations and device
+actions behind them.
+
+12
+00:00:44.000 --> 00:00:46.312
+The contractor rows of the intervals.
+
+13
+00:00:46.312 --> 00:00:49.812
+The notice and revocation
+times for uncollected cards.
+
+14
+00:00:49.812 --> 00:00:53.980
+And the emergency path's
+on-demand runs, logged as changes.

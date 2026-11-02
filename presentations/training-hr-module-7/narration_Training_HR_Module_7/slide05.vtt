@@ -1,0 +1,71 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.438
+Unit 2 turns to the workbook chapter.
+
+2
+00:00:02.438 --> 00:00:03.726
+Here are the classes.
+
+3
+00:00:03.726 --> 00:00:08.325
+L D one, missing identity: an active
+worker record with no account.
+
+4
+00:00:08.325 --> 00:00:13.809
+L D two, stale access: a worker terminated
+in HR whose account is still enabled,
+
+5
+00:00:13.809 --> 00:00:17.813
+or a contractor past the
+earliest end and still enabled.
+
+6
+00:00:17.813 --> 00:00:19.541
+L D three, orphan account:
+
+7
+00:00:19.541 --> 00:00:24.124
+an enabled account that matches
+no worker or contractor record.
+
+8
+00:00:24.124 --> 00:00:26.137
+L D four, unauthorized write:
+
+9
+00:00:26.137 --> 00:00:30.687
+Module 1's audit scan found a
+second writer or a forbidden write.
+
+10
+00:00:30.687 --> 00:00:35.888
+L D five, credential drift: an active
+PIV card for a separated worker.
+
+11
+00:00:35.888 --> 00:00:40.157
+And L D six, the contractor version:
+an active card for someone whose
+
+12
+00:00:40.157 --> 00:00:44.425
+engagement ended, or whom the
+contractor source doesn't hold at all.
+
+13
+00:00:44.425 --> 00:00:45.913
+Those six are Findings.
+
+14
+00:00:45.913 --> 00:00:49.355
+Two more rules are warnings
+about the metrics:
+
+15
+00:00:49.355 --> 00:00:52.940
+L D seven, out of bounds,
+and L D eight, not measured.

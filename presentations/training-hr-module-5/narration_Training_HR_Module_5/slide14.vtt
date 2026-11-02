@@ -1,0 +1,62 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.550
+Check yourself with two questions
+from the module's knowledge check.
+
+2
+00:00:03.550 --> 00:00:07.120
+First: what happens when an
+issuing certificate authority
+
+3
+00:00:07.120 --> 00:00:10.325
+in the trust store has no
+revocation list configured?
+
+4
+00:00:10.325 --> 00:00:11.288
+The answer is b.
+
+5
+00:00:11.288 --> 00:00:13.937
+Entra doesn't check revocation for that
+
+6
+00:00:13.937 --> 00:00:16.987
+authority's certificates,
+which is rule C B one.
+
+7
+00:00:16.987 --> 00:00:20.894
+Second: an eighteen and
+a half million byte list
+
+8
+00:00:20.894 --> 00:00:24.300
+raises C B five for GCC
+but not for GCC High.
+
+9
+00:00:24.300 --> 00:00:24.988
+Why?
+
+10
+00:00:24.988 --> 00:00:25.997
+The answer is b.
+
+11
+00:00:25.997 --> 00:00:30.453
+C B five warns at eighty percent
+of the cloud's interactive limit,
+
+12
+00:00:30.453 --> 00:00:35.750
+and GCC High's limit is forty-five megabytes,
+so the same size is under the line.
+
+13
+00:00:35.750 --> 00:00:40.680
+The module page has two more questions,
+each linked to the section that teaches it.

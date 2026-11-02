@@ -1,0 +1,76 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.162
+Gate 6 starts with a business rule.
+
+2
+00:00:02.162 --> 00:00:04.714
+It runs before update, on the state field,
+
+3
+00:00:04.714 --> 00:00:07.960
+and it turns any close into
+Awaiting verification,
+
+4
+00:00:07.960 --> 00:00:13.138
+unless the same update carries new evidence
+and comes from the verifier account.
+
+5
+00:00:13.138 --> 00:00:14.500
+Walk through the cases.
+
+6
+00:00:14.500 --> 00:00:17.725
+A person sets the state
+to Closed: redirected.
+
+7
+00:00:17.725 --> 00:00:21.914
+An update that carries new evidence
+but comes from someone else:
+
+8
+00:00:21.914 --> 00:00:25.075
+redirected, because evidence
+alone isn't enough.
+
+9
+00:00:25.075 --> 00:00:28.026
+The verifier account without new evidence:
+
+10
+00:00:28.026 --> 00:00:31.550
+redirected, because the
+verifier alone isn't enough.
+
+11
+00:00:31.550 --> 00:00:35.300
+The verifier with a new evidence
+hash: the close stands.
+
+12
+00:00:35.300 --> 00:00:39.032
+And a named exception approver can
+still cancel with a close note,
+
+13
+00:00:39.032 --> 00:00:41.175
+which is the declared-exception lane.
+
+14
+00:00:41.175 --> 00:00:44.037
+The rule covers the
+identity finding table and,
+
+15
+00:00:44.037 --> 00:00:48.441
+on the incident and request item
+tables, the tickets SailPoint's Service
+
+16
+00:00:48.441 --> 00:00:53.210
+Desk integration opened, so its status
+mapping no longer decides completion.

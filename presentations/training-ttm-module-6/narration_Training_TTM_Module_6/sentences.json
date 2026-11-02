@@ -1,0 +1,774 @@
+{
+ "1": [
+  [
+   0.05,
+   5.725,
+   "Welcome to Module 6 of the Ticket-to-Machine learning path: actuation and the re-read rule."
+  ],
+  [
+   5.775,
+   5.925,
+   "This module covers the guide's Gates 5 and 6, and the developer workbook's Chapter 05."
+  ],
+  [
+   11.7,
+   4.362,
+   "In Module 5, an event became a finding with an intended state."
+  ],
+  [
+   16.062,
+   3.212,
+   "Now the fix has to happen, and the finding has to close."
+  ],
+  [
+   19.275,
+   3.7,
+   "You'll see where the fix runs on these products, lane by lane."
+  ],
+  [
+   22.975,
+   9.863,
+   "Then you'll see how a ServiceNow business rule and a re-read client enforce one rule: a finding closes only when a re-read of the target shows the intended state."
+  ],
+  [
+   32.837,
+   4.513,
+   "In the lab, you'll watch the client decide six waiting findings on two days."
+  ],
+  [
+   37.35,
+   4.025,
+   "The code is illustrative, tested against fictional fixtures."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.15,
+   "Why does this matter?"
+  ],
+  [
+   1.2,
+   7.362,
+   "SailPoint's Service Desk integration treats a provisioning task as complete when the mapped ServiceNow status says so."
+  ],
+  [
+   8.562,
+   3.663,
+   "So a technician sets a ticket to Closed, and nothing was checked."
+  ],
+  [
+   12.225,
+   2.025,
+   "The account might still be enabled."
+  ],
+  [
+   14.25,
+   1.538,
+   "The group might still be there."
+  ],
+  [
+   15.787,
+   6.537,
+   "The Federal Modernization Workbook's Book 13's rule is different: a success response isn't closure."
+  ],
+  [
+   22.325,
+   4.825,
+   "A finding closes only when a re-read of the target shows the intended state."
+  ],
+  [
+   27.15,
+   7.225,
+   "Gate 6 enforces that in ServiceNow, for identity findings and for the tickets the Service Desk integration opens."
+  ],
+  [
+   34.375,
+   7.362,
+   "In this module you see where the fix runs, and then you enforce the rule and watch the re-read client decide six findings."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   5.487,
+   "Here's what you'll be able to do by the end of this module, which takes about fifty-five minutes with the lab."
+  ],
+  [
+   5.537,
+   5.062,
+   "You'll explain how Gate 5 actuates by lane, and why the kit has no test for it."
+  ],
+  [
+   10.6,
+   4.312,
+   "You'll describe what the business rule does with a close, and who can close a finding."
+  ],
+  [
+   14.912,
+   7.35,
+   "You'll run the re-read client offline and interpret its four outcomes: verified, mismatch, pending and skipped."
+  ],
+  [
+   22.262,
+   6.037,
+   "And you'll explain why a stale read waits, and why an empty intended state is never verified."
+  ],
+  [
+   28.3,
+   7.125,
+   "Before you start, finish Module 5, and review Module 2's ServiceNow roles, because the verifier is one of them."
+  ],
+  [
+   35.425,
+   1.7,
+   "Lab 1 needs no tenant."
+  ],
+  [
+   37.125,
+   6.213,
+   "Lab 2 needs your developer instance, the verifier user, and a test user in a test Entra tenant."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   3.1,
+   "Gate 5 is where the ticket authorizes a machine."
+  ],
+  [
+   3.15,
+   5.6,
+   "The fix runs through a connector under a service identity, and a person's role stops at approval."
+  ],
+  [
+   8.75,
+   1.288,
+   "There are four lanes."
+  ],
+  [
+   10.037,
+   12.088,
+   "SailPoint's connectors provision owner-governed access: creating, updating, enabling, disabling and deleting accounts, and changing groups, roles, licenses and access packages."
+  ],
+  [
+   22.125,
+   5.775,
+   "When the Entra connector disables an account, it also signs the user out of existing sessions."
+  ],
+  [
+   27.9,
+   7.362,
+   "ServiceNow's Entra spoke handles low-authority tasks where its actions cover them; it has no M F A-reset action."
+  ],
+  [
+   35.263,
+   7.188,
+   "Disconnected applications run as declared exceptions, with a named approver, a recorded session and an end date."
+  ],
+  [
+   42.45,
+   3.825,
+   "And people act only through a just-in-time pim activation."
+  ],
+  [
+   46.275,
+   7.688,
+   "The kit's Pass 1 doesn't actuate, so Gate 5 is configuration of the products themselves, with no automated check yet."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   2.112,
+   "Gate 6 starts with a business rule."
+  ],
+  [
+   2.163,
+   10.975,
+   "It runs before update, on the state field, and it turns any close into Awaiting verification, unless the same update carries new evidence and comes from the verifier account."
+  ],
+  [
+   13.137,
+   1.363,
+   "Walk through the cases."
+  ],
+  [
+   14.5,
+   3.225,
+   "A person sets the state to Closed: redirected."
+  ],
+  [
+   17.725,
+   7.35,
+   "An update that carries new evidence but comes from someone else: redirected, because evidence alone isn't enough."
+  ],
+  [
+   25.075,
+   6.475,
+   "The verifier account without new evidence: redirected, because the verifier alone isn't enough."
+  ],
+  [
+   31.55,
+   3.75,
+   "The verifier with a new evidence hash: the close stands."
+  ],
+  [
+   35.3,
+   5.875,
+   "And a named exception approver can still cancel with a close note, which is the declared-exception lane."
+  ],
+  [
+   41.175,
+   11.963,
+   "The rule covers the identity finding table and, on the incident and request item tables, the tickets SailPoint's Service Desk integration opened, so its status mapping no longer decides completion."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   2.087,
+   "The re-read client does the checking."
+  ],
+  [
+   2.138,
+   6.95,
+   "It lists the waiting findings through ServiceNow's Table A P I, then re-reads each subject by its system."
+  ],
+  [
+   9.088,
+   2.812,
+   "An ISC account is read by its I D."
+  ],
+  [
+   11.9,
+   2.913,
+   "An ISC identity is found with a Search."
+  ],
+  [
+   14.812,
+   7.263,
+   "And an Entra user is read through Microsoft Graph, which returns a 404 when the user doesn't exist."
+  ],
+  [
+   22.075,
+   3.7,
+   "Each read has its own least permission, shown on the slide."
+  ],
+  [
+   25.775,
+   3.85,
+   "Then the client compares what it read with the finding's intended state."
+  ],
+  [
+   29.625,
+   13.012,
+   "On a match, it closes the record with the evidence: the query, the time, a SHA-256 hash of the response, the intended state and the checker, and it attaches that evidence as jay-son."
+  ],
+  [
+   42.638,
+   3.712,
+   "On a mismatch, it reopens the record with the differences."
+  ],
+  [
+   46.35,
+   2.862,
+   "And it writes nothing unless you pass the apply option."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   1.725,
+   "Two kinds of read need care."
+  ],
+  [
+   1.775,
+   1.575,
+   "First, a stale read."
+  ],
+  [
+   3.35,
+   4.562,
+   "An ISC read reflects the last aggregation, not the source right now."
+  ],
+  [
+   7.912,
+   4.963,
+   "So if the read is older than the time the finding started waiting, it can't show the fix yet."
+  ],
+  [
+   12.875,
+   6.625,
+   "The client calls it pending, and waits for a grace period, twenty-four hours by default, which is design guidance."
+  ],
+  [
+   19.5,
+   4.513,
+   "After the grace period, a read that still disagrees is a mismatch."
+  ],
+  [
+   24.012,
+   8.738,
+   "Tune the grace period to the longest aggregation interval on your sources, and record the setting; how long the lag really is wasn't verified."
+  ],
+  [
+   32.75,
+   1.75,
+   "Second, a missing read."
+  ],
+  [
+   34.5,
+   3.425,
+   "A subject nobody read must never count as a match."
+  ],
+  [
+   37.925,
+   4.062,
+   "In offline mode, a subject with no saved read is an error."
+  ],
+  [
+   41.987,
+   3.663,
+   "The live reader raises on anything but a 404."
+  ],
+  [
+   45.65,
+   3.35,
+   "And a saved read of null means the read found nothing."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   2.513,
+   "Chapter 05 adds two things."
+  ],
+  [
+   2.562,
+   1.238,
+   "The first is a guard."
+  ],
+  [
+   3.8,
+   4.388,
+   "The client already skipped a record whose intended state was completely empty."
+  ],
+  [
+   8.188,
+   7.925,
+   "But it didn't skip one that was a non-empty object naming nothing, with empty attributes and an empty list of entitlements to remove."
+  ],
+  [
+   16.113,
+   5.975,
+   "That's exactly what the script stores for a native change the workflow didn't describe, the Module 5 gap."
+  ],
+  [
+   22.087,
+   6.963,
+   "Comparing any read with it always matches, so the client would have closed that record, with evidence, on nothing."
+  ],
+  [
+   29.05,
+   9.3,
+   "Now, before reading anything, the client checks the intended state, and a record that names nothing checkable is skipped with the reason, never verified."
+  ],
+  [
+   38.35,
+   2.075,
+   "The second is an offline mode."
+  ],
+  [
+   40.425,
+   7.25,
+   "It takes saved waiting records, saved reads and a fixed clock, and makes the same decisions with only the reader swapped."
+  ],
+  [
+   47.675,
+   3.638,
+   "It's a dry run only; the apply option is refused."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   6.112,
+   "The kit comes with six fictional waiting records, one per outcome, and the lab runs them on two days."
+  ],
+  [
+   6.162,
+   3.712,
+   "The first is a reverted native change, and it verifies."
+  ],
+  [
+   9.875,
+   5.162,
+   "The second is a terminated user still enabled in Entra I D: a mismatch."
+  ],
+  [
+   15.037,
+   3.9,
+   "The third is an ISC account read before it was re-aggregated."
+  ],
+  [
+   18.938,
+   4.7,
+   "At noon on November first it's pending; by noon the next day it's a mismatch."
+  ],
+  [
+   23.637,
+   3.075,
+   "The fourth, an attribute change, verifies."
+  ],
+  [
+   26.712,
+   5.112,
+   "The fifth is a native change with an empty intended state, and it's skipped by the guard."
+  ],
+  [
+   31.825,
+   3.712,
+   "The sixth, an orphan account that was disabled, verifies."
+  ],
+  [
+   35.538,
+   1.875,
+   "Why does the third one change?"
+  ],
+  [
+   37.413,
+   10.363,
+   "It started waiting at six in the morning on November first, so by noon on November second its twenty-four-hour grace period has passed, and the stale read now counts as a mismatch."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   4.65,
+   "Lab 1 runs in the kit's servicenow-sailpoint folder, with no tenant."
+  ],
+  [
+   5.425,
+   3.7,
+   "Step one runs the re-read tests, and fifteen pass."
+  ],
+  [
+   9.125,
+   7.025,
+   "Step two runs the client offline over the six waiting records, with the clock fixed at noon on November first."
+  ],
+  [
+   16.15,
+   1.15,
+   "Read the output."
+  ],
+  [
+   17.3,
+   4.412,
+   "Three records verify, and the client would patch each one to closed."
+  ],
+  [
+   21.712,
+   9.525,
+   "The terminated user is a mismatch: the intended state says account enabled false, and the read says true, so the client would reopen it with that difference."
+  ],
+  [
+   31.238,
+   7.275,
+   "The third record is pending, because the ISC copy predates the change, so re-run after the next aggregation."
+  ],
+  [
+   38.513,
+   5.362,
+   "The fifth is skipped, because its intended state names nothing a re-read can check."
+  ],
+  [
+   43.875,
+   2.862,
+   "Every line says what the client would do and why."
+  ],
+  [
+   46.737,
+   5.338,
+   "It's a dry run, so nothing is written, and pending and skipped records are never patched."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   9.688,
+   "Step three runs the same records a day later, at noon on November second, and keeps the results in a jay-son file in an out folder, which the client creates."
+  ],
+  [
+   9.738,
+   3.513,
+   "On the slide, the five unchanged lines are trimmed."
+  ],
+  [
+   13.25,
+   2.288,
+   "The one that changed is the third record."
+  ],
+  [
+   15.537,
+   8.512,
+   "Its grace period has passed, so the stale read is now a mismatch: the intended state says disabled true, and the read says false."
+  ],
+  [
+   24.05,
+   4.575,
+   "The summary is now two mismatches, one skipped and three verified."
+  ],
+  [
+   28.625,
+   3.812,
+   "The jay-son file holds each result with its evidence hash."
+  ],
+  [
+   32.438,
+   19.35,
+   "Step four runs the business rule's six tests, and they read like the rule itself: a person's close is redirected, the verifier with fresh evidence may close, evidence alone or the verifier alone isn't enough, an exception approver may cancel with a note, and only tickets the integration opened are governed."
+  ],
+  [
+   51.788,
+   2.212,
+   "Step five deletes the out folder."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   4.225,
+   "Lab 2 enforces the rule in your own ServiceNow developer instance."
+  ],
+  [
+   4.275,
+   8.188,
+   "You need the instance from Modules 1 and 2, the verifier user from Module 2's Lab 2, and a test user in a test Entra tenant."
+  ],
+  [
+   12.463,
+   3.275,
+   "Configure the business rule and its system properties."
+  ],
+  [
+   15.738,
+   4.537,
+   "Close a finding as a person, and watch it land in Awaiting verification."
+  ],
+  [
+   20.275,
+   4.925,
+   "Then confirm which user ServiceNow records for the verifier's OAuth client."
+  ],
+  [
+   25.2,
+   6.1,
+   "That matters, because the rule compares it with the verifier property, and the workbook couldn't verify it."
+  ],
+  [
+   31.3,
+   4.9,
+   "If it's wrong, every close is refused, and people look for a way around the rule."
+  ],
+  [
+   36.2,
+   5.075,
+   "Finally, close a finding with evidence from a Graph read of a disabled test user."
+  ],
+  [
+   41.275,
+   7.925,
+   "Then back it out: delete the test findings and their attachments, deactivate the rule if you built it for the lab, and delete the properties."
+  ],
+  [
+   49.2,
+   2.15,
+   "The authors haven't run Lab 2."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   2.062,
+   "What differs in the government clouds?"
+  ],
+  [
+   2.112,
+   3.888,
+   "The guide's availability notes for Gates 5 and 6 answer it."
+  ],
+  [
+   6.0,
+   3.212,
+   "pim is available in Azure for U S Government."
+  ],
+  [
+   9.213,
+   13.037,
+   "ServiceNow's Entra spoke points at the worldwide Graph host by default, and its page doesn't mention the U S Government clouds, so it fits G C C, but for G C C High, confirm with ServiceNow before use."
+  ],
+  [
+   22.25,
+   4.225,
+   "SailPoint's connector endpoints for G C C High are documented."
+  ],
+  [
+   26.475,
+   8.863,
+   "For the re-read itself, G C C uses the worldwide Graph endpoint, and G C C High uses graph dot microsoft dot u s."
+  ],
+  [
+   35.337,
+   4.588,
+   "And the ISC A P I domain for a fed-ramp tenant wasn't confirmed."
+  ],
+  [
+   39.925,
+   1.512,
+   "There are interim paths."
+  ],
+  [
+   41.438,
+   4.987,
+   "Until the change-record flow exists, the approver raises the change record by hand."
+  ],
+  [
+   46.425,
+   9.575,
+   "And until the re-read client runs on a schedule, the verifier runs it by hand once a day, dry run first; the business rule still blocks a person's close."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   1.387,
+   "The federal requirement."
+  ],
+  [
+   1.438,
+   20.962,
+   "The guide's Gate 5 table maps actuation to nist special publication eight hundred fifty-three: access restrictions for change, access enforcement, least privilege, change control, session audit and the plan of action and milestones, and to special publication eight hundred sixty-three B, revision four, for resets and recovery."
+  ],
+  [
+   22.4,
+   8.338,
+   "The Gate 6 table maps the re-read to change control, verification of controls, continuous monitoring and audit record generation."
+  ],
+  [
+   30.738,
+   6.3,
+   "Chapter 05 adds separation of duties: no person can close a finding by setting its state."
+  ],
+  [
+   37.038,
+   19.788,
+   "The evidence an I S S O keeps: connector and spoke identities with their permissions, provisioning events, activation records and change records for Gate 5; and for Gate 6, the evidence attachment and hash on each closed record, the re-read result and time, and the verifier account's audit trail."
+  ],
+  [
+   56.825,
+   3.7,
+   "Before shipping, work through the Chapter 05 checklist."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   1.975,
+   "Check yourself with two questions."
+  ],
+  [
+   2.025,
+   4.838,
+   "First: at noon on November first, record one thousand and three is pending."
+  ],
+  [
+   6.862,
+   0.688,
+   "Why?"
+  ],
+  [
+   7.55,
+   1.137,
+   "The answer is a."
+  ],
+  [
+   8.688,
+   5.9,
+   "The ISC copy of the account predates the change, so the client waits for the next aggregation."
+  ],
+  [
+   14.588,
+   2.987,
+   "After the grace period, it becomes a mismatch."
+  ],
+  [
+   17.575,
+   3.913,
+   "Second: under the business rule, which update can close a finding?"
+  ],
+  [
+   21.488,
+   4.963,
+   "The answer is c: an update from the verifier account that carries new evidence."
+  ],
+  [
+   26.45,
+   3.837,
+   "Evidence alone, or the verifier alone, isn't enough."
+  ],
+  [
+   30.288,
+   6.812,
+   "The module page has two more questions, on a missing saved read and on why the kit has no test for Gate 5."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   0.825,
+   "To sum up."
+  ],
+  [
+   0.875,
+   11.05,
+   "You learned where actuation runs on these products: SailPoint's connectors, ServiceNow's Entra spoke, the declared-exception lane, and people only through just-in-time activation."
+  ],
+  [
+   11.925,
+   5.25,
+   "You saw how the business rule and the re-read client keep a ticket status from closing a finding."
+  ],
+  [
+   17.175,
+   5.438,
+   "You saw how the client treats stale reads, missing reads and empty intended states."
+  ],
+  [
+   22.613,
+   3.212,
+   "And you ran it offline over six findings on two days."
+  ],
+  [
+   25.825,
+   3.7,
+   "Before shipping, work through the Chapter 05 checklist."
+  ],
+  [
+   29.525,
+   5.463,
+   "Next is Module 7, the last in the path: evidence for the I S S O."
+  ],
+  [
+   34.987,
+   12.213,
+   "You'll learn what Gate 7 runs and reports, export closed findings as Book 13's evidence records, chain one period to the next, and verify the package the way an I S S O would."
+  ]
+ ]
+}

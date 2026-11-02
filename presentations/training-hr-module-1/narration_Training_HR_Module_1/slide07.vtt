@@ -1,0 +1,66 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.925
+The second check is the scan.
+
+2
+00:00:01.925 --> 00:00:04.680
+It reads an export of
+the directory audit log,
+
+3
+00:00:04.680 --> 00:00:08.329
+keeps the successful records
+inside the window you give it,
+
+4
+00:00:08.329 --> 00:00:12.946
+and matches each one to a row of the
+register: by the activity, such as Disable
+
+5
+00:00:12.946 --> 00:00:17.712
+account, and for an Update user record,
+by the name of the property that changed.
+
+6
+00:00:17.712 --> 00:00:19.549
+Then it judges who made the write.
+
+7
+00:00:19.549 --> 00:00:21.125
+The row's writer is fine.
+
+8
+00:00:21.125 --> 00:00:23.859
+The backstop gets W S oh two, a warning:
+
+9
+00:00:23.859 --> 00:00:27.687
+confirm the writer acted, or
+find out why it was late.
+
+10
+00:00:27.687 --> 00:00:32.588
+Anyone else is W S oh one, a second
+writer, and that's a finding.
+
+11
+00:00:32.588 --> 00:00:34.591
+And a writer the row forbids,
+
+12
+00:00:34.591 --> 00:00:38.949
+like inbound provisioning deleting
+an account, is W S oh four.
+
+13
+00:00:38.949 --> 00:00:44.164
+The scan writes an output folder with
+a manifest that holds each file's hash,
+
+14
+00:00:44.164 --> 00:00:47.660
+and a saved query for every
+row, which Module 7 runs.

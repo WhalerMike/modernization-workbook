@@ -1,0 +1,69 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:04.625
+Part A of Lab 1 runs in the
+kit's folder against fixtures.
+
+3
+00:00:04.625 --> 00:00:08.838
+Step one proves every call is
+declared: nine tests pass.
+
+4
+00:00:08.838 --> 00:00:12.581
+Step two lists what the re-read
+client needs on ServiceNow:
+
+5
+00:00:12.581 --> 00:00:16.558
+a client-credentials token, then
+read and write on the finding
+
+6
+00:00:16.558 --> 00:00:20.613
+table and create on attachments,
+all from one role, the verifier.
+
+7
+00:00:20.613 --> 00:00:26.488
+Step three is the classic mistake: an
+administrator gave the verifier itil as well.
+
+8
+00:00:26.488 --> 00:00:30.199
+The tool lists the calls,
+then reports nothing missing,
+
+9
+00:00:30.199 --> 00:00:33.251
+itil extra, and least
+privilege does not hold.
+
+10
+00:00:33.251 --> 00:00:34.375
+It exits one.
+
+11
+00:00:34.375 --> 00:00:38.776
+Step four catches the evidence
+export reusing the verifier's role:
+
+12
+00:00:38.776 --> 00:00:42.537
+the evidence reader is missing
+and the verifier is extra.
+
+13
+00:00:42.537 --> 00:00:46.476
+With the verifier's role, the
+export could also close findings.
+
+14
+00:00:46.476 --> 00:00:51.290
+Step five reruns the original
+ServiceNow client tests: seven pass.

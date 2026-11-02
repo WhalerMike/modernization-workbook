@@ -14,7 +14,7 @@ Method:
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
 | 1 | Lab 1 commands and expected output, Modules 1 to 7 | Each module, Unit "Exercise: Lab 1" | verified (re-run 2026-11-01) | The kit, run locally |
-| 2 | The re-read client doesn't create the folder for `--out-json`; Module 6, step 3 makes `out` first | Module 6, Lab 1, step 3 | verified (re-run 2026-11-01: without the folder, the command raised `FileNotFoundError` after printing its results) | `clients/python/reread_verification.py` |
+| 2 | The re-read client creates the folder for `--out-json` itself; Module 6, step 3 needs no separate step to make `out` | Module 6, Lab 1, step 3 | verified (re-run 2026-11-02: in a fresh copy of the kit, the command wrote `out/reread.json` with no `out` folder present beforehand) | `clients/python/reread_verification.py` |
 | 3 | Lab 2 steps, prerequisites and back-out | Each module, Unit "Exercise: Lab 2" | not verified: not run by the authors, as the workbook marks them | The workbook chapter's Lab 2 |
 | 4 | Unit and path times | Each module; the path index | design (estimates) | — |
 

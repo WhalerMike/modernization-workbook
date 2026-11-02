@@ -1,0 +1,69 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.437
+The federal requirement.
+
+2
+00:00:01.437 --> 00:00:06.717
+The guide's Gate 5 table maps actuation
+to NIST special publication eight hundred
+
+3
+00:00:06.717 --> 00:00:11.997
+fifty-three: access restrictions for
+change, access enforcement, least privilege,
+
+4
+00:00:11.997 --> 00:00:17.276
+change control, session audit and the plan
+of action and milestones, and to special
+
+5
+00:00:17.276 --> 00:00:22.400
+publication eight hundred sixty-three B,
+revision four, for resets and recovery.
+
+6
+00:00:22.400 --> 00:00:25.595
+The Gate 6 table maps the
+re-read to change control,
+
+7
+00:00:25.595 --> 00:00:30.738
+verification of controls, continuous
+monitoring and audit record generation.
+
+8
+00:00:30.738 --> 00:00:33.450
+Chapter 05 adds separation of duties:
+
+9
+00:00:33.450 --> 00:00:37.038
+no person can close a
+finding by setting its state.
+
+10
+00:00:37.038 --> 00:00:42.751
+The evidence an ISSO keeps: connector and
+spoke identities with their permissions,
+
+11
+00:00:42.751 --> 00:00:47.636
+provisioning events, activation
+records and change records for Gate 5;
+
+12
+00:00:47.636 --> 00:00:52.355
+and for Gate 6, the evidence attachment
+and hash on each closed record,
+
+13
+00:00:52.355 --> 00:00:56.826
+the re-read result and time, and
+the verifier account's audit trail.
+
+14
+00:00:56.826 --> 00:01:00.580
+Before shipping, work through
+the Chapter 05 checklist.

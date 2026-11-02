@@ -1,0 +1,68 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.100
+Here's the register
+you'll check in the lab.
+
+2
+00:00:02.100 --> 00:00:06.438
+It's the guide's table of lifecycle
+rows, kept as reviewed JSON.
+
+3
+00:00:06.438 --> 00:00:10.873
+Each row is an account-state
+transition or an HR-mastered value,
+
+4
+00:00:10.873 --> 00:00:15.563
+and each names exactly one writer
+and, where there is one, a backstop.
+
+5
+00:00:15.563 --> 00:00:17.987
+Inbound provisioning creates the account.
+
+6
+00:00:17.987 --> 00:00:22.268
+It enables it at hire, disables it at
+separation, and re-enables it if a
+
+7
+00:00:22.268 --> 00:00:27.388
+separation is cancelled, with Lifecycle
+Workflows as the backstop for all three.
+
+8
+00:00:27.388 --> 00:00:30.800
+It writes the hire date, the
+leave date and the manager.
+
+9
+00:00:30.800 --> 00:00:35.138
+The organization code and worker
+type code have the directory sync as
+
+10
+00:00:35.138 --> 00:00:39.475
+an interim backstop, for synced
+users until Active Directory retires.
+
+11
+00:00:39.475 --> 00:00:43.600
+The card management system's integration
+writes the certificate binding.
+
+12
+00:00:43.600 --> 00:00:47.211
+And notice deletion: the
+post-separation workflow writes it,
+
+13
+00:00:47.211 --> 00:00:49.450
+and inbound provisioning never does.
+
+14
+00:00:49.450 --> 00:00:51.020
+The register forbids it.

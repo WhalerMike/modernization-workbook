@@ -1,0 +1,73 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.676
+Lab 2 runs the gate in your own test tenant:
+worldwide or G C C, never production,
+
+2
+00:00:05.676 --> 00:00:09.247
+with Entra ID Governance
+trial or test licenses,
+
+3
+00:00:09.247 --> 00:00:14.337
+two test access packages, and three
+test users with coded attributes.
+
+4
+00:00:14.337 --> 00:00:17.511
+Export the tenant's policies,
+and run the scan beside
+
+5
+00:00:17.511 --> 00:00:20.388
+Learn's read-only script,
+so you can compare them.
+
+6
+00:00:20.388 --> 00:00:22.400
+Create one automatic policy.
+
+7
+00:00:22.400 --> 00:00:27.650
+Move a test user through the pipeline,
+never by hand, and run the residual review.
+
+8
+00:00:27.650 --> 00:00:30.812
+The reader app needs a
+certificate and two permissions,
+
+9
+00:00:30.812 --> 00:00:34.525
+EntitlementManagement dot Read
+dot All and User dot Read dot All.
+
+10
+00:00:34.525 --> 00:00:38.550
+Creating the policy takes the Identity
+Governance Administrator role.
+
+11
+00:00:38.550 --> 00:00:40.782
+To back it out, remove the test policy,
+
+12
+00:00:40.782 --> 00:00:43.683
+choosing whether its
+assignments are removed,
+
+13
+00:00:43.683 --> 00:00:48.072
+restore the test user's code through
+the pipeline, remove the reader app,
+
+14
+00:00:48.072 --> 00:00:52.163
+its permissions and certificate,
+and delete the export and output.
+
+15
+00:00:52.163 --> 00:00:54.380
+The authors haven't run Lab 2.

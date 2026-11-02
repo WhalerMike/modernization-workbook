@@ -1,0 +1,66 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:04.622
+Lab 1 runs in the kit's folder
+against two fictional exports:
+
+3
+00:00:04.622 --> 00:00:08.625
+an HR-to-Entra inbound job, and
+a SailPoint source that creates
+
+4
+00:00:08.625 --> 00:00:12.550
+accounts and updates department,
+title and office location.
+
+5
+00:00:12.550 --> 00:00:15.988
+Step one runs the
+chapter's tests: six pass.
+
+6
+00:00:15.988 --> 00:00:18.288
+Step two checks the two exports.
+
+7
+00:00:18.288 --> 00:00:22.971
+Entra inbound writes eight attributes
+and SailPoint writes seven,
+
+8
+00:00:22.971 --> 00:00:25.563
+with one Finding, one Warn and two Info.
+
+9
+00:00:25.563 --> 00:00:28.180
+The Finding is department: both update it,
+
+10
+00:00:28.180 --> 00:00:31.799
+so each overwrites the other
+and the drift never settles.
+
+11
+00:00:31.799 --> 00:00:33.300
+The command exits one.
+
+12
+00:00:33.300 --> 00:00:38.875
+Step three maps SailPoint's title to
+Entra ID's job title, and runs it again.
+
+13
+00:00:38.875 --> 00:00:42.237
+Now there are two Findings:
+job title joins department.
+
+14
+00:00:42.237 --> 00:00:46.270
+Without the alias, the second
+writer of job title was invisible.

@@ -1,0 +1,72 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:05.425
+Lab 1 runs in the kit's servicenow-sailpoint
+folder, with no tenant.
+
+3
+00:00:05.425 --> 00:00:09.125
+Step one runs the re-read
+tests, and fifteen pass.
+
+4
+00:00:09.125 --> 00:00:13.151
+Step two runs the client offline
+over the six waiting records,
+
+5
+00:00:13.151 --> 00:00:16.150
+with the clock fixed at
+noon on November first.
+
+6
+00:00:16.150 --> 00:00:17.300
+Read the output.
+
+7
+00:00:17.300 --> 00:00:21.712
+Three records verify, and the client
+would patch each one to closed.
+
+8
+00:00:21.712 --> 00:00:26.737
+The terminated user is a mismatch: the
+intended state says account enabled false,
+
+9
+00:00:26.737 --> 00:00:31.237
+and the read says true, so the client
+would reopen it with that difference.
+
+10
+00:00:31.237 --> 00:00:36.004
+The third record is pending, because
+the ISC copy predates the change,
+
+11
+00:00:36.004 --> 00:00:38.513
+so re-run after the next aggregation.
+
+12
+00:00:38.513 --> 00:00:43.875
+The fifth is skipped, because its intended
+state names nothing a re-read can check.
+
+13
+00:00:43.875 --> 00:00:46.737
+Every line says what the
+client would do and why.
+
+14
+00:00:46.737 --> 00:00:48.872
+It's a dry run, so nothing is written,
+
+15
+00:00:48.872 --> 00:00:52.130
+and pending and skipped
+records are never patched.

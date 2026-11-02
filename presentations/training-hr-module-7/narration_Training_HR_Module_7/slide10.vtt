@@ -1,0 +1,68 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.450
+Step three prints the
+findings, one line each.
+
+2
+00:00:03.450 --> 00:00:05.125
+There are fourteen Findings.
+
+3
+00:00:05.125 --> 00:00:08.075
+One missing identity, a
+worker with no account.
+
+4
+00:00:08.075 --> 00:00:13.224
+Three stale accounts, among them Drew
+and Harper, two of Module 6's leavers,
+
+5
+00:00:13.224 --> 00:00:17.000
+still enabled, and a contractor
+past the earliest end.
+
+6
+00:00:17.000 --> 00:00:20.513
+Two orphans, a print kiosk
+and an old temp account.
+
+7
+00:00:20.513 --> 00:00:23.779
+Five unauthorized writes,
+which are Module 1's four
+
+8
+00:00:23.779 --> 00:00:27.512
+second writers and its forbidden
+delete, carried forward.
+
+9
+00:00:27.512 --> 00:00:29.732
+One active card for a separated worker,
+
+10
+00:00:29.732 --> 00:00:32.299
+and two contractor cards
+that should be gone.
+
+11
+00:00:32.299 --> 00:00:36.994
+Then six Warns: five L D seven,
+one for each metric out of bounds,
+
+12
+00:00:36.994 --> 00:00:40.937
+and one L D eight, for the
+metric that wasn't measured.
+
+13
+00:00:40.937 --> 00:00:44.238
+Notice how the earlier modules'
+results reappear here.
+
+14
+00:00:44.238 --> 00:00:46.220
+This run is where they all meet.

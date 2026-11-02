@@ -1,0 +1,65 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.356
+The lint has nine rules,
+and it checks each rule over
+
+2
+00:00:03.356 --> 00:00:06.662
+a population of users, which
+is how it finds overlap.
+
+3
+00:00:06.662 --> 00:00:09.249
+A A oh one is a rule on member-of.
+
+4
+00:00:09.249 --> 00:00:12.154
+A A oh two is users
+who match more than one
+
+5
+00:00:12.154 --> 00:00:16.025
+automatic policy on one
+package; they can lose access.
+
+6
+00:00:16.025 --> 00:00:21.238
+A A oh three is more identities in scope
+than Learn's fifteen thousand per policy.
+
+7
+00:00:21.238 --> 00:00:25.701
+A A oh four warns on a rule that
+reads no coded slot or worker type.
+
+8
+00:00:25.701 --> 00:00:30.512
+A A oh five is an automatic policy
+that doesn't both create and remove.
+
+9
+00:00:30.512 --> 00:00:33.154
+A A oh six warns on a
+grace period over the
+
+10
+00:00:33.154 --> 00:00:36.437
+program's fourteen days,
+which is design guidance.
+
+11
+00:00:36.437 --> 00:00:41.413
+A A oh seven is a request policy without
+the manager and a fallback approver.
+
+12
+00:00:41.413 --> 00:00:46.288
+A A oh eight sends a rule the evaluator
+can't read to the dynamic-rules kit.
+
+13
+00:00:46.288 --> 00:00:50.180
+And A A oh nine is tier one
+access assigned by rule.

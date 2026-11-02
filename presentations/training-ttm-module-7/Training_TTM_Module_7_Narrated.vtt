@@ -1,0 +1,1044 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.106
+Welcome to Module 7,
+the last module of the
+
+2
+00:00:03.106 --> 00:00:07.150
+Ticket-to-Machine learning
+path: evidence for the ISSO.
+
+3
+00:00:07.150 --> 00:00:12.538
+This module covers the guide's Gate 7
+and the developer workbook's Chapter 07.
+
+4
+00:00:12.538 --> 00:00:18.375
+In Module 6, a finding closed only on a
+re-read, with its evidence on the record.
+
+5
+00:00:18.375 --> 00:00:23.400
+Now you turn those closed findings
+into the evidence an ISSO keeps.
+
+6
+00:00:23.400 --> 00:00:26.900
+You'll learn what Gate 7 runs
+on a schedule and reports.
+
+7
+00:00:26.900 --> 00:00:31.775
+Then you'll export a period's closed
+findings as the Federal Modernization
+
+8
+00:00:31.775 --> 00:00:36.728
+Workbook's Book 13's evidence records,
+chain one period to the next, and verify
+
+9
+00:00:36.728 --> 00:00:41.838
+the package the way an ISSO would,
+including catching a record someone removed.
+
+10
+00:00:41.838 --> 00:00:46.074
+If you're an ISSO reviewer,
+this module is yours in full.
+
+11
+00:00:46.074 --> 00:00:50.460
+The code is illustrative, tested
+against fictional fixtures.
+
+12
+00:00:54.210 --> 00:00:55.360
+Why does this matter?
+
+13
+00:00:55.360 --> 00:01:00.347
+At the end of the month, your ISSO
+needs to show an assessor three things.
+
+14
+00:01:00.347 --> 00:01:05.210
+That every identity finding was
+owned, clocked, re-read and closed.
+
+15
+00:01:05.210 --> 00:01:07.485
+That nothing was edited after it closed.
+
+16
+00:01:07.485 --> 00:01:09.597
+And that nothing was quietly dropped.
+
+17
+00:01:09.597 --> 00:01:12.498
+Ticket history and
+screenshots don't prove that.
+
+18
+00:01:12.498 --> 00:01:15.197
+A ticket shows a status, not a re-read.
+
+19
+00:01:15.197 --> 00:01:18.183
+And neither one can show an
+edit that left no trace,
+
+20
+00:01:18.183 --> 00:01:20.148
+or a record that's simply missing.
+
+21
+00:01:20.148 --> 00:01:24.567
+In this module you learn what Gate
+7 runs and reports, then build and
+
+22
+00:01:24.567 --> 00:01:29.910
+verify the evidence package for a period,
+a package that can prove all three.
+
+23
+00:01:33.660 --> 00:01:36.475
+Here's what you'll be able to
+do by the end of this module,
+
+24
+00:01:36.475 --> 00:01:39.098
+which takes about forty-five
+minutes with the lab.
+
+25
+00:01:39.098 --> 00:01:43.285
+You'll explain what Gate 7 schedules
+and reports to the governance board.
+
+26
+00:01:43.285 --> 00:01:46.142
+You'll describe Book 13's evidence record,
+
+27
+00:01:46.142 --> 00:01:49.335
+which of its fields Pass
+1 leaves empty, and why.
+
+28
+00:01:49.335 --> 00:01:52.273
+You'll produce an evidence
+package for a period,
+
+29
+00:01:52.273 --> 00:01:54.835
+and continue its hash chain into the next.
+
+30
+00:01:54.835 --> 00:01:56.434
+And you'll verify a package,
+
+31
+00:01:56.434 --> 00:02:00.360
+and explain how the verifier
+catches an edited or removed record.
+
+32
+00:02:00.360 --> 00:02:02.935
+Before you start, finish Module 6.
+
+33
+00:02:02.935 --> 00:02:06.706
+If you're an ISSO reviewer
+working only this module,
+
+34
+00:02:06.706 --> 00:02:11.735
+read Module 1's Unit 3 first, on the
+identity finding and its contract.
+
+35
+00:02:11.735 --> 00:02:13.435
+Lab 1 needs no tenant.
+
+36
+00:02:13.435 --> 00:02:16.139
+Lab 2 needs your developer instance,
+
+37
+00:02:16.139 --> 00:02:20.210
+with at least one finding
+closed in Module 6's Lab 2.
+
+38
+00:02:23.960 --> 00:02:27.510
+Once the loop runs, it
+runs on Book 13's tempo.
+
+39
+00:02:27.510 --> 00:02:28.610
+P1 halts.
+
+40
+00:02:28.610 --> 00:02:34.110
+P2 has one hour, P3 twenty-four
+hours, and P4 seventy-two hours.
+
+41
+00:02:34.110 --> 00:02:37.248
+Those are the program's
+windows, not federal ones.
+
+42
+00:02:37.248 --> 00:02:40.348
+Gate 7 is how you operate
+it, in five steps.
+
+43
+00:02:40.348 --> 00:02:43.495
+Schedule the drift reconciliation
+and the re-read client,
+
+44
+00:02:43.495 --> 00:02:46.773
+and keep their outputs with the
+date and the checker version.
+
+45
+00:02:46.773 --> 00:02:49.335
+Report five measures to
+the governance board.
+
+46
+00:02:49.335 --> 00:02:51.885
+Route the identity fixes through the loop.
+
+47
+00:02:51.885 --> 00:02:54.747
+Export the evidence in Book 13's shape.
+
+48
+00:02:54.747 --> 00:03:00.010
+And review each declared exception at its
+end date, and each L4 class quarterly.
+
+49
+00:03:00.010 --> 00:03:04.905
+The guide's Gate 7 validation names
+the export as its automated check,
+
+50
+00:03:04.905 --> 00:03:07.910
+and Chapter 07 builds its ServiceNow half.
+
+51
+00:03:07.910 --> 00:03:09.910
+That's what you'll run in the lab.
+
+52
+00:03:13.660 --> 00:03:18.766
+Gate 7 reports five measures to the
+governance board, from Book 13's Chapter 10:
+
+53
+00:03:18.766 --> 00:03:22.435
+detection coverage, window
+adherence, escalation rate,
+
+54
+00:03:22.435 --> 00:03:26.185
+machine-closure share, and
+the declared-exception count.
+
+55
+00:03:26.185 --> 00:03:28.085
+How is Gate 7 validated?
+
+56
+00:03:28.085 --> 00:03:30.322
+The automated checks are read-only.
+
+57
+00:03:30.322 --> 00:03:33.477
+The evidence export writes
+and checks the records,
+
+58
+00:03:33.477 --> 00:03:38.210
+and the drift comparison from Module
+4 classifies findings across two runs.
+
+59
+00:03:38.210 --> 00:03:41.498
+The five measures themselves
+have no automated check yet.
+
+60
+00:03:41.498 --> 00:03:46.449
+The manual validation is that the scheduled
+runs have run for a month with outputs
+
+61
+00:03:46.449 --> 00:03:50.308
+kept, the measures have been
+reported once, and the first monthly
+
+62
+00:03:50.308 --> 00:03:54.022
+package has been assembled end
+to end and accepted by the ISSO.
+
+63
+00:03:54.022 --> 00:03:56.282
+Until the export exists in your estate,
+
+64
+00:03:56.282 --> 00:03:59.247
+the interim path is to
+assemble the package by hand,
+
+65
+00:03:59.247 --> 00:04:03.060
+from a ServiceNow report of closed
+findings with their evidence
+
+66
+00:04:03.060 --> 00:04:07.020
+attachments and a SailPoint
+event search for the same period.
+
+67
+00:04:10.770 --> 00:04:16.358
+Every lane writes the same record, Book
+13's evidence record, with seven fields.
+
+68
+00:04:16.358 --> 00:04:19.308
+The guide shows where each
+comes from on these products.
+
+69
+00:04:19.308 --> 00:04:22.246
+Origin is the SailPoint
+trigger and workflow,
+
+70
+00:04:22.246 --> 00:04:25.571
+the reconciliation finding,
+or the catalog request.
+
+71
+00:04:25.571 --> 00:04:30.845
+Owner and clock are the ServiceNow
+assignment, severity, priority and due date.
+
+72
+00:04:30.845 --> 00:04:33.995
+Approval is the ServiceNow
+or SailPoint approval.
+
+73
+00:04:33.995 --> 00:04:38.461
+Executing identity is the connector's
+or spoke's service principal,
+
+74
+00:04:38.461 --> 00:04:40.295
+or a person's PIM activation.
+
+75
+00:04:40.295 --> 00:04:45.157
+What ran is the provisioning event, the
+workflow version or the session recording.
+
+76
+00:04:45.157 --> 00:04:50.283
+Result is the re-read evidence, and
+closure is the closed record with its hash.
+
+77
+00:04:50.283 --> 00:04:56.207
+In Pass 1, three of those are empty:
+approval, executing identity and what ran.
+
+78
+00:04:56.207 --> 00:05:00.795
+Pass 1 doesn't actuate, so the record
+that would hold them is a later pass.
+
+79
+00:05:00.795 --> 00:05:03.820
+The export writes each as
+null, with that reason,
+
+80
+00:05:03.820 --> 00:05:07.200
+rather than leaving the
+field out or filling it.
+
+81
+00:05:10.950 --> 00:05:16.912
+The re-read client from Module 6 already
+writes the evidence onto each record it
+
+82
+00:05:16.912 --> 00:05:21.700
+closes: the evidence itself as
+canonical JSON, its SHA-256 hash,
+
+83
+00:05:21.700 --> 00:05:25.675
+the verification time, a
+close note and an attachment.
+
+84
+00:05:25.675 --> 00:05:27.762
+But nothing read the records back out.
+
+85
+00:05:27.762 --> 00:05:30.963
+Chapter 07 adds the evidence export.
+
+86
+00:05:30.963 --> 00:05:35.243
+It reads closed and cancelled
+findings through the Table API,
+
+87
+00:05:35.243 --> 00:05:40.700
+under its own read-only role, and writes
+one record per finding in Book 13's shape.
+
+88
+00:05:40.700 --> 00:05:43.963
+Then it runs four checks
+on each, reported by name.
+
+89
+00:05:43.963 --> 00:05:46.537
+Does the evidence still
+hash to the stored hash?
+
+90
+00:05:46.537 --> 00:05:48.679
+If not, it was edited after closure,
+
+91
+00:05:48.679 --> 00:05:51.813
+or cut short by the
+four-thousand-character field.
+
+92
+00:05:51.813 --> 00:05:54.275
+Does a closed record
+carry evidence at all?
+
+93
+00:05:54.275 --> 00:05:57.175
+If not, the close bypassed
+the business rule.
+
+94
+00:05:57.175 --> 00:05:59.875
+Does the evidence say the
+intended state matched?
+
+95
+00:05:59.875 --> 00:06:05.030
+And did it finish inside its response
+window, verified at or before its due date?
+
+96
+00:06:08.780 --> 00:06:11.755
+The export packages the
+period in three files.
+
+97
+00:06:11.755 --> 00:06:17.608
+Records dot J S O N L holds one record
+per line, and each line carries the
+
+98
+00:06:17.608 --> 00:06:24.180
+SHA-256 of the line before it, so a removed
+or reordered record breaks the chain.
+
+99
+00:06:24.180 --> 00:06:26.824
+Summary dot JSON holds window adherence,
+
+100
+00:06:26.824 --> 00:06:30.717
+the count of declared exceptions
+and the records with problems.
+
+101
+00:06:30.717 --> 00:06:36.043
+And the manifest holds a SHA-256
+for each file and the chain head.
+
+102
+00:06:36.043 --> 00:06:40.704
+The previous-manifest option continues
+last period's chain into this one.
+
+103
+00:06:40.704 --> 00:06:43.585
+The generated-at option
+fixes the timestamp,
+
+104
+00:06:43.585 --> 00:06:46.543
+so the same records always
+give the same bytes.
+
+105
+00:06:46.543 --> 00:06:50.529
+And verify-dir recomputes
+every hash and walks the chain.
+
+106
+00:06:50.529 --> 00:06:54.367
+That's the check an ISSO runs
+on a package they receive.
+
+107
+00:06:54.367 --> 00:06:58.118
+One caution: the package is
+tamper-evident, not signed.
+
+108
+00:06:58.118 --> 00:07:02.855
+Anyone who can rewrite every file and
+the manifest can rewrite the chain.
+
+109
+00:07:02.855 --> 00:07:07.582
+So, as design guidance, keep each
+manifest where the exporter can't write,
+
+110
+00:07:07.582 --> 00:07:10.250
+and sign it if the program requires.
+
+111
+00:07:14.000 --> 00:07:18.975
+Window adherence needs care, because it's
+easy to measure in a way that flatters.
+
+112
+00:07:18.975 --> 00:07:24.262
+Chapter 07 measures it the way Book 13
+and Book 12's Chapter 12 define it:
+
+113
+00:07:24.262 --> 00:07:28.000
+closures inside the window,
+over closures judged.
+
+114
+00:07:28.000 --> 00:07:32.513
+It isn't a ratio of open findings,
+which improves as new ones arrive.
+
+115
+00:07:32.513 --> 00:07:36.735
+The kit's fixture has five fictional
+closed records, one per case:
+
+116
+00:07:36.735 --> 00:07:41.914
+one closed in its window, one closed late,
+one whose evidence was edited after it
+
+117
+00:07:41.914 --> 00:07:44.942
+closed, one cancelled as
+a declared exception,
+
+118
+00:07:44.942 --> 00:07:47.412
+and one closed with no evidence at all.
+
+119
+00:07:47.412 --> 00:07:49.600
+You'll export all five in the lab.
+
+120
+00:07:49.600 --> 00:07:53.291
+One thing wasn't verified:
+the format and time zone of
+
+121
+00:07:53.291 --> 00:07:57.325
+the date values the Table API
+returns on a given instance.
+
+122
+00:07:57.325 --> 00:08:02.030
+The export parses both common
+forms, and Lab 2 checks yours.
+
+123
+00:08:05.780 --> 00:08:10.580
+Chapter 07 lists the dangers to the
+evidence, and the guard for each.
+
+124
+00:08:10.580 --> 00:08:14.793
+A record edited after closure would
+say something the re-read didn't,
+
+125
+00:08:14.793 --> 00:08:18.930
+so the export recomputes the evidence
+hash and reports a mismatch.
+
+126
+00:08:18.930 --> 00:08:22.335
+Evidence cut short by the
+field length can't be parsed,
+
+127
+00:08:22.335 --> 00:08:25.818
+so it's reported, and the
+attachment holds the full copy.
+
+128
+00:08:25.818 --> 00:08:31.267
+A close that bypassed the business rule is
+named: closed without re-read evidence.
+
+129
+00:08:31.267 --> 00:08:35.219
+A record deleted from the period
+would make the package look complete,
+
+130
+00:08:35.219 --> 00:08:37.943
+but the chain breaks and
+the verifier reports it.
+
+131
+00:08:37.943 --> 00:08:42.295
+Fields filled in to look complete would
+claim an approval that never happened,
+
+132
+00:08:42.295 --> 00:08:45.979
+so later-pass fields stay null with
+their reason, and tests pin that.
+
+133
+00:08:45.979 --> 00:08:50.230
+And if the export ran with the verifier's
+role, it could close findings,
+
+134
+00:08:50.230 --> 00:08:54.990
+so it runs under its own read-only role,
+which the kit's call list can check.
+
+135
+00:08:58.740 --> 00:08:59.465
+Try it.
+
+136
+00:08:59.465 --> 00:09:04.115
+Lab 1 runs in the kit's servicenow-sailpoint
+folder, with no tenant.
+
+137
+00:09:04.115 --> 00:09:07.640
+Step one runs the chapter's
+tests, and eight pass.
+
+138
+00:09:07.640 --> 00:09:10.653
+Step two exports
+October's closed findings.
+
+139
+00:09:10.653 --> 00:09:15.578
+There are five records: four closed on
+a re-read, and one declared exception.
+
+140
+00:09:15.578 --> 00:09:19.289
+Window adherence is two of
+three closed inside the window.
+
+141
+00:09:19.289 --> 00:09:23.928
+Then it names three problems: one record
+closed after its response window,
+
+142
+00:09:23.928 --> 00:09:28.033
+one whose evidence doesn't hash to
+the stored hash, so it was edited
+
+143
+00:09:28.033 --> 00:09:32.215
+after closure or cut short, and one
+closed without re-read evidence.
+
+144
+00:09:32.215 --> 00:09:36.097
+The command exits with one, because
+three records have problems,
+
+145
+00:09:36.097 --> 00:09:39.978
+and the run says so instead of
+producing a clean-looking package.
+
+146
+00:09:39.978 --> 00:09:44.474
+The one-line Python command prints
+three fields from the first record;
+
+147
+00:09:44.474 --> 00:09:47.265
+on the slide it's trimmed,
+and so is its output.
+
+148
+00:09:47.265 --> 00:09:49.327
+Each is null, with its reason.
+
+149
+00:09:49.327 --> 00:09:54.840
+Step three verifies the package
+as the ISSO would, and it holds.
+
+150
+00:09:58.590 --> 00:10:01.778
+Step four starts November's
+chain from October's head.
+
+151
+00:10:01.778 --> 00:10:05.488
+The export runs over the same
+fixture for period November,
+
+152
+00:10:05.488 --> 00:10:09.740
+with the previous-manifest option
+pointing at October's manifest.
+
+153
+00:10:09.740 --> 00:10:14.678
+On the slide, its first five lines are
+trimmed, because they repeat step two.
+
+154
+00:10:14.678 --> 00:10:17.425
+The last line reports
+November's chain head,
+
+155
+00:10:17.425 --> 00:10:21.777
+and November's manifest records
+October's head as its chain previous.
+
+156
+00:10:21.777 --> 00:10:25.278
+So a period can't be swapped out
+without breaking the next one.
+
+157
+00:10:25.278 --> 00:10:28.928
+Step five is the test
+that matters to an ISSO.
+
+158
+00:10:28.928 --> 00:10:32.004
+A one-line Python command
+deletes the second record
+
+159
+00:10:32.004 --> 00:10:35.152
+from October's records file,
+and then you verify again.
+
+160
+00:10:35.152 --> 00:10:40.927
+The verifier finds two problems: the file's
+SHA-256 no longer matches the manifest,
+
+161
+00:10:40.927 --> 00:10:45.840
+and the next line's previous hash no
+longer matches the line before it.
+
+162
+00:10:45.840 --> 00:10:47.528
+The package does not hold.
+
+163
+00:10:47.528 --> 00:10:50.030
+Step six deletes the out folder.
+
+164
+00:10:53.780 --> 00:10:59.054
+Lab 2 runs the export live against your
+own ServiceNow developer instance,
+
+165
+00:10:59.054 --> 00:11:02.542
+with at least one finding
+closed in Module 6's Lab 2.
+
+166
+00:11:02.542 --> 00:11:06.667
+Create the evidence reader, and check
+its role against the kit's call list.
+
+167
+00:11:06.667 --> 00:11:10.495
+That matters: the export runs
+under its own read-only role,
+
+168
+00:11:10.495 --> 00:11:15.218
+never the verifier's, because the
+verifier's role could close findings.
+
+169
+00:11:15.218 --> 00:11:17.156
+Export live from your instance.
+
+170
+00:11:17.156 --> 00:11:20.096
+Check the date format of
+the due and finished values,
+
+171
+00:11:20.096 --> 00:11:23.380
+since that's one of the things
+the workbook couldn't verify.
+
+172
+00:11:23.380 --> 00:11:26.842
+Then verify the package,
+exactly as you did in Lab 1.
+
+173
+00:11:26.842 --> 00:11:29.974
+Back it out by deleting
+the live output folder and
+
+174
+00:11:29.974 --> 00:11:33.030
+the evidence reader's OAuth
+client, user and role.
+
+175
+00:11:33.030 --> 00:11:35.550
+The authors haven't run Lab 2.
+
+176
+00:11:39.300 --> 00:11:40.687
+The federal requirement.
+
+177
+00:11:40.687 --> 00:11:45.814
+The guide's Gate 7 table maps the tempo
+to NIST special publication eight hundred
+
+178
+00:11:45.814 --> 00:11:49.028
+fifty-three: continuous
+monitoring, risk response,
+
+179
+00:11:49.028 --> 00:11:52.700
+the plan of action and milestones,
+and audit record review.
+
+180
+00:11:52.700 --> 00:11:57.950
+Chapter 07 maps the records and the
+package to configuration change control,
+
+181
+00:11:57.950 --> 00:12:02.625
+continuous monitoring, and A U nine,
+protection of audit information.
+
+182
+00:12:02.625 --> 00:12:06.258
+It also says what isn't
+evidenced yet: no approval,
+
+183
+00:12:06.258 --> 00:12:10.437
+executing identity or run
+log until actuation is built.
+
+184
+00:12:10.437 --> 00:12:15.757
+The evidence an ISSO keeps: the scheduled
+run outputs and the five measures,
+
+185
+00:12:15.757 --> 00:12:20.218
+window adherence and the overdue
+list, the exception register,
+
+186
+00:12:20.218 --> 00:12:24.336
+and the monthly package and its
+review; and from Chapter 07,
+
+187
+00:12:24.336 --> 00:12:29.226
+the records, the manifest and the
+chain, verified, and the summary file.
+
+188
+00:12:29.226 --> 00:12:32.006
+Two controls Book 13 maps to the loop,
+
+189
+00:12:32.006 --> 00:12:37.012
+A U ten and C M five enhancement one,
+aren't in the Moderate baseline.
+
+190
+00:12:37.012 --> 00:12:39.701
+At Moderate, the chain supports integrity,
+
+191
+00:12:39.701 --> 00:12:42.670
+and signing the package is a further step.
+
+192
+00:12:46.420 --> 00:12:48.395
+Check yourself with two questions.
+
+193
+00:12:48.395 --> 00:12:54.145
+First: in each record, approval,
+executing identity and what ran are null.
+
+194
+00:12:54.145 --> 00:12:54.833
+Why?
+
+195
+00:12:54.833 --> 00:12:55.834
+The answer is a.
+
+196
+00:12:55.834 --> 00:13:00.670
+Pass 1 doesn't actuate, so the record
+that would hold them is a later pass,
+
+197
+00:13:00.670 --> 00:13:02.921
+and each null carries its reason.
+
+198
+00:13:02.921 --> 00:13:07.020
+The record says so, rather than
+leaving the fields out or filling them.
+
+199
+00:13:07.020 --> 00:13:11.545
+Second: how does the verifier catch a
+record removed from the records file?
+
+200
+00:13:11.545 --> 00:13:12.770
+The answer is b.
+
+201
+00:13:12.770 --> 00:13:16.342
+The file's SHA-256 no longer
+matches the manifest,
+
+202
+00:13:16.342 --> 00:13:21.432
+and the next line's previous hash no
+longer matches the line before it.
+
+203
+00:13:21.432 --> 00:13:23.782
+You saw both in step five of the lab.
+
+204
+00:13:23.782 --> 00:13:26.297
+The module page has two more questions,
+
+205
+00:13:26.297 --> 00:13:31.290
+on why the export exits with one and
+on how window adherence is measured.
+
+206
+00:13:35.040 --> 00:13:35.865
+To sum up.
+
+207
+00:13:35.865 --> 00:13:38.528
+You learned what Gate 7 runs and reports.
+
+208
+00:13:38.528 --> 00:13:43.119
+You exported a period's closed
+findings as Book 13 evidence records,
+
+209
+00:13:43.119 --> 00:13:48.038
+chained one period to the next, and
+verified a package the way an ISSO does,
+
+210
+00:13:48.038 --> 00:13:51.153
+including catching a
+record someone removed.
+
+211
+00:13:51.153 --> 00:13:54.903
+Before shipping, work through
+the Chapter 07 checklist.
+
+212
+00:13:54.903 --> 00:13:58.416
+And with that, you've finished the
+Ticket-to-Machine learning path.
+
+213
+00:13:58.416 --> 00:14:02.012
+Across seven modules, you
+built the loop gate by gate:
+
+214
+00:14:02.012 --> 00:14:06.530
+the typed task and its contract,
+the boundary and least privilege,
+
+215
+00:14:06.530 --> 00:14:10.713
+one writer per attribute, the
+sources and the starting drift,
+
+216
+00:14:10.713 --> 00:14:14.227
+drift to a task, the re-read
+rule, and now the evidence.
+
+217
+00:14:14.227 --> 00:14:19.152
+What the workbook doesn't build yet, and
+why, is at the end of its chapters table.
+
+218
+00:14:19.152 --> 00:14:21.000
+Thanks for working through the path.

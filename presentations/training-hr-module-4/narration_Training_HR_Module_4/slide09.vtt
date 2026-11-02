@@ -1,0 +1,67 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.682
+Step three lints five broken policies:
+
+2
+00:00:02.682 --> 00:00:06.300
+five findings and two warnings,
+and an exit code of two.
+
+3
+00:00:06.300 --> 00:00:08.600
+Find the three this module cares about.
+
+4
+00:00:08.600 --> 00:00:13.925
+A A oh one: a policy whose rule uses
+member-of, which will be quarantined.
+
+5
+00:00:13.925 --> 00:00:17.469
+A A oh two: two automatic
+policies on one package,
+
+6
+00:00:17.469 --> 00:00:22.375
+and two users in the population
+match both, so they can lose access.
+
+7
+00:00:22.375 --> 00:00:26.916
+And A A oh nine: tier one administrator
+eligibility assigned by rule,
+
+8
+00:00:26.916 --> 00:00:31.700
+when privileged access should be
+requested and activated through PIM.
+
+9
+00:00:31.700 --> 00:00:33.713
+The slide trims the other four.
+
+10
+00:00:33.713 --> 00:00:36.637
+Step four turns from
+the files to the tenant.
+
+11
+00:00:36.637 --> 00:00:41.143
+The member-of scan reads an export
+of the tenant's assignment policies,
+
+12
+00:00:41.143 --> 00:00:45.726
+four of them, and one still uses
+member-of: a legacy shared drives package.
+
+13
+00:00:45.726 --> 00:00:47.654
+That's the M S oh one finding,
+
+14
+00:00:47.654 --> 00:00:51.480
+and the evidence you want is
+this scan with zero rows.

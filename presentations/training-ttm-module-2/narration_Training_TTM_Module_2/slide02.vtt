@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.200
+Why does this matter?
+
+2
+00:00:01.200 --> 00:00:03.762
+Because the easy fix is the wrong one.
+
+3
+00:00:03.762 --> 00:00:07.166
+An administrator who grants
+the itil role to make
+
+4
+00:00:07.166 --> 00:00:10.651
+it work has given the
+integration every ITSM table.
+
+5
+00:00:10.651 --> 00:00:15.338
+An API client with a manage scope can
+change accounts if its token is stolen.
+
+6
+00:00:15.338 --> 00:00:18.092
+One integration user
+for everything means the
+
+7
+00:00:18.092 --> 00:00:21.200
+account that reads evidence
+can also close findings.
+
+8
+00:00:21.200 --> 00:00:23.827
+And when a client gains
+a call nobody listed,
+
+9
+00:00:23.827 --> 00:00:27.475
+someone grants a role in production
+to make the error go away.
+
+10
+00:00:27.475 --> 00:00:31.900
+Each of those has a guard in the kit, and
+you'll use every one of them in the lab.
+
+11
+00:00:31.900 --> 00:00:36.415
+The idea of the module is simple: confirm
+the boundary on paper first, then make
+
+12
+00:00:36.415 --> 00:00:41.060
+privilege something a test can check,
+instead of something someone remembers.

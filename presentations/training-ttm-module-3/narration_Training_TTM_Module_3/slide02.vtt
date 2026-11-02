@@ -1,0 +1,68 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.800
+Why does this module exist?
+
+2
+00:00:01.800 --> 00:00:02.925
+Here's the story.
+
+3
+00:00:02.925 --> 00:00:06.509
+Entra inbound provisioning
+writes department from HR.
+
+4
+00:00:06.509 --> 00:00:09.938
+SailPoint's Entra connector
+also writes department.
+
+5
+00:00:09.938 --> 00:00:11.988
+Each sync overwrites the other.
+
+6
+00:00:11.988 --> 00:00:15.632
+And the drift you'll measure in
+Module 4 comes back the next day,
+
+7
+00:00:15.632 --> 00:00:17.775
+no matter how often someone fixes it.
+
+8
+00:00:17.775 --> 00:00:20.254
+The reconciliation sees the result,
+
+9
+00:00:20.254 --> 00:00:24.137
+attribute drift that keeps
+coming back, but not the cause.
+
+10
+00:00:24.137 --> 00:00:26.810
+Fixing the value by hand never settles it,
+
+11
+00:00:26.810 --> 00:00:29.562
+because the next sync recreates the drift.
+
+12
+00:00:29.562 --> 00:00:33.145
+Gate 2 settles it on paper,
+before anything is connected:
+
+13
+00:00:33.145 --> 00:00:37.662
+one writer per attribute, and one
+approver system per authority class.
+
+14
+00:00:37.662 --> 00:00:39.950
+In this module you learn those decisions,
+
+15
+00:00:39.950 --> 00:00:43.920
+and you check two provisioning
+configurations against the first one.

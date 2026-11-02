@@ -1,0 +1,66 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.238
+Two more ideas.
+
+2
+00:00:01.238 --> 00:00:05.196
+The plan compares the files with an
+export of the tenant's workflows,
+
+3
+00:00:05.196 --> 00:00:06.963
+matching them by display name.
+
+4
+00:00:06.963 --> 00:00:09.413
+A file with no match becomes a create.
+
+5
+00:00:09.413 --> 00:00:12.682
+A file that changed becomes a
+body for create new version,
+
+6
+00:00:12.682 --> 00:00:15.812
+because Learn makes a definition
+change a new version.
+
+7
+00:00:15.812 --> 00:00:18.312
+An unchanged file is left alone.
+
+8
+00:00:18.312 --> 00:00:23.450
+A workflow in the tenant that no file
+defines gets the J W fifteen warning.
+
+9
+00:00:23.450 --> 00:00:27.388
+And the plan refuses to run on
+files that still have lint findings.
+
+10
+00:00:27.388 --> 00:00:28.524
+Then readiness.
+
+11
+00:00:28.524 --> 00:00:33.442
+A hire is ready on day one only with
+all four: an account that exists and is
+
+12
+00:00:33.442 --> 00:00:39.025
+enabled, a license, the onboarding package
+delivered, and a completed pre-hire run.
+
+13
+00:00:39.025 --> 00:00:43.303
+The readiness rate is ready hires
+over hires for each start date,
+
+14
+00:00:43.303 --> 00:00:46.680
+and it's saved in a summary
+file that Module 7 reads.

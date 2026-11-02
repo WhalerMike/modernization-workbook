@@ -1,0 +1,72 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.963
+Step three is the mover.
+
+2
+00:00:01.963 --> 00:00:05.150
+Erin's department moved
+from HR to Finance.
+
+3
+00:00:05.150 --> 00:00:09.652
+The finding is attribute drift on
+her identity, and its intended
+
+4
+00:00:09.652 --> 00:00:14.238
+state is the new value, department
+Finance, to be kept, not reverted.
+
+5
+00:00:14.238 --> 00:00:18.763
+It's priority 3, and the key now
+ends in the attribute, department.
+
+6
+00:00:18.763 --> 00:00:20.800
+No input field is dropped.
+
+7
+00:00:20.800 --> 00:00:24.738
+Step four is the closure signal
+for Alice's provisioning action.
+
+8
+00:00:24.738 --> 00:00:28.252
+Its kind is closure signal,
+the contract accepts it,
+
+9
+00:00:28.252 --> 00:00:33.188
+and it doesn't send the action, the
+requester, the sources or the warnings.
+
+10
+00:00:33.188 --> 00:00:38.213
+A signal moves matching findings to
+Awaiting verification; it never closes one.
+
+11
+00:00:38.213 --> 00:00:40.857
+Step five runs the two new script tests,
+
+12
+00:00:40.857 --> 00:00:46.312
+two attributes as two findings and
+multivalued changes reverted, and both pass.
+
+13
+00:00:46.312 --> 00:00:50.525
+On the slide, the workflow name
+lines and the test names are trimmed.
+
+14
+00:00:50.525 --> 00:00:52.450
+Check your work: for each event,
+
+15
+00:00:52.450 --> 00:00:56.350
+say what ServiceNow receives
+and what the re-read will check.

@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.902
+Here's what you'll be able to
+do by the end of this module,
+
+2
+00:00:02.902 --> 00:00:04.912
+which takes about an hour with the lab.
+
+3
+00:00:04.912 --> 00:00:08.211
+You'll explain what Gate 1
+records about each product's
+
+4
+00:00:08.211 --> 00:00:11.949
+authorization and each action
+that runs from a vendor's cloud.
+
+5
+00:00:11.949 --> 00:00:16.612
+You'll describe the ServiceNow roles the
+kit uses and why they're split by task.
+
+6
+00:00:16.612 --> 00:00:21.050
+You'll describe the SailPoint scopes
+and Graph permissions each task needs,
+
+7
+00:00:21.050 --> 00:00:23.938
+and why the workflow scope
+gets a client of its own.
+
+8
+00:00:23.938 --> 00:00:27.026
+And you'll verify a grant
+against the kit's call list,
+
+9
+00:00:27.026 --> 00:00:28.938
+and catch a grant that's too wide.
+
+10
+00:00:28.938 --> 00:00:30.688
+You need Module 1 first.
+
+11
+00:00:30.688 --> 00:00:36.038
+For the Graph rows, the Microsoft Automation
+path's first module covers permissions.
+
+12
+00:00:36.038 --> 00:00:41.950
+Lab 1 runs on fixtures; Lab 2 needs a
+developer instance and a sandbox tenant.

@@ -1,0 +1,67 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.200
+Two more pieces.
+
+2
+00:00:01.200 --> 00:00:03.950
+First, the extract doesn't send anything.
+
+3
+00:00:03.950 --> 00:00:06.961
+It writes a file in the
+HR middleware's layout,
+
+4
+00:00:06.961 --> 00:00:11.600
+and the middleware from Book 19's
+Chapter 01 builds the skim requests.
+
+5
+00:00:11.600 --> 00:00:16.600
+Its dry run is its default, so nothing
+reaches a tenant unless you ask it to.
+
+6
+00:00:16.600 --> 00:00:20.806
+And in Module 1's register, inbound
+provisioning already names both
+
+7
+00:00:20.806 --> 00:00:25.162
+the HR app and the contractor-source
+app, through that same middleware.
+
+8
+00:00:25.162 --> 00:00:27.125
+Second, the sponsor review.
+
+9
+00:00:27.125 --> 00:00:30.750
+It goes on the contractor access
+package's assignment policy.
+
+10
+00:00:30.750 --> 00:00:32.200
+It runs twice a year.
+
+11
+00:00:32.200 --> 00:00:37.088
+The manager, who is the sponsor,
+reviews, with a named fallback reviewer.
+
+12
+00:00:37.088 --> 00:00:40.350
+And when nobody responds,
+access is removed.
+
+13
+00:00:40.350 --> 00:00:44.926
+One caution from the kit: using the
+requestor's manager as a reviewer
+
+14
+00:00:44.926 --> 00:00:49.080
+is among the things it lists as
+unconfirmed, so Lab 2 checks it.

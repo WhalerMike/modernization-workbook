@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.807
+Welcome to Module 3 of the
+Ticket-to-Machine learning path:
+
+2
+00:00:03.807 --> 00:00:05.450
+one writer per attribute.
+
+3
+00:00:05.450 --> 00:00:07.809
+This module follows the guide's Gate 2,
+
+4
+00:00:07.809 --> 00:00:12.070
+which settles two decisions on
+paper before anything is connected:
+
+5
+00:00:12.070 --> 00:00:16.788
+who writes each attribute, and which
+system approves each authority class.
+
+6
+00:00:16.788 --> 00:00:20.190
+Then you'll use the developer
+workbook's Chapter 08 check,
+
+7
+00:00:20.190 --> 00:00:24.824
+which reads two provisioning
+configurations, Entra inbound provisioning's
+
+8
+00:00:24.824 --> 00:00:28.588
+and SailPoint's, and reports every
+attribute both of them write.
+
+9
+00:00:28.588 --> 00:00:32.435
+You'll run it on fictional exports,
+add an alias, and see why the
+
+10
+00:00:32.435 --> 00:00:36.960
+alias list and the directory name
+are inputs a reviewer has to confirm.

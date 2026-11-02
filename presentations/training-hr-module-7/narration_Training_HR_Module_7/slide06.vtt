@@ -1,0 +1,69 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.325
+The six metrics.
+
+2
+00:00:01.325 --> 00:00:06.084
+Two come from Module 6: the ninetieth
+percentiles of separation-to-block,
+
+3
+00:00:06.084 --> 00:00:10.525
+at most four hours, and
+separation-to-revocation, at most twenty-four.
+
+4
+00:00:10.525 --> 00:00:13.998
+Transfer-to-review comes from
+Module 4's mover review,
+
+5
+00:00:13.998 --> 00:00:16.050
+at most two hundred forty hours.
+
+6
+00:00:16.050 --> 00:00:20.938
+The joiner readiness rate comes from
+Module 3, at least ninety-five percent.
+
+7
+00:00:20.938 --> 00:00:24.313
+And two are computed by this
+run: correlation coverage,
+
+8
+00:00:24.313 --> 00:00:29.113
+the share of enabled accounts that
+resolve to a current worker or contractor,
+
+9
+00:00:29.113 --> 00:00:32.338
+at least ninety-nine percent;
+and derivation purity,
+
+10
+00:00:32.338 --> 00:00:37.513
+the share of access-granting memberships
+computed by rule, at least eighty percent.
+
+11
+00:00:37.513 --> 00:00:43.325
+Module 1's scan and Module 2's contractor
+decisions feed the drift classes instead.
+
+12
+00:00:43.325 --> 00:00:48.850
+One rule matters most here: a metric with
+no input is not measured, never zero.
+
+13
+00:00:48.850 --> 00:00:51.788
+And the thresholds are the
+program's starting values.
+
+14
+00:00:51.788 --> 00:00:55.660
+Choosing them is the agency's
+decision under C A seven.

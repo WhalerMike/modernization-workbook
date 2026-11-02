@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.862
+Now SailPoint and Graph.
+
+2
+00:00:01.862 --> 00:00:07.588
+The drift and re-read clients need read
+scopes only: search read, and accounts read.
+
+3
+00:00:07.588 --> 00:00:10.990
+The Accounts endpoints would
+accept the manage scope too,
+
+4
+00:00:10.990 --> 00:00:15.526
+so the call list names the read scope
+and the comparison flags manage as extra.
+
+5
+00:00:15.526 --> 00:00:19.434
+Creating SailPoint's workflows
+needs the workflow manage scope,
+
+6
+00:00:19.434 --> 00:00:21.750
+and no client in the kit makes that call.
+
+7
+00:00:21.750 --> 00:00:26.359
+So, as design guidance, that scope
+belongs to a separate client,
+
+8
+00:00:26.359 --> 00:00:30.787
+used once, by hand or by a reviewed
+pipeline, and then removed.
+
+9
+00:00:30.787 --> 00:00:35.573
+On Graph, the app registration needs
+User dot Read dot All, as an application
+
+10
+00:00:35.573 --> 00:00:40.126
+permission, and AuditLog dot Read dot
+All only if the run reads the audit.
+
+11
+00:00:40.126 --> 00:00:45.960
+Nothing in Pass 1 needs write access to
+Entra ID, Active Directory or SailPoint.

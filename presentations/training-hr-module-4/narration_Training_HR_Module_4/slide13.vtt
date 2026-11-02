@@ -1,0 +1,72 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.437
+The federal requirement.
+
+2
+00:00:01.437 --> 00:00:06.165
+This gate meets NIST special publication
+eight hundred fifty-three A C two,
+
+3
+00:00:06.165 --> 00:00:08.528
+which asks you to authorize access on
+
+4
+00:00:08.528 --> 00:00:12.188
+organization-defined attributes
+and to review accounts.
+
+5
+00:00:12.188 --> 00:00:17.863
+It meets A C six, least privilege,
+and A C five, separation of duties.
+
+6
+00:00:17.863 --> 00:00:23.263
+It meets P S five, personnel transfer,
+which is what the residual review is for.
+
+7
+00:00:23.263 --> 00:00:28.071
+And it meets scuba policy seven point
+five, highly privileged roles only
+
+8
+00:00:28.071 --> 00:00:33.762
+through a privileged access management
+system, required under BOD 25-01.
+
+9
+00:00:33.762 --> 00:00:38.786
+The evidence an ISSO keeps for
+Gate 4: the reviewed policy files,
+
+10
+00:00:38.786 --> 00:00:42.650
+the lint's clean run, and
+the hash of each body sent.
+
+11
+00:00:42.650 --> 00:00:45.450
+The member-of scan's
+output with zero rows.
+
+12
+00:00:45.450 --> 00:00:47.238
+A A oh nine's clean run.
+
+13
+00:00:47.238 --> 00:00:48.986
+Each mover's residual sheet,
+
+14
+00:00:48.986 --> 00:00:52.787
+the manager's decisions and the
+transfer-to-review interval.
+
+15
+00:00:52.787 --> 00:00:56.710
+And the separation-of-duties settings
+in the package configuration.

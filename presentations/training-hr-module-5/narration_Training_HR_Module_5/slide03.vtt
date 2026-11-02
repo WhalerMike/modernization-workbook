@@ -1,0 +1,70 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.963
+Here's what you'll be able to
+do by the end of the module.
+
+2
+00:00:02.963 --> 00:00:06.626
+You'll state the interactive
+revocation list limits
+
+3
+00:00:06.626 --> 00:00:09.874
+for GCC and GCC High, and
+the download time limit.
+
+4
+00:00:09.874 --> 00:00:13.650
+You'll measure a set of lists and
+record the failures as findings.
+
+5
+00:00:13.650 --> 00:00:16.478
+You'll run the
+certificate-based authentication
+
+6
+00:00:16.478 --> 00:00:19.238
+check for a named cloud
+and explain what it finds.
+
+7
+00:00:19.238 --> 00:00:21.763
+And you'll explain why
+the same list can be
+
+8
+00:00:21.763 --> 00:00:24.213
+a warning in one cloud and not in another.
+
+9
+00:00:24.213 --> 00:00:28.593
+Before you start, finish Module
+3: there, the Temporary Access
+
+10
+00:00:28.593 --> 00:00:33.237
+Pass bridges a new hire to the card,
+and this gate ends that bridge.
+
+11
+00:00:33.237 --> 00:00:37.880
+Some familiarity with P K I terms
+helps, like issuing authority,
+
+12
+00:00:37.880 --> 00:00:42.256
+revocation list and policy O
+I D; the Federal Modernization
+
+13
+00:00:42.256 --> 00:00:46.274
+Workbook's Book 07's Chapter
+06 explains them for Entra.
+
+14
+00:00:46.274 --> 00:00:49.560
+Lab 1 needs Python and
+pytest, and no tenant.

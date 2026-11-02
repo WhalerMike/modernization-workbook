@@ -1,0 +1,709 @@
+{
+ "1": [
+  [
+   0.05,
+   5.175,
+   "Welcome to Module 1 of the Ticket-to-Machine learning path: the loop and the typed task."
+  ],
+  [
+   5.225,
+   14.225,
+   "This path builds the identity half of the Federal Modernization Workbook's Book 13's Ticket-to-Machine loop on two named products: ServiceNow as the front door and the record, and SailPoint Identity Security Cloud for identity governance."
+  ],
+  [
+   19.45,
+   2.438,
+   "They're an example, not an endorsement."
+  ],
+  [
+   21.887,
+   8.188,
+   "This module starts at the guide's Gate 4, because every other gate writes or reads the record that gate defines: the identity finding."
+  ],
+  [
+   30.075,
+   10.55,
+   "You'll map the kit's files to the loop's five steps, learn the finding's data contract, and check payloads on a laptop the way ServiceNow will, before anything reaches an instance."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.337,
+   "Why start with a record?"
+  ],
+  [
+   1.387,
+   2.312,
+   "Picture your agency's service desk."
+  ],
+  [
+   3.7,
+   3.2,
+   "An access ticket closes when a technician types done."
+  ],
+  [
+   6.9,
+   5.537,
+   "Nobody can say who owned the drift, when it fell due, or what the account should look like afterward."
+  ],
+  [
+   12.438,
+   9.338,
+   "Book 13 says an assessor asks four questions about every finding: who owns it, by when, under whose approval, and with what evidence of closure."
+  ],
+  [
+   21.775,
+   4.2,
+   "A ticket closed on done answers none of them; it records a claim."
+  ],
+  [
+   25.975,
+   10.037,
+   "Book 13's answer is a typed task: one record with a class, a severity, an owner, a clock, and an intended state that a later re-read can check."
+  ],
+  [
+   36.013,
+   2.138,
+   "Approval comes in later modules."
+  ],
+  [
+   38.15,
+   4.513,
+   "Every step of the loop writes or reads this record, so it's where you start."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   5.175,
+   "Here's what you'll be able to do by the end of this module, which takes about fifty minutes with the lab."
+  ],
+  [
+   5.225,
+   5.062,
+   "You'll explain the loop's five steps and name the file in the kit that performs each one."
+  ],
+  [
+   10.287,
+   5.275,
+   "You'll describe the fields of the identity finding's data contract and what each one is for."
+  ],
+  [
+   15.562,
+   8.363,
+   "You'll validate a finding payload on a laptop, and predict whether ServiceNow accepts it, rejects it or de-duplicates it, and when it falls due."
+  ],
+  [
+   23.925,
+   4.575,
+   "And you'll recognize an intended state that gives the re-read nothing to check."
+  ],
+  [
+   28.5,
+   4.825,
+   "Before you start, read Book 13's Chapter 10 and skim Appendix B."
+  ],
+  [
+   33.325,
+   4.938,
+   "For Lab 1 you need Python, Node.js and a Bash-compatible shell."
+  ],
+  [
+   38.263,
+   4.35,
+   "You don't need a ServiceNow instance or a SailPoint tenant until Lab 2."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   1.575,
+   "The loop has five steps."
+  ],
+  [
+   1.625,
+   5.5,
+   "One, test: a rule evaluates actual state against the authoritative record."
+  ],
+  [
+   7.125,
+   4.737,
+   "Two, detect drift: a difference becomes a typed finding with a severity."
+  ],
+  [
+   11.863,
+   6.013,
+   "Three, raise a typed task against the reconciled configuration item, with an owner and a clock."
+  ],
+  [
+   17.875,
+   6.5,
+   "Four, actuate on the native surface, under a service identity, through the platform's own interface."
+  ],
+  [
+   24.375,
+   6.175,
+   "And five, close with evidence: re-read the post-change state and write one record of the whole chain."
+  ],
+  [
+   30.55,
+   5.088,
+   "The coordination layer in front of the native tools never writes the configuration itself."
+  ],
+  [
+   35.638,
+   5.75,
+   "Its job is to make every drift an owned, clocked, approved and evidenced piece of work."
+  ],
+  [
+   41.388,
+   5.812,
+   "In the program's model, the ticket authorizes a machine, and the person's role ends at approval."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   1.863,
+   "Now map the kit onto that loop."
+  ],
+  [
+   1.913,
+   16.375,
+   "Step one, test, is the drift client, which joins the H R extract, Microsoft Graph and SailPoint on employee I D. Step two, detect drift, is SailPoint's event triggers, for a native change or an attribute change, plus the drift client."
+  ],
+  [
+   18.288,
+   10.775,
+   "Step three, raise a typed task, is the SailPoint workflows' HTTP Request step and the Scripted REST resource in ServiceNow, which writes the identity finding table."
+  ],
+  [
+   29.062,
+   10.213,
+   "Step five, close with evidence, is a business rule that turns any close into Awaiting verification, and the re-read client, which closes only on a re-read."
+  ],
+  [
+   39.275,
+   1.238,
+   "Notice step four."
+  ],
+  [
+   40.513,
+   7.475,
+   "Actuation has no code in Pass 1: nothing in the kit writes to Entra I D, Active Directory or SailPoint."
+  ],
+  [
+   47.987,
+   2.525,
+   "You'll meet that step again in Module 6."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   3.225,
+   "The example guide shows which product does each step."
+  ],
+  [
+   3.275,
+   13.188,
+   "For raising a typed task, which is Gate 4, it's a SailPoint workflow posting to a ServiceNow endpoint, which is a build; the Service Catalog app for people's requests; and Service Desk tickets for disconnected applications."
+  ],
+  [
+   16.462,
+   4.612,
+   "Used as shipped, the two products fall short of the loop in four places."
+  ],
+  [
+   21.075,
+   8.387,
+   "One: SailPoint's Service Desk integration treats its task as complete from the ServiceNow status, and a ticket status isn't a re-read."
+  ],
+  [
+   29.462,
+   4.362,
+   "Two: the catalog app moves access approval into ServiceNow."
+  ],
+  [
+   33.825,
+   7.275,
+   "Three: SailPoint's Service Desk integration raises only service requests and incidents, not change requests."
+  ],
+  [
+   41.1,
+   3.125,
+   "And four: there are two doors into the directory."
+  ],
+  [
+   44.225,
+   3.975,
+   "Each gate that closes a gap says so; the slide shows which."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   5.062,
+   "Here's the record those steps share: the identity finding, and its data contract."
+  ],
+  [
+   5.112,
+   3.75,
+   "Kind is a finding, the default, or a closure signal."
+  ],
+  [
+   8.863,
+   3.112,
+   "Source is SailPoint or the drift reconciliation."
+  ],
+  [
+   11.975,
+   4.938,
+   "The drift class is one of Book 03's seven classes, and it's required."
+  ],
+  [
+   16.913,
+   10.287,
+   "Severity is P one to P four; leave it out and it defaults by class, Book 03's High to P two and Medium to P three, which is design guidance."
+  ],
+  [
+   27.2,
+   6.588,
+   "System says where the re-read happens: a SailPoint account, a SailPoint identity or an Entra user."
+  ],
+  [
+   33.788,
+   6.025,
+   "One subject identifier is required, and de-duplication uses the first one present."
+  ],
+  [
+   39.812,
+   1.65,
+   "Origin says what raised it."
+  ],
+  [
+   41.462,
+   7.562,
+   "And the intended state says what a re-read must find; when a SailPoint event arrives without one, the script derives it."
+  ],
+  [
+   49.025,
+   4.925,
+   "The implementation example maps each field to Book 13's evidence record."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   6.375,
+   "The contract is enforced in one place: the Scripted REST resource, which runs inside ServiceNow."
+  ],
+  [
+   6.425,
+   4.9,
+   "It validates the payload and answers four hundred with the reason when something's wrong."
+  ],
+  [
+   11.325,
+   5.625,
+   "It maps severity to a priority, one to four, and a due date on the program's tempo."
+  ],
+  [
+   16.95,
+   11.387,
+   "It de-duplicates against an active finding: when one already has the same source, subject, class and attribute, it answers two hundred with the existing record instead of creating a second."
+  ],
+  [
+   28.337,
+   4.838,
+   "And when a SailPoint event arrives with no intended state, it derives one."
+  ],
+  [
+   33.175,
+   3.975,
+   "A new finding gets two oh one, with its number and priority."
+  ],
+  [
+   37.15,
+   2.663,
+   "Here's the problem Chapter 01 solved."
+  ],
+  [
+   39.812,
+   8.637,
+   "Until then, nothing outside ServiceNow applied the same rules, so a client learned that a payload was wrong only from a four hundred on a live instance."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   1.6,
+   "Where do the due dates come from?"
+  ],
+  [
+   1.65,
+   2.862,
+   "Book 13's severity and tempo table."
+  ],
+  [
+   4.513,
+   7.1,
+   "A P one, critical, isn't fixed by a machine: the run halts and alerts, and a named role decides."
+  ],
+  [
+   11.613,
+   1.837,
+   "Its window is immediate."
+  ],
+  [
+   13.45,
+   3.038,
+   "P two, high, has a one-hour window."
+  ],
+  [
+   16.488,
+   2.862,
+   "P three, medium, twenty-four hours."
+  ],
+  [
+   19.35,
+   3.138,
+   "And P four, low, seventy-two hours."
+  ],
+  [
+   22.488,
+   3.638,
+   "The script turns those windows into each record's due date."
+  ],
+  [
+   26.125,
+   1.163,
+   "Two cautions."
+  ],
+  [
+   27.288,
+   5.162,
+   "These are the program's internal windows, program design, not a federal requirement."
+  ],
+  [
+   32.45,
+   2.725,
+   "They bound the response, not the occurrence."
+  ],
+  [
+   35.175,
+   7.338,
+   "And they don't replace external timelines: where a sis-uh directive sets a shorter clock, the external clock governs."
+  ],
+  [
+   42.513,
+   5.65,
+   "Book 13 also notes that a program with no findings is more likely blind than clean."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   6.088,
+   "Chapter 01 adds finding contract dot py, which applies the script's rules on a laptop."
+  ],
+  [
+   6.138,
+   15.225,
+   "Its validate function returns the errors ServiceNow would answer four hundred to, warnings for what it would accept but the loop can't use, and the normalized values: severity, priority, system, subject, de-duplication key and window."
+  ],
+  [
+   21.363,
+   5.938,
+   "Its constants mirror the script's, and a test reads the JavaScript and fails if they drift apart."
+  ],
+  [
+   27.3,
+   1.35,
+   "Then there's is checkable."
+  ],
+  [
+   28.65,
+   7.275,
+   "An intended state of empty attributes and an empty list of entitlements is a non-empty object, so it looks present."
+  ],
+  [
+   35.925,
+   4.5,
+   "But a re-read finds no difference against it, and would close the record on nothing."
+  ],
+  [
+   40.425,
+   1.35,
+   "So the check warns."
+  ],
+  [
+   41.775,
+   9.45,
+   "For missing identity and unauthorized write, which Book 13 routes to a person first, the empty intent is expected until that person sets it."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   6.188,
+   "Lab 1 runs in the kit's folder, on a laptop, against fictional fixtures, with no tenant."
+  ],
+  [
+   6.963,
+   4.812,
+   "In step two you check five sample payloads the way the Scripted REST resource would."
+  ],
+  [
+   11.775,
+   7.825,
+   "Sample one gave no severity, so the class default gave it P two and a one-hour window: due at one o'clock for a run at noon."
+  ],
+  [
+   19.6,
+   5.65,
+   "Sample two has a typo in its drift class, and sample four has a severity of P five."
+  ],
+  [
+   25.25,
+   3.35,
+   "Both would get a four hundred, so the command exits one."
+  ],
+  [
+   28.6,
+   8.95,
+   "Sample three is accepted, but warned: its intended state names nothing a re-read can check, which is expected for an unauthorized write."
+  ],
+  [
+   37.55,
+   5.612,
+   "And sample five, a closure signal, moves matching findings to Awaiting verification."
+  ],
+  [
+   43.163,
+   1.35,
+   "It never closes them."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   3.663,
+   "Step one runs the chapter's tests: twenty-two pass."
+  ],
+  [
+   3.712,
+   9.275,
+   "Step three runs the ServiceNow script's own tests, the rules the Python mirrors, under Node: fifteen tests, fifteen pass, none fail."
+  ],
+  [
+   12.988,
+   6.188,
+   "Then step four runs the drift reconciliation over the fixtures and checks every payload it would post."
+  ],
+  [
+   19.175,
+   1.613,
+   "Twelve lines start ok."
+  ],
+  [
+   20.788,
+   10.387,
+   "Attribute drift is P three, due in twenty-four hours; missing identities, orphans, stale access and the unauthorized write are P two, due in an hour."
+  ],
+  [
+   31.175,
+   7.575,
+   "Three carry the warning: the two missing identities and the unauthorized write, the classes Book 13 routes to a person."
+  ],
+  [
+   38.75,
+   4.875,
+   "And the last line is twelve accepted, none rejected, none de-duplicated."
+  ],
+  [
+   43.625,
+   5.812,
+   "Erin's two drifts in Entra I D, her department and her manager, have their own keys."
+  ],
+  [
+   49.438,
+   2.487,
+   "Step five deletes the output folder."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   4.85,
+   "Lab 2 moves to a ServiceNow Personal Developer Instance, never production."
+  ],
+  [
+   4.9,
+   4.487,
+   "You need the web service admin role to create the Scripted REST A P I."
+  ],
+  [
+   9.387,
+   7.225,
+   "You build the finding table and the Scripted REST resource, and lock the resource down with a REST endpoint access control."
+  ],
+  [
+   16.613,
+   9.675,
+   "Then you post a payload you already checked in Lab 1, and confirm two things on the instance: a repeat de-duplicates, and a malformed payload gets a four hundred."
+  ],
+  [
+   26.288,
+   10.912,
+   "Back it out before you leave the module: step five of the chapter's Lab 2 deletes the test records, the access control, the role, the A P I and the scoped application."
+  ],
+  [
+   37.2,
+   6.388,
+   "The authors haven't run Lab 2, and the workbook has no hosted sandbox: you bring your own instance."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   1.387,
+   "The federal requirement."
+  ],
+  [
+   1.438,
+   5.625,
+   "Gate 4 turns findings and requests into documented, owned, clocked records."
+  ],
+  [
+   7.062,
+   5.175,
+   "The guide maps it to four controls in nist special publication eight hundred fifty-three."
+  ],
+  [
+   12.238,
+   6.725,
+   "C M three, configuration change control: every proposed change is a documented, owned record."
+  ],
+  [
+   18.962,
+   5.263,
+   "R A seven, risk response: findings are answered inside declared windows."
+  ],
+  [
+   24.225,
+   5.15,
+   "C A seven, continuous monitoring: monitoring results become tracked work."
+  ],
+  [
+   29.375,
+   8.488,
+   "And A C five, separation of duties: a request passes a separation-of-duties check and an approver who isn't the requester."
+  ],
+  [
+   37.862,
+   11.65,
+   "The evidence an I S S O keeps from this module: the ServiceNow finding records and the contract tests in the repository, and each record's due date, which Module 7 measures."
+  ],
+  [
+   49.513,
+   3.075,
+   "Before shipping, work through the chapter's checklist."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   3.5,
+   "Check yourself with two questions from the module's knowledge check."
+  ],
+  [
+   3.55,
+   4.713,
+   "First: a payload has a drift class of stale access and no severity."
+  ],
+  [
+   8.262,
+   2.325,
+   "What does the Scripted REST resource do?"
+  ],
+  [
+   10.588,
+   1.212,
+   "The answer is c."
+  ],
+  [
+   11.8,
+   4.225,
+   "It accepts it with the class default, P two, and a one-hour window."
+  ],
+  [
+   16.025,
+   5.213,
+   "The script defaults severity by class, and sample one in the lab showed exactly that."
+  ],
+  [
+   21.238,
+   4.15,
+   "Second: what does a closure signal payload do to matching findings?"
+  ],
+  [
+   25.387,
+   1.225,
+   "The answer is b."
+  ],
+  [
+   26.613,
+   3.763,
+   "It moves them to Awaiting verification, and it never closes them."
+  ],
+  [
+   30.375,
+   2.275,
+   "Only a re-read closes a finding."
+  ],
+  [
+   32.65,
+   4.9,
+   "The module page has two more questions, each linked to the section that answers it."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   0.825,
+   "To sum up."
+  ],
+  [
+   0.875,
+   5.5,
+   "You mapped the kit to the loop's five steps, and found that actuation has no code in Pass 1."
+  ],
+  [
+   6.375,
+   4.85,
+   "You read the identity finding's contract, and the tempo its due dates come from."
+  ],
+  [
+   11.225,
+   6.338,
+   "You checked payloads on a laptop the way ServiceNow will, and then every payload the drift client would post."
+  ],
+  [
+   17.562,
+   15.525,
+   "Before you ship, work through Chapter 01's checklist: the constants match the deployed script, every client runs its payloads through the check, and the Scripted REST A P I requires authentication and a REST endpoint access control with a custom role."
+  ],
+  [
+   33.087,
+   12.875,
+   "Next is Module 2, the boundary and least privilege: Gate 1's record of what runs where, and the ServiceNow roles, SailPoint scopes and Graph permissions each task needs, checked against the kit's call list."
+  ]
+ ]
+}

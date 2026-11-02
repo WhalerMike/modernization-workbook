@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.338
+Step four cuts four columns
+from the intervals file:
+
+2
+00:00:03.338 --> 00:00:06.550
+the person number, the two
+intervals and the status.
+
+3
+00:00:06.550 --> 00:00:08.538
+There's a header and eight rows.
+
+4
+00:00:08.538 --> 00:00:09.662
+Six are measured.
+
+5
+00:00:09.662 --> 00:00:13.002
+One, person one hundred three
+oh three, is not blocked,
+
+6
+00:00:13.002 --> 00:00:16.574
+and its interval columns are
+empty rather than guessed.
+
+7
+00:00:16.574 --> 00:00:21.838
+One, one hundred three oh seven, is a
+cancelled separation, so it isn't measured.
+
+8
+00:00:21.838 --> 00:00:26.597
+Look at one hundred three oh eight: blocked
+in six minutes, but not fully revoked
+
+9
+00:00:26.597 --> 00:00:28.795
+for three hundred ninety-five hours,
+
+10
+00:00:28.795 --> 00:00:31.724
+because the card and the
+devices came much later.
+
+11
+00:00:31.724 --> 00:00:36.650
+Step five runs the tests, fifty-seven
+passed, and deletes the out folder.
+
+12
+00:00:36.650 --> 00:00:40.066
+Module 7 rebuilds this output
+and reads its summary,
+
+13
+00:00:40.066 --> 00:00:45.220
+where the two ninetieth percentiles
+become two of its six lifecycle metrics.

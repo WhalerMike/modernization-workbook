@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.025
+Check yourself with two questions.
+
+2
+00:00:02.025 --> 00:00:07.775
+First: in each record, approval,
+executing identity and what ran are null.
+
+3
+00:00:07.775 --> 00:00:08.463
+Why?
+
+4
+00:00:08.463 --> 00:00:09.464
+The answer is a.
+
+5
+00:00:09.464 --> 00:00:14.300
+Pass 1 doesn't actuate, so the record
+that would hold them is a later pass,
+
+6
+00:00:14.300 --> 00:00:16.551
+and each null carries its reason.
+
+7
+00:00:16.551 --> 00:00:20.650
+The record says so, rather than
+leaving the fields out or filling them.
+
+8
+00:00:20.650 --> 00:00:25.175
+Second: how does the verifier catch a
+record removed from the records file?
+
+9
+00:00:25.175 --> 00:00:26.400
+The answer is b.
+
+10
+00:00:26.400 --> 00:00:29.972
+The file's SHA-256 no longer
+matches the manifest,
+
+11
+00:00:29.972 --> 00:00:35.062
+and the next line's previous hash no
+longer matches the line before it.
+
+12
+00:00:35.062 --> 00:00:37.412
+You saw both in step five of the lab.
+
+13
+00:00:37.412 --> 00:00:39.927
+The module page has two more questions,
+
+14
+00:00:39.927 --> 00:00:44.620
+on why the export exits with one and
+on how window adherence is measured.

@@ -1,0 +1,679 @@
+{
+ "1": [
+  [
+   0.05,
+   5.75,
+   "Welcome to Module 2 of the Ticket-to-Machine learning path: the boundary and least privilege."
+  ],
+  [
+   5.8,
+   7.175,
+   "Before any call is made, you need to know which actions run from a vendor's cloud, and which non-person identities make them."
+  ],
+  [
+   12.975,
+   4.588,
+   "Then each identity has to hold exactly what its calls need, and no more."
+  ],
+  [
+   17.562,
+   6.425,
+   "This module follows the guide's Gate 1, and the developer workbook's Chapters 02 and 03."
+  ],
+  [
+   23.988,
+   13.5,
+   "You'll confirm the boundary on paper, learn the ServiceNow roles, SailPoint scopes and Graph permissions each kit task needs, and then make privilege something a test can check, by catching three kinds of over-wide grant on a laptop."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.15,
+   "Why does this matter?"
+  ],
+  [
+   1.2,
+   2.562,
+   "Because the easy fix is the wrong one."
+  ],
+  [
+   3.763,
+   6.888,
+   "An administrator who grants the itil role to make it work has given the integration every ITSM table."
+  ],
+  [
+   10.65,
+   4.688,
+   "An A P I client with a manage scope can change accounts if its token is stolen."
+  ],
+  [
+   15.338,
+   5.862,
+   "One integration user for everything means the account that reads evidence can also close findings."
+  ],
+  [
+   21.2,
+   6.275,
+   "And when a client gains a call nobody listed, someone grants a role in production to make the error go away."
+  ],
+  [
+   27.475,
+   4.425,
+   "Each of those has a guard in the kit, and you'll use every one of them in the lab."
+  ],
+  [
+   31.9,
+   9.1,
+   "The idea of the module is simple: confirm the boundary on paper first, then make privilege something a test can check, instead of something someone remembers."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   4.862,
+   "Here's what you'll be able to do by the end of this module, which takes about an hour with the lab."
+  ],
+  [
+   4.912,
+   7.037,
+   "You'll explain what Gate 1 records about each product's authorization and each action that runs from a vendor's cloud."
+  ],
+  [
+   11.95,
+   4.662,
+   "You'll describe the ServiceNow roles the kit uses and why they're split by task."
+  ],
+  [
+   16.613,
+   7.325,
+   "You'll describe the SailPoint scopes and Graph permissions each task needs, and why the workflow scope gets a client of its own."
+  ],
+  [
+   23.938,
+   5.0,
+   "And you'll verify a grant against the kit's call list, and catch a grant that's too wide."
+  ],
+  [
+   28.938,
+   1.75,
+   "You need Module 1 first."
+  ],
+  [
+   30.688,
+   5.35,
+   "For the Graph rows, the Microsoft Automation path's first module covers permissions."
+  ],
+  [
+   36.038,
+   5.85,
+   "Lab 1 runs on fixtures; Lab 2 needs a developer instance and a sandbox tenant."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   2.975,
+   "Gate 1 records and decides; it builds nothing."
+  ],
+  [
+   3.025,
+   1.35,
+   "It has six steps."
+  ],
+  [
+   4.375,
+   9.488,
+   "One: confirm each product's fed-ramp status on the Marketplace on the day you decide, and record the listing, its impact level, its path and the date."
+  ],
+  [
+   13.863,
+   2.987,
+   "Two: confirm what's inside the authorization."
+  ],
+  [
+   16.85,
+   14.113,
+   "SailPoint doesn't publish a list of features missing from its authorized environment, so ask in writing whether Workflows, Native Change Detection and the workflow HTTP Request step, which Gates 3 to 6 rely on, are there."
+  ],
+  [
+   30.962,
+   3.75,
+   "Three: confirm the product you bought is the one authorized."
+  ],
+  [
+   34.712,
+   3.5,
+   "Four: record which actions run from a vendor's cloud."
+  ],
+  [
+   38.212,
+   3.837,
+   "Five: confirm the apps are in ServiceNow's government Store."
+  ],
+  [
+   42.05,
+   7.725,
+   "And six: register the integration identities, with a certificate or federated credential, never a long-lived secret."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   3.038,
+   "Four non-person identities carry the integration."
+  ],
+  [
+   3.087,
+   4.3,
+   "SailPoint's Entra connector app registration in the agency's tenant."
+  ],
+  [
+   7.388,
+   2.725,
+   "The ServiceNow Entra spoke's app registration."
+  ],
+  [
+   10.113,
+   9.05,
+   "The ServiceNow integration user that SailPoint's workflow posts as, together with the verifier account the re-read client closes records as."
+  ],
+  [
+   19.163,
+   3.725,
+   "And the SailPoint A P I client the kit's clients read with."
+  ],
+  [
+   22.887,
+   5.85,
+   "As design guidance, each has two named owners and a federal sponsor in the system inventory."
+  ],
+  [
+   28.738,
+   1.163,
+   "Now the flows."
+  ],
+  [
+   29.9,
+   9.438,
+   "SailPoint's cloud connectors call Microsoft Graph from SailPoint's cloud; only the Active Directory path runs through its on-premises virtual appliance."
+  ],
+  [
+   39.337,
+   4.975,
+   "And, by inference, its workflows call out from SailPoint's cloud to ServiceNow."
+  ],
+  [
+   44.312,
+   9.613,
+   "The Federal Modernization Workbook's Book 15 prefers execution through a connector inside the boundary, so each vendor-cloud action becomes a recorded data flow."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   2.462,
+   "Here's how the kit makes privilege checkable."
+  ],
+  [
+   2.513,
+   12.7,
+   "A file called calls dot jay-son lists every HTTP call a Python client makes: the system, the method and path, the tasks that make it, the least privilege it needs, and the vendor page that says so."
+  ],
+  [
+   15.213,
+   6.713,
+   "A test runs the clients against a fake HTTP session and fails on any call the file doesn't declare."
+  ],
+  [
+   21.925,
+   8.312,
+   "So a new call fails the test until someone adds its row, its privilege and its source, and a reviewer sees that row in the pull request."
+  ],
+  [
+   30.238,
+   6.938,
+   "The test also asserts that no task asks SailPoint or Graph for a write scope, except workflow creation."
+  ],
+  [
+   37.175,
+   2.425,
+   "Then the kit calls tool reads the file."
+  ],
+  [
+   39.6,
+   3.013,
+   "Give it a task and it lists what that task needs."
+  ],
+  [
+   42.612,
+   5.4,
+   "Give it a grant and it compares, and exits one on anything missing or extra."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   5.287,
+   "On ServiceNow, the roles are custom roles in the scoped application, split by task."
+  ],
+  [
+   5.338,
+   9.375,
+   "That's design guidance: ServiceNow says the calling user needs roles that allow access to the table, and no single role allows adding attachments by default."
+  ],
+  [
+   14.713,
+   3.362,
+   "The finding writer can create findings, and nothing else."
+  ],
+  [
+   18.075,
+   8.537,
+   "The verifier can read and write findings and attach evidence, so it can close them, which is why the business rule accepts a close only from that account."
+  ],
+  [
+   26.613,
+   4.263,
+   "And the evidence reader reads, but can't change a record it's about to hash."
+  ],
+  [
+   30.875,
+   4.213,
+   "Each gets its own integration user and client-credentials client."
+  ],
+  [
+   35.087,
+   8.15,
+   "The client itself takes a token from a vault first, then client credentials, and basic authentication only on a developer instance."
+  ],
+  [
+   43.237,
+   4.85,
+   "It pages, retries, and refuses a secret in its config file."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   1.812,
+   "Now SailPoint and Graph."
+  ],
+  [
+   1.863,
+   5.725,
+   "The drift and re-read clients need read scopes only: search read, and accounts read."
+  ],
+  [
+   7.588,
+   7.938,
+   "The Accounts endpoints would accept the manage scope too, so the call list names the read scope and the comparison flags manage as extra."
+  ],
+  [
+   15.525,
+   6.225,
+   "Creating SailPoint's workflows needs the workflow manage scope, and no client in the kit makes that call."
+  ],
+  [
+   21.75,
+   9.037,
+   "So, as design guidance, that scope belongs to a separate client, used once, by hand or by a reviewed pipeline, and then removed."
+  ],
+  [
+   30.788,
+   9.338,
+   "On Graph, the app registration needs User dot Read dot All, as an application permission, and AuditLog dot Read dot All only if the run reads the audit."
+  ],
+  [
+   40.125,
+   5.775,
+   "Nothing in Pass 1 needs write access to Entra I D, Active Directory or SailPoint."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   5.15,
+   "One thing a client-credentials token can't do in SailPoint: act as a user."
+  ],
+  [
+   5.2,
+   7.8,
+   "It has no user context, and SailPoint warns that calling most admin A P I's with one often returns four oh three."
+  ],
+  [
+   13.0,
+   1.387,
+   "It doesn't say which."
+  ],
+  [
+   14.387,
+   10.562,
+   "So if Search or Accounts returns four oh three in your sandbox, use a personal access token for a dedicated user at the lowest user level that works, and record which one."
+  ],
+  [
+   24.95,
+   3.775,
+   "Never an administrator's, or the kit runs as org admin."
+  ],
+  [
+   28.725,
+   4.25,
+   "Whether a client-credentials token gets data is on the verify list."
+  ],
+  [
+   32.975,
+   7.963,
+   "The client pages Search past ten thousand results with search after, sorted on I D, and reads accounts two hundred fifty at a time."
+  ],
+  [
+   40.938,
+   7.0,
+   "For Graph, it signs in with a certificate first, and the cloud setting is Global for worldwide and G C C."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   3.85,
+   "Part A of Lab 1 runs in the kit's folder against fixtures."
+  ],
+  [
+   4.625,
+   4.213,
+   "Step one proves every call is declared: nine tests pass."
+  ],
+  [
+   8.838,
+   11.775,
+   "Step two lists what the re-read client needs on ServiceNow: a client-credentials token, then read and write on the finding table and create on attachments, all from one role, the verifier."
+  ],
+  [
+   20.613,
+   5.875,
+   "Step three is the classic mistake: an administrator gave the verifier itil as well."
+  ],
+  [
+   26.488,
+   6.763,
+   "The tool lists the calls, then reports nothing missing, itil extra, and least privilege does not hold."
+  ],
+  [
+   33.25,
+   1.125,
+   "It exits one."
+  ],
+  [
+   34.375,
+   8.162,
+   "Step four catches the evidence export reusing the verifier's role: the evidence reader is missing and the verifier is extra."
+  ],
+  [
+   42.538,
+   3.938,
+   "With the verifier's role, the export could also close findings."
+  ],
+  [
+   46.475,
+   4.75,
+   "Step five reruns the original ServiceNow client tests: seven pass."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   2.487,
+   "Part B turns to SailPoint and Graph."
+  ],
+  [
+   2.538,
+   3.812,
+   "Step six runs the SailPoint client tests: four pass."
+  ],
+  [
+   6.35,
+   5.612,
+   "Step seven lists what the drift client needs from SailPoint: search read and accounts read."
+  ],
+  [
+   11.963,
+   7.175,
+   "Step eight catches a manage scope on that read client: nothing missing, accounts manage extra, and it exits one."
+  ],
+  [
+   19.137,
+   4.062,
+   "Step nine checks the drift client's scopes against the workflow task."
+  ],
+  [
+   23.2,
+   3.9,
+   "The workflow scope is missing, and both read scopes are extra."
+  ],
+  [
+   27.1,
+   3.712,
+   "That's the point of the step: the two jobs need two clients."
+  ],
+  [
+   30.812,
+   3.425,
+   "Step ten checks the Graph app registration twice."
+  ],
+  [
+   34.237,
+   5.075,
+   "For a drift run that reads the audit, AuditLog dot Read dot All is missing."
+  ],
+  [
+   39.312,
+   7.425,
+   "With the required-only option, for a run that doesn't read the audit, least privilege holds, and the command exits zero."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   3.35,
+   "Lab 2 builds the real thing in test instances."
+  ],
+  [
+   3.4,
+   9.825,
+   "In your ServiceNow developer instance, from Module 1, you create the three custom roles, one integration user and one client-credentials integration per role."
+  ],
+  [
+   13.225,
+   5.888,
+   "Then you compare each user's roles with the call list, and confirm the evidence reader can't patch a record."
+  ],
+  [
+   19.113,
+   9.162,
+   "In a SailPoint sandbox tenant, you create a reader A P I client and a separate workflow client, compare each with the call list, and try the reader."
+  ],
+  [
+   28.275,
+   3.788,
+   "How an agency gets a sandbox is between it and SailPoint."
+  ],
+  [
+   32.062,
+   11.7,
+   "Back it out before you leave: delete the OAuth integrations, users and roles, and revoke any saved token; then delete both A P I clients and anything under the output folder."
+  ],
+  [
+   43.763,
+   2.15,
+   "The authors haven't run Lab 2."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   2.675,
+   "What does the boundary look like on the Marketplace?"
+  ],
+  [
+   2.725,
+   8.475,
+   "Read on November 1, 2026: ServiceNow's Government Community Cloud is fed-ramp certified at High, on the JAB path."
+  ],
+  [
+   11.2,
+   5.425,
+   "ServiceNow's commercial cloud has no listing of its own, and some agencies run on it."
+  ],
+  [
+   16.625,
+   5.188,
+   "SailPoint Identity Security Cloud is certified at Moderate, on the agency path."
+  ],
+  [
+   21.812,
+   4.862,
+   "And IdentityIQ, the self-hosted product, has no listing of its own."
+  ],
+  [
+   26.675,
+   12.812,
+   "The interim path: on ServiceNow's commercial cloud, the authorizing official decides whether identity tasks may run there before a move, and, as design guidance, payloads stay to identifiers."
+  ],
+  [
+   39.487,
+   10.012,
+   "Where a feature's presence in SailPoint's authorized environment is unconfirmed, build Gates 3 to 6 in the sandbox and hold production until SailPoint confirms it."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   1.387,
+   "The federal requirement."
+  ],
+  [
+   1.438,
+   4.487,
+   "The guide maps Gate 1 to nist special publication eight hundred fifty-three."
+  ],
+  [
+   5.925,
+   10.975,
+   "S A nine, external system services, and fed-ramp authorization: each service's authorization is confirmed, or the gap is recorded as a risk for the authorizing official."
+  ],
+  [
+   16.9,
+   4.562,
+   "C A three, information exchange: each flow is recorded."
+  ],
+  [
+   21.462,
+   6.287,
+   "I A five and A C six: the integration identities use certificates and least privilege."
+  ],
+  [
+   27.75,
+   13.637,
+   "The chapters map the call list to A C six, A C two for account management, A C five because the account that closes findings is separate, and C M three because a change to what the integration may call is reviewed."
+  ],
+  [
+   41.388,
+   9.35,
+   "The evidence an I S S O keeps: Gate 1's record, plus the call list, its test, and the comparison output with each access approval."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   3.5,
+   "Check yourself with two questions from the module's knowledge check."
+  ],
+  [
+   3.55,
+   6.737,
+   "First: why does the evidence export get its own evidence reader role, instead of reusing the verifier's?"
+  ],
+  [
+   10.287,
+   1.225,
+   "The answer is b."
+  ],
+  [
+   11.512,
+   3.938,
+   "With the verifier's role, the export could also close findings."
+  ],
+  [
+   15.45,
+   2.7,
+   "The reader can't change a record it's about to hash."
+  ],
+  [
+   18.15,
+   1.725,
+   "Roles are split by task."
+  ],
+  [
+   19.875,
+   4.888,
+   "Second: Gate 1 asks you to record which actions run from a vendor's cloud."
+  ],
+  [
+   24.762,
+   0.688,
+   "Why?"
+  ],
+  [
+   25.45,
+   9.238,
+   "The answer is a. Book 15 prefers execution through a connector inside the boundary, so each vendor-cloud action becomes a recorded data flow."
+  ],
+  [
+   34.688,
+   4.9,
+   "The module page has two more questions, each linked to the section that answers it."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   0.825,
+   "To sum up."
+  ],
+  [
+   0.875,
+   10.488,
+   "You confirmed what Gate 1 records: each product's fed-ramp status, what's inside the authorization, which actions run from a vendor's cloud, and the integration identities."
+  ],
+  [
+   11.363,
+   1.738,
+   "And you saw that it builds nothing."
+  ],
+  [
+   13.1,
+   8.562,
+   "You learned the ServiceNow roles, SailPoint scopes and Graph permissions each kit task needs, and why the workflow scope gets a client of its own."
+  ],
+  [
+   21.663,
+   8.125,
+   "And on a laptop you caught three kinds of over-wide grant: an extra role, a reused role, and a manage scope on a read client."
+  ],
+  [
+   29.788,
+   5.225,
+   "Before you ship, work through the Chapter 02 and Chapter 03 checklists."
+  ],
+  [
+   35.013,
+   11.425,
+   "Next is Module 3, one writer per attribute: Gate 2's decisions about who writes each attribute and who approves each class, and a check that finds an attribute with two writers."
+  ]
+ ]
+}

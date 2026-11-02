@@ -1,0 +1,61 @@
+# HR-Driven Identity learning path — Module 6: Time separations from the logs — narration script (practice copy)
+
+## Slide 1 — Module 6: Time separations from the logs
+
+Welcome to Module 6 of the HR-Driven Identity learning path: time separations from the logs. This is Gate 6 of the implementation guide, separation, and it goes with Chapter 06 of the developer workbook. When a person separates, two things have to be shown: that access was blocked within the approved interval, and that the credential was revoked. In this module you'll join the records each system keeps about a leaver, compute two intervals for every one of them, separation-to-block and separation-to-revocation, and find the separations that went wrong. You'll run the measurement on fictional leavers, with no tenant. The module takes about forty-five minutes with its lab.
+
+## Slide 2 — Why no single report tells you a leaver was blocked
+
+Why does this gate need code? Your ISSO has to show that each leaver's access was blocked within the approved interval and that the credential was revoked. No Microsoft report gives that number. Lifecycle Workflows records that a leaver run completed. The audit log records when the account was disabled. The card system records the card's revocation, and Intune records the devices being retired or wiped. Each lives in its own place. So in this module you join those records for each leaver, compute the two intervals, and find the separations that went wrong: an entry made late, a re-enable, a failed run, a card revoked too late, a delete before the devices were retired.
+
+## Slide 3 — What you'll be able to do in Module 6
+
+Here's what you'll be able to do by the end of the module. You'll describe the leaver order: block first, revoke in parallel, reconcile, and dispose last. You'll define separation-to-block and separation-to-revocation, and say which records each one reads. You'll run the measurement and explain its findings, including the catch-up window. And you'll explain why the tenant's workflow schedule belongs inside the approved interval. This module builds on three earlier ones. Module 1: the pipeline sends active false no later than the leaver workflow's first run. Module 3: the leaver and post-separation workflow files. And Module 5: a card's revocation reaches sign-in through the revocation list.
+
+## Slide 4 — The leaver sequence: block first, dispose last
+
+Unit 1 reads the guide's Step 6. It orders the leaver as a sequence: block first, revoke in parallel, reconcile, and dispose last. It times the leave date late in the day. It coordinates the two writers, so one can't undo the other; in the lab, a re-enable after the disable with no cancellation in HR is rule S T five. It builds an emergency path, whose on-demand runs are logged as changes. It catches separations that were entered late, which is S T three. It verifies the block, which is S T one and S T two. And it disposes last: deleting a user before the devices are retired is S T eight. The Federal Modernization Workbook's Book 03 has the canonical leaver sequence, and Book 19's Chapter 05 has already built the custom task extension that revokes the card and retires the devices.
+
+## Slide 5 — The schedule, late entries and the catch-up window
+
+Two timing facts shape the measurement. First, late entries. Learn says a scheduled workflow still processes a user whose trigger date passed no more than three days ago. Past three days, the scheduled trigger skips the user. Book 03's Chapter 08 explains why a separation entered late misses it. So rule S T three flags any separation entered more than three days after its effective date: a Finding if nobody ran the leaver on demand, and only a Warn if someone did. Second, the tenant's schedule. Lifecycle Workflows runs on a schedule, and that can delay a scheduled leaver's run. The wait is part of separation-to-block, so the guide says the schedule belongs inside the approved interval. Set the threshold and the schedule together.
+
+## Slide 6 — The two intervals, and the records each reads
+
+Unit 2 defines the two intervals. Both start at the HR effective time. Separation-to-block ends when the person was blocked, and the code takes that as the later of two audit records: the first Disable account, and the first session revocation, which the audit log calls Update S T S Refresh Token Valid From Timestamp. Disabled but still holding a session isn't blocked. Separation-to-revocation ends at the last of three things: the block, the card system's revocation and the device actions. To compute them, the measurement reads the HR separations, the audit records and leaver run results exported from Graph, the card system's revocations, Intune's device actions, and the list of privileged role holders. It never guesses. A leaver missing either audit record is not blocked, and that's a finding. A cancelled separation isn't measured at all.
+
+## Slide 7 — The rules: ST-01 to ST-09
+
+Here are the nine rules. S T one and S T nine compare the two intervals with their thresholds. S T two: no block was recorded, or there's no account to measure. S T three is the late entry, past the three-day catch-up window. S T four: a card that couldn't be collected was revoked more than eighteen hours after notice. S T five: the account was re-enabled after the disable, with no cancellation in HR. S T six is a warning for a privileged leaver, because the disable task doesn't support users with role assignments, so someone has to confirm the verified path ran. S T seven: a leaver run failed, and goes to the exception queue. And S T eight: the user was deleted before the device retire or wipe completed. Disposal comes last.
+
+## Slide 8 — Which thresholds are samples the agency replaces
+
+Not every number in the rules is a requirement. Two are samples. The four-hour separation-to-block threshold and the twenty-four-hour separation-to-revocation threshold stand in for the agency's organization-defined periods under P S four. The agency approves them or replaces them. Two are fixed by their sources. The eighteen hours for an uncollected card is FIPS two oh one dash three's rule: a card that can't be collected is terminated within eighteen hours of notification. And the three-day catch-up window is Learn's, the window in which a scheduled workflow still picks up a user. So the tool measures, and the agency decides. Approve the block and revocation periods, and set the tenant schedule inside them.
+
+## Slide 9 — Try it: measure the fictional leavers
+
+Try it. Lab 1 runs in the h r lifecycle examples folder, on fictional leavers, with no tenant. Step one lists what the reader would call in a real tenant: two GET calls, the directory audits and the leaver workflow's processing results, for two read permissions. Step two runs the measurement over every input: the separations, the users, the audit records, the run results, the card revocations, the device actions and the role holders. It reports seven separated leavers, one cancelled, and one never blocked. The median separation-to-block is a quarter of an hour, but the ninetieth percentile is five point five two hours, over the four-hour sample, and the worst is nearly eighty-five. Revocation is worse: a ninetieth percentile of a hundred ten hours against twenty-four. Ten Findings, two Warns, exit code two.
+
+## Slide 10 — Try it: read the twelve findings as stories
+
+Step three prints the findings, one line each: twelve of them. Read them as stories about people. Casey was blocked after five and a half hours, over the threshold, and Casey's card, which couldn't be collected, was revoked twenty-three hours after notice, past FIPS's eighteen. Drew's separation was entered six point eight days late, nobody ran the leaver on demand, and Drew was never blocked at all. Harper was re-enabled after the disable with no cancellation in HR, and Harper's leaver run failed. Kai holds a privileged role, and the disable task doesn't support users with role assignments, so someone has to confirm the verified path ran. And Blake was deleted before the device retire completed. Emery shows the other side of S T three: entered late, but caught by an on-demand run, so it's only a Warn.
+
+## Slide 11 — Try it: the intervals file Module 7 reads
+
+Step four cuts four columns from the intervals file: the person number, the two intervals and the status. There's a header and eight rows. Six are measured. One, person one hundred three oh three, is not blocked, and its interval columns are empty rather than guessed. One, one hundred three oh seven, is a cancelled separation, so it isn't measured. Look at one hundred three oh eight: blocked in six minutes, but not fully revoked for three hundred ninety-five hours, because the card and the devices came much later. Step five runs the tests, fifty-seven passed, and deletes the out folder. Module 7 rebuilds this output and reads its summary, where the two ninetieth percentiles become two of its six lifecycle metrics.
+
+## Slide 12 — Lab 2: one scheduled and one on-demand test leaver
+
+Lab 2 moves to your own test tenant, never production, with Lifecycle Workflows licensed and a leaver workflow in Book 03's order. The reader app holds a certificate and just the two permissions from step one, with admin consent. You make two test leavers, one scheduled and one run on demand, export the logs, and confirm which audit activity the session revoke task actually writes, because the measurement depends on that name. Then you measure. Expect each test user's separation-to-block to include the wait for the tenant schedule. That's the lesson from Unit 1, now in your own numbers. To back it out, remove the leave dates, re-enable or restore the users if you need them, remove the permissions, and delete the reader app, its certificate and the folders. The authors haven't run Lab 2.
+
+## Slide 13 — The federal requirement, and the evidence to keep
+
+The federal requirement. In NIST special publication eight hundred fifty-three terms, this gate meets P S four, personnel termination; A C two, enhancement three, disable accounts; P S seven for contractors; and A C two, enhancement thirteen, disabling accounts for high-risk individuals. It also meets FIPS two oh one dash three's rule that a card that can't be collected is terminated within eighteen hours of notification. The evidence an ISSO keeps for Gate 6: the intervals, the summary and the findings, with their manifest, for every run. The exported workflow runs, audit records, card revocations and device actions behind them. The contractor rows of the intervals. The notice and revocation times for uncollected cards. And the emergency path's on-demand runs, logged as changes.
+
+## Slide 14 — Check yourself: two questions on separations
+
+Check yourself with two questions from the module's knowledge check. First: what does the code take as the moment a leaver was blocked? The answer is b: the later of the first Disable account record and the first session revocation record. Not the workflow's completion time, and not the HR effective time, which is where the interval starts. Second: a separation is entered in HR more than three days after its effective date, and nobody runs the leaver on demand. What does the measurement report? The answer is b: an S T three Finding, because past three days the scheduled trigger skips the user. With an on-demand run, it would be only a Warn. The module page has two more questions, each linked to the section that teaches it.
+
+## Slide 15 — Summary, and next: Module 7, drift and evidence
+
+To sum up. You put the leaver in order: block first, revoke in parallel, reconcile, and dispose last. You defined separation-to-block and separation-to-revocation, and the records each one reads. You measured fictional leavers and found the ones that were blocked late, never blocked, re-enabled, failed, or deleted too early. And you saw why the tenant schedule belongs inside the approved interval. Next is Module 7, the last in the path: find lifecycle drift and file the evidence. It writes one read-only run of six drift classes and six metrics, reads this module's percentiles as two of them, and packages each run with a hash chain an ISSO can verify.

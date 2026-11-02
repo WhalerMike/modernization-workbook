@@ -1,0 +1,73 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.680
+Lab 2 moves to your own test
+tenant, never production,
+
+2
+00:00:03.680 --> 00:00:08.913
+with Lifecycle Workflows licensed and
+a leaver workflow in Book 03's order.
+
+3
+00:00:08.913 --> 00:00:11.752
+The reader app holds a
+certificate and just the
+
+4
+00:00:11.752 --> 00:00:14.737
+two permissions from step
+one, with admin consent.
+
+5
+00:00:14.737 --> 00:00:19.463
+You make two test leavers, one scheduled
+and one run on demand, export the logs,
+
+6
+00:00:19.463 --> 00:00:24.113
+and confirm which audit activity the
+session revoke task actually writes,
+
+7
+00:00:24.113 --> 00:00:26.963
+because the measurement
+depends on that name.
+
+8
+00:00:26.963 --> 00:00:27.962
+Then you measure.
+
+9
+00:00:27.962 --> 00:00:30.730
+Expect each test user's
+separation-to-block
+
+10
+00:00:30.730 --> 00:00:33.499
+to include the wait for
+the tenant schedule.
+
+11
+00:00:33.499 --> 00:00:36.900
+That's the lesson from Unit
+1, now in your own numbers.
+
+12
+00:00:36.900 --> 00:00:39.156
+To back it out, remove the leave dates,
+
+13
+00:00:39.156 --> 00:00:43.516
+re-enable or restore the users if you
+need them, remove the permissions,
+
+14
+00:00:43.516 --> 00:00:47.125
+and delete the reader app, its
+certificate and the folders.
+
+15
+00:00:47.125 --> 00:00:49.340
+The authors haven't run Lab 2.

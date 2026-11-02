@@ -1,0 +1,60 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.200
+Why does this matter?
+
+2
+00:00:01.200 --> 00:00:04.955
+SailPoint's Service Desk
+integration treats a provisioning
+
+3
+00:00:04.955 --> 00:00:08.562
+task as complete when the mapped
+ServiceNow status says so.
+
+4
+00:00:08.562 --> 00:00:12.225
+So a technician sets a ticket to
+Closed, and nothing was checked.
+
+5
+00:00:12.225 --> 00:00:14.250
+The account might still be enabled.
+
+6
+00:00:14.250 --> 00:00:15.788
+The group might still be there.
+
+7
+00:00:15.788 --> 00:00:20.145
+The Federal Modernization Workbook's
+Book 13's rule is different:
+
+8
+00:00:20.145 --> 00:00:22.324
+a success response isn't closure.
+
+9
+00:00:22.324 --> 00:00:27.150
+A finding closes only when a re-read of
+the target shows the intended state.
+
+10
+00:00:27.150 --> 00:00:29.379
+Gate 6 enforces that in ServiceNow,
+
+11
+00:00:29.379 --> 00:00:34.375
+for identity findings and for the tickets
+the Service Desk integration opens.
+
+12
+00:00:34.375 --> 00:00:36.880
+In this module you see where the fix runs,
+
+13
+00:00:36.880 --> 00:00:41.810
+and then you enforce the rule and watch
+the re-read client decide six findings.

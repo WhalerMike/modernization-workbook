@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.025
+Window adherence needs care, because it's
+easy to measure in a way that flatters.
+
+2
+00:00:05.025 --> 00:00:10.312
+Chapter 07 measures it the way Book 13
+and Book 12's Chapter 12 define it:
+
+3
+00:00:10.312 --> 00:00:14.050
+closures inside the window,
+over closures judged.
+
+4
+00:00:14.050 --> 00:00:18.563
+It isn't a ratio of open findings,
+which improves as new ones arrive.
+
+5
+00:00:18.563 --> 00:00:22.785
+The kit's fixture has five fictional
+closed records, one per case:
+
+6
+00:00:22.785 --> 00:00:27.964
+one closed in its window, one closed late,
+one whose evidence was edited after it
+
+7
+00:00:27.964 --> 00:00:30.992
+closed, one cancelled as
+a declared exception,
+
+8
+00:00:30.992 --> 00:00:33.462
+and one closed with no evidence at all.
+
+9
+00:00:33.462 --> 00:00:35.650
+You'll export all five in the lab.
+
+10
+00:00:35.650 --> 00:00:39.341
+One thing wasn't verified:
+the format and time zone of
+
+11
+00:00:39.341 --> 00:00:43.375
+the date values the Table API
+returns on a given instance.
+
+12
+00:00:43.375 --> 00:00:47.780
+The export parses both common
+forms, and Lab 2 checks yours.

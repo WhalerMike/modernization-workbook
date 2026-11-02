@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.800
+A run is one folder, and it only reads.
+
+2
+00:00:02.800 --> 00:00:08.380
+Its run dot JSON records the tenant,
+the cloud and the mode, and a SHA-256 of
+
+3
+00:00:08.380 --> 00:00:14.325
+each module output it read, so anyone can
+tell exactly which inputs produced it.
+
+4
+00:00:14.325 --> 00:00:19.588
+Beside it, the lifecycle folder holds
+the findings, the metrics and a manifest.
+
+5
+00:00:19.588 --> 00:00:24.004
+Before the run reads an earlier
+module's output, it checks that output
+
+6
+00:00:24.004 --> 00:00:28.499
+against its own manifest, so a changed
+file is caught, not silently used.
+
+7
+00:00:28.499 --> 00:00:31.421
+The tools also write
+each output folder once:
+
+8
+00:00:31.421 --> 00:00:34.737
+they refuse a folder that
+already holds a manifest.
+
+9
+00:00:34.737 --> 00:00:37.298
+That's why the lab's
+first step deletes the
+
+10
+00:00:37.298 --> 00:00:40.312
+out folder and rebuilds
+the five module outputs.
+
+11
+00:00:40.312 --> 00:00:42.975
+Lab 1 writes its runs in fixture mode.
+
+12
+00:00:42.975 --> 00:00:47.380
+Lab 2 writes them in tenant mode,
+from your test tenant's exports.

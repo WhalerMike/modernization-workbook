@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.814
+Welcome to Module 6 of the
+Ticket-to-Machine learning path:
+
+2
+00:00:03.814 --> 00:00:05.775
+actuation and the re-read rule.
+
+3
+00:00:05.775 --> 00:00:08.825
+This module covers the
+guide's Gates 5 and 6,
+
+4
+00:00:08.825 --> 00:00:11.700
+and the developer workbook's Chapter 05.
+
+5
+00:00:11.700 --> 00:00:16.062
+In Module 5, an event became a
+finding with an intended state.
+
+6
+00:00:16.062 --> 00:00:19.274
+Now the fix has to happen,
+and the finding has to close.
+
+7
+00:00:19.274 --> 00:00:22.975
+You'll see where the fix runs on
+these products, lane by lane.
+
+8
+00:00:22.975 --> 00:00:27.868
+Then you'll see how a ServiceNow business
+rule and a re-read client enforce one
+
+9
+00:00:27.868 --> 00:00:32.838
+rule: a finding closes only when a re-read
+of the target shows the intended state.
+
+10
+00:00:32.838 --> 00:00:37.350
+In the lab, you'll watch the client
+decide six waiting findings on two days.
+
+11
+00:00:37.350 --> 00:00:41.420
+The code is illustrative, tested
+against fictional fixtures.

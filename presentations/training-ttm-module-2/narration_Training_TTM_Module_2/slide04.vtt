@@ -1,0 +1,65 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.025
+Gate 1 records and decides;
+it builds nothing.
+
+2
+00:00:03.025 --> 00:00:04.375
+It has six steps.
+
+3
+00:00:04.375 --> 00:00:09.843
+One: confirm each product's FedRAMP status
+on the Marketplace on the day you decide,
+
+4
+00:00:09.843 --> 00:00:13.863
+and record the listing, its impact
+level, its path and the date.
+
+5
+00:00:13.863 --> 00:00:16.850
+Two: confirm what's
+inside the authorization.
+
+6
+00:00:16.850 --> 00:00:21.633
+SailPoint doesn't publish a list of
+features missing from its authorized
+
+7
+00:00:21.633 --> 00:00:26.494
+environment, so ask in writing whether
+Workflows, Native Change Detection
+
+8
+00:00:26.494 --> 00:00:30.963
+and the workflow HTTP Request step,
+which Gates 3 to 6 rely on, are there.
+
+9
+00:00:30.963 --> 00:00:34.712
+Three: confirm the product you
+bought is the one authorized.
+
+10
+00:00:34.712 --> 00:00:38.212
+Four: record which actions
+run from a vendor's cloud.
+
+11
+00:00:38.212 --> 00:00:42.049
+Five: confirm the apps are in
+ServiceNow's government Store.
+
+12
+00:00:42.049 --> 00:00:45.108
+And six: register the
+integration identities,
+
+13
+00:00:45.108 --> 00:00:49.820
+with a certificate or federated
+credential, never a long-lived secret.

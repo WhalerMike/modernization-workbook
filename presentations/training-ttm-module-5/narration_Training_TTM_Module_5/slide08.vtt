@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.813
+The second gap was in
+the de-duplication key.
+
+2
+00:00:02.813 --> 00:00:07.200
+The script de-duplicated on
+source, subject and drift class.
+
+3
+00:00:07.200 --> 00:00:09.989
+So if two attributes drifted on one user,
+
+4
+00:00:09.989 --> 00:00:13.538
+say department and manager,
+they became one record.
+
+5
+00:00:13.538 --> 00:00:16.394
+The second finding's
+intended state was lost,
+
+6
+00:00:16.394 --> 00:00:18.787
+and the re-read checked only the first.
+
+7
+00:00:18.787 --> 00:00:22.625
+Now the key adds the attribute
+whenever the payload names one.
+
+8
+00:00:22.625 --> 00:00:26.875
+You'll see it in the lab: Erin's finding
+has a key that ends in department.
+
+9
+00:00:26.875 --> 00:00:30.967
+Two attributes drifting on one
+subject are now two findings,
+
+10
+00:00:30.967 --> 00:00:34.813
+each with its own intended state,
+and a node test pins that.
+
+11
+00:00:34.813 --> 00:00:38.780
+The kit's README and the
+implementation example both say so.

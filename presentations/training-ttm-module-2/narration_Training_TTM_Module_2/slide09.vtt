@@ -1,0 +1,65 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.200
+One thing a client-credentials token
+can't do in SailPoint: act as a user.
+
+2
+00:00:05.200 --> 00:00:09.231
+It has no user context, and
+SailPoint warns that calling
+
+3
+00:00:09.231 --> 00:00:13.000
+most admin APIs with one
+often returns four oh three.
+
+4
+00:00:13.000 --> 00:00:14.387
+It doesn't say which.
+
+5
+00:00:14.387 --> 00:00:18.319
+So if Search or Accounts returns
+four oh three in your sandbox,
+
+6
+00:00:18.319 --> 00:00:21.557
+use a personal access token
+for a dedicated user at
+
+7
+00:00:21.557 --> 00:00:24.949
+the lowest user level that
+works, and record which one.
+
+8
+00:00:24.949 --> 00:00:28.725
+Never an administrator's, or
+the kit runs as org admin.
+
+9
+00:00:28.725 --> 00:00:32.975
+Whether a client-credentials token
+gets data is on the verify list.
+
+10
+00:00:32.975 --> 00:00:37.298
+The client pages Search past ten
+thousand results with search after,
+
+11
+00:00:37.298 --> 00:00:40.938
+sorted on I D, and reads accounts
+two hundred fifty at a time.
+
+12
+00:00:40.938 --> 00:00:44.182
+For Graph, it signs in
+with a certificate first,
+
+13
+00:00:44.182 --> 00:00:48.000
+and the cloud setting is
+Global for worldwide and GCC.

@@ -1,0 +1,75 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.023
+Step three lints three broken copies,
+
+2
+00:00:03.023 --> 00:00:06.475
+with a budget of two so
+you can see J W oh seven.
+
+3
+00:00:06.475 --> 00:00:10.212
+Seven findings and four warnings,
+and an exit code of two.
+
+4
+00:00:10.212 --> 00:00:11.100
+Read a few.
+
+5
+00:00:11.100 --> 00:00:14.363
+One offset is two hundred
+days, beyond the limit.
+
+6
+00:00:14.363 --> 00:00:16.563
+A leaver is triggered on the hire date.
+
+7
+00:00:16.563 --> 00:00:19.140
+Three workflows are
+over the budget of two,
+
+8
+00:00:19.140 --> 00:00:22.012
+and the message quotes
+both of Learn's ceilings.
+
+9
+00:00:22.012 --> 00:00:25.562
+A scheduled workflow has no
+execution limit recorded.
+
+10
+00:00:25.562 --> 00:00:28.254
+A joiner adds the user to groups directly,
+
+11
+00:00:28.254 --> 00:00:31.262
+instead of giving baseline
+access by package.
+
+12
+00:00:31.262 --> 00:00:32.912
+The slide trims a few more.
+
+13
+00:00:32.912 --> 00:00:38.413
+Now find the two J W oh five warnings,
+the ones this module cares most about.
+
+14
+00:00:38.413 --> 00:00:42.976
+One pass lasts four thousand three hundred
+twenty minutes, which is three days,
+
+15
+00:00:42.976 --> 00:00:46.626
+well over the twenty-four hours
+Learn recommends for a new hire.
+
+16
+00:00:46.626 --> 00:00:48.980
+The other pass isn't one-time use.

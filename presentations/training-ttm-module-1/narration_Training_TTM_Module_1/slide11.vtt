@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:03.687
+Lab 1 runs in the kit's
+folder, on a laptop,
+
+3
+00:00:03.687 --> 00:00:06.963
+against fictional
+fixtures, with no tenant.
+
+4
+00:00:06.963 --> 00:00:11.775
+In step two you check five sample payloads
+the way the Scripted REST resource would.
+
+5
+00:00:11.775 --> 00:00:15.688
+Sample one gave no severity,
+so the class default gave it P
+
+6
+00:00:15.688 --> 00:00:19.600
+two and a one-hour window: due at
+one o'clock for a run at noon.
+
+7
+00:00:19.600 --> 00:00:25.250
+Sample two has a typo in its drift class,
+and sample four has a severity of P five.
+
+8
+00:00:25.250 --> 00:00:28.600
+Both would get a four hundred,
+so the command exits one.
+
+9
+00:00:28.600 --> 00:00:33.319
+Sample three is accepted, but warned:
+its intended state names nothing
+
+10
+00:00:33.319 --> 00:00:37.550
+a re-read can check, which is
+expected for an unauthorized write.
+
+11
+00:00:37.550 --> 00:00:43.162
+And sample five, a closure signal, moves
+matching findings to Awaiting verification.
+
+12
+00:00:43.162 --> 00:00:44.570
+It never closes them.

@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:06.337
+Lab 1 runs in the hr-lifecycle folder,
+and nothing signs in or sends a request.
+
+3
+00:00:06.337 --> 00:00:09.601
+Step one lists the reads,
+and their permissions.
+
+4
+00:00:09.601 --> 00:00:14.020
+Three GET calls: the assignment policies
+and the assignments in entitlement
+
+5
+00:00:14.020 --> 00:00:17.680
+management, which need
+EntitlementManagement dot Read dot All,
+
+6
+00:00:17.680 --> 00:00:22.100
+and each user's transitive group memberships,
+which need User dot Read dot All.
+
+7
+00:00:22.100 --> 00:00:26.150
+Those are what the scan and the residual
+review read from a real tenant.
+
+8
+00:00:26.150 --> 00:00:31.238
+Step two lints the program's three policy
+files over the fixture population.
+
+9
+00:00:31.238 --> 00:00:35.388
+Zero findings, zero warnings,
+zero information items.
+
+10
+00:00:35.388 --> 00:00:39.329
+That clean run is part of
+the evidence an ISSO keeps,
+
+11
+00:00:39.329 --> 00:00:41.930
+beside the hash of each body sent.

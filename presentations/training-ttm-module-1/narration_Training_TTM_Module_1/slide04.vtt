@@ -1,0 +1,70 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.625
+The loop has five steps.
+
+2
+00:00:01.625 --> 00:00:07.125
+One, test: a rule evaluates actual
+state against the authoritative record.
+
+3
+00:00:07.125 --> 00:00:11.862
+Two, detect drift: a difference becomes
+a typed finding with a severity.
+
+4
+00:00:11.862 --> 00:00:16.314
+Three, raise a typed task against
+the reconciled configuration item,
+
+5
+00:00:16.314 --> 00:00:17.876
+with an owner and a clock.
+
+6
+00:00:17.876 --> 00:00:20.202
+Four, actuate on the native surface,
+
+7
+00:00:20.202 --> 00:00:24.375
+under a service identity, through
+the platform's own interface.
+
+8
+00:00:24.375 --> 00:00:26.227
+And five, close with evidence:
+
+9
+00:00:26.227 --> 00:00:30.550
+re-read the post-change state and
+write one record of the whole chain.
+
+10
+00:00:30.550 --> 00:00:33.094
+The coordination layer
+in front of the native
+
+11
+00:00:33.094 --> 00:00:35.638
+tools never writes the
+configuration itself.
+
+12
+00:00:35.638 --> 00:00:38.221
+Its job is to make every drift an owned,
+
+13
+00:00:38.221 --> 00:00:41.388
+clocked, approved and
+evidenced piece of work.
+
+14
+00:00:41.388 --> 00:00:44.829
+In the program's model, the
+ticket authorizes a machine,
+
+15
+00:00:44.829 --> 00:00:47.260
+and the person's role ends at approval.

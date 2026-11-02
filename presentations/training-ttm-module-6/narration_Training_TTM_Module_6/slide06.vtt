@@ -1,0 +1,66 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.137
+The re-read client does the checking.
+
+2
+00:00:02.137 --> 00:00:06.358
+It lists the waiting findings
+through ServiceNow's Table API,
+
+3
+00:00:06.358 --> 00:00:09.088
+then re-reads each subject by its system.
+
+4
+00:00:09.088 --> 00:00:11.900
+An ISC account is read by its ID.
+
+5
+00:00:11.900 --> 00:00:14.813
+An ISC identity is found with a Search.
+
+6
+00:00:14.813 --> 00:00:18.581
+And an Entra user is read
+through Microsoft Graph,
+
+7
+00:00:18.581 --> 00:00:22.075
+which returns a 404 when
+the user doesn't exist.
+
+8
+00:00:22.075 --> 00:00:25.775
+Each read has its own least
+permission, shown on the slide.
+
+9
+00:00:25.775 --> 00:00:29.625
+Then the client compares what it read
+with the finding's intended state.
+
+10
+00:00:29.625 --> 00:00:34.701
+On a match, it closes the record with
+the evidence: the query, the time,
+
+11
+00:00:34.701 --> 00:00:39.592
+a SHA-256 hash of the response,
+the intended state and the checker,
+
+12
+00:00:39.592 --> 00:00:42.637
+and it attaches that evidence as JSON.
+
+13
+00:00:42.637 --> 00:00:46.350
+On a mismatch, it reopens the
+record with the differences.
+
+14
+00:00:46.350 --> 00:00:49.270
+And it writes nothing unless
+you pass the apply option.

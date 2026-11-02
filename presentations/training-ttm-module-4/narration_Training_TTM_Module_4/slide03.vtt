@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.865
+Here's what you'll be able to
+do by the end of this module,
+
+2
+00:00:02.865 --> 00:00:05.488
+which takes about forty-five
+minutes with the lab.
+
+3
+00:00:05.488 --> 00:00:07.796
+You'll explain what Gate 3 connects,
+
+4
+00:00:07.796 --> 00:00:11.537
+the key it correlates on, and
+what it files as the baseline.
+
+5
+00:00:11.537 --> 00:00:16.812
+You'll name Book 03's drift classes, and
+say which ones the kit doesn't compute.
+
+6
+00:00:16.812 --> 00:00:20.227
+You'll run the drift
+reconciliation over fixtures
+
+7
+00:00:20.227 --> 00:00:23.724
+and compare two runs as new,
+persisting and resolved.
+
+8
+00:00:23.724 --> 00:00:26.241
+And you'll explain why
+a comparison of runs
+
+9
+00:00:26.241 --> 00:00:28.900
+that computed different
+classes is refused.
+
+10
+00:00:28.900 --> 00:00:30.838
+You need Module 3 first.
+
+11
+00:00:30.838 --> 00:00:33.785
+For the Graph reads,
+the Microsoft Automation
+
+12
+00:00:33.785 --> 00:00:37.199
+path's first module covers
+the four request patterns.
+
+13
+00:00:37.199 --> 00:00:42.960
+Lab 1 runs on fixtures; Lab 2 needs a
+test tenant and a SailPoint sandbox.

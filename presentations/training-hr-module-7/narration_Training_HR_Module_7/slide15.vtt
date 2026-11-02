@@ -1,0 +1,70 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.550
+Check yourself with two questions
+from the module's knowledge check.
+
+2
+00:00:03.550 --> 00:00:06.712
+First: Module 4's mover
+review is still open,
+
+3
+00:00:06.712 --> 00:00:09.513
+so there's no transfer-to-review value.
+
+4
+00:00:09.513 --> 00:00:11.000
+How does the run report it?
+
+5
+00:00:11.000 --> 00:00:16.438
+The answer is c: as not measured,
+rule L D eight, never as zero.
+
+6
+00:00:16.438 --> 00:00:20.438
+A zero would look like the best
+possible result, and it would be false.
+
+7
+00:00:20.438 --> 00:00:23.681
+Second: the period
+reports zero chain breaks
+
+8
+00:00:23.681 --> 00:00:26.925
+and zero coverage gaps,
+but complete is false.
+
+9
+00:00:26.925 --> 00:00:27.613
+Why?
+
+10
+00:00:27.613 --> 00:00:28.653
+The answer is a.
+
+11
+00:00:28.653 --> 00:00:34.201
+Drift is still open and metrics are out of
+bounds, so Gate 7's criteria aren't met.
+
+12
+00:00:34.201 --> 00:00:36.261
+The period scores the criteria,
+
+13
+00:00:36.261 --> 00:00:39.987
+and an unbroken chain meets
+only the evidence criterion.
+
+14
+00:00:39.987 --> 00:00:42.420
+The module page has three more questions,
+
+15
+00:00:42.420 --> 00:00:44.980
+each linked to the
+section that teaches it.

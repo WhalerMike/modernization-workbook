@@ -1,0 +1,66 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.375
+Here's what the check guards against,
+from Chapter 08's dangers table.
+
+2
+00:00:04.375 --> 00:00:09.507
+Two systems updating one attribute
+means drift that's fixed and recreated
+
+3
+00:00:09.507 --> 00:00:13.563
+on every sync, forever; that's a
+Finding, and an exit code of one.
+
+4
+00:00:13.563 --> 00:00:16.617
+Field names that differ
+can hide a second writer,
+
+5
+00:00:16.617 --> 00:00:21.200
+so the check would report no overlap;
+the guard is the reviewed alias list.
+
+6
+00:00:21.200 --> 00:00:26.388
+A wrong directory name makes every attribute
+look unwritten; the check refuses it.
+
+7
+00:00:26.388 --> 00:00:29.406
+A disabled mapping counted
+would give false findings,
+
+8
+00:00:29.406 --> 00:00:31.687
+so disabled object mappings are skipped.
+
+9
+00:00:31.687 --> 00:00:35.725
+And here's what it misses: writers
+outside provisioning policies.
+
+10
+00:00:35.725 --> 00:00:37.638
+A person has to confirm those.
+
+11
+00:00:37.638 --> 00:00:39.913
+The guide is clear about scope, too.
+
+12
+00:00:39.913 --> 00:00:41.550
+The check reads exports.
+
+13
+00:00:41.550 --> 00:00:44.516
+It doesn't check approver
+systems or lanes;
+
+14
+00:00:44.516 --> 00:00:47.380
+those stay a manual validation of Gate 2.

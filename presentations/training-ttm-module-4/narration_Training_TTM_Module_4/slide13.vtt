@@ -1,0 +1,67 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.988
+Before you file the
+baseline, validate the gate.
+
+2
+00:00:02.988 --> 00:00:04.787
+The guide names four checks.
+
+3
+00:00:04.787 --> 00:00:07.960
+The kit's tests prove the
+logic against mocked data:
+
+4
+00:00:07.960 --> 00:00:10.075
+the drift classes on the fixtures,
+
+5
+00:00:10.075 --> 00:00:13.852
+the same finding I Ds from the
+Python and PowerShell clients,
+
+6
+00:00:13.852 --> 00:00:18.837
+and unauthorized writes reported as not
+computed when there's no audit extract.
+
+7
+00:00:18.837 --> 00:00:21.575
+Live, the reconciliation's findings on a
+
+8
+00:00:21.575 --> 00:00:24.912
+synthetic HR extract
+should match a hand count.
+
+9
+00:00:24.912 --> 00:00:28.761
+The validation kit's two H R
+checks look at the key itself:
+
+10
+00:00:28.761 --> 00:00:33.613
+enabled members with no employee I D,
+and duplicate employee I D values.
+
+11
+00:00:33.613 --> 00:00:36.740
+Each should be clean, or each
+row should have an owner,
+
+12
+00:00:36.740 --> 00:00:38.849
+because the join depends on the key.
+
+13
+00:00:38.849 --> 00:00:42.109
+And rollback is simple,
+because the gate only reads:
+
+14
+00:00:42.109 --> 00:00:45.980
+disconnect the source, or turn
+off Native Change Detection.

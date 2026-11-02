@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.925
+Two things differ by where
+you are and what you grant.
+
+2
+00:00:02.925 --> 00:00:04.800
+First, government clouds.
+
+3
+00:00:04.800 --> 00:00:09.708
+If your agency is in GCC High, note the
+gate's availability gap: administrative
+
+4
+00:00:09.708 --> 00:00:14.462
+units with dynamic membership rules
+aren't available in Azure Government.
+
+5
+00:00:14.462 --> 00:00:18.063
+The guide's Step 4 gives the
+gap and its interim path.
+
+6
+00:00:18.063 --> 00:00:21.212
+Second, privileged
+access, wherever you are.
+
+7
+00:00:21.212 --> 00:00:25.043
+A package that grants tier one
+administrator eligibility to
+
+8
+00:00:25.043 --> 00:00:29.249
+everyone whose organization code
+matches is the A A oh nine finding.
+
+9
+00:00:29.249 --> 00:00:33.010
+HR attributes should decide
+who may request eligibility,
+
+10
+00:00:33.010 --> 00:00:35.438
+and the role is activated through PIM.
+
+11
+00:00:35.438 --> 00:00:38.000
+That's what the program's
+request policy does.
+
+12
+00:00:38.000 --> 00:00:43.063
+CISA's scuba policy seven point five
+keeps highly privileged roles only in
+
+13
+00:00:43.063 --> 00:00:48.740
+a privileged access management system,
+and under BOD 25-01 it's required.

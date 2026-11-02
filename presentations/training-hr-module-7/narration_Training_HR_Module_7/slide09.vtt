@@ -1,0 +1,68 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:06.843
+Step one deletes any out folder, then
+rebuilds five inputs, one command each:
+
+3
+00:00:06.843 --> 00:00:12.714
+Module 1's writer scan, Module 2's
+contractor extract, Module 3's readiness,
+
+4
+00:00:12.714 --> 00:00:17.412
+Module 4's mover residual and
+Module 6's separation timing.
+
+5
+00:00:17.412 --> 00:00:20.170
+The full commands are on the module page;
+
+6
+00:00:20.170 --> 00:00:24.013
+each one exits two, because
+each fixture holds findings.
+
+7
+00:00:24.013 --> 00:00:27.212
+Step two writes the
+first run, for October.
+
+8
+00:00:27.212 --> 00:00:31.024
+It reads four module outputs
+and prints the six metrics.
+
+9
+00:00:31.024 --> 00:00:34.303
+Separation-to-block at
+five point five two hours,
+
+10
+00:00:34.303 --> 00:00:37.663
+and revocation at a hundred
+ten, both out of bounds.
+
+11
+00:00:37.663 --> 00:00:42.450
+Transfer-to-review isn't measured,
+because the mover's review is still open.
+
+12
+00:00:42.450 --> 00:00:47.453
+Readiness is twenty-five percent,
+correlation coverage fifty-eight percent,
+
+13
+00:00:47.453 --> 00:00:51.362
+and derivation purity seventy-six
+percent: all out of bounds.
+
+14
+00:00:51.362 --> 00:00:53.810
+Fourteen Findings, six Warns.

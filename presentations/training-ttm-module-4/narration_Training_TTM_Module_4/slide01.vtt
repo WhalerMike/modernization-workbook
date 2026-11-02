@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.731
+Welcome to Module 4 of the
+Ticket-to-Machine learning path:
+
+2
+00:00:03.731 --> 00:00:05.725
+sources and the starting drift.
+
+3
+00:00:05.725 --> 00:00:09.975
+Before you fix anything, you need to
+know how far the directory is from HR.
+
+4
+00:00:09.975 --> 00:00:14.288
+This module follows the guide's
+Gate 3, which connects the sources,
+
+5
+00:00:14.288 --> 00:00:19.239
+correlates them on one key, and files
+the first measurement as the baseline,
+
+6
+00:00:19.239 --> 00:00:21.875
+and the developer workbook's Chapter 06.
+
+7
+00:00:21.875 --> 00:00:26.970
+You'll run the kit's read-only drift
+reconciliation over two days of fictional data,
+
+8
+00:00:26.970 --> 00:00:29.967
+compare the runs as new,
+persisting and resolved,
+
+9
+00:00:29.967 --> 00:00:34.440
+and see the comparison refuse two
+runs that measured different things.

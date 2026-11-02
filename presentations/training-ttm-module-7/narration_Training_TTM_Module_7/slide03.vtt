@@ -1,0 +1,70 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.865
+Here's what you'll be able to
+do by the end of this module,
+
+2
+00:00:02.865 --> 00:00:05.488
+which takes about forty-five
+minutes with the lab.
+
+3
+00:00:05.488 --> 00:00:09.675
+You'll explain what Gate 7 schedules
+and reports to the governance board.
+
+4
+00:00:09.675 --> 00:00:12.532
+You'll describe Book 13's evidence record,
+
+5
+00:00:12.532 --> 00:00:15.725
+which of its fields Pass
+1 leaves empty, and why.
+
+6
+00:00:15.725 --> 00:00:18.663
+You'll produce an evidence
+package for a period,
+
+7
+00:00:18.663 --> 00:00:21.225
+and continue its hash chain into the next.
+
+8
+00:00:21.225 --> 00:00:22.824
+And you'll verify a package,
+
+9
+00:00:22.824 --> 00:00:26.750
+and explain how the verifier
+catches an edited or removed record.
+
+10
+00:00:26.750 --> 00:00:29.325
+Before you start, finish Module 6.
+
+11
+00:00:29.325 --> 00:00:33.096
+If you're an ISSO reviewer
+working only this module,
+
+12
+00:00:33.096 --> 00:00:38.125
+read Module 1's Unit 3 first, on the
+identity finding and its contract.
+
+13
+00:00:38.125 --> 00:00:39.825
+Lab 1 needs no tenant.
+
+14
+00:00:39.825 --> 00:00:42.529
+Lab 2 needs your developer instance,
+
+15
+00:00:42.529 --> 00:00:46.300
+with at least one finding
+closed in Module 6's Lab 2.

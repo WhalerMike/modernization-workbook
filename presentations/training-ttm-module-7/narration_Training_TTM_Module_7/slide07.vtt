@@ -1,0 +1,73 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:06.012
+The re-read client from Module 6 already
+writes the evidence onto each record it
+
+2
+00:00:06.012 --> 00:00:10.800
+closes: the evidence itself as
+canonical JSON, its SHA-256 hash,
+
+3
+00:00:10.800 --> 00:00:14.775
+the verification time, a
+close note and an attachment.
+
+4
+00:00:14.775 --> 00:00:16.862
+But nothing read the records back out.
+
+5
+00:00:16.862 --> 00:00:20.063
+Chapter 07 adds the evidence export.
+
+6
+00:00:20.063 --> 00:00:24.343
+It reads closed and cancelled
+findings through the Table API,
+
+7
+00:00:24.343 --> 00:00:29.800
+under its own read-only role, and writes
+one record per finding in Book 13's shape.
+
+8
+00:00:29.800 --> 00:00:33.063
+Then it runs four checks
+on each, reported by name.
+
+9
+00:00:33.063 --> 00:00:35.637
+Does the evidence still
+hash to the stored hash?
+
+10
+00:00:35.637 --> 00:00:37.779
+If not, it was edited after closure,
+
+11
+00:00:37.779 --> 00:00:40.913
+or cut short by the
+four-thousand-character field.
+
+12
+00:00:40.913 --> 00:00:43.375
+Does a closed record
+carry evidence at all?
+
+13
+00:00:43.375 --> 00:00:46.275
+If not, the close bypassed
+the business rule.
+
+14
+00:00:46.275 --> 00:00:48.975
+Does the evidence say the
+intended state matched?
+
+15
+00:00:48.975 --> 00:00:53.830
+And did it finish inside its response
+window, verified at or before its due date?

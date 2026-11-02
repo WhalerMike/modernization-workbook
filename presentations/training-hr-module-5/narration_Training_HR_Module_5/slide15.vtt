@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.875
+To sum up.
+
+2
+00:00:00.875 --> 00:00:06.174
+You learned the interactive revocation
+list limits, twenty megabytes for
+
+3
+00:00:06.174 --> 00:00:11.387
+GCC and forty-five for GCC High, with
+ten seconds to download in every cloud.
+
+4
+00:00:11.387 --> 00:00:12.944
+You measured three lists,
+
+5
+00:00:12.944 --> 00:00:16.874
+and the missing one became a
+recorded finding instead of a crash.
+
+6
+00:00:16.874 --> 00:00:20.565
+You checked a fictional tenant
+for GCC and then for GCC High,
+
+7
+00:00:20.565 --> 00:00:25.687
+and saw how the cloud's limit changes the
+findings while the download limit doesn't.
+
+8
+00:00:25.687 --> 00:00:28.783
+Keep the measurement and
+the check running every day,
+
+9
+00:00:28.783 --> 00:00:32.300
+because a list that fits today
+can cross the limit next month.
+
+10
+00:00:32.300 --> 00:00:35.646
+Next is Module 6, time
+separations from the logs:
+
+11
+00:00:35.646 --> 00:00:40.450
+separation-to-block and
+separation-to-revocation for every leaver.
+
+12
+00:00:40.450 --> 00:00:43.487
+It builds on this module,
+because a card's revocation
+
+13
+00:00:43.487 --> 00:00:46.150
+reaches sign-in through
+the revocation list.

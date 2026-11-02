@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.875
+To sum up.
+
+2
+00:00:00.875 --> 00:00:03.951
+You put the leaver in order: block first,
+
+3
+00:00:03.951 --> 00:00:07.700
+revoke in parallel,
+reconcile, and dispose last.
+
+4
+00:00:07.700 --> 00:00:11.659
+You defined separation-to-block
+and separation-to-revocation,
+
+5
+00:00:11.659 --> 00:00:13.562
+and the records each one reads.
+
+6
+00:00:13.562 --> 00:00:18.086
+You measured fictional leavers and
+found the ones that were blocked late,
+
+7
+00:00:18.086 --> 00:00:21.349
+never blocked, re-enabled,
+failed, or deleted too early.
+
+8
+00:00:21.349 --> 00:00:25.363
+And you saw why the tenant schedule
+belongs inside the approved interval.
+
+9
+00:00:25.363 --> 00:00:31.650
+Next is Module 7, the last in the path:
+find lifecycle drift and file the evidence.
+
+10
+00:00:31.650 --> 00:00:36.252
+It writes one read-only run of
+six drift classes and six metrics,
+
+11
+00:00:36.252 --> 00:00:39.615
+reads this module's
+percentiles as two of them,
+
+12
+00:00:39.615 --> 00:00:43.820
+and packages each run with a
+hash chain an ISSO can verify.

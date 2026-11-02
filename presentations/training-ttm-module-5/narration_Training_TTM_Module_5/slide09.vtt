@@ -1,0 +1,61 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.612
+Chapter 04 is honest about what it
+couldn't verify, and you should be too.
+
+2
+00:00:04.612 --> 00:00:08.305
+The kit's trigger ID for a native
+change isn't in SailPoint's
+
+3
+00:00:08.305 --> 00:00:12.075
+published trigger table; the
+page names only the event type.
+
+4
+00:00:12.075 --> 00:00:16.599
+SailPoint documents the HTTP
+Request step's fields in the editor,
+
+5
+00:00:16.599 --> 00:00:21.375
+not as JSON, so the attribute names
+in the kit's file are unconfirmed.
+
+6
+00:00:21.375 --> 00:00:26.130
+Whether the step resolves the dollar
+keys inside its JSON body, and whether
+
+7
+00:00:26.130 --> 00:00:30.588
+the input sits at the root or under
+trigger, are on the kit's verify list too.
+
+8
+00:00:30.588 --> 00:00:34.505
+The shape of each added entitlement
+isn't documented to that level,
+
+9
+00:00:34.505 --> 00:00:37.925
+and neither are provisioning
+results other than success.
+
+10
+00:00:37.925 --> 00:00:42.475
+That's why the tool shows what the body
+says to send, not what SailPoint sends.
+
+11
+00:00:42.475 --> 00:00:45.062
+Lab 2 settles each of
+these for your tenant,
+
+12
+00:00:45.062 --> 00:00:48.460
+and the checklist asks you to
+confirm them in a sandbox.

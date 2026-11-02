@@ -1,0 +1,66 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.200
+Why does this matter?
+
+2
+00:00:01.200 --> 00:00:02.038
+Picture it.
+
+3
+00:00:02.038 --> 00:00:05.771
+Someone adds a proxy address to
+an Active Directory account,
+
+4
+00:00:05.771 --> 00:00:07.638
+outside the governed process.
+
+5
+00:00:07.638 --> 00:00:10.550
+SailPoint's Native Change
+Detection sees it,
+
+6
+00:00:10.550 --> 00:00:14.013
+a workflow posts it to
+ServiceNow, and a finding opens.
+
+7
+00:00:14.013 --> 00:00:15.375
+So far, so good.
+
+8
+00:00:15.375 --> 00:00:18.487
+But suppose the workflow doesn't
+send that kind of change.
+
+9
+00:00:18.487 --> 00:00:21.251
+Then the finding's
+intended state is empty.
+
+10
+00:00:21.251 --> 00:00:25.581
+In Module 6, the re-read compares
+the account with the intended state,
+
+11
+00:00:25.581 --> 00:00:29.062
+and with nothing in it, there's
+nothing to disagree with.
+
+12
+00:00:29.062 --> 00:00:31.162
+The finding looks fixed when it isn't.
+
+13
+00:00:31.162 --> 00:00:36.455
+That's why, in this module, you see the
+exact payload each workflow produces,
+
+14
+00:00:36.455 --> 00:00:39.890
+on a laptop, before any
+workflow runs in a tenant.

@@ -1,0 +1,74 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:05.425
+Lab 1 runs in the kit's servicenow-sailpoint
+folder, with no tenant.
+
+3
+00:00:05.425 --> 00:00:08.950
+Step one runs the chapter's
+tests, and eight pass.
+
+4
+00:00:08.950 --> 00:00:11.963
+Step two exports
+October's closed findings.
+
+5
+00:00:11.963 --> 00:00:16.888
+There are five records: four closed on
+a re-read, and one declared exception.
+
+6
+00:00:16.888 --> 00:00:20.599
+Window adherence is two of
+three closed inside the window.
+
+7
+00:00:20.599 --> 00:00:25.238
+Then it names three problems: one record
+closed after its response window,
+
+8
+00:00:25.238 --> 00:00:29.343
+one whose evidence doesn't hash to
+the stored hash, so it was edited
+
+9
+00:00:29.343 --> 00:00:33.525
+after closure or cut short, and one
+closed without re-read evidence.
+
+10
+00:00:33.525 --> 00:00:37.407
+The command exits with one, because
+three records have problems,
+
+11
+00:00:37.407 --> 00:00:41.288
+and the run says so instead of
+producing a clean-looking package.
+
+12
+00:00:41.288 --> 00:00:45.784
+The one-line Python command prints
+three fields from the first record;
+
+13
+00:00:45.784 --> 00:00:48.575
+on the slide it's trimmed,
+and so is its output.
+
+14
+00:00:48.575 --> 00:00:50.637
+Each is null, with its reason.
+
+15
+00:00:50.637 --> 00:00:55.850
+Step three verifies the package
+as the ISSO would, and it holds.

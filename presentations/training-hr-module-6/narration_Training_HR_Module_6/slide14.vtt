@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.550
+Check yourself with two questions
+from the module's knowledge check.
+
+2
+00:00:03.550 --> 00:00:07.512
+First: what does the code take as
+the moment a leaver was blocked?
+
+3
+00:00:07.512 --> 00:00:10.332
+The answer is b: the
+later of the first Disable
+
+4
+00:00:10.332 --> 00:00:13.913
+account record and the first
+session revocation record.
+
+5
+00:00:13.913 --> 00:00:16.135
+Not the workflow's completion time,
+
+6
+00:00:16.135 --> 00:00:20.199
+and not the HR effective time,
+which is where the interval starts.
+
+7
+00:00:20.199 --> 00:00:24.127
+Second: a separation is entered
+in HR more than three days
+
+8
+00:00:24.127 --> 00:00:28.388
+after its effective date, and
+nobody runs the leaver on demand.
+
+9
+00:00:28.388 --> 00:00:30.050
+What does the measurement report?
+
+10
+00:00:30.050 --> 00:00:32.549
+The answer is b: an S T three Finding,
+
+11
+00:00:32.549 --> 00:00:37.100
+because past three days the
+scheduled trigger skips the user.
+
+12
+00:00:37.100 --> 00:00:40.087
+With an on-demand run,
+it would be only a Warn.
+
+13
+00:00:40.087 --> 00:00:45.020
+The module page has two more questions,
+each linked to the section that teaches it.

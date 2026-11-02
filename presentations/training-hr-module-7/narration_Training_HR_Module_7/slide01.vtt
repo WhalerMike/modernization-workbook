@@ -1,0 +1,65 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.641
+Welcome to Module 7, the last module of
+the HR-Driven Identity learning path:
+
+2
+00:00:05.641 --> 00:00:08.888
+find lifecycle drift
+and file the evidence.
+
+3
+00:00:08.888 --> 00:00:11.767
+This is Gate 7 of the
+implementation guide,
+
+4
+00:00:11.767 --> 00:00:15.387
+and it goes with Chapter 07
+of the developer workbook.
+
+5
+00:00:15.387 --> 00:00:18.162
+The first six gates each produce a result.
+
+6
+00:00:18.162 --> 00:00:21.084
+This gate keeps those
+results true over time,
+
+7
+00:00:21.084 --> 00:00:23.926
+and hands the ISSO
+something they can check.
+
+8
+00:00:23.926 --> 00:00:29.235
+In this module you'll write one read-only
+run of the lifecycle drift classes and the
+
+9
+00:00:29.235 --> 00:00:32.827
+six lifecycle metrics, from
+the HR export, the directory,
+
+10
+00:00:32.827 --> 00:00:35.950
+the card system and the
+earlier modules' outputs.
+
+11
+00:00:35.950 --> 00:00:38.898
+Then you'll package each
+run with a hash chain,
+
+12
+00:00:38.898 --> 00:00:41.687
+verify it, and assemble
+a reporting period.
+
+13
+00:00:41.687 --> 00:00:44.230
+The module takes about
+an hour with its lab.

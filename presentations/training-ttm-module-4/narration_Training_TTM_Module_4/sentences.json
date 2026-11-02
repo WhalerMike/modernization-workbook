@@ -1,0 +1,694 @@
+{
+ "1": [
+  [
+   0.05,
+   5.675,
+   "Welcome to Module 4 of the Ticket-to-Machine learning path: sources and the starting drift."
+  ],
+  [
+   5.725,
+   4.25,
+   "Before you fix anything, you need to know how far the directory is from H R."
+  ],
+  [
+   9.975,
+   11.9,
+   "This module follows the guide's Gate 3, which connects the sources, correlates them on one key, and files the first measurement as the baseline, and the developer workbook's Chapter 06."
+  ],
+  [
+   21.875,
+   12.512,
+   "You'll run the kit's read-only drift reconciliation over two days of fictional data, compare the runs as new, persisting and resolved, and see the comparison refuse two runs that measured different things."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.238,
+   "Why measure first?"
+  ],
+  [
+   1.288,
+   5.05,
+   "Because drift comes in kinds, and each kind needs a number before it needs a ticket."
+  ],
+  [
+   6.338,
+   8.762,
+   "A terminated employee who's still enabled in Entra I D is stale access, which the Federal Modernization Workbook's Book 03 rates High."
+  ],
+  [
+   15.1,
+   3.987,
+   "An account that matches nobody is an orphan account, also High."
+  ],
+  [
+   19.087,
+   4.638,
+   "A department someone typed in by hand is attribute drift, rated Medium."
+  ],
+  [
+   23.725,
+   5.287,
+   "Without a measurement you can't say how many there are, whether they're growing, or whether a fix worked."
+  ],
+  [
+   29.012,
+   7.35,
+   "So Gate 3 connects the sources, correlates them on one key, and files the first measurement as the baseline."
+  ],
+  [
+   36.362,
+   2.562,
+   "Every later gate is measured against it."
+  ],
+  [
+   38.925,
+   4.938,
+   "In this module you run that measurement twice, on two days, and compare the days."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   5.438,
+   "Here's what you'll be able to do by the end of this module, which takes about forty-five minutes with the lab."
+  ],
+  [
+   5.487,
+   6.05,
+   "You'll explain what Gate 3 connects, the key it correlates on, and what it files as the baseline."
+  ],
+  [
+   11.537,
+   5.275,
+   "You'll name Book 03's drift classes, and say which ones the kit doesn't compute."
+  ],
+  [
+   16.812,
+   6.912,
+   "You'll run the drift reconciliation over fixtures and compare two runs as new, persisting and resolved."
+  ],
+  [
+   23.725,
+   5.175,
+   "And you'll explain why a comparison of runs that computed different classes is refused."
+  ],
+  [
+   28.9,
+   1.938,
+   "You need Module 3 first."
+  ],
+  [
+   30.837,
+   6.362,
+   "For the Graph reads, the Microsoft Automation path's first module covers the four request patterns."
+  ],
+  [
+   37.2,
+   5.7,
+   "Lab 1 runs on fixtures; Lab 2 needs a test tenant and a SailPoint sandbox."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   1.825,
+   "Gate 3 has six steps."
+  ],
+  [
+   1.875,
+   7.213,
+   "One: aggregate H R into SailPoint as the authoritative source, read-only under Gate 2's first pattern."
+  ],
+  [
+   9.088,
+   9.162,
+   "Two: connect Entra I D and Active Directory as SailPoint sources, the Entra connector and the Active Directory connector through the virtual appliance."
+  ],
+  [
+   18.25,
+   10.512,
+   "Three: correlate on employee I D, the key Book 03 joins on, and treat uncorrelated accounts as orphan candidates, not errors to suppress."
+  ],
+  [
+   28.762,
+   5.162,
+   "Four: turn on Native Change Detection on the Entra and Active Directory sources."
+  ],
+  [
+   33.925,
+   6.013,
+   "It compares stored and newly read data on aggregation, and fires one event per changed account."
+  ],
+  [
+   39.938,
+   3.9,
+   "Five: run the kit's drift reconciliation, read-only."
+  ],
+  [
+   43.837,
+   3.062,
+   "And six: file the first run as the baseline."
+  ],
+  [
+   46.9,
+   3.112,
+   "Expect a burst of High findings in the first month."
+  ],
+  [
+   50.013,
+   2.837,
+   "Book 03 calls that the measurement working."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   6.45,
+   "Here are Book 03's drift classes, the ones the finding contract carries, and what the kit computes."
+  ],
+  [
+   6.5,
+   4.263,
+   "Missing identity: an active H R record with no matching account."
+  ],
+  [
+   10.762,
+   4.463,
+   "Stale access: terminated in H R, enabled in the directory."
+  ],
+  [
+   15.225,
+   4.263,
+   "Orphan account: an enabled account with no known employee I D."
+  ],
+  [
+   19.488,
+   2.875,
+   "Those three are High, and the kit computes them."
+  ],
+  [
+   22.363,
+   4.862,
+   "Attribute drift is Medium, and the kit compares department and manager."
+  ],
+  [
+   27.225,
+   8.463,
+   "Unauthorized write, a write by anyone but the provisioning service, is High, and it's computed only when the run reads the Entra audit."
+  ],
+  [
+   35.688,
+   8.613,
+   "Credential drift and schema drift are always reported as not computed, because they need the card system, Intune and the middleware's output."
+  ],
+  [
+   44.3,
+   4.112,
+   "The severities are the program's defaults, not an external standard."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   2.712,
+   "The reconciliation is the kit's Build 3."
+  ],
+  [
+   2.763,
+   19.137,
+   "It reads an H R extract, a C S V where employee I D and status are required; Graph users with their employee I D, enabled flag, department and manager's employee I D; SailPoint identities from Search and uncorrelated accounts; and, optionally, the Entra directory audit."
+  ],
+  [
+   21.9,
+   2.913,
+   "In the labs each one is a saved export."
+  ],
+  [
+   24.812,
+   13.65,
+   "Each finding's I D is a hash of its class, system, employee I D, object I D and attribute, so the same drift gets the same I D on every run, and the PowerShell client produces the same I Ds."
+  ],
+  [
+   38.462,
+   5.362,
+   "It writes jay-son and C S V, saying which classes were and weren't computed."
+  ],
+  [
+   43.825,
+   2.562,
+   "Why run it at all, when events exist?"
+  ],
+  [
+   46.388,
+   7.188,
+   "Events catch changes as they happen; the reconciliation catches the state, including drift whose event was missed."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   6.575,
+   "A scheduled run should raise only what's new, so Chapter 06 adds a comparison by finding I D."
+  ],
+  [
+   6.625,
+   1.175,
+   "New means raise it."
+  ],
+  [
+   7.8,
+   4.662,
+   "Persisting means it's already raised, and the de-duplication adds a counter."
+  ],
+  [
+   12.463,
+   2.237,
+   "Resolved means it's no longer measured."
+  ],
+  [
+   14.7,
+   6.1,
+   "That's a lead for the re-read, not a closure: its record still closes only on the re-read client."
+  ],
+  [
+   20.8,
+   10.15,
+   "And the comparison refuses runs that computed different classes, one with the audit and one without, because every finding of the class the second run skipped would look resolved."
+  ],
+  [
+   30.95,
+   2.812,
+   "The lab's day-two fixture tells a small story."
+  ],
+  [
+   33.763,
+   7.65,
+   "H R corrects Erin's department from H R to Finance, the value someone had already typed into Entra I D by hand."
+  ],
+  [
+   41.413,
+   5.237,
+   "Graph now agrees with H R. SailPoint, not yet re-aggregated, doesn't."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   4.438,
+   "Chapter 06's dangers are worth reading before you schedule anything."
+  ],
+  [
+   4.487,
+   6.65,
+   "A class one run skipped looks resolved: unauthorized writes disappear on the night the audit read fails."
+  ],
+  [
+   11.137,
+   2.263,
+   "The guard is the comparison's refusal."
+  ],
+  [
+   13.4,
+   6.938,
+   "A resolved finding closes the record: drift that left the measurement, not the estate, gets called fixed."
+  ],
+  [
+   20.337,
+   2.688,
+   "The guard is that only the re-read closes."
+  ],
+  [
+   23.025,
+   6.9,
+   "Pushing every finding every night fills the tracker with repeats, so push only the comparison's new findings."
+  ],
+  [
+   29.925,
+   5.25,
+   "The first month's burst gets read as failure, and the pipeline is turned off before it's tuned."
+  ],
+  [
+   35.175,
+   5.013,
+   "Book 03 expects that burst, so triage it by class and severity."
+  ],
+  [
+   40.188,
+   4.537,
+   "And an H R extract with names in a shared folder spreads personal data."
+  ],
+  [
+   44.725,
+   4.338,
+   "The run folder is evidence: keep it where H R data is allowed."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   3.9,
+   "Lab 1 runs in the kit's folder against fictional fixtures."
+  ],
+  [
+   4.675,
+   4.5,
+   "Step one runs the drift and comparison tests: seventeen pass."
+  ],
+  [
+   9.175,
+   1.725,
+   "Step two runs day one."
+  ],
+  [
+   10.9,
+   12.175,
+   "The summary counts four attribute drifts, two missing identities, three orphan accounts, two stale access and one unauthorized write, and lists credential and schema drift as not computed."
+  ],
+  [
+   23.075,
+   3.3,
+   "Then a one-line script prints Erin's and Carol's rows."
+  ],
+  [
+   26.375,
+   7.825,
+   "Erin's department: H R expects H R, but Entra I D holds Finance, and the audit shows a help-desk account wrote it."
+  ],
+  [
+   34.2,
+   3.487,
+   "That's both attribute drift and an unauthorized write."
+  ],
+  [
+   37.688,
+   4.05,
+   "Her manager differs too, in Entra I D and in SailPoint."
+  ],
+  [
+   41.737,
+   8.025,
+   "Carol is terminated in H R, but enabled in Entra I D and not disabled in SailPoint: stale access, twice."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   3.737,
+   "Step three runs day two, after H R's correction."
+  ],
+  [
+   3.788,
+   3.862,
+   "The counts are exactly the same, and the totals hide what moved."
+  ],
+  [
+   7.65,
+   5.375,
+   "Step four compares the days: one new, eleven persisting, one resolved."
+  ],
+  [
+   13.025,
+   5.862,
+   "The resolved finding is Erin's department in Entra I D, which now agrees with H R."
+  ],
+  [
+   18.887,
+   6.45,
+   "It's a lead for the re-read, and the tool says so: its record closes only on the re-read client."
+  ],
+  [
+   25.337,
+   6.85,
+   "The new finding is Erin's department in SailPoint, which hasn't been re-aggregated and still holds the old value."
+  ],
+  [
+   32.188,
+   9.762,
+   "Step five runs day two without the audit, so unauthorized write moves to not computed, and the comparison refuses: the runs computed different classes."
+  ],
+  [
+   41.95,
+   1.15,
+   "It exits two."
+  ],
+  [
+   43.1,
+   4.162,
+   "Without that refusal, the unauthorized write would have looked resolved."
+  ],
+  [
+   47.263,
+   2.45,
+   "Step six deletes the output folder."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   1.925,
+   "Lab 2 runs the client liv."
+  ],
+  [
+   1.975,
+   8.438,
+   "You need a test Entra tenant in the worldwide or G C C cloud, a SailPoint sandbox, and synthetic H R data like the fixtures."
+  ],
+  [
+   10.412,
+   3.513,
+   "Grant the read permissions from Module 2, and nothing more."
+  ],
+  [
+   13.925,
+   8.8,
+   "Write a synthetic H R extract that matches your test users, run the client against the tenant and the sandbox on two days, and compare the runs."
+  ],
+  [
+   22.725,
+   1.675,
+   "Push nothing to ServiceNow."
+  ],
+  [
+   24.4,
+   7.625,
+   "Two things the fixtures can't prove are on the verify list: the manager expansion, and SailPoint's employee I D attribute."
+  ],
+  [
+   32.025,
+   10.137,
+   "Back it out in step five: delete the output folder, the synthetic extract, the app registration's permissions and certificate, and the sandbox A P I client."
+  ],
+  [
+   42.163,
+   4.688,
+   "The authors haven't run Lab 2; follow Chapter 06's Lab 2."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   1.312,
+   "Where are agencies?"
+  ],
+  [
+   1.363,
+   6.487,
+   "Most on this path run Microsoft 365 G C C, and a minority G C C High."
+  ],
+  [
+   7.85,
+   3.312,
+   "G C C tenants use the worldwide endpoints."
+  ],
+  [
+   11.162,
+   13.05,
+   "In G C C High, you set the Entra source's Graph and token endpoints to graph dot microsoft dot U S and login dot microsoftonline dot U S; SailPoint's Entra connector documents those overrides."
+  ],
+  [
+   24.212,
+   11.0,
+   "One open question for every tenant: Native Change Detection's presence in SailPoint's fed-ramp environment wasn't confirmed, which is one of the things Gate 1 asks SailPoint in writing."
+  ],
+  [
+   35.212,
+   11.55,
+   "The interim path: without SailPoint, or before it's connected, run the kit's reconciliation against the H R extract and Graph alone, because the SailPoint inputs are optional files."
+  ],
+  [
+   46.763,
+   3.25,
+   "Active Directory-only groups wait for the appliance."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   2.938,
+   "Before you file the baseline, validate the gate."
+  ],
+  [
+   2.987,
+   1.8,
+   "The guide names four checks."
+  ],
+  [
+   4.787,
+   14.05,
+   "The kit's tests prove the logic against mocked data: the drift classes on the fixtures, the same finding I Ds from the Python and PowerShell clients, and unauthorized writes reported as not computed when there's no audit extract."
+  ],
+  [
+   18.837,
+   6.075,
+   "Liv, the reconciliation's findings on a synthetic H R extract should match a hand count."
+  ],
+  [
+   24.913,
+   8.7,
+   "The validation kit's two H R checks look at the key itself: enabled members with no employee I D, and duplicate employee I D values."
+  ],
+  [
+   33.612,
+   5.237,
+   "Each should be clean, or each row should have an owner, because the join depends on the key."
+  ],
+  [
+   38.85,
+   7.062,
+   "And rollback is simple, because the gate only reads: disconnect the source, or turn off Native Change Detection."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   1.387,
+   "The federal requirement."
+  ],
+  [
+   1.438,
+   4.55,
+   "The guide maps Gate 3 to nist special publication eight hundred fifty-three."
+  ],
+  [
+   5.987,
+   8.725,
+   "A C two, account management: it finds accounts with no worker, and workers with no account, and the baseline drift report is the evidence."
+  ],
+  [
+   14.713,
+   8.725,
+   "C A seven, continuous monitoring: it starts a repeatable comparison of the record and the estate, kept with its date and checker version."
+  ],
+  [
+   23.438,
+   10.938,
+   "And, by inference, C M eight, read for identities: one correlated inventory of accounts per person, shown by the correlation rate and the uncorrelated-account list."
+  ],
+  [
+   34.375,
+   14.8,
+   "Chapter 06 maps the reconciliation and the comparison to account management, continuous monitoring and system monitoring, and adds each run's jay-son and C S V, with what wasn't computed, and the comparison output kept with each run."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   3.5,
+   "Check yourself with two questions from the module's knowledge check."
+  ],
+  [
+   3.55,
+   5.075,
+   "First: on day two, Entra I D matches H R for Erin's department."
+  ],
+  [
+   8.625,
+   3.487,
+   "How does the comparison report the day-one Entra finding?"
+  ],
+  [
+   12.113,
+   1.137,
+   "The answer is a."
+  ],
+  [
+   13.25,
+   2.475,
+   "As resolved, a lead for the re-read."
+  ],
+  [
+   15.725,
+   3.413,
+   "Its record still closes only on the re-read client."
+  ],
+  [
+   19.137,
+   3.237,
+   "A resolved finding is a lead, not a closure."
+  ],
+  [
+   22.375,
+   6.45,
+   "Second: why does the comparison refuse to compare day one, with the audit, and day two, without it?"
+  ],
+  [
+   28.825,
+   1.225,
+   "The answer is b."
+  ],
+  [
+   30.05,
+   6.213,
+   "Every unauthorized-write finding would look resolved, because the second run didn't compute that class."
+  ],
+  [
+   36.263,
+   4.9,
+   "The module page has two more questions, each linked to the section that answers it."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   0.825,
+   "To sum up."
+  ],
+  [
+   0.875,
+   11.863,
+   "You learned how Gate 3 connects H R, Entra I D and Active Directory through SailPoint, and correlates them on employee I D, with uncorrelated accounts treated as orphan candidates."
+  ],
+  [
+   12.738,
+   4.975,
+   "You named Book 03's drift classes, and the two the kit never computes."
+  ],
+  [
+   17.712,
+   5.75,
+   "You measured drift over two days, and compared the runs as new, persisting and resolved."
+  ],
+  [
+   23.462,
+   7.4,
+   "And you saw why the comparison refuses runs that measured different things, so nothing looks fixed just because it stopped being measured."
+  ],
+  [
+   30.863,
+   6.0,
+   "Before you ship, work through the Chapter 06 checklist, and file the first run as the baseline."
+  ],
+  [
+   36.862,
+   9.162,
+   "Next is Module 5, drift to a typed task: you'll predict the finding a SailPoint event produces, and test a workflow change before you import it."
+  ]
+ ]
+}

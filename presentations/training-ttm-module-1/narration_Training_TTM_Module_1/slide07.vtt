@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.112
+Here's the record those steps share: the
+identity finding, and its data contract.
+
+2
+00:00:05.112 --> 00:00:08.862
+Kind is a finding, the
+default, or a closure signal.
+
+3
+00:00:08.862 --> 00:00:11.975
+Source is SailPoint or
+the drift reconciliation.
+
+4
+00:00:11.975 --> 00:00:16.913
+The drift class is one of Book 03's
+seven classes, and it's required.
+
+5
+00:00:16.913 --> 00:00:21.862
+Severity is P one to P four; leave
+it out and it defaults by class,
+
+6
+00:00:21.862 --> 00:00:27.200
+Book 03's High to P two and Medium to
+P three, which is design guidance.
+
+7
+00:00:27.200 --> 00:00:29.785
+System says where the re-read happens:
+
+8
+00:00:29.785 --> 00:00:33.788
+a SailPoint account, a SailPoint
+identity or an Entra user.
+
+9
+00:00:33.788 --> 00:00:39.813
+One subject identifier is required, and
+de-duplication uses the first one present.
+
+10
+00:00:39.813 --> 00:00:41.462
+Origin says what raised it.
+
+11
+00:00:41.462 --> 00:00:44.770
+And the intended state says
+what a re-read must find;
+
+12
+00:00:44.770 --> 00:00:49.024
+when a SailPoint event arrives
+without one, the script derives it.
+
+13
+00:00:49.024 --> 00:00:54.000
+The implementation example maps each
+field to Book 13's evidence record.

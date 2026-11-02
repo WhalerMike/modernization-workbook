@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.025
+Check yourself with two questions.
+
+2
+00:00:02.025 --> 00:00:05.638
+First: before the fix, what
+did a native change to only
+
+3
+00:00:05.638 --> 00:00:09.587
+a multivalued attribute, such
+as a proxy address, produce?
+
+4
+00:00:09.587 --> 00:00:13.668
+The answer is b: a finding whose
+intended state named nothing,
+
+5
+00:00:13.668 --> 00:00:16.851
+so a re-read would find
+nothing to disagree with.
+
+6
+00:00:16.851 --> 00:00:19.812
+The workflow didn't send
+the multivalued changes.
+
+7
+00:00:19.812 --> 00:00:24.150
+Second: why does the de-duplication
+key now end in the attribute?
+
+8
+00:00:24.150 --> 00:00:25.287
+The answer is a.
+
+9
+00:00:25.287 --> 00:00:29.484
+Two attributes drifting on one
+user were folded into one record,
+
+10
+00:00:29.484 --> 00:00:32.650
+and the second finding's
+intended state was lost.
+
+11
+00:00:32.650 --> 00:00:35.141
+The module page has two more questions,
+
+12
+00:00:35.141 --> 00:00:39.860
+on the mover's intended state and on
+what the tool does with a complex path.

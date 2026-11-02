@@ -1,0 +1,75 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.675
+Step six writes the sponsor
+review settings, for review.
+
+2
+00:00:03.675 --> 00:00:06.287
+The tool says so: nothing was sent.
+
+3
+00:00:06.287 --> 00:00:08.825
+Print the file and read four values.
+
+4
+00:00:08.825 --> 00:00:11.657
+The expiration behavior is remove access,
+
+5
+00:00:11.657 --> 00:00:16.675
+so a missed recertification ends access,
+just as the earliest-end rule says.
+
+6
+00:00:16.675 --> 00:00:19.862
+The primary reviewer is
+the requestor's manager,
+
+7
+00:00:19.862 --> 00:00:23.287
+at level one, with a single
+named user as the fallback.
+
+8
+00:00:23.287 --> 00:00:27.371
+The recurrence is absolute
+monthly with an interval of six,
+
+9
+00:00:27.371 --> 00:00:29.788
+so the review runs every six months.
+
+10
+00:00:29.788 --> 00:00:32.438
+And reviewers have
+fourteen days to answer.
+
+11
+00:00:32.438 --> 00:00:34.226
+The file also names its target:
+
+12
+00:00:34.226 --> 00:00:38.446
+merge these settings into the
+contractor package's assignment policy,
+
+13
+00:00:38.446 --> 00:00:42.738
+and send the whole policy with the
+Graph PowerShell cmdlet after review.
+
+14
+00:00:42.738 --> 00:00:46.237
+Step seven runs the tests,
+and fifty-seven pass.
+
+15
+00:00:46.237 --> 00:00:48.074
+Then delete the output folder.
+
+16
+00:00:48.074 --> 00:00:51.140
+The output on the slide
+is trimmed and reflowed.
