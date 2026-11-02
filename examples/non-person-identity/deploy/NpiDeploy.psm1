@@ -69,7 +69,7 @@ function Test-NpiDeploySettings {
         if ($leaf.Name -match $script:SecretName -and $leaf.Name -notin '_comment') { $p.Add("$($leaf.Path): a settings file holds no secret; use a certificate thumbprint or a federated credential") }
         $v = "$($leaf.Value)"
         if ($v -match '-----BEGIN' -or $v -match '^[A-Za-z0-9_.\-]{3,5}~[A-Za-z0-9_~.\-]{30,}$') { $p.Add("$($leaf.Path): looks like a key or a client secret") }
-        if (-not $AllowPlaceholders -and $v -match '<[a-z0-9-]+>') { $p.Add("$($leaf.Path): placeholder $($Matches[0]) not replaced") }
+        if (-not $AllowPlaceholders -and $leaf.Name -ne '_comment' -and $v -match '<[a-z0-9-]+>') { $p.Add("$($leaf.Path): placeholder $($Matches[0]) not replaced") }
     }
     $need = @('environment', 'cloud', 'tenantId', 'changeRecord', 'deployIdentity', 'readerIdentity', 'operators', 'azure', 'ad', 'pilot', 'smoke', 'conditionalAccess', 'appManagementPolicy', 'waves')
     foreach ($k in $need) { if (-not $Settings.ContainsKey($k)) { $p.Add("$k`: missing") } }
@@ -79,10 +79,17 @@ function Test-NpiDeploySettings {
     if ($Settings.cloud -cnotin 'global', 'gcc', 'gcchigh', 'dod') { $p.Add("cloud: '$($Settings.cloud)' isn't global, gcc, gcchigh or dod") }
     $ids = @(
         @('tenantId', $Settings.tenantId), @('deployIdentity.clientId', $Settings.deployIdentity.clientId), @('readerIdentity.clientId', $Settings.readerIdentity.clientId),
-        @('pilot.appObjectId', $Settings.pilot.appObjectId), @('smoke.appObjectId', $Settings.smoke.appObjectId), @('smoke.appClientId', $Settings.smoke.appClientId),
-        @('smoke.spObjectId', $Settings.smoke.spObjectId)
+        @('pilot.appObjectId', $Settings.pilot.appObjectId)
     )
-    if (-not $AllowPlaceholders) { foreach ($i in $ids) { if ("$($i[1])" -notmatch $script:Guid) { $p.Add("$($i[0]): '$($i[1])' isn't a GUID") } } }
+    # Filled by the runbook's "Prepare the stage" step: empty until then (the preflight's PF-07 fails), a GUID after.
+    $prepared = @(
+        @('smoke.appObjectId', $Settings.smoke.appObjectId), @('smoke.appClientId', $Settings.smoke.appClientId),
+        @('smoke.spObjectId', $Settings.smoke.spObjectId), @('appManagementPolicy.pilotPolicyId', $Settings.appManagementPolicy.pilotPolicyId)
+    )
+    if (-not $AllowPlaceholders) {
+        foreach ($i in $ids) { if ("$($i[1])" -notmatch $script:Guid) { $p.Add("$($i[0]): '$($i[1])' isn't a GUID") } }
+        foreach ($i in $prepared) { if ("$($i[1])" -and "$($i[1])" -notmatch $script:Guid) { $p.Add("$($i[0]): '$($i[1])' isn't a GUID (leave it empty until the Prepare step fills it)") } }
+    }
     if ($Settings.deployIdentity.credential -notin 'certificate', 'federated') { $p.Add("deployIdentity.credential: '$($Settings.deployIdentity.credential)'; use certificate or federated, never a secret") }
     if ($Settings.deployIdentity.credential -eq 'certificate' -and -not $Settings.deployIdentity.certificateThumbprint) { $p.Add('deployIdentity.certificateThumbprint: missing') }
     if ($Settings.deployIdentity.credential -eq 'federated' -and -not $Settings.deployIdentity.federatedSubject) { $p.Add('deployIdentity.federatedSubject: missing') }
@@ -392,6 +399,7 @@ function Invoke-NpiDeployPreflight {
 
     # PF-07: the pilot and synthetic apps exist and hold no secret.
     foreach ($a in @(@('pilot', $Settings.pilot.appObjectId), @('synthetic', $Settings.smoke.appObjectId))) {
+        if (-not "$($a[1])") { $out.Add((New-NpiDeployResult 'PF-07' 'G1' "The $($a[0]) app registration exists, single-tenant" 'Fail' 'Found' 'no object ID in the settings file: run the Prepare step')); continue }
         try {
             $app = Invoke-NpiGetOne -Reader $Client -CallId 'deploy-app' -Bind @{ id = $a[1] } -Query '$select=id,appId,displayName,passwordCredentials,keyCredentials,signInAudience'
             $pw = @($app['passwordCredentials']).Where({ $_ }).Count

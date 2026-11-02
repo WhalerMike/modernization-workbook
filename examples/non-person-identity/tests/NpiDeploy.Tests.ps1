@@ -70,6 +70,15 @@ Describe 'The settings file' {
         { Read-NpiDeploySettings -Path $tpl } | Should -Throw '*placeholder <tenant-id> not replaced*'
         { Read-NpiDeploySettings -Path $tpl -AllowPlaceholders } | Should -Not -Throw
     }
+    It 'accepts the synthetic IDs empty until the Prepare step, and the preflight fails PF-07 until then' {
+        $s = Get-Raw; $s.smoke.appObjectId = ''; $s.appManagementPolicy.pilotPolicyId = ''
+        @(Test-NpiDeploySettings -Settings $s -Stage test).Count | Should -Be 0
+        $s.smoke.appObjectId = 'not-a-guid'
+        @(Test-NpiDeploySettings -Settings $s -Stage test) -join ';' | Should -Match 'leave it empty until the Prepare step'
+        $s = Get-Settings; $s.smoke.appObjectId = ''
+        $r = Invoke-NpiDeployPreflight -Client (New-Client 'deploy-preflight' (New-NpiDeployFixtureInvoker -Path $script:TestTenant)) -Settings $s -BaselinePath $script:Baseline
+        @($r.Results | Where-Object { $_.Id -eq 'PF-07' -and $_.Status -eq 'Fail' }).Actual | Should -Match 'run the Prepare step'
+    }
     It 'refuses a secret by its name' {
         $s = Get-Raw; $s.deployIdentity.clientSecret = 'anything'
         @(Test-NpiDeploySettings -Settings $s -Stage test) -join ';' | Should -Match 'deployIdentity.clientSecret: a settings file holds no secret'

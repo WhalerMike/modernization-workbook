@@ -66,6 +66,9 @@
     "appClientId": "1a000000-0000-4000-8000-0000000000f3",
     "spObjectId": "5b000000-0000-4000-8000-0000000000f3",
     "managedIdentityName": "id-payroll-export",
+    "repository": "contoso-example/payroll-export",
+    "federatedIssuer": "https://token.actions.githubusercontent.com",
+    "federatedSubject": "repo:contoso-example/payroll-export:environment:production",
     "conversionsPath": "inputs/conversions-prod.json",
     "cutoverLogPath": "inputs/cutover-prod.csv",
     "legacyAdAccounts": [
@@ -77,6 +80,7 @@
     "appClientId": "1a000000-0000-4000-8000-0000000000f4",
     "spObjectId": "5b000000-0000-4000-8000-0000000000f4",
     "adAccount": "svc-npi-smoke",
+    "repository": "contoso-example/npi-smoke",
     "federatedIssuer": "https://token.actions.githubusercontent.com",
     "federatedSubject": "repo:contoso-example/npi-smoke:environment:production"
   },
@@ -115,5 +119,9 @@
       ]
     }
   ],
+  "inputs": {
+    "ownership": "inputs/ownership-prod",
+    "pipelineIdentities": "inputs/pipeline-identities-prod.csv"
+  },
   "outputRoot": "out/deploy-prod"
 }
