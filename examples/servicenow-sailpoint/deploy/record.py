@@ -10,8 +10,12 @@ written as text and exits 1, so the step stops.
 
 Reads standard input only; it calls no network.
 
-Example (from the kit root):
+Examples (from the kit root):
 
+  # Keep a saved response
+  python deploy/record.py out/evidence/test/workflow-1.json < response.json
+
+  # Keep a response straight from curl
   curl -s ... | python deploy/record.py out/evidence/test/workflow-1.json
 """
 
