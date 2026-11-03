@@ -154,6 +154,29 @@ Describe 'MS.AAD.7.7v1 and MS.AAD.7.8v1 on PIM for Groups: the groups that hold 
         @($f | Where-Object Severity -EQ 'Finding').Rule | Should -Be @('PA-PIM-12', 'PA-PIM-13')
         $f[0].Issue | Should -Match 'can''t be shown'
     }
+    It 'turns a member policy read Graph refuses (403) into a Finding for that group and checks the rest' {
+        $fake = New-PaPimFixtureInvoker -Path (Join-Path $script:Fixtures 'pim-alerts-groups-set.json')
+        $inner = $fake.Invoke
+        # The fake, except that Graph refuses the read of PRV-T0-GlobalAdmin's member policy, as it does without RoleManagementPolicy.Read.AzureADGroup.
+        $refusing = {
+            param($Method, $Uri, $Body)
+            if ([Uri]::UnescapeDataString($Uri) -match "scopeId eq '9e000000-0000-4000-8000-000000000201' and scopeType eq 'Group'") { throw 'Response status code does not indicate success: Forbidden (403)' }
+            & $inner $Method $Uri $Body
+        }.GetNewClosure()
+        $client = New-PaPimClient -Cloud gcc -Task pim-alerts -Invoke $refusing
+        $ids = (Get-PaPimHighlyPrivilegedRole).RoleTemplateId
+        $groups = @(Get-PaPimPrivilegedGroup -Client $client -RoleTemplateId $ids)
+        $gp = Get-PaPimGroupPolicy -Client $client -GroupId @($groups | ForEach-Object GroupId)
+        $gp['9e000000-0000-4000-8000-000000000201'].Error | Should -Match 'Forbidden \(403\)'
+        $f = @(Test-PaPimGroupAlertSetting -Groups $groups -Policies $gp)
+        $bad = @($f | Where-Object { $_.Object -eq 'PRV-T0-GlobalAdmin' })
+        @($bad.Rule) | Should -Be @('PA-PIM-12', 'PA-PIM-13')
+        @($bad.Severity | Sort-Object -Unique) | Should -Be @('Finding')
+        $bad[0].Issue | Should -Match "member policy couldn't be read \(Response status code does not indicate success: Forbidden \(403\)\), so its assignment alerts can't be shown"
+        # The other group is still read and still passes.
+        @($f | Where-Object { $_.Object -eq 'PRV-T1-ExchangeAdmin' }).Severity | Should -Be @('Info')
+        @($client.Evidence | Where-Object Call -EQ 'pim-group-policy-assignment').Count | Should -Be 2
+    }
     It 'reads the member policy with Learn''s filter, under the PIM for Groups permission' {
         (Get-PaPimCall -Id pim-group-policy-assignment).permissions | Should -Be @('RoleManagementPolicy.Read.AzureADGroup')
         $r = Get-AlertFinding (Join-Path $script:Fixtures 'pim-alerts-groups-set.json')

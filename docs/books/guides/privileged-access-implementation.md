@@ -116,7 +116,7 @@ Every gate's hands-on work is a lab in the developer workbook [*Building Privile
 
 : The eight gates of privileged access {.striped .hover}
 
-The deployment runbook for these gates, test then production, is planned as the workbook's next chapter; until it lands, the [workbook index](../../project-plans/developer-workbooks/privileged-access/index.md) is the entry point.
+The deployment runbook for these gates, test then production, is the workbook's [Chapter 09](../../project-plans/developer-workbooks/privileged-access/09-deploying-to-test-and-production.md).
 
 ## Step 1: Inventory every privileged assignment {#step-1-inventory-every-privileged-assignment}
 
@@ -603,7 +603,7 @@ Every control named is in the NIST SP 800-53B Moderate baseline.[^pag-moderate] 
 - **Service principal members of PRV groups.** Graph v1.0 doesn't return them as group members, so the inventory doesn't list them (row 91).
 - **Where approvals are logged.** If an approval is logged only under the access review service, PA-AUD-02 fires: it fails closed (row 85).
 - **PRV membership through access packages** (plan task A3.3) isn't built (row 58).
-- **The deployment runbook.** The workbook's test-and-production chapter isn't published yet.
+- **The deployment runbook.** The workbook's [Chapter 09](../../project-plans/developer-workbooks/privileged-access/09-deploying-to-test-and-production.md) takes the gates to a test tenant and then production, but it hasn't been run against a live tenant.
 - **Tenant behavior.** Nothing in this guide was run in a tenant. The checks are fixture-tested, and every Lab 2 is unrun by the authors.
 
 The row numbers are the workbook's [research gaps log](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/project-plans/developer-workbooks/privileged-access/_verification/research-gaps.md).

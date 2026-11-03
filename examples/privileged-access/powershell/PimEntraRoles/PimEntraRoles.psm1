@@ -711,8 +711,10 @@ function Get-PaPimGroupPolicy {
     .SYNOPSIS
         Read the PIM for Groups member policy of each group, with its rules (Learn's List
         roleManagementPolicyAssignments, Example 4, with roleDefinitionId 'member' in place of
-        'owner'; one call per group). Returns a hashtable of group ID to @{ PolicyId; Rules }, rules
-        by ID. A group with no single member policy is left out. GET only.
+        'owner'; one call per group). Returns a hashtable of group ID to @{ PolicyId; Rules; Error },
+        rules by ID. A group with no single member policy is left out. A read Graph refuses (a 403,
+        say) doesn't end the run: the group gets an entry with no rules and the error, and
+        Test-PaPimGroupAlertSetting makes it a Finding. GET only.
     .EXAMPLE
         $groups = @(Get-PaPimPrivilegedGroup -Client $client -RoleTemplateId (Get-PaPimHighlyPrivilegedRole).RoleTemplateId)
         (Get-PaPimGroupPolicy -Client $client -GroupId $groups.GroupId).Keys
@@ -722,10 +724,14 @@ function Get-PaPimGroupPolicy {
     $policies = @{}
     foreach ($id in $GroupId) {
         $q = "`$filter=" + [Uri]::EscapeDataString("scopeId eq '$id' and scopeType eq 'Group' and roleDefinitionId eq 'member'") + "&`$expand=" + [Uri]::EscapeDataString('policy($expand=rules)')
-        $rows = @(Invoke-PaPimRequest -Client $Client -CallId 'pim-group-policy-assignment' -Query $q)
+        try { $rows = @(Invoke-PaPimRequest -Client $Client -CallId 'pim-group-policy-assignment' -Query $q) }
+        catch {
+            $policies[$id] = [pscustomobject]@{ PolicyId = $null; Rules = $null; Error = "$($_.Exception.Message)" }
+            continue
+        }
         if ($rows.Count -eq 1 -and $rows[0].ContainsKey('policy') -and $rows[0].policy) {
             $rules = @{}; foreach ($r in @($rows[0].policy.rules)) { $rules[$r.id] = $r }
-            $policies[$id] = [pscustomobject]@{ PolicyId = $rows[0].policyId; Rules = $rules }
+            $policies[$id] = [pscustomobject]@{ PolicyId = $rows[0].policyId; Rules = $rules; Error = $null }
         }
     }
     $policies
@@ -739,8 +745,9 @@ function Test-PaPimGroupAlertSetting {
         role. PA-PIM-12 (MS.AAD.7.7v1): a group holding one of the eight roles whose member policy
         has no additional recipient on the assignment alert, eligible or active. PA-PIM-13
         (MS.AAD.7.8v1): a group holding Global Administrator whose member policy has none on the
-        activation alert. A group whose member policy wasn't read is a Finding, as a role's is.
-        Each group that passes gets an Info row with the recipients.
+        activation alert. A group whose member policy wasn't read, or couldn't be read (Graph
+        refused the request), is a Finding, as a role's is. Each group that passes gets an Info
+        row with the recipients.
     .EXAMPLE
         $groups = @(Get-PaPimPrivilegedGroup -Client $client -RoleTemplateId (Get-PaPimHighlyPrivilegedRole).RoleTemplateId)
         Test-PaPimGroupAlertSetting -Groups $groups -Policies (Get-PaPimGroupPolicy -Client $client -GroupId $groups.GroupId)
@@ -753,6 +760,11 @@ function Test-PaPimGroupAlertSetting {
         $holds = $g.Holds -join ', '
         $ga = $g.RoleTemplateIds -contains $script:GlobalAdmin
         $p = $Policies[$g.GroupId]
+        if ($p -and $p.PSObject.Properties['Error'] -and $p.Error) {
+            $f.Add((New-PaPimFinding 'PA-PIM-12' 'Finding' $g.Name "Holds $holds; the PIM for Groups member policy couldn't be read ($($p.Error)), so its assignment alerts can't be shown (MS.AAD.7.7v1)"))
+            if ($ga) { $f.Add((New-PaPimFinding 'PA-PIM-13' 'Finding' $g.Name "Holds Global Administrator; the PIM for Groups member policy couldn't be read ($($p.Error)), so the activation alert can't be shown (MS.AAD.7.8v1)")) }
+            continue
+        }
         if (-not $p) {
             $f.Add((New-PaPimFinding 'PA-PIM-12' 'Finding' $g.Name "Holds $holds; no PIM for Groups member policy read for the group, so its assignment alerts can't be shown (MS.AAD.7.7v1)"))
             if ($ga) { $f.Add((New-PaPimFinding 'PA-PIM-13' 'Finding' $g.Name 'Holds Global Administrator; no PIM for Groups member policy read, so the activation alert can''t be shown (MS.AAD.7.8v1)')) }

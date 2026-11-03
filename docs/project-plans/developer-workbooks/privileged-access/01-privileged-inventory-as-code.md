@@ -322,11 +322,11 @@ Connect-AzAccount -ServicePrincipal -Environment AzureCloud -Tenant <tenant-id> 
 
 # Step 5: Cross-check against the admin center
 Import-Csv out/inventory-test/inventory.csv | Where-Object State -Like 'Active*' | Format-Table RoleName, PrincipalName, State
-Import-Csv out/inventory-test/inventory.csv | Where-Object State -EQ 'Eligible' | Format-Table RoleName, PrincipalName, Via
+Import-Csv out/inventory-test/inventory.csv | Where-Object State -Like 'Eligible*' | Format-Table RoleName, PrincipalName, State, Via
 
 # Step 6: Check the two things the fixture assumed
 $rows = Get-Content out/inventory-test/inventory.json -Raw | ConvertFrom-Json
-$rows | Where-Object { $_.Plane -eq 'Entra' -and -not $_.PrincipalType } | Format-Table RoleName, State, PrincipalId
+$rows | Where-Object { $_.Plane -eq 'Entra' -and $_.PrincipalType -eq 'unknown' } | Format-Table RoleName, State, PrincipalId
 $rows | Where-Object Plane -EQ 'Azure' | Group-Object RoleId, Scope, State, PrincipalId | Where-Object Count -GT 1 | Format-Table Count, Name
 
 # Step 7: Back it out
@@ -361,14 +361,14 @@ Remove-Item -Recurse -Force out/inventory-test
 
    ```powershell
    Import-Csv out/inventory-test/inventory.csv | Where-Object State -Like 'Active*' | Format-Table RoleName, PrincipalName, State
-   Import-Csv out/inventory-test/inventory.csv | Where-Object State -EQ 'Eligible' | Format-Table RoleName, PrincipalName, Via
+   Import-Csv out/inventory-test/inventory.csv | Where-Object State -Like 'Eligible*' | Format-Table RoleName, PrincipalName, State, Via
    ```
 
-6. **Check the two things the fixture assumed.** In `inventory.json`, rows read with `$expand=principal` should have a principal type (research gaps, row 2), and each Azure schedule should appear once. The first command lists Entra rows without a principal type, the second any Azure row that appears more than once; both should print nothing:
+6. **Check the two things the fixture assumed.** In `inventory.json`, rows read with `$expand=principal` should have a principal type (research gaps, row 2), and each Azure schedule should appear once. The first command lists Entra rows whose principal type came back `unknown` (what the example writes when it can't read one), the second any Azure row that appears more than once; both should print nothing:
 
    ```powershell
    $rows = Get-Content out/inventory-test/inventory.json -Raw | ConvertFrom-Json
-   $rows | Where-Object { $_.Plane -eq 'Entra' -and -not $_.PrincipalType } | Format-Table RoleName, State, PrincipalId
+   $rows | Where-Object { $_.Plane -eq 'Entra' -and $_.PrincipalType -eq 'unknown' } | Format-Table RoleName, State, PrincipalId
    $rows | Where-Object Plane -EQ 'Azure' | Group-Object RoleId, Scope, State, PrincipalId | Where-Object Count -GT 1 | Format-Table Count, Name
    ```
 
