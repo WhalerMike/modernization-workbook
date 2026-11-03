@@ -11,8 +11,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
 review-status: approved
-reviewed-sha256: c8a520f86ae9ad0da1b81d306492068606a81ca34c2e1bf99f549822d870cae6
-last-reviewed: 2026-11-01
+reviewed-sha256: e947a752bc8a61c228f4ba7d7a5923e53a439ae00af2e7039138135085f631e2
+last-reviewed: 2026-11-03
 ---
 # Chapter 02 — The ServiceNow Client and Least Privilege
 

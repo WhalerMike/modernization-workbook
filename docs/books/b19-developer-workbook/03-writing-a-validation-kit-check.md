@@ -14,8 +14,8 @@ lifecycle_review: 2027-04-01
 aliases:
   - /docs/project-plans/developer-workbooks/attribute-driven-migration/03-writing-a-validation-kit-check.html
 review-status: approved
-reviewed-sha256: 15a16089d8868d8198b73fbd8f3cfdbf35af09702b1ff4b7900d7266b070ea61
-last-reviewed: 2026-11-01
+reviewed-sha256: 0ace13ee1c69b7e79b450b4e8588e386f827803af62a625e16f16e49141b0c6e
+last-reviewed: 2026-11-03
 ---
 # Chapter 03 — Writing a Validation Kit Check
 
