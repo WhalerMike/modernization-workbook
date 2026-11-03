@@ -227,7 +227,7 @@ Remove-Item -Recurse -Force out
 *Not run by the authors.* Follow the workbook's [Chapter 06, Lab 2](../../project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.md#lab-2-test-domain). It has the exact commands.
 
 - **You need:** a test Active Directory domain, never production, with at least one Windows Server 2025 domain controller, a Windows Server 2025 member server, an existing KDS root key, and Chapter 01's Lab 2 run.
-- **What you do:** make a traditional test account and a test MSA, grant the read only `msKds-UseStartTime` and `msKds-CreateTime`, run the check, then apply the plan as a person with Domain Admins or equivalent rights, start the dMSA migration, and complete it after 28 days.
+- **What you do:** make a traditional test account and a test MSA, grant the read only `msKds-UseStartTime` and `msKds-CreateTime`, run the check, then apply the plan as a person with Domain Admins or equivalent rights, start the dMSA migration, and complete it after the 30-day parallel run.
 - **Back-out:** step 6 runs Learn's `Undo-ADServiceAccountMigration` by hand (the code never runs it), re-enables the test account, removes the test objects by hand, and deletes the `out` folders.
 
 ## Knowledge check (5 minutes)
