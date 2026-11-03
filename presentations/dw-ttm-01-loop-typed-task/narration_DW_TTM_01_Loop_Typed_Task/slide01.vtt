@@ -15,30 +15,35 @@ This is Chapter 1: the
 loop and the typed task.
 
 4
-00:00:08.687 --> 00:00:14.288
-Every step of Book 13's loop writes or
-reads one record, the identity finding.
+00:00:08.687 --> 00:00:11.972
+Every step of the workbook's
+Ticket-to-Machine loop
 
 5
-00:00:14.288 --> 00:00:19.312
+00:00:11.972 --> 00:00:15.100
+writes or reads one record,
+the identity finding.
+
+6
+00:00:15.100 --> 00:00:20.125
 If its shape is wrong, the clock, the owner
 and the re-read are all wrong with it.
 
-6
-00:00:19.312 --> 00:00:23.441
+7
+00:00:20.125 --> 00:00:24.254
 We'll place each file of the ServiceNow
 and SailPoint kit in the loop,
 
-7
-00:00:23.441 --> 00:00:27.791
+8
+00:00:24.254 --> 00:00:28.604
 then check that record on a laptop
 before anything reaches ServiceNow,
 
-8
-00:00:27.791 --> 00:00:30.224
+9
+00:00:28.604 --> 00:00:31.037
 and finish with two labs and the dangers.
 
-9
-00:00:30.224 --> 00:00:33.700
+10
+00:00:31.037 --> 00:00:34.490
 The code is illustrative,
 tested against fixtures.

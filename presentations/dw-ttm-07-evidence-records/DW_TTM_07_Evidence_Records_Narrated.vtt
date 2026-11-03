@@ -6,653 +6,659 @@ Welcome back to Building
 Ticket-to-Machine.
 
 2
-00:00:02.200 --> 00:00:06.118
-This is Chapter 7: evidence
-records for the Federal
+00:00:02.200 --> 00:00:06.749
+This is Chapter 7: evidence records
+for the Federal Modernization
 
 3
-00:00:06.118 --> 00:00:09.663
-Modernization Workbook's
-Book 13 and the I S S O.
+00:00:06.749 --> 00:00:11.050
+Workbook's Governance, Drift and
+Evidence book, and for the I S S O.
 
 4
-00:00:09.663 --> 00:00:12.325
+00:00:11.050 --> 00:00:13.713
 The I S S O doesn't need the tracker.
 
 5
-00:00:12.325 --> 00:00:15.679
+00:00:13.713 --> 00:00:17.067
 The I S S O needs one record
 per finding, in one shape,
 
 6
-00:00:15.679 --> 00:00:19.850
+00:00:17.067 --> 00:00:21.238
 that nobody could have edited
 afterwards without it showing.
 
 7
-00:00:19.850 --> 00:00:23.170
+00:00:21.238 --> 00:00:24.370
 This chapter reads closed
 findings out of ServiceNow,
 
 8
-00:00:23.170 --> 00:00:27.744
-writes each in Book 13's evidence shape,
-checks what an assessor would check,
+00:00:24.370 --> 00:00:28.546
+writes each in the shape of the workbook's
+evidence record, checks what an
 
 9
-00:00:27.744 --> 00:00:31.137
-and packages the period with
-a hash chain and a verifier.
+00:00:28.546 --> 00:00:33.000
+assessor would check, and packages the
+period with a hash chain and a verifier.
 
 10
-00:00:31.137 --> 00:00:33.850
+00:00:33.000 --> 00:00:35.700
 Then two labs and the dangers.
 
 11
-00:00:37.600 --> 00:00:39.575
+00:00:39.450 --> 00:00:41.425
 Why records rather than the tracker?
 
 12
-00:00:39.575 --> 00:00:42.900
+00:00:41.425 --> 00:00:44.750
 Because an assessor asks different
 questions from an operator.
 
 13
-00:00:42.900 --> 00:00:47.825
+00:00:44.750 --> 00:00:49.675
 Chapter 5's re-read client already writes
 evidence onto every record it closes,
 
 14
-00:00:47.825 --> 00:00:50.325
+00:00:49.675 --> 00:00:52.175
 but nothing read those records back out.
 
 15
-00:00:50.325 --> 00:00:54.870
+00:00:52.175 --> 00:00:56.720
 And the assessor's worries are specific:
 was a record edited after it closed,
 
 16
-00:00:54.870 --> 00:00:57.362
+00:00:56.720 --> 00:00:59.212
 so it now says something
 the re-read didn't?
 
 17
-00:00:57.362 --> 00:01:01.174
+00:00:59.212 --> 00:01:03.024
 Was one quietly deleted, so
 the period only looks complete?
 
 18
-00:01:01.174 --> 00:01:05.787
+00:01:03.024 --> 00:01:07.637
 Were fields filled in to claim an approval
 or an execution that never happened?
 
 19
-00:01:05.787 --> 00:01:08.160
+00:01:07.637 --> 00:01:10.010
 This chapter answers each one.
 
 20
-00:01:11.910 --> 00:01:16.548
-Each closed finding becomes one
-record with Book 13's seven fields.
+00:01:13.760 --> 00:01:16.494
+Each closed finding
+becomes one record with the
 
 21
-00:01:16.548 --> 00:01:19.610
+00:01:16.494 --> 00:01:19.160
+seven fields of the
+workbook's evidence record.
+
+22
+00:01:19.160 --> 00:01:22.222
 Origin: when and where
 the drift was detected.
 
-22
-00:01:19.610 --> 00:01:25.097
+23
+00:01:22.222 --> 00:01:27.709
 Owner and clock: who, how urgent, when it
 was due and whether it finished in time.
 
-23
-00:01:25.097 --> 00:01:28.861
+24
+00:01:27.709 --> 00:01:31.473
 The result: the re-read evidence
 and whether it's intact.
 
-24
-00:01:28.861 --> 00:01:30.798
+25
+00:01:31.473 --> 00:01:33.410
 And the closure, with its lane.
 
-25
-00:01:30.798 --> 00:01:35.977
+26
+00:01:33.410 --> 00:01:38.589
 The other three fields, approval,
 the executing identity and what ran,
 
-26
-00:01:35.977 --> 00:01:40.610
+27
+00:01:38.589 --> 00:01:43.222
 are written as null, each with its
 reason: Pass 1 doesn't actuate.
 
-27
-00:01:40.610 --> 00:01:42.676
+28
+00:01:43.222 --> 00:01:45.288
 The record says what it doesn't hold,
 
-28
-00:01:42.676 --> 00:01:45.950
+29
+00:01:45.288 --> 00:01:48.570
 rather than leaving the
 field out or filling it in.
 
-29
-00:01:49.700 --> 00:01:53.125
+30
+00:01:52.320 --> 00:01:55.745
 Every record gets four
 checks, each reported by name.
 
-30
-00:01:53.125 --> 00:01:56.850
+31
+00:01:55.745 --> 00:01:59.470
 Is the evidence intact: does it
 still hash to the stored hash?
 
-31
-00:01:56.850 --> 00:01:59.770
+32
+00:01:59.470 --> 00:02:02.390
 An edit after closure fails,
 and so does a value cut
 
-32
-00:01:59.770 --> 00:02:02.762
+33
+00:02:02.390 --> 00:02:05.382
 short by the field's
 four-thousand-character limit.
 
-33
-00:02:02.762 --> 00:02:04.126
+34
+00:02:05.382 --> 00:02:06.746
 Is there evidence at all?
 
-34
-00:02:04.126 --> 00:02:06.950
+35
+00:02:06.746 --> 00:02:09.570
 A close that bypassed
 the business rule fails.
 
-35
-00:02:06.950 --> 00:02:09.638
+36
+00:02:09.570 --> 00:02:12.258
 Did the evidence say the
 intended state matched?
 
-36
-00:02:09.638 --> 00:02:11.551
+37
+00:02:12.258 --> 00:02:14.171
 And did it finish inside its window?
 
-37
-00:02:11.551 --> 00:02:16.868
+38
+00:02:14.171 --> 00:02:19.488
 Window adherence is measured as closures
 inside the window over closures judged,
 
-38
-00:02:16.868 --> 00:02:21.050
+39
+00:02:19.488 --> 00:02:23.670
 not a ratio that improves just
 because new findings arrive.
 
-39
-00:02:24.800 --> 00:02:25.925
+40
+00:02:27.420 --> 00:02:28.545
 Then the package.
 
-40
-00:02:25.925 --> 00:02:30.057
+41
+00:02:28.545 --> 00:02:32.677
 Each line of the records file carries
 the hash of the line before it,
 
-41
-00:02:30.057 --> 00:02:33.287
+42
+00:02:32.677 --> 00:02:35.907
 so removing or reordering
 a record breaks the chain.
 
-42
-00:02:33.287 --> 00:02:37.175
+43
+00:02:35.907 --> 00:02:39.795
 The excerpt on the slide is
 the whole idea in seven lines.
 
-43
-00:02:37.175 --> 00:02:39.524
+44
+00:02:39.795 --> 00:02:42.144
 A summary file holds window adherence,
 
-44
-00:02:39.524 --> 00:02:42.900
+45
+00:02:42.144 --> 00:02:45.520
 the declared exceptions and
 the records with problems.
 
-45
-00:02:42.900 --> 00:02:46.900
+46
+00:02:45.520 --> 00:02:49.520
 And a manifest holds a hash of
 every file and the chain's head.
 
-46
-00:02:46.900 --> 00:02:50.886
+47
+00:02:49.520 --> 00:02:53.506
 Next month's export continues the
 chain from this month's manifest,
 
-47
-00:02:50.886 --> 00:02:55.530
+48
+00:02:53.506 --> 00:02:58.150
 and a fixed timestamp means the same
 records always give the same bytes.
 
-48
-00:02:59.280 --> 00:03:00.430
+49
+00:03:01.900 --> 00:03:03.050
 Two more pieces.
 
-49
-00:03:00.430 --> 00:03:04.418
+50
+00:03:03.050 --> 00:03:07.038
 A verifier recomputes every
 file's hash and walks the chain;
 
-50
-00:03:04.418 --> 00:03:08.405
+51
+00:03:07.038 --> 00:03:11.025
 that's the check an I S S O runs
 on a package someone hands them.
 
-51
-00:03:08.405 --> 00:03:13.147
+52
+00:03:11.025 --> 00:03:15.767
 And a live read pulls closed and
 cancelled findings through the Table API,
 
-52
-00:03:13.147 --> 00:03:18.355
+53
+00:03:15.767 --> 00:03:20.975
 under its own read-only role from Chapter
 2, so the export can never close anything.
 
-53
-00:03:18.355 --> 00:03:23.448
+54
+00:03:20.975 --> 00:03:26.068
 Five fictional records cover the cases:
 one closed in its window, one closed late,
 
-54
-00:03:23.448 --> 00:03:26.380
+55
+00:03:26.068 --> 00:03:29.000
 one whose evidence was
 edited after it closed,
 
-55
-00:03:26.380 --> 00:03:31.590
+56
+00:03:29.000 --> 00:03:34.210
 one cancelled as a declared exception,
 and one closed with no evidence at all.
 
-56
-00:03:35.340 --> 00:03:40.118
+57
+00:03:37.960 --> 00:03:42.738
 Eight tests cover the export: the seven
 fields and the null later-pass fields;
 
-57
-00:03:40.118 --> 00:03:44.895
+58
+00:03:42.738 --> 00:03:47.515
 the late, tampered and unevidenced
 closures and a truncated evidence field;
 
-58
-00:03:44.895 --> 00:03:48.611
+59
+00:03:47.515 --> 00:03:51.231
 the package and its verification,
 with tampering detected;
 
-59
-00:03:48.611 --> 00:03:52.175
+60
+00:03:51.231 --> 00:03:54.795
 the chain continued across
 periods; reproducible bytes;
 
-60
-00:03:52.175 --> 00:03:55.815
+61
+00:03:54.795 --> 00:03:58.435
 and evidence written by the
 real re-read client verifying.
 
-61
-00:03:55.815 --> 00:03:59.890
+62
+00:03:58.435 --> 00:04:02.510
 One honest limit: the package
 is tamper-evident, not signed.
 
-62
-00:03:59.890 --> 00:04:04.627
+63
+00:04:02.510 --> 00:04:07.247
 Anyone who can rewrite every file and
 the manifest can rewrite the chain.
 
-63
-00:04:04.627 --> 00:04:09.070
+64
+00:04:07.247 --> 00:04:11.690
 Signing, and where the package
 lives, are the program's decisions.
 
-64
-00:04:12.820 --> 00:04:17.075
+65
+00:04:15.440 --> 00:04:19.695
 The vendor facts are few: the Table
 API's read and its query parameters,
 
-65
-00:04:17.075 --> 00:04:21.628
+66
+00:04:19.695 --> 00:04:24.248
 ServiceNow's Government Community
 Cloud at FedRAMP High, and SailPoint's
 
-66
-00:04:21.628 --> 00:04:25.957
+67
+00:04:24.248 --> 00:04:28.577
 Search events index, which the SailPoint
 half will read when it's built.
 
-67
-00:04:25.957 --> 00:04:29.514
-The record shape, the window
-and the lanes are Book 13's,
-
 68
-00:04:29.514 --> 00:04:32.020
-and the hash chain is design guidance.
+00:04:28.577 --> 00:04:32.484
+The record shape, the window and
+the lanes are the workbook's design,
 
 69
-00:04:32.020 --> 00:04:37.253
+00:04:32.484 --> 00:04:34.615
+and the hash chain is the kit's design.
+
+70
+00:04:34.615 --> 00:04:39.848
 Two points stay open: the format and time
 zone of the dates the Table API returns,
 
-70
-00:04:37.253 --> 00:04:39.507
+71
+00:04:39.848 --> 00:04:42.102
 which the export parses both ways,
 
-71
-00:04:39.507 --> 00:04:43.532
+72
+00:04:42.102 --> 00:04:46.127
 and what SailPoint keeps in its
 events index and for how long.
 
-72
-00:04:43.532 --> 00:04:46.050
+73
+00:04:46.127 --> 00:04:48.640
 That's why the SailPoint half waits.
 
-73
-00:04:49.800 --> 00:04:52.188
+74
+00:04:52.390 --> 00:04:54.778
 This chapter's output is the evidence.
 
-74
-00:04:52.188 --> 00:04:56.600
+75
+00:04:54.778 --> 00:04:59.190
 One record per finding supports change
 control and continuous monitoring.
 
-75
-00:04:56.600 --> 00:05:00.294
+76
+00:04:59.190 --> 00:05:02.884
 Records unchanged after
 closure, and none removed,
 
-76
-00:05:00.294 --> 00:05:06.275
+77
+00:05:02.884 --> 00:05:08.865
 supports protection of audit information,
 AU-9, through the manifest and the chain.
 
-77
-00:05:06.275 --> 00:05:11.762
+78
+00:05:08.865 --> 00:05:14.352
 Closures inside the windows, with the late
 ones named, goes to the governance board.
 
-78
-00:05:11.762 --> 00:05:15.400
+79
+00:05:14.352 --> 00:05:17.990
 Declared exceptions carry their
 note and a plan of action item.
 
-79
-00:05:15.400 --> 00:05:18.063
+80
+00:05:17.990 --> 00:05:20.653
 And what isn't evidenced
 yet is stated outright.
 
-80
-00:05:18.063 --> 00:05:20.994
+81
+00:05:20.653 --> 00:05:23.584
 Non-repudiation isn't in
 the Moderate baseline;
 
-81
-00:05:20.994 --> 00:05:24.060
+82
+00:05:23.584 --> 00:05:26.650
 signing the package
 would be a further step.
 
-82
-00:05:27.810 --> 00:05:28.860
+83
+00:05:30.400 --> 00:05:31.450
 Who's involved?
 
-83
-00:05:28.860 --> 00:05:32.777
+84
+00:05:31.450 --> 00:05:35.367
 Developers who build the evidence
 pipeline, and the I S S O and
 
-84
-00:05:32.777 --> 00:05:37.635
+85
+00:05:35.367 --> 00:05:40.225
 assessors who read what it produces
 and verify every package they receive.
 
-85
-00:05:37.635 --> 00:05:41.249
+86
+00:05:40.225 --> 00:05:43.839
 The export runs as its own
 identity: the evidence reader,
 
-86
-00:05:41.249 --> 00:05:46.119
+87
+00:05:43.839 --> 00:05:48.709
 with read-only access to the finding
 table, its own user and OAuth client, and
 
-87
-00:05:46.119 --> 00:05:51.147
+88
+00:05:48.709 --> 00:05:53.737
 never the verifier's role, because it must
 not be able to close what it's hashing.
 
-88
-00:05:51.147 --> 00:05:55.132
+89
+00:05:53.737 --> 00:05:57.722
 And keep each period's manifest
 somewhere the exporter can't write,
 
-89
-00:05:55.132 --> 00:05:57.510
+90
+00:05:57.722 --> 00:06:00.100
 signed if the program requires it.
 
-90
-00:06:01.260 --> 00:06:02.072
+91
+00:06:03.850 --> 00:06:04.662
 Lab 1.
 
-91
-00:06:02.072 --> 00:06:03.348
+92
+00:06:04.662 --> 00:06:05.938
 Eight tests pass.
 
-92
-00:06:03.348 --> 00:06:06.611
+93
+00:06:05.938 --> 00:06:09.201
 Then export October's
 five fictional findings.
 
-93
-00:06:06.611 --> 00:06:10.310
+94
+00:06:09.201 --> 00:06:12.900
 Four closed on a re-read, and
 one is a declared exception.
 
-94
-00:06:10.310 --> 00:06:13.348
+95
+00:06:12.900 --> 00:06:15.938
 Two of three judged closures
 were inside the window.
 
-95
-00:06:13.348 --> 00:06:16.304
+96
+00:06:15.938 --> 00:06:18.819
 Then the problems, by
 name: one closed late,
 
-96
-00:06:16.304 --> 00:06:21.696
-one whose evidence no longer matches
-its hash, and one closed with no re-read
-
 97
-00:06:21.696 --> 00:06:24.914
-evidence at all; its
-close note just says done,
+00:06:18.819 --> 00:06:22.041
+one whose evidence no
+longer matches its hash,
 
 98
-00:06:24.914 --> 00:06:27.697
-which Book 13 calls prose, not evidence.
+00:06:22.041 --> 00:06:25.178
+and one closed with no
+re-read evidence at all;
 
 99
-00:06:27.697 --> 00:06:32.161
+00:06:25.178 --> 00:06:30.349
+its close note just says done, which
+the workbook calls prose, not evidence.
+
+100
+00:06:30.349 --> 00:06:34.813
 The command exits with a failure rather
 than producing a clean-looking package.
 
-100
-00:06:32.161 --> 00:06:34.410
+101
+00:06:34.813 --> 00:06:37.080
 The last line is the chain's head.
 
-101
-00:06:38.160 --> 00:06:39.634
+102
+00:06:40.830 --> 00:06:42.304
 Now act as the I S S O.
 
-102
-00:06:39.634 --> 00:06:45.923
+103
+00:06:42.304 --> 00:06:48.593
 Verify the package: every file matches
 the manifest and the chain is unbroken.
 
-103
-00:06:45.923 --> 00:06:48.711
+104
+00:06:48.593 --> 00:06:51.381
 Start November's chain
 from October's head;
 
-104
-00:06:48.711 --> 00:06:52.935
+105
+00:06:51.381 --> 00:06:55.605
 November's manifest records
 October's head as its previous link.
 
-105
-00:06:52.935 --> 00:06:58.035
+106
+00:06:55.605 --> 00:07:00.705
 The lab reuses October's records for
 this, where a real November has its own.
 
-106
-00:06:58.035 --> 00:07:02.135
+107
+00:07:00.705 --> 00:07:04.805
 Then remove one record from
 October's package and verify again.
 
-107
-00:07:02.135 --> 00:07:05.689
+108
+00:07:04.805 --> 00:07:08.359
 Two problems: the file's hash
 no longer matches the manifest,
 
-108
-00:07:05.689 --> 00:07:09.098
+109
+00:07:08.359 --> 00:07:11.768
 and the next line's link points
 at a record that isn't there.
 
-109
-00:07:09.098 --> 00:07:11.070
+110
+00:07:11.768 --> 00:07:13.740
 The package doesn't hold.
 
-110
-00:07:14.820 --> 00:07:18.142
+111
+00:07:17.490 --> 00:07:20.812
 Lab 2 exports for real from
 your developer instance,
 
-111
-00:07:18.142 --> 00:07:22.933
+112
+00:07:20.812 --> 00:07:25.603
 with at least one finding closed in Chapter
 5's lab; the authors haven't run it.
 
-112
-00:07:22.933 --> 00:07:25.707
+113
+00:07:25.603 --> 00:07:28.377
 Create the evidence reader
 and check its grant.
 
-113
-00:07:25.707 --> 00:07:28.602
+114
+00:07:28.377 --> 00:07:31.272
 Export live since the date
 of your test closure,
 
-114
-00:07:28.602 --> 00:07:31.570
+115
+00:07:31.272 --> 00:07:34.240
 and expect every record
 intact with no problems.
 
-115
-00:07:31.570 --> 00:07:35.763
+116
+00:07:34.240 --> 00:07:38.433
 Check that the due and finished
 times are the ones you expect,
 
-116
-00:07:35.763 --> 00:07:39.620
+117
+00:07:38.433 --> 00:07:42.290
 in UTC, since the Table API's
 date format wasn't confirmed.
 
-117
-00:07:39.620 --> 00:07:41.108
+118
+00:07:42.290 --> 00:07:43.778
 Verify the package.
 
-118
-00:07:41.108 --> 00:07:45.260
+119
+00:07:43.778 --> 00:07:47.930
 Then delete the output and the
 reader's client, user and role.
 
-119
-00:07:49.010 --> 00:07:51.910
+120
+00:07:51.680 --> 00:07:54.580
 The dangers map onto
 the assessor's worries.
 
-120
-00:07:51.910 --> 00:07:55.885
+121
+00:07:54.580 --> 00:07:58.555
 An edit after closure is caught
 by recomputing the evidence hash.
 
-121
-00:07:55.885 --> 00:07:59.016
+122
+00:07:58.555 --> 00:08:01.686
 Evidence cut short by the
 field limit is reported,
 
-122
-00:07:59.016 --> 00:08:01.460
+123
+00:08:01.686 --> 00:08:04.130
 and the attachment keeps the full copy.
 
-123
-00:08:01.460 --> 00:08:05.685
+124
+00:08:04.130 --> 00:08:08.355
 A close that bypassed the business
 rule shows as closed without evidence.
 
-124
-00:08:05.685 --> 00:08:07.797
+125
+00:08:08.355 --> 00:08:10.467
 A deleted record breaks the chain.
 
-125
-00:08:07.797 --> 00:08:12.051
+126
+00:08:10.467 --> 00:08:14.721
 A package rewritten end to end is
 the one the chain alone can't catch,
 
-126
-00:08:12.051 --> 00:08:15.222
+127
+00:08:14.721 --> 00:08:17.892
 so store manifests where
 the exporter can't write.
 
-127
-00:08:15.222 --> 00:08:18.472
+128
+00:08:17.892 --> 00:08:21.142
 Fields filled to look
 complete are null by design.
 
-128
-00:08:18.472 --> 00:08:21.590
+129
+00:08:21.142 --> 00:08:24.260
 And the export never runs as the verifier.
 
-129
-00:08:25.340 --> 00:08:26.540
+130
+00:08:28.010 --> 00:08:29.210
 Done looks like this.
 
-130
-00:08:26.540 --> 00:08:30.865
+131
+00:08:29.210 --> 00:08:33.535
 The export runs on a schedule as the
 evidence reader and holds nothing more.
 
-131
-00:08:30.865 --> 00:08:35.328
+132
+00:08:33.535 --> 00:08:37.998
 Each period's package verifies and
 continues the last period's chain.
 
-132
-00:08:35.328 --> 00:08:38.017
+133
+00:08:37.998 --> 00:08:40.687
 Every reported problem
 has gone to its owner,
 
-133
-00:08:38.017 --> 00:08:40.489
+134
+00:08:40.687 --> 00:08:43.159
 and none sits in the package unexplained.
 
-134
-00:08:40.489 --> 00:08:43.890
+135
+00:08:43.159 --> 00:08:46.560
 Manifests are stored where the
 exporter can't overwrite them.
 
-135
-00:08:43.890 --> 00:08:47.840
-Window adherence is reviewed
-with Book 13's other measures.
-
 136
-00:08:47.840 --> 00:08:49.253
-And the tests pass.
+00:08:46.560 --> 00:08:50.372
+Window adherence is reviewed with
+the workbook's other measures.
 
 137
-00:08:49.253 --> 00:08:52.652
-Next, Chapter 8: one writer per attribute.
+00:08:50.372 --> 00:08:51.786
+And the tests pass.
 
 138
-00:08:52.652 --> 00:08:53.800
+00:08:51.786 --> 00:08:55.185
+Next, Chapter 8: one writer per attribute.
+
+139
+00:08:55.185 --> 00:08:56.350
 Thanks for watching.

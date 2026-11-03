@@ -20,31 +20,31 @@ It validates the payload and
 answers four hundred with a reason.
 
 5
-00:00:11.776 --> 00:00:17.565
-It maps severity to a priority
-and a due date on Book 13's tempo:
+00:00:11.776 --> 00:00:17.626
+It maps severity to a priority and
+a due date on the workbook's tempo:
 
 6
-00:00:17.565 --> 00:00:21.850
+00:00:17.626 --> 00:00:21.562
 P1 immediate, P2 one hour,
 P3 a day, P4 three days.
 
 7
-00:00:21.850 --> 00:00:25.400
+00:00:21.562 --> 00:00:25.112
 That tempo is the program's
 design, not a federal rule.
 
 8
-00:00:25.400 --> 00:00:29.809
+00:00:25.112 --> 00:00:29.522
 It defaults severity by class,
 de-duplicates against an open finding,
 
 9
-00:00:29.809 --> 00:00:33.212
+00:00:29.522 --> 00:00:32.925
 and fills in an intended
 state from a SailPoint event.
 
 10
-00:00:33.212 --> 00:00:37.220
+00:00:32.925 --> 00:00:36.940
 The catch: nothing outside
 ServiceNow applied the same rules.

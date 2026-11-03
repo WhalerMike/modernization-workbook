@@ -19,33 +19,34 @@ isn't drift you can fix.
 It's drift you've scheduled.
 
 5
-00:00:10.900 --> 00:00:15.870
-Book 3 makes Entra inbound provisioning
-the one writer into the directory,
+00:00:10.900 --> 00:00:15.912
+The Federal Modernization Workbook's
+design makes Entra inbound provisioning
 
 6
-00:00:15.870 --> 00:00:18.675
-but SailPoint can also provision Entra ID.
+00:00:15.912 --> 00:00:20.625
+the one writer into the directory, but
+SailPoint can also provision Entra ID.
 
 7
-00:00:18.675 --> 00:00:20.253
+00:00:20.625 --> 00:00:22.203
 If both write department,
 
 8
-00:00:20.253 --> 00:00:24.237
+00:00:22.203 --> 00:00:26.187
 the reconciliation reports drift
 that the next sync recreates.
 
 9
-00:00:24.237 --> 00:00:28.144
+00:00:26.187 --> 00:00:30.094
 This chapter compares the two
 provisioning configurations,
 
 10
-00:00:28.144 --> 00:00:31.438
+00:00:30.094 --> 00:00:33.388
 offline, and names every
 attribute with two writers.
 
 11
-00:00:31.438 --> 00:00:33.840
+00:00:33.388 --> 00:00:35.810
 Then two labs and the dangers.

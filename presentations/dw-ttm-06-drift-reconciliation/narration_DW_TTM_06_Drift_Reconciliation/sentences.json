@@ -22,16 +22,16 @@
   ],
   [
    13.762,
-   9.037,
-   "The drift client joins the H R extract, Microsoft Graph and SailPoint on the employee I D and measures Book 3's drift classes."
+   9.988,
+   "The drift client joins the H R extract, Microsoft Graph and SailPoint on the employee I D and measures the Federal Modernization Workbook's drift classes."
   ],
   [
-   22.8,
+   23.75,
    7.662,
    "This chapter adds a comparison of two runs, so a scheduled run raises only what's new, and shows what has stopped being measured."
   ],
   [
-   30.462,
+   31.413,
    2.263,
    "Then a two-day lab on a laptop."
   ]
@@ -86,21 +86,21 @@
   ],
   [
    13.925,
-   5.688,
-   "It measures four of Book 3's classes, and an unauthorized write only when it reads the audit."
+   6.213,
+   "It measures four of the workbook's drift classes, and an unauthorized write only when it reads the audit."
   ],
   [
-   19.613,
+   20.137,
    6.125,
    "Credential and schema drift are always reported as not computed, because they need other systems."
   ],
   [
-   25.738,
+   26.262,
    6.112,
    "Each finding's I D is a hash of what it's about, so the same drift has the same I D every run."
   ],
   [
-   31.85,
+   32.375,
    3.188,
    "And pushing to ServiceNow still needs the apply flag."
   ]
@@ -192,8 +192,8 @@
   ],
   [
    28.837,
-   2.4,
-   "Book 3 calls that the measurement working."
+   2.462,
+   "The workbook calls that the measurement working."
   ]
  ],
  "7": [
@@ -268,21 +268,21 @@
   ],
   [
    1.212,
-   15.3,
-   "Every active H R record has its accounts, every terminated one has none enabled, and every enabled account belongs to a person: account management, A C two, and Book 3's leaver and orphan measures, kept as each run's output."
+   15.113,
+   "Every active H R record has its accounts, every terminated one has none enabled, and every enabled account belongs to a person: account management, A C two, and the workbook's leaver and orphan measures, kept as each run's output."
   ],
   [
-   16.512,
+   16.325,
    7.3,
    "Drift is measured on a schedule, and what changed between runs is reported: continuous monitoring and system monitoring."
   ],
   [
-   23.812,
-   8.062,
-   "And what wasn't measured is stated, not implied, which feeds the Federal Modernization Workbook's Book 13's detection coverage measure."
+   23.625,
+   6.05,
+   "And what wasn't measured is stated, not implied, which feeds the workbook's detection coverage measure."
   ],
   [
-   31.875,
+   29.675,
    3.587,
    "The not-computed list and the refusal are that evidence."
   ]
