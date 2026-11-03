@@ -96,16 +96,16 @@
   ],
   [
    30.375,
-   13.238,
-   "Before you start, you need the path's prerequisites: the chapter on privileged tiers in the Federal Modernization Workbook's Book 04, the plan's gates, Microsoft Automation Modules 1 and 2, and PowerShell 7."
+   11.688,
+   "Before you start, you need the path's prerequisites: the chapter on privileged tiers in Access and Privilege, the plan's gates, Microsoft Automation Modules 1 and 2, and PowerShell 7."
   ],
   [
-   43.612,
+   42.062,
    7.025,
    "Lab 1 needs PowerShell 7.1 or later with Pester 5 and a copy of the repository, and no tenant."
   ],
   [
-   50.638,
+   49.087,
    6.4,
    "Lab 2 needs a worldwide or G C C test tenant with a test Azure subscription, never production."
   ]

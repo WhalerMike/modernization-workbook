@@ -32,7 +32,7 @@ const SS = "Check and summary";
 
 // ================================================================== 1 Title
 {
-  const s = title(SI, "Module 3: Conditional Access and the activation gate", "Privileged Access learning path · Plan Phase 1 (A1.5) and Phase 2 (A2.3, A2.5, A2.6), with workbook Chapter 03",
+  const s = title(SI, "Module 3: Conditional Access and the activation gate", "Privileged Access learning path · Plan Phases 1 and 2 (A1.5, A2.3, A2.5, A2.6) · Chapter 03",
     ["The gate and its order  ·  The pre-merge check  ·  Report-only and the exclusion  ·  The plan", "Try it: Lab 1  ·  Lab 2  ·  The federal requirement and evidence"]);
   notes(s,
 `Welcome to Module 3 of the Privileged Access learning path: Conditional Access for administrators, and the activation gate. This module serves the project plan's task A1.5 in Phase 1, and A2.3, A2.5 and A2.6 in Phase 2, with Chapter 03 of the developer workbook. In it you keep the administrator policies, the activation gate and the privileged authentication strength as files. You check them before they merge, plan what a run would change in the tenant, and see the code create every new policy report-only. This is the first module that writes, so it's the first that could lock people out, and you'll see the two guards that stand between the files and the tenant. The code is illustrative: tested against fixtures and a fake, not run against a production tenant.`,
@@ -77,7 +77,7 @@ const SS = "Check and summary";
   ], 55);
   sources(s, "Sources: Module 3, \"Learning objectives,\" \"Prerequisites\"; \"Exercise: Lab 2.\"");
   notes(s,
-`Here's what you'll be able to do by the end of this module, which takes about fifty-five minutes with the lab. You'll explain the order Microsoft Learn sets for an authentication context and its policy, and why report-only doesn't count. You'll run the pre-merge check and say which rules come from Microsoft Learn and which are the program's design. You'll explain how the code treats report-only policies and the emergency exclusion. You'll read a plan, with its seven actions. And you'll explain why every new policy is created report-only, and why the code never deletes. Before you start, finish Module 2, for the emergency accounts and their exclusion group, and read Wave 2 of the policy library in Book 04: the administrator policies C A oh oh three, oh oh four, oh oh five, oh two five and oh two seven. Lab 2 needs a worldwide or G C C test tenant with Microsoft Entra I D P1, never production.`,
+`Here's what you'll be able to do by the end of this module, which takes about fifty-five minutes with the lab. You'll explain the order Microsoft Learn sets for an authentication context and its policy, and why report-only doesn't count. You'll run the pre-merge check and say which rules come from Microsoft Learn and which are the program's design. You'll explain how the code treats report-only policies and the emergency exclusion. You'll read a plan, with its seven actions. And you'll explain why every new policy is created report-only, and why the code never deletes. Before you start, finish Module 2, for the emergency accounts and their exclusion group, and read Wave 2 of the policy library in Access and Privilege: the administrator policies C A oh oh three, oh oh four, oh oh five, oh two five and oh two seven. Lab 2 needs a worldwide or G C C test tenant with Microsoft Entra I D P1, never production.`,
   `${M} — Unit "Learning objectives," "Prerequisites."`);
 }
 endModule(SI);

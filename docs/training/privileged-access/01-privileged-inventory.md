@@ -13,6 +13,8 @@ series-order: 1
 
 *Part of the [Privileged Access learning path](index.md). Plan Phase 0, tasks A0.1 and A0.2, Gate 0. Workbook [Chapter 01](../../project-plans/developer-workbooks/privileged-access/01-privileged-inventory-as-code.md). About 50 minutes.*
 
+**Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-pa-module-1) (the deck files come with the next edition) · [▶ Watch](../../presentations/watch.html?v=Training_PA_Module_1_Narrated) (about 14 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_PA_Module_1_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-pa-module-1/Training_PA_Module_1_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-pa-module-1/Training_PA_Module_1_Narrated.vtt).
+
 ## Introduction (3 minutes)
 
 You can't make privilege just-in-time until you can list it: who holds which role, at which scope, standing or eligible, directly or through a group, and in which tier. The admin center's list of active assignments isn't enough. Under PIM almost every human holder becomes eligible, so an active-only list shrinks as the project succeeds and stops being an inventory.

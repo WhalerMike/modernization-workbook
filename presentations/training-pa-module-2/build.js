@@ -32,7 +32,7 @@ const SS = "Check and summary";
 
 // ================================================================== 1 Title
 {
-  const s = title(SI, "Module 2: Emergency access first", "Privileged Access learning path · Plan Phase 0 (A0.4) and Phase 1 (A1.1), with workbook Chapter 02",
+  const s = title(SI, "Module 2: Emergency access first", "Privileged Access learning path · Plan Phases 0 and 1 (A0.4, A1.1) · Chapter 02",
     ["The documented lockout  ·  The standard and the check  ·  PA-EA-08 and report-only", "The alert  ·  Try it: Lab 1  ·  Lab 2  ·  Evidence for Gate 1"]);
   notes(s,
 `Welcome to Module 2 of the Privileged Access learning path: emergency access first. This module serves the project plan's task A0.4 in Phase 0 and A1.1 in Phase 1, with Chapter 02 of the developer workbook. It's the one step in the project that can't move. In it you check each emergency access account against Microsoft Learn's standard, from code, with rules E A oh one to E A ten. You build the alert on their use as a reviewed template that also sees non-interactive sign-ins and audit events. And you keep a drill record. The code runs on your laptop against the same fictional tenant as Module 1. It's illustrative: tested against fixtures, not run against a production tenant.`,

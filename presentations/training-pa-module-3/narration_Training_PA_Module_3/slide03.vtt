@@ -50,35 +50,30 @@ policy is created report-only,
 and why the code never deletes.
 
 11
-00:00:32.713 --> 00:00:35.107
+00:00:32.713 --> 00:00:35.097
 Before you start, finish Module 2,
 
 12
-00:00:35.107 --> 00:00:39.100
+00:00:35.097 --> 00:00:39.072
 for the emergency accounts
 and their exclusion group,
 
 13
-00:00:39.100 --> 00:00:45.133
+00:00:39.072 --> 00:00:44.902
 and read Wave 2 of the policy library in
-the Federal Modernization Workbook's Book
+Access and Privilege: the administrator
 
 14
-00:00:45.133 --> 00:00:48.416
-04: the administrator
-policies C A oh oh three,
+00:00:44.902 --> 00:00:49.937
+policies C A oh oh three, oh oh four, oh
+oh five, oh two five and oh two seven.
 
 15
-00:00:48.416 --> 00:00:51.787
-oh oh four, oh oh five, oh
-two five and oh two seven.
-
-16
-00:00:51.787 --> 00:00:55.337
+00:00:49.937 --> 00:00:53.487
 Lab 2 needs a worldwide
 or G C C test tenant
 
-17
-00:00:55.337 --> 00:00:59.260
+16
+00:00:53.487 --> 00:00:57.410
 with Microsoft Entra I
 D P1, never production.

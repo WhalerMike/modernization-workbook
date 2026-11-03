@@ -32,7 +32,7 @@ const SS = "Check and summary";
 
 // ================================================================== 1 Title
 {
-  const s = title(SI, "Module 8: Evidence and drift for the ISSO", "Privileged Access learning path · Plan Phase 3 (A3.6), Phase 4 (A4.3) and Gate 4, with workbook Chapter 08",
+  const s = title(SI, "Module 8: Evidence and drift for the ISSO", "Privileged Access learning path · Plan Phases 3 and 4 (A3.6, A4.3, Gate 4) · Chapter 08",
     ["State and events  ·  The audit findings  ·  Compare by fingerprint  ·  No names", "The package, the chain and the period  ·  Try it: Lab 1  ·  Lab 2  ·  Evidence"]);
   notes(s,
 `Welcome to Module 8 of the Privileged Access learning path: evidence and drift for the ISSO. It's the last module of the path. It serves the project plan's task A3.6 in Phase 3, A4.3 in Phase 4, and Gate 4, with Chapter 08 of the developer workbook. In it you run the privileged reads on a schedule, say what changed since the last run without putting anyone's name in the issue tracker, show every PIM activation in a window with its approval, and hand the ISSO a package and a period summary they can check with sha256sum alone. This lab uses two kits: the privileged-access folder in PowerShell, and the drift pipeline in a POSIX shell with Python. It's illustrative: tested against fixtures.`,

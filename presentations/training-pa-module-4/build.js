@@ -32,7 +32,7 @@ const SS = "Check and summary";
 
 // ================================================================== 1 Title
 {
-  const s = title(SI, "Module 4: PIM for Microsoft Entra roles as code", "Privileged Access learning path · Plan Phase 1 (A1.6), Phase 2 (A2.1, A2.2) and Phase 3 (A3.1), with workbook Chapter 04",
+  const s = title(SI, "Module 4: PIM for Microsoft Entra roles as code", "Privileged Access learning path · Plan Phases 1 to 3 (A1.6, A2.1, A2.2, A3.1) · Chapter 04",
     ["The lockout's two halves  ·  Seven managed rules  ·  The role files and the checks", "The waves and the conversion  ·  Try it: Lab 1  ·  Lab 2  ·  Evidence"]);
   notes(s,
 `Welcome to Module 4 of the Privileged Access learning path: PIM for Microsoft Entra roles as code. This module serves the project plan's task A1.6 in Phase 1, A2.1 and A2.2 in Phase 2, and A3.1 in Phase 3, with Chapter 04 of the developer workbook. Each Microsoft Entra role has its own PIM settings: how long an activation lasts, whether it needs approval, a ticket, an authentication context, and how long an assignment may last. Set by hand in the portal, they drift role by role. In this module you hold them as code, one reviewed file per role. You see exactly what a change will do before it happens, apply it to one rollout wave with the least privilege the writes need, and prove from a read-back that the tenant now matches the files. The code is illustrative: tested against fixtures and a fake.`,

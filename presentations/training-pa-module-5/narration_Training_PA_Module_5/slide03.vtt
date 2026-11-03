@@ -46,30 +46,30 @@ and say why the pipeline's
 app doesn't create the groups.
 
 10
-00:00:29.600 --> 00:00:31.662
+00:00:29.600 --> 00:00:31.631
 Before you start, finish Module 4,
 
 11
-00:00:31.662 --> 00:00:36.625
+00:00:31.631 --> 00:00:36.520
 for eligible assignments and the P R V
 group that holds each role's eligibility,
 
 12
-00:00:36.625 --> 00:00:40.138
-and read about role-assignable
-groups in the chapter on
+00:00:36.520 --> 00:00:39.303
+and read about
+role-assignable groups in the
 
 13
-00:00:40.138 --> 00:00:44.338
-privileged tiers in the Federal
-Modernization Workbook's Book 04.
+00:00:39.303 --> 00:00:42.612
+chapter on privileged tiers
+in Access and Privilege.
 
 14
-00:00:44.338 --> 00:00:49.005
+00:00:42.612 --> 00:00:47.280
 Lab 2 needs a worldwide or G C C
 test tenant with Microsoft Entra I
 
 15
-00:00:49.005 --> 00:00:54.000
+00:00:47.280 --> 00:00:52.270
 D P2 or Governance licenses and
 fictional people, never production.

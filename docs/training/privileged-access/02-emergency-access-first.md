@@ -13,6 +13,8 @@ series-order: 2
 
 *Part of the [Privileged Access learning path](index.md). Plan Phase 0, task A0.4, and Phase 1, task A1.1. Workbook [Chapter 02](../../project-plans/developer-workbooks/privileged-access/02-emergency-access-as-code.md). About 55 minutes.*
 
+**Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-pa-module-2) (the deck files come with the next edition) · [▶ Watch](../../presentations/watch.html?v=Training_PA_Module_2_Narrated) (about 13 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_PA_Module_2_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-pa-module-2/Training_PA_Module_2_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-pa-module-2/Training_PA_Module_2_Narrated.vtt).
+
 ## Introduction (3 minutes)
 
 This is the one step that can't move. Book 04, Chapter 08's Step 0 is the emergency access accounts, and the plan's critical path says the same: approval switched on before the emergency accounts exist is the one sequence that locks the agency out. Learn names the case. Every Global Administrator and Privileged Role Administrator is eligible, approval is required, and no approvers are selected, so no one can approve and administration is locked.

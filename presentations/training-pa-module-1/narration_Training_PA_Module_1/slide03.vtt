@@ -45,36 +45,36 @@ And you'll say what the
 reader refuses, and why.
 
 10
-00:00:30.375 --> 00:00:33.704
+00:00:30.375 --> 00:00:33.714
 Before you start, you need
 the path's prerequisites:
 
 11
-00:00:33.704 --> 00:00:39.015
-the chapter on privileged tiers in the
-Federal Modernization Workbook's Book 04,
+00:00:33.714 --> 00:00:37.451
+the chapter on privileged
+tiers in Access and Privilege,
 
 12
-00:00:39.015 --> 00:00:43.613
+00:00:37.451 --> 00:00:42.063
 the plan's gates, Microsoft Automation
 Modules 1 and 2, and PowerShell 7.
 
 13
-00:00:43.613 --> 00:00:47.269
+00:00:42.063 --> 00:00:45.719
 Lab 1 needs PowerShell
 7.1 or later with Pester
 
 14
-00:00:47.269 --> 00:00:50.637
+00:00:45.719 --> 00:00:49.087
 5 and a copy of the
 repository, and no tenant.
 
 15
-00:00:50.637 --> 00:00:53.539
+00:00:49.087 --> 00:00:51.988
 Lab 2 needs a worldwide
 or G C C test tenant
 
 16
-00:00:53.539 --> 00:00:57.100
+00:00:51.988 --> 00:00:55.540
 with a test Azure
 subscription, never production.

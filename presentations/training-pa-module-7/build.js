@@ -32,7 +32,7 @@ const SS = "Check and summary";
 
 // ================================================================== 1 Title
 {
-  const s = title(SI, "Module 7: Access reviews of privileged roles", "Privileged Access learning path · Plan Phase 2 (A2.7) and Phase 3 (A3.7), with workbook Chapter 07",
+  const s = title(SI, "Module 7: Access reviews of privileged roles", "Privileged Access learning path · Plan Phases 2 and 3 (A2.7, A3.7) · Chapter 07",
     ["Why reviews as code  ·  The series  ·  The checks and PA-AR-06  ·  The plan", "The evidence  ·  Try it: Lab 1  ·  Lab 2  ·  The federal requirement"]);
   notes(s,
 `Welcome to Module 7 of the Privileged Access learning path: access reviews of privileged roles. This module serves the project plan's task A2.7 in Phase 2 and A3.7 in Phase 3, with Chapter 07 of the developer workbook. The approval gate controls the use of privilege. Reviews control who keeps the eligibility. The program's design creates one recurring review per role, Tier 0 monthly and the rest quarterly, with auto-apply on, and remove access when reviewers don't respond. In this module you define every privileged review series as code. You show a reviewer what a change will do before it reaches the tenant, apply it with the least permission that can, and hand the ISSO the decisions each review produced. The code is illustrative: tested against fixtures and a fake.`,
