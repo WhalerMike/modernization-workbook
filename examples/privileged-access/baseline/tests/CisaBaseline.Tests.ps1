@@ -20,7 +20,7 @@ BeforeAll {
         $fake = New-PaPimFixtureInvoker -Path $Path -Cloud $Cloud
         $client = New-PaPimClient -Cloud $Cloud -Task pim-alerts -Invoke $fake.Invoke
         $ids = (Get-PaPimHighlyPrivilegedRole).RoleTemplateId
-        $policies = Get-PaPimRolePolicy -Client $client -RoleTemplateId $ids
+        $policies = Get-PaPimRolePolicy -Client $client -RoleTemplateId $ids -ContinueOnRefusedRead
         $groups = @(Get-PaPimPrivilegedGroup -Client $client -RoleTemplateId $ids)
         $gp = Get-PaPimGroupPolicy -Client $client -GroupId @($groups | ForEach-Object GroupId)
         [pscustomobject]@{ Fake = $fake; Client = $client; Groups = $groups; Findings = @(Test-PaPimAlertSetting -Policies $policies) + @(Test-PaPimGroupAlertSetting -Groups $groups -Policies $gp) }
@@ -100,6 +100,30 @@ Describe 'MS.AAD.7.7v1 and MS.AAD.7.8v1: PIM alerts (PA-PIM-10, PA-PIM-11)' {
         $f = @(Test-PaPimAlertSetting -Policies @{})
         @($f | Where-Object Severity -EQ 'Finding').Count | Should -Be 9
         $f[0].Issue | Should -Match 'can''t be shown'
+    }
+    It 'turns a role policy read Graph refuses (403) into a Finding for that role and checks the rest' {
+        $fake = New-PaPimFixtureInvoker -Path (Join-Path $script:Fixtures 'pim-alerts-set.json')
+        $inner = $fake.Invoke
+        # The fake, except that Graph refuses the read of Global Administrator's policy.
+        $refusing = {
+            param($Method, $Uri, $Body)
+            if ([Uri]::UnescapeDataString($Uri) -match "scopeType eq 'DirectoryRole' and roleDefinitionId eq '62e90394-69f5-4237-9190-012177145e10'") { throw 'Response status code does not indicate success: Forbidden (403)' }
+            & $inner $Method $Uri $Body
+        }.GetNewClosure()
+        $client = New-PaPimClient -Cloud gcc -Task pim-alerts -Invoke $refusing
+        $ids = (Get-PaPimHighlyPrivilegedRole).RoleTemplateId
+        $p = Get-PaPimRolePolicy -Client $client -RoleTemplateId $ids -ContinueOnRefusedRead
+        $p[$script:GA].Error | Should -Match 'Forbidden \(403\)'
+        $f = @(Test-PaPimAlertSetting -Policies $p)
+        $bad = @($f | Where-Object Severity -EQ 'Finding')
+        @($bad.Rule) | Should -Be @('PA-PIM-10', 'PA-PIM-11')
+        @($bad.Object | Sort-Object -Unique) | Should -Be @('Global Administrator')
+        $bad[0].Issue | Should -Match "policy couldn't be read \(Response status code does not indicate success: Forbidden \(403\)\), so its assignment alerts can't be shown"
+        # The other seven roles are still read and still pass.
+        @($f | Where-Object { $_.Rule -eq 'PA-PIM-10' -and $_.Severity -eq 'Info' }).Count | Should -Be 7
+        @($client.Evidence | Where-Object Call -EQ 'pim-policy-assignment').Count | Should -Be 8
+        # Without the switch, as the plan reads policies, the refused read still stops the run.
+        { Get-PaPimRolePolicy -Client $client -RoleTemplateId $ids } | Should -Throw '*Forbidden (403)*'
     }
     It 'sends one GET per role, one each for the eligible and active assignments, and one per group, on the cloud''s own Graph host' {
         $r = Get-AlertFinding (Join-Path $script:Fixtures 'pim-alerts-groups-set.json') 'gcchigh'

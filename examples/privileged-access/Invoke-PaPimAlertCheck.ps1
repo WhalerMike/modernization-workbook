@@ -32,7 +32,7 @@ else { $invoke = New-PaPimLiveInvoker -Cloud $Cloud; $mode = 'Live' }
 
 $client = New-PaPimClient -Cloud $Cloud -Task pim-alerts -Invoke $invoke
 $roles = @(Get-PaPimHighlyPrivilegedRole)
-$policies = Get-PaPimRolePolicy -Client $client -RoleTemplateId $roles.RoleTemplateId
+$policies = Get-PaPimRolePolicy -Client $client -RoleTemplateId $roles.RoleTemplateId -ContinueOnRefusedRead
 $groups = @(Get-PaPimPrivilegedGroup -Client $client -RoleTemplateId $roles.RoleTemplateId)
 $groupPolicies = Get-PaPimGroupPolicy -Client $client -GroupId @($groups | ForEach-Object GroupId)
 $findings = @(Test-PaPimAlertSetting -Policies $policies) + @(Test-PaPimGroupAlertSetting -Groups $groups -Policies $groupPolicies)
