@@ -12,21 +12,21 @@
   ],
   [
    8.25,
-   17.075,
-   "Book 08 of the workbook sets the program's design for D N S, DHCP and address management, and this guide shows how to build that design on Infoblox NIOS, version 9.1, and how to move off Microsoft D N S and DHCP without breaking anything."
+   19.2,
+   "The workbook's D N S, DHCP and eye-pam book sets the program's design for D N S, DHCP and address management, and this guide shows how to build that design on Infoblox NIOS, version 9.1, and how to move off Microsoft D N S and DHCP without breaking anything."
   ],
   [
-   25.325,
+   27.45,
    8.762,
    "After a short orientation, it runs in four parts: build the Grid, migrate from Microsoft, sign and harden, and run it day to day."
   ],
   [
-   34.087,
+   36.212,
    9.512,
    "Every fact comes from a primary source, the new ones opened on October twenty-third, 2026, and I'll flag design guidance and inferences as we go."
   ],
   [
-   43.6,
+   45.725,
    2.513,
    "The slides and notes carry the detail."
   ]
@@ -34,33 +34,33 @@
  "2": [
   [
    0.05,
-   6.225,
-   "Here's the frame for the whole guide: Book 08's design, mapped onto the way Infoblox works."
+   6.9,
+   "Here's the frame for the whole guide: the workbook's D N S design, mapped onto the way Infoblox works."
   ],
   [
-   6.275,
-   11.775,
-   "Book 08 wants governed D N S and address management, and on NIOS that's a Grid, one Grid Master holding the database and every member getting its copy over an encrypted tunnel."
+   6.95,
+   11.412,
+   "The design wants governed D N S and address management, and on NIOS that's a Grid, one Grid Master holding the database and every member getting its copy over an encrypted tunnel."
   ],
   [
-   18.05,
-   10.238,
-   "Book 08 wants a period of coexistence with Microsoft, so NIOS first manages the Windows servers read-only, then takes over zones and scopes one at a time."
+   18.363,
+   9.463,
+   "It wants a period of coexistence with Microsoft, so NIOS first manages the Windows servers read-only, then takes over zones and scopes one at a time."
   ],
   [
-   28.288,
-   5.425,
-   "Book 08 requires DNSSEC, so the Grid Master signs as a hidden primary."
+   27.825,
+   17.4,
+   "O M B memo M-08-23 requires DNSSEC, and nist special publication eight hundred fifty-three's controls SC-20 and SC-21 carry it into every system baseline, so the Grid Master signs as a hidden primary."
   ],
   [
-   33.712,
-   5.888,
-   "And its evidence becomes syslog, audit logs, backups and the agency's settings checklist."
+   45.225,
+   6.425,
+   "And the design's evidence becomes syslog, audit logs, backups and the agency's settings checklist."
   ],
   [
-   39.6,
-   5.9,
-   "Book 08's six phases still govern, but this guide adds a Phase 0 of decisions."
+   51.65,
+   5.475,
+   "The design's six phases still govern, but this guide adds a Phase 0 of decisions."
   ]
  ],
  "3": [
@@ -280,31 +280,31 @@
  "10": [
   [
    0.05,
-   7.688,
-   "Method A is the one Book 08's coexistence phase leans on: manage the Windows servers first, then take them over."
+   7.45,
+   "Method A is the one the workbook's coexistence phase leans on: manage the Windows servers first, then take them over."
   ],
   [
-   7.737,
+   7.5,
    10.375,
    "Grid members manage Windows D N S and DHCP without an agent, read-only or read-write, using a physical member with the Microsoft Management license."
   ],
   [
-   18.113,
-   8.425,
-   "Most zone types and records sync, but conditional forwarders don't, so you still need Book 08's PowerShell export to recreate them."
+   17.875,
+   8.012,
+   "Most zone types and records sync, but conditional forwarders don't, so you still need the workbook's PowerShell export to recreate them."
   ],
   [
-   26.538,
+   25.887,
    9.887,
    "A few rules bite: each Windows server syncs into one view, the first sync belongs off-hours, and a failover mid-sync loses recent Grid-side changes."
   ],
   [
-   36.425,
-   7.25,
-   "The design guidance is to add the Windows servers read-only in Phase 1, so the synced views become a live inventory."
+   35.775,
+   7.3,
+   "The design guidance is to add the Windows servers read-only in Phase 1, so the synced views become a lyve inventory."
   ],
   [
-   43.675,
+   43.075,
    1.5,
    "Then you move the zones."
   ]
@@ -322,26 +322,26 @@
   ],
   [
    14.312,
-   2.312,
-   "That's Book 08's cutover loop."
+   2.112,
+   "That's the workbook's cutover loop."
   ],
   [
-   16.625,
-   12.275,
-   "The import brings in the ordinary records, but recreates the zone's own name server and start-of-authority records rather than copying them, which matches Book 08's rule never to migrate the zone apex."
+   16.425,
+   12.0,
+   "The import brings in the ordinary records, but recreates the zone's own name server and start-of-authority records rather than copying them, which matches the workbook's rule never to migrate the zone apex."
   ],
   [
-   28.9,
+   28.425,
    3.75,
    "Subzones come in as delegations, so import them separately."
   ],
   [
-   32.65,
+   32.175,
    7.888,
    "For bulk data there's an import wizard, but Infoblox warns mass imports can cause a service outage, so run them in a change window."
   ],
   [
-   40.538,
+   40.062,
    2.263,
    "Next, Active Directory zones."
   ]
@@ -364,21 +364,21 @@
   ],
   [
    22.812,
-   12.8,
-   "Book 08's default keeps the A D locator zones on A D D N S until the last domain controller goes, and even then NIOS needs AES keys so its DHCP can send signed updates."
+   13.662,
+   "The workbook's D N S design keeps the A D locator zones on A D D N S by default until the last domain controller goes, and even then NIOS needs AES keys so its DHCP can send signed updates."
   ],
   [
-   35.612,
+   36.475,
    9.613,
    "The alternative, NIOS hosting the A D zone itself, works, but no Infoblox page names Windows Server 2025 domain controllers."
   ],
   [
-   45.225,
+   46.087,
    2.388,
    "Confirm support before you take that path."
   ],
   [
-   47.612,
+   48.475,
    2.425,
    "Now, the DHCP takeover."
   ]
@@ -428,36 +428,36 @@
   ],
   [
    5.25,
-   9.213,
-   "A mixed Windows and NIOS pair isn't offered, which is why Book 08 says to move both partners of a Windows failover relationship together."
+   9.85,
+   "A mixed Windows and NIOS pair isn't offered, which is why the workbook's D N S design moves both partners of a Windows failover relationship together."
   ],
   [
-   14.463,
+   15.1,
    7.162,
    "Leave the default settings alone unless you understand the consequences, and configure everything before you turn DHCP on."
   ],
   [
-   21.625,
+   22.262,
    6.362,
    "One common assumption is wrong: the Grid Master plays no part in failover; the peers talk directly."
   ],
   [
-   27.988,
-   1.925,
-   "IPv6 is different."
+   28.625,
+   1.988,
+   "I P version six is different."
   ],
   [
-   29.913,
-   8.45,
-   "An IPv6 range is served by a single member with no failover, so redundancy comes from making that member a high-availability pair."
+   30.613,
+   8.662,
+   "An I P version six range is served by a single member with no failover, so redundancy comes from making that member a high-availability pair."
   ],
   [
-   38.362,
+   39.275,
    5.175,
    "That's not a regression, since Microsoft's DHCPv6 has no failover either."
   ],
   [
-   43.538,
+   44.45,
    1.363,
    "Now, how to back out."
   ]
@@ -480,21 +480,21 @@
   ],
   [
    12.562,
-   8.525,
-   "For zone import, the Windows zone stays authoritative until you change delegation, so Book 08's cutover loop is the real rollback point."
+   8.188,
+   "For zone import, the Windows zone stays authoritative until you change delegation, so the workbook's cutover loop is the real rollback point."
   ],
   [
-   21.087,
+   20.75,
    9.963,
    "For the DHCP takeover, no Infoblox rollback procedure was found, so, as an inference, reverse the steps and reactivate the Windows scope."
   ],
   [
-   31.05,
+   30.712,
    8.938,
    "The NIOS database snapshot is a quick undo for configuration mistakes, but there's only one, and it isn't for migration data clients depend on."
   ],
   [
-   39.987,
+   39.65,
    5.95,
    "Throughout, each phase ends with a rollback point and a consistency test, not a calendar date."
   ]
@@ -724,8 +724,8 @@
   ],
   [
    2.837,
-   10.325,
-   "We'll cover upgrades and the point of no return, patching, backup and recovery, logging, automation, and the whole build mapped onto Book 08's six phases."
+   11.688,
+   "We'll cover upgrades and the point of no return, patching, backup and recovery, logging, automation, and the whole build mapped onto the workbook's D N S design and its six phases."
   ]
  ],
  "23": [
@@ -921,41 +921,41 @@
  "28": [
   [
    0.05,
-   6.175,
-   "Here's the whole build laid onto Book 08's phases, and the order is the program's design guidance."
+   7.938,
+   "Here's the whole build laid onto the six phases of the workbook's D N S design, and the order is the program's design guidance."
   ],
   [
-   6.225,
+   7.987,
    2.425,
    "Phase 0 makes the four decisions."
   ],
   [
-   8.65,
+   10.412,
    10.525,
    "Phase 1 builds a lab Grid, then production in order, from the Grid Master pair and candidate to sign-in, logging and backups, with the Windows servers added read-only."
   ],
   [
-   19.175,
+   20.938,
    4.925,
    "Phase 2 coexists, adding members on premises and in each cloud hub."
   ],
   [
-   24.1,
+   25.863,
    6.237,
    "Phase 3 moves authority zone by zone and scope by scope, re-signing signed zones on NIOS."
   ],
   [
-   30.337,
+   32.1,
    5.95,
    "Phase 4 federates the clouds, with Universal D D I only on non-FIPS scopes."
   ],
   [
-   36.288,
-   4.9,
-   "Phase 5 decommissions behind Book 08's gates, locator zones last."
+   38.05,
+   4.537,
+   "Phase 5 decommissions behind the design's gates, locator zones last."
   ],
   [
-   41.188,
+   42.587,
    4.562,
    "And Phase 6 finishes the remaining baseline settings and the evidence."
   ]
@@ -968,31 +968,31 @@
   ],
   [
    0.975,
-   15.863,
-   "The decisions are yours: FIPS mode, knowing it costs cloud management, whether the signing keys go in an HSM, NSEC or NSEC3 for internal zones, where the locator zones live, and how many physical managing members you need."
+   15.825,
+   "The decisions are yours: FIPS mode, knowing it costs cloud management, whether the signing keys go in an HSM, NSEC or NSEC3 for internal zones, where the locator zones liv, and how many physical managing members you need."
   ],
   [
-   16.837,
+   16.8,
    10.938,
    "There are questions to put to Infoblox in writing, mainly around the approved federal build, certification timing, Windows Server 2025, and failover in the government clouds."
   ],
   [
-   27.775,
+   27.738,
    9.162,
    "The next steps are concrete: stand up a lab Grid, sign a test zone, pilot one DHCP takeover, and check the lab against your settings baseline."
   ],
   [
-   36.938,
-   8.85,
-   "The program's view is plain: NIOS can carry Book 08's design, and its risks are manageable if the Phase 0 decisions come first."
+   36.9,
+   9.488,
+   "The program's view is plain: NIOS can carry the workbook's D N S design, and its risks are manageable if the Phase 0 decisions come first."
   ],
   [
-   45.788,
+   46.388,
    5.912,
    "This is the program's research, under review, not an endorsement by any federal agency."
   ],
   [
-   51.7,
+   52.3,
    0.762,
    "Thank you."
   ]

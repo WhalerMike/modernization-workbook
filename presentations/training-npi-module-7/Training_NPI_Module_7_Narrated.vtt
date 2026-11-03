@@ -1,0 +1,1099 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.046
+Welcome to Module 7 of the
+Non-Person Identity learning path:
+
+2
+00:00:04.046 --> 00:00:07.162
+convert to managed
+identities and federation.
+
+3
+00:00:07.162 --> 00:00:09.720
+This module is the first half of Gate 5,
+
+4
+00:00:09.720 --> 00:00:13.350
+Conversion, with Chapter 5
+of the developer workbook.
+
+5
+00:00:13.350 --> 00:00:16.625
+It's where service accounts and
+secrets actually get replaced.
+
+6
+00:00:16.625 --> 00:00:19.344
+You'll plan conversions
+in the program's order:
+
+7
+00:00:19.344 --> 00:00:23.636
+a managed identity for an Azure-hosted
+workload, a federated credential
+
+8
+00:00:23.636 --> 00:00:28.000
+where the host has an issuer, and a
+certificate only where neither applies.
+
+9
+00:00:28.000 --> 00:00:32.658
+You'll check each federated credential
+against the claims the workload will present,
+
+10
+00:00:32.658 --> 00:00:35.938
+and test it against a fake token
+endpoint before it's created.
+
+11
+00:00:35.938 --> 00:00:38.776
+Then you'll read each
+conversion's parallel run,
+
+12
+00:00:38.776 --> 00:00:41.613
+and see when the legacy
+account may be disabled.
+
+13
+00:00:41.613 --> 00:00:47.480
+The code is illustrative: tested against
+fixtures, not run against a live tenant.
+
+14
+00:00:51.230 --> 00:00:52.555
+Why does this need care?
+
+15
+00:00:52.555 --> 00:00:57.367
+Microsoft Learn's workload identity
+federation documentation explains it.
+
+16
+00:00:57.367 --> 00:01:01.912
+A federated credential tells Microsoft
+Entra I D to trust tokens from
+
+17
+00:01:01.912 --> 00:01:06.143
+an outside issuer, such as GitHub
+Actions or a Kubernetes cluster.
+
+18
+00:01:06.143 --> 00:01:12.077
+Three values must match the workload's
+token exactly, case for case: the issuer,
+
+19
+00:01:12.077 --> 00:01:17.270
+the subject, and the audience, which
+for Entra I D is exactly one value,
+
+20
+00:01:17.270 --> 00:01:20.793
+A P I colon slash slash
+Azure A D Token Exchange.
+
+21
+00:01:20.793 --> 00:01:22.531
+And here's the quiet failure.
+
+22
+00:01:22.531 --> 00:01:26.918
+Learn says a credential with the wrong
+subject is created without any error.
+
+23
+00:01:26.918 --> 00:01:30.559
+It fails only when the workload
+tries to exchange its token,
+
+24
+00:01:30.559 --> 00:01:32.492
+which may be the day you cut over.
+
+25
+00:01:32.492 --> 00:01:37.173
+So in this module, each federated credential
+is checked against the claims the
+
+26
+00:01:37.173 --> 00:01:40.990
+workload will present, and tested
+against a fake token endpoint,
+
+27
+00:01:40.990 --> 00:01:42.790
+before it's ever created.
+
+28
+00:01:46.540 --> 00:01:49.378
+Here's what you'll be able to
+do by the end of this module,
+
+29
+00:01:49.378 --> 00:01:51.765
+which takes about sixty
+minutes with the lab.
+
+30
+00:01:51.765 --> 00:01:56.290
+You'll state the order of targets, and
+the finding a target out of order raises.
+
+31
+00:01:56.290 --> 00:02:00.255
+You'll name the three values a
+federated credential must match,
+
+32
+00:02:00.255 --> 00:02:02.390
+and the audience Entra I D expects.
+
+33
+00:02:02.390 --> 00:02:05.062
+You'll explain why every
+federated credential
+
+34
+00:02:05.062 --> 00:02:07.665
+gets a token exchange
+test before it's created.
+
+35
+00:02:07.665 --> 00:02:11.768
+And you'll read a conversion's cutover
+gate and its parallel run status,
+
+36
+00:02:11.768 --> 00:02:14.527
+and say when the legacy
+account may be disabled.
+
+37
+00:02:14.527 --> 00:02:16.538
+Before you start, finish Module 3,
+
+38
+00:02:16.538 --> 00:02:21.377
+because the conversions follow the target
+and the wave it decides, and Module 4,
+
+39
+00:02:21.377 --> 00:02:26.290
+because a certificate target is issued
+and rotated under its credential rules.
+
+40
+00:02:26.290 --> 00:02:31.960
+Lab 1 needs PowerShell 7.1 or
+later with Pester 5, and no tenant.
+
+41
+00:02:35.710 --> 00:02:39.272
+Unit 1 is the guide's Step
+5, which has five parts.
+
+42
+00:02:39.272 --> 00:02:43.710
+They're the program's conversion steps,
+design guidance, not Microsoft's.
+
+43
+00:02:43.710 --> 00:02:47.690
+Build the target: a managed
+identity with its role assignments,
+
+44
+00:02:47.690 --> 00:02:51.439
+a federated credential tested
+by an actual token exchange,
+
+45
+00:02:51.439 --> 00:02:56.108
+a certificate credential from the
+vault, a group managed service account,
+
+46
+00:02:56.108 --> 00:03:00.623
+or, on a Windows Server 2025 domain,
+a delegated managed service account.
+
+47
+00:03:00.623 --> 00:03:03.772
+Give it two human owners
+and a rotation schedule.
+
+48
+00:03:03.772 --> 00:03:09.205
+Run old and new in parallel for thirty
+days: the application uses the new identity,
+
+49
+00:03:09.205 --> 00:03:12.935
+and the legacy account stays
+enabled, and you watch both.
+
+50
+00:03:12.935 --> 00:03:15.760
+Disable the legacy
+account; don't delete it.
+
+51
+00:03:15.760 --> 00:03:18.202
+For an app registration losing a secret,
+
+52
+00:03:18.202 --> 00:03:23.160
+remove the secret only after the new
+credential has carried production traffic.
+
+53
+00:03:23.160 --> 00:03:28.022
+And record the result: the target, the
+date and the disabled object's I D.
+
+54
+00:03:28.022 --> 00:03:32.809
+The program's dangers table adds one
+more: federation trusts too much.
+
+55
+00:03:32.809 --> 00:03:37.269
+A broad subject lets every workload
+on that issuer in, so the program's
+
+56
+00:03:37.269 --> 00:03:42.250
+guidance is exact subjects, and approval
+of each credential as a change.
+
+57
+00:03:46.000 --> 00:03:48.513
+Unit 2 starts with what
+the code depends on.
+
+58
+00:03:48.513 --> 00:03:50.813
+The order of targets is the program's:
+
+59
+00:03:50.813 --> 00:03:55.260
+an Azure-hosted workload gets a managed
+identity, a host with an issuer,
+
+60
+00:03:55.260 --> 00:03:58.251
+such as a pipeline, gets
+a federated credential,
+
+61
+00:03:58.251 --> 00:04:01.625
+and a certificate is used
+only where neither applies.
+
+62
+00:04:01.625 --> 00:04:06.138
+A target out of that order
+raises N P W I F oh one.
+
+63
+00:04:06.138 --> 00:04:08.978
+Then the rules on Microsoft
+Learn's page of important
+
+64
+00:04:08.978 --> 00:04:12.851
+considerations and restrictions
+for federated identity credentials.
+
+65
+00:04:12.851 --> 00:04:16.575
+The match is exact and
+case-sensitive, with no wildcards.
+
+66
+00:04:16.575 --> 00:04:21.292
+An app registration or a user-assigned
+managed identity holds at most twenty
+
+67
+00:04:21.292 --> 00:04:25.862
+federated credentials, and a system-assigned
+identity can't hold one at all.
+
+68
+00:04:25.862 --> 00:04:30.826
+And, as you've heard, a credential with
+the wrong subject is created without error.
+
+69
+00:04:30.826 --> 00:04:33.960
+Everything in the checks
+follows from those facts.
+
+70
+00:04:37.710 --> 00:04:42.510
+The checks are nine rules,
+N P W I F oh one to oh nine.
+
+71
+00:04:42.510 --> 00:04:45.685
+Oh one is the order, the
+program's design guidance.
+
+72
+00:04:45.685 --> 00:04:48.776
+Oh two, oh three and oh
+four are the three values,
+
+73
+00:04:48.776 --> 00:04:51.542
+from Microsoft Learn's federation pages:
+
+74
+00:04:51.542 --> 00:04:56.993
+a subject that isn't exactly what the
+workload's issuer will present, case for case;
+
+75
+00:04:56.993 --> 00:05:01.630
+an issuer that isn't exactly the
+workload's, a trailing slash included;
+
+76
+00:05:01.630 --> 00:05:05.535
+and an audience that isn't
+exactly the one Entra I D expects.
+
+77
+00:05:05.535 --> 00:05:10.227
+Oh five and oh six are Microsoft Learn's
+limits: a bad name, a wildcard, a
+
+78
+00:05:10.227 --> 00:05:13.997
+system-assigned parent, more
+than twenty credentials,
+
+79
+00:05:13.997 --> 00:05:16.510
+or the same issuer and subject twice.
+
+80
+00:05:16.510 --> 00:05:19.656
+Oh seven is a warning for
+a credential someone added
+
+81
+00:05:19.656 --> 00:05:22.948
+outside the reviewed file;
+it's reported, never deleted.
+
+82
+00:05:22.948 --> 00:05:25.685
+Oh eight is a failed token exchange test.
+
+83
+00:05:25.685 --> 00:05:28.767
+And oh nine is a parallel
+run that isn't clean,
+
+84
+00:05:28.767 --> 00:05:32.800
+such as an old secret still
+signing in after cutover.
+
+85
+00:05:36.550 --> 00:05:38.387
+Two pieces make the check real.
+
+86
+00:05:38.387 --> 00:05:43.025
+First, the code works out the claims the
+workload's issuer will put in its token.
+
+87
+00:05:43.025 --> 00:05:47.278
+For GitHub, Microsoft Learn's
+trust page gives the formats:
+
+88
+00:05:47.278 --> 00:05:51.000
+the repository and an
+environment, a branch or a tag.
+
+89
+00:05:51.000 --> 00:05:53.538
+For Kubernetes, it's the service account.
+
+90
+00:05:53.538 --> 00:05:56.896
+Anything it can't be sure
+of, such as a pull request,
+
+91
+00:05:56.896 --> 00:06:00.338
+has to be captured from a
+real test run, not derived.
+
+92
+00:06:00.338 --> 00:06:02.399
+Second, the exchange test.
+
+93
+00:06:02.399 --> 00:06:07.835
+It builds the token request from Microsoft
+Learn's OAuth 2.0 client credentials flow
+
+94
+00:06:07.835 --> 00:06:10.786
+page and sends it only to
+a fake token endpoint,
+
+95
+00:06:10.786 --> 00:06:15.212
+which matches exactly and
+case-sensitively, the way Learn describes.
+
+96
+00:06:15.212 --> 00:06:19.100
+It passes only if the named
+credential is the one that matched.
+
+97
+00:06:19.100 --> 00:06:20.963
+Be clear about what that proves.
+
+98
+00:06:20.963 --> 00:06:24.012
+It shows a credential will
+match the claims you recorded.
+
+99
+00:06:24.012 --> 00:06:26.995
+Whether the real issuer
+presents those claims,
+
+100
+00:06:26.995 --> 00:06:30.250
+and what the real service
+answers, is Lab 2's job.
+
+101
+00:06:34.000 --> 00:06:36.812
+Unit 3 is the plan and the write path.
+
+102
+00:06:36.812 --> 00:06:40.437
+Each conversion gets actions,
+and only three ever write.
+
+103
+00:06:40.437 --> 00:06:43.389
+Create identity, for a
+user-assigned identity
+
+104
+00:06:43.389 --> 00:06:45.875
+the file asks for that doesn't exist yet.
+
+105
+00:06:45.875 --> 00:06:48.825
+Create credential, for
+a federated credential
+
+106
+00:06:48.825 --> 00:06:51.700
+that passes every check
+and its exchange test.
+
+107
+00:06:51.700 --> 00:06:55.462
+And disable legacy, after
+a clean thirty-day parallel
+
+108
+00:06:55.462 --> 00:06:59.138
+run and the owner's approval,
+with Disable A D Account.
+
+109
+00:06:59.138 --> 00:07:02.359
+Everything else is a status,
+from awaiting cutover,
+
+110
+00:07:02.359 --> 00:07:06.576
+to parallel running, to awaiting
+the owner's approval, to converted.
+
+111
+00:07:06.576 --> 00:07:10.425
+The thresholds for a clean run
+are the program's design guidance.
+
+112
+00:07:10.425 --> 00:07:12.213
+The write path is separate.
+
+113
+00:07:12.213 --> 00:07:16.059
+It runs only the plan whose hash
+was approved, one write at a time,
+
+114
+00:07:16.059 --> 00:07:20.940
+the identity before its credential,
+because Microsoft Learn's trust page warns
+
+115
+00:07:20.940 --> 00:07:25.451
+that parallel creates under one identity
+fail, and it never sends a delete.
+
+116
+00:07:25.451 --> 00:07:28.069
+And it runs as a person
+with Cloud Application
+
+117
+00:07:28.069 --> 00:07:31.320
+Administrator and Managed
+Identity Contributor.
+
+118
+00:07:35.070 --> 00:07:35.795
+Try it.
+
+119
+00:07:35.795 --> 00:07:39.058
+Lab 1 runs in the
+non-person identity folder,
+
+120
+00:07:39.058 --> 00:07:42.320
+in PowerShell 7, against
+a fictional tenant.
+
+121
+00:07:42.320 --> 00:07:47.220
+Step one sends Microsoft's samples to
+the fakes, and seventeen tests pass.
+
+122
+00:07:47.220 --> 00:07:51.294
+One of them is the whole risk in a
+single test: it creates a credential
+
+123
+00:07:51.294 --> 00:07:55.295
+from the Graph sample, then exchanges
+a token with another subject.
+
+124
+00:07:55.295 --> 00:07:57.047
+The create succeeds,
+
+125
+00:07:57.047 --> 00:08:01.995
+and the exchange fails with A A
+D S T S seven double oh two one.
+
+126
+00:08:01.995 --> 00:08:04.470
+Step two lists what each task needs.
+
+127
+00:08:04.470 --> 00:08:08.395
+The read task holds two Graph
+read permissions and Reader.
+
+128
+00:08:08.395 --> 00:08:13.557
+Only the apply task holds application
+read-write and Managed Identity Contributor.
+
+129
+00:08:13.557 --> 00:08:17.613
+Step three builds the plan:
+eight conversions in two waves,
+
+130
+00:08:17.613 --> 00:08:20.570
+four exchange tests passed and two failed,
+
+131
+00:08:20.570 --> 00:08:25.470
+seven findings and one warning, and
+twenty actions, four of them writes.
+
+132
+00:08:25.470 --> 00:08:31.020
+Nothing is sent, and the plan's hash is
+the same on every run with these inputs.
+
+133
+00:08:34.770 --> 00:08:37.293
+Step four reads the findings, eight rows,
+
+134
+00:08:37.293 --> 00:08:41.345
+and each one is a small mistake
+that would have failed in silence.
+
+135
+00:08:41.345 --> 00:08:46.299
+Payroll prod has an issuer with a trailing
+slash, and the environment Production,
+
+136
+00:08:46.299 --> 00:08:50.070
+capital P, where the workflow
+presents production, lower case.
+
+137
+00:08:50.070 --> 00:08:54.420
+That's oh three, oh two, and
+a failed exchange, oh eight.
+
+138
+00:08:54.420 --> 00:08:56.881
+Payroll test is a warning, oh seven:
+
+139
+00:08:56.881 --> 00:09:00.133
+it's in the tenant but
+not in the reviewed file.
+
+140
+00:09:00.133 --> 00:09:03.998
+Github intranet tag has an
+audience with a leading space,
+
+141
+00:09:03.998 --> 00:09:06.383
+so it's oh four and a failed exchange.
+
+142
+00:09:06.383 --> 00:09:09.938
+Conversion six gives an Azure
+Functions app a certificate
+
+143
+00:09:09.938 --> 00:09:13.058
+when a managed identity is
+available, which is oh one.
+
+144
+00:09:13.058 --> 00:09:17.482
+And conversion eight's secret still
+signs in after cutover, oh nine.
+
+145
+00:09:17.482 --> 00:09:20.232
+Step five reads the six exchange tests:
+
+146
+00:09:20.232 --> 00:09:25.230
+payroll prod and github intranet
+tag fail, and the other four pass.
+
+147
+00:09:28.980 --> 00:09:32.480
+Step six reads the conversions:
+each one's target,
+
+148
+00:09:32.480 --> 00:09:36.243
+its cutover gate, its parallel
+run status and its day.
+
+149
+00:09:36.243 --> 00:09:38.758
+Conversion one, to a managed identity,
+
+150
+00:09:38.758 --> 00:09:44.034
+is ready to disable its legacy account on
+day forty: a clean run past thirty days,
+
+151
+00:09:44.034 --> 00:09:47.767
+and the owner approved, so it's
+the one disable in the plan.
+
+152
+00:09:47.767 --> 00:09:53.042
+Conversion seven is parallel running,
+on day fifteen of thirty, so it waits.
+
+153
+00:09:53.042 --> 00:09:56.882
+Conversion eight is the warning
+sign: on day fifty-nine,
+
+154
+00:09:56.882 --> 00:10:02.343
+the legacy credential is still in use, so
+it isn't clean, and nothing is disabled.
+
+155
+00:10:02.343 --> 00:10:04.580
+The other five are awaiting cutover.
+
+156
+00:10:04.580 --> 00:10:09.067
+Three of them are blocked by the findings
+you just read, and two aren't ready yet.
+
+157
+00:10:09.067 --> 00:10:11.231
+Notice that a status isn't a write.
+
+158
+00:10:11.231 --> 00:10:16.630
+Only the plan's three write actions ever
+change anything, and only after review.
+
+159
+00:10:20.380 --> 00:10:23.580
+Step seven dry-runs the plan
+with its approved hash.
+
+160
+00:10:23.580 --> 00:10:25.892
+It would send four writes, in order.
+
+161
+00:10:25.892 --> 00:10:30.142
+First, Disable A D Account for
+conversion one's legacy account.
+
+162
+00:10:30.142 --> 00:10:31.917
+Disabled, not deleted.
+
+163
+00:10:31.917 --> 00:10:35.593
+Then a post of an application's
+federated credential to Graph.
+
+164
+00:10:35.593 --> 00:10:39.045
+Then a put of the user-assigned
+identity, id webfront,
+
+165
+00:10:39.045 --> 00:10:42.417
+to Resource Manager, before
+a put of its credential.
+
+166
+00:10:42.417 --> 00:10:46.954
+The identity always comes before
+its credential, one write at a time.
+
+167
+00:10:46.954 --> 00:10:52.130
+Step eight applies the plan to the fake,
+and all four are sent, in the same order.
+
+168
+00:10:52.130 --> 00:10:57.055
+Then it tries a hash nobody approved,
+all zeros, and the write path refuses:
+
+169
+00:10:57.055 --> 00:11:01.980
+the plan's hash isn't the approved one,
+so it won't run a plan nobody reviewed.
+
+170
+00:11:01.980 --> 00:11:06.993
+Step nine runs every test: five
+hundred thirteen pass, none fail.
+
+171
+00:11:06.993 --> 00:11:09.180
+Then delete the output folder.
+
+172
+00:11:12.930 --> 00:11:17.573
+Lab 2 takes the same path in your
+own test tenant, worldwide or G C C,
+
+173
+00:11:17.573 --> 00:11:23.268
+with a test subscription, a test Active
+Directory domain and a test repository.
+
+174
+00:11:23.268 --> 00:11:26.167
+Never production, and
+only fictional names.
+
+175
+00:11:26.167 --> 00:11:30.418
+A reading app holds two Graph read
+permissions and Reader, and a person with
+
+176
+00:11:30.418 --> 00:11:35.217
+Cloud Application Administrator and Managed
+Identity Contributor does the write.
+
+177
+00:11:35.217 --> 00:11:39.430
+Make a test conversion from a client
+secret to a federated credential.
+
+178
+00:11:39.430 --> 00:11:43.822
+The key step is capturing the real issuer
+and subject from one workflow run,
+
+179
+00:11:43.822 --> 00:11:46.868
+because that's the truth
+the check compares against.
+
+180
+00:11:46.868 --> 00:11:49.671
+Then plan, apply, exchange
+a token for real,
+
+181
+00:11:49.671 --> 00:11:54.042
+and run the parallel run through
+to the legacy account's disable.
+
+182
+00:11:54.042 --> 00:11:58.679
+To back it out, step seven enables the
+test account again, removes the test
+
+183
+00:11:58.679 --> 00:12:03.393
+credentials, and deletes the rest by
+hand, because this code never deletes.
+
+184
+00:12:03.393 --> 00:12:05.910
+The authors haven't run Lab 2.
+
+185
+00:12:09.660 --> 00:12:11.047
+The federal requirement.
+
+186
+00:12:11.047 --> 00:12:14.479
+Gate 5 meets NIST
+special publication eight
+
+187
+00:12:14.479 --> 00:12:17.910
+hundred fifty-three I A
+five, I A nine and A U two.
+
+188
+00:12:17.910 --> 00:12:21.310
+The module's table maps each
+control to its evidence.
+
+189
+00:12:21.310 --> 00:12:24.855
+Authenticator management
+and service identification:
+
+190
+00:12:24.855 --> 00:12:27.722
+the conversion file, the
+plan and the findings.
+
+191
+00:12:27.722 --> 00:12:31.048
+Verification of controls:
+the exchange tests.
+
+192
+00:12:31.048 --> 00:12:33.818
+Account management and disabling accounts:
+
+193
+00:12:33.818 --> 00:12:37.710
+the conversion records, the cutover
+log and the apply's results.
+
+194
+00:12:37.710 --> 00:12:42.585
+Least privilege and access restrictions
+for change: the two tasks' permissions.
+
+195
+00:12:42.585 --> 00:12:47.173
+Change control: the plan's hash,
+and the dry-run and apply folders.
+
+196
+00:12:47.173 --> 00:12:52.560
+Audit events: Lab 2's sign-in entry that
+shows a federated credential was used.
+
+197
+00:12:52.560 --> 00:12:56.410
+And the run's integrity: the
+manifest in each output folder.
+
+198
+00:12:56.410 --> 00:13:00.554
+K S I's are FedRAMP twenty X indicators
+for cloud service providers;
+
+199
+00:13:00.554 --> 00:13:04.750
+which file supports which
+indicator is the program's mapping.
+
+200
+00:13:08.500 --> 00:13:10.475
+Check yourself with two questions.
+
+201
+00:13:10.475 --> 00:13:14.042
+First: a credential's subject
+has Production, capital P,
+
+202
+00:13:14.042 --> 00:13:17.450
+where the workflow presents
+production, lower case.
+
+203
+00:13:17.450 --> 00:13:20.213
+What happens when it's
+created in Entra I D?
+
+204
+00:13:20.213 --> 00:13:21.437
+The answer is b.
+
+205
+00:13:21.437 --> 00:13:25.188
+It's created without error, and
+the token exchange fails later.
+
+206
+00:13:25.188 --> 00:13:28.230
+Microsoft Learn's workload
+identity federation
+
+207
+00:13:28.230 --> 00:13:32.013
+documentation says a wrong
+subject is created successfully.
+
+208
+00:13:32.013 --> 00:13:36.237
+The check flags it first,
+as N P W I F oh two.
+
+209
+00:13:36.237 --> 00:13:39.208
+Second: conversion one
+ran forty days with no
+
+210
+00:13:39.208 --> 00:13:42.338
+logon by the old account,
+and the owner approved.
+
+211
+00:13:42.338 --> 00:13:44.738
+What does the plan do
+with the legacy account?
+
+212
+00:13:44.738 --> 00:13:45.963
+The answer is b.
+
+213
+00:13:45.963 --> 00:13:49.738
+It disables it with Disable
+A D Account, after review.
+
+214
+00:13:49.738 --> 00:13:54.926
+This code never deletes it, so the
+rollback, enabling it again, stays possible.
+
+215
+00:13:54.926 --> 00:13:57.352
+The module page has three more questions,
+
+216
+00:13:57.352 --> 00:14:00.210
+each linked to the
+section that answers it.
+
+217
+00:14:03.960 --> 00:14:04.785
+To sum up.
+
+218
+00:14:04.785 --> 00:14:08.973
+You planned eight conversions in two
+waves, and caught a trailing slash,
+
+219
+00:14:08.973 --> 00:14:13.160
+a wrong case and a stray space before
+any credential reached the tenant.
+
+220
+00:14:13.160 --> 00:14:18.251
+You read each conversion's parallel run,
+applied four approved writes to the fake,
+
+221
+00:14:18.251 --> 00:14:20.455
+an identity before its credential,
+
+222
+00:14:20.455 --> 00:14:23.722
+and saw the write path refuse
+a plan nobody reviewed.
+
+223
+00:14:23.722 --> 00:14:28.880
+The evidence an ISSO keeps for Gate 5
+from this module is the conversion file,
+
+224
+00:14:28.880 --> 00:14:34.283
+the cutover log, the plan with its approved
+hash, the findings, the exchange tests,
+
+225
+00:14:34.283 --> 00:14:39.522
+the conversion records, and the apply
+folder's results and manifest, all dated.
+
+226
+00:14:39.522 --> 00:14:42.597
+Before you ship, work through
+the chapter's checklist.
+
+227
+00:14:42.597 --> 00:14:45.668
+Next is Module 8: convert
+Kerberos accounts to
+
+228
+00:14:45.668 --> 00:14:49.440
+group managed and delegated
+managed service accounts.

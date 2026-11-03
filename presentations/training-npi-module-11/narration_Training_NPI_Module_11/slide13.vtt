@@ -1,0 +1,74 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.650
+Lab 2 is the live test
+stage, and then production.
+
+2
+00:00:03.650 --> 00:00:05.138
+Nobody has run it yet.
+
+3
+00:00:05.138 --> 00:00:10.286
+You need an Entra test tenant with
+Workload ID Premium and Entra ID P1 or P2,
+
+4
+00:00:10.286 --> 00:00:16.025
+an Azure test subscription and an Active
+Directory test forest, never production.
+
+5
+00:00:16.025 --> 00:00:22.087
+You also need an approved change record,
+the reader app and the deployment identity,
+
+6
+00:00:22.087 --> 00:00:27.359
+each with a certificate, operators
+eligible for their roles through P I M,
+
+7
+00:00:27.359 --> 00:00:31.225
+and the second labs of Chapters
+1, 4, 5, 6 and 8 already run.
+
+8
+00:00:31.225 --> 00:00:35.969
+Fill in and check the settings
+file, create the synthetic objects
+
+9
+00:00:35.969 --> 00:00:40.537
+and the pilot policy, run the
+preflight, and deploy Steps 1.1 to 1.5.
+
+10
+00:00:40.537 --> 00:00:43.448
+Then run the smoke test,
+capture the evidence,
+
+11
+00:00:43.448 --> 00:00:47.301
+rehearse the rollback, deploy
+again, and check the evidence.
+
+12
+00:00:47.301 --> 00:00:50.063
+To back it out, Step
+1.8 applies the approved
+
+13
+00:00:50.063 --> 00:00:53.537
+rollback and checks the
+tenant against the baseline.
+
+14
+00:00:53.537 --> 00:00:55.138
+The kit never deletes.
+
+15
+00:00:55.138 --> 00:00:59.500
+Production comes only when every
+go or no-go criterion is signed.

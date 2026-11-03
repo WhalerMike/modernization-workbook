@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.875
+To sum up.
+
+2
+00:00:00.875 --> 00:00:04.991
+You ran two days of privileged
+reads against a fictional tenant,
+
+3
+00:00:04.991 --> 00:00:09.496
+found a role assigned outside PIM
+and an unapproved Tier 0 activation,
+
+4
+00:00:09.496 --> 00:00:12.525
+and compared the days into
+six Tier 0 incidents.
+
+5
+00:00:12.525 --> 00:00:17.553
+You drafted issues with no names, packaged
+and chained both runs, assembled a
+
+6
+00:00:17.553 --> 00:00:22.900
+period that shows Gate 4 isn't met yet, and
+saw an edited package fail verification.
+
+7
+00:00:22.900 --> 00:00:24.388
+And you've finished the path.
+
+8
+00:00:24.388 --> 00:00:28.080
+Across eight modules you listed
+every privileged assignment,
+
+9
+00:00:28.080 --> 00:00:31.276
+checked the emergency accounts
+before anything else,
+
+10
+00:00:31.276 --> 00:00:35.325
+kept Conditional Access and PIM
+settings for roles, groups and Azure
+
+11
+00:00:35.325 --> 00:00:40.012
+resources as reviewed code, reviewed
+privileged access, and filed the evidence.
+
+12
+00:00:40.012 --> 00:00:45.140
+Go back to the learning path, or find
+every lab in one place on the Labs page.

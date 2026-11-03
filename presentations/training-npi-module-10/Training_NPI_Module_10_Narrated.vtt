@@ -1,0 +1,1168 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.333
+Welcome to Module 10 of the
+Non-Person Identity learning path:
+
+2
+00:00:04.333 --> 00:00:06.600
+find drift and file the evidence.
+
+3
+00:00:06.600 --> 00:00:11.837
+This module is Gate 6, Lifecycle, with
+Chapter 10 of the developer workbook.
+
+4
+00:00:11.837 --> 00:00:16.237
+You'll run two days of drift against
+a baseline a reviewer approved,
+
+5
+00:00:16.237 --> 00:00:19.277
+compare two years of the
+A I use-case inventory,
+
+6
+00:00:19.277 --> 00:00:22.717
+package both days with a hash
+for every file, chained,
+
+7
+00:00:22.717 --> 00:00:28.076
+verify a package with a standard checksum
+tool, and assemble a period for the ISSO.
+
+8
+00:00:28.076 --> 00:00:31.375
+Then you'll break it on purpose,
+and watch the checks refuse.
+
+9
+00:00:31.375 --> 00:00:35.612
+If you're an ISSO reviewer,
+this module is yours in full.
+
+10
+00:00:35.612 --> 00:00:40.550
+The code runs on your laptop against
+fixtures, in PowerShell and in Python.
+
+11
+00:00:40.550 --> 00:00:45.920
+It's illustrative: tested against
+fixtures, not run against a live tenant.
+
+12
+00:00:49.670 --> 00:00:51.708
+Why does this module come at the end?
+
+13
+00:00:51.708 --> 00:00:55.065
+Because every gate before
+it ends in a state:
+
+14
+00:00:55.065 --> 00:00:57.957
+an owner, a target, a credential, a scope.
+
+15
+00:00:57.957 --> 00:00:59.996
+This module keeps that state true.
+
+16
+00:00:59.996 --> 00:01:03.021
+A credential added by
+hand, a new consent grant,
+
+17
+00:01:03.021 --> 00:01:05.409
+an app nobody has used in ninety days,
+
+18
+00:01:05.409 --> 00:01:10.267
+which is Microsoft Learn's threshold
+for an unused app, or an owner who left:
+
+19
+00:01:10.267 --> 00:01:14.407
+each one shows up as drift, against
+a baseline someone approved.
+
+20
+00:01:14.407 --> 00:01:17.100
+Then the evidence has to reach the ISSO in
+
+21
+00:01:17.100 --> 00:01:19.871
+a form they can trust
+without trusting you.
+
+22
+00:01:19.871 --> 00:01:24.770
+Each run is packaged with a hash for
+every file, and chained to the run before.
+
+23
+00:01:24.770 --> 00:01:28.983
+The ISSO checks a package with
+the standard checksum tool alone.
+
+24
+00:01:28.983 --> 00:01:33.820
+And a period summary shows whether
+the checks ran every day, with no gap.
+
+25
+00:01:37.570 --> 00:01:40.377
+Here's what you'll be able to
+do by the end of this module,
+
+26
+00:01:40.377 --> 00:01:43.120
+which takes about seventy-five
+minutes with the lab.
+
+27
+00:01:43.120 --> 00:01:45.811
+You'll explain why the
+drift run compares with a
+
+28
+00:01:45.811 --> 00:01:48.570
+baseline only when a
+reviewer approved its hash.
+
+29
+00:01:48.570 --> 00:01:50.305
+You'll read the drift findings,
+
+30
+00:01:50.305 --> 00:01:53.845
+and say when a credential counts
+as added inside the pipeline.
+
+31
+00:01:53.845 --> 00:01:58.733
+You'll compare two vintages of the A I
+use-case inventory against the register.
+
+32
+00:01:58.733 --> 00:02:03.605
+You'll package two runs, chained,
+verify one with the checksum tool,
+
+33
+00:02:03.605 --> 00:02:06.132
+and assemble a period for the ISSO.
+
+34
+00:02:06.132 --> 00:02:08.447
+And you'll show that an edited file and a
+
+35
+00:02:08.447 --> 00:02:11.195
+package chained out of
+order are both refused.
+
+36
+00:02:11.195 --> 00:02:17.366
+Before you start: Modules 1 and 2, because
+the drift run runs their code unchanged;
+
+37
+00:02:17.366 --> 00:02:20.732
+Module 4, for the credential
+log; and Module 9.
+
+38
+00:02:20.732 --> 00:02:24.085
+Lab 1 also needs Python
+with pytest and PyYAML,
+
+39
+00:02:24.085 --> 00:02:27.090
+and a shell with sha two fifty-six sum.
+
+40
+00:02:30.840 --> 00:02:36.270
+Unit 1 is the guide's Step 6, run the
+lifecycle, which has four parts: owner change,
+
+41
+00:02:36.270 --> 00:02:40.173
+orphans, access reviews of
+owners, and decommissioning,
+
+42
+00:02:40.173 --> 00:02:43.652
+which disables first and
+deletes only afterward.
+
+43
+00:02:43.652 --> 00:02:47.496
+In the program's guidance, a
+non-person identity's events come
+
+44
+00:02:47.496 --> 00:02:51.416
+from its owning system and from
+credential expiry, not from HR.
+
+45
+00:02:51.416 --> 00:02:55.943
+Then the guide's Evidence section adds
+the program's rule this module turns into
+
+46
+00:02:55.943 --> 00:02:59.235
+code: run the checks on the
+continuous monitoring cadence,
+
+47
+00:02:59.235 --> 00:03:03.077
+and file their output with the date,
+the tenant and the check version.
+
+48
+00:03:03.077 --> 00:03:09.177
+The guide's validate step for Gate 6 names
+NIST special publication eight hundred
+
+49
+00:03:09.177 --> 00:03:12.674
+fifty-three controls A C
+two, enhancement three;
+
+50
+00:03:12.674 --> 00:03:15.903
+A C six, enhancement seven;
+A U six; and C A seven.
+
+51
+00:03:15.903 --> 00:03:23.247
+The FedRAMP K S I's it lines
+up with are K S I I A M A A M,
+
+52
+00:03:23.247 --> 00:03:27.560
+K S I M L A R V L and K S I M L A E V C.
+
+53
+00:03:31.310 --> 00:03:36.198
+Unit 2 starts with what the evidence
+has to show: state, events and drift.
+
+54
+00:03:36.198 --> 00:03:38.948
+The run and the baseline
+are the kit's design.
+
+55
+00:03:38.948 --> 00:03:40.811
+One run writes one folder.
+
+56
+00:03:40.811 --> 00:03:45.583
+It holds Chapter 1's inventory and
+Chapter 2's ownership check, unchanged,
+
+57
+00:03:45.583 --> 00:03:47.730
+plus this chapter's drift folder,
+
+58
+00:03:47.730 --> 00:03:52.185
+and a run record that ties them
+together by each task's manifest hash.
+
+59
+00:03:52.185 --> 00:03:55.027
+A task that fails is recorded as an error,
+
+60
+00:03:55.027 --> 00:03:59.247
+never as an empty result, so a
+failed read can't look like a fix.
+
+61
+00:03:59.247 --> 00:04:04.429
+The baseline, the program's design guidance,
+is a fingerprint per identity: a hash
+
+62
+00:04:04.429 --> 00:04:09.923
+over twenty governance columns, such as
+owners, credentials, permissions and grants.
+
+63
+00:04:09.923 --> 00:04:12.661
+Last logon and password age are left out,
+
+64
+00:04:12.661 --> 00:04:15.648
+because they move every
+day and aren't drift.
+
+65
+00:04:15.648 --> 00:04:18.769
+And the baseline counts only
+when it's passed with the
+
+66
+00:04:18.769 --> 00:04:21.748
+hash a reviewer approved,
+for this tenant and cloud.
+
+67
+00:04:21.748 --> 00:04:25.100
+In a real run, a second person reviews it.
+
+68
+00:04:28.850 --> 00:04:31.950
+Nine drift rules run against
+the approved baseline.
+
+69
+00:04:31.950 --> 00:04:36.800
+New and changed identities are warnings,
+with the exact columns that changed.
+
+70
+00:04:36.800 --> 00:04:39.120
+Ownerless identities are findings:
+
+71
+00:04:39.120 --> 00:04:43.450
+orphan candidates in Chapter 2's
+run, and this code disables nothing.
+
+72
+00:04:43.450 --> 00:04:46.102
+An app with no sign-in
+for over ninety days,
+
+73
+00:04:46.102 --> 00:04:49.689
+or a credential that expires
+within thirty, is a warning;
+
+74
+00:04:49.689 --> 00:04:53.667
+both numbers are Microsoft
+Learn's, from its recommendations
+
+75
+00:04:53.667 --> 00:04:57.800
+to remove unused applications
+and renew expiring credentials.
+
+76
+00:04:57.800 --> 00:05:02.325
+An enabled directory account whose
+password never expires is a finding.
+
+77
+00:05:02.325 --> 00:05:05.850
+So is a credential added outside
+the pipeline, one per key:
+
+78
+00:05:05.850 --> 00:05:09.825
+Microsoft Learn's security
+operations guide for applications
+
+79
+00:05:09.825 --> 00:05:13.275
+rates a credential added to
+an existing app as high risk.
+
+80
+00:05:13.275 --> 00:05:16.566
+A new consent grant or app
+permission is a warning,
+
+81
+00:05:16.566 --> 00:05:19.937
+or a finding when it's
+tenant-wide or high privilege.
+
+82
+00:05:19.937 --> 00:05:22.121
+And the ninth is the honest one:
+
+83
+00:05:22.121 --> 00:05:25.788
+an evidence gap is reported,
+never treated as a pass.
+
+84
+00:05:25.788 --> 00:05:28.417
+The key rule, the
+program's design guidance:
+
+85
+00:05:28.417 --> 00:05:33.678
+a credential counts as inside the pipeline
+only when two independent records agree,
+
+86
+00:05:33.678 --> 00:05:38.630
+the listed pipeline identity and the
+rotation pipeline's credential log.
+
+87
+00:05:42.380 --> 00:05:45.480
+Two more kinds of evidence
+sit beside the drift.
+
+88
+00:05:45.480 --> 00:05:50.091
+The review cycle reads the review
+records that Chapters 7 and 9 build;
+
+89
+00:05:50.091 --> 00:05:54.055
+this chapter doesn't run the
+reviews, it reads their records.
+
+90
+00:05:54.055 --> 00:05:56.488
+Following the program's design guidance,
+
+91
+00:05:56.488 --> 00:06:00.209
+it flags an app holding Graph
+permissions whose owners haven't
+
+92
+00:06:00.209 --> 00:06:03.930
+reviewed it in ninety-two days,
+and agent access with no end date.
+
+93
+00:06:03.930 --> 00:06:07.898
+And it flags an agent with no
+sponsor attestation in a year;
+
+94
+00:06:07.898 --> 00:06:13.105
+Microsoft Learn's best practices for
+Agent I D say every six to twelve months.
+
+95
+00:06:13.105 --> 00:06:16.586
+And a kind of review record that
+never arrived is a warning,
+
+96
+00:06:16.586 --> 00:06:19.342
+because a missing record
+isn't a passed review.
+
+97
+00:06:19.342 --> 00:06:23.483
+Then once a year, the program's
+vintage comparison checks this
+
+98
+00:06:23.483 --> 00:06:27.380
+year's A I use-case inventory
+against last year's, by use case.
+
+99
+00:06:27.380 --> 00:06:31.059
+It catches a new piloted or
+deployed system with no identity,
+
+100
+00:06:31.059 --> 00:06:36.061
+a retired one whose identities are still
+enabled, a changed authorization answer,
+
+101
+00:06:36.061 --> 00:06:40.610
+and an entry that left the inventory
+without being reported retired.
+
+102
+00:06:44.360 --> 00:06:47.523
+Unit 3 is what the ISSO receives.
+
+103
+00:06:47.523 --> 00:06:49.833
+Each run is packaged: the run itself,
+
+104
+00:06:49.833 --> 00:06:54.775
+a summary with rule I D's and fingerprints
+but no names, an evidence manifest,
+
+105
+00:06:54.775 --> 00:06:58.760
+and a checksum file anyone can
+verify with the standard tool.
+
+106
+00:06:58.760 --> 00:07:03.354
+Before it writes anything, the
+packager checks the run end to end:
+
+107
+00:07:03.354 --> 00:07:08.035
+every manifest by its hash, nothing
+extra, one tenant and one cloud.
+
+108
+00:07:08.035 --> 00:07:12.795
+Each package records the previous
+package's manifest hash, so the packages
+
+109
+00:07:12.795 --> 00:07:17.172
+form a chain, and a replaced package
+or a missing day shows up as a break.
+
+110
+00:07:17.172 --> 00:07:19.733
+Then the period verifies every package,
+
+111
+00:07:19.733 --> 00:07:23.847
+checks the chain and coverage,
+and maps findings to each control.
+
+112
+00:07:23.847 --> 00:07:26.719
+There's no signing, by
+the kit's design: hashes,
+
+113
+00:07:26.719 --> 00:07:30.946
+plus a locked time-based retention
+policy on the evidence store,
+
+114
+00:07:30.946 --> 00:07:35.811
+the write once, read many storage
+Microsoft Learn documents for blob data.
+
+115
+00:07:35.811 --> 00:07:38.659
+Each control reads
+either evidence present,
+
+116
+00:07:38.659 --> 00:07:41.585
+the assessor decides,
+or evidence incomplete.
+
+117
+00:07:41.585 --> 00:07:45.190
+The control mapping is the
+program's design guidance.
+
+118
+00:07:48.940 --> 00:07:49.665
+Try it.
+
+119
+00:07:49.665 --> 00:07:53.044
+Steps one to six run in
+the non-person identity
+
+120
+00:07:53.044 --> 00:07:55.890
+folder of the examples, in PowerShell 7.
+
+121
+00:07:55.890 --> 00:08:00.074
+Step one runs Microsoft's Sentinel
+rule for new app credentials,
+
+122
+00:08:00.074 --> 00:08:05.127
+the one Microsoft Learn's security
+operations guide for applications links,
+
+123
+00:08:05.127 --> 00:08:08.048
+over the fixture: eleven
+tests pass, none fail,
+
+124
+00:08:08.048 --> 00:08:10.890
+and forty of the file's
+other tests aren't run.
+
+125
+00:08:10.890 --> 00:08:14.992
+Step two lists what the run needs:
+four Graph read permissions,
+
+126
+00:08:14.992 --> 00:08:18.853
+Application, AuditLog, Directory
+and User dot Read dot All.
+
+127
+00:08:18.853 --> 00:08:20.527
+Nothing ends in ReadWrite.
+
+128
+00:08:20.527 --> 00:08:25.689
+Step three runs the first day, the
+twenty-ninth of October, with no baseline.
+
+129
+00:08:25.689 --> 00:08:30.716
+Inventory, ownership and drift all report
+OK, and the run becomes a baseline
+
+130
+00:08:30.716 --> 00:08:33.067
+candidate, with fourteen findings,
+
+131
+00:08:33.067 --> 00:08:36.715
+four warnings and five
+information items, and its hash.
+
+132
+00:08:36.715 --> 00:08:40.990
+Step four approves that baseline by
+its hash and runs the second day.
+
+133
+00:08:40.990 --> 00:08:43.630
+It compares with the first day's baseline,
+
+134
+00:08:43.630 --> 00:08:47.940
+and the drift appears: eighteen
+findings and eleven warnings.
+
+135
+00:08:51.690 --> 00:08:57.403
+Step five reads day two's drift, grouped
+by rule and severity: twelve rows.
+
+136
+00:08:57.403 --> 00:09:00.017
+N P I D R F oh seven, three findings,
+
+137
+00:09:00.017 --> 00:09:04.741
+holds the three credentials
+added outside the pipeline.
+
+138
+00:09:04.741 --> 00:09:08.902
+Notice what isn't there: the pipeline's
+own two certificate rotations.
+
+139
+00:09:08.902 --> 00:09:11.958
+Both were made by a listed
+pipeline identity and
+
+140
+00:09:11.958 --> 00:09:15.090
+are in the credential log,
+so the two records agree.
+
+141
+00:09:15.090 --> 00:09:21.877
+N P I D R F oh eight, one finding, is Mail
+Automation's new grant for all users.
+
+142
+00:09:21.877 --> 00:09:26.163
+You'll also see seven ownerless
+identities, three enabled accounts
+
+143
+00:09:26.163 --> 00:09:30.066
+whose passwords never expire,
+and the review cycle's findings.
+
+144
+00:09:30.066 --> 00:09:33.790
+Step six compares the A
+I use-case inventory's
+
+145
+00:09:33.790 --> 00:09:37.615
+2026 vintage with 2025's,
+against the register.
+
+146
+00:09:37.615 --> 00:09:43.202
+Five changes: one authorization changed,
+one entry left, two new and one retired,
+
+147
+00:09:43.202 --> 00:09:47.690
+for three findings, two warnings
+and one information item.
+
+148
+00:09:51.440 --> 00:09:55.445
+Step seven switches to a second
+shell, a POSIX shell at the root of
+
+149
+00:09:55.445 --> 00:09:59.752
+your copy of the repository, and
+moves into the drift pipeline folder.
+
+150
+00:09:59.752 --> 00:10:04.278
+The runs it packages are the repository's
+copies of the two days you just made.
+
+151
+00:10:04.278 --> 00:10:08.752
+Package day one, then day two,
+chained to day one's manifest.
+
+152
+00:10:08.752 --> 00:10:10.990
+Each prints one line of JSON.
+
+153
+00:10:10.990 --> 00:10:16.240
+The second says nineteen findings are new,
+eighty are open, and one is resolved.
+
+154
+00:10:16.240 --> 00:10:19.628
+Step eight verifies the
+second package three ways.
+
+155
+00:10:19.628 --> 00:10:23.115
+The packager's own verify
+reports twenty-one files.
+
+156
+00:10:23.115 --> 00:10:26.929
+The standard checksum tool,
+run against the checksum file,
+
+157
+00:10:26.929 --> 00:10:28.915
+prints nothing and exits zero.
+
+158
+00:10:28.915 --> 00:10:33.254
+And a search of the summary for the
+fictional tenant's domain counts zero:
+
+159
+00:10:33.254 --> 00:10:35.640
+no user principal name is in the summary.
+
+160
+00:10:35.640 --> 00:10:40.150
+That's the check an ISSO can run
+with nothing but standard tools.
+
+161
+00:10:43.900 --> 00:10:48.408
+Step nine assembles the period for
+the ISSO, from the twenty-eighth
+
+162
+00:10:48.408 --> 00:10:52.425
+to the thirtieth of October, with
+the A I inventory's vintage.
+
+163
+00:10:52.425 --> 00:10:53.575
+It exits two.
+
+164
+00:10:53.575 --> 00:10:56.567
+The chain has no breaks
+and no coverage gaps,
+
+165
+00:10:56.567 --> 00:11:01.137
+across two packages, with nineteen
+findings opened and one closed.
+
+166
+00:11:01.137 --> 00:11:02.738
+But complete is false.
+
+167
+00:11:02.738 --> 00:11:07.599
+The summary's controls table shows why:
+some chapters haven't sent their findings.
+
+168
+00:11:07.599 --> 00:11:12.087
+A C two is evidence incomplete
+without Chapter 3's findings.
+
+169
+00:11:12.087 --> 00:11:17.288
+I A five waits on Chapters 4 and 6,
+and I A nine on Chapters 5 and 8.
+
+170
+00:11:17.288 --> 00:11:21.513
+The other controls read evidence
+present, the assessor decides.
+
+171
+00:11:21.513 --> 00:11:25.788
+That's honest: an incomplete period
+says so, instead of passing.
+
+172
+00:11:25.788 --> 00:11:30.584
+The summary also has a table for the
+project plan's Gate 7, steady state,
+
+173
+00:11:30.584 --> 00:11:35.800
+which the guide's G 6 covers, and a row
+for each package with its manifest hash.
+
+174
+00:11:35.800 --> 00:11:38.530
+The identity governance officer signs it.
+
+175
+00:11:42.280 --> 00:11:44.268
+Step ten breaks it on purpose.
+
+176
+00:11:44.268 --> 00:11:47.931
+Append one line to the packaged
+summary, and verify again.
+
+177
+00:11:47.931 --> 00:11:51.468
+It exits one: the summary
+doesn't match its hash.
+
+178
+00:11:51.468 --> 00:11:55.006
+Then try to package day one
+as if it came after day two,
+
+179
+00:11:55.006 --> 00:11:56.981
+chained to day two's manifest.
+
+180
+00:11:56.981 --> 00:12:01.392
+It exits one too: this run isn't
+later than the previous package.
+
+181
+00:12:01.392 --> 00:12:05.079
+So an edited file and a swapped
+package are both refused,
+
+182
+00:12:05.079 --> 00:12:09.405
+and that's what lets the ISSO trust
+the chain without trusting you.
+
+183
+00:12:09.405 --> 00:12:14.668
+The step ends by linting the scheduled
+workflow, with no findings and no warnings.
+
+184
+00:12:14.668 --> 00:12:19.856
+Step eleven runs the tests in both folders:
+five hundred thirteen Pester tests pass
+
+185
+00:12:19.856 --> 00:12:24.818
+in PowerShell, and one hundred forty-two
+pytest tests pass in the drift pipeline.
+
+186
+00:12:24.818 --> 00:12:27.870
+Then delete the output
+folder in both places.
+
+187
+00:12:31.620 --> 00:12:35.993
+Lab 2 moves to your own test
+tenant, worldwide or G C C,
+
+188
+00:12:35.993 --> 00:12:41.720
+with Entra I D P one or P two, never
+production, with fictional people.
+
+189
+00:12:41.720 --> 00:12:46.332
+You also need Chapter 1's test
+host and Chapter 2's Lab 2 inputs.
+
+190
+00:12:46.332 --> 00:12:50.531
+Register a reader app with a certificate
+and the four read permissions,
+
+191
+00:12:50.531 --> 00:12:52.595
+run a baseline, and have it approved.
+
+192
+00:12:52.595 --> 00:12:57.257
+Then make three changes by hand:
+two secrets and one consent grant.
+
+193
+00:12:57.257 --> 00:13:01.096
+Run the drift run, and check the
+activity names it found against the
+
+194
+00:13:01.096 --> 00:13:04.795
+admin center's audit log, because
+that's what the fixture assumed.
+
+195
+00:13:04.795 --> 00:13:07.570
+Then package and verify the test runs.
+
+196
+00:13:07.570 --> 00:13:11.670
+To back it out, step seven removes
+both secrets and the consent grant,
+
+197
+00:13:11.670 --> 00:13:14.598
+the four permissions and
+the Reader assignment,
+
+198
+00:13:14.598 --> 00:13:19.283
+deletes the reader app and its certificate,
+and deletes the runs and packages.
+
+199
+00:13:19.283 --> 00:13:21.790
+The authors haven't run Lab 2.
+
+200
+00:13:25.540 --> 00:13:26.927
+The federal requirement.
+
+201
+00:13:26.927 --> 00:13:31.449
+These are NIST special publication
+eight hundred fifty-three controls,
+
+202
+00:13:31.449 --> 00:13:34.915
+and the module's table maps
+each lab step to its evidence.
+
+203
+00:13:34.915 --> 00:13:37.877
+For baseline configuration
+and change control,
+
+204
+00:13:37.877 --> 00:13:40.690
+the baseline candidate
+and its approved hash.
+
+205
+00:13:40.690 --> 00:13:44.802
+For continuous monitoring and account
+management, the drift findings.
+
+206
+00:13:44.802 --> 00:13:48.980
+For automated audit actions, audit
+review and system monitoring,
+
+207
+00:13:48.980 --> 00:13:52.152
+the events and the two
+credential and grant rules.
+
+208
+00:13:52.152 --> 00:13:56.503
+For disabling accounts, the sign-in
+activity and the unused-app rule.
+
+209
+00:13:56.503 --> 00:13:59.477
+For review of privileges,
+the review cycle.
+
+210
+00:13:59.477 --> 00:14:03.259
+And for the integrity of the
+record, A U nine and S I seven,
+
+211
+00:14:03.259 --> 00:14:08.889
+the evidence manifest, the checksum file
+and the summary, and the period manifest.
+
+212
+00:14:08.889 --> 00:14:13.528
+K S I's are FedRAMP twenty X indicators
+for cloud service providers.
+
+213
+00:14:13.528 --> 00:14:17.968
+The agency lines its evidence up
+with what its providers report;
+
+214
+00:14:17.968 --> 00:14:19.978
+it doesn't report K S I's itself.
+
+215
+00:14:19.978 --> 00:14:23.580
+Which file supports which
+indicator is the program's mapping.
+
+216
+00:14:27.330 --> 00:14:29.305
+Check yourself with two questions.
+
+217
+00:14:29.305 --> 00:14:33.093
+First: a certificate rotation
+appears in the audit log.
+
+218
+00:14:33.093 --> 00:14:35.367
+When does it count as inside the pipeline?
+
+219
+00:14:35.367 --> 00:14:39.665
+The answer is b: when the initiator
+is a listed pipeline identity,
+
+220
+00:14:39.665 --> 00:14:44.368
+and the target and key I D are in the
+rotation pipeline's credential log.
+
+221
+00:14:44.368 --> 00:14:49.777
+That's the program's design guidance:
+two independent records must agree, so a
+
+222
+00:14:49.777 --> 00:14:53.041
+stolen pipeline credential
+used outside the
+
+223
+00:14:53.041 --> 00:14:55.617
+log still shows up as
+N P I D R F oh seven.
+
+224
+00:14:55.617 --> 00:15:00.104
+Second: you append a line to a
+packaged summary and run verify.
+
+225
+00:15:00.104 --> 00:15:01.117
+What happens?
+
+226
+00:15:01.117 --> 00:15:02.342
+The answer is b.
+
+227
+00:15:02.342 --> 00:15:06.154
+It exits one, because the
+summary doesn't match its hash.
+
+228
+00:15:06.154 --> 00:15:07.893
+That's what you did in step ten.
+
+229
+00:15:07.893 --> 00:15:10.319
+The module page has three more questions,
+
+230
+00:15:10.319 --> 00:15:13.180
+each linked to the
+section that answers it.
+
+231
+00:15:16.930 --> 00:15:17.755
+To sum up.
+
+232
+00:15:17.755 --> 00:15:21.398
+You ran two days of drift
+against an approved baseline,
+
+233
+00:15:21.398 --> 00:15:24.960
+found three credentials
+added outside the pipeline,
+
+234
+00:15:24.960 --> 00:15:30.223
+compared two A I inventory vintages,
+packaged and chained both days, assembled
+
+235
+00:15:30.223 --> 00:15:35.080
+a period for the ISSO, and saw an edited
+file and a swapped package refused.
+
+236
+00:15:35.080 --> 00:15:39.052
+The evidence an ISSO keeps for
+Gate 6 is each day's package,
+
+237
+00:15:39.052 --> 00:15:43.362
+with its evidence manifest,
+checksum file, summary and the run;
+
+238
+00:15:43.362 --> 00:15:47.081
+the approved baseline's
+hash; the vintage comparison;
+
+239
+00:15:47.081 --> 00:15:52.743
+and the period's manifest and summary,
+signed by the identity governance officer.
+
+240
+00:15:52.743 --> 00:15:55.817
+Before you ship, work through
+the chapter's checklist.
+
+241
+00:15:55.817 --> 00:16:00.768
+Next is Module 11, the last:
+deploy to test, then production.
+
+242
+00:16:00.768 --> 00:16:04.638
+It runs every gate's code in one
+safe order, with a preflight,
+
+243
+00:16:04.638 --> 00:16:09.610
+a smoke test, an evidence record per
+requirement and a rehearsed rollback.

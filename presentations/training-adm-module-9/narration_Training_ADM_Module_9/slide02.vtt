@@ -1,0 +1,70 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.188
+Why does deployment need its own module?
+
+2
+00:00:02.188 --> 00:00:07.788
+Each chapter's Lab 2 changes the smallest
+thing it can, by hand, and backs it out.
+
+3
+00:00:07.788 --> 00:00:10.162
+That proves one kit in isolation.
+
+4
+00:00:10.162 --> 00:00:12.362
+A deployment differs in four ways.
+
+5
+00:00:12.362 --> 00:00:14.866
+It runs all nine kits in a safe order,
+
+6
+00:00:14.866 --> 00:00:18.751
+and reads every value from
+one settings file per stage.
+
+7
+00:00:18.751 --> 00:00:20.840
+It signs in with three identities,
+
+8
+00:00:20.840 --> 00:00:24.125
+each with a certificate, and
+least privilege per step.
+
+9
+00:00:24.125 --> 00:00:26.432
+It records every change as it's made,
+
+10
+00:00:26.432 --> 00:00:30.013
+and writes the rollback from
+that record, newest first.
+
+11
+00:00:30.013 --> 00:00:34.321
+And it doesn't end in the test tenant:
+it ends with a go or no-go record
+
+12
+00:00:34.321 --> 00:00:38.950
+that production's pre-flight check
+verifies, then production in waves.
+
+13
+00:00:38.950 --> 00:00:43.092
+The order is the one this workbook's
+implementation guide sets:
+
+14
+00:00:43.092 --> 00:00:48.032
+prove the attributes first, build groups
+and workflows paused or disabled,
+
+15
+00:00:48.032 --> 00:00:52.460
+target by attribute, cut over by
+wave, then keep the attributes true.

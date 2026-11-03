@@ -1,0 +1,52 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.112
+Step eight shows the lockout guard.
+
+2
+00:00:02.112 --> 00:00:05.151
+Load the reviewed file,
+and change one thing:
+
+3
+00:00:05.151 --> 00:00:09.962
+set the Tier 0 Global Administrator
+series' default decision to Deny.
+
+4
+00:00:09.962 --> 00:00:13.525
+Then build a client that
+may write, plan, and apply.
+
+5
+00:00:13.525 --> 00:00:16.216
+It refuses: the plan has one finding,
+
+6
+00:00:16.216 --> 00:00:19.650
+A R oh six, on the Global
+Administrator series.
+
+7
+00:00:19.650 --> 00:00:20.825
+Nothing is sent.
+
+8
+00:00:20.825 --> 00:00:22.614
+If the reviewers missed a month,
+
+9
+00:00:22.614 --> 00:00:27.088
+that review would have removed the
+emergency accounts' Global Administrator.
+
+10
+00:00:27.088 --> 00:00:30.161
+Step nine runs the tests,
+three hundred thirty pass,
+
+11
+00:00:30.161 --> 00:00:34.750
+and you delete the output folder,
+because the evidence folder names people.

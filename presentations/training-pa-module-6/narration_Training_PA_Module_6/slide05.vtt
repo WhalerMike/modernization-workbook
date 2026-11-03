@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.100
+The findings, A Z oh one to oh six.
+
+2
+00:00:03.100 --> 00:00:08.032
+Oh one is standing Owner, Contributor or
+User Access Administrator outside the
+
+3
+00:00:08.032 --> 00:00:13.412
+exceptions, against Microsoft Learn's advice
+of zero permanently active assignments.
+
+4
+00:00:13.412 --> 00:00:16.787
+It's Info for a holder on the
+exceptions list with an owner.
+
+5
+00:00:16.787 --> 00:00:21.700
+Oh two is a standing assignment held by
+a service principal or managed identity,
+
+6
+00:00:21.700 --> 00:00:24.751
+which Microsoft Learn says
+can't be made eligible.
+
+7
+00:00:24.751 --> 00:00:28.127
+Oh three is User Access
+Administrator at root scope,
+
+8
+00:00:28.127 --> 00:00:32.838
+the elevated access Microsoft Learn
+says to remove when the task is done.
+
+9
+00:00:32.838 --> 00:00:38.112
+Oh four is an eligibility the file doesn't
+declare, or one that never expires.
+
+10
+00:00:38.112 --> 00:00:40.862
+It's reported, never removed by the plan.
+
+11
+00:00:40.862 --> 00:00:45.787
+Oh five is the plan's own identity holding
+a standing role, the kit's own design.
+
+12
+00:00:45.787 --> 00:00:50.520
+And oh six is more than three Owners on
+a subscription, counted after the plan.

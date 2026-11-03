@@ -1,0 +1,67 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.112
+Steps four to six are the rollback.
+
+2
+00:00:02.112 --> 00:00:04.905
+Step four plans it from
+the preflight's snapshot,
+
+3
+00:00:04.905 --> 00:00:07.000
+with the synthetic objects' cleanup.
+
+4
+00:00:07.000 --> 00:00:10.228
+Seven actions: turn the
+two workload policies off,
+
+5
+00:00:10.228 --> 00:00:15.266
+restore the tenant's default app management
+policy, turn the pilot policy off,
+
+6
+00:00:15.266 --> 00:00:19.675
+re-enable the legacy account, and
+disable the two synthetic objects.
+
+7
+00:00:19.675 --> 00:00:21.300
+No action is a delete.
+
+8
+00:00:21.300 --> 00:00:23.713
+The plan prints its hash for the reviewer.
+
+9
+00:00:23.713 --> 00:00:28.121
+Step five applies the plan with a
+hash nobody approved, all zeros,
+
+10
+00:00:28.121 --> 00:00:32.862
+and it stops: the plan's hash isn't
+the approved one, and nothing was sent.
+
+11
+00:00:32.862 --> 00:00:37.428
+Step six applies it with the plan's
+own hash, but without the apply switch,
+
+12
+00:00:37.428 --> 00:00:40.060
+so it's a dry run: seven
+would-apply actions,
+
+13
+00:00:40.060 --> 00:00:44.162
+with both workload policies going
+from report-only to disabled.
+
+14
+00:00:44.162 --> 00:00:49.030
+In a real stage, a reviewer who isn't
+the operator passes you that hash.

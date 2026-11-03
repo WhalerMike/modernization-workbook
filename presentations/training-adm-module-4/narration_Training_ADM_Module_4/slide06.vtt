@@ -1,0 +1,89 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.900
+The read side has two parts.
+
+2
+00:00:01.900 --> 00:00:05.512
+VK-INT-07 is the gate.
+
+3
+00:00:05.512 --> 00:00:09.230
+The validation kit's check
+reads the migration reports,
+
+4
+00:00:09.230 --> 00:00:14.643
+and fails on any GPO targeted in Active
+Directory whose readiness isn't complete,
+
+5
+00:00:14.643 --> 00:00:17.713
+and on any in-scope GPO
+that was never imported.
+
+6
+00:00:17.713 --> 00:00:21.150
+It works per GPO, and
+doesn't read the settings.
+
+7
+00:00:21.150 --> 00:00:23.025
+The move plan works per setting.
+
+8
+00:00:23.025 --> 00:00:25.588
+It reads each report's setting mappings,
+
+9
+00:00:25.588 --> 00:00:30.713
+which Learn's Graph beta reference documents,
+and gives every row a disposition.
+
+10
+00:00:30.713 --> 00:00:33.012
+The dispositions are the kit's design.
+
+11
+00:00:33.012 --> 00:00:36.725
+A candidate is supported and has
+an Intune setting definition,
+
+12
+00:00:36.725 --> 00:00:38.938
+and a person decides whether it moves.
+
+13
+00:00:38.938 --> 00:00:43.375
+A conflict is two GPOs setting one
+definition to different values:
+
+14
+00:00:43.375 --> 00:00:46.763
+Learn's page on creating
+a settings catalog policy
+
+15
+00:00:46.763 --> 00:00:50.151
+from imported GPOs says
+Migrate stops on that case.
+
+16
+00:00:50.151 --> 00:00:52.487
+The decision record picks the value.
+
+17
+00:00:52.487 --> 00:00:57.200
+AppLocker and firewall settings go to
+Endpoint security, as that page says.
+
+18
+00:00:57.200 --> 00:01:01.629
+And, in this workbook's guidance, the
+plan decides nothing: Group Policy
+
+19
+00:01:01.629 --> 00:01:06.340
+analytics finds the landing zone, never
+whether a setting is still needed.

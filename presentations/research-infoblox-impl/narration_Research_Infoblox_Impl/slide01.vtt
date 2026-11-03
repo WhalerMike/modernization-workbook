@@ -15,44 +15,44 @@ Modernization Workbook's Research
 section, still under review.
 
 4
-00:00:08.249 --> 00:00:12.450
-Book 08 of the workbook sets
-the program's design for DNS,
+00:00:08.249 --> 00:00:13.914
+The workbook's DNS, DHCP and IPAM book
+sets the program's design for DNS,
 
 5
-00:00:12.450 --> 00:00:14.642
+00:00:13.914 --> 00:00:16.218
 DHCP and address management,
 
 6
-00:00:14.642 --> 00:00:20.120
+00:00:16.218 --> 00:00:21.978
 and this guide shows how to build that
 design on Infoblox NIOS, version 9.1,
 
 7
-00:00:20.120 --> 00:00:25.325
+00:00:21.978 --> 00:00:27.450
 and how to move off Microsoft DNS
 and DHCP without breaking anything.
 
 8
-00:00:25.325 --> 00:00:29.794
+00:00:27.450 --> 00:00:31.919
 After a short orientation, it runs
 in four parts: build the Grid,
 
 9
-00:00:29.794 --> 00:00:34.087
+00:00:31.919 --> 00:00:36.212
 migrate from Microsoft, sign and
 harden, and run it day to day.
 
 10
-00:00:34.087 --> 00:00:39.711
+00:00:36.212 --> 00:00:41.836
 Every fact comes from a primary source, the
 new ones opened on October twenty-third,
 
 11
-00:00:39.711 --> 00:00:43.599
+00:00:41.836 --> 00:00:45.724
 2026, and I'll flag design
 guidance and inferences as we go.
 
 12
-00:00:43.599 --> 00:00:46.180
+00:00:45.724 --> 00:00:48.290
 The slides and notes carry the detail.

@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.932
+Step five checks the scope
+against the fictional
+
+2
+00:00:02.932 --> 00:00:05.462
+tenant and builds the
+plan, sending nothing.
+
+3
+00:00:05.462 --> 00:00:10.583
+The tenant check finds no findings and
+two information items: Legacy Reports
+
+4
+00:00:10.583 --> 00:00:15.063
+and Build Pipeline are eligible but
+not Tier 1, so they're not in scope.
+
+5
+00:00:15.063 --> 00:00:20.849
+The plan has three creates, one no change,
+one update and one not in repository.
+
+6
+00:00:20.849 --> 00:00:22.950
+The named location is an update.
+
+7
+00:00:22.950 --> 00:00:26.825
+Ring 1's location policy
+already exists and matches.
+
+8
+00:00:26.825 --> 00:00:30.200
+Ring 1's risk policy and
+both of Ring 2's are new.
+
+9
+00:00:30.200 --> 00:00:32.767
+And a policy someone made in the portal is
+
+10
+00:00:32.767 --> 00:00:35.788
+reported as not in the
+repository, and left alone.
+
+11
+00:00:35.788 --> 00:00:40.075
+The dry run writes its four requests
+to a file and sends none of them.
+
+12
+00:00:40.075 --> 00:00:42.140
+You'd rerun with apply to send them.

@@ -1,0 +1,84 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.525
+Unit 1 is the guide's Step 4,
+sub-steps four d and four e.
+
+2
+00:00:04.525 --> 00:00:07.125
+Four d is custom security attributes.
+
+3
+00:00:07.125 --> 00:00:12.132
+You define an attribute set for applications,
+such as environment and data class,
+
+4
+00:00:12.132 --> 00:00:16.841
+and, as Microsoft Learn's page on
+filtering for applications in Conditional
+
+5
+00:00:16.841 --> 00:00:21.250
+Access says, a policy can then select
+target applications by attribute.
+
+6
+00:00:21.250 --> 00:00:23.163
+Only string attributes work.
+
+7
+00:00:23.163 --> 00:00:27.081
+And because service principals
+can't be members of dynamic groups,
+
+8
+00:00:27.081 --> 00:00:29.788
+attributes are how this
+track targets by fact.
+
+9
+00:00:29.788 --> 00:00:33.125
+Four e is the workload
+identity policies themselves.
+
+10
+00:00:33.125 --> 00:00:36.170
+For each Tier 1 single-tenant
+service principal,
+
+11
+00:00:36.170 --> 00:00:41.270
+assign it directly to a location block that
+allows only the networks it runs from,
+
+12
+00:00:41.270 --> 00:00:44.162
+and to a high-risk block,
+both report-only first.
+
+13
+00:00:44.162 --> 00:00:47.563
+The results appear in the
+service principal sign-in logs.
+
+14
+00:00:47.563 --> 00:00:50.171
+Managed identities are
+governed through their
+
+15
+00:00:50.171 --> 00:00:52.650
+role assignments and
+access reviews instead.
+
+16
+00:00:52.650 --> 00:00:57.079
+And Microsoft Learn's Conditional
+Access for workload identities page
+
+17
+00:00:57.079 --> 00:01:01.340
+says creating or changing these
+policies needs Workload I D Premium.

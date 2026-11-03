@@ -1,0 +1,77 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.887
+Two pieces make the check real.
+
+2
+00:00:01.887 --> 00:00:06.525
+First, the code works out the claims the
+workload's issuer will put in its token.
+
+3
+00:00:06.525 --> 00:00:10.778
+For GitHub, Microsoft Learn's
+trust page gives the formats:
+
+4
+00:00:10.778 --> 00:00:14.500
+the repository and an
+environment, a branch or a tag.
+
+5
+00:00:14.500 --> 00:00:17.038
+For Kubernetes, it's the service account.
+
+6
+00:00:17.038 --> 00:00:20.396
+Anything it can't be sure
+of, such as a pull request,
+
+7
+00:00:20.396 --> 00:00:23.838
+has to be captured from a
+real test run, not derived.
+
+8
+00:00:23.838 --> 00:00:25.899
+Second, the exchange test.
+
+9
+00:00:25.899 --> 00:00:31.335
+It builds the token request from Microsoft
+Learn's OAuth 2.0 client credentials flow
+
+10
+00:00:31.335 --> 00:00:34.286
+page and sends it only to
+a fake token endpoint,
+
+11
+00:00:34.286 --> 00:00:38.712
+which matches exactly and
+case-sensitively, the way Learn describes.
+
+12
+00:00:38.712 --> 00:00:42.600
+It passes only if the named
+credential is the one that matched.
+
+13
+00:00:42.600 --> 00:00:44.463
+Be clear about what that proves.
+
+14
+00:00:44.463 --> 00:00:47.512
+It shows a credential will
+match the claims you recorded.
+
+15
+00:00:47.512 --> 00:00:50.495
+Whether the real issuer
+presents those claims,
+
+16
+00:00:50.495 --> 00:00:53.450
+and what the real service
+answers, is Lab 2's job.

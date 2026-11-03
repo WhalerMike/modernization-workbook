@@ -1,0 +1,1117 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.914
+Welcome to Module 6 of the
+Non-Person Identity learning path:
+
+2
+00:00:03.914 --> 00:00:06.850
+Conditional Access for
+workload identities.
+
+3
+00:00:06.850 --> 00:00:10.199
+This module is the Conditional
+Access half of Gate 4,
+
+4
+00:00:10.199 --> 00:00:13.938
+Least privilege, with Chapter
+8 of the developer workbook.
+
+5
+00:00:13.938 --> 00:00:18.469
+You'll hold the program's two
+workload policies as reviewed files,
+
+6
+00:00:18.469 --> 00:00:20.651
+scoped by object I D, ring by ring.
+
+7
+00:00:20.651 --> 00:00:22.708
+You'll check them before they merge,
+
+8
+00:00:22.708 --> 00:00:26.825
+plan them against a fictional tenant,
+and create every one report-only.
+
+9
+00:00:26.825 --> 00:00:29.512
+Then you'll read the
+service principal sign-ins,
+
+10
+00:00:29.512 --> 00:00:32.889
+and see a ring enforced only
+when a person has reviewed them,
+
+11
+00:00:32.889 --> 00:00:37.575
+the security chief has recorded the decision,
+and the change explicitly allows it.
+
+12
+00:00:37.575 --> 00:00:40.812
+The code runs on your laptop
+against a fictional tenant.
+
+13
+00:00:40.812 --> 00:00:46.190
+It's illustrative: tested against
+fixtures, not run against a live tenant.
+
+14
+00:00:49.940 --> 00:00:52.402
+Why does the scope matter
+as much as the policy?
+
+15
+00:00:52.402 --> 00:00:56.233
+Because Conditional Access for
+workload identities is narrow,
+
+16
+00:00:56.233 --> 00:01:01.003
+as Microsoft Learn's Conditional Access
+for workload identities page sets out.
+
+17
+00:01:01.003 --> 00:01:03.215
+Block is the only grant control.
+
+18
+00:01:03.215 --> 00:01:08.384
+It covers single-tenant service principals
+registered in your tenant, and nothing
+
+19
+00:01:08.384 --> 00:01:13.403
+else: not Microsoft or SaaS apps, not
+multitenant apps, and not managed identities.
+
+20
+00:01:13.403 --> 00:01:17.977
+A policy assigned to a group that holds a
+service principal isn't enforced for it;
+
+21
+00:01:17.977 --> 00:01:20.889
+you have to assign the
+service principal directly.
+
+22
+00:01:20.889 --> 00:01:25.278
+And Workload I D Premium is needed
+to create or change these policies.
+
+23
+00:01:25.278 --> 00:01:29.891
+So in this module you hold the
+program's two policies, C A oh fifteen
+
+24
+00:01:29.891 --> 00:01:34.590
+for location and C A oh thirty-seven
+for high risk, as reviewed files.
+
+25
+00:01:34.590 --> 00:01:37.870
+They're scoped by object
+I D, one ring at a time,
+
+26
+00:01:37.870 --> 00:01:40.970
+and every one is created report-only.
+
+27
+00:01:44.720 --> 00:01:47.599
+Here's what you'll be able to
+do by the end of this module,
+
+28
+00:01:47.599 --> 00:01:50.282
+which takes about sixty-five
+minutes with the lab.
+
+29
+00:01:50.282 --> 00:01:54.393
+You'll state the four limits of
+Conditional Access for workload identities,
+
+30
+00:01:54.393 --> 00:01:56.807
+and what covers the
+identities outside them.
+
+31
+00:01:56.807 --> 00:01:59.535
+You'll explain why each policy is rendered
+
+32
+00:01:59.535 --> 00:02:02.419
+once per ring and always
+created report-only.
+
+33
+00:02:02.419 --> 00:02:04.245
+You'll run the pre-merge check,
+
+34
+00:02:04.245 --> 00:02:07.970
+the tenant check and the plan,
+and read what each one reports.
+
+35
+00:02:07.970 --> 00:02:12.532
+You'll read a sign-in summary and say
+whether a ring is ready for enforcement.
+
+36
+00:02:12.532 --> 00:02:15.783
+And you'll see a ring held
+without the allow-enforce switch,
+
+37
+00:02:15.783 --> 00:02:19.033
+enforced with it, and held again
+when the summary is edited.
+
+38
+00:02:19.033 --> 00:02:23.435
+Before you start, finish Module 5, the
+other half of Gate 4, and Module 1,
+
+39
+00:02:23.435 --> 00:02:27.523
+because the scope names service
+principals by the enterprise
+
+40
+00:02:27.523 --> 00:02:31.340
+application's object I D, as
+the register records them.
+
+41
+00:02:35.090 --> 00:02:39.565
+Unit 1 is the guide's Step 4,
+sub-steps four d and four e.
+
+42
+00:02:39.565 --> 00:02:42.165
+Four d is custom security attributes.
+
+43
+00:02:42.165 --> 00:02:47.172
+You define an attribute set for applications,
+such as environment and data class,
+
+44
+00:02:47.172 --> 00:02:51.881
+and, as Microsoft Learn's page on
+filtering for applications in Conditional
+
+45
+00:02:51.881 --> 00:02:56.290
+Access says, a policy can then select
+target applications by attribute.
+
+46
+00:02:56.290 --> 00:02:58.203
+Only string attributes work.
+
+47
+00:02:58.203 --> 00:03:02.121
+And because service principals
+can't be members of dynamic groups,
+
+48
+00:03:02.121 --> 00:03:04.828
+attributes are how this
+track targets by fact.
+
+49
+00:03:04.828 --> 00:03:08.165
+Four e is the workload
+identity policies themselves.
+
+50
+00:03:08.165 --> 00:03:11.210
+For each Tier 1 single-tenant
+service principal,
+
+51
+00:03:11.210 --> 00:03:16.310
+assign it directly to a location block that
+allows only the networks it runs from,
+
+52
+00:03:16.310 --> 00:03:19.202
+and to a high-risk block,
+both report-only first.
+
+53
+00:03:19.202 --> 00:03:22.603
+The results appear in the
+service principal sign-in logs.
+
+54
+00:03:22.603 --> 00:03:25.211
+Managed identities are
+governed through their
+
+55
+00:03:25.211 --> 00:03:27.690
+role assignments and
+access reviews instead.
+
+56
+00:03:27.690 --> 00:03:32.119
+And Microsoft Learn's Conditional
+Access for workload identities page
+
+57
+00:03:32.119 --> 00:03:36.680
+says creating or changing these
+policies needs Workload I D Premium.
+
+58
+00:03:40.430 --> 00:03:43.017
+Unit 2 is the context and the files.
+
+59
+00:03:43.017 --> 00:03:46.005
+The program's design
+guidance sets two policies.
+
+60
+00:03:46.005 --> 00:03:49.676
+C A oh fifteen blocks the
+ring's service principals from
+
+61
+00:03:49.676 --> 00:03:53.667
+anywhere but one named location,
+the workload egress ranges.
+
+62
+00:03:53.667 --> 00:03:56.955
+C A oh thirty-seven blocks
+them when their risk is high.
+
+63
+00:03:56.955 --> 00:03:58.455
+Two decisions frame them.
+
+64
+00:03:58.455 --> 00:04:01.499
+D N four is licensing:
+Workload I D Premium
+
+65
+00:04:01.499 --> 00:04:05.080
+for the Tier 1 single-tenant
+service principals.
+
+66
+00:04:05.080 --> 00:04:08.909
+D N five is enforcement, and
+it's the CISO's call: enforce,
+
+67
+00:04:08.909 --> 00:04:13.930
+extend report-only, or enforce with
+exclusions that are dated and owned.
+
+68
+00:04:13.930 --> 00:04:18.802
+The scope file is the record: each
+in-scope principal by object I D and ring,
+
+69
+00:04:18.802 --> 00:04:23.918
+and each identity that's out of scope,
+with the control that covers it instead.
+
+70
+00:04:23.918 --> 00:04:26.644
+And each policy is rendered once per ring,
+
+71
+00:04:26.644 --> 00:04:31.856
+so enforcing one ring changes one policy
+and leaves the next one in report-only.
+
+72
+00:04:31.856 --> 00:04:33.910
+That's the program's design.
+
+73
+00:04:37.660 --> 00:04:41.589
+The pre-merge check holds nine
+rules, N P W C A oh one to oh nine,
+
+74
+00:04:41.589 --> 00:04:47.238
+and most come straight from the limits on
+Microsoft Learn's Conditional Access for
+
+75
+00:04:47.238 --> 00:04:49.694
+workload identities page; the range,
+
+76
+00:04:49.694 --> 00:04:53.623
+ring and decision rules are
+the program's design guidance.
+
+77
+00:04:53.623 --> 00:04:57.951
+Oh one: a policy that targets
+users, groups, roles, a filter,
+
+78
+00:04:57.951 --> 00:05:03.597
+or every service principal in the tenant,
+instead of the ring's object I D's.
+
+79
+00:05:03.597 --> 00:05:06.286
+Oh two: a managed identity in scope.
+
+80
+00:05:06.286 --> 00:05:10.485
+Oh three: a principal that isn't a
+single-tenant app registered here.
+
+81
+00:05:10.485 --> 00:05:14.923
+Oh four: an object I D that isn't
+a service principal in the tenant.
+
+82
+00:05:14.923 --> 00:05:17.884
+Oh five is the licensing
+record and the rings.
+
+83
+00:05:17.884 --> 00:05:22.622
+Oh six: an out-of-scope identity recorded
+without the control that covers it.
+
+84
+00:05:22.622 --> 00:05:26.550
+Oh seven: a policy that isn't
+report-only and block-only,
+
+85
+00:05:26.550 --> 00:05:29.673
+for all resources and
+all client app types.
+
+86
+00:05:29.673 --> 00:05:33.347
+Oh eight keeps the egress
+ranges narrow and untrusted.
+
+87
+00:05:33.347 --> 00:05:35.285
+And oh nine guards enforcement.
+
+88
+00:05:35.285 --> 00:05:38.940
+A finding exits with code
+one and fails the pipeline.
+
+89
+00:05:42.690 --> 00:05:44.715
+Unit 3 begins with the plan.
+
+90
+00:05:44.715 --> 00:05:49.653
+It compares the files with the tenant
+and gives each policy one of six actions.
+
+91
+00:05:49.653 --> 00:05:52.491
+Create, when the policy
+isn't in the tenant,
+
+92
+00:05:52.491 --> 00:05:57.416
+and a new policy is always created
+report-only, whatever its ring's state.
+
+93
+00:05:57.416 --> 00:06:02.190
+Update, when it differs; the patch
+carries only the properties that changed.
+
+94
+00:06:02.190 --> 00:06:04.240
+No change, when it matches.
+
+95
+00:06:04.240 --> 00:06:07.147
+Blocked, for a location policy whose named
+
+96
+00:06:07.147 --> 00:06:10.552
+location doesn't exist yet;
+the next run creates it.
+
+97
+00:06:10.552 --> 00:06:15.316
+Held, when the ring is marked for
+enforcement but this run may not enforce it.
+
+98
+00:06:15.316 --> 00:06:19.288
+And not in repository, for a
+workload policy that no file names,
+
+99
+00:06:19.288 --> 00:06:21.703
+such as one someone made in the portal.
+
+100
+00:06:21.703 --> 00:06:23.640
+It's reported and left alone.
+
+101
+00:06:23.640 --> 00:06:25.503
+The code has no delete at all.
+
+102
+00:06:25.503 --> 00:06:29.608
+Rollback drops the ring from the
+enforcement record and applies,
+
+103
+00:06:29.608 --> 00:06:32.330
+so its policies go back to report-only.
+
+104
+00:06:36.080 --> 00:06:39.686
+Turning a policy on is the moment
+a production job can stop,
+
+105
+00:06:39.686 --> 00:06:43.442
+so the code asks for five things
+at once, or the ring stays held.
+
+106
+00:06:43.442 --> 00:06:45.880
+A D N five record marks the ring.
+
+107
+00:06:45.880 --> 00:06:47.793
+The change says allow enforce.
+
+108
+00:06:47.793 --> 00:06:51.942
+The run names a sign-in summary
+whose hash the ring's record cites.
+
+109
+00:06:51.942 --> 00:06:53.967
+That summary shows the ring ready.
+
+110
+00:06:53.967 --> 00:06:56.805
+And every earlier ring
+is already enforced.
+
+111
+00:06:56.805 --> 00:06:59.805
+The five conditions are the
+program's design guidance.
+
+112
+00:06:59.805 --> 00:07:02.167
+The evidence comes from
+the sign-in reader.
+
+113
+00:07:02.167 --> 00:07:05.258
+Following Microsoft Learn's
+List sign-ins reference,
+
+114
+00:07:05.258 --> 00:07:09.544
+it reads the beta sign-in list with a
+filter for service principal sign-ins,
+
+115
+00:07:09.544 --> 00:07:13.479
+and sends a header without which
+report-only results don't come back.
+
+116
+00:07:13.479 --> 00:07:16.502
+Each principal gets one of four statuses:
+
+117
+00:07:16.502 --> 00:07:19.880
+no sign-ins, not evaluated,
+would block, or clear.
+
+118
+00:07:19.880 --> 00:07:23.950
+A ring is ready only when
+every principal in it is clear.
+
+119
+00:07:27.700 --> 00:07:28.425
+Try it.
+
+120
+00:07:28.425 --> 00:07:32.724
+Lab 1 runs in the non-person
+identity folder, in PowerShell 7,
+
+121
+00:07:32.724 --> 00:07:38.163
+against a fictional tenant whose egress
+ranges are documentation ranges.
+
+122
+00:07:38.163 --> 00:07:42.221
+Step one runs the tests on Learn's
+sample and page as published:
+
+123
+00:07:42.221 --> 00:07:45.962
+nine pass, and the other
+thirty-nine in that file aren't run.
+
+124
+00:07:45.962 --> 00:07:49.975
+Step two lists three tasks,
+with three sets of permissions.
+
+125
+00:07:49.975 --> 00:07:53.450
+Reading the policies needs
+application and policy read.
+
+126
+00:07:53.450 --> 00:07:57.500
+Reading sign-ins needs the audit
+log and the Conditional Access read.
+
+127
+00:07:57.500 --> 00:08:00.875
+Only the apply task holds
+the Conditional Access write.
+
+128
+00:08:00.875 --> 00:08:05.043
+Step three runs the pre-merge
+check on the repository's own
+
+129
+00:08:05.043 --> 00:08:08.950
+files and the fixture scope:
+no findings, exit code zero.
+
+130
+00:08:08.950 --> 00:08:12.050
+And step four runs the same
+check on Learn's sample.
+
+131
+00:08:12.050 --> 00:08:17.500
+It fails five times: oh one twice,
+oh seven twice, and oh eight once.
+
+132
+00:08:17.500 --> 00:08:20.750
+The sample is a model,
+not a file to create.
+
+133
+00:08:24.500 --> 00:08:27.382
+Step five checks the scope
+against the fictional
+
+134
+00:08:27.382 --> 00:08:29.912
+tenant and builds the
+plan, sending nothing.
+
+135
+00:08:29.912 --> 00:08:35.033
+The tenant check finds no findings and
+two information items: Legacy Reports
+
+136
+00:08:35.033 --> 00:08:39.513
+and Build Pipeline are eligible but
+not Tier 1, so they're not in scope.
+
+137
+00:08:39.513 --> 00:08:45.299
+The plan has three creates, one no change,
+one update and one not in repository.
+
+138
+00:08:45.299 --> 00:08:47.400
+The named location is an update.
+
+139
+00:08:47.400 --> 00:08:51.275
+Ring 1's location policy
+already exists and matches.
+
+140
+00:08:51.275 --> 00:08:54.650
+Ring 1's risk policy and
+both of Ring 2's are new.
+
+141
+00:08:54.650 --> 00:08:57.217
+And a policy someone made in the portal is
+
+142
+00:08:57.217 --> 00:09:00.238
+reported as not in the
+repository, and left alone.
+
+143
+00:09:00.238 --> 00:09:04.525
+The dry run writes its four requests
+to a file and sends none of them.
+
+144
+00:09:04.525 --> 00:09:06.890
+You'd rerun with apply to send them.
+
+145
+00:09:10.640 --> 00:09:13.951
+Step six reads the service
+principal sign-ins over an
+
+146
+00:09:13.951 --> 00:09:18.015
+eighteen-day window and summarizes
+them, principal by principal.
+
+147
+00:09:18.015 --> 00:09:23.752
+Ring 1 is ready for enforcement: Mail
+Automation and Payroll Export are both clear.
+
+148
+00:09:23.752 --> 00:09:25.127
+Ring 2 isn't ready.
+
+149
+00:09:25.127 --> 00:09:28.885
+Deploy Bot would be blocked,
+because it signed in from two oh
+
+150
+00:09:28.885 --> 00:09:33.027
+three dot oh dot one thirteen dot
+seven, outside the egress ranges.
+
+151
+00:09:33.027 --> 00:09:37.453
+And HR Connector has no sign-ins at
+all, so there's nothing to judge.
+
+152
+00:09:37.453 --> 00:09:41.165
+A ring is ready only when
+every principal in it is clear.
+
+153
+00:09:41.165 --> 00:09:43.190
+The summary ends with its hash.
+
+154
+00:09:43.190 --> 00:09:47.451
+Write that hash down: in step eight,
+the enforcement record cites it,
+
+155
+00:09:47.451 --> 00:09:52.150
+and that's how a reviewer's approval
+is tied to exactly this evidence.
+
+156
+00:09:55.900 --> 00:09:59.462
+Step seven applies the plan
+against the fake, twice.
+
+157
+00:09:59.462 --> 00:10:01.747
+You read the scope and the repository,
+
+158
+00:10:01.747 --> 00:10:05.874
+build a client for the apply task on
+the fake tenant, and send the plan.
+
+159
+00:10:05.874 --> 00:10:08.163
+The first run sends four requests.
+
+160
+00:10:08.163 --> 00:10:11.987
+The second sends none, because
+everything already matches.
+
+161
+00:10:11.987 --> 00:10:14.537
+That's what makes the
+apply safe to re-run.
+
+162
+00:10:14.537 --> 00:10:17.888
+Then list the policies whose
+names start with C A oh.
+
+163
+00:10:17.888 --> 00:10:20.795
+Every C A oh fifteen
+and C A oh thirty-seven
+
+164
+00:10:20.795 --> 00:10:24.300
+policy is enabled for
+reporting but not enforced.
+
+165
+00:10:24.300 --> 00:10:26.900
+That's report-only, in Graph's words.
+
+166
+00:10:26.900 --> 00:10:31.865
+And C A oh oh one, a user policy
+that blocks legacy authentication,
+
+167
+00:10:31.865 --> 00:10:34.113
+stays enabled and untouched.
+
+168
+00:10:34.113 --> 00:10:37.620
+The code changes only the
+policies its files name.
+
+169
+00:10:41.370 --> 00:10:43.820
+Step eight tries to enforce Ring 1.
+
+170
+00:10:43.820 --> 00:10:49.140
+You copy the scope and add an enforcement
+record: D N five, outcome enforce,
+
+171
+00:10:49.140 --> 00:10:54.548
+decided by the CISO, and Ring 1 with the
+summary's hash, reviewed by the ISSO.
+
+172
+00:10:54.548 --> 00:10:59.158
+Plan without allow enforce, and
+Ring 1's location policy is held.
+
+173
+00:10:59.158 --> 00:11:04.127
+Plan again with allow enforce and the
+reviewed summary, and the held becomes
+
+174
+00:11:04.127 --> 00:11:08.544
+a second update: C A oh fifteen Ring
+1 goes from report-only to enabled.
+
+175
+00:11:08.544 --> 00:11:13.072
+Now add one byte to a copy of the summary
+and plan again, and it's held again,
+
+176
+00:11:13.072 --> 00:11:17.445
+because the edited summary's hash
+isn't the one the reviewer recorded.
+
+177
+00:11:17.445 --> 00:11:19.878
+Step nine reads the alert definition:
+
+178
+00:11:19.878 --> 00:11:24.981
+a query over the service principal sign-in
+logs for result type five three oh oh
+
+179
+00:11:24.981 --> 00:11:29.063
+three, which Microsoft Learn's
+error code list names as blocked
+
+180
+00:11:29.063 --> 00:11:32.595
+by Conditional Access, for the
+four in-scope object I D's.
+
+181
+00:11:32.595 --> 00:11:36.770
+Step ten runs the tests:
+five hundred thirteen pass.
+
+182
+00:11:40.520 --> 00:11:44.824
+Lab 2 runs the same path in your
+own test tenant, worldwide or G C C,
+
+183
+00:11:44.824 --> 00:11:50.536
+never production, with a Workload Identities
+Premium trial or license, one test app
+
+184
+00:11:50.536 --> 00:11:56.082
+registration with a certificate, and a
+host whose public egress address you know.
+
+185
+00:11:56.082 --> 00:11:59.804
+Write a scope with the test
+app's enterprise application
+
+186
+00:11:59.804 --> 00:12:02.733
+object I D in Ring 1, and
+plan with a reading app.
+
+187
+00:12:02.733 --> 00:12:08.195
+Apply report-only, and generate sign-ins
+from inside and outside the egress range.
+
+188
+00:12:08.195 --> 00:12:12.928
+Then, in a separate change, after at
+least fourteen days with the ring clear,
+
+189
+00:12:12.928 --> 00:12:17.195
+enforce Ring 1, and watch a token
+from outside the range get blocked.
+
+190
+00:12:17.195 --> 00:12:21.060
+To back it out, step seven removes
+Ring 1 from the enforcement
+
+191
+00:12:21.060 --> 00:12:24.770
+record and applies, so both
+policies return to report-only.
+
+192
+00:12:24.770 --> 00:12:29.420
+Then you turn them off or delete them by
+hand, because the code never deletes.
+
+193
+00:12:29.420 --> 00:12:31.940
+The authors haven't run Lab 2.
+
+194
+00:12:35.690 --> 00:12:37.077
+The federal requirement.
+
+195
+00:12:37.077 --> 00:12:41.832
+This is the Conditional Access part
+of Gate 4, the guide's Step four e,
+
+196
+00:12:41.832 --> 00:12:47.278
+and the guide's validate step names A C six,
+A C six enhancement five, and I A nine.
+
+197
+00:12:47.278 --> 00:12:50.677
+The module's table maps each
+control to its evidence.
+
+198
+00:12:50.677 --> 00:12:55.839
+Access enforcement and service identification:
+the scope file and the findings.
+
+199
+00:12:55.839 --> 00:13:00.827
+Least privilege and access restrictions
+for change: the three tasks' permissions.
+
+200
+00:13:00.827 --> 00:13:03.846
+Configuration settings
+and testing changes:
+
+201
+00:13:03.846 --> 00:13:06.466
+the pre-merge check and the policy files.
+
+202
+00:13:06.466 --> 00:13:11.215
+Audit review and continuous monitoring:
+the sign-in summary and its hash.
+
+203
+00:13:11.215 --> 00:13:16.153
+Verification of controls: the
+held, enforced and edited plans.
+
+204
+00:13:16.153 --> 00:13:18.878
+And system monitoring:
+the alert definition.
+
+205
+00:13:18.878 --> 00:13:23.515
+K S I's are FedRAMP twenty X indicators
+for cloud service providers.
+
+206
+00:13:23.515 --> 00:13:27.101
+The agency lines its evidence up
+with what its providers report;
+
+207
+00:13:27.101 --> 00:13:30.920
+which file supports which
+indicator is the program's mapping.
+
+208
+00:13:34.670 --> 00:13:36.645
+Check yourself with two questions.
+
+209
+00:13:36.645 --> 00:13:41.908
+First: a policy is assigned to a group
+that contains a Tier 1 service principal.
+
+210
+00:13:41.908 --> 00:13:42.919
+What happens?
+
+211
+00:13:42.919 --> 00:13:44.145
+The answer is b.
+
+212
+00:13:44.145 --> 00:13:46.507
+It isn't enforced for
+the service principal.
+
+213
+00:13:46.507 --> 00:13:50.820
+Microsoft Learn's Conditional
+Access for workload identities page
+
+214
+00:13:50.820 --> 00:13:55.132
+says to assign it directly, by the
+enterprise application's object I D.
+
+215
+00:13:55.132 --> 00:13:58.037
+Second: a new C A oh
+thirty-seven policy is
+
+216
+00:13:58.037 --> 00:14:01.382
+created on the same run
+that enforces its ring.
+
+217
+00:14:01.382 --> 00:14:03.245
+What state is it created in?
+
+218
+00:14:03.245 --> 00:14:05.557
+The answer is b: report-only.
+
+219
+00:14:05.557 --> 00:14:08.013
+Every policy is created report-only,
+
+220
+00:14:08.013 --> 00:14:11.696
+whatever its ring's state, and
+it turns on in the next run.
+
+221
+00:14:11.696 --> 00:14:14.122
+The module page has three more questions,
+
+222
+00:14:14.122 --> 00:14:16.970
+each linked to the
+section that answers it.
+
+223
+00:14:20.720 --> 00:14:21.545
+To sum up.
+
+224
+00:14:21.545 --> 00:14:25.895
+You checked the policy files, and failed
+Learn's sample against the same rules.
+
+225
+00:14:25.895 --> 00:14:30.432
+You planned against a fictional tenant,
+created every policy report-only,
+
+226
+00:14:30.432 --> 00:14:33.333
+and summarized the service
+principal sign-ins.
+
+227
+00:14:33.333 --> 00:14:37.957
+And you saw a ring enforced only with
+the D N five decision, the allow-enforce
+
+228
+00:14:37.957 --> 00:14:42.432
+switch and the reviewed summary, and
+held again when the summary changed.
+
+229
+00:14:42.432 --> 00:14:47.891
+The evidence an ISSO keeps is the scope
+file, the pre-merge check, the findings,
+
+230
+00:14:47.891 --> 00:14:52.830
+the plan and its requests, the sign-in
+summary with the hash the D N five
+
+231
+00:14:52.830 --> 00:14:57.682
+record cites, the alert definition,
+and each run's manifest, all dated.
+
+232
+00:14:57.682 --> 00:15:00.758
+Before you ship, work through
+the chapter's checklist.
+
+233
+00:15:00.758 --> 00:15:06.630
+Next is Module 7: convert to managed
+identities and federation, Gate 5.

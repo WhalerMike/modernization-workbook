@@ -1,0 +1,81 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.596
+Microsoft publishes a PowerShell
+sample for this integration,
+
+2
+00:00:04.596 --> 00:00:08.112
+CSV2SCIM, with a full
+tutorial on Microsoft Learn.
+
+3
+00:00:08.112 --> 00:00:11.689
+Use it; the repository
+keeps a pinned copy of
+
+4
+00:00:11.689 --> 00:00:15.563
+Microsoft's sample at
+upstream commit f2e8c59.
+
+5
+00:00:15.563 --> 00:00:20.687
+Run on the book's HR fixture,
+nineteen rows, it sends all nineteen.
+
+6
+00:00:20.687 --> 00:00:22.138
+Here's what it leaves to you.
+
+7
+00:00:22.138 --> 00:00:24.707
+It validates the mapping, not the values;
+
+8
+00:00:24.707 --> 00:00:29.612
+the hardened client fails closed, and
+quarantines nine of the nineteen rows.
+
+9
+00:00:29.612 --> 00:00:33.121
+It sends in file order; the
+client sends leavers first,
+
+10
+00:00:33.121 --> 00:00:35.513
+then managers before their reports.
+
+11
+00:00:35.513 --> 00:00:37.651
+It has no limit on mass change.
+
+12
+00:00:37.651 --> 00:00:41.064
+Its endpoint is hard-coded
+to the worldwide beta host,
+
+13
+00:00:41.064 --> 00:00:45.565
+and Learn's page on Microsoft Graph
+national cloud deployments gives
+
+14
+00:00:45.565 --> 00:00:49.600
+other hosts for GCC High and DoD,
+so it can't reach them as written.
+
+15
+00:00:49.600 --> 00:00:53.153
+Its sign-in asks for Application
+dot ReadWrite dot All,
+
+16
+00:00:53.153 --> 00:00:55.600
+which can change any app in the tenant.
+
+17
+00:00:55.600 --> 00:01:01.390
+And each bulk I D is a new random GUID,
+so a batch can't be traced to its inputs.

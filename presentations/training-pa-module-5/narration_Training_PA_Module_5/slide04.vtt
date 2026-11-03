@@ -1,0 +1,72 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.225
+Unit 1: what the P R
+V groups have to hold.
+
+2
+00:00:03.225 --> 00:00:06.687
+Two Microsoft features
+meet in a P R V group.
+
+3
+00:00:06.687 --> 00:00:08.963
+The first is role-assignable groups.
+
+4
+00:00:08.963 --> 00:00:13.726
+Microsoft Learn's page on using groups
+to manage role assignments says only
+
+5
+00:00:13.726 --> 00:00:18.413
+a group created with is Assignable To
+Role set to true can hold an Entra role.
+
+6
+00:00:18.413 --> 00:00:21.013
+It's set at creation and can't be changed.
+
+7
+00:00:21.013 --> 00:00:23.150
+A tenant can have at most five hundred.
+
+8
+00:00:23.150 --> 00:00:28.088
+Membership must be assigned, never
+dynamic, and a group can't be a member.
+
+9
+00:00:28.088 --> 00:00:32.433
+The second is PIM for Groups:
+just-in-time membership or ownership,
+
+10
+00:00:32.433 --> 00:00:35.975
+with one policy for membership
+and one for ownership.
+
+11
+00:00:35.975 --> 00:00:39.337
+The program's design uses
+them together in two ways.
+
+12
+00:00:39.337 --> 00:00:42.785
+For an Entra role, the group
+holds an eligible assignment,
+
+13
+00:00:42.785 --> 00:00:44.399
+and its members are active.
+
+14
+00:00:44.399 --> 00:00:49.050
+For other privilege, such as an Azure role,
+the members are eligible for the group.
+
+15
+00:00:49.050 --> 00:00:55.200
+The access packages for P R V membership,
+the plan's A3.3, aren't built here.

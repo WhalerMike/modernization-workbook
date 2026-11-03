@@ -1,0 +1,66 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.962
+This workbook's own governance design
+already says what this pipeline must produce.
+
+2
+00:00:04.962 --> 00:00:08.300
+These are the workbook's rules,
+not an external standard.
+
+3
+00:00:08.300 --> 00:00:11.925
+Drift is measured against a
+versioned record, not a snapshot.
+
+4
+00:00:11.925 --> 00:00:14.737
+No closure counts unless
+it carries its proof.
+
+5
+00:00:14.737 --> 00:00:19.275
+And a finding closes only when a later
+observation shows the fixed state.
+
+6
+00:00:19.275 --> 00:00:21.837
+The pipeline is a small
+part of that design.
+
+7
+00:00:21.837 --> 00:00:25.862
+Each validation kit check compares
+the tenant with the program's record.
+
+8
+00:00:25.862 --> 00:00:29.825
+The pipeline compares this run with
+the last, and that finds change.
+
+9
+00:00:29.825 --> 00:00:33.475
+Whether a change is drift from the
+record is still the check's answer.
+
+10
+00:00:33.475 --> 00:00:36.319
+A finding that was there
+yesterday and is still
+
+11
+00:00:36.319 --> 00:00:38.725
+there today isn't new,
+but it is still open.
+
+12
+00:00:38.725 --> 00:00:42.148
+And the comparison enforces
+the closing rule in code:
+
+13
+00:00:42.148 --> 00:00:47.500
+a check that ended in Error proves nothing,
+so its findings stay open as unverified.

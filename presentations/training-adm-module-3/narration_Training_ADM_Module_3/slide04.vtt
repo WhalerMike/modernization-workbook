@@ -1,0 +1,88 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.659
+In this workbook's design, every
+governed rule uses one of two patterns,
+
+2
+00:00:04.659 --> 00:00:09.825
+and ANDs two guards at the top: the account
+is enabled, and the user type is Member.
+
+3
+00:00:09.825 --> 00:00:13.113
+So a disabled account and
+a guest can never qualify.
+
+4
+00:00:13.113 --> 00:00:18.060
+The rule reads coded slots: extension
+attribute ten for organization,
+
+5
+00:00:18.060 --> 00:00:21.813
+eleven for worker type,
+twelve for position category.
+
+6
+00:00:21.813 --> 00:00:23.362
+Never display names.
+
+7
+00:00:23.362 --> 00:00:25.638
+Microsoft Learn sets the stakes.
+
+8
+00:00:25.638 --> 00:00:29.387
+Its page on managing rules for
+dynamic membership groups says
+
+9
+00:00:29.387 --> 00:00:33.137
+a rule body can't exceed three
+thousand seventy-two characters.
+
+10
+00:00:33.137 --> 00:00:37.167
+String comparisons aren't case
+sensitive, so lower-case fin-led
+
+11
+00:00:37.167 --> 00:00:41.351
+matches the upper-case code, and
+the HR side has to keep codes clean.
+
+12
+00:00:41.351 --> 00:00:44.995
+Its page on dynamic group
+processing says changes are usually
+
+13
+00:00:44.995 --> 00:00:48.500
+applied within a few hours, but
+can take more than twenty-four.
+
+14
+00:00:48.500 --> 00:00:51.599
+And its member of page
+says that operator is
+
+15
+00:00:51.599 --> 00:00:54.612
+a preview that ends on
+November third, 2026.
+
+16
+00:00:54.612 --> 00:00:59.512
+The validation kit already reads the
+rules live, with its dynamic group checks.
+
+17
+00:00:59.512 --> 00:01:02.103
+This chapter moves the
+same checks earlier,
+
+18
+00:01:02.103 --> 00:01:04.610
+into the pull request that changes a rule.

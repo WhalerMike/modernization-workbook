@@ -1,0 +1,70 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.025
+Check yourself with two questions.
+
+2
+00:00:02.025 --> 00:00:06.988
+First: the tenant already holds a
+restriction the reviewed file doesn't name.
+
+3
+00:00:06.988 --> 00:00:08.249
+What does the plan do?
+
+4
+00:00:08.249 --> 00:00:09.462
+The answer is c.
+
+5
+00:00:09.462 --> 00:00:12.251
+It keeps it as the tenant
+has it, Keep Existing.
+
+6
+00:00:12.251 --> 00:00:15.418
+The PATCH never drops or
+loosens a live restriction,
+
+7
+00:00:15.418 --> 00:00:19.987
+and you saw that in step five, with the
+tenant's custom password restriction.
+
+8
+00:00:19.987 --> 00:00:23.388
+Second: Key Vault renewed
+a certificate on its own.
+
+9
+00:00:23.388 --> 00:00:24.512
+What's still missing?
+
+10
+00:00:24.512 --> 00:00:25.737
+The answer is b.
+
+11
+00:00:25.737 --> 00:00:29.308
+The new certificate has to be
+added to the app registration,
+
+12
+00:00:29.308 --> 00:00:33.314
+with the owner's approval, and the
+old one removed after the overlap,
+
+13
+00:00:33.314 --> 00:00:36.738
+because Entra I D renews
+nothing on the app registration.
+
+14
+00:00:36.738 --> 00:00:39.164
+The module page has three more questions,
+
+15
+00:00:39.164 --> 00:00:41.710
+each linked to the
+section that answers it.

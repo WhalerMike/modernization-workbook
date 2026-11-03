@@ -229,6 +229,12 @@ class NonSiteTasks(unittest.TestCase):
     def test_project_plans(self):
         self.assertIn("project-plans", cc.non_site_tasks(mods("data/project-plans/network-access.yaml")))
 
+    def test_decision_register(self):
+        for path in ("data/decisions.yml", "scripts/decisions/build.py", "data/project-plans/network-access.yaml",
+                     "docs/about/decision-register.md", "docs/books/b04-access/index.md"):
+            self.assertIn("decisions", cc.non_site_tasks(mods(path)), path)
+        self.assertNotIn("decisions", cc.non_site_tasks(mods("docs/books/b04-access/06-who-decides-access.md")))
+
     def test_revisions(self):
         for path in ("data/editions.yml", "data/edition-assets/edition-2026.10.json", "scripts/cut_edition.py",
                      "docs/about/archive.md", "docs/books/b02-identity/index.md",

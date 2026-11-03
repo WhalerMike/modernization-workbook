@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.659
+Lab 2 runs in a worldwide or G C C test
+tenant with Microsoft Entra I D Governance,
+
+2
+00:00:05.659 --> 00:00:10.837
+a trial will do, and for the optional
+Azure step, a test Azure subscription.
+
+3
+00:00:10.837 --> 00:00:11.963
+Never production.
+
+4
+00:00:11.963 --> 00:00:17.401
+Pick a role with no real holders, such as
+Reports Reader, not Global Administrator.
+
+5
+00:00:17.401 --> 00:00:22.150
+Register a reader app and an applier
+app, write a test file with one series,
+
+6
+00:00:22.150 --> 00:00:26.662
+dry-run as the reader, and apply after
+a second person reads the bodies.
+
+7
+00:00:26.662 --> 00:00:30.700
+Then close one instance as a test
+reviewer, and read the evidence.
+
+8
+00:00:30.700 --> 00:00:35.342
+The reader gets Access Review dot Read
+dot All, the applier Access Review dot
+
+9
+00:00:35.342 --> 00:00:40.500
+ReadWrite dot All, and User Access Administrator
+only for the optional Azure series.
+
+10
+00:00:40.500 --> 00:00:42.972
+The back-out exports the evidence first,
+
+11
+00:00:42.972 --> 00:00:47.917
+then deletes the test series in the admin
+center, because the code never deletes,
+
+12
+00:00:47.917 --> 00:00:51.588
+along with the apps, their
+certificates and the test groups.
+
+13
+00:00:51.588 --> 00:00:53.810
+The authors haven't run Lab 2.

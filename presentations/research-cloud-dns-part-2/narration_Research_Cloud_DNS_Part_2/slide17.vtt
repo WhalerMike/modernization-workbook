@@ -43,25 +43,25 @@ And the illustrative configuration
 hasn't yet run in a VPC.
 
 10
-00:00:33.225 --> 00:00:37.552
+00:00:33.225 --> 00:00:37.518
 The next steps: ask the seven
 questions of every cloud BIND server,
 
 11
-00:00:37.552 --> 00:00:42.199
+00:00:37.518 --> 00:00:42.128
 build the forwarder pattern in a test
 account in each Region and realm,
 
 12
-00:00:42.199 --> 00:00:45.725
-and run Book 08's validation
-matrix from every origin.
+00:00:42.128 --> 00:00:46.262
+and run the workbook's DNS
+validation matrix from every origin.
 
 13
-00:00:45.725 --> 00:00:50.650
+00:00:46.262 --> 00:00:51.188
 This is research under review, not an
 endorsement by any federal agency.
 
 14
-00:00:50.650 --> 00:00:51.480
+00:00:51.188 --> 00:00:52.010
 Thank you.

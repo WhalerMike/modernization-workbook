@@ -5,58 +5,59 @@ WEBVTT
 Who does what?
 
 2
-00:00:00.975 --> 00:00:03.444
-This matrix is adapted from Book 08's,
+00:00:00.975 --> 00:00:05.517
+This matrix is adapted from the
+workbook's DNS responsibility matrix,
 
 3
-00:00:03.444 --> 00:00:08.300
+00:00:05.517 --> 00:00:10.137
 which separates deciding from doing,
 with a column added for divisions.
 
 4
-00:00:08.300 --> 00:00:11.971
+00:00:10.137 --> 00:00:13.808
 The CIO decides the platform
 and how divisions are scoped,
 
 5
-00:00:11.971 --> 00:00:15.796
+00:00:13.808 --> 00:00:17.633
 and the central DDI team builds
 it, with divisions consulted,
 
 6
-00:00:15.796 --> 00:00:19.238
+00:00:17.633 --> 00:00:21.075
 because a scope they can't
 work in becomes a workaround.
 
 7
-00:00:19.238 --> 00:00:23.926
+00:00:21.075 --> 00:00:25.763
 The authorizing official decides whether
 a cloud management plane is authorized.
 
 8
-00:00:23.926 --> 00:00:26.877
+00:00:25.763 --> 00:00:28.714
 The CISO decides the control requirements,
 
 9
-00:00:26.877 --> 00:00:30.787
+00:00:28.714 --> 00:00:32.624
 like signing and security policy,
 and central DDI runs them.
 
 10
-00:00:30.787 --> 00:00:34.373
+00:00:32.624 --> 00:00:36.210
 Standard record changes are
 where delegation pays off:
 
 11
-00:00:34.373 --> 00:00:38.113
+00:00:36.210 --> 00:00:39.950
 central defines them in advance,
 and divisions do the work.
 
 12
-00:00:38.113 --> 00:00:40.287
+00:00:39.950 --> 00:00:42.125
 High-impact changes stay central.
 
 13
-00:00:40.287 --> 00:00:46.130
+00:00:42.125 --> 00:00:47.950
 And an encrypted DNS exception with no
 end date goes to the authorizing official.

@@ -13,7 +13,9 @@ series-order: 4
 
 *Part of the [Non-Person Identity learning path](index.md). Gate G3 Credential rules. Workbook [Chapter 04](../../project-plans/developer-workbooks/non-person-identity/04-app-management-policies-and-certificate-rotation.md). About 65 minutes.*
 
-**Watch first (optional):** the chapter's narrated tour, about 11 minutes: [▶ Watch](../../presentations/watch.html?v=DW_NPI_04_App_Policy_Rotation_Narrated). A narrated deck for this module comes later.
+**Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-npi-module-4) (the deck files come with the next edition) · [▶ Watch](../../presentations/watch.html?v=Training_NPI_Module_4_Narrated) (about 14 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_NPI_Module_4_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-npi-module-4/Training_NPI_Module_4_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-npi-module-4/Training_NPI_Module_4_Narrated.vtt).
+
+**Also:** the chapter's narrated tour, about 11 minutes: [▶ Watch](../../presentations/watch.html?v=DW_NPI_04_App_Policy_Rotation_Narrated).
 
 ## Introduction (3 minutes)
 

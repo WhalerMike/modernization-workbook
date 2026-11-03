@@ -1,46 +1,51 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:05.503
-Additional BIND servers in AWS align
-with Book 08 when they are forwarders or
+00:00:00.050 --> 00:00:05.769
+Additional BIND servers in AWS align with
+the workbook's DNS design when they are
 
 2
-00:00:05.503 --> 00:00:11.212
-resolvers under central configuration,
-logged to the SOC, owned and with a reason.
+00:00:05.769 --> 00:00:09.696
+forwarders or resolvers
+under central configuration,
 
 3
-00:00:11.212 --> 00:00:16.051
+00:00:09.696 --> 00:00:12.513
+logged to the SOC,
+owned and with a reason.
+
+4
+00:00:12.513 --> 00:00:17.350
 BIND aligns when it's a resolver or
 forwarder whose configuration comes from
 
-4
-00:00:16.051 --> 00:00:20.813
+5
+00:00:17.350 --> 00:00:22.112
 the policy plane: its forwarding, its
 addresses and its logging all governed.
 
-5
-00:00:20.813 --> 00:00:24.937
+6
+00:00:22.112 --> 00:00:26.238
 It aligns as a deliberate bridge,
 with an owner and an end date.
 
-6
-00:00:24.937 --> 00:00:29.175
+7
+00:00:26.238 --> 00:00:30.475
 It aligns when Git configures it, and
 when it's hardened and inventoried.
 
-7
-00:00:29.175 --> 00:00:34.115
+8
+00:00:30.475 --> 00:00:35.415
 It creates a silo when it hosts zones
 authored apart from the DDI platform,
 
-8
-00:00:34.115 --> 00:00:39.135
+9
+00:00:35.415 --> 00:00:40.435
 when it's edited by hand, when it skips
 the shared Protective DNS, validation
 
-9
-00:00:39.135 --> 00:00:44.300
+10
+00:00:40.435 --> 00:00:45.600
 and logging, or when it duplicates the
 Route 53 Resolver for no stated reason.

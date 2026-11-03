@@ -1,0 +1,73 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.538
+Unit 1 is the guide.
+
+2
+00:00:01.538 --> 00:00:06.588
+Step 1 f joins each identity to its
+record and names who answers for it.
+
+3
+00:00:06.588 --> 00:00:10.236
+In the program's design guidance,
+every app registration and
+
+4
+00:00:10.236 --> 00:00:14.176
+service principal gets two human
+owners, never service accounts.
+
+5
+00:00:14.176 --> 00:00:17.529
+The Owners list holds only the
+people who configure the app;
+
+6
+00:00:17.529 --> 00:00:22.320
+the business approver goes in the registry
+and in the service management reference,
+
+7
+00:00:22.320 --> 00:00:25.400
+because an owner can add a
+credential and act as the app.
+
+8
+00:00:25.400 --> 00:00:30.113
+And each identity gets a sponsor who
+is a federal employee mastered in HR.
+
+9
+00:00:30.113 --> 00:00:34.751
+A contractor can build or run a
+workload, but can't be its only sponsor.
+
+10
+00:00:34.751 --> 00:00:37.100
+Then Step 6 runs the lifecycle.
+
+11
+00:00:37.100 --> 00:00:39.756
+An owner who leaves or
+changes roles starts
+
+12
+00:00:39.756 --> 00:00:42.412
+a transfer at least ten
+business days ahead.
+
+13
+00:00:42.412 --> 00:00:44.963
+An app with no named owner is an orphan.
+
+14
+00:00:44.963 --> 00:00:49.681
+And decommissioning always disables
+first, then deletes; Microsoft Learn's
+
+15
+00:00:49.681 --> 00:00:54.840
+Deactivate an app registration documentation
+describes the reversible switch.

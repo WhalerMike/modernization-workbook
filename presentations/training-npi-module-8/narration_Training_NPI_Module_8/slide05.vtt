@@ -1,0 +1,75 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.250
+Unit 2 starts with the
+context the code depends on.
+
+2
+00:00:03.250 --> 00:00:06.737
+Every Kerberos account gets
+one of four dispositions.
+
+3
+00:00:06.737 --> 00:00:09.414
+Convert, to a G M S A or a D M S A,
+
+4
+00:00:09.414 --> 00:00:15.024
+with the new account's name,
+the workload and its hosts.
+
+5
+00:00:15.024 --> 00:00:17.258
+Island: it stays on Kerberos,
+
+6
+00:00:17.258 --> 00:00:22.500
+with an S P N owner and an end date
+no later than decision D oh eight's.
+
+7
+00:00:22.500 --> 00:00:25.450
+Workload identity: Chapter 5 moves it.
+
+8
+00:00:25.450 --> 00:00:29.312
+Or retire, through the plan's
+reviewed decommission process.
+
+9
+00:00:29.312 --> 00:00:31.837
+The program adds four rules of its own.
+
+10
+00:00:31.837 --> 00:00:35.162
+They're the program's design
+guidance, not Microsoft's.
+
+11
+00:00:35.162 --> 00:00:38.506
+Every Kerberos account has
+a reviewed disposition,
+
+12
+00:00:38.506 --> 00:00:41.150
+kept in a file the application owners own.
+
+13
+00:00:41.150 --> 00:00:44.230
+Who may retrieve a managed
+password is reviewed data,
+
+14
+00:00:44.230 --> 00:00:46.750
+not whatever Active Directory holds today.
+
+15
+00:00:46.750 --> 00:00:50.838
+Every account that stays has an
+S P N owner and an end date.
+
+16
+00:00:50.838 --> 00:00:54.290
+And never delete: the old
+account is disabled at most.

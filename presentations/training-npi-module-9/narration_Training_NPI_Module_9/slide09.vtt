@@ -1,0 +1,68 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:06.450
+Lab 1 runs in the non-person identity
+folder of the examples, in PowerShell 7.
+
+3
+00:00:06.450 --> 00:00:10.729
+Its step one makes Chapter 1's register
+and Chapter 2's ownership run,
+
+4
+00:00:10.729 --> 00:00:13.250
+so the chapter's steps are one ahead here.
+
+5
+00:00:13.250 --> 00:00:16.462
+The ownership run's last
+line is its plan's hash.
+
+6
+00:00:16.462 --> 00:00:20.672
+Step two sends Microsoft Learn's
+Agent I D samples to the fake:
+
+7
+00:00:20.672 --> 00:00:25.724
+thirteen pass, none fail, and forty-nine
+of the file's other tests aren't run.
+
+8
+00:00:25.724 --> 00:00:28.375
+Step three lists what each task needs.
+
+9
+00:00:28.375 --> 00:00:33.075
+The read task holds ten read
+permissions, and none ends in ReadWrite.
+
+10
+00:00:33.075 --> 00:00:36.500
+The write task holds only
+the two policy permissions.
+
+11
+00:00:36.500 --> 00:00:40.450
+Step four reads decision
+D N six for each cloud.
+
+12
+00:00:40.450 --> 00:00:43.824
+The worldwide and G C C
+clouds run in Agent I D mode,
+
+13
+00:00:43.824 --> 00:00:49.813
+with agent identities generally available
+and agent Conditional Access in preview.
+
+14
+00:00:49.813 --> 00:00:54.720
+G C C High and D O D run in
+fallback mode: nothing published.

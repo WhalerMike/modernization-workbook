@@ -1,0 +1,69 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.425
+Unit 2 is the register as code.
+
+2
+00:00:02.425 --> 00:00:05.403
+It reads two collections
+from Active Directory,
+
+3
+00:00:05.403 --> 00:00:09.275
+nine from Microsoft Graph, and
+one from Azure Resource Manager.
+
+4
+00:00:09.275 --> 00:00:12.677
+From the directory: the user
+accounts used as services,
+
+5
+00:00:12.677 --> 00:00:17.592
+found with Learn's three criteria and
+the naming convention in one server-side
+
+6
+00:00:17.592 --> 00:00:20.919
+query; and the managed service
+accounts of every kind,
+
+7
+00:00:20.919 --> 00:00:23.187
+with who may retrieve each password.
+
+8
+00:00:23.187 --> 00:00:28.071
+From Graph: app registrations with
+their owners and federated credentials;
+
+9
+00:00:28.071 --> 00:00:33.187
+service principals by type; Graph's own app
+roles, so a permission shows up by name;
+
+10
+00:00:33.187 --> 00:00:38.613
+and the delegated consent grants, where
+tenant-wide consent shows as all principals.
+
+11
+00:00:38.613 --> 00:00:42.152
+And one read people forget:
+a user-assigned identity's
+
+12
+00:00:42.152 --> 00:00:46.174
+federated credentials live in
+Resource Manager, not in Graph.
+
+13
+00:00:46.174 --> 00:00:49.343
+Every identity gets one
+row with the same columns,
+
+14
+00:00:49.343 --> 00:00:53.040
+whatever its type, so the whole
+register lands in one file.

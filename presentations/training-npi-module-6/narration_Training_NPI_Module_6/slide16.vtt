@@ -1,0 +1,69 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.025
+Check yourself with two questions.
+
+2
+00:00:02.025 --> 00:00:07.288
+First: a policy is assigned to a group
+that contains a Tier 1 service principal.
+
+3
+00:00:07.288 --> 00:00:08.299
+What happens?
+
+4
+00:00:08.299 --> 00:00:09.525
+The answer is b.
+
+5
+00:00:09.525 --> 00:00:11.887
+It isn't enforced for
+the service principal.
+
+6
+00:00:11.887 --> 00:00:16.200
+Microsoft Learn's Conditional
+Access for workload identities page
+
+7
+00:00:16.200 --> 00:00:20.512
+says to assign it directly, by the
+enterprise application's object I D.
+
+8
+00:00:20.512 --> 00:00:23.417
+Second: a new C A oh
+thirty-seven policy is
+
+9
+00:00:23.417 --> 00:00:26.762
+created on the same run
+that enforces its ring.
+
+10
+00:00:26.762 --> 00:00:28.625
+What state is it created in?
+
+11
+00:00:28.625 --> 00:00:30.937
+The answer is b: report-only.
+
+12
+00:00:30.937 --> 00:00:33.393
+Every policy is created report-only,
+
+13
+00:00:33.393 --> 00:00:37.076
+whatever its ring's state, and
+it turns on in the next run.
+
+14
+00:00:37.076 --> 00:00:39.502
+The module page has three more questions,
+
+15
+00:00:39.502 --> 00:00:42.050
+each linked to the
+section that answers it.

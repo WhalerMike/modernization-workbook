@@ -1,0 +1,62 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.612
+Step seven applies the plan
+against the fake, twice.
+
+2
+00:00:03.612 --> 00:00:05.897
+You read the scope and the repository,
+
+3
+00:00:05.897 --> 00:00:10.024
+build a client for the apply task on
+the fake tenant, and send the plan.
+
+4
+00:00:10.024 --> 00:00:12.313
+The first run sends four requests.
+
+5
+00:00:12.313 --> 00:00:16.137
+The second sends none, because
+everything already matches.
+
+6
+00:00:16.137 --> 00:00:18.687
+That's what makes the
+apply safe to re-run.
+
+7
+00:00:18.687 --> 00:00:22.038
+Then list the policies whose
+names start with C A oh.
+
+8
+00:00:22.038 --> 00:00:24.945
+Every C A oh fifteen
+and C A oh thirty-seven
+
+9
+00:00:24.945 --> 00:00:28.450
+policy is enabled for
+reporting but not enforced.
+
+10
+00:00:28.450 --> 00:00:31.050
+That's report-only, in Graph's words.
+
+11
+00:00:31.050 --> 00:00:36.015
+And C A oh oh one, a user policy
+that blocks legacy authentication,
+
+12
+00:00:36.015 --> 00:00:38.263
+stays enabled and untouched.
+
+13
+00:00:38.263 --> 00:00:41.470
+The code changes only the
+policies its files name.

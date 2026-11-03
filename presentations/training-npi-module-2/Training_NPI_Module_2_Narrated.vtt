@@ -1,0 +1,998 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.316
+Welcome to Module 2 of the
+Non-Person Identity learning path:
+
+2
+00:00:04.316 --> 00:00:06.875
+owners, sponsors and the orphan rule.
+
+3
+00:00:06.875 --> 00:00:11.675
+In Module 1 you read every non-person
+identity into one register.
+
+4
+00:00:11.675 --> 00:00:13.875
+Now you check who answers for each one.
+
+5
+00:00:13.875 --> 00:00:18.888
+Ownership is part of Gate 1, Inventory,
+and the orphan rule is part of Gate 6,
+
+6
+00:00:18.888 --> 00:00:23.400
+Lifecycle, and both come from
+Chapter 2 of the developer workbook.
+
+7
+00:00:23.400 --> 00:00:27.993
+You'll check every identity for two human
+owners and an active service record,
+
+8
+00:00:27.993 --> 00:00:30.935
+and build the orphan rule
+as a plan that a reviewer
+
+9
+00:00:30.935 --> 00:00:33.662
+approves by its hash
+before anything changes.
+
+10
+00:00:33.662 --> 00:00:37.601
+The code runs on your laptop,
+against the same fictional estate.
+
+11
+00:00:37.601 --> 00:00:42.970
+It's illustrative: tested against
+fixtures, not run against a live tenant.
+
+12
+00:00:46.720 --> 00:00:48.770
+Why does ownership matter so much?
+
+13
+00:00:48.770 --> 00:00:52.436
+Because, as the program's
+guidance on app ownership warns,
+
+14
+00:00:52.436 --> 00:00:56.257
+an owner can add a credential to
+an app, and then act as the app.
+
+15
+00:00:56.257 --> 00:00:59.446
+So owners are a control,
+not a contact list.
+
+16
+00:00:59.446 --> 00:01:04.582
+The program wants two human owners on every
+app registration and service principal,
+
+17
+00:01:04.582 --> 00:01:08.324
+a record in the system inventory,
+and an application owner for
+
+18
+00:01:08.324 --> 00:01:12.507
+every Active Directory account,
+found before the account is touched.
+
+19
+00:01:12.507 --> 00:01:15.112
+An identity with no owner is an orphan,
+
+20
+00:01:15.112 --> 00:01:18.557
+and the plan's decision D N
+2 says what happens to it.
+
+21
+00:01:18.557 --> 00:01:21.544
+Whatever happens, the
+rule is never delete.
+
+22
+00:01:21.544 --> 00:01:26.083
+In this module you check ownership as
+code, and you build the orphan rule
+
+23
+00:01:26.083 --> 00:01:30.910
+as a plan that a reviewer approves by
+its hash, before anything changes.
+
+24
+00:01:34.660 --> 00:01:37.498
+Here's what you'll be able to
+do by the end of this module,
+
+25
+00:01:37.498 --> 00:01:39.885
+which takes about sixty
+minutes with the lab.
+
+26
+00:01:39.885 --> 00:01:42.260
+You'll state the program's ownership rule,
+
+27
+00:01:42.260 --> 00:01:44.635
+and which owners the code counts as valid.
+
+28
+00:01:44.635 --> 00:01:46.935
+You'll explain D N 2, the orphan rule,
+
+29
+00:01:46.935 --> 00:01:51.372
+and how it differs from the program's
+own policy for orphaned apps.
+
+30
+00:01:51.372 --> 00:01:55.510
+You'll run the ownership check and
+read its findings and its orphan plan.
+
+31
+00:01:55.510 --> 00:01:59.850
+And you'll show that the write path
+only dry-runs without the Apply switch,
+
+32
+00:01:59.850 --> 00:02:02.598
+and refuses a plan whose
+hash nobody approved.
+
+33
+00:02:02.598 --> 00:02:08.223
+Before you start, finish Module 1, because
+this module checks Module 1's register.
+
+34
+00:02:08.223 --> 00:02:11.516
+And read the guide's record
+each identity joins to,
+
+35
+00:02:11.516 --> 00:02:13.685
+for the owner and sponsor fields.
+
+36
+00:02:13.685 --> 00:02:19.785
+Lab 1 needs PowerShell 7.1 or later with
+Pester 5, and a clone of the repository.
+
+37
+00:02:19.785 --> 00:02:21.060
+No tenant.
+
+38
+00:02:24.810 --> 00:02:26.298
+Unit 1 is the guide.
+
+39
+00:02:26.298 --> 00:02:31.348
+Step 1 f joins each identity to its
+record and names who answers for it.
+
+40
+00:02:31.348 --> 00:02:34.996
+In the program's design guidance,
+every app registration and
+
+41
+00:02:34.996 --> 00:02:38.936
+service principal gets two human
+owners, never service accounts.
+
+42
+00:02:38.936 --> 00:02:42.289
+The Owners list holds only the
+people who configure the app;
+
+43
+00:02:42.289 --> 00:02:47.080
+the business approver goes in the registry
+and in the service management reference,
+
+44
+00:02:47.080 --> 00:02:50.160
+because an owner can add a
+credential and act as the app.
+
+45
+00:02:50.160 --> 00:02:54.873
+And each identity gets a sponsor who
+is a federal employee mastered in HR.
+
+46
+00:02:54.873 --> 00:02:59.511
+A contractor can build or run a
+workload, but can't be its only sponsor.
+
+47
+00:02:59.511 --> 00:03:01.860
+Then Step 6 runs the lifecycle.
+
+48
+00:03:01.860 --> 00:03:04.516
+An owner who leaves or
+changes roles starts
+
+49
+00:03:04.516 --> 00:03:07.172
+a transfer at least ten
+business days ahead.
+
+50
+00:03:07.172 --> 00:03:09.723
+An app with no named owner is an orphan.
+
+51
+00:03:09.723 --> 00:03:14.441
+And decommissioning always disables
+first, then deletes; Microsoft Learn's
+
+52
+00:03:14.441 --> 00:03:19.900
+Deactivate an app registration documentation
+describes the reversible switch.
+
+53
+00:03:23.650 --> 00:03:26.237
+Unit 2 reads the rule the code holds.
+
+54
+00:03:26.237 --> 00:03:31.473
+Microsoft Learn's enterprise application
+ownership documentation recommends at least
+
+55
+00:03:31.473 --> 00:03:35.870
+two owners where possible, and its Get
+M G Service Principal Owner reference
+
+56
+00:03:35.870 --> 00:03:39.988
+describes a service principal's owners
+as users or service principals.
+
+57
+00:03:39.988 --> 00:03:43.474
+The program's rule is stricter,
+and it's design guidance.
+
+58
+00:03:43.474 --> 00:03:48.875
+Two human owners, never service accounts,
+and not service principals or guests:
+
+59
+00:03:48.875 --> 00:03:53.112
+the code counts an owner only if
+it's a user, a member, and enabled.
+
+60
+00:03:53.112 --> 00:03:55.831
+A service management
+reference that names a
+
+61
+00:03:55.831 --> 00:03:58.550
+record in the system
+inventory, not free text.
+
+62
+00:03:58.550 --> 00:04:02.194
+And for every Active Directory
+account, an application owner,
+
+63
+00:04:02.194 --> 00:04:05.267
+which comes from an owners
+file kept with the record,
+
+64
+00:04:05.267 --> 00:04:09.125
+because the directory has no owners
+attribute the code can trust.
+
+65
+00:04:09.125 --> 00:04:11.100
+Then disable, never delete.
+
+66
+00:04:11.100 --> 00:04:16.343
+Microsoft Learn's Deactivate an app
+registration procedure is on the beta endpoint,
+
+67
+00:04:16.343 --> 00:04:20.089
+so the code disables the tenant's
+service principal instead,
+
+68
+00:04:20.089 --> 00:04:21.880
+on version one point oh.
+
+69
+00:04:25.630 --> 00:04:27.330
+Now the orphan rule itself.
+
+70
+00:04:27.330 --> 00:04:30.697
+The plan's decision D N 2,
+which the C I S O owns, says:
+
+71
+00:04:30.697 --> 00:04:36.568
+disable the identity once the identity
+governance officer confirms the finding,
+
+72
+00:04:36.568 --> 00:04:41.230
+then allow thirty days for the office
+to name an owner or retire it.
+
+73
+00:04:41.230 --> 00:04:42.242
+Never delete.
+
+74
+00:04:42.242 --> 00:04:47.242
+The program's own governance policy for
+orphaned apps runs the other way round:
+
+75
+00:04:47.242 --> 00:04:51.856
+thirty days to assign an owner, then
+access is suspended on day thirty-one.
+
+76
+00:04:51.856 --> 00:04:57.030
+And the program's rule for AI agents
+disables first, because an agent can act.
+
+77
+00:04:57.030 --> 00:05:00.786
+The program settled on D N
+2, the stricter of the two:
+
+78
+00:05:00.786 --> 00:05:03.993
+disable first, then
+thirty days to claim it.
+
+79
+00:05:03.993 --> 00:05:07.018
+The guide's Orphans step
+and the code both follow it.
+
+80
+00:05:07.018 --> 00:05:11.844
+Microsoft Learn's Governing Microsoft
+Entra service accounts documentation
+
+81
+00:05:11.844 --> 00:05:16.590
+agrees on the shape: disable, but don't
+delete until the review is complete.
+
+82
+00:05:19.480 --> 00:05:25.074
+The check reads each owner once,
+with only User dot Read dot All,
+
+83
+00:05:25.074 --> 00:05:29.242
+and applies nine rules, N P
+I O W N oh one to oh nine.
+
+84
+00:05:29.242 --> 00:05:32.879
+Oh one is an app registration
+or legacy service principal
+
+85
+00:05:32.879 --> 00:05:36.667
+with no valid human owner, which
+makes it an orphan candidate.
+
+86
+00:05:36.667 --> 00:05:39.280
+Oh two is one valid owner, not two.
+
+87
+00:05:39.280 --> 00:05:41.943
+Oh three, four and five are warnings:
+
+88
+00:05:41.943 --> 00:05:46.993
+an owner that's a service principal,
+a guest, or disabled or not found.
+
+89
+00:05:46.993 --> 00:05:49.766
+Oh six is no service management reference,
+
+90
+00:05:49.766 --> 00:05:53.729
+and oh seven a reference that
+names no record, or a retired one.
+
+91
+00:05:53.729 --> 00:05:56.865
+Oh eight is an Active
+Directory account with no valid
+
+92
+00:05:56.865 --> 00:06:00.642
+application owner in the owners
+file, another orphan candidate.
+
+93
+00:06:00.642 --> 00:06:02.827
+And oh nine, information only,
+
+94
+00:06:02.827 --> 00:06:07.742
+is an account Module 1 found only
+by a password that never expires.
+
+95
+00:06:07.742 --> 00:06:13.320
+The fields for AI sponsors are
+recorded, empty, for Module 9 to check.
+
+96
+00:06:17.070 --> 00:06:21.105
+The check's orphan candidates and
+the owners' claims become a plan,
+
+97
+00:06:21.105 --> 00:06:23.945
+one action each, and
+nothing in the plan writes.
+
+98
+00:06:23.945 --> 00:06:28.008
+Only two kinds of action can
+write, after review: Disable,
+
+99
+00:06:28.008 --> 00:06:31.895
+and AddOwner, for a claim
+that names an enabled member.
+
+100
+00:06:31.895 --> 00:06:36.052
+The rest only record: waiting
+for the officer's confirmation,
+
+101
+00:06:36.052 --> 00:06:40.707
+a claim window still open, a retirement
+candidate, a refused nominee.
+
+102
+00:06:40.707 --> 00:06:46.183
+The same inputs give the same plan, byte
+for byte, so a reviewer approves a hash.
+
+103
+00:06:46.183 --> 00:06:51.233
+Then a separate script, the only code in
+the example that can write, runs the plan.
+
+104
+00:06:51.233 --> 00:06:55.970
+It refuses unless the plan's hash is
+the approved one, the plan is for this
+
+105
+00:06:55.970 --> 00:07:00.869
+tenant and cloud and no more than seven
+days old, and each write is declared.
+
+106
+00:07:00.869 --> 00:07:04.631
+The only PATCH body it allows
+sets account enabled to false,
+
+107
+00:07:04.631 --> 00:07:06.320
+and it never sends a delete.
+
+108
+00:07:06.320 --> 00:07:09.164
+And a live run is a person's
+session, never an app's,
+
+109
+00:07:09.164 --> 00:07:13.903
+because Microsoft Learn's Graph
+permissions reference warns that this write
+
+110
+00:07:13.903 --> 00:07:16.747
+permission can let an app
+act as other entities,
+
+111
+00:07:16.747 --> 00:07:20.680
+and the program's rule is that
+disabling is never automatic.
+
+112
+00:07:24.430 --> 00:07:25.155
+Try it.
+
+113
+00:07:25.155 --> 00:07:28.481
+Lab 1 runs in the
+non-person identity folder,
+
+114
+00:07:28.481 --> 00:07:31.530
+in PowerShell 7, on the fictional estate.
+
+115
+00:07:31.530 --> 00:07:35.705
+Step one makes Module 1's register,
+because this check reads it.
+
+116
+00:07:35.705 --> 00:07:40.424
+Step two sends the samples from
+Microsoft Learn's Graph applications
+
+117
+00:07:40.424 --> 00:07:44.818
+tutorial to the fake: ten pass, and
+the twenty not run are Chapter 1's.
+
+118
+00:07:44.818 --> 00:07:47.468
+Step three lists what each task needs.
+
+119
+00:07:47.468 --> 00:07:53.029
+The ownership check needs only User dot Read
+dot All: it reads people, nothing else.
+
+120
+00:07:53.029 --> 00:07:54.604
+The write task is separate,
+
+121
+00:07:54.604 --> 00:07:58.180
+and it's the one that holds
+Application dot ReadWrite dot All.
+
+122
+00:07:58.180 --> 00:08:01.042
+Step four checks ownership
+and builds the plan.
+
+123
+00:08:01.042 --> 00:08:05.293
+Twenty-two identities are checked,
+and seven are orphan candidates.
+
+124
+00:08:05.293 --> 00:08:09.381
+That's twenty findings, three
+warnings and one information item.
+
+125
+00:08:09.381 --> 00:08:11.488
+The orphan plan has ten actions,
+
+126
+00:08:11.488 --> 00:08:15.055
+and three of them write: one
+AddOwner and two disables.
+
+127
+00:08:15.055 --> 00:08:16.230
+Nothing is sent.
+
+128
+00:08:16.230 --> 00:08:20.550
+And the plan's hash is the same
+on every run with these inputs.
+
+129
+00:08:24.300 --> 00:08:26.738
+Step five groups the findings by rule.
+
+130
+00:08:26.738 --> 00:08:32.274
+Two apps have no valid owner at all:
+Legacy Reports and Old SAML Connector.
+
+131
+00:08:32.274 --> 00:08:34.200
+Four have only one valid owner.
+
+132
+00:08:34.200 --> 00:08:37.595
+Build Pipeline's second
+owner is a service principal,
+
+133
+00:08:37.595 --> 00:08:40.913
+and Vendor Portal's is a guest,
+so each counts only one.
+
+134
+00:08:40.913 --> 00:08:45.226
+Six have no service management reference,
+three have a reference to a record
+
+135
+00:08:45.226 --> 00:08:49.675
+that isn't active, and five directory
+accounts have no valid application owner.
+
+136
+00:08:49.675 --> 00:08:52.275
+Step six reads the plan's ten actions.
+
+137
+00:08:52.275 --> 00:08:56.504
+Three write: Disable for svc
+backup and for Legacy Reports,
+
+138
+00:08:56.504 --> 00:08:59.587
+and AddOwner for HR
+Connector, from a claim.
+
+139
+00:08:59.587 --> 00:09:02.248
+svc reports is a retirement candidate:
+
+140
+00:09:02.248 --> 00:09:05.824
+it was disabled, and nobody
+claimed it in thirty days.
+
+141
+00:09:05.824 --> 00:09:10.750
+And the claim for Build Pipeline named
+a guest, so the nominee is refused.
+
+142
+00:09:14.500 --> 00:09:18.525
+Step seven computes the plan's hash
+and dry-runs the plan with it.
+
+143
+00:09:18.525 --> 00:09:22.990
+Without the Apply switch, the write
+path runs its prechecks and stops,
+
+144
+00:09:22.990 --> 00:09:27.689
+reporting three writes it would send:
+a directory disable for svc backup,
+
+145
+00:09:27.689 --> 00:09:31.605
+a PATCH that turns off the Legacy
+Reports service principal,
+
+146
+00:09:31.605 --> 00:09:34.425
+and a POST that adds an
+owner to HR Connector.
+
+147
+00:09:34.425 --> 00:09:38.175
+Step eight sends them to the
+fake with Apply: three sent.
+
+148
+00:09:38.175 --> 00:09:42.551
+In the results file, each disable
+tells the operator to record disabled
+
+149
+00:09:42.551 --> 00:09:47.150
+on October thirtieth, and that the
+claim window ends November twenty-ninth.
+
+150
+00:09:47.150 --> 00:09:50.339
+Then you run the same plan
+with a hash of all zeros,
+
+151
+00:09:50.339 --> 00:09:54.725
+which nobody approved, and it refuses
+to run a plan nobody reviewed.
+
+152
+00:09:54.725 --> 00:09:58.837
+Step nine runs every test:
+five hundred thirteen pass.
+
+153
+00:09:58.837 --> 00:10:03.690
+Delete the output folder when you're done,
+because it names accounts and owners.
+
+154
+00:10:07.440 --> 00:10:11.683
+Lab 2 runs the rule in your own
+test tenant: worldwide or G C C,
+
+155
+00:10:11.683 --> 00:10:15.660
+with a test Active Directory
+domain, never production,
+
+156
+00:10:15.660 --> 00:10:19.903
+with fictional people, and with
+Module 1's Lab 2 already run.
+
+157
+00:10:19.903 --> 00:10:23.819
+Make two test orphans: an app
+registration with no owners,
+
+158
+00:10:23.819 --> 00:10:25.652
+and a test service account.
+
+159
+00:10:25.652 --> 00:10:29.377
+Run the check with an app that
+holds only User dot Read dot All.
+
+160
+00:10:29.377 --> 00:10:33.053
+Confirm both orphans as the
+identity governance officer.
+
+161
+00:10:33.053 --> 00:10:35.786
+Then have a second person
+approve the plan's hash,
+
+162
+00:10:35.786 --> 00:10:38.928
+which is the separation of
+duties the evidence records.
+
+163
+00:10:38.928 --> 00:10:40.769
+Dry-run the plan, then apply it,
+
+164
+00:10:40.769 --> 00:10:44.603
+signed in as a person with
+Cloud Application Administrator.
+
+165
+00:10:44.603 --> 00:10:48.326
+To back it out, step six turns
+the service principal back on,
+
+166
+00:10:48.326 --> 00:10:51.661
+enables the test account,
+deletes both test objects
+
+167
+00:10:51.661 --> 00:10:55.152
+and the test app's registration,
+and deletes the output.
+
+168
+00:10:55.152 --> 00:10:57.660
+The authors haven't run Lab 2.
+
+169
+00:11:01.410 --> 00:11:02.797
+The federal requirement.
+
+170
+00:11:02.797 --> 00:11:07.333
+Ownership is part of Gate 1 and
+the orphan rule part of Gate 6,
+
+171
+00:11:07.333 --> 00:11:10.480
+and the guide's validate
+steps name A C two,
+
+172
+00:11:10.480 --> 00:11:14.923
+A C two enhancement three, I A
+four and C M eight, among others.
+
+173
+00:11:14.923 --> 00:11:18.159
+The module's table maps
+each one to its evidence.
+
+174
+00:11:18.159 --> 00:11:22.173
+For account management, the ownership
+file and the owner findings.
+
+175
+00:11:22.173 --> 00:11:25.565
+For identifier management
+and the component inventory,
+
+176
+00:11:25.565 --> 00:11:28.885
+the findings that each identity
+names an active record.
+
+177
+00:11:28.885 --> 00:11:33.385
+For disabling accounts and change
+control, the orphan plan with its hash,
+
+178
+00:11:33.385 --> 00:11:36.085
+and the results and
+manifest from the apply.
+
+179
+00:11:36.085 --> 00:11:39.549
+For separation of duties,
+the officer's confirmations,
+
+180
+00:11:39.549 --> 00:11:42.397
+and the plan hash approved
+by a second person.
+
+181
+00:11:42.397 --> 00:11:46.073
+And for least privilege, the
+permission lists for the two tasks.
+
+182
+00:11:46.073 --> 00:11:50.517
+K S I's are FedRAMP twenty X indicators
+for cloud service providers;
+
+183
+00:11:50.517 --> 00:11:55.800
+the agency lines its evidence up with
+them, and the mapping is the program's.
+
+184
+00:11:59.550 --> 00:12:01.525
+Check yourself with two questions.
+
+185
+00:12:01.525 --> 00:12:04.650
+First: which owners does
+the code count as valid?
+
+186
+00:12:04.650 --> 00:12:08.288
+The answer is b: users who
+are members and enabled.
+
+187
+00:12:08.288 --> 00:12:12.202
+A guest or a service principal
+listed as an owner raises a warning,
+
+188
+00:12:12.202 --> 00:12:14.087
+and doesn't count toward the two.
+
+189
+00:12:14.087 --> 00:12:16.896
+Second: you run the
+orphan action script with
+
+190
+00:12:16.896 --> 00:12:19.476
+an approved hash that
+isn't the plan's hash.
+
+191
+00:12:19.476 --> 00:12:20.487
+What happens?
+
+192
+00:12:20.487 --> 00:12:21.713
+The answer is b.
+
+193
+00:12:21.713 --> 00:12:24.612
+It refuses to run a plan nobody reviewed.
+
+194
+00:12:24.612 --> 00:12:27.376
+You saw that refusal in
+step eight of the lab.
+
+195
+00:12:27.376 --> 00:12:29.757
+The module page has three more questions,
+
+196
+00:12:29.757 --> 00:12:33.540
+each linked to the section that
+answers it, including how the code
+
+197
+00:12:33.540 --> 00:12:37.820
+disables an orphaned app, and why
+the write path is a person's session.
+
+198
+00:12:41.570 --> 00:12:42.395
+To sum up.
+
+199
+00:12:42.395 --> 00:12:46.773
+You checked twenty-two identities
+for valid owners and active records,
+
+200
+00:12:46.773 --> 00:12:50.631
+built an orphan plan of ten actions
+with three writes, dry-ran it,
+
+201
+00:12:50.631 --> 00:12:55.157
+applied it to the fake, and saw the
+write path refuse a hash nobody approved.
+
+202
+00:12:55.157 --> 00:13:00.406
+The evidence an ISSO keeps from this module
+is the ownership file, the findings,
+
+203
+00:13:00.406 --> 00:13:05.170
+and the orphan plan with its approved
+hash; the officer's confirmations;
+
+204
+00:13:05.170 --> 00:13:10.257
+and the dry-run and apply folders, with
+their results and manifests, all dated.
+
+205
+00:13:10.257 --> 00:13:13.333
+Before you ship, work through
+the chapter's checklist.
+
+206
+00:13:13.333 --> 00:13:17.294
+Next is Module 3: decide
+each identity's target.
+
+207
+00:13:17.294 --> 00:13:20.946
+A matrix proposes where each
+identity should end up,
+
+208
+00:13:20.946 --> 00:13:25.180
+the application owner decides,
+and the ISSO checks the gate.

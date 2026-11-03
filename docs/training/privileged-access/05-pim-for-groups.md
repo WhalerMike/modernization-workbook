@@ -13,6 +13,8 @@ series-order: 5
 
 *Part of the [Privileged Access learning path](index.md). Plan Phase 2, task A2.1, and Phase 3, task A3.3. Workbook [Chapter 05](../../project-plans/developer-workbooks/privileged-access/05-pim-for-groups.md). About 55 minutes.*
 
+**Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-pa-module-5) (the deck files come with the next edition) · [▶ Watch](../../presentations/watch.html?v=Training_PA_Module_5_Narrated) (about 14 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_PA_Module_5_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-pa-module-5/Training_PA_Module_5_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-pa-module-5/Training_PA_Module_5_Narrated.vtt).
+
 ## Introduction (3 minutes)
 
 Book 04 never assigns a privileged role to a person. It assigns the role to a role-assignable group named `PRV-<tier>-<role>`, so the tier shows in every review, alert and audit record. Module 1 reads those groups. This module writes them.
@@ -312,7 +314,7 @@ Remove-Item -Recurse -Force out
 
 ## Summary (2 minutes)
 
-You read three PRV groups from a fictional tenant, found a standing member nobody granted, an owner trap and a nested group, read the exact requests that would fix them, saw a guard refuse a plan with too many removals, and applied eight requests to the fake.
+You read a fictional tenant's PRV groups against a reviewed file of four, found a standing member nobody granted, an owner trap and a nested group, read the exact requests that would fix them, saw a guard refuse a plan with too many removals, and applied eight requests to the fake.
 
 **The evidence an ISSO keeps:** the reviewed `prv-groups.json`, with each holder's end date and ticket; each plan's `diff.txt`, `plan.json` and `findings.json`; and each apply's `results.json` and `manifest.json`. The full list is in the chapter's [Federal requirements and evidence](../../project-plans/developer-workbooks/privileged-access/05-pim-for-groups.md#federal-requirements-and-evidence); before the code ships, work through its [checklist](../../project-plans/developer-workbooks/privileged-access/05-pim-for-groups.md#checklist).
 

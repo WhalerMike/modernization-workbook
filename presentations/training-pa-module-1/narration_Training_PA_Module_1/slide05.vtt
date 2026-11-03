@@ -1,0 +1,67 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.741
+Microsoft Learn's page on listing Microsoft
+Entra role assignments has a sample,
+
+2
+00:00:04.741 --> 00:00:07.612
+and the kit runs it as
+published against a stand-in,
+
+3
+00:00:07.612 --> 00:00:09.712
+so you can see exactly what it misses.
+
+4
+00:00:09.712 --> 00:00:13.151
+The most important gap: it
+sees no eligible assignment.
+
+5
+00:00:13.151 --> 00:00:16.952
+That's the state the project
+moves every human holder into,
+
+6
+00:00:16.952 --> 00:00:20.913
+so an inventory built on it gets
+emptier as the work succeeds.
+
+7
+00:00:20.913 --> 00:00:23.607
+It also returns a role-assignable group as
+
+8
+00:00:23.607 --> 00:00:26.301
+one principal and never reads its members.
+
+9
+00:00:26.301 --> 00:00:29.238
+It resolves no names and assigns no tier.
+
+10
+00:00:29.238 --> 00:00:34.713
+It passes neither the All nor the page size
+option, so it doesn't follow every page.
+
+11
+00:00:34.713 --> 00:00:39.462
+It reads transitive assignments from
+the beta endpoint, on a hard-coded host.
+
+12
+00:00:39.462 --> 00:00:42.012
+And it reads no Azure
+role assignments at all.
+
+13
+00:00:42.012 --> 00:00:45.490
+The workbook's inventory
+closes each of those gaps,
+
+14
+00:00:45.490 --> 00:00:49.780
+and Lab 1's first step shows the
+eligible gap with your own eyes.

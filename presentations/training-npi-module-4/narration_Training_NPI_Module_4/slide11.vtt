@@ -1,0 +1,81 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.450
+Step seven builds the rotation plan.
+
+2
+00:00:02.450 --> 00:00:06.360
+It reads seven app registrations
+and writes seven steps:
+
+3
+00:00:06.360 --> 00:00:10.187
+two findings, three information
+items, and three writes.
+
+4
+00:00:10.187 --> 00:00:11.363
+Nothing is sent.
+
+5
+00:00:11.363 --> 00:00:13.175
+Step eight reads the plan.
+
+6
+00:00:13.175 --> 00:00:16.567
+Vendor Portal's certificate
+is due within sixty days
+
+7
+00:00:16.567 --> 00:00:19.650
+and an owner approved, so
+it's renewed in Key Vault.
+
+8
+00:00:19.650 --> 00:00:22.601
+HR Connector's new
+certificate was verified,
+
+9
+00:00:22.601 --> 00:00:26.588
+and the seven-day overlap has
+passed, so the old one is removed.
+
+10
+00:00:26.588 --> 00:00:29.449
+Deploy Bot gets its new
+certificate attached.
+
+11
+00:00:29.449 --> 00:00:35.538
+Three apps still hold secrets: Legacy
+Reports, Mail Automation and Payroll Export.
+
+12
+00:00:35.538 --> 00:00:37.726
+Those are replaced, not rotated.
+
+13
+00:00:37.726 --> 00:00:39.479
+Step nine dry-runs the plan,
+
+14
+00:00:39.479 --> 00:00:42.988
+three writes it would send,
+then applies it to the fake.
+
+15
+00:00:42.988 --> 00:00:46.340
+For Vendor Portal, Key Vault
+created the next version,
+
+16
+00:00:46.340 --> 00:00:49.312
+and the next plan attaches
+it, after a new review.
+
+17
+00:00:49.312 --> 00:00:53.520
+Step ten runs every test:
+five hundred thirteen pass.

@@ -1,63 +1,64 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.533
-Book 13 sorts every change into lanes,
+00:00:00.050 --> 00:00:04.354
+The workbook's Ticket-to-Machine
+loop sorts every change into lanes,
 
 2
-00:00:02.533 --> 00:00:05.738
+00:00:04.354 --> 00:00:07.499
 and each lane lands
 somewhere on these products.
 
 3
-00:00:05.738 --> 00:00:09.912
+00:00:07.499 --> 00:00:11.320
 Most of this mapping is our
 inference, so read it as a proposal.
 
 4
-00:00:09.912 --> 00:00:14.787
+00:00:11.320 --> 00:00:15.997
 The autonomous lane maps to SailPoint
 lifecycle states and birthright access,
 
 5
-00:00:14.787 --> 00:00:18.037
+00:00:15.997 --> 00:00:19.166
 and to ServiceNow's
 pre-authorized standard changes.
 
 6
-00:00:18.037 --> 00:00:21.980
+00:00:19.166 --> 00:00:22.948
 The gated lane is a SailPoint
 access request with an approver,
 
 7
-00:00:21.980 --> 00:00:23.913
+00:00:22.948 --> 00:00:24.741
 or a ServiceNow normal change.
 
 8
-00:00:23.913 --> 00:00:27.367
+00:00:24.741 --> 00:00:28.054
 Human decisions are certifications
 and the change board,
 
 9
-00:00:27.367 --> 00:00:32.188
+00:00:28.054 --> 00:00:32.639
 and one highpoint there is documented:
 unsigned revoke decisions aren't applied.
 
 10
-00:00:32.188 --> 00:00:36.613
+00:00:32.639 --> 00:00:36.919
 Certificates sit with neither product;
 they stay with the certificate platform.
 
 11
-00:00:36.613 --> 00:00:40.505
+00:00:36.919 --> 00:00:40.654
 And a disconnected application
 becomes a declared exception,
 
 12
-00:00:40.505 --> 00:00:43.424
+00:00:40.654 --> 00:00:43.471
 with a ticket, a recorded
 session and an end date.
 
 13
-00:00:43.424 --> 00:00:44.620
+00:00:43.471 --> 00:00:44.562
 Now the gaps.

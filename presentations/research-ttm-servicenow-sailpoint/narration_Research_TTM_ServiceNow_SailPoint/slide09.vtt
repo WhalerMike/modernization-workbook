@@ -34,38 +34,38 @@ Gap four is about who
 writes to the directory.
 
 8
-00:00:19.875 --> 00:00:24.286
-SailPoint reads Oracle HCM
-Cloud directly and writes
+00:00:19.875 --> 00:00:24.967
+SailPoint reads Oracle HCM Cloud
+directly and writes back only user
 
 9
-00:00:24.286 --> 00:00:28.500
-back only user name and work
-email, which fits Book 03.
+00:00:24.967 --> 00:00:30.238
+name and work email, which fits the
+workbook's HR-driven identity design.
 
 10
-00:00:28.500 --> 00:00:34.025
-But Book 03 makes Entra inbound provisioning
-the one writer into the directory.
+00:00:30.238 --> 00:00:35.201
+But that design makes Entra inbound
+provisioning the one writer into the directory.
 
 11
-00:00:34.025 --> 00:00:36.137
+00:00:35.201 --> 00:00:37.312
 So pick one writer per attribute.
 
 12
-00:00:36.137 --> 00:00:40.904
+00:00:37.312 --> 00:00:42.078
 Either inbound provisioning stays the
 door and SailPoint governs entitlements,
 
 13
-00:00:40.904 --> 00:00:43.638
+00:00:42.078 --> 00:00:44.812
 or SailPoint takes on
 the provisioning duties.
 
 14
-00:00:43.638 --> 00:00:44.613
+00:00:44.812 --> 00:00:45.787
 Not both.
 
 15
-00:00:44.613 --> 00:00:46.680
+00:00:45.787 --> 00:00:47.860
 Now, the identity fixes.

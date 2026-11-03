@@ -1,0 +1,70 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:04.660
+Lab 1 runs in the validation-kit
+folder of the examples,
+
+3
+00:00:04.660 --> 00:00:07.250
+in PowerShell 7, and nothing signs in.
+
+4
+00:00:07.250 --> 00:00:12.741
+Step one imports the module and runs the
+check against the fail fixture, a fictional
+
+5
+00:00:12.741 --> 00:00:17.675
+tenant with both blocks off and soft match
+on U P N on, as of October thirtieth.
+
+6
+00:00:17.675 --> 00:00:20.350
+The status is Fail, with a count of two.
+
+7
+00:00:20.350 --> 00:00:23.297
+The details show why:
+soft match isn't blocked,
+
+8
+00:00:23.297 --> 00:00:27.200
+and cloud object takeover
+through hard match isn't blocked.
+
+9
+00:00:27.200 --> 00:00:28.837
+Those are the two Findings.
+
+10
+00:00:28.837 --> 00:00:31.959
+The third row is Info:
+soft match on U P N is on,
+
+11
+00:00:31.959 --> 00:00:34.725
+and it can't be turned off once enabled.
+
+12
+00:00:34.725 --> 00:00:37.037
+It's context, so it isn't counted.
+
+13
+00:00:37.037 --> 00:00:40.597
+Then the evidence: the source
+is Graph, in fixture mode,
+
+14
+00:00:40.597 --> 00:00:45.126
+and the query names the fixture file
+and the URI a live run would call.
+
+15
+00:00:45.126 --> 00:00:49.630
+A reviewer can tell from the evidence
+alone which path a result came from.

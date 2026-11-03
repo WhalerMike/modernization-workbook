@@ -1,0 +1,74 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.475
+Here are the program's
+rules the code holds.
+
+2
+00:00:02.475 --> 00:00:05.800
+They're the program's design
+guidance, not Microsoft's.
+
+3
+00:00:05.800 --> 00:00:09.962
+Creation is closed: users
+can't create agent blueprints.
+
+4
+00:00:09.962 --> 00:00:14.632
+Every production agent has a reviewed
+handshake before it exists, naming its
+
+5
+00:00:14.632 --> 00:00:19.301
+sponsor and group, a technical owner who
+isn't the sponsor, and its permissions.
+
+6
+00:00:19.301 --> 00:00:22.894
+Credentials prefer a managed
+identity, then federation,
+
+7
+00:00:22.894 --> 00:00:26.488
+then a certificate, and never
+a production client secret.
+
+8
+00:00:26.488 --> 00:00:31.582
+Least privilege means inheritance is never
+allow-all for application roles, because,
+
+9
+00:00:31.582 --> 00:00:35.385
+as Microsoft Learn's page on
+inheritable permissions explains,
+
+10
+00:00:35.385 --> 00:00:39.475
+any future grant to the blueprint
+then becomes a grant to every agent,
+
+11
+00:00:39.475 --> 00:00:42.201
+and no agent holds a
+standing privileged role.
+
+12
+00:00:42.201 --> 00:00:45.967
+Sponsors are federal employees,
+and on a move or leave the new
+
+13
+00:00:45.967 --> 00:00:50.187
+sponsor confirms within ten business
+days, or the agent is orphaned.
+
+14
+00:00:50.187 --> 00:00:52.101
+Two report-only policies.
+
+15
+00:00:52.101 --> 00:00:54.960
+And three kinds of drift are top priority.

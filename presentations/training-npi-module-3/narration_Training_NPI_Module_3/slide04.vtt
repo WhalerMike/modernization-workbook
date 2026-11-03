@@ -1,0 +1,93 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.512
+Unit 1 is the guide's Step 2,
+and the slide shows part of its
+
+2
+00:00:03.512 --> 00:00:07.575
+condensed decision table, which
+is the program's design guidance.
+
+3
+00:00:07.575 --> 00:00:12.487
+Anything disabled, unused or with
+no owner after Step 1 is retired.
+
+4
+00:00:12.487 --> 00:00:15.480
+A traditional account for
+an Azure workload goes
+
+5
+00:00:15.480 --> 00:00:18.326
+to a managed identity,
+user-assigned preferred.
+
+6
+00:00:18.326 --> 00:00:22.080
+One calling Entra-protected A
+P I's from a host with an O I D
+
+7
+00:00:22.080 --> 00:00:26.325
+C issuer gets an app registration
+with a federated credential.
+
+8
+00:00:26.325 --> 00:00:31.496
+A Kerberos-only account on premises goes
+to a group managed service account,
+
+9
+00:00:31.496 --> 00:00:34.862
+or a delegated one on a
+Windows Server 2025 domain.
+
+10
+00:00:34.862 --> 00:00:39.387
+A managed service account is upgraded
+to a group managed one first, because,
+
+11
+00:00:39.387 --> 00:00:44.058
+as Microsoft Learn's delegated managed
+service account documentation says,
+
+12
+00:00:44.058 --> 00:00:46.612
+neither can be migrated
+to a delegated one.
+
+13
+00:00:46.612 --> 00:00:50.120
+And a client secret is
+replaced: a managed identity,
+
+14
+00:00:50.120 --> 00:00:52.625
+then federation, then a certificate.
+
+15
+00:00:52.625 --> 00:00:54.375
+Two more points from Step 2.
+
+16
+00:00:54.375 --> 00:00:56.137
+High-risk accounts go first.
+
+17
+00:00:56.137 --> 00:01:01.168
+And a group managed account needs a K
+D S root key, created once per domain;
+
+18
+00:01:01.168 --> 00:01:05.004
+Microsoft Learn's Create a
+K D S root key documentation
+
+19
+00:01:05.004 --> 00:01:08.980
+says domain controllers wait
+up to ten hours after that.

@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.550
+Step six reads the conversions:
+each one's target,
+
+2
+00:00:03.550 --> 00:00:07.313
+its cutover gate, its parallel
+run status and its day.
+
+3
+00:00:07.313 --> 00:00:09.828
+Conversion one, to a managed identity,
+
+4
+00:00:09.828 --> 00:00:15.104
+is ready to disable its legacy account on
+day forty: a clean run past thirty days,
+
+5
+00:00:15.104 --> 00:00:18.837
+and the owner approved, so it's
+the one disable in the plan.
+
+6
+00:00:18.837 --> 00:00:24.112
+Conversion seven is parallel running,
+on day fifteen of thirty, so it waits.
+
+7
+00:00:24.112 --> 00:00:27.952
+Conversion eight is the warning
+sign: on day fifty-nine,
+
+8
+00:00:27.952 --> 00:00:33.413
+the legacy credential is still in use, so
+it isn't clean, and nothing is disabled.
+
+9
+00:00:33.413 --> 00:00:35.650
+The other five are awaiting cutover.
+
+10
+00:00:35.650 --> 00:00:40.137
+Three of them are blocked by the findings
+you just read, and two aren't ready yet.
+
+11
+00:00:40.137 --> 00:00:42.301
+Notice that a status isn't a write.
+
+12
+00:00:42.301 --> 00:00:47.400
+Only the plan's three write actions ever
+change anything, and only after review.

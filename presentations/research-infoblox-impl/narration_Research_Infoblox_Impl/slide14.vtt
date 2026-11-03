@@ -6,53 +6,53 @@ DHCP failover pairs two servers,
 and at least one must be NIOS.
 
 2
-00:00:05.250 --> 00:00:09.483
-A mixed Windows and NIOS pair
-isn't offered, which is why Book 08
+00:00:05.250 --> 00:00:09.890
+A mixed Windows and NIOS pair isn't
+offered, which is why the workbook's
 
 3
-00:00:09.483 --> 00:00:14.463
-says to move both partners of a
+00:00:09.890 --> 00:00:15.100
+DNS design moves both partners of a
 Windows failover relationship together.
 
 4
-00:00:14.463 --> 00:00:18.774
+00:00:15.100 --> 00:00:19.411
 Leave the default settings alone unless
 you understand the consequences,
 
 5
-00:00:18.774 --> 00:00:21.625
+00:00:19.411 --> 00:00:22.262
 and configure everything
 before you turn DHCP on.
 
 6
-00:00:21.625 --> 00:00:23.693
+00:00:22.262 --> 00:00:24.330
 One common assumption is wrong:
 
 7
-00:00:23.693 --> 00:00:27.987
+00:00:24.330 --> 00:00:28.624
 the Grid Master plays no part in
 failover; the peers talk directly.
 
 8
-00:00:27.987 --> 00:00:29.913
+00:00:28.624 --> 00:00:30.613
 IPv6 is different.
 
 9
-00:00:29.913 --> 00:00:33.739
+00:00:30.613 --> 00:00:34.868
 An IPv6 range is served by a
 single member with no failover,
 
 10
-00:00:33.739 --> 00:00:38.363
+00:00:34.868 --> 00:00:39.275
 so redundancy comes from making that
 member a high-availability pair.
 
 11
-00:00:38.363 --> 00:00:43.537
+00:00:39.275 --> 00:00:44.450
 That's not a regression, since
 Microsoft's DHCPv6 has no failover either.
 
 12
-00:00:43.537 --> 00:00:44.950
+00:00:44.450 --> 00:00:45.860
 Now, how to back out.

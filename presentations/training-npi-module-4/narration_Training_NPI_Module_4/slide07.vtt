@@ -1,0 +1,71 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.500
+Rotation, in the program's design, is
+raised automatically before expiry
+
+2
+00:00:04.500 --> 00:00:09.025
+and approved by the owner, so the app
+never depends on someone remembering.
+
+3
+00:00:09.025 --> 00:00:13.400
+The code joins Key Vault
+and Entra I D in five steps.
+
+4
+00:00:13.400 --> 00:00:16.588
+A request is raised
+sixty days before expiry.
+
+5
+00:00:16.588 --> 00:00:19.125
+An owner who is an
+enabled member approves.
+
+6
+00:00:19.125 --> 00:00:22.222
+Key Vault makes the next
+version from its own policy,
+
+7
+00:00:22.222 --> 00:00:26.975
+as Microsoft Learn's Key Vault certificate
+creation documentation describes.
+
+8
+00:00:26.975 --> 00:00:30.425
+The new certificate is added
+to the app beside the old one.
+
+9
+00:00:30.425 --> 00:00:34.057
+And once the owner records that
+the workload signs in with it,
+
+10
+00:00:34.057 --> 00:00:36.962
+and seven days have passed,
+the old one is removed.
+
+11
+00:00:36.962 --> 00:00:42.299
+The findings, N P I R O T oh one to oh
+seven, flag a rotation due with no approval,
+
+12
+00:00:42.299 --> 00:00:47.287
+a certificate with no vault binding,
+one expired with no replacement,
+
+13
+00:00:47.287 --> 00:00:51.749
+a refused approval, a lifetime
+over the cap, and a client secret,
+
+14
+00:00:51.749 --> 00:00:55.820
+which isn't rotated at all:
+it's reported for replacement.

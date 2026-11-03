@@ -1,0 +1,65 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.693
+Lab 2 takes the same path in your
+own test tenant, worldwide or G C C,
+
+2
+00:00:04.693 --> 00:00:10.388
+with a test subscription, a test Active
+Directory domain and a test repository.
+
+3
+00:00:10.388 --> 00:00:13.287
+Never production, and
+only fictional names.
+
+4
+00:00:13.287 --> 00:00:17.538
+A reading app holds two Graph read
+permissions and Reader, and a person with
+
+5
+00:00:17.538 --> 00:00:22.337
+Cloud Application Administrator and Managed
+Identity Contributor does the write.
+
+6
+00:00:22.337 --> 00:00:26.550
+Make a test conversion from a client
+secret to a federated credential.
+
+7
+00:00:26.550 --> 00:00:30.942
+The key step is capturing the real issuer
+and subject from one workflow run,
+
+8
+00:00:30.942 --> 00:00:33.988
+because that's the truth
+the check compares against.
+
+9
+00:00:33.988 --> 00:00:36.791
+Then plan, apply, exchange
+a token for real,
+
+10
+00:00:36.791 --> 00:00:41.162
+and run the parallel run through
+to the legacy account's disable.
+
+11
+00:00:41.162 --> 00:00:45.799
+To back it out, step seven enables the
+test account again, removes the test
+
+12
+00:00:45.799 --> 00:00:50.513
+credentials, and deletes the rest by
+hand, because this code never deletes.
+
+13
+00:00:50.513 --> 00:00:52.730
+The authors haven't run Lab 2.

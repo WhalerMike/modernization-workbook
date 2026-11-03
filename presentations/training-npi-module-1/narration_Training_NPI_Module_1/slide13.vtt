@@ -1,0 +1,81 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.437
+The federal requirement.
+
+2
+00:00:01.437 --> 00:00:04.978
+Gate 1 meets NIST
+special publication eight
+
+3
+00:00:04.978 --> 00:00:08.613
+hundred fifty-three A C two,
+I A four and C M eight.
+
+4
+00:00:08.613 --> 00:00:11.850
+The module's table maps
+each one to its evidence.
+
+5
+00:00:11.850 --> 00:00:15.756
+For C M eight, system component
+inventory, it's the register,
+
+6
+00:00:15.756 --> 00:00:20.150
+as JSON and as a spreadsheet file,
+and the Data Platform hand-off.
+
+7
+00:00:20.150 --> 00:00:22.817
+For account and identifier management,
+
+8
+00:00:22.817 --> 00:00:26.212
+it's the register's identity,
+type and owner columns.
+
+9
+00:00:26.212 --> 00:00:30.762
+For privileged accounts and authenticator
+management, the high-risk findings.
+
+10
+00:00:30.762 --> 00:00:33.761
+For least privilege of the
+reading process itself,
+
+11
+00:00:33.761 --> 00:00:35.975
+the permission list and the call list.
+
+12
+00:00:35.975 --> 00:00:38.788
+And for the run's integrity, the manifest,
+
+13
+00:00:38.788 --> 00:00:43.050
+which holds the tenant, every
+request, and a hash of every file.
+
+14
+00:00:43.050 --> 00:00:47.688
+K S I's are FedRAMP twenty X indicators
+for cloud service providers.
+
+15
+00:00:47.688 --> 00:00:52.128
+The agency lines its evidence up
+with what its providers report;
+
+16
+00:00:52.128 --> 00:00:54.138
+it doesn't report K S I's itself.
+
+17
+00:00:54.138 --> 00:00:57.460
+Which file supports which
+indicator is the program's mapping.

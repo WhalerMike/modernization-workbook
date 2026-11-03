@@ -1,0 +1,74 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.437
+The federal requirement.
+
+2
+00:00:01.437 --> 00:00:06.950
+Gate 3 meets NIST special publication
+eight hundred fifty-three I A five,
+
+3
+00:00:06.950 --> 00:00:12.002
+enhancement two, S C twelve and S C
+seventeen, and the policies M S dot
+
+4
+00:00:12.002 --> 00:00:17.238
+A A D five point five to five point
+seven in CISA's Scuba Gear baseline.
+
+5
+00:00:17.238 --> 00:00:21.213
+Those three are should policies,
+not required configurations.
+
+6
+00:00:21.213 --> 00:00:23.662
+The module's table maps the evidence.
+
+7
+00:00:23.662 --> 00:00:27.093
+For configuration settings
+and the Scuba policies,
+
+8
+00:00:27.093 --> 00:00:31.400
+the default policy as it was before,
+the diff, and the reviewed file.
+
+9
+00:00:31.400 --> 00:00:34.637
+For authenticator management,
+the policy findings.
+
+10
+00:00:34.637 --> 00:00:37.856
+For the certificates
+themselves, the rotation plan,
+
+11
+00:00:37.856 --> 00:00:40.925
+the Key Vault bindings
+and the rotation findings.
+
+12
+00:00:40.925 --> 00:00:46.075
+For change control, each plan's approved
+hash and the dry-run and apply folders.
+
+13
+00:00:46.075 --> 00:00:49.275
+And for least privilege,
+each task's permission list.
+
+14
+00:00:49.275 --> 00:00:52.488
+K S I's are FedRAMP twenty
+X indicators for providers,
+
+15
+00:00:52.488 --> 00:00:55.920
+and which file supports which
+is the program's mapping.

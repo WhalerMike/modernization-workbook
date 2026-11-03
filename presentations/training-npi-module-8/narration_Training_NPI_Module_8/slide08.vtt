@@ -1,0 +1,82 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.475
+These are the kit's design.
+
+2
+00:00:01.475 --> 00:00:04.087
+Two outputs carry the chapter's end date.
+
+3
+00:00:04.087 --> 00:00:09.429
+The island list holds every account that
+stays on Kerberos, with its S P N owner,
+
+4
+00:00:09.429 --> 00:00:13.101
+its end date, and whether it's
+ready for P four point six,
+
+5
+00:00:13.101 --> 00:00:15.438
+the program's S P N retirement work.
+
+6
+00:00:15.438 --> 00:00:18.425
+The hand-off is ready
+only when every row is.
+
+7
+00:00:18.425 --> 00:00:22.607
+The reconciliation covers
+every G M S A and D M S A,
+
+8
+00:00:22.607 --> 00:00:26.575
+existing or planned, and
+says where it ends up.
+
+9
+00:00:26.575 --> 00:00:29.739
+Writing to the domain
+lives in a separate script,
+
+10
+00:00:29.739 --> 00:00:34.721
+and it refuses to run unless the plan's
+hash is the approved one, the plan is for
+
+11
+00:00:34.721 --> 00:00:37.489
+this domain and no more
+than seven days old,
+
+12
+00:00:37.489 --> 00:00:39.862
+and it's a person's session, never a job.
+
+13
+00:00:39.862 --> 00:00:43.962
+Nothing that removes, undoes
+or resets is ever run.
+
+14
+00:00:43.962 --> 00:00:46.771
+And the read holds no
+domain administration:
+
+15
+00:00:46.771 --> 00:00:52.009
+Microsoft Learn's page for the root key
+class says its default security descriptor
+
+16
+00:00:52.009 --> 00:00:55.577
+grants only Enterprise Admins,
+Domain Admins and SYSTEM,
+
+17
+00:00:55.577 --> 00:01:00.650
+so the read gets a delegated read of the
+key's start and create times, nothing more.

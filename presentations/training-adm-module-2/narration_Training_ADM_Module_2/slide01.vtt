@@ -1,0 +1,68 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.405
+Welcome to Module 2 of the
+Attribute-Driven Migration learning path:
+
+2
+00:00:04.405 --> 00:00:06.238
+write a validation kit check.
+
+3
+00:00:06.238 --> 00:00:10.197
+Every gate in the implementation
+guide ends with a Validate step,
+
+4
+00:00:10.197 --> 00:00:12.837
+and most of them name
+a validation kit check.
+
+5
+00:00:12.837 --> 00:00:15.900
+The kit is the executable
+form of those steps.
+
+6
+00:00:15.900 --> 00:00:21.656
+This module serves Gate 3, and takes
+Chapter 03 of Building the Attribute-Driven
+
+7
+00:00:21.656 --> 00:00:24.447
+Migration, which teaches how a check is
+
+8
+00:00:24.447 --> 00:00:27.412
+built through one new
+check, V K SYNC oh two.
+
+9
+00:00:27.412 --> 00:00:31.270
+It asks whether soft match and
+hard-match takeover are blocked,
+
+10
+00:00:31.270 --> 00:00:34.088
+and if not, whether an
+approved window says why.
+
+11
+00:00:34.088 --> 00:00:38.725
+You'll see the parts of a check, its three
+severities, why a missing value reads
+
+12
+00:00:38.725 --> 00:00:43.362
+as off, and why a read-only check still
+has to ask for the least privilege it can.
+
+13
+00:00:43.362 --> 00:00:48.024
+Then you'll run it on the kit's fixtures
+and on an export, and break it on purpose.
+
+14
+00:00:48.024 --> 00:00:49.300
+Nothing signs in.

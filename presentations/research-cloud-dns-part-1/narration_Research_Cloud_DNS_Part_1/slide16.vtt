@@ -73,10 +73,11 @@ so its catch-all rule is the only
 way agency policy reaches a VCN.
 
 16
-00:00:57.613 --> 00:01:00.737
+00:00:57.613 --> 00:01:02.942
 Third, logs: all three go to the SIEM,
+parsed through ASIM's DNS schema,
 
 17
-00:01:00.737 --> 00:01:05.300
-parsed through ASIM's DNS
-schema, as Book 12 does.
+00:01:02.942 --> 00:01:07.250
+as Microsoft Learn's ASIM
+documentation describes.

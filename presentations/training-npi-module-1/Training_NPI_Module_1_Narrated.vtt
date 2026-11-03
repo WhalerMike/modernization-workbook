@@ -1,0 +1,1005 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.232
+Welcome to Module 1 of the
+Non-Person Identity learning path:
+
+2
+00:00:04.232 --> 00:00:06.825
+inventory every non-person identity.
+
+3
+00:00:06.825 --> 00:00:08.988
+A person leaves and HR tells you.
+
+4
+00:00:08.988 --> 00:00:11.988
+A service account's owner
+leaves and nothing tells you.
+
+5
+00:00:11.988 --> 00:00:16.424
+This path builds that missing record,
+through the six gates of the non-person
+
+6
+00:00:16.424 --> 00:00:18.325
+identity implementation guide,
+
+7
+00:00:18.325 --> 00:00:21.775
+with one module for each chapter
+of the developer workbook.
+
+8
+00:00:21.775 --> 00:00:26.637
+This module is Gate 1, Inventory,
+with Chapter 1 of the workbook.
+
+9
+00:00:26.637 --> 00:00:31.800
+You'll read every service account,
+managed service account, app registration,
+
+10
+00:00:31.800 --> 00:00:35.753
+service principal and managed
+identity into one register,
+
+11
+00:00:35.753 --> 00:00:39.787
+with its type, owners, credentials,
+risk and candidate target.
+
+12
+00:00:39.787 --> 00:00:41.300
+You decide nothing yet.
+
+13
+00:00:41.300 --> 00:00:44.762
+The code runs on your laptop,
+against a fictional estate.
+
+14
+00:00:44.762 --> 00:00:50.120
+It's illustrative: tested against
+fixtures, not run against a live tenant.
+
+15
+00:00:53.870 --> 00:00:55.483
+Why start with an inventory?
+
+16
+00:00:55.483 --> 00:00:58.396
+Because the list is always
+longer than you think.
+
+17
+00:00:58.396 --> 00:01:03.852
+In Entra, consent creates service principals,
+and Microsoft's own services create
+
+18
+00:01:03.852 --> 00:01:08.907
+more, so the inventory is always larger
+than the list of apps anyone asked for.
+
+19
+00:01:08.907 --> 00:01:13.483
+And in Active Directory, no attribute
+marks a user as a service account.
+
+20
+00:01:13.483 --> 00:01:18.877
+Microsoft Learn's guidance on securing
+user-based service accounts finds candidates
+
+21
+00:01:18.877 --> 00:01:21.349
+by three signs: a service principal name,
+
+22
+00:01:21.349 --> 00:01:24.795
+trust for delegation, and a
+password that never expires.
+
+23
+00:01:24.795 --> 00:01:27.220
+And it warns that this
+might not find them all.
+
+24
+00:01:27.220 --> 00:01:32.074
+So in this module you read every
+non-person identity into one register,
+
+25
+00:01:32.074 --> 00:01:37.095
+with its type, its owners, its credentials,
+its risk and a candidate target.
+
+26
+00:01:37.095 --> 00:01:39.020
+You don't decide anything yet.
+
+27
+00:01:39.020 --> 00:01:41.950
+Inventory first; decide later.
+
+28
+00:01:45.700 --> 00:01:48.540
+Here's what you'll be able to
+do by the end of this module,
+
+29
+00:01:48.540 --> 00:01:51.187
+which takes about fifty-five
+minutes with the lab.
+
+30
+00:01:51.187 --> 00:01:56.375
+You'll name the identity types the register
+holds, and where each one is read from.
+
+31
+00:01:56.375 --> 00:02:00.277
+You'll explain the program's
+high, medium and low risk rule,
+
+32
+00:02:00.277 --> 00:02:03.100
+and why a stale account
+is only ever a lead.
+
+33
+00:02:03.100 --> 00:02:07.725
+You'll run the inventory against the
+fixtures and read its high-risk findings.
+
+34
+00:02:07.725 --> 00:02:10.436
+And you'll show that the
+reader refuses a call the
+
+35
+00:02:10.436 --> 00:02:13.012
+task doesn't declare, and
+a cloud it doesn't know.
+
+36
+00:02:13.012 --> 00:02:17.942
+Before you start, read the guide's
+track at a glance: for this track,
+
+37
+00:02:17.942 --> 00:02:22.313
+the system inventory or C M D B
+is the source of truth, not HR.
+
+38
+00:02:22.313 --> 00:02:26.150
+And review Microsoft Automation
+Module 1 on permissions.
+
+39
+00:02:26.150 --> 00:02:32.250
+Lab 1 needs PowerShell 7.1 or later with
+Pester 5, and a clone of the repository.
+
+40
+00:02:32.250 --> 00:02:33.540
+No tenant.
+
+41
+00:02:37.290 --> 00:02:41.165
+Unit 1 is the guide's Step
+1, which has six sub-steps.
+
+42
+00:02:41.165 --> 00:02:43.857
+One a: Active Directory service accounts,
+
+43
+00:02:43.857 --> 00:02:47.815
+managed service accounts, and
+the group and delegated kinds.
+
+44
+00:02:47.815 --> 00:02:52.238
+Stale is a lead, not a verdict, and
+for a group managed account you record
+
+45
+00:02:52.238 --> 00:02:56.965
+which hosts can retrieve its password,
+because that's its real blast radius.
+
+46
+00:02:56.965 --> 00:03:00.257
+One b: app registrations
+and service principals,
+
+47
+00:03:00.257 --> 00:03:02.890
+with each one's service principal type.
+
+48
+00:03:02.890 --> 00:03:08.154
+One c: managed identities and their role
+assignments; a user-assigned identity
+
+49
+00:03:08.154 --> 00:03:12.690
+outlives the resources it's attached
+to, so it's the type that orphans.
+
+50
+00:03:12.690 --> 00:03:17.703
+One d: every federated credential's
+issuer, subject and audience.
+
+51
+00:03:17.703 --> 00:03:23.277
+One e: AI agent identities and their
+sponsors, where the tenant exposes them.
+
+52
+00:03:23.277 --> 00:03:27.878
+And one f joins each identity to
+its record in the system inventory,
+
+53
+00:03:27.878 --> 00:03:30.303
+with two human owners and a sponsor.
+
+54
+00:03:30.303 --> 00:03:35.960
+The validation kit's read-only checks
+one, six, seven and eight prove the gate.
+
+55
+00:03:39.710 --> 00:03:42.085
+Unit 2 is the register as code.
+
+56
+00:03:42.085 --> 00:03:45.063
+It reads two collections
+from Active Directory,
+
+57
+00:03:45.063 --> 00:03:48.935
+nine from Microsoft Graph, and
+one from Azure Resource Manager.
+
+58
+00:03:48.935 --> 00:03:52.337
+From the directory: the user
+accounts used as services,
+
+59
+00:03:52.337 --> 00:03:57.252
+found with Learn's three criteria and
+the naming convention in one server-side
+
+60
+00:03:57.252 --> 00:04:00.579
+query; and the managed service
+accounts of every kind,
+
+61
+00:04:00.579 --> 00:04:02.847
+with who may retrieve each password.
+
+62
+00:04:02.847 --> 00:04:07.731
+From Graph: app registrations with
+their owners and federated credentials;
+
+63
+00:04:07.731 --> 00:04:12.847
+service principals by type; Graph's own app
+roles, so a permission shows up by name;
+
+64
+00:04:12.847 --> 00:04:18.273
+and the delegated consent grants, where
+tenant-wide consent shows as all principals.
+
+65
+00:04:18.273 --> 00:04:21.812
+And one read people forget:
+a user-assigned identity's
+
+66
+00:04:21.812 --> 00:04:25.834
+federated credentials live in
+Resource Manager, not in Graph.
+
+67
+00:04:25.834 --> 00:04:29.003
+Every identity gets one
+row with the same columns,
+
+68
+00:04:29.003 --> 00:04:33.000
+whatever its type, so the whole
+register lands in one file.
+
+69
+00:04:36.750 --> 00:04:39.159
+Every call goes through one reader,
+
+70
+00:04:39.159 --> 00:04:43.062
+built for one task in one cloud,
+and it enforces five rules.
+
+71
+00:04:43.062 --> 00:04:48.025
+Only declared calls: the configuration
+file lists each call with its permission,
+
+72
+00:04:48.025 --> 00:04:52.025
+and a call the task doesn't declare
+throws before anything is sent.
+
+73
+00:04:52.025 --> 00:04:53.743
+Reads only: it sends GET,
+
+74
+00:04:53.743 --> 00:04:58.175
+and runs only the directory Get
+cmdlets the call list names.
+
+75
+00:04:58.175 --> 00:05:01.655
+One host: every URL,
+including every next link,
+
+76
+00:05:01.655 --> 00:05:07.675
+must be on the cloud's own Graph or Resource
+Manager host, or the token isn't sent.
+
+77
+00:05:07.675 --> 00:05:12.925
+One tenant: a live run refuses a session
+in another cloud or another tenant.
+
+78
+00:05:12.925 --> 00:05:16.262
+And every page: collections
+are read to the end.
+
+79
+00:05:16.262 --> 00:05:18.237
+One permission deserves a note.
+
+80
+00:05:18.237 --> 00:05:22.942
+The inventory holds Directory dot Read dot
+All only because Microsoft Learn's page
+
+81
+00:05:22.942 --> 00:05:27.851
+for listing delegated permission grants
+names it as the least-privileged permission.
+
+82
+00:05:27.851 --> 00:05:32.730
+It's the broadest read the inventory
+holds, and that's the only reason.
+
+83
+00:05:36.480 --> 00:05:40.420
+Risk, the candidate target and the
+stale lead come from the program,
+
+84
+00:05:40.420 --> 00:05:43.142
+not from Microsoft, so
+they're design guidance.
+
+85
+00:05:43.142 --> 00:05:47.983
+An enabled identity is high risk for a
+password that never expires or hasn't changed
+
+86
+00:05:47.983 --> 00:05:52.473
+in more than three hundred sixty-five
+days, membership of a privileged Active
+
+87
+00:05:52.473 --> 00:05:57.243
+Directory group, unconstrained delegation,
+or a high-privilege Graph permission.
+
+88
+00:05:57.243 --> 00:06:01.046
+Other enabled traditional
+accounts, managed service accounts,
+
+89
+00:06:01.046 --> 00:06:05.567
+legacy service principals and anything
+holding a client secret are medium.
+
+90
+00:06:05.567 --> 00:06:06.992
+Everything else is low.
+
+91
+00:06:06.992 --> 00:06:11.680
+The target is only a candidate;
+Module 3 makes the decision.
+
+92
+00:06:11.680 --> 00:06:16.316
+A stale lead is an enabled directory
+account with no logon in ninety days,
+
+93
+00:06:16.316 --> 00:06:19.794
+and it's only a lead, because
+Microsoft Learn documents
+
+94
+00:06:19.794 --> 00:06:23.580
+that the last logon timestamp
+isn't updated at every sign-in.
+
+95
+00:06:23.580 --> 00:06:27.705
+Confirm it against the domain
+controller and Entra sign-in logs.
+
+96
+00:06:27.705 --> 00:06:31.555
+The code never disables,
+moves or deletes anything.
+
+97
+00:06:31.555 --> 00:06:36.660
+And SQL Server and LDAP-bind accounts
+are handed to the Data Platform plan.
+
+98
+00:06:40.410 --> 00:06:46.860
+The register becomes findings, under nine
+rules, N P I I N V oh one to oh nine.
+
+99
+00:06:46.860 --> 00:06:50.458
+Only the first is a hard
+finding: a high-risk identity,
+
+100
+00:06:50.458 --> 00:06:53.135
+with its reasons and candidate target.
+
+101
+00:06:53.135 --> 00:06:56.298
+The rest are warnings to
+act on, or information.
+
+102
+00:06:56.298 --> 00:06:58.448
+Oh two is a stale lead to confirm.
+
+103
+00:06:58.448 --> 00:07:01.062
+Oh three is an app registration or legacy
+
+104
+00:07:01.062 --> 00:07:03.984
+service principal with
+fewer than two owners.
+
+105
+00:07:03.984 --> 00:07:09.410
+Oh four is a client secret, and oh five an
+expired credential still on the object.
+
+106
+00:07:09.410 --> 00:07:13.323
+Oh six is a delegated grant
+consented for all users.
+
+107
+00:07:13.323 --> 00:07:18.347
+Oh seven, information only, is an
+account handed to the Data Platform plan.
+
+108
+00:07:18.347 --> 00:07:21.365
+Oh eight is an account
+found only by a password
+
+109
+00:07:21.365 --> 00:07:23.985
+that never expires, which may be a person.
+
+110
+00:07:23.985 --> 00:07:27.072
+And oh nine is a type the
+register doesn't classify.
+
+111
+00:07:27.072 --> 00:07:32.760
+Every finding has a stable I D, so the
+same gap keeps its name from run to run.
+
+112
+00:07:36.510 --> 00:07:37.235
+Try it.
+
+113
+00:07:37.235 --> 00:07:41.566
+Lab 1 runs in the non-person
+identity folder of the examples,
+
+114
+00:07:41.566 --> 00:07:44.748
+in PowerShell 7, against
+a fictional estate.
+
+115
+00:07:44.748 --> 00:07:47.760
+Nothing signs in to anything
+or sends a request.
+
+116
+00:07:47.760 --> 00:07:53.047
+Step one runs Learn's own samples,
+exactly as published, against stand-ins.
+
+117
+00:07:53.047 --> 00:07:58.697
+Twenty pass, none fail, and ten aren't
+run, because those ten are Chapter 2's.
+
+118
+00:07:58.697 --> 00:08:01.285
+Step two lists what the inventory needs.
+
+119
+00:08:01.285 --> 00:08:06.535
+Two Graph permissions: Application dot Read
+dot All and Directory dot Read dot All.
+
+120
+00:08:06.535 --> 00:08:08.073
+The Reader role in Azure.
+
+121
+00:08:08.073 --> 00:08:13.723
+And in Active Directory, only the default
+read every authenticated domain user has.
+
+122
+00:08:13.723 --> 00:08:16.098
+Notice that nothing ends in ReadWrite.
+
+123
+00:08:16.098 --> 00:08:18.159
+The inventory can't change anything,
+
+124
+00:08:18.159 --> 00:08:22.840
+and that's what you'd show an assessor
+who asks what the reading process may do.
+
+125
+00:08:26.590 --> 00:08:30.427
+Step three runs the inventory
+against the fictional estate.
+
+126
+00:08:30.427 --> 00:08:34.839
+It reads thirty-five identities,
+fifteen from Active Directory and
+
+127
+00:08:34.839 --> 00:08:39.328
+twenty from Entra, and rates eight
+high, eight medium and nineteen low.
+
+128
+00:08:39.328 --> 00:08:43.322
+That's eight findings, eleven
+warnings and three information items,
+
+129
+00:08:43.322 --> 00:08:46.389
+and three accounts handed
+to the Data Platform plan.
+
+130
+00:08:46.389 --> 00:08:51.478
+The manifest records the tenant, every
+request, and a hash of every file.
+
+131
+00:08:51.478 --> 00:08:54.453
+Step four reads the eight
+high-risk identities.
+
+132
+00:08:54.453 --> 00:08:59.063
+Three accounts have passwords that
+never expire, and one of them,
+
+133
+00:08:59.063 --> 00:09:02.891
+svc oldftp, is also a stale
+lead, so verify its use first.
+
+134
+00:09:02.891 --> 00:09:06.534
+j doe was found only by a
+password that never expires,
+
+135
+00:09:06.534 --> 00:09:09.415
+so it may be a person,
+not a service account.
+
+136
+00:09:09.415 --> 00:09:12.537
+Others sit in Backup
+Operators or Domain Admins,
+
+137
+00:09:12.537 --> 00:09:15.503
+or are trusted for
+unconstrained delegation.
+
+138
+00:09:15.503 --> 00:09:19.640
+And the Mail Automation app holds
+a directory-wide write permission.
+
+139
+00:09:23.390 --> 00:09:25.890
+Step five shows the
+reader's rules at work.
+
+140
+00:09:25.890 --> 00:09:29.726
+You build a reader for the inventory
+task, with the fixture invoker
+
+141
+00:09:29.726 --> 00:09:33.840
+standing in for the network, and ask it
+for a call the task doesn't declare.
+
+142
+00:09:33.840 --> 00:09:35.922
+It refuses before anything is sent,
+
+143
+00:09:35.922 --> 00:09:39.728
+and tells you to add the call to
+the call list with its permission.
+
+144
+00:09:39.728 --> 00:09:44.683
+Then you ask for the cloud G C C in
+capitals, and it refuses that too:
+
+145
+00:09:44.683 --> 00:09:49.827
+the cloud names are global, gcc,
+gcchigh and dod, and it never guesses.
+
+146
+00:09:49.827 --> 00:09:53.315
+Step six reads the hand-off
+to the Data Platform plan.
+
+147
+00:09:53.315 --> 00:09:59.195
+Two accounts go by their SQL Server
+service principal names, svc sqlprod and
+
+148
+00:09:59.195 --> 00:10:04.452
+the group managed account gmsa sql, and
+one, svc ldapbind, goes by its name.
+
+149
+00:10:04.452 --> 00:10:09.489
+Step seven runs every test: five
+hundred thirteen pass, none fail.
+
+150
+00:10:09.489 --> 00:10:11.690
+Then delete the output folder.
+
+151
+00:10:15.440 --> 00:10:19.365
+Lab 2 runs the same inventory
+against your own test tenant.
+
+152
+00:10:19.365 --> 00:10:22.807
+You need a test tenant in
+the worldwide or G C C cloud,
+
+153
+00:10:22.807 --> 00:10:27.315
+with a test Azure subscription,
+and a test Active Directory domain.
+
+154
+00:10:27.315 --> 00:10:30.040
+Never production, and
+only fictional people.
+
+155
+00:10:30.040 --> 00:10:33.515
+Register a reading app with
+a certificate, not a secret.
+
+156
+00:10:33.515 --> 00:10:37.766
+Grant it Application dot Read dot
+All and Directory dot Read dot All,
+
+157
+00:10:37.766 --> 00:10:39.815
+and Reader on one resource group.
+
+158
+00:10:39.815 --> 00:10:41.384
+Then run the inventory live,
+
+159
+00:10:41.384 --> 00:10:44.877
+and compare the register with
+the lists in the admin center.
+
+160
+00:10:44.877 --> 00:10:47.584
+That comparison is what
+tells you whether a real
+
+161
+00:10:47.584 --> 00:10:50.290
+tenant returns the shapes
+the fixtures assumed.
+
+162
+00:10:50.290 --> 00:10:54.980
+To back it out, step eight removes the
+Reader assignment and the two permissions,
+
+163
+00:10:54.980 --> 00:10:59.315
+deletes the app registration and its
+certificate, and deletes the output.
+
+164
+00:10:59.315 --> 00:11:01.465
+The authors haven't run Lab 2.
+
+165
+00:11:01.465 --> 00:11:04.790
+The workbook's Chapter 1
+has the exact commands.
+
+166
+00:11:08.540 --> 00:11:09.927
+The federal requirement.
+
+167
+00:11:09.927 --> 00:11:13.468
+Gate 1 meets NIST
+special publication eight
+
+168
+00:11:13.468 --> 00:11:17.103
+hundred fifty-three A C two,
+I A four and C M eight.
+
+169
+00:11:17.103 --> 00:11:20.340
+The module's table maps
+each one to its evidence.
+
+170
+00:11:20.340 --> 00:11:24.246
+For C M eight, system component
+inventory, it's the register,
+
+171
+00:11:24.246 --> 00:11:28.640
+as JSON and as a spreadsheet file,
+and the Data Platform hand-off.
+
+172
+00:11:28.640 --> 00:11:31.307
+For account and identifier management,
+
+173
+00:11:31.307 --> 00:11:34.702
+it's the register's identity,
+type and owner columns.
+
+174
+00:11:34.702 --> 00:11:39.252
+For privileged accounts and authenticator
+management, the high-risk findings.
+
+175
+00:11:39.252 --> 00:11:42.251
+For least privilege of the
+reading process itself,
+
+176
+00:11:42.251 --> 00:11:44.465
+the permission list and the call list.
+
+177
+00:11:44.465 --> 00:11:47.278
+And for the run's integrity, the manifest,
+
+178
+00:11:47.278 --> 00:11:51.540
+which holds the tenant, every
+request, and a hash of every file.
+
+179
+00:11:51.540 --> 00:11:56.178
+K S I's are FedRAMP twenty X indicators
+for cloud service providers.
+
+180
+00:11:56.178 --> 00:12:00.618
+The agency lines its evidence up
+with what its providers report;
+
+181
+00:12:00.618 --> 00:12:02.628
+it doesn't report K S I's itself.
+
+182
+00:12:02.628 --> 00:12:06.250
+Which file supports which
+indicator is the program's mapping.
+
+183
+00:12:10.000 --> 00:12:11.975
+Check yourself with two questions.
+
+184
+00:12:11.975 --> 00:12:17.075
+First: an enabled Active Directory
+account has had no logon for ninety days.
+
+185
+00:12:17.075 --> 00:12:18.337
+What does the code do?
+
+186
+00:12:18.337 --> 00:12:19.562
+The answer is b.
+
+187
+00:12:19.562 --> 00:12:24.048
+It raises a stale lead, N P I I N
+V oh two, to confirm against the
+
+188
+00:12:24.048 --> 00:12:29.001
+domain controller and Entra sign-in
+logs, and it changes nothing.
+
+189
+00:12:29.001 --> 00:12:31.109
+A stale account is only a lead,
+
+190
+00:12:31.109 --> 00:12:35.062
+and the code never disables,
+moves or deletes anything.
+
+191
+00:12:35.062 --> 00:12:41.100
+Second: j doe is high risk, and
+also carries N P I I N V oh eight.
+
+192
+00:12:41.100 --> 00:12:42.288
+Why does that matter?
+
+193
+00:12:42.288 --> 00:12:43.424
+The answer is a.
+
+194
+00:12:43.424 --> 00:12:46.732
+It was found only by a
+password that never expires,
+
+195
+00:12:46.732 --> 00:12:49.475
+so it may be a person,
+not a service account.
+
+196
+00:12:49.475 --> 00:12:51.515
+Learn's criteria can find people too,
+
+197
+00:12:51.515 --> 00:12:55.663
+so someone confirms it before the next
+module applies the ownership rule.
+
+198
+00:12:55.663 --> 00:12:58.089
+The module page has three more questions,
+
+199
+00:12:58.089 --> 00:13:00.940
+each linked to the
+section that answers it.
+
+200
+00:13:04.690 --> 00:13:05.515
+To sum up.
+
+201
+00:13:05.515 --> 00:13:10.124
+You read a fictional estate of
+thirty-five identities into one register,
+
+202
+00:13:10.124 --> 00:13:14.656
+found the eight high-risk ones, saw
+the reader refuse an undeclared call,
+
+203
+00:13:14.656 --> 00:13:19.802
+and handed three SQL Server and LDAP-bind
+accounts to the Data Platform plan.
+
+204
+00:13:19.802 --> 00:13:24.456
+The evidence an ISSO keeps for Gate
+1 from this module is the register,
+
+205
+00:13:24.456 --> 00:13:28.456
+the findings, the hand-off and
+the manifest that hashes them,
+
+206
+00:13:28.456 --> 00:13:32.702
+all dated; the permission list from
+step two; and the test result.
+
+207
+00:13:32.702 --> 00:13:35.777
+Before you ship, work through
+the chapter's checklist.
+
+208
+00:13:35.777 --> 00:13:40.290
+Next is Module 2: owners,
+sponsors and the orphan rule.
+
+209
+00:13:40.290 --> 00:13:44.553
+Every identity in this register
+needs two human owners and a sponsor,
+
+210
+00:13:44.553 --> 00:13:49.090
+and Module 2 checks who they are and
+what happens when there's nobody left.

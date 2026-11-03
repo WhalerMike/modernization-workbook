@@ -1,0 +1,88 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.825
+Two pieces sit between
+the check and the plan.
+
+2
+00:00:02.825 --> 00:00:04.387
+First, the hand-off.
+
+3
+00:00:04.387 --> 00:00:09.101
+Four escalation permissions let an app
+grant itself more or act as others.
+
+4
+00:00:09.101 --> 00:00:13.455
+The Microsoft Graph permissions reference
+cautions that app role assignment
+
+5
+00:00:13.455 --> 00:00:17.150
+read-write and role management
+read-write can grant authorization,
+
+6
+00:00:17.150 --> 00:00:20.713
+and that application read-write
+lets an app act as other entities.
+
+7
+00:00:20.713 --> 00:00:25.091
+And Microsoft Learn's guide to granting
+permissions says only appropriate
+
+8
+00:00:25.091 --> 00:00:29.262
+users should reach apps granted
+delegated permission grant read-write.
+
+9
+00:00:29.262 --> 00:00:33.254
+Any service principal holding
+one, or holding a directory role,
+
+10
+00:00:33.254 --> 00:00:38.475
+is handed off whole to the Privileged Access
+plan, with everything it holds listed.
+
+11
+00:00:38.475 --> 00:00:42.212
+It gets no finding here, so two
+plans never disagree about it.
+
+12
+00:00:42.212 --> 00:00:44.537
+Second, the quarterly owner review.
+
+13
+00:00:44.537 --> 00:00:47.119
+It has one row per grant of every service
+
+14
+00:00:47.119 --> 00:00:50.013
+principal that stays
+here, sent to its owners.
+
+15
+00:00:50.013 --> 00:00:55.051
+Under the program's design guidance,
+only decisions dated this quarter count;
+
+16
+00:00:55.051 --> 00:00:59.538
+an earlier answer shows as the last
+decision, and the row is open again.
+
+17
+00:00:59.538 --> 00:01:02.924
+The review closes when every
+row is decided this quarter
+
+18
+00:01:02.924 --> 00:01:06.000
+and nothing approved for
+removal is still granted.

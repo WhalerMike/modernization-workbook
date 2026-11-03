@@ -1,0 +1,78 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.213
+Unit 3 is what the ISSO receives.
+
+2
+00:00:03.213 --> 00:00:05.523
+Each run is packaged: the run itself,
+
+3
+00:00:05.523 --> 00:00:10.465
+a summary with rule I D's and fingerprints
+but no names, an evidence manifest,
+
+4
+00:00:10.465 --> 00:00:14.450
+and a checksum file anyone can
+verify with the standard tool.
+
+5
+00:00:14.450 --> 00:00:19.044
+Before it writes anything, the
+packager checks the run end to end:
+
+6
+00:00:19.044 --> 00:00:23.725
+every manifest by its hash, nothing
+extra, one tenant and one cloud.
+
+7
+00:00:23.725 --> 00:00:28.485
+Each package records the previous
+package's manifest hash, so the packages
+
+8
+00:00:28.485 --> 00:00:32.862
+form a chain, and a replaced package
+or a missing day shows up as a break.
+
+9
+00:00:32.862 --> 00:00:35.423
+Then the period verifies every package,
+
+10
+00:00:35.423 --> 00:00:39.537
+checks the chain and coverage,
+and maps findings to each control.
+
+11
+00:00:39.537 --> 00:00:42.409
+There's no signing, by
+the kit's design: hashes,
+
+12
+00:00:42.409 --> 00:00:46.636
+plus a locked time-based retention
+policy on the evidence store,
+
+13
+00:00:46.636 --> 00:00:51.501
+the write once, read many storage
+Microsoft Learn documents for blob data.
+
+14
+00:00:51.501 --> 00:00:54.349
+Each control reads
+either evidence present,
+
+15
+00:00:54.349 --> 00:00:57.275
+the assessor decides,
+or evidence incomplete.
+
+16
+00:00:57.275 --> 00:01:00.580
+The control mapping is the
+program's design guidance.

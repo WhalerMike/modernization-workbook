@@ -1,0 +1,78 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.012
+Step four prints the findings.
+
+2
+00:00:02.012 --> 00:00:05.088
+E A oh one, the first account, passes.
+
+3
+00:00:05.088 --> 00:00:08.550
+The second, E A oh two, fails five ways.
+
+4
+00:00:08.550 --> 00:00:13.013
+It's on contoso dot example, not
+the on-microsoft dot com domain.
+
+5
+00:00:13.013 --> 00:00:16.874
+Its Global Administrator assignment
+ends, so it isn't permanent.
+
+6
+00:00:16.874 --> 00:00:19.975
+It has a phone method, which
+isn't phishing-resistant.
+
+7
+00:00:19.975 --> 00:00:21.900
+It isn't in the exclusion group.
+
+8
+00:00:21.900 --> 00:00:23.838
+And its last drill is too old.
+
+9
+00:00:23.838 --> 00:00:25.125
+Then the policies.
+
+10
+00:00:25.125 --> 00:00:30.300
+Three enforced policies don't exclude the
+accounts: the legacy authentication block,
+
+11
+00:00:30.300 --> 00:00:33.288
+the compliant-device
+policy for administrators,
+
+12
+00:00:33.288 --> 00:00:35.475
+and the activation gate's own policy.
+
+13
+00:00:35.475 --> 00:00:38.275
+Each of those could lock
+the emergency accounts out.
+
+14
+00:00:38.275 --> 00:00:42.649
+The report-only policy that
+records emergency sign-ins is Info,
+
+15
+00:00:42.649 --> 00:00:44.500
+as Microsoft Learn allows.
+
+16
+00:00:44.500 --> 00:00:48.594
+And the last row, E A ten: carl
+dot ops is in the exclusion group,
+
+17
+00:00:48.594 --> 00:00:54.100
+and shouldn't be, because every policy
+that excludes the group excludes him too.

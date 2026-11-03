@@ -1,0 +1,89 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.437
+The federal requirement.
+
+2
+00:00:01.437 --> 00:00:09.719
+The controls are NIST special publication
+eight hundred fifty-three controls in its
+
+3
+00:00:09.719 --> 00:00:14.151
+Moderate baseline: C M six,
+C A seven, A C two, A C six,
+
+4
+00:00:14.151 --> 00:00:19.400
+S A eleven, C M seven, S I seven,
+A U three, C M three and C M five.
+
+5
+00:00:19.400 --> 00:00:23.414
+A check is monitoring evidence only
+if it can't change what it reads,
+
+6
+00:00:23.414 --> 00:00:25.312
+and can't pass when it didn't look.
+
+7
+00:00:25.312 --> 00:00:28.125
+The run's validation
+results show that an AD
+
+8
+00:00:28.125 --> 00:00:31.250
+object can't take over a
+cloud account unnoticed.
+
+9
+00:00:31.250 --> 00:00:34.680
+A deviation is approved,
+documented, and has an end:
+
+10
+00:00:34.680 --> 00:00:38.612
+the window date in the run's
+options, and its change record.
+
+11
+00:00:38.612 --> 00:00:43.696
+Least privilege: no standing Global
+Administrator identity for a scheduled check,
+
+12
+00:00:43.696 --> 00:00:47.674
+shown by the evidence block that
+says the read came from an export.
+
+13
+00:00:47.674 --> 00:00:52.300
+The test results, including the safety
+tests, show the kit can only read.
+
+14
+00:00:52.300 --> 00:00:57.600
+In Lab 2, the validation manifest
+holds a hash for every file of the run.
+
+15
+00:00:57.600 --> 00:01:01.863
+And the remediation is a write under
+change control, never the check.
+
+16
+00:01:01.863 --> 00:01:06.773
+The Key Security Indicators come from
+FedRAMP's Key Security Indicators list,
+
+17
+00:01:06.773 --> 00:01:10.399
+FedRAMP 20x indicators for
+cloud service providers.
+
+18
+00:01:10.399 --> 00:01:14.020
+Which output supports which
+control is this workbook's reading.

@@ -1,0 +1,70 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.400
+Unit 2 is the matrix as code.
+
+2
+00:00:02.400 --> 00:00:05.987
+The proposal gives every
+identity in scope a target.
+
+3
+00:00:05.987 --> 00:00:09.656
+SQL Server accounts are handed
+off, and an account found
+
+4
+00:00:09.656 --> 00:00:13.474
+only by a password that never
+expires waits for confirmation.
+
+5
+00:00:13.474 --> 00:00:17.268
+For the rest, retire comes
+first: for an account Module 2
+
+6
+00:00:17.268 --> 00:00:21.313
+found unowned and nobody claimed,
+or one already disabled.
+
+7
+00:00:21.313 --> 00:00:25.362
+Otherwise the first matrix row
+that matches proposes the target.
+
+8
+00:00:25.362 --> 00:00:30.185
+Rows one to five send a traditional
+account off premises to a managed identity,
+
+9
+00:00:30.185 --> 00:00:34.413
+or an app registration with a
+federated credential or a certificate.
+
+10
+00:00:34.413 --> 00:00:38.882
+Rows six and seven send a Kerberos
+account to a delegated managed service
+
+11
+00:00:38.882 --> 00:00:43.425
+account where the domain and hosts allow
+one, otherwise a group managed one.
+
+12
+00:00:43.425 --> 00:00:46.959
+Rows eight to thirteen handle
+the managed service accounts,
+
+13
+00:00:46.959 --> 00:00:51.837
+fourteen to eighteen the app registrations,
+and nineteen keeps a managed identity.
+
+14
+00:00:51.837 --> 00:00:56.110
+The workload facts come from the owner,
+and without them there's no proposal.

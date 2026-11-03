@@ -1,0 +1,87 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.788
+Start with where the code sits.
+
+2
+00:00:01.788 --> 00:00:05.964
+The operator steps for retiring
+Group Policy are already written,
+
+3
+00:00:05.964 --> 00:00:07.938
+in this workbook's own guidance.
+
+4
+00:00:07.938 --> 00:00:12.333
+This code serves two of them:
+importing every in-scope GPO into
+
+5
+00:00:12.333 --> 00:00:16.901
+Group Policy analytics, and creating
+the policy library as code.
+
+6
+00:00:16.901 --> 00:00:20.475
+Two rules shape it, and both
+are this workbook's guidance.
+
+7
+00:00:20.475 --> 00:00:23.922
+One owning policy, and one
+owning tool, per setting,
+
+8
+00:00:23.922 --> 00:00:27.200
+so the library holds only
+settings Intune owns.
+
+9
+00:00:27.200 --> 00:00:31.590
+And build unassigned: the code
+creates policies with no assignments,
+
+10
+00:00:31.590 --> 00:00:34.362
+and assigning them is
+a later, reviewed step.
+
+11
+00:00:34.362 --> 00:00:36.637
+Microsoft Learn sets the stakes.
+
+12
+00:00:36.637 --> 00:00:41.562
+Its page on importing GPOs into
+Group Policy analytics says the tool
+
+13
+00:00:41.562 --> 00:00:46.226
+is for Windows only, and imports
+GPO exports under four megabytes.
+
+14
+00:00:46.226 --> 00:00:51.771
+Its page on creating a settings catalog
+policy from imported GPOs calls the Migrate
+
+15
+00:00:51.771 --> 00:00:54.306
+step best effort, and says it stops when
+
+16
+00:00:54.306 --> 00:00:57.237
+two GPOs set one setting
+to different values.
+
+17
+00:00:57.237 --> 00:01:00.520
+And Learn's Microsoft Graph
+reference documents the
+
+18
+00:01:00.520 --> 00:01:04.460
+migration reports and settings
+catalog policies in beta only.

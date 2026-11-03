@@ -1,0 +1,72 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.325
+Step five reads the open
+rows of the owner review.
+
+2
+00:00:03.325 --> 00:00:04.462
+There are six.
+
+3
+00:00:04.462 --> 00:00:08.105
+One of them shows how the quarter
+works: the batch machine's User
+
+4
+00:00:08.105 --> 00:00:11.676
+dot Read dot All was kept on July
+fifteenth, an earlier quarter.
+
+5
+00:00:11.676 --> 00:00:14.439
+That answer doesn't count
+in the fourth quarter,
+
+6
+00:00:14.439 --> 00:00:17.487
+so the row is open again, and
+the owner has to answer it.
+
+7
+00:00:17.487 --> 00:00:20.388
+Step six reads the plan's eleven actions.
+
+8
+00:00:20.388 --> 00:00:21.312
+Three write.
+
+9
+00:00:21.312 --> 00:00:23.418
+Remove app role for HR Connector,
+
+10
+00:00:23.418 --> 00:00:28.799
+whose full-control site permission can go
+because its replacement, selected sites,
+
+11
+00:00:28.799 --> 00:00:33.400
+is already granted; a removal that
+names a replacement waits until it is.
+
+12
+00:00:33.400 --> 00:00:37.338
+Remove app role for Mail Automation's
+broad directory permission.
+
+13
+00:00:37.338 --> 00:00:40.887
+And narrow grant for Partner
+CRM's delegated grant.
+
+14
+00:00:40.887 --> 00:00:45.043
+The other eight write nothing:
+three handed off, the kept ones,
+
+15
+00:00:45.043 --> 00:00:49.920
+the rows awaiting a decision, and an
+Azure role for its owner to re-scope.

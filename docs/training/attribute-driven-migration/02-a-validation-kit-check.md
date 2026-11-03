@@ -14,7 +14,9 @@ last-reviewed: 2026-11-02
 
 **Learning path:** [Building the Attribute-Driven Migration](index.md) · Module 2 of 9 · 45 minutes · Guide [Gate 3](../../books/guides/attribute-driven-migration-implementation.md#gate-3-map-the-attributes-through-sync) · Workbook [Chapter 03](../../books/b19-developer-workbook/03-writing-a-validation-kit-check.md)
 
-**Watch:** the chapter's narrated tour, about 11 minutes: [▶ Watch](../../presentations/watch.html?v=DW_ADM_03_Validation_Kit_Check_Narrated). The narrated deck for this module comes later.
+**Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-adm-module-2) (the deck files come with the next edition) · [▶ Watch](../../presentations/watch.html?v=Training_ADM_Module_2_Narrated) (about 13 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_ADM_Module_2_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-adm-module-2/Training_ADM_Module_2_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-adm-module-2/Training_ADM_Module_2_Narrated.vtt).
+
+**Also:** the chapter's narrated tour, about 11 minutes: [▶ Watch](../../presentations/watch.html?v=DW_ADM_03_Validation_Kit_Check_Narrated).
 
 ## Unit 1: Introduction
 

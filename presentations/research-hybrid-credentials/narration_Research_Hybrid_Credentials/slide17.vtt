@@ -1,45 +1,50 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.752
+00:00:00.050 --> 00:00:03.362
 Finally, this research changed
 the books in five places:
 
 2
-00:00:03.752 --> 00:00:09.304
+00:00:03.362 --> 00:00:08.545
 the SQL Server and application chapters
 on how certificates rotate and who renews
 
 3
-00:00:09.304 --> 00:00:13.247
-them, Book 07 on federal smart
-card mapping, and Book 09 on the
+00:00:08.545 --> 00:00:12.433
+them, the PKI and Certificates book
+on federal smart card mapping,
 
 4
-00:00:13.247 --> 00:00:18.075
-forgotten NPS certificate and the
-access control server's certificate.
+00:00:12.433 --> 00:00:15.744
+and the Network and Transport
+book on the forgotten NPS
 
 5
-00:00:18.075 --> 00:00:21.992
+00:00:15.744 --> 00:00:19.200
+certificate and the access
+control server's certificate.
+
+6
+00:00:19.200 --> 00:00:23.274
 The next steps are tests, not more
 reading: prove the SQL key type,
 
-6
-00:00:21.992 --> 00:00:27.038
+7
+00:00:23.274 --> 00:00:28.237
 prove the card system can write the binding,
 and get CyberArk's answer on GovCloud.
 
-7
-00:00:27.038 --> 00:00:29.929
+8
+00:00:28.237 --> 00:00:31.129
 This is the program's
 research, under review,
 
-8
-00:00:29.929 --> 00:00:32.900
+9
+00:00:31.129 --> 00:00:34.100
 and not an endorsement
 by any federal agency.
 
-9
-00:00:32.900 --> 00:00:34.060
+10
+00:00:34.100 --> 00:00:35.260
 Thanks for watching.

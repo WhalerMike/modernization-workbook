@@ -24,35 +24,40 @@ fifteen characters or fewer, using
 the serial number or random digits.
 
 6
-00:00:15.525 --> 00:00:21.097
-The newer device preparation has a template
-too, but only for devices with device
+00:00:15.525 --> 00:00:18.664
+The newer device preparation
+has a template too,
 
 7
-00:00:21.097 --> 00:00:26.087
-association, so, as an inference, Book
-05's description of it needs a review.
+00:00:18.664 --> 00:00:22.824
+but only for devices with device
+association, so, as an inference,
 
 8
-00:00:26.087 --> 00:00:30.624
+00:00:22.824 --> 00:00:27.062
+the Devices and Endpoints book's
+description of it needs a review.
+
+9
+00:00:27.062 --> 00:00:31.599
 After enrollment, Intune can rename
 corporate Windows PCs and Macs,
 
-9
-00:00:30.624 --> 00:00:32.649
+10
+00:00:31.599 --> 00:00:33.624
 though not hybrid-joined ones.
 
-10
-00:00:32.649 --> 00:00:36.250
+11
+00:00:33.624 --> 00:00:37.225
 Macs have no enrollment-time
 template that this research found.
 
-11
-00:00:36.250 --> 00:00:41.550
+12
+00:00:37.225 --> 00:00:42.525
 Linux, Azure Arc servers and cloud VMs take
 their names from their own build tools.
 
-12
-00:00:41.550 --> 00:00:44.710
+13
+00:00:42.525 --> 00:00:45.700
 Naming has an owner;
 registering is the hard part.

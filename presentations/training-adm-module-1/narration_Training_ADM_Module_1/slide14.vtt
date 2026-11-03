@@ -1,0 +1,67 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.025
+Check yourself with two questions.
+
+2
+00:00:02.025 --> 00:00:06.262
+First: the bulk upload endpoint
+answers two-oh-two Accepted.
+
+3
+00:00:06.262 --> 00:00:07.451
+What does that tell you?
+
+4
+00:00:07.451 --> 00:00:11.206
+The answer is b: the batch was
+staged for the provisioning job,
+
+5
+00:00:11.206 --> 00:00:14.812
+and each record's result appears
+in the provisioning logs.
+
+6
+00:00:14.812 --> 00:00:19.670
+Learn's bulk upload API reference
+says the endpoint is asynchronous,
+
+7
+00:00:19.670 --> 00:00:23.250
+so a two-oh-two is never
+proof that a user was written.
+
+8
+00:00:23.250 --> 00:00:28.450
+Second: a run would disable more accounts
+than the maximum disables per run allows.
+
+9
+00:00:28.450 --> 00:00:29.462
+What happens?
+
+10
+00:00:29.462 --> 00:00:33.170
+The answer is c: the whole run
+is held, with exit code three,
+
+11
+00:00:33.170 --> 00:00:37.362
+until someone confirms it with
+the confirm large delta option.
+
+12
+00:00:37.362 --> 00:00:39.525
+You saw that in step six of the lab.
+
+13
+00:00:39.525 --> 00:00:44.422
+The module page has two more questions,
+on the bulk I D and on partial records,
+
+14
+00:00:44.422 --> 00:00:47.260
+each linked to the
+section that answers it.

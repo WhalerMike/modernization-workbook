@@ -5,54 +5,58 @@ WEBVTT
 To close, where this fits.
 
 2
-00:00:01.950 --> 00:00:06.944
-Book 08 of the workbook makes the
-vendor-neutral case, from split-brain to the
+00:00:01.950 --> 00:00:06.770
+The workbook's DNS, DHCP and IPAM
+book makes the vendor-neutral case,
 
 3
-00:00:06.944 --> 00:00:12.413
-policy plane, and the research deep dive on
-Infoblox DDI covers the platform itself.
+00:00:06.770 --> 00:00:09.307
+from split-brain to the policy plane,
 
 4
-00:00:12.413 --> 00:00:17.417
+00:00:09.307 --> 00:00:14.212
+and the research deep dive on Infoblox
+DDI covers the platform itself.
+
+5
+00:00:14.212 --> 00:00:19.274
 The decisions to take are which option
 for each cloud and impact level, one named
 
-5
-00:00:17.417 --> 00:00:20.147
+6
+00:00:19.274 --> 00:00:21.958
 owner for every zone,
 where DNSSEC keys live,
 
-6
-00:00:20.147 --> 00:00:22.650
+7
+00:00:21.958 --> 00:00:24.488
 and how address blocks reach each cloud.
 
-7
-00:00:22.650 --> 00:00:26.056
+8
+00:00:24.488 --> 00:00:27.894
 The next steps start with
 Infoblox: ask for the Government
 
-8
-00:00:26.056 --> 00:00:29.675
+9
+00:00:27.894 --> 00:00:31.513
 Cloud boundary and a feature
 matrix for government accounts.
 
-9
-00:00:29.675 --> 00:00:34.046
+10
+00:00:31.513 --> 00:00:35.883
 Then confirm Azure Government
 availability, size NIOS-X capacity if
 
-10
-00:00:34.046 --> 00:00:38.263
+11
+00:00:35.883 --> 00:00:40.100
 you want cloud forwarders, and test
 forwarding in both directions.
 
-11
-00:00:38.263 --> 00:00:43.188
+12
+00:00:40.100 --> 00:00:45.025
 This is research under review, not an
 endorsement by any federal agency.
 
-12
-00:00:43.188 --> 00:00:44.020
+13
+00:00:45.025 --> 00:00:45.840
 Thank you.

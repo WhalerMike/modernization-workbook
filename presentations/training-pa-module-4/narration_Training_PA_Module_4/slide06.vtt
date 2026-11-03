@@ -1,0 +1,79 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.575
+The checks, pim oh one to oh nine.
+
+2
+00:00:02.575 --> 00:00:05.202
+Oh one and oh two are
+the lockout's two halves,
+
+3
+00:00:05.202 --> 00:00:09.289
+from Microsoft Learn's PIM settings
+page: approval with no approver,
+
+4
+00:00:09.289 --> 00:00:13.887
+and too few emergency accounts holding
+Global Administrator permanently.
+
+5
+00:00:13.887 --> 00:00:17.744
+Oh three is the program's design:
+an approver group that's also
+
+6
+00:00:17.744 --> 00:00:21.600
+the role's eligible group, so
+approval becomes self-approval.
+
+7
+00:00:21.600 --> 00:00:25.912
+Oh four is a file outside Microsoft
+Learn's bounds or its tier's cap.
+
+8
+00:00:25.912 --> 00:00:31.501
+Oh five warns on an authentication context,
+because its policy must be On first.
+
+9
+00:00:31.501 --> 00:00:34.513
+Oh six is a role with no
+policy at tenant scope.
+
+10
+00:00:34.513 --> 00:00:36.463
+Oh seven is the wave order.
+
+11
+00:00:36.463 --> 00:00:40.327
+Oh eight is eligibility
+outside the role's P R V group,
+
+12
+00:00:40.327 --> 00:00:43.562
+which the access review
+in Module 7 removes.
+
+13
+00:00:43.562 --> 00:00:46.570
+And oh nine is a standing
+active assignment:
+
+14
+00:00:46.570 --> 00:00:50.162
+a user to convert, or a
+service principal to document.
+
+15
+00:00:50.162 --> 00:00:54.528
+Reads and writes are different tasks,
+and the code follows the Graph A P I
+
+16
+00:00:54.528 --> 00:00:59.260
+reference pages, which name narrower
+permissions than Learn's how-to guides.

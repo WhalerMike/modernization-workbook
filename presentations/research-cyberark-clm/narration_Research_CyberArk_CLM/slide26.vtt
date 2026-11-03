@@ -15,31 +15,31 @@ So every certificate gets
 a home and a named owner.
 
 4
-00:00:08.525 --> 00:00:12.923
+00:00:08.525 --> 00:00:12.916
 The platform's policy folders mirror
-Book 07's certificate classes,
+the workbook's certificate classes,
 
 5
-00:00:12.923 --> 00:00:16.300
+00:00:12.916 --> 00:00:16.012
 so where a certificate lives
 tells you how it renews.
 
 6
-00:00:16.300 --> 00:00:19.954
+00:00:16.012 --> 00:00:19.666
 Owners come from Entra groups,
 and, if the agency uses it,
 
 7
-00:00:19.954 --> 00:00:25.638
+00:00:19.666 --> 00:00:25.350
 the ServiceNow app can tie certificates to
 the same configuration items as the CMDB.
 
 8
-00:00:25.638 --> 00:00:29.702
+00:00:25.350 --> 00:00:29.415
 And one alert matters most: a
 certificate nearing expiry with no
 
 9
-00:00:29.702 --> 00:00:33.600
+00:00:29.415 --> 00:00:33.310
 renewal path is an incident while
 there's still time to fix it.

@@ -12,7 +12,7 @@
   {
     "slide": 3,
     "title": "What Trinzic is, and what it does well on premises",
-    "say": "On premises, a Trinzic Grid is the agency's DNS and DHCP servers plus its address record, all managed from the Grid Master. It does a lot well. DNS views give internal and outside clients different answers on purpose, DNS Firewall blocks bad names, DNSSEC signing is centralized, and DHCP runs as failover pairs. One caution: the default signing algorithm is RSA with SHA-1, which a federal deployment should change. This matters because Book 08 of the workbook argues for one DDI policy plane, a single system of record with cloud DNS managed as an overlay. On premises, the Grid fits that role, inside the agency's own boundary rather than as a FedRAMP cloud service. The open question is the cloud edge."
+    "say": "On premises, a Trinzic Grid is the agency's DNS and DHCP servers plus its address record, all managed from the Grid Master. It does a lot well. DNS views give internal and outside clients different answers on purpose, DNS Firewall blocks bad names, DNSSEC signing is centralized, and DHCP runs as failover pairs. One caution: the default signing algorithm is RSA with SHA-1, which a federal deployment should change. This matters because the workbook's DNS design argues for one DDI policy plane, a single system of record with cloud DNS managed as an overlay. On premises, the Grid fits that role, inside the agency's own boundary rather than as a FedRAMP cloud service. The open question is the cloud edge."
   },
   {
     "slide": 4,
@@ -47,6 +47,6 @@
   {
     "slide": 10,
     "title": "Where this fits the workbook, and next steps",
-    "say": "To close, where this fits. Book 08 of the workbook makes the vendor-neutral case, from split-brain to the policy plane, and the research deep dive on Infoblox DDI covers the platform itself. The decisions to take are which option for each cloud and impact level, one named owner for every zone, where DNSSEC keys live, and how address blocks reach each cloud. The next steps start with Infoblox: ask for the Government Cloud boundary and a feature matrix for government accounts. Then confirm Azure Government availability, size NIOS-X capacity if you want cloud forwarders, and test forwarding in both directions. This is research under review, not an endorsement by any federal agency. Thank you."
+    "say": "To close, where this fits. The workbook's DNS, DHCP and IPAM book makes the vendor-neutral case, from split-brain to the policy plane, and the research deep dive on Infoblox DDI covers the platform itself. The decisions to take are which option for each cloud and impact level, one named owner for every zone, where DNSSEC keys live, and how address blocks reach each cloud. The next steps start with Infoblox: ask for the Government Cloud boundary and a feature matrix for government accounts. Then confirm Azure Government availability, size NIOS-X capacity if you want cloud forwarders, and test forwarding in both directions. This is research under review, not an endorsement by any federal agency. Thank you."
   }
 ]

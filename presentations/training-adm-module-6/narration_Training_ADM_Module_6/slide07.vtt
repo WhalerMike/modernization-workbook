@@ -1,0 +1,86 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.362
+The kit's CMDB inventory script turns
+each owner into a group and a tag.
+
+2
+00:00:05.362 --> 00:00:10.464
+A config owner of arc machine configuration,
+Ansible, Intune and so on becomes a
+
+3
+00:00:10.464 --> 00:00:15.487
+group, and a Config Owner tag in the
+spelling of this workbook's Arc track guide.
+
+4
+00:00:15.487 --> 00:00:17.450
+The patch owner works the same way.
+
+5
+00:00:17.450 --> 00:00:21.757
+An empty owner on a tier one or
+two record goes to a missing group,
+
+6
+00:00:21.757 --> 00:00:25.649
+which is a finding under NIST
+special publication eight
+
+7
+00:00:25.649 --> 00:00:29.625
+hundred fifty-three control
+CM-8, inventory, never a target.
+
+8
+00:00:29.625 --> 00:00:31.575
+And the wave becomes a wave group.
+
+9
+00:00:31.575 --> 00:00:33.375
+Three rules fail closed.
+
+10
+00:00:33.375 --> 00:00:36.163
+An owner value the script
+doesn't know stops it.
+
+11
+00:00:36.163 --> 00:00:40.272
+A typo like update manager written
+as one word would otherwise create a
+
+12
+00:00:40.272 --> 00:00:44.450
+group nothing reads, and drop the server
+out of the group that protects it.
+
+13
+00:00:44.450 --> 00:00:46.500
+A wave that isn't a number stops it.
+
+14
+00:00:46.500 --> 00:00:51.778
+And a server is a candidate only if its
+record has both owners, a resource group,
+
+15
+00:00:51.778 --> 00:00:54.582
+a region, a wave, and
+tag values Arc accepts;
+
+16
+00:00:54.582 --> 00:01:00.025
+Learn's azcmagent connect reference takes
+the tags as one comma-delimited list.
+
+17
+00:01:00.025 --> 00:01:02.950
+Otherwise it's blocked,
+with the reasons recorded.
+
+18
+00:01:02.950 --> 00:01:04.920
+All three are the kit's design.

@@ -30,35 +30,35 @@ for a small footprint, or when
 a tool expects BIND itself.
 
 7
-00:00:24.388 --> 00:00:27.994
-BIND has no policy plane
-of its own; for Book 08,
+00:00:24.388 --> 00:00:29.329
+BIND has no policy plane of its
+own; in the workbook's DNS design,
 
 8
-00:00:27.994 --> 00:00:31.699
+00:00:29.329 --> 00:00:33.012
 its policy comes from
 the DDI platform and Git.
 
 9
-00:00:31.699 --> 00:00:32.688
+00:00:33.012 --> 00:00:34.001
 Which BIND?
 
 10
-00:00:32.688 --> 00:00:36.713
+00:00:34.001 --> 00:00:38.025
 ISC supports each even-numbered
 branch for four years.
 
 11
-00:00:36.713 --> 00:00:42.517
+00:00:38.025 --> 00:00:43.830
 As of October twenty-ninth, 9.20 is
 the supported production branch,
 
 12
-00:00:42.517 --> 00:00:47.900
+00:00:43.830 --> 00:00:49.213
 with end of life in 2028, and 9.18
 reached end of life in June 2026.
 
 13
-00:00:47.900 --> 00:00:52.940
+00:00:49.213 --> 00:00:54.240
 Operating-system packages follow their
 vendor, so record which support you rely on.

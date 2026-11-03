@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.762
+Step eight is the write path's dry run.
+
+2
+00:00:02.762 --> 00:00:06.196
+You take the plan's hash, which
+in a real run a second person
+
+3
+00:00:06.196 --> 00:00:09.776
+would review and pass to you,
+and give it to the action script.
+
+4
+00:00:09.776 --> 00:00:14.587
+It reports four would-send lines, one
+for each write, and sends nothing.
+
+5
+00:00:14.587 --> 00:00:18.900
+Step nine runs the same command with
+the apply switch, against the fake.
+
+6
+00:00:18.900 --> 00:00:24.250
+Four writes are sent, including the
+completed migration for svc h r sync.
+
+7
+00:00:24.250 --> 00:00:27.987
+Then you pass a hash of zeros,
+a hash nobody approved.
+
+8
+00:00:27.987 --> 00:00:31.737
+The script refuses: the plan's
+hash isn't the approved one,
+
+9
+00:00:31.737 --> 00:00:34.263
+and it won't run a plan nobody reviewed.
+
+10
+00:00:34.263 --> 00:00:38.263
+Pasted line by line, your shell
+carries on after the refusal.
+
+11
+00:00:38.263 --> 00:00:43.288
+Step ten runs every test: five
+hundred thirteen pass, none fail.
+
+12
+00:00:43.288 --> 00:00:45.190
+Then delete the output folder.

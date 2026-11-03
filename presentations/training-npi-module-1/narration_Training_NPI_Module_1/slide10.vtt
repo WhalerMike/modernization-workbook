@@ -1,0 +1,71 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.887
+Step three runs the inventory
+against the fictional estate.
+
+2
+00:00:03.887 --> 00:00:08.299
+It reads thirty-five identities,
+fifteen from Active Directory and
+
+3
+00:00:08.299 --> 00:00:12.788
+twenty from Entra, and rates eight
+high, eight medium and nineteen low.
+
+4
+00:00:12.788 --> 00:00:16.782
+That's eight findings, eleven
+warnings and three information items,
+
+5
+00:00:16.782 --> 00:00:19.849
+and three accounts handed
+to the Data Platform plan.
+
+6
+00:00:19.849 --> 00:00:24.938
+The manifest records the tenant, every
+request, and a hash of every file.
+
+7
+00:00:24.938 --> 00:00:27.913
+Step four reads the eight
+high-risk identities.
+
+8
+00:00:27.913 --> 00:00:32.523
+Three accounts have passwords that
+never expire, and one of them,
+
+9
+00:00:32.523 --> 00:00:36.351
+svc oldftp, is also a stale
+lead, so verify its use first.
+
+10
+00:00:36.351 --> 00:00:39.994
+j doe was found only by a
+password that never expires,
+
+11
+00:00:39.994 --> 00:00:42.875
+so it may be a person,
+not a service account.
+
+12
+00:00:42.875 --> 00:00:45.997
+Others sit in Backup
+Operators or Domain Admins,
+
+13
+00:00:45.997 --> 00:00:48.963
+or are trusted for
+unconstrained delegation.
+
+14
+00:00:48.963 --> 00:00:52.800
+And the Mail Automation app holds
+a directory-wide write permission.

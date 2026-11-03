@@ -1,0 +1,61 @@
+# Privileged Access learning path — Module 6: PIM for Azure resources — narration script (practice copy)
+
+## Slide 1 — Module 6: PIM for Azure resources
+
+Welcome to Module 6 of the Privileged Access learning path: PIM for Azure resources. This module serves the project plan's task A3.2 in Phase 3, Azure privileged roles eligible through PIM, with Chapter 06 of the developer workbook. Owner, Contributor and User Access Administrator on a subscription are privileged too. The plan makes them eligible through PIM, with at most three subscription owners. In this module you hold PIM for Azure resources as code. One reviewed file says which scopes are governed, the settings for each tier, who is eligible, and which standing assignments are allowed and who owns each one. The code reads the estate, prints a diff, writes the requests it would send, and sends them only with Apply. It's illustrative: tested against fixtures and a fake.
+
+## Slide 2 — Why Azure roles need their own module
+
+Why its own module? Because PIM for Azure resources isn't in Microsoft Graph. It goes through Azure Resource Manager, and the caller needs Azure roles on the resource instead of Graph permissions. The roles matter: Owner, Contributor and User Access Administrator on a subscription are privileged, and Microsoft Learn's Azure R B A C best practices say at most three subscription owners. Four guards keep people from losing access. Eligible first: each standing assignment held by a user or group gets an eligible replacement before its removal, so no holder loses the role before they can activate it. Rule A Z oh five flags a standing assignment held by the identity the plan runs as; the apply needs it to finish, so decide it last, from another session, as this workbook's design guidance says. The desired state refuses an authentication context before its Conditional Access policy is confirmed, as Microsoft Learn advises. And policies go first, because a request that breaks a policy is refused.
+
+## Slide 3 — What you'll be able to do in Module 6
+
+Here's what you'll be able to do by the end of this module, which takes about fifty minutes with the lab. You'll explain why PIM for Azure resources goes through Resource Manager, and which A P I version the code uses. You'll explain why role settings must be set at every governed scope. You'll say who can and can't be made eligible. You'll read the plan's three kinds of operation and its findings, A Z oh one to oh six. And you'll explain why the code declares User Access Administrator, not Owner, for the apply. Before you start, finish Module 1, whose Azure half reads the same two schedule lists, and Module 4, whose seven managed rules are the same here. Lab 2 needs a worldwide or G C C test tenant with a test management group, subscription and resource group, never production, and P2 or Governance licenses for eligible users.
+
+## Slide 4 — Resource Manager, scopes and holders
+
+Unit 1: Resource Manager, scopes and holders. Resource Manager, not Graph: three resource types under Microsoft dot Authorization do the work, and Microsoft Learn's page on the Azure R B A C A P I versions marks twenty twenty, ten, oh one as the generally available release of every PIM resource type. The code pins it. Policies don't inherit: Microsoft Learn's page on Azure resource role settings says settings at a subscription aren't inherited by a resource group under it, so the file lists every scope it governs. Who can be eligible: users, not applications, service principals or managed identities, which can't perform the activation steps. So a standing Contributor held by a deployment pipeline is reported, and left alone. And what counts as privileged: Learn's privileged administrator roles, of which the chapter governs the three the plan names, with Microsoft's best practice of at most three subscription owners.
+
+## Slide 5 — The findings: PA-AZ-01 to PA-AZ-06
+
+The findings, A Z oh one to oh six. Oh one is standing Owner, Contributor or User Access Administrator outside the exceptions, against Microsoft Learn's advice of zero permanently active assignments. It's Info for a holder on the exceptions list with an owner. Oh two is a standing assignment held by a service principal or managed identity, which Microsoft Learn says can't be made eligible. Oh three is User Access Administrator at root scope, the elevated access Microsoft Learn says to remove when the task is done. Oh four is an eligibility the file doesn't declare, or one that never expires. It's reported, never removed by the plan. Oh five is the plan's own identity holding a standing role, the kit's own design. And oh six is more than three Owners on a subscription, counted after the plan.
+
+## Slide 6 — The plan, the apply, and the narrower role
+
+Unit 2: the plan and the apply. The call list has two tasks. Reader reads; User Access Administrator applies. Microsoft Learn's PIM pages name two roles that can manage assignments, and the code follows the stricter statement and declares the narrower one, User Access Administrator. Owner isn't needed for anything. The plan's order is fixed: policy updates first, then new eligible assignments, then removal of standing assignments. Each request has a G U I D derived from the run I D and the operation, so the dry run and the apply send exactly the requests the reviewer read. An eligibility the file doesn't declare is reported, never removed by the plan. And every run writes a state file, which holds each policy's rules as read. That's the back-out.
+
+## Slide 7 — Try it: Microsoft's examples, and each task's roles
+
+Try it. Lab 1 runs in one PowerShell 7 session. The fixture estate has a management group, contoso root, a workload subscription, a control-plane subscription, and a resource group, R G payroll. The identity that would run the apply is the fictional service principal S P P I M automation. Step one replays Microsoft's examples from the Azure R E S T A P I specifications. Six pass; the thirty-two not run are the chapter's other tests. The second test is the one to notice: Microsoft's own assignment example is an activation, though its assignment type says Assigned. Step two lists the roles each task needs. Reading needs Reader. Applying needs Reader and User Access Administrator. Owner isn't needed for anything.
+
+## Slide 8 — Try it: plan the fictional estate, as a dry run
+
+Step three plans, as a dry run. You give it the cloud, the fixture estate, the desired state, the principal I D of the identity that would run the apply, so it can flag that identity's own roles, an output folder and a run I D. It reads nine assignment schedules and two eligibility schedules, and twelve policies at four scopes. The plan: eleven policy updates, five eligible assignments to add, and three standing assignments to remove. Nineteen requests, in that order. The findings: seven, with two warnings and one information item. It's a dry run, so the nineteen requests are written to the plan file, and none are sent. Review the diff, then run again with Apply.
+
+## Slide 9 — Try it: eligible first, then the removal
+
+Step four reads the diff. The plus lines add eligible assignments: User Access Administrator at the root management group, Tier 0, for ninety days; Owner on the workload subscription, twice; and Contributor on the payroll resource group, twice, each for a hundred eighty days, Tier 1. Three of them say converted. Each converted line has its minus line below: the standing User Access Administrator, Owner and Contributor assignments those holders had, each removed only after its eligible replacement. Eligible replacement first. Then count the tilde lines: seventy policy rule changes, across the governed scopes. The slide shortens the I D's and scope names to fit.
+
+## Slide 10 — Try it: read the findings
+
+Then the findings, leaving out the two warnings. Three A Z oh one findings: standing User Access Administrator at the root management group, standing Owner on the workload subscription, and standing Contributor on the payroll resource group. One oh one is Info: a Contributor on the control-plane subscription that's on the exceptions list with an owner. A Z oh five is the automation service principal's own User Access Administrator: the apply needs it to finish, so decide it last, from another session. A Z oh three is User Access Administrator at root scope, elevated access. A Z oh two is a pipeline's standing Contributor, which can't be made eligible, so it's reported and left alone. And A Z oh six: more than three Owners on the workload subscription.
+
+## Slide 11 — Try it: apply to the fake, and see the code refuse
+
+Step five applies against the fake, with the same run I D, so it sends exactly the nineteen requests the dry run wrote. It prints the same read, plan and findings, then: nineteen requests sent, and after a fresh read, zero left to change. Step six shows the code refusing. Build a client for the read task, and try to write a policy update with it. It throws: that call isn't declared for the read task; add it to the call list with its role. A read client can't write. Then ask the code to treat a web app as a scope. It refuses: a scope must be a management group, a subscription or a resource group. Step seven runs the tests, three hundred thirty pass, and you delete the output folder.
+
+## Slide 12 — Lab 2: test scopes, and a one-day apply role
+
+Lab 2 runs in a worldwide or G C C test tenant, with a test management group, subscription and resource group, never production, and fictional users and groups. Eligible users need Microsoft Entra I D P2 or Microsoft Entra I D Governance. You prepare an app with Reader on each test scope, and write the desired state for the test scopes. You plan live, then apply under a User Access Administrator assignment that lasts one day, and try the narrower role on one scope. No Graph permission is needed at all. The back-out waits at least five minutes after the last assignment, removes the eligible assignments the run created, restores each policy from the dry run's state file, removes the app's roles and the app, and deletes the test output folders. The authors haven't run Lab 2.
+
+## Slide 13 — The federal requirement and the evidence for A3.2
+
+The federal requirement. The desired state, the plan and the read-back are the evidence for the plan's task A3.2, Azure privileged roles eligible through PIM. From NIST special publication eight hundred fifty-three they support A C six, with enhancements one and five, A C two, and C M three with C M four, enhancement two. Note one absence. CISA's B O D twenty-five oh-one has Microsoft Entra I D policies, and they cover Entra roles, not Azure roles, so the chapter claims none of them here. The evidence an ISSO keeps: the reviewed desired state; each run's state, plan, diff and findings, with its manifest; and the apply's diff-after file, which shows nothing left to change.
+
+## Slide 14 — Check yourself: two questions on Azure PIM
+
+Check yourself with two questions. First: you set role settings at a subscription. Does a resource group under it get them? The answer is b: no. Microsoft Learn says the settings aren't inherited, so the file lists every governed scope. Second: a deployment pipeline's service principal holds standing Contributor. What does the plan do? The answer is c: it reports A Z oh two and leaves it alone, because service principals can't be made eligible. You saw it in Lab 1, step four. The module page has two more questions, each linked to the section that answers it.
+
+## Slide 15 — Summary, and next: Module 7, access reviews
+
+To sum up. You read a fictional Azure estate at four scopes, planned nineteen requests in order, policies, then eligibility, then removals, saw each conversion add the eligible assignment first, and applied them to the fake with nothing left to change. And you saw a read client refuse a write. Next is Module 7: access reviews of privileged roles. The approval gate controls the use of privilege; reviews control who keeps the eligibility. In Module 7 you define every privileged review series as code, show a reviewer what a change will do before it reaches the tenant, and hand the ISSO the decisions each review produced.

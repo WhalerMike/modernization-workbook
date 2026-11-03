@@ -1,0 +1,70 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.387
+The audit findings,
+rules oh one to oh four.
+
+2
+00:00:03.387 --> 00:00:06.326
+Audit oh one is a role
+assigned outside PIM.
+
+3
+00:00:06.326 --> 00:00:10.768
+Microsoft Learn's security operations
+guide for PIM says to monitor
+
+4
+00:00:10.768 --> 00:00:14.900
+roles assigned outside PIM, and it's
+a finding for Tier 0 and Tier 1.
+
+5
+00:00:14.900 --> 00:00:19.702
+Audit oh two is a Tier 0 or Tier 1
+activation that completed with no approval
+
+6
+00:00:19.702 --> 00:00:24.350
+record in the window, because the
+program's tiers require approval there.
+
+7
+00:00:24.350 --> 00:00:29.398
+Audit oh three is an activation approved
+by its own requester; the plan's Gate 3
+
+8
+00:00:29.398 --> 00:00:33.106
+asks for requester and approver
+to be distinct for Tier 0,
+
+9
+00:00:33.106 --> 00:00:34.762
+and that's the kit's design.
+
+10
+00:00:34.762 --> 00:00:37.963
+And audit oh four is a role
+setting changed in PIM.
+
+11
+00:00:37.963 --> 00:00:41.399
+Microsoft Learn's guide says
+to always alert on PIM setting
+
+12
+00:00:41.399 --> 00:00:45.537
+changes for Privileged Role
+Administrator and Global Administrator.
+
+13
+00:00:45.537 --> 00:00:48.193
+The change is a finding
+until it's reconciled
+
+14
+00:00:48.193 --> 00:00:51.120
+with a reviewed change to
+the files from Module 4.

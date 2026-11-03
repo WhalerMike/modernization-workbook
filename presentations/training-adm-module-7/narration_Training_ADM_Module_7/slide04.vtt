@@ -1,0 +1,84 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.750
+This workbook's guidance splits the
+work: inbound provisioning creates and
+
+2
+00:00:04.750 --> 00:00:09.600
+updates accounts, and Lifecycle Workflows
+act on accounts that already exist.
+
+3
+00:00:09.600 --> 00:00:13.350
+It also sets three rules, and
+the kit builds them in code.
+
+4
+00:00:13.350 --> 00:00:17.988
+One parameterized Logic App per
+integration, not one per component.
+
+5
+00:00:17.988 --> 00:00:21.226
+Block first: Disable user
+account and Revoke all
+
+6
+00:00:21.226 --> 00:00:24.626
+refresh tokens for user
+run before the custom task.
+
+7
+00:00:24.626 --> 00:00:28.737
+And custom tasks are idempotent,
+and retry with a bound.
+
+8
+00:00:28.737 --> 00:00:31.088
+Microsoft Learn sets the contract.
+
+9
+00:00:31.088 --> 00:00:36.289
+Its page on the Lifecycle Workflows custom
+task extension says that in launch and
+
+10
+00:00:36.289 --> 00:00:39.426
+wait, the extension starts
+the Logic App and waits;
+
+11
+00:00:39.426 --> 00:00:43.787
+if no response arrives within the
+wait, the task is considered failed.
+
+12
+00:00:43.787 --> 00:00:47.726
+Learn's Graph reference sets the wait
+at thirty minutes to three hours.
+
+13
+00:00:47.726 --> 00:00:50.235
+The response is a POST to resume,
+
+14
+00:00:50.235 --> 00:00:55.063
+with a status of completed or
+failed, and Learn lists it in v1.0.
+
+15
+00:00:55.063 --> 00:01:00.753
+And Learn's page on Microsoft Graph national
+cloud deployments gives the clouds:
+
+16
+00:01:00.753 --> 00:01:05.424
+GCC keeps the worldwide Graph, GCC
+High and DoD have their own hosts,
+
+17
+00:01:05.424 --> 00:01:08.810
+and a token for one cloud
+doesn't work in another.

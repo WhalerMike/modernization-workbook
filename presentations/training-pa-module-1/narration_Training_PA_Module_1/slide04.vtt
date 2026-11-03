@@ -1,0 +1,77 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.762
+Unit 1: what the inventory has to hold.
+
+2
+00:00:02.762 --> 00:00:07.770
+Microsoft Learn's guide to planning a PIM
+deployment names four kinds of assignment:
+
+3
+00:00:07.770 --> 00:00:12.563
+permanent eligible, permanent active,
+time-bound eligible and time-bound active.
+
+4
+00:00:12.563 --> 00:00:16.124
+And it says to keep zero
+permanently active assignments,
+
+5
+00:00:16.124 --> 00:00:18.549
+except the emergency access accounts.
+
+6
+00:00:18.549 --> 00:00:23.112
+So the inventory reads all four,
+eligible as well as active.
+
+7
+00:00:23.112 --> 00:00:24.413
+Next, the route.
+
+8
+00:00:24.413 --> 00:00:28.876
+A role assigned to a role-assignable
+group reaches every member of that group.
+
+9
+00:00:28.876 --> 00:00:32.906
+The program's design assigns
+roles to groups named P R V,
+
+10
+00:00:32.906 --> 00:00:36.400
+then the tier, then the
+role, and never to a person.
+
+11
+00:00:36.400 --> 00:00:37.425
+Then the tier.
+
+12
+00:00:37.425 --> 00:00:41.057
+It comes from the program's
+own file, tiers dot json,
+
+13
+00:00:41.057 --> 00:00:45.663
+keyed by the role's template I D,
+which is the same in every tenant.
+
+14
+00:00:45.663 --> 00:00:50.788
+A role that isn't in the file is reported
+as unclassified, never assumed safe.
+
+15
+00:00:50.788 --> 00:00:53.598
+That file is this
+workbook's design guidance:
+
+16
+00:00:53.598 --> 00:00:56.930
+the agency replaces it with
+its approved tier model.

@@ -1,0 +1,79 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.437
+The federal requirement.
+
+2
+00:00:01.437 --> 00:00:04.503
+The inventory is the evidence
+for the plan's Gate 0:
+
+3
+00:00:04.503 --> 00:00:09.063
+standing administrative privilege
+inventoried and classified by tier.
+
+4
+00:00:09.063 --> 00:00:13.769
+It supports NIST special publication
+eight hundred fifty-three A C two,
+
+5
+00:00:13.769 --> 00:00:16.961
+account management, and A
+C six, enhancement five,
+
+6
+00:00:16.961 --> 00:00:20.312
+privileged accounts
+restricted to defined roles.
+
+7
+00:00:20.312 --> 00:00:25.977
+And it supports CISA's B O D twenty-five
+oh-one and the ScubaGear baseline M S A A D
+
+8
+00:00:25.977 --> 00:00:31.207
+seven point four, version one: no
+permanent active assignment to a highly
+
+9
+00:00:31.207 --> 00:00:36.262
+privileged role, with the emergency
+access accounts as the exception.
+
+10
+00:00:36.262 --> 00:00:40.038
+The table pairs each with
+a KSI and an evidence file.
+
+11
+00:00:40.038 --> 00:00:45.323
+KSIs are FedRAMP's twenty X Key Security
+Indicators for cloud service providers;
+
+12
+00:00:45.323 --> 00:00:49.504
+the agency lines its evidence up
+with what its providers report,
+
+13
+00:00:49.504 --> 00:00:51.476
+and doesn't report KSIs itself.
+
+14
+00:00:51.476 --> 00:00:55.567
+The evidence an ISSO keeps for
+Gate 0: the inventory files,
+
+15
+00:00:55.567 --> 00:01:00.357
+in the access-controlled evidence
+store, because they name people;
+
+16
+00:01:00.357 --> 00:01:04.420
+the findings; and the manifest,
+beside the files it lists.

@@ -15,41 +15,41 @@ and it's about one product:
 CyberArk Certificate Manager.
 
 4
-00:00:08.337 --> 00:00:13.319
-Book 07 of the workbook chose it as the
-program's certificate lifecycle platform,
+00:00:08.337 --> 00:00:12.869
+The workbook's certificate plan chose it
+as the program's certificate lifecycle
 
 5
-00:00:13.319 --> 00:00:16.813
-so whenever you hear me say "the
-platform," that's what I mean.
+00:00:12.869 --> 00:00:16.588
+platform, so whenever you hear me say
+"the platform," that's what I mean.
 
 6
-00:00:16.813 --> 00:00:20.555
+00:00:16.588 --> 00:00:20.330
 Its job is simple to say and
 hard to do: keep track of every
 
 7
-00:00:20.555 --> 00:00:25.112
+00:00:20.330 --> 00:00:24.887
 certificate nobody else is renewing,
 and renew it before it expires.
 
 8
-00:00:25.112 --> 00:00:29.358
+00:00:24.887 --> 00:00:28.790
 We'll start with what the platform is
 and what it's made of, then build it,
 
 9
-00:00:29.358 --> 00:00:32.784
+00:00:28.790 --> 00:00:31.940
 connect it to the certificate
 authorities, automate it,
 
 10
-00:00:32.784 --> 00:00:35.763
-and finally fit it into
-Book 07's migration waves.
+00:00:31.940 --> 00:00:35.500
+and finally fit it into the
+certificate plan's migration waves.
 
 11
-00:00:35.763 --> 00:00:40.900
+00:00:35.500 --> 00:00:40.630
 The slides and notes carry every detail
 and source; I'll stick to what matters.

@@ -1,0 +1,1046 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.485
+Welcome to Module 8 of the
+Attribute-Driven Migration learning path:
+
+2
+00:00:04.485 --> 00:00:07.675
+run the drift pipeline and
+hand over the evidence.
+
+3
+00:00:07.675 --> 00:00:13.183
+This module serves Gate 9, keep the
+attributes true, and takes Chapter 09 of
+
+4
+00:00:13.183 --> 00:00:19.413
+Building the Attribute-Driven Migration,
+drift pipelines and evidence to the ISSO.
+
+5
+00:00:19.413 --> 00:00:23.814
+You'll see where the pipeline sits, what
+Learn's sample workflows leave to you,
+
+6
+00:00:23.814 --> 00:00:28.355
+how one run is compared with the last
+without treating a failed read as a fix, how
+
+7
+00:00:28.355 --> 00:00:30.730
+findings go to the tracker without names,
+
+8
+00:00:30.730 --> 00:00:33.175
+and how the evidence
+package forms a chain.
+
+9
+00:00:33.175 --> 00:00:37.900
+Then you'll run it on your laptop against
+two days of fictional validation kit runs.
+
+10
+00:00:37.900 --> 00:00:42.137
+If you're an ISSO reviewer,
+this module is yours in full.
+
+11
+00:00:42.137 --> 00:00:45.337
+The code is illustrative:
+tested against fixtures,
+
+12
+00:00:45.337 --> 00:00:48.970
+and the sample workflow has
+never run against Azure.
+
+13
+00:00:52.720 --> 00:00:54.270
+Why does this module matter?
+
+14
+00:00:54.270 --> 00:00:57.433
+Without Gate 9, everything slowly decays.
+
+15
+00:00:57.433 --> 00:00:59.480
+Gate 9's Validate step runs the HR,
+
+16
+00:00:59.480 --> 00:01:04.179
+dynamic group and sync checks on the
+drift cadence, and its evidence is each
+
+17
+00:01:04.179 --> 00:01:09.258
+cycle's run folder, the findings queue
+and the metrics for continuous monitoring.
+
+18
+00:01:09.258 --> 00:01:13.770
+Each validation kit check already compares
+the tenant with the program's record.
+
+19
+00:01:13.770 --> 00:01:18.170
+The pipeline adds the second
+comparison: this run against the last.
+
+20
+00:01:18.170 --> 00:01:19.495
+That finds change.
+
+21
+00:01:19.495 --> 00:01:24.632
+In this module you run it on two days of
+fixture runs, read what changed, and hand
+
+22
+00:01:24.632 --> 00:01:29.980
+over a package the ISSO can check with
+sha two fifty-six sum, and nothing else.
+
+23
+00:01:33.730 --> 00:01:36.570
+Here's what you'll be able to
+do by the end of this module,
+
+24
+00:01:36.570 --> 00:01:39.217
+which takes about fifty-five
+minutes with the lab.
+
+25
+00:01:39.217 --> 00:01:43.329
+You'll explain what the pipeline adds
+to the validation kit's own comparison.
+
+26
+00:01:43.329 --> 00:01:46.555
+You'll describe what Learn's
+sample workflows leave to you.
+
+27
+00:01:46.555 --> 00:01:50.255
+You'll compare two runs
+and read new, resolved,
+
+28
+00:01:50.255 --> 00:01:54.155
+changed, detail only,
+unchanged and unverified.
+
+29
+00:01:54.155 --> 00:01:58.355
+You'll explain why a failed read
+is unverified, not resolved.
+
+30
+00:01:58.355 --> 00:02:03.017
+And you'll package and verify a run, and
+explain how the packages form a chain.
+
+31
+00:02:03.017 --> 00:02:04.917
+Before you start, do Module 2:
+
+32
+00:02:04.917 --> 00:02:09.379
+the pipeline reads the validation
+kit's runs and their manifests.
+
+33
+00:02:09.379 --> 00:02:13.667
+Modules 1, 3 and 5 produce
+the provenance it packages.
+
+34
+00:02:13.667 --> 00:02:18.074
+Lab 1 needs Python 3.10 or
+later with PyYAML and pytest,
+
+35
+00:02:18.074 --> 00:02:22.750
+and a shell with sha two
+fifty-six sum, such as Git Bash.
+
+36
+00:02:26.500 --> 00:02:31.412
+This workbook's own governance design
+already says what this pipeline must produce.
+
+37
+00:02:31.412 --> 00:02:34.750
+These are the workbook's rules,
+not an external standard.
+
+38
+00:02:34.750 --> 00:02:38.375
+Drift is measured against a
+versioned record, not a snapshot.
+
+39
+00:02:38.375 --> 00:02:41.187
+No closure counts unless
+it carries its proof.
+
+40
+00:02:41.187 --> 00:02:45.725
+And a finding closes only when a later
+observation shows the fixed state.
+
+41
+00:02:45.725 --> 00:02:48.287
+The pipeline is a small
+part of that design.
+
+42
+00:02:48.287 --> 00:02:52.312
+Each validation kit check compares
+the tenant with the program's record.
+
+43
+00:02:52.312 --> 00:02:56.275
+The pipeline compares this run with
+the last, and that finds change.
+
+44
+00:02:56.275 --> 00:02:59.925
+Whether a change is drift from the
+record is still the check's answer.
+
+45
+00:02:59.925 --> 00:03:02.769
+A finding that was there
+yesterday and is still
+
+46
+00:03:02.769 --> 00:03:05.175
+there today isn't new,
+but it is still open.
+
+47
+00:03:05.175 --> 00:03:08.598
+And the comparison enforces
+the closing rule in code:
+
+48
+00:03:08.598 --> 00:03:14.250
+a check that ended in Error proves nothing,
+so its findings stay open as unverified.
+
+49
+00:03:18.000 --> 00:03:21.398
+Microsoft Learn's page,
+Use the Azure Login action
+
+50
+00:03:21.398 --> 00:03:24.713
+with OpenID Connect, has
+three sample workflows.
+
+51
+00:03:24.713 --> 00:03:30.137
+They do the important part well: they sign
+in with OpenID Connect and no secret,
+
+52
+00:03:30.137 --> 00:03:34.713
+ask for id-token write and nothing
+else, and keep the IDs in secrets.
+
+53
+00:03:34.713 --> 00:03:36.062
+Keep that as the model.
+
+54
+00:03:36.062 --> 00:03:40.088
+Here's what they leave to you, checked
+offline by the kit's workflow linter.
+
+55
+00:03:40.088 --> 00:03:42.302
+They run on push and have no schedule,
+
+56
+00:03:42.302 --> 00:03:45.550
+and drift isn't found because
+someone pushed a commit.
+
+57
+00:03:45.550 --> 00:03:50.100
+They pin actions by tag, and
+version two is older than the
+
+58
+00:03:50.100 --> 00:03:54.650
+current release of Microsoft's
+Azure Login action, v3.1.0.
+
+59
+00:03:54.650 --> 00:03:58.298
+GitHub Docs' secure use
+reference advises pinning an
+
+60
+00:03:58.298 --> 00:04:01.863
+action to a full commit SHA,
+because a tag can be moved.
+
+61
+00:04:01.863 --> 00:04:04.669
+They ask for the latest
+Azure CLI and PowerShell,
+
+62
+00:04:04.669 --> 00:04:08.388
+so the tool that produced the
+evidence changes without a review.
+
+63
+00:04:08.388 --> 00:04:11.438
+The US Government sample
+doesn't parse as YAML.
+
+64
+00:04:11.438 --> 00:04:16.099
+And the job names no environment, so the
+token's subject depends on the branch.
+
+65
+00:04:16.099 --> 00:04:18.882
+The verdict: use Learn's sign-in exactly,
+
+66
+00:04:18.882 --> 00:04:22.380
+pin it, schedule it, and
+put the rest behind it.
+
+67
+00:04:26.130 --> 00:04:30.705
+Here's the comparison, and every rule
+on this slide is the kit's own design.
+
+68
+00:04:30.705 --> 00:04:35.006
+It reads each kit run and checks
+it against the kit's own manifest:
+
+69
+00:04:35.006 --> 00:04:40.443
+every listed file with the same hash, nothing
+missing, nothing added, and read only.
+
+70
+00:04:40.443 --> 00:04:43.643
+A run edited after the
+kit wrote it is refused.
+
+71
+00:04:43.643 --> 00:04:49.063
+It also refuses runs from different modes,
+clouds or tenants, a run whose manifest
+
+72
+00:04:49.063 --> 00:04:53.755
+has no tenant ID, and a current run
+that isn't later than the previous one.
+
+73
+00:04:53.755 --> 00:04:59.867
+Then it keys each Finding and Warn row by
+check, object ID and issue, and sorts it.
+
+74
+00:04:59.867 --> 00:05:02.193
+New is a row the last run didn't have.
+
+75
+00:05:02.193 --> 00:05:06.354
+Changed is the same check and object
+with a different severity or issue.
+
+76
+00:05:06.354 --> 00:05:11.030
+Detail only is the same finding with
+different detail, and opens nothing.
+
+77
+00:05:11.030 --> 00:05:14.355
+Resolved is gone from a check
+that read the tenant this run.
+
+78
+00:05:14.355 --> 00:05:19.580
+And unverified is a check that ended in
+Error or didn't run: its findings stay open.
+
+79
+00:05:19.580 --> 00:05:24.150
+Each finding has a fingerprint, so
+the tracker never opens a duplicate.
+
+80
+00:05:27.900 --> 00:05:32.812
+Findings go to the issue tracker without
+names; that's this workbook's guidance.
+
+81
+00:05:32.812 --> 00:05:36.133
+A drafted issue holds
+the check, the severity,
+
+82
+00:05:36.133 --> 00:05:39.363
+the object ID, the issue
+and the fingerprint.
+
+83
+00:05:39.363 --> 00:05:44.024
+It leaves out the object's name, which
+for most checks is a user principal name.
+
+84
+00:05:44.024 --> 00:05:47.512
+The evidence store is
+access-controlled and holds the names;
+
+85
+00:05:47.512 --> 00:05:50.650
+the tracker is read by more
+people and doesn't need them.
+
+86
+00:05:50.650 --> 00:05:55.600
+A first run is a baseline, so it
+opens one summary issue, not hundreds.
+
+87
+00:05:55.600 --> 00:05:56.775
+Then the package.
+
+88
+00:05:56.775 --> 00:06:00.857
+It holds the kit run as written,
+the drift report and summary,
+
+89
+00:06:00.857 --> 00:06:05.272
+the latest provenance from the
+other kits, an evidence manifest,
+
+90
+00:06:05.272 --> 00:06:08.937
+and a SHA256SUMS file that
+sha two fifty-six sum reads.
+
+91
+00:06:08.937 --> 00:06:13.802
+Each manifest records the previous
+package's manifest hash, so the packages
+
+92
+00:06:13.802 --> 00:06:18.050
+form a chain, and a replaced package
+or a missing day shows as a break.
+
+93
+00:06:18.050 --> 00:06:19.762
+The packager doesn't sign.
+
+94
+00:06:19.762 --> 00:06:24.984
+Microsoft Learn's page on immutable
+storage says a locked time-based retention
+
+95
+00:06:24.984 --> 00:06:27.436
+policy lets blobs be created and read,
+
+96
+00:06:27.436 --> 00:06:31.920
+but not modified or deleted,
+until the retention interval ends.
+
+97
+00:06:35.670 --> 00:06:36.395
+Try it.
+
+98
+00:06:36.395 --> 00:06:40.153
+Lab 1 runs in the drift-pipeline
+folder of the examples,
+
+99
+00:06:40.153 --> 00:06:42.658
+in a POSIX shell, and nothing signs in.
+
+100
+00:06:42.658 --> 00:06:46.382
+Step one checks Learn's three
+sample workflows offline.
+
+101
+00:06:46.382 --> 00:06:51.433
+Sample one has five findings and four
+warnings, sample two has seven findings
+
+102
+00:06:51.433 --> 00:06:55.694
+and four warnings, and sample three
+has just one: it isn't valid YAML.
+
+103
+00:06:55.694 --> 00:06:57.233
+The command exits two.
+
+104
+00:06:57.233 --> 00:07:02.545
+Step two checks the pipeline's own
+workflow: zero findings, zero warnings.
+
+105
+00:07:02.545 --> 00:07:04.920
+Step three prints a cloud's hosts.
+
+106
+00:07:04.920 --> 00:07:09.867
+For DoD, the sign-in authority is
+login dot microsoftonline dot u s,
+
+107
+00:07:09.867 --> 00:07:13.439
+the Graph host is dod-graph
+dot microsoft dot u s,
+
+108
+00:07:13.439 --> 00:07:17.195
+and the Azure environment
+is Azure U S Government.
+
+109
+00:07:17.195 --> 00:07:22.744
+Microsoft Learn's page, Microsoft
+Graph national cloud deployments,
+
+110
+00:07:22.744 --> 00:07:25.957
+lists those GCC High and DoD Graph hosts.
+
+111
+00:07:25.957 --> 00:07:30.526
+That's the trap: the Azure environment
+covers both GCC High and DoD,
+
+112
+00:07:30.526 --> 00:07:33.657
+so the Graph host has to
+come from the profile.
+
+113
+00:07:33.657 --> 00:07:36.478
+Then ask for a name it
+doesn't know, u s gov.
+
+114
+00:07:36.478 --> 00:07:40.980
+It's refused, with exit code
+one, never mapped to worldwide.
+
+115
+00:07:44.730 --> 00:07:46.643
+Step four records a baseline.
+
+116
+00:07:46.643 --> 00:07:49.978
+The fixtures are two
+fictional validation kit runs,
+
+117
+00:07:49.978 --> 00:07:53.392
+one day apart: October
+twenty-eighth and twenty-ninth.
+
+118
+00:07:53.392 --> 00:07:56.690
+Compare the first with
+nothing, and it's a baseline:
+
+119
+00:07:56.690 --> 00:07:59.505
+ten new findings, and
+the command exits two.
+
+120
+00:07:59.505 --> 00:08:02.451
+Package it with the
+other kits' provenance,
+
+121
+00:08:02.451 --> 00:08:06.155
+and the evidence manifest's
+hash starts six d nine f f f.
+
+122
+00:08:06.155 --> 00:08:08.343
+Step five compares the next day.
+
+123
+00:08:08.343 --> 00:08:13.087
+The summary reads: new three,
+resolved one, changed one,
+
+124
+00:08:13.087 --> 00:08:17.831
+detail only one, unchanged
+six, unverified checks two.
+
+125
+00:08:17.831 --> 00:08:20.018
+Its table shows which checks moved.
+
+126
+00:08:20.018 --> 00:08:23.867
+VK-CA-01 went from Pass to Fail.
+
+127
+00:08:23.867 --> 00:08:27.168
+VK-PIV-01 didn't run.
+
+128
+00:08:27.168 --> 00:08:32.217
+And VK-NPI-03 went from Fail to Error.
+
+129
+00:08:32.217 --> 00:08:33.718
+Look closely at that one.
+
+130
+00:08:33.718 --> 00:08:35.555
+Yesterday it had a finding.
+
+131
+00:08:35.555 --> 00:08:37.043
+Today its read failed.
+
+132
+00:08:37.043 --> 00:08:40.017
+So the finding is
+unverified, not resolved.
+
+133
+00:08:40.017 --> 00:08:42.560
+A failed read is never a fix.
+
+134
+00:08:46.310 --> 00:08:51.998
+Step six drafts the findings: six
+to open, two to close, no comments.
+
+135
+00:08:51.998 --> 00:08:53.572
+Then search the drafts.
+
+136
+00:08:53.572 --> 00:08:59.210
+For a user's address, grep counts zero;
+the name isn't there, and grep exits one.
+
+137
+00:08:59.210 --> 00:09:01.685
+For the object ID, it counts one.
+
+138
+00:09:01.685 --> 00:09:05.935
+The tracker gets the object ID and
+the fingerprint, never the name.
+
+139
+00:09:05.935 --> 00:09:08.118
+Step seven packages the second day,
+
+140
+00:09:08.118 --> 00:09:12.560
+chained to the first with the previous
+manifest option, and verifies it.
+
+141
+00:09:12.560 --> 00:09:18.535
+The manifest hash starts oh nine three
+two, and verify reports sixteen files.
+
+142
+00:09:18.535 --> 00:09:22.608
+Then the ISSO's own check,
+with no program code at all:
+
+143
+00:09:22.608 --> 00:09:28.523
+sha two fifty-six sum, in the package's
+folder, prints nothing and exits zero.
+
+144
+00:09:28.523 --> 00:09:34.700
+Last, read two fields of day two's manifest:
+the previous package's manifest hash,
+
+145
+00:09:34.700 --> 00:09:40.211
+which is day one's, six d nine f f f,
+and the fixture tenant's placeholder ID.
+
+146
+00:09:40.211 --> 00:09:41.620
+That's the chain.
+
+147
+00:09:45.370 --> 00:09:47.295
+Step eight breaks it on purpose.
+
+148
+00:09:47.295 --> 00:09:51.345
+Append one line to the packaged
+drift summary, and verify again.
+
+149
+00:09:51.345 --> 00:09:55.995
+It fails, with exit code one: the
+summary doesn't match its hash.
+
+150
+00:09:55.995 --> 00:09:58.232
+An edit after packaging can't hide.
+
+151
+00:09:58.232 --> 00:10:00.878
+Then swap the runs, and
+compare the twenty-ninth
+
+152
+00:10:00.878 --> 00:10:03.457
+as previous with the
+twenty-eighth as current.
+
+153
+00:10:03.457 --> 00:10:07.657
+That's refused too: the current run
+isn't later than the previous one.
+
+154
+00:10:07.657 --> 00:10:10.657
+Runs out of order can't make
+a finding look resolved.
+
+155
+00:10:10.657 --> 00:10:14.432
+Step nine runs the tests:
+one hundred forty-two pass.
+
+156
+00:10:14.432 --> 00:10:16.008
+They take about two minutes.
+
+157
+00:10:16.008 --> 00:10:17.483
+Step ten cleans up.
+
+158
+00:10:17.483 --> 00:10:22.260
+Check your work: given two runs, you
+can say what's new, resolved, changed or
+
+159
+00:10:22.260 --> 00:10:24.365
+unverified, and given a package,
+
+160
+00:10:24.365 --> 00:10:28.360
+you can show it's unedited
+and chained to the day before.
+
+161
+00:10:32.110 --> 00:10:36.742
+Lab 2 runs the pipeline for real, in
+a test tenant and a test subscription,
+
+162
+00:10:36.742 --> 00:10:39.960
+never production, from a
+private test repository
+
+163
+00:10:39.960 --> 00:10:43.022
+that holds the validation
+kit and this example.
+
+164
+00:10:43.022 --> 00:10:47.840
+Register an app that trusts the repository
+through a federated credential,
+
+165
+00:10:47.840 --> 00:10:50.898
+so no secret is stored, and
+grant it only the reads.
+
+166
+00:10:50.898 --> 00:10:54.568
+Make an evidence container with
+an unlocked retention policy,
+
+167
+00:10:54.568 --> 00:10:56.897
+and set up the repository's environment.
+
+168
+00:10:56.897 --> 00:11:01.897
+Run the workflow by hand for a baseline,
+make one real change, and run it again.
+
+169
+00:11:01.897 --> 00:11:03.435
+Then let the schedule run.
+
+170
+00:11:03.435 --> 00:11:07.747
+To back it out, step eight deletes
+the federated credential and the app.
+
+171
+00:11:07.747 --> 00:11:12.750
+Leave the test retention policy unlocked:
+Microsoft Learn's page on immutable
+
+172
+00:11:12.750 --> 00:11:16.752
+storage says an unlocked policy
+is only for short-term testing,
+
+173
+00:11:16.752 --> 00:11:18.060
+and it can be deleted.
+
+174
+00:11:18.060 --> 00:11:20.210
+The authors haven't run Lab 2.
+
+175
+00:11:20.210 --> 00:11:23.960
+Follow Chapter 09's Lab 2, step by step.
+
+176
+00:11:27.710 --> 00:11:29.097
+The federal requirement.
+
+177
+00:11:29.097 --> 00:11:35.111
+The controls are from NIST SP
+800-53, at NIST's Moderate baseline.
+
+178
+00:11:35.111 --> 00:11:38.156
+This chapter turns the
+other chapters' outputs
+
+179
+00:11:38.156 --> 00:11:41.123
+into continuous monitoring,
+control C A seven.
+
+180
+00:11:41.123 --> 00:11:45.511
+The first run is a packaged
+baseline, for baseline configuration.
+
+181
+00:11:45.511 --> 00:11:49.475
+Each run says what is new,
+resolved, changed and unverified,
+
+182
+00:11:49.475 --> 00:11:53.935
+and a failed read never resolves
+a finding, for system monitoring.
+
+183
+00:11:53.935 --> 00:11:57.448
+Each finding is opened or
+closed by fingerprint,
+
+184
+00:11:57.448 --> 00:12:00.698
+with object IDs and no
+names, for audit review.
+
+185
+00:12:00.698 --> 00:12:05.417
+The package hashes every file, carries
+the other kits' provenance and chains
+
+186
+00:12:05.417 --> 00:12:09.911
+to the day before, for the protection
+of audit information and integrity.
+
+187
+00:12:09.911 --> 00:12:14.835
+An edit after packaging and runs out of
+order are refused, and the tests show it.
+
+188
+00:12:14.835 --> 00:12:16.246
+Every action is pinned,
+
+189
+00:12:16.246 --> 00:12:19.810
+and the job that reads the tenant
+can't write to the tracker.
+
+190
+00:12:19.810 --> 00:12:23.921
+And in Lab 2, the pipeline signs
+in with a federated credential,
+
+191
+00:12:23.921 --> 00:12:25.372
+with no secret stored.
+
+192
+00:12:25.372 --> 00:12:28.884
+The KSI column is from FedRAMP's
+Key Security Indicators,
+
+193
+00:12:28.884 --> 00:12:32.022
+which are indicators for
+cloud service providers.
+
+194
+00:12:32.022 --> 00:12:35.950
+Which output supports which
+control is this workbook's reading.
+
+195
+00:12:39.700 --> 00:12:41.675
+Check yourself with two questions.
+
+196
+00:12:41.675 --> 00:12:46.563
+First: yesterday VK-NPI-03 had a finding.
+
+197
+00:12:46.563 --> 00:12:48.987
+Today its read failed
+with a four-oh-three.
+
+198
+00:12:48.987 --> 00:12:50.776
+What does the comparison report?
+
+199
+00:12:50.776 --> 00:12:54.262
+The answer is b: unverified, not resolved.
+
+200
+00:12:54.262 --> 00:12:58.688
+A failed read is never a fix, and
+you saw it in step five of the lab.
+
+201
+00:12:58.688 --> 00:13:03.413
+Second: how does the ISSO check a
+package without the program's code?
+
+202
+00:13:03.413 --> 00:13:07.315
+The answer is b: with
+sha two fifty-six sum,
+
+203
+00:13:07.315 --> 00:13:11.337
+dash c, SHA256SUMS, in
+the package's folder.
+
+204
+00:13:11.337 --> 00:13:16.125
+You did exactly that in step seven,
+and it printed nothing and exited zero.
+
+205
+00:13:16.125 --> 00:13:20.662
+The module page has two more questions,
+on what goes into a drafted issue
+
+206
+00:13:20.662 --> 00:13:25.650
+and on what shows a missing day, each
+linked to the section that answers it.
+
+207
+00:13:29.400 --> 00:13:30.225
+To sum up.
+
+208
+00:13:30.225 --> 00:13:35.385
+You compared two days of kit runs without
+letting a failed read close a finding,
+
+209
+00:13:35.385 --> 00:13:39.751
+drafted findings without names,
+and packaged and verified a chain
+
+210
+00:13:39.751 --> 00:13:43.800
+of evidence the ISSO can check
+with sha two fifty-six sum alone.
+
+211
+00:13:43.800 --> 00:13:49.138
+The evidence an ISSO keeps: each day's
+package, with its kit run, drift report,
+
+212
+00:13:49.138 --> 00:13:53.163
+the other kits' provenance,
+the manifest and SHA256SUMS,
+
+213
+00:13:53.163 --> 00:13:58.588
+in a container whose retention is locked
+in production; the findings in the
+
+214
+00:13:58.588 --> 00:14:04.538
+tracker by fingerprint; and the workflow
+file and the pipeline app's registration.
+
+215
+00:14:04.538 --> 00:14:09.013
+Gate 9 adds the scan schedule, the
+limits register and the metrics.
+
+216
+00:14:09.013 --> 00:14:12.725
+Before shipping, work through
+the Chapter 09 checklist.
+
+217
+00:14:12.725 --> 00:14:16.717
+Next is Module 9, the last:
+deploy to test, then production,
+
+218
+00:14:16.717 --> 00:14:21.577
+with one settings file per stage, a
+pre-flight check, a smoke test that
+
+219
+00:14:21.577 --> 00:14:26.400
+says go or no-go, and a rollback
+written from a record of every change.

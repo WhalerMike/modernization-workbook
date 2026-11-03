@@ -1,0 +1,1045 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.615
+Welcome to Module 7 of the
+Attribute-Driven Migration learning path:
+
+2
+00:00:04.615 --> 00:00:06.537
+extend Lifecycle Workflows.
+
+3
+00:00:06.537 --> 00:00:11.779
+This module serves Gates 7 and 8 of the
+implementation guide, and takes Chapter
+
+4
+00:00:11.779 --> 00:00:16.699
+05 of Building the Attribute-Driven
+Migration, on custom task extensions.
+
+5
+00:00:16.699 --> 00:00:21.768
+It comes after Modules 4 to 6
+because the path follows the gates:
+
+6
+00:00:21.768 --> 00:00:25.862
+Chapter 05 serves Gates 7
+and 8, after the Gate 5 work.
+
+7
+00:00:25.862 --> 00:00:30.563
+You'll see what Learn's Logic App
+definition costs a GCC High leaver, and run
+
+8
+00:00:30.563 --> 00:00:35.726
+the definition that fixes it, through
+transient failures and repeat deliveries.
+
+9
+00:00:35.726 --> 00:00:39.138
+You'll build the deployment
+pieces from a reviewed registry,
+
+10
+00:00:39.138 --> 00:00:42.550
+and check that the leaver blocks
+before the custom task runs.
+
+11
+00:00:42.550 --> 00:00:43.750
+Nothing signs in.
+
+12
+00:00:43.750 --> 00:00:47.622
+The code is illustrative: tested
+against fixtures and fakes,
+
+13
+00:00:47.622 --> 00:00:50.080
+not against a production tenant.
+
+14
+00:00:53.830 --> 00:00:54.980
+Why does this matter?
+
+15
+00:00:54.980 --> 00:00:57.463
+In this workbook's implementation guide,
+
+16
+00:00:57.463 --> 00:01:02.574
+Gate 7 proves that one personnel action
+changes access only through the attributes,
+
+17
+00:01:02.574 --> 00:01:05.568
+with the mover workflow's
+run history as evidence.
+
+18
+00:01:05.568 --> 00:01:09.096
+Gate 8 puts leaver automation
+first in every wave,
+
+19
+00:01:09.096 --> 00:01:12.367
+and sizes Lifecycle
+Workflows for the agency.
+
+20
+00:01:12.367 --> 00:01:14.630
+The built-in tasks cover the account.
+
+21
+00:01:14.630 --> 00:01:19.468
+The rest of a leaver, such as the PIV
+credential, the devices and the servers,
+
+22
+00:01:19.468 --> 00:01:23.355
+goes through a custom task
+extension that calls a Logic App.
+
+23
+00:01:23.355 --> 00:01:24.543
+And here's the gap.
+
+24
+00:01:24.543 --> 00:01:29.549
+The definition on Microsoft Learn's
+page, Configure a Logic App for Lifecycle
+
+25
+00:01:29.549 --> 00:01:32.600
+Workflow use, calls back
+to the worldwide Graph,
+
+26
+00:01:32.600 --> 00:01:35.104
+on beta, and it always says it completed.
+
+27
+00:01:35.104 --> 00:01:39.380
+In a GCC High tenant that
+callback goes to the wrong cloud.
+
+28
+00:01:39.380 --> 00:01:42.068
+And a revocation that
+failed reads as done.
+
+29
+00:01:42.068 --> 00:01:47.120
+In this module you see what that costs,
+and you run the definition that fixes it.
+
+30
+00:01:50.870 --> 00:01:53.681
+Here's what you'll be able to
+do by the end of this module,
+
+31
+00:01:53.681 --> 00:01:56.045
+which takes about fifty
+minutes with the lab.
+
+32
+00:01:56.045 --> 00:01:59.553
+You'll describe where custom
+task extensions sit in a leaver,
+
+33
+00:01:59.553 --> 00:02:03.832
+and the three rules of this workbook's
+guidance that the kit builds in code.
+
+34
+00:02:03.832 --> 00:02:07.345
+You'll explain what Learn's Logic
+App definition leaves to you.
+
+35
+00:02:07.345 --> 00:02:11.038
+You'll run a definition for a
+cloud, through transient failures
+
+36
+00:02:11.038 --> 00:02:14.945
+and repeat deliveries, and read
+what Lifecycle Workflows records.
+
+37
+00:02:14.945 --> 00:02:18.020
+You'll build the deployment
+pieces from the registry,
+
+38
+00:02:18.020 --> 00:02:21.095
+and explain why an Azure
+Government build is refused.
+
+39
+00:02:21.095 --> 00:02:24.008
+And you'll check a workflow
+read-back for the leaver order.
+
+40
+00:02:24.008 --> 00:02:28.836
+Before you start, finish Module 1:
+provisioning creates and updates accounts,
+
+41
+00:02:28.836 --> 00:02:32.608
+and Lifecycle Workflows act on
+accounts that already exist.
+
+42
+00:02:32.608 --> 00:02:38.500
+Lab 1 needs Python 3.10 or later
+and a POSIX shell, and no tenant.
+
+43
+00:02:42.250 --> 00:02:46.950
+This workbook's guidance splits the
+work: inbound provisioning creates and
+
+44
+00:02:46.950 --> 00:02:51.800
+updates accounts, and Lifecycle Workflows
+act on accounts that already exist.
+
+45
+00:02:51.800 --> 00:02:55.550
+It also sets three rules, and
+the kit builds them in code.
+
+46
+00:02:55.550 --> 00:03:00.188
+One parameterized Logic App per
+integration, not one per component.
+
+47
+00:03:00.188 --> 00:03:03.426
+Block first: Disable user
+account and Revoke all
+
+48
+00:03:03.426 --> 00:03:06.826
+refresh tokens for user
+run before the custom task.
+
+49
+00:03:06.826 --> 00:03:10.937
+And custom tasks are idempotent,
+and retry with a bound.
+
+50
+00:03:10.937 --> 00:03:13.288
+Microsoft Learn sets the contract.
+
+51
+00:03:13.288 --> 00:03:18.489
+Its page on the Lifecycle Workflows custom
+task extension says that in launch and
+
+52
+00:03:18.489 --> 00:03:21.626
+wait, the extension starts
+the Logic App and waits;
+
+53
+00:03:21.626 --> 00:03:25.987
+if no response arrives within the
+wait, the task is considered failed.
+
+54
+00:03:25.987 --> 00:03:29.926
+Learn's Graph reference sets the wait
+at thirty minutes to three hours.
+
+55
+00:03:29.926 --> 00:03:32.435
+The response is a POST to resume,
+
+56
+00:03:32.435 --> 00:03:37.263
+with a status of completed or
+failed, and Learn lists it in v1.0.
+
+57
+00:03:37.263 --> 00:03:42.953
+And Learn's page on Microsoft Graph national
+cloud deployments gives the clouds:
+
+58
+00:03:42.953 --> 00:03:47.624
+GCC keeps the worldwide Graph, GCC
+High and DoD have their own hosts,
+
+59
+00:03:47.624 --> 00:03:51.310
+and a token for one cloud
+doesn't work in another.
+
+60
+00:03:55.060 --> 00:03:59.707
+Microsoft Learn's page, Configure a
+Logic App for Lifecycle Workflow use,
+
+61
+00:03:59.707 --> 00:04:02.573
+gives the definition to
+paste into code view.
+
+62
+00:04:02.573 --> 00:04:05.757
+It's Microsoft's only sample
+for this integration,
+
+63
+00:04:05.757 --> 00:04:09.797
+so the repository pins the page,
+from the entra docs repository.
+
+64
+00:04:09.797 --> 00:04:13.247
+Running the definition against
+fakes shows what it leaves to you.
+
+65
+00:04:13.247 --> 00:04:16.327
+It resumes the task with
+the Logic App's managed
+
+66
+00:04:16.327 --> 00:04:19.248
+identity and no secret,
+and the kit keeps that.
+
+67
+00:04:19.248 --> 00:04:23.461
+But it hard-codes the worldwide
+Graph host, and calls back on beta.
+
+68
+00:04:23.461 --> 00:04:25.929
+It uses the callback path as it arrives,
+
+69
+00:04:25.929 --> 00:04:30.635
+so any path appended to the Graph host
+gets a POST with the identity's token.
+
+70
+00:04:30.635 --> 00:04:35.060
+It always reports completed, so a
+failed revocation reads as done.
+
+71
+00:04:35.060 --> 00:04:37.549
+If work you add before the callback fails,
+
+72
+00:04:37.549 --> 00:04:41.135
+no callback is sent, and the task
+waits out the whole timeout.
+
+73
+00:04:41.135 --> 00:04:42.873
+It has no idempotency.
+
+74
+00:04:42.873 --> 00:04:46.709
+And it carries the subject's
+name and email into run history.
+
+75
+00:04:46.709 --> 00:04:49.704
+The verdict: the right
+shape and the right trigger,
+
+76
+00:04:49.704 --> 00:04:53.560
+but not safe to run as the
+leaver's revocation as published.
+
+77
+00:04:57.310 --> 00:05:00.948
+The kit's definition is the
+one every integration deploys.
+
+78
+00:05:00.948 --> 00:05:05.010
+What changes between integrations
+is data: four parameters,
+
+79
+00:05:05.010 --> 00:05:09.723
+the Graph host, the downstream system,
+its audience, and the operations.
+
+80
+00:05:09.723 --> 00:05:11.598
+A run goes in four steps.
+
+81
+00:05:11.598 --> 00:05:15.695
+Check request checks that the callback
+path is a resume path for this
+
+82
+00:05:15.695 --> 00:05:19.936
+workflow and this task processing
+result, and that the subject has an I D.
+
+83
+00:05:19.936 --> 00:05:24.885
+If not, the run stops and sends nothing,
+because it can't trust the path.
+
+84
+00:05:24.885 --> 00:05:29.398
+Operation looks up the workflow; an
+unregistered one gets no work done.
+
+85
+00:05:29.398 --> 00:05:34.265
+Call integration posts to the downstream
+system with an idempotency key,
+
+86
+00:05:34.265 --> 00:05:36.260
+the task processing result I D.
+
+87
+00:05:36.260 --> 00:05:37.896
+The key is the kit's design,
+
+88
+00:05:37.896 --> 00:05:41.948
+a contract with the downstream
+system, not a Microsoft feature.
+
+89
+00:05:41.948 --> 00:05:45.008
+It retries transient
+errors up to four times,
+
+90
+00:05:45.008 --> 00:05:50.136
+with a retry policy from Learn's page
+on handling errors in Azure Logic Apps.
+
+91
+00:05:50.136 --> 00:05:54.331
+And Resume posts to the Graph
+host on v1.0, after success,
+
+92
+00:05:54.331 --> 00:05:59.647
+failure or time-out, and reports
+completed only if the call succeeded.
+
+93
+00:05:59.647 --> 00:06:02.568
+The registry holds one
+entry per integration,
+
+94
+00:06:02.568 --> 00:06:07.860
+and the builder refuses values outside
+the ranges in Learn's Graph reference.
+
+95
+00:06:11.610 --> 00:06:13.672
+The kit's tool has five commands.
+
+96
+00:06:13.672 --> 00:06:17.685
+Lint applies twelve rules to any
+definition, Learn's included.
+
+97
+00:06:17.685 --> 00:06:21.431
+One of them, L X eleven, adds
+up the worst-case retry waits
+
+98
+00:06:21.431 --> 00:06:25.760
+and fails the definition if they
+reach the extension's timeout.
+
+99
+00:06:25.760 --> 00:06:28.758
+Run runs a definition
+against fakes for a cloud,
+
+100
+00:06:28.758 --> 00:06:31.910
+with downstream failures
+and repeat deliveries.
+
+101
+00:06:31.910 --> 00:06:36.253
+Build writes the Logic App's ARM
+resource and the extension's body,
+
+102
+00:06:36.253 --> 00:06:38.585
+and refuses if lint finds anything.
+
+103
+00:06:38.585 --> 00:06:42.248
+And two checks compare what you read
+back from Graph with the registry.
+
+104
+00:06:42.248 --> 00:06:47.120
+For authorization, the builder writes the
+proof-of-possession policy from Learn's
+
+105
+00:06:47.120 --> 00:06:51.490
+page, Configure a Logic App for Lifecycle
+Workflow use, with shared access
+
+106
+00:06:51.490 --> 00:06:52.851
+signatures turned off,
+
+107
+00:06:52.851 --> 00:06:56.648
+as Learn's best practices for
+securing the custom extension ask.
+
+108
+00:06:56.648 --> 00:06:59.976
+Learn documents that policy
+only for Azure commercial,
+
+109
+00:06:59.976 --> 00:07:04.535
+so for a Logic App in Azure Government
+the builder refuses rather than guess.
+
+110
+00:07:04.535 --> 00:07:07.699
+The callback identity needs
+no tenant-wide Lifecycle
+
+111
+00:07:07.699 --> 00:07:10.723
+Workflows permission, which
+Learn advises against.
+
+112
+00:07:10.723 --> 00:07:16.211
+And the workflow check requires the leaver
+to block first, which is this workbook's
+
+113
+00:07:16.211 --> 00:07:21.340
+guidance, in Microsoft's order: disable,
+then revoke, then the custom task.
+
+114
+00:07:25.090 --> 00:07:25.815
+Try it.
+
+115
+00:07:25.815 --> 00:07:31.315
+Lab 1 runs in the lifecycle extensions folder
+of the examples, and nothing signs in.
+
+116
+00:07:31.315 --> 00:07:34.931
+Step one extracts Learn's
+definition from the pinned page,
+
+117
+00:07:34.931 --> 00:07:37.115
+and lints it with a one-hour timeout.
+
+118
+00:07:37.115 --> 00:07:39.528
+Eight results, and exit code two.
+
+119
+00:07:39.528 --> 00:07:44.490
+Five are findings: it hard-codes the
+worldwide Graph host, calls back on beta,
+
+120
+00:07:44.490 --> 00:07:47.371
+uses the callback path
+without checking it,
+
+121
+00:07:47.371 --> 00:07:51.853
+sends no callback when the work
+fails, and always reports completed.
+
+122
+00:07:51.853 --> 00:07:56.552
+Two warnings are for run history, and
+one for the implicit retry policy.
+
+123
+00:07:56.552 --> 00:08:00.914
+Step two runs Learn's definition
+for a GCC High tenant.
+
+124
+00:08:00.914 --> 00:08:05.363
+The one POST goes to the worldwide
+Graph, on beta, and the last line
+
+125
+00:08:05.363 --> 00:08:10.315
+is what Lifecycle Workflows records:
+failed, no callback within an hour.
+
+126
+00:08:10.315 --> 00:08:14.540
+So a GCC High leaver's task
+fails at the end of the wait.
+
+127
+00:08:14.540 --> 00:08:18.640
+Run it again for a worldwide
+tenant, and the task is completed.
+
+128
+00:08:22.390 --> 00:08:25.040
+Step three lints the program's definition.
+
+129
+00:08:25.040 --> 00:08:27.765
+With a one-hour timeout: no findings.
+
+130
+00:08:27.765 --> 00:08:32.795
+With a fifteen-minute timeout, L X eleven
+finds that the worst-case retry waits,
+
+131
+00:08:32.795 --> 00:08:34.839
+nine hundred and sixty seconds,
+
+132
+00:08:34.839 --> 00:08:38.140
+reach the callback timeout,
+and the exit code is two.
+
+133
+00:08:38.140 --> 00:08:40.852
+So the retries have to
+fit inside the wait.
+
+134
+00:08:40.852 --> 00:08:45.777
+Step four runs the program's
+definition for GCC High, three ways.
+
+135
+00:08:45.777 --> 00:08:49.395
+Through two transient failures:
+three downstream calls,
+
+136
+00:08:49.395 --> 00:08:51.703
+one effect, and the task is completed.
+
+137
+00:08:51.703 --> 00:08:54.988
+Through five failures:
+five calls, no effect,
+
+138
+00:08:54.988 --> 00:08:59.003
+and the task is failed, at once,
+not at the end of the wait.
+
+139
+00:08:59.003 --> 00:09:01.802
+And with two deliveries
+of the same request:
+
+140
+00:09:01.802 --> 00:09:04.990
+two calls, but one effect,
+and the task is completed.
+
+141
+00:09:04.990 --> 00:09:08.653
+The idempotency key means
+the work is done once.
+
+142
+00:09:08.653 --> 00:09:14.415
+Every callback goes to the
+GCC High Graph host, on v1.0.
+
+143
+00:09:14.415 --> 00:09:17.840
+The slide joins each run's last two lines.
+
+144
+00:09:21.590 --> 00:09:24.853
+Step five builds the deployment
+pieces from the registry,
+
+145
+00:09:24.853 --> 00:09:27.640
+for the card management
+revocation integration.
+
+146
+00:09:27.640 --> 00:09:32.640
+It writes two files: the Logic App's
+ARM resource, and the extension's body.
+
+147
+00:09:32.640 --> 00:09:37.653
+Then set the Logic App's cloud to Azure
+Government, build again, and put it back.
+
+148
+00:09:37.653 --> 00:09:42.021
+The second build exits one: Learn
+documents the proof-of-possession
+
+149
+00:09:42.021 --> 00:09:45.453
+policy only for Azure
+commercial, so nothing is built.
+
+150
+00:09:45.453 --> 00:09:47.628
+Step six checks the read-backs.
+
+151
+00:09:47.628 --> 00:09:52.015
+The extension and the leaver workflow
+both come back with no findings.
+
+152
+00:09:52.015 --> 00:09:54.446
+Then move the custom task to the front of
+
+153
+00:09:54.446 --> 00:09:56.877
+a copy of the workflow,
+and check the copy.
+
+154
+00:09:56.877 --> 00:10:00.554
+Two W X oh three findings:
+Disable user account,
+
+155
+00:10:00.554 --> 00:10:05.490
+and Revoke all refresh tokens,
+don't run before the custom task.
+
+156
+00:10:05.490 --> 00:10:06.603
+Block first.
+
+157
+00:10:06.603 --> 00:10:07.852
+Exit code two.
+
+158
+00:10:07.852 --> 00:10:11.365
+Step seven runs the tests: fifty-five, OK.
+
+159
+00:10:11.365 --> 00:10:13.100
+Step eight cleans up.
+
+160
+00:10:16.850 --> 00:10:21.240
+Lab 2 runs a real leaver, in a test
+tenant with Microsoft Entra ID
+
+161
+00:10:21.240 --> 00:10:26.137
+Governance licenses and a test Azure
+subscription, never production.
+
+162
+00:10:26.137 --> 00:10:29.399
+You need the Lifecycle
+Workflows Administrator role,
+
+163
+00:10:29.399 --> 00:10:33.601
+and Logic App Contributor, Contributor
+or Owner on the resource group.
+
+164
+00:10:33.601 --> 00:10:37.021
+Create the extension and its
+Logic App in the admin center,
+
+165
+00:10:37.021 --> 00:10:41.012
+record what the admin center made,
+and check it against the registry.
+
+166
+00:10:41.012 --> 00:10:43.574
+Replace the definition with the program's.
+
+167
+00:10:43.574 --> 00:10:47.471
+Build an on-demand test leaver
+workflow that blocks first,
+
+168
+00:10:47.471 --> 00:10:49.663
+and run it for one fictional user.
+
+169
+00:10:49.663 --> 00:10:51.349
+Then drill the failure path:
+
+170
+00:10:51.349 --> 00:10:55.162
+point the integration at a receiver
+that answers five-oh-three,
+
+171
+00:10:55.162 --> 00:10:59.562
+and confirm the task ends failed within
+minutes, not at the end of the hour.
+
+172
+00:10:59.562 --> 00:11:04.432
+To back it out, remove the custom task
+and the workflow, then the extension,
+
+173
+00:11:04.432 --> 00:11:09.301
+the Logic App, the resource group, the
+role assignments and the test users.
+
+174
+00:11:09.301 --> 00:11:11.820
+The authors haven't run Lab 2.
+
+175
+00:11:15.570 --> 00:11:16.957
+The federal requirement.
+
+176
+00:11:16.957 --> 00:11:21.772
+A custom task extension carries the part
+of a leaver the built-in tasks don't,
+
+177
+00:11:21.772 --> 00:11:25.033
+so its evidence is account
+and credential removal.
+
+178
+00:11:25.033 --> 00:11:30.333
+A callback that reports what really happened,
+at once, with one effect per delivery,
+
+179
+00:11:30.333 --> 00:11:35.401
+supports NIST special publication eight
+hundred fifty-three controls A C two,
+
+180
+00:11:35.401 --> 00:11:38.987
+account management, and P S
+four, personnel termination;
+
+181
+00:11:38.987 --> 00:11:41.794
+the evidence is the
+task processing result.
+
+182
+00:11:41.794 --> 00:11:45.544
+The definition passing lint,
+with long retries refused,
+
+183
+00:11:45.544 --> 00:11:47.907
+leaves the pull request's check run.
+
+184
+00:11:47.907 --> 00:11:52.371
+Building from the reviewed registry,
+with shared access signatures off and
+
+185
+00:11:52.371 --> 00:11:56.621
+proof-of-possession on, leaves the
+repository and the deployment record.
+
+186
+00:11:56.621 --> 00:12:01.270
+The read-back checks, and the leaver
+blocking first, are filed with the change.
+
+187
+00:12:01.270 --> 00:12:03.707
+The extension's authorized apps show the
+
+188
+00:12:03.707 --> 00:12:06.645
+callback identity has no
+tenant-wide permission.
+
+189
+00:12:06.645 --> 00:12:11.283
+And in Lab 2, an on-demand run
+leaves the Logic App's run history.
+
+190
+00:12:11.283 --> 00:12:14.895
+The KSI column is FedRAMP's
+Key Security Indicators,
+
+191
+00:12:14.895 --> 00:12:18.171
+the FedRAMP 20x indicators for providers.
+
+192
+00:12:18.171 --> 00:12:22.080
+Which output supports which
+control is this workbook's reading.
+
+193
+00:12:25.830 --> 00:12:27.805
+Check yourself with two questions.
+
+194
+00:12:27.805 --> 00:12:32.280
+First: Learn's definition
+runs for a GCC High leaver.
+
+195
+00:12:32.280 --> 00:12:34.543
+What does Lifecycle Workflows record?
+
+196
+00:12:34.543 --> 00:12:37.338
+The answer is b: failed,
+at the end of the wait,
+
+197
+00:12:37.338 --> 00:12:41.092
+because the callback went to
+the worldwide Graph on beta.
+
+198
+00:12:41.092 --> 00:12:45.204
+You saw it in step two: failed,
+no callback within an hour.
+
+199
+00:12:45.204 --> 00:12:49.393
+Second: why does the builder refuse
+a Logic App in Azure Government?
+
+200
+00:12:49.393 --> 00:12:54.263
+The answer is b: Learn documents the
+proof-of-possession policy only for Azure
+
+201
+00:12:54.263 --> 00:12:58.905
+commercial, so the builder refuses
+rather than guess, and nothing is built.
+
+202
+00:12:58.905 --> 00:13:00.568
+You saw that in step five.
+
+203
+00:13:00.568 --> 00:13:05.108
+The module page has two more
+questions, on five downstream failures
+
+204
+00:13:05.108 --> 00:13:09.450
+and on W X oh three, each linked
+to the section that answers it.
+
+205
+00:13:13.200 --> 00:13:14.025
+To sum up.
+
+206
+00:13:14.025 --> 00:13:17.680
+You ran a custom task extension's
+definition for the right cloud,
+
+207
+00:13:17.680 --> 00:13:22.024
+through failures and repeat deliveries,
+built its deployment pieces from a
+
+208
+00:13:22.024 --> 00:13:26.713
+reviewed registry, and checked that the
+leaver blocks before the custom task runs.
+
+209
+00:13:26.713 --> 00:13:28.629
+The evidence an ISSO keeps:
+
+210
+00:13:28.629 --> 00:13:33.595
+the registry and the built ARM and
+extension files in the repository,
+
+211
+00:13:33.595 --> 00:13:38.822
+the check output filed with the change,
+and, from Lab 2, the task processing
+
+212
+00:13:38.822 --> 00:13:44.049
+results, the Logic App run history,
+the drill record and the activity logs.
+
+213
+00:13:44.049 --> 00:13:46.946
+Gate 7's own evidence,
+the mover workflow's
+
+214
+00:13:46.946 --> 00:13:50.013
+run history joined on
+the key, is in the guide.
+
+215
+00:13:50.013 --> 00:13:53.712
+Before shipping, work through
+the Chapter 05 checklist.
+
+216
+00:13:53.712 --> 00:13:58.600
+Next is Module 8: run the drift
+pipeline and hand over the evidence.
+
+217
+00:13:58.600 --> 00:14:03.390
+You'll run the validation kit on
+a schedule with no stored secret,
+
+218
+00:14:03.390 --> 00:14:09.240
+compare each run with the last, and hand
+the ISSO a package sha256sum verifies.

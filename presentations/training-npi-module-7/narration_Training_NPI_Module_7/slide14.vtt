@@ -1,0 +1,74 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.437
+The federal requirement.
+
+2
+00:00:01.437 --> 00:00:04.869
+Gate 5 meets NIST
+special publication eight
+
+3
+00:00:04.869 --> 00:00:08.300
+hundred fifty-three I A
+five, I A nine and A U two.
+
+4
+00:00:08.300 --> 00:00:11.700
+The module's table maps each
+control to its evidence.
+
+5
+00:00:11.700 --> 00:00:15.245
+Authenticator management
+and service identification:
+
+6
+00:00:15.245 --> 00:00:18.112
+the conversion file, the
+plan and the findings.
+
+7
+00:00:18.112 --> 00:00:21.438
+Verification of controls:
+the exchange tests.
+
+8
+00:00:21.438 --> 00:00:24.208
+Account management and disabling accounts:
+
+9
+00:00:24.208 --> 00:00:28.100
+the conversion records, the cutover
+log and the apply's results.
+
+10
+00:00:28.100 --> 00:00:32.975
+Least privilege and access restrictions
+for change: the two tasks' permissions.
+
+11
+00:00:32.975 --> 00:00:37.563
+Change control: the plan's hash,
+and the dry-run and apply folders.
+
+12
+00:00:37.563 --> 00:00:42.950
+Audit events: Lab 2's sign-in entry that
+shows a federated credential was used.
+
+13
+00:00:42.950 --> 00:00:46.800
+And the run's integrity: the
+manifest in each output folder.
+
+14
+00:00:46.800 --> 00:00:50.944
+K S I's are FedRAMP twenty X indicators
+for cloud service providers;
+
+15
+00:00:50.944 --> 00:00:54.840
+which file supports which
+indicator is the program's mapping.

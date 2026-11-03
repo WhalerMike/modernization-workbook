@@ -1,0 +1,788 @@
+{
+ "1": [
+  [
+   0.05,
+   6.875,
+   "Welcome to Module 8 of the Privileged Access learning path: evidence and drift for the I S S O."
+  ],
+  [
+   6.925,
+   2.05,
+   "It's the last module of the path."
+  ],
+  [
+   8.975,
+   10.338,
+   "It serves the project plan's task A3.6 in Phase 3, A4.3 in Phase 4, and Gate 4, with Chapter 08 of the developer workbook."
+  ],
+  [
+   19.312,
+   17.262,
+   "In it you run the privileged reads on a schedule, say what changed since the last run without putting anyone's name in the issue tracker, show every pim activation in a window with its approval, and hand the I S S O a package and a period summary they can check with sha256sum alone."
+  ],
+  [
+   36.575,
+   8.0,
+   "This lab uses two kits: the privileged-access folder in PowerShell, and the drift pipeline in a POSIX shell with Python."
+  ],
+  [
+   44.575,
+   2.9,
+   "It's illustrative: tested against fixtures."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.125,
+   "Why this module?"
+  ],
+  [
+   1.175,
+   5.7,
+   "The plan's last gate, Gate 4, asks for evidence for every elevation in the period."
+  ],
+  [
+   6.875,
+   2.9,
+   "Two facts from Microsoft Learn shape how you get it."
+  ],
+  [
+   9.775,
+   10.238,
+   "Microsoft Learn's page on Entra data retention says audit logs are kept for thirty days with Microsoft Entra I D P1 or P2, so you have to read them before they're gone."
+  ],
+  [
+   20.012,
+   9.637,
+   "And Microsoft Learn's page on pim audit history shows that pim can log one activation under several correlation I D's, while its request I D stays the same."
+  ],
+  [
+   29.65,
+   7.35,
+   "And one thing carries over from Module 2: every run repeats the emergency access check beside the inventory."
+  ],
+  [
+   37.0,
+   12.75,
+   "The comparison treats the emergency access rules, the Global Administrator count and root-scope elevation as Tier 0, whatever the row says, and any new or changed Tier 0 finding is an incident."
+  ],
+  [
+   49.75,
+   5.412,
+   "That's the program's drift rule: a drift on a Tier 0 object is a security incident."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   5.562,
+   "Here's what you'll be able to do by the end of this module, which takes about sixty-five minutes with the lab."
+  ],
+  [
+   5.612,
+   7.325,
+   "You'll explain why the run reads both the tenant's state and the pim audit events, and why the audit windows must leave no gap."
+  ],
+  [
+   12.938,
+   4.15,
+   "You'll read the audit findings, audit rules oh one to oh four."
+  ],
+  [
+   17.087,
+   4.95,
+   "You'll explain how the comparison works, by fingerprint, and what counts as an incident."
+  ],
+  [
+   22.038,
+   3.0,
+   "You'll explain why issue drafts carry no names."
+  ],
+  [
+   25.038,
+   5.3,
+   "And you'll package, chain and verify runs, and assemble a period for the Gate 4 review."
+  ],
+  [
+   30.337,
+   6.375,
+   "Before you start, finish Modules 1 and 2: the run repeats their two reads unchanged."
+  ],
+  [
+   36.712,
+   6.225,
+   "And skim Chapter 09 of the first developer workbook, which the comparison and the package build on."
+  ],
+  [
+   42.938,
+   11.575,
+   "Lab 1 needs PowerShell 7.1 or later with Pester 5, and for the POSIX steps, Python 3.10 or later with pytest and PyYAML, and sha256sum."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   2.538,
+   "Unit 1: what the evidence has to show."
+  ],
+  [
+   2.587,
+   1.688,
+   "The run has three parts."
+  ],
+  [
+   4.275,
+   5.812,
+   "The inventory and the emergency check describe the tenant's state: who holds what, right now."
+  ],
+  [
+   10.088,
+   7.138,
+   "The pim audit read describes the events in a window: every request, approval, activation and assignment."
+  ],
+  [
+   17.225,
+   5.975,
+   "And a chain of windows with no gap between them is what every elevation in the period means in code."
+  ],
+  [
+   23.2,
+   2.312,
+   "That's this workbook's design guidance."
+  ],
+  [
+   25.512,
+   4.775,
+   "The audit read refuses a window that starts more than thirty days before the run."
+  ],
+  [
+   30.288,
+   7.475,
+   "With thirty days' retention, older events can't be read, and a window reaching further back would look complete when it isn't."
+  ],
+  [
+   37.763,
+   10.162,
+   "Microsoft Learn's page on pim audit history makes the same point from the other side: its data covers the past thirty days, so route the logs elsewhere to keep them longer."
+  ],
+  [
+   47.925,
+   4.0,
+   "And the read keeps each event as I D's, not names."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   3.337,
+   "The audit findings, rules oh one to oh four."
+  ],
+  [
+   3.388,
+   2.938,
+   "Audit oh one is a role assigned outside pim."
+  ],
+  [
+   6.325,
+   8.575,
+   "Microsoft Learn's security operations guide for pim says to monitor roles assigned outside pim, and it's a finding for Tier 0 and Tier 1."
+  ],
+  [
+   14.9,
+   9.45,
+   "Audit oh two is a Tier 0 or Tier 1 activation that completed with no approval record in the window, because the program's tiers require approval there."
+  ],
+  [
+   24.35,
+   10.412,
+   "Audit oh three is an activation approved by its own requester; the plan's Gate 3 asks for requester and approver to be distinct for Tier 0, and that's the kit's design."
+  ],
+  [
+   34.763,
+   3.2,
+   "And audit oh four is a role setting changed in pim."
+  ],
+  [
+   37.962,
+   7.575,
+   "Microsoft Learn's guide says to always alert on pim setting changes for Privileged Role Administrator and Global Administrator."
+  ],
+  [
+   45.538,
+   5.525,
+   "The change is a finding until it's reconciled with a reviewed change to the files from Module 4."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   3.4,
+   "Unit 2: compare, package and the period."
+  ],
+  [
+   3.45,
+   4.812,
+   "The comparison matches findings between two runs by fingerprint, not by name."
+  ],
+  [
+   8.262,
+   4.25,
+   "Each finding is new, changed, resolved or unchanged."
+  ],
+  [
+   12.512,
+   8.35,
+   "A task that didn't read the tenant this run is unverified, and its findings stay open, never resolved: silence isn't a fix."
+  ],
+  [
+   20.863,
+   5.763,
+   "And a new or changed Tier 0 finding, or drift on a Tier 0 object, is an incident."
+  ],
+  [
+   26.625,
+   2.6,
+   "Then the issue drafts carry no names."
+  ],
+  [
+   29.225,
+   5.688,
+   "Their titles come from a fixed catalog, and their bodies carry object I D's and fingerprints."
+  ],
+  [
+   34.913,
+   6.675,
+   "The names stay in the drift report, which goes to the access-controlled evidence store, not to the issue tracker."
+  ],
+  [
+   41.587,
+   5.1,
+   "That's this workbook's design, so the tracker never becomes a list of privileged people."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   1.65,
+   "The package and the chain."
+  ],
+  [
+   1.7,
+   6.35,
+   "Each run becomes a package, with an evidence manifest and a SHA256SUMS file."
+  ],
+  [
+   8.05,
+   5.525,
+   "Each package records the previous package's manifest hash, so the packages form a chain."
+  ],
+  [
+   13.575,
+   4.575,
+   "A replaced package, or a missing day, shows up as a break in that chain."
+  ],
+  [
+   18.15,
+   9.613,
+   "And the reviewer doesn't need the code to check it: sha256sum, checking the sums file, is enough, and the kit's verify command checks the manifest."
+  ],
+  [
+   27.762,
+   6.312,
+   "Then what the I S S O receives: a period, with its own manifest and a period summary."
+  ],
+  [
+   34.075,
+   6.237,
+   "The summary speaks to the Gate 4 criteria the code can measure, and says plainly which ones it leaves to people."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   5.075,
+   "Steps one to four run in PowerShell 7, in the privileged-access folder."
+  ],
+  [
+   5.85,
+   6.525,
+   "Step one runs Microsoft Learn's queries from its pim audit history page over the fixture, as published."
+  ],
+  [
+   12.375,
+   4.075,
+   "Eight pass; the twenty-four not run are the chapter's other tests."
+  ],
+  [
+   16.45,
+   9.512,
+   "The third test is the one to notice: two of the thirteen rows the first query returns are role assignments made outside pim, which a reader of the query could miss."
+  ],
+  [
+   25.962,
+   2.8,
+   "Step two lists the permissions the run needs."
+  ],
+  [
+   28.762,
+   7.388,
+   "Nine: Audit Log dot Read dot All for the events, and the read permissions Modules 1 and 2 already use."
+  ],
+  [
+   36.15,
+   1.8,
+   "None ends in ReadWrite."
+  ],
+  [
+   37.95,
+   2.675,
+   "The output on the slide is wrapped to fit."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   3.475,
+   "Step three runs two days against the fictional tenant."
+  ],
+  [
+   3.525,
+   13.887,
+   "First, one variable holds the run's settings: the cloud, the tenant I D, the output folder, the audit fixture, the emergency access files, the exceptions, the Azure scopes, and the control-plane subscription."
+  ],
+  [
+   17.413,
+   4.662,
+   "Then run day one, as of six in the morning on the twenty-ninth of October."
+  ],
+  [
+   22.075,
+   8.225,
+   "The inventory, the emergency check and the pim audit read all report OK, and the audit window is the twenty-four hours before."
+  ],
+  [
+   30.3,
+   4.225,
+   "Then day two, against the second day's tenant, as of the thirtieth."
+  ],
+  [
+   34.525,
+   4.412,
+   "Notice the second window starts exactly where the first ended: no gap."
+  ],
+  [
+   38.938,
+   4.562,
+   "Each run's folder has a run file that lists each task's manifest hash."
+  ],
+  [
+   43.5,
+   7.175,
+   "On your machine, the Written to line may print the folder's full path; the path's verification log records that."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   3.112,
+   "Step four reads the second day's audit findings."
+  ],
+  [
+   3.163,
+   1.788,
+   "Three, all Tier 0."
+  ],
+  [
+   4.95,
+   4.513,
+   "Audit oh one: a Privileged Role Administrator assigned outside pim."
+  ],
+  [
+   9.463,
+   4.65,
+   "Audit oh two: a Global Administrator activation with no approval."
+  ],
+  [
+   14.113,
+   4.15,
+   "And audit oh four: a Global Administrator role setting change."
+  ],
+  [
+   18.262,
+   4.188,
+   "Open the events file and you'll see object I D's, no names."
+  ],
+  [
+   22.45,
+   4.188,
+   "Step five moves to a POSIX shell, in the drift pipeline folder."
+  ],
+  [
+   26.637,
+   8.938,
+   "Two variables name the two days' runs: the repository's copies of the ones you made in step three, and a Pester test checks them against a fresh run."
+  ],
+  [
+   35.575,
+   7.45,
+   "Compare day one with nothing before it: it's a baseline, with twenty-six new findings, and the compare exits with two."
+  ],
+  [
+   43.025,
+   1.45,
+   "Then package day one."
+  ],
+  [
+   44.475,
+   6.487,
+   "The package prints its evidence manifest hash, starting e one oh d eight five four three."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   3.062,
+   "Step six compares the next day with the first."
+  ],
+  [
+   3.112,
+   1.525,
+   "It's not a baseline now."
+  ],
+  [
+   4.638,
+   8.812,
+   "One assignment added, one removed, three audit findings, two new findings, six resolved, twenty unchanged, and six incidents."
+  ],
+  [
+   13.45,
+   7.312,
+   "The summary's incident table lists all six, each Tier 0, each with its object I D and fingerprint."
+  ],
+  [
+   20.762,
+   5.487,
+   "A Privileged Role Administrator assignment added, and a Global Administrator assignment removed."
+  ],
+  [
+   26.25,
+   3.763,
+   "A new I N V oh one finding for the person who got that role."
+  ],
+  [
+   30.012,
+   2.562,
+   "And the three audit findings from step four."
+  ],
+  [
+   32.575,
+   6.75,
+   "The summary ends by saying the names are in the drift report, which goes to the evidence store, not the issue tracker."
+  ],
+  [
+   39.325,
+   1.775,
+   "The compare exits with two."
+  ],
+  [
+   41.1,
+   9.775,
+   "And among the six resolved findings are Module 2's E A oh seven and two E A oh eight findings for E A oh two, which is now in the exclusion group."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   7.225,
+   "Step seven drafts the findings for the issue tracker: seven to open, nine to close, none to comment on."
+  ],
+  [
+   7.275,
+   3.612,
+   "Then search the drafts for the fictional domain, contoso."
+  ],
+  [
+   10.887,
+   5.775,
+   "Zero matches, and grep exits with one: no user principal name reaches the drafts."
+  ],
+  [
+   16.663,
+   7.987,
+   "Step eight packages the second day, chained to the first: you pass day one's evidence manifest as the previous manifest."
+  ],
+  [
+   24.65,
+   7.875,
+   "The new package's hash starts seven six three d four a one f. Verify it: fifteen files, and the same hash."
+  ],
+  [
+   32.525,
+   5.8,
+   "Then check it the way a reviewer would, with sha256sum alone, checking the sums file."
+  ],
+  [
+   38.325,
+   2.525,
+   "It prints nothing and exits with zero."
+  ],
+  [
+   40.85,
+   5.575,
+   "In the evidence manifest, the previous package's hash is day one's: that's the chain."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   6.537,
+   "Step nine assembles the period for the I S S O, from the twenty-eighth to the thirtieth of October."
+  ],
+  [
+   6.588,
+   6.65,
+   "Two packages, no chain breaks, no audit coverage gaps, six incidents, and complete is false."
+  ],
+  [
+   13.238,
+   11.6,
+   "The summary counts three activations, two Tier 0 and one Tier 1; four requests, two approved and one denied; and one Tier 0 or Tier 1 activation without approval."
+  ],
+  [
+   24.837,
+   1.613,
+   "Then the Gate 4 table."
+  ],
+  [
+   26.45,
+   6.562,
+   "Residual standing privilege: one on the exceptions list with a reason, eight outside it, so not met."
+  ],
+  [
+   33.013,
+   6.375,
+   "Evidence for every elevation in the period: not met, because one activation had no approval."
+  ],
+  [
+   39.388,
+   8.9,
+   "Whether the exception register is current, and whether the access-related group policy settings are retired, are left to people: not decided by this code."
+  ],
+  [
+   48.288,
+   1.725,
+   "The period exits with two."
+  ],
+  [
+   50.013,
+   6.138,
+   "Object I D's only; the packages hold the names, under the evidence store's access control."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   1.988,
+   "Step ten breaks it on purpose."
+  ],
+  [
+   2.038,
+   7.237,
+   "Append a word to the drift summary inside day two's package, and verify it: the file doesn't match its hash, an error."
+  ],
+  [
+   9.275,
+   6.463,
+   "Compare the days the wrong way round: refused, because the current run isn't later than the previous one."
+  ],
+  [
+   15.738,
+   2.062,
+   "Each refusal exits with one."
+  ],
+  [
+   17.8,
+   4.0,
+   "And the sample workflow that would run all this on a schedule lints clean."
+  ],
+  [
+   21.8,
+   2.788,
+   "Step eleven runs the tests in both shells."
+  ],
+  [
+   24.587,
+   6.312,
+   "In PowerShell, the evidence tests, thirty-two pass, then the whole suite, three hundred thirty."
+  ],
+  [
+   30.9,
+   4.975,
+   "In the POSIX shell, pytest in the drift pipeline: a hundred forty-two pass."
+  ],
+  [
+   35.875,
+   6.575,
+   "The path's verification log notes that this suite needs the whole repository, not just the drift pipeline folder."
+  ],
+  [
+   42.45,
+   5.513,
+   "Then delete the output folder in both places, because they hold the fixture's privileged holders."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   11.625,
+   "Lab 2 runs in a worldwide or G C C test tenant with Microsoft Entra I D P2 or I D Governance and a test Azure subscription, never production, with fictional people."
+  ],
+  [
+   11.675,
+   1.738,
+   "The run only reads."
+  ],
+  [
+   13.412,
+   6.675,
+   "It uses the emergency access files from Module 2's Lab 2 and the exceptions file from Module 4's."
+  ],
+  [
+   20.087,
+   5.625,
+   "Register a reader app, make one test activation, and run twice, before and after it."
+  ],
+  [
+   25.712,
+   6.05,
+   "Check the fields the fixture assumed, and cross-check against pim's resource audit in the admin center."
+  ],
+  [
+   31.762,
+   3.712,
+   "Then compare, package and verify the two lyve runs."
+  ],
+  [
+   35.475,
+   7.675,
+   "The reader app needs the nine read permissions from step two, with admin consent, and Reader on the test subscription, nothing else."
+  ],
+  [
+   43.15,
+   11.988,
+   "The back-out ends the test activation and eligibility, removes the permissions, the Reader assignment and the app, and deletes the test runs and the packages, which hold the tenant's privileged holders."
+  ],
+  [
+   55.138,
+   2.15,
+   "The authors haven't run Lab 2."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   1.387,
+   "The federal requirement."
+  ],
+  [
+   1.438,
+   11.0,
+   "The runs, the packages and the period are the evidence for the plan's tasks A3.6 and A4.3, and for Gate 4's evidence for every elevation in the period."
+  ],
+  [
+   12.438,
+   18.125,
+   "From nist special publication eight hundred fifty-three they support C A seven, continuous monitoring; A C six, enhancement nine, logging the use of privileged functions; A U six, audit review; A U nine, protection of audit information; and A U eleven, retention."
+  ],
+  [
+   30.562,
+   3.6,
+   "Drift as an incident adds S I four and I R four."
+  ],
+  [
+   34.163,
+   14.338,
+   "And from sis-uh's B O D twenty-five oh-one and its ScubaGear baseline: M S A A D seven point five, roles assigned only through pim, and seven point six, approval to activate Global Administrator."
+  ],
+  [
+   48.5,
+   15.05,
+   "The evidence an I S S O keeps for Gate 4: each run's folder; each package's manifest and sums, in the evidence store; the period's manifest and summary; and the incident record each Tier 0 fingerprint matches."
+  ]
+ ],
+ "17": [
+  [
+   0.05,
+   1.975,
+   "Check yourself with two questions."
+  ],
+  [
+   2.025,
+   5.562,
+   "First: why does the audit read refuse a window that starts more than thirty days before the run?"
+  ],
+  [
+   7.588,
+   10.787,
+   "The answer is b: Microsoft Entra audit logs are kept for thirty days with P1 or P2, so older events can't be read, and the window would look complete when it isn't."
+  ],
+  [
+   18.375,
+   3.35,
+   "Second: what does the hash chain between packages show?"
+  ],
+  [
+   21.725,
+   9.188,
+   "The answer is b: a replaced package or a missing day, as a break, because each package records the previous package's manifest hash."
+  ],
+  [
+   30.913,
+   5.0,
+   "You saw the chain in Lab 1, step eight, and an edited package fail in step ten."
+  ],
+  [
+   35.913,
+   4.9,
+   "The module page has two more questions, each linked to the section that answers it."
+  ]
+ ],
+ "18": [
+  [
+   0.05,
+   0.825,
+   "To sum up."
+  ],
+  [
+   0.875,
+   11.65,
+   "You ran two days of privileged reads against a fictional tenant, found a role assigned outside pim and an unapproved Tier 0 activation, and compared the days into six Tier 0 incidents."
+  ],
+  [
+   12.525,
+   10.375,
+   "You drafted issues with no names, packaged and chained both runs, assembled a period that shows Gate 4 isn't met yet, and saw an edited package fail verification."
+  ],
+  [
+   22.9,
+   1.488,
+   "And you've finished the path."
+  ],
+  [
+   24.387,
+   15.625,
+   "Across eight modules you listed every privileged assignment, checked the emergency accounts before anything else, kept Conditional Access and pim settings for roles, groups and Azure resources as reviewed code, reviewed privileged access, and filed the evidence."
+  ],
+  [
+   40.013,
+   5.075,
+   "Go back to the learning path, or find every lab in one place on the Labs page."
+  ]
+ ]
+}

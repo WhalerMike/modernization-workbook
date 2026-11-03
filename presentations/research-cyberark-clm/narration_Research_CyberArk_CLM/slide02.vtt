@@ -6,51 +6,55 @@ Before we build anything, here's the
 idea that frames this whole guide.
 
 2
-00:00:04.238 --> 00:00:08.512
-Book 07 doesn't use one certificate
-authority for everything.
+00:00:04.238 --> 00:00:06.693
+The workbook's certificate
+plan doesn't use
 
 3
-00:00:08.512 --> 00:00:13.087
+00:00:06.693 --> 00:00:09.149
+one certificate authority for everything.
+
+4
+00:00:09.149 --> 00:00:13.725
 It gives each kind of certificate its
 own source and its own way of renewing.
 
-4
-00:00:13.087 --> 00:00:15.513
+5
+00:00:13.725 --> 00:00:16.150
 Intune looks after device certificates.
 
-5
-00:00:15.513 --> 00:00:17.900
+6
+00:00:16.150 --> 00:00:18.538
 PIV cards have their own card system.
 
-6
-00:00:17.900 --> 00:00:21.725
+7
+00:00:18.538 --> 00:00:22.363
 Domain controllers keep renewing
 themselves the way they always have.
 
-7
-00:00:21.725 --> 00:00:26.795
+8
+00:00:22.363 --> 00:00:27.592
 What's left — servers, VPN and RADIUS,
 SQL, internal websites, appliances,
 
-8
-00:00:26.795 --> 00:00:28.841
+9
+00:00:27.592 --> 00:00:29.596
 and anything public-facing —
 
-9
-00:00:28.841 --> 00:00:34.000
+10
+00:00:29.596 --> 00:00:34.650
 has nobody renewing it today except
 a person with a calendar reminder.
 
-10
-00:00:34.000 --> 00:00:36.100
+11
+00:00:34.650 --> 00:00:36.750
 That's the gap the platform fills.
 
-11
-00:00:36.100 --> 00:00:38.759
+12
+00:00:36.750 --> 00:00:39.409
 It becomes the system of record for every
 
-12
-00:00:38.759 --> 00:00:41.950
+13
+00:00:39.409 --> 00:00:42.600
 certificate Intune and
 PIV don't already manage.

@@ -1,0 +1,84 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.175
+Then the promotion.
+
+2
+00:00:01.175 --> 00:00:04.188
+Production's pre-flight
+check enforces what it can.
+
+3
+00:00:04.188 --> 00:00:08.272
+Every requirement row of the test
+stage needs passing evidence:
+
+4
+00:00:08.272 --> 00:00:09.813
+seventeen of seventeen.
+
+5
+00:00:09.813 --> 00:00:14.312
+The test smoke test must be GO,
+from a live run in the test tenant.
+
+6
+00:00:14.312 --> 00:00:17.889
+Production's settings must
+record that exact report's hash,
+
+7
+00:00:17.889 --> 00:00:19.349
+and the evidence check's.
+
+8
+00:00:19.349 --> 00:00:22.747
+The CISO and identity
+engineering must both approve,
+
+9
+00:00:22.747 --> 00:00:25.313
+which is this workbook's design guidance.
+
+10
+00:00:25.313 --> 00:00:30.799
+And test and production must share no
+tenant, subscription or deploy identity.
+
+11
+00:00:30.799 --> 00:00:33.150
+The rest of the criteria are review.
+
+12
+00:00:33.150 --> 00:00:37.200
+Then production runs the same
+commands with production dot json.
+
+13
+00:00:37.200 --> 00:00:39.450
+The tenant-wide pieces run once.
+
+14
+00:00:39.450 --> 00:00:43.424
+Then each wave, leaver first,
+smoke-tested before the next,
+
+15
+00:00:43.424 --> 00:00:46.975
+with seven days of chained
+drift packages per wave.
+
+16
+00:00:46.975 --> 00:00:48.994
+And production's rollback rule,
+
+17
+00:00:48.994 --> 00:00:53.575
+from this workbook's implementation
+guide, is re-enable, never re-create.
+
+18
+00:00:53.575 --> 00:00:58.180
+Roll back the wave, not the tenant:
+earlier waves that are drift-clean stay.

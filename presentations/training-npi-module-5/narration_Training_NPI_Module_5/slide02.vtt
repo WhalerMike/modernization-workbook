@@ -1,0 +1,57 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.663
+Why does privilege need cutting?
+
+2
+00:00:01.663 --> 00:00:06.638
+Because a workload can use its access
+faster and more widely than any person.
+
+3
+00:00:06.638 --> 00:00:09.612
+An application permission
+gives an app everything
+
+4
+00:00:09.612 --> 00:00:11.963
+its scope allows, across the whole tenant.
+
+5
+00:00:11.963 --> 00:00:15.124
+And a permission like Directory
+dot ReadWrite dot All,
+
+6
+00:00:15.124 --> 00:00:18.426
+granted to make it work, stays
+until someone takes it away.
+
+7
+00:00:18.426 --> 00:00:22.200
+In this module you find those
+grants and take them away safely.
+
+8
+00:00:22.200 --> 00:00:24.375
+You sweep every service principal,
+
+9
+00:00:24.375 --> 00:00:28.650
+flag the broad grants without a
+current exception, and ask the owners.
+
+10
+00:00:28.650 --> 00:00:30.400
+Two rules hold the whole time.
+
+11
+00:00:30.400 --> 00:00:34.350
+Nothing is removed until a second
+person approves the plan's hash.
+
+12
+00:00:34.350 --> 00:00:37.250
+And the code removes
+a grant, never an app.

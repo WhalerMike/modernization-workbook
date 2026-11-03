@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:06.450
+Lab 1 runs in the non-person identity
+folder of the examples, in PowerShell 7.
+
+3
+00:00:06.450 --> 00:00:11.413
+Its step one makes Chapter 1's register,
+so the chapter's steps are one ahead here.
+
+4
+00:00:11.413 --> 00:00:15.912
+The inventory prints its three lines,
+ending with where it wrote the register.
+
+5
+00:00:15.912 --> 00:00:19.487
+Step two runs Microsoft
+Learn's published gMSA,
+
+6
+00:00:19.487 --> 00:00:25.262
+dMSA and root key procedures against the
+stand-ins: seventeen pass, none fail.
+
+7
+00:00:25.262 --> 00:00:27.900
+Step three lists what each task runs.
+
+8
+00:00:27.900 --> 00:00:33.066
+The read task, kerberos island, runs
+only the directory Get cmdlets:
+
+9
+00:00:33.066 --> 00:00:38.325
+computers, domain controllers,
+objects, service accounts and users.
+
+10
+00:00:38.325 --> 00:00:42.768
+The write task, kerberos apply, adds
+the cmdlets that create and set a
+
+11
+00:00:42.768 --> 00:00:47.450
+service account, start and complete
+a migration, and disable an account.
+
+12
+00:00:47.450 --> 00:00:52.725
+Notice what's missing from both lists: no
+cmdlet that removes or undoes anything.
+
+13
+00:00:52.725 --> 00:00:56.020
+The output on the slide is
+trimmed and wrapped to fit.

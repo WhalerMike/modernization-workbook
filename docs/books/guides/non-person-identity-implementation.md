@@ -131,7 +131,7 @@ Workload ID Premium is available in Azure Government clouds through the account 
 
 : The six gates of the non-person identity track {.striped .hover}
 
-The [non-person identity project plan](../../project-plans/non-person-identity.md) schedules this work with owners and decide-by dates. The [program master schedule](../../project-plans/program-master-schedule.md) times its AD side as P4.6: AD-bound service principal names migrated, retired or islanded, app by app.
+The [non-person identity project plan](../../project-plans/non-person-identity.md) schedules this work with owners and decide-by dates. Its gates are numbered Gate 0 to Gate 7, in its own phases; the developer workbook's index has a [crosswalk from the plan's gates to G1 to G6](../../project-plans/developer-workbooks/non-person-identity/index.md#plan-gates-and-the-guides-gates). The [program master schedule](../../project-plans/program-master-schedule.md) times its AD side as P4.6: AD-bound service principal names migrated, retired or islanded, app by app.
 
 ## Step 1: Inventory every non-person identity {#step-1-inventory-every-non-person-identity}
 
@@ -352,9 +352,10 @@ This is [Book 02's Phase 4](../b02-identity/10-migrating-and-governing.md#phase-
    - a managed identity, with its role assignments;
    - a federated credential on the app registration, tested by an actual token exchange;
    - a certificate credential from the vault;
-   - or a gMSA installed on the hosts allowed to retrieve it.
+   - a gMSA installed on the hosts allowed to retrieve it;
+   - or a dMSA on a Windows Server 2025 domain, migrated from the traditional account it replaces. Completing the migration disables the old account and moves its service principal names to the dMSA.[^npi-dmsa]
 2. **Give it two human owners and a rotation schedule.**
-3. **Run old and new in parallel for 30 days.** The application uses the new identity, and the legacy account stays enabled. Watch both: the new identity's sign-ins in the Entra service principal sign-in logs, and the legacy account's logons on domain controllers.
+3. **Run old and new in parallel for 30 days.** The application uses the new identity, and the legacy account stays enabled. Watch both: the new identity's sign-ins in the Entra service principal sign-in logs, and the legacy account's logons on domain controllers. For a dMSA, the 30 days run between starting and completing the migration. They cover four 7-day ticket lifetimes, which is what Microsoft recommends before completing (at least two).[^npi-dmsa]
 4. **Disable the legacy account.** Don't delete it. For an AD account, disable it and move it to a holding OU. For an app registration losing a secret, remove the secret only after the new credential has carried production traffic.
 5. **Record the result** in the record: the target achieved, the date, and the disabled object's ID.
 
@@ -391,14 +392,14 @@ An owner who leaves or changes roles starts a transfer at least ten business day
 
 ### Orphans
 
-An application is orphaned when it has no named owner in the registry or the Owners list. Book 04's policy ([Chapter 06](../b04-access/06-who-decides-access.md#ownership-changes-and-orphaned-apps)):
+An application is orphaned when it has no named owner in the registry or the Owners list. The program's orphan rule is the project plan's decision D-N2 ([the plan's decision points](../../project-plans/non-person-identity.md#decision-points)): disable first, then a 30-day claim window. For an orphaned application:
 
 1. it's reclassified as Tier 1;
 2. the identity governance office takes interim ownership and a ticket opens;
-3. there are 30 days to assign an owner or start decommissioning;
-4. at day 31, access is suspended, preferably by deactivating the app.
+3. once the identity governance officer confirms the finding, a person disables it, preferably by deactivating the app; nothing is deleted;
+4. there are then 30 days to assign an owner or start decommissioning; an identity nobody claims is retired through the [decommissioning](#decommissioning-disable-first-then-delete) path.
 
-For AD service accounts, an account with no owner after Step 1 is a retirement candidate. For an AI agent, a person disables it once the finding is confirmed, without waiting 30 days, because an agent can act ([Book 17, Chapter 05](../b17-ai-identity/05-owners-sponsors-and-lifecycle.md#the-orphaned-agent)).
+*Access & Privilege*, Chapter 06's policy runs the other way round: 30 days to assign an owner, then access suspended on day 31 ([Access & Privilege, Chapter 06](../b04-access/06-who-decides-access.md#ownership-changes-and-orphaned-apps)). The program takes the stricter order, which *AI Identity Governance* already uses for agents because an agent can act ([AI Identity Governance, Chapter 05](../b17-ai-identity/05-owners-sponsors-and-lifecycle.md#the-orphaned-agent)). For AD service accounts, an account with no owner after Step 1 is a retirement candidate, disabled under the same rule.
 
 **Inactivity is a second orphan signal.** Microsoft's service principal sign-in activity report gives the last time each service principal was used, as client or resource, app-only or delegated. The report is in preview and its Graph API is in beta. The API page lists it for the global service and not for the US Government L4 or L5 clouds, so in a GCC tenant, which uses the commercial service, it's available.[^npi-sp-activity] Workload ID Premium adds app health recommendations for unused and inactive workload identities ([Book 04, Chapter 05](../b04-access/05-applications-and-workload-identities.md#what-workload-id-premium-adds)).
 
@@ -575,6 +576,7 @@ Run the checks on the continuous monitoring cadence and file their output with t
 [^npi-mi-faq]: Microsoft Learn, "Managed identities for Azure resources frequently asked questions," "Do managed identities have a backing app object?," <https://learn.microsoft.com/entra/identity/managed-identities-azure-resources/managed-identities-faq> (accessed Oct 29, 2026).
 [^npi-rbac-wid]: Microsoft Learn, "Overview of role-based access control in Microsoft Entra ID," "Govern access for workload identities" (custom security attributes for a filterable inventory and ABAC; PIM access reviews of service principals; app instance property lock), <https://learn.microsoft.com/entra/identity/role-based-access-control/custom-overview> (accessed Oct 29, 2026).
 [^npi-kds]: Microsoft Learn, "Create a Key Distribution Service (KDS) root key" (domain controllers wait up to 10 hours before allowing gMSA creation), <https://learn.microsoft.com/windows-server/identity/ad-ds/manage/group-managed-service-accounts/group-managed-service-accounts/create-the-key-distribution-services-kds-root-key> (accessed Oct 29, 2026).
+[^npi-dmsa]: Microsoft Learn, "Delegated Managed Service Accounts overview," migration flow for dMSA (Windows Server 2025; wait at least two ticket lifetimes after the migration starts, four recommended, before completing it), <https://learn.microsoft.com/windows-server/identity/ad-ds/manage/delegated-managed-service-accounts/delegated-managed-service-accounts-overview> (accessed Oct 30, 2026).
 [^npi-gmsa-secure]: Microsoft Learn, "Secure group managed service accounts" (240-byte random passwords changed every 30 days; use gMSAs for on-premises services unless unsupported; test before production), <https://learn.microsoft.com/entra/architecture/service-accounts-group-managed> (accessed Oct 29, 2026).
 [^npi-svc-pw]: Microsoft Learn, "Service accounts," "Password policy for service accounts" (default 30-day interval, settable only at creation through `ManagedPasswordIntervalInDays`; dMSA secret derived from the machine account), <https://learn.microsoft.com/windows-server/identity/ad-ds/manage/understand-service-accounts> (accessed Oct 29, 2026).
 [^npi-kv-rotate]: Microsoft Learn, "Tutorial: Configure certificate autorotation in Key Vault," "Update certificate lifecycle attributes" (autorotation through partnered CAs DigiCert and GlobalSign; doesn't apply to non-partnered CAs; email-only lifetime action; default 12-month validity, renewal at 80 percent), <https://learn.microsoft.com/azure/key-vault/certificates/tutorial-rotate-certificates> (accessed Oct 29, 2026).

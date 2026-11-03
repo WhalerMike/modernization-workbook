@@ -6,11 +6,16 @@ Part 4 is running it
 and producing evidence.
 
 2
-00:00:02.838 --> 00:00:08.169
+00:00:02.838 --> 00:00:08.023
 We'll cover upgrades and the point of no
 return, patching, backup and recovery,
 
 3
-00:00:08.169 --> 00:00:13.220
-logging, automation, and the whole
-build mapped onto Book 08's six phases.
+00:00:08.023 --> 00:00:11.233
+logging, automation, and
+the whole build mapped
+
+4
+00:00:11.233 --> 00:00:14.590
+onto the workbook's DNS
+design and its six phases.

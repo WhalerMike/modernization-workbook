@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.875
+To sum up.
+
+2
+00:00:00.875 --> 00:00:05.870
+You learned where the middleware's job ends
+and the provisioning service's begins,
+
+3
+00:00:05.870 --> 00:00:09.837
+and you ran the client that refuses
+bad rows, orders leavers first,
+
+4
+00:00:09.837 --> 00:00:13.950
+holds a mass disable, and keeps a
+record an auditor can follow by hash.
+
+5
+00:00:13.950 --> 00:00:19.419
+The evidence an ISSO keeps: the validation
+report, the provenance manifest and,
+
+6
+00:00:19.419 --> 00:00:22.701
+in Lab 2, the apply results,
+in the evidence store;
+
+7
+00:00:22.701 --> 00:00:27.917
+the quarantine in the access-controlled
+audit store; the change record for
+
+8
+00:00:27.917 --> 00:00:33.050
+any confirmed hold; the sender's app
+registration; and the reconciliation.
+
+9
+00:00:33.050 --> 00:00:36.800
+Before shipping, work through
+the Chapter 01 checklist.
+
+10
+00:00:36.800 --> 00:00:40.325
+Next is Module 2: write
+a validation kit check.
+
+11
+00:00:40.325 --> 00:00:42.471
+You'll build and read V K SYNC oh two,
+
+12
+00:00:42.471 --> 00:00:46.381
+the check that soft match and
+hard-match takeover are blocked,
+
+13
+00:00:46.381 --> 00:00:50.810
+and see why a read-only check still
+asks for the least privilege it can.

@@ -1,0 +1,69 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.762
+Three severities, three meanings,
+and they're the kit's design.
+
+2
+00:00:03.762 --> 00:00:05.475
+A Finding fails the check.
+
+3
+00:00:05.475 --> 00:00:08.871
+A Warn needs a person to look,
+but isn't a failure: here,
+
+4
+00:00:08.871 --> 00:00:12.429
+a block that's off inside an
+approved matching window,
+
+5
+00:00:12.429 --> 00:00:15.987
+which the run's options record
+as the window's last day.
+
+6
+00:00:15.987 --> 00:00:21.251
+The day after, the same state is a Finding
+again, without anyone editing anything.
+
+7
+00:00:21.251 --> 00:00:26.461
+An Info row gives context and isn't counted:
+soft match on U P N, which Microsoft
+
+8
+00:00:26.461 --> 00:00:31.838
+Learn's Set Entra Dir Sync Feature page
+says can't be turned off once it's enabled.
+
+9
+00:00:31.838 --> 00:00:35.693
+The status comes from the rows:
+Fail if there's any Finding,
+
+10
+00:00:35.693 --> 00:00:38.237
+else Warn if there's any Warn, else Pass.
+
+11
+00:00:38.237 --> 00:00:42.150
+And the most important rule: a
+missing value is read as off.
+
+12
+00:00:42.150 --> 00:00:47.250
+So a response shape the kit doesn't expect
+produces a Finding, not a silent Pass.
+
+13
+00:00:47.250 --> 00:00:51.750
+Default every "is the control
+on" read to the unsafe answer.
+
+14
+00:00:51.750 --> 00:00:56.400
+NotApplicable is for a tenant with
+nothing to check, never for a failed read.

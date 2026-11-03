@@ -1,0 +1,65 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.046
+Welcome to Module 7 of the
+Non-Person Identity learning path:
+
+2
+00:00:04.046 --> 00:00:07.162
+convert to managed
+identities and federation.
+
+3
+00:00:07.162 --> 00:00:09.720
+This module is the first half of Gate 5,
+
+4
+00:00:09.720 --> 00:00:13.350
+Conversion, with Chapter 5
+of the developer workbook.
+
+5
+00:00:13.350 --> 00:00:16.625
+It's where service accounts and
+secrets actually get replaced.
+
+6
+00:00:16.625 --> 00:00:19.344
+You'll plan conversions
+in the program's order:
+
+7
+00:00:19.344 --> 00:00:23.636
+a managed identity for an Azure-hosted
+workload, a federated credential
+
+8
+00:00:23.636 --> 00:00:28.000
+where the host has an issuer, and a
+certificate only where neither applies.
+
+9
+00:00:28.000 --> 00:00:32.658
+You'll check each federated credential
+against the claims the workload will present,
+
+10
+00:00:32.658 --> 00:00:35.938
+and test it against a fake token
+endpoint before it's created.
+
+11
+00:00:35.938 --> 00:00:38.776
+Then you'll read each
+conversion's parallel run,
+
+12
+00:00:38.776 --> 00:00:41.613
+and see when the legacy
+account may be disabled.
+
+13
+00:00:41.613 --> 00:00:47.180
+The code is illustrative: tested against
+fixtures, not run against a live tenant.

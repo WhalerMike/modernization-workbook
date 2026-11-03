@@ -27,8 +27,8 @@ $script:CallsPath = Join-Path $PSScriptRoot '../../config/calls-ch06.json'
 # Learn: domain controllers wait up to 10 hours after a root key's effective time before gMSA passwords are generated.
 $script:KdsReplicationHours = 10
 # Learn: wait at least two ticket lifetimes (14 days) before completing a dMSA migration; four (28 days) is recommended.
-# Design guidance: the code holds Learn's recommendation, not its minimum.
-$script:MigrationWaitDays = 28
+# Design guidance: the program waits 30 days, the same as its parallel run, which covers Learn's four 7-day lifetimes.
+$script:MigrationWaitDays = 30
 $script:LearnMinimumMigrationDays = 14
 # Book 02, Chapter 10, Phase 4: old and new credentials run in parallel for 30 days before the legacy account is disabled.
 $script:ParallelRunDays = 30
@@ -447,7 +447,7 @@ function Test-NpiKerberosIsland {
                         0 { & $add ($common + @{ Action = 'StartDmsaMigration'; Write = $true; Call = 'krb-start-migration'; Cmdlet = 'Start-ADServiceAccountMigration'; Params = [ordered]@{ Identity = $new; SupersededAccount = $dn }; Precheck = "krb-service-accounts: $new msDS-DelegatedMSAState still 0"; Reason = "Links $($r.Name) to $new; record MigrationStartedOn, then wait $($script:MigrationWaitDays) days before completing" }) }
                         1 {
                             if (-not $started) { & $add ($common + @{ Action = 'AwaitMigrationWindow'; Reason = "$new is in migration but MigrationStartedOn isn't recorded: record it before the plan can complete the migration" }) }
-                            elseif (($AsOf - $started).TotalDays -lt $script:MigrationWaitDays) { & $add ($common + @{ Action = 'AwaitMigrationWindow'; Reason = "Started $($d.MigrationStartedOn); complete on or after $($started.AddDays($script:MigrationWaitDays).ToString('yyyy-MM-dd')) (four ticket lifetimes, Learn's recommendation)" }) }
+                            elseif (($AsOf - $started).TotalDays -lt $script:MigrationWaitDays) { & $add ($common + @{ Action = 'AwaitMigrationWindow'; Reason = "Started $($d.MigrationStartedOn); complete on or after $($started.AddDays($script:MigrationWaitDays).ToString('yyyy-MM-dd')) (the program's 30 days, which covers Learn's four ticket lifetimes)" }) }
                             else { & $add ($common + @{ Action = 'CompleteDmsaMigration'; Write = $true; Call = 'krb-complete-migration'; Cmdlet = 'Complete-ADServiceAccountMigration'; Params = [ordered]@{ Identity = $new; SupersededAccount = $dn }; Precheck = "krb-service-accounts: $new msDS-DelegatedMSAState still 1"; Reason = "Started $($d.MigrationStartedOn), $([int]($AsOf - $started).TotalDays) days ago. Disables $($r.Name) and moves its SPNs to $new (Learn); $($r.Name) is kept, never deleted" }) }
                         }
                         2 { & $add ($common + @{ Action = 'MigrationComplete'; Reason = "$($r.Name) is superseded and disabled; keep it: the service and the dMSA link to it (Learn)" }) }

@@ -1,0 +1,62 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.063
+Step four reads the proposals.
+
+2
+00:00:02.063 --> 00:00:06.549
+Six are retire: Module 2's
+orphans and the disabled accounts.
+
+3
+00:00:06.549 --> 00:00:10.461
+svc hrsync and svc
+webfront go to a delegated
+
+4
+00:00:10.461 --> 00:00:13.950
+managed service account, matrix row six.
+
+5
+00:00:13.950 --> 00:00:18.457
+Payroll Export and Deploy Bot go to
+a managed identity, row fourteen,
+
+6
+00:00:18.457 --> 00:00:22.400
+and Mail Automation to a
+federated credential, row fifteen.
+
+7
+00:00:22.400 --> 00:00:26.825
+HR Connector has no proposal, because
+nobody recorded where it runs.
+
+8
+00:00:26.825 --> 00:00:29.338
+Step five reads the twelve findings.
+
+9
+00:00:29.338 --> 00:00:37.362
+svc hrsync is high risk, but scheduled in
+wave 2, so that's N P I M A T oh seven.
+
+10
+00:00:37.362 --> 00:00:42.537
+svc webfront is kept on Kerberos
+with no S P N owner, oh six.
+
+11
+00:00:42.537 --> 00:00:49.138
+The delegated account dmsa hrsync
+has no end date before G 5, oh five.
+
+12
+00:00:49.138 --> 00:00:52.163
+Wave 2 has no rollback owner, oh eight.
+
+13
+00:00:52.163 --> 00:00:57.410
+And Vendor Portal is multitenant, so
+Conditional Access can't cover it, oh nine.

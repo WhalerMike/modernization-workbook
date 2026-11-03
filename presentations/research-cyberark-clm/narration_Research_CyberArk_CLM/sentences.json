@@ -12,21 +12,21 @@
   ],
   [
    8.338,
-   8.475,
-   "Book 07 of the workbook chose it as the program's certificate lifecycle platform, so whenever you hear me say \"the platform,\" that's what I mean."
+   8.25,
+   "The workbook's certificate plan chose it as the program's certificate lifecycle platform, so whenever you hear me say \"the platform,\" that's what I mean."
   ],
   [
-   16.812,
+   16.587,
    8.3,
    "Its job is simple to say and hard to do: keep track of every certificate nobody else is renewing, and renew it before it expires."
   ],
   [
-   25.113,
-   10.65,
-   "We'll start with what the platform is and what it's made of, then build it, connect it to the certificate authorities, automate it, and finally fit it into Book 07's migration waves."
+   24.887,
+   10.613,
+   "We'll start with what the platform is and what it's made of, then build it, connect it to the certificate authorities, automate it, and finally fit it into the certificate plan's migration waves."
   ],
   [
-   35.763,
+   35.5,
    5.075,
    "The slides and notes carry every detail and source; I'll stick to what matters."
   ]
@@ -39,41 +39,41 @@
   ],
   [
    4.237,
-   4.275,
-   "Book 07 doesn't use one certificate authority for everything."
+   4.912,
+   "The workbook's certificate plan doesn't use one certificate authority for everything."
   ],
   [
-   8.512,
+   9.15,
    4.575,
    "It gives each kind of certificate its own source and its own way of renewing."
   ],
   [
-   13.088,
+   13.725,
    2.425,
    "Intune looks after device certificates."
   ],
   [
-   15.512,
+   16.15,
    2.388,
    "piv cards have their own card system."
   ],
   [
-   17.9,
+   18.538,
    3.825,
    "Domain controllers keep renewing themselves the way they always have."
   ],
   [
-   21.725,
-   12.275,
-   "What's left ,  servers, VPN and radius, SQL, internal websites, appliances, and anything public-facing ,  has nobody renewing it today except a person with a calendar reminder."
+   22.363,
+   12.287,
+   "What's left ,  servers, VPN and radius, sequel, internal websites, appliances, and anything public-facing ,  has nobody renewing it today except a person with a calendar reminder."
   ],
   [
-   34.0,
+   34.65,
    2.1,
    "That's the gap the platform fills."
   ],
   [
-   36.1,
+   36.75,
    5.787,
    "It becomes the system of record for every certificate Intune and piv don't already manage."
   ]
@@ -570,11 +570,11 @@
   ],
   [
    19.538,
-   8.2,
-   "After Active Directory retires, Book 07 moves server certificates to a standalone CA, and the platform handles that fine."
+   8.8,
+   "After Active Directory retires, the workbook's certificate plan moves server certificates to a standalone CA, and the platform handles that fine."
   ],
   [
-   27.738,
+   28.337,
    9.3,
    "One open item: CyberArk's support table stops at Windows Server 2022, so if your CA runs 2025, get that confirmed in writing."
   ]
@@ -702,16 +702,16 @@
   ],
   [
    8.525,
-   7.775,
-   "The platform's policy folders mirror Book 07's certificate classes, so where a certificate lives tells you how it renews."
+   7.487,
+   "The platform's policy folders mirror the workbook's certificate classes, so where a certificate lives tells you how it renews."
   ],
   [
-   16.3,
+   16.012,
    9.338,
    "Owners come from Entra groups, and, if the agency uses it, the ServiceNow app can tie certificates to the same configuration items as the CMDB."
   ],
   [
-   25.637,
+   25.35,
    7.9,
    "And one alert matters most: a certificate nearing expiry with no renewal path is an incident while there's still time to fix it."
   ]
@@ -773,33 +773,33 @@
  "29": [
   [
    0.05,
-   11.6,
-   "Part 4 puts it all on a timeline and keeps it running: the build mapped to Book 07's six waves, renewal as certificate lifetimes shrink, monitoring, and retiring the old CAs."
+   11.525,
+   "Part 4 puts it all on a timeline and keeps it running: the build mapped to the certificate plan's six waves, renewal as certificate lifetimes shrink, monitoring, and retiring the old CAs."
   ]
  ],
  "30": [
   [
    0.05,
-   3.525,
-   "Here's the build laid onto Book 07's six waves."
+   4.55,
+   "Here's the build laid onto the workbook's certificate plan and its six waves."
   ],
   [
-   3.575,
+   4.6,
    5.162,
    "Wave one is a small test cluster and read-only discovery, so you learn what you have."
   ],
   [
-   8.738,
+   9.762,
    9.45,
    "Wave two builds production properly ,  two of everything, keys backed up, sign-in and logging done ,  and doesn't close until a restore has been rehearsed."
   ],
   [
-   18.188,
+   19.212,
    7.075,
    "Wave three pilots automatic renewal on a handful of servers, with the old method left on as a safety net."
   ],
   [
-   25.262,
+   26.288,
    8.0,
    "Then you scale ring by ring, move public certificates over, and finally retire CAs using the platform's inventory as proof."
   ]
@@ -827,8 +827,8 @@
   ],
   [
    19.288,
-   10.1,
-   "That's why Book 07's rule is that no certificate may depend on a person remembering a date ,  every one runs through Intune, autoenrollment, or this platform."
+   10.125,
+   "That's why the workbook's certificate plan rules that no certificate may depend on a person remembering a date ,  every one runs through Intune, autoenrollment, or this platform."
   ]
  ],
  "32": [
@@ -898,16 +898,16 @@
   ],
   [
    27.688,
-   7.75,
-   "The program's view is clear ,  this is the right platform for Book 07's design, and its risks are known and manageable."
+   7.588,
+   "The program's view is clear ,  this is the right platform for the workbook's certificate plan, and its risks are known and manageable."
   ],
   [
-   35.438,
+   35.275,
    5.862,
    "This is the program's research, under review, and not an endorsement by any federal agency."
   ],
   [
-   41.3,
+   41.138,
    1.1,
    "Thanks for watching."
   ]

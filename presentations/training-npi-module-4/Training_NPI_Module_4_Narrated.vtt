@@ -1,0 +1,1054 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.011
+Welcome to Module 4 of the
+Non-Person Identity learning path:
+
+2
+00:00:04.011 --> 00:00:05.675
+set the credential rules.
+
+3
+00:00:05.675 --> 00:00:08.950
+Module 3 decided where
+each identity ends up.
+
+4
+00:00:08.950 --> 00:00:12.682
+This module sets the rules for the
+credentials they hold on the way:
+
+5
+00:00:12.682 --> 00:00:15.599
+what the tenant will refuse,
+and how a certificate is
+
+6
+00:00:15.599 --> 00:00:18.788
+renewed and replaced without
+anyone having to remember.
+
+7
+00:00:18.788 --> 00:00:23.349
+It's Gate 3, Credential rules, with
+Chapter 4 of the developer workbook,
+
+8
+00:00:23.349 --> 00:00:26.950
+on app management policies
+and certificate rotation.
+
+9
+00:00:26.950 --> 00:00:30.314
+You'll compare a tenant's
+policy with a reviewed file,
+
+10
+00:00:30.314 --> 00:00:35.087
+plan a rotation from renewal to removal,
+and approve each write by its hash.
+
+11
+00:00:35.087 --> 00:00:39.475
+The code runs on your laptop, against
+a fictional tenant and key vault.
+
+12
+00:00:39.475 --> 00:00:44.840
+It's illustrative: tested against
+fixtures, not run against a live tenant.
+
+13
+00:00:48.590 --> 00:00:49.902
+Why does this need code?
+
+14
+00:00:49.902 --> 00:00:52.240
+The program's credential rules are short.
+
+15
+00:00:52.240 --> 00:00:54.065
+No long-lived secrets.
+
+16
+00:00:54.065 --> 00:00:58.965
+Managed identities first, then federated
+credentials, then certificates.
+
+17
+00:00:58.965 --> 00:01:02.702
+And every certificate in a vault
+and on a rotation calendar.
+
+18
+00:01:02.702 --> 00:01:05.277
+Those rules are the
+program's design guidance.
+
+19
+00:01:05.277 --> 00:01:09.642
+The tenant can enforce part of that
+itself, with an application management
+
+20
+00:01:09.642 --> 00:01:14.428
+policy that blocks new secrets and caps
+new certificates at a hundred eighty days.
+
+21
+00:01:14.428 --> 00:01:15.902
+The rest needs code.
+
+22
+00:01:15.902 --> 00:01:18.971
+Key Vault can renew a
+certificate on a schedule,
+
+23
+00:01:18.971 --> 00:01:22.353
+but Entra I D renews nothing
+on the app registration.
+
+24
+00:01:22.353 --> 00:01:26.577
+Somebody has to put the new certificate
+on the app, and take the old one off.
+
+25
+00:01:26.577 --> 00:01:30.668
+So in this module you compare the
+policy with the tenant, and you plan
+
+26
+00:01:30.668 --> 00:01:35.330
+a rotation from renewal to removal,
+with each write approved by its hash.
+
+27
+00:01:39.080 --> 00:01:41.959
+Here's what you'll be able to
+do by the end of this module,
+
+28
+00:01:41.959 --> 00:01:44.642
+which takes about sixty-five
+minutes with the lab.
+
+29
+00:01:44.642 --> 00:01:48.850
+You'll describe the tenant default
+policy and an app management policy,
+
+30
+00:01:48.850 --> 00:01:51.417
+and how an exception
+overrides the default.
+
+31
+00:01:51.417 --> 00:01:54.261
+You'll explain why the
+policy plan never drops
+
+32
+00:01:54.261 --> 00:01:57.404
+or loosens a restriction
+the tenant already holds.
+
+33
+00:01:57.404 --> 00:01:59.390
+You'll name the steps of a rotation,
+
+34
+00:01:59.390 --> 00:02:02.793
+from the owner's approval to
+removing the old certificate.
+
+35
+00:02:02.793 --> 00:02:06.086
+And you'll run both plans on
+the fixtures, dry-run them,
+
+36
+00:02:06.086 --> 00:02:09.380
+and see the write path refuse
+a hash nobody approved.
+
+37
+00:02:09.380 --> 00:02:15.152
+Before you start, finish Module 1, because
+both plans read its register, and Module
+
+38
+00:02:15.152 --> 00:02:20.493
+3, because a secret isn't rotated: it's
+replaced by the target Module 3 decides.
+
+39
+00:02:20.493 --> 00:02:25.529
+Lab 1 needs PowerShell 7.1 or
+later with Pester 5, and a clone.
+
+40
+00:02:25.529 --> 00:02:26.830
+No tenant.
+
+41
+00:02:30.580 --> 00:02:33.768
+Unit 1 is the guide's Step 3, eight steps.
+
+42
+00:02:33.768 --> 00:02:34.867
+Note three of them.
+
+43
+00:02:34.867 --> 00:02:37.268
+First, the policy's effective date.
+
+44
+00:02:37.268 --> 00:02:41.058
+The restrictions bind every app
+created after a date you choose,
+
+45
+00:02:41.058 --> 00:02:45.279
+so new registrations follow the rule
+while the old ones are fixed later.
+
+46
+00:02:45.279 --> 00:02:47.805
+Second, the two rotation numbers.
+
+47
+00:02:47.805 --> 00:02:52.624
+An existing workload moves onto a certificate
+and is rotated at least yearly while
+
+48
+00:02:52.624 --> 00:02:55.137
+it's being fixed, and
+every new registration
+
+49
+00:02:55.137 --> 00:02:57.442
+starts under the hundred eighty day cap.
+
+50
+00:02:57.442 --> 00:03:00.538
+Third, closing the loop
+between vault and directory:
+
+51
+00:03:00.538 --> 00:03:05.360
+a renewed certificate in Key Vault doesn't
+by itself change the credential on the
+
+52
+00:03:05.360 --> 00:03:10.543
+app registration, which is why Microsoft
+Learn's procedure for rotating certificates
+
+53
+00:03:10.543 --> 00:03:15.005
+on SQL Server enabled by Azure Arc
+uploads the new one as a separate step.
+
+54
+00:03:15.005 --> 00:03:19.753
+The other steps map the policy to three
+policies in CISA's Scuba Gear baseline,
+
+55
+00:03:19.753 --> 00:03:23.187
+which are should policies,
+not required configurations;
+
+56
+00:03:23.187 --> 00:03:27.789
+keep secrets by exception only; and
+cover a group managed account's password,
+
+57
+00:03:27.789 --> 00:03:32.392
+which Microsoft Learn's group managed
+service account documentation says
+
+58
+00:03:32.392 --> 00:03:37.430
+Windows changes every thirty days by
+default, and new federated credentials.
+
+59
+00:03:41.180 --> 00:03:43.742
+Unit 2 reads the rules the code holds.
+
+60
+00:03:43.742 --> 00:03:47.310
+Microsoft Learn's application
+management policies
+
+61
+00:03:47.310 --> 00:03:50.229
+A P I overview describes
+two kinds of policy.
+
+62
+00:03:50.229 --> 00:03:54.700
+The tenant default policy always exists,
+is disabled by default, and holds
+
+63
+00:03:54.700 --> 00:03:59.830
+separate restrictions for application
+objects and for service principal objects.
+
+64
+00:03:59.830 --> 00:04:02.718
+The program sets the same
+restrictions on both.
+
+65
+00:04:02.718 --> 00:04:07.480
+An app management policy is assigned
+to one app, and an app takes only one.
+
+66
+00:04:07.480 --> 00:04:10.767
+It overrides the default for
+the restrictions it defines,
+
+67
+00:04:10.767 --> 00:04:13.918
+and anything it doesn't define
+falls back to the default.
+
+68
+00:04:13.918 --> 00:04:17.464
+The program's design guidance
+uses it for an exception:
+
+69
+00:04:17.464 --> 00:04:21.405
+documented, time-limited, with
+a record number and an end date.
+
+70
+00:04:21.405 --> 00:04:22.917
+Two facts to remember.
+
+71
+00:04:22.917 --> 00:04:25.954
+Neither kind blocks tokens
+for an existing app;
+
+72
+00:04:25.954 --> 00:04:29.768
+only the create or update that
+breaks the policy is refused.
+
+73
+00:04:29.768 --> 00:04:35.293
+And Microsoft Learn's Workload I D F A
+Q lists app management policies in both
+
+74
+00:04:35.293 --> 00:04:40.930
+the free edition and Workload I D
+Premium, so this module needs no Premium.
+
+75
+00:04:44.680 --> 00:04:49.170
+The policy check reads the default
+policy, every app management policy,
+
+76
+00:04:49.170 --> 00:04:53.889
+and each app registration, and compares
+the default with the reviewed file,
+
+77
+00:04:53.889 --> 00:04:56.705
+restriction by restriction,
+on both objects.
+
+78
+00:04:56.705 --> 00:04:59.692
+Add or Change means the
+tenant lacks the program's
+
+79
+00:04:59.692 --> 00:05:03.117
+restriction or holds a weaker
+one, so the program's goes in.
+
+80
+00:05:03.117 --> 00:05:06.780
+Keep Stricter means the tenant
+already holds something stronger,
+
+81
+00:05:06.780 --> 00:05:10.043
+and Keep Existing means a
+restriction the file doesn't name.
+
+82
+00:05:10.043 --> 00:05:11.981
+Both stay as the tenant has them.
+
+83
+00:05:11.981 --> 00:05:16.967
+The body is merged, so the PATCH never
+drops a restriction and never loosens one.
+
+84
+00:05:16.967 --> 00:05:19.316
+The findings, N P I P
+O L oh one to oh six,
+
+85
+00:05:19.316 --> 00:05:24.742
+flag a restriction the tenant doesn't hold
+yet, a policy outside the reviewed file,
+
+86
+00:05:24.742 --> 00:05:27.334
+an expired or unassignable exception,
+
+87
+00:05:27.334 --> 00:05:31.950
+and an app registration without the
+full app instance property lock,
+
+88
+00:05:31.950 --> 00:05:36.770
+which stops anyone adding a
+credential to its service principals.
+
+89
+00:05:40.520 --> 00:05:44.970
+Rotation, in the program's design, is
+raised automatically before expiry
+
+90
+00:05:44.970 --> 00:05:49.495
+and approved by the owner, so the app
+never depends on someone remembering.
+
+91
+00:05:49.495 --> 00:05:53.870
+The code joins Key Vault
+and Entra I D in five steps.
+
+92
+00:05:53.870 --> 00:05:57.058
+A request is raised
+sixty days before expiry.
+
+93
+00:05:57.058 --> 00:05:59.595
+An owner who is an
+enabled member approves.
+
+94
+00:05:59.595 --> 00:06:02.692
+Key Vault makes the next
+version from its own policy,
+
+95
+00:06:02.692 --> 00:06:07.445
+as Microsoft Learn's Key Vault certificate
+creation documentation describes.
+
+96
+00:06:07.445 --> 00:06:10.895
+The new certificate is added
+to the app beside the old one.
+
+97
+00:06:10.895 --> 00:06:14.527
+And once the owner records that
+the workload signs in with it,
+
+98
+00:06:14.527 --> 00:06:17.432
+and seven days have passed,
+the old one is removed.
+
+99
+00:06:17.432 --> 00:06:22.769
+The findings, N P I R O T oh one to oh
+seven, flag a rotation due with no approval,
+
+100
+00:06:22.769 --> 00:06:27.757
+a certificate with no vault binding,
+one expired with no replacement,
+
+101
+00:06:27.757 --> 00:06:32.219
+a refused approval, a lifetime
+over the cap, and a client secret,
+
+102
+00:06:32.219 --> 00:06:36.590
+which isn't rotated at all:
+it's reported for replacement.
+
+103
+00:06:40.340 --> 00:06:41.815
+This is the kit's design.
+
+104
+00:06:41.815 --> 00:06:44.218
+One script can write in this chapter,
+
+105
+00:06:44.218 --> 00:06:48.302
+and it refuses to run unless the
+plan's hash is the approved one,
+
+106
+00:06:48.302 --> 00:06:53.028
+the plan is for this tenant, cloud and
+task and no more than seven days old,
+
+107
+00:06:53.028 --> 00:06:55.190
+and each write is a declared call.
+
+108
+00:06:55.190 --> 00:06:56.815
+Then it checks every body.
+
+109
+00:06:56.815 --> 00:07:02.012
+The default policy PATCH may set only the
+enabled flag and the two restriction sets,
+
+110
+00:07:02.012 --> 00:07:06.003
+and, checked again against the
+policy read just before the write,
+
+111
+00:07:06.003 --> 00:07:08.790
+it never loosens or
+drops a live restriction.
+
+112
+00:07:08.790 --> 00:07:10.578
+The lock body is exact.
+
+113
+00:07:10.578 --> 00:07:15.348
+An attach keeps every certificate
+the app has and adds exactly one;
+
+114
+00:07:15.348 --> 00:07:17.603
+a removal drops only the old one.
+
+115
+00:07:17.603 --> 00:07:19.781
+The Key Vault create body is empty,
+
+116
+00:07:19.781 --> 00:07:23.127
+so the rotation never
+changes a certificate policy.
+
+117
+00:07:23.127 --> 00:07:25.127
+Delete and put are never sent.
+
+118
+00:07:25.127 --> 00:07:30.164
+Before each write it re-reads the target,
+and skips the write if anything changed.
+
+119
+00:07:30.164 --> 00:07:33.680
+And a live run is a person
+signed in, never an app.
+
+120
+00:07:37.430 --> 00:07:38.155
+Try it.
+
+121
+00:07:38.155 --> 00:07:43.288
+Step one makes Module 1's register, and
+step two sends Microsoft's samples to
+
+122
+00:07:43.288 --> 00:07:48.255
+the fakes: nineteen pass, and the thirty-two
+not run are the code's own tests.
+
+123
+00:07:48.255 --> 00:07:51.455
+Step three lists what each
+of the four tasks needs.
+
+124
+00:07:51.455 --> 00:07:55.780
+The two reading tasks hold only read
+permissions and Key Vault Reader.
+
+125
+00:07:55.780 --> 00:07:59.150
+The two write tasks add
+Application dot ReadWrite dot All,
+
+126
+00:07:59.150 --> 00:08:02.942
+the policy write permission, and
+Key Vault Certificates Officer.
+
+127
+00:08:02.942 --> 00:08:06.367
+Step four compares the
+policy and builds its plan.
+
+128
+00:08:06.367 --> 00:08:08.518
+The tenant's default is disabled.
+
+129
+00:08:08.518 --> 00:08:12.692
+The diff is six adds, one
+change and one keep existing.
+
+130
+00:08:12.692 --> 00:08:16.752
+The plan has ten actions, and
+eight write: patch the default,
+
+131
+00:08:16.752 --> 00:08:20.304
+create and assign one
+exception, and lock five apps.
+
+132
+00:08:20.304 --> 00:08:21.480
+Nothing is sent.
+
+133
+00:08:21.480 --> 00:08:25.646
+Step five reads the diff: three
+restrictions added on both objects,
+
+134
+00:08:25.646 --> 00:08:28.374
+for apps created after November fifteenth,
+
+135
+00:08:28.374 --> 00:08:33.190
+and the tenant's own custom password
+restriction kept, in the PATCH body.
+
+136
+00:08:36.940 --> 00:08:40.065
+Step six runs the policy plan three times.
+
+137
+00:08:40.065 --> 00:08:43.900
+First, with the plan's own hash and
+no Apply switch, it's a dry run:
+
+138
+00:08:43.900 --> 00:08:48.503
+the write path runs its prechecks and
+reports eight writes it would send.
+
+139
+00:08:48.503 --> 00:08:53.123
+One PATCH of the default policy, a
+policy create and its assignment,
+
+140
+00:08:53.123 --> 00:08:55.391
+and five lock PATCHes, one per app.
+
+141
+00:08:55.391 --> 00:08:58.965
+Then the same command with Apply
+sends all eight to the fake.
+
+142
+00:08:58.965 --> 00:09:02.878
+In Lab 1, Apply changes
+only the fake, in memory.
+
+143
+00:09:02.878 --> 00:09:05.766
+Then you run the plan
+with a hash of all zeros,
+
+144
+00:09:05.766 --> 00:09:10.178
+which nobody approved, and it refuses
+to run a plan nobody reviewed.
+
+145
+00:09:10.178 --> 00:09:15.303
+Pasted line by line, as the lab means,
+the shell carries on after that refusal.
+
+146
+00:09:15.303 --> 00:09:19.004
+That's the pattern for
+every write in this path:
+
+147
+00:09:19.004 --> 00:09:22.670
+a plan, a reviewed hash,
+a dry run, then Apply.
+
+148
+00:09:26.420 --> 00:09:28.820
+Step seven builds the rotation plan.
+
+149
+00:09:28.820 --> 00:09:32.730
+It reads seven app registrations
+and writes seven steps:
+
+150
+00:09:32.730 --> 00:09:36.557
+two findings, three information
+items, and three writes.
+
+151
+00:09:36.557 --> 00:09:37.733
+Nothing is sent.
+
+152
+00:09:37.733 --> 00:09:39.545
+Step eight reads the plan.
+
+153
+00:09:39.545 --> 00:09:42.937
+Vendor Portal's certificate
+is due within sixty days
+
+154
+00:09:42.937 --> 00:09:46.020
+and an owner approved, so
+it's renewed in Key Vault.
+
+155
+00:09:46.020 --> 00:09:48.971
+HR Connector's new
+certificate was verified,
+
+156
+00:09:48.971 --> 00:09:52.958
+and the seven-day overlap has
+passed, so the old one is removed.
+
+157
+00:09:52.958 --> 00:09:55.819
+Deploy Bot gets its new
+certificate attached.
+
+158
+00:09:55.819 --> 00:10:01.908
+Three apps still hold secrets: Legacy
+Reports, Mail Automation and Payroll Export.
+
+159
+00:10:01.908 --> 00:10:04.096
+Those are replaced, not rotated.
+
+160
+00:10:04.096 --> 00:10:05.849
+Step nine dry-runs the plan,
+
+161
+00:10:05.849 --> 00:10:09.358
+three writes it would send,
+then applies it to the fake.
+
+162
+00:10:09.358 --> 00:10:12.710
+For Vendor Portal, Key Vault
+created the next version,
+
+163
+00:10:12.710 --> 00:10:15.682
+and the next plan attaches
+it, after a new review.
+
+164
+00:10:15.682 --> 00:10:20.190
+Step ten runs every test:
+five hundred thirteen pass.
+
+165
+00:10:23.940 --> 00:10:28.351
+Lab 2 runs both plans in your own
+test tenant, worldwide or G C C,
+
+166
+00:10:28.351 --> 00:10:33.644
+with a test key vault that uses Azure
+role-based access, never production,
+
+167
+00:10:33.644 --> 00:10:37.878
+with fictional people, and with
+Module 1's Lab 2 already run.
+
+168
+00:10:37.878 --> 00:10:42.192
+Apply the policy from a test copy of
+the reviewed file, then check that the
+
+169
+00:10:42.192 --> 00:10:46.578
+tenant really refuses a new client
+secret and a twelve-month certificate.
+
+170
+00:10:46.578 --> 00:10:48.441
+Those refusals are evidence.
+
+171
+00:10:48.441 --> 00:10:52.562
+Then carry one test app
+through a whole rotation:
+
+172
+00:10:52.562 --> 00:10:56.890
+raise it, approve it, renew,
+attach, verify, and remove.
+
+173
+00:10:56.890 --> 00:11:00.255
+Sign in as a person with Cloud
+Application Administrator
+
+174
+00:11:00.255 --> 00:11:03.340
+and Key Vault Certificates
+Officer on the test vault.
+
+175
+00:11:03.340 --> 00:11:07.351
+To back it out, step eight is a
+person's PATCH of the default policy
+
+176
+00:11:07.351 --> 00:11:11.740
+back to the copy saved before, because
+this code never loosens a policy.
+
+177
+00:11:11.740 --> 00:11:14.390
+Then delete the test
+objects and the output.
+
+178
+00:11:14.390 --> 00:11:16.890
+The authors haven't run Lab 2.
+
+179
+00:11:20.640 --> 00:11:22.027
+The federal requirement.
+
+180
+00:11:22.027 --> 00:11:27.540
+Gate 3 meets NIST special publication
+eight hundred fifty-three I A five,
+
+181
+00:11:27.540 --> 00:11:32.592
+enhancement two, S C twelve and S C
+seventeen, and the policies M S dot
+
+182
+00:11:32.592 --> 00:11:37.828
+A A D five point five to five point
+seven in CISA's Scuba Gear baseline.
+
+183
+00:11:37.828 --> 00:11:41.803
+Those three are should policies,
+not required configurations.
+
+184
+00:11:41.803 --> 00:11:44.252
+The module's table maps the evidence.
+
+185
+00:11:44.252 --> 00:11:47.683
+For configuration settings
+and the Scuba policies,
+
+186
+00:11:47.683 --> 00:11:51.990
+the default policy as it was before,
+the diff, and the reviewed file.
+
+187
+00:11:51.990 --> 00:11:55.227
+For authenticator management,
+the policy findings.
+
+188
+00:11:55.227 --> 00:11:58.446
+For the certificates
+themselves, the rotation plan,
+
+189
+00:11:58.446 --> 00:12:01.515
+the Key Vault bindings
+and the rotation findings.
+
+190
+00:12:01.515 --> 00:12:06.665
+For change control, each plan's approved
+hash and the dry-run and apply folders.
+
+191
+00:12:06.665 --> 00:12:09.865
+And for least privilege,
+each task's permission list.
+
+192
+00:12:09.865 --> 00:12:13.078
+K S I's are FedRAMP twenty
+X indicators for providers,
+
+193
+00:12:13.078 --> 00:12:16.810
+and which file supports which
+is the program's mapping.
+
+194
+00:12:20.560 --> 00:12:22.535
+Check yourself with two questions.
+
+195
+00:12:22.535 --> 00:12:27.498
+First: the tenant already holds a
+restriction the reviewed file doesn't name.
+
+196
+00:12:27.498 --> 00:12:28.759
+What does the plan do?
+
+197
+00:12:28.759 --> 00:12:29.972
+The answer is c.
+
+198
+00:12:29.972 --> 00:12:32.761
+It keeps it as the tenant
+has it, Keep Existing.
+
+199
+00:12:32.761 --> 00:12:35.928
+The PATCH never drops or
+loosens a live restriction,
+
+200
+00:12:35.928 --> 00:12:40.497
+and you saw that in step five, with the
+tenant's custom password restriction.
+
+201
+00:12:40.497 --> 00:12:43.898
+Second: Key Vault renewed
+a certificate on its own.
+
+202
+00:12:43.898 --> 00:12:45.022
+What's still missing?
+
+203
+00:12:45.022 --> 00:12:46.247
+The answer is b.
+
+204
+00:12:46.247 --> 00:12:49.818
+The new certificate has to be
+added to the app registration,
+
+205
+00:12:49.818 --> 00:12:53.824
+with the owner's approval, and the
+old one removed after the overlap,
+
+206
+00:12:53.824 --> 00:12:57.248
+because Entra I D renews
+nothing on the app registration.
+
+207
+00:12:57.248 --> 00:12:59.674
+The module page has three more questions,
+
+208
+00:12:59.674 --> 00:13:02.520
+each linked to the
+section that answers it.
+
+209
+00:13:06.270 --> 00:13:07.095
+To sum up.
+
+210
+00:13:07.095 --> 00:13:11.446
+You compared a fictional tenant's
+default policy with the reviewed file,
+
+211
+00:13:11.446 --> 00:13:15.724
+applied a plan that adds the program's
+restrictions and locks five apps,
+
+212
+00:13:15.724 --> 00:13:20.583
+and carried three certificates through
+renewal, attach and removal, on the fakes.
+
+213
+00:13:20.583 --> 00:13:25.913
+The evidence an ISSO keeps for Gate 3 from
+this module is the default policy as it
+
+214
+00:13:25.913 --> 00:13:30.678
+was before, the diff, both plans with
+their approved hashes, the findings,
+
+215
+00:13:30.678 --> 00:13:34.958
+and the dry-run and apply folders
+with their manifests, all dated.
+
+216
+00:13:34.958 --> 00:13:37.520
+From Lab 2, add the tenant's refusals and
+
+217
+00:13:37.520 --> 00:13:40.483
+the Scuba Gear result
+for the three policies.
+
+218
+00:13:40.483 --> 00:13:43.558
+Before you ship, work through
+the chapter's checklist.
+
+219
+00:13:43.558 --> 00:13:47.257
+Next is Module 5: cut the
+privilege of service principals,
+
+220
+00:13:47.257 --> 00:13:51.030
+starting with the broad
+permissions and roles they hold.

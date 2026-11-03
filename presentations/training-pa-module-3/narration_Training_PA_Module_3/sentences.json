@@ -1,0 +1,672 @@
+{
+ "1": [
+  [
+   0.05,
+   7.9,
+   "Welcome to Module 3 of the Privileged Access learning path: Conditional Access for administrators, and the activation gate."
+  ],
+  [
+   7.95,
+   12.35,
+   "This module serves the project plan's task A1.5 in Phase 1, and A2.3, A2.5 and A2.6 in Phase 2, with Chapter 03 of the developer workbook."
+  ],
+  [
+   20.3,
+   6.537,
+   "In it you keep the administrator policies, the activation gate and the privileged authentication strength as files."
+  ],
+  [
+   26.837,
+   7.475,
+   "You check them before they merge, plan what a run would change in the tenant, and see the code create every new policy report-only."
+  ],
+  [
+   34.312,
+   8.05,
+   "This is the first module that writes, so it's the first that could lock people out, and you'll see the two guards that stand between the files and the tenant."
+  ],
+  [
+   42.362,
+   6.588,
+   "The code is illustrative: tested against fixtures and a fake, not run against a production tenant."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.125,
+   "Why this module?"
+  ],
+  [
+   1.175,
+   6.4,
+   "An administrator should sign in with a phishing-resistant method, from a compliant device, on a trusted network."
+  ],
+  [
+   7.575,
+   3.95,
+   "And at the moment they activate a privileged role, they should prove it again."
+  ],
+  [
+   11.525,
+   7.612,
+   "That second proof is the activation gate: authentication context C one, and its policy, pim Activation C one."
+  ],
+  [
+   19.137,
+   7.125,
+   "Microsoft Learn's pim settings page says pim can require the context only after its policy exists and is On."
+  ],
+  [
+   26.262,
+   5.537,
+   "This is the first module that writes, so two guards stand between the files and the tenant."
+  ],
+  [
+   31.8,
+   6.513,
+   "Rule C A oh one fails any policy file that isn't disabled and doesn't exclude the emergency group."
+  ],
+  [
+   38.312,
+   8.887,
+   "Every file carries the exclusion whatever its state, because a file is enforced by changing one word; that's this workbook's design guidance."
+  ],
+  [
+   47.2,
+   7.775,
+   "And the apply refuses to start if the pre-merge check has a finding, or if any policy it would write leaves out the emergency group."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   5.487,
+   "Here's what you'll be able to do by the end of this module, which takes about fifty-five minutes with the lab."
+  ],
+  [
+   5.537,
+   7.775,
+   "You'll explain the order Microsoft Learn sets for an authentication context and its policy, and why report-only doesn't count."
+  ],
+  [
+   13.312,
+   5.812,
+   "You'll run the pre-merge check and say which rules come from Microsoft Learn and which are the program's design."
+  ],
+  [
+   19.125,
+   4.987,
+   "You'll explain how the code treats report-only policies and the emergency exclusion."
+  ],
+  [
+   24.113,
+   2.763,
+   "You'll read a plan, with its seven actions."
+  ],
+  [
+   26.875,
+   5.838,
+   "And you'll explain why every new policy is created report-only, and why the code never deletes."
+  ],
+  [
+   32.712,
+   17.225,
+   "Before you start, finish Module 2, for the emergency accounts and their exclusion group, and read Wave 2 of the policy library in Access and Privilege: the administrator policies C A oh oh three, oh oh four, oh oh five, oh two five and oh two seven."
+  ],
+  [
+   49.938,
+   7.412,
+   "Lab 2 needs a worldwide or G C C test tenant with Microsoft Entra I D P1, never production."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   2.35,
+   "Unit 1: the gate and its order."
+  ],
+  [
+   2.4,
+   9.5,
+   "Three pieces of the design meet here: the Wave 2 administrator policies, the activation gate, and a custom authentication strength for privileged sign-ins."
+  ],
+  [
+   11.9,
+   4.963,
+   "Microsoft Learn's page on pim role settings sets the order, and the chapter quotes it."
+  ],
+  [
+   16.863,
+   6.75,
+   "First, create and enable the Conditional Access policy for a context before you select that context in pim."
+  ],
+  [
+   23.613,
+   10.062,
+   "Second, if no policy targets the context, pim falls back to M F A, but not when the policy is off, report-only, or excludes the user."
+  ],
+  [
+   33.675,
+   3.7,
+   "Rule C A oh four warns when a context policy isn't On."
+  ],
+  [
+   37.375,
+   9.713,
+   "Third, don't scope the policy to both the context and a directory role, because at activation the user doesn't hold the role yet, so the policy would never apply."
+  ],
+  [
+   47.087,
+   2.225,
+   "Rule C A oh five fails that."
+  ],
+  [
+   49.312,
+   3.513,
+   "So this module builds the gate and leaves it unselected."
+  ],
+  [
+   52.825,
+   5.325,
+   "Module 4 selects C one only after this module's run shows the gate is On."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   3.638,
+   "Unit 2: the check, report-only, and the plan."
+  ],
+  [
+   3.688,
+   6.325,
+   "The pre-merge check runs rules C A oh one to oh nine on every policy file before it merges."
+  ],
+  [
+   10.012,
+   29.762,
+   "Some come from Microsoft Learn: a context policy that isn't On, or that also targets roles; M F A and an authentication strength together, or administrator roles with plain M F A; a policy that leaves out any of the fourteen roles Microsoft Learn's page on phishing-resistant M F A for administrators recommends; a context outside C one to C twenty-five; and a report-only compliant-device policy that doesn't exclude Android, i O S and mac O S."
+  ],
+  [
+   39.775,
+   8.8,
+   "Others are the program's design: a report-only instrument set to enabled, and a placeholder or a user target that isn't an object I D."
+  ],
+  [
+   48.575,
+   1.163,
+   "Oh one is both."
+  ],
+  [
+   49.737,
+   7.05,
+   "On the repository as merged, the check passes with five warnings, and they're rollout decisions, not mistakes."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   3.35,
+   "Module 2 left a question open, and here's the answer."
+  ],
+  [
+   3.4,
+   5.263,
+   "Microsoft Learn doesn't require the emergency exclusion on a report-only policy."
+  ],
+  [
+   8.662,
+   5.0,
+   "The program's own pre-merge rule is stricter: every policy excludes the group."
+  ],
+  [
+   13.662,
+   2.075,
+   "The code sides with the stricter rule."
+  ],
+  [
+   15.738,
+   11.125,
+   "It keeps the exclusion on every file, except a named report-only instrument, such as C A oh nine oh, the policy that records emergency sign-ins, which is Info."
+  ],
+  [
+   26.863,
+   2.487,
+   "And two more choices make the writes safe."
+  ],
+  [
+   29.35,
+   2.775,
+   "Every new policy is created report-only."
+  ],
+  [
+   32.125,
+   4.263,
+   "Enforcing it is a separate change, that needs the Allow Enforce switch."
+  ],
+  [
+   36.388,
+   1.762,
+   "And the code never deletes."
+  ],
+  [
+   38.15,
+   4.138,
+   "Rollback is changing a file's state, to disabled, and applying it."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   1.8,
+   "The plan has seven actions."
+  ],
+  [
+   1.85,
+   5.225,
+   "Create means the policy isn't in the tenant yet, and it's always created report-only."
+  ],
+  [
+   7.075,
+   8.825,
+   "Update means it differs, and the patch carries only the changed top-level properties, as Microsoft Learn's reference for updating a policy advises."
+  ],
+  [
+   15.9,
+   1.837,
+   "NoChange means it matches."
+  ],
+  [
+   17.738,
+   8.588,
+   "Blocked means it needs an authentication strength or a context the tenant doesn't have yet, and the next run, once that exists, creates it."
+  ],
+  [
+   26.325,
+   5.25,
+   "Held means the file says enabled, the tenant doesn't, and you didn't pass Allow Enforce."
+  ],
+  [
+   31.575,
+   4.65,
+   "Differs is a strength that differs, because the code doesn't update strengths."
+  ],
+  [
+   36.225,
+   4.588,
+   "And NotInRepository is a policy in the tenant that isn't in the files."
+  ],
+  [
+   40.812,
+   2.175,
+   "It's reported, and never deleted."
+  ],
+  [
+   42.987,
+   4.55,
+   "A dry run writes the plan and the requests it would send, and sends nothing."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   8.625,
+   "Lab 1 runs in the privileged-access folder, in one PowerShell 7 session, because step six uses a variable that step four loads."
+  ],
+  [
+   9.4,
+   7.213,
+   "Step one tests Microsoft's Conditional Access template as published, the one the Graph reference returns for getting a template."
+  ],
+  [
+   16.613,
+   1.5,
+   "Seven tests pass."
+  ],
+  [
+   18.113,
+   4.95,
+   "Step two loads the Conditional Access module and lists each task's permissions."
+  ],
+  [
+   23.062,
+   9.525,
+   "To read and plan, three: Authentication Context dot Read dot All, Policy dot Read dot All, and Policy dot Read dot Authentication Method."
+  ],
+  [
+   32.587,
+   9.537,
+   "To apply, the same three, plus two writes: Authentication Context dot ReadWrite dot All, and Policy dot ReadWrite dot Conditional Access."
+  ],
+  [
+   42.125,
+   1.012,
+   "Nothing else."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   4.9,
+   "Step three runs the pre-merge check on the repository's own policy files."
+  ],
+  [
+   4.95,
+   3.962,
+   "No findings, five warnings, which are the rollout decisions."
+  ],
+  [
+   8.912,
+   5.188,
+   "A finding would print its rule and file and exit with code one, which fails the pipeline."
+  ],
+  [
+   14.1,
+   3.538,
+   "Step four runs the same check on Microsoft's own template."
+  ],
+  [
+   17.637,
+   6.95,
+   "You read the template page, load the repository, so the check knows the emergency group, and test the template's body."
+  ],
+  [
+   24.587,
+   2.987,
+   "It fails the program's stricter rules four ways."
+  ],
+  [
+   27.575,
+   3.337,
+   "C A oh one: it has no emergency exclusion."
+  ],
+  [
+   30.913,
+   12.2,
+   "C A oh three: it has display text in its exclude users list, not an object I D. C A oh six: it uses plain M F A, not an authentication strength."
+  ],
+  [
+   43.112,
+   5.912,
+   "And C A oh seven: it leaves out twelve of the fourteen roles Microsoft Learn recommends."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   3.75,
+   "Step five plans against the fictional tenant, sending nothing."
+  ],
+  [
+   3.8,
+   8.15,
+   "The check passes again, and the plan has three Blocked, four Create, one NoChange, one NotInRepository and two Update."
+  ],
+  [
+   11.95,
+   3.237,
+   "The dry run writes six requests and sends none."
+  ],
+  [
+   15.188,
+   1.125,
+   "Look at the list."
+  ],
+  [
+   16.312,
+   3.325,
+   "Context C one is created and C two updated."
+  ],
+  [
+   19.637,
+   3.025,
+   "The privileged authentication strength is created."
+  ],
+  [
+   22.663,
+   4.688,
+   "Two policies are created, and the compliant-device policy is updated."
+  ],
+  [
+   27.35,
+   13.3,
+   "Three are Blocked: C A oh oh three, because the strength it needs doesn't exist yet, and the two context policies, the activation gate and the protected actions policy, because C one doesn't exist yet either."
+  ],
+  [
+   40.65,
+   6.162,
+   "And C A oh oh one, the legacy authentication block, is in the tenant but not in the files."
+  ],
+  [
+   46.812,
+   3.538,
+   "It's reported as NotInRepository, and never deleted."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   3.962,
+   "Step six applies the plan against the fake, three times in a row."
+  ],
+  [
+   4.013,
+   9.787,
+   "Each run builds a client that may write, reads the tenant, plans, and applies, passing the check's findings and the emergency group, so the guards can refuse."
+  ],
+  [
+   13.8,
+   4.287,
+   "The first run sends six requests: the contexts and the strength."
+  ],
+  [
+   18.087,
+   7.938,
+   "The second run sends three: the three policies that were Blocked, now that what they need exists, and each is created report-only."
+  ],
+  [
+   26.025,
+   3.175,
+   "The third run finds nothing to do, and sends nothing."
+  ],
+  [
+   29.2,
+   5.925,
+   "Then read the activation gate's state in the fake tenant: enabled for reporting, but not enforced."
+  ],
+  [
+   35.125,
+   1.863,
+   "The gate is still report-only."
+  ],
+  [
+   36.987,
+   3.05,
+   "Turning it On is a separate, reviewed change."
+  ],
+  [
+   40.038,
+   5.588,
+   "Step seven runs the tests, three hundred thirty pass, and you delete the output folder."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   7.675,
+   "Lab 2 runs in a worldwide or G C C test tenant with Microsoft Entra I D P1, never production."
+  ],
+  [
+   7.725,
+   6.388,
+   "Before it enforces anything, build Module 2's emergency accounts and confirm one can sign in."
+  ],
+  [
+   14.113,
+   9.088,
+   "And register a phishing-resistant method for each test administrator first: Microsoft Learn warns that enabling the policy first risks locking you out."
+  ],
+  [
+   23.2,
+   5.963,
+   "Then write your tenant's map, register a reader app, plan, and apply twice, report-only."
+  ],
+  [
+   29.163,
+   6.175,
+   "Watch the report-only results in the sign-in log, and then enforce the gate alone, with Allow Enforce."
+  ],
+  [
+   35.337,
+   4.25,
+   "Don't select C one in pim in this lab; Module 4 does that."
+  ],
+  [
+   39.587,
+   6.025,
+   "The reader needs the three read permissions, and the apply adds the two write permissions, and nothing else."
+  ],
+  [
+   45.612,
+   6.5,
+   "To back out, set each file the lab created to disabled, and the contexts to unavailable, then apply."
+  ],
+  [
+   52.112,
+   4.412,
+   "Turning a policy off needs no Allow Enforce, and nothing is deleted."
+  ],
+  [
+   56.525,
+   2.15,
+   "The authors haven't run Lab 2."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   1.387,
+   "The federal requirement."
+  ],
+  [
+   1.438,
+   9.7,
+   "The policy files, the check and the plan are the evidence for the plan's tasks A1.5, A2.3, A2.5 and A2.6."
+  ],
+  [
+   11.137,
+   20.725,
+   "Phishing-resistant M F A for administrators is required by nist special publication eight hundred fifty-three I A two, enhancement one, by O M B memorandum M twenty-two oh-nine, and by sis-uh's B O D twenty-five oh-one and its ScubaGear baseline, M S A A D three point six, version one."
+  ],
+  [
+   31.863,
+   6.713,
+   "The activation gate, a fresh proof at elevation, supports A C six, enhancements one and ten."
+  ],
+  [
+   38.575,
+   4.688,
+   "The emergency exclusion keeps A C two's emergency accounts usable."
+  ],
+  [
+   43.263,
+   5.1,
+   "And C M three covers every change, reviewed and tested before it's made."
+  ],
+  [
+   48.362,
+   15.275,
+   "The evidence an I S S O keeps: the reviewed policy files and the pull request's check run; each run's plan and requests with its manifest; the Entra audit records of the creates; and the pull request that changed the gate's state to enabled."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   1.975,
+   "Check yourself with two questions."
+  ],
+  [
+   2.025,
+   6.763,
+   "First: the activation gate's policy is report-only, and pim requires context C one on activation."
+  ],
+  [
+   8.787,
+   1.012,
+   "What happens?"
+  ],
+  [
+   9.8,
+   6.575,
+   "The answer is b: pim's M F A fallback doesn't trigger, because the policy is report-only."
+  ],
+  [
+   16.375,
+   1.863,
+   "Nothing gates the activation."
+  ],
+  [
+   18.238,
+   5.575,
+   "That's why Microsoft Learn says to create and enable the policy before you select the context."
+  ],
+  [
+   23.812,
+   3.862,
+   "Second: a policy is in the tenant but not in the files."
+  ],
+  [
+   27.675,
+   1.262,
+   "What does the plan do?"
+  ],
+  [
+   28.938,
+   5.013,
+   "The answer is b: it reports it as NotInRepository, and never deletes it."
+  ],
+  [
+   33.95,
+   3.9,
+   "You saw that for C A oh oh one in Lab 1, step five."
+  ],
+  [
+   37.85,
+   4.9,
+   "The module page has two more questions, each linked to the section that answers it."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   0.825,
+   "To sum up."
+  ],
+  [
+   0.875,
+   14.65,
+   "You checked the administrator policies and the activation gate before merge, saw Microsoft's own template fail the program's stricter rules, planned against a tenant, and applied three times until nothing was left to change, with the gate still report-only."
+  ],
+  [
+   15.525,
+   11.475,
+   "Carry one thing forward: the gate's policy state can't be read from the version one point oh A P I, so the next module asks a person to state that the gate is On before it sets the context."
+  ],
+  [
+   27.0,
+   4.4,
+   "Next is Module 4: pim for Microsoft Entra roles as code."
+  ],
+  [
+   31.4,
+   11.125,
+   "You hold each role's pim settings as one reviewed file, see exactly what a change will do, apply it one rollout wave at a time, and prove from a read-back that the tenant matches the files."
+  ]
+ ]
+}

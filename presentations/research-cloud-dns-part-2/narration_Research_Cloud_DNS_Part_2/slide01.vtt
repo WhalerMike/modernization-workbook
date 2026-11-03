@@ -15,40 +15,40 @@ evaluation that's still under review.
 Part 1 covered the native resolvers.
 
 4
-00:00:12.062 --> 00:00:16.524
+00:00:12.062 --> 00:00:16.514
 Part 2 asks when an agency should
 run its own DNS servers in a cloud,
 
 5
-00:00:16.524 --> 00:00:21.400
-and how to run BIND there so it stays
-inside Book 08's single policy plane.
+00:00:16.514 --> 00:00:22.037
+and how to run BIND there so it stays inside
+the workbook's single DNS policy plane.
 
 6
-00:00:21.400 --> 00:00:23.716
+00:00:22.037 --> 00:00:24.354
 We'll start with the test that matters:
 
 7
-00:00:23.716 --> 00:00:27.525
+00:00:24.354 --> 00:00:28.163
 does a cloud BIND server align
 with that plane, or create a silo?
 
 8
-00:00:27.525 --> 00:00:34.062
+00:00:28.163 --> 00:00:34.700
 Then the criteria, vNIOS or BIND, and BIND
 itself, from roles to patching and Git.
 
 9
-00:00:34.062 --> 00:00:36.995
+00:00:34.700 --> 00:00:37.633
 Then a seven-question
 checklist for an agency
 
 10
-00:00:36.995 --> 00:00:40.237
+00:00:37.633 --> 00:00:40.875
 adding BIND servers in AWS,
 and the federal mapping.
 
 11
-00:00:40.237 --> 00:00:45.620
+00:00:40.875 --> 00:00:46.270
 The labels carry over from Part 1:
 design guidance, inference, and confirm.

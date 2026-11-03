@@ -1,0 +1,94 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.150
+Nine drift rules run against
+the approved baseline.
+
+2
+00:00:03.150 --> 00:00:08.000
+New and changed identities are warnings,
+with the exact columns that changed.
+
+3
+00:00:08.000 --> 00:00:10.320
+Ownerless identities are findings:
+
+4
+00:00:10.320 --> 00:00:14.650
+orphan candidates in Chapter 2's
+run, and this code disables nothing.
+
+5
+00:00:14.650 --> 00:00:17.302
+An app with no sign-in
+for over ninety days,
+
+6
+00:00:17.302 --> 00:00:20.889
+or a credential that expires
+within thirty, is a warning;
+
+7
+00:00:20.889 --> 00:00:24.867
+both numbers are Microsoft
+Learn's, from its recommendations
+
+8
+00:00:24.867 --> 00:00:29.000
+to remove unused applications
+and renew expiring credentials.
+
+9
+00:00:29.000 --> 00:00:33.525
+An enabled directory account whose
+password never expires is a finding.
+
+10
+00:00:33.525 --> 00:00:37.050
+So is a credential added outside
+the pipeline, one per key:
+
+11
+00:00:37.050 --> 00:00:41.025
+Microsoft Learn's security
+operations guide for applications
+
+12
+00:00:41.025 --> 00:00:44.475
+rates a credential added to
+an existing app as high risk.
+
+13
+00:00:44.475 --> 00:00:47.766
+A new consent grant or app
+permission is a warning,
+
+14
+00:00:47.766 --> 00:00:51.137
+or a finding when it's
+tenant-wide or high privilege.
+
+15
+00:00:51.137 --> 00:00:53.321
+And the ninth is the honest one:
+
+16
+00:00:53.321 --> 00:00:56.988
+an evidence gap is reported,
+never treated as a pass.
+
+17
+00:00:56.988 --> 00:00:59.617
+The key rule, the
+program's design guidance:
+
+18
+00:00:59.617 --> 00:01:04.878
+a credential counts as inside the pipeline
+only when two independent records agree,
+
+19
+00:01:04.878 --> 00:01:09.530
+the listed pipeline identity and the
+rotation pipeline's credential log.

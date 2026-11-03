@@ -35,29 +35,29 @@ So this deck treats all
 three as one control plane.
 
 8
-00:00:25.987 --> 00:00:30.876
-Book 08 of the workbook describes that
+00:00:25.987 --> 00:00:30.927
+The workbook's DNS design describes that
 plane: on-premises servers that answer,
 
 9
-00:00:30.876 --> 00:00:34.084
+00:00:30.927 --> 00:00:34.071
 a management plane that
 holds the system of record,
 
 10
-00:00:34.084 --> 00:00:37.750
+00:00:34.071 --> 00:00:37.663
 and local resolvers that keep
 working if it's unreachable.
 
 11
-00:00:37.750 --> 00:00:39.925
+00:00:37.663 --> 00:00:39.838
 The argument of the session is simple.
 
 12
-00:00:39.925 --> 00:00:42.593
+00:00:39.838 --> 00:00:42.505
 The rules need one governed DDI plane,
 
 13
-00:00:42.593 --> 00:00:48.170
+00:00:42.505 --> 00:00:48.070
 and Infoblox is one of the strongest ways
 to build it, with real risks to manage.

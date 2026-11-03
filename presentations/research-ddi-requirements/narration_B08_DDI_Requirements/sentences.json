@@ -12,18 +12,18 @@
   ],
   [
    6.463,
-   14.725,
-   "It's a companion to Book 08 of the workbook, on D N S, DHCP and eye-pam, and it asks one question: if an agency is going to buy or build a platform for its name and address layer, what does that platform actually have to do?"
+   13.825,
+   "It's a companion to the workbook's D N S, DHCP and eye-pam book, and it asks one question: if an agency is going to buy or build a platform for its name and address layer, what does that platform actually have to do?"
   ],
   [
-   21.188,
+   20.288,
    11.1,
    "We'll cover why that layer is now a control plane, what a platform has to deliver and what to check before buying, who runs it, including how divisions can manage their own piece, and how to decide."
   ],
   [
-   32.288,
-   10.088,
-   "Vendors appear only as examples, nothing here ranks a product, and every claim comes from Book 08 or from primary sources checked in October 2026."
+   31.387,
+   12.637,
+   "Vendors appear only as examples, nothing here ranks a product, and every claim comes from primary sources checked in October 2026, or is the workbook's own design guidance, labeled as such."
   ]
  ],
  "2": [
@@ -133,26 +133,26 @@
   ],
   [
    16.05,
-   3.913,
-   "Book 08 calls that overlay management, not replacement."
+   5.05,
+   "The workbook's D N S design calls that overlay management, not replacement."
   ],
   [
-   19.962,
+   21.1,
    6.925,
    "When you evaluate a product, ask whether each cloud integration actually writes to the cloud, or only reads from it."
   ],
   [
-   26.887,
+   28.025,
    11.15,
    "Second, DNSSEC with central key custody: sign external zones always, validate on every agency resolver, and keep rollover automated and audited in one place."
   ],
   [
-   38.038,
+   39.175,
    10.363,
    "The clouds don't fill this gap, and check the defaults: Windows Server's default signing key is below nist's floor, and NIOS defaults to RSA with SHA-1."
   ],
   [
-   48.4,
+   49.538,
    1.525,
    "Next, security."
   ]
@@ -175,21 +175,21 @@
   ],
   [
    17.337,
-   12.15,
-   "Book 08's Decision 2 is that the agency resolver is always the first hop, so a sassy provider's D N S service is a forwarding target, never the place the branch sends queries first."
+   12.3,
+   "In the workbook's D N S design, the agency resolver is always the first hop, so a sassy provider's D N S service is a forwarding target, never the place the branch sends queries first."
   ],
   [
-   29.488,
+   29.637,
    6.125,
    "Get the order wrong and you quietly lose the agency's own policy, validation and logging."
   ],
   [
-   35.612,
+   35.763,
    7.725,
    "Encrypted D N S completes the picture: the platform terminates it on its resolvers, and clients mustn't route around it."
   ],
   [
-   43.337,
+   43.487,
    1.4,
    "Next, addresses."
   ]
@@ -249,36 +249,36 @@
   ],
   [
    3.163,
-   5.388,
-   "No rule requires an API, but Book 08's operating model depends on one."
+   6.35,
+   "No rule requires an A P I, but the workbook's D N S operating model depends on one."
   ],
   [
-   8.55,
-   12.975,
-   "Every object should be reachable through a documented API, so infrastructure as code, ticketing and pipelines all go through the same authority and audit trail, with service accounts held to the same scopes as people."
+   9.512,
+   13.05,
+   "Every object should be reachable through a documented A P I, so infrastructure as code, ticketing and pipelines all go through the same authority and audit trail, with service accounts held to the same scopes as people."
   ],
   [
-   21.525,
+   22.562,
    5.825,
    "Logging to the sim has to meet the retention rule: six months searchable and a year retrievable."
   ],
   [
-   27.35,
+   28.387,
    2.413,
    "Capacity is where designs fail."
   ],
   [
-   29.762,
+   30.8,
    9.738,
    "Full query logging costs performance, reporting appliances can lock after repeated ingest overruns, and some log streams drop records when the receiver is down."
   ],
   [
-   39.5,
+   40.538,
    3.513,
    "So size for peak, and test with the sim unreachable."
   ],
   [
-   43.013,
+   44.05,
    1.1,
    "Next, buying."
   ]
@@ -390,31 +390,31 @@
   ],
   [
    8.988,
-   3.987,
-   "Book 08 says yes, if the platform supports the right model."
+   5.188,
+   "The workbook's D N S design says yes, if the platform supports the right model."
   ],
   [
-   12.975,
+   14.175,
    10.588,
    "Corporate administrators see everything, and each division gets a fenced scope of its own zones, address blocks and DHCP scopes, with everything else denied by default."
   ],
   [
-   23.562,
+   24.762,
    8.875,
    "In Infoblox, for example, one setting stops a division with access to a shared zone from pointing a name into another division's address space."
   ],
   [
-   32.438,
+   33.638,
    5.938,
    "Only central superusers create groups and roles, so a division can't widen its own rights."
   ],
   [
-   38.375,
+   39.575,
    6.7,
    "Administrators sign in with piv or CAC, or single sign-on, and you keep a local break-glass account."
   ],
   [
-   45.075,
+   46.275,
    1.887,
    "So how are divisions kept apart?"
   ]
@@ -575,33 +575,33 @@
   ],
   [
    1.35,
-   6.175,
-   "Book 08's Chapter 09 gives one decider per row, and separates deciding from doing."
+   6.975,
+   "The workbook's D N S responsibility matrix gives one decider per row, and separates deciding from doing."
   ],
   [
-   7.525,
+   8.325,
    4.275,
    "The sponsor and C I O choose the platform and how divisions are scoped."
   ],
   [
-   11.8,
+   12.6,
    7.287,
    "The authorizing official decides whether a cloud-delivered management plane is authorized, and accepts the standing exceptions."
   ],
   [
-   19.087,
+   19.887,
    3.837,
    "The see-so and I S S O set the control requirements."
   ],
   [
-   22.925,
+   23.725,
    11.562,
    "And the D N S and D D I team owns the namespace and the address plan, and approves high-impact changes, while routine record changes inside a division's own space are pre-approved."
   ],
   [
-   34.487,
-   10.562,
-   "Because that team holds the most powerful roles, the book scopes its automation, adds a second approver for the riskiest changes, and keeps its privileged roles eligible, not standing."
+   35.288,
+   10.838,
+   "Because that team holds the most powerful roles, the workbook scopes its automation, adds a second approver for the riskiest changes, and keeps its privileged roles eligible, not standing."
   ]
  ],
  "16": [
@@ -612,36 +612,36 @@
   ],
   [
    3.038,
-   11.6,
-   "The sponsor and C I O authorize one authoritative D D I policy plane, and the D N S and D D I team settles Book 08's five configuration decisions within 90 days."
+   12.238,
+   "The sponsor and C I O authorize one authoritative D D I policy plane, and the D N S and D D I team settles the workbook's five D N S configuration decisions within 90 days."
   ],
   [
-   14.637,
+   15.275,
    5.987,
    "Write the requirement as capabilities, each mapped to its rule, because no rule names a product."
   ],
   [
-   20.625,
+   21.262,
    5.275,
    "Ask every candidate for the same evidence pack, and record every gap with an owner."
   ],
   [
-   25.9,
+   26.538,
    6.675,
    "Pick a delegation pattern per division, and pilot it, ideally with one that has overlapping address space."
   ],
   [
-   32.575,
+   33.212,
    3.138,
    "And size logging for retention, tested at peak."
   ],
   [
-   35.712,
+   36.35,
    9.275,
    "The next step needs no award: list every D N S, DHCP and eye-pam requirement your systems inherit, and the evidence that would prove it."
   ],
   [
-   44.987,
+   45.625,
    0.762,
    "Thank you."
   ]
