@@ -236,9 +236,9 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: Learn's samples, D-N6, then the check",
       body: [
-        { cols: [[{ terminal: "09-2" }], [{ callout: "the shape check finds one problem in Learn's Block agent identity authentication body: “no exclusion for approved agents.” Step 2 lists each task's permissions, as on the last slide.", label: "Read in step 1: ", icon: "FaListCheck", color: "teal" }]] },
+        { cols: [[{ terminal: "09-2", lines: "1-2,5", label: "examples/non-person-identity  ·  fixture data  ·  real output, trimmed" }], [{ callout: "the shape check finds one problem in Learn's Block agent identity authentication body: “no exclusion for approved agents.” Step 2 lists each task's permissions, as on the last slide.", label: "Read in step 1: ", icon: "FaListCheck", color: "teal" }]] },
         { terminal: "09-4", lines: "1,3-7" },
-        { terminal: "09-5", lines: "1-5" },
+        { terminal: "09-5", lines: "1-4", label: "examples/non-person-identity  ·  fixture data  ·  real output, trimmed" },
       ],
       sources: "Sources: examples/non-person-identity (tests and fixtures, fictional). Chapter 09, “Lab 1: fixtures, no tenant,” steps 1–4.",
       say: `Lab 1 runs on a laptop, with Chapters 1 and 2's output in place. First, send Learn's samples to the fake, and read the one test that matters most: the block-all-agents policy has no exclusion for approved agents. Then list each task's permissions, and read the decision table for each cloud: agent mode in the worldwide and G C C clouds, fallback in the higher ones. Then run the check in G C C. Eight AI identities, twenty-two findings, four of them top priority, and two orphan candidates for Chapter 2.`,
@@ -269,9 +269,9 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: the GCC High fallback, a dry run, a refusal",
       body: [
-        { terminal: "09-8", lines: "11-14", label: "Chapters 01, 02 and 09 again, with -Cloud gcchigh  ·  fixture data  ·  real output" },
+        { terminal: "09-8", lines: "11-13", label: "Chapters 01, 02 and 09 again, with -Cloud gcchigh  ·  fixture data  ·  real output, trimmed" },
         { terminal: "09-9", lines: "2-4" },
-        { terminal: "09-10" },
+        { terminal: "09-10", lines: "1-3,5", label: "examples/non-person-identity  ·  fixture data  ·  real output, trimmed" },
         { bullets: [
           "In gcchigh no agent identity read is sent; three records naming agent identities become NPI-AI-03",
         ], pt: 12.5 },

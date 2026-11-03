@@ -254,7 +254,7 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: check the template and the files offline",
       body: [
-        { cols: [[{ terminal: "03-1" }, { terminal: "03-3" }], [{ terminal: "03-4", lines: "3-9" }]] }, { terminal: "03-2", lines: "2-5" },
+        { cols: [[{ terminal: "03-1", lines: "3-5", label: "examples/privileged-access  ·  fixture data  ·  real output, trimmed" }, { terminal: "03-3" }], [{ terminal: "03-4", lines: "3-9" }]] }, { terminal: "03-2", lines: "2-5" },
         { callout: "PA-CA-01 Finding (no emergency exclusion), PA-CA-03 Finding (display text in excludeUsers), PA-CA-06 Warn (plain MFA), PA-CA-07 Warn (12 of 14 roles missing).", label: "Step 4, four rows: ", icon: "FaListCheck", color: "teal" },
       ],
       sources: "Sources: examples/privileged-access (tests and fixtures, fictional). Chapter 03, “Lab 1: fixtures, no tenant,” steps 1–4.",

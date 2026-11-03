@@ -160,7 +160,7 @@ module.exports = function build(spec) {
     // A real capture from scripts/kit_captures.py, drawn as a terminal window. lines picks capture lines
     // ("1-8,15"); a gap between picks shows as "…". Long lines wrap as a window this wide would wrap them.
     terminal: {
-      pt: (e, s) => size(e.pt || 11.5, 9, s),
+      pt: (e, s) => size(e.pt || 11.5, 10, s),
       raw: (e) => {
         const f = path.join(ROOT, "data", "kit-captures", spec.workbook, `${e.terminal}.txt`);
         if (!fs.existsSync(f)) { fail(`no kit capture ${e.terminal}: run scripts/kit_captures.py ${spec.workbook}`); return ["(missing capture)"]; }
@@ -198,7 +198,7 @@ module.exports = function build(spec) {
         sl.addShape(pres.shapes.RECTANGLE, { objectName: "Terminal title bar", x, y, w, h: 0.3, fill: { color: "1E293B" }, line: { color: "1E293B" } });
         ["F87171", "FBBF24", "34D399"].forEach((c, k) => sl.addShape(pres.shapes.OVAL, { objectName: `Terminal dot ${k + 1}`, x: x + 0.14 + k * 0.2, y: y + 0.09, w: 0.12, h: 0.12, fill: { color: c }, line: { color: c } }));
         txt(sl, "Terminal title", e.label || `${e.kit || spec.kit || wb.kit || "the kit"}  ·  fixture data  ·  real output`,
-          { x: x + 0.8, y, w: w - 1.0, h: 0.3, fontSize: 9.5, color: "94A3B8", align: "center", valign: "middle" });
+          { x: x + 0.8, y, w: w - 1.0, h: 0.3, fontSize: 10, color: "94A3B8", fill: { color: "1E293B" }, align: "center", valign: "middle" });
         let command = false;
         const runs = [];
         lines.forEach((l, k) => {
@@ -210,7 +210,7 @@ module.exports = function build(spec) {
             runs.push({ text: l.slice(p.length) || " ", options: { color: "F8FAFC", bold: true, breakLine: br } });
           } else runs.push({ text: l.length ? l : " ", options: { color: command ? "F8FAFC" : (/^\(exit code|^…$/.test(l) ? "94A3B8" : "E2E8F0"), bold: command, breakLine: br } });
         });
-        txt(sl, "Terminal output", runs, { x: x + 0.15, y: y + 0.38, w: w - 0.25, h: h - 0.45, fontFace: "Consolas", fontSize: pt, valign: "top" });
+        txt(sl, "Terminal output", runs, { x: x + 0.15, y: y + 0.38, w: w - 0.25, h: h - 0.45, fontFace: "Consolas", fontSize: pt, fill: { color: "0F172A" }, valign: "top" });
       },
     },
     cards: {

@@ -236,8 +236,8 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: Learn's sample, then the pre-merge check",
       body: [
-        { cols: [[{ terminal: "08-1" }, { terminal: "08-3" }], [{ terminal: "08-4", lines: "1,5-9" }]] },
-        { terminal: "08-2", lines: "2-5" },
+        { cols: [[{ terminal: "08-1", lines: "1-2,5", label: "examples/non-person-identity  ·  fixture data  ·  real output, trimmed" }, { terminal: "08-3" }], [{ terminal: "08-4", lines: "1,5-9" }]] },
+        { terminal: "08-2", lines: "3-5", label: "examples/non-person-identity  ·  fixture data  ·  real output, trimmed" },
         { callout: "the fake answers 400 to the sample's display-text state. In step 4, five Findings: NPI-WCA-01 twice, NPI-WCA-07 twice (state, no clientAppTypes), NPI-WCA-08 (AllTrusted).", label: "What you see: ", icon: "FaListCheck", color: "teal" },
       ],
       sources: "Sources: examples/non-person-identity (tests and fixtures, fictional). Chapter 08, “Lab 1: fixtures, no tenant,” steps 1–4.",
@@ -250,7 +250,7 @@ require("../_build/devwb.js")({
       part: "How", title: "Lab 1: the plan and the sign-in summary",
       body: [
         { terminal: "08-5", lines: "1,6-13" },
-        { terminal: "08-6" },
+        { terminal: "08-6", lines: "1-7", label: "examples/non-person-identity  ·  fixture data  ·  real output, trimmed" },
         { bullets: [
           "The portal-made policy is left alone; no user or managed identity sign-in comes back",
         ], pt: 12.5 },

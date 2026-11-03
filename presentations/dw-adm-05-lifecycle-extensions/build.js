@@ -267,9 +267,9 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: Learn's definition, then the program's",
       body: [
-        { cols: [[{ terminal: "05-1", lines: "3,12-13", kit: "examples/lifecycle-extensions" }], [{ terminal: "05-4", kit: "examples/lifecycle-extensions" }]] },
+        { cols: [[{ terminal: "05-1", lines: "12", kit: "examples/lifecycle-extensions", label: "examples/lifecycle-extensions  ·  fixture data  ·  real output, trimmed" }], [{ terminal: "05-4", kit: "examples/lifecycle-extensions" }]] },
         { terminal: "05-2", lines: "1-3,5", kit: "examples/lifecycle-extensions" },
-        { cols: [[{ terminal: "05-3", lines: "1,5", kit: "examples/lifecycle-extensions" }], [{ terminal: "05-6", lines: "1,3-5", kit: "examples/lifecycle-extensions" }]], split: 0.4 },
+        { cols: [[{ terminal: "05-3", lines: "1,5", kit: "examples/lifecycle-extensions" }], [{ terminal: "05-6", lines: "1,3-4", kit: "examples/lifecycle-extensions", label: "examples/lifecycle-extensions  ·  fixture data  ·  real output, trimmed" }]], split: 0.4 },
       ],
       sources: "Sources: examples/lifecycle-extensions (fixtures and fakes, fictional). Chapter 05, “Lab 1: fixtures, no tenant,” steps 1–4.",
       say: `Lab 1 needs only Python on a laptop: no tenant, no network. You start with Microsoft's definition. The linter finds eight problems, and when you run it for a GCC High tenant, the callback heads to the worldwide cloud and the task fails at the end of the wait. Switch the cloud to worldwide and it completes, which is exactly why the problem is easy to miss. Then the program's definition: a clean lint, and a GCC High run that survives two transient failures, does the work once, and calls back to the right cloud.`,

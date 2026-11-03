@@ -8,7 +8,8 @@ Checks each deck for:
   - the title is first in reading order (first shape in the slide's shape tree)
   - every picture, chart and media object has alt text or is marked decorative
   - every table has a header row (firstRow) set
-  - text contrast against white (the decks' only background) is at least 4.5:1, or 3:1 for large text
+  - text contrast is at least 4.5:1, or 3:1 for large text, against the text box's own solid fill
+    if it has one (a terminal window), otherwise against white (the decks' background)
   - no body text under 10 pt
   - text runs carry a language tag
   - narrated decks: every slide's audio has a caption track (WebVTT) attached
@@ -115,7 +116,14 @@ def check(deck: Path) -> list[str]:
         for tp in tree.iter(f"{{{NS['a']}}}tblPr"):
             if tp.get("firstRow") != "1":
                 probs.append(f"slide {i}: table without a header row")
-        # text contrast, size, language
+        # text contrast, size, language. A text box with its own solid fill (a terminal window, say) is
+        # measured against that fill; any other text against white, the decks' background.
+        bg_of = {}
+        for sp in tree.iter(f"{{{NS['p']}}}sp"):
+            sf = sp.find("p:spPr/a:solidFill/a:srgbClr", NS)
+            if sf is not None:
+                for r in sp.iter(f"{{{NS['a']}}}r"):
+                    bg_of[id(r)] = sf.get("val").upper()
         for r in tree.iter(f"{{{NS['a']}}}r"):
             rpr = r.find("a:rPr", NS)
             text = (r.findtext("a:t", "", NS) or "").strip()
@@ -133,11 +141,12 @@ def check(deck: Path) -> list[str]:
                 c = fill.find("a:srgbClr", NS)
                 s = fill.find("a:schemeClr", NS)
                 fg = c.get("val") if c is not None else THEME_HEX.get(s.get("val")) if s is not None else None
-            if fg and fg.upper() != "FFFFFF":
+            bg = bg_of.get(id(r), "FFFFFF")
+            if fg and not (bg == "FFFFFF" and fg.upper() == "FFFFFF"):
                 need = 3.0 if (sz >= 18 or (sz >= 14 and rpr.get("b") == "1")) else 4.5
-                cr = contrast(fg, "FFFFFF")
+                cr = contrast(fg, bg)
                 if cr < need:
-                    probs.append(f"slide {i}: contrast {cr:.2f}:1 below {need}:1 for #{fg} ({text[:30]!r})")
+                    probs.append(f"slide {i}: contrast {cr:.2f}:1 below {need}:1 for #{fg} on #{bg} ({text[:30]!r})")
         # captions on narrated audio
         if narrated:
             has_audio = any(t.endswith("/audio") or t.endswith("/media") for t, _ in srels.values())

@@ -266,8 +266,8 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: the gate, the sample twice, the plan",
       body: [
-        { cols: [[{ terminal: "06-1", lines: "4-5,8-11", kit: "examples/validation-kit" }], [{ terminal: "06-2", lines: "9-10,13-14,18-19", kit: "examples/group-policy-as-code" }]], split: 0.58 },
-        { terminal: "06-3", lines: "2,5-15", kit: "examples/group-policy-as-code" },
+        { cols: [[{ terminal: "06-1", lines: "4,8-11", kit: "examples/validation-kit", label: "examples/validation-kit  ·  fixture data  ·  real output, trimmed" }], [{ terminal: "06-2", lines: "9,13-14,18-19", kit: "examples/group-policy-as-code", label: "examples/group-policy-as-code  ·  fixture data  ·  real output, trimmed" }]], split: 0.58 },
+        { terminal: "06-3", lines: "5-15", kit: "examples/group-policy-as-code", label: "examples/group-policy-as-code  ·  fixture data  ·  real output, trimmed" },
       ],
       sources: "Sources: examples/validation-kit and examples/group-policy-as-code (fixtures, fictional). Chapter 06, “Lab 1: fixtures, no tenant,” steps 1–3.",
       say: `Lab 1 runs on a laptop with no tenant. First you run the validation kit's gate against its failing fixture, and see three real findings and a warning. Then comes the revealing step: you run Microsoft's own import sample twice against the fake Graph, and the policy appears twice. The call log shows two creates and not a single read; the script never looked. Then you build the move plan, and the eleven rows show every kind of disposition, including a hibernate setting where two old policies disagree. Next, the lint and the sync.`,

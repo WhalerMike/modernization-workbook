@@ -173,7 +173,7 @@ require("../_build/devwb.js")({
       part: "How", title: "Lab 1: day one and day two",
       body: [
         { terminal: "06-1" },
-        { cols: [[{ terminal: "06-2", lines: "1,3-9" }], [{ terminal: "06-3", lines: "1,14-15"}]] },
+        { cols: [[{ terminal: "06-2", lines: "1,3-8", label: "examples/servicenow-sailpoint  ·  fixture data  ·  real output, trimmed" }], [{ terminal: "06-3", lines: "1,14-15"}]] },
         { lead: "Day one: Erin's Entra department is Finance where HR says HR; the audit shows a help desk administrator made the change. Carol, terminated, is still enabled." },
       ],
       sources: "Sources: examples/servicenow-sailpoint (fictional fixtures). Chapter 06, “Lab 1: fixtures, no tenant,” steps 1–3.",

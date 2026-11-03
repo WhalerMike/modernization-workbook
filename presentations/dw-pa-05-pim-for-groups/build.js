@@ -277,7 +277,7 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: Microsoft's samples, then a dry run",
       body: [
-        { cols: [[{ terminal: "05-1" }], [{ terminal: "05-2", lines: "3-9" }]] }, { terminal: "05-3" }, { terminal: "05-4", lines: "1-6" },
+        { cols: [[{ terminal: "05-1" }], [{ terminal: "05-2", lines: "4-9", label: "examples/privileged-access  ·  fixture data  ·  real output, trimmed" }]] }, { terminal: "05-3" }, { terminal: "05-4", lines: "1-3,6", label: "examples/privileged-access  ·  fixture data  ·  real output, trimmed" },
       ],
       sources: "Sources: examples/privileged-access (tests and fixtures, fictional); pinned Learn pages at a693031. Chapter 05, “Lab 1: fixtures, no tenant,” steps 1–4.",
       say: `Lab 1 runs on a laptop: PowerShell 7 and Pester, no tenant and no network. First you send Microsoft's samples, as published, to the fake, and the tests confirm each gap from the table. Then you send the first example by hand and see it for yourself: it's titled ownership, it asks for membership, and the fake refuses it because its end date passed in 2023. Next you list the read permissions, four and none that can write. Finally you plan against a fictional tenant, as a dry run. Let's read what it found.`,

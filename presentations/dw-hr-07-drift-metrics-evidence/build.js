@@ -199,7 +199,7 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: the chapter outputs, then the first run",
       body: [
-        { cols: [[{ terminal: "07-1", lines: "11-14,20-25" }], [{ terminal: "07-2" }]], split: 0.47 },
+        { cols: [[{ terminal: "07-1", lines: "12-14,21-25", label: "examples/hr-lifecycle  ·  fixture data  ·  real output, trimmed" }], [{ terminal: "07-2" }]], split: 0.47 },
         { lead: "Five metrics out of bounds, one not measured: 14 Findings and 6 Warns, and it exits 2." },
       ],
       sources: "Sources: examples/hr-lifecycle (fictional contoso.example fixtures). Chapter 07, “Lab 1: fixtures, no tenant,” steps 1–2.",

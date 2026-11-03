@@ -222,7 +222,8 @@ endModule(SC);
   const s = content(SL, "Try it: read the run's findings");
   tag(s, "How");
   const c = code(s, "Lab", 0.6, 1.45, 12.15, [
-    "$ python -c \"import json; [print(r['Rule'], r['Severity'], r['Object']) for r in json.load(open('out/ch07/runs/2026-11-01T0600Z/lifecycle/findings.json'))]\"",
+    "$ python -c \"import json; [print(r['Rule'], r['Severity'], r['Object']) \\",
+    "    for r in json.load(open('out/ch07/runs/2026-11-01T0600Z/lifecycle/findings.json'))]\"",
     "LD-01 Finding 100104                          LD-04 Finding morgan.lee@contoso.example",
     "LD-02 Finding drew.park@contoso.example       LD-04 Finding drew.park@contoso.example",
     "LD-02 Finding harper.vu@contoso.example       LD-04 Finding quinn.ross@contoso.example",
@@ -231,7 +232,7 @@ endModule(SC);
     "LD-03 Finding old.temp@contoso.example        LD-06 Finding 900011",
     "LD-04 Finding blake.ito@contoso.example       LD-07 Warn correlationCoverage    ... four more LD-07",
     "LD-04 Finding casey.ng@contoso.example        LD-08 Warn transferToReviewHours",
-  ], { label: "TRY IT  ·  LAB 1, STEP 3, RUN NOVEMBER 2, 2026 (SET IN TWO COLUMNS; FOUR LD-07 LINES TRIMMED)", pt: 9.5 });
+  ], { label: "TRY IT  ·  LAB 1, STEP 3, RUN NOVEMBER 2, 2026 (SET IN TWO COLUMNS; FOUR LD-07 LINES TRIMMED)", pt: 10 });
   const b = table(s, "Count", c + 0.25, [3.0, 9.15], ["Severity", "What step 3 shows"], [
     ["14 Findings", "One LD-01, three LD-02, two LD-03, five LD-04 (Module 1's four second writers and its forbidden delete), one LD-05, two LD-06"],
     ["6 Warns", "Five LD-07, one per metric out of bounds; one LD-08, for transfer-to-review"],
@@ -277,7 +278,7 @@ endModule(SC);
     "$ python ../drift-pipeline/python/hr_evidence.py period --evidence out/ch07/evidence --since 2026-10-01 --until 2026-11-02 --out out/ch07/periods",
     "{\"chain_breaks\": 0, \"complete\": false, \"coverage_gaps\": 0, \"open_at_end\": 20, \"packages\": 2, \"period\": \"period-2026-10-01_2026-11-02\"}",
     "$ cat out/ch07/periods/period-2026-10-01_2026-11-02/period-summary.md",
-  ], { label: "TRY IT  ·  LAB 1 OUTPUT, RUN NOVEMBER 2, 2026", pt: 9.5 });
+  ], { label: "TRY IT  ·  LAB 1 OUTPUT, RUN NOVEMBER 2, 2026", pt: 10 });
   const b = table(s, "Gate7", c + 0.2, [6.6, 3.85, 1.7], ["Gate 7 criterion, from period-summary.md", "From this code", "Status"], [
     ["Lifecycle drift classes found and closed at the source", "20 open at the end", "not met"],
     ["Metrics on the ConMon cadence, within the agency's thresholds", "5 out of bounds; 1 not measured", "not met"],

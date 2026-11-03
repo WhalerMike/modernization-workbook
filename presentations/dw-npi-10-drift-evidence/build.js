@@ -258,7 +258,7 @@ require("../_build/devwb.js")({
       body: [
         { terminal: "10-7", lines: "3-6" },
         { terminal: "10-10", lines: "3,6", label: "Edit summary.md and verify; then package day 1 after day 2  ·  real output" },
-        { cols: [[{ terminal: "10-8", lines: "1-5" }], [{ table: { head: ["Gate 7, in the period", "Status"], w: [2.85, 2.85], rows: [
+        { cols: [[{ terminal: "10-8", lines: "1,3-5", label: "examples/non-person-identity  ·  fixture data  ·  real output, trimmed" }], [{ table: { head: ["Gate 7, in the period", "Status"], w: [2.85, 2.85], rows: [
           ["Owner, sponsor, reason, target", "Not decided here (Ch 03)"],
           ["No never-expiring password", "Not met: three accounts"],
           ["None orphaned", "Not met: seven candidates"],

@@ -210,7 +210,7 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: two jobs, two clients; the Graph app",
       body: [
-        { terminal: "03-4", lines: "1,8-11" },
+        { terminal: "03-4", lines: "1,8-10", label: "examples/servicenow-sailpoint  ·  fixture data  ·  real output, trimmed" },
         { terminal: "03-5", lines: "1,10-14,23-25" },
         { callout: "the drift client's scopes fail the workflow task in both directions: the two jobs need two clients.", label: "Step 4's point: ", icon: "FaPeopleArrows", color: "teal" },
       ],

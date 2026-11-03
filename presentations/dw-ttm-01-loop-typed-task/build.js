@@ -237,7 +237,7 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: the script's tests and the drift payloads",
       body: [
-        { terminal: "01-3", lines: "1,19-20" },
+        { terminal: "01-3", lines: "1,19", label: "examples/servicenow-sailpoint  ·  fixture data  ·  real output, trimmed" },
         { terminal: "01-4", lines: "1,17-23,33" },
         { bullets: [
           "Twelve lines start ok; three carry the warning: two missing identities and the unauthorized write",

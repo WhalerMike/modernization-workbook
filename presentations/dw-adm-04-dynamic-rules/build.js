@@ -264,7 +264,7 @@ require("../_build/devwb.js")({
       body: [
         { cols: [[{ terminal: "04-1", lines: "9-14", kit: "examples/dynamic-rules" }], [{ terminal: "04-4", lines: "2-7", kit: "examples/dynamic-rules" }]], split: 0.55 },
         { terminal: "04-2", lines: "3-5", kit: "examples/dynamic-rules" },
-        { terminal: "04-3", lines: "2-4,7-8", kit: "examples/dynamic-rules" },
+        { terminal: "04-3", lines: "2-4,7", kit: "examples/dynamic-rules", label: "examples/dynamic-rules  ·  fixture data  ·  real output, trimmed" },
       ],
       sources: "Sources: examples/dynamic-rules and the pinned Learn samples (tests and fixtures, fictional). Chapter 04, “Lab 1: fixtures, no tenant,” steps 1–3.",
       say: `Lab 1 needs only a laptop with PowerShell 7 and Pester. First you run Learn's own pause and resume scripts against a fake tenant with two groups, one of them already paused for review. After the resume, both are on: the held group came back to life. Try an unknown cloud name and you'll see it sign in to worldwide. Then you lint the HR-Driven Identity book's table and evaluate a rule over the fictional people. The disabled account and the guest stay out, and the lower-case code gets in, just as Learn says.`,
@@ -286,7 +286,7 @@ require("../_build/devwb.js")({
           ["DR-11: the test for u06 fails", "u06, the worker with no type, was expected out"],
           ["Shadow diff: adds u06", "The pull request shows exactly whom the change admits; put the clause back"],
         ] }, pt: 13 },
-        { terminal: "04-9", lines: "1,3,8-11,13", kit: "examples/dynamic-rules" },
+        { terminal: "04-9", lines: "1,3,8-11", kit: "examples/dynamic-rules", label: "examples/dynamic-rules  ·  fixture data  ·  real output, trimmed" },
       ],
       sources: "Sources: examples/dynamic-rules (tests and fixtures, fictional). Chapter 04, “Lab 1: fixtures, no tenant,” steps 4–6.",
       say: `Now the part that makes the case for all this. Run the pull request check and it passes cleanly: six rules, no findings. Then break a rule on purpose by deleting the clause that keeps out empty worker types, and run it again. Three things fire at once. The linter flags the empty-slot risk, the membership test for the worker with no type fails, and the shadow diff shows exactly who the change would let in. Put the clause back, run the whole suite, and seventy tests pass.`,

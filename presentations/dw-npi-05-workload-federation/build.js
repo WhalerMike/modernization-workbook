@@ -261,7 +261,7 @@ require("../_build/devwb.js")({
       part: "How", title: "Lab 1: Microsoft's samples, then the plan",
       body: [
         { cols: [[{ terminal: "05-1" }], [{ callout: "the test that sends the Graph sample, then exchanges a token with another subject: the create succeeds, the exchange fails with AADSTS70021.", label: "Read in step 1: ", icon: "FaListCheck", color: "teal" }]] },
-        { terminal: "05-2" },
+        { terminal: "05-2", lines: "2-4", label: "examples/non-person-identity  ·  fixture data  ·  real output, trimmed" },
         { terminal: "05-3", lines: "1-4,6" },
       ],
       sources: "Sources: examples/non-person-identity (tests and fixtures, fictional). Chapter 05, “Lab 1: fixtures, no tenant,” steps 1–3.",
