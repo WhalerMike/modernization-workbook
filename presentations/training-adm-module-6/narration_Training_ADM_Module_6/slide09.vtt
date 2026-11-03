@@ -1,0 +1,83 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:04.137
+Lab 1 runs in the ansible
+folder of the examples,
+
+3
+00:00:04.137 --> 00:00:06.637
+on a disposable Linux control node.
+
+4
+00:00:06.637 --> 00:00:09.725
+Nothing signs in to Azure
+or contacts a server.
+
+5
+00:00:09.725 --> 00:00:13.612
+Step one installs the pinned
+collections from a reviewed source,
+
+6
+00:00:13.612 --> 00:00:17.212
+and then points every outbound
+request at a dead local proxy.
+
+7
+00:00:17.212 --> 00:00:20.524
+The results on these slides
+are the chapter's Lab 1 text:
+
+8
+00:00:20.524 --> 00:00:23.911
+the authors didn't re-run the
+Ansible steps for this path,
+
+9
+00:00:23.911 --> 00:00:27.812
+because they download from Galaxy
+and need a Linux control node.
+
+10
+00:00:27.812 --> 00:00:32.878
+Step two shows what the CMDB becomes:
+four candidates, app oh two,
+
+11
+00:00:32.878 --> 00:00:38.237
+aws oh one, web oh one and win oh one,
+and five servers Ansible patches.
+
+12
+00:00:38.237 --> 00:00:42.062
+Aws oh one's tags carry
+both owners as Ansible.
+
+13
+00:00:42.062 --> 00:00:46.374
+Step three runs Microsoft's
+role, unchanged, in check mode.
+
+14
+00:00:46.374 --> 00:00:49.950
+It fails at Get azcmagent
+status, because there's no agent.
+
+15
+00:00:49.950 --> 00:00:54.007
+Run it again verbose, and it shows
+the agent installed fact as true,
+
+16
+00:00:54.007 --> 00:00:56.862
+because check mode
+skipped the version check.
+
+17
+00:00:56.862 --> 00:00:59.140
+That's the dry run the role can't do.

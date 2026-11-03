@@ -1,0 +1,67 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.338
+Step five breaks a row on purpose.
+
+2
+00:00:02.338 --> 00:00:05.740
+The sed command writes a copy
+of the extract with worker one
+
+3
+00:00:05.740 --> 00:00:09.074
+hundred thousand and five's
+department code in lower case.
+
+4
+00:00:09.074 --> 00:00:13.823
+Run the client on it, and the counts
+become eight ready and ten quarantined,
+
+5
+00:00:13.823 --> 00:00:17.637
+and the quarantine says why: the
+lower-case value isn't a code.
+
+6
+00:00:17.637 --> 00:00:20.171
+One small typo in HR,
+and the record stops at
+
+7
+00:00:20.171 --> 00:00:23.212
+the middleware instead of
+reaching the directory.
+
+8
+00:00:23.212 --> 00:00:24.812
+Step six holds a run.
+
+9
+00:00:24.812 --> 00:00:29.512
+A settings file allows only one disable
+per run, and the fixture has three.
+
+10
+00:00:29.512 --> 00:00:33.109
+So the client holds the whole
+run, with exit code three,
+
+11
+00:00:33.109 --> 00:00:37.687
+and says why: three disables exceed
+the limit, held for confirmation.
+
+12
+00:00:37.687 --> 00:00:42.063
+Nothing is sent until someone confirms
+it with the confirm large delta option.
+
+13
+00:00:42.063 --> 00:00:45.162
+Step seven runs the tests: seventy pass.
+
+14
+00:00:45.162 --> 00:00:46.610
+Step eight cleans up.

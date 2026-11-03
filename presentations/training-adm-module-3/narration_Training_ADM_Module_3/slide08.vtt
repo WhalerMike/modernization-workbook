@@ -1,0 +1,75 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:05.850
+Lab 1 runs in the dynamic-rules folder
+of the examples, in PowerShell 7.
+
+3
+00:00:05.850 --> 00:00:10.683
+Step one loads the harness, which
+extracts each of Microsoft Learn's sample
+
+4
+00:00:10.683 --> 00:00:15.438
+scripts from its pinned page and runs
+it, unmodified, against a fake tenant.
+
+5
+00:00:15.438 --> 00:00:17.150
+The tenant has two groups.
+
+6
+00:00:17.150 --> 00:00:19.563
+FIN-LED all members is on.
+
+7
+00:00:19.563 --> 00:00:23.250
+Held for review was paused
+before the incident, on purpose.
+
+8
+00:00:23.250 --> 00:00:25.071
+Run Learn's pause all sample,
+
+9
+00:00:25.071 --> 00:00:28.713
+then its resume noncritical
+sample, and read the states.
+
+10
+00:00:28.713 --> 00:00:29.887
+Both groups are on.
+
+11
+00:00:29.887 --> 00:00:33.987
+Held for review was paused on
+purpose, and the resume turned it on.
+
+12
+00:00:33.987 --> 00:00:38.618
+Then run the pause again, with G C C
+High as the answer to the cloud prompt,
+
+13
+00:00:38.618 --> 00:00:40.774
+and read the first call's address.
+
+14
+00:00:40.774 --> 00:00:45.000
+It starts with graph dot microsoft
+dot com, the worldwide host.
+
+15
+00:00:45.000 --> 00:00:49.412
+In a G C C High tenant, that run
+would sign in to the wrong cloud.
+
+16
+00:00:49.412 --> 00:00:53.880
+The slide trims the setup commands;
+the module page has them in full.

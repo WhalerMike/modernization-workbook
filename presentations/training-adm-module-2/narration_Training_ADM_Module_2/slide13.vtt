@@ -1,0 +1,62 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.025
+Check yourself with two questions.
+
+2
+00:00:02.025 --> 00:00:05.002
+First: the fixture says
+soft match isn't blocked,
+
+3
+00:00:05.002 --> 00:00:07.750
+and an approved matching
+window ends today.
+
+4
+00:00:07.750 --> 00:00:10.875
+What does the check report
+tomorrow, if nothing changes?
+
+5
+00:00:10.875 --> 00:00:12.850
+The answer is b: Fail.
+
+6
+00:00:12.850 --> 00:00:17.350
+The day after the window's last day,
+the same state is a Finding again.
+
+7
+00:00:17.350 --> 00:00:19.462
+You saw that in step two of the lab.
+
+8
+00:00:19.462 --> 00:00:24.249
+Second: a response comes back without
+the block soft match enabled property.
+
+9
+00:00:24.249 --> 00:00:25.663
+What does the check report?
+
+10
+00:00:25.663 --> 00:00:30.301
+The answer is b: a Finding, because
+a missing value reads as off.
+
+11
+00:00:30.301 --> 00:00:33.675
+You saw that in step seven,
+when the pass fixture failed.
+
+12
+00:00:33.675 --> 00:00:38.599
+The module page has two more questions,
+on why the check is left out of a default
+
+13
+00:00:38.599 --> 00:00:43.660
+run and where a new HTTP call belongs, each
+linked to the section that answers it.

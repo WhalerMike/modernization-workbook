@@ -1,0 +1,74 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.750
+The client takes each
+row and either builds
+
+2
+00:00:02.750 --> 00:00:05.450
+a SCIM operation or
+refuses it with reasons.
+
+3
+00:00:05.450 --> 00:00:08.560
+A row is refused when a
+required column is empty,
+
+4
+00:00:08.560 --> 00:00:13.744
+the person number doesn't fit employee I
+D, the worker type is unknown or refused,
+
+5
+00:00:13.744 --> 00:00:17.093
+such as a pending worker, a
+code isn't in the code list,
+
+6
+00:00:17.093 --> 00:00:22.197
+a value is longer than the target attribute
+holds, a date doesn't parse, a worker
+
+7
+00:00:22.197 --> 00:00:27.700
+is recorded as their own manager, or an
+inactive assignment has no termination date.
+
+8
+00:00:27.700 --> 00:00:30.780
+Every refused row goes
+to the quarantine file,
+
+9
+00:00:30.780 --> 00:00:35.075
+with its reasons, the unchanged
+HR row and the attempted payload.
+
+10
+00:00:35.075 --> 00:00:36.912
+These rules are the kit's design.
+
+11
+00:00:36.912 --> 00:00:38.475
+Some are warnings instead.
+
+12
+00:00:38.475 --> 00:00:43.525
+A suspended assignment keeps the account
+active, because leave is not a leaver.
+
+13
+00:00:43.525 --> 00:00:47.288
+A manager separating in the same
+run never blocks the joiner.
+
+14
+00:00:47.288 --> 00:00:50.848
+And this workbook's guidance
+is to treat every new rule
+
+15
+00:00:50.848 --> 00:00:54.550
+as a refusal until the HR owner
+agrees it can be a warning.

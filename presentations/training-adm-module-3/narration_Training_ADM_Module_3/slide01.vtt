@@ -1,0 +1,65 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.586
+Welcome to Module 3 of the
+Attribute-Driven Migration learning path:
+
+2
+00:00:04.586 --> 00:00:06.337
+keep dynamic rules as code.
+
+3
+00:00:06.337 --> 00:00:11.566
+This module serves Gate 4, the dynamic
+group library and administrative units,
+
+4
+00:00:11.566 --> 00:00:16.150
+and takes Chapter 04 of the Federal
+Modernization Workbook's Book 19.
+
+5
+00:00:16.150 --> 00:00:19.936
+You'll write each dynamic group
+as a reviewed file with tests,
+
+6
+00:00:19.936 --> 00:00:24.857
+lint it for the guards every user rule
+needs, show whom a change adds and removes,
+
+7
+00:00:24.857 --> 00:00:28.113
+and see how to pause and
+resume safely in an incident.
+
+8
+00:00:28.113 --> 00:00:33.147
+In the lab you'll run Microsoft Learn's
+own incident samples against a fake tenant,
+
+9
+00:00:33.147 --> 00:00:37.731
+lint the program's rule pattern table,
+evaluate a rule against a fictional
+
+10
+00:00:37.731 --> 00:00:41.788
+population, run the pull request
+check, and break a rule on purpose.
+
+11
+00:00:41.788 --> 00:00:46.478
+The code is illustrative: tested against
+fixtures and a fake tenant, and the
+
+12
+00:00:46.478 --> 00:00:49.276
+evaluator follows
+Microsoft Learn's page on
+
+13
+00:00:49.276 --> 00:00:52.300
+dynamic membership rules
+but isn't the service.

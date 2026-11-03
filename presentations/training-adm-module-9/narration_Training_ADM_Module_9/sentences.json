@@ -1,0 +1,705 @@
+{
+ "1": [
+  [
+   0.05,
+   7.975,
+   "Welcome to Module 9, the last module of the Attribute-Driven Migration learning path: deploy to test, then production."
+  ],
+  [
+   8.025,
+   8.9,
+   "This module serves every gate, through Chapter 10's step-to-gate map, and takes Chapter 10 of the Federal Modernization Workbook's Book 19."
+  ],
+  [
+   16.925,
+   11.625,
+   "You'll see what the deployment runbook adds to the chapters: one settings file per stage, three identities, a record of every change with its rollback, and a go or no-go record before production."
+  ],
+  [
+   28.55,
+   4.8,
+   "Then you'll dry-run its five deploy scripts on your laptop, against the kits' fixtures."
+  ],
+  [
+   33.35,
+   1.2,
+   "One thing first."
+  ],
+  [
+   34.55,
+   7.1,
+   "Chapter 10 is held for review, and nobody has run its runbook against a lyve tenant, subscription or forest."
+  ],
+  [
+   41.65,
+   4.275,
+   "The scripts are tested against fixtures and their dry-run output is real."
+  ],
+  [
+   45.925,
+   4.662,
+   "Every other result in the chapter is an expectation, not an observation."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   5.175,
+   "Here's what you'll be able to do by the end of this module, which takes about fifty minutes with the lab."
+  ],
+  [
+   5.225,
+   4.162,
+   "You'll explain the four ways a deployment differs from a chapter's Lab 2."
+  ],
+  [
+   9.387,
+   4.463,
+   "You'll describe the settings file, the placeholders and the three identities."
+  ],
+  [
+   13.85,
+   4.575,
+   "You'll run the pre-flight check, and say which checks it runs dry and which liv."
+  ],
+  [
+   18.425,
+   3.625,
+   "You'll record changes and read the rollback plan they produce."
+  ],
+  [
+   22.05,
+   6.225,
+   "And you'll explain why a fixture smoke test can never promote, and what production's pre-flight check verifies."
+  ],
+  [
+   28.275,
+   7.075,
+   "Before you start, do Modules 1 to 8, or at least their Lab 1s: this module doesn't teach the kits again."
+  ],
+  [
+   35.35,
+   6.963,
+   "Lab 1 needs Python 3.10 or later with pytest, and a POSIX shell with sha two fifty-six sum."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   10.488,
+   "The lyve test stage deploys every component to the test tenant, the test subscription and the test forest, in an order where nothing grants access before it has been checked."
+  ],
+  [
+   10.537,
+   2.837,
+   "First, baseline evidence, read only."
+  ],
+  [
+   13.375,
+   4.3,
+   "Then the H R middleware, as a dry run and then five records."
+  ],
+  [
+   17.675,
+   4.2,
+   "Dynamic rules are created paused, validated, then turned on."
+  ],
+  [
+   21.875,
+   4.45,
+   "Lifecycle Workflows are created disabled, with one on-demand run."
+  ],
+  [
+   26.325,
+   6.263,
+   "Group Policy goes to a test organizational unit, with an Intune dry run and a cut-over drill."
+  ],
+  [
+   32.587,
+   4.475,
+   "Machine configuration runs in audit first, then apply and monitor."
+  ],
+  [
+   37.062,
+   4.15,
+   "Ansible plans its wave and runs in check mode before it connects."
+  ],
+  [
+   41.212,
+   3.087,
+   "The drift pipeline's first run is the baseline."
+  ],
+  [
+   44.3,
+   6.225,
+   "And the stage ends with the smoke test, the evidence package, a rollback drill and the evidence check."
+  ],
+  [
+   50.525,
+   5.45,
+   "Every change is recorded as it's made: the rollback is only as complete as the record."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   7.088,
+   "Lab 1 dry-runs the five deploy scripts against the kits' fixtures, in the drift-pipeline folder of the examples."
+  ],
+  [
+   7.862,
+   2.438,
+   "Nothing signs in and nothing is called."
+  ],
+  [
+   10.3,
+   5.875,
+   "Step one starts clean, with no out folder, because the evidence records are numbered within it."
+  ],
+  [
+   16.175,
+   5.95,
+   "Step two runs the test stage's pre-flight check, with the production settings as the other file."
+  ],
+  [
+   22.125,
+   16.9,
+   "P F oh one to P F ten pass: the settings schema, no secret in the file, no placeholder left, the cloud, certificate paths outside the repository, all nine kits present, and test and production on different tenants, subscriptions and identities."
+  ],
+  [
+   39.025,
+   2.562,
+   "The test stage needs no promotion record."
+  ],
+  [
+   41.587,
+   10.3,
+   "The live probes, the Azure CLI's cloud, tenant, subscription and signed-in identity, the PowerShell modules and the certificate files, print as DRY."
+  ],
+  [
+   51.888,
+   6.75,
+   "The last two lines: zero failed, a dry run, and the first evidence record, preflight pass."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   10.2,
+   "Step three records four changes the way the stage steps do: the provisioning job, a dynamic group, a Group Policy link the stage created, and a policy assignment."
+  ],
+  [
+   10.25,
+   5.463,
+   "Each add records its change in the deploy record, and writes an evidence record for its step."
+  ],
+  [
+   15.713,
+   0.988,
+   "Then the plan."
+  ],
+  [
+   16.7,
+   10.863,
+   "It lists the four undo steps, newest first: remove the policy assignment, disable the Group Policy link, remove the dynamic group, and pause the provisioning job."
+  ],
+  [
+   27.562,
+   8.637,
+   "Three are cloud steps and one is Active Directory, so it writes a cloud script, an A D script and a manual list, and its own evidence record."
+  ],
+  [
+   36.2,
+   2.663,
+   "And notice the last line: nothing was run."
+  ],
+  [
+   38.862,
+   3.7,
+   "You review the scripts, then run them in a signed-in session."
+  ],
+  [
+   42.562,
+   3.788,
+   "The rollback is written from the record, not from memory on the day."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   6.513,
+   "Step four runs the smoke test, on the fixture validation kit run and the other kits' fixture provenance."
+  ],
+  [
+   6.562,
+   4.537,
+   "It reads the gates' checks again after the change, and answers go or no-go."
+  ],
+  [
+   11.1,
+   6.463,
+   "It checks that the kit run matches its own manifest, and it notes fixture mode, so the tenant isn't compared."
+  ],
+  [
+   17.562,
+   1.262,
+   "Then the failures."
+  ],
+  [
+   18.825,
+   8.975,
+   "Three checks fail: VK-H R-01, VK-DG-01 and VK-CA-01."
+  ],
+  [
+   27.8,
+   3.925,
+   "VK-NPI-03 ended in Error."
+  ],
+  [
+   31.725,
+   5.013,
+   "And the H R dry run has nine rows quarantined, against a limit of zero."
+  ],
+  [
+   36.737,
+   2.888,
+   "You'll recognize those from Modules 1 and 8."
+  ],
+  [
+   39.625,
+   2.862,
+   "Every change has a rollback, so that passes."
+  ],
+  [
+   42.487,
+   5.425,
+   "The answer is NO-GO, five failed, in fixture mode, and the exit code is two."
+  ],
+  [
+   47.913,
+   2.525,
+   "The fixtures carry findings on purpose."
+  ],
+  [
+   50.438,
+   6.438,
+   "The report's hash changes with each run, because the report records when it ran, so it isn't shown here."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   3.875,
+   "Step five checks the stage's evidence against the requirement rows."
+  ],
+  [
+   3.925,
+   6.263,
+   "Only two of seventeen are evidenced, both pre-flight rows, so the check fails with exit code two."
+  ],
+  [
+   10.188,
+   1.438,
+   "Why are the others missing?"
+  ],
+  [
+   11.625,
+   6.013,
+   "A rollback add entry is recorded: it proves the change was written down, not that the step worked."
+  ],
+  [
+   17.637,
+   2.837,
+   "And the smoke record is a failing fixture run."
+  ],
+  [
+   20.475,
+   4.675,
+   "Then sha two fifty-six sum confirms every evidence record reads OK."
+  ],
+  [
+   25.15,
+   5.15,
+   "Step six asks production's pre-flight check to promote on that report and that check."
+  ],
+  [
+   30.3,
+   1.837,
+   "P F oh nine passes."
+  ],
+  [
+   32.138,
+   11.637,
+   "P F ten fails: the hashes aren't the ones in the promotion record, the smoke report failed and ran in fixture mode, and promotion needs a lyve test run; the evidence check failed too."
+  ],
+  [
+   43.775,
+   4.85,
+   "A fixture report, or a stage with unevidenced rows, can never promote."
+  ],
+  [
+   48.625,
+   4.675,
+   "Step seven runs the tests, forty-six pass, and step eight cleans up."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   2.688,
+   "Lab 2 is the lyve test stage itself."
+  ],
+  [
+   2.737,
+   14.287,
+   "You need an Entra test tenant, an Azure test subscription with Arc-enabled test servers, and a test Active Directory forest, never production, plus the three identities and the objects the chapter lists as made before the runbook starts."
+  ],
+  [
+   17.025,
+   7.175,
+   "Load the test stage's settings, sign in as the deploy identity, and run the pre-flight check dry and then liv."
+  ],
+  [
+   24.2,
+   21.062,
+   "Then follow the twelve steps of Stage 1: the baseline evidence, the H R middleware, dynamic rules, Lifecycle Workflows created disabled, Group Policy as code, machine configuration in audit, Ansible in check mode, the drift pipeline, the smoke test, the evidence package, the rollback drill and the evidence check."
+  ],
+  [
+   45.263,
+   5.2,
+   "To back it out, step eleven runs the rollback written from the record, newest first."
+  ],
+  [
+   50.462,
+   2.038,
+   "Nobody has run Lab 2 yet."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   1.975,
+   "Check yourself with two questions."
+  ],
+  [
+   2.025,
+   4.05,
+   "First: the smoke test runs on fixtures with the fixture option."
+  ],
+  [
+   6.075,
+   2.087,
+   "Can its report promote to production?"
+  ],
+  [
+   8.162,
+   1.837,
+   "The answer is b: no."
+  ],
+  [
+   10.0,
+   6.938,
+   "Production's pre-flight check needs a liv, passing test run, and a fixture record proves nothing about the stage."
+  ],
+  [
+   16.938,
+   2.9,
+   "You saw P F ten refuse it in step six."
+  ],
+  [
+   19.837,
+   3.8,
+   "Second: rollback add writes an evidence record for a step."
+  ],
+  [
+   23.637,
+   2.737,
+   "Why does the evidence check still mark that row missing?"
+  ],
+  [
+   26.375,
+   6.625,
+   "The answer is a: the record is recorded, which proves the change was written down, not that the step worked."
+  ],
+  [
+   33.0,
+   3.9,
+   "That's why only two of seventeen rows were evidenced in step five."
+  ],
+  [
+   36.9,
+   9.025,
+   "The module page has two more questions, on the three identities and on what production's pre-flight check compares, each linked to the section that answers it."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   0.825,
+   "To sum up."
+  ],
+  [
+   0.875,
+   16.05,
+   "You dry-ran the runbook's own scripts: a pre-flight check, changes recorded with their rollback, a smoke test that says no-go on fixtures, an evidence check against the requirement rows, and a production pre-flight that refuses to promote without a liv, passing test stage."
+  ],
+  [
+   16.925,
+   20.675,
+   "The evidence an I S S O keeps, for each stage: the settings file and its hash, the pre-flight results, the validation kit runs before and after, each kit's outputs, the smoke report, the evidence package and its verify result, the deploy record and the rollback scripts, and the evidence folder with its evidence check."
+  ],
+  [
+   37.6,
+   5.475,
+   "For production, add the promotion record and seven days of chained drift packages per wave."
+  ],
+  [
+   43.075,
+   3.663,
+   "Before you run a stage, work through the Chapter 10 checklist."
+  ],
+  [
+   46.737,
+   2.15,
+   "And that's the end of the learning path."
+  ],
+  [
+   48.888,
+   4.787,
+   "The path's index and the Labs page list every module and every lab."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   2.138,
+   "Why does deployment need its own module?"
+  ],
+  [
+   2.188,
+   5.6,
+   "Each chapter's Lab 2 changes the smallest thing it can, by hand, and backs it out."
+  ],
+  [
+   7.787,
+   2.375,
+   "That proves one kit in isolation."
+  ],
+  [
+   10.162,
+   2.2,
+   "A deployment differs in four ways."
+  ],
+  [
+   12.363,
+   6.388,
+   "It runs all nine kits in a safe order, and reads every value from one settings file per stage."
+  ],
+  [
+   18.75,
+   5.375,
+   "It signs in with three identities, each with a certificate, and least privilege per step."
+  ],
+  [
+   24.125,
+   5.888,
+   "It records every change as it's made, and writes the rollback from that record, newest first."
+  ],
+  [
+   30.012,
+   8.938,
+   "And it doesn't end in the test tenant: it ends with a go or no-go record that production's pre-flight check verifies, then production in waves."
+  ],
+  [
+   38.95,
+   13.463,
+   "The order is the one this workbook's implementation guide sets: prove the attributes first, build groups and workflows paused or disabled, target by attribute, cut over by wave, then keep the attributes true."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   4.213,
+   "Two ideas make the same commands run against test and production."
+  ],
+  [
+   4.263,
+   5.9,
+   "First, one settings file per stage: test dot json, then production dot json."
+  ],
+  [
+   10.162,
+   7.862,
+   "It holds every value the commands need, the cloud, the tenant, the subscription, the change record and the kits' settings."
+  ],
+  [
+   18.025,
+   2.612,
+   "The template's values are all placeholders."
+  ],
+  [
+   20.637,
+   8.688,
+   "And there are no secrets, by construction: the loader refuses a key or a value that looks like a secret, and any placeholder left unfilled."
+  ],
+  [
+   29.325,
+   1.788,
+   "Second, the identities."
+  ],
+  [
+   31.113,
+   4.438,
+   "Deploy changes Entra, Intune and Azure in the stage steps."
+  ],
+  [
+   35.55,
+   4.237,
+   "Reader takes the baselines, the reconciliation and the smoke tests."
+  ],
+  [
+   39.788,
+   4.963,
+   "Provisioning sends the H R batches, with one upload permission and nothing else."
+  ],
+  [
+   44.75,
+   1.975,
+   "Each signs in with a certificate."
+  ],
+  [
+   46.725,
+   10.988,
+   "And one named Groups Administrator signs in for rule validation, because Microsoft Learn's page for the group evaluateDynamicMembership A P I lists no application permission for it."
+  ],
+  [
+   57.712,
+   7.55,
+   "Microsoft Learn's page on signing in to the Azure CLI with a service principal recommends certificate-based authentication."
+  ],
+  [
+   65.263,
+   9.662,
+   "And splitting the work across three identities is this workbook's design guidance: one identity that can do everything is one credential that can break everything."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   1.125,
+   "Then the promotion."
+  ],
+  [
+   1.175,
+   3.013,
+   "Production's pre-flight check enforces what it can."
+  ],
+  [
+   4.188,
+   5.625,
+   "Every requirement row of the test stage needs passing evidence: seventeen of seventeen."
+  ],
+  [
+   9.812,
+   4.5,
+   "The test smoke test must be GO, from a lyve run in the test tenant."
+  ],
+  [
+   14.312,
+   5.037,
+   "Production's settings must record that exact report's hash, and the evidence check's."
+  ],
+  [
+   19.35,
+   5.963,
+   "The see-so and identity engineering must both approve, which is this workbook's design guidance."
+  ],
+  [
+   25.312,
+   5.487,
+   "And test and production must share no tenant, subscription or deploy identity."
+  ],
+  [
+   30.8,
+   2.35,
+   "The rest of the criteria are review."
+  ],
+  [
+   33.15,
+   4.05,
+   "Then production runs the same commands with production dot json."
+  ],
+  [
+   37.2,
+   2.25,
+   "The tenant-wide pieces run once."
+  ],
+  [
+   39.45,
+   7.525,
+   "Then each wave, leaver first, smoke-tested before the next, with seven days of chained drift packages per wave."
+  ],
+  [
+   46.975,
+   6.6,
+   "And production's rollback rule, from this workbook's implementation guide, is re-enable, never re-create."
+  ],
+  [
+   53.575,
+   4.55,
+   "Roll back the wave, not the tenant: earlier waves that are drift-clean stay."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   1.387,
+   "The federal requirement."
+  ],
+  [
+   1.438,
+   6.725,
+   "The controls are from nist special publication eight hundred fifty-three, Revision 5, at the Moderate baseline."
+  ],
+  [
+   8.162,
+   7.85,
+   "Every runbook step has a requirements table, and every step leaves an evidence record that names its controls and KSIs."
+  ],
+  [
+   16.012,
+   12.15,
+   "The pre-flight check meets C M three, enhancement two: the settings, kits, identities and cloud are checked before any change, and pre-flight dot json is the evidence, dry and liv."
+  ],
+  [
+   28.163,
+   10.588,
+   "Its rows P F oh two and P F oh five show no secret in the settings file and three certificate identities, for authenticator management and least privilege."
+  ],
+  [
+   38.75,
+   9.088,
+   "The smoke test reads the gates' checks again after the change and answers go or no-go, for the verification of controls and continuous monitoring."
+  ],
+  [
+   47.837,
+   5.325,
+   "One evidence package with a hash per file, verified, protects the audit information."
+  ],
+  [
+   53.163,
+   3.925,
+   "And every change is recorded with its rollback, newest first."
+  ],
+  [
+   57.087,
+   12.55,
+   "The KSI column is from fed-ramp's Key Security Indicators, which are indicators for cloud service providers; Chapter 10 uses only KSI I D's this workbook already maps to the same controls."
+  ]
+ ]
+}

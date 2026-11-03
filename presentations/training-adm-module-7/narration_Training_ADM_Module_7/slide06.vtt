@@ -1,0 +1,88 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.688
+The kit's definition is the
+one every integration deploys.
+
+2
+00:00:03.688 --> 00:00:07.751
+What changes between integrations
+is data: four parameters,
+
+3
+00:00:07.751 --> 00:00:12.463
+the Graph host, the downstream system,
+its audience, and the operations.
+
+4
+00:00:12.463 --> 00:00:14.338
+A run goes in four steps.
+
+5
+00:00:14.338 --> 00:00:18.435
+Check request checks that the callback
+path is a resume path for this
+
+6
+00:00:18.435 --> 00:00:22.676
+workflow and this task processing
+result, and that the subject has an I D.
+
+7
+00:00:22.676 --> 00:00:27.625
+If not, the run stops and sends nothing,
+because it can't trust the path.
+
+8
+00:00:27.625 --> 00:00:32.138
+Operation looks up the workflow; an
+unregistered one gets no work done.
+
+9
+00:00:32.138 --> 00:00:37.005
+Call integration posts to the downstream
+system with an idempotency key,
+
+10
+00:00:37.005 --> 00:00:39.000
+the task processing result I D.
+
+11
+00:00:39.000 --> 00:00:40.636
+The key is the kit's design,
+
+12
+00:00:40.636 --> 00:00:44.688
+a contract with the downstream
+system, not a Microsoft feature.
+
+13
+00:00:44.688 --> 00:00:47.748
+It retries transient
+errors up to four times,
+
+14
+00:00:47.748 --> 00:00:52.876
+with a retry policy from Learn's page
+on handling errors in Azure Logic Apps.
+
+15
+00:00:52.876 --> 00:00:57.071
+And Resume posts to the Graph
+host on v1.0, after success,
+
+16
+00:00:57.071 --> 00:01:02.387
+failure or time-out, and reports
+completed only if the call succeeded.
+
+17
+00:01:02.387 --> 00:01:05.308
+The registry holds one
+entry per integration,
+
+18
+00:01:05.308 --> 00:01:10.300
+and the builder refuses values outside
+the ranges in Learn's Graph reference.

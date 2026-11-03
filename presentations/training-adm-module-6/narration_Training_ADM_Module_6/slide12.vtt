@@ -1,0 +1,71 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.488
+Lab 2 connects one real server.
+
+2
+00:00:02.488 --> 00:00:06.871
+You need a commercial test subscription
+in the GCC tenant, a Linux server
+
+3
+00:00:06.871 --> 00:00:11.475
+you can rebuild, never production, and
+a control node with a managed identity.
+
+4
+00:00:11.475 --> 00:00:13.240
+Create a test resource group,
+
+5
+00:00:13.240 --> 00:00:18.535
+and grant the control node's managed identity
+the Azure Connected Machine Onboarding
+
+6
+00:00:18.535 --> 00:00:20.152
+role on it, and nothing else;
+
+7
+00:00:20.152 --> 00:00:24.050
+that's the role Microsoft Learn's
+Ansible onboarding page names.
+
+8
+00:00:24.050 --> 00:00:28.162
+Write a one-server CMDB export
+for the disposable server.
+
+9
+00:00:28.162 --> 00:00:33.788
+Then plan, dry-run and connect it, and
+check that its tags equal the CMDB's.
+
+10
+00:00:33.788 --> 00:00:38.624
+To back it out, follow the order in Learn's
+pages on azcmagent disconnect and on
+
+11
+00:00:38.624 --> 00:00:41.571
+uninstalling the agent:
+remove any extensions,
+
+12
+00:00:41.571 --> 00:00:45.954
+disconnect with an identity that
+may delete the resource, because the
+
+13
+00:00:45.954 --> 00:00:50.563
+onboarding role can't, uninstall the
+agent, and remove the role assignment.
+
+14
+00:00:50.563 --> 00:00:52.712
+The authors haven't run Lab 2.
+
+15
+00:00:52.712 --> 00:00:56.110
+Follow Chapter 08's Lab 2, step by step.

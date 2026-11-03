@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.200
+Why does this matter?
+
+2
+00:00:01.200 --> 00:00:06.346
+Gate 4 replaces "who sits under the Finance
+branch" with "who carries the Finance
+
+3
+00:00:06.346 --> 00:00:10.755
+code." In this workbook's design,
+HR attributes land in coded slots,
+
+4
+00:00:10.755 --> 00:00:14.012
+and dynamic membership
+rules read those slots.
+
+5
+00:00:14.012 --> 00:00:16.355
+So a dynamic rule is access policy,
+
+6
+00:00:16.355 --> 00:00:19.787
+and one edit can remove
+hundreds of people at once.
+
+7
+00:00:19.787 --> 00:00:24.427
+That's why the implementation guide asks
+for every rule on codes, with guards,
+
+8
+00:00:24.427 --> 00:00:28.550
+tested against named users, and
+shadowed before it grants anything.
+
+9
+00:00:28.550 --> 00:00:33.134
+In this module you keep the rules as
+files in Git, with tests and a linter,
+
+10
+00:00:33.134 --> 00:00:36.612
+so a rule change gets the same
+review as any other code.
+
+11
+00:00:36.612 --> 00:00:39.631
+And you see what Microsoft
+Learn's incident samples do
+
+12
+00:00:39.631 --> 00:00:42.720
+when a group was paused on
+purpose before the incident.

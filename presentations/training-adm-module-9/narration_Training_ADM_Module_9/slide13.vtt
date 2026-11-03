@@ -1,0 +1,66 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.025
+Check yourself with two questions.
+
+2
+00:00:02.025 --> 00:00:06.075
+First: the smoke test runs on
+fixtures with the fixture option.
+
+3
+00:00:06.075 --> 00:00:08.162
+Can its report promote to production?
+
+4
+00:00:08.162 --> 00:00:09.999
+The answer is b: no.
+
+5
+00:00:09.999 --> 00:00:13.660
+Production's pre-flight check
+needs a live, passing test run,
+
+6
+00:00:13.660 --> 00:00:16.938
+and a fixture record proves
+nothing about the stage.
+
+7
+00:00:16.938 --> 00:00:19.838
+You saw P F ten refuse it in step six.
+
+8
+00:00:19.838 --> 00:00:23.637
+Second: rollback add writes an
+evidence record for a step.
+
+9
+00:00:23.637 --> 00:00:26.374
+Why does the evidence check
+still mark that row missing?
+
+10
+00:00:26.374 --> 00:00:28.791
+The answer is a: the record is recorded,
+
+11
+00:00:28.791 --> 00:00:33.000
+which proves the change was written
+down, not that the step worked.
+
+12
+00:00:33.000 --> 00:00:36.900
+That's why only two of seventeen
+rows were evidenced in step five.
+
+13
+00:00:36.900 --> 00:00:41.168
+The module page has two more questions,
+on the three identities and on what
+
+14
+00:00:41.168 --> 00:00:45.980
+production's pre-flight check compares,
+each linked to the section that answers it.

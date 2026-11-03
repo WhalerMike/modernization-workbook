@@ -1,0 +1,690 @@
+{
+ "1": [
+  [
+   0.05,
+   6.287,
+   "Welcome to Module 3 of the Attribute-Driven Migration learning path: keep dynamic rules as code."
+  ],
+  [
+   6.338,
+   9.812,
+   "This module serves Gate 4, the dynamic group library and administrative units, and takes Chapter 04 of the Federal Modernization Workbook's Book 19."
+  ],
+  [
+   16.15,
+   11.963,
+   "You'll write each dynamic group as a reviewed file with tests, lint it for the guards every user rule needs, show whom a change adds and removes, and see how to pause and resume safely in an incident."
+  ],
+  [
+   28.113,
+   13.675,
+   "In the lab you'll run Microsoft Learn's own incident samples against a fake tenant, lint the program's rule pattern table, evaluate a rule against a fictional population, run the pull request check, and break a rule on purpose."
+  ],
+  [
+   41.788,
+   10.438,
+   "The code is illustrative: tested against fixtures and a fake tenant, and the evaluator follows Microsoft Learn's page on dynamic membership rules but isn't the service."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.15,
+   "Why does this matter?"
+  ],
+  [
+   1.2,
+   5.463,
+   "Gate 4 replaces \"who sits under the Finance branch\" with \"who carries the Finance code.\""
+  ],
+  [
+   6.662,
+   7.35,
+   "In this workbook's design, H R attributes land in coded slots, and dynamic membership rules read those slots."
+  ],
+  [
+   14.012,
+   5.775,
+   "So a dynamic rule is access policy, and one edit can remove hundreds of people at once."
+  ],
+  [
+   19.788,
+   8.762,
+   "That's why the implementation guide asks for every rule on codes, with guards, tested against named users, and shadowed before it grants anything."
+  ],
+  [
+   28.55,
+   8.062,
+   "In this module you keep the rules as files in Git, with tests and a linter, so a rule change gets the same review as any other code."
+  ],
+  [
+   36.612,
+   6.037,
+   "And you see what Microsoft Learn's incident samples do when a group was paused on purpose before the incident."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   5.175,
+   "Here's what you'll be able to do by the end of this module, which takes about fifty minutes with the lab."
+  ],
+  [
+   5.225,
+   4.888,
+   "You'll describe what Learn's pause and resume samples do well, and what they leave to you."
+  ],
+  [
+   10.113,
+   3.575,
+   "You'll write a rule as one file, with an owner and tests."
+  ],
+  [
+   13.688,
+   5.7,
+   "You'll explain the guards the linter enforces, and why it works on the parsed rule rather than its text."
+  ],
+  [
+   19.387,
+   3.337,
+   "You'll run the pull request check and read its shadow diff."
+  ],
+  [
+   22.725,
+   5.825,
+   "And you'll explain how the pause manifest keeps a resume from turning on a group that was paused on purpose."
+  ],
+  [
+   28.55,
+   5.713,
+   "Before you start, finish Module 2, for how the validation kit's dynamic group checks are built."
+  ],
+  [
+   34.263,
+   5.263,
+   "Microsoft Automation Module 2 is optional background on groups through Graph."
+  ],
+  [
+   39.525,
+   8.787,
+   "You need PowerShell 7.1 or later, Pester 5, and a Git clone of the repository, because step four compares the library with HEAD."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   9.775,
+   "In this workbook's design, every governed rule uses one of two patterns, and ANDs two guards at the top: the account is enabled, and the user type is Member."
+  ],
+  [
+   9.825,
+   3.288,
+   "So a disabled account and a guest can never qualify."
+  ],
+  [
+   13.113,
+   8.7,
+   "The rule reads coded slots: extension attribute ten for organization, eleven for worker type, twelve for position category."
+  ],
+  [
+   21.812,
+   1.55,
+   "Never display names."
+  ],
+  [
+   23.363,
+   2.275,
+   "Microsoft Learn sets the stakes."
+  ],
+  [
+   25.637,
+   7.5,
+   "Its page on managing rules for dynamic membership groups says a rule body can't exceed three thousand seventy-two characters."
+  ],
+  [
+   33.138,
+   8.213,
+   "String comparisons aren't case sensitive, so lower-case fin-led matches the upper-case code, and the H R side has to keep codes clean."
+  ],
+  [
+   41.35,
+   7.15,
+   "Its page on dynamic group processing says changes are usually applied within a few hours, but can take more than twenty-four."
+  ],
+  [
+   48.5,
+   6.112,
+   "And its member of page says that operator is a preview that ends on November third, 2026."
+  ],
+  [
+   54.612,
+   4.9,
+   "The validation kit already reads the rules liv, with its dynamic group checks."
+  ],
+  [
+   59.513,
+   5.037,
+   "This chapter moves the same checks earlier, into the pull request that changes a rule."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   13.625,
+   "Microsoft Learn publishes five PowerShell samples for dynamic membership processing, for an incident: when a rule change or a mass update starts moving members you didn't intend, pause processing, then resume it in order."
+  ],
+  [
+   13.675,
+   6.325,
+   "The repository pins Learn's pages and runs the scripts, unmodified, against a fake tenant."
+  ],
+  [
+   20.0,
+   7.5,
+   "They do a lot well: pause all skips a group already paused, and signs in to the chosen cloud with only the scopes it needs."
+  ],
+  [
+   27.5,
+   1.65,
+   "But they leave you four things."
+  ],
+  [
+   29.15,
+   2.5,
+   "Pause all records nothing about what it paused."
+  ],
+  [
+   31.65,
+   6.4,
+   "Resume noncritical turns on every paused group, including one paused on purpose before the incident."
+  ],
+  [
+   38.05,
+   6.263,
+   "An answer the cloud prompt doesn't recognize, such as G C C High, selects the worldwide endpoint."
+  ],
+  [
+   44.312,
+   2.688,
+   "And nothing enforces a wait before a resume."
+  ],
+  [
+   47.0,
+   5.938,
+   "The verdict, which is this workbook's guidance: use the samples as the model, and keep them pinned."
+  ],
+  [
+   52.938,
+   6.425,
+   "The runbook uses the manifest-based functions, because during recovery the question is \"what did we pause?\""
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   3.112,
+   "Each group is a jay-son file in the rules folder."
+  ],
+  [
+   3.163,
+   3.788,
+   "Here's one: FIN-LED everyone but contractors."
+  ],
+  [
+   6.95,
+   1.225,
+   "It's a user rule."
+  ],
+  [
+   8.175,
+   2.675,
+   "The owner is the person who approves changes."
+  ],
+  [
+   10.85,
+   4.575,
+   "The critical flag marks the groups an incident responder resumes first."
+  ],
+  [
+   15.425,
+   2.788,
+   "The membership rule starts with the two guards."
+  ],
+  [
+   18.212,
+   16.337,
+   "And the tests name members of a fictional population, built to exercise each guard: a disabled employee, a guest with a copied organization code, a worker with an empty worker-type slot, a lower-case code, a manager and their reports, and three devices."
+  ],
+  [
+   34.55,
+   5.075,
+   "The library's six rules are the program's own rule patterns, with the guards in place."
+  ],
+  [
+   39.625,
+   8.762,
+   "A parser follows the grammar on Microsoft Learn's page on dynamic membership rules, and an evaluator tests a parsed rule against each fixture member."
+  ],
+  [
+   48.388,
+   3.138,
+   "It's for tests and reviews; it isn't the engine."
+  ],
+  [
+   51.525,
+   3.9,
+   "It refuses member of and the date comparisons rather than guess."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   1.8,
+   "Three tools do the governing."
+  ],
+  [
+   1.85,
+   4.713,
+   "The linter applies eleven rules, D R oh one to D R eleven."
+  ],
+  [
+   6.562,
+   6.3,
+   "Two matter most: D R oh three and oh four require the guards to be and-ed at the top of the rule."
+  ],
+  [
+   12.863,
+   6.9,
+   "A guard inside an or protects nothing, and a regular expression over the rule text can't tell the difference."
+  ],
+  [
+   19.762,
+   2.325,
+   "That's why the linter works on the parsed tree."
+  ],
+  [
+   22.087,
+   9.912,
+   "D R ten is a note: not-equals on a coded slot also admits someone whose slot is empty, so add a not-null clause if an empty slot must not qualify."
+  ],
+  [
+   32.0,
+   8.938,
+   "The pull request check lints every rule, runs every test, and for each rule file changed, prints whom the change adds and removes."
+  ],
+  [
+   40.938,
+   1.413,
+   "That's the shadow diff."
+  ],
+  [
+   42.35,
+   4.875,
+   "And the pause manifest records every collection's state before an incident pause."
+  ],
+  [
+   47.225,
+   5.5,
+   "The resume touches only what that manifest paused, and refuses any other I D."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   5.075,
+   "Lab 1 runs in the dynamic-rules folder of the examples, in PowerShell 7."
+  ],
+  [
+   5.85,
+   9.588,
+   "Step one loads the harness, which extracts each of Microsoft Learn's sample scripts from its pinned page and runs it, unmodified, against a fake tenant."
+  ],
+  [
+   15.438,
+   1.712,
+   "The tenant has two groups."
+  ],
+  [
+   17.15,
+   2.413,
+   "FIN-LED all members is on."
+  ],
+  [
+   19.562,
+   3.688,
+   "Held for review was paused before the incident, on purpose."
+  ],
+  [
+   23.25,
+   5.463,
+   "Run Learn's pause all sample, then its resume noncritical sample, and read the states."
+  ],
+  [
+   28.712,
+   1.175,
+   "Both groups are on."
+  ],
+  [
+   29.887,
+   4.1,
+   "Held for review was paused on purpose, and the resume turned it on."
+  ],
+  [
+   33.987,
+   6.787,
+   "Then run the pause again, with G C C High as the answer to the cloud prompt, and read the first call's address."
+  ],
+  [
+   40.775,
+   4.225,
+   "It starts with graph dot microsoft dot com, the worldwide host."
+  ],
+  [
+   45.0,
+   4.412,
+   "In a G C C High tenant, that run would sign in to the wrong cloud."
+  ],
+  [
+   49.413,
+   4.412,
+   "The slide trims the setup commands; the module page has them in full."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   4.7,
+   "Step two lints the program's own rule pattern table, this workbook's design."
+  ],
+  [
+   4.75,
+   1.288,
+   "Two rows come back."
+  ],
+  [
+   6.037,
+   7.562,
+   "The Legal employer pattern is a Finding, D R oh five: it reads a display-name attribute instead of a coded slot."
+  ],
+  [
+   13.6,
+   2.138,
+   "The row exists to show that case."
+  ],
+  [
+   15.738,
+   14.338,
+   "The Direct reports pattern is Info, D R oh three: Microsoft Learn's page on dynamic membership rules says that rule can't be combined with any other, so it carries no guards, and the group must not grant access on its own."
+  ],
+  [
+   30.075,
+   7.812,
+   "Step three evaluates a rule against the fictional population: the two guards, and the FIN-LED organization code."
+  ],
+  [
+   37.888,
+   6.175,
+   "Five members match: u oh one, oh two, oh six, oh eight and oh nine."
+  ],
+  [
+   44.062,
+   6.05,
+   "The guards keep out u oh four, who is disabled, and u oh five, a guest with a copied code."
+  ],
+  [
+   50.112,
+   9.088,
+   "Step four runs the pull request check against HEAD: six rules, no findings, no warnings, no changed files, and exit code zero."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   2.538,
+   "Step five breaks a rule on purpose."
+  ],
+  [
+   2.587,
+   9.35,
+   "You delete the empty-slot clause, extension attribute eleven not null, from the FIN-LED everyone but contractors rule, and run the check again."
+  ],
+  [
+   11.938,
+   1.25,
+   "Three things catch it."
+  ],
+  [
+   13.188,
+   6.775,
+   "The linter notes D R ten: not-equals on the worker-type slot also admits users whose slot is empty."
+  ],
+  [
+   19.962,
+   7.675,
+   "The rule's own test fails, D R eleven: u oh six should be outside the group, and the evaluator now says true."
+  ],
+  [
+   27.637,
+   3.562,
+   "u oh six is the worker with the empty worker-type slot."
+  ],
+  [
+   31.2,
+   4.938,
+   "And the shadow diff prints the change: the file changed, and it adds u oh six."
+  ],
+  [
+   36.138,
+   5.763,
+   "One finding, one changed file, and exit code two, so the pull request can't merge."
+  ],
+  [
+   41.9,
+   1.325,
+   "Put the clause back."
+  ],
+  [
+   43.225,
+   7.513,
+   "Step six runs the tests: all seventy pass, fifty-seven for the module and thirteen that run Learn's samples."
+  ],
+  [
+   50.737,
+   2.612,
+   "No module, tenant or network needed."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   8.137,
+   "Lab 2 runs the library in a test tenant, never production, with fictional users whose slots match the population fixture."
+  ],
+  [
+   8.188,
+   5.938,
+   "Sign in to the right cloud with the least you need: a Groups Administrator, in a delegated session."
+  ],
+  [
+   14.125,
+   3.675,
+   "Create the library's groups paused, so nothing moves yet."
+  ],
+  [
+   17.8,
+   7.5,
+   "Compare the offline evaluator with Graph's beta evaluator for every test, so you know the evaluator agrees with the engine."
+  ],
+  [
+   25.3,
+   8.3,
+   "Then turn processing on and shadow-diff liv with V K D G oh four, and drill an incident pause and resume with the manifest."
+  ],
+  [
+   33.6,
+   11.5,
+   "To back it out, step six deletes the test groups, then lists every dynamic group and administrative unit that isn't on, to confirm nothing is left paused that the record didn't pause before."
+  ],
+  [
+   45.1,
+   2.15,
+   "The authors haven't run Lab 2."
+  ],
+  [
+   47.25,
+   3.413,
+   "Follow Chapter 04's Lab 2, step by step."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   1.387,
+   "The federal requirement."
+  ],
+  [
+   1.438,
+   16.475,
+   "The controls are nist special publication eight hundred fifty-three controls in its Moderate baseline: A C two, A C three, C M three, C M four, C M three enhancement two, S A eleven, S R three and A C six."
+  ],
+  [
+   17.913,
+   4.725,
+   "A rule change is a configuration change, and its review is the evidence."
+  ],
+  [
+   22.637,
+   10.075,
+   "The guards keep disabled accounts and guests out, for account management and access enforcement; the evidence is the rule library and its fixture, in the repository."
+  ],
+  [
+   32.712,
+   10.613,
+   "Every rule passes its tests and each change's adds and removes are listed, for change control and impact analysis; that's the pull request, with its check results."
+  ],
+  [
+   43.325,
+   3.763,
+   "A broken rule fails the check, which is the testing of changes."
+  ],
+  [
+   47.087,
+   4.987,
+   "Learn's samples run unchanged and are pinned, with their snapshot and tests."
+  ],
+  [
+   52.075,
+   8.213,
+   "In Lab 2, the incident pause records each state first, and the resume touches only what it paused: the drill manifest."
+  ],
+  [
+   60.288,
+   5.125,
+   "And the session asks only for what it needs, shown in the sign-in and audit logs."
+  ],
+  [
+   65.412,
+   4.85,
+   "The Key Security Indicators come from fed-ramp's Key Security Indicators list."
+  ],
+  [
+   70.263,
+   3.562,
+   "Which output supports which control is this workbook's reading."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   1.975,
+   "Check yourself with two questions."
+  ],
+  [
+   2.025,
+   3.6,
+   "First: Learn's resume sample runs after an incident."
+  ],
+  [
+   5.625,
+   3.75,
+   "What happens to a group that was paused for review before the incident?"
+  ],
+  [
+   9.375,
+   2.938,
+   "The answer is b: it's turned on with the rest."
+  ],
+  [
+   12.312,
+   8.075,
+   "You saw that in step one of the lab, and it's why the program's runbook uses the pause manifest, whose resume touches only what it paused."
+  ],
+  [
+   20.387,
+   4.3,
+   "Second: why does the linter work on the parsed rule, not on its text?"
+  ],
+  [
+   24.688,
+   6.325,
+   "The answer is b: a guard inside an or protects nothing, and a text search can't tell the difference."
+  ],
+  [
+   31.012,
+   2.775,
+   "The guards must be and-ed at the top of the rule."
+  ],
+  [
+   33.788,
+   10.325,
+   "The module page has two more questions, on what the pull request check shows for a broken rule and which collections a responder can resume, each linked to the section that answers it."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   0.825,
+   "To sum up."
+  ],
+  [
+   0.875,
+   10.15,
+   "You kept the rules as reviewed files with tests, linted them for the guards, saw whom a one-clause change adds, and saw why an incident pause needs a record of what was paused before."
+  ],
+  [
+   11.025,
+   8.475,
+   "The evidence an I S S O keeps: the rule library and its commits, and each pull request's check run and check results."
+  ],
+  [
+   19.5,
+   8.188,
+   "In Lab 2, the Entra audit log for the paused creation, the evaluator comparison, the live shadow diff and the drill manifest."
+  ],
+  [
+   27.688,
+   4.35,
+   "Before shipping a rule change, work through the Chapter 04 checklist."
+  ],
+  [
+   32.038,
+   3.587,
+   "Next is Module 4: move Group Policy as code."
+  ],
+  [
+   35.625,
+   6.963,
+   "The organizational unit (O U) tree scoped Group Policy, and Group Policy inheritance retires with it."
+  ],
+  [
+   42.587,
+   11.45,
+   "You'll turn Group Policy analytics into a per-setting move plan, keep settings catalog policies as reviewed files, and create only what a dry run showed, with the least permission that works."
+  ]
+ ]
+}

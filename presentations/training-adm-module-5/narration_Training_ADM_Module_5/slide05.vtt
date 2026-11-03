@@ -1,0 +1,84 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.944
+Microsoft Learn's guide, How to develop
+a custom machine configuration package,
+
+2
+00:00:05.944 --> 00:00:10.320
+documents the whole procedure,
+one page a step: set up, author,
+
+3
+00:00:10.320 --> 00:00:14.875
+package, test, publish, sign,
+define, and publish the definition.
+
+4
+00:00:14.875 --> 00:00:17.958
+Running those cmdlets offline
+shows what they don't do;
+
+5
+00:00:17.958 --> 00:00:20.287
+the gaps are what the
+kit's tests observed.
+
+6
+00:00:20.287 --> 00:00:23.711
+The compiled MOF records
+the user name, host name,
+
+7
+00:00:23.711 --> 00:00:28.588
+date and full script path, and that
+MOF goes to a blob the machines read.
+
+8
+00:00:28.588 --> 00:00:33.270
+Compiling writes each resource's
+properties in a different order each run,
+
+9
+00:00:33.270 --> 00:00:35.687
+so the hash changes with no real change.
+
+10
+00:00:35.687 --> 00:00:40.238
+Packaging writes a different zip
+each run, even from the same MOF.
+
+11
+00:00:40.238 --> 00:00:44.700
+Nothing checks for secrets, although that
+Learn guide says not to include them.
+
+12
+00:00:44.700 --> 00:00:48.945
+The policy cmdlet takes whatever
+policy I D and version it's given;
+
+13
+00:00:48.945 --> 00:00:53.898
+Learn's page on creating policy definitions
+says to reuse the I D for updates,
+
+14
+00:00:53.898 --> 00:00:56.650
+and a new GUID creates
+a second definition.
+
+15
+00:00:56.650 --> 00:01:01.025
+And the generated definition leaves
+Arc-enabled servers out by default.
+
+16
+00:01:01.025 --> 00:01:05.262
+The build calls Learn's cmdlets in
+Learn's order, and replaces none of them.
+
+17
+00:01:05.262 --> 00:01:07.390
+What it adds sits between the steps.

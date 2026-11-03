@@ -1,0 +1,77 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.700
+Step six breaks the CMDB on
+purpose, in copies of the export.
+
+2
+00:00:04.700 --> 00:00:07.463
+First, mark web oh one as production.
+
+3
+00:00:07.463 --> 00:00:10.743
+Wave zero stops: it isn't
+ready, with exit code two,
+
+4
+00:00:10.743 --> 00:00:15.200
+and the plan says production server
+in non-production wave zero.
+
+5
+00:00:15.200 --> 00:00:19.638
+Second, write update manager as
+one word in a server's patch owner.
+
+6
+00:00:19.638 --> 00:00:24.162
+The inventory exits one: line
+three, unknown patch owner.
+
+7
+00:00:24.162 --> 00:00:26.333
+We re-ran that one on Windows today,
+
+8
+00:00:26.333 --> 00:00:29.975
+and it printed exactly that,
+with the list of known owners.
+
+9
+00:00:29.975 --> 00:00:33.925
+Third, clear app oh two's
+patch owner and plan wave two.
+
+10
+00:00:33.925 --> 00:00:37.913
+The wave is still ready, with
+one to connect and one blocked:
+
+11
+00:00:37.913 --> 00:00:42.150
+win oh one is ready, and app oh two
+is blocked, with no patch owner.
+
+12
+00:00:42.150 --> 00:00:44.150
+Step seven runs the tests.
+
+13
+00:00:44.150 --> 00:00:48.554
+On the control node, the test
+script runs yamllint, ansible lint,
+
+14
+00:00:48.554 --> 00:00:52.450
+a syntax check of six playbooks,
+and ninety tests as root.
+
+15
+00:00:52.450 --> 00:00:55.635
+On Windows, the Python
+suite gave seventy-four
+
+16
+00:00:55.635 --> 00:00:58.460
+passed and sixteen skipped, re-run today.

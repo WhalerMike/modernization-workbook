@@ -1,0 +1,77 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.425
+Three steps sit between Learn's,
+and they're the kit's design.
+
+2
+00:00:03.425 --> 00:00:07.825
+The cleaner rewrites the compiled
+MOF into one canonical form.
+
+3
+00:00:07.825 --> 00:00:10.295
+It drops the header comment, the author,
+
+4
+00:00:10.295 --> 00:00:13.150
+the generation date and
+the generation host.
+
+5
+00:00:13.150 --> 00:00:17.843
+It keeps source info in the short
+form Microsoft's own sample MOF uses,
+
+6
+00:00:17.843 --> 00:00:22.125
+sorts each instance's properties,
+and writes Unix line endings.
+
+7
+00:00:22.125 --> 00:00:25.324
+Compiled three times,
+the configuration gives
+
+8
+00:00:25.324 --> 00:00:28.112
+three different MOFs, and one cleaned MOF.
+
+9
+00:00:28.112 --> 00:00:32.984
+Then the package check opens the zip and
+applies seven rules: the files at the root,
+
+10
+00:00:32.984 --> 00:00:34.583
+the right type for the mode,
+
+11
+00:00:34.583 --> 00:00:39.454
+the hundred-megabyte limit that Learn's
+page on creating package artifacts sets,
+
+12
+00:00:39.454 --> 00:00:42.508
+no build-host data, nothing
+that looks like a secret,
+
+13
+00:00:42.508 --> 00:00:47.088
+every module at the version it was compiled
+against, and a version in the name.
+
+14
+00:00:47.088 --> 00:00:49.424
+Then the definition check applies nine.
+
+15
+00:00:49.424 --> 00:00:52.797
+The one that catches the
+most is MC-POL oh two:
+
+16
+00:00:52.797 --> 00:00:57.260
+every copy of the content hash
+must be this package's hash.

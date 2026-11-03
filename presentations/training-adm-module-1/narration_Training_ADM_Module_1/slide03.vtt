@@ -1,0 +1,73 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.890
+Here's what you'll be able to
+do by the end of this module,
+
+2
+00:00:02.890 --> 00:00:05.537
+which takes about fifty-five
+minutes with the lab.
+
+3
+00:00:05.537 --> 00:00:09.966
+You'll explain what the middleware owns
+and what the provisioning service owns,
+
+4
+00:00:09.966 --> 00:00:11.912
+and what a two-oh-two Accepted means.
+
+5
+00:00:11.912 --> 00:00:16.362
+You'll describe what Microsoft's
+CSV2SCIM sample leaves to you.
+
+6
+00:00:16.362 --> 00:00:19.475
+You'll run the hardened
+client and read its counts,
+
+7
+00:00:19.475 --> 00:00:21.600
+its quarantine and its exit codes.
+
+8
+00:00:21.600 --> 00:00:24.200
+You'll verify a run's provenance by hash,
+
+9
+00:00:24.200 --> 00:00:27.125
+and show that a rerun
+gives identical bytes.
+
+10
+00:00:27.125 --> 00:00:32.187
+And you'll explain why the client sends
+every record whole and holds a mass disable.
+
+11
+00:00:32.187 --> 00:00:36.273
+Before you start, work through
+Microsoft Automation Module 1,
+
+12
+00:00:36.273 --> 00:00:39.076
+for the clouds, sign-in
+and least privilege.
+
+13
+00:00:39.076 --> 00:00:44.150
+Lab 1 needs Python 3.10 or later
+with pytest, and no tenant.
+
+14
+00:00:44.150 --> 00:00:48.269
+PowerShell 7 with Pester 5 is
+optional: it runs the PowerShell
+
+15
+00:00:48.269 --> 00:00:52.780
+client and Microsoft's sample,
+which the full chapter lab compares.

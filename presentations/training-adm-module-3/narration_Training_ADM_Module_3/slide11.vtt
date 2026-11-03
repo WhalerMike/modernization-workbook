@@ -1,0 +1,69 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.831
+Lab 2 runs the library in a
+test tenant, never production,
+
+2
+00:00:03.831 --> 00:00:08.187
+with fictional users whose slots
+match the population fixture.
+
+3
+00:00:08.187 --> 00:00:11.195
+Sign in to the right cloud
+with the least you need:
+
+4
+00:00:11.195 --> 00:00:14.126
+a Groups Administrator,
+in a delegated session.
+
+5
+00:00:14.126 --> 00:00:17.800
+Create the library's groups
+paused, so nothing moves yet.
+
+6
+00:00:17.800 --> 00:00:22.330
+Compare the offline evaluator with
+Graph's beta evaluator for every test,
+
+7
+00:00:22.330 --> 00:00:25.300
+so you know the evaluator
+agrees with the engine.
+
+8
+00:00:25.300 --> 00:00:29.578
+Then turn processing on and
+shadow-diff live with V K D G oh four,
+
+9
+00:00:29.578 --> 00:00:33.600
+and drill an incident pause
+and resume with the manifest.
+
+10
+00:00:33.600 --> 00:00:36.475
+To back it out, step six
+deletes the test groups,
+
+11
+00:00:36.475 --> 00:00:40.788
+then lists every dynamic group and
+administrative unit that isn't on,
+
+12
+00:00:40.788 --> 00:00:45.100
+to confirm nothing is left paused
+that the record didn't pause before.
+
+13
+00:00:45.100 --> 00:00:47.250
+The authors haven't run Lab 2.
+
+14
+00:00:47.250 --> 00:00:50.710
+Follow Chapter 04's Lab 2, step by step.

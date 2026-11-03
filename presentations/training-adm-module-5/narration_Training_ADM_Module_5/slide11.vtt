@@ -1,0 +1,68 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.637
+Step six breaks the registry
+on purpose, three ways.
+
+2
+00:00:03.637 --> 00:00:07.405
+Each time, you write a copy of
+the registry into the lab folder,
+
+3
+00:00:07.405 --> 00:00:09.138
+and the build reads the copy.
+
+4
+00:00:09.138 --> 00:00:12.788
+First, raise the published
+version to one point oh point oh,
+
+5
+00:00:12.788 --> 00:00:14.537
+the version you're building.
+
+6
+00:00:14.537 --> 00:00:19.787
+The build exits two, MC-POL oh
+six: the version didn't rise.
+
+7
+00:00:19.787 --> 00:00:24.738
+Second, give the mode the wrong case,
+apply and auto correct with a lower-case a.
+
+8
+00:00:24.738 --> 00:00:28.963
+The build exits one, because the
+assignment type is case sensitive.
+
+9
+00:00:28.963 --> 00:00:32.612
+Third, fix the case, and
+remove the owner tag.
+
+10
+00:00:32.612 --> 00:00:39.200
+The build exits two, MC-POL oh eight: an
+enforcing definition with no owner filter.
+
+11
+00:00:39.200 --> 00:00:43.225
+Step seven runs the tests:
+sixty-five pass with the modules,
+
+12
+00:00:43.225 --> 00:00:46.663
+and forty-nine, with sixteen
+skipped, without them.
+
+13
+00:00:46.663 --> 00:00:48.996
+That second count needs no download,
+
+14
+00:00:48.996 --> 00:00:53.400
+and on November third it gave
+forty-nine passed and sixteen skipped.

@@ -1,0 +1,89 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.590
+Microsoft Learn publishes five PowerShell
+samples for dynamic membership processing,
+
+2
+00:00:05.590 --> 00:00:09.558
+for an incident: when a rule change
+or a mass update starts moving
+
+3
+00:00:09.558 --> 00:00:13.675
+members you didn't intend, pause
+processing, then resume it in order.
+
+4
+00:00:13.675 --> 00:00:17.574
+The repository pins Learn's
+pages and runs the scripts,
+
+5
+00:00:17.574 --> 00:00:20.000
+unmodified, against a fake tenant.
+
+6
+00:00:20.000 --> 00:00:23.594
+They do a lot well: pause all
+skips a group already paused,
+
+7
+00:00:23.594 --> 00:00:27.500
+and signs in to the chosen cloud
+with only the scopes it needs.
+
+8
+00:00:27.500 --> 00:00:29.150
+But they leave you four things.
+
+9
+00:00:29.150 --> 00:00:31.650
+Pause all records nothing
+about what it paused.
+
+10
+00:00:31.650 --> 00:00:34.698
+Resume noncritical turns
+on every paused group,
+
+11
+00:00:34.698 --> 00:00:38.050
+including one paused on
+purpose before the incident.
+
+12
+00:00:38.050 --> 00:00:41.059
+An answer the cloud
+prompt doesn't recognize,
+
+13
+00:00:41.059 --> 00:00:44.313
+such as G C C High, selects
+the worldwide endpoint.
+
+14
+00:00:44.313 --> 00:00:47.000
+And nothing enforces a
+wait before a resume.
+
+15
+00:00:47.000 --> 00:00:49.893
+The verdict, which is
+this workbook's guidance:
+
+16
+00:00:49.893 --> 00:00:52.938
+use the samples as the
+model, and keep them pinned.
+
+17
+00:00:52.938 --> 00:00:55.818
+The runbook uses the
+manifest-based functions,
+
+18
+00:00:55.818 --> 00:00:59.420
+because during recovery the
+question is "what did we pause?"

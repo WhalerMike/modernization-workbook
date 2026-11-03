@@ -1,0 +1,70 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.225
+Step three checks the provenance.
+
+2
+00:00:02.225 --> 00:00:05.513
+Show the manifest, then
+hash the extract yourself.
+
+3
+00:00:05.513 --> 00:00:09.582
+The hash you compute, starting
+c a oh six b one one one,
+
+4
+00:00:09.582 --> 00:00:13.263
+is the same as the extract
+hash in the manifest.
+
+5
+00:00:13.263 --> 00:00:15.749
+So the record really is tied to this file.
+
+6
+00:00:15.749 --> 00:00:17.836
+Look at the batch's person keys, too:
+
+7
+00:00:17.836 --> 00:00:21.412
+they start with the leaver,
+one hundred thousand and three.
+
+8
+00:00:21.412 --> 00:00:22.588
+Leavers first.
+
+9
+00:00:22.588 --> 00:00:26.412
+Step four runs the client again,
+into a second output folder,
+
+10
+00:00:26.412 --> 00:00:30.237
+and compares the bytes of the
+bulk request and the manifest.
+
+11
+00:00:30.237 --> 00:00:31.338
+They're identical.
+
+12
+00:00:31.338 --> 00:00:34.034
+That's the property the bulk I D buys you:
+
+13
+00:00:34.034 --> 00:00:37.574
+the same input gives the
+same batch hash, every time.
+
+14
+00:00:37.574 --> 00:00:43.325
+Microsoft's sample gives a new bulk I D
+on every run, so its hashes never repeat.
+
+15
+00:00:43.325 --> 00:00:47.590
+The long commands on the slide are
+wrapped, and the manifest is trimmed.

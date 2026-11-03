@@ -1,0 +1,88 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.448
+Microsoft Learn's page,
+Use the Azure Login action
+
+2
+00:00:03.448 --> 00:00:06.763
+with OpenID Connect, has
+three sample workflows.
+
+3
+00:00:06.763 --> 00:00:12.187
+They do the important part well: they sign
+in with OpenID Connect and no secret,
+
+4
+00:00:12.187 --> 00:00:16.763
+ask for id-token write and nothing
+else, and keep the IDs in secrets.
+
+5
+00:00:16.763 --> 00:00:18.112
+Keep that as the model.
+
+6
+00:00:18.112 --> 00:00:22.138
+Here's what they leave to you, checked
+offline by the kit's workflow linter.
+
+7
+00:00:22.138 --> 00:00:24.352
+They run on push and have no schedule,
+
+8
+00:00:24.352 --> 00:00:27.600
+and drift isn't found because
+someone pushed a commit.
+
+9
+00:00:27.600 --> 00:00:32.150
+They pin actions by tag, and
+version two is older than the
+
+10
+00:00:32.150 --> 00:00:36.700
+current release of Microsoft's
+Azure Login action, v3.1.0.
+
+11
+00:00:36.700 --> 00:00:40.348
+GitHub Docs' secure use
+reference advises pinning an
+
+12
+00:00:40.348 --> 00:00:43.913
+action to a full commit SHA,
+because a tag can be moved.
+
+13
+00:00:43.913 --> 00:00:46.719
+They ask for the latest
+Azure CLI and PowerShell,
+
+14
+00:00:46.719 --> 00:00:50.438
+so the tool that produced the
+evidence changes without a review.
+
+15
+00:00:50.438 --> 00:00:53.488
+The US Government sample
+doesn't parse as YAML.
+
+16
+00:00:53.488 --> 00:00:58.149
+And the job names no environment, so the
+token's subject depends on the branch.
+
+17
+00:00:58.149 --> 00:01:00.932
+The verdict: use Learn's sign-in exactly,
+
+18
+00:01:00.932 --> 00:01:04.130
+pin it, schedule it, and
+put the rest behind it.

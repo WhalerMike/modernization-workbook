@@ -1,0 +1,86 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.638
+Microsoft Learn's Intune migration guide
+points to Microsoft's Intune Graph samples,
+
+2
+00:00:05.638 --> 00:00:08.787
+on GitHub, for exporting
+and importing policies,
+
+3
+00:00:08.787 --> 00:00:12.250
+and says the scripts change
+your tenant and come as-is.
+
+4
+00:00:12.250 --> 00:00:15.275
+Their settings catalog
+folder has an import script.
+
+5
+00:00:15.275 --> 00:00:17.864
+The repository keeps a pinned copy,
+
+6
+00:00:17.864 --> 00:00:22.150
+and a test harness runs it,
+unmodified, against a fake Graph.
+
+7
+00:00:22.150 --> 00:00:23.537
+Here's what that shows.
+
+8
+00:00:23.537 --> 00:00:27.288
+The import creates the policy
+with one POST, unassigned.
+
+9
+00:00:27.288 --> 00:00:28.663
+That's kept as the model.
+
+10
+00:00:28.663 --> 00:00:32.573
+But run it twice and it creates a
+second policy with the same name,
+
+11
+00:00:32.573 --> 00:00:34.638
+because it never reads the tenant.
+
+12
+00:00:34.638 --> 00:00:39.342
+It sends to the worldwide Graph host
+whatever cloud you signed in to, and Learn's
+
+13
+00:00:39.342 --> 00:00:44.263
+page on Microsoft Graph national cloud
+deployments gives each cloud its own host.
+
+14
+00:00:44.263 --> 00:00:47.788
+It uses whatever session you
+opened, whatever its scopes.
+
+15
+00:00:47.788 --> 00:00:53.263
+It silently strips service-set properties,
+so the body sent isn't the file reviewed.
+
+16
+00:00:53.263 --> 00:00:55.688
+And it records nothing beyond the screen.
+
+17
+00:00:55.688 --> 00:01:01.002
+The example adds a sync that reads the
+tenant first, a host per cloud, a read-only
+
+18
+00:01:01.002 --> 00:01:05.950
+scope for the dry run, refusals instead
+of silent edits, and a sync record.

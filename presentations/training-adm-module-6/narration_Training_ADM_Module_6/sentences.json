@@ -1,0 +1,727 @@
+{
+ "1": [
+  [
+   0.05,
+   7.1,
+   "Welcome to Module 6 of the Attribute-Driven Migration learning path: onboard servers with Ansible beside Arc."
+  ],
+  [
+   7.15,
+   8.812,
+   "This module serves Gates 5 and 8 of the implementation guide, and takes the Federal Modernization Workbook's Book 19, Chapter 08."
+  ],
+  [
+   15.963,
+   10.575,
+   "You'll onboard one wave of servers to Azure Arc with Microsoft's role, from a CMDB export, with every server tagged with the tool that owns its settings and the tool that patches it."
+  ],
+  [
+   26.538,
+   3.612,
+   "And you'll write a plan a reviewer reads before anything runs."
+  ],
+  [
+   30.15,
+   11.25,
+   "The lab reads the CMDB into groups and tags, runs Microsoft's role in check mode, plans a wave, dry-runs it, and breaks the CMDB on purpose, all offline."
+  ],
+  [
+   41.4,
+   5.362,
+   "The code is illustrative: tested against fixtures, not against a production estate."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.15,
+   "Why does this matter?"
+  ],
+  [
+   1.2,
+   9.425,
+   "In this workbook's implementation guide, Gate 5's server convention says an Arc server's tags are its attributes, drawn from the asset record at onboarding."
+  ],
+  [
+   10.625,
+   5.2,
+   "Gate 8 writes each wave as a query: servers by resource group and tag."
+  ],
+  [
+   15.825,
+   14.225,
+   "Microsoft's azure arc role, which Microsoft Learn documents in Connect machines to Azure Arc at scale with Ansible, connects whatever hosts the inventory names, with no waves, and with no dry run on a server that doesn't have the agent."
+  ],
+  [
+   30.05,
+   4.025,
+   "And the tags are written once, at the connect, from the CMDB."
+  ],
+  [
+   34.075,
+   6.612,
+   "In this workbook's reading, that makes the onboarding run the place where owners are read, checked and carried."
+  ],
+  [
+   40.688,
+   4.513,
+   "A server connected without them is open to whichever tool reaches it first."
+  ],
+  [
+   45.2,
+   8.375,
+   "In this module you read the CMDB into groups and tags, plan a wave, and see what each server would get before anything is contacted."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   5.438,
+   "Here's what you'll be able to do by the end of this module, which takes about forty-five minutes with the lab."
+  ],
+  [
+   5.487,
+   6.625,
+   "You'll explain why each server records one configuration owner and one patch owner, and where each tag is read."
+  ],
+  [
+   12.113,
+   3.438,
+   "You'll describe what Microsoft's azure arc role leaves to you."
+  ],
+  [
+   15.55,
+   3.663,
+   "You'll run the CMDB inventory, and say what makes it stop."
+  ],
+  [
+   19.212,
+   3.788,
+   "You'll plan a wave and read the plan, before anything runs."
+  ],
+  [
+   23.0,
+   5.875,
+   "And you'll explain why the role can't dry-run a server without the agent, and what the playbook does instead."
+  ],
+  [
+   28.875,
+   7.412,
+   "Before you start, finish Module 5: its enforcing definitions filter on the Config Owner tag this module writes."
+  ],
+  [
+   36.288,
+   11.05,
+   "Lab 1 needs a disposable Linux control node, or WSL, with Python 3.10 or later, ansible core, ansible lint, yamllint and pytest."
+  ],
+  [
+   47.337,
+   4.688,
+   "Step three runs Microsoft's role as root against the control node itself."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   3.55,
+   "This workbook's guidance gives every setting one owning tool."
+  ],
+  [
+   3.6,
+   7.638,
+   "The CMDB records it for each asset as config owner, and the workbook's Arc track guide mirrors it to the Config Owner tag."
+  ],
+  [
+   11.238,
+   5.088,
+   "Patching has one owner too: a patch owner column, mirrored to the Patch Owner tag."
+  ],
+  [
+   16.325,
+   1.938,
+   "Arc doesn't change who owns what."
+  ],
+  [
+   18.262,
+   5.438,
+   "It makes the server an Azure resource, and the tags tell the Azure tools which servers are theirs."
+  ],
+  [
+   23.7,
+   8.475,
+   "The kit's enforcing machine configuration definitions filter on Config Owner, so machine configuration changes only the servers it owns."
+  ],
+  [
+   32.175,
+   12.613,
+   "Microsoft Learn's page, About dynamic scoping, for Azure Update Manager, says dynamic scopes group machines by tags and are evaluated at each scheduled run, so a scope on Patch Owner follows the tag."
+  ],
+  [
+   44.788,
+   6.4,
+   "Take aws oh one, a Red Hat server on AWS that Ansible configures and patches."
+  ],
+  [
+   51.188,
+   8.925,
+   "It still goes to Arc, with Patch Owner set to Ansible, so, in this workbook's guidance, Update Manager assesses it and schedules nothing."
+  ],
+  [
+   60.112,
+   8.738,
+   "And afterward, the kit's check V K ARC oh seven reports any server machine configuration doesn't own that carries its enforcing assignment."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   2.388,
+   "One more piece of the setting: which Azure."
+  ],
+  [
+   2.438,
+   6.013,
+   "The estate this workbook plans for is a Microsoft 365 G C C tenant."
+  ],
+  [
+   8.45,
+   13.662,
+   "Microsoft Learn's page, Planning identity for Azure Government applications, says Office 365 G C C uses Microsoft Entra Public, and an Azure Government subscription can't be associated with a directory there."
+  ],
+  [
+   22.113,
+   11.25,
+   "So a G C C estate's Arc servers go to a commercial subscription, and, as Learn's azcmagent connect reference shows, the agent connects with the AzureCloud cloud, which is the default."
+  ],
+  [
+   33.362,
+   13.912,
+   "G C C High and D O D tenants are different: the same Learn pages, with the Connected Machine agent network requirements, give Microsoft Entra Government and Azure Government, with U S Gov regions and the dot us endpoints."
+  ],
+  [
+   47.275,
+   1.962,
+   "The kit guards this both ways."
+  ],
+  [
+   49.237,
+   8.963,
+   "The wave plan stops a server whose region belongs to the other cloud, and the playbook that uses Microsoft's role refuses any cloud but AzureCloud."
+  ],
+  [
+   58.2,
+   5.6,
+   "For Azure Government, the kit's other onboarding playbook, oh two, spells the steps out."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   9.875,
+   "Microsoft Learn's page, Connect machines to Azure Arc at scale with Ansible, documents onboarding through the Azure Arc onboarding role in the azure az collection."
+  ],
+  [
+   9.925,
+   4.088,
+   "It installs the Connected Machine agent and registers each host."
+  ],
+  [
+   14.012,
+   8.662,
+   "The repository keeps a pinned copy of the role's code, from the ansible collections azure repository at the four point two point oh release."
+  ],
+  [
+   22.675,
+   3.975,
+   "Running it offline, and reading its code, shows what it leaves to you."
+  ],
+  [
+   26.65,
+   6.55,
+   "It connects whatever hosts the inventory names; the kit reads both owners and writes them into the tags."
+  ],
+  [
+   33.2,
+   10.012,
+   "It has no waves; the kit adds a wave column, one canary server, then five, then twenty-five percent, and keeps production out of waves zero and one."
+  ],
+  [
+   43.212,
+   6.5,
+   "It can't run in check mode on a server without the agent; the kit's playbook doesn't call it without a confirm flag."
+  ],
+  [
+   49.712,
+   7.75,
+   "The role's code sends a signal with the subscription and tenant by default, which Learn's page doesn't mention; the kit turns that off."
+  ],
+  [
+   57.462,
+   5.638,
+   "And it leaves no record, and the requirements file on Learn's page installs the latest version."
+  ],
+  [
+   63.1,
+   6.438,
+   "The verdict, which is this workbook's: use Microsoft's role, unchanged, and add what sits around it."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   5.312,
+   "The kit's CMDB inventory script turns each owner into a group and a tag."
+  ],
+  [
+   5.362,
+   10.125,
+   "A config owner of arc machine configuration, Ansible, Intune and so on becomes a group, and a Config Owner tag in the spelling of this workbook's Arc track guide."
+  ],
+  [
+   15.488,
+   1.962,
+   "The patch owner works the same way."
+  ],
+  [
+   17.45,
+   12.175,
+   "An empty owner on a tier one or two record goes to a missing group, which is a finding under nist special publication eight hundred fifty-three control CM-8, inventory, never a target."
+  ],
+  [
+   29.625,
+   1.95,
+   "And the wave becomes a wave group."
+  ],
+  [
+   31.575,
+   1.8,
+   "Three rules fail closed."
+  ],
+  [
+   33.375,
+   2.788,
+   "An owner value the script doesn't know stops it."
+  ],
+  [
+   36.163,
+   8.287,
+   "A typo like update manager written as one word would otherwise create a group nothing reads, and drop the server out of the group that protects it."
+  ],
+  [
+   44.45,
+   2.05,
+   "A wave that isn't a number stops it."
+  ],
+  [
+   46.5,
+   13.525,
+   "And a server is a candidate only if its record has both owners, a resource group, a region, a wave, and tag values Arc accepts; Learn's azcmagent connect reference takes the tags as one comma-delimited list."
+  ],
+  [
+   60.025,
+   2.925,
+   "Otherwise it's blocked, with the reasons recorded."
+  ],
+  [
+   62.95,
+   1.9,
+   "All three are the kit's design."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   3.6,
+   "The kit's wave plan playbook runs only on the control node."
+  ],
+  [
+   3.65,
+   1.363,
+   "You give it a wave number."
+  ],
+  [
+   5.013,
+   17.525,
+   "It lists the wave's ready servers and the ones the CMDB blocked, and writes a jay-son and a C S V plan under reports: host, configuration item, environment, resource group, region, cloud, both owners, the exact tag string and a state."
+  ],
+  [
+   22.538,
+   16.275,
+   "It stops when no wave is given or the wave has no ready server, when the cloud is wrong or a region belongs to the other cloud, when a production server is planned in wave zero or one, which this workbook's Arc track keeps for non-production, and when a server has no owner."
+  ],
+  [
+   38.812,
+   6.275,
+   "Both onboarding playbooks import it as their first play, so if the plan stops, no server is contacted."
+  ],
+  [
+   45.087,
+   11.312,
+   "The playbook that uses Microsoft's role runs in batches, one canary server, then five, then twenty-five percent, with the batch keywords the Ansible documentation describes."
+  ],
+  [
+   56.4,
+   3.225,
+   "It's in check mode unless you set confirm change to true."
+  ],
+  [
+   59.625,
+   3.775,
+   "Then the role isn't called, and each server prints what it would get."
+  ],
+  [
+   63.4,
+   5.838,
+   "With the flag, the role runs with the CMDB's values, authenticating with the managed identity."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   5.862,
+   "Lab 1 runs in the ansible folder of the examples, on a disposable Linux control node."
+  ],
+  [
+   6.638,
+   3.087,
+   "Nothing signs in to Azure or contacts a server."
+  ],
+  [
+   9.725,
+   7.487,
+   "Step one installs the pinned collections from a reviewed source, and then points every outbound request at a dead local proxy."
+  ],
+  [
+   17.212,
+   10.6,
+   "The results on these slides are the chapter's Lab 1 text: the authors didn't re-run the Ansible steps for this path, because they download from Galaxy and need a Linux control node."
+  ],
+  [
+   27.812,
+   10.425,
+   "Step two shows what the CMDB becomes: four candidates, app oh two, aws oh one, web oh one and win oh one, and five servers Ansible patches."
+  ],
+  [
+   38.237,
+   3.825,
+   "Aws oh one's tags carry both owners as Ansible."
+  ],
+  [
+   42.062,
+   4.312,
+   "Step three runs Microsoft's role, unchanged, in check mode."
+  ],
+  [
+   46.375,
+   3.575,
+   "It fails at Get azcmagent status, because there's no agent."
+  ],
+  [
+   49.95,
+   6.912,
+   "Run it again verbose, and it shows the agent installed fact as true, because check mode skipped the version check."
+  ],
+  [
+   56.862,
+   2.212,
+   "That's the dry run the role can't do."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   1.913,
+   "Step four plans wave zero."
+  ],
+  [
+   1.962,
+   6.2,
+   "The playbook says wave zero is ready: one server to connect, none blocked in the CMDB."
+  ],
+  [
+   8.162,
+   12.95,
+   "Show the newest wave zero plan, and it has one row: web oh one, in the portal dev resource group, in West U S 2, in AzureCloud, state ready, with the exact tag string the connect would write."
+  ],
+  [
+   21.113,
+   11.838,
+   "Look at the tags: the configuration item, Config Owner set to machine configuration, the environment, the location, the owning team, the patch group, and Patch Owner set to Update Manager."
+  ],
+  [
+   32.95,
+   4.125,
+   "That's the plan a reviewer reads and files before anything runs."
+  ],
+  [
+   37.075,
+   3.1,
+   "Step five dry-runs the wave with Microsoft's role."
+  ],
+  [
+   40.175,
+   1.3,
+   "It exits zero."
+  ],
+  [
+   41.475,
+   9.575,
+   "Web oh one reports that it would connect to AzureCloud, in that resource group and region, authenticating with the managed identity, and the connect task is skipped."
+  ],
+  [
+   51.05,
+   3.562,
+   "Web oh one doesn't exist, and nothing tried to reach it."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   4.65,
+   "Step six breaks the CMDB on purpose, in copies of the export."
+  ],
+  [
+   4.7,
+   2.763,
+   "First, mark web oh one as production."
+  ],
+  [
+   7.463,
+   7.737,
+   "Wave zero stops: it isn't ready, with exit code two, and the plan says production server in non-production wave zero."
+  ],
+  [
+   15.2,
+   4.438,
+   "Second, write update manager as one word in a server's patch owner."
+  ],
+  [
+   19.637,
+   4.525,
+   "The inventory exits one: line three, unknown patch owner."
+  ],
+  [
+   24.163,
+   5.812,
+   "We re-ran that one on Windows today, and it printed exactly that, with the list of known owners."
+  ],
+  [
+   29.975,
+   3.95,
+   "Third, clear app oh two's patch owner and plan wave two."
+  ],
+  [
+   33.925,
+   8.225,
+   "The wave is still ready, with one to connect and one blocked: win oh one is ready, and app oh two is blocked, with no patch owner."
+  ],
+  [
+   42.15,
+   2.0,
+   "Step seven runs the tests."
+  ],
+  [
+   44.15,
+   8.3,
+   "On the control node, the test script runs yamllint, ansible lint, a syntax check of six playbooks, and ninety tests as root."
+  ],
+  [
+   52.45,
+   5.95,
+   "On Windows, the Python suite gave seventy-four passed and sixteen skipped, re-run today."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   2.438,
+   "Lab 2 connects one real server."
+  ],
+  [
+   2.487,
+   8.988,
+   "You need a commercial test subscription in the G C C tenant, a Linux server you can rebuild, never production, and a control node with a managed identity."
+  ],
+  [
+   11.475,
+   12.575,
+   "Create a test resource group, and grant the control node's managed identity the Azure Connected Machine Onboarding role on it, and nothing else; that's the role Microsoft Learn's Ansible onboarding page names."
+  ],
+  [
+   24.05,
+   4.112,
+   "Write a one-server CMDB export for the disposable server."
+  ],
+  [
+   28.163,
+   5.625,
+   "Then plan, dry-run and connect it, and check that its tags equal the CMDB's."
+  ],
+  [
+   33.788,
+   16.775,
+   "To back it out, follow the order in Learn's pages on azcmagent disconnect and on uninstalling the agent: remove any extensions, disconnect with an identity that may delete the resource, because the onboarding role can't, uninstall the agent, and remove the role assignment."
+  ],
+  [
+   50.562,
+   2.15,
+   "The authors haven't run Lab 2."
+  ],
+  [
+   52.712,
+   3.35,
+   "Follow Chapter 08's Lab 2, step by step."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   1.387,
+   "The federal requirement."
+  ],
+  [
+   1.438,
+   9.588,
+   "Onboarding to Arc writes each server's owners into Azure from the CMDB, so the plan, the result and the tags are inventory and change evidence."
+  ],
+  [
+   11.025,
+   4.075,
+   "The controls are nist special publication eight hundred fifty-three's."
+  ],
+  [
+   15.1,
+   5.0,
+   "The CMDB export supports system component inventory, CM-8."
+  ],
+  [
+   20.1,
+   5.9,
+   "The wave plan, filed with the change record, supports change control and impact analysis."
+  ],
+  [
+   26.0,
+   4.55,
+   "The dry run that contacts nothing supports testing a change before it's made."
+  ],
+  [
+   30.55,
+   7.487,
+   "The stops for production in the pilot and for unknown or missing owners leave the plan, and a CMDB ticket for the missing owner."
+  ],
+  [
+   38.038,
+   3.888,
+   "The pinned collections leave the requirements file and the snapshot."
+  ],
+  [
+   41.925,
+   12.425,
+   "And Lab 2 adds the role assignment record, for least privilege, and the result file with V K ARC oh one and oh seven, showing the server is connected and its tags equal the CMDB's."
+  ],
+  [
+   54.35,
+   7.537,
+   "The KSI column is fed-ramp's Key Security Indicators, the fed-ramp twenty X indicators for cloud service providers."
+  ],
+  [
+   61.888,
+   3.562,
+   "Which output supports which control is this workbook's reading."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   1.975,
+   "Check yourself with two questions."
+  ],
+  [
+   2.025,
+   4.638,
+   "First: Microsoft's role runs in check mode on a host without the agent."
+  ],
+  [
+   6.662,
+   1.012,
+   "What happens?"
+  ],
+  [
+   7.675,
+   7.6,
+   "The answer is b: it fails at Get azcmagent status, and with the version check skipped, it decides the agent is installed."
+  ],
+  [
+   15.275,
+   6.513,
+   "That's why the kit's playbook doesn't call the role at all without the confirm flag, and prints what each server would get instead."
+  ],
+  [
+   21.788,
+   3.55,
+   "Second: the wave zero plan finds a production server."
+  ],
+  [
+   25.337,
+   1.012,
+   "What happens?"
+  ],
+  [
+   26.35,
+   7.575,
+   "The answer is b: the plan stops, and no server is contacted, because waves zero and one are for non-production."
+  ],
+  [
+   33.925,
+   2.163,
+   "You saw that in step six of the lab."
+  ],
+  [
+   36.087,
+   7.763,
+   "The module page has two more questions, on the owner typo and on the confirm flag, each linked to the section that answers it."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   0.825,
+   "To sum up."
+  ],
+  [
+   0.875,
+   10.05,
+   "You read the CMDB into groups and tags with both owners, planned a wave a reviewer can read before anything runs, and saw the dry run Microsoft's role can't do."
+  ],
+  [
+   10.925,
+   17.25,
+   "The evidence an I S S O keeps: the CMDB export, each wave's plan and result files with the change record, the requirements file and the snapshot, and, from Lab 2, the role assignment record, V K ARC oh one and oh seven, and the back-out record."
+  ],
+  [
+   28.175,
+   2.688,
+   "Gate 8's per-wave evidence is in the guide."
+  ],
+  [
+   30.863,
+   3.6,
+   "Before shipping, work through the Chapter 08 checklist."
+  ],
+  [
+   34.462,
+   3.925,
+   "Next is Module 7: extend Lifecycle Workflows."
+  ],
+  [
+   38.388,
+   12.725,
+   "You'll see why Learn's Logic App definition costs a G C C High leaver, and run the definition that calls back in the right cloud, reports honestly, and checks that the leaver blocks before the custom task runs."
+  ]
+ ]
+}

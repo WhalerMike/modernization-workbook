@@ -1,0 +1,79 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.438
+One more piece of the
+setting: which Azure.
+
+2
+00:00:02.438 --> 00:00:08.451
+The estate this workbook plans
+for is a Microsoft 365 GCC tenant.
+
+3
+00:00:08.451 --> 00:00:13.613
+Microsoft Learn's page, Planning identity
+for Azure Government applications,
+
+4
+00:00:13.613 --> 00:00:16.790
+says Office 365 GCC uses
+Microsoft Entra Public,
+
+5
+00:00:16.790 --> 00:00:22.112
+and an Azure Government subscription can't
+be associated with a directory there.
+
+6
+00:00:22.112 --> 00:00:26.197
+So a GCC estate's Arc servers go
+to a commercial subscription, and,
+
+7
+00:00:26.197 --> 00:00:29.125
+as Learn's azcmagent
+connect reference shows,
+
+8
+00:00:29.125 --> 00:00:33.363
+the agent connects with the AzureCloud
+cloud, which is the default.
+
+9
+00:00:33.363 --> 00:00:37.192
+GCC High and DoD tenants are
+different: the same Learn pages,
+
+10
+00:00:37.192 --> 00:00:42.272
+with the Connected Machine agent network
+requirements, give Microsoft Entra
+
+11
+00:00:42.272 --> 00:00:47.274
+Government and Azure Government, with US
+Gov regions and the dot us endpoints.
+
+12
+00:00:47.274 --> 00:00:49.237
+The kit guards this both ways.
+
+13
+00:00:49.237 --> 00:00:53.420
+The wave plan stops a server whose
+region belongs to the other cloud,
+
+14
+00:00:53.420 --> 00:00:58.200
+and the playbook that uses Microsoft's
+role refuses any cloud but AzureCloud.
+
+15
+00:00:58.200 --> 00:01:02.040
+For Azure Government, the kit's
+other onboarding playbook,
+
+16
+00:01:02.040 --> 00:01:03.860
+oh two, spells the steps out.
