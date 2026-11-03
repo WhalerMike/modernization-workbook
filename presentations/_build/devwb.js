@@ -191,7 +191,11 @@ module.exports = function build(spec) {
         }
         return out;
       },
-      h: (e, w, s) => 0.36 + E.terminal.lines(e, w, s).length * lh(E.terminal.pt(e, s)) + 0.2,
+      // A piece longer than the window (one long word) wraps again in PowerPoint, so it counts as more rows.
+      h: (e, w, s) => {
+        const pt = E.terminal.pt(e, s), cols = Math.floor((w - 0.4) / (0.55 * pt / 72));
+        return 0.36 + E.terminal.lines(e, w, s).reduce((a, l) => a + Math.max(1, Math.ceil(l.length / cols)), 0) * lh(pt) + 0.2;
+      },
       draw: (sl, e, x, y, w, h, s) => {
         const pt = E.terminal.pt(e, s), lines = E.terminal.lines(e, w, s);
         box(sl, "Terminal", x, y, w, h, "0F172A", "0F172A");
