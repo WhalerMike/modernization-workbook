@@ -1,0 +1,78 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.637
+Unit 2 reads the rule the code holds.
+
+2
+00:00:02.637 --> 00:00:07.873
+Microsoft Learn's enterprise application
+ownership documentation recommends at least
+
+3
+00:00:07.873 --> 00:00:12.270
+two owners where possible, and its Get
+M G Service Principal Owner reference
+
+4
+00:00:12.270 --> 00:00:16.388
+describes a service principal's owners
+as users or service principals.
+
+5
+00:00:16.388 --> 00:00:19.874
+The program's rule is stricter,
+and it's design guidance.
+
+6
+00:00:19.874 --> 00:00:25.275
+Two human owners, never service accounts,
+and not service principals or guests:
+
+7
+00:00:25.275 --> 00:00:29.512
+the code counts an owner only if
+it's a user, a member, and enabled.
+
+8
+00:00:29.512 --> 00:00:32.231
+A service management
+reference that names a
+
+9
+00:00:32.231 --> 00:00:34.950
+record in the system
+inventory, not free text.
+
+10
+00:00:34.950 --> 00:00:38.594
+And for every Active Directory
+account, an application owner,
+
+11
+00:00:38.594 --> 00:00:41.667
+which comes from an owners
+file kept with the record,
+
+12
+00:00:41.667 --> 00:00:45.525
+because the directory has no owners
+attribute the code can trust.
+
+13
+00:00:45.525 --> 00:00:47.500
+Then disable, never delete.
+
+14
+00:00:47.500 --> 00:00:52.743
+Microsoft Learn's Deactivate an app
+registration procedure is on the beta endpoint,
+
+15
+00:00:52.743 --> 00:00:56.489
+so the code disables the tenant's
+service principal instead,
+
+16
+00:00:56.489 --> 00:00:57.980
+on version one point oh.

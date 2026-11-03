@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.550
+Step five shows the
+reader's rules at work.
+
+2
+00:00:02.550 --> 00:00:06.386
+You build a reader for the inventory
+task, with the fixture invoker
+
+3
+00:00:06.386 --> 00:00:10.500
+standing in for the network, and ask it
+for a call the task doesn't declare.
+
+4
+00:00:10.500 --> 00:00:12.582
+It refuses before anything is sent,
+
+5
+00:00:12.582 --> 00:00:16.388
+and tells you to add the call to
+the call list with its permission.
+
+6
+00:00:16.388 --> 00:00:21.343
+Then you ask for the cloud G C C in
+capitals, and it refuses that too:
+
+7
+00:00:21.343 --> 00:00:26.487
+the cloud names are global, gcc,
+gcchigh and dod, and it never guesses.
+
+8
+00:00:26.487 --> 00:00:29.975
+Step six reads the hand-off
+to the Data Platform plan.
+
+9
+00:00:29.975 --> 00:00:35.855
+Two accounts go by their SQL Server
+service principal names, svc sqlprod and
+
+10
+00:00:35.855 --> 00:00:41.112
+the group managed account gmsa sql, and
+one, svc ldapbind, goes by its name.
+
+11
+00:00:41.112 --> 00:00:46.149
+Step seven runs every test: five
+hundred thirteen pass, none fail.
+
+12
+00:00:46.149 --> 00:00:48.050
+Then delete the output folder.

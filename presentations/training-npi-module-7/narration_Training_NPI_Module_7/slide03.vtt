@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.888
+Here's what you'll be able to
+do by the end of this module,
+
+2
+00:00:02.888 --> 00:00:05.275
+which takes about sixty
+minutes with the lab.
+
+3
+00:00:05.275 --> 00:00:09.800
+You'll state the order of targets, and
+the finding a target out of order raises.
+
+4
+00:00:09.800 --> 00:00:13.765
+You'll name the three values a
+federated credential must match,
+
+5
+00:00:13.765 --> 00:00:15.900
+and the audience Entra I D expects.
+
+6
+00:00:15.900 --> 00:00:18.572
+You'll explain why every
+federated credential
+
+7
+00:00:18.572 --> 00:00:21.175
+gets a token exchange
+test before it's created.
+
+8
+00:00:21.175 --> 00:00:25.278
+And you'll read a conversion's cutover
+gate and its parallel run status,
+
+9
+00:00:25.278 --> 00:00:28.037
+and say when the legacy
+account may be disabled.
+
+10
+00:00:28.037 --> 00:00:30.048
+Before you start, finish Module 3,
+
+11
+00:00:30.048 --> 00:00:34.887
+because the conversions follow the target
+and the wave it decides, and Module 4,
+
+12
+00:00:34.887 --> 00:00:39.800
+because a certificate target is issued
+and rotated under its credential rules.
+
+13
+00:00:39.800 --> 00:00:45.170
+Lab 1 needs PowerShell 7.1 or
+later with Pester 5, and no tenant.

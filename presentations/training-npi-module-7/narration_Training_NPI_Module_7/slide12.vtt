@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.250
+Step seven dry-runs the plan
+with its approved hash.
+
+2
+00:00:03.250 --> 00:00:05.562
+It would send four writes, in order.
+
+3
+00:00:05.562 --> 00:00:09.812
+First, Disable A D Account for
+conversion one's legacy account.
+
+4
+00:00:09.812 --> 00:00:11.587
+Disabled, not deleted.
+
+5
+00:00:11.587 --> 00:00:15.263
+Then a post of an application's
+federated credential to Graph.
+
+6
+00:00:15.263 --> 00:00:18.715
+Then a put of the user-assigned
+identity, id webfront,
+
+7
+00:00:18.715 --> 00:00:22.087
+to Resource Manager, before
+a put of its credential.
+
+8
+00:00:22.087 --> 00:00:26.624
+The identity always comes before
+its credential, one write at a time.
+
+9
+00:00:26.624 --> 00:00:31.800
+Step eight applies the plan to the fake,
+and all four are sent, in the same order.
+
+10
+00:00:31.800 --> 00:00:36.725
+Then it tries a hash nobody approved,
+all zeros, and the write path refuses:
+
+11
+00:00:36.725 --> 00:00:41.650
+the plan's hash isn't the approved one,
+so it won't run a plan nobody reviewed.
+
+12
+00:00:41.650 --> 00:00:46.663
+Step nine runs every test: five
+hundred thirteen pass, none fail.
+
+13
+00:00:46.663 --> 00:00:48.550
+Then delete the output folder.

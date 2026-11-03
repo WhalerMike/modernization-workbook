@@ -1,0 +1,68 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.925
+Unit 1 is the guide's Step
+1, which has six sub-steps.
+
+2
+00:00:03.925 --> 00:00:06.617
+One a: Active Directory service accounts,
+
+3
+00:00:06.617 --> 00:00:10.575
+managed service accounts, and
+the group and delegated kinds.
+
+4
+00:00:10.575 --> 00:00:14.997
+Stale is a lead, not a verdict, and
+for a group managed account you record
+
+5
+00:00:14.997 --> 00:00:19.725
+which hosts can retrieve its password,
+because that's its real blast radius.
+
+6
+00:00:19.725 --> 00:00:23.017
+One b: app registrations
+and service principals,
+
+7
+00:00:23.017 --> 00:00:25.650
+with each one's service principal type.
+
+8
+00:00:25.650 --> 00:00:30.914
+One c: managed identities and their role
+assignments; a user-assigned identity
+
+9
+00:00:30.914 --> 00:00:35.450
+outlives the resources it's attached
+to, so it's the type that orphans.
+
+10
+00:00:35.450 --> 00:00:40.463
+One d: every federated credential's
+issuer, subject and audience.
+
+11
+00:00:40.463 --> 00:00:46.037
+One e: AI agent identities and their
+sponsors, where the tenant exposes them.
+
+12
+00:00:46.037 --> 00:00:50.638
+And one f joins each identity to
+its record in the system inventory,
+
+13
+00:00:50.638 --> 00:00:53.063
+with two human owners and a sponsor.
+
+14
+00:00:53.063 --> 00:00:58.420
+The validation kit's read-only checks
+one, six, seven and eight prove the gate.

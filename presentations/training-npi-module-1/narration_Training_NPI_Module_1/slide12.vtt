@@ -1,0 +1,73 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.975
+Lab 2 runs the same inventory
+against your own test tenant.
+
+2
+00:00:03.975 --> 00:00:07.417
+You need a test tenant in
+the worldwide or G C C cloud,
+
+3
+00:00:07.417 --> 00:00:11.925
+with a test Azure subscription,
+and a test Active Directory domain.
+
+4
+00:00:11.925 --> 00:00:14.650
+Never production, and
+only fictional people.
+
+5
+00:00:14.650 --> 00:00:18.125
+Register a reading app with
+a certificate, not a secret.
+
+6
+00:00:18.125 --> 00:00:22.376
+Grant it Application dot Read dot
+All and Directory dot Read dot All,
+
+7
+00:00:22.376 --> 00:00:24.425
+and Reader on one resource group.
+
+8
+00:00:24.425 --> 00:00:25.994
+Then run the inventory live,
+
+9
+00:00:25.994 --> 00:00:29.487
+and compare the register with
+the lists in the admin center.
+
+10
+00:00:29.487 --> 00:00:32.194
+That comparison is what
+tells you whether a real
+
+11
+00:00:32.194 --> 00:00:34.900
+tenant returns the shapes
+the fixtures assumed.
+
+12
+00:00:34.900 --> 00:00:39.590
+To back it out, step eight removes the
+Reader assignment and the two permissions,
+
+13
+00:00:39.590 --> 00:00:43.925
+deletes the app registration and its
+certificate, and deletes the output.
+
+14
+00:00:43.925 --> 00:00:46.075
+The authors haven't run Lab 2.
+
+15
+00:00:46.075 --> 00:00:49.100
+The workbook's Chapter 1
+has the exact commands.

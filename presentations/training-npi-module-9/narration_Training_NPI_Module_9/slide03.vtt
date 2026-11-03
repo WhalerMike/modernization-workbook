@@ -1,0 +1,67 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.929
+Here's what you'll be able to
+do by the end of this module,
+
+2
+00:00:02.929 --> 00:00:05.612
+which takes about sixty-five
+minutes with the lab.
+
+3
+00:00:05.612 --> 00:00:09.199
+You'll describe a blueprint, an
+agent identity and a sponsor,
+
+4
+00:00:09.199 --> 00:00:12.200
+and why the blueprint is
+the credential boundary.
+
+5
+00:00:12.200 --> 00:00:14.776
+You'll explain decision D N six as data,
+
+6
+00:00:14.776 --> 00:00:18.100
+and what the code does in
+a cloud without Agent I D.
+
+7
+00:00:18.100 --> 00:00:21.614
+You'll run the A I identity
+check and read its findings,
+
+8
+00:00:21.614 --> 00:00:23.850
+including the top-priority drift.
+
+9
+00:00:23.850 --> 00:00:26.491
+You'll explain the
+ten-business-day sponsor rule,
+
+10
+00:00:26.491 --> 00:00:28.538
+and what happens to an orphaned agent.
+
+11
+00:00:28.538 --> 00:00:32.830
+And you'll show that the agent
+Conditional Access plan is report-only,
+
+12
+00:00:32.830 --> 00:00:34.938
+and runs only by its approved hash.
+
+13
+00:00:34.938 --> 00:00:40.300
+Before you start, finish Module 2, because
+the lab reads Chapter 2's ownership run,
+
+14
+00:00:40.300 --> 00:00:44.420
+and Module 6, on Conditional
+Access for workload identities.

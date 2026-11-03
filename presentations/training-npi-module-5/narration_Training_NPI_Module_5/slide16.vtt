@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.875
+To sum up.
+
+2
+00:00:00.875 --> 00:00:04.054
+You swept eleven service
+principals and twenty grants,
+
+3
+00:00:04.054 --> 00:00:06.888
+found the broad grants
+with no current exception,
+
+4
+00:00:06.888 --> 00:00:11.450
+and handed three privileged service
+principals to the Privileged Access plan.
+
+5
+00:00:11.450 --> 00:00:16.049
+You read the open rows of the quarter's
+owner review, applied three approved
+
+6
+00:00:16.049 --> 00:00:20.425
+changes to the fake, and saw the write
+path refuse a plan nobody reviewed.
+
+7
+00:00:20.425 --> 00:00:25.842
+The evidence an ISSO keeps for Gate 4 from
+this module is the sweep, the findings,
+
+8
+00:00:25.842 --> 00:00:31.008
+the hand-off, the owner review and its
+status, the plan with its approved hash,
+
+9
+00:00:31.008 --> 00:00:34.675
+and the apply folder's results
+and manifest, all dated.
+
+10
+00:00:34.675 --> 00:00:37.750
+Before you ship, work through
+the chapter's checklist.
+
+11
+00:00:37.750 --> 00:00:42.422
+Next is Module 6: Conditional
+Access for workload identities,
+
+12
+00:00:42.422 --> 00:00:44.230
+the other half of Gate 4.

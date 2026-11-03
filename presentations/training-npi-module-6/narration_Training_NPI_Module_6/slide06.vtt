@@ -1,0 +1,78 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.979
+The pre-merge check holds nine
+rules, N P W C A oh one to oh nine,
+
+2
+00:00:03.979 --> 00:00:09.628
+and most come straight from the limits on
+Microsoft Learn's Conditional Access for
+
+3
+00:00:09.628 --> 00:00:12.084
+workload identities page; the range,
+
+4
+00:00:12.084 --> 00:00:16.013
+ring and decision rules are
+the program's design guidance.
+
+5
+00:00:16.013 --> 00:00:20.341
+Oh one: a policy that targets
+users, groups, roles, a filter,
+
+6
+00:00:20.341 --> 00:00:25.987
+or every service principal in the tenant,
+instead of the ring's object I D's.
+
+7
+00:00:25.987 --> 00:00:28.676
+Oh two: a managed identity in scope.
+
+8
+00:00:28.676 --> 00:00:32.875
+Oh three: a principal that isn't a
+single-tenant app registered here.
+
+9
+00:00:32.875 --> 00:00:37.313
+Oh four: an object I D that isn't
+a service principal in the tenant.
+
+10
+00:00:37.313 --> 00:00:40.274
+Oh five is the licensing
+record and the rings.
+
+11
+00:00:40.274 --> 00:00:45.012
+Oh six: an out-of-scope identity recorded
+without the control that covers it.
+
+12
+00:00:45.012 --> 00:00:48.940
+Oh seven: a policy that isn't
+report-only and block-only,
+
+13
+00:00:48.940 --> 00:00:52.063
+for all resources and
+all client app types.
+
+14
+00:00:52.063 --> 00:00:55.737
+Oh eight keeps the egress
+ranges narrow and untrusted.
+
+15
+00:00:55.737 --> 00:00:57.675
+And oh nine guards enforcement.
+
+16
+00:00:57.675 --> 00:01:01.030
+A finding exits with code
+one and fails the pipeline.

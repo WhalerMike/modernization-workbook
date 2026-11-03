@@ -1,0 +1,55 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.875
+To sum up.
+
+2
+00:00:00.875 --> 00:00:04.656
+You checked nine Kerberos
+accounts in a fictional domain,
+
+3
+00:00:04.656 --> 00:00:08.830
+read a plan with four writes, an
+island list and a reconciliation,
+
+4
+00:00:08.830 --> 00:00:13.713
+applied the plan to a fake by its hash,
+and saw a plan nobody approved refused.
+
+5
+00:00:13.713 --> 00:00:19.349
+The evidence an ISSO keeps for Gate 5 from
+this module is the plan with its approved
+
+6
+00:00:19.349 --> 00:00:23.078
+hash, the findings, the island
+list, the reconciliation,
+
+7
+00:00:23.078 --> 00:00:28.051
+and the apply folder's results and
+manifest, all dated, and the test result.
+
+8
+00:00:28.051 --> 00:00:31.125
+Before you ship, work through
+the chapter's checklist.
+
+9
+00:00:31.125 --> 00:00:35.400
+Next is Module 9: govern
+AI agent identities.
+
+10
+00:00:35.400 --> 00:00:40.847
+Agents follow every gate you've done so far,
+and add three things: an agent can act,
+
+11
+00:00:40.847 --> 00:00:45.940
+a blueprint holds every agent's
+credentials, and creation has to be gated.

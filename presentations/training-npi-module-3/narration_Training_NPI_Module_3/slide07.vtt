@@ -1,0 +1,83 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.262
+Three more pieces.
+
+2
+00:00:01.262 --> 00:00:02.637
+First, the waves.
+
+3
+00:00:02.637 --> 00:00:05.779
+Each wave's rollback is built
+from its members' targets:
+
+4
+00:00:05.779 --> 00:00:10.036
+re-enable the legacy account and revert
+the application's configuration,
+
+5
+00:00:10.036 --> 00:00:12.619
+and for a delegated
+managed service account,
+
+6
+00:00:12.619 --> 00:00:17.155
+the undo command from Microsoft Learn's
+Setting up delegated Managed Service
+
+7
+00:00:17.155 --> 00:00:21.413
+Accounts documentation, with the
+superseded account kept, never deleted.
+
+8
+00:00:21.413 --> 00:00:26.475
+Second, decision D N 4, on the
+Workload I D Premium license.
+
+9
+00:00:26.475 --> 00:00:31.025
+Microsoft Learn's Conditional Access
+for workload identities documentation
+
+10
+00:00:31.025 --> 00:00:35.575
+says it covers only single-tenant service
+principals registered in the tenant.
+
+11
+00:00:35.575 --> 00:00:38.838
+Multitenant apps and managed
+identities aren't covered.
+
+12
+00:00:38.838 --> 00:00:41.657
+The program's position,
+which is design guidance,
+
+13
+00:00:41.657 --> 00:00:45.746
+is to license the single-tenant
+service principals classified Tier 1,
+
+14
+00:00:45.746 --> 00:00:49.200
+and the code counts who's eligible
+now and after conversion.
+
+15
+00:00:49.200 --> 00:00:50.300
+It buys nothing.
+
+16
+00:00:50.300 --> 00:00:56.067
+Third, Gate 2 itself, the ISSO's: five
+criteria, each reported with its open
+
+17
+00:00:56.067 --> 00:01:02.280
+findings, and the gate is met only when
+no finding of severity Finding is open.

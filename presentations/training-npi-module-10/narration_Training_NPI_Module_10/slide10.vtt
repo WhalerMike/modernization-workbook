@@ -1,0 +1,65 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.763
+Step five reads day two's drift, grouped
+by rule and severity: twelve rows.
+
+2
+00:00:05.763 --> 00:00:08.377
+N P I D R F oh seven, three findings,
+
+3
+00:00:08.377 --> 00:00:13.101
+holds the three credentials
+added outside the pipeline.
+
+4
+00:00:13.101 --> 00:00:17.262
+Notice what isn't there: the pipeline's
+own two certificate rotations.
+
+5
+00:00:17.262 --> 00:00:20.318
+Both were made by a listed
+pipeline identity and
+
+6
+00:00:20.318 --> 00:00:23.450
+are in the credential log,
+so the two records agree.
+
+7
+00:00:23.450 --> 00:00:30.237
+N P I D R F oh eight, one finding, is Mail
+Automation's new grant for all users.
+
+8
+00:00:30.237 --> 00:00:34.523
+You'll also see seven ownerless
+identities, three enabled accounts
+
+9
+00:00:34.523 --> 00:00:38.426
+whose passwords never expire,
+and the review cycle's findings.
+
+10
+00:00:38.426 --> 00:00:42.150
+Step six compares the A
+I use-case inventory's
+
+11
+00:00:42.150 --> 00:00:45.975
+2026 vintage with 2025's,
+against the register.
+
+12
+00:00:45.975 --> 00:00:51.562
+Five changes: one authorization changed,
+one entry left, two new and one retired,
+
+13
+00:00:51.562 --> 00:00:55.750
+for three findings, two warnings
+and one information item.

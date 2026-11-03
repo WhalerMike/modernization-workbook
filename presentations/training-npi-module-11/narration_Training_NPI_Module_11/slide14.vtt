@@ -1,0 +1,74 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.437
+The federal requirement.
+
+2
+00:00:01.437 --> 00:00:04.430
+Every runbook step ends
+with a requirements table,
+
+3
+00:00:04.430 --> 00:00:07.350
+and the kit writes an
+evidence record for each row.
+
+4
+00:00:07.350 --> 00:00:11.908
+The change record and the settings
+file's hash cover NIST special
+
+5
+00:00:11.908 --> 00:00:16.550
+publication eight hundred fifty-three
+C M three, C M five and A C five.
+
+6
+00:00:16.550 --> 00:00:20.917
+The preflight's checks on the
+deployment identity and the reader app
+
+7
+00:00:20.917 --> 00:00:25.437
+cover authenticator management and
+least privilege, I A five and A C six.
+
+8
+00:00:25.437 --> 00:00:30.488
+Its baseline and policy-state checks cover
+continuous monitoring and change testing.
+
+9
+00:00:30.488 --> 00:00:36.438
+The smoke test covers account, inventory,
+identifier, access and audit controls.
+
+10
+00:00:36.438 --> 00:00:40.588
+The SHA256SUMS file covers A U nine.
+
+11
+00:00:40.588 --> 00:00:45.716
+And the rollback record covers C M
+three and C P ten, system recovery,
+
+12
+00:00:45.716 --> 00:00:50.099
+but only from an applied rollback;
+a dry run isn't accepted.
+
+13
+00:00:50.099 --> 00:00:54.011
+K S I's are FedRAMP twenty X
+indicators for cloud providers,
+
+14
+00:00:54.011 --> 00:00:57.025
+and every alignment is
+the program's reading.
+
+15
+00:00:57.025 --> 00:01:01.060
+The assessor and the authorizing
+official decide each control.

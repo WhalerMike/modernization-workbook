@@ -359,6 +359,9 @@ Describe 'The live invoker' {
 
 Describe 'The scripts, in fixture mode' {
     It 'run preflight, smoke test and rollback end to end, and exit 0' {
+        # A script that succeeds without calling exit leaves $LASTEXITCODE as it was, so clear what an
+        # earlier command in the same session (a lab step that exits 1, say) left behind.
+        $global:LASTEXITCODE = 0
         $out = Join-Path $script:Tmp 'scripts'
         Push-Location $script:Root
         try {

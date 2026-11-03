@@ -1,0 +1,67 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.573
+Step four reads the findings, eight rows,
+
+2
+00:00:02.573 --> 00:00:06.625
+and each one is a small mistake
+that would have failed in silence.
+
+3
+00:00:06.625 --> 00:00:11.579
+Payroll prod has an issuer with a trailing
+slash, and the environment Production,
+
+4
+00:00:11.579 --> 00:00:15.350
+capital P, where the workflow
+presents production, lower case.
+
+5
+00:00:15.350 --> 00:00:19.700
+That's oh three, oh two, and
+a failed exchange, oh eight.
+
+6
+00:00:19.700 --> 00:00:22.161
+Payroll test is a warning, oh seven:
+
+7
+00:00:22.161 --> 00:00:25.413
+it's in the tenant but
+not in the reviewed file.
+
+8
+00:00:25.413 --> 00:00:29.278
+Github intranet tag has an
+audience with a leading space,
+
+9
+00:00:29.278 --> 00:00:31.663
+so it's oh four and a failed exchange.
+
+10
+00:00:31.663 --> 00:00:35.218
+Conversion six gives an Azure
+Functions app a certificate
+
+11
+00:00:35.218 --> 00:00:38.338
+when a managed identity is
+available, which is oh one.
+
+12
+00:00:38.338 --> 00:00:42.762
+And conversion eight's secret still
+signs in after cutover, oh nine.
+
+13
+00:00:42.762 --> 00:00:45.512
+Step five reads the six exchange tests:
+
+14
+00:00:45.512 --> 00:00:50.210
+payroll prod and github intranet
+tag fail, and the other four pass.

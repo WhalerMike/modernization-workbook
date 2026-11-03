@@ -1,0 +1,82 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.862
+Unit 3 is the plan and the write path.
+
+2
+00:00:02.862 --> 00:00:06.984
+The plan has one action per broad
+grant and per decided change,
+
+3
+00:00:06.984 --> 00:00:08.924
+and only two kinds ever write.
+
+4
+00:00:08.924 --> 00:00:14.071
+Remove app role removes an application
+permission an owner decided to remove,
+
+5
+00:00:14.071 --> 00:00:17.712
+but only once any named
+replacement is already granted.
+
+6
+00:00:17.712 --> 00:00:22.737
+Narrow grant shrinks a delegated grant to
+a smaller set of scopes, never to nothing.
+
+7
+00:00:22.737 --> 00:00:25.820
+Everything else is recorded
+and sends nothing:
+
+8
+00:00:25.820 --> 00:00:30.008
+waiting for a replacement or a
+decision, kept under an exception,
+
+9
+00:00:30.008 --> 00:00:34.513
+re-scoped by the owner in reviewed
+infrastructure code, or handed off.
+
+10
+00:00:34.513 --> 00:00:36.738
+The write path is a separate script.
+
+11
+00:00:36.738 --> 00:00:39.720
+It runs only the plan
+whose hash was approved,
+
+12
+00:00:39.720 --> 00:00:43.187
+for this tenant and cloud,
+no more than seven days old.
+
+13
+00:00:43.187 --> 00:00:45.813
+It re-reads each target before writing.
+
+14
+00:00:45.813 --> 00:00:50.638
+And it runs as a person with Privileged Role
+Administrator, never an unattended app,
+
+15
+00:00:50.638 --> 00:00:54.415
+because, as the Microsoft Graph
+permissions reference cautions,
+
+16
+00:00:54.415 --> 00:00:57.912
+the write permissions can
+grant authorization themselves.
+
+17
+00:00:57.912 --> 00:01:01.080
+The seven-day limit is the
+program's design guidance.

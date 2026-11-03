@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.588
+Welcome to Module 9 of the
+Non-Person Identity learning path:
+
+2
+00:00:04.588 --> 00:00:06.675
+govern A I agent identities.
+
+3
+00:00:06.675 --> 00:00:10.030
+This module teaches the
+guide's A I agents section,
+
+4
+00:00:10.030 --> 00:00:12.813
+with Chapter 9 of the developer workbook.
+
+5
+00:00:12.813 --> 00:00:18.437
+A I agents are non-person identities, and
+they follow every gate before this module.
+
+6
+00:00:18.437 --> 00:00:22.819
+In it you'll check a fictional tenant's
+agents against the program's rules,
+
+7
+00:00:22.819 --> 00:00:26.470
+see the same rules run in a cloud
+that has no agent identities,
+
+8
+00:00:26.470 --> 00:00:30.413
+and plan two report-only Conditional
+Access policies for agents.
+
+9
+00:00:30.413 --> 00:00:34.176
+Then you'll apply one of them to
+a fake, by its approved hash.
+
+10
+00:00:34.176 --> 00:00:39.000
+The tenant and its agents are fictional,
+and the apply changes only a fake.
+
+11
+00:00:39.000 --> 00:00:44.570
+The code is illustrative: tested against
+fixtures, not run against a live tenant.

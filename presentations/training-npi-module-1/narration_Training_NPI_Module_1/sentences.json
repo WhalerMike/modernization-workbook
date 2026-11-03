@@ -1,0 +1,722 @@
+{
+ "1": [
+  [
+   0.05,
+   6.775,
+   "Welcome to Module 1 of the Non-Person Identity learning path: inventory every non-person identity."
+  ],
+  [
+   6.825,
+   2.163,
+   "A person leaves and H R tells you."
+  ],
+  [
+   8.988,
+   3.0,
+   "A service account's owner leaves and nothing tells you."
+  ],
+  [
+   11.988,
+   9.787,
+   "This path builds that missing record, through the six gates of the non-person identity implementation guide, with one module for each chapter of the developer workbook."
+  ],
+  [
+   21.775,
+   4.862,
+   "This module is Gate 1, Inventory, with Chapter 1 of the workbook."
+  ],
+  [
+   26.637,
+   13.15,
+   "You'll read every service account, managed service account, app registration, service principal and managed identity into one register, with its type, owners, credentials, risk and candidate target."
+  ],
+  [
+   39.788,
+   1.512,
+   "You decide nothing yet."
+  ],
+  [
+   41.3,
+   3.462,
+   "The code runs on your laptop, against a fictional estate."
+  ],
+  [
+   44.763,
+   5.013,
+   "It's illustrative: tested against fixtures, not run against a lyve tenant."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.613,
+   "Why start with an inventory?"
+  ],
+  [
+   1.663,
+   2.913,
+   "Because the list is always longer than you think."
+  ],
+  [
+   4.575,
+   10.512,
+   "In Entra, consent creates service principals, and Microsoft's own services create more, so the inventory is always larger than the list of apps anyone asked for."
+  ],
+  [
+   15.088,
+   4.575,
+   "And in Active Directory, no attribute marks a user as a service account."
+  ],
+  [
+   19.663,
+   11.312,
+   "Microsoft Learn's guidance on securing user-based service accounts finds candidates by three signs: a service principal name, trust for delegation, and a password that never expires."
+  ],
+  [
+   30.975,
+   2.425,
+   "And it warns that this might not find them all."
+  ],
+  [
+   33.4,
+   9.875,
+   "So in this module you read every non-person identity into one register, with its type, its owners, its credentials, its risk and a candidate target."
+  ],
+  [
+   43.275,
+   1.925,
+   "You don't decide anything yet."
+  ],
+  [
+   45.2,
+   2.562,
+   "Inventory first; decide later."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   5.487,
+   "Here's what you'll be able to do by the end of this module, which takes about fifty-five minutes with the lab."
+  ],
+  [
+   5.537,
+   5.188,
+   "You'll name the identity types the register holds, and where each one is read from."
+  ],
+  [
+   10.725,
+   6.725,
+   "You'll explain the program's high, medium and low risk rule, and why a stale account is only ever a lead."
+  ],
+  [
+   17.45,
+   4.625,
+   "You'll run the inventory against the fixtures and read its high-risk findings."
+  ],
+  [
+   22.075,
+   5.287,
+   "And you'll show that the reader refuses a call the task doesn't declare, and a cloud it doesn't know."
+  ],
+  [
+   27.363,
+   9.3,
+   "Before you start, read the guide's track at a glance: for this track, the system inventory or C M D B is the source of truth, not H R."
+  ],
+  [
+   36.663,
+   3.837,
+   "And review Microsoft Automation Module 1 on permissions."
+  ],
+  [
+   40.5,
+   6.1,
+   "Lab 1 needs PowerShell 7.1 or later with Pester 5, and a clone of the repository."
+  ],
+  [
+   46.6,
+   0.925,
+   "No tenant."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   3.875,
+   "Unit 1 is the guide's Step 1, which has six sub-steps."
+  ],
+  [
+   3.925,
+   6.65,
+   "One a: Active Directory service accounts, managed service accounts, and the group and delegated kinds."
+  ],
+  [
+   10.575,
+   9.15,
+   "Stale is a lead, not a verdict, and for a group managed account you record which hosts can retrieve its password, because that's its real blast radius."
+  ],
+  [
+   19.725,
+   5.925,
+   "One b: app registrations and service principals, with each one's service principal type."
+  ],
+  [
+   25.65,
+   9.8,
+   "One c: managed identities and their role assignments; a user-assigned identity outlives the resources it's attached to, so it's the type that orphans."
+  ],
+  [
+   35.45,
+   5.013,
+   "One d: every federated credential's issuer, subject and audience."
+  ],
+  [
+   40.462,
+   5.575,
+   "One e: A I agent identities and their sponsors, where the tenant exposes them."
+  ],
+  [
+   46.038,
+   7.025,
+   "And one f joins each identity to its record in the system inventory, with two human owners and a sponsor."
+  ],
+  [
+   53.062,
+   5.3,
+   "The validation kit's read-only checks one, six, seven and eight prove the gate."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   2.375,
+   "Unit 2 is the register as code."
+  ],
+  [
+   2.425,
+   6.85,
+   "It reads two collections from Active Directory, nine from Microsoft Graph, and one from Azure Resource Manager."
+  ],
+  [
+   9.275,
+   13.912,
+   "From the directory: the user accounts used as services, found with Learn's three criteria and the naming convention in one server-side query; and the managed service accounts of every kind, with who may retrieve each password."
+  ],
+  [
+   23.188,
+   15.425,
+   "From Graph: app registrations with their owners and federated credentials; service principals by type; Graph's own app roles, so a permission shows up by name; and the delegated consent grants, where tenant-wide consent shows as all principals."
+  ],
+  [
+   38.612,
+   7.562,
+   "And one read people forget: a user-assigned identity's federated credentials liv in Resource Manager, not in Graph."
+  ],
+  [
+   46.175,
+   6.8,
+   "Every identity gets one row with the same columns, whatever its type, so the whole register lands in one file."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   6.312,
+   "Every call goes through one reader, built for one task in one cloud, and it enforces five rules."
+  ],
+  [
+   6.362,
+   8.963,
+   "Only declared calls: the configuration file lists each call with its permission, and a call the task doesn't declare throws before anything is sent."
+  ],
+  [
+   15.325,
+   6.15,
+   "Reads only: it sends GET, and runs only the directory Get cmdlets the call list names."
+  ],
+  [
+   21.475,
+   9.5,
+   "One host: every URL, including every next link, must be on the cloud's own Graph or Resource Manager host, or the token isn't sent."
+  ],
+  [
+   30.975,
+   5.25,
+   "One tenant: a lyve run refuses a session in another cloud or another tenant."
+  ],
+  [
+   36.225,
+   3.337,
+   "And every page: collections are read to the end."
+  ],
+  [
+   39.562,
+   1.975,
+   "One permission deserves a note."
+  ],
+  [
+   41.538,
+   9.613,
+   "The inventory holds Directory dot Read dot All only because Microsoft Learn's page for listing delegated permission grants names it as the least-privileged permission."
+  ],
+  [
+   51.15,
+   4.525,
+   "It's the broadest read the inventory holds, and that's the only reason."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   6.662,
+   "Risk, the candidate target and the stale lead come from the program, not from Microsoft, so they're design guidance."
+  ],
+  [
+   6.713,
+   14.1,
+   "An enabled identity is high risk for a password that never expires or hasn't changed in more than three hundred sixty-five days, membership of a privileged Active Directory group, unconstrained delegation, or a high-privilege Graph permission."
+  ],
+  [
+   20.812,
+   8.325,
+   "Other enabled traditional accounts, managed service accounts, legacy service principals and anything holding a client secret are medium."
+  ],
+  [
+   29.137,
+   1.425,
+   "Everything else is low."
+  ],
+  [
+   30.562,
+   4.688,
+   "The target is only a candidate; Module 3 makes the decision."
+  ],
+  [
+   35.25,
+   11.9,
+   "A stale lead is an enabled directory account with no logon in ninety days, and it's only a lead, because Microsoft Learn documents that the last logon timestamp isn't updated at every sign-in."
+  ],
+  [
+   47.15,
+   4.125,
+   "Confirm it against the domain controller and Entra sign-in logs."
+  ],
+  [
+   51.275,
+   3.85,
+   "The code never disables, moves or deletes anything."
+  ],
+  [
+   55.125,
+   4.75,
+   "And sequel Server and el-dap-bind accounts are handed to the Data Platform plan."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   6.45,
+   "The register becomes findings, under nine rules, N P I I N V oh one to oh nine."
+  ],
+  [
+   6.5,
+   6.275,
+   "Only the first is a hard finding: a high-risk identity, with its reasons and candidate target."
+  ],
+  [
+   12.775,
+   3.163,
+   "The rest are warnings to act on, or information."
+  ],
+  [
+   15.938,
+   2.15,
+   "Oh two is a stale lead to confirm."
+  ],
+  [
+   18.087,
+   5.537,
+   "Oh three is an app registration or legacy service principal with fewer than two owners."
+  ],
+  [
+   23.625,
+   5.425,
+   "Oh four is a client secret, and oh five an expired credential still on the object."
+  ],
+  [
+   29.05,
+   3.913,
+   "Oh six is a delegated grant consented for all users."
+  ],
+  [
+   32.962,
+   5.025,
+   "Oh seven, information only, is an account handed to the Data Platform plan."
+  ],
+  [
+   37.987,
+   5.638,
+   "Oh eight is an account found only by a password that never expires, which may be a person."
+  ],
+  [
+   43.625,
+   3.087,
+   "And oh nine is a type the register doesn't classify."
+  ],
+  [
+   46.712,
+   5.338,
+   "Every finding has a stable I D, so the same gap keeps its name from run to run."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   7.513,
+   "Lab 1 runs in the non-person identity folder of the examples, in PowerShell 7, against a fictional estate."
+  ],
+  [
+   8.287,
+   3.013,
+   "Nothing signs in to anything or sends a request."
+  ],
+  [
+   11.3,
+   5.287,
+   "Step one runs Learn's own samples, exactly as published, against stand-ins."
+  ],
+  [
+   16.587,
+   5.65,
+   "Twenty pass, none fail, and ten aren't run, because those ten are Chapter 2's."
+  ],
+  [
+   22.238,
+   2.587,
+   "Step two lists what the inventory needs."
+  ],
+  [
+   24.825,
+   5.25,
+   "Two Graph permissions: Application dot Read dot All and Directory dot Read dot All."
+  ],
+  [
+   30.075,
+   1.538,
+   "The Reader role in Azure."
+  ],
+  [
+   31.613,
+   5.65,
+   "And in Active Directory, only the default read every authenticated domain user has."
+  ],
+  [
+   37.263,
+   2.375,
+   "Notice that nothing ends in ReadWrite."
+  ],
+  [
+   39.638,
+   6.388,
+   "The inventory can't change anything, and that's what you'd show an assessor who asks what the reading process may do."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   3.837,
+   "Step three runs the inventory against the fictional estate."
+  ],
+  [
+   3.888,
+   8.9,
+   "It reads thirty-five identities, fifteen from Active Directory and twenty from Entra, and rates eight high, eight medium and nineteen low."
+  ],
+  [
+   12.787,
+   7.062,
+   "That's eight findings, eleven warnings and three information items, and three accounts handed to the Data Platform plan."
+  ],
+  [
+   19.85,
+   5.088,
+   "The manifest records the tenant, every request, and a hash of every file."
+  ],
+  [
+   24.938,
+   2.975,
+   "Step four reads the eight high-risk identities."
+  ],
+  [
+   27.913,
+   8.438,
+   "Three accounts have passwords that never expire, and one of them, svc oldftp, is also a stale lead, so verify its use first."
+  ],
+  [
+   36.35,
+   6.525,
+   "j doe was found only by a password that never expires, so it may be a person, not a service account."
+  ],
+  [
+   42.875,
+   6.088,
+   "Others sit in Backup Operators or Domain Admins, or are trusted for unconstrained delegation."
+  ],
+  [
+   48.962,
+   3.775,
+   "And the Mail Automation app holds a directory-wide write permission."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   2.5,
+   "Step five shows the reader's rules at work."
+  ],
+  [
+   2.55,
+   7.95,
+   "You build a reader for the inventory task, with the fixture invoker standing in for the network, and ask it for a call the task doesn't declare."
+  ],
+  [
+   10.5,
+   5.888,
+   "It refuses before anything is sent, and tells you to add the call to the call list with its permission."
+  ],
+  [
+   16.387,
+   10.1,
+   "Then you ask for the cloud G C C in capitals, and it refuses that too: the cloud names are global, gcc, gcchigh and dod, and it never guesses."
+  ],
+  [
+   26.488,
+   3.487,
+   "Step six reads the hand-off to the Data Platform plan."
+  ],
+  [
+   29.975,
+   11.137,
+   "Two accounts go by their sequel Server service principal names, svc sqlprod and the group managed account gmsa sql, and one, svc ldapbind, goes by its name."
+  ],
+  [
+   41.112,
+   5.037,
+   "Step seven runs every test: five hundred thirteen pass, none fail."
+  ],
+  [
+   46.15,
+   1.837,
+   "Then delete the output folder."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   3.925,
+   "Lab 2 runs the same inventory against your own test tenant."
+  ],
+  [
+   3.975,
+   7.95,
+   "You need a test tenant in the worldwide or G C C cloud, with a test Azure subscription, and a test Active Directory domain."
+  ],
+  [
+   11.925,
+   2.725,
+   "Never production, and only fictional people."
+  ],
+  [
+   14.65,
+   3.475,
+   "Register a reading app with a certificate, not a secret."
+  ],
+  [
+   18.125,
+   6.3,
+   "Grant it Application dot Read dot All and Directory dot Read dot All, and Reader on one resource group."
+  ],
+  [
+   24.425,
+   5.062,
+   "Then run the inventory liv, and compare the register with the lists in the admin center."
+  ],
+  [
+   29.488,
+   5.412,
+   "That comparison is what tells you whether a real tenant returns the shapes the fixtures assumed."
+  ],
+  [
+   34.9,
+   9.025,
+   "To back it out, step eight removes the Reader assignment and the two permissions, deletes the app registration and its certificate, and deletes the output."
+  ],
+  [
+   43.925,
+   2.15,
+   "The authors haven't run Lab 2."
+  ],
+  [
+   46.075,
+   2.962,
+   "The workbook's Chapter 1 has the exact commands."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   1.387,
+   "The federal requirement."
+  ],
+  [
+   1.438,
+   7.175,
+   "Gate 1 meets nist special publication eight hundred fifty-three A C two, I A four and C M eight."
+  ],
+  [
+   8.613,
+   3.237,
+   "The module's table maps each one to its evidence."
+  ],
+  [
+   11.85,
+   8.3,
+   "For C M eight, system component inventory, it's the register, as jay-son and as a spreadsheet file, and the Data Platform hand-off."
+  ],
+  [
+   20.15,
+   6.062,
+   "For account and identifier management, it's the register's identity, type and owner columns."
+  ],
+  [
+   26.212,
+   4.55,
+   "For privileged accounts and authenticator management, the high-risk findings."
+  ],
+  [
+   30.762,
+   5.213,
+   "For least privilege of the reading process itself, the permission list and the call list."
+  ],
+  [
+   35.975,
+   7.075,
+   "And for the run's integrity, the manifest, which holds the tenant, every request, and a hash of every file."
+  ],
+  [
+   43.05,
+   4.638,
+   "K S I's are fed-ramp twenty X indicators for cloud service providers."
+  ],
+  [
+   47.688,
+   6.45,
+   "The agency lines its evidence up with what its providers report; it doesn't report K S I's itself."
+  ],
+  [
+   54.138,
+   3.25,
+   "Which file supports which indicator is the program's mapping."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   1.975,
+   "Check yourself with two questions."
+  ],
+  [
+   2.025,
+   5.1,
+   "First: an enabled Active Directory account has had no logon for ninety days."
+  ],
+  [
+   7.125,
+   1.262,
+   "What does the code do?"
+  ],
+  [
+   8.387,
+   1.225,
+   "The answer is b."
+  ],
+  [
+   9.613,
+   9.438,
+   "It raises a stale lead, N P I I N V oh two, to confirm against the domain controller and Entra sign-in logs, and it changes nothing."
+  ],
+  [
+   19.05,
+   6.062,
+   "A stale account is only a lead, and the code never disables, moves or deletes anything."
+  ],
+  [
+   25.113,
+   6.037,
+   "Second: j doe is high risk, and also carries N P I I N V oh eight."
+  ],
+  [
+   31.15,
+   1.188,
+   "Why does that matter?"
+  ],
+  [
+   32.337,
+   1.137,
+   "The answer is a."
+  ],
+  [
+   33.475,
+   6.05,
+   "It was found only by a password that never expires, so it may be a person, not a service account."
+  ],
+  [
+   39.525,
+   6.188,
+   "Learn's criteria can find people too, so someone confirms it before the next module applies the ownership rule."
+  ],
+  [
+   45.712,
+   4.925,
+   "The module page has three more questions, each linked to the section that answers it."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   0.825,
+   "To sum up."
+  ],
+  [
+   0.875,
+   14.287,
+   "You read a fictional estate of thirty-five identities into one register, found the eight high-risk ones, saw the reader refuse an undeclared call, and handed three sequel Server and el-dap-bind accounts to the Data Platform plan."
+  ],
+  [
+   15.162,
+   12.9,
+   "The evidence an I S S O keeps for Gate 1 from this module is the register, the findings, the hand-off and the manifest that hashes them, all dated; the permission list from step two; and the test result."
+  ],
+  [
+   28.062,
+   3.075,
+   "Before you ship, work through the chapter's checklist."
+  ],
+  [
+   31.137,
+   4.513,
+   "Next is Module 2: owners, sponsors and the orphan rule."
+  ],
+  [
+   35.65,
+   8.75,
+   "Every identity in this register needs two human owners and a sponsor, and Module 2 checks who they are and what happens when there's nobody left."
+  ]
+ ]
+}

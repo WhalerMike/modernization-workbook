@@ -1,0 +1,60 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.354
+Lab 2 runs the same path in your
+own test tenant, worldwide or G C C,
+
+2
+00:00:04.354 --> 00:00:10.066
+never production, with a Workload Identities
+Premium trial or license, one test app
+
+3
+00:00:10.066 --> 00:00:15.612
+registration with a certificate, and a
+host whose public egress address you know.
+
+4
+00:00:15.612 --> 00:00:19.334
+Write a scope with the test
+app's enterprise application
+
+5
+00:00:19.334 --> 00:00:22.263
+object I D in Ring 1, and
+plan with a reading app.
+
+6
+00:00:22.263 --> 00:00:27.725
+Apply report-only, and generate sign-ins
+from inside and outside the egress range.
+
+7
+00:00:27.725 --> 00:00:32.458
+Then, in a separate change, after at
+least fourteen days with the ring clear,
+
+8
+00:00:32.458 --> 00:00:36.725
+enforce Ring 1, and watch a token
+from outside the range get blocked.
+
+9
+00:00:36.725 --> 00:00:40.590
+To back it out, step seven removes
+Ring 1 from the enforcement
+
+10
+00:00:40.590 --> 00:00:44.300
+record and applies, so both
+policies return to report-only.
+
+11
+00:00:44.300 --> 00:00:48.950
+Then you turn them off or delete them by
+hand, because the code never deletes.
+
+12
+00:00:48.950 --> 00:00:51.170
+The authors haven't run Lab 2.

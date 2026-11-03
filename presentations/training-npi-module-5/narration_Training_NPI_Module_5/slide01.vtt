@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.860
+Welcome to Module 5 of the
+Non-Person Identity learning path:
+
+2
+00:00:03.860 --> 00:00:06.450
+cut the privilege of service principals.
+
+3
+00:00:06.450 --> 00:00:08.971
+This module is the first half of Gate 4,
+
+4
+00:00:08.971 --> 00:00:12.875
+Least privilege, with Chapter
+7 of the developer workbook.
+
+5
+00:00:12.875 --> 00:00:18.041
+You'll sweep every service principal for
+what it holds: its application permissions,
+
+6
+00:00:18.041 --> 00:00:22.838
+its delegated grants, its directory roles,
+and a managed identity's Azure roles.
+
+7
+00:00:22.838 --> 00:00:27.288
+You'll flag the broad grants that have no
+current exception, hand the privileged
+
+8
+00:00:27.288 --> 00:00:30.121
+service principals to the
+Privileged Access plan,
+
+9
+00:00:30.121 --> 00:00:32.212
+and build the quarterly owner review.
+
+10
+00:00:32.212 --> 00:00:35.292
+Then you'll turn the owners'
+decisions into a plan,
+
+11
+00:00:35.292 --> 00:00:38.912
+and apply it only after a second
+person approves its hash.
+
+12
+00:00:38.912 --> 00:00:42.213
+The code runs on your laptop
+against a fictional estate.
+
+13
+00:00:42.213 --> 00:00:47.280
+It's illustrative: tested against
+fixtures, not run against a live tenant.

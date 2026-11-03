@@ -1,0 +1,73 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.575
+Lab 2 makes one real removal
+in your own test tenant.
+
+2
+00:00:03.575 --> 00:00:08.362
+You need a test tenant in the worldwide
+or G C C cloud and a test subscription,
+
+3
+00:00:08.362 --> 00:00:11.373
+never production, with
+a test app registration
+
+4
+00:00:11.373 --> 00:00:14.075
+and a test user-assigned managed identity.
+
+5
+00:00:14.075 --> 00:00:17.378
+A reading app holds the three
+read permissions and Reader,
+
+6
+00:00:17.378 --> 00:00:21.025
+and a person with Privileged Role
+Administrator does the write.
+
+7
+00:00:21.025 --> 00:00:25.151
+Grant the test app the broad
+directory write permission on purpose,
+
+8
+00:00:25.151 --> 00:00:28.025
+sweep it, and record the
+owner's remove decision.
+
+9
+00:00:28.025 --> 00:00:30.563
+A second person approves the plan's hash.
+
+10
+00:00:30.563 --> 00:00:33.618
+Then dry-run it and apply
+it, and confirm on the next
+
+11
+00:00:33.618 --> 00:00:36.525
+sweep and in the audit log
+that the grant is gone.
+
+12
+00:00:36.525 --> 00:00:41.505
+To back it out, step six grants the removed
+permissions again with Learn's grant
+
+13
+00:00:41.505 --> 00:00:44.187
+request, removes the
+test identity's roles,
+
+14
+00:00:44.187 --> 00:00:47.175
+and deletes the identity,
+the app and the output.
+
+15
+00:00:47.175 --> 00:00:49.390
+The authors haven't run Lab 2.

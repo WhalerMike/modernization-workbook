@@ -1,0 +1,77 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.675
+Step four checks the Kerberos
+accounts and builds the plan.
+
+2
+00:00:03.675 --> 00:00:07.075
+Nine accounts are in scope,
+and the root key is ready.
+
+3
+00:00:07.075 --> 00:00:11.037
+There are six findings, one
+warning and two information items.
+
+4
+00:00:11.037 --> 00:00:14.527
+The plan has nine actions,
+four of them writes:
+
+5
+00:00:14.527 --> 00:00:19.525
+one completed migration, two new G
+M S A's, and one retriever change.
+
+6
+00:00:19.525 --> 00:00:20.700
+Nothing is sent.
+
+7
+00:00:20.700 --> 00:00:23.040
+The island list holds five accounts,
+
+8
+00:00:23.040 --> 00:00:27.175
+three of them ready for P four point
+six, so the hand-off isn't ready.
+
+9
+00:00:27.175 --> 00:00:30.813
+The reconciliation leaves
+one account unreconciled.
+
+10
+00:00:30.813 --> 00:00:34.774
+And the plan's hash is the same
+on every run with these inputs.
+
+11
+00:00:34.774 --> 00:00:37.550
+Step five reads the nine findings.
+
+12
+00:00:37.550 --> 00:00:41.039
+N P I K R B oh four blocks
+svc webfront's D M S A,
+
+13
+00:00:41.039 --> 00:00:46.375
+because the account is trusted
+for unconstrained delegation.
+
+14
+00:00:46.375 --> 00:00:49.498
+Oh five and oh six flag svc intranet:
+
+15
+00:00:49.498 --> 00:00:53.375
+no S P N owner, and an end
+date after D oh eight's.
+
+16
+00:00:53.375 --> 00:00:57.000
+And oh eight warns that gmsa
+ops is in Domain Admins.

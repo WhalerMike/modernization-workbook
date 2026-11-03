@@ -1,0 +1,79 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.437
+The federal requirement.
+
+2
+00:00:01.437 --> 00:00:05.959
+These are NIST special publication
+eight hundred fifty-three controls,
+
+3
+00:00:05.959 --> 00:00:09.425
+and the module's table maps
+each lab step to its evidence.
+
+4
+00:00:09.425 --> 00:00:12.387
+For baseline configuration
+and change control,
+
+5
+00:00:12.387 --> 00:00:15.200
+the baseline candidate
+and its approved hash.
+
+6
+00:00:15.200 --> 00:00:19.312
+For continuous monitoring and account
+management, the drift findings.
+
+7
+00:00:19.312 --> 00:00:23.490
+For automated audit actions, audit
+review and system monitoring,
+
+8
+00:00:23.490 --> 00:00:26.662
+the events and the two
+credential and grant rules.
+
+9
+00:00:26.662 --> 00:00:31.013
+For disabling accounts, the sign-in
+activity and the unused-app rule.
+
+10
+00:00:31.013 --> 00:00:33.987
+For review of privileges,
+the review cycle.
+
+11
+00:00:33.987 --> 00:00:37.769
+And for the integrity of the
+record, A U nine and S I seven,
+
+12
+00:00:37.769 --> 00:00:43.399
+the evidence manifest, the checksum file
+and the summary, and the period manifest.
+
+13
+00:00:43.399 --> 00:00:48.038
+K S I's are FedRAMP twenty X indicators
+for cloud service providers.
+
+14
+00:00:48.038 --> 00:00:52.478
+The agency lines its evidence up
+with what its providers report;
+
+15
+00:00:52.478 --> 00:00:54.488
+it doesn't report K S I's itself.
+
+16
+00:00:54.488 --> 00:00:57.790
+Which file supports which
+indicator is the program's mapping.

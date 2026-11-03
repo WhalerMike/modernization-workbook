@@ -1,0 +1,65 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.563
+Unit 2 starts with what
+the code depends on.
+
+2
+00:00:02.563 --> 00:00:04.863
+The order of targets is the program's:
+
+3
+00:00:04.863 --> 00:00:09.310
+an Azure-hosted workload gets a managed
+identity, a host with an issuer,
+
+4
+00:00:09.310 --> 00:00:12.301
+such as a pipeline, gets
+a federated credential,
+
+5
+00:00:12.301 --> 00:00:15.675
+and a certificate is used
+only where neither applies.
+
+6
+00:00:15.675 --> 00:00:20.188
+A target out of that order
+raises N P W I F oh one.
+
+7
+00:00:20.188 --> 00:00:23.028
+Then the rules on Microsoft
+Learn's page of important
+
+8
+00:00:23.028 --> 00:00:26.901
+considerations and restrictions
+for federated identity credentials.
+
+9
+00:00:26.901 --> 00:00:30.625
+The match is exact and
+case-sensitive, with no wildcards.
+
+10
+00:00:30.625 --> 00:00:35.342
+An app registration or a user-assigned
+managed identity holds at most twenty
+
+11
+00:00:35.342 --> 00:00:39.912
+federated credentials, and a system-assigned
+identity can't hold one at all.
+
+12
+00:00:39.912 --> 00:00:44.876
+And, as you've heard, a credential with
+the wrong subject is created without error.
+
+13
+00:00:44.876 --> 00:00:47.710
+Everything in the checks
+follows from those facts.

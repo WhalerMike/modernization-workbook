@@ -1,0 +1,60 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.100
+Why a runbook?
+
+2
+00:00:01.100 --> 00:00:05.042
+Each chapter's Lab 2 proves
+one piece in a test tenant,
+
+3
+00:00:05.042 --> 00:00:07.150
+by hand, and then backs it out.
+
+4
+00:00:07.150 --> 00:00:11.325
+A deployment has to prove them together,
+in an order that can be undone,
+
+5
+00:00:11.325 --> 00:00:13.962
+against an environment someone depends on.
+
+6
+00:00:13.962 --> 00:00:17.601
+So the runbook is one set
+of commands, run twice.
+
+7
+00:00:17.601 --> 00:00:19.815
+First against an Entra test tenant,
+
+8
+00:00:19.815 --> 00:00:23.863
+an Azure test subscription and
+an Active Directory test forest.
+
+9
+00:00:23.863 --> 00:00:26.575
+Then, unchanged, against production.
+
+10
+00:00:26.575 --> 00:00:28.525
+Only the settings file changes.
+
+11
+00:00:28.525 --> 00:00:33.009
+In this module you dry-run the scripts
+that guard that order: the settings check,
+
+12
+00:00:33.009 --> 00:00:35.424
+the preflight, the smoke
+test, the rollback,
+
+13
+00:00:35.424 --> 00:00:39.340
+and the evidence check that the
+promotion to production depends on.

@@ -1,0 +1,71 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.888
+Here's what you'll be able to
+do by the end of this module,
+
+2
+00:00:02.888 --> 00:00:05.275
+which takes about sixty
+minutes with the lab.
+
+3
+00:00:05.275 --> 00:00:08.843
+You'll explain what the runbook
+adds to each chapter's Lab 2,
+
+4
+00:00:08.843 --> 00:00:12.113
+and why the policies that can
+block a sign-in come last.
+
+5
+00:00:12.113 --> 00:00:15.533
+You'll describe the settings
+file's rules: no secret,
+
+6
+00:00:15.533 --> 00:00:18.301
+no placeholder, and the
+stage it says it is.
+
+7
+00:00:18.301 --> 00:00:21.108
+You'll run the preflight,
+the smoke test and the
+
+8
+00:00:21.108 --> 00:00:24.063
+rollback plan on fixtures,
+and read their checks.
+
+9
+00:00:24.063 --> 00:00:28.200
+You'll show that a rollback plan whose
+hash nobody approved sends nothing.
+
+10
+00:00:28.200 --> 00:00:32.080
+And you'll explain why a fixture stage
+can never pass the evidence check,
+
+11
+00:00:32.080 --> 00:00:35.237
+and what production's preflight
+needs from the test stage.
+
+12
+00:00:35.237 --> 00:00:39.678
+Before you start, finish Modules
+1 to 10, or at least their Lab 1s:
+
+13
+00:00:39.678 --> 00:00:43.249
+this module doesn't teach
+the kit's chapters again.
+
+14
+00:00:43.249 --> 00:00:48.770
+Module 10 matters most, for the evidence
+package and the first-week drift runs.

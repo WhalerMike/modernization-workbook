@@ -1,0 +1,78 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.025
+Check yourself with two questions.
+
+2
+00:00:02.025 --> 00:00:07.125
+First: an enabled Active Directory
+account has had no logon for ninety days.
+
+3
+00:00:07.125 --> 00:00:08.387
+What does the code do?
+
+4
+00:00:08.387 --> 00:00:09.612
+The answer is b.
+
+5
+00:00:09.612 --> 00:00:14.098
+It raises a stale lead, N P I I N
+V oh two, to confirm against the
+
+6
+00:00:14.098 --> 00:00:19.051
+domain controller and Entra sign-in
+logs, and it changes nothing.
+
+7
+00:00:19.051 --> 00:00:21.159
+A stale account is only a lead,
+
+8
+00:00:21.159 --> 00:00:25.112
+and the code never disables,
+moves or deletes anything.
+
+9
+00:00:25.112 --> 00:00:31.150
+Second: j doe is high risk, and
+also carries N P I I N V oh eight.
+
+10
+00:00:31.150 --> 00:00:32.338
+Why does that matter?
+
+11
+00:00:32.338 --> 00:00:33.474
+The answer is a.
+
+12
+00:00:33.474 --> 00:00:36.782
+It was found only by a
+password that never expires,
+
+13
+00:00:36.782 --> 00:00:39.525
+so it may be a person,
+not a service account.
+
+14
+00:00:39.525 --> 00:00:41.565
+Learn's criteria can find people too,
+
+15
+00:00:41.565 --> 00:00:45.713
+so someone confirms it before the next
+module applies the ownership rule.
+
+16
+00:00:45.713 --> 00:00:48.139
+The module page has three more questions,
+
+17
+00:00:48.139 --> 00:00:50.690
+each linked to the
+section that answers it.

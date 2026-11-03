@@ -1,0 +1,79 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.612
+Unit 2 reads the rules the code holds.
+
+2
+00:00:02.612 --> 00:00:06.180
+Microsoft Learn's application
+management policies
+
+3
+00:00:06.180 --> 00:00:09.099
+A P I overview describes
+two kinds of policy.
+
+4
+00:00:09.099 --> 00:00:13.570
+The tenant default policy always exists,
+is disabled by default, and holds
+
+5
+00:00:13.570 --> 00:00:18.700
+separate restrictions for application
+objects and for service principal objects.
+
+6
+00:00:18.700 --> 00:00:21.588
+The program sets the same
+restrictions on both.
+
+7
+00:00:21.588 --> 00:00:26.350
+An app management policy is assigned
+to one app, and an app takes only one.
+
+8
+00:00:26.350 --> 00:00:29.637
+It overrides the default for
+the restrictions it defines,
+
+9
+00:00:29.637 --> 00:00:32.788
+and anything it doesn't define
+falls back to the default.
+
+10
+00:00:32.788 --> 00:00:36.334
+The program's design guidance
+uses it for an exception:
+
+11
+00:00:36.334 --> 00:00:40.275
+documented, time-limited, with
+a record number and an end date.
+
+12
+00:00:40.275 --> 00:00:41.787
+Two facts to remember.
+
+13
+00:00:41.787 --> 00:00:44.824
+Neither kind blocks tokens
+for an existing app;
+
+14
+00:00:44.824 --> 00:00:48.638
+only the create or update that
+breaks the policy is refused.
+
+15
+00:00:48.638 --> 00:00:54.163
+And Microsoft Learn's Workload I D F A
+Q lists app management policies in both
+
+16
+00:00:54.163 --> 00:00:59.500
+the free edition and Workload I D
+Premium, so this module needs no Premium.

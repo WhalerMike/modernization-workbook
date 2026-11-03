@@ -1,0 +1,81 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:04.154
+Steps one to six run in
+the non-person identity
+
+3
+00:00:04.154 --> 00:00:07.000
+folder of the examples, in PowerShell 7.
+
+4
+00:00:07.000 --> 00:00:11.184
+Step one runs Microsoft's Sentinel
+rule for new app credentials,
+
+5
+00:00:11.184 --> 00:00:16.237
+the one Microsoft Learn's security
+operations guide for applications links,
+
+6
+00:00:16.237 --> 00:00:19.158
+over the fixture: eleven
+tests pass, none fail,
+
+7
+00:00:19.158 --> 00:00:22.000
+and forty of the file's
+other tests aren't run.
+
+8
+00:00:22.000 --> 00:00:26.102
+Step two lists what the run needs:
+four Graph read permissions,
+
+9
+00:00:26.102 --> 00:00:29.963
+Application, AuditLog, Directory
+and User dot Read dot All.
+
+10
+00:00:29.963 --> 00:00:31.637
+Nothing ends in ReadWrite.
+
+11
+00:00:31.637 --> 00:00:36.799
+Step three runs the first day, the
+twenty-ninth of October, with no baseline.
+
+12
+00:00:36.799 --> 00:00:41.826
+Inventory, ownership and drift all report
+OK, and the run becomes a baseline
+
+13
+00:00:41.826 --> 00:00:44.177
+candidate, with fourteen findings,
+
+14
+00:00:44.177 --> 00:00:47.825
+four warnings and five
+information items, and its hash.
+
+15
+00:00:47.825 --> 00:00:52.100
+Step four approves that baseline by
+its hash and runs the second day.
+
+16
+00:00:52.100 --> 00:00:54.740
+It compares with the first day's baseline,
+
+17
+00:00:54.740 --> 00:00:58.750
+and the drift appears: eighteen
+findings and eleven warnings.

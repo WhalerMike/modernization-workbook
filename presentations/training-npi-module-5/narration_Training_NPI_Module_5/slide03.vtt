@@ -1,0 +1,60 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.888
+Here's what you'll be able to
+do by the end of this module,
+
+2
+00:00:02.888 --> 00:00:05.275
+which takes about sixty
+minutes with the lab.
+
+3
+00:00:05.275 --> 00:00:08.706
+You'll explain the difference
+between an application permission
+
+4
+00:00:08.706 --> 00:00:12.012
+and a delegated grant, and why the
+type matters more than the name.
+
+5
+00:00:12.012 --> 00:00:16.437
+You'll name what makes a grant broad,
+and what a recorded exception must hold.
+
+6
+00:00:16.437 --> 00:00:20.097
+You'll say which service principals
+go to the Privileged Access plan,
+
+7
+00:00:20.097 --> 00:00:22.151
+and why this chapter doesn't sweep them.
+
+8
+00:00:22.151 --> 00:00:25.681
+And you'll run the sweep, read
+the owner review and the plan,
+
+9
+00:00:25.681 --> 00:00:29.062
+and watch the write path
+refuse a plan nobody approved.
+
+10
+00:00:29.062 --> 00:00:33.669
+Before you start, finish Module 1,
+because the sweep reads its register,
+
+11
+00:00:33.669 --> 00:00:37.562
+and Module 2, because the review
+goes to the owners it checks.
+
+12
+00:00:37.562 --> 00:00:42.910
+Lab 1 needs PowerShell 7.1 or
+later with Pester 5, and no tenant.

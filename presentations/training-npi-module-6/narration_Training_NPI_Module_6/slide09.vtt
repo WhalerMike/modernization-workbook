@@ -1,0 +1,70 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:05.074
+Lab 1 runs in the non-person
+identity folder, in PowerShell 7,
+
+3
+00:00:05.074 --> 00:00:10.513
+against a fictional tenant whose egress
+ranges are documentation ranges.
+
+4
+00:00:10.513 --> 00:00:14.571
+Step one runs the tests on Learn's
+sample and page as published:
+
+5
+00:00:14.571 --> 00:00:18.312
+nine pass, and the other
+thirty-nine in that file aren't run.
+
+6
+00:00:18.312 --> 00:00:22.325
+Step two lists three tasks,
+with three sets of permissions.
+
+7
+00:00:22.325 --> 00:00:25.800
+Reading the policies needs
+application and policy read.
+
+8
+00:00:25.800 --> 00:00:29.850
+Reading sign-ins needs the audit
+log and the Conditional Access read.
+
+9
+00:00:29.850 --> 00:00:33.225
+Only the apply task holds
+the Conditional Access write.
+
+10
+00:00:33.225 --> 00:00:37.393
+Step three runs the pre-merge
+check on the repository's own
+
+11
+00:00:37.393 --> 00:00:41.300
+files and the fixture scope:
+no findings, exit code zero.
+
+12
+00:00:41.300 --> 00:00:44.400
+And step four runs the same
+check on Learn's sample.
+
+13
+00:00:44.400 --> 00:00:49.850
+It fails five times: oh one twice,
+oh seven twice, and oh eight once.
+
+14
+00:00:49.850 --> 00:00:52.800
+The sample is a model,
+not a file to create.

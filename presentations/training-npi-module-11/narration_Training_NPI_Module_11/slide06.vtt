@@ -1,0 +1,73 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.325
+The settings file is
+one JSON file per stage.
+
+2
+00:00:03.325 --> 00:00:08.794
+It holds every value the commands need:
+the tenant, the cloud, the identities,
+
+3
+00:00:08.794 --> 00:00:14.175
+the operators, the pilot, the synthetic
+objects, the policies and the waves.
+
+4
+00:00:14.175 --> 00:00:16.703
+The kit checks it before any command runs,
+
+5
+00:00:16.703 --> 00:00:19.900
+against four rules, which
+are this workbook's design.
+
+6
+00:00:19.900 --> 00:00:23.191
+No secrets: a field whose
+name looks like a secret,
+
+7
+00:00:23.191 --> 00:00:27.962
+or a value that looks like a client
+secret or a private key, stops the run.
+
+8
+00:00:27.962 --> 00:00:31.841
+The identities are named by client
+I D and certificate thumbprint,
+
+9
+00:00:31.841 --> 00:00:35.437
+and the private key stays in the
+operator's certificate store.
+
+10
+00:00:35.437 --> 00:00:38.332
+No placeholders: a value still shaped like
+
+11
+00:00:38.332 --> 00:00:41.225
+an angle-bracketed tenant
+I D stops the run.
+
+12
+00:00:41.225 --> 00:00:43.824
+The stage it says it is:
+the file's environment
+
+13
+00:00:43.824 --> 00:00:46.563
+must match the stage you
+tell the command to run.
+
+14
+00:00:46.563 --> 00:00:48.851
+And the same commands for both stages:
+
+15
+00:00:48.851 --> 00:00:52.900
+moving from test to production
+changes the file, and nothing else.

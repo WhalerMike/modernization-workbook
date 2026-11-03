@@ -1,0 +1,67 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.375
+Why does this need care?
+
+2
+00:00:01.375 --> 00:00:06.187
+Microsoft Learn's workload identity
+federation documentation explains it.
+
+3
+00:00:06.187 --> 00:00:10.732
+A federated credential tells Microsoft
+Entra I D to trust tokens from
+
+4
+00:00:10.732 --> 00:00:14.963
+an outside issuer, such as GitHub
+Actions or a Kubernetes cluster.
+
+5
+00:00:14.963 --> 00:00:20.897
+Three values must match the workload's
+token exactly, case for case: the issuer,
+
+6
+00:00:20.897 --> 00:00:26.090
+the subject, and the audience, which
+for Entra I D is exactly one value,
+
+7
+00:00:26.090 --> 00:00:29.613
+A P I colon slash slash
+Azure A D Token Exchange.
+
+8
+00:00:29.613 --> 00:00:31.351
+And here's the quiet failure.
+
+9
+00:00:31.351 --> 00:00:35.738
+Learn says a credential with the wrong
+subject is created without any error.
+
+10
+00:00:35.738 --> 00:00:39.379
+It fails only when the workload
+tries to exchange its token,
+
+11
+00:00:39.379 --> 00:00:41.312
+which may be the day you cut over.
+
+12
+00:00:41.312 --> 00:00:45.993
+So in this module, each federated credential
+is checked against the claims the
+
+13
+00:00:45.993 --> 00:00:49.810
+workload will present, and tested
+against a fake token endpoint,
+
+14
+00:00:49.810 --> 00:00:51.310
+before it's ever created.

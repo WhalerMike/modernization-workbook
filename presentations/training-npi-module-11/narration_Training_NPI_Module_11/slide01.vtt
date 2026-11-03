@@ -1,0 +1,62 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.380
+Welcome to Module 11 of the
+Non-Person Identity learning path:
+
+2
+00:00:04.380 --> 00:00:06.587
+deploy to test, then production.
+
+3
+00:00:06.587 --> 00:00:09.731
+This is the last module,
+and it serves every gate:
+
+4
+00:00:09.731 --> 00:00:13.438
+each step of the runbook names
+the gate it moves forward.
+
+5
+00:00:13.438 --> 00:00:17.850
+It goes with Chapter 11 of the developer
+workbook, the deployment runbook.
+
+6
+00:00:17.850 --> 00:00:19.050
+One thing first.
+
+7
+00:00:19.050 --> 00:00:21.705
+Chapter 11 is held for the owner's review,
+
+8
+00:00:21.705 --> 00:00:26.775
+and nobody has run its runbook against
+a live tenant, subscription or forest.
+
+9
+00:00:26.775 --> 00:00:31.403
+Its deploy scripts are tested against
+fictional tenants served by a fake,
+
+10
+00:00:31.403 --> 00:00:33.375
+and their dry-run output is real.
+
+11
+00:00:33.375 --> 00:00:36.700
+Every live result in the
+chapter is labeled Expected.
+
+12
+00:00:36.700 --> 00:00:40.785
+So this module's Lab 1 runs only
+the dry run, on the kit's fixtures,
+
+13
+00:00:40.785 --> 00:00:44.210
+and you'll read the live
+stages rather than run them.

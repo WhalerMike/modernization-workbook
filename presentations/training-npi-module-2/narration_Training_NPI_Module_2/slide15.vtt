@@ -1,0 +1,55 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.875
+To sum up.
+
+2
+00:00:00.875 --> 00:00:05.253
+You checked twenty-two identities
+for valid owners and active records,
+
+3
+00:00:05.253 --> 00:00:09.111
+built an orphan plan of ten actions
+with three writes, dry-ran it,
+
+4
+00:00:09.111 --> 00:00:13.637
+applied it to the fake, and saw the
+write path refuse a hash nobody approved.
+
+5
+00:00:13.637 --> 00:00:18.886
+The evidence an ISSO keeps from this module
+is the ownership file, the findings,
+
+6
+00:00:18.886 --> 00:00:23.650
+and the orphan plan with its approved
+hash; the officer's confirmations;
+
+7
+00:00:23.650 --> 00:00:28.737
+and the dry-run and apply folders, with
+their results and manifests, all dated.
+
+8
+00:00:28.737 --> 00:00:31.813
+Before you ship, work through
+the chapter's checklist.
+
+9
+00:00:31.813 --> 00:00:35.774
+Next is Module 3: decide
+each identity's target.
+
+10
+00:00:35.774 --> 00:00:39.426
+A matrix proposes where each
+identity should end up,
+
+11
+00:00:39.426 --> 00:00:43.660
+the application owner decides,
+and the ISSO checks the gate.

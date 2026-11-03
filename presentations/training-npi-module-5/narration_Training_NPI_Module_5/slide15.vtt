@@ -1,0 +1,70 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.025
+Check yourself with two questions.
+
+2
+00:00:02.025 --> 00:00:06.437
+First: Deploy Bot holds application
+read-write and a directory role.
+
+3
+00:00:06.437 --> 00:00:08.000
+What does the sweep do with it?
+
+4
+00:00:08.000 --> 00:00:09.225
+The answer is b.
+
+5
+00:00:09.225 --> 00:00:12.483
+It hands it whole to the
+Privileged Access plan,
+
+6
+00:00:12.483 --> 00:00:16.075
+as N P L P oh eight, and leaves
+it out of the owner review.
+
+7
+00:00:16.075 --> 00:00:21.062
+A directory role or an escalation permission
+is enough to hand an identity off.
+
+8
+00:00:21.062 --> 00:00:24.524
+Second: who sends the plan's
+writes in a live run?
+
+9
+00:00:24.524 --> 00:00:26.101
+The answer is b: a person,
+
+10
+00:00:26.101 --> 00:00:30.913
+signed in with Privileged Role
+Administrator, in a delegated session.
+
+11
+00:00:30.913 --> 00:00:35.314
+The Microsoft Graph permissions reference
+cautions that the write permissions can
+
+12
+00:00:35.314 --> 00:00:37.050
+grant authorization themselves,
+
+13
+00:00:37.050 --> 00:00:39.963
+so they're never an unattended
+app's standing permission.
+
+14
+00:00:39.963 --> 00:00:42.389
+The module page has three more questions,
+
+15
+00:00:42.389 --> 00:00:44.950
+each linked to the
+section that answers it.

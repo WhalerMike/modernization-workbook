@@ -1,0 +1,73 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.293
+Lab 2 runs the rule in your own
+test tenant: worldwide or G C C,
+
+2
+00:00:04.293 --> 00:00:08.270
+with a test Active Directory
+domain, never production,
+
+3
+00:00:08.270 --> 00:00:12.513
+with fictional people, and with
+Module 1's Lab 2 already run.
+
+4
+00:00:12.513 --> 00:00:16.429
+Make two test orphans: an app
+registration with no owners,
+
+5
+00:00:16.429 --> 00:00:18.262
+and a test service account.
+
+6
+00:00:18.262 --> 00:00:21.987
+Run the check with an app that
+holds only User dot Read dot All.
+
+7
+00:00:21.987 --> 00:00:25.663
+Confirm both orphans as the
+identity governance officer.
+
+8
+00:00:25.663 --> 00:00:28.396
+Then have a second person
+approve the plan's hash,
+
+9
+00:00:28.396 --> 00:00:31.538
+which is the separation of
+duties the evidence records.
+
+10
+00:00:31.538 --> 00:00:33.379
+Dry-run the plan, then apply it,
+
+11
+00:00:33.379 --> 00:00:37.213
+signed in as a person with
+Cloud Application Administrator.
+
+12
+00:00:37.213 --> 00:00:40.936
+To back it out, step six turns
+the service principal back on,
+
+13
+00:00:40.936 --> 00:00:44.271
+enables the test account,
+deletes both test objects
+
+14
+00:00:44.271 --> 00:00:47.762
+and the test app's registration,
+and deletes the output.
+
+15
+00:00:47.762 --> 00:00:49.970
+The authors haven't run Lab 2.
