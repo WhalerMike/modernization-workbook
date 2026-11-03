@@ -13908,6 +13908,990 @@
   ]
  },
  {
+  "id": "Training_NPI_Module_10_Narrated",
+  "title": "Non-Person Identity learning path, Module 10: Find drift and file the evidence",
+  "group": "training",
+  "minutes": 16,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_NPI_Module_10_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/training-npi-module-10/Training_NPI_Module_10_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-npi-module-10/Training_NPI_Module_10_Narration_Script.md",
+  "page": "docs/training/non-person-identity/10-drift-and-evidence.html",
+  "source": "docs/training/non-person-identity/10-drift-and-evidence.md",
+  "kits": [
+   {
+    "name": "non-person-identity",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/non-person-identity",
+    "zip": "downloads/non-person-identity-code.zip"
+   },
+   {
+    "name": "drift-pipeline",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/drift-pipeline",
+    "zip": null
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Module 10: Find drift and file the evidence"
+   ],
+   [
+    49,
+    "Why every gate's state has to be kept true"
+   ],
+   [
+    97,
+    "What you'll be able to do in Module 10"
+   ],
+   [
+    150,
+    "The gate: run the lifecycle, and file the output"
+   ],
+   [
+    211,
+    "One run, and a baseline that counts only when approved"
+   ],
+   [
+    268,
+    "The drift findings: NPI-DRF-01 to NPI-DRF-09"
+   ],
+   [
+    342,
+    "The review cycle, and the annual vintage comparison"
+   ],
+   [
+    404,
+    "What the ISSO receives: the package, chain, period"
+   ],
+   [
+    468,
+    "Try it: the rule, the permissions, two days of runs"
+   ],
+   [
+    531,
+    "Try it: read the drift, and compare the vintages"
+   ],
+   [
+    591,
+    "Try it: package both days, chained, and verify"
+   ],
+   [
+    643,
+    "Try it: assemble the period for the ISSO"
+   ],
+   [
+    702,
+    "Try it: break it on purpose, then run the tests"
+   ],
+   [
+    751,
+    "Lab 2: three changes in your own test tenant"
+   ],
+   [
+    805,
+    "The federal requirement and evidence for Gate G6"
+   ],
+   [
+    867,
+    "Check yourself: two questions on drift and evidence"
+   ],
+   [
+    916,
+    "Summary, and next: Module 11, test then production"
+   ]
+  ]
+ },
+ {
+  "id": "Training_NPI_Module_11_Narrated",
+  "title": "Non-Person Identity learning path, Module 11: Deploy to test, then production",
+  "group": "training",
+  "minutes": 14,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_NPI_Module_11_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/training-npi-module-11/Training_NPI_Module_11_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-npi-module-11/Training_NPI_Module_11_Narration_Script.md",
+  "page": "docs/training/non-person-identity/11-deploying-to-test-and-production.html",
+  "source": "docs/training/non-person-identity/11-deploying-to-test-and-production.md",
+  "kits": [
+   {
+    "name": "non-person-identity",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/non-person-identity",
+    "zip": "downloads/non-person-identity-code.zip"
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Module 11: Deploy to test, then production"
+   ],
+   [
+    48,
+    "Why a deployment proves what each Lab 2 can't"
+   ],
+   [
+    91,
+    "What you'll be able to do in Module 11"
+   ],
+   [
+    144,
+    "The safe order: what can block a sign-in comes last"
+   ],
+   [
+    205,
+    "Before you start: PIM roles, approvals, a change record"
+   ],
+   [
+    258,
+    "The settings file: four rules, checked before any command"
+   ],
+   [
+    315,
+    "The code it adds: five scripts, each with a fixture mode"
+   ],
+   [
+    372,
+    "The stages and the promotion to production"
+   ],
+   [
+    423,
+    "Try it: the template refused, and the test preflight"
+   ],
+   [
+    476,
+    "Try it: the smoke test on synthetic objects"
+   ],
+   [
+    530,
+    "Try it: the rollback planned, refused, then dry-run"
+   ],
+   [
+    583,
+    "Try it: production's preflight, and the evidence check"
+   ],
+   [
+    636,
+    "Lab 2: the live test stage, then production"
+   ],
+   [
+    700,
+    "The federal requirement and evidence, every gate"
+   ],
+   [
+    765,
+    "Check yourself: two questions on the runbook"
+   ],
+   [
+    808,
+    "Summary: you've finished the learning path"
+   ]
+  ]
+ },
+ {
+  "id": "Training_NPI_Module_1_Narrated",
+  "title": "Non-Person Identity learning path, Module 1: Inventory every non-person identity",
+  "group": "training",
+  "minutes": 14,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_NPI_Module_1_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/training-npi-module-1/Training_NPI_Module_1_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-npi-module-1/Training_NPI_Module_1_Narration_Script.md",
+  "page": "docs/training/non-person-identity/01-inventory.html",
+  "source": "docs/training/non-person-identity/01-inventory.md",
+  "kits": [
+   {
+    "name": "non-person-identity",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/non-person-identity",
+    "zip": "downloads/non-person-identity-code.zip"
+   },
+   {
+    "name": "drift-pipeline",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/drift-pipeline",
+    "zip": null
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Module 1: Inventory every non-person identity"
+   ],
+   [
+    53,
+    "Why the inventory is always larger than you think"
+   ],
+   [
+    105,
+    "What you'll be able to do in Module 1"
+   ],
+   [
+    157,
+    "What Gate 1 asks for: six sub-steps, one record"
+   ],
+   [
+    219,
+    "The register: two AD reads, nine Graph, one ARM"
+   ],
+   [
+    276,
+    "The reader: five rules every call obeys"
+   ],
+   [
+    336,
+    "Risk, the candidate target, stale leads, the hand-off"
+   ],
+   [
+    400,
+    "The findings: NPI-INV-01 to NPI-INV-09"
+   ],
+   [
+    456,
+    "Try it: Learn's samples, and what the inventory needs"
+   ],
+   [
+    506,
+    "Try it: run the inventory, read the HIGH-risk rows"
+   ],
+   [
+    563,
+    "Try it: the reader refuses, and the hand-off"
+   ],
+   [
+    615,
+    "Lab 2: inventory your own test tenant"
+   ],
+   [
+    668,
+    "The federal requirement and evidence for Gate G1"
+   ],
+   [
+    729,
+    "Check yourself: two questions on the inventory"
+   ],
+   [
+    784,
+    "Summary, and next: Module 2, owners and orphans"
+   ]
+  ]
+ },
+ {
+  "id": "Training_NPI_Module_2_Narrated",
+  "title": "Non-Person Identity learning path, Module 2: Owners, sponsors and the orphan rule",
+  "group": "training",
+  "minutes": 14,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_NPI_Module_2_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/training-npi-module-2/Training_NPI_Module_2_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-npi-module-2/Training_NPI_Module_2_Narration_Script.md",
+  "page": "docs/training/non-person-identity/02-owners-and-the-orphan-rule.html",
+  "source": "docs/training/non-person-identity/02-owners-and-the-orphan-rule.md",
+  "kits": [
+   {
+    "name": "non-person-identity",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/non-person-identity",
+    "zip": "downloads/non-person-identity-code.zip"
+   },
+   {
+    "name": "drift-pipeline",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/drift-pipeline",
+    "zip": null
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Module 2: Owners, sponsors and the orphan rule"
+   ],
+   [
+    46,
+    "Why owners are a control, not a contact list"
+   ],
+   [
+    94,
+    "What you'll be able to do in Module 2"
+   ],
+   [
+    144,
+    "Owners and sponsors in the guide: Step 1f and Step 6"
+   ],
+   [
+    203,
+    "The rule the code holds: stricter than Learn's"
+   ],
+   [
+    265,
+    "The orphan rule, D-N2, and the orphaned-app policy"
+   ],
+   [
+    320,
+    "The check: NPI-OWN-01 to NPI-OWN-09"
+   ],
+   [
+    377,
+    "The orphan plan, and the separate write path"
+   ],
+   [
+    445,
+    "Try it: the permissions, and the ownership check"
+   ],
+   [
+    505,
+    "Try it: read the findings and the orphan plan"
+   ],
+   [
+    555,
+    "Try it: dry-run, apply, and a hash nobody approved"
+   ],
+   [
+    608,
+    "Lab 2: two test orphans in your own tenant"
+   ],
+   [
+    662,
+    "The federal requirement and evidence: G1 and G6"
+   ],
+   [
+    720,
+    "Check yourself: two questions on owners"
+   ],
+   [
+    762,
+    "Summary, and next: Module 3, decide the target"
+   ]
+  ]
+ },
+ {
+  "id": "Training_NPI_Module_3_Narrated",
+  "title": "Non-Person Identity learning path, Module 3: Decide each identity's target",
+  "group": "training",
+  "minutes": 13,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_NPI_Module_3_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/training-npi-module-3/Training_NPI_Module_3_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-npi-module-3/Training_NPI_Module_3_Narration_Script.md",
+  "page": "docs/training/non-person-identity/03-decide-the-target.html",
+  "source": "docs/training/non-person-identity/03-decide-the-target.md",
+  "kits": [
+   {
+    "name": "non-person-identity",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/non-person-identity",
+    "zip": "downloads/non-person-identity-code.zip"
+   },
+   {
+    "name": "drift-pipeline",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/drift-pipeline",
+    "zip": null
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Module 3: Decide each identity's target"
+   ],
+   [
+    47,
+    "Why the decision has three owners, not one"
+   ],
+   [
+    98,
+    "What you'll be able to do in Module 3"
+   ],
+   [
+    147,
+    "The decision in the guide: Step 2, condensed"
+   ],
+   [
+    220,
+    "The proposal: matrix rows M01 to M19"
+   ],
+   [
+    281,
+    "The disposition and the waves: NPI-MAT-01 to -09"
+   ],
+   [
+    341,
+    "Waves and rollback, D-N4, and Gate 2"
+   ],
+   [
+    407,
+    "Try it: run Modules 1 and 2, then the matrix"
+   ],
+   [
+    476,
+    "Try it: read the proposals and the findings"
+   ],
+   [
+    537,
+    "Try it: the waves' rollback and the D-N4 scope"
+   ],
+   [
+    603,
+    "Lab 2: run the matrix on your own test tenant"
+   ],
+   [
+    654,
+    "The federal requirement and evidence for Gate G2"
+   ],
+   [
+    704,
+    "Check yourself: two questions on the decision"
+   ],
+   [
+    750,
+    "Summary, and next: Module 4, the credential rules"
+   ]
+  ]
+ },
+ {
+  "id": "Training_NPI_Module_4_Narrated",
+  "title": "Non-Person Identity learning path, Module 4: Set the credential rules",
+  "group": "training",
+  "minutes": 14,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_NPI_Module_4_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/training-npi-module-4/Training_NPI_Module_4_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-npi-module-4/Training_NPI_Module_4_Narration_Script.md",
+  "page": "docs/training/non-person-identity/04-credential-rules.html",
+  "source": "docs/training/non-person-identity/04-credential-rules.md",
+  "kits": [
+   {
+    "name": "non-person-identity",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/non-person-identity",
+    "zip": "downloads/non-person-identity-code.zip"
+   },
+   {
+    "name": "drift-pipeline",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/drift-pipeline",
+    "zip": null
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Module 4: Set the credential rules"
+   ],
+   [
+    48,
+    "Why the tenant enforces part, and code does the rest"
+   ],
+   [
+    99,
+    "What you'll be able to do in Module 4"
+   ],
+   [
+    150,
+    "The rules in the guide: Step 3's eight steps"
+   ],
+   [
+    221,
+    "Two kinds of policy, and how an exception overrides"
+   ],
+   [
+    284,
+    "The policy: read, compare, plan; NPI-POL-01 to -06"
+   ],
+   [
+    340,
+    "Rotation: from the owner's approval to removal"
+   ],
+   [
+    400,
+    "The separate write path: the bodies it allows"
+   ],
+   [
+    457,
+    "Try it: the permissions, and the policy diff"
+   ],
+   [
+    516,
+    "Try it: dry-run, apply, and a hash nobody approved"
+   ],
+   [
+    566,
+    "Try it: build, read and run the rotation plan"
+   ],
+   [
+    623,
+    "Lab 2: the policy and one rotation in a test tenant"
+   ],
+   [
+    680,
+    "The federal requirement and evidence for Gate G3"
+   ],
+   [
+    740,
+    "Check yourself: two questions on credentials"
+   ],
+   [
+    786,
+    "Summary, and next: Module 5, cut the privilege"
+   ]
+  ]
+ },
+ {
+  "id": "Training_NPI_Module_5_Narrated",
+  "title": "Non-Person Identity learning path, Module 5: Cut the privilege of service principals",
+  "group": "training",
+  "minutes": 15,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_NPI_Module_5_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/training-npi-module-5/Training_NPI_Module_5_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-npi-module-5/Training_NPI_Module_5_Narration_Script.md",
+  "page": "docs/training/non-person-identity/05-least-privilege.html",
+  "source": "docs/training/non-person-identity/05-least-privilege.md",
+  "kits": [
+   {
+    "name": "non-person-identity",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/non-person-identity",
+    "zip": "downloads/non-person-identity-code.zip"
+   },
+   {
+    "name": "drift-pipeline",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/drift-pipeline",
+    "zip": null
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Module 5: Cut the privilege of service principals"
+   ],
+   [
+    51,
+    "Why a workload's privilege needs cutting first"
+   ],
+   [
+    92,
+    "What you'll be able to do in Module 5"
+   ],
+   [
+    139,
+    "What Step 4 asks for: Graph, directory roles, Azure"
+   ],
+   [
+    201,
+    "The rule the code holds: review, justify, narrow"
+   ],
+   [
+    259,
+    "The check: NPI-LP-01 to NPI-LP-09"
+   ],
+   [
+    327,
+    "The hand-off, and the quarterly owner review"
+   ],
+   [
+    397,
+    "The plan, and the separate write path"
+   ],
+   [
+    463,
+    "Try it: Learn's script, the permissions, the sweep"
+   ],
+   [
+    522,
+    "Try it: the findings and the hand-off"
+   ],
+   [
+    578,
+    "Try it: the open review rows, and the plan"
+   ],
+   [
+    632,
+    "Try it: a dry run, the apply, and a refusal"
+   ],
+   [
+    684,
+    "Lab 2: one real removal in your test tenant"
+   ],
+   [
+    737,
+    "The federal requirement and evidence for Gate G4"
+   ],
+   [
+    794,
+    "Check yourself: two questions on least privilege"
+   ],
+   [
+    843,
+    "Summary, and next: Module 6, Conditional Access"
+   ]
+  ]
+ },
+ {
+  "id": "Training_NPI_Module_6_Narrated",
+  "title": "Non-Person Identity learning path, Module 6: Conditional Access for workload identities",
+  "group": "training",
+  "minutes": 15,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_NPI_Module_6_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/training-npi-module-6/Training_NPI_Module_6_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-npi-module-6/Training_NPI_Module_6_Narration_Script.md",
+  "page": "docs/training/non-person-identity/06-conditional-access.html",
+  "source": "docs/training/non-person-identity/06-conditional-access.md",
+  "kits": [
+   {
+    "name": "non-person-identity",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/non-person-identity",
+    "zip": "downloads/non-person-identity-code.zip"
+   },
+   {
+    "name": "drift-pipeline",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/drift-pipeline",
+    "zip": null
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Module 6: Conditional Access for workload identities"
+   ],
+   [
+    49,
+    "Why the scope matters as much as the policy"
+   ],
+   [
+    104,
+    "What you'll be able to do in Module 6"
+   ],
+   [
+    155,
+    "What Step 4 asks for: 4d attributes, 4e the policies"
+   ],
+   [
+    220,
+    "Two policies, two decisions, one policy per ring"
+   ],
+   [
+    277,
+    "The pre-merge check: NPI-WCA-01 to NPI-WCA-09"
+   ],
+   [
+    342,
+    "The plan: six actions, and no delete"
+   ],
+   [
+    396,
+    "Enforcement, ring by ring, and the sign-in reader"
+   ],
+   [
+    447,
+    "Try it: the permissions, and two pre-merge checks"
+   ],
+   [
+    504,
+    "Try it: check the tenant and plan, sending nothing"
+   ],
+   [
+    550,
+    "Try it: read and summarize the sign-ins"
+   ],
+   [
+    595,
+    "Try it: apply against the fake, twice"
+   ],
+   [
+    641,
+    "Try it: enforce Ring 1, then edit one byte"
+   ],
+   [
+    700,
+    "Lab 2: report-only, then one ring, in a test tenant"
+   ],
+   [
+    755,
+    "The federal requirement and evidence for this part"
+   ],
+   [
+    814,
+    "Check yourself: two questions on workload policies"
+   ],
+   [
+    860,
+    "Summary, and next: Module 7, conversions"
+   ]
+  ]
+ },
+ {
+  "id": "Training_NPI_Module_7_Narrated",
+  "title": "Non-Person Identity learning path, Module 7: Convert to managed identities and federation",
+  "group": "training",
+  "minutes": 15,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_NPI_Module_7_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/training-npi-module-7/Training_NPI_Module_7_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-npi-module-7/Training_NPI_Module_7_Narration_Script.md",
+  "page": "docs/training/non-person-identity/07-federation-and-managed-identities.html",
+  "source": "docs/training/non-person-identity/07-federation-and-managed-identities.md",
+  "kits": [
+   {
+    "name": "non-person-identity",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/non-person-identity",
+    "zip": "downloads/non-person-identity-code.zip"
+   },
+   {
+    "name": "drift-pipeline",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/drift-pipeline",
+    "zip": null
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Module 7: Convert to managed identities and federation"
+   ],
+   [
+    51,
+    "Why a federated credential can fail in silence"
+   ],
+   [
+    106,
+    "What you'll be able to do in Module 7"
+   ],
+   [
+    155,
+    "What Step 5 asks for: build, own, run, disable"
+   ],
+   [
+    225,
+    "The order of targets, and Learn's rules"
+   ],
+   [
+    277,
+    "The checks: NPI-WIF-01 to NPI-WIF-09"
+   ],
+   [
+    336,
+    "What the workload presents, and the exchange test"
+   ],
+   [
+    393,
+    "The plan, the parallel run and the write path"
+   ],
+   [
+    455,
+    "Try it: Microsoft's samples, the permissions, the plan"
+   ],
+   [
+    514,
+    "Try it: the findings and the exchange tests"
+   ],
+   [
+    568,
+    "Try it: read each conversion's parallel run"
+   ],
+   [
+    620,
+    "Try it: a dry run, the apply, and a refusal"
+   ],
+   [
+    672,
+    "Lab 2: a real exchange, and a real disable"
+   ],
+   [
+    729,
+    "The federal requirement and evidence for Gate G5"
+   ],
+   [
+    788,
+    "Check yourself: two questions on conversion"
+   ],
+   [
+    843,
+    "Summary, and next: Module 8, gMSAs and dMSAs"
+   ]
+  ]
+ },
+ {
+  "id": "Training_NPI_Module_8_Narrated",
+  "title": "Non-Person Identity learning path, Module 8: Convert Kerberos accounts to gMSAs and dMSAs",
+  "group": "training",
+  "minutes": 16,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_NPI_Module_8_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/training-npi-module-8/Training_NPI_Module_8_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-npi-module-8/Training_NPI_Module_8_Narration_Script.md",
+  "page": "docs/training/non-person-identity/08-gmsa-dmsa-and-the-kerberos-island.html",
+  "source": "docs/training/non-person-identity/08-gmsa-dmsa-and-the-kerberos-island.md",
+  "kits": [
+   {
+    "name": "non-person-identity",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/non-person-identity",
+    "zip": "downloads/non-person-identity-code.zip"
+   },
+   {
+    "name": "drift-pipeline",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/drift-pipeline",
+    "zip": null
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Module 8: Convert Kerberos accounts to gMSAs and dMSAs"
+   ],
+   [
+    47,
+    "Why converting a Kerberos account isn't the end"
+   ],
+   [
+    109,
+    "What you'll be able to do in Module 8"
+   ],
+   [
+    160,
+    "The gate: a parallel run, then disable, never delete"
+   ],
+   [
+    229,
+    "Four dispositions, and the program's four rules"
+   ],
+   [
+    287,
+    "The check: NPI-KRB-01 to NPI-KRB-09"
+   ],
+   [
+    364,
+    "The plan: one action per account, approved by hash"
+   ],
+   [
+    423,
+    "The island list, the reconciliation, the write path"
+   ],
+   [
+    488,
+    "Try it: the register, Learn's steps, each task's calls"
+   ],
+   [
+    548,
+    "Try it: check nine Kerberos accounts, read the findings"
+   ],
+   [
+    609,
+    "Try it: the plan, the island list, the reconciliation"
+   ],
+   [
+    666,
+    "Try it: dry-run, apply to the fake, and a refusal"
+   ],
+   [
+    715,
+    "Lab 2: a test domain, and a real migration"
+   ],
+   [
+    775,
+    "The federal requirement and evidence for Gate G5"
+   ],
+   [
+    834,
+    "Check yourself: two questions on the Kerberos island"
+   ],
+   [
+    889,
+    "Summary, and next: Module 9, AI agent identities"
+   ]
+  ]
+ },
+ {
+  "id": "Training_NPI_Module_9_Narrated",
+  "title": "Non-Person Identity learning path, Module 9: Govern AI agent identities",
+  "group": "training",
+  "minutes": 15,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_NPI_Module_9_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/training-npi-module-9/Training_NPI_Module_9_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-npi-module-9/Training_NPI_Module_9_Narration_Script.md",
+  "page": "docs/training/non-person-identity/09-ai-agent-identities.html",
+  "source": "docs/training/non-person-identity/09-ai-agent-identities.md",
+  "kits": [
+   {
+    "name": "non-person-identity",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/non-person-identity",
+    "zip": "downloads/non-person-identity-code.zip"
+   },
+   {
+    "name": "drift-pipeline",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/drift-pipeline",
+    "zip": null
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Module 9: Govern AI agent identities"
+   ],
+   [
+    48,
+    "Why agents add three things to every gate"
+   ],
+   [
+    107,
+    "What you'll be able to do in Module 9"
+   ],
+   [
+    155,
+    "Agent ID: blueprints, agent identities, and the stage"
+   ],
+   [
+    217,
+    "Decision D-N6 as data: AgentId or Fallback mode"
+   ],
+   [
+    267,
+    "The program's rules the code holds, N6.1 to N6.7"
+   ],
+   [
+    325,
+    "The checks: NPI-AI-01 to NPI-AI-23"
+   ],
+   [
+    378,
+    "The agent CA plan and the separate write path"
+   ],
+   [
+    436,
+    "Try it: Learn's samples, permissions, D-N6 by cloud"
+   ],
+   [
+    495,
+    "Try it: check eight AI identities, read the findings"
+   ],
+   [
+    555,
+    "Try it: the sponsor fields, and the GCC High fallback"
+   ],
+   [
+    606,
+    "Try it: dry-run, apply to the fake, and a refusal"
+   ],
+   [
+    660,
+    "Lab 2: one governed agent in your test tenant"
+   ],
+   [
+    717,
+    "The federal requirement and evidence for AI agents"
+   ],
+   [
+    781,
+    "Check yourself: two questions on agents"
+   ],
+   [
+    833,
+    "Summary, and next: Module 10, drift and evidence"
+   ]
+  ]
+ },
+ {
   "id": "Training_PA_Module_1_Narrated",
   "title": "Privileged Access learning path, Module 1: Inventory every privileged assignment",
   "group": "training",
