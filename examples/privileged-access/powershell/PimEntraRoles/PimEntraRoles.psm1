@@ -447,8 +447,11 @@ function Get-PaPimRolePolicy {
     <#
     .SYNOPSIS
         Read each role's policy at tenant scope with its rules (Learn's Example 2, one call per
-        role). Returns a hashtable of role template ID to @{ PolicyId; Rules }, rules by ID. A role
-        with no single policy is left out. GET only.
+        role). Returns a hashtable of role template ID to @{ PolicyId; Rules; Error }, rules by ID. A
+        role with no single policy is left out. A read Graph refuses (a 403, say) throws, so the
+        plan never works from a policy it didn't read; with -ContinueOnRefusedRead, as the alert
+        check uses it, the role gets an entry with no rules and the error instead, and
+        Test-PaPimAlertSetting makes it a Finding. GET only.
     .EXAMPLE
         # The Global Administrator policy's rule IDs from the fictional tenant.
         $fake = New-PaPimFixtureInvoker -Path tests/fixtures/ch04/tenant.json
@@ -456,14 +459,19 @@ function Get-PaPimRolePolicy {
         (Get-PaPimRolePolicy -Client $client -RoleTemplateId 62e90394-69f5-4237-9190-012177145e10).Values.Rules.Keys
     #>
     [CmdletBinding()]
-    param([Parameter(Mandatory)]$Client, [Parameter(Mandatory)][string[]]$RoleTemplateId)
+    param([Parameter(Mandatory)]$Client, [Parameter(Mandatory)][string[]]$RoleTemplateId, [switch]$ContinueOnRefusedRead)
     $policies = @{}
     foreach ($id in $RoleTemplateId) {
         $q = "`$filter=" + [Uri]::EscapeDataString("scopeId eq '/' and scopeType eq 'DirectoryRole' and roleDefinitionId eq '$id'") + "&`$expand=" + [Uri]::EscapeDataString('policy($expand=rules)')
-        $rows = @(Invoke-PaPimRequest -Client $Client -CallId 'pim-policy-assignment' -Query $q)
+        try { $rows = @(Invoke-PaPimRequest -Client $Client -CallId 'pim-policy-assignment' -Query $q) }
+        catch {
+            if (-not $ContinueOnRefusedRead) { throw }
+            $policies[$id] = [pscustomobject]@{ PolicyId = $null; Rules = $null; Error = "$($_.Exception.Message)" }
+            continue
+        }
         if ($rows.Count -eq 1 -and $rows[0].ContainsKey('policy') -and $rows[0].policy) {
             $rules = @{}; foreach ($r in @($rows[0].policy.rules)) { $rules[$r.id] = $r }
-            $policies[$id] = [pscustomobject]@{ PolicyId = $rows[0].policyId; Rules = $rules }
+            $policies[$id] = [pscustomobject]@{ PolicyId = $rows[0].policyId; Rules = $rules; Error = $null }
         }
     }
     $policies
@@ -629,8 +637,9 @@ function Test-PaPimAlertSetting {
         highly privileged role whose role assignment alert, for eligible or for active assignments
         (Notification_Admin_Admin_Eligibility, Notification_Admin_Admin_Assignment), names no
         additional recipient. PA-PIM-11 (MS.AAD.7.8v1): Global Administrator's role activation alert
-        (Notification_Admin_EndUser_Assignment) names none. A role whose policy wasn't read is a
-        Finding too, because the alert can't be shown. Each role that passes gets an Info row with
+        (Notification_Admin_EndUser_Assignment) names none. A role whose policy wasn't read, or
+        couldn't be read (Graph refused the request), is a Finding too, because the alert can't be
+        shown. Each role that passes gets an Info row with
         the recipients, as evidence. The default recipients (the role's administrators) don't
         count, as in ScubaGear's own check: the alert has to reach the security monitoring mailbox.
     .EXAMPLE
@@ -645,6 +654,11 @@ function Test-PaPimAlertSetting {
     foreach ($rid in $script:HighlyPrivileged.Keys) {
         $role = $script:HighlyPrivileged[$rid]
         $p = $Policies[$rid]
+        if ($p -and $p.PSObject.Properties['Error'] -and $p.Error) {
+            $f.Add((New-PaPimFinding 'PA-PIM-10' 'Finding' $role "The role management policy couldn't be read ($($p.Error)), so its assignment alerts can't be shown (MS.AAD.7.7v1)"))
+            if ($rid -eq $script:GlobalAdmin) { $f.Add((New-PaPimFinding 'PA-PIM-11' 'Finding' $role "The role management policy couldn't be read ($($p.Error)), so the activation alert can't be shown (MS.AAD.7.8v1)")) }
+            continue
+        }
         if (-not $p) {
             $f.Add((New-PaPimFinding 'PA-PIM-10' 'Finding' $role 'No role management policy read for the role at tenant scope, so its assignment alerts can''t be shown (MS.AAD.7.7v1)'))
             if ($rid -eq $script:GlobalAdmin) { $f.Add((New-PaPimFinding 'PA-PIM-11' 'Finding' $role 'No role management policy read, so the activation alert can''t be shown (MS.AAD.7.8v1)')) }
