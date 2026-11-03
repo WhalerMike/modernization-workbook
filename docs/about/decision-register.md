@@ -2241,8 +2241,8 @@ There are **131** workbook decisions: 128 settled, 0 challenged and 3 superseded
 | **Pages affected** | [`scripts/source_watch/review_gate.py`](https://github.com/WhalerMike/modernization-workbook/blob/main/scripts/source_watch/review_gate.py), [Training](../training/index.md) |
 | **Date** | 2026-11-03 |
 | **Status** | settled |
-| **Defined in** | — |
-| **Note** | Extends the review gate of [WD-088](#wd-088). The change to review_gate.py lands in its own pull request. |
+| **Defined in** | [#336](https://github.com/WhalerMike/modernization-workbook/pull/336) |
+| **Note** | Extends the review gate of [WD-088](#wd-088). Applied to review_gate.py in |
 
 [Agree, disagree or send evidence on WD-129](https://github.com/WhalerMike/modernization-workbook/issues/new?template=decision-feedback.yml&title=WD-129%3A+)
 
@@ -2258,7 +2258,7 @@ There are **131** workbook decisions: 128 settled, 0 challenged and 3 superseded
 | **Pages affected** | [Chapter 10 — Deploying to Test and Production](../books/b19-developer-workbook/10-deploying-to-test-and-production.md), [Chapter 09 — Drift Pipelines and Evidence to the ISSO](../books/b19-developer-workbook/09-drift-pipelines-and-evidence.md) |
 | **Date** | 2026-11-03 |
 | **Status** | settled |
-| **Defined in** | — |
+| **Defined in** | [#336](https://github.com/WhalerMike/modernization-workbook/pull/336) |
 
 [Agree, disagree or send evidence on WD-130](https://github.com/WhalerMike/modernization-workbook/issues/new?template=decision-feedback.yml&title=WD-130%3A+)
 

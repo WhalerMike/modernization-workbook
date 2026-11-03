@@ -29,9 +29,10 @@ A page **waits for review** when it isn't approved, or when its text no longer m
 
 - every developer workbook under [Projects](../project-plans/developer-workbooks/index.md) (`docs/project-plans/developer-workbooks/`);
 - [Building the Attribute-Driven Migration](../books/b19-developer-workbook/index.md) (`docs/books/b19-developer-workbook/`);
-- the [Attribute-Driven Migration implementation guide](../books/guides/attribute-driven-migration-implementation.md).
+- every implementation guide, such as the [Non-Person Identity implementation guide](../books/guides/non-person-identity-implementation.md) (`docs/books/guides/`);
+- every [training](../training/index.md) page (`docs/training/`).
 
-On 2026-11-03 the workbook's editor decided to extend the gate to every implementation guide (`docs/books/guides/`) and every training page (`docs/training/`) ([WD-129](decision-register.md#wd-129)). The register records the decision, and the change to the script lands in its own pull request. Until then, check `GATED` in the script for the current list.
+Files and folders whose names start with an underscore, such as the claims logs, aren't gated. The guides and training were added on 2026-11-03 ([WD-129](decision-register.md#wd-129)), so most of their pages are still waiting for their first review. If this list and `GATED` ever differ, the script is right.
 
 ## Draft and approved {#draft-and-approved}
 

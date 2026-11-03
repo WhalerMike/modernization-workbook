@@ -1666,9 +1666,9 @@
   basis: workbook-design
   sources: []
   pages: [scripts/source_watch/review_gate.py, docs/training/index.md]
-  prs: []
+  prs: [336]
   status: settled
-  note: Extends the review gate of WD-088. The change to review_gate.py lands in its own pull request.
+  note: Extends the review gate of WD-088. Applied to review_gate.py in #336.
 
 - id: WD-130
   date: 2026-11-03
@@ -1679,7 +1679,7 @@
   basis: workbook-design
   sources: []
   pages: [docs/books/b19-developer-workbook/10-deploying-to-test-and-production.md, docs/books/b19-developer-workbook/09-drift-pipelines-and-evidence.md]
-  prs: []
+  prs: [336]
   status: settled
 
 - id: WD-131
