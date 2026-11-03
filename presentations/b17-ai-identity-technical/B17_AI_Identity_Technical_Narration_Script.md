@@ -2,7 +2,7 @@
 
 ## Slide 1 — AI Identity Governance: the technical deep dive
 
-Welcome. This is the technical deep dive for Book 17 of the Federal Modernization Workbook, AI Identity Governance. It's for identity engineers, security engineers and platform owners, the people who issue the credentials AI signs in with and watch what it does. The book's idea is simple: an AI agent that can act is an account, and it needs what every account needs. An owner, a credential, limits, and an end. Part 1 is the identity and the inventory. Part 2 is governing it and proving it. One note before we start: the product details here are dated October 2026, and they move fast. Let's begin with why.
+Welcome. This is the technical deep dive for AI Identity Governance, one of the books of the Federal Modernization Workbook. It's for identity engineers, security engineers and platform owners, the people who issue the credentials AI signs in with and watch what it does. The book's idea is simple: an AI agent that can act is an account, and it needs what every account needs. An owner, a credential, limits, and an end. Part 1 is the identity and the inventory. Part 2 is governing it and proving it. One note before we start: the product details here are dated October 2026, and they move fast. Let's begin with why.
 
 ## Slide 2 — Why this matters: an agent that acts is an account
 

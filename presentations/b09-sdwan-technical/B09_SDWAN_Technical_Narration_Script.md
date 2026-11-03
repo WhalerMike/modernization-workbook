@@ -2,7 +2,7 @@
 
 ## Slide 1 — SD-WAN: the technical deep dive
 
-Welcome. This is the SD-WAN deep dive for Book 09 of the Federal Modernization Workbook, Network and Transport. It's for the engineers and architects who'll design, secure and evidence a branch fabric, and it stays on SD-WAN the whole way through. Part 1 is transport and the branch edge: the physics SD-WAN works against, then what TIC 3.0 and Microsoft 365 ask of a branch. Part 2 is governing and transforming: protecting the fabric itself, and a worked field-office estate with real sizing and an honest cost model. Let's start with what SD-WAN actually is, and isn't.
+Welcome. This is the SD-WAN deep dive for Network and Transport, one of the books of the Federal Modernization Workbook. It's for the engineers and architects who'll design, secure and evidence a branch fabric, and it stays on SD-WAN the whole way through. Part 1 is transport and the branch edge: the physics SD-WAN works against, then what TIC 3.0 and Microsoft 365 ask of a branch. Part 2 is governing and transforming: protecting the fabric itself, and a worked field-office estate with real sizing and an honest cost model. Let's start with what SD-WAN actually is, and isn't.
 
 ## Slide 2 — Why this matters: three layers and one question
 

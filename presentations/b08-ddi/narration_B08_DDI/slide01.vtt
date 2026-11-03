@@ -5,54 +5,59 @@ WEBVTT
 Welcome.
 
 2
-00:00:00.763 --> 00:00:08.124
-This briefing is Book 08 of the Federal
-Modernization Workbook, DNS, DHCP and IPAM.
+00:00:00.763 --> 00:00:03.977
+This briefing comes from
+DNS, DHCP and IPAM,
 
 3
-00:00:08.124 --> 00:00:12.561
+00:00:03.977 --> 00:00:07.975
+one of the books of the
+Federal Modernization Workbook.
+
+4
+00:00:07.975 --> 00:00:12.411
 It's about governing the name and
 address layer as one control plane,
 
-4
-00:00:12.561 --> 00:00:16.125
+5
+00:00:12.411 --> 00:00:15.975
 across the data center, every
 cloud and the branch edge.
 
-5
-00:00:16.125 --> 00:00:20.362
+6
+00:00:15.975 --> 00:00:20.212
 That may sound like plumbing, but here's
 the idea that drives the whole book.
 
-6
-00:00:20.362 --> 00:00:22.501
+7
+00:00:20.212 --> 00:00:22.350
 Every connection starts with a name.
 
-7
-00:00:22.501 --> 00:00:25.800
+8
+00:00:22.350 --> 00:00:25.650
 So whoever governs the name
 layer governs the enterprise.
 
-8
-00:00:25.800 --> 00:00:29.621
+9
+00:00:25.650 --> 00:00:29.471
 We'll go in four steps: why
 DNS is now the control plane,
 
-9
-00:00:29.621 --> 00:00:33.975
+10
+00:00:29.471 --> 00:00:33.825
 what has to change, who owns it,
 and how to migrate it and run it.
 
-10
-00:00:33.975 --> 00:00:38.785
+11
+00:00:33.825 --> 00:00:38.635
 Along the way you'll hear about failures
 that don't look like DNS failures at all,
 
-11
-00:00:38.785 --> 00:00:41.375
+12
+00:00:38.635 --> 00:00:41.225
 which is exactly why
 they're so hard to find.
 
-12
-00:00:41.375 --> 00:00:42.700
+13
+00:00:41.225 --> 00:00:42.530
 Let's start with why.

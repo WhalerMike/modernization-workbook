@@ -2,7 +2,7 @@
 
 ## Slide 1 — Zero Trust & Assessment: the technical deep dive
 
-Welcome. This is the technical deep dive for Book 11 of the Federal Modernization Workbook, Zero Trust and Assessment. It's for the people who actually run the assessment: security engineers and assessors. The whole book turns on one idea. Zero Trust belongs to the whole agency, not to a product or a tenant score, and the assessment tools hand you evidence, not a verdict. Part 1 covers what the mandates really require and what the tools really measure. Part 2 covers who owns the decisions, and how to run the assessment so the output holds up. Let's start with why this matters.
+Welcome. This is the technical deep dive for Zero Trust and Assessment, one of the books of the Federal Modernization Workbook. It's for the people who actually run the assessment: security engineers and assessors. The whole book turns on one idea. Zero Trust belongs to the whole agency, not to a product or a tenant score, and the assessment tools hand you evidence, not a verdict. Part 1 covers what the mandates really require and what the tools really measure. Part 2 covers who owns the decisions, and how to run the assessment so the output holds up. Let's start with why this matters.
 
 ## Slide 2 — Why this matters: the worst failures sat beneath any tool
 

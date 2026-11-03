@@ -5,63 +5,64 @@ WEBVTT
 Welcome.
 
 2
-00:00:00.763 --> 00:00:05.717
-This briefing is Book 07 of the
-Federal Modernization Workbook,
+00:00:00.763 --> 00:00:03.647
+This briefing comes from
+PKI and Certificates,
 
 3
-00:00:05.717 --> 00:00:07.400
-PKI and Certificates.
+00:00:03.647 --> 00:00:07.049
+one of the books of the
+Federal Modernization Workbook.
 
 4
-00:00:07.400 --> 00:00:12.427
+00:00:07.049 --> 00:00:12.077
 It covers the move from Active Directory
 Certificate Services to Microsoft
 
 5
-00:00:12.427 --> 00:00:17.062
+00:00:12.077 --> 00:00:16.712
 Cloud PKI, Entra certificate-based
 authentication and the Federal PKI.
 
 6
-00:00:17.062 --> 00:00:19.075
+00:00:16.712 --> 00:00:18.725
 Here's why it deserves its own book.
 
 7
-00:00:19.075 --> 00:00:24.000
+00:00:18.725 --> 00:00:23.650
 Every other migration changes which
 system answers the question, who is this?
 
 8
-00:00:24.000 --> 00:00:26.513
+00:00:23.650 --> 00:00:26.163
 Certificates are how
 that answer gets proved.
 
 9
-00:00:26.513 --> 00:00:28.793
+00:00:26.163 --> 00:00:28.444
 So when they're handled
 as an afterthought,
 
 10
-00:00:28.793 --> 00:00:31.987
+00:00:28.444 --> 00:00:31.638
 things break long after everyone
 thought the work was done.
 
 11
-00:00:31.987 --> 00:00:35.885
+00:00:31.638 --> 00:00:35.534
 We'll go in four steps: why
 certificates outlive every migration,
 
 12
-00:00:35.885 --> 00:00:39.709
+00:00:35.534 --> 00:00:39.358
 what the target PKI looks like,
 who owns the certificate estate,
 
 13
-00:00:39.709 --> 00:00:43.238
+00:00:39.358 --> 00:00:42.887
 and how to move it without
 stranding a single certificate.
 
 14
-00:00:43.238 --> 00:00:44.690
+00:00:42.887 --> 00:00:44.330
 Let's start with the why.

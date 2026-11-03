@@ -1,64 +1,64 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.787
+00:00:00.050 --> 00:00:03.770
 Runbook R07 moves the
 access-control layer.
 
 2
-00:00:03.787 --> 00:00:05.488
+00:00:03.770 --> 00:00:05.467
 The group model survives.
 
 3
-00:00:05.488 --> 00:00:09.469
+00:00:05.467 --> 00:00:09.431
 What changes is who maintains
 membership, who can administer it,
 
 4
-00:00:09.469 --> 00:00:12.099
+00:00:09.431 --> 00:00:12.048
 and the boundary every
 sign-in has to cross.
 
 5
-00:00:12.099 --> 00:00:17.312
+00:00:12.048 --> 00:00:17.231
 Phase 1 is read-only: export the groups
 and the Conditional Access policies,
 
 6
-00:00:17.312 --> 00:00:23.029
+00:00:17.231 --> 00:00:22.921
 and classify every group into one of four
 types, from organizational unit (OU)-based
 
 7
-00:00:23.029 --> 00:00:28.325
+00:00:22.921 --> 00:00:28.447
 groups that become dynamic, to distribution
 lists that never get a SQL login.
 
 8
-00:00:28.325 --> 00:00:30.050
+00:00:28.447 --> 00:00:30.144
 Phase 2 has a fixed order.
 
 9
-00:00:30.050 --> 00:00:33.893
+00:00:30.144 --> 00:00:33.969
 Create the DBA administrative
 unit with restricted management
 
 10
-00:00:33.893 --> 00:00:37.238
+00:00:33.969 --> 00:00:37.306
 turned on at creation, because
 that can't be changed later.
 
 11
-00:00:37.238 --> 00:00:41.925
+00:00:37.306 --> 00:00:41.969
 Then scope the DBA lead's admin role
 to it through PIM, and add the groups.
 
 12
-00:00:41.925 --> 00:00:46.892
+00:00:41.969 --> 00:00:46.913
 The payoff: once every login is an Entra
 principal, Conditional Access becomes
 
 13
-00:00:46.892 --> 00:00:51.460
+00:00:46.913 --> 00:00:51.460
 the perimeter for human access, which
 the pilot needs to confirm for Arc.

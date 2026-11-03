@@ -478,58 +478,58 @@
  "9": [
   [
    0.05,
-   5.713,
-   "Once the loop is running, it follows the Federal Modernization Workbook's Book 13's tempo."
+   4.638,
+   "Once the loop is running, it follows the Federal Modernization Workbook's tempo."
   ],
   [
-   5.763,
+   4.688,
    1.462,
    "A P1 halts work."
   ],
   [
-   7.225,
+   6.15,
    4.8,
    "P2 has one hour, P3 has a day, and P4 has three days."
   ],
   [
-   12.025,
+   10.95,
    3.125,
    "These are the program's windows, not federal ones."
   ],
   [
-   15.15,
+   14.075,
    6.425,
    "Schedule the drift reconciliation and the re-read client, and keep their outputs with the date and the checker version."
   ],
   [
-   21.575,
+   20.5,
    11.412,
    "Report five measures to the governance board: detection coverage, how well windows are kept, the escalation rate, the share of findings closed by machine, and the number of declared exceptions."
   ],
   [
-   32.987,
+   31.913,
    6.612,
    "Together they show whether the loop is closing on machines, inside its windows, or leaning on exceptions."
   ],
   [
-   39.6,
+   38.525,
    1.875,
    "Export the evidence nightly."
   ],
   [
-   41.475,
+   40.4,
    5.175,
    "That's planned for the kit's second pass, and the workbook already builds the ServiceNow half."
   ],
   [
-   46.65,
+   45.575,
    5.625,
    "Review each declared exception at its end date, and each autonomous class every quarter."
   ],
   [
-   52.275,
-   7.1,
-   "These measures come from Book 13's tenth chapter, and they're what leadership reads to see whether the loop is actually working."
+   51.2,
+   8.6,
+   "These measures are the workbook's design, from its Ticket-to-Machine chapter, and they're what leadership reads to see whether the loop is actually working."
   ]
  ],
  "10": [
@@ -592,66 +592,66 @@
  "11": [
   [
    0.05,
-   9.688,
-   "The workbook's seventh chapter reads closed findings back out of ServiceNow, using a read-only role, and writes one Book 13 evidence record for each."
+   9.575,
+   "The workbook's seventh chapter reads closed findings back out of ServiceNow, using a read-only role, and writes one of the workbook's evidence records for each."
   ],
   [
-   9.738,
+   9.625,
    7.85,
    "Approval, executing identity and what ran are left empty, each with its reason, because the first pass doesn't actuate."
   ],
   [
-   17.587,
+   17.475,
    2.225,
    "Four checks run on every record."
   ],
   [
-   19.812,
+   19.7,
    2.188,
    "Does the evidence still match its hash?"
   ],
   [
-   22.0,
+   21.887,
    1.363,
    "Is there evidence at all?"
   ],
   [
-   23.363,
+   23.25,
    1.788,
    "Did the intended state match?"
   ],
   [
-   25.15,
+   25.038,
    1.913,
    "And did it close inside its window?"
   ],
   [
-   27.062,
+   26.95,
    3.85,
    "Five fictional records come out with two of three closed on time."
   ],
   [
-   30.913,
+   30.8,
    8.075,
    "Three have problems: one closed late, one had its evidence edited after closing, and one was closed with a note that just says done."
   ],
   [
-   38.987,
-   2.975,
-   "Book 13 calls that prose, not evidence."
+   38.875,
+   3.35,
+   "The workbook's design calls that prose, not evidence."
   ],
   [
-   41.962,
+   42.225,
    6.7,
    "Each line carries the hash of the line before it, so the I S S O's verifier catches a removed record."
   ],
   [
-   48.663,
+   48.925,
    3.075,
    "The package can show tampering, but it isn't signed."
   ],
   [
-   51.737,
+   52.0,
    6.6,
    "A later month continues the chain from the previous month's head, so the packages link from one period to the next."
   ]
@@ -875,21 +875,21 @@
   ],
   [
    39.325,
-   3.987,
-   "For the reasons behind it, see Book 13 and Book 15."
+   8.562,
+   "For the reasons behind it, see two of the workbook's books: Governance, Drift and Evidence, and Compliance Automation and Day-Two Operations."
   ],
   [
-   43.312,
+   47.888,
    2.413,
    "The loop, closed, looks like this."
   ],
   [
-   45.725,
+   50.3,
    7.325,
    "The ticket authorizes a machine, the machine acts under a service identity, and only a re-read closes the ticket."
   ],
   [
-   53.05,
+   57.625,
    7.55,
    "The guide was rewritten as a gated guide on November 1, 2026, and that rewrite hasn't been reviewed yet."
   ]

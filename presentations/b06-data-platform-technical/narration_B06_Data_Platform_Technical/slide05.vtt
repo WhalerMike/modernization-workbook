@@ -1,64 +1,64 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.719
+00:00:00.050 --> 00:00:03.702
 Before any authentication work,
 the estate has to be counted,
 
 2
-00:00:03.719 --> 00:00:06.875
+00:00:03.702 --> 00:00:06.842
 because a twenty-year estate
 doesn't know what it has.
 
 3
-00:00:06.875 --> 00:00:11.887
+00:00:06.842 --> 00:00:11.830
 The instances that matter most are the ones
 nobody manages, so they're discovered,
 
 4
-00:00:11.887 --> 00:00:16.300
+00:00:11.830 --> 00:00:16.222
 not pulled from a list, using three
 instruments that each catch what the
 
 5
-00:00:16.300 --> 00:00:21.088
+00:00:16.222 --> 00:00:20.987
 others miss: a network sweep, the SPN
 trail, and Microsoft's assessment tooling.
 
 6
-00:00:21.088 --> 00:00:22.625
+00:00:20.987 --> 00:00:22.479
 Then three lenses.
 
 7
-00:00:22.625 --> 00:00:24.685
+00:00:22.479 --> 00:00:24.562
 Utilization finds the zombies,
 
 8
-00:00:24.685 --> 00:00:28.250
+00:00:24.562 --> 00:00:28.110
 and retiring them is the
 fastest way to shrink the work.
 
 9
-00:00:28.250 --> 00:00:33.650
+00:00:28.110 --> 00:00:33.727
 Version matters, because Entra logins
 need SQL Server 2022 or later.
 
 10
-00:00:33.650 --> 00:00:37.560
+00:00:33.727 --> 00:00:37.618
 And dependencies, like linked
 servers and that quarterly
 
 11
-00:00:37.560 --> 00:00:41.225
+00:00:37.618 --> 00:00:41.269
 cross-database query, most
 often overturn a naive plan.
 
 12
-00:00:41.225 --> 00:00:45.988
+00:00:41.269 --> 00:00:46.008
 Each instance then gets one verdict:
 retain, consolidate or retire.
 
 13
-00:00:45.988 --> 00:00:50.470
+00:00:46.008 --> 00:00:50.470
 That way, authentication is
 migrated once, in its final shape.

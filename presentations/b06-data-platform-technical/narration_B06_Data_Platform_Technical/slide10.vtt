@@ -1,58 +1,58 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.138
+00:00:00.050 --> 00:00:04.118
 No Windows login is dropped until
 its Entra replacement is proven.
 
 2
-00:00:04.138 --> 00:00:06.475
+00:00:04.118 --> 00:00:06.440
 The parallel run has three steps.
 
 3
-00:00:06.475 --> 00:00:11.292
+00:00:06.440 --> 00:00:11.237
 Create the Entra login, after confirming
 the person or group really maps to it,
 
 4
-00:00:11.292 --> 00:00:13.700
+00:00:11.237 --> 00:00:13.634
 which is the most labor-intensive part.
 
 5
-00:00:13.700 --> 00:00:15.863
+00:00:13.634 --> 00:00:15.791
 Validate it with the real credential.
 
 6
-00:00:15.863 --> 00:00:20.201
+00:00:15.791 --> 00:00:20.095
 Then disable the old login, don't
 drop it, and watch for thirty days.
 
 7
-00:00:20.201 --> 00:00:25.775
+00:00:20.095 --> 00:00:25.642
 And watching means evidence, not silence:
 only auditing shows what's actually used.
 
 8
-00:00:25.775 --> 00:00:30.650
+00:00:25.642 --> 00:00:30.489
 Because the old login is only disabled,
 a wrong mapping locks no one out.
 
 9
-00:00:30.650 --> 00:00:35.876
+00:00:30.489 --> 00:00:35.707
 Around that pattern sit five decisions, on
 the slide: consolidation gates migration,
 
 10
-00:00:35.876 --> 00:00:39.832
+00:00:35.707 --> 00:00:39.867
 the parallel run is required,
 SQL Authentication is eliminated,
 
 11
-00:00:39.832 --> 00:00:43.640
+00:00:39.867 --> 00:00:43.656
 older and clustered instances
 get a path or a dated exception,
 
 12
-00:00:43.640 --> 00:00:46.920
+00:00:43.656 --> 00:00:46.920
 and the per-instance record
 is how you prove it's done.

@@ -1,66 +1,66 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.075
+00:00:00.050 --> 00:00:04.271
 The short answer is that SQL Server
 trusts whatever Windows tells it.
 
 2
-00:00:04.075 --> 00:00:08.695
+00:00:04.271 --> 00:00:08.824
 A connection reaches the engine
 in one of four ways: Kerberos,
 
 3
-00:00:08.695 --> 00:00:13.038
+00:00:08.824 --> 00:00:13.344
 NTLM, a SQL login with a
 password, or Entra authentication.
 
 4
-00:00:13.038 --> 00:00:16.212
+00:00:13.344 --> 00:00:16.446
 Only Entra is ever seen
 by Conditional Access.
 
 5
-00:00:16.212 --> 00:00:18.237
+00:00:16.446 --> 00:00:18.441
 Three facts make this hard to see.
 
 6
-00:00:18.237 --> 00:00:21.659
+00:00:18.441 --> 00:00:22.031
 You can't turn Windows
 Authentication off in SQL Server,
 
 7
-00:00:21.659 --> 00:00:24.038
+00:00:22.031 --> 00:00:24.404
 because the engine hands it to Windows.
 
 8
-00:00:24.038 --> 00:00:27.664
+00:00:24.404 --> 00:00:27.977
 The protocol a connection used
 isn't written to any log;
 
 9
-00:00:27.664 --> 00:00:30.001
+00:00:27.977 --> 00:00:30.320
 you only see it in a live system view.
 
 10
-00:00:30.001 --> 00:00:36.100
+00:00:30.320 --> 00:00:36.283
 And NTLM shows up silently, for example
 when a service principal name is missing.
 
 11
-00:00:36.100 --> 00:00:38.000
+00:00:36.283 --> 00:00:38.148
 The book is fair about one thing.
 
 12
-00:00:38.000 --> 00:00:42.250
+00:00:38.148 --> 00:00:42.342
 Windows Authentication was good
 engineering for a domain-joined estate.
 
 13
-00:00:42.250 --> 00:00:47.025
+00:00:42.342 --> 00:00:47.047
 The case for replacing it is that that
 world is ending, not that it was a mistake.
 
 14
-00:00:47.025 --> 00:00:48.580
+00:00:47.047 --> 00:00:48.580
 So what's pushing it to end?

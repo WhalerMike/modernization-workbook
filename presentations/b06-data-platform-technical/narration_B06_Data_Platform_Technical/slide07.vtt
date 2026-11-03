@@ -1,48 +1,48 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.508
+00:00:00.050 --> 00:00:02.494
 The audit runs only on what the gate kept,
 
 2
-00:00:02.508 --> 00:00:07.425
+00:00:02.494 --> 00:00:07.381
 and its deliverable is a compliance record
 for each instance, not a spreadsheet.
 
 3
-00:00:07.425 --> 00:00:12.600
+00:00:07.381 --> 00:00:12.525
 It checks the authentication mode, both in
 the registry and on the running instance,
 
 4
-00:00:12.600 --> 00:00:16.050
+00:00:12.525 --> 00:00:15.955
 because a mode change only
 takes effect after a restart.
 
 5
-00:00:16.050 --> 00:00:18.525
+00:00:15.955 --> 00:00:18.398
 It classifies every login by type.
 
 6
-00:00:18.525 --> 00:00:23.130
+00:00:18.398 --> 00:00:22.994
 One trap here: the type letters are the
 view's own values, and a query written
 
 7
-00:00:23.130 --> 00:00:28.113
+00:00:22.994 --> 00:00:27.948
 against a type that doesn't exist returns
 zero rows and reports a clean instance.
 
 8
-00:00:28.113 --> 00:00:30.913
+00:00:27.948 --> 00:00:30.961
 Active SQL logins are a critical finding,
 
 9
-00:00:30.913 --> 00:00:35.113
+00:00:30.961 --> 00:00:35.135
 and an enabled SA with an old
 password is the top finding of all.
 
 10
-00:00:35.113 --> 00:00:39.050
+00:00:35.135 --> 00:00:39.050
 Each run is compared with the
 last, and drift is a violation.

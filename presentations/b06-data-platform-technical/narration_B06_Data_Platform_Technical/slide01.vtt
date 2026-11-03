@@ -5,59 +5,59 @@ WEBVTT
 Welcome.
 
 2
-00:00:00.763 --> 00:00:04.789
-This is the technical deep dive
-for Book 06 of the Federal
+00:00:00.763 --> 00:00:03.744
+This is the technical deep
+dive for Data Platform,
 
 3
-00:00:04.789 --> 00:00:09.074
-Modernization Workbook, Data
-Platform: SQL Server Identity.
+00:00:03.744 --> 00:00:07.962
+the Federal Modernization Workbook's
+book on SQL Server identity.
 
 4
-00:00:09.074 --> 00:00:14.256
+00:00:07.962 --> 00:00:13.315
 The book moves the SQL Server estate off
 Windows Authentication and onto Microsoft
 
 5
-00:00:14.256 --> 00:00:18.401
+00:00:13.315 --> 00:00:17.420
 Entra ID, and this session is for
 the people who do that work: database
 
 6
-00:00:18.401 --> 00:00:22.028
+00:00:17.420 --> 00:00:21.012
 administrators, the identity
 and server teams beside them,
 
 7
-00:00:22.028 --> 00:00:24.175
+00:00:21.012 --> 00:00:23.138
 and the security staff who sign off.
 
 8
-00:00:24.175 --> 00:00:25.737
+00:00:23.138 --> 00:00:24.699
 It comes in two parts.
 
 9
-00:00:25.737 --> 00:00:29.371
+00:00:24.699 --> 00:00:28.333
 Part 1 is the strategy: why
 the inheritance has to end,
 
 10
-00:00:29.371 --> 00:00:35.201
+00:00:28.333 --> 00:00:34.163
 how the estate is rationalized, the
 authentication decision, and how NTLM goes away.
 
 11
-00:00:35.201 --> 00:00:39.050
+00:00:34.163 --> 00:00:38.013
 Part 2 walks the ten runbooks
 in the order a DBA runs them.
 
 12
-00:00:39.050 --> 00:00:44.885
+00:00:38.013 --> 00:00:43.848
 One convention throughout: April 1, 2027
 is the program's own NTLM backstop,
 
 13
-00:00:44.885 --> 00:00:49.820
+00:00:43.848 --> 00:00:48.790
 not a Microsoft deadline, and I'll
 say which dates are external.

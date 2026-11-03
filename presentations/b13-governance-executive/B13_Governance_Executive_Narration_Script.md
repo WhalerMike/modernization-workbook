@@ -2,7 +2,7 @@
 
 ## Slide 1 — Governance, Drift & Evidence: the executive briefing
 
-Welcome. This is the executive briefing for Book 13 of the Federal Modernization Workbook: Governance, Drift and Evidence. It's for the people who fund federal systems, sign for them or answer for them: the CIO, the CISO, authorizing officials and the program office. The book asks one question. Why does compliance decay the day after the audit? Its answer is that an assessment measures one day, and the estate starts changing the next morning. I'll take four parts: why it decays, what keeps the record true, who governs it, and how it runs at scale. Each decision slide names the decision, its owner, and when it's needed. Let's start with the decay itself.
+Welcome. This is the executive briefing for Governance, Drift and Evidence, one of the books of the Federal Modernization Workbook. It's for the people who fund federal systems, sign for them or answer for them: the CIO, the CISO, authorizing officials and the program office. The book asks one question. Why does compliance decay the day after the audit? Its answer is that an assessment measures one day, and the estate starts changing the next morning. I'll take four parts: why it decays, what keeps the record true, who governs it, and how it runs at scale. Each decision slide names the decision, its owner, and when it's needed. Let's start with the decay itself.
 
 ## Slide 2 — Compliance decays the day after the audit
 

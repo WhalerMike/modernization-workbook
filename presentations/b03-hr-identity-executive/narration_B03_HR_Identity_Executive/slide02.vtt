@@ -1,63 +1,64 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:05.314
+00:00:00.050 --> 00:00:04.933
 Here's why this matters: the series
 moves four populations to the cloud,
 
 2
-00:00:05.314 --> 00:00:08.763
+00:00:04.933 --> 00:00:08.300
 each on its own track, and
-Book 03 is the HR track.
+this book is the HR track.
 
 3
-00:00:08.763 --> 00:00:09.887
+00:00:08.300 --> 00:00:09.425
 It's about people.
 
 4
-00:00:09.887 --> 00:00:14.252
+00:00:09.425 --> 00:00:13.842
 Employee accounts follow the HR
 record; contractor accounts follow the
 
 5
-00:00:14.252 --> 00:00:18.399
+00:00:13.842 --> 00:00:18.038
 contractor source of authority,
 which is still the agency's decision.
 
 6
-00:00:18.399 --> 00:00:23.288
+00:00:18.038 --> 00:00:22.926
 Joining, moving and leaving then
 change access by rule, not by ticket.
 
 7
-00:00:23.288 --> 00:00:27.583
+00:00:22.926 --> 00:00:27.220
 You'll know you're there when every
 enabled account matches an authoritative
 
 8
-00:00:27.583 --> 00:00:31.476
+00:00:27.220 --> 00:00:31.113
 record or an owned exception, and no
 hand-kept group membership is left.
 
 9
-00:00:31.476 --> 00:00:34.612
-Devices and servers are Book 05;
+00:00:31.113 --> 00:00:36.222
+Devices and servers are in Devices
+and Endpoints; service accounts and AI
 
 10
-00:00:34.612 --> 00:00:39.800
-service accounts and AI agents
-are Books 02, 06 and 17.
+00:00:36.222 --> 00:00:41.750
+agents are in Identity and Directory, Data
+Platform, and AI Identity Governance.
 
 11
-00:00:39.800 --> 00:00:43.076
+00:00:41.750 --> 00:00:45.026
 And the design supports the
 federal account-management
 
 12
-00:00:43.076 --> 00:00:46.212
+00:00:45.026 --> 00:00:48.162
 and personnel controls; it
 doesn't close them on its own.
 
 13
-00:00:46.212 --> 00:00:47.980
+00:00:48.162 --> 00:00:49.920
 Now, what access runs on.

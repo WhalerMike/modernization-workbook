@@ -30,35 +30,40 @@ authentication mandatory.
 Smart cards stay.
 
 7
-00:00:28.525 --> 00:00:33.567
+00:00:28.525 --> 00:00:33.612
 Entra certificate-based authentication
 moves card validation from the domain
 
 8
-00:00:33.567 --> 00:00:36.577
+00:00:33.612 --> 00:00:36.648
 controller to Entra ID,
 though a card only counts
 
 9
-00:00:36.577 --> 00:00:39.738
+00:00:36.648 --> 00:00:39.837
 as phishing-resistant if
 it's set up as multifactor.
 
 10
-00:00:39.738 --> 00:00:45.052
+00:00:39.837 --> 00:00:45.152
 And card issuance needs a successor first,
 because an enterprise CA depends on AD.
 
 11
-00:00:45.052 --> 00:00:47.987
+00:00:45.152 --> 00:00:48.087
 Administrators hold no standing privilege:
 
 12
-00:00:47.987 --> 00:00:52.112
+00:00:48.087 --> 00:00:52.212
 roles are activated just in time,
 and a vault covers what can't be.
 
 13
-00:00:52.112 --> 00:00:57.500
-Book 04 covers policy and privilege,
-and Book 07 the certificates.
+00:00:52.212 --> 00:00:56.125
+The Access and Privilege book
+covers policy and privilege,
+
+14
+00:00:56.125 --> 00:01:00.100
+and the PKI and Certificates
+book covers the certificates.

@@ -7,51 +7,51 @@
   ],
   [
    0.762,
-   6.975,
-   "This is the executive briefing for Book 05 of the Federal Modernization Workbook, Devices and Endpoints."
+   6.7,
+   "This is the executive briefing for Devices and Endpoints, one of the books of the Federal Modernization Workbook."
   ],
   [
-   7.737,
+   7.463,
    2.788,
    "It's for the people who decide how the fleet moves."
   ],
   [
-   10.525,
+   10.25,
    1.425,
    "The argument is short."
   ],
   [
-   11.95,
+   11.675,
    6.35,
    "Group Policy governed devices by where they sat in the directory, and that quietly did a lot of governance."
   ],
   [
-   18.3,
+   18.025,
    4.013,
    "None of it comes to the cloud, so it has to be rebuilt on purpose."
   ],
   [
-   22.312,
+   22.038,
    3.163,
    "Hybrid join is a waypoint, not a destination."
   ],
   [
-   25.475,
+   25.2,
    3.225,
    "And servers take their own road, through Azure Arc."
   ],
   [
-   28.7,
+   28.425,
    3.237,
    "I'll take four questions: why, what, who and how."
   ],
   [
-   31.938,
+   31.663,
    4.375,
    "Each decision slide names the decision, its owner and when it's needed."
   ],
   [
-   36.312,
+   36.038,
    2.725,
    "First, where this book sits in the series."
   ]
@@ -59,36 +59,36 @@
  "2": [
   [
    0.05,
-   8.338,
-   "Here's why this matters: the series moves four populations to the cloud, each on its own track, and Book 05 carries two of them."
+   7.95,
+   "Here's why this matters: the series moves four populations to the cloud, each on its own track, and this book carries two of them."
   ],
   [
-   8.387,
+   8.0,
    4.487,
    "The Intune track is end-user devices, and the Arc track is servers."
   ],
   [
-   12.875,
-   8.262,
-   "A device's attributes come from device provisioning, like the Autopilot group tag, never from HR, and a device rule can't read its owner."
+   12.488,
+   8.412,
+   "A device's attributes come from device provisioning, like the Autopilot group tag, never from H R, and a device rule can't read its owner."
   ],
   [
-   21.137,
+   20.9,
    7.85,
    "Devices are done when their policy targets those attributes and the computer-side G P O links are gone, one population at a time."
   ],
   [
-   28.988,
+   28.75,
    5.525,
    "Servers are done when each is Arc-enabled, tagged, and evaluated by Azure Policy."
   ],
   [
-   34.513,
+   34.275,
    6.287,
    "And Group Policy splits: user settings go with people, computer settings with devices and servers."
   ],
   [
-   40.8,
+   40.562,
    2.85,
    "First, which platforms each one reaches."
   ]
@@ -415,41 +415,41 @@
   ],
   [
    3.112,
-   7.2,
-   "Intune decides whether a device is compliant, and Conditional Access, from Book 04, decides what it can reach."
+   7.5,
+   "Intune decides whether a device is compliant, and Conditional Access, from Access and Privilege, decides what it can reach."
   ],
   [
-   10.312,
+   10.613,
    4.463,
    "Out of the box, a device with no compliance policy counts as compliant."
   ],
   [
-   14.775,
+   15.075,
    4.95,
    "The program flips that, so a device that slips through every group can't pass."
   ],
   [
-   19.725,
+   20.025,
    3.6,
    "A device that stops reporting for two weeks loses access."
   ],
   [
-   23.325,
+   23.625,
    6.213,
    "And the grace period, how long a failing device keeps working, is a risk decision, not a technical one."
   ],
   [
-   29.538,
+   29.837,
    5.125,
    "On the most privileged workstations, a security detection also costs access."
   ],
   [
-   34.663,
+   34.962,
    7.612,
    "The decision for the see-so: make compliance fail closed, and set the grace period, before Conditional Access relies on it."
   ],
   [
-   42.275,
+   42.575,
    2.3,
    "Next, devices that can't enroll."
   ]
@@ -902,11 +902,11 @@
   ],
   [
    45.438,
-   3.975,
-   "Book 05 has the detail, every claim footnoted."
+   4.35,
+   "Devices and Endpoints has the detail, every claim footnoted."
   ],
   [
-   49.413,
+   49.788,
    0.762,
    "Thank you."
   ]

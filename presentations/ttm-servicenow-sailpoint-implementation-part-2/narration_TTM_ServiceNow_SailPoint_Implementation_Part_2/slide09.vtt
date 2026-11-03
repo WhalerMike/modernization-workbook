@@ -1,91 +1,87 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:01.615
-Once the loop is running,
+00:00:00.050 --> 00:00:04.688
+Once the loop is running, it follows the
+Federal Modernization Workbook's tempo.
 
 2
-00:00:01.615 --> 00:00:05.763
-it follows the Federal Modernization
-Workbook's Book 13's tempo.
-
-3
-00:00:05.763 --> 00:00:07.225
+00:00:04.688 --> 00:00:06.150
 A P1 halts work.
 
-4
-00:00:07.225 --> 00:00:12.025
+3
+00:00:06.150 --> 00:00:10.950
 P2 has one hour, P3 has a
 day, and P4 has three days.
 
-5
-00:00:12.025 --> 00:00:15.150
+4
+00:00:10.950 --> 00:00:14.075
 These are the program's
 windows, not federal ones.
 
-6
-00:00:15.150 --> 00:00:18.297
+5
+00:00:14.075 --> 00:00:17.222
 Schedule the drift reconciliation
 and the re-read client,
 
-7
-00:00:18.297 --> 00:00:21.575
+6
+00:00:17.222 --> 00:00:20.500
 and keep their outputs with the
 date and the checker version.
 
-8
-00:00:21.575 --> 00:00:25.548
+7
+00:00:20.500 --> 00:00:24.473
 Report five measures to the
 governance board: detection coverage,
 
-9
-00:00:25.548 --> 00:00:28.292
+8
+00:00:24.473 --> 00:00:27.217
 how well windows are
 kept, the escalation rate,
 
-10
-00:00:28.292 --> 00:00:32.987
+9
+00:00:27.217 --> 00:00:31.912
 the share of findings closed by machine,
 and the number of declared exceptions.
 
-11
-00:00:32.987 --> 00:00:36.754
+10
+00:00:31.912 --> 00:00:35.680
 Together they show whether the
 loop is closing on machines,
 
-12
-00:00:36.754 --> 00:00:39.599
+11
+00:00:35.680 --> 00:00:38.525
 inside its windows, or
 leaning on exceptions.
 
-13
-00:00:39.599 --> 00:00:41.475
+12
+00:00:38.525 --> 00:00:40.400
 Export the evidence nightly.
 
-14
-00:00:41.475 --> 00:00:43.654
+13
+00:00:40.400 --> 00:00:42.579
 That's planned for the kit's second pass,
 
-15
-00:00:43.654 --> 00:00:46.650
+14
+00:00:42.579 --> 00:00:45.575
 and the workbook already
 builds the ServiceNow half.
 
-16
-00:00:46.650 --> 00:00:49.655
+15
+00:00:45.575 --> 00:00:48.580
 Review each declared
 exception at its end date,
 
-17
-00:00:49.655 --> 00:00:52.275
+16
+00:00:48.580 --> 00:00:51.200
 and each autonomous class every quarter.
 
-18
-00:00:52.275 --> 00:00:55.006
-These measures come from
-Book 13's tenth chapter,
+17
+00:00:51.200 --> 00:00:55.466
+These measures are the workbook's design,
+from its Ticket-to-Machine chapter,
 
-19
-00:00:55.006 --> 00:00:59.420
+18
+00:00:55.466 --> 00:00:59.860
 and they're what leadership reads to see
 whether the loop is actually working.

@@ -5,61 +5,61 @@ WEBVTT
 Welcome.
 
 2
-00:00:00.763 --> 00:00:05.605
-This is the technical deep dive for Book
-09 of the Federal Modernization Workbook,
+00:00:00.763 --> 00:00:03.947
+This is the technical deep dive
+for Network and Transport,
 
 3
-00:00:05.605 --> 00:00:09.166
-Network and Transport, and it's
-for the network engineers and
+00:00:03.947 --> 00:00:08.259
+one of the books of the Federal Modernization
+Workbook, and it's for the network
 
 4
-00:00:09.166 --> 00:00:13.225
-architects who'll actually move
-branches off hairpinned transport.
+00:00:08.259 --> 00:00:12.837
+engineers and architects who'll actually
+move branches off hairpinned transport.
 
 5
-00:00:13.225 --> 00:00:17.555
+00:00:12.837 --> 00:00:17.168
 The whole book rests on one idea:
 transport is a physics decision,
 
 6
-00:00:17.555 --> 00:00:20.087
+00:00:17.168 --> 00:00:19.700
 and control is a compliance decision.
 
 7
-00:00:20.087 --> 00:00:22.552
+00:00:19.700 --> 00:00:22.165
 Mix them up, or do them
 in the wrong order,
 
 8
-00:00:22.552 --> 00:00:25.787
+00:00:22.165 --> 00:00:25.400
 and a faster network becomes
 a compliance finding.
 
 9
-00:00:25.787 --> 00:00:31.321
+00:00:25.400 --> 00:00:30.933
 Part 1 covers policy and transport:
 what TIC 3.0 really requires,
 
 10
-00:00:31.321 --> 00:00:35.800
+00:00:30.933 --> 00:00:35.412
 then SD-WAN, SASE and the legacy
 protocols riding on new paths.
 
 11
-00:00:35.800 --> 00:00:41.084
+00:00:35.412 --> 00:00:40.697
 Part 2 covers access and architecture:
 802.1X after Active Directory,
 
 12
-00:00:41.084 --> 00:00:45.163
+00:00:40.697 --> 00:00:44.776
 then the reference design
 and who owns each decision.
 
 13
-00:00:45.163 --> 00:00:46.760
+00:00:44.776 --> 00:00:46.380
 Let's start with why.
 
 14
@@ -172,35 +172,35 @@ Module 1 starts with what
 policy actually says.
 
 37
-00:02:17.230 --> 00:02:20.143
+00:02:17.230 --> 00:02:20.151
 Module 1 is TIC 3.0 in practice.
 
 38
-00:02:20.143 --> 00:02:22.941
+00:02:20.151 --> 00:02:22.960
 Branch decisions get
 argued in policy terms,
 
 39
-00:02:22.941 --> 00:02:27.480
+00:02:22.960 --> 00:02:27.512
 and most of those arguments don't
 survive a careful read of the documents.
 
 40
-00:02:27.480 --> 00:02:29.935
+00:02:27.512 --> 00:02:29.976
 But the opposite mistake
 is just as common:
 
 41
-00:02:29.935 --> 00:02:33.092
+00:02:29.976 --> 00:02:33.141
 assuming technology-neutral
 means requirement-free.
 
 42
-00:02:33.092 --> 00:02:34.675
+00:02:33.141 --> 00:02:34.729
 We'll read what's really there,
 
 43
-00:02:34.675 --> 00:02:38.460
+00:02:34.729 --> 00:02:38.460
 and finish with how token security
 changes where data can live.
 

@@ -449,654 +449,655 @@ because revocation is where
 the risk and the evidence are.
 
 94
-00:06:17.940 --> 00:06:20.800
-Every wave passes the same attribute gate,
+00:06:17.940 --> 00:06:22.153
+Every wave passes the same attribute
+gate, straight from the Federal
 
 95
-00:06:20.800 --> 00:06:25.703
-straight from the Federal Modernization
-Workbook's Book 03's Appendix C.
+00:06:22.153 --> 00:06:27.252
+Modernization Workbook's acceptance and
+cutover appendix for HR-driven identity.
 
 96
-00:06:25.703 --> 00:06:30.752
+00:06:27.252 --> 00:06:32.303
 First, a validation report, signed
 before the cutover is even scheduled.
 
 97
-00:06:30.752 --> 00:06:34.415
+00:06:32.303 --> 00:06:35.964
 Second, a dry run on production
 data with writes switched off,
 
 98
-00:06:34.415 --> 00:06:38.003
+00:06:35.964 --> 00:06:39.552
 where every difference from
 the directory gets explained.
 
 99
-00:06:38.003 --> 00:06:40.820
+00:06:39.552 --> 00:06:42.370
 Third, the cutover, one
 population at a time,
 
 100
-00:06:40.820 --> 00:06:44.441
+00:06:42.370 --> 00:06:45.991
 with named records spot-checked
 after the first cycle.
 
 101
-00:06:44.441 --> 00:06:50.653
+00:06:45.991 --> 00:06:52.340
 Fourth, seven days in which every create,
 change and disable traces to an HR event.
 
 102
-00:06:50.653 --> 00:06:53.302
+00:06:52.340 --> 00:06:54.989
 Anything in the audit
 log without a matching
 
 103
-00:06:53.302 --> 00:06:56.666
+00:06:54.989 --> 00:06:58.353
 provisioning record is a
 finding, and the clock restarts.
 
 104
-00:06:56.666 --> 00:06:58.448
+00:06:58.353 --> 00:07:00.135
 No kit check covers that week;
 
 105
-00:06:58.448 --> 00:07:01.940
+00:07:00.135 --> 00:07:03.627
 the provisioning logs joined
 on the key are the evidence.
 
 106
-00:07:01.940 --> 00:07:05.290
+00:07:03.627 --> 00:07:06.977
 Only then does the ticket path
 for account creation close.
 
 107
-00:07:05.290 --> 00:07:07.339
+00:07:06.977 --> 00:07:09.026
 The kit still runs on every wave,
 
 108
-00:07:07.339 --> 00:07:11.880
+00:07:09.026 --> 00:07:13.560
 including a shadow comparison
 for each group the wave replaces.
 
 109
-00:07:15.630 --> 00:07:20.105
+00:07:17.310 --> 00:07:21.785
 As each population becomes
 cloud-mastered, retarget its provisioning.
 
 110
-00:07:20.105 --> 00:07:24.901
+00:07:21.785 --> 00:07:26.581
 Once its sync cycle completes, move
 it out of the HR-to-AD scope and
 
 111
-00:07:24.901 --> 00:07:30.330
+00:07:26.581 --> 00:07:32.010
 into the HR-to-Entra configuration,
 leaving the AD leg dormant but intact.
 
 112
-00:07:30.330 --> 00:07:36.418
+00:07:32.010 --> 00:07:38.098
 Microsoft lists entry checks: HR writes
 Entra ID directly, no on-premises Exchange,
 
 113
-00:07:36.418 --> 00:07:41.342
+00:07:38.098 --> 00:07:43.022
 no federation for those users, and
 no apps that bind with passwords.
 
 114
-00:07:41.342 --> 00:07:43.355
+00:07:43.022 --> 00:07:45.035
 Make those your per-population gate.
 
 115
-00:07:43.355 --> 00:07:49.014
+00:07:45.035 --> 00:07:50.694
 One honest caveat: whether this
 source-of-authority transfer works in GCC is still
 
 116
-00:07:49.014 --> 00:07:52.592
+00:07:50.694 --> 00:07:54.272
 unverified, so give that
 question an owner and a date,
 
 117
-00:07:52.592 --> 00:07:55.505
+00:07:54.272 --> 00:07:57.185
 and plan on the AD-mastered
 path by default.
 
 118
-00:07:55.505 --> 00:07:59.293
+00:07:57.185 --> 00:08:00.973
 On the right is what still needs
 AD, each with its response.
 
 119
-00:07:59.293 --> 00:08:02.760
+00:08:00.973 --> 00:08:04.440
 And if a cutover goes wrong,
 pause the provisioning job,
 
 120
-00:08:02.760 --> 00:08:08.060
+00:08:04.440 --> 00:08:09.740
 which keeps its state, quarantine the
 batch, and fall back to the prior process.
 
 121
-00:08:11.810 --> 00:08:16.438
+00:08:13.490 --> 00:08:18.118
 At agency scale, Lifecycle Workflows'
 limits bite in predictable ways,
 
 122
-00:08:16.438 --> 00:08:19.310
+00:08:18.118 --> 00:08:20.990
 and the responses here
 are design guidance.
 
 123
-00:08:19.310 --> 00:08:22.426
+00:08:20.990 --> 00:08:24.106
 The tenant allows a hundred
 workflows; one per tree,
 
 124
-00:08:22.426 --> 00:08:26.135
+00:08:24.106 --> 00:08:27.815
 event and worker type would
 already need a hundred and eight.
 
 125
-00:08:26.135 --> 00:08:29.323
+00:08:27.815 --> 00:08:31.003
 So build a few general
 workflows that branch on codes.
 
 126
-00:08:29.323 --> 00:08:34.133
+00:08:31.003 --> 00:08:35.813
 An on-demand run skips the workflow's
 own conditions and its execution limits,
 
 127
-00:08:34.133 --> 00:08:37.139
+00:08:35.813 --> 00:08:38.819
 so run it on the wrong
 people and nothing stops it;
 
 128
-00:08:37.139 --> 00:08:40.672
+00:08:38.819 --> 00:08:42.352
 treat every on-demand run as
 a change with a second person.
 
 129
-00:08:40.672 --> 00:08:44.853
+00:08:42.352 --> 00:08:46.533
 Execution limits quarantine a mass
 event until someone approves,
 
 130
-00:08:44.853 --> 00:08:49.261
+00:08:46.533 --> 00:08:50.941
 so plan a reorganization as a rehearsed
 change with an agreed release.
 
 131
-00:08:49.261 --> 00:08:53.051
+00:08:50.941 --> 00:08:54.731
 The kit reports late HR data that
 missed the three-day catch-up,
 
 132
-00:08:53.051 --> 00:08:58.090
+00:08:54.731 --> 00:08:59.770
 workflows with no execution limit, and
 a warning as you approach the ceiling.
 
 133
-00:09:01.840 --> 00:09:05.128
+00:09:03.520 --> 00:09:06.808
 Retiring the OU tree waits
 on the program twice.
 
 134
-00:09:05.128 --> 00:09:07.074
+00:09:06.808 --> 00:09:08.754
 After the rollout is complete,
 
 135
-00:09:07.074 --> 00:09:11.590
+00:09:08.754 --> 00:09:13.270
 remove the sync rule and scoping
 filters that still read OU placement.
 
 136
-00:09:11.590 --> 00:09:16.397
+00:09:13.270 --> 00:09:18.077
 After the OU-based groups retire,
 remove the hand-made delegations,
 
 137
-00:09:16.397 --> 00:09:21.553
+00:09:18.077 --> 00:09:23.233
 confirm no OU drives anything, and
 archive the tree's final export in Git.
 
 138
-00:09:21.553 --> 00:09:24.639
+00:09:23.233 --> 00:09:26.319
 Destructive steps need
 approval one item at a time.
 
 139
-00:09:24.639 --> 00:09:30.227
+00:09:26.319 --> 00:09:31.907
 To validate, a read-only script lists
 every OU that still has a GPO linked to it;
 
 140
-00:09:30.227 --> 00:09:33.952
+00:09:31.907 --> 00:09:35.632
 on a retired estate that
 list is short and expected.
 
 141
-00:09:33.952 --> 00:09:39.689
+00:09:35.632 --> 00:09:41.369
 Rollback means re-enabling, never re-creating:
 turn the accounts and GPO links back
 
 142
-00:09:39.689 --> 00:09:45.340
+00:09:41.369 --> 00:09:47.020
 on, return the population to the AD
 provisioning scope, and reopen the ticket path.
 
 143
-00:09:45.340 --> 00:09:48.918
+00:09:47.020 --> 00:09:50.598
 That's why you disable a link
 instead of deleting the GPO.
 
 144
-00:09:48.918 --> 00:09:52.320
+00:09:50.598 --> 00:09:54.000
 Deleting throws away the
 one-command rollback.
 
 145
-00:09:56.070 --> 00:10:00.807
+00:09:57.750 --> 00:10:02.487
 Gate 9 keeps it all true, and
 without it everything slowly decays.
 
 146
-00:10:00.807 --> 00:10:03.632
+00:10:02.487 --> 00:10:05.312
 It starts with the pilot,
 not after cut-over.
 
 147
-00:10:03.632 --> 00:10:09.082
+00:10:05.312 --> 00:10:10.762
 First, the CISO decides severity
 and response times, decision D-A8.
 
 148
-00:10:09.082 --> 00:10:11.669
+00:10:10.762 --> 00:10:13.349
 Then two comparisons run on a schedule.
 
 149
-00:10:11.669 --> 00:10:15.448
+00:10:13.349 --> 00:10:17.128
 On the left, HR against the
 directory: missing identities,
 
 150
-00:10:15.448 --> 00:10:20.029
+00:10:17.128 --> 00:10:21.709
 stale access for people who've left,
 orphan accounts, attribute drift,
 
 151
-00:10:20.029 --> 00:10:23.807
+00:10:21.709 --> 00:10:25.487
 unauthorized writes, credential
 drift and schema drift.
 
 152
-00:10:23.807 --> 00:10:27.920
+00:10:25.487 --> 00:10:29.600
 The severities are the program's
 defaults, not an external standard.
 
 153
-00:10:27.920 --> 00:10:32.617
+00:10:29.600 --> 00:10:34.297
 On the right, the unit and role registry
 against the tenant: unit rules that
 
 154
-00:10:32.617 --> 00:10:34.389
+00:10:34.297 --> 00:10:36.069
 drifted, paused processing,
 
 155
-00:10:34.389 --> 00:10:38.470
+00:10:36.069 --> 00:10:40.150
 role assignments nobody approved,
 and restriction mismatches.
 
 156
-00:10:38.470 --> 00:10:42.370
+00:10:40.150 --> 00:10:44.050
 Each track's own reconciliation
 feeds the same findings queue.
 
 157
-00:10:42.370 --> 00:10:46.158
+00:10:44.050 --> 00:10:47.838
 Expect a burst of high-severity
 findings in the first month.
 
 158
-00:10:46.158 --> 00:10:50.080
+00:10:47.838 --> 00:10:51.760
 That's the measurement finally
 working, not the pipeline failing.
 
 159
-00:10:53.830 --> 00:10:57.955
+00:10:55.510 --> 00:10:59.635
 The rule that makes drift close for
 good is simple: fix at the source.
 
 160
-00:10:57.955 --> 00:11:01.350
+00:10:59.635 --> 00:11:03.030
 Close each finding in the
 HR record or the rule,
 
 161
-00:11:01.350 --> 00:11:05.817
+00:11:03.030 --> 00:11:07.497
 never in the copy, because the
 next cycle overwrites the copy.
 
 162
-00:11:05.817 --> 00:11:08.885
+00:11:07.497 --> 00:11:10.565
 Access reviews don't
 change dynamic membership,
 
 163
-00:11:08.885 --> 00:11:11.492
+00:11:10.565 --> 00:11:13.172
 so review the rule and its inputs instead.
 
 164
-00:11:11.492 --> 00:11:13.616
+00:11:13.172 --> 00:11:15.296
 Logs leave Entra ID from day one,
 
 165
-00:11:13.616 --> 00:11:17.292
+00:11:15.296 --> 00:11:18.972
 because its retention is
 short and never retroactive.
 
 166
-00:11:17.292 --> 00:11:22.116
+00:11:18.972 --> 00:11:23.796
 Then keep a limits register and review it
 with every design change: rule length,
 
 167
-00:11:22.116 --> 00:11:27.088
+00:11:23.796 --> 00:11:28.768
 the dynamic group ceiling, the workflow
 and extension budgets, restricted units,
 
 168
-00:11:27.088 --> 00:11:31.392
+00:11:28.768 --> 00:11:33.072
 where dynamic units are available,
 and the memberOf preview's end date.
 
 169
-00:11:31.392 --> 00:11:35.055
+00:11:33.072 --> 00:11:36.735
 Every new workflow, unit
 or rule spends a budget.
 
 170
-00:11:35.055 --> 00:11:38.540
+00:11:36.735 --> 00:11:40.220
 Finally, run a full drift
 cycle across the whole estate,
 
 171
-00:11:38.540 --> 00:11:43.300
+00:11:40.220 --> 00:11:44.980
 closing findings at the source until
 the nightly plan is zero-action.
 
 172
-00:11:47.050 --> 00:11:49.173
+00:11:48.730 --> 00:11:50.853
 Gate 9's proof isn't a one-time run;
 
 173
-00:11:49.173 --> 00:11:52.438
+00:11:50.853 --> 00:11:54.118
 it's a set of standing
 checks on the drift cadence.
 
 174
-00:11:52.438 --> 00:11:55.423
+00:11:54.118 --> 00:11:57.103
 For the HR track, the
 uncorrelated accounts,
 
 175
-00:11:55.423 --> 00:11:58.326
+00:11:57.103 --> 00:12:00.006
 the counts per code
 and the duplicate keys.
 
 176
-00:11:58.326 --> 00:12:00.764
+00:12:00.006 --> 00:12:02.444
 For groups and units, membership swings,
 
 177
-00:12:00.764 --> 00:12:04.163
+00:12:02.444 --> 00:12:05.843
 paused processing and unit
 rules against their groups.
 
 178
-00:12:04.163 --> 00:12:08.013
+00:12:05.843 --> 00:12:09.682
 Each track also runs its own
 standing checks in its own guide:
 
 179
-00:12:08.013 --> 00:12:13.019
+00:12:09.682 --> 00:12:14.673
 devices missing their provisioning
 attributes and stale devices for Intune,
 
 180
-00:12:13.019 --> 00:12:16.792
+00:12:14.673 --> 00:12:18.436
 seven checks for Arc servers
 from tags to role assignments,
 
 181
-00:12:16.792 --> 00:12:21.413
+00:12:18.436 --> 00:12:23.043
 and owners, credentials and AI agent
 sponsors for non-person identities.
 
 182
-00:12:21.413 --> 00:12:24.488
+00:12:23.043 --> 00:12:26.158
 The commands differ by
 track: delegated for HR,
 
 183
-00:12:24.488 --> 00:12:28.938
+00:12:26.158 --> 00:12:30.667
 certificate-based for Intune, Reader
 on the subscriptions for Arc.
 
 184
-00:12:28.938 --> 00:12:34.613
-Behind them sits Book 01's verification
+00:12:30.667 --> 00:12:35.954
+Behind them sits the workbook's verification
 list, ending in zero drift findings.
 
 185
-00:12:34.613 --> 00:12:36.374
+00:12:35.954 --> 00:12:37.717
 This gate has no rollback.
 
 186
-00:12:36.374 --> 00:12:38.080
+00:12:37.717 --> 00:12:39.430
 It's the standing loop.
 
 187
-00:12:41.830 --> 00:12:45.618
+00:12:43.180 --> 00:12:46.968
 Be clear about where the kits
 stop, because an assessor will ask.
 
 188
-00:12:45.618 --> 00:12:50.284
+00:12:46.968 --> 00:12:51.634
 Every gate now has a kit check, but most
 leave a residual that no check reads,
 
 189
-00:12:50.284 --> 00:12:53.192
+00:12:51.634 --> 00:12:54.542
 and the gate names the
 evidence that stands in.
 
 190
-00:12:53.192 --> 00:12:58.318
+00:12:54.542 --> 00:12:59.668
 For this part, Gate 7's checks cover the
 membership change and the counts per code,
 
 191
-00:12:58.318 --> 00:13:03.055
+00:12:59.668 --> 00:13:04.405
 but nothing proves the mover workflow
 ran, so its own run history stands in.
 
 192
-00:13:03.055 --> 00:13:06.929
+00:13:04.405 --> 00:13:08.279
 Gate 8 has its per-wave checks,
 but nothing produces the seven-day
 
 193
-00:13:06.929 --> 00:13:11.168
+00:13:08.279 --> 00:13:12.518
 sole-source report, so the provisioning
 logs joined on the key stand in.
 
 194
-00:13:11.168 --> 00:13:15.346
+00:13:12.518 --> 00:13:16.696
 Gate 9 has the HR, group and track
 checks, but nothing compares role
 
 195
-00:13:15.346 --> 00:13:19.679
+00:13:16.696 --> 00:13:21.029
 assignments with the registry, so
 the registry diff in Git stands in.
 
 196
-00:13:19.679 --> 00:13:21.868
+00:13:21.029 --> 00:13:23.218
 The earlier gates follow the same pattern.
 
 197
-00:13:21.868 --> 00:13:25.954
+00:13:23.218 --> 00:13:27.304
 Sync, Conditional Access and the
 PIV binding each have a check now,
 
 198
-00:13:25.954 --> 00:13:30.041
+00:13:27.304 --> 00:13:31.391
 but the sync configuration, the
 report-only results and whether a
 
 199
-00:13:30.041 --> 00:13:34.355
+00:13:31.391 --> 00:13:35.705
 binding belongs to a current card
 still come from a report or a record.
 
 200
-00:13:34.355 --> 00:13:36.680
+00:13:35.705 --> 00:13:38.030
 Keep this table in the evidence packet.
 
 201
-00:13:36.680 --> 00:13:40.740
+00:13:38.030 --> 00:13:42.090
 It shows which gates were proved
 by code and which by a record.
 
 202
-00:13:44.490 --> 00:13:48.327
+00:13:45.840 --> 00:13:49.677
 One honest slide about what the
 overview made look simpler than it is.
 
 203
-00:13:48.327 --> 00:13:49.941
+00:13:49.677 --> 00:13:51.291
 This is design guidance.
 
 204
-00:13:49.941 --> 00:13:52.728
+00:13:51.291 --> 00:13:54.078
 First, a mover reaches more than groups.
 
 205
-00:13:52.728 --> 00:13:57.077
+00:13:54.078 --> 00:13:58.427
 Access that came from a package or a
 direct assignment doesn't leave when a
 
 206
-00:13:57.077 --> 00:14:01.427
+00:13:58.427 --> 00:14:02.777
 rule stops matching, and losing a licensed
 group can take a mailbox with it.
 
 207
-00:14:01.427 --> 00:14:04.303
+00:14:02.777 --> 00:14:05.653
 That's why the review of
 what's left is a control.
 
 208
-00:14:04.303 --> 00:14:07.165
+00:14:05.653 --> 00:14:08.515
 Second, hybrid lasts longer than planned.
 
 209
-00:14:07.165 --> 00:14:12.241
+00:14:08.515 --> 00:14:13.591
 Retiring AD means clearing named
 dependencies, and the end state may be a dated
 
 210
-00:14:12.241 --> 00:14:17.552
+00:14:13.591 --> 00:14:18.902
 Kerberos island, a program decision made
 at the start and revisited after rollout.
 
 211
-00:14:17.552 --> 00:14:21.364
+00:14:18.902 --> 00:14:22.714
 An island with no end date goes
 to the authorizing official.
 
 212
-00:14:21.364 --> 00:14:23.727
+00:14:22.714 --> 00:14:25.077
 Third, the numbers are proposals.
 
 213
-00:14:23.727 --> 00:14:28.441
+00:14:25.077 --> 00:14:29.791
 Ninety-nine percent correlation is a
 starting point, not a federal requirement.
 
 214
-00:14:28.441 --> 00:14:32.090
+00:14:29.791 --> 00:14:33.440
 Treat every threshold as
 a decision with an owner.
 
 215
-00:14:35.840 --> 00:14:38.702
+00:14:37.190 --> 00:14:40.052
 To close, the decisions
 and who makes them.
 
 216
-00:14:38.702 --> 00:14:42.856
+00:14:40.052 --> 00:14:44.206
 The CISO signs off the mover
 proof and owns drift severity
 
 217
-00:14:42.856 --> 00:14:46.416
+00:14:44.206 --> 00:14:47.766
 and every finding, while HR
 fixes every wrong value.
 
 218
-00:14:46.416 --> 00:14:49.128
+00:14:47.766 --> 00:14:50.478
 The executive sponsor sets the wave plan,
 
 219
-00:14:49.128 --> 00:14:52.640
+00:14:50.478 --> 00:14:53.990
 and identity engineering
 calls each wave's go or no-go.
 
 220
-00:14:52.640 --> 00:14:55.506
+00:14:53.990 --> 00:14:56.856
 A population's cutover is signed by HR,
 
 221
-00:14:55.506 --> 00:14:59.390
+00:14:56.856 --> 00:15:00.740
 the identity owner, the ISSO
 and the business owner.
 
 222
-00:14:59.390 --> 00:15:04.382
+00:15:00.740 --> 00:15:05.732
 The GCC question needs a named owner
 and a date, a reorganization's release
 
 223
-00:15:04.382 --> 00:15:09.128
+00:15:05.732 --> 00:15:10.478
 is agreed in advance, and every
 destructive step gets its own approval.
 
 224
-00:15:09.128 --> 00:15:14.210
+00:15:10.478 --> 00:15:15.560
 The checklist fits in three lines: one
 mover proved with no ticket; waves by
 
 225
-00:15:14.210 --> 00:15:19.627
+00:15:15.560 --> 00:15:20.977
 query with seven days of proof and the
 tree archived; drift closed at the source.
 
 226
-00:15:19.627 --> 00:15:24.227
+00:15:20.977 --> 00:15:25.577
 Next, take each track's own guide,
 and the project plan for the dates.
 
 227
-00:15:24.227 --> 00:15:27.166
+00:15:25.577 --> 00:15:28.516
 Make the attributes
 true, and keep them true.
 
 228
-00:15:27.166 --> 00:15:27.990
+00:15:28.516 --> 00:15:29.340
 Thank you.

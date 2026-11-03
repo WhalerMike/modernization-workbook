@@ -38,4 +38,4 @@ The charter fixes the shape and leaves the names blank for you. The executive sp
 
 ## Slide 10 — What to bring to the meeting
 
-Bring the one-page ask, with your four numbers filled in. Bring the external deadlines that apply to your estate, candidate names for sponsor and steward, a proposed start date, and a date for the first gate. And leave the room with one decision recorded, whatever it is. To go deeper, go back to the Start Here page, then Book 00 for the charter and the decisions, Book 01 for the roadmap, and Book 03 for HR-driven identity. Every claim is footnoted there. Thank you for watching the Start series.
+Bring the one-page ask, with your four numbers filled in. Bring the external deadlines that apply to your estate, candidate names for sponsor and steward, a proposed start date, and a date for the first gate. And leave the room with one decision recorded, whatever it is. To go deeper, go back to the Start Here page, then Orientation and Program for the charter and the decisions, The Transformation Arc for the roadmap, and HR-Driven Identity for HR-driven identity. Every claim is footnoted there. Thank you for watching the Start series.

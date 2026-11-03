@@ -5,47 +5,47 @@ WEBVTT
 Welcome.
 
 2
-00:00:00.763 --> 00:00:06.218
-This is the technical deep dive for Book
-15 of the Federal Modernization Workbook,
+00:00:00.763 --> 00:00:05.638
+This is the technical deep dive for
+Compliance Automation and Day-2 Operations,
 
 3
-00:00:06.218 --> 00:00:09.187
-Compliance Automation
-and Day-2 Operations.
+00:00:05.638 --> 00:00:09.037
+one of the books of the
+Federal Modernization Workbook.
 
 4
-00:00:09.187 --> 00:00:12.578
+00:00:09.037 --> 00:00:12.427
 It's for help desk leads,
 cloud and platform engineers,
 
 5
-00:00:12.578 --> 00:00:17.663
+00:00:12.427 --> 00:00:17.512
 and the people who automate controls: the
 teams who run the estate after cutover.
 
 6
-00:00:17.663 --> 00:00:21.916
+00:00:17.512 --> 00:00:21.934
 Part 1 is the front door and the
 authority: how a request comes in,
 
 7
-00:00:21.916 --> 00:00:26.251
+00:00:21.934 --> 00:00:26.442
 gets routed and verified, and what
 the help desk may do in Entra ID.
 
 8
-00:00:26.251 --> 00:00:31.788
+00:00:26.442 --> 00:00:31.714
 Part 2 is catalogs, records and controls:
 typed requests, SaaS integrations,
 
 9
-00:00:31.788 --> 00:00:37.325
+00:00:31.714 --> 00:00:36.987
 the CMDB, and control automation across
 four platforms, then who runs it all.
 
 10
-00:00:37.325 --> 00:00:40.400
+00:00:36.987 --> 00:00:40.070
 Let's start with why
 day two matters so much.
 
@@ -1080,59 +1080,59 @@ they work against, who approved the
 fix, and what re-test proved it closed.
 
 226
-00:15:11.910 --> 00:15:17.321
+00:15:11.910 --> 00:15:17.331
 The book runs one loop on every platform:
 test with the native tool, detect drift,
 
 227
-00:15:17.321 --> 00:15:22.648
+00:15:17.331 --> 00:15:22.669
 raise a typed task against the asset, fix
 it natively, and close on the next test.
 
 228
-00:15:22.648 --> 00:15:24.209
+00:15:22.669 --> 00:15:24.233
 Two rules matter most.
 
 229
-00:15:24.209 --> 00:15:28.396
+00:15:24.233 --> 00:15:28.427
 The ticketing platform reads
 control state but never writes it,
 
 230
-00:15:28.396 --> 00:15:30.923
+00:15:28.427 --> 00:15:30.963
 and a task closes on a
 re-test, not a click.
 
 231
-00:15:30.923 --> 00:15:34.679
+00:15:30.963 --> 00:15:34.727
 On Microsoft 365, CISA's
 ScubaGear is the main test,
 
 232
-00:15:34.679 --> 00:15:40.135
+00:15:34.727 --> 00:15:40.104
 and its stable policy IDs let the mapping
 from failure to task live as data.
 
 233
-00:15:40.135 --> 00:15:43.431
+00:15:40.104 --> 00:15:43.413
 Conditional Access exceptions
 get the same treatment,
 
 234
-00:15:43.431 --> 00:15:45.223
+00:15:43.413 --> 00:15:45.208
 with an approver and an expiry.
 
 235
-00:15:45.223 --> 00:15:47.088
+00:15:45.208 --> 00:15:47.076
 Compliance Manager is useful,
 
 236
-00:15:47.088 --> 00:15:50.372
+00:15:47.076 --> 00:15:50.367
 but it's a readiness signal,
 not the evidence of record.
 
 237
-00:15:50.372 --> 00:15:53.990
+00:15:50.367 --> 00:15:53.990
 Azure works the same way,
 with its own caveats.
 

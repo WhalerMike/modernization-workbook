@@ -2,7 +2,7 @@
 
 ## Slide 1 — Day-2 Operations: the technical deep dive
 
-Welcome. This is the technical deep dive for Book 15 of the Federal Modernization Workbook, Compliance Automation and Day-2 Operations. It's for help desk leads, cloud and platform engineers, and the people who automate controls: the teams who run the estate after cutover. Part 1 is the front door and the authority: how a request comes in, gets routed and verified, and what the help desk may do in Entra ID. Part 2 is catalogs, records and controls: typed requests, SaaS integrations, the CMDB, and control automation across four platforms, then who runs it all. Let's start with why day two matters so much.
+Welcome. This is the technical deep dive for Compliance Automation and Day-2 Operations, one of the books of the Federal Modernization Workbook. It's for help desk leads, cloud and platform engineers, and the people who automate controls: the teams who run the estate after cutover. Part 1 is the front door and the authority: how a request comes in, gets routed and verified, and what the help desk may do in Entra ID. Part 2 is catalogs, records and controls: typed requests, SaaS integrations, the CMDB, and control automation across four platforms, then who runs it all. Let's start with why day two matters so much.
 
 ## Slide 2 — Why this matters: a reset can hand over the account
 

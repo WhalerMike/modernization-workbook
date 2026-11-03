@@ -7,33 +7,33 @@
   ],
   [
    0.762,
-   5.537,
-   "This briefing is Book 06 of the Federal Modernization Workbook, the Data Platform."
+   5.35,
+   "This briefing comes from Data Platform, one of the books of the Federal Modernization Workbook."
   ],
   [
-   6.3,
-   4.975,
-   "It's about moving the SQL Server estate from Windows Authentication to cloud identity."
+   6.112,
+   5.025,
+   "It's about moving the sequel Server estate from Windows Authentication to cloud identity."
   ],
   [
-   11.275,
+   11.137,
    1.688,
    "Here's why it gets its own book."
   ],
   [
-   12.963,
+   12.825,
    7.625,
    "Every identity program eventually reaches the database, and that's where it finds the most Windows authentication still in use."
   ],
   [
-   20.587,
+   20.45,
    12.525,
    "We'll go in four steps: why the database is where legacy authentication hides, what replaces it, who owns the work, and how to do it, from the first inventory of the estate to a closed state you can keep proving."
   ],
   [
-   33.112,
-   2.987,
-   "Let's start with how SQL Server decides who you are."
+   32.975,
+   2.975,
+   "Let's start with how sequel Server decides who you are."
   ]
  ],
  "2": [
@@ -121,26 +121,26 @@
   ],
   [
    28.875,
-   6.95,
-   "Third, the directory modernization in Book 02 ends the domain-joined world that the service accounts depend on."
+   7.588,
+   "Third, the directory modernization in Identity and Directory ends the domain-joined world that the service accounts depend on."
   ],
   [
-   35.825,
+   36.462,
    3.125,
    "There's no external N T L M deadline."
   ],
   [
-   38.95,
-   9.475,
-   "The real dates are support dates for older SQL Server and Windows Server versions, running through 2026 and 2027, and the slide lists them."
+   39.587,
+   9.4,
+   "The real dates are support dates for older sequel Server and Windows Server versions, running through 2026 and 2027, and the slide lists them."
   ],
   [
-   48.425,
-   9.588,
-   "SQL Server 2014 and 2017 can't use Entra authentication at all, so they only get to the closed state by upgrade or retirement."
+   48.987,
+   9.675,
+   "sequel Server 2014 and 2017 can't use Entra authentication at all, so they only get to the closed state by upgrade or retirement."
   ],
   [
-   58.013,
+   58.663,
    2.263,
    "The work starts with the estate itself."
   ]
@@ -211,7 +211,7 @@
   [
    5.9,
    8.062,
-   "On SQL Server 2025, that's a managed identity; on 2022, it's an app registration with a certificate."
+   "On sequel Server 2025, that's a managed identity; on 2022, it's an app registration with a certificate."
   ],
   [
    13.963,
@@ -225,31 +225,31 @@
   ],
   [
    21.562,
-   9.825,
-   "Entra authentication through Arc isn't available in the US Government Virginia region, so a G C C tenant uses a commercial subscription in the same tenant."
+   9.912,
+   "Entra authentication through Arc isn't available in the U S Government Virginia region, so a G C C tenant uses a commercial subscription in the same tenant."
   ],
   [
-   31.387,
+   31.475,
    4.662,
    "The old runbook's government-cloud setup would never have produced Entra logins."
   ],
   [
-   36.05,
+   36.138,
    2.062,
    "fido two isn't supported here."
   ],
   [
-   38.112,
+   38.2,
    7.125,
    "And granting the instance its Graph permissions takes a privileged role administrator, so that step can't sit with the DBAs."
   ],
   [
-   45.237,
-   8.85,
-   "Arc isn't the only path, but it wins because it also brings inventory, policy, updates and Defender for the host, which is Book 05."
+   45.325,
+   9.812,
+   "Arc isn't the only path, but it wins because it also brings inventory, policy, updates and Defender for the host, which Devices and Endpoints covers."
   ],
   [
-   54.087,
+   55.138,
    2.237,
    "Next, the logins themselves."
   ]
@@ -267,41 +267,41 @@
   ],
   [
    13.425,
-   6.4,
-   "Windows groups become Entra groups, with membership driven by HR attributes from Book 03."
+   7.888,
+   "Windows groups become Entra groups, with membership driven by H R attributes, as H R-Driven Identity describes."
   ],
   [
-   19.825,
+   21.312,
    8.113,
    "Applications become service principals and managed identities, and the book is clear that Conditional Access doesn't cover managed identities."
   ],
   [
-   27.938,
+   29.425,
    1.788,
    "The parallel run is simple."
   ],
   [
-   29.725,
+   31.212,
    4.525,
    "Create the Entra user beside the Windows user and copy its permissions."
   ],
   [
-   34.25,
+   35.737,
    5.312,
    "Keep both until the audit shows no remaining Windows sessions, then disable the old one."
   ],
   [
-   39.562,
-   7.463,
-   "The old runbook had a one-step conversion shortcut, but it only works on Azure SQL Managed Instance, not on SQL Server."
+   41.05,
+   7.475,
+   "The old runbook had a one-step conversion shortcut, but it only works on Azure sequel Managed Instance, not on sequel Server."
   ],
   [
-   47.025,
+   48.525,
    7.287,
    "And one trap: when you change the instance's Entra administrator, the old one stays sysadmin until a DBA removes it."
   ],
   [
-   54.312,
+   55.812,
    1.425,
    "So who does all this?"
   ]
@@ -423,46 +423,46 @@
   ],
   [
    6.013,
-   8.137,
-   "On access, dynamic Entra groups driven by HR attributes grant database access, so no DBA hands it out manually."
+   8.075,
+   "On access, dynamic Entra groups driven by H R attributes grant database access, so no DBA hands it out manually."
   ],
   [
-   14.15,
-   8.05,
-   "Privileged database roles go through just-in-time elevation from Book 04, and reviews cover the groups, not just the logins."
+   14.088,
+   8.425,
+   "Privileged database roles go through just-in-time elevation from Access and Privilege, and reviews cover the groups, not just the logins."
   ],
   [
-   22.2,
+   22.512,
    5.85,
    "On applications, the book sorts them into four classes, each with its own migration path."
   ],
   [
-   28.05,
+   28.363,
    6.537,
    "Connection strings name a specific Entra authentication mode in production, rather than a catch-all default."
   ],
   [
-   34.587,
+   34.9,
    5.6,
    "All the common database drivers support Entra, and the book has a table of minimum versions."
   ],
   [
-   40.188,
+   40.5,
    2.225,
    "The last mile is the connection string."
   ],
   [
-   42.413,
+   42.725,
    5.312,
    "Any application that still says Integrated Security keeps the Windows path alive."
   ],
   [
-   47.725,
+   48.038,
    4.237,
    "So the application inventory is part of closure, not a follow-up."
   ],
   [
-   51.962,
+   52.275,
    2.237,
    "And closure is the last big idea."
   ]
@@ -537,41 +537,41 @@
   ],
   [
    10.562,
-   9.475,
-   "Second, fund the Arc bridge, which means a commercial subscription in the G C C tenant, with SQL Server 2022 or later as the target."
+   9.5,
+   "Second, fund the Arc bridge, which means a commercial subscription in the G C C tenant, with sequel Server 2022 or later as the target."
   ],
   [
-   20.038,
+   20.062,
    11.963,
    "Third, plan for the support dates, upgrading or retiring the 2014, 2016 and 2017 instances on time, because they can't use Entra authentication."
   ],
   [
-   32.0,
+   32.025,
    8.088,
    "And fourth, decide the certificate issuer for server TLS, because the A D Certificate Services dependency needs its own answer."
   ],
   [
-   40.087,
+   40.112,
    3.925,
    "The database is where legacy authentication hides longest."
   ],
   [
-   44.013,
+   44.038,
    7.562,
    "Bringing it into Entra is what finally lets Conditional Access, phishing-resistant sign-in and continuous evidence reach the data."
   ],
   [
-   51.575,
-   5.85,
-   "Book 06 has the narrative and ten runbooks, with every external claim footnoted."
+   51.6,
+   5.6,
+   "Data Platform has the narrative and ten runbooks, with every external claim footnoted."
   ],
   [
-   57.425,
-   5.95,
-   "Book 05 covers Arc on servers, and Book 04 the access policy it plugs into."
+   57.2,
+   6.912,
+   "Devices and Endpoints covers Arc on servers, and Access and Privilege the access policy it plugs into."
   ],
   [
-   63.375,
+   64.112,
    0.762,
    "Thank you."
   ]

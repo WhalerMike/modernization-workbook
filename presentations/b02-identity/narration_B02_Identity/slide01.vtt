@@ -5,59 +5,64 @@ WEBVTT
 Welcome.
 
 2
-00:00:00.763 --> 00:00:05.517
-This briefing comes from Book 02 of
-the Federal Modernization Workbook,
+00:00:00.763 --> 00:00:05.464
+This briefing comes from Identity and
+Directory, the Federal Modernization
 
 3
-00:00:05.517 --> 00:00:09.875
-Identity and Directory: the move
-from Active Directory to Entra ID.
+00:00:05.464 --> 00:00:09.137
+Workbook's book on the move from
+Active Directory to Entra ID.
 
 4
-00:00:09.875 --> 00:00:14.812
-What Book 02 accomplishes is a directory
+00:00:09.137 --> 00:00:13.885
+What this book accomplishes is a directory
 where an object's place in the tree has
 
 5
-00:00:14.812 --> 00:00:19.825
+00:00:13.885 --> 00:00:18.562
 become attributes and rules, and every
 service account has an owner and a target.
 
 6
-00:00:19.825 --> 00:00:21.596
+00:00:18.562 --> 00:00:20.351
 Of the workbook's four tracks,
 
 7
-00:00:21.596 --> 00:00:25.875
+00:00:20.351 --> 00:00:24.674
 it carries the directory side of the
 HR track and the service accounts.
 
 8
-00:00:25.875 --> 00:00:33.325
-People's attributes are Book 03, devices
-and servers Book 05, and AI agents Book 17.
+00:00:24.674 --> 00:00:29.500
+People's attributes are in HR-Driven
+Identity, devices and servers
 
 9
-00:00:33.325 --> 00:00:37.385
+00:00:29.500 --> 00:00:34.237
+in Devices and Endpoints, and AI
+agents in AI Identity Governance.
+
+10
+00:00:34.237 --> 00:00:38.297
 We'll take it through four
 questions: why identity matters now,
 
-10
-00:00:37.385 --> 00:00:40.887
+11
+00:00:38.297 --> 00:00:41.799
 what changes, who owns which
 decisions, and how to do it.
 
-11
-00:00:40.887 --> 00:00:43.850
+12
+00:00:41.799 --> 00:00:44.762
 The short version: this
 isn't a directory upgrade.
 
-12
-00:00:43.850 --> 00:00:47.062
+13
+00:00:44.762 --> 00:00:47.975
 It decides whether every
 later control actually works.
 
-13
-00:00:47.062 --> 00:00:48.380
+14
+00:00:47.975 --> 00:00:49.300
 Let's start with why.

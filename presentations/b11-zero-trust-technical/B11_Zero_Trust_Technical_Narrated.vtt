@@ -5,54 +5,54 @@ WEBVTT
 Welcome.
 
 2
-00:00:00.763 --> 00:00:03.929
-This is the technical deep
-dive for Book 11 of the
+00:00:00.763 --> 00:00:04.449
+This is the technical deep dive
+for Zero Trust and Assessment,
 
 3
-00:00:03.929 --> 00:00:07.887
-Federal Modernization Workbook,
-Zero Trust and Assessment.
+00:00:04.449 --> 00:00:07.775
+one of the books of the
+Federal Modernization Workbook.
 
 4
-00:00:07.887 --> 00:00:10.942
+00:00:07.775 --> 00:00:10.829
 It's for the people who
 actually run the assessment:
 
 5
-00:00:10.942 --> 00:00:13.050
+00:00:10.829 --> 00:00:12.937
 security engineers and assessors.
 
 6
-00:00:13.050 --> 00:00:15.025
+00:00:12.937 --> 00:00:14.913
 The whole book turns on one idea.
 
 7
-00:00:15.025 --> 00:00:19.736
+00:00:14.913 --> 00:00:19.623
 Zero Trust belongs to the whole agency,
 not to a product or a tenant score,
 
 8
-00:00:19.736 --> 00:00:23.488
+00:00:19.623 --> 00:00:23.375
 and the assessment tools hand
 you evidence, not a verdict.
 
 9
-00:00:23.488 --> 00:00:28.150
+00:00:23.375 --> 00:00:28.037
 Part 1 covers what the mandates really
 require and what the tools really measure.
 
 10
-00:00:28.150 --> 00:00:30.515
+00:00:28.037 --> 00:00:30.403
 Part 2 covers who owns the decisions,
 
 11
-00:00:30.515 --> 00:00:33.825
+00:00:30.403 --> 00:00:33.713
 and how to run the assessment
 so the output holds up.
 
 12
-00:00:33.825 --> 00:00:36.010
+00:00:33.713 --> 00:00:35.890
 Let's start with why this matters.
 
 13
@@ -676,50 +676,50 @@ Next, where the two tools
 overlap and where they don't.
 
 143
-00:08:46.880 --> 00:08:51.905
+00:08:46.880 --> 00:08:51.918
 The tools overlap mostly on identity, and
 now partly on email threat protection.
 
 144
-00:08:51.905 --> 00:08:55.642
+00:08:51.918 --> 00:08:55.662
 But overlap means the same
 area, not the same checks.
 
 145
-00:08:55.642 --> 00:08:58.821
+00:08:55.662 --> 00:08:58.848
 Microsoft's tool goes
 much deeper on identity,
 
 146
-00:08:58.821 --> 00:09:02.167
+00:08:58.848 --> 00:09:02.203
 and it alone covers devices,
 networking and data.
 
 147
-00:09:02.167 --> 00:09:06.875
+00:09:02.203 --> 00:09:06.920
 CISA's tool alone covers mail flow,
 Teams, sharing and Power Platform,
 
 148
-00:09:06.875 --> 00:09:10.343
+00:09:06.920 --> 00:09:10.313
 and almost half the mandatory
 policies live there.
 
 149
-00:09:10.343 --> 00:09:12.873
+00:09:10.313 --> 00:09:12.851
 So dropping either one leaves real gaps,
 
 150
-00:09:12.873 --> 00:09:17.629
+00:09:12.851 --> 00:09:17.618
 and dropping CISA's tool also stops
 the reporting the directive requires.
 
 151
-00:09:17.629 --> 00:09:20.418
+00:09:17.618 --> 00:09:20.412
 Keep both, and reconcile them by control.
 
 152
-00:09:20.418 --> 00:09:24.570
+00:09:20.412 --> 00:09:24.570
 Next, everything outside Microsoft 365.
 
 153
@@ -1376,51 +1376,51 @@ pieces of evidence and one owner.
 Next, exceptions and re-assessment.
 
 292
-00:17:49.670 --> 00:17:53.657
+00:17:49.670 --> 00:17:53.666
 Some findings won't be fixed soon,
 and that's fine if it's governed.
 
 293
-00:17:53.657 --> 00:17:56.682
+00:17:53.666 --> 00:17:56.624
 Exceptions live in the
 tool's configuration file,
 
 294
-00:17:56.682 --> 00:18:00.519
+00:17:56.624 --> 00:18:00.469
 under version control, with an
 expiry date and a named approver.
 
 295
-00:18:00.519 --> 00:18:04.910
+00:18:00.469 --> 00:18:04.871
 Whatever isn't fixed or excepted goes
 on the plan of action and milestones,
 
 296
-00:18:04.910 --> 00:18:08.220
+00:18:04.871 --> 00:18:08.189
 with an owner and the evidence
 that will prove it closed.
 
 297
-00:18:08.220 --> 00:18:12.194
+00:18:08.189 --> 00:18:12.167
 Then re-run on a calendar and
 after each remediation wave,
 
 298
-00:18:12.194 --> 00:18:15.745
+00:18:12.167 --> 00:18:15.726
 so findings close by evidence,
 not by ticket status.
 
 299
-00:18:15.745 --> 00:18:17.386
+00:18:15.726 --> 00:18:17.372
 Each run adds an interval,
 
 300
-00:18:17.386 --> 00:18:21.607
+00:18:17.372 --> 00:18:21.603
 and anything that newly breaks
 goes to the authorizing official.
 
 301
-00:18:21.607 --> 00:18:24.530
+00:18:21.603 --> 00:18:24.530
 Next, how this maps to controls.
 
 302

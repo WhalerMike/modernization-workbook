@@ -46,37 +46,38 @@ Building HR-Driven Identity, chapters
 four to seven, each with its labs.
 
 10
-00:00:37.863 --> 00:00:40.500
-For the design, see Book 03.
+00:00:37.863 --> 00:00:42.174
+For the design, see the workbook's
+HR-Driven Identity book.
 
 11
-00:00:40.500 --> 00:00:42.722
+00:00:42.174 --> 00:00:44.397
 For the attributes these gates read,
 
 12
-00:00:42.722 --> 00:00:46.350
+00:00:44.397 --> 00:00:48.025
 see the attribute-driven
 migration implementation guide.
 
 13
-00:00:46.350 --> 00:00:51.073
+00:00:48.025 --> 00:00:52.748
 To learn it all in order, use the
 learning path for HR-driven identity:
 
 14
-00:00:51.073 --> 00:00:56.050
+00:00:52.748 --> 00:00:57.725
 seven modules, one per gate, each with
 a fixture lab and a knowledge check.
 
 15
-00:00:56.050 --> 00:00:58.262
+00:00:57.725 --> 00:00:59.937
 The pipeline makes the account exist.
 
 16
-00:00:58.262 --> 00:01:01.804
+00:00:59.937 --> 00:01:03.479
 These seven gates make the HR
 record decide what happens to it,
 
 17
-00:01:01.804 --> 00:01:04.080
+00:01:03.479 --> 00:01:05.760
 and they leave the evidence that it did.

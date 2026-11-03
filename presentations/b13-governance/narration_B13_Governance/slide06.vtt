@@ -1,75 +1,75 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.400
+00:00:00.050 --> 00:00:04.408
 When the program says a control is
 satisfied, how does anyone know it's right?
 
 2
-00:00:04.400 --> 00:00:06.287
+00:00:04.408 --> 00:00:06.297
 The usual answer is trust.
 
 3
-00:00:06.287 --> 00:00:08.675
+00:00:06.297 --> 00:00:08.688
 The program's answer is determinism.
 
 4
-00:00:08.675 --> 00:00:12.282
+00:00:08.688 --> 00:00:12.301
 Give it the same version of
 the record and the same inputs,
 
 5
-00:00:12.282 --> 00:00:15.275
+00:00:12.301 --> 00:00:15.297
 and it produces the same
 evidence, byte for byte.
 
 6
-00:00:15.275 --> 00:00:17.775
+00:00:15.297 --> 00:00:17.803
 So an assessor doesn't
 have to trust the run.
 
 7
-00:00:17.775 --> 00:00:20.200
+00:00:17.803 --> 00:00:20.225
 They repeat it and compare the hashes.
 
 8
-00:00:20.200 --> 00:00:21.912
+00:00:20.225 --> 00:00:21.949
 That's different from automation.
 
 9
-00:00:21.912 --> 00:00:24.811
+00:00:21.949 --> 00:00:24.851
 Automation makes the answer arrive faster;
 
 10
-00:00:24.811 --> 00:00:28.513
+00:00:24.851 --> 00:00:28.556
 determinism makes it the same
 answer no matter who asks.
 
 11
-00:00:28.513 --> 00:00:32.112
+00:00:28.556 --> 00:00:32.085
 The rules live in three layers,
 each with its own reviewer:
 
 12
-00:00:32.112 --> 00:00:36.555
+00:00:32.085 --> 00:00:36.534
 rules that say what things mean,
 mappings that say which rules apply to
 
 13
-00:00:36.555 --> 00:00:41.074
+00:00:36.534 --> 00:00:41.060
 which controls, and runtime code, the
 only layer allowed to change state.
 
 14
-00:00:41.074 --> 00:00:46.088
+00:00:41.060 --> 00:00:46.080
 One honest limit: determinism is faithful
 to the record, not a check on it.
 
 15
-00:00:46.088 --> 00:00:49.275
+00:00:46.080 --> 00:00:49.273
 A wrong rule gives the same
 wrong answer every time.
 
 16
-00:00:49.275 --> 00:00:51.050
+00:00:49.273 --> 00:00:51.050
 Next, the drift engine.

@@ -2,7 +2,7 @@
  {
   "slide": 1,
   "title": "A Portfolio, Not a Rewrite",
-  "say": "Welcome. This briefing comes from Book 18 of the Federal Modernization Workbook, Application Modernization. It's written for CIOs and portfolio owners, architects, data teams, ISSOs and authorizing officials. I'll take four questions. Why is modernizing thousands of legacy applications a portfolio decision, not a rewrite? What should each application become? Who governs the architecture? And how do you run it at scale? The short version: decide application by application, build the changed ones on one architecture, prove the data moved, give every AI agent an owner, and let the review gates write the evidence. Let's start with where the money goes."
+  "say": "Welcome. This briefing comes from Application Modernization, one of the books of the Federal Modernization Workbook. It's written for CIOs and portfolio owners, architects, data teams, ISSOs and authorizing officials. I'll take four questions. Why is modernizing thousands of legacy applications a portfolio decision, not a rewrite? What should each application become? Who governs the architecture? And how do you run it at scale? The short version: decide application by application, build the changed ones on one architecture, prove the data moved, give every AI agent an owner, and let the review gates write the evidence. Let's start with where the money goes."
  },
  {
   "slide": 2,
@@ -62,6 +62,6 @@
  {
   "slide": 13,
   "title": "Decisions to make, and next steps",
-  "say": "So, four decisions. Ask for the inventory before the program: an owner and a proposed disposition for every application. Approve the rubric once, rather than each decision, and fund the retirements. Before any cut-over, ask to see the three proof results, and forbid dual writes. And make sure every AI agent has a sponsor and no power to change a record on its own. The next step is small. Score a pilot set of applications your architects already know well, calibrate the rubric against their judgment, and pick a first wave with one hard case in it. Book 18 has the detail, every claim footnoted. Thank you."
+  "say": "So, four decisions. Ask for the inventory before the program: an owner and a proposed disposition for every application. Approve the rubric once, rather than each decision, and fund the retirements. Before any cut-over, ask to see the three proof results, and forbid dual writes. And make sure every AI agent has a sponsor and no power to change a record on its own. The next step is small. Score a pilot set of applications your architects already know well, calibrate the rubric against their judgment, and pick a first wave with one hard case in it. Application Modernization has the detail, every claim footnoted. Thank you."
  }
 ]

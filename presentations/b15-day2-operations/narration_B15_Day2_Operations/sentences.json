@@ -7,56 +7,56 @@
   ],
   [
    0.762,
-   7.112,
-   "This briefing comes from Book 15 of the Federal Modernization Workbook, Compliance Automation and Day-Two Operations."
+   7.013,
+   "This briefing comes from Compliance Automation and Day-Two Operations, one of the books of the Federal Modernization Workbook."
   ],
   [
-   7.875,
+   7.775,
    6.338,
    "It's written for CIOs, service desk and operations leads, and information system security officers."
   ],
   [
-   14.213,
+   14.113,
    1.413,
    "I'll take four questions."
   ],
   [
-   15.625,
+   15.525,
    3.513,
    "Why does modernization succeed or fail at the help desk?"
   ],
   [
-   19.137,
+   19.038,
    1.587,
    "What does day two run on?"
   ],
   [
-   20.725,
+   20.625,
    0.912,
    "Who runs it?"
   ],
   [
-   21.637,
+   21.538,
    2.263,
    "And how do you run it, and prove it works?"
   ],
   [
-   23.9,
+   23.8,
    1.55,
    "The short version is this."
   ],
   [
-   25.45,
+   25.35,
    2.7,
    "Cutover proves the new estate can be built."
   ],
   [
-   28.15,
+   28.05,
    4.0,
    "The first locked-out user on Monday morning proves whether it can be run."
   ],
   [
-   32.15,
+   32.05,
    3.013,
    "Let's start with why the help desk holds the keys."
   ]
@@ -173,31 +173,31 @@
   ],
   [
    19.85,
-   7.575,
-   "The baseline only asks for automation in specific places, so Book 15's push for automation is really about volume."
+   7.3,
+   "The baseline only asks for automation in specific places, so this book's push for automation is really about volume."
   ],
   [
-   27.425,
+   27.15,
    7.825,
    "At day-two volume, people assembling the record by hand can't keep up, and what they produce is a reconstruction, not evidence."
   ],
   [
-   35.25,
+   34.975,
    9.1,
    "So a control has three layers: designed, deployed as code, and operated, with an owner, a gate, a clock and an evidence feed."
   ],
   [
-   44.35,
+   44.075,
    7.325,
    "Every operation should start from the source of truth, carry its approval, close with proof and emit its evidence."
   ],
   [
-   51.675,
+   51.4,
    2.625,
    "Miss one, and the work can't be attested."
   ],
   [
-   54.3,
+   54.025,
    1.387,
    "Let's look at the front door."
   ]
@@ -611,11 +611,11 @@
   ],
   [
    54.775,
-   3.725,
-   "Book 15 has the detail, every claim footnoted."
+   5.325,
+   "Compliance Automation and Day-Two Operations has the detail, every claim footnoted."
   ],
   [
-   58.5,
+   60.1,
    0.762,
    "Thank you."
   ]

@@ -1,72 +1,72 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.112
+00:00:00.050 --> 00:00:01.973
 Vendors teach their products,
 
 2
-00:00:02.112 --> 00:00:05.825
-and Book 16 names them as
+00:00:01.973 --> 00:00:05.587
+and this book names them as
 examples, never endorsements.
 
 3
-00:00:05.825 --> 00:00:10.373
+00:00:05.587 --> 00:00:10.136
 A vendor course earns a place only if it
 maps to a book procedure, it's current,
 
 4
-00:00:10.373 --> 00:00:12.940
+00:00:10.136 --> 00:00:12.703
 the agency can keep the completion record,
 
 5
-00:00:12.940 --> 00:00:16.387
+00:00:12.703 --> 00:00:16.150
 and the agency knows how the
 vendor handles learner data.
 
 6
-00:00:16.387 --> 00:00:19.261
+00:00:16.150 --> 00:00:19.024
 That record point matters,
 because exam records
 
 7
-00:00:19.261 --> 00:00:22.350
+00:00:19.024 --> 00:00:22.113
 tied to a work account vanish
 when the person leaves.
 
 8
-00:00:22.350 --> 00:00:25.937
+00:00:22.113 --> 00:00:25.700
 Lab environments are harder to
 get than most programs expect.
 
 9
-00:00:25.937 --> 00:00:27.663
+00:00:25.700 --> 00:00:27.425
 The free sandboxes are gone,
 
 10
-00:00:27.663 --> 00:00:31.638
+00:00:27.425 --> 00:00:31.400
 and the developer sandbox isn't
 offered in any government cloud.
 
 11
-00:00:31.638 --> 00:00:35.586
+00:00:31.400 --> 00:00:35.349
 So the program office arranges lab
 tenants, and before each gate the
 
 12
-00:00:35.586 --> 00:00:39.887
+00:00:35.349 --> 00:00:39.650
 team rehearses once in the agency's
 own non-production government tenant.
 
 13
-00:00:39.887 --> 00:00:44.208
+00:00:39.650 --> 00:00:43.970
 And every lab follows the same rules,
 starting with never production,
 
 14
-00:00:44.208 --> 00:00:47.088
+00:00:43.970 --> 00:00:46.850
 synthetic data only, and
 tear it down at the end.
 
 15
-00:00:47.088 --> 00:00:48.600
+00:00:46.850 --> 00:00:48.360
 Now, everyone else.

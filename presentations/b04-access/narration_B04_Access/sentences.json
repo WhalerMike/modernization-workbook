@@ -7,31 +7,31 @@
   ],
   [
    0.762,
-   6.263,
-   "This briefing comes from Book 04 of the Federal Modernization Workbook, Access and Privilege."
+   5.85,
+   "This briefing comes from Access and Privilege, one of the books of the Federal Modernization Workbook."
   ],
   [
-   7.025,
-   5.575,
-   "Book 02 moved the identity, and Book 03 made its facts trustworthy."
+   6.612,
+   6.85,
+   "Identity and Directory moved the identity, and H R-Driven Identity made its facts trustworthy."
   ],
   [
-   12.6,
+   13.463,
    10.662,
    "This book is about what happens with those facts on every sign-in: who gets access to what, under which conditions, and how administrator power is kept from becoming an open door."
   ],
   [
-   23.262,
+   24.125,
    2.538,
    "We'll take it through why, what, who and how."
   ],
   [
-   25.8,
+   26.663,
    10.738,
    "And the short version is this: in Zero Trust, every access decision is a policy decision, and the policy library is, in practice, the agency's access control."
   ],
   [
-   36.538,
+   37.4,
    1.25,
    "Let's start with why."
   ]
@@ -54,48 +54,48 @@
   ],
   [
    14.463,
-   7.65,
-   "nist describes a policy decision point, separate from where access is enforced, and in Entra ID that's Conditional Access."
+   7.662,
+   "nist describes a policy decision point, separate from where access is enforced, and in Entra I D that's Conditional Access."
   ],
   [
-   22.113,
+   22.125,
    8.012,
    "Its rules are simple: every policy that applies must be satisfied, a block wins, and exclusions override everything."
   ],
   [
-   30.125,
+   30.137,
    3.925,
    "What it replaces is access decided once and trusted afterward."
   ],
   [
-   34.05,
+   34.062,
    2.2,
    "Inside the network, so trusted."
   ],
   [
-   36.25,
+   36.263,
    2.638,
    "In the group, so allowed, forever."
   ],
   [
-   38.888,
+   38.9,
    5.3,
    "Those assumptions survive a migration unless someone deliberately replaces them with policy."
   ],
   [
-   44.188,
+   44.2,
    2.288,
    "Two consequences run through the book."
   ],
   [
-   46.475,
+   46.487,
    5.013,
    "Every exclusion is a standing hole, so each one needs an owner and a review."
   ],
   [
-   51.487,
-   6.188,
-   "And policy is only as good as the attributes it reads, which is why Book 03 matters here."
+   51.5,
+   6.75,
+   "And policy is only as good as the attributes it reads, which is why H R-Driven Identity matters here."
   ]
  ],
  "3": [
@@ -339,8 +339,8 @@
   ],
   [
    46.4,
-   8.775,
-   "It keeps Book 02's policies and adds new ones for the B O D twenty-five oh-one requirements; the slide shows the numbering."
+   9.262,
+   "It keeps the policies from Identity and Directory and adds new ones for the B O D twenty-five oh-one requirements; the slide shows the numbering."
   ]
  ],
  "8": [
@@ -386,8 +386,8 @@
   ],
   [
    41.8,
-   9.588,
-   "Appendix B sets each role's activation time, approvers and notifications, tighter for Tier 0 and Tier 1 than Book 02's first table."
+   10.312,
+   "Appendix B sets each role's activation time, approvers and notifications, tighter for Tier 0 and Tier 1 than the first table in Identity and Directory."
   ]
  ],
  "9": [
@@ -440,41 +440,41 @@
   ],
   [
    1.275,
-   6.562,
-   "Adopt Book 04's Conditional Access library and wave plan as the agency's access baseline."
+   6.1,
+   "Adopt this book's Conditional Access library and wave plan as the agency's access baseline."
   ],
   [
-   7.838,
+   7.375,
    8.625,
    "End standing privilege: every administrator role eligible through pim, with two governed break-glass accounts as the only standing exception."
   ],
   [
-   16.462,
+   16.0,
    7.537,
    "Separate deciding from executing: name the owners, scope the help desk role, and stand up the identity governance office."
   ],
   [
-   24.0,
+   23.538,
    7.325,
    "And manage access as code, with version control, review and drift monitoring, keeping the evidence from day one."
   ],
   [
-   31.325,
+   30.863,
    4.3,
    "In Zero Trust, every access decision is a policy decision."
   ],
   [
-   35.625,
+   35.163,
    6.912,
    "Writing that policy down, testing it, and proving it ran is how an agency knows who can reach what, and why."
   ],
   [
-   42.538,
-   10.338,
-   "Book 04 has the full library and settings, with every external claim footnoted, and Book 05 covers the device compliance that Conditional Access reads."
+   42.075,
+   10.887,
+   "Access and Privilege has the full library and settings, with every external claim footnoted, and Devices and Endpoints covers the device compliance that Conditional Access reads."
   ],
   [
-   52.875,
+   52.962,
    0.762,
    "Thank you."
   ]

@@ -7,46 +7,46 @@
   ],
   [
    0.762,
-   6.138,
-   "This briefing comes from Book 18 of the Federal Modernization Workbook, Application Modernization."
+   6.112,
+   "This briefing comes from Application Modernization, one of the books of the Federal Modernization Workbook."
   ],
   [
-   6.9,
-   7.463,
-   "It's written for CIOs and portfolio owners, architects, data teams, ISSOs and authorizing officials."
+   6.875,
+   7.763,
+   "It's written for CIOs and portfolio owners, architects, data teams, I S S O's and authorizing officials."
   ],
   [
-   14.363,
+   14.637,
    1.413,
    "I'll take four questions."
   ],
   [
-   15.775,
+   16.05,
    5.787,
    "Why is modernizing thousands of legacy applications a portfolio decision, not a rewrite?"
   ],
   [
-   21.562,
+   21.837,
    2.062,
    "What should each application become?"
   ],
   [
-   23.625,
+   23.9,
    1.725,
    "Who governs the architecture?"
   ],
   [
-   25.35,
+   25.625,
    1.575,
    "And how do you run it at scale?"
   ],
   [
-   26.925,
-   12.188,
-   "The short version: decide application by application, build the changed ones on one architecture, prove the data moved, give every AI agent an owner, and let the review gates write the evidence."
+   27.2,
+   12.175,
+   "The short version: decide application by application, build the changed ones on one architecture, prove the data moved, give every A I agent an owner, and let the review gates write the evidence."
   ],
   [
-   39.112,
+   39.375,
    1.962,
    "Let's start with where the money goes."
   ]
@@ -501,26 +501,26 @@
   ],
   [
    18.2,
-   5.188,
-   "And make sure every AI agent has a sponsor and no power to change a record on its own."
+   5.213,
+   "And make sure every A I agent has a sponsor and no power to change a record on its own."
   ],
   [
-   23.387,
+   23.413,
    1.613,
    "The next step is small."
   ],
   [
-   25.0,
+   25.025,
    9.338,
    "Score a pilot set of applications your architects already know well, calibrate the rubric against their judgment, and pick a first wave with one hard case in it."
   ],
   [
-   34.337,
-   3.737,
-   "Book 18 has the detail, every claim footnoted."
+   34.362,
+   4.675,
+   "Application Modernization has the detail, every claim footnoted."
   ],
   [
-   38.075,
+   39.038,
    0.762,
    "Thank you."
   ]

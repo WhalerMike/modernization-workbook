@@ -2,7 +2,7 @@
   {
     "slide": 1,
     "title": "Application Modernization: the technical deep dive",
-    "say": "Welcome. This is the technical deep dive for Book 18 of the Federal Modernization Workbook, Application Modernization. It's for architects, application and data engineers, database administrators and system security officers, the people who decide what each legacy application becomes, then build it, move its data and prove it. The book's idea is simple: modernization is a portfolio decision made one application at a time, not one giant rewrite. Part 1 is deciding and designing. Part 2 is governing and running. One note before we start: product versions here are as of late October 2026, and they move. Let's begin with why."
+    "say": "Welcome. This is the technical deep dive for Application Modernization, one of the books of the Federal Modernization Workbook. It's for architects, application and data engineers, database administrators and system security officers, the people who decide what each legacy application becomes, then build it, move its data and prove it. The book's idea is simple: modernization is a portfolio decision made one application at a time, not one giant rewrite. Part 1 is deciding and designing. Part 2 is governing and running. One note before we start: product versions here are as of late October 2026, and they move. Let's begin with why."
   },
   {
     "slide": 2,

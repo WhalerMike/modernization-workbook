@@ -5,68 +5,68 @@ WEBVTT
 Welcome.
 
 2
-00:00:00.763 --> 00:00:04.395
+00:00:00.763 --> 00:00:04.350
 This is the technical deep
-dive for Book 07 of the
+dive for PKI and Certificates,
 
 3
-00:00:04.395 --> 00:00:08.574
-Federal Modernization
-Workbook, PKI and Certificates.
+00:00:04.350 --> 00:00:07.862
+one of the books of the
+Federal Modernization Workbook.
 
 4
-00:00:08.574 --> 00:00:11.539
+00:00:07.862 --> 00:00:10.826
 It's for the PKI engineers
 and architects who will
 
 5
-00:00:11.539 --> 00:00:14.937
+00:00:10.826 --> 00:00:14.224
 run the move off Active
 Directory Certificate Services.
 
 6
-00:00:14.937 --> 00:00:16.500
+00:00:14.224 --> 00:00:15.787
 It comes in two parts.
 
 7
-00:00:16.500 --> 00:00:21.053
+00:00:15.787 --> 00:00:20.340
 Part 1 is hardening and the target:
 how to make the AD CS that stays the
 
 8
-00:00:21.053 --> 00:00:23.004
+00:00:20.340 --> 00:00:22.291
 best-defended system you own,
 
 9
-00:00:23.004 --> 00:00:26.825
+00:00:22.291 --> 00:00:26.112
 then a target of four issuers
 and one lifecycle platform.
 
 10
-00:00:26.825 --> 00:00:31.881
+00:00:26.112 --> 00:00:31.169
 Part 2 is issuing, migrating and
 retiring: Intune certificate profiles,
 
 11
-00:00:31.881 --> 00:00:37.538
+00:00:31.169 --> 00:00:36.826
 strong mapping and Entra certificate-based
 authentication, then coexistence,
 
 12
-00:00:37.538 --> 00:00:41.737
+00:00:36.826 --> 00:00:41.025
 the six-wave migration, monitoring
 and retiring the old CAs.
 
 13
-00:00:41.737 --> 00:00:44.725
+00:00:41.025 --> 00:00:43.940
 The commands live in the
 chapters and appendices,
 
 14
-00:00:44.725 --> 00:00:48.224
+00:00:43.940 --> 00:00:47.437
 marked as illustrative and
 untested against production.
 
 15
-00:00:48.224 --> 00:00:49.800
+00:00:47.437 --> 00:00:49.030
 I'll stick to what matters.

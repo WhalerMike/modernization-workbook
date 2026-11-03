@@ -2,7 +2,7 @@
 
 ## Slide 1 — Federal Compliance & Authorization: executive briefing
 
-Welcome. This is the executive briefing for Book 14 of the Federal Modernization Workbook, Federal Compliance and Authorization. It's for the people who sign for a system or answer for it: authorizing officials, the CISO and CIO, ISSOs, the privacy officer and program managers. The book's argument fits in one line. A control described in a plan but never shown working is a promise, and an authorization built on promises decays the day after the assessment. I'll take four questions: why every control needs proof, what each control family needs, who owns compliance, and how to build and keep the package. Each decision slide names the decision, its owner, and when it's needed. Let's start with who owes which proof.
+Welcome. This is the executive briefing for Federal Compliance and Authorization, one of the books of the Federal Modernization Workbook. It's for the people who sign for a system or answer for it: authorizing officials, the CISO and CIO, ISSOs, the privacy officer and program managers. The book's argument fits in one line. A control described in a plan but never shown working is a promise, and an authorization built on promises decays the day after the assessment. I'll take four questions: why every control needs proof, what each control family needs, who owns compliance, and how to build and keep the package. Each decision slide names the decision, its owner, and when it's needed. Let's start with who owes which proof.
 
 ## Slide 2 — A promise ages; proof can be checked again
 

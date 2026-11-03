@@ -305,11 +305,11 @@
   ],
   [
    42.987,
-   6.95,
-   "The Federal Modernization Workbook's Book 17 sets that rule for agents, and the program applies it to everything here."
+   6.013,
+   "The Federal Modernization Workbook sets that rule for agents, and the program applies it to everything here."
   ],
   [
-   49.938,
+   49.0,
    6.375,
    "And where the tenant doesn't expose the agent features, govern agents as the service principals they run as."
   ]
@@ -528,51 +528,51 @@
   ],
   [
    16.45,
-   4.95,
-   "Book 02's matrix decides by account type, and by where the workload runs."
+   5.125,
+   "The workbook's migration matrix decides by account type, and by where the workload runs."
   ],
   [
-   21.4,
+   21.575,
    1.55,
    "No stored secrets."
   ],
   [
-   22.95,
+   23.125,
    2.737,
    "Managed identities for workloads in Azure."
   ],
   [
-   25.688,
+   25.863,
    8.363,
    "Federation where the workload already has a trusted issuer, such as GitHub Actions, Kubernetes, Google Cloud or AWS."
   ],
   [
-   34.05,
+   34.225,
    2.688,
    "And certificates only where neither applies."
   ],
   [
-   36.737,
+   36.913,
    7.213,
    "A managed service account is upgraded to a group managed one first, because neither can move to a delegated account later."
   ],
   [
-   43.95,
+   44.125,
    5.925,
    "An app with a client secret moves to a managed identity, then federation, then a certificate."
   ],
   [
-   49.875,
+   50.05,
    1.762,
    "High-risk accounts go first."
   ],
   [
-   51.638,
+   51.812,
    2.312,
    "And plan ahead for group managed accounts."
   ],
   [
-   53.95,
+   54.125,
    6.025,
    "They need a key distribution root key, and domain controllers can wait up to ten hours after it's created."
   ]
@@ -677,46 +677,46 @@
   ],
   [
    19.275,
-   4.237,
-   "And Book 02's fourth phase is the books' gate for service accounts."
+   5.138,
+   "And the fourth phase of the workbook's directory migration is its gate for service accounts."
   ],
   [
-   23.512,
+   24.413,
    4.55,
    "To validate, every row in the record has a target and a decide-by date."
   ],
   [
-   28.062,
+   28.962,
    6.013,
    "The kit check for Active Directory accounts shows every high-risk one in the first wave, or retired."
   ],
   [
-   34.075,
+   34.975,
    3.112,
    "The check for secrets lists each app that holds one."
   ],
   [
-   37.188,
+   38.087,
    4.162,
    "Each has a credential target, or an exception that says why it can't move."
   ],
   [
-   41.35,
+   42.25,
    6.412,
    "Workload I D Premium is available in Azure Government through the account manager, but its free trial isn't."
   ],
   [
-   47.763,
+   48.663,
    7.775,
    "The interim path is an account kept on Kerberos, islanded, with an owner and an end date the authorizing official accepts."
   ],
   [
-   55.538,
+   56.438,
    1.875,
    "To roll back, re-decide."
   ],
   [
-   57.413,
+   58.312,
    1.775,
    "The record keeps the history."
   ]

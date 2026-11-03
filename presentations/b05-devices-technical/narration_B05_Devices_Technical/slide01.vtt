@@ -5,68 +5,68 @@ WEBVTT
 Welcome.
 
 2
-00:00:00.763 --> 00:00:04.038
-This is the technical deep
-dive for Book 05 of the
+00:00:00.763 --> 00:00:04.138
+This is the technical deep dive
+for Devices and Endpoints,
 
 3
-00:00:04.038 --> 00:00:07.887
-Federal Modernization Workbook,
-Devices and Endpoints.
+00:00:04.138 --> 00:00:07.374
+one of the books of the
+Federal Modernization Workbook.
 
 4
-00:00:07.887 --> 00:00:11.671
+00:00:07.374 --> 00:00:11.158
 It's for the architects and
 engineers who move a domain-joined
 
 5
-00:00:11.671 --> 00:00:14.638
+00:00:11.158 --> 00:00:14.125
 fleet onto Intune, and its
 servers onto Azure Arc.
 
 6
-00:00:14.638 --> 00:00:16.199
+00:00:14.125 --> 00:00:15.687
 It comes in two parts.
 
 7
-00:00:16.199 --> 00:00:21.043
+00:00:15.687 --> 00:00:20.531
 Part 1 is the endpoints: how a new device
 is governed from the moment it powers on,
 
 8
-00:00:21.043 --> 00:00:24.992
+00:00:20.531 --> 00:00:24.480
 the three paths an existing estate
 can take to the same end state,
 
 9
-00:00:24.992 --> 00:00:29.462
+00:00:24.480 --> 00:00:28.950
 and then the Group Policy sunset and
 the policy library that replaces it.
 
 10
-00:00:29.462 --> 00:00:33.776
+00:00:28.950 --> 00:00:33.264
 Part 2 is servers and the run state:
 bringing servers under Arc with
 
 11
-00:00:33.776 --> 00:00:38.012
+00:00:33.264 --> 00:00:37.500
 a day-one baseline, then operating
 and evidencing the whole fleet.
 
 12
-00:00:38.012 --> 00:00:42.358
+00:00:37.500 --> 00:00:41.793
 The scripts and policy payloads live
 in the chapters and Appendix A,
 
 13
-00:00:42.358 --> 00:00:44.763
+00:00:41.793 --> 00:00:44.213
 marked as illustrative and untested.
 
 14
-00:00:44.763 --> 00:00:46.288
+00:00:44.213 --> 00:00:45.737
 I'll stick to what matters.
 
 15
-00:00:46.288 --> 00:00:49.250
+00:00:45.737 --> 00:00:48.700
 First, where this session
 sits in the series.

@@ -1,21 +1,21 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.724
+00:00:00.050 --> 00:00:02.684
 Module 1 is the
 inheritance and the estate:
 
 2
-00:00:02.724 --> 00:00:07.538
+00:00:02.684 --> 00:00:07.652
 what Windows Authentication in SQL Server
 really is, the drivers that end it,
 
 3
-00:00:07.538 --> 00:00:12.275
+00:00:07.652 --> 00:00:12.311
 and the inventory that decides which
 instances enter the migration at all.
 
 4
-00:00:12.275 --> 00:00:14.740
+00:00:12.311 --> 00:00:14.740
 The book's whole order
 comes out of this module.

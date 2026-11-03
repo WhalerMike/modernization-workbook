@@ -25,49 +25,49 @@ no record the control recognizes,
 so the package ages with every click.
 
 6
-00:00:19.850 --> 00:00:23.760
+00:00:19.850 --> 00:00:23.538
 The baseline only asks for
 automation in specific places,
 
 7
-00:00:23.760 --> 00:00:27.425
-so Book 15's push for automation
+00:00:23.538 --> 00:00:27.150
+so this book's push for automation
 is really about volume.
 
 8
-00:00:27.425 --> 00:00:31.686
+00:00:27.150 --> 00:00:31.411
 At day-two volume, people assembling
 the record by hand can't keep up,
 
 9
-00:00:31.686 --> 00:00:35.250
+00:00:31.411 --> 00:00:34.975
 and what they produce is a
 reconstruction, not evidence.
 
 10
-00:00:35.250 --> 00:00:39.610
+00:00:34.975 --> 00:00:39.335
 So a control has three layers:
 designed, deployed as code,
 
 11
-00:00:39.610 --> 00:00:44.350
+00:00:39.335 --> 00:00:44.075
 and operated, with an owner, a
 gate, a clock and an evidence feed.
 
 12
-00:00:44.350 --> 00:00:47.894
+00:00:44.075 --> 00:00:47.619
 Every operation should start
 from the source of truth,
 
 13
-00:00:47.894 --> 00:00:51.675
+00:00:47.619 --> 00:00:51.400
 carry its approval, close with
 proof and emit its evidence.
 
 14
-00:00:51.675 --> 00:00:54.300
+00:00:51.400 --> 00:00:54.025
 Miss one, and the work can't be attested.
 
 15
-00:00:54.300 --> 00:00:55.750
+00:00:54.025 --> 00:00:55.460
 Let's look at the front door.

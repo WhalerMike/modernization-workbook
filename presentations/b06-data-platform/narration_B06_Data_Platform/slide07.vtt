@@ -1,81 +1,81 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.200
+00:00:00.050 --> 00:00:03.174
 The book's ownership chapter
 separates deciding from doing.
 
 2
-00:00:03.200 --> 00:00:07.051
+00:00:03.174 --> 00:00:06.985
 On the deciding side, the CIO
 and data leadership decide
 
 3
-00:00:07.051 --> 00:00:11.237
+00:00:06.985 --> 00:00:11.136
 whether each instance is
 retained, consolidated or retired.
 
 4
-00:00:11.237 --> 00:00:15.139
+00:00:11.136 --> 00:00:14.989
 The CISO, ISSO and
 authorizing official decide
 
 5
-00:00:15.139 --> 00:00:19.625
+00:00:14.989 --> 00:00:19.704
 exceptions for NTLM and SQL
 logins, and sign off closure.
 
 6
-00:00:19.625 --> 00:00:23.888
+00:00:19.704 --> 00:00:23.939
 Application and data owners pick
 each application's cutover window.
 
 7
-00:00:23.888 --> 00:00:27.650
+00:00:23.939 --> 00:00:27.670
 On the doing side, the data
 platform team runs logins,
 
 8
-00:00:27.650 --> 00:00:30.275
+00:00:27.670 --> 00:00:30.274
 roles, the audit and the parallel run.
 
 9
-00:00:30.275 --> 00:00:33.646
+00:00:30.274 --> 00:00:33.617
 The identity team creates
 Entra logins and groups,
 
 10
-00:00:33.646 --> 00:00:36.375
+00:00:33.617 --> 00:00:36.324
 and grants the permissions the DBAs can't.
 
 11
-00:00:36.375 --> 00:00:38.734
+00:00:36.324 --> 00:00:38.666
 The server team onboards hosts to Arc.
 
 12
-00:00:38.734 --> 00:00:42.463
+00:00:38.666 --> 00:00:42.364
 Developers, the help desk and
 security operations support.
 
 13
-00:00:42.463 --> 00:00:44.625
+00:00:42.364 --> 00:00:44.516
 And watch for hidden administrators.
 
 14
-00:00:44.625 --> 00:00:49.716
+00:00:44.516 --> 00:00:49.554
 Someone with contributor rights on an Arc
 server is, in effect, an administrator
 
 15
-00:00:49.716 --> 00:00:54.113
+00:00:49.554 --> 00:00:54.143
 of SQL Server on that host, and can
 even switch password logins back on.
 
 16
-00:00:54.113 --> 00:00:56.775
+00:00:54.143 --> 00:00:56.794
 Azure roles need the
 same care as sysadmin.
 
 17
-00:00:56.775 --> 00:00:59.090
+00:00:56.794 --> 00:00:59.090
 Now, the NTLM plan.

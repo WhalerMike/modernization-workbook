@@ -5,67 +5,67 @@ WEBVTT
 Welcome.
 
 2
-00:00:00.763 --> 00:00:03.612
+00:00:00.763 --> 00:00:03.784
 This briefing comes from
-Book 18 of the Federal
+Application Modernization,
 
 3
-00:00:03.612 --> 00:00:06.900
-Modernization Workbook,
-Application Modernization.
+00:00:03.784 --> 00:00:06.874
+one of the books of the
+Federal Modernization Workbook.
 
 4
-00:00:06.900 --> 00:00:10.085
+00:00:06.874 --> 00:00:10.188
 It's written for CIOs
 and portfolio owners,
 
 5
-00:00:10.085 --> 00:00:14.363
+00:00:10.188 --> 00:00:14.638
 architects, data teams, ISSOs
 and authorizing officials.
 
 6
-00:00:14.363 --> 00:00:15.776
+00:00:14.638 --> 00:00:16.050
 I'll take four questions.
 
 7
-00:00:15.776 --> 00:00:18.356
+00:00:16.050 --> 00:00:18.631
 Why is modernizing thousands of legacy
 
 8
-00:00:18.356 --> 00:00:21.562
+00:00:18.631 --> 00:00:21.837
 applications a portfolio
 decision, not a rewrite?
 
 9
-00:00:21.562 --> 00:00:23.624
+00:00:21.837 --> 00:00:23.899
 What should each application become?
 
 10
-00:00:23.624 --> 00:00:25.350
+00:00:23.899 --> 00:00:25.625
 Who governs the architecture?
 
 11
-00:00:25.350 --> 00:00:26.925
+00:00:25.625 --> 00:00:27.200
 And how do you run it at scale?
 
 12
-00:00:26.925 --> 00:00:30.418
+00:00:27.200 --> 00:00:30.690
 The short version: decide
 application by application,
 
 13
-00:00:30.418 --> 00:00:34.533
+00:00:30.690 --> 00:00:34.800
 build the changed ones on one
 architecture, prove the data moved,
 
 14
-00:00:34.533 --> 00:00:39.113
+00:00:34.800 --> 00:00:39.375
 give every AI agent an owner, and let
 the review gates write the evidence.
 
 15
-00:00:39.113 --> 00:00:41.440
+00:00:39.375 --> 00:00:41.700
 Let's start with where the money goes.
 
 16
@@ -122,55 +122,55 @@ of ordinary applications.
 So why not just replace them?
 
 27
-00:01:27.040 --> 00:01:29.446
+00:01:27.040 --> 00:01:29.451
 The grand rewrite is the obvious answer,
 
 28
-00:01:29.446 --> 00:01:32.290
+00:01:29.451 --> 00:01:32.302
 and the federal record
 says it rarely ends well.
 
 29
-00:01:32.290 --> 00:01:36.728
+00:01:32.302 --> 00:01:36.751
 A rewrite delivers nothing until
 cut-over, so users wait years.
 
 30
-00:01:36.728 --> 00:01:42.666
+00:01:36.751 --> 00:01:42.694
 Its real specification is the old system,
 buried in code, data and workarounds.
 
 31
-00:01:42.666 --> 00:01:46.215
+00:01:42.694 --> 00:01:46.252
 And all the risk lands on one
 switch with no easy way back.
 
 32
-00:01:46.215 --> 00:01:50.879
+00:01:46.252 --> 00:01:50.926
 Federal policy already points the
 other way: build in useful segments,
 
 33
-00:01:50.879 --> 00:01:54.015
+00:01:50.926 --> 00:01:54.066
 each one delivering a
 working system on its own.
 
 34
-00:01:54.015 --> 00:01:56.365
+00:01:54.066 --> 00:01:56.416
 That leads to the key idea of the book.
 
 35
-00:01:56.365 --> 00:02:00.506
+00:01:56.416 --> 00:02:00.565
 The unit of decision is the application,
 because that's where the owner,
 
 36
-00:02:00.506 --> 00:02:04.290
+00:02:00.565 --> 00:02:04.285
 the data, the code and the
 authorization boundary actually live.
 
 37
-00:02:04.290 --> 00:02:07.230
+00:02:04.285 --> 00:02:07.230
 So how do you decide, thousands of times?
 
 38
@@ -682,33 +682,33 @@ Before any cut-over, ask to see the three
 proof results, and forbid dual writes.
 
 145
-00:09:06.190 --> 00:09:08.823
+00:09:06.190 --> 00:09:08.835
 And make sure every AI agent has a sponsor
 
 146
-00:09:08.823 --> 00:09:11.378
+00:09:08.835 --> 00:09:11.403
 and no power to change
 a record on its own.
 
 147
-00:09:11.378 --> 00:09:12.990
+00:09:11.403 --> 00:09:13.016
 The next step is small.
 
 148
-00:09:12.990 --> 00:09:17.695
+00:09:13.016 --> 00:09:17.720
 Score a pilot set of applications your
 architects already know well, calibrate
 
 149
-00:09:17.695 --> 00:09:22.328
+00:09:17.720 --> 00:09:22.353
 the rubric against their judgment, and pick
 a first wave with one hard case in it.
 
 150
-00:09:22.328 --> 00:09:26.064
-Book 18 has the detail,
-every claim footnoted.
+00:09:22.353 --> 00:09:27.027
+Application Modernization has the
+detail, every claim footnoted.
 
 151
-00:09:26.064 --> 00:09:26.890
+00:09:27.027 --> 00:09:27.850
 Thank you.

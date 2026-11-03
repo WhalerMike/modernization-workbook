@@ -16,62 +16,62 @@ so they pick up phishing-resistant
 MFA and Conditional Access.
 
 4
-00:00:13.425 --> 00:00:16.020
+00:00:13.425 --> 00:00:16.025
 Windows groups become Entra groups,
 
 5
-00:00:16.020 --> 00:00:19.825
-with membership driven by
-HR attributes from Book 03.
+00:00:16.025 --> 00:00:21.313
+with membership driven by HR attributes,
+as HR-Driven Identity describes.
 
 6
-00:00:19.825 --> 00:00:23.513
+00:00:21.313 --> 00:00:25.000
 Applications become service
 principals and managed identities,
 
 7
-00:00:23.513 --> 00:00:27.938
+00:00:25.000 --> 00:00:29.425
 and the book is clear that Conditional
 Access doesn't cover managed identities.
 
 8
-00:00:27.938 --> 00:00:29.726
+00:00:29.425 --> 00:00:31.213
 The parallel run is simple.
 
 9
-00:00:29.726 --> 00:00:34.250
+00:00:31.213 --> 00:00:35.737
 Create the Entra user beside the
 Windows user and copy its permissions.
 
 10
-00:00:34.250 --> 00:00:38.086
+00:00:35.737 --> 00:00:39.573
 Keep both until the audit shows
 no remaining Windows sessions,
 
 11
-00:00:38.086 --> 00:00:39.562
+00:00:39.573 --> 00:00:41.049
 then disable the old one.
 
 12
-00:00:39.562 --> 00:00:42.861
+00:00:41.049 --> 00:00:44.158
 The old runbook had a
 one-step conversion shortcut,
 
 13
-00:00:42.861 --> 00:00:47.025
+00:00:44.158 --> 00:00:48.525
 but it only works on Azure SQL
 Managed Instance, not on SQL Server.
 
 14
-00:00:47.025 --> 00:00:51.178
+00:00:48.525 --> 00:00:52.678
 And one trap: when you change the
 instance's Entra administrator,
 
 15
-00:00:51.178 --> 00:00:54.312
+00:00:52.678 --> 00:00:55.812
 the old one stays sysadmin
 until a DBA removes it.
 
 16
-00:00:54.312 --> 00:00:55.800
+00:00:55.812 --> 00:00:57.290
 So who does all this?

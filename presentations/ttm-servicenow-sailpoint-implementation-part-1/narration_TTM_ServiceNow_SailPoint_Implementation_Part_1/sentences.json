@@ -7,51 +7,51 @@
   ],
   [
    5.912,
-   4.438,
-   "The Federal Modernization Workbook's Book 13's loop is vendor-neutral."
+   4.4,
+   "The Federal Modernization Workbook's Ticket-to-Machine loop is vendor-neutral."
   ],
   [
-   10.35,
+   10.312,
    9.45,
    "This guide builds it on two named products to show what that takes, with ServiceNow as the front door and SailPoint Identity Security Cloud for identity governance."
   ],
   [
-   19.8,
+   19.762,
    2.413,
    "It's an example, not an endorsement."
   ],
   [
-   22.212,
+   22.175,
    2.5,
    "The guide's argument fits in one line."
   ],
   [
-   24.712,
+   24.675,
    4.05,
    "Two products can carry the loop, but neither one closes it alone."
   ],
   [
-   28.762,
+   28.725,
    4.75,
    "The ticket has to authorize a machine, and only a re-read can close the ticket."
   ],
   [
-   33.513,
+   33.475,
    8.225,
    "Part 1 covers the first four gates: the boundary, the writers and approvers, the sources and starting drift, and the front door."
   ],
   [
-   41.737,
+   41.7,
    4.025,
    "Part 2 covers actuation, the re-read, and the tempo."
   ],
   [
-   45.763,
+   45.725,
    2.95,
    "The kit's tests run against mocked responses."
   ],
   [
-   48.712,
+   48.675,
    2.925,
    "They prove the logic, not the live integration."
   ]
@@ -96,66 +96,66 @@
  "3": [
   [
    0.05,
-   7.838,
-   "Book 13's loop has five steps: test, detect drift, raise a typed task, actuate, and close with evidence."
+   8.475,
+   "The workbook's Ticket-to-Machine loop has five steps: test, detect drift, raise a typed task, actuate, and close with evidence."
   ],
   [
-   7.888,
+   8.525,
    3.812,
    "Here, SailPoint and the kit's reconciliation do the testing."
   ],
   [
-   11.7,
+   12.338,
    2.638,
    "SailPoint's change events detect drift."
   ],
   [
-   14.338,
+   14.975,
    3.925,
    "A SailPoint workflow posting to ServiceNow raises the task."
   ],
   [
-   18.262,
+   18.9,
    4.088,
    "SailPoint's connectors, and ServiceNow's Entra spoke, actuate."
   ],
   [
-   22.35,
+   22.988,
    3.587,
    "And a re-read closes the loop, not the ticket status."
   ],
   [
-   25.938,
+   26.575,
    4.312,
    "Used as shipped, the products fall short of the loop in four places."
   ],
   [
-   30.25,
+   30.887,
    2.8,
    "First, a ticket status isn't a re-read."
   ],
   [
-   33.05,
+   33.688,
    3.675,
    "SailPoint treats a mapped ServiceNow status as complete."
   ],
   [
-   36.725,
+   37.362,
    4.463,
    "Second, the catalog app moves access approval into ServiceNow."
   ],
   [
-   41.188,
+   41.825,
    4.862,
    "Third, SailPoint's service desk integration can't raise change requests."
   ],
   [
-   46.05,
+   46.688,
    6.775,
    "And fourth, there are two doors into the directory, because SailPoint and Entra inbound provisioning can both write."
   ],
   [
-   52.825,
+   53.462,
    2.575,
    "Each gap is closed by a specific gate."
   ]
@@ -592,21 +592,21 @@
   ],
   [
    40.825,
-   6.475,
-   "It joins H R, Graph and SailPoint on the key, and reports Book 03's drift classes."
+   6.1,
+   "It joins H R, Graph and SailPoint on the key, and reports the workbook's drift classes."
   ],
   [
-   47.3,
+   46.925,
    2.35,
    "File that first run as the baseline."
   ],
   [
-   49.65,
+   49.275,
    3.8,
    "And expect a burst of high-severity findings in the first month."
   ],
   [
-   53.45,
+   53.075,
    2.112,
    "That just means the measurement is working."
   ]

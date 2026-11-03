@@ -21,59 +21,59 @@ grants and its sign-in log, which
 also shows the parallel run.
 
 5
-00:00:17.337 --> 00:00:21.764
-Book 02 adds three tests: no
+00:00:17.337 --> 00:00:21.742
+The workbook adds three tests: no
 stored secrets where possible,
 
 6
-00:00:21.764 --> 00:00:26.099
+00:00:21.742 --> 00:00:25.649
 no outage during the run, and
 workload policies enforced.
 
 7
-00:00:26.099 --> 00:00:29.148
+00:00:25.649 --> 00:00:28.698
 To validate, one kit check
 confirms no high-risk
 
 8
-00:00:29.148 --> 00:00:32.275
+00:00:28.698 --> 00:00:31.825
 account still has a password
 that never expires.
 
 9
-00:00:32.275 --> 00:00:36.025
+00:00:31.825 --> 00:00:35.575
 Another confirms the converted
 apps no longer hold secrets.
 
 10
-00:00:36.025 --> 00:00:38.835
+00:00:35.575 --> 00:00:38.385
 Creating a federated
 credential and reading
 
 11
-00:00:38.835 --> 00:00:41.350
+00:00:38.385 --> 00:00:40.900
 sign-ins work in the US Government clouds.
 
 12
-00:00:41.350 --> 00:00:46.063
+00:00:40.900 --> 00:00:45.613
 A delegated managed service
 account needs Windows Server 2025.
 
 13
-00:00:46.063 --> 00:00:49.889
+00:00:45.613 --> 00:00:49.439
 Until an account can move, it
 stays on the Kerberos island,
 
 14
-00:00:49.889 --> 00:00:51.762
+00:00:49.439 --> 00:00:51.312
 with an owner and an end date.
 
 15
-00:00:51.762 --> 00:00:55.438
+00:00:51.312 --> 00:00:54.987
 To roll back, re-enable the
 old account and revert the app.
 
 16
-00:00:55.438 --> 00:00:58.390
+00:00:54.987 --> 00:00:57.940
 That stays possible until
 the account is deleted.

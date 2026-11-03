@@ -2,7 +2,7 @@
 
 ## Slide 1 — Network & Transport: the technical deep dive
 
-Welcome. This is the technical deep dive for Book 09 of the Federal Modernization Workbook, Network and Transport, and it's for the network engineers and architects who'll actually move branches off hairpinned transport. The whole book rests on one idea: transport is a physics decision, and control is a compliance decision. Mix them up, or do them in the wrong order, and a faster network becomes a compliance finding. Part 1 covers policy and transport: what TIC 3.0 really requires, then SD-WAN, SASE and the legacy protocols riding on new paths. Part 2 covers access and architecture: 802.1X after Active Directory, then the reference design and who owns each decision. Let's start with why.
+Welcome. This is the technical deep dive for Network and Transport, one of the books of the Federal Modernization Workbook, and it's for the network engineers and architects who'll actually move branches off hairpinned transport. The whole book rests on one idea: transport is a physics decision, and control is a compliance decision. Mix them up, or do them in the wrong order, and a faster network becomes a compliance finding. Part 1 covers policy and transport: what TIC 3.0 really requires, then SD-WAN, SASE and the legacy protocols riding on new paths. Part 2 covers access and architecture: 802.1X after Active Directory, then the reference design and who owns each decision. Let's start with why.
 
 ## Slide 2 — Why this matters: the floor, the pipe and the governor
 

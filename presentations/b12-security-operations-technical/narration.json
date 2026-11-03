@@ -2,7 +2,7 @@
   {
     "slide": 1,
     "title": "Security Operations: the technical deep dive",
-    "say": "Welcome. This is the technical deep dive for Book 12 of the Federal Modernization Workbook, Security Operations and Telemetry. It's for the people who build and run the SOC: detection engineers, SOC engineers and security architects. The whole book comes down to one idea. You can't defend what you can't see, and a finding only closes when the thing is actually fixed, with proof. Part 1 is about getting evidence to arrive and turning it into detections. Part 2 is about the findings that pile up, and who acts on them. The code lives in the chapters; I'll stick to what matters. Let's start with why this is harder than it looks."
+    "say": "Welcome. This is the technical deep dive for Security Operations and Telemetry, one of the books of the Federal Modernization Workbook. It's for the people who build and run the SOC: detection engineers, SOC engineers and security architects. The whole book comes down to one idea. You can't defend what you can't see, and a finding only closes when the thing is actually fixed, with proof. Part 1 is about getting evidence to arrive and turning it into detections. Part 2 is about the findings that pile up, and who acts on them. The code lives in the chapters; I'll stick to what matters. Let's start with why this is harder than it looks."
   },
   {
     "slide": 2,

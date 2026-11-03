@@ -5,1079 +5,1089 @@ WEBVTT
 Welcome.
 
 2
-00:00:00.763 --> 00:00:03.602
+00:00:00.763 --> 00:00:03.407
 This briefing comes from
-Book 01 of the Federal
+The Transformation Arc,
 
 3
-00:00:03.602 --> 00:00:06.587
-Modernization Workbook,
-The Transformation Arc.
+00:00:03.407 --> 00:00:06.374
+one of the books of the
+Federal Modernization Workbook.
 
 4
-00:00:06.587 --> 00:00:11.147
+00:00:06.374 --> 00:00:10.934
 It's about the move from a domain-joined
 client-server estate to cloud identity,
 
 5
-00:00:11.147 --> 00:00:14.513
+00:00:10.934 --> 00:00:14.300
 cloud device management and
 governed hybrid operations.
 
 6
-00:00:14.513 --> 00:00:18.540
-Book 01 is the workbook's
-overview: each part of it points to
+00:00:14.300 --> 00:00:17.988
+This book is the workbook's
+overview: each part of it points
 
 7
-00:00:18.540 --> 00:00:22.400
-the book that carries the detail,
-so think of it as the map.
+00:00:17.988 --> 00:00:21.675
+to the book that carries the
+detail, so think of it as the map.
 
 8
-00:00:22.400 --> 00:00:25.990
+00:00:21.675 --> 00:00:25.265
 We'll take four questions:
 why modernization is so hard,
 
 9
-00:00:25.990 --> 00:00:29.900
+00:00:25.265 --> 00:00:29.175
 what actually has to change, who
 leads it, and how to get there.
 
 10
-00:00:29.900 --> 00:00:32.624
+00:00:29.175 --> 00:00:31.899
 And if you remember one
 thing, make it this:
 
 11
-00:00:32.624 --> 00:00:36.550
+00:00:31.899 --> 00:00:35.825
 modernization is a governance
 rebuild, not a platform swap.
 
 12
-00:00:36.550 --> 00:00:39.040
+00:00:35.825 --> 00:00:38.320
 Let's start with how the estate got here.
 
 13
-00:00:42.790 --> 00:00:44.078
+00:00:42.070 --> 00:00:43.358
 Why is it so hard?
 
 14
-00:00:44.078 --> 00:00:48.291
+00:00:43.358 --> 00:00:47.571
 Because the estate was built in four
 eras, and each one solved a real
 
 15
-00:00:48.291 --> 00:00:52.964
+00:00:47.571 --> 00:00:52.244
 problem without keeping what the first
 era had: one authoritative answer.
 
 16
-00:00:52.964 --> 00:00:57.340
+00:00:52.244 --> 00:00:56.620
 On the mainframe, one machine held
 the data and controlled access to it.
 
 17
-00:00:57.340 --> 00:01:00.405
+00:00:56.620 --> 00:00:59.685
 By the late 1980s, that
 truth was spread across
 
 18
-00:01:00.405 --> 00:01:03.390
+00:00:59.685 --> 00:01:02.670
 a dozen regional
 databases and directories.
 
 19
-00:01:03.390 --> 00:01:07.907
+00:01:02.670 --> 00:01:07.187
 Then the direction reversed, and
 data center consolidation wired
 
 20
-00:01:07.907 --> 00:01:12.177
+00:01:07.187 --> 00:01:11.457
 offices back to distant facilities;
 the slide has OMB's numbers.
 
 21
-00:01:12.177 --> 00:01:15.694
+00:01:11.457 --> 00:01:14.974
 Finally, email and collaboration
 moved to the cloud,
 
 22
-00:01:15.694 --> 00:01:19.128
+00:01:14.974 --> 00:01:18.408
 while identity stayed
 behind in regional domains.
 
 23
-00:01:19.128 --> 00:01:22.003
+00:01:18.408 --> 00:01:21.283
 And each fix assumes the
 last one is finished.
 
 24
-00:01:22.003 --> 00:01:27.407
+00:01:21.283 --> 00:01:26.687
 Zero Trust assumes governed identity,
 governed identity assumes a clean directory,
 
 25
-00:01:27.407 --> 00:01:30.341
+00:01:26.687 --> 00:01:29.621
 and a clean directory
 assumes someone owns it.
 
 26
-00:01:30.341 --> 00:01:32.380
+00:01:29.621 --> 00:01:31.660
 Trust itself changed too.
 
 27
-00:01:36.130 --> 00:01:37.905
+00:01:35.410 --> 00:01:37.185
 Trust used to come from a session.
 
 28
-00:01:37.905 --> 00:01:40.674
+00:01:37.185 --> 00:01:39.954
 In Active Directory, you
 sign in once and get a
 
 29
-00:01:40.674 --> 00:01:43.668
+00:01:39.954 --> 00:01:42.948
 Kerberos ticket that lasts
 ten hours by default.
 
 30
-00:01:43.668 --> 00:01:47.793
+00:01:42.948 --> 00:01:47.073
 An account disabled during the day
 can keep using tickets it got earlier.
 
 31
-00:01:47.793 --> 00:01:51.618
+00:01:47.073 --> 00:01:50.898
 Zero Trust decides every
 request against current policy.
 
 32
-00:01:51.618 --> 00:01:54.506
+00:01:50.898 --> 00:01:53.786
 An Entra access token
 lasts an hour by default,
 
 33
-00:01:54.506 --> 00:01:59.599
+00:01:53.786 --> 00:01:58.879
 or up to 28 hours with continuous access
 evaluation, because the service listens
 
 34
-00:01:59.599 --> 00:02:04.692
+00:01:58.879 --> 00:02:03.972
 for events like a disabled account and
 stops honoring the token in near real time.
 
 35
-00:02:04.692 --> 00:02:07.218
+00:02:03.972 --> 00:02:06.498
 Think of it as a badge
 checked at every door.
 
 36
-00:02:07.218 --> 00:02:09.444
+00:02:06.498 --> 00:02:08.724
 And distance doesn't break tickets,
 
 37
-00:02:09.444 --> 00:02:12.592
+00:02:08.724 --> 00:02:11.872
 but it does slow every trip
 to a domain controller.
 
 38
-00:02:12.592 --> 00:02:16.212
+00:02:11.872 --> 00:02:15.492
 On the book's arithmetic,
 Portland to Washington can't beat
 
 39
-00:02:16.212 --> 00:02:20.180
+00:02:15.492 --> 00:02:19.460
 about 45 milliseconds round
 trip, whatever the bandwidth.
 
 40
-00:02:23.930 --> 00:02:26.505
+00:02:23.210 --> 00:02:25.785
 Chapter 02 names the core problem.
 
 41
-00:02:26.505 --> 00:02:29.244
+00:02:25.785 --> 00:02:28.524
 Active Directory was
 the governance model for
 
 42
-00:02:29.244 --> 00:02:32.193
+00:02:28.524 --> 00:02:31.473
 every Windows-era service,
 and nobody wrote it down.
 
 43
-00:02:32.193 --> 00:02:37.234
+00:02:31.473 --> 00:02:36.514
 Organizational units exist to apply
 Group Policy and delegate authority,
 
 44
-00:02:37.234 --> 00:02:39.267
+00:02:36.514 --> 00:02:38.547
 and both inherit down the tree.
 
 45
-00:02:39.267 --> 00:02:44.104
+00:02:38.547 --> 00:02:43.384
 So placing one user in an organizational
 unit (OU) did five things at once:
 
 46
-00:02:44.104 --> 00:02:48.695
+00:02:43.384 --> 00:02:47.975
 it chose their administrators,
 applied every policy along the path,
 
 47
-00:02:48.695 --> 00:02:53.942
+00:02:47.975 --> 00:02:53.222
 fed the groups built from position, set
 delegation, and drew an audit boundary.
 
 48
-00:02:53.942 --> 00:02:56.217
+00:02:53.222 --> 00:02:55.497
 Entra ID has no OU tree.
 
 49
-00:02:56.217 --> 00:02:58.321
+00:02:55.497 --> 00:02:57.601
 Dynamic groups follow attributes,
 
 50
-00:02:58.321 --> 00:03:01.730
+00:02:57.601 --> 00:03:01.010
 and administrative units scope
 roles but can't be nested.
 
 51
-00:03:01.730 --> 00:03:06.642
+00:03:01.010 --> 00:03:05.922
 Neither rebuilds the tree on its own;
 that has to be written down on purpose.
 
 52
-00:03:06.642 --> 00:03:09.659
+00:03:05.922 --> 00:03:08.939
 And Microsoft still
 supports Active Directory,
 
 53
-00:03:09.659 --> 00:03:13.790
+00:03:08.939 --> 00:03:13.070
 so retiring it is the agency's
 decision, not a vendor deadline.
 
 54
-00:03:17.540 --> 00:03:21.078
+00:03:16.820 --> 00:03:20.358
 Most AD-to-Entra projects
 are scoped around users,
 
 55
-00:03:21.078 --> 00:03:23.840
+00:03:20.358 --> 00:03:23.120
 groups and mailboxes: the visible part.
 
 56
-00:03:23.840 --> 00:03:29.414
+00:03:23.120 --> 00:03:28.694
 But the program counts eleven categories
 of object that Active Directory governs,
 
 57
-00:03:29.414 --> 00:03:34.665
+00:03:28.694 --> 00:03:33.945
 from service accounts and Group Policy
 to DNS, certificates, RADIUS and trusts.
 
 58
-00:03:34.665 --> 00:03:39.253
+00:03:33.945 --> 00:03:38.533
 Migrate the users, declare victory,
 and the rest gets left behind.
 
 59
-00:03:39.253 --> 00:03:41.427
+00:03:38.533 --> 00:03:40.707
 Worse, those failures are quiet.
 
 60
-00:03:41.427 --> 00:03:45.628
+00:03:40.707 --> 00:03:44.908
 A certificate doesn't renew, because
 enrollment was never re-pointed.
 
 61
-00:03:45.628 --> 00:03:49.852
+00:03:44.908 --> 00:03:49.132
 A device can't get on the network,
 because a group lookup comes back empty.
 
 62
-00:03:49.852 --> 00:03:54.914
+00:03:49.132 --> 00:03:54.194
 An LDAP application stops, because its
 bind account was deleted with the domain.
 
 63
-00:03:54.914 --> 00:03:58.941
+00:03:54.194 --> 00:03:58.221
 Projects fail because nobody
 treats five steps as a discipline:
 
 64
-00:03:58.941 --> 00:04:04.183
+00:03:58.221 --> 00:04:03.463
 enumerate everything, map each dependency
 to a target, keep delegation continuous,
 
 65
-00:04:04.183 --> 00:04:08.120
+00:04:03.463 --> 00:04:07.400
 deliver through a governed
 pipeline, and watch for drift.
 
 66
-00:04:11.870 --> 00:04:13.158
+00:04:11.150 --> 00:04:12.438
 Now, what changes.
 
 67
-00:04:13.158 --> 00:04:17.020
+00:04:12.438 --> 00:04:16.300
 Before anything moves, the
 program needs one place where
 
 68
-00:04:17.020 --> 00:04:20.719
+00:04:16.300 --> 00:04:19.999
 every decision is written
 down, signed and replayable.
 
 69
-00:04:20.719 --> 00:04:24.399
+00:04:19.999 --> 00:04:23.679
 Chapter 03 describes a
 reference host for that:
 
 70
-00:04:24.399 --> 00:04:27.983
+00:04:23.679 --> 00:04:27.263
 one Windows Server 2025
 server, with a standby.
 
 71
-00:04:27.983 --> 00:04:32.433
+00:04:27.263 --> 00:04:31.713
 It carries five roles, from a
 version-controlled source of truth with signed
 
 72
-00:04:32.433 --> 00:04:36.883
+00:04:31.713 --> 00:04:36.163
 commits to an adapter for each dependency
 category; the slide lists them all.
 
 73
-00:04:36.883 --> 00:04:40.594
+00:04:36.163 --> 00:04:39.874
 What matters most is that there's
 a single authoritative writer.
 
 74
-00:04:40.594 --> 00:04:43.520
+00:04:39.874 --> 00:04:42.800
 And governance and execution never mix.
 
 75
-00:04:43.520 --> 00:04:47.670
+00:04:42.800 --> 00:04:46.950
 One layer validates and signs
 plans, but never touches a target.
 
 76
-00:04:47.670 --> 00:04:51.325
+00:04:46.950 --> 00:04:50.605
 The other runs authorized
 plans, but decides nothing,
 
 77
-00:04:51.325 --> 00:04:54.482
+00:04:50.605 --> 00:04:53.762
 with separate accounts,
 credentials and logs.
 
 78
-00:04:54.482 --> 00:04:59.760
+00:04:53.762 --> 00:04:59.040
 The host reads Active Directory
 read-only, and it's protected as Tier 0.
 
 79
-00:05:03.510 --> 00:05:08.322
+00:05:02.790 --> 00:05:07.602
 Identity comes first, because every
 later control reads its attributes.
 
 80
-00:05:08.322 --> 00:05:12.847
+00:05:07.602 --> 00:05:12.227
 For the workforce, the authoritative
 source is the HR system of record.
 
 81
-00:05:12.847 --> 00:05:17.787
+00:05:12.227 --> 00:05:17.168
 Four mechanisms rebuild what the OU tree
 did: attributes replace OU placement,
 
 82
-00:05:17.787 --> 00:05:23.184
+00:05:17.168 --> 00:05:22.565
 dynamic groups replace OU-based groups,
 administrative units replace OU delegation,
 
 83
-00:05:23.184 --> 00:05:26.984
+00:05:22.565 --> 00:05:26.365
 and Conditional Access replaces
 Group Policy inheritance.
 
 84
-00:05:26.984 --> 00:05:31.863
+00:05:26.365 --> 00:05:31.406
 The program's contribution is what ties
 them together: one HR-sourced stamp
 
 85
-00:05:31.863 --> 00:05:37.135
+00:05:31.406 --> 00:05:36.853
 drives membership, delegation, policy
 targeting, licensing and drift detection.
 
 86
-00:05:37.135 --> 00:05:38.298
+00:05:36.853 --> 00:05:38.015
 Two cautions.
 
 87
-00:05:38.298 --> 00:05:41.719
+00:05:38.015 --> 00:05:41.437
 Dynamic membership usually
 updates within a few hours,
 
 88
-00:05:41.719 --> 00:05:45.810
+00:05:41.437 --> 00:05:45.528
 but it can take more than a day, so
 design job moves around that delay.
 
 89
-00:05:45.810 --> 00:05:50.248
+00:05:45.528 --> 00:05:50.003
 And HR provisioning must be the only
 thing that writes those attributes.
 
 90
-00:05:50.248 --> 00:05:54.900
-Books 02 and 03 carry identity in depth.
+00:05:50.003 --> 00:05:56.920
+Two books carry identity in depth: Identity
+and Directory, and HR-Driven Identity.
 
 91
-00:05:58.650 --> 00:06:03.915
+00:06:00.670 --> 00:06:05.935
 Here's why this matters: an Active
 Directory forest holds four populations,
 
 92
-00:06:03.915 --> 00:06:08.500
+00:06:05.935 --> 00:06:10.520
 not one, and each moves by its own
 track, with its own source of truth.
 
 93
-00:06:08.500 --> 00:06:11.819
+00:06:10.520 --> 00:06:13.839
 People are the HR track,
 from the HR record or,
 
 94
-00:06:11.819 --> 00:06:14.862
+00:06:13.839 --> 00:06:16.882
 for contractors, the contractor source.
 
 95
-00:06:14.862 --> 00:06:19.555
+00:06:16.882 --> 00:06:21.575
 End-user devices are the Intune track:
 their attributes come from device
 
 96
-00:06:19.555 --> 00:06:23.700
+00:06:21.575 --> 00:06:25.720
 provisioning, never from HR, and a
 device rule can't read its owner.
 
 97
-00:06:23.700 --> 00:06:28.625
+00:06:25.720 --> 00:06:30.645
 Servers are the Arc track, tagged at
 onboarding and governed by Azure Policy.
 
 98
-00:06:28.625 --> 00:06:32.524
+00:06:30.645 --> 00:06:34.544
 Non-person identities, like
 service accounts and AI agents,
 
 99
-00:06:32.524 --> 00:06:34.513
+00:06:34.544 --> 00:06:36.533
 answer to their owner's record.
 
 100
-00:06:34.513 --> 00:06:39.132
+00:06:36.533 --> 00:06:41.152
 The goal is the same for all four:
 true attributes, one source each,
 
 101
-00:06:39.132 --> 00:06:43.663
+00:06:41.152 --> 00:06:45.683
 read by policy, so AD can retire
 without losing what the tree did.
 
 102
-00:06:43.663 --> 00:06:48.030
+00:06:45.683 --> 00:06:50.050
 Group Policy splits the same
 way, so policy is next.
 
 103
-00:06:51.780 --> 00:06:56.028
+00:06:53.800 --> 00:06:58.048
 Group Policy was Active Directory's
 most ambitious delivery system,
 
 104
-00:06:56.028 --> 00:06:57.668
+00:06:58.048 --> 00:06:59.688
 and its most network-bound.
 
 105
-00:06:57.668 --> 00:07:00.918
+00:06:59.688 --> 00:07:02.938
 A client only gets it when it
 can reach a domain controller.
 
 106
-00:07:00.918 --> 00:07:06.205
+00:07:02.938 --> 00:07:08.225
 A cloud-native device, Entra joined
 and in Intune, has no such dependency.
 
 107
-00:07:06.205 --> 00:07:07.730
+00:07:08.225 --> 00:07:09.750
 Don't copy it across.
 
 108
-00:07:07.730 --> 00:07:11.931
+00:07:09.750 --> 00:07:13.951
 A fifty-setting GPO ported as
 fifty settings carries dead weight,
 
 109
-00:07:11.931 --> 00:07:17.455
+00:07:13.951 --> 00:07:19.475
 old conflicts and manual targeting, and
 Microsoft itself recommends starting fresh.
 
 110
-00:07:17.455 --> 00:07:22.727
+00:07:19.475 --> 00:07:24.747
 So the program regenerates one clean
 policy per category, keyed to attributes,
 
 111
-00:07:22.727 --> 00:07:25.971
+00:07:24.747 --> 00:07:27.991
 into Intune, Conditional
 Access and, for servers,
 
 112
-00:07:25.971 --> 00:07:31.080
+00:07:27.991 --> 00:07:33.100
 Azure machine configuration, because
 Intune doesn't manage Windows Server.
 
 113
-00:07:31.080 --> 00:07:34.373
+00:07:33.100 --> 00:07:36.393
 Every change passes four
 stages: validation,
 
 114
-00:07:34.373 --> 00:07:38.468
+00:07:36.393 --> 00:07:40.488
 a simulated tenant, a report-only
 pilot, then production.
 
 115
-00:07:38.468 --> 00:07:40.390
+00:07:40.488 --> 00:07:42.410
 And prefer require over block,
 
 116
-00:07:40.390 --> 00:07:44.004
+00:07:42.410 --> 00:07:46.024
 except where the federal SCuBA
 baseline demands a block.
 
 117
-00:07:44.004 --> 00:07:47.930
-Books 05 and 04 carry the detail.
+00:07:46.024 --> 00:07:51.600
+The Devices and Endpoints book and the
+Access and Privilege book carry the detail.
 
 118
-00:07:51.680 --> 00:07:55.464
+00:07:55.350 --> 00:07:59.134
 DNS, DHCP and address
 management are what agencies
 
 119
-00:07:55.464 --> 00:07:58.618
+00:07:59.134 --> 00:08:02.288
 most often put off,
 because they still work.
 
 120
-00:07:58.618 --> 00:08:01.755
+00:08:02.288 --> 00:08:05.425
 That's exactly how they keep
 the old directory alive.
 
 121
-00:08:01.755 --> 00:08:05.395
+00:08:05.425 --> 00:08:09.065
 AD-integrated zones replicate
 with Active Directory,
 
 122
-00:08:05.395 --> 00:08:10.814
+00:08:09.065 --> 00:08:14.484
 and domain-joined clients find their
 domain controllers through records in DNS,
 
 123
-00:08:10.814 --> 00:08:14.292
+00:08:14.484 --> 00:08:17.962
 so DNS and AD have to be
 retired together, in sequence.
 
 124
-00:08:14.292 --> 00:08:17.982
+00:08:17.962 --> 00:08:21.652
 The target is a governed
 DNS authority outside AD.
 
 125
-00:08:17.982 --> 00:08:21.581
+00:08:21.652 --> 00:08:25.251
 Windows DHCP servers check
 in with AD every hour,
 
 126
-00:08:21.581 --> 00:08:26.080
+00:08:25.251 --> 00:08:29.750
 but that only stops a rogue
 Windows server, not a rogue device.
 
 127
-00:08:26.080 --> 00:08:30.606
+00:08:29.750 --> 00:08:34.276
 And one address-management
 authority owns the address space,
 
 128
-00:08:30.606 --> 00:08:33.180
+00:08:34.276 --> 00:08:36.850
 with DNS and DHCP following from it.
 
 129
-00:08:33.180 --> 00:08:37.068
+00:08:36.850 --> 00:08:40.738
 Leave these three for “Phase
 2,” and it rarely comes.
 
 130
-00:08:37.068 --> 00:08:41.043
+00:08:40.738 --> 00:08:44.713
 A forest that still hosts
 DNS hasn't been retired.
 
 131
-00:08:41.043 --> 00:08:44.630
-Books 08 and 09 carry the detail.
+00:08:44.713 --> 00:08:51.450
+The books on DNS, DHCP and IPAM, and on
+Network and Transport, carry the detail.
 
 132
-00:08:48.380 --> 00:08:51.435
+00:08:55.200 --> 00:08:58.255
 Once identity, policy
 and services have moved,
 
 133
-00:08:51.435 --> 00:08:55.455
+00:08:58.255 --> 00:09:02.275
 the biggest remaining dependency
 is the domain join itself.
 
 134
-00:08:55.455 --> 00:08:58.942
+00:09:02.275 --> 00:09:05.762
 User PCs end up Entra
 joined and in Intune.
 
 135
-00:08:58.942 --> 00:09:02.368
+00:09:05.762 --> 00:09:09.188
 Servers come under Azure Arc
 and machine configuration.
 
 136
-00:09:02.368 --> 00:09:05.530
+00:09:09.188 --> 00:09:12.350
 Hybrid join is a waypoint,
 not a destination.
 
 137
-00:09:05.530 --> 00:09:09.185
+00:09:12.350 --> 00:09:16.005
 And there's no supported way to
 convert a hybrid-joined device
 
 138
-00:09:09.185 --> 00:09:13.055
+00:09:16.005 --> 00:09:19.875
 without resetting Windows, so time
 the move to a hardware refresh.
 
 139
-00:09:13.055 --> 00:09:17.938
+00:09:19.875 --> 00:09:24.758
 Every service principal name is an
 application that expects Kerberos,
 
 140
-00:09:17.938 --> 00:09:21.993
+00:09:24.758 --> 00:09:28.813
 and each needs a decision: move
 it to modern authentication,
 
 141
-00:09:21.993 --> 00:09:25.717
+00:09:28.813 --> 00:09:32.537
 retire it, or, as a last resort,
 isolate it with an end date.
 
 142
-00:09:25.717 --> 00:09:29.834
+00:09:32.537 --> 00:09:36.654
 No server leaves the domain
 until every one is resolved,
 
 143
-00:09:29.834 --> 00:09:31.981
+00:09:36.654 --> 00:09:38.801
 and NTLM goes in the same pass.
 
 144
-00:09:31.981 --> 00:09:35.855
+00:09:38.801 --> 00:09:42.675
 And compute stays with its data
 until the round trips are cut down.
 
 145
-00:09:35.855 --> 00:09:39.410
-Books 05 and 06 have the detail.
+00:09:42.675 --> 00:09:47.600
+The Devices and Endpoints book and the
+Data Platform book have the detail.
 
 146
-00:09:43.160 --> 00:09:48.235
+00:09:51.350 --> 00:09:56.425
 When Active Directory retires, being
 inside the network stops meaning anything.
 
 147
-00:09:48.235 --> 00:09:54.173
+00:09:56.425 --> 00:10:02.363
 M-22-09 puts it simply: users should
 log into applications, not networks.
 
 148
-00:09:54.173 --> 00:09:59.813
+00:10:02.363 --> 00:10:08.003
 The replacement has four parts: Zero Trust
 as the model, Conditional Access as the
 
 149
-00:09:59.813 --> 00:10:05.285
+00:10:08.003 --> 00:10:13.475
 per-request decision, SASE at the edge,
 and phishing-resistant MFA as the proof.
 
 150
-00:10:05.285 --> 00:10:10.447
+00:10:13.475 --> 00:10:18.637
 BOD 25-01 makes blocking legacy
 authentication mandatory.
 
 151
-00:10:10.447 --> 00:10:11.635
+00:10:18.637 --> 00:10:19.825
 Smart cards stay.
 
 152
-00:10:11.635 --> 00:10:16.677
+00:10:19.825 --> 00:10:24.912
 Entra certificate-based authentication
 moves card validation from the domain
 
 153
-00:10:16.677 --> 00:10:19.687
+00:10:24.912 --> 00:10:27.948
 controller to Entra ID,
 though a card only counts
 
 154
-00:10:19.687 --> 00:10:22.848
+00:10:27.948 --> 00:10:31.137
 as phishing-resistant if
 it's set up as multifactor.
 
 155
-00:10:22.848 --> 00:10:28.162
+00:10:31.137 --> 00:10:36.452
 And card issuance needs a successor first,
 because an enterprise CA depends on AD.
 
 156
-00:10:28.162 --> 00:10:31.097
+00:10:36.452 --> 00:10:39.387
 Administrators hold no standing privilege:
 
 157
-00:10:31.097 --> 00:10:35.222
+00:10:39.387 --> 00:10:43.512
 roles are activated just in time,
 and a vault covers what can't be.
 
 158
-00:10:35.222 --> 00:10:40.910
-Book 04 covers policy and privilege,
-and Book 07 the certificates.
+00:10:43.512 --> 00:10:47.424
+The Access and Privilege book
+covers policy and privilege,
 
 159
-00:10:44.660 --> 00:10:45.523
-Who leads it?
+00:10:47.424 --> 00:10:51.700
+and the PKI and Certificates
+book covers the certificates.
 
 160
-00:10:45.523 --> 00:10:47.700
-Chapter 09 sums it up in one line:
+00:10:55.450 --> 00:10:56.313
+Who leads it?
 
 161
-00:10:47.700 --> 00:10:52.809
+00:10:56.313 --> 00:10:58.490
+Chapter 09 sums it up in one line:
+
+162
+00:10:58.490 --> 00:11:03.599
 Microsoft provides the instruments;
 the program provides the orchestra.
 
-162
-00:10:52.809 --> 00:10:54.494
+163
+00:11:03.599 --> 00:11:05.284
 The tools are each excellent,
 
-163
-00:10:54.494 --> 00:10:58.776
+164
+00:11:05.284 --> 00:11:09.566
 but none of them decides what the
 organization's structure should become,
 
-164
-00:10:58.776 --> 00:11:03.197
+165
+00:11:09.566 --> 00:11:13.987
 or what to do with what they find, and
 no vendor deadline forces that decision.
 
-165
-00:11:03.197 --> 00:11:06.009
+166
+00:11:13.987 --> 00:11:16.799
 So name one decider for
 each kind of decision.
 
-166
-00:11:06.009 --> 00:11:12.322
+167
+00:11:16.799 --> 00:11:23.112
 The sponsor and CIO own scope, funding,
 sequence, and when AD components retire.
 
-167
-00:11:12.322 --> 00:11:15.871
+168
+00:11:23.112 --> 00:11:26.661
 The authorizing official is the
 only one who can accept risk,
 
-168
-00:11:15.871 --> 00:11:18.285
+169
+00:11:26.661 --> 00:11:29.075
 so every deferred cutoff lands with them.
 
-169
-00:11:18.285 --> 00:11:20.683
+170
+00:11:29.075 --> 00:11:31.473
 The CISO sets control requirements,
 
-170
-00:11:20.683 --> 00:11:24.473
+171
+00:11:31.473 --> 00:11:35.263
 and the steward holds the
 repository and clears most gates.
 
-171
-00:11:24.473 --> 00:11:28.316
+172
+00:11:35.263 --> 00:11:39.106
 Then, each month, ask three
 things: how drift is trending,
 
-172
-00:11:28.316 --> 00:11:33.130
+173
+00:11:39.106 --> 00:11:43.920
 whether changes are signed, and
 what risk acceptances are open.
 
-173
-00:11:36.880 --> 00:11:37.905
+174
+00:11:47.670 --> 00:11:48.695
 How do you get there?
 
-174
-00:11:37.905 --> 00:11:39.443
+175
+00:11:48.695 --> 00:11:50.233
 Start with an inventory.
 
-175
-00:11:39.443 --> 00:11:43.537
+176
+00:11:50.233 --> 00:11:54.327
 You can't modernize what you haven't
 counted, and nothing gets retired
 
-176
-00:11:43.537 --> 00:11:47.130
+177
+00:11:54.327 --> 00:11:57.920
 until it's written down: read-only,
 with proof of how it was read.
 
-177
-00:11:47.130 --> 00:11:49.841
+178
+00:11:57.920 --> 00:12:00.631
 The assessment account
 has no write rights,
 
-178
-00:11:49.841 --> 00:11:53.530
+179
+00:12:00.631 --> 00:12:04.320
 the code can't issue write
 commands, and every call is logged.
 
-179
-00:11:53.530 --> 00:11:58.631
+180
+00:12:04.320 --> 00:12:09.421
 An ordinary signed-in account already
 sees more than most teams expect:
 
-180
-00:11:58.631 --> 00:12:02.868
+181
+00:12:09.421 --> 00:12:13.658
 the topology, the OU tree, most
 Group Policy, users and groups.
 
-181
-00:12:02.868 --> 00:12:08.293
+182
+00:12:13.658 --> 00:12:19.083
 Every run records who, when, against
 what, and a hash of every file.
 
-182
-00:12:08.293 --> 00:12:10.680
+183
+00:12:19.083 --> 00:12:21.470
 Eleven streams feed the risk scoring.
 
-183
-00:12:10.680 --> 00:12:16.395
+184
+00:12:21.470 --> 00:12:27.185
 One example: Windows Server 2016
 reaches end of support on January 12,
 
-184
-00:12:16.395 --> 00:12:20.205
+185
+00:12:27.185 --> 00:12:30.995
 2027, so every such server
 needs a disposition.
 
-185
-00:12:20.205 --> 00:12:24.790
+186
+00:12:30.995 --> 00:12:35.580
 And no application leaves its data
 until its transactions are profiled.
 
-186
-00:12:28.540 --> 00:12:33.027
+187
+00:12:39.330 --> 00:12:43.817
 Chapter 11 turns the inventory
 into change, in three stages.
 
-187
-00:12:33.027 --> 00:12:37.077
+188
+00:12:43.817 --> 00:12:47.867
 Analyze compares the current state
 with the target and produces a diff.
 
-188
-00:12:37.077 --> 00:12:41.171
+189
+00:12:47.867 --> 00:12:51.961
 Plan expands that diff into
 actions, each scoped to one object,
 
-189
-00:12:41.171 --> 00:12:44.703
+190
+00:12:51.961 --> 00:12:55.493
 put in dependency order, and
 paired with its rollback.
 
-190
-00:12:44.703 --> 00:12:49.040
+191
+00:12:55.493 --> 00:12:59.830
 A plan has to pass validation, then
 approval by someone who didn't write it.
 
-191
-00:12:49.040 --> 00:12:53.478
+192
+00:12:59.830 --> 00:13:04.268
 Then a separate identity carries it
 out and closes with an evidence packet.
 
-192
-00:12:53.478 --> 00:12:58.110
+193
+00:13:04.268 --> 00:13:08.900
 How far automation may go is capped
 by a ladder, from simply recording,
 
-193
-00:12:58.110 --> 00:13:01.441
+194
+00:13:08.900 --> 00:13:12.231
 up to autonomy for a short
 list of low-risk changes.
 
-194
-00:13:01.441 --> 00:13:03.941
+195
+00:13:12.231 --> 00:13:14.731
 The default ceiling is gated actuation,
 
-195
-00:13:03.941 --> 00:13:07.427
+196
+00:13:14.731 --> 00:13:18.217
 because it's a posture an
 authorizing official can sign.
 
-196
-00:13:07.427 --> 00:13:10.586
+197
+00:13:18.217 --> 00:13:21.376
 CISA calls its maturity
 model a general guide,
 
-197
-00:13:10.586 --> 00:13:14.715
+198
+00:13:21.376 --> 00:13:25.505
 not a strict set of requirements,
 so this is design, not mandate.
 
-198
-00:13:14.715 --> 00:13:19.190
+199
+00:13:25.505 --> 00:13:29.980
 And when nothing has drifted,
 the next run plans zero actions.
 
-199
-00:13:22.940 --> 00:13:27.657
+200
+00:13:33.730 --> 00:13:38.447
 Chapter 12 puts it all in sequence: an
 illustrative fifty-two-week program,
 
-200
-00:13:27.657 --> 00:13:32.762
+201
+00:13:38.447 --> 00:13:43.552
 seven phases from pre-flight to steady
 state, with five workstreams in parallel.
 
-201
-00:13:32.762 --> 00:13:35.914
+202
+00:13:43.552 --> 00:13:46.704
 Large federal estates
 usually take several years;
 
-202
-00:13:35.914 --> 00:13:38.752
+203
+00:13:46.704 --> 00:13:49.542
 the weeks are a sequencing
 model, not a promise.
 
-203
-00:13:38.752 --> 00:13:43.335
+204
+00:13:49.542 --> 00:13:54.125
 A phase opens only when the previous
 gate clears, and gates read from data.
 
-204
-00:13:43.335 --> 00:13:47.281
+205
+00:13:54.125 --> 00:13:58.071
 “Zero drift for fourteen days”
 is a query, not a signature.
 
-205
-00:13:47.281 --> 00:13:52.191
+206
+00:13:58.071 --> 00:14:02.981
 Underneath it all is one structural
 move: separate truth from enforcement.
 
-206
-00:13:52.191 --> 00:13:56.139
+207
+00:14:02.981 --> 00:14:06.929
 A governance layer holds and
 reconciles the authoritative state,
 
-207
-00:13:56.139 --> 00:14:00.274
+208
+00:14:06.929 --> 00:14:11.064
 while the identity, network and device
 platforms enforce it at runtime.
 
-208
-00:14:00.274 --> 00:14:01.996
+209
+00:14:11.064 --> 00:14:12.786
 And read one clock carefully:
 
-209
-00:14:01.996 --> 00:14:06.008
+210
+00:14:12.786 --> 00:14:16.798
 FedRAMP's 2027 date is about
 certifying cloud providers.
 
-210
-00:14:06.008 --> 00:14:09.054
+211
+00:14:16.798 --> 00:14:19.844
 The agency still authorizes
 its own systems.
 
-211
-00:14:09.054 --> 00:14:11.840
+212
+00:14:19.844 --> 00:14:22.630
 That brings us to the decisions.
 
-212
-00:14:15.660 --> 00:14:17.035
+213
+00:14:26.450 --> 00:14:27.825
 So, four decisions.
 
-213
-00:14:17.035 --> 00:14:21.535
+214
+00:14:27.825 --> 00:14:32.325
 First, name the owners, one decider per
 decision, starting with the sponsor,
 
-214
-00:14:21.535 --> 00:14:24.116
+215
+00:14:32.325 --> 00:14:34.906
 the authorizing official and the steward,
 
-215
-00:14:24.116 --> 00:14:28.985
+216
+00:14:34.906 --> 00:14:39.775
 and confirm who holds the Zero Trust
 lead role that M-22-09 required.
 
-216
-00:14:28.985 --> 00:14:34.647
+217
+00:14:39.775 --> 00:14:45.437
 Second, run the read-only assessment across
 all eleven categories, with provenance.
 
-217
-00:14:34.647 --> 00:14:39.885
+218
+00:14:45.437 --> 00:14:50.675
 Third, stand up the platform host, so
 every change has one writer and a plan.
 
-218
-00:14:39.885 --> 00:14:43.647
+219
+00:14:50.675 --> 00:14:54.438
 And fourth, set the dates: gate
 dates on the sponsor's calendar,
 
-219
-00:14:43.647 --> 00:14:47.410
+220
+00:14:54.438 --> 00:14:58.200
 and every exception's end date
 on the authorizing official's.
 
-220
-00:14:47.410 --> 00:14:50.048
+221
+00:14:58.200 --> 00:15:00.838
 None of this needs a vendor
 decision on day one.
 
-221
-00:14:50.048 --> 00:14:53.135
+222
+00:15:00.838 --> 00:15:03.925
 Start with an inventory,
 an owner, and a date.
 
-222
-00:14:53.135 --> 00:14:57.110
+223
+00:15:03.925 --> 00:15:07.900
 Modernization is a governance
 rebuild, not a platform swap.
 
-223
-00:14:57.110 --> 00:15:02.425
-Book 01 is the map, and Books 02
-to 09 carry each part in depth,
-
 224
-00:15:02.425 --> 00:15:04.972
-with every claim footnoted.
+00:15:07.900 --> 00:15:12.769
+This book is the map, and the technical
+books, from Identity and Directory to
 
 225
-00:15:04.972 --> 00:15:05.790
+00:15:12.769 --> 00:15:17.638
+Network and Transport, carry each part
+in depth, with every claim footnoted.
+
+226
+00:15:17.638 --> 00:15:18.460
 Thank you.

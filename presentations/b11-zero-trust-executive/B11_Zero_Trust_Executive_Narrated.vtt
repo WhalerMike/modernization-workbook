@@ -5,76 +5,76 @@ WEBVTT
 Welcome.
 
 2
-00:00:00.763 --> 00:00:03.895
-This is the executive
-briefing for Book 11 of the
+00:00:00.763 --> 00:00:04.390
+This is the executive briefing
+for Zero Trust and Assessment,
 
 3
-00:00:03.895 --> 00:00:07.812
-Federal Modernization Workbook,
-Zero Trust and Assessment.
+00:00:04.390 --> 00:00:07.662
+one of the books of the
+Federal Modernization Workbook.
 
 4
-00:00:07.812 --> 00:00:12.911
+00:00:07.662 --> 00:00:12.761
 It runs about thirty minutes, and it's for
 the people who make the calls: the CISO,
 
 5
-00:00:12.911 --> 00:00:17.775
+00:00:12.761 --> 00:00:17.625
 the authorizing officials, the CIO,
 and the Zero Trust implementation lead.
 
 6
-00:00:17.775 --> 00:00:20.487
+00:00:17.625 --> 00:00:20.337
 The argument fits in three sentences.
 
 7
-00:00:20.487 --> 00:00:26.088
+00:00:20.337 --> 00:00:25.937
 Zero Trust maturity is a property of the
 whole agency, not of any product or tenant.
 
 8
-00:00:26.088 --> 00:00:30.226
+00:00:25.937 --> 00:00:30.077
 The federal documents set specific
 actions and configurations,
 
 9
-00:00:30.226 --> 00:00:34.749
+00:00:30.077 --> 00:00:34.600
 but none of them defines a Zero Trust
 score or requires a maturity stage.
 
 10
-00:00:34.749 --> 00:00:37.591
+00:00:34.600 --> 00:00:37.441
 And the assessment tools
 produce evidence for
 
 11
-00:00:37.591 --> 00:00:40.287
+00:00:37.441 --> 00:00:40.137
 named people to act on,
 not verdicts to report.
 
 12
-00:00:40.287 --> 00:00:44.855
+00:00:40.137 --> 00:00:44.705
 I'll take four questions in order: why
 Zero Trust belongs to the whole agency,
 
 13
-00:00:44.855 --> 00:00:48.906
+00:00:44.705 --> 00:00:48.756
 what the mandates and tools actually
 require, who owns the posture,
 
 14
-00:00:48.906 --> 00:00:53.325
+00:00:48.756 --> 00:00:53.175
 and how to turn findings into a program
 the authorizing official can see.
 
 15
-00:00:53.325 --> 00:00:57.875
+00:00:53.175 --> 00:00:57.725
 Every decision slide names the decision,
 its owner, and when it's needed.
 
 16
-00:00:57.875 --> 00:01:00.900
+00:00:57.725 --> 00:01:00.760
 Let's start with the
 usual assessment calendar.
 
@@ -1720,10 +1720,10 @@ No tool, and no number of tools,
 certifies Zero Trust maturity.
 
 360
-00:23:06.183 --> 00:23:10.157
-Book 11 has the detail,
-with every claim footnoted.
+00:23:06.183 --> 00:23:11.020
+Zero Trust and Assessment has the
+detail, with every claim footnoted.
 
 361
-00:23:10.157 --> 00:23:10.980
+00:23:11.020 --> 00:23:11.850
 Thank you.

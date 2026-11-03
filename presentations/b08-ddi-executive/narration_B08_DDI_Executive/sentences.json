@@ -7,46 +7,46 @@
   ],
   [
    0.762,
-   9.35,
-   "This is the executive briefing for Book 08 of the Federal Modernization Workbook: D N S, DHCP and IP address management."
+   12.175,
+   "This is the executive briefing for D N S, DHCP and eye-pam, one of the books of the Federal Modernization Workbook, on D N S, DHCP and IP address management."
   ],
   [
-   10.113,
+   12.938,
    5.688,
    "It's for the C I O, the see-so, the network and infrastructure lead, and sponsors."
   ],
   [
-   15.8,
+   18.625,
    1.425,
    "The argument is short."
   ],
   [
-   17.225,
+   20.05,
    7.138,
    "Almost every connection starts with a D N S query, and the answer now decides far more than an address."
   ],
   [
-   24.363,
+   27.188,
    9.238,
    "Most agencies still run D N S across several platforms that share nothing, so the same name gets different answers, and the failures look like something else."
   ],
   [
-   33.6,
+   36.425,
    4.3,
    "The fix is one authoritative policy plane, with named owners."
   ],
   [
-   37.9,
+   40.725,
    3.237,
    "I'll take four questions: why, what, who and how."
   ],
   [
-   41.138,
+   43.962,
    4.375,
    "Each decision slide names the decision, its owner and when it's needed."
   ],
   [
-   45.513,
+   48.337,
    2.4,
    "Let's start with what D N S now does."
   ]
@@ -758,11 +758,11 @@
   ],
   [
    44.525,
-   4.075,
-   "Book 08 has the detail, every claim footnoted."
+   5.638,
+   "D N S, DHCP and eye-pam has the detail, every claim footnoted."
   ],
   [
-   48.6,
+   50.163,
    0.762,
    "Thank you."
   ]

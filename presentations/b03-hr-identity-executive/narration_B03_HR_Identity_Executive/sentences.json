@@ -7,41 +7,41 @@
   ],
   [
    0.762,
-   7.088,
-   "This is the executive briefing for Book 03 of the Federal Modernization Workbook, HR-Driven Identity."
+   6.975,
+   "This is the executive briefing for H R-Driven Identity, one of the books of the Federal Modernization Workbook."
   ],
   [
-   7.85,
-   9.575,
-   "It's for the people who make the calls: the C I O, the Chief Human Capital Officer and HR leadership, the see-so, the privacy officer and the sponsors."
+   7.737,
+   9.625,
+   "It's for the people who make the calls: the C I O, the Chief Human Capital Officer and H R leadership, the see-so, the privacy officer and the sponsors."
   ],
   [
-   17.425,
-   9.412,
-   "Access is now decided by identity, and the facts it reads, like organization, position, status and supervisor, only HR originates."
+   17.363,
+   9.512,
+   "Access is now decided by identity, and the facts it reads, like organization, position, status and supervisor, only H R originates."
   ],
   [
-   26.837,
+   26.875,
    3.712,
    "In most agencies those facts reach the directory by ticket."
   ],
   [
-   30.55,
+   30.587,
    6.75,
    "And two migrations already under way rebuild both ends of that connection, so this is the cheapest moment you'll get."
   ],
   [
-   37.3,
+   37.337,
    3.237,
    "I'll take four questions: why, what, who and how."
   ],
   [
-   40.538,
+   40.575,
    4.375,
    "Each decision slide names the decision, its owner and when it's needed."
   ],
   [
-   44.913,
+   44.95,
    2.725,
    "First, where this book sits in the series."
   ]
@@ -49,41 +49,41 @@
  "2": [
   [
    0.05,
-   8.713,
-   "Here's why this matters: the series moves four populations to the cloud, each on its own track, and Book 03 is the HR track."
+   8.25,
+   "Here's why this matters: the series moves four populations to the cloud, each on its own track, and this book is the H R track."
   ],
   [
-   8.762,
+   8.3,
    1.125,
    "It's about people."
   ],
   [
-   9.887,
-   8.512,
-   "Employee accounts follow the HR record; contractor accounts follow the contractor source of authority, which is still the agency's decision."
+   9.425,
+   8.613,
+   "Employee accounts follow the H R record; contractor accounts follow the contractor source of authority, which is still the agency's decision."
   ],
   [
-   18.4,
+   18.038,
    4.888,
    "Joining, moving and leaving then change access by rule, not by ticket."
   ],
   [
-   23.288,
+   22.925,
    8.188,
    "You'll know you're there when every enabled account matches an authoritative record or an owned exception, and no hand-kept group membership is left."
   ],
   [
-   31.475,
-   8.325,
-   "Devices and servers are Book 05; service accounts and AI agents are Books 02, 06 and 17."
+   31.113,
+   10.637,
+   "Devices and servers are in Devices and Endpoints; service accounts and A I agents are in Identity and Directory, Data Platform, and A I Identity Governance."
   ],
   [
-   39.8,
+   41.75,
    6.412,
    "And the design supports the federal account-management and personnel controls; it doesn't close them on its own."
   ],
   [
-   46.212,
+   48.163,
    1.7,
    "Now, what access runs on."
   ]
@@ -918,61 +918,61 @@
   ],
   [
    2.163,
-   8.675,
-   "The governance body designates HR as the source now, signs the attribute map, chooses the person key and settles the contractor source."
+   8.85,
+   "The governance body designates H R as the source now, signs the attribute map, chooses the person key and settles the contractor source."
   ],
   [
-   10.838,
-   5.138,
-   "Your HR 2.0 contact names the identity feed in the first phase."
+   11.012,
+   5.062,
+   "Your H R 2.0 contact names the identity feed in the first phase."
   ],
   [
-   15.975,
-   5.362,
-   "HR leadership names attribute owners, and the data architect builds the crosswalk."
+   16.075,
+   5.3,
+   "H R leadership names attribute owners, and the data architect builds the crosswalk."
   ],
   [
-   21.337,
+   21.375,
    3.025,
    "Privacy settles the disclosure basis early."
   ],
   [
-   24.363,
+   24.4,
    3.763,
    "The authorizing official authorizes the feed before the pilot."
   ],
   [
-   28.125,
+   28.163,
    3.325,
    "Security owns the leaver path and the card binding."
   ],
   [
-   31.45,
-   3.525,
-   "The steward holds the rollout until the HR feed is live."
+   31.488,
+   3.612,
+   "The steward holds the rollout until the H R feed is lyve."
   ],
   [
-   34.975,
+   35.1,
    3.825,
    "And each population's ticket path closes once the proof holds."
   ],
   [
-   38.8,
+   38.925,
    2.725,
    "Nobody requests an account for a new hire."
   ],
   [
-   41.525,
+   41.65,
    3.062,
    "The hire causes it, and the separation ends it."
   ],
   [
-   44.587,
-   2.25,
-   "Book 03 has the detail."
+   44.712,
+   2.75,
+   "H R-Driven Identity has the detail."
   ],
   [
-   46.837,
+   47.462,
    0.762,
    "Thank you."
   ]

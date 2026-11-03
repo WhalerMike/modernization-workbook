@@ -1,72 +1,72 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.262
+00:00:00.050 --> 00:00:02.266
 Here's the whole path in one picture.
 
 2
-00:00:02.262 --> 00:00:06.853
+00:00:02.266 --> 00:00:06.863
 A branch client's query goes from the
 SD-WAN edge to an agency resolver,
 
 3
-00:00:06.853 --> 00:00:11.363
+00:00:06.863 --> 00:00:11.380
 then through the DDI policy plane,
 then to each cloud's private zones.
 
 4
-00:00:11.363 --> 00:00:15.451
+00:00:11.380 --> 00:00:15.472
 Internet-bound lookups leave
 through CISA's Protective DNS.
 
 5
-00:00:15.451 --> 00:00:19.025
+00:00:15.472 --> 00:00:19.053
 Five decisions carry almost
 all the operational risk.
 
 6
-00:00:19.025 --> 00:00:21.788
+00:00:19.053 --> 00:00:21.822
 The edge points at a real agency resolver.
 
 7
-00:00:21.788 --> 00:00:24.413
+00:00:21.822 --> 00:00:24.447
 That resolver is always the first hop.
 
 8
-00:00:24.413 --> 00:00:27.676
+00:00:24.447 --> 00:00:27.724
 The policy plane holds
 every cloud forwarding rule.
 
 9
-00:00:27.676 --> 00:00:33.237
+00:00:27.724 --> 00:00:33.277
 AD DNS is inventoried and rebuilt
 before any domain controller goes.
 
 10
-00:00:33.237 --> 00:00:36.175
+00:00:33.277 --> 00:00:36.223
 And revocation endpoints
 resolve from everywhere.
 
 11
-00:00:36.175 --> 00:00:39.813
+00:00:36.223 --> 00:00:39.871
 What makes these dangerous is
 that each one fails silently.
 
 12
-00:00:39.813 --> 00:00:44.462
+00:00:39.871 --> 00:00:44.519
 The query still resolves, just outside
 policy or to the wrong address.
 
 13
-00:00:44.462 --> 00:00:47.693
+00:00:44.519 --> 00:00:47.684
 So each decision comes with
 a check, run against the live
 
 14
-00:00:47.693 --> 00:00:51.837
+00:00:47.684 --> 00:00:51.834
 configuration rather than the design
 document, before the next change.
 
 15
-00:00:51.837 --> 00:00:54.050
+00:00:51.834 --> 00:00:54.050
 Which brings us to who owns all this.

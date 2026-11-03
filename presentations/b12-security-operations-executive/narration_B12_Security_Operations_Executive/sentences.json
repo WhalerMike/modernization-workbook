@@ -7,46 +7,46 @@
   ],
   [
    0.762,
-   7.537,
-   "This is the executive briefing for Book 12 of the Federal Modernization Workbook, Security Operations and Telemetry."
+   7.237,
+   "This is the executive briefing for Security Operations and Telemetry, one of the books of the Federal Modernization Workbook."
   ],
   [
-   8.3,
+   8.0,
    5.475,
    "It's for the see-so, the SOC lead, the C I O and authorizing officials."
   ],
   [
-   13.775,
+   13.475,
    1.425,
    "The argument is short."
   ],
   [
-   15.2,
+   14.9,
    9.125,
    "You can't defend what you can't see, and the gaps that matter most make no noise: a system that never sent its logs looks exactly like one where nothing happened."
   ],
   [
-   24.325,
+   24.025,
    3.275,
    "Storing logs isn't the same as detecting with them."
   ],
   [
-   27.6,
+   27.3,
    3.888,
    "And a finding closes only when the thing is fixed, with proof."
   ],
   [
-   31.488,
+   31.188,
    3.237,
    "I'll take four questions: why, what, who and how."
   ],
   [
-   34.725,
+   34.425,
    4.375,
    "Each decision slide names the decision, its owner and when it's needed."
   ],
   [
-   39.1,
+   38.8,
    2.5,
    "Let's start with what a dashboard can't show you."
   ]
@@ -838,11 +838,11 @@
   ],
   [
    41.775,
-   3.688,
-   "Book 12 has the detail, every claim footnoted."
+   5.125,
+   "Security Operations and Telemetry has the detail, every claim footnoted."
   ],
   [
-   45.462,
+   46.9,
    0.762,
    "Thank you."
   ]

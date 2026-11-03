@@ -5,124 +5,124 @@ WEBVTT
 Welcome.
 
 2
-00:00:00.763 --> 00:00:04.038
-This is the technical deep
-dive for Book 05 of the
+00:00:00.763 --> 00:00:04.138
+This is the technical deep dive
+for Devices and Endpoints,
 
 3
-00:00:04.038 --> 00:00:07.887
-Federal Modernization Workbook,
-Devices and Endpoints.
+00:00:04.138 --> 00:00:07.374
+one of the books of the
+Federal Modernization Workbook.
 
 4
-00:00:07.887 --> 00:00:11.671
+00:00:07.374 --> 00:00:11.158
 It's for the architects and
 engineers who move a domain-joined
 
 5
-00:00:11.671 --> 00:00:14.638
+00:00:11.158 --> 00:00:14.125
 fleet onto Intune, and its
 servers onto Azure Arc.
 
 6
-00:00:14.638 --> 00:00:16.199
+00:00:14.125 --> 00:00:15.687
 It comes in two parts.
 
 7
-00:00:16.199 --> 00:00:21.043
+00:00:15.687 --> 00:00:20.531
 Part 1 is the endpoints: how a new device
 is governed from the moment it powers on,
 
 8
-00:00:21.043 --> 00:00:24.992
+00:00:20.531 --> 00:00:24.480
 the three paths an existing estate
 can take to the same end state,
 
 9
-00:00:24.992 --> 00:00:29.462
+00:00:24.480 --> 00:00:28.950
 and then the Group Policy sunset and
 the policy library that replaces it.
 
 10
-00:00:29.462 --> 00:00:33.776
+00:00:28.950 --> 00:00:33.264
 Part 2 is servers and the run state:
 bringing servers under Arc with
 
 11
-00:00:33.776 --> 00:00:38.012
+00:00:33.264 --> 00:00:37.500
 a day-one baseline, then operating
 and evidencing the whole fleet.
 
 12
-00:00:38.012 --> 00:00:42.358
+00:00:37.500 --> 00:00:41.793
 The scripts and policy payloads live
 in the chapters and Appendix A,
 
 13
-00:00:42.358 --> 00:00:44.763
+00:00:41.793 --> 00:00:44.213
 marked as illustrative and untested.
 
 14
-00:00:44.763 --> 00:00:46.288
+00:00:44.213 --> 00:00:45.737
 I'll stick to what matters.
 
 15
-00:00:46.288 --> 00:00:49.550
+00:00:45.737 --> 00:00:49.000
 First, where this session
 sits in the series.
 
 16
-00:00:53.300 --> 00:00:58.136
+00:00:53.300 --> 00:00:57.821
 Here's why this matters: the series
 moves four populations to the cloud,
 
 17
-00:00:58.136 --> 00:01:01.638
+00:00:57.821 --> 00:01:01.250
 each on its own track, and
-Book 05 carries two of them.
+this book carries two of them.
 
 18
-00:01:01.638 --> 00:01:06.124
+00:01:01.250 --> 00:01:05.737
 The Intune track is end-user devices,
 and the Arc track is servers.
 
 19
-00:01:06.124 --> 00:01:11.279
+00:01:05.737 --> 00:01:10.986
 A device's attributes come from device
 provisioning, like the Autopilot group tag,
 
 20
-00:01:11.279 --> 00:01:14.387
+00:01:10.986 --> 00:01:14.150
 never from HR, and a device
 rule can't read its owner.
 
 21
-00:01:14.387 --> 00:01:18.463
+00:01:14.150 --> 00:01:18.226
 Devices are done when their policy
 targets those attributes and
 
 22
-00:01:18.463 --> 00:01:22.237
+00:01:18.226 --> 00:01:22.000
 the computer-side GPO links are
 gone, one population at a time.
 
 23
-00:01:22.237 --> 00:01:27.763
+00:01:22.000 --> 00:01:27.525
 Servers are done when each is Arc-enabled,
 tagged, and evaluated by Azure Policy.
 
 24
-00:01:27.763 --> 00:01:31.178
+00:01:27.525 --> 00:01:30.940
 And Group Policy splits: user
 settings go with people,
 
 25
-00:01:31.178 --> 00:01:34.050
+00:01:30.940 --> 00:01:33.812
 computer settings with
 devices and servers.
 
 26
-00:01:34.050 --> 00:01:37.370
+00:01:33.812 --> 00:01:37.130
 Next, why Group Policy
 can't come to the cloud.
 
@@ -1436,71 +1436,71 @@ local controls Azure can't override,
 like an extension allowlist.
 
 299
-00:19:55.230 --> 00:19:58.493
+00:19:55.230 --> 00:19:58.462
 A connected server is
 addressable, not yet governed.
 
 300
-00:19:58.493 --> 00:20:01.079
+00:19:58.462 --> 00:20:01.027
 Three things get attached
 on the same change.
 
 301
-00:20:01.079 --> 00:20:04.402
+00:20:01.027 --> 00:20:04.315
 Configuration, through
 Azure machine configuration,
 
 302
-00:20:04.402 --> 00:20:09.569
+00:20:04.315 --> 00:20:09.434
 which audits or sets operating system
 settings and reports compliance per machine,
 
 303
-00:20:09.569 --> 00:20:12.153
+00:20:09.434 --> 00:20:11.994
 scoped by Azure resource
 rather than by OU.
 
 304
-00:20:12.153 --> 00:20:16.877
+00:20:11.994 --> 00:20:16.674
 Keep the customized baseline in the
 governance repository as policy-as-code,
 
 305
-00:20:16.877 --> 00:20:20.642
+00:20:16.674 --> 00:20:20.404
 and treat noncompliance as a
 finding, not a failed deployment.
 
 306
-00:20:20.642 --> 00:20:24.403
+00:20:20.404 --> 00:20:24.129
 Patching, through Azure Update
 Manager, which assesses daily,
 
 307
-00:20:24.403 --> 00:20:27.942
+00:20:24.129 --> 00:20:27.636
 patches in maintenance windows
 and groups servers by tag.
 
 308
-00:20:27.942 --> 00:20:30.593
+00:20:27.636 --> 00:20:30.278
 And protection, through
 Defender for Servers.
 
 309
-00:20:30.593 --> 00:20:34.130
+00:20:30.278 --> 00:20:33.698
 The program's FedRAMP
 Moderate scope uses Plan 2,
 
 310
-00:20:34.130 --> 00:20:36.606
+00:20:33.698 --> 00:20:36.663
 plus Defender for SQL on SQL hosts.
 
 311
-00:20:36.606 --> 00:20:40.609
+00:20:36.663 --> 00:20:40.629
 Onboard Defender through Arc,
 rather than installing it directly,
 
 312
-00:20:40.609 --> 00:20:43.140
+00:20:40.629 --> 00:20:43.140
 which gives you only Plan 1 function.
 
 313
@@ -1582,66 +1582,66 @@ and Defender report, and the audit log.
 Operating means keeping them in agreement.
 
 329
-00:22:03.460 --> 00:22:08.350
-Compliance policies decide whether a
-device is compliant; Conditional Access
+00:22:03.460 --> 00:22:08.562
+Compliance policies decide whether a device
+is compliant; Conditional Access decides
 
 330
-00:22:08.350 --> 00:22:12.722
-decides what a noncompliant device
-can reach, and Book 04 owns that part.
+00:22:08.562 --> 00:22:13.035
+what a noncompliant device can reach,
+and Access and Privilege owns that part.
 
 331
-00:22:12.722 --> 00:22:15.485
+00:22:13.035 --> 00:22:15.798
 This book's job is making
 the signal accurate.
 
 332
-00:22:15.485 --> 00:22:18.560
+00:22:15.798 --> 00:22:18.872
 Two tenant settings
 sit above every policy.
 
 333
-00:22:18.560 --> 00:22:23.835
+00:22:18.872 --> 00:22:24.148
 Devices with no compliance policy default
 to compliant, and the program flips that,
 
 334
-00:22:23.835 --> 00:22:27.810
+00:22:24.148 --> 00:22:28.123
 so a device that falls outside
 every group can't pass by default.
 
 335
-00:22:27.810 --> 00:22:31.707
+00:22:28.123 --> 00:22:32.019
 And compliance status stays
 valid for thirty days by default;
 
 336
-00:22:31.707 --> 00:22:35.527
+00:22:32.019 --> 00:22:35.839
 the program uses fourteen, short
 enough that a device left in
 
 337
-00:22:35.527 --> 00:22:39.347
+00:22:35.839 --> 00:22:39.659
 a drawer loses access, long enough
 not to catch staff on leave.
 
 338
-00:22:39.347 --> 00:22:41.120
+00:22:39.659 --> 00:22:41.432
 Read the dashboard carefully,
 
 339
-00:22:41.120 --> 00:22:44.948
+00:22:41.432 --> 00:22:45.260
 because some statuses hide devices
 from the noncompliant count.
 
 340
-00:22:44.948 --> 00:22:49.454
+00:22:45.260 --> 00:22:49.766
 And on Tier 0, a Defender detection
 becomes a compliance failure,
 
 341
-00:22:49.454 --> 00:22:51.350
+00:22:49.766 --> 00:22:51.660
 and so a loss of access.
 
 342

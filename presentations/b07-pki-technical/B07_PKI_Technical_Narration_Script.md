@@ -2,7 +2,7 @@
 
 ## Slide 1 — PKI & Certificates: the technical deep dive
 
-Welcome. This is the technical deep dive for Book 07 of the Federal Modernization Workbook, PKI and Certificates. It's for the PKI engineers and architects who will run the move off Active Directory Certificate Services. It comes in two parts. Part 1 is hardening and the target: how to make the AD CS that stays the best-defended system you own, then a target of four issuers and one lifecycle platform. Part 2 is issuing, migrating and retiring: Intune certificate profiles, strong mapping and Entra certificate-based authentication, then coexistence, the six-wave migration, monitoring and retiring the old CAs. The commands live in the chapters and appendices, marked as illustrative and untested against production. I'll stick to what matters.
+Welcome. This is the technical deep dive for PKI and Certificates, one of the books of the Federal Modernization Workbook. It's for the PKI engineers and architects who will run the move off Active Directory Certificate Services. It comes in two parts. Part 1 is hardening and the target: how to make the AD CS that stays the best-defended system you own, then a target of four issuers and one lifecycle platform. Part 2 is issuing, migrating and retiring: Intune certificate profiles, strong mapping and Entra certificate-based authentication, then coexistence, the six-wave migration, monitoring and retiring the old CAs. The commands live in the chapters and appendices, marked as illustrative and untested against production. I'll stick to what matters.
 
 ## Slide 2 — Why this matters: certificates fail at expiry, not at cutover
 

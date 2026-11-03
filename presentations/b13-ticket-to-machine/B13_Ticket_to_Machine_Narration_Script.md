@@ -2,7 +2,7 @@
 
 ## Slide 1 — Book 13 — Ticket-to-Machine Reference
 
-Welcome to the Ticket-to-Machine Reference, Appendix B of Book 13 in the Federal Modernization Workbook. Chapter 10 makes an argument about operational tempo; this appendix is the reference that backs it up. Over the next twelve minutes we'll walk the loop, the five clauses every change passes through, the lanes each kind of change takes, the clocks, the evidence record, and four worked examples. One caution up front: the lanes, ceilings, severities and windows are the program's design, not federal requirements, and the examples are illustrative. Let's start with why any of this matters.
+Welcome to the Ticket-to-Machine Reference, Appendix B of Governance, Drift and Evidence, in the Federal Modernization Workbook. Chapter 10 makes an argument about operational tempo; this appendix is the reference that backs it up. Over the next twelve minutes we'll walk the loop, the five clauses every change passes through, the lanes each kind of change takes, the clocks, the evidence record, and four worked examples. One caution up front: the lanes, ceilings, severities and windows are the program's design, not federal requirements, and the examples are illustrative. Let's start with why any of this matters.
 
 ## Slide 2 — A ticket is evidence only when a re-read proves it
 
