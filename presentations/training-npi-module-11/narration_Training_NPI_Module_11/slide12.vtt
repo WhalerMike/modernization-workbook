@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.566
+Step seven runs production's preflight,
+
+2
+00:00:02.566 --> 00:00:06.225
+with the test stage's smoke
+test as its promotion evidence.
+
+3
+00:00:06.225 --> 00:00:10.854
+Fourteen passes, including P F
+eleven, which runs in production only:
+
+4
+00:00:10.854 --> 00:00:15.400
+the test stage's smoke test passed,
+eight of eight, in another tenant.
+
+5
+00:00:15.400 --> 00:00:19.150
+Step eight checks the test stage's
+evidence, and it says no-go.
+
+6
+00:00:19.150 --> 00:00:22.250
+Four of nine requirement rows
+are present and passing.
+
+7
+00:00:22.250 --> 00:00:25.041
+Steps 1.1, 1.2, 1.3 and 1.5 are missing,
+
+8
+00:00:25.041 --> 00:00:31.375
+because they record their evidence
+only when they run against a tenant.
+
+9
+00:00:31.375 --> 00:00:36.300
+And the rollback row fails on dry run,
+which the go or no-go doesn't accept.
+
+10
+00:00:36.300 --> 00:00:39.838
+The exit code is one, and
+that's right for a dry run.
+
+11
+00:00:39.838 --> 00:00:45.100
+Step nine lists the four evidence
+records and the K S I's each names.
+
+12
+00:00:45.100 --> 00:00:48.840
+Step ten runs the deploy
+scripts' fifty-five tests.

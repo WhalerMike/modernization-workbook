@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.253
+Welcome to Module 4 of the
+Privileged Access learning path:
+
+2
+00:00:04.253 --> 00:00:06.912
+PIM for Microsoft Entra roles as code.
+
+3
+00:00:06.912 --> 00:00:13.296
+This module serves the project plan's
+task A1.6 in Phase 1, A2.1 and A2.2
+
+4
+00:00:13.296 --> 00:00:19.912
+in Phase 2, and A3.1 in Phase 3, with
+Chapter 04 of the developer workbook.
+
+5
+00:00:19.912 --> 00:00:25.211
+Each Microsoft Entra role has its own PIM
+settings: how long an activation lasts,
+
+6
+00:00:25.211 --> 00:00:27.539
+whether it needs approval, a ticket,
+
+7
+00:00:27.539 --> 00:00:31.713
+an authentication context, and
+how long an assignment may last.
+
+8
+00:00:31.713 --> 00:00:34.812
+Set by hand in the portal,
+they drift role by role.
+
+9
+00:00:34.812 --> 00:00:39.037
+In this module you hold them as
+code, one reviewed file per role.
+
+10
+00:00:39.037 --> 00:00:42.212
+You see exactly what a change
+will do before it happens,
+
+11
+00:00:42.212 --> 00:00:46.233
+apply it to one rollout wave with
+the least privilege the writes need,
+
+12
+00:00:46.233 --> 00:00:49.901
+and prove from a read-back that
+the tenant now matches the files.
+
+13
+00:00:49.901 --> 00:00:54.310
+The code is illustrative: tested
+against fixtures and a fake.

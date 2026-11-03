@@ -1,0 +1,697 @@
+{
+ "1": [
+  [
+   0.05,
+   6.412,
+   "Welcome to Module 7 of the Privileged Access learning path: access reviews of privileged roles."
+  ],
+  [
+   6.463,
+   10.312,
+   "This module serves the project plan's task A2.7 in Phase 2 and A3.7 in Phase 3, with Chapter 07 of the developer workbook."
+  ],
+  [
+   16.775,
+   2.987,
+   "The approval gate controls the use of privilege."
+  ],
+  [
+   19.762,
+   2.95,
+   "Reviews control who keeps the eligibility."
+  ],
+  [
+   22.712,
+   10.762,
+   "The program's design creates one recurring review per role, Tier 0 monthly and the rest quarterly, with auto-apply on, and remove access when reviewers don't respond."
+  ],
+  [
+   33.475,
+   4.225,
+   "In this module you define every privileged review series as code."
+  ],
+  [
+   37.7,
+   9.812,
+   "You show a reviewer what a change will do before it reaches the tenant, apply it with the least permission that can, and hand the I S S O the decisions each review produced."
+  ],
+  [
+   47.513,
+   4.362,
+   "The code is illustrative: tested against fixtures and a fake."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   0.85,
+   "Why code?"
+  ],
+  [
+   0.9,
+   2.513,
+   "Because a review set up by hand drifts."
+  ],
+  [
+   3.413,
+   6.475,
+   "A reviewer leaves, a duration is shortened, auto-apply is switched off for one cycle and never back on."
+  ],
+  [
+   9.887,
+   2.025,
+   "And reviews have their own lockout."
+  ],
+  [
+   11.912,
+   5.112,
+   "The emergency accounts hold Global Administrator as permanent active assignments."
+  ],
+  [
+   17.025,
+   10.287,
+   "A review of Global Administrator that covers active assignments, with remove access on silence and auto-apply on, removes them if the reviewers miss one month."
+  ],
+  [
+   27.312,
+   7.237,
+   "Microsoft Learn's reference for review settings cautions that auto-apply with a default decision can revoke all access."
+  ],
+  [
+   34.55,
+   8.35,
+   "So rule A R oh six fails a review that would do that, and rule A R, E oh eight, reports an emergency account a reviewer denied."
+  ],
+  [
+   42.9,
+   2.888,
+   "The apply refuses a plan with any finding."
+  ],
+  [
+   45.788,
+   6.662,
+   "And the code never deletes a series, because deleting a definition deletes its decisions, and those are evidence."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   5.487,
+   "Here's what you'll be able to do by the end of this module, which takes about fifty-five minutes with the lab."
+  ],
+  [
+   5.537,
+   4.888,
+   "You'll explain why privileged reviews belong in code, and what licensing they need."
+  ],
+  [
+   10.425,
+   4.188,
+   "You'll name the series the program defines, and the cadence for each tier."
+  ],
+  [
+   14.613,
+   4.987,
+   "You'll explain the A R oh six guard, and why it changes the program's own setting."
+  ],
+  [
+   19.6,
+   6.737,
+   "You'll read a plan's actions: Create, Update, Replace, NoChange, Unmanaged and Conflict."
+  ],
+  [
+   26.337,
+   4.912,
+   "And you'll read the evidence findings, A R, E oh one to E oh eight."
+  ],
+  [
+   31.25,
+   11.475,
+   "Before you start, finish Module 2, for the emergency accounts that A R oh six protects, and Module 5, for the P R V groups, each reviewed through its own membership series."
+  ],
+  [
+   42.725,
+   8.3,
+   "Lab 2 needs a worldwide or G C C test tenant with Microsoft Entra I D Governance, a trial will do, and never production."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   2.987,
+   "Unit 1: why reviews, and the series."
+  ],
+  [
+   3.038,
+   4.15,
+   "Seven series follow the program's review schedule, in three kinds."
+  ],
+  [
+   7.188,
+   5.95,
+   "Entra role series review the users who hold a role, Tier 0 monthly and the rest quarterly."
+  ],
+  [
+   13.137,
+   7.4,
+   "P R V group membership series review each group's members; Microsoft Learn marks pim for Groups reviews as preview."
+  ],
+  [
+   20.538,
+   3.475,
+   "And an Azure role series goes through a preview A P I."
+  ],
+  [
+   24.012,
+   2.025,
+   "A role series covers users."
+  ],
+  [
+   26.038,
+   7.088,
+   "Groups that hold the role are reviewed through their own membership series, and rule A R fourteen flags a group without one."
+  ],
+  [
+   33.125,
+   7.713,
+   "Licensing: the program budgets Microsoft Entra I D Governance for every reviewer and every reviewed privileged user."
+  ],
+  [
+   40.837,
+   4.888,
+   "Microsoft Learn has two licensing pages that differ, and that's the stricter reading."
+  ],
+  [
+   45.725,
+   6.912,
+   "The monthly and quarterly cadence is the program's own decision; nist leaves the frequency to the organization."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   3.638,
+   "Unit 2: the checks, the plan and the evidence."
+  ],
+  [
+   3.688,
+   4.025,
+   "Rules A R oh one to fourteen check each series before it's applied."
+  ],
+  [
+   7.713,
+   2.562,
+   "Oh one is the first: no reviewers."
+  ],
+  [
+   10.275,
+   9.438,
+   "Microsoft Learn's page on configuring reviewers says Graph treats no reviewers as a self-review, and in this program assignees never review themselves."
+  ],
+  [
+   19.712,
+   6.0,
+   "Oh two is no fallback reviewer, and oh three a missing or over-long description for reviewers."
+  ],
+  [
+   25.712,
+   2.587,
+   "Oh four is a review longer than its cycle."
+  ],
+  [
+   28.3,
+   1.863,
+   "Oh five is auto-apply off."
+  ],
+  [
+   30.163,
+   1.825,
+   "Oh six is the lockout guard."
+  ],
+  [
+   31.988,
+   12.9,
+   "And it changes the program's own setting: a review that covers the emergency accounts' Global Administrator uses no change on silence, and an unreviewed item becomes an evidence finding, E oh four, instead."
+  ],
+  [
+   44.888,
+   1.663,
+   "That's the owner's decision."
+  ],
+  [
+   46.55,
+   13.738,
+   "The rest check the default decision, justification, the tier's cadence, the start date, reviewers on Azure series, duplicate names, unlisted series, and a group that holds a reviewed role with no membership series of its own."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   3.05,
+   "The plan compares the reviewed file with the tenant."
+  ],
+  [
+   3.1,
+   2.975,
+   "Create and Update are sent, then read back."
+  ],
+  [
+   6.075,
+   3.525,
+   "Replace is a scope change or a change of group reviewers."
+  ],
+  [
+   9.6,
+   10.975,
+   "Microsoft Learn's reference for updating a definition says the update A P I doesn't take those, so a person exports the series' evidence, deletes it in the portal, and runs again."
+  ],
+  [
+   20.575,
+   1.413,
+   "NoChange does nothing."
+  ],
+  [
+   21.988,
+   5.787,
+   "Unmanaged is a series in the tenant the file doesn't list; it's reported, and never deleted."
+  ],
+  [
+   27.775,
+   1.238,
+   "Then the evidence."
+  ],
+  [
+   29.012,
+   19.35,
+   "Each decision becomes a row, and eight checks find what went wrong: a missing series, an overdue instance, a denial that wasn't applied, an item the no-response default decided, an approval without a reason, a self-review, bulk decisions by one reviewer, and an emergency account a reviewer denied."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   3.413,
+   "Lab 1 runs in one PowerShell 7 session."
+  ],
+  [
+   4.188,
+   7.562,
+   "Step one runs Microsoft Learn's tutorial for reviewing access to administrative roles against the fake, as published."
+  ],
+  [
+   11.75,
+   1.55,
+   "Eleven tests pass."
+  ],
+  [
+   13.3,
+   6.65,
+   "The third is the one to notice: the tutorial's POST, sent twice, leaves two series with the same name."
+  ],
+  [
+   19.95,
+   4.725,
+   "That's why the code plans before it writes, and why rule A R twelve exists."
+  ],
+  [
+   24.675,
+   2.7,
+   "Step two lists each task's permissions."
+  ],
+  [
+   27.375,
+   4.875,
+   "Planning needs Access Review dot Read dot All, and Reader for the Azure series."
+  ],
+  [
+   32.25,
+   5.638,
+   "Applying needs Access Review dot ReadWrite dot All, and User Access Administrator."
+  ],
+  [
+   37.888,
+   2.663,
+   "Reading the evidence needs the same as planning."
+  ],
+  [
+   40.55,
+   1.375,
+   "Write only to apply."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   2.212,
+   "Step three runs the dry run."
+  ],
+  [
+   2.263,
+   5.838,
+   "One Create, two Updates, one Replace, three NoChange and one Unmanaged."
+  ],
+  [
+   8.1,
+   4.388,
+   "The checks: no findings, one warning, one information item."
+  ],
+  [
+   12.488,
+   3.188,
+   "Nothing is sent; two writes would be sent with Apply."
+  ],
+  [
+   15.675,
+   1.65,
+   "Step four reads the diff."
+  ],
+  [
+   17.325,
+   5.662,
+   "The Tier 0 Global Administrator series is an Update: its instance duration changes."
+  ],
+  [
+   22.988,
+   4.45,
+   "The Privileged Role Administrator series doesn't exist yet: Create."
+  ],
+  [
+   27.438,
+   5.925,
+   "The Exchange Administrator series changes its reviewers, so it's a Replace, left for a person."
+  ],
+  [
+   33.362,
+   2.438,
+   "Three P R V group series match."
+  ],
+  [
+   35.8,
+   9.575,
+   "The Azure Owner series is an Update too, but it goes through a preview A P I, so it needs the Include Preview switch; that's why only two writes count."
+  ],
+  [
+   45.375,
+   6.125,
+   "And a Security Administrator series in the tenant isn't in the file: Unmanaged, never deleted."
+  ],
+  [
+   51.5,
+   4.025,
+   "The bodies folder holds each request body for a reviewer to read."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   5.037,
+   "Step five checks the body from Microsoft Learn's tutorial with the example's rules."
+  ],
+  [
+   5.088,
+   9.125,
+   "It fails three: A R oh two, no fallback reviewer; oh three, no description for reviewers; and oh five, auto-apply off."
+  ],
+  [
+   14.213,
+   7.713,
+   "And it warns twice: oh seven, the no-response default isn't Deny, and ten, its start date is in the past."
+  ],
+  [
+   21.925,
+   4.987,
+   "Step six applies in the fake, the same command as the dry run, with Apply."
+  ],
+  [
+   26.913,
+   7.062,
+   "Two writes are sent: the Global Administrator update and the Privileged Role Administrator create, each read back."
+  ],
+  [
+   33.975,
+   2.6,
+   "Everything else is skipped, with the reason."
+  ],
+  [
+   36.575,
+   5.575,
+   "The Replace needs a person: export its evidence, delete it in the portal, and run again."
+  ],
+  [
+   42.15,
+   2.462,
+   "The three P R V series match."
+  ],
+  [
+   44.612,
+   2.438,
+   "The Azure update needs Include Preview."
+  ],
+  [
+   47.05,
+   2.85,
+   "And the unmanaged series is never deleted."
+  ],
+  [
+   49.9,
+   2.337,
+   "The slide condenses the two tables."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   7.237,
+   "Step seven reads the evidence: eighteen decisions in seven instances, with seven findings and two warnings."
+  ],
+  [
+   7.287,
+   4.7,
+   "E oh one: the Privileged Role Administrator series isn't in the tenant yet."
+  ],
+  [
+   11.988,
+   6.075,
+   "E oh two: the Tier 0 Global Administrator group's series has no closed instance in time."
+  ],
+  [
+   18.062,
+   7.775,
+   "E oh eight: a reviewer denied Emergency Access 02 in October, the finding this module exists to catch."
+  ],
+  [
+   25.837,
+   8.588,
+   "E oh four: an item nobody reviewed, decided by the no-response default; a finding on Tier 0, a warning on Tier 1."
+  ],
+  [
+   34.425,
+   3.438,
+   "E oh five: an approval without a justification."
+  ],
+  [
+   37.862,
+   3.487,
+   "E oh three: a denial whose result wasn't applied."
+  ],
+  [
+   41.35,
+   3.175,
+   "E oh six: someone reviewed their own access."
+  ],
+  [
+   44.525,
+   8.637,
+   "And E oh seven: one reviewer recorded a run of identical decisions within minutes, the bulk-decision check from the program's design."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   2.062,
+   "Step eight shows the lockout guard."
+  ],
+  [
+   2.112,
+   7.85,
+   "Load the reviewed file, and change one thing: set the Tier 0 Global Administrator series' default decision to Deny."
+  ],
+  [
+   9.963,
+   3.562,
+   "Then build a client that may write, plan, and apply."
+  ],
+  [
+   13.525,
+   6.125,
+   "It refuses: the plan has one finding, A R oh six, on the Global Administrator series."
+  ],
+  [
+   19.65,
+   1.175,
+   "Nothing is sent."
+  ],
+  [
+   20.825,
+   6.263,
+   "If the reviewers missed a month, that review would have removed the emergency accounts' Global Administrator."
+  ],
+  [
+   27.087,
+   7.612,
+   "Step nine runs the tests, three hundred thirty pass, and you delete the output folder, because the evidence folder names people."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   10.787,
+   "Lab 2 runs in a worldwide or G C C test tenant with Microsoft Entra I D Governance, a trial will do, and for the optional Azure step, a test Azure subscription."
+  ],
+  [
+   10.838,
+   1.125,
+   "Never production."
+  ],
+  [
+   11.963,
+   5.438,
+   "Pick a role with no real holders, such as Reports Reader, not Global Administrator."
+  ],
+  [
+   17.4,
+   9.262,
+   "Register a reader app and an applier app, write a test file with one series, dry-run as the reader, and apply after a second person reads the bodies."
+  ],
+  [
+   26.663,
+   4.037,
+   "Then close one instance as a test reviewer, and read the evidence."
+  ],
+  [
+   30.7,
+   9.8,
+   "The reader gets Access Review dot Read dot All, the applier Access Review dot ReadWrite dot All, and User Access Administrator only for the optional Azure series."
+  ],
+  [
+   40.5,
+   11.088,
+   "The back-out exports the evidence first, then deletes the test series in the admin center, because the code never deletes, along with the apps, their certificates and the test groups."
+  ],
+  [
+   51.587,
+   2.15,
+   "The authors haven't run Lab 2."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   1.387,
+   "The federal requirement."
+  ],
+  [
+   1.438,
+   7.013,
+   "The review series and their decisions are the evidence for the plan's tasks A2.7 and A3.7."
+  ],
+  [
+   8.45,
+   15.125,
+   "From nist special publication eight hundred fifty-three they support A C six, enhancement seven, review of user privileges; A C two, account review; A C five, separation of duties; and A U eleven, retention."
+  ],
+  [
+   23.575,
+   11.875,
+   "A C six, enhancement seven, and A C two leave the frequency to the organization; monthly for Tier 0 and quarterly for the rest is the program's own decision, design guidance."
+  ],
+  [
+   35.45,
+   14.875,
+   "The evidence an I S S O keeps: the reviewed file and each plan's bodies; each apply's results; and each evidence run's decisions, instances and findings, in the access-controlled evidence store, because they name people."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   1.975,
+   "Check yourself with two questions."
+  ],
+  [
+   2.025,
+   7.138,
+   "First: a Global Administrator review covers active assignments, with Deny on silence and auto-apply on."
+  ],
+  [
+   9.162,
+   1.637,
+   "What does A R oh six do?"
+  ],
+  [
+   10.8,
+   7.5,
+   "The answer is b: it fails the review, because missing one month would remove the emergency accounts' Global Administrator."
+  ],
+  [
+   18.3,
+   2.15,
+   "You saw it in Lab 1, step eight."
+  ],
+  [
+   20.45,
+   3.163,
+   "Second: the plan shows a series as Replace."
+  ],
+  [
+   23.613,
+   1.675,
+   "What does the apply do with it?"
+  ],
+  [
+   25.288,
+   2.237,
+   "The answer is b: it skips it."
+  ],
+  [
+   27.525,
+   8.3,
+   "The update A P I doesn't take a new scope or new group reviewers, so a person exports the series' evidence and replaces it."
+  ],
+  [
+   35.825,
+   1.65,
+   "You saw it in step six."
+  ],
+  [
+   37.475,
+   4.9,
+   "The module page has two more questions, each linked to the section that answers it."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   0.825,
+   "To sum up."
+  ],
+  [
+   0.875,
+   19.212,
+   "You planned seven review series against a fictional tenant, saw Learn's tutorial body fail the program's rules, applied two writes and left the Replace and the unmanaged series to a person, read eighteen decisions and their findings, and saw the lockout guard refuse a review that would remove the emergency accounts."
+  ],
+  [
+   20.087,
+   6.55,
+   "Next is Module 8: evidence and drift for the I S S O, the last module of the path."
+  ],
+  [
+   26.637,
+   12.675,
+   "You run the privileged reads on a schedule, say what changed since the last run without putting anyone's name in the issue tracker, and hand the I S S O a package and a period summary they can check with a hash tool alone."
+  ]
+ ]
+}

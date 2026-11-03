@@ -1,0 +1,51 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.767
+Welcome to Module 8 of the
+Non-Person Identity learning path:
+
+2
+00:00:03.767 --> 00:00:08.525
+convert Kerberos accounts to group and
+delegated managed service accounts.
+
+3
+00:00:08.525 --> 00:00:11.557
+This module is the
+on-premises part of Gate 5,
+
+4
+00:00:11.557 --> 00:00:15.262
+Conversion, with Chapter 6
+of the developer workbook.
+
+5
+00:00:15.262 --> 00:00:19.706
+You'll give every Kerberos
+account a reviewed disposition,
+
+6
+00:00:19.706 --> 00:00:24.330
+plan its move to a G M S A or, on a
+Windows Server 2025 domain, a D M S A,
+
+7
+00:00:24.330 --> 00:00:29.590
+list what stays on the Kerberos island
+with an S P N owner and an end date,
+
+8
+00:00:29.590 --> 00:00:34.487
+and reconcile every managed account
+with the program's end state.
+
+9
+00:00:34.487 --> 00:00:38.387
+Then you'll see the write path run
+a plan only by its approved hash.
+
+10
+00:00:38.387 --> 00:00:43.250
+The domain is fictional, and the
+apply changes only a fake, in memory.

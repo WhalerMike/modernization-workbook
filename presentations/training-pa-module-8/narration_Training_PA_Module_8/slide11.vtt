@@ -1,0 +1,74 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.112
+Step six compares the
+next day with the first.
+
+2
+00:00:03.112 --> 00:00:04.637
+It's not a baseline now.
+
+3
+00:00:04.637 --> 00:00:08.651
+One assignment added, one
+removed, three audit findings,
+
+4
+00:00:08.651 --> 00:00:13.450
+two new findings, six resolved,
+twenty unchanged, and six incidents.
+
+5
+00:00:13.450 --> 00:00:16.774
+The summary's incident
+table lists all six,
+
+6
+00:00:16.774 --> 00:00:20.762
+each Tier 0, each with its
+object I D and fingerprint.
+
+7
+00:00:20.762 --> 00:00:23.605
+A Privileged Role
+Administrator assignment added,
+
+8
+00:00:23.605 --> 00:00:26.249
+and a Global Administrator
+assignment removed.
+
+9
+00:00:26.249 --> 00:00:30.013
+A new I N V oh one finding for
+the person who got that role.
+
+10
+00:00:30.013 --> 00:00:32.574
+And the three audit
+findings from step four.
+
+11
+00:00:32.574 --> 00:00:36.094
+The summary ends by saying the
+names are in the drift report,
+
+12
+00:00:36.094 --> 00:00:39.325
+which goes to the evidence
+store, not the issue tracker.
+
+13
+00:00:39.325 --> 00:00:41.100
+The compare exits with two.
+
+14
+00:00:41.100 --> 00:00:45.988
+And among the six resolved findings
+are Module 2's E A oh seven and two
+
+15
+00:00:45.988 --> 00:00:50.930
+E A oh eight findings for E A oh two,
+which is now in the exclusion group.

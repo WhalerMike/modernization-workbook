@@ -1,0 +1,62 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.663
+Why start with an inventory?
+
+2
+00:00:01.663 --> 00:00:04.576
+Because the list is always
+longer than you think.
+
+3
+00:00:04.576 --> 00:00:10.032
+In Entra, consent creates service principals,
+and Microsoft's own services create
+
+4
+00:00:10.032 --> 00:00:15.087
+more, so the inventory is always larger
+than the list of apps anyone asked for.
+
+5
+00:00:15.087 --> 00:00:19.663
+And in Active Directory, no attribute
+marks a user as a service account.
+
+6
+00:00:19.663 --> 00:00:25.057
+Microsoft Learn's guidance on securing
+user-based service accounts finds candidates
+
+7
+00:00:25.057 --> 00:00:27.529
+by three signs: a service principal name,
+
+8
+00:00:27.529 --> 00:00:30.975
+trust for delegation, and a
+password that never expires.
+
+9
+00:00:30.975 --> 00:00:33.400
+And it warns that this
+might not find them all.
+
+10
+00:00:33.400 --> 00:00:38.254
+So in this module you read every
+non-person identity into one register,
+
+11
+00:00:38.254 --> 00:00:43.275
+with its type, its owners, its credentials,
+its risk and a candidate target.
+
+12
+00:00:43.275 --> 00:00:45.200
+You don't decide anything yet.
+
+13
+00:00:45.200 --> 00:00:47.830
+Inventory first; decide later.

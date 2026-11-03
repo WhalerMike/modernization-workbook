@@ -1,0 +1,68 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.162
+Step five prints the findings.
+
+2
+00:00:02.162 --> 00:00:06.008
+Two warnings are P G oh nine for
+groups the file doesn't list:
+
+3
+00:00:06.008 --> 00:00:10.013
+a legacy help desk group and an
+Intune administrators group.
+
+4
+00:00:10.013 --> 00:00:13.312
+Then P R V T0 Priv Role Admin.
+
+5
+00:00:13.312 --> 00:00:16.926
+It has a permanent active
+member the file doesn't grant,
+
+6
+00:00:16.926 --> 00:00:18.612
+which is oh six and oh nine.
+
+7
+00:00:18.612 --> 00:00:21.773
+It has an eligible owner
+with no active owner,
+
+8
+00:00:21.773 --> 00:00:24.763
+which is oh seven and oh
+nine: the owner trap.
+
+9
+00:00:24.763 --> 00:00:28.196
+And its member activation
+needs no approval and lasts
+
+10
+00:00:28.196 --> 00:00:31.324
+eight hours instead of
+four, two oh eight findings.
+
+11
+00:00:31.324 --> 00:00:35.120
+On the Azure owner group, P R
+V T1 Azure Owner Sub Workload:
+
+12
+00:00:35.120 --> 00:00:40.400
+it isn't role-assignable, which is a warning
+for a group that holds no Entra role,
+
+13
+00:00:40.400 --> 00:00:45.350
+and it has a nested group, the legacy
+help desk group, as an eligible member.
+
+14
+00:00:45.350 --> 00:00:49.440
+That's oh five, oh nine, and
+an oh eight for a policy rule.

@@ -1,0 +1,72 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:04.038
+Lab 1 runs in the
+non-person identity folder,
+
+3
+00:00:04.038 --> 00:00:07.300
+in PowerShell 7, against
+a fictional tenant.
+
+4
+00:00:07.300 --> 00:00:12.200
+Step one sends Microsoft's samples to
+the fakes, and seventeen tests pass.
+
+5
+00:00:12.200 --> 00:00:16.274
+One of them is the whole risk in a
+single test: it creates a credential
+
+6
+00:00:16.274 --> 00:00:20.275
+from the Graph sample, then exchanges
+a token with another subject.
+
+7
+00:00:20.275 --> 00:00:22.027
+The create succeeds,
+
+8
+00:00:22.027 --> 00:00:26.975
+and the exchange fails with A A
+D S T S seven double oh two one.
+
+9
+00:00:26.975 --> 00:00:29.450
+Step two lists what each task needs.
+
+10
+00:00:29.450 --> 00:00:33.375
+The read task holds two Graph
+read permissions and Reader.
+
+11
+00:00:33.375 --> 00:00:38.537
+Only the apply task holds application
+read-write and Managed Identity Contributor.
+
+12
+00:00:38.537 --> 00:00:42.593
+Step three builds the plan:
+eight conversions in two waves,
+
+13
+00:00:42.593 --> 00:00:45.550
+four exchange tests passed and two failed,
+
+14
+00:00:45.550 --> 00:00:50.450
+seven findings and one warning, and
+twenty actions, four of them writes.
+
+15
+00:00:50.450 --> 00:00:55.700
+Nothing is sent, and the plan's hash is
+the same on every run with these inputs.

@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.175
+Step six runs the policy plan three times.
+
+2
+00:00:03.175 --> 00:00:07.010
+First, with the plan's own hash and
+no Apply switch, it's a dry run:
+
+3
+00:00:07.010 --> 00:00:11.613
+the write path runs its prechecks and
+reports eight writes it would send.
+
+4
+00:00:11.613 --> 00:00:16.233
+One PATCH of the default policy, a
+policy create and its assignment,
+
+5
+00:00:16.233 --> 00:00:18.501
+and five lock PATCHes, one per app.
+
+6
+00:00:18.501 --> 00:00:22.075
+Then the same command with Apply
+sends all eight to the fake.
+
+7
+00:00:22.075 --> 00:00:25.988
+In Lab 1, Apply changes
+only the fake, in memory.
+
+8
+00:00:25.988 --> 00:00:28.876
+Then you run the plan
+with a hash of all zeros,
+
+9
+00:00:28.876 --> 00:00:33.288
+which nobody approved, and it refuses
+to run a plan nobody reviewed.
+
+10
+00:00:33.288 --> 00:00:38.413
+Pasted line by line, as the lab means,
+the shell carries on after that refusal.
+
+11
+00:00:38.413 --> 00:00:42.114
+That's the pattern for
+every write in this path:
+
+12
+00:00:42.114 --> 00:00:45.480
+a plan, a reviewed hash,
+a dry run, then Apply.

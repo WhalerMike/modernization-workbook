@@ -1,0 +1,61 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.075
+Step seven computes the plan's hash
+and dry-runs the plan with it.
+
+2
+00:00:04.075 --> 00:00:08.540
+Without the Apply switch, the write
+path runs its prechecks and stops,
+
+3
+00:00:08.540 --> 00:00:13.239
+reporting three writes it would send:
+a directory disable for svc backup,
+
+4
+00:00:13.239 --> 00:00:17.155
+a PATCH that turns off the Legacy
+Reports service principal,
+
+5
+00:00:17.155 --> 00:00:19.975
+and a POST that adds an
+owner to HR Connector.
+
+6
+00:00:19.975 --> 00:00:23.725
+Step eight sends them to the
+fake with Apply: three sent.
+
+7
+00:00:23.725 --> 00:00:28.101
+In the results file, each disable
+tells the operator to record disabled
+
+8
+00:00:28.101 --> 00:00:32.700
+on October thirtieth, and that the
+claim window ends November twenty-ninth.
+
+9
+00:00:32.700 --> 00:00:35.889
+Then you run the same plan
+with a hash of all zeros,
+
+10
+00:00:35.889 --> 00:00:40.275
+which nobody approved, and it refuses
+to run a plan nobody reviewed.
+
+11
+00:00:40.275 --> 00:00:44.387
+Step nine runs every test:
+five hundred thirteen pass.
+
+12
+00:00:44.387 --> 00:00:48.940
+Delete the output folder when you're done,
+because it names accounts and owners.

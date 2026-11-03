@@ -1,0 +1,75 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.869
+Lab 2 runs in your own test
+tenant, worldwide or G C C,
+
+2
+00:00:03.869 --> 00:00:07.688
+with a test Azure
+subscription, never production.
+
+3
+00:00:07.688 --> 00:00:10.581
+You send the audit log
+and the interactive and
+
+4
+00:00:10.581 --> 00:00:13.626
+non-interactive sign-in
+logs to a test workspace.
+
+5
+00:00:13.626 --> 00:00:17.322
+You register a reader app, run
+the check with your own accounts,
+
+6
+00:00:17.322 --> 00:00:19.787
+and run the query by
+hand in the workspace.
+
+7
+00:00:19.787 --> 00:00:24.426
+Then you deploy the alert from the reviewed
+template, and run a drill that fires it.
+
+8
+00:00:24.426 --> 00:00:29.470
+If the test tenant's emergency accounts
+are real, treat that drill as Microsoft
+
+9
+00:00:29.470 --> 00:00:34.050
+Learn's validation drill: tell security
+operations first, and record it.
+
+10
+00:00:34.050 --> 00:00:37.762
+You need at least Security Administrator
+for the diagnostic setting,
+
+11
+00:00:37.762 --> 00:00:40.067
+the six read permissions
+for the reader app,
+
+12
+00:00:40.067 --> 00:00:43.075
+and at least Monitoring
+Contributor to deploy the alert.
+
+13
+00:00:43.075 --> 00:00:47.895
+The back-out deletes the alert rule and
+action group, the permissions, the app and
+
+14
+00:00:47.895 --> 00:00:52.788
+its certificate, the diagnostic setting if
+the lab created it, and the test output.
+
+15
+00:00:52.788 --> 00:00:55.010
+The authors haven't run Lab 2.

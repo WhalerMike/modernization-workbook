@@ -5,54 +5,54 @@ WEBVTT
 To wrap up, the decisions and next steps.
 
 2
-00:00:03.037 --> 00:00:08.930
+00:00:03.037 --> 00:00:09.157
 The sponsor and CIO authorize one
-authoritative DDI policy plane, and the DNS
+authoritative DDI policy plane, and the DNS and
 
 3
-00:00:08.930 --> 00:00:14.638
-and DDI team settles Book 08's five
+00:00:09.157 --> 00:00:15.276
+DDI team settles the workbook's five DNS
 configuration decisions within 90 days.
 
 4
-00:00:14.638 --> 00:00:17.170
+00:00:15.276 --> 00:00:17.808
 Write the requirement as capabilities,
 
 5
-00:00:17.170 --> 00:00:20.624
+00:00:17.808 --> 00:00:21.262
 each mapped to its rule,
 because no rule names a product.
 
 6
-00:00:20.624 --> 00:00:25.900
+00:00:21.262 --> 00:00:26.537
 Ask every candidate for the same evidence
 pack, and record every gap with an owner.
 
 7
-00:00:25.900 --> 00:00:29.199
+00:00:26.537 --> 00:00:29.837
 Pick a delegation pattern
 per division, and pilot it,
 
 8
-00:00:29.199 --> 00:00:32.575
+00:00:29.837 --> 00:00:33.213
 ideally with one that has
 overlapping address space.
 
 9
-00:00:32.575 --> 00:00:35.713
+00:00:33.213 --> 00:00:36.350
 And size logging for
 retention, tested at peak.
 
 10
-00:00:35.713 --> 00:00:39.873
+00:00:36.350 --> 00:00:40.511
 The next step needs no award:
 list every DNS, DHCP and IPAM
 
 11
-00:00:39.873 --> 00:00:44.987
+00:00:40.511 --> 00:00:45.625
 requirement your systems inherit,
 and the evidence that would prove it.
 
 12
-00:00:44.987 --> 00:00:45.820
+00:00:45.625 --> 00:00:46.440
 Thank you.

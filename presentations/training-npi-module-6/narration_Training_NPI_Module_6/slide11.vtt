@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.361
+Step six reads the service
+principal sign-ins over an
+
+2
+00:00:03.361 --> 00:00:07.425
+eighteen-day window and summarizes
+them, principal by principal.
+
+3
+00:00:07.425 --> 00:00:13.162
+Ring 1 is ready for enforcement: Mail
+Automation and Payroll Export are both clear.
+
+4
+00:00:13.162 --> 00:00:14.537
+Ring 2 isn't ready.
+
+5
+00:00:14.537 --> 00:00:18.295
+Deploy Bot would be blocked,
+because it signed in from two oh
+
+6
+00:00:18.295 --> 00:00:22.437
+three dot oh dot one thirteen dot
+seven, outside the egress ranges.
+
+7
+00:00:22.437 --> 00:00:26.863
+And HR Connector has no sign-ins at
+all, so there's nothing to judge.
+
+8
+00:00:26.863 --> 00:00:30.575
+A ring is ready only when
+every principal in it is clear.
+
+9
+00:00:30.575 --> 00:00:32.600
+The summary ends with its hash.
+
+10
+00:00:32.600 --> 00:00:36.861
+Write that hash down: in step eight,
+the enforcement record cites it,
+
+11
+00:00:36.861 --> 00:00:41.260
+and that's how a reviewer's approval
+is tied to exactly this evidence.

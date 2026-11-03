@@ -1,0 +1,1001 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.895
+Welcome to Module 1 of the
+Privileged Access learning path:
+
+2
+00:00:03.895 --> 00:00:06.563
+inventory every privileged assignment.
+
+3
+00:00:06.563 --> 00:00:10.500
+Privilege should be just-in-time,
+by tier, and provable.
+
+4
+00:00:10.500 --> 00:00:15.037
+This path teaches you to build the software
+that gets an estate there, in eight
+
+5
+00:00:15.037 --> 00:00:20.000
+modules, one for each chapter of the developer
+workbook, Building Privileged Access.
+
+6
+00:00:20.000 --> 00:00:24.080
+This one serves Phase
+0 of the project plan,
+
+7
+00:00:24.080 --> 00:00:29.675
+tasks A0.1 and A0.2, and Gate 0,
+with Chapter 01 of the workbook.
+
+8
+00:00:29.675 --> 00:00:33.565
+In it you run Microsoft Learn's
+own samples to see what they miss,
+
+9
+00:00:33.565 --> 00:00:38.204
+then run the workbook's inventory: one
+read of every privileged assignment,
+
+10
+00:00:38.204 --> 00:00:41.496
+a tier for every row, findings
+for standing privilege,
+
+11
+00:00:41.496 --> 00:00:44.937
+and a manifest that says which
+calls produced the files.
+
+12
+00:00:44.937 --> 00:00:48.175
+The code runs on your laptop
+against a fictional tenant.
+
+13
+00:00:48.175 --> 00:00:53.650
+It's illustrative: tested against fixtures,
+not run against a production tenant.
+
+14
+00:00:57.400 --> 00:00:58.438
+Why start here?
+
+15
+00:00:58.438 --> 00:01:02.702
+Because you can't make privilege
+just-in-time until you can list it:
+
+16
+00:01:02.702 --> 00:01:06.415
+who holds which role, at which
+scope, standing or eligible,
+
+17
+00:01:06.415 --> 00:01:09.337
+directly or through a
+group, and in which tier.
+
+18
+00:01:09.337 --> 00:01:12.751
+The admin center's list of
+active assignments isn't enough.
+
+19
+00:01:12.751 --> 00:01:16.070
+Under PIM almost every human
+holder becomes eligible,
+
+20
+00:01:16.070 --> 00:01:19.979
+so a list of active assignments
+shrinks as the project succeeds,
+
+21
+00:01:19.979 --> 00:01:23.225
+and it stops being an inventory
+just when you need one.
+
+22
+00:01:23.225 --> 00:01:27.500
+In this module you build the inventory
+the rest of the path depends on:
+
+23
+00:01:27.500 --> 00:01:32.075
+one read of every privileged assignment,
+a tier for every row, findings for
+
+24
+00:01:32.075 --> 00:01:37.150
+standing privilege, and a manifest that
+says which calls produced the files.
+
+25
+00:01:40.900 --> 00:01:43.711
+Here's what you'll be able to
+do by the end of this module,
+
+26
+00:01:43.711 --> 00:01:46.075
+which takes about fifty
+minutes with the lab.
+
+27
+00:01:46.075 --> 00:01:49.041
+You'll name the four ways
+a role reaches a person,
+
+28
+00:01:49.041 --> 00:01:54.137
+and explain why the inventory reads eligible
+assignments as well as active ones.
+
+29
+00:01:54.137 --> 00:01:56.508
+You'll explain what
+Microsoft Learn's sample
+
+30
+00:01:56.508 --> 00:01:58.687
+for listing role assignments leaves out.
+
+31
+00:01:58.687 --> 00:02:04.499
+You'll run the inventory and read its
+findings, rules I N V oh one to oh nine.
+
+32
+00:02:04.499 --> 00:02:08.475
+You'll explain why the tier comes
+from the program, not from Microsoft.
+
+33
+00:02:08.475 --> 00:02:11.225
+And you'll say what the
+reader refuses, and why.
+
+34
+00:02:11.225 --> 00:02:14.564
+Before you start, you need
+the path's prerequisites:
+
+35
+00:02:14.564 --> 00:02:18.301
+the chapter on privileged
+tiers in Access and Privilege,
+
+36
+00:02:18.301 --> 00:02:22.913
+the plan's gates, Microsoft Automation
+Modules 1 and 2, and PowerShell 7.
+
+37
+00:02:22.913 --> 00:02:26.569
+Lab 1 needs PowerShell
+7.1 or later with Pester
+
+38
+00:02:26.569 --> 00:02:29.937
+5 and a copy of the
+repository, and no tenant.
+
+39
+00:02:29.937 --> 00:02:32.838
+Lab 2 needs a worldwide
+or G C C test tenant
+
+40
+00:02:32.838 --> 00:02:36.690
+with a test Azure
+subscription, never production.
+
+41
+00:02:40.440 --> 00:02:43.152
+Unit 1: what the inventory has to hold.
+
+42
+00:02:43.152 --> 00:02:48.160
+Microsoft Learn's guide to planning a PIM
+deployment names four kinds of assignment:
+
+43
+00:02:48.160 --> 00:02:52.953
+permanent eligible, permanent active,
+time-bound eligible and time-bound active.
+
+44
+00:02:52.953 --> 00:02:56.514
+And it says to keep zero
+permanently active assignments,
+
+45
+00:02:56.514 --> 00:02:58.939
+except the emergency access accounts.
+
+46
+00:02:58.939 --> 00:03:03.502
+So the inventory reads all four,
+eligible as well as active.
+
+47
+00:03:03.502 --> 00:03:04.803
+Next, the route.
+
+48
+00:03:04.803 --> 00:03:09.266
+A role assigned to a role-assignable
+group reaches every member of that group.
+
+49
+00:03:09.266 --> 00:03:13.296
+The program's design assigns
+roles to groups named P R V,
+
+50
+00:03:13.296 --> 00:03:16.790
+then the tier, then the
+role, and never to a person.
+
+51
+00:03:16.790 --> 00:03:17.815
+Then the tier.
+
+52
+00:03:17.815 --> 00:03:21.447
+It comes from the program's
+own file, tiers dot json,
+
+53
+00:03:21.447 --> 00:03:26.053
+keyed by the role's template I D,
+which is the same in every tenant.
+
+54
+00:03:26.053 --> 00:03:31.178
+A role that isn't in the file is reported
+as unclassified, never assumed safe.
+
+55
+00:03:31.178 --> 00:03:33.988
+That file is this
+workbook's design guidance:
+
+56
+00:03:33.988 --> 00:03:37.620
+the agency replaces it with
+its approved tier model.
+
+57
+00:03:41.370 --> 00:03:46.061
+Microsoft Learn's page on listing Microsoft
+Entra role assignments has a sample,
+
+58
+00:03:46.061 --> 00:03:48.932
+and the kit runs it as
+published against a stand-in,
+
+59
+00:03:48.932 --> 00:03:51.032
+so you can see exactly what it misses.
+
+60
+00:03:51.032 --> 00:03:54.471
+The most important gap: it
+sees no eligible assignment.
+
+61
+00:03:54.471 --> 00:03:58.272
+That's the state the project
+moves every human holder into,
+
+62
+00:03:58.272 --> 00:04:02.233
+so an inventory built on it gets
+emptier as the work succeeds.
+
+63
+00:04:02.233 --> 00:04:04.927
+It also returns a role-assignable group as
+
+64
+00:04:04.927 --> 00:04:07.621
+one principal and never reads its members.
+
+65
+00:04:07.621 --> 00:04:10.558
+It resolves no names and assigns no tier.
+
+66
+00:04:10.558 --> 00:04:16.033
+It passes neither the All nor the page size
+option, so it doesn't follow every page.
+
+67
+00:04:16.033 --> 00:04:20.782
+It reads transitive assignments from
+the beta endpoint, on a hard-coded host.
+
+68
+00:04:20.782 --> 00:04:23.332
+And it reads no Azure
+role assignments at all.
+
+69
+00:04:23.332 --> 00:04:26.810
+The workbook's inventory
+closes each of those gaps,
+
+70
+00:04:26.810 --> 00:04:31.400
+and Lab 1's first step shows the
+eligible gap with your own eyes.
+
+71
+00:04:35.150 --> 00:04:39.137
+Unit 2: the reader, the
+rows and the findings.
+
+72
+00:04:39.137 --> 00:04:42.654
+The reader sends only the calls
+declared in the kit's call list,
+
+73
+00:04:42.654 --> 00:04:45.137
+each with its least-privileged permission.
+
+74
+00:04:45.137 --> 00:04:48.099
+It sends GET only; any
+other method throws.
+
+75
+00:04:48.099 --> 00:04:51.499
+It sends to one host, the
+named cloud's own Graph or
+
+76
+00:04:51.499 --> 00:04:55.238
+Resource Manager endpoint,
+and it follows every page.
+
+77
+00:04:55.238 --> 00:04:58.169
+Note why it asks for User
+dot Read Basic dot All
+
+78
+00:04:58.169 --> 00:05:01.024
+as well as Group Member
+dot Read Basic dot All.
+
+79
+00:05:01.024 --> 00:05:05.538
+Without it, a group's member comes
+back with an I D and a type only,
+
+80
+00:05:05.538 --> 00:05:09.875
+and the review sees an unnamed
+holder; that's rule I N V oh nine.
+
+81
+00:05:09.875 --> 00:05:13.963
+The rows: one row per
+assignment, with its plane, role,
+
+82
+00:05:13.963 --> 00:05:19.025
+tier and scope, its state, and its
+route, direct or through a group.
+
+83
+00:05:19.025 --> 00:05:23.199
+When a role is on a group, the reader
+reads the group's members once,
+
+84
+00:05:23.199 --> 00:05:26.710
+and each member gets its
+own row marked Via Group.
+
+85
+00:05:30.460 --> 00:05:33.485
+The findings, I N V oh one to oh nine.
+
+86
+00:05:33.485 --> 00:05:36.869
+Oh one is the big one:
+standing active privilege in
+
+87
+00:05:36.869 --> 00:05:40.335
+Tier 0 or Tier 1 outside
+the documented exceptions.
+
+88
+00:05:40.335 --> 00:05:44.622
+An exception counts only if it has
+an owner, and then the row is Info.
+
+89
+00:05:44.622 --> 00:05:49.373
+Oh two is a role assigned straight to
+a user, not through a P R V group.
+
+90
+00:05:49.373 --> 00:05:53.285
+Oh three is a group that holds a
+role but isn't named for its tier.
+
+91
+00:05:53.285 --> 00:05:57.787
+Oh four counts Global Administrators:
+five or more is a finding,
+
+92
+00:05:57.787 --> 00:06:03.588
+because Microsoft Learn's best practices
+for Entra roles advise fewer than five,
+
+93
+00:06:03.588 --> 00:06:08.524
+and so is fewer than two users, the
+floor in CISA's ScubaGear baseline,
+
+94
+00:06:08.524 --> 00:06:10.948
+M S A A D seven point one, version one.
+
+95
+00:06:10.948 --> 00:06:13.010
+Oh five is a role with no tier.
+
+96
+00:06:13.010 --> 00:06:16.010
+Oh six is eligibility that never expires.
+
+97
+00:06:16.010 --> 00:06:19.360
+Oh seven is User Access
+Administrator at root scope,
+
+98
+00:06:19.360 --> 00:06:21.698
+which is what elevate access grants.
+
+99
+00:06:21.698 --> 00:06:25.157
+Oh eight is more than three
+Owners on a subscription,
+
+100
+00:06:25.157 --> 00:06:29.661
+against Microsoft Learn's Azure R B
+A C best practice of at most three.
+
+101
+00:06:29.661 --> 00:06:33.560
+And oh nine is a group member
+whose name the run couldn't read.
+
+102
+00:06:33.560 --> 00:06:36.811
+Those thresholds come from
+Microsoft Learn and CISA;
+
+103
+00:06:36.811 --> 00:06:39.490
+the other rules are the kit's own design.
+
+104
+00:06:43.240 --> 00:06:43.965
+Try it.
+
+105
+00:06:43.965 --> 00:06:48.036
+Lab 1 runs in the privileged-access
+folder of the examples,
+
+106
+00:06:48.036 --> 00:06:53.040
+in one PowerShell 7 session, against
+a fictional tenant served by a fake.
+
+107
+00:06:53.040 --> 00:06:55.940
+Nothing signs in, and
+nothing leaves the machine.
+
+108
+00:06:55.940 --> 00:07:00.865
+Step one runs Microsoft Learn's samples
+against the stand-ins, with Pester.
+
+109
+00:07:00.865 --> 00:07:03.992
+Nine pass, none fail, and seven don't run:
+
+110
+00:07:03.992 --> 00:07:07.927
+those seven are Chapter
+02's, for the next module.
+
+111
+00:07:07.927 --> 00:07:10.390
+The second test is the one to notice.
+
+112
+00:07:10.390 --> 00:07:12.891
+It shows that the fixture's eligible-only
+
+113
+00:07:12.891 --> 00:07:15.540
+holders never appear in
+the sample's output.
+
+114
+00:07:15.540 --> 00:07:19.928
+Step two loads the module and lists
+the permissions the inventory needs.
+
+115
+00:07:19.928 --> 00:07:24.765
+There are five: Group Member, Role
+Assignment Schedule, Role Eligibility
+
+116
+00:07:24.765 --> 00:07:29.602
+Schedule and Role Management, each to
+read, and User dot Read Basic dot All.
+
+117
+00:07:29.602 --> 00:07:31.278
+Nothing ends in ReadWrite.
+
+118
+00:07:31.278 --> 00:07:34.320
+The output on the slide is wrapped to fit.
+
+119
+00:07:38.070 --> 00:07:41.882
+Step three runs the inventory
+against the fictional tenant.
+
+120
+00:07:41.882 --> 00:07:46.703
+You give it the fixture, an output folder,
+three Azure scopes, two subscriptions and
+
+121
+00:07:46.703 --> 00:07:51.595
+the root management group, the exceptions
+list, and the control-plane subscription.
+
+122
+00:07:51.595 --> 00:07:53.445
+It reads thirty rows.
+
+123
+00:07:53.445 --> 00:07:57.895
+In Azure, four are Tier 0,
+five Tier 1 and one Tier 2.
+
+124
+00:07:57.895 --> 00:08:03.413
+In Entra, eight are Tier 0, two Tier 1,
+two Tier 2, and one is unclassified:
+
+125
+00:08:03.413 --> 00:08:08.833
+a role that isn't in the tier file,
+reported rather than assumed safe.
+
+126
+00:08:08.833 --> 00:08:13.595
+The run raises ten findings, seven
+warnings and one information item.
+
+127
+00:08:13.595 --> 00:08:16.296
+And it writes everything
+to the output folder,
+
+128
+00:08:16.296 --> 00:08:20.631
+with a manifest that lists every request
+it sent and the hash of every file
+
+129
+00:08:20.631 --> 00:08:24.895
+it wrote, so a reviewer can check later
+which calls produced the evidence.
+
+130
+00:08:24.895 --> 00:08:28.100
+The scope list on the
+slide is wrapped to fit.
+
+131
+00:08:31.850 --> 00:08:34.212
+Step four prints the ten findings.
+
+132
+00:08:34.212 --> 00:08:39.423
+Seven are I N V oh one, standing
+privilege in Tier 0 or Tier 1 outside the
+
+133
+00:08:39.423 --> 00:08:41.891
+exceptions: a person, alex dot kim,
+
+134
+00:08:41.891 --> 00:08:45.638
+an automation account,
+and several Azure holders.
+
+135
+00:08:45.638 --> 00:08:52.013
+The Azure rows show object I D's, because
+Resource Manager returns I D's, not names.
+
+136
+00:08:52.013 --> 00:08:56.939
+One holder also has I N V oh seven, User
+Access Administrator at root scope,
+
+137
+00:08:56.939 --> 00:09:02.112
+the elevated access that reaches every
+subscription and management group.
+
+138
+00:09:02.112 --> 00:09:05.800
+There's I N V oh four, too
+many Global Administrators,
+
+139
+00:09:05.800 --> 00:09:09.575
+and I N V oh eight, too many
+Owners on one subscription.
+
+140
+00:09:09.575 --> 00:09:13.463
+Notice who's missing: the
+emergency account, E A oh one.
+
+141
+00:09:13.463 --> 00:09:17.395
+It's Info, not a finding, because
+the exceptions list names it,
+
+142
+00:09:17.395 --> 00:09:19.401
+and the exception has an owner.
+
+143
+00:09:19.401 --> 00:09:22.160
+An exception with no owner wouldn't count.
+
+144
+00:09:25.910 --> 00:09:28.222
+Step five shows the reader refusing.
+
+145
+00:09:28.222 --> 00:09:31.438
+You build a reader for the
+inventory task in G C C,
+
+146
+00:09:31.438 --> 00:09:35.397
+on the fake, and ask it for the
+Conditional Access policies.
+
+147
+00:09:35.397 --> 00:09:38.775
+That call isn't declared for the
+inventory task, so it throws,
+
+148
+00:09:38.775 --> 00:09:42.085
+and tells you to add it to the
+call list with its permission.
+
+149
+00:09:42.085 --> 00:09:46.723
+Then you ask for a cloud called
+G C C High, with capital letters.
+
+150
+00:09:46.723 --> 00:09:52.644
+The names are case-sensitive on
+purpose, so that's an unknown cloud,
+
+151
+00:09:52.644 --> 00:09:56.811
+and it throws too: use global,
+G C C, G C C High or D O D.
+
+152
+00:09:56.811 --> 00:09:58.322
+There's no default cloud.
+
+153
+00:09:58.322 --> 00:10:03.522
+Step six runs the whole test suite,
+three hundred thirty tests, and all pass.
+
+154
+00:10:03.522 --> 00:10:08.085
+Then delete the output folder, because it
+names the fixture's privileged holders.
+
+155
+00:10:08.085 --> 00:10:13.030
+Pester prints its summary on several
+lines; the slide shows it on one.
+
+156
+00:10:16.780 --> 00:10:21.944
+Lab 2 runs the inventory against your own
+test tenant, in the worldwide or G C C
+
+157
+00:10:21.944 --> 00:10:27.518
+cloud, with a test Azure subscription,
+never production, and with fictional people.
+
+158
+00:10:27.518 --> 00:10:29.255
+The run only reads.
+
+159
+00:10:29.255 --> 00:10:31.822
+You register a reader
+app with a certificate,
+
+160
+00:10:31.822 --> 00:10:35.638
+and grant it the five Graph
+application permissions from step two,
+
+161
+00:10:35.638 --> 00:10:38.830
+with admin consent, and Reader
+on the test subscription.
+
+162
+00:10:38.830 --> 00:10:43.186
+Then you run the inventory, cross-check
+it against the admin center's download,
+
+163
+00:10:43.186 --> 00:10:45.705
+and check the two things
+the fixture assumed.
+
+164
+00:10:45.705 --> 00:10:49.518
+To back it out, remove the Reader
+assignment, the five permissions,
+
+165
+00:10:49.518 --> 00:10:53.967
+the app registration and its certificate,
+and delete the test output folder,
+
+166
+00:10:53.967 --> 00:10:56.580
+which names the tenant's
+privileged holders.
+
+167
+00:10:56.580 --> 00:11:02.530
+The path's authors haven't run Lab 2;
+the workbook's Lab 2 gives every step.
+
+168
+00:11:06.280 --> 00:11:07.667
+The federal requirement.
+
+169
+00:11:07.667 --> 00:11:10.733
+The inventory is the evidence
+for the plan's Gate 0:
+
+170
+00:11:10.733 --> 00:11:15.293
+standing administrative privilege
+inventoried and classified by tier.
+
+171
+00:11:15.293 --> 00:11:19.999
+It supports NIST special publication
+eight hundred fifty-three A C two,
+
+172
+00:11:19.999 --> 00:11:23.191
+account management, and A
+C six, enhancement five,
+
+173
+00:11:23.191 --> 00:11:26.542
+privileged accounts
+restricted to defined roles.
+
+174
+00:11:26.542 --> 00:11:32.207
+And it supports CISA's B O D twenty-five
+oh-one and the ScubaGear baseline M S A A D
+
+175
+00:11:32.207 --> 00:11:37.437
+seven point four, version one: no
+permanent active assignment to a highly
+
+176
+00:11:37.437 --> 00:11:42.492
+privileged role, with the emergency
+access accounts as the exception.
+
+177
+00:11:42.492 --> 00:11:46.268
+The table pairs each with
+a KSI and an evidence file.
+
+178
+00:11:46.268 --> 00:11:51.553
+KSIs are FedRAMP's twenty X Key Security
+Indicators for cloud service providers;
+
+179
+00:11:51.553 --> 00:11:55.734
+the agency lines its evidence up
+with what its providers report,
+
+180
+00:11:55.734 --> 00:11:57.706
+and doesn't report KSIs itself.
+
+181
+00:11:57.706 --> 00:12:01.797
+The evidence an ISSO keeps for
+Gate 0: the inventory files,
+
+182
+00:12:01.797 --> 00:12:06.587
+in the access-controlled evidence
+store, because they name people;
+
+183
+00:12:06.587 --> 00:12:10.950
+the findings; and the manifest,
+beside the files it lists.
+
+184
+00:12:14.700 --> 00:12:16.675
+Check yourself with two questions.
+
+185
+00:12:16.675 --> 00:12:21.813
+First: why doesn't the inventory use Microsoft
+Learn's all-roles sample as its read?
+
+186
+00:12:21.813 --> 00:12:25.410
+The answer is b: the sample
+sees no eligible assignment,
+
+187
+00:12:25.410 --> 00:12:29.487
+and that's the state the project
+moves every human holder into.
+
+188
+00:12:29.487 --> 00:12:32.861
+Under PIM almost every
+human holder is eligible,
+
+189
+00:12:32.861 --> 00:12:36.150
+so an active-only list
+stops being an inventory.
+
+190
+00:12:36.150 --> 00:12:40.021
+Second: why is the emergency
+account, E A oh one,
+
+191
+00:12:40.021 --> 00:12:43.788
+reported as Info, not as
+an I N V oh one finding?
+
+192
+00:12:43.788 --> 00:12:47.562
+The answer is c: it's on the
+exceptions list with an owner.
+
+193
+00:12:47.562 --> 00:12:50.076
+An exception with no owner doesn't count.
+
+194
+00:12:50.076 --> 00:12:52.450
+You saw that in Lab 1, step four.
+
+195
+00:12:52.450 --> 00:12:57.720
+The module page has two more questions,
+each linked to the section that answers it.
+
+196
+00:13:01.470 --> 00:13:02.295
+To sum up.
+
+197
+00:13:02.295 --> 00:13:07.183
+You ran Microsoft Learn's samples and
+saw them miss every eligible holder.
+
+198
+00:13:07.183 --> 00:13:11.514
+Then you read thirty assignments from
+a fictional tenant, each with a tier,
+
+199
+00:13:11.514 --> 00:13:13.290
+and found standing privilege,
+
+200
+00:13:13.290 --> 00:13:17.195
+too many Global Administrators
+and too many subscription Owners.
+
+201
+00:13:17.195 --> 00:13:21.583
+And you saw the reader refuse an
+undeclared call and an unknown cloud.
+
+202
+00:13:21.583 --> 00:13:24.580
+Carry one thing forward:
+the emergency account
+
+203
+00:13:24.580 --> 00:13:27.808
+was Info only because the
+exceptions list names it.
+
+204
+00:13:27.808 --> 00:13:31.419
+Next is Module 2: emergency access first.
+
+205
+00:13:31.419 --> 00:13:35.973
+It's the one step in this project that
+can't move, because approval switched on
+
+206
+00:13:35.973 --> 00:13:40.670
+before the emergency accounts exist is
+the sequence that locks the agency out.
+
+207
+00:13:40.670 --> 00:13:45.657
+In Module 2 you check each emergency
+account against Microsoft Learn's standard,
+
+208
+00:13:45.657 --> 00:13:48.990
+and build the alert that
+watches them between drills.

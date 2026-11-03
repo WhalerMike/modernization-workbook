@@ -1,0 +1,69 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.461
+Lab 2 runs both plans in your own
+test tenant, worldwide or G C C,
+
+2
+00:00:04.461 --> 00:00:09.754
+with a test key vault that uses Azure
+role-based access, never production,
+
+3
+00:00:09.754 --> 00:00:13.988
+with fictional people, and with
+Module 1's Lab 2 already run.
+
+4
+00:00:13.988 --> 00:00:18.302
+Apply the policy from a test copy of
+the reviewed file, then check that the
+
+5
+00:00:18.302 --> 00:00:22.688
+tenant really refuses a new client
+secret and a twelve-month certificate.
+
+6
+00:00:22.688 --> 00:00:24.551
+Those refusals are evidence.
+
+7
+00:00:24.551 --> 00:00:28.672
+Then carry one test app
+through a whole rotation:
+
+8
+00:00:28.672 --> 00:00:33.000
+raise it, approve it, renew,
+attach, verify, and remove.
+
+9
+00:00:33.000 --> 00:00:36.365
+Sign in as a person with Cloud
+Application Administrator
+
+10
+00:00:36.365 --> 00:00:39.450
+and Key Vault Certificates
+Officer on the test vault.
+
+11
+00:00:39.450 --> 00:00:43.461
+To back it out, step eight is a
+person's PATCH of the default policy
+
+12
+00:00:43.461 --> 00:00:47.850
+back to the copy saved before, because
+this code never loosens a policy.
+
+13
+00:00:47.850 --> 00:00:50.500
+Then delete the test
+objects and the output.
+
+14
+00:00:50.500 --> 00:00:52.700
+The authors haven't run Lab 2.

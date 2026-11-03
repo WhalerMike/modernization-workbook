@@ -1,0 +1,77 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.588
+Unit 1: what the evidence has to show.
+
+2
+00:00:02.588 --> 00:00:04.275
+The run has three parts.
+
+3
+00:00:04.275 --> 00:00:08.537
+The inventory and the emergency
+check describe the tenant's state:
+
+4
+00:00:08.537 --> 00:00:10.087
+who holds what, right now.
+
+5
+00:00:10.087 --> 00:00:13.615
+The PIM audit read describes
+the events in a window:
+
+6
+00:00:13.615 --> 00:00:17.226
+every request, approval,
+activation and assignment.
+
+7
+00:00:17.226 --> 00:00:20.213
+And a chain of windows with
+no gap between them is
+
+8
+00:00:20.213 --> 00:00:23.200
+what every elevation in
+the period means in code.
+
+9
+00:00:23.200 --> 00:00:25.512
+That's this workbook's design guidance.
+
+10
+00:00:25.512 --> 00:00:30.287
+The audit read refuses a window that starts
+more than thirty days before the run.
+
+11
+00:00:30.287 --> 00:00:33.577
+With thirty days' retention,
+older events can't be read,
+
+12
+00:00:33.577 --> 00:00:37.763
+and a window reaching further back
+would look complete when it isn't.
+
+13
+00:00:37.763 --> 00:00:42.549
+Microsoft Learn's page on PIM audit
+history makes the same point from the other
+
+14
+00:00:42.549 --> 00:00:45.053
+side: its data covers
+the past thirty days,
+
+15
+00:00:45.053 --> 00:00:47.925
+so route the logs elsewhere
+to keep them longer.
+
+16
+00:00:47.925 --> 00:00:51.980
+And the read keeps each
+event as I D's, not names.

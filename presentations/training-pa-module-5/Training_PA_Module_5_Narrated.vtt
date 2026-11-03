@@ -1,0 +1,1013 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.466
+Welcome to Module 5 of the
+Privileged Access learning path:
+
+2
+00:00:04.466 --> 00:00:06.900
+PIM for Groups, and the P R V groups.
+
+3
+00:00:06.900 --> 00:00:11.676
+This module serves the project
+plan's task A2.1 in Phase 2,
+
+4
+00:00:11.676 --> 00:00:16.763
+and A3.3 in Phase 3, with Chapter
+05 of the developer workbook.
+
+5
+00:00:16.763 --> 00:00:20.187
+The program never assigns a
+privileged role to a person.
+
+6
+00:00:20.187 --> 00:00:25.375
+It assigns the role to a role-assignable
+group named P R V, then the tier,
+
+7
+00:00:25.375 --> 00:00:30.563
+then the role, so the tier shows in
+every review, alert and audit record.
+
+8
+00:00:30.563 --> 00:00:32.662
+Module 1 reads those groups.
+
+9
+00:00:32.662 --> 00:00:34.101
+This module writes them.
+
+10
+00:00:34.101 --> 00:00:39.479
+You keep each group's own state in one
+reviewed file: who is a member or owner,
+
+11
+00:00:39.479 --> 00:00:43.800
+until when, on which ticket,
+and how membership is activated.
+
+12
+00:00:43.800 --> 00:00:49.035
+The code reads the tenant first, reports
+what's wrong, plans the exact requests,
+
+13
+00:00:49.035 --> 00:00:52.962
+and applies them only when you
+ask, and only past its guards.
+
+14
+00:00:52.962 --> 00:00:57.180
+It's illustrative: tested
+against fixtures and a fake.
+
+15
+00:01:00.930 --> 00:01:02.080
+Why does this matter?
+
+16
+00:01:02.080 --> 00:01:05.249
+Because the P R V groups
+decide who holds each role,
+
+17
+00:01:05.249 --> 00:01:07.955
+and their state drifts like anything else.
+
+18
+00:01:07.955 --> 00:01:11.019
+So the guards refuse a plan
+before anything is sent,
+
+19
+00:01:11.019 --> 00:01:14.593
+and three of them keep people
+from losing access by mistake.
+
+20
+00:01:14.593 --> 00:01:18.668
+Guard G four refuses eligible
+owners with no active owner.
+
+21
+00:01:18.668 --> 00:01:22.610
+Microsoft Learn's page on PIM
+for Groups says the last active
+
+22
+00:01:22.610 --> 00:01:26.868
+owner can't be removed, so an
+activated owner's deactivation fails.
+
+23
+00:01:26.868 --> 00:01:31.162
+Guard G six refuses more removals
+than the Max Removals limit,
+
+24
+00:01:31.162 --> 00:01:35.793
+five by default, because that's the
+sign of a wrong or truncated file.
+
+25
+00:01:35.793 --> 00:01:42.181
+And guard G one refuses a Tier 0 or Tier
+1 policy losing approval or its approvers.
+
+26
+00:01:42.181 --> 00:01:44.819
+Microsoft Learn also says a group can't be
+
+27
+00:01:44.819 --> 00:01:47.380
+taken back out of PIM once it's onboarded.
+
+28
+00:01:47.380 --> 00:01:50.330
+So Lab 2 uses groups made for the lab.
+
+29
+00:01:54.080 --> 00:01:56.920
+Here's what you'll be able to
+do by the end of this module,
+
+30
+00:01:56.920 --> 00:01:59.567
+which takes about fifty-five
+minutes with the lab.
+
+31
+00:01:59.567 --> 00:02:03.857
+You'll explain the two Microsoft
+features that meet in a P R V group,
+
+32
+00:02:03.857 --> 00:02:06.955
+and the two ways the
+program uses them together.
+
+33
+00:02:06.955 --> 00:02:10.250
+You'll name what Microsoft
+Learn says about role-assignable
+
+34
+00:02:10.250 --> 00:02:12.755
+groups and PIM for Groups
+that shapes the code.
+
+35
+00:02:12.755 --> 00:02:17.430
+You'll read the findings, P G oh
+one to oh nine, and a plan's diff.
+
+36
+00:02:17.430 --> 00:02:20.053
+And you'll name the
+guards, G one to G seven,
+
+37
+00:02:20.053 --> 00:02:23.630
+and say why the pipeline's
+app doesn't create the groups.
+
+38
+00:02:23.630 --> 00:02:25.661
+Before you start, finish Module 4,
+
+39
+00:02:25.661 --> 00:02:30.550
+for eligible assignments and the P R V
+group that holds each role's eligibility,
+
+40
+00:02:30.550 --> 00:02:33.333
+and read about
+role-assignable groups in the
+
+41
+00:02:33.333 --> 00:02:36.642
+chapter on privileged tiers
+in Access and Privilege.
+
+42
+00:02:36.642 --> 00:02:41.310
+Lab 2 needs a worldwide or G C C
+test tenant with Microsoft Entra I
+
+43
+00:02:41.310 --> 00:02:46.600
+D P2 or Governance licenses and
+fictional people, never production.
+
+44
+00:02:50.350 --> 00:02:53.525
+Unit 1: what the P R
+V groups have to hold.
+
+45
+00:02:53.525 --> 00:02:56.987
+Two Microsoft features
+meet in a P R V group.
+
+46
+00:02:56.987 --> 00:02:59.263
+The first is role-assignable groups.
+
+47
+00:02:59.263 --> 00:03:04.026
+Microsoft Learn's page on using groups
+to manage role assignments says only
+
+48
+00:03:04.026 --> 00:03:08.713
+a group created with is Assignable To
+Role set to true can hold an Entra role.
+
+49
+00:03:08.713 --> 00:03:11.313
+It's set at creation and can't be changed.
+
+50
+00:03:11.313 --> 00:03:13.450
+A tenant can have at most five hundred.
+
+51
+00:03:13.450 --> 00:03:18.388
+Membership must be assigned, never
+dynamic, and a group can't be a member.
+
+52
+00:03:18.388 --> 00:03:22.733
+The second is PIM for Groups:
+just-in-time membership or ownership,
+
+53
+00:03:22.733 --> 00:03:26.275
+with one policy for membership
+and one for ownership.
+
+54
+00:03:26.275 --> 00:03:29.637
+The program's design uses
+them together in two ways.
+
+55
+00:03:29.637 --> 00:03:33.085
+For an Entra role, the group
+holds an eligible assignment,
+
+56
+00:03:33.085 --> 00:03:34.699
+and its members are active.
+
+57
+00:03:34.699 --> 00:03:39.350
+For other privilege, such as an Azure role,
+the members are eligible for the group.
+
+58
+00:03:39.350 --> 00:03:45.800
+The access packages for P R V membership,
+the plan's A3.3, aren't built here.
+
+59
+00:03:49.550 --> 00:03:53.800
+Three facts from Microsoft Learn's
+PIM for Groups pages shape the code.
+
+60
+00:03:53.800 --> 00:03:57.927
+First, eligible membership doesn't
+appear in the group's members list,
+
+61
+00:03:57.927 --> 00:04:01.475
+so reading members alone would
+miss every eligible holder.
+
+62
+00:04:01.475 --> 00:04:05.852
+Second, PIM onboards a group on its
+first schedule or policy change,
+
+63
+00:04:05.852 --> 00:04:10.787
+and the group can't be taken back out;
+the policy I D's change when that happens.
+
+64
+00:04:10.787 --> 00:04:15.426
+Third, group administrators or
+owners can override what PIM set.
+
+65
+00:04:15.426 --> 00:04:18.164
+So the code reads the
+tenant before every plan,
+
+66
+00:04:18.164 --> 00:04:20.975
+rather than trusting what
+it applied last time.
+
+67
+00:04:20.975 --> 00:04:22.903
+And one choice of the kit's own:
+
+68
+00:04:22.903 --> 00:04:27.360
+activations aren't standing state,
+so the read leaves them out.
+
+69
+00:04:31.110 --> 00:04:34.935
+Unit 2: the file, the
+findings and the guards.
+
+70
+00:04:34.935 --> 00:04:38.575
+The desired state is one
+file, P R V groups dot json,
+
+71
+00:04:38.575 --> 00:04:44.398
+with the tier policy beside it; the values
+are this workbook's design guidance.
+
+72
+00:04:44.398 --> 00:04:49.648
+The read compares the tenant with it
+and raises rules P G oh one to oh nine.
+
+73
+00:04:49.648 --> 00:04:54.472
+Oh one is a name that doesn't follow
+the P R V pattern, the program's naming.
+
+74
+00:04:54.472 --> 00:04:58.483
+Oh two is a group that holds an
+Entra role but isn't role-assignable,
+
+75
+00:04:58.483 --> 00:05:01.231
+and oh three a dynamic
+or synchronized group;
+
+76
+00:05:01.231 --> 00:05:04.573
+Microsoft Learn says PIM for
+Groups can't manage those.
+
+77
+00:05:04.573 --> 00:05:07.315
+Oh four counts
+role-assignable groups against
+
+78
+00:05:07.315 --> 00:05:09.635
+Microsoft Learn's limit of five hundred.
+
+79
+00:05:09.635 --> 00:05:14.385
+Oh five is a group nested as a holder,
+or a service principal made eligible.
+
+80
+00:05:14.385 --> 00:05:17.697
+Oh six is an entry with
+no end or no ticket.
+
+81
+00:05:17.697 --> 00:05:19.585
+Oh seven is the owner trap.
+
+82
+00:05:19.585 --> 00:05:23.147
+Oh eight is a policy rule that
+differs from the reviewed setting.
+
+83
+00:05:23.147 --> 00:05:27.007
+And oh nine is anything the
+file doesn't grant or list:
+
+84
+00:05:27.007 --> 00:05:30.420
+anything outside the file is unreviewed.
+
+85
+00:05:34.170 --> 00:05:40.258
+The plan has a fixed order: groups, then
+policy rules, then grants, then removals.
+
+86
+00:05:40.258 --> 00:05:43.708
+And seven guards refuse a
+plan before anything is sent.
+
+87
+00:05:43.708 --> 00:05:49.258
+G one, a Tier 0 or Tier 1 policy
+losing approval or its approvers.
+
+88
+00:05:49.258 --> 00:05:54.057
+G two, a rule that allows permanent
+grants, or a grant with no end.
+
+89
+00:05:54.057 --> 00:05:57.258
+G three, a group set as its own approver.
+
+90
+00:05:57.258 --> 00:05:59.232
+G four, the owner trap.
+
+91
+00:05:59.232 --> 00:06:03.770
+G five, a group as a holder, or
+an eligible service principal.
+
+92
+00:06:03.770 --> 00:06:06.170
+G six, too many removals.
+
+93
+00:06:06.170 --> 00:06:09.370
+And G seven, a self-service
+action in the plan.
+
+94
+00:06:09.370 --> 00:06:13.982
+One more choice: the pipeline's app
+doesn't create the P R V groups.
+
+95
+00:06:13.982 --> 00:06:17.107
+Microsoft Learn's reference
+for creating a group says a
+
+96
+00:06:17.107 --> 00:06:21.320
+role-assignable group needs Role
+Management dot ReadWrite dot Directory.
+
+97
+00:06:21.320 --> 00:06:24.159
+The program keeps that
+permission off the pipeline,
+
+98
+00:06:24.159 --> 00:06:27.658
+and a Privileged Role Administrator
+creates the groups by hand.
+
+99
+00:06:27.658 --> 00:06:30.340
+That's this workbook's design guidance.
+
+100
+00:06:34.090 --> 00:06:34.815
+Try it.
+
+101
+00:06:34.815 --> 00:06:40.352
+Lab 1 runs in one PowerShell 7 session,
+in the privileged-access folder.
+
+102
+00:06:40.352 --> 00:06:45.702
+Step one runs Microsoft's samples
+against the fake, as published: ten pass.
+
+103
+00:06:45.702 --> 00:06:48.975
+Step two sends Microsoft
+Learn's Example 1 yourself,
+
+104
+00:06:48.975 --> 00:06:53.465
+from the reference page for creating
+an eligibility schedule request.
+
+105
+00:06:53.465 --> 00:06:57.615
+You load the module and the sample
+harness, and read the first example.
+
+106
+00:06:57.615 --> 00:07:01.977
+Its title says an admin creates an
+eligible group ownership request.
+
+107
+00:07:01.977 --> 00:07:04.628
+But its body's access I D says member.
+
+108
+00:07:04.628 --> 00:07:08.364
+So the example is labeled
+ownership and asks for membership.
+
+109
+00:07:08.364 --> 00:07:11.539
+Then send it to the fake:
+four hundred, Bad Request,
+
+110
+00:07:11.539 --> 00:07:17.015
+because the schedule ended in February twenty
+twenty-three, before the fake's clock.
+
+111
+00:07:17.015 --> 00:07:18.315
+Its dates are stale.
+
+112
+00:07:18.315 --> 00:07:21.980
+Samples are a starting
+point, not a desired state.
+
+113
+00:07:25.730 --> 00:07:28.717
+Step three lists the
+permissions the read needs.
+
+114
+00:07:28.717 --> 00:07:33.130
+Four: Group dot Read Basic dot All,
+and the three PIM for Groups reads,
+
+115
+00:07:33.130 --> 00:07:38.505
+for assignment schedules, eligibility
+schedules and role management policies.
+
+116
+00:07:38.505 --> 00:07:40.180
+Nothing ends in ReadWrite.
+
+117
+00:07:40.180 --> 00:07:44.093
+Step four plans against the
+fictional tenant, as a dry run.
+
+118
+00:07:44.093 --> 00:07:46.277
+You give it the cloud, the fixture,
+
+119
+00:07:46.277 --> 00:07:49.755
+the desired state file, the
+date and an output folder.
+
+120
+00:07:49.755 --> 00:07:53.242
+The read raises nine
+findings and three warnings.
+
+121
+00:07:53.242 --> 00:07:56.339
+The plan has eight changes:
+three assignments,
+
+122
+00:07:56.339 --> 00:07:59.192
+two eligibilities and three policy rules.
+
+123
+00:07:59.192 --> 00:08:02.318
+The guards all passed, so
+the plan could be applied.
+
+124
+00:08:02.318 --> 00:08:04.751
+But it's a dry run, so nothing was sent:
+
+125
+00:08:04.751 --> 00:08:08.800
+review the diff and the plan,
+then run again with Apply.
+
+126
+00:08:12.550 --> 00:08:14.662
+Step five prints the findings.
+
+127
+00:08:14.662 --> 00:08:18.508
+Two warnings are P G oh nine for
+groups the file doesn't list:
+
+128
+00:08:18.508 --> 00:08:22.513
+a legacy help desk group and an
+Intune administrators group.
+
+129
+00:08:22.513 --> 00:08:25.812
+Then P R V T0 Priv Role Admin.
+
+130
+00:08:25.812 --> 00:08:29.426
+It has a permanent active
+member the file doesn't grant,
+
+131
+00:08:29.426 --> 00:08:31.112
+which is oh six and oh nine.
+
+132
+00:08:31.112 --> 00:08:34.273
+It has an eligible owner
+with no active owner,
+
+133
+00:08:34.273 --> 00:08:37.263
+which is oh seven and oh
+nine: the owner trap.
+
+134
+00:08:37.263 --> 00:08:40.696
+And its member activation
+needs no approval and lasts
+
+135
+00:08:40.696 --> 00:08:43.824
+eight hours instead of
+four, two oh eight findings.
+
+136
+00:08:43.824 --> 00:08:47.620
+On the Azure owner group, P R
+V T1 Azure Owner Sub Workload:
+
+137
+00:08:47.620 --> 00:08:52.900
+it isn't role-assignable, which is a warning
+for a group that holds no Entra role,
+
+138
+00:08:52.900 --> 00:08:57.850
+and it has a nested group, the legacy
+help desk group, as an eligible member.
+
+139
+00:08:57.850 --> 00:09:02.240
+That's oh five, oh nine, and
+an oh eight for a policy rule.
+
+140
+00:09:05.990 --> 00:09:09.253
+Step six reads the diff,
+one line per change.
+
+141
+00:09:09.253 --> 00:09:13.789
+A tilde is a change, a plus an
+addition, a minus a removal.
+
+142
+00:09:13.789 --> 00:09:15.703
+The policy rules come first.
+
+143
+00:09:15.703 --> 00:09:19.791
+The Tier 0 group's member activation
+goes from eight hours to four,
+
+144
+00:09:19.791 --> 00:09:23.502
+and from no approval to approval,
+by the same approver group.
+
+145
+00:09:23.502 --> 00:09:27.190
+The Azure owner group's eligible
+owners must now have an end.
+
+146
+00:09:27.190 --> 00:09:28.327
+Then the grants.
+
+147
+00:09:28.327 --> 00:09:33.826
+An Exchange admin member's end date
+moves out to April twenty twenty-seven,
+
+148
+00:09:33.826 --> 00:09:37.882
+on change C H G ten oh two, and
+a new active member is added,
+
+149
+00:09:37.882 --> 00:09:40.677
+on C H G ten oh five,
+each with its ticket.
+
+150
+00:09:40.677 --> 00:09:45.248
+Then the three removals: the Tier
+0 group's ungranted active member,
+
+151
+00:09:45.248 --> 00:09:48.489
+its eligible owner, and
+the nested legacy group.
+
+152
+00:09:48.489 --> 00:09:52.244
+Last, the plan names exactly the
+write permissions it would need:
+
+153
+00:09:52.244 --> 00:09:55.440
+the three PIM for Groups
+ReadWrite permissions.
+
+154
+00:09:59.190 --> 00:10:01.402
+Step seven shows a guard refusing.
+
+155
+00:10:01.402 --> 00:10:05.291
+Run the same plan with Apply,
+but with Max Removals set to two.
+
+156
+00:10:05.291 --> 00:10:09.051
+Guard G six refuses: three
+removals is more than two;
+
+157
+00:10:09.051 --> 00:10:12.365
+review them, and run
+again with a higher limit.
+
+158
+00:10:12.365 --> 00:10:13.540
+Nothing is sent.
+
+159
+00:10:13.540 --> 00:10:16.578
+Step eight applies to the
+fake with the default limit.
+
+160
+00:10:16.578 --> 00:10:19.530
+The same findings and
+the same eight changes,
+
+161
+00:10:19.530 --> 00:10:23.440
+the guards all pass, and eight
+requests are sent, none failed.
+
+162
+00:10:23.440 --> 00:10:26.828
+The fake records the requests
+and doesn't change its tenant.
+
+163
+00:10:26.828 --> 00:10:30.206
+Step nine runs the tests,
+three hundred thirty pass,
+
+164
+00:10:30.206 --> 00:10:32.730
+and you delete the output folder.
+
+165
+00:10:36.480 --> 00:10:41.334
+Lab 2 runs in a worldwide or G C
+C test tenant with Microsoft Entra
+
+166
+00:10:41.334 --> 00:10:46.555
+I D P2 or Governance licenses and
+fictional people, never production.
+
+167
+00:10:46.555 --> 00:10:50.880
+Use groups made for the lab, because a
+group can't be taken back out of PIM.
+
+168
+00:10:50.880 --> 00:10:54.680
+As a Privileged Role Administrator,
+make the lab groups by hand.
+
+169
+00:10:54.680 --> 00:10:57.167
+Register a reader app and a writer app.
+
+170
+00:10:57.167 --> 00:11:00.898
+Plan as the reader, apply the
+reviewed diff as the writer,
+
+171
+00:11:00.898 --> 00:11:03.818
+then run the plan again
+and see zero changes.
+
+172
+00:11:03.818 --> 00:11:07.239
+The reader gets the four read
+permissions from step three;
+
+173
+00:11:07.239 --> 00:11:11.517
+the writer gets those and the three
+writes from step six, and nothing else.
+
+174
+00:11:11.517 --> 00:11:15.024
+To back out, empty both lists
+in your file and apply it,
+
+175
+00:11:15.024 --> 00:11:18.367
+so no schedule remains,
+then delete the lab folder.
+
+176
+00:11:18.367 --> 00:11:20.870
+The authors haven't run Lab 2.
+
+177
+00:11:24.620 --> 00:11:26.007
+The federal requirement.
+
+178
+00:11:26.007 --> 00:11:27.411
+The P R V groups' file,
+
+179
+00:11:27.411 --> 00:11:31.795
+the check and the plan are the
+evidence for the plan's task A2.1.
+
+180
+00:11:31.795 --> 00:11:37.128
+From NIST special publication eight
+hundred fifty-three they support A C six,
+
+181
+00:11:37.128 --> 00:11:42.628
+enhancement five, privileged accounts
+restricted to defined roles; A C six and A
+
+182
+00:11:42.628 --> 00:11:48.045
+C five, least privilege and separation of
+duties; and A C two, account management.
+
+183
+00:11:48.045 --> 00:11:52.987
+And from CISA's B O D twenty-five
+oh-one and its ScubaGear baseline:
+
+184
+00:11:52.987 --> 00:11:57.197
+M S A A D seven point four, no
+permanent active assignment,
+
+185
+00:11:57.197 --> 00:12:01.133
+and seven point five,
+provisioning only through PIM.
+
+186
+00:12:01.133 --> 00:12:02.995
+C M three covers the change:
+
+187
+00:12:02.995 --> 00:12:06.807
+reviewed before it's made,
+and an unsafe change stopped.
+
+188
+00:12:06.807 --> 00:12:12.622
+The evidence an ISSO keeps: the reviewed
+file, with each holder's end date and
+
+189
+00:12:12.622 --> 00:12:19.090
+ticket; each plan's diff, plan and findings;
+and each apply's results and manifest.
+
+190
+00:12:22.840 --> 00:12:24.815
+Check yourself with two questions.
+
+191
+00:12:24.815 --> 00:12:30.215
+First: the file lists three removals and
+you pass Max Removals two with Apply.
+
+192
+00:12:30.215 --> 00:12:31.227
+What happens?
+
+193
+00:12:31.227 --> 00:12:36.178
+The answer is b: guard G six refuses
+the plan, and nothing is sent.
+
+194
+00:12:36.178 --> 00:12:38.465
+You saw it in Lab 1, step seven.
+
+195
+00:12:38.465 --> 00:12:42.865
+Second: why does the pipeline's
+app not create the P R V groups?
+
+196
+00:12:42.865 --> 00:12:45.919
+The answer is b: creating
+a role-assignable group
+
+197
+00:12:45.919 --> 00:12:49.203
+needs Role Management dot
+ReadWrite dot Directory.
+
+198
+00:12:49.203 --> 00:12:52.042
+The program keeps that
+permission off the pipeline,
+
+199
+00:12:52.042 --> 00:12:55.541
+and a Privileged Role Administrator
+creates the groups by hand.
+
+200
+00:12:55.541 --> 00:13:00.790
+The module page has two more questions,
+each linked to the section that answers it.
+
+201
+00:13:04.540 --> 00:13:05.365
+To sum up.
+
+202
+00:13:05.365 --> 00:13:10.046
+You read a fictional tenant's P R V
+groups against a reviewed file of four,
+
+203
+00:13:10.046 --> 00:13:14.965
+and found a standing member nobody granted,
+an owner trap, and a nested group.
+
+204
+00:13:14.965 --> 00:13:19.052
+You read the exact requests that
+would fix them, saw a guard refuse
+
+205
+00:13:19.052 --> 00:13:23.290
+a plan with too many removals, and
+applied eight requests to the fake.
+
+206
+00:13:23.290 --> 00:13:27.078
+Next is Module 6: PIM for Azure resources.
+
+207
+00:13:27.078 --> 00:13:30.234
+Owner, Contributor and
+User Access Administrator
+
+208
+00:13:30.234 --> 00:13:32.564
+on a subscription are privileged too.
+
+209
+00:13:32.564 --> 00:13:36.605
+PIM for Azure resources isn't in
+Microsoft Graph: it goes through
+
+210
+00:13:36.605 --> 00:13:41.102
+Azure Resource Manager, with Azure
+roles instead of Graph permissions.
+
+211
+00:13:41.102 --> 00:13:45.325
+In Module 6 you hold it as
+code, with the same discipline:
+
+212
+00:13:45.325 --> 00:13:48.000
+read, diff, and send only with Apply.

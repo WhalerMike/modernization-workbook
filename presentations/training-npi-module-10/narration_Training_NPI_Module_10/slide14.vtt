@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.423
+Lab 2 moves to your own test
+tenant, worldwide or G C C,
+
+2
+00:00:04.423 --> 00:00:10.150
+with Entra I D P one or P two, never
+production, with fictional people.
+
+3
+00:00:10.150 --> 00:00:14.762
+You also need Chapter 1's test
+host and Chapter 2's Lab 2 inputs.
+
+4
+00:00:14.762 --> 00:00:18.961
+Register a reader app with a certificate
+and the four read permissions,
+
+5
+00:00:18.961 --> 00:00:21.025
+run a baseline, and have it approved.
+
+6
+00:00:21.025 --> 00:00:25.687
+Then make three changes by hand:
+two secrets and one consent grant.
+
+7
+00:00:25.687 --> 00:00:29.526
+Run the drift run, and check the
+activity names it found against the
+
+8
+00:00:29.526 --> 00:00:33.225
+admin center's audit log, because
+that's what the fixture assumed.
+
+9
+00:00:33.225 --> 00:00:36.000
+Then package and verify the test runs.
+
+10
+00:00:36.000 --> 00:00:40.100
+To back it out, step seven removes
+both secrets and the consent grant,
+
+11
+00:00:40.100 --> 00:00:43.028
+the four permissions and
+the Reader assignment,
+
+12
+00:00:43.028 --> 00:00:47.713
+deletes the reader app and its certificate,
+and deletes the runs and packages.
+
+13
+00:00:47.713 --> 00:00:49.920
+The authors haven't run Lab 2.

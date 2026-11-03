@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.362
+Step five shows the reader refusing.
+
+2
+00:00:02.362 --> 00:00:05.578
+You build a reader for the
+inventory task in G C C,
+
+3
+00:00:05.578 --> 00:00:09.537
+on the fake, and ask it for the
+Conditional Access policies.
+
+4
+00:00:09.537 --> 00:00:12.915
+That call isn't declared for the
+inventory task, so it throws,
+
+5
+00:00:12.915 --> 00:00:16.225
+and tells you to add it to the
+call list with its permission.
+
+6
+00:00:16.225 --> 00:00:20.863
+Then you ask for a cloud called
+G C C High, with capital letters.
+
+7
+00:00:20.863 --> 00:00:26.784
+The names are case-sensitive on
+purpose, so that's an unknown cloud,
+
+8
+00:00:26.784 --> 00:00:30.951
+and it throws too: use global,
+G C C, G C C High or D O D.
+
+9
+00:00:30.951 --> 00:00:32.462
+There's no default cloud.
+
+10
+00:00:32.462 --> 00:00:37.662
+Step six runs the whole test suite,
+three hundred thirty tests, and all pass.
+
+11
+00:00:37.662 --> 00:00:42.225
+Then delete the output folder, because it
+names the fixture's privileged holders.
+
+12
+00:00:42.225 --> 00:00:46.870
+Pester prints its summary on several
+lines; the slide shows it on one.

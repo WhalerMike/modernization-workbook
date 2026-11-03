@@ -11,7 +11,7 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
 review-status: approved
-reviewed-sha256: c24dee070d168545a9675211f27cf3722765886366ae08780fe0f07f56b1e139
+reviewed-sha256: 1daa9f0d92f47b099b66ad0bad352a1de00342657711b47d129791f599b89f89
 last-reviewed: 2026-11-03
 ---
 # Chapter 05 — Workload Identity Federation and Managed Identities
@@ -358,7 +358,9 @@ Remove-Item -Recurse -Force out
 
    <!-- capture:end -->
 
-   `conv-01` (`svc-hrsync` to the user-assigned identity `id-hrsync`) has run 40 days with the identity signing in and no logon by the old account since cutover, and its owner approved: the one disable in the plan. `conv-07`'s window ends November 14. `conv-03` is blocked by its tag credential, though `github-intranet` itself is created. `conv-05`, an on-premises task with no OIDC issuer, goes to a certificate under Chapter 04.
+   `conv-01` (the fixture's `svc-hrsync` to the user-assigned identity `id-hrsync`) has run 40 days with the identity signing in and no logon by the old account since cutover, and its owner approved: the one disable in the plan. `conv-07`'s window ends November 14. `conv-03` is blocked by its tag credential, though `github-intranet` itself is created. `conv-05`, an on-premises task with no OIDC issuer, goes to a certificate under Chapter 04.
+
+   The fixture uses `svc-hrsync` only to exercise the parallel run. The program's target for `svc-hrsync` is a dMSA, as Chapter 03's matrix proposes and Chapter 06 migrates it; don't convert it to a managed identity.
 
 7. **Dry-run the plan with its approved hash:**
 

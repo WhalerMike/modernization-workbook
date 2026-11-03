@@ -1,0 +1,69 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.929
+Here's what you'll be able to
+do by the end of this module,
+
+2
+00:00:02.929 --> 00:00:05.612
+which takes about sixty-five
+minutes with the lab.
+
+3
+00:00:05.612 --> 00:00:09.820
+You'll describe the tenant default
+policy and an app management policy,
+
+4
+00:00:09.820 --> 00:00:12.387
+and how an exception
+overrides the default.
+
+5
+00:00:12.387 --> 00:00:15.231
+You'll explain why the
+policy plan never drops
+
+6
+00:00:15.231 --> 00:00:18.374
+or loosens a restriction
+the tenant already holds.
+
+7
+00:00:18.374 --> 00:00:20.360
+You'll name the steps of a rotation,
+
+8
+00:00:20.360 --> 00:00:23.763
+from the owner's approval to
+removing the old certificate.
+
+9
+00:00:23.763 --> 00:00:27.056
+And you'll run both plans on
+the fixtures, dry-run them,
+
+10
+00:00:27.056 --> 00:00:30.350
+and see the write path refuse
+a hash nobody approved.
+
+11
+00:00:30.350 --> 00:00:36.122
+Before you start, finish Module 1, because
+both plans read its register, and Module
+
+12
+00:00:36.122 --> 00:00:41.463
+3, because a secret isn't rotated: it's
+replaced by the target Module 3 decides.
+
+13
+00:00:41.463 --> 00:00:46.499
+Lab 1 needs PowerShell 7.1 or
+later with Pester 5, and a clone.
+
+14
+00:00:46.499 --> 00:00:47.500
+No tenant.

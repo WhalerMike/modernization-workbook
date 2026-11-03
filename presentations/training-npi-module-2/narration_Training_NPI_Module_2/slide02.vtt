@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.100
+Why does ownership matter so much?
+
+2
+00:00:02.100 --> 00:00:05.766
+Because, as the program's
+guidance on app ownership warns,
+
+3
+00:00:05.766 --> 00:00:09.587
+an owner can add a credential to
+an app, and then act as the app.
+
+4
+00:00:09.587 --> 00:00:12.776
+So owners are a control,
+not a contact list.
+
+5
+00:00:12.776 --> 00:00:17.912
+The program wants two human owners on every
+app registration and service principal,
+
+6
+00:00:17.912 --> 00:00:21.654
+a record in the system inventory,
+and an application owner for
+
+7
+00:00:21.654 --> 00:00:25.837
+every Active Directory account,
+found before the account is touched.
+
+8
+00:00:25.837 --> 00:00:28.442
+An identity with no owner is an orphan,
+
+9
+00:00:28.442 --> 00:00:31.887
+and the plan's decision D N
+2 says what happens to it.
+
+10
+00:00:31.887 --> 00:00:34.874
+Whatever happens, the
+rule is never delete.
+
+11
+00:00:34.874 --> 00:00:39.413
+In this module you check ownership as
+code, and you build the orphan rule
+
+12
+00:00:39.413 --> 00:00:43.940
+as a plan that a reviewer approves by
+its hash, before anything changes.

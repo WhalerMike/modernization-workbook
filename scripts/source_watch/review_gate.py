@@ -2,10 +2,11 @@
 """List the gated pages that are waiting for the owner's review.
 
 Some pages are published as drafts but held behind a review gate: Book 19
-(`docs/books/b19-developer-workbook/`), the Attribute-Driven Migration
-implementation guide that goes with it, and the developer workbooks under
-Projects (`docs/project-plans/developer-workbooks/`). Each gated page records
-the review in its front matter:
+(`docs/books/b19-developer-workbook/`), the developer workbooks under Projects
+(`docs/project-plans/developer-workbooks/`), the implementation guides
+(`docs/books/guides/`) and the training paths (`docs/training/`). Pages and
+folders whose names start with `_` (briefs, verification logs) aren't gated.
+Each gated page records the review in its front matter:
 
     review-status: approved          # or pending
     reviewed-sha256: 3f9c...         # sha256 of the page body when it was approved
@@ -16,6 +17,10 @@ the front matter) no longer matches `reviewed-sha256`: any change to an
 approved page sends it back for review. The weekly source watch lists waiting
 pages in its issue, every week, until each is approved. Work that builds on a
 page, such as its narrated chapter tour, waits for the page's approval.
+
+The gate only lists pages: no check fails on a waiting page, and a page needs no
+review fields to be gated (a page without them is "not yet reviewed"). So adding
+a folder to GATED puts its pages on the weekly list and changes nothing else.
 
     python scripts/source_watch/review_gate.py                 # waiting pages
     python scripts/source_watch/review_gate.py --json          # as JSON
@@ -39,7 +44,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 # Folders (every page in them and their subfolders) and single pages.
 GATED = ["docs/project-plans/developer-workbooks", "docs/books/b19-developer-workbook",
-         "docs/books/guides/attribute-driven-migration-implementation.md"]
+         "docs/books/guides", "docs/training"]
 
 FRONT_MATTER = re.compile(r"\A---\s*\n(.*?)\n---\s*\n", re.S)
 # The narrated-tour callout or table the tour build writes (presentations/_build/link_tours.py):

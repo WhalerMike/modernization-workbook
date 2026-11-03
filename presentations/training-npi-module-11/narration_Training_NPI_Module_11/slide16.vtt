@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.875
+To sum up.
+
+2
+00:00:00.875 --> 00:00:05.876
+You dry-ran the runbook's own scripts: a
+settings file refused for its placeholders,
+
+3
+00:00:05.876 --> 00:00:10.436
+a preflight that says go with one warning,
+a smoke test on synthetic objects,
+
+4
+00:00:10.436 --> 00:00:14.628
+a rollback plan refused without its
+approved hash and dry-run with it,
+
+5
+00:00:14.628 --> 00:00:18.452
+a production preflight that checks
+the test stage's smoke test,
+
+6
+00:00:18.452 --> 00:00:21.762
+and an evidence check that
+says no-go on a fixture stage.
+
+7
+00:00:21.762 --> 00:00:26.888
+The evidence an ISSO keeps for
+each stage is the evidence folder,
+
+8
+00:00:26.888 --> 00:00:33.078
+with one record per requirement row, the
+run folders they cover, the operator's
+
+9
+00:00:33.078 --> 00:00:39.462
+input files, and the SHA256SUMS file, which
+the ISSO checks with sha256sum dash c.
+
+10
+00:00:39.462 --> 00:00:42.924
+Before you run a stage, work
+through the chapter's checklist.
+
+11
+00:00:42.924 --> 00:00:44.700
+And that's the end of the path.
+
+12
+00:00:44.700 --> 00:00:49.680
+Go back to the learning path, or to the
+Labs page for every lab in the workbook.

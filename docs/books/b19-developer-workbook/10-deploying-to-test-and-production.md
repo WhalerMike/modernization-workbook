@@ -12,7 +12,7 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
 review-status: approved
-reviewed-sha256: e3fa8ae6380ed090b44c902298be154be01fcc9dfeff0e7f9cc7220ffe0d66ba
+reviewed-sha256: 8178771c75c8536505e983b18335ea81814fa08931aeae4712dff3c141944112
 last-reviewed: 2026-11-03
 ---
 # Chapter 10 — Deploying to Test and Production
@@ -144,7 +144,7 @@ Copy the template once per stage, fill it in, and keep the filled-in files with 
 | `machine_configuration` | `<mc-storage-account>`, `<mc-container>`, `<arc-server-name>` | Where the package is published, and the Arc test server |
 | `ansible` | `<cmdb-export-path>` | The CMDB export the control node reads; `onboarding_wave` (default 0) |
 | `drift` | `<github-org>/<github-repo>`, `<github-environment>`, `<evidence-storage-account>`, `<evidence-container>` | The pipeline's repository and environment, and the evidence container |
-| `smoke` | — | The validation kit checks that must pass, and those allowed to end unverified (VK-DG-03, which is delegated only) |
+| `smoke` | — | The validation kit checks that must pass, and those allowed to end unverified: only VK-DG-03, which is delegated only, a documented exception checked by hand at the first live run ([step 9b](#step-9-smoke-test)) |
 | `waves`, `promotion` | — | Production only: one entry per wave (OU, Intune group, Arc wave), and the go/no-go record |
 
 **No secrets, by construction.** The loader refuses a key whose name looks like a secret (`secret`, `password`, `token`, `credential`, `private`, `connection_string`, `sas`, and so on) and a value that looks like one (a PEM private key, an account key, a SAS signature), and it refuses any placeholder left unfilled. A certificate path inside the repository fails the pre-flight check. The identities sign in with certificates; Learn says the Azure CLI reads a PEM file with the private key and certificate together, and Azure PowerShell reads the certificate from the local store by thumbprint.[^c10-azcli-cert][^c10-azps-cert]
@@ -451,7 +451,7 @@ Connect-FmwGraph -Cloud $env:ADM_CLOUD -TenantId $env:ADM_TENANT_ID -ClientId $e
 Invoke-FmwEntraTask -Task ca-export -OutDirectory "$env:ADM_EVIDENCE_DIR/ca-before"
 ```
 
-**Expected:** one run folder under `vk-before` whose `ValidationManifest.json` records the test tenant's ID and mode `Live`; VK-DG-03 ends `Error`, because it is delegated only and this run is app-only ([Chapter 09](09-drift-pipelines-and-evidence.md#the-workflow)); one JSON file per Conditional Access policy in `ca-before`. Findings here are the starting point, not a failure.
+**Expected:** one run folder under `vk-before` whose `ValidationManifest.json` records the test tenant's ID and mode `Live`; VK-DG-03 ends `Error`, because it is delegated only and this run is app-only ([Chapter 09](09-drift-pipelines-and-evidence.md#the-workflow)), the documented exception that [step 9b](#step-9-smoke-test) checks by hand; one JSON file per Conditional Access policy in `ca-before`. Findings here are the starting point, not a failure.
 
 **Evidence.** In PowerShell 7:
 
@@ -935,6 +935,31 @@ python "$env:ADM_DEPLOY/smoke_test.py" --settings $env:ADM_SETTINGS --kit-run $r
 
 **Expected:** `smoke test: GO (0 failed)`. Every check in `smoke.required_pass` is `Pass`; VK-DG-03 is the only `Error`, and it is listed as allowed unverified, its evidence being step 3c's `0 difference(s)`; the run read the test tenant in mode `Live`; nothing is held or quarantined over the limit; every recorded change has a rollback. The report's SHA-256, on the last line, is part of the go/no-go record for production. The smoke test writes its own evidence record for this step (`evidence NNN-smoke.json: smoke pass`).
 
+**VK-DG-03 is a documented exception.** The smoke test reads an app-only run of the validation kit, and VK-DG-03 can't run app-only: Learn lists no application permission for the evaluate call, so the check needs a person signed in.[^c10-evaluate] An app-only smoke test can't sign in as a person. So `smoke.allowed_unverified` lists VK-DG-03, and only VK-DG-03, and the smoke test's `SM-06` line reads `no unexpected Error (allowed unverified: VK-DG-03)`. A GO therefore says nothing about VK-DG-03. The exception is accepted on one condition: at the first live run, the Groups Administrator runs VK-DG-03 by hand, delegated, and the result is kept as evidence (9b). Step 3c evaluates each library rule against its named test users; 9b runs the kit's own check on the kit's `rule-tests.json`, so the check the smoke test skips has a result of its own. Any other check that ends `Error` still fails `SM-06`.
+
+**9b. First live run only: check VK-DG-03 by hand.** The Groups Administrator signs in, delegated, with the read scopes the check needs, and runs that one check. In PowerShell 7, with the test stage's settings loaded:
+
+```powershell
+Set-Location "$env:ADM_EXAMPLES/validation-kit"
+Connect-MgGraph -Scopes 'Group.Read.All', 'User.Read.All', 'Device.Read.All' -Environment $env:ADM_MG_ENV -TenantId $env:ADM_TENANT_ID -LoginHint $env:ADM_GROUPS_ADMIN_UPN -NoWelcome
+Get-MgContext | Select-Object Account, AuthType, TenantId
+./Invoke-ValidationKit.ps1 -OutputPath "$env:ADM_EVIDENCE_DIR/vk-dg03-delegated" -CheckId VK-DG-03 -InputPath $env:ADM_VK_INPUTS -Cloud $env:ADM_VK_CLOUD -TenantId $env:ADM_TENANT_ID -SkipConnect
+$dg03run = (Get-ChildItem "$env:ADM_EVIDENCE_DIR/vk-dg03-delegated" -Directory | Sort-Object Name | Select-Object -Last 1).FullName
+$dg03 = Get-Content "$dg03run/Results/ValidationResults.json" -Raw | ConvertFrom-Json | Where-Object CheckId -EQ 'VK-DG-03'
+"$($dg03.CheckId) $($dg03.Status) ($($dg03.Count) finding(s))"
+Disconnect-MgGraph
+```
+
+**Expected:** `Get-MgContext` shows the Groups Administrator's account, `AuthType` `Delegated` and the test tenant's ID, and the last line is `VK-DG-03 Pass (0 finding(s))`. `Fail` means Graph evaluates a rule test differently from what `rule-tests.json` expects: stop, fix the rule in Git or the test, as in 3c, and run 9b again. `Error` means the session lacks the role or a scope, and `NotApplicable` means `rule-tests.json` isn't in the kit's inputs; either way VK-DG-03 still hasn't been checked, so fix it and run 9b again.
+
+**Evidence.** In the same PowerShell session:
+
+```powershell
+python "$env:ADM_DEPLOY/evidence.py" add --settings $env:ADM_SETTINGS --step smoke --command "Invoke-ValidationKit.ps1 -CheckId VK-DG-03, delegated as the Groups Administrator (vk-dg03-delegated)" --result $(if ($dg03.Status -eq 'Pass') { 'pass' } else { 'fail' }) --file "$dg03run/ValidationManifest.json" --file "$dg03run/Results/ValidationResults.json"
+```
+
+This is the step's second `smoke` record. `evidence.py check` judges a step by its latest pass or fail record, so a failed hand check fails step 12 and holds promotion until 9b passes.
+
 ### Step 10: capture the evidence
 
 *Each gate's Evidence paragraph.*
@@ -1029,7 +1054,7 @@ python "$ADM_DEPLOY/evidence.py" check --settings "$ADM_SETTINGS"
 | 2 | Production's settings point at that exact report | `promotion.test_smoke_report_sha256` equals the report's SHA-256 | Production `PF-10` |
 | 3 | The CISO and identity engineering approved promotion | `promotion.approvals`, by reference to the change record | Production `PF-10` |
 | 4 | Test and production share no tenant, subscription or deploy identity | The two settings files | `PF-09` with `--other` |
-| 5 | Rule validation found no difference | `dr-evaluate-differences.txt` is empty | Review |
+| 5 | Rule validation found no difference, and VK-DG-03, checked by hand at the first live run, passed | `dr-evaluate-differences.txt` is empty; the `vk-dg03-delegated` run and its `smoke` record (step 9b) | Review; `evidence.py check` fails a failed 9b record |
 | 6 | The workflow's on-demand run completed, and the failure path was drilled as Chapter 05 shows | `lcw-run.json` | Review |
 | 7 | The cut-over drill disabled the test OU's links and the test device kept its settings from Intune | Step 5d, the device's settings | Review |
 | 8 | Machine configuration ran in audit, then apply and monitor, with no finding; the registry's mode and published version are merged in a reviewed pull request | `mc-audit-state.json`, both `provenance.json` files, the pull request | `PF-07` shows the registry the production build will use |
@@ -1295,6 +1320,7 @@ The commands are the test stage's [step 11](#step-11-roll-back), with `productio
 - [ ] Every change in each stage is in `deploy-record.json`, and the rollback plan written from it was reviewed.
 - [ ] The test stage's rollback ran end to end, and the validation kit matched the baseline afterwards.
 - [ ] Rule validation found no difference; the groups were paused until it did.
+- [ ] At the first live run, the Groups Administrator ran VK-DG-03 by hand, delegated, and it passed (step 9b); it is the only check the smoke test allows to end unverified.
 - [ ] The workflow started disabled, ran on demand for one user, and was scheduled only in production.
 - [ ] GPO links were disabled, never deleted.
 - [ ] Machine configuration ran in audit before apply and monitor, and the registry change was merged before production.

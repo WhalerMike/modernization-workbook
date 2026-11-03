@@ -1,0 +1,97 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.437
+The federal requirement.
+
+2
+00:00:01.437 --> 00:00:06.195
+A package is the server baseline in
+a file, so what was built, from what,
+
+3
+00:00:06.195 --> 00:00:11.631
+and what shipped is the evidence for
+NIST special publication eight hundred
+
+4
+00:00:11.631 --> 00:00:15.963
+fifty-three controls such as S R
+three, S A ten, S I seven and C M two.
+
+5
+00:00:15.963 --> 00:00:18.343
+The pinned module versions support supply
+
+6
+00:00:18.343 --> 00:00:20.988
+chain and developer
+configuration management.
+
+7
+00:00:20.988 --> 00:00:25.888
+The package check, refusing build-host
+data, supports developer testing.
+
+8
+00:00:25.888 --> 00:00:28.890
+The same commit giving
+the same cleaned MOF hash,
+
+9
+00:00:28.890 --> 00:00:33.396
+with the hashes identifying what
+shipped, supports software integrity
+
+10
+00:00:33.396 --> 00:00:37.225
+and the baseline, and the provenance
+manifest is the evidence.
+
+11
+00:00:37.225 --> 00:00:40.397
+The definition carries the
+package's content hash,
+
+12
+00:00:40.397 --> 00:00:42.587
+and Arc servers are a stated choice.
+
+13
+00:00:42.587 --> 00:00:46.748
+A version that didn't rise, a mode
+in the wrong case and an enforcing
+
+14
+00:00:46.748 --> 00:00:51.525
+definition with no owner filter are
+refused, in the pull request's check run.
+
+15
+00:00:51.525 --> 00:00:54.861
+And Lab 2 adds the change
+record for the published blob,
+
+16
+00:00:54.861 --> 00:00:56.788
+and the role assignment record.
+
+17
+00:00:56.788 --> 00:01:01.721
+The Key Security Indicators come from
+FedRAMP's Consolidated Rules for 2026:
+
+18
+00:01:01.721 --> 00:01:04.959
+they're FedRAMP 20x
+indicators for providers,
+
+19
+00:01:04.959 --> 00:01:07.888
+and the agency lines its
+evidence up with them.
+
+20
+00:01:07.888 --> 00:01:11.520
+Which output supports which
+control is this workbook's reading.

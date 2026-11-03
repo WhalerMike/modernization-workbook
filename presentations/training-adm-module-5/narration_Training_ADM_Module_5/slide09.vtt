@@ -1,0 +1,77 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:05.975
+Lab 1 runs in the machine configuration
+folder, in PowerShell 7 on Windows.
+
+3
+00:00:05.975 --> 00:00:09.525
+Nothing signs in, uploads,
+or installs the agent.
+
+4
+00:00:09.525 --> 00:00:12.892
+Step one saves three pinned
+modules from the PowerShell
+
+5
+00:00:12.892 --> 00:00:15.900
+Gallery into a folder,
+rather than installing them.
+
+6
+00:00:15.900 --> 00:00:21.232
+Because of that download, the results on
+these slides weren't re-run for this deck:
+
+7
+00:00:21.232 --> 00:00:24.140
+they're the ones Chapter
+07's Lab 1 text gives,
+
+8
+00:00:24.140 --> 00:00:26.725
+as the path's verification log records.
+
+9
+00:00:26.725 --> 00:00:29.250
+Step two follows Learn's steps by hand.
+
+10
+00:00:29.250 --> 00:00:33.375
+Compile the configuration, and
+package it twice from the same MOF.
+
+11
+00:00:33.375 --> 00:00:36.163
+You get two packages with
+two different hashes.
+
+12
+00:00:36.163 --> 00:00:40.671
+Look inside the MOF, and your user name
+and computer name are in the header,
+
+13
+00:00:40.671 --> 00:00:43.376
+and your folder path is
+in every source info.
+
+14
+00:00:43.376 --> 00:00:48.957
+Step three runs the package check on
+Learn's output: two MC-PKG oh four findings,
+
+15
+00:00:48.957 --> 00:00:51.836
+for build-host data and an absolute path,
+
+16
+00:00:51.836 --> 00:00:55.200
+and the oh seven warning,
+no version in the name.

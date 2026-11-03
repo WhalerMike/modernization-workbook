@@ -1,0 +1,65 @@
+# Privileged Access learning path — Module 5: PIM for Groups and the PRV groups — narration script (practice copy)
+
+## Slide 1 — Module 5: PIM for Groups and the PRV groups
+
+Welcome to Module 5 of the Privileged Access learning path: PIM for Groups, and the P R V groups. This module serves the project plan's task A2.1 in Phase 2, and A3.3 in Phase 3, with Chapter 05 of the developer workbook. The program never assigns a privileged role to a person. It assigns the role to a role-assignable group named P R V, then the tier, then the role, so the tier shows in every review, alert and audit record. Module 1 reads those groups. This module writes them. You keep each group's own state in one reviewed file: who is a member or owner, until when, on which ticket, and how membership is activated. The code reads the tenant first, reports what's wrong, plans the exact requests, and applies them only when you ask, and only past its guards. It's illustrative: tested against fixtures and a fake.
+
+## Slide 2 — Why a PRV group's own state has to be governed
+
+Why does this matter? Because the P R V groups decide who holds each role, and their state drifts like anything else. So the guards refuse a plan before anything is sent, and three of them keep people from losing access by mistake. Guard G four refuses eligible owners with no active owner. Microsoft Learn's page on PIM for Groups says the last active owner can't be removed, so an activated owner's deactivation fails. Guard G six refuses more removals than the Max Removals limit, five by default, because that's the sign of a wrong or truncated file. And guard G one refuses a Tier 0 or Tier 1 policy losing approval or its approvers. Microsoft Learn also says a group can't be taken back out of PIM once it's onboarded. So Lab 2 uses groups made for the lab.
+
+## Slide 3 — What you'll be able to do in Module 5
+
+Here's what you'll be able to do by the end of this module, which takes about fifty-five minutes with the lab. You'll explain the two Microsoft features that meet in a P R V group, and the two ways the program uses them together. You'll name what Microsoft Learn says about role-assignable groups and PIM for Groups that shapes the code. You'll read the findings, P G oh one to oh nine, and a plan's diff. And you'll name the guards, G one to G seven, and say why the pipeline's app doesn't create the groups. Before you start, finish Module 4, for eligible assignments and the P R V group that holds each role's eligibility, and read about role-assignable groups in the chapter on privileged tiers in Access and Privilege. Lab 2 needs a worldwide or G C C test tenant with Microsoft Entra I D P2 or Governance licenses and fictional people, never production.
+
+## Slide 4 — Two features meet in a PRV group
+
+Unit 1: what the P R V groups have to hold. Two Microsoft features meet in a P R V group. The first is role-assignable groups. Microsoft Learn's page on using groups to manage role assignments says only a group created with is Assignable To Role set to true can hold an Entra role. It's set at creation and can't be changed. A tenant can have at most five hundred. Membership must be assigned, never dynamic, and a group can't be a member. The second is PIM for Groups: just-in-time membership or ownership, with one policy for membership and one for ownership. The program's design uses them together in two ways. For an Entra role, the group holds an eligible assignment, and its members are active. For other privilege, such as an Azure role, the members are eligible for the group. The access packages for P R V membership, the plan's A3.3, aren't built here.
+
+## Slide 5 — Three facts from Learn that shape the code
+
+Three facts from Microsoft Learn's PIM for Groups pages shape the code. First, eligible membership doesn't appear in the group's members list, so reading members alone would miss every eligible holder. Second, PIM onboards a group on its first schedule or policy change, and the group can't be taken back out; the policy I D's change when that happens. Third, group administrators or owners can override what PIM set. So the code reads the tenant before every plan, rather than trusting what it applied last time. And one choice of the kit's own: activations aren't standing state, so the read leaves them out.
+
+## Slide 6 — The file and the findings: PA-PG-01 to PA-PG-09
+
+Unit 2: the file, the findings and the guards. The desired state is one file, P R V groups dot json, with the tier policy beside it; the values are this workbook's design guidance. The read compares the tenant with it and raises rules P G oh one to oh nine. Oh one is a name that doesn't follow the P R V pattern, the program's naming. Oh two is a group that holds an Entra role but isn't role-assignable, and oh three a dynamic or synchronized group; Microsoft Learn says PIM for Groups can't manage those. Oh four counts role-assignable groups against Microsoft Learn's limit of five hundred. Oh five is a group nested as a holder, or a service principal made eligible. Oh six is an entry with no end or no ticket. Oh seven is the owner trap. Oh eight is a policy rule that differs from the reviewed setting. And oh nine is anything the file doesn't grant or list: anything outside the file is unreviewed.
+
+## Slide 7 — The plan's order, the guards, and who creates the groups
+
+The plan has a fixed order: groups, then policy rules, then grants, then removals. And seven guards refuse a plan before anything is sent. G one, a Tier 0 or Tier 1 policy losing approval or its approvers. G two, a rule that allows permanent grants, or a grant with no end. G three, a group set as its own approver. G four, the owner trap. G five, a group as a holder, or an eligible service principal. G six, too many removals. And G seven, a self-service action in the plan. One more choice: the pipeline's app doesn't create the P R V groups. Microsoft Learn's reference for creating a group says a role-assignable group needs Role Management dot ReadWrite dot Directory. The program keeps that permission off the pipeline, and a Privileged Role Administrator creates the groups by hand. That's this workbook's design guidance.
+
+## Slide 8 — Try it: Microsoft's samples, and Learn's Example 1
+
+Try it. Lab 1 runs in one PowerShell 7 session, in the privileged-access folder. Step one runs Microsoft's samples against the fake, as published: ten pass. Step two sends Microsoft Learn's Example 1 yourself, from the reference page for creating an eligibility schedule request. You load the module and the sample harness, and read the first example. Its title says an admin creates an eligible group ownership request. But its body's access I D says member. So the example is labeled ownership and asks for membership. Then send it to the fake: four hundred, Bad Request, because the schedule ended in February twenty twenty-three, before the fake's clock. Its dates are stale. Samples are a starting point, not a desired state.
+
+## Slide 9 — Try it: four read permissions, and a dry run
+
+Step three lists the permissions the read needs. Four: Group dot Read Basic dot All, and the three PIM for Groups reads, for assignment schedules, eligibility schedules and role management policies. Nothing ends in ReadWrite. Step four plans against the fictional tenant, as a dry run. You give it the cloud, the fixture, the desired state file, the date and an output folder. The read raises nine findings and three warnings. The plan has eight changes: three assignments, two eligibilities and three policy rules. The guards all passed, so the plan could be applied. But it's a dry run, so nothing was sent: review the diff and the plan, then run again with Apply.
+
+## Slide 10 — Try it: read the findings
+
+Step five prints the findings. Two warnings are P G oh nine for groups the file doesn't list: a legacy help desk group and an Intune administrators group. Then P R V T0 Priv Role Admin. It has a permanent active member the file doesn't grant, which is oh six and oh nine. It has an eligible owner with no active owner, which is oh seven and oh nine: the owner trap. And its member activation needs no approval and lasts eight hours instead of four, two oh eight findings. On the Azure owner group, P R V T1 Azure Owner Sub Workload: it isn't role-assignable, which is a warning for a group that holds no Entra role, and it has a nested group, the legacy help desk group, as an eligible member. That's oh five, oh nine, and an oh eight for a policy rule.
+
+## Slide 11 — Try it: read the diff, rule by rule
+
+Step six reads the diff, one line per change. A tilde is a change, a plus an addition, a minus a removal. The policy rules come first. The Tier 0 group's member activation goes from eight hours to four, and from no approval to approval, by the same approver group. The Azure owner group's eligible owners must now have an end. Then the grants. An Exchange admin member's end date moves out to April twenty twenty-seven, on change C H G ten oh two, and a new active member is added, on C H G ten oh five, each with its ticket. Then the three removals: the Tier 0 group's ungranted active member, its eligible owner, and the nested legacy group. Last, the plan names exactly the write permissions it would need: the three PIM for Groups ReadWrite permissions.
+
+## Slide 12 — Try it: a guard refuses, then apply to the fake
+
+Step seven shows a guard refusing. Run the same plan with Apply, but with Max Removals set to two. Guard G six refuses: three removals is more than two; review them, and run again with a higher limit. Nothing is sent. Step eight applies to the fake with the default limit. The same findings and the same eight changes, the guards all pass, and eight requests are sent, none failed. The fake records the requests and doesn't change its tenant. Step nine runs the tests, three hundred thirty pass, and you delete the output folder.
+
+## Slide 13 — Lab 2: lab groups in your own test tenant
+
+Lab 2 runs in a worldwide or G C C test tenant with Microsoft Entra I D P2 or Governance licenses and fictional people, never production. Use groups made for the lab, because a group can't be taken back out of PIM. As a Privileged Role Administrator, make the lab groups by hand. Register a reader app and a writer app. Plan as the reader, apply the reviewed diff as the writer, then run the plan again and see zero changes. The reader gets the four read permissions from step three; the writer gets those and the three writes from step six, and nothing else. To back out, empty both lists in your file and apply it, so no schedule remains, then delete the lab folder. The authors haven't run Lab 2.
+
+## Slide 14 — The federal requirement and the evidence for Module 5
+
+The federal requirement. The P R V groups' file, the check and the plan are the evidence for the plan's task A2.1. From NIST special publication eight hundred fifty-three they support A C six, enhancement five, privileged accounts restricted to defined roles; A C six and A C five, least privilege and separation of duties; and A C two, account management. And from CISA's B O D twenty-five oh-one and its ScubaGear baseline: M S A A D seven point four, no permanent active assignment, and seven point five, provisioning only through PIM. C M three covers the change: reviewed before it's made, and an unsafe change stopped. The evidence an ISSO keeps: the reviewed file, with each holder's end date and ticket; each plan's diff, plan and findings; and each apply's results and manifest.
+
+## Slide 15 — Check yourself: two questions on the PRV groups
+
+Check yourself with two questions. First: the file lists three removals and you pass Max Removals two with Apply. What happens? The answer is b: guard G six refuses the plan, and nothing is sent. You saw it in Lab 1, step seven. Second: why does the pipeline's app not create the P R V groups? The answer is b: creating a role-assignable group needs Role Management dot ReadWrite dot Directory. The program keeps that permission off the pipeline, and a Privileged Role Administrator creates the groups by hand. The module page has two more questions, each linked to the section that answers it.
+
+## Slide 16 — Summary, and next: Module 6, PIM for Azure resources
+
+To sum up. You read a fictional tenant's P R V groups against a reviewed file of four, and found a standing member nobody granted, an owner trap, and a nested group. You read the exact requests that would fix them, saw a guard refuse a plan with too many removals, and applied eight requests to the fake. Next is Module 6: PIM for Azure resources. Owner, Contributor and User Access Administrator on a subscription are privileged too. PIM for Azure resources isn't in Microsoft Graph: it goes through Azure Resource Manager, with Azure roles instead of Graph permissions. In Module 6 you hold it as code, with the same discipline: read, diff, and send only with Apply.

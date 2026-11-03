@@ -1,0 +1,81 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.537
+Unit 1 is the guide's Step 4,
+sub-steps four a to four c.
+
+2
+00:00:04.537 --> 00:00:06.237
+Four a is Graph permissions.
+
+3
+00:00:06.237 --> 00:00:11.142
+Microsoft Learn's guidance is to prefer
+delegated access where a user is present,
+
+4
+00:00:11.142 --> 00:00:14.070
+because a delegated grant
+gives the app only the
+
+5
+00:00:14.070 --> 00:00:16.925
+intersection of the user's
+rights and the scope.
+
+6
+00:00:16.925 --> 00:00:19.384
+And judge each grant by
+its type, not its name:
+
+7
+00:00:19.384 --> 00:00:24.303
+the Microsoft Graph permissions reference
+shows Mail dot ReadWrite and Mail dot Send
+
+8
+00:00:24.303 --> 00:00:28.675
+as application permissions, with the
+same names as their delegated versions,
+
+9
+00:00:28.675 --> 00:00:30.725
+and the program rates them critical.
+
+10
+00:00:30.725 --> 00:00:35.294
+Learn also says removing a permission
+from the app registration doesn't revoke
+
+11
+00:00:35.294 --> 00:00:39.862
+an existing grant, and that tokens already
+issued stay valid for their lifetime.
+
+12
+00:00:39.862 --> 00:00:41.737
+Four b is directory roles.
+
+13
+00:00:41.737 --> 00:00:45.218
+Microsoft Learn's page on
+privileged roles calls a service
+
+14
+00:00:45.218 --> 00:00:48.912
+principal with a highly privileged
+role a control-plane asset.
+
+15
+00:00:48.912 --> 00:00:51.733
+Four c is Azure:
+Microsoft's guidance is to
+
+16
+00:00:51.733 --> 00:00:54.388
+scope a role to the resource it's used on.
+
+17
+00:00:54.388 --> 00:00:57.770
+Four d and four e are Module 6's.

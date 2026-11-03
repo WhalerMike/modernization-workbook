@@ -20,38 +20,38 @@ counts and answers before you
 change any delegation or forwarder.
 
 5
-00:00:14.312 --> 00:00:16.624
-That's Book 08's cutover loop.
+00:00:14.312 --> 00:00:16.424
+That's the workbook's cutover loop.
 
 6
-00:00:16.624 --> 00:00:19.261
+00:00:16.424 --> 00:00:18.925
 The import brings in the ordinary records,
 
 7
-00:00:19.261 --> 00:00:24.156
+00:00:18.925 --> 00:00:23.568
 but recreates the zone's own name server
 and start-of-authority records rather
 
 8
-00:00:24.156 --> 00:00:28.900
-than copying them, which matches Book
-08's rule never to migrate the zone apex.
+00:00:23.568 --> 00:00:28.425
+than copying them, which matches the workbook's
+rule never to migrate the zone apex.
 
 9
-00:00:28.900 --> 00:00:32.650
+00:00:28.425 --> 00:00:32.175
 Subzones come in as delegations,
 so import them separately.
 
 10
-00:00:32.650 --> 00:00:36.518
+00:00:32.175 --> 00:00:36.043
 For bulk data there's an import
 wizard, but Infoblox warns mass
 
 11
-00:00:36.518 --> 00:00:40.538
+00:00:36.043 --> 00:00:40.063
 imports can cause a service outage,
 so run them in a change window.
 
 12
-00:00:40.538 --> 00:00:42.860
+00:00:40.063 --> 00:00:42.380
 Next, Active Directory zones.

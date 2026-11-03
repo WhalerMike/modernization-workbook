@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:06.312
+Lab 1 runs in one PowerShell 7 session,
+in the privileged-access folder.
+
+3
+00:00:06.312 --> 00:00:11.662
+Step one runs Microsoft's samples
+against the fake, as published: ten pass.
+
+4
+00:00:11.662 --> 00:00:14.935
+Step two sends Microsoft
+Learn's Example 1 yourself,
+
+5
+00:00:14.935 --> 00:00:19.425
+from the reference page for creating
+an eligibility schedule request.
+
+6
+00:00:19.425 --> 00:00:23.575
+You load the module and the sample
+harness, and read the first example.
+
+7
+00:00:23.575 --> 00:00:27.937
+Its title says an admin creates an
+eligible group ownership request.
+
+8
+00:00:27.937 --> 00:00:30.588
+But its body's access I D says member.
+
+9
+00:00:30.588 --> 00:00:34.324
+So the example is labeled
+ownership and asks for membership.
+
+10
+00:00:34.324 --> 00:00:37.499
+Then send it to the fake:
+four hundred, Bad Request,
+
+11
+00:00:37.499 --> 00:00:42.975
+because the schedule ended in February twenty
+twenty-three, before the fake's clock.
+
+12
+00:00:42.975 --> 00:00:44.275
+Its dates are stale.
+
+13
+00:00:44.275 --> 00:00:47.640
+Samples are a starting
+point, not a desired state.

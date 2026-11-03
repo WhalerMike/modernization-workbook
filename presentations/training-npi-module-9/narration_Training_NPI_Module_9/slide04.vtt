@@ -1,0 +1,78 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.825
+Unit 2 starts with what Microsoft Entra
+Agent I D is, in Microsoft Learn's words.
+
+2
+00:00:05.825 --> 00:00:09.670
+A blueprint holds the credentials
+and creates agent identities,
+
+3
+00:00:09.670 --> 00:00:11.663
+and it gets tokens on their behalf.
+
+4
+00:00:11.663 --> 00:00:15.987
+So a compromise of the blueprint's
+credential affects every agent under it.
+
+5
+00:00:15.987 --> 00:00:18.800
+That's why the blueprint is
+the credential boundary.
+
+6
+00:00:18.800 --> 00:00:23.138
+The agent identities hold the permissions,
+and they're what appears in the logs.
+
+7
+00:00:23.138 --> 00:00:27.114
+The pieces are at different stages,
+and Learn's release announcements,
+
+8
+00:00:27.114 --> 00:00:29.789
+its Conditional Access
+for agents page and the
+
+9
+00:00:29.789 --> 00:00:32.875
+Agent three sixty-five
+service description say which.
+
+10
+00:00:32.875 --> 00:00:34.873
+The core objects, blueprints,
+
+11
+00:00:34.873 --> 00:00:38.787
+agent identities and sponsors,
+are generally available.
+
+12
+00:00:38.787 --> 00:00:42.616
+Conditional Access for agents
+and agent risk are preview,
+
+13
+00:00:42.616 --> 00:00:46.763
+and the Graph properties for
+agent policies exist only in beta.
+
+14
+00:00:46.763 --> 00:00:50.750
+In G C C, a documented subset is listed.
+
+15
+00:00:50.750 --> 00:00:54.912
+In G C C High and D O D,
+nothing is published yet.
+
+16
+00:00:54.912 --> 00:00:58.010
+So the program holds its
+decision about this as data.

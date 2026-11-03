@@ -1,0 +1,69 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.437
+The federal requirement.
+
+2
+00:00:01.437 --> 00:00:05.787
+The role files, the plan
+and the read-back are the
+
+3
+00:00:05.787 --> 00:00:09.801
+evidence for the plan's
+tasks A1.6, A2.1 and A2.2.
+
+4
+00:00:09.801 --> 00:00:15.758
+From NIST special publication eight
+hundred fifty-three they support A C six,
+
+5
+00:00:15.758 --> 00:00:21.250
+least privilege in time; A C two and
+A C three, approval before activation;
+
+6
+00:00:21.250 --> 00:00:25.625
+A C five, separation of duties;
+and A C six, enhancement five.
+
+7
+00:00:25.625 --> 00:00:30.611
+And from CISA's B O D twenty-five
+oh-one and its ScubaGear baseline:
+
+8
+00:00:30.611 --> 00:00:36.613
+M S A A D seven point four, no standing
+assignment; seven point five, provisioning
+
+9
+00:00:36.613 --> 00:00:42.800
+only through PIM; and seven point six,
+approval to activate Global Administrator.
+
+10
+00:00:42.800 --> 00:00:45.789
+C M three and C M four, enhancement two,
+
+11
+00:00:45.789 --> 00:00:49.875
+cover the change: reviewed
+before, verified after.
+
+12
+00:00:49.875 --> 00:00:55.387
+The evidence an ISSO keeps: the role files
+and the tiers file; each wave's plan,
+
+13
+00:00:55.387 --> 00:00:59.921
+diff and before files; the apply's
+verify file and manifest; and,
+
+14
+00:00:59.921 --> 00:01:04.970
+for each conversion, the confirmed
+activations with their tickets.

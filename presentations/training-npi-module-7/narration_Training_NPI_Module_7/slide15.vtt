@@ -1,0 +1,82 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.025
+Check yourself with two questions.
+
+2
+00:00:02.025 --> 00:00:05.592
+First: a credential's subject
+has Production, capital P,
+
+3
+00:00:05.592 --> 00:00:09.000
+where the workflow presents
+production, lower case.
+
+4
+00:00:09.000 --> 00:00:11.763
+What happens when it's
+created in Entra I D?
+
+5
+00:00:11.763 --> 00:00:12.987
+The answer is b.
+
+6
+00:00:12.987 --> 00:00:16.738
+It's created without error, and
+the token exchange fails later.
+
+7
+00:00:16.738 --> 00:00:19.780
+Microsoft Learn's workload
+identity federation
+
+8
+00:00:19.780 --> 00:00:23.563
+documentation says a wrong
+subject is created successfully.
+
+9
+00:00:23.563 --> 00:00:27.787
+The check flags it first,
+as N P W I F oh two.
+
+10
+00:00:27.787 --> 00:00:30.758
+Second: conversion one
+ran forty days with no
+
+11
+00:00:30.758 --> 00:00:33.888
+logon by the old account,
+and the owner approved.
+
+12
+00:00:33.888 --> 00:00:36.288
+What does the plan do
+with the legacy account?
+
+13
+00:00:36.288 --> 00:00:37.513
+The answer is b.
+
+14
+00:00:37.513 --> 00:00:41.288
+It disables it with Disable
+A D Account, after review.
+
+15
+00:00:41.288 --> 00:00:46.476
+This code never deletes it, so the
+rollback, enabling it again, stays possible.
+
+16
+00:00:46.476 --> 00:00:48.902
+The module page has three more questions,
+
+17
+00:00:48.902 --> 00:00:51.460
+each linked to the
+section that answers it.

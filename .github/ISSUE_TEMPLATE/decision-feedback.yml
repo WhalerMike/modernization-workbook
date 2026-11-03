@@ -1,0 +1,51 @@
+name: Decision feedback
+description: Agree or disagree with a decision in the workbook's Decision Register, or ask for its evidence.
+title: "WD-NNN: "
+labels: ["question"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for reviewing the workbook. The [Decision Register](https://whalermike.github.io/modernization-workbook/docs/about/decision-register.html) lists every decision with its options, rationale, basis and sources, and the [Reviewers' Guide](https://whalermike.github.io/modernization-workbook/docs/about/reviewers-guide.html) explains what happens to this issue. Approval stays with the workbook's editor, who rules on each challenge here.
+
+        Please include only public information: no agency's internal documents, configuration, names or system details.
+  - type: input
+    id: decision
+    attributes:
+      label: Decision ID
+      description: "A workbook decision, for example WD-131. For a project plan's decision point, give the plan and its ID, for example: Non-Person Identity Modernization, D-N2."
+      placeholder: WD-131
+    validations:
+      required: true
+  - type: dropdown
+    id: position
+    attributes:
+      label: Your position
+      options:
+        - Agree
+        - Disagree
+        - Needs evidence
+    validations:
+      required: true
+  - type: textarea
+    id: reasoning
+    attributes:
+      label: Why
+      description: What you agree or disagree with, and why. If you disagree, say which option you would choose instead.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Source or evidence
+      description: Link the primary source (Microsoft Learn or other vendor documentation, OMB, NIST, CISA, FedRAMP, the statute or regulation) or describe the evidence. Quote the passage that matters if you can.
+    validations:
+      required: false
+  - type: textarea
+    id: pages
+    attributes:
+      label: Pages affected
+      description: The pages that would change, as site links or repository paths, if you know them.
+      placeholder: docs/books/guides/non-person-identity-implementation.md
+    validations:
+      required: false

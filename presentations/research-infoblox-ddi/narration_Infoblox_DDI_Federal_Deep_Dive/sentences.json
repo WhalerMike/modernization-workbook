@@ -59,16 +59,16 @@
   ],
   [
    25.988,
-   11.762,
-   "Book 08 of the workbook describes that plane: on-premises servers that answer, a management plane that holds the system of record, and local resolvers that keep working if it's unreachable."
+   11.675,
+   "The workbook's D N S design describes that plane: on-premises servers that answer, a management plane that holds the system of record, and local resolvers that keep working if it's unreachable."
   ],
   [
-   37.75,
+   37.663,
    2.175,
    "The argument of the session is simple."
   ],
   [
-   39.925,
+   39.837,
    8.175,
    "The rules need one governed D D I plane, and Infoblox is one of the strongest ways to build it, with real risks to manage."
   ]
@@ -428,36 +428,36 @@
  "14": [
   [
    0.05,
-   7.987,
-   "A narrower question: if an agency buys Trinzic, the physical appliances, how well does the hardware fit Book 08's design?"
+   8.725,
+   "A narrower question: if an agency buys Trinzic, the physical appliances, how well does the hardware fit the workbook's D N S design?"
   ],
   [
-   8.037,
+   8.775,
    10.787,
    "The Grid gives one shared database with an HA Grid Master and a candidate, though promotion is manual and Infoblox publishes no scale limits, so size it with the vendor."
   ],
   [
-   18.825,
+   19.562,
    6.562,
    "Domain controllers can send Kerberos-signed updates to it, signing is central, and eye-pam is built in."
   ],
   [
-   25.387,
+   26.125,
    10.625,
    "The watch points are the ones we've seen: change the signing default, X6 for free encrypted D N S, dedicated appliances for deep discovery, and reporting caps."
   ],
   [
-   36.013,
+   36.75,
    4.763,
    "Trinzic sits inside the agency's boundary, outside the fed-ramp listing."
   ],
   [
-   40.775,
+   41.513,
    6.562,
    "And its FIPS 140-2 certificate went historical in September, with newer modules pending."
   ],
   [
-   47.337,
+   48.075,
    1.488,
    "Next, the clouds."
   ]
@@ -1091,36 +1091,36 @@
   ],
   [
    0.975,
-   7.325,
-   "This matrix is adapted from Book 08's, which separates deciding from doing, with a column added for divisions."
+   9.162,
+   "This matrix is adapted from the workbook's D N S responsibility matrix, which separates deciding from doing, with a column added for divisions."
   ],
   [
-   8.3,
+   10.137,
    10.938,
    "The C I O decides the platform and how divisions are scoped, and the central D D I team builds it, with divisions consulted, because a scope they can't work in becomes a workaround."
   ],
   [
-   19.238,
+   21.075,
    4.688,
    "The authorizing official decides whether a cloud management plane is authorized."
   ],
   [
-   23.925,
+   25.762,
    6.862,
    "The see-so decides the control requirements, like signing and security policy, and central D D I runs them."
   ],
   [
-   30.788,
+   32.625,
    7.325,
    "Standard record changes are where delegation pays off: central defines them in advance, and divisions do the work."
   ],
   [
-   38.112,
+   39.95,
    2.175,
    "High-impact changes stay central."
   ],
   [
-   40.288,
+   42.125,
    5.775,
    "And an encrypted D N S exception with no end date goes to the authorizing official."
   ]
@@ -1128,31 +1128,31 @@
  "34": [
   [
    0.05,
-   18.275,
-   "To close, the rollout follows Book 08's order, adapted for divisions: inventory everything first, build the central pieces, coexist with the Windows servers in place, onboard divisions one at a time starting with pattern A, federate the clouds, then harden and evidence."
+   19.7,
+   "To close, the rollout follows the workbook's D N S migration order, adapted for divisions: inventory everything first, build the central pieces, coexist with the Windows servers in place, onboard divisions one at a time starting with pattern A, federate the clouds, then harden and evidence."
   ],
   [
-   18.325,
-   11.525,
-   "The decisions to take now are the platform model for each impact level, the delegation pattern per division, whether to wait for the FIPS certificate or proceed with a POA&M, and where logs will live."
+   19.75,
+   11.537,
+   "The decisions to take now are the platform model for each impact level, the delegation pattern per division, whether to wait for the FIPS certificate or proceed with a POA&M, and where logs will liv."
   ],
   [
-   29.85,
+   31.288,
    4.638,
    "Then send Infoblox the procurement asks and lab-test the open questions."
   ],
   [
-   34.487,
+   35.925,
    8.812,
    "In the program's analysis, Infoblox is one of the strongest ways to build a governed D D I plane, as long as you manage its risks in the open."
   ],
   [
-   43.3,
+   44.737,
    4.925,
    "This is research under review, not an endorsement by any federal agency."
   ],
   [
-   48.225,
+   49.663,
    0.762,
    "Thank you."
   ]

@@ -1,0 +1,52 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.400
+Module 2 left a question
+open, and here's the answer.
+
+2
+00:00:03.400 --> 00:00:08.663
+Microsoft Learn doesn't require the
+emergency exclusion on a report-only policy.
+
+3
+00:00:08.663 --> 00:00:13.662
+The program's own pre-merge rule is
+stricter: every policy excludes the group.
+
+4
+00:00:13.662 --> 00:00:15.737
+The code sides with the stricter rule.
+
+5
+00:00:15.737 --> 00:00:21.256
+It keeps the exclusion on every file,
+except a named report-only instrument,
+
+6
+00:00:21.256 --> 00:00:26.863
+such as C A oh nine oh, the policy that
+records emergency sign-ins, which is Info.
+
+7
+00:00:26.863 --> 00:00:29.350
+And two more choices make the writes safe.
+
+8
+00:00:29.350 --> 00:00:32.125
+Every new policy is created report-only.
+
+9
+00:00:32.125 --> 00:00:36.388
+Enforcing it is a separate change,
+that needs the Allow Enforce switch.
+
+10
+00:00:36.388 --> 00:00:38.150
+And the code never deletes.
+
+11
+00:00:38.150 --> 00:00:42.340
+Rollback is changing a file's state,
+to disabled, and applying it.

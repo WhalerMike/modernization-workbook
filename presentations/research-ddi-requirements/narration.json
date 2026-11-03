@@ -2,7 +2,7 @@
   {
     "slide": 1,
     "title": "What a Federal DDI Platform Must Do",
-    "say": "Welcome. This is research from the Federal Modernization Workbook's Research section, and it's still under review. It's a companion to Book 08 of the workbook, on DNS, DHCP and IPAM, and it asks one question: if an agency is going to buy or build a platform for its name and address layer, what does that platform actually have to do? We'll cover why that layer is now a control plane, what a platform has to deliver and what to check before buying, who runs it, including how divisions can manage their own piece, and how to decide. Vendors appear only as examples, nothing here ranks a product, and every claim comes from Book 08 or from primary sources checked in October 2026."
+    "say": "Welcome. This is research from the Federal Modernization Workbook's Research section, and it's still under review. It's a companion to the workbook's DNS, DHCP and IPAM book, and it asks one question: if an agency is going to buy or build a platform for its name and address layer, what does that platform actually have to do? We'll cover why that layer is now a control plane, what a platform has to deliver and what to check before buying, who runs it, including how divisions can manage their own piece, and how to decide. Vendors appear only as examples, nothing here ranks a product, and every claim comes from primary sources checked in October 2026, or is the workbook's own design guidance, labeled as such."
   },
   {
     "slide": 2,
@@ -17,12 +17,12 @@
   {
     "slide": 4,
     "title": "Authoritative DNS across clouds, with DNSSEC kept central",
-    "say": "There are seven capabilities, and the first two are about authority and trust. First, authoritative DNS across every environment without split-brain. The platform holds each zone, forwarding rule and policy once, and pushes it to every cloud. Book 08 calls that overlay management, not replacement. When you evaluate a product, ask whether each cloud integration actually writes to the cloud, or only reads from it. Second, DNSSEC with central key custody: sign external zones always, validate on every agency resolver, and keep rollover automated and audited in one place. The clouds don't fill this gap, and check the defaults: Windows Server's default signing key is below NIST's floor, and NIOS defaults to RSA with SHA-1. Next, security."
+    "say": "There are seven capabilities, and the first two are about authority and trust. First, authoritative DNS across every environment without split-brain. The platform holds each zone, forwarding rule and policy once, and pushes it to every cloud. The workbook's DNS design calls that overlay management, not replacement. When you evaluate a product, ask whether each cloud integration actually writes to the cloud, or only reads from it. Second, DNSSEC with central key custody: sign external zones always, validate on every agency resolver, and keep rollover automated and audited in one place. The clouds don't fill this gap, and check the defaults: Windows Server's default signing key is below NIST's floor, and NIOS defaults to RSA with SHA-1. Next, security."
   },
   {
     "slide": 5,
     "title": "DNS security: agency policy first, Protective DNS upstream",
-    "say": "The third capability is DNS security, and it's two layers in series. The agency's own resolvers apply the agency's policy and log every hit, and then all outbound queries go upstream through CISA's Protective DNS. The order matters more than having the pieces. Book 08's Decision 2 is that the agency resolver is always the first hop, so a SASE provider's DNS service is a forwarding target, never the place the branch sends queries first. Get the order wrong and you quietly lose the agency's own policy, validation and logging. Encrypted DNS completes the picture: the platform terminates it on its resolvers, and clients mustn't route around it. Next, addresses."
+    "say": "The third capability is DNS security, and it's two layers in series. The agency's own resolvers apply the agency's policy and log every hit, and then all outbound queries go upstream through CISA's Protective DNS. The order matters more than having the pieces. In the workbook's DNS design, the agency resolver is always the first hop, so a SASE provider's DNS service is a forwarding target, never the place the branch sends queries first. Get the order wrong and you quietly lose the agency's own policy, validation and logging. Encrypted DNS completes the picture: the platform terminates it on its resolvers, and clients mustn't route around it. Next, addresses."
   },
   {
     "slide": 6,
@@ -32,7 +32,7 @@
   {
     "slide": 7,
     "title": "Automation and logging: every change and query on record",
-    "say": "The last two capabilities are automation and logging. No rule requires an API, but Book 08's operating model depends on one. Every object should be reachable through a documented API, so infrastructure as code, ticketing and pipelines all go through the same authority and audit trail, with service accounts held to the same scopes as people. Logging to the SIEM has to meet the retention rule: six months searchable and a year retrievable. Capacity is where designs fail. Full query logging costs performance, reporting appliances can lock after repeated ingest overruns, and some log streams drop records when the receiver is down. So size for peak, and test with the SIEM unreachable. Next, buying."
+    "say": "The last two capabilities are automation and logging. No rule requires an API, but the workbook's DNS operating model depends on one. Every object should be reachable through a documented API, so infrastructure as code, ticketing and pipelines all go through the same authority and audit trail, with service accounts held to the same scopes as people. Logging to the SIEM has to meet the retention rule: six months searchable and a year retrievable. Capacity is where designs fail. Full query logging costs performance, reporting appliances can lock after repeated ingest overruns, and some log streams drop records when the receiver is down. So size for peak, and test with the SIEM unreachable. Next, buying."
   },
   {
     "slide": 8,
@@ -47,7 +47,7 @@
   {
     "slide": 10,
     "title": "Divisions get a fenced scope; everything else is denied",
-    "say": "Now the question many agencies care about most: can divisions run their own DNS, DHCP and IPAM without breaking central governance? Book 08 says yes, if the platform supports the right model. Corporate administrators see everything, and each division gets a fenced scope of its own zones, address blocks and DHCP scopes, with everything else denied by default. In Infoblox, for example, one setting stops a division with access to a shared zone from pointing a name into another division's address space. Only central superusers create groups and roles, so a division can't widen its own rights. Administrators sign in with PIV or CAC, or single sign-on, and you keep a local break-glass account. So how are divisions kept apart?"
+    "say": "Now the question many agencies care about most: can divisions run their own DNS, DHCP and IPAM without breaking central governance? The workbook's DNS design says yes, if the platform supports the right model. Corporate administrators see everything, and each division gets a fenced scope of its own zones, address blocks and DHCP scopes, with everything else denied by default. In Infoblox, for example, one setting stops a division with access to a shared zone from pointing a name into another division's address space. Only central superusers create groups and roles, so a division can't widen its own rights. Administrators sign in with PIV or CAC, or single sign-on, and you keep a local break-glass account. So how are divisions kept apart?"
   },
   {
     "slide": 11,
@@ -72,11 +72,11 @@
   {
     "slide": 15,
     "title": "Who decides, under Book 08's responsibility matrix",
-    "say": "Who decides all this? Book 08's Chapter 09 gives one decider per row, and separates deciding from doing. The sponsor and CIO choose the platform and how divisions are scoped. The authorizing official decides whether a cloud-delivered management plane is authorized, and accepts the standing exceptions. The CISO and ISSO set the control requirements. And the DNS and DDI team owns the namespace and the address plan, and approves high-impact changes, while routine record changes inside a division's own space are pre-approved. Because that team holds the most powerful roles, the book scopes its automation, adds a second approver for the riskiest changes, and keeps its privileged roles eligible, not standing."
+    "say": "Who decides all this? The workbook's DNS responsibility matrix gives one decider per row, and separates deciding from doing. The sponsor and CIO choose the platform and how divisions are scoped. The authorizing official decides whether a cloud-delivered management plane is authorized, and accepts the standing exceptions. The CISO and ISSO set the control requirements. And the DNS and DDI team owns the namespace and the address plan, and approves high-impact changes, while routine record changes inside a division's own space are pre-approved. Because that team holds the most powerful roles, the workbook scopes its automation, adds a second approver for the riskiest changes, and keeps its privileged roles eligible, not standing."
   },
   {
     "slide": 16,
     "title": "Decisions to make, and the next steps",
-    "say": "To wrap up, the decisions and next steps. The sponsor and CIO authorize one authoritative DDI policy plane, and the DNS and DDI team settles Book 08's five configuration decisions within 90 days. Write the requirement as capabilities, each mapped to its rule, because no rule names a product. Ask every candidate for the same evidence pack, and record every gap with an owner. Pick a delegation pattern per division, and pilot it, ideally with one that has overlapping address space. And size logging for retention, tested at peak. The next step needs no award: list every DNS, DHCP and IPAM requirement your systems inherit, and the evidence that would prove it. Thank you."
+    "say": "To wrap up, the decisions and next steps. The sponsor and CIO authorize one authoritative DDI policy plane, and the DNS and DDI team settles the workbook's five DNS configuration decisions within 90 days. Write the requirement as capabilities, each mapped to its rule, because no rule names a product. Ask every candidate for the same evidence pack, and record every gap with an owner. Pick a delegation pattern per division, and pilot it, ideally with one that has overlapping address space. And size logging for retention, tested at peak. The next step needs no award: list every DNS, DHCP and IPAM requirement your systems inherit, and the evidence that would prove it. Thank you."
   }
 ]

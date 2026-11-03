@@ -1,0 +1,1695 @@
+# The workbook's decision register: one entry per decision the workbook's editor has made
+# about the workbook's content, method and design, oldest first, from the repository's first
+# pull request on. scripts/decisions/build.py turns it into docs/about/decision-register.md.
+#
+# Add a decision: append an entry with the next WD number, then run the build script.
+# Change a decision: add a new entry and set the old one to `status: superseded` with
+# `superseded_by`; don't rewrite the old choice. A reviewer's open challenge sets
+# `status: challenged` and lists the issue numbers in `challenges`.
+#
+#   id            WD-NNN, never reused
+#   date          the day it was decided (the merge date of the pull request that made it)
+#   plan          optional: a project plan decision point it settles, as <plan slug>/<ID>
+#   question      the question, in one sentence
+#   options       the options considered
+#   choice        what was chosen
+#   rationale     why, as recorded; "Not stated in the PR" where the record gives no reason
+#   basis         requirement (an external federal requirement), microsoft-learn, or
+#                 workbook-design (the workbook's own judgment)
+#   sources       original external sources, as {title, url}
+#   pages         repository paths of the main pages it shaped (an #anchor is allowed)
+#   prs           the pull requests that made or applied it
+#   status        settled | challenged | superseded
+#   superseded_by, challenges, note: as above
+
+- id: WD-001
+  date: 2026-10-18
+  question: Should material about the original source system stay on the public site?
+  options: [Keep it published, 'Take it off the site and neutralize names, hosts and paths']
+  choice: Source-system runbooks, specs and security-package stubs come off the site. Branding, internal host names and personal paths are replaced with neutral placeholders such as example.internal.
+  rationale: The folders describe the source system itself, not a modernization project, and the security-package pages were empty stubs. A neutral template set can be written later.
+  basis: workbook-design
+  sources: []
+  pages: [CONTRIBUTING.md, docs/about/sources-and-verification.md]
+  prs: [7, 8]
+  status: settled
+
+- id: WD-002
+  date: 2026-10-18
+  question: How are Word downloads produced?
+  options: [Commit hand-built DOCX files, Convert rendered pages back to Markdown and join them, Build every bundle from the source Markdown with one manifest-driven builder]
+  choice: No DOCX files are committed. One builder reads an ordered manifest, fails on a missing page or image, and fills the table of contents so it shows when the file opens in Protected View.
+  rationale: The convert-back pipeline produced chopped text and broken figures, and committed copies duplicated what CI builds (about 51 MB removed). An empty table of contents never updates in Protected View.
+  basis: workbook-design
+  sources: []
+  pages: [scripts/build_bundles.py, scripts/bundle-filter.lua, docs/downloads.md]
+  prs: [9, 10, 12, 16, 44]
+  status: settled
+
+- id: WD-003
+  date: 2026-10-18
+  question: Should the earlier organizational-attribute model (OrgPath, LocPath) and the governance-suite content stay in the workbook?
+  options: [Keep and rename the concept, Delete pages that are mainly about it and reword the rest with generic terms]
+  choice: Pages mainly about the model are deleted. Elsewhere only the affected sections are cut and reworded as plain attributes and dynamic groups. No replacement concept is invented.
+  rationale: Stated as a change of plan. The PRs give the rule for deciding (delete pages that are mainly about it, cut sections elsewhere) but not a deeper reason.
+  basis: workbook-design
+  sources: []
+  pages: [docs/books/index.md, docs/books/b03-hr-identity/index.md]
+  prs: [11, 13, 15, 25]
+  status: settled
+
+- id: WD-004
+  date: 2026-10-18
+  question: Which cloud environments and platforms does each guidance set claim to cover?
+  options: [Claim general coverage, State scope up front and list what is out of scope with fallbacks]
+  choice: Each series gets an Applicability page stamped with a date. Commercial cloud including GCC-Moderate is in scope. GCC High, DoD, air-gapped networks and some platform configurations are out of scope as written, each with what still applies.
+  rationale: Several features differ by cloud, for example GCC-Moderate uses the worldwide Graph endpoint and Arc SQL in Azure Government lacks Entra authentication.
+  basis: workbook-design
+  sources:
+  - {title: 'Microsoft Learn, Microsoft Graph national cloud deployments', url: 'https://learn.microsoft.com/graph/deployments'}
+  - {title: 'Microsoft Learn, SQL Server enabled by Azure Arc overview', url: 'https://learn.microsoft.com/sql/sql-server/azure-arc/overview'}
+  pages: [docs/books/b01-transformation-arc/appendix-b-applicability.md, docs/books/b06-data-platform/index.md, docs/books/b08-ddi/index.md]
+  prs: [17, 21, 23, 35, 40, 61]
+  status: settled
+
+- id: WD-005
+  date: 2026-10-18
+  question: May the guidance rely on preview features?
+  options: [Use previews where useful, Recommend only generally available features]
+  choice: Designs rely on generally available features. Preview features are named and kept out of production, and per-feature FedRAMP coverage is to be confirmed against the agency's authorization boundary.
+  rationale: The FedRAMP audit-scope list is per service, not per feature, and Microsoft's terms treat previews separately.
+  basis: microsoft-learn
+  sources:
+  - {title: 'Microsoft Learn, Entra ID preview program information', url: 'https://learn.microsoft.com/entra/fundamentals/licensing-preview-terms'}
+  - {title: 'Microsoft Learn, Azure and Microsoft 365 services in FedRAMP audit scope', url: 'https://learn.microsoft.com/azure/azure-government/compliance/azure-services-in-fedramp-auditscope'}
+  - {title: 'Microsoft Learn, Azure compliance offering for FedRAMP', url: 'https://learn.microsoft.com/azure/compliance/offerings/offering-fedramp'}
+  pages: [docs/books/b06-data-platform/index.md, docs/books/b04-access/index.md]
+  prs: [17]
+  status: settled
+
+- id: WD-006
+  date: 2026-10-18
+  question: How are figures produced?
+  options: [Keep the AI-generated or dark-themed rasters, Redraw from text sources in one house style]
+  choice: Figures are drawn from YAML sources by one shared renderer on a white background, at most 800 px wide, each with a caption and alt text. Word bundles embed the PNG versions.
+  rationale: The old rasters had unreadable text, vendor logos and factual errors such as wrong dates and labels.
+  basis: workbook-design
+  sources: []
+  pages: [docs/images/diagrams/README.md, scripts/diagrams/render.py]
+  prs: [18, 29, 32, 35, 37]
+  status: settled
+
+- id: WD-007
+  date: 2026-10-18
+  question: How does the database series define 'closed' to legacy authentication?
+  options: [A single engine mode that blocks Windows authentication, An evidenced operational posture with several conditions]
+  choice: 'Closure is an ''Entra-exclusive operational posture'' proved by evidence: no usable Windows logins outside break-glass, SQL authentication refused, Entra sign-ins observed, and no NTLM or Kerberos in the connection auth scheme.'
+  rationale: No engine setting blocks Windows authentication. The documented disable-SQL-authentication option still leaves Windows authentication available.
+  basis: microsoft-learn
+  sources:
+  - {title: 'Microsoft Learn, Disable SQL authentication for SQL Server enabled by Azure Arc', url: 'https://learn.microsoft.com/sql/sql-server/azure-arc/disable-sql-authentication'}
+  - {title: 'Microsoft Learn, Entra-only authentication with Azure SQL', url: 'https://learn.microsoft.com/en-us/azure/azure-sql/database/authentication-azure-ad-only-authentication?view=azuresql'}
+  pages: [docs/books/b06-data-platform/index.md]
+  prs: [20]
+  status: settled
+
+- id: WD-008
+  date: 2026-10-18
+  question: Which sources may support a claim, and how are weaker ones shown?
+  options: [Primary sources only, Primary plus labelled third-party sources]
+  choice: Claims are footnoted to primary sources (vendor documentation, OMB, CISA, NIST, IETF). A claim with no primary source is reworded or softened. Third-party sources are allowed only when labelled 'Third-party source' and listed apart.
+  rationale: A footnote is placed only where the cited page supports the sentence, and every URL is fetched and checked before it is cited.
+  basis: workbook-design
+  sources: ['https://www.whitehouse.gov/wp-content/uploads/2022/01/M-22-09.pdf', 'https://csrc.nist.gov/pubs/sp/800/207/final']
+  pages: [docs/about/sources-and-verification.md, docs/books/_book-writer-brief.md]
+  prs: [22, 26, 38, 40]
+  status: settled
+
+- id: WD-009
+  date: 2026-10-18
+  question: Does the workbook pick a platform vendor in its platform-selection chapters?
+  options: [Give a verdict per vendor, Give a decision framework with the evidence to request]
+  choice: Platform selection is a set of dimensions (for example migration effort, HA/DR fit, licensing exposure, switching cost), each paired with the evidence to ask for. The stated goal is fewer authoritative platforms, not one vendor.
+  rationale: The earlier tables mixed non-equivalent cells such as Low/High cost ratings and unsupported claims, so they were removed.
+  basis: workbook-design
+  sources: []
+  pages: [docs/books/b06-data-platform/index.md, docs/books/b08-ddi/index.md]
+  prs: [24, 41, 65]
+  status: settled
+
+- id: WD-010
+  date: 2026-10-18
+  question: How do chapters describe the order of migration work?
+  options: [Each chapter describes its own order, One canonical dependency chain used in every chapter]
+  choice: Each series states one chain (for example Inventory, Rationalize, Audit, Enable substrate, Introduce principals, Move applications, Remove legacy, Enforce retirement, Prove steady state). Chapters mark their place on it, and the arrows are dependencies, not a calendar.
+  rationale: Pass 3 was about architecture consistency across chapters.
+  basis: workbook-design
+  sources: []
+  pages: [docs/books/b01-transformation-arc/index.md, docs/books/b08-ddi/index.md]
+  prs: [24, 28, 41]
+  status: settled
+
+- id: WD-011
+  date: 2026-10-18
+  question: How long are the closing takeaway lists?
+  options: [Open-ended lists, Exactly three numbered claims per chapter]
+  choice: Each chapter closes with at most three numbered claims. Overclaims found while rewriting were removed.
+  rationale: Stated as part of the consistency pass; no further reason given.
+  basis: workbook-design
+  sources: []
+  pages: [docs/books/b01-transformation-arc/index.md, docs/books/b08-ddi/index.md]
+  prs: [24, 28, 41]
+  status: settled
+
+- id: WD-012
+  date: 2026-10-18
+  question: What happens to a page that is merged, replaced or deprecated?
+  options: [Delete it, Keep it with a deprecation banner, Archive the source and redirect the old address]
+  choice: Duplicates are removed with a forwarding page at each old address. Replaced source pages move to an archive folder that is not built, with a README mapping old pages to new chapters. A page that must stay live gets a Deprecated banner and leaves navigation and search.
+  rationale: Old links keep working and nothing is cut without a trace. The architecture landing page was kept with its body intact because content is not cut.
+  basis: workbook-design
+  sources: []
+  pages: [scripts/redirects.yml, docs/books/b02-identity/index.md, docs/books/b07-pki/index.md]
+  prs: [25, 54, 56, 58]
+  status: settled
+
+- id: WD-013
+  date: 2026-10-18
+  question: How are the long series shortened?
+  options: [Leave them as drafted, Cut repetition but keep every cited claim]
+  choice: Repeated explanations are replaced with short 'Established in' callouts. Cuts of roughly 17 to 18 percent were made while all footnoted claims, tables and key callouts stayed.
+  rationale: Not stated beyond the word counts.
+  basis: workbook-design
+  sources: []
+  pages: [docs/books/b01-transformation-arc/index.md, docs/books/b06-data-platform/index.md]
+  prs: [31, 36]
+  status: settled
+
+- id: WD-014
+  date: 2026-10-19
+  question: How does the workbook describe Microsoft's position on on-premises Active Directory?
+  options: [AD DS is being deprecated or retired by Microsoft, AD DS is supported; cloud-first guidance makes retirement an agency decision]
+  choice: No page says Microsoft is deprecating or forcing a move off AD DS. Pages say AD DS is supported in Windows Server 2025 and that retiring it is an agency decision driven by cloud-first investment, NTLM deprecation and protocol hardening.
+  rationale: AD DS is supported in Windows Server 2025, which added new functional levels. The argument is kept where it rests on real drivers.
+  basis: microsoft-learn
+  sources:
+  - {title: 'Microsoft Learn, What''s new in Windows Server 2025', url: 'https://learn.microsoft.com/windows-server/get-started/whats-new-windows-server-2025'}
+  pages: [docs/books/b01-transformation-arc/index.md, docs/books/b02-identity/index.md, docs/books/b08-ddi/index.md]
+  prs: [23, 26, 39, 75]
+  status: settled
+
+- id: WD-015
+  date: 2026-10-19
+  question: In what order does a leaver's access end?
+  options: [Disable and clean up in one pass, 'Block first, then revoke, reconcile and dispose']
+  choice: Disable the account, revoke sessions, then revoke PIV, device and access in parallel, reconcile, then dispose. Privileged leavers get their own block path. Revoking sessions stops new tokens only; issued tokens last until they expire.
+  rationale: Not stated in the PRs beyond the ordering and the token-lifetime correction.
+  basis: microsoft-learn
+  sources:
+  - {title: 'Microsoft Learn, Revoke user access in Microsoft Entra ID', url: 'https://learn.microsoft.com/entra/identity/users/users-revoke-access'}
+  - {title: 'Microsoft Learn, Lifecycle Workflows tasks and definitions', url: 'https://learn.microsoft.com/en-us/entra/id-governance/lifecycle-workflow-tasks'}
+  pages: [docs/books/b03-hr-identity/08-joiner-mover-leaver.md, docs/books/b03-hr-identity/appendix-a-lifecycle-rules.md]
+  prs: [33, 43, 58]
+  status: settled
+
+- id: WD-016
+  date: 2026-10-19
+  question: Which attribute anchors a person across systems?
+  options: [employeeId is the immutable anchor, A layered identifier model with an explicit enterprise identifier decision]
+  choice: 'Identity uses layers: enterprise person, source, affiliation, directory and credential keys. The enterprise key is an explicit decision, and an existing enterprise ID is reused where one exists.'
+  rationale: Stated as replacing the single-anchor claim with a layered model.
+  basis: workbook-design
+  sources: []
+  pages: [docs/books/b03-hr-identity/06-canonical-attribute-schema.md, docs/books/b03-hr-identity/index.md]
+  prs: [43, 49, 53]
+  status: settled
+
+- id: WD-017
+  date: 2026-10-19
+  question: What does the HR-driven identity material propose?
+  options: [Describe implementing an existing HR integration, Propose using the HR platform move and the directory migration together to start HR-driven identity]
+  choice: The series is framed as an opportunity to start HR-driven identity. The starting point is ticket-driven accounts, not an existing connector. Federal HR data standards supply the attribute layer for employees.
+  rationale: The series had drifted toward 'implement' and was refocused on starting.
+  basis: workbook-design
+  sources: ['https://learn.microsoft.com/en-us/entra/identity/app-provisioning/plan-cloud-hr-application-provisioning']
+  pages: [docs/books/b03-hr-identity/index.md, docs/books/b03-hr-identity/04-attribute-authority.md]
+  prs: [45, 46, 48]
+  status: settled
+
+- id: WD-018
+  date: 2026-10-20
+  question: How are statements of different certainty shown?
+  options: [Write all statements as fact, 'Label each as verified, observation, proposal or assumption']
+  choice: Claims in decks and the HR-driven identity book are labelled as verified public information, an observation, a proposal, or a planning assumption to validate with the data owners. Numeric gates are called proposed starting criteria.
+  rationale: Not stated beyond the review passes that applied the labels.
+  basis: workbook-design
+  sources: []
+  pages: [docs/books/b03-hr-identity/index.md, docs/books/b03-hr-identity/appendix-c-acceptance-and-cutover.md]
+  prs: [43, 62, 64, 66]
+  status: settled
+
+- id: WD-019
+  date: 2026-10-20
+  question: Where does contractor identity data come from?
+  options: [Pull from several sources and merge, Give each contractor fact one authority]
+  choice: Each contractor fact has one source. Access ends at the earliest of contract end, suitability withdrawn, PIV revoked, sponsor leaving or a missed recertification. A suitability register becomes an authority only after six questions are settled with its owner, starting with read-only reconciliation.
+  rationale: Contractors are not covered by the federal HR system, so their sources must be named explicitly.
+  basis: workbook-design
+  sources: []
+  pages: [docs/books/b03-hr-identity/index.md, docs/books/b03-hr-identity/04-attribute-authority.md]
+  prs: [45, 53, 55]
+  status: settled
+
+- id: WD-020
+  date: 2026-10-20
+  question: Does the public repository carry agency-specific material?
+  options: [Publish an agency-specific edition and an agency-neutral edition, Publish only the agency-neutral edition]
+  choice: Public pages and decks never name an agency. Agency-specific decks, drafts and build kits were removed and kept in a private repository. Examples are generic, such as a 'Mainframe PIN' standing in for an enterprise ID.
+  rationale: The public bundle stays agency-agnostic.
+  basis: workbook-design
+  sources: []
+  pages: [CONTRIBUTING.md, docs/presentations/index.md, docs/books/b03-hr-identity/index.md]
+  prs: [49, 52, 58]
+  status: settled
+
+- id: WD-021
+  date: 2026-10-20
+  question: Should the interview presentation set ship an agency-specific edition beside the neutral one?
+  options: [Both editions in the public repository]
+  choice: Both editions were added together (status quo at the time).
+  rationale: The PR called the agency-specific edition the internal interview version. It was removed the next day.
+  basis: workbook-design
+  sources: []
+  pages: [docs/presentations/index.md]
+  prs: [51]
+  status: superseded
+  superseded_by: WD-020
+
+- id: WD-022
+  date: 2026-10-20
+  question: How are book chapters verified before they publish?
+  options: [Trust the source pages, Re-check every external claim and keep a record]
+  choice: Every external claim is re-checked against Microsoft Learn or a primary federal source on a stated date and footnoted. Each chapter keeps a claims log and a carry-forward ledger in a _verification folder. Wrong claims in the source pages are corrected, not carried forward.
+  rationale: The PRs list many corrections found this way, for example a deadline that did not exist and tools that do not exist.
+  basis: workbook-design
+  sources: []
+  pages: [docs/about/sources-and-verification.md, docs/books/b04-access/index.md, docs/books/b05-devices/index.md]
+  prs: [56, 58, 59, 60, 61, 63, 65, 71, 75]
+  status: settled
+
+- id: WD-023
+  date: 2026-10-20
+  question: How are topic pages organized into books?
+  options: [Keep separate guides and whitepapers, Consolidate each topic into one ordered book]
+  choice: Each book answers one question and follows Why, What, Who, How, then appendices. Most books get a new Who chapter on ownership and decision rights. Source pages are archived and replaced by chapters.
+  rationale: Not stated in the PRs beyond the plan for an 18-book workbook; the books index holds the plan.
+  basis: workbook-design
+  sources: []
+  pages: [docs/books/index.md, docs/books/b02-identity/index.md, docs/books/b09-network/index.md, docs/books/b00-orientation/index.md]
+  prs: [56, 58, 59, 60, 61, 63, 65, 71, 75, 79, 80, 85]
+  status: settled
+
+- id: WD-024
+  date: 2026-10-20
+  question: Are administrative units restricted by default?
+  options: [Restricted management everywhere, Unrestricted by default; restricted per unit]
+  choice: Administrative units are unrestricted by default, and restricted management is chosen per unit. The overview book warns that restricted units cut members off from PIM, Lifecycle Workflows and access reviews.
+  rationale: Recorded as a program decision in the identity book PR. The later overview book gives the access consequence.
+  basis: microsoft-learn
+  sources:
+  - {title: 'Microsoft Learn, Restricted management administrative units', url: 'https://learn.microsoft.com/entra/identity/role-based-access-control/admin-units-restricted-management'}
+  - {title: 'Microsoft Learn, Administrative units in Microsoft Entra ID', url: 'https://learn.microsoft.com/entra/identity/role-based-access-control/administrative-units'}
+  pages: [docs/books/b02-identity/05-delegation-without-ous.md, docs/books/b01-transformation-arc/index.md]
+  prs: [56, 75]
+  status: settled
+
+- id: WD-025
+  date: 2026-10-20
+  question: Do the books reproduce the earlier PowerShell assessment modules?
+  options: [Reproduce them in the book, Keep them in the archive until a technical review]
+  choice: Chapters are written governance-only or as detect-and-fix checklists. Read-only enumeration and AD CS assessment modules stay in the archive until they have had a technical review.
+  rationale: Pending technical review.
+  basis: workbook-design
+  sources: []
+  pages: [docs/books/b02-identity/07-read-only-discovery.md, docs/books/b07-pki/03-hardening-what-stays.md]
+  prs: [56, 63]
+  status: settled
+
+- id: WD-026
+  date: 2026-10-20
+  question: How is the Conditional Access policy library numbered and extended?
+  options: [Keep the source CA-001 to CA-064 scheme, Use CA001 to CA017 from the identity book and add CA018 to CA038]
+  choice: The old scheme is retired with a mapping table. CA018 to CA038 add the CISA BOD 25-01 baseline. The admin sign-in from privileged workstations only gets its own block policy (CA025). CA017 requires an app protection policy only.
+  rationale: A grant policy scoped by a device filter does not apply on other devices, and the approved-client-app grant has been read-only since June 30, 2026.
+  basis: workbook-design
+  sources:
+  - {title: 'CISA, BOD 25-01 secure practices for cloud services', url: 'https://www.cisa.gov/news-events/directives/bod-25-01-implementing-secure-practices-cloud-services'}
+  - {title: 'CISA, BOD 25-01 required configurations', url: 'https://www.cisa.gov/resources-tools/services/bod-25-01-implementing-secure-practices-cloud-services-required-configurations'}
+  - {title: 'CISA, ScubaGear Microsoft Entra ID secure configuration baseline', url: 'https://github.com/cisagov/ScubaGear/blob/main/PowerShell/ScubaGear/baselines/aad.md'}
+  pages: [docs/books/b04-access/07-the-conditional-access-policy-library.md, docs/books/b04-access/appendix-a-conditional-access-templates.md]
+  prs: [59]
+  status: settled
+
+- id: WD-027
+  date: 2026-10-20
+  question: Is there an external deadline that drives NTLM retirement in 2027?
+  options: [Cite a federal notice with an NTLM deadline, Treat 2027-04-01 as the program's own backstop]
+  choice: The books say no external NTLM deadline exists. The date 2027-04-01 is the program's own backstop. The real 2027 dates are product support dates.
+  rationale: The cited federal notice does not exist.
+  basis: workbook-design
+  sources: []
+  pages: [docs/books/b06-data-platform/index.md, docs/books/b05-devices/index.md]
+  prs: [60, 61]
+  status: settled
+
+- id: WD-028
+  date: 2026-10-20
+  question: Which cloud subscription hosts Arc for SQL Server in a GCC tenant?
+  options: [Azure Government subscription, Commercial subscription in the GCC tenant]
+  choice: The runbook uses a commercial subscription in the GCC tenant.
+  rationale: Entra authentication through Arc is not offered in US Gov Virginia, and an Azure Government subscription cannot attach to a GCC tenant.
+  basis: microsoft-learn
+  sources:
+  - {title: 'Microsoft Learn, SQL Server enabled by Azure Arc overview', url: 'https://learn.microsoft.com/sql/sql-server/azure-arc/overview'}
+  pages: [docs/books/b06-data-platform/index.md]
+  prs: [61]
+  status: settled
+
+- id: WD-029
+  date: 2026-10-20
+  question: How many certificate-lifecycle platforms does the PKI book recommend?
+  options: [Add a second lifecycle vendor, One lifecycle platform]
+  choice: One vendor platform is the single lifecycle platform. No second certificate-lifecycle vendor is added.
+  rationale: Not stated in the PR.
+  basis: workbook-design
+  sources: []
+  pages: [docs/books/b07-pki/index.md, docs/books/b07-pki/appendix-c-anatomy-of-the-clm-platform.md]
+  prs: [63]
+  status: settled
+
+- id: WD-030
+  date: 2026-10-21
+  question: How does the site present its standing relative to the government?
+  options: [No statement, A disclaimer on every page and every Word edition]
+  choice: The site is named the Federal Modernization Workbook. A banner on every page, the footer and each Word title page say it is not an official federal publication and is independent technical analysis.
+  rationale: Not stated in the PR beyond the wording of the disclaimer.
+  basis: workbook-design
+  sources: []
+  pages: [docs/books/index.md, docs/presentations/index.md]
+  prs: [5, 68, 69, 85]
+  status: settled
+
+- id: WD-031
+  date: 2026-10-21
+  question: What does the public site publish while the books are still being built?
+  options: [Publish every page, 'Publish only finished books, Presentations, site map and 404']
+  choice: Only completed books plus a Presentations page and a new home page are rendered. Everything else stays in the repository, unpublished, until the book that absorbs it exists.
+  rationale: Not stated in the PR.
+  basis: workbook-design
+  sources: []
+  pages: [docs/books/index.md, docs/presentations/index.md]
+  prs: [67]
+  status: settled
+
+- id: WD-032
+  date: 2026-10-21
+  question: Which logging requirement do the books cite?
+  options: [OMB M-21-31 tiers and retention table, OMB M-26-14 requirements]
+  choice: Books cite M-26-14 (May 22, 2026), which rescinded M-21-31. Tier and retention claims the new memo does not make were removed. Logs must be searchable for 6 months and retrievable for 1 year.
+  rationale: M-26-14 rescinded M-21-31 effective immediately, and the books still presented the old tiers as current.
+  basis: requirement
+  sources:
+  - {title: 'OMB, M-26-14 agency logging and network visibility', url: 'https://www.whitehouse.gov/wp-content/uploads/2026/05/M-26-14-Ensuring-Effective-and-Efficient-Agency-Logging-and-Network-Visibility-to-Defend-Against-Evolving-Cyber-Threats.pdf'}
+  - {title: 'OMB, M-21-31 investigative and remediation capabilities', url: 'https://www.whitehouse.gov/wp-content/uploads/2021/08/M-21-31-Improving-the-Federal-Governments-Investigative-and-Remediation-Capabilities-Related-to-Cybersecurity-Incidents.pdf'}
+  pages: [docs/books/b08-ddi/index.md, docs/books/b09-network/index.md, docs/books/b02-identity/index.md]
+  prs: [70, 71, 75]
+  status: settled
+
+- id: WD-033
+  date: 2026-10-21
+  question: What accessibility standard do presentations meet?
+  options: [No stated standard, Section 508 and WCAG 2.1 AA with captions on every narrated deck]
+  choice: All decks pass an automated accessibility check run on every build (alt text, table headers, reading order, contrast, language). Narrated decks carry embedded closed captions plus a separate caption file.
+  rationale: 'Stated target: Section 508 and WCAG 2.1 AA.'
+  basis: requirement
+  sources:
+  - {title: 'GSA, Section508.gov', url: 'https://www.section508.gov/'}
+  - {title: 'W3C, Web Content Accessibility Guidelines 2.1', url: 'https://www.w3.org/TR/WCAG21/'}
+  pages: [docs/presentations/index.md]
+  prs: [74, 81]
+  status: settled
+
+- id: WD-034
+  date: 2026-10-21
+  question: Which book defines what each extensionAttribute slot holds?
+  options: [Each book defines its own use, One program-wide map; other books match or link it]
+  choice: The HR-driven identity book carries the single map for users and devices. All other books, scripts and device filters match it. No slot has two meanings.
+  rationale: The books disagreed; for example slot 10 was account type in two books and organization code in another.
+  basis: workbook-design
+  sources: []
+  pages: [docs/books/b03-hr-identity/06-canonical-attribute-schema.md, docs/books/b04-access/index.md]
+  prs: [76]
+  status: settled
+
+- id: WD-035
+  date: 2026-10-21
+  question: How do book pages look and how is contrast handled?
+  options: [Default theme, 'One house theme with link and label colors darkened to 4.5:1']
+  choice: All book pages, the books index and Presentations share one theme. Link and small-label colors are darkened to meet WCAG AA 4.5:1 contrast. The duplicate title heading is replaced by a hero header.
+  rationale: Not stated beyond the contrast target.
+  basis: requirement
+  sources:
+  - {title: 'W3C, Web Content Accessibility Guidelines 2.1', url: 'https://www.w3.org/TR/WCAG21/'}
+  pages: [docs/books/index.md, docs/presentations/index.md]
+  prs: [82]
+  status: settled
+
+- id: WD-036
+  date: 2026-10-21
+  question: How should citations appear in the Word editions?
+  options: [Word footnotes, Chapter endnotes in a Notes section]
+  choice: Each chapter ends with a numbered Notes section, references are linked superscripts, and a source cited twice in a chapter is listed once. The web pages get a Notes heading.
+  rationale: Not stated beyond the change itself; the PR says it moves footnotes to endnotes and shortens the bundles.
+  basis: workbook-design
+  sources: []
+  pages: [scripts/bundle-filter.lua, docs/books/index.md]
+  prs: [83]
+  status: settled
+
+- id: WD-037
+  date: 2026-10-21
+  question: Where does a topic that fits no numbered book live?
+  options: [A standalone companion guide outside the numbered books, Inside the closest numbered book (People)]
+  choice: A standalone companion guide with its own Books-index section, which can move into the People book later
+  rationale: The meetings guide is not tied to one book. The PR says it can move later.
+  basis: workbook-design
+  sources: []
+  pages: [docs/books/guides/effective-meetings.md, docs/books/index.md]
+  prs: [86]
+  status: settled
+
+- id: WD-038
+  date: 2026-10-21
+  question: How is an outside critique or a cross-chapter conflict turned into a fix?
+  options: [Accept the critique as written, Check each claim against primary sources and apply only the fixes that hold up]
+  choice: Each claim is checked on its own. Every factual change is researched independently and endnoted. Wording-only changes are logged as such in the chapter's verification file.
+  rationale: In round 1, 137 critique claims were checked. 36 were wrong and 47 were already addressed, so only the verified fixes were applied.
+  basis: workbook-design
+  sources: []
+  pages: [docs/about/sources-and-verification.md, docs/books/b00-orientation/index.md]
+  prs: [87, 89, 106]
+  status: settled
+
+- id: WD-039
+  date: 2026-10-21
+  question: How does the workbook describe its own authority?
+  options: [Present the program as federal policy, 'Say up front that it is guidance, not federal policy']
+  choice: The orientation and arc books state early that the workbook is guidance, not federal policy
+  rationale: Added after the external critique was checked claim by claim. No further reason is given in the PR.
+  basis: workbook-design
+  sources: []
+  pages: [docs/books/b00-orientation/02-how-to-use-this-workbook.md, docs/books/b01-transformation-arc/index.md]
+  prs: [87]
+  status: settled
+
+- id: WD-040
+  date: 2026-10-21
+  question: When two chapters give different cadences or approvers for the same control, which wins?
+  options: [Leave each chapter as written, Pick one cadence and one owner and align every chapter]
+  choice: One answer everywhere. Contingency testing is a first-year tabletop, then an annual functional exercise with a restore. The CISO owns the supply chain strategy and the CIO approves the charter. The service desk verifies but never approves MFA or password resets.
+  rationale: The deck reviews found chapters that conflicted. Each was resolved to match the owner matrix in the book's governance chapter.
+  basis: workbook-design
+  sources: []
+  pages: [docs/books/b14-compliance/06-contingency-and-continuity.md, docs/books/b15-day2-operations/03-intake-triage-and-routing.md, docs/books/b14-compliance/10-who-owns-compliance.md]
+  prs: [87, 99, 101, 103]
+  status: settled
+
+- id: WD-041
+  date: 2026-10-21
+  question: What does the narrator read on each slide?
+  options: [The full speaker notes, A short spoken part that conveys the slide's intent]
+  choice: Early decks voiced the speaker notes.
+  rationale: Replaced once the intent-first style was approved on a pilot. The PR does not frame it as a separate choice.
+  basis: workbook-design
+  sources: []
+  pages: [docs/presentations/index.md]
+  prs: [90]
+  status: superseded
+  superseded_by: WD-053
+
+- id: WD-042
+  date: 2026-10-21
+  question: What happens to the working source pages once a book is written?
+  options: [Keep them live beside the book, Archive them and redirect the old URLs to the book]
+  choice: Source pages and images used for a book are archived, with redirects to the new chapter
+  rationale: Not stated in the PR.
+  basis: workbook-design
+  sources: []
+  pages: [docs/about/archive.md, docs/books/b12-security-operations/index.md]
+  prs: [91, 102, 104]
+  status: settled
+
+- id: WD-043
+  date: 2026-10-21
+  question: 'Which remediation clock binds an agency: the FedRAMP timeframes or the CISA directive?'
+  options: [FedRAMP remediation timeframes, BOD 26-04 for the agency; FedRAMP timeframes bind providers]
+  choice: The agency's clock is BOD 26-04. FedRAMP timeframes and KSIs bind cloud providers, not agencies. Where an external clock is shorter or different in kind, it governs.
+  rationale: Found when each book's claims were checked against primary sources. BOD 26-04 revoked BOD 22-01 and 19-02.
+  basis: requirement
+  sources:
+  - {title: 'CISA, BOD 26-04 prioritizing security updates by risk', url: 'https://www.cisa.gov/news-events/directives/bod-26-04-prioritizing-security-updates-based-risk'}
+  - {title: 'CISA, BOD 26-04 implementation guidance', url: 'https://www.cisa.gov/news-events/directives/bod-26-04-implementation-guidance-prioritizing-security-updates-based-risk'}
+  - {title: 'FedRAMP, NTC-0014 response to BOD 26-04', url: 'https://www.fedramp.gov/notices/0014/'}
+  pages: [docs/books/b12-security-operations/06-vulnerability-management.md, docs/books/b15-day2-operations/02-day-two-is-where-compliance-lives.md, docs/books/b13-governance/10-ticket-to-machine.md]
+  prs: [91, 96, 97, 100]
+  status: settled
+
+- id: WD-044
+  date: 2026-10-21
+  question: How does the workbook find out that a cited source has changed?
+  options: [Manual re-checks by the editor, A weekly automated watcher over every cited URL and federal feeds]
+  choice: A weekly workflow compares every cited source (Learn pages by ms.date, other HTML by text, PDFs by hash) and watches federal feeds. It opens one grouped issue only when something changed.
+  rationale: Not stated in the PR beyond the design. The book endnotes cite 1,766 unique sources, too many to re-check by hand.
+  basis: workbook-design
+  sources: []
+  pages: [scripts/source_watch/README.md, .github/workflows/source-watch.yml, docs/about/sources-and-verification.md]
+  prs: [92, 95, 161]
+  status: settled
+
+- id: WD-045
+  date: 2026-10-21
+  question: Are emergency access accounts excluded from Conditional Access policies?
+  options: [Exclude them from every policy, Exclude them only from policies that block or restrict sign-in; report-only needs no exclusion]
+  choice: Excluded from policies that block or restrict sign-in. Report-only policies need no exclusion.
+  rationale: Made consistent across the training and access books and newly endnoted to Microsoft Learn.
+  basis: microsoft-learn
+  sources:
+  - {title: 'Microsoft Learn, Manage emergency access admin accounts', url: 'https://learn.microsoft.com/entra/identity/role-based-access-control/security-emergency-access'}
+  - {title: 'Microsoft Learn, Plan a Conditional Access deployment', url: 'https://learn.microsoft.com/entra/identity/conditional-access/plan-conditional-access'}
+  pages: [docs/books/b16-people/06-vendor-training-and-labs.md, docs/books/b04-access/index.md]
+  prs: [103]
+  status: settled
+
+- id: WD-046
+  date: 2026-10-22
+  question: Who turns off an orphaned AI agent identity, and who sponsors one?
+  options: [Automatic turn off on detection, A person turns off it once the orphan is confirmed]
+  choice: A person turns off the agent after confirmation. A sponsor must be an agency employee, and a contractor may be the technical owner. Retiring one agent is the sponsor's decision and retiring a whole system is the system owner's. No production access before an authorization covers it.
+  rationale: Aligned the lifecycle chapter, the deck and the ownership matrix after the deck review.
+  basis: workbook-design
+  sources: []
+  pages: [docs/books/b17-ai-identity/05-owners-sponsors-and-lifecycle.md, docs/books/b17-ai-identity/08-who-owns-ai-identity.md]
+  prs: [105]
+  status: settled
+
+- id: WD-047
+  date: 2026-10-22
+  question: How long does a new policy run in report-only mode before enforcement?
+  options: [No minimum, At least a week]
+  choice: Report-only for at least a week before enforcement
+  rationale: One of ten cross-chapter fixes in the orientation book. No separate reason is given.
+  basis: workbook-design
+  sources:
+  - {title: 'Microsoft Learn, Conditional Access report-only mode', url: 'https://learn.microsoft.com/entra/identity/conditional-access/concept-conditional-access-report-only'}
+  - {title: 'Microsoft Learn, Plan a Conditional Access deployment, deploy policies', url: 'https://learn.microsoft.com/entra/identity/conditional-access/plan-conditional-access#deploy-conditional-access-policies'}
+  pages: [docs/books/b00-orientation/09-design-pilot-and-rollout.md]
+  prs: [106]
+  status: settled
+
+- id: WD-048
+  date: 2026-10-22
+  question: Where does material go that is not yet reviewed enough to join the books?
+  options: [Straight into the books, A separate Research area with visible review status]
+  choice: A Research area labeled on every page. Statuses are Draft, In review, Proved and Published. Types are explainer, product deep dive and implementation guide. Research stays out of the book tables, metrics and Word bundles.
+  rationale: Items are published for review before they join the books. Each page states it is not part of the books and not endorsed by any agency.
+  basis: workbook-design
+  sources: []
+  pages: [docs/research/index.md]
+  prs: [107, 109]
+  status: settled
+
+- id: WD-049
+  date: 2026-10-22
+  question: How often does the narration name the workbook?
+  options: [On the first book reference of every slide, Once per deck]
+  choice: The first book reference on each slide was voiced with the workbook's full name.
+  rationale: Reversed the next day when narration was rewritten.
+  basis: workbook-design
+  sources: []
+  pages: [docs/presentations/index.md]
+  prs: [110]
+  status: superseded
+  superseded_by: WD-054
+
+- id: WD-050
+  date: 2026-10-23
+  question: Which federal frameworks and services are in scope for the program?
+  options: [Cover every federal framework that touches identity, 'State the scope: internal workforce identity in; public-facing services out; intranet accessibility rules and Section 508 still apply']
+  choice: Public services and Login.gov are out of scope. IDEA section 3(c) intranets and Section 508 still apply. A funding and acquisition appendix ties the program's artifacts to the investment record.
+  rationale: Closes the gaps listed in the Federal Framework Crosswalk. Each added sentence is endnoted to a primary source checked on October 23, 2026.
+  basis: requirement
+  sources:
+  - {title: 'OMB, M-26-18 scaling Login.gov for public services', url: 'https://www.whitehouse.gov/wp-content/uploads/2026/08/M-26-18-Scaling-Use-of-Login.gov-to-Deliver-a-Universal-Sign-on-for-Public-Services.pdf'}
+  - {title: 'OMB, M-23-22 digital-first public experience', url: 'https://www.whitehouse.gov/wp-content/uploads/2023/09/M-23-22-Delivering-a-Digital-First-Public-Experience.pdf'}
+  - {title: 'Access Board, ICT standards under Section 508', url: 'https://www.access-board.gov/ict/'}
+  pages: [docs/books/b00-orientation/02-how-to-use-this-workbook.md, docs/books/b00-orientation/appendix-c-funding-and-acquisition.md]
+  prs: [112, 113, 114]
+  status: settled
+
+- id: WD-051
+  date: 2026-10-23
+  question: How do wide tables and diagrams appear in Word and web editions?
+  options: [Leave wide tables to overflow, 'Balance columns, switch to landscape, use 10 pt table text, and carry diagrams as vectors']
+  choice: Wide or crowded tables go landscape automatically with a 10 pt table style. Diagrams are embedded as SVG with a PNG fallback. Phones get tables as labelled cards. Every Word edition gets a chapter header and a page-numbered footer. The site builds no PDF; browser print is the PDF route.
+  rationale: The PR reports the PKI bundle fell from 171 to 162 pages and landscape pages from 23 to 16, with no mid-word breaks.
+  basis: workbook-design
+  sources: []
+  pages: [assets/landscape.lua, assets/fmw-theme.scss, docs/downloads.md]
+  prs: [113, 116, 118, 119]
+  status: settled
+
+- id: WD-052
+  date: 2026-10-23
+  question: How are certificates handled outside the PKI book?
+  options: [Each book handles its own certificates, 'Every book gets a certificates section mapped to the PKI book''s classes, issuers and renewal engines']
+  choice: 17 books gain a Certificates in this book section with a diagram. The PKI book makes the issuer decision. Monitoring covers three renewal engines, not one, and there is no single replacement CA.
+  rationale: Conflicts with the PKI book were fixed without cutting content. The CLM platform appendix is linked from every section.
+  basis: workbook-design
+  sources: []
+  pages: [docs/books/b07-pki/appendix-c-anatomy-of-the-clm-platform.md, docs/books/b00-orientation/10-retirement-steady-state-and-success.md]
+  prs: [115, 117]
+  status: settled
+
+- id: WD-053
+  date: 2026-10-23
+  question: What does the narrator say on each slide?
+  options: [The full speaker notes, 'One short conversational part per slide: the slide''s purpose and one or two highpoints, then a lead-in to the next slide']
+  choice: Intent-first narration kept in a narration file per deck. Notes keep the full detail and sources for presenters and are no longer read aloud. The build stops if a title no longer matches its slide. Applied to all book, executive, technical and research decks.
+  rationale: Narrated editions now run 8 to 24 minutes instead of 25 to 72, so each still fits the briefing slot.
+  basis: workbook-design
+  sources: []
+  pages: [docs/presentations/index.md]
+  prs: [115, 121, 123, 124, 125]
+  status: settled
+
+- id: WD-054
+  date: 2026-10-23
+  question: How often does the narration name the workbook?
+  options: [On every slide, 'Once per deck, on slide 1']
+  choice: The workbook is named once per deck, on slide 1
+  rationale: Part of the intent-first rewrite. No separate reason is given.
+  basis: workbook-design
+  sources: []
+  pages: [docs/presentations/index.md]
+  prs: [121]
+  status: settled
+
+- id: WD-055
+  date: 2026-10-23
+  question: Which length does a deck's label show?
+  options: [The live-talk length only, Both the live and the narrated length]
+  choice: Labels give both, such as about 30 minutes live and 22 narrated. Narrated lengths come from the caption track.
+  rationale: Intent-first narration made the narrated editions shorter than the live talks.
+  basis: workbook-design
+  sources: []
+  pages: [docs/presentations/index.md, docs/books/b09-network/index.md]
+  prs: [126]
+  status: settled
+
+- id: WD-056
+  date: 2026-10-23
+  question: How does a leader first meet the workbook?
+  options: [Start from the books index, A Start Here page and a short narrated series that leads with a four-week Phase 0 pre-flight and no vendor decision]
+  choice: A Start Here page plus a four-episode series of about 6 minutes each. The case rests on identity, the ask is Phase 0, and the finish line is Gate G1. Local numbers and the shape of the ask are labeled design guidance, and the page stays agency-neutral.
+  rationale: 'Four reasons are given: external clocks, every decision rests on identity, the HR side is being rebuilt anyway, and the access risk is already carried.'
+  basis: workbook-design
+  sources: []
+  pages: [docs/start-here.md, docs/presentations/index.md]
+  prs: [131, 134]
+  status: settled
+
+- id: WD-057
+  date: 2026-10-24
+  question: Can the workbook name specific vendor products?
+  options: [Vendor-neutral only, 'Vendor-named research pages labeled as an example, not a recommendation']
+  choice: The books stay vendor-neutral. Vendor-named companions live in Research, are labeled as an example or implementation guide, and say they are not an endorsement.
+  rationale: The ticket-to-machine example sits beside the vendor-neutral appendix and states it is an example, not a recommendation.
+  basis: workbook-design
+  sources: []
+  pages: [docs/books/guides/ttm-servicenow-sailpoint.md, docs/books/b13-governance/appendix-b-ticket-to-machine-reference.md, docs/research/index.md]
+  prs: [107, 137, 138, 143]
+  status: settled
+
+- id: WD-058
+  date: 2026-10-24
+  question: When may a drift task be closed?
+  options: [When the ticket or provisioning status says complete, Only when evidence is read back from the system of record]
+  choice: A verifier closes a record only on evidence read back from the identity platform. Otherwise it reopens the record, with a grace period for aggregation lag. A completed provisioning event never closes a record by itself.
+  rationale: 'Closes gap 1 in the example: a ticket status is not a re-read.'
+  basis: workbook-design
+  sources: []
+  pages: [docs/books/guides/snow-sailpoint-integration-kit.md, docs/books/guides/ttm-servicenow-sailpoint.md]
+  prs: [137, 139]
+  status: settled
+
+- id: WD-059
+  date: 2026-10-24
+  question: What role does email play in ticket intake?
+  options: [Email can approve or close requests, 'Email starts intake only, as an option']
+  choice: Email never approves, verifies a person or closes a record
+  rationale: Follows the day-two operations chapter on intake. Plan only, no code.
+  basis: workbook-design
+  sources: []
+  pages: [docs/books/guides/snow-sailpoint-integration-kit.md, docs/books/b15-day2-operations/03-intake-triage-and-routing.md]
+  prs: [141]
+  status: settled
+
+- id: WD-060
+  date: 2026-10-24
+  question: What must be true before an SD-WAN fabric carries traffic?
+  options: ['Build first, harden afterward', Meet the emergency directive and the hunt and hardening steps first]
+  choice: Compliance with ED 26-03 and its hunt and hardening steps comes before the fabric carries traffic, at the fixed-release floor for each software train. The default is a government-hosted controller (FedRAMP Moderate), with on-premises for High or isolated systems. Hosting does not remove the agency's obligations.
+  rationale: Nine Catalyst SD-WAN vulnerabilities appear in the known-exploited catalog in 2026.
+  basis: requirement
+  sources:
+  - {title: 'CISA, ED 26-03 mitigate vulnerabilities in Cisco SD-WAN', url: 'https://www.cisa.gov/news-events/directives/ed-26-03-mitigate-vulnerabilities-cisco-sd-wan-systems'}
+  - {title: 'CISA, ED 26-03 supplemental hunt and hardening guidance', url: 'https://www.cisa.gov/news-events/directives/supplemental-direction-ed-26-03-hunt-and-hardening-guidance-cisco-sd-wan-systems'}
+  pages: [docs/books/guides/cisco-sdwan-implementation.md, docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md]
+  prs: [143, 144]
+  status: settled
+
+- id: WD-061
+  date: 2026-10-25
+  question: What color is the site header?
+  options: [White navbar, Black navbar with white text]
+  choice: Black top bar with white text, and black headers with white text on section landing pages. Chapters and research pages keep a light header.
+  rationale: Not stated in the PR beyond restoring the earlier look.
+  basis: workbook-design
+  sources: []
+  pages: [assets/fmw-theme.scss, assets/fmw-hero.lua]
+  prs: [111, 147]
+  status: settled
+
+- id: WD-062
+  date: 2026-10-25
+  question: Where do the narrated MP4s live?
+  options: [Commit them to the repo or site, Host them on a release and stream them into the site]
+  choice: MP4s stay out of the repo (one Start Here video was the explicit exception) and stream from a release. The site publishes only captions and a manifest so players can load same-origin tracks.
+  rationale: The MP4s total about 12 GB, too big for the site host.
+  basis: workbook-design
+  sources: []
+  pages: [docs/presentations/watch.md, docs/presentations/index.md, docs/start-here.md]
+  prs: [133, 134, 153]
+  status: settled
+
+- id: WD-063
+  date: 2026-10-25
+  question: How are project plans presented?
+  options: [Prose schedules, 'Sample plans generated from data, with a computed critical path, float, decision points and gates']
+  choice: A Projects section of sample plans built from the books. Each shows the critical path, near-critical items, decide-by weeks and gates. Downloads are Microsoft Project XML and CSV, then Azure Boards and Jira imports.
+  rationale: The plans are generated by a script, so the pages and downloads stay in step and can be checked.
+  basis: workbook-design
+  sources: ['https://learn.microsoft.com/azure/devops/boards/queries/import-work-items-from-csv']
+  pages: [docs/project-plans/index.md, docs/project-plans/program-master-schedule.md]
+  prs: [150, 151, 154, 155, 158]
+  status: settled
+
+- id: WD-064
+  date: 2026-10-25
+  question: When the project plans exposed conflicting book text, how was it reconciled?
+  options: [Change the plan to match each book, Change the books so they agree]
+  choice: Division waves act as the rings for each co-management workload. The full control assessment is at least annual (the statutory floor) with a quarterly evidence-quality review. The one-role pilot is the minimum, and gate G2 checks every pilot administrator.
+  rationale: Each book chapter and its ledger were updated. The program plan was left unchanged.
+  basis: workbook-design
+  sources:
+  - {title: 'FISMA 2014, 44 U.S.C. 3554 agency responsibilities', url: 'https://www.law.cornell.edu/uscode/text/44/3554'}
+  - {title: 'NIST, SP 800-137 information security continuous monitoring', url: 'https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-137.pdf'}
+  pages: [docs/books/b13-governance/12-governance-at-scale.md, docs/books/b05-devices/08-gpo-to-intune-policy-migration.md, docs/books/b00-orientation/09-design-pilot-and-rollout.md]
+  prs: [156]
+  status: settled
+
+- id: WD-065
+  date: 2026-10-25
+  question: May new work add dependencies on Active Directory during the migration?
+  options: [Allow them and retire later, 'Ask of every add or change whether it creates an AD dependency; a yes needs an approved, dated exception']
+  choice: 'From G0 every change is screened for domain joins, Kerberos, NTLM or LDAP, service accounts, GPOs, AD groups, AD-integrated DNS, trusts and AD CS templates. A yes is an exception approved by the authorizing official, with an end date and the Entra alternative considered. Drift checks flag unexplained new AD objects. G0 also records a provisional end state: AD retired, or a dated Kerberos island for named workloads.'
+  rationale: Adopts two points from Microsoft's road-to-the-cloud guidance. The vendor article that prompted the change is not cited.
+  basis: microsoft-learn
+  sources:
+  - {title: 'Microsoft Learn, Road to the cloud: implement a cloud-first approach', url: 'https://learn.microsoft.com/entra/architecture/road-to-the-cloud-implement'}
+  - {title: 'Microsoft Learn, Road to the cloud: transformation posture', url: 'https://learn.microsoft.com/entra/architecture/road-to-the-cloud-posture'}
+  pages: [docs/books/b13-governance/04-change-control-and-provenance.md, docs/books/b01-transformation-arc/12-migration-roadmap.md, docs/books/b00-orientation/08-pre-flight-and-assessment.md]
+  prs: [159]
+  status: settled
+
+- id: WD-066
+  date: 2026-10-26
+  question: When the assessment tool and the directive's published list conflict, which governs?
+  options: [The newest tool release, The directive's published page until it is updated]
+  choice: The books keep the directive's policy IDs and note the tool's renumbered ID beside them. The published page governs until it is updated. The assessment chapters are re-based on ScubaGear 2.0.0, and counts from the older release stay labeled as such.
+  rationale: The books were right against their source. The tool renumbered the same policy, and a crosswalk that called the books out of date was corrected.
+  basis: workbook-design
+  sources:
+  - {title: 'CISA, BOD 25-01 secure practices for cloud services', url: 'https://www.cisa.gov/news-events/directives/bod-25-01-implementing-secure-practices-cloud-services'}
+  - {title: 'CISA, ScubaGear Entra ID baseline, release 2.0.0', url: 'https://github.com/cisagov/ScubaGear/blob/v2.0.0/PowerShell/ScubaGear/baselines/aad.md'}
+  - {title: 'CISA, ScubaGear README, release 2.0.0', url: 'https://github.com/cisagov/ScubaGear/blob/v2.0.0/README.md'}
+  pages: [docs/books/b11-zero-trust/04-scuba-and-bod-25-01.md, docs/books/b11-zero-trust/05-two-assessment-tools.md, docs/books/b04-access/index.md]
+  prs: [152, 161, 162]
+  status: settled
+
+- id: WD-067
+  date: 2026-10-27
+  question: What may a kit script do, and what does the workbook claim about it?
+  options: [Scripts may change state if the reader opts in, 'Assessment kits are read-only, tested against fixtures, and labeled illustrative']
+  choice: Kits are labeled illustrative and not proven against a live estate. The Start Kit is read-only. An automated test fails on any state-changing verb, file write outside the output path, or non-SELECT query.
+  rationale: Not stated in the PR beyond the safety design. Packaging found three defects in printed code, which were fixed in place and logged.
+  basis: workbook-design
+  sources: []
+  pages: [examples/start-kit/README.md, docs/books/b02-identity/index.md, docs/downloads.md]
+  prs: [139, 164, 165, 169]
+  status: settled
+
+- id: WD-068
+  date: 2026-10-27
+  question: How are downloadable kits published?
+  options: [Commit the zip to the repo, 'Release assets with a SHA-256, one Downloads tab listing everything']
+  choice: The Help Desk Kit ships as a versioned release asset with its SHA-256 on the page. The Start Kit zip is rebuilt reproducibly on every deploy. One Downloads tab lists kits, Word editions and videos.
+  rationale: Hashes were checked against a fresh download, and the build is byte-identical for the same commit.
+  basis: workbook-design
+  sources: []
+  pages: [docs/downloads.md, docs/books/b15-day2-operations/index.md]
+  prs: [164, 166, 167, 168, 170]
+  status: settled
+
+- id: WD-069
+  date: 2026-10-27
+  question: Which delegation risks do the audit kits check?
+  options: [Only the checks already listed, 'Unconstrained Kerberos delegation in AD, and tenant-wide delegated consent in Entra']
+  choice: The Start Kit reports unconstrained and constrained delegation, marking SQL Server accounts and privileged users who can be delegated. The Help Desk Kit reports apps consented to act as every user.
+  rationale: Entra has no Kerberos delegation, so tenant-wide delegated consent is its counterpart. Both stay read-only.
+  basis: workbook-design
+  sources: []
+  pages: [examples/start-kit/README.md, docs/downloads.md]
+  prs: [169, 170]
+  status: settled
+
+- id: WD-070
+  date: 2026-10-28
+  question: How should application modernization be framed?
+  options: [A rewrite program, 'A portfolio decision with six dispositions: retire, retain, rehost, replatform, refactor, rebuild']
+  choice: Application modernization is a portfolio decision. The target reference architecture is Java 25 LTS, Spring Boot 4.1, React 19, OCI containers and the strangler fig pattern, shown by a runnable reference implementation.
+  rationale: Not stated in the PR beyond the chapter framing.
+  basis: workbook-design
+  sources: []
+  pages: [docs/books/b18-application-modernization/index.md, docs/books/b18-application-modernization/02-triaging-the-portfolio.md, docs/books/b18-application-modernization/03-the-target-reference-architecture.md]
+  prs: [173]
+  status: settled
+
+- id: WD-071
+  date: 2026-10-28
+  question: How do kit downloads work for tools that refuse code attachments?
+  options: [Commit .txt copies of scripts, Build a .txt copy beside every code file in the zip at build time]
+  choice: The build adds a .txt copy of every script, code, configuration and data file to each kit zip. The copies are never committed, and a name collision fails the build.
+  rationale: Microsoft 365 Copilot and some mail systems do not accept .ps1 or .py attachments. Build-time copies cannot drift from the originals.
+  basis: workbook-design
+  sources: []
+  pages: [scripts/build_start_kit_zip.py, docs/downloads.md, examples/copilot-agent-pack/README.md]
+  prs: [175, 176]
+  status: settled
+
+- id: WD-072
+  date: 2026-10-29
+  question: How may a team show that an application's transactions are reduced before its data is separated?
+  options: [Accept estimates, 'Count round trips from packet captures, SQL connection polling or a named measuring tool, and refuse estimates']
+  choice: The Start Kit gate passes an application only when every transaction is Reduced or WithinBudget. Estimates are refused and flagged. The kit never captures traffic.
+  rationale: The arc chapters make 'profiled and reduced' a required check before a separation is approved.
+  basis: workbook-design
+  sources: []
+  pages: [examples/start-kit/README.md, docs/books/b01-transformation-arc/10-analyzing-the-estate.md]
+  prs: [179]
+  status: settled
+
+- id: WD-073
+  date: 2026-10-29
+  question: Where should contractor identities be sourced from for the HR-driven pipeline?
+  options: [Record contractors as contingent workers in the HR platform now, An agency-owned contractor system of record now; contingent workers later as a source swap]
+  choice: Use an agency-owned contractor system of record now. Move to HR contingent workers later, only after the program office confirms scope, licensing and privacy. The pipeline enforces the end date.
+  rationale: The HR 2.0 stated scope is civilian employees only, and the platform's projected end date has no effect on processing.
+  basis: workbook-design
+  sources:
+  - {title: 'FAR, 52.204-9 PIV of contractor personnel', url: 'https://www.acquisition.gov/far/52.204-9'}
+  - {title: 'NIST, FIPS 201-3 PIV of federal employees and contractors', url: 'https://csrc.nist.gov/pubs/fips/201-3/final'}
+  - {title: 'GSA, Identity Lifecycle Management Playbook', url: 'https://www.idmanagement.gov/playbooks/ilm/'}
+  pages: [docs/evaluations/oracle-contingent-worker-contractor-source.md, docs/books/b03-hr-identity/09-credentials-and-certificates.md]
+  prs: [181, 194]
+  status: settled
+
+- id: WD-074
+  date: 2026-10-29
+  question: How is the identity migration organized so readers know which population a step applies to?
+  options: [One mixed series that moves between people and computers, 'Four tracks, each with its own source of truth']
+  choice: 'Four tracks: HR for people, Intune for end-user devices, Azure Arc for servers, and non-person identities. Each has one source of truth and its own implementation guide.'
+  rationale: The material moved between HR-sourced people and computer-OU Group Policy without saying which population it was on.
+  basis: workbook-design
+  sources: []
+  pages: [docs/books/guides/attribute-driven-migration.md, docs/project-plans/non-person-identity.md, docs/project-plans/attribute-driven-migration.md]
+  prs: [187, 191]
+  status: settled
+
+- id: WD-075
+  date: 2026-10-29
+  question: How much of the site does a pull request check render?
+  options: [Render the full site on every PR (50 to 60 minutes), 'Three tiers: FULL, CHANGED and NONE, chosen by which files changed']
+  choice: Small PRs render only the changed pages and check their links, footnotes, bundles and redirects. Build or layout changes trigger the full render. The deploy still renders the full site on every merge. Kit test suites also run in PR checks, and rendered pages are kept for 7 days.
+  rationale: Small PRs should not need a 50 to 60 minute full-site render. Kit tests had run only on one machine, so some platform claims were unchecked.
+  basis: workbook-design
+  sources: []
+  pages: [scripts/check_changed.py, CONTRIBUTING.md]
+  prs: [189, 245, 247]
+  status: settled
+
+- id: WD-076
+  date: 2026-10-29
+  question: Which configuration authority does the workbook treat as the baseline?
+  options: [Defense hardening guides as the baseline, 'CISA SCuBA, NIST SP 800-53 Rev. 5 at Moderate, and CIS or vendor guidance']
+  choice: The workbook is written for FedRAMP Moderate civilian agencies. Microsoft 365 and Google Workspace use CISA SCuBA and BOD 25-01. Hosts and network gear use CIS Benchmarks, the NIST National Checklist Program or vendor hardening guides. Defense-only items stay as references labelled '(High only)'.
+  rationale: The audience is civilian Moderate agencies, so the configuration authority is CISA, not the Defense hardening authority.
+  basis: workbook-design
+  sources:
+  - {title: 'CISA, BOD 25-01 secure practices for cloud services', url: 'https://www.cisa.gov/news-events/directives/bod-25-01-implementing-secure-practices-cloud-services'}
+  - {title: 'CISA, Secure Cloud Business Applications project', url: 'https://www.cisa.gov/resources-tools/services/secure-cloud-business-applications-scuba-project'}
+  - {title: 'NIST, National Checklist Program', url: 'https://ncp.nist.gov/'}
+  pages: [docs/books/guides/ansible-configuration-automation.md, docs/books/b05-devices/08-gpo-to-intune-policy-migration.md, docs/compliance/Vol_I_Book_01_Cloud_Landing_Zone_IPAM_FedRAMP.md]
+  prs: [190, 193]
+  status: settled
+
+- id: WD-077
+  date: 2026-10-30
+  question: What starts the leaver process for a contractor who holds a PIV card?
+  options: [The card system's termination event, 'The contractor end date, with the card system as an input only']
+  choice: The earliest end date wins, computed by the middleware. The end date starts the 18-hour clock. A card termination is a leaver input, and a reissue is not. No contractor record means no card.
+  rationale: The PIV path is labelled design guidance, not yet validated, and PS-7(d) was checked against SP 800-53 Rev. 5.
+  basis: requirement
+  sources:
+  - {title: 'NIST, FIPS 201-3 PIV of federal employees and contractors', url: 'https://csrc.nist.gov/pubs/fips/201-3/final'}
+  - {title: 'NIST, SP 800-79-2 PIV card issuer authorization', url: 'https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-79-2.pdf'}
+  - {title: 'FAR, 52.204-9 PIV of contractor personnel', url: 'https://www.acquisition.gov/far/52.204-9'}
+  pages: [docs/books/b03-hr-identity/09-credentials-and-certificates.md, docs/books/b03-hr-identity/10-from-attributes-to-access.md]
+  prs: [181, 194, 197]
+  status: settled
+
+- id: WD-078
+  date: 2026-10-30
+  question: How are overlaps between Intune, Arc, Ansible and Configuration Manager prevented?
+  options: [Let several tools manage the same setting, 'One owning tool per setting and one patch owner per server, recorded as CMDB attributes']
+  choice: Each setting has one config owner and each server one patch owner. Both are recorded in the CMDB and written as Arc tags.
+  rationale: Update Manager only assesses servers that another tool patches, so patching needs a named owner. The patch-owner rule is labelled design guidance.
+  basis: workbook-design
+  sources: []
+  pages: [docs/books/guides/ansible-configuration-automation.md, docs/books/b05-devices/09-servers-under-azure-arc.md]
+  prs: [182, 204]
+  status: settled
+
+- id: WD-079
+  date: 2026-10-30
+  question: How does the workbook keep agency and system names out of public pages?
+  options: [Rely on reviewers, 'An automated gate with a hashed term list, run on every PR and weekly']
+  choice: A checker matches tracked files against salted hashes of banned terms and reports file and line only. It runs on PRs and weekly on main. Existing hits are excused by a shrink-only baseline.
+  rationale: Logs and issues are public, so the terms are stored as hashes and not printed.
+  basis: workbook-design
+  sources: []
+  pages: [scripts/check_neutrality.py, CONTRIBUTING.md]
+  prs: [201, 190]
+  status: settled
+
+- id: WD-080
+  date: 2026-10-30
+  question: How are the 'Authorities Closed Here' tables in the compliance volumes kept consistent?
+  options: [Edit each table by hand, Generate every table from one data file and fail the check on drift]
+  choice: Ten tables are generated from one spine data file by a script. A check fails if a table differs from the spine, so no one edits the tables by hand.
+  rationale: The pages already said the tables were generated, but the source files were missing. Without them a regeneration could bring back the old wording.
+  basis: workbook-design
+  sources: []
+  pages: [data/federal-compliance-compliance-spine.yml, docs/compliance/Vol_I_Book_01_Cloud_Landing_Zone_IPAM_FedRAMP.md]
+  prs: [193]
+  status: settled
+
+- id: WD-081
+  date: 2026-10-30
+  question: How are research claims re-checked, and who approves substantive fixes?
+  options: [Fix every finding as it is found, Apply mechanical fixes; list substantive findings for the editor's approval; mark unproven claims 'pending proof']
+  choice: Each footnote is re-checked against sources opened raw. Mechanical fixes such as quotes and section numbers are applied. Substantive findings wait for approval. Unvalidated design lines carry one identical pending-proof note.
+  rationale: 'About 160 rows were checked: 133 supported, 24 partly supported, 2 not supported.'
+  basis: workbook-design
+  sources: []
+  pages: [docs/about/sources-and-verification.md, docs/about/_verification/verification-pass-2026-10.md]
+  prs: [197]
+  status: settled
+
+- id: WD-082
+  date: 2026-10-30
+  question: How are application dependencies recorded for triage?
+  options: [Free-text inventory, 'A structured evidence map with a schema, where every link is a claim with basis, date and confidence']
+  choice: Dependencies go on an evidence map with eight entity types. Unevidenced links must be marked assumed and tied to an open question. A schema and a checker enforce this.
+  rationale: A link is a claim, not a deployment fact. Dates and open questions keep the map honest.
+  basis: workbook-design
+  sources: []
+  pages: [docs/books/b18-application-modernization/02-triaging-the-portfolio.md, docs/books/b01-transformation-arc/10-analyzing-the-estate.md]
+  prs: [200, 201]
+  status: settled
+
+- id: WD-083
+  date: 2026-10-30
+  question: How should Group Policy be moved to Intune and Azure Policy?
+  options: [Build workbook-owned GPO conversion tooling, Adopt Microsoft's published tools and add only what they leave out]
+  choice: Use Policy Analyzer, GPO2PolicyRules, Group Policy analytics Migrate and Intune security baselines. A community converter is mentioned only as a draft aid.
+  rationale: 'Not stated beyond: rather than building our own tooling, adopt what Microsoft already publishes.'
+  basis: microsoft-learn
+  sources:
+  - {title: 'Microsoft Learn, Group Policy analytics in Intune', url: 'https://learn.microsoft.com/intune/device-configuration/import-group-policy-analytics'}
+  - {title: 'Microsoft Learn, Migrate Group Policy to a Settings Catalog policy', url: 'https://learn.microsoft.com/intune/device-configuration/migrate-group-policy'}
+  - {title: 'Microsoft Learn, Microsoft Security Compliance Toolkit', url: 'https://learn.microsoft.com/windows/security/operating-system-security/device-management/windows-security-configuration-framework/security-compliance-toolkit-10'}
+  pages: [docs/books/b05-devices/08-gpo-to-intune-policy-migration.md, docs/books/b05-devices/09-servers-under-azure-arc.md]
+  prs: [204]
+  status: settled
+
+- id: WD-084
+  date: 2026-10-30
+  question: What does a chapter do when Microsoft's pages disagree or say nothing?
+  options: [Pick one reading silently, 'Flag the conflict, label inferences, and keep the stricter figure in code']
+  choice: Conflicts between Learn pages are recorded, not resolved. Inferences and program choices are labelled 'inference', 'interpretation' or 'design guidance'. Code keeps the stricter figure.
+  rationale: 'Example: the bulk upload rate is 40 requests per second on one page and 40 per 5 seconds on another. The code keeps the stricter one.'
+  basis: workbook-design
+  sources: []
+  pages: [docs/about/sources-and-verification.md, docs/books/b08-ddi/07-cloud-private-endpoints-and-ipam.md]
+  prs: [204, 207, 208, 212, 215]
+  status: settled
+
+- id: WD-085
+  date: 2026-10-30
+  question: Which Azure cloud does an agency with a Microsoft 365 GCC (Moderate) tenant use?
+  options: [Azure Government, Commercial Azure]
+  choice: The compliance volumes place the agency's Azure in commercial Azure, paired with the GCC tenant. Azure Government pairs with GCC High and DoD.
+  rationale: A GCC tenant's Entra ID is in the commercial cloud, so its subscriptions are commercial. The Arc guide and the books already said so.
+  basis: microsoft-learn
+  sources:
+  - {title: 'Microsoft Learn, Cloud feature availability for US Government customers', url: 'https://learn.microsoft.com/azure/security/fundamentals/feature-availability#microsoft-365-integration'}
+  - {title: 'Microsoft Learn, Office 365 GCC service description', url: 'https://learn.microsoft.com/office365/servicedescriptions/office-365-platform-service-description/office-365-us-government/gcc'}
+  pages: [docs/compliance/Vol_I_Book_01_Cloud_Landing_Zone_IPAM_FedRAMP.md, docs/books/b10-cloud-boundary/04-gcc-and-the-feature-gap.md]
+  prs: [206]
+  status: settled
+
+- id: WD-086
+  date: 2026-10-30
+  question: Do the multi-line telephone 911 rules bind a federal agency's softphone system?
+  options: [Treat the rules as not applying, 'Configure as if the rules bind the agency, and let counsel decide']
+  choice: Configure Teams emergency calling as if the rules apply. The text is a labelled interpretation, and an HR-derived address is only the lowest-ranked location source.
+  rationale: The rules ask where the caller is, not the HR duty station. The statute defines the covered 'person' without naming government, and the FCC order does not address federal agencies.
+  basis: requirement
+  sources:
+  - {title: 'FCC, Order 19-76 implementing Kari''s Law and RAY BAUM''S Act', url: 'https://docs.fcc.gov/public/attachments/FCC-19-76A1.pdf'}
+  - {title: 'U.S. Code, 47 U.S.C. 623 multi-line telephone systems', url: 'https://www.govinfo.gov/link/uscode/47/623?link-type=html'}
+  - {title: 'Microsoft Learn, Emergency addresses for remote locations', url: 'https://learn.microsoft.com/microsoftteams/emergency-calling-dispatchable-location'}
+  pages: [docs/books/b03-hr-identity/10-from-attributes-to-access.md, docs/books/b15-day2-operations/05-the-service-catalogs.md, docs/books/b08-ddi/07-cloud-private-endpoints-and-ipam.md]
+  prs: [207, 210]
+  status: settled
+
+- id: WD-087
+  date: 2026-10-30
+  question: How is each developer workbook chapter built?
+  options: [Write original code, 'Start from Learn''s procedure and Microsoft''s own sample, pinned unmodified, and add only what it leaves out']
+  choice: Each chapter pins the Microsoft sample with blob hashes checked against upstream, runs it unmodified against fakes, and uses a gap table in which a test pins each gap. A source-watch feed follows the upstream commits.
+  rationale: Learn first, then Microsoft's sample, then workbook code only for what they leave to the developer.
+  basis: workbook-design
+  sources:
+  - {title: 'Microsoft, entra-id-inbound-provisioning CSV2SCIM sample', url: 'https://github.com/AzureAD/entra-id-inbound-provisioning/tree/f2e8c59f0af497b066c3484fc36a4197c2b37711/PowerShell/CSV2SCIM'}
+  - {title: 'Microsoft Learn, PowerShell samples for dynamic membership processing', url: 'https://learn.microsoft.com/entra/identity/users/groups-dynamic-membership-powershell-samples'}
+  pages: [docs/books/b19-developer-workbook/index.md, docs/project-plans/developer-workbooks/privileged-access/index.md, docs/project-plans/developer-workbooks/non-person-identity/index.md]
+  prs: [208, 213, 215, 216, 217, 218, 219, 222, 223, 228, 230]
+  status: settled
+
+- id: WD-088
+  date: 2026-10-30
+  question: Can developer workbook pages publish without an editor's approval?
+  options: [Publish on merge like other pages, Gate every workbook page on approval; weekly list of pages awaiting review]
+  choice: Each page carries a review status. Approval records a hash of the body, and a changed body reopens review. The weekly Source watch lists unapproved pages. The gate covers all workbook folders, and chapter tours wait for approval.
+  rationale: 'Requested as: add it to the weekly review, but gate changes to the developer series until reviewed. 31 pages were approved on October 31.'
+  basis: workbook-design
+  sources: []
+  pages: [scripts/source_watch/review_gate.py, docs/project-plans/developer-workbooks/index.md]
+  prs: [208, 214, 248, 252]
+  status: settled
+
+- id: WD-089
+  date: 2026-10-30
+  question: How do narrated videos play on the site?
+  options: [MP4 only, 'YouTube embed when an ID exists, MP4 as fallback and download, with slide chapters']
+  choice: A video with a YouTube ID plays from the privacy-enhanced domain. Otherwise the MP4 plays. Both show a jump-to-slide list built from the deck's advance times.
+  rationale: The release serves MP4s as application/octet-stream, which Safari and iOS will not play.
+  basis: workbook-design
+  sources: []
+  pages: [docs/presentations/index.md]
+  prs: [209]
+  status: settled
+
+- id: WD-090
+  date: 2026-10-30
+  question: Does the private DNS platform comparison cover Oracle Cloud Infrastructure?
+  options: ['AWS, Azure, Google Cloud and NSX only', Add Oracle Cloud Infrastructure to the comparison]
+  choice: OCI is added to the platform tables in the DDI chapters, and the limits and failure-behavior table covers it too.
+  rationale: Not stated in the PR beyond extending the comparison.
+  basis: workbook-design
+  sources: []
+  pages: [docs/books/b08-ddi/07-cloud-private-endpoints-and-ipam.md]
+  prs: [212]
+  status: settled
+
+- id: WD-091
+  date: 2026-10-30
+  question: Which government clouds must the developer workbooks fully resolve?
+  options: ['Resolve every research gap for GCC, GCC High and DoD', Close gaps that matter for a GCC (Moderate) estate with commercial Azure and record the rest]
+  choice: Gaps that affect a GCC estate are closed. Gaps that apply only to GCC High, DoD or Azure Government stay open, each with a note on what would reopen it.
+  rationale: The target estate is GCC with commercial Azure.
+  basis: workbook-design
+  sources: []
+  pages: [docs/books/b19-developer-workbook/_verification/research-gaps.md, docs/books/b19-developer-workbook/02-graph-clients-for-government-clouds.md]
+  prs: [216, 221]
+  status: settled
+
+- id: WD-092
+  date: 2026-10-30
+  question: How do the example code kits change a tenant?
+  options: [Apply changes directly, 'Dry run by default; write only with an explicit apply flag, never delete, read back after writing']
+  choice: Kits read first and show a diff. Writes need -Apply, and some need an approved plan hash. They create policies report-only, disable accounts instead of deleting them, and never send DELETE.
+  rationale: Not stated beyond the guard design. The non-person kit records a 30-day claim window before an orphaned account is disabled.
+  basis: workbook-design
+  sources: []
+  pages: [docs/project-plans/developer-workbooks/non-person-identity/02-ownership-and-the-orphan-rule.md, docs/project-plans/developer-workbooks/non-person-identity/05-workload-identity-federation-and-managed-identities.md, docs/project-plans/developer-workbooks/privileged-access/index.md]
+  prs: [217, 223, 224, 230, 236]
+  status: settled
+
+- id: WD-093
+  date: 2026-10-31
+  question: What does the weekly source watch monitor?
+  options: [Sources cited in books only, 'Also research pages, developer workbooks, Learn source commits, and pages past their review date']
+  choice: The watch covers research and workbook citations, uses Learn's source commit to detect real changes, quotes changed lines where the source repository is public, and lists pages past their lifecycle review date.
+  rationale: Otherwise a change to a cited Microsoft page would go unnoticed until the 90-day review.
+  basis: workbook-design
+  sources: []
+  pages: [scripts/source_watch/README.md, scripts/source_watch/review_dates.py]
+  prs: [188, 214, 244, 246]
+  status: settled
+
+- id: WD-094
+  date: 2026-10-31
+  question: Which line endings do the kits write so approved hashes match on every platform?
+  options: [Platform default (CRLF on Windows), LF on every platform]
+  choice: Kit writers emit LF and sort JSON output so file bytes are stable. Lab hashes in the chapters were regenerated.
+  rationale: A baseline or plan hash approved on one platform did not match a run on another.
+  basis: workbook-design
+  sources: []
+  pages: [docs/project-plans/developer-workbooks/non-person-identity/10-drift-and-evidence.md, docs/project-plans/developer-workbooks/non-person-identity/05-workload-identity-federation-and-managed-identities.md]
+  prs: [240]
+  status: settled
+
+- id: WD-095
+  date: 2026-10-31
+  question: How are versions of the workbook frozen and archived?
+  options: [Rely on git history alone, 'Dated editions as tags plus Releases, per-book version histories, and an Archive page']
+  choice: An edition is a tag edition-YYYY.MM with a Release holding the built files. A book is 1.0 in its first edition and goes up 0.1 per edition that changes it. Rewriting git history to shed binaries is documented as an option only and was not done.
+  rationale: Generated .pptx and .mp3 history is 2.2 GiB of a 2.43 GiB pack. A history rewrite would force every clone and open PR to be redone.
+  basis: workbook-design
+  sources: []
+  pages: [docs/about/archive.md, CONTRIBUTING.md]
+  prs: [250]
+  status: settled
+
+- id: WD-096
+  date: 2026-10-31
+  question: How does the Start Kit survey directory attributes across domains?
+  options: [Query one domain controller, 'Read Global Catalog attributes once per domain, read the rest from each domain''s own controllers, and mark unreadable attributes ''not collected''']
+  choice: The survey reads the partial attribute set from the schema at run time and never writes. A refused read is marked not collected, never empty. A shared export feeds the later checks.
+  rationale: Learn's schema reference lists employeeID, employeeType and department as not in the Global Catalog by default.
+  basis: workbook-design
+  sources:
+  - {title: 'Microsoft Learn, Active Directory schema: Employee-ID attribute', url: 'https://learn.microsoft.com/windows/win32/adschema/a-employeeid'}
+  - {title: 'Microsoft Learn, Active Directory schema: Employee-Type attribute', url: 'https://learn.microsoft.com/windows/win32/adschema/a-employeetype'}
+  - {title: 'Microsoft Learn, Active Directory schema: Manager attribute', url: 'https://learn.microsoft.com/windows/win32/adschema/a-manager'}
+  pages: [examples/start-kit/README.md, docs/books/guides/attribute-driven-migration-implementation.md]
+  prs: [251, 253, 254, 255]
+  status: settled
+
+- id: WD-097
+  date: 2026-10-31
+  question: Where do the generated decks and narration audio live?
+  options: [Keep them in git, Move them to an edition Release and keep only the sources in git, Rewrite git history to remove them]
+  choice: Decks and audio live on the edition's Release, checked by size and sha256. Sources, captions and scripts stay in git. History is not rewritten; that stays a documented option.
+  rationale: Not stated in the PR beyond this being the second of two revision-control changes. The editor approved it.
+  basis: workbook-design
+  sources: []
+  pages: [presentations/_build/README.md, CONTRIBUTING.md, docs/about/archive.md]
+  prs: [260]
+  status: settled
+
+- id: WD-098
+  date: 2026-10-31
+  question: Should every example command carry built-in help?
+  options: [Help only on some commands, 'A synopsis and at least one example on every public command, enforced in CI, with one generated page listing them']
+  choice: Every exported function, script and Python tool has a synopsis and an example. CI fails if one is missing. The Command Reference page is generated at build time.
+  rationale: The PR answers whether commands have help and whether there is a guide. 310 functions had no synopsis.
+  basis: workbook-design
+  sources: []
+  pages: [docs/reference/commands.md, CONTRIBUTING.md]
+  prs: [261]
+  status: settled
+
+- id: WD-099
+  date: 2026-10-31
+  question: Does the cloud DNS comparison cover Oracle Cloud as well as AWS and Azure?
+  options: [AWS and Azure only, 'AWS, Azure and Oracle Cloud']
+  choice: Add Oracle Cloud Infrastructure to every part of the cloud DNS evaluation, with its government-cloud scope and FedRAMP Marketplace status.
+  rationale: Every cloud-platform comparison also covers Oracle Cloud, because the HR platform runs on it.
+  basis: workbook-design
+  sources: []
+  pages: [docs/evaluations/cloud-dns-resolvers-infoblox-bind.md]
+  prs: [262]
+  status: settled
+
+- id: WD-100
+  date: 2026-10-31
+  question: How does the source watcher fetch pages from a host that refuses Python's HTTP client?
+  options: [Leave the host unwatched, Fetch that host with curl and keep the same headers and pacing]
+  choice: Fetch cisa.gov and its subdomains with curl; fall back to the Python client with a warning if curl is missing.
+  rationale: The watcher had never tracked the workbook's most-cited federal publisher, about 280 citations, because the host returned 403 to Python.
+  basis: workbook-design
+  sources: []
+  pages: [scripts/source_watch/README.md, data/source-watch/config.json]
+  prs: [263]
+  status: settled
+
+- id: WD-101
+  date: 2026-10-31
+  question: How does the workbook use CISA's Hybrid Identity Solutions Guidance, and what does 'source of identity' mean in HR-driven identity?
+  options: [Mention the guidance once, Cite it where it applies and tie it to the HR chapters in two short places, Add a full section to the HR book]
+  choice: Cite the guidance in the identity chapters. In the HR book, read its 'source of identity' as the directory that governs sign-in, not the HR system of record, and add two short ties instead of a section.
+  rationale: The guidance is about authentication, not HR or provisioning. The workbook already covered nearly all of its substance but named it once.
+  basis: requirement
+  sources:
+  - {title: 'CISA, Hybrid Identity Solutions Guidance', url: 'https://www.cisa.gov/resources-tools/services/hybrid-identity-solutions-guidance-hisg'}
+  - {title: 'Microsoft Learn, Embrace cloud-first: convert group source of authority', url: 'https://learn.microsoft.com/en-us/entra/identity/hybrid/concept-source-of-authority-overview'}
+  pages: [docs/books/b03-hr-identity/09-credentials-and-certificates.md, docs/books/b02-identity/index.md]
+  prs: [265, 266]
+  status: settled
+
+- id: WD-102
+  date: 2026-11-01
+  question: What narrated decks does a developer workbook get?
+  options: [One deck per workbook, A story deck plus one tour per chapter]
+  choice: Ticket-to-Machine gets one end-to-end story deck and eight chapter tours. Tours follow the chapter's sections and cite its footnotes. The same pattern covers the other developer workbooks.
+  rationale: Not stated in the PR beyond the editor choosing this option.
+  basis: workbook-design
+  sources: []
+  pages: [docs/project-plans/developer-workbooks/ticket-to-machine/index.md, docs/training/ticket-to-machine/index.md]
+  prs: [256, 283]
+  status: settled
+
+- id: WD-103
+  date: 2026-11-01
+  question: How should the workbook's pages be organized as the number of guides, labs and evaluations grows?
+  options: [Keep a Research section with mixed page types, 'One home per content type, matched to Microsoft Learn''s types']
+  choice: 'Retire Research. Move all 24 pages to Guides, Training, Reference, Evaluations or Explainers by type, keep each page''s status label, and keep old URLs as aliases. Four rules against sprawl: a page does not change type, link don''t repeat, one deck series per guide, new guides fill a named gap.'
+  rationale: To avoid sprawl and get closer to Microsoft Learn's content model.
+  basis: workbook-design
+  sources: []
+  pages: [CONTRIBUTING.md, docs/research/index.md, docs/about/sources-and-verification.md]
+  prs: [269, 271]
+  status: settled
+
+- id: WD-104
+  date: 2026-11-01
+  question: Where do the Attribute-Driven Migration developer workbook and implementation guide live?
+  options: ['Under Projects, as a developer workbook and a project guide', 'Back in Books: the workbook as b19 Building the Attribute-Driven Migration, the guide under Books > Guides']
+  choice: Restore the workbook as b19 Building the Attribute-Driven Migration and the implementation guide to Books > Guides. The Projects section stays for the other developer workbooks.
+  rationale: Under the Learn-style content model, how-to guides live in Books > Guides. The editor asked for the workbook to return as b19.
+  basis: workbook-design
+  sources: []
+  pages: [docs/books/b19-developer-workbook/index.md, docs/books/guides/attribute-driven-migration-implementation.md]
+  prs: [270]
+  status: settled
+
+- id: WD-105
+  date: 2026-11-01
+  question: What must every implementation guide and training module carry beyond Microsoft Learn's content?
+  options: [Follow Learn's structure only, 'Add federal requirements and evidence, and where agencies are today']
+  choice: Every gate or module states the requirement it meets (OMB, CISA, NIST SP 800-53 Moderate, SP 800-63, FedRAMP) and the ISSO's evidence. It also gives the assumed starting state, a government-cloud availability check citing Learn with the date read, and an interim path.
+  rationale: Learn does not give a federal reader these two layers. Learn is used first for how Microsoft features work; federal primary sources for what is required.
+  basis: workbook-design
+  sources:
+  - {title: 'OMB, M-22-09 moving the government toward zero trust', url: 'https://www.whitehouse.gov/wp-content/uploads/2022/01/M-22-09.pdf'}
+  - {title: 'NIST, SP 800-53 Rev. 5 security and privacy controls', url: 'https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final'}
+  - {title: 'NIST, SP 800-63-4 digital identity guidelines', url: 'https://csrc.nist.gov/pubs/sp/800/63/4/final'}
+  pages: [CONTRIBUTING.md, docs/books/guides/hr-driven-identity-implementation.md, docs/books/guides/ttm-servicenow-sailpoint.md]
+  prs: [271, 272, 273]
+  status: settled
+
+- id: WD-106
+  date: 2026-11-01
+  question: When is an implementation guide finished?
+  options: [When the guide text is done, 'When it has the guide, a narrated deck series, a developer workbook with labs, and a training path']
+  choice: A guide is finished only with all four pieces. Until then it names the missing pieces as planned.
+  rationale: The editor asked that every implementation guide come with a full developer workbook with labs, and training.
+  basis: workbook-design
+  sources: []
+  pages: [CONTRIBUTING.md, docs/training/index.md, docs/books/guides/hr-driven-identity-implementation.md]
+  prs: [274, 275, 276, 277, 278, 280]
+  status: settled
+
+- id: WD-107
+  date: 2026-11-01
+  question: Under what license is the workbook published?
+  options: [One license for everything, Content under CC BY-NC-ND 4.0 and code under MIT]
+  choice: Content (docs, decks, narration, images, media) is CC BY-NC-ND 4.0. Code (examples, scripts, deck build kit, workflows) is MIT. Third-party samples keep their own licenses. The workbook is stated not to be government work.
+  rationale: The editor chose the split license and ownership. The PR says it is not legal advice and an IP attorney should review it before any sale or licensing deal.
+  basis: workbook-design
+  sources: ['https://creativecommons.org/licenses/by-nc-nd/4.0/']
+  pages: [LICENSE.md, README.md]
+  prs: [279]
+  status: settled
+
+- id: WD-108
+  date: 2026-11-01
+  question: How are lab outputs and Lab 1 slides produced?
+  options: [Hand-written example output, 'Run each Lab 1 command as written and capture the real output, checked in CI']
+  choice: Lab 1 steps show what the kit really prints, drawn as terminal captures. A check fails when a capture no longer matches the kit. Tour slides use the same captures. Chapters whose steps need unavailable modules are left out of capture and say so.
+  rationale: Not stated in the PR beyond making each lab show real output.
+  basis: workbook-design
+  sources: []
+  pages: [docs/project-plans/developer-workbooks/ticket-to-machine/index.md, docs/training/labs.md, CONTRIBUTING.md]
+  prs: [288, 291, 293, 294, 295, 296, 297]
+  status: settled
+
+- id: WD-109
+  date: 2026-11-02
+  question: How are lab steps written?
+  options: [Prose steps the reader works out, Every step is a paste-ready command block or a numbered click path]
+  choice: Every reader action is a bash or PowerShell block. Placeholders are listed once at the top of each lab. Each lab can be followed alone. Only portal-only actions and reader-prepared inputs stay as prose. A generated Labs page lists every lab.
+  rationale: Not stated in the PR; the PRs show the labs rewritten to remove steps a reader had to work out.
+  basis: workbook-design
+  sources: []
+  pages: [docs/training/labs.md, docs/project-plans/developer-workbooks/hr-driven-identity/index.md, docs/project-plans/developer-workbooks/privileged-access/index.md]
+  prs: [290, 293, 294, 295, 296, 300]
+  status: settled
+
+- id: WD-110
+  date: 2026-11-02
+  question: How are lab steps and kit outputs tied to federal requirements?
+  options: [One requirements table per chapter, 'One row per scripted step or output file, with the control, a FedRAMP 20x KSI and the exact command or file that is the evidence']
+  choice: Each scripted step gets a row naming its NIST SP 800-53 Moderate control, the KSI it aligns to and the evidence. Only KSI IDs the workbook already cites are used, and each pairing is checked against fedramp.gov. KSIs are described as provider-side indicators the agency aligns its own evidence to.
+  rationale: So an ISSO can see what each step proves. Controls not in the Moderate baseline are marked as such.
+  basis: requirement
+  sources:
+  - {title: 'FedRAMP, Key Security Indicators, Consolidated Rules for 2026', url: 'https://www.fedramp.gov/2026/reference/key-security-indicators/'}
+  - {title: 'NIST, SP 800-53 Rev. 5 security and privacy controls', url: 'https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final'}
+  pages: [docs/project-plans/developer-workbooks/ticket-to-machine/index.md, docs/books/b19-developer-workbook/index.md, docs/books/guides/non-person-identity-implementation.md, docs/books/guides/privileged-access-implementation.md]
+  prs: [301, 304, 306, 312, 313, 325]
+  status: settled
+
+- id: WD-111
+  date: 2026-11-02
+  question: How does a developer workbook take a kit from Lab 2 to production?
+  options: [Leave deployment to the reader, 'A runbook chapter: test stage first, go/no-go criteria, then production, with only a settings file changing between stages']
+  choice: Each workbook gets a deployment chapter. One settings file per environment holds no secrets. Pre-flight checks block unsafe starts. Every script has a dry-run or fixture mode. Production follows in waves with first-week drift monitoring. Chapters say plainly they were not run against a live tenant and treat live results as expectations.
+  rationale: Not stated in the PR beyond the runbook design. For privileged access, the order is built to prevent lockout.
+  basis: workbook-design
+  sources: []
+  pages: [docs/project-plans/developer-workbooks/privileged-access/09-deploying-to-test-and-production.md, docs/project-plans/developer-workbooks/non-person-identity/11-deploying-to-test-and-production.md, docs/project-plans/developer-workbooks/hr-driven-identity/08-deploying-to-test-and-production.md, docs/project-plans/developer-workbooks/ticket-to-machine/09-deploying-to-test-and-production.md]
+  prs: [302, 307, 308, 311, 315, 329]
+  status: settled
+
+- id: WD-112
+  date: 2026-11-02
+  question: What happens to internal evaluation documents that name an agency and cite internal mail?
+  options: [Keep them in the public repository, Remove them from the tree; leave history alone unless the owner decides to rewrite it]
+  choice: Remove the two documents from the working tree. Their findings are handled in separate PRs. Removing them from history would need a rewrite and is left to the owner.
+  rationale: They name the agency and cite internal mail, so they do not belong in a public repository.
+  basis: workbook-design
+  sources: []
+  pages: [CONTRIBUTING.md]
+  prs: [309]
+  status: settled
+
+- id: WD-113
+  date: 2026-11-02
+  question: How can an agency practitioner build a task catalog without sending agency data to a public repository?
+  options: [Collect agency tasks in the public workbook, Ship a neutral template and prompts that the practitioner fills in at work with an approved AI assistant]
+  choice: Publish a fictional template, worked examples, a checker and copy-paste prompts for Microsoft 365 Copilot Chat. The agency's own tasks never come back to the public repository.
+  rationale: The pack is for use at work. Everything in it is fictional.
+  basis: workbook-design
+  sources: []
+  pages: [docs/books/guides/ttm-task-catalog.md]
+  prs: [310]
+  status: settled
+
+- id: WD-114
+  date: 2026-11-02
+  question: In what order does the privileged access guide sequence its gates?
+  options: ['Inventory, then PIM, then emergency access', 'Inventory, then emergency access first, then Conditional Access and PIM']
+  choice: Gate 2 is emergency access. Pre-flight blocks unless emergency accounts are excluded from every Conditional Access policy in any state. Later modules carry lockout guard callouts.
+  rationale: The order is built to prevent lockout.
+  basis: workbook-design
+  sources: []
+  pages: [docs/books/guides/privileged-access-implementation.md, docs/training/privileged-access/02-emergency-access-first.md]
+  prs: [311, 322, 325]
+  status: settled
+
+- id: WD-115
+  date: 2026-11-02
+  question: How does the workbook treat Section 508 in application modernization?
+  options: [Leave accessibility to the legacy exemption, 'Add an accessibility gate: modernization ends the exemption once a front end is altered']
+  choice: Add a Section 508 gate to the application modernization book, with evidence and sign-off at architecture review gates 2 to 4. WCAG 2.0 AA is the legal standard; WCAG 2.2 is design guidance. Add accessible-content notes to the training, access and help-desk chapters, and state what the workbook's own accessibility check does not cover.
+  rationale: Closes the Section 508 gap found by an outside review.
+  basis: requirement
+  sources:
+  - {title: 'Access Board, ICT standards under Section 508', url: 'https://www.access-board.gov/ict/'}
+  - {title: 'Section508.gov, Applicability and conformance', url: 'https://www.section508.gov/develop/applicability-conformance/'}
+  - {title: 'W3C, Web Content Accessibility Guidelines 2.2', url: 'https://www.w3.org/TR/WCAG22/'}
+  pages: [docs/books/b18-application-modernization/06-compliance-by-design.md, docs/books/b16-people/09-building-and-running-the-curriculum.md]
+  prs: [314]
+  status: settled
+
+- id: WD-116
+  date: 2026-11-02
+  question: When is audit evidence a federal record?
+  options: [Treat evidence as operational data, Treat evidence as a federal record by default; confirm the category with the records officer]
+  choice: A new chapter separates four things called a record. Evidence is treated as a federal record by default, and unscheduled means permanent. The chapter maps General Records Schedule items, covers legal holds, WORM storage and transfer at decommissioning, and labels each kit's likely records category as design guidance.
+  rationale: The workbook used 'record' architecturally and never separated it from a federal record. An outside review found the gap.
+  basis: requirement
+  sources:
+  - {title: 'U.S. Code, 44 U.S.C. 3301 definition of records', url: 'https://www.govinfo.gov/content/pkg/USCODE-2023-title44/html/USCODE-2023-title44-chap33-sec3301.htm'}
+  - {title: 'eCFR, 36 CFR Part 1222 creation and maintenance of records', url: 'https://www.ecfr.gov/current/title-36/chapter-XII/subchapter-B/part-1222'}
+  - {title: 'NARA, General Records Schedules', url: 'https://www.archives.gov/records-mgmt/grs'}
+  pages: [docs/books/b13-governance/13-records-evidence-and-retention.md]
+  prs: [316]
+  status: settled
+
+- id: WD-117
+  date: 2026-11-02
+  question: Where does the workbook handle privacy for identity work?
+  options: [Leave privacy to the privacy office, A dedicated chapter in the HR book plus short privacy sections in six other books]
+  choice: Add a chapter on privacy for workforce identity (PII, SORN coverage, PIA triggers, minimization, disclosures, retention) and short privacy sections in the access, devices, telemetry, governance, AI and modernization books. Note that no PT control is in the Moderate baseline, so a Moderate system with PII carries the privacy baseline too.
+  rationale: Makes privacy a design obligation of identity work, closing a gap found by an outside review.
+  basis: requirement
+  sources:
+  - {title: 'NIST, SP 800-53B control baselines', url: 'https://csrc.nist.gov/pubs/sp/800/53/b/upd1/final'}
+  - {title: 'OMB, Circular A-130 managing information as a strategic resource', url: 'https://www.whitehouse.gov/wp-content/uploads/legacy_drupal_files/omb/circulars/A130/a130revised.pdf'}
+  - {title: 'U.S. Code, Privacy Act of 1974, 5 U.S.C. 552a', url: 'https://www.govinfo.gov/content/pkg/USCODE-2023-title5/html/USCODE-2023-title5-partI-chap5-subchapII-sec552a.htm'}
+  pages: [docs/books/b03-hr-identity/14-privacy-for-workforce-identity.md, docs/reference/federal-framework-crosswalk.md]
+  prs: [317, 320]
+  status: settled
+
+- id: WD-118
+  date: 2026-11-02
+  question: How does the workbook show federal traceability to an ISSO, assessor or authorizing official?
+  options: [Rely on the existing crosswalk tables, 'Add an RMF task map, an M-19-17 and FICAM crosswalk, and an authority register']
+  choice: Map all 47 SP 800-37 Rev 2 tasks, each marked Covered, Partial or Not covered. Add an M-19-17 and FICAM crosswalk marked Strong, Partial, Gap or Out of scope. Add a register of 24 authorities. Gaps are stated plainly.
+  rationale: Makes federal traceability visible.
+  basis: requirement
+  sources:
+  - {title: 'NIST, SP 800-37 Rev. 2 risk management framework', url: 'https://csrc.nist.gov/pubs/sp/800/37/r2/final'}
+  pages: [docs/reference/rmf-map.md, docs/reference/m-19-17-ficam-crosswalk.md, docs/reference/federal-framework-crosswalk.md]
+  prs: [318]
+  status: settled
+
+- id: WD-119
+  date: 2026-11-02
+  question: How does the PKI book frame PIV and cloud authentication?
+  options: [Cloud authentication replaces the PIV credential, Cloud authentication is how the agency accepts the PIV credential]
+  choice: Cover HSPD-12 and FIPS 201-3, derived PIV, Entra certificate-based authentication as acceptance of the PIV credential, and federation with other agencies. SP 800-157 Rev. 1 and SP 800-217 are treated as drafts.
+  rationale: Closes the PIV and federation gap found by an outside review.
+  basis: requirement
+  sources:
+  - {title: 'NIST, FIPS 201-3 PIV of federal employees and contractors', url: 'https://csrc.nist.gov/pubs/fips/201-3/final'}
+  - {title: 'Microsoft Learn, Meet memo 22-09 multifactor authentication requirements', url: 'https://learn.microsoft.com/entra/standards/memo-22-09-multi-factor-authentication'}
+  pages: [docs/books/b07-pki/09-federal-workforce-credentials.md, docs/reference/federal-framework-crosswalk.md]
+  prs: [319]
+  status: settled
+
+- id: WD-120
+  date: 2026-11-02
+  question: How is a learning path divided into modules?
+  options: [One module per gate, One module per workbook chapter]
+  choice: The Attribute-Driven Migration and Non-Person Identity paths use one module per chapter, in gate order. A chapter already taught in another path is a prerequisite, not a repeat. A deployment chapter with no gate maps to 'every gate'.
+  rationale: Chapters hold the exact-command labs and requirement tables. Two chapters per module would run about two hours, and some gates have no chapter.
+  basis: workbook-design
+  sources: []
+  pages: [docs/training/non-person-identity/index.md, docs/training/attribute-driven-migration/index.md, docs/training/non-person-identity/11-deploying-to-test-and-production.md]
+  prs: [323, 324, 329]
+  status: settled
+
+- id: WD-121
+  date: 2026-11-02
+  question: How does the privileged access kit check CISA's global administrator count and PIM alert baselines?
+  options: [Leave them as documented gaps, Add read-only checks that follow the CISA baseline and its reference implementation]
+  choice: Flag fewer than two Global Administrators as well as the stricter ceiling of fewer than five. Check PIM alerts for the eight highly privileged roles and for PIM for Groups, where default recipients do not count. Group findings get their own rule IDs. A policy the check cannot read is a Finding, not the end of the run.
+  rationale: Closes gaps the implementation guide listed as not covered. Not counting default recipients matches the reference implementation's own check.
+  basis: requirement
+  sources:
+  - {title: 'CISA, ScubaGear Microsoft Entra ID secure configuration baseline', url: 'https://github.com/cisagov/ScubaGear/blob/main/PowerShell/ScubaGear/baselines/aad.md'}
+  - {title: 'CISA, ScubaGear repository', url: 'https://github.com/cisagov/ScubaGear'}
+  pages: [docs/project-plans/developer-workbooks/privileged-access/04-pim-for-entra-roles-as-code.md, docs/project-plans/developer-workbooks/privileged-access/01-privileged-inventory-as-code.md, docs/books/guides/privileged-access-implementation.md]
+  prs: [326, 328, 332, 333]
+  status: settled
+
+- id: WD-122
+  date: 2026-11-03
+  plan: non-person-identity/D-N2
+  question: In what order does the orphan rule act on a non-person identity nobody will own?
+  options: ['Give the office 30 days to find an owner, then suspend (the implementation guide''s wording)', 'Disable once the finding is confirmed, then a 30-day claim window (plan decision D-N2)']
+  choice: Disable first, then a 30-day claim window in which the office names an owner or the identity is retired. The implementation guide changes to match the plan and Chapter 02.
+  rationale: The plan's decision D-N2 and Chapter 02 already used this order, taken from the orphan rule in Access and Privilege, Chapter 06. The identity is disabled, not deleted, so a claim within the window can restore it.
+  basis: workbook-design
+  sources: []
+  pages: [docs/books/guides/non-person-identity-implementation.md, docs/project-plans/developer-workbooks/non-person-identity/02-ownership-and-the-orphan-rule.md, docs/project-plans/non-person-identity.md, docs/books/b04-access/06-who-decides-access.md#ownership-changes-and-orphaned-apps]
+  prs: [321]
+  status: settled
+  note: 'Raised as a discrepancy in #321 and decided by the workbook''s editor on 2026-11-03. The changed gated pages go back through the review gate.'
+
+- id: WD-123
+  date: 2026-11-03
+  question: Which target does the HR sync service account (svc-hrsync in the kit's fixtures) convert to?
+  options: [A managed identity (Chapter 05), 'A delegated managed service account, dMSA (Chapters 03 and 06)']
+  choice: A dMSA. Chapter 05 changes so the fixtures, the chapters and the kit give one target.
+  rationale: Two chapters and the kit already took it to a dMSA. Microsoft Learn describes the dMSA as the way to replace an existing Active Directory service account in place, with its password disabled and its authentication bound to the machines that run it.
+  basis: microsoft-learn
+  sources:
+  - {title: 'Microsoft Learn, Delegated Managed Service Accounts overview', url: 'https://learn.microsoft.com/windows-server/identity/ad-ds/manage/delegated-managed-service-accounts/delegated-managed-service-accounts-overview'}
+  pages: [docs/project-plans/developer-workbooks/non-person-identity/05-workload-identity-federation-and-managed-identities.md, docs/project-plans/developer-workbooks/non-person-identity/03-the-migration-path-matrix-as-code.md, docs/project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.md]
+  prs: [321]
+  status: settled
+  note: 'Raised as a discrepancy in #321 and decided by the workbook''s editor on 2026-11-03.'
+
+- id: WD-124
+  date: 2026-11-03
+  question: How long does the parallel run last before a converted account's legacy identity is disabled?
+  options: ['28 days (Chapter 06: four ticket lifetimes)', 30 days (the implementation guide's Step 5)]
+  choice: 30 days everywhere. Chapter 06 says 30 and explains that it covers four 7-day ticket lifetimes.
+  rationale: Microsoft Learn recommends keeping a dMSA migration in its start state for four ticket lifetimes, 28 days; the default ticket renewal lifetime is 7 days. Thirty days covers that with margin and is the figure the guide already used.
+  basis: microsoft-learn
+  sources:
+  - {title: 'Microsoft Learn, dMSA overview: migration flow', url: 'https://learn.microsoft.com/windows-server/identity/ad-ds/manage/delegated-managed-service-accounts/delegated-managed-service-accounts-overview#migration-flow-for-dmsa'}
+  - {title: 'Microsoft Learn, Max-Renew-Age attribute', url: 'https://learn.microsoft.com/windows/win32/adschema/a-maxrenewage'}
+  pages: [docs/books/guides/non-person-identity-implementation.md#step-5-convert-with-a-parallel-run, docs/project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.md]
+  prs: [321]
+  status: settled
+  note: 'Raised as a discrepancy in #321 and decided by the workbook''s editor on 2026-11-03.'
+
+- id: WD-125
+  date: 2026-11-03
+  question: Is the Windows Server 2025 dMSA one of the conversion targets in the implementation guide?
+  options: [Leave it out of the guide's Step 5 targets, 'Add it, as the developer workbook already uses it']
+  choice: Add the Windows Server 2025 dMSA to the guide's Step 5 targets.
+  rationale: The developer workbook converts accounts to it, and Microsoft Learn documents it as a Windows Server 2025 account type for replacing a traditional service account.
+  basis: microsoft-learn
+  sources:
+  - {title: 'Microsoft Learn, What''s new in Windows Server 2025', url: 'https://learn.microsoft.com/windows-server/get-started/whats-new-windows-server-2025'}
+  - {title: 'Microsoft Learn, Delegated Managed Service Accounts overview', url: 'https://learn.microsoft.com/windows-server/identity/ad-ds/manage/delegated-managed-service-accounts/delegated-managed-service-accounts-overview'}
+  pages: [docs/books/guides/non-person-identity-implementation.md#step-5-convert-with-a-parallel-run]
+  prs: [321]
+  status: settled
+  note: 'Raised as a discrepancy in #321 and decided by the workbook''s editor on 2026-11-03.'
+
+- id: WD-126
+  date: 2026-11-03
+  question: Which gate numbers do the Non-Person Identity chapters use, the project plan's or the implementation guide's G1 to G6?
+  options: [Renumber the chapters to the guide's G1 to G6, Keep the plan's gate numbers and add a crosswalk]
+  choice: The chapters keep the plan's gate numbers. The workbook's index gets a crosswalk to the guide's G1 to G6.
+  rationale: The chapters are built from the plan, so they keep its numbering; a crosswalk lets a reader of the guide find the same gate without renumbering approved pages.
+  basis: workbook-design
+  sources: []
+  pages: [docs/project-plans/developer-workbooks/non-person-identity/index.md, docs/project-plans/non-person-identity.md, docs/books/guides/non-person-identity-implementation.md]
+  prs: [321]
+  status: settled
+  note: 'Raised as a discrepancy in #321 and decided by the workbook''s editor on 2026-11-03.'
+
+- id: WD-127
+  date: 2026-11-03
+  question: Do the test counts in the Non-Person Identity chapters' "The tests" sections need correcting?
+  options: [Correct them to the Lab 1 captures, No change]
+  choice: 'No change: Chapters 01, 08 and 10 already give 513, the count the Lab 1 captures show.'
+  rationale: 'The discrepancy reported in #321 had already been fixed by the time it was decided.'
+  basis: workbook-design
+  sources: []
+  pages: [docs/project-plans/developer-workbooks/non-person-identity/01-non-person-identity-inventory-as-code.md, docs/project-plans/developer-workbooks/non-person-identity/08-conditional-access-for-workload-identities.md, docs/project-plans/developer-workbooks/non-person-identity/10-drift-and-evidence.md]
+  prs: [321]
+  status: settled
+  note: 'Raised as a discrepancy in #321 and decided by the workbook''s editor on 2026-11-03.'
+
+- id: WD-128
+  date: 2026-11-03
+  question: What happens to a high-risk Active Directory account that is kept out of the first conversion wave?
+  options: [Chapter 03's check warns on it, The guide's G2 check fails on it unless it is in wave 1 or retired]
+  choice: G2 fails it. Chapter 03 changes so the kit's check fails, as the guide requires.
+  rationale: The guide's G2 check is the stricter rule, and the kit now enforces the gate as the guide states it. A warning would let the gate pass with the account still waiting.
+  basis: workbook-design
+  sources: []
+  pages: [docs/books/guides/non-person-identity-implementation.md#step-2-decide-each-identitys-target, docs/project-plans/developer-workbooks/non-person-identity/03-the-migration-path-matrix-as-code.md]
+  prs: [321]
+  status: settled
+  note: 'Raised as a discrepancy in #321 and decided by the workbook''s editor on 2026-11-03.'
+
+- id: WD-129
+  date: 2026-11-03
+  question: Which pages does the review gate hold for the editor's approval?
+  options: ['The developer workbooks, Building the Attribute-Driven Migration and its implementation guide', Also every implementation guide (docs/books/guides/) and every training page (docs/training/)]
+  choice: Extend the gate to docs/books/guides/ and docs/training/.
+  rationale: Not recorded beyond the decision itself. The guides and learning paths are built from the same kits as the gated workbooks.
+  basis: workbook-design
+  sources: []
+  pages: [scripts/source_watch/review_gate.py, docs/training/index.md]
+  prs: [336]
+  status: settled
+  note: Extends the review gate of WD-088. Applied to review_gate.py in #336.
+
+- id: WD-130
+  date: 2026-11-03
+  question: How does the Attribute-Driven Migration smoke test treat VK-DG-03, a validation kit check that can only run with delegated permissions?
+  options: [Fail the smoke test when the check can't run, Drop the check from the smoke test, 'Accept it as a documented exception, verified by hand at the first live run']
+  choice: Accept VK-DG-03 as a documented exception in the smoke test, and verify it by hand at the first live run.
+  rationale: The smoke test runs app-only, so a delegated-only check always ends in error there. Failing on it would block every run; dropping it would lose the check. A documented exception keeps it visible.
+  basis: workbook-design
+  sources: []
+  pages: [docs/books/b19-developer-workbook/10-deploying-to-test-and-production.md, docs/books/b19-developer-workbook/09-drift-pipelines-and-evidence.md]
+  prs: [336]
+  status: settled
+
+- id: WD-131
+  date: 2026-11-03
+  question: How does the narration refer to the workbook's books and sources?
+  options: [Keep "Book NN" in narration, Name each book by its title and cite the original source]
+  choice: Every remaining book number in the narration (190 changes) becomes the book's title, and narration names the original source, not the workbook's book number.
+  rationale: The editor asked that narration refer to the original source instead of a book number, and name a book by its title when it must name one. Facts with no outside source are called the workbook's guidance.
+  basis: workbook-design
+  sources: []
+  pages: [presentations/_build/README.md]
+  prs: []
+  status: settled

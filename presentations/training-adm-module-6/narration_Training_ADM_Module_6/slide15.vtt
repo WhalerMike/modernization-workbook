@@ -1,0 +1,65 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.875
+To sum up.
+
+2
+00:00:00.875 --> 00:00:06.139
+You read the CMDB into groups and tags with
+both owners, planned a wave a reviewer
+
+3
+00:00:06.139 --> 00:00:10.925
+can read before anything runs, and saw
+the dry run Microsoft's role can't do.
+
+4
+00:00:10.925 --> 00:00:14.154
+The evidence an ISSO
+keeps: the CMDB export,
+
+5
+00:00:14.154 --> 00:00:18.397
+each wave's plan and result
+files with the change record,
+
+6
+00:00:18.397 --> 00:00:22.456
+the requirements file and the
+snapshot, and, from Lab 2,
+
+7
+00:00:22.456 --> 00:00:28.175
+the role assignment record, V K ARC oh
+one and oh seven, and the back-out record.
+
+8
+00:00:28.175 --> 00:00:30.863
+Gate 8's per-wave
+evidence is in the guide.
+
+9
+00:00:30.863 --> 00:00:34.463
+Before shipping, work through
+the Chapter 08 checklist.
+
+10
+00:00:34.463 --> 00:00:38.387
+Next is Module 7: extend
+Lifecycle Workflows.
+
+11
+00:00:38.387 --> 00:00:42.503
+You'll see why Learn's Logic App
+definition costs a GCC High leaver,
+
+12
+00:00:42.503 --> 00:00:47.227
+and run the definition that calls back
+in the right cloud, reports honestly,
+
+13
+00:00:47.227 --> 00:00:51.170
+and checks that the leaver blocks
+before the custom task runs.

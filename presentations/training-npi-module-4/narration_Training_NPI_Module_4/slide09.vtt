@@ -1,0 +1,77 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:05.908
+Step one makes Module 1's register, and
+step two sends Microsoft's samples to
+
+3
+00:00:05.908 --> 00:00:10.875
+the fakes: nineteen pass, and the thirty-two
+not run are the code's own tests.
+
+4
+00:00:10.875 --> 00:00:14.075
+Step three lists what each
+of the four tasks needs.
+
+5
+00:00:14.075 --> 00:00:18.400
+The two reading tasks hold only read
+permissions and Key Vault Reader.
+
+6
+00:00:18.400 --> 00:00:21.770
+The two write tasks add
+Application dot ReadWrite dot All,
+
+7
+00:00:21.770 --> 00:00:25.562
+the policy write permission, and
+Key Vault Certificates Officer.
+
+8
+00:00:25.562 --> 00:00:28.987
+Step four compares the
+policy and builds its plan.
+
+9
+00:00:28.987 --> 00:00:31.138
+The tenant's default is disabled.
+
+10
+00:00:31.138 --> 00:00:35.312
+The diff is six adds, one
+change and one keep existing.
+
+11
+00:00:35.312 --> 00:00:39.372
+The plan has ten actions, and
+eight write: patch the default,
+
+12
+00:00:39.372 --> 00:00:42.924
+create and assign one
+exception, and lock five apps.
+
+13
+00:00:42.924 --> 00:00:44.100
+Nothing is sent.
+
+14
+00:00:44.100 --> 00:00:48.266
+Step five reads the diff: three
+restrictions added on both objects,
+
+15
+00:00:48.266 --> 00:00:50.994
+for apps created after November fifteenth,
+
+16
+00:00:50.994 --> 00:00:55.510
+and the tenant's own custom password
+restriction kept, in the PATCH body.

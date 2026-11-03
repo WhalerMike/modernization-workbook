@@ -1,0 +1,84 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:05.572
+Step one evaluates Microsoft Learn's
+two service account decision tables,
+
+3
+00:00:05.572 --> 00:00:10.601
+from Securing on-premises service
+accounts and Securing cloud-based service
+
+4
+00:00:10.601 --> 00:00:13.773
+accounts, exactly as
+published: twelve tests pass,
+
+5
+00:00:13.773 --> 00:00:16.713
+and the thirty-one not
+run are the example's own.
+
+6
+00:00:16.713 --> 00:00:20.948
+Step two lists what the matrix
+needs: two read permissions, License
+
+7
+00:00:20.948 --> 00:00:25.724
+Assignment dot Read dot All and User dot
+Read dot All, and only the GET method.
+
+8
+00:00:25.724 --> 00:00:30.413
+Step three runs Modules 1 and
+2 quietly, then the matrix.
+
+9
+00:00:30.413 --> 00:00:34.945
+Twenty-one identities are in scope
+and twenty get a proposal: six retire,
+
+10
+00:00:34.945 --> 00:00:39.631
+seven keep, two group managed and two
+delegated managed service accounts,
+
+11
+00:00:39.631 --> 00:00:43.088
+two managed identities, and
+one federated credential.
+
+12
+00:00:43.088 --> 00:00:46.141
+The owners have decided
+eighteen of twenty-two,
+
+13
+00:00:46.141 --> 00:00:49.587
+in two waves, and each wave
+holds one high-risk account.
+
+14
+00:00:49.587 --> 00:00:55.112
+The license decision is Tier 1, two in
+scope, and the tenant holds two units.
+
+15
+00:00:55.112 --> 00:00:58.662
+Seven findings, four warnings,
+one information item.
+
+16
+00:00:58.662 --> 00:01:01.020
+And the last line: Gate 2 is not met,
+
+17
+00:01:01.020 --> 00:01:04.820
+with the open findings for
+each of its five criteria.

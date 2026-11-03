@@ -131,8 +131,10 @@ first 17 come due on November 22, 2026. The same command lists them.
 
 **Gated pages awaiting review.** Some pages are held behind a review
 gate: today, Book 19 (`docs/books/b19-developer-workbook/`), the
-Attribute-Driven Migration implementation guide that goes with it, and the
-developer workbooks under Projects (`docs/project-plans/developer-workbooks/`).
+developer workbooks under Projects (`docs/project-plans/developer-workbooks/`),
+the implementation guides (`docs/books/guides/`) and the training paths
+(`docs/training/`). Pages and folders starting with `_` (briefs,
+verification logs) aren't gated.
 Book 19's citations are watched with the other books', under `B19`; the
 developer workbooks' are watched like a book's, reported under the code `DW`.
 In addition, each gated page
@@ -140,7 +142,9 @@ records the owner's review in its front matter (`review-status`,
 `reviewed-sha256`, `last-reviewed`). A page that isn't approved, or whose
 body has changed since it was approved, is listed in the issue **every
 week** until the owner reads it and approves it. Work that builds on a page,
-such as its narrated chapter tour, waits for the approval. After reading a
+such as its narrated chapter tour, waits for the approval. The gate only
+lists pages: no pull request check or workflow fails on a waiting page, and
+a page with no review fields at all is simply "not yet reviewed". After reading a
 page, record the approval in a reviewed pull request:
 
 ```sh

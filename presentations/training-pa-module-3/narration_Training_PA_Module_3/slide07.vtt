@@ -1,0 +1,66 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.850
+The plan has seven actions.
+
+2
+00:00:01.850 --> 00:00:04.813
+Create means the policy
+isn't in the tenant yet,
+
+3
+00:00:04.813 --> 00:00:07.075
+and it's always created report-only.
+
+4
+00:00:07.075 --> 00:00:11.451
+Update means it differs, and the patch
+carries only the changed top-level
+
+5
+00:00:11.451 --> 00:00:15.900
+properties, as Microsoft Learn's
+reference for updating a policy advises.
+
+6
+00:00:15.900 --> 00:00:17.737
+NoChange means it matches.
+
+7
+00:00:17.737 --> 00:00:22.071
+Blocked means it needs an authentication
+strength or a context the
+
+8
+00:00:22.071 --> 00:00:26.326
+tenant doesn't have yet, and the next
+run, once that exists, creates it.
+
+9
+00:00:26.326 --> 00:00:28.379
+Held means the file says enabled,
+
+10
+00:00:28.379 --> 00:00:31.575
+the tenant doesn't, and you
+didn't pass Allow Enforce.
+
+11
+00:00:31.575 --> 00:00:36.225
+Differs is a strength that differs,
+because the code doesn't update strengths.
+
+12
+00:00:36.225 --> 00:00:40.813
+And NotInRepository is a policy in
+the tenant that isn't in the files.
+
+13
+00:00:40.813 --> 00:00:42.987
+It's reported, and never deleted.
+
+14
+00:00:42.987 --> 00:00:47.590
+A dry run writes the plan and the requests
+it would send, and sends nothing.

@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.661
+Lab 2 runs the same code
+against a test tenant with
+
+2
+00:00:03.661 --> 00:00:07.712
+Intune licenses and a test
+GPO export, never production.
+
+3
+00:00:07.712 --> 00:00:11.538
+Import a test GPO into
+Group Policy analytics.
+
+4
+00:00:11.538 --> 00:00:18.687
+Run VK-INT-07 live, as a read-only
+operator, and build the move plan live.
+
+5
+00:00:18.687 --> 00:00:22.550
+Then dry-run and apply as a
+Policy and Profile Manager.
+
+6
+00:00:22.550 --> 00:00:27.337
+Compare the result with what Group Policy
+analytics' own Migrate step builds.
+
+7
+00:00:27.337 --> 00:00:30.621
+And drill drift: change a
+value in the admin center,
+
+8
+00:00:30.621 --> 00:00:32.624
+and watch the dry run report it.
+
+9
+00:00:32.624 --> 00:00:37.125
+In G C C High and D O D, pass
+the matching cloud option.
+
+10
+00:00:37.125 --> 00:00:40.927
+To back it out, step eight deletes
+the created policies by the
+
+11
+00:00:40.927 --> 00:00:44.500
+I D's in the sync record, and
+the Migrate comparison policy.
+
+12
+00:00:44.500 --> 00:00:46.650
+The authors haven't run Lab 2.
+
+13
+00:00:46.650 --> 00:00:50.140
+Follow Chapter 06's Lab 2, step by step.

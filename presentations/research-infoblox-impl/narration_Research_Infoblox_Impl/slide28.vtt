@@ -1,54 +1,54 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.178
-Here's the whole build laid
-onto Book 08's phases,
+00:00:00.050 --> 00:00:04.941
+Here's the whole build laid onto the
+six phases of the workbook's DNS design,
 
 2
-00:00:03.178 --> 00:00:06.225
+00:00:04.941 --> 00:00:07.988
 and the order is the
 program's design guidance.
 
 3
-00:00:06.225 --> 00:00:08.650
+00:00:07.988 --> 00:00:10.412
 Phase 0 makes the four decisions.
 
 4
-00:00:08.650 --> 00:00:13.794
+00:00:10.412 --> 00:00:15.556
 Phase 1 builds a lab Grid, then production
 in order, from the Grid Master pair and
 
 5
-00:00:13.794 --> 00:00:19.175
+00:00:15.556 --> 00:00:20.937
 candidate to sign-in, logging and backups,
 with the Windows servers added read-only.
 
 6
-00:00:19.175 --> 00:00:24.100
+00:00:20.937 --> 00:00:25.863
 Phase 2 coexists, adding members
 on premises and in each cloud hub.
 
 7
-00:00:24.100 --> 00:00:28.053
+00:00:25.863 --> 00:00:29.816
 Phase 3 moves authority zone
 by zone and scope by scope,
 
 8
-00:00:28.053 --> 00:00:30.337
+00:00:29.816 --> 00:00:32.100
 re-signing signed zones on NIOS.
 
 9
-00:00:30.337 --> 00:00:36.287
+00:00:32.100 --> 00:00:38.050
 Phase 4 federates the clouds, with
 Universal DDI only on non-FIPS scopes.
 
 10
-00:00:36.287 --> 00:00:41.188
-Phase 5 decommissions behind Book
-08's gates, locator zones last.
+00:00:38.050 --> 00:00:42.587
+Phase 5 decommissions behind the
+design's gates, locator zones last.
 
 11
-00:00:41.188 --> 00:00:45.820
+00:00:42.587 --> 00:00:47.210
 And Phase 6 finishes the remaining
 baseline settings and the evidence.

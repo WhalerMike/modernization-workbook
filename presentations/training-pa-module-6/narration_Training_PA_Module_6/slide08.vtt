@@ -1,0 +1,62 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.488
+Step three plans, as a dry run.
+
+2
+00:00:02.488 --> 00:00:06.259
+You give it the cloud, the
+fixture estate, the desired state,
+
+3
+00:00:06.259 --> 00:00:09.952
+the principal I D of the identity
+that would run the apply,
+
+4
+00:00:09.952 --> 00:00:14.274
+so it can flag that identity's own
+roles, an output folder and a run I D.
+
+5
+00:00:14.274 --> 00:00:18.384
+It reads nine assignment schedules
+and two eligibility schedules,
+
+6
+00:00:18.384 --> 00:00:20.512
+and twelve policies at four scopes.
+
+7
+00:00:20.512 --> 00:00:25.009
+The plan: eleven policy updates,
+five eligible assignments to add,
+
+8
+00:00:25.009 --> 00:00:27.924
+and three standing assignments to remove.
+
+9
+00:00:27.924 --> 00:00:30.287
+Nineteen requests, in that order.
+
+10
+00:00:30.287 --> 00:00:34.850
+The findings: seven, with two
+warnings and one information item.
+
+11
+00:00:34.850 --> 00:00:37.468
+It's a dry run, so the
+nineteen requests are
+
+12
+00:00:37.468 --> 00:00:40.087
+written to the plan
+file, and none are sent.
+
+13
+00:00:40.087 --> 00:00:42.840
+Review the diff, then
+run again with Apply.

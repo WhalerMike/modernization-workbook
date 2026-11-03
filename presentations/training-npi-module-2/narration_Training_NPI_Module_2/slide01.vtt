@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.316
+Welcome to Module 2 of the
+Non-Person Identity learning path:
+
+2
+00:00:04.316 --> 00:00:06.875
+owners, sponsors and the orphan rule.
+
+3
+00:00:06.875 --> 00:00:11.675
+In Module 1 you read every non-person
+identity into one register.
+
+4
+00:00:11.675 --> 00:00:13.875
+Now you check who answers for each one.
+
+5
+00:00:13.875 --> 00:00:18.888
+Ownership is part of Gate 1, Inventory,
+and the orphan rule is part of Gate 6,
+
+6
+00:00:18.888 --> 00:00:23.400
+Lifecycle, and both come from
+Chapter 2 of the developer workbook.
+
+7
+00:00:23.400 --> 00:00:27.993
+You'll check every identity for two human
+owners and an active service record,
+
+8
+00:00:27.993 --> 00:00:30.935
+and build the orphan rule
+as a plan that a reviewer
+
+9
+00:00:30.935 --> 00:00:33.662
+approves by its hash
+before anything changes.
+
+10
+00:00:33.662 --> 00:00:37.601
+The code runs on your laptop,
+against the same fictional estate.
+
+11
+00:00:37.601 --> 00:00:42.670
+It's illustrative: tested against
+fixtures, not run against a live tenant.

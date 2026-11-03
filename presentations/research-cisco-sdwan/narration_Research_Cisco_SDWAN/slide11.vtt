@@ -16,48 +16,48 @@ An edge joins only if its serial
 number is on the authorized list.
 
 4
-00:00:11.888 --> 00:00:17.489
-Book 09 wants edges onboarded with certificates
-from the agency's PKI, and Cisco's
+00:00:11.888 --> 00:00:17.233
+The workbook's design onboards edges with
+certificates from the agency's PKI, and
 
 5
-00:00:17.489 --> 00:00:22.924
-Enterprise Certificate option makes that
-possible on recent IOS XE releases.
+00:00:17.233 --> 00:00:22.899
+Cisco's Enterprise Certificate option makes
+that possible on recent IOS XE releases.
 
 6
-00:00:22.924 --> 00:00:24.475
+00:00:22.899 --> 00:00:24.450
 The catch is renewal.
 
 7
-00:00:24.475 --> 00:00:26.250
+00:00:24.450 --> 00:00:26.225
 It's automatic at onboarding,
 
 8
-00:00:26.250 --> 00:00:29.725
+00:00:26.225 --> 00:00:29.700
 but Cisco says later renewals
 need manual intervention.
 
 9
-00:00:29.725 --> 00:00:34.745
+00:00:29.700 --> 00:00:34.761
 So this is a build plus a procedure, not
 a setting: issue through the CLM platform,
 
 10
-00:00:34.745 --> 00:00:37.757
+00:00:34.761 --> 00:00:37.797
 inventory certificates
 from the Manager's API,
 
 11
-00:00:37.757 --> 00:00:42.237
+00:00:37.797 --> 00:00:42.313
 and write renewal as a runbook
 triggered by the Manager's expiry alarm.
 
 12
-00:00:42.237 --> 00:00:45.337
+00:00:42.313 --> 00:00:45.412
 The CyberArk certificate
 guide covers that platform.
 
 13
-00:00:45.337 --> 00:00:47.060
+00:00:45.412 --> 00:00:47.140
 Next, FIPS.

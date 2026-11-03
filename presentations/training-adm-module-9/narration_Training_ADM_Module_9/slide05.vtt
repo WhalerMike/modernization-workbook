@@ -1,0 +1,77 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.891
+The live test stage deploys every
+component to the test tenant,
+
+2
+00:00:03.891 --> 00:00:06.476
+the test subscription and the test forest,
+
+3
+00:00:06.476 --> 00:00:10.538
+in an order where nothing grants
+access before it has been checked.
+
+4
+00:00:10.538 --> 00:00:13.374
+First, baseline evidence, read only.
+
+5
+00:00:13.374 --> 00:00:17.675
+Then the HR middleware, as a
+dry run and then five records.
+
+6
+00:00:17.675 --> 00:00:21.875
+Dynamic rules are created paused,
+validated, then turned on.
+
+7
+00:00:21.875 --> 00:00:26.325
+Lifecycle Workflows are created
+disabled, with one on-demand run.
+
+8
+00:00:26.325 --> 00:00:29.710
+Group Policy goes to a
+test organizational unit,
+
+9
+00:00:29.710 --> 00:00:32.588
+with an Intune dry run
+and a cut-over drill.
+
+10
+00:00:32.588 --> 00:00:37.062
+Machine configuration runs in audit
+first, then apply and monitor.
+
+11
+00:00:37.062 --> 00:00:41.212
+Ansible plans its wave and runs
+in check mode before it connects.
+
+12
+00:00:41.212 --> 00:00:44.299
+The drift pipeline's
+first run is the baseline.
+
+13
+00:00:44.299 --> 00:00:46.653
+And the stage ends with the smoke test,
+
+14
+00:00:46.653 --> 00:00:50.525
+the evidence package, a rollback
+drill and the evidence check.
+
+15
+00:00:50.525 --> 00:00:52.929
+Every change is recorded as it's made:
+
+16
+00:00:52.929 --> 00:00:56.040
+the rollback is only as
+complete as the record.

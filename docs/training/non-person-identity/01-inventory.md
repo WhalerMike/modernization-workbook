@@ -13,7 +13,9 @@ series-order: 1
 
 *Part of the [Non-Person Identity learning path](index.md). Gate G1 Inventory. Workbook [Chapter 01](../../project-plans/developer-workbooks/non-person-identity/01-non-person-identity-inventory-as-code.md). About 55 minutes.*
 
-**Watch first (optional):** the chapter's narrated tour, about 11 minutes: [▶ Watch](../../presentations/watch.html?v=DW_NPI_01_Inventory_as_Code_Narrated). A narrated deck for this module comes later.
+**Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-npi-module-1) (the deck files come with the next edition) · [▶ Watch](../../presentations/watch.html?v=Training_NPI_Module_1_Narrated) (about 14 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_NPI_Module_1_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-npi-module-1/Training_NPI_Module_1_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-npi-module-1/Training_NPI_Module_1_Narrated.vtt).
+
+**Also:** the chapter's narrated tour, about 11 minutes: [▶ Watch](../../presentations/watch.html?v=DW_NPI_01_Inventory_as_Code_Narrated).
 
 ## Introduction (3 minutes)
 

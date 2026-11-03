@@ -1,0 +1,62 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.488
+Step five groups the findings by rule.
+
+2
+00:00:02.488 --> 00:00:08.024
+Two apps have no valid owner at all:
+Legacy Reports and Old SAML Connector.
+
+3
+00:00:08.024 --> 00:00:09.950
+Four have only one valid owner.
+
+4
+00:00:09.950 --> 00:00:13.345
+Build Pipeline's second
+owner is a service principal,
+
+5
+00:00:13.345 --> 00:00:16.663
+and Vendor Portal's is a guest,
+so each counts only one.
+
+6
+00:00:16.663 --> 00:00:20.976
+Six have no service management reference,
+three have a reference to a record
+
+7
+00:00:20.976 --> 00:00:25.425
+that isn't active, and five directory
+accounts have no valid application owner.
+
+8
+00:00:25.425 --> 00:00:28.025
+Step six reads the plan's ten actions.
+
+9
+00:00:28.025 --> 00:00:32.254
+Three write: Disable for svc
+backup and for Legacy Reports,
+
+10
+00:00:32.254 --> 00:00:35.337
+and AddOwner for HR
+Connector, from a claim.
+
+11
+00:00:35.337 --> 00:00:37.998
+svc reports is a retirement candidate:
+
+12
+00:00:37.998 --> 00:00:41.574
+it was disabled, and nobody
+claimed it in thirty days.
+
+13
+00:00:41.574 --> 00:00:46.200
+And the claim for Build Pipeline named
+a guest, so the nominee is refused.

@@ -1,0 +1,65 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.875
+To sum up.
+
+2
+00:00:00.875 --> 00:00:04.518
+You ran two days of drift
+against an approved baseline,
+
+3
+00:00:04.518 --> 00:00:08.080
+found three credentials
+added outside the pipeline,
+
+4
+00:00:08.080 --> 00:00:13.343
+compared two A I inventory vintages,
+packaged and chained both days, assembled
+
+5
+00:00:13.343 --> 00:00:18.200
+a period for the ISSO, and saw an edited
+file and a swapped package refused.
+
+6
+00:00:18.200 --> 00:00:22.172
+The evidence an ISSO keeps for
+Gate 6 is each day's package,
+
+7
+00:00:22.172 --> 00:00:26.482
+with its evidence manifest,
+checksum file, summary and the run;
+
+8
+00:00:26.482 --> 00:00:30.201
+the approved baseline's
+hash; the vintage comparison;
+
+9
+00:00:30.201 --> 00:00:35.863
+and the period's manifest and summary,
+signed by the identity governance officer.
+
+10
+00:00:35.863 --> 00:00:38.937
+Before you ship, work through
+the chapter's checklist.
+
+11
+00:00:38.937 --> 00:00:43.888
+Next is Module 11, the last:
+deploy to test, then production.
+
+12
+00:00:43.888 --> 00:00:47.758
+It runs every gate's code in one
+safe order, with a preflight,
+
+13
+00:00:47.758 --> 00:00:52.730
+a smoke test, an evidence record per
+requirement and a rehearsed rollback.

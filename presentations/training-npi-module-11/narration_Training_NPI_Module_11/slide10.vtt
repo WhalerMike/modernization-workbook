@@ -1,0 +1,69 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.573
+Step three runs the smoke test against the
+
+2
+00:00:02.573 --> 00:00:05.600
+synthetic service principal
+and service account.
+
+3
+00:00:05.600 --> 00:00:09.591
+It prints eight passes, for
+checks S T oh one to oh seven,
+
+4
+00:00:09.591 --> 00:00:13.038
+with oh five run once
+for each workload policy.
+
+5
+00:00:13.038 --> 00:00:17.137
+The synthetic app is in the register
+with two owners and no secret.
+
+6
+00:00:17.137 --> 00:00:20.300
+The synthetic service account
+is found and rated high.
+
+7
+00:00:20.300 --> 00:00:24.688
+The app management policy refuses
+a new secret on the synthetic app.
+
+8
+00:00:24.688 --> 00:00:28.138
+The federated credential
+matches the settings exactly.
+
+9
+00:00:28.138 --> 00:00:32.225
+Each workload policy assigns the
+synthetic service principal directly.
+
+10
+00:00:32.225 --> 00:00:35.250
+The synthetic sign-ins
+show the policies' result.
+
+11
+00:00:35.250 --> 00:00:38.888
+And the test host can retrieve the
+group managed account's password.
+
+12
+00:00:38.888 --> 00:00:41.513
+Read S T oh three closely.
+
+13
+00:00:41.513 --> 00:00:46.239
+It says the fixture's refusal is real
+code unverified, because Microsoft
+
+14
+00:00:46.239 --> 00:00:50.710
+Learn doesn't give the exact error
+an app management policy returns.

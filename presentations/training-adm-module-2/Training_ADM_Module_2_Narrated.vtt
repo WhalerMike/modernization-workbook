@@ -1,0 +1,994 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.405
+Welcome to Module 2 of the
+Attribute-Driven Migration learning path:
+
+2
+00:00:04.405 --> 00:00:06.238
+write a validation kit check.
+
+3
+00:00:06.238 --> 00:00:10.197
+Every gate in the implementation
+guide ends with a Validate step,
+
+4
+00:00:10.197 --> 00:00:12.837
+and most of them name
+a validation kit check.
+
+5
+00:00:12.837 --> 00:00:15.900
+The kit is the executable
+form of those steps.
+
+6
+00:00:15.900 --> 00:00:21.656
+This module serves Gate 3, and takes
+Chapter 03 of Building the Attribute-Driven
+
+7
+00:00:21.656 --> 00:00:24.447
+Migration, which teaches how a check is
+
+8
+00:00:24.447 --> 00:00:27.412
+built through one new
+check, V K SYNC oh two.
+
+9
+00:00:27.412 --> 00:00:31.270
+It asks whether soft match and
+hard-match takeover are blocked,
+
+10
+00:00:31.270 --> 00:00:34.088
+and if not, whether an
+approved window says why.
+
+11
+00:00:34.088 --> 00:00:38.725
+You'll see the parts of a check, its three
+severities, why a missing value reads
+
+12
+00:00:38.725 --> 00:00:43.362
+as off, and why a read-only check still
+has to ask for the least privilege it can.
+
+13
+00:00:43.362 --> 00:00:48.024
+Then you'll run it on the kit's fixtures
+and on an export, and break it on purpose.
+
+14
+00:00:48.024 --> 00:00:49.600
+Nothing signs in.
+
+15
+00:00:53.350 --> 00:00:54.338
+Why this check?
+
+16
+00:00:54.338 --> 00:00:57.200
+Gate 3 maps attributes through sync.
+
+17
+00:00:57.200 --> 00:01:01.731
+Before a single AD user is synchronized
+into a tenant that already has cloud
+
+18
+00:01:01.731 --> 00:01:04.392
+accounts, the sync engine
+has to decide which
+
+19
+00:01:04.392 --> 00:01:07.125
+incoming object matches
+which cloud account.
+
+20
+00:01:07.125 --> 00:01:11.455
+Microsoft Learn's pages on configuring
+Entra Connect for an existing
+
+21
+00:01:11.455 --> 00:01:15.262
+tenant and on Set Entra Dir Sync
+Feature explain the two joins.
+
+22
+00:01:15.262 --> 00:01:18.834
+A soft match joins on
+the primary SMTP address,
+
+23
+00:01:18.834 --> 00:01:22.499
+and on the U P N when soft
+match on U P N is turned on.
+
+24
+00:01:22.499 --> 00:01:24.875
+A hard match joins on the source anchor.
+
+25
+00:01:24.875 --> 00:01:29.737
+Either one, left open, lets an AD
+object take over a cloud account.
+
+26
+00:01:29.737 --> 00:01:33.611
+Learn's existing-tenant page
+advises keeping soft match blocked,
+
+27
+00:01:33.611 --> 00:01:37.627
+offers a feature to block cloud
+object takeover through hard match,
+
+28
+00:01:37.627 --> 00:01:41.500
+and says to turn each off only
+while a matching procedure needs it.
+
+29
+00:01:41.500 --> 00:01:44.391
+So the question is simple:
+are both blocks on,
+
+30
+00:01:44.391 --> 00:01:47.763
+and if not, is there an
+approved window that says why?
+
+31
+00:01:47.763 --> 00:01:52.060
+The guide lists this as Gate 3's
+optional match-blocking check.
+
+32
+00:01:55.810 --> 00:01:58.625
+Here's what you'll be able to
+do by the end of this module,
+
+33
+00:01:58.625 --> 00:02:01.248
+which takes about forty-five
+minutes with the lab.
+
+34
+00:02:01.248 --> 00:02:04.670
+You'll describe the parts of
+a check: its catalog entry,
+
+35
+00:02:04.670 --> 00:02:08.559
+its function, its rows and outcome,
+and its fixtures and tests.
+
+36
+00:02:08.559 --> 00:02:11.654
+You'll explain the three
+severities, Finding,
+
+37
+00:02:11.654 --> 00:02:14.998
+Warn and Info, and why a
+missing value reads as off.
+
+38
+00:02:14.998 --> 00:02:19.973
+You'll explain why this check is optional
+and prefers an export to a live read.
+
+39
+00:02:19.973 --> 00:02:24.985
+You'll run it on fixtures and on an
+export, and see Pass, Fail and Warn.
+
+40
+00:02:24.985 --> 00:02:29.772
+And you'll explain what the safety tests
+refuse, and why a new check inherits them.
+
+41
+00:02:29.772 --> 00:02:31.845
+Before you start, finish Module 1,
+
+42
+00:02:31.845 --> 00:02:35.760
+and Microsoft Automation Module
+1 for permissions and roles.
+
+43
+00:02:35.760 --> 00:02:38.683
+You need PowerShell 7
+and Pester 5.5 or later,
+
+44
+00:02:38.683 --> 00:02:43.990
+and you should be able to read PowerShell
+and know Pester's Describe and It.
+
+45
+00:02:47.740 --> 00:02:51.240
+This slide is the kit's own
+design, not a Microsoft rule.
+
+46
+00:02:51.240 --> 00:02:54.490
+In the kit, every check
+has the same five parts.
+
+47
+00:02:54.490 --> 00:02:59.725
+The catalog entry holds its I D, track,
+title, source, Graph permissions,
+
+48
+00:02:59.725 --> 00:03:04.777
+delegated role and release stage,
+and marks it optional or preview.
+
+49
+00:03:04.777 --> 00:03:09.177
+The function is named from the I
+D, here Invoke V K Sync oh two,
+
+50
+00:03:09.177 --> 00:03:11.927
+and wraps its body in a shared helper.
+
+51
+00:03:11.927 --> 00:03:15.583
+The data read goes through
+one path, for fixtures,
+
+52
+00:03:15.583 --> 00:03:19.603
+Graph and input files, and
+logs every read as evidence.
+
+53
+00:03:19.603 --> 00:03:23.065
+The rows have one shape, and
+the status comes from the rows.
+
+54
+00:03:23.065 --> 00:03:25.923
+And the tests: the check
+must pass clean data
+
+55
+00:03:25.923 --> 00:03:28.940
+and fail planted problems
+with an exact count.
+
+56
+00:03:28.940 --> 00:03:31.765
+The wrapper does the work
+no check should repeat.
+
+57
+00:03:31.765 --> 00:03:34.936
+It catches any exception
+and turns it into Error,
+
+58
+00:03:34.936 --> 00:03:38.028
+so a read that throws can
+never come back as Pass.
+
+59
+00:03:38.028 --> 00:03:41.988
+Don't catch exceptions inside the
+body to make a check more robust;
+
+60
+00:03:41.988 --> 00:03:44.560
+that's how a check passes while blind.
+
+61
+00:03:48.310 --> 00:03:50.360
+Here's the lesson this check hides.
+
+62
+00:03:50.360 --> 00:03:54.010
+The read is GET directory,
+on-premises synchronization.
+
+63
+00:03:54.010 --> 00:03:56.750
+Microsoft Learn's Graph
+reference for that call,
+
+64
+00:03:56.750 --> 00:04:01.545
+Get on-premises directory synchronization,
+names its least-privileged permission,
+
+65
+00:04:01.545 --> 00:04:05.723
+OnPremDirectorySynchronization dot
+Read dot All, which looks harmless.
+
+66
+00:04:05.723 --> 00:04:09.418
+But the same page lists no
+application permission for it at all,
+
+67
+00:04:09.418 --> 00:04:14.109
+and for delegated access says Global
+Administrator is the only supported role.
+
+68
+00:04:14.109 --> 00:04:18.998
+A read-only check, run live, would need
+the most powerful role in the tenant.
+
+69
+00:04:18.998 --> 00:04:22.885
+The kit's design rule is that a
+check asks for the least privilege
+
+70
+00:04:22.885 --> 00:04:26.773
+the question needs, and GET-only
+is necessary but not sufficient.
+
+71
+00:04:26.773 --> 00:04:29.173
+So this check does three
+things differently.
+
+72
+00:04:29.173 --> 00:04:33.798
+It's optional, so it stays out of a
+default run and runs only when named.
+
+73
+00:04:33.798 --> 00:04:37.223
+It prefers an export, saved
+by a Global Administrator
+
+74
+00:04:37.223 --> 00:04:39.948
+who is already signed
+in for other reasons.
+
+75
+00:04:39.948 --> 00:04:43.945
+And it says so: the catalog
+names the role and the reason,
+
+76
+00:04:43.945 --> 00:04:46.160
+before anyone runs it live.
+
+77
+00:04:49.910 --> 00:04:53.622
+Three severities, three meanings,
+and they're the kit's design.
+
+78
+00:04:53.622 --> 00:04:55.335
+A Finding fails the check.
+
+79
+00:04:55.335 --> 00:04:58.731
+A Warn needs a person to look,
+but isn't a failure: here,
+
+80
+00:04:58.731 --> 00:05:02.289
+a block that's off inside an
+approved matching window,
+
+81
+00:05:02.289 --> 00:05:05.847
+which the run's options record
+as the window's last day.
+
+82
+00:05:05.847 --> 00:05:11.111
+The day after, the same state is a Finding
+again, without anyone editing anything.
+
+83
+00:05:11.111 --> 00:05:16.321
+An Info row gives context and isn't counted:
+soft match on U P N, which Microsoft
+
+84
+00:05:16.321 --> 00:05:21.698
+Learn's Set Entra Dir Sync Feature page
+says can't be turned off once it's enabled.
+
+85
+00:05:21.698 --> 00:05:25.553
+The status comes from the rows:
+Fail if there's any Finding,
+
+86
+00:05:25.553 --> 00:05:28.097
+else Warn if there's any Warn, else Pass.
+
+87
+00:05:28.097 --> 00:05:32.010
+And the most important rule: a
+missing value is read as off.
+
+88
+00:05:32.010 --> 00:05:37.110
+So a response shape the kit doesn't expect
+produces a Finding, not a silent Pass.
+
+89
+00:05:37.110 --> 00:05:41.610
+Default every "is the control
+on" read to the unsafe answer.
+
+90
+00:05:41.610 --> 00:05:46.560
+NotApplicable is for a tenant with
+nothing to check, never for a failed read.
+
+91
+00:05:50.310 --> 00:05:52.860
+The safety tests are the kit's own design.
+
+92
+00:05:52.860 --> 00:05:58.449
+They parse every script in the kit and fail
+the build on any state-changing command:
+
+93
+00:05:58.449 --> 00:06:01.901
+write verbs, Invoke Rest
+Method, Invoke Web Request,
+
+94
+00:06:01.901 --> 00:06:04.860
+native programs, file
+redirection, and more.
+
+95
+00:06:04.860 --> 00:06:08.421
+Every Graph request must
+carry a literal Method GET,
+
+96
+00:06:08.421 --> 00:06:10.823
+with one exception pinned by a test.
+
+97
+00:06:10.823 --> 00:06:14.024
+A next link that points at a
+host other than the cloud's
+
+98
+00:06:14.024 --> 00:06:16.934
+own Graph host is refused,
+so a token never leaves.
+
+99
+00:06:16.934 --> 00:06:20.331
+This check passes those tests
+without any change to them,
+
+100
+00:06:20.331 --> 00:06:23.222
+because it reads only
+through the kit's data path.
+
+101
+00:06:23.222 --> 00:06:25.387
+That's the point of a single data path:
+
+102
+00:06:25.387 --> 00:06:29.572
+a new check inherits the safety
+properties instead of re-proving them.
+
+103
+00:06:29.572 --> 00:06:32.734
+If your check seems to
+need its own HTTP call,
+
+104
+00:06:32.734 --> 00:06:35.809
+it doesn't; add what it
+needs to the data path.
+
+105
+00:06:35.809 --> 00:06:40.918
+And the remediation, the command Microsoft
+Learn's existing-tenant page gives to
+
+106
+00:06:40.918 --> 00:06:44.120
+block soft match, is a write,
+so it stays out of the kit,
+
+107
+00:06:44.120 --> 00:06:46.910
+in the change record the finding opens.
+
+108
+00:06:50.660 --> 00:06:51.385
+Try it.
+
+109
+00:06:51.385 --> 00:06:55.270
+Lab 1 runs in the validation-kit
+folder of the examples,
+
+110
+00:06:55.270 --> 00:06:57.860
+in PowerShell 7, and nothing signs in.
+
+111
+00:06:57.860 --> 00:07:03.351
+Step one imports the module and runs the
+check against the fail fixture, a fictional
+
+112
+00:07:03.351 --> 00:07:08.285
+tenant with both blocks off and soft match
+on U P N on, as of October thirtieth.
+
+113
+00:07:08.285 --> 00:07:10.960
+The status is Fail, with a count of two.
+
+114
+00:07:10.960 --> 00:07:13.907
+The details show why:
+soft match isn't blocked,
+
+115
+00:07:13.907 --> 00:07:17.810
+and cloud object takeover
+through hard match isn't blocked.
+
+116
+00:07:17.810 --> 00:07:19.447
+Those are the two Findings.
+
+117
+00:07:19.447 --> 00:07:22.569
+The third row is Info:
+soft match on U P N is on,
+
+118
+00:07:22.569 --> 00:07:25.335
+and it can't be turned off once enabled.
+
+119
+00:07:25.335 --> 00:07:27.647
+It's context, so it isn't counted.
+
+120
+00:07:27.647 --> 00:07:31.207
+Then the evidence: the source
+is Graph, in fixture mode,
+
+121
+00:07:31.207 --> 00:07:35.736
+and the query names the fixture file
+and the URI a live run would call.
+
+122
+00:07:35.736 --> 00:07:40.540
+A reviewer can tell from the evidence
+alone which path a result came from.
+
+123
+00:07:44.290 --> 00:07:48.240
+Step two opens a matching window
+until October thirty-first.
+
+124
+00:07:48.240 --> 00:07:52.457
+Run the same fail fixture on October
+thirtieth, inside the window,
+
+125
+00:07:52.457 --> 00:07:57.065
+and the status is Warn: the blocks are
+off, but an approved window says why.
+
+126
+00:07:57.065 --> 00:08:01.528
+Run it on November first, the day
+after the window closes, and it's Fail.
+
+127
+00:08:01.528 --> 00:08:03.253
+Nobody edited anything.
+
+128
+00:08:03.253 --> 00:08:07.840
+The window is a date, so a Warn
+can never quietly become permanent.
+
+129
+00:08:07.840 --> 00:08:10.390
+Step three feeds the check an export.
+
+130
+00:08:10.390 --> 00:08:13.420
+The first two commands make
+an inputs folder with an
+
+131
+00:08:13.420 --> 00:08:16.802
+export that blocks soft match
+but not hard-match takeover.
+
+132
+00:08:16.802 --> 00:08:21.377
+The status is Fail with a count of
+one: only the hard-match block is off.
+
+133
+00:08:21.377 --> 00:08:26.440
+And the evidence's source is now Input,
+with the export's file name as the query.
+
+134
+00:08:26.440 --> 00:08:28.304
+That's the path the check prefers,
+
+135
+00:08:28.304 --> 00:08:32.470
+because reading a file never needs
+the Global Administrator role.
+
+136
+00:08:36.220 --> 00:08:39.880
+Step four shows what a live run
+would ask for: one permission,
+
+137
+00:08:39.880 --> 00:08:44.511
+OnPremDirectorySynchronization dot
+Read dot All, and the delegated role,
+
+138
+00:08:44.511 --> 00:08:47.872
+Global Administrator, the
+only role Microsoft Learn's
+
+139
+00:08:47.872 --> 00:08:51.308
+Graph reference lists, with
+no application permission.
+
+140
+00:08:51.308 --> 00:08:56.294
+Step five confirms the check isn't in
+a default run: the answer is False.
+
+141
+00:08:56.294 --> 00:09:01.758
+Step six runs the whole kit's tests: two
+hundred ninety-seven pass, none fail.
+
+142
+00:09:01.758 --> 00:09:04.770
+Step seven makes the check
+fail for the right reason.
+
+143
+00:09:04.770 --> 00:09:08.312
+You change your copy of the
+check to read block soft match,
+
+144
+00:09:08.312 --> 00:09:10.120
+a property that doesn't exist.
+
+145
+00:09:10.120 --> 00:09:12.020
+The fail fixture still fails.
+
+146
+00:09:12.020 --> 00:09:14.823
+And the pass fixture, with both blocks on,
+
+147
+00:09:14.823 --> 00:09:18.220
+fails too, because the
+missing value reads as off.
+
+148
+00:09:18.220 --> 00:09:20.776
+That's the unsafe default doing its job:
+
+149
+00:09:20.776 --> 00:09:23.970
+a wrong property name can't
+produce a silent Pass.
+
+150
+00:09:23.970 --> 00:09:27.158
+Put the name back, and the
+pass fixture passes again.
+
+151
+00:09:27.158 --> 00:09:30.110
+Step eight removes the inputs folder.
+
+152
+00:09:33.860 --> 00:09:36.295
+Lab 2 runs the check on a real export,
+
+153
+00:09:36.295 --> 00:09:41.248
+in a test tenant with Microsoft Entra
+Connect or Cloud Sync configured.
+
+154
+00:09:41.248 --> 00:09:44.342
+A Global Administrator
+of the test tenant saves
+
+155
+00:09:44.342 --> 00:09:47.436
+the response of the one
+privileged read to a file.
+
+156
+00:09:47.436 --> 00:09:51.573
+That's the only step that needs the
+role; nothing in the kit runs with it.
+
+157
+00:09:51.573 --> 00:09:56.397
+Then you run the check on that export as
+any user, and compare the result with the
+
+158
+00:09:56.397 --> 00:10:01.222
+export, line by line, so you know the check
+reads the tenant's real response shape.
+
+159
+00:10:01.222 --> 00:10:05.811
+To back it out, step four deletes the
+export once the run's evidence is stored.
+
+160
+00:10:05.811 --> 00:10:10.107
+The export isn't evidence by
+itself; the run's manifest,
+
+161
+00:10:10.107 --> 00:10:13.135
+with a hash for every file of the run, is.
+
+162
+00:10:13.135 --> 00:10:15.285
+The authors haven't run Lab 2.
+
+163
+00:10:15.285 --> 00:10:19.130
+Follow Chapter 03's Lab 2, step by step.
+
+164
+00:10:22.880 --> 00:10:24.267
+The federal requirement.
+
+165
+00:10:24.267 --> 00:10:32.549
+The controls are NIST special publication
+eight hundred fifty-three controls in its
+
+166
+00:10:32.549 --> 00:10:36.981
+Moderate baseline: C M six,
+C A seven, A C two, A C six,
+
+167
+00:10:36.981 --> 00:10:42.230
+S A eleven, C M seven, S I seven,
+A U three, C M three and C M five.
+
+168
+00:10:42.230 --> 00:10:46.244
+A check is monitoring evidence only
+if it can't change what it reads,
+
+169
+00:10:46.244 --> 00:10:48.142
+and can't pass when it didn't look.
+
+170
+00:10:48.142 --> 00:10:50.955
+The run's validation
+results show that an AD
+
+171
+00:10:50.955 --> 00:10:54.080
+object can't take over a
+cloud account unnoticed.
+
+172
+00:10:54.080 --> 00:10:57.510
+A deviation is approved,
+documented, and has an end:
+
+173
+00:10:57.510 --> 00:11:01.442
+the window date in the run's
+options, and its change record.
+
+174
+00:11:01.442 --> 00:11:06.526
+Least privilege: no standing Global
+Administrator identity for a scheduled check,
+
+175
+00:11:06.526 --> 00:11:10.504
+shown by the evidence block that
+says the read came from an export.
+
+176
+00:11:10.504 --> 00:11:15.130
+The test results, including the safety
+tests, show the kit can only read.
+
+177
+00:11:15.130 --> 00:11:20.430
+In Lab 2, the validation manifest
+holds a hash for every file of the run.
+
+178
+00:11:20.430 --> 00:11:24.693
+And the remediation is a write under
+change control, never the check.
+
+179
+00:11:24.693 --> 00:11:29.603
+The Key Security Indicators come from
+FedRAMP's Key Security Indicators list,
+
+180
+00:11:29.603 --> 00:11:33.229
+FedRAMP 20x indicators for
+cloud service providers.
+
+181
+00:11:33.229 --> 00:11:37.150
+Which output supports which
+control is this workbook's reading.
+
+182
+00:11:40.900 --> 00:11:42.875
+Check yourself with two questions.
+
+183
+00:11:42.875 --> 00:11:45.852
+First: the fixture says
+soft match isn't blocked,
+
+184
+00:11:45.852 --> 00:11:48.600
+and an approved matching
+window ends today.
+
+185
+00:11:48.600 --> 00:11:51.725
+What does the check report
+tomorrow, if nothing changes?
+
+186
+00:11:51.725 --> 00:11:53.700
+The answer is b: Fail.
+
+187
+00:11:53.700 --> 00:11:58.200
+The day after the window's last day,
+the same state is a Finding again.
+
+188
+00:11:58.200 --> 00:12:00.312
+You saw that in step two of the lab.
+
+189
+00:12:00.312 --> 00:12:05.099
+Second: a response comes back without
+the block soft match enabled property.
+
+190
+00:12:05.099 --> 00:12:06.513
+What does the check report?
+
+191
+00:12:06.513 --> 00:12:11.151
+The answer is b: a Finding, because
+a missing value reads as off.
+
+192
+00:12:11.151 --> 00:12:14.525
+You saw that in step seven,
+when the pass fixture failed.
+
+193
+00:12:14.525 --> 00:12:19.449
+The module page has two more questions,
+on why the check is left out of a default
+
+194
+00:12:19.449 --> 00:12:24.810
+run and where a new HTTP call belongs, each
+linked to the section that answers it.
+
+195
+00:12:28.560 --> 00:12:29.385
+To sum up.
+
+196
+00:12:29.385 --> 00:12:33.949
+You built your understanding of a check
+from its catalog entry to its safety tests,
+
+197
+00:12:33.949 --> 00:12:36.700
+and saw how one check asks
+for the least privilege
+
+198
+00:12:36.700 --> 00:12:39.385
+it can when its read needs
+the most powerful role.
+
+199
+00:12:39.385 --> 00:12:43.034
+The evidence an ISSO keeps:
+the run's results, details,
+
+200
+00:12:43.034 --> 00:12:46.938
+summary and validation
+manifest, in the evidence store;
+
+201
+00:12:46.938 --> 00:12:52.624
+the window date and its change record; the
+Entra sign-in log for the one privileged
+
+202
+00:12:52.624 --> 00:12:58.310
+export; and the change record for any
+remediation, which is never made by the check.
+
+203
+00:12:58.310 --> 00:13:02.735
+Before shipping a new check, work
+through the Chapter 03 checklist.
+
+204
+00:13:02.735 --> 00:13:06.485
+Next is Module 3: keep
+dynamic rules as code.
+
+205
+00:13:06.485 --> 00:13:12.135
+A dynamic rule is access policy, and one
+edit can remove hundreds of people at once.
+
+206
+00:13:12.135 --> 00:13:16.184
+You'll keep each rule as a reviewed
+file with tests and a linter,
+
+207
+00:13:16.184 --> 00:13:21.240
+see whom a change adds and removes, and
+pause and resume safely in an incident.

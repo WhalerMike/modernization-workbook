@@ -1,0 +1,72 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.440
+Lab 2 runs a real leaver, in a test
+tenant with Microsoft Entra ID
+
+2
+00:00:04.440 --> 00:00:09.337
+Governance licenses and a test Azure
+subscription, never production.
+
+3
+00:00:09.337 --> 00:00:12.599
+You need the Lifecycle
+Workflows Administrator role,
+
+4
+00:00:12.599 --> 00:00:16.801
+and Logic App Contributor, Contributor
+or Owner on the resource group.
+
+5
+00:00:16.801 --> 00:00:20.221
+Create the extension and its
+Logic App in the admin center,
+
+6
+00:00:20.221 --> 00:00:24.212
+record what the admin center made,
+and check it against the registry.
+
+7
+00:00:24.212 --> 00:00:26.774
+Replace the definition with the program's.
+
+8
+00:00:26.774 --> 00:00:30.671
+Build an on-demand test leaver
+workflow that blocks first,
+
+9
+00:00:30.671 --> 00:00:32.863
+and run it for one fictional user.
+
+10
+00:00:32.863 --> 00:00:34.549
+Then drill the failure path:
+
+11
+00:00:34.549 --> 00:00:38.362
+point the integration at a receiver
+that answers five-oh-three,
+
+12
+00:00:38.362 --> 00:00:42.762
+and confirm the task ends failed within
+minutes, not at the end of the hour.
+
+13
+00:00:42.762 --> 00:00:47.632
+To back it out, remove the custom task
+and the workflow, then the extension,
+
+14
+00:00:47.632 --> 00:00:52.501
+the Logic App, the resource group, the
+role assignments and the test users.
+
+15
+00:00:52.501 --> 00:00:54.720
+The authors haven't run Lab 2.

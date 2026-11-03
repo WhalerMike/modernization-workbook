@@ -1,0 +1,60 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.890
+Here's what you'll be able to
+do by the end of this module,
+
+2
+00:00:02.890 --> 00:00:05.537
+which takes about fifty-five
+minutes with the lab.
+
+3
+00:00:05.537 --> 00:00:10.612
+You'll explain the documented lockout's two
+halves, and the check that refuses each.
+
+4
+00:00:10.612 --> 00:00:14.447
+You'll name the seven activation and
+assignment rules the code manages,
+
+5
+00:00:14.447 --> 00:00:16.201
+and where their bounds come from.
+
+6
+00:00:16.201 --> 00:00:20.800
+You'll read a role's diff and the
+plan's findings, pim oh one to oh nine.
+
+7
+00:00:20.800 --> 00:00:25.325
+You'll explain the rollout waves, and why
+a later wave waits for an earlier one.
+
+8
+00:00:25.325 --> 00:00:28.850
+And you'll explain the order for
+converting a standing assignment.
+
+9
+00:00:28.850 --> 00:00:33.848
+Before you start, finish Module 2,
+for the emergency accounts this module
+
+10
+00:00:33.848 --> 00:00:39.262
+refuses to proceed without, and Module 3,
+for the activation gate and its policy.
+
+11
+00:00:39.262 --> 00:00:45.075
+Lab 2 needs a worldwide or G C C test
+tenant, never production, with Microsoft
+
+12
+00:00:45.075 --> 00:00:50.570
+Entra I D P2 or I D Governance licenses
+for the test users and approvers.

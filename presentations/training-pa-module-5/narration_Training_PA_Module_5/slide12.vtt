@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.262
+Step seven shows a guard refusing.
+
+2
+00:00:02.262 --> 00:00:06.151
+Run the same plan with Apply,
+but with Max Removals set to two.
+
+3
+00:00:06.151 --> 00:00:09.911
+Guard G six refuses: three
+removals is more than two;
+
+4
+00:00:09.911 --> 00:00:13.225
+review them, and run
+again with a higher limit.
+
+5
+00:00:13.225 --> 00:00:14.400
+Nothing is sent.
+
+6
+00:00:14.400 --> 00:00:17.438
+Step eight applies to the
+fake with the default limit.
+
+7
+00:00:17.438 --> 00:00:20.390
+The same findings and
+the same eight changes,
+
+8
+00:00:20.390 --> 00:00:24.300
+the guards all pass, and eight
+requests are sent, none failed.
+
+9
+00:00:24.300 --> 00:00:27.688
+The fake records the requests
+and doesn't change its tenant.
+
+10
+00:00:27.688 --> 00:00:31.066
+Step nine runs the tests,
+three hundred thirty pass,
+
+11
+00:00:31.066 --> 00:00:33.290
+and you delete the output folder.

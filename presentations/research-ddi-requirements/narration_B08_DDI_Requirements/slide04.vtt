@@ -20,40 +20,40 @@ forwarding rule and policy once,
 and pushes it to every cloud.
 
 5
-00:00:16.050 --> 00:00:19.963
-Book 08 calls that overlay
-management, not replacement.
+00:00:16.050 --> 00:00:21.100
+The workbook's DNS design calls that
+overlay management, not replacement.
 
 6
-00:00:19.963 --> 00:00:23.056
+00:00:21.100 --> 00:00:24.194
 When you evaluate a product,
 ask whether each cloud
 
 7
-00:00:23.056 --> 00:00:26.887
+00:00:24.194 --> 00:00:28.025
 integration actually writes to
 the cloud, or only reads from it.
 
 8
-00:00:26.887 --> 00:00:32.419
+00:00:28.025 --> 00:00:33.557
 Second, DNSSEC with central key custody:
 sign external zones always, validate
 
 9
-00:00:32.419 --> 00:00:38.037
+00:00:33.557 --> 00:00:39.175
 on every agency resolver, and keep rollover
 automated and audited in one place.
 
 10
-00:00:38.037 --> 00:00:43.002
+00:00:39.175 --> 00:00:44.139
 The clouds don't fill this gap, and
 check the defaults: Windows Server's
 
 11
-00:00:43.002 --> 00:00:48.401
+00:00:44.139 --> 00:00:49.538
 default signing key is below NIST's floor,
 and NIOS defaults to RSA with SHA-1.
 
 12
-00:00:48.401 --> 00:00:49.990
+00:00:49.538 --> 00:00:51.120
 Next, security.

@@ -1,0 +1,76 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.925
+Step five checks the stage's evidence
+against the requirement rows.
+
+2
+00:00:03.925 --> 00:00:07.748
+Only two of seventeen are
+evidenced, both pre-flight rows,
+
+3
+00:00:07.748 --> 00:00:10.188
+so the check fails with exit code two.
+
+4
+00:00:10.188 --> 00:00:11.626
+Why are the others missing?
+
+5
+00:00:11.626 --> 00:00:13.706
+A rollback add entry is recorded:
+
+6
+00:00:13.706 --> 00:00:17.638
+it proves the change was written
+down, not that the step worked.
+
+7
+00:00:17.638 --> 00:00:20.474
+And the smoke record is
+a failing fixture run.
+
+8
+00:00:20.474 --> 00:00:25.150
+Then sha two fifty-six sum confirms
+every evidence record reads OK.
+
+9
+00:00:25.150 --> 00:00:27.837
+Step six asks production's
+pre-flight check
+
+10
+00:00:27.837 --> 00:00:30.300
+to promote on that report and that check.
+
+11
+00:00:30.300 --> 00:00:32.137
+P F oh nine passes.
+
+12
+00:00:32.137 --> 00:00:36.259
+P F ten fails: the hashes aren't
+the ones in the promotion record,
+
+13
+00:00:36.259 --> 00:00:39.411
+the smoke report failed
+and ran in fixture mode,
+
+14
+00:00:39.411 --> 00:00:43.775
+and promotion needs a live test
+run; the evidence check failed too.
+
+15
+00:00:43.775 --> 00:00:48.625
+A fixture report, or a stage with
+unevidenced rows, can never promote.
+
+16
+00:00:48.625 --> 00:00:53.350
+Step seven runs the tests, forty-six
+pass, and step eight cleans up.

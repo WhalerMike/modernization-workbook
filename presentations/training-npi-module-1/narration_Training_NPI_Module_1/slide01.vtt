@@ -1,0 +1,67 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.232
+Welcome to Module 1 of the
+Non-Person Identity learning path:
+
+2
+00:00:04.232 --> 00:00:06.825
+inventory every non-person identity.
+
+3
+00:00:06.825 --> 00:00:08.988
+A person leaves and HR tells you.
+
+4
+00:00:08.988 --> 00:00:11.988
+A service account's owner
+leaves and nothing tells you.
+
+5
+00:00:11.988 --> 00:00:16.424
+This path builds that missing record,
+through the six gates of the non-person
+
+6
+00:00:16.424 --> 00:00:18.325
+identity implementation guide,
+
+7
+00:00:18.325 --> 00:00:21.775
+with one module for each chapter
+of the developer workbook.
+
+8
+00:00:21.775 --> 00:00:26.637
+This module is Gate 1, Inventory,
+with Chapter 1 of the workbook.
+
+9
+00:00:26.637 --> 00:00:31.800
+You'll read every service account,
+managed service account, app registration,
+
+10
+00:00:31.800 --> 00:00:35.753
+service principal and managed
+identity into one register,
+
+11
+00:00:35.753 --> 00:00:39.787
+with its type, owners, credentials,
+risk and candidate target.
+
+12
+00:00:39.787 --> 00:00:41.300
+You decide nothing yet.
+
+13
+00:00:41.300 --> 00:00:44.762
+The code runs on your laptop,
+against a fictional estate.
+
+14
+00:00:44.762 --> 00:00:49.820
+It's illustrative: tested against
+fixtures, not run against a live tenant.

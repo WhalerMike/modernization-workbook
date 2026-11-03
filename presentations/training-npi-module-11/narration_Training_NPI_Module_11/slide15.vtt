@@ -1,0 +1,60 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.025
+Check yourself with two questions.
+
+2
+00:00:02.025 --> 00:00:06.312
+First: the rollback's plan hash
+isn't the one the reviewer approved.
+
+3
+00:00:06.312 --> 00:00:07.787
+What does apply mode do?
+
+4
+00:00:07.787 --> 00:00:09.012
+The answer is b.
+
+5
+00:00:09.012 --> 00:00:12.662
+It stops before it sends anything,
+and says nothing was sent.
+
+6
+00:00:12.662 --> 00:00:14.212
+You saw it in step five.
+
+7
+00:00:14.212 --> 00:00:18.538
+Second: in the dry run, why does
+the evidence check end no-go?
+
+8
+00:00:18.538 --> 00:00:19.636
+The answer is b.
+
+9
+00:00:19.636 --> 00:00:25.037
+Steps 1.1 to 1.5 record their evidence
+only when they run against a tenant,
+
+10
+00:00:25.037 --> 00:00:30.438
+and a dry-run rollback records dry run,
+which the go or no-go doesn't accept.
+
+11
+00:00:30.438 --> 00:00:34.750
+So a fixture stage can never pass the
+evidence check, and that's by design.
+
+12
+00:00:34.750 --> 00:00:37.177
+The module page has three more questions,
+
+13
+00:00:37.177 --> 00:00:39.740
+each linked to the
+section that answers it.

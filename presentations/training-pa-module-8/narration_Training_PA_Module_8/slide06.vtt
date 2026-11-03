@@ -1,0 +1,61 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.450
+Unit 2: compare, package and the period.
+
+2
+00:00:03.450 --> 00:00:08.262
+The comparison matches findings between
+two runs by fingerprint, not by name.
+
+3
+00:00:08.262 --> 00:00:12.512
+Each finding is new, changed,
+resolved or unchanged.
+
+4
+00:00:12.512 --> 00:00:16.513
+A task that didn't read the
+tenant this run is unverified,
+
+5
+00:00:16.513 --> 00:00:20.862
+and its findings stay open, never
+resolved: silence isn't a fix.
+
+6
+00:00:20.862 --> 00:00:26.626
+And a new or changed Tier 0 finding, or
+drift on a Tier 0 object, is an incident.
+
+7
+00:00:26.626 --> 00:00:29.225
+Then the issue drafts carry no names.
+
+8
+00:00:29.225 --> 00:00:31.652
+Their titles come from a fixed catalog,
+
+9
+00:00:31.652 --> 00:00:34.913
+and their bodies carry object
+I D's and fingerprints.
+
+10
+00:00:34.913 --> 00:00:36.967
+The names stay in the drift report,
+
+11
+00:00:36.967 --> 00:00:41.588
+which goes to the access-controlled
+evidence store, not to the issue tracker.
+
+12
+00:00:41.588 --> 00:00:43.311
+That's this workbook's design,
+
+13
+00:00:43.311 --> 00:00:46.750
+so the tracker never becomes
+a list of privileged people.

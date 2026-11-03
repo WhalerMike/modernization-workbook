@@ -1,0 +1,69 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.929
+Here's what you'll be able to
+do by the end of this module,
+
+2
+00:00:02.929 --> 00:00:05.612
+which takes about sixty-five
+minutes with the lab.
+
+3
+00:00:05.612 --> 00:00:09.723
+You'll state the four limits of
+Conditional Access for workload identities,
+
+4
+00:00:09.723 --> 00:00:12.137
+and what covers the
+identities outside them.
+
+5
+00:00:12.137 --> 00:00:14.865
+You'll explain why each policy is rendered
+
+6
+00:00:14.865 --> 00:00:17.749
+once per ring and always
+created report-only.
+
+7
+00:00:17.749 --> 00:00:19.575
+You'll run the pre-merge check,
+
+8
+00:00:19.575 --> 00:00:23.300
+the tenant check and the plan,
+and read what each one reports.
+
+9
+00:00:23.300 --> 00:00:27.862
+You'll read a sign-in summary and say
+whether a ring is ready for enforcement.
+
+10
+00:00:27.862 --> 00:00:31.113
+And you'll see a ring held
+without the allow-enforce switch,
+
+11
+00:00:31.113 --> 00:00:34.363
+enforced with it, and held again
+when the summary is edited.
+
+12
+00:00:34.363 --> 00:00:38.765
+Before you start, finish Module 5, the
+other half of Gate 4, and Module 1,
+
+13
+00:00:38.765 --> 00:00:42.853
+because the scope names service
+principals by the enterprise
+
+14
+00:00:42.853 --> 00:00:46.370
+application's object I D, as
+the register records them.

@@ -1,0 +1,1129 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.860
+Welcome to Module 5 of the
+Non-Person Identity learning path:
+
+2
+00:00:03.860 --> 00:00:06.450
+cut the privilege of service principals.
+
+3
+00:00:06.450 --> 00:00:08.971
+This module is the first half of Gate 4,
+
+4
+00:00:08.971 --> 00:00:12.875
+Least privilege, with Chapter
+7 of the developer workbook.
+
+5
+00:00:12.875 --> 00:00:18.041
+You'll sweep every service principal for
+what it holds: its application permissions,
+
+6
+00:00:18.041 --> 00:00:22.838
+its delegated grants, its directory roles,
+and a managed identity's Azure roles.
+
+7
+00:00:22.838 --> 00:00:27.288
+You'll flag the broad grants that have no
+current exception, hand the privileged
+
+8
+00:00:27.288 --> 00:00:30.121
+service principals to the
+Privileged Access plan,
+
+9
+00:00:30.121 --> 00:00:32.212
+and build the quarterly owner review.
+
+10
+00:00:32.212 --> 00:00:35.292
+Then you'll turn the owners'
+decisions into a plan,
+
+11
+00:00:35.292 --> 00:00:38.912
+and apply it only after a second
+person approves its hash.
+
+12
+00:00:38.912 --> 00:00:42.213
+The code runs on your laptop
+against a fictional estate.
+
+13
+00:00:42.213 --> 00:00:47.580
+It's illustrative: tested against
+fixtures, not run against a live tenant.
+
+14
+00:00:51.330 --> 00:00:52.943
+Why does privilege need cutting?
+
+15
+00:00:52.943 --> 00:00:57.918
+Because a workload can use its access
+faster and more widely than any person.
+
+16
+00:00:57.918 --> 00:01:00.892
+An application permission
+gives an app everything
+
+17
+00:01:00.892 --> 00:01:03.243
+its scope allows, across the whole tenant.
+
+18
+00:01:03.243 --> 00:01:06.404
+And a permission like Directory
+dot ReadWrite dot All,
+
+19
+00:01:06.404 --> 00:01:09.706
+granted to make it work, stays
+until someone takes it away.
+
+20
+00:01:09.706 --> 00:01:13.480
+In this module you find those
+grants and take them away safely.
+
+21
+00:01:13.480 --> 00:01:15.655
+You sweep every service principal,
+
+22
+00:01:15.655 --> 00:01:19.930
+flag the broad grants without a
+current exception, and ask the owners.
+
+23
+00:01:19.930 --> 00:01:21.680
+Two rules hold the whole time.
+
+24
+00:01:21.680 --> 00:01:25.630
+Nothing is removed until a second
+person approves the plan's hash.
+
+25
+00:01:25.630 --> 00:01:28.830
+And the code removes
+a grant, never an app.
+
+26
+00:01:32.580 --> 00:01:35.418
+Here's what you'll be able to
+do by the end of this module,
+
+27
+00:01:35.418 --> 00:01:37.805
+which takes about sixty
+minutes with the lab.
+
+28
+00:01:37.805 --> 00:01:41.236
+You'll explain the difference
+between an application permission
+
+29
+00:01:41.236 --> 00:01:44.542
+and a delegated grant, and why the
+type matters more than the name.
+
+30
+00:01:44.542 --> 00:01:48.967
+You'll name what makes a grant broad,
+and what a recorded exception must hold.
+
+31
+00:01:48.967 --> 00:01:52.627
+You'll say which service principals
+go to the Privileged Access plan,
+
+32
+00:01:52.627 --> 00:01:54.681
+and why this chapter doesn't sweep them.
+
+33
+00:01:54.681 --> 00:01:58.211
+And you'll run the sweep, read
+the owner review and the plan,
+
+34
+00:01:58.211 --> 00:02:01.592
+and watch the write path
+refuse a plan nobody approved.
+
+35
+00:02:01.592 --> 00:02:06.199
+Before you start, finish Module 1,
+because the sweep reads its register,
+
+36
+00:02:06.199 --> 00:02:10.092
+and Module 2, because the review
+goes to the owners it checks.
+
+37
+00:02:10.092 --> 00:02:15.740
+Lab 1 needs PowerShell 7.1 or
+later with Pester 5, and no tenant.
+
+38
+00:02:19.490 --> 00:02:23.977
+Unit 1 is the guide's Step 4,
+sub-steps four a to four c.
+
+39
+00:02:23.977 --> 00:02:25.677
+Four a is Graph permissions.
+
+40
+00:02:25.677 --> 00:02:30.582
+Microsoft Learn's guidance is to prefer
+delegated access where a user is present,
+
+41
+00:02:30.582 --> 00:02:33.510
+because a delegated grant
+gives the app only the
+
+42
+00:02:33.510 --> 00:02:36.365
+intersection of the user's
+rights and the scope.
+
+43
+00:02:36.365 --> 00:02:38.824
+And judge each grant by
+its type, not its name:
+
+44
+00:02:38.824 --> 00:02:43.743
+the Microsoft Graph permissions reference
+shows Mail dot ReadWrite and Mail dot Send
+
+45
+00:02:43.743 --> 00:02:48.115
+as application permissions, with the
+same names as their delegated versions,
+
+46
+00:02:48.115 --> 00:02:50.165
+and the program rates them critical.
+
+47
+00:02:50.165 --> 00:02:54.733
+Learn also says removing a permission
+from the app registration doesn't revoke
+
+48
+00:02:54.733 --> 00:02:59.302
+an existing grant, and that tokens already
+issued stay valid for their lifetime.
+
+49
+00:02:59.302 --> 00:03:01.177
+Four b is directory roles.
+
+50
+00:03:01.177 --> 00:03:04.658
+Microsoft Learn's page on
+privileged roles calls a service
+
+51
+00:03:04.658 --> 00:03:08.352
+principal with a highly privileged
+role a control-plane asset.
+
+52
+00:03:08.352 --> 00:03:11.173
+Four c is Azure:
+Microsoft's guidance is to
+
+53
+00:03:11.173 --> 00:03:13.828
+scope a role to the resource it's used on.
+
+54
+00:03:13.828 --> 00:03:17.510
+Four d and four e are Module 6's.
+
+55
+00:03:21.260 --> 00:03:23.918
+Unit 2 starts with the
+rule the code holds,
+
+56
+00:03:23.918 --> 00:03:26.810
+which is the program's,
+so it's design guidance.
+
+57
+00:03:26.810 --> 00:03:29.454
+Owners review every grant every quarter,
+
+58
+00:03:29.454 --> 00:03:33.110
+and the review closes only when
+its findings are acted on.
+
+59
+00:03:33.110 --> 00:03:36.904
+No broad permission stands
+without a recorded exception,
+
+60
+00:03:36.904 --> 00:03:41.647
+which names a justification, an approver,
+an approval date and an end date.
+
+61
+00:03:41.647 --> 00:03:45.014
+Where Microsoft Learn documents
+a narrower replacement,
+
+62
+00:03:45.014 --> 00:03:47.609
+such as Selected
+permissions in SharePoint,
+
+63
+00:03:47.609 --> 00:03:52.448
+or role-based access control for applications
+in Exchange Online, that's the target.
+
+64
+00:03:52.448 --> 00:03:56.310
+A managed identity's Azure roles
+belong at the resource, because,
+
+65
+00:03:56.310 --> 00:03:59.515
+as Microsoft Learn's Azure
+role assignment steps say,
+
+66
+00:03:59.515 --> 00:04:03.960
+a role at a subscription or management
+group reaches everything under it.
+
+67
+00:04:03.960 --> 00:04:08.010
+Privileged service principals are
+handed to the Privileged Access plan.
+
+68
+00:04:08.010 --> 00:04:10.581
+And the code removes a
+grant, never the app:
+
+69
+00:04:10.581 --> 00:04:15.850
+one app role assignment through the
+resource, or one delegated grant narrowed.
+
+70
+00:04:19.600 --> 00:04:23.317
+The sweep reads every service
+principal in the register:
+
+71
+00:04:23.317 --> 00:04:28.537
+its app role assignments on every resource,
+not just Graph, its delegated grants,
+
+72
+00:04:28.537 --> 00:04:32.650
+its directory roles, and for a
+managed identity, its Azure roles.
+
+73
+00:04:32.650 --> 00:04:37.437
+Then the check applies nine
+rules, N P L P oh one to oh nine.
+
+74
+00:04:37.437 --> 00:04:40.853
+Most rest on Microsoft Learn's
+permission and role pages;
+
+75
+00:04:40.853 --> 00:04:45.650
+the exception rules and the unnamed-role
+rule are the program's design guidance.
+
+76
+00:04:45.650 --> 00:04:50.088
+Oh one: a broad application permission
+with no recorded exception.
+
+77
+00:04:50.088 --> 00:04:54.688
+Oh two: an exception that ended,
+or that's missing a justification,
+
+78
+00:04:54.688 --> 00:04:57.726
+an approver, an approval
+date or an end date.
+
+79
+00:04:57.726 --> 00:05:02.188
+Oh three: a broad delegated
+scope consented for all users.
+
+80
+00:05:02.188 --> 00:05:06.425
+Oh four is subtle: a mail permission
+still granted in Entra while its
+
+81
+00:05:06.425 --> 00:05:10.888
+exception relies on Exchange's scoped
+access, so the scope does nothing.
+
+82
+00:05:10.888 --> 00:05:14.187
+Oh five is mail limited by
+the legacy access policy.
+
+83
+00:05:14.187 --> 00:05:19.363
+Oh six and oh seven grade a managed identity's
+Azure role by how wide its scope is.
+
+84
+00:05:19.363 --> 00:05:21.324
+Oh eight hands a privileged app off.
+
+85
+00:05:21.324 --> 00:05:24.240
+And oh nine is a role nobody can name.
+
+86
+00:05:27.990 --> 00:05:30.765
+Two pieces sit between
+the check and the plan.
+
+87
+00:05:30.765 --> 00:05:32.327
+First, the hand-off.
+
+88
+00:05:32.327 --> 00:05:37.041
+Four escalation permissions let an app
+grant itself more or act as others.
+
+89
+00:05:37.041 --> 00:05:41.395
+The Microsoft Graph permissions reference
+cautions that app role assignment
+
+90
+00:05:41.395 --> 00:05:45.090
+read-write and role management
+read-write can grant authorization,
+
+91
+00:05:45.090 --> 00:05:48.653
+and that application read-write
+lets an app act as other entities.
+
+92
+00:05:48.653 --> 00:05:53.031
+And Microsoft Learn's guide to granting
+permissions says only appropriate
+
+93
+00:05:53.031 --> 00:05:57.202
+users should reach apps granted
+delegated permission grant read-write.
+
+94
+00:05:57.202 --> 00:06:01.194
+Any service principal holding
+one, or holding a directory role,
+
+95
+00:06:01.194 --> 00:06:06.415
+is handed off whole to the Privileged Access
+plan, with everything it holds listed.
+
+96
+00:06:06.415 --> 00:06:10.152
+It gets no finding here, so two
+plans never disagree about it.
+
+97
+00:06:10.152 --> 00:06:12.477
+Second, the quarterly owner review.
+
+98
+00:06:12.477 --> 00:06:15.059
+It has one row per grant of every service
+
+99
+00:06:15.059 --> 00:06:17.953
+principal that stays
+here, sent to its owners.
+
+100
+00:06:17.953 --> 00:06:22.991
+Under the program's design guidance,
+only decisions dated this quarter count;
+
+101
+00:06:22.991 --> 00:06:27.478
+an earlier answer shows as the last
+decision, and the row is open again.
+
+102
+00:06:27.478 --> 00:06:30.864
+The review closes when every
+row is decided this quarter
+
+103
+00:06:30.864 --> 00:06:34.240
+and nothing approved for
+removal is still granted.
+
+104
+00:06:37.990 --> 00:06:40.802
+Unit 3 is the plan and the write path.
+
+105
+00:06:40.802 --> 00:06:44.924
+The plan has one action per broad
+grant and per decided change,
+
+106
+00:06:44.924 --> 00:06:46.864
+and only two kinds ever write.
+
+107
+00:06:46.864 --> 00:06:52.011
+Remove app role removes an application
+permission an owner decided to remove,
+
+108
+00:06:52.011 --> 00:06:55.652
+but only once any named
+replacement is already granted.
+
+109
+00:06:55.652 --> 00:07:00.677
+Narrow grant shrinks a delegated grant to
+a smaller set of scopes, never to nothing.
+
+110
+00:07:00.677 --> 00:07:03.760
+Everything else is recorded
+and sends nothing:
+
+111
+00:07:03.760 --> 00:07:07.948
+waiting for a replacement or a
+decision, kept under an exception,
+
+112
+00:07:07.948 --> 00:07:12.453
+re-scoped by the owner in reviewed
+infrastructure code, or handed off.
+
+113
+00:07:12.453 --> 00:07:14.678
+The write path is a separate script.
+
+114
+00:07:14.678 --> 00:07:17.660
+It runs only the plan
+whose hash was approved,
+
+115
+00:07:17.660 --> 00:07:21.127
+for this tenant and cloud,
+no more than seven days old.
+
+116
+00:07:21.127 --> 00:07:23.753
+It re-reads each target before writing.
+
+117
+00:07:23.753 --> 00:07:28.578
+And it runs as a person with Privileged Role
+Administrator, never an unattended app,
+
+118
+00:07:28.578 --> 00:07:32.355
+because, as the Microsoft Graph
+permissions reference cautions,
+
+119
+00:07:32.355 --> 00:07:35.852
+the write permissions can
+grant authorization themselves.
+
+120
+00:07:35.852 --> 00:07:39.320
+The seven-day limit is the
+program's design guidance.
+
+121
+00:07:43.070 --> 00:07:43.795
+Try it.
+
+122
+00:07:43.795 --> 00:07:47.107
+Lab 1 runs in the
+non-person identity folder,
+
+123
+00:07:47.107 --> 00:07:50.420
+in PowerShell 7, against
+a fictional estate.
+
+124
+00:07:50.420 --> 00:07:55.508
+First make Chapter 1's register, as in
+Module 1, because the sweep reads it.
+
+125
+00:07:55.508 --> 00:08:00.583
+Step one runs Learn's review script
+against the stand-ins: ten tests pass.
+
+126
+00:08:00.583 --> 00:08:03.057
+Step two lists what each task needs.
+
+127
+00:08:03.057 --> 00:08:06.321
+The sweep holds three Graph
+read permissions and Reader.
+
+128
+00:08:06.321 --> 00:08:09.059
+The write task is separate,
+and it's the one with
+
+129
+00:08:09.059 --> 00:08:12.158
+app role assignment and
+delegated grant read-write.
+
+130
+00:08:12.158 --> 00:08:16.233
+Step three sweeps eleven service
+principals and twenty grants:
+
+131
+00:08:16.233 --> 00:08:21.232
+twelve application permissions, five
+Azure roles and three delegated grants.
+
+132
+00:08:21.232 --> 00:08:24.667
+Two are skipped, the agent
+identity and its blueprint,
+
+133
+00:08:24.667 --> 00:08:29.195
+which are Module 9's, and three are
+handed to the Privileged Access plan.
+
+134
+00:08:29.195 --> 00:08:34.195
+The owner review has fifteen rows,
+six still open, so it isn't closed.
+
+135
+00:08:34.195 --> 00:08:37.407
+And the plan has eleven
+actions, three of them writes.
+
+136
+00:08:37.407 --> 00:08:38.950
+Nothing is sent.
+
+137
+00:08:42.700 --> 00:08:46.800
+Step four reads the findings by
+rule, and every rule shows up.
+
+138
+00:08:46.800 --> 00:08:50.654
+Oh one twice: the Mail Automation
+app holds the broad directory
+
+139
+00:08:50.654 --> 00:08:54.063
+write permission and mail
+read-write with no exception.
+
+140
+00:08:54.063 --> 00:08:58.624
+Oh two: HR Connector's exception
+for full control of sites has ended.
+
+141
+00:08:58.624 --> 00:09:02.525
+Oh three: Partner CRM
+reads mail for all users.
+
+142
+00:09:02.525 --> 00:09:05.387
+Oh four and oh five
+are the two mail rules.
+
+143
+00:09:05.387 --> 00:09:09.580
+Oh six twice and oh seven: a batch
+machine's managed identity holds
+
+144
+00:09:09.580 --> 00:09:14.238
+Azure roles at the subscription, a
+management group, and a resource group.
+
+145
+00:09:14.238 --> 00:09:17.449
+Oh nine: an app role the
+resource doesn't publish.
+
+146
+00:09:17.449 --> 00:09:20.050
+And oh eight three times, the hand-off.
+
+147
+00:09:20.050 --> 00:09:24.650
+Build Pipeline holds role management
+read-write, so it can grant itself more.
+
+148
+00:09:24.650 --> 00:09:28.313
+Deploy Bot holds a directory
+role and application read-write.
+
+149
+00:09:28.313 --> 00:09:31.400
+And id deploy is Contributor
+on a subscription.
+
+150
+00:09:31.400 --> 00:09:34.600
+All three go to the
+Privileged Access plan whole.
+
+151
+00:09:38.350 --> 00:09:41.625
+Step five reads the open
+rows of the owner review.
+
+152
+00:09:41.625 --> 00:09:42.762
+There are six.
+
+153
+00:09:42.762 --> 00:09:46.405
+One of them shows how the quarter
+works: the batch machine's User
+
+154
+00:09:46.405 --> 00:09:49.976
+dot Read dot All was kept on July
+fifteenth, an earlier quarter.
+
+155
+00:09:49.976 --> 00:09:52.739
+That answer doesn't count
+in the fourth quarter,
+
+156
+00:09:52.739 --> 00:09:55.787
+so the row is open again, and
+the owner has to answer it.
+
+157
+00:09:55.787 --> 00:09:58.688
+Step six reads the plan's eleven actions.
+
+158
+00:09:58.688 --> 00:09:59.612
+Three write.
+
+159
+00:09:59.612 --> 00:10:01.718
+Remove app role for HR Connector,
+
+160
+00:10:01.718 --> 00:10:07.099
+whose full-control site permission can go
+because its replacement, selected sites,
+
+161
+00:10:07.099 --> 00:10:11.700
+is already granted; a removal that
+names a replacement waits until it is.
+
+162
+00:10:11.700 --> 00:10:15.638
+Remove app role for Mail Automation's
+broad directory permission.
+
+163
+00:10:15.638 --> 00:10:19.187
+And narrow grant for Partner
+CRM's delegated grant.
+
+164
+00:10:19.187 --> 00:10:23.343
+The other eight write nothing:
+three handed off, the kept ones,
+
+165
+00:10:23.343 --> 00:10:28.520
+the rows awaiting a decision, and an
+Azure role for its owner to re-scope.
+
+166
+00:10:32.270 --> 00:10:35.470
+Step seven dry-runs the plan
+with its approved hash.
+
+167
+00:10:35.470 --> 00:10:37.333
+It would send three requests.
+
+168
+00:10:37.333 --> 00:10:41.427
+Two are deletes, and look where they
+go: through the service principal
+
+169
+00:10:41.427 --> 00:10:45.307
+ending in one oh, which is Microsoft
+Graph's own service principal.
+
+170
+00:10:45.307 --> 00:10:48.268
+The removal goes through
+the resource, not the app,
+
+171
+00:10:48.268 --> 00:10:52.383
+the way Microsoft Learn's Delete
+app role assigned to reference says.
+
+172
+00:10:52.383 --> 00:10:55.771
+The third is a patch that
+narrows one delegated grant.
+
+173
+00:10:55.771 --> 00:10:59.533
+Step eight applies the plan to
+the fake, and three are sent.
+
+174
+00:10:59.533 --> 00:11:04.457
+Then it tries a hash nobody approved,
+all zeros, and the write path refuses:
+
+175
+00:11:04.457 --> 00:11:09.382
+the plan's hash isn't the approved one,
+so it won't run a plan nobody reviewed.
+
+176
+00:11:09.382 --> 00:11:14.396
+Step nine runs every test: five
+hundred thirteen pass, none fail.
+
+177
+00:11:14.396 --> 00:11:16.232
+Then delete the output folder.
+
+178
+00:11:16.232 --> 00:11:20.330
+The owner review names owners,
+so don't leave it lying around.
+
+179
+00:11:24.080 --> 00:11:27.605
+Lab 2 makes one real removal
+in your own test tenant.
+
+180
+00:11:27.605 --> 00:11:32.392
+You need a test tenant in the worldwide
+or G C C cloud and a test subscription,
+
+181
+00:11:32.392 --> 00:11:35.403
+never production, with
+a test app registration
+
+182
+00:11:35.403 --> 00:11:38.105
+and a test user-assigned managed identity.
+
+183
+00:11:38.105 --> 00:11:41.408
+A reading app holds the three
+read permissions and Reader,
+
+184
+00:11:41.408 --> 00:11:45.055
+and a person with Privileged Role
+Administrator does the write.
+
+185
+00:11:45.055 --> 00:11:49.181
+Grant the test app the broad
+directory write permission on purpose,
+
+186
+00:11:49.181 --> 00:11:52.055
+sweep it, and record the
+owner's remove decision.
+
+187
+00:11:52.055 --> 00:11:54.593
+A second person approves the plan's hash.
+
+188
+00:11:54.593 --> 00:11:57.648
+Then dry-run it and apply
+it, and confirm on the next
+
+189
+00:11:57.648 --> 00:12:00.555
+sweep and in the audit log
+that the grant is gone.
+
+190
+00:12:00.555 --> 00:12:05.535
+To back it out, step six grants the removed
+permissions again with Learn's grant
+
+191
+00:12:05.535 --> 00:12:08.217
+request, removes the
+test identity's roles,
+
+192
+00:12:08.217 --> 00:12:11.205
+and deletes the identity,
+the app and the output.
+
+193
+00:12:11.205 --> 00:12:13.720
+The authors haven't run Lab 2.
+
+194
+00:12:17.470 --> 00:12:18.857
+The federal requirement.
+
+195
+00:12:18.857 --> 00:12:24.305
+Gate 4 meets NIST special publication
+eight hundred fifty-three A C six,
+
+196
+00:12:24.305 --> 00:12:26.983
+A C six enhancement five, and I A nine.
+
+197
+00:12:26.983 --> 00:12:30.382
+The module's table maps each
+control to its evidence.
+
+198
+00:12:30.382 --> 00:12:33.671
+For least privilege, it's
+the sweep and the findings.
+
+199
+00:12:33.671 --> 00:12:36.395
+For privileged accounts,
+the hand-off file.
+
+200
+00:12:36.395 --> 00:12:40.245
+For review of privileges, the
+owner review and its status.
+
+201
+00:12:40.245 --> 00:12:43.000
+For change control, the plan and its hash,
+
+202
+00:12:43.000 --> 00:12:47.008
+and the results and manifest
+from the dry run and the apply.
+
+203
+00:12:47.008 --> 00:12:51.395
+For separation of duties, the plan's
+hash approved by a second person.
+
+204
+00:12:51.395 --> 00:12:55.432
+And for the run's integrity, the
+manifest in each output folder.
+
+205
+00:12:55.432 --> 00:13:00.071
+K S I's are FedRAMP twenty X indicators
+for cloud service providers.
+
+206
+00:13:00.071 --> 00:13:03.755
+The agency lines its evidence
+up with what its providers
+
+207
+00:13:03.755 --> 00:13:06.970
+report against them; it
+doesn't report K S I's itself.
+
+208
+00:13:06.970 --> 00:13:10.570
+Which file supports which
+indicator is the program's mapping.
+
+209
+00:13:14.320 --> 00:13:16.295
+Check yourself with two questions.
+
+210
+00:13:16.295 --> 00:13:20.707
+First: Deploy Bot holds application
+read-write and a directory role.
+
+211
+00:13:20.707 --> 00:13:22.270
+What does the sweep do with it?
+
+212
+00:13:22.270 --> 00:13:23.495
+The answer is b.
+
+213
+00:13:23.495 --> 00:13:26.753
+It hands it whole to the
+Privileged Access plan,
+
+214
+00:13:26.753 --> 00:13:30.345
+as N P L P oh eight, and leaves
+it out of the owner review.
+
+215
+00:13:30.345 --> 00:13:35.332
+A directory role or an escalation permission
+is enough to hand an identity off.
+
+216
+00:13:35.332 --> 00:13:38.794
+Second: who sends the plan's
+writes in a live run?
+
+217
+00:13:38.794 --> 00:13:40.371
+The answer is b: a person,
+
+218
+00:13:40.371 --> 00:13:45.183
+signed in with Privileged Role
+Administrator, in a delegated session.
+
+219
+00:13:45.183 --> 00:13:49.584
+The Microsoft Graph permissions reference
+cautions that the write permissions can
+
+220
+00:13:49.584 --> 00:13:51.320
+grant authorization themselves,
+
+221
+00:13:51.320 --> 00:13:54.233
+so they're never an unattended
+app's standing permission.
+
+222
+00:13:54.233 --> 00:13:56.659
+The module page has three more questions,
+
+223
+00:13:56.659 --> 00:13:59.520
+each linked to the
+section that answers it.
+
+224
+00:14:03.270 --> 00:14:04.095
+To sum up.
+
+225
+00:14:04.095 --> 00:14:07.274
+You swept eleven service
+principals and twenty grants,
+
+226
+00:14:07.274 --> 00:14:10.108
+found the broad grants
+with no current exception,
+
+227
+00:14:10.108 --> 00:14:14.670
+and handed three privileged service
+principals to the Privileged Access plan.
+
+228
+00:14:14.670 --> 00:14:19.269
+You read the open rows of the quarter's
+owner review, applied three approved
+
+229
+00:14:19.269 --> 00:14:23.645
+changes to the fake, and saw the write
+path refuse a plan nobody reviewed.
+
+230
+00:14:23.645 --> 00:14:29.062
+The evidence an ISSO keeps for Gate 4 from
+this module is the sweep, the findings,
+
+231
+00:14:29.062 --> 00:14:34.228
+the hand-off, the owner review and its
+status, the plan with its approved hash,
+
+232
+00:14:34.228 --> 00:14:37.895
+and the apply folder's results
+and manifest, all dated.
+
+233
+00:14:37.895 --> 00:14:40.970
+Before you ship, work through
+the chapter's checklist.
+
+234
+00:14:40.970 --> 00:14:45.642
+Next is Module 6: Conditional
+Access for workload identities,
+
+235
+00:14:45.642 --> 00:14:47.450
+the other half of Gate 4.

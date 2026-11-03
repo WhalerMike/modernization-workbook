@@ -50,6 +50,7 @@ The program's rules for this chapter *(Design guidance)*:
 
 - **Every Kerberos account has a reviewed disposition:** `Convert` (to a gMSA or a dMSA), `Island` (it stays, with an SPN owner and an end date), `WorkloadIdentity` (Chapter 05 moves it) or `Retire`, in `kerberos-dispositions.csv`, kept with the application records. A Kerberos account here is an enabled traditional account with an SPN, an MSA, a gMSA or a dMSA from Chapter 01's register. SQL Server's go to the Data Platform plan.
 - **Who may retrieve a managed password is reviewed data**, in `password-retrievers.json`, not whatever AD holds today.
+- **A dMSA migration runs for 30 days before it completes.** That is the program's parallel run for every conversion, and it covers four 7-day ticket lifetimes, the wait Learn recommends before completing (at least two).[^np06-dmsa-overview]
 - **Every account that stays on Kerberos has an SPN owner and an end date no later than D08's;** every gMSA and dMSA ends no later than G5 if D11 retires AD, or than the island's end of life if D11 keeps one.
 - **Never delete.** The old account is disabled at most, by `Complete-ADServiceAccountMigration` for a dMSA or by `Disable-ADAccount` after a clean 30-day parallel run on a gMSA ([Book 02, Chapter 10, Phase 4](../../../books/b02-identity/10-migrating-and-governing.md#phase-4-service-account-modernization)); retirement goes through the plan's reviewed decommission process.
 
@@ -80,7 +81,7 @@ Each row is pinned by a test: in `tests/KerberosIslandSamples.Tests.ps1` for the
 | Offers `Add-KdsRootKey` backdated 10 hours, which the KDS page reserves for a test environment with one domain controller[^np06-kds] | A production root key used before it replicates fails gMSA password retrieval | The code never creates a root key; it waits until a key has been usable for 10 hours (NPI-KRB-01) |
 | Sets `msDS-DelegatedMSAState` with `Set-ADServiceAccount -Properties`, a parameter the cmdlet doesn't have[^np06-set-adsa] | Fails as published | The migration path doesn't set state 3; `Start-` and `Complete-ADServiceAccountMigration` set 1 and 2 (research gaps, row 51) |
 | Names the account `ServiceAccountName`, `DMSA Name` and `dMSAsnmp` in successive steps, and grants retrieval to one machine typed by hand | Placeholders that differ step to step invite a wrong account | Names from the reviewed dispositions; retrievers from `password-retrievers.json` (NPI-KRB-03) |
-| Has no wait between start and complete; the overview says at least two ticket lifetimes (14 days), four (28 days) recommended[^np06-dmsa-overview] | Completing early loses hosts the dMSA hasn't learned yet | `CompleteDmsaMigration` only 28 days after `MigrationStartedOn` (research gaps, row 54) |
+| Has no wait between start and complete; the overview says at least two ticket lifetimes (14 days), four (28 days) recommended[^np06-dmsa-overview] | Completing early loses hosts the dMSA hasn't learned yet | `CompleteDmsaMigration` only 30 days after `MigrationStartedOn`: the program's 30-day parallel run, which covers four 7-day ticket lifetimes (research gaps, row 54) |
 | Doesn't check the overview's limits: no MSA or gMSA to dMSA; unconstrained delegation stops working; every machine using the account must support dMSA[^np06-dmsa-overview]; one dMSA per service account and at least one Windows Server 2025 domain controller[^np06-dmsa-faq] | A migration that disables the old account on a host that can't use the new one breaks the service | Each limit is checked before a dMSA is planned (NPI-KRB-04) |
 | Restarts every running service on the host to pick up the dMSA | A restart of unrelated services | Host steps are the server owner's, recorded, never run by this code (research gaps, row 57) |
 | Warns never to delete the original account,[^np06-dmsa-setup] while the Entra page's move to a gMSA ends by deleting it[^np06-entra-gmsa] | The pages disagree; a deleted account can't be reverted to | Never delete, the stricter: no delete, uninstall, undo or reset call exists; the old gMSA source is disabled after a 30-day parallel run (research gaps, rows 55 and 56) |
@@ -127,8 +128,8 @@ Every finding has a stable ID, `<rule>:<account>`. The plan turns each account i
 | `DisableSuperseded` | 30 days after `HostChangedOn`, the old account still enabled: `Disable-ADAccount -Identity <objectGUID>` | Yes, after review |
 | `CreateDmsa` | `Convert` to a dMSA that passes every limit, and doesn't exist: `New-ADServiceAccount -CreateDelegatedServiceAccount -KerberosEncryptionType AES256` | Yes, after review |
 | `StartDmsaMigration` | The dMSA exists with `msDS-DelegatedMSAState` 0: `Start-ADServiceAccountMigration -Identity <dMSA> -SupersededAccount <DN>` | Yes, after review |
-| `AwaitMigrationWindow` | In migration, less than 28 days since `MigrationStartedOn`, or no date recorded | No |
-| `CompleteDmsaMigration` | State 1 and 28 days passed: `Complete-ADServiceAccountMigration`, which disables the old account and moves its SPNs to the dMSA[^np06-dmsa-overview] | Yes, after review |
+| `AwaitMigrationWindow` | In migration, less than 30 days since `MigrationStartedOn`, or no date recorded | No |
+| `CompleteDmsaMigration` | State 1 and 30 days passed: `Complete-ADServiceAccountMigration`, which disables the old account and moves its SPNs to the dMSA[^np06-dmsa-overview] | Yes, after review |
 | `SetRetrievers` | A gMSA or dMSA whose retrievers differ from the reviewed list: `Set-ADServiceAccount -Identity -PrincipalsAllowedToRetrieveManagedPassword` | Yes, after review |
 | `Island`, `MovesToWorkloadIdentity`, `RetireThroughDecommission`, `MigrationComplete`, `Superseded`, `HandedOff`, `Blocked`, `AwaitDisposition` | Recorded, with the reason | No |
 
@@ -279,7 +280,7 @@ It prints the three lines of Chapter 01's step 3, ending `Written to out/invento
    Plan: 9 actions, 4 of them writes (1 CompleteDmsaMigration, 2 CreateGmsa, 1 SetRetrievers); nothing sent
    Island list: 5 accounts, 3 ready for P4.6; hand-off ready: False
    Reconciliation (D11 KerberosIsland): 1 HandedOff, 1 MovesToWorkloadIdentity, 3 OnIslandList, 1 Unreconciled
-   Plan SHA-256: 5e1f7c33491948026603746e933fafed0572fb77532ff1477ad452397c353746
+   Plan SHA-256: 112f85a99407b2b256f7c520bf99245def7dcc8b2336726e4512e94b1624d94a
    ```
 
    <!-- capture:begin 06-4 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
@@ -412,7 +413,7 @@ It prints the three lines of Chapter 01's step 3, ending `Written to out/invento
 
    <!-- capture:end -->
 
-   `Apply: 4 Sent`; `results.json` tells the operator what comes next (install each gMSA on its hosts and record `HostChangedOn`; the old `svc-hrsync` is disabled and kept). Then the refusal: `The plan's SHA-256 is 5e1f7c33…, not the approved 0000…; refusing to run a plan nobody reviewed.`
+   `Apply: 4 Sent`; `results.json` tells the operator what comes next (install each gMSA on its hosts and record `HostChangedOn`; the old `svc-hrsync` is disabled and kept). Then the refusal: `The plan's SHA-256 is 112f85a9…, not the approved 0000…; refusing to run a plan nobody reviewed.`
 
 9. **Run the tests:**
 
@@ -572,7 +573,7 @@ Remove-Item -Recurse -Force out/kerberos-test*
    Get-ADServiceAccount -Identity <new-dmsa> -Properties msDS-DelegatedMSAState -Server <test-dc> | Select-Object Name, msDS-DelegatedMSAState
    ```
 
-6. **Complete, or back out.** After 28 days the check plans `CompleteDmsaMigration`; apply it and confirm the old account is disabled and its SPNs are on the dMSA. To back out instead, run Learn's `Undo-ADServiceAccountMigration` by hand (this code never runs it),[^np06-dmsa-setup] re-enable the test account, then remove the test dMSA, gMSA, MSA and account by hand in the test domain, and delete the `out` folders. To complete, plan:
+6. **Complete, or back out.** After 30 days the check plans `CompleteDmsaMigration`; apply it and confirm the old account is disabled and its SPNs are on the dMSA. To back out instead, run Learn's `Undo-ADServiceAccountMigration` by hand (this code never runs it),[^np06-dmsa-setup] re-enable the test account, then remove the test dMSA, gMSA, MSA and account by hand in the test domain, and delete the `out` folders. To complete, plan:
 
    ```powershell
    ./Invoke-NpiKerberosIsland.ps1 -Cloud gcc -RegisterRun out/inventory-test -InputPath <inputs> -Server <test-dc> -OutputPath out/kerberos-test-complete
@@ -640,7 +641,7 @@ The Kerberos accounts are the on-premises part of the guide's [G5 Conversion](..
 | The approved creations, migrations and disables were run after fresh prechecks, and recorded; no cmdlet that removes or undoes was run (Lab 1, step 8, and Lab 2, steps 4 and 5: `results.json` and `manifest.json` in the apply folder) | CM-3; AC-2(3) Disable Accounts | KSI-CMT-LMC; KSI-IAM-AAM | The ISSO, with the run's folder |
 | Every run records the tenant, the domain, every AD read, and the SHA-256 of the register, of each input and of each file (`manifest.json` in each output folder) | AU-9 Protection of Audit Information; SI-7 Software, Firmware, and Information Integrity | KSI-MLA-OSM (AU-9); KSI-SVC-VRI (SI-7) | The ISSO |
 | The code passes its tests (Lab 1, step 9: `Invoke-Pester -Path tests`, 513 passed) | CM-3(2) Testing, Validation, and Documentation of Changes | KSI-CMT-VTD | The repository; the pull request's checks |
-| The migration started on the recorded date, and after 28 days completed: the old account disabled, its SPNs on the dMSA (Lab 2, steps 5 and 6: `MigrationStartedOn` in `kerberos-dispositions.csv`; `CompleteDmsaMigration` in the plan; `Get-ADUser` and `Get-ADServiceAccount` after the apply) | AC-2(3); IA-5 | KSI-IAM-AAM; KSI-IAM-SNU | Server owners; AD engineering |
+| The migration started on the recorded date, and after 30 days completed: the old account disabled, its SPNs on the dMSA (Lab 2, steps 5 and 6: `MigrationStartedOn` in `kerberos-dispositions.csv`; `CompleteDmsaMigration` in the plan; `Get-ADUser` and `Get-ADServiceAccount` after the apply) | AC-2(3); IA-5 | KSI-IAM-AAM; KSI-IAM-SNU | Server owners; AD engineering |
 | A back-out is a person's step, outside this code (Lab 2, step 6: Learn's `Undo-ADServiceAccountMigration`, run by hand) | CM-3 | KSI-CMT-LMC | AD engineering |
 
 KSIs are FedRAMP 20x indicators for cloud service providers. The KSI column names the indicators whose related controls, as FedRAMP lists them, include the row's control or one of its enhancements; which output supports which indicator is the program's mapping (design guidance).[^np06-ksi] The agency authorizes its own system and lines this evidence up with what its providers report against KSIs; it doesn't report KSIs itself ([Book 00, Appendix B](../../../books/b00-orientation/appendix-b-engagement-archetype.md)). Lab steps that only make test accounts, run Chapter 01 or delete `out` have no row. The track-wide mapping is the guide's [Evidence](../../../books/guides/non-person-identity-implementation.md#evidence) table.
@@ -650,7 +651,7 @@ KSIs are FedRAMP 20x indicators for cloud service providers. The KSI column name
 | Danger | What happens | The guard |
 |---|---|---|
 | A gMSA left behind at G5 | The workload loses its credential when the last domain controller is demoted | Every gMSA and dMSA reconciled with D11 and G5 (NPI-KRB-07); the run repeated when D11 changes |
-| A dMSA migration completed too early, or on a host that can't use it | The old account is disabled; the service fails on hosts the dMSA hasn't learned | Complete only 28 days after the start; Windows Server 2025 on every host and one domain controller; no unconstrained delegation (NPI-KRB-04) |
+| A dMSA migration completed too early, or on a host that can't use it | The old account is disabled; the service fails on hosts the dMSA hasn't learned | Complete only 30 days after the start; Windows Server 2025 on every host and one domain controller; no unconstrained delegation (NPI-KRB-04) |
 | The old account deleted | No way back; the service and the dMSA link to it | No delete, uninstall, undo or reset call exists; the writer refuses them by name |
 | A root key used before it replicates | gMSA password retrieval fails on other domain controllers | Creations wait until a key has been usable for 10 hours (NPI-KRB-01); the code never creates a key |
 | The root key read as a secret | Whoever runs the check holds the input to every gMSA password | Only `msKds-UseStartTime` and `msKds-CreateTime` are read, with a delegated read |
@@ -665,7 +666,7 @@ KSIs are FedRAMP 20x indicators for cloud service providers. The KSI column name
 - [ ] Every Kerberos account in the register has a reviewed disposition, or a finding with an owner of the fix.
 - [ ] The KDS root key check ran with a delegated read of the start time only, not as a Domain Admin.
 - [ ] Every gMSA's and dMSA's retrievers match `password-retrievers.json`.
-- [ ] No dMSA was planned for an MSA, an account with unconstrained delegation, or a host without Windows Server 2025, and none was completed before 28 days.
+- [ ] No dMSA was planned for an MSA, an account with unconstrained delegation, or a host without Windows Server 2025, and none was completed before 30 days.
 - [ ] Every plan's SHA-256 was approved by someone other than the person who applied it, and the write path's manifest is filed with the change record.
 - [ ] No old account was deleted; each superseded one is disabled and has a retirement decision.
 - [ ] Every account on the island list has an SPN owner and an end date within D08, and the list went to the program's SPN retirement (P4.6) only when `islandHandoffReady` was true.

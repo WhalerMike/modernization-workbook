@@ -1,0 +1,61 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.813
+Then the findings, leaving
+out the two warnings.
+
+2
+00:00:02.813 --> 00:00:07.739
+Three A Z oh one findings: standing User
+Access Administrator at the root management
+
+3
+00:00:07.739 --> 00:00:10.766
+group, standing Owner on
+the workload subscription,
+
+4
+00:00:10.766 --> 00:00:14.074
+and standing Contributor on
+the payroll resource group.
+
+5
+00:00:14.074 --> 00:00:17.330
+One oh one is Info: a
+Contributor on the control-plane
+
+6
+00:00:17.330 --> 00:00:20.887
+subscription that's on the
+exceptions list with an owner.
+
+7
+00:00:20.887 --> 00:00:26.014
+A Z oh five is the automation service
+principal's own User Access Administrator:
+
+8
+00:00:26.014 --> 00:00:30.287
+the apply needs it to finish, so
+decide it last, from another session.
+
+9
+00:00:30.287 --> 00:00:35.688
+A Z oh three is User Access Administrator
+at root scope, elevated access.
+
+10
+00:00:35.688 --> 00:00:38.836
+A Z oh two is a pipeline's
+standing Contributor,
+
+11
+00:00:38.836 --> 00:00:42.813
+which can't be made eligible, so
+it's reported and left alone.
+
+12
+00:00:42.813 --> 00:00:47.400
+And A Z oh six: more than three
+Owners on the workload subscription.

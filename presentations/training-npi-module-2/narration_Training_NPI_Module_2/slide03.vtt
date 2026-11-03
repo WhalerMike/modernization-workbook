@@ -1,0 +1,66 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.888
+Here's what you'll be able to
+do by the end of this module,
+
+2
+00:00:02.888 --> 00:00:05.275
+which takes about sixty
+minutes with the lab.
+
+3
+00:00:05.275 --> 00:00:07.650
+You'll state the program's ownership rule,
+
+4
+00:00:07.650 --> 00:00:10.025
+and which owners the code counts as valid.
+
+5
+00:00:10.025 --> 00:00:12.325
+You'll explain D N 2, the orphan rule,
+
+6
+00:00:12.325 --> 00:00:16.762
+and how it differs from the program's
+own policy for orphaned apps.
+
+7
+00:00:16.762 --> 00:00:20.900
+You'll run the ownership check and
+read its findings and its orphan plan.
+
+8
+00:00:20.900 --> 00:00:25.240
+And you'll show that the write path
+only dry-runs without the Apply switch,
+
+9
+00:00:25.240 --> 00:00:27.988
+and refuses a plan whose
+hash nobody approved.
+
+10
+00:00:27.988 --> 00:00:33.613
+Before you start, finish Module 1, because
+this module checks Module 1's register.
+
+11
+00:00:33.613 --> 00:00:36.906
+And read the guide's record
+each identity joins to,
+
+12
+00:00:36.906 --> 00:00:39.075
+for the owner and sponsor fields.
+
+13
+00:00:39.075 --> 00:00:45.175
+Lab 1 needs PowerShell 7.1 or later with
+Pester 5, and a clone of the repository.
+
+14
+00:00:45.175 --> 00:00:46.150
+No tenant.

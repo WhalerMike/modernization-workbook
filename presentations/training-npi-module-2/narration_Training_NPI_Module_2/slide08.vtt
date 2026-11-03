@@ -1,0 +1,80 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.085
+The check's orphan candidates and
+the owners' claims become a plan,
+
+2
+00:00:04.085 --> 00:00:06.925
+one action each, and
+nothing in the plan writes.
+
+3
+00:00:06.925 --> 00:00:10.988
+Only two kinds of action can
+write, after review: Disable,
+
+4
+00:00:10.988 --> 00:00:14.875
+and AddOwner, for a claim
+that names an enabled member.
+
+5
+00:00:14.875 --> 00:00:19.032
+The rest only record: waiting
+for the officer's confirmation,
+
+6
+00:00:19.032 --> 00:00:23.687
+a claim window still open, a retirement
+candidate, a refused nominee.
+
+7
+00:00:23.687 --> 00:00:29.163
+The same inputs give the same plan, byte
+for byte, so a reviewer approves a hash.
+
+8
+00:00:29.163 --> 00:00:34.213
+Then a separate script, the only code in
+the example that can write, runs the plan.
+
+9
+00:00:34.213 --> 00:00:38.950
+It refuses unless the plan's hash is
+the approved one, the plan is for this
+
+10
+00:00:38.950 --> 00:00:43.849
+tenant and cloud and no more than seven
+days old, and each write is declared.
+
+11
+00:00:43.849 --> 00:00:47.611
+The only PATCH body it allows
+sets account enabled to false,
+
+12
+00:00:47.611 --> 00:00:49.300
+and it never sends a delete.
+
+13
+00:00:49.300 --> 00:00:52.144
+And a live run is a person's
+session, never an app's,
+
+14
+00:00:52.144 --> 00:00:56.883
+because Microsoft Learn's Graph
+permissions reference warns that this write
+
+15
+00:00:56.883 --> 00:00:59.727
+permission can let an app
+act as other entities,
+
+16
+00:00:59.727 --> 00:01:03.360
+and the program's rule is that
+disabling is never automatic.

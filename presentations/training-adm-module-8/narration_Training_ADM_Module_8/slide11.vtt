@@ -1,0 +1,66 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.975
+Step eight breaks it on purpose.
+
+2
+00:00:01.975 --> 00:00:06.025
+Append one line to the packaged
+drift summary, and verify again.
+
+3
+00:00:06.025 --> 00:00:10.675
+It fails, with exit code one: the
+summary doesn't match its hash.
+
+4
+00:00:10.675 --> 00:00:12.912
+An edit after packaging can't hide.
+
+5
+00:00:12.912 --> 00:00:15.558
+Then swap the runs, and
+compare the twenty-ninth
+
+6
+00:00:15.558 --> 00:00:18.137
+as previous with the
+twenty-eighth as current.
+
+7
+00:00:18.137 --> 00:00:22.337
+That's refused too: the current run
+isn't later than the previous one.
+
+8
+00:00:22.337 --> 00:00:25.337
+Runs out of order can't make
+a finding look resolved.
+
+9
+00:00:25.337 --> 00:00:29.112
+Step nine runs the tests:
+one hundred forty-two pass.
+
+10
+00:00:29.112 --> 00:00:30.688
+They take about two minutes.
+
+11
+00:00:30.688 --> 00:00:32.163
+Step ten cleans up.
+
+12
+00:00:32.163 --> 00:00:36.940
+Check your work: given two runs, you
+can say what's new, resolved, changed or
+
+13
+00:00:36.940 --> 00:00:39.045
+unverified, and given a package,
+
+14
+00:00:39.045 --> 00:00:42.740
+you can show it's unedited
+and chained to the day before.

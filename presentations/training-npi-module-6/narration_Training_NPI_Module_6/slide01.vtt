@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.914
+Welcome to Module 6 of the
+Non-Person Identity learning path:
+
+2
+00:00:03.914 --> 00:00:06.850
+Conditional Access for
+workload identities.
+
+3
+00:00:06.850 --> 00:00:10.199
+This module is the Conditional
+Access half of Gate 4,
+
+4
+00:00:10.199 --> 00:00:13.938
+Least privilege, with Chapter
+8 of the developer workbook.
+
+5
+00:00:13.938 --> 00:00:18.469
+You'll hold the program's two
+workload policies as reviewed files,
+
+6
+00:00:18.469 --> 00:00:20.651
+scoped by object I D, ring by ring.
+
+7
+00:00:20.651 --> 00:00:22.708
+You'll check them before they merge,
+
+8
+00:00:22.708 --> 00:00:26.825
+plan them against a fictional tenant,
+and create every one report-only.
+
+9
+00:00:26.825 --> 00:00:29.512
+Then you'll read the
+service principal sign-ins,
+
+10
+00:00:29.512 --> 00:00:32.889
+and see a ring enforced only
+when a person has reviewed them,
+
+11
+00:00:32.889 --> 00:00:37.575
+the security chief has recorded the decision,
+and the change explicitly allows it.
+
+12
+00:00:37.575 --> 00:00:40.812
+The code runs on your laptop
+against a fictional tenant.
+
+13
+00:00:40.812 --> 00:00:45.890
+It's illustrative: tested against
+fixtures, not run against a live tenant.

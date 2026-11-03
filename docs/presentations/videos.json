@@ -7254,63 +7254,63 @@
     "What a Federal DDI Platform Must Do"
    ],
    [
-    46,
+    48,
     "DNS, DHCP and IPAM now form a control plane"
    ],
    [
-    97,
+    99,
     "No rule names a vendor; the rules name capabilities"
    ],
    [
-    154,
+    155,
     "Authoritative DNS across clouds, with DNSSEC kept central"
    ],
    [
-    208,
+    210,
     "DNS security: agency policy first, Protective DNS upstream"
    ],
    [
-    257,
+    259,
     "IPAM as the address authority, DHCP that stays up"
    ],
    [
-    307,
+    310,
     "Automation and logging: every change and query on record"
    ],
    [
-    356,
+    360,
     "Before you buy: check the evidence, not the brochure"
    ],
    [
-    417,
+    421,
     "Product evidence status, as of October 22, 2026"
    ],
    [
-    469,
+    473,
     "Divisions get a fenced scope; everything else is denied"
    ],
    [
-    520,
+    525,
     "Overlapping space, views and tags keep divisions apart"
    ],
    [
-    569,
+    575,
     "Approvals work only if nothing goes around them"
    ],
    [
-    619,
+    624,
     "Four delegation patterns, four sets of trade-offs"
    ],
    [
-    666,
+    672,
     "Worked example: four divisions, one governed platform"
    ],
    [
-    715,
+    720,
     "Who decides, under Book 08's responsibility matrix"
    ],
    [
-    764,
+    771,
     "Decisions to make, and the next steps"
    ]
   ]
@@ -7340,79 +7340,79 @@
     "Book 09's SD-WAN Design on Cisco Catalyst SD-WAN"
    ],
    [
-    51,
+    53,
     "Why this guide starts with a directive"
    ],
    [
-    98,
+    104,
     "ED 26-03: what it required, and when"
    ],
    [
-    149,
+    155,
     "Nine exploited flaws: a standing posture"
    ],
    [
-    197,
+    204,
     "The fixed-release floor, train by train"
    ],
    [
-    246,
+    252,
     "Hunt and harden: CISA's companion guidance"
    ],
    [
-    297,
+    303,
     "Hosted or on-premises, and why the gate stays"
    ],
    [
-    350,
+    356,
     "The 12-hub fabric on Catalyst SD-WAN"
    ],
    [
-    399,
+    406,
     "Path classes and lane discipline"
    ],
    [
-    453,
+    461,
     "Segmentation and network access control"
    ],
    [
-    507,
+    515,
     "Certificates and onboarding from the agency PKI"
    ],
    [
-    558,
+    566,
     "FIPS and Common Criteria: controllers vs edges"
    ],
    [
-    611,
+    619,
     "TIC 3.0 patterns on Catalyst"
    ],
    [
-    664,
+    675,
     "Secure Access, Global Secure Access and GCC"
    ],
    [
-    718,
+    729,
     "Evidence and telemetry the fabric emits"
    ],
    [
-    766,
+    778,
     "The phased build, mapped to Book 09's gates"
    ],
    [
-    816,
+    827,
     "Where this changes Book 09's planning"
    ],
    [
-    868,
+    883,
     "Risks and vendor asks"
    ],
    [
-    916,
+    932,
     "The example collector: read-only, illustrative"
    ],
    [
-    965,
+    980,
     "What to verify, decide, and read next"
    ]
   ]
@@ -7440,7 +7440,7 @@
     "What this guide implements: Book 07's issuer map"
    ],
    [
-    90,
+    91,
     "Prerequisites and decisions before you build"
    ],
    [
@@ -7456,7 +7456,7 @@
     "The web tier: consoles, API and sign-in"
    ],
    [
-    248,
+    249,
     "The back end: engines, log servers and message bus"
    ],
    [
@@ -7464,11 +7464,11 @@
     "Components: switched on server by server"
    ],
    [
-    328,
+    329,
     "Drivers, agents, the database and the keys"
    ],
    [
-    370,
+    371,
     "What the platform connects to"
    ],
    [
@@ -7484,7 +7484,7 @@
     "Part 1: Build the platform"
    ],
    [
-    507,
+    508,
     "Architecture: cluster, components and availability"
    ],
    [
@@ -7512,39 +7512,39 @@
     "The AD CS driver: permissions, templates, versions"
    ],
    [
-    746,
+    747,
     "Scoping the CLM's CA account under ESC7"
    ],
    [
-    782,
+    783,
     "Public and cloud CA drivers in 26.1"
    ],
    [
-    818,
+    819,
     "Intune coexistence: who owns device certificates"
    ],
    [
-    854,
+    855,
     "Part 3: Discover, own and automate"
    ],
    [
-    868,
+    869,
     "Discovery scans and CA import"
    ],
    [
-    901,
+    902,
     "Ownership: policy folders, owners and the CMDB"
    ],
    [
-    938,
+    939,
     "Enrollment automation: ACME, EST, SCEP, REST, agents"
    ],
    [
-    973,
+    974,
     "Kubernetes, ServiceNow and SIEM inside the boundary"
    ],
    [
-    1008,
+    1009,
     "Part 4: Migrate and operate"
    ],
    [
@@ -7552,19 +7552,19 @@
     "Build sequence mapped to Book 07's six waves"
    ],
    [
-    1061,
+    1063,
     "Renewal as public TLS lifetimes shrink"
    ],
    [
-    1095,
+    1096,
     "Monitoring and drift on the CLM platform"
    ],
    [
-    1126,
+    1127,
     "Decommissioning AD CS with the CLM inventory"
    ],
    [
-    1161,
+    1162,
     "Decisions, vendor asks and next steps"
    ]
   ]
@@ -7676,7 +7676,7 @@
     "Why cloud DNS belongs to one policy plane"
    ],
    [
-    103,
+    104,
     "The answer in brief: native resolvers as the bridge"
    ],
    [
@@ -7684,7 +7684,7 @@
     "AWS: what the Route 53 VPC Resolver answers"
    ],
    [
-    228,
+    229,
     "AWS: inbound and outbound endpoints"
    ],
    [
@@ -7692,7 +7692,7 @@
     "AWS: rules, sharing, Profiles and private zones"
    ],
    [
-    348,
+    349,
     "AWS: DNS Firewall, query logging and DNSSEC"
    ],
    [
@@ -7704,35 +7704,35 @@
     "Azure: the DNS Private Resolver"
    ],
    [
-    529,
+    531,
     "Azure: DNS resolver policy, logging and DNSSEC"
    ],
    [
-    591,
+    593,
     "Oracle Cloud: how the VCN resolver answers"
    ],
    [
-    652,
+    653,
     "Oracle Cloud: endpoints, rules and what's missing"
    ],
    [
-    714,
+    716,
     "Who authorizes it: AWS and Azure FedRAMP scope"
    ],
    [
-    774,
+    776,
     "Who authorizes it: Oracle US Government Cloud"
    ],
    [
-    840,
+    842,
     "How the three resolvers meet on-premises DNS"
    ],
    [
-    901,
+    902,
     "How Protective DNS, policy and logs reach each cloud"
    ],
    [
-    970,
+    974,
     "What to confirm, and what Part 2 covers"
    ]
   ]
@@ -7756,67 +7756,67 @@
     "Cloud DNS, Part 2: BIND and the Federal Fit"
    ],
    [
-    49,
+    50,
     "BIND in AWS: aligned, or a new silo?"
    ],
    [
-    97,
+    99,
     "When to run your own DNS servers in a cloud"
    ],
    [
-    153,
+    155,
     "vNIOS or BIND, and which BIND to run"
    ],
    [
-    210,
+    213,
     "Three roles, kept apart"
    ],
    [
-    256,
+    259,
     "Placement and high availability in each cloud"
    ],
    [
-    316,
+    320,
     "Forwarding to and from the native resolver"
    ],
    [
-    374,
+    377,
     "An illustrative forwarder configuration"
    ],
    [
-    440,
+    443,
     "DNSSEC validation and signing in the cloud"
    ],
    [
-    501,
+    505,
     "Response policy zones and CISA Protective DNS"
    ],
    [
-    565,
+    569,
     "Query and response logging into the SOC"
    ],
    [
-    629,
+    633,
     "Patching, settings and hardening baselines"
    ],
    [
-    692,
+    696,
     "Who owns the configuration: Git and Ansible"
    ],
    [
-    747,
+    752,
     "The alignment checklist: seven questions"
    ],
    [
-    818,
+    822,
     "Federal mapping: configuration and inventory"
    ],
    [
-    886,
+    894,
     "Federal mapping: resolution, logging and Protective DNS"
    ],
    [
-    962,
+    971,
     "Where Infoblox fits, and what to confirm"
    ]
   ]
@@ -7904,115 +7904,115 @@
     "Implementing Book 08 on Infoblox NIOS"
    ],
    [
-    50,
+    52,
     "What this guide implements: Book 08 on a Grid"
    ],
    [
-    99,
+    113,
     "Phase 0: decide these before you build anything"
    ],
    [
-    150,
+    164,
     "Part 1: Build the Grid"
    ],
    [
-    167,
+    180,
     "The Grid Master: an HA pair, built in order"
    ],
    [
-    210,
+    224,
     "The candidate, joining members, and Grid ports"
    ],
    [
-    251,
+    265,
     "Time first, then licenses: two quiet failure modes"
    ],
    [
-    301,
+    315,
     "vNIOS on VMware, Azure and AWS"
    ],
    [
-    352,
+    366,
     "Part 2: Migrate from Microsoft"
    ],
    [
-    371,
+    385,
     "Method A: manage the Windows servers, then take over"
    ],
    [
-    420,
+    433,
     "Method B: import zones by transfer; bulk data by CSV"
    ],
    [
-    467,
+    480,
     "AD zones and Kerberos-signed updates: use AES"
    ],
    [
-    521,
+    535,
     "DHCP takeover: change assignments, never remove first"
    ],
    [
-    568,
+    582,
     "DHCP failover and DHCPv6 on NIOS"
    ],
    [
-    617,
+    632,
     "Rollback: what reverses, and how"
    ],
    [
-    667,
+    681,
     "Part 3: Sign and harden"
    ],
    [
-    686,
+    700,
     "DNSSEC on NIOS: set parameters before you sign"
    ],
    [
-    735,
+    749,
     "The HSM and DS publication"
    ],
    [
-    782,
+    796,
     "Hardening NIOS: the agency's settings baseline"
    ],
    [
-    854,
+    868,
     "FIPS mode: the procedure and what it changes"
    ],
    [
-    900,
+    914,
     "Administrator access and two upgrade gates"
    ],
    [
-    947,
+    961,
     "Part 4: Operate and evidence"
    ],
    [
-    964,
+    980,
     "Upgrades: five steps, and the point of no return"
    ],
    [
-    1014,
+    1030,
     "Patching: hotfixes, images and known exploits"
    ],
    [
-    1056,
+    1071,
     "Backup, restore and Grid Master recovery"
    ],
    [
-    1105,
+    1120,
     "Logging and evidence for the SIEM"
    ],
    [
-    1152,
+    1167,
     "Automation: what you can codify, and what you can't"
    ],
    [
-    1198,
+    1214,
     "The build mapped to Book 08's six phases"
    ],
    [
-    1248,
+    1265,
     "Decisions, vendor asks and next steps"
    ]
   ]
@@ -8092,11 +8092,11 @@
     "Trinzic alone, or with cloud DDI?"
    ],
    [
-    726,
+    727,
     "Assurance: baselines, FIPS 140, NIAP and SP 800-81r3"
    ],
    [
-    791,
+    792,
     "A fair comparison: dedicated DDI and native clouds"
    ],
    [
@@ -8116,7 +8116,7 @@
     "The NIOS permission model: deny first, most specific"
    ],
    [
-    1017,
+    1018,
     "Scoping an admin group to one division"
    ],
    [
@@ -8124,15 +8124,15 @@
     "Network views, DNS views and extensible attributes"
    ],
    [
-    1114,
+    1115,
     "Approval workflow, and the CSV import gap"
    ],
    [
-    1162,
+    1163,
     "Admin sign-in: CAC/PIV, SAML with Entra, directories"
    ],
    [
-    1210,
+    1211,
     "Microsoft servers, what stays central, and reporting"
    ],
    [
@@ -8140,7 +8140,7 @@
     "Separating DNS, DHCP and IPAM by team"
    ],
    [
-    1315,
+    1316,
     "Service teams and divisions together"
    ],
    [
@@ -8148,7 +8148,7 @@
     "Module 4: Universal DDI divisions and operating model"
    ],
    [
-    1384,
+    1385,
     "Universal DDI: access views, IP spaces, federation"
    ],
    [
@@ -8160,11 +8160,11 @@
     "Worked example: four divisions on one Grid"
    ],
    [
-    1539,
+    1540,
     "Who does what: the DDI responsibility matrix"
    ],
    [
-    1590,
+    1592,
     "Rollout sequence, decisions and next steps"
    ]
   ]
@@ -8196,7 +8196,7 @@
     "What Trinzic is, and what it does well on premises"
    ],
    [
-    157,
+    158,
     "What Trinzic alone sees in the clouds, and can't control"
    ],
    [
@@ -8204,7 +8204,7 @@
     "Option A: vNIOS members inside each cloud"
    ],
    [
-    261,
+    262,
     "Option B: the Grid joined to Universal DDI"
    ],
    [
@@ -8220,7 +8220,7 @@
     "Which option fits your agency? Design guidance"
    ],
    [
-    468,
+    469,
     "Where this fits the workbook, and next steps"
    ]
   ]
@@ -8229,7 +8229,7 @@
   "id": "Research_Device_Naming_Narrated",
   "title": "Research: Who Names the Device After AD? — explainer",
   "group": "research",
-  "minutes": 10,
+  "minutes": 11,
   "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Research_Device_Naming_Narrated.mp4",
   "youtube": null,
   "vtt": "presentations/research-device-naming/Research_Device_Naming_Narrated.vtt",
@@ -8252,43 +8252,43 @@
     "Who names the device now"
    ],
    [
-    140,
+    141,
     "Why devices can't register themselves securely"
    ],
    [
-    185,
+    186,
     "DHCP registers the record on the device's behalf"
    ],
    [
-    229,
+    230,
     "The migration trap: who owns the existing names"
    ],
    [
-    283,
+    284,
     "IPv6: addresses that nobody registers"
    ],
    [
-    334,
+    335,
     "Servers and the cloud register differently"
    ],
    [
-    384,
+    385,
     "Remote and VPN clients: resolved, not registered"
    ],
    [
-    430,
+    431,
     "Why device names still matter after AD"
    ],
    [
-    480,
+    485,
     "Platform by platform: who names, who registers"
    ],
    [
-    528,
+    533,
     "What the agency must do: before, cutover, after"
    ],
    [
-    579,
+    584,
     "Decisions, next steps and where this fits"
    ]
   ]
@@ -8323,51 +8323,51 @@
     "Ticket-to-Machine on ServiceNow and SailPoint"
    ],
    [
-    43,
+    44,
     "An example, not a recommendation"
    ],
    [
-    89,
+    91,
     "The products and their FedRAMP status"
    ],
    [
-    141,
+    143,
     "The picture: the loop on ServiceNow and SailPoint"
    ],
    [
-    187,
+    189,
     "How the two products hand work to each other"
    ],
    [
-    240,
+    242,
     "The loop, step by step, on these products"
    ],
    [
-    287,
+    288,
     "The lanes on these products"
    ],
    [
-    335,
+    314,
     "Gaps 1 and 2: ticket status, and who approves"
    ],
    [
-    382,
+    361,
     "Gaps 3 and 4: change records, and one writer"
    ],
    [
-    433,
+    413,
     "Identity fixes: HR facts, leavers and stray writes"
    ],
    [
-    477,
+    458,
     "Identity fixes: matching, contractors and rules"
    ],
    [
-    523,
+    503,
     "Federal availability and cautions"
    ],
    [
-    577,
+    558,
     "What to verify, decide, and read next"
    ]
   ]
@@ -12325,6 +12325,733 @@
   ]
  },
  {
+  "id": "Training_ADM_Module_1_Narrated",
+  "title": "Attribute-Driven Migration learning path, Module 1: Send HR records through a middleware that fails closed",
+  "group": "training",
+  "minutes": 14,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_ADM_Module_1_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/training-adm-module-1/Training_ADM_Module_1_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-adm-module-1/Training_ADM_Module_1_Narration_Script.md",
+  "page": "docs/training/attribute-driven-migration/01-the-hr-middleware.html",
+  "source": "docs/training/attribute-driven-migration/01-the-hr-middleware.md",
+  "kits": [
+   {
+    "name": "hcm-entra",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/hcm-entra",
+    "zip": null
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Module 1: The HR middleware that fails closed"
+   ],
+   [
+    54,
+    "Why the middleware is where a record is first checked"
+   ],
+   [
+    99,
+    "What you'll be able to do in Module 1"
+   ],
+   [
+    156,
+    "Where the middleware sits, and what a 202 means"
+   ],
+   [
+    211,
+    "What Microsoft's CSV2SCIM sample leaves to you"
+   ],
+   [
+    277,
+    "Fail closed: every row is built or refused"
+   ],
+   [
+    335,
+    "Send it whole, leavers first, and hold a mass disable"
+   ],
+   [
+    403,
+    "The provenance manifest: every batch tied by hash"
+   ],
+   [
+    456,
+    "Try it: run the client and read the quarantine"
+   ],
+   [
+    515,
+    "Try it: check the provenance, then rerun"
+   ],
+   [
+    567,
+    "Try it: break a row, hold a run, run the tests"
+   ],
+   [
+    618,
+    "Lab 2: send five records to your test tenant"
+   ],
+   [
+    668,
+    "The federal requirement and evidence for Module 1"
+   ],
+   [
+    735,
+    "Check yourself: two questions on the middleware"
+   ],
+   [
+    786,
+    "Summary, and next: Module 2, a validation kit check"
+   ]
+  ]
+ },
+ {
+  "id": "Training_ADM_Module_2_Narrated",
+  "title": "Attribute-Driven Migration learning path, Module 2: Write a validation kit check",
+  "group": "training",
+  "minutes": 13,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_ADM_Module_2_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/training-adm-module-2/Training_ADM_Module_2_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-adm-module-2/Training_ADM_Module_2_Narration_Script.md",
+  "page": "docs/training/attribute-driven-migration/02-a-validation-kit-check.html",
+  "source": "docs/training/attribute-driven-migration/02-a-validation-kit-check.md",
+  "kits": [
+   {
+    "name": "validation-kit",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/validation-kit",
+    "zip": "downloads/validation-kit.zip"
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Module 2: Write a validation kit check"
+   ],
+   [
+    53,
+    "Why soft and hard match must be blocked"
+   ],
+   [
+    115,
+    "What you'll be able to do in Module 2"
+   ],
+   [
+    167,
+    "The anatomy of a check: five parts"
+   ],
+   [
+    228,
+    "The lesson in the catalog entry: least privilege"
+   ],
+   [
+    289,
+    "Rows and outcome: Finding, Warn and Info"
+   ],
+   [
+    350,
+    "The safety tests, and where the remediation goes"
+   ],
+   [
+    410,
+    "Try it: run the check on the fail fixture"
+   ],
+   [
+    464,
+    "Try it: a matching window, then an export"
+   ],
+   [
+    516,
+    "Try it: the scope, the tests, and a broken check"
+   ],
+   [
+    573,
+    "Lab 2: run the check on your tenant's export"
+   ],
+   [
+    622,
+    "The federal requirement and evidence for Module 2"
+   ],
+   [
+    700,
+    "Check yourself: two questions on the check"
+   ],
+   [
+    748,
+    "Summary, and next: Module 3, dynamic rules as code"
+   ]
+  ]
+ },
+ {
+  "id": "Training_ADM_Module_3_Narrated",
+  "title": "Attribute-Driven Migration learning path, Module 3: Keep dynamic rules as code",
+  "group": "training",
+  "minutes": 14,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_ADM_Module_3_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/training-adm-module-3/Training_ADM_Module_3_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-adm-module-3/Training_ADM_Module_3_Narration_Script.md",
+  "page": "docs/training/attribute-driven-migration/03-dynamic-rules-as-code.html",
+  "source": "docs/training/attribute-driven-migration/03-dynamic-rules-as-code.md",
+  "kits": [
+   {
+    "name": "dynamic-rules",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/dynamic-rules",
+    "zip": null
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Module 3: Keep dynamic rules as code"
+   ],
+   [
+    55,
+    "Why a dynamic rule is access policy"
+   ],
+   [
+    102,
+    "What you'll be able to do in Module 3"
+   ],
+   [
+    155,
+    "The guards every rule needs, and the engine's limits"
+   ],
+   [
+    223,
+    "What Learn's incident samples leave to you"
+   ],
+   [
+    287,
+    "One file per group, evaluated offline"
+   ],
+   [
+    346,
+    "The linter, the shadow diff and the pause manifest"
+   ],
+   [
+    403,
+    "Try it: run Learn's samples against a fake tenant"
+   ],
+   [
+    461,
+    "Try it: lint the patterns, evaluate a rule, run the check"
+   ],
+   [
+    524,
+    "Try it: break a rule on purpose, then run the tests"
+   ],
+   [
+    581,
+    "Lab 2: create the groups paused, then drill a pause"
+   ],
+   [
+    636,
+    "The federal requirement and evidence for Module 3"
+   ],
+   [
+    714,
+    "Check yourself: two questions on rules as code"
+   ],
+   [
+    762,
+    "Summary, and next: Module 4, Group Policy as code"
+   ]
+  ]
+ },
+ {
+  "id": "Training_ADM_Module_4_Narrated",
+  "title": "Attribute-Driven Migration learning path, Module 4: Move Group Policy as code",
+  "group": "training",
+  "minutes": 15,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_ADM_Module_4_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/training-adm-module-4/Training_ADM_Module_4_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-adm-module-4/Training_ADM_Module_4_Narration_Script.md",
+  "page": "docs/training/attribute-driven-migration/04-group-policy-as-code.html",
+  "source": "docs/training/attribute-driven-migration/04-group-policy-as-code.md",
+  "kits": [
+   {
+    "name": "validation-kit",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/validation-kit",
+    "zip": "downloads/validation-kit.zip"
+   },
+   {
+    "name": "group-policy-as-code",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/group-policy-as-code",
+    "zip": null
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Module 4: Move Group Policy as code"
+   ],
+   [
+    48,
+    "Why Group Policy has to move as code"
+   ],
+   [
+    99,
+    "What you'll be able to do in Module 4"
+   ],
+   [
+    155,
+    "Where the code sits: two rules and beta APIs"
+   ],
+   [
+    224,
+    "What Microsoft's samples leave to you"
+   ],
+   [
+    294,
+    "The gate per GPO, and the move plan per setting"
+   ],
+   [
+    364,
+    "One file per policy, and the linter's rules"
+   ],
+   [
+    431,
+    "Diff, then create: one action per policy"
+   ],
+   [
+    498,
+    "Try it: run the gate, then Microsoft's sample twice"
+   ],
+   [
+    551,
+    "Try it: build the move plan, and lint the library"
+   ],
+   [
+    607,
+    "Try it: dry run, apply, then break it on purpose"
+   ],
+   [
+    663,
+    "Lab 2: plan, sync and drill drift in a test tenant"
+   ],
+   [
+    717,
+    "The federal requirement and evidence for Module 4"
+   ],
+   [
+    796,
+    "Check yourself: two questions on Group Policy"
+   ],
+   [
+    842,
+    "Summary, and next: Module 5, machine configuration"
+   ]
+  ]
+ },
+ {
+  "id": "Training_ADM_Module_5_Narrated",
+  "title": "Attribute-Driven Migration learning path, Module 5: Build machine configuration packages",
+  "group": "training",
+  "minutes": 15,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_ADM_Module_5_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/training-adm-module-5/Training_ADM_Module_5_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-adm-module-5/Training_ADM_Module_5_Narration_Script.md",
+  "page": "docs/training/attribute-driven-migration/05-machine-configuration.html",
+  "source": "docs/training/attribute-driven-migration/05-machine-configuration.md",
+  "kits": [
+   {
+    "name": "machine-configuration",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/machine-configuration",
+    "zip": null
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Module 5: Build machine configuration packages"
+   ],
+   [
+    49,
+    "Why a package needs a checked build"
+   ],
+   [
+    94,
+    "What you'll be able to do in Module 5"
+   ],
+   [
+    145,
+    "A package, a definition and a guest assignment"
+   ],
+   [
+    204,
+    "What Learn's cmdlets leave to you"
+   ],
+   [
+    275,
+    "The release registry: what is in production"
+   ],
+   [
+    337,
+    "Clean the MOF, then check the package and definition"
+   ],
+   [
+    398,
+    "The provenance manifest: what was built and shipped"
+   ],
+   [
+    449,
+    "Try it: follow Learn's steps by hand, then check them"
+   ],
+   [
+    508,
+    "Try it: Microsoft's sample, then the checked build"
+   ],
+   [
+    577,
+    "Try it: break the registry three ways, then test"
+   ],
+   [
+    634,
+    "Lab 2: publish and assign in a test subscription"
+   ],
+   [
+    694,
+    "The federal requirement and evidence for Module 5"
+   ],
+   [
+    769,
+    "Check yourself: two questions on packages"
+   ],
+   [
+    819,
+    "Summary, and next: Module 6, Ansible beside Arc"
+   ]
+  ]
+ },
+ {
+  "id": "Training_ADM_Module_6_Narrated",
+  "title": "Attribute-Driven Migration learning path, Module 6: Onboard servers with Ansible beside Arc",
+  "group": "training",
+  "minutes": 16,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_ADM_Module_6_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/training-adm-module-6/Training_ADM_Module_6_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-adm-module-6/Training_ADM_Module_6_Narration_Script.md",
+  "page": "docs/training/attribute-driven-migration/06-ansible-beside-arc.html",
+  "source": "docs/training/attribute-driven-migration/06-ansible-beside-arc.md",
+  "kits": [
+   {
+    "name": "ansible",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/ansible",
+    "zip": "downloads/ansible-examples.zip"
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Module 6: Onboard servers with Ansible beside Arc"
+   ],
+   [
+    50,
+    "Why the onboarding run is where owners are read"
+   ],
+   [
+    107,
+    "What you'll be able to do in Module 6"
+   ],
+   [
+    163,
+    "One owner for configuration, one for patching"
+   ],
+   [
+    236,
+    "Which Azure a GCC estate's servers go to"
+   ],
+   [
+    304,
+    "What Microsoft's azure_arc role leaves to you"
+   ],
+   [
+    378,
+    "The inventory: owners become groups and tags"
+   ],
+   [
+    447,
+    "The wave plan, and onboarding in check mode"
+   ],
+   [
+    520,
+    "Try it: see what the CMDB becomes, then run the role"
+   ],
+   [
+    583,
+    "Try it: plan wave 0, then dry-run it"
+   ],
+   [
+    642,
+    "Try it: break the CMDB on purpose, run the tests"
+   ],
+   [
+    704,
+    "Lab 2: connect one disposable server"
+   ],
+   [
+    764,
+    "The federal requirement and evidence for Module 6"
+   ],
+   [
+    834,
+    "Check yourself: two questions on onboarding"
+   ],
+   [
+    882,
+    "Summary, and next: Module 7, Lifecycle Workflows"
+   ]
+  ]
+ },
+ {
+  "id": "Training_ADM_Module_7_Narrated",
+  "title": "Attribute-Driven Migration learning path, Module 7: Extend Lifecycle Workflows",
+  "group": "training",
+  "minutes": 14,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_ADM_Module_7_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/training-adm-module-7/Training_ADM_Module_7_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-adm-module-7/Training_ADM_Module_7_Narration_Script.md",
+  "page": "docs/training/attribute-driven-migration/07-lifecycle-workflows-extensions.html",
+  "source": "docs/training/attribute-driven-migration/07-lifecycle-workflows-extensions.md",
+  "kits": [
+   {
+    "name": "lifecycle-extensions",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/lifecycle-extensions",
+    "zip": null
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Module 7: Extend Lifecycle Workflows"
+   ],
+   [
+    53,
+    "Why the rest of a leaver needs an extension"
+   ],
+   [
+    110,
+    "What you'll be able to do in Module 7"
+   ],
+   [
+    162,
+    "Where the extensions sit, and the three rules"
+   ],
+   [
+    235,
+    "What Learn's Logic App definition leaves to you"
+   ],
+   [
+    297,
+    "One Logic App per integration, in four steps"
+   ],
+   [
+    371,
+    "Lint, run, build, check, and authorization"
+   ],
+   [
+    445,
+    "Try it: lint and run Learn's definition"
+   ],
+   [
+    502,
+    "Try it: the program's definition, through failures"
+   ],
+   [
+    561,
+    "Try it: build the pieces, and check the read-backs"
+   ],
+   [
+    616,
+    "Lab 2: run a test leaver in your test tenant"
+   ],
+   [
+    675,
+    "The federal requirement and evidence for Module 7"
+   ],
+   [
+    745,
+    "Check yourself: two questions on extensions"
+   ],
+   [
+    793,
+    "Summary, and next: Module 8, drift and evidence"
+   ]
+  ]
+ },
+ {
+  "id": "Training_ADM_Module_8_Narrated",
+  "title": "Attribute-Driven Migration learning path, Module 8: Run the drift pipeline and hand over the evidence",
+  "group": "training",
+  "minutes": 15,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_ADM_Module_8_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/training-adm-module-8/Training_ADM_Module_8_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-adm-module-8/Training_ADM_Module_8_Narration_Script.md",
+  "page": "docs/training/attribute-driven-migration/08-drift-and-evidence.html",
+  "source": "docs/training/attribute-driven-migration/08-drift-and-evidence.md",
+  "kits": [
+   {
+    "name": "drift-pipeline",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/drift-pipeline",
+    "zip": null
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Module 8: The drift pipeline and the evidence"
+   ],
+   [
+    52,
+    "Why Gate 9: without it, everything slowly decays"
+   ],
+   [
+    93,
+    "What you'll be able to do in Module 8"
+   ],
+   [
+    146,
+    "Where the pipeline sits: change, not drift"
+   ],
+   [
+    197,
+    "What Learn's sample workflows leave to you"
+   ],
+   [
+    266,
+    "Compare: this run against the last"
+   ],
+   [
+    327,
+    "Findings without names, and a chained package"
+   ],
+   [
+    395,
+    "Try it: lint the workflows, print a cloud's hosts"
+   ],
+   [
+    464,
+    "Try it: a baseline, then the next day"
+   ],
+   [
+    526,
+    "Try it: draft findings, then package the chain"
+   ],
+   [
+    585,
+    "Try it: break the package, swap the runs"
+   ],
+   [
+    632,
+    "Lab 2: a scheduled run in your test tenant"
+   ],
+   [
+    687,
+    "The federal requirement and evidence for Module 8"
+   ],
+   [
+    759,
+    "Check yourself: two questions on drift"
+   ],
+   [
+    809,
+    "Summary, and next: Module 9, test then production"
+   ]
+  ]
+ },
+ {
+  "id": "Training_ADM_Module_9_Narrated",
+  "title": "Attribute-Driven Migration learning path, Module 9: Deploy to test, then production",
+  "group": "training",
+  "minutes": 14,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_ADM_Module_9_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/training-adm-module-9/Training_ADM_Module_9_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-adm-module-9/Training_ADM_Module_9_Narration_Script.md",
+  "page": "docs/training/attribute-driven-migration/09-deploying-to-test-and-production.html",
+  "source": "docs/training/attribute-driven-migration/09-deploying-to-test-and-production.md",
+  "kits": [
+   {
+    "name": "drift-pipeline",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/drift-pipeline",
+    "zip": null
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Module 9: Deploy to test, then production"
+   ],
+   [
+    54,
+    "Why a deployment isn't nine Lab 2s in a row"
+   ],
+   [
+    110,
+    "What you'll be able to do in Module 9"
+   ],
+   [
+    156,
+    "One settings file per stage, and three identities"
+   ],
+   [
+    235,
+    "The live test stage: nothing grants access unchecked"
+   ],
+   [
+    295,
+    "Promotion, then production in waves"
+   ],
+   [
+    358,
+    "Try it: the test stage's pre-flight check"
+   ],
+   [
+    420,
+    "Try it: record four changes, write the rollback"
+   ],
+   [
+    471,
+    "Try it: the smoke test says no-go on fixtures"
+   ],
+   [
+    532,
+    "Try it: check the evidence, then try to promote"
+   ],
+   [
+    589,
+    "Lab 2: the live test stage"
+   ],
+   [
+    646,
+    "The federal requirement and evidence for Module 9"
+   ],
+   [
+    719,
+    "Check yourself: two questions on the runbook"
+   ],
+   [
+    769,
+    "Summary: you've finished the path"
+   ]
+  ]
+ },
+ {
   "id": "Training_HR_Module_1_Narrated",
   "title": "HR-Driven Identity learning path, Module 1: Name one writer for every account state",
   "group": "training",
@@ -13176,6 +13903,1667 @@
    ],
    [
     795,
+    "Summary: you've finished the path"
+   ]
+  ]
+ },
+ {
+  "id": "Training_NPI_Module_10_Narrated",
+  "title": "Non-Person Identity learning path, Module 10: Find drift and file the evidence",
+  "group": "training",
+  "minutes": 16,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_NPI_Module_10_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/training-npi-module-10/Training_NPI_Module_10_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-npi-module-10/Training_NPI_Module_10_Narration_Script.md",
+  "page": "docs/training/non-person-identity/10-drift-and-evidence.html",
+  "source": "docs/training/non-person-identity/10-drift-and-evidence.md",
+  "kits": [
+   {
+    "name": "non-person-identity",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/non-person-identity",
+    "zip": "downloads/non-person-identity-code.zip"
+   },
+   {
+    "name": "drift-pipeline",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/drift-pipeline",
+    "zip": null
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Module 10: Find drift and file the evidence"
+   ],
+   [
+    49,
+    "Why every gate's state has to be kept true"
+   ],
+   [
+    97,
+    "What you'll be able to do in Module 10"
+   ],
+   [
+    150,
+    "The gate: run the lifecycle, and file the output"
+   ],
+   [
+    211,
+    "One run, and a baseline that counts only when approved"
+   ],
+   [
+    268,
+    "The drift findings: NPI-DRF-01 to NPI-DRF-09"
+   ],
+   [
+    342,
+    "The review cycle, and the annual vintage comparison"
+   ],
+   [
+    404,
+    "What the ISSO receives: the package, chain, period"
+   ],
+   [
+    468,
+    "Try it: the rule, the permissions, two days of runs"
+   ],
+   [
+    531,
+    "Try it: read the drift, and compare the vintages"
+   ],
+   [
+    591,
+    "Try it: package both days, chained, and verify"
+   ],
+   [
+    643,
+    "Try it: assemble the period for the ISSO"
+   ],
+   [
+    702,
+    "Try it: break it on purpose, then run the tests"
+   ],
+   [
+    751,
+    "Lab 2: three changes in your own test tenant"
+   ],
+   [
+    805,
+    "The federal requirement and evidence for Gate G6"
+   ],
+   [
+    867,
+    "Check yourself: two questions on drift and evidence"
+   ],
+   [
+    916,
+    "Summary, and next: Module 11, test then production"
+   ]
+  ]
+ },
+ {
+  "id": "Training_NPI_Module_11_Narrated",
+  "title": "Non-Person Identity learning path, Module 11: Deploy to test, then production",
+  "group": "training",
+  "minutes": 14,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_NPI_Module_11_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/training-npi-module-11/Training_NPI_Module_11_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-npi-module-11/Training_NPI_Module_11_Narration_Script.md",
+  "page": "docs/training/non-person-identity/11-deploying-to-test-and-production.html",
+  "source": "docs/training/non-person-identity/11-deploying-to-test-and-production.md",
+  "kits": [
+   {
+    "name": "non-person-identity",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/non-person-identity",
+    "zip": "downloads/non-person-identity-code.zip"
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Module 11: Deploy to test, then production"
+   ],
+   [
+    48,
+    "Why a deployment proves what each Lab 2 can't"
+   ],
+   [
+    91,
+    "What you'll be able to do in Module 11"
+   ],
+   [
+    144,
+    "The safe order: what can block a sign-in comes last"
+   ],
+   [
+    205,
+    "Before you start: PIM roles, approvals, a change record"
+   ],
+   [
+    258,
+    "The settings file: four rules, checked before any command"
+   ],
+   [
+    315,
+    "The code it adds: five scripts, each with a fixture mode"
+   ],
+   [
+    372,
+    "The stages and the promotion to production"
+   ],
+   [
+    423,
+    "Try it: the template refused, and the test preflight"
+   ],
+   [
+    476,
+    "Try it: the smoke test on synthetic objects"
+   ],
+   [
+    530,
+    "Try it: the rollback planned, refused, then dry-run"
+   ],
+   [
+    583,
+    "Try it: production's preflight, and the evidence check"
+   ],
+   [
+    636,
+    "Lab 2: the live test stage, then production"
+   ],
+   [
+    700,
+    "The federal requirement and evidence, every gate"
+   ],
+   [
+    765,
+    "Check yourself: two questions on the runbook"
+   ],
+   [
+    808,
+    "Summary: you've finished the learning path"
+   ]
+  ]
+ },
+ {
+  "id": "Training_NPI_Module_1_Narrated",
+  "title": "Non-Person Identity learning path, Module 1: Inventory every non-person identity",
+  "group": "training",
+  "minutes": 14,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_NPI_Module_1_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/training-npi-module-1/Training_NPI_Module_1_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-npi-module-1/Training_NPI_Module_1_Narration_Script.md",
+  "page": "docs/training/non-person-identity/01-inventory.html",
+  "source": "docs/training/non-person-identity/01-inventory.md",
+  "kits": [
+   {
+    "name": "non-person-identity",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/non-person-identity",
+    "zip": "downloads/non-person-identity-code.zip"
+   },
+   {
+    "name": "drift-pipeline",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/drift-pipeline",
+    "zip": null
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Module 1: Inventory every non-person identity"
+   ],
+   [
+    53,
+    "Why the inventory is always larger than you think"
+   ],
+   [
+    105,
+    "What you'll be able to do in Module 1"
+   ],
+   [
+    157,
+    "What Gate 1 asks for: six sub-steps, one record"
+   ],
+   [
+    219,
+    "The register: two AD reads, nine Graph, one ARM"
+   ],
+   [
+    276,
+    "The reader: five rules every call obeys"
+   ],
+   [
+    336,
+    "Risk, the candidate target, stale leads, the hand-off"
+   ],
+   [
+    400,
+    "The findings: NPI-INV-01 to NPI-INV-09"
+   ],
+   [
+    456,
+    "Try it: Learn's samples, and what the inventory needs"
+   ],
+   [
+    506,
+    "Try it: run the inventory, read the HIGH-risk rows"
+   ],
+   [
+    563,
+    "Try it: the reader refuses, and the hand-off"
+   ],
+   [
+    615,
+    "Lab 2: inventory your own test tenant"
+   ],
+   [
+    668,
+    "The federal requirement and evidence for Gate G1"
+   ],
+   [
+    729,
+    "Check yourself: two questions on the inventory"
+   ],
+   [
+    784,
+    "Summary, and next: Module 2, owners and orphans"
+   ]
+  ]
+ },
+ {
+  "id": "Training_NPI_Module_2_Narrated",
+  "title": "Non-Person Identity learning path, Module 2: Owners, sponsors and the orphan rule",
+  "group": "training",
+  "minutes": 14,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_NPI_Module_2_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/training-npi-module-2/Training_NPI_Module_2_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-npi-module-2/Training_NPI_Module_2_Narration_Script.md",
+  "page": "docs/training/non-person-identity/02-owners-and-the-orphan-rule.html",
+  "source": "docs/training/non-person-identity/02-owners-and-the-orphan-rule.md",
+  "kits": [
+   {
+    "name": "non-person-identity",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/non-person-identity",
+    "zip": "downloads/non-person-identity-code.zip"
+   },
+   {
+    "name": "drift-pipeline",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/drift-pipeline",
+    "zip": null
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Module 2: Owners, sponsors and the orphan rule"
+   ],
+   [
+    46,
+    "Why owners are a control, not a contact list"
+   ],
+   [
+    94,
+    "What you'll be able to do in Module 2"
+   ],
+   [
+    144,
+    "Owners and sponsors in the guide: Step 1f and Step 6"
+   ],
+   [
+    203,
+    "The rule the code holds: stricter than Learn's"
+   ],
+   [
+    265,
+    "The orphan rule, D-N2, and the orphaned-app policy"
+   ],
+   [
+    320,
+    "The check: NPI-OWN-01 to NPI-OWN-09"
+   ],
+   [
+    377,
+    "The orphan plan, and the separate write path"
+   ],
+   [
+    445,
+    "Try it: the permissions, and the ownership check"
+   ],
+   [
+    505,
+    "Try it: read the findings and the orphan plan"
+   ],
+   [
+    555,
+    "Try it: dry-run, apply, and a hash nobody approved"
+   ],
+   [
+    608,
+    "Lab 2: two test orphans in your own tenant"
+   ],
+   [
+    662,
+    "The federal requirement and evidence: G1 and G6"
+   ],
+   [
+    720,
+    "Check yourself: two questions on owners"
+   ],
+   [
+    762,
+    "Summary, and next: Module 3, decide the target"
+   ]
+  ]
+ },
+ {
+  "id": "Training_NPI_Module_3_Narrated",
+  "title": "Non-Person Identity learning path, Module 3: Decide each identity's target",
+  "group": "training",
+  "minutes": 13,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_NPI_Module_3_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/training-npi-module-3/Training_NPI_Module_3_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-npi-module-3/Training_NPI_Module_3_Narration_Script.md",
+  "page": "docs/training/non-person-identity/03-decide-the-target.html",
+  "source": "docs/training/non-person-identity/03-decide-the-target.md",
+  "kits": [
+   {
+    "name": "non-person-identity",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/non-person-identity",
+    "zip": "downloads/non-person-identity-code.zip"
+   },
+   {
+    "name": "drift-pipeline",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/drift-pipeline",
+    "zip": null
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Module 3: Decide each identity's target"
+   ],
+   [
+    47,
+    "Why the decision has three owners, not one"
+   ],
+   [
+    98,
+    "What you'll be able to do in Module 3"
+   ],
+   [
+    147,
+    "The decision in the guide: Step 2, condensed"
+   ],
+   [
+    220,
+    "The proposal: matrix rows M01 to M19"
+   ],
+   [
+    281,
+    "The disposition and the waves: NPI-MAT-01 to -09"
+   ],
+   [
+    341,
+    "Waves and rollback, D-N4, and Gate 2"
+   ],
+   [
+    407,
+    "Try it: run Modules 1 and 2, then the matrix"
+   ],
+   [
+    476,
+    "Try it: read the proposals and the findings"
+   ],
+   [
+    537,
+    "Try it: the waves' rollback and the D-N4 scope"
+   ],
+   [
+    603,
+    "Lab 2: run the matrix on your own test tenant"
+   ],
+   [
+    654,
+    "The federal requirement and evidence for Gate G2"
+   ],
+   [
+    704,
+    "Check yourself: two questions on the decision"
+   ],
+   [
+    750,
+    "Summary, and next: Module 4, the credential rules"
+   ]
+  ]
+ },
+ {
+  "id": "Training_NPI_Module_4_Narrated",
+  "title": "Non-Person Identity learning path, Module 4: Set the credential rules",
+  "group": "training",
+  "minutes": 14,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_NPI_Module_4_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/training-npi-module-4/Training_NPI_Module_4_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-npi-module-4/Training_NPI_Module_4_Narration_Script.md",
+  "page": "docs/training/non-person-identity/04-credential-rules.html",
+  "source": "docs/training/non-person-identity/04-credential-rules.md",
+  "kits": [
+   {
+    "name": "non-person-identity",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/non-person-identity",
+    "zip": "downloads/non-person-identity-code.zip"
+   },
+   {
+    "name": "drift-pipeline",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/drift-pipeline",
+    "zip": null
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Module 4: Set the credential rules"
+   ],
+   [
+    48,
+    "Why the tenant enforces part, and code does the rest"
+   ],
+   [
+    99,
+    "What you'll be able to do in Module 4"
+   ],
+   [
+    150,
+    "The rules in the guide: Step 3's eight steps"
+   ],
+   [
+    221,
+    "Two kinds of policy, and how an exception overrides"
+   ],
+   [
+    284,
+    "The policy: read, compare, plan; NPI-POL-01 to -06"
+   ],
+   [
+    340,
+    "Rotation: from the owner's approval to removal"
+   ],
+   [
+    400,
+    "The separate write path: the bodies it allows"
+   ],
+   [
+    457,
+    "Try it: the permissions, and the policy diff"
+   ],
+   [
+    516,
+    "Try it: dry-run, apply, and a hash nobody approved"
+   ],
+   [
+    566,
+    "Try it: build, read and run the rotation plan"
+   ],
+   [
+    623,
+    "Lab 2: the policy and one rotation in a test tenant"
+   ],
+   [
+    680,
+    "The federal requirement and evidence for Gate G3"
+   ],
+   [
+    740,
+    "Check yourself: two questions on credentials"
+   ],
+   [
+    786,
+    "Summary, and next: Module 5, cut the privilege"
+   ]
+  ]
+ },
+ {
+  "id": "Training_NPI_Module_5_Narrated",
+  "title": "Non-Person Identity learning path, Module 5: Cut the privilege of service principals",
+  "group": "training",
+  "minutes": 15,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_NPI_Module_5_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/training-npi-module-5/Training_NPI_Module_5_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-npi-module-5/Training_NPI_Module_5_Narration_Script.md",
+  "page": "docs/training/non-person-identity/05-least-privilege.html",
+  "source": "docs/training/non-person-identity/05-least-privilege.md",
+  "kits": [
+   {
+    "name": "non-person-identity",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/non-person-identity",
+    "zip": "downloads/non-person-identity-code.zip"
+   },
+   {
+    "name": "drift-pipeline",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/drift-pipeline",
+    "zip": null
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Module 5: Cut the privilege of service principals"
+   ],
+   [
+    51,
+    "Why a workload's privilege needs cutting first"
+   ],
+   [
+    92,
+    "What you'll be able to do in Module 5"
+   ],
+   [
+    139,
+    "What Step 4 asks for: Graph, directory roles, Azure"
+   ],
+   [
+    201,
+    "The rule the code holds: review, justify, narrow"
+   ],
+   [
+    259,
+    "The check: NPI-LP-01 to NPI-LP-09"
+   ],
+   [
+    327,
+    "The hand-off, and the quarterly owner review"
+   ],
+   [
+    397,
+    "The plan, and the separate write path"
+   ],
+   [
+    463,
+    "Try it: Learn's script, the permissions, the sweep"
+   ],
+   [
+    522,
+    "Try it: the findings and the hand-off"
+   ],
+   [
+    578,
+    "Try it: the open review rows, and the plan"
+   ],
+   [
+    632,
+    "Try it: a dry run, the apply, and a refusal"
+   ],
+   [
+    684,
+    "Lab 2: one real removal in your test tenant"
+   ],
+   [
+    737,
+    "The federal requirement and evidence for Gate G4"
+   ],
+   [
+    794,
+    "Check yourself: two questions on least privilege"
+   ],
+   [
+    843,
+    "Summary, and next: Module 6, Conditional Access"
+   ]
+  ]
+ },
+ {
+  "id": "Training_NPI_Module_6_Narrated",
+  "title": "Non-Person Identity learning path, Module 6: Conditional Access for workload identities",
+  "group": "training",
+  "minutes": 15,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_NPI_Module_6_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/training-npi-module-6/Training_NPI_Module_6_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-npi-module-6/Training_NPI_Module_6_Narration_Script.md",
+  "page": "docs/training/non-person-identity/06-conditional-access.html",
+  "source": "docs/training/non-person-identity/06-conditional-access.md",
+  "kits": [
+   {
+    "name": "non-person-identity",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/non-person-identity",
+    "zip": "downloads/non-person-identity-code.zip"
+   },
+   {
+    "name": "drift-pipeline",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/drift-pipeline",
+    "zip": null
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Module 6: Conditional Access for workload identities"
+   ],
+   [
+    49,
+    "Why the scope matters as much as the policy"
+   ],
+   [
+    104,
+    "What you'll be able to do in Module 6"
+   ],
+   [
+    155,
+    "What Step 4 asks for: 4d attributes, 4e the policies"
+   ],
+   [
+    220,
+    "Two policies, two decisions, one policy per ring"
+   ],
+   [
+    277,
+    "The pre-merge check: NPI-WCA-01 to NPI-WCA-09"
+   ],
+   [
+    342,
+    "The plan: six actions, and no delete"
+   ],
+   [
+    396,
+    "Enforcement, ring by ring, and the sign-in reader"
+   ],
+   [
+    447,
+    "Try it: the permissions, and two pre-merge checks"
+   ],
+   [
+    504,
+    "Try it: check the tenant and plan, sending nothing"
+   ],
+   [
+    550,
+    "Try it: read and summarize the sign-ins"
+   ],
+   [
+    595,
+    "Try it: apply against the fake, twice"
+   ],
+   [
+    641,
+    "Try it: enforce Ring 1, then edit one byte"
+   ],
+   [
+    700,
+    "Lab 2: report-only, then one ring, in a test tenant"
+   ],
+   [
+    755,
+    "The federal requirement and evidence for this part"
+   ],
+   [
+    814,
+    "Check yourself: two questions on workload policies"
+   ],
+   [
+    860,
+    "Summary, and next: Module 7, conversions"
+   ]
+  ]
+ },
+ {
+  "id": "Training_NPI_Module_7_Narrated",
+  "title": "Non-Person Identity learning path, Module 7: Convert to managed identities and federation",
+  "group": "training",
+  "minutes": 15,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_NPI_Module_7_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/training-npi-module-7/Training_NPI_Module_7_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-npi-module-7/Training_NPI_Module_7_Narration_Script.md",
+  "page": "docs/training/non-person-identity/07-federation-and-managed-identities.html",
+  "source": "docs/training/non-person-identity/07-federation-and-managed-identities.md",
+  "kits": [
+   {
+    "name": "non-person-identity",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/non-person-identity",
+    "zip": "downloads/non-person-identity-code.zip"
+   },
+   {
+    "name": "drift-pipeline",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/drift-pipeline",
+    "zip": null
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Module 7: Convert to managed identities and federation"
+   ],
+   [
+    51,
+    "Why a federated credential can fail in silence"
+   ],
+   [
+    106,
+    "What you'll be able to do in Module 7"
+   ],
+   [
+    155,
+    "What Step 5 asks for: build, own, run, disable"
+   ],
+   [
+    225,
+    "The order of targets, and Learn's rules"
+   ],
+   [
+    277,
+    "The checks: NPI-WIF-01 to NPI-WIF-09"
+   ],
+   [
+    336,
+    "What the workload presents, and the exchange test"
+   ],
+   [
+    393,
+    "The plan, the parallel run and the write path"
+   ],
+   [
+    455,
+    "Try it: Microsoft's samples, the permissions, the plan"
+   ],
+   [
+    514,
+    "Try it: the findings and the exchange tests"
+   ],
+   [
+    568,
+    "Try it: read each conversion's parallel run"
+   ],
+   [
+    620,
+    "Try it: a dry run, the apply, and a refusal"
+   ],
+   [
+    672,
+    "Lab 2: a real exchange, and a real disable"
+   ],
+   [
+    729,
+    "The federal requirement and evidence for Gate G5"
+   ],
+   [
+    788,
+    "Check yourself: two questions on conversion"
+   ],
+   [
+    843,
+    "Summary, and next: Module 8, gMSAs and dMSAs"
+   ]
+  ]
+ },
+ {
+  "id": "Training_NPI_Module_8_Narrated",
+  "title": "Non-Person Identity learning path, Module 8: Convert Kerberos accounts to gMSAs and dMSAs",
+  "group": "training",
+  "minutes": 16,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_NPI_Module_8_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/training-npi-module-8/Training_NPI_Module_8_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-npi-module-8/Training_NPI_Module_8_Narration_Script.md",
+  "page": "docs/training/non-person-identity/08-gmsa-dmsa-and-the-kerberos-island.html",
+  "source": "docs/training/non-person-identity/08-gmsa-dmsa-and-the-kerberos-island.md",
+  "kits": [
+   {
+    "name": "non-person-identity",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/non-person-identity",
+    "zip": "downloads/non-person-identity-code.zip"
+   },
+   {
+    "name": "drift-pipeline",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/drift-pipeline",
+    "zip": null
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Module 8: Convert Kerberos accounts to gMSAs and dMSAs"
+   ],
+   [
+    47,
+    "Why converting a Kerberos account isn't the end"
+   ],
+   [
+    109,
+    "What you'll be able to do in Module 8"
+   ],
+   [
+    160,
+    "The gate: a parallel run, then disable, never delete"
+   ],
+   [
+    229,
+    "Four dispositions, and the program's four rules"
+   ],
+   [
+    287,
+    "The check: NPI-KRB-01 to NPI-KRB-09"
+   ],
+   [
+    364,
+    "The plan: one action per account, approved by hash"
+   ],
+   [
+    423,
+    "The island list, the reconciliation, the write path"
+   ],
+   [
+    488,
+    "Try it: the register, Learn's steps, each task's calls"
+   ],
+   [
+    548,
+    "Try it: check nine Kerberos accounts, read the findings"
+   ],
+   [
+    609,
+    "Try it: the plan, the island list, the reconciliation"
+   ],
+   [
+    666,
+    "Try it: dry-run, apply to the fake, and a refusal"
+   ],
+   [
+    715,
+    "Lab 2: a test domain, and a real migration"
+   ],
+   [
+    775,
+    "The federal requirement and evidence for Gate G5"
+   ],
+   [
+    834,
+    "Check yourself: two questions on the Kerberos island"
+   ],
+   [
+    889,
+    "Summary, and next: Module 9, AI agent identities"
+   ]
+  ]
+ },
+ {
+  "id": "Training_NPI_Module_9_Narrated",
+  "title": "Non-Person Identity learning path, Module 9: Govern AI agent identities",
+  "group": "training",
+  "minutes": 15,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_NPI_Module_9_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/training-npi-module-9/Training_NPI_Module_9_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-npi-module-9/Training_NPI_Module_9_Narration_Script.md",
+  "page": "docs/training/non-person-identity/09-ai-agent-identities.html",
+  "source": "docs/training/non-person-identity/09-ai-agent-identities.md",
+  "kits": [
+   {
+    "name": "non-person-identity",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/non-person-identity",
+    "zip": "downloads/non-person-identity-code.zip"
+   },
+   {
+    "name": "drift-pipeline",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/drift-pipeline",
+    "zip": null
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Module 9: Govern AI agent identities"
+   ],
+   [
+    48,
+    "Why agents add three things to every gate"
+   ],
+   [
+    107,
+    "What you'll be able to do in Module 9"
+   ],
+   [
+    155,
+    "Agent ID: blueprints, agent identities, and the stage"
+   ],
+   [
+    217,
+    "Decision D-N6 as data: AgentId or Fallback mode"
+   ],
+   [
+    267,
+    "The program's rules the code holds, N6.1 to N6.7"
+   ],
+   [
+    325,
+    "The checks: NPI-AI-01 to NPI-AI-23"
+   ],
+   [
+    378,
+    "The agent CA plan and the separate write path"
+   ],
+   [
+    436,
+    "Try it: Learn's samples, permissions, D-N6 by cloud"
+   ],
+   [
+    495,
+    "Try it: check eight AI identities, read the findings"
+   ],
+   [
+    555,
+    "Try it: the sponsor fields, and the GCC High fallback"
+   ],
+   [
+    606,
+    "Try it: dry-run, apply to the fake, and a refusal"
+   ],
+   [
+    660,
+    "Lab 2: one governed agent in your test tenant"
+   ],
+   [
+    717,
+    "The federal requirement and evidence for AI agents"
+   ],
+   [
+    781,
+    "Check yourself: two questions on agents"
+   ],
+   [
+    833,
+    "Summary, and next: Module 10, drift and evidence"
+   ]
+  ]
+ },
+ {
+  "id": "Training_PA_Module_1_Narrated",
+  "title": "Privileged Access learning path, Module 1: Inventory every privileged assignment",
+  "group": "training",
+  "minutes": 14,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_PA_Module_1_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/training-pa-module-1/Training_PA_Module_1_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-pa-module-1/Training_PA_Module_1_Narration_Script.md",
+  "page": "docs/training/privileged-access/01-privileged-inventory.html",
+  "source": "docs/training/privileged-access/01-privileged-inventory.md",
+  "kits": [
+   {
+    "name": "privileged-access",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/privileged-access",
+    "zip": "downloads/privileged-access-code.zip"
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Module 1: Inventory every privileged assignment"
+   ],
+   [
+    57,
+    "Why an active-only list stops being an inventory"
+   ],
+   [
+    100,
+    "What you'll be able to do in Module 1"
+   ],
+   [
+    160,
+    "Four kinds of assignment, a route, and a tier"
+   ],
+   [
+    221,
+    "What Learn's sample for role assignments leaves out"
+   ],
+   [
+    275,
+    "The reader and the rows"
+   ],
+   [
+    330,
+    "The findings: PA-INV-01 to PA-INV-09"
+   ],
+   [
+    403,
+    "Try it: Learn's samples, and five read permissions"
+   ],
+   [
+    458,
+    "Try it: run the inventory against the fictional tenant"
+   ],
+   [
+    511,
+    "Try it: read the ten findings"
+   ],
+   [
+    565,
+    "Try it: see the reader refuse, then run the tests"
+   ],
+   [
+    616,
+    "Lab 2: inventory your own test tenant"
+   ],
+   [
+    666,
+    "The federal requirement and evidence for Gate 0"
+   ],
+   [
+    734,
+    "Check yourself: two questions on the inventory"
+   ],
+   [
+    781,
+    "Summary, and next: Module 2, emergency access first"
+   ]
+  ]
+ },
+ {
+  "id": "Training_PA_Module_2_Narrated",
+  "title": "Privileged Access learning path, Module 2: Emergency access first",
+  "group": "training",
+  "minutes": 14,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_PA_Module_2_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/training-pa-module-2/Training_PA_Module_2_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-pa-module-2/Training_PA_Module_2_Narration_Script.md",
+  "page": "docs/training/privileged-access/02-emergency-access-first.html",
+  "source": "docs/training/privileged-access/02-emergency-access-first.md",
+  "kits": [
+   {
+    "name": "privileged-access",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/privileged-access",
+    "zip": "downloads/privileged-access-code.zip"
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Module 2: Emergency access first"
+   ],
+   [
+    49,
+    "Why emergency access comes before any setting changes"
+   ],
+   [
+    110,
+    "What you'll be able to do in Module 2"
+   ],
+   [
+    165,
+    "What Learn's standard asks of each emergency account"
+   ],
+   [
+    234,
+    "PA-EA-08: enforced policies, and report-only ones"
+   ],
+   [
+    291,
+    "The alert: three tables, matched on object IDs"
+   ],
+   [
+    349,
+    "Try it: Learn's queries, and six read permissions"
+   ],
+   [
+    399,
+    "Try it: check the accounts and write the alert template"
+   ],
+   [
+    449,
+    "Try it: read the findings for ea02 and the policies"
+   ],
+   [
+    507,
+    "Try it: the example's rule finds five events, not two"
+   ],
+   [
+    552,
+    "Try it: see the guards, then run the tests"
+   ],
+   [
+    597,
+    "Lab 2: check your test tenant and fire the alert"
+   ],
+   [
+    656,
+    "The federal requirement and evidence for Gate 1"
+   ],
+   [
+    721,
+    "Check yourself: two questions on emergency access"
+   ],
+   [
+    766,
+    "Summary, and next: Module 3, the activation gate"
+   ]
+  ]
+ },
+ {
+  "id": "Training_PA_Module_3_Narrated",
+  "title": "Privileged Access learning path, Module 3: Conditional Access for administrators and the activation gate",
+  "group": "training",
+  "minutes": 14,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_PA_Module_3_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/training-pa-module-3/Training_PA_Module_3_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-pa-module-3/Training_PA_Module_3_Narration_Script.md",
+  "page": "docs/training/privileged-access/03-conditional-access-and-the-activation-gate.html",
+  "source": "docs/training/privileged-access/03-conditional-access-and-the-activation-gate.md",
+  "kits": [
+   {
+    "name": "privileged-access",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/privileged-access",
+    "zip": "downloads/privileged-access-code.zip"
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Module 3: Conditional Access and the activation gate"
+   ],
+   [
+    53,
+    "Why a second proof at the moment of activation"
+   ],
+   [
+    112,
+    "What you'll be able to do in Module 3"
+   ],
+   [
+    173,
+    "The gate and the order Learn sets for it"
+   ],
+   [
+    235,
+    "The pre-merge check: PA-CA-01 to PA-CA-09"
+   ],
+   [
+    296,
+    "Report-only policies and the emergency exclusion"
+   ],
+   [
+    342,
+    "Reading a plan: seven actions"
+   ],
+   [
+    394,
+    "Try it: the template test, and each task's permissions"
+   ],
+   [
+    441,
+    "Try it: the pre-merge check, on the files and the template"
+   ],
+   [
+    494,
+    "Try it: plan against the fictional tenant, sending nothing"
+   ],
+   [
+    549,
+    "Try it: apply three times, until nothing is left"
+   ],
+   [
+    598,
+    "Lab 2: plan, apply and enforce the gate in a test tenant"
+   ],
+   [
+    661,
+    "The federal requirement and the evidence for Module 3"
+   ],
+   [
+    729,
+    "Check yourself: two questions on the activation gate"
+   ],
+   [
+    776,
+    "Summary, and next: Module 4, PIM for Entra roles"
+   ]
+  ]
+ },
+ {
+  "id": "Training_PA_Module_4_Narrated",
+  "title": "Privileged Access learning path, Module 4: PIM for Microsoft Entra roles as code",
+  "group": "training",
+  "minutes": 14,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_PA_Module_4_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/training-pa-module-4/Training_PA_Module_4_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-pa-module-4/Training_PA_Module_4_Narration_Script.md",
+  "page": "docs/training/privileged-access/04-pim-for-entra-roles.html",
+  "source": "docs/training/privileged-access/04-pim-for-entra-roles.md",
+  "kits": [
+   {
+    "name": "privileged-access",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/privileged-access",
+    "zip": "downloads/privileged-access-code.zip"
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Module 4: PIM for Microsoft Entra roles as code"
+   ],
+   [
+    58,
+    "Why role settings as code, and the lockout they can cause"
+   ],
+   [
+    107,
+    "What you'll be able to do in Module 4"
+   ],
+   [
+    162,
+    "Settings per role, which Graph calls rules"
+   ],
+   [
+    228,
+    "The role files, the bounds and the waves"
+   ],
+   [
+    284,
+    "The checks: PA-PIM-01 to PA-PIM-09"
+   ],
+   [
+    348,
+    "Converting a standing assignment, in order"
+   ],
+   [
+    391,
+    "Try it: Learn's samples, and each task's permissions"
+   ],
+   [
+    442,
+    "Try it: dry-run wave 1, the pilot class"
+   ],
+   [
+    488,
+    "Try it: read a role's diff, and the findings"
+   ],
+   [
+    553,
+    "Try it: wave 2 waits, and the apply needs the gate"
+   ],
+   [
+    610,
+    "Lab 2: one role in your test tenant"
+   ],
+   [
+    668,
+    "The federal requirement and the evidence for Module 4"
+   ],
+   [
+    737,
+    "Check yourself: two questions on PIM role settings"
+   ],
+   [
+    779,
+    "Summary, and next: Module 5, PIM for Groups"
+   ]
+  ]
+ },
+ {
+  "id": "Training_PA_Module_5_Narrated",
+  "title": "Privileged Access learning path, Module 5: PIM for Groups and the PRV groups",
+  "group": "training",
+  "minutes": 14,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_PA_Module_5_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/training-pa-module-5/Training_PA_Module_5_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-pa-module-5/Training_PA_Module_5_Narration_Script.md",
+  "page": "docs/training/privileged-access/05-pim-for-groups.html",
+  "source": "docs/training/privileged-access/05-pim-for-groups.md",
+  "kits": [
+   {
+    "name": "privileged-access",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/privileged-access",
+    "zip": "downloads/privileged-access-code.zip"
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Module 5: PIM for Groups and the PRV groups"
+   ],
+   [
+    60,
+    "Why a PRV group's own state has to be governed"
+   ],
+   [
+    114,
+    "What you'll be able to do in Module 5"
+   ],
+   [
+    170,
+    "Two features meet in a PRV group"
+   ],
+   [
+    229,
+    "Three facts from Learn that shape the code"
+   ],
+   [
+    271,
+    "The file and the findings: PA-PG-01 to PA-PG-09"
+   ],
+   [
+    334,
+    "The plan's order, the guards, and who creates the groups"
+   ],
+   [
+    394,
+    "Try it: Microsoft's samples, and Learn's Example 1"
+   ],
+   [
+    445,
+    "Try it: four read permissions, and a dry run"
+   ],
+   [
+    492,
+    "Try it: read the findings"
+   ],
+   [
+    545,
+    "Try it: read the diff, rule by rule"
+   ],
+   [
+    599,
+    "Try it: a guard refuses, then apply to the fake"
+   ],
+   [
+    636,
+    "Lab 2: lab groups in your own test tenant"
+   ],
+   [
+    684,
+    "The federal requirement and the evidence for Module 5"
+   ],
+   [
+    742,
+    "Check yourself: two questions on the PRV groups"
+   ],
+   [
+    784,
+    "Summary, and next: Module 6, PIM for Azure resources"
+   ]
+  ]
+ },
+ {
+  "id": "Training_PA_Module_6_Narrated",
+  "title": "Privileged Access learning path, Module 6: PIM for Azure resources",
+  "group": "training",
+  "minutes": 13,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_PA_Module_6_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/training-pa-module-6/Training_PA_Module_6_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-pa-module-6/Training_PA_Module_6_Narration_Script.md",
+  "page": "docs/training/privileged-access/06-pim-for-azure-resources.html",
+  "source": "docs/training/privileged-access/06-pim-for-azure-resources.md",
+  "kits": [
+   {
+    "name": "privileged-access",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/privileged-access",
+    "zip": "downloads/privileged-access-code.zip"
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Module 6: PIM for Azure resources"
+   ],
+   [
+    54,
+    "Why Azure roles need their own module"
+   ],
+   [
+    121,
+    "What you'll be able to do in Module 6"
+   ],
+   [
+    176,
+    "Resource Manager, scopes and holders"
+   ],
+   [
+    239,
+    "The findings: PA-AZ-01 to PA-AZ-06"
+   ],
+   [
+    293,
+    "The plan, the apply, and the narrower role"
+   ],
+   [
+    347,
+    "Try it: Microsoft's examples, and each task's roles"
+   ],
+   [
+    399,
+    "Try it: plan the fictional estate, as a dry run"
+   ],
+   [
+    446,
+    "Try it: eligible first, then the removal"
+   ],
+   [
+    493,
+    "Try it: read the findings"
+   ],
+   [
+    544,
+    "Try it: apply to the fake, and see the code refuse"
+   ],
+   [
+    592,
+    "Lab 2: test scopes, and a one-day apply role"
+   ],
+   [
+    646,
+    "The federal requirement and the evidence for A3.2"
+   ],
+   [
+    697,
+    "Check yourself: two questions on Azure PIM"
+   ],
+   [
+    735,
+    "Summary, and next: Module 7, access reviews"
+   ]
+  ]
+ },
+ {
+  "id": "Training_PA_Module_7_Narrated",
+  "title": "Privileged Access learning path, Module 7: Access reviews of privileged roles",
+  "group": "training",
+  "minutes": 13,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_PA_Module_7_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/training-pa-module-7/Training_PA_Module_7_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-pa-module-7/Training_PA_Module_7_Narration_Script.md",
+  "page": "docs/training/privileged-access/07-access-reviews.html",
+  "source": "docs/training/privileged-access/07-access-reviews.md",
+  "kits": [
+   {
+    "name": "privileged-access",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/privileged-access",
+    "zip": "downloads/privileged-access-code.zip"
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Module 7: Access reviews of privileged roles"
+   ],
+   [
+    55,
+    "Why reviews belong in code, and the lockout they can cause"
+   ],
+   [
+    112,
+    "What you'll be able to do in Module 7"
+   ],
+   [
+    167,
+    "The series, the cadence and the licensing"
+   ],
+   [
+    224,
+    "The checks: PA-AR-01 to PA-AR-14"
+   ],
+   [
+    288,
+    "The plan, and the evidence each review produced"
+   ],
+   [
+    341,
+    "Try it: Learn's tutorial, and each task's permissions"
+   ],
+   [
+    387,
+    "Try it: the dry run and the diff"
+   ],
+   [
+    446,
+    "Try it: check Learn's body, then apply in the fake"
+   ],
+   [
+    502,
+    "Try it: read the evidence"
+   ],
+   [
+    560,
+    "Try it: the lockout guard refuses"
+   ],
+   [
+    598,
+    "Lab 2: one series in your test tenant"
+   ],
+   [
+    656,
+    "The federal requirement and the evidence for Module 7"
+   ],
+   [
+    711,
+    "Check yourself: two questions on access reviews"
+   ],
+   [
+    757,
+    "Summary, and next: Module 8, evidence and drift"
+   ]
+  ]
+ },
+ {
+  "id": "Training_PA_Module_8_Narrated",
+  "title": "Privileged Access learning path, Module 8: Evidence and drift for the ISSO",
+  "group": "training",
+  "minutes": 16,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_PA_Module_8_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/training-pa-module-8/Training_PA_Module_8_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-pa-module-8/Training_PA_Module_8_Narration_Script.md",
+  "page": "docs/training/privileged-access/08-evidence-and-drift.html",
+  "source": "docs/training/privileged-access/08-evidence-and-drift.md",
+  "kits": [
+   {
+    "name": "privileged-access",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/privileged-access",
+    "zip": "downloads/privileged-access-code.zip"
+   },
+   {
+    "name": "drift-pipeline",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/drift-pipeline",
+    "zip": null
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Module 8: Evidence and drift for the ISSO"
+   ],
+   [
+    51,
+    "Why: evidence for every elevation in the period"
+   ],
+   [
+    110,
+    "What you'll be able to do in Module 8"
+   ],
+   [
+    169,
+    "State, events, and a chain of windows with no gap"
+   ],
+   [
+    225,
+    "The audit findings: PA-AUD-01 to PA-AUD-04"
+   ],
+   [
+    280,
+    "Compare by fingerprint, and findings without names"
+   ],
+   [
+    331,
+    "The package, the chain, and what the ISSO receives"
+   ],
+   [
+    375,
+    "Try it: Learn's queries, and nine read permissions"
+   ],
+   [
+    420,
+    "Try it: run two days against the fictional tenant"
+   ],
+   [
+    474,
+    "Try it: day two's audit findings, and a baseline"
+   ],
+   [
+    530,
+    "Try it: compare the next day: six Tier 0 incidents"
+   ],
+   [
+    584,
+    "Try it: draft the issues, then package and verify day two"
+   ],
+   [
+    635,
+    "Try it: assemble the period for the ISSO"
+   ],
+   [
+    695,
+    "Try it: break it on purpose, then run the tests"
+   ],
+   [
+    747,
+    "Lab 2: two live runs, compared, packaged and verified"
+   ],
+   [
+    808,
+    "The federal requirement and the evidence for Gate 4"
+   ],
+   [
+    876,
+    "Check yourself: two questions on evidence and drift"
+   ],
+   [
+    921,
     "Summary: you've finished the path"
    ]
   ]

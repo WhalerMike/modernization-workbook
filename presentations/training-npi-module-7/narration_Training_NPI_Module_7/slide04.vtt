@@ -1,0 +1,80 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.612
+Unit 1 is the guide's Step
+5, which has five parts.
+
+2
+00:00:03.612 --> 00:00:08.050
+They're the program's conversion steps,
+design guidance, not Microsoft's.
+
+3
+00:00:08.050 --> 00:00:12.030
+Build the target: a managed
+identity with its role assignments,
+
+4
+00:00:12.030 --> 00:00:15.779
+a federated credential tested
+by an actual token exchange,
+
+5
+00:00:15.779 --> 00:00:20.448
+a certificate credential from the
+vault, a group managed service account,
+
+6
+00:00:20.448 --> 00:00:24.963
+or, on a Windows Server 2025 domain,
+a delegated managed service account.
+
+7
+00:00:24.963 --> 00:00:28.112
+Give it two human owners
+and a rotation schedule.
+
+8
+00:00:28.112 --> 00:00:33.545
+Run old and new in parallel for thirty
+days: the application uses the new identity,
+
+9
+00:00:33.545 --> 00:00:37.275
+and the legacy account stays
+enabled, and you watch both.
+
+10
+00:00:37.275 --> 00:00:40.100
+Disable the legacy
+account; don't delete it.
+
+11
+00:00:40.100 --> 00:00:42.542
+For an app registration losing a secret,
+
+12
+00:00:42.542 --> 00:00:47.500
+remove the secret only after the new
+credential has carried production traffic.
+
+13
+00:00:47.500 --> 00:00:52.362
+And record the result: the target, the
+date and the disabled object's I D.
+
+14
+00:00:52.362 --> 00:00:57.149
+The program's dangers table adds one
+more: federation trusts too much.
+
+15
+00:00:57.149 --> 00:01:01.609
+A broad subject lets every workload
+on that issuer in, so the program's
+
+16
+00:01:01.609 --> 00:01:06.290
+guidance is exact subjects, and approval
+of each credential as a change.

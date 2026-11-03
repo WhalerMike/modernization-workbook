@@ -1,0 +1,93 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.437
+The federal requirement.
+
+2
+00:00:01.437 --> 00:00:07.451
+The controls are from NIST SP
+800-53, at NIST's Moderate baseline.
+
+3
+00:00:07.451 --> 00:00:10.496
+This chapter turns the
+other chapters' outputs
+
+4
+00:00:10.496 --> 00:00:13.463
+into continuous monitoring,
+control C A seven.
+
+5
+00:00:13.463 --> 00:00:17.851
+The first run is a packaged
+baseline, for baseline configuration.
+
+6
+00:00:17.851 --> 00:00:21.815
+Each run says what is new,
+resolved, changed and unverified,
+
+7
+00:00:21.815 --> 00:00:26.275
+and a failed read never resolves
+a finding, for system monitoring.
+
+8
+00:00:26.275 --> 00:00:29.788
+Each finding is opened or
+closed by fingerprint,
+
+9
+00:00:29.788 --> 00:00:33.038
+with object IDs and no
+names, for audit review.
+
+10
+00:00:33.038 --> 00:00:37.757
+The package hashes every file, carries
+the other kits' provenance and chains
+
+11
+00:00:37.757 --> 00:00:42.251
+to the day before, for the protection
+of audit information and integrity.
+
+12
+00:00:42.251 --> 00:00:47.175
+An edit after packaging and runs out of
+order are refused, and the tests show it.
+
+13
+00:00:47.175 --> 00:00:48.586
+Every action is pinned,
+
+14
+00:00:48.586 --> 00:00:52.150
+and the job that reads the tenant
+can't write to the tracker.
+
+15
+00:00:52.150 --> 00:00:56.261
+And in Lab 2, the pipeline signs
+in with a federated credential,
+
+16
+00:00:56.261 --> 00:00:57.712
+with no secret stored.
+
+17
+00:00:57.712 --> 00:01:01.224
+The KSI column is from FedRAMP's
+Key Security Indicators,
+
+18
+00:01:01.224 --> 00:01:04.362
+which are indicators for
+cloud service providers.
+
+19
+00:01:04.362 --> 00:01:07.990
+Which output supports which
+control is this workbook's reading.

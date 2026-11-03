@@ -1,0 +1,75 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.313
+Step five builds the deployment
+pieces from the registry,
+
+2
+00:00:03.313 --> 00:00:06.100
+for the card management
+revocation integration.
+
+3
+00:00:06.100 --> 00:00:11.100
+It writes two files: the Logic App's
+ARM resource, and the extension's body.
+
+4
+00:00:11.100 --> 00:00:16.113
+Then set the Logic App's cloud to Azure
+Government, build again, and put it back.
+
+5
+00:00:16.113 --> 00:00:20.481
+The second build exits one: Learn
+documents the proof-of-possession
+
+6
+00:00:20.481 --> 00:00:23.913
+policy only for Azure
+commercial, so nothing is built.
+
+7
+00:00:23.913 --> 00:00:26.088
+Step six checks the read-backs.
+
+8
+00:00:26.088 --> 00:00:30.475
+The extension and the leaver workflow
+both come back with no findings.
+
+9
+00:00:30.475 --> 00:00:32.906
+Then move the custom task to the front of
+
+10
+00:00:32.906 --> 00:00:35.337
+a copy of the workflow,
+and check the copy.
+
+11
+00:00:35.337 --> 00:00:39.014
+Two W X oh three findings:
+Disable user account,
+
+12
+00:00:39.014 --> 00:00:43.950
+and Revoke all refresh tokens,
+don't run before the custom task.
+
+13
+00:00:43.950 --> 00:00:45.063
+Block first.
+
+14
+00:00:45.063 --> 00:00:46.312
+Exit code two.
+
+15
+00:00:46.312 --> 00:00:49.825
+Step seven runs the tests: fifty-five, OK.
+
+16
+00:00:49.825 --> 00:00:51.260
+Step eight cleans up.

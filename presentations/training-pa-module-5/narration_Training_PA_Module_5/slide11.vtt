@@ -1,0 +1,69 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.313
+Step six reads the diff,
+one line per change.
+
+2
+00:00:03.313 --> 00:00:07.849
+A tilde is a change, a plus an
+addition, a minus a removal.
+
+3
+00:00:07.849 --> 00:00:09.763
+The policy rules come first.
+
+4
+00:00:09.763 --> 00:00:13.851
+The Tier 0 group's member activation
+goes from eight hours to four,
+
+5
+00:00:13.851 --> 00:00:17.562
+and from no approval to approval,
+by the same approver group.
+
+6
+00:00:17.562 --> 00:00:21.250
+The Azure owner group's eligible
+owners must now have an end.
+
+7
+00:00:21.250 --> 00:00:22.387
+Then the grants.
+
+8
+00:00:22.387 --> 00:00:27.886
+An Exchange admin member's end date
+moves out to April twenty twenty-seven,
+
+9
+00:00:27.886 --> 00:00:31.942
+on change C H G ten oh two, and
+a new active member is added,
+
+10
+00:00:31.942 --> 00:00:34.737
+on C H G ten oh five,
+each with its ticket.
+
+11
+00:00:34.737 --> 00:00:39.308
+Then the three removals: the Tier
+0 group's ungranted active member,
+
+12
+00:00:39.308 --> 00:00:42.549
+its eligible owner, and
+the nested legacy group.
+
+13
+00:00:42.549 --> 00:00:46.304
+Last, the plan names exactly the
+write permissions it would need:
+
+14
+00:00:46.304 --> 00:00:49.200
+the three PIM for Groups
+ReadWrite permissions.

@@ -1,0 +1,72 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.656
+Turning a policy on is the moment
+a production job can stop,
+
+2
+00:00:03.656 --> 00:00:07.412
+so the code asks for five things
+at once, or the ring stays held.
+
+3
+00:00:07.412 --> 00:00:09.850
+A D N five record marks the ring.
+
+4
+00:00:09.850 --> 00:00:11.763
+The change says allow enforce.
+
+5
+00:00:11.763 --> 00:00:15.912
+The run names a sign-in summary
+whose hash the ring's record cites.
+
+6
+00:00:15.912 --> 00:00:17.937
+That summary shows the ring ready.
+
+7
+00:00:17.937 --> 00:00:20.775
+And every earlier ring
+is already enforced.
+
+8
+00:00:20.775 --> 00:00:23.775
+The five conditions are the
+program's design guidance.
+
+9
+00:00:23.775 --> 00:00:26.137
+The evidence comes from
+the sign-in reader.
+
+10
+00:00:26.137 --> 00:00:29.228
+Following Microsoft Learn's
+List sign-ins reference,
+
+11
+00:00:29.228 --> 00:00:33.514
+it reads the beta sign-in list with a
+filter for service principal sign-ins,
+
+12
+00:00:33.514 --> 00:00:37.449
+and sends a header without which
+report-only results don't come back.
+
+13
+00:00:37.449 --> 00:00:40.472
+Each principal gets one of four statuses:
+
+14
+00:00:40.472 --> 00:00:43.850
+no sign-ins, not evaluated,
+would block, or clear.
+
+15
+00:00:43.850 --> 00:00:47.620
+A ring is ready only when
+every principal in it is clear.

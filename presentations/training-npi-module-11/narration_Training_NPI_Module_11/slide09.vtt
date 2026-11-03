@@ -1,0 +1,70 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:05.512
+Lab 1 runs in the non-person
+identity folder, in PowerShell 7.
+
+3
+00:00:05.512 --> 00:00:09.622
+The test and production tenants
+are fictional and served by a fake,
+
+4
+00:00:09.622 --> 00:00:12.013
+so nothing signs in and nothing is sent.
+
+5
+00:00:12.013 --> 00:00:15.605
+Step one loads the deploy
+module and checks the template,
+
+6
+00:00:15.605 --> 00:00:17.287
+and it's refused on purpose.
+
+7
+00:00:17.287 --> 00:00:19.654
+You get an error, then
+every problem at once,
+
+8
+00:00:19.654 --> 00:00:23.575
+starting with the environment
+placeholder that hasn't been replaced.
+
+9
+00:00:23.575 --> 00:00:26.137
+A filled-in file prints one line instead.
+
+10
+00:00:26.137 --> 00:00:28.949
+Step two runs the test stage's preflight.
+
+11
+00:00:28.949 --> 00:00:31.638
+It prints twelve passes and one warning.
+
+12
+00:00:31.638 --> 00:00:36.931
+The warning is P F oh six: the fixture's
+Conditional Access administrator holds a
+
+13
+00:00:36.931 --> 00:00:40.702
+standing assignment, not one
+that's eligible through P I M,
+
+14
+00:00:40.702 --> 00:00:43.750
+and the preflight reports
+it but doesn't block.
+
+15
+00:00:43.750 --> 00:00:48.600
+It writes two evidence records, and
+its last line says go for this stage.

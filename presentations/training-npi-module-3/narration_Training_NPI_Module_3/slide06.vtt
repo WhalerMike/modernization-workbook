@@ -1,0 +1,77 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.370
+The owner's disposition
+is read row by row,
+
+2
+00:00:03.370 --> 00:00:08.837
+and what's missing or wrong becomes a
+finding, N P I M A T oh one to oh nine.
+
+3
+00:00:08.837 --> 00:00:10.826
+Oh one: no disposition.
+
+4
+00:00:10.826 --> 00:00:14.825
+Oh two: no proposal, because
+the workload facts are missing.
+
+5
+00:00:14.825 --> 00:00:16.844
+Oh three: a target that doesn't fit,
+
+6
+00:00:16.844 --> 00:00:21.779
+such as a managed or group managed service
+account sent to a delegated one, which
+
+7
+00:00:21.779 --> 00:00:24.621
+Microsoft Learn's
+delegated managed service
+
+8
+00:00:24.621 --> 00:00:27.163
+account documentation says can't be done.
+
+9
+00:00:27.163 --> 00:00:31.058
+Oh four: the owner chose a target
+the matrix didn't propose;
+
+10
+00:00:31.058 --> 00:00:33.876
+that's allowed, with a
+reason on the record.
+
+11
+00:00:33.876 --> 00:00:37.989
+Oh five: an account kept in Active
+Directory with no end date,
+
+12
+00:00:37.989 --> 00:00:40.088
+or one past the program's dates.
+
+13
+00:00:40.088 --> 00:00:44.412
+Oh six: an account kept on
+Kerberos with no S P N owner.
+
+14
+00:00:44.412 --> 00:00:48.475
+Oh seven: a high-risk account
+re-platformed outside wave 1.
+
+15
+00:00:48.475 --> 00:00:52.762
+Oh eight: a wave with no rollback
+owner, or no review date.
+
+16
+00:00:52.762 --> 00:00:56.180
+And oh nine is the Workload
+I D Premium scope.

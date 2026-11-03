@@ -1,0 +1,79 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.767
+The sweep reads every service
+principal in the register:
+
+2
+00:00:03.767 --> 00:00:08.987
+its app role assignments on every resource,
+not just Graph, its delegated grants,
+
+3
+00:00:08.987 --> 00:00:13.100
+its directory roles, and for a
+managed identity, its Azure roles.
+
+4
+00:00:13.100 --> 00:00:17.887
+Then the check applies nine
+rules, N P L P oh one to oh nine.
+
+5
+00:00:17.887 --> 00:00:21.303
+Most rest on Microsoft Learn's
+permission and role pages;
+
+6
+00:00:21.303 --> 00:00:26.100
+the exception rules and the unnamed-role
+rule are the program's design guidance.
+
+7
+00:00:26.100 --> 00:00:30.538
+Oh one: a broad application permission
+with no recorded exception.
+
+8
+00:00:30.538 --> 00:00:35.138
+Oh two: an exception that ended,
+or that's missing a justification,
+
+9
+00:00:35.138 --> 00:00:38.176
+an approver, an approval
+date or an end date.
+
+10
+00:00:38.176 --> 00:00:42.638
+Oh three: a broad delegated
+scope consented for all users.
+
+11
+00:00:42.638 --> 00:00:46.875
+Oh four is subtle: a mail permission
+still granted in Entra while its
+
+12
+00:00:46.875 --> 00:00:51.338
+exception relies on Exchange's scoped
+access, so the scope does nothing.
+
+13
+00:00:51.338 --> 00:00:54.637
+Oh five is mail limited by
+the legacy access policy.
+
+14
+00:00:54.637 --> 00:00:59.813
+Oh six and oh seven grade a managed identity's
+Azure role by how wide its scope is.
+
+15
+00:00:59.813 --> 00:01:01.774
+Oh eight hands a privileged app off.
+
+16
+00:01:01.774 --> 00:01:04.390
+And oh nine is a role nobody can name.

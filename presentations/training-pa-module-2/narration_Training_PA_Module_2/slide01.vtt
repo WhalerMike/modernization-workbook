@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.725
+Welcome to Module 2 of the Privileged Access
+learning path: emergency access first.
+
+2
+00:00:05.725 --> 00:00:12.048
+This module serves the project plan's
+task A0.4 in Phase 0 and A1.1 in Phase 1,
+
+3
+00:00:12.048 --> 00:00:15.737
+with Chapter 02 of the developer workbook.
+
+4
+00:00:15.737 --> 00:00:18.475
+It's the one step in the
+project that can't move.
+
+5
+00:00:18.475 --> 00:00:24.356
+In it you check each emergency access
+account against Microsoft Learn's standard,
+
+6
+00:00:24.356 --> 00:00:27.037
+from code, with rules
+E A oh one to E A ten.
+
+7
+00:00:27.037 --> 00:00:30.383
+You build the alert on their
+use as a reviewed template
+
+8
+00:00:30.383 --> 00:00:33.876
+that also sees non-interactive
+sign-ins and audit events.
+
+9
+00:00:33.876 --> 00:00:35.387
+And you keep a drill record.
+
+10
+00:00:35.387 --> 00:00:40.188
+The code runs on your laptop against
+the same fictional tenant as Module 1.
+
+11
+00:00:40.188 --> 00:00:45.360
+It's illustrative: tested against fixtures,
+not run against a production tenant.

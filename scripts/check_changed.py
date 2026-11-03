@@ -277,6 +277,9 @@ def non_site_tasks(changes: Iterable[Change], kits: Iterable[str] = ("start-kit"
             add("video-manifest", p)
         if p.startswith(("data/project-plans/", "scripts/project_plans/", "docs/project-plans/")):
             add("project-plans", p)
+        if p.startswith(("data/project-plans/", "scripts/decisions/")) or p in (
+                "data/decisions.yml", "docs/about/decision-register.md") or re.fullmatch(r"docs/books/b\d\d-[^/]+/index\.md", p):
+            add("decisions", p)
         if p.startswith(("docs/project-plans/developer-workbooks/", "docs/books/b19-developer-workbook/",
                          "docs/training/", "docs/books/guides/")) or p == "scripts/generate_labs.py":
             add("labs", p)
@@ -1101,6 +1104,8 @@ class Checker:
             steps.append(("Labs page and guide lab links are current", self.simple([PY, "scripts/generate_labs.py", "--check"])))
         if "project-plans" in t:
             steps.append(("Project plans are current", self.simple([PY, "scripts/project_plans/build.py", "--check"])))
+        if "decisions" in t:
+            steps.append(("Decision register is current", self.simple([PY, "scripts/decisions/build.py", "--check"])))
         if "authorities" in t:
             steps.append(("Authorities tables match the spine",
                           self.simple([PY, "scripts/render_authorities_table.py", "--check"])))

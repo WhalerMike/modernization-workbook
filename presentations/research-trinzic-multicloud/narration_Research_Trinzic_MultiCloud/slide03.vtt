@@ -38,24 +38,24 @@ algorithm is RSA with SHA-1,
 which a federal deployment should change.
 
 9
-00:00:30.574 --> 00:00:36.191
-This matters because Book 08 of the
-workbook argues for one DDI policy plane,
+00:00:30.574 --> 00:00:36.452
+This matters because the workbook's DNS
+design argues for one DDI policy plane,
 
 10
-00:00:36.191 --> 00:00:40.737
+00:00:36.452 --> 00:00:41.063
 a single system of record with
 cloud DNS managed as an overlay.
 
 11
-00:00:40.737 --> 00:00:43.089
+00:00:41.063 --> 00:00:43.414
 On premises, the Grid fits that role,
 
 12
-00:00:43.089 --> 00:00:47.875
+00:00:43.414 --> 00:00:48.200
 inside the agency's own boundary rather
 than as a FedRAMP cloud service.
 
 13
-00:00:47.875 --> 00:00:50.330
+00:00:48.200 --> 00:00:50.660
 The open question is the cloud edge.

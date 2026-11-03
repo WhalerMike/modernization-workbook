@@ -1,0 +1,71 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.938
+Unit 2 starts with what the evidence
+has to show: state, events and drift.
+
+2
+00:00:04.938 --> 00:00:07.688
+The run and the baseline
+are the kit's design.
+
+3
+00:00:07.688 --> 00:00:09.551
+One run writes one folder.
+
+4
+00:00:09.551 --> 00:00:14.323
+It holds Chapter 1's inventory and
+Chapter 2's ownership check, unchanged,
+
+5
+00:00:14.323 --> 00:00:16.470
+plus this chapter's drift folder,
+
+6
+00:00:16.470 --> 00:00:20.925
+and a run record that ties them
+together by each task's manifest hash.
+
+7
+00:00:20.925 --> 00:00:23.767
+A task that fails is recorded as an error,
+
+8
+00:00:23.767 --> 00:00:27.987
+never as an empty result, so a
+failed read can't look like a fix.
+
+9
+00:00:27.987 --> 00:00:33.169
+The baseline, the program's design guidance,
+is a fingerprint per identity: a hash
+
+10
+00:00:33.169 --> 00:00:38.663
+over twenty governance columns, such as
+owners, credentials, permissions and grants.
+
+11
+00:00:38.663 --> 00:00:41.401
+Last logon and password age are left out,
+
+12
+00:00:41.401 --> 00:00:44.388
+because they move every
+day and aren't drift.
+
+13
+00:00:44.388 --> 00:00:47.509
+And the baseline counts only
+when it's passed with the
+
+14
+00:00:47.509 --> 00:00:50.488
+hash a reviewer approved,
+for this tenant and cloud.
+
+15
+00:00:50.488 --> 00:00:53.540
+In a real run, a second person reviews it.

@@ -1,55 +1,55 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.937
-Method A is the one Book 08's
+00:00:00.050 --> 00:00:04.013
+Method A is the one the workbook's
 coexistence phase leans on:
 
 2
-00:00:03.937 --> 00:00:07.738
+00:00:04.013 --> 00:00:07.500
 manage the Windows servers
 first, then take them over.
 
 3
-00:00:07.738 --> 00:00:13.530
+00:00:07.500 --> 00:00:13.293
 Grid members manage Windows DNS and DHCP
 without an agent, read-only or read-write,
 
 4
-00:00:13.530 --> 00:00:18.112
+00:00:13.293 --> 00:00:17.875
 using a physical member with the
 Microsoft Management license.
 
 5
-00:00:18.112 --> 00:00:22.484
+00:00:17.875 --> 00:00:21.845
 Most zone types and records sync,
 but conditional forwarders don't,
 
 6
-00:00:22.484 --> 00:00:26.538
-so you still need Book 08's
+00:00:21.845 --> 00:00:25.887
+so you still need the workbook's
 PowerShell export to recreate them.
 
 7
-00:00:26.538 --> 00:00:31.398
+00:00:25.887 --> 00:00:30.747
 A few rules bite: each Windows server
 syncs into one view, the first sync
 
 8
-00:00:31.398 --> 00:00:36.425
+00:00:30.747 --> 00:00:35.774
 belongs off-hours, and a failover
 mid-sync loses recent Grid-side changes.
 
 9
-00:00:36.425 --> 00:00:40.869
+00:00:35.774 --> 00:00:40.249
 The design guidance is to add the
 Windows servers read-only in Phase 1,
 
 10
-00:00:40.869 --> 00:00:43.675
+00:00:40.249 --> 00:00:43.075
 so the synced views
 become a live inventory.
 
 11
-00:00:43.675 --> 00:00:45.240
+00:00:43.075 --> 00:00:44.640
 Then you move the zones.

@@ -5,55 +5,60 @@ WEBVTT
 Welcome.
 
 2
-00:00:00.763 --> 00:00:06.109
-This is Book 09's SD-WAN design on Cisco
-Catalyst SD-WAN, an implementation guide
+00:00:00.763 --> 00:00:05.103
+This is the SD-WAN design from the
+workbook's Network and Transport book,
 
 3
-00:00:06.109 --> 00:00:11.950
-from the research section of the Federal
-Modernization Workbook, still under review.
+00:00:05.103 --> 00:00:09.592
+built on Cisco Catalyst SD-WAN, an
+implementation guide from the research
 
 4
-00:00:11.950 --> 00:00:16.274
-Book 09 sets a vendor-neutral design
-for governed branch transport,
+00:00:09.592 --> 00:00:13.712
+section of the Federal Modernization
+Workbook, still under review.
 
 5
-00:00:16.274 --> 00:00:21.525
+00:00:13.712 --> 00:00:18.699
+Network and Transport sets a vendor-neutral
+design for governed branch transport,
+
+6
+00:00:18.699 --> 00:00:23.613
 and its field-office chapter already uses
 Catalyst edges as its costable example.
 
-6
-00:00:21.525 --> 00:00:24.120
+7
+00:00:23.613 --> 00:00:26.208
 So this guide builds on
 the program's platform,
 
-7
-00:00:24.120 --> 00:00:26.988
+8
+00:00:26.208 --> 00:00:29.076
 consolidating rather than
 adding another vendor.
 
-8
-00:00:26.988 --> 00:00:30.501
+9
+00:00:29.076 --> 00:00:32.588
 It's an example, not an
 endorsement by any agency.
 
-9
-00:00:30.501 --> 00:00:35.988
+10
+00:00:32.588 --> 00:00:38.075
 In about fifteen minutes we'll cover the
 emergency directive that gates the build,
 
-10
-00:00:35.988 --> 00:00:40.507
+11
+00:00:38.075 --> 00:00:42.594
 the hosted-or-on-premises decision,
 the twelve-hub fabric, hardening,
 
-11
-00:00:40.507 --> 00:00:45.188
+12
+00:00:42.594 --> 00:00:47.275
 the TIC and Microsoft 365 paths, and
 the evidence the fabric has to emit.
 
-12
-00:00:45.188 --> 00:00:47.500
+13
+00:00:47.275 --> 00:00:49.580
 First, why start with a directive?

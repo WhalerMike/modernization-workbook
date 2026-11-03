@@ -1,0 +1,61 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.088
+Why does this module come at the end?
+
+2
+00:00:02.088 --> 00:00:05.445
+Because every gate before
+it ends in a state:
+
+3
+00:00:05.445 --> 00:00:08.337
+an owner, a target, a credential, a scope.
+
+4
+00:00:08.337 --> 00:00:10.376
+This module keeps that state true.
+
+5
+00:00:10.376 --> 00:00:13.401
+A credential added by
+hand, a new consent grant,
+
+6
+00:00:13.401 --> 00:00:15.789
+an app nobody has used in ninety days,
+
+7
+00:00:15.789 --> 00:00:20.647
+which is Microsoft Learn's threshold
+for an unused app, or an owner who left:
+
+8
+00:00:20.647 --> 00:00:24.787
+each one shows up as drift, against
+a baseline someone approved.
+
+9
+00:00:24.787 --> 00:00:27.480
+Then the evidence has to reach the ISSO in
+
+10
+00:00:27.480 --> 00:00:30.251
+a form they can trust
+without trusting you.
+
+11
+00:00:30.251 --> 00:00:35.150
+Each run is packaged with a hash for
+every file, and chained to the run before.
+
+12
+00:00:35.150 --> 00:00:39.363
+The ISSO checks a package with
+the standard checksum tool alone.
+
+13
+00:00:39.363 --> 00:00:43.900
+And a period summary shows whether
+the checks ran every day, with no gap.

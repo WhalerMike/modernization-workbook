@@ -106,16 +106,16 @@
   ],
   [
    30.575,
-   10.162,
-   "This matters because Book 08 of the workbook argues for one D D I policy plane, a single system of record with cloud D N S managed as an overlay."
+   10.488,
+   "This matters because the workbook's D N S design argues for one D D I policy plane, a single system of record with cloud D N S managed as an overlay."
   ],
   [
-   40.737,
+   41.062,
    7.138,
    "On premises, the Grid fits that role, inside the agency's own boundary rather than as a fed-ramp cloud service."
   ],
   [
-   47.875,
+   48.2,
    2.4,
    "The open question is the cloud edge."
   ]
@@ -355,31 +355,31 @@
   ],
   [
    1.95,
-   10.463,
-   "Book 08 of the workbook makes the vendor-neutral case, from split-brain to the policy plane, and the research deep dive on Infoblox D D I covers the platform itself."
+   12.262,
+   "The workbook's D N S, DHCP and eye-pam book makes the vendor-neutral case, from split-brain to the policy plane, and the research deep dive on Infoblox D D I covers the platform itself."
   ],
   [
-   12.412,
-   10.238,
-   "The decisions to take are which option for each cloud and impact level, one named owner for every zone, where DNSSEC keys live, and how address blocks reach each cloud."
+   14.213,
+   10.275,
+   "The decisions to take are which option for each cloud and impact level, one named owner for every zone, where DNSSEC keys liv, and how address blocks reach each cloud."
   ],
   [
-   22.65,
+   24.488,
    7.025,
    "The next steps start with Infoblox: ask for the Government Cloud boundary and a feature matrix for government accounts."
   ],
   [
-   29.675,
+   31.512,
    8.588,
    "Then confirm Azure Government availability, size NIOS-X capacity if you want cloud forwarders, and test forwarding in both directions."
   ],
   [
-   38.263,
+   40.1,
    4.925,
    "This is research under review, not an endorsement by any federal agency."
   ],
   [
-   43.188,
+   45.025,
    0.762,
    "Thank you."
   ]

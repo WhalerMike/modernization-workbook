@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.055
+Step seven switches to a second
+shell, a POSIX shell at the root of
+
+2
+00:00:04.055 --> 00:00:08.362
+your copy of the repository, and
+moves into the drift pipeline folder.
+
+3
+00:00:08.362 --> 00:00:12.888
+The runs it packages are the repository's
+copies of the two days you just made.
+
+4
+00:00:12.888 --> 00:00:17.362
+Package day one, then day two,
+chained to day one's manifest.
+
+5
+00:00:17.362 --> 00:00:19.600
+Each prints one line of JSON.
+
+6
+00:00:19.600 --> 00:00:24.850
+The second says nineteen findings are new,
+eighty are open, and one is resolved.
+
+7
+00:00:24.850 --> 00:00:28.238
+Step eight verifies the
+second package three ways.
+
+8
+00:00:28.238 --> 00:00:31.725
+The packager's own verify
+reports twenty-one files.
+
+9
+00:00:31.725 --> 00:00:35.539
+The standard checksum tool,
+run against the checksum file,
+
+10
+00:00:35.539 --> 00:00:37.525
+prints nothing and exits zero.
+
+11
+00:00:37.525 --> 00:00:41.864
+And a search of the summary for the
+fictional tenant's domain counts zero:
+
+12
+00:00:41.864 --> 00:00:44.250
+no user principal name is in the summary.
+
+13
+00:00:44.250 --> 00:00:48.460
+That's the check an ISSO can run
+with nothing but standard tools.

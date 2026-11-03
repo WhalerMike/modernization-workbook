@@ -1,0 +1,667 @@
+{
+ "1": [
+  [
+   0.05,
+   6.513,
+   "Welcome to Module 1 of the Privileged Access learning path: inventory every privileged assignment."
+  ],
+  [
+   6.562,
+   3.938,
+   "Privilege should be just-in-time, by tier, and provable."
+  ],
+  [
+   10.5,
+   9.5,
+   "This path teaches you to build the software that gets an estate there, in eight modules, one for each chapter of the developer workbook, Building Privileged Access."
+  ],
+  [
+   20.0,
+   9.675,
+   "This one serves Phase 0 of the project plan, tasks A0.1 and A0.2, and Gate 0, with Chapter 01 of the workbook."
+  ],
+  [
+   29.675,
+   15.262,
+   "In it you run Microsoft Learn's own samples to see what they miss, then run the workbook's inventory: one read of every privileged assignment, a tier for every row, findings for standing privilege, and a manifest that says which calls produced the files."
+  ],
+  [
+   44.938,
+   3.237,
+   "The code runs on your laptop against a fictional tenant."
+  ],
+  [
+   48.175,
+   5.112,
+   "It's illustrative: tested against fixtures, not run against a production tenant."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.038,
+   "Why start here?"
+  ],
+  [
+   1.087,
+   10.9,
+   "Because you can't make privilege just-in-time until you can list it: who holds which role, at which scope, standing or eligible, directly or through a group, and in which tier."
+  ],
+  [
+   11.988,
+   3.413,
+   "The admin center's list of active assignments isn't enough."
+  ],
+  [
+   15.4,
+   10.475,
+   "Under pim almost every human holder becomes eligible, so a list of active assignments shrinks as the project succeeds, and it stops being an inventory just when you need one."
+  ],
+  [
+   25.875,
+   13.575,
+   "In this module you build the inventory the rest of the path depends on: one read of every privileged assignment, a tier for every row, findings for standing privilege, and a manifest that says which calls produced the files."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   5.175,
+   "Here's what you'll be able to do by the end of this module, which takes about fifty minutes with the lab."
+  ],
+  [
+   5.225,
+   8.062,
+   "You'll name the four ways a role reaches a person, and explain why the inventory reads eligible assignments as well as active ones."
+  ],
+  [
+   13.287,
+   4.55,
+   "You'll explain what Microsoft Learn's sample for listing role assignments leaves out."
+  ],
+  [
+   17.837,
+   5.812,
+   "You'll run the inventory and read its findings, rules I N V oh one to oh nine."
+  ],
+  [
+   23.65,
+   3.975,
+   "You'll explain why the tier comes from the program, not from Microsoft."
+  ],
+  [
+   27.625,
+   2.75,
+   "And you'll say what the reader refuses, and why."
+  ],
+  [
+   30.375,
+   11.688,
+   "Before you start, you need the path's prerequisites: the chapter on privileged tiers in Access and Privilege, the plan's gates, Microsoft Automation Modules 1 and 2, and PowerShell 7."
+  ],
+  [
+   42.062,
+   7.025,
+   "Lab 1 needs PowerShell 7.1 or later with Pester 5 and a copy of the repository, and no tenant."
+  ],
+  [
+   49.087,
+   6.4,
+   "Lab 2 needs a worldwide or G C C test tenant with a test Azure subscription, never production."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   2.712,
+   "Unit 1: what the inventory has to hold."
+  ],
+  [
+   2.763,
+   9.8,
+   "Microsoft Learn's guide to planning a pim deployment names four kinds of assignment: permanent eligible, permanent active, time-bound eligible and time-bound active."
+  ],
+  [
+   12.562,
+   5.987,
+   "And it says to keep zero permanently active assignments, except the emergency access accounts."
+  ],
+  [
+   18.55,
+   4.562,
+   "So the inventory reads all four, eligible as well as active."
+  ],
+  [
+   23.113,
+   1.3,
+   "Next, the route."
+  ],
+  [
+   24.413,
+   4.463,
+   "A role assigned to a role-assignable group reaches every member of that group."
+  ],
+  [
+   28.875,
+   7.525,
+   "The program's design assigns roles to groups named P R V, then the tier, then the role, and never to a person."
+  ],
+  [
+   36.4,
+   1.025,
+   "Then the tier."
+  ],
+  [
+   37.425,
+   8.238,
+   "It comes from the program's own file, tiers dot json, keyed by the role's template I D, which is the same in every tenant."
+  ],
+  [
+   45.663,
+   5.125,
+   "A role that isn't in the file is reported as unclassified, never assumed safe."
+  ],
+  [
+   50.788,
+   6.075,
+   "That file is this workbook's design guidance: the agency replaces it with its approved tier model."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   9.662,
+   "Microsoft Learn's page on listing Microsoft Entra role assignments has a sample, and the kit runs it as published against a stand-in, so you can see exactly what it misses."
+  ],
+  [
+   9.713,
+   3.438,
+   "The most important gap: it sees no eligible assignment."
+  ],
+  [
+   13.15,
+   7.763,
+   "That's the state the project moves every human holder into, so an inventory built on it gets emptier as the work succeeds."
+  ],
+  [
+   20.913,
+   5.388,
+   "It also returns a role-assignable group as one principal and never reads its members."
+  ],
+  [
+   26.3,
+   2.938,
+   "It resolves no names and assigns no tier."
+  ],
+  [
+   29.238,
+   5.475,
+   "It passes neither the All nor the page size option, so it doesn't follow every page."
+  ],
+  [
+   34.712,
+   4.75,
+   "It reads transitive assignments from the beta endpoint, on a hard-coded host."
+  ],
+  [
+   39.462,
+   2.55,
+   "And it reads no Azure role assignments at all."
+  ],
+  [
+   42.013,
+   7.7,
+   "The workbook's inventory closes each of those gaps, and Lab 1's first step shows the eligible gap with your own eyes."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   3.987,
+   "Unit 2: the reader, the rows and the findings."
+  ],
+  [
+   4.037,
+   6.0,
+   "The reader sends only the calls declared in the kit's call list, each with its least-privileged permission."
+  ],
+  [
+   10.037,
+   2.962,
+   "It sends GET only; any other method throws."
+  ],
+  [
+   13.0,
+   7.138,
+   "It sends to one host, the named cloud's own Graph or Resource Manager endpoint, and it follows every page."
+  ],
+  [
+   20.137,
+   5.787,
+   "Note why it asks for User dot Read Basic dot All as well as Group Member dot Read Basic dot All."
+  ],
+  [
+   25.925,
+   8.85,
+   "Without it, a group's member comes back with an I D and a type only, and the review sees an unnamed holder; that's rule I N V oh nine."
+  ],
+  [
+   34.775,
+   9.15,
+   "The rows: one row per assignment, with its plane, role, tier and scope, its state, and its route, direct or through a group."
+  ],
+  [
+   43.925,
+   7.325,
+   "When a role is on a group, the reader reads the group's members once, and each member gets its own row marked Via Group."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   3.025,
+   "The findings, I N V oh one to oh nine."
+  ],
+  [
+   3.075,
+   6.85,
+   "Oh one is the big one: standing active privilege in Tier 0 or Tier 1 outside the documented exceptions."
+  ],
+  [
+   9.925,
+   4.287,
+   "An exception counts only if it has an owner, and then the row is Info."
+  ],
+  [
+   14.213,
+   4.75,
+   "Oh two is a role assigned straight to a user, not through a P R V group."
+  ],
+  [
+   18.962,
+   3.913,
+   "Oh three is a group that holds a role but isn't named for its tier."
+  ],
+  [
+   22.875,
+   17.663,
+   "Oh four counts Global Administrators: five or more is a finding, because Microsoft Learn's best practices for Entra roles advise fewer than five, and so is fewer than two users, the floor in sis-uh's ScubaGear baseline, M S A A D seven point one, version one."
+  ],
+  [
+   40.538,
+   2.062,
+   "Oh five is a role with no tier."
+  ],
+  [
+   42.6,
+   3.0,
+   "Oh six is eligibility that never expires."
+  ],
+  [
+   45.6,
+   5.688,
+   "Oh seven is User Access Administrator at root scope, which is what elevate access grants."
+  ],
+  [
+   51.288,
+   7.963,
+   "Oh eight is more than three Owners on a subscription, against Microsoft Learn's Azure R B A C best practice of at most three."
+  ],
+  [
+   59.25,
+   3.9,
+   "And oh nine is a group member whose name the run couldn't read."
+  ],
+  [
+   63.15,
+   5.562,
+   "Those thresholds come from Microsoft Learn and sis-uh; the other rules are the kit's own design."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   9.075,
+   "Lab 1 runs in the privileged-access folder of the examples, in one PowerShell 7 session, against a fictional tenant served by a fake."
+  ],
+  [
+   9.85,
+   2.9,
+   "Nothing signs in, and nothing leaves the machine."
+  ],
+  [
+   12.75,
+   4.925,
+   "Step one runs Microsoft Learn's samples against the stand-ins, with Pester."
+  ],
+  [
+   17.675,
+   7.062,
+   "Nine pass, none fail, and seven don't run: those seven are Chapter 02's, for the next module."
+  ],
+  [
+   24.738,
+   2.462,
+   "The second test is the one to notice."
+  ],
+  [
+   27.2,
+   5.15,
+   "It shows that the fixture's eligible-only holders never appear in the sample's output."
+  ],
+  [
+   32.35,
+   4.388,
+   "Step two loads the module and lists the permissions the inventory needs."
+  ],
+  [
+   36.737,
+   9.675,
+   "There are five: Group Member, Role Assignment Schedule, Role Eligibility Schedule and Role Management, each to read, and User dot Read Basic dot All."
+  ],
+  [
+   46.413,
+   1.675,
+   "Nothing ends in ReadWrite."
+  ],
+  [
+   48.087,
+   2.675,
+   "The output on the slide is wrapped to fit."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   3.812,
+   "Step three runs the inventory against the fictional tenant."
+  ],
+  [
+   3.862,
+   9.713,
+   "You give it the fixture, an output folder, three Azure scopes, two subscriptions and the root management group, the exceptions list, and the control-plane subscription."
+  ],
+  [
+   13.575,
+   1.85,
+   "It reads thirty rows."
+  ],
+  [
+   15.425,
+   4.45,
+   "In Azure, four are Tier 0, five Tier 1 and one Tier 2."
+  ],
+  [
+   19.875,
+   10.938,
+   "In Entra, eight are Tier 0, two Tier 1, two Tier 2, and one is unclassified: a role that isn't in the tier file, reported rather than assumed safe."
+  ],
+  [
+   30.812,
+   4.763,
+   "The run raises ten findings, seven warnings and one information item."
+  ],
+  [
+   35.575,
+   11.3,
+   "And it writes everything to the output folder, with a manifest that lists every request it sent and the hash of every file it wrote, so a reviewer can check later which calls produced the evidence."
+  ],
+  [
+   46.875,
+   2.85,
+   "The scope list on the slide is wrapped to fit."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   2.362,
+   "Step four prints the ten findings."
+  ],
+  [
+   2.413,
+   11.425,
+   "Seven are I N V oh one, standing privilege in Tier 0 or Tier 1 outside the exceptions: a person, alex dot kim, an automation account, and several Azure holders."
+  ],
+  [
+   13.838,
+   6.375,
+   "The Azure rows show object I D's, because Resource Manager returns I D's, not names."
+  ],
+  [
+   20.212,
+   10.1,
+   "One holder also has I N V oh seven, User Access Administrator at root scope, the elevated access that reaches every subscription and management group."
+  ],
+  [
+   30.312,
+   7.463,
+   "There's I N V oh four, too many Global Administrators, and I N V oh eight, too many Owners on one subscription."
+  ],
+  [
+   37.775,
+   3.888,
+   "Notice who's missing: the emergency account, E A oh one."
+  ],
+  [
+   41.663,
+   5.938,
+   "It's Info, not a finding, because the exceptions list names it, and the exception has an owner."
+  ],
+  [
+   47.6,
+   2.413,
+   "An exception with no owner wouldn't count."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   2.312,
+   "Step five shows the reader refusing."
+  ],
+  [
+   2.362,
+   7.175,
+   "You build a reader for the inventory task in G C C, on the fake, and ask it for the Conditional Access policies."
+  ],
+  [
+   9.537,
+   6.688,
+   "That call isn't declared for the inventory task, so it throws, and tells you to add it to the call list with its permission."
+  ],
+  [
+   16.225,
+   4.638,
+   "Then you ask for a cloud called G C C High, with capital letters."
+  ],
+  [
+   20.863,
+   10.088,
+   "The names are case-sensitive on purpose, so that's an unknown cloud, and it throws too: use global, G C C, G C C High or D O D."
+  ],
+  [
+   30.95,
+   1.512,
+   "There's no default cloud."
+  ],
+  [
+   32.462,
+   5.2,
+   "Step six runs the whole test suite, three hundred thirty tests, and all pass."
+  ],
+  [
+   37.663,
+   4.562,
+   "Then delete the output folder, because it names the fixture's privileged holders."
+  ],
+  [
+   42.225,
+   4.588,
+   "Pester prints its summary on several lines; the slide shows it on one."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   10.738,
+   "Lab 2 runs the inventory against your own test tenant, in the worldwide or G C C cloud, with a test Azure subscription, never production, and with fictional people."
+  ],
+  [
+   10.787,
+   1.738,
+   "The run only reads."
+  ],
+  [
+   12.525,
+   9.575,
+   "You register a reader app with a certificate, and grant it the five Graph application permissions from step two, with admin consent, and Reader on the test subscription."
+  ],
+  [
+   22.1,
+   6.875,
+   "Then you run the inventory, cross-check it against the admin center's download, and check the two things the fixture assumed."
+  ],
+  [
+   28.975,
+   10.875,
+   "To back it out, remove the Reader assignment, the five permissions, the app registration and its certificate, and delete the test output folder, which names the tenant's privileged holders."
+  ],
+  [
+   39.85,
+   5.588,
+   "The path's authors haven't run Lab 2; the workbook's Lab 2 gives every step."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   1.387,
+   "The federal requirement."
+  ],
+  [
+   1.438,
+   7.625,
+   "The inventory is the evidence for the plan's Gate 0: standing administrative privilege inventoried and classified by tier."
+  ],
+  [
+   9.062,
+   11.25,
+   "It supports nist special publication eight hundred fifty-three A C two, account management, and A C six, enhancement five, privileged accounts restricted to defined roles."
+  ],
+  [
+   20.312,
+   15.95,
+   "And it supports sis-uh's B O D twenty-five oh-one and the ScubaGear baseline M S A A D seven point four, version one: no permanent active assignment to a highly privileged role, with the emergency access accounts as the exception."
+  ],
+  [
+   36.263,
+   3.775,
+   "The table pairs each with a KSI and an evidence file."
+  ],
+  [
+   40.038,
+   11.438,
+   "KSIs are fed-ramp's twenty X Key Security Indicators for cloud service providers; the agency lines its evidence up with what its providers report, and doesn't report KSIs itself."
+  ],
+  [
+   51.475,
+   12.887,
+   "The evidence an I S S O keeps for Gate 0: the inventory files, in the access-controlled evidence store, because they name people; the findings; and the manifest, beside the files it lists."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   1.975,
+   "Check yourself with two questions."
+  ],
+  [
+   2.025,
+   5.138,
+   "First: why doesn't the inventory use Microsoft Learn's all-roles sample as its read?"
+  ],
+  [
+   7.162,
+   7.675,
+   "The answer is b: the sample sees no eligible assignment, and that's the state the project moves every human holder into."
+  ],
+  [
+   14.838,
+   6.662,
+   "Under pim almost every human holder is eligible, so an active-only list stops being an inventory."
+  ],
+  [
+   21.5,
+   7.638,
+   "Second: why is the emergency account, E A oh one, reported as Info, not as an I N V oh one finding?"
+  ],
+  [
+   29.137,
+   3.775,
+   "The answer is c: it's on the exceptions list with an owner."
+  ],
+  [
+   32.913,
+   2.513,
+   "An exception with no owner doesn't count."
+  ],
+  [
+   35.425,
+   2.375,
+   "You saw that in Lab 1, step four."
+  ],
+  [
+   37.8,
+   4.9,
+   "The module page has two more questions, each linked to the section that answers it."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   0.825,
+   "To sum up."
+  ],
+  [
+   0.875,
+   4.888,
+   "You ran Microsoft Learn's samples and saw them miss every eligible holder."
+  ],
+  [
+   5.763,
+   10.012,
+   "Then you read thirty assignments from a fictional tenant, each with a tier, and found standing privilege, too many Global Administrators and too many subscription Owners."
+  ],
+  [
+   15.775,
+   4.388,
+   "And you saw the reader refuse an undeclared call and an unknown cloud."
+  ],
+  [
+   20.163,
+   6.225,
+   "Carry one thing forward: the emergency account was Info only because the exceptions list names it."
+  ],
+  [
+   26.387,
+   3.612,
+   "Next is Module 2: emergency access first."
+  ],
+  [
+   30.0,
+   9.25,
+   "It's the one step in this project that can't move, because approval switched on before the emergency accounts exist is the sequence that locks the agency out."
+  ],
+  [
+   39.25,
+   8.262,
+   "In Module 2 you check each emergency account against Microsoft Learn's standard, and build the alert that watches them between drills."
+  ]
+ ]
+}

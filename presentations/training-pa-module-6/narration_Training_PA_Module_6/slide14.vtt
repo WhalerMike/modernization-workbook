@@ -1,0 +1,55 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.025
+Check yourself with two questions.
+
+2
+00:00:02.025 --> 00:00:04.938
+First: you set role
+settings at a subscription.
+
+3
+00:00:04.938 --> 00:00:06.838
+Does a resource group under it get them?
+
+4
+00:00:06.838 --> 00:00:08.675
+The answer is b: no.
+
+5
+00:00:08.675 --> 00:00:11.871
+Microsoft Learn says the
+settings aren't inherited,
+
+6
+00:00:11.871 --> 00:00:14.250
+so the file lists every governed scope.
+
+7
+00:00:14.250 --> 00:00:19.075
+Second: a deployment pipeline's service
+principal holds standing Contributor.
+
+8
+00:00:19.075 --> 00:00:20.337
+What does the plan do?
+
+9
+00:00:20.337 --> 00:00:24.110
+The answer is c: it reports A
+Z oh two and leaves it alone,
+
+10
+00:00:24.110 --> 00:00:27.712
+because service principals
+can't be made eligible.
+
+11
+00:00:27.712 --> 00:00:30.000
+You saw it in Lab 1, step four.
+
+12
+00:00:30.000 --> 00:00:34.970
+The module page has two more questions,
+each linked to the section that answers it.

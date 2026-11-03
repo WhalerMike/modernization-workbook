@@ -10,46 +10,50 @@ tokens, why do names still matter?
 Four reasons.
 
 3
-00:00:05.075 --> 00:00:10.735
+00:00:05.075 --> 00:00:10.444
 First, Kerberos islands: an Entra-joined
 device reaching on-premises resources still
 
 4
-00:00:10.735 --> 00:00:14.960
-finds domain controllers through
-DNS, and Book 08 explains that
+00:00:10.444 --> 00:00:12.864
+finds domain controllers through DNS,
 
 5
-00:00:14.960 --> 00:00:19.025
-a name pointing at the wrong host
-gets a valid ticket rejected.
+00:00:12.864 --> 00:00:17.478
+and Microsoft's troubleshooting
+article on duplicate DNS records shows
 
 6
-00:00:19.025 --> 00:00:23.254
+00:00:17.478 --> 00:00:21.637
+that a name pointing at the wrong
+host gets a valid ticket rejected.
+
+7
+00:00:21.637 --> 00:00:25.866
 Second, certificates bind a name
 to a key, so, as an inference,
 
-7
-00:00:23.254 --> 00:00:28.452
+8
+00:00:25.866 --> 00:00:31.064
 after AD the certificate's name has
 to be built from the device name plus
 
-8
-00:00:28.452 --> 00:00:33.650
+9
+00:00:31.064 --> 00:00:36.262
 a fixed agency suffix, and it only
 matches DNS if that name is registered.
 
-9
-00:00:33.650 --> 00:00:38.007
-Third, logs: Book 12 joins
-evidence on the device's identity,
-
 10
-00:00:38.007 --> 00:00:41.637
-so a missing or duplicated
-name breaks that join.
+00:00:36.262 --> 00:00:40.919
+Third, logs: the workbook's evidence
+contract joins evidence on the
 
 11
-00:00:41.637 --> 00:00:46.680
+00:00:40.919 --> 00:00:45.575
+device's identity, so a missing or
+duplicated name breaks that join.
+
+12
+00:00:45.575 --> 00:00:50.620
 Fourth, Microsoft says its naming
 macros don't guarantee unique names.

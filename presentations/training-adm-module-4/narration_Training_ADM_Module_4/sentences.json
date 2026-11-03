@@ -1,0 +1,787 @@
+{
+ "1": [
+  [
+   0.05,
+   6.338,
+   "Welcome to Module 4 of the Attribute-Driven Migration learning path: move Group Policy as code."
+  ],
+  [
+   6.388,
+   9.4,
+   "This module serves three of the implementation guide's gates, 0, 5 and 8, and takes Chapter 06 of Building the Attribute-Driven Migration."
+  ],
+  [
+   15.787,
+   4.763,
+   "You'll read Group Policy analytics into a move plan, one row per setting."
+  ],
+  [
+   20.55,
+   6.888,
+   "You'll keep each settings catalog policy as a reviewed file, with an owner and a decision record for every setting."
+  ],
+  [
+   27.438,
+   5.463,
+   "And you'll run a sync that reads the tenant first, and creates only what its dry run showed."
+  ],
+  [
+   32.9,
+   5.975,
+   "Then you'll run it all on your laptop, against a fake Graph and a fixture tenant, and break it on purpose."
+  ],
+  [
+   38.875,
+   5.388,
+   "The code is illustrative: tested against fixtures, not against a production tenant."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.312,
+   "Why does this need code?"
+  ],
+  [
+   1.363,
+   6.963,
+   "The organizational unit (O U) tree scoped Group Policy, and Group Policy inheritance retires with it."
+  ],
+  [
+   8.325,
+   3.75,
+   "So every G P O setting has to land somewhere on purpose."
+  ],
+  [
+   12.075,
+   13.15,
+   "Gate 0 splits every G P O by track, and its Validate step runs VK-INT-07, to show which GPOs Group Policy analytics has imported and how ready they are."
+  ],
+  [
+   25.225,
+   3.538,
+   "Gate 5 moves each setting to exactly one owner."
+  ],
+  [
+   28.762,
+   4.6,
+   "And Gate 8 cuts over by disabling G P O links, never deleting them."
+  ],
+  [
+   33.362,
+   4.775,
+   "Moving Group Policy to Intune changes the baseline of every device."
+  ],
+  [
+   38.138,
+   8.713,
+   "This module is the code between those gates: a plan per setting, a library of reviewed files, and a sync that creates only what a dry run showed."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   5.175,
+   "Here's what you'll be able to do by the end of this module, which takes about fifty minutes with the lab."
+  ],
+  [
+   5.225,
+   7.35,
+   "You'll explain what VK-INT-07 checks per G P O, and what the move plan adds per setting."
+  ],
+  [
+   12.575,
+   4.0,
+   "You'll name the plan's dispositions, and say what happens to a conflict."
+  ],
+  [
+   16.575,
+   5.5,
+   "You'll describe a library file: the policy body Graph receives, and the record around it."
+  ],
+  [
+   22.075,
+   4.0,
+   "You'll run the dry run and the apply, and read the sync record."
+  ],
+  [
+   26.075,
+   5.65,
+   "And you'll explain why a drift stops the release, and why the sync never sends PATCH or DELETE."
+  ],
+  [
+   31.725,
+   6.1,
+   "Before you start, do Module 2, for how VK-INT-07 is built."
+  ],
+  [
+   37.825,
+   9.075,
+   "Microsoft Automation Module 3 is optional background on the settings catalog and Intune's v1.0 and beta A P I's."
+  ],
+  [
+   46.9,
+   5.425,
+   "Lab 1 needs PowerShell 7.1 or later and Pester 5, and no tenant."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   5.037,
+   "Lab 1 runs in PowerShell 7, against fixtures, and nothing signs in."
+  ],
+  [
+   5.812,
+   7.188,
+   "Step one starts in the validation kit, and runs VK-INT-07 on its fail fixture."
+  ],
+  [
+   13.0,
+   2.25,
+   "One G P O is imported."
+  ],
+  [
+   15.25,
+   7.225,
+   "Two are targeted in Active Directory with a readiness of partial or error, so they hold settings Intune can't take over."
+  ],
+  [
+   22.475,
+   1.262,
+   "Those are findings."
+  ],
+  [
+   23.738,
+   4.25,
+   "An empty G P O is a warning: confirm where its settings go."
+  ],
+  [
+   27.988,
+   3.388,
+   "And one in-scope G P O was never imported at all."
+  ],
+  [
+   31.375,
+   8.188,
+   "Step two moves to the group policy folder, and runs Microsoft's import sample twice, with the same file, against the fake Graph."
+  ],
+  [
+   39.562,
+   5.388,
+   "Now the tenant holds error reporting and dumps twice, two policies with the same name."
+  ],
+  [
+   44.95,
+   2.525,
+   "And the calls are two POSTs and no GET."
+  ],
+  [
+   47.475,
+   1.462,
+   "The sample never looked."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   6.013,
+   "Step three builds the move plan from the fixture tenant: eleven rows, from three GPOs."
+  ],
+  [
+   6.062,
+   5.475,
+   "Five are candidates, such as disabling Windows Error Reporting and allowing crash dumps."
+  ],
+  [
+   11.537,
+   8.2,
+   "Allow hibernate is a conflict, on two rows, because the baseline G P O and the power G P O set it to different values."
+  ],
+  [
+   19.738,
+   2.712,
+   "The firewall rule goes to Endpoint security."
+  ],
+  [
+   22.45,
+   4.725,
+   "Two rows aren't supported, including a drive map, and one is deprecated."
+  ],
+  [
+   27.175,
+   5.912,
+   "Notice the user-scope rows keep their scope: user settings go to user groups on the H R track."
+  ],
+  [
+   33.087,
+   2.775,
+   "Step four lints the library against that plan."
+  ],
+  [
+   35.862,
+   10.838,
+   "There's one row, an information item, GPC oh eight: the hibernate setting has conflicting G P O values, and decision D R oh one oh five picks the value."
+  ],
+  [
+   46.7,
+   3.525,
+   "That's the conflict shown, with the decision that resolves it."
+  ],
+  [
+   50.225,
+   2.138,
+   "The output on the slide is trimmed."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   1.887,
+   "Step five runs the sync."
+  ],
+  [
+   1.938,
+   8.375,
+   "The dry run says create for the error reporting policy, which isn't in the tenant, and no change for sign-in and power, which already matches."
+  ],
+  [
+   10.312,
+   3.462,
+   "Then the apply says created, and both exit zero."
+  ],
+  [
+   13.775,
+   5.612,
+   "The sync record shows the scope the apply asked for, read-write, and the I D it created."
+  ],
+  [
+   19.387,
+   12.325,
+   "Ask for a cloud name the script doesn't know, U S gov, and it exits one: the cloud must be G C C, global, G C C High or D O D. Step six breaks something on purpose."
+  ],
+  [
+   31.712,
+   7.213,
+   "Change the hibernate value in one library file, and the dry run exits two, with a drift that names the setting."
+  ],
+  [
+   38.925,
+   6.438,
+   "Run it with apply, and it still exits two, and nothing is created, not even the error reporting policy."
+  ],
+  [
+   45.362,
+   1.337,
+   "Put the value back."
+  ],
+  [
+   46.7,
+   3.275,
+   "Step seven runs the tests: forty-six pass."
+  ],
+  [
+   49.975,
+   2.15,
+   "Step eight deletes the out folder."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   7.662,
+   "Lab 2 runs the same code against a test tenant with Intune licenses and a test G P O export, never production."
+  ],
+  [
+   7.713,
+   3.825,
+   "Import a test G P O into Group Policy analytics."
+  ],
+  [
+   11.537,
+   7.15,
+   "Run VK-INT-07 liv, as a read-only operator, and build the move plan liv."
+  ],
+  [
+   18.688,
+   3.862,
+   "Then dry-run and apply as a Policy and Profile Manager."
+  ],
+  [
+   22.55,
+   4.787,
+   "Compare the result with what Group Policy analytics' own Migrate step builds."
+  ],
+  [
+   27.337,
+   5.287,
+   "And drill drift: change a value in the admin center, and watch the dry run report it."
+  ],
+  [
+   32.625,
+   4.5,
+   "In G C C High and D O D, pass the matching cloud option."
+  ],
+  [
+   37.125,
+   7.375,
+   "To back it out, step eight deletes the created policies by the I D's in the sync record, and the Migrate comparison policy."
+  ],
+  [
+   44.5,
+   2.15,
+   "The authors haven't run Lab 2."
+  ],
+  [
+   46.65,
+   3.438,
+   "Follow Chapter 06's Lab 2, step by step."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   1.975,
+   "Check yourself with two questions."
+  ],
+  [
+   2.025,
+   4.375,
+   "First: Microsoft's import sample runs twice with the same file."
+  ],
+  [
+   6.4,
+   1.012,
+   "What happens?"
+  ],
+  [
+   7.412,
+   6.838,
+   "The answer is b: two policies with the same name are created, because the sample never reads the tenant."
+  ],
+  [
+   14.25,
+   2.9,
+   "You saw the two POSTs and no GET in step two."
+  ],
+  [
+   17.15,
+   5.525,
+   "Second: one library file differs from the tenant's copy, and you run the sync with apply."
+  ],
+  [
+   22.675,
+   1.15,
+   "What does it create?"
+  ],
+  [
+   23.825,
+   1.962,
+   "The answer is b: nothing."
+  ],
+  [
+   25.788,
+   4.062,
+   "It exits two, and writes nothing while any policy is drift."
+  ],
+  [
+   29.85,
+   2.425,
+   "Not even the policy that was marked create."
+  ],
+  [
+   32.275,
+   1.75,
+   "You saw that in step six."
+  ],
+  [
+   34.025,
+   8.238,
+   "The module page has two more questions, on the conflict disposition and on the dry run's permission, each linked to the section that answers it."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   0.825,
+   "To sum up."
+  ],
+  [
+   0.875,
+   11.988,
+   "You read Group Policy analytics into a plan per setting, kept the policies as reviewed files, and saw the sync create only what its dry run showed, and nothing at all when the library and the tenant disagree."
+  ],
+  [
+   12.863,
+   15.775,
+   "The evidence an I S S O keeps: VK-INT-07's run, the move plan with each pull request, the library and its decision records in Git, and the sync record with its scopes, file hashes and created I D's."
+  ],
+  [
+   28.637,
+   5.625,
+   "In Lab 2, add the Intune audit log for the import, the creation and the drift drill."
+  ],
+  [
+   34.263,
+   5.138,
+   "At deployment, Chapter 10 adds the G P O link states before and after."
+  ],
+  [
+   39.4,
+   3.65,
+   "Before shipping, work through the Chapter 06 checklist."
+  ],
+  [
+   43.05,
+   10.2,
+   "Next is Module 5: build machine configuration packages, for the server settings machine configuration owns, with a build that makes the same MOF every time."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   1.738,
+   "Start with where the code sits."
+  ],
+  [
+   1.788,
+   6.15,
+   "The operator steps for retiring Group Policy are already written, in this workbook's own guidance."
+  ],
+  [
+   7.938,
+   8.963,
+   "This code serves two of them: importing every in-scope G P O into Group Policy analytics, and creating the policy library as code."
+  ],
+  [
+   16.9,
+   3.575,
+   "Two rules shape it, and both are this workbook's guidance."
+  ],
+  [
+   20.475,
+   6.725,
+   "One owning policy, and one owning tool, per setting, so the library holds only settings Intune owns."
+  ],
+  [
+   27.2,
+   7.162,
+   "And build unassigned: the code creates policies with no assignments, and assigning them is a later, reviewed step."
+  ],
+  [
+   34.362,
+   2.275,
+   "Microsoft Learn sets the stakes."
+  ],
+  [
+   36.638,
+   9.588,
+   "Its page on importing GPOs into Group Policy analytics says the tool is for Windows only, and imports G P O exports under four megabytes."
+  ],
+  [
+   46.225,
+   11.012,
+   "Its page on creating a settings catalog policy from imported GPOs calls the Migrate step best effort, and says it stops when two GPOs set one setting to different values."
+  ],
+  [
+   57.237,
+   7.162,
+   "And Learn's Microsoft Graph reference documents the migration reports and settings catalog policies in beta only."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   12.2,
+   "Microsoft Learn's Intune migration guide points to Microsoft's Intune Graph samples, on GitHub, for exporting and importing policies, and says the scripts change your tenant and come as-is."
+  ],
+  [
+   12.25,
+   3.025,
+   "Their settings catalog folder has an import script."
+  ],
+  [
+   15.275,
+   6.875,
+   "The repository keeps a pinned copy, and a test harness runs it, unmodified, against a fake Graph."
+  ],
+  [
+   22.15,
+   1.387,
+   "Here's what that shows."
+  ],
+  [
+   23.538,
+   3.75,
+   "The import creates the policy with one POST, unassigned."
+  ],
+  [
+   27.288,
+   1.375,
+   "That's kept as the model."
+  ],
+  [
+   28.663,
+   5.975,
+   "But run it twice and it creates a second policy with the same name, because it never reads the tenant."
+  ],
+  [
+   34.638,
+   9.625,
+   "It sends to the worldwide Graph host whatever cloud you signed in to, and Learn's page on Microsoft Graph national cloud deployments gives each cloud its own host."
+  ],
+  [
+   44.263,
+   3.525,
+   "It uses whatever session you opened, whatever its scopes."
+  ],
+  [
+   47.788,
+   5.475,
+   "It silently strips service-set properties, so the body sent isn't the file reviewed."
+  ],
+  [
+   53.263,
+   2.425,
+   "And it records nothing beyond the screen."
+  ],
+  [
+   55.688,
+   10.213,
+   "The example adds a sync that reads the tenant first, a host per cloud, a read-only scope for the dry run, refusals instead of silent edits, and a sync record."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   1.85,
+   "The read side has two parts."
+  ],
+  [
+   1.9,
+   3.612,
+   "VK-INT-07 is the gate."
+  ],
+  [
+   5.513,
+   12.2,
+   "The validation kit's check reads the migration reports, and fails on any G P O targeted in Active Directory whose readiness isn't complete, and on any in-scope G P O that was never imported."
+  ],
+  [
+   17.712,
+   3.438,
+   "It works per G P O, and doesn't read the settings."
+  ],
+  [
+   21.15,
+   1.875,
+   "The move plan works per setting."
+  ],
+  [
+   23.025,
+   7.688,
+   "It reads each report's setting mappings, which Learn's Graph beta reference documents, and gives every row a disposition."
+  ],
+  [
+   30.712,
+   2.3,
+   "The dispositions are the kit's design."
+  ],
+  [
+   33.013,
+   5.925,
+   "A candidate is supported and has an Intune setting definition, and a person decides whether it moves."
+  ],
+  [
+   38.938,
+   11.213,
+   "A conflict is two GPOs setting one definition to different values: Learn's page on creating a settings catalog policy from imported GPOs says Migrate stops on that case."
+  ],
+  [
+   50.15,
+   2.337,
+   "The decision record picks the value."
+  ],
+  [
+   52.487,
+   4.713,
+   "AppLocker and firewall settings go to Endpoint security, as that page says."
+  ],
+  [
+   57.2,
+   9.088,
+   "And, in this workbook's guidance, the plan decides nothing: Group Policy analytics finds the landing zone, never whether a setting is still needed."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   3.2,
+   "Each settings catalog policy is a jay-son file."
+  ],
+  [
+   3.25,
+   10.238,
+   "The policy part is the body Graph receives, exactly as reviewed, in the shape Microsoft Learn's Graph beta reference documents for creating a configuration policy."
+  ],
+  [
+   13.488,
+   9.838,
+   "The rest is the record: who approves a change, which tool owns the settings, which GPOs they came from, and the I D of each setting's decision record."
+  ],
+  [
+   23.325,
+   3.388,
+   "The linter applies ten rules, and they're the kit's design."
+  ],
+  [
+   26.712,
+   2.0,
+   "Four carry this workbook's rules."
+  ],
+  [
+   28.712,
+   7.075,
+   "GPC oh two: the config owner must be Intune, because a setting another tool owns stays with that tool."
+  ],
+  [
+   35.788,
+   7.537,
+   "GPC oh six: one setting definition in one policy, because two policies on one setting is a conflict."
+  ],
+  [
+   43.325,
+   3.688,
+   "GPC oh nine: every setting has a decision record."
+  ],
+  [
+   47.013,
+   6.775,
+   "And GPC oh eight, with the move plan: a setting that isn't a candidate is shown, with its decision."
+  ],
+  [
+   53.788,
+   9.575,
+   "GPC ten warns on a value that looks like a secret: Learn's page on device profiles says anyone who can read device configuration can read such values."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   1.75,
+   "The sync is the kit's design."
+  ],
+  [
+   1.8,
+   10.637,
+   "It reads the tenant's settings catalog policies, through the list call Learn's Graph beta reference documents, normalizes both sides, and gives each library policy one action."
+  ],
+  [
+   12.438,
+   1.988,
+   "Create: it isn't in the tenant."
+  ],
+  [
+   14.425,
+   5.95,
+   "No change: the same settings, description, platform, technology and scope tags."
+  ],
+  [
+   20.375,
+   4.487,
+   "Drift: it differs, and the row names each setting that changed."
+  ],
+  [
+   24.863,
+   3.525,
+   "Duplicate: two tenant policies have the library's name."
+  ],
+  [
+   28.387,
+   2.163,
+   "Drift and duplicate exit two."
+  ],
+  [
+   30.55,
+   6.925,
+   "Without the apply option, the sync is a dry run: it signs in with read only, and sends only GET."
+  ],
+  [
+   37.475,
+   6.263,
+   "With apply, it signs in with read-write, POSTs each create, reads it back and compares again."
+  ],
+  [
+   43.737,
+   5.513,
+   "And it writes nothing at all if the lint has a finding, or any policy is drift or duplicate."
+  ],
+  [
+   49.25,
+   4.15,
+   "It never sends PATCH or DELETE, although Learn documents both."
+  ],
+  [
+   53.4,
+   8.713,
+   "A policy that differs from Git is a decision for a person, and, in this workbook's guidance, a change becomes a new version under a new name."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   1.387,
+   "The federal requirement."
+  ],
+  [
+   1.438,
+   24.387,
+   "Moving Group Policy to Intune changes the baseline of every device, so the plan, the library and the sync record are evidence for nist special publication eight hundred fifty-three's configuration-management controls: C M two, baseline configuration, C M three, configuration change control, and C M six, configuration settings, with C A seven and A C six."
+  ],
+  [
+   25.825,
+   7.825,
+   "VK-INT-07's results show every in-scope G P O imported and ready, or listed."
+  ],
+  [
+   33.65,
+   6.588,
+   "The move plan, saved with the pull request, gives each setting a disposition and shows the conflicts."
+  ],
+  [
+   40.237,
+   4.763,
+   "The library and its decision records give one owner and one decision per setting."
+  ],
+  [
+   45.0,
+   6.525,
+   "The sync record shows what the sync would create, then wrote only that, with a read-only scope for the dry run."
+  ],
+  [
+   51.525,
+   4.812,
+   "A library that differs from the tenant stops the release, and the run log shows it."
+  ],
+  [
+   56.337,
+   3.487,
+   "And Microsoft's sample is pinned and its behavior tested."
+  ],
+  [
+   59.825,
+   11.1,
+   "The Key Security Indicators come from fed-ramp's Consolidated Rules for 2026: they're fed-ramp twenty X indicators for providers, and the agency lines its evidence up with them."
+  ],
+  [
+   70.925,
+   3.562,
+   "Which output supports which control is this workbook's reading."
+  ]
+ ]
+}

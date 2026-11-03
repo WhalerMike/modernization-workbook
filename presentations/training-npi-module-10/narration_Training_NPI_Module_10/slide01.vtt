@@ -1,0 +1,55 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.333
+Welcome to Module 10 of the
+Non-Person Identity learning path:
+
+2
+00:00:04.333 --> 00:00:06.600
+find drift and file the evidence.
+
+3
+00:00:06.600 --> 00:00:11.837
+This module is Gate 6, Lifecycle, with
+Chapter 10 of the developer workbook.
+
+4
+00:00:11.837 --> 00:00:16.237
+You'll run two days of drift against
+a baseline a reviewer approved,
+
+5
+00:00:16.237 --> 00:00:19.277
+compare two years of the
+A I use-case inventory,
+
+6
+00:00:19.277 --> 00:00:22.717
+package both days with a hash
+for every file, chained,
+
+7
+00:00:22.717 --> 00:00:28.076
+verify a package with a standard checksum
+tool, and assemble a period for the ISSO.
+
+8
+00:00:28.076 --> 00:00:31.375
+Then you'll break it on purpose,
+and watch the checks refuse.
+
+9
+00:00:31.375 --> 00:00:35.612
+If you're an ISSO reviewer,
+this module is yours in full.
+
+10
+00:00:35.612 --> 00:00:40.550
+The code runs on your laptop against
+fixtures, in PowerShell and in Python.
+
+11
+00:00:40.550 --> 00:00:45.620
+It's illustrative: tested against
+fixtures, not run against a live tenant.

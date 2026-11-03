@@ -1,0 +1,69 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.540
+The policy check reads the default
+policy, every app management policy,
+
+2
+00:00:04.540 --> 00:00:09.259
+and each app registration, and compares
+the default with the reviewed file,
+
+3
+00:00:09.259 --> 00:00:12.075
+restriction by restriction,
+on both objects.
+
+4
+00:00:12.075 --> 00:00:15.062
+Add or Change means the
+tenant lacks the program's
+
+5
+00:00:15.062 --> 00:00:18.487
+restriction or holds a weaker
+one, so the program's goes in.
+
+6
+00:00:18.487 --> 00:00:22.150
+Keep Stricter means the tenant
+already holds something stronger,
+
+7
+00:00:22.150 --> 00:00:25.413
+and Keep Existing means a
+restriction the file doesn't name.
+
+8
+00:00:25.413 --> 00:00:27.351
+Both stay as the tenant has them.
+
+9
+00:00:27.351 --> 00:00:32.337
+The body is merged, so the PATCH never
+drops a restriction and never loosens one.
+
+10
+00:00:32.337 --> 00:00:34.686
+The findings, N P I P
+O L oh one to oh six,
+
+11
+00:00:34.686 --> 00:00:40.112
+flag a restriction the tenant doesn't hold
+yet, a policy outside the reviewed file,
+
+12
+00:00:40.112 --> 00:00:42.704
+an expired or unassignable exception,
+
+13
+00:00:42.704 --> 00:00:47.320
+and an app registration without the
+full app instance property lock,
+
+14
+00:00:47.320 --> 00:00:51.840
+which stops anyone adding a
+credential to its service principals.

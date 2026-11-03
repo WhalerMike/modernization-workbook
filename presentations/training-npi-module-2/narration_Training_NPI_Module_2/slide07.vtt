@@ -1,0 +1,67 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.644
+The check reads each owner once,
+with only User dot Read dot All,
+
+2
+00:00:05.644 --> 00:00:09.812
+and applies nine rules, N P
+I O W N oh one to oh nine.
+
+3
+00:00:09.812 --> 00:00:13.449
+Oh one is an app registration
+or legacy service principal
+
+4
+00:00:13.449 --> 00:00:17.237
+with no valid human owner, which
+makes it an orphan candidate.
+
+5
+00:00:17.237 --> 00:00:19.850
+Oh two is one valid owner, not two.
+
+6
+00:00:19.850 --> 00:00:22.513
+Oh three, four and five are warnings:
+
+7
+00:00:22.513 --> 00:00:27.563
+an owner that's a service principal,
+a guest, or disabled or not found.
+
+8
+00:00:27.563 --> 00:00:30.336
+Oh six is no service management reference,
+
+9
+00:00:30.336 --> 00:00:34.299
+and oh seven a reference that
+names no record, or a retired one.
+
+10
+00:00:34.299 --> 00:00:37.435
+Oh eight is an Active
+Directory account with no valid
+
+11
+00:00:37.435 --> 00:00:41.212
+application owner in the owners
+file, another orphan candidate.
+
+12
+00:00:41.212 --> 00:00:43.397
+And oh nine, information only,
+
+13
+00:00:43.397 --> 00:00:48.312
+is an account Module 1 found only
+by a password that never expires.
+
+14
+00:00:48.312 --> 00:00:53.590
+The fields for AI sponsors are
+recorded, empty, for Module 9 to check.

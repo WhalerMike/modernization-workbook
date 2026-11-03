@@ -1,0 +1,67 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.995
+Lab 2 moves to your own test
+tenant, worldwide or G C C,
+
+2
+00:00:03.995 --> 00:00:07.188
+never production, with fictional people.
+
+3
+00:00:07.188 --> 00:00:13.090
+It needs Agent three sixty-five, or
+Microsoft three sixty-five E seven,
+
+4
+00:00:13.090 --> 00:00:19.200
+with Entra I D P one, and P two for agent
+risk, and Chapters 1 and 2's Lab 2 runs.
+
+5
+00:00:19.200 --> 00:00:23.737
+Read the setting that lets users create
+agent blueprints, and set it to No.
+
+6
+00:00:23.737 --> 00:00:26.705
+Make one governed agent,
+with a sponsor who isn't
+
+7
+00:00:26.705 --> 00:00:29.900
+its owner and a managed
+identity as its credential.
+
+8
+00:00:29.900 --> 00:00:33.878
+Run the check with an app holding
+only the read task's permissions,
+
+9
+00:00:33.878 --> 00:00:38.888
+then dry-run and apply the plan as a person
+with Conditional Access Administrator.
+
+10
+00:00:38.888 --> 00:00:43.290
+To back it out, step six, in the
+admin center: delete the two policies,
+
+11
+00:00:43.290 --> 00:00:48.100
+remove the attribute, disable then
+delete the test agent and blueprint,
+
+12
+00:00:48.100 --> 00:00:50.138
+and delete the output folders.
+
+13
+00:00:50.138 --> 00:00:51.713
+The code deletes nothing.
+
+14
+00:00:51.713 --> 00:00:53.930
+The authors haven't run Lab 2.

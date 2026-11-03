@@ -1,0 +1,67 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:06.500
+The register becomes findings, under nine
+rules, N P I I N V oh one to oh nine.
+
+2
+00:00:06.500 --> 00:00:10.098
+Only the first is a hard
+finding: a high-risk identity,
+
+3
+00:00:10.098 --> 00:00:12.775
+with its reasons and candidate target.
+
+4
+00:00:12.775 --> 00:00:15.938
+The rest are warnings to
+act on, or information.
+
+5
+00:00:15.938 --> 00:00:18.088
+Oh two is a stale lead to confirm.
+
+6
+00:00:18.088 --> 00:00:20.702
+Oh three is an app registration or legacy
+
+7
+00:00:20.702 --> 00:00:23.624
+service principal with
+fewer than two owners.
+
+8
+00:00:23.624 --> 00:00:29.050
+Oh four is a client secret, and oh five an
+expired credential still on the object.
+
+9
+00:00:29.050 --> 00:00:32.963
+Oh six is a delegated grant
+consented for all users.
+
+10
+00:00:32.963 --> 00:00:37.987
+Oh seven, information only, is an
+account handed to the Data Platform plan.
+
+11
+00:00:37.987 --> 00:00:41.005
+Oh eight is an account
+found only by a password
+
+12
+00:00:41.005 --> 00:00:43.625
+that never expires, which may be a person.
+
+13
+00:00:43.625 --> 00:00:46.712
+And oh nine is a type the
+register doesn't classify.
+
+14
+00:00:46.712 --> 00:00:52.100
+Every finding has a stable I D, so the
+same gap keeps its name from run to run.

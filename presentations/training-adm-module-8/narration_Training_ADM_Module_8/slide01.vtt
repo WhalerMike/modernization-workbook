@@ -1,0 +1,60 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.485
+Welcome to Module 8 of the
+Attribute-Driven Migration learning path:
+
+2
+00:00:04.485 --> 00:00:07.675
+run the drift pipeline and
+hand over the evidence.
+
+3
+00:00:07.675 --> 00:00:13.183
+This module serves Gate 9, keep the
+attributes true, and takes Chapter 09 of
+
+4
+00:00:13.183 --> 00:00:19.413
+Building the Attribute-Driven Migration,
+drift pipelines and evidence to the ISSO.
+
+5
+00:00:19.413 --> 00:00:23.814
+You'll see where the pipeline sits, what
+Learn's sample workflows leave to you,
+
+6
+00:00:23.814 --> 00:00:28.355
+how one run is compared with the last
+without treating a failed read as a fix, how
+
+7
+00:00:28.355 --> 00:00:30.730
+findings go to the tracker without names,
+
+8
+00:00:30.730 --> 00:00:33.175
+and how the evidence
+package forms a chain.
+
+9
+00:00:33.175 --> 00:00:37.900
+Then you'll run it on your laptop against
+two days of fictional validation kit runs.
+
+10
+00:00:37.900 --> 00:00:42.137
+If you're an ISSO reviewer,
+this module is yours in full.
+
+11
+00:00:42.137 --> 00:00:45.337
+The code is illustrative:
+tested against fixtures,
+
+12
+00:00:45.337 --> 00:00:48.670
+and the sample workflow has
+never run against Azure.

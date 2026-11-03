@@ -1,0 +1,70 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:04.846
+Lab 1 runs in the privileged-access
+folder of the examples,
+
+3
+00:00:04.846 --> 00:00:09.850
+in one PowerShell 7 session, against
+a fictional tenant served by a fake.
+
+4
+00:00:09.850 --> 00:00:12.750
+Nothing signs in, and
+nothing leaves the machine.
+
+5
+00:00:12.750 --> 00:00:17.675
+Step one runs Microsoft Learn's samples
+against the stand-ins, with Pester.
+
+6
+00:00:17.675 --> 00:00:20.802
+Nine pass, none fail, and seven don't run:
+
+7
+00:00:20.802 --> 00:00:24.737
+those seven are Chapter
+02's, for the next module.
+
+8
+00:00:24.737 --> 00:00:27.200
+The second test is the one to notice.
+
+9
+00:00:27.200 --> 00:00:29.701
+It shows that the fixture's eligible-only
+
+10
+00:00:29.701 --> 00:00:32.350
+holders never appear in
+the sample's output.
+
+11
+00:00:32.350 --> 00:00:36.738
+Step two loads the module and lists
+the permissions the inventory needs.
+
+12
+00:00:36.738 --> 00:00:41.575
+There are five: Group Member, Role
+Assignment Schedule, Role Eligibility
+
+13
+00:00:41.575 --> 00:00:46.412
+Schedule and Role Management, each to
+read, and User dot Read Basic dot All.
+
+14
+00:00:46.412 --> 00:00:48.088
+Nothing ends in ReadWrite.
+
+15
+00:00:48.088 --> 00:00:50.830
+The output on the slide is wrapped to fit.

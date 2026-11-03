@@ -26,33 +26,33 @@ enforcement on domain controllers, so
 generate the key file with AES 256 instead.
 
 6
-00:00:22.813 --> 00:00:28.772
-Book 08's default keeps the AD locator
-zones on AD DNS until the last domain
+00:00:22.813 --> 00:00:29.039
+The workbook's DNS design keeps the AD
+locator zones on AD DNS by default until the
 
 7
-00:00:28.772 --> 00:00:32.094
-controller goes, and even then NIOS needs
+00:00:29.039 --> 00:00:31.269
+last domain controller goes,
 
 8
-00:00:32.094 --> 00:00:35.612
-AES keys so its DHCP
-can send signed updates.
+00:00:31.269 --> 00:00:36.474
+and even then NIOS needs AES keys so
+its DHCP can send signed updates.
 
 9
-00:00:35.612 --> 00:00:39.895
+00:00:36.474 --> 00:00:40.758
 The alternative, NIOS hosting
 the AD zone itself, works,
 
 10
-00:00:39.895 --> 00:00:45.225
+00:00:40.758 --> 00:00:46.088
 but no Infoblox page names Windows
 Server 2025 domain controllers.
 
 11
-00:00:45.225 --> 00:00:47.613
+00:00:46.088 --> 00:00:48.475
 Confirm support before you take that path.
 
 12
-00:00:47.613 --> 00:00:50.090
+00:00:48.475 --> 00:00:50.950
 Now, the DHCP takeover.

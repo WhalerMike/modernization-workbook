@@ -1,0 +1,70 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.087
+Step five checks the body from Microsoft
+Learn's tutorial with the example's rules.
+
+2
+00:00:05.087 --> 00:00:09.549
+It fails three: A R oh two, no
+fallback reviewer; oh three,
+
+3
+00:00:09.549 --> 00:00:14.213
+no description for reviewers;
+and oh five, auto-apply off.
+
+4
+00:00:14.213 --> 00:00:19.095
+And it warns twice: oh seven, the
+no-response default isn't Deny,
+
+5
+00:00:19.095 --> 00:00:21.926
+and ten, its start date is in the past.
+
+6
+00:00:21.926 --> 00:00:26.912
+Step six applies in the fake, the same
+command as the dry run, with Apply.
+
+7
+00:00:26.912 --> 00:00:30.407
+Two writes are sent: the Global
+Administrator update and
+
+8
+00:00:30.407 --> 00:00:33.975
+the Privileged Role Administrator
+create, each read back.
+
+9
+00:00:33.975 --> 00:00:36.575
+Everything else is
+skipped, with the reason.
+
+10
+00:00:36.575 --> 00:00:39.726
+The Replace needs a person:
+export its evidence,
+
+11
+00:00:39.726 --> 00:00:42.150
+delete it in the portal, and run again.
+
+12
+00:00:42.150 --> 00:00:44.612
+The three P R V series match.
+
+13
+00:00:44.612 --> 00:00:47.050
+The Azure update needs Include Preview.
+
+14
+00:00:47.050 --> 00:00:49.900
+And the unmanaged series is never deleted.
+
+15
+00:00:49.900 --> 00:00:52.300
+The slide condenses the two tables.

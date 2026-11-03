@@ -15,41 +15,46 @@ Workbook's Research section,
 and it's still under review.
 
 4
-00:00:06.462 --> 00:00:10.941
-It's a companion to Book 08 of the
-workbook, on DNS, DHCP and IPAM,
+00:00:06.462 --> 00:00:10.377
+It's a companion to the workbook's
+DNS, DHCP and IPAM book,
 
 5
-00:00:10.941 --> 00:00:15.935
+00:00:10.377 --> 00:00:15.208
 and it asks one question: if an agency
 is going to buy or build a platform
 
 6
-00:00:15.935 --> 00:00:21.188
+00:00:15.208 --> 00:00:20.288
 for its name and address layer, what
 does that platform actually have to do?
 
 7
-00:00:21.188 --> 00:00:23.963
+00:00:20.288 --> 00:00:23.063
 We'll cover why that layer
 is now a control plane,
 
 8
-00:00:23.963 --> 00:00:28.232
+00:00:23.063 --> 00:00:27.332
 what a platform has to deliver and what
 to check before buying, who runs it,
 
 9
-00:00:28.232 --> 00:00:32.288
+00:00:27.332 --> 00:00:31.388
 including how divisions can manage
 their own piece, and how to decide.
 
 10
-00:00:32.288 --> 00:00:36.611
+00:00:31.388 --> 00:00:35.599
 Vendors appear only as examples,
 nothing here ranks a product,
 
 11
-00:00:36.611 --> 00:00:42.430
-and every claim comes from Book 08 or from
-primary sources checked in October 2026.
+00:00:35.599 --> 00:00:40.225
+and every claim comes from primary
+sources checked in October 2026,
+
+12
+00:00:40.225 --> 00:00:44.090
+or is the workbook's own design
+guidance, labeled as such.

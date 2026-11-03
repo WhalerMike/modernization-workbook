@@ -1,0 +1,61 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:05.106
+Lab 1 runs in the non-person
+identity folder of the examples,
+
+3
+00:00:05.106 --> 00:00:08.288
+in PowerShell 7, against
+a fictional estate.
+
+4
+00:00:08.288 --> 00:00:11.300
+Nothing signs in to anything
+or sends a request.
+
+5
+00:00:11.300 --> 00:00:16.587
+Step one runs Learn's own samples,
+exactly as published, against stand-ins.
+
+6
+00:00:16.587 --> 00:00:22.237
+Twenty pass, none fail, and ten aren't
+run, because those ten are Chapter 2's.
+
+7
+00:00:22.237 --> 00:00:24.825
+Step two lists what the inventory needs.
+
+8
+00:00:24.825 --> 00:00:30.075
+Two Graph permissions: Application dot Read
+dot All and Directory dot Read dot All.
+
+9
+00:00:30.075 --> 00:00:31.613
+The Reader role in Azure.
+
+10
+00:00:31.613 --> 00:00:37.263
+And in Active Directory, only the default
+read every authenticated domain user has.
+
+11
+00:00:37.263 --> 00:00:39.638
+Notice that nothing ends in ReadWrite.
+
+12
+00:00:39.638 --> 00:00:41.699
+The inventory can't change anything,
+
+13
+00:00:41.699 --> 00:00:46.080
+and that's what you'd show an assessor
+who asks what the reading process may do.

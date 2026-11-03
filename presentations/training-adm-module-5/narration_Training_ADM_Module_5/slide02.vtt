@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.038
+Why does a package need a checked build?
+
+2
+00:00:02.038 --> 00:00:05.413
+Gate 5 sets the conventions
+the server track builds on.
+
+3
+00:00:05.413 --> 00:00:08.898
+Once connected, an Arc server
+is an Azure resource whose
+
+4
+00:00:08.898 --> 00:00:12.687
+tags are its attributes, and each
+setting has one owning tool.
+
+5
+00:00:12.687 --> 00:00:15.716
+For the settings machine
+configuration owns,
+
+6
+00:00:15.716 --> 00:00:19.701
+the code is a DSC configuration,
+and Azure Policy delivers it.
+
+7
+00:00:19.701 --> 00:00:22.650
+Learn's cmdlets build a
+package and a definition.
+
+8
+00:00:22.650 --> 00:00:24.695
+But they don't make the same bytes twice,
+
+9
+00:00:24.695 --> 00:00:28.913
+and they write your user name and computer
+name into what the machines download.
+
+10
+00:00:28.913 --> 00:00:31.588
+A package is the server
+baseline in a file.
+
+11
+00:00:31.588 --> 00:00:35.500
+So what was built, from what,
+and what shipped is the evidence.
+
+12
+00:00:35.500 --> 00:00:37.700
+In this module you follow Learn's steps,
+
+13
+00:00:37.700 --> 00:00:40.220
+then run the build that
+checks between them.
