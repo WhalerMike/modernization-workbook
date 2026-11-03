@@ -72,7 +72,7 @@ const SS = "Check and summary";
   ], 55);
   sources(s, "Sources: Module 3, \"Learning objectives,\" \"Prerequisites\"; learning path index, \"What you need for the labs.\"");
   notes(s,
-`Here's what you'll be able to do by the end of this module, which takes about fifty-five minutes with the lab. You'll explain the difference between the matrix's proposal, the owner's disposition, and Gate 2. You'll name the target the matrix proposes for each account type and workload location. You'll run the matrix on the fixtures and explain each of its findings. And you'll read a wave's rollback, and say which identities Conditional Access for workload identities can cover now, and which after conversion. Before you start, finish Modules 1 and 2, because the matrix reads both of their runs. And read Book 2, Chapter 9, on the migration path matrix. Lab 1 needs PowerShell 7.1 or later with Pester 5, and a clone. No tenant.`,
+`Here's what you'll be able to do by the end of this module, which takes about fifty-five minutes with the lab. You'll explain the difference between the matrix's proposal, the owner's disposition, and Gate 2. You'll name the target the matrix proposes for each account type and workload location. You'll run the matrix on the fixtures and explain each of its findings. And you'll read a wave's rollback, and say which identities Conditional Access for workload identities can cover now, and which after conversion. Before you start, finish Modules 1 and 2, because the matrix reads both of their runs. And read Chapter 9 of Identity and Directory, on the migration path matrix. Lab 1 needs PowerShell 7.1 or later with Pester 5, and a clone. No tenant.`,
   `${M} — Unit "Learning objectives," "Prerequisites"; learning path index — "What you need for the labs."`);
 }
 endModule(SI);
@@ -204,7 +204,7 @@ endModule(SC);
     "Deploy Bot      LOW    Azure          M14 ManagedIdentity",
     "... and six Retire, seven Keep",
   ], { label: "STEP 4  ·  RUN NOVEMBER 3, 2026 (EXCERPT)", pt: 10.5 });
-  code(s, "Find", 7.2, 1.45, 5.55, [
+  const f = code(s, "Find", 7.2, 1.45, 5.55, [
     "# Step 5: Rule, Severity, Object (12 rows)",
     "NPI-MAT-07 Finding svc-hrsync",
     "NPI-MAT-01 Finding svc-oldftp",
@@ -219,7 +219,7 @@ endModule(SC);
     "NPI-MAT-09 Warn    Payroll Export",
     "NPI-MAT-09 Finding Vendor Portal",
   ], { label: "STEP 5  ·  RUN NOVEMBER 3, 2026 (TYPES CUT)", pt: 10.5 });
-  line(s, "Read", "svc-hrsync is HIGH-risk but in wave 2. HR Connector has no proposal: nobody recorded where it runs.", c + 0.25, 0.45, 13.5);
+  line(s, "Read", "svc-hrsync is HIGH-risk but in wave 2. HR Connector has no proposal: nobody recorded where it runs.", Math.max(c, f) + 0.15, 0.45, 13.5);
   sources(s, "Sources: Module 3, \"Exercise: Lab 1,\" steps 4 and 5; examples/non-person-identity/tests/fixtures/ch03 (fictional).");
   notes(s,
 `Step four reads the proposals. Six are retire: Module 2's orphans and the disabled accounts. svc hrsync and svc webfront go to a delegated managed service account, matrix row six. Payroll Export and Deploy Bot go to a managed identity, row fourteen, and Mail Automation to a federated credential, row fifteen. HR Connector has no proposal, because nobody recorded where it runs. Step five reads the twelve findings. svc hrsync is high risk, but scheduled in wave 2, so that's N P I M A T oh seven. svc webfront is kept on Kerberos with no S P N owner, oh six. The delegated account dmsa hrsync has no end date before G 5, oh five. Wave 2 has no rollback owner, oh eight. And Vendor Portal is multitenant, so Conditional Access can't cover it, oh nine.`,

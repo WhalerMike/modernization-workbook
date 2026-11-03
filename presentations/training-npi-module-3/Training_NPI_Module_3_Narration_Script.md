@@ -10,7 +10,7 @@ Every identity ends in one of five places. Retire it. Move it to a group managed
 
 ## Slide 3 — What you'll be able to do in Module 3
 
-Here's what you'll be able to do by the end of this module, which takes about fifty-five minutes with the lab. You'll explain the difference between the matrix's proposal, the owner's disposition, and Gate 2. You'll name the target the matrix proposes for each account type and workload location. You'll run the matrix on the fixtures and explain each of its findings. And you'll read a wave's rollback, and say which identities Conditional Access for workload identities can cover now, and which after conversion. Before you start, finish Modules 1 and 2, because the matrix reads both of their runs. And read Book 2, Chapter 9, on the migration path matrix. Lab 1 needs PowerShell 7.1 or later with Pester 5, and a clone. No tenant.
+Here's what you'll be able to do by the end of this module, which takes about fifty-five minutes with the lab. You'll explain the difference between the matrix's proposal, the owner's disposition, and Gate 2. You'll name the target the matrix proposes for each account type and workload location. You'll run the matrix on the fixtures and explain each of its findings. And you'll read a wave's rollback, and say which identities Conditional Access for workload identities can cover now, and which after conversion. Before you start, finish Modules 1 and 2, because the matrix reads both of their runs. And read Chapter 9 of Identity and Directory, on the migration path matrix. Lab 1 needs PowerShell 7.1 or later with Pester 5, and a clone. No tenant.
 
 ## Slide 4 — The decision in the guide: Step 2, condensed
 

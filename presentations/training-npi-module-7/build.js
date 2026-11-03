@@ -82,7 +82,7 @@ endModule(SI);
   const s = content(SC, "What Step 5 asks for: build, own, run, disable");
   tag(s, "What");
   const b = table(s, "Steps", 1.45, [0.8, 3.3, 8.05], ["#", "Step", "What the guide asks"], [
-    ["1", "Build the target", "A managed identity with its role assignments; a federated credential tested by an actual token exchange; a certificate from the vault; or a gMSA"],
+    ["1", "Build the target", "A managed identity with its role assignments; a federated credential tested by an actual token exchange; a certificate from the vault; a gMSA; or a dMSA on a Windows Server 2025 domain"],
     ["2", "Own it", "Two human owners and a rotation schedule"],
     ["3", "Run in parallel", "Old and new for 30 days: the application uses the new identity, and the legacy account stays enabled"],
     ["4", "Disable the legacy account", "Don't delete it. Remove an app's secret only after the new credential has carried production traffic"],
@@ -92,7 +92,7 @@ endModule(SI);
     "a broad subject lets every workload on that issuer in. Use exact subjects; approve each credential as a change.");
   sources(s, "Sources: Module 7, Unit 1; the guide, Step 5, Step 2 and \"Dangers\" (the program's design guidance).");
   notes(s,
-`Unit 1 is the guide's Step 5, which has five parts. They're the program's conversion steps, design guidance, not Microsoft's. Build the target: a managed identity with its role assignments, a federated credential tested by an actual token exchange, a certificate credential from the vault, or a group managed service account. Give it two human owners and a rotation schedule. Run old and new in parallel for thirty days: the application uses the new identity, and the legacy account stays enabled, and you watch both. Disable the legacy account; don't delete it. For an app registration losing a secret, remove the secret only after the new credential has carried production traffic. And record the result: the target, the date and the disabled object's I D. The program's dangers table adds one more: federation trusts too much. A broad subject lets every workload on that issuer in, so the program's guidance is exact subjects, and approval of each credential as a change.`,
+`Unit 1 is the guide's Step 5, which has five parts. They're the program's conversion steps, design guidance, not Microsoft's. Build the target: a managed identity with its role assignments, a federated credential tested by an actual token exchange, a certificate credential from the vault, a group managed service account, or, on a Windows Server 2025 domain, a delegated managed service account. Give it two human owners and a rotation schedule. Run old and new in parallel for thirty days: the application uses the new identity, and the legacy account stays enabled, and you watch both. Disable the legacy account; don't delete it. For an app registration losing a secret, remove the secret only after the new credential has carried production traffic. And record the result: the target, the date and the disabled object's I D. The program's dangers table adds one more: federation trusts too much. A broad subject lets every workload on that issuer in, so the program's guidance is exact subjects, and approval of each credential as a change.`,
   `${M} — Unit 1 "What the gate asks for"; the guide — Step 5, Step 2, "Dangers."`);
 }
 

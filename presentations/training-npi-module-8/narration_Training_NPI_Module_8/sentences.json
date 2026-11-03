@@ -138,8 +138,8 @@
   ],
   [
    50.75,
-   11.1,
-   "A delegated account waits longer: Learn's overview of delegated managed service accounts recommends four ticket lifetimes, twenty-eight days, so the code completes a migration only then."
+   14.3,
+   "A delegated account runs the same thirty days: Learn's overview of delegated managed service accounts recommends waiting four ticket lifetimes, and thirty days covers four seven-day lifetimes, so the program completes a migration only then."
   ]
  ],
  "5": [
@@ -284,21 +284,21 @@
   ],
   [
    25.35,
-   2.112,
-   "Twenty-eight days later, complete it."
+   3.05,
+   "After the thirty-day parallel run, complete it."
   ],
   [
-   27.462,
+   28.4,
    13.088,
    "Microsoft Learn's overview of delegated managed service accounts says completing disables the old account and moves its S P N's to the D M S A. Set retrievers fixes a list that differs from the reviewed one."
   ],
   [
-   40.55,
+   41.487,
    6.625,
    "Anything else, like island, blocked or handed off, is recorded with its reason, and writes nothing."
   ],
   [
-   47.175,
+   48.112,
    7.725,
    "The plan carries every input's hash, and the same inputs always give the same bytes, so a reviewer approves one hash."
   ]
@@ -482,36 +482,36 @@
   ],
   [
    13.65,
-   9.162,
-   "And complete the D M S A migration for svc h r sync, whose migration started forty days ago, past the twenty-eight-day wait."
+   9.387,
+   "And complete the D M S A migration for svc h r sync, whose migration started forty days ago, past the thirty-day parallel run."
   ],
   [
-   22.812,
+   23.038,
    2.125,
    "svc webfront is blocked."
   ],
   [
-   24.938,
+   25.163,
    3.638,
    "The other actions are recorded with their reasons and write nothing."
   ],
   [
-   28.575,
+   28.8,
    3.725,
    "Step seven reads the island list and the reconciliation."
   ],
   [
-   32.3,
+   32.525,
    3.862,
    "Five island rows, each under the name the account will end up with."
   ],
   [
-   36.163,
+   36.388,
    11.137,
    "gmsa intranet has no S P N owner and ends at the end of 2028, so it isn't ready for P four point six, and its reconciliation outcome is unreconciled."
   ],
   [
-   47.3,
+   47.525,
    4.975,
    "gmsa web isn't ready either, because its end date runs past D oh eight's."
   ]
@@ -591,21 +591,21 @@
   ],
   [
    29.225,
-   4.787,
-   "Start the D M S A migration, and complete it after twenty-eight days."
+   5.537,
+   "Start the D M S A migration, and complete it after the thirty-day parallel run."
   ],
   [
-   34.013,
+   34.763,
    16.238,
    "To back it out, step six runs the undo command from Microsoft Learn's page on setting up delegated managed service accounts, by hand, because the code never runs it, re-enables the test account, removes the test objects by hand, and deletes the output folders."
   ],
   [
-   50.25,
+   51.0,
    2.15,
    "The authors haven't run Lab 2."
   ],
   [
-   52.4,
+   53.15,
    3.138,
    "The workbook's Chapter 6 has the exact commands."
   ]

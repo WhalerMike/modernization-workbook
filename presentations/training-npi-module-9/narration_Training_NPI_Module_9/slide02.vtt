@@ -14,59 +14,63 @@ it, but they add three things.
 First, an agent can act.
 
 4
-00:00:07.675 --> 00:00:11.255
-So the program's design guidance
-disables an orphaned agent
+00:00:07.675 --> 00:00:11.962
+So an orphaned agent is disabled as
+soon as the finding is confirmed.
 
 5
-00:00:11.255 --> 00:00:14.763
-once the finding is confirmed,
-without waiting thirty days.
+00:00:11.962 --> 00:00:15.212
+That's the program's orphan
+rule for every identity,
 
 6
-00:00:14.763 --> 00:00:19.674
+00:00:15.212 --> 00:00:17.688
+and agents are why it's the stricter one.
+
+7
+00:00:17.688 --> 00:00:22.600
 Second, Microsoft Learn's Agent I D
 documentation says a blueprint holds the
 
-7
-00:00:19.674 --> 00:00:22.325
+8
+00:00:22.600 --> 00:00:25.251
 credentials for every agent made from it,
 
-8
-00:00:22.325 --> 00:00:25.600
+9
+00:00:25.251 --> 00:00:28.526
 so one secret on a blueprint
 is every agent's secret.
 
-9
-00:00:25.600 --> 00:00:30.217
+10
+00:00:28.526 --> 00:00:33.142
 And third, Learn's page on administrative
 relationships in Agent I D says that by
 
-10
-00:00:30.217 --> 00:00:33.575
+11
+00:00:33.142 --> 00:00:36.500
 default the user who creates
 an agent becomes its sponsor,
 
-11
-00:00:33.575 --> 00:00:37.563
+12
+00:00:36.500 --> 00:00:40.488
 and the guide adds that the creator
 becomes the blueprint's owner too.
 
-12
-00:00:37.563 --> 00:00:39.449
+13
+00:00:40.488 --> 00:00:42.374
 So creation has to be gated.
 
-13
-00:00:39.449 --> 00:00:44.287
+14
+00:00:42.374 --> 00:00:47.212
 In this module you check a fictional
 tenant's agents against the program's rules,
 
-14
-00:00:44.287 --> 00:00:48.024
+15
+00:00:47.212 --> 00:00:50.949
 see the same rules run where the
 cloud has no agent identities,
 
-15
-00:00:48.024 --> 00:00:51.740
+16
+00:00:50.949 --> 00:00:54.670
 and plan two report-only agent
 Conditional Access policies.

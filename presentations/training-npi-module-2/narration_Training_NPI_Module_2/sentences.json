@@ -242,11 +242,16 @@
   ],
   [
    31.45,
-   9.125,
-   "The code follows D N 2 as the plan states it, which is the stricter of the two, and the difference between the two stays open for the C I S O to decide."
+   6.963,
+   "The program settled on D N 2, the stricter of the two: disable first, then thirty days to claim it."
   ],
   [
-   40.575,
+   38.413,
+   3.025,
+   "The guide's Orphans step and the code both follow it."
+  ],
+  [
+   41.438,
    9.213,
    "Microsoft Learn's Governing Microsoft Entra service accounts documentation agrees on the shape: disable, but don't delete until the review is complete."
   ]

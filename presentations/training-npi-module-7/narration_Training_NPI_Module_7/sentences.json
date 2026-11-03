@@ -128,41 +128,41 @@
   ],
   [
    8.05,
-   11.537,
-   "Build the target: a managed identity with its role assignments, a federated credential tested by an actual token exchange, a certificate credential from the vault, or a group managed service account."
+   16.913,
+   "Build the target: a managed identity with its role assignments, a federated credential tested by an actual token exchange, a certificate credential from the vault, a group managed service account, or, on a Windows Server 2025 domain, a delegated managed service account."
   ],
   [
-   19.587,
+   24.962,
    3.15,
    "Give it two human owners and a rotation schedule."
   ],
   [
-   22.738,
+   28.113,
    9.162,
    "Run old and new in parallel for thirty days: the application uses the new identity, and the legacy account stays enabled, and you watch both."
   ],
   [
-   31.9,
+   37.275,
    2.825,
    "Disable the legacy account; don't delete it."
   ],
   [
-   34.725,
+   40.1,
    7.4,
    "For an app registration losing a secret, remove the secret only after the new credential has carried production traffic."
   ],
   [
-   42.125,
+   47.5,
    4.862,
    "And record the result: the target, the date and the disabled object's I D."
   ],
   [
-   46.987,
+   52.362,
    4.787,
    "The program's dangers table adds one more: federation trusts too much."
   ],
   [
-   51.775,
+   57.15,
    9.075,
    "A broad subject lets every workload on that issuer in, so the program's guidance is exact subjects, and approval of each credential as a change."
   ]

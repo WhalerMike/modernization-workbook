@@ -54,16 +54,6 @@ Step nine lists the four evidence
 records and the K S I's each names.
 
 12
-00:00:45.100 --> 00:00:48.788
+00:00:45.100 --> 00:00:48.840
 Step ten runs the deploy
 scripts' fifty-five tests.
-
-13
-00:00:48.788 --> 00:00:51.799
-Run it in a new session:
-in the same session,
-
-14
-00:00:51.799 --> 00:00:56.280
-one test reads the exit code step
-eight left behind, and fails.

@@ -46,7 +46,7 @@ Steps four to six are the rollback. Step four plans it from the preflight's snap
 
 ## Slide 12 — Try it: production's preflight, and the evidence check
 
-Step seven runs production's preflight, with the test stage's smoke test as its promotion evidence. Fourteen passes, including P F eleven, which runs in production only: the test stage's smoke test passed, eight of eight, in another tenant. Step eight checks the test stage's evidence, and it says no-go. Four of nine requirement rows are present and passing. Steps 1.1, 1.2, 1.3 and 1.5 are missing, because they record their evidence only when they run against a tenant. And the rollback row fails on dry run, which the go or no-go doesn't accept. The exit code is one, and that's right for a dry run. Step nine lists the four evidence records and the K S I's each names. Step ten runs the deploy scripts' fifty-five tests. Run it in a new session: in the same session, one test reads the exit code step eight left behind, and fails.
+Step seven runs production's preflight, with the test stage's smoke test as its promotion evidence. Fourteen passes, including P F eleven, which runs in production only: the test stage's smoke test passed, eight of eight, in another tenant. Step eight checks the test stage's evidence, and it says no-go. Four of nine requirement rows are present and passing. Steps 1.1, 1.2, 1.3 and 1.5 are missing, because they record their evidence only when they run against a tenant. And the rollback row fails on dry run, which the go or no-go doesn't accept. The exit code is one, and that's right for a dry run. Step nine lists the four evidence records and the K S I's each names. Step ten runs the deploy scripts' fifty-five tests.
 
 ## Slide 13 — Lab 2: the live test stage, then production
 

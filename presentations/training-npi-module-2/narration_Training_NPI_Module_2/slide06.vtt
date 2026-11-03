@@ -39,21 +39,26 @@ And the program's rule for AI agents
 disables first, because an agent can act.
 
 9
-00:00:31.450 --> 00:00:36.170
-The code follows D N 2 as the plan states
-it, which is the stricter of the two,
+00:00:31.450 --> 00:00:35.206
+The program settled on D N
+2, the stricter of the two:
 
 10
-00:00:36.170 --> 00:00:40.575
-and the difference between the two
-stays open for the C I S O to decide.
+00:00:35.206 --> 00:00:38.413
+disable first, then
+thirty days to claim it.
 
 11
-00:00:40.575 --> 00:00:45.401
+00:00:38.413 --> 00:00:41.438
+The guide's Orphans step
+and the code both follow it.
+
+12
+00:00:41.438 --> 00:00:46.264
 Microsoft Learn's Governing Microsoft
 Entra service accounts documentation
 
-12
-00:00:45.401 --> 00:00:49.850
+13
+00:00:46.264 --> 00:00:50.710
 agrees on the shape: disable, but don't
 delete until the review is complete.

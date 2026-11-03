@@ -54,14 +54,15 @@ That's honest: an incomplete period
 says so, instead of passing.
 
 12
-00:00:41.938 --> 00:00:44.352
-The summary also has a Gate 7 table,
+00:00:41.938 --> 00:00:46.734
+The summary also has a table for the
+project plan's Gate 7, steady state,
 
 13
-00:00:44.352 --> 00:00:47.800
-and a row for each package
-with its manifest hash.
+00:00:46.734 --> 00:00:51.950
+which the guide's G 6 covers, and a row
+for each package with its manifest hash.
 
 14
-00:00:47.800 --> 00:00:50.230
+00:00:51.950 --> 00:00:54.380
 The identity governance officer signs it.

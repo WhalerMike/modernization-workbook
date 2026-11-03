@@ -34,7 +34,7 @@ const SS = "Check and summary";
 
 // ================================================================== 1 Title
 {
-  const s = title(SI, "Module 2: Owners, sponsors and the orphan rule", "Non-Person Identity learning path · Gates G1 Inventory and G6 Lifecycle, with workbook Chapter 02",
+  const s = title(SI, "Module 2: Owners, sponsors and the orphan rule", "Non-Person Identity learning path · Gates G1 Inventory and G6 Lifecycle · Chapter 02",
     ["Why owners are a control  ·  The program's rule  ·  The check  ·  The orphan rule as a plan", "The write path  ·  Try it: Lab 1  ·  Lab 2  ·  Evidence"]);
   notes(s,
 `Welcome to Module 2 of the Non-Person Identity learning path: owners, sponsors and the orphan rule. In Module 1 you read every non-person identity into one register. Now you check who answers for each one. Ownership is part of Gate 1, Inventory, and the orphan rule is part of Gate 6, Lifecycle, and both come from Chapter 2 of the developer workbook. You'll check every identity for two human owners and an active service record, and build the orphan rule as a plan that a reviewer approves by its hash before anything changes. The code runs on your laptop, against the same fictional estate. It's illustrative: tested against fixtures, not run against a live tenant.`,
@@ -133,11 +133,11 @@ endModule(SI);
     "Then access suspended on day 31",
     "The program's rule for AI agents disables first",
   ], 13);
-  callout(s, "Open", Math.max(l, r) + 0.3, 0.95, "FaTriangleExclamation", HEX.amber, "Still open: ",
-    "the code follows D-N2 as the plan states it, the stricter rule, and the difference from that policy stays open for the CISO.");
+  callout(s, "Settled", Math.max(l, r) + 0.3, 0.95, "FaScaleBalanced", HEX.teal, "Settled: ",
+    "the program follows D-N2, the stricter rule: disable first, then the 30-day claim window. The guide and the code both follow it.");
   sources(s, "Sources: Module 2, Unit 2; the program's decision D-N2 and governance policy (design guidance); Learn, Governing Microsoft Entra service accounts.");
   notes(s,
-`Now the orphan rule itself. The plan's decision D N 2, which the C I S O owns, says: disable the identity once the identity governance officer confirms the finding, then allow thirty days for the office to name an owner or retire it. Never delete. The program's own governance policy for orphaned apps runs the other way round: thirty days to assign an owner, then access is suspended on day thirty-one. And the program's rule for AI agents disables first, because an agent can act. The code follows D N 2 as the plan states it, which is the stricter of the two, and the difference between the two stays open for the C I S O to decide. Microsoft Learn's Governing Microsoft Entra service accounts documentation agrees on the shape: disable, but don't delete until the review is complete.`,
+`Now the orphan rule itself. The plan's decision D N 2, which the C I S O owns, says: disable the identity once the identity governance officer confirms the finding, then allow thirty days for the office to name an owner or retire it. Never delete. The program's own governance policy for orphaned apps runs the other way round: thirty days to assign an owner, then access is suspended on day thirty-one. And the program's rule for AI agents disables first, because an agent can act. The program settled on D N 2, the stricter of the two: disable first, then thirty days to claim it. The guide's Orphans step and the code both follow it. Microsoft Learn's Governing Microsoft Entra service accounts documentation agrees on the shape: disable, but don't delete until the review is complete.`,
   `${M} — Unit 2: workbook Chapter 02, "The rule the code holds"; the guide — Step 6, "Orphans"; Knowledge check answer 2.`);
 }
 

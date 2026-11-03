@@ -13,7 +13,9 @@ series-order: 3
 
 *Part of the [Non-Person Identity learning path](index.md). Gate G2 Decision. Workbook [Chapter 03](../../project-plans/developer-workbooks/non-person-identity/03-the-migration-path-matrix-as-code.md). About 55 minutes.*
 
-**Watch first (optional):** the chapter's narrated tour, about 11 minutes: [▶ Watch](../../presentations/watch.html?v=DW_NPI_03_Migration_Path_Matrix_Narrated). A narrated deck for this module comes later.
+**Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-npi-module-3) (the deck files come with the next edition) · [▶ Watch](../../presentations/watch.html?v=Training_NPI_Module_3_Narrated) (about 13 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_NPI_Module_3_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-npi-module-3/Training_NPI_Module_3_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-npi-module-3/Training_NPI_Module_3_Narrated.vtt).
+
+**Also:** the chapter's narrated tour, about 11 minutes: [▶ Watch](../../presentations/watch.html?v=DW_NPI_03_Migration_Path_Matrix_Narrated).
 
 ## Introduction (3 minutes)
 

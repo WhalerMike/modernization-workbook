@@ -197,12 +197,12 @@ Describe 'dMSAs: Windows Server 2025 delegated MSA migration' {
         $s.Action | Should -Be 'StartDmsaMigration'
         $s.Params.SupersededAccount | Should -Be 'CN=svc-hrsync,OU=Service Accounts,DC=corp,DC=contoso,DC=example'
     }
-    It 'completes only 28 days after the start (Learn: at least 14, 28 recommended)' {
+    It 'completes only 30 days after the start (Learn: at least 14, 28 recommended; the program waits 30)' {
         (Get-Act 'svc-hrsync')[0].Action | Should -Be 'CompleteDmsaMigration'
         $r = Invoke-TestCheck -Inputs (Get-TestInputs { param($x) Set-Row $x 'svc-hrsync' @{ MigrationStartedOn = '2026-10-10' } })
         $a = @($r.Plan.actions | Where-Object Account -EQ 'svc-hrsync')[0]
         $a.Action | Should -Be 'AwaitMigrationWindow'
-        $a.Reason | Should -Match '2026-11-07'
+        $a.Reason | Should -Match '2026-11-09'
         $r = Invoke-TestCheck -Inputs (Get-TestInputs { param($x) Set-Row $x 'svc-hrsync' @{ MigrationStartedOn = '' } })
         @($r.Plan.actions | Where-Object Account -EQ 'svc-hrsync')[0].Action | Should -Be 'AwaitMigrationWindow'
     }

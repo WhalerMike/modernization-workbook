@@ -46,7 +46,7 @@ const SS = "Check and summary";
   const s = content(SI, "Why agents add three things to every gate");
   tag(s, "Why");
   const b = table(s, "Add", 1.45, [3.0, 9.15], ["What agents add", "So the program"], [
-    ["An agent can act", "Disables an orphaned agent once the finding is confirmed, without waiting 30 days"],
+    ["An agent can act", "Disables an orphaned agent once the finding is confirmed, as the program's orphan rule does for every identity"],
     ["A blueprint holds the credentials for every agent made from it", "Treats one secret on a blueprint as every agent's secret"],
     ["By default the creator becomes sponsor and owner", "Gates creation"],
   ], { fontSize: 13.5, limit: 3.9 });
@@ -54,7 +54,7 @@ const SS = "Check and summary";
     "check agents against the program's rules, run the same rules where the cloud has no agent identities, and plan two report-only agent policies.");
   sources(s, "Sources: Module 9, \"Introduction\"; Microsoft Learn, Agent identities, service principals, and applications; Administrative relationships in Agent ID; the guide.");
   notes(s,
-`Why does this module exist? Agents follow every gate before it, but they add three things. First, an agent can act. So the program's design guidance disables an orphaned agent once the finding is confirmed, without waiting thirty days. Second, Microsoft Learn's Agent I D documentation says a blueprint holds the credentials for every agent made from it, so one secret on a blueprint is every agent's secret. And third, Learn's page on administrative relationships in Agent I D says that by default the user who creates an agent becomes its sponsor, and the guide adds that the creator becomes the blueprint's owner too. So creation has to be gated. In this module you check a fictional tenant's agents against the program's rules, see the same rules run where the cloud has no agent identities, and plan two report-only agent Conditional Access policies.`,
+`Why does this module exist? Agents follow every gate before it, but they add three things. First, an agent can act. So an orphaned agent is disabled as soon as the finding is confirmed. That's the program's orphan rule for every identity, and agents are why it's the stricter one. Second, Microsoft Learn's Agent I D documentation says a blueprint holds the credentials for every agent made from it, so one secret on a blueprint is every agent's secret. And third, Learn's page on administrative relationships in Agent I D says that by default the user who creates an agent becomes its sponsor, and the guide adds that the creator becomes the blueprint's owner too. So creation has to be gated. In this module you check a fictional tenant's agents against the program's rules, see the same rules run where the cloud has no agent identities, and plan two report-only agent Conditional Access policies.`,
   `${M} — Unit "Introduction"; the guide — "AI agents," "Orphans."`);
 }
 

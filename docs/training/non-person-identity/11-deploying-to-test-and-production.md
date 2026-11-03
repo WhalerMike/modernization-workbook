@@ -13,7 +13,9 @@ series-order: 11
 
 *Part of the [Non-Person Identity learning path](index.md). Every gate: each step of the runbook names its own. Workbook [Chapter 11](../../project-plans/developer-workbooks/non-person-identity/11-deploying-to-test-and-production.md). About 60 minutes.*
 
-The chapter has no narrated tour yet. A narrated deck for this module comes later.
+**Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-npi-module-11) (the deck files come with the next edition) · [▶ Watch](../../presentations/watch.html?v=Training_NPI_Module_11_Narrated) (about 14 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_NPI_Module_11_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-npi-module-11/Training_NPI_Module_11_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-npi-module-11/Training_NPI_Module_11_Narrated.vtt).
+
+The chapter has no narrated tour yet.
 
 ::: {.callout-important}
 ## Chapter 11 is held for review
@@ -202,7 +204,7 @@ Remove-Item -Recurse -Force out
     Invoke-Pester -Path deploy/tests -Output None -PassThru | Select-Object PassedCount, FailedCount, NotRunCount
     ```
 
-    Expect `PassedCount 55`, `FailedCount 0`, `NotRunCount 0`. The tests sit outside `tests/`, so the 513 every other module's Lab 1 counts doesn't change. Run this step in a new PowerShell 7 session, from `examples/non-person-identity`: step 8 exits with code 1, and one end-to-end test checks `$LASTEXITCODE`, so in the same session it prints `PassedCount 54`, `FailedCount 1`.
+    Expect `PassedCount 55`, `FailedCount 0`, `NotRunCount 0`. The tests sit outside `tests/`, so the 513 every other module's Lab 1 counts doesn't change.
 
 Delete the dry run's folder when you're done:
 

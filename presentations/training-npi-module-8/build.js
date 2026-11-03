@@ -87,11 +87,11 @@ endModule(SI);
     ["Step 3, step 7: AD-side credentials", "A gMSA's password is changed by Windows every 30 days by default; the interval is set only at creation"],
     ["Rollback, Step 5", "Re-enable the legacy account and revert the application's configuration"],
   ], { fontSize: 12.5, limit: 4.6 });
-  callout(s, "Dmsa", b + 0.3, 0.95, "FaUserClock", HEX.navy, "A dMSA waits longer: ",
-    "the code completes a dMSA migration only 28 days after it started, the four ticket lifetimes Microsoft Learn recommends.");
+  callout(s, "Dmsa", b + 0.3, 0.95, "FaUserClock", HEX.navy, "A dMSA runs the same 30 days: ",
+    "the program completes a dMSA migration only 30 days after it started, which covers the four 7-day ticket lifetimes Microsoft Learn recommends.");
   sources(s, "Sources: Module 8, Unit 1; the guide, Steps 2, 3 and 5; Microsoft Learn, Create a KDS root key; Secure group managed service accounts; Delegated Managed Service Accounts overview.");
   notes(s,
-`Unit 1 is the guide's gate. Its Step 5 is the program's guidance: build the target, give it two human owners, run old and new in parallel for thirty days, then disable the legacy account. Never delete it. Step 2 adds the prerequisites for a G M S A. Microsoft Learn's page on creating a K D S root key says the key is created once per domain, and domain controllers wait up to ten hours after it's created before they allow a G M S A. Step 3's seventh step covers the Active Directory side of credentials: Learn's guidance on securing group managed service accounts says Windows changes the password every thirty days by default, and the interval can be set only when the account is created. The rollback for Step 5 is to re-enable the legacy account and revert the application's configuration. A delegated account waits longer: Learn's overview of delegated managed service accounts recommends four ticket lifetimes, twenty-eight days, so the code completes a migration only then.`,
+`Unit 1 is the guide's gate. Its Step 5 is the program's guidance: build the target, give it two human owners, run old and new in parallel for thirty days, then disable the legacy account. Never delete it. Step 2 adds the prerequisites for a G M S A. Microsoft Learn's page on creating a K D S root key says the key is created once per domain, and domain controllers wait up to ten hours after it's created before they allow a G M S A. Step 3's seventh step covers the Active Directory side of credentials: Learn's guidance on securing group managed service accounts says Windows changes the password every thirty days by default, and the interval can be set only when the account is created. The rollback for Step 5 is to re-enable the legacy account and revert the application's configuration. A delegated account runs the same thirty days: Learn's overview of delegated managed service accounts recommends waiting four ticket lifetimes, and thirty days covers four seven-day lifetimes, so the program completes a migration only then.`,
   `${M} — Unit 1 "The gate and the end date"; the guide — Steps 2, 3 and 5, "Rollback"; workbook Chapter 06 — "What it leaves to you."`);
 }
 
@@ -146,14 +146,14 @@ endModule(SI);
     ["AwaitHostChange, AwaitParallelRun", "The server owner installs it and changes the identity; 30 days follow", "No"],
     ["DisableSuperseded", "30 days after the host change, the old account still enabled", "Yes"],
     ["CreateDmsa, StartDmsaMigration", "Convert to a dMSA that passes every limit; then start the migration", "Yes"],
-    ["CompleteDmsaMigration", "28 days passed: disables the old account and moves its SPNs to the dMSA", "Yes"],
+    ["CompleteDmsaMigration", "30 days passed: disables the old account and moves its SPNs to the dMSA", "Yes"],
     ["SetRetrievers", "Retrievers differ from the reviewed list", "Yes"],
     ["Island, Blocked, HandedOff, ...", "Recorded, with the reason", "No"],
   ], { fontSize: 12, limit: 5.4 });
   line(s, "Hash", "kerberos-plan.json carries every input's SHA-256: the same inputs give the same bytes, so a reviewer approves one hash.", b + 0.25, 0.7, 13.5);
   sources(s, "Sources: Module 8, Unit 2; Microsoft Learn, New-ADServiceAccount; Start- and Complete-ADServiceAccountMigration; dMSA overview. Chapter 06, \"The check and the plan.\"");
   notes(s,
-`Each account becomes exactly one action in the plan. The G M S A path: create it, once the root key is ready and the retrievers are reviewed. Wait while the server owner installs it and changes the service's identity. Then a thirty-day parallel run, the program's guidance, and only then disable the old account. The D M S A path: create it, if it passes every limit, and start the migration. Twenty-eight days later, complete it. Microsoft Learn's overview of delegated managed service accounts says completing disables the old account and moves its S P N's to the D M S A. Set retrievers fixes a list that differs from the reviewed one. Anything else, like island, blocked or handed off, is recorded with its reason, and writes nothing. The plan carries every input's hash, and the same inputs always give the same bytes, so a reviewer approves one hash.`,
+`Each account becomes exactly one action in the plan. The G M S A path: create it, once the root key is ready and the retrievers are reviewed. Wait while the server owner installs it and changes the service's identity. Then a thirty-day parallel run, the program's guidance, and only then disable the old account. The D M S A path: create it, if it passes every limit, and start the migration. After the thirty-day parallel run, complete it. Microsoft Learn's overview of delegated managed service accounts says completing disables the old account and moves its S P N's to the D M S A. Set retrievers fixes a list that differs from the reviewed one. Anything else, like island, blocked or handed off, is recorded with its reason, and writes nothing. The plan carries every input's hash, and the same inputs always give the same bytes, so a reviewer approves one hash.`,
   `${M} — Unit 2 "The plan and the island": workbook Chapter 06, "The check and the plan."`);
 }
 
@@ -265,7 +265,7 @@ endModule(SC);
   line(s, "Read", "svc-hrsync's migration started 40 days ago, so the plan completes it. gmsa-intranet$ has no SPN owner: not ready.", c + 0.25, 0.7, 13.5);
   sources(s, "Sources: Module 8, \"Exercise: Lab 1,\" steps 6 and 7; examples/non-person-identity/tests/fixtures/ch06 (fictional domain).");
   notes(s,
-`Step six reads the plan. Nine actions, and these are the four writes. Set retrievers for gmsa web. Create a G M S A for the managed service account msa print oh one, and for svc intranet. And complete the D M S A migration for svc h r sync, whose migration started forty days ago, past the twenty-eight-day wait. svc webfront is blocked. The other actions are recorded with their reasons and write nothing. Step seven reads the island list and the reconciliation. Five island rows, each under the name the account will end up with. gmsa intranet has no S P N owner and ends at the end of 2028, so it isn't ready for P four point six, and its reconciliation outcome is unreconciled. gmsa web isn't ready either, because its end date runs past D oh eight's.`,
+`Step six reads the plan. Nine actions, and these are the four writes. Set retrievers for gmsa web. Create a G M S A for the managed service account msa print oh one, and for svc intranet. And complete the D M S A migration for svc h r sync, whose migration started forty days ago, past the thirty-day parallel run. svc webfront is blocked. The other actions are recorded with their reasons and write nothing. Step seven reads the island list and the reconciliation. Five island rows, each under the name the account will end up with. gmsa intranet has no S P N owner and ends at the end of 2028, so it isn't ready for P four point six, and its reconciliation outcome is unreconciled. gmsa web isn't ready either, because its end date runs past D oh eight's.`,
   `${M} — Unit "Exercise: Lab 1, fixtures, no tenant," steps 6 and 7.`);
 }
 
@@ -300,14 +300,14 @@ endModule(SC);
     ["You need", "A test AD domain, never production: a Windows Server 2025 DC and member server, a KDS root key, Chapter 01's Lab 2 run"],
     ["Make and grant", "A traditional test account and a test MSA; grant the read only msKds-UseStartTime and msKds-CreateTime"],
     ["Check and apply", "Run the check; apply the plan as a person with Domain Admins or equivalent rights"],
-    ["Migrate", "Start the dMSA migration, and complete it after 28 days"],
+    ["Migrate", "Start the dMSA migration, and complete it after the 30-day parallel run"],
     ["Back it out", "Step 6: Learn's Undo-ADServiceAccountMigration by hand; re-enable the account; remove the test objects by hand"],
   ], { fontSize: 12.5, limit: 5.2 });
   callout(s, "NotRun", b + 0.3, 0.85, "FaTriangleExclamation", HEX.amber, "Not run by the authors: ",
     "follow the workbook's Chapter 06, Lab 2, which has the exact commands. The code never runs the undo.");
   sources(s, "Sources: Module 8, \"Exercise: Lab 2, your test domain\"; Microsoft Learn, Setting up delegated Managed Service Accounts; learning path index.");
   notes(s,
-`Lab 2 moves to a test Active Directory domain, never production, with at least one Windows Server 2025 domain controller, a Windows Server 2025 member server, an existing K D S root key, and Chapter 1's Lab 2 run. Make a traditional test account and a test managed service account. Grant the read only the root key's two date attributes, nothing else. Run the check, then apply the plan as a person with Domain Admins or equivalent rights. Start the D M S A migration, and complete it after twenty-eight days. To back it out, step six runs the undo command from Microsoft Learn's page on setting up delegated managed service accounts, by hand, because the code never runs it, re-enables the test account, removes the test objects by hand, and deletes the output folders. The authors haven't run Lab 2. The workbook's Chapter 6 has the exact commands.`,
+`Lab 2 moves to a test Active Directory domain, never production, with at least one Windows Server 2025 domain controller, a Windows Server 2025 member server, an existing K D S root key, and Chapter 1's Lab 2 run. Make a traditional test account and a test managed service account. Grant the read only the root key's two date attributes, nothing else. Run the check, then apply the plan as a person with Domain Admins or equivalent rights. Start the D M S A migration, and complete it after the thirty-day parallel run. To back it out, step six runs the undo command from Microsoft Learn's page on setting up delegated managed service accounts, by hand, because the code never runs it, re-enables the test account, removes the test objects by hand, and deletes the output folders. The authors haven't run Lab 2. The workbook's Chapter 6 has the exact commands.`,
   `${M} — Unit "Exercise: Lab 2, your test domain"; learning path index — "What you need for the labs."`);
 }
 endModule(SL);

@@ -34,39 +34,40 @@ The D M S A path: create it, if it passes
 every limit, and start the migration.
 
 8
-00:00:25.350 --> 00:00:27.462
-Twenty-eight days later, complete it.
+00:00:25.350 --> 00:00:28.400
+After the thirty-day
+parallel run, complete it.
 
 9
-00:00:27.462 --> 00:00:32.164
+00:00:28.400 --> 00:00:33.102
 Microsoft Learn's overview of
 delegated managed service accounts says
 
 10
-00:00:32.164 --> 00:00:36.475
+00:00:33.102 --> 00:00:37.413
 completing disables the old account
 and moves its S P N's to the D M S A.
 
 11
-00:00:36.475 --> 00:00:40.550
+00:00:37.413 --> 00:00:41.488
 Set retrievers fixes a list that
 differs from the reviewed one.
 
 12
-00:00:40.550 --> 00:00:43.904
+00:00:41.488 --> 00:00:44.841
 Anything else, like island,
 blocked or handed off,
 
 13
-00:00:43.904 --> 00:00:47.175
+00:00:44.841 --> 00:00:48.112
 is recorded with its
 reason, and writes nothing.
 
 14
-00:00:47.175 --> 00:00:49.584
+00:00:48.112 --> 00:00:50.521
 The plan carries every input's hash,
 
 15
-00:00:49.584 --> 00:00:54.960
+00:00:50.521 --> 00:00:55.900
 and the same inputs always give the same
 bytes, so a reviewer approves one hash.

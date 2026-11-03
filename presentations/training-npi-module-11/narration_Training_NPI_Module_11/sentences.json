@@ -541,11 +541,6 @@
    45.1,
    3.688,
    "Step ten runs the deploy scripts' fifty-five tests."
-  ],
-  [
-   48.788,
-   7.438,
-   "Run it in a new session: in the same session, one test reads the exit code step eight left behind, and fails."
   ]
  ],
  "13": [

@@ -35,35 +35,35 @@ person with Domain Admins
 or equivalent rights.
 
 8
-00:00:29.225 --> 00:00:34.012
-Start the D M S A migration, and
-complete it after twenty-eight days.
+00:00:29.225 --> 00:00:34.762
+Start the D M S A migration, and complete
+it after the thirty-day parallel run.
 
 9
-00:00:34.012 --> 00:00:38.775
+00:00:34.762 --> 00:00:39.525
 To back it out, step six runs the undo
 command from Microsoft Learn's page on
 
 10
-00:00:38.775 --> 00:00:42.366
+00:00:39.525 --> 00:00:43.116
 setting up delegated managed
 service accounts, by hand,
 
 11
-00:00:42.366 --> 00:00:46.113
+00:00:43.116 --> 00:00:46.863
 because the code never runs it,
 re-enables the test account,
 
 12
-00:00:46.113 --> 00:00:50.251
+00:00:46.863 --> 00:00:51.001
 removes the test objects by hand,
 and deletes the output folders.
 
 13
-00:00:50.251 --> 00:00:52.400
+00:00:51.001 --> 00:00:53.150
 The authors haven't run Lab 2.
 
 14
-00:00:52.400 --> 00:00:55.610
+00:00:53.150 --> 00:00:56.350
 The workbook's Chapter 6
 has the exact commands.

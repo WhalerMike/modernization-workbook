@@ -68,15 +68,21 @@ account and revert the
 application's configuration.
 
 15
-00:00:50.750 --> 00:00:52.755
-A delegated account waits longer:
+00:00:50.750 --> 00:00:53.467
+A delegated account runs
+the same thirty days:
 
 16
-00:00:52.755 --> 00:00:57.553
+00:00:53.467 --> 00:00:58.329
 Learn's overview of delegated managed
-service accounts recommends four ticket
+service accounts recommends waiting four
 
 17
-00:00:57.553 --> 00:01:01.920
-lifetimes, twenty-eight days, so the
-code completes a migration only then.
+00:00:58.329 --> 00:01:02.261
+ticket lifetimes, and thirty days
+covers four seven-day lifetimes,
+
+18
+00:01:02.261 --> 00:01:05.110
+so the program completes
+a migration only then.

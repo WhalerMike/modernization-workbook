@@ -278,10 +278,10 @@ endModule(SC);
     "S0-change-record-approvals-and-settings-file.json: Pass; KSIs KSI-CMT-LMC, KSI-IAM-JIT",
     "SMOKE-smoke-test.json: Pass; ...",
   ], { label: "TRY IT  ·  LAB 1 OUTPUT, RUN NOVEMBER 3, 2026 (TRIMMED AND REFLOWED: \"...\" MARKS CUTS)", pt: 10.5 });
-  line(s, "Tests", "Step 10, the deploy tests: 55 passed in a new session; after step 8's exit code 1 in the same session, 54 passed, 1 failed.", c + 0.2, 0.7, 13.5);
+  line(s, "Tests", "Step 10, the deploy tests: 55 passed, 0 failed, 0 not run.", c + 0.2, 0.7, 13.5);
   sources(s, "Sources: Module 11, \"Exercise: Lab 1,\" steps 7 to 10; examples/non-person-identity/deploy (Test-NpiDeployEvidence.ps1; tests/NpiDeploy.Tests.ps1).");
   notes(s,
-`Step seven runs production's preflight, with the test stage's smoke test as its promotion evidence. Fourteen passes, including P F eleven, which runs in production only: the test stage's smoke test passed, eight of eight, in another tenant. Step eight checks the test stage's evidence, and it says no-go. Four of nine requirement rows are present and passing. Steps 1.1, 1.2, 1.3 and 1.5 are missing, because they record their evidence only when they run against a tenant. And the rollback row fails on dry run, which the go or no-go doesn't accept. The exit code is one, and that's right for a dry run. Step nine lists the four evidence records and the K S I's each names. Step ten runs the deploy scripts' fifty-five tests. Run it in a new session: in the same session, one test reads the exit code step eight left behind, and fails.`,
+`Step seven runs production's preflight, with the test stage's smoke test as its promotion evidence. Fourteen passes, including P F eleven, which runs in production only: the test stage's smoke test passed, eight of eight, in another tenant. Step eight checks the test stage's evidence, and it says no-go. Four of nine requirement rows are present and passing. Steps 1.1, 1.2, 1.3 and 1.5 are missing, because they record their evidence only when they run against a tenant. And the rollback row fails on dry run, which the go or no-go doesn't accept. The exit code is one, and that's right for a dry run. Step nine lists the four evidence records and the K S I's each names. Step ten runs the deploy scripts' fifty-five tests.`,
   `${M} — Unit "Exercise: Lab 1, fixtures, no tenant," steps 7 to 10.`);
 }
 
@@ -365,7 +365,7 @@ sourceSlide("Sources: Module 11 deck", [
   "Module page: docs/training/non-person-identity/11-deploying-to-test-and-production.md (Non-Person Identity learning path, Module 11): the held-for-review callout, Introduction and its requirement table, objectives, prerequisites, Units 1 and 2, Lab 1, Lab 2, knowledge check and summary.",
   "What the module links: workbook Chapter 11 (held for review; not run against a live tenant), \"What the runbook depends on,\" \"Before you start,\" \"The environment settings file,\" \"The code this chapter adds,\" \"Pre-flight checks,\" Stages 1 and 2, \"Promotion go/no-go criteria,\" \"Evidence the ISSO keeps.\" Its Microsoft Learn footnotes: app management policies; Conditional Access for workload identities; Activate a Microsoft Entra role in PIM. FedRAMP, Key Security Indicators; NIST SP 800-53.",
   "Kit: examples/non-person-identity/deploy (NpiDeploy.psm1; the five scripts; settings.template.json; tests/NpiDeploy.Tests.ps1) and tests/fixtures/deploy. Fictional tenants served by a fake. Illustrative: tested against fixtures, not run against a live tenant.",
-  "Lab output: run November 3, 2026 with PowerShell 7 and Pester 5 in a scratch copy of examples/non-person-identity; output trimmed and reflowed where the slides say so. Step 10 printed 54 passed, 1 failed in the same session as steps 1 to 9, and 55 passed in a new session. Verification: docs/training/non-person-identity/_verification/learning-path.md. Lab 2 not run by anyone.",
+  "Lab output: run November 3, 2026 with PowerShell 7 and Pester 5 in a scratch copy of examples/non-person-identity; output trimmed and reflowed where the slides say so. Step 10 printed 55 passed, run in the same session after step 8, once the test cleared the exit code step 8 leaves (fixed November 3, 2026). Verification: docs/training/non-person-identity/_verification/learning-path.md. Lab 2 not run by anyone.",
 ]);
 
 finish(OUT);
