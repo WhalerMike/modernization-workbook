@@ -1,0 +1,90 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.075
+The findings, I N V oh one to oh nine.
+
+2
+00:00:03.075 --> 00:00:06.459
+Oh one is the big one:
+standing active privilege in
+
+3
+00:00:06.459 --> 00:00:09.925
+Tier 0 or Tier 1 outside
+the documented exceptions.
+
+4
+00:00:09.925 --> 00:00:14.212
+An exception counts only if it has
+an owner, and then the row is Info.
+
+5
+00:00:14.212 --> 00:00:18.963
+Oh two is a role assigned straight to
+a user, not through a P R V group.
+
+6
+00:00:18.963 --> 00:00:22.875
+Oh three is a group that holds a
+role but isn't named for its tier.
+
+7
+00:00:22.875 --> 00:00:27.377
+Oh four counts Global Administrators:
+five or more is a finding,
+
+8
+00:00:27.377 --> 00:00:33.178
+because Microsoft Learn's best practices
+for Entra roles advise fewer than five,
+
+9
+00:00:33.178 --> 00:00:38.114
+and so is fewer than two users, the
+floor in CISA's ScubaGear baseline,
+
+10
+00:00:38.114 --> 00:00:40.538
+M S A A D seven point one, version one.
+
+11
+00:00:40.538 --> 00:00:42.600
+Oh five is a role with no tier.
+
+12
+00:00:42.600 --> 00:00:45.600
+Oh six is eligibility that never expires.
+
+13
+00:00:45.600 --> 00:00:48.950
+Oh seven is User Access
+Administrator at root scope,
+
+14
+00:00:48.950 --> 00:00:51.288
+which is what elevate access grants.
+
+15
+00:00:51.288 --> 00:00:54.747
+Oh eight is more than three
+Owners on a subscription,
+
+16
+00:00:54.747 --> 00:00:59.251
+against Microsoft Learn's Azure R B
+A C best practice of at most three.
+
+17
+00:00:59.251 --> 00:01:03.150
+And oh nine is a group member
+whose name the run couldn't read.
+
+18
+00:01:03.150 --> 00:01:06.401
+Those thresholds come from
+Microsoft Learn and CISA;
+
+19
+00:01:06.401 --> 00:01:08.780
+the other rules are the kit's own design.

@@ -1,0 +1,68 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.025
+Check yourself with two questions.
+
+2
+00:00:02.025 --> 00:00:05.887
+First: you run the package
+cmdlet twice on the same MOF.
+
+3
+00:00:05.887 --> 00:00:06.813
+What do you get?
+
+4
+00:00:06.813 --> 00:00:10.115
+The answer is b: two packages
+with different hashes,
+
+5
+00:00:10.115 --> 00:00:13.812
+so a rebuilt package won't
+match the reviewed definition.
+
+6
+00:00:13.812 --> 00:00:18.762
+That's why the build packages once,
+checks, and publishes those exact bytes.
+
+7
+00:00:18.762 --> 00:00:22.233
+Second: you assign a definition
+to an Arc-enabled server,
+
+8
+00:00:22.233 --> 00:00:25.100
+and leave include Arc
+machines at its default.
+
+9
+00:00:25.100 --> 00:00:26.112
+What happens?
+
+10
+00:00:26.112 --> 00:00:29.925
+The answer is b: nothing
+happens, and nothing says so.
+
+11
+00:00:29.925 --> 00:00:34.604
+The default is false, so every
+Arc-enabled server is out of scope,
+
+12
+00:00:34.604 --> 00:00:38.113
+and the build's MC-POL oh
+nine row is the reminder.
+
+13
+00:00:38.113 --> 00:00:43.265
+The module page has two more questions,
+on MC-PKG oh four and on the mode's case,
+
+14
+00:00:43.265 --> 00:00:46.220
+each linked to the
+section that answers it.

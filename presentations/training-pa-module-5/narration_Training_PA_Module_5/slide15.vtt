@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.025
+Check yourself with two questions.
+
+2
+00:00:02.025 --> 00:00:07.425
+First: the file lists three removals and
+you pass Max Removals two with Apply.
+
+3
+00:00:07.425 --> 00:00:08.437
+What happens?
+
+4
+00:00:08.437 --> 00:00:13.388
+The answer is b: guard G six refuses
+the plan, and nothing is sent.
+
+5
+00:00:13.388 --> 00:00:15.675
+You saw it in Lab 1, step seven.
+
+6
+00:00:15.675 --> 00:00:20.075
+Second: why does the pipeline's
+app not create the P R V groups?
+
+7
+00:00:20.075 --> 00:00:23.129
+The answer is b: creating
+a role-assignable group
+
+8
+00:00:23.129 --> 00:00:26.413
+needs Role Management dot
+ReadWrite dot Directory.
+
+9
+00:00:26.413 --> 00:00:29.252
+The program keeps that
+permission off the pipeline,
+
+10
+00:00:29.252 --> 00:00:32.751
+and a Privileged Role Administrator
+creates the groups by hand.
+
+11
+00:00:32.751 --> 00:00:37.700
+The module page has two more questions,
+each linked to the section that answers it.

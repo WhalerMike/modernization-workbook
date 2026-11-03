@@ -1,0 +1,71 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.682
+Lab 2 runs the pipeline for real, in
+a test tenant and a test subscription,
+
+2
+00:00:04.682 --> 00:00:07.900
+never production, from a
+private test repository
+
+3
+00:00:07.900 --> 00:00:10.962
+that holds the validation
+kit and this example.
+
+4
+00:00:10.962 --> 00:00:15.780
+Register an app that trusts the repository
+through a federated credential,
+
+5
+00:00:15.780 --> 00:00:18.838
+so no secret is stored, and
+grant it only the reads.
+
+6
+00:00:18.838 --> 00:00:22.508
+Make an evidence container with
+an unlocked retention policy,
+
+7
+00:00:22.508 --> 00:00:24.837
+and set up the repository's environment.
+
+8
+00:00:24.837 --> 00:00:29.837
+Run the workflow by hand for a baseline,
+make one real change, and run it again.
+
+9
+00:00:29.837 --> 00:00:31.375
+Then let the schedule run.
+
+10
+00:00:31.375 --> 00:00:35.687
+To back it out, step eight deletes
+the federated credential and the app.
+
+11
+00:00:35.687 --> 00:00:40.690
+Leave the test retention policy unlocked:
+Microsoft Learn's page on immutable
+
+12
+00:00:40.690 --> 00:00:44.692
+storage says an unlocked policy
+is only for short-term testing,
+
+13
+00:00:44.692 --> 00:00:46.000
+and it can be deleted.
+
+14
+00:00:46.000 --> 00:00:48.150
+The authors haven't run Lab 2.
+
+15
+00:00:48.150 --> 00:00:51.600
+Follow Chapter 09's Lab 2, step by step.

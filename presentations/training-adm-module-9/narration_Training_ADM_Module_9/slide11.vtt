@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.738
+Lab 2 is the live test stage itself.
+
+2
+00:00:02.738 --> 00:00:04.504
+You need an Entra test tenant,
+
+3
+00:00:04.504 --> 00:00:08.039
+an Azure test subscription
+with Arc-enabled test servers,
+
+4
+00:00:08.039 --> 00:00:12.163
+and a test Active Directory forest,
+never production, plus the three
+
+5
+00:00:12.163 --> 00:00:17.024
+identities and the objects the chapter
+lists as made before the runbook starts.
+
+6
+00:00:17.024 --> 00:00:21.197
+Load the test stage's settings,
+sign in as the deploy identity,
+
+7
+00:00:21.197 --> 00:00:24.200
+and run the pre-flight
+check dry and then live.
+
+8
+00:00:24.200 --> 00:00:29.673
+Then follow the twelve steps of Stage 1:
+the baseline evidence, the HR middleware,
+
+9
+00:00:29.673 --> 00:00:34.814
+dynamic rules, Lifecycle Workflows
+created disabled, Group Policy as code,
+
+10
+00:00:34.814 --> 00:00:39.872
+machine configuration in audit, Ansible
+in check mode, the drift pipeline,
+
+11
+00:00:39.872 --> 00:00:45.262
+the smoke test, the evidence package, the
+rollback drill and the evidence check.
+
+12
+00:00:45.262 --> 00:00:50.463
+To back it out, step eleven runs the rollback
+written from the record, newest first.
+
+13
+00:00:50.463 --> 00:00:52.560
+Nobody has run Lab 2 yet.

@@ -1,0 +1,83 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.250
+Each settings catalog
+policy is a JSON file.
+
+2
+00:00:03.250 --> 00:00:07.952
+The policy part is the body Graph
+receives, exactly as reviewed, in the shape
+
+3
+00:00:07.952 --> 00:00:10.455
+Microsoft Learn's Graph beta reference
+
+4
+00:00:10.455 --> 00:00:13.488
+documents for creating
+a configuration policy.
+
+5
+00:00:13.488 --> 00:00:18.533
+The rest is the record: who approves a
+change, which tool owns the settings,
+
+6
+00:00:18.533 --> 00:00:23.326
+which GPOs they came from, and the I
+D of each setting's decision record.
+
+7
+00:00:23.326 --> 00:00:26.713
+The linter applies ten rules,
+and they're the kit's design.
+
+8
+00:00:26.713 --> 00:00:28.712
+Four carry this workbook's rules.
+
+9
+00:00:28.712 --> 00:00:31.682
+GPC oh two: the config
+owner must be Intune,
+
+10
+00:00:31.682 --> 00:00:35.787
+because a setting another tool
+owns stays with that tool.
+
+11
+00:00:35.787 --> 00:00:39.462
+GPC oh six: one setting
+definition in one policy,
+
+12
+00:00:39.462 --> 00:00:43.325
+because two policies on
+one setting is a conflict.
+
+13
+00:00:43.325 --> 00:00:47.013
+GPC oh nine: every setting
+has a decision record.
+
+14
+00:00:47.013 --> 00:00:49.509
+And GPC oh eight, with the move plan:
+
+15
+00:00:49.509 --> 00:00:53.788
+a setting that isn't a candidate
+is shown, with its decision.
+
+16
+00:00:53.788 --> 00:00:58.299
+GPC ten warns on a value that looks
+like a secret: Learn's page on device
+
+17
+00:00:58.299 --> 00:01:03.430
+profiles says anyone who can read device
+configuration can read such values.

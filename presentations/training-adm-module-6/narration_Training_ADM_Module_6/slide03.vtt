@@ -1,0 +1,69 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.865
+Here's what you'll be able to
+do by the end of this module,
+
+2
+00:00:02.865 --> 00:00:05.488
+which takes about forty-five
+minutes with the lab.
+
+3
+00:00:05.488 --> 00:00:09.020
+You'll explain why each server
+records one configuration
+
+4
+00:00:09.020 --> 00:00:12.112
+owner and one patch owner,
+and where each tag is read.
+
+5
+00:00:12.112 --> 00:00:15.551
+You'll describe what Microsoft's
+azure arc role leaves to you.
+
+6
+00:00:15.551 --> 00:00:19.213
+You'll run the CMDB inventory,
+and say what makes it stop.
+
+7
+00:00:19.213 --> 00:00:23.000
+You'll plan a wave and read
+the plan, before anything runs.
+
+8
+00:00:23.000 --> 00:00:26.894
+And you'll explain why the role can't
+dry-run a server without the agent,
+
+9
+00:00:26.894 --> 00:00:28.875
+and what the playbook does instead.
+
+10
+00:00:28.875 --> 00:00:31.074
+Before you start, finish Module 5:
+
+11
+00:00:31.074 --> 00:00:36.287
+its enforcing definitions filter on the
+Config Owner tag this module writes.
+
+12
+00:00:36.287 --> 00:00:40.819
+Lab 1 needs a disposable
+Linux control node, or WSL,
+
+13
+00:00:40.819 --> 00:00:47.338
+with Python 3.10 or later, ansible
+core, ansible lint, yamllint and pytest.
+
+14
+00:00:47.338 --> 00:00:52.080
+Step three runs Microsoft's role as
+root against the control node itself.

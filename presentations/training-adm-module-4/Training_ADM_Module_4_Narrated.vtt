@@ -1,0 +1,1098 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.682
+Welcome to Module 4 of the
+Attribute-Driven Migration learning path:
+
+2
+00:00:04.682 --> 00:00:06.388
+move Group Policy as code.
+
+3
+00:00:06.388 --> 00:00:10.792
+This module serves three of the
+implementation guide's gates, 0,
+
+4
+00:00:10.792 --> 00:00:15.788
+5 and 8, and takes Chapter 06 of
+Building the Attribute-Driven Migration.
+
+5
+00:00:15.788 --> 00:00:20.550
+You'll read Group Policy analytics
+into a move plan, one row per setting.
+
+6
+00:00:20.550 --> 00:00:24.179
+You'll keep each settings catalog
+policy as a reviewed file,
+
+7
+00:00:24.179 --> 00:00:27.438
+with an owner and a decision
+record for every setting.
+
+8
+00:00:27.438 --> 00:00:30.397
+And you'll run a sync that
+reads the tenant first,
+
+9
+00:00:30.397 --> 00:00:32.901
+and creates only what its dry run showed.
+
+10
+00:00:32.901 --> 00:00:35.013
+Then you'll run it all on your laptop,
+
+11
+00:00:35.013 --> 00:00:38.875
+against a fake Graph and a fixture
+tenant, and break it on purpose.
+
+12
+00:00:38.875 --> 00:00:44.630
+The code is illustrative: tested against
+fixtures, not against a production tenant.
+
+13
+00:00:48.380 --> 00:00:49.692
+Why does this need code?
+
+14
+00:00:49.692 --> 00:00:53.429
+The organizational unit (OU)
+tree scoped Group Policy,
+
+15
+00:00:53.429 --> 00:00:56.656
+and Group Policy
+inheritance retires with it.
+
+16
+00:00:56.656 --> 00:01:00.405
+So every GPO setting has to
+land somewhere on purpose.
+
+17
+00:01:00.405 --> 00:01:06.483
+Gate 0 splits every GPO by track,
+and its Validate step runs VK-INT-07,
+
+18
+00:01:06.483 --> 00:01:13.555
+to show which GPOs Group Policy analytics
+has imported and how ready they are.
+
+19
+00:01:13.555 --> 00:01:17.093
+Gate 5 moves each setting
+to exactly one owner.
+
+20
+00:01:17.093 --> 00:01:21.692
+And Gate 8 cuts over by disabling
+GPO links, never deleting them.
+
+21
+00:01:21.692 --> 00:01:26.467
+Moving Group Policy to Intune
+changes the baseline of every device.
+
+22
+00:01:26.467 --> 00:01:30.366
+This module is the code between
+those gates: a plan per setting,
+
+23
+00:01:30.366 --> 00:01:35.550
+a library of reviewed files, and a sync
+that creates only what a dry run showed.
+
+24
+00:01:39.300 --> 00:01:42.111
+Here's what you'll be able to
+do by the end of this module,
+
+25
+00:01:42.111 --> 00:01:44.475
+which takes about fifty
+minutes with the lab.
+
+26
+00:01:44.475 --> 00:01:48.315
+You'll explain what
+VK-INT-07 checks per GPO,
+
+27
+00:01:48.315 --> 00:01:51.825
+and what the move plan adds per setting.
+
+28
+00:01:51.825 --> 00:01:55.825
+You'll name the plan's dispositions,
+and say what happens to a conflict.
+
+29
+00:01:55.825 --> 00:01:57.762
+You'll describe a library file:
+
+30
+00:01:57.762 --> 00:02:01.325
+the policy body Graph receives,
+and the record around it.
+
+31
+00:02:01.325 --> 00:02:05.325
+You'll run the dry run and the
+apply, and read the sync record.
+
+32
+00:02:05.325 --> 00:02:08.263
+And you'll explain why a
+drift stops the release,
+
+33
+00:02:08.263 --> 00:02:10.975
+and why the sync never
+sends PATCH or DELETE.
+
+34
+00:02:10.975 --> 00:02:17.075
+Before you start, do Module 2,
+for how VK-INT-07 is built.
+
+35
+00:02:17.075 --> 00:02:21.713
+Microsoft Automation Module
+3 is optional background
+
+36
+00:02:21.713 --> 00:02:26.150
+on the settings catalog and
+Intune's v1.0 and beta APIs.
+
+37
+00:02:26.150 --> 00:02:31.940
+Lab 1 needs PowerShell 7.1 or
+later and Pester 5, and no tenant.
+
+38
+00:02:35.690 --> 00:02:37.428
+Start with where the code sits.
+
+39
+00:02:37.428 --> 00:02:41.604
+The operator steps for retiring
+Group Policy are already written,
+
+40
+00:02:41.604 --> 00:02:43.578
+in this workbook's own guidance.
+
+41
+00:02:43.578 --> 00:02:47.973
+This code serves two of them:
+importing every in-scope GPO into
+
+42
+00:02:47.973 --> 00:02:52.541
+Group Policy analytics, and creating
+the policy library as code.
+
+43
+00:02:52.541 --> 00:02:56.115
+Two rules shape it, and both
+are this workbook's guidance.
+
+44
+00:02:56.115 --> 00:02:59.562
+One owning policy, and one
+owning tool, per setting,
+
+45
+00:02:59.562 --> 00:03:02.840
+so the library holds only
+settings Intune owns.
+
+46
+00:03:02.840 --> 00:03:07.230
+And build unassigned: the code
+creates policies with no assignments,
+
+47
+00:03:07.230 --> 00:03:10.002
+and assigning them is
+a later, reviewed step.
+
+48
+00:03:10.002 --> 00:03:12.277
+Microsoft Learn sets the stakes.
+
+49
+00:03:12.277 --> 00:03:17.202
+Its page on importing GPOs into
+Group Policy analytics says the tool
+
+50
+00:03:17.202 --> 00:03:21.866
+is for Windows only, and imports
+GPO exports under four megabytes.
+
+51
+00:03:21.866 --> 00:03:27.411
+Its page on creating a settings catalog
+policy from imported GPOs calls the Migrate
+
+52
+00:03:27.411 --> 00:03:29.946
+step best effort, and says it stops when
+
+53
+00:03:29.946 --> 00:03:32.877
+two GPOs set one setting
+to different values.
+
+54
+00:03:32.877 --> 00:03:36.160
+And Learn's Microsoft Graph
+reference documents the
+
+55
+00:03:36.160 --> 00:03:40.400
+migration reports and settings
+catalog policies in beta only.
+
+56
+00:03:44.150 --> 00:03:49.738
+Microsoft Learn's Intune migration guide
+points to Microsoft's Intune Graph samples,
+
+57
+00:03:49.738 --> 00:03:52.887
+on GitHub, for exporting
+and importing policies,
+
+58
+00:03:52.887 --> 00:03:56.350
+and says the scripts change
+your tenant and come as-is.
+
+59
+00:03:56.350 --> 00:03:59.375
+Their settings catalog
+folder has an import script.
+
+60
+00:03:59.375 --> 00:04:01.964
+The repository keeps a pinned copy,
+
+61
+00:04:01.964 --> 00:04:06.250
+and a test harness runs it,
+unmodified, against a fake Graph.
+
+62
+00:04:06.250 --> 00:04:07.637
+Here's what that shows.
+
+63
+00:04:07.637 --> 00:04:11.388
+The import creates the policy
+with one POST, unassigned.
+
+64
+00:04:11.388 --> 00:04:12.763
+That's kept as the model.
+
+65
+00:04:12.763 --> 00:04:16.673
+But run it twice and it creates a
+second policy with the same name,
+
+66
+00:04:16.673 --> 00:04:18.738
+because it never reads the tenant.
+
+67
+00:04:18.738 --> 00:04:23.442
+It sends to the worldwide Graph host
+whatever cloud you signed in to, and Learn's
+
+68
+00:04:23.442 --> 00:04:28.363
+page on Microsoft Graph national cloud
+deployments gives each cloud its own host.
+
+69
+00:04:28.363 --> 00:04:31.888
+It uses whatever session you
+opened, whatever its scopes.
+
+70
+00:04:31.888 --> 00:04:37.363
+It silently strips service-set properties,
+so the body sent isn't the file reviewed.
+
+71
+00:04:37.363 --> 00:04:39.788
+And it records nothing beyond the screen.
+
+72
+00:04:39.788 --> 00:04:45.102
+The example adds a sync that reads the
+tenant first, a host per cloud, a read-only
+
+73
+00:04:45.102 --> 00:04:50.350
+scope for the dry run, refusals instead
+of silent edits, and a sync record.
+
+74
+00:04:54.100 --> 00:04:55.950
+The read side has two parts.
+
+75
+00:04:55.950 --> 00:04:59.562
+VK-INT-07 is the gate.
+
+76
+00:04:59.562 --> 00:05:03.280
+The validation kit's check
+reads the migration reports,
+
+77
+00:05:03.280 --> 00:05:08.693
+and fails on any GPO targeted in Active
+Directory whose readiness isn't complete,
+
+78
+00:05:08.693 --> 00:05:11.763
+and on any in-scope GPO
+that was never imported.
+
+79
+00:05:11.763 --> 00:05:15.200
+It works per GPO, and
+doesn't read the settings.
+
+80
+00:05:15.200 --> 00:05:17.075
+The move plan works per setting.
+
+81
+00:05:17.075 --> 00:05:19.638
+It reads each report's setting mappings,
+
+82
+00:05:19.638 --> 00:05:24.763
+which Learn's Graph beta reference documents,
+and gives every row a disposition.
+
+83
+00:05:24.763 --> 00:05:27.062
+The dispositions are the kit's design.
+
+84
+00:05:27.062 --> 00:05:30.775
+A candidate is supported and has
+an Intune setting definition,
+
+85
+00:05:30.775 --> 00:05:32.988
+and a person decides whether it moves.
+
+86
+00:05:32.988 --> 00:05:37.425
+A conflict is two GPOs setting one
+definition to different values:
+
+87
+00:05:37.425 --> 00:05:40.813
+Learn's page on creating
+a settings catalog policy
+
+88
+00:05:40.813 --> 00:05:44.201
+from imported GPOs says
+Migrate stops on that case.
+
+89
+00:05:44.201 --> 00:05:46.537
+The decision record picks the value.
+
+90
+00:05:46.537 --> 00:05:51.250
+AppLocker and firewall settings go to
+Endpoint security, as that page says.
+
+91
+00:05:51.250 --> 00:05:55.679
+And, in this workbook's guidance, the
+plan decides nothing: Group Policy
+
+92
+00:05:55.679 --> 00:06:00.690
+analytics finds the landing zone, never
+whether a setting is still needed.
+
+93
+00:06:04.440 --> 00:06:07.640
+Each settings catalog
+policy is a JSON file.
+
+94
+00:06:07.640 --> 00:06:12.342
+The policy part is the body Graph
+receives, exactly as reviewed, in the shape
+
+95
+00:06:12.342 --> 00:06:14.845
+Microsoft Learn's Graph beta reference
+
+96
+00:06:14.845 --> 00:06:17.878
+documents for creating
+a configuration policy.
+
+97
+00:06:17.878 --> 00:06:22.923
+The rest is the record: who approves a
+change, which tool owns the settings,
+
+98
+00:06:22.923 --> 00:06:27.716
+which GPOs they came from, and the I
+D of each setting's decision record.
+
+99
+00:06:27.716 --> 00:06:31.103
+The linter applies ten rules,
+and they're the kit's design.
+
+100
+00:06:31.103 --> 00:06:33.102
+Four carry this workbook's rules.
+
+101
+00:06:33.102 --> 00:06:36.072
+GPC oh two: the config
+owner must be Intune,
+
+102
+00:06:36.072 --> 00:06:40.177
+because a setting another tool
+owns stays with that tool.
+
+103
+00:06:40.177 --> 00:06:43.852
+GPC oh six: one setting
+definition in one policy,
+
+104
+00:06:43.852 --> 00:06:47.715
+because two policies on
+one setting is a conflict.
+
+105
+00:06:47.715 --> 00:06:51.403
+GPC oh nine: every setting
+has a decision record.
+
+106
+00:06:51.403 --> 00:06:53.899
+And GPC oh eight, with the move plan:
+
+107
+00:06:53.899 --> 00:06:58.178
+a setting that isn't a candidate
+is shown, with its decision.
+
+108
+00:06:58.178 --> 00:07:02.689
+GPC ten warns on a value that looks
+like a secret: Learn's page on device
+
+109
+00:07:02.689 --> 00:07:08.120
+profiles says anyone who can read device
+configuration can read such values.
+
+110
+00:07:11.870 --> 00:07:13.620
+The sync is the kit's design.
+
+111
+00:07:13.620 --> 00:07:16.575
+It reads the tenant's
+settings catalog policies,
+
+112
+00:07:16.575 --> 00:07:20.342
+through the list call Learn's
+Graph beta reference documents,
+
+113
+00:07:20.342 --> 00:07:24.257
+normalizes both sides, and gives
+each library policy one action.
+
+114
+00:07:24.257 --> 00:07:26.246
+Create: it isn't in the tenant.
+
+115
+00:07:26.246 --> 00:07:32.195
+No change: the same settings, description,
+platform, technology and scope tags.
+
+116
+00:07:32.195 --> 00:07:36.682
+Drift: it differs, and the row
+names each setting that changed.
+
+117
+00:07:36.682 --> 00:07:40.208
+Duplicate: two tenant policies
+have the library's name.
+
+118
+00:07:40.208 --> 00:07:42.370
+Drift and duplicate exit two.
+
+119
+00:07:42.370 --> 00:07:45.880
+Without the apply option,
+the sync is a dry run:
+
+120
+00:07:45.880 --> 00:07:49.295
+it signs in with read
+only, and sends only GET.
+
+121
+00:07:49.295 --> 00:07:51.955
+With apply, it signs in with read-write,
+
+122
+00:07:51.955 --> 00:07:55.558
+POSTs each create, reads it
+back and compares again.
+
+123
+00:07:55.558 --> 00:07:58.849
+And it writes nothing at all
+if the lint has a finding,
+
+124
+00:07:58.849 --> 00:08:01.070
+or any policy is drift or duplicate.
+
+125
+00:08:01.070 --> 00:08:05.220
+It never sends PATCH or DELETE,
+although Learn documents both.
+
+126
+00:08:05.220 --> 00:08:09.101
+A policy that differs from Git
+is a decision for a person, and,
+
+127
+00:08:09.101 --> 00:08:14.300
+in this workbook's guidance, a change
+becomes a new version under a new name.
+
+128
+00:08:18.050 --> 00:08:18.775
+Try it.
+
+129
+00:08:18.775 --> 00:08:23.812
+Lab 1 runs in PowerShell 7, against
+fixtures, and nothing signs in.
+
+130
+00:08:23.812 --> 00:08:31.000
+Step one starts in the validation kit,
+and runs VK-INT-07 on its fail fixture.
+
+131
+00:08:31.000 --> 00:08:33.250
+One GPO is imported.
+
+132
+00:08:33.250 --> 00:08:37.794
+Two are targeted in Active Directory
+with a readiness of partial or error,
+
+133
+00:08:37.794 --> 00:08:40.475
+so they hold settings
+Intune can't take over.
+
+134
+00:08:40.475 --> 00:08:41.737
+Those are findings.
+
+135
+00:08:41.737 --> 00:08:45.988
+An empty GPO is a warning:
+confirm where its settings go.
+
+136
+00:08:45.988 --> 00:08:49.376
+And one in-scope GPO was
+never imported at all.
+
+137
+00:08:49.376 --> 00:08:54.834
+Step two moves to the group policy folder,
+and runs Microsoft's import sample twice,
+
+138
+00:08:54.834 --> 00:08:57.563
+with the same file,
+against the fake Graph.
+
+139
+00:08:57.563 --> 00:09:00.949
+Now the tenant holds error
+reporting and dumps twice,
+
+140
+00:09:00.949 --> 00:09:02.950
+two policies with the same name.
+
+141
+00:09:02.950 --> 00:09:05.475
+And the calls are two POSTs and no GET.
+
+142
+00:09:05.475 --> 00:09:07.310
+The sample never looked.
+
+143
+00:09:11.060 --> 00:09:15.069
+Step three builds the move
+plan from the fixture tenant:
+
+144
+00:09:15.069 --> 00:09:17.073
+eleven rows, from three GPOs.
+
+145
+00:09:17.073 --> 00:09:19.957
+Five are candidates, such
+as disabling Windows
+
+146
+00:09:19.957 --> 00:09:22.547
+Error Reporting and allowing crash dumps.
+
+147
+00:09:22.547 --> 00:09:25.611
+Allow hibernate is a
+conflict, on two rows,
+
+148
+00:09:25.611 --> 00:09:30.747
+because the baseline GPO and the
+power GPO set it to different values.
+
+149
+00:09:30.747 --> 00:09:33.460
+The firewall rule goes
+to Endpoint security.
+
+150
+00:09:33.460 --> 00:09:38.185
+Two rows aren't supported, including
+a drive map, and one is deprecated.
+
+151
+00:09:38.185 --> 00:09:41.061
+Notice the user-scope
+rows keep their scope:
+
+152
+00:09:41.061 --> 00:09:44.097
+user settings go to user
+groups on the HR track.
+
+153
+00:09:44.097 --> 00:09:46.872
+Step four lints the
+library against that plan.
+
+154
+00:09:46.872 --> 00:09:52.199
+There's one row, an information item,
+GPC oh eight: the hibernate setting
+
+155
+00:09:52.199 --> 00:09:57.710
+has conflicting GPO values, and decision
+D R oh one oh five picks the value.
+
+156
+00:09:57.710 --> 00:10:01.235
+That's the conflict shown, with
+the decision that resolves it.
+
+157
+00:10:01.235 --> 00:10:03.730
+The output on the slide is trimmed.
+
+158
+00:10:07.480 --> 00:10:09.367
+Step five runs the sync.
+
+159
+00:10:09.367 --> 00:10:14.228
+The dry run says create for the error
+reporting policy, which isn't in the tenant,
+
+160
+00:10:14.228 --> 00:10:17.743
+and no change for sign-in and
+power, which already matches.
+
+161
+00:10:17.743 --> 00:10:21.204
+Then the apply says created,
+and both exit zero.
+
+162
+00:10:21.204 --> 00:10:24.671
+The sync record shows the
+scope the apply asked for,
+
+163
+00:10:24.671 --> 00:10:26.817
+read-write, and the I D it created.
+
+164
+00:10:26.817 --> 00:10:30.960
+Ask for a cloud name the
+script doesn't know, U S gov,
+
+165
+00:10:30.960 --> 00:10:35.931
+and it exits one: the cloud must be
+G C C, global, G C C High or D O D.
+
+166
+00:10:35.931 --> 00:10:39.142
+Step six breaks something on purpose.
+
+167
+00:10:39.142 --> 00:10:42.339
+Change the hibernate
+value in one library file,
+
+168
+00:10:42.339 --> 00:10:46.355
+and the dry run exits two, with
+a drift that names the setting.
+
+169
+00:10:46.355 --> 00:10:48.898
+Run it with apply, and it still exits two,
+
+170
+00:10:48.898 --> 00:10:52.793
+and nothing is created, not even
+the error reporting policy.
+
+171
+00:10:52.793 --> 00:10:54.129
+Put the value back.
+
+172
+00:10:54.129 --> 00:10:57.405
+Step seven runs the tests: forty-six pass.
+
+173
+00:10:57.405 --> 00:10:59.910
+Step eight deletes the out folder.
+
+174
+00:11:03.660 --> 00:11:07.271
+Lab 2 runs the same code
+against a test tenant with
+
+175
+00:11:07.271 --> 00:11:11.322
+Intune licenses and a test
+GPO export, never production.
+
+176
+00:11:11.322 --> 00:11:15.148
+Import a test GPO into
+Group Policy analytics.
+
+177
+00:11:15.148 --> 00:11:22.297
+Run VK-INT-07 live, as a read-only
+operator, and build the move plan live.
+
+178
+00:11:22.297 --> 00:11:26.160
+Then dry-run and apply as a
+Policy and Profile Manager.
+
+179
+00:11:26.160 --> 00:11:30.947
+Compare the result with what Group Policy
+analytics' own Migrate step builds.
+
+180
+00:11:30.947 --> 00:11:34.231
+And drill drift: change a
+value in the admin center,
+
+181
+00:11:34.231 --> 00:11:36.234
+and watch the dry run report it.
+
+182
+00:11:36.234 --> 00:11:40.735
+In G C C High and D O D, pass
+the matching cloud option.
+
+183
+00:11:40.735 --> 00:11:44.537
+To back it out, step eight deletes
+the created policies by the
+
+184
+00:11:44.537 --> 00:11:48.110
+I D's in the sync record, and
+the Migrate comparison policy.
+
+185
+00:11:48.110 --> 00:11:50.260
+The authors haven't run Lab 2.
+
+186
+00:11:50.260 --> 00:11:54.050
+Follow Chapter 06's Lab 2, step by step.
+
+187
+00:11:57.800 --> 00:11:59.187
+The federal requirement.
+
+188
+00:11:59.187 --> 00:12:04.692
+Moving Group Policy to Intune changes the
+baseline of every device, so the plan,
+
+189
+00:12:04.692 --> 00:12:10.365
+the library and the sync record are
+evidence for NIST special publication eight
+
+190
+00:12:10.365 --> 00:12:14.938
+hundred fifty-three's
+configuration-management controls: C M two,
+
+191
+00:12:14.938 --> 00:12:19.510
+baseline configuration, C M three,
+configuration change control,
+
+192
+00:12:19.510 --> 00:12:23.575
+and C M six, configuration settings,
+with C A seven and A C six.
+
+193
+00:12:23.575 --> 00:12:31.400
+VK-INT-07's results show every in-scope
+GPO imported and ready, or listed.
+
+194
+00:12:31.400 --> 00:12:34.132
+The move plan, saved
+with the pull request,
+
+195
+00:12:34.132 --> 00:12:37.988
+gives each setting a disposition
+and shows the conflicts.
+
+196
+00:12:37.988 --> 00:12:42.750
+The library and its decision records give
+one owner and one decision per setting.
+
+197
+00:12:42.750 --> 00:12:45.750
+The sync record shows what
+the sync would create,
+
+198
+00:12:45.750 --> 00:12:49.275
+then wrote only that, with a
+read-only scope for the dry run.
+
+199
+00:12:49.275 --> 00:12:54.087
+A library that differs from the tenant
+stops the release, and the run log shows it.
+
+200
+00:12:54.087 --> 00:12:57.574
+And Microsoft's sample is
+pinned and its behavior tested.
+
+201
+00:12:57.574 --> 00:13:02.508
+The Key Security Indicators come from
+FedRAMP's Consolidated Rules for 2026:
+
+202
+00:13:02.508 --> 00:13:05.746
+they're FedRAMP 20x
+indicators for providers,
+
+203
+00:13:05.746 --> 00:13:08.675
+and the agency lines its
+evidence up with them.
+
+204
+00:13:08.675 --> 00:13:12.590
+Which output supports which
+control is this workbook's reading.
+
+205
+00:13:16.340 --> 00:13:18.315
+Check yourself with two questions.
+
+206
+00:13:18.315 --> 00:13:22.690
+First: Microsoft's import sample
+runs twice with the same file.
+
+207
+00:13:22.690 --> 00:13:23.702
+What happens?
+
+208
+00:13:23.702 --> 00:13:27.657
+The answer is b: two policies
+with the same name are created,
+
+209
+00:13:27.657 --> 00:13:30.540
+because the sample never reads the tenant.
+
+210
+00:13:30.540 --> 00:13:33.440
+You saw the two POSTs
+and no GET in step two.
+
+211
+00:13:33.440 --> 00:13:36.992
+Second: one library file
+differs from the tenant's copy,
+
+212
+00:13:36.992 --> 00:13:38.965
+and you run the sync with apply.
+
+213
+00:13:38.965 --> 00:13:40.115
+What does it create?
+
+214
+00:13:40.115 --> 00:13:42.077
+The answer is b: nothing.
+
+215
+00:13:42.077 --> 00:13:46.140
+It exits two, and writes nothing
+while any policy is drift.
+
+216
+00:13:46.140 --> 00:13:48.565
+Not even the policy
+that was marked create.
+
+217
+00:13:48.565 --> 00:13:50.315
+You saw that in step six.
+
+218
+00:13:50.315 --> 00:13:54.505
+The module page has two more questions,
+on the conflict disposition and
+
+219
+00:13:54.505 --> 00:13:58.900
+on the dry run's permission, each
+linked to the section that answers it.
+
+220
+00:14:02.650 --> 00:14:03.475
+To sum up.
+
+221
+00:14:03.475 --> 00:14:06.777
+You read Group Policy analytics
+into a plan per setting,
+
+222
+00:14:06.777 --> 00:14:11.084
+kept the policies as reviewed files,
+and saw the sync create only what its
+
+223
+00:14:11.084 --> 00:14:15.463
+dry run showed, and nothing at all when
+the library and the tenant disagree.
+
+224
+00:14:15.463 --> 00:14:22.045
+The evidence an ISSO keeps: VK-INT-07's
+run, the move plan with each pull request,
+
+225
+00:14:22.045 --> 00:14:25.806
+the library and its
+decision records in Git,
+
+226
+00:14:25.806 --> 00:14:31.238
+and the sync record with its scopes,
+file hashes and created I D's.
+
+227
+00:14:31.238 --> 00:14:36.862
+In Lab 2, add the Intune audit log for the
+import, the creation and the drift drill.
+
+228
+00:14:36.862 --> 00:14:42.001
+At deployment, Chapter 10 adds the
+GPO link states before and after.
+
+229
+00:14:42.001 --> 00:14:45.650
+Before shipping, work through
+the Chapter 06 checklist.
+
+230
+00:14:45.650 --> 00:14:50.909
+Next is Module 5: build machine configuration
+packages, for the server settings
+
+231
+00:14:50.909 --> 00:14:55.900
+machine configuration owns, with a build
+that makes the same MOF every time.

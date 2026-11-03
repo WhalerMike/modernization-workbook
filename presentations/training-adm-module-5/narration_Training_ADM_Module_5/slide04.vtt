@@ -1,0 +1,74 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.970
+Microsoft Learn's overview, What
+is Azure Machine Configuration,
+
+2
+00:00:03.970 --> 00:00:06.075
+describes a model with three parts.
+
+3
+00:00:06.075 --> 00:00:11.812
+A package is a zip file with the compiled
+MOF and the DSC resource modules it uses.
+
+4
+00:00:11.812 --> 00:00:13.850
+It says what the machine should look like.
+
+5
+00:00:13.850 --> 00:00:17.967
+A policy definition, in the
+Guest Configuration category,
+
+6
+00:00:17.967 --> 00:00:20.712
+points at the package by URI and by hash.
+
+7
+00:00:20.712 --> 00:00:22.651
+When the definition is assigned,
+
+8
+00:00:22.651 --> 00:00:27.247
+the service creates a guest assignment
+on each machine in scope, and the agent
+
+9
+00:00:27.247 --> 00:00:31.700
+on the machine downloads the package,
+evaluates it and reports compliance.
+
+10
+00:00:31.700 --> 00:00:34.675
+A machine can hold up to
+fifty guest assignments.
+
+11
+00:00:34.675 --> 00:00:39.087
+Learn's page on remediation options
+gives each assignment one of three types.
+
+12
+00:00:39.087 --> 00:00:41.275
+Audit reports and changes nothing.
+
+13
+00:00:41.275 --> 00:00:45.913
+Apply and monitor applies once, then
+reports drift without correcting it.
+
+14
+00:00:45.913 --> 00:00:50.626
+Apply and auto correct applies, and
+corrects drift at the next evaluation.
+
+15
+00:00:50.626 --> 00:00:52.600
+And the spelling is case sensitive.
+
+16
+00:00:52.600 --> 00:00:54.940
+Remember that for step six of the lab.

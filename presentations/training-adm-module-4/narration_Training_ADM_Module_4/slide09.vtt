@@ -1,0 +1,70 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:05.812
+Lab 1 runs in PowerShell 7, against
+fixtures, and nothing signs in.
+
+3
+00:00:05.812 --> 00:00:13.000
+Step one starts in the validation kit,
+and runs VK-INT-07 on its fail fixture.
+
+4
+00:00:13.000 --> 00:00:15.250
+One GPO is imported.
+
+5
+00:00:15.250 --> 00:00:19.794
+Two are targeted in Active Directory
+with a readiness of partial or error,
+
+6
+00:00:19.794 --> 00:00:22.475
+so they hold settings
+Intune can't take over.
+
+7
+00:00:22.475 --> 00:00:23.737
+Those are findings.
+
+8
+00:00:23.737 --> 00:00:27.988
+An empty GPO is a warning:
+confirm where its settings go.
+
+9
+00:00:27.988 --> 00:00:31.376
+And one in-scope GPO was
+never imported at all.
+
+10
+00:00:31.376 --> 00:00:36.834
+Step two moves to the group policy folder,
+and runs Microsoft's import sample twice,
+
+11
+00:00:36.834 --> 00:00:39.563
+with the same file,
+against the fake Graph.
+
+12
+00:00:39.563 --> 00:00:42.949
+Now the tenant holds error
+reporting and dumps twice,
+
+13
+00:00:42.949 --> 00:00:44.950
+two policies with the same name.
+
+14
+00:00:44.950 --> 00:00:47.475
+And the calls are two POSTs and no GET.
+
+15
+00:00:47.475 --> 00:00:49.010
+The sample never looked.

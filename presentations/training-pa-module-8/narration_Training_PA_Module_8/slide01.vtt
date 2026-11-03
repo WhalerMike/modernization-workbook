@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.542
+Welcome to Module 8 of the
+Privileged Access learning path:
+
+2
+00:00:04.542 --> 00:00:06.925
+evidence and drift for the ISSO.
+
+3
+00:00:06.925 --> 00:00:08.975
+It's the last module of the path.
+
+4
+00:00:08.975 --> 00:00:14.481
+It serves the project plan's task
+A3.6 in Phase 3, A4.3 in Phase 4,
+
+5
+00:00:14.481 --> 00:00:19.313
+and Gate 4, with Chapter 08
+of the developer workbook.
+
+6
+00:00:19.313 --> 00:00:22.304
+In it you run the privileged
+reads on a schedule,
+
+7
+00:00:22.304 --> 00:00:27.214
+say what changed since the last run
+without putting anyone's name in the issue
+
+8
+00:00:27.214 --> 00:00:31.817
+tracker, show every PIM activation in
+a window with its approval, and hand
+
+9
+00:00:31.817 --> 00:00:36.574
+the ISSO a package and a period summary
+they can check with sha256sum alone.
+
+10
+00:00:36.574 --> 00:00:41.111
+This lab uses two kits: the
+privileged-access folder in PowerShell,
+
+11
+00:00:41.111 --> 00:00:44.575
+and the drift pipeline in
+a POSIX shell with Python.
+
+12
+00:00:44.575 --> 00:00:47.540
+It's illustrative:
+tested against fixtures.

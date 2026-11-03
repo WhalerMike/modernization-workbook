@@ -1,0 +1,80 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.437
+The federal requirement.
+
+2
+00:00:01.437 --> 00:00:08.936
+The controls are NIST special publication
+eight hundred fifty-three controls in its
+
+3
+00:00:08.936 --> 00:00:13.266
+Moderate baseline: A C two, A
+C three, C M three, C M four,
+
+4
+00:00:13.266 --> 00:00:17.913
+C M three enhancement two, S A
+eleven, S R three and A C six.
+
+5
+00:00:17.913 --> 00:00:22.638
+A rule change is a configuration
+change, and its review is the evidence.
+
+6
+00:00:22.638 --> 00:00:27.823
+The guards keep disabled accounts and guests
+out, for account management and access
+
+7
+00:00:27.823 --> 00:00:32.712
+enforcement; the evidence is the rule
+library and its fixture, in the repository.
+
+8
+00:00:32.712 --> 00:00:37.816
+Every rule passes its tests and each
+change's adds and removes are listed, for
+
+9
+00:00:37.816 --> 00:00:43.325
+change control and impact analysis; that's
+the pull request, with its check results.
+
+10
+00:00:43.325 --> 00:00:47.088
+A broken rule fails the check,
+which is the testing of changes.
+
+11
+00:00:47.088 --> 00:00:52.074
+Learn's samples run unchanged and are
+pinned, with their snapshot and tests.
+
+12
+00:00:52.074 --> 00:00:55.832
+In Lab 2, the incident pause
+records each state first,
+
+13
+00:00:55.832 --> 00:01:00.288
+and the resume touches only what
+it paused: the drill manifest.
+
+14
+00:01:00.288 --> 00:01:05.413
+And the session asks only for what it
+needs, shown in the sign-in and audit logs.
+
+15
+00:01:05.413 --> 00:01:10.262
+The Key Security Indicators come from
+FedRAMP's Key Security Indicators list.
+
+16
+00:01:10.262 --> 00:01:13.900
+Which output supports which
+control is this workbook's reading.

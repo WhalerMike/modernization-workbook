@@ -1,0 +1,68 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.850
+Three tools do the governing.
+
+2
+00:00:01.850 --> 00:00:06.563
+The linter applies eleven rules,
+D R oh one to D R eleven.
+
+3
+00:00:06.563 --> 00:00:09.841
+Two matter most: D R oh
+three and oh four require
+
+4
+00:00:09.841 --> 00:00:12.862
+the guards to be ANDed
+at the top of the rule.
+
+5
+00:00:12.862 --> 00:00:15.294
+A guard inside an or protects nothing,
+
+6
+00:00:15.294 --> 00:00:19.763
+and a regular expression over the
+rule text can't tell the difference.
+
+7
+00:00:19.763 --> 00:00:22.087
+That's why the linter
+works on the parsed tree.
+
+8
+00:00:22.087 --> 00:00:26.954
+D R ten is a note: not-equals on a
+coded slot also admits someone whose
+
+9
+00:00:26.954 --> 00:00:31.999
+slot is empty, so add a not-null clause
+if an empty slot must not qualify.
+
+10
+00:00:31.999 --> 00:00:35.953
+The pull request check lints
+every rule, runs every test,
+
+11
+00:00:35.953 --> 00:00:40.938
+and for each rule file changed, prints
+whom the change adds and removes.
+
+12
+00:00:40.938 --> 00:00:42.351
+That's the shadow diff.
+
+13
+00:00:42.351 --> 00:00:47.225
+And the pause manifest records every
+collection's state before an incident pause.
+
+14
+00:00:47.225 --> 00:00:52.780
+The resume touches only what that manifest
+paused, and refuses any other I D.

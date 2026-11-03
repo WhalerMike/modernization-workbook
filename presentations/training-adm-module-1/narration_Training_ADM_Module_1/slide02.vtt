@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.088
+Why start here?
+
+2
+00:00:01.088 --> 00:00:04.975
+Every later gate trusts
+the attributes HR sends.
+
+3
+00:00:04.975 --> 00:00:09.363
+A bad HR record becomes bad access
+faster than any ticket queue.
+
+4
+00:00:09.363 --> 00:00:15.051
+So the guide proves the values true at Gate
+2, and maps them through sync at Gate 3.
+
+5
+00:00:15.051 --> 00:00:18.642
+The middleware, between the
+HR extract and Entra ID,
+
+6
+00:00:18.642 --> 00:00:21.037
+is where a record is first checked.
+
+7
+00:00:21.037 --> 00:00:25.763
+Microsoft's CSV2SCIM sample
+sends every row it reads.
+
+8
+00:00:25.763 --> 00:00:30.204
+That's by design: it's a converter, and
+Microsoft Learn's page on API-driven
+
+9
+00:00:30.204 --> 00:00:35.475
+inbound provisioning with PowerShell lists
+validation as a customization you add.
+
+10
+00:00:35.475 --> 00:00:38.838
+In this module you see what a
+federal deployment has to add,
+
+11
+00:00:38.838 --> 00:00:40.850
+and you run the client that adds it.

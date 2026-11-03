@@ -1,0 +1,1083 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.357
+Welcome to Module 5 of the
+Attribute-Driven Migration learning path:
+
+2
+00:00:04.357 --> 00:00:06.850
+build machine configuration packages.
+
+3
+00:00:06.850 --> 00:00:10.532
+This module serves Gate 5 of
+the implementation guide,
+
+4
+00:00:10.532 --> 00:00:14.950
+and takes Chapter 07 of Building
+the Attribute-Driven Migration.
+
+5
+00:00:14.950 --> 00:00:18.437
+For the server settings
+machine configuration owns,
+
+6
+00:00:18.437 --> 00:00:22.400
+the code is a DSC configuration,
+and Azure Policy delivers it.
+
+7
+00:00:22.400 --> 00:00:26.045
+You'll follow Learn's steps, see
+where their outputs fall short,
+
+8
+00:00:26.045 --> 00:00:28.689
+and learn the build that
+checks between them:
+
+9
+00:00:28.689 --> 00:00:32.548
+it cleans the MOF so it's the same
+every time, checks the package and
+
+10
+00:00:32.548 --> 00:00:36.550
+the definition, and refuses what
+the release registry doesn't allow.
+
+11
+00:00:36.550 --> 00:00:40.075
+The lab runs offline on Windows,
+with nothing signed in.
+
+12
+00:00:40.075 --> 00:00:43.246
+The code is illustrative:
+tested against fixtures,
+
+13
+00:00:43.246 --> 00:00:46.090
+not against a production subscription.
+
+14
+00:00:49.840 --> 00:00:51.828
+Why does a package need a checked build?
+
+15
+00:00:51.828 --> 00:00:55.203
+Gate 5 sets the conventions
+the server track builds on.
+
+16
+00:00:55.203 --> 00:00:58.688
+Once connected, an Arc server
+is an Azure resource whose
+
+17
+00:00:58.688 --> 00:01:02.477
+tags are its attributes, and each
+setting has one owning tool.
+
+18
+00:01:02.477 --> 00:01:05.506
+For the settings machine
+configuration owns,
+
+19
+00:01:05.506 --> 00:01:09.491
+the code is a DSC configuration,
+and Azure Policy delivers it.
+
+20
+00:01:09.491 --> 00:01:12.440
+Learn's cmdlets build a
+package and a definition.
+
+21
+00:01:12.440 --> 00:01:14.485
+But they don't make the same bytes twice,
+
+22
+00:01:14.485 --> 00:01:18.703
+and they write your user name and computer
+name into what the machines download.
+
+23
+00:01:18.703 --> 00:01:21.378
+A package is the server
+baseline in a file.
+
+24
+00:01:21.378 --> 00:01:25.290
+So what was built, from what,
+and what shipped is the evidence.
+
+25
+00:01:25.290 --> 00:01:27.490
+In this module you follow Learn's steps,
+
+26
+00:01:27.490 --> 00:01:30.310
+then run the build that
+checks between them.
+
+27
+00:01:34.060 --> 00:01:36.875
+Here's what you'll be able to
+do by the end of this module,
+
+28
+00:01:36.875 --> 00:01:39.498
+which takes about forty-five
+minutes with the lab.
+
+29
+00:01:39.498 --> 00:01:43.541
+You'll describe a package, a policy
+definition and a guest assignment,
+
+30
+00:01:43.541 --> 00:01:45.385
+and the three assignment types.
+
+31
+00:01:45.385 --> 00:01:48.133
+You'll explain what Learn's
+cmdlets leave to you,
+
+32
+00:01:48.133 --> 00:01:50.810
+and why each gap matters
+in a federal pipeline.
+
+33
+00:01:50.810 --> 00:01:56.297
+You'll explain the release registry, and
+what MC-POL oh six and oh eight refuse.
+
+34
+00:01:56.297 --> 00:01:59.748
+You'll run the checked build,
+and compare two builds' hashes.
+
+35
+00:01:59.748 --> 00:02:02.523
+And you'll explain why
+the include Arc machines
+
+36
+00:02:02.523 --> 00:02:05.298
+parameter has to be set
+for Arc-enabled servers.
+
+37
+00:02:05.298 --> 00:02:09.448
+Before you start, do Module 4,
+for one owning tool per setting.
+
+38
+00:02:09.448 --> 00:02:14.223
+You need Windows, with PowerShell
+7.1 or later and Pester 5.
+
+39
+00:02:14.223 --> 00:02:17.437
+The lab's first step saves
+three pinned modules from the
+
+40
+00:02:17.437 --> 00:02:21.420
+PowerShell Gallery into a folder,
+rather than installing them.
+
+41
+00:02:25.170 --> 00:02:29.090
+Microsoft Learn's overview, What
+is Azure Machine Configuration,
+
+42
+00:02:29.090 --> 00:02:31.195
+describes a model with three parts.
+
+43
+00:02:31.195 --> 00:02:36.932
+A package is a zip file with the compiled
+MOF and the DSC resource modules it uses.
+
+44
+00:02:36.932 --> 00:02:38.970
+It says what the machine should look like.
+
+45
+00:02:38.970 --> 00:02:43.087
+A policy definition, in the
+Guest Configuration category,
+
+46
+00:02:43.087 --> 00:02:45.832
+points at the package by URI and by hash.
+
+47
+00:02:45.832 --> 00:02:47.771
+When the definition is assigned,
+
+48
+00:02:47.771 --> 00:02:52.367
+the service creates a guest assignment
+on each machine in scope, and the agent
+
+49
+00:02:52.367 --> 00:02:56.820
+on the machine downloads the package,
+evaluates it and reports compliance.
+
+50
+00:02:56.820 --> 00:02:59.795
+A machine can hold up to
+fifty guest assignments.
+
+51
+00:02:59.795 --> 00:03:04.207
+Learn's page on remediation options
+gives each assignment one of three types.
+
+52
+00:03:04.207 --> 00:03:06.395
+Audit reports and changes nothing.
+
+53
+00:03:06.395 --> 00:03:11.033
+Apply and monitor applies once, then
+reports drift without correcting it.
+
+54
+00:03:11.033 --> 00:03:15.746
+Apply and auto correct applies, and
+corrects drift at the next evaluation.
+
+55
+00:03:15.746 --> 00:03:17.720
+And the spelling is case sensitive.
+
+56
+00:03:17.720 --> 00:03:20.360
+Remember that for step six of the lab.
+
+57
+00:03:24.110 --> 00:03:30.004
+Microsoft Learn's guide, How to develop
+a custom machine configuration package,
+
+58
+00:03:30.004 --> 00:03:34.380
+documents the whole procedure,
+one page a step: set up, author,
+
+59
+00:03:34.380 --> 00:03:38.935
+package, test, publish, sign,
+define, and publish the definition.
+
+60
+00:03:38.935 --> 00:03:42.018
+Running those cmdlets offline
+shows what they don't do;
+
+61
+00:03:42.018 --> 00:03:44.347
+the gaps are what the
+kit's tests observed.
+
+62
+00:03:44.347 --> 00:03:47.771
+The compiled MOF records
+the user name, host name,
+
+63
+00:03:47.771 --> 00:03:52.648
+date and full script path, and that
+MOF goes to a blob the machines read.
+
+64
+00:03:52.648 --> 00:03:57.330
+Compiling writes each resource's
+properties in a different order each run,
+
+65
+00:03:57.330 --> 00:03:59.747
+so the hash changes with no real change.
+
+66
+00:03:59.747 --> 00:04:04.298
+Packaging writes a different zip
+each run, even from the same MOF.
+
+67
+00:04:04.298 --> 00:04:08.760
+Nothing checks for secrets, although that
+Learn guide says not to include them.
+
+68
+00:04:08.760 --> 00:04:13.005
+The policy cmdlet takes whatever
+policy I D and version it's given;
+
+69
+00:04:13.005 --> 00:04:17.958
+Learn's page on creating policy definitions
+says to reuse the I D for updates,
+
+70
+00:04:17.958 --> 00:04:20.710
+and a new GUID creates
+a second definition.
+
+71
+00:04:20.710 --> 00:04:25.085
+And the generated definition leaves
+Arc-enabled servers out by default.
+
+72
+00:04:25.085 --> 00:04:29.322
+The build calls Learn's cmdlets in
+Learn's order, and replaces none of them.
+
+73
+00:04:29.322 --> 00:04:31.750
+What it adds sits between the steps.
+
+74
+00:04:35.500 --> 00:04:37.922
+The release registry is the kit's design:
+
+75
+00:04:37.922 --> 00:04:42.400
+the reviewed record of what is in
+production, one entry per configuration.
+
+76
+00:04:42.400 --> 00:04:44.675
+The policy I D never changes.
+
+77
+00:04:44.675 --> 00:04:48.360
+Learn's page on creating policy
+definitions says to reuse it,
+
+78
+00:04:48.360 --> 00:04:52.487
+so updates replace the definition
+instead of creating a second one.
+
+79
+00:04:52.487 --> 00:04:56.600
+The mode is checked case-sensitively
+against the three assignment types.
+
+80
+00:04:56.600 --> 00:05:01.278
+The published version moves up in the
+same pull request that publishes a
+
+81
+00:05:01.278 --> 00:05:05.800
+new version, so a second build of one
+point oh point oh fails MC-POL oh six.
+
+82
+00:05:05.800 --> 00:05:10.133
+The identity is system, so each
+machine reads the package with its own
+
+83
+00:05:10.133 --> 00:05:13.554
+system-assigned identity,
+which Learn's page on secure
+
+84
+00:05:13.554 --> 00:05:16.975
+access to packages says works
+for Arc-enabled servers.
+
+85
+00:05:16.975 --> 00:05:19.825
+Including Arc machines is a stated choice.
+
+86
+00:05:19.825 --> 00:05:23.950
+And the owner tag is the one this
+workbook's Arc track guidance uses.
+
+87
+00:05:23.950 --> 00:05:28.384
+An enforcing definition without
+that filter fails MC-POL oh eight,
+
+88
+00:05:28.384 --> 00:05:33.970
+because two tools on one setting flip it
+back and forth, each reporting success.
+
+89
+00:05:37.720 --> 00:05:41.095
+Three steps sit between Learn's,
+and they're the kit's design.
+
+90
+00:05:41.095 --> 00:05:45.495
+The cleaner rewrites the compiled
+MOF into one canonical form.
+
+91
+00:05:45.495 --> 00:05:47.965
+It drops the header comment, the author,
+
+92
+00:05:47.965 --> 00:05:50.820
+the generation date and
+the generation host.
+
+93
+00:05:50.820 --> 00:05:55.513
+It keeps source info in the short
+form Microsoft's own sample MOF uses,
+
+94
+00:05:55.513 --> 00:05:59.795
+sorts each instance's properties,
+and writes Unix line endings.
+
+95
+00:05:59.795 --> 00:06:02.994
+Compiled three times,
+the configuration gives
+
+96
+00:06:02.994 --> 00:06:05.782
+three different MOFs, and one cleaned MOF.
+
+97
+00:06:05.782 --> 00:06:10.654
+Then the package check opens the zip and
+applies seven rules: the files at the root,
+
+98
+00:06:10.654 --> 00:06:12.253
+the right type for the mode,
+
+99
+00:06:12.253 --> 00:06:17.124
+the hundred-megabyte limit that Learn's
+page on creating package artifacts sets,
+
+100
+00:06:17.124 --> 00:06:20.178
+no build-host data, nothing
+that looks like a secret,
+
+101
+00:06:20.178 --> 00:06:24.758
+every module at the version it was compiled
+against, and a version in the name.
+
+102
+00:06:24.758 --> 00:06:27.094
+Then the definition check applies nine.
+
+103
+00:06:27.094 --> 00:06:30.467
+The one that catches the
+most is MC-POL oh two:
+
+104
+00:06:30.467 --> 00:06:35.230
+every copy of the content hash
+must be this package's hash.
+
+105
+00:06:38.980 --> 00:06:42.362
+The build records what it
+did in a provenance manifest:
+
+106
+00:06:42.362 --> 00:06:44.918
+what was built, from
+what, and what shipped.
+
+107
+00:06:44.918 --> 00:06:50.229
+It holds the configuration, its version,
+the fixed policy I D and the mode.
+
+108
+00:06:50.229 --> 00:06:55.305
+It holds the MOF, the package and the
+policy definition, each with its hash.
+
+109
+00:06:55.305 --> 00:06:58.510
+It records the pinned module
+versions the build used,
+
+110
+00:06:58.510 --> 00:07:02.080
+and the counts of findings,
+warnings and information items.
+
+111
+00:07:02.080 --> 00:07:03.967
+There are two kinds of hash in it.
+
+112
+00:07:03.967 --> 00:07:06.332
+The MOF hash is the reviewable one:
+
+113
+00:07:06.332 --> 00:07:09.793
+it's the same for anyone
+who builds the same commit.
+
+114
+00:07:09.793 --> 00:07:13.993
+The package and definition hashes
+identify the bytes that shipped.
+
+115
+00:07:13.993 --> 00:07:19.542
+So an ISSO can download the published blob,
+hash it, and match it against this file.
+
+116
+00:07:19.542 --> 00:07:25.410
+Chapter 09, in Module 8, carries the
+manifest into the evidence package.
+
+117
+00:07:29.160 --> 00:07:29.885
+Try it.
+
+118
+00:07:29.885 --> 00:07:35.085
+Lab 1 runs in the machine configuration
+folder, in PowerShell 7 on Windows.
+
+119
+00:07:35.085 --> 00:07:38.635
+Nothing signs in, uploads,
+or installs the agent.
+
+120
+00:07:38.635 --> 00:07:42.002
+Step one saves three pinned
+modules from the PowerShell
+
+121
+00:07:42.002 --> 00:07:45.010
+Gallery into a folder,
+rather than installing them.
+
+122
+00:07:45.010 --> 00:07:50.342
+Because of that download, the results on
+these slides weren't re-run for this deck:
+
+123
+00:07:50.342 --> 00:07:53.250
+they're the ones Chapter
+07's Lab 1 text gives,
+
+124
+00:07:53.250 --> 00:07:55.835
+as the path's verification log records.
+
+125
+00:07:55.835 --> 00:07:58.360
+Step two follows Learn's steps by hand.
+
+126
+00:07:58.360 --> 00:08:02.485
+Compile the configuration, and
+package it twice from the same MOF.
+
+127
+00:08:02.485 --> 00:08:05.273
+You get two packages with
+two different hashes.
+
+128
+00:08:05.273 --> 00:08:09.781
+Look inside the MOF, and your user name
+and computer name are in the header,
+
+129
+00:08:09.781 --> 00:08:12.486
+and your folder path is
+in every source info.
+
+130
+00:08:12.486 --> 00:08:18.067
+Step three runs the package check on
+Learn's output: two MC-PKG oh four findings,
+
+131
+00:08:18.067 --> 00:08:20.946
+for build-host data and an absolute path,
+
+132
+00:08:20.946 --> 00:08:24.610
+and the oh seven warning,
+no version in the name.
+
+133
+00:08:28.360 --> 00:08:32.222
+Step four runs Microsoft's pinned
+sample with the current module.
+
+134
+00:08:32.222 --> 00:08:36.776
+Microsoft's sample, from the
+Azure Policy samples repository,
+
+135
+00:08:36.776 --> 00:08:39.276
+is pinned at an August 2021 commit,
+
+136
+00:08:39.276 --> 00:08:44.811
+five years older than GuestConfiguration
+4.12.0 on the PowerShell Gallery.
+
+137
+00:08:44.811 --> 00:08:48.571
+Its MOF still packages, but
+the cmdlet its script calls,
+
+138
+00:08:48.571 --> 00:08:53.335
+test guest configuration package,
+returns nothing: it's been renamed.
+
+139
+00:08:53.335 --> 00:08:57.423
+Then check Microsoft's published
+MOF with the kit's MOF check.
+
+140
+00:08:57.423 --> 00:09:00.933
+It returns nothing, because
+Microsoft's published MOF
+
+141
+00:09:00.933 --> 00:09:04.598
+carries no build-host data,
+the form the cleaner produces.
+
+142
+00:09:04.598 --> 00:09:07.227
+That check needs none
+of the gallery modules,
+
+143
+00:09:07.227 --> 00:09:09.998
+and it printed nothing
+again on November third.
+
+144
+00:09:09.998 --> 00:09:12.136
+Step five runs the checked build.
+
+145
+00:09:12.136 --> 00:09:15.308
+It exits zero, with one information row,
+
+146
+00:09:15.308 --> 00:09:19.672
+MC-POL oh nine: include Arc
+machines defaults to false.
+
+147
+00:09:19.672 --> 00:09:23.597
+Build again into a second folder,
+and compare the two manifests.
+
+148
+00:09:23.597 --> 00:09:28.216
+The MOF hashes match, starting
+e c f f d seven nine five,
+
+149
+00:09:28.216 --> 00:09:30.686
+and the package hashes don't.
+
+150
+00:09:30.686 --> 00:09:33.890
+So you publish the exact
+bytes the build checked.
+
+151
+00:09:37.640 --> 00:09:41.227
+Step six breaks the registry
+on purpose, three ways.
+
+152
+00:09:41.227 --> 00:09:44.995
+Each time, you write a copy of
+the registry into the lab folder,
+
+153
+00:09:44.995 --> 00:09:46.728
+and the build reads the copy.
+
+154
+00:09:46.728 --> 00:09:50.378
+First, raise the published
+version to one point oh point oh,
+
+155
+00:09:50.378 --> 00:09:52.127
+the version you're building.
+
+156
+00:09:52.127 --> 00:09:57.377
+The build exits two, MC-POL oh
+six: the version didn't rise.
+
+157
+00:09:57.377 --> 00:10:02.328
+Second, give the mode the wrong case,
+apply and auto correct with a lower-case a.
+
+158
+00:10:02.328 --> 00:10:06.553
+The build exits one, because the
+assignment type is case sensitive.
+
+159
+00:10:06.553 --> 00:10:10.202
+Third, fix the case, and
+remove the owner tag.
+
+160
+00:10:10.202 --> 00:10:16.790
+The build exits two, MC-POL oh eight: an
+enforcing definition with no owner filter.
+
+161
+00:10:16.790 --> 00:10:20.815
+Step seven runs the tests:
+sixty-five pass with the modules,
+
+162
+00:10:20.815 --> 00:10:24.253
+and forty-nine, with sixteen
+skipped, without them.
+
+163
+00:10:24.253 --> 00:10:26.586
+That second count needs no download,
+
+164
+00:10:26.586 --> 00:10:31.290
+and on November third it gave
+forty-nine passed and sixteen skipped.
+
+165
+00:10:35.040 --> 00:10:40.015
+Lab 2 needs a test subscription and a
+server you can rebuild, never production.
+
+166
+00:10:40.015 --> 00:10:44.736
+Microsoft Learn's page, How to test
+machine configuration package artifacts,
+
+167
+00:10:44.736 --> 00:10:48.351
+says local testing installs
+the agent and needs elevation,
+
+168
+00:10:48.351 --> 00:10:51.228
+and remediation changes
+the machine it runs on.
+
+169
+00:10:51.228 --> 00:10:53.878
+Test the package on the disposable server.
+
+170
+00:10:53.878 --> 00:10:59.539
+Publish the exact bytes Lab 1 built to a
+storage account with anonymous access off.
+
+171
+00:10:59.539 --> 00:11:03.334
+Grant the machines read access
+with their own identity,
+
+172
+00:11:03.334 --> 00:11:05.890
+so no SAS token goes in the definition.
+
+173
+00:11:05.890 --> 00:11:09.339
+Publish the definition under
+the registry's policy I D.
+
+174
+00:11:09.339 --> 00:11:12.328
+Assign it with include
+Arc machines set to true.
+
+175
+00:11:12.328 --> 00:11:17.002
+And read each machine's compliance against
+the hash in the provenance manifest.
+
+176
+00:11:17.002 --> 00:11:20.966
+To back it out, step eight deletes
+the assignment, the definition,
+
+177
+00:11:20.966 --> 00:11:25.303
+the blob and the role assignment,
+then rebuilds the disposable server.
+
+178
+00:11:25.303 --> 00:11:27.452
+The authors haven't run Lab 2.
+
+179
+00:11:27.452 --> 00:11:30.350
+Follow Chapter 07's Lab 2.
+
+180
+00:11:34.100 --> 00:11:35.487
+The federal requirement.
+
+181
+00:11:35.487 --> 00:11:40.245
+A package is the server baseline in
+a file, so what was built, from what,
+
+182
+00:11:40.245 --> 00:11:45.681
+and what shipped is the evidence for
+NIST special publication eight hundred
+
+183
+00:11:45.681 --> 00:11:50.013
+fifty-three controls such as S R
+three, S A ten, S I seven and C M two.
+
+184
+00:11:50.013 --> 00:11:52.393
+The pinned module versions support supply
+
+185
+00:11:52.393 --> 00:11:55.038
+chain and developer
+configuration management.
+
+186
+00:11:55.038 --> 00:11:59.938
+The package check, refusing build-host
+data, supports developer testing.
+
+187
+00:11:59.938 --> 00:12:02.940
+The same commit giving
+the same cleaned MOF hash,
+
+188
+00:12:02.940 --> 00:12:07.446
+with the hashes identifying what
+shipped, supports software integrity
+
+189
+00:12:07.446 --> 00:12:11.275
+and the baseline, and the provenance
+manifest is the evidence.
+
+190
+00:12:11.275 --> 00:12:14.447
+The definition carries the
+package's content hash,
+
+191
+00:12:14.447 --> 00:12:16.637
+and Arc servers are a stated choice.
+
+192
+00:12:16.637 --> 00:12:20.798
+A version that didn't rise, a mode
+in the wrong case and an enforcing
+
+193
+00:12:20.798 --> 00:12:25.575
+definition with no owner filter are
+refused, in the pull request's check run.
+
+194
+00:12:25.575 --> 00:12:28.911
+And Lab 2 adds the change
+record for the published blob,
+
+195
+00:12:28.911 --> 00:12:30.838
+and the role assignment record.
+
+196
+00:12:30.838 --> 00:12:35.771
+The Key Security Indicators come from
+FedRAMP's Consolidated Rules for 2026:
+
+197
+00:12:35.771 --> 00:12:39.009
+they're FedRAMP 20x
+indicators for providers,
+
+198
+00:12:39.009 --> 00:12:41.938
+and the agency lines its
+evidence up with them.
+
+199
+00:12:41.938 --> 00:12:45.870
+Which output supports which
+control is this workbook's reading.
+
+200
+00:12:49.620 --> 00:12:51.595
+Check yourself with two questions.
+
+201
+00:12:51.595 --> 00:12:55.457
+First: you run the package
+cmdlet twice on the same MOF.
+
+202
+00:12:55.457 --> 00:12:56.383
+What do you get?
+
+203
+00:12:56.383 --> 00:12:59.685
+The answer is b: two packages
+with different hashes,
+
+204
+00:12:59.685 --> 00:13:03.382
+so a rebuilt package won't
+match the reviewed definition.
+
+205
+00:13:03.382 --> 00:13:08.332
+That's why the build packages once,
+checks, and publishes those exact bytes.
+
+206
+00:13:08.332 --> 00:13:11.803
+Second: you assign a definition
+to an Arc-enabled server,
+
+207
+00:13:11.803 --> 00:13:14.670
+and leave include Arc
+machines at its default.
+
+208
+00:13:14.670 --> 00:13:15.682
+What happens?
+
+209
+00:13:15.682 --> 00:13:19.495
+The answer is b: nothing
+happens, and nothing says so.
+
+210
+00:13:19.495 --> 00:13:24.174
+The default is false, so every
+Arc-enabled server is out of scope,
+
+211
+00:13:24.174 --> 00:13:27.683
+and the build's MC-POL oh
+nine row is the reminder.
+
+212
+00:13:27.683 --> 00:13:32.835
+The module page has two more questions,
+on MC-PKG oh four and on the mode's case,
+
+213
+00:13:32.835 --> 00:13:36.090
+each linked to the
+section that answers it.
+
+214
+00:13:39.840 --> 00:13:40.665
+To sum up.
+
+215
+00:13:40.665 --> 00:13:44.482
+You followed Learn's procedure,
+saw where its outputs fall short,
+
+216
+00:13:44.482 --> 00:13:47.506
+and met the build that makes
+the same MOF every time,
+
+217
+00:13:47.506 --> 00:13:52.403
+checks the package and the definition, and
+refuses what the registry doesn't allow.
+
+218
+00:13:52.403 --> 00:13:54.163
+The evidence an ISSO keeps:
+
+219
+00:13:54.163 --> 00:13:58.563
+both provenance files and the
+findings file in the evidence store,
+
+220
+00:13:58.563 --> 00:14:03.283
+the registry and its pull requests, and
+in Lab 2, the published blob's hash,
+
+221
+00:14:03.283 --> 00:14:07.043
+the role assignment, the
+definition's activity log entry,
+
+222
+00:14:07.043 --> 00:14:10.803
+and each machine's compliance
+against the recorded hash.
+
+223
+00:14:10.803 --> 00:14:14.552
+Before shipping, work through
+the Chapter 07 checklist.
+
+224
+00:14:14.552 --> 00:14:19.066
+Next is Module 6: onboard
+servers with Ansible beside Arc.
+
+225
+00:14:19.066 --> 00:14:22.799
+You'll read a CMDB export into
+groups and tags, plan a wave,
+
+226
+00:14:22.799 --> 00:14:27.170
+and see what each server would
+get before anything is contacted.

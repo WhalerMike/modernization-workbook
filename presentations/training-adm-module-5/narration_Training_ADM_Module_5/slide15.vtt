@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.875
+To sum up.
+
+2
+00:00:00.875 --> 00:00:04.692
+You followed Learn's procedure,
+saw where its outputs fall short,
+
+3
+00:00:04.692 --> 00:00:07.716
+and met the build that makes
+the same MOF every time,
+
+4
+00:00:07.716 --> 00:00:12.613
+checks the package and the definition, and
+refuses what the registry doesn't allow.
+
+5
+00:00:12.613 --> 00:00:14.373
+The evidence an ISSO keeps:
+
+6
+00:00:14.373 --> 00:00:18.773
+both provenance files and the
+findings file in the evidence store,
+
+7
+00:00:18.773 --> 00:00:23.493
+the registry and its pull requests, and
+in Lab 2, the published blob's hash,
+
+8
+00:00:23.493 --> 00:00:27.253
+the role assignment, the
+definition's activity log entry,
+
+9
+00:00:27.253 --> 00:00:31.013
+and each machine's compliance
+against the recorded hash.
+
+10
+00:00:31.013 --> 00:00:34.762
+Before shipping, work through
+the Chapter 07 checklist.
+
+11
+00:00:34.762 --> 00:00:39.276
+Next is Module 6: onboard
+servers with Ansible beside Arc.
+
+12
+00:00:39.276 --> 00:00:43.009
+You'll read a CMDB export into
+groups and tags, plan a wave,
+
+13
+00:00:43.009 --> 00:00:47.380
+and see what each server would
+get before anything is contacted.

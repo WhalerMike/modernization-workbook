@@ -1,0 +1,76 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.200
+Why does this matter?
+
+2
+00:00:01.200 --> 00:00:03.683
+In this workbook's implementation guide,
+
+3
+00:00:03.683 --> 00:00:08.794
+Gate 7 proves that one personnel action
+changes access only through the attributes,
+
+4
+00:00:08.794 --> 00:00:11.788
+with the mover workflow's
+run history as evidence.
+
+5
+00:00:11.788 --> 00:00:15.316
+Gate 8 puts leaver automation
+first in every wave,
+
+6
+00:00:15.316 --> 00:00:18.587
+and sizes Lifecycle
+Workflows for the agency.
+
+7
+00:00:18.587 --> 00:00:20.850
+The built-in tasks cover the account.
+
+8
+00:00:20.850 --> 00:00:25.688
+The rest of a leaver, such as the PIV
+credential, the devices and the servers,
+
+9
+00:00:25.688 --> 00:00:29.575
+goes through a custom task
+extension that calls a Logic App.
+
+10
+00:00:29.575 --> 00:00:30.763
+And here's the gap.
+
+11
+00:00:30.763 --> 00:00:35.769
+The definition on Microsoft Learn's
+page, Configure a Logic App for Lifecycle
+
+12
+00:00:35.769 --> 00:00:38.820
+Workflow use, calls back
+to the worldwide Graph,
+
+13
+00:00:38.820 --> 00:00:41.324
+on beta, and it always says it completed.
+
+14
+00:00:41.324 --> 00:00:45.600
+In a GCC High tenant that
+callback goes to the wrong cloud.
+
+15
+00:00:45.600 --> 00:00:48.288
+And a revocation that
+failed reads as done.
+
+16
+00:00:48.288 --> 00:00:53.040
+In this module you see what that costs,
+and you run the definition that fixes it.

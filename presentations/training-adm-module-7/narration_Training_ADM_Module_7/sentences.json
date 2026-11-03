@@ -1,0 +1,700 @@
+{
+ "1": [
+  [
+   0.05,
+   6.487,
+   "Welcome to Module 7 of the Attribute-Driven Migration learning path: extend Lifecycle Workflows."
+  ],
+  [
+   6.537,
+   10.162,
+   "This module serves Gates 7 and 8 of the implementation guide, and takes Chapter 05 of Building the Attribute-Driven Migration, on custom task extensions."
+  ],
+  [
+   16.7,
+   9.162,
+   "It comes after Modules 4 to 6 because the path follows the gates: Chapter 05 serves Gates 7 and 8, after the Gate 5 work."
+  ],
+  [
+   25.863,
+   9.863,
+   "You'll see what Learn's Logic App definition costs a G C C High leaver, and run the definition that fixes it, through transient failures and repeat deliveries."
+  ],
+  [
+   35.725,
+   6.825,
+   "You'll build the deployment pieces from a reviewed registry, and check that the leaver blocks before the custom task runs."
+  ],
+  [
+   42.55,
+   1.2,
+   "Nothing signs in."
+  ],
+  [
+   43.75,
+   5.963,
+   "The code is illustrative: tested against fixtures and fakes, not against a production tenant."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.15,
+   "Why does this matter?"
+  ],
+  [
+   1.2,
+   10.588,
+   "In this workbook's implementation guide, Gate 7 proves that one personnel action changes access only through the attributes, with the mover workflow's run history as evidence."
+  ],
+  [
+   11.787,
+   6.8,
+   "Gate 8 puts leaver automation first in every wave, and sizes Lifecycle Workflows for the agency."
+  ],
+  [
+   18.587,
+   2.263,
+   "The built-in tasks cover the account."
+  ],
+  [
+   20.85,
+   8.725,
+   "The rest of a leaver, such as the piv credential, the devices and the servers, goes through a custom task extension that calls a Logic App."
+  ],
+  [
+   29.575,
+   1.188,
+   "And here's the gap."
+  ],
+  [
+   30.762,
+   10.562,
+   "The definition on Microsoft Learn's page, Configure a Logic App for Lifecycle Workflow use, calls back to the worldwide Graph, on beta, and it always says it completed."
+  ],
+  [
+   41.325,
+   4.275,
+   "In a G C C High tenant that callback goes to the wrong cloud."
+  ],
+  [
+   45.6,
+   2.688,
+   "And a revocation that failed reads as done."
+  ],
+  [
+   48.288,
+   4.688,
+   "In this module you see what that costs, and you run the definition that fixes it."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   5.175,
+   "Here's what you'll be able to do by the end of this module, which takes about fifty minutes with the lab."
+  ],
+  [
+   5.225,
+   7.787,
+   "You'll describe where custom task extensions sit in a leaver, and the three rules of this workbook's guidance that the kit builds in code."
+  ],
+  [
+   13.012,
+   3.513,
+   "You'll explain what Learn's Logic App definition leaves to you."
+  ],
+  [
+   16.525,
+   7.6,
+   "You'll run a definition for a cloud, through transient failures and repeat deliveries, and read what Lifecycle Workflows records."
+  ],
+  [
+   24.125,
+   6.15,
+   "You'll build the deployment pieces from the registry, and explain why an Azure Government build is refused."
+  ],
+  [
+   30.275,
+   2.913,
+   "And you'll check a workflow read-back for the leaver order."
+  ],
+  [
+   33.188,
+   8.6,
+   "Before you start, finish Module 1: provisioning creates and updates accounts, and Lifecycle Workflows act on accounts that already exist."
+  ],
+  [
+   41.788,
+   5.537,
+   "Lab 1 needs Python 3.10 or later and a POSIX shell, and no tenant."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   9.55,
+   "This workbook's guidance splits the work: inbound provisioning creates and updates accounts, and Lifecycle Workflows act on accounts that already exist."
+  ],
+  [
+   9.6,
+   3.75,
+   "It also sets three rules, and the kit builds them in code."
+  ],
+  [
+   13.35,
+   4.638,
+   "One parameterized Logic App per integration, not one per component."
+  ],
+  [
+   17.988,
+   6.638,
+   "Block first: Disable user account and Revoke all refresh tokens for user run before the custom task."
+  ],
+  [
+   24.625,
+   4.112,
+   "And custom tasks are idempotent, and retry with a bound."
+  ],
+  [
+   28.738,
+   2.35,
+   "Microsoft Learn sets the contract."
+  ],
+  [
+   31.087,
+   12.7,
+   "Its page on the Lifecycle Workflows custom task extension says that in launch and wait, the extension starts the Logic App and waits; if no response arrives within the wait, the task is considered failed."
+  ],
+  [
+   43.788,
+   3.938,
+   "Learn's Graph reference sets the wait at thirty minutes to three hours."
+  ],
+  [
+   47.725,
+   7.338,
+   "The response is a POST to resume, with a status of completed or failed, and Learn lists it in v1.0."
+  ],
+  [
+   55.062,
+   13.675,
+   "And Learn's page on Microsoft Graph national cloud deployments gives the clouds: G C C keeps the worldwide Graph, G C C High and D O D have their own hosts, and a token for one cloud doesn't work in another."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   7.513,
+   "Microsoft Learn's page, Configure a Logic App for Lifecycle Workflow use, gives the definition to paste into code view."
+  ],
+  [
+   7.562,
+   7.225,
+   "It's Microsoft's only sample for this integration, so the repository pins the page, from the entra docs repository."
+  ],
+  [
+   14.787,
+   3.45,
+   "Running the definition against fakes shows what it leaves to you."
+  ],
+  [
+   18.238,
+   6.0,
+   "It resumes the task with the Logic App's managed identity and no secret, and the kit keeps that."
+  ],
+  [
+   24.238,
+   4.213,
+   "But it hard-codes the worldwide Graph host, and calls back on beta."
+  ],
+  [
+   28.45,
+   7.175,
+   "It uses the callback path as it arrives, so any path appended to the Graph host gets a POST with the identity's token."
+  ],
+  [
+   35.625,
+   4.425,
+   "It always reports completed, so a failed revocation reads as done."
+  ],
+  [
+   40.05,
+   6.075,
+   "If work you add before the callback fails, no callback is sent, and the task waits out the whole timeout."
+  ],
+  [
+   46.125,
+   1.738,
+   "It has no idempotency."
+  ],
+  [
+   47.862,
+   3.837,
+   "And it carries the subject's name and email into run history."
+  ],
+  [
+   51.7,
+   6.5,
+   "The verdict: the right shape and the right trigger, but not safe to run as the leaver's revocation as published."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   3.638,
+   "The kit's definition is the one every integration deploys."
+  ],
+  [
+   3.688,
+   8.775,
+   "What changes between integrations is data: four parameters, the Graph host, the downstream system, its audience, and the operations."
+  ],
+  [
+   12.463,
+   1.875,
+   "A run goes in four steps."
+  ],
+  [
+   14.338,
+   8.338,
+   "Check request checks that the callback path is a resume path for this workflow and this task processing result, and that the subject has an I D."
+  ],
+  [
+   22.675,
+   4.95,
+   "If not, the run stops and sends nothing, because it can't trust the path."
+  ],
+  [
+   27.625,
+   4.513,
+   "Operation looks up the workflow; an unregistered one gets no work done."
+  ],
+  [
+   32.138,
+   6.862,
+   "Call integration posts to the downstream system with an idempotency key, the task processing result I D."
+  ],
+  [
+   39.0,
+   5.688,
+   "The key is the kit's design, a contract with the downstream system, not a Microsoft feature."
+  ],
+  [
+   44.688,
+   8.188,
+   "It retries transient errors up to four times, with a retry policy from Learn's page on handling errors in Azure Logic Apps."
+  ],
+  [
+   52.875,
+   9.512,
+   "And Resume posts to the Graph host on v1.0, after success, failure or time-out, and reports completed only if the call succeeded."
+  ],
+  [
+   62.388,
+   7.838,
+   "The registry holds one entry per integration, and the builder refuses values outside the ranges in Learn's Graph reference."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   2.062,
+   "The kit's tool has five commands."
+  ],
+  [
+   2.112,
+   4.013,
+   "Lint applies twelve rules to any definition, Learn's included."
+  ],
+  [
+   6.125,
+   8.075,
+   "One of them, L X eleven, adds up the worst-case retry waits and fails the definition if they reach the extension's timeout."
+  ],
+  [
+   14.2,
+   6.15,
+   "Run runs a definition against fakes for a cloud, with downstream failures and repeat deliveries."
+  ],
+  [
+   20.35,
+   6.675,
+   "Build writes the Logic App's ARM resource and the extension's body, and refuses if lint finds anything."
+  ],
+  [
+   27.025,
+   3.663,
+   "And two checks compare what you read back from Graph with the registry."
+  ],
+  [
+   30.688,
+   14.4,
+   "For authorization, the builder writes the proof-of-possession policy from Learn's page, Configure a Logic App for Lifecycle Workflow use, with shared access signatures turned off, as Learn's best practices for securing the custom extension ask."
+  ],
+  [
+   45.087,
+   7.888,
+   "Learn documents that policy only for Azure commercial, so for a Logic App in Azure Government the builder refuses rather than guess."
+  ],
+  [
+   52.975,
+   6.188,
+   "The callback identity needs no tenant-wide Lifecycle Workflows permission, which Learn advises against."
+  ],
+  [
+   59.163,
+   10.25,
+   "And the workflow check requires the leaver to block first, which is this workbook's guidance, in Microsoft's order: disable, then revoke, then the custom task."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   5.5,
+   "Lab 1 runs in the lifecycle extensions folder of the examples, and nothing signs in."
+  ],
+  [
+   6.275,
+   5.8,
+   "Step one extracts Learn's definition from the pinned page, and lints it with a one-hour timeout."
+  ],
+  [
+   12.075,
+   2.413,
+   "Eight results, and exit code two."
+  ],
+  [
+   14.488,
+   12.325,
+   "Five are findings: it hard-codes the worldwide Graph host, calls back on beta, uses the callback path without checking it, sends no callback when the work fails, and always reports completed."
+  ],
+  [
+   26.812,
+   4.7,
+   "Two warnings are for run history, and one for the implicit retry policy."
+  ],
+  [
+   31.512,
+   4.362,
+   "Step two runs Learn's definition for a G C C High tenant."
+  ],
+  [
+   35.875,
+   9.4,
+   "The one POST goes to the worldwide Graph, on beta, and the last line is what Lifecycle Workflows records: failed, no callback within an hour."
+  ],
+  [
+   45.275,
+   4.225,
+   "So a G C C High leaver's task fails at the end of the wait."
+  ],
+  [
+   49.5,
+   3.75,
+   "Run it again for a worldwide tenant, and the task is completed."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   2.65,
+   "Step three lints the program's definition."
+  ],
+  [
+   2.7,
+   2.725,
+   "With a one-hour timeout: no findings."
+  ],
+  [
+   5.425,
+   10.375,
+   "With a fifteen-minute timeout, L X eleven finds that the worst-case retry waits, nine hundred and sixty seconds, reach the callback timeout, and the exit code is two."
+  ],
+  [
+   15.8,
+   2.712,
+   "So the retries have to fit inside the wait."
+  ],
+  [
+   18.512,
+   4.925,
+   "Step four runs the program's definition for G C C High, three ways."
+  ],
+  [
+   23.438,
+   5.925,
+   "Through two transient failures: three downstream calls, one effect, and the task is completed."
+  ],
+  [
+   29.363,
+   7.3,
+   "Through five failures: five calls, no effect, and the task is failed, at once, not at the end of the wait."
+  ],
+  [
+   36.663,
+   5.987,
+   "And with two deliveries of the same request: two calls, but one effect, and the task is completed."
+  ],
+  [
+   42.65,
+   3.663,
+   "The idempotency key means the work is done once."
+  ],
+  [
+   46.312,
+   5.763,
+   "Every callback goes to the G C C High Graph host, on v1.0."
+  ],
+  [
+   52.075,
+   3.075,
+   "The slide joins each run's last two lines."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   6.05,
+   "Step five builds the deployment pieces from the registry, for the card management revocation integration."
+  ],
+  [
+   6.1,
+   5.0,
+   "It writes two files: the Logic App's ARM resource, and the extension's body."
+  ],
+  [
+   11.1,
+   5.013,
+   "Then set the Logic App's cloud to Azure Government, build again, and put it back."
+  ],
+  [
+   16.113,
+   7.8,
+   "The second build exits one: Learn documents the proof-of-possession policy only for Azure commercial, so nothing is built."
+  ],
+  [
+   23.913,
+   2.175,
+   "Step six checks the read-backs."
+  ],
+  [
+   26.087,
+   4.388,
+   "The extension and the leaver workflow both come back with no findings."
+  ],
+  [
+   30.475,
+   4.862,
+   "Then move the custom task to the front of a copy of the workflow, and check the copy."
+  ],
+  [
+   35.337,
+   8.613,
+   "Two W X oh three findings: Disable user account, and Revoke all refresh tokens, don't run before the custom task."
+  ],
+  [
+   43.95,
+   1.113,
+   "Block first."
+  ],
+  [
+   45.062,
+   1.25,
+   "Exit code two."
+  ],
+  [
+   46.312,
+   3.513,
+   "Step seven runs the tests: fifty-five, OK."
+  ],
+  [
+   49.825,
+   1.375,
+   "Step eight cleans up."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   9.287,
+   "Lab 2 runs a real leaver, in a test tenant with Microsoft Entra I D Governance licenses and a test Azure subscription, never production."
+  ],
+  [
+   9.338,
+   7.463,
+   "You need the Lifecycle Workflows Administrator role, and Logic App Contributor, Contributor or Owner on the resource group."
+  ],
+  [
+   16.8,
+   7.412,
+   "Create the extension and its Logic App in the admin center, record what the admin center made, and check it against the registry."
+  ],
+  [
+   24.212,
+   2.562,
+   "Replace the definition with the program's."
+  ],
+  [
+   26.775,
+   6.088,
+   "Build an on-demand test leaver workflow that blocks first, and run it for one fictional user."
+  ],
+  [
+   32.862,
+   9.9,
+   "Then drill the failure path: point the integration at a receiver that answers five-oh-three, and confirm the task ends failed within minutes, not at the end of the hour."
+  ],
+  [
+   42.763,
+   9.738,
+   "To back it out, remove the custom task and the workflow, then the extension, the Logic App, the resource group, the role assignments and the test users."
+  ],
+  [
+   52.5,
+   2.15,
+   "The authors haven't run Lab 2."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   1.387,
+   "The federal requirement."
+  ],
+  [
+   1.438,
+   8.075,
+   "A custom task extension carries the part of a leaver the built-in tasks don't, so its evidence is account and credential removal."
+  ],
+  [
+   9.512,
+   16.762,
+   "A callback that reports what really happened, at once, with one effect per delivery, supports nist special publication eight hundred fifty-three controls A C two, account management, and P S four, personnel termination; the evidence is the task processing result."
+  ],
+  [
+   26.275,
+   6.112,
+   "The definition passing lint, with long retries refused, leaves the pull request's check run."
+  ],
+  [
+   32.388,
+   8.713,
+   "Building from the reviewed registry, with shared access signatures off and proof-of-possession on, leaves the repository and the deployment record."
+  ],
+  [
+   41.1,
+   4.65,
+   "The read-back checks, and the leaver blocking first, are filed with the change."
+  ],
+  [
+   45.75,
+   5.375,
+   "The extension's authorized apps show the callback identity has no tenant-wide permission."
+  ],
+  [
+   51.125,
+   4.638,
+   "And in Lab 2, an on-demand run leaves the Logic App's run history."
+  ],
+  [
+   55.763,
+   6.888,
+   "The KSI column is fed-ramp's Key Security Indicators, the fed-ramp twenty X indicators for providers."
+  ],
+  [
+   62.65,
+   3.562,
+   "Which output supports which control is this workbook's reading."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   1.975,
+   "Check yourself with two questions."
+  ],
+  [
+   2.025,
+   4.475,
+   "First: Learn's definition runs for a G C C High leaver."
+  ],
+  [
+   6.5,
+   2.263,
+   "What does Lifecycle Workflows record?"
+  ],
+  [
+   8.762,
+   6.55,
+   "The answer is b: failed, at the end of the wait, because the callback went to the worldwide Graph on beta."
+  ],
+  [
+   15.312,
+   4.112,
+   "You saw it in step two: failed, no callback within an hour."
+  ],
+  [
+   19.425,
+   4.188,
+   "Second: why does the builder refuse a Logic App in Azure Government?"
+  ],
+  [
+   23.613,
+   9.512,
+   "The answer is b: Learn documents the proof-of-possession policy only for Azure commercial, so the builder refuses rather than guess, and nothing is built."
+  ],
+  [
+   33.125,
+   1.663,
+   "You saw that in step five."
+  ],
+  [
+   34.788,
+   8.512,
+   "The module page has two more questions, on five downstream failures and on W X oh three, each linked to the section that answers it."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   0.825,
+   "To sum up."
+  ],
+  [
+   0.875,
+   12.688,
+   "You ran a custom task extension's definition for the right cloud, through failures and repeat deliveries, built its deployment pieces from a reviewed registry, and checked that the leaver blocks before the custom task runs."
+  ],
+  [
+   13.562,
+   17.337,
+   "The evidence an I S S O keeps: the registry and the built ARM and extension files in the repository, the check output filed with the change, and, from Lab 2, the task processing results, the Logic App run history, the drill record and the activity logs."
+  ],
+  [
+   30.9,
+   5.963,
+   "Gate 7's own evidence, the mover workflow's run history joined on the key, is in the guide."
+  ],
+  [
+   36.862,
+   3.7,
+   "Before shipping, work through the Chapter 05 checklist."
+  ],
+  [
+   40.562,
+   4.888,
+   "Next is Module 8: run the drift pipeline and hand over the evidence."
+  ],
+  [
+   45.45,
+   10.575,
+   "You'll run the validation kit on a schedule with no stored secret, compare each run with the last, and hand the I S S O a package sha256sum verifies."
+  ]
+ ]
+}

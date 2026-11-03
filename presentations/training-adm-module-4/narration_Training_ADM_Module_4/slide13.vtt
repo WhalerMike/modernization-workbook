@@ -1,0 +1,90 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.437
+The federal requirement.
+
+2
+00:00:01.437 --> 00:00:06.942
+Moving Group Policy to Intune changes the
+baseline of every device, so the plan,
+
+3
+00:00:06.942 --> 00:00:12.615
+the library and the sync record are
+evidence for NIST special publication eight
+
+4
+00:00:12.615 --> 00:00:17.188
+hundred fifty-three's
+configuration-management controls: C M two,
+
+5
+00:00:17.188 --> 00:00:21.761
+baseline configuration, C M three,
+configuration change control,
+
+6
+00:00:21.761 --> 00:00:25.825
+and C M six, configuration settings,
+with C A seven and A C six.
+
+7
+00:00:25.825 --> 00:00:33.650
+VK-INT-07's results show every in-scope
+GPO imported and ready, or listed.
+
+8
+00:00:33.650 --> 00:00:36.382
+The move plan, saved
+with the pull request,
+
+9
+00:00:36.382 --> 00:00:40.238
+gives each setting a disposition
+and shows the conflicts.
+
+10
+00:00:40.238 --> 00:00:45.000
+The library and its decision records give
+one owner and one decision per setting.
+
+11
+00:00:45.000 --> 00:00:48.000
+The sync record shows what
+the sync would create,
+
+12
+00:00:48.000 --> 00:00:51.525
+then wrote only that, with a
+read-only scope for the dry run.
+
+13
+00:00:51.525 --> 00:00:56.337
+A library that differs from the tenant
+stops the release, and the run log shows it.
+
+14
+00:00:56.337 --> 00:00:59.824
+And Microsoft's sample is
+pinned and its behavior tested.
+
+15
+00:00:59.824 --> 00:01:04.758
+The Key Security Indicators come from
+FedRAMP's Consolidated Rules for 2026:
+
+16
+00:01:04.758 --> 00:01:07.996
+they're FedRAMP 20x
+indicators for providers,
+
+17
+00:01:07.996 --> 00:01:10.925
+and the agency lines its
+evidence up with them.
+
+18
+00:01:10.925 --> 00:01:14.540
+Which output supports which
+control is this workbook's reading.

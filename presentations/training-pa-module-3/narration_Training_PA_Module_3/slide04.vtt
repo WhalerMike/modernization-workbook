@@ -1,0 +1,73 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.400
+Unit 1: the gate and its order.
+
+2
+00:00:02.400 --> 00:00:06.779
+Three pieces of the design meet here:
+the Wave 2 administrator policies,
+
+3
+00:00:06.779 --> 00:00:11.900
+the activation gate, and a custom authentication
+strength for privileged sign-ins.
+
+4
+00:00:11.900 --> 00:00:15.353
+Microsoft Learn's page on PIM
+role settings sets the order,
+
+5
+00:00:15.353 --> 00:00:16.863
+and the chapter quotes it.
+
+6
+00:00:16.863 --> 00:00:20.391
+First, create and enable the
+Conditional Access policy
+
+7
+00:00:20.391 --> 00:00:23.613
+for a context before you
+select that context in PIM.
+
+8
+00:00:23.613 --> 00:00:28.594
+Second, if no policy targets the
+context, PIM falls back to M F A,
+
+9
+00:00:28.594 --> 00:00:33.675
+but not when the policy is off,
+report-only, or excludes the user.
+
+10
+00:00:33.675 --> 00:00:37.375
+Rule C A oh four warns when
+a context policy isn't On.
+
+11
+00:00:37.375 --> 00:00:42.156
+Third, don't scope the policy to both
+the context and a directory role, because
+
+12
+00:00:42.156 --> 00:00:47.088
+at activation the user doesn't hold the
+role yet, so the policy would never apply.
+
+13
+00:00:47.088 --> 00:00:49.312
+Rule C A oh five fails that.
+
+14
+00:00:49.312 --> 00:00:52.825
+So this module builds the gate
+and leaves it unselected.
+
+15
+00:00:52.825 --> 00:00:58.200
+Module 4 selects C one only after this
+module's run shows the gate is On.

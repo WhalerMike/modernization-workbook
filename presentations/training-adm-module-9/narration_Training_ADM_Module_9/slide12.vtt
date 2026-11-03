@@ -1,0 +1,80 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.437
+The federal requirement.
+
+2
+00:00:01.437 --> 00:00:08.163
+The controls are from NIST SP 800-53,
+Revision 5, at the Moderate baseline.
+
+3
+00:00:08.163 --> 00:00:11.126
+Every runbook step has
+a requirements table,
+
+4
+00:00:11.126 --> 00:00:16.012
+and every step leaves an evidence record
+that names its controls and KSIs.
+
+5
+00:00:16.012 --> 00:00:20.975
+The pre-flight check meets C M three,
+enhancement two: the settings, kits,
+
+6
+00:00:20.975 --> 00:00:24.654
+identities and cloud are
+checked before any change,
+
+7
+00:00:24.654 --> 00:00:28.162
+and pre-flight dot json is
+the evidence, dry and live.
+
+8
+00:00:28.162 --> 00:00:32.953
+Its rows P F oh two and P F oh five
+show no secret in the settings file and
+
+9
+00:00:32.953 --> 00:00:38.751
+three certificate identities, for
+authenticator management and least privilege.
+
+10
+00:00:38.751 --> 00:00:43.332
+The smoke test reads the gates' checks
+again after the change and answers
+
+11
+00:00:43.332 --> 00:00:47.838
+go or no-go, for the verification of
+controls and continuous monitoring.
+
+12
+00:00:47.838 --> 00:00:53.162
+One evidence package with a hash per file,
+verified, protects the audit information.
+
+13
+00:00:53.162 --> 00:00:57.088
+And every change is recorded
+with its rollback, newest first.
+
+14
+00:00:57.088 --> 00:01:00.968
+The KSI column is from FedRAMP's
+Key Security Indicators,
+
+15
+00:01:00.968 --> 00:01:04.435
+which are indicators for
+cloud service providers;
+
+16
+00:01:04.435 --> 00:01:09.700
+Chapter 10 uses only KSI IDs this workbook
+already maps to the same controls.

@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.027
+Welcome to Module 7 of the
+Privileged Access learning path:
+
+2
+00:00:04.027 --> 00:00:06.462
+access reviews of privileged roles.
+
+3
+00:00:06.462 --> 00:00:12.976
+This module serves the project plan's
+task A2.7 in Phase 2 and A3.7 in Phase 3,
+
+4
+00:00:12.976 --> 00:00:16.775
+with Chapter 07 of the developer workbook.
+
+5
+00:00:16.775 --> 00:00:19.762
+The approval gate controls
+the use of privilege.
+
+6
+00:00:19.762 --> 00:00:22.712
+Reviews control who keeps the eligibility.
+
+7
+00:00:22.712 --> 00:00:28.093
+The program's design creates one recurring
+review per role, Tier 0 monthly and the
+
+8
+00:00:28.093 --> 00:00:33.474
+rest quarterly, with auto-apply on, and
+remove access when reviewers don't respond.
+
+9
+00:00:33.474 --> 00:00:37.700
+In this module you define every
+privileged review series as code.
+
+10
+00:00:37.700 --> 00:00:41.782
+You show a reviewer what a change
+will do before it reaches the tenant,
+
+11
+00:00:41.782 --> 00:00:44.361
+apply it with the least
+permission that can,
+
+12
+00:00:44.361 --> 00:00:47.512
+and hand the ISSO the
+decisions each review produced.
+
+13
+00:00:47.512 --> 00:00:51.940
+The code is illustrative: tested
+against fixtures and a fake.

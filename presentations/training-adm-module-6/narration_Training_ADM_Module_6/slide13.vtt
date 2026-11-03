@@ -1,0 +1,85 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.437
+The federal requirement.
+
+2
+00:00:01.437 --> 00:00:06.274
+Onboarding to Arc writes each server's
+owners into Azure from the CMDB,
+
+3
+00:00:06.274 --> 00:00:11.026
+so the plan, the result and the tags
+are inventory and change evidence.
+
+4
+00:00:11.026 --> 00:00:15.100
+The controls are NIST special
+publication eight hundred fifty-three's.
+
+5
+00:00:15.100 --> 00:00:20.100
+The CMDB export supports system
+component inventory, CM-8.
+
+6
+00:00:20.100 --> 00:00:22.929
+The wave plan, filed
+with the change record,
+
+7
+00:00:22.929 --> 00:00:26.000
+supports change control
+and impact analysis.
+
+8
+00:00:26.000 --> 00:00:30.550
+The dry run that contacts nothing supports
+testing a change before it's made.
+
+9
+00:00:30.550 --> 00:00:34.403
+The stops for production in the
+pilot and for unknown or missing
+
+10
+00:00:34.403 --> 00:00:38.037
+owners leave the plan, and a CMDB
+ticket for the missing owner.
+
+11
+00:00:38.037 --> 00:00:41.926
+The pinned collections leave the
+requirements file and the snapshot.
+
+12
+00:00:41.926 --> 00:00:46.419
+And Lab 2 adds the role assignment
+record, for least privilege,
+
+13
+00:00:46.419 --> 00:00:49.944
+and the result file with V
+K ARC oh one and oh seven,
+
+14
+00:00:49.944 --> 00:00:54.350
+showing the server is connected
+and its tags equal the CMDB's.
+
+15
+00:00:54.350 --> 00:00:57.798
+The KSI column is FedRAMP's
+Key Security Indicators,
+
+16
+00:00:57.798 --> 00:01:01.887
+the FedRAMP 20x indicators
+for cloud service providers.
+
+17
+00:01:01.887 --> 00:01:05.520
+Which output supports which
+control is this workbook's reading.

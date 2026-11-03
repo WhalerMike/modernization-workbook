@@ -1,0 +1,65 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.875
+To sum up.
+
+2
+00:00:00.875 --> 00:00:05.439
+You built your understanding of a check
+from its catalog entry to its safety tests,
+
+3
+00:00:05.439 --> 00:00:08.190
+and saw how one check asks
+for the least privilege
+
+4
+00:00:08.190 --> 00:00:10.875
+it can when its read needs
+the most powerful role.
+
+5
+00:00:10.875 --> 00:00:14.524
+The evidence an ISSO keeps:
+the run's results, details,
+
+6
+00:00:14.524 --> 00:00:18.428
+summary and validation
+manifest, in the evidence store;
+
+7
+00:00:18.428 --> 00:00:24.114
+the window date and its change record; the
+Entra sign-in log for the one privileged
+
+8
+00:00:24.114 --> 00:00:29.800
+export; and the change record for any
+remediation, which is never made by the check.
+
+9
+00:00:29.800 --> 00:00:34.225
+Before shipping a new check, work
+through the Chapter 03 checklist.
+
+10
+00:00:34.225 --> 00:00:37.975
+Next is Module 3: keep
+dynamic rules as code.
+
+11
+00:00:37.975 --> 00:00:43.625
+A dynamic rule is access policy, and one
+edit can remove hundreds of people at once.
+
+12
+00:00:43.625 --> 00:00:47.674
+You'll keep each rule as a reviewed
+file with tests and a linter,
+
+13
+00:00:47.674 --> 00:00:52.730
+see whom a change adds and removes, and
+pause and resume safely in an incident.

@@ -1,0 +1,94 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.263
+Two ideas make the same commands
+run against test and production.
+
+2
+00:00:04.263 --> 00:00:10.163
+First, one settings file per stage: test
+dot json, then production dot json.
+
+3
+00:00:10.163 --> 00:00:14.134
+It holds every value the commands
+need, the cloud, the tenant,
+
+4
+00:00:14.134 --> 00:00:18.024
+the subscription, the change
+record and the kits' settings.
+
+5
+00:00:18.024 --> 00:00:20.637
+The template's values
+are all placeholders.
+
+6
+00:00:20.637 --> 00:00:24.864
+And there are no secrets, by
+construction: the loader refuses a key
+
+7
+00:00:24.864 --> 00:00:29.325
+or a value that looks like a secret,
+and any placeholder left unfilled.
+
+8
+00:00:29.325 --> 00:00:31.113
+Second, the identities.
+
+9
+00:00:31.113 --> 00:00:35.551
+Deploy changes Entra, Intune
+and Azure in the stage steps.
+
+10
+00:00:35.551 --> 00:00:39.787
+Reader takes the baselines, the
+reconciliation and the smoke tests.
+
+11
+00:00:39.787 --> 00:00:44.751
+Provisioning sends the HR batches, with
+one upload permission and nothing else.
+
+12
+00:00:44.751 --> 00:00:46.725
+Each signs in with a certificate.
+
+13
+00:00:46.725 --> 00:00:50.629
+And one named Groups Administrator
+signs in for rule validation,
+
+14
+00:00:50.629 --> 00:00:53.303
+because Microsoft Learn's
+page for the group
+
+15
+00:00:53.303 --> 00:00:57.713
+evaluateDynamicMembership API lists
+no application permission for it.
+
+16
+00:00:57.713 --> 00:01:01.197
+Microsoft Learn's page on signing
+in to the Azure CLI with a
+
+17
+00:01:01.197 --> 00:01:05.262
+service principal recommends
+certificate-based authentication.
+
+18
+00:01:05.262 --> 00:01:10.165
+And splitting the work across three identities
+is this workbook's design guidance:
+
+19
+00:01:10.165 --> 00:01:14.980
+one identity that can do everything is
+one credential that can break everything.

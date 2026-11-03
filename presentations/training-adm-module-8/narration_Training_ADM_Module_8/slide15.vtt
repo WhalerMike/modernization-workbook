@@ -1,0 +1,65 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.875
+To sum up.
+
+2
+00:00:00.875 --> 00:00:06.035
+You compared two days of kit runs without
+letting a failed read close a finding,
+
+3
+00:00:06.035 --> 00:00:10.401
+drafted findings without names,
+and packaged and verified a chain
+
+4
+00:00:10.401 --> 00:00:14.450
+of evidence the ISSO can check
+with sha two fifty-six sum alone.
+
+5
+00:00:14.450 --> 00:00:19.788
+The evidence an ISSO keeps: each day's
+package, with its kit run, drift report,
+
+6
+00:00:19.788 --> 00:00:23.813
+the other kits' provenance,
+the manifest and SHA256SUMS,
+
+7
+00:00:23.813 --> 00:00:29.238
+in a container whose retention is locked
+in production; the findings in the
+
+8
+00:00:29.238 --> 00:00:35.188
+tracker by fingerprint; and the workflow
+file and the pipeline app's registration.
+
+9
+00:00:35.188 --> 00:00:39.663
+Gate 9 adds the scan schedule, the
+limits register and the metrics.
+
+10
+00:00:39.663 --> 00:00:43.375
+Before shipping, work through
+the Chapter 09 checklist.
+
+11
+00:00:43.375 --> 00:00:47.367
+Next is Module 9, the last:
+deploy to test, then production,
+
+12
+00:00:47.367 --> 00:00:52.227
+with one settings file per stage, a
+pre-flight check, a smoke test that
+
+13
+00:00:52.227 --> 00:00:57.050
+says go or no-go, and a rollback
+written from a record of every change.

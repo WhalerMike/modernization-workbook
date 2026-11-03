@@ -1,0 +1,72 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:06.138
+The plan has a fixed order: groups, then
+policy rules, then grants, then removals.
+
+2
+00:00:06.138 --> 00:00:09.588
+And seven guards refuse a
+plan before anything is sent.
+
+3
+00:00:09.588 --> 00:00:15.138
+G one, a Tier 0 or Tier 1 policy
+losing approval or its approvers.
+
+4
+00:00:15.138 --> 00:00:19.937
+G two, a rule that allows permanent
+grants, or a grant with no end.
+
+5
+00:00:19.937 --> 00:00:23.138
+G three, a group set as its own approver.
+
+6
+00:00:23.138 --> 00:00:25.112
+G four, the owner trap.
+
+7
+00:00:25.112 --> 00:00:29.650
+G five, a group as a holder, or
+an eligible service principal.
+
+8
+00:00:29.650 --> 00:00:32.050
+G six, too many removals.
+
+9
+00:00:32.050 --> 00:00:35.250
+And G seven, a self-service
+action in the plan.
+
+10
+00:00:35.250 --> 00:00:39.862
+One more choice: the pipeline's app
+doesn't create the P R V groups.
+
+11
+00:00:39.862 --> 00:00:42.987
+Microsoft Learn's reference
+for creating a group says a
+
+12
+00:00:42.987 --> 00:00:47.200
+role-assignable group needs Role
+Management dot ReadWrite dot Directory.
+
+13
+00:00:47.200 --> 00:00:50.039
+The program keeps that
+permission off the pipeline,
+
+14
+00:00:50.039 --> 00:00:53.538
+and a Privileged Role Administrator
+creates the groups by hand.
+
+15
+00:00:53.538 --> 00:00:55.920
+That's this workbook's design guidance.

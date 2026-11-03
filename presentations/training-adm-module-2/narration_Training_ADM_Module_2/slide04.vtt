@@ -1,0 +1,79 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.550
+This slide is the kit's own
+design, not a Microsoft rule.
+
+2
+00:00:03.550 --> 00:00:06.800
+In the kit, every check
+has the same five parts.
+
+3
+00:00:06.800 --> 00:00:12.035
+The catalog entry holds its I D, track,
+title, source, Graph permissions,
+
+4
+00:00:12.035 --> 00:00:17.087
+delegated role and release stage,
+and marks it optional or preview.
+
+5
+00:00:17.087 --> 00:00:21.487
+The function is named from the I
+D, here Invoke V K Sync oh two,
+
+6
+00:00:21.487 --> 00:00:24.237
+and wraps its body in a shared helper.
+
+7
+00:00:24.237 --> 00:00:27.893
+The data read goes through
+one path, for fixtures,
+
+8
+00:00:27.893 --> 00:00:31.913
+Graph and input files, and
+logs every read as evidence.
+
+9
+00:00:31.913 --> 00:00:35.375
+The rows have one shape, and
+the status comes from the rows.
+
+10
+00:00:35.375 --> 00:00:38.233
+And the tests: the check
+must pass clean data
+
+11
+00:00:38.233 --> 00:00:41.250
+and fail planted problems
+with an exact count.
+
+12
+00:00:41.250 --> 00:00:44.075
+The wrapper does the work
+no check should repeat.
+
+13
+00:00:44.075 --> 00:00:47.246
+It catches any exception
+and turns it into Error,
+
+14
+00:00:47.246 --> 00:00:50.338
+so a read that throws can
+never come back as Pass.
+
+15
+00:00:50.338 --> 00:00:54.298
+Don't catch exceptions inside the
+body to make a check more robust;
+
+16
+00:00:54.298 --> 00:00:56.570
+that's how a check passes while blind.

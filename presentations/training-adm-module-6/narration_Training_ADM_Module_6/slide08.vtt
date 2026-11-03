@@ -1,0 +1,93 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.650
+The kit's wave plan playbook
+runs only on the control node.
+
+2
+00:00:03.650 --> 00:00:05.013
+You give it a wave number.
+
+3
+00:00:05.013 --> 00:00:09.924
+It lists the wave's ready servers
+and the ones the CMDB blocked,
+
+4
+00:00:09.924 --> 00:00:15.701
+and writes a JSON and a CSV plan under
+reports: host, configuration item,
+
+5
+00:00:15.701 --> 00:00:19.072
+environment, resource
+group, region, cloud,
+
+6
+00:00:19.072 --> 00:00:22.538
+both owners, the exact
+tag string and a state.
+
+7
+00:00:22.538 --> 00:00:26.247
+It stops when no wave is given
+or the wave has no ready server,
+
+8
+00:00:26.247 --> 00:00:30.032
+when the cloud is wrong or a
+region belongs to the other cloud,
+
+9
+00:00:30.032 --> 00:00:34.120
+when a production server is planned
+in wave zero or one, which this
+
+10
+00:00:34.120 --> 00:00:38.813
+workbook's Arc track keeps for non-production,
+and when a server has no owner.
+
+11
+00:00:38.813 --> 00:00:42.409
+Both onboarding playbooks
+import it as their first play,
+
+12
+00:00:42.409 --> 00:00:45.087
+so if the plan stops,
+no server is contacted.
+
+13
+00:00:45.087 --> 00:00:49.946
+The playbook that uses Microsoft's role
+runs in batches, one canary server,
+
+14
+00:00:49.946 --> 00:00:52.257
+then five, then twenty-five percent,
+
+15
+00:00:52.257 --> 00:00:56.399
+with the batch keywords the
+Ansible documentation describes.
+
+16
+00:00:56.399 --> 00:00:59.625
+It's in check mode unless you
+set confirm change to true.
+
+17
+00:00:59.625 --> 00:01:03.400
+Then the role isn't called, and each
+server prints what it would get.
+
+18
+00:01:03.400 --> 00:01:06.473
+With the flag, the role runs
+with the CMDB's values,
+
+19
+00:01:06.473 --> 00:01:09.290
+authenticating with the managed identity.

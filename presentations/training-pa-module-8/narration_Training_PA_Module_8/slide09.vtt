@@ -1,0 +1,60 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.525
+Step three runs two days
+against the fictional tenant.
+
+2
+00:00:03.525 --> 00:00:08.154
+First, one variable holds the run's
+settings: the cloud, the tenant I D,
+
+3
+00:00:08.154 --> 00:00:12.615
+the output folder, the audit
+fixture, the emergency access files,
+
+4
+00:00:12.615 --> 00:00:17.412
+the exceptions, the Azure scopes,
+and the control-plane subscription.
+
+5
+00:00:17.412 --> 00:00:22.075
+Then run day one, as of six in the
+morning on the twenty-ninth of October.
+
+6
+00:00:22.075 --> 00:00:26.798
+The inventory, the emergency check
+and the PIM audit read all report OK,
+
+7
+00:00:26.798 --> 00:00:30.300
+and the audit window is the
+twenty-four hours before.
+
+8
+00:00:30.300 --> 00:00:34.525
+Then day two, against the second
+day's tenant, as of the thirtieth.
+
+9
+00:00:34.525 --> 00:00:38.937
+Notice the second window starts
+exactly where the first ended: no gap.
+
+10
+00:00:38.937 --> 00:00:43.500
+Each run's folder has a run file that
+lists each task's manifest hash.
+
+11
+00:00:43.500 --> 00:00:47.934
+On your machine, the Written to line
+may print the folder's full path;
+
+12
+00:00:47.934 --> 00:00:50.740
+the path's verification log records that.

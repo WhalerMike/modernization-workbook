@@ -1,0 +1,60 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.214
+Lab 2 runs the inventory against your own
+test tenant, in the worldwide or G C C
+
+2
+00:00:05.214 --> 00:00:10.788
+cloud, with a test Azure subscription,
+never production, and with fictional people.
+
+3
+00:00:10.788 --> 00:00:12.525
+The run only reads.
+
+4
+00:00:12.525 --> 00:00:15.092
+You register a reader
+app with a certificate,
+
+5
+00:00:15.092 --> 00:00:18.908
+and grant it the five Graph
+application permissions from step two,
+
+6
+00:00:18.908 --> 00:00:22.100
+with admin consent, and Reader
+on the test subscription.
+
+7
+00:00:22.100 --> 00:00:26.456
+Then you run the inventory, cross-check
+it against the admin center's download,
+
+8
+00:00:26.456 --> 00:00:28.975
+and check the two things
+the fixture assumed.
+
+9
+00:00:28.975 --> 00:00:32.788
+To back it out, remove the Reader
+assignment, the five permissions,
+
+10
+00:00:32.788 --> 00:00:37.237
+the app registration and its certificate,
+and delete the test output folder,
+
+11
+00:00:37.237 --> 00:00:39.850
+which names the tenant's
+privileged holders.
+
+12
+00:00:39.850 --> 00:00:45.500
+The path's authors haven't run Lab 2;
+the workbook's Lab 2 gives every step.

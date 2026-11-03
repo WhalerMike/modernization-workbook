@@ -1,0 +1,69 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.875
+To sum up.
+
+2
+00:00:00.875 --> 00:00:04.530
+You ran a custom task extension's
+definition for the right cloud,
+
+3
+00:00:04.530 --> 00:00:08.874
+through failures and repeat deliveries,
+built its deployment pieces from a
+
+4
+00:00:08.874 --> 00:00:13.563
+reviewed registry, and checked that the
+leaver blocks before the custom task runs.
+
+5
+00:00:13.563 --> 00:00:15.479
+The evidence an ISSO keeps:
+
+6
+00:00:15.479 --> 00:00:20.445
+the registry and the built ARM and
+extension files in the repository,
+
+7
+00:00:20.445 --> 00:00:25.672
+the check output filed with the change,
+and, from Lab 2, the task processing
+
+8
+00:00:25.672 --> 00:00:30.899
+results, the Logic App run history,
+the drill record and the activity logs.
+
+9
+00:00:30.899 --> 00:00:33.796
+Gate 7's own evidence,
+the mover workflow's
+
+10
+00:00:33.796 --> 00:00:36.863
+run history joined on
+the key, is in the guide.
+
+11
+00:00:36.863 --> 00:00:40.562
+Before shipping, work through
+the Chapter 05 checklist.
+
+12
+00:00:40.562 --> 00:00:45.450
+Next is Module 8: run the drift
+pipeline and hand over the evidence.
+
+13
+00:00:45.450 --> 00:00:50.240
+You'll run the validation kit on
+a schedule with no stored secret,
+
+14
+00:00:50.240 --> 00:00:56.090
+compare each run with the last, and hand
+the ISSO a package sha256sum verifies.

@@ -1,0 +1,86 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.963
+Step four records a baseline.
+
+2
+00:00:01.963 --> 00:00:05.298
+The fixtures are two
+fictional validation kit runs,
+
+3
+00:00:05.298 --> 00:00:08.712
+one day apart: October
+twenty-eighth and twenty-ninth.
+
+4
+00:00:08.712 --> 00:00:12.010
+Compare the first with
+nothing, and it's a baseline:
+
+5
+00:00:12.010 --> 00:00:14.825
+ten new findings, and
+the command exits two.
+
+6
+00:00:14.825 --> 00:00:17.771
+Package it with the
+other kits' provenance,
+
+7
+00:00:17.771 --> 00:00:21.475
+and the evidence manifest's
+hash starts six d nine f f f.
+
+8
+00:00:21.475 --> 00:00:23.663
+Step five compares the next day.
+
+9
+00:00:23.663 --> 00:00:28.407
+The summary reads: new three,
+resolved one, changed one,
+
+10
+00:00:28.407 --> 00:00:33.151
+detail only one, unchanged
+six, unverified checks two.
+
+11
+00:00:33.151 --> 00:00:35.338
+Its table shows which checks moved.
+
+12
+00:00:35.338 --> 00:00:39.187
+VK-CA-01 went from Pass to Fail.
+
+13
+00:00:39.187 --> 00:00:42.488
+VK-PIV-01 didn't run.
+
+14
+00:00:42.488 --> 00:00:47.537
+And VK-NPI-03 went from Fail to Error.
+
+15
+00:00:47.537 --> 00:00:49.038
+Look closely at that one.
+
+16
+00:00:49.038 --> 00:00:50.875
+Yesterday it had a finding.
+
+17
+00:00:50.875 --> 00:00:52.363
+Today its read failed.
+
+18
+00:00:52.363 --> 00:00:55.337
+So the finding is
+unverified, not resolved.
+
+19
+00:00:55.337 --> 00:00:57.580
+A failed read is never a fix.

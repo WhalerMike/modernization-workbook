@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.228
+Step three records four changes the way
+the stage steps do: the provisioning job,
+
+2
+00:00:05.228 --> 00:00:10.250
+a dynamic group, a Group Policy link the
+stage created, and a policy assignment.
+
+3
+00:00:10.250 --> 00:00:13.164
+Each add records its change
+in the deploy record,
+
+4
+00:00:13.164 --> 00:00:15.713
+and writes an evidence
+record for its step.
+
+5
+00:00:15.713 --> 00:00:16.701
+Then the plan.
+
+6
+00:00:16.701 --> 00:00:22.173
+It lists the four undo steps, newest first:
+remove the policy assignment, disable
+
+7
+00:00:22.173 --> 00:00:27.563
+the Group Policy link, remove the dynamic
+group, and pause the provisioning job.
+
+8
+00:00:27.563 --> 00:00:32.509
+Three are cloud steps and one is Active
+Directory, so it writes a cloud script,
+
+9
+00:00:32.509 --> 00:00:36.199
+an A D script and a manual list,
+and its own evidence record.
+
+10
+00:00:36.199 --> 00:00:38.863
+And notice the last line: nothing was run.
+
+11
+00:00:38.863 --> 00:00:42.562
+You review the scripts, then
+run them in a signed-in session.
+
+12
+00:00:42.562 --> 00:00:46.420
+The rollback is written from the
+record, not from memory on the day.

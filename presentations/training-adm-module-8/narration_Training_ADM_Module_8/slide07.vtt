@@ -1,0 +1,83 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.962
+Findings go to the issue tracker without
+names; that's this workbook's guidance.
+
+2
+00:00:04.962 --> 00:00:08.283
+A drafted issue holds
+the check, the severity,
+
+3
+00:00:08.283 --> 00:00:11.513
+the object ID, the issue
+and the fingerprint.
+
+4
+00:00:11.513 --> 00:00:16.174
+It leaves out the object's name, which
+for most checks is a user principal name.
+
+5
+00:00:16.174 --> 00:00:19.662
+The evidence store is
+access-controlled and holds the names;
+
+6
+00:00:19.662 --> 00:00:22.800
+the tracker is read by more
+people and doesn't need them.
+
+7
+00:00:22.800 --> 00:00:27.750
+A first run is a baseline, so it
+opens one summary issue, not hundreds.
+
+8
+00:00:27.750 --> 00:00:28.925
+Then the package.
+
+9
+00:00:28.925 --> 00:00:33.007
+It holds the kit run as written,
+the drift report and summary,
+
+10
+00:00:33.007 --> 00:00:37.422
+the latest provenance from the
+other kits, an evidence manifest,
+
+11
+00:00:37.422 --> 00:00:41.087
+and a SHA256SUMS file that
+sha two fifty-six sum reads.
+
+12
+00:00:41.087 --> 00:00:45.952
+Each manifest records the previous
+package's manifest hash, so the packages
+
+13
+00:00:45.952 --> 00:00:50.200
+form a chain, and a replaced package
+or a missing day shows as a break.
+
+14
+00:00:50.200 --> 00:00:51.912
+The packager doesn't sign.
+
+15
+00:00:51.912 --> 00:00:57.134
+Microsoft Learn's page on immutable
+storage says a locked time-based retention
+
+16
+00:00:57.134 --> 00:00:59.586
+policy lets blobs be created and read,
+
+17
+00:00:59.586 --> 00:01:03.770
+but not modified or deleted,
+until the retention interval ends.

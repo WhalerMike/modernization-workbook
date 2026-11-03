@@ -1,0 +1,83 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.697
+Microsoft Learn's page, Configure a
+Logic App for Lifecycle Workflow use,
+
+2
+00:00:04.697 --> 00:00:07.563
+gives the definition to
+paste into code view.
+
+3
+00:00:07.563 --> 00:00:10.747
+It's Microsoft's only sample
+for this integration,
+
+4
+00:00:10.747 --> 00:00:14.787
+so the repository pins the page,
+from the entra docs repository.
+
+5
+00:00:14.787 --> 00:00:18.237
+Running the definition against
+fakes shows what it leaves to you.
+
+6
+00:00:18.237 --> 00:00:21.317
+It resumes the task with
+the Logic App's managed
+
+7
+00:00:21.317 --> 00:00:24.238
+identity and no secret,
+and the kit keeps that.
+
+8
+00:00:24.238 --> 00:00:28.451
+But it hard-codes the worldwide
+Graph host, and calls back on beta.
+
+9
+00:00:28.451 --> 00:00:30.919
+It uses the callback path as it arrives,
+
+10
+00:00:30.919 --> 00:00:35.625
+so any path appended to the Graph host
+gets a POST with the identity's token.
+
+11
+00:00:35.625 --> 00:00:40.050
+It always reports completed, so a
+failed revocation reads as done.
+
+12
+00:00:40.050 --> 00:00:42.539
+If work you add before the callback fails,
+
+13
+00:00:42.539 --> 00:00:46.125
+no callback is sent, and the task
+waits out the whole timeout.
+
+14
+00:00:46.125 --> 00:00:47.863
+It has no idempotency.
+
+15
+00:00:47.863 --> 00:00:51.699
+And it carries the subject's
+name and email into run history.
+
+16
+00:00:51.699 --> 00:00:54.694
+The verdict: the right
+shape and the right trigger,
+
+17
+00:00:54.694 --> 00:00:58.250
+but not safe to run as the
+leaver's revocation as published.

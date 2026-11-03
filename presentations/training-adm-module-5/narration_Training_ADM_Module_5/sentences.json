@@ -1,0 +1,727 @@
+{
+ "1": [
+  [
+   0.05,
+   6.8,
+   "Welcome to Module 5 of the Attribute-Driven Migration learning path: build machine configuration packages."
+  ],
+  [
+   6.85,
+   8.1,
+   "This module serves Gate 5 of the implementation guide, and takes Chapter 07 of Building the Attribute-Driven Migration."
+  ],
+  [
+   14.95,
+   7.45,
+   "For the server settings machine configuration owns, the code is a DSC configuration, and Azure Policy delivers it."
+  ],
+  [
+   22.4,
+   14.15,
+   "You'll follow Learn's steps, see where their outputs fall short, and learn the build that checks between them: it cleans the MOF so it's the same every time, checks the package and the definition, and refuses what the release registry doesn't allow."
+  ],
+  [
+   36.55,
+   3.525,
+   "The lab runs offline on Windows, with nothing signed in."
+  ],
+  [
+   40.075,
+   5.662,
+   "The code is illustrative: tested against fixtures, not against a production subscription."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.988,
+   "Why does a package need a checked build?"
+  ],
+  [
+   2.038,
+   3.375,
+   "Gate 5 sets the conventions the server track builds on."
+  ],
+  [
+   5.412,
+   7.275,
+   "Once connected, an Arc server is an Azure resource whose tags are its attributes, and each setting has one owning tool."
+  ],
+  [
+   12.688,
+   7.013,
+   "For the settings machine configuration owns, the code is a DSC configuration, and Azure Policy delivers it."
+  ],
+  [
+   19.7,
+   2.95,
+   "Learn's cmdlets build a package and a definition."
+  ],
+  [
+   22.65,
+   6.263,
+   "But they don't make the same bytes twice, and they write your user name and computer name into what the machines download."
+  ],
+  [
+   28.913,
+   2.675,
+   "A package is the server baseline in a file."
+  ],
+  [
+   31.587,
+   3.913,
+   "So what was built, from what, and what shipped is the evidence."
+  ],
+  [
+   35.5,
+   4.675,
+   "In this module you follow Learn's steps, then run the build that checks between them."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   5.438,
+   "Here's what you'll be able to do by the end of this module, which takes about forty-five minutes with the lab."
+  ],
+  [
+   5.487,
+   5.888,
+   "You'll describe a package, a policy definition and a guest assignment, and the three assignment types."
+  ],
+  [
+   11.375,
+   5.425,
+   "You'll explain what Learn's cmdlets leave to you, and why each gap matters in a federal pipeline."
+  ],
+  [
+   16.8,
+   5.487,
+   "You'll explain the release registry, and what MC-POL oh six and oh eight refuse."
+  ],
+  [
+   22.288,
+   3.45,
+   "You'll run the checked build, and compare two builds' hashes."
+  ],
+  [
+   25.738,
+   5.55,
+   "And you'll explain why the include Arc machines parameter has to be set for Arc-enabled servers."
+  ],
+  [
+   31.288,
+   4.15,
+   "Before you start, do Module 4, for one owning tool per setting."
+  ],
+  [
+   35.438,
+   4.775,
+   "You need Windows, with PowerShell 7.1 or later and Pester 5."
+  ],
+  [
+   40.212,
+   6.85,
+   "The lab's first step saves three pinned modules from the PowerShell Gallery into a folder, rather than installing them."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   5.938,
+   "The build records what it did in a provenance manifest: what was built, from what, and what shipped."
+  ],
+  [
+   5.987,
+   5.312,
+   "It holds the configuration, its version, the fixed policy I D and the mode."
+  ],
+  [
+   11.3,
+   5.075,
+   "It holds the MOF, the package and the policy definition, each with its hash."
+  ],
+  [
+   16.375,
+   6.775,
+   "It records the pinned module versions the build used, and the counts of findings, warnings and information items."
+  ],
+  [
+   23.15,
+   1.887,
+   "There are two kinds of hash in it."
+  ],
+  [
+   25.038,
+   5.825,
+   "The MOF hash is the reviewable one: it's the same for anyone who builds the same commit."
+  ],
+  [
+   30.863,
+   4.2,
+   "The package and definition hashes identify the bytes that shipped."
+  ],
+  [
+   35.062,
+   5.55,
+   "So an I S S O can download the published blob, hash it, and match it against this file."
+  ],
+  [
+   40.612,
+   5.5,
+   "Chapter 09, in Module 8, carries the manifest into the evidence package."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   5.2,
+   "Lab 1 runs in the machine configuration folder, in PowerShell 7 on Windows."
+  ],
+  [
+   5.975,
+   3.55,
+   "Nothing signs in, uploads, or installs the agent."
+  ],
+  [
+   9.525,
+   6.375,
+   "Step one saves three pinned modules from the PowerShell Gallery into a folder, rather than installing them."
+  ],
+  [
+   15.9,
+   10.825,
+   "Because of that download, the results on these slides weren't re-run for this deck: they're the ones Chapter 07's Lab 1 text gives, as the path's verification log records."
+  ],
+  [
+   26.725,
+   2.525,
+   "Step two follows Learn's steps by hand."
+  ],
+  [
+   29.25,
+   4.125,
+   "Compile the configuration, and package it twice from the same MOF."
+  ],
+  [
+   33.375,
+   2.788,
+   "You get two packages with two different hashes."
+  ],
+  [
+   36.163,
+   7.213,
+   "Look inside the MOF, and your user name and computer name are in the header, and your folder path is in every source info."
+  ],
+  [
+   43.375,
+   11.775,
+   "Step three runs the package check on Learn's output: two MC-PKG oh four findings, for build-host data and an absolute path, and the oh seven warning, no version in the name."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   3.587,
+   "Step six breaks the registry on purpose, three ways."
+  ],
+  [
+   3.638,
+   5.5,
+   "Each time, you write a copy of the registry into the lab folder, and the build reads the copy."
+  ],
+  [
+   9.137,
+   5.4,
+   "First, raise the published version to one point oh point oh, the version you're building."
+  ],
+  [
+   14.537,
+   5.25,
+   "The build exits two, MC-POL oh six: the version didn't rise."
+  ],
+  [
+   19.788,
+   4.95,
+   "Second, give the mode the wrong case, apply and auto correct with a lower-case a."
+  ],
+  [
+   24.738,
+   4.225,
+   "The build exits one, because the assignment type is case sensitive."
+  ],
+  [
+   28.962,
+   3.65,
+   "Third, fix the case, and remove the owner tag."
+  ],
+  [
+   32.612,
+   6.588,
+   "The build exits two, MC-POL oh eight: an enforcing definition with no owner filter."
+  ],
+  [
+   39.2,
+   7.463,
+   "Step seven runs the tests: sixty-five pass with the modules, and forty-nine, with sixteen skipped, without them."
+  ],
+  [
+   46.663,
+   6.688,
+   "That second count needs no download, and on November third it gave forty-nine passed and sixteen skipped."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   1.975,
+   "Check yourself with two questions."
+  ],
+  [
+   2.025,
+   3.862,
+   "First: you run the package cmdlet twice on the same MOF."
+  ],
+  [
+   5.888,
+   0.925,
+   "What do you get?"
+  ],
+  [
+   6.812,
+   7.0,
+   "The answer is b: two packages with different hashes, so a rebuilt package won't match the reviewed definition."
+  ],
+  [
+   13.812,
+   4.95,
+   "That's why the build packages once, checks, and publishes those exact bytes."
+  ],
+  [
+   18.762,
+   6.338,
+   "Second: you assign a definition to an Arc-enabled server, and leave include Arc machines at its default."
+  ],
+  [
+   25.1,
+   1.012,
+   "What happens?"
+  ],
+  [
+   26.113,
+   3.812,
+   "The answer is b: nothing happens, and nothing says so."
+  ],
+  [
+   29.925,
+   8.188,
+   "The default is false, so every Arc-enabled server is out of scope, and the build's MC-POL oh nine row is the reminder."
+  ],
+  [
+   38.112,
+   8.062,
+   "The module page has two more questions, on MC-PKG oh four and on the mode's case, each linked to the section that answers it."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   0.825,
+   "To sum up."
+  ],
+  [
+   0.875,
+   11.738,
+   "You followed Learn's procedure, saw where its outputs fall short, and met the build that makes the same MOF every time, checks the package and the definition, and refuses what the registry doesn't allow."
+  ],
+  [
+   12.613,
+   18.4,
+   "The evidence an I S S O keeps: both provenance files and the findings file in the evidence store, the registry and its pull requests, and in Lab 2, the published blob's hash, the role assignment, the definition's activity log entry, and each machine's compliance against the recorded hash."
+  ],
+  [
+   31.012,
+   3.75,
+   "Before shipping, work through the Chapter 07 checklist."
+  ],
+  [
+   34.763,
+   4.513,
+   "Next is Module 6: onboard servers with Ansible beside Arc."
+  ],
+  [
+   39.275,
+   8.037,
+   "You'll read a CMDB export into groups and tags, plan a wave, and see what each server would get before anything is contacted."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   6.025,
+   "Microsoft Learn's overview, What is Azure Machine Configuration, describes a model with three parts."
+  ],
+  [
+   6.075,
+   5.737,
+   "A package is a zip file with the compiled MOF and the DSC resource modules it uses."
+  ],
+  [
+   11.812,
+   2.038,
+   "It says what the machine should look like."
+  ],
+  [
+   13.85,
+   6.862,
+   "A policy definition, in the Guest Configuration category, points at the package by URI and by hash."
+  ],
+  [
+   20.712,
+   10.988,
+   "When the definition is assigned, the service creates a guest assignment on each machine in scope, and the agent on the machine downloads the package, evaluates it and reports compliance."
+  ],
+  [
+   31.7,
+   2.975,
+   "A machine can hold up to fifty guest assignments."
+  ],
+  [
+   34.675,
+   4.412,
+   "Learn's page on remediation options gives each assignment one of three types."
+  ],
+  [
+   39.087,
+   2.188,
+   "Audit reports and changes nothing."
+  ],
+  [
+   41.275,
+   4.638,
+   "Apply and monitor applies once, then reports drift without correcting it."
+  ],
+  [
+   45.913,
+   4.713,
+   "Apply and auto correct applies, and corrects drift at the next evaluation."
+  ],
+  [
+   50.625,
+   1.975,
+   "And the spelling is case sensitive."
+  ],
+  [
+   52.6,
+   2.275,
+   "Remember that for step six of the lab."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   14.825,
+   "Microsoft Learn's guide, How to develop a custom machine configuration package, documents the whole procedure, one page a step: set up, author, package, test, publish, sign, define, and publish the definition."
+  ],
+  [
+   14.875,
+   5.412,
+   "Running those cmdlets offline shows what they don't do; the gaps are what the kit's tests observed."
+  ],
+  [
+   20.288,
+   8.3,
+   "The compiled MOF records the user name, host name, date and full script path, and that MOF goes to a blob the machines read."
+  ],
+  [
+   28.587,
+   7.1,
+   "Compiling writes each resource's properties in a different order each run, so the hash changes with no real change."
+  ],
+  [
+   35.688,
+   4.55,
+   "Packaging writes a different zip each run, even from the same MOF."
+  ],
+  [
+   40.237,
+   4.463,
+   "Nothing checks for secrets, although that Learn guide says not to include them."
+  ],
+  [
+   44.7,
+   11.95,
+   "The policy cmdlet takes whatever policy I D and version it's given; Learn's page on creating policy definitions says to reuse the I D for updates, and a new GUID creates a second definition."
+  ],
+  [
+   56.65,
+   4.375,
+   "And the generated definition leaves Arc-enabled servers out by default."
+  ],
+  [
+   61.025,
+   4.237,
+   "The build calls Learn's cmdlets in Learn's order, and replaces none of them."
+  ],
+  [
+   65.263,
+   2.062,
+   "What it adds sits between the steps."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   6.9,
+   "The release registry is the kit's design: the reviewed record of what is in production, one entry per configuration."
+  ],
+  [
+   6.95,
+   2.275,
+   "The policy I D never changes."
+  ],
+  [
+   9.225,
+   7.812,
+   "Learn's page on creating policy definitions says to reuse it, so updates replace the definition instead of creating a second one."
+  ],
+  [
+   17.038,
+   4.112,
+   "The mode is checked case-sensitively against the three assignment types."
+  ],
+  [
+   21.15,
+   9.2,
+   "The published version moves up in the same pull request that publishes a new version, so a second build of one point oh point oh fails MC-POL oh six."
+  ],
+  [
+   30.35,
+   11.175,
+   "The identity is system, so each machine reads the package with its own system-assigned identity, which Learn's page on secure access to packages says works for Arc-enabled servers."
+  ],
+  [
+   41.525,
+   2.85,
+   "Including Arc machines is a stated choice."
+  ],
+  [
+   44.375,
+   4.125,
+   "And the owner tag is the one this workbook's Arc track guidance uses."
+  ],
+  [
+   48.5,
+   9.675,
+   "An enforcing definition without that filter fails MC-POL oh eight, because two tools on one setting flip it back and forth, each reporting success."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   3.375,
+   "Three steps sit between Learn's, and they're the kit's design."
+  ],
+  [
+   3.425,
+   4.4,
+   "The cleaner rewrites the compiled MOF into one canonical form."
+  ],
+  [
+   7.825,
+   5.325,
+   "It drops the header comment, the author, the generation date and the generation host."
+  ],
+  [
+   13.15,
+   8.975,
+   "It keeps source info in the short form Microsoft's own sample MOF uses, sorts each instance's properties, and writes Unix line endings."
+  ],
+  [
+   22.125,
+   5.987,
+   "Compiled three times, the configuration gives three different MOFs, and one cleaned MOF."
+  ],
+  [
+   28.113,
+   18.975,
+   "Then the package check opens the zip and applies seven rules: the files at the root, the right type for the mode, the hundred-megabyte limit that Learn's page on creating package artifacts sets, no build-host data, nothing that looks like a secret, every module at the version it was compiled against, and a version in the name."
+  ],
+  [
+   47.087,
+   2.337,
+   "Then the definition check applies nine."
+  ],
+  [
+   49.425,
+   7.775,
+   "The one that catches the most is MC-POL oh two: every copy of the content hash must be this package's hash."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   3.862,
+   "Step four runs Microsoft's pinned sample with the current module."
+  ],
+  [
+   3.913,
+   12.588,
+   "Microsoft's sample, from the Azure Policy samples repository, is pinned at an August 2021 commit, five years older than GuestConfiguration 4.12.0 on the PowerShell Gallery."
+  ],
+  [
+   16.5,
+   8.525,
+   "Its MOF still packages, but the cmdlet its script calls, test guest configuration package, returns nothing: it's been renamed."
+  ],
+  [
+   25.025,
+   4.088,
+   "Then check Microsoft's published MOF with the kit's MOF check."
+  ],
+  [
+   29.113,
+   7.175,
+   "It returns nothing, because Microsoft's published MOF carries no build-host data, the form the cleaner produces."
+  ],
+  [
+   36.288,
+   5.4,
+   "That check needs none of the gallery modules, and it printed nothing again on November third."
+  ],
+  [
+   41.688,
+   2.138,
+   "Step five runs the checked build."
+  ],
+  [
+   43.825,
+   7.537,
+   "It exits zero, with one information row, MC-POL oh nine: include Arc machines defaults to false."
+  ],
+  [
+   51.362,
+   3.925,
+   "Build again into a second folder, and compare the two manifests."
+  ],
+  [
+   55.288,
+   7.088,
+   "The MOF hashes match, starting e c f f d seven nine five, and the package hashes don't."
+  ],
+  [
+   62.375,
+   2.837,
+   "So you publish the exact bytes the build checked."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   4.975,
+   "Lab 2 needs a test subscription and a server you can rebuild, never production."
+  ],
+  [
+   5.025,
+   11.213,
+   "Microsoft Learn's page, How to test machine configuration package artifacts, says local testing installs the agent and needs elevation, and remediation changes the machine it runs on."
+  ],
+  [
+   16.238,
+   2.65,
+   "Test the package on the disposable server."
+  ],
+  [
+   18.887,
+   5.662,
+   "Publish the exact bytes Lab 1 built to a storage account with anonymous access off."
+  ],
+  [
+   24.55,
+   6.35,
+   "Grant the machines read access with their own identity, so no SAS token goes in the definition."
+  ],
+  [
+   30.9,
+   6.438,
+   "Publish the definition under the registry's policy I D. Assign it with include Arc machines set to true."
+  ],
+  [
+   37.337,
+   4.675,
+   "And read each machine's compliance against the hash in the provenance manifest."
+  ],
+  [
+   42.013,
+   8.3,
+   "To back it out, step eight deletes the assignment, the definition, the blob and the role assignment, then rebuilds the disposable server."
+  ],
+  [
+   50.312,
+   2.15,
+   "The authors haven't run Lab 2."
+  ],
+  [
+   52.462,
+   2.525,
+   "Follow Chapter 07's Lab 2."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   1.387,
+   "The federal requirement."
+  ],
+  [
+   1.438,
+   14.525,
+   "A package is the server baseline in a file, so what was built, from what, and what shipped is the evidence for nist special publication eight hundred fifty-three controls such as S R three, S A ten, S I seven and C M two."
+  ],
+  [
+   15.963,
+   5.025,
+   "The pinned module versions support supply chain and developer configuration management."
+  ],
+  [
+   20.988,
+   4.9,
+   "The package check, refusing build-host data, supports developer testing."
+  ],
+  [
+   25.887,
+   11.338,
+   "The same commit giving the same cleaned MOF hash, with the hashes identifying what shipped, supports software integrity and the baseline, and the provenance manifest is the evidence."
+  ],
+  [
+   37.225,
+   5.362,
+   "The definition carries the package's content hash, and Arc servers are a stated choice."
+  ],
+  [
+   42.587,
+   8.938,
+   "A version that didn't rise, a mode in the wrong case and an enforcing definition with no owner filter are refused, in the pull request's check run."
+  ],
+  [
+   51.525,
+   5.263,
+   "And Lab 2 adds the change record for the published blob, and the role assignment record."
+  ],
+  [
+   56.788,
+   11.1,
+   "The Key Security Indicators come from fed-ramp's Consolidated Rules for 2026: they're fed-ramp twenty X indicators for providers, and the agency lines its evidence up with them."
+  ],
+  [
+   67.888,
+   3.562,
+   "Which output supports which control is this workbook's reading."
+  ]
+ ]
+}

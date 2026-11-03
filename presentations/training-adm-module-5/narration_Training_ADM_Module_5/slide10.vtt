@@ -1,0 +1,87 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.912
+Step four runs Microsoft's pinned
+sample with the current module.
+
+2
+00:00:03.912 --> 00:00:08.466
+Microsoft's sample, from the
+Azure Policy samples repository,
+
+3
+00:00:08.466 --> 00:00:10.966
+is pinned at an August 2021 commit,
+
+4
+00:00:10.966 --> 00:00:16.501
+five years older than GuestConfiguration
+4.12.0 on the PowerShell Gallery.
+
+5
+00:00:16.501 --> 00:00:20.261
+Its MOF still packages, but
+the cmdlet its script calls,
+
+6
+00:00:20.261 --> 00:00:25.025
+test guest configuration package,
+returns nothing: it's been renamed.
+
+7
+00:00:25.025 --> 00:00:29.113
+Then check Microsoft's published
+MOF with the kit's MOF check.
+
+8
+00:00:29.113 --> 00:00:32.623
+It returns nothing, because
+Microsoft's published MOF
+
+9
+00:00:32.623 --> 00:00:36.288
+carries no build-host data,
+the form the cleaner produces.
+
+10
+00:00:36.288 --> 00:00:38.917
+That check needs none
+of the gallery modules,
+
+11
+00:00:38.917 --> 00:00:41.688
+and it printed nothing
+again on November third.
+
+12
+00:00:41.688 --> 00:00:43.826
+Step five runs the checked build.
+
+13
+00:00:43.826 --> 00:00:46.998
+It exits zero, with one information row,
+
+14
+00:00:46.998 --> 00:00:51.362
+MC-POL oh nine: include Arc
+machines defaults to false.
+
+15
+00:00:51.362 --> 00:00:55.287
+Build again into a second folder,
+and compare the two manifests.
+
+16
+00:00:55.287 --> 00:00:59.906
+The MOF hashes match, starting
+e c f f d seven nine five,
+
+17
+00:00:59.906 --> 00:01:02.376
+and the package hashes don't.
+
+18
+00:01:02.376 --> 00:01:05.280
+So you publish the exact
+bytes the build checked.

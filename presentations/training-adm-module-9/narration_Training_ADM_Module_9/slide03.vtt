@@ -1,0 +1,60 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.861
+Here's what you'll be able to
+do by the end of this module,
+
+2
+00:00:02.861 --> 00:00:05.225
+which takes about fifty
+minutes with the lab.
+
+3
+00:00:05.225 --> 00:00:09.387
+You'll explain the four ways a deployment
+differs from a chapter's Lab 2.
+
+4
+00:00:09.387 --> 00:00:13.850
+You'll describe the settings file, the
+placeholders and the three identities.
+
+5
+00:00:13.850 --> 00:00:18.425
+You'll run the pre-flight check, and say
+which checks it runs dry and which live.
+
+6
+00:00:18.425 --> 00:00:22.050
+You'll record changes and read
+the rollback plan they produce.
+
+7
+00:00:22.050 --> 00:00:25.508
+And you'll explain why a fixture
+smoke test can never promote,
+
+8
+00:00:25.508 --> 00:00:28.275
+and what production's
+pre-flight check verifies.
+
+9
+00:00:28.275 --> 00:00:32.395
+Before you start, do Modules 1
+to 8, or at least their Lab 1s:
+
+10
+00:00:32.395 --> 00:00:35.350
+this module doesn't teach the kits again.
+
+11
+00:00:35.350 --> 00:00:38.831
+Lab 1 needs Python 3.10
+or later with pytest,
+
+12
+00:00:38.831 --> 00:00:42.380
+and a POSIX shell with
+sha two fifty-six sum.

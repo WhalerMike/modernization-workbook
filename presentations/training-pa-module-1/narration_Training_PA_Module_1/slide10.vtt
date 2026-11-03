@@ -1,0 +1,62 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.412
+Step four prints the ten findings.
+
+2
+00:00:02.412 --> 00:00:07.623
+Seven are I N V oh one, standing
+privilege in Tier 0 or Tier 1 outside the
+
+3
+00:00:07.623 --> 00:00:10.091
+exceptions: a person, alex dot kim,
+
+4
+00:00:10.091 --> 00:00:13.838
+an automation account,
+and several Azure holders.
+
+5
+00:00:13.838 --> 00:00:20.213
+The Azure rows show object I D's, because
+Resource Manager returns I D's, not names.
+
+6
+00:00:20.213 --> 00:00:25.139
+One holder also has I N V oh seven, User
+Access Administrator at root scope,
+
+7
+00:00:25.139 --> 00:00:30.312
+the elevated access that reaches every
+subscription and management group.
+
+8
+00:00:30.312 --> 00:00:34.000
+There's I N V oh four, too
+many Global Administrators,
+
+9
+00:00:34.000 --> 00:00:37.775
+and I N V oh eight, too many
+Owners on one subscription.
+
+10
+00:00:37.775 --> 00:00:41.663
+Notice who's missing: the
+emergency account, E A oh one.
+
+11
+00:00:41.663 --> 00:00:45.595
+It's Info, not a finding, because
+the exceptions list names it,
+
+12
+00:00:45.595 --> 00:00:47.601
+and the exception has an owner.
+
+13
+00:00:47.601 --> 00:00:50.060
+An exception with no owner wouldn't count.

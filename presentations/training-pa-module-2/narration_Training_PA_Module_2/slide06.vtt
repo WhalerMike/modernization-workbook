@@ -1,0 +1,75 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.725
+Unit 2: the alert.
+
+2
+00:00:01.725 --> 00:00:04.840
+Microsoft Learn's page
+has three sample queries,
+
+3
+00:00:04.840 --> 00:00:08.500
+and all three read the sign-in
+log of interactive sign-ins.
+
+4
+00:00:08.500 --> 00:00:10.750
+The example adds two more tables.
+
+5
+00:00:10.750 --> 00:00:12.718
+The non-interactive sign-in log,
+
+6
+00:00:12.718 --> 00:00:17.334
+because a refreshed token in a stolen
+session is a non-interactive sign-in,
+
+7
+00:00:17.334 --> 00:00:21.042
+and Microsoft Learn says new
+sign-ins that obtain a refresh
+
+8
+00:00:21.042 --> 00:00:24.675
+token with FIDO2 keys are
+logged as non-interactive too.
+
+9
+00:00:24.675 --> 00:00:28.587
+And the audit log, for a role change
+made by an emergency account,
+
+10
+00:00:28.587 --> 00:00:33.025
+and a security method registered on
+one, which is the start of a takeover.
+
+11
+00:00:33.025 --> 00:00:35.488
+The query matches object I D's only,
+
+12
+00:00:35.488 --> 00:00:40.238
+so a rename can't hide a sign-in,
+and it refuses a user principal name.
+
+13
+00:00:40.238 --> 00:00:45.243
+Then the kit wraps it in an A R M
+template, with Microsoft Learn's severity
+
+14
+00:00:45.243 --> 00:00:50.249
+zero and a threshold of greater than
+zero, evaluated every five minutes.
+
+15
+00:00:50.249 --> 00:00:51.550
+It deploys nothing.
+
+16
+00:00:51.550 --> 00:00:54.380
+Deployment is the reviewed pipeline's job.

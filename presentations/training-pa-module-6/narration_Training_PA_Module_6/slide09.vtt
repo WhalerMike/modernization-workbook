@@ -1,0 +1,57 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.650
+Step four reads the diff.
+
+2
+00:00:01.650 --> 00:00:04.419
+The plus lines add eligible assignments:
+
+3
+00:00:04.419 --> 00:00:09.712
+User Access Administrator at the root
+management group, Tier 0, for ninety days;
+
+4
+00:00:09.712 --> 00:00:14.109
+Owner on the workload subscription,
+twice; and Contributor on the
+
+5
+00:00:14.109 --> 00:00:18.588
+payroll resource group, twice, each
+for a hundred eighty days, Tier 1.
+
+6
+00:00:18.588 --> 00:00:20.162
+Three of them say converted.
+
+7
+00:00:20.162 --> 00:00:22.964
+Each converted line has
+its minus line below:
+
+8
+00:00:22.964 --> 00:00:27.810
+the standing User Access Administrator,
+Owner and Contributor assignments
+
+9
+00:00:27.810 --> 00:00:32.126
+those holders had, each removed only
+after its eligible replacement.
+
+10
+00:00:32.126 --> 00:00:33.962
+Eligible replacement first.
+
+11
+00:00:33.962 --> 00:00:39.550
+Then count the tilde lines: seventy policy
+rule changes, across the governed scopes.
+
+12
+00:00:39.550 --> 00:00:43.080
+The slide shortens the I
+D's and scope names to fit.

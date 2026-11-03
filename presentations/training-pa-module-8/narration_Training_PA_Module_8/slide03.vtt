@@ -1,0 +1,74 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.929
+Here's what you'll be able to
+do by the end of this module,
+
+2
+00:00:02.929 --> 00:00:05.612
+which takes about sixty-five
+minutes with the lab.
+
+3
+00:00:05.612 --> 00:00:10.373
+You'll explain why the run reads both the
+tenant's state and the PIM audit events,
+
+4
+00:00:10.373 --> 00:00:12.937
+and why the audit windows
+must leave no gap.
+
+5
+00:00:12.937 --> 00:00:17.088
+You'll read the audit findings,
+audit rules oh one to oh four.
+
+6
+00:00:17.088 --> 00:00:19.388
+You'll explain how the comparison works,
+
+7
+00:00:19.388 --> 00:00:22.037
+by fingerprint, and what
+counts as an incident.
+
+8
+00:00:22.037 --> 00:00:25.038
+You'll explain why issue
+drafts carry no names.
+
+9
+00:00:25.038 --> 00:00:27.610
+And you'll package, chain and verify runs,
+
+10
+00:00:27.610 --> 00:00:30.338
+and assemble a period
+for the Gate 4 review.
+
+11
+00:00:30.338 --> 00:00:36.712
+Before you start, finish Modules 1 and 2:
+the run repeats their two reads unchanged.
+
+12
+00:00:36.712 --> 00:00:40.017
+And skim Chapter 09 of the
+first developer workbook,
+
+13
+00:00:40.017 --> 00:00:42.937
+which the comparison and
+the package build on.
+
+14
+00:00:42.937 --> 00:00:49.332
+Lab 1 needs PowerShell 7.1 or later
+with Pester 5, and for the POSIX steps,
+
+15
+00:00:49.332 --> 00:00:54.580
+Python 3.10 or later with pytest
+and PyYAML, and sha256sum.

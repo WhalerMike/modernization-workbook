@@ -1,0 +1,662 @@
+{
+ "1": [
+  [
+   0.05,
+   6.862,
+   "Welcome to Module 4 of the Privileged Access learning path: pim for Microsoft Entra roles as code."
+  ],
+  [
+   6.912,
+   13.0,
+   "This module serves the project plan's task A1.6 in Phase 1, A2.1 and A2.2 in Phase 2, and A3.1 in Phase 3, with Chapter 04 of the developer workbook."
+  ],
+  [
+   19.913,
+   11.8,
+   "Each Microsoft Entra role has its own pim settings: how long an activation lasts, whether it needs approval, a ticket, an authentication context, and how long an assignment may last."
+  ],
+  [
+   31.712,
+   3.1,
+   "Set by hand in the portal, they drift role by role."
+  ],
+  [
+   34.812,
+   4.225,
+   "In this module you hold them as code, one reviewed file per role."
+  ],
+  [
+   39.038,
+   10.863,
+   "You see exactly what a change will do before it happens, apply it to one rollout wave with the least privilege the writes need, and prove from a read-back that the tenant now matches the files."
+  ],
+  [
+   49.9,
+   4.362,
+   "The code is illustrative: tested against fixtures and a fake."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.15,
+   "Why does this matter?"
+  ],
+  [
+   1.2,
+   6.062,
+   "Because this module writes the settings that cause the documented lockout, so it refuses both halves of it."
+  ],
+  [
+   7.263,
+   4.45,
+   "Rule pim oh one fails a role file that requires approval with no approver."
+  ],
+  [
+   11.713,
+   9.9,
+   "Rule pim oh two fails the run if fewer emergency accounts hold Global Administrator active, permanent and direct than the emergency access file requires."
+  ],
+  [
+   21.613,
+   4.75,
+   "The code changes no role setting until Module 2's half holds in the tenant."
+  ],
+  [
+   26.363,
+   5.7,
+   "And the Activation Gate Checked switch is a person's statement that the activation gate's policy is On."
+  ],
+  [
+   32.062,
+   7.287,
+   "The apply won't set an authentication context without it, because the gate's state can't be read from version one point oh."
+  ],
+  [
+   39.35,
+   1.913,
+   "Any finding blocks the apply."
+  ],
+  [
+   41.263,
+   4.075,
+   "And pim itself won't remove the last active Global Administrator."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   5.487,
+   "Here's what you'll be able to do by the end of this module, which takes about fifty-five minutes with the lab."
+  ],
+  [
+   5.537,
+   5.075,
+   "You'll explain the documented lockout's two halves, and the check that refuses each."
+  ],
+  [
+   10.613,
+   5.588,
+   "You'll name the seven activation and assignment rules the code manages, and where their bounds come from."
+  ],
+  [
+   16.2,
+   4.6,
+   "You'll read a role's diff and the plan's findings, pim oh one to oh nine."
+  ],
+  [
+   20.8,
+   4.525,
+   "You'll explain the rollout waves, and why a later wave waits for an earlier one."
+  ],
+  [
+   25.325,
+   3.525,
+   "And you'll explain the order for converting a standing assignment."
+  ],
+  [
+   28.85,
+   10.412,
+   "Before you start, finish Module 2, for the emergency accounts this module refuses to proceed without, and Module 3, for the activation gate and its policy."
+  ],
+  [
+   39.263,
+   11.25,
+   "Lab 2 needs a worldwide or G C C test tenant, never production, with Microsoft Entra I D P2 or I D Governance licenses for the test users and approvers."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   3.375,
+   "Unit 1: settings, rules and the lockout."
+  ],
+  [
+   3.425,
+   3.7,
+   "Settings are per role, and Microsoft Graph calls them rules."
+  ],
+  [
+   7.125,
+   6.675,
+   "Microsoft Learn's mapping guide for rules in pim shows that each role's policy has seventeen predefined rules."
+  ],
+  [
+   13.8,
+   7.912,
+   "By the program's design, the code manages seven of them, the activation and assignment rules, and leaves the notification rules alone."
+  ],
+  [
+   21.712,
+   8.662,
+   "For the person who activates: how long the activation lasts, what it requires, such as a ticket, the authentication context, and approval."
+  ],
+  [
+   30.375,
+   9.287,
+   "For the administrator who assigns: how long an eligible assignment may last, how long an active assignment may last, and what an active assignment requires."
+  ],
+  [
+   39.663,
+   5.362,
+   "The authentication context needs its policy first; that's Module 3's gate."
+  ],
+  [
+   45.025,
+   1.438,
+   "And remember the lockout."
+  ],
+  [
+   46.462,
+   10.95,
+   "Microsoft Learn's pim settings page says that with no approvers selected, the active Privileged Role and Global Administrators become the default approvers, and in the lockout there are none."
+  ],
+  [
+   57.413,
+   4.9,
+   "Learn's fix has two halves: emergency access accounts, and named approvers."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   3.763,
+   "Unit 2: the files, the checks and the conversion."
+  ],
+  [
+   3.812,
+   5.05,
+   "The role files are twenty-two, one per role, with approvers named by alias."
+  ],
+  [
+   8.863,
+   8.463,
+   "Beside them, a tiers file holds Microsoft Learn's bounds and the program's caps for each tier, which are this workbook's design guidance."
+  ],
+  [
+   17.325,
+   9.812,
+   "Learn's pages disagree on how long an activation may last: the role settings page allows up to twenty-four hours, the pim A P I overview at most eight."
+  ],
+  [
+   27.137,
+   2.75,
+   "The code follows the stricter, eight hours."
+  ],
+  [
+   29.887,
+   4.062,
+   "Active assignments are capped at fifteen days, the owner's decision."
+  ],
+  [
+   33.95,
+   1.863,
+   "And the plan's order is fixed."
+  ],
+  [
+   35.812,
+   7.362,
+   "The owner chose Tier 1 as the pilot class, so wave one is Tier 1, then Tier 0, Tier 2 and read-only."
+  ],
+  [
+   43.175,
+   3.875,
+   "The order after the first wave is this workbook's design guidance."
+  ],
+  [
+   47.05,
+   5.188,
+   "Rule pim oh seven refuses a wave until every earlier wave matches its files."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   2.525,
+   "The checks, pim oh one to oh nine."
+  ],
+  [
+   2.575,
+   11.312,
+   "Oh one and oh two are the lockout's two halves, from Microsoft Learn's pim settings page: approval with no approver, and too few emergency accounts holding Global Administrator permanently."
+  ],
+  [
+   13.887,
+   7.713,
+   "Oh three is the program's design: an approver group that's also the role's eligible group, so approval becomes self-approval."
+  ],
+  [
+   21.6,
+   4.312,
+   "Oh four is a file outside Microsoft Learn's bounds or its tier's cap."
+  ],
+  [
+   25.913,
+   5.588,
+   "Oh five warns on an authentication context, because its policy must be On first."
+  ],
+  [
+   31.5,
+   3.013,
+   "Oh six is a role with no policy at tenant scope."
+  ],
+  [
+   34.513,
+   1.95,
+   "Oh seven is the wave order."
+  ],
+  [
+   36.462,
+   7.1,
+   "Oh eight is eligibility outside the role's P R V group, which the access review in Module 7 removes."
+  ],
+  [
+   43.562,
+   6.6,
+   "And oh nine is a standing active assignment: a user to convert, or a service principal to document."
+  ],
+  [
+   50.163,
+   9.025,
+   "Reads and writes are different tasks, and the code follows the Graph A P I reference pages, which name narrower permissions than Learn's how-to guides."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   5.138,
+   "Converting standing assignments goes in a fixed order, and each row carries its state."
+  ],
+  [
+   5.188,
+   5.15,
+   "Waiting For Eligibility: the role's P R V group is made eligible first."
+  ],
+  [
+   10.338,
+   7.713,
+   "Waiting For Confirmed Activation: the person activates the role through the group, and the activation is confirmed, with a ticket."
+  ],
+  [
+   18.05,
+   3.875,
+   "Confirmed: only now can the active assignment be removed."
+  ],
+  [
+   21.925,
+   8.863,
+   "Only the Apply switch with the Convert switch removes anything, and only for confirmed rows; the confirmed-activations file carries each ticket."
+  ],
+  [
+   30.788,
+   3.5,
+   "So no one loses a role before they've shown they can activate it."
+  ],
+  [
+   34.288,
+   4.688,
+   "And as a backstop, pim won't remove the last active Global Administrator."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   7.25,
+   "Lab 1 runs in one PowerShell 7 session, because steps four to six use the settings step three defines."
+  ],
+  [
+   8.025,
+   4.362,
+   "Step one sends Microsoft Learn's samples to the fake, as published."
+  ],
+  [
+   12.387,
+   1.575,
+   "Thirteen tests pass."
+  ],
+  [
+   13.963,
+   8.45,
+   "The fourth shows that all six of Learn's updates apply, and yet Application Administrator still differs from its file in six of seven rules."
+  ],
+  [
+   22.413,
+   2.462,
+   "Learn's samples aren't the program's settings."
+  ],
+  [
+   24.875,
+   2.7,
+   "Step two lists each task's permissions."
+  ],
+  [
+   27.575,
+   7.162,
+   "Planning needs three reads: role assignment schedules, role eligibility schedules and role management policies."
+  ],
+  [
+   34.737,
+   5.812,
+   "Applying adds two writes: role eligibility schedules and role management policies."
+  ],
+  [
+   40.55,
+   4.138,
+   "And converting adds only one write: role assignment schedules."
+  ],
+  [
+   44.688,
+   2.675,
+   "The output on the slide is wrapped to fit."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   4.225,
+   "Step three dry-runs wave one, the pilot class, Tier 1."
+  ],
+  [
+   4.275,
+   13.875,
+   "First you put the run's settings in one variable, the lab table: the cloud, the fixture tenant, the bindings from aliases to groups, the emergency access file, the exceptions, the confirmed activations, and the date."
+  ],
+  [
+   18.15,
+   1.55,
+   "Later steps reuse it."
+  ],
+  [
+   19.7,
+   1.413,
+   "Then run wave one."
+  ],
+  [
+   21.113,
+   3.413,
+   "Nine roles, no findings, thirteen warnings."
+  ],
+  [
+   24.525,
+   10.075,
+   "The plan: forty-three rule updates, eight eligibility requests, and two standing assignments to convert, none confirmed yet, so neither would be removed."
+  ],
+  [
+   34.6,
+   7.188,
+   "It's a dry run, so nothing was sent, and the manifest lists every request it would send and the hash of every file."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   4.175,
+   "Step four reads the diff for one role, Exchange Administrator."
+  ],
+  [
+   4.225,
+   3.35,
+   "It was partly set by hand, so its diff is short."
+  ],
+  [
+   7.575,
+   2.85,
+   "The authentication context goes to C one."
+  ],
+  [
+   10.425,
+   9.988,
+   "Approval goes to required, single stage, with justification, one day to decide, and the approvers named: the group P I M Approvers T1."
+  ],
+  [
+   20.413,
+   4.55,
+   "And the active assignment maximum goes from a hundred eighty days to fifteen."
+  ],
+  [
+   24.962,
+   6.612,
+   "Then the findings, leaving out the nine pim oh five rows, which ask you to confirm the activation gate."
+  ],
+  [
+   31.575,
+   17.512,
+   "Three are pim oh nine, standing assignments: Erin Patel on Application Administrator and Carl Ops on Exchange Administrator, both to convert through the P R V group, and an automation service principal to document as an exception or replace, because this code removes users only."
+  ],
+  [
+   49.087,
+   9.5,
+   "And one is pim oh eight: Dana Reyes is eligible outside the P R V group, which Module 7's access review removes, not this code."
+  ],
+  [
+   58.587,
+   1.863,
+   "The slide trims the output."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   4.7,
+   "Step five tries wave two, Tier 0, before wave one is done."
+  ],
+  [
+   4.75,
+   8.475,
+   "Five roles, nine findings, five warnings and two information items, and the run is blocked: fix every finding before the apply."
+  ],
+  [
+   13.225,
+   6.088,
+   "The nine findings are pim oh seven, one for each Tier 1 role that doesn't match its file yet."
+  ],
+  [
+   19.312,
+   4.25,
+   "The two Info rows are the emergency accounts, kept permanent active."
+  ],
+  [
+   23.562,
+   2.625,
+   "Step six applies wave one to the fake."
+  ],
+  [
+   26.188,
+   10.3,
+   "The first command stops before any write: the plan sets an authentication context, so confirm its Conditional Access policy is On, then pass Activation Gate Checked."
+  ],
+  [
+   36.487,
+   1.8,
+   "The second command passes it."
+  ],
+  [
+   38.288,
+   9.45,
+   "It sends the rule updates first and the eligibility requests second, fifty-one requests, then reads back: zero differences from the role files."
+  ],
+  [
+   47.737,
+   5.588,
+   "Step seven runs the tests, three hundred thirty pass, and you delete the output folder."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   12.787,
+   "Lab 2 works one role in your own test tenant, worldwide or G C C, never production, with Microsoft Entra I D P2 or I D Governance licenses for the test users and approvers."
+  ],
+  [
+   12.838,
+   5.987,
+   "Use a test copy of the files, and the emergency access file you wrote in Module 2's Lab 2."
+  ],
+  [
+   18.825,
+   6.513,
+   "Check the prerequisites first: Module 2's check with no finding, and the activation gate's policy On."
+  ],
+  [
+   25.337,
+   5.537,
+   "Then make the lab's role and groups, dry-run as a reader app, and apply as a writer app."
+  ],
+  [
+   30.875,
+   4.45,
+   "Then activate as a second test user, and convert their standing assignment."
+  ],
+  [
+   35.325,
+   8.912,
+   "The reader gets the three plan permissions; the writer adds the two apply writes; and the role assignment schedule write is granted only for the conversion."
+  ],
+  [
+   44.237,
+   7.475,
+   "To back out, restore the rules from the apply run's before file, remove what the apply added, and delete the lab folders."
+  ],
+  [
+   51.712,
+   2.15,
+   "The authors haven't run Lab 2."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   1.387,
+   "The federal requirement."
+  ],
+  [
+   1.438,
+   8.363,
+   "The role files, the plan and the read-back are the evidence for the plan's tasks A1.6, A2.1 and A2.2."
+  ],
+  [
+   9.8,
+   15.825,
+   "From nist special publication eight hundred fifty-three they support A C six, least privilege in time; A C two and A C three, approval before activation; A C five, separation of duties; and A C six, enhancement five."
+  ],
+  [
+   25.625,
+   17.175,
+   "And from sis-uh's B O D twenty-five oh-one and its ScubaGear baseline: M S A A D seven point four, no standing assignment; seven point five, provisioning only through pim; and seven point six, approval to activate Global Administrator."
+  ],
+  [
+   42.8,
+   7.075,
+   "C M three and C M four, enhancement two, cover the change: reviewed before, verified after."
+  ],
+  [
+   49.875,
+   15.025,
+   "The evidence an I S S O keeps: the role files and the tiers file; each wave's plan, diff and before files; the apply's verify file and manifest; and, for each conversion, the confirmed activations with their tickets."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   1.975,
+   "Check yourself with two questions."
+  ],
+  [
+   2.025,
+   4.15,
+   "First: a role file requires approval and names no approver."
+  ],
+  [
+   6.175,
+   1.012,
+   "What happens?"
+  ],
+  [
+   7.188,
+   3.75,
+   "The answer is b: rule pim oh one fails the file."
+  ],
+  [
+   10.938,
+   3.175,
+   "It's half of the lockout Microsoft Learn documents."
+  ],
+  [
+   14.113,
+   4.075,
+   "Second: why does the apply need the Activation Gate Checked switch?"
+  ],
+  [
+   18.188,
+   10.475,
+   "The answer is b: the gate's policy state can't be read from version one point oh, so a person states that the activation gate's policy is On before the context is set."
+  ],
+  [
+   28.663,
+   4.862,
+   "You saw the first apply in Lab 1, step six, stop before any write."
+  ],
+  [
+   33.525,
+   4.9,
+   "The module page has two more questions, each linked to the section that answers it."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   0.825,
+   "To sum up."
+  ],
+  [
+   0.875,
+   13.812,
+   "You dry-ran the pilot wave, read a role's diff rule by rule, saw Tier 0 wait for Tier 1, saw the apply refuse until a person confirmed the gate, and then applied fifty-one requests with no differences left on the read-back."
+  ],
+  [
+   14.688,
+   5.812,
+   "Carry one thing forward: eligibility for each role goes to the role's P R V group."
+  ],
+  [
+   20.5,
+   4.737,
+   "Next is Module 5: pim for Groups and the P R V groups."
+  ],
+  [
+   25.238,
+   9.7,
+   "A P R V group's own state has to be governed too: who is a member or owner, until when, on which ticket, and how membership is activated."
+  ],
+  [
+   34.938,
+   7.263,
+   "In Module 5 you keep that state in one reviewed file, and see the guards that keep people from losing access by mistake."
+  ]
+ ]
+}

@@ -1,0 +1,67 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.750
+Step five tries wave two, Tier
+0, before wave one is done.
+
+2
+00:00:04.750 --> 00:00:09.320
+Five roles, nine findings, five
+warnings and two information items,
+
+3
+00:00:09.320 --> 00:00:13.225
+and the run is blocked: fix
+every finding before the apply.
+
+4
+00:00:13.225 --> 00:00:15.593
+The nine findings are pim oh seven,
+
+5
+00:00:15.593 --> 00:00:19.313
+one for each Tier 1 role that
+doesn't match its file yet.
+
+6
+00:00:19.313 --> 00:00:23.562
+The two Info rows are the emergency
+accounts, kept permanent active.
+
+7
+00:00:23.562 --> 00:00:26.187
+Step six applies wave one to the fake.
+
+8
+00:00:26.187 --> 00:00:31.338
+The first command stops before any write:
+the plan sets an authentication context,
+
+9
+00:00:31.338 --> 00:00:36.488
+so confirm its Conditional Access policy
+is On, then pass Activation Gate Checked.
+
+10
+00:00:36.488 --> 00:00:38.287
+The second command passes it.
+
+11
+00:00:38.287 --> 00:00:42.892
+It sends the rule updates first and
+the eligibility requests second,
+
+12
+00:00:42.892 --> 00:00:47.738
+fifty-one requests, then reads back:
+zero differences from the role files.
+
+13
+00:00:47.738 --> 00:00:51.170
+Step seven runs the tests,
+three hundred thirty pass,
+
+14
+00:00:51.170 --> 00:00:53.380
+and you delete the output folder.

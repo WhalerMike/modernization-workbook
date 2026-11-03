@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.086
+Lab 2 runs the client against a
+test tenant, never production,
+
+2
+00:00:05.086 --> 00:00:08.913
+with Microsoft Entra ID
+P1, P2 or ID Governance.
+
+3
+00:00:08.913 --> 00:00:15.712
+Create an API-driven inbound provisioning
+app, and extend its schema with CSV2SCIM.
+
+4
+00:00:15.712 --> 00:00:17.742
+Grant the sender one permission,
+
+5
+00:00:17.742 --> 00:00:21.200
+with a certificate or a managed
+identity, never a secret.
+
+6
+00:00:21.200 --> 00:00:24.361
+Send five fictional records
+with the hardened client,
+
+7
+00:00:24.361 --> 00:00:27.312
+and reconcile them against
+the provisioning logs.
+
+8
+00:00:27.312 --> 00:00:30.049
+Remember the two-oh-two:
+the reconciliation is
+
+9
+00:00:30.049 --> 00:00:33.075
+where you find out whether
+each record was written.
+
+10
+00:00:33.075 --> 00:00:37.452
+To back it out, step seven sends
+the five records again as inactive,
+
+11
+00:00:37.452 --> 00:00:41.100
+with a termination date, and
+unsets the token variable.
+
+12
+00:00:41.100 --> 00:00:43.250
+The authors haven't run Lab 2.
+
+13
+00:00:43.250 --> 00:00:46.780
+Follow Chapter 01's Lab 2, step by step.

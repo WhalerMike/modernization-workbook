@@ -1,0 +1,66 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:03.516
+Lab 1 runs in one PowerShell 7 session,
+
+3
+00:00:03.516 --> 00:00:08.025
+because steps four to six use
+the settings step three defines.
+
+4
+00:00:08.025 --> 00:00:12.387
+Step one sends Microsoft Learn's
+samples to the fake, as published.
+
+5
+00:00:12.387 --> 00:00:13.962
+Thirteen tests pass.
+
+6
+00:00:13.962 --> 00:00:17.224
+The fourth shows that all
+six of Learn's updates apply,
+
+7
+00:00:17.224 --> 00:00:22.413
+and yet Application Administrator still
+differs from its file in six of seven rules.
+
+8
+00:00:22.413 --> 00:00:24.875
+Learn's samples aren't
+the program's settings.
+
+9
+00:00:24.875 --> 00:00:27.575
+Step two lists each task's permissions.
+
+10
+00:00:27.575 --> 00:00:31.043
+Planning needs three reads:
+role assignment schedules,
+
+11
+00:00:31.043 --> 00:00:34.737
+role eligibility schedules
+and role management policies.
+
+12
+00:00:34.737 --> 00:00:40.549
+Applying adds two writes: role eligibility
+schedules and role management policies.
+
+13
+00:00:40.549 --> 00:00:44.688
+And converting adds only one
+write: role assignment schedules.
+
+14
+00:00:44.688 --> 00:00:47.420
+The output on the slide is wrapped to fit.

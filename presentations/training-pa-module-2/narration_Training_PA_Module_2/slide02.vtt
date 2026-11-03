@@ -1,0 +1,78 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.062
+Why first?
+
+2
+00:00:01.062 --> 00:00:05.267
+The project plan's critical path says
+that switching on approval before
+
+3
+00:00:05.267 --> 00:00:09.612
+the emergency accounts exist is the
+one sequence that locks the agency out.
+
+4
+00:00:09.612 --> 00:00:12.051
+And Microsoft Learn documents the case.
+
+5
+00:00:12.051 --> 00:00:16.835
+Every Global Administrator and Privileged
+Role Administrator is eligible,
+
+6
+00:00:16.835 --> 00:00:20.050
+approval is required, and
+no approvers are selected.
+
+7
+00:00:20.050 --> 00:00:23.238
+So no one can approve, and
+administration is locked.
+
+8
+00:00:23.238 --> 00:00:26.575
+That's why every later module
+that writes leans on this one.
+
+9
+00:00:26.575 --> 00:00:31.375
+Module 3 keeps the emergency group
+excluded from every policy file.
+
+10
+00:00:31.375 --> 00:00:35.694
+Module 4 refuses any PIM change
+until the emergency accounts
+
+11
+00:00:35.694 --> 00:00:39.675
+hold Global Administrator,
+active, permanent and direct.
+
+12
+00:00:39.675 --> 00:00:43.150
+And Module 7 refuses a review
+that would remove them.
+
+13
+00:00:43.150 --> 00:00:45.551
+The emergency accounts are also the main
+
+14
+00:00:45.551 --> 00:00:48.588
+exception to zero permanently
+active assignments.
+
+15
+00:00:48.588 --> 00:00:54.124
+Module 1 reported E A oh one as Info only
+because the exceptions list names it.
+
+16
+00:00:54.124 --> 00:00:57.140
+Here you make sure the exception
+is what it claims to be.
