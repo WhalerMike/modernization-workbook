@@ -1,0 +1,62 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.037
+Step three lists the
+permissions the read needs.
+
+2
+00:00:03.037 --> 00:00:07.450
+Four: Group dot Read Basic dot All,
+and the three PIM for Groups reads,
+
+3
+00:00:07.450 --> 00:00:12.825
+for assignment schedules, eligibility
+schedules and role management policies.
+
+4
+00:00:12.825 --> 00:00:14.500
+Nothing ends in ReadWrite.
+
+5
+00:00:14.500 --> 00:00:18.413
+Step four plans against the
+fictional tenant, as a dry run.
+
+6
+00:00:18.413 --> 00:00:20.597
+You give it the cloud, the fixture,
+
+7
+00:00:20.597 --> 00:00:24.075
+the desired state file, the
+date and an output folder.
+
+8
+00:00:24.075 --> 00:00:27.562
+The read raises nine
+findings and three warnings.
+
+9
+00:00:27.562 --> 00:00:30.659
+The plan has eight changes:
+three assignments,
+
+10
+00:00:30.659 --> 00:00:33.512
+two eligibilities and three policy rules.
+
+11
+00:00:33.512 --> 00:00:36.638
+The guards all passed, so
+the plan could be applied.
+
+12
+00:00:36.638 --> 00:00:39.071
+But it's a dry run, so nothing was sent:
+
+13
+00:00:39.071 --> 00:00:42.820
+review the diff and the plan,
+then run again with Apply.

@@ -1,0 +1,89 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.437
+The federal requirement.
+
+2
+00:00:01.437 --> 00:00:04.761
+The middleware is where an HR
+record becomes an account,
+
+3
+00:00:04.761 --> 00:00:07.651
+so its outputs are
+account-management evidence.
+
+4
+00:00:07.651 --> 00:00:11.449
+The validation report
+supports input validation,
+
+5
+00:00:11.449 --> 00:00:14.163
+S I ten, and account management, A C two.
+
+6
+00:00:14.163 --> 00:00:17.015
+The quarantine supports
+identifier management,
+
+7
+00:00:17.015 --> 00:00:21.537
+and lives in the access-controlled audit
+store, because it holds personal data.
+
+8
+00:00:21.537 --> 00:00:24.566
+The provenance manifest
+supports configuration
+
+9
+00:00:24.566 --> 00:00:27.450
+change control and the
+content of audit records.
+
+10
+00:00:27.450 --> 00:00:30.375
+A confirmed mass disable
+leaves a change record.
+
+11
+00:00:30.375 --> 00:00:33.387
+The tests and the pinned
+sample's snapshot support
+
+12
+00:00:33.387 --> 00:00:36.112
+developer testing and
+supply chain controls.
+
+13
+00:00:36.112 --> 00:00:40.105
+And Lab 2 adds the sender's app
+registration and consent record,
+
+14
+00:00:40.105 --> 00:00:43.637
+and the reconciliation
+against the provisioning logs.
+
+15
+00:00:43.637 --> 00:00:49.488
+The controls are from NIST SP
+800-53, in its Moderate baseline.
+
+16
+00:00:49.488 --> 00:00:54.700
+Key Security Indicators are FedRAMP 20x
+indicators for cloud service providers;
+
+17
+00:00:54.700 --> 00:00:58.537
+the agency lines its evidence up
+with what its providers report.
+
+18
+00:00:58.537 --> 00:01:02.160
+Which output supports which
+control is this workbook's reading.

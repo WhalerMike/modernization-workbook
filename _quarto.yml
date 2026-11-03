@@ -197,6 +197,10 @@ website:
             text: "Inspiration"
           - href: docs/about/sources-and-verification.md
             text: "Sources and Verification"
+          - href: docs/about/reviewers-guide.md
+            text: "Reviewers' Guide"
+          - href: docs/about/decision-register.md
+            text: "Decision Register"
           - href: docs/about/archive.md
             text: "Archive: every edition"
       - href: sitemap.qmd

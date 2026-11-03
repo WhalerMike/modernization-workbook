@@ -1,0 +1,73 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.437
+The federal requirement.
+
+2
+00:00:01.437 --> 00:00:05.624
+The check is the plan's Gate 1 test,
+emergency access accounts tested,
+
+3
+00:00:05.624 --> 00:00:08.763
+and the alert watches the
+accounts between drills.
+
+4
+00:00:08.763 --> 00:00:13.266
+It supports NIST special publication
+eight hundred fifty-three A C two,
+
+5
+00:00:13.266 --> 00:00:17.083
+with emergency accounts as a
+defined account type, and I A two,
+
+6
+00:00:17.083 --> 00:00:21.587
+enhancement one, multifactor
+authentication to privileged accounts.
+
+7
+00:00:21.587 --> 00:00:27.487
+The alert supports A C two,
+enhancement four, A U six and S I four.
+
+8
+00:00:27.487 --> 00:00:32.632
+And from CISA's B O D twenty-five
+oh-one and its ScubaGear baseline:
+
+9
+00:00:32.632 --> 00:00:37.110
+M S A A D seven point three,
+cloud-only privileged accounts,
+
+10
+00:00:37.110 --> 00:00:42.826
+and three point six, phishing-resistant
+M F A for highly privileged roles.
+
+11
+00:00:42.826 --> 00:00:47.625
+Treating the drills as compensating
+controls is the workbook's design guidance.
+
+12
+00:00:47.625 --> 00:00:50.001
+The evidence an ISSO keeps for Gate 1:
+
+13
+00:00:50.001 --> 00:00:53.564
+the findings with no finding
+from the test tenant's run;
+
+14
+00:00:53.564 --> 00:00:56.099
+the drill tickets and the drill record;
+
+15
+00:00:56.099 --> 00:01:00.910
+the reviewed alert template and its
+deployment record; and the manifest.

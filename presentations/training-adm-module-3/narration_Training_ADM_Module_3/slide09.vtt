@@ -1,0 +1,77 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.750
+Step two lints the program's own rule
+pattern table, this workbook's design.
+
+2
+00:00:04.750 --> 00:00:06.038
+Two rows come back.
+
+3
+00:00:06.038 --> 00:00:09.560
+The Legal employer pattern
+is a Finding, D R oh five:
+
+4
+00:00:09.560 --> 00:00:13.599
+it reads a display-name attribute
+instead of a coded slot.
+
+5
+00:00:13.599 --> 00:00:15.738
+The row exists to show that case.
+
+6
+00:00:15.738 --> 00:00:18.851
+The Direct reports pattern
+is Info, D R oh three:
+
+7
+00:00:18.851 --> 00:00:24.505
+Microsoft Learn's page on dynamic membership
+rules says that rule can't be combined
+
+8
+00:00:24.505 --> 00:00:27.045
+with any other, so it carries no guards,
+
+9
+00:00:27.045 --> 00:00:30.076
+and the group must not
+grant access on its own.
+
+10
+00:00:30.076 --> 00:00:34.490
+Step three evaluates a rule
+against the fictional population:
+
+11
+00:00:34.490 --> 00:00:37.887
+the two guards, and the
+FIN-LED organization code.
+
+12
+00:00:37.887 --> 00:00:44.063
+Five members match: u oh one, oh
+two, oh six, oh eight and oh nine.
+
+13
+00:00:44.063 --> 00:00:47.313
+The guards keep out u oh
+four, who is disabled,
+
+14
+00:00:47.313 --> 00:00:50.112
+and u oh five, a guest with a copied code.
+
+15
+00:00:50.112 --> 00:00:54.702
+Step four runs the pull request
+check against HEAD: six rules,
+
+16
+00:00:54.702 --> 00:00:59.260
+no findings, no warnings, no
+changed files, and exit code zero.

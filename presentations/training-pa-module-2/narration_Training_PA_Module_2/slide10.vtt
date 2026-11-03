@@ -1,0 +1,55 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.537
+Step five matches the same
+export with the example's rule.
+
+2
+00:00:03.537 --> 00:00:08.600
+You load the export's rows and pass the
+two emergency accounts' object I D's.
+
+3
+00:00:08.600 --> 00:00:12.450
+Five rows come back, where
+Microsoft Learn's query found two.
+
+4
+00:00:12.450 --> 00:00:15.975
+The two interactive sign-ins
+are there, one for each account.
+
+5
+00:00:15.975 --> 00:00:17.150
+And three more.
+
+6
+00:00:17.150 --> 00:00:19.834
+A non-interactive sign-in
+by the first account,
+
+7
+00:00:19.834 --> 00:00:23.437
+which is what a refreshed token
+in a stolen session looks like.
+
+8
+00:00:23.437 --> 00:00:27.876
+An Add member to role event made by
+the second account: a role change.
+
+9
+00:00:27.876 --> 00:00:31.945
+And a User registered security
+info event on the first account:
+
+10
+00:00:31.945 --> 00:00:36.563
+a new method registered on an emergency
+account, the start of a takeover.
+
+11
+00:00:36.563 --> 00:00:40.610
+Those are the three events the
+extra two tables exist to catch.

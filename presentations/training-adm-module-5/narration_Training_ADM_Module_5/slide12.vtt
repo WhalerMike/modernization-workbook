@@ -1,0 +1,72 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.025
+Lab 2 needs a test subscription and a
+server you can rebuild, never production.
+
+2
+00:00:05.025 --> 00:00:09.746
+Microsoft Learn's page, How to test
+machine configuration package artifacts,
+
+3
+00:00:09.746 --> 00:00:13.361
+says local testing installs
+the agent and needs elevation,
+
+4
+00:00:13.361 --> 00:00:16.238
+and remediation changes
+the machine it runs on.
+
+5
+00:00:16.238 --> 00:00:18.888
+Test the package on the disposable server.
+
+6
+00:00:18.888 --> 00:00:24.549
+Publish the exact bytes Lab 1 built to a
+storage account with anonymous access off.
+
+7
+00:00:24.549 --> 00:00:28.344
+Grant the machines read access
+with their own identity,
+
+8
+00:00:28.344 --> 00:00:30.900
+so no SAS token goes in the definition.
+
+9
+00:00:30.900 --> 00:00:34.349
+Publish the definition under
+the registry's policy I D.
+
+10
+00:00:34.349 --> 00:00:37.338
+Assign it with include
+Arc machines set to true.
+
+11
+00:00:37.338 --> 00:00:42.012
+And read each machine's compliance against
+the hash in the provenance manifest.
+
+12
+00:00:42.012 --> 00:00:45.976
+To back it out, step eight deletes
+the assignment, the definition,
+
+13
+00:00:45.976 --> 00:00:50.313
+the blob and the role assignment,
+then rebuilds the disposable server.
+
+14
+00:00:50.313 --> 00:00:52.462
+The authors haven't run Lab 2.
+
+15
+00:00:52.462 --> 00:00:55.060
+Follow Chapter 07's Lab 2.

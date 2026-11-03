@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.994
+Lab 2 runs in a worldwide or G C C test
+tenant, with a test management group,
+
+2
+00:00:04.994 --> 00:00:10.775
+subscription and resource group, never
+production, and fictional users and groups.
+
+3
+00:00:10.775 --> 00:00:17.150
+Eligible users need Microsoft Entra I
+D P2 or Microsoft Entra I D Governance.
+
+4
+00:00:17.150 --> 00:00:20.030
+You prepare an app with
+Reader on each test scope,
+
+5
+00:00:20.030 --> 00:00:22.838
+and write the desired
+state for the test scopes.
+
+6
+00:00:22.838 --> 00:00:26.593
+You plan live, then apply under
+a User Access Administrator
+
+7
+00:00:26.593 --> 00:00:30.974
+assignment that lasts one day, and
+try the narrower role on one scope.
+
+8
+00:00:30.974 --> 00:00:33.225
+No Graph permission is needed at all.
+
+9
+00:00:33.225 --> 00:00:37.297
+The back-out waits at least five
+minutes after the last assignment,
+
+10
+00:00:37.297 --> 00:00:40.407
+removes the eligible
+assignments the run created,
+
+11
+00:00:40.407 --> 00:00:43.443
+restores each policy from
+the dry run's state file,
+
+12
+00:00:43.443 --> 00:00:47.737
+removes the app's roles and the app,
+and deletes the test output folders.
+
+13
+00:00:47.737 --> 00:00:49.940
+The authors haven't run Lab 2.

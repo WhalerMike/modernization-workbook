@@ -1,0 +1,65 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.625
+Here's the comparison, and every rule
+on this slide is the kit's own design.
+
+2
+00:00:04.625 --> 00:00:08.926
+It reads each kit run and checks
+it against the kit's own manifest:
+
+3
+00:00:08.926 --> 00:00:14.363
+every listed file with the same hash, nothing
+missing, nothing added, and read only.
+
+4
+00:00:14.363 --> 00:00:17.563
+A run edited after the
+kit wrote it is refused.
+
+5
+00:00:17.563 --> 00:00:22.983
+It also refuses runs from different modes,
+clouds or tenants, a run whose manifest
+
+6
+00:00:22.983 --> 00:00:27.675
+has no tenant ID, and a current run
+that isn't later than the previous one.
+
+7
+00:00:27.675 --> 00:00:33.787
+Then it keys each Finding and Warn row by
+check, object ID and issue, and sorts it.
+
+8
+00:00:33.787 --> 00:00:36.113
+New is a row the last run didn't have.
+
+9
+00:00:36.113 --> 00:00:40.274
+Changed is the same check and object
+with a different severity or issue.
+
+10
+00:00:40.274 --> 00:00:44.950
+Detail only is the same finding with
+different detail, and opens nothing.
+
+11
+00:00:44.950 --> 00:00:48.275
+Resolved is gone from a check
+that read the tenant this run.
+
+12
+00:00:48.275 --> 00:00:53.500
+And unverified is a check that ended in
+Error or didn't run: its findings stay open.
+
+13
+00:00:53.500 --> 00:00:57.770
+Each finding has a fingerprint, so
+the tracker never opens a duplicate.

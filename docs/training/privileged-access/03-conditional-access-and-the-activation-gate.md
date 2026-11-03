@@ -13,6 +13,8 @@ series-order: 3
 
 *Part of the [Privileged Access learning path](index.md). Plan Phase 1, task A1.5, and Phase 2, tasks A2.3, A2.5 and A2.6. Workbook [Chapter 03](../../project-plans/developer-workbooks/privileged-access/03-conditional-access-for-administrators.md). About 55 minutes.*
 
+**Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-pa-module-3) (the deck files come with the next edition) · [▶ Watch](../../presentations/watch.html?v=Training_PA_Module_3_Narrated) (about 14 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_PA_Module_3_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-pa-module-3/Training_PA_Module_3_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-pa-module-3/Training_PA_Module_3_Narrated.vtt).
+
 ## Introduction (3 minutes)
 
 An administrator should sign in with a phishing-resistant method, from a compliant device, on a trusted network. And at the moment they activate a privileged role, they should prove it again. That second proof is the activation gate: authentication context `c1` and its policy `PIM-Activation-c1`. PIM can require the context only after its policy exists and is On.

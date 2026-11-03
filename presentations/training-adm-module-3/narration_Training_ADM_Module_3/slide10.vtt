@@ -1,0 +1,70 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.588
+Step five breaks a rule on purpose.
+
+2
+00:00:02.588 --> 00:00:07.262
+You delete the empty-slot clause,
+extension attribute eleven not null,
+
+3
+00:00:07.262 --> 00:00:11.937
+from the FIN-LED everyone but contractors
+rule, and run the check again.
+
+4
+00:00:11.937 --> 00:00:13.188
+Three things catch it.
+
+5
+00:00:13.188 --> 00:00:16.054
+The linter notes D R
+ten: not-equals on the
+
+6
+00:00:16.054 --> 00:00:19.963
+worker-type slot also admits
+users whose slot is empty.
+
+7
+00:00:19.963 --> 00:00:22.551
+The rule's own test fails, D R eleven:
+
+8
+00:00:22.551 --> 00:00:27.637
+u oh six should be outside the group,
+and the evaluator now says true.
+
+9
+00:00:27.637 --> 00:00:31.199
+u oh six is the worker with
+the empty worker-type slot.
+
+10
+00:00:31.199 --> 00:00:36.138
+And the shadow diff prints the change:
+the file changed, and it adds u oh six.
+
+11
+00:00:36.138 --> 00:00:41.901
+One finding, one changed file, and exit
+code two, so the pull request can't merge.
+
+12
+00:00:41.901 --> 00:00:43.225
+Put the clause back.
+
+13
+00:00:43.225 --> 00:00:46.108
+Step six runs the tests: all seventy pass,
+
+14
+00:00:46.108 --> 00:00:50.738
+fifty-seven for the module and
+thirteen that run Learn's samples.
+
+15
+00:00:50.738 --> 00:00:53.400
+No module, tenant or network needed.

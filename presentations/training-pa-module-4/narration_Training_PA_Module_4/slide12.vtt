@@ -1,0 +1,71 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:06.112
+Lab 2 works one role in your own test
+tenant, worldwide or G C C, never production,
+
+2
+00:00:06.112 --> 00:00:09.522
+with Microsoft Entra I
+D P2 or I D Governance
+
+3
+00:00:09.522 --> 00:00:12.837
+licenses for the test users and approvers.
+
+4
+00:00:12.837 --> 00:00:14.747
+Use a test copy of the files,
+
+5
+00:00:14.747 --> 00:00:18.825
+and the emergency access file
+you wrote in Module 2's Lab 2.
+
+6
+00:00:18.825 --> 00:00:23.006
+Check the prerequisites first:
+Module 2's check with no finding,
+
+7
+00:00:23.006 --> 00:00:25.338
+and the activation gate's policy On.
+
+8
+00:00:25.338 --> 00:00:27.686
+Then make the lab's role and groups,
+
+9
+00:00:27.686 --> 00:00:30.874
+dry-run as a reader app,
+and apply as a writer app.
+
+10
+00:00:30.874 --> 00:00:35.325
+Then activate as a second test user,
+and convert their standing assignment.
+
+11
+00:00:35.325 --> 00:00:39.920
+The reader gets the three plan permissions;
+the writer adds the two apply writes;
+
+12
+00:00:39.920 --> 00:00:44.237
+and the role assignment schedule write
+is granted only for the conversion.
+
+13
+00:00:44.237 --> 00:00:48.171
+To back out, restore the rules
+from the apply run's before file,
+
+14
+00:00:48.171 --> 00:00:51.712
+remove what the apply added,
+and delete the lab folders.
+
+15
+00:00:51.712 --> 00:00:53.930
+The authors haven't run Lab 2.

@@ -1,0 +1,76 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.700
+Step three lints the program's definition.
+
+2
+00:00:02.700 --> 00:00:05.425
+With a one-hour timeout: no findings.
+
+3
+00:00:05.425 --> 00:00:10.455
+With a fifteen-minute timeout, L X eleven
+finds that the worst-case retry waits,
+
+4
+00:00:10.455 --> 00:00:12.499
+nine hundred and sixty seconds,
+
+5
+00:00:12.499 --> 00:00:15.800
+reach the callback timeout,
+and the exit code is two.
+
+6
+00:00:15.800 --> 00:00:18.512
+So the retries have to
+fit inside the wait.
+
+7
+00:00:18.512 --> 00:00:23.437
+Step four runs the program's
+definition for GCC High, three ways.
+
+8
+00:00:23.437 --> 00:00:27.055
+Through two transient failures:
+three downstream calls,
+
+9
+00:00:27.055 --> 00:00:29.363
+one effect, and the task is completed.
+
+10
+00:00:29.363 --> 00:00:32.648
+Through five failures:
+five calls, no effect,
+
+11
+00:00:32.648 --> 00:00:36.663
+and the task is failed, at once,
+not at the end of the wait.
+
+12
+00:00:36.663 --> 00:00:39.462
+And with two deliveries
+of the same request:
+
+13
+00:00:39.462 --> 00:00:42.650
+two calls, but one effect,
+and the task is completed.
+
+14
+00:00:42.650 --> 00:00:46.313
+The idempotency key means
+the work is done once.
+
+15
+00:00:46.313 --> 00:00:52.075
+Every callback goes to the
+GCC High Graph host, on v1.0.
+
+16
+00:00:52.075 --> 00:00:55.200
+The slide joins each run's last two lines.

@@ -1,0 +1,737 @@
+{
+ "1": [
+  [
+   0.05,
+   7.525,
+   "Welcome to Module 1 of the Attribute-Driven Migration learning path: send H R records through a middleware that fails closed."
+  ],
+  [
+   7.575,
+   8.95,
+   "The path teaches the workbook's book Building the Attribute-Driven Migration, one chapter per module, in the order of the implementation guide's gates."
+  ],
+  [
+   16.525,
+   1.475,
+   "There are nine modules."
+  ],
+  [
+   18.0,
+   6.85,
+   "This one serves Gates 2 and 3, and takes Chapter 01, the H R-to-Entra middleware."
+  ],
+  [
+   24.85,
+   16.325,
+   "You'll see what the middleware owns and what the provisioning service owns, what Microsoft's CSV2SCIM sample leaves to you, and how the hardened client refuses bad rows, orders leavers first, holds a mass disable and ties every batch to its inputs by hash."
+  ],
+  [
+   41.175,
+   3.975,
+   "Then you'll run it on your laptop against a fictional H R extract."
+  ],
+  [
+   45.15,
+   5.388,
+   "The code is illustrative: tested against fixtures, not against a production tenant."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.038,
+   "Why start here?"
+  ],
+  [
+   1.087,
+   3.888,
+   "Every later gate trusts the attributes H R sends."
+  ],
+  [
+   4.975,
+   4.388,
+   "A bad H R record becomes bad access faster than any ticket queue."
+  ],
+  [
+   9.363,
+   5.688,
+   "So the guide proves the values true at Gate 2, and maps them through sync at Gate 3."
+  ],
+  [
+   15.05,
+   5.987,
+   "The middleware, between the H R extract and Entra I D, is where a record is first checked."
+  ],
+  [
+   21.038,
+   4.725,
+   "Microsoft's CSV2SCIM sample sends every row it reads."
+  ],
+  [
+   25.762,
+   9.713,
+   "That's by design: it's a converter, and Microsoft Learn's page on A P I-driven inbound provisioning with PowerShell lists validation as a customization you add."
+  ],
+  [
+   35.475,
+   5.325,
+   "In this module you see what a federal deployment has to add, and you run the client that adds it."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   5.487,
+   "Here's what you'll be able to do by the end of this module, which takes about fifty-five minutes with the lab."
+  ],
+  [
+   5.537,
+   6.375,
+   "You'll explain what the middleware owns and what the provisioning service owns, and what a two-oh-two Accepted means."
+  ],
+  [
+   11.912,
+   4.45,
+   "You'll describe what Microsoft's CSV2SCIM sample leaves to you."
+  ],
+  [
+   16.363,
+   5.237,
+   "You'll run the hardened client and read its counts, its quarantine and its exit codes."
+  ],
+  [
+   21.6,
+   5.525,
+   "You'll verify a run's provenance by hash, and show that a rerun gives identical bytes."
+  ],
+  [
+   27.125,
+   5.062,
+   "And you'll explain why the client sends every record whole and holds a mass disable."
+  ],
+  [
+   32.188,
+   6.888,
+   "Before you start, work through Microsoft Automation Module 1, for the clouds, sign-in and least privilege."
+  ],
+  [
+   39.075,
+   5.075,
+   "Lab 1 needs Python 3.10 or later with pytest, and no tenant."
+  ],
+  [
+   44.15,
+   8.562,
+   "PowerShell 7 with Pester 5 is optional: it runs the PowerShell client and Microsoft's sample, which the full chapter lab compares."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   1.25,
+   "Start with the split."
+  ],
+  [
+   1.3,
+   3.675,
+   "The H R system writes a C S V extract."
+  ],
+  [
+   4.975,
+   5.987,
+   "The middleware reads it, and sends skim bulk requests to the provisioning job's bulk upload endpoint."
+  ],
+  [
+   10.963,
+   9.338,
+   "The provisioning service owns the mapping from skim attributes to directory attributes, the matching of incoming records to existing users, and the write."
+  ],
+  [
+   20.3,
+   7.263,
+   "The middleware owns everything before the POST: what is sent, in what order, how fast, and what record is kept of it."
+  ],
+  [
+   27.562,
+   5.638,
+   "Microsoft Learn's page on the PowerShell sample gives that split as Microsoft's design intent."
+  ],
+  [
+   33.2,
+   7.275,
+   "And one thing to remember from this slide: Learn's bulk upload A P I reference says the endpoint is asynchronous."
+  ],
+  [
+   40.475,
+   6.162,
+   "A two-oh-two Accepted means the batch was staged for the provisioning job, not that any user was written."
+  ],
+  [
+   46.638,
+   4.95,
+   "The Location header points at the provisioning logs, where each record's result appears."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   8.062,
+   "Microsoft publishes a PowerShell sample for this integration, CSV2SCIM, with a full tutorial on Microsoft Learn."
+  ],
+  [
+   8.113,
+   7.45,
+   "Use it; the repository keeps a pinned copy of Microsoft's sample at upstream commit f2e8c59."
+  ],
+  [
+   15.562,
+   5.125,
+   "Run on the book's H R fixture, nineteen rows, it sends all nineteen."
+  ],
+  [
+   20.688,
+   1.45,
+   "Here's what it leaves to you."
+  ],
+  [
+   22.137,
+   7.475,
+   "It validates the mapping, not the values; the hardened client fails closed, and quarantines nine of the nineteen rows."
+  ],
+  [
+   29.613,
+   5.9,
+   "It sends in file order; the client sends leavers first, then managers before their reports."
+  ],
+  [
+   35.513,
+   2.138,
+   "It has no limit on mass change."
+  ],
+  [
+   37.65,
+   11.95,
+   "Its endpoint is hard-coded to the worldwide beta host, and Learn's page on Microsoft Graph national cloud deployments gives other hosts for G C C High and D O D, so it can't reach them as written."
+  ],
+  [
+   49.6,
+   6.0,
+   "Its sign-in asks for Application dot ReadWrite dot All, which can change any app in the tenant."
+  ],
+  [
+   55.6,
+   5.725,
+   "And each bulk I D is a new random GUID, so a batch can't be traced to its inputs."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   5.4,
+   "The client takes each row and either builds a skim operation or refuses it with reasons."
+  ],
+  [
+   5.45,
+   22.25,
+   "A row is refused when a required column is empty, the person number doesn't fit employee I D, the worker type is unknown or refused, such as a pending worker, a code isn't in the code list, a value is longer than the target attribute holds, a date doesn't parse, a worker is recorded as their own manager, or an inactive assignment has no termination date."
+  ],
+  [
+   27.7,
+   7.375,
+   "Every refused row goes to the quarantine file, with its reasons, the unchanged H R row and the attempted payload."
+  ],
+  [
+   35.075,
+   1.837,
+   "These rules are the kit's design."
+  ],
+  [
+   36.913,
+   1.562,
+   "Some are warnings instead."
+  ],
+  [
+   38.475,
+   5.05,
+   "A suspended assignment keeps the account active, because leave is not a leaver."
+  ],
+  [
+   43.525,
+   3.763,
+   "A manager separating in the same run never blocks the joiner."
+  ],
+  [
+   47.288,
+   7.2,
+   "And this workbook's guidance is to treat every new rule as a refusal until the H R owner agrees it can be a warning."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   1.212,
+   "Three more rules."
+  ],
+  [
+   1.262,
+   3.05,
+   "First, send the complete record every time."
+  ],
+  [
+   4.312,
+   8.463,
+   "Microsoft Learn's page on A P I-driven inbound provisioning concepts says to include the whole user record in every bulk request."
+  ],
+  [
+   12.775,
+   9.175,
+   "When the job's clear attribute values feature, a preview, is on, a null or empty value clears the target, and so can an omitted attribute."
+  ],
+  [
+   21.95,
+   2.337,
+   "So the client never sends a partial record."
+  ],
+  [
+   24.288,
+   1.425,
+   "Second, order."
+  ],
+  [
+   25.712,
+   4.825,
+   "Leavers go first, then managers before their reports, then person key."
+  ],
+  [
+   30.538,
+   7.925,
+   "When one person has several rows, a single separation wins and the rest are superseded; any other duplicate is refused."
+  ],
+  [
+   38.462,
+   5.188,
+   "The bulk upload A P I reference allows at most fifty operations per request."
+  ],
+  [
+   43.65,
+   1.45,
+   "Third, the hold."
+  ],
+  [
+   45.1,
+   9.4,
+   "Two guards hold the whole run, with exit code three, until someone confirms it: more disables than the run allows, or more calls than the daily budget."
+  ],
+  [
+   54.5,
+   8.838,
+   "The budget follows the quota on Learn's concepts page: two thousand calls a day with P1 or P2, and six thousand with I D Governance."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   4.775,
+   "The last idea is the record, and it's the kit's design, not Microsoft's."
+  ],
+  [
+   4.825,
+   4.588,
+   "The provenance file ties every batch to the exact inputs that produced it."
+  ],
+  [
+   9.412,
+   10.825,
+   "It holds the hash of the extract and the hash of the mapping file, the counts, whether the run was held, each batch with its own hash and its person keys, and the quarantined keys."
+  ],
+  [
+   20.238,
+   4.862,
+   "Each batch hash is the same one the apply results record when that batch is sent."
+  ],
+  [
+   25.1,
+   9.0,
+   "So an auditor can go from a line in the provisioning logs to the person key, to the batch and its Location, to the extract and mapping files by hash."
+  ],
+  [
+   34.1,
+   4.7,
+   "That only works because each operation's bulk I D is the person key."
+  ],
+  [
+   38.8,
+   5.912,
+   "With a random bulk I D, as in the sample, the same input would never produce the same hash."
+  ],
+  [
+   44.712,
+   4.925,
+   "The manifest carries keys and hashes only, so it can sit in the evidence store."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   8.0,
+   "Lab 1 runs in the hcm-entra folder of the examples, on a fictional H R extract, and nothing in it sends a request."
+  ],
+  [
+   8.775,
+   4.688,
+   "Step one runs the hardened client with an as-of date of October twenty-fifth."
+  ],
+  [
+   13.463,
+   9.325,
+   "It prints its counts: nine rows ready, nine quarantined, one superseded, one batch, three disables, and the run isn't held."
+  ],
+  [
+   22.788,
+   3.413,
+   "The command exits two, because rows were quarantined."
+  ],
+  [
+   26.2,
+   4.037,
+   "Step two prints the quarantine, one line per refused row."
+  ],
+  [
+   30.238,
+   1.2,
+   "A pending worker."
+  ],
+  [
+   31.438,
+   1.575,
+   "An unknown worker type."
+  ],
+  [
+   33.013,
+   2.05,
+   "A row with no person number at all."
+  ],
+  [
+   35.062,
+   3.8,
+   "A seventeen-character key that doesn't fit employee I D."
+  ],
+  [
+   38.862,
+   2.275,
+   "A worker recorded as their own manager."
+  ],
+  [
+   41.138,
+   2.85,
+   "An inactive assignment with no termination date."
+  ],
+  [
+   43.987,
+   7.125,
+   "A department name that's too long, a position category that isn't in the code list, and a department code with a space in it."
+  ],
+  [
+   51.112,
+   3.837,
+   "Every one of those, CSV2SCIM would have sent."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   2.175,
+   "Step three checks the provenance."
+  ],
+  [
+   2.225,
+   3.288,
+   "Show the manifest, then hash the extract yourself."
+  ],
+  [
+   5.513,
+   7.75,
+   "The hash you compute, starting c a oh six b one one one, is the same as the extract hash in the manifest."
+  ],
+  [
+   13.262,
+   2.487,
+   "So the record really is tied to this file."
+  ],
+  [
+   15.75,
+   5.662,
+   "Look at the batch's person keys, too: they start with the leaver, one hundred thousand and three."
+  ],
+  [
+   21.413,
+   1.175,
+   "Leavers first."
+  ],
+  [
+   22.587,
+   7.65,
+   "Step four runs the client again, into a second output folder, and compares the bytes of the bulk request and the manifest."
+  ],
+  [
+   30.238,
+   1.1,
+   "They're identical."
+  ],
+  [
+   31.337,
+   6.237,
+   "That's the property the bulk I D buys you: the same input gives the same batch hash, every time."
+  ],
+  [
+   37.575,
+   5.75,
+   "Microsoft's sample gives a new bulk I D on every run, so its hashes never repeat."
+  ],
+  [
+   43.325,
+   4.213,
+   "The long commands on the slide are wrapped, and the manifest is trimmed."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   2.288,
+   "Step five breaks a row on purpose."
+  ],
+  [
+   2.337,
+   6.737,
+   "The sed command writes a copy of the extract with worker one hundred thousand and five's department code in lower case."
+  ],
+  [
+   9.075,
+   8.562,
+   "Run the client on it, and the counts become eight ready and ten quarantined, and the quarantine says why: the lower-case value isn't a code."
+  ],
+  [
+   17.637,
+   5.575,
+   "One small typo in H R, and the record stops at the middleware instead of reaching the directory."
+  ],
+  [
+   23.212,
+   1.6,
+   "Step six holds a run."
+  ],
+  [
+   24.812,
+   4.7,
+   "A settings file allows only one disable per run, and the fixture has three."
+  ],
+  [
+   29.512,
+   8.175,
+   "So the client holds the whole run, with exit code three, and says why: three disables exceed the limit, held for confirmation."
+  ],
+  [
+   37.688,
+   4.375,
+   "Nothing is sent until someone confirms it with the confirm large delta option."
+  ],
+  [
+   42.062,
+   3.1,
+   "Step seven runs the tests: seventy pass."
+  ],
+  [
+   45.163,
+   1.375,
+   "Step eight cleans up."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   8.863,
+   "Lab 2 runs the client against a test tenant, never production, with Microsoft Entra I D P1, P2 or I D Governance."
+  ],
+  [
+   8.912,
+   6.8,
+   "Create an A P I-driven inbound provisioning app, and extend its schema with CSV2SCIM."
+  ],
+  [
+   15.713,
+   5.487,
+   "Grant the sender one permission, with a certificate or a managed identity, never a secret."
+  ],
+  [
+   21.2,
+   6.112,
+   "Send five fictional records with the hardened client, and reconcile them against the provisioning logs."
+  ],
+  [
+   27.312,
+   5.763,
+   "Remember the two-oh-two: the reconciliation is where you find out whether each record was written."
+  ],
+  [
+   33.075,
+   8.025,
+   "To back it out, step seven sends the five records again as inactive, with a termination date, and unsets the token variable."
+  ],
+  [
+   41.1,
+   2.15,
+   "The authors haven't run Lab 2."
+  ],
+  [
+   43.25,
+   3.475,
+   "Follow Chapter 01's Lab 2, step by step."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   1.387,
+   "The federal requirement."
+  ],
+  [
+   1.438,
+   6.213,
+   "The middleware is where an H R record becomes an account, so its outputs are account-management evidence."
+  ],
+  [
+   7.65,
+   6.513,
+   "The validation report supports input validation, S I ten, and account management, A C two."
+  ],
+  [
+   14.162,
+   7.375,
+   "The quarantine supports identifier management, and lives in the access-controlled audit store, because it holds personal data."
+  ],
+  [
+   21.538,
+   5.912,
+   "The provenance manifest supports configuration change control and the content of audit records."
+  ],
+  [
+   27.45,
+   2.925,
+   "A confirmed mass disable leaves a change record."
+  ],
+  [
+   30.375,
+   5.737,
+   "The tests and the pinned sample's snapshot support developer testing and supply chain controls."
+  ],
+  [
+   36.112,
+   7.525,
+   "And Lab 2 adds the sender's app registration and consent record, and the reconciliation against the provisioning logs."
+  ],
+  [
+   43.638,
+   5.85,
+   "The controls are from nist special publication eight hundred fifty-three, in its Moderate baseline."
+  ],
+  [
+   49.487,
+   9.05,
+   "Key Security Indicators are fed-ramp twenty X indicators for cloud service providers; the agency lines its evidence up with what its providers report."
+  ],
+  [
+   58.538,
+   3.562,
+   "Which output supports which control is this workbook's reading."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   1.975,
+   "Check yourself with two questions."
+  ],
+  [
+   2.025,
+   4.237,
+   "First: the bulk upload endpoint answers two-oh-two Accepted."
+  ],
+  [
+   6.263,
+   1.188,
+   "What does that tell you?"
+  ],
+  [
+   7.45,
+   7.362,
+   "The answer is b: the batch was staged for the provisioning job, and each record's result appears in the provisioning logs."
+  ],
+  [
+   14.812,
+   8.438,
+   "Learn's bulk upload A P I reference says the endpoint is asynchronous, so a two-oh-two is never proof that a user was written."
+  ],
+  [
+   23.25,
+   5.2,
+   "Second: a run would disable more accounts than the maximum disables per run allows."
+  ],
+  [
+   28.45,
+   1.012,
+   "What happens?"
+  ],
+  [
+   29.462,
+   7.9,
+   "The answer is c: the whole run is held, with exit code three, until someone confirms it with the confirm large delta option."
+  ],
+  [
+   37.362,
+   2.163,
+   "You saw that in step six of the lab."
+  ],
+  [
+   39.525,
+   7.662,
+   "The module page has two more questions, on the bulk I D and on partial records, each linked to the section that answers it."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   0.825,
+   "To sum up."
+  ],
+  [
+   0.875,
+   13.075,
+   "You learned where the middleware's job ends and the provisioning service's begins, and you ran the client that refuses bad rows, orders leavers first, holds a mass disable, and keeps a record an auditor can follow by hash."
+  ],
+  [
+   13.95,
+   19.1,
+   "The evidence an I S S O keeps: the validation report, the provenance manifest and, in Lab 2, the apply results, in the evidence store; the quarantine in the access-controlled audit store; the change record for any confirmed hold; the sender's app registration; and the reconciliation."
+  ],
+  [
+   33.05,
+   3.75,
+   "Before shipping, work through the Chapter 01 checklist."
+  ],
+  [
+   36.8,
+   3.525,
+   "Next is Module 2: write a validation kit check."
+  ],
+  [
+   40.325,
+   10.425,
+   "You'll build and read V K SYNC oh two, the check that soft match and hard-match takeover are blocked, and see why a read-only check still asks for the least privilege it can."
+  ]
+ ]
+}

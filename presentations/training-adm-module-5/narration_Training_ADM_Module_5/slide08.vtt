@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.432
+The build records what it
+did in a provenance manifest:
+
+2
+00:00:03.432 --> 00:00:05.988
+what was built, from
+what, and what shipped.
+
+3
+00:00:05.988 --> 00:00:11.299
+It holds the configuration, its version,
+the fixed policy I D and the mode.
+
+4
+00:00:11.299 --> 00:00:16.375
+It holds the MOF, the package and the
+policy definition, each with its hash.
+
+5
+00:00:16.375 --> 00:00:19.580
+It records the pinned module
+versions the build used,
+
+6
+00:00:19.580 --> 00:00:23.150
+and the counts of findings,
+warnings and information items.
+
+7
+00:00:23.150 --> 00:00:25.037
+There are two kinds of hash in it.
+
+8
+00:00:25.037 --> 00:00:27.402
+The MOF hash is the reviewable one:
+
+9
+00:00:27.402 --> 00:00:30.863
+it's the same for anyone
+who builds the same commit.
+
+10
+00:00:30.863 --> 00:00:35.063
+The package and definition hashes
+identify the bytes that shipped.
+
+11
+00:00:35.063 --> 00:00:40.612
+So an ISSO can download the published blob,
+hash it, and match it against this file.
+
+12
+00:00:40.612 --> 00:00:46.180
+Chapter 09, in Module 8, carries the
+manifest into the evidence package.

@@ -14,6 +14,8 @@ last-reviewed: 2026-11-02
 
 **Learning path:** [Building the Attribute-Driven Migration](index.md) · Module 9 of 9 · 50 minutes · Every gate, through the [step-to-gate map](../../books/b19-developer-workbook/10-deploying-to-test-and-production.md#step-to-gate-map) · Workbook [Chapter 10](../../books/b19-developer-workbook/10-deploying-to-test-and-production.md)
 
+**Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-adm-module-9) (the deck files come with the next edition) · [▶ Watch](../../presentations/watch.html?v=Training_ADM_Module_9_Narrated) (about 14 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_ADM_Module_9_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-adm-module-9/Training_ADM_Module_9_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-adm-module-9/Training_ADM_Module_9_Narrated.vtt).
+
 ::: {.callout-important}
 ## Chapter 10 is held for review
 Chapter 10 waits for the owner's review, and **nobody has run its runbook against a live tenant, subscription or forest.** Its five deploy scripts are tested against fixtures, and their dry-run output is real. Every other result in the chapter is an expectation, not an observation. This module's Lab 1 runs only the dry runs.
@@ -216,6 +218,7 @@ You dry-run the five deploy scripts against the kits' fixtures. Work in `example
 Load the test stage's settings, sign in as the deploy identity, run the pre-flight check dry and live, then follow the twelve steps of [Stage 1: live test](../../books/b19-developer-workbook/10-deploying-to-test-and-production.md#stage-1-live-test): baseline evidence, the HR middleware, dynamic rules, Lifecycle Workflows created disabled, Group Policy as code, machine configuration in audit, Ansible in check mode, the drift pipeline, the smoke test, the evidence package, the rollback drill and the evidence check.
 
 - **You need:** an Entra test tenant, an Azure test subscription with Arc-enabled test servers, and a test AD forest, never production; the three identities and the objects listed in [made before the runbook starts](../../books/b19-developer-workbook/10-deploying-to-test-and-production.md#made-before-the-runbook-starts).
+- **One check by hand:** the smoke test reads an app-only run of the validation kit, and VK-DG-03 is delegated only, so the smoke test lets it end unverified. That is a documented exception: at the first live run, the Groups Administrator signs in and runs VK-DG-03 by hand, as [step 9b](../../books/b19-developer-workbook/10-deploying-to-test-and-production.md#step-9-smoke-test) shows, and its result is a `smoke` evidence record. A failed hand check holds promotion.
 - **Back it out:** [step 11](../../books/b19-developer-workbook/10-deploying-to-test-and-production.md#step-11-roll-back) runs the rollback written from the record, newest first, and the validation kit afterwards should match the baseline.
 
 ## Unit 6: Knowledge check

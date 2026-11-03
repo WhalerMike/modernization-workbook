@@ -1,0 +1,76 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.710
+Step four shows what a live run
+would ask for: one permission,
+
+2
+00:00:03.710 --> 00:00:08.341
+OnPremDirectorySynchronization dot
+Read dot All, and the delegated role,
+
+3
+00:00:08.341 --> 00:00:11.702
+Global Administrator, the
+only role Microsoft Learn's
+
+4
+00:00:11.702 --> 00:00:15.138
+Graph reference lists, with
+no application permission.
+
+5
+00:00:15.138 --> 00:00:20.124
+Step five confirms the check isn't in
+a default run: the answer is False.
+
+6
+00:00:20.124 --> 00:00:25.588
+Step six runs the whole kit's tests: two
+hundred ninety-seven pass, none fail.
+
+7
+00:00:25.588 --> 00:00:28.600
+Step seven makes the check
+fail for the right reason.
+
+8
+00:00:28.600 --> 00:00:32.142
+You change your copy of the
+check to read block soft match,
+
+9
+00:00:32.142 --> 00:00:33.950
+a property that doesn't exist.
+
+10
+00:00:33.950 --> 00:00:35.850
+The fail fixture still fails.
+
+11
+00:00:35.850 --> 00:00:38.653
+And the pass fixture, with both blocks on,
+
+12
+00:00:38.653 --> 00:00:42.050
+fails too, because the
+missing value reads as off.
+
+13
+00:00:42.050 --> 00:00:44.606
+That's the unsafe default doing its job:
+
+14
+00:00:44.606 --> 00:00:47.800
+a wrong property name can't
+produce a silent Pass.
+
+15
+00:00:47.800 --> 00:00:50.988
+Put the name back, and the
+pass fixture passes again.
+
+16
+00:00:50.988 --> 00:00:53.640
+Step eight removes the inputs folder.

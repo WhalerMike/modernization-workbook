@@ -1,0 +1,83 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.038
+Why this check?
+
+2
+00:00:01.038 --> 00:00:03.900
+Gate 3 maps attributes through sync.
+
+3
+00:00:03.900 --> 00:00:08.431
+Before a single AD user is synchronized
+into a tenant that already has cloud
+
+4
+00:00:08.431 --> 00:00:11.092
+accounts, the sync engine
+has to decide which
+
+5
+00:00:11.092 --> 00:00:13.825
+incoming object matches
+which cloud account.
+
+6
+00:00:13.825 --> 00:00:18.155
+Microsoft Learn's pages on configuring
+Entra Connect for an existing
+
+7
+00:00:18.155 --> 00:00:21.962
+tenant and on Set Entra Dir Sync
+Feature explain the two joins.
+
+8
+00:00:21.962 --> 00:00:25.534
+A soft match joins on
+the primary SMTP address,
+
+9
+00:00:25.534 --> 00:00:29.199
+and on the U P N when soft
+match on U P N is turned on.
+
+10
+00:00:29.199 --> 00:00:31.575
+A hard match joins on the source anchor.
+
+11
+00:00:31.575 --> 00:00:36.437
+Either one, left open, lets an AD
+object take over a cloud account.
+
+12
+00:00:36.437 --> 00:00:40.311
+Learn's existing-tenant page
+advises keeping soft match blocked,
+
+13
+00:00:40.311 --> 00:00:44.327
+offers a feature to block cloud
+object takeover through hard match,
+
+14
+00:00:44.327 --> 00:00:48.200
+and says to turn each off only
+while a matching procedure needs it.
+
+15
+00:00:48.200 --> 00:00:51.091
+So the question is simple:
+are both blocks on,
+
+16
+00:00:51.091 --> 00:00:54.463
+and if not, is there an
+approved window that says why?
+
+17
+00:00:54.463 --> 00:00:58.460
+The guide lists this as Gate 3's
+optional match-blocking check.

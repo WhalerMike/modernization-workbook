@@ -1,0 +1,65 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.865
+Here's what you'll be able to
+do by the end of this module,
+
+2
+00:00:02.865 --> 00:00:05.488
+which takes about forty-five
+minutes with the lab.
+
+3
+00:00:05.488 --> 00:00:08.910
+You'll describe the parts of
+a check: its catalog entry,
+
+4
+00:00:08.910 --> 00:00:12.799
+its function, its rows and outcome,
+and its fixtures and tests.
+
+5
+00:00:12.799 --> 00:00:15.894
+You'll explain the three
+severities, Finding,
+
+6
+00:00:15.894 --> 00:00:19.238
+Warn and Info, and why a
+missing value reads as off.
+
+7
+00:00:19.238 --> 00:00:24.213
+You'll explain why this check is optional
+and prefers an export to a live read.
+
+8
+00:00:24.213 --> 00:00:29.225
+You'll run it on fixtures and on an
+export, and see Pass, Fail and Warn.
+
+9
+00:00:29.225 --> 00:00:34.012
+And you'll explain what the safety tests
+refuse, and why a new check inherits them.
+
+10
+00:00:34.012 --> 00:00:36.085
+Before you start, finish Module 1,
+
+11
+00:00:36.085 --> 00:00:40.000
+and Microsoft Automation Module
+1 for permissions and roles.
+
+12
+00:00:40.000 --> 00:00:42.923
+You need PowerShell 7
+and Pester 5.5 or later,
+
+13
+00:00:42.923 --> 00:00:47.930
+and you should be able to read PowerShell
+and know Pester's Describe and It.

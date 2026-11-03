@@ -1,0 +1,57 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.485
+Lab 2 runs the check on a real export,
+
+2
+00:00:02.485 --> 00:00:07.438
+in a test tenant with Microsoft Entra
+Connect or Cloud Sync configured.
+
+3
+00:00:07.438 --> 00:00:10.532
+A Global Administrator
+of the test tenant saves
+
+4
+00:00:10.532 --> 00:00:13.626
+the response of the one
+privileged read to a file.
+
+5
+00:00:13.626 --> 00:00:17.763
+That's the only step that needs the
+role; nothing in the kit runs with it.
+
+6
+00:00:17.763 --> 00:00:22.587
+Then you run the check on that export as
+any user, and compare the result with the
+
+7
+00:00:22.587 --> 00:00:27.412
+export, line by line, so you know the check
+reads the tenant's real response shape.
+
+8
+00:00:27.412 --> 00:00:32.001
+To back it out, step four deletes the
+export once the run's evidence is stored.
+
+9
+00:00:32.001 --> 00:00:36.297
+The export isn't evidence by
+itself; the run's manifest,
+
+10
+00:00:36.297 --> 00:00:39.325
+with a hash for every file of the run, is.
+
+11
+00:00:39.325 --> 00:00:41.475
+The authors haven't run Lab 2.
+
+12
+00:00:41.475 --> 00:00:45.020
+Follow Chapter 03's Lab 2, step by step.

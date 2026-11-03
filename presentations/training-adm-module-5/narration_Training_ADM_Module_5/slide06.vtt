@@ -1,0 +1,73 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.472
+The release registry is the kit's design:
+
+2
+00:00:02.472 --> 00:00:06.950
+the reviewed record of what is in
+production, one entry per configuration.
+
+3
+00:00:06.950 --> 00:00:09.225
+The policy I D never changes.
+
+4
+00:00:09.225 --> 00:00:12.910
+Learn's page on creating policy
+definitions says to reuse it,
+
+5
+00:00:12.910 --> 00:00:17.037
+so updates replace the definition
+instead of creating a second one.
+
+6
+00:00:17.037 --> 00:00:21.150
+The mode is checked case-sensitively
+against the three assignment types.
+
+7
+00:00:21.150 --> 00:00:25.828
+The published version moves up in the
+same pull request that publishes a
+
+8
+00:00:25.828 --> 00:00:30.350
+new version, so a second build of one
+point oh point oh fails MC-POL oh six.
+
+9
+00:00:30.350 --> 00:00:34.683
+The identity is system, so each
+machine reads the package with its own
+
+10
+00:00:34.683 --> 00:00:38.104
+system-assigned identity,
+which Learn's page on secure
+
+11
+00:00:38.104 --> 00:00:41.525
+access to packages says works
+for Arc-enabled servers.
+
+12
+00:00:41.525 --> 00:00:44.375
+Including Arc machines is a stated choice.
+
+13
+00:00:44.375 --> 00:00:48.500
+And the owner tag is the one this
+workbook's Arc track guidance uses.
+
+14
+00:00:48.500 --> 00:00:52.934
+An enforcing definition without
+that filter fails MC-POL oh eight,
+
+15
+00:00:52.934 --> 00:00:58.220
+because two tools on one setting flip it
+back and forth, each reporting success.

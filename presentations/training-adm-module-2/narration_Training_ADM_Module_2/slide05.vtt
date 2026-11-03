@@ -1,0 +1,79 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.100
+Here's the lesson this check hides.
+
+2
+00:00:02.100 --> 00:00:05.750
+The read is GET directory,
+on-premises synchronization.
+
+3
+00:00:05.750 --> 00:00:08.490
+Microsoft Learn's Graph
+reference for that call,
+
+4
+00:00:08.490 --> 00:00:13.285
+Get on-premises directory synchronization,
+names its least-privileged permission,
+
+5
+00:00:13.285 --> 00:00:17.463
+OnPremDirectorySynchronization dot
+Read dot All, which looks harmless.
+
+6
+00:00:17.463 --> 00:00:21.158
+But the same page lists no
+application permission for it at all,
+
+7
+00:00:21.158 --> 00:00:25.849
+and for delegated access says Global
+Administrator is the only supported role.
+
+8
+00:00:25.849 --> 00:00:30.738
+A read-only check, run live, would need
+the most powerful role in the tenant.
+
+9
+00:00:30.738 --> 00:00:34.626
+The kit's design rule is that a
+check asks for the least privilege
+
+10
+00:00:34.626 --> 00:00:38.513
+the question needs, and GET-only
+is necessary but not sufficient.
+
+11
+00:00:38.513 --> 00:00:40.913
+So this check does three
+things differently.
+
+12
+00:00:40.913 --> 00:00:45.538
+It's optional, so it stays out of a
+default run and runs only when named.
+
+13
+00:00:45.538 --> 00:00:48.963
+It prefers an export, saved
+by a Global Administrator
+
+14
+00:00:48.963 --> 00:00:51.688
+who is already signed
+in for other reasons.
+
+15
+00:00:51.688 --> 00:00:55.685
+And it says so: the catalog
+names the role and the reason,
+
+16
+00:00:55.685 --> 00:00:57.600
+before anyone runs it live.

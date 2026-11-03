@@ -1,0 +1,82 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.600
+The safety tests are the kit's own design.
+
+2
+00:00:02.600 --> 00:00:08.189
+They parse every script in the kit and fail
+the build on any state-changing command:
+
+3
+00:00:08.189 --> 00:00:11.641
+write verbs, Invoke Rest
+Method, Invoke Web Request,
+
+4
+00:00:11.641 --> 00:00:14.600
+native programs, file
+redirection, and more.
+
+5
+00:00:14.600 --> 00:00:18.161
+Every Graph request must
+carry a literal Method GET,
+
+6
+00:00:18.161 --> 00:00:20.563
+with one exception pinned by a test.
+
+7
+00:00:20.563 --> 00:00:23.764
+A next link that points at a
+host other than the cloud's
+
+8
+00:00:23.764 --> 00:00:26.674
+own Graph host is refused,
+so a token never leaves.
+
+9
+00:00:26.674 --> 00:00:30.071
+This check passes those tests
+without any change to them,
+
+10
+00:00:30.071 --> 00:00:32.962
+because it reads only
+through the kit's data path.
+
+11
+00:00:32.962 --> 00:00:35.127
+That's the point of a single data path:
+
+12
+00:00:35.127 --> 00:00:39.312
+a new check inherits the safety
+properties instead of re-proving them.
+
+13
+00:00:39.312 --> 00:00:42.474
+If your check seems to
+need its own HTTP call,
+
+14
+00:00:42.474 --> 00:00:45.549
+it doesn't; add what it
+needs to the data path.
+
+15
+00:00:45.549 --> 00:00:50.658
+And the remediation, the command Microsoft
+Learn's existing-tenant page gives to
+
+16
+00:00:50.658 --> 00:00:53.860
+block soft match, is a write,
+so it stays out of the kit,
+
+17
+00:00:53.860 --> 00:00:56.350
+in the change record the finding opens.

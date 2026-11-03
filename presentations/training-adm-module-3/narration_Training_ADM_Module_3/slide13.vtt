@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.025
+Check yourself with two questions.
+
+2
+00:00:02.025 --> 00:00:05.625
+First: Learn's resume sample
+runs after an incident.
+
+3
+00:00:05.625 --> 00:00:09.375
+What happens to a group that was
+paused for review before the incident?
+
+4
+00:00:09.375 --> 00:00:12.313
+The answer is b: it's
+turned on with the rest.
+
+5
+00:00:12.313 --> 00:00:16.349
+You saw that in step one of the lab,
+and it's why the program's runbook
+
+6
+00:00:16.349 --> 00:00:20.387
+uses the pause manifest, whose
+resume touches only what it paused.
+
+7
+00:00:20.387 --> 00:00:24.687
+Second: why does the linter work on
+the parsed rule, not on its text?
+
+8
+00:00:24.687 --> 00:00:28.175
+The answer is b: a guard
+inside an or protects nothing,
+
+9
+00:00:28.175 --> 00:00:31.013
+and a text search can't
+tell the difference.
+
+10
+00:00:31.013 --> 00:00:33.787
+The guards must be ANDed
+at the top of the rule.
+
+11
+00:00:33.787 --> 00:00:36.005
+The module page has two more questions,
+
+12
+00:00:36.005 --> 00:00:40.371
+on what the pull request check shows
+for a broken rule and which collections
+
+13
+00:00:40.371 --> 00:00:44.180
+a responder can resume, each linked
+to the section that answers it.

@@ -1,0 +1,68 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.162
+Step four reads the second
+day's audit findings.
+
+2
+00:00:03.162 --> 00:00:04.951
+Three, all Tier 0.
+
+3
+00:00:04.951 --> 00:00:09.463
+Audit oh one: a Privileged Role
+Administrator assigned outside PIM.
+
+4
+00:00:09.463 --> 00:00:14.113
+Audit oh two: a Global Administrator
+activation with no approval.
+
+5
+00:00:14.113 --> 00:00:18.263
+And audit oh four: a Global
+Administrator role setting change.
+
+6
+00:00:18.263 --> 00:00:22.450
+Open the events file and you'll
+see object I D's, no names.
+
+7
+00:00:22.450 --> 00:00:26.638
+Step five moves to a POSIX shell,
+in the drift pipeline folder.
+
+8
+00:00:26.638 --> 00:00:31.144
+Two variables name the two days' runs:
+the repository's copies of the ones
+
+9
+00:00:31.144 --> 00:00:35.575
+you made in step three, and a Pester
+test checks them against a fresh run.
+
+10
+00:00:35.575 --> 00:00:39.100
+Compare day one with nothing
+before it: it's a baseline,
+
+11
+00:00:39.100 --> 00:00:43.025
+with twenty-six new findings,
+and the compare exits with two.
+
+12
+00:00:43.025 --> 00:00:44.475
+Then package day one.
+
+13
+00:00:44.475 --> 00:00:47.989
+The package prints its
+evidence manifest hash,
+
+14
+00:00:47.989 --> 00:00:51.020
+starting e one oh d eight five four three.

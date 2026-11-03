@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.950
+Step three runs the pre-merge check
+on the repository's own policy files.
+
+2
+00:00:04.950 --> 00:00:08.912
+No findings, five warnings,
+which are the rollout decisions.
+
+3
+00:00:08.912 --> 00:00:12.566
+A finding would print its rule
+and file and exit with code one,
+
+4
+00:00:12.566 --> 00:00:14.100
+which fails the pipeline.
+
+5
+00:00:14.100 --> 00:00:17.638
+Step four runs the same check
+on Microsoft's own template.
+
+6
+00:00:17.638 --> 00:00:20.521
+You read the template
+page, load the repository,
+
+7
+00:00:20.521 --> 00:00:24.587
+so the check knows the emergency
+group, and test the template's body.
+
+8
+00:00:24.587 --> 00:00:27.574
+It fails the program's
+stricter rules four ways.
+
+9
+00:00:27.574 --> 00:00:30.912
+C A oh one: it has no emergency exclusion.
+
+10
+00:00:30.912 --> 00:00:37.640
+C A oh three: it has display text in its
+exclude users list, not an object I D.
+
+11
+00:00:37.640 --> 00:00:43.113
+C A oh six: it uses plain M F A,
+not an authentication strength.
+
+12
+00:00:43.113 --> 00:00:45.693
+And C A oh seven: it leaves out twelve of
+
+13
+00:00:45.693 --> 00:00:49.080
+the fourteen roles
+Microsoft Learn recommends.

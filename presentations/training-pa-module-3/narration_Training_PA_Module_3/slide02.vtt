@@ -1,0 +1,78 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.175
+Why this module?
+
+2
+00:00:01.175 --> 00:00:05.001
+An administrator should sign in
+with a phishing-resistant method,
+
+3
+00:00:05.001 --> 00:00:07.575
+from a compliant device,
+on a trusted network.
+
+4
+00:00:07.575 --> 00:00:11.525
+And at the moment they activate a privileged
+role, they should prove it again.
+
+5
+00:00:11.525 --> 00:00:14.466
+That second proof is the activation gate:
+
+6
+00:00:14.466 --> 00:00:19.137
+authentication context C one, and
+its policy, PIM Activation C one.
+
+7
+00:00:19.137 --> 00:00:22.942
+Microsoft Learn's PIM settings
+page says PIM can require
+
+8
+00:00:22.942 --> 00:00:26.262
+the context only after its
+policy exists and is On.
+
+9
+00:00:26.262 --> 00:00:28.537
+This is the first module that writes,
+
+10
+00:00:28.537 --> 00:00:31.799
+so two guards stand between
+the files and the tenant.
+
+11
+00:00:31.799 --> 00:00:34.889
+Rule C A oh one fails any
+policy file that isn't
+
+12
+00:00:34.889 --> 00:00:38.313
+disabled and doesn't
+exclude the emergency group.
+
+13
+00:00:38.313 --> 00:00:42.794
+Every file carries the exclusion
+whatever its state, because a file is
+
+14
+00:00:42.794 --> 00:00:47.199
+enforced by changing one word; that's
+this workbook's design guidance.
+
+15
+00:00:47.199 --> 00:00:51.199
+And the apply refuses to start if
+the pre-merge check has a finding,
+
+16
+00:00:51.199 --> 00:00:55.030
+or if any policy it would write
+leaves out the emergency group.

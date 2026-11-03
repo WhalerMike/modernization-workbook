@@ -1,0 +1,722 @@
+{
+ "1": [
+  [
+   0.05,
+   5.675,
+   "Welcome to Module 2 of the Privileged Access learning path: emergency access first."
+  ],
+  [
+   5.725,
+   10.012,
+   "This module serves the project plan's task A0.4 in Phase 0 and A1.1 in Phase 1, with Chapter 02 of the developer workbook."
+  ],
+  [
+   15.738,
+   2.737,
+   "It's the one step in the project that can't move."
+  ],
+  [
+   18.475,
+   8.562,
+   "In it you check each emergency access account against Microsoft Learn's standard, from code, with rules E A oh one to E A ten."
+  ],
+  [
+   27.038,
+   6.838,
+   "You build the alert on their use as a reviewed template that also sees non-interactive sign-ins and audit events."
+  ],
+  [
+   33.875,
+   1.512,
+   "And you keep a drill record."
+  ],
+  [
+   35.388,
+   4.8,
+   "The code runs on your laptop against the same fictional tenant as Module 1."
+  ],
+  [
+   40.188,
+   5.112,
+   "It's illustrative: tested against fixtures, not run against a production tenant."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.012,
+   "Why first?"
+  ],
+  [
+   1.062,
+   8.55,
+   "The project plan's critical path says that switching on approval before the emergency accounts exist is the one sequence that locks the agency out."
+  ],
+  [
+   9.613,
+   2.438,
+   "And Microsoft Learn documents the case."
+  ],
+  [
+   12.05,
+   8.0,
+   "Every Global Administrator and Privileged Role Administrator is eligible, approval is required, and no approvers are selected."
+  ],
+  [
+   20.05,
+   3.188,
+   "So no one can approve, and administration is locked."
+  ],
+  [
+   23.238,
+   3.337,
+   "That's why every later module that writes leans on this one."
+  ],
+  [
+   26.575,
+   4.8,
+   "Module 3 keeps the emergency group excluded from every policy file."
+  ],
+  [
+   31.375,
+   8.3,
+   "Module 4 refuses any pim change until the emergency accounts hold Global Administrator, active, permanent and direct."
+  ],
+  [
+   39.675,
+   3.475,
+   "And Module 7 refuses a review that would remove them."
+  ],
+  [
+   43.15,
+   5.438,
+   "The emergency accounts are also the main exception to zero permanently active assignments."
+  ],
+  [
+   48.587,
+   5.537,
+   "Module 1 reported E A oh one as Info only because the exceptions list names it."
+  ],
+  [
+   54.125,
+   2.962,
+   "Here you make sure the exception is what it claims to be."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   5.487,
+   "Here's what you'll be able to do by the end of this module, which takes about fifty-five minutes with the lab."
+  ],
+  [
+   5.537,
+   6.4,
+   "You'll explain the documented lockout, and why the emergency accounts come before any approval is switched on."
+  ],
+  [
+   11.938,
+   6.025,
+   "You'll name what Microsoft Learn's standard asks of each emergency account, and the rule that checks each item."
+  ],
+  [
+   17.962,
+   7.05,
+   "You'll explain why the alert reads three tables, not one, and why it matches object I D's, not names."
+  ],
+  [
+   25.012,
+   2.45,
+   "You'll run the check and read its findings."
+  ],
+  [
+   27.462,
+   7.475,
+   "And you'll say why every enforced Conditional Access policy must exclude the accounts, and why a report-only one needn't."
+  ],
+  [
+   34.938,
+   6.15,
+   "Before you start, finish Module 1: this lab uses its module and its fictional tenant again."
+  ],
+  [
+   41.087,
+   3.575,
+   "Reading K Q L helps for the alert, but isn't required."
+  ],
+  [
+   44.663,
+   6.4,
+   "Lab 2 needs a worldwide or G C C test tenant with a test Azure subscription, never production."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   2.413,
+   "Unit 1: the standard and the check."
+  ],
+  [
+   2.462,
+   4.95,
+   "Microsoft Learn's page on managing emergency access accounts sets the standard."
+  ],
+  [
+   7.412,
+   5.388,
+   "Two or more accounts, cloud-only, on the tenant's on-microsoft dot com domain."
+  ],
+  [
+   12.8,
+   2.725,
+   "Passkey or certificate-based authentication."
+  ],
+  [
+   15.525,
+   3.55,
+   "Global Administrator, active and permanent in pim."
+  ],
+  [
+   19.075,
+   6.162,
+   "Excluded, through one group, from the Conditional Access policies that block or restrict sign-in."
+  ],
+  [
+   25.238,
+   2.688,
+   "And validated at least every ninety days."
+  ],
+  [
+   27.925,
+   1.35,
+   "Each item has a rule."
+  ],
+  [
+   29.275,
+   2.125,
+   "E A oh one counts the accounts."
+  ],
+  [
+   31.4,
+   5.513,
+   "Oh two checks the domain, and oh three that the account isn't synchronized from on-premises."
+  ],
+  [
+   36.913,
+   4.075,
+   "Oh five wants Global Administrator active, permanent and direct."
+  ],
+  [
+   40.987,
+   9.162,
+   "Oh six flags any method that isn't phishing-resistant: phone, Authenticator, software OATH, email or a Temporary Access Pass."
+  ],
+  [
+   50.15,
+   4.612,
+   "Oh seven and oh eight check the exclusion group, and oh nine the drill record."
+  ],
+  [
+   54.763,
+   10.338,
+   "The program adds dual custody and a post-use review, and two rules of its own design: oh four, a disabled account, and E A ten, a stranger in the group."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   2.225,
+   "Pay attention to E A oh eight."
+  ],
+  [
+   2.275,
+   6.35,
+   "Microsoft Learn says to exclude the emergency accounts from the policies that block or restrict sign-in."
+  ],
+  [
+   8.625,
+   3.15,
+   "The code doesn't try to judge which policies do that."
+  ],
+  [
+   11.775,
+   5.475,
+   "It checks every enforced policy, and that choice is this workbook's design guidance."
+  ],
+  [
+   17.25,
+   6.638,
+   "An enforced policy that doesn't exclude an emergency account, through the group or directly, is a finding."
+  ],
+  [
+   23.887,
+   4.4,
+   "A report-only policy that doesn't exclude the group is only Info."
+  ],
+  [
+   28.288,
+   8.275,
+   "Microsoft Learn says report-only policies need no exclusion, and a report-only policy is how you record emergency sign-ins."
+  ],
+  [
+   36.562,
+   3.95,
+   "But the exclusion is required before the policy is enforced."
+  ],
+  [
+   40.513,
+   9.525,
+   "And the program's own pre-merge check, which Module 3 builds, is stricter: it wants the exclusion on every policy file, whatever its state."
+  ],
+  [
+   50.038,
+   2.138,
+   "Module 3 comes back to this."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   1.675,
+   "Unit 2: the alert."
+  ],
+  [
+   1.725,
+   6.775,
+   "Microsoft Learn's page has three sample queries, and all three read the sign-in log of interactive sign-ins."
+  ],
+  [
+   8.5,
+   2.25,
+   "The example adds two more tables."
+  ],
+  [
+   10.75,
+   13.925,
+   "The non-interactive sign-in log, because a refreshed token in a stolen session is a non-interactive sign-in, and Microsoft Learn says new sign-ins that obtain a refresh token with fido two keys are logged as non-interactive too."
+  ],
+  [
+   24.675,
+   8.35,
+   "And the audit log, for a role change made by an emergency account, and a security method registered on one, which is the start of a takeover."
+  ],
+  [
+   33.025,
+   7.213,
+   "The query matches object I D's only, so a rename can't hide a sign-in, and it refuses a user principal name."
+  ],
+  [
+   40.237,
+   10.012,
+   "Then the kit wraps it in an A R M template, with Microsoft Learn's severity zero and a threshold of greater than zero, evaluated every five minutes."
+  ],
+  [
+   50.25,
+   1.3,
+   "It deploys nothing."
+  ],
+  [
+   51.55,
+   2.763,
+   "Deployment is the reviewed pipeline's job."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   7.05,
+   "Lab 1 runs in the privileged-access folder, in one PowerShell 7 session, against the fictional tenant."
+  ],
+  [
+   7.825,
+   5.275,
+   "Step one runs Microsoft Learn's queries over a sign-in export, with Pester."
+  ],
+  [
+   13.1,
+   1.938,
+   "Seven pass and none fail."
+  ],
+  [
+   15.037,
+   9.613,
+   "The tests show what they find: of five emergency events in the export, Learn's two-I D query finds the two interactive sign-ins, and misses the rest."
+  ],
+  [
+   24.65,
+   4.1,
+   "Step two loads the module and lists the permissions the check needs."
+  ],
+  [
+   28.75,
+   13.088,
+   "There are six: Group Member dot Read Basic dot All, Policy dot Read dot All, Role Assignment Schedule to read, User dot Read dot All, User dot Read Basic dot All, and User Authentication Method dot Read dot All."
+  ],
+  [
+   41.837,
+   1.087,
+   "Nothing writes."
+  ],
+  [
+   42.925,
+   2.675,
+   "The output on the slide is wrapped to fit."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   4.475,
+   "Step three checks the fictional tenant's accounts and writes the alert template."
+  ],
+  [
+   4.525,
+   15.287,
+   "You give it the tenant fixture, the emergency access configuration, the drill record, a date to judge the drills by, the thirtieth of October, an output folder, and, for the alert, the Log Analytics workspace, the action group and a location."
+  ],
+  [
+   19.812,
+   4.612,
+   "The check finds nine findings, no warnings and one information item."
+  ],
+  [
+   24.425,
+   9.662,
+   "It writes the alert rule to emergency-alert dot json, for review, and tells you to deploy it with your reviewed pipeline; it doesn't deploy anything itself."
+  ],
+  [
+   34.087,
+   5.3,
+   "And as always, the manifest lists every request and the hash of every file."
+  ],
+  [
+   39.388,
+   7.0,
+   "On the slide, the two resource I D's are wrapped to fit; on the command line, each one is a single word."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   1.962,
+   "Step four prints the findings."
+  ],
+  [
+   2.013,
+   3.075,
+   "E A oh one, the first account, passes."
+  ],
+  [
+   5.088,
+   3.462,
+   "The second, E A oh two, fails five ways."
+  ],
+  [
+   8.55,
+   4.463,
+   "It's on contoso dot example, not the on-microsoft dot com domain."
+  ],
+  [
+   13.012,
+   3.862,
+   "Its Global Administrator assignment ends, so it isn't permanent."
+  ],
+  [
+   16.875,
+   3.1,
+   "It has a phone method, which isn't phishing-resistant."
+  ],
+  [
+   19.975,
+   1.925,
+   "It isn't in the exclusion group."
+  ],
+  [
+   21.9,
+   1.938,
+   "And its last drill is too old."
+  ],
+  [
+   23.837,
+   1.288,
+   "Then the policies."
+  ],
+  [
+   25.125,
+   10.35,
+   "Three enforced policies don't exclude the accounts: the legacy authentication block, the compliant-device policy for administrators, and the activation gate's own policy."
+  ],
+  [
+   35.475,
+   2.8,
+   "Each of those could lock the emergency accounts out."
+  ],
+  [
+   38.275,
+   6.225,
+   "The report-only policy that records emergency sign-ins is Info, as Microsoft Learn allows."
+  ],
+  [
+   44.5,
+   9.525,
+   "And the last row, E A ten: carl dot ops is in the exclusion group, and shouldn't be, because every policy that excludes the group excludes him too."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   3.487,
+   "Step five matches the same export with the example's rule."
+  ],
+  [
+   3.538,
+   5.062,
+   "You load the export's rows and pass the two emergency accounts' object I D's."
+  ],
+  [
+   8.6,
+   3.85,
+   "Five rows come back, where Microsoft Learn's query found two."
+  ],
+  [
+   12.45,
+   3.525,
+   "The two interactive sign-ins are there, one for each account."
+  ],
+  [
+   15.975,
+   1.175,
+   "And three more."
+  ],
+  [
+   17.15,
+   6.287,
+   "A non-interactive sign-in by the first account, which is what a refreshed token in a stolen session looks like."
+  ],
+  [
+   23.438,
+   4.438,
+   "An Add member to role event made by the second account: a role change."
+  ],
+  [
+   27.875,
+   8.688,
+   "And a User registered security info event on the first account: a new method registered on an emergency account, the start of a takeover."
+  ],
+  [
+   36.562,
+   3.975,
+   "Those are the three events the extra two tables exist to catch."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   2.025,
+   "Step six shows the guards."
+  ],
+  [
+   2.075,
+   8.812,
+   "Ask for the query with a user principal name, E A oh one at the on-microsoft dot com domain, and it refuses: that isn't an object I D."
+  ],
+  [
+   10.887,
+   3.25,
+   "A query on names would miss the account after a rename."
+  ],
+  [
+   14.137,
+   2.5,
+   "Then read the alert template the check wrote."
+  ],
+  [
+   16.637,
+   9.225,
+   "Its resource is a Microsoft Insights scheduled query rule, A P I version twenty twenty-three, twelve, oh one, with severity zero."
+  ],
+  [
+   25.863,
+   2.888,
+   "That's the reviewed template your pipeline deploys."
+  ],
+  [
+   28.75,
+   4.237,
+   "Step seven runs the whole test suite: three hundred thirty pass."
+  ],
+  [
+   32.987,
+   3.525,
+   "Then delete the output folder, because it names the accounts."
+  ],
+  [
+   36.513,
+   4.588,
+   "Pester prints its summary on several lines; the slide shows it on one."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   7.638,
+   "Lab 2 runs in your own test tenant, worldwide or G C C, with a test Azure subscription, never production."
+  ],
+  [
+   7.688,
+   5.938,
+   "You send the audit log and the interactive and non-interactive sign-in logs to a test workspace."
+  ],
+  [
+   13.625,
+   6.162,
+   "You register a reader app, run the check with your own accounts, and run the query by hand in the workspace."
+  ],
+  [
+   19.788,
+   4.638,
+   "Then you deploy the alert from the reviewed template, and run a drill that fires it."
+  ],
+  [
+   24.425,
+   9.625,
+   "If the test tenant's emergency accounts are real, treat that drill as Microsoft Learn's validation drill: tell security operations first, and record it."
+  ],
+  [
+   34.05,
+   9.025,
+   "You need at least Security Administrator for the diagnostic setting, the six read permissions for the reader app, and at least Monitoring Contributor to deploy the alert."
+  ],
+  [
+   43.075,
+   9.713,
+   "The back-out deletes the alert rule and action group, the permissions, the app and its certificate, the diagnostic setting if the lab created it, and the test output."
+  ],
+  [
+   52.788,
+   2.15,
+   "The authors haven't run Lab 2."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   1.387,
+   "The federal requirement."
+  ],
+  [
+   1.438,
+   7.325,
+   "The check is the plan's Gate 1 test, emergency access accounts tested, and the alert watches the accounts between drills."
+  ],
+  [
+   8.762,
+   12.825,
+   "It supports nist special publication eight hundred fifty-three A C two, with emergency accounts as a defined account type, and I A two, enhancement one, multifactor authentication to privileged accounts."
+  ],
+  [
+   21.587,
+   5.9,
+   "The alert supports A C two, enhancement four, A U six and S I four."
+  ],
+  [
+   27.488,
+   15.338,
+   "And from sis-uh's B O D twenty-five oh-one and its ScubaGear baseline: M S A A D seven point three, cloud-only privileged accounts, and three point six, phishing-resistant M F A for highly privileged roles."
+  ],
+  [
+   42.825,
+   4.8,
+   "Treating the drills as compensating controls is the workbook's design guidance."
+  ],
+  [
+   47.625,
+   13.225,
+   "The evidence an I S S O keeps for Gate 1: the findings with no finding from the test tenant's run; the drill tickets and the drill record; the reviewed alert template and its deployment record; and the manifest."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   1.975,
+   "Check yourself with two questions."
+  ],
+  [
+   2.025,
+   3.575,
+   "First: what is the lockout Microsoft Learn documents?"
+  ],
+  [
+   5.6,
+   8.525,
+   "The answer is b: every Global Administrator and Privileged Role Administrator eligible, approval required, and no approvers selected."
+  ],
+  [
+   14.125,
+   3.15,
+   "No one can approve, so administration is locked."
+  ],
+  [
+   17.275,
+   5.638,
+   "Second: a report-only Conditional Access policy doesn't exclude the emergency group."
+  ],
+  [
+   22.913,
+   1.75,
+   "What does E A oh eight report?"
+  ],
+  [
+   24.663,
+   6.438,
+   "The answer is b: Info, because Microsoft Learn says report-only policies need no exclusion."
+  ],
+  [
+   31.1,
+   5.213,
+   "You saw it for the policy that records emergency sign-ins in Lab 1, step four."
+  ],
+  [
+   36.312,
+   4.9,
+   "The module page has two more questions, each linked to the section that answers it."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   0.825,
+   "To sum up."
+  ],
+  [
+   0.875,
+   10.838,
+   "You checked two emergency accounts against Microsoft Learn's standard and found one that fails five ways, three enforced policies that would lock them out, and a stranger in their exclusion group."
+  ],
+  [
+   11.713,
+   4.325,
+   "And you built an alert that sees five events where Learn's sample sees two."
+  ],
+  [
+   16.038,
+   7.862,
+   "Carry one thing forward: before any later lab enforces anything, build the emergency accounts and confirm one can sign in."
+  ],
+  [
+   23.9,
+   5.775,
+   "Next is Module 3: Conditional Access for administrators and the activation gate."
+  ],
+  [
+   29.675,
+   10.338,
+   "It's the first module that writes, so it's the first that could lock people out, and its first rule, C A oh one, keeps the emergency group excluded from every policy file."
+  ]
+ ]
+}

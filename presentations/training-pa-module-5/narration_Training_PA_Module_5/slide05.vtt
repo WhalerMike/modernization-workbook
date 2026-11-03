@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.300
+Three facts from Microsoft Learn's
+PIM for Groups pages shape the code.
+
+2
+00:00:04.300 --> 00:00:08.427
+First, eligible membership doesn't
+appear in the group's members list,
+
+3
+00:00:08.427 --> 00:00:11.975
+so reading members alone would
+miss every eligible holder.
+
+4
+00:00:11.975 --> 00:00:16.352
+Second, PIM onboards a group on its
+first schedule or policy change,
+
+5
+00:00:16.352 --> 00:00:21.287
+and the group can't be taken back out;
+the policy I D's change when that happens.
+
+6
+00:00:21.287 --> 00:00:25.926
+Third, group administrators or
+owners can override what PIM set.
+
+7
+00:00:25.926 --> 00:00:28.664
+So the code reads the
+tenant before every plan,
+
+8
+00:00:28.664 --> 00:00:31.475
+rather than trusting what
+it applied last time.
+
+9
+00:00:31.475 --> 00:00:33.403
+And one choice of the kit's own:
+
+10
+00:00:33.403 --> 00:00:37.560
+activations aren't standing state,
+so the read leaves them out.

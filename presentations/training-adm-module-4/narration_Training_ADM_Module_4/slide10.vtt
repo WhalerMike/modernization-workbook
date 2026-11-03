@@ -1,0 +1,73 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.059
+Step three builds the move
+plan from the fixture tenant:
+
+2
+00:00:04.059 --> 00:00:06.063
+eleven rows, from three GPOs.
+
+3
+00:00:06.063 --> 00:00:08.947
+Five are candidates, such
+as disabling Windows
+
+4
+00:00:08.947 --> 00:00:11.537
+Error Reporting and allowing crash dumps.
+
+5
+00:00:11.537 --> 00:00:14.601
+Allow hibernate is a
+conflict, on two rows,
+
+6
+00:00:14.601 --> 00:00:19.737
+because the baseline GPO and the
+power GPO set it to different values.
+
+7
+00:00:19.737 --> 00:00:22.450
+The firewall rule goes
+to Endpoint security.
+
+8
+00:00:22.450 --> 00:00:27.175
+Two rows aren't supported, including
+a drive map, and one is deprecated.
+
+9
+00:00:27.175 --> 00:00:30.051
+Notice the user-scope
+rows keep their scope:
+
+10
+00:00:30.051 --> 00:00:33.087
+user settings go to user
+groups on the HR track.
+
+11
+00:00:33.087 --> 00:00:35.862
+Step four lints the
+library against that plan.
+
+12
+00:00:35.862 --> 00:00:41.189
+There's one row, an information item,
+GPC oh eight: the hibernate setting
+
+13
+00:00:41.189 --> 00:00:46.700
+has conflicting GPO values, and decision
+D R oh one oh five picks the value.
+
+14
+00:00:46.700 --> 00:00:50.225
+That's the conflict shown, with
+the decision that resolves it.
+
+15
+00:00:50.225 --> 00:00:52.420
+The output on the slide is trimmed.

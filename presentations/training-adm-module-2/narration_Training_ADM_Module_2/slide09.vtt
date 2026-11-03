@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.000
+Step two opens a matching window
+until October thirty-first.
+
+2
+00:00:04.000 --> 00:00:08.217
+Run the same fail fixture on October
+thirtieth, inside the window,
+
+3
+00:00:08.217 --> 00:00:12.825
+and the status is Warn: the blocks are
+off, but an approved window says why.
+
+4
+00:00:12.825 --> 00:00:17.288
+Run it on November first, the day
+after the window closes, and it's Fail.
+
+5
+00:00:17.288 --> 00:00:19.013
+Nobody edited anything.
+
+6
+00:00:19.013 --> 00:00:23.600
+The window is a date, so a Warn
+can never quietly become permanent.
+
+7
+00:00:23.600 --> 00:00:26.150
+Step three feeds the check an export.
+
+8
+00:00:26.150 --> 00:00:29.180
+The first two commands make
+an inputs folder with an
+
+9
+00:00:29.180 --> 00:00:32.562
+export that blocks soft match
+but not hard-match takeover.
+
+10
+00:00:32.562 --> 00:00:37.137
+The status is Fail with a count of
+one: only the hard-match block is off.
+
+11
+00:00:37.137 --> 00:00:42.200
+And the evidence's source is now Input,
+with the export's file name as the query.
+
+12
+00:00:42.200 --> 00:00:44.064
+That's the path the check prefers,
+
+13
+00:00:44.064 --> 00:00:47.930
+because reading a file never needs
+the Global Administrator role.

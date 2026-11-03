@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.025
+Check yourself with two questions.
+
+2
+00:00:02.025 --> 00:00:04.698
+First: why does the audit
+read refuse a window
+
+3
+00:00:04.698 --> 00:00:07.587
+that starts more than
+thirty days before the run?
+
+4
+00:00:07.587 --> 00:00:13.109
+The answer is b: Microsoft Entra audit logs
+are kept for thirty days with P1 or P2,
+
+5
+00:00:13.109 --> 00:00:18.375
+so older events can't be read, and the
+window would look complete when it isn't.
+
+6
+00:00:18.375 --> 00:00:21.725
+Second: what does the hash
+chain between packages show?
+
+7
+00:00:21.725 --> 00:00:26.013
+The answer is b: a replaced package
+or a missing day, as a break,
+
+8
+00:00:26.013 --> 00:00:30.913
+because each package records the
+previous package's manifest hash.
+
+9
+00:00:30.913 --> 00:00:35.913
+You saw the chain in Lab 1, step eight,
+and an edited package fail in step ten.
+
+10
+00:00:35.913 --> 00:00:40.870
+The module page has two more questions,
+each linked to the section that answers it.

@@ -1,0 +1,60 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.875
+To sum up.
+
+2
+00:00:00.875 --> 00:00:05.388
+You checked the administrator policies
+and the activation gate before merge,
+
+3
+00:00:05.388 --> 00:00:08.998
+saw Microsoft's own template fail
+the program's stricter rules,
+
+4
+00:00:08.998 --> 00:00:12.192
+planned against a tenant,
+and applied three times until
+
+5
+00:00:12.192 --> 00:00:15.525
+nothing was left to change, with
+the gate still report-only.
+
+6
+00:00:15.525 --> 00:00:20.712
+Carry one thing forward: the gate's policy
+state can't be read from the version one
+
+7
+00:00:20.712 --> 00:00:23.699
+point oh A P I, so the next
+module asks a person to
+
+8
+00:00:23.699 --> 00:00:27.000
+state that the gate is On
+before it sets the context.
+
+9
+00:00:27.000 --> 00:00:31.400
+Next is Module 4: PIM for
+Microsoft Entra roles as code.
+
+10
+00:00:31.400 --> 00:00:34.707
+You hold each role's PIM
+settings as one reviewed file,
+
+11
+00:00:34.707 --> 00:00:38.842
+see exactly what a change will do,
+apply it one rollout wave at a time,
+
+12
+00:00:38.842 --> 00:00:42.580
+and prove from a read-back that
+the tenant matches the files.

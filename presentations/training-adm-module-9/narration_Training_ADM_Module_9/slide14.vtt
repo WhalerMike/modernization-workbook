@@ -1,0 +1,74 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.875
+To sum up.
+
+2
+00:00:00.875 --> 00:00:04.173
+You dry-ran the runbook's own
+scripts: a pre-flight check,
+
+3
+00:00:04.173 --> 00:00:08.863
+changes recorded with their rollback, a
+smoke test that says no-go on fixtures,
+
+4
+00:00:08.863 --> 00:00:12.821
+an evidence check against the
+requirement rows, and a production
+
+5
+00:00:12.821 --> 00:00:16.925
+pre-flight that refuses to promote
+without a live, passing test stage.
+
+6
+00:00:16.925 --> 00:00:21.746
+The evidence an ISSO keeps, for each
+stage: the settings file and its hash,
+
+7
+00:00:21.746 --> 00:00:26.078
+the pre-flight results, the
+validation kit runs before and after,
+
+8
+00:00:26.078 --> 00:00:31.389
+each kit's outputs, the smoke report, the
+evidence package and its verify result,
+
+9
+00:00:31.389 --> 00:00:34.331
+the deploy record and
+the rollback scripts,
+
+10
+00:00:34.331 --> 00:00:37.600
+and the evidence folder
+with its evidence check.
+
+11
+00:00:37.600 --> 00:00:40.301
+For production, add the
+promotion record and
+
+12
+00:00:40.301 --> 00:00:43.075
+seven days of chained
+drift packages per wave.
+
+13
+00:00:43.075 --> 00:00:46.738
+Before you run a stage, work
+through the Chapter 10 checklist.
+
+14
+00:00:46.738 --> 00:00:48.887
+And that's the end of the learning path.
+
+15
+00:00:48.887 --> 00:00:53.740
+The path's index and the Labs page
+list every module and every lab.

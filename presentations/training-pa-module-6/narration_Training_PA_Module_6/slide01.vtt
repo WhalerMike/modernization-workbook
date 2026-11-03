@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:06.000
+Welcome to Module 6 of the Privileged Access
+learning path: PIM for Azure resources.
+
+2
+00:00:06.000 --> 00:00:11.459
+This module serves the project plan's
+task A3.2 in Phase 3, Azure privileged
+
+3
+00:00:11.459 --> 00:00:16.650
+roles eligible through PIM, with
+Chapter 06 of the developer workbook.
+
+4
+00:00:16.650 --> 00:00:19.807
+Owner, Contributor and
+User Access Administrator
+
+5
+00:00:19.807 --> 00:00:22.137
+on a subscription are privileged too.
+
+6
+00:00:22.137 --> 00:00:27.075
+The plan makes them eligible through PIM,
+with at most three subscription owners.
+
+7
+00:00:27.075 --> 00:00:30.513
+In this module you hold PIM
+for Azure resources as code.
+
+8
+00:00:30.513 --> 00:00:34.983
+One reviewed file says which scopes are
+governed, the settings for each tier,
+
+9
+00:00:34.983 --> 00:00:39.737
+who is eligible, and which standing
+assignments are allowed and who owns each one.
+
+10
+00:00:39.737 --> 00:00:42.179
+The code reads the estate, prints a diff,
+
+11
+00:00:42.179 --> 00:00:46.224
+writes the requests it would send,
+and sends them only with Apply.
+
+12
+00:00:46.224 --> 00:00:50.140
+It's illustrative: tested
+against fixtures and a fake.

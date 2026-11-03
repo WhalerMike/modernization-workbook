@@ -1,0 +1,70 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.437
+The federal requirement.
+
+2
+00:00:01.437 --> 00:00:07.079
+The runs, the packages and the period
+are the evidence for the plan's tasks
+
+3
+00:00:07.079 --> 00:00:12.438
+A3.6 and A4.3, and for Gate 4's evidence
+for every elevation in the period.
+
+4
+00:00:12.438 --> 00:00:18.134
+From NIST special publication eight
+hundred fifty-three they support C A seven,
+
+5
+00:00:18.134 --> 00:00:21.587
+continuous monitoring; A
+C six, enhancement nine,
+
+6
+00:00:21.587 --> 00:00:25.902
+logging the use of privileged
+functions; A U six, audit review;
+
+7
+00:00:25.902 --> 00:00:30.563
+A U nine, protection of audit
+information; and A U eleven, retention.
+
+8
+00:00:30.563 --> 00:00:34.162
+Drift as an incident adds
+S I four and I R four.
+
+9
+00:00:34.162 --> 00:00:39.223
+And from CISA's B O D twenty-five
+oh-one and its ScubaGear baseline:
+
+10
+00:00:39.223 --> 00:00:43.534
+M S A A D seven point five,
+roles assigned only through PIM,
+
+11
+00:00:43.534 --> 00:00:48.501
+and seven point six, approval to
+activate Global Administrator.
+
+12
+00:00:48.501 --> 00:00:52.538
+The evidence an ISSO keeps
+for Gate 4: each run's folder;
+
+13
+00:00:52.538 --> 00:00:57.585
+each package's manifest and sums,
+in the evidence store; the period's
+
+14
+00:00:57.585 --> 00:01:03.600
+manifest and summary; and the incident
+record each Tier 0 fingerprint matches.

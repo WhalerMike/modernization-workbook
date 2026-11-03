@@ -14,7 +14,9 @@ last-reviewed: 2026-11-02
 
 **Learning path:** [Building the Attribute-Driven Migration](index.md) · Module 1 of 9 · 55 minutes · Guide [Gate 2](../../books/guides/attribute-driven-migration-implementation.md#gate-2-prove-the-attributes) and [Gate 3](../../books/guides/attribute-driven-migration-implementation.md#gate-3-map-the-attributes-through-sync) · Workbook [Chapter 01](../../books/b19-developer-workbook/01-the-hr-to-entra-middleware.md)
 
-**Watch:** the chapter's narrated tour, about 11 minutes: [▶ Watch](../../presentations/watch.html?v=DW_ADM_01_HR_Entra_Middleware_Narrated). The narrated deck for this module comes later.
+**Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-adm-module-1) (the deck files come with the next edition) · [▶ Watch](../../presentations/watch.html?v=Training_ADM_Module_1_Narrated) (about 14 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_ADM_Module_1_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-adm-module-1/Training_ADM_Module_1_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-adm-module-1/Training_ADM_Module_1_Narrated.vtt).
+
+**Also:** the chapter's narrated tour, about 11 minutes: [▶ Watch](../../presentations/watch.html?v=DW_ADM_01_HR_Entra_Middleware_Narrated).
 
 ## Unit 1: Introduction
 

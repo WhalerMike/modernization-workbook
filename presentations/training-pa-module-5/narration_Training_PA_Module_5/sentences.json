@@ -1,0 +1,744 @@
+{
+ "1": [
+  [
+   0.05,
+   6.85,
+   "Welcome to Module 5 of the Privileged Access learning path: pim for Groups, and the P R V groups."
+  ],
+  [
+   6.9,
+   9.863,
+   "This module serves the project plan's task A2.1 in Phase 2, and A3.3 in Phase 3, with Chapter 05 of the developer workbook."
+  ],
+  [
+   16.762,
+   3.425,
+   "The program never assigns a privileged role to a person."
+  ],
+  [
+   20.188,
+   10.375,
+   "It assigns the role to a role-assignable group named P R V, then the tier, then the role, so the tier shows in every review, alert and audit record."
+  ],
+  [
+   30.562,
+   2.1,
+   "Module 1 reads those groups."
+  ],
+  [
+   32.663,
+   1.438,
+   "This module writes them."
+  ],
+  [
+   34.1,
+   9.7,
+   "You keep each group's own state in one reviewed file: who is a member or owner, until when, on which ticket, and how membership is activated."
+  ],
+  [
+   43.8,
+   9.162,
+   "The code reads the tenant first, reports what's wrong, plans the exact requests, and applies them only when you ask, and only past its guards."
+  ],
+  [
+   52.962,
+   3.862,
+   "It's illustrative: tested against fixtures and a fake."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.15,
+   "Why does this matter?"
+  ],
+  [
+   1.2,
+   5.875,
+   "Because the P R V groups decide who holds each role, and their state drifts like anything else."
+  ],
+  [
+   7.075,
+   6.638,
+   "So the guards refuse a plan before anything is sent, and three of them keep people from losing access by mistake."
+  ],
+  [
+   13.713,
+   4.075,
+   "Guard G four refuses eligible owners with no active owner."
+  ],
+  [
+   17.788,
+   8.2,
+   "Microsoft Learn's page on pim for Groups says the last active owner can't be removed, so an activated owner's deactivation fails."
+  ],
+  [
+   25.988,
+   8.925,
+   "Guard G six refuses more removals than the Max Removals limit, five by default, because that's the sign of a wrong or truncated file."
+  ],
+  [
+   34.913,
+   6.388,
+   "And guard G one refuses a Tier 0 or Tier 1 policy losing approval or its approvers."
+  ],
+  [
+   41.3,
+   5.2,
+   "Microsoft Learn also says a group can't be taken back out of pim once it's onboarded."
+  ],
+  [
+   46.5,
+   2.587,
+   "So Lab 2 uses groups made for the lab."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   5.487,
+   "Here's what you'll be able to do by the end of this module, which takes about fifty-five minutes with the lab."
+  ],
+  [
+   5.537,
+   7.388,
+   "You'll explain the two Microsoft features that meet in a P R V group, and the two ways the program uses them together."
+  ],
+  [
+   12.925,
+   5.8,
+   "You'll name what Microsoft Learn says about role-assignable groups and pim for Groups that shapes the code."
+  ],
+  [
+   18.725,
+   4.675,
+   "You'll read the findings, P G oh one to oh nine, and a plan's diff."
+  ],
+  [
+   23.4,
+   6.2,
+   "And you'll name the guards, G one to G seven, and say why the pipeline's app doesn't create the groups."
+  ],
+  [
+   29.6,
+   13.012,
+   "Before you start, finish Module 4, for eligible assignments and the P R V group that holds each role's eligibility, and read about role-assignable groups in the chapter on privileged tiers in Access and Privilege."
+  ],
+  [
+   42.612,
+   9.6,
+   "Lab 2 needs a worldwide or G C C test tenant with Microsoft Entra I D P2 or Governance licenses and fictional people, never production."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   3.175,
+   "Unit 1: what the P R V groups have to hold."
+  ],
+  [
+   3.225,
+   3.462,
+   "Two Microsoft features meet in a P R V group."
+  ],
+  [
+   6.688,
+   2.275,
+   "The first is role-assignable groups."
+  ],
+  [
+   8.963,
+   9.45,
+   "Microsoft Learn's page on using groups to manage role assignments says only a group created with is Assignable To Role set to true can hold an Entra role."
+  ],
+  [
+   18.413,
+   2.6,
+   "It's set at creation and can't be changed."
+  ],
+  [
+   21.012,
+   2.138,
+   "A tenant can have at most five hundred."
+  ],
+  [
+   23.15,
+   4.938,
+   "Membership must be assigned, never dynamic, and a group can't be a member."
+  ],
+  [
+   28.087,
+   7.888,
+   "The second is pim for Groups: just-in-time membership or ownership, with one policy for membership and one for ownership."
+  ],
+  [
+   35.975,
+   3.362,
+   "The program's design uses them together in two ways."
+  ],
+  [
+   39.337,
+   5.062,
+   "For an Entra role, the group holds an eligible assignment, and its members are active."
+  ],
+  [
+   44.4,
+   4.65,
+   "For other privilege, such as an Azure role, the members are eligible for the group."
+  ],
+  [
+   49.05,
+   6.1,
+   "The access packages for P R V membership, the plan's A3.3, aren't built here."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   4.25,
+   "Three facts from Microsoft Learn's pim for Groups pages shape the code."
+  ],
+  [
+   4.3,
+   7.675,
+   "First, eligible membership doesn't appear in the group's members list, so reading members alone would miss every eligible holder."
+  ],
+  [
+   11.975,
+   9.312,
+   "Second, pim onboards a group on its first schedule or policy change, and the group can't be taken back out; the policy I D's change when that happens."
+  ],
+  [
+   21.288,
+   4.638,
+   "Third, group administrators or owners can override what pim set."
+  ],
+  [
+   25.925,
+   5.55,
+   "So the code reads the tenant before every plan, rather than trusting what it applied last time."
+  ],
+  [
+   31.475,
+   6.025,
+   "And one choice of the kit's own: activations aren't standing state, so the read leaves them out."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   3.825,
+   "Unit 2: the file, the findings and the guards."
+  ],
+  [
+   3.875,
+   9.463,
+   "The desired state is one file, P R V groups dot json, with the tier policy beside it; the values are this workbook's design guidance."
+  ],
+  [
+   13.338,
+   5.25,
+   "The read compares the tenant with it and raises rules P G oh one to oh nine."
+  ],
+  [
+   18.587,
+   4.825,
+   "Oh one is a name that doesn't follow the P R V pattern, the program's naming."
+  ],
+  [
+   23.413,
+   10.1,
+   "Oh two is a group that holds an Entra role but isn't role-assignable, and oh three a dynamic or synchronized group; Microsoft Learn says pim for Groups can't manage those."
+  ],
+  [
+   33.513,
+   5.062,
+   "Oh four counts role-assignable groups against Microsoft Learn's limit of five hundred."
+  ],
+  [
+   38.575,
+   4.75,
+   "Oh five is a group nested as a holder, or a service principal made eligible."
+  ],
+  [
+   43.325,
+   3.312,
+   "Oh six is an entry with no end or no ticket."
+  ],
+  [
+   46.638,
+   1.887,
+   "Oh seven is the owner trap."
+  ],
+  [
+   48.525,
+   3.562,
+   "Oh eight is a policy rule that differs from the reviewed setting."
+  ],
+  [
+   52.087,
+   6.912,
+   "And oh nine is anything the file doesn't grant or list: anything outside the file is unreviewed."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   6.088,
+   "The plan has a fixed order: groups, then policy rules, then grants, then removals."
+  ],
+  [
+   6.138,
+   3.45,
+   "And seven guards refuse a plan before anything is sent."
+  ],
+  [
+   9.588,
+   5.55,
+   "G one, a Tier 0 or Tier 1 policy losing approval or its approvers."
+  ],
+  [
+   15.137,
+   4.8,
+   "G two, a rule that allows permanent grants, or a grant with no end."
+  ],
+  [
+   19.938,
+   3.2,
+   "G three, a group set as its own approver."
+  ],
+  [
+   23.137,
+   1.975,
+   "G four, the owner trap."
+  ],
+  [
+   25.113,
+   4.537,
+   "G five, a group as a holder, or an eligible service principal."
+  ],
+  [
+   29.65,
+   2.4,
+   "G six, too many removals."
+  ],
+  [
+   32.05,
+   3.2,
+   "And G seven, a self-service action in the plan."
+  ],
+  [
+   35.25,
+   4.612,
+   "One more choice: the pipeline's app doesn't create the P R V groups."
+  ],
+  [
+   39.862,
+   7.338,
+   "Microsoft Learn's reference for creating a group says a role-assignable group needs Role Management dot ReadWrite dot Directory."
+  ],
+  [
+   47.2,
+   6.338,
+   "The program keeps that permission off the pipeline, and a Privileged Role Administrator creates the groups by hand."
+  ],
+  [
+   53.538,
+   2.312,
+   "That's this workbook's design guidance."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   5.537,
+   "Lab 1 runs in one PowerShell 7 session, in the privileged-access folder."
+  ],
+  [
+   6.312,
+   5.35,
+   "Step one runs Microsoft's samples against the fake, as published: ten pass."
+  ],
+  [
+   11.662,
+   7.763,
+   "Step two sends Microsoft Learn's Example 1 yourself, from the reference page for creating an eligibility schedule request."
+  ],
+  [
+   19.425,
+   4.15,
+   "You load the module and the sample harness, and read the first example."
+  ],
+  [
+   23.575,
+   4.362,
+   "Its title says an admin creates an eligible group ownership request."
+  ],
+  [
+   27.938,
+   2.65,
+   "But its body's access I D says member."
+  ],
+  [
+   30.587,
+   3.737,
+   "So the example is labeled ownership and asks for membership."
+  ],
+  [
+   34.325,
+   8.65,
+   "Then send it to the fake: four hundred, Bad Request, because the schedule ended in February twenty twenty-three, before the fake's clock."
+  ],
+  [
+   42.975,
+   1.3,
+   "Its dates are stale."
+  ],
+  [
+   44.275,
+   3.3,
+   "Samples are a starting point, not a desired state."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   2.987,
+   "Step three lists the permissions the read needs."
+  ],
+  [
+   3.038,
+   9.787,
+   "Four: Group dot Read Basic dot All, and the three pim for Groups reads, for assignment schedules, eligibility schedules and role management policies."
+  ],
+  [
+   12.825,
+   1.675,
+   "Nothing ends in ReadWrite."
+  ],
+  [
+   14.5,
+   3.913,
+   "Step four plans against the fictional tenant, as a dry run."
+  ],
+  [
+   18.413,
+   5.662,
+   "You give it the cloud, the fixture, the desired state file, the date and an output folder."
+  ],
+  [
+   24.075,
+   3.487,
+   "The read raises nine findings and three warnings."
+  ],
+  [
+   27.562,
+   5.95,
+   "The plan has eight changes: three assignments, two eligibilities and three policy rules."
+  ],
+  [
+   33.513,
+   3.125,
+   "The guards all passed, so the plan could be applied."
+  ],
+  [
+   36.638,
+   6.125,
+   "But it's a dry run, so nothing was sent: review the diff and the plan, then run again with Apply."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   2.112,
+   "Step five prints the findings."
+  ],
+  [
+   2.163,
+   7.85,
+   "Two warnings are P G oh nine for groups the file doesn't list: a legacy help desk group and an Intune administrators group."
+  ],
+  [
+   10.012,
+   3.3,
+   "Then P R V T0 Priv Role Admin."
+  ],
+  [
+   13.312,
+   5.3,
+   "It has a permanent active member the file doesn't grant, which is oh six and oh nine."
+  ],
+  [
+   18.613,
+   6.15,
+   "It has an eligible owner with no active owner, which is oh seven and oh nine: the owner trap."
+  ],
+  [
+   24.762,
+   6.562,
+   "And its member activation needs no approval and lasts eight hours instead of four, two oh eight findings."
+  ],
+  [
+   31.325,
+   14.025,
+   "On the Azure owner group, P R V T1 Azure Owner Sub Workload: it isn't role-assignable, which is a warning for a group that holds no Entra role, and it has a nested group, the legacy help desk group, as an eligible member."
+  ],
+  [
+   45.35,
+   4.037,
+   "That's oh five, oh nine, and an oh eight for a policy rule."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   3.263,
+   "Step six reads the diff, one line per change."
+  ],
+  [
+   3.312,
+   4.537,
+   "A tilde is a change, a plus an addition, a minus a removal."
+  ],
+  [
+   7.85,
+   1.913,
+   "The policy rules come first."
+  ],
+  [
+   9.762,
+   7.8,
+   "The Tier 0 group's member activation goes from eight hours to four, and from no approval to approval, by the same approver group."
+  ],
+  [
+   17.562,
+   3.688,
+   "The Azure owner group's eligible owners must now have an end."
+  ],
+  [
+   21.25,
+   1.137,
+   "Then the grants."
+  ],
+  [
+   22.387,
+   12.35,
+   "An Exchange admin member's end date moves out to April twenty twenty-seven, on change C H G ten oh two, and a new active member is added, on C H G ten oh five, each with its ticket."
+  ],
+  [
+   34.737,
+   7.812,
+   "Then the three removals: the Tier 0 group's ungranted active member, its eligible owner, and the nested legacy group."
+  ],
+  [
+   42.55,
+   6.588,
+   "Last, the plan names exactly the write permissions it would need: the three pim for Groups ReadWrite permissions."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   2.212,
+   "Step seven shows a guard refusing."
+  ],
+  [
+   2.263,
+   3.888,
+   "Run the same plan with Apply, but with Max Removals set to two."
+  ],
+  [
+   6.15,
+   7.075,
+   "Guard G six refuses: three removals is more than two; review them, and run again with a higher limit."
+  ],
+  [
+   13.225,
+   1.175,
+   "Nothing is sent."
+  ],
+  [
+   14.4,
+   3.038,
+   "Step eight applies to the fake with the default limit."
+  ],
+  [
+   17.438,
+   6.862,
+   "The same findings and the same eight changes, the guards all pass, and eight requests are sent, none failed."
+  ],
+  [
+   24.3,
+   3.388,
+   "The fake records the requests and doesn't change its tenant."
+  ],
+  [
+   27.688,
+   5.55,
+   "Step nine runs the tests, three hundred thirty pass, and you delete the output folder."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   10.075,
+   "Lab 2 runs in a worldwide or G C C test tenant with Microsoft Entra I D P2 or Governance licenses and fictional people, never production."
+  ],
+  [
+   10.125,
+   4.325,
+   "Use groups made for the lab, because a group can't be taken back out of pim."
+  ],
+  [
+   14.45,
+   3.8,
+   "As a Privileged Role Administrator, make the lab groups by hand."
+  ],
+  [
+   18.25,
+   2.487,
+   "Register a reader app and a writer app."
+  ],
+  [
+   20.738,
+   6.65,
+   "Plan as the reader, apply the reviewed diff as the writer, then run the plan again and see zero changes."
+  ],
+  [
+   27.387,
+   7.7,
+   "The reader gets the four read permissions from step three; the writer gets those and the three writes from step six, and nothing else."
+  ],
+  [
+   35.087,
+   6.85,
+   "To back out, empty both lists in your file and apply it, so no schedule remains, then delete the lab folder."
+  ],
+  [
+   41.938,
+   2.15,
+   "The authors haven't run Lab 2."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   1.387,
+   "The federal requirement."
+  ],
+  [
+   1.438,
+   5.787,
+   "The P R V groups' file, the check and the plan are the evidence for the plan's task A2.1."
+  ],
+  [
+   7.225,
+   16.25,
+   "From nist special publication eight hundred fifty-three they support A C six, enhancement five, privileged accounts restricted to defined roles; A C six and A C five, least privilege and separation of duties; and A C two, account management."
+  ],
+  [
+   23.475,
+   13.088,
+   "And from sis-uh's B O D twenty-five oh-one and its ScubaGear baseline: M S A A D seven point four, no permanent active assignment, and seven point five, provisioning only through pim."
+  ],
+  [
+   36.562,
+   5.675,
+   "C M three covers the change: reviewed before it's made, and an unsafe change stopped."
+  ],
+  [
+   42.237,
+   11.912,
+   "The evidence an I S S O keeps: the reviewed file, with each holder's end date and ticket; each plan's diff, plan and findings; and each apply's results and manifest."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   1.975,
+   "Check yourself with two questions."
+  ],
+  [
+   2.025,
+   5.4,
+   "First: the file lists three removals and you pass Max Removals two with Apply."
+  ],
+  [
+   7.425,
+   1.012,
+   "What happens?"
+  ],
+  [
+   8.438,
+   4.95,
+   "The answer is b: guard G six refuses the plan, and nothing is sent."
+  ],
+  [
+   13.387,
+   2.288,
+   "You saw it in Lab 1, step seven."
+  ],
+  [
+   15.675,
+   4.4,
+   "Second: why does the pipeline's app not create the P R V groups?"
+  ],
+  [
+   20.075,
+   6.338,
+   "The answer is b: creating a role-assignable group needs Role Management dot ReadWrite dot Directory."
+  ],
+  [
+   26.413,
+   6.338,
+   "The program keeps that permission off the pipeline, and a Privileged Role Administrator creates the groups by hand."
+  ],
+  [
+   32.75,
+   4.9,
+   "The module page has two more questions, each linked to the section that answers it."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   0.825,
+   "To sum up."
+  ],
+  [
+   0.875,
+   9.6,
+   "You read a fictional tenant's P R V groups against a reviewed file of four, and found a standing member nobody granted, an owner trap, and a nested group."
+  ],
+  [
+   10.475,
+   8.325,
+   "You read the exact requests that would fix them, saw a guard refuse a plan with too many removals, and applied eight requests to the fake."
+  ],
+  [
+   18.8,
+   3.788,
+   "Next is Module 6: pim for Azure resources."
+  ],
+  [
+   22.587,
+   5.487,
+   "Owner, Contributor and User Access Administrator on a subscription are privileged too."
+  ],
+  [
+   28.075,
+   8.537,
+   "pim for Azure resources isn't in Microsoft Graph: it goes through Azure Resource Manager, with Azure roles instead of Graph permissions."
+  ],
+  [
+   36.612,
+   6.85,
+   "In Module 6 you hold it as code, with the same discipline: read, diff, and send only with Apply."
+  ]
+ ]
+}

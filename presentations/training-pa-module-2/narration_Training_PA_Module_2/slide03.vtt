@@ -1,0 +1,78 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.890
+Here's what you'll be able to
+do by the end of this module,
+
+2
+00:00:02.890 --> 00:00:05.537
+which takes about fifty-five
+minutes with the lab.
+
+3
+00:00:05.537 --> 00:00:07.788
+You'll explain the documented lockout,
+
+4
+00:00:07.788 --> 00:00:11.937
+and why the emergency accounts come
+before any approval is switched on.
+
+5
+00:00:11.937 --> 00:00:16.089
+You'll name what Microsoft Learn's
+standard asks of each emergency account,
+
+6
+00:00:16.089 --> 00:00:17.963
+and the rule that checks each item.
+
+7
+00:00:17.963 --> 00:00:21.533
+You'll explain why the
+alert reads three tables,
+
+8
+00:00:21.533 --> 00:00:25.012
+not one, and why it matches
+object I D's, not names.
+
+9
+00:00:25.012 --> 00:00:27.462
+You'll run the check
+and read its findings.
+
+10
+00:00:27.462 --> 00:00:31.276
+And you'll say why every enforced
+Conditional Access policy
+
+11
+00:00:31.276 --> 00:00:34.937
+must exclude the accounts, and
+why a report-only one needn't.
+
+12
+00:00:34.937 --> 00:00:37.213
+Before you start, finish Module 1:
+
+13
+00:00:37.213 --> 00:00:41.088
+this lab uses its module and
+its fictional tenant again.
+
+14
+00:00:41.088 --> 00:00:44.662
+Reading K Q L helps for the
+alert, but isn't required.
+
+15
+00:00:44.662 --> 00:00:47.564
+Lab 2 needs a worldwide
+or G C C test tenant
+
+16
+00:00:47.564 --> 00:00:51.120
+with a test Azure
+subscription, never production.

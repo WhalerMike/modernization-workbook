@@ -1,0 +1,73 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.512
+Unit 1: Resource Manager,
+scopes and holders.
+
+2
+00:00:03.512 --> 00:00:05.452
+Resource Manager, not Graph:
+
+3
+00:00:05.452 --> 00:00:10.258
+three resource types under Microsoft
+dot Authorization do the work,
+
+4
+00:00:10.258 --> 00:00:15.654
+and Microsoft Learn's page on the Azure R
+B A C A P I versions marks twenty twenty,
+
+5
+00:00:15.654 --> 00:00:20.713
+ten, oh one as the generally available
+release of every PIM resource type.
+
+6
+00:00:20.713 --> 00:00:21.875
+The code pins it.
+
+7
+00:00:21.875 --> 00:00:26.880
+Policies don't inherit: Microsoft Learn's
+page on Azure resource role settings says
+
+8
+00:00:26.880 --> 00:00:31.231
+settings at a subscription aren't
+inherited by a resource group under it,
+
+9
+00:00:31.231 --> 00:00:33.625
+so the file lists every scope it governs.
+
+10
+00:00:33.625 --> 00:00:36.593
+Who can be eligible:
+users, not applications,
+
+11
+00:00:36.593 --> 00:00:42.363
+service principals or managed identities,
+which can't perform the activation steps.
+
+12
+00:00:42.363 --> 00:00:47.375
+So a standing Contributor held by a deployment
+pipeline is reported, and left alone.
+
+13
+00:00:47.375 --> 00:00:51.487
+And what counts as privileged: Learn's
+privileged administrator roles,
+
+14
+00:00:51.487 --> 00:00:54.553
+of which the chapter governs
+the three the plan names,
+
+15
+00:00:54.553 --> 00:00:58.580
+with Microsoft's best practice of
+at most three subscription owners.

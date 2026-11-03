@@ -1,0 +1,55 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.525
+Step three checks the fictional tenant's
+accounts and writes the alert template.
+
+2
+00:00:04.525 --> 00:00:08.984
+You give it the tenant fixture,
+the emergency access configuration,
+
+3
+00:00:08.984 --> 00:00:13.602
+the drill record, a date to judge the
+drills by, the thirtieth of October,
+
+4
+00:00:13.602 --> 00:00:15.831
+an output folder, and, for the alert,
+
+5
+00:00:15.831 --> 00:00:19.812
+the Log Analytics workspace,
+the action group and a location.
+
+6
+00:00:19.812 --> 00:00:24.424
+The check finds nine findings, no
+warnings and one information item.
+
+7
+00:00:24.424 --> 00:00:29.063
+It writes the alert rule to emergency-alert
+dot json, for review, and tells
+
+8
+00:00:29.063 --> 00:00:34.087
+you to deploy it with your reviewed
+pipeline; it doesn't deploy anything itself.
+
+9
+00:00:34.087 --> 00:00:39.387
+And as always, the manifest lists every
+request and the hash of every file.
+
+10
+00:00:39.387 --> 00:00:43.157
+On the slide, the two resource
+I D's are wrapped to fit;
+
+11
+00:00:43.157 --> 00:00:46.440
+on the command line, each
+one is a single word.

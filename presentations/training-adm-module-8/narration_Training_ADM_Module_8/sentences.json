@@ -1,0 +1,772 @@
+{
+ "1": [
+  [
+   0.05,
+   7.625,
+   "Welcome to Module 8 of the Attribute-Driven Migration learning path: run the drift pipeline and hand over the evidence."
+  ],
+  [
+   7.675,
+   11.738,
+   "This module serves Gate 9, keep the attributes true, and takes Chapter 09 of Building the Attribute-Driven Migration, drift pipelines and evidence to the I S S O."
+  ],
+  [
+   19.413,
+   13.762,
+   "You'll see where the pipeline sits, what Learn's sample workflows leave to you, how one run is compared with the last without treating a failed read as a fix, how findings go to the tracker without names, and how the evidence package forms a chain."
+  ],
+  [
+   33.175,
+   4.725,
+   "Then you'll run it on your laptop against two days of fictional validation kit runs."
+  ],
+  [
+   37.9,
+   4.237,
+   "If you're an I S S O reviewer, this module is yours in full."
+  ],
+  [
+   42.138,
+   6.475,
+   "The code is illustrative: tested against fixtures, and the sample workflow has never run against Azure."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.55,
+   "Why does this module matter?"
+  ],
+  [
+   1.6,
+   3.163,
+   "Without Gate 9, everything slowly decays."
+  ],
+  [
+   4.763,
+   11.825,
+   "Gate 9's Validate step runs the H R, dynamic group and sync checks on the drift cadence, and its evidence is each cycle's run folder, the findings queue and the metrics for continuous monitoring."
+  ],
+  [
+   16.587,
+   4.513,
+   "Each validation kit check already compares the tenant with the program's record."
+  ],
+  [
+   21.1,
+   4.4,
+   "The pipeline adds the second comparison: this run against the last."
+  ],
+  [
+   25.5,
+   1.325,
+   "That finds change."
+  ],
+  [
+   26.825,
+   10.113,
+   "In this module you run it on two days of fixture runs, read what changed, and hand over a package the I S S O can check with sha two fifty-six sum, and nothing else."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   5.487,
+   "Here's what you'll be able to do by the end of this module, which takes about fifty-five minutes with the lab."
+  ],
+  [
+   5.537,
+   4.112,
+   "You'll explain what the pipeline adds to the validation kit's own comparison."
+  ],
+  [
+   9.65,
+   3.225,
+   "You'll describe what Learn's sample workflows leave to you."
+  ],
+  [
+   12.875,
+   7.6,
+   "You'll compare two runs and read new, resolved, changed, detail only, unchanged and unverified."
+  ],
+  [
+   20.475,
+   4.2,
+   "You'll explain why a failed read is unverified, not resolved."
+  ],
+  [
+   24.675,
+   4.662,
+   "And you'll package and verify a run, and explain how the packages form a chain."
+  ],
+  [
+   29.337,
+   6.362,
+   "Before you start, do Module 2: the pipeline reads the validation kit's runs and their manifests."
+  ],
+  [
+   35.7,
+   4.287,
+   "Modules 1, 3 and 5 produce the provenance it packages."
+  ],
+  [
+   39.987,
+   8.713,
+   "Lab 1 needs Python 3.10 or later with PyYAML and pytest, and a shell with sha two fifty-six sum, such as Git Bash."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   1.913,
+   "Step four records a baseline."
+  ],
+  [
+   1.962,
+   6.75,
+   "The fixtures are two fictional validation kit runs, one day apart: October twenty-eighth and twenty-ninth."
+  ],
+  [
+   8.713,
+   6.112,
+   "Compare the first with nothing, and it's a baseline: ten new findings, and the command exits two."
+  ],
+  [
+   14.825,
+   8.838,
+   "Package it with the other kits' provenance, and the evidence manifest's hash starts six d nine f f f. Step five compares the next day."
+  ],
+  [
+   23.663,
+   9.488,
+   "The summary reads: new three, resolved one, changed one, detail only one, unchanged six, unverified checks two."
+  ],
+  [
+   33.15,
+   2.188,
+   "Its table shows which checks moved."
+  ],
+  [
+   35.337,
+   3.85,
+   "VK-CA-01 went from Pass to Fail."
+  ],
+  [
+   39.188,
+   3.3,
+   "VK-piv-01 didn't run."
+  ],
+  [
+   42.487,
+   5.05,
+   "And VK-NPI-03 went from Fail to Error."
+  ],
+  [
+   47.538,
+   1.5,
+   "Look closely at that one."
+  ],
+  [
+   49.038,
+   1.837,
+   "Yesterday it had a finding."
+  ],
+  [
+   50.875,
+   1.488,
+   "Today its read failed."
+  ],
+  [
+   52.362,
+   2.975,
+   "So the finding is unverified, not resolved."
+  ],
+  [
+   55.337,
+   2.188,
+   "A failed read is never a fix."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   5.688,
+   "Step six drafts the findings: six to open, two to close, no comments."
+  ],
+  [
+   5.737,
+   1.575,
+   "Then search the drafts."
+  ],
+  [
+   7.312,
+   5.638,
+   "For a user's address, grep counts zero; the name isn't there, and grep exits one."
+  ],
+  [
+   12.95,
+   2.475,
+   "For the object I D, it counts one."
+  ],
+  [
+   15.425,
+   4.25,
+   "The tracker gets the object I D and the fingerprint, never the name."
+  ],
+  [
+   19.675,
+   6.625,
+   "Step seven packages the second day, chained to the first with the previous manifest option, and verifies it."
+  ],
+  [
+   26.3,
+   5.975,
+   "The manifest hash starts oh nine three two, and verify reports sixteen files."
+  ],
+  [
+   32.275,
+   9.988,
+   "Then the I S S O's own check, with no program code at all: sha two fifty-six sum, in the package's folder, prints nothing and exits zero."
+  ],
+  [
+   42.263,
+   11.688,
+   "Last, read two fields of day two's manifest: the previous package's manifest hash, which is day one's, six d nine f f f, and the fixture tenant's placeholder I D."
+  ],
+  [
+   53.95,
+   1.05,
+   "That's the chain."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   1.925,
+   "Step eight breaks it on purpose."
+  ],
+  [
+   1.975,
+   4.05,
+   "Append one line to the packaged drift summary, and verify again."
+  ],
+  [
+   6.025,
+   4.65,
+   "It fails, with exit code one: the summary doesn't match its hash."
+  ],
+  [
+   10.675,
+   2.237,
+   "An edit after packaging can't hide."
+  ],
+  [
+   12.912,
+   5.225,
+   "Then swap the runs, and compare the twenty-ninth as previous with the twenty-eighth as current."
+  ],
+  [
+   18.137,
+   4.2,
+   "That's refused too: the current run isn't later than the previous one."
+  ],
+  [
+   22.337,
+   3.0,
+   "Runs out of order can't make a finding look resolved."
+  ],
+  [
+   25.337,
+   3.775,
+   "Step nine runs the tests: one hundred forty-two pass."
+  ],
+  [
+   29.113,
+   1.575,
+   "They take about two minutes."
+  ],
+  [
+   30.688,
+   1.475,
+   "Step ten cleans up."
+  ],
+  [
+   32.163,
+   10.525,
+   "Check your work: given two runs, you can say what's new, resolved, changed or unverified, and given a package, you can show it's unedited and chained to the day before."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   1.975,
+   "Check yourself with two questions."
+  ],
+  [
+   2.025,
+   4.888,
+   "First: yesterday VK-NPI-03 had a finding."
+  ],
+  [
+   6.912,
+   2.425,
+   "Today its read failed with a four-oh-three."
+  ],
+  [
+   9.338,
+   1.788,
+   "What does the comparison report?"
+  ],
+  [
+   11.125,
+   3.487,
+   "The answer is b: unverified, not resolved."
+  ],
+  [
+   14.613,
+   4.425,
+   "A failed read is never a fix, and you saw it in step five of the lab."
+  ],
+  [
+   19.038,
+   4.725,
+   "Second: how does the I S S O check a package without the program's code?"
+  ],
+  [
+   23.762,
+   7.925,
+   "The answer is b: with sha two fifty-six sum, dash c, SHA256SUMS, in the package's folder."
+  ],
+  [
+   31.688,
+   4.787,
+   "You did exactly that in step seven, and it printed nothing and exited zero."
+  ],
+  [
+   36.475,
+   9.15,
+   "The module page has two more questions, on what goes into a drafted issue and on what shows a missing day, each linked to the section that answers it."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   0.825,
+   "To sum up."
+  ],
+  [
+   0.875,
+   13.575,
+   "You compared two days of kit runs without letting a failed read close a finding, drafted findings without names, and packaged and verified a chain of evidence the I S S O can check with sha two fifty-six sum alone."
+  ],
+  [
+   14.45,
+   20.738,
+   "The evidence an I S S O keeps: each day's package, with its kit run, drift report, the other kits' provenance, the manifest and SHA256SUMS, in a container whose retention is locked in production; the findings in the tracker by fingerprint; and the workflow file and the pipeline app's registration."
+  ],
+  [
+   35.188,
+   4.475,
+   "Gate 9 adds the scan schedule, the limits register and the metrics."
+  ],
+  [
+   39.663,
+   3.712,
+   "Before shipping, work through the Chapter 09 checklist."
+  ],
+  [
+   43.375,
+   13.625,
+   "Next is Module 9, the last: deploy to test, then production, with one settings file per stage, a pre-flight check, a smoke test that says go or no-go, and a rollback written from a record of every change."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   4.912,
+   "This workbook's own governance design already says what this pipeline must produce."
+  ],
+  [
+   4.963,
+   3.337,
+   "These are the workbook's rules, not an external standard."
+  ],
+  [
+   8.3,
+   3.625,
+   "Drift is measured against a versioned record, not a snapshot."
+  ],
+  [
+   11.925,
+   2.812,
+   "No closure counts unless it carries its proof."
+  ],
+  [
+   14.738,
+   4.537,
+   "And a finding closes only when a later observation shows the fixed state."
+  ],
+  [
+   19.275,
+   2.562,
+   "The pipeline is a small part of that design."
+  ],
+  [
+   21.837,
+   4.025,
+   "Each validation kit check compares the tenant with the program's record."
+  ],
+  [
+   25.863,
+   3.962,
+   "The pipeline compares this run with the last, and that finds change."
+  ],
+  [
+   29.825,
+   3.65,
+   "Whether a change is drift from the record is still the check's answer."
+  ],
+  [
+   33.475,
+   5.25,
+   "A finding that was there yesterday and is still there today isn't new, but it is still open."
+  ],
+  [
+   38.725,
+   8.713,
+   "And the comparison enforces the closing rule in code: a check that ended in Error proves nothing, so its findings stay open as unverified."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   6.713,
+   "Microsoft Learn's page, Use the Azure Login action with OpenID Connect, has three sample workflows."
+  ],
+  [
+   6.763,
+   10.0,
+   "They do the important part well: they sign in with OpenID Connect and no secret, ask for id-token write and nothing else, and keep the I D's in secrets."
+  ],
+  [
+   16.762,
+   1.35,
+   "Keep that as the model."
+  ],
+  [
+   18.113,
+   4.025,
+   "Here's what they leave to you, checked offline by the kit's workflow linter."
+  ],
+  [
+   22.137,
+   5.463,
+   "They run on push and have no schedule, and drift isn't found because someone pushed a commit."
+  ],
+  [
+   27.6,
+   9.1,
+   "They pin actions by tag, and version two is older than the current release of Microsoft's Azure Login action, v3.1.0."
+  ],
+  [
+   36.7,
+   7.213,
+   "GitHub Docs' secure use reference advises pinning an action to a full commit SHA, because a tag can be moved."
+  ],
+  [
+   43.913,
+   6.525,
+   "They ask for the latest Azure CLI and PowerShell, so the tool that produced the evidence changes without a review."
+  ],
+  [
+   50.438,
+   3.05,
+   "The U S Government sample doesn't parse as YAML."
+  ],
+  [
+   53.487,
+   4.662,
+   "And the job names no environment, so the token's subject depends on the branch."
+  ],
+  [
+   58.15,
+   5.912,
+   "The verdict: use Learn's sign-in exactly, pin it, schedule it, and put the rest behind it."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   4.575,
+   "Here's the comparison, and every rule on this slide is the kit's own design."
+  ],
+  [
+   4.625,
+   9.738,
+   "It reads each kit run and checks it against the kit's own manifest: every listed file with the same hash, nothing missing, nothing added, and read only."
+  ],
+  [
+   14.363,
+   3.2,
+   "A run edited after the kit wrote it is refused."
+  ],
+  [
+   17.562,
+   10.113,
+   "It also refuses runs from different modes, clouds or tenants, a run whose manifest has no tenant I D, and a current run that isn't later than the previous one."
+  ],
+  [
+   27.675,
+   6.112,
+   "Then it keys each Finding and Warn row by check, object I D and issue, and sorts it."
+  ],
+  [
+   33.788,
+   2.325,
+   "New is a row the last run didn't have."
+  ],
+  [
+   36.112,
+   4.162,
+   "Changed is the same check and object with a different severity or issue."
+  ],
+  [
+   40.275,
+   4.675,
+   "Detail only is the same finding with different detail, and opens nothing."
+  ],
+  [
+   44.95,
+   3.325,
+   "Resolved is gone from a check that read the tenant this run."
+  ],
+  [
+   48.275,
+   5.225,
+   "And unverified is a check that ended in Error or didn't run: its findings stay open."
+  ],
+  [
+   53.5,
+   4.213,
+   "Each finding has a fingerprint, so the tracker never opens a duplicate."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   4.912,
+   "Findings go to the issue tracker without names; that's this workbook's guidance."
+  ],
+  [
+   4.963,
+   6.55,
+   "A drafted issue holds the check, the severity, the object I D, the issue and the fingerprint."
+  ],
+  [
+   11.512,
+   4.662,
+   "It leaves out the object's name, which for most checks is a user principal name."
+  ],
+  [
+   16.175,
+   6.625,
+   "The evidence store is access-controlled and holds the names; the tracker is read by more people and doesn't need them."
+  ],
+  [
+   22.8,
+   4.95,
+   "A first run is a baseline, so it opens one summary issue, not hundreds."
+  ],
+  [
+   27.75,
+   1.175,
+   "Then the package."
+  ],
+  [
+   28.925,
+   12.162,
+   "It holds the kit run as written, the drift report and summary, the latest provenance from the other kits, an evidence manifest, and a SHA256SUMS file that sha two fifty-six sum reads."
+  ],
+  [
+   41.087,
+   9.113,
+   "Each manifest records the previous package's manifest hash, so the packages form a chain, and a replaced package or a missing day shows as a break."
+  ],
+  [
+   50.2,
+   1.712,
+   "The packager doesn't sign."
+  ],
+  [
+   51.913,
+   11.787,
+   "Microsoft Learn's page on immutable storage says a locked time-based retention policy lets blobs be created and read, but not modified or deleted, until the retention interval ends."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   6.263,
+   "Lab 1 runs in the drift-pipeline folder of the examples, in a POSIX shell, and nothing signs in."
+  ],
+  [
+   7.037,
+   3.725,
+   "Step one checks Learn's three sample workflows offline."
+  ],
+  [
+   10.762,
+   9.312,
+   "Sample one has five findings and four warnings, sample two has seven findings and four warnings, and sample three has just one: it isn't valid YAML."
+  ],
+  [
+   20.075,
+   1.538,
+   "The command exits two."
+  ],
+  [
+   21.613,
+   5.312,
+   "Step two checks the pipeline's own workflow: zero findings, zero warnings."
+  ],
+  [
+   26.925,
+   2.375,
+   "Step three prints a cloud's hosts."
+  ],
+  [
+   29.3,
+   12.275,
+   "For D O D, the sign-in authority is login dot microsoftonline dot u s, the Graph host is dod-graph dot microsoft dot u s, and the Azure environment is Azure U S Government."
+  ],
+  [
+   41.575,
+   8.762,
+   "Microsoft Learn's page, Microsoft Graph national cloud deployments, lists those G C C High and D O D Graph hosts."
+  ],
+  [
+   50.337,
+   7.7,
+   "That's the trap: the Azure environment covers both G C C High and D O D, so the Graph host has to come from the profile."
+  ],
+  [
+   58.038,
+   6.963,
+   "Then ask for a name it doesn't know, u s gov. It's refused, with exit code one, never mapped to worldwide."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   10.912,
+   "Lab 2 runs the pipeline for real, in a test tenant and a test subscription, never production, from a private test repository that holds the validation kit and this example."
+  ],
+  [
+   10.963,
+   7.875,
+   "Register an app that trusts the repository through a federated credential, so no secret is stored, and grant it only the reads."
+  ],
+  [
+   18.837,
+   6.0,
+   "Make an evidence container with an unlocked retention policy, and set up the repository's environment."
+  ],
+  [
+   24.837,
+   5.0,
+   "Run the workflow by hand for a baseline, make one real change, and run it again."
+  ],
+  [
+   29.837,
+   1.538,
+   "Then let the schedule run."
+  ],
+  [
+   31.375,
+   4.312,
+   "To back it out, step eight deletes the federated credential and the app."
+  ],
+  [
+   35.688,
+   10.312,
+   "Leave the test retention policy unlocked: Microsoft Learn's page on immutable storage says an unlocked policy is only for short-term testing, and it can be deleted."
+  ],
+  [
+   46.0,
+   2.15,
+   "The authors haven't run Lab 2."
+  ],
+  [
+   48.15,
+   3.4,
+   "Follow Chapter 09's Lab 2, step by step."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   1.387,
+   "The federal requirement."
+  ],
+  [
+   1.438,
+   6.013,
+   "The controls are from nist special publication eight hundred fifty-three, at nist's Moderate baseline."
+  ],
+  [
+   7.45,
+   6.013,
+   "This chapter turns the other chapters' outputs into continuous monitoring, control C A seven."
+  ],
+  [
+   13.463,
+   4.388,
+   "The first run is a packaged baseline, for baseline configuration."
+  ],
+  [
+   17.85,
+   8.425,
+   "Each run says what is new, resolved, changed and unverified, and a failed read never resolves a finding, for system monitoring."
+  ],
+  [
+   26.275,
+   6.763,
+   "Each finding is opened or closed by fingerprint, with object I D's and no names, for audit review."
+  ],
+  [
+   33.038,
+   9.213,
+   "The package hashes every file, carries the other kits' provenance and chains to the day before, for the protection of audit information and integrity."
+  ],
+  [
+   42.25,
+   4.925,
+   "An edit after packaging and runs out of order are refused, and the tests show it."
+  ],
+  [
+   47.175,
+   4.975,
+   "Every action is pinned, and the job that reads the tenant can't write to the tracker."
+  ],
+  [
+   52.15,
+   5.562,
+   "And in Lab 2, the pipeline signs in with a federated credential, with no secret stored."
+  ],
+  [
+   57.712,
+   6.65,
+   "The KSI column is from fed-ramp's Key Security Indicators, which are indicators for cloud service providers."
+  ],
+  [
+   64.362,
+   3.562,
+   "Which output supports which control is this workbook's reading."
+  ]
+ ]
+}

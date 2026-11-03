@@ -1,0 +1,85 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.463
+Unit 1: the standard and the check.
+
+2
+00:00:02.463 --> 00:00:07.412
+Microsoft Learn's page on managing
+emergency access accounts sets the standard.
+
+3
+00:00:07.412 --> 00:00:12.800
+Two or more accounts, cloud-only, on the
+tenant's on-microsoft dot com domain.
+
+4
+00:00:12.800 --> 00:00:15.525
+Passkey or certificate-based
+authentication.
+
+5
+00:00:15.525 --> 00:00:19.075
+Global Administrator, active
+and permanent in PIM.
+
+6
+00:00:19.075 --> 00:00:20.847
+Excluded, through one group,
+
+7
+00:00:20.847 --> 00:00:25.237
+from the Conditional Access policies
+that block or restrict sign-in.
+
+8
+00:00:25.237 --> 00:00:27.926
+And validated at least every ninety days.
+
+9
+00:00:27.926 --> 00:00:29.275
+Each item has a rule.
+
+10
+00:00:29.275 --> 00:00:31.400
+E A oh one counts the accounts.
+
+11
+00:00:31.400 --> 00:00:32.890
+Oh two checks the domain,
+
+12
+00:00:32.890 --> 00:00:36.913
+and oh three that the account isn't
+synchronized from on-premises.
+
+13
+00:00:36.913 --> 00:00:40.988
+Oh five wants Global Administrator
+active, permanent and direct.
+
+14
+00:00:40.988 --> 00:00:45.432
+Oh six flags any method that
+isn't phishing-resistant: phone,
+
+15
+00:00:45.432 --> 00:00:50.149
+Authenticator, software OATH,
+email or a Temporary Access Pass.
+
+16
+00:00:50.149 --> 00:00:54.762
+Oh seven and oh eight check the exclusion
+group, and oh nine the drill record.
+
+17
+00:00:54.762 --> 00:00:59.932
+The program adds dual custody and a
+post-use review, and two rules of its
+
+18
+00:00:59.932 --> 00:01:05.160
+own design: oh four, a disabled account,
+and E A ten, a stranger in the group.

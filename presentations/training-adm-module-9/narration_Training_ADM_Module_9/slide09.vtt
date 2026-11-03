@@ -1,0 +1,71 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.911
+Step four runs the smoke test,
+
+2
+00:00:01.911 --> 00:00:06.563
+on the fixture validation kit run and
+the other kits' fixture provenance.
+
+3
+00:00:06.563 --> 00:00:11.099
+It reads the gates' checks again after
+the change, and answers go or no-go.
+
+4
+00:00:11.099 --> 00:00:14.256
+It checks that the kit run
+matches its own manifest,
+
+5
+00:00:14.256 --> 00:00:17.563
+and it notes fixture mode, so
+the tenant isn't compared.
+
+6
+00:00:17.563 --> 00:00:18.824
+Then the failures.
+
+7
+00:00:18.824 --> 00:00:27.800
+Three checks fail: VK-HR-01,
+VK-DG-01 and VK-CA-01.
+
+8
+00:00:27.800 --> 00:00:31.725
+VK-NPI-03 ended in Error.
+
+9
+00:00:31.725 --> 00:00:36.738
+And the HR dry run has nine rows
+quarantined, against a limit of zero.
+
+10
+00:00:36.738 --> 00:00:39.625
+You'll recognize those
+from Modules 1 and 8.
+
+11
+00:00:39.625 --> 00:00:42.487
+Every change has a
+rollback, so that passes.
+
+12
+00:00:42.487 --> 00:00:47.912
+The answer is NO-GO, five failed, in
+fixture mode, and the exit code is two.
+
+13
+00:00:47.912 --> 00:00:50.438
+The fixtures carry findings on purpose.
+
+14
+00:00:50.438 --> 00:00:52.981
+The report's hash changes with each run,
+
+15
+00:00:52.981 --> 00:00:56.930
+because the report records when
+it ran, so it isn't shown here.

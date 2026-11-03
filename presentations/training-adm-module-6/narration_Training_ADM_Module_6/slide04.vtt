@@ -1,0 +1,83 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.600
+This workbook's guidance gives
+every setting one owning tool.
+
+2
+00:00:03.600 --> 00:00:06.828
+The CMDB records it for
+each asset as config owner,
+
+3
+00:00:06.828 --> 00:00:11.238
+and the workbook's Arc track guide
+mirrors it to the Config Owner tag.
+
+4
+00:00:11.238 --> 00:00:16.326
+Patching has one owner too: a patch owner
+column, mirrored to the Patch Owner tag.
+
+5
+00:00:16.326 --> 00:00:18.263
+Arc doesn't change who owns what.
+
+6
+00:00:18.263 --> 00:00:20.396
+It makes the server an Azure resource,
+
+7
+00:00:20.396 --> 00:00:23.700
+and the tags tell the Azure
+tools which servers are theirs.
+
+8
+00:00:23.700 --> 00:00:28.564
+The kit's enforcing machine configuration
+definitions filter on Config Owner,
+
+9
+00:00:28.564 --> 00:00:32.175
+so machine configuration changes
+only the servers it owns.
+
+10
+00:00:32.175 --> 00:00:36.797
+Microsoft Learn's page, About dynamic
+scoping, for Azure Update Manager,
+
+11
+00:00:36.797 --> 00:00:42.203
+says dynamic scopes group machines by tags
+and are evaluated at each scheduled run,
+
+12
+00:00:42.203 --> 00:00:44.788
+so a scope on Patch Owner follows the tag.
+
+13
+00:00:44.788 --> 00:00:51.188
+Take aws oh one, a Red Hat server on
+AWS that Ansible configures and patches.
+
+14
+00:00:51.188 --> 00:00:54.791
+It still goes to Arc, with
+Patch Owner set to Ansible, so,
+
+15
+00:00:54.791 --> 00:01:00.113
+in this workbook's guidance, Update
+Manager assesses it and schedules nothing.
+
+16
+00:01:00.113 --> 00:01:04.098
+And afterward, the kit's check V
+K ARC oh seven reports any server
+
+17
+00:01:04.098 --> 00:01:08.900
+machine configuration doesn't own that
+carries its enforcing assignment.

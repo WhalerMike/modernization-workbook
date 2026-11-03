@@ -1,0 +1,74 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.875
+To sum up.
+
+2
+00:00:00.875 --> 00:00:05.145
+You kept the rules as reviewed files
+with tests, linted them for the guards,
+
+3
+00:00:05.145 --> 00:00:07.035
+saw whom a one-clause change adds,
+
+4
+00:00:07.035 --> 00:00:11.025
+and saw why an incident pause needs
+a record of what was paused before.
+
+5
+00:00:11.025 --> 00:00:15.588
+The evidence an ISSO keeps: the
+rule library and its commits,
+
+6
+00:00:15.588 --> 00:00:19.500
+and each pull request's
+check run and check results.
+
+7
+00:00:19.500 --> 00:00:22.939
+In Lab 2, the Entra audit
+log for the paused creation,
+
+8
+00:00:22.939 --> 00:00:27.688
+the evaluator comparison, the live
+shadow diff and the drill manifest.
+
+9
+00:00:27.688 --> 00:00:32.038
+Before shipping a rule change, work
+through the Chapter 04 checklist.
+
+10
+00:00:32.038 --> 00:00:35.625
+Next is Module 4: move
+Group Policy as code.
+
+11
+00:00:35.625 --> 00:00:39.361
+The organizational unit (OU)
+tree scoped Group Policy,
+
+12
+00:00:39.361 --> 00:00:42.588
+and Group Policy
+inheritance retires with it.
+
+13
+00:00:42.588 --> 00:00:46.428
+You'll turn Group Policy analytics
+into a per-setting move plan,
+
+14
+00:00:46.428 --> 00:00:49.531
+keep settings catalog
+policies as reviewed files,
+
+15
+00:00:49.531 --> 00:00:54.100
+and create only what a dry run showed,
+with the least permission that works.

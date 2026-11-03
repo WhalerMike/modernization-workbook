@@ -1,0 +1,67 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.766
+Step seven reads the evidence:
+eighteen decisions in seven instances,
+
+2
+00:00:04.766 --> 00:00:07.287
+with seven findings and two warnings.
+
+3
+00:00:07.287 --> 00:00:11.987
+E oh one: the Privileged Role Administrator
+series isn't in the tenant yet.
+
+4
+00:00:11.987 --> 00:00:14.852
+E oh two: the Tier 0 Global Administrator
+
+5
+00:00:14.852 --> 00:00:18.063
+group's series has no
+closed instance in time.
+
+6
+00:00:18.063 --> 00:00:22.708
+E oh eight: a reviewer denied
+Emergency Access 02 in October,
+
+7
+00:00:22.708 --> 00:00:25.837
+the finding this module exists to catch.
+
+8
+00:00:25.837 --> 00:00:31.429
+E oh four: an item nobody reviewed,
+decided by the no-response default;
+
+9
+00:00:31.429 --> 00:00:34.425
+a finding on Tier 0, a warning on Tier 1.
+
+10
+00:00:34.425 --> 00:00:37.863
+E oh five: an approval
+without a justification.
+
+11
+00:00:37.863 --> 00:00:41.349
+E oh three: a denial whose
+result wasn't applied.
+
+12
+00:00:41.349 --> 00:00:44.525
+E oh six: someone reviewed
+their own access.
+
+13
+00:00:44.525 --> 00:00:49.883
+And E oh seven: one reviewer recorded a
+run of identical decisions within minutes,
+
+14
+00:00:49.883 --> 00:00:53.230
+the bulk-decision check
+from the program's design.

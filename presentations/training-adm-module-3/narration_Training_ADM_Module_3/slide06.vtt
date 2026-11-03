@@ -1,0 +1,79 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.162
+Each group is a JSON file
+in the rules folder.
+
+2
+00:00:03.162 --> 00:00:06.951
+Here's one: FIN-LED
+everyone but contractors.
+
+3
+00:00:06.951 --> 00:00:08.175
+It's a user rule.
+
+4
+00:00:08.175 --> 00:00:10.850
+The owner is the person
+who approves changes.
+
+5
+00:00:10.850 --> 00:00:15.425
+The critical flag marks the groups
+an incident responder resumes first.
+
+6
+00:00:15.425 --> 00:00:18.213
+The membership rule starts
+with the two guards.
+
+7
+00:00:18.213 --> 00:00:23.712
+And the tests name members of a fictional
+population, built to exercise each guard:
+
+8
+00:00:23.712 --> 00:00:27.755
+a disabled employee, a guest
+with a copied organization code,
+
+9
+00:00:27.755 --> 00:00:31.476
+a worker with an empty worker-type
+slot, a lower-case code,
+
+10
+00:00:31.476 --> 00:00:34.549
+a manager and their
+reports, and three devices.
+
+11
+00:00:34.549 --> 00:00:38.132
+The library's six rules are the
+program's own rule patterns,
+
+12
+00:00:38.132 --> 00:00:39.625
+with the guards in place.
+
+13
+00:00:39.625 --> 00:00:44.540
+A parser follows the grammar on Microsoft
+Learn's page on dynamic membership rules,
+
+14
+00:00:44.540 --> 00:00:48.387
+and an evaluator tests a parsed
+rule against each fixture member.
+
+15
+00:00:48.387 --> 00:00:51.526
+It's for tests and reviews;
+it isn't the engine.
+
+16
+00:00:51.526 --> 00:00:55.490
+It refuses member of and the date
+comparisons rather than guess.

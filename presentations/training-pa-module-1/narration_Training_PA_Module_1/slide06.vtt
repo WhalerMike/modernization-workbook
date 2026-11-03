@@ -1,0 +1,70 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.037
+Unit 2: the reader, the
+rows and the findings.
+
+2
+00:00:04.037 --> 00:00:07.554
+The reader sends only the calls
+declared in the kit's call list,
+
+3
+00:00:07.554 --> 00:00:10.037
+each with its least-privileged permission.
+
+4
+00:00:10.037 --> 00:00:12.999
+It sends GET only; any
+other method throws.
+
+5
+00:00:12.999 --> 00:00:16.399
+It sends to one host, the
+named cloud's own Graph or
+
+6
+00:00:16.399 --> 00:00:20.138
+Resource Manager endpoint,
+and it follows every page.
+
+7
+00:00:20.138 --> 00:00:23.069
+Note why it asks for User
+dot Read Basic dot All
+
+8
+00:00:23.069 --> 00:00:25.924
+as well as Group Member
+dot Read Basic dot All.
+
+9
+00:00:25.924 --> 00:00:30.439
+Without it, a group's member comes
+back with an I D and a type only,
+
+10
+00:00:30.439 --> 00:00:34.775
+and the review sees an unnamed
+holder; that's rule I N V oh nine.
+
+11
+00:00:34.775 --> 00:00:38.863
+The rows: one row per
+assignment, with its plane, role,
+
+12
+00:00:38.863 --> 00:00:43.925
+tier and scope, its state, and its
+route, direct or through a group.
+
+13
+00:00:43.925 --> 00:00:48.099
+When a role is on a group, the reader
+reads the group's members once,
+
+14
+00:00:48.099 --> 00:00:51.310
+and each member gets its
+own row marked Via Group.
