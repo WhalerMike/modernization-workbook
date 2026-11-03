@@ -7,26 +7,26 @@
   ],
   [
    7.15,
-   8.812,
-   "This module serves Gates 5 and 8 of the implementation guide, and takes the Federal Modernization Workbook's Book 19, Chapter 08."
+   8.137,
+   "This module serves Gates 5 and 8 of the implementation guide, and takes Chapter 08 of Building the Attribute-Driven Migration."
   ],
   [
-   15.963,
+   15.287,
    10.575,
    "You'll onboard one wave of servers to Azure Arc with Microsoft's role, from a CMDB export, with every server tagged with the tool that owns its settings and the tool that patches it."
   ],
   [
-   26.538,
+   25.863,
    3.612,
    "And you'll write a plan a reviewer reads before anything runs."
   ],
   [
-   30.15,
+   29.475,
    11.25,
    "The lab reads the CMDB into groups and tags, runs Microsoft's role in check mode, plans a wave, dry-runs it, and breaks the CMDB on purpose, all offline."
   ],
   [
-   41.4,
+   40.725,
    5.362,
    "The code is illustrative: tested against fixtures, not against a production estate."
   ]

@@ -2,7 +2,7 @@
 
 ## Slide 1 — Module 5: Build machine configuration packages
 
-Welcome to Module 5 of the Attribute-Driven Migration learning path: build machine configuration packages. This module serves Gate 5 of the implementation guide, and takes Chapter 07 of the Federal Modernization Workbook's Book 19. For the server settings machine configuration owns, the code is a DSC configuration, and Azure Policy delivers it. You'll follow Learn's steps, see where their outputs fall short, and learn the build that checks between them: it cleans the MOF so it's the same every time, checks the package and the definition, and refuses what the release registry doesn't allow. The lab runs offline on Windows, with nothing signed in. The code is illustrative: tested against fixtures, not against a production subscription.
+Welcome to Module 5 of the Attribute-Driven Migration learning path: build machine configuration packages. This module serves Gate 5 of the implementation guide, and takes Chapter 07 of Building the Attribute-Driven Migration. For the server settings machine configuration owns, the code is a DSC configuration, and Azure Policy delivers it. You'll follow Learn's steps, see where their outputs fall short, and learn the build that checks between them: it cleans the MOF so it's the same every time, checks the package and the definition, and refuses what the release registry doesn't allow. The lab runs offline on Windows, with nothing signed in. The code is illustrative: tested against fixtures, not against a production subscription.
 
 ## Slide 2 — Why a package needs a checked build
 

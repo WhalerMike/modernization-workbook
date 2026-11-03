@@ -2,7 +2,7 @@
 
 ## Slide 1 — Module 8: The drift pipeline and the evidence
 
-Welcome to Module 8 of the Attribute-Driven Migration learning path: run the drift pipeline and hand over the evidence. This module serves Gate 9, keep the attributes true, and takes Chapter 09 of the Federal Modernization Workbook's Book 19, drift pipelines and evidence to the ISSO. You'll see where the pipeline sits, what Learn's sample workflows leave to you, how one run is compared with the last without treating a failed read as a fix, how findings go to the tracker without names, and how the evidence package forms a chain. Then you'll run it on your laptop against two days of fictional validation kit runs. If you're an ISSO reviewer, this module is yours in full. The code is illustrative: tested against fixtures, and the sample workflow has never run against Azure.
+Welcome to Module 8 of the Attribute-Driven Migration learning path: run the drift pipeline and hand over the evidence. This module serves Gate 9, keep the attributes true, and takes Chapter 09 of Building the Attribute-Driven Migration, drift pipelines and evidence to the ISSO. You'll see where the pipeline sits, what Learn's sample workflows leave to you, how one run is compared with the last without treating a failed read as a fix, how findings go to the tracker without names, and how the evidence package forms a chain. Then you'll run it on your laptop against two days of fictional validation kit runs. If you're an ISSO reviewer, this module is yours in full. The code is illustrative: tested against fixtures, and the sample workflow has never run against Azure.
 
 ## Slide 2 — Why Gate 9: without it, everything slowly decays
 

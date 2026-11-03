@@ -11,59 +11,59 @@ Migration learning path: deploy
 to test, then production.
 
 3
-00:00:08.025 --> 00:00:12.396
+00:00:08.025 --> 00:00:12.200
 This module serves every gate,
 through Chapter 10's step-to-gate map,
 
 4
-00:00:12.396 --> 00:00:16.925
-and takes Chapter 10 of the Federal
-Modernization Workbook's Book 19.
+00:00:12.200 --> 00:00:16.300
+and takes Chapter 10 of Building
+the Attribute-Driven Migration.
 
 5
-00:00:16.925 --> 00:00:20.576
+00:00:16.300 --> 00:00:19.951
 You'll see what the deployment
 runbook adds to the chapters:
 
 6
-00:00:20.576 --> 00:00:24.451
+00:00:19.951 --> 00:00:23.826
 one settings file per stage, three
 identities, a record of every
 
 7
-00:00:24.451 --> 00:00:28.550
+00:00:23.826 --> 00:00:27.925
 change with its rollback, and a go
 or no-go record before production.
 
 8
-00:00:28.550 --> 00:00:31.820
+00:00:27.925 --> 00:00:31.195
 Then you'll dry-run its five
 deploy scripts on your laptop,
 
 9
-00:00:31.820 --> 00:00:33.350
+00:00:31.195 --> 00:00:32.725
 against the kits' fixtures.
 
 10
-00:00:33.350 --> 00:00:34.550
+00:00:32.725 --> 00:00:33.925
 One thing first.
 
 11
-00:00:34.550 --> 00:00:37.978
+00:00:33.925 --> 00:00:37.353
 Chapter 10 is held for
 review, and nobody has run its
 
 12
-00:00:37.978 --> 00:00:41.650
+00:00:37.353 --> 00:00:41.025
 runbook against a live tenant,
 subscription or forest.
 
 13
-00:00:41.650 --> 00:00:45.925
+00:00:41.025 --> 00:00:45.300
 The scripts are tested against fixtures
 and their dry-run output is real.
 
 14
-00:00:45.925 --> 00:00:50.640
+00:00:45.300 --> 00:00:50.020
 Every other result in the chapter is
 an expectation, not an observation.

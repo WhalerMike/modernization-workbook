@@ -2,7 +2,7 @@
 
 ## Slide 1 — Module 6: Onboard servers with Ansible beside Arc
 
-Welcome to Module 6 of the Attribute-Driven Migration learning path: onboard servers with Ansible beside Arc. This module serves Gates 5 and 8 of the implementation guide, and takes the Federal Modernization Workbook's Book 19, Chapter 08. You'll onboard one wave of servers to Azure Arc with Microsoft's role, from a CMDB export, with every server tagged with the tool that owns its settings and the tool that patches it. And you'll write a plan a reviewer reads before anything runs. The lab reads the CMDB into groups and tags, runs Microsoft's role in check mode, plans a wave, dry-runs it, and breaks the CMDB on purpose, all offline. The code is illustrative: tested against fixtures, not against a production estate.
+Welcome to Module 6 of the Attribute-Driven Migration learning path: onboard servers with Ansible beside Arc. This module serves Gates 5 and 8 of the implementation guide, and takes Chapter 08 of Building the Attribute-Driven Migration. You'll onboard one wave of servers to Azure Arc with Microsoft's role, from a CMDB export, with every server tagged with the tool that owns its settings and the tool that patches it. And you'll write a plan a reviewer reads before anything runs. The lab reads the CMDB into groups and tags, runs Microsoft's role in check mode, plans a wave, dry-runs it, and breaks the CMDB on purpose, all offline. The code is illustrative: tested against fixtures, not against a production estate.
 
 ## Slide 2 — Why the onboarding run is where owners are read
 

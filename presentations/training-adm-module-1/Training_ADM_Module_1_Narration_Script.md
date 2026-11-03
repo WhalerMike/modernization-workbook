@@ -2,7 +2,7 @@
 
 ## Slide 1 — Module 1: The HR middleware that fails closed
 
-Welcome to Module 1 of the Attribute-Driven Migration learning path: send HR records through a middleware that fails closed. The path teaches the Federal Modernization Workbook's Book 19, Building the Attribute-Driven Migration, one chapter per module, in the order of the implementation guide's gates. There are nine modules. This one serves Gates 2 and 3, and takes Chapter 01, the HR-to-Entra middleware. You'll see what the middleware owns and what the provisioning service owns, what Microsoft's CSV2SCIM sample leaves to you, and how the hardened client refuses bad rows, orders leavers first, holds a mass disable and ties every batch to its inputs by hash. Then you'll run it on your laptop against a fictional HR extract. The code is illustrative: tested against fixtures, not against a production tenant.
+Welcome to Module 1 of the Attribute-Driven Migration learning path: send HR records through a middleware that fails closed. The path teaches the workbook's book Building the Attribute-Driven Migration, one chapter per module, in the order of the implementation guide's gates. There are nine modules. This one serves Gates 2 and 3, and takes Chapter 01, the HR-to-Entra middleware. You'll see what the middleware owns and what the provisioning service owns, what Microsoft's CSV2SCIM sample leaves to you, and how the hardened client refuses bad rows, orders leavers first, holds a mass disable and ties every batch to its inputs by hash. Then you'll run it on your laptop against a fictional HR extract. The code is illustrative: tested against fixtures, not against a production tenant.
 
 ## Slide 2 — Why the middleware is where a record is first checked
 

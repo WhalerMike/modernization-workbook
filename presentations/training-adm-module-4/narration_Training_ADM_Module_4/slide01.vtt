@@ -10,49 +10,49 @@ Attribute-Driven Migration learning path:
 move Group Policy as code.
 
 3
-00:00:06.388 --> 00:00:11.338
+00:00:06.388 --> 00:00:10.792
 This module serves three of the
-implementation guide's gates, 0, 5 and 8,
+implementation guide's gates, 0,
 
 4
-00:00:11.338 --> 00:00:16.288
-and takes Chapter 06 of the Federal
-Modernization Workbook's Book 19.
+00:00:10.792 --> 00:00:15.788
+5 and 8, and takes Chapter 06 of
+Building the Attribute-Driven Migration.
 
 5
-00:00:16.288 --> 00:00:21.051
+00:00:15.788 --> 00:00:20.550
 You'll read Group Policy analytics
 into a move plan, one row per setting.
 
 6
-00:00:21.051 --> 00:00:24.679
+00:00:20.550 --> 00:00:24.179
 You'll keep each settings catalog
 policy as a reviewed file,
 
 7
-00:00:24.679 --> 00:00:27.938
+00:00:24.179 --> 00:00:27.438
 with an owner and a decision
 record for every setting.
 
 8
-00:00:27.938 --> 00:00:30.897
+00:00:27.438 --> 00:00:30.397
 And you'll run a sync that
 reads the tenant first,
 
 9
-00:00:30.897 --> 00:00:33.401
+00:00:30.397 --> 00:00:32.901
 and creates only what its dry run showed.
 
 10
-00:00:33.401 --> 00:00:35.513
+00:00:32.901 --> 00:00:35.013
 Then you'll run it all on your laptop,
 
 11
-00:00:35.513 --> 00:00:39.375
+00:00:35.013 --> 00:00:38.875
 against a fake Graph and a fixture
 tenant, and break it on purpose.
 
 12
-00:00:39.375 --> 00:00:44.830
+00:00:38.875 --> 00:00:44.330
 The code is illustrative: tested against
 fixtures, not against a production tenant.

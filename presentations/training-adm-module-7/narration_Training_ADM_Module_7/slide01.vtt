@@ -10,54 +10,54 @@ Attribute-Driven Migration learning path:
 extend Lifecycle Workflows.
 
 3
-00:00:06.537 --> 00:00:11.766
-This module serves Gates 7 and 8 of
-the implementation guide, and takes the
+00:00:06.537 --> 00:00:11.779
+This module serves Gates 7 and 8 of the
+implementation guide, and takes Chapter
 
 4
-00:00:11.766 --> 00:00:17.424
-Federal Modernization Workbook's Book 19,
-Chapter 05, on custom task extensions.
+00:00:11.779 --> 00:00:16.699
+05 of Building the Attribute-Driven
+Migration, on custom task extensions.
 
 5
-00:00:17.424 --> 00:00:22.493
+00:00:16.699 --> 00:00:21.768
 It comes after Modules 4 to 6
 because the path follows the gates:
 
 6
-00:00:22.493 --> 00:00:26.587
+00:00:21.768 --> 00:00:25.862
 Chapter 05 serves Gates 7
 and 8, after the Gate 5 work.
 
 7
-00:00:26.587 --> 00:00:31.287
+00:00:25.862 --> 00:00:30.563
 You'll see what Learn's Logic App
 definition costs a GCC High leaver, and run
 
 8
-00:00:31.287 --> 00:00:36.450
+00:00:30.563 --> 00:00:35.726
 the definition that fixes it, through
 transient failures and repeat deliveries.
 
 9
-00:00:36.450 --> 00:00:39.863
+00:00:35.726 --> 00:00:39.138
 You'll build the deployment
 pieces from a reviewed registry,
 
 10
-00:00:39.863 --> 00:00:43.275
+00:00:39.138 --> 00:00:42.550
 and check that the leaver blocks
 before the custom task runs.
 
 11
-00:00:43.275 --> 00:00:44.475
+00:00:42.550 --> 00:00:43.750
 Nothing signs in.
 
 12
-00:00:44.475 --> 00:00:48.347
+00:00:43.750 --> 00:00:47.622
 The code is illustrative: tested
 against fixtures and fakes,
 
 13
-00:00:48.347 --> 00:00:50.500
+00:00:47.622 --> 00:00:49.780
 not against a production tenant.

@@ -7,36 +7,36 @@
   ],
   [
    8.025,
-   8.9,
-   "This module serves every gate, through Chapter 10's step-to-gate map, and takes Chapter 10 of the Federal Modernization Workbook's Book 19."
+   8.275,
+   "This module serves every gate, through Chapter 10's step-to-gate map, and takes Chapter 10 of Building the Attribute-Driven Migration."
   ],
   [
-   16.925,
+   16.3,
    11.625,
    "You'll see what the deployment runbook adds to the chapters: one settings file per stage, three identities, a record of every change with its rollback, and a go or no-go record before production."
   ],
   [
-   28.55,
+   27.925,
    4.8,
    "Then you'll dry-run its five deploy scripts on your laptop, against the kits' fixtures."
   ],
   [
-   33.35,
+   32.725,
    1.2,
    "One thing first."
   ],
   [
-   34.55,
+   33.925,
    7.1,
    "Chapter 10 is held for review, and nobody has run its runbook against a lyve tenant, subscription or forest."
   ],
   [
-   41.65,
+   41.025,
    4.275,
    "The scripts are tested against fixtures and their dry-run output is real."
   ],
   [
-   45.925,
+   45.3,
    4.662,
    "Every other result in the chapter is an expectation, not an observation."
   ]

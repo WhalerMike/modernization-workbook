@@ -7,26 +7,26 @@
   ],
   [
    6.85,
-   8.65,
-   "This module serves Gate 5 of the implementation guide, and takes Chapter 07 of the Federal Modernization Workbook's Book 19."
+   8.1,
+   "This module serves Gate 5 of the implementation guide, and takes Chapter 07 of Building the Attribute-Driven Migration."
   ],
   [
-   15.5,
+   14.95,
    7.45,
    "For the server settings machine configuration owns, the code is a DSC configuration, and Azure Policy delivers it."
   ],
   [
-   22.95,
+   22.4,
    14.15,
    "You'll follow Learn's steps, see where their outputs fall short, and learn the build that checks between them: it cleans the MOF so it's the same every time, checks the package and the definition, and refuses what the release registry doesn't allow."
   ],
   [
-   37.1,
+   36.55,
    3.525,
    "The lab runs offline on Windows, with nothing signed in."
   ],
   [
-   40.625,
+   40.075,
    5.662,
    "The code is illustrative: tested against fixtures, not against a production subscription."
   ]

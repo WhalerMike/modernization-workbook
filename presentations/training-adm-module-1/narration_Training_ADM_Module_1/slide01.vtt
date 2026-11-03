@@ -11,55 +11,50 @@ send HR records through a
 middleware that fails closed.
 
 3
-00:00:07.575 --> 00:00:11.426
-The path teaches the Federal
-Modernization Workbook's Book 19,
+00:00:07.575 --> 00:00:12.267
+The path teaches the workbook's book
+Building the Attribute-Driven Migration,
 
 4
-00:00:11.426 --> 00:00:15.425
-Building the Attribute-Driven
-Migration, one chapter per module,
+00:00:12.267 --> 00:00:16.525
+one chapter per module, in the order
+of the implementation guide's gates.
 
 5
-00:00:15.425 --> 00:00:18.387
-in the order of the
-implementation guide's gates.
-
-6
-00:00:18.387 --> 00:00:19.862
+00:00:16.525 --> 00:00:18.000
 There are nine modules.
 
-7
-00:00:19.862 --> 00:00:26.713
+6
+00:00:18.000 --> 00:00:24.850
 This one serves Gates 2 and 3, and takes
 Chapter 01, the HR-to-Entra middleware.
 
-8
-00:00:26.713 --> 00:00:31.602
+7
+00:00:24.850 --> 00:00:29.740
 You'll see what the middleware owns
 and what the provisioning service owns,
 
-9
-00:00:31.602 --> 00:00:34.677
+8
+00:00:29.740 --> 00:00:32.815
 what Microsoft's CSV2SCIM
 sample leaves to you,
 
-10
-00:00:34.677 --> 00:00:39.015
+9
+00:00:32.815 --> 00:00:37.153
 and how the hardened client refuses
 bad rows, orders leavers first,
 
-11
-00:00:39.015 --> 00:00:43.037
+10
+00:00:37.153 --> 00:00:41.175
 holds a mass disable and ties
 every batch to its inputs by hash.
 
-12
-00:00:43.037 --> 00:00:47.013
+11
+00:00:41.175 --> 00:00:45.150
 Then you'll run it on your laptop
 against a fictional HR extract.
 
-13
-00:00:47.013 --> 00:00:52.460
+12
+00:00:45.150 --> 00:00:50.590
 The code is illustrative: tested against
 fixtures, not against a production tenant.

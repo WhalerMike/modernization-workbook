@@ -2,7 +2,7 @@
 
 ## Slide 1 — Module 7: Extend Lifecycle Workflows
 
-Welcome to Module 7 of the Attribute-Driven Migration learning path: extend Lifecycle Workflows. This module serves Gates 7 and 8 of the implementation guide, and takes the Federal Modernization Workbook's Book 19, Chapter 05, on custom task extensions. It comes after Modules 4 to 6 because the path follows the gates: Chapter 05 serves Gates 7 and 8, after the Gate 5 work. You'll see what Learn's Logic App definition costs a GCC High leaver, and run the definition that fixes it, through transient failures and repeat deliveries. You'll build the deployment pieces from a reviewed registry, and check that the leaver blocks before the custom task runs. Nothing signs in. The code is illustrative: tested against fixtures and fakes, not against a production tenant.
+Welcome to Module 7 of the Attribute-Driven Migration learning path: extend Lifecycle Workflows. This module serves Gates 7 and 8 of the implementation guide, and takes Chapter 05 of Building the Attribute-Driven Migration, on custom task extensions. It comes after Modules 4 to 6 because the path follows the gates: Chapter 05 serves Gates 7 and 8, after the Gate 5 work. You'll see what Learn's Logic App definition costs a GCC High leaver, and run the definition that fixes it, through transient failures and repeat deliveries. You'll build the deployment pieces from a reviewed registry, and check that the leaver blocks before the custom task runs. Nothing signs in. The code is illustrative: tested against fixtures and fakes, not against a production tenant.
 
 ## Slide 2 — Why the rest of a leaver needs an extension
 

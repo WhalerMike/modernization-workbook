@@ -2,7 +2,7 @@
 
 ## Slide 1 — Module 4: Move Group Policy as code
 
-Welcome to Module 4 of the Attribute-Driven Migration learning path: move Group Policy as code. This module serves three of the implementation guide's gates, 0, 5 and 8, and takes Chapter 06 of the Federal Modernization Workbook's Book 19. You'll read Group Policy analytics into a move plan, one row per setting. You'll keep each settings catalog policy as a reviewed file, with an owner and a decision record for every setting. And you'll run a sync that reads the tenant first, and creates only what its dry run showed. Then you'll run it all on your laptop, against a fake Graph and a fixture tenant, and break it on purpose. The code is illustrative: tested against fixtures, not against a production tenant.
+Welcome to Module 4 of the Attribute-Driven Migration learning path: move Group Policy as code. This module serves three of the implementation guide's gates, 0, 5 and 8, and takes Chapter 06 of Building the Attribute-Driven Migration. You'll read Group Policy analytics into a move plan, one row per setting. You'll keep each settings catalog policy as a reviewed file, with an owner and a decision record for every setting. And you'll run a sync that reads the tenant first, and creates only what its dry run showed. Then you'll run it all on your laptop, against a fake Graph and a fixture tenant, and break it on purpose. The code is illustrative: tested against fixtures, not against a production tenant.
 
 ## Slide 2 — Why Group Policy has to move as code
 

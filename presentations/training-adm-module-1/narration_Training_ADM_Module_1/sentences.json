@@ -7,31 +7,31 @@
   ],
   [
    7.575,
-   10.812,
-   "The path teaches the Federal Modernization Workbook's Book 19, Building the Attribute-Driven Migration, one chapter per module, in the order of the implementation guide's gates."
+   8.95,
+   "The path teaches the workbook's book Building the Attribute-Driven Migration, one chapter per module, in the order of the implementation guide's gates."
   ],
   [
-   18.387,
+   16.525,
    1.475,
    "There are nine modules."
   ],
   [
-   19.863,
+   18.0,
    6.85,
    "This one serves Gates 2 and 3, and takes Chapter 01, the H R-to-Entra middleware."
   ],
   [
-   26.712,
+   24.85,
    16.325,
    "You'll see what the middleware owns and what the provisioning service owns, what Microsoft's CSV2SCIM sample leaves to you, and how the hardened client refuses bad rows, orders leavers first, holds a mass disable and ties every batch to its inputs by hash."
   ],
   [
-   43.038,
+   41.175,
    3.975,
    "Then you'll run it on your laptop against a fictional H R extract."
   ],
   [
-   47.013,
+   45.15,
    5.388,
    "The code is illustrative: tested against fixtures, not against a production tenant."
   ]

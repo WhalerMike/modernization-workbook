@@ -10,55 +10,55 @@ Attribute-Driven Migration learning path:
 build machine configuration packages.
 
 3
-00:00:06.850 --> 00:00:10.666
+00:00:06.850 --> 00:00:10.532
 This module serves Gate 5 of
 the implementation guide,
 
 4
-00:00:10.666 --> 00:00:15.500
-and takes Chapter 07 of the Federal
-Modernization Workbook's Book 19.
+00:00:10.532 --> 00:00:14.950
+and takes Chapter 07 of Building
+the Attribute-Driven Migration.
 
 5
-00:00:15.500 --> 00:00:18.987
+00:00:14.950 --> 00:00:18.437
 For the server settings
 machine configuration owns,
 
 6
-00:00:18.987 --> 00:00:22.950
+00:00:18.437 --> 00:00:22.400
 the code is a DSC configuration,
 and Azure Policy delivers it.
 
 7
-00:00:22.950 --> 00:00:26.595
+00:00:22.400 --> 00:00:26.045
 You'll follow Learn's steps, see
 where their outputs fall short,
 
 8
-00:00:26.595 --> 00:00:29.239
+00:00:26.045 --> 00:00:28.689
 and learn the build that
 checks between them:
 
 9
-00:00:29.239 --> 00:00:33.098
+00:00:28.689 --> 00:00:32.548
 it cleans the MOF so it's the same
 every time, checks the package and
 
 10
-00:00:33.098 --> 00:00:37.100
+00:00:32.548 --> 00:00:36.550
 the definition, and refuses what
 the release registry doesn't allow.
 
 11
-00:00:37.100 --> 00:00:40.625
+00:00:36.550 --> 00:00:40.075
 The lab runs offline on Windows,
 with nothing signed in.
 
 12
-00:00:40.625 --> 00:00:43.796
+00:00:40.075 --> 00:00:43.246
 The code is illustrative:
 tested against fixtures,
 
 13
-00:00:43.796 --> 00:00:46.340
+00:00:43.246 --> 00:00:45.790
 not against a production subscription.

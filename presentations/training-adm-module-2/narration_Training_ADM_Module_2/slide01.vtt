@@ -25,45 +25,44 @@ The kit is the executable
 form of those steps.
 
 6
-00:00:15.900 --> 00:00:21.605
+00:00:15.900 --> 00:00:21.656
 This module serves Gate 3, and takes
-Chapter 03 of the Federal Modernization
+Chapter 03 of Building the Attribute-Driven
 
 7
-00:00:21.605 --> 00:00:24.865
-Workbook's Book 19,
-which teaches how a check
+00:00:21.656 --> 00:00:24.447
+Migration, which teaches how a check is
 
 8
-00:00:24.865 --> 00:00:28.125
-is built through one new
+00:00:24.447 --> 00:00:27.412
+built through one new
 check, V K SYNC oh two.
 
 9
-00:00:28.125 --> 00:00:31.982
+00:00:27.412 --> 00:00:31.270
 It asks whether soft match and
 hard-match takeover are blocked,
 
 10
-00:00:31.982 --> 00:00:34.800
+00:00:31.270 --> 00:00:34.088
 and if not, whether an
 approved window says why.
 
 11
-00:00:34.800 --> 00:00:39.438
+00:00:34.088 --> 00:00:38.725
 You'll see the parts of a check, its three
 severities, why a missing value reads
 
 12
-00:00:39.438 --> 00:00:44.075
+00:00:38.725 --> 00:00:43.362
 as off, and why a read-only check still
 has to ask for the least privilege it can.
 
 13
-00:00:44.075 --> 00:00:48.737
+00:00:43.362 --> 00:00:48.024
 Then you'll run it on the kit's fixtures
 and on an export, and break it on purpose.
 
 14
-00:00:48.737 --> 00:00:49.990
+00:00:48.024 --> 00:00:49.300
 Nothing signs in.

@@ -7,31 +7,31 @@
   ],
   [
    6.388,
-   9.9,
-   "This module serves three of the implementation guide's gates, 0, 5 and 8, and takes Chapter 06 of the Federal Modernization Workbook's Book 19."
+   9.4,
+   "This module serves three of the implementation guide's gates, 0, 5 and 8, and takes Chapter 06 of Building the Attribute-Driven Migration."
   ],
   [
-   16.288,
+   15.787,
    4.763,
    "You'll read Group Policy analytics into a move plan, one row per setting."
   ],
   [
-   21.05,
+   20.55,
    6.888,
    "You'll keep each settings catalog policy as a reviewed file, with an owner and a decision record for every setting."
   ],
   [
-   27.938,
+   27.438,
    5.463,
    "And you'll run a sync that reads the tenant first, and creates only what its dry run showed."
   ],
   [
-   33.4,
+   32.9,
    5.975,
    "Then you'll run it all on your laptop, against a fake Graph and a fixture tenant, and break it on purpose."
   ],
   [
-   39.375,
+   38.875,
    5.388,
    "The code is illustrative: tested against fixtures, not against a production tenant."
   ]

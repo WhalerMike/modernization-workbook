@@ -7,31 +7,31 @@
   ],
   [
    6.537,
-   10.887,
-   "This module serves Gates 7 and 8 of the implementation guide, and takes the Federal Modernization Workbook's Book 19, Chapter 05, on custom task extensions."
+   10.162,
+   "This module serves Gates 7 and 8 of the implementation guide, and takes Chapter 05 of Building the Attribute-Driven Migration, on custom task extensions."
   ],
   [
-   17.425,
+   16.7,
    9.162,
    "It comes after Modules 4 to 6 because the path follows the gates: Chapter 05 serves Gates 7 and 8, after the Gate 5 work."
   ],
   [
-   26.587,
+   25.863,
    9.863,
    "You'll see what Learn's Logic App definition costs a G C C High leaver, and run the definition that fixes it, through transient failures and repeat deliveries."
   ],
   [
-   36.45,
+   35.725,
    6.825,
    "You'll build the deployment pieces from a reviewed registry, and check that the leaver blocks before the custom task runs."
   ],
   [
-   43.275,
+   42.55,
    1.2,
    "Nothing signs in."
   ],
   [
-   44.475,
+   43.75,
    5.963,
    "The code is illustrative: tested against fixtures and fakes, not against a production tenant."
   ]

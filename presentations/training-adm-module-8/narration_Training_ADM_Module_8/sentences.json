@@ -7,26 +7,26 @@
   ],
   [
    7.675,
-   12.1,
-   "This module serves Gate 9, keep the attributes true, and takes Chapter 09 of the Federal Modernization Workbook's Book 19, drift pipelines and evidence to the I S S O."
+   11.738,
+   "This module serves Gate 9, keep the attributes true, and takes Chapter 09 of Building the Attribute-Driven Migration, drift pipelines and evidence to the I S S O."
   ],
   [
-   19.775,
+   19.413,
    13.762,
    "You'll see where the pipeline sits, what Learn's sample workflows leave to you, how one run is compared with the last without treating a failed read as a fix, how findings go to the tracker without names, and how the evidence package forms a chain."
   ],
   [
-   33.538,
+   33.175,
    4.725,
    "Then you'll run it on your laptop against two days of fictional validation kit runs."
   ],
   [
-   38.263,
+   37.9,
    4.237,
    "If you're an I S S O reviewer, this module is yours in full."
   ],
   [
-   42.5,
+   42.138,
    6.475,
    "The code is illustrative: tested against fixtures, and the sample workflow has never run against Azure."
   ]

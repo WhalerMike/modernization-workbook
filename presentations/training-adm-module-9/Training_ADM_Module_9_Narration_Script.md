@@ -2,7 +2,7 @@
 
 ## Slide 1 — Module 9: Deploy to test, then production
 
-Welcome to Module 9, the last module of the Attribute-Driven Migration learning path: deploy to test, then production. This module serves every gate, through Chapter 10's step-to-gate map, and takes Chapter 10 of the Federal Modernization Workbook's Book 19. You'll see what the deployment runbook adds to the chapters: one settings file per stage, three identities, a record of every change with its rollback, and a go or no-go record before production. Then you'll dry-run its five deploy scripts on your laptop, against the kits' fixtures. One thing first. Chapter 10 is held for review, and nobody has run its runbook against a live tenant, subscription or forest. The scripts are tested against fixtures and their dry-run output is real. Every other result in the chapter is an expectation, not an observation.
+Welcome to Module 9, the last module of the Attribute-Driven Migration learning path: deploy to test, then production. This module serves every gate, through Chapter 10's step-to-gate map, and takes Chapter 10 of Building the Attribute-Driven Migration. You'll see what the deployment runbook adds to the chapters: one settings file per stage, three identities, a record of every change with its rollback, and a go or no-go record before production. Then you'll dry-run its five deploy scripts on your laptop, against the kits' fixtures. One thing first. Chapter 10 is held for review, and nobody has run its runbook against a live tenant, subscription or forest. The scripts are tested against fixtures and their dry-run output is real. Every other result in the chapter is an expectation, not an observation.
 
 ## Slide 2 — Why a deployment isn't nine Lab 2s in a row
 

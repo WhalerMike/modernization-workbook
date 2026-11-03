@@ -7,21 +7,21 @@
   ],
   [
    6.338,
-   9.812,
-   "This module serves Gate 4, the dynamic group library and administrative units, and takes Chapter 04 of the Federal Modernization Workbook's Book 19."
+   9.512,
+   "This module serves Gate 4, the dynamic group library and administrative units, and takes Chapter 04 of Building the Attribute-Driven Migration."
   ],
   [
-   16.15,
+   15.85,
    11.963,
    "You'll write each dynamic group as a reviewed file with tests, lint it for the guards every user rule needs, show whom a change adds and removes, and see how to pause and resume safely in an incident."
   ],
   [
-   28.113,
+   27.812,
    13.675,
    "In the lab you'll run Microsoft Learn's own incident samples against a fake tenant, lint the program's rule pattern table, evaluate a rule against a fictional population, run the pull request check, and break a rule on purpose."
   ],
   [
-   41.788,
+   41.487,
    10.438,
    "The code is illustrative: tested against fixtures and a fake tenant, and the evaluator follows Microsoft Learn's page on dynamic membership rules but isn't the service."
   ]
