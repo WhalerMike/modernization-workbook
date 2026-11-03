@@ -45,16 +45,21 @@ And you'll recognize an intended state
 that gives the re-read nothing to check.
 
 10
-00:00:28.500 --> 00:00:33.325
-Before you start, read Book 13's
-Chapter 10 and skim Appendix B.
+00:00:28.500 --> 00:00:31.928
+Before you start, read
+Chapter 10 of the Governance,
 
 11
-00:00:33.325 --> 00:00:38.263
+00:00:31.928 --> 00:00:35.112
+Drift and Evidence book,
+and skim its Appendix B.
+
+12
+00:00:35.112 --> 00:00:40.050
 For Lab 1 you need Python, Node.js
 and a Bash-compatible shell.
 
-12
-00:00:38.263 --> 00:00:42.670
+13
+00:00:40.050 --> 00:00:44.450
 You don't need a ServiceNow instance
 or a SailPoint tenant until Lab 2.

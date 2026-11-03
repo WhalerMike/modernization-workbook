@@ -20,45 +20,49 @@ the key it correlates on, and
 what it files as the baseline.
 
 5
-00:00:11.537 --> 00:00:16.812
-You'll name Book 03's drift classes, and
-say which ones the kit doesn't compute.
+00:00:11.537 --> 00:00:13.833
+You'll name the workbook's drift classes,
 
 6
-00:00:16.812 --> 00:00:20.227
+00:00:13.833 --> 00:00:16.199
+and say which ones the
+kit doesn't compute.
+
+7
+00:00:16.199 --> 00:00:19.615
 You'll run the drift
 reconciliation over fixtures
 
-7
-00:00:20.227 --> 00:00:23.724
+8
+00:00:19.615 --> 00:00:23.112
 and compare two runs as new,
 persisting and resolved.
 
-8
-00:00:23.724 --> 00:00:26.241
+9
+00:00:23.112 --> 00:00:25.629
 And you'll explain why
 a comparison of runs
 
-9
-00:00:26.241 --> 00:00:28.900
+10
+00:00:25.629 --> 00:00:28.288
 that computed different
 classes is refused.
 
-10
-00:00:28.900 --> 00:00:30.838
+11
+00:00:28.288 --> 00:00:30.226
 You need Module 3 first.
 
-11
-00:00:30.838 --> 00:00:33.785
+12
+00:00:30.226 --> 00:00:33.173
 For the Graph reads,
 the Microsoft Automation
 
-12
-00:00:33.785 --> 00:00:37.199
+13
+00:00:33.173 --> 00:00:36.587
 path's first module covers
 the four request patterns.
 
-13
-00:00:37.199 --> 00:00:42.960
+14
+00:00:36.587 --> 00:00:42.340
 Lab 1 runs on fixtures; Lab 2 needs a
 test tenant and a SailPoint sandbox.

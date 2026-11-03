@@ -16,55 +16,56 @@ You'll explain what Gate 7 schedules
 and reports to the governance board.
 
 4
-00:00:09.675 --> 00:00:12.532
-You'll describe Book 13's evidence record,
+00:00:09.675 --> 00:00:12.581
+You'll describe the
+workbook's evidence record,
 
 5
-00:00:12.532 --> 00:00:15.725
+00:00:12.581 --> 00:00:15.412
 which of its fields Pass
 1 leaves empty, and why.
 
 6
-00:00:15.725 --> 00:00:18.663
+00:00:15.412 --> 00:00:18.350
 You'll produce an evidence
 package for a period,
 
 7
-00:00:18.663 --> 00:00:21.225
+00:00:18.350 --> 00:00:20.912
 and continue its hash chain into the next.
 
 8
-00:00:21.225 --> 00:00:22.824
+00:00:20.912 --> 00:00:22.512
 And you'll verify a package,
 
 9
-00:00:22.824 --> 00:00:26.750
+00:00:22.512 --> 00:00:26.438
 and explain how the verifier
 catches an edited or removed record.
 
 10
-00:00:26.750 --> 00:00:29.325
+00:00:26.438 --> 00:00:29.013
 Before you start, finish Module 6.
 
 11
-00:00:29.325 --> 00:00:33.096
+00:00:29.013 --> 00:00:32.783
 If you're an ISSO reviewer
 working only this module,
 
 12
-00:00:33.096 --> 00:00:38.125
+00:00:32.783 --> 00:00:37.812
 read Module 1's Unit 3 first, on the
 identity finding and its contract.
 
 13
-00:00:38.125 --> 00:00:39.825
+00:00:37.812 --> 00:00:39.512
 Lab 1 needs no tenant.
 
 14
-00:00:39.825 --> 00:00:42.529
+00:00:39.512 --> 00:00:42.217
 Lab 2 needs your developer instance,
 
 15
-00:00:42.529 --> 00:00:46.300
+00:00:42.217 --> 00:00:45.980
 with at least one finding
 closed in Module 6's Lab 2.

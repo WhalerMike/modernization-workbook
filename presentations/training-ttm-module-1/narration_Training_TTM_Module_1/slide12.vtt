@@ -40,24 +40,24 @@ orphans, stale access and the unauthorized
 write are P two, due in an hour.
 
 9
-00:00:31.175 --> 00:00:36.329
+00:00:31.175 --> 00:00:35.940
 Three carry the warning: the two missing
 identities and the unauthorized write,
 
 10
-00:00:36.329 --> 00:00:38.750
-the classes Book 13 routes to a person.
+00:00:35.940 --> 00:00:38.250
+the classes the loop routes to a person.
 
 11
-00:00:38.750 --> 00:00:43.625
+00:00:38.250 --> 00:00:43.125
 And the last line is twelve accepted,
 none rejected, none de-duplicated.
 
 12
-00:00:43.625 --> 00:00:49.437
+00:00:43.125 --> 00:00:48.937
 Erin's two drifts in Entra ID, her department
 and her manager, have their own keys.
 
 13
-00:00:49.437 --> 00:00:51.980
+00:00:48.937 --> 00:00:51.480
 Step five deletes the output folder.

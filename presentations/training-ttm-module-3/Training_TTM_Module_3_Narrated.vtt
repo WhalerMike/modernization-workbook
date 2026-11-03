@@ -183,56 +183,56 @@ short of the loop in four places,
 and Gate 2 closes two of them on paper.
 
 40
-00:02:20.610 --> 00:02:23.543
+00:02:20.610 --> 00:02:23.481
 Gap two: with SailPoint's
 Service Catalog app,
 
 41
-00:02:23.543 --> 00:02:27.586
+00:02:23.481 --> 00:02:27.437
 requests follow the approval
 process defined in ServiceNow,
 
 42
-00:02:27.586 --> 00:02:33.055
+00:02:27.437 --> 00:02:32.790
 while the Federal Modernization Workbook's
-Book 15 decides owner-governed access,
+design decides owner-governed access,
 
 43
-00:02:33.055 --> 00:02:37.098
+00:02:32.790 --> 00:02:36.747
 classes A two and A three, in
 the identity governance platform.
 
 44
-00:02:37.098 --> 00:02:40.860
+00:02:36.747 --> 00:02:40.511
 Gate 2 answers with one approver
 system per authority class.
 
 45
-00:02:40.860 --> 00:02:43.697
+00:02:40.511 --> 00:02:43.347
 Gap four: two doors into the directory.
 
 46
-00:02:43.697 --> 00:02:48.555
-SailPoint can provision Entra ID
-and Active Directory, while Book 03
+00:02:43.347 --> 00:02:48.346
+SailPoint can provision Entra ID and
+Active Directory, while the workbook's
 
 47
-00:02:48.555 --> 00:02:53.923
-makes Entra inbound provisioning the
-one writer of HR-mastered attributes.
+00:02:48.346 --> 00:02:53.822
+design makes Entra inbound provisioning
+the one writer of HR-mastered attributes.
 
 48
-00:02:53.923 --> 00:02:56.884
+00:02:53.822 --> 00:02:56.784
 Gate 2 answers with one
 writer per attribute.
 
 49
-00:02:56.884 --> 00:03:00.697
+00:02:56.784 --> 00:03:00.597
 It also gives each change class
 a lane and a change-record type.
 
 50
-00:03:00.697 --> 00:03:03.900
+00:03:00.597 --> 00:03:03.800
 Every later gate builds
 what this one decides.
 
@@ -262,44 +262,45 @@ groups, roles, access packages
 and application access.
 
 56
-00:03:27.075 --> 00:03:30.907
+00:03:27.075 --> 00:03:30.715
 In the second, SailPoint becomes
 the provisioning service,
 
 57
-00:03:30.907 --> 00:03:33.487
-and takes on Book 03's middleware duties.
+00:03:30.715 --> 00:03:34.950
+and takes on the duties the workbook's
+design gives the HR middleware.
 
 58
-00:03:33.487 --> 00:03:35.199
+00:03:34.950 --> 00:03:36.662
 Pick one and write it down.
 
 59
-00:03:35.199 --> 00:03:36.175
+00:03:36.662 --> 00:03:37.637
 Not both.
 
 60
-00:03:36.175 --> 00:03:40.425
+00:03:37.637 --> 00:03:41.888
 Then record each attribute's writer
 in the program's attribute map.
 
 61
-00:03:40.425 --> 00:03:46.142
+00:03:41.888 --> 00:03:47.605
 One fact helps the choice: SailPoint's
 Oracle HCM Cloud connector reads Core HCM
 
 62
-00:03:46.142 --> 00:03:49.260
+00:03:47.605 --> 00:03:50.723
 directly, without an
 on-premises appliance,
 
 63
-00:03:49.260 --> 00:03:52.725
+00:03:50.723 --> 00:03:54.188
 and writes back only the
 user name and work email.
 
 64
-00:03:52.725 --> 00:03:58.370
+00:03:54.188 --> 00:03:59.840
 For the first pattern's build, the guide
 points to its Oracle HCM to Entra guide.
 
@@ -337,32 +338,32 @@ And every approval's timeout outcome
 is reject or cancel, never approve.
 
 72
-00:04:30.195 --> 00:04:35.370
-Step three gives each change class
-a lane, from Book 13's Appendix B.
+00:04:30.195 --> 00:04:35.045
+Step three gives each change class a
+lane, following the workbook's design.
 
 73
-00:04:35.370 --> 00:04:38.582
+00:04:35.045 --> 00:04:38.257
 The mapping onto these products
 is the program's inference.
 
 74
-00:04:38.582 --> 00:04:41.498
+00:04:38.257 --> 00:04:41.173
 An autonomous class runs
 as a standard change,
 
 75
-00:04:41.498 --> 00:04:45.333
+00:04:41.173 --> 00:04:45.008
 and the authorizing official
 accepts any class run that way.
 
 76
-00:04:45.333 --> 00:04:48.621
+00:04:45.008 --> 00:04:48.296
 A gated class is an access
 request with approval.
 
 77
-00:04:48.621 --> 00:04:53.080
+00:04:48.296 --> 00:04:52.770
 Step four writes the decisions to
 the record as a reviewed change.
 
@@ -775,233 +776,238 @@ The guide assumes one of two
 starting points for the HR feed.
 
 165
-00:10:09.663 --> 00:10:14.125
-Either Book 03's pipeline, Entra
-inbound provisioning from HR,
+00:10:09.663 --> 00:10:14.378
+Either the workbook's HR pipeline,
+Entra inbound provisioning from HR,
 
 166
-00:10:14.125 --> 00:10:18.412
+00:10:14.378 --> 00:10:18.362
 is already live, or accounts
 are still created from tickets.
 
 167
-00:10:18.412 --> 00:10:22.149
+00:10:18.362 --> 00:10:22.100
 Either way, Gate 2 decides
 who writes each attribute.
 
 168
-00:10:22.149 --> 00:10:25.350
+00:10:22.100 --> 00:10:25.300
 For availability, Gate 2 uses nothing new.
 
 169
-00:10:25.350 --> 00:10:29.949
-If Book 03's API-driven inbound
+00:10:25.300 --> 00:10:28.844
+If API-driven inbound
 provisioning is the writer,
 
 170
-00:10:29.949 --> 00:10:35.985
-it's available in Azure for U S Government,
-as are PIM, entitlement management,
+00:10:28.844 --> 00:10:34.636
+Microsoft Learn's feature availability
+page lists it in Azure for U S Government,
 
 171
-00:10:35.985 --> 00:10:41.063
+00:10:34.636 --> 00:10:37.143
+as are PIM, entitlement management,
+
+172
+00:10:37.143 --> 00:10:41.725
 access reviews and Lifecycle
 Workflows, read on November 1, 2026.
 
-172
-00:10:41.063 --> 00:10:45.250
+173
+00:10:41.725 --> 00:10:45.913
 In GCC, Entra ID is
 the commercial service.
 
-173
-00:10:45.250 --> 00:10:48.617
+174
+00:10:45.913 --> 00:10:49.280
 The interim path: where the
 HR pipeline isn't live yet,
 
-174
-00:10:48.617 --> 00:10:52.375
+175
+00:10:49.280 --> 00:10:53.038
 SailPoint can't be measured
 against a source of authority.
 
-175
-00:10:52.375 --> 00:10:58.620
+176
+00:10:53.038 --> 00:10:59.290
 Decide the writers now, and run Gates 3 to
 6 against the HR extract the kit reads.
 
-176
+177
 00:11:02.370 --> 00:11:03.757
 The federal requirement.
 
-177
+178
 00:11:03.757 --> 00:11:08.333
 The guide maps Gate 2 to NIST special
 publication eight hundred fifty-three.
 
-178
+179
 00:11:08.333 --> 00:11:12.525
 A C five, separation of duties:
 one approver system per class,
 
-179
+180
 00:11:12.525 --> 00:11:14.921
 and the requester never approves.
 
-180
+181
 00:11:14.921 --> 00:11:17.710
 C M three, configuration change control:
 
-181
+182
 00:11:17.710 --> 00:11:21.345
 each change class has a lane
 and a change-record type.
 
-182
+183
 00:11:21.345 --> 00:11:23.052
 A C two, account management:
 
-183
+184
 00:11:23.052 --> 00:11:27.707
 one writer per attribute keeps account
 changes traceable to the source.
 
-184
-00:11:27.707 --> 00:11:30.784
-And Book 13 requires
-the authorizing official
-
 185
-00:11:30.784 --> 00:11:33.545
-to accept any autonomous class in writing.
+00:11:27.707 --> 00:11:30.776
+And the workbook's design
+requires the authorizing
 
 186
-00:11:33.545 --> 00:11:38.196
+00:11:30.776 --> 00:11:33.845
+official to accept any
+autonomous class in writing.
+
+187
+00:11:33.845 --> 00:11:38.496
 Chapter 08 maps the check to
 configuration settings, change control,
 
-187
-00:11:38.196 --> 00:11:42.520
+188
+00:11:38.496 --> 00:11:42.820
 impact analysis, continuous
 monitoring and system monitoring.
 
-188
-00:11:42.520 --> 00:11:47.775
+189
+00:11:42.820 --> 00:11:48.075
 The evidence an ISSO keeps: the attribute
 map with each writer, the approver
 
-189
-00:11:47.775 --> 00:11:53.310
+190
+00:11:48.075 --> 00:11:53.600
 and lane tables, and the check's output
 with the data architect's decisions.
 
-190
+191
 00:11:57.060 --> 00:12:00.560
 Check yourself with two questions
 from the module's knowledge check.
 
-191
+192
 00:12:00.560 --> 00:12:04.960
 First: why did adding the alias from
 title to job title add a Finding?
 
-192
+193
 00:12:04.960 --> 00:12:05.906
 The answer is a.
 
-193
+194
 00:12:05.906 --> 00:12:08.742
 SailPoint's field names
 are the connector's,
 
-194
+195
 00:12:08.742 --> 00:12:12.997
 so without the alias the second
 writer of job title was invisible.
 
-195
+196
 00:12:12.997 --> 00:12:17.823
 The check doesn't guess name pairs;
 the alias list is a reviewed input.
 
-196
+197
 00:12:17.823 --> 00:12:21.159
 Second: Gate 2 offers two writer patterns.
 
-197
+198
 00:12:21.159 --> 00:12:22.823
 Which choice does it rule out?
 
-198
+199
 00:12:22.823 --> 00:12:26.094
 The answer is c: both
 Entra inbound provisioning
 
-199
+200
 00:12:26.094 --> 00:12:29.285
 and SailPoint writing
 HR-mastered attributes.
 
-200
+201
 00:12:29.285 --> 00:12:31.448
 In the guide's words, not both.
 
-201
+202
 00:12:31.448 --> 00:12:36.720
 The module page has two more questions,
 each linked to the section that answers it.
 
-202
+203
 00:12:40.470 --> 00:12:41.295
 To sum up.
 
-203
+204
 00:12:41.295 --> 00:12:46.102
 You learned Gate 2's decisions: one
 writer per attribute, one approver system
 
-204
+205
 00:12:46.102 --> 00:12:50.832
 per authority class, and a lane and
 change-record type for each change class.
 
-205
+206
 00:12:50.832 --> 00:12:55.907
 You checked two provisioning configurations
 for attributes with two writers,
 
-206
+207
 00:12:55.907 --> 00:12:58.444
 and read each Finding, Warn and Info line.
 
-207
+208
 00:12:58.444 --> 00:13:01.370
 And you saw why the alias
 list and the directory
 
-208
+209
 00:13:01.370 --> 00:13:03.920
 name are inputs a reviewer has to confirm.
 
-209
+210
 00:13:03.920 --> 00:13:07.134
 Before you ship, work through
 the Chapter 08 checklist,
 
-210
+211
 00:13:07.134 --> 00:13:11.420
 and run the check whenever either
 provisioning configuration changes.
 
-211
+212
 00:13:11.420 --> 00:13:15.987
 Next is Module 4, sources and the
 starting drift: Gate 3 connects HR,
 
-212
+213
 00:13:15.987 --> 00:13:21.232
 Entra ID and SailPoint on one key, and
 you'll measure how far the directory is
 
-213
+214
 00:13:21.232 --> 00:13:26.720
 from HR over two days, and compare the
 runs without hiding what wasn't measured.

@@ -205,8 +205,8 @@
   ],
   [
    44.312,
-   9.613,
-   "The Federal Modernization Workbook's Book 15 prefers execution through a connector inside the boundary, so each vendor-cloud action becomes a recorded data flow."
+   9.262,
+   "The Federal Modernization Workbook's design prefers execution through a connector inside the boundary, so each vendor-cloud action becomes a recorded data flow."
   ]
  ],
  "6": [
@@ -630,11 +630,16 @@
   ],
   [
    25.45,
-   9.238,
-   "The answer is a. Book 15 prefers execution through a connector inside the boundary, so each vendor-cloud action becomes a recorded data flow."
+   1.137,
+   "The answer is a."
   ],
   [
-   34.688,
+   26.587,
+   8.175,
+   "The workbook's design prefers execution through a connector inside the boundary, so each vendor-cloud action becomes a recorded data flow."
+  ],
+  [
+   34.763,
    4.9,
    "The module page has two more questions, each linked to the section that answers it."
   ]

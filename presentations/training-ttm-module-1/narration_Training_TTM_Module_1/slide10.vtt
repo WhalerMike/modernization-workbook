@@ -57,11 +57,11 @@ it, and would close the record on nothing.
 So the check warns.
 
 13
-00:00:41.775 --> 00:00:47.495
-For missing identity and unauthorized write,
-which Book 13 routes to a person first,
+00:00:41.775 --> 00:00:46.264
+For missing identity and unauthorized
+write, which the loop routes to
 
 14
-00:00:47.495 --> 00:00:51.290
-the empty intent is expected
-until that person sets it.
+00:00:46.264 --> 00:00:50.740
+a person first, the empty intent is
+expected until that person sets it.
