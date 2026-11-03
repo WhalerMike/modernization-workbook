@@ -1,0 +1,62 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.738
+Step six drafts the findings: six
+to open, two to close, no comments.
+
+2
+00:00:05.738 --> 00:00:07.312
+Then search the drafts.
+
+3
+00:00:07.312 --> 00:00:12.950
+For a user's address, grep counts zero;
+the name isn't there, and grep exits one.
+
+4
+00:00:12.950 --> 00:00:15.425
+For the object ID, it counts one.
+
+5
+00:00:15.425 --> 00:00:19.675
+The tracker gets the object ID and
+the fingerprint, never the name.
+
+6
+00:00:19.675 --> 00:00:21.858
+Step seven packages the second day,
+
+7
+00:00:21.858 --> 00:00:26.300
+chained to the first with the previous
+manifest option, and verifies it.
+
+8
+00:00:26.300 --> 00:00:32.275
+The manifest hash starts oh nine three
+two, and verify reports sixteen files.
+
+9
+00:00:32.275 --> 00:00:36.348
+Then the ISSO's own check,
+with no program code at all:
+
+10
+00:00:36.348 --> 00:00:42.263
+sha two fifty-six sum, in the package's
+folder, prints nothing and exits zero.
+
+11
+00:00:42.263 --> 00:00:48.440
+Last, read two fields of day two's manifest:
+the previous package's manifest hash,
+
+12
+00:00:48.440 --> 00:00:53.951
+which is day one's, six d nine f f f,
+and the fixture tenant's placeholder ID.
+
+13
+00:00:53.951 --> 00:00:55.060
+That's the chain.

@@ -1,0 +1,93 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.112
+The kit's tool has five commands.
+
+2
+00:00:02.112 --> 00:00:06.125
+Lint applies twelve rules to any
+definition, Learn's included.
+
+3
+00:00:06.125 --> 00:00:09.871
+One of them, L X eleven, adds
+up the worst-case retry waits
+
+4
+00:00:09.871 --> 00:00:14.200
+and fails the definition if they
+reach the extension's timeout.
+
+5
+00:00:14.200 --> 00:00:17.198
+Run runs a definition
+against fakes for a cloud,
+
+6
+00:00:17.198 --> 00:00:20.350
+with downstream failures
+and repeat deliveries.
+
+7
+00:00:20.350 --> 00:00:24.693
+Build writes the Logic App's ARM
+resource and the extension's body,
+
+8
+00:00:24.693 --> 00:00:27.025
+and refuses if lint finds anything.
+
+9
+00:00:27.025 --> 00:00:30.688
+And two checks compare what you read
+back from Graph with the registry.
+
+10
+00:00:30.688 --> 00:00:35.560
+For authorization, the builder writes the
+proof-of-possession policy from Learn's
+
+11
+00:00:35.560 --> 00:00:39.930
+page, Configure a Logic App for Lifecycle
+Workflow use, with shared access
+
+12
+00:00:39.930 --> 00:00:41.291
+signatures turned off,
+
+13
+00:00:41.291 --> 00:00:45.088
+as Learn's best practices for
+securing the custom extension ask.
+
+14
+00:00:45.088 --> 00:00:48.416
+Learn documents that policy
+only for Azure commercial,
+
+15
+00:00:48.416 --> 00:00:52.975
+so for a Logic App in Azure Government
+the builder refuses rather than guess.
+
+16
+00:00:52.975 --> 00:00:56.139
+The callback identity needs
+no tenant-wide Lifecycle
+
+17
+00:00:56.139 --> 00:00:59.163
+Workflows permission, which
+Learn advises against.
+
+18
+00:00:59.163 --> 00:01:04.651
+And the workflow check requires the leaver
+to block first, which is this workbook's
+
+19
+00:01:04.651 --> 00:01:09.480
+guidance, in Microsoft's order: disable,
+then revoke, then the custom task.

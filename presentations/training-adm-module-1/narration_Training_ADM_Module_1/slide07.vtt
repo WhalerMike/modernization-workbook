@@ -1,0 +1,83 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.262
+Three more rules.
+
+2
+00:00:01.262 --> 00:00:04.312
+First, send the complete
+record every time.
+
+3
+00:00:04.312 --> 00:00:08.863
+Microsoft Learn's page on API-driven
+inbound provisioning concepts
+
+4
+00:00:08.863 --> 00:00:12.775
+says to include the whole user
+record in every bulk request.
+
+5
+00:00:12.775 --> 00:00:17.023
+When the job's clear attribute
+values feature, a preview, is on,
+
+6
+00:00:17.023 --> 00:00:21.950
+a null or empty value clears the
+target, and so can an omitted attribute.
+
+7
+00:00:21.950 --> 00:00:24.287
+So the client never
+sends a partial record.
+
+8
+00:00:24.287 --> 00:00:25.713
+Second, order.
+
+9
+00:00:25.713 --> 00:00:30.537
+Leavers go first, then managers before
+their reports, then person key.
+
+10
+00:00:30.537 --> 00:00:34.460
+When one person has several
+rows, a single separation wins
+
+11
+00:00:34.460 --> 00:00:38.463
+and the rest are superseded;
+any other duplicate is refused.
+
+12
+00:00:38.463 --> 00:00:43.650
+The bulk upload API reference allows
+at most fifty operations per request.
+
+13
+00:00:43.650 --> 00:00:45.100
+Third, the hold.
+
+14
+00:00:45.100 --> 00:00:50.035
+Two guards hold the whole run, with exit
+code three, until someone confirms it:
+
+15
+00:00:50.035 --> 00:00:54.500
+more disables than the run allows,
+or more calls than the daily budget.
+
+16
+00:00:54.500 --> 00:00:58.239
+The budget follows the quota
+on Learn's concepts page:
+
+17
+00:00:58.239 --> 00:01:03.410
+two thousand calls a day with P1 or P2,
+and six thousand with ID Governance.

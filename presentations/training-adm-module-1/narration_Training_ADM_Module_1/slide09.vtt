@@ -1,0 +1,80 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:04.411
+Lab 1 runs in the hcm-entra
+folder of the examples,
+
+3
+00:00:04.411 --> 00:00:08.775
+on a fictional HR extract, and
+nothing in it sends a request.
+
+4
+00:00:08.775 --> 00:00:13.463
+Step one runs the hardened client with
+an as-of date of October twenty-fifth.
+
+5
+00:00:13.463 --> 00:00:17.834
+It prints its counts: nine
+rows ready, nine quarantined,
+
+6
+00:00:17.834 --> 00:00:22.788
+one superseded, one batch, three
+disables, and the run isn't held.
+
+7
+00:00:22.788 --> 00:00:26.201
+The command exits two,
+because rows were quarantined.
+
+8
+00:00:26.201 --> 00:00:30.237
+Step two prints the quarantine,
+one line per refused row.
+
+9
+00:00:30.237 --> 00:00:31.438
+A pending worker.
+
+10
+00:00:31.438 --> 00:00:33.013
+An unknown worker type.
+
+11
+00:00:33.013 --> 00:00:35.063
+A row with no person number at all.
+
+12
+00:00:35.063 --> 00:00:38.862
+A seventeen-character key that
+doesn't fit employee I D.
+
+13
+00:00:38.862 --> 00:00:41.137
+A worker recorded as their own manager.
+
+14
+00:00:41.137 --> 00:00:43.988
+An inactive assignment
+with no termination date.
+
+15
+00:00:43.988 --> 00:00:48.761
+A department name that's too long, a position
+category that isn't in the code list,
+
+16
+00:00:48.761 --> 00:00:51.112
+and a department code with a space in it.
+
+17
+00:00:51.112 --> 00:00:55.010
+Every one of those,
+CSV2SCIM would have sent.

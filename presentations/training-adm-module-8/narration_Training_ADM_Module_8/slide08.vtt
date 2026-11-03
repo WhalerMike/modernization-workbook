@@ -1,0 +1,86 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:04.533
+Lab 1 runs in the drift-pipeline
+folder of the examples,
+
+3
+00:00:04.533 --> 00:00:07.038
+in a POSIX shell, and nothing signs in.
+
+4
+00:00:07.038 --> 00:00:10.762
+Step one checks Learn's three
+sample workflows offline.
+
+5
+00:00:10.762 --> 00:00:15.813
+Sample one has five findings and four
+warnings, sample two has seven findings
+
+6
+00:00:15.813 --> 00:00:20.074
+and four warnings, and sample three
+has just one: it isn't valid YAML.
+
+7
+00:00:20.074 --> 00:00:21.613
+The command exits two.
+
+8
+00:00:21.613 --> 00:00:26.925
+Step two checks the pipeline's own
+workflow: zero findings, zero warnings.
+
+9
+00:00:26.925 --> 00:00:29.300
+Step three prints a cloud's hosts.
+
+10
+00:00:29.300 --> 00:00:34.247
+For DoD, the sign-in authority is
+login dot microsoftonline dot u s,
+
+11
+00:00:34.247 --> 00:00:37.819
+the Graph host is dod-graph
+dot microsoft dot u s,
+
+12
+00:00:37.819 --> 00:00:41.575
+and the Azure environment
+is Azure U S Government.
+
+13
+00:00:41.575 --> 00:00:47.124
+Microsoft Learn's page, Microsoft
+Graph national cloud deployments,
+
+14
+00:00:47.124 --> 00:00:50.337
+lists those GCC High and DoD Graph hosts.
+
+15
+00:00:50.337 --> 00:00:54.906
+That's the trap: the Azure environment
+covers both GCC High and DoD,
+
+16
+00:00:54.906 --> 00:00:58.037
+so the Graph host has to
+come from the profile.
+
+17
+00:00:58.037 --> 00:01:00.858
+Then ask for a name it
+doesn't know, u s gov.
+
+18
+00:01:00.858 --> 00:01:05.060
+It's refused, with exit code
+one, never mapped to worldwide.

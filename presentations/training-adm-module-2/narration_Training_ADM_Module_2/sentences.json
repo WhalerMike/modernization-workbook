@@ -1,0 +1,685 @@
+{
+ "1": [
+  [
+   0.05,
+   6.188,
+   "Welcome to Module 2 of the Attribute-Driven Migration learning path: write a validation kit check."
+  ],
+  [
+   6.237,
+   6.6,
+   "Every gate in the implementation guide ends with a Validate step, and most of them name a validation kit check."
+  ],
+  [
+   12.838,
+   3.062,
+   "The kit is the executable form of those steps."
+  ],
+  [
+   15.9,
+   11.512,
+   "This module serves Gate 3, and takes Chapter 03 of Building the Attribute-Driven Migration, which teaches how a check is built through one new check, V K SYNC oh two."
+  ],
+  [
+   27.413,
+   6.675,
+   "It asks whether soft match and hard-match takeover are blocked, and if not, whether an approved window says why."
+  ],
+  [
+   34.087,
+   9.275,
+   "You'll see the parts of a check, its three severities, why a missing value reads as off, and why a read-only check still has to ask for the least privilege it can."
+  ],
+  [
+   43.362,
+   4.662,
+   "Then you'll run it on the kit's fixtures and on an export, and break it on purpose."
+  ],
+  [
+   48.025,
+   1.2,
+   "Nothing signs in."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   0.988,
+   "Why this check?"
+  ],
+  [
+   1.038,
+   2.862,
+   "Gate 3 maps attributes through sync."
+  ],
+  [
+   3.9,
+   9.925,
+   "Before a single A D user is synchronized into a tenant that already has cloud accounts, the sync engine has to decide which incoming object matches which cloud account."
+  ],
+  [
+   13.825,
+   8.137,
+   "Microsoft Learn's pages on configuring Entra Connect for an existing tenant and on Set Entra Dir Sync Feature explain the two joins."
+  ],
+  [
+   21.962,
+   7.237,
+   "A soft match joins on the primary SMTP address, and on the U P N when soft match on U P N is turned on."
+  ],
+  [
+   29.2,
+   2.375,
+   "A hard match joins on the source anchor."
+  ],
+  [
+   31.575,
+   4.862,
+   "Either one, left open, lets an A D object take over a cloud account."
+  ],
+  [
+   36.438,
+   11.762,
+   "Learn's existing-tenant page advises keeping soft match blocked, offers a feature to block cloud object takeover through hard match, and says to turn each off only while a matching procedure needs it."
+  ],
+  [
+   48.2,
+   6.263,
+   "So the question is simple: are both blocks on, and if not, is there an approved window that says why?"
+  ],
+  [
+   54.462,
+   3.95,
+   "The guide lists this as Gate 3's optional match-blocking check."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   5.438,
+   "Here's what you'll be able to do by the end of this module, which takes about forty-five minutes with the lab."
+  ],
+  [
+   5.487,
+   7.312,
+   "You'll describe the parts of a check: its catalog entry, its function, its rows and outcome, and its fixtures and tests."
+  ],
+  [
+   12.8,
+   6.438,
+   "You'll explain the three severities, Finding, Warn and Info, and why a missing value reads as off."
+  ],
+  [
+   19.238,
+   4.975,
+   "You'll explain why this check is optional and prefers an export to a live read."
+  ],
+  [
+   24.212,
+   5.013,
+   "You'll run it on fixtures and on an export, and see Pass, Fail and Warn."
+  ],
+  [
+   29.225,
+   4.787,
+   "And you'll explain what the safety tests refuse, and why a new check inherits them."
+  ],
+  [
+   34.013,
+   5.987,
+   "Before you start, finish Module 1, and Microsoft Automation Module 1 for permissions and roles."
+  ],
+  [
+   40.0,
+   7.875,
+   "You need PowerShell 7 and Pester 5.5 or later, and you should be able to read PowerShell and know Pester's Describe and It."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   3.5,
+   "This slide is the kit's own design, not a Microsoft rule."
+  ],
+  [
+   3.55,
+   3.25,
+   "In the kit, every check has the same five parts."
+  ],
+  [
+   6.8,
+   10.287,
+   "The catalog entry holds its I D, track, title, source, Graph permissions, delegated role and release stage, and marks it optional or preview."
+  ],
+  [
+   17.087,
+   7.15,
+   "The function is named from the I D, here Invoke V K Sync oh two, and wraps its body in a shared helper."
+  ],
+  [
+   24.238,
+   7.675,
+   "The data read goes through one path, for fixtures, Graph and input files, and logs every read as evidence."
+  ],
+  [
+   31.913,
+   3.462,
+   "The rows have one shape, and the status comes from the rows."
+  ],
+  [
+   35.375,
+   5.875,
+   "And the tests: the check must pass clean data and fail planted problems with an exact count."
+  ],
+  [
+   41.25,
+   2.825,
+   "The wrapper does the work no check should repeat."
+  ],
+  [
+   44.075,
+   6.263,
+   "It catches any exception and turns it into Error, so a read that throws can never come back as Pass."
+  ],
+  [
+   50.337,
+   6.162,
+   "Don't catch exceptions inside the body to make a check more robust; that's how a check passes while blind."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   2.05,
+   "Here's the lesson this check hides."
+  ],
+  [
+   2.1,
+   3.65,
+   "The read is GET directory, on-premises synchronization."
+  ],
+  [
+   5.75,
+   11.713,
+   "Microsoft Learn's Graph reference for that call, Get on-premises directory synchronization, names its least-privileged permission, OnPremDirectorySynchronization dot Read dot All, which looks harmless."
+  ],
+  [
+   17.462,
+   8.387,
+   "But the same page lists no application permission for it at all, and for delegated access says Global Administrator is the only supported role."
+  ],
+  [
+   25.85,
+   4.888,
+   "A read-only check, run liv, would need the most powerful role in the tenant."
+  ],
+  [
+   30.738,
+   7.775,
+   "The kit's design rule is that a check asks for the least privilege the question needs, and GET-only is necessary but not sufficient."
+  ],
+  [
+   38.513,
+   2.4,
+   "So this check does three things differently."
+  ],
+  [
+   40.913,
+   4.625,
+   "It's optional, so it stays out of a default run and runs only when named."
+  ],
+  [
+   45.538,
+   6.15,
+   "It prefers an export, saved by a Global Administrator who is already signed in for other reasons."
+  ],
+  [
+   51.688,
+   5.862,
+   "And it says so: the catalog names the role and the reason, before anyone runs it liv."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   3.712,
+   "Three severities, three meanings, and they're the kit's design."
+  ],
+  [
+   3.763,
+   1.712,
+   "A Finding fails the check."
+  ],
+  [
+   5.475,
+   10.512,
+   "A Warn needs a person to look, but isn't a failure: here, a block that's off inside an approved matching window, which the run's options record as the window's last day."
+  ],
+  [
+   15.988,
+   5.263,
+   "The day after, the same state is a Finding again, without anyone editing anything."
+  ],
+  [
+   21.25,
+   10.588,
+   "An Info row gives context and isn't counted: soft match on U P N, which Microsoft Learn's Set Entra Dir Sync Feature page says can't be turned off once it's enabled."
+  ],
+  [
+   31.837,
+   6.4,
+   "The status comes from the rows: Fail if there's any Finding, else Warn if there's any Warn, else Pass."
+  ],
+  [
+   38.237,
+   3.913,
+   "And the most important rule: a missing value is read as off."
+  ],
+  [
+   42.15,
+   5.1,
+   "So a response shape the kit doesn't expect produces a Finding, not a silent Pass."
+  ],
+  [
+   47.25,
+   4.5,
+   "Default every \"is the control on\" read to the unsafe answer."
+  ],
+  [
+   51.75,
+   4.588,
+   "NotApplicable is for a tenant with nothing to check, never for a failed read."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   2.55,
+   "The safety tests are the kit's own design."
+  ],
+  [
+   2.6,
+   12.0,
+   "They parse every script in the kit and fail the build on any state-changing command: write verbs, Invoke Rest Method, Invoke Web Request, native programs, file redirection, and more."
+  ],
+  [
+   14.6,
+   5.963,
+   "Every Graph request must carry a literal Method GET, with one exception pinned by a test."
+  ],
+  [
+   20.562,
+   6.112,
+   "A next link that points at a host other than the cloud's own Graph host is refused, so a token never leaves."
+  ],
+  [
+   26.675,
+   6.287,
+   "This check passes those tests without any change to them, because it reads only through the kit's data path."
+  ],
+  [
+   32.962,
+   6.35,
+   "That's the point of a single data path: a new check inherits the safety properties instead of re-proving them."
+  ],
+  [
+   39.312,
+   6.237,
+   "If your check seems to need its own HTTP call, it doesn't; add what it needs to the data path."
+  ],
+  [
+   45.55,
+   10.75,
+   "And the remediation, the command Microsoft Learn's existing-tenant page gives to block soft match, is a write, so it stays out of the kit, in the change record the finding opens."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   6.475,
+   "Lab 1 runs in the validation-kit folder of the examples, in PowerShell 7, and nothing signs in."
+  ],
+  [
+   7.25,
+   10.425,
+   "Step one imports the module and runs the check against the fail fixture, a fictional tenant with both blocks off and soft match on U P N on, as of October thirtieth."
+  ],
+  [
+   17.675,
+   2.675,
+   "The status is Fail, with a count of two."
+  ],
+  [
+   20.35,
+   6.85,
+   "The details show why: soft match isn't blocked, and cloud object takeover through hard match isn't blocked."
+  ],
+  [
+   27.2,
+   1.637,
+   "Those are the two Findings."
+  ],
+  [
+   28.837,
+   5.888,
+   "The third row is Info: soft match on U P N is on, and it can't be turned off once enabled."
+  ],
+  [
+   34.725,
+   2.312,
+   "It's context, so it isn't counted."
+  ],
+  [
+   37.038,
+   8.088,
+   "Then the evidence: the source is Graph, in fixture mode, and the query names the fixture file and the URI a lyve run would call."
+  ],
+  [
+   45.125,
+   4.45,
+   "A reviewer can tell from the evidence alone which path a result came from."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   3.95,
+   "Step two opens a matching window until October thirty-first."
+  ],
+  [
+   4.0,
+   8.825,
+   "Run the same fail fixture on October thirtieth, inside the window, and the status is Warn: the blocks are off, but an approved window says why."
+  ],
+  [
+   12.825,
+   4.463,
+   "Run it on November first, the day after the window closes, and it's Fail."
+  ],
+  [
+   17.288,
+   1.725,
+   "Nobody edited anything."
+  ],
+  [
+   19.012,
+   4.588,
+   "The window is a date, so a Warn can never quietly become permanent."
+  ],
+  [
+   23.6,
+   2.55,
+   "Step three feeds the check an export."
+  ],
+  [
+   26.15,
+   6.412,
+   "The first two commands make an inputs folder with an export that blocks soft match but not hard-match takeover."
+  ],
+  [
+   32.562,
+   4.575,
+   "The status is Fail with a count of one: only the hard-match block is off."
+  ],
+  [
+   37.138,
+   5.062,
+   "And the evidence's source is now Input, with the export's file name as the query."
+  ],
+  [
+   42.2,
+   5.662,
+   "That's the path the check prefers, because reading a file never needs the Global Administrator role."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   15.088,
+   "Step four shows what a lyve run would ask for: one permission, OnPremDirectorySynchronization dot Read dot All, and the delegated role, Global Administrator, the only role Microsoft Learn's Graph reference lists, with no application permission."
+  ],
+  [
+   15.137,
+   4.987,
+   "Step five confirms the check isn't in a default run: the answer is False."
+  ],
+  [
+   20.125,
+   5.463,
+   "Step six runs the whole kit's tests: two hundred ninety-seven pass, none fail."
+  ],
+  [
+   25.587,
+   3.013,
+   "Step seven makes the check fail for the right reason."
+  ],
+  [
+   28.6,
+   5.35,
+   "You change your copy of the check to read block soft match, a property that doesn't exist."
+  ],
+  [
+   33.95,
+   1.9,
+   "The fail fixture still fails."
+  ],
+  [
+   35.85,
+   6.2,
+   "And the pass fixture, with both blocks on, fails too, because the missing value reads as off."
+  ],
+  [
+   42.05,
+   5.75,
+   "That's the unsafe default doing its job: a wrong property name can't produce a silent Pass."
+  ],
+  [
+   47.8,
+   3.188,
+   "Put the name back, and the pass fixture passes again."
+  ],
+  [
+   50.987,
+   2.6,
+   "Step eight removes the inputs folder."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   7.388,
+   "Lab 2 runs the check on a real export, in a test tenant with Microsoft Entra Connect or Cloud Sync configured."
+  ],
+  [
+   7.438,
+   6.188,
+   "A Global Administrator of the test tenant saves the response of the one privileged read to a file."
+  ],
+  [
+   13.625,
+   4.138,
+   "That's the only step that needs the role; nothing in the kit runs with it."
+  ],
+  [
+   17.762,
+   9.65,
+   "Then you run the check on that export as any user, and compare the result with the export, line by line, so you know the check reads the tenant's real response shape."
+  ],
+  [
+   27.413,
+   4.588,
+   "To back it out, step four deletes the export once the run's evidence is stored."
+  ],
+  [
+   32.0,
+   7.325,
+   "The export isn't evidence by itself; the run's manifest, with a hash for every file of the run, is."
+  ],
+  [
+   39.325,
+   2.15,
+   "The authors haven't run Lab 2."
+  ],
+  [
+   41.475,
+   3.5,
+   "Follow Chapter 03's Lab 2, step by step."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   1.387,
+   "The federal requirement."
+  ],
+  [
+   1.438,
+   17.962,
+   "The controls are nist special publication eight hundred fifty-three controls in its Moderate baseline: C M six, C A seven, A C two, A C six, S A eleven, C M seven, S I seven, A U three, C M three and C M five."
+  ],
+  [
+   19.4,
+   5.912,
+   "A check is monitoring evidence only if it can't change what it reads, and can't pass when it didn't look."
+  ],
+  [
+   25.312,
+   5.938,
+   "The run's validation results show that an A D object can't take over a cloud account unnoticed."
+  ],
+  [
+   31.25,
+   7.362,
+   "A deviation is approved, documented, and has an end: the window date in the run's options, and its change record."
+  ],
+  [
+   38.612,
+   9.062,
+   "Least privilege: no standing Global Administrator identity for a scheduled check, shown by the evidence block that says the read came from an export."
+  ],
+  [
+   47.675,
+   4.625,
+   "The test results, including the safety tests, show the kit can only read."
+  ],
+  [
+   52.3,
+   5.3,
+   "In Lab 2, the validation manifest holds a hash for every file of the run."
+  ],
+  [
+   57.6,
+   4.263,
+   "And the remediation is a write under change control, never the check."
+  ],
+  [
+   61.862,
+   8.537,
+   "The Key Security Indicators come from fed-ramp's Key Security Indicators list, fed-ramp twenty X indicators for cloud service providers."
+  ],
+  [
+   70.4,
+   3.562,
+   "Which output supports which control is this workbook's reading."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   1.975,
+   "Check yourself with two questions."
+  ],
+  [
+   2.025,
+   5.725,
+   "First: the fixture says soft match isn't blocked, and an approved matching window ends today."
+  ],
+  [
+   7.75,
+   3.125,
+   "What does the check report tomorrow, if nothing changes?"
+  ],
+  [
+   10.875,
+   1.975,
+   "The answer is b: Fail."
+  ],
+  [
+   12.85,
+   4.5,
+   "The day after the window's last day, the same state is a Finding again."
+  ],
+  [
+   17.35,
+   2.112,
+   "You saw that in step two of the lab."
+  ],
+  [
+   19.462,
+   4.787,
+   "Second: a response comes back without the block soft match enabled property."
+  ],
+  [
+   24.25,
+   1.413,
+   "What does the check report?"
+  ],
+  [
+   25.663,
+   4.638,
+   "The answer is b: a Finding, because a missing value reads as off."
+  ],
+  [
+   30.3,
+   3.375,
+   "You saw that in step seven, when the pass fixture failed."
+  ],
+  [
+   33.675,
+   9.925,
+   "The module page has two more questions, on why the check is left out of a default run and where a new HTTP call belongs, each linked to the section that answers it."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   0.825,
+   "To sum up."
+  ],
+  [
+   0.875,
+   10.0,
+   "You built your understanding of a check from its catalog entry to its safety tests, and saw how one check asks for the least privilege it can when its read needs the most powerful role."
+  ],
+  [
+   10.875,
+   18.925,
+   "The evidence an I S S O keeps: the run's results, details, summary and validation manifest, in the evidence store; the window date and its change record; the Entra sign-in log for the one privileged export; and the change record for any remediation, which is never made by the check."
+  ],
+  [
+   29.8,
+   4.425,
+   "Before shipping a new check, work through the Chapter 03 checklist."
+  ],
+  [
+   34.225,
+   3.75,
+   "Next is Module 3: keep dynamic rules as code."
+  ],
+  [
+   37.975,
+   5.65,
+   "A dynamic rule is access policy, and one edit can remove hundreds of people at once."
+  ],
+  [
+   43.625,
+   9.05,
+   "You'll keep each rule as a reviewed file with tests and a linter, see whom a change adds and removes, and pause and resume safely in an incident."
+  ]
+ ]
+}

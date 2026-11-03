@@ -1,0 +1,1047 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.214
+Welcome to Module 1 of the
+Attribute-Driven Migration learning path:
+
+2
+00:00:04.214 --> 00:00:07.575
+send HR records through a
+middleware that fails closed.
+
+3
+00:00:07.575 --> 00:00:12.267
+The path teaches the workbook's book
+Building the Attribute-Driven Migration,
+
+4
+00:00:12.267 --> 00:00:16.525
+one chapter per module, in the order
+of the implementation guide's gates.
+
+5
+00:00:16.525 --> 00:00:18.000
+There are nine modules.
+
+6
+00:00:18.000 --> 00:00:24.850
+This one serves Gates 2 and 3, and takes
+Chapter 01, the HR-to-Entra middleware.
+
+7
+00:00:24.850 --> 00:00:29.740
+You'll see what the middleware owns
+and what the provisioning service owns,
+
+8
+00:00:29.740 --> 00:00:32.815
+what Microsoft's CSV2SCIM
+sample leaves to you,
+
+9
+00:00:32.815 --> 00:00:37.153
+and how the hardened client refuses
+bad rows, orders leavers first,
+
+10
+00:00:37.153 --> 00:00:41.175
+holds a mass disable and ties
+every batch to its inputs by hash.
+
+11
+00:00:41.175 --> 00:00:45.150
+Then you'll run it on your laptop
+against a fictional HR extract.
+
+12
+00:00:45.150 --> 00:00:50.890
+The code is illustrative: tested against
+fixtures, not against a production tenant.
+
+13
+00:00:54.640 --> 00:00:55.678
+Why start here?
+
+14
+00:00:55.678 --> 00:00:59.565
+Every later gate trusts
+the attributes HR sends.
+
+15
+00:00:59.565 --> 00:01:03.953
+A bad HR record becomes bad access
+faster than any ticket queue.
+
+16
+00:01:03.953 --> 00:01:09.641
+So the guide proves the values true at Gate
+2, and maps them through sync at Gate 3.
+
+17
+00:01:09.641 --> 00:01:13.232
+The middleware, between the
+HR extract and Entra ID,
+
+18
+00:01:13.232 --> 00:01:15.627
+is where a record is first checked.
+
+19
+00:01:15.627 --> 00:01:20.353
+Microsoft's CSV2SCIM sample
+sends every row it reads.
+
+20
+00:01:20.353 --> 00:01:24.794
+That's by design: it's a converter, and
+Microsoft Learn's page on API-driven
+
+21
+00:01:24.794 --> 00:01:30.065
+inbound provisioning with PowerShell lists
+validation as a customization you add.
+
+22
+00:01:30.065 --> 00:01:33.428
+In this module you see what a
+federal deployment has to add,
+
+23
+00:01:33.428 --> 00:01:35.740
+and you run the client that adds it.
+
+24
+00:01:39.490 --> 00:01:42.330
+Here's what you'll be able to
+do by the end of this module,
+
+25
+00:01:42.330 --> 00:01:44.977
+which takes about fifty-five
+minutes with the lab.
+
+26
+00:01:44.977 --> 00:01:49.406
+You'll explain what the middleware owns
+and what the provisioning service owns,
+
+27
+00:01:49.406 --> 00:01:51.352
+and what a two-oh-two Accepted means.
+
+28
+00:01:51.352 --> 00:01:55.802
+You'll describe what Microsoft's
+CSV2SCIM sample leaves to you.
+
+29
+00:01:55.802 --> 00:01:58.915
+You'll run the hardened
+client and read its counts,
+
+30
+00:01:58.915 --> 00:02:01.040
+its quarantine and its exit codes.
+
+31
+00:02:01.040 --> 00:02:03.640
+You'll verify a run's provenance by hash,
+
+32
+00:02:03.640 --> 00:02:06.565
+and show that a rerun
+gives identical bytes.
+
+33
+00:02:06.565 --> 00:02:11.627
+And you'll explain why the client sends
+every record whole and holds a mass disable.
+
+34
+00:02:11.627 --> 00:02:15.713
+Before you start, work through
+Microsoft Automation Module 1,
+
+35
+00:02:15.713 --> 00:02:18.516
+for the clouds, sign-in
+and least privilege.
+
+36
+00:02:18.516 --> 00:02:23.590
+Lab 1 needs Python 3.10 or later
+with pytest, and no tenant.
+
+37
+00:02:23.590 --> 00:02:27.709
+PowerShell 7 with Pester 5 is
+optional: it runs the PowerShell
+
+38
+00:02:27.709 --> 00:02:32.520
+client and Microsoft's sample,
+which the full chapter lab compares.
+
+39
+00:02:36.270 --> 00:02:37.520
+Start with the split.
+
+40
+00:02:37.520 --> 00:02:41.195
+The HR system writes a CSV extract.
+
+41
+00:02:41.195 --> 00:02:44.369
+The middleware reads it,
+and sends SCIM bulk requests
+
+42
+00:02:44.369 --> 00:02:47.182
+to the provisioning job's
+bulk upload endpoint.
+
+43
+00:02:47.182 --> 00:02:51.888
+The provisioning service owns the
+mapping from SCIM attributes to directory
+
+44
+00:02:51.888 --> 00:02:56.521
+attributes, the matching of incoming
+records to existing users, and the write.
+
+45
+00:02:56.521 --> 00:03:00.511
+The middleware owns everything
+before the POST: what is sent,
+
+46
+00:03:00.511 --> 00:03:03.783
+in what order, how fast, and
+what record is kept of it.
+
+47
+00:03:03.783 --> 00:03:06.673
+Microsoft Learn's page
+on the PowerShell sample
+
+48
+00:03:06.673 --> 00:03:09.420
+gives that split as
+Microsoft's design intent.
+
+49
+00:03:09.420 --> 00:03:12.138
+And one thing to remember from this slide:
+
+50
+00:03:12.138 --> 00:03:16.695
+Learn's bulk upload API reference
+says the endpoint is asynchronous.
+
+51
+00:03:16.695 --> 00:03:19.776
+A two-oh-two Accepted means
+the batch was staged for
+
+52
+00:03:19.776 --> 00:03:22.857
+the provisioning job, not
+that any user was written.
+
+53
+00:03:22.857 --> 00:03:25.842
+The Location header points
+at the provisioning logs,
+
+54
+00:03:25.842 --> 00:03:28.170
+where each record's result appears.
+
+55
+00:03:31.920 --> 00:03:36.466
+Microsoft publishes a PowerShell
+sample for this integration,
+
+56
+00:03:36.466 --> 00:03:39.982
+CSV2SCIM, with a full
+tutorial on Microsoft Learn.
+
+57
+00:03:39.982 --> 00:03:43.559
+Use it; the repository
+keeps a pinned copy of
+
+58
+00:03:43.559 --> 00:03:47.433
+Microsoft's sample at
+upstream commit f2e8c59.
+
+59
+00:03:47.433 --> 00:03:52.557
+Run on the book's HR fixture,
+nineteen rows, it sends all nineteen.
+
+60
+00:03:52.557 --> 00:03:54.008
+Here's what it leaves to you.
+
+61
+00:03:54.008 --> 00:03:56.577
+It validates the mapping, not the values;
+
+62
+00:03:56.577 --> 00:04:01.482
+the hardened client fails closed, and
+quarantines nine of the nineteen rows.
+
+63
+00:04:01.482 --> 00:04:04.991
+It sends in file order; the
+client sends leavers first,
+
+64
+00:04:04.991 --> 00:04:07.383
+then managers before their reports.
+
+65
+00:04:07.383 --> 00:04:09.521
+It has no limit on mass change.
+
+66
+00:04:09.521 --> 00:04:12.934
+Its endpoint is hard-coded
+to the worldwide beta host,
+
+67
+00:04:12.934 --> 00:04:17.435
+and Learn's page on Microsoft Graph
+national cloud deployments gives
+
+68
+00:04:17.435 --> 00:04:21.470
+other hosts for GCC High and DoD,
+so it can't reach them as written.
+
+69
+00:04:21.470 --> 00:04:25.023
+Its sign-in asks for Application
+dot ReadWrite dot All,
+
+70
+00:04:25.023 --> 00:04:27.470
+which can change any app in the tenant.
+
+71
+00:04:27.470 --> 00:04:33.560
+And each bulk I D is a new random GUID,
+so a batch can't be traced to its inputs.
+
+72
+00:04:37.310 --> 00:04:40.010
+The client takes each
+row and either builds
+
+73
+00:04:40.010 --> 00:04:42.710
+a SCIM operation or
+refuses it with reasons.
+
+74
+00:04:42.710 --> 00:04:45.820
+A row is refused when a
+required column is empty,
+
+75
+00:04:45.820 --> 00:04:51.004
+the person number doesn't fit employee I
+D, the worker type is unknown or refused,
+
+76
+00:04:51.004 --> 00:04:54.353
+such as a pending worker, a
+code isn't in the code list,
+
+77
+00:04:54.353 --> 00:04:59.457
+a value is longer than the target attribute
+holds, a date doesn't parse, a worker
+
+78
+00:04:59.457 --> 00:05:04.960
+is recorded as their own manager, or an
+inactive assignment has no termination date.
+
+79
+00:05:04.960 --> 00:05:08.040
+Every refused row goes
+to the quarantine file,
+
+80
+00:05:08.040 --> 00:05:12.335
+with its reasons, the unchanged
+HR row and the attempted payload.
+
+81
+00:05:12.335 --> 00:05:14.172
+These rules are the kit's design.
+
+82
+00:05:14.172 --> 00:05:15.735
+Some are warnings instead.
+
+83
+00:05:15.735 --> 00:05:20.785
+A suspended assignment keeps the account
+active, because leave is not a leaver.
+
+84
+00:05:20.785 --> 00:05:24.548
+A manager separating in the same
+run never blocks the joiner.
+
+85
+00:05:24.548 --> 00:05:28.108
+And this workbook's guidance
+is to treat every new rule
+
+86
+00:05:28.108 --> 00:05:32.110
+as a refusal until the HR owner
+agrees it can be a warning.
+
+87
+00:05:35.860 --> 00:05:37.072
+Three more rules.
+
+88
+00:05:37.072 --> 00:05:40.122
+First, send the complete
+record every time.
+
+89
+00:05:40.122 --> 00:05:44.673
+Microsoft Learn's page on API-driven
+inbound provisioning concepts
+
+90
+00:05:44.673 --> 00:05:48.585
+says to include the whole user
+record in every bulk request.
+
+91
+00:05:48.585 --> 00:05:52.833
+When the job's clear attribute
+values feature, a preview, is on,
+
+92
+00:05:52.833 --> 00:05:57.760
+a null or empty value clears the
+target, and so can an omitted attribute.
+
+93
+00:05:57.760 --> 00:06:00.097
+So the client never
+sends a partial record.
+
+94
+00:06:00.097 --> 00:06:01.523
+Second, order.
+
+95
+00:06:01.523 --> 00:06:06.347
+Leavers go first, then managers before
+their reports, then person key.
+
+96
+00:06:06.347 --> 00:06:10.270
+When one person has several
+rows, a single separation wins
+
+97
+00:06:10.270 --> 00:06:14.273
+and the rest are superseded;
+any other duplicate is refused.
+
+98
+00:06:14.273 --> 00:06:19.460
+The bulk upload API reference allows
+at most fifty operations per request.
+
+99
+00:06:19.460 --> 00:06:20.910
+Third, the hold.
+
+100
+00:06:20.910 --> 00:06:25.845
+Two guards hold the whole run, with exit
+code three, until someone confirms it:
+
+101
+00:06:25.845 --> 00:06:30.310
+more disables than the run allows,
+or more calls than the daily budget.
+
+102
+00:06:30.310 --> 00:06:34.049
+The budget follows the quota
+on Learn's concepts page:
+
+103
+00:06:34.049 --> 00:06:39.520
+two thousand calls a day with P1 or P2,
+and six thousand with ID Governance.
+
+104
+00:06:43.270 --> 00:06:48.045
+The last idea is the record, and it's
+the kit's design, not Microsoft's.
+
+105
+00:06:48.045 --> 00:06:52.633
+The provenance file ties every batch
+to the exact inputs that produced it.
+
+106
+00:06:52.633 --> 00:06:57.315
+It holds the hash of the extract and the
+hash of the mapping file, the counts,
+
+107
+00:06:57.315 --> 00:07:00.309
+whether the run was held,
+each batch with its own
+
+108
+00:07:00.309 --> 00:07:03.457
+hash and its person keys,
+and the quarantined keys.
+
+109
+00:07:03.457 --> 00:07:08.320
+Each batch hash is the same one the apply
+results record when that batch is sent.
+
+110
+00:07:08.320 --> 00:07:12.935
+So an auditor can go from a line in the
+provisioning logs to the person key,
+
+111
+00:07:12.935 --> 00:07:17.320
+to the batch and its Location, to the
+extract and mapping files by hash.
+
+112
+00:07:17.320 --> 00:07:22.020
+That only works because each
+operation's bulk I D is the person key.
+
+113
+00:07:22.020 --> 00:07:24.554
+With a random bulk I D, as in the sample,
+
+114
+00:07:24.554 --> 00:07:27.932
+the same input would never
+produce the same hash.
+
+115
+00:07:27.932 --> 00:07:33.220
+The manifest carries keys and hashes
+only, so it can sit in the evidence store.
+
+116
+00:07:36.970 --> 00:07:37.695
+Try it.
+
+117
+00:07:37.695 --> 00:07:41.331
+Lab 1 runs in the hcm-entra
+folder of the examples,
+
+118
+00:07:41.331 --> 00:07:45.695
+on a fictional HR extract, and
+nothing in it sends a request.
+
+119
+00:07:45.695 --> 00:07:50.383
+Step one runs the hardened client with
+an as-of date of October twenty-fifth.
+
+120
+00:07:50.383 --> 00:07:54.754
+It prints its counts: nine
+rows ready, nine quarantined,
+
+121
+00:07:54.754 --> 00:07:59.708
+one superseded, one batch, three
+disables, and the run isn't held.
+
+122
+00:07:59.708 --> 00:08:03.121
+The command exits two,
+because rows were quarantined.
+
+123
+00:08:03.121 --> 00:08:07.157
+Step two prints the quarantine,
+one line per refused row.
+
+124
+00:08:07.157 --> 00:08:08.358
+A pending worker.
+
+125
+00:08:08.358 --> 00:08:09.933
+An unknown worker type.
+
+126
+00:08:09.933 --> 00:08:11.983
+A row with no person number at all.
+
+127
+00:08:11.983 --> 00:08:15.782
+A seventeen-character key that
+doesn't fit employee I D.
+
+128
+00:08:15.782 --> 00:08:18.057
+A worker recorded as their own manager.
+
+129
+00:08:18.057 --> 00:08:20.908
+An inactive assignment
+with no termination date.
+
+130
+00:08:20.908 --> 00:08:25.681
+A department name that's too long, a position
+category that isn't in the code list,
+
+131
+00:08:25.681 --> 00:08:28.032
+and a department code with a space in it.
+
+132
+00:08:28.032 --> 00:08:32.230
+Every one of those,
+CSV2SCIM would have sent.
+
+133
+00:08:35.980 --> 00:08:38.155
+Step three checks the provenance.
+
+134
+00:08:38.155 --> 00:08:41.443
+Show the manifest, then
+hash the extract yourself.
+
+135
+00:08:41.443 --> 00:08:45.512
+The hash you compute, starting
+c a oh six b one one one,
+
+136
+00:08:45.512 --> 00:08:49.193
+is the same as the extract
+hash in the manifest.
+
+137
+00:08:49.193 --> 00:08:51.679
+So the record really is tied to this file.
+
+138
+00:08:51.679 --> 00:08:53.766
+Look at the batch's person keys, too:
+
+139
+00:08:53.766 --> 00:08:57.342
+they start with the leaver,
+one hundred thousand and three.
+
+140
+00:08:57.342 --> 00:08:58.518
+Leavers first.
+
+141
+00:08:58.518 --> 00:09:02.342
+Step four runs the client again,
+into a second output folder,
+
+142
+00:09:02.342 --> 00:09:06.167
+and compares the bytes of the
+bulk request and the manifest.
+
+143
+00:09:06.167 --> 00:09:07.268
+They're identical.
+
+144
+00:09:07.268 --> 00:09:09.964
+That's the property the bulk I D buys you:
+
+145
+00:09:09.964 --> 00:09:13.504
+the same input gives the
+same batch hash, every time.
+
+146
+00:09:13.504 --> 00:09:19.255
+Microsoft's sample gives a new bulk I D
+on every run, so its hashes never repeat.
+
+147
+00:09:19.255 --> 00:09:23.820
+The long commands on the slide are
+wrapped, and the manifest is trimmed.
+
+148
+00:09:27.570 --> 00:09:29.858
+Step five breaks a row on purpose.
+
+149
+00:09:29.858 --> 00:09:33.260
+The sed command writes a copy
+of the extract with worker one
+
+150
+00:09:33.260 --> 00:09:36.594
+hundred thousand and five's
+department code in lower case.
+
+151
+00:09:36.594 --> 00:09:41.343
+Run the client on it, and the counts
+become eight ready and ten quarantined,
+
+152
+00:09:41.343 --> 00:09:45.157
+and the quarantine says why: the
+lower-case value isn't a code.
+
+153
+00:09:45.157 --> 00:09:47.691
+One small typo in HR,
+and the record stops at
+
+154
+00:09:47.691 --> 00:09:50.732
+the middleware instead of
+reaching the directory.
+
+155
+00:09:50.732 --> 00:09:52.332
+Step six holds a run.
+
+156
+00:09:52.332 --> 00:09:57.032
+A settings file allows only one disable
+per run, and the fixture has three.
+
+157
+00:09:57.032 --> 00:10:00.629
+So the client holds the whole
+run, with exit code three,
+
+158
+00:10:00.629 --> 00:10:05.207
+and says why: three disables exceed
+the limit, held for confirmation.
+
+159
+00:10:05.207 --> 00:10:09.583
+Nothing is sent until someone confirms
+it with the confirm large delta option.
+
+160
+00:10:09.583 --> 00:10:12.682
+Step seven runs the tests: seventy pass.
+
+161
+00:10:12.682 --> 00:10:14.430
+Step eight cleans up.
+
+162
+00:10:18.180 --> 00:10:23.216
+Lab 2 runs the client against a
+test tenant, never production,
+
+163
+00:10:23.216 --> 00:10:27.043
+with Microsoft Entra ID
+P1, P2 or ID Governance.
+
+164
+00:10:27.043 --> 00:10:33.842
+Create an API-driven inbound provisioning
+app, and extend its schema with CSV2SCIM.
+
+165
+00:10:33.842 --> 00:10:35.872
+Grant the sender one permission,
+
+166
+00:10:35.872 --> 00:10:39.330
+with a certificate or a managed
+identity, never a secret.
+
+167
+00:10:39.330 --> 00:10:42.491
+Send five fictional records
+with the hardened client,
+
+168
+00:10:42.491 --> 00:10:45.442
+and reconcile them against
+the provisioning logs.
+
+169
+00:10:45.442 --> 00:10:48.179
+Remember the two-oh-two:
+the reconciliation is
+
+170
+00:10:48.179 --> 00:10:51.205
+where you find out whether
+each record was written.
+
+171
+00:10:51.205 --> 00:10:55.582
+To back it out, step seven sends
+the five records again as inactive,
+
+172
+00:10:55.582 --> 00:10:59.230
+with a termination date, and
+unsets the token variable.
+
+173
+00:10:59.230 --> 00:11:01.380
+The authors haven't run Lab 2.
+
+174
+00:11:01.380 --> 00:11:05.210
+Follow Chapter 01's Lab 2, step by step.
+
+175
+00:11:08.960 --> 00:11:10.347
+The federal requirement.
+
+176
+00:11:10.347 --> 00:11:13.671
+The middleware is where an HR
+record becomes an account,
+
+177
+00:11:13.671 --> 00:11:16.561
+so its outputs are
+account-management evidence.
+
+178
+00:11:16.561 --> 00:11:20.359
+The validation report
+supports input validation,
+
+179
+00:11:20.359 --> 00:11:23.073
+S I ten, and account management, A C two.
+
+180
+00:11:23.073 --> 00:11:25.925
+The quarantine supports
+identifier management,
+
+181
+00:11:25.925 --> 00:11:30.447
+and lives in the access-controlled audit
+store, because it holds personal data.
+
+182
+00:11:30.447 --> 00:11:33.476
+The provenance manifest
+supports configuration
+
+183
+00:11:33.476 --> 00:11:36.360
+change control and the
+content of audit records.
+
+184
+00:11:36.360 --> 00:11:39.285
+A confirmed mass disable
+leaves a change record.
+
+185
+00:11:39.285 --> 00:11:42.297
+The tests and the pinned
+sample's snapshot support
+
+186
+00:11:42.297 --> 00:11:45.022
+developer testing and
+supply chain controls.
+
+187
+00:11:45.022 --> 00:11:49.015
+And Lab 2 adds the sender's app
+registration and consent record,
+
+188
+00:11:49.015 --> 00:11:52.547
+and the reconciliation
+against the provisioning logs.
+
+189
+00:11:52.547 --> 00:11:58.398
+The controls are from NIST SP
+800-53, in its Moderate baseline.
+
+190
+00:11:58.398 --> 00:12:03.610
+Key Security Indicators are FedRAMP 20x
+indicators for cloud service providers;
+
+191
+00:12:03.610 --> 00:12:07.447
+the agency lines its evidence up
+with what its providers report.
+
+192
+00:12:07.447 --> 00:12:11.370
+Which output supports which
+control is this workbook's reading.
+
+193
+00:12:15.120 --> 00:12:17.095
+Check yourself with two questions.
+
+194
+00:12:17.095 --> 00:12:21.332
+First: the bulk upload endpoint
+answers two-oh-two Accepted.
+
+195
+00:12:21.332 --> 00:12:22.521
+What does that tell you?
+
+196
+00:12:22.521 --> 00:12:26.276
+The answer is b: the batch was
+staged for the provisioning job,
+
+197
+00:12:26.276 --> 00:12:29.882
+and each record's result appears
+in the provisioning logs.
+
+198
+00:12:29.882 --> 00:12:34.740
+Learn's bulk upload API reference
+says the endpoint is asynchronous,
+
+199
+00:12:34.740 --> 00:12:38.320
+so a two-oh-two is never
+proof that a user was written.
+
+200
+00:12:38.320 --> 00:12:43.520
+Second: a run would disable more accounts
+than the maximum disables per run allows.
+
+201
+00:12:43.520 --> 00:12:44.532
+What happens?
+
+202
+00:12:44.532 --> 00:12:48.240
+The answer is c: the whole run
+is held, with exit code three,
+
+203
+00:12:48.240 --> 00:12:52.432
+until someone confirms it with
+the confirm large delta option.
+
+204
+00:12:52.432 --> 00:12:54.595
+You saw that in step six of the lab.
+
+205
+00:12:54.595 --> 00:12:59.492
+The module page has two more questions,
+on the bulk I D and on partial records,
+
+206
+00:12:59.492 --> 00:13:02.630
+each linked to the
+section that answers it.
+
+207
+00:13:06.380 --> 00:13:07.205
+To sum up.
+
+208
+00:13:07.205 --> 00:13:12.200
+You learned where the middleware's job ends
+and the provisioning service's begins,
+
+209
+00:13:12.200 --> 00:13:16.167
+and you ran the client that refuses
+bad rows, orders leavers first,
+
+210
+00:13:16.167 --> 00:13:20.280
+holds a mass disable, and keeps a
+record an auditor can follow by hash.
+
+211
+00:13:20.280 --> 00:13:25.749
+The evidence an ISSO keeps: the validation
+report, the provenance manifest and,
+
+212
+00:13:25.749 --> 00:13:29.031
+in Lab 2, the apply results,
+in the evidence store;
+
+213
+00:13:29.031 --> 00:13:34.247
+the quarantine in the access-controlled
+audit store; the change record for
+
+214
+00:13:34.247 --> 00:13:39.380
+any confirmed hold; the sender's app
+registration; and the reconciliation.
+
+215
+00:13:39.380 --> 00:13:43.130
+Before shipping, work through
+the Chapter 01 checklist.
+
+216
+00:13:43.130 --> 00:13:46.655
+Next is Module 2: write
+a validation kit check.
+
+217
+00:13:46.655 --> 00:13:48.801
+You'll build and read V K SYNC oh two,
+
+218
+00:13:48.801 --> 00:13:52.711
+the check that soft match and
+hard-match takeover are blocked,
+
+219
+00:13:52.711 --> 00:13:57.140
+and see why a read-only check still
+asks for the least privilege it can.

@@ -1,0 +1,60 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.214
+Welcome to Module 1 of the
+Attribute-Driven Migration learning path:
+
+2
+00:00:04.214 --> 00:00:07.575
+send HR records through a
+middleware that fails closed.
+
+3
+00:00:07.575 --> 00:00:12.267
+The path teaches the workbook's book
+Building the Attribute-Driven Migration,
+
+4
+00:00:12.267 --> 00:00:16.525
+one chapter per module, in the order
+of the implementation guide's gates.
+
+5
+00:00:16.525 --> 00:00:18.000
+There are nine modules.
+
+6
+00:00:18.000 --> 00:00:24.850
+This one serves Gates 2 and 3, and takes
+Chapter 01, the HR-to-Entra middleware.
+
+7
+00:00:24.850 --> 00:00:29.740
+You'll see what the middleware owns
+and what the provisioning service owns,
+
+8
+00:00:29.740 --> 00:00:32.815
+what Microsoft's CSV2SCIM
+sample leaves to you,
+
+9
+00:00:32.815 --> 00:00:37.153
+and how the hardened client refuses
+bad rows, orders leavers first,
+
+10
+00:00:37.153 --> 00:00:41.175
+holds a mass disable and ties
+every batch to its inputs by hash.
+
+11
+00:00:41.175 --> 00:00:45.150
+Then you'll run it on your laptop
+against a fictional HR extract.
+
+12
+00:00:45.150 --> 00:00:50.590
+The code is illustrative: tested against
+fixtures, not against a production tenant.

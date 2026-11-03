@@ -1,0 +1,86 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.800
+The sync is the kit's design.
+
+2
+00:00:01.800 --> 00:00:04.755
+It reads the tenant's
+settings catalog policies,
+
+3
+00:00:04.755 --> 00:00:08.522
+through the list call Learn's
+Graph beta reference documents,
+
+4
+00:00:08.522 --> 00:00:12.437
+normalizes both sides, and gives
+each library policy one action.
+
+5
+00:00:12.437 --> 00:00:14.426
+Create: it isn't in the tenant.
+
+6
+00:00:14.426 --> 00:00:20.375
+No change: the same settings, description,
+platform, technology and scope tags.
+
+7
+00:00:20.375 --> 00:00:24.862
+Drift: it differs, and the row
+names each setting that changed.
+
+8
+00:00:24.862 --> 00:00:28.388
+Duplicate: two tenant policies
+have the library's name.
+
+9
+00:00:28.388 --> 00:00:30.550
+Drift and duplicate exit two.
+
+10
+00:00:30.550 --> 00:00:34.060
+Without the apply option,
+the sync is a dry run:
+
+11
+00:00:34.060 --> 00:00:37.475
+it signs in with read
+only, and sends only GET.
+
+12
+00:00:37.475 --> 00:00:40.135
+With apply, it signs in with read-write,
+
+13
+00:00:40.135 --> 00:00:43.738
+POSTs each create, reads it
+back and compares again.
+
+14
+00:00:43.738 --> 00:00:47.029
+And it writes nothing at all
+if the lint has a finding,
+
+15
+00:00:47.029 --> 00:00:49.250
+or any policy is drift or duplicate.
+
+16
+00:00:49.250 --> 00:00:53.400
+It never sends PATCH or DELETE,
+although Learn documents both.
+
+17
+00:00:53.400 --> 00:00:57.281
+A policy that differs from Git
+is a decision for a person, and,
+
+18
+00:00:57.281 --> 00:01:02.180
+in this workbook's guidance, a change
+becomes a new version under a new name.

@@ -1,0 +1,73 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.963
+Step four plans wave zero.
+
+2
+00:00:01.963 --> 00:00:04.697
+The playbook says wave zero is ready:
+
+3
+00:00:04.697 --> 00:00:08.162
+one server to connect,
+none blocked in the CMDB.
+
+4
+00:00:08.162 --> 00:00:12.331
+Show the newest wave zero plan,
+and it has one row: web oh one,
+
+5
+00:00:12.331 --> 00:00:16.588
+in the portal dev resource group,
+in West US 2, in AzureCloud,
+
+6
+00:00:16.588 --> 00:00:21.112
+state ready, with the exact tag
+string the connect would write.
+
+7
+00:00:21.112 --> 00:00:26.522
+Look at the tags: the configuration item,
+Config Owner set to machine configuration,
+
+8
+00:00:26.522 --> 00:00:29.502
+the environment, the
+location, the owning team,
+
+9
+00:00:29.502 --> 00:00:32.951
+the patch group, and Patch
+Owner set to Update Manager.
+
+10
+00:00:32.951 --> 00:00:37.075
+That's the plan a reviewer reads
+and files before anything runs.
+
+11
+00:00:37.075 --> 00:00:40.175
+Step five dry-runs the wave
+with Microsoft's role.
+
+12
+00:00:40.175 --> 00:00:41.475
+It exits zero.
+
+13
+00:00:41.475 --> 00:00:46.227
+Web oh one reports that it would connect
+to AzureCloud, in that resource group and
+
+14
+00:00:46.227 --> 00:00:51.050
+region, authenticating with the managed
+identity, and the connect task is skipped.
+
+15
+00:00:51.050 --> 00:00:54.670
+Web oh one doesn't exist, and
+nothing tried to reach it.

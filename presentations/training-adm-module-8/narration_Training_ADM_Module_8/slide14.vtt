@@ -1,0 +1,57 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.025
+Check yourself with two questions.
+
+2
+00:00:02.025 --> 00:00:06.913
+First: yesterday VK-NPI-03 had a finding.
+
+3
+00:00:06.913 --> 00:00:09.337
+Today its read failed
+with a four-oh-three.
+
+4
+00:00:09.337 --> 00:00:11.126
+What does the comparison report?
+
+5
+00:00:11.126 --> 00:00:14.612
+The answer is b: unverified, not resolved.
+
+6
+00:00:14.612 --> 00:00:19.038
+A failed read is never a fix, and
+you saw it in step five of the lab.
+
+7
+00:00:19.038 --> 00:00:23.763
+Second: how does the ISSO check a
+package without the program's code?
+
+8
+00:00:23.763 --> 00:00:27.665
+The answer is b: with
+sha two fifty-six sum,
+
+9
+00:00:27.665 --> 00:00:31.687
+dash c, SHA256SUMS, in
+the package's folder.
+
+10
+00:00:31.687 --> 00:00:36.475
+You did exactly that in step seven,
+and it printed nothing and exited zero.
+
+11
+00:00:36.475 --> 00:00:41.012
+The module page has two more questions,
+on what goes into a drafted issue
+
+12
+00:00:41.012 --> 00:00:45.700
+and on what shows a missing day, each
+linked to the section that answers it.

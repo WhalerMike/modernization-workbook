@@ -1,0 +1,47 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.600
+Why does this module matter?
+
+2
+00:00:01.600 --> 00:00:04.763
+Without Gate 9, everything slowly decays.
+
+3
+00:00:04.763 --> 00:00:06.810
+Gate 9's Validate step runs the HR,
+
+4
+00:00:06.810 --> 00:00:11.509
+dynamic group and sync checks on the
+drift cadence, and its evidence is each
+
+5
+00:00:11.509 --> 00:00:16.588
+cycle's run folder, the findings queue
+and the metrics for continuous monitoring.
+
+6
+00:00:16.588 --> 00:00:21.100
+Each validation kit check already compares
+the tenant with the program's record.
+
+7
+00:00:21.100 --> 00:00:25.500
+The pipeline adds the second
+comparison: this run against the last.
+
+8
+00:00:25.500 --> 00:00:26.825
+That finds change.
+
+9
+00:00:26.825 --> 00:00:31.962
+In this module you run it on two days of
+fixture runs, read what changed, and hand
+
+10
+00:00:31.962 --> 00:00:37.010
+over a package the ISSO can check with
+sha two fifty-six sum, and nothing else.

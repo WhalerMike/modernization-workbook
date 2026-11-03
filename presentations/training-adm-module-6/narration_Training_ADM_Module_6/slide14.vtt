@@ -1,0 +1,67 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.025
+Check yourself with two questions.
+
+2
+00:00:02.025 --> 00:00:06.663
+First: Microsoft's role runs in check
+mode on a host without the agent.
+
+3
+00:00:06.663 --> 00:00:07.674
+What happens?
+
+4
+00:00:07.674 --> 00:00:10.762
+The answer is b: it fails
+at Get azcmagent status,
+
+5
+00:00:10.762 --> 00:00:15.275
+and with the version check skipped,
+it decides the agent is installed.
+
+6
+00:00:15.275 --> 00:00:19.408
+That's why the kit's playbook doesn't call
+the role at all without the confirm flag,
+
+7
+00:00:19.408 --> 00:00:21.788
+and prints what each
+server would get instead.
+
+8
+00:00:21.788 --> 00:00:25.338
+Second: the wave zero plan
+finds a production server.
+
+9
+00:00:25.338 --> 00:00:26.349
+What happens?
+
+10
+00:00:26.349 --> 00:00:30.355
+The answer is b: the plan stops,
+and no server is contacted,
+
+11
+00:00:30.355 --> 00:00:33.925
+because waves zero and one
+are for non-production.
+
+12
+00:00:33.925 --> 00:00:36.088
+You saw that in step six of the lab.
+
+13
+00:00:36.088 --> 00:00:41.133
+The module page has two more questions, on
+the owner typo and on the confirm flag,
+
+14
+00:00:41.133 --> 00:00:43.920
+each linked to the
+section that answers it.

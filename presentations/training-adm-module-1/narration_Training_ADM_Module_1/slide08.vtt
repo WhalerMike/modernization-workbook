@@ -1,0 +1,60 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.825
+The last idea is the record, and it's
+the kit's design, not Microsoft's.
+
+2
+00:00:04.825 --> 00:00:09.413
+The provenance file ties every batch
+to the exact inputs that produced it.
+
+3
+00:00:09.413 --> 00:00:14.095
+It holds the hash of the extract and the
+hash of the mapping file, the counts,
+
+4
+00:00:14.095 --> 00:00:17.089
+whether the run was held,
+each batch with its own
+
+5
+00:00:17.089 --> 00:00:20.237
+hash and its person keys,
+and the quarantined keys.
+
+6
+00:00:20.237 --> 00:00:25.100
+Each batch hash is the same one the apply
+results record when that batch is sent.
+
+7
+00:00:25.100 --> 00:00:29.715
+So an auditor can go from a line in the
+provisioning logs to the person key,
+
+8
+00:00:29.715 --> 00:00:34.100
+to the batch and its Location, to the
+extract and mapping files by hash.
+
+9
+00:00:34.100 --> 00:00:38.800
+That only works because each
+operation's bulk I D is the person key.
+
+10
+00:00:38.800 --> 00:00:41.334
+With a random bulk I D, as in the sample,
+
+11
+00:00:41.334 --> 00:00:44.712
+the same input would never
+produce the same hash.
+
+12
+00:00:44.712 --> 00:00:49.700
+The manifest carries keys and hashes
+only, so it can sit in the evidence store.

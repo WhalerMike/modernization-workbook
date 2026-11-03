@@ -1,0 +1,94 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.585
+Microsoft Learn's page, Connect machines
+to Azure Arc at scale with Ansible,
+
+2
+00:00:04.585 --> 00:00:07.292
+documents onboarding through the Azure Arc
+
+3
+00:00:07.292 --> 00:00:09.925
+onboarding role in the
+azure az collection.
+
+4
+00:00:09.925 --> 00:00:14.013
+It installs the Connected Machine
+agent and registers each host.
+
+5
+00:00:14.013 --> 00:00:18.343
+The repository keeps a pinned copy
+of the role's code, from the ansible
+
+6
+00:00:18.343 --> 00:00:22.674
+collections azure repository at the
+four point two point oh release.
+
+7
+00:00:22.674 --> 00:00:26.650
+Running it offline, and reading its
+code, shows what it leaves to you.
+
+8
+00:00:26.650 --> 00:00:29.732
+It connects whatever
+hosts the inventory names;
+
+9
+00:00:29.732 --> 00:00:33.200
+the kit reads both owners and
+writes them into the tags.
+
+10
+00:00:33.200 --> 00:00:38.075
+It has no waves; the kit adds a wave
+column, one canary server, then five,
+
+11
+00:00:38.075 --> 00:00:43.212
+then twenty-five percent, and keeps
+production out of waves zero and one.
+
+12
+00:00:43.212 --> 00:00:46.390
+It can't run in check mode on
+a server without the agent;
+
+13
+00:00:46.390 --> 00:00:49.712
+the kit's playbook doesn't call
+it without a confirm flag.
+
+14
+00:00:49.712 --> 00:00:54.130
+The role's code sends a signal with
+the subscription and tenant by default,
+
+15
+00:00:54.130 --> 00:00:57.462
+which Learn's page doesn't
+mention; the kit turns that off.
+
+16
+00:00:57.462 --> 00:01:00.171
+And it leaves no record,
+and the requirements
+
+17
+00:01:00.171 --> 00:01:03.100
+file on Learn's page
+installs the latest version.
+
+18
+00:01:03.100 --> 00:01:05.576
+The verdict, which is this workbook's:
+
+19
+00:01:05.576 --> 00:01:09.600
+use Microsoft's role, unchanged,
+and add what sits around it.

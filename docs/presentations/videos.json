@@ -12325,6 +12325,733 @@
   ]
  },
  {
+  "id": "Training_ADM_Module_1_Narrated",
+  "title": "Attribute-Driven Migration learning path, Module 1: Send HR records through a middleware that fails closed",
+  "group": "training",
+  "minutes": 14,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_ADM_Module_1_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/training-adm-module-1/Training_ADM_Module_1_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-adm-module-1/Training_ADM_Module_1_Narration_Script.md",
+  "page": "docs/training/attribute-driven-migration/01-the-hr-middleware.html",
+  "source": "docs/training/attribute-driven-migration/01-the-hr-middleware.md",
+  "kits": [
+   {
+    "name": "hcm-entra",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/hcm-entra",
+    "zip": null
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Module 1: The HR middleware that fails closed"
+   ],
+   [
+    54,
+    "Why the middleware is where a record is first checked"
+   ],
+   [
+    99,
+    "What you'll be able to do in Module 1"
+   ],
+   [
+    156,
+    "Where the middleware sits, and what a 202 means"
+   ],
+   [
+    211,
+    "What Microsoft's CSV2SCIM sample leaves to you"
+   ],
+   [
+    277,
+    "Fail closed: every row is built or refused"
+   ],
+   [
+    335,
+    "Send it whole, leavers first, and hold a mass disable"
+   ],
+   [
+    403,
+    "The provenance manifest: every batch tied by hash"
+   ],
+   [
+    456,
+    "Try it: run the client and read the quarantine"
+   ],
+   [
+    515,
+    "Try it: check the provenance, then rerun"
+   ],
+   [
+    567,
+    "Try it: break a row, hold a run, run the tests"
+   ],
+   [
+    618,
+    "Lab 2: send five records to your test tenant"
+   ],
+   [
+    668,
+    "The federal requirement and evidence for Module 1"
+   ],
+   [
+    735,
+    "Check yourself: two questions on the middleware"
+   ],
+   [
+    786,
+    "Summary, and next: Module 2, a validation kit check"
+   ]
+  ]
+ },
+ {
+  "id": "Training_ADM_Module_2_Narrated",
+  "title": "Attribute-Driven Migration learning path, Module 2: Write a validation kit check",
+  "group": "training",
+  "minutes": 13,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_ADM_Module_2_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/training-adm-module-2/Training_ADM_Module_2_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-adm-module-2/Training_ADM_Module_2_Narration_Script.md",
+  "page": "docs/training/attribute-driven-migration/02-a-validation-kit-check.html",
+  "source": "docs/training/attribute-driven-migration/02-a-validation-kit-check.md",
+  "kits": [
+   {
+    "name": "validation-kit",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/validation-kit",
+    "zip": "downloads/validation-kit.zip"
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Module 2: Write a validation kit check"
+   ],
+   [
+    53,
+    "Why soft and hard match must be blocked"
+   ],
+   [
+    115,
+    "What you'll be able to do in Module 2"
+   ],
+   [
+    167,
+    "The anatomy of a check: five parts"
+   ],
+   [
+    228,
+    "The lesson in the catalog entry: least privilege"
+   ],
+   [
+    289,
+    "Rows and outcome: Finding, Warn and Info"
+   ],
+   [
+    350,
+    "The safety tests, and where the remediation goes"
+   ],
+   [
+    410,
+    "Try it: run the check on the fail fixture"
+   ],
+   [
+    464,
+    "Try it: a matching window, then an export"
+   ],
+   [
+    516,
+    "Try it: the scope, the tests, and a broken check"
+   ],
+   [
+    573,
+    "Lab 2: run the check on your tenant's export"
+   ],
+   [
+    622,
+    "The federal requirement and evidence for Module 2"
+   ],
+   [
+    700,
+    "Check yourself: two questions on the check"
+   ],
+   [
+    748,
+    "Summary, and next: Module 3, dynamic rules as code"
+   ]
+  ]
+ },
+ {
+  "id": "Training_ADM_Module_3_Narrated",
+  "title": "Attribute-Driven Migration learning path, Module 3: Keep dynamic rules as code",
+  "group": "training",
+  "minutes": 14,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_ADM_Module_3_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/training-adm-module-3/Training_ADM_Module_3_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-adm-module-3/Training_ADM_Module_3_Narration_Script.md",
+  "page": "docs/training/attribute-driven-migration/03-dynamic-rules-as-code.html",
+  "source": "docs/training/attribute-driven-migration/03-dynamic-rules-as-code.md",
+  "kits": [
+   {
+    "name": "dynamic-rules",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/dynamic-rules",
+    "zip": null
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Module 3: Keep dynamic rules as code"
+   ],
+   [
+    55,
+    "Why a dynamic rule is access policy"
+   ],
+   [
+    102,
+    "What you'll be able to do in Module 3"
+   ],
+   [
+    155,
+    "The guards every rule needs, and the engine's limits"
+   ],
+   [
+    223,
+    "What Learn's incident samples leave to you"
+   ],
+   [
+    287,
+    "One file per group, evaluated offline"
+   ],
+   [
+    346,
+    "The linter, the shadow diff and the pause manifest"
+   ],
+   [
+    403,
+    "Try it: run Learn's samples against a fake tenant"
+   ],
+   [
+    461,
+    "Try it: lint the patterns, evaluate a rule, run the check"
+   ],
+   [
+    524,
+    "Try it: break a rule on purpose, then run the tests"
+   ],
+   [
+    581,
+    "Lab 2: create the groups paused, then drill a pause"
+   ],
+   [
+    636,
+    "The federal requirement and evidence for Module 3"
+   ],
+   [
+    714,
+    "Check yourself: two questions on rules as code"
+   ],
+   [
+    762,
+    "Summary, and next: Module 4, Group Policy as code"
+   ]
+  ]
+ },
+ {
+  "id": "Training_ADM_Module_4_Narrated",
+  "title": "Attribute-Driven Migration learning path, Module 4: Move Group Policy as code",
+  "group": "training",
+  "minutes": 15,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_ADM_Module_4_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/training-adm-module-4/Training_ADM_Module_4_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-adm-module-4/Training_ADM_Module_4_Narration_Script.md",
+  "page": "docs/training/attribute-driven-migration/04-group-policy-as-code.html",
+  "source": "docs/training/attribute-driven-migration/04-group-policy-as-code.md",
+  "kits": [
+   {
+    "name": "validation-kit",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/validation-kit",
+    "zip": "downloads/validation-kit.zip"
+   },
+   {
+    "name": "group-policy-as-code",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/group-policy-as-code",
+    "zip": null
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Module 4: Move Group Policy as code"
+   ],
+   [
+    48,
+    "Why Group Policy has to move as code"
+   ],
+   [
+    99,
+    "What you'll be able to do in Module 4"
+   ],
+   [
+    155,
+    "Where the code sits: two rules and beta APIs"
+   ],
+   [
+    224,
+    "What Microsoft's samples leave to you"
+   ],
+   [
+    294,
+    "The gate per GPO, and the move plan per setting"
+   ],
+   [
+    364,
+    "One file per policy, and the linter's rules"
+   ],
+   [
+    431,
+    "Diff, then create: one action per policy"
+   ],
+   [
+    498,
+    "Try it: run the gate, then Microsoft's sample twice"
+   ],
+   [
+    551,
+    "Try it: build the move plan, and lint the library"
+   ],
+   [
+    607,
+    "Try it: dry run, apply, then break it on purpose"
+   ],
+   [
+    663,
+    "Lab 2: plan, sync and drill drift in a test tenant"
+   ],
+   [
+    717,
+    "The federal requirement and evidence for Module 4"
+   ],
+   [
+    796,
+    "Check yourself: two questions on Group Policy"
+   ],
+   [
+    842,
+    "Summary, and next: Module 5, machine configuration"
+   ]
+  ]
+ },
+ {
+  "id": "Training_ADM_Module_5_Narrated",
+  "title": "Attribute-Driven Migration learning path, Module 5: Build machine configuration packages",
+  "group": "training",
+  "minutes": 15,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_ADM_Module_5_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/training-adm-module-5/Training_ADM_Module_5_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-adm-module-5/Training_ADM_Module_5_Narration_Script.md",
+  "page": "docs/training/attribute-driven-migration/05-machine-configuration.html",
+  "source": "docs/training/attribute-driven-migration/05-machine-configuration.md",
+  "kits": [
+   {
+    "name": "machine-configuration",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/machine-configuration",
+    "zip": null
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Module 5: Build machine configuration packages"
+   ],
+   [
+    49,
+    "Why a package needs a checked build"
+   ],
+   [
+    94,
+    "What you'll be able to do in Module 5"
+   ],
+   [
+    145,
+    "A package, a definition and a guest assignment"
+   ],
+   [
+    204,
+    "What Learn's cmdlets leave to you"
+   ],
+   [
+    275,
+    "The release registry: what is in production"
+   ],
+   [
+    337,
+    "Clean the MOF, then check the package and definition"
+   ],
+   [
+    398,
+    "The provenance manifest: what was built and shipped"
+   ],
+   [
+    449,
+    "Try it: follow Learn's steps by hand, then check them"
+   ],
+   [
+    508,
+    "Try it: Microsoft's sample, then the checked build"
+   ],
+   [
+    577,
+    "Try it: break the registry three ways, then test"
+   ],
+   [
+    634,
+    "Lab 2: publish and assign in a test subscription"
+   ],
+   [
+    694,
+    "The federal requirement and evidence for Module 5"
+   ],
+   [
+    769,
+    "Check yourself: two questions on packages"
+   ],
+   [
+    819,
+    "Summary, and next: Module 6, Ansible beside Arc"
+   ]
+  ]
+ },
+ {
+  "id": "Training_ADM_Module_6_Narrated",
+  "title": "Attribute-Driven Migration learning path, Module 6: Onboard servers with Ansible beside Arc",
+  "group": "training",
+  "minutes": 16,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_ADM_Module_6_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/training-adm-module-6/Training_ADM_Module_6_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-adm-module-6/Training_ADM_Module_6_Narration_Script.md",
+  "page": "docs/training/attribute-driven-migration/06-ansible-beside-arc.html",
+  "source": "docs/training/attribute-driven-migration/06-ansible-beside-arc.md",
+  "kits": [
+   {
+    "name": "ansible",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/ansible",
+    "zip": "downloads/ansible-examples.zip"
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Module 6: Onboard servers with Ansible beside Arc"
+   ],
+   [
+    50,
+    "Why the onboarding run is where owners are read"
+   ],
+   [
+    107,
+    "What you'll be able to do in Module 6"
+   ],
+   [
+    163,
+    "One owner for configuration, one for patching"
+   ],
+   [
+    236,
+    "Which Azure a GCC estate's servers go to"
+   ],
+   [
+    304,
+    "What Microsoft's azure_arc role leaves to you"
+   ],
+   [
+    378,
+    "The inventory: owners become groups and tags"
+   ],
+   [
+    447,
+    "The wave plan, and onboarding in check mode"
+   ],
+   [
+    520,
+    "Try it: see what the CMDB becomes, then run the role"
+   ],
+   [
+    583,
+    "Try it: plan wave 0, then dry-run it"
+   ],
+   [
+    642,
+    "Try it: break the CMDB on purpose, run the tests"
+   ],
+   [
+    704,
+    "Lab 2: connect one disposable server"
+   ],
+   [
+    764,
+    "The federal requirement and evidence for Module 6"
+   ],
+   [
+    834,
+    "Check yourself: two questions on onboarding"
+   ],
+   [
+    882,
+    "Summary, and next: Module 7, Lifecycle Workflows"
+   ]
+  ]
+ },
+ {
+  "id": "Training_ADM_Module_7_Narrated",
+  "title": "Attribute-Driven Migration learning path, Module 7: Extend Lifecycle Workflows",
+  "group": "training",
+  "minutes": 14,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_ADM_Module_7_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/training-adm-module-7/Training_ADM_Module_7_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-adm-module-7/Training_ADM_Module_7_Narration_Script.md",
+  "page": "docs/training/attribute-driven-migration/07-lifecycle-workflows-extensions.html",
+  "source": "docs/training/attribute-driven-migration/07-lifecycle-workflows-extensions.md",
+  "kits": [
+   {
+    "name": "lifecycle-extensions",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/lifecycle-extensions",
+    "zip": null
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Module 7: Extend Lifecycle Workflows"
+   ],
+   [
+    53,
+    "Why the rest of a leaver needs an extension"
+   ],
+   [
+    110,
+    "What you'll be able to do in Module 7"
+   ],
+   [
+    162,
+    "Where the extensions sit, and the three rules"
+   ],
+   [
+    235,
+    "What Learn's Logic App definition leaves to you"
+   ],
+   [
+    297,
+    "One Logic App per integration, in four steps"
+   ],
+   [
+    371,
+    "Lint, run, build, check, and authorization"
+   ],
+   [
+    445,
+    "Try it: lint and run Learn's definition"
+   ],
+   [
+    502,
+    "Try it: the program's definition, through failures"
+   ],
+   [
+    561,
+    "Try it: build the pieces, and check the read-backs"
+   ],
+   [
+    616,
+    "Lab 2: run a test leaver in your test tenant"
+   ],
+   [
+    675,
+    "The federal requirement and evidence for Module 7"
+   ],
+   [
+    745,
+    "Check yourself: two questions on extensions"
+   ],
+   [
+    793,
+    "Summary, and next: Module 8, drift and evidence"
+   ]
+  ]
+ },
+ {
+  "id": "Training_ADM_Module_8_Narrated",
+  "title": "Attribute-Driven Migration learning path, Module 8: Run the drift pipeline and hand over the evidence",
+  "group": "training",
+  "minutes": 15,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_ADM_Module_8_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/training-adm-module-8/Training_ADM_Module_8_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-adm-module-8/Training_ADM_Module_8_Narration_Script.md",
+  "page": "docs/training/attribute-driven-migration/08-drift-and-evidence.html",
+  "source": "docs/training/attribute-driven-migration/08-drift-and-evidence.md",
+  "kits": [
+   {
+    "name": "drift-pipeline",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/drift-pipeline",
+    "zip": null
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Module 8: The drift pipeline and the evidence"
+   ],
+   [
+    52,
+    "Why Gate 9: without it, everything slowly decays"
+   ],
+   [
+    93,
+    "What you'll be able to do in Module 8"
+   ],
+   [
+    146,
+    "Where the pipeline sits: change, not drift"
+   ],
+   [
+    197,
+    "What Learn's sample workflows leave to you"
+   ],
+   [
+    266,
+    "Compare: this run against the last"
+   ],
+   [
+    327,
+    "Findings without names, and a chained package"
+   ],
+   [
+    395,
+    "Try it: lint the workflows, print a cloud's hosts"
+   ],
+   [
+    464,
+    "Try it: a baseline, then the next day"
+   ],
+   [
+    526,
+    "Try it: draft findings, then package the chain"
+   ],
+   [
+    585,
+    "Try it: break the package, swap the runs"
+   ],
+   [
+    632,
+    "Lab 2: a scheduled run in your test tenant"
+   ],
+   [
+    687,
+    "The federal requirement and evidence for Module 8"
+   ],
+   [
+    759,
+    "Check yourself: two questions on drift"
+   ],
+   [
+    809,
+    "Summary, and next: Module 9, test then production"
+   ]
+  ]
+ },
+ {
+  "id": "Training_ADM_Module_9_Narrated",
+  "title": "Attribute-Driven Migration learning path, Module 9: Deploy to test, then production",
+  "group": "training",
+  "minutes": 14,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_ADM_Module_9_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/training-adm-module-9/Training_ADM_Module_9_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-adm-module-9/Training_ADM_Module_9_Narration_Script.md",
+  "page": "docs/training/attribute-driven-migration/09-deploying-to-test-and-production.html",
+  "source": "docs/training/attribute-driven-migration/09-deploying-to-test-and-production.md",
+  "kits": [
+   {
+    "name": "drift-pipeline",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/drift-pipeline",
+    "zip": null
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Module 9: Deploy to test, then production"
+   ],
+   [
+    54,
+    "Why a deployment isn't nine Lab 2s in a row"
+   ],
+   [
+    110,
+    "What you'll be able to do in Module 9"
+   ],
+   [
+    156,
+    "One settings file per stage, and three identities"
+   ],
+   [
+    235,
+    "The live test stage: nothing grants access unchecked"
+   ],
+   [
+    295,
+    "Promotion, then production in waves"
+   ],
+   [
+    358,
+    "Try it: the test stage's pre-flight check"
+   ],
+   [
+    420,
+    "Try it: record four changes, write the rollback"
+   ],
+   [
+    471,
+    "Try it: the smoke test says no-go on fixtures"
+   ],
+   [
+    532,
+    "Try it: check the evidence, then try to promote"
+   ],
+   [
+    589,
+    "Lab 2: the live test stage"
+   ],
+   [
+    646,
+    "The federal requirement and evidence for Module 9"
+   ],
+   [
+    719,
+    "Check yourself: two questions on the runbook"
+   ],
+   [
+    769,
+    "Summary: you've finished the path"
+   ]
+  ]
+ },
+ {
   "id": "Training_HR_Module_1_Narrated",
   "title": "HR-Driven Identity learning path, Module 1: Name one writer for every account state",
   "group": "training",

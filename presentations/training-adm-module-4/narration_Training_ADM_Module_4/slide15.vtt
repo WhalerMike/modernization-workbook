@@ -1,0 +1,60 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.875
+To sum up.
+
+2
+00:00:00.875 --> 00:00:04.177
+You read Group Policy analytics
+into a plan per setting,
+
+3
+00:00:04.177 --> 00:00:08.484
+kept the policies as reviewed files,
+and saw the sync create only what its
+
+4
+00:00:08.484 --> 00:00:12.863
+dry run showed, and nothing at all when
+the library and the tenant disagree.
+
+5
+00:00:12.863 --> 00:00:19.445
+The evidence an ISSO keeps: VK-INT-07's
+run, the move plan with each pull request,
+
+6
+00:00:19.445 --> 00:00:23.206
+the library and its
+decision records in Git,
+
+7
+00:00:23.206 --> 00:00:28.638
+and the sync record with its scopes,
+file hashes and created I D's.
+
+8
+00:00:28.638 --> 00:00:34.262
+In Lab 2, add the Intune audit log for the
+import, the creation and the drift drill.
+
+9
+00:00:34.262 --> 00:00:39.401
+At deployment, Chapter 10 adds the
+GPO link states before and after.
+
+10
+00:00:39.401 --> 00:00:43.050
+Before shipping, work through
+the Chapter 06 checklist.
+
+11
+00:00:43.050 --> 00:00:48.309
+Next is Module 5: build machine configuration
+packages, for the server settings
+
+12
+00:00:48.309 --> 00:00:53.300
+machine configuration owns, with a build
+that makes the same MOF every time.

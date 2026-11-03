@@ -14,7 +14,9 @@ last-reviewed: 2026-11-02
 
 **Learning path:** [Building the Attribute-Driven Migration](index.md) · Module 6 of 9 · 45 minutes · Guide [Gate 5](../../books/guides/attribute-driven-migration-implementation.md#gate-5-personas-and-targeting-conventions) and [Gate 8](../../books/guides/attribute-driven-migration-implementation.md#gate-8-cut-over-and-retire-the-ou-tree) · Workbook [Chapter 08](../../books/b19-developer-workbook/08-ansible-beside-arc.md)
 
-**Watch:** the chapter's narrated tour, about 11 minutes: [▶ Watch](../../presentations/watch.html?v=DW_ADM_08_Ansible_Beside_Arc_Narrated). The narrated deck for this module comes later.
+**Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-adm-module-6) (the deck files come with the next edition) · [▶ Watch](../../presentations/watch.html?v=Training_ADM_Module_6_Narrated) (about 16 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_ADM_Module_6_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-adm-module-6/Training_ADM_Module_6_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-adm-module-6/Training_ADM_Module_6_Narrated.vtt).
+
+**Also:** the chapter's narrated tour, about 11 minutes: [▶ Watch](../../presentations/watch.html?v=DW_ADM_08_Ansible_Beside_Arc_Narrated).
 
 ## Unit 1: Introduction
 

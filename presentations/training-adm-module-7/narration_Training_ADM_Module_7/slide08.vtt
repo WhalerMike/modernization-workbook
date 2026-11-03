@@ -1,0 +1,68 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:06.275
+Lab 1 runs in the lifecycle extensions folder
+of the examples, and nothing signs in.
+
+3
+00:00:06.275 --> 00:00:09.891
+Step one extracts Learn's
+definition from the pinned page,
+
+4
+00:00:09.891 --> 00:00:12.075
+and lints it with a one-hour timeout.
+
+5
+00:00:12.075 --> 00:00:14.488
+Eight results, and exit code two.
+
+6
+00:00:14.488 --> 00:00:19.450
+Five are findings: it hard-codes the
+worldwide Graph host, calls back on beta,
+
+7
+00:00:19.450 --> 00:00:22.331
+uses the callback path
+without checking it,
+
+8
+00:00:22.331 --> 00:00:26.813
+sends no callback when the work
+fails, and always reports completed.
+
+9
+00:00:26.813 --> 00:00:31.512
+Two warnings are for run history, and
+one for the implicit retry policy.
+
+10
+00:00:31.512 --> 00:00:35.874
+Step two runs Learn's definition
+for a GCC High tenant.
+
+11
+00:00:35.874 --> 00:00:40.323
+The one POST goes to the worldwide
+Graph, on beta, and the last line
+
+12
+00:00:40.323 --> 00:00:45.275
+is what Lifecycle Workflows records:
+failed, no callback within an hour.
+
+13
+00:00:45.275 --> 00:00:49.500
+So a GCC High leaver's task
+fails at the end of the wait.
+
+14
+00:00:49.500 --> 00:00:53.300
+Run it again for a worldwide
+tenant, and the task is completed.

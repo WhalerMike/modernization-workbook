@@ -1,0 +1,1011 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.121
+Welcome to Module 9, the last
+module of the Attribute-Driven
+
+2
+00:00:04.121 --> 00:00:08.025
+Migration learning path: deploy
+to test, then production.
+
+3
+00:00:08.025 --> 00:00:12.200
+This module serves every gate,
+through Chapter 10's step-to-gate map,
+
+4
+00:00:12.200 --> 00:00:16.300
+and takes Chapter 10 of Building
+the Attribute-Driven Migration.
+
+5
+00:00:16.300 --> 00:00:19.951
+You'll see what the deployment
+runbook adds to the chapters:
+
+6
+00:00:19.951 --> 00:00:23.826
+one settings file per stage, three
+identities, a record of every
+
+7
+00:00:23.826 --> 00:00:27.925
+change with its rollback, and a go
+or no-go record before production.
+
+8
+00:00:27.925 --> 00:00:31.195
+Then you'll dry-run its five
+deploy scripts on your laptop,
+
+9
+00:00:31.195 --> 00:00:32.725
+against the kits' fixtures.
+
+10
+00:00:32.725 --> 00:00:33.925
+One thing first.
+
+11
+00:00:33.925 --> 00:00:37.353
+Chapter 10 is held for
+review, and nobody has run its
+
+12
+00:00:37.353 --> 00:00:41.025
+runbook against a live tenant,
+subscription or forest.
+
+13
+00:00:41.025 --> 00:00:45.300
+The scripts are tested against fixtures
+and their dry-run output is real.
+
+14
+00:00:45.300 --> 00:00:50.320
+Every other result in the chapter is
+an expectation, not an observation.
+
+15
+00:00:54.070 --> 00:00:56.208
+Why does deployment need its own module?
+
+16
+00:00:56.208 --> 00:01:01.808
+Each chapter's Lab 2 changes the smallest
+thing it can, by hand, and backs it out.
+
+17
+00:01:01.808 --> 00:01:04.182
+That proves one kit in isolation.
+
+18
+00:01:04.182 --> 00:01:06.382
+A deployment differs in four ways.
+
+19
+00:01:06.382 --> 00:01:08.886
+It runs all nine kits in a safe order,
+
+20
+00:01:08.886 --> 00:01:12.771
+and reads every value from
+one settings file per stage.
+
+21
+00:01:12.771 --> 00:01:14.860
+It signs in with three identities,
+
+22
+00:01:14.860 --> 00:01:18.145
+each with a certificate, and
+least privilege per step.
+
+23
+00:01:18.145 --> 00:01:20.452
+It records every change as it's made,
+
+24
+00:01:20.452 --> 00:01:24.033
+and writes the rollback from
+that record, newest first.
+
+25
+00:01:24.033 --> 00:01:28.341
+And it doesn't end in the test tenant:
+it ends with a go or no-go record
+
+26
+00:01:28.341 --> 00:01:32.970
+that production's pre-flight check
+verifies, then production in waves.
+
+27
+00:01:32.970 --> 00:01:37.112
+The order is the one this workbook's
+implementation guide sets:
+
+28
+00:01:37.112 --> 00:01:42.052
+prove the attributes first, build groups
+and workflows paused or disabled,
+
+29
+00:01:42.052 --> 00:01:46.780
+target by attribute, cut over by
+wave, then keep the attributes true.
+
+30
+00:01:50.530 --> 00:01:53.341
+Here's what you'll be able to
+do by the end of this module,
+
+31
+00:01:53.341 --> 00:01:55.705
+which takes about fifty
+minutes with the lab.
+
+32
+00:01:55.705 --> 00:01:59.867
+You'll explain the four ways a deployment
+differs from a chapter's Lab 2.
+
+33
+00:01:59.867 --> 00:02:04.330
+You'll describe the settings file, the
+placeholders and the three identities.
+
+34
+00:02:04.330 --> 00:02:08.905
+You'll run the pre-flight check, and say
+which checks it runs dry and which live.
+
+35
+00:02:08.905 --> 00:02:12.530
+You'll record changes and read
+the rollback plan they produce.
+
+36
+00:02:12.530 --> 00:02:15.988
+And you'll explain why a fixture
+smoke test can never promote,
+
+37
+00:02:15.988 --> 00:02:18.755
+and what production's
+pre-flight check verifies.
+
+38
+00:02:18.755 --> 00:02:22.875
+Before you start, do Modules 1
+to 8, or at least their Lab 1s:
+
+39
+00:02:22.875 --> 00:02:25.830
+this module doesn't teach the kits again.
+
+40
+00:02:25.830 --> 00:02:29.311
+Lab 1 needs Python 3.10
+or later with pytest,
+
+41
+00:02:29.311 --> 00:02:33.160
+and a POSIX shell with
+sha two fifty-six sum.
+
+42
+00:02:36.910 --> 00:02:41.123
+Two ideas make the same commands
+run against test and production.
+
+43
+00:02:41.123 --> 00:02:47.023
+First, one settings file per stage: test
+dot json, then production dot json.
+
+44
+00:02:47.023 --> 00:02:50.994
+It holds every value the commands
+need, the cloud, the tenant,
+
+45
+00:02:50.994 --> 00:02:54.884
+the subscription, the change
+record and the kits' settings.
+
+46
+00:02:54.884 --> 00:02:57.497
+The template's values
+are all placeholders.
+
+47
+00:02:57.497 --> 00:03:01.724
+And there are no secrets, by
+construction: the loader refuses a key
+
+48
+00:03:01.724 --> 00:03:06.185
+or a value that looks like a secret,
+and any placeholder left unfilled.
+
+49
+00:03:06.185 --> 00:03:07.973
+Second, the identities.
+
+50
+00:03:07.973 --> 00:03:12.411
+Deploy changes Entra, Intune
+and Azure in the stage steps.
+
+51
+00:03:12.411 --> 00:03:16.647
+Reader takes the baselines, the
+reconciliation and the smoke tests.
+
+52
+00:03:16.647 --> 00:03:21.611
+Provisioning sends the HR batches, with
+one upload permission and nothing else.
+
+53
+00:03:21.611 --> 00:03:23.585
+Each signs in with a certificate.
+
+54
+00:03:23.585 --> 00:03:27.489
+And one named Groups Administrator
+signs in for rule validation,
+
+55
+00:03:27.489 --> 00:03:30.163
+because Microsoft Learn's
+page for the group
+
+56
+00:03:30.163 --> 00:03:34.573
+evaluateDynamicMembership API lists
+no application permission for it.
+
+57
+00:03:34.573 --> 00:03:38.057
+Microsoft Learn's page on signing
+in to the Azure CLI with a
+
+58
+00:03:38.057 --> 00:03:42.122
+service principal recommends
+certificate-based authentication.
+
+59
+00:03:42.122 --> 00:03:47.025
+And splitting the work across three identities
+is this workbook's design guidance:
+
+60
+00:03:47.025 --> 00:03:52.140
+one identity that can do everything is
+one credential that can break everything.
+
+61
+00:03:55.890 --> 00:03:59.731
+The live test stage deploys every
+component to the test tenant,
+
+62
+00:03:59.731 --> 00:04:02.316
+the test subscription and the test forest,
+
+63
+00:04:02.316 --> 00:04:06.378
+in an order where nothing grants
+access before it has been checked.
+
+64
+00:04:06.378 --> 00:04:09.214
+First, baseline evidence, read only.
+
+65
+00:04:09.214 --> 00:04:13.515
+Then the HR middleware, as a
+dry run and then five records.
+
+66
+00:04:13.515 --> 00:04:17.715
+Dynamic rules are created paused,
+validated, then turned on.
+
+67
+00:04:17.715 --> 00:04:22.165
+Lifecycle Workflows are created
+disabled, with one on-demand run.
+
+68
+00:04:22.165 --> 00:04:25.550
+Group Policy goes to a
+test organizational unit,
+
+69
+00:04:25.550 --> 00:04:28.428
+with an Intune dry run
+and a cut-over drill.
+
+70
+00:04:28.428 --> 00:04:32.902
+Machine configuration runs in audit
+first, then apply and monitor.
+
+71
+00:04:32.902 --> 00:04:37.052
+Ansible plans its wave and runs
+in check mode before it connects.
+
+72
+00:04:37.052 --> 00:04:40.139
+The drift pipeline's
+first run is the baseline.
+
+73
+00:04:40.139 --> 00:04:42.493
+And the stage ends with the smoke test,
+
+74
+00:04:42.493 --> 00:04:46.365
+the evidence package, a rollback
+drill and the evidence check.
+
+75
+00:04:46.365 --> 00:04:48.769
+Every change is recorded as it's made:
+
+76
+00:04:48.769 --> 00:04:52.180
+the rollback is only as
+complete as the record.
+
+77
+00:04:55.930 --> 00:04:57.055
+Then the promotion.
+
+78
+00:04:57.055 --> 00:05:00.068
+Production's pre-flight
+check enforces what it can.
+
+79
+00:05:00.068 --> 00:05:04.152
+Every requirement row of the test
+stage needs passing evidence:
+
+80
+00:05:04.152 --> 00:05:05.693
+seventeen of seventeen.
+
+81
+00:05:05.693 --> 00:05:10.192
+The test smoke test must be GO,
+from a live run in the test tenant.
+
+82
+00:05:10.192 --> 00:05:13.769
+Production's settings must
+record that exact report's hash,
+
+83
+00:05:13.769 --> 00:05:15.229
+and the evidence check's.
+
+84
+00:05:15.229 --> 00:05:18.627
+The CISO and identity
+engineering must both approve,
+
+85
+00:05:18.627 --> 00:05:21.193
+which is this workbook's design guidance.
+
+86
+00:05:21.193 --> 00:05:26.679
+And test and production must share no
+tenant, subscription or deploy identity.
+
+87
+00:05:26.679 --> 00:05:29.030
+The rest of the criteria are review.
+
+88
+00:05:29.030 --> 00:05:33.080
+Then production runs the same
+commands with production dot json.
+
+89
+00:05:33.080 --> 00:05:35.330
+The tenant-wide pieces run once.
+
+90
+00:05:35.330 --> 00:05:39.304
+Then each wave, leaver first,
+smoke-tested before the next,
+
+91
+00:05:39.304 --> 00:05:42.855
+with seven days of chained
+drift packages per wave.
+
+92
+00:05:42.855 --> 00:05:44.874
+And production's rollback rule,
+
+93
+00:05:44.874 --> 00:05:49.455
+from this workbook's implementation
+guide, is re-enable, never re-create.
+
+94
+00:05:49.455 --> 00:05:54.360
+Roll back the wave, not the tenant:
+earlier waves that are drift-clean stay.
+
+95
+00:05:58.110 --> 00:05:58.835
+Try it.
+
+96
+00:05:58.835 --> 00:06:03.009
+Lab 1 dry-runs the five deploy
+scripts against the kits' fixtures,
+
+97
+00:06:03.009 --> 00:06:05.923
+in the drift-pipeline
+folder of the examples.
+
+98
+00:06:05.923 --> 00:06:08.360
+Nothing signs in and nothing is called.
+
+99
+00:06:08.360 --> 00:06:10.878
+Step one starts clean, with no out folder,
+
+100
+00:06:10.878 --> 00:06:14.235
+because the evidence records
+are numbered within it.
+
+101
+00:06:14.235 --> 00:06:17.171
+Step two runs the test
+stage's pre-flight check,
+
+102
+00:06:17.171 --> 00:06:20.185
+with the production
+settings as the other file.
+
+103
+00:06:20.185 --> 00:06:24.692
+P F oh one to P F ten pass: the
+settings schema, no secret in the file,
+
+104
+00:06:24.692 --> 00:06:29.978
+no placeholder left, the cloud,
+certificate paths outside the repository,
+
+105
+00:06:29.978 --> 00:06:34.832
+all nine kits present, and test and
+production on different tenants,
+
+106
+00:06:34.832 --> 00:06:37.085
+subscriptions and identities.
+
+107
+00:06:37.085 --> 00:06:39.647
+The test stage needs no promotion record.
+
+108
+00:06:39.647 --> 00:06:45.446
+The live probes, the Azure CLI's cloud,
+tenant, subscription and signed-in identity,
+
+109
+00:06:45.446 --> 00:06:49.947
+the PowerShell modules and the
+certificate files, print as DRY.
+
+110
+00:06:49.947 --> 00:06:53.034
+The last two lines:
+zero failed, a dry run,
+
+111
+00:06:53.034 --> 00:06:57.060
+and the first evidence
+record, preflight pass.
+
+112
+00:07:00.810 --> 00:07:05.988
+Step three records four changes the way
+the stage steps do: the provisioning job,
+
+113
+00:07:05.988 --> 00:07:11.010
+a dynamic group, a Group Policy link the
+stage created, and a policy assignment.
+
+114
+00:07:11.010 --> 00:07:13.924
+Each add records its change
+in the deploy record,
+
+115
+00:07:13.924 --> 00:07:16.473
+and writes an evidence
+record for its step.
+
+116
+00:07:16.473 --> 00:07:17.461
+Then the plan.
+
+117
+00:07:17.461 --> 00:07:22.933
+It lists the four undo steps, newest first:
+remove the policy assignment, disable
+
+118
+00:07:22.933 --> 00:07:28.323
+the Group Policy link, remove the dynamic
+group, and pause the provisioning job.
+
+119
+00:07:28.323 --> 00:07:33.269
+Three are cloud steps and one is Active
+Directory, so it writes a cloud script,
+
+120
+00:07:33.269 --> 00:07:36.959
+an A D script and a manual list,
+and its own evidence record.
+
+121
+00:07:36.959 --> 00:07:39.623
+And notice the last line: nothing was run.
+
+122
+00:07:39.623 --> 00:07:43.322
+You review the scripts, then
+run them in a signed-in session.
+
+123
+00:07:43.322 --> 00:07:47.480
+The rollback is written from the
+record, not from memory on the day.
+
+124
+00:07:51.230 --> 00:07:53.091
+Step four runs the smoke test,
+
+125
+00:07:53.091 --> 00:07:57.743
+on the fixture validation kit run and
+the other kits' fixture provenance.
+
+126
+00:07:57.743 --> 00:08:02.279
+It reads the gates' checks again after
+the change, and answers go or no-go.
+
+127
+00:08:02.279 --> 00:08:05.436
+It checks that the kit run
+matches its own manifest,
+
+128
+00:08:05.436 --> 00:08:08.743
+and it notes fixture mode, so
+the tenant isn't compared.
+
+129
+00:08:08.743 --> 00:08:10.004
+Then the failures.
+
+130
+00:08:10.004 --> 00:08:18.980
+Three checks fail: VK-HR-01,
+VK-DG-01 and VK-CA-01.
+
+131
+00:08:18.980 --> 00:08:22.905
+VK-NPI-03 ended in Error.
+
+132
+00:08:22.905 --> 00:08:27.918
+And the HR dry run has nine rows
+quarantined, against a limit of zero.
+
+133
+00:08:27.918 --> 00:08:30.805
+You'll recognize those
+from Modules 1 and 8.
+
+134
+00:08:30.805 --> 00:08:33.667
+Every change has a
+rollback, so that passes.
+
+135
+00:08:33.667 --> 00:08:39.092
+The answer is NO-GO, five failed, in
+fixture mode, and the exit code is two.
+
+136
+00:08:39.092 --> 00:08:41.618
+The fixtures carry findings on purpose.
+
+137
+00:08:41.618 --> 00:08:44.161
+The report's hash changes with each run,
+
+138
+00:08:44.161 --> 00:08:48.410
+because the report records when
+it ran, so it isn't shown here.
+
+139
+00:08:52.160 --> 00:08:56.035
+Step five checks the stage's evidence
+against the requirement rows.
+
+140
+00:08:56.035 --> 00:08:59.858
+Only two of seventeen are
+evidenced, both pre-flight rows,
+
+141
+00:08:59.858 --> 00:09:02.298
+so the check fails with exit code two.
+
+142
+00:09:02.298 --> 00:09:03.736
+Why are the others missing?
+
+143
+00:09:03.736 --> 00:09:05.816
+A rollback add entry is recorded:
+
+144
+00:09:05.816 --> 00:09:09.748
+it proves the change was written
+down, not that the step worked.
+
+145
+00:09:09.748 --> 00:09:12.584
+And the smoke record is
+a failing fixture run.
+
+146
+00:09:12.584 --> 00:09:17.260
+Then sha two fifty-six sum confirms
+every evidence record reads OK.
+
+147
+00:09:17.260 --> 00:09:19.947
+Step six asks production's
+pre-flight check
+
+148
+00:09:19.947 --> 00:09:22.410
+to promote on that report and that check.
+
+149
+00:09:22.410 --> 00:09:24.247
+P F oh nine passes.
+
+150
+00:09:24.247 --> 00:09:28.369
+P F ten fails: the hashes aren't
+the ones in the promotion record,
+
+151
+00:09:28.369 --> 00:09:31.521
+the smoke report failed
+and ran in fixture mode,
+
+152
+00:09:31.521 --> 00:09:35.885
+and promotion needs a live test
+run; the evidence check failed too.
+
+153
+00:09:35.885 --> 00:09:40.735
+A fixture report, or a stage with
+unevidenced rows, can never promote.
+
+154
+00:09:40.735 --> 00:09:45.760
+Step seven runs the tests, forty-six
+pass, and step eight cleans up.
+
+155
+00:09:49.510 --> 00:09:52.198
+Lab 2 is the live test stage itself.
+
+156
+00:09:52.198 --> 00:09:53.964
+You need an Entra test tenant,
+
+157
+00:09:53.964 --> 00:09:57.499
+an Azure test subscription
+with Arc-enabled test servers,
+
+158
+00:09:57.499 --> 00:10:01.623
+and a test Active Directory forest,
+never production, plus the three
+
+159
+00:10:01.623 --> 00:10:06.484
+identities and the objects the chapter
+lists as made before the runbook starts.
+
+160
+00:10:06.484 --> 00:10:10.657
+Load the test stage's settings,
+sign in as the deploy identity,
+
+161
+00:10:10.657 --> 00:10:13.660
+and run the pre-flight
+check dry and then live.
+
+162
+00:10:13.660 --> 00:10:19.133
+Then follow the twelve steps of Stage 1:
+the baseline evidence, the HR middleware,
+
+163
+00:10:19.133 --> 00:10:24.274
+dynamic rules, Lifecycle Workflows
+created disabled, Group Policy as code,
+
+164
+00:10:24.274 --> 00:10:29.332
+machine configuration in audit, Ansible
+in check mode, the drift pipeline,
+
+165
+00:10:29.332 --> 00:10:34.722
+the smoke test, the evidence package, the
+rollback drill and the evidence check.
+
+166
+00:10:34.722 --> 00:10:39.923
+To back it out, step eleven runs the rollback
+written from the record, newest first.
+
+167
+00:10:39.923 --> 00:10:42.320
+Nobody has run Lab 2 yet.
+
+168
+00:10:46.070 --> 00:10:47.457
+The federal requirement.
+
+169
+00:10:47.457 --> 00:10:54.183
+The controls are from NIST SP 800-53,
+Revision 5, at the Moderate baseline.
+
+170
+00:10:54.183 --> 00:10:57.146
+Every runbook step has
+a requirements table,
+
+171
+00:10:57.146 --> 00:11:02.032
+and every step leaves an evidence record
+that names its controls and KSIs.
+
+172
+00:11:02.032 --> 00:11:06.995
+The pre-flight check meets C M three,
+enhancement two: the settings, kits,
+
+173
+00:11:06.995 --> 00:11:10.674
+identities and cloud are
+checked before any change,
+
+174
+00:11:10.674 --> 00:11:14.182
+and pre-flight dot json is
+the evidence, dry and live.
+
+175
+00:11:14.182 --> 00:11:18.973
+Its rows P F oh two and P F oh five
+show no secret in the settings file and
+
+176
+00:11:18.973 --> 00:11:24.771
+three certificate identities, for
+authenticator management and least privilege.
+
+177
+00:11:24.771 --> 00:11:29.352
+The smoke test reads the gates' checks
+again after the change and answers
+
+178
+00:11:29.352 --> 00:11:33.858
+go or no-go, for the verification of
+controls and continuous monitoring.
+
+179
+00:11:33.858 --> 00:11:39.182
+One evidence package with a hash per file,
+verified, protects the audit information.
+
+180
+00:11:39.182 --> 00:11:43.108
+And every change is recorded
+with its rollback, newest first.
+
+181
+00:11:43.108 --> 00:11:46.988
+The KSI column is from FedRAMP's
+Key Security Indicators,
+
+182
+00:11:46.988 --> 00:11:50.455
+which are indicators for
+cloud service providers;
+
+183
+00:11:50.455 --> 00:11:56.020
+Chapter 10 uses only KSI IDs this workbook
+already maps to the same controls.
+
+184
+00:11:59.770 --> 00:12:01.745
+Check yourself with two questions.
+
+185
+00:12:01.745 --> 00:12:05.795
+First: the smoke test runs on
+fixtures with the fixture option.
+
+186
+00:12:05.795 --> 00:12:07.882
+Can its report promote to production?
+
+187
+00:12:07.882 --> 00:12:09.719
+The answer is b: no.
+
+188
+00:12:09.719 --> 00:12:13.380
+Production's pre-flight check
+needs a live, passing test run,
+
+189
+00:12:13.380 --> 00:12:16.658
+and a fixture record proves
+nothing about the stage.
+
+190
+00:12:16.658 --> 00:12:19.558
+You saw P F ten refuse it in step six.
+
+191
+00:12:19.558 --> 00:12:23.357
+Second: rollback add writes an
+evidence record for a step.
+
+192
+00:12:23.357 --> 00:12:26.094
+Why does the evidence check
+still mark that row missing?
+
+193
+00:12:26.094 --> 00:12:28.511
+The answer is a: the record is recorded,
+
+194
+00:12:28.511 --> 00:12:32.720
+which proves the change was written
+down, not that the step worked.
+
+195
+00:12:32.720 --> 00:12:36.620
+That's why only two of seventeen
+rows were evidenced in step five.
+
+196
+00:12:36.620 --> 00:12:40.888
+The module page has two more questions,
+on the three identities and on what
+
+197
+00:12:40.888 --> 00:12:46.000
+production's pre-flight check compares,
+each linked to the section that answers it.
+
+198
+00:12:49.750 --> 00:12:50.575
+To sum up.
+
+199
+00:12:50.575 --> 00:12:53.873
+You dry-ran the runbook's own
+scripts: a pre-flight check,
+
+200
+00:12:53.873 --> 00:12:58.563
+changes recorded with their rollback, a
+smoke test that says no-go on fixtures,
+
+201
+00:12:58.563 --> 00:13:02.521
+an evidence check against the
+requirement rows, and a production
+
+202
+00:13:02.521 --> 00:13:06.625
+pre-flight that refuses to promote
+without a live, passing test stage.
+
+203
+00:13:06.625 --> 00:13:11.446
+The evidence an ISSO keeps, for each
+stage: the settings file and its hash,
+
+204
+00:13:11.446 --> 00:13:15.778
+the pre-flight results, the
+validation kit runs before and after,
+
+205
+00:13:15.778 --> 00:13:21.089
+each kit's outputs, the smoke report, the
+evidence package and its verify result,
+
+206
+00:13:21.089 --> 00:13:24.031
+the deploy record and
+the rollback scripts,
+
+207
+00:13:24.031 --> 00:13:27.300
+and the evidence folder
+with its evidence check.
+
+208
+00:13:27.300 --> 00:13:30.001
+For production, add the
+promotion record and
+
+209
+00:13:30.001 --> 00:13:32.775
+seven days of chained
+drift packages per wave.
+
+210
+00:13:32.775 --> 00:13:36.438
+Before you run a stage, work
+through the Chapter 10 checklist.
+
+211
+00:13:36.438 --> 00:13:38.587
+And that's the end of the learning path.
+
+212
+00:13:38.587 --> 00:13:43.440
+The path's index and the Labs page
+list every module and every lab.

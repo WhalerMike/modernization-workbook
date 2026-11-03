@@ -1,0 +1,66 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.861
+Here's what you'll be able to
+do by the end of this module,
+
+2
+00:00:02.861 --> 00:00:05.225
+which takes about fifty
+minutes with the lab.
+
+3
+00:00:05.225 --> 00:00:08.733
+You'll describe where custom
+task extensions sit in a leaver,
+
+4
+00:00:08.733 --> 00:00:13.012
+and the three rules of this workbook's
+guidance that the kit builds in code.
+
+5
+00:00:13.012 --> 00:00:16.525
+You'll explain what Learn's Logic
+App definition leaves to you.
+
+6
+00:00:16.525 --> 00:00:20.218
+You'll run a definition for a
+cloud, through transient failures
+
+7
+00:00:20.218 --> 00:00:24.125
+and repeat deliveries, and read
+what Lifecycle Workflows records.
+
+8
+00:00:24.125 --> 00:00:27.200
+You'll build the deployment
+pieces from the registry,
+
+9
+00:00:27.200 --> 00:00:30.275
+and explain why an Azure
+Government build is refused.
+
+10
+00:00:30.275 --> 00:00:33.188
+And you'll check a workflow
+read-back for the leaver order.
+
+11
+00:00:33.188 --> 00:00:38.016
+Before you start, finish Module 1:
+provisioning creates and updates accounts,
+
+12
+00:00:38.016 --> 00:00:41.788
+and Lifecycle Workflows act on
+accounts that already exist.
+
+13
+00:00:41.788 --> 00:00:47.380
+Lab 1 needs Python 3.10 or later
+and a POSIX shell, and no tenant.

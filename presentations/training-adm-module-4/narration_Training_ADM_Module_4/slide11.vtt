@@ -1,0 +1,74 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.937
+Step five runs the sync.
+
+2
+00:00:01.937 --> 00:00:06.798
+The dry run says create for the error
+reporting policy, which isn't in the tenant,
+
+3
+00:00:06.798 --> 00:00:10.313
+and no change for sign-in and
+power, which already matches.
+
+4
+00:00:10.313 --> 00:00:13.774
+Then the apply says created,
+and both exit zero.
+
+5
+00:00:13.774 --> 00:00:17.241
+The sync record shows the
+scope the apply asked for,
+
+6
+00:00:17.241 --> 00:00:19.387
+read-write, and the I D it created.
+
+7
+00:00:19.387 --> 00:00:23.530
+Ask for a cloud name the
+script doesn't know, U S gov,
+
+8
+00:00:23.530 --> 00:00:28.501
+and it exits one: the cloud must be
+G C C, global, G C C High or D O D.
+
+9
+00:00:28.501 --> 00:00:31.712
+Step six breaks something on purpose.
+
+10
+00:00:31.712 --> 00:00:34.909
+Change the hibernate
+value in one library file,
+
+11
+00:00:34.909 --> 00:00:38.925
+and the dry run exits two, with
+a drift that names the setting.
+
+12
+00:00:38.925 --> 00:00:41.468
+Run it with apply, and it still exits two,
+
+13
+00:00:41.468 --> 00:00:45.363
+and nothing is created, not even
+the error reporting policy.
+
+14
+00:00:45.363 --> 00:00:46.699
+Put the value back.
+
+15
+00:00:46.699 --> 00:00:49.975
+Step seven runs the tests: forty-six pass.
+
+16
+00:00:49.975 --> 00:00:52.180
+Step eight deletes the out folder.

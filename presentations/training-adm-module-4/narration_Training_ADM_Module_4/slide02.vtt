@@ -1,0 +1,55 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.362
+Why does this need code?
+
+2
+00:00:01.362 --> 00:00:05.099
+The organizational unit (OU)
+tree scoped Group Policy,
+
+3
+00:00:05.099 --> 00:00:08.326
+and Group Policy
+inheritance retires with it.
+
+4
+00:00:08.326 --> 00:00:12.075
+So every GPO setting has to
+land somewhere on purpose.
+
+5
+00:00:12.075 --> 00:00:18.153
+Gate 0 splits every GPO by track,
+and its Validate step runs VK-INT-07,
+
+6
+00:00:18.153 --> 00:00:25.225
+to show which GPOs Group Policy analytics
+has imported and how ready they are.
+
+7
+00:00:25.225 --> 00:00:28.763
+Gate 5 moves each setting
+to exactly one owner.
+
+8
+00:00:28.763 --> 00:00:33.362
+And Gate 8 cuts over by disabling
+GPO links, never deleting them.
+
+9
+00:00:33.362 --> 00:00:38.137
+Moving Group Policy to Intune
+changes the baseline of every device.
+
+10
+00:00:38.137 --> 00:00:42.036
+This module is the code between
+those gates: a plan per setting,
+
+11
+00:00:42.036 --> 00:00:46.920
+a library of reviewed files, and a sync
+that creates only what a dry run showed.
