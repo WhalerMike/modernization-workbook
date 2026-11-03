@@ -29,7 +29,7 @@ The kit's Build 2, the loop's step 5 and Book 13's fourth clause: a finding clos
 ## Narrated tour
 {{< fmw-video DW_TTM_05_Reread_Rule_Narrated >}}
 
-[Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/DW_TTM_05_Reread_Rule.pptx) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/DW_TTM_05_Reread_Rule_Narrated.pptx) (about 9 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-ttm-05-reread-rule/DW_TTM_05_Reread_Rule_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-ttm-05-reread-rule/DW_TTM_05_Reread_Rule_Narrated.vtt). Recorded on November 1, 2026 from the approved chapter.
+[Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.2/DW_TTM_05_Reread_Rule.pptx) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.2/DW_TTM_05_Reread_Rule_Narrated.pptx) (about 9 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-ttm-05-reread-rule/DW_TTM_05_Reread_Rule_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-ttm-05-reread-rule/DW_TTM_05_Reread_Rule_Narrated.vtt). Recorded on November 1, 2026 from the approved chapter.
 :::
 
 <!-- tour:end -->

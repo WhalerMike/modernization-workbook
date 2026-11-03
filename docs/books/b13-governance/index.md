@@ -75,10 +75,11 @@ This is Book 13 of the [Federal Modernization Workbook](../index.md). The princi
 
 ## Version and revision history {#version-history}
 
-**Version 1.2**, in [edition 2026.11.1](../../about/archive.md#edition-2026-11-1) (November 1, 2026). Every edition is kept on the [Archive](../../about/archive.md) page; every change between editions is in the [commit history](https://github.com/WhalerMike/modernization-workbook/commits/main/docs/books/b13-governance).
+**Version 1.3**, in [edition 2026.11.2](../../about/archive.md#edition-2026-11-2) (November 2, 2026). Every edition is kept on the [Archive](../../about/archive.md) page; every change between editions is in the [commit history](https://github.com/WhalerMike/modernization-workbook/commits/main/docs/books/b13-governance).
 
 | Version | Edition | Date | Changes |
 |---|---|---|---|
+| 1.3 | [2026.11.2](../../about/archive.md#edition-2026-11-2) | 2026-11-02 | Book 13, Chapter 13: records, evidence and retention ([#316](https://github.com/WhalerMike/modernization-workbook/pull/316)); Privacy for workforce identity: Book 03 Chapter 14, and privacy sections in six books ([#317](https://github.com/WhalerMike/modernization-workbook/pull/317)) |
 | 1.2 | [2026.11.1](../../about/archive.md#edition-2026-11-1) | 2026-11-01 | Edition 2026.11: record the edition, and publish the four gate-level decks and videos ([#282](https://github.com/WhalerMike/modernization-workbook/pull/282)) |
 | 1.1 | [2026.11](../../about/archive.md#edition-2026-11) | 2026-11-01 | Move the decks and narration audio out of git, onto edition 2026.10 ([#260](https://github.com/WhalerMike/modernization-workbook/pull/260)); Retire Research: move each page to a home by type (guides, training, reference, evaluations, explainers) ([#269](https://github.com/WhalerMike/modernization-workbook/pull/269)) |
 | 1.0 | [2026.10](../../about/archive.md#edition-2026-10) | 2026-10-31 | First edition (17 merged changes since the book began) |

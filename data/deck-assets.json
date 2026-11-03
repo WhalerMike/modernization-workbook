@@ -1,5 +1,5 @@
 {
- "edition": "edition-2026.11.1",
+ "edition": "edition-2026.11.2",
  "files": [
   {
    "path": "presentations/attribute-driven-migration-deeper-dive-part-1/Attribute_Driven_Migration_Deeper_Dive_Part_1.pptx",
@@ -1351,6 +1351,139 @@
    "members": 18
   },
   {
+   "path": "presentations/dw-hr-01-writer-register/DW_HR_01_Writer_Register.pptx",
+   "asset": "DW_HR_01_Writer_Register.pptx",
+   "size": 238549,
+   "sha256": "2ca54af82f93b7ca151570ed676fc048ee682a914f758b8cae42e63d01159780"
+  },
+  {
+   "path": "presentations/dw-hr-01-writer-register/DW_HR_01_Writer_Register_Narrated.pptx",
+   "asset": "DW_HR_01_Writer_Register_Narrated.pptx",
+   "size": 3794670,
+   "sha256": "8be6ae836dd5614de13395f98de893a6335461c4363d9d96388f66046b5954bc"
+  },
+  {
+   "path": "presentations/dw-hr-01-writer-register/narration_DW_HR_01_Writer_Register",
+   "asset": "DW_HR_01_Writer_Register_narration_audio.zip",
+   "size": 3522982,
+   "sha256": "c70ce96410f00d47d701e72b642dc53cb268a18da407a44a4306c24f3090e267",
+   "members": 18
+  },
+  {
+   "path": "presentations/dw-hr-02-contractor-end-dates/DW_HR_02_Contractor_End_Dates.pptx",
+   "asset": "DW_HR_02_Contractor_End_Dates.pptx",
+   "size": 245923,
+   "sha256": "58973b0307efa186021139473c1dfd26d1fbb4b6b102680dc23e56481327488b"
+  },
+  {
+   "path": "presentations/dw-hr-02-contractor-end-dates/DW_HR_02_Contractor_End_Dates_Narrated.pptx",
+   "asset": "DW_HR_02_Contractor_End_Dates_Narrated.pptx",
+   "size": 3951617,
+   "sha256": "165a2184ae1a543b00b778ce48754d66a1b39c906d4f9ffc35f67ba83c8272e5"
+  },
+  {
+   "path": "presentations/dw-hr-02-contractor-end-dates/narration_DW_HR_02_Contractor_End_Dates",
+   "asset": "DW_HR_02_Contractor_End_Dates_narration_audio.zip",
+   "size": 3671804,
+   "sha256": "764752454130a180148c134a6b731ce54cb68dc4fbc18cb6f248b6dc5677d45f",
+   "members": 19
+  },
+  {
+   "path": "presentations/dw-hr-03-joiner-workflows/DW_HR_03_Joiner_Workflows.pptx",
+   "asset": "DW_HR_03_Joiner_Workflows.pptx",
+   "size": 237600,
+   "sha256": "2c3fb7cdf88fc8fb994542eb3f265337ee9ec503908d14c09a32bdd6724e9956"
+  },
+  {
+   "path": "presentations/dw-hr-03-joiner-workflows/DW_HR_03_Joiner_Workflows_Narrated.pptx",
+   "asset": "DW_HR_03_Joiner_Workflows_Narrated.pptx",
+   "size": 3738556,
+   "sha256": "b512c852def97a8e861fe8d91ac1c72b78df5ad5d19b12710a8f7738d8318ecb"
+  },
+  {
+   "path": "presentations/dw-hr-03-joiner-workflows/narration_DW_HR_03_Joiner_Workflows",
+   "asset": "DW_HR_03_Joiner_Workflows_narration_audio.zip",
+   "size": 3467722,
+   "sha256": "b4704c8a98fe1c5c69afd838f86ddf3425f2baf03e7024f24fbe838db68be4c5",
+   "members": 18
+  },
+  {
+   "path": "presentations/dw-hr-04-access-from-attributes/DW_HR_04_Access_From_Attributes.pptx",
+   "asset": "DW_HR_04_Access_From_Attributes.pptx",
+   "size": 241212,
+   "sha256": "fbc8f96c54a0ef06bd7fc9560f4c334b1ed65cae50e4a053c6bcd33421e6f286"
+  },
+  {
+   "path": "presentations/dw-hr-04-access-from-attributes/DW_HR_04_Access_From_Attributes_Narrated.pptx",
+   "asset": "DW_HR_04_Access_From_Attributes_Narrated.pptx",
+   "size": 3855411,
+   "sha256": "ed6b0ba86a79b6cbad846d6a3c4eb620a9cf8f07c44a663aec4003fc8f1e8fbb"
+  },
+  {
+   "path": "presentations/dw-hr-04-access-from-attributes/narration_DW_HR_04_Access_From_Attributes",
+   "asset": "DW_HR_04_Access_From_Attributes_narration_audio.zip",
+   "size": 3588610,
+   "sha256": "846710bd72e0e500b553060af0c7cf0c8d20a3a34514abb7ff92bbbc311974ad",
+   "members": 18
+  },
+  {
+   "path": "presentations/dw-hr-05-cba-checks/DW_HR_05_CBA_Checks.pptx",
+   "asset": "DW_HR_05_CBA_Checks.pptx",
+   "size": 242233,
+   "sha256": "e0b4ef9f075ff557f7970ef97d359c65b5d98f1550574a25df519f190d49245b"
+  },
+  {
+   "path": "presentations/dw-hr-05-cba-checks/DW_HR_05_CBA_Checks_Narrated.pptx",
+   "asset": "DW_HR_05_CBA_Checks_Narrated.pptx",
+   "size": 3914330,
+   "sha256": "2e396dbf6c57df6a038c270b8bfd4865ed14e7574c961cb611949d4cb99f9389"
+  },
+  {
+   "path": "presentations/dw-hr-05-cba-checks/narration_DW_HR_05_CBA_Checks",
+   "asset": "DW_HR_05_CBA_Checks_narration_audio.zip",
+   "size": 3647794,
+   "sha256": "f720843d69d5e1d6bb8a966ad1141d691db5cf8ea645c0a87fe03fc33a424e68",
+   "members": 18
+  },
+  {
+   "path": "presentations/dw-hr-06-separation-timing/DW_HR_06_Separation_Timing.pptx",
+   "asset": "DW_HR_06_Separation_Timing.pptx",
+   "size": 251081,
+   "sha256": "c5d6d9e230b8a86966680ef0ed043319de1dbbfed43573fece2360395d26ac3a"
+  },
+  {
+   "path": "presentations/dw-hr-06-separation-timing/DW_HR_06_Separation_Timing_Narrated.pptx",
+   "asset": "DW_HR_06_Separation_Timing_Narrated.pptx",
+   "size": 3860265,
+   "sha256": "289ef3bdb29f862eca493b41856ae5a48524a08391632be61cdbe3c9a08d3ab2"
+  },
+  {
+   "path": "presentations/dw-hr-06-separation-timing/narration_DW_HR_06_Separation_Timing",
+   "asset": "DW_HR_06_Separation_Timing_narration_audio.zip",
+   "size": 3588458,
+   "sha256": "1164b7e3f93080ebe2b780855569e9bea6de0ab7e46814589ace5b45780875bc",
+   "members": 19
+  },
+  {
+   "path": "presentations/dw-hr-07-drift-metrics-evidence/DW_HR_07_Drift_Metrics_Evidence.pptx",
+   "asset": "DW_HR_07_Drift_Metrics_Evidence.pptx",
+   "size": 238738,
+   "sha256": "63175ef74d12ca338426f8a671dacaa966c7ce425cee5be6227aa1f319cdf13c"
+  },
+  {
+   "path": "presentations/dw-hr-07-drift-metrics-evidence/DW_HR_07_Drift_Metrics_Evidence_Narrated.pptx",
+   "asset": "DW_HR_07_Drift_Metrics_Evidence_Narrated.pptx",
+   "size": 3933020,
+   "sha256": "3bd64a4abe44f50ba47e9907ea7227384dbc5c7eddeac4e263c22c9b86a7e543"
+  },
+  {
+   "path": "presentations/dw-hr-07-drift-metrics-evidence/narration_DW_HR_07_Drift_Metrics_Evidence",
+   "asset": "DW_HR_07_Drift_Metrics_Evidence_narration_audio.zip",
+   "size": 3661474,
+   "sha256": "31805f169cf09c4c45644eac161ac209fe6286cb63adeff05e9fffdda97cde57",
+   "members": 18
+  },
+  {
    "path": "presentations/dw-npi-01-inventory-as-code/DW_NPI_01_Inventory_as_Code.pptx",
    "asset": "DW_NPI_01_Inventory_as_Code.pptx",
    "size": 243608,
@@ -1978,6 +2111,44 @@
    "members": 9
   },
   {
+   "path": "presentations/non-person-identity-implementation-part-1/Non_Person_Identity_Implementation_Part_1.pptx",
+   "asset": "Non_Person_Identity_Implementation_Part_1.pptx",
+   "size": 221034,
+   "sha256": "e9d8321a015db1621147ab273c1fa2f1b1190e165a2974c8e18bc29d6b3a207f"
+  },
+  {
+   "path": "presentations/non-person-identity-implementation-part-1/Non_Person_Identity_Implementation_Part_1_Narrated.pptx",
+   "asset": "Non_Person_Identity_Implementation_Part_1_Narrated.pptx",
+   "size": 5823397,
+   "sha256": "25a2cac81dfe8170c052109cc2b57ff806fd7d9bd4404f6a92ff013c6d07ddef"
+  },
+  {
+   "path": "presentations/non-person-identity-implementation-part-1/narration_Non_Person_Identity_Implementation_Part_1",
+   "asset": "Non_Person_Identity_Implementation_Part_1_narration_audio.zip",
+   "size": 5570582,
+   "sha256": "8e76a6246789edeb12ac75196793b96a4fae8b4f692ec801be657d4c13d03615",
+   "members": 16
+  },
+  {
+   "path": "presentations/non-person-identity-implementation-part-2/Non_Person_Identity_Implementation_Part_2.pptx",
+   "asset": "Non_Person_Identity_Implementation_Part_2.pptx",
+   "size": 222823,
+   "sha256": "2595fc0a9c3370b5a0b8d26bbb2a32b0b6b3a6503fb052b89144c592c8e9c726"
+  },
+  {
+   "path": "presentations/non-person-identity-implementation-part-2/Non_Person_Identity_Implementation_Part_2_Narrated.pptx",
+   "asset": "Non_Person_Identity_Implementation_Part_2_Narrated.pptx",
+   "size": 5587541,
+   "sha256": "ea44f48af3a3e6bbaac4408fee877b643403f48f4522ab921f23dc261d535db7"
+  },
+  {
+   "path": "presentations/non-person-identity-implementation-part-2/narration_Non_Person_Identity_Implementation_Part_2",
+   "asset": "Non_Person_Identity_Implementation_Part_2_narration_audio.zip",
+   "size": 5333126,
+   "sha256": "1c4cca597987dd31330747a8e3f5577ac861b4c5ef47763c21b093f4da1f2de1",
+   "members": 16
+  },
+  {
    "path": "presentations/research-cisco-sdwan/Research_Cisco_SDWAN.pptx",
    "asset": "Research_Cisco_SDWAN.pptx",
    "size": 976853,
@@ -2282,6 +2453,139 @@
    "members": 10
   },
   {
+   "path": "presentations/training-hr-module-1/Training_HR_Module_1.pptx",
+   "asset": "Training_HR_Module_1.pptx",
+   "size": 216063,
+   "sha256": "507af9e01b94e7e9f9000d5d5bd6ef9d5e10e286cb10bea662cf187c13f86b26"
+  },
+  {
+   "path": "presentations/training-hr-module-1/Training_HR_Module_1_Narrated.pptx",
+   "asset": "Training_HR_Module_1_Narrated.pptx",
+   "size": 4570287,
+   "sha256": "9c665ed23aa8bc41c1dd4ecc364ea027b5fdd49c02936f0e92d58c09f6931ceb"
+  },
+  {
+   "path": "presentations/training-hr-module-1/narration_Training_HR_Module_1",
+   "asset": "Training_HR_Module_1_narration_audio.zip",
+   "size": 4328038,
+   "sha256": "41005bee495d3c72bfad3078e6f17117c194a149d92942b27e8da8a4903f5675",
+   "members": 15
+  },
+  {
+   "path": "presentations/training-hr-module-2/Training_HR_Module_2.pptx",
+   "asset": "Training_HR_Module_2.pptx",
+   "size": 210800,
+   "sha256": "fe3afd57451f54213d29502c57c200d868e23a4b6e2d55882c0be2a1c0fa6ae0"
+  },
+  {
+   "path": "presentations/training-hr-module-2/Training_HR_Module_2_Narrated.pptx",
+   "asset": "Training_HR_Module_2_Narrated.pptx",
+   "size": 4660525,
+   "sha256": "bc2c3050b88ff9d0aca8ce802caf86c72b697aef6b1a1851f93ff7f88b4924b6"
+  },
+  {
+   "path": "presentations/training-hr-module-2/narration_Training_HR_Module_2",
+   "asset": "Training_HR_Module_2_narration_audio.zip",
+   "size": 4427974,
+   "sha256": "8288ecbc3a77149978e06af19ee48a79cf543f1aff85dc9164a935ce73273f2e",
+   "members": 15
+  },
+  {
+   "path": "presentations/training-hr-module-3/Training_HR_Module_3.pptx",
+   "asset": "Training_HR_Module_3.pptx",
+   "size": 203653,
+   "sha256": "c418b84598628ebafc3d987d54af079d28e41bbd3edc73128d628ae7a4f1a1bc"
+  },
+  {
+   "path": "presentations/training-hr-module-3/Training_HR_Module_3_Narrated.pptx",
+   "asset": "Training_HR_Module_3_Narrated.pptx",
+   "size": 4483430,
+   "sha256": "e6ca5f322ac2bc80c0f377cb81651f6f7a167de045fcef1d0833d4a368287f17"
+  },
+  {
+   "path": "presentations/training-hr-module-3/narration_Training_HR_Module_3",
+   "asset": "Training_HR_Module_3_narration_audio.zip",
+   "size": 4248550,
+   "sha256": "fdb1223766c4f9cb6981f259c31632c69fbecdfcaf7e4a23c221baad77b33e10",
+   "members": 15
+  },
+  {
+   "path": "presentations/training-hr-module-4/Training_HR_Module_4.pptx",
+   "asset": "Training_HR_Module_4.pptx",
+   "size": 218685,
+   "sha256": "99a951f16961e1cb378da3c632e4bb236c10fed7d17cc80c17b1eee095b944c5"
+  },
+  {
+   "path": "presentations/training-hr-module-4/Training_HR_Module_4_Narrated.pptx",
+   "asset": "Training_HR_Module_4_Narrated.pptx",
+   "size": 4612808,
+   "sha256": "bd53f63d8fab9b9454132f61f7c39b484eaa945a41cd53c17efc5a4f64b3c8ae"
+  },
+  {
+   "path": "presentations/training-hr-module-4/narration_Training_HR_Module_4",
+   "asset": "Training_HR_Module_4_narration_audio.zip",
+   "size": 4364182,
+   "sha256": "13e8a248a53a46d99210f8e86ffb10c9ec2810e0520122a86822ad714ac25f5e",
+   "members": 15
+  },
+  {
+   "path": "presentations/training-hr-module-5/Training_HR_Module_5.pptx",
+   "asset": "Training_HR_Module_5.pptx",
+   "size": 211306,
+   "sha256": "a43157e08d101c89b93fe9bc0259ff8b853b00bcdbb11e9e4a2712a6fa5ccf2e"
+  },
+  {
+   "path": "presentations/training-hr-module-5/Training_HR_Module_5_Narrated.pptx",
+   "asset": "Training_HR_Module_5_Narrated.pptx",
+   "size": 4513984,
+   "sha256": "0d2babc33efdd6d7ec1c9eb093e94160a1e3ea310661519cc3bb85202dfcef85"
+  },
+  {
+   "path": "presentations/training-hr-module-5/narration_Training_HR_Module_5",
+   "asset": "Training_HR_Module_5_narration_audio.zip",
+   "size": 4271878,
+   "sha256": "787ec7550aebdb717c0475273025a78e3a79e1047b88b8c3521d4d1dc3b5a436",
+   "members": 15
+  },
+  {
+   "path": "presentations/training-hr-module-6/Training_HR_Module_6.pptx",
+   "asset": "Training_HR_Module_6.pptx",
+   "size": 215733,
+   "sha256": "3457dcb45bd71e7c5a26464af7704eeab8ffd54dfb64465f1b4e2b3daaeedb92"
+  },
+  {
+   "path": "presentations/training-hr-module-6/Training_HR_Module_6_Narrated.pptx",
+   "asset": "Training_HR_Module_6_Narrated.pptx",
+   "size": 4535354,
+   "sha256": "ab1ddea0763f15848052b0de591f8676b3876bf4a657e5f817de8de519d6d3ac"
+  },
+  {
+   "path": "presentations/training-hr-module-6/narration_Training_HR_Module_6",
+   "asset": "Training_HR_Module_6_narration_audio.zip",
+   "size": 4284982,
+   "sha256": "bce163661e8bf711d80e80de662850b8593e2120661f30c8429689ac5765bdac",
+   "members": 15
+  },
+  {
+   "path": "presentations/training-hr-module-7/Training_HR_Module_7.pptx",
+   "asset": "Training_HR_Module_7.pptx",
+   "size": 225429,
+   "sha256": "e91c80f1a939f02a6748d0d895643a5b33d35069e612962417ec8d97487b5651"
+  },
+  {
+   "path": "presentations/training-hr-module-7/Training_HR_Module_7_Narrated.pptx",
+   "asset": "Training_HR_Module_7_Narrated.pptx",
+   "size": 4840102,
+   "sha256": "f8b80384ae66a8c4e00d727af7092afc2e432e363f4353f020a0941893ae368f"
+  },
+  {
+   "path": "presentations/training-hr-module-7/narration_Training_HR_Module_7",
+   "asset": "Training_HR_Module_7_narration_audio.zip",
+   "size": 4585958,
+   "sha256": "847e5c715eabe0580cc8994fe6581d87fe29d889a1089009a881f36a23dd505b",
+   "members": 16
+  },
+  {
    "path": "presentations/training-ms-automation-module-1/Training_MS_Automation_Module_1.pptx",
    "asset": "Training_MS_Automation_Module_1.pptx",
    "size": 229547,
@@ -2336,6 +2640,139 @@
    "asset": "Training_MS_Automation_Module_3_narration_audio.zip",
    "size": 4683798,
    "sha256": "494112c9f83ba3c1763ab0992ca05ec0bdb709d2895cc4ffa85955fe437aaef9",
+   "members": 16
+  },
+  {
+   "path": "presentations/training-ttm-module-1/Training_TTM_Module_1.pptx",
+   "asset": "Training_TTM_Module_1.pptx",
+   "size": 222289,
+   "sha256": "28d240efab5663ff83cdc0955827190c4b92662e336e337343dabf888c766898"
+  },
+  {
+   "path": "presentations/training-ttm-module-1/Training_TTM_Module_1_Narrated.pptx",
+   "asset": "Training_TTM_Module_1_Narrated.pptx",
+   "size": 4757912,
+   "sha256": "add8702d2f4856209c1657d7fd6aa0d6091d90df5206f70fd8875e82a336ea67"
+  },
+  {
+   "path": "presentations/training-ttm-module-1/narration_Training_TTM_Module_1",
+   "asset": "Training_TTM_Module_1_narration_audio.zip",
+   "size": 4506646,
+   "sha256": "10a369505472dc31cbc68ed6fb4dbc712e08fc6a070803eb3e991414cbb52d0a",
+   "members": 16
+  },
+  {
+   "path": "presentations/training-ttm-module-2/Training_TTM_Module_2.pptx",
+   "asset": "Training_TTM_Module_2.pptx",
+   "size": 223340,
+   "sha256": "313117c4da3cd662d4efd151b356343c1329880bd855ccdf9dd0ede8e0f1d9e2"
+  },
+  {
+   "path": "presentations/training-ttm-module-2/Training_TTM_Module_2_Narrated.pptx",
+   "asset": "Training_TTM_Module_2_Narrated.pptx",
+   "size": 4724865,
+   "sha256": "d6d367a12333d9ac5c27cb5fccc4ba274af86587c57ee548c4bffcd282efb280"
+  },
+  {
+   "path": "presentations/training-ttm-module-2/narration_Training_TTM_Module_2",
+   "asset": "Training_TTM_Module_2_narration_audio.zip",
+   "size": 4473238,
+   "sha256": "e847780f5d88c37c90a4926ef39cdbce7684bc47e9720dd522e04d557bb73fac",
+   "members": 16
+  },
+  {
+   "path": "presentations/training-ttm-module-3/Training_TTM_Module_3.pptx",
+   "asset": "Training_TTM_Module_3.pptx",
+   "size": 222390,
+   "sha256": "f8261506ca17331c18880917fde2ce447154966aefeb6cfb6826db16cd6672ed"
+  },
+  {
+   "path": "presentations/training-ttm-module-3/Training_TTM_Module_3_Narrated.pptx",
+   "asset": "Training_TTM_Module_3_Narrated.pptx",
+   "size": 4733792,
+   "sha256": "e507c9b222861859eb651d68121e68248c869eea18d99ef5274711818b960361"
+  },
+  {
+   "path": "presentations/training-ttm-module-3/narration_Training_TTM_Module_3",
+   "asset": "Training_TTM_Module_3_narration_audio.zip",
+   "size": 4482886,
+   "sha256": "41ceef6b65caacc221d80690dc3439e27a42859cf444938f7deb055928d89672",
+   "members": 16
+  },
+  {
+   "path": "presentations/training-ttm-module-4/Training_TTM_Module_4.pptx",
+   "asset": "Training_TTM_Module_4.pptx",
+   "size": 214605,
+   "sha256": "abf485520136e3e74f96ab0138660287fec211f31ccccd98b415d0a7a4c165a9"
+  },
+  {
+   "path": "presentations/training-ttm-module-4/Training_TTM_Module_4_Narrated.pptx",
+   "asset": "Training_TTM_Module_4_Narrated.pptx",
+   "size": 4757578,
+   "sha256": "158efe054f4b7e9edd152b3e6e5000eb19f518892a7fcb642d5b4be0d80ec574"
+  },
+  {
+   "path": "presentations/training-ttm-module-4/narration_Training_TTM_Module_4",
+   "asset": "Training_TTM_Module_4_narration_audio.zip",
+   "size": 4510390,
+   "sha256": "12d0c96c45941e64acc2d551d865734210eeca8c644d6fd9065d6a9b63f13e62",
+   "members": 16
+  },
+  {
+   "path": "presentations/training-ttm-module-5/Training_TTM_Module_5.pptx",
+   "asset": "Training_TTM_Module_5.pptx",
+   "size": 221492,
+   "sha256": "97c3983b915b7e7205dda300d9df05f1e4debf13357af29841ac4856a104556e"
+  },
+  {
+   "path": "presentations/training-ttm-module-5/Training_TTM_Module_5_Narrated.pptx",
+   "asset": "Training_TTM_Module_5_Narrated.pptx",
+   "size": 4842766,
+   "sha256": "d1133ef3f44c22e3aa2a2059caec6872cf563ba58c7463a45c27a8180ef81724"
+  },
+  {
+   "path": "presentations/training-ttm-module-5/narration_Training_TTM_Module_5",
+   "asset": "Training_TTM_Module_5_narration_audio.zip",
+   "size": 4588870,
+   "sha256": "c1c8845f3984f0f3dbc693c8b9c722946f412282ab6da5c338b0eac074662d86",
+   "members": 16
+  },
+  {
+   "path": "presentations/training-ttm-module-6/Training_TTM_Module_6.pptx",
+   "asset": "Training_TTM_Module_6.pptx",
+   "size": 226956,
+   "sha256": "23ff7bfa096a28cd84bc8af98d9683c2abc51f3776c1b8db21a909a363022880"
+  },
+  {
+   "path": "presentations/training-ttm-module-6/Training_TTM_Module_6_Narrated.pptx",
+   "asset": "Training_TTM_Module_6_Narrated.pptx",
+   "size": 4998477,
+   "sha256": "cfbc070acaf304cdaed0ead19329eb373dfc533124a4002261b3439e42104913"
+  },
+  {
+   "path": "presentations/training-ttm-module-6/narration_Training_TTM_Module_6",
+   "asset": "Training_TTM_Module_6_narration_audio.zip",
+   "size": 4742806,
+   "sha256": "499284cb0ac55b25f39fd7d0b4ad0e177efe4ef62740bc3cc04e582f9f56321f",
+   "members": 16
+  },
+  {
+   "path": "presentations/training-ttm-module-7/Training_TTM_Module_7.pptx",
+   "asset": "Training_TTM_Module_7.pptx",
+   "size": 222199,
+   "sha256": "b910ae1ae7602c1d0848af28980e06eee1ace041031294de519a50e717b8afef"
+  },
+  {
+   "path": "presentations/training-ttm-module-7/Training_TTM_Module_7_Narrated.pptx",
+   "asset": "Training_TTM_Module_7_Narrated.pptx",
+   "size": 5067464,
+   "sha256": "a09b7baa94899ed0cd2920a20896ebef1c5a686afcdd0bbfee3841c177fa481d"
+  },
+  {
+   "path": "presentations/training-ttm-module-7/narration_Training_TTM_Module_7",
+   "asset": "Training_TTM_Module_7_narration_audio.zip",
+   "size": 4808614,
+   "sha256": "159330415a7607a52a08a23251ec31678073b2a74dcfe363577a0dedad50df35",
    "members": 16
   },
   {
