@@ -18,11 +18,11 @@ Now the Intune track: end-user devices, whose attributes come from device provis
 
 ## Slide 5 — Intune targeting: device groups, and prefer filters
 
-This slide sets the default for Intune targeting, so it's worth getting right. By default each policy goes to a dynamic device group. Microsoft's current guidance, checked October 29, is to prefer assignment filters where they meet the need, because dynamic device groups add processing delay, and the Federal Modernization Workbook's Book 05 now says the same. Send user settings to user groups and device settings to device groups. The exception is tier and role: filters can't read device extension attributes, so those stay in group rules. And underneath it all, a device rule can never read its owner's attributes. Next, how device attributes get written.
+This slide sets the default for Intune targeting, so it's worth getting right. By default each policy goes to a dynamic device group. Microsoft's current guidance, checked October 29, is to prefer assignment filters where they meet the need, because dynamic device groups add processing delay, as Microsoft Learn's page on assigning policies in Intune explains, and the Federal Modernization Workbook now says the same. Send user settings to user groups and device settings to device groups. The exception is tier and role: filters can't read device extension attributes, so those stay in group rules. And underneath it all, a device rule can never read its owner's attributes. Next, how device attributes get written.
 
 ## Slide 6 — Beyond users: Intune and Entra devices
 
-Devices are attribute-driven too, but only through their own attributes, the device rows of the store table in the recap. Dynamic device groups read things like ownership, trust type and enrollment profile, and Autopilot devices carry markers a rule can select. Filters read Intune's own inventory at check-in. The highpoint is the red panel. Writing a device's extension attributes needs the right Graph permission, and it depends on the call: a signed-in administrator uses one permission, an unattended service another. Book 05's sample now uses the signed-in one. Then, the dangers of dynamic device groups.
+Devices are attribute-driven too, but only through their own attributes, the device rows of the store table in the recap. Dynamic device groups read things like ownership, trust type and enrollment profile, and Autopilot devices carry markers a rule can select. Filters read Intune's own inventory at check-in. The highpoint is the red panel. Writing a device's extension attributes needs the right Graph permission, and it depends on the call: a signed-in administrator uses one permission, an unattended service another. The workbook's sample now uses the signed-in one. Then, the dangers of dynamic device groups.
 
 ## Slide 7 — Dynamic device groups: the dangers, and how to avoid them
 
@@ -46,7 +46,7 @@ Module 2 is the non-person track. Service accounts, service principals, workload
 
 ## Slide 12 — Non-person track: service accounts, MSAs and gMSAs
 
-The non-person track starts with what AD already holds. Service accounts have no HR record, so nobody's leave date ever turns them off, and that's why they're so often over-privileged and forgotten. The table is Book 02's migration matrix. The rule is to get rid of stored secrets: a traditional account becomes an app registration with a certificate or federated credential, or a managed identity in Azure; on-premises Kerberos workloads go to a g M S A; and an M S A upgrades to a g M S A first. Each one gets an owner before it's touched, and an account nobody will own is a retirement candidate. Next, the cloud side.
+The non-person track starts with what AD already holds. Service accounts have no HR record, so nobody's leave date ever turns them off, and that's why they're so often over-privileged and forgotten. The table is the workbook's migration matrix for service accounts. The rule is to get rid of stored secrets: a traditional account becomes an app registration with a certificate or federated credential, or a managed identity in Azure; on-premises Kerberos workloads go to a g M S A; and an M S A upgrades to a g M S A first. Each one gets an owner before it's touched, and an account nobody will own is a retirement candidate. Next, the cloud side.
 
 ## Slide 13 — Non-person track: workload identities and AI agents
 

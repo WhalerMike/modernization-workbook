@@ -1,73 +1,73 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.773
-Book 13's loop has five
-steps: test, detect drift,
+00:00:00.050 --> 00:00:04.033
+The workbook's Ticket-to-Machine
+loop has five steps: test,
 
 2
-00:00:03.773 --> 00:00:07.888
-raise a typed task, actuate,
-and close with evidence.
+00:00:04.033 --> 00:00:08.525
+detect drift, raise a typed task,
+actuate, and close with evidence.
 
 3
-00:00:07.888 --> 00:00:11.700
+00:00:08.525 --> 00:00:12.337
 Here, SailPoint and the kit's
 reconciliation do the testing.
 
 4
-00:00:11.700 --> 00:00:14.338
+00:00:12.337 --> 00:00:14.976
 SailPoint's change events detect drift.
 
 5
-00:00:14.338 --> 00:00:18.263
+00:00:14.976 --> 00:00:18.900
 A SailPoint workflow posting
 to ServiceNow raises the task.
 
 6
-00:00:18.263 --> 00:00:22.350
+00:00:18.900 --> 00:00:22.988
 SailPoint's connectors, and
 ServiceNow's Entra spoke, actuate.
 
 7
-00:00:22.350 --> 00:00:25.937
+00:00:22.988 --> 00:00:26.575
 And a re-read closes the
 loop, not the ticket status.
 
 8
-00:00:25.937 --> 00:00:30.250
+00:00:26.575 --> 00:00:30.887
 Used as shipped, the products fall
 short of the loop in four places.
 
 9
-00:00:30.250 --> 00:00:33.050
+00:00:30.887 --> 00:00:33.687
 First, a ticket status isn't a re-read.
 
 10
-00:00:33.050 --> 00:00:36.725
+00:00:33.687 --> 00:00:37.363
 SailPoint treats a mapped
 ServiceNow status as complete.
 
 11
-00:00:36.725 --> 00:00:41.188
+00:00:37.363 --> 00:00:41.825
 Second, the catalog app moves
 access approval into ServiceNow.
 
 12
-00:00:41.188 --> 00:00:46.050
+00:00:41.825 --> 00:00:46.687
 Third, SailPoint's service desk
 integration can't raise change requests.
 
 13
-00:00:46.050 --> 00:00:48.943
+00:00:46.687 --> 00:00:49.581
 And fourth, there are two
 doors into the directory,
 
 14
-00:00:48.943 --> 00:00:52.825
+00:00:49.581 --> 00:00:53.463
 because SailPoint and Entra inbound
 provisioning can both write.
 
 15
-00:00:52.825 --> 00:00:55.460
+00:00:53.463 --> 00:00:56.090
 Each gap is closed by a specific gate.

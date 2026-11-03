@@ -326,46 +326,46 @@
  "8": [
   [
    0.05,
-   7.763,
-   "Every wave passes the same attribute gate, straight from the Federal Modernization Workbook's Book 03's Appendix C."
+   9.312,
+   "Every wave passes the same attribute gate, straight from the Federal Modernization Workbook's acceptance and cutover appendix for H R-driven identity."
   ],
   [
-   7.812,
+   9.363,
    5.05,
    "First, a validation report, signed before the cutover is even scheduled."
   ],
   [
-   12.863,
+   14.412,
    7.25,
    "Second, a dry run on production data with writes switched off, where every difference from the directory gets explained."
   ],
   [
-   20.113,
+   21.663,
    6.438,
    "Third, the cutover, one population at a time, with named records spot-checked after the first cycle."
   ],
   [
-   26.55,
-   6.213,
-   "Fourth, seven days in which every create, change and disable traces to an HR event."
+   28.1,
+   6.35,
+   "Fourth, seven days in which every create, change and disable traces to an H R event."
   ],
   [
-   32.763,
+   34.45,
    6.013,
    "Anything in the audit log without a matching provisioning record is a finding, and the clock restarts."
   ],
   [
-   38.775,
+   40.462,
    5.275,
    "No kit check covers that week; the provisioning logs joined on the key are the evidence."
   ],
   [
-   44.05,
+   45.737,
    3.35,
    "Only then does the ticket path for account creation close."
   ],
   [
-   47.4,
+   49.087,
    6.225,
    "The kit still runs on every wave, including a shadow comparison for each group the wave replaces."
   ]
@@ -574,7 +574,7 @@
   [
    5.438,
    5.888,
-   "For the HR track, the uncorrelated accounts, the counts per code and the duplicate keys."
+   "For the H R track, the uncorrelated accounts, the counts per code and the duplicate keys."
   ],
   [
    11.325,
@@ -583,26 +583,26 @@
   ],
   [
    17.163,
-   17.25,
-   "Each track also runs its own standing checks in its own guide: devices missing their provisioning attributes and stale devices for Intune, seven checks for Arc servers from tags to role assignments, and owners, credentials and AI agent sponsors for non-person identities."
+   17.2,
+   "Each track also runs its own standing checks in its own guide: devices missing their provisioning attributes and stale devices for Intune, seven checks for Arc servers from tags to role assignments, and owners, credentials and A I agent sponsors for non-person identities."
   ],
   [
-   34.413,
-   7.525,
-   "The commands differ by track: delegated for HR, certificate-based for Intune, Reader on the subscriptions for Arc."
+   34.362,
+   7.625,
+   "The commands differ by track: delegated for H R, certificate-based for Intune, Reader on the subscriptions for Arc."
   ],
   [
-   41.938,
-   5.675,
-   "Behind them sits Book 01's verification list, ending in zero drift findings."
+   41.987,
+   5.287,
+   "Behind them sits the workbook's verification list, ending in zero drift findings."
   ],
   [
-   47.612,
+   47.275,
    1.762,
    "This gate has no rollback."
   ],
   [
-   49.375,
+   49.038,
    1.35,
    "It's the standing loop."
   ]

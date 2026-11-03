@@ -16,38 +16,39 @@ and that's why they're so often
 over-privileged and forgotten.
 
 4
-00:00:12.325 --> 00:00:15.588
-The table is Book 02's migration matrix.
+00:00:12.325 --> 00:00:16.137
+The table is the workbook's migration
+matrix for service accounts.
 
 5
-00:00:15.588 --> 00:00:18.432
+00:00:16.137 --> 00:00:18.981
 The rule is to get rid of stored secrets:
 
 6
-00:00:18.432 --> 00:00:24.653
+00:00:18.981 --> 00:00:25.202
 a traditional account becomes an app
 registration with a certificate or federated
 
 7
-00:00:24.653 --> 00:00:29.363
+00:00:25.202 --> 00:00:29.912
 credential, or a managed identity
 in Azure; on-premises Kerberos
 
 8
-00:00:29.363 --> 00:00:33.451
+00:00:29.912 --> 00:00:34.000
 workloads go to a g M S A; and an
 M S A upgrades to a g M S A first.
 
 9
-00:00:33.451 --> 00:00:35.864
+00:00:34.000 --> 00:00:36.414
 Each one gets an owner
 before it's touched,
 
 10
-00:00:35.864 --> 00:00:39.200
+00:00:36.414 --> 00:00:39.750
 and an account nobody will
 own is a retirement candidate.
 
 11
-00:00:39.200 --> 00:00:40.970
+00:00:39.750 --> 00:00:41.520
 Next, the cloud side.

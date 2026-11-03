@@ -56,16 +56,16 @@ pending through a grace period,
 then reopens the record.
 
 13
-00:00:41.312 --> 00:00:45.450
-Why it matters: Gate 6,
-Book 13's fourth clause.
+00:00:41.312 --> 00:00:45.462
+Why it matters: Gate 6, the
+workbook's closure clause.
 
 14
-00:00:45.450 --> 00:00:49.033
+00:00:45.462 --> 00:00:49.045
 The record closes only on a
 re-read, with its evidence,
 
 15
-00:00:49.033 --> 00:00:52.250
+00:00:49.045 --> 00:00:52.270
 and no person can close
 it by setting its state.

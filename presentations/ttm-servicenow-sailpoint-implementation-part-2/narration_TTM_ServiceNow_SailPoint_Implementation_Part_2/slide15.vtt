@@ -56,29 +56,34 @@ use the learning path for Ticket-to-Machine
 on ServiceNow and SailPoint.
 
 13
-00:00:39.325 --> 00:00:43.312
-For the reasons behind it,
-see Book 13 and Book 15.
+00:00:39.325 --> 00:00:43.531
+For the reasons behind it, see two
+of the workbook's books: Governance,
 
 14
-00:00:43.312 --> 00:00:45.725
-The loop, closed, looks like this.
+00:00:43.531 --> 00:00:47.887
+Drift and Evidence, and Compliance
+Automation and Day-Two Operations.
 
 15
-00:00:45.725 --> 00:00:50.716
+00:00:47.887 --> 00:00:50.301
+The loop, closed, looks like this.
+
+16
+00:00:50.301 --> 00:00:55.291
 The ticket authorizes a machine, the
 machine acts under a service identity,
 
-16
-00:00:50.716 --> 00:00:53.050
+17
+00:00:55.291 --> 00:00:57.625
 and only a re-read closes the ticket.
 
-17
-00:00:53.050 --> 00:00:57.101
+18
+00:00:57.625 --> 00:01:01.676
 The guide was rewritten as
 a gated guide on November 1,
 
-18
-00:00:57.101 --> 00:01:00.650
+19
+00:01:01.676 --> 00:01:05.230
 2026, and that rewrite
 hasn't been reviewed yet.

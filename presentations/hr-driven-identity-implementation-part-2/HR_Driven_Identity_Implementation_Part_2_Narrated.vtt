@@ -715,458 +715,464 @@ bindings from the card system,
 never by editing the directory.
 
 149
-00:09:49.380 --> 00:09:53.393
-The separation gate puts the leaver
-in the Federal Modernization
+00:09:49.380 --> 00:09:52.129
+The separation gate puts
+the leaver in the Federal
 
 150
-00:09:53.393 --> 00:09:56.530
-Workbook's Book 03's order
-and then proves the timing.
+00:09:52.129 --> 00:09:55.730
+Modernization Workbook's leaver
+order and then proves the timing.
 
 151
-00:09:56.530 --> 00:09:59.668
+00:09:55.730 --> 00:09:58.839
 Disable the account and
-revoke its sessions first.
+revoke its sessions first,
 
 152
-00:09:59.668 --> 00:10:03.098
+00:09:58.839 --> 00:10:02.392
+the steps Microsoft Learn's
+revoke-access guidance gives.
+
+153
+00:10:02.392 --> 00:10:05.822
 Then one custom task starts
 the device retire and the
 
-153
-00:10:03.098 --> 00:10:06.606
+154
+00:10:05.822 --> 00:10:09.330
 card revocation together,
 and waits for both to report.
 
-154
-00:10:06.606 --> 00:10:11.285
+155
+00:10:09.330 --> 00:10:14.010
 That wait can run from thirty minutes
 to three hours, and if it times out,
 
-155
-00:10:11.285 --> 00:10:14.755
+156
+00:10:14.010 --> 00:10:17.480
 it goes to a high-priority
 exception, not a retry loop.
 
-156
-00:10:14.755 --> 00:10:18.630
+157
+00:10:17.480 --> 00:10:21.355
 Then come the removals, and a
 read-back to confirm the block took.
 
-157
-00:10:18.630 --> 00:10:21.942
+158
+00:10:21.355 --> 00:10:24.667
 A disabled account with live
 sessions is an incident.
 
-158
-00:10:21.942 --> 00:10:26.955
+159
+00:10:24.667 --> 00:10:29.680
 Deletion comes last, in a separate
 workflow, after the devices are retired.
 
-159
-00:10:26.955 --> 00:10:28.775
+160
+00:10:29.680 --> 00:10:31.500
 Set the leave time late in the day,
 
-160
-00:10:28.775 --> 00:10:31.742
+161
+00:10:31.500 --> 00:10:34.467
 and remember the schedule is
 part of the time allowed.
 
-161
-00:10:31.742 --> 00:10:34.943
+162
+00:10:34.467 --> 00:10:37.668
 An emergency means an
 immediate out-of-band block,
 
-162
-00:10:34.943 --> 00:10:38.143
+163
+00:10:37.668 --> 00:10:40.868
 then the same sequence on
 demand, behind approval.
 
-163
-00:10:38.143 --> 00:10:40.722
+164
+00:10:40.868 --> 00:10:43.448
 A separation entered more than three days
 
-164
-00:10:40.722 --> 00:10:43.155
+165
+00:10:43.448 --> 00:10:45.881
 late misses the trigger,
 so run it by hand.
 
-165
-00:10:43.155 --> 00:10:45.810
+166
+00:10:45.881 --> 00:10:48.550
 Privileged leavers need their own path.
 
-166
-00:10:49.560 --> 00:10:54.010
+167
+00:10:52.300 --> 00:10:56.750
 The workbook's sixth chapter measures
 each separation from the audit logs.
 
-167
-00:10:54.010 --> 00:10:56.362
+168
+00:10:56.750 --> 00:10:59.102
 A leaver counts as blocked once both the
 
-168
-00:10:56.362 --> 00:10:59.285
+169
+00:10:59.102 --> 00:11:02.025
 disable and the session
 revocation are recorded.
 
-169
-00:10:59.285 --> 00:11:03.097
+170
+00:11:02.025 --> 00:11:05.837
 They count as fully revoked when the
 card and the devices are done too.
 
-170
-00:11:03.097 --> 00:11:05.523
+171
+00:11:05.837 --> 00:11:08.263
 Nine fictional separations are measured.
 
-171
-00:11:05.523 --> 00:11:08.522
+172
+00:11:08.263 --> 00:11:11.262
 The typical block lands
 in about fifteen minutes.
 
-172
-00:11:08.522 --> 00:11:11.694
+173
+00:11:11.262 --> 00:11:14.434
 But the slowest ten percent
 take over five hours,
 
-173
-00:11:11.694 --> 00:11:16.134
+174
+00:11:14.434 --> 00:11:18.874
 against a sample limit of four, and
 full revocation takes far longer.
 
-174
-00:11:16.134 --> 00:11:17.697
+175
+00:11:18.874 --> 00:11:20.437
 Three stories stand out.
 
-175
-00:11:17.697 --> 00:11:21.622
+176
+00:11:20.437 --> 00:11:24.362
 One leaver was blocked late, and
 that person's card was revoked
 
-176
-00:11:21.622 --> 00:11:25.623
+177
+00:11:24.362 --> 00:11:28.363
 twenty-three hours after notice,
 past the eighteen FIPS allows.
 
-177
-00:11:25.623 --> 00:11:28.723
+178
+00:11:28.363 --> 00:11:31.463
 Another separation was
 entered almost a week late,
 
-178
-00:11:28.723 --> 00:11:32.784
+179
+00:11:31.463 --> 00:11:35.524
 and its only disable failed, so that
 person was never blocked at all.
 
-179
-00:11:32.784 --> 00:11:37.135
+180
+00:11:35.524 --> 00:11:39.875
 And the pipeline re-enabled a third
 leaver two days after the disable.
 
-180
-00:11:37.135 --> 00:11:39.110
+181
+00:11:39.875 --> 00:11:41.850
 These limits are only samples.
 
-181
-00:11:39.110 --> 00:11:43.910
+182
+00:11:41.850 --> 00:11:46.650
 The agency sets the real period, and
 sets it together with the schedule.
 
-182
-00:11:47.660 --> 00:11:52.405
+183
+00:11:50.400 --> 00:11:55.145
 On the federal side, personnel termination
 and account disabling call for both
 
-183
-00:11:52.405 --> 00:11:55.928
+184
+00:11:55.145 --> 00:11:58.668
 measured times for each leaver,
 along with the workflow run,
 
-184
-00:11:55.928 --> 00:12:00.385
+185
+00:11:58.668 --> 00:12:03.125
 the device actions, and the card revocation
 with the list that published it.
 
-185
-00:12:00.385 --> 00:12:03.560
+186
+00:12:03.125 --> 00:12:06.300
 Contractors add the time
 from end date to block.
 
-186
-00:12:03.560 --> 00:12:07.539
+187
+00:12:06.300 --> 00:12:10.279
 FIPS 201 says a card that can't
 be collected must be revoked
 
-187
-00:12:07.539 --> 00:12:11.435
+188
+00:12:10.279 --> 00:12:14.175
 within eighteen hours of
 notice, so keep both timestamps.
 
-188
-00:12:11.435 --> 00:12:14.422
+189
+00:12:14.175 --> 00:12:17.162
 Emergency disables are logged as changes.
 
-189
-00:12:14.422 --> 00:12:18.143
+190
+00:12:17.162 --> 00:12:20.883
 To validate, run a full pay
 period with no missed leavers,
 
-190
-00:12:18.143 --> 00:12:21.622
+191
+00:12:20.883 --> 00:12:24.362
 blocks within the limit,
 and every exception closed.
 
-191
-00:12:21.622 --> 00:12:23.486
+192
+00:12:24.362 --> 00:12:26.226
 Security owns this gate.
 
-192
-00:12:23.486 --> 00:12:27.623
+193
+00:12:26.226 --> 00:12:30.363
 Lifecycle Workflows and PIM are
 available in Azure Government.
 
-193
-00:12:27.623 --> 00:12:30.370
+194
+00:12:30.363 --> 00:12:33.110
 The guide infers that a GCC tenant's Logic
 
-194
-00:12:30.370 --> 00:12:33.360
+195
+00:12:33.110 --> 00:12:36.100
 App sits in a commercial
 Azure subscription.
 
-195
-00:12:33.360 --> 00:12:38.772
+196
+00:12:36.100 --> 00:12:41.512
 Until the extensions exist, use a leaver
 checklist with a named owner for each row.
 
-196
-00:12:38.772 --> 00:12:43.223
+197
+00:12:41.512 --> 00:12:45.963
 To roll back a cancelled separation,
 re-enable from the corrected record.
 
-197
-00:12:43.223 --> 00:12:46.930
+198
+00:12:45.963 --> 00:12:49.670
 A deleted cloud user can be
 restored for thirty days.
 
-198
-00:12:50.680 --> 00:12:52.755
+199
+00:12:53.420 --> 00:12:55.495
 The last gate keeps the record true.
 
-199
-00:12:52.755 --> 00:12:57.911
+200
+00:12:55.495 --> 00:13:00.651
 Run the lifecycle drift checks: missing
 identity, stale access, orphan accounts,
 
-200
-00:12:57.911 --> 00:13:02.755
+201
+00:13:00.651 --> 00:13:05.495
 unauthorized writes, and credential
 drift for employees and contractors.
 
-201
-00:13:02.755 --> 00:13:06.248
+202
+00:13:05.495 --> 00:13:08.988
 Fix each finding at its source,
 and let the fix flow back
 
-202
-00:13:06.248 --> 00:13:09.742
+203
+00:13:08.988 --> 00:13:12.482
 through the pipeline, never
 as a direct directory edit.
 
-203
-00:13:09.742 --> 00:13:12.506
+204
+00:13:12.482 --> 00:13:15.246
 Report six metrics on
 the monitoring cadence.
 
-204
-00:13:12.506 --> 00:13:18.567
+205
+00:13:15.246 --> 00:13:21.307
 Prove HR is the only source, using seven
 days of logs, then close the ticket path.
 
-205
-00:13:18.567 --> 00:13:23.406
+206
+00:13:21.307 --> 00:13:26.146
 And keep the evidence outside the directory,
 because it has to outlive the accounts.
 
-206
-00:13:23.406 --> 00:13:25.818
+207
+00:13:26.146 --> 00:13:28.558
 The table shows the workbook's lab run.
 
-207
-00:13:25.818 --> 00:13:29.893
+208
+00:13:28.558 --> 00:13:32.633
 Blocking, revocation, joiner
 readiness, correlation coverage,
 
-208
-00:13:29.893 --> 00:13:34.830
+209
+00:13:32.633 --> 00:13:37.570
 and the share of access granted by rules
 are all out of bounds on this fixture.
 
-209
-00:13:34.830 --> 00:13:39.067
+210
+00:13:37.570 --> 00:13:41.807
 Transfer-to-review isn't measured,
 because a review is still open.
 
-210
-00:13:39.067 --> 00:13:43.618
+211
+00:13:41.807 --> 00:13:46.358
 A metric with no input is reported
 as not measured, never as zero.
 
-211
-00:13:43.618 --> 00:13:46.610
+212
+00:13:46.358 --> 00:13:49.350
 And the thresholds are
 for the agency to choose.
 
-212
-00:13:50.360 --> 00:13:53.858
+213
+00:13:53.100 --> 00:13:56.598
 The workbook's seventh chapter
 makes this gate one run,
 
-213
-00:13:53.858 --> 00:13:56.035
+214
+00:13:56.598 --> 00:13:58.775
 plus a chain of evidence packages.
 
-214
-00:13:56.035 --> 00:14:01.535
+215
+00:13:58.775 --> 00:14:04.275
 The run reads the earlier labs' outputs,
 checking each one against its own manifest.
 
-215
-00:14:01.535 --> 00:14:05.151
+216
+00:14:04.275 --> 00:14:07.891
 It insists on knowing whether
 it's a fixture or a tenant run,
 
-216
-00:14:05.151 --> 00:14:07.185
+217
+00:14:07.891 --> 00:14:09.925
 so a lab can't pass for production.
 
-217
-00:14:07.185 --> 00:14:12.097
+218
+00:14:09.925 --> 00:14:14.837
 The evidence tool packages each run with
 checksums, chained to the one before.
 
-218
-00:14:12.097 --> 00:14:15.036
+219
+00:14:14.837 --> 00:14:17.776
 Then the period report
 verifies the whole chain.
 
-219
-00:14:15.036 --> 00:14:18.154
+220
+00:14:17.776 --> 00:14:20.894
 Here the chain is unbroken
 and nothing is missing,
 
-220
-00:14:18.154 --> 00:14:22.110
+221
+00:14:20.894 --> 00:14:24.850
 but twenty findings are still
 open, so the period isn't complete.
 
-221
-00:14:22.110 --> 00:14:26.710
+222
+00:14:24.850 --> 00:14:29.450
 On the federal side, continuous monitoring
 calls for the six metrics per period.
 
-222
-00:14:26.710 --> 00:14:29.865
+223
+00:14:29.450 --> 00:14:32.605
 Audit review and retention
 call for the log export,
 
-223
-00:14:29.865 --> 00:14:34.372
+224
+00:14:32.605 --> 00:14:37.112
 findings closed at the source, and
 retention set to the records schedule.
 
-224
-00:14:34.372 --> 00:14:38.310
+225
+00:14:37.112 --> 00:14:41.050
 CISA's continuous reporting
 calls for ScubaGear results.
 
-225
-00:14:38.310 --> 00:14:42.085
+226
+00:14:41.050 --> 00:14:44.825
 The kit checks run on the drift
 cadence, and the CISO owns it.
 
-226
-00:14:42.085 --> 00:14:46.120
+227
+00:14:44.825 --> 00:14:48.860
 There's no rollback here, because
 this is the loop that keeps running.
 
-227
-00:14:49.870 --> 00:14:54.133
+228
+00:14:52.610 --> 00:14:56.873
 Put together, the gates make one
 evidence file for each population.
 
-228
-00:14:54.133 --> 00:14:58.094
+229
+00:14:56.873 --> 00:15:00.834
 It holds the register, the
 sources and the reconciliations.
 
-229
-00:14:58.094 --> 00:15:03.320
+230
+00:15:00.834 --> 00:15:06.060
 It holds the workflows and their run history,
 and the access policies and reviews.
 
-230
-00:15:03.320 --> 00:15:06.782
+231
+00:15:06.060 --> 00:15:09.522
 It holds the certificate
 configuration and the card records.
 
-231
-00:15:06.782 --> 00:15:10.007
+232
+00:15:09.522 --> 00:15:12.747
 It holds the separation
 times and their exceptions.
 
-232
-00:15:10.007 --> 00:15:14.383
+233
+00:15:12.747 --> 00:15:17.123
 And it holds the drift findings, the
 metrics and the sole-source proof.
 
-233
-00:15:14.383 --> 00:15:18.357
+234
+00:15:17.123 --> 00:15:21.097
 File every kit run with its
 date, tenant and check version.
 
-234
-00:15:18.357 --> 00:15:22.854
+235
+00:15:21.097 --> 00:15:25.594
 To build the code for these four
 gates, use the developer workbook,
 
-235
-00:15:22.854 --> 00:15:27.683
+236
+00:15:25.594 --> 00:15:30.423
 Building HR-Driven Identity, chapters
 four to seven, each with its labs.
 
-236
-00:15:27.683 --> 00:15:30.320
-For the design, see Book 03.
-
 237
-00:15:30.320 --> 00:15:32.542
-For the attributes these gates read,
+00:15:30.423 --> 00:15:34.734
+For the design, see the workbook's
+HR-Driven Identity book.
 
 238
-00:15:32.542 --> 00:15:36.170
+00:15:34.734 --> 00:15:36.957
+For the attributes these gates read,
+
+239
+00:15:36.957 --> 00:15:40.585
 see the attribute-driven
 migration implementation guide.
 
-239
-00:15:36.170 --> 00:15:40.893
+240
+00:15:40.585 --> 00:15:45.308
 To learn it all in order, use the
 learning path for HR-driven identity:
 
-240
-00:15:40.893 --> 00:15:45.870
+241
+00:15:45.308 --> 00:15:50.285
 seven modules, one per gate, each with
 a fixture lab and a knowledge check.
 
-241
-00:15:45.870 --> 00:15:48.082
+242
+00:15:50.285 --> 00:15:52.497
 The pipeline makes the account exist.
 
-242
-00:15:48.082 --> 00:15:51.624
+243
+00:15:52.497 --> 00:15:56.039
 These seven gates make the HR
 record decide what happens to it,
 
-243
-00:15:51.624 --> 00:15:53.900
+244
+00:15:56.039 --> 00:15:58.320
 and they leave the evidence that it did.

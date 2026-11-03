@@ -63,30 +63,30 @@ Why it matters: Gate 4 makes every drift
 an owned record answered inside a window.
 
 14
-00:00:46.650 --> 00:00:50.475
-The tempo is Book 13's
+00:00:46.650 --> 00:00:50.288
+The tempo is the workbook's
 design, not a federal clock.
 
 15
-00:00:50.475 --> 00:00:54.335
+00:00:50.288 --> 00:00:54.148
 The important design choice is
 that the rules live in one place,
 
 16
-00:00:54.335 --> 00:00:57.286
+00:00:54.148 --> 00:00:57.099
 the scripted REST resource
 inside ServiceNow,
 
 17
-00:00:57.286 --> 00:01:01.600
+00:00:57.099 --> 00:01:01.413
 and the Python mirror is held to it
 by a test that reads the JavaScript.
 
 18
-00:01:01.600 --> 00:01:04.224
+00:01:01.413 --> 00:01:04.037
 So a malformed payload fails on a laptop,
 
 19
-00:01:04.224 --> 00:01:09.380
+00:01:04.037 --> 00:01:09.190
 not as a four hundred from a live instance,
 and the mirror can't quietly go stale.
