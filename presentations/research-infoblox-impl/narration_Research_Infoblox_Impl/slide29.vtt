@@ -5,64 +5,64 @@ WEBVTT
 To close.
 
 2
-00:00:00.975 --> 00:00:06.055
+00:00:00.975 --> 00:00:06.071
 The decisions are yours: FIPS mode,
 knowing it costs cloud management,
 
 3
-00:00:06.055 --> 00:00:11.134
+00:00:06.071 --> 00:00:11.167
 whether the signing keys go in an HSM,
 NSEC or NSEC3 for internal zones,
 
 4
-00:00:11.134 --> 00:00:16.838
+00:00:11.167 --> 00:00:16.800
 where the locator zones live, and how
 many physical managing members you need.
 
 5
-00:00:16.838 --> 00:00:19.951
+00:00:16.800 --> 00:00:19.914
 There are questions to put
 to Infoblox in writing,
 
 6
-00:00:19.951 --> 00:00:24.053
+00:00:19.914 --> 00:00:24.016
 mainly around the approved federal
 build, certification timing,
 
 7
-00:00:24.053 --> 00:00:27.775
+00:00:24.016 --> 00:00:27.738
 Windows Server 2025, and failover
 in the government clouds.
 
 8
-00:00:27.775 --> 00:00:31.947
+00:00:27.738 --> 00:00:31.910
 The next steps are concrete: stand
 up a lab Grid, sign a test zone,
 
 9
-00:00:31.947 --> 00:00:36.937
+00:00:31.910 --> 00:00:36.900
 pilot one DHCP takeover, and check the
 lab against your settings baseline.
 
 10
-00:00:36.937 --> 00:00:41.098
-The program's view is plain:
-NIOS can carry Book 08's design,
+00:00:36.900 --> 00:00:41.732
+The program's view is plain: NIOS
+can carry the workbook's DNS design,
 
 11
-00:00:41.098 --> 00:00:45.788
+00:00:41.732 --> 00:00:46.388
 and its risks are manageable if
 the Phase 0 decisions come first.
 
 12
-00:00:45.788 --> 00:00:48.828
+00:00:46.388 --> 00:00:49.428
 This is the program's
 research, under review,
 
 13
-00:00:48.828 --> 00:00:51.700
+00:00:49.428 --> 00:00:52.300
 not an endorsement by any federal agency.
 
 14
-00:00:51.700 --> 00:00:52.510
+00:00:52.300 --> 00:00:53.110
 Thank you.

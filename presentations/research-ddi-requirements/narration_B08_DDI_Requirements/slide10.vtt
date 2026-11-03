@@ -11,52 +11,52 @@ DHCP and IPAM without
 breaking central governance?
 
 3
-00:00:08.988 --> 00:00:12.975
-Book 08 says yes, if the platform
-supports the right model.
+00:00:08.988 --> 00:00:14.176
+The workbook's DNS design says yes, if
+the platform supports the right model.
 
 4
-00:00:12.975 --> 00:00:18.231
+00:00:14.176 --> 00:00:19.431
 Corporate administrators see everything,
 and each division gets a fenced scope of
 
 5
-00:00:18.231 --> 00:00:21.049
+00:00:19.431 --> 00:00:22.249
 its own zones, address
 blocks and DHCP scopes,
 
 6
-00:00:21.049 --> 00:00:23.563
+00:00:22.249 --> 00:00:24.763
 with everything else denied by default.
 
 7
-00:00:23.563 --> 00:00:27.923
+00:00:24.763 --> 00:00:29.123
 In Infoblox, for example, one setting
 stops a division with access to a
 
 8
-00:00:27.923 --> 00:00:32.437
+00:00:29.123 --> 00:00:33.637
 shared zone from pointing a name into
 another division's address space.
 
 9
-00:00:32.437 --> 00:00:35.773
+00:00:33.637 --> 00:00:36.973
 Only central superusers
 create groups and roles,
 
 10
-00:00:35.773 --> 00:00:38.376
+00:00:36.973 --> 00:00:39.576
 so a division can't widen its own rights.
 
 11
-00:00:38.376 --> 00:00:42.276
+00:00:39.576 --> 00:00:43.476
 Administrators sign in with
 PIV or CAC, or single sign-on,
 
 12
-00:00:42.276 --> 00:00:45.075
+00:00:43.476 --> 00:00:46.275
 and you keep a local break-glass account.
 
 13
-00:00:45.075 --> 00:00:47.020
+00:00:46.275 --> 00:00:48.220
 So how are divisions kept apart?

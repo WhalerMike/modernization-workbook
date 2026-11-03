@@ -2,11 +2,11 @@
 
 ## Slide 1 — Certificate Lifecycle on CyberArk Certificate Manager
 
-Welcome. This is an implementation guide from the Federal Modernization Workbook, and it's about one product: CyberArk Certificate Manager. Book 07 of the workbook chose it as the program's certificate lifecycle platform, so whenever you hear me say "the platform," that's what I mean. Its job is simple to say and hard to do: keep track of every certificate nobody else is renewing, and renew it before it expires. We'll start with what the platform is and what it's made of, then build it, connect it to the certificate authorities, automate it, and finally fit it into Book 07's migration waves. The slides and notes carry every detail and source; I'll stick to what matters.
+Welcome. This is an implementation guide from the Federal Modernization Workbook, and it's about one product: CyberArk Certificate Manager. The workbook's certificate plan chose it as the program's certificate lifecycle platform, so whenever you hear me say "the platform," that's what I mean. Its job is simple to say and hard to do: keep track of every certificate nobody else is renewing, and renew it before it expires. We'll start with what the platform is and what it's made of, then build it, connect it to the certificate authorities, automate it, and finally fit it into the certificate plan's migration waves. The slides and notes carry every detail and source; I'll stick to what matters.
 
 ## Slide 2 — What this guide implements: Book 07's issuer map
 
-Before we build anything, here's the idea that frames this whole guide. Book 07 doesn't use one certificate authority for everything. It gives each kind of certificate its own source and its own way of renewing. Intune looks after device certificates. PIV cards have their own card system. Domain controllers keep renewing themselves the way they always have. What's left — servers, VPN and RADIUS, SQL, internal websites, appliances, and anything public-facing — has nobody renewing it today except a person with a calendar reminder. That's the gap the platform fills. It becomes the system of record for every certificate Intune and PIV don't already manage.
+Before we build anything, here's the idea that frames this whole guide. The workbook's certificate plan doesn't use one certificate authority for everything. It gives each kind of certificate its own source and its own way of renewing. Intune looks after device certificates. PIV cards have their own card system. Domain controllers keep renewing themselves the way they always have. What's left — servers, VPN and RADIUS, SQL, internal websites, appliances, and anything public-facing — has nobody renewing it today except a person with a calendar reminder. That's the gap the platform fills. It becomes the system of record for every certificate Intune and PIV don't already manage.
 
 ## Slide 3 — Prerequisites and decisions before you build
 
@@ -78,7 +78,7 @@ Part 2 connects the platform to the places certificates come from: the agency's 
 
 ## Slide 20 — The AD CS driver: permissions, templates, versions
 
-The most important connection is to AD CS, the agency's own certificate authority. The platform talks to it over DCOM, using an account with the right to issue and manage certificates. The cleanest pattern is one platform template for each AD CS template it issues from, so policy is easy to read. After Active Directory retires, Book 07 moves server certificates to a standalone CA, and the platform handles that fine. One open item: CyberArk's support table stops at Windows Server 2022, so if your CA runs 2025, get that confirmed in writing.
+The most important connection is to AD CS, the agency's own certificate authority. The platform talks to it over DCOM, using an account with the right to issue and manage certificates. The cleanest pattern is one platform template for each AD CS template it issues from, so policy is easy to read. After Active Directory retires, the workbook's certificate plan moves server certificates to a standalone CA, and the platform handles that fine. One open item: CyberArk's support table stops at Windows Server 2022, so if your CA runs 2025, get that confirmed in writing.
 
 ## Slide 21 — Scoping the CLM's CA account under ESC7
 
@@ -102,7 +102,7 @@ You can't manage what you can't see, and a CA's database only shows what that CA
 
 ## Slide 26 — Ownership: policy folders, owners and the CMDB
 
-An expired certificate is almost always an ownership problem before it's a technical one. So every certificate gets a home and a named owner. The platform's policy folders mirror Book 07's certificate classes, so where a certificate lives tells you how it renews. Owners come from Entra groups, and, if the agency uses it, the ServiceNow app can tie certificates to the same configuration items as the CMDB. And one alert matters most: a certificate nearing expiry with no renewal path is an incident while there's still time to fix it.
+An expired certificate is almost always an ownership problem before it's a technical one. So every certificate gets a home and a named owner. The platform's policy folders mirror the workbook's certificate classes, so where a certificate lives tells you how it renews. Owners come from Entra groups, and, if the agency uses it, the ServiceNow app can tie certificates to the same configuration items as the CMDB. And one alert matters most: a certificate nearing expiry with no renewal path is an incident while there's still time to fix it.
 
 ## Slide 27 — Enrollment automation: ACME, EST, SCEP, REST, agents
 
@@ -114,15 +114,15 @@ Three integrations, each with a boundary question. Kubernetes discovery only wor
 
 ## Slide 29 — Part 4: Migrate and operate
 
-Part 4 puts it all on a timeline and keeps it running: the build mapped to Book 07's six waves, renewal as certificate lifetimes shrink, monitoring, and retiring the old CAs.
+Part 4 puts it all on a timeline and keeps it running: the build mapped to the certificate plan's six waves, renewal as certificate lifetimes shrink, monitoring, and retiring the old CAs.
 
 ## Slide 30 — Build sequence mapped to Book 07's six waves
 
-Here's the build laid onto Book 07's six waves. Wave one is a small test cluster and read-only discovery, so you learn what you have. Wave two builds production properly — two of everything, keys backed up, sign-in and logging done — and doesn't close until a restore has been rehearsed. Wave three pilots automatic renewal on a handful of servers, with the old method left on as a safety net. Then you scale ring by ring, move public certificates over, and finally retire CAs using the platform's inventory as proof.
+Here's the build laid onto the workbook's certificate plan and its six waves. Wave one is a small test cluster and read-only discovery, so you learn what you have. Wave two builds production properly — two of everything, keys backed up, sign-in and logging done — and doesn't close until a restore has been rehearsed. Wave three pilots automatic renewal on a handful of servers, with the old method left on as a safety net. Then you scale ring by ring, move public certificates over, and finally retire CAs using the platform's inventory as proof.
 
 ## Slide 31 — Renewal as public TLS lifetimes shrink
 
-Here's why this can't wait. Public certificate lifetimes are shrinking fast: two hundred days today, a hundred next year, and forty-seven days by 2029. For a thousand certificates, that's roughly seven renewals every working day now, and over thirty in 2029. No team can keep that up by hand. That's why Book 07's rule is that no certificate may depend on a person remembering a date — every one runs through Intune, autoenrollment, or this platform.
+Here's why this can't wait. Public certificate lifetimes are shrinking fast: two hundred days today, a hundred next year, and forty-seven days by 2029. For a thousand certificates, that's roughly seven renewals every working day now, and over thirty in 2029. No team can keep that up by hand. That's why the workbook's certificate plan rules that no certificate may depend on a person remembering a date — every one runs through Intune, autoenrollment, or this platform.
 
 ## Slide 32 — Monitoring and drift on the CLM platform
 
@@ -134,4 +134,4 @@ Eventually the old certificate authorities retire, and the platform is the evide
 
 ## Slide 34 — Decisions, vendor asks and next steps
 
-To wrap up. The decisions are yours: which servers run in FIPS mode, HSM or software key, and a handful of integration choices. There are a few questions to put to CyberArk in writing, mainly around FIPS, Windows Server 2025, and Azure Government. And the next steps are concrete: stand up the test cluster, create the CA account under the ESC7 controls, and prove in the lab that it can't do more than it should. The program's view is clear — this is the right platform for Book 07's design, and its risks are known and manageable. This is the program's research, under review, and not an endorsement by any federal agency. Thanks for watching.
+To wrap up. The decisions are yours: which servers run in FIPS mode, HSM or software key, and a handful of integration choices. There are a few questions to put to CyberArk in writing, mainly around FIPS, Windows Server 2025, and Azure Government. And the next steps are concrete: stand up the test cluster, create the CA account under the ESC7 controls, and prove in the lab that it can't do more than it should. The program's view is clear — this is the right platform for the workbook's certificate plan, and its risks are known and manageable. This is the program's research, under review, and not an endorsement by any federal agency. Thanks for watching.

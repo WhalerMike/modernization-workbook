@@ -64,7 +64,7 @@ Statements marked design guidance are the program's recommendations, inferences 
   ], { fontSize: 11.5 });
   sources(s, "Sources: Evaluation page, introduction; Book 08, Ch 07 and Ch 08 (Moving from per-cloud local syncs to a unified control plane); Trinzic explainer.");
   say(s,
-`Why does cloud DNS need a deck of its own? Book 08 of the workbook asks for one authoritative policy and state plane that every other DNS system consumes. Cloud DNS services are synchronized targets or forwarding destinations, not independently authored sources.
+`Why does cloud DNS need a deck of its own? The workbook's DNS design asks for one authoritative policy and state plane that every other DNS system consumes. Cloud DNS services are synchronized targets or forwarding destinations, not independently authored sources.
 
 The warning is about authoring copies in every silo. That produces split-brain answers, names that work in one cloud but not another, and uneven Protective DNS and logging.
 
@@ -279,7 +279,7 @@ Endpoints and rules: yes. Resolver delegation is the conflict: the GovCloud guid
     "the Private Resolver is a recursive resolver and conditional forwarding service, so its inbound endpoint doesn't accept an ordinary NS delegation of a private zone.");
   sources(s, "Sources: Microsoft Learn: What is Azure DNS Private Resolver?; endpoints and rulesets; service limits; Reliability; Azure DNS FAQ; Architecture Center (Oct. 29, 2026).");
   say(s,
-`Now Azure. Book 08's Chapter 07 covers the Private Resolver's hub-and-spoke design, so here is the summary with today's limits.
+`Now Azure. The workbook's DNS, DHCP and IPAM book covers the Private Resolver's hub-and-spoke design, so here is the summary with today's limits.
 
 The inbound endpoint receives queries from on premises or other clouds and answers from private DNS zones linked to its virtual network. There can be five per resolver, at 10,000 queries per second each.
 
@@ -467,7 +467,7 @@ So, as inferences. A Moderate system on OCI infrastructure inherits from the Gov
   ], { x: 0.6, y: 5.25, w: 12.15, h: 1.25, fontSize: 12, paraSpaceAfter: 4 });
   sources(s, "Sources: Evaluation page, \"How each meets on-premises DNS\"; AWS Resolving queries between VPCs and your network; Managing forwarding rules; Profiles; Azure Architecture Center.");
   say(s,
-`How do the three meet on-premises DNS? The same way, and Book 08's Decision 3 already holds the rules, as design guidance.
+`How do the three meet on-premises DNS? The same way, and the workbook's DNS design already holds the rules, as design guidance.
 
 Into the cloud: on-premises resolvers, and other clouds' resolvers, conditionally forward each cloud namespace to that cloud's inbound endpoint, using static addresses written once. On Oracle Cloud, the entry point is a listening endpoint. Neither the AWS nor the Azure inbound endpoint accepts an ordinary NS delegation of a private zone; AWS's delegation inbound endpoint is the exception, and it's new.
 
@@ -505,7 +505,7 @@ On AWS, create the rules once in a network account and share them through Resour
 
 Second, policy. The clouds' own filters are a second policy surface beside the agency's response policy zones. The design guidance: feed them from the same indicator decisions, or use them as a backstop, so a block on premises is also a block in each cloud. Oracle has no such filter for private DNS, so its catch-all rule is the only way agency policy reaches a VCN.
 
-Third, logs: all three go to the SIEM, parsed through ASIM's DNS schema, as Book 12 does.`,
+Third, logs: all three go to the SIEM, parsed through ASIM's DNS schema, as Microsoft Learn's ASIM documentation describes.`,
   "CISA Encrypted DNS Implementation Guidance, v1.0, April 2024 (Agency Cloud Deployments); Oracle Creating a Resolver Rule; evaluation page, \"How each meets on-premises DNS and the policy plane\"; Book 12, Chapter 05.",
   `${EV}, Part 1, "How each meets on-premises DNS and the policy plane"; Book 12, Chapter 05 — From Log Warehouse to Detection.`);
 }
@@ -534,7 +534,7 @@ Third, logs: all three go to the SIEM, parsed through ASIM's DNS schema, as Book
 
 AWS: Resolver delegation and DNSSEC validation in GovCloud. Azure: the Private Resolver's and resolver policy's availability in each Azure Government region, and whether the Private Resolver validates DNSSEC. Oracle: private resolver logging in the government realm, and whether the VCN resolver passes DNSSEC data to a resolver behind it. And CISA: whether Protective DNS returns DNSSEC data to agency forwarders.
 
-To prove the page, the plan is to build the pattern in test accounts and run Book 08's Chapter 10 validation matrix.
+To prove the page, the plan is to build the pattern in test accounts and run the workbook's DNS validation matrix.
 
 Part 2 picks up from here: when to run your own DNS servers, BIND, the alignment checklist, and the federal mapping. This is research under review, not an endorsement by any federal agency. Thank you.`,
   "Evaluation page, \"Status and review\" (open points to confirm; path to Proved) and \"What it covers\"; Book 08, Chapter 10.",

@@ -12,26 +12,26 @@
   ],
   [
    12.062,
-   9.338,
-   "Part 2 asks when an agency should run its own D N S servers in a cloud, and how to run BIND there so it stays inside Book 08's single policy plane."
+   9.975,
+   "Part 2 asks when an agency should run its own D N S servers in a cloud, and how to run BIND there so it stays inside the workbook's single D N S policy plane."
   ],
   [
-   21.4,
+   22.038,
    6.125,
    "We'll start with the test that matters: does a cloud BIND server align with that plane, or create a silo?"
   ],
   [
-   27.525,
+   28.163,
    6.537,
    "Then the criteria, vNIOS or BIND, and BIND itself, from roles to patching and Git."
   ],
   [
-   34.062,
+   34.7,
    6.175,
    "Then a seven-question checklist for an agency adding BIND servers in AWS, and the federal mapping."
   ],
   [
-   40.237,
+   40.875,
    5.338,
    "The labels carry over from Part 1: design guidance, inference, and confirm."
   ]
@@ -39,26 +39,26 @@
  "2": [
   [
    0.05,
-   11.162,
-   "Additional BIND servers in AWS align with Book 08 when they are forwarders or resolvers under central configuration, logged to the SOC, owned and with a reason."
+   12.463,
+   "Additional BIND servers in AWS align with the workbook's D N S design when they are forwarders or resolvers under central configuration, logged to the SOC, owned and with a reason."
   ],
   [
-   11.213,
+   12.512,
    9.6,
    "BIND aligns when it's a resolver or forwarder whose configuration comes from the policy plane: its forwarding, its addresses and its logging all governed."
   ],
   [
-   20.812,
+   22.113,
    4.125,
    "It aligns as a deliberate bridge, with an owner and an end date."
   ],
   [
-   24.938,
+   26.238,
    4.237,
    "It aligns when Git configures it, and when it's hardened and inventoried."
   ],
   [
-   29.175,
+   30.475,
    15.062,
    "It creates a silo when it hosts zones authored apart from the D D I platform, when it's edited by hand, when it skips the shared Protective D N S, validation and logging, or when it duplicates the Route 53 Resolver for no stated reason."
   ]
@@ -143,26 +143,26 @@
   ],
   [
    24.387,
-   7.312,
-   "BIND has no policy plane of its own; for Book 08, its policy comes from the D D I platform and Git."
+   8.625,
+   "BIND has no policy plane of its own; in the workbook's D N S design, its policy comes from the D D I platform and Git."
   ],
   [
-   31.7,
+   33.013,
    0.988,
    "Which BIND?"
   ],
   [
-   32.688,
+   34.0,
    4.025,
    "ISC supports each even-numbered branch for four years."
   ],
   [
-   36.712,
+   38.025,
    11.188,
    "As of October twenty-ninth, 9.20 is the supported production branch, with end of life in 2028, and 9.18 reached end of life in June 2026."
   ],
   [
-   47.9,
+   49.212,
    4.975,
    "Operating-system packages follow their vendor, so record which support you rely on."
   ]
@@ -467,16 +467,16 @@
   ],
   [
    43.3,
-   7.0,
-   "Send them to the sim, where ASIM's D N S parser already handles BIND, as Book 12 describes."
+   8.162,
+   "Send them to the sim, where ASIM's D N S parser already handles BIND, according to Microsoft Learn's list of ASIM parsers."
   ],
   [
-   50.3,
+   51.462,
    5.838,
    "Because the native resolver sees BIND rather than the client, BIND's log is the record of who asked."
   ],
   [
-   56.138,
+   57.3,
    3.212,
    "Without it, cloud D N S is a blind spot."
   ]
@@ -635,46 +635,46 @@
  "15": [
   [
    0.05,
-   5.037,
-   "The federal mapping reuses the controls Book 08 has already verified."
+   9.213,
+   "The federal mapping reuses the nist special publication eight hundred fifty-three controls that the workbook's D N S design has already verified."
   ],
   [
-   5.088,
+   9.262,
    5.188,
    "It's illustrative, so validate it against the system's own authorization boundary."
   ],
   [
-   10.275,
+   14.45,
    2.575,
    "Configuration and inventory first."
   ],
   [
-   12.85,
+   17.025,
    6.838,
    "CM-2, the baseline: the evidence is the Git commit and tag of the rendered configuration."
   ],
   [
-   19.688,
+   23.863,
    4.875,
    "CM-3, change control: pull requests with required review."
   ],
   [
-   24.562,
+   28.738,
    6.6,
    "CM-6, configuration settings: the agency's stated profile, plus drift reports."
   ],
   [
-   31.163,
+   35.337,
    9.95,
    "CM-7, least functionality: a dedicated D N S host, one role per server, the version hidden, and recursion and transfers limited."
   ],
   [
-   41.112,
+   45.288,
    8.238,
    "CM-8, inventory: a CMDB record for each server and an eye-pam entry for each address, with an owner."
   ],
   [
-   49.35,
+   53.525,
    14.312,
    "And SI-2, flaw remediation: a supported BIND branch, ISC's announcement list and vulnerability matrix, and remediation inside the timelines of Binding Operational Directive 26-04."
   ]
@@ -754,16 +754,16 @@
   ],
   [
    33.225,
-   12.5,
-   "The next steps: ask the seven questions of every cloud BIND server, build the forwarder pattern in a test account in each Region and realm, and run Book 08's validation matrix from every origin."
+   13.037,
+   "The next steps: ask the seven questions of every cloud BIND server, build the forwarder pattern in a test account in each Region and realm, and run the workbook's D N S validation matrix from every origin."
   ],
   [
-   45.725,
+   46.263,
    4.925,
    "This is research under review, not an endorsement by any federal agency."
   ],
   [
-   50.65,
+   51.188,
    0.762,
    "Thank you."
   ]

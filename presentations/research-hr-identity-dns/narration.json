@@ -57,6 +57,6 @@
   {
     "slide": 12,
     "title": "Decisions, next steps and where this fits",
-    "say": "To close. The decisions are who owns each namespace, which middleware platform and so which resolver path, the hub design in each cloud, and whether Oracle's private access is needed at all, remembering that it's routing, not DNS. The next steps are the things that couldn't be verified, such as which Oracle environment the agency's tenant will use and what's available in the government clouds; they're all listed in the backup. In the workbook, Book 03 covers HR-driven identity and Book 08 covers DNS, DHCP and address management, and three related research items sit beside this one. This is research under review, not an endorsement by any federal agency. Thank you."
+    "say": "To close. The decisions are who owns each namespace, which middleware platform and so which resolver path, the hub design in each cloud, and whether Oracle's private access is needed at all, remembering that it's routing, not DNS. The next steps are the things that couldn't be verified, such as which Oracle environment the agency's tenant will use and what's available in the government clouds; they're all listed in the backup. In the workbook, the HR-Driven Identity book and the DNS, DHCP and IPAM book cover those two halves in depth, and three related research items sit beside this one. This is research under review, not an endorsement by any federal agency. Thank you."
   }
 ]

@@ -1,55 +1,60 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.593
+00:00:00.050 --> 00:00:02.583
 Here's the frame for the whole guide:
 
 2
-00:00:02.593 --> 00:00:06.275
-Book 08's design, mapped
+00:00:02.583 --> 00:00:06.950
+the workbook's DNS design, mapped
 onto the way Infoblox works.
 
 3
-00:00:06.275 --> 00:00:11.369
-Book 08 wants governed DNS and address
+00:00:06.950 --> 00:00:12.022
+The design wants governed DNS and address
 management, and on NIOS that's a Grid,
 
 4
-00:00:11.369 --> 00:00:14.626
+00:00:12.022 --> 00:00:15.113
 one Grid Master holding
 the database and every
 
 5
-00:00:14.626 --> 00:00:18.050
+00:00:15.113 --> 00:00:18.362
 member getting its copy
 over an encrypted tunnel.
 
 6
-00:00:18.050 --> 00:00:23.169
-Book 08 wants a period of coexistence
-with Microsoft, so NIOS first manages
+00:00:18.362 --> 00:00:23.173
+It wants a period of coexistence with
+Microsoft, so NIOS first manages the
 
 7
-00:00:23.169 --> 00:00:28.288
-the Windows servers read-only, then takes
+00:00:23.173 --> 00:00:27.826
+Windows servers read-only, then takes
 over zones and scopes one at a time.
 
 8
-00:00:28.288 --> 00:00:33.713
-Book 08 requires DNSSEC, so the Grid
-Master signs as a hidden primary.
+00:00:27.826 --> 00:00:38.002
+OMB memo M-08-23 requires DNSSEC, and
+NIST SP 800-53's controls SC-20 and SC-21
 
 9
-00:00:33.713 --> 00:00:36.616
-And its evidence becomes
-syslog, audit logs,
+00:00:38.002 --> 00:00:45.225
+carry it into every system baseline, so
+the Grid Master signs as a hidden primary.
 
 10
-00:00:36.616 --> 00:00:39.600
+00:00:45.225 --> 00:00:48.678
+And the design's evidence
+becomes syslog, audit logs,
+
+11
+00:00:48.678 --> 00:00:51.650
 backups and the agency's
 settings checklist.
 
-11
-00:00:39.600 --> 00:00:45.550
-Book 08's six phases still govern, but
+12
+00:00:51.650 --> 00:00:57.190
+The design's six phases still govern, but
 this guide adds a Phase 0 of decisions.

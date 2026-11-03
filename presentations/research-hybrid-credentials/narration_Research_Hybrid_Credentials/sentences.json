@@ -619,21 +619,21 @@
  "17": [
   [
    0.05,
-   18.025,
-   "Finally, this research changed the books in five places: the SQL Server and application chapters on how certificates rotate and who renews them, Book 07 on federal smart card mapping, and Book 09 on the forgotten NPS certificate and the access control server's certificate."
+   19.15,
+   "Finally, this research changed the books in five places: the sequel Server and application chapters on how certificates rotate and who renews them, the P K I and Certificates book on federal smart card mapping, and the Network and Transport book on the forgotten NPS certificate and the access control server's certificate."
   ],
   [
-   18.075,
-   8.963,
-   "The next steps are tests, not more reading: prove the SQL key type, prove the card system can write the binding, and get CyberArk's answer on GovCloud."
+   19.2,
+   9.037,
+   "The next steps are tests, not more reading: prove the sequel key type, prove the card system can write the binding, and get CyberArk's answer on GovCloud."
   ],
   [
-   27.038,
+   28.238,
    5.862,
    "This is the program's research, under review, and not an endorsement by any federal agency."
   ],
   [
-   32.9,
+   34.1,
    1.1,
    "Thanks for watching."
   ]

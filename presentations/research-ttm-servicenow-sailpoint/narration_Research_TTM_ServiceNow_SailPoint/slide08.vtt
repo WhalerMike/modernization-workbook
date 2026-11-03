@@ -24,39 +24,39 @@ status decides when a provisioning
 task counts as complete.
 
 6
-00:00:13.588 --> 00:00:17.138
-That's exactly what Book 13
-calls closure by assertion.
+00:00:13.588 --> 00:00:17.463
+That's exactly what the workbook's
+design calls closure by assertion.
 
 7
-00:00:17.138 --> 00:00:20.990
+00:00:17.463 --> 00:00:21.315
 Our guidance: close the ServiceNow
 record only on evidence,
 
 8
-00:00:20.990 --> 00:00:25.787
+00:00:21.315 --> 00:00:26.112
 the next aggregation or a native-change
 event showing the intended state.
 
 9
-00:00:25.787 --> 00:00:27.951
+00:00:26.112 --> 00:00:28.276
 Gap two is about who approves.
 
 10
-00:00:27.951 --> 00:00:33.378
-Book 15 says access an owner governs is
-decided in the identity governance platform,
+00:00:28.276 --> 00:00:32.941
+The workbook's design says access an
+owner governs is decided in the identity
 
 11
-00:00:33.378 --> 00:00:36.712
-but the catalog app moves
-approval into ServiceNow.
+00:00:32.941 --> 00:00:37.388
+governance platform, but the catalog
+app moves approval into ServiceNow.
 
 12
-00:00:36.712 --> 00:00:41.074
+00:00:37.388 --> 00:00:41.750
 The fix is to choose one approver system
 per authority class and write it down.
 
 13
-00:00:41.074 --> 00:00:42.530
+00:00:41.750 --> 00:00:43.200
 Two more gaps to go.

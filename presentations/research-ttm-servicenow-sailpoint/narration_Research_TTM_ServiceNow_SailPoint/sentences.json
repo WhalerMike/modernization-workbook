@@ -12,26 +12,26 @@
   ],
   [
    7.612,
-   7.625,
-   "It's the vendor-named companion to Book 13's Appendix B, the Ticket-to-Machine Reference, which is vendor-neutral on purpose."
+   9.238,
+   "It's the vendor-named companion to Appendix B of the Governance, Drift and Evidence book, the Ticket-to-Machine Reference, which is vendor-neutral on purpose."
   ],
   [
-   15.238,
+   16.85,
    13.15,
    "Here we take the same loop, the same lanes and the same identity fixes, and work them through two named products: ServiceNow as the front door and the record, and SailPoint Identity Security Cloud for identity governance."
   ],
   [
-   28.387,
+   30.0,
    3.938,
    "It's an example, not an endorsement, and it's still under review."
   ],
   [
-   32.325,
+   33.938,
    4.975,
    "In about ten minutes we'll see where the products fit the loop, and four places where they don't."
   ],
   [
-   37.3,
+   38.913,
    2.0,
    "First, why name products at all?"
   ]
@@ -227,31 +227,31 @@
   ],
   [
    16.863,
-   3.65,
-   "Calling those Book 13's drift classes is our inference."
+   3.775,
+   "Mapping those to the workbook's drift classes is our inference."
   ],
   [
-   20.512,
+   20.637,
    5.1,
    "Actuation runs through SailPoint's connectors, or through the ServiceNow Entra spoke."
   ],
   [
-   25.613,
+   25.738,
    2.462,
    "The weak spots are steps three and five."
   ],
   [
-   28.075,
+   28.2,
    7.062,
    "Turning a drift event into a typed ServiceNow task is something you build with a SailPoint workflow; it isn't shipped."
   ],
   [
-   35.138,
+   35.263,
    4.225,
    "And closing with evidence is only partial, which is the first gap."
   ],
   [
-   39.362,
+   39.487,
    3.05,
    "Before the gaps, though, let's place the lanes."
   ]
@@ -316,31 +316,31 @@
   ],
   [
    13.588,
-   3.55,
-   "That's exactly what Book 13 calls closure by assertion."
+   3.875,
+   "That's exactly what the workbook's design calls closure by assertion."
   ],
   [
-   17.137,
+   17.462,
    8.65,
    "Our guidance: close the ServiceNow record only on evidence, the next aggregation or a native-change event showing the intended state."
   ],
   [
-   25.788,
+   26.113,
    2.163,
    "Gap two is about who approves."
   ],
   [
-   27.95,
-   8.762,
-   "Book 15 says access an owner governs is decided in the identity governance platform, but the catalog app moves approval into ServiceNow."
+   28.275,
+   9.113,
+   "The workbook's design says access an owner governs is decided in the identity governance platform, but the catalog app moves approval into ServiceNow."
   ],
   [
-   36.712,
+   37.388,
    4.362,
    "The fix is to choose one approver system per authority class and write it down."
   ],
   [
-   41.075,
+   41.75,
    1.387,
    "Two more gaps to go."
   ]
@@ -373,31 +373,31 @@
   ],
   [
    19.875,
-   8.625,
-   "SailPoint reads Oracle H C M Cloud directly and writes back only user name and work email, which fits Book 03."
+   10.363,
+   "SailPoint reads Oracle H C M Cloud directly and writes back only user name and work email, which fits the workbook's H R-driven identity design."
   ],
   [
-   28.5,
-   5.525,
-   "But Book 03 makes Entra inbound provisioning the one writer into the directory."
+   30.238,
+   4.963,
+   "But that design makes Entra inbound provisioning the one writer into the directory."
   ],
   [
-   34.025,
+   35.2,
    2.112,
    "So pick one writer per attribute."
   ],
   [
-   36.138,
+   37.312,
    7.5,
    "Either inbound provisioning stays the door and SailPoint governs entitlements, or SailPoint takes on the provisioning duties."
   ],
   [
-   43.638,
+   44.812,
    0.975,
    "Not both."
   ],
   [
-   44.612,
+   45.788,
    2.0,
    "Now, the identity fixes."
   ]
@@ -504,11 +504,11 @@
   ],
   [
    31.125,
-   10.838,
-   "For the design itself, read Book 13's vendor-neutral Appendix B, or watch its narrated deck, and then the draft on keeping identity correct after HR becomes the source."
+   12.387,
+   "For the design itself, read the vendor-neutral Appendix B of Governance, Drift and Evidence, or watch its narrated deck, and then the draft on keeping identity correct after H R becomes the source."
   ],
   [
-   41.962,
+   43.513,
    1.125,
    "Thanks for listening."
   ]

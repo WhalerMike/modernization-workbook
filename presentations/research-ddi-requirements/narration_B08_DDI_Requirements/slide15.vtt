@@ -5,55 +5,59 @@ WEBVTT
 Who decides all this?
 
 2
-00:00:01.350 --> 00:00:07.525
-Book 08's Chapter 09 gives one decider per
-row, and separates deciding from doing.
+00:00:01.350 --> 00:00:05.945
+The workbook's DNS responsibility
+matrix gives one decider per row,
 
 3
-00:00:07.525 --> 00:00:11.800
+00:00:05.945 --> 00:00:08.325
+and separates deciding from doing.
+
+4
+00:00:08.325 --> 00:00:12.600
 The sponsor and CIO choose the
 platform and how divisions are scoped.
 
-4
-00:00:11.800 --> 00:00:15.210
+5
+00:00:12.600 --> 00:00:16.010
 The authorizing official decides
 whether a cloud-delivered
 
-5
-00:00:15.210 --> 00:00:19.087
+6
+00:00:16.010 --> 00:00:19.887
 management plane is authorized, and
 accepts the standing exceptions.
 
-6
-00:00:19.087 --> 00:00:22.924
+7
+00:00:19.887 --> 00:00:23.724
 The CISO and ISSO set
 the control requirements.
 
-7
-00:00:22.924 --> 00:00:27.129
+8
+00:00:23.724 --> 00:00:27.929
 And the DNS and DDI team owns the
 namespace and the address plan,
 
-8
-00:00:27.129 --> 00:00:29.393
+9
+00:00:27.929 --> 00:00:30.193
 and approves high-impact changes,
 
-9
-00:00:29.393 --> 00:00:34.487
+10
+00:00:30.193 --> 00:00:35.287
 while routine record changes inside a
 division's own space are pre-approved.
 
-10
-00:00:34.487 --> 00:00:39.104
-Because that team holds the most powerful
-roles, the book scopes its automation,
-
 11
-00:00:39.104 --> 00:00:41.901
+00:00:35.287 --> 00:00:40.183
+Because that team holds the most powerful
+roles, the workbook scopes its automation,
+
+12
+00:00:40.183 --> 00:00:42.979
 adds a second approver
 for the riskiest changes,
 
-12
-00:00:41.901 --> 00:00:45.120
+13
+00:00:42.979 --> 00:00:46.180
 and keeps its privileged
 roles eligible, not standing.

@@ -106,26 +106,26 @@
   ],
   [
    15.525,
-   10.562,
-   "The newer device preparation has a template too, but only for devices with device association, so, as an inference, Book 05's description of it needs a review."
+   11.537,
+   "The newer device preparation has a template too, but only for devices with device association, so, as an inference, the Devices and Endpoints book's description of it needs a review."
   ],
   [
-   26.087,
+   27.062,
    6.562,
    "After enrollment, Intune can rename corporate Windows PCs and Macs, though not hybrid-joined ones."
   ],
   [
-   32.65,
+   33.625,
    3.6,
    "Macs have no enrollment-time template that this research found."
   ],
   [
-   36.25,
+   37.225,
    5.3,
    "Linux, Azure Arc servers and cloud VMs take their names from their own build tools."
   ],
   [
-   41.55,
+   42.525,
    3.1,
    "Naming has an owner; registering is the hard part."
   ]
@@ -380,21 +380,21 @@
   ],
   [
    5.075,
-   13.95,
-   "First, Kerberos islands: an Entra-joined device reaching on-premises resources still finds domain controllers through D N S, and Book 08 explains that a name pointing at the wrong host gets a valid ticket rejected."
+   16.562,
+   "First, Kerberos islands: an Entra-joined device reaching on-premises resources still finds domain controllers through D N S, and Microsoft's troubleshooting article on duplicate D N S records shows that a name pointing at the wrong host gets a valid ticket rejected."
   ],
   [
-   19.025,
+   21.637,
    14.625,
    "Second, certificates bind a name to a key, so, as an inference, after A D the certificate's name has to be built from the device name plus a fixed agency suffix, and it only matches D N S if that name is registered."
   ],
   [
-   33.65,
-   7.987,
-   "Third, logs: Book 12 joins evidence on the device's identity, so a missing or duplicated name breaks that join."
+   36.263,
+   9.312,
+   "Third, logs: the workbook's evidence contract joins evidence on the device's identity, so a missing or duplicated name breaks that join."
   ],
   [
-   41.638,
+   45.575,
    4.987,
    "Fourth, Microsoft says its naming macros don't guarantee unique names."
   ]
@@ -481,26 +481,26 @@
   ],
   [
    13.912,
-   9.775,
-   "The next steps are the things that couldn't be verified, such as how Macs handle rename and DHCP names, and a recheck of Book 05's device preparation description."
+   10.738,
+   "The next steps are the things that couldn't be verified, such as how Macs handle rename and DHCP names, and a recheck of the Devices and Endpoints book's device preparation description."
   ],
   [
-   23.688,
+   24.65,
    4.9,
    "Ask any third-party VPN vendor whether its concentrator registers clients."
   ],
   [
-   28.587,
-   10.625,
-   "In the workbook, Book 05 covers onboarding and naming, Book 08 covers the A D D N S departure, and two related research items sit beside this one."
+   29.55,
+   13.75,
+   "In the workbook, the Devices and Endpoints book covers onboarding and naming, the D N S, DHCP and eye-pam book covers the A D D N S departure, and two related research items sit beside this one."
   ],
   [
-   39.212,
+   43.3,
    4.925,
    "This is research under review, not an endorsement by any federal agency."
   ],
   [
-   44.138,
+   48.225,
    0.762,
    "Thank you."
   ]
