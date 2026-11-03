@@ -211,7 +211,7 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: reading the findings",
       body: [
-        { cols: [[{ terminal: "07-3" }], [{ bullets: [
+        { cols: [[{ terminal: "07-3", lines: "1-18,23", label: "examples/hr-lifecycle  ·  fixture data  ·  real output, trimmed" }], [{ bullets: [
           "LD-01: worker 100104 has no account",
           "LD-02: drew.park and harper.vu terminated and enabled; contractor bailey.ortiz past the earliest end",
           "LD-03: print.kiosk (its exception has no owner) and old.temp; not svc.scanner, whose exception has one",
