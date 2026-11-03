@@ -409,6 +409,116 @@ editions:
         changes:
           - "Edition 2026.11: record the edition, and publish the four gate-level decks and videos (#282)"
           - "Building Ticket-to-Machine: a narrated story deck and eight chapter tours (sources) (#283)"
+  - id: edition-2026.11.2
+    date: 2026-11-02
+    commit: 54bd6c87c4b18ba0df6d00b2e2bd03c71bf178de
+    summary: "Adds the deployment runbooks for all five kits, federal requirements and KSIs for every scripted step, the Privileged Access, Attribute-Driven Migration and Non-Person Identity learning paths, the Privileged Access implementation guide, and the HR tours, the Ticket-to-Machine and HR module decks and the Non-Person Identity guide decks."
+    units:
+      b03-hr-identity:
+        changes:
+          - "Privacy for workforce identity: Book 03 Chapter 14, and privacy sections in six books (#317)"
+      b04-access:
+        changes:
+          - "Section 508: accessibility gates in Books 18 and 16, notes in Books 04 and 15 (#314)"
+          - "Privacy for workforce identity: Book 03 Chapter 14, and privacy sections in six books (#317)"
+          - "Privileged Access implementation guide: eight gates, emergency access first (#325)"
+      b06-data-platform:
+        changes:
+          - "Privacy for workforce identity: Book 03 Chapter 14, and privacy sections in six books (#317)"
+      b07-pki:
+        changes:
+          - "Book 07, Chapter 09: federal workforce credentials, PIV, derived PIV and cloud authentication (#319)"
+      b12-security-operations:
+        changes:
+          - "Privacy for workforce identity: Book 03 Chapter 14, and privacy sections in six books (#317)"
+      b13-governance:
+        changes:
+          - "Book 13, Chapter 13: records, evidence and retention (#316)"
+          - "Privacy for workforce identity: Book 03 Chapter 14, and privacy sections in six books (#317)"
+      b14-compliance:
+        changes:
+          - "Book 14, Ch 03: the privacy baseline holds all eight PT controls, PT-1 to PT-8 (#320)"
+      b15-day2-operations:
+        changes:
+          - "Section 508: accessibility gates in Books 18 and 16, notes in Books 04 and 15 (#314)"
+      b16-people:
+        changes:
+          - "Section 508: accessibility gates in Books 18 and 16, notes in Books 04 and 15 (#314)"
+      b17-ai-identity:
+        changes:
+          - "Privacy for workforce identity: Book 03 Chapter 14, and privacy sections in six books (#317)"
+      b18-application-modernization:
+        changes:
+          - "Section 508: accessibility gates in Books 18 and 16, notes in Books 04 and 15 (#314)"
+          - "Privacy for workforce identity: Book 03 Chapter 14, and privacy sections in six books (#317)"
+      b19-developer-workbook:
+        changes:
+          - "HR-Driven Identity labs: exact commands for every step, real output, commands lists (#293)"
+          - "Book 19 and Microsoft Automation labs: exact commands for every step, real output, commands lists (#296)"
+          - "Tours: HR-Driven Identity's seven chapter tours, and the Privileged Access, Non-Person Identity and Book 19 tours with real kit output (#297)"
+          - "Book 19: federal requirements and evidence for every scripted kit action (#306)"
+          - "Book 19, Chapter 10: deploying to test and production (#307)"
+      guides/attribute-driven-migration-implementation:
+        changes:
+          - "Labs: one page that lists every lab, and \"Try it\" links in the guides (#290)"
+          - "Attribute-Driven Migration learning path: nine modules on Book 19 (#323)"
+      guides/hr-driven-identity-implementation:
+        changes:
+          - "Labs: one page that lists every lab, and \"Try it\" links in the guides (#290)"
+          - "HR-Driven Identity: federal requirements and KSIs for every scripted step (#304)"
+      guides/non-person-identity-implementation:
+        changes:
+          - "Labs: one page that lists every lab, and \"Try it\" links in the guides (#290)"
+          - "Non-Person Identity: federal requirements and KSIs for every scripted step (#313)"
+          - "Non-Person Identity implementation guide: a two-part narrated deck series with videos (#321)"
+          - "Non-Person Identity learning path: ten modules (#324)"
+      guides/privileged-access-implementation:
+        changes:
+          - "Privileged Access implementation guide: eight gates, emergency access first (#325)"
+          - "Privileged Access kit: PIM alert check covers PIM for Groups (PA-PIM-12, PA-PIM-13) (#328)"
+      guides/ttm-servicenow-sailpoint:
+        changes:
+          - "Labs: one page that lists every lab, and \"Try it\" links in the guides (#290)"
+          - "Ticket-to-Machine: federal requirements, KSIs and evidence for every scripted kit action (#301)"
+      guides/ttm-task-catalog:
+        changes:
+          - "Ticket-to-Machine task catalog pack: build an internal task catalog with Copilot (#310)"
+      developer-workbooks/hr-driven-identity:
+        changes:
+          - "HR-Driven Identity labs: exact commands for every step, real output, commands lists (#293)"
+          - "Tours: HR-Driven Identity's seven chapter tours, and the Privileged Access, Non-Person Identity and Book 19 tours with real kit output (#297)"
+          - "Lab command lists: the cleanup after the last step is labeled \"After the steps\", not with the step before it (#300)"
+          - "HR-Driven Identity: federal requirements and KSIs for every scripted step (#304)"
+          - "Building HR-Driven Identity, Chapter 08: deploying to test and production (#308)"
+      developer-workbooks/non-person-identity:
+        changes:
+          - "HR-Driven Identity labs: exact commands for every step, real output, commands lists (#293)"
+          - "Non-Person Identity labs: exact commands for every step, real output, commands lists (#295)"
+          - "Tours: HR-Driven Identity's seven chapter tours, and the Privileged Access, Non-Person Identity and Book 19 tours with real kit output (#297)"
+          - "Lab command lists: the cleanup after the last step is labeled \"After the steps\", not with the step before it (#300)"
+          - "Non-Person Identity: federal requirements and KSIs for every scripted step (#313)"
+          - "Building Non-Person Identity, Chapter 11: deploying to test and production (#315)"
+          - "Non-Person Identity learning path: ten modules (#324)"
+          - "Non-Person Identity learning path: Module 11, deploy to test, then production (#329)"
+      developer-workbooks/privileged-access:
+        changes:
+          - "HR-Driven Identity labs: exact commands for every step, real output, commands lists (#293)"
+          - "Privileged Access labs: exact commands for every step, real output, commands lists (#294)"
+          - "Non-Person Identity labs: exact commands for every step, real output, commands lists (#295)"
+          - "Tours: HR-Driven Identity's seven chapter tours, and the Privileged Access, Non-Person Identity and Book 19 tours with real kit output (#297)"
+          - "Lab command lists: the cleanup after the last step is labeled \"After the steps\", not with the step before it (#300)"
+          - "Privileged Access workbook: federal requirements and evidence for chapters 01-08 (#312)"
+          - "Building Privileged Access, Chapter 09: deploying to test and production (#311)"
+          - "Privileged Access learning path: eight modules (#322)"
+          - "Privileged Access kit: CISA checks for the Global Administrator floor and PIM alerts (#326)"
+          - "Privileged Access workbook: link the implementation guide and the learning path (#327)"
+          - "Privileged Access kit: PIM alert check covers PIM for Groups (PA-PIM-12, PA-PIM-13) (#328)"
+      developer-workbooks/ticket-to-machine:
+        changes:
+          - "Ticket-to-Machine: real kit output in the labs and on the tours' Lab 1 slides (#288)"
+          - "HR-Driven Identity labs: exact commands for every step, real output, commands lists (#293)"
+          - "Ticket-to-Machine: federal requirements, KSIs and evidence for every scripted kit action (#301)"
+          - "Building Ticket-to-Machine, Chapter 09: deploying to test and production (#302)"
 # (scripts/cut_edition.py adds each new edition at the end of the list above.)
 
 # Releases that aren't editions (kits, video sets), listed on the Archive page.

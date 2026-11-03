@@ -128,10 +128,11 @@ This is the developer workbook for the [HR-driven identity implementation guide]
 
 ## Version and revision history {#version-history}
 
-**Version 1.1**, in [edition 2026.11.1](../../../about/archive.md#edition-2026-11-1) (November 1, 2026). Every edition is kept on the [Archive](../../../about/archive.md) page; every change between editions is in the [commit history](https://github.com/WhalerMike/modernization-workbook/commits/main/docs/project-plans/developer-workbooks/hr-driven-identity).
+**Version 1.2**, in [edition 2026.11.2](../../../about/archive.md#edition-2026-11-2) (November 2, 2026). Every edition is kept on the [Archive](../../../about/archive.md) page; every change between editions is in the [commit history](https://github.com/WhalerMike/modernization-workbook/commits/main/docs/project-plans/developer-workbooks/hr-driven-identity).
 
 | Version | Edition | Date | Changes |
 |---|---|---|---|
+| 1.2 | [2026.11.2](../../../about/archive.md#edition-2026-11-2) | 2026-11-02 | HR-Driven Identity labs: exact commands for every step, real output, commands lists ([#293](https://github.com/WhalerMike/modernization-workbook/pull/293)); Tours: HR-Driven Identity's seven chapter tours, and the Privileged Access, Non-Person Identity and Book 19 tours with real kit output ([#297](https://github.com/WhalerMike/modernization-workbook/pull/297)); Lab command lists: the cleanup after the last step is labeled "After the steps", not with the step before it ([#300](https://github.com/WhalerMike/modernization-workbook/pull/300)); HR-Driven Identity: federal requirements and KSIs for every scripted step ([#304](https://github.com/WhalerMike/modernization-workbook/pull/304)); Building HR-Driven Identity, Chapter 08: deploying to test and production ([#308](https://github.com/WhalerMike/modernization-workbook/pull/308)) |
 | 1.1 | [2026.11.1](../../../about/archive.md#edition-2026-11-1) | 2026-11-01 | Edition 2026.11: record the edition, and publish the four gate-level decks and videos ([#282](https://github.com/WhalerMike/modernization-workbook/pull/282)) |
 | 1.0 | [2026.11](../../../about/archive.md#edition-2026-11) | 2026-11-01 | Building HR-Driven Identity: a developer workbook with labs ([#276](https://github.com/WhalerMike/modernization-workbook/pull/276)); Learning path: HR-Driven Identity in Microsoft Entra ID ([#278](https://github.com/WhalerMike/modernization-workbook/pull/278)); Gate-level deck series for HR-Driven Identity and Ticket-to-Machine (sources) ([#280](https://github.com/WhalerMike/modernization-workbook/pull/280)) |
 

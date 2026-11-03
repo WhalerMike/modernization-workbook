@@ -21,8 +21,8 @@ aliases:
 
 | Edition | File |
 |---|---|
-| Deck, presented live (about 52 minutes) | [Research_Infoblox_Impl.pptx](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/Research_Infoblox_Impl.pptx) |
-| Narrated, self-running (about 22 minutes, captions) | [Research_Infoblox_Impl_Narrated.pptx](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.1/Research_Infoblox_Impl_Narrated.pptx) |
+| Deck, presented live (about 52 minutes) | [Research_Infoblox_Impl.pptx](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.2/Research_Infoblox_Impl.pptx) |
+| Narrated, self-running (about 22 minutes, captions) | [Research_Infoblox_Impl_Narrated.pptx](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.2/Research_Infoblox_Impl_Narrated.pptx) |
 | Narration script and caption track | [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/research-infoblox-impl/Research_Infoblox_Impl_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/research-infoblox-impl/Research_Infoblox_Impl_Narrated.vtt) |
 
 ## What it covers
