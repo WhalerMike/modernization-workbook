@@ -363,7 +363,7 @@ def render(results: dict, budget: int | None = None) -> str:
             add(row, "lifecycle")
     if gated:
         add(
-            "\n## Developer workbooks awaiting review\n\nThese pages are gated: each waits for the owner's review, and a page "
+            "\n## Gated pages awaiting review\n\nThese pages (the developer workbooks, the implementation guides and the training paths) are gated: each waits for the owner's review, and a page "
             "changed after approval waits again. Work that builds on a page, such as its narrated chapter tour, waits too. "
             "After reading a page, approve it with `python scripts/source_watch/review_gate.py --approve <page>` in a reviewed pull request; "
             "it is listed every week until then.\n\n| Page | Why it is listed |\n|---|---|",
