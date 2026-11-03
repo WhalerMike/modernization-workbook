@@ -52,19 +52,33 @@ class Gate(unittest.TestCase):
         pages = [r["page"] for r in rg.waiting(self.root)]
         self.assertEqual(pages, [f"{rg.GATED[0]}/01-test.md", f"{rg.GATED[0]}/privileged-access/index.md"])
 
-    def test_book_19_and_the_implementation_guide_are_gated_but_other_books_and_guides_arent(self):
+    def test_book_19_the_guides_and_training_are_gated_but_other_books_arent(self):
         b19 = self.root / "docs/books/b19-developer-workbook"
         guides = self.root / "docs/books/guides"
+        training = self.root / "docs/training"
         b18 = self.root / "docs/books/b18-application-modernization"
-        for folder in (b19, guides, b18):
+        for folder in (b19, guides / "_verification", training / "attribute-driven-migration", training / "_verification", b18):
             folder.mkdir(parents=True)
         (b19 / "01-test.md").write_text(PAGE, encoding="utf-8")
         (guides / "attribute-driven-migration-implementation.md").write_text(PAGE, encoding="utf-8")
         (guides / "attribute-driven-migration.md").write_text(PAGE, encoding="utf-8")
+        (guides / "_verification" / "attribute-driven-migration.md").write_text(PAGE, encoding="utf-8")
+        (training / "index.md").write_text(PAGE, encoding="utf-8")
+        (training / "attribute-driven-migration" / "01-test.md").write_text(PAGE, encoding="utf-8")
+        (training / "_verification" / "index.md").write_text(PAGE, encoding="utf-8")
         (b18 / "01-test.md").write_text(PAGE, encoding="utf-8")
         pages = [r["page"] for r in rg.waiting(self.root)]
         self.assertEqual(sorted(pages), sorted([f"{rg.GATED[0]}/01-test.md", "docs/books/b19-developer-workbook/01-test.md",
-                                                "docs/books/guides/attribute-driven-migration-implementation.md"]))
+                                                "docs/books/guides/attribute-driven-migration-implementation.md",
+                                                "docs/books/guides/attribute-driven-migration.md",
+                                                "docs/training/index.md", "docs/training/attribute-driven-migration/01-test.md"]))
+
+    def test_a_page_without_front_matter_or_review_fields_waits_and_nothing_fails(self):
+        (self.book / "02-bare.md").write_text("# No front matter\n\nBody.\n", encoding="utf-8")
+        (self.book / "03-no-fields.md").write_text('---\ntitle: "No review fields"\n---\n\nBody.\n', encoding="utf-8")
+        rows = {r["page"]: r for r in rg.waiting(self.root)}
+        for name in ("02-bare.md", "03-no-fields.md"):
+            self.assertEqual(rows[f"{rg.GATED[0]}/{name}"]["reason"], "not yet reviewed")
 
     def test_an_approved_page_stops_waiting(self):
         self.page.write_text(rg.approve(self.page, dt.date(2026, 11, 2)), encoding="utf-8")
@@ -173,12 +187,12 @@ class Report(unittest.TestCase):
                                     "reason": "not yet reviewed", "last_reviewed": ""}]}
         self.assertTrue(report.has_findings(results))
         text = report.render(results)
-        self.assertIn("## Developer workbooks awaiting review", text)
+        self.assertIn("## Gated pages awaiting review", text)
         self.assertIn("not yet reviewed", text)
 
     def test_no_waiting_pages_no_section(self):
         self.assertFalse(report.has_findings({"review_gate": []}))
-        self.assertNotIn("## Developer workbooks awaiting review", report.render({"week_of": "2026-11-02", "review_gate": []}))
+        self.assertNotIn("## Gated pages awaiting review", report.render({"week_of": "2026-11-02", "review_gate": []}))
 
 
 if __name__ == "__main__":
