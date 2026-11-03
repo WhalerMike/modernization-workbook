@@ -39,26 +39,26 @@
   ],
   [
    1.562,
-   8.0,
-   "Book 03 splits the work: provisioning creates accounts, and Lifecycle Workflows act on accounts that already exist."
+   8.525,
+   "Microsoft Learn splits the work: inbound provisioning creates accounts, and Lifecycle Workflows act on accounts that already exist."
   ],
   [
-   9.562,
+   10.088,
    11.988,
    "The built-in tasks handle the account itself, but everything else in a leaver, the piv credential, the devices, the servers, goes through a custom task extension, which is code you write."
   ],
   [
-   21.55,
-   10.05,
-   "Book 03 also sets three rules: one reusable Logic App per integration, block the account first, and make custom tasks safe to repeat."
+   22.075,
+   9.85,
+   "The workbook's design also sets three rules: one reusable Logic App per integration, block the account first, and make custom tasks safe to repeat."
   ],
   [
-   31.6,
+   31.925,
    8.0,
    "Learn sets the contract on the other side: how the Logic App is started, how long the workflow waits, and how the answer comes back."
   ],
   [
-   39.6,
+   39.925,
    1.525,
    "Let's see where that runs."
   ]
@@ -269,7 +269,7 @@
   [
    10.325,
    11.137,
-   "That matters because the same task can arrive twice: the extension may retry its call, a workflow can be rerun, and Book 03 resumes a partial leaver where it stopped."
+   "That matters because the same task can arrive twice: the extension may retry its call, a workflow can be rerun, and the workbook's design resumes a partial leaver where it stopped."
   ],
   [
    21.462,
@@ -305,11 +305,11 @@
   ],
   [
    22.4,
-   11.2,
-   "And the two checks compare what's really in the tenant with the registry, including Book 03's leaver order: block the account and revoke its tokens first, then run the custom task."
+   13.825,
+   "And the two checks compare what's really in the tenant with the registry, including the workbook's leaver order: block the account and revoke its tokens first, as Microsoft Learn's revoke-access guidance says, then run the custom task."
   ],
   [
-   33.6,
+   36.225,
    3.225,
    "A failed revocation shouldn't stop the cleanup after it."
   ]

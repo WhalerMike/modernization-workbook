@@ -6,7 +6,7 @@ Welcome back to Building HR-Driven Identity. This is Chapter 6: separation timin
 
 ## Slide 2 — Why this gate needs code
 
-Why does this gate need code? The guide's Gate 6 configures the leaver in Book 3's order and asks for the timing to be proved. But no Microsoft report computes it. Lifecycle Workflows records that a run completed. The audit log records when the account was disabled. The card system and Intune record the rest, each in its own place. So this chapter computes the intervals: each leaver's time to block and time to revocation, the period's percentiles against the thresholds, and the separations that need someone's attention.
+Why does this gate need code? The guide's Gate 6 configures the leaver in the workbook's leaver order and asks for the timing to be proved. But no Microsoft report computes it. Lifecycle Workflows records that a run completed. The audit log records when the account was disabled. The card system and Intune record the rest, each in its own place. So this chapter computes the intervals: each leaver's time to block and time to revocation, the period's percentiles against the thresholds, and the separations that need someone's attention.
 
 ## Slide 3 — What Microsoft gives you
 
@@ -66,7 +66,7 @@ Step five runs the tests: fifty-seven pass. Then delete the output folder either
 
 ## Slide 17 — Lab 2: measure a real test leaver
 
-Lab 2 uses a test tenant with a leaver workflow in Book 3's order; the authors haven't run it. Register a reader app with only the two permissions. Give one test user a leave date a few hours ahead and wait for the scheduled run, and run the leaver on demand for a second. Export the logs, and confirm which activity the revoke task really wrote, and who initiated it. Then measure. Each block should include the wait for the tenant schedule. Finally, back everything out.
+Lab 2 uses a test tenant with a leaver workflow in the workbook's leaver order; the authors haven't run it. Register a reader app with only the two permissions. Give one test user a leave date a few hours ahead and wait for the scheduled run, and run the leaver on demand for a second. Export the logs, and confirm which activity the revoke task really wrote, and who initiated it. Then measure. Each block should include the wait for the tenant schedule. Finally, back everything out.
 
 ## Slide 18 — Dangers, and the guard for each
 

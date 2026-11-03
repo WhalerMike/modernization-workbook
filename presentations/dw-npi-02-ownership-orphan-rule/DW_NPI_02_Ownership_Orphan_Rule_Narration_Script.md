@@ -18,7 +18,7 @@ So what's the rule? Learn is permissive: a service principal's owners can be use
 
 ## Slide 5 — The orphan rule: disable first, never delete
 
-Now the orphan rule itself. The plan's decision, owned by the chief information security officer, is to disable first, once the identity governance officer confirms, then give the office thirty days to claim it. Book 04 runs the other way round, and the chapter keeps that difference open rather than quietly picking. Learn agrees on the shape: disable, don't delete. It offers two reversible switches. One deactivates the registration everywhere, but its procedure is still on the beta endpoint. The other disables sign-in in this tenant on the stable endpoint, and that's the one the code uses.
+Now the orphan rule itself. The plan's decision, owned by the chief information security officer, is to disable first, once the identity governance officer confirms, then give the office thirty days to claim it. Access and Privilege's own policy runs the other way round, thirty days to assign an owner and then suspension, but the program's rule is settled: the plan's order, disable first. Learn agrees on the shape: disable, don't delete. It offers two reversible switches. One deactivates the registration everywhere, but its procedure is still on the beta endpoint. The other disables sign-in in this tenant on the stable endpoint, and that's the one the code uses.
 
 ## Slide 6 — Learn's Graph samples, pinned and sent to a fake
 

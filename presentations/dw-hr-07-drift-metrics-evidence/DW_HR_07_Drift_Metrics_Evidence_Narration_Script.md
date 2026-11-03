@@ -10,7 +10,7 @@ Why does this gate exist? Because the first six only set things up; something ha
 
 ## Slide 3 — Start from Book 19's pipeline, and what it leaves
 
-Microsoft documents log retention and routing, but publishes no sample that computes lifecycle metrics or joins HR, the directory and a card system into drift classes. So the nearest start is the program's own drift pipeline from the Federal Modernization Workbook's Book 19, Chapter 9. It compares validation kit runs, keeps names out of the tracker and writes hashed, chained evidence packages. What it can't do is read lifecycle inputs, compute metrics against thresholds, or assemble a period. The verdict: keep it as the scheduler, the sign-in and the hashing, and give it a run shaped for the lifecycle.
+Microsoft documents log retention and routing, but publishes no sample that computes lifecycle metrics or joins HR, the directory and a card system into drift classes. So the nearest start is the program's own drift pipeline from Chapter 9 of the Federal Modernization Workbook's Building the Attribute-Driven Migration. It compares validation kit runs, keeps names out of the tracker and writes hashed, chained evidence packages. What it can't do is read lifecycle inputs, compute metrics against thresholds, or assemble a period. The verdict: keep it as the scheduler, the sign-in and the hashing, and give it a run shaped for the lifecycle.
 
 ## Slide 4 — The run: what it reads and writes
 
@@ -18,11 +18,11 @@ The run reads the HR export and the contractor decisions from Chapter 2, the wor
 
 ## Slide 5 — Six lifecycle drift classes
 
-Here are the six classes, all from Book 3. A worker record with no account is missing identity. An enabled account for someone terminated, or a contractor past the earliest end, is stale access. An enabled account that matches nobody and no owned exception is an orphan. A second writer or forbidden write from Chapter 1's scan is an unauthorized write, keeping Chapter 1's object key so the fingerprint matches. And an active PIV card for a separated worker, or for a contractor the source no longer holds, is credential drift.
+Here are the six classes, all of them the workbook's drift classes. A worker record with no account is missing identity. An enabled account for someone terminated, or a contractor past the earliest end, is stale access. An enabled account that matches nobody and no owned exception is an orphan. A second writer or forbidden write from Chapter 1's scan is an unauthorized write, keeping Chapter 1's object key so the fingerprint matches. And an active PIV card for a separated worker, or for a contractor the source no longer holds, is credential drift.
 
 ## Slide 6 — Six metrics, each against a threshold
 
-The six metrics are Book 3's measured lifecycle. Separation-to-block and separation-to-revocation come from Chapter 6, at the ninetieth percentile. Transfer-to-review comes from Chapter 4, and stays open while the review is open. Joiner readiness comes from Chapter 3. Correlation coverage and derivation purity this run computes itself. A metric over its threshold is a warning. And the key rule: a metric with no input is reported as not measured, never as zero. The thresholds are proposed starting values; choosing them is the agency's decision.
+The six metrics are the workbook's measured lifecycle. Separation-to-block and separation-to-revocation come from Chapter 6, at the ninetieth percentile. Transfer-to-review comes from Chapter 4, and stays open while the review is open. Joiner readiness comes from Chapter 3. Correlation coverage and derivation purity this run computes itself. A metric over its threshold is a warning. And the key rule: a metric with no input is reported as not measured, never as zero. The thresholds are proposed starting values; choosing them is the agency's decision.
 
 ## Slide 7 — The package, the chain and the period
 
@@ -30,7 +30,7 @@ The packager has three commands. Package checks the run, every file and nothing 
 
 ## Slide 8 — The verified facts
 
-The facts behind the code, each read on November first. The run's only new Graph read lists users with their leave date, which needs User Read All with the lifecycle info read permission. The Graph host depends on the cloud: graph dot microsoft dot com for G C C, graph dot microsoft dot U S for G C C High, and its D o D variant. Audit and provisioning logs keep thirty days with a premium edition, seven with Free, and Lifecycle Workflows history up to thirty. Reporting and SIEM connectivity are available in Azure Government. The metrics and classes themselves are Book 3's design.
+The facts behind the code, each read on November first. The run's only new Graph read lists users with their leave date, which needs User Read All with the lifecycle info read permission. The Graph host depends on the cloud: graph dot microsoft dot com for G C C, graph dot microsoft dot U S for G C C High, and its D o D variant. Audit and provisioning logs keep thirty days with a premium edition, seven with Free, and Lifecycle Workflows history up to thirty. Reporting and SIEM connectivity are available in Azure Government. The metrics and classes themselves are the workbook's design.
 
 ## Slide 9 — What stays open, and what's design guidance
 
@@ -62,7 +62,7 @@ Step six assembles the period. Two packages, no chain breaks, no coverage gaps, 
 
 ## Slide 16 — Lab 2: a run against a test tenant
 
-Lab 2 runs it against a test tenant, never production; the authors haven't run it. Register a reader app with a certificate or federated credential, and grant only the two permissions the export lists. Run Chapters 1 through 6 against the test tenant and keep their folders. Write a run in tenant mode and read every finding. Schedule it in Book 19's workflow with no secret, writing packages to an immutable container outside the directory, each naming the last. After a few runs, check that a skipped day shows as a gap. Then back it all out.
+Lab 2 runs it against a test tenant, never production; the authors haven't run it. Register a reader app with a certificate or federated credential, and grant only the two permissions the export lists. Run Chapters 1 through 6 against the test tenant and keep their folders. Write a run in tenant mode and read every finding. Schedule it in the drift pipeline's workflow from Building the Attribute-Driven Migration, with no secret, writing packages to an immutable container outside the directory, each naming the last. After a few runs, check that a skipped day shows as a gap. Then back it all out.
 
 ## Slide 17 — Dangers, and the guard for each
 

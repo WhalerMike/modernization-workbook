@@ -48,45 +48,45 @@ two labs and the dangers.
 Why does this gate need code?
 
 11
-00:00:36.047 --> 00:00:39.193
+00:00:36.047 --> 00:00:39.491
 The guide's Gate 6 configures
-the leaver in Book
+the leaver in the workbook's
 
 12
-00:00:39.193 --> 00:00:42.097
-3's order and asks for
+00:00:39.491 --> 00:00:42.422
+leaver order and asks for
 the timing to be proved.
 
 13
-00:00:42.097 --> 00:00:44.398
+00:00:42.422 --> 00:00:44.722
 But no Microsoft report computes it.
 
 14
-00:00:44.398 --> 00:00:47.473
+00:00:44.722 --> 00:00:47.797
 Lifecycle Workflows records
 that a run completed.
 
 15
-00:00:47.473 --> 00:00:50.385
+00:00:47.797 --> 00:00:50.710
 The audit log records when
 the account was disabled.
 
 16
-00:00:50.385 --> 00:00:54.885
+00:00:50.710 --> 00:00:55.210
 The card system and Intune record
 the rest, each in its own place.
 
 17
-00:00:54.885 --> 00:00:57.239
+00:00:55.210 --> 00:00:57.564
 So this chapter computes the intervals:
 
 18
-00:00:57.239 --> 00:01:01.662
+00:00:57.564 --> 00:01:01.987
 each leaver's time to block and time to
 revocation, the period's percentiles
 
 19
-00:01:01.662 --> 00:01:06.440
+00:01:01.987 --> 00:01:06.770
 against the thresholds, and the
 separations that need someone's attention.
 
@@ -666,49 +666,50 @@ and Chapter 7's first step measures the
 separations again into the same place.
 
 141
-00:09:24.060 --> 00:09:28.266
-Lab 2 uses a test tenant with a
-leaver workflow in Book 3's order;
+00:09:24.060 --> 00:09:27.381
+Lab 2 uses a test tenant with
+a leaver workflow in the
 
 142
-00:09:28.266 --> 00:09:29.998
+00:09:27.381 --> 00:09:30.547
+workbook's leaver order;
 the authors haven't run it.
 
 143
-00:09:29.998 --> 00:09:33.222
+00:09:30.547 --> 00:09:33.772
 Register a reader app with
 only the two permissions.
 
 144
-00:09:33.222 --> 00:09:38.230
+00:09:33.772 --> 00:09:38.779
 Give one test user a leave date a few
 hours ahead and wait for the scheduled run,
 
 145
-00:09:38.230 --> 00:09:40.811
+00:09:38.779 --> 00:09:41.360
 and run the leaver on demand for a second.
 
 146
-00:09:40.811 --> 00:09:43.931
+00:09:41.360 --> 00:09:44.481
 Export the logs, and
 confirm which activity the
 
 147
-00:09:43.931 --> 00:09:46.972
+00:09:44.481 --> 00:09:47.522
 revoke task really wrote,
 and who initiated it.
 
 148
-00:09:46.972 --> 00:09:47.947
+00:09:47.522 --> 00:09:48.497
 Then measure.
 
 149
-00:09:47.947 --> 00:09:51.086
+00:09:48.497 --> 00:09:51.636
 Each block should include the
 wait for the tenant schedule.
 
 150
-00:09:51.086 --> 00:09:53.400
+00:09:51.636 --> 00:09:53.950
 Finally, back everything out.
 
 151

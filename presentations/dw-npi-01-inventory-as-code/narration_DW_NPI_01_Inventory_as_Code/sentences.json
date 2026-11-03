@@ -88,16 +88,16 @@
   ],
   [
    1.9,
-   17.688,
-   "On the directory side, Book 02 gives the types: the traditional user account used as a service, the managed service account tied to one server, the group managed service account shared by several, and on newer domains the delegated managed service account, which takes over from a traditional account."
+   19.062,
+   "On the directory side, Microsoft Learn's service account documentation gives the types: the traditional user account used as a service, the managed service account tied to one server, the group managed service account shared by several, and on newer domains the delegated managed service account, which takes over from a traditional account."
   ],
   [
-   19.587,
+   20.962,
    5.588,
    "Learn warns that nothing marks a service account as one, so its search criteria can miss some."
   ],
   [
-   25.175,
+   26.55,
    8.863,
    "On the Entra side, the list is always longer than the apps anyone asked for, and each service principal carries a type that tells you what it really is."
   ]
@@ -137,16 +137,16 @@
   ],
   [
    7.588,
-   12.15,
-   "The risk rules, the candidate target and the stale threshold are the program's, from the plan and Book 02, and the code keeps them in one configuration file and labels them as design guidance."
+   10.825,
+   "The risk rules, the candidate target and the stale threshold are the workbook's design guidance, and the code keeps them in one configuration file and labels them as design guidance."
   ],
   [
-   19.738,
+   18.413,
    9.45,
    "And notice why stale is only ever a lead: the last logon attribute isn't updated on every sign-in, so an account that looks idle may not be."
   ],
   [
-   29.188,
+   27.863,
    4.55,
    "The plan says to confirm against the sign-in logs before retiring anything."
   ]
@@ -297,16 +297,16 @@
   ],
   [
    20.938,
-   7.45,
-   "Then the program's rules apply: high, medium or low risk, and a candidate target from Book 02's matrix."
+   8.113,
+   "Then the program's rules apply: high, medium or low risk, and a candidate target from the workbook's migration path matrix."
   ],
   [
-   28.387,
+   29.05,
    4.4,
    "That target is only a candidate, Chapter 3 makes the decision."
   ],
   [
-   32.788,
+   33.45,
    3.725,
    "And sequel Server accounts are handed to the Data Platform plan."
   ]

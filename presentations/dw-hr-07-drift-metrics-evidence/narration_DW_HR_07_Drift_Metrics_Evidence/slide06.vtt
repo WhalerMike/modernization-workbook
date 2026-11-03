@@ -1,43 +1,43 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.225
-The six metrics are Book
-3's measured lifecycle.
+00:00:00.050 --> 00:00:03.175
+The six metrics are the
+workbook's measured lifecycle.
 
 2
-00:00:03.225 --> 00:00:07.531
+00:00:03.175 --> 00:00:07.481
 Separation-to-block and
 separation-to-revocation come from Chapter 6,
 
 3
-00:00:07.531 --> 00:00:09.313
+00:00:07.481 --> 00:00:09.263
 at the ninetieth percentile.
 
 4
-00:00:09.313 --> 00:00:14.400
+00:00:09.263 --> 00:00:14.350
 Transfer-to-review comes from Chapter 4,
 and stays open while the review is open.
 
 5
-00:00:14.400 --> 00:00:16.925
+00:00:14.350 --> 00:00:16.875
 Joiner readiness comes from Chapter 3.
 
 6
-00:00:16.925 --> 00:00:21.537
+00:00:16.875 --> 00:00:21.487
 Correlation coverage and derivation
 purity this run computes itself.
 
 7
-00:00:21.537 --> 00:00:24.138
+00:00:21.487 --> 00:00:24.088
 A metric over its threshold is a warning.
 
 8
-00:00:24.138 --> 00:00:29.975
+00:00:24.088 --> 00:00:29.925
 And the key rule: a metric with no input is
 reported as not measured, never as zero.
 
 9
-00:00:29.975 --> 00:00:35.400
+00:00:29.925 --> 00:00:35.350
 The thresholds are proposed starting values;
 choosing them is the agency's decision.

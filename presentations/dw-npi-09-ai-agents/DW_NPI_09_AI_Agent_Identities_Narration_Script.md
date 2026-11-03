@@ -14,7 +14,7 @@ Before any code, you need to know what's actually available, because the pieces 
 
 ## Slide 4 — The program's rules, N6.1 to N6.7
 
-Here are the program's rules, from Book 17, each held as a finding with a stable ID. Creation is closed, so an agent can't just appear. Every production agent has a reviewed handshake before it exists, naming who answers for it and what it may do. Credentials prefer a managed identity, and never a production secret. Inheritance never hands every future grant to every agent, and no agent holds a standing privileged role. Sponsors are real employees, and a transfer has ten business days to be confirmed. And drift is watched, with priorities.
+Here are the program's rules, the workbook's design for AI identities, each held as a finding with a stable ID. Creation is closed, so an agent can't just appear. Every production agent has a reviewed handshake before it exists, naming who answers for it and what it may do. Credentials prefer a managed identity, and never a production secret. Inheritance never hands every future grant to every agent, and no agent holds a standing privileged role. Sponsors are real employees, and a transfer has ten business days to be confirmed. And drift is watched, with priorities.
 
 ## Slide 5 — Learn's Agent ID samples, pinned and sent to a fake
 

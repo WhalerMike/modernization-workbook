@@ -10,7 +10,7 @@ Why does this chapter matter? Because a stolen secret works from anywhere, and C
 
 ## Slide 3 — The program's two policies and its two decisions
 
-The program's design comes from Book 4: two policies. One blocks workloads from anywhere except their named egress ranges. The other blocks them when Microsoft's risk detection marks them high. They roll out report-only first, then ring by ring, and they're never deleted on rollback. Two decisions frame it. The licensing decision covers the top-tier single-tenant apps. The enforcement decision is the security chief's: enforce, wait longer, or enforce with dated exclusions. And don't worry when the risk policy reports nothing; that's normal until something is actually risky.
+The program's design comes from the workbook's Conditional Access library: two policies. One blocks workloads from anywhere except their named egress ranges. The other blocks them when Microsoft's risk detection marks them high. They roll out report-only first, then ring by ring, and they're never deleted on rollback. Two decisions frame it. The licensing decision covers the top-tier single-tenant apps. The enforcement decision is the security chief's: enforce, wait longer, or enforce with dated exclusions. And don't worry when the risk policy reports nothing; that's normal until something is actually risky.
 
 ## Slide 4 — Learn's sample JSON, pinned and checked
 
@@ -34,7 +34,7 @@ There are two checks: one reads only files and runs on every pull request, the o
 
 ## Slide 9 — The plan, the dry run and the writes
 
-The plan compares the files with the tenant, property by property, and gives each policy one action. Two details matter. A new policy is always created report-only, even if its ring is approved for enforcement; it turns on in the next run. And a policy someone made by hand in the portal is reported, never deleted. Run as the read task, the client simply can't send a write. Run as the apply task, it refuses on any finding. Rollback follows Book 4: take the ring off the record, and its policies go back to report-only.
+The plan compares the files with the tenant, property by property, and gives each policy one action. Two details matter. A new policy is always created report-only, even if its ring is approved for enforcement; it turns on in the next run. And a policy someone made by hand in the portal is reported, never deleted. Run as the read task, the client simply can't send a write. Run as the apply task, it refuses on any finding. Rollback follows the workbook's design: take the ring off the record, and its policies go back to report-only.
 
 ## Slide 10 — Enforcement, ring by ring: five conditions
 

@@ -10,7 +10,7 @@ Why does this chapter have an end date built in? Because a group managed service
 
 ## Slide 3 — What gMSAs and dMSAs are, and where the code runs
 
-A quick grounding in what these accounts are. A group managed service account is a domain account whose password the domain controllers manage and rotate, and which several servers can fetch. The delegated kind is new in Windows Server 2025: it takes over from an old-style service account, and once the move completes, the old password stops working and the old account is disabled. Book 2's matrix says which target each account gets. And because everything here is an Active Directory command against the domain, the cloud choice doesn't change anything in this chapter.
+A quick grounding in what these accounts are. A group managed service account is a domain account whose password the domain controllers manage and rotate, and which several servers can fetch. The delegated kind is new in Windows Server 2025: it takes over from an old-style service account, and once the move completes, the old password stops working and the old account is disabled. The workbook's migration path matrix says which target each account gets. And because everything here is an Active Directory command against the domain, the cloud choice doesn't change anything in this chapter.
 
 ## Slide 4 — Learn's four procedures, pinned and run
 

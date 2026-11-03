@@ -42,7 +42,7 @@ The linter is where the guards become enforceable. Its most important check is t
 
 ## Slide 11 — What the linter found in Book 03's own table
 
-The best proof a linter is useful is that it finds something real. Run against Book 3's own table of rule patterns, it found three things. One pattern had no guest guard, so a guest with a matching employer name could have qualified; that's now fixed. Another let in a worker with an empty type, and the owner decided that shouldn't count, so it gained a clause. And the direct reports rule can't carry guards at all, because Learn says it can't be combined with anything, so the linter just notes it.
+The best proof a linter is useful is that it finds something real. Run against the HR-Driven Identity book's own table of rule patterns, it found three things. One pattern had no guest guard, so a guest with a matching employer name could have qualified; that's now fixed. Another let in a worker with an empty type, and the owner decided that shouldn't count, so it gained a clause. And the direct reports rule can't carry guards at all, because Learn says it can't be combined with anything, so the linter just notes it.
 
 ## Slide 12 — The shadow diff, the pause manifest and the tests
 
@@ -54,7 +54,7 @@ Who is this for? Developers build and maintain the library and its checks. Ident
 
 ## Slide 14 — Lab 1: Learn's samples and the rules, offline
 
-Lab 1 needs only a laptop with PowerShell 7 and Pester. First you run Learn's own pause and resume scripts against a fake tenant with two groups, one of them already paused for review. After the resume, both are on: the held group came back to life. Try an unknown cloud name and you'll see it sign in to worldwide. Then you lint Book 3's table and evaluate a rule over the fictional people. The disabled account and the guest stay out, and the lower-case code gets in, just as Learn says.
+Lab 1 needs only a laptop with PowerShell 7 and Pester. First you run Learn's own pause and resume scripts against a fake tenant with two groups, one of them already paused for review. After the resume, both are on: the held group came back to life. Try an unknown cloud name and you'll see it sign in to worldwide. Then you lint the HR-Driven Identity book's table and evaluate a rule over the fictional people. The disabled account and the guest stay out, and the lower-case code gets in, just as Learn says.
 
 ## Slide 15 — Lab 1: the pull request check, broken on purpose
 
