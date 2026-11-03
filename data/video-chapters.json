@@ -10759,6 +10759,518 @@
    "Summary: you've finished the path"
   ]
  ],
+ "Training_PA_Module_1_Narrated": [
+  [
+   0,
+   "Module 1: Inventory every privileged assignment"
+  ],
+  [
+   57,
+   "Why an active-only list stops being an inventory"
+  ],
+  [
+   100,
+   "What you'll be able to do in Module 1"
+  ],
+  [
+   160,
+   "Four kinds of assignment, a route, and a tier"
+  ],
+  [
+   221,
+   "What Learn's sample for role assignments leaves out"
+  ],
+  [
+   275,
+   "The reader and the rows"
+  ],
+  [
+   330,
+   "The findings: PA-INV-01 to PA-INV-09"
+  ],
+  [
+   403,
+   "Try it: Learn's samples, and five read permissions"
+  ],
+  [
+   458,
+   "Try it: run the inventory against the fictional tenant"
+  ],
+  [
+   511,
+   "Try it: read the ten findings"
+  ],
+  [
+   565,
+   "Try it: see the reader refuse, then run the tests"
+  ],
+  [
+   616,
+   "Lab 2: inventory your own test tenant"
+  ],
+  [
+   666,
+   "The federal requirement and evidence for Gate 0"
+  ],
+  [
+   734,
+   "Check yourself: two questions on the inventory"
+  ],
+  [
+   781,
+   "Summary, and next: Module 2, emergency access first"
+  ]
+ ],
+ "Training_PA_Module_2_Narrated": [
+  [
+   0,
+   "Module 2: Emergency access first"
+  ],
+  [
+   49,
+   "Why emergency access comes before any setting changes"
+  ],
+  [
+   110,
+   "What you'll be able to do in Module 2"
+  ],
+  [
+   165,
+   "What Learn's standard asks of each emergency account"
+  ],
+  [
+   234,
+   "PA-EA-08: enforced policies, and report-only ones"
+  ],
+  [
+   291,
+   "The alert: three tables, matched on object IDs"
+  ],
+  [
+   349,
+   "Try it: Learn's queries, and six read permissions"
+  ],
+  [
+   399,
+   "Try it: check the accounts and write the alert template"
+  ],
+  [
+   449,
+   "Try it: read the findings for ea02 and the policies"
+  ],
+  [
+   507,
+   "Try it: the example's rule finds five events, not two"
+  ],
+  [
+   552,
+   "Try it: see the guards, then run the tests"
+  ],
+  [
+   597,
+   "Lab 2: check your test tenant and fire the alert"
+  ],
+  [
+   656,
+   "The federal requirement and evidence for Gate 1"
+  ],
+  [
+   721,
+   "Check yourself: two questions on emergency access"
+  ],
+  [
+   766,
+   "Summary, and next: Module 3, the activation gate"
+  ]
+ ],
+ "Training_PA_Module_3_Narrated": [
+  [
+   0,
+   "Module 3: Conditional Access and the activation gate"
+  ],
+  [
+   53,
+   "Why a second proof at the moment of activation"
+  ],
+  [
+   112,
+   "What you'll be able to do in Module 3"
+  ],
+  [
+   173,
+   "The gate and the order Learn sets for it"
+  ],
+  [
+   235,
+   "The pre-merge check: PA-CA-01 to PA-CA-09"
+  ],
+  [
+   296,
+   "Report-only policies and the emergency exclusion"
+  ],
+  [
+   342,
+   "Reading a plan: seven actions"
+  ],
+  [
+   394,
+   "Try it: the template test, and each task's permissions"
+  ],
+  [
+   441,
+   "Try it: the pre-merge check, on the files and the template"
+  ],
+  [
+   494,
+   "Try it: plan against the fictional tenant, sending nothing"
+  ],
+  [
+   549,
+   "Try it: apply three times, until nothing is left"
+  ],
+  [
+   598,
+   "Lab 2: plan, apply and enforce the gate in a test tenant"
+  ],
+  [
+   661,
+   "The federal requirement and the evidence for Module 3"
+  ],
+  [
+   729,
+   "Check yourself: two questions on the activation gate"
+  ],
+  [
+   776,
+   "Summary, and next: Module 4, PIM for Entra roles"
+  ]
+ ],
+ "Training_PA_Module_4_Narrated": [
+  [
+   0,
+   "Module 4: PIM for Microsoft Entra roles as code"
+  ],
+  [
+   58,
+   "Why role settings as code, and the lockout they can cause"
+  ],
+  [
+   107,
+   "What you'll be able to do in Module 4"
+  ],
+  [
+   162,
+   "Settings per role, which Graph calls rules"
+  ],
+  [
+   228,
+   "The role files, the bounds and the waves"
+  ],
+  [
+   284,
+   "The checks: PA-PIM-01 to PA-PIM-09"
+  ],
+  [
+   348,
+   "Converting a standing assignment, in order"
+  ],
+  [
+   391,
+   "Try it: Learn's samples, and each task's permissions"
+  ],
+  [
+   442,
+   "Try it: dry-run wave 1, the pilot class"
+  ],
+  [
+   488,
+   "Try it: read a role's diff, and the findings"
+  ],
+  [
+   553,
+   "Try it: wave 2 waits, and the apply needs the gate"
+  ],
+  [
+   610,
+   "Lab 2: one role in your test tenant"
+  ],
+  [
+   668,
+   "The federal requirement and the evidence for Module 4"
+  ],
+  [
+   737,
+   "Check yourself: two questions on PIM role settings"
+  ],
+  [
+   779,
+   "Summary, and next: Module 5, PIM for Groups"
+  ]
+ ],
+ "Training_PA_Module_5_Narrated": [
+  [
+   0,
+   "Module 5: PIM for Groups and the PRV groups"
+  ],
+  [
+   60,
+   "Why a PRV group's own state has to be governed"
+  ],
+  [
+   114,
+   "What you'll be able to do in Module 5"
+  ],
+  [
+   170,
+   "Two features meet in a PRV group"
+  ],
+  [
+   229,
+   "Three facts from Learn that shape the code"
+  ],
+  [
+   271,
+   "The file and the findings: PA-PG-01 to PA-PG-09"
+  ],
+  [
+   334,
+   "The plan's order, the guards, and who creates the groups"
+  ],
+  [
+   394,
+   "Try it: Microsoft's samples, and Learn's Example 1"
+  ],
+  [
+   445,
+   "Try it: four read permissions, and a dry run"
+  ],
+  [
+   492,
+   "Try it: read the findings"
+  ],
+  [
+   545,
+   "Try it: read the diff, rule by rule"
+  ],
+  [
+   599,
+   "Try it: a guard refuses, then apply to the fake"
+  ],
+  [
+   636,
+   "Lab 2: lab groups in your own test tenant"
+  ],
+  [
+   684,
+   "The federal requirement and the evidence for Module 5"
+  ],
+  [
+   742,
+   "Check yourself: two questions on the PRV groups"
+  ],
+  [
+   784,
+   "Summary, and next: Module 6, PIM for Azure resources"
+  ]
+ ],
+ "Training_PA_Module_6_Narrated": [
+  [
+   0,
+   "Module 6: PIM for Azure resources"
+  ],
+  [
+   54,
+   "Why Azure roles need their own module"
+  ],
+  [
+   121,
+   "What you'll be able to do in Module 6"
+  ],
+  [
+   176,
+   "Resource Manager, scopes and holders"
+  ],
+  [
+   239,
+   "The findings: PA-AZ-01 to PA-AZ-06"
+  ],
+  [
+   293,
+   "The plan, the apply, and the narrower role"
+  ],
+  [
+   347,
+   "Try it: Microsoft's examples, and each task's roles"
+  ],
+  [
+   399,
+   "Try it: plan the fictional estate, as a dry run"
+  ],
+  [
+   446,
+   "Try it: eligible first, then the removal"
+  ],
+  [
+   493,
+   "Try it: read the findings"
+  ],
+  [
+   544,
+   "Try it: apply to the fake, and see the code refuse"
+  ],
+  [
+   592,
+   "Lab 2: test scopes, and a one-day apply role"
+  ],
+  [
+   646,
+   "The federal requirement and the evidence for A3.2"
+  ],
+  [
+   697,
+   "Check yourself: two questions on Azure PIM"
+  ],
+  [
+   735,
+   "Summary, and next: Module 7, access reviews"
+  ]
+ ],
+ "Training_PA_Module_7_Narrated": [
+  [
+   0,
+   "Module 7: Access reviews of privileged roles"
+  ],
+  [
+   55,
+   "Why reviews belong in code, and the lockout they can cause"
+  ],
+  [
+   112,
+   "What you'll be able to do in Module 7"
+  ],
+  [
+   167,
+   "The series, the cadence and the licensing"
+  ],
+  [
+   224,
+   "The checks: PA-AR-01 to PA-AR-14"
+  ],
+  [
+   288,
+   "The plan, and the evidence each review produced"
+  ],
+  [
+   341,
+   "Try it: Learn's tutorial, and each task's permissions"
+  ],
+  [
+   387,
+   "Try it: the dry run and the diff"
+  ],
+  [
+   446,
+   "Try it: check Learn's body, then apply in the fake"
+  ],
+  [
+   502,
+   "Try it: read the evidence"
+  ],
+  [
+   560,
+   "Try it: the lockout guard refuses"
+  ],
+  [
+   598,
+   "Lab 2: one series in your test tenant"
+  ],
+  [
+   656,
+   "The federal requirement and the evidence for Module 7"
+  ],
+  [
+   711,
+   "Check yourself: two questions on access reviews"
+  ],
+  [
+   757,
+   "Summary, and next: Module 8, evidence and drift"
+  ]
+ ],
+ "Training_PA_Module_8_Narrated": [
+  [
+   0,
+   "Module 8: Evidence and drift for the ISSO"
+  ],
+  [
+   51,
+   "Why: evidence for every elevation in the period"
+  ],
+  [
+   110,
+   "What you'll be able to do in Module 8"
+  ],
+  [
+   169,
+   "State, events, and a chain of windows with no gap"
+  ],
+  [
+   225,
+   "The audit findings: PA-AUD-01 to PA-AUD-04"
+  ],
+  [
+   280,
+   "Compare by fingerprint, and findings without names"
+  ],
+  [
+   331,
+   "The package, the chain, and what the ISSO receives"
+  ],
+  [
+   375,
+   "Try it: Learn's queries, and nine read permissions"
+  ],
+  [
+   420,
+   "Try it: run two days against the fictional tenant"
+  ],
+  [
+   474,
+   "Try it: day two's audit findings, and a baseline"
+  ],
+  [
+   530,
+   "Try it: compare the next day: six Tier 0 incidents"
+  ],
+  [
+   584,
+   "Try it: draft the issues, then package and verify day two"
+  ],
+  [
+   635,
+   "Try it: assemble the period for the ISSO"
+  ],
+  [
+   695,
+   "Try it: break it on purpose, then run the tests"
+  ],
+  [
+   747,
+   "Lab 2: two live runs, compared, packaged and verified"
+  ],
+  [
+   808,
+   "The federal requirement and the evidence for Gate 4"
+  ],
+  [
+   876,
+   "Check yourself: two questions on evidence and drift"
+  ],
+  [
+   921,
+   "Summary: you've finished the path"
+  ]
+ ],
  "Training_TTM_Module_1_Narrated": [
   [
    0,

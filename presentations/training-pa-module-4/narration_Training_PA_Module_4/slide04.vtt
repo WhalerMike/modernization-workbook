@@ -1,0 +1,79 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.425
+Unit 1: settings, rules and the lockout.
+
+2
+00:00:03.425 --> 00:00:07.125
+Settings are per role, and
+Microsoft Graph calls them rules.
+
+3
+00:00:07.125 --> 00:00:10.426
+Microsoft Learn's mapping
+guide for rules in PIM shows
+
+4
+00:00:10.426 --> 00:00:13.800
+that each role's policy has
+seventeen predefined rules.
+
+5
+00:00:13.800 --> 00:00:16.994
+By the program's design, the
+code manages seven of them,
+
+6
+00:00:16.994 --> 00:00:21.712
+the activation and assignment rules,
+and leaves the notification rules alone.
+
+7
+00:00:21.712 --> 00:00:25.536
+For the person who activates:
+how long the activation lasts,
+
+8
+00:00:25.536 --> 00:00:30.374
+what it requires, such as a ticket, the
+authentication context, and approval.
+
+9
+00:00:30.374 --> 00:00:34.946
+For the administrator who assigns: how
+long an eligible assignment may last,
+
+10
+00:00:34.946 --> 00:00:39.662
+how long an active assignment may last,
+and what an active assignment requires.
+
+11
+00:00:39.662 --> 00:00:45.025
+The authentication context needs its
+policy first; that's Module 3's gate.
+
+12
+00:00:45.025 --> 00:00:46.463
+And remember the lockout.
+
+13
+00:00:46.463 --> 00:00:50.663
+Microsoft Learn's PIM settings page
+says that with no approvers selected,
+
+14
+00:00:50.663 --> 00:00:54.244
+the active Privileged Role and
+Global Administrators become
+
+15
+00:00:54.244 --> 00:00:57.412
+the default approvers, and in
+the lockout there are none.
+
+16
+00:00:57.412 --> 00:01:02.380
+Learn's fix has two halves: emergency
+access accounts, and named approvers.

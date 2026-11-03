@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.890
+Here's what you'll be able to
+do by the end of this module,
+
+2
+00:00:02.890 --> 00:00:05.537
+which takes about fifty-five
+minutes with the lab.
+
+3
+00:00:05.537 --> 00:00:10.425
+You'll explain why privileged reviews belong
+in code, and what licensing they need.
+
+4
+00:00:10.425 --> 00:00:14.613
+You'll name the series the program
+defines, and the cadence for each tier.
+
+5
+00:00:14.613 --> 00:00:19.600
+You'll explain the A R oh six guard, and
+why it changes the program's own setting.
+
+6
+00:00:19.600 --> 00:00:22.920
+You'll read a plan's
+actions: Create, Update,
+
+7
+00:00:22.920 --> 00:00:26.337
+Replace, NoChange, Unmanaged and Conflict.
+
+8
+00:00:26.337 --> 00:00:31.249
+And you'll read the evidence
+findings, A R, E oh one to E oh eight.
+
+9
+00:00:31.249 --> 00:00:33.545
+Before you start, finish Module 2,
+
+10
+00:00:33.545 --> 00:00:37.965
+for the emergency accounts that A
+R oh six protects, and Module 5,
+
+11
+00:00:37.965 --> 00:00:42.725
+for the P R V groups, each reviewed
+through its own membership series.
+
+12
+00:00:42.725 --> 00:00:46.875
+Lab 2 needs a worldwide or G
+C C test tenant with Microsoft
+
+13
+00:00:46.875 --> 00:00:51.100
+Entra I D Governance, a trial
+will do, and never production.

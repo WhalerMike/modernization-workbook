@@ -1,0 +1,66 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.200
+Why does this matter?
+
+2
+00:00:01.200 --> 00:00:04.369
+Because the P R V groups
+decide who holds each role,
+
+3
+00:00:04.369 --> 00:00:07.075
+and their state drifts like anything else.
+
+4
+00:00:07.075 --> 00:00:10.139
+So the guards refuse a plan
+before anything is sent,
+
+5
+00:00:10.139 --> 00:00:13.713
+and three of them keep people
+from losing access by mistake.
+
+6
+00:00:13.713 --> 00:00:17.788
+Guard G four refuses eligible
+owners with no active owner.
+
+7
+00:00:17.788 --> 00:00:21.730
+Microsoft Learn's page on PIM
+for Groups says the last active
+
+8
+00:00:21.730 --> 00:00:25.988
+owner can't be removed, so an
+activated owner's deactivation fails.
+
+9
+00:00:25.988 --> 00:00:30.282
+Guard G six refuses more removals
+than the Max Removals limit,
+
+10
+00:00:30.282 --> 00:00:34.913
+five by default, because that's the
+sign of a wrong or truncated file.
+
+11
+00:00:34.913 --> 00:00:41.301
+And guard G one refuses a Tier 0 or Tier
+1 policy losing approval or its approvers.
+
+12
+00:00:41.301 --> 00:00:43.939
+Microsoft Learn also says a group can't be
+
+13
+00:00:43.939 --> 00:00:46.500
+taken back out of PIM once it's onboarded.
+
+14
+00:00:46.500 --> 00:00:49.150
+So Lab 2 uses groups made for the lab.

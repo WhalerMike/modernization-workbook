@@ -1,0 +1,65 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.895
+Welcome to Module 1 of the
+Privileged Access learning path:
+
+2
+00:00:03.895 --> 00:00:06.563
+inventory every privileged assignment.
+
+3
+00:00:06.563 --> 00:00:10.500
+Privilege should be just-in-time,
+by tier, and provable.
+
+4
+00:00:10.500 --> 00:00:15.037
+This path teaches you to build the software
+that gets an estate there, in eight
+
+5
+00:00:15.037 --> 00:00:20.000
+modules, one for each chapter of the developer
+workbook, Building Privileged Access.
+
+6
+00:00:20.000 --> 00:00:24.080
+This one serves Phase
+0 of the project plan,
+
+7
+00:00:24.080 --> 00:00:29.675
+tasks A0.1 and A0.2, and Gate 0,
+with Chapter 01 of the workbook.
+
+8
+00:00:29.675 --> 00:00:33.565
+In it you run Microsoft Learn's
+own samples to see what they miss,
+
+9
+00:00:33.565 --> 00:00:38.204
+then run the workbook's inventory: one
+read of every privileged assignment,
+
+10
+00:00:38.204 --> 00:00:41.496
+a tier for every row, findings
+for standing privilege,
+
+11
+00:00:41.496 --> 00:00:44.937
+and a manifest that says which
+calls produced the files.
+
+12
+00:00:44.937 --> 00:00:48.175
+The code runs on your laptop
+against a fictional tenant.
+
+13
+00:00:48.175 --> 00:00:53.350
+It's illustrative: tested against fixtures,
+not run against a production tenant.

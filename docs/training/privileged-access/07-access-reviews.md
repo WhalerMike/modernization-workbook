@@ -13,6 +13,8 @@ series-order: 7
 
 *Part of the [Privileged Access learning path](index.md). Plan Phase 2, task A2.7, and Phase 3, task A3.7. Workbook [Chapter 07](../../project-plans/developer-workbooks/privileged-access/07-access-reviews-of-privileged-roles.md). About 55 minutes.*
 
+**Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-pa-module-7) (the deck files come with the next edition) · [▶ Watch](../../presentations/watch.html?v=Training_PA_Module_7_Narrated) (about 13 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_PA_Module_7_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-pa-module-7/Training_PA_Module_7_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-pa-module-7/Training_PA_Module_7_Narrated.vtt).
+
 ## Introduction (3 minutes)
 
 The approval gate controls the use of privilege. Reviews control who keeps the eligibility. Book 04 creates one recurring review per role, Tier 0 monthly and the rest quarterly, with auto-apply on and "remove access" when reviewers don't respond. A review set up by hand drifts: a reviewer leaves, a duration is shortened, auto-apply is switched off for one cycle and never back on.

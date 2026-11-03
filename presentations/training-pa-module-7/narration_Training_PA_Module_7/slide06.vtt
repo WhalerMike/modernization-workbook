@@ -1,0 +1,72 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.100
+The plan compares the reviewed
+file with the tenant.
+
+2
+00:00:03.100 --> 00:00:06.075
+Create and Update are
+sent, then read back.
+
+3
+00:00:06.075 --> 00:00:09.600
+Replace is a scope change or
+a change of group reviewers.
+
+4
+00:00:09.600 --> 00:00:14.856
+Microsoft Learn's reference for updating
+a definition says the update A P I doesn't
+
+5
+00:00:14.856 --> 00:00:18.102
+take those, so a person
+exports the series' evidence,
+
+6
+00:00:18.102 --> 00:00:20.575
+deletes it in the portal, and runs again.
+
+7
+00:00:20.575 --> 00:00:21.988
+NoChange does nothing.
+
+8
+00:00:21.988 --> 00:00:25.685
+Unmanaged is a series in the
+tenant the file doesn't list;
+
+9
+00:00:25.685 --> 00:00:27.775
+it's reported, and never deleted.
+
+10
+00:00:27.775 --> 00:00:29.013
+Then the evidence.
+
+11
+00:00:29.013 --> 00:00:33.402
+Each decision becomes a row, and
+eight checks find what went wrong:
+
+12
+00:00:33.402 --> 00:00:37.793
+a missing series, an overdue instance,
+a denial that wasn't applied,
+
+13
+00:00:37.793 --> 00:00:42.508
+an item the no-response default decided,
+an approval without a reason, a
+
+14
+00:00:42.508 --> 00:00:45.435
+self-review, bulk
+decisions by one reviewer,
+
+15
+00:00:45.435 --> 00:00:48.430
+and an emergency account
+a reviewer denied.

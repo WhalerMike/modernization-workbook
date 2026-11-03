@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.379
+Converting standing assignments
+goes in a fixed order,
+
+2
+00:00:03.379 --> 00:00:05.188
+and each row carries its state.
+
+3
+00:00:05.188 --> 00:00:10.338
+Waiting For Eligibility: the role's
+P R V group is made eligible first.
+
+4
+00:00:10.338 --> 00:00:15.312
+Waiting For Confirmed Activation: the person
+activates the role through the group,
+
+5
+00:00:15.312 --> 00:00:18.051
+and the activation is
+confirmed, with a ticket.
+
+6
+00:00:18.051 --> 00:00:21.925
+Confirmed: only now can the
+active assignment be removed.
+
+7
+00:00:21.925 --> 00:00:25.839
+Only the Apply switch with the
+Convert switch removes anything,
+
+8
+00:00:25.839 --> 00:00:30.788
+and only for confirmed rows; the
+confirmed-activations file carries each ticket.
+
+9
+00:00:30.788 --> 00:00:34.288
+So no one loses a role before
+they've shown they can activate it.
+
+10
+00:00:34.288 --> 00:00:39.020
+And as a backstop, PIM won't remove
+the last active Global Administrator.

@@ -1,0 +1,79 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.890
+Here's what you'll be able to
+do by the end of this module,
+
+2
+00:00:02.890 --> 00:00:05.537
+which takes about fifty-five
+minutes with the lab.
+
+3
+00:00:05.537 --> 00:00:09.840
+You'll explain the order Microsoft
+Learn sets for an authentication
+
+4
+00:00:09.840 --> 00:00:13.312
+context and its policy, and
+why report-only doesn't count.
+
+5
+00:00:13.312 --> 00:00:16.153
+You'll run the pre-merge
+check and say which rules come
+
+6
+00:00:16.153 --> 00:00:19.124
+from Microsoft Learn and which
+are the program's design.
+
+7
+00:00:19.124 --> 00:00:24.112
+You'll explain how the code treats report-only
+policies and the emergency exclusion.
+
+8
+00:00:24.112 --> 00:00:26.876
+You'll read a plan,
+with its seven actions.
+
+9
+00:00:26.876 --> 00:00:30.793
+And you'll explain why every new
+policy is created report-only,
+
+10
+00:00:30.793 --> 00:00:32.713
+and why the code never deletes.
+
+11
+00:00:32.713 --> 00:00:35.097
+Before you start, finish Module 2,
+
+12
+00:00:35.097 --> 00:00:39.072
+for the emergency accounts
+and their exclusion group,
+
+13
+00:00:39.072 --> 00:00:44.902
+and read Wave 2 of the policy library in
+Access and Privilege: the administrator
+
+14
+00:00:44.902 --> 00:00:49.937
+policies C A oh oh three, oh oh four, oh
+oh five, oh two five and oh two seven.
+
+15
+00:00:49.937 --> 00:00:53.487
+Lab 2 needs a worldwide
+or G C C test tenant
+
+16
+00:00:53.487 --> 00:00:57.410
+with Microsoft Entra I
+D P1, never production.

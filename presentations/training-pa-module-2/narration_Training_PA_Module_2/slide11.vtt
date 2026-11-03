@@ -1,0 +1,55 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.075
+Step six shows the guards.
+
+2
+00:00:02.075 --> 00:00:06.263
+Ask for the query with a user
+principal name, E A oh one at the
+
+3
+00:00:06.263 --> 00:00:10.887
+on-microsoft dot com domain, and it
+refuses: that isn't an object I D.
+
+4
+00:00:10.887 --> 00:00:14.137
+A query on names would miss
+the account after a rename.
+
+5
+00:00:14.137 --> 00:00:16.637
+Then read the alert
+template the check wrote.
+
+6
+00:00:16.637 --> 00:00:21.026
+Its resource is a Microsoft
+Insights scheduled query rule,
+
+7
+00:00:21.026 --> 00:00:25.862
+A P I version twenty twenty-three,
+twelve, oh one, with severity zero.
+
+8
+00:00:25.862 --> 00:00:28.751
+That's the reviewed template
+your pipeline deploys.
+
+9
+00:00:28.751 --> 00:00:32.987
+Step seven runs the whole test
+suite: three hundred thirty pass.
+
+10
+00:00:32.987 --> 00:00:36.512
+Then delete the output folder,
+because it names the accounts.
+
+11
+00:00:36.512 --> 00:00:41.160
+Pester prints its summary on several
+lines; the slide shows it on one.

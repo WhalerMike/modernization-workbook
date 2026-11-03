@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.437
+The federal requirement.
+
+2
+00:00:01.437 --> 00:00:05.744
+The desired state, the plan and
+the read-back are the evidence for
+
+3
+00:00:05.744 --> 00:00:10.051
+the plan's task A3.2, Azure privileged
+roles eligible through PIM.
+
+4
+00:00:10.051 --> 00:00:15.993
+From NIST special publication eight hundred
+fifty-three they support A C six, with
+
+5
+00:00:15.993 --> 00:00:21.325
+enhancements one and five, A C two, and
+C M three with C M four, enhancement two.
+
+6
+00:00:21.325 --> 00:00:22.675
+Note one absence.
+
+7
+00:00:22.675 --> 00:00:27.584
+CISA's B O D twenty-five oh-one has
+Microsoft Entra I D policies, and they
+
+8
+00:00:27.584 --> 00:00:32.663
+cover Entra roles, not Azure roles, so
+the chapter claims none of them here.
+
+9
+00:00:32.663 --> 00:00:38.454
+The evidence an ISSO keeps: the reviewed
+desired state; each run's state, plan,
+
+10
+00:00:38.454 --> 00:00:41.256
+diff and findings, with its manifest;
+
+11
+00:00:41.256 --> 00:00:46.370
+and the apply's diff-after file,
+which shows nothing left to change.

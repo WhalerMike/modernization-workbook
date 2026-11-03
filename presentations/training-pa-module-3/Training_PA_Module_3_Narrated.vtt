@@ -1,0 +1,1003 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.808
+Welcome to Module 3 of the
+Privileged Access learning path:
+
+2
+00:00:03.808 --> 00:00:07.950
+Conditional Access for administrators,
+and the activation gate.
+
+3
+00:00:07.950 --> 00:00:14.125
+This module serves the project plan's
+task A1.5 in Phase 1, and A2.3,
+
+4
+00:00:14.125 --> 00:00:20.300
+A2.5 and A2.6 in Phase 2, with
+Chapter 03 of the developer workbook.
+
+5
+00:00:20.300 --> 00:00:22.659
+In it you keep the administrator policies,
+
+6
+00:00:22.659 --> 00:00:26.837
+the activation gate and the privileged
+authentication strength as files.
+
+7
+00:00:26.837 --> 00:00:31.221
+You check them before they merge, plan
+what a run would change in the tenant,
+
+8
+00:00:31.221 --> 00:00:34.312
+and see the code create
+every new policy report-only.
+
+9
+00:00:34.312 --> 00:00:38.532
+This is the first module that writes, so
+it's the first that could lock people out,
+
+10
+00:00:38.532 --> 00:00:42.362
+and you'll see the two guards that
+stand between the files and the tenant.
+
+11
+00:00:42.362 --> 00:00:46.480
+The code is illustrative: tested
+against fixtures and a fake,
+
+12
+00:00:46.480 --> 00:00:49.310
+not run against a production tenant.
+
+13
+00:00:53.060 --> 00:00:54.185
+Why this module?
+
+14
+00:00:54.185 --> 00:00:58.011
+An administrator should sign in
+with a phishing-resistant method,
+
+15
+00:00:58.011 --> 00:01:00.585
+from a compliant device,
+on a trusted network.
+
+16
+00:01:00.585 --> 00:01:04.535
+And at the moment they activate a privileged
+role, they should prove it again.
+
+17
+00:01:04.535 --> 00:01:07.476
+That second proof is the activation gate:
+
+18
+00:01:07.476 --> 00:01:12.147
+authentication context C one, and
+its policy, PIM Activation C one.
+
+19
+00:01:12.147 --> 00:01:15.952
+Microsoft Learn's PIM settings
+page says PIM can require
+
+20
+00:01:15.952 --> 00:01:19.272
+the context only after its
+policy exists and is On.
+
+21
+00:01:19.272 --> 00:01:21.547
+This is the first module that writes,
+
+22
+00:01:21.547 --> 00:01:24.809
+so two guards stand between
+the files and the tenant.
+
+23
+00:01:24.809 --> 00:01:27.899
+Rule C A oh one fails any
+policy file that isn't
+
+24
+00:01:27.899 --> 00:01:31.323
+disabled and doesn't
+exclude the emergency group.
+
+25
+00:01:31.323 --> 00:01:35.804
+Every file carries the exclusion
+whatever its state, because a file is
+
+26
+00:01:35.804 --> 00:01:40.209
+enforced by changing one word; that's
+this workbook's design guidance.
+
+27
+00:01:40.209 --> 00:01:44.209
+And the apply refuses to start if
+the pre-merge check has a finding,
+
+28
+00:01:44.209 --> 00:01:48.340
+or if any policy it would write
+leaves out the emergency group.
+
+29
+00:01:52.090 --> 00:01:54.930
+Here's what you'll be able to
+do by the end of this module,
+
+30
+00:01:54.930 --> 00:01:57.577
+which takes about fifty-five
+minutes with the lab.
+
+31
+00:01:57.577 --> 00:02:01.880
+You'll explain the order Microsoft
+Learn sets for an authentication
+
+32
+00:02:01.880 --> 00:02:05.352
+context and its policy, and
+why report-only doesn't count.
+
+33
+00:02:05.352 --> 00:02:08.193
+You'll run the pre-merge
+check and say which rules come
+
+34
+00:02:08.193 --> 00:02:11.164
+from Microsoft Learn and which
+are the program's design.
+
+35
+00:02:11.164 --> 00:02:16.152
+You'll explain how the code treats report-only
+policies and the emergency exclusion.
+
+36
+00:02:16.152 --> 00:02:18.916
+You'll read a plan,
+with its seven actions.
+
+37
+00:02:18.916 --> 00:02:22.833
+And you'll explain why every new
+policy is created report-only,
+
+38
+00:02:22.833 --> 00:02:24.753
+and why the code never deletes.
+
+39
+00:02:24.753 --> 00:02:27.137
+Before you start, finish Module 2,
+
+40
+00:02:27.137 --> 00:02:31.112
+for the emergency accounts
+and their exclusion group,
+
+41
+00:02:31.112 --> 00:02:36.942
+and read Wave 2 of the policy library in
+Access and Privilege: the administrator
+
+42
+00:02:36.942 --> 00:02:41.977
+policies C A oh oh three, oh oh four, oh
+oh five, oh two five and oh two seven.
+
+43
+00:02:41.977 --> 00:02:45.527
+Lab 2 needs a worldwide
+or G C C test tenant
+
+44
+00:02:45.527 --> 00:02:49.750
+with Microsoft Entra I
+D P1, never production.
+
+45
+00:02:53.500 --> 00:02:55.850
+Unit 1: the gate and its order.
+
+46
+00:02:55.850 --> 00:03:00.229
+Three pieces of the design meet here:
+the Wave 2 administrator policies,
+
+47
+00:03:00.229 --> 00:03:05.350
+the activation gate, and a custom authentication
+strength for privileged sign-ins.
+
+48
+00:03:05.350 --> 00:03:08.803
+Microsoft Learn's page on PIM
+role settings sets the order,
+
+49
+00:03:08.803 --> 00:03:10.313
+and the chapter quotes it.
+
+50
+00:03:10.313 --> 00:03:13.841
+First, create and enable the
+Conditional Access policy
+
+51
+00:03:13.841 --> 00:03:17.063
+for a context before you
+select that context in PIM.
+
+52
+00:03:17.063 --> 00:03:22.044
+Second, if no policy targets the
+context, PIM falls back to M F A,
+
+53
+00:03:22.044 --> 00:03:27.125
+but not when the policy is off,
+report-only, or excludes the user.
+
+54
+00:03:27.125 --> 00:03:30.825
+Rule C A oh four warns when
+a context policy isn't On.
+
+55
+00:03:30.825 --> 00:03:35.606
+Third, don't scope the policy to both
+the context and a directory role, because
+
+56
+00:03:35.606 --> 00:03:40.538
+at activation the user doesn't hold the
+role yet, so the policy would never apply.
+
+57
+00:03:40.538 --> 00:03:42.762
+Rule C A oh five fails that.
+
+58
+00:03:42.762 --> 00:03:46.275
+So this module builds the gate
+and leaves it unselected.
+
+59
+00:03:46.275 --> 00:03:51.950
+Module 4 selects C one only after this
+module's run shows the gate is On.
+
+60
+00:03:55.700 --> 00:03:59.338
+Unit 2: the check,
+report-only, and the plan.
+
+61
+00:03:59.338 --> 00:04:02.367
+The pre-merge check runs
+rules C A oh one to
+
+62
+00:04:02.367 --> 00:04:05.663
+oh nine on every policy
+file before it merges.
+
+63
+00:04:05.663 --> 00:04:09.878
+Some come from Microsoft Learn:
+a context policy that isn't On,
+
+64
+00:04:09.878 --> 00:04:14.936
+or that also targets roles; M F A and
+an authentication strength together,
+
+65
+00:04:14.936 --> 00:04:17.634
+or administrator roles with plain M F A;
+
+66
+00:04:17.634 --> 00:04:22.862
+a policy that leaves out any of the
+fourteen roles Microsoft Learn's page on
+
+67
+00:04:22.862 --> 00:04:26.824
+phishing-resistant M F A for
+administrators recommends;
+
+68
+00:04:26.824 --> 00:04:30.703
+a context outside C one to C
+twenty-five; and a report-only
+
+69
+00:04:30.703 --> 00:04:35.424
+compliant-device policy that doesn't
+exclude Android, i O S and mac O S.
+
+70
+00:04:35.424 --> 00:04:40.370
+Others are the program's design: a
+report-only instrument set to enabled,
+
+71
+00:04:40.370 --> 00:04:44.225
+and a placeholder or a user
+target that isn't an object I D.
+
+72
+00:04:44.225 --> 00:04:45.388
+Oh one is both.
+
+73
+00:04:45.388 --> 00:04:49.585
+On the repository as merged, the
+check passes with five warnings,
+
+74
+00:04:49.585 --> 00:04:52.810
+and they're rollout
+decisions, not mistakes.
+
+75
+00:04:56.560 --> 00:04:59.910
+Module 2 left a question
+open, and here's the answer.
+
+76
+00:04:59.910 --> 00:05:05.173
+Microsoft Learn doesn't require the
+emergency exclusion on a report-only policy.
+
+77
+00:05:05.173 --> 00:05:10.172
+The program's own pre-merge rule is
+stricter: every policy excludes the group.
+
+78
+00:05:10.172 --> 00:05:12.247
+The code sides with the stricter rule.
+
+79
+00:05:12.247 --> 00:05:17.766
+It keeps the exclusion on every file,
+except a named report-only instrument,
+
+80
+00:05:17.766 --> 00:05:23.373
+such as C A oh nine oh, the policy that
+records emergency sign-ins, which is Info.
+
+81
+00:05:23.373 --> 00:05:25.860
+And two more choices make the writes safe.
+
+82
+00:05:25.860 --> 00:05:28.635
+Every new policy is created report-only.
+
+83
+00:05:28.635 --> 00:05:32.898
+Enforcing it is a separate change,
+that needs the Allow Enforce switch.
+
+84
+00:05:32.898 --> 00:05:34.660
+And the code never deletes.
+
+85
+00:05:34.660 --> 00:05:39.150
+Rollback is changing a file's state,
+to disabled, and applying it.
+
+86
+00:05:42.900 --> 00:05:44.700
+The plan has seven actions.
+
+87
+00:05:44.700 --> 00:05:47.663
+Create means the policy
+isn't in the tenant yet,
+
+88
+00:05:47.663 --> 00:05:49.925
+and it's always created report-only.
+
+89
+00:05:49.925 --> 00:05:54.301
+Update means it differs, and the patch
+carries only the changed top-level
+
+90
+00:05:54.301 --> 00:05:58.750
+properties, as Microsoft Learn's
+reference for updating a policy advises.
+
+91
+00:05:58.750 --> 00:06:00.587
+NoChange means it matches.
+
+92
+00:06:00.587 --> 00:06:04.921
+Blocked means it needs an authentication
+strength or a context the
+
+93
+00:06:04.921 --> 00:06:09.176
+tenant doesn't have yet, and the next
+run, once that exists, creates it.
+
+94
+00:06:09.176 --> 00:06:11.229
+Held means the file says enabled,
+
+95
+00:06:11.229 --> 00:06:14.425
+the tenant doesn't, and you
+didn't pass Allow Enforce.
+
+96
+00:06:14.425 --> 00:06:19.075
+Differs is a strength that differs,
+because the code doesn't update strengths.
+
+97
+00:06:19.075 --> 00:06:23.663
+And NotInRepository is a policy in
+the tenant that isn't in the files.
+
+98
+00:06:23.663 --> 00:06:25.837
+It's reported, and never deleted.
+
+99
+00:06:25.837 --> 00:06:30.740
+A dry run writes the plan and the requests
+it would send, and sends nothing.
+
+100
+00:06:34.490 --> 00:06:35.215
+Try it.
+
+101
+00:06:35.215 --> 00:06:40.119
+Lab 1 runs in the privileged-access
+folder, in one PowerShell 7 session,
+
+102
+00:06:40.119 --> 00:06:43.840
+because step six uses a
+variable that step four loads.
+
+103
+00:06:43.840 --> 00:06:47.750
+Step one tests Microsoft's Conditional
+Access template as published,
+
+104
+00:06:47.750 --> 00:06:51.053
+the one the Graph reference
+returns for getting a template.
+
+105
+00:06:51.053 --> 00:06:52.553
+Seven tests pass.
+
+106
+00:06:52.553 --> 00:06:57.503
+Step two loads the Conditional Access
+module and lists each task's permissions.
+
+107
+00:06:57.503 --> 00:07:02.005
+To read and plan, three: Authentication
+Context dot Read dot All,
+
+108
+00:07:02.005 --> 00:07:07.027
+Policy dot Read dot All, and Policy
+dot Read dot Authentication Method.
+
+109
+00:07:07.027 --> 00:07:11.796
+To apply, the same three, plus two
+writes: Authentication Context dot
+
+110
+00:07:11.796 --> 00:07:16.564
+ReadWrite dot All, and Policy dot
+ReadWrite dot Conditional Access.
+
+111
+00:07:16.564 --> 00:07:17.940
+Nothing else.
+
+112
+00:07:21.690 --> 00:07:26.590
+Step three runs the pre-merge check
+on the repository's own policy files.
+
+113
+00:07:26.590 --> 00:07:30.552
+No findings, five warnings,
+which are the rollout decisions.
+
+114
+00:07:30.552 --> 00:07:34.206
+A finding would print its rule
+and file and exit with code one,
+
+115
+00:07:34.206 --> 00:07:35.740
+which fails the pipeline.
+
+116
+00:07:35.740 --> 00:07:39.278
+Step four runs the same check
+on Microsoft's own template.
+
+117
+00:07:39.278 --> 00:07:42.161
+You read the template
+page, load the repository,
+
+118
+00:07:42.161 --> 00:07:46.227
+so the check knows the emergency
+group, and test the template's body.
+
+119
+00:07:46.227 --> 00:07:49.214
+It fails the program's
+stricter rules four ways.
+
+120
+00:07:49.214 --> 00:07:52.552
+C A oh one: it has no emergency exclusion.
+
+121
+00:07:52.552 --> 00:07:59.280
+C A oh three: it has display text in its
+exclude users list, not an object I D.
+
+122
+00:07:59.280 --> 00:08:04.753
+C A oh six: it uses plain M F A,
+not an authentication strength.
+
+123
+00:08:04.753 --> 00:08:07.333
+And C A oh seven: it leaves out twelve of
+
+124
+00:08:07.333 --> 00:08:11.020
+the fourteen roles
+Microsoft Learn recommends.
+
+125
+00:08:14.770 --> 00:08:18.520
+Step five plans against the
+fictional tenant, sending nothing.
+
+126
+00:08:18.520 --> 00:08:22.295
+The check passes again, and
+the plan has three Blocked,
+
+127
+00:08:22.295 --> 00:08:26.670
+four Create, one NoChange, one
+NotInRepository and two Update.
+
+128
+00:08:26.670 --> 00:08:29.907
+The dry run writes six
+requests and sends none.
+
+129
+00:08:29.907 --> 00:08:31.033
+Look at the list.
+
+130
+00:08:31.033 --> 00:08:34.357
+Context C one is created
+and C two updated.
+
+131
+00:08:34.357 --> 00:08:37.382
+The privileged authentication
+strength is created.
+
+132
+00:08:37.382 --> 00:08:42.071
+Two policies are created, and the
+compliant-device policy is updated.
+
+133
+00:08:42.071 --> 00:08:47.309
+Three are Blocked: C A oh oh three, because
+the strength it needs doesn't exist yet,
+
+134
+00:08:47.309 --> 00:08:51.098
+and the two context policies,
+the activation gate and the
+
+135
+00:08:51.098 --> 00:08:55.370
+protected actions policy, because
+C one doesn't exist yet either.
+
+136
+00:08:55.370 --> 00:08:58.942
+And C A oh oh one, the
+legacy authentication block,
+
+137
+00:08:58.942 --> 00:09:01.532
+is in the tenant but not in the files.
+
+138
+00:09:01.532 --> 00:09:05.420
+It's reported as NotInRepository,
+and never deleted.
+
+139
+00:09:09.170 --> 00:09:13.132
+Step six applies the plan against
+the fake, three times in a row.
+
+140
+00:09:13.132 --> 00:09:17.909
+Each run builds a client that may write,
+reads the tenant, plans, and applies,
+
+141
+00:09:17.909 --> 00:09:22.920
+passing the check's findings and the
+emergency group, so the guards can refuse.
+
+142
+00:09:22.920 --> 00:09:27.207
+The first run sends six requests:
+the contexts and the strength.
+
+143
+00:09:27.207 --> 00:09:31.252
+The second run sends three: the
+three policies that were Blocked,
+
+144
+00:09:31.252 --> 00:09:35.145
+now that what they need exists,
+and each is created report-only.
+
+145
+00:09:35.145 --> 00:09:38.320
+The third run finds nothing
+to do, and sends nothing.
+
+146
+00:09:38.320 --> 00:09:41.770
+Then read the activation gate's
+state in the fake tenant:
+
+147
+00:09:41.770 --> 00:09:44.245
+enabled for reporting, but not enforced.
+
+148
+00:09:44.245 --> 00:09:46.108
+The gate is still report-only.
+
+149
+00:09:46.108 --> 00:09:49.157
+Turning it On is a
+separate, reviewed change.
+
+150
+00:09:49.157 --> 00:09:52.591
+Step seven runs the tests,
+three hundred thirty pass,
+
+151
+00:09:52.591 --> 00:09:55.120
+and you delete the output folder.
+
+152
+00:09:58.870 --> 00:10:02.601
+Lab 2 runs in a worldwide
+or G C C test tenant
+
+153
+00:10:02.601 --> 00:10:06.545
+with Microsoft Entra I
+D P1, never production.
+
+154
+00:10:06.545 --> 00:10:08.562
+Before it enforces anything,
+
+155
+00:10:08.562 --> 00:10:12.933
+build Module 2's emergency accounts
+and confirm one can sign in.
+
+156
+00:10:12.933 --> 00:10:17.513
+And register a phishing-resistant method
+for each test administrator first:
+
+157
+00:10:17.513 --> 00:10:22.021
+Microsoft Learn warns that enabling
+the policy first risks locking you out.
+
+158
+00:10:22.021 --> 00:10:25.615
+Then write your tenant's
+map, register a reader app,
+
+159
+00:10:25.615 --> 00:10:27.983
+plan, and apply twice, report-only.
+
+160
+00:10:27.983 --> 00:10:30.956
+Watch the report-only
+results in the sign-in log,
+
+161
+00:10:30.956 --> 00:10:34.158
+and then enforce the gate
+alone, with Allow Enforce.
+
+162
+00:10:34.158 --> 00:10:38.407
+Don't select C one in PIM in
+this lab; Module 4 does that.
+
+163
+00:10:38.407 --> 00:10:40.940
+The reader needs the
+three read permissions,
+
+164
+00:10:40.940 --> 00:10:44.432
+and the apply adds the two write
+permissions, and nothing else.
+
+165
+00:10:44.432 --> 00:10:47.970
+To back out, set each file
+the lab created to disabled,
+
+166
+00:10:47.970 --> 00:10:50.932
+and the contexts to
+unavailable, then apply.
+
+167
+00:10:50.932 --> 00:10:55.344
+Turning a policy off needs no Allow
+Enforce, and nothing is deleted.
+
+168
+00:10:55.344 --> 00:10:57.850
+The authors haven't run Lab 2.
+
+169
+00:11:01.600 --> 00:11:02.987
+The federal requirement.
+
+170
+00:11:02.987 --> 00:11:07.775
+The policy files, the
+check and the plan are the
+
+171
+00:11:07.775 --> 00:11:12.688
+evidence for the plan's tasks
+A1.5, A2.3, A2.5 and A2.6.
+
+172
+00:11:12.688 --> 00:11:19.286
+Phishing-resistant M F A for administrators
+is required by NIST special publication
+
+173
+00:11:19.286 --> 00:11:23.096
+eight hundred fifty-three
+I A two, enhancement one,
+
+174
+00:11:23.096 --> 00:11:28.208
+by O M B memorandum M twenty-two
+oh-nine, and by CISA's B O D twenty-five
+
+175
+00:11:28.208 --> 00:11:33.412
+oh-one and its ScubaGear baseline, M
+S A A D three point six, version one.
+
+176
+00:11:33.412 --> 00:11:36.999
+The activation gate, a
+fresh proof at elevation,
+
+177
+00:11:36.999 --> 00:11:40.126
+supports A C six,
+enhancements one and ten.
+
+178
+00:11:40.126 --> 00:11:44.813
+The emergency exclusion keeps A C
+two's emergency accounts usable.
+
+179
+00:11:44.813 --> 00:11:49.913
+And C M three covers every change,
+reviewed and tested before it's made.
+
+180
+00:11:49.913 --> 00:11:51.681
+The evidence an ISSO keeps:
+
+181
+00:11:51.681 --> 00:11:55.540
+the reviewed policy files and
+the pull request's check run;
+
+182
+00:11:55.540 --> 00:12:00.363
+each run's plan and requests with its
+manifest; the Entra audit records of
+
+183
+00:12:00.363 --> 00:12:05.550
+the creates; and the pull request that
+changed the gate's state to enabled.
+
+184
+00:12:09.300 --> 00:12:11.275
+Check yourself with two questions.
+
+185
+00:12:11.275 --> 00:12:14.830
+First: the activation gate's
+policy is report-only,
+
+186
+00:12:14.830 --> 00:12:18.038
+and PIM requires context
+C one on activation.
+
+187
+00:12:18.038 --> 00:12:19.049
+What happens?
+
+188
+00:12:19.049 --> 00:12:22.918
+The answer is b: PIM's M F
+A fallback doesn't trigger,
+
+189
+00:12:22.918 --> 00:12:25.625
+because the policy is report-only.
+
+190
+00:12:25.625 --> 00:12:27.488
+Nothing gates the activation.
+
+191
+00:12:27.488 --> 00:12:30.167
+That's why Microsoft
+Learn says to create and
+
+192
+00:12:30.167 --> 00:12:33.063
+enable the policy before
+you select the context.
+
+193
+00:12:33.063 --> 00:12:36.924
+Second: a policy is in the
+tenant but not in the files.
+
+194
+00:12:36.924 --> 00:12:38.187
+What does the plan do?
+
+195
+00:12:38.187 --> 00:12:43.201
+The answer is b: it reports it as
+NotInRepository, and never deletes it.
+
+196
+00:12:43.201 --> 00:12:47.100
+You saw that for C A oh oh
+one in Lab 1, step five.
+
+197
+00:12:47.100 --> 00:12:52.370
+The module page has two more questions,
+each linked to the section that answers it.
+
+198
+00:12:56.120 --> 00:12:56.945
+To sum up.
+
+199
+00:12:56.945 --> 00:13:01.458
+You checked the administrator policies
+and the activation gate before merge,
+
+200
+00:13:01.458 --> 00:13:05.068
+saw Microsoft's own template fail
+the program's stricter rules,
+
+201
+00:13:05.068 --> 00:13:08.262
+planned against a tenant,
+and applied three times until
+
+202
+00:13:08.262 --> 00:13:11.595
+nothing was left to change, with
+the gate still report-only.
+
+203
+00:13:11.595 --> 00:13:16.782
+Carry one thing forward: the gate's policy
+state can't be read from the version one
+
+204
+00:13:16.782 --> 00:13:19.769
+point oh A P I, so the next
+module asks a person to
+
+205
+00:13:19.769 --> 00:13:23.070
+state that the gate is On
+before it sets the context.
+
+206
+00:13:23.070 --> 00:13:27.470
+Next is Module 4: PIM for
+Microsoft Entra roles as code.
+
+207
+00:13:27.470 --> 00:13:30.777
+You hold each role's PIM
+settings as one reviewed file,
+
+208
+00:13:30.777 --> 00:13:34.912
+see exactly what a change will do,
+apply it one rollout wave at a time,
+
+209
+00:13:34.912 --> 00:13:38.650
+and prove from a read-back that
+the tenant matches the files.

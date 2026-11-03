@@ -1,0 +1,74 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.688
+Unit 2: the check,
+report-only, and the plan.
+
+2
+00:00:03.688 --> 00:00:06.717
+The pre-merge check runs
+rules C A oh one to
+
+3
+00:00:06.717 --> 00:00:10.013
+oh nine on every policy
+file before it merges.
+
+4
+00:00:10.013 --> 00:00:14.228
+Some come from Microsoft Learn:
+a context policy that isn't On,
+
+5
+00:00:14.228 --> 00:00:19.286
+or that also targets roles; M F A and
+an authentication strength together,
+
+6
+00:00:19.286 --> 00:00:21.984
+or administrator roles with plain M F A;
+
+7
+00:00:21.984 --> 00:00:27.212
+a policy that leaves out any of the
+fourteen roles Microsoft Learn's page on
+
+8
+00:00:27.212 --> 00:00:31.174
+phishing-resistant M F A for
+administrators recommends;
+
+9
+00:00:31.174 --> 00:00:35.053
+a context outside C one to C
+twenty-five; and a report-only
+
+10
+00:00:35.053 --> 00:00:39.774
+compliant-device policy that doesn't
+exclude Android, i O S and mac O S.
+
+11
+00:00:39.774 --> 00:00:44.720
+Others are the program's design: a
+report-only instrument set to enabled,
+
+12
+00:00:44.720 --> 00:00:48.575
+and a placeholder or a user
+target that isn't an object I D.
+
+13
+00:00:48.575 --> 00:00:49.738
+Oh one is both.
+
+14
+00:00:49.738 --> 00:00:53.935
+On the repository as merged, the
+check passes with five warnings,
+
+15
+00:00:53.935 --> 00:00:56.860
+and they're rollout
+decisions, not mistakes.

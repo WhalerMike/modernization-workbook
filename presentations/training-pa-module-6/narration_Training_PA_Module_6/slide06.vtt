@@ -1,0 +1,67 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.588
+Unit 2: the plan and the apply.
+
+2
+00:00:02.588 --> 00:00:04.575
+The call list has two tasks.
+
+3
+00:00:04.575 --> 00:00:08.100
+Reader reads; User Access
+Administrator applies.
+
+4
+00:00:08.100 --> 00:00:12.417
+Microsoft Learn's PIM pages name two
+roles that can manage assignments,
+
+5
+00:00:12.417 --> 00:00:15.344
+and the code follows the
+stricter statement and
+
+6
+00:00:15.344 --> 00:00:18.637
+declares the narrower one,
+User Access Administrator.
+
+7
+00:00:18.637 --> 00:00:20.425
+Owner isn't needed for anything.
+
+8
+00:00:20.425 --> 00:00:23.503
+The plan's order is fixed:
+policy updates first,
+
+9
+00:00:23.503 --> 00:00:28.200
+then new eligible assignments, then
+removal of standing assignments.
+
+10
+00:00:28.200 --> 00:00:32.725
+Each request has a G U I D derived
+from the run I D and the operation,
+
+11
+00:00:32.725 --> 00:00:37.762
+so the dry run and the apply send
+exactly the requests the reviewer read.
+
+12
+00:00:37.762 --> 00:00:43.101
+An eligibility the file doesn't declare
+is reported, never removed by the plan.
+
+13
+00:00:43.101 --> 00:00:47.975
+And every run writes a state file,
+which holds each policy's rules as read.
+
+14
+00:00:47.975 --> 00:00:49.220
+That's the back-out.

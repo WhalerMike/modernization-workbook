@@ -1,0 +1,72 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.262
+Step three runs the dry run.
+
+2
+00:00:02.262 --> 00:00:08.101
+One Create, two Updates, one Replace,
+three NoChange and one Unmanaged.
+
+3
+00:00:08.101 --> 00:00:12.488
+The checks: no findings, one
+warning, one information item.
+
+4
+00:00:12.488 --> 00:00:15.676
+Nothing is sent; two writes
+would be sent with Apply.
+
+5
+00:00:15.676 --> 00:00:17.325
+Step four reads the diff.
+
+6
+00:00:17.325 --> 00:00:22.987
+The Tier 0 Global Administrator series is
+an Update: its instance duration changes.
+
+7
+00:00:22.987 --> 00:00:27.438
+The Privileged Role Administrator
+series doesn't exist yet: Create.
+
+8
+00:00:27.438 --> 00:00:31.258
+The Exchange Administrator
+series changes its reviewers,
+
+9
+00:00:31.258 --> 00:00:33.363
+so it's a Replace, left for a person.
+
+10
+00:00:33.363 --> 00:00:35.800
+Three P R V group series match.
+
+11
+00:00:35.800 --> 00:00:40.628
+The Azure Owner series is an Update too,
+but it goes through a preview A P I,
+
+12
+00:00:40.628 --> 00:00:45.375
+so it needs the Include Preview switch;
+that's why only two writes count.
+
+13
+00:00:45.375 --> 00:00:48.760
+And a Security Administrator
+series in the tenant
+
+14
+00:00:48.760 --> 00:00:51.500
+isn't in the file:
+Unmanaged, never deleted.
+
+15
+00:00:51.500 --> 00:00:55.580
+The bodies folder holds each
+request body for a reviewer to read.

@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.808
+Welcome to Module 3 of the
+Privileged Access learning path:
+
+2
+00:00:03.808 --> 00:00:07.950
+Conditional Access for administrators,
+and the activation gate.
+
+3
+00:00:07.950 --> 00:00:14.125
+This module serves the project plan's
+task A1.5 in Phase 1, and A2.3,
+
+4
+00:00:14.125 --> 00:00:20.300
+A2.5 and A2.6 in Phase 2, with
+Chapter 03 of the developer workbook.
+
+5
+00:00:20.300 --> 00:00:22.659
+In it you keep the administrator policies,
+
+6
+00:00:22.659 --> 00:00:26.837
+the activation gate and the privileged
+authentication strength as files.
+
+7
+00:00:26.837 --> 00:00:31.221
+You check them before they merge, plan
+what a run would change in the tenant,
+
+8
+00:00:31.221 --> 00:00:34.312
+and see the code create
+every new policy report-only.
+
+9
+00:00:34.312 --> 00:00:38.532
+This is the first module that writes, so
+it's the first that could lock people out,
+
+10
+00:00:38.532 --> 00:00:42.362
+and you'll see the two guards that
+stand between the files and the tenant.
+
+11
+00:00:42.362 --> 00:00:46.480
+The code is illustrative: tested
+against fixtures and a fake,
+
+12
+00:00:46.480 --> 00:00:49.010
+not run against a production tenant.

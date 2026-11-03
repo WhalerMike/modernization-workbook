@@ -1,0 +1,74 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.437
+The federal requirement.
+
+2
+00:00:01.437 --> 00:00:06.225
+The policy files, the
+check and the plan are the
+
+3
+00:00:06.225 --> 00:00:11.138
+evidence for the plan's tasks
+A1.5, A2.3, A2.5 and A2.6.
+
+4
+00:00:11.138 --> 00:00:17.736
+Phishing-resistant M F A for administrators
+is required by NIST special publication
+
+5
+00:00:17.736 --> 00:00:21.546
+eight hundred fifty-three
+I A two, enhancement one,
+
+6
+00:00:21.546 --> 00:00:26.658
+by O M B memorandum M twenty-two
+oh-nine, and by CISA's B O D twenty-five
+
+7
+00:00:26.658 --> 00:00:31.862
+oh-one and its ScubaGear baseline, M
+S A A D three point six, version one.
+
+8
+00:00:31.862 --> 00:00:35.449
+The activation gate, a
+fresh proof at elevation,
+
+9
+00:00:35.449 --> 00:00:38.576
+supports A C six,
+enhancements one and ten.
+
+10
+00:00:38.576 --> 00:00:43.263
+The emergency exclusion keeps A C
+two's emergency accounts usable.
+
+11
+00:00:43.263 --> 00:00:48.363
+And C M three covers every change,
+reviewed and tested before it's made.
+
+12
+00:00:48.363 --> 00:00:50.131
+The evidence an ISSO keeps:
+
+13
+00:00:50.131 --> 00:00:53.990
+the reviewed policy files and
+the pull request's check run;
+
+14
+00:00:53.990 --> 00:00:58.813
+each run's plan and requests with its
+manifest; the Entra audit records of
+
+15
+00:00:58.813 --> 00:01:03.700
+the creates; and the pull request that
+changed the gate's state to enabled.

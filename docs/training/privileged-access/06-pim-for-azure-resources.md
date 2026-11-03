@@ -13,6 +13,8 @@ series-order: 6
 
 *Part of the [Privileged Access learning path](index.md). Plan Phase 3, task A3.2. Workbook [Chapter 06](../../project-plans/developer-workbooks/privileged-access/06-pim-for-azure-resources.md). About 50 minutes.*
 
+**Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-pa-module-6) (the deck files come with the next edition) · [▶ Watch](../../presentations/watch.html?v=Training_PA_Module_6_Narrated) (about 13 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_PA_Module_6_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-pa-module-6/Training_PA_Module_6_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-pa-module-6/Training_PA_Module_6_Narrated.vtt).
+
 ## Introduction (3 minutes)
 
 Owner, Contributor and User Access Administrator on a subscription are privileged too. The plan's A3.2 makes them eligible through PIM, with at most three subscription owners. PIM for Azure resources isn't in Microsoft Graph: it goes through Azure Resource Manager, with Azure roles instead of Graph permissions.

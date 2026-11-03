@@ -1,0 +1,66 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:04.188
+Lab 1 runs in one PowerShell 7 session.
+
+3
+00:00:04.188 --> 00:00:09.412
+The fixture estate has a management group,
+contoso root, a workload subscription,
+
+4
+00:00:09.412 --> 00:00:13.388
+a control-plane subscription, and
+a resource group, R G payroll.
+
+5
+00:00:13.388 --> 00:00:16.371
+The identity that would
+run the apply is the
+
+6
+00:00:16.371 --> 00:00:19.687
+fictional service principal
+S P P I M automation.
+
+7
+00:00:19.687 --> 00:00:26.488
+Step one replays Microsoft's examples from
+the Azure R E S T A P I specifications.
+
+8
+00:00:26.488 --> 00:00:30.626
+Six pass; the thirty-two not run
+are the chapter's other tests.
+
+9
+00:00:30.626 --> 00:00:34.417
+The second test is the one to
+notice: Microsoft's own assignment
+
+10
+00:00:34.417 --> 00:00:38.500
+example is an activation, though
+its assignment type says Assigned.
+
+11
+00:00:38.500 --> 00:00:41.600
+Step two lists the roles each task needs.
+
+12
+00:00:41.600 --> 00:00:42.888
+Reading needs Reader.
+
+13
+00:00:42.888 --> 00:00:46.338
+Applying needs Reader and
+User Access Administrator.
+
+14
+00:00:46.338 --> 00:00:48.190
+Owner isn't needed for anything.

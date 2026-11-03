@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:05.679
+Lab 1 runs in the privileged-access
+folder, in one PowerShell 7 session,
+
+3
+00:00:05.679 --> 00:00:09.400
+because step six uses a
+variable that step four loads.
+
+4
+00:00:09.400 --> 00:00:13.310
+Step one tests Microsoft's Conditional
+Access template as published,
+
+5
+00:00:13.310 --> 00:00:16.613
+the one the Graph reference
+returns for getting a template.
+
+6
+00:00:16.613 --> 00:00:18.113
+Seven tests pass.
+
+7
+00:00:18.113 --> 00:00:23.063
+Step two loads the Conditional Access
+module and lists each task's permissions.
+
+8
+00:00:23.063 --> 00:00:27.565
+To read and plan, three: Authentication
+Context dot Read dot All,
+
+9
+00:00:27.565 --> 00:00:32.587
+Policy dot Read dot All, and Policy
+dot Read dot Authentication Method.
+
+10
+00:00:32.587 --> 00:00:37.356
+To apply, the same three, plus two
+writes: Authentication Context dot
+
+11
+00:00:37.356 --> 00:00:42.124
+ReadWrite dot All, and Policy dot
+ReadWrite dot Conditional Access.
+
+12
+00:00:42.124 --> 00:00:43.200
+Nothing else.

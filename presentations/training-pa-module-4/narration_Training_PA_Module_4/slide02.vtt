@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.200
+Why does this matter?
+
+2
+00:00:01.200 --> 00:00:05.540
+Because this module writes the settings
+that cause the documented lockout,
+
+3
+00:00:05.540 --> 00:00:07.262
+so it refuses both halves of it.
+
+4
+00:00:07.262 --> 00:00:11.713
+Rule pim oh one fails a role file that
+requires approval with no approver.
+
+5
+00:00:11.713 --> 00:00:16.122
+Rule pim oh two fails the run if
+fewer emergency accounts hold Global
+
+6
+00:00:16.122 --> 00:00:21.613
+Administrator active, permanent and direct
+than the emergency access file requires.
+
+7
+00:00:21.613 --> 00:00:26.363
+The code changes no role setting until
+Module 2's half holds in the tenant.
+
+8
+00:00:26.363 --> 00:00:29.281
+And the Activation Gate
+Checked switch is a person's
+
+9
+00:00:29.281 --> 00:00:32.063
+statement that the activation
+gate's policy is On.
+
+10
+00:00:32.063 --> 00:00:35.557
+The apply won't set an
+authentication context without it,
+
+11
+00:00:35.557 --> 00:00:39.349
+because the gate's state can't be
+read from version one point oh.
+
+12
+00:00:39.349 --> 00:00:41.263
+Any finding blocks the apply.
+
+13
+00:00:41.263 --> 00:00:45.410
+And PIM itself won't remove the
+last active Global Administrator.

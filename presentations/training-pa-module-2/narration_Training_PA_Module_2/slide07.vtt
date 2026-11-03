@@ -1,0 +1,62 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:03.748
+Lab 1 runs in the
+privileged-access folder,
+
+3
+00:00:03.748 --> 00:00:07.825
+in one PowerShell 7 session,
+against the fictional tenant.
+
+4
+00:00:07.825 --> 00:00:13.100
+Step one runs Microsoft Learn's queries
+over a sign-in export, with Pester.
+
+5
+00:00:13.100 --> 00:00:15.038
+Seven pass and none fail.
+
+6
+00:00:15.038 --> 00:00:19.638
+The tests show what they find: of
+five emergency events in the export,
+
+7
+00:00:19.638 --> 00:00:24.650
+Learn's two-I D query finds the two
+interactive sign-ins, and misses the rest.
+
+8
+00:00:24.650 --> 00:00:28.750
+Step two loads the module and lists
+the permissions the check needs.
+
+9
+00:00:28.750 --> 00:00:33.402
+There are six: Group Member dot Read
+Basic dot All, Policy dot Read dot All,
+
+10
+00:00:33.402 --> 00:00:36.950
+Role Assignment Schedule to
+read, User dot Read dot All,
+
+11
+00:00:36.950 --> 00:00:41.838
+User dot Read Basic dot All, and User
+Authentication Method dot Read dot All.
+
+12
+00:00:41.838 --> 00:00:42.924
+Nothing writes.
+
+13
+00:00:42.924 --> 00:00:45.650
+The output on the slide is wrapped to fit.

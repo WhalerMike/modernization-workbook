@@ -1,0 +1,62 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:05.850
+Steps one to four run in PowerShell
+7, in the privileged-access folder.
+
+3
+00:00:05.850 --> 00:00:09.190
+Step one runs Microsoft
+Learn's queries from its PIM
+
+4
+00:00:09.190 --> 00:00:12.375
+audit history page over
+the fixture, as published.
+
+5
+00:00:12.375 --> 00:00:16.450
+Eight pass; the twenty-four not
+run are the chapter's other tests.
+
+6
+00:00:16.450 --> 00:00:20.879
+The third test is the one to notice:
+two of the thirteen rows the first query
+
+7
+00:00:20.879 --> 00:00:23.711
+returns are role assignments
+made outside PIM,
+
+8
+00:00:23.711 --> 00:00:25.962
+which a reader of the query could miss.
+
+9
+00:00:25.962 --> 00:00:28.762
+Step two lists the
+permissions the run needs.
+
+10
+00:00:28.762 --> 00:00:32.179
+Nine: Audit Log dot Read
+dot All for the events,
+
+11
+00:00:32.179 --> 00:00:36.150
+and the read permissions
+Modules 1 and 2 already use.
+
+12
+00:00:36.150 --> 00:00:37.950
+None ends in ReadWrite.
+
+13
+00:00:37.950 --> 00:00:40.680
+The output on the slide is wrapped to fit.

@@ -1,0 +1,79 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.688
+Unit 2: the checks, the
+plan and the evidence.
+
+2
+00:00:03.688 --> 00:00:07.713
+Rules A R oh one to fourteen check
+each series before it's applied.
+
+3
+00:00:07.713 --> 00:00:10.275
+Oh one is the first: no reviewers.
+
+4
+00:00:10.275 --> 00:00:15.294
+Microsoft Learn's page on configuring
+reviewers says Graph treats no reviewers
+
+5
+00:00:15.294 --> 00:00:19.713
+as a self-review, and in this program
+assignees never review themselves.
+
+6
+00:00:19.713 --> 00:00:21.686
+Oh two is no fallback reviewer,
+
+7
+00:00:21.686 --> 00:00:25.712
+and oh three a missing or over-long
+description for reviewers.
+
+8
+00:00:25.712 --> 00:00:28.299
+Oh four is a review longer than its cycle.
+
+9
+00:00:28.299 --> 00:00:30.163
+Oh five is auto-apply off.
+
+10
+00:00:30.163 --> 00:00:31.988
+Oh six is the lockout guard.
+
+11
+00:00:31.988 --> 00:00:34.537
+And it changes the program's own setting:
+
+12
+00:00:34.537 --> 00:00:39.790
+a review that covers the emergency accounts'
+Global Administrator uses no change
+
+13
+00:00:39.790 --> 00:00:44.888
+on silence, and an unreviewed item becomes
+an evidence finding, E oh four, instead.
+
+14
+00:00:44.888 --> 00:00:46.551
+That's the owner's decision.
+
+15
+00:00:46.551 --> 00:00:50.952
+The rest check the default decision,
+justification, the tier's cadence,
+
+16
+00:00:50.952 --> 00:00:55.658
+the start date, reviewers on Azure
+series, duplicate names, unlisted series,
+
+17
+00:00:55.658 --> 00:01:00.340
+and a group that holds a reviewed role
+with no membership series of its own.

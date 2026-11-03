@@ -1,0 +1,985 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.725
+Welcome to Module 2 of the Privileged Access
+learning path: emergency access first.
+
+2
+00:00:05.725 --> 00:00:12.048
+This module serves the project plan's
+task A0.4 in Phase 0 and A1.1 in Phase 1,
+
+3
+00:00:12.048 --> 00:00:15.737
+with Chapter 02 of the developer workbook.
+
+4
+00:00:15.737 --> 00:00:18.475
+It's the one step in the
+project that can't move.
+
+5
+00:00:18.475 --> 00:00:24.356
+In it you check each emergency access
+account against Microsoft Learn's standard,
+
+6
+00:00:24.356 --> 00:00:27.037
+from code, with rules
+E A oh one to E A ten.
+
+7
+00:00:27.037 --> 00:00:30.383
+You build the alert on their
+use as a reviewed template
+
+8
+00:00:30.383 --> 00:00:33.876
+that also sees non-interactive
+sign-ins and audit events.
+
+9
+00:00:33.876 --> 00:00:35.387
+And you keep a drill record.
+
+10
+00:00:35.387 --> 00:00:40.188
+The code runs on your laptop against
+the same fictional tenant as Module 1.
+
+11
+00:00:40.188 --> 00:00:45.660
+It's illustrative: tested against fixtures,
+not run against a production tenant.
+
+12
+00:00:49.410 --> 00:00:50.422
+Why first?
+
+13
+00:00:50.422 --> 00:00:54.627
+The project plan's critical path says
+that switching on approval before
+
+14
+00:00:54.627 --> 00:00:58.972
+the emergency accounts exist is the
+one sequence that locks the agency out.
+
+15
+00:00:58.972 --> 00:01:01.411
+And Microsoft Learn documents the case.
+
+16
+00:01:01.411 --> 00:01:06.195
+Every Global Administrator and Privileged
+Role Administrator is eligible,
+
+17
+00:01:06.195 --> 00:01:09.410
+approval is required, and
+no approvers are selected.
+
+18
+00:01:09.410 --> 00:01:12.598
+So no one can approve, and
+administration is locked.
+
+19
+00:01:12.598 --> 00:01:15.935
+That's why every later module
+that writes leans on this one.
+
+20
+00:01:15.935 --> 00:01:20.735
+Module 3 keeps the emergency group
+excluded from every policy file.
+
+21
+00:01:20.735 --> 00:01:25.054
+Module 4 refuses any PIM change
+until the emergency accounts
+
+22
+00:01:25.054 --> 00:01:29.035
+hold Global Administrator,
+active, permanent and direct.
+
+23
+00:01:29.035 --> 00:01:32.510
+And Module 7 refuses a review
+that would remove them.
+
+24
+00:01:32.510 --> 00:01:34.911
+The emergency accounts are also the main
+
+25
+00:01:34.911 --> 00:01:37.948
+exception to zero permanently
+active assignments.
+
+26
+00:01:37.948 --> 00:01:43.484
+Module 1 reported E A oh one as Info only
+because the exceptions list names it.
+
+27
+00:01:43.484 --> 00:01:46.800
+Here you make sure the exception
+is what it claims to be.
+
+28
+00:01:50.550 --> 00:01:53.390
+Here's what you'll be able to
+do by the end of this module,
+
+29
+00:01:53.390 --> 00:01:56.037
+which takes about fifty-five
+minutes with the lab.
+
+30
+00:01:56.037 --> 00:01:58.288
+You'll explain the documented lockout,
+
+31
+00:01:58.288 --> 00:02:02.437
+and why the emergency accounts come
+before any approval is switched on.
+
+32
+00:02:02.437 --> 00:02:06.589
+You'll name what Microsoft Learn's
+standard asks of each emergency account,
+
+33
+00:02:06.589 --> 00:02:08.463
+and the rule that checks each item.
+
+34
+00:02:08.463 --> 00:02:12.033
+You'll explain why the
+alert reads three tables,
+
+35
+00:02:12.033 --> 00:02:15.512
+not one, and why it matches
+object I D's, not names.
+
+36
+00:02:15.512 --> 00:02:17.962
+You'll run the check
+and read its findings.
+
+37
+00:02:17.962 --> 00:02:21.776
+And you'll say why every enforced
+Conditional Access policy
+
+38
+00:02:21.776 --> 00:02:25.437
+must exclude the accounts, and
+why a report-only one needn't.
+
+39
+00:02:25.437 --> 00:02:27.713
+Before you start, finish Module 1:
+
+40
+00:02:27.713 --> 00:02:31.588
+this lab uses its module and
+its fictional tenant again.
+
+41
+00:02:31.588 --> 00:02:35.162
+Reading K Q L helps for the
+alert, but isn't required.
+
+42
+00:02:35.162 --> 00:02:38.064
+Lab 2 needs a worldwide
+or G C C test tenant
+
+43
+00:02:38.064 --> 00:02:41.920
+with a test Azure
+subscription, never production.
+
+44
+00:02:45.670 --> 00:02:48.083
+Unit 1: the standard and the check.
+
+45
+00:02:48.083 --> 00:02:53.032
+Microsoft Learn's page on managing
+emergency access accounts sets the standard.
+
+46
+00:02:53.032 --> 00:02:58.420
+Two or more accounts, cloud-only, on the
+tenant's on-microsoft dot com domain.
+
+47
+00:02:58.420 --> 00:03:01.145
+Passkey or certificate-based
+authentication.
+
+48
+00:03:01.145 --> 00:03:04.695
+Global Administrator, active
+and permanent in PIM.
+
+49
+00:03:04.695 --> 00:03:06.467
+Excluded, through one group,
+
+50
+00:03:06.467 --> 00:03:10.857
+from the Conditional Access policies
+that block or restrict sign-in.
+
+51
+00:03:10.857 --> 00:03:13.546
+And validated at least every ninety days.
+
+52
+00:03:13.546 --> 00:03:14.895
+Each item has a rule.
+
+53
+00:03:14.895 --> 00:03:17.020
+E A oh one counts the accounts.
+
+54
+00:03:17.020 --> 00:03:18.510
+Oh two checks the domain,
+
+55
+00:03:18.510 --> 00:03:22.533
+and oh three that the account isn't
+synchronized from on-premises.
+
+56
+00:03:22.533 --> 00:03:26.608
+Oh five wants Global Administrator
+active, permanent and direct.
+
+57
+00:03:26.608 --> 00:03:31.052
+Oh six flags any method that
+isn't phishing-resistant: phone,
+
+58
+00:03:31.052 --> 00:03:35.769
+Authenticator, software OATH,
+email or a Temporary Access Pass.
+
+59
+00:03:35.769 --> 00:03:40.382
+Oh seven and oh eight check the exclusion
+group, and oh nine the drill record.
+
+60
+00:03:40.382 --> 00:03:45.552
+The program adds dual custody and a
+post-use review, and two rules of its
+
+61
+00:03:45.552 --> 00:03:51.080
+own design: oh four, a disabled account,
+and E A ten, a stranger in the group.
+
+62
+00:03:54.830 --> 00:03:57.055
+Pay attention to E A oh eight.
+
+63
+00:03:57.055 --> 00:04:00.485
+Microsoft Learn says to
+exclude the emergency accounts
+
+64
+00:04:00.485 --> 00:04:03.405
+from the policies that
+block or restrict sign-in.
+
+65
+00:04:03.405 --> 00:04:06.555
+The code doesn't try to
+judge which policies do that.
+
+66
+00:04:06.555 --> 00:04:12.030
+It checks every enforced policy, and that
+choice is this workbook's design guidance.
+
+67
+00:04:12.030 --> 00:04:15.966
+An enforced policy that doesn't
+exclude an emergency account,
+
+68
+00:04:15.966 --> 00:04:18.668
+through the group or
+directly, is a finding.
+
+69
+00:04:18.668 --> 00:04:23.067
+A report-only policy that doesn't
+exclude the group is only Info.
+
+70
+00:04:23.067 --> 00:04:27.246
+Microsoft Learn says report-only
+policies need no exclusion,
+
+71
+00:04:27.246 --> 00:04:31.343
+and a report-only policy is how
+you record emergency sign-ins.
+
+72
+00:04:31.343 --> 00:04:35.292
+But the exclusion is required
+before the policy is enforced.
+
+73
+00:04:35.292 --> 00:04:40.315
+And the program's own pre-merge check,
+which Module 3 builds, is stricter:
+
+74
+00:04:40.315 --> 00:04:44.818
+it wants the exclusion on every
+policy file, whatever its state.
+
+75
+00:04:44.818 --> 00:04:47.300
+Module 3 comes back to this.
+
+76
+00:04:51.050 --> 00:04:52.725
+Unit 2: the alert.
+
+77
+00:04:52.725 --> 00:04:55.840
+Microsoft Learn's page
+has three sample queries,
+
+78
+00:04:55.840 --> 00:04:59.500
+and all three read the sign-in
+log of interactive sign-ins.
+
+79
+00:04:59.500 --> 00:05:01.750
+The example adds two more tables.
+
+80
+00:05:01.750 --> 00:05:03.718
+The non-interactive sign-in log,
+
+81
+00:05:03.718 --> 00:05:08.334
+because a refreshed token in a stolen
+session is a non-interactive sign-in,
+
+82
+00:05:08.334 --> 00:05:12.042
+and Microsoft Learn says new
+sign-ins that obtain a refresh
+
+83
+00:05:12.042 --> 00:05:15.675
+token with FIDO2 keys are
+logged as non-interactive too.
+
+84
+00:05:15.675 --> 00:05:19.587
+And the audit log, for a role change
+made by an emergency account,
+
+85
+00:05:19.587 --> 00:05:24.025
+and a security method registered on
+one, which is the start of a takeover.
+
+86
+00:05:24.025 --> 00:05:26.488
+The query matches object I D's only,
+
+87
+00:05:26.488 --> 00:05:31.238
+so a rename can't hide a sign-in,
+and it refuses a user principal name.
+
+88
+00:05:31.238 --> 00:05:36.243
+Then the kit wraps it in an A R M
+template, with Microsoft Learn's severity
+
+89
+00:05:36.243 --> 00:05:41.249
+zero and a threshold of greater than
+zero, evaluated every five minutes.
+
+90
+00:05:41.249 --> 00:05:42.550
+It deploys nothing.
+
+91
+00:05:42.550 --> 00:05:45.680
+Deployment is the reviewed pipeline's job.
+
+92
+00:05:49.430 --> 00:05:50.155
+Try it.
+
+93
+00:05:50.155 --> 00:05:53.128
+Lab 1 runs in the
+privileged-access folder,
+
+94
+00:05:53.128 --> 00:05:57.205
+in one PowerShell 7 session,
+against the fictional tenant.
+
+95
+00:05:57.205 --> 00:06:02.480
+Step one runs Microsoft Learn's queries
+over a sign-in export, with Pester.
+
+96
+00:06:02.480 --> 00:06:04.418
+Seven pass and none fail.
+
+97
+00:06:04.418 --> 00:06:09.018
+The tests show what they find: of
+five emergency events in the export,
+
+98
+00:06:09.018 --> 00:06:14.030
+Learn's two-I D query finds the two
+interactive sign-ins, and misses the rest.
+
+99
+00:06:14.030 --> 00:06:18.130
+Step two loads the module and lists
+the permissions the check needs.
+
+100
+00:06:18.130 --> 00:06:22.782
+There are six: Group Member dot Read
+Basic dot All, Policy dot Read dot All,
+
+101
+00:06:22.782 --> 00:06:26.330
+Role Assignment Schedule to
+read, User dot Read dot All,
+
+102
+00:06:26.330 --> 00:06:31.218
+User dot Read Basic dot All, and User
+Authentication Method dot Read dot All.
+
+103
+00:06:31.218 --> 00:06:32.304
+Nothing writes.
+
+104
+00:06:32.304 --> 00:06:35.330
+The output on the slide is wrapped to fit.
+
+105
+00:06:39.080 --> 00:06:43.555
+Step three checks the fictional tenant's
+accounts and writes the alert template.
+
+106
+00:06:43.555 --> 00:06:48.014
+You give it the tenant fixture,
+the emergency access configuration,
+
+107
+00:06:48.014 --> 00:06:52.632
+the drill record, a date to judge the
+drills by, the thirtieth of October,
+
+108
+00:06:52.632 --> 00:06:54.861
+an output folder, and, for the alert,
+
+109
+00:06:54.861 --> 00:06:58.842
+the Log Analytics workspace,
+the action group and a location.
+
+110
+00:06:58.842 --> 00:07:03.454
+The check finds nine findings, no
+warnings and one information item.
+
+111
+00:07:03.454 --> 00:07:08.093
+It writes the alert rule to emergency-alert
+dot json, for review, and tells
+
+112
+00:07:08.093 --> 00:07:13.117
+you to deploy it with your reviewed
+pipeline; it doesn't deploy anything itself.
+
+113
+00:07:13.117 --> 00:07:18.417
+And as always, the manifest lists every
+request and the hash of every file.
+
+114
+00:07:18.417 --> 00:07:22.187
+On the slide, the two resource
+I D's are wrapped to fit;
+
+115
+00:07:22.187 --> 00:07:25.770
+on the command line, each
+one is a single word.
+
+116
+00:07:29.520 --> 00:07:31.482
+Step four prints the findings.
+
+117
+00:07:31.482 --> 00:07:34.558
+E A oh one, the first account, passes.
+
+118
+00:07:34.558 --> 00:07:38.020
+The second, E A oh two, fails five ways.
+
+119
+00:07:38.020 --> 00:07:42.483
+It's on contoso dot example, not
+the on-microsoft dot com domain.
+
+120
+00:07:42.483 --> 00:07:46.344
+Its Global Administrator assignment
+ends, so it isn't permanent.
+
+121
+00:07:46.344 --> 00:07:49.445
+It has a phone method, which
+isn't phishing-resistant.
+
+122
+00:07:49.445 --> 00:07:51.370
+It isn't in the exclusion group.
+
+123
+00:07:51.370 --> 00:07:53.308
+And its last drill is too old.
+
+124
+00:07:53.308 --> 00:07:54.595
+Then the policies.
+
+125
+00:07:54.595 --> 00:07:59.770
+Three enforced policies don't exclude the
+accounts: the legacy authentication block,
+
+126
+00:07:59.770 --> 00:08:02.758
+the compliant-device
+policy for administrators,
+
+127
+00:08:02.758 --> 00:08:04.945
+and the activation gate's own policy.
+
+128
+00:08:04.945 --> 00:08:07.745
+Each of those could lock
+the emergency accounts out.
+
+129
+00:08:07.745 --> 00:08:12.119
+The report-only policy that
+records emergency sign-ins is Info,
+
+130
+00:08:12.119 --> 00:08:13.970
+as Microsoft Learn allows.
+
+131
+00:08:13.970 --> 00:08:18.064
+And the last row, E A ten: carl
+dot ops is in the exclusion group,
+
+132
+00:08:18.064 --> 00:08:23.870
+and shouldn't be, because every policy
+that excludes the group excludes him too.
+
+133
+00:08:27.620 --> 00:08:31.107
+Step five matches the same
+export with the example's rule.
+
+134
+00:08:31.107 --> 00:08:36.170
+You load the export's rows and pass the
+two emergency accounts' object I D's.
+
+135
+00:08:36.170 --> 00:08:40.020
+Five rows come back, where
+Microsoft Learn's query found two.
+
+136
+00:08:40.020 --> 00:08:43.545
+The two interactive sign-ins
+are there, one for each account.
+
+137
+00:08:43.545 --> 00:08:44.720
+And three more.
+
+138
+00:08:44.720 --> 00:08:47.404
+A non-interactive sign-in
+by the first account,
+
+139
+00:08:47.404 --> 00:08:51.007
+which is what a refreshed token
+in a stolen session looks like.
+
+140
+00:08:51.007 --> 00:08:55.446
+An Add member to role event made by
+the second account: a role change.
+
+141
+00:08:55.446 --> 00:08:59.515
+And a User registered security
+info event on the first account:
+
+142
+00:08:59.515 --> 00:09:04.133
+a new method registered on an emergency
+account, the start of a takeover.
+
+143
+00:09:04.133 --> 00:09:08.480
+Those are the three events the
+extra two tables exist to catch.
+
+144
+00:09:12.230 --> 00:09:14.255
+Step six shows the guards.
+
+145
+00:09:14.255 --> 00:09:18.443
+Ask for the query with a user
+principal name, E A oh one at the
+
+146
+00:09:18.443 --> 00:09:23.067
+on-microsoft dot com domain, and it
+refuses: that isn't an object I D.
+
+147
+00:09:23.067 --> 00:09:26.317
+A query on names would miss
+the account after a rename.
+
+148
+00:09:26.317 --> 00:09:28.817
+Then read the alert
+template the check wrote.
+
+149
+00:09:28.817 --> 00:09:33.206
+Its resource is a Microsoft
+Insights scheduled query rule,
+
+150
+00:09:33.206 --> 00:09:38.042
+A P I version twenty twenty-three,
+twelve, oh one, with severity zero.
+
+151
+00:09:38.042 --> 00:09:40.931
+That's the reviewed template
+your pipeline deploys.
+
+152
+00:09:40.931 --> 00:09:45.167
+Step seven runs the whole test
+suite: three hundred thirty pass.
+
+153
+00:09:45.167 --> 00:09:48.692
+Then delete the output folder,
+because it names the accounts.
+
+154
+00:09:48.692 --> 00:09:53.640
+Pester prints its summary on several
+lines; the slide shows it on one.
+
+155
+00:09:57.390 --> 00:10:01.209
+Lab 2 runs in your own test
+tenant, worldwide or G C C,
+
+156
+00:10:01.209 --> 00:10:05.028
+with a test Azure
+subscription, never production.
+
+157
+00:10:05.028 --> 00:10:07.921
+You send the audit log
+and the interactive and
+
+158
+00:10:07.921 --> 00:10:10.966
+non-interactive sign-in
+logs to a test workspace.
+
+159
+00:10:10.966 --> 00:10:14.662
+You register a reader app, run
+the check with your own accounts,
+
+160
+00:10:14.662 --> 00:10:17.127
+and run the query by
+hand in the workspace.
+
+161
+00:10:17.127 --> 00:10:21.766
+Then you deploy the alert from the reviewed
+template, and run a drill that fires it.
+
+162
+00:10:21.766 --> 00:10:26.810
+If the test tenant's emergency accounts
+are real, treat that drill as Microsoft
+
+163
+00:10:26.810 --> 00:10:31.390
+Learn's validation drill: tell security
+operations first, and record it.
+
+164
+00:10:31.390 --> 00:10:35.102
+You need at least Security Administrator
+for the diagnostic setting,
+
+165
+00:10:35.102 --> 00:10:37.407
+the six read permissions
+for the reader app,
+
+166
+00:10:37.407 --> 00:10:40.415
+and at least Monitoring
+Contributor to deploy the alert.
+
+167
+00:10:40.415 --> 00:10:45.235
+The back-out deletes the alert rule and
+action group, the permissions, the app and
+
+168
+00:10:45.235 --> 00:10:50.128
+its certificate, the diagnostic setting if
+the lab created it, and the test output.
+
+169
+00:10:50.128 --> 00:10:52.650
+The authors haven't run Lab 2.
+
+170
+00:10:56.400 --> 00:10:57.787
+The federal requirement.
+
+171
+00:10:57.787 --> 00:11:01.974
+The check is the plan's Gate 1 test,
+emergency access accounts tested,
+
+172
+00:11:01.974 --> 00:11:05.113
+and the alert watches the
+accounts between drills.
+
+173
+00:11:05.113 --> 00:11:09.616
+It supports NIST special publication
+eight hundred fifty-three A C two,
+
+174
+00:11:09.616 --> 00:11:13.433
+with emergency accounts as a
+defined account type, and I A two,
+
+175
+00:11:13.433 --> 00:11:17.937
+enhancement one, multifactor
+authentication to privileged accounts.
+
+176
+00:11:17.937 --> 00:11:23.837
+The alert supports A C two,
+enhancement four, A U six and S I four.
+
+177
+00:11:23.837 --> 00:11:28.982
+And from CISA's B O D twenty-five
+oh-one and its ScubaGear baseline:
+
+178
+00:11:28.982 --> 00:11:33.460
+M S A A D seven point three,
+cloud-only privileged accounts,
+
+179
+00:11:33.460 --> 00:11:39.176
+and three point six, phishing-resistant
+M F A for highly privileged roles.
+
+180
+00:11:39.176 --> 00:11:43.975
+Treating the drills as compensating
+controls is the workbook's design guidance.
+
+181
+00:11:43.975 --> 00:11:46.351
+The evidence an ISSO keeps for Gate 1:
+
+182
+00:11:46.351 --> 00:11:49.914
+the findings with no finding
+from the test tenant's run;
+
+183
+00:11:49.914 --> 00:11:52.449
+the drill tickets and the drill record;
+
+184
+00:11:52.449 --> 00:11:57.560
+the reviewed alert template and its
+deployment record; and the manifest.
+
+185
+00:12:01.310 --> 00:12:03.285
+Check yourself with two questions.
+
+186
+00:12:03.285 --> 00:12:06.860
+First: what is the lockout
+Microsoft Learn documents?
+
+187
+00:12:06.860 --> 00:12:10.894
+The answer is b: every Global
+Administrator and Privileged Role
+
+188
+00:12:10.894 --> 00:12:15.385
+Administrator eligible, approval
+required, and no approvers selected.
+
+189
+00:12:15.385 --> 00:12:18.535
+No one can approve, so
+administration is locked.
+
+190
+00:12:18.535 --> 00:12:24.173
+Second: a report-only Conditional Access
+policy doesn't exclude the emergency group.
+
+191
+00:12:24.173 --> 00:12:25.923
+What does E A oh eight report?
+
+192
+00:12:25.923 --> 00:12:29.142
+The answer is b: Info,
+because Microsoft Learn
+
+193
+00:12:29.142 --> 00:12:32.361
+says report-only policies
+need no exclusion.
+
+194
+00:12:32.361 --> 00:12:37.573
+You saw it for the policy that records
+emergency sign-ins in Lab 1, step four.
+
+195
+00:12:37.573 --> 00:12:42.840
+The module page has two more questions,
+each linked to the section that answers it.
+
+196
+00:12:46.590 --> 00:12:47.415
+To sum up.
+
+197
+00:12:47.415 --> 00:12:52.165
+You checked two emergency accounts against
+Microsoft Learn's standard and found one
+
+198
+00:12:52.165 --> 00:12:56.045
+that fails five ways, three enforced
+policies that would lock them out,
+
+199
+00:12:56.045 --> 00:12:58.253
+and a stranger in their exclusion group.
+
+200
+00:12:58.253 --> 00:13:02.578
+And you built an alert that sees five
+events where Learn's sample sees two.
+
+201
+00:13:02.578 --> 00:13:06.745
+Carry one thing forward: before
+any later lab enforces anything,
+
+202
+00:13:06.745 --> 00:13:10.440
+build the emergency accounts
+and confirm one can sign in.
+
+203
+00:13:10.440 --> 00:13:16.215
+Next is Module 3: Conditional Access for
+administrators and the activation gate.
+
+204
+00:13:16.215 --> 00:13:21.034
+It's the first module that writes, so it's
+the first that could lock people out,
+
+205
+00:13:21.034 --> 00:13:22.744
+and its first rule, C A oh one,
+
+206
+00:13:22.744 --> 00:13:26.620
+keeps the emergency group
+excluded from every policy file.

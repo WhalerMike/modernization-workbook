@@ -1,0 +1,71 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.900
+Why code?
+
+2
+00:00:00.900 --> 00:00:03.413
+Because a review set up by hand drifts.
+
+3
+00:00:03.413 --> 00:00:06.177
+A reviewer leaves, a
+duration is shortened,
+
+4
+00:00:06.177 --> 00:00:09.888
+auto-apply is switched off for
+one cycle and never back on.
+
+5
+00:00:09.888 --> 00:00:11.912
+And reviews have their own lockout.
+
+6
+00:00:11.912 --> 00:00:17.024
+The emergency accounts hold Global
+Administrator as permanent active assignments.
+
+7
+00:00:17.024 --> 00:00:22.129
+A review of Global Administrator that
+covers active assignments, with remove
+
+8
+00:00:22.129 --> 00:00:27.312
+access on silence and auto-apply on, removes
+them if the reviewers miss one month.
+
+9
+00:00:27.312 --> 00:00:30.858
+Microsoft Learn's reference
+for review settings cautions
+
+10
+00:00:30.858 --> 00:00:34.549
+that auto-apply with a default
+decision can revoke all access.
+
+11
+00:00:34.549 --> 00:00:38.768
+So rule A R oh six fails a review
+that would do that, and rule A R,
+
+12
+00:00:38.768 --> 00:00:42.900
+E oh eight, reports an emergency
+account a reviewer denied.
+
+13
+00:00:42.900 --> 00:00:45.788
+The apply refuses a plan with any finding.
+
+14
+00:00:45.788 --> 00:00:47.865
+And the code never deletes a series,
+
+15
+00:00:47.865 --> 00:00:52.510
+because deleting a definition deletes
+its decisions, and those are evidence.

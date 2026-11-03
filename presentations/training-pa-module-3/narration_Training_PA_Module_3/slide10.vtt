@@ -1,0 +1,69 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.800
+Step five plans against the
+fictional tenant, sending nothing.
+
+2
+00:00:03.800 --> 00:00:07.575
+The check passes again, and
+the plan has three Blocked,
+
+3
+00:00:07.575 --> 00:00:11.950
+four Create, one NoChange, one
+NotInRepository and two Update.
+
+4
+00:00:11.950 --> 00:00:15.187
+The dry run writes six
+requests and sends none.
+
+5
+00:00:15.187 --> 00:00:16.313
+Look at the list.
+
+6
+00:00:16.313 --> 00:00:19.637
+Context C one is created
+and C two updated.
+
+7
+00:00:19.637 --> 00:00:22.662
+The privileged authentication
+strength is created.
+
+8
+00:00:22.662 --> 00:00:27.351
+Two policies are created, and the
+compliant-device policy is updated.
+
+9
+00:00:27.351 --> 00:00:32.589
+Three are Blocked: C A oh oh three, because
+the strength it needs doesn't exist yet,
+
+10
+00:00:32.589 --> 00:00:36.378
+and the two context policies,
+the activation gate and the
+
+11
+00:00:36.378 --> 00:00:40.650
+protected actions policy, because
+C one doesn't exist yet either.
+
+12
+00:00:40.650 --> 00:00:44.222
+And C A oh oh one, the
+legacy authentication block,
+
+13
+00:00:44.222 --> 00:00:46.812
+is in the tenant but not in the files.
+
+14
+00:00:46.812 --> 00:00:50.400
+It's reported as NotInRepository,
+and never deleted.
