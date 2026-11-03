@@ -36,30 +36,35 @@ And you'll say what the scan
 can't see, and what covers it.
 
 8
-00:00:23.450 --> 00:00:26.754
+00:00:23.450 --> 00:00:26.745
 Before you start, you need
 the path's prerequisites:
 
 9
-00:00:26.754 --> 00:00:32.023
+00:00:26.745 --> 00:00:32.079
 at least the overview of the Federal
-Modernization Workbook's Book 03, Microsoft
+Modernization Workbook's HR-Driven Identity
 
 10
-00:00:32.023 --> 00:00:36.900
-Automation Modules 1 and 2, and enough
-Python to run a script and read JSON.
+00:00:32.079 --> 00:00:34.824
+book, Microsoft Automation
+Modules 1 and 2,
 
 11
-00:00:36.900 --> 00:00:39.509
-Lab 1 needs Python 3.10 or later,
+00:00:34.824 --> 00:00:37.962
+and enough Python to run
+a script and read JSON.
 
 12
-00:00:39.509 --> 00:00:43.788
+00:00:37.962 --> 00:00:40.571
+Lab 1 needs Python 3.10 or later,
+
+13
+00:00:40.571 --> 00:00:44.850
 pytest and a clone of the
 repository, and no tenant.
 
-13
-00:00:43.788 --> 00:00:48.670
+14
+00:00:44.850 --> 00:00:49.730
 Lab 2 needs a worldwide or GCC
 test tenant, never production.

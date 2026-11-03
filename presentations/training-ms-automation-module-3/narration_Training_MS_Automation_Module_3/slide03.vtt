@@ -11,46 +11,46 @@ which takes about eighty-five
 minutes with the lab.
 
 3
-00:00:05.500 --> 00:00:09.320
+00:00:05.500 --> 00:00:09.168
 You'll name the Graph API,
-least-privileged permission
+least-privileged permission and
 
 4
-00:00:09.320 --> 00:00:12.800
-and stage for each of Book
-05's evidence questions.
+00:00:09.168 --> 00:00:12.912
+stage for each of the workbook's
+device evidence questions.
 
 5
-00:00:12.800 --> 00:00:16.600
+00:00:12.912 --> 00:00:16.712
 You'll explain which three things
 the program relies on are beta-only.
 
 6
-00:00:16.600 --> 00:00:20.302
+00:00:16.712 --> 00:00:20.414
 You'll read managed devices and
 per-policy compliance status,
 
 7
-00:00:20.302 --> 00:00:22.988
+00:00:20.414 --> 00:00:23.100
 including why the checks
 join on device name.
 
 8
-00:00:22.988 --> 00:00:27.263
+00:00:23.100 --> 00:00:27.375
 You'll keep remote actions and export
 jobs out of a read-only collector.
 
 9
-00:00:27.263 --> 00:00:32.587
+00:00:27.375 --> 00:00:32.700
 And you'll say what differs in GCC
 High and DoD, and run the five checks.
 
 10
-00:00:32.587 --> 00:00:36.712
+00:00:32.700 --> 00:00:36.825
 You need Module 1, and Module 2
 for the Conditional Access side.
 
 11
-00:00:36.712 --> 00:00:41.400
+00:00:36.825 --> 00:00:41.520
 Lab 2 needs a test tenant with an
 Intune license and a few test devices.

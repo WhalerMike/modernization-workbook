@@ -11,49 +11,54 @@ Microsoft Entra ID
 through Microsoft Graph.
 
 3
-00:00:07.412 --> 00:00:12.563
-The Federal Modernization Workbook's
-Book 02 builds the Entra ID target,
+00:00:07.412 --> 00:00:12.785
+The Federal Modernization Workbook's Identity
+and Directory book builds the Entra ID
 
 4
-00:00:12.563 --> 00:00:18.487
-and Book 04 puts access behind Conditional
-Access, PIM and application governance.
+00:00:12.785 --> 00:00:16.068
+target, and the Access and
+Privilege book puts access
 
 5
-00:00:18.487 --> 00:00:21.001
+00:00:16.068 --> 00:00:19.799
+behind Conditional Access, PIM
+and application governance.
+
+6
+00:00:19.799 --> 00:00:22.313
 Both ask for evidence
 a script can collect.
 
-6
-00:00:21.001 --> 00:00:25.550
+7
+00:00:22.313 --> 00:00:26.862
 In this module you'll map each of those
 evidence questions to the Graph API
 
-7
-00:00:25.550 --> 00:00:30.100
+8
+00:00:26.862 --> 00:00:31.412
 that answers it, its least-privileged
 permission, and the shape of its data.
 
-8
-00:00:30.100 --> 00:00:32.507
+9
+00:00:31.412 --> 00:00:33.820
 Then you'll run five read-only checks,
 
-9
-00:00:32.507 --> 00:00:36.038
+10
+00:00:33.820 --> 00:00:37.351
 in Python and PowerShell,
 against a fictional tenant.
 
-10
-00:00:36.038 --> 00:00:41.476
+11
+00:00:37.351 --> 00:00:42.788
 They're illustrative: unit-tested against
 fixtures, not proven against live tenants.
 
-11
-00:00:41.476 --> 00:00:44.459
+12
+00:00:42.788 --> 00:00:45.772
 Module 1's foundations, the right cloud,
 
-12
-00:00:44.459 --> 00:00:48.620
+13
+00:00:45.772 --> 00:00:49.940
 sign-in without a secret,
 and paging, apply throughout.

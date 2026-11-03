@@ -48,11 +48,15 @@ You don't need to have kept them: the
 first step of the lab rebuilds them.
 
 11
-00:00:34.737 --> 00:00:39.331
+00:00:34.737 --> 00:00:38.878
 The packaging builds on the drift
-pipeline in the Federal Modernization
+pipeline in Chapter 09 of the Federal
 
 12
-00:00:39.331 --> 00:00:43.680
-Workbook's Book 19's Chapter 09, and
-the lab calls it from the same clone.
+00:00:38.878 --> 00:00:42.878
+Modernization Workbook's Building
+the Attribute-Driven Migration,
+
+13
+00:00:42.878 --> 00:00:45.190
+and the lab calls it from the same clone.

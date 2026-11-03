@@ -233,27 +233,27 @@ middleware's earliest-end rule closes it.
 Then read where the design comes from.
 
 50
-00:03:00.010 --> 00:03:04.559
-The Federal Modernization
-Workbook's Book 03's Chapter 06
+00:03:00.010 --> 00:03:05.316
+Chapter 06 of the Federal Modernization
+Workbook's HR-Driven Identity
 
 51
-00:03:04.559 --> 00:03:09.297
-explains why contractors fall
+00:03:05.316 --> 00:03:10.172
+book explains why contractors fall
 outside Federal HR 2.0's scope.
 
 52
-00:03:09.297 --> 00:03:13.498
+00:03:10.172 --> 00:03:14.373
 Its Appendix A gives the contractor
 end conditions and their order.
 
 53
-00:03:13.498 --> 00:03:17.899
+00:03:14.373 --> 00:03:18.774
 And the contractor evaluation recommends
 an agency-owned register now,
 
 54
-00:03:17.899 --> 00:03:21.700
+00:03:18.774 --> 00:03:22.590
 with the Oracle contingent
 worker as a later source swap.
 
@@ -405,60 +405,60 @@ Two more pieces.
 First, the extract doesn't send anything.
 
 86
-00:05:21.920 --> 00:05:24.931
-It writes a file in the
-HR middleware's layout,
+00:05:21.920 --> 00:05:26.034
+It writes a file in the HR middleware's
+layout, and the middleware from
 
 87
-00:05:24.931 --> 00:05:29.570
-and the middleware from Book 19's
-Chapter 01 builds the skim requests.
+00:05:26.034 --> 00:05:30.870
+Chapter 01 of Building the Attribute-Driven
+Migration builds the skim requests.
 
 88
-00:05:29.570 --> 00:05:34.570
+00:05:30.870 --> 00:05:35.870
 Its dry run is its default, so nothing
 reaches a tenant unless you ask it to.
 
 89
-00:05:34.570 --> 00:05:38.776
+00:05:35.870 --> 00:05:40.076
 And in Module 1's register, inbound
 provisioning already names both
 
 90
-00:05:38.776 --> 00:05:43.132
+00:05:40.076 --> 00:05:44.432
 the HR app and the contractor-source
 app, through that same middleware.
 
 91
-00:05:43.132 --> 00:05:45.095
+00:05:44.432 --> 00:05:46.394
 Second, the sponsor review.
 
 92
-00:05:45.095 --> 00:05:48.720
+00:05:46.394 --> 00:05:50.020
 It goes on the contractor access
 package's assignment policy.
 
 93
-00:05:48.720 --> 00:05:50.170
+00:05:50.020 --> 00:05:51.470
 It runs twice a year.
 
 94
-00:05:50.170 --> 00:05:55.058
+00:05:51.470 --> 00:05:56.358
 The manager, who is the sponsor,
 reviews, with a named fallback reviewer.
 
 95
-00:05:55.058 --> 00:05:58.320
+00:05:56.358 --> 00:05:59.621
 And when nobody responds,
 access is removed.
 
 96
-00:05:58.320 --> 00:06:02.896
+00:05:59.621 --> 00:06:04.196
 One caution from the kit: using the
 requestor's manager as a reviewer
 
 97
-00:06:02.896 --> 00:06:07.350
+00:06:04.196 --> 00:06:08.650
 is among the things it lists as
 unconfirmed, so Lab 2 checks it.
 

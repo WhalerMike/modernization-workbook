@@ -54,20 +54,25 @@ the registration check
 measures progress toward.
 
 12
-00:00:39.363 --> 00:00:44.012
-Book 02's Appendix A has which policies
-are mandatory, and the mapping.
+00:00:39.363 --> 00:00:42.230
+Appendix A of the Identity
+and Directory book
 
 13
-00:00:44.012 --> 00:00:49.035
+00:00:42.230 --> 00:00:45.325
+has which policies are
+mandatory, and the mapping.
+
+14
+00:00:45.325 --> 00:00:50.347
 The evidence an ISSO keeps: each check's
 dated output with the app's permissions,
 
-14
-00:00:49.035 --> 00:00:51.430
+15
+00:00:50.347 --> 00:00:52.742
 the Conditional Access export in Git,
 
-15
-00:00:51.430 --> 00:00:55.200
+16
+00:00:52.742 --> 00:00:56.520
 and the findings with the change
 records that closed them.

@@ -5,60 +5,60 @@ WEBVTT
 To sum up.
 
 2
-00:00:00.875 --> 00:00:04.812
-You mapped Book 05's evidence
-questions to Intune APIs,
+00:00:00.875 --> 00:00:05.145
+You mapped the workbook's device
+evidence questions to Intune APIs,
 
 3
-00:00:04.812 --> 00:00:08.662
+00:00:05.145 --> 00:00:08.500
 their least-privileged
 permissions and their stage.
 
 4
-00:00:08.662 --> 00:00:12.237
+00:00:08.500 --> 00:00:12.075
 You learned which three things the
 program relies on are beta-only.
 
 5
-00:00:12.237 --> 00:00:15.008
+00:00:12.075 --> 00:00:14.845
 You read managed devices
 and compliance status,
 
 6
-00:00:15.008 --> 00:00:17.363
+00:00:14.845 --> 00:00:17.200
 and saw why the checks
 join on device name.
 
 7
-00:00:17.363 --> 00:00:21.013
+00:00:17.200 --> 00:00:20.850
 You kept remote actions and
 export jobs out of the collector.
 
 8
-00:00:21.013 --> 00:00:26.775
+00:00:20.850 --> 00:00:26.613
 And you ran the five checks, and saw why
 Autopilot is a GCC and commercial check.
 
 9
-00:00:26.775 --> 00:00:30.970
+00:00:26.613 --> 00:00:30.808
 That finishes the Microsoft Automation
 learning path: three modules,
 
 10
-00:00:30.970 --> 00:00:34.225
+00:00:30.808 --> 00:00:34.063
 about four hours and twenty-five
 minutes with each lab.
 
 11
-00:00:34.225 --> 00:00:36.160
+00:00:34.063 --> 00:00:35.997
 To put the checks on a schedule,
 
 12
-00:00:36.160 --> 00:00:39.488
+00:00:35.997 --> 00:00:39.325
 go to the Intune track
 implementation guide's Gate 6.
 
 13
-00:00:39.488 --> 00:00:44.760
+00:00:39.325 --> 00:00:44.590
 Modules on Azure Arc and Resource Manager,
 Teams, and monitoring are planned.

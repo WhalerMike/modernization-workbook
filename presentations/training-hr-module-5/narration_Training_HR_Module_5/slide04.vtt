@@ -16,44 +16,49 @@ and its later steps tie card issuance and
 revocation to HR and contractor events.
 
 4
-00:00:14.988 --> 00:00:19.857
-Book 03's Chapter 09 explains why
-revocation checking matters, and that a
+00:00:14.988 --> 00:00:20.550
+Chapter 09 of the HR-Driven Identity book
+explains why revocation checking matters,
 
 5
-00:00:19.857 --> 00:00:25.375
-reissued card changes the binding between
-the PIV certificate and the Entra user.
+00:00:20.550 --> 00:00:23.489
+and that a reissued card
+changes the binding
 
 6
-00:00:25.375 --> 00:00:27.575
-Notice what this module doesn't cover.
+00:00:23.489 --> 00:00:26.588
+between the PIV certificate
+and the Entra user.
 
 7
-00:00:27.575 --> 00:00:33.181
+00:00:26.588 --> 00:00:28.787
+Notice what this module doesn't cover.
+
+8
+00:00:28.787 --> 00:00:34.394
 Binding coverage and affinity for each
 user belong to the validation kit's check,
 
-8
-00:00:33.181 --> 00:00:37.700
+9
+00:00:34.394 --> 00:00:38.913
 V K PIV oh one, and to Gate 6 of the
 attribute-driven migration guide.
 
-9
-00:00:37.700 --> 00:00:40.072
+10
+00:00:38.913 --> 00:00:41.285
 This module checks the tenant's settings:
 
-10
-00:00:40.072 --> 00:00:42.863
+11
+00:00:41.285 --> 00:00:44.076
 the certificate authorities
 in the trust store,
 
-11
-00:00:42.863 --> 00:00:47.259
+12
+00:00:44.076 --> 00:00:48.472
 the X dot five-oh-nine certificate
 method, the authentication strengths and
 
-12
-00:00:47.259 --> 00:00:51.790
+13
+00:00:48.472 --> 00:00:52.990
 the Conditional Access policies, plus
 a measurement of each revocation list.

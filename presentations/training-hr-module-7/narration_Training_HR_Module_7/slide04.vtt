@@ -30,34 +30,40 @@ the run computes them and flags
 any out of bounds or not measured.
 
 7
-00:00:25.512 --> 00:00:30.662
+00:00:25.512 --> 00:00:30.499
 Prove the sole source for each
 population: this code doesn't decide that;
 
 8
-00:00:30.662 --> 00:00:36.424
-it's seven days of provisioning logs against
-the audit log, in Book 03's Appendix C.
+00:00:30.499 --> 00:00:34.557
+it's seven days of provisioning
+logs against the audit log,
 
 9
-00:00:36.424 --> 00:00:39.453
+00:00:34.557 --> 00:00:37.600
+in Appendix C of the
+HR-Driven Identity book.
+
+10
+00:00:37.600 --> 00:00:40.628
 And keep the evidence
 outside the directory:
 
-10
-00:00:39.453 --> 00:00:42.563
+11
+00:00:40.628 --> 00:00:43.738
 that's the package, verify
 and period commands.
 
-11
-00:00:42.563 --> 00:00:45.575
-Book 03's Chapter 11 has the design.
-
 12
-00:00:45.575 --> 00:00:47.924
-Attribute drift isn't this module's;
+00:00:43.738 --> 00:00:47.974
+Chapter 11 of the HR-Driven
+Identity book has the design.
 
 13
-00:00:47.924 --> 00:00:52.030
+00:00:47.974 --> 00:00:50.324
+Attribute drift isn't this module's;
+
+14
+00:00:50.324 --> 00:00:54.430
 it belongs to Gate 9 of the
 attribute-driven migration guide.
