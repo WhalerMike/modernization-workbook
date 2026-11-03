@@ -15,34 +15,34 @@ Tier 0 drift handled as an incident, and
 evidence for every elevation in the period.
 
 4
-00:00:12.013 --> 00:00:15.262
-Book 04 already says what
-goes in the package.
+00:00:12.013 --> 00:00:16.687
+The workbook's privileged-access design
+already says what goes in the package.
 
 5
-00:00:15.262 --> 00:00:18.300
+00:00:16.687 --> 00:00:19.726
 Learn supplies the two
 facts the design turns on.
 
 6
-00:00:18.300 --> 00:00:21.207
+00:00:19.726 --> 00:00:22.632
 First, the audit log
 only keeps thirty days,
 
 7
-00:00:21.207 --> 00:00:24.612
+00:00:22.632 --> 00:00:26.037
 so evidence has to be
 collected before it ages out.
 
 8
-00:00:24.612 --> 00:00:29.288
+00:00:26.037 --> 00:00:30.713
 Second, one activation can show
 up under several correlation IDs,
 
 9
-00:00:29.288 --> 00:00:31.626
+00:00:30.713 --> 00:00:33.051
 but its request ID never changes.
 
 10
-00:00:31.626 --> 00:00:33.980
+00:00:33.051 --> 00:00:35.400
 That request ID becomes the key.

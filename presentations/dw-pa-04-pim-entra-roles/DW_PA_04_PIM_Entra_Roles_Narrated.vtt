@@ -163,616 +163,621 @@ with fixed names, grouped into
 activation, assignment and notification.
 
 35
-00:02:18.007 --> 00:02:22.789
+00:02:18.007 --> 00:02:22.807
 This chapter manages the seven activation
-and assignment rules that Book 4 lists,
+and assignment rules in the workbook's
 
 36
-00:02:22.789 --> 00:02:27.220
-the ones on the slide, and deliberately
-leaves the notification rules alone.
+00:02:22.807 --> 00:02:25.560
+privileged-access design,
+the ones on the slide,
 
 37
-00:02:27.220 --> 00:02:31.280
+00:02:25.560 --> 00:02:28.807
+and deliberately leaves the
+notification rules alone.
+
+38
+00:02:28.807 --> 00:02:32.860
 Each of those seven becomes a
 few lines in a reviewed file.
 
-38
-00:02:35.030 --> 00:02:40.142
+39
+00:02:36.610 --> 00:02:41.722
 The authentication context deserves its
 own slide, because it's easy to get wrong.
 
-39
-00:02:40.142 --> 00:02:44.182
+40
+00:02:41.722 --> 00:02:45.762
 Learn says the Conditional Access
 policy behind the context must
 
-40
-00:02:44.182 --> 00:02:47.855
+41
+00:02:45.762 --> 00:02:49.435
 exist and be switched on before
 you select the context in PIM.
 
-41
-00:02:47.855 --> 00:02:51.825
+42
+00:02:49.435 --> 00:02:53.405
 If no policy targets it,
 activation falls back to MFA,
 
-42
-00:02:51.825 --> 00:02:56.718
+43
+00:02:53.405 --> 00:02:58.298
 but if the policy is off or report-only,
 nothing is enforced at all.
 
-43
-00:02:56.718 --> 00:03:00.361
+44
+00:02:58.298 --> 00:03:01.941
 Even with it on, you only get
 a prompt on every activation if
 
-44
-00:03:00.361 --> 00:03:04.156
+45
+00:03:01.941 --> 00:03:05.736
 that policy asks for it, and a
 ten-minute window still applies.
 
-45
-00:03:04.156 --> 00:03:07.963
+46
+00:03:05.736 --> 00:03:09.543
 Learn's pages also disagree on
 whether the option is in preview,
 
-46
-00:03:07.963 --> 00:03:10.730
+47
+00:03:09.543 --> 00:03:12.310
 so the chapter keeps calling it preview.
 
-47
-00:03:14.480 --> 00:03:16.442
+48
+00:03:16.060 --> 00:03:18.022
 Microsoft gives you two samples.
 
-48
-00:03:16.442 --> 00:03:20.421
+49
+00:03:18.022 --> 00:03:22.001
 One shows how to find a role's
 policy and then update its rules,
 
-49
-00:03:20.421 --> 00:03:23.206
+50
+00:03:22.001 --> 00:03:24.786
 six requests, each
 carrying the right type.
 
-50
-00:03:23.206 --> 00:03:28.044
+51
+00:03:24.786 --> 00:03:29.510
 The other is a tutorial that makes a
 group eligible for a role and has a member
 
-51
-00:03:28.044 --> 00:03:30.886
-activate it, which is
-exactly Book 4's pattern:
-
 52
-00:03:30.886 --> 00:03:33.805
+00:03:29.510 --> 00:03:32.735
+activate it, which is exactly
+the workbook's pattern:
+
+53
+00:03:32.735 --> 00:03:35.585
 roles are eligible to a
 group, never to a person.
 
-53
-00:03:33.805 --> 00:03:36.629
+54
+00:03:35.585 --> 00:03:38.409
 Those samples live only inside web pages,
 
-54
-00:03:36.629 --> 00:03:42.105
+55
+00:03:38.409 --> 00:03:43.885
 so the repository pins the pages' source,
 unmodified, with hashes a test checks.
 
-55
-00:03:42.105 --> 00:03:45.248
+56
+00:03:43.885 --> 00:03:47.028
 Then a harness sends every
 request to a fake Graph,
 
-56
-00:03:45.248 --> 00:03:47.680
+57
+00:03:47.028 --> 00:03:49.450
 so you can see what they really do.
 
-57
-00:03:51.430 --> 00:03:56.018
+58
+00:03:53.200 --> 00:03:57.788
 This is where the samples fall short,
 and every row is pinned by a test.
 
-58
-00:03:56.018 --> 00:03:59.855
+59
+00:03:57.788 --> 00:04:01.625
 Learn's read and its rule shapes
 are good, so the code keeps them.
 
-59
-00:03:59.855 --> 00:04:04.959
+60
+00:04:01.625 --> 00:04:06.729
 But there's no sample for the authentication
 context rule at all, and the activation
 
-60
-00:04:04.959 --> 00:04:09.767
+61
+00:04:06.729 --> 00:04:11.537
 sample relies on MFA, which may not prompt
 again in a session that already did it.
 
-61
-00:04:09.767 --> 00:04:14.992
+62
+00:04:11.537 --> 00:04:16.762
 Every update names a policy from somebody
 else's tenant, so a copied script fails.
 
-62
-00:04:14.992 --> 00:04:17.868
+63
+00:04:16.762 --> 00:04:19.638
 And even with the right
 policy, the samples leave a
 
-63
-00:04:17.868 --> 00:04:21.093
+64
+00:04:19.638 --> 00:04:22.863
 role different from the
 program's settings in six rules.
 
-64
-00:04:21.093 --> 00:04:23.410
+65
+00:04:22.863 --> 00:04:25.180
 So the code adds a real diff.
 
-65
-00:04:27.160 --> 00:04:29.272
+66
+00:04:28.930 --> 00:04:31.042
 The rest of the gaps are about safety.
 
-66
-00:04:29.272 --> 00:04:33.004
+67
+00:04:31.042 --> 00:04:34.774
 Nothing in the samples reads
 before writing, offers a dry run,
 
-67
-00:04:33.004 --> 00:04:36.661
+68
+00:04:34.774 --> 00:04:38.431
 or reads back afterward, and
 nothing checks for the lockout.
 
-68
-00:04:36.661 --> 00:04:40.983
+69
+00:04:38.431 --> 00:04:42.753
 The tutorial asks for a year of
 eligibility, twice what the program allows
 
-69
-00:04:40.983 --> 00:04:45.023
+70
+00:04:42.753 --> 00:04:46.793
 for that tier, and for permissions
 far broader than the request needs.
 
-70
-00:04:45.023 --> 00:04:47.473
+71
+00:04:46.793 --> 00:04:49.243
 Its clean-up would
 delete the wrong object.
 
-71
-00:04:47.473 --> 00:04:49.952
+72
+00:04:49.243 --> 00:04:51.722
 So the verdict is clear:
 keep Learn's read,
 
-72
-00:04:49.952 --> 00:04:54.835
+73
+00:04:51.722 --> 00:04:56.605
 its rule shapes and its write permission,
 but don't run the samples as published.
 
-73
-00:04:54.835 --> 00:04:57.390
+74
+00:04:56.605 --> 00:04:59.160
 Let's look at what the
 code builds instead.
 
-74
-00:05:01.140 --> 00:05:02.465
+75
+00:05:02.910 --> 00:05:04.235
 So what does the code add?
 
-75
-00:05:02.465 --> 00:05:06.190
-A module of its own, building
-on Book 4's appendix script,
-
 76
-00:05:06.190 --> 00:05:09.501
+00:05:04.235 --> 00:05:09.120
+A module of its own, building on the
+appendix script in Access and Privilege,
+
+77
+00:05:09.120 --> 00:05:12.271
 with one reviewed file per
 role, twenty-two in all,
 
-77
-00:05:09.501 --> 00:05:13.640
+78
+00:05:12.271 --> 00:05:16.210
 so a reviewer reads a change to
 a file as a change to the tenant.
 
-78
-00:05:13.640 --> 00:05:18.519
+79
+00:05:16.210 --> 00:05:21.089
 Approvers appear by alias, and a small
 bindings file per tenant turns each
 
-79
-00:05:18.519 --> 00:05:23.478
+80
+00:05:21.089 --> 00:05:26.048
 alias into a real group, so the same
 files serve a test tenant and production.
 
-80
-00:05:23.478 --> 00:05:25.640
+81
+00:05:26.048 --> 00:05:28.211
 Every file sits inside bounds.
 
-81
-00:05:25.640 --> 00:05:30.577
+82
+00:05:28.211 --> 00:05:33.147
 Where Learn's pages disagree on the longest
 activation, the code takes the stricter
 
-82
-00:05:30.577 --> 00:05:35.590
+83
+00:05:33.147 --> 00:05:38.150
 eight hours, and the owner capped standing
 active assignments at fifteen days.
 
-83
-00:05:39.340 --> 00:05:42.240
+84
+00:05:41.900 --> 00:05:44.800
 Before anything is
 written, nine checks run.
 
-84
-00:05:42.240 --> 00:05:46.573
+85
+00:05:44.800 --> 00:05:49.133
 The first two are the two halves of
 the lockout: approval with no approver,
 
-85
-00:05:46.573 --> 00:05:50.328
+86
+00:05:49.133 --> 00:05:52.888
 and too few emergency accounts
 holding Global Administrator.
 
-86
-00:05:50.328 --> 00:05:54.032
+87
+00:05:52.888 --> 00:05:56.592
 Others keep approvers separate
 from the people they approve,
 
-87
-00:05:54.032 --> 00:05:58.827
+88
+00:05:56.592 --> 00:06:01.387
 keep every file inside its bounds, and
 refuse a wave until the earlier ones match.
 
-88
-00:05:58.827 --> 00:06:00.678
+89
+00:06:01.387 --> 00:06:03.238
 Any finding blocks the write.
 
-89
-00:06:00.678 --> 00:06:02.566
+90
+00:06:03.238 --> 00:06:05.126
 One check can't be automated:
 
-90
-00:06:02.566 --> 00:06:07.083
+91
+00:06:05.126 --> 00:06:09.643
 whether the activation gate's policy
 is on lives in a beta property,
 
-91
-00:06:07.083 --> 00:06:12.130
+92
+00:06:09.643 --> 00:06:14.690
 so a person has to state it, with a flag,
 after Chapter 3's run shows it's on.
 
-92
-00:06:15.880 --> 00:06:19.705
+93
+00:06:18.440 --> 00:06:22.265
 Reading and writing are different jobs
 here, with different permissions.
 
-93
-00:06:19.705 --> 00:06:24.480
+94
+00:06:22.265 --> 00:06:27.040
 Every read uses a read-only permission,
 and the client refuses anything but a
 
-94
-00:06:24.480 --> 00:06:29.255
+95
+00:06:27.040 --> 00:06:31.815
 read unless it was built for writing,
 which only happens when you ask to apply.
 
-95
-00:06:29.255 --> 00:06:33.150
+96
+00:06:31.815 --> 00:06:35.710
 Rule updates and new eligibility
 need two write permissions;
 
-96
-00:06:33.150 --> 00:06:36.893
+97
+00:06:35.710 --> 00:06:39.453
 removing a standing assignment
 is a third task with its own.
 
-97
-00:06:36.893 --> 00:06:40.986
+98
+00:06:39.453 --> 00:06:43.546
 Learn's PowerShell guide and the
 tutorial ask for broader permissions,
 
-98
-00:06:40.986 --> 00:06:44.317
+99
+00:06:43.546 --> 00:06:46.877
 so the code follows the narrower
 reference pages instead.
 
-99
-00:06:44.317 --> 00:06:48.580
+100
+00:06:46.877 --> 00:06:51.140
 And a test makes sure the dry run's
 app never holds a write permission.
 
-100
-00:06:52.330 --> 00:06:55.405
+101
+00:06:54.890 --> 00:06:57.965
 This is the write path,
 and it's careful by design.
 
-101
-00:06:55.405 --> 00:07:00.115
+102
+00:06:57.965 --> 00:07:02.675
 First it reads each role's policy, then
 compares the seven rules with the file,
 
-102
-00:07:00.115 --> 00:07:03.255
+103
+00:07:02.675 --> 00:07:05.815
 after smoothing out
 differences that don't matter.
 
-103
-00:07:03.255 --> 00:07:06.280
+104
+00:07:05.815 --> 00:07:08.840
 The plan lists every
 change and sends nothing.
 
-104
-00:07:06.280 --> 00:07:09.955
+105
+00:07:08.840 --> 00:07:12.515
 Only when you ask to apply
 does it write: rules first,
 
-105
-00:07:09.955 --> 00:07:13.892
+106
+00:07:12.515 --> 00:07:16.452
 then eligibility, so each
 request meets the new limits.
 
-106
-00:07:13.892 --> 00:07:15.889
+107
+00:07:16.452 --> 00:07:18.449
 Then it reads the tenant again,
 
-107
-00:07:15.889 --> 00:07:19.243
+108
+00:07:18.449 --> 00:07:21.803
 and that read-back is the
 evidence, not the response.
 
-108
-00:07:19.243 --> 00:07:22.757
-Converting standing access
-follows Book 4's order:
-
 109
-00:07:22.757 --> 00:07:27.310
+00:07:21.803 --> 00:07:25.573
+Converting standing access
+follows the workbook's order:
+
+110
+00:07:25.573 --> 00:07:29.870
 eligible first, activation
 confirmed, and only then removed.
 
-110
-00:07:31.060 --> 00:07:32.473
+111
+00:07:33.620 --> 00:07:35.033
 Who is this chapter for?
 
-111
-00:07:32.473 --> 00:07:36.011
+112
+00:07:35.033 --> 00:07:38.571
 Developers build the write
 path, and they need PowerShell,
 
-112
-00:07:36.011 --> 00:07:39.697
+113
+00:07:38.571 --> 00:07:42.257
 the file format, and a sense of
 what an eligible assignment is.
 
-113
-00:07:39.697 --> 00:07:45.623
+114
+00:07:42.257 --> 00:07:48.183
 The identity engineers own PIM itself: the
 role files, the bindings, and the groups.
 
-114
-00:07:45.623 --> 00:07:49.882
+115
+00:07:48.183 --> 00:07:52.442
 And the information system security
 officers review the changes,
 
-115
-00:07:49.882 --> 00:07:55.148
+116
+00:07:52.442 --> 00:07:57.708
 because every file is read by two people
 and every apply follows a reviewed dry run.
 
-116
-00:07:55.148 --> 00:07:58.826
+117
+00:07:57.708 --> 00:08:01.386
 The identities are split the
 same way: a reader for dry runs,
 
-117
-00:07:58.826 --> 00:08:04.240
+118
+00:08:01.386 --> 00:08:06.800
 a writer for applying, and the removal
 permission held only for a conversion run.
 
-118
-00:08:07.990 --> 00:08:13.977
+119
+00:08:10.550 --> 00:08:16.537
 Lab 1 needs only a laptop: PowerShell
 7 and Pester, no tenant and no network.
 
-119
-00:08:13.977 --> 00:08:18.391
+120
+00:08:16.537 --> 00:08:20.951
 First you send Learn's own samples to
 the fake and watch thirteen tests pass,
 
-120
-00:08:18.391 --> 00:08:21.879
+121
+00:08:20.951 --> 00:08:24.439
 including the one that shows
 the samples applying cleanly
 
-121
-00:08:21.879 --> 00:08:24.940
+122
+00:08:24.439 --> 00:08:27.500
 and still leaving a role six
 rules away from its file.
 
-122
-00:08:24.940 --> 00:08:30.090
+123
+00:08:27.500 --> 00:08:32.650
 Then you list each task's permissions,
 and see that a dry run needs only reads.
 
-123
-00:08:30.090 --> 00:08:34.279
+124
+00:08:32.650 --> 00:08:36.839
 Finally you dry-run the pilot
 wave: nine roles, no findings,
 
-124
-00:08:34.279 --> 00:08:40.690
+125
+00:08:36.839 --> 00:08:43.250
 a plan of rule updates, eligibility requests
 and two conversions, and nothing sent.
 
-125
-00:08:44.440 --> 00:08:45.728
+126
+00:08:47.000 --> 00:08:48.288
 Now read what came out.
 
-126
-00:08:45.728 --> 00:08:49.284
+127
+00:08:48.288 --> 00:08:51.844
 One role was partly set by
 hand, so its diff is short and
 
-127
-00:08:49.284 --> 00:08:53.327
+128
+00:08:51.844 --> 00:08:55.887
 touches only what's wrong; what
 already matches isn't touched.
 
-128
-00:08:53.327 --> 00:08:57.170
+129
+00:08:55.887 --> 00:08:59.730
 The findings name the people holding
 standing access, an automation
 
-129
-00:08:57.170 --> 00:09:01.416
+130
+00:08:59.730 --> 00:09:03.976
 account with no documented owner, and
 someone eligible outside their group.
 
-130
-00:09:01.416 --> 00:09:04.829
+131
+00:09:03.976 --> 00:09:07.389
 Then you try Tier zero too
 early, and the run blocks,
 
-131
-00:09:04.829 --> 00:09:07.827
+132
+00:09:07.389 --> 00:09:10.387
 one finding for each
 pilot role not yet done.
 
-132
-00:09:07.827 --> 00:09:12.256
+133
+00:09:10.387 --> 00:09:14.816
 Applying the pilot wave stops once to
 make you confirm the activation gate,
 
-133
-00:09:12.256 --> 00:09:15.541
+134
+00:09:14.816 --> 00:09:18.101
 then sends everything and
 reads back zero differences.
 
-134
-00:09:15.541 --> 00:09:17.400
+135
+00:09:18.101 --> 00:09:19.960
 The whole suite passes.
 
-135
-00:09:21.150 --> 00:09:25.562
+136
+00:09:23.710 --> 00:09:28.122
 Lab 2 moves to a test tenant, never
 production, and works one role.
 
-136
-00:09:25.562 --> 00:09:29.243
+137
+00:09:28.122 --> 00:09:31.803
 First the prerequisites:
 the emergency accounts pass,
 
-137
-00:09:29.243 --> 00:09:33.251
+138
+00:09:31.803 --> 00:09:35.811
 and the activation gate's policy
 is truly on, not report-only.
 
-138
-00:09:33.251 --> 00:09:36.438
+139
+00:09:35.811 --> 00:09:38.998
 You create the approver
 group and the role's group,
 
-139
-00:09:36.438 --> 00:09:38.537
+140
+00:09:38.998 --> 00:09:41.097
 and two apps, a reader and a writer.
 
-140
-00:09:38.537 --> 00:09:42.188
+141
+00:09:41.097 --> 00:09:44.748
 Dry-run as the reader and review
 the plan with a second person,
 
-141
-00:09:42.188 --> 00:09:45.400
+142
+00:09:44.748 --> 00:09:47.960
 then apply as the writer
 and expect zero differences.
 
-142
-00:09:45.400 --> 00:09:50.700
+143
+00:09:47.960 --> 00:09:53.260
 Next, convert one standing assignment the
 safe way, after a confirmed activation.
 
-143
-00:09:50.700 --> 00:09:55.190
+144
+00:09:53.260 --> 00:09:57.750
 And finally, restore the rules
 from the saved copy and clean up.
 
-144
-00:09:58.940 --> 00:10:02.140
+145
+00:10:01.500 --> 00:10:04.700
 Each of these dangers has a
 guard that runs every time.
 
-145
-00:10:02.140 --> 00:10:04.223
+146
+00:10:04.700 --> 00:10:06.783
 The two worst are the lockout halves,
 
-146
-00:10:04.223 --> 00:10:07.765
+147
+00:10:06.783 --> 00:10:10.325
 and both are checked against the
 live tenant before any write.
 
-147
-00:10:07.765 --> 00:10:12.825
+148
+00:10:10.325 --> 00:10:15.385
 A context switched on before its policy is
 on looks protective but enforces nothing,
 
-148
-00:10:12.825 --> 00:10:15.427
+149
+00:10:15.385 --> 00:10:17.987
 which is why a person
 has to confirm the gate.
 
-149
-00:10:15.427 --> 00:10:20.205
+150
+00:10:17.987 --> 00:10:22.765
 Then there are the quieter ones: a script
 nobody reviewed, one identity that can
 
-150
-00:10:20.205 --> 00:10:25.203
+151
+00:10:22.765 --> 00:10:27.763
 change everything, settings drifting in the
 portal, and a back-out done from memory.
 
-151
-00:10:25.203 --> 00:10:30.170
+152
+00:10:27.763 --> 00:10:32.730
 The pattern holds: rules and saved
 files, not people remembering.
 
-152
-00:10:33.920 --> 00:10:35.270
+153
+00:10:36.480 --> 00:10:37.830
 Here's what done looks like.
 
-153
-00:10:35.270 --> 00:10:39.657
+154
+00:10:37.830 --> 00:10:42.217
 Every role file has had two reviewers,
 the bindings name every group,
 
-154
-00:10:39.657 --> 00:10:42.320
+155
+00:10:42.217 --> 00:10:44.880
 and no approver group can approve itself.
 
-155
-00:10:42.320 --> 00:10:44.293
+156
+00:10:44.880 --> 00:10:46.853
 The emergency accounts pass,
 
-156
-00:10:44.293 --> 00:10:48.320
+157
+00:10:46.853 --> 00:10:50.880
 and the activation gate's policy
 is on before anyone says so.
 
-157
-00:10:48.320 --> 00:10:52.732
+158
+00:10:50.880 --> 00:10:55.292
 The reader, the writer and the conversion
 run each hold only what they need.
 
-158
-00:10:52.732 --> 00:10:56.696
+159
+00:10:55.292 --> 00:10:59.256
 Every apply followed a reviewed
 dry run and read back clean,
 
-159
-00:10:56.696 --> 00:11:02.196
+160
+00:10:59.256 --> 00:11:04.756
 every removal has a confirmed activation,
 and every run folder is kept as evidence.
 
-160
-00:11:02.196 --> 00:11:07.370
+161
+00:11:04.756 --> 00:11:09.930
 Next, Chapter 5 builds PIM for Groups,
 the groups that hold this eligibility.
 
-161
-00:11:07.370 --> 00:11:08.530
+162
+00:11:09.930 --> 00:11:11.090
 Thanks for watching.

@@ -18,7 +18,7 @@ So what does the inventory actually read? On the Microsoft Entra side: the role 
 
 ## Slide 5 — The tier comes from the program, not Microsoft
 
-Where does the tier come from? Not from Microsoft. Microsoft does label some roles as privileged, but that label is still a preview, read through the beta endpoint, so the program treats it as an input, not the answer. The tiers live in a small file the program owns, keyed by each role's template identifier, which is the same in every tenant. Any role that isn't in the file is reported as unclassified, never assumed safe. Azure roles get their tier from Book 04's placement table, by role and by scope. Both are labeled design guidance.
+Where does the tier come from? Not from Microsoft. Microsoft does label some roles as privileged, but that label is still a preview, read through the beta endpoint, so the program treats it as an input, not the answer. The tiers live in a small file the program owns, keyed by each role's template identifier, which is the same in every tenant. Any role that isn't in the file is reported as unclassified, never assumed safe. Azure roles get their tier from the workbook's privileged-access design, a placement table by role and by scope. Both are labeled design guidance.
 
 ## Slide 6 — Learn's samples, pinned and run against stand-ins
 

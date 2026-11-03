@@ -4,9 +4,9 @@
 
 Welcome to the Federal Modernization Workbook's developer workbook, Building Privileged Access. This is Chapter 3: Conditional Access for administrators, and the activation gate. These policies are the program's first writes to a tenant, so they're files a reviewer reads, and the code that writes them does nothing until it's told to. We'll start from Microsoft's own template for administrators, see what it leaves out, then walk the files, the pre-merge check, the plan and the dry run, two labs and the dangers. One note before we begin: the code is illustrative, tested against fixtures.
 
-## Slide 2 — The first writes to a tenant: what Book 04 asks
+## Slide 2 — The first writes to a tenant: what the workbook asks
 
-Why does this chapter matter so much? Because it's the first time the program writes to a tenant. Book 04 gives it three things to build: the administrator policy set, the gate that demands a fresh phishing-resistant proof from a compliant device at the moment someone elevates, and the custom authentication strength both rely on. Unlike the first two chapters, this code can change things. So its design is cautious on purpose: it writes only when told, creates every new policy in report-only, enforces only with a separate switch, and never deletes.
+Why does this chapter matter so much? Because it's the first time the program writes to a tenant. The workbook's privileged-access design gives it three things to build: the administrator policy set, the gate that demands a fresh phishing-resistant proof from a compliant device at the moment someone elevates, and the custom authentication strength both rely on. Unlike the first two chapters, this code can change things. So its design is cautious on purpose: it writes only when told, creates every new policy in report-only, enforces only with a separate switch, and never deletes.
 
 ## Slide 3 — Learn sets the order: the gate before PIM selects it
 
@@ -30,7 +30,7 @@ The rest of the gaps are the dangerous ones. The template doesn't exclude the em
 
 ## Slide 8 — The code and the policy files
 
-Now the code. This chapter adds its own module, its own call list, an entry script, and the policy files themselves, one file per object, as Book 04 asks. There are the two authentication contexts, the custom strength, the five administrator policies, and the two gate policies, one for activation and one for protected actions. The activation gate demands the strength and a compliant device, every single time. Placeholders resolve from a per-tenant map, except the strength, which is looked up by name in the tenant, so a policy can never point at a strength that isn't there.
+Now the code. This chapter adds its own module, its own call list, an entry script, and the policy files themselves, one file per object, as the workbook's design asks. There are the two authentication contexts, the custom strength, the five administrator policies, and the two gate policies, one for activation and one for protected actions. The activation gate demands the strength and a compliant device, every single time. Placeholders resolve from a per-tenant map, except the strength, which is looked up by name in the tenant, so a policy can never point at a strength that isn't there.
 
 ## Slide 9 — The pre-merge check: PA-CA-01 to PA-CA-09
 
@@ -38,7 +38,7 @@ Before anything merges, Test-PaCaRepository reads the files, and only the files,
 
 ## Slide 10 — Report-only policies and the emergency exclusion
 
-One rule needs a closer look, because the sources don't line up. Learn says report-only policies don't block anyone, so they don't need the emergency exclusion. Book 04's pre-merge check is stricter, and fails any report-only file without it, even the probe that's meant to exclude nobody. The chapter's finding is that the stricter rule isn't wrong, just stricter. So the code puts the exclusion in every file whatever its state, because enforcing a file means changing one word. Only a named report-only instrument may skip it, and it fails the moment someone enables it.
+One rule needs a closer look, because the sources don't line up. Learn says report-only policies don't block anyone, so they don't need the emergency exclusion. The workbook's own pre-merge check is stricter, and fails any report-only file without it, even the probe that's meant to exclude nobody. The chapter's finding is that the stricter rule isn't wrong, just stricter. So the code puts the exclusion in every file whatever its state, because enforcing a file means changing one word. Only a named report-only instrument may skip it, and it fails the moment someone enables it.
 
 ## Slide 11 — The plan, the dry run and the writes
 

@@ -38,7 +38,7 @@ Now the code. It's a second module that imports Chapter 1's and changes nothing 
 
 ## Slide 10 — The desired state: settings by tier, and its refusals
 
-The heart of the configuration is one reviewed file. It names the scopes, the roles, who's eligible, and the settings for each tier, taken from Book 04's role settings: shorter activations and tighter eligibility for the most sensitive tier, approval by a named group, and a justification and ticket on every activation. Those values are the program's design guidance. The loader also refuses what Learn or the program rules out. The subtle one is authentication context: Learn says to create its Conditional Access policy before you point PIM at it, so the file can't use it until that's confirmed.
+The heart of the configuration is one reviewed file. It names the scopes, the roles, who's eligible, and the settings for each tier, taken from the workbook's privileged-access design: shorter activations and tighter eligibility for the most sensitive tier, approval by a named group, and a justification and ticket on every activation. Those values are the program's design guidance. The loader also refuses what Learn or the program rules out. The subtle one is authentication context: Learn says to create its Conditional Access policy before you point PIM at it, so the file can't use it until that's confirmed.
 
 ## Slide 11 — The read and the plan, in the order it must run
 

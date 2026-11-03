@@ -103,11 +103,11 @@
   ],
   [
    19.837,
-   9.213,
-   "This chapter manages the seven activation and assignment rules that Book 4 lists, the ones on the slide, and deliberately leaves the notification rules alone."
+   10.8,
+   "This chapter manages the seven activation and assignment rules in the workbook's privileged-access design, the ones on the slide, and deliberately leaves the notification rules alone."
   ],
   [
-   29.05,
+   30.637,
    3.7,
    "Each of those seven becomes a few lines in a reviewed file."
   ]
@@ -152,16 +152,16 @@
   ],
   [
    8.775,
-   10.6,
-   "The other is a tutorial that makes a group eligible for a role and has a member activate it, which is exactly Book 4's pattern: roles are eligible to a group, never to a person."
+   10.8,
+   "The other is a tutorial that makes a group eligible for a role and has a member activate it, which is exactly the workbook's pattern: roles are eligible to a group, never to a person."
   ],
   [
-   19.375,
+   19.575,
    8.3,
    "Those samples liv only inside web pages, so the repository pins the pages' source, unmodified, with hashes a test checks."
   ],
   [
-   27.675,
+   27.875,
    5.213,
    "Then a harness sends every request to a fake Graph, so you can see what they really do."
   ]
@@ -238,21 +238,21 @@
   ],
   [
    1.375,
-   11.175,
-   "A module of its own, building on Book 4's appendix script, with one reviewed file per role, twenty-two in all, so a reviewer reads a change to a file as a change to the tenant."
+   11.975,
+   "A module of its own, building on the appendix script in Access and Privilege, with one reviewed file per role, twenty-two in all, so a reviewer reads a change to a file as a change to the tenant."
   ],
   [
-   12.55,
+   13.35,
    9.838,
    "Approvers appear by alias, and a small bindings file per tenant turns each alias into a real group, so the same files serve a test tenant and production."
   ],
   [
-   22.387,
+   23.188,
    2.163,
    "Every file sits inside bounds."
   ],
   [
-   24.55,
+   25.35,
    9.588,
    "Where Learn's pages disagree on the longest activation, the code takes the stricter eight hours, and the owner capped standing active assignments at fifteen days."
   ]
@@ -340,7 +340,7 @@
   [
    26.962,
    7.7,
-   "Converting standing access follows Book 4's order: eligible first, activation confirmed, and only then removed."
+   "Converting standing access follows the workbook's order: eligible first, activation confirmed, and only then removed."
   ]
  ],
  "13": [

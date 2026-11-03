@@ -10,31 +10,35 @@ Because it's the first time
 the program writes to a tenant.
 
 3
-00:00:05.188 --> 00:00:09.315
-Book 04 gives it three things to
-build: the administrator policy set,
+00:00:05.188 --> 00:00:09.318
+The workbook's privileged-access
+design gives it three things to build:
 
 4
-00:00:09.315 --> 00:00:14.327
+00:00:09.318 --> 00:00:11.068
+the administrator policy set,
+
+5
+00:00:11.068 --> 00:00:15.828
 the gate that demands a fresh phishing-resistant
 proof from a compliant device at
 
-5
-00:00:14.327 --> 00:00:19.338
+6
+00:00:15.828 --> 00:00:20.588
 the moment someone elevates, and the custom
 authentication strength both rely on.
 
-6
-00:00:19.338 --> 00:00:23.112
+7
+00:00:20.588 --> 00:00:24.362
 Unlike the first two chapters,
 this code can change things.
 
-7
-00:00:23.112 --> 00:00:28.750
+8
+00:00:24.362 --> 00:00:30.000
 So its design is cautious on purpose: it
 writes only when told, creates every new
 
-8
-00:00:28.750 --> 00:00:34.370
+9
+00:00:30.000 --> 00:00:35.620
 policy in report-only, enforces only with
 a separate switch, and never deletes.
