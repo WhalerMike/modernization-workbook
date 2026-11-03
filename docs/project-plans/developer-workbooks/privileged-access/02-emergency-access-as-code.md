@@ -11,8 +11,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
 review-status: approved
-reviewed-sha256: 1763a10d1d1be95ca76603cc2e7596ea2f43b2d77d22a3caaa63c2715292b0ff
-last-reviewed: 2026-11-01
+reviewed-sha256: 319f7e81e3e671797eddfe7c4cf31a5d3c685ce002e5519e0663e7f04c993674
+last-reviewed: 2026-11-03
 ---
 # Chapter 02 — Emergency Access Accounts as Code
 

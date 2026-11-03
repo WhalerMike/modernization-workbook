@@ -11,8 +11,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
 review-status: approved
-reviewed-sha256: cf5dd61feddda645e22309bb3f5324dcfd1ae3d6aed1a49205b7400424e430cc
-last-reviewed: 2026-11-01
+reviewed-sha256: e771c031afddddc0df8214c75243e88f4a4e23c1383b0680ba425ecf72f59a7c
+last-reviewed: 2026-11-03
 ---
 # Chapter 07 — Least Privilege for Service Principals
 

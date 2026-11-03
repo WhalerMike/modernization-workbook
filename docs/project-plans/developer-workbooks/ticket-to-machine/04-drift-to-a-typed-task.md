@@ -11,8 +11,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
 review-status: approved
-reviewed-sha256: b169d023be11fc6e34c3858fde12a86a1f0ed623480429644351f2f2115e4ab1
-last-reviewed: 2026-11-01
+reviewed-sha256: d395d80ea3ccd85ffd2c99ab65764782bc621d45697f3bf6ec2ff1e968258fe7
+last-reviewed: 2026-11-03
 ---
 # Chapter 04 — Drift to a Typed Task
 

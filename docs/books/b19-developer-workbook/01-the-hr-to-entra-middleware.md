@@ -14,8 +14,8 @@ lifecycle_review: 2027-04-01
 aliases:
   - /docs/project-plans/developer-workbooks/attribute-driven-migration/01-the-hr-to-entra-middleware.html
 review-status: approved
-reviewed-sha256: 53656570fdf840b46d0ff8922555c843fc4f13473932d407a397bfcd9a1511db
-last-reviewed: 2026-11-01
+reviewed-sha256: 89bdf0450313b45285298088a145ef4be2a702e96be56a464f45518ece32bce5
+last-reviewed: 2026-11-03
 ---
 # Chapter 01 — The HR-to-Entra Middleware
 

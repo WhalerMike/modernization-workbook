@@ -11,8 +11,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
 review-status: approved
-reviewed-sha256: 07e5f3de3767645aa0e941cdfefeb812eb140abacd9959a0b15ce6471b4cb8cb
-last-reviewed: 2026-11-01
+reviewed-sha256: e649e0043f0d1f79411285a452f0158c810f7822d83ee2f291fe2611ec7dc33d
+last-reviewed: 2026-11-03
 ---
 # Chapter 08 — One Writer per Attribute
 
