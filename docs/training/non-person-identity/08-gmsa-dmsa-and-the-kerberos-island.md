@@ -162,7 +162,7 @@ Remove-Item -Recurse -Force out
     Plan: 9 actions, 4 of them writes (1 CompleteDmsaMigration, 2 CreateGmsa, 1 SetRetrievers); nothing sent
     Island list: 5 accounts, 3 ready for P4.6; hand-off ready: False
     Reconciliation (D11 KerberosIsland): 1 HandedOff, 1 MovesToWorkloadIdentity, 3 OnIslandList, 1 Unreconciled
-    Plan SHA-256: 5e1f7c33491948026603746e933fafed0572fb77532ff1477ad452397c353746
+    Plan SHA-256: 112f85a99407b2b256f7c520bf99245def7dcc8b2336726e4512e94b1624d94a
     ```
 
     The plan's hash is the same on every run with these inputs.
@@ -208,7 +208,7 @@ Remove-Item -Recurse -Force out
     ./Invoke-NpiKerberosIslandAction.ps1 -PlanPath out/kerberos/kerberos-plan.json -ApprovedSha256 ('0' * 64) -FixturePath tests/fixtures/estate.json -KerberosFixturePath tests/fixtures/ch06/ad-kerberos.json -OutputPath out/kerberos-x
     ```
 
-    Expect `Apply: 4 Sent`. Then the refusal: `The plan's SHA-256 is 5e1f7c33…, not the approved 0000…; refusing to run a plan nobody reviewed.`
+    Expect `Apply: 4 Sent`. Then the refusal: `The plan's SHA-256 is 112f85a9…, not the approved 0000…; refusing to run a plan nobody reviewed.`
 
 10. **Run the tests:**
 

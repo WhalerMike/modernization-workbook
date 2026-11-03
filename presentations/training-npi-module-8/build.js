@@ -220,7 +220,7 @@ endModule(SC);
     "Island list: 5 accounts, 3 ready for P4.6; hand-off ready: False",
     "Reconciliation (D11 KerberosIsland): 1 HandedOff,",
     "  1 MovesToWorkloadIdentity, 3 OnIslandList, 1 Unreconciled",
-    "Plan SHA-256: 5e1f7c33491948026603746e933fafed...",
+    "Plan SHA-256: 112f85a99407b2b256f7c520bf99245d...",
     "# Step 5: Format-Table Rule, Severity, ObjectKey",
     "NPI-KRB-03 Finding  gmsa-web$",
     "NPI-KRB-04 Finding  svc-webfront",
@@ -282,7 +282,7 @@ endModule(SC);
     "# Step 9: the same command with -Apply, then with -ApprovedSha256 ('0' * 64)",
     "Apply: 4 Sent",
     "  Sent      CompleteDmsaMigration svc-hrsync      Complete-ADServiceAccountMigration   (...)",
-    "The plan's SHA-256 is 5e1f7c33491948026603746e933fafed0572fb77532ff1477ad452397c353746, not the approved",
+    "The plan's SHA-256 is 112f85a99407b2b256f7c520bf99245def7dcc8b2336726e4512e94b1624d94a, not the approved",
     "  0000000000000000000000000000000000000000000000000000000000000000; refusing to run a plan nobody reviewed.",
   ], { label: "LAB 1 OUTPUT, RUN NOVEMBER 3, 2026 (TRIMMED: \"...\" MARKS CUTS; WRAPPED)", pt: 10.5 });
   line(s, "Tests", "Step 10: Invoke-Pester -Path tests prints 513 passed, 0 failed. Then Remove-Item -Recurse -Force out.", c + 0.25, 0.45, 13.5);
