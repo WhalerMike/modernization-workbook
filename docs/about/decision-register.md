@@ -259,7 +259,7 @@ There are **131** workbook decisions: 128 settled, 0 challenged and 3 superseded
 | **Rationale** | The old rasters had unreadable text, vendor logos and factual errors such as wrong dates and labels. |
 | **Basis** | Workbook design |
 | **Sources** | None external: the choice rests on the pages it shaped. |
-| **Pages affected** | [README](../images/diagrams/README.md), [`scripts/diagrams/render.py`](https://github.com/WhalerMike/modernization-workbook/blob/main/scripts/diagrams/render.py) |
+| **Pages affected** | [`docs/images/diagrams/README.md`](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/images/diagrams/README.md), [`scripts/diagrams/render.py`](https://github.com/WhalerMike/modernization-workbook/blob/main/scripts/diagrams/render.py) |
 | **Date** | 2026-10-18 |
 | **Status** | settled |
 | **Defined in** | [#18](https://github.com/WhalerMike/modernization-workbook/pull/18), [#29](https://github.com/WhalerMike/modernization-workbook/pull/29), [#32](https://github.com/WhalerMike/modernization-workbook/pull/32), [#35](https://github.com/WhalerMike/modernization-workbook/pull/35), [#37](https://github.com/WhalerMike/modernization-workbook/pull/37) |
@@ -291,7 +291,7 @@ There are **131** workbook decisions: 128 settled, 0 challenged and 3 superseded
 | **Rationale** | A footnote is placed only where the cited page supports the sentence, and every URL is fetched and checked before it is cited. |
 | **Basis** | Workbook design |
 | **Sources** | <https://www.whitehouse.gov/wp-content/uploads/2022/01/M-22-09.pdf>; <https://csrc.nist.gov/pubs/sp/800/207/final> |
-| **Pages affected** | [How This Workbook Knows What It Says](sources-and-verification.md), [Chapter NN — Title](../books/_book-writer-brief.md) |
+| **Pages affected** | [How This Workbook Knows What It Says](sources-and-verification.md), [`docs/books/_book-writer-brief.md`](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/books/_book-writer-brief.md) |
 | **Date** | 2026-10-18 |
 | **Status** | settled |
 | **Defined in** | [#22](https://github.com/WhalerMike/modernization-workbook/pull/22), [#26](https://github.com/WhalerMike/modernization-workbook/pull/26), [#38](https://github.com/WhalerMike/modernization-workbook/pull/38), [#40](https://github.com/WhalerMike/modernization-workbook/pull/40) |
@@ -1382,7 +1382,7 @@ There are **131** workbook decisions: 128 settled, 0 challenged and 3 superseded
 | **Rationale** | The audience is civilian Moderate agencies, so the configuration authority is CISA, not the Defense hardening authority. |
 | **Basis** | Workbook design |
 | **Sources** | [CISA, BOD 25-01 secure practices for cloud services](https://www.cisa.gov/news-events/directives/bod-25-01-implementing-secure-practices-cloud-services); [CISA, Secure Cloud Business Applications project](https://www.cisa.gov/resources-tools/services/secure-cloud-business-applications-scuba-project); [NIST, National Checklist Program](https://ncp.nist.gov/) |
-| **Pages affected** | [Ansible for Configuration Automation](../books/guides/ansible-configuration-automation.md), [Chapter 08 — GPO to Intune Policy Migration](../books/b05-devices/08-gpo-to-intune-policy-migration.md), [Vol I *The Transformation Arc* — Federal Agency Cloud Landing Zone](../compliance/Vol_I_Book_01_Cloud_Landing_Zone_IPAM_FedRAMP.md) |
+| **Pages affected** | [Ansible for Configuration Automation](../books/guides/ansible-configuration-automation.md), [Chapter 08 — GPO to Intune Policy Migration](../books/b05-devices/08-gpo-to-intune-policy-migration.md), [`docs/compliance/Vol_I_Book_01_Cloud_Landing_Zone_IPAM_FedRAMP.md`](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_I_Book_01_Cloud_Landing_Zone_IPAM_FedRAMP.md) |
 | **Date** | 2026-10-29 |
 | **Status** | settled |
 | **Defined in** | [#190](https://github.com/WhalerMike/modernization-workbook/pull/190), [#193](https://github.com/WhalerMike/modernization-workbook/pull/193) |
@@ -1446,7 +1446,7 @@ There are **131** workbook decisions: 128 settled, 0 challenged and 3 superseded
 | **Rationale** | The pages already said the tables were generated, but the source files were missing. Without them a regeneration could bring back the old wording. |
 | **Basis** | Workbook design |
 | **Sources** | None external: the choice rests on the pages it shaped. |
-| **Pages affected** | [`data/federal-compliance-compliance-spine.yml`](https://github.com/WhalerMike/modernization-workbook/blob/main/data/federal-compliance-compliance-spine.yml), [Vol I *The Transformation Arc* — Federal Agency Cloud Landing Zone](../compliance/Vol_I_Book_01_Cloud_Landing_Zone_IPAM_FedRAMP.md) |
+| **Pages affected** | [`data/federal-compliance-compliance-spine.yml`](https://github.com/WhalerMike/modernization-workbook/blob/main/data/federal-compliance-compliance-spine.yml), [`docs/compliance/Vol_I_Book_01_Cloud_Landing_Zone_IPAM_FedRAMP.md`](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_I_Book_01_Cloud_Landing_Zone_IPAM_FedRAMP.md) |
 | **Date** | 2026-10-30 |
 | **Status** | settled |
 | **Defined in** | [#193](https://github.com/WhalerMike/modernization-workbook/pull/193) |
@@ -1526,7 +1526,7 @@ There are **131** workbook decisions: 128 settled, 0 challenged and 3 superseded
 | **Rationale** | A GCC tenant's Entra ID is in the commercial cloud, so its subscriptions are commercial. The Arc guide and the books already said so. |
 | **Basis** | Microsoft Learn |
 | **Sources** | [Microsoft Learn, Cloud feature availability for US Government customers](https://learn.microsoft.com/azure/security/fundamentals/feature-availability#microsoft-365-integration); [Microsoft Learn, Office 365 GCC service description](https://learn.microsoft.com/office365/servicedescriptions/office-365-platform-service-description/office-365-us-government/gcc) |
-| **Pages affected** | [Vol I *The Transformation Arc* — Federal Agency Cloud Landing Zone](../compliance/Vol_I_Book_01_Cloud_Landing_Zone_IPAM_FedRAMP.md), [Chapter 04 — GCC, GCC High and the Commercial Feature Gap](../books/b10-cloud-boundary/04-gcc-and-the-feature-gap.md) |
+| **Pages affected** | [`docs/compliance/Vol_I_Book_01_Cloud_Landing_Zone_IPAM_FedRAMP.md`](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_I_Book_01_Cloud_Landing_Zone_IPAM_FedRAMP.md), [Chapter 04 — GCC, GCC High and the Commercial Feature Gap](../books/b10-cloud-boundary/04-gcc-and-the-feature-gap.md) |
 | **Date** | 2026-10-30 |
 | **Status** | settled |
 | **Defined in** | [#206](https://github.com/WhalerMike/modernization-workbook/pull/206) |

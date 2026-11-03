@@ -57,6 +57,14 @@ class DecisionError(Exception):
 
 
 @functools.cache
+def render_rules():
+    """The site's render list (_quarto.yml), as the Word bundle builder reads it."""
+    sys.path.insert(0, str(ROOT / "scripts"))
+    import build_bundles
+    return build_bundles.RenderRules()
+
+
+@functools.cache
 def book_titles() -> dict[str, str]:
     """'04' -> 'Access and Privilege', from each book's index page title."""
     titles = {}
@@ -87,8 +95,7 @@ def page_link(path: str) -> str:
     anchor = path[len(p):]
     if not (ROOT / p).exists():
         raise DecisionError(f"page not found: {path}")
-    published = p.startswith("docs/") and p.endswith((".md", ".qmd")) and not any(
-        part.startswith("_") for part in p.split("/")[:-1])
+    published = p.startswith("docs/") and p.endswith((".md", ".qmd")) and render_rules().published(ROOT / p)
     if published:
         rel = Path(p).relative_to("docs")
         target = ("../" + rel.as_posix()) if rel.parts[0] != "about" else rel.name
