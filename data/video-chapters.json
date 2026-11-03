@@ -2363,63 +2363,63 @@
    "What a Federal DDI Platform Must Do"
   ],
   [
-   46,
+   48,
    "DNS, DHCP and IPAM now form a control plane"
   ],
   [
-   97,
+   99,
    "No rule names a vendor; the rules name capabilities"
   ],
   [
-   154,
+   155,
    "Authoritative DNS across clouds, with DNSSEC kept central"
   ],
   [
-   208,
+   210,
    "DNS security: agency policy first, Protective DNS upstream"
   ],
   [
-   257,
+   259,
    "IPAM as the address authority, DHCP that stays up"
   ],
   [
-   307,
+   310,
    "Automation and logging: every change and query on record"
   ],
   [
-   356,
+   360,
    "Before you buy: check the evidence, not the brochure"
   ],
   [
-   417,
+   421,
    "Product evidence status, as of October 22, 2026"
   ],
   [
-   469,
+   473,
    "Divisions get a fenced scope; everything else is denied"
   ],
   [
-   520,
+   525,
    "Overlapping space, views and tags keep divisions apart"
   ],
   [
-   569,
+   575,
    "Approvals work only if nothing goes around them"
   ],
   [
-   619,
+   624,
    "Four delegation patterns, four sets of trade-offs"
   ],
   [
-   666,
+   672,
    "Worked example: four divisions, one governed platform"
   ],
   [
-   715,
+   720,
    "Who decides, under Book 08's responsibility matrix"
   ],
   [
-   764,
+   771,
    "Decisions to make, and the next steps"
   ]
  ],
@@ -8761,11 +8761,11 @@
    "Trinzic alone, or with cloud DDI?"
   ],
   [
-   726,
+   727,
    "Assurance: baselines, FIPS 140, NIAP and SP 800-81r3"
   ],
   [
-   791,
+   792,
    "A fair comparison: dedicated DDI and native clouds"
   ],
   [
@@ -8785,7 +8785,7 @@
    "The NIOS permission model: deny first, most specific"
   ],
   [
-   1017,
+   1018,
    "Scoping an admin group to one division"
   ],
   [
@@ -8793,15 +8793,15 @@
    "Network views, DNS views and extensible attributes"
   ],
   [
-   1114,
+   1115,
    "Approval workflow, and the CSV import gap"
   ],
   [
-   1162,
+   1163,
    "Admin sign-in: CAC/PIV, SAML with Entra, directories"
   ],
   [
-   1210,
+   1211,
    "Microsoft servers, what stays central, and reporting"
   ],
   [
@@ -8809,7 +8809,7 @@
    "Separating DNS, DHCP and IPAM by team"
   ],
   [
-   1315,
+   1316,
    "Service teams and divisions together"
   ],
   [
@@ -8817,7 +8817,7 @@
    "Module 4: Universal DDI divisions and operating model"
   ],
   [
-   1384,
+   1385,
    "Universal DDI: access views, IP spaces, federation"
   ],
   [
@@ -8829,11 +8829,11 @@
    "Worked example: four divisions on one Grid"
   ],
   [
-   1539,
+   1540,
    "Who does what: the DDI responsibility matrix"
   ],
   [
-   1590,
+   1592,
    "Rollout sequence, decisions and next steps"
   ]
  ],
@@ -8975,79 +8975,79 @@
    "Book 09's SD-WAN Design on Cisco Catalyst SD-WAN"
   ],
   [
-   51,
+   53,
    "Why this guide starts with a directive"
   ],
   [
-   98,
+   104,
    "ED 26-03: what it required, and when"
   ],
   [
-   149,
+   155,
    "Nine exploited flaws: a standing posture"
   ],
   [
-   197,
+   204,
    "The fixed-release floor, train by train"
   ],
   [
-   246,
+   252,
    "Hunt and harden: CISA's companion guidance"
   ],
   [
-   297,
+   303,
    "Hosted or on-premises, and why the gate stays"
   ],
   [
-   350,
+   356,
    "The 12-hub fabric on Catalyst SD-WAN"
   ],
   [
-   399,
+   406,
    "Path classes and lane discipline"
   ],
   [
-   453,
+   461,
    "Segmentation and network access control"
   ],
   [
-   507,
+   515,
    "Certificates and onboarding from the agency PKI"
   ],
   [
-   558,
+   566,
    "FIPS and Common Criteria: controllers vs edges"
   ],
   [
-   611,
+   619,
    "TIC 3.0 patterns on Catalyst"
   ],
   [
-   664,
+   675,
    "Secure Access, Global Secure Access and GCC"
   ],
   [
-   718,
+   729,
    "Evidence and telemetry the fabric emits"
   ],
   [
-   766,
+   778,
    "The phased build, mapped to Book 09's gates"
   ],
   [
-   816,
+   827,
    "Where this changes Book 09's planning"
   ],
   [
-   868,
+   883,
    "Risks and vendor asks"
   ],
   [
-   916,
+   932,
    "The example collector: read-only, illustrative"
   ],
   [
-   965,
+   980,
    "What to verify, decide, and read next"
   ]
  ],
@@ -9061,7 +9061,7 @@
    "Why cloud DNS belongs to one policy plane"
   ],
   [
-   103,
+   104,
    "The answer in brief: native resolvers as the bridge"
   ],
   [
@@ -9069,7 +9069,7 @@
    "AWS: what the Route 53 VPC Resolver answers"
   ],
   [
-   228,
+   229,
    "AWS: inbound and outbound endpoints"
   ],
   [
@@ -9077,7 +9077,7 @@
    "AWS: rules, sharing, Profiles and private zones"
   ],
   [
-   348,
+   349,
    "AWS: DNS Firewall, query logging and DNSSEC"
   ],
   [
@@ -9089,35 +9089,35 @@
    "Azure: the DNS Private Resolver"
   ],
   [
-   529,
+   531,
    "Azure: DNS resolver policy, logging and DNSSEC"
   ],
   [
-   591,
+   593,
    "Oracle Cloud: how the VCN resolver answers"
   ],
   [
-   652,
+   653,
    "Oracle Cloud: endpoints, rules and what's missing"
   ],
   [
-   714,
+   716,
    "Who authorizes it: AWS and Azure FedRAMP scope"
   ],
   [
-   774,
+   776,
    "Who authorizes it: Oracle US Government Cloud"
   ],
   [
-   840,
+   842,
    "How the three resolvers meet on-premises DNS"
   ],
   [
-   901,
+   902,
    "How Protective DNS, policy and logs reach each cloud"
   ],
   [
-   970,
+   974,
    "What to confirm, and what Part 2 covers"
   ]
  ],
@@ -9127,67 +9127,67 @@
    "Cloud DNS, Part 2: BIND and the Federal Fit"
   ],
   [
-   49,
+   50,
    "BIND in AWS: aligned, or a new silo?"
   ],
   [
-   97,
+   99,
    "When to run your own DNS servers in a cloud"
   ],
   [
-   153,
+   155,
    "vNIOS or BIND, and which BIND to run"
   ],
   [
-   210,
+   213,
    "Three roles, kept apart"
   ],
   [
-   256,
+   259,
    "Placement and high availability in each cloud"
   ],
   [
-   316,
+   320,
    "Forwarding to and from the native resolver"
   ],
   [
-   374,
+   377,
    "An illustrative forwarder configuration"
   ],
   [
-   440,
+   443,
    "DNSSEC validation and signing in the cloud"
   ],
   [
-   501,
+   505,
    "Response policy zones and CISA Protective DNS"
   ],
   [
-   565,
+   569,
    "Query and response logging into the SOC"
   ],
   [
-   629,
+   633,
    "Patching, settings and hardening baselines"
   ],
   [
-   692,
+   696,
    "Who owns the configuration: Git and Ansible"
   ],
   [
-   747,
+   752,
    "The alignment checklist: seven questions"
   ],
   [
-   818,
+   822,
    "Federal mapping: configuration and inventory"
   ],
   [
-   886,
+   894,
    "Federal mapping: resolution, logging and Protective DNS"
   ],
   [
-   962,
+   971,
    "Where Infoblox fits, and what to confirm"
   ]
  ],
@@ -9201,7 +9201,7 @@
    "What this guide implements: Book 07's issuer map"
   ],
   [
-   90,
+   91,
    "Prerequisites and decisions before you build"
   ],
   [
@@ -9217,7 +9217,7 @@
    "The web tier: consoles, API and sign-in"
   ],
   [
-   248,
+   249,
    "The back end: engines, log servers and message bus"
   ],
   [
@@ -9225,11 +9225,11 @@
    "Components: switched on server by server"
   ],
   [
-   328,
+   329,
    "Drivers, agents, the database and the keys"
   ],
   [
-   370,
+   371,
    "What the platform connects to"
   ],
   [
@@ -9245,7 +9245,7 @@
    "Part 1: Build the platform"
   ],
   [
-   507,
+   508,
    "Architecture: cluster, components and availability"
   ],
   [
@@ -9273,39 +9273,39 @@
    "The AD CS driver: permissions, templates, versions"
   ],
   [
-   746,
+   747,
    "Scoping the CLM's CA account under ESC7"
   ],
   [
-   782,
+   783,
    "Public and cloud CA drivers in 26.1"
   ],
   [
-   818,
+   819,
    "Intune coexistence: who owns device certificates"
   ],
   [
-   854,
+   855,
    "Part 3: Discover, own and automate"
   ],
   [
-   868,
+   869,
    "Discovery scans and CA import"
   ],
   [
-   901,
+   902,
    "Ownership: policy folders, owners and the CMDB"
   ],
   [
-   938,
+   939,
    "Enrollment automation: ACME, EST, SCEP, REST, agents"
   ],
   [
-   973,
+   974,
    "Kubernetes, ServiceNow and SIEM inside the boundary"
   ],
   [
-   1008,
+   1009,
    "Part 4: Migrate and operate"
   ],
   [
@@ -9313,19 +9313,19 @@
    "Build sequence mapped to Book 07's six waves"
   ],
   [
-   1061,
+   1063,
    "Renewal as public TLS lifetimes shrink"
   ],
   [
-   1095,
+   1096,
    "Monitoring and drift on the CLM platform"
   ],
   [
-   1126,
+   1127,
    "Decommissioning AD CS with the CLM inventory"
   ],
   [
-   1161,
+   1162,
    "Decisions, vendor asks and next steps"
   ]
  ],
@@ -9343,43 +9343,43 @@
    "Who names the device now"
   ],
   [
-   140,
+   141,
    "Why devices can't register themselves securely"
   ],
   [
-   185,
+   186,
    "DHCP registers the record on the device's behalf"
   ],
   [
-   229,
+   230,
    "The migration trap: who owns the existing names"
   ],
   [
-   283,
+   284,
    "IPv6: addresses that nobody registers"
   ],
   [
-   334,
+   335,
    "Servers and the cloud register differently"
   ],
   [
-   384,
+   385,
    "Remote and VPN clients: resolved, not registered"
   ],
   [
-   430,
+   431,
    "Why device names still matter after AD"
   ],
   [
-   480,
+   485,
    "Platform by platform: who names, who registers"
   ],
   [
-   528,
+   533,
    "What the agency must do: before, cutover, after"
   ],
   [
-   579,
+   584,
    "Decisions, next steps and where this fits"
   ]
  ],
@@ -9509,115 +9509,115 @@
    "Implementing Book 08 on Infoblox NIOS"
   ],
   [
-   50,
+   52,
    "What this guide implements: Book 08 on a Grid"
   ],
   [
-   99,
+   113,
    "Phase 0: decide these before you build anything"
   ],
   [
-   150,
+   164,
    "Part 1: Build the Grid"
   ],
   [
-   167,
+   180,
    "The Grid Master: an HA pair, built in order"
   ],
   [
-   210,
+   224,
    "The candidate, joining members, and Grid ports"
   ],
   [
-   251,
+   265,
    "Time first, then licenses: two quiet failure modes"
   ],
   [
-   301,
+   315,
    "vNIOS on VMware, Azure and AWS"
   ],
   [
-   352,
+   366,
    "Part 2: Migrate from Microsoft"
   ],
   [
-   371,
+   385,
    "Method A: manage the Windows servers, then take over"
   ],
   [
-   420,
+   433,
    "Method B: import zones by transfer; bulk data by CSV"
   ],
   [
-   467,
+   480,
    "AD zones and Kerberos-signed updates: use AES"
   ],
   [
-   521,
+   535,
    "DHCP takeover: change assignments, never remove first"
   ],
   [
-   568,
+   582,
    "DHCP failover and DHCPv6 on NIOS"
   ],
   [
-   617,
+   632,
    "Rollback: what reverses, and how"
   ],
   [
-   667,
+   681,
    "Part 3: Sign and harden"
   ],
   [
-   686,
+   700,
    "DNSSEC on NIOS: set parameters before you sign"
   ],
   [
-   735,
+   749,
    "The HSM and DS publication"
   ],
   [
-   782,
+   796,
    "Hardening NIOS: the agency's settings baseline"
   ],
   [
-   854,
+   868,
    "FIPS mode: the procedure and what it changes"
   ],
   [
-   900,
+   914,
    "Administrator access and two upgrade gates"
   ],
   [
-   947,
+   961,
    "Part 4: Operate and evidence"
   ],
   [
-   964,
+   980,
    "Upgrades: five steps, and the point of no return"
   ],
   [
-   1014,
+   1030,
    "Patching: hotfixes, images and known exploits"
   ],
   [
-   1056,
+   1071,
    "Backup, restore and Grid Master recovery"
   ],
   [
-   1105,
+   1120,
    "Logging and evidence for the SIEM"
   ],
   [
-   1152,
+   1167,
    "Automation: what you can codify, and what you can't"
   ],
   [
-   1198,
+   1214,
    "The build mapped to Book 08's six phases"
   ],
   [
-   1248,
+   1265,
    "Decisions, vendor asks and next steps"
   ]
  ],
@@ -9627,51 +9627,51 @@
    "Ticket-to-Machine on ServiceNow and SailPoint"
   ],
   [
-   43,
+   44,
    "An example, not a recommendation"
   ],
   [
-   89,
+   91,
    "The products and their FedRAMP status"
   ],
   [
-   141,
+   143,
    "The picture: the loop on ServiceNow and SailPoint"
   ],
   [
-   187,
+   189,
    "How the two products hand work to each other"
   ],
   [
-   240,
+   242,
    "The loop, step by step, on these products"
   ],
   [
-   287,
+   288,
    "The lanes on these products"
   ],
   [
-   335,
+   314,
    "Gaps 1 and 2: ticket status, and who approves"
   ],
   [
-   382,
+   361,
    "Gaps 3 and 4: change records, and one writer"
   ],
   [
-   433,
+   413,
    "Identity fixes: HR facts, leavers and stray writes"
   ],
   [
-   477,
+   458,
    "Identity fixes: matching, contractors and rules"
   ],
   [
-   523,
+   503,
    "Federal availability and cautions"
   ],
   [
-   577,
+   558,
    "What to verify, decide, and read next"
   ]
  ],
@@ -9689,7 +9689,7 @@
    "What Trinzic is, and what it does well on premises"
   ],
   [
-   157,
+   158,
    "What Trinzic alone sees in the clouds, and can't control"
   ],
   [
@@ -9697,7 +9697,7 @@
    "Option A: vNIOS members inside each cloud"
   ],
   [
-   261,
+   262,
    "Option B: the Grid joined to Universal DDI"
   ],
   [
@@ -9713,7 +9713,7 @@
    "Which option fits your agency? Design guidance"
   ],
   [
-   468,
+   469,
    "Where this fits the workbook, and next steps"
   ]
  ],
