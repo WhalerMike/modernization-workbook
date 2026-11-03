@@ -1,69 +1,75 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.688
-Three findings update Book
-09's planning inputs.
+00:00:00.050 --> 00:00:03.750
+Three findings update Network
+and Transport's planning inputs.
 
 2
-00:00:03.688 --> 00:00:07.638
+00:00:03.750 --> 00:00:07.700
 First, CISA expects a static
 address on every edge.
 
 3
-00:00:07.638 --> 00:00:12.036
+00:00:07.700 --> 00:00:12.098
 That conflicts with zero-touch
 provisioning from dynamic addresses,
 
 4
-00:00:12.036 --> 00:00:14.538
+00:00:12.098 --> 00:00:14.600
 and probably with the 5G secondary path.
 
 5
-00:00:14.538 --> 00:00:18.274
-It reinforces Book 09's
+00:00:14.600 --> 00:00:18.917
+It reinforces Network and Transport's
 deterministic-egress action,
 
 6
-00:00:18.274 --> 00:00:20.737
+00:00:18.917 --> 00:00:21.113
 and it belongs in the circuit order.
 
 7
-00:00:20.737 --> 00:00:25.180
-Second, Book 09's cost model assumes
-an on-premises control plane,
+00:00:21.113 --> 00:00:25.793
+Second, Network and Transport's cost model
+assumes an on-premises control plane,
 
 8
-00:00:25.180 --> 00:00:28.113
-while CISA's guidance points to GovCloud.
+00:00:25.793 --> 00:00:28.701
+while CISA's hunt and
+hardening guidance for the
 
 9
-00:00:28.113 --> 00:00:30.832
-Hosting replaces the fourteen-VM line with
+00:00:28.701 --> 00:00:31.963
+directive says to host the
+infrastructure in GovCloud.
 
 10
-00:00:30.832 --> 00:00:33.475
+00:00:31.963 --> 00:00:34.681
+Hosting replaces the fourteen-VM line with
+
+11
+00:00:34.681 --> 00:00:37.324
 a subscription the
 model doesn't price yet.
 
-11
-00:00:33.475 --> 00:00:35.627
+12
+00:00:37.324 --> 00:00:39.477
 Third, the catalog keeps growing,
 
-12
-00:00:35.627 --> 00:00:40.488
+13
+00:00:39.477 --> 00:00:44.338
 with the Validator now in scope and a
 floor that moves with every addition.
 
-13
-00:00:40.488 --> 00:00:44.540
+14
+00:00:44.338 --> 00:00:48.390
 And one planning number: about four
 hundred seventy-six more edges,
 
-14
-00:00:44.540 --> 00:00:46.750
+15
+00:00:48.390 --> 00:00:50.600
 and the fleet needs a second overlay.
 
-15
-00:00:46.750 --> 00:00:48.260
+16
+00:00:50.600 --> 00:00:52.130
 Next, the risks.

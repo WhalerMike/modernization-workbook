@@ -6,54 +6,54 @@ The last two capabilities
 are automation and logging.
 
 2
-00:00:03.162 --> 00:00:08.551
-No rule requires an API, but Book
-08's operating model depends on one.
+00:00:03.162 --> 00:00:09.513
+No rule requires an API, but the workbook's
+DNS operating model depends on one.
 
 3
-00:00:08.551 --> 00:00:12.102
+00:00:09.513 --> 00:00:13.084
 Every object should be reachable
 through a documented API,
 
 4
-00:00:12.102 --> 00:00:16.596
+00:00:13.084 --> 00:00:17.604
 so infrastructure as code, ticketing
 and pipelines all go through the same
 
 5
-00:00:16.596 --> 00:00:21.525
+00:00:17.604 --> 00:00:22.562
 authority and audit trail, with service
 accounts held to the same scopes as people.
 
 6
-00:00:21.525 --> 00:00:24.512
+00:00:22.562 --> 00:00:25.549
 Logging to the SIEM has to
 meet the retention rule:
 
 7
-00:00:24.512 --> 00:00:27.350
+00:00:25.549 --> 00:00:28.387
 six months searchable
 and a year retrievable.
 
 8
-00:00:27.350 --> 00:00:29.763
+00:00:28.387 --> 00:00:30.800
 Capacity is where designs fail.
 
 9
-00:00:29.763 --> 00:00:34.922
+00:00:30.800 --> 00:00:35.960
 Full query logging costs performance,
 reporting appliances can lock after repeated
 
 10
-00:00:34.922 --> 00:00:39.500
+00:00:35.960 --> 00:00:40.538
 ingest overruns, and some log streams
 drop records when the receiver is down.
 
 11
-00:00:39.500 --> 00:00:43.013
+00:00:40.538 --> 00:00:44.051
 So size for peak, and test
 with the SIEM unreachable.
 
 12
-00:00:43.013 --> 00:00:44.180
+00:00:44.051 --> 00:00:45.220
 Next, buying.

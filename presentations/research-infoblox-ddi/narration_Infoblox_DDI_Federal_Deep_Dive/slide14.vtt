@@ -1,62 +1,62 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.179
-A narrower question: if
-an agency buys Trinzic,
+00:00:00.050 --> 00:00:04.953
+A narrower question: if an agency buys
+Trinzic, the physical appliances,
 
 2
-00:00:03.179 --> 00:00:08.037
-the physical appliances, how well does
-the hardware fit Book 08's design?
+00:00:04.953 --> 00:00:08.775
+how well does the hardware
+fit the workbook's DNS design?
 
 3
-00:00:08.037 --> 00:00:12.761
+00:00:08.775 --> 00:00:13.499
 The Grid gives one shared database with
 an HA Grid Master and a candidate,
 
 4
-00:00:12.761 --> 00:00:17.171
+00:00:13.499 --> 00:00:17.909
 though promotion is manual and
 Infoblox publishes no scale limits,
 
 5
-00:00:17.171 --> 00:00:18.824
+00:00:17.909 --> 00:00:19.562
 so size it with the vendor.
 
 6
-00:00:18.824 --> 00:00:22.699
+00:00:19.562 --> 00:00:23.436
 Domain controllers can send
 Kerberos-signed updates to it,
 
 7
-00:00:22.699 --> 00:00:25.387
+00:00:23.436 --> 00:00:26.124
 signing is central, and IPAM is built in.
 
 8
-00:00:25.387 --> 00:00:30.407
+00:00:26.124 --> 00:00:31.145
 The watch points are the ones we've
 seen: change the signing default, X6 for
 
 9
-00:00:30.407 --> 00:00:36.012
+00:00:31.145 --> 00:00:36.750
 free encrypted DNS, dedicated appliances
 for deep discovery, and reporting caps.
 
 10
-00:00:36.012 --> 00:00:40.776
+00:00:36.750 --> 00:00:41.513
 Trinzic sits inside the agency's
 boundary, outside the FedRAMP listing.
 
 11
-00:00:40.776 --> 00:00:45.270
+00:00:41.513 --> 00:00:46.008
 And its FIPS 140-2 certificate
 went historical in September,
 
 12
-00:00:45.270 --> 00:00:47.337
+00:00:46.008 --> 00:00:48.075
 with newer modules pending.
 
 13
-00:00:47.337 --> 00:00:48.890
+00:00:48.075 --> 00:00:49.630
 Next, the clouds.

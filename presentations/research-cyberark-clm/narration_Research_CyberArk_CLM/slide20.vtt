@@ -25,21 +25,21 @@ AD CS template it issues from,
 so policy is easy to read.
 
 6
-00:00:19.538 --> 00:00:24.130
-After Active Directory retires,
-Book 07 moves server certificates
+00:00:19.538 --> 00:00:23.829
+After Active Directory retires, the
+workbook's certificate plan moves
 
 7
-00:00:24.130 --> 00:00:27.738
-to a standalone CA, and the
-platform handles that fine.
+00:00:23.829 --> 00:00:28.338
+server certificates to a standalone
+CA, and the platform handles that fine.
 
 8
-00:00:27.738 --> 00:00:32.999
+00:00:28.338 --> 00:00:33.598
 One open item: CyberArk's support
 table stops at Windows Server 2022,
 
 9
-00:00:32.999 --> 00:00:37.100
+00:00:33.598 --> 00:00:37.700
 so if your CA runs 2025, get
 that confirmed in writing.

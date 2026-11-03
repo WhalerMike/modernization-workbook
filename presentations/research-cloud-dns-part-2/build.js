@@ -33,7 +33,7 @@ const EV = "Evaluation, Cloud DNS on AWS, Azure and Oracle Cloud";
   ], { x: 0.8, y: 4.75, w: 8.8, h: 1.3, fontSize: 15, paraSpaceAfter: 2 });
   sources(s, "Sources: Evaluation, Cloud DNS on AWS, Azure and Oracle Cloud (in review), Parts 2–5; ISC, NIST, CISA, OMB, AWS, Microsoft Learn, Oracle. Checked Oct. 29 and 31, 2026.", 6.08);
   say(s,
-`Welcome to Part 2 of Cloud DNS on AWS, Azure and Oracle Cloud, a Federal Modernization Workbook evaluation that's still under review. Part 1 covered the native resolvers. Part 2 asks when an agency should run its own DNS servers in a cloud, and how to run BIND there so it stays inside Book 08's single policy plane.
+`Welcome to Part 2 of Cloud DNS on AWS, Azure and Oracle Cloud, a Federal Modernization Workbook evaluation that's still under review. Part 1 covered the native resolvers. Part 2 asks when an agency should run its own DNS servers in a cloud, and how to run BIND there so it stays inside the workbook's single DNS policy plane.
 
 We'll start with the test that matters: does a cloud BIND server align with that plane, or create a silo? Then the criteria, vNIOS or BIND, and BIND itself, from roles to patching and Git. Then a seven-question checklist for an agency adding BIND servers in AWS, and the federal mapping.
 
@@ -59,7 +59,7 @@ The labels carry over from Part 1: design guidance, inference, and confirm.`,
   ], { fontSize: 12, firstColor: HEX.teal });
   sources(s, "Sources: Evaluation page, \"The answer in brief\" (alignment table); Book 08, Ch 08 (Decision 3); Ansible guide, Evidence to the program.");
   say(s,
-`Additional BIND servers in AWS align with Book 08 when they are forwarders or resolvers under central configuration, logged to the SOC, owned and with a reason.
+`Additional BIND servers in AWS align with the workbook's DNS design when they are forwarders or resolvers under central configuration, logged to the SOC, owned and with a reason.
 
 BIND aligns when it's a resolver or forwarder whose configuration comes from the policy plane: its forwarding, its addresses and its logging all governed. It aligns as a deliberate bridge, with an owner and an end date. It aligns when Git configures it, and when it's hardened and inventoried.
 
@@ -115,7 +115,7 @@ So the criteria, as design guidance. Run your own when a zone must be authoritat
   say(s,
 `If the agency does run its own servers, which ones? Where its DNS runs on an Infoblox Grid, vNIOS is the natural choice. It joins the same Grid and takes its policy from the Grid Master. One caution: vNIOS failover in GovCloud and Azure Government is a point to confirm.
 
-BIND is the choice when there's no Grid, for a small footprint, or when a tool expects BIND itself. BIND has no policy plane of its own; for Book 08, its policy comes from the DDI platform and Git.
+BIND is the choice when there's no Grid, for a small footprint, or when a tool expects BIND itself. BIND has no policy plane of its own; in the workbook's DNS design, its policy comes from the DDI platform and Git.
 
 Which BIND? ISC supports each even-numbered branch for four years. As of October twenty-ninth, 9.20 is the supported production branch, with end of life in 2028, and 9.18 reached end of life in June 2026. Operating-system packages follow their vendor, so record which support you rely on.`,
   "Evaluation page, Part 2 (vNIOS or BIND) and Part 3 (Version and support); Infoblox NIOS implementation guide; Trinzic explainer; ISC Software Support Policy; ISC Download; ISC Vulnerability Disclosure Policy. Accessed Oct. 29, 2026.",
@@ -333,7 +333,7 @@ As design guidance: the agency's own policy zones run on cloud BIND, from the sa
 
 BIND offers two mechanisms. The logging statement writes categories such as queries, responses and policy-zone hits to files or syslog, and dnstap records messages to a file or socket, in a build with dnstap enabled. ISC warns that query logging adds heavy overhead, so plan for it.
 
-Send them to the SIEM, where ASIM's DNS parser already handles BIND, as Book 12 describes. Because the native resolver sees BIND rather than the client, BIND's log is the record of who asked. Without it, cloud DNS is a blind spot.`,
+Send them to the SIEM, where ASIM's DNS parser already handles BIND, according to Microsoft Learn's list of ASIM parsers. Because the native resolver sees BIND rather than the client, BIND's log is the record of who asked. Without it, cloud DNS is a blind spot.`,
   "NIST SP 800-81r3, §2.1.3 and §2.3.3; OMB M-22-09, Encrypting DNS traffic; OMB M-26-14, Appendix B; BIND 9 ARM 9.20, logging categories, querylog, dnstap; ISC Knowledge Base, BIND Best Practices - Recursive; Book 12, Chapter 05.",
   `${EV}, Part 3, "Query and response logging into the SOC"; Book 12, Chapter 05 — From Log Warehouse to Detection.`);
 }
@@ -442,7 +442,7 @@ Rows two and four are the serious signals. Row three alone means the servers may
   line(s, "Note", "The controls and citations are the ones Book 08 has already verified (Chapters 03 and 11). The mapping is illustrative: validate it against the system's own authorization boundary.", 5.45, 0.75, 12.5, HEX.ink);
   sources(s, "Sources: Evaluation page, Part 5; NIST SP 800-53 Rev. 5; CISA BOD 23-01, BOD 26-04; Book 08, Ch 03 (control mapping) and Ch 11 (compliance evidence).");
   say(s,
-`The federal mapping reuses the controls Book 08 has already verified. It's illustrative, so validate it against the system's own authorization boundary.
+`The federal mapping reuses the NIST SP 800-53 controls that the workbook's DNS design has already verified. It's illustrative, so validate it against the system's own authorization boundary.
 
 Configuration and inventory first. CM-2, the baseline: the evidence is the Git commit and tag of the rendered configuration. CM-3, change control: pull requests with required review. CM-6, configuration settings: the agency's stated profile, plus drift reports. CM-7, least functionality: a dedicated DNS host, one role per server, the version hidden, and recursion and transfers limited.
 
@@ -503,7 +503,7 @@ For M-22-09's encrypted DNS and resolver logging: encrypted DNS to clients, DNS 
 
 The open points for this part: whether Oracle's VCN resolver passes DNSSEC data to a resolver behind it, and whether CISA's Protective DNS returns DNSSEC data to agency forwarders. And the illustrative configuration hasn't yet run in a VPC.
 
-The next steps: ask the seven questions of every cloud BIND server, build the forwarder pattern in a test account in each Region and realm, and run Book 08's validation matrix from every origin. This is research under review, not an endorsement by any federal agency. Thank you.`,
+The next steps: ask the seven questions of every cloud BIND server, build the forwarder pattern in a test account in each Region and realm, and run the workbook's DNS validation matrix from every origin. This is research under review, not an endorsement by any federal agency. Thank you.`,
   "Evaluation page, Part 2 (vNIOS or BIND), Part 4 and \"Status and review\"; Infoblox NIOS implementation guide; Trinzic explainer; Book 08, Chapter 10.",
   `${EV}, Part 2 and "Status and review"; Infoblox NIOS implementation guide; Book 08, Chapter 10.`);
 }

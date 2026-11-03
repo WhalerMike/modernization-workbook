@@ -20,35 +20,45 @@ which ownership-record format, and whether
 Entra-joined PCs try to register at all.
 
 5
-00:00:13.913 --> 00:00:18.724
-The next steps are the things that couldn't
-be verified, such as how Macs handle
+00:00:13.913 --> 00:00:17.133
+The next steps are the things
+that couldn't be verified,
 
 6
-00:00:18.724 --> 00:00:23.687
-rename and DHCP names, and a recheck of
-Book 05's device preparation description.
+00:00:17.133 --> 00:00:19.782
+such as how Macs handle
+rename and DHCP names,
 
 7
-00:00:23.687 --> 00:00:28.588
+00:00:19.782 --> 00:00:24.650
+and a recheck of the Devices and Endpoints
+book's device preparation description.
+
+8
+00:00:24.650 --> 00:00:29.550
 Ask any third-party VPN vendor whether
 its concentrator registers clients.
 
-8
-00:00:28.588 --> 00:00:33.761
-In the workbook, Book 05 covers
-onboarding and naming, Book 08 covers
-
 9
-00:00:33.761 --> 00:00:39.212
-the AD DNS departure, and two related
-research items sit beside this one.
+00:00:29.550 --> 00:00:35.339
+In the workbook, the Devices and Endpoints
+book covers onboarding and naming,
 
 10
-00:00:39.212 --> 00:00:44.137
+00:00:35.339 --> 00:00:39.501
+the DNS, DHCP and IPAM book
+covers the AD DNS departure,
+
+11
+00:00:39.501 --> 00:00:43.300
+and two related research
+items sit beside this one.
+
+12
+00:00:43.300 --> 00:00:48.225
 This is research under review, not an
 endorsement by any federal agency.
 
-11
-00:00:44.137 --> 00:00:44.950
+13
+00:00:48.225 --> 00:00:49.060
 Thank you.

@@ -15,40 +15,45 @@ building on was the subject of
 a 2026 emergency directive.
 
 4
-00:00:09.300 --> 00:00:14.329
-Book 09 already says the governor has
-its own exposure: one control plane
+00:00:09.300 --> 00:00:15.229
+The governor has its own exposure: one
+control plane with authority over every edge,
 
 5
-00:00:14.329 --> 00:00:19.525
-with authority over every edge, and an
-internet-facing edge in every office.
+00:00:15.229 --> 00:00:18.322
+and an internet-facing
+edge in every office,
 
 6
-00:00:19.525 --> 00:00:22.563
+00:00:18.322 --> 00:00:23.650
+which CISA's Binding Operational
+Directive 26-02 counts as an edge device.
+
+7
+00:00:23.650 --> 00:00:26.688
 On Catalyst SD-WAN that
 isn't hypothetical.
 
-7
-00:00:22.563 --> 00:00:27.810
+8
+00:00:26.688 --> 00:00:31.936
 CISA's catalog now lists nine exploited
 flaws in the platform, and every 2026
 
-8
-00:00:27.810 --> 00:00:33.550
+9
+00:00:31.936 --> 00:00:37.676
 advisory names Cisco's hosted FedRAMP
 environment among the affected deployments.
 
-9
-00:00:33.550 --> 00:00:36.916
+10
+00:00:37.676 --> 00:00:41.041
 So the first gate is proving
 the control plane is patched,
 
-10
-00:00:36.916 --> 00:00:40.712
+11
+00:00:41.041 --> 00:00:44.837
 hunted and hardened, before it
 carries a single production flow.
 
-11
-00:00:40.712 --> 00:00:42.620
+12
+00:00:44.837 --> 00:00:46.750
 Here's what the directive required.
