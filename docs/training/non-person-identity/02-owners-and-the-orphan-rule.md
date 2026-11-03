@@ -40,7 +40,7 @@ KSIs are FedRAMP 20x indicators for cloud service providers. The agency lines th
 After this module, you'll be able to:
 
 - state the program's ownership rule, and which owners the code counts as valid;
-- explain D-N2, the orphan rule, and how it differs from Book 04's own policy;
+- explain D-N2, the orphan rule the program settled on, and how it differs from *Access & Privilege*'s own policy;
 - run the ownership check and read its findings and its orphan plan;
 - show that the write path dry-runs without `-Apply` and refuses a plan whose hash nobody approved.
 
@@ -259,7 +259,7 @@ Remove-Item -Recurse -Force out
 ::: {.callout-tip collapse="true"}
 ## Check your answers
 1. **b.** Only enabled members count; guests and service principals raise warnings. Taught in [The rule the code holds](../../project-plans/developer-workbooks/non-person-identity/02-ownership-and-the-orphan-rule.md#the-rule-the-code-holds) and [The check](../../project-plans/developer-workbooks/non-person-identity/02-ownership-and-the-orphan-rule.md#the-check).
-2. **b.** The code follows D-N2, the stricter rule; the difference from Book 04 stays open for the CISO. Taught in [The rule the code holds](../../project-plans/developer-workbooks/non-person-identity/02-ownership-and-the-orphan-rule.md#the-rule-the-code-holds).
+2. **b.** The program settled on D-N2's order, the stricter: disable first, then the 30-day claim window. The guide and the code follow it; *Access & Privilege*, Chapter 06 runs the other way round. Taught in [The rule the code holds](../../project-plans/developer-workbooks/non-person-identity/02-ownership-and-the-orphan-rule.md#the-rule-the-code-holds).
 3. **c.** Learn's deactivation procedure is on beta, so the code uses the v1.0 switch. Taught in [The rule the code holds](../../project-plans/developer-workbooks/non-person-identity/02-ownership-and-the-orphan-rule.md#the-rule-the-code-holds).
 4. **b.** Taught in [The separate write path](../../project-plans/developer-workbooks/non-person-identity/02-ownership-and-the-orphan-rule.md#the-separate-write-path) and shown in Lab 1, step 8.
 5. **a.** Taught in [The separate write path](../../project-plans/developer-workbooks/non-person-identity/02-ownership-and-the-orphan-rule.md#the-separate-write-path).
