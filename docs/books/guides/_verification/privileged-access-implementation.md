@@ -63,6 +63,10 @@ Facts carried from the chapters and books are cited by link and rely on those pa
 - **MS.AAD.7.7v1 and MS.AAD.7.8v1.** `Invoke-PaPimAlertCheck.ps1` adds PA-PIM-10 and PA-PIM-11 (Chapter 04, "The alert check"; AU-6 and KSI-MLA-RVL as Chapter 04 cites them). The guide adds a G4 Validate line, a G4 requirement row and the evidence row. The danger is reworded to the alert nobody reads. What couldn't be verified keeps what the check doesn't reach: PIM for Groups member settings, delivery of the mail, and GCC High and DoD.
 - **MS.AAD.7.7v1 and MS.AAD.7.8v1 on PIM for Groups (added November 2, 2026).** The check now also reads the PIM for Groups member policy of each group that holds one of the eight roles, eligible or active, and reports PA-PIM-12 and PA-PIM-13 (Chapter 04, "The alert check"; its log, F8; research gaps, rows 111 and 113). CISA's `aad.md` implementation steps and ScubaGear's provider and Rego were read at commit `997f933`. The G4 Validate line, the G4 requirement row, the read permissions table and the danger name PA-PIM-12 and PA-PIM-13. What couldn't be verified drops PIM for Groups and keeps delivery of the mail and GCC High and DoD, which now also covers the group read.
 
+### Chapter 09 linked (2026-11-02)
+
+- The workbook's Chapter 09 (deployment runbook) is on `origin/main` (PR #311, commit `02a3733a`). The path on one page now links it in place of the workbook index, and What couldn't be verified says the runbook exists but hasn't been run against a live tenant, as Chapter 09's own description says.
+
 ## Neutrality
 
 Fictional data only (`contoso.example`). No agency named. No prohibited terms.
