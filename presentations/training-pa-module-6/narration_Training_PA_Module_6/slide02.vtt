@@ -1,0 +1,83 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.250
+Why its own module?
+
+2
+00:00:01.250 --> 00:00:05.075
+Because PIM for Azure resources
+isn't in Microsoft Graph.
+
+3
+00:00:05.075 --> 00:00:07.293
+It goes through Azure Resource Manager,
+
+4
+00:00:07.293 --> 00:00:11.663
+and the caller needs Azure roles on the
+resource instead of Graph permissions.
+
+5
+00:00:11.663 --> 00:00:17.550
+The roles matter: Owner, Contributor and
+User Access Administrator on a subscription
+
+6
+00:00:17.550 --> 00:00:20.868
+are privileged, and Microsoft
+Learn's Azure R B A C
+
+7
+00:00:20.868 --> 00:00:24.600
+best practices say at most
+three subscription owners.
+
+8
+00:00:24.600 --> 00:00:27.100
+Four guards keep people
+from losing access.
+
+9
+00:00:27.100 --> 00:00:32.167
+Eligible first: each standing assignment
+held by a user or group gets an eligible
+
+10
+00:00:32.167 --> 00:00:34.209
+replacement before its removal,
+
+11
+00:00:34.209 --> 00:00:37.612
+so no holder loses the role
+before they can activate it.
+
+12
+00:00:37.612 --> 00:00:42.964
+Rule A Z oh five flags a standing assignment
+held by the identity the plan runs as;
+
+13
+00:00:42.964 --> 00:00:45.964
+the apply needs it to
+finish, so decide it last,
+
+14
+00:00:45.964 --> 00:00:50.100
+from another session, as this
+workbook's design guidance says.
+
+15
+00:00:50.100 --> 00:00:54.132
+The desired state refuses an
+authentication context before its
+
+16
+00:00:54.132 --> 00:00:58.387
+Conditional Access policy is
+confirmed, as Microsoft Learn advises.
+
+17
+00:00:58.387 --> 00:01:03.260
+And policies go first, because a
+request that breaks a policy is refused.

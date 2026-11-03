@@ -1,0 +1,73 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.505
+Lab 2 runs in a worldwide or G C C test
+tenant with Microsoft Entra I D P2 or I D
+
+2
+00:00:05.505 --> 00:00:11.675
+Governance and a test Azure subscription,
+never production, with fictional people.
+
+3
+00:00:11.675 --> 00:00:13.413
+The run only reads.
+
+4
+00:00:13.413 --> 00:00:16.793
+It uses the emergency
+access files from Module
+
+5
+00:00:16.793 --> 00:00:20.087
+2's Lab 2 and the exceptions
+file from Module 4's.
+
+6
+00:00:20.087 --> 00:00:25.712
+Register a reader app, make one test
+activation, and run twice, before and after it.
+
+7
+00:00:25.712 --> 00:00:27.945
+Check the fields the fixture assumed,
+
+8
+00:00:27.945 --> 00:00:31.762
+and cross-check against PIM's
+resource audit in the admin center.
+
+9
+00:00:31.762 --> 00:00:35.474
+Then compare, package and
+verify the two live runs.
+
+10
+00:00:35.474 --> 00:00:39.061
+The reader app needs the nine
+read permissions from step two,
+
+11
+00:00:39.061 --> 00:00:43.150
+with admin consent, and Reader on
+the test subscription, nothing else.
+
+12
+00:00:43.150 --> 00:00:47.945
+The back-out ends the test activation
+and eligibility, removes the permissions,
+
+13
+00:00:47.945 --> 00:00:52.522
+the Reader assignment and the app, and
+deletes the test runs and the packages,
+
+14
+00:00:52.522 --> 00:00:55.138
+which hold the tenant's
+privileged holders.
+
+15
+00:00:55.138 --> 00:00:57.340
+The authors haven't run Lab 2.

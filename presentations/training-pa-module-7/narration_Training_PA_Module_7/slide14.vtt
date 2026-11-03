@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.025
+Check yourself with two questions.
+
+2
+00:00:02.025 --> 00:00:06.560
+First: a Global Administrator
+review covers active assignments,
+
+3
+00:00:06.560 --> 00:00:09.163
+with Deny on silence and auto-apply on.
+
+4
+00:00:09.163 --> 00:00:10.799
+What does A R oh six do?
+
+5
+00:00:10.799 --> 00:00:14.175
+The answer is b: it fails the
+review, because missing one
+
+6
+00:00:14.175 --> 00:00:18.300
+month would remove the emergency
+accounts' Global Administrator.
+
+7
+00:00:18.300 --> 00:00:20.450
+You saw it in Lab 1, step eight.
+
+8
+00:00:20.450 --> 00:00:23.613
+Second: the plan shows
+a series as Replace.
+
+9
+00:00:23.613 --> 00:00:25.288
+What does the apply do with it?
+
+10
+00:00:25.288 --> 00:00:27.525
+The answer is b: it skips it.
+
+11
+00:00:27.525 --> 00:00:31.848
+The update A P I doesn't take a
+new scope or new group reviewers,
+
+12
+00:00:31.848 --> 00:00:35.825
+so a person exports the series'
+evidence and replaces it.
+
+13
+00:00:35.825 --> 00:00:37.475
+You saw it in step six.
+
+14
+00:00:37.475 --> 00:00:42.430
+The module page has two more questions,
+each linked to the section that answers it.

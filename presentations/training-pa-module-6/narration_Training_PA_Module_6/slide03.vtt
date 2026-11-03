@@ -1,0 +1,73 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.861
+Here's what you'll be able to
+do by the end of this module,
+
+2
+00:00:02.861 --> 00:00:05.225
+which takes about fifty
+minutes with the lab.
+
+3
+00:00:05.225 --> 00:00:09.809
+You'll explain why PIM for Azure
+resources goes through Resource Manager,
+
+4
+00:00:09.809 --> 00:00:11.988
+and which A P I version the code uses.
+
+5
+00:00:11.988 --> 00:00:16.163
+You'll explain why role settings
+must be set at every governed scope.
+
+6
+00:00:16.163 --> 00:00:18.951
+You'll say who can and
+can't be made eligible.
+
+7
+00:00:18.951 --> 00:00:22.289
+You'll read the plan's
+three kinds of operation
+
+8
+00:00:22.289 --> 00:00:24.750
+and its findings, A Z oh one to oh six.
+
+9
+00:00:24.750 --> 00:00:28.950
+And you'll explain why the code
+declares User Access Administrator,
+
+10
+00:00:28.950 --> 00:00:30.375
+not Owner, for the apply.
+
+11
+00:00:30.375 --> 00:00:34.946
+Before you start, finish Module 1,
+whose Azure half reads the same two
+
+12
+00:00:34.946 --> 00:00:39.762
+schedule lists, and Module 4, whose
+seven managed rules are the same here.
+
+13
+00:00:39.762 --> 00:00:44.521
+Lab 2 needs a worldwide or G C C test
+tenant with a test management group,
+
+14
+00:00:44.521 --> 00:00:48.049
+subscription and resource
+group, never production,
+
+15
+00:00:48.049 --> 00:00:51.480
+and P2 or Governance
+licenses for eligible users.

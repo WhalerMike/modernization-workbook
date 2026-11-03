@@ -1,0 +1,60 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.862
+Step three runs the inventory
+against the fictional tenant.
+
+2
+00:00:03.862 --> 00:00:08.683
+You give it the fixture, an output folder,
+three Azure scopes, two subscriptions and
+
+3
+00:00:08.683 --> 00:00:13.575
+the root management group, the exceptions
+list, and the control-plane subscription.
+
+4
+00:00:13.575 --> 00:00:15.425
+It reads thirty rows.
+
+5
+00:00:15.425 --> 00:00:19.875
+In Azure, four are Tier 0,
+five Tier 1 and one Tier 2.
+
+6
+00:00:19.875 --> 00:00:25.393
+In Entra, eight are Tier 0, two Tier 1,
+two Tier 2, and one is unclassified:
+
+7
+00:00:25.393 --> 00:00:30.813
+a role that isn't in the tier file,
+reported rather than assumed safe.
+
+8
+00:00:30.813 --> 00:00:35.575
+The run raises ten findings, seven
+warnings and one information item.
+
+9
+00:00:35.575 --> 00:00:38.276
+And it writes everything
+to the output folder,
+
+10
+00:00:38.276 --> 00:00:42.611
+with a manifest that lists every request
+it sent and the hash of every file
+
+11
+00:00:42.611 --> 00:00:46.875
+it wrote, so a reviewer can check later
+which calls produced the evidence.
+
+12
+00:00:46.875 --> 00:00:49.780
+The scope list on the
+slide is wrapped to fit.

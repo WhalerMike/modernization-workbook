@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.700
+The package and the chain.
+
+2
+00:00:01.700 --> 00:00:08.050
+Each run becomes a package, with an
+evidence manifest and a SHA256SUMS file.
+
+3
+00:00:08.050 --> 00:00:11.810
+Each package records the previous
+package's manifest hash,
+
+4
+00:00:11.810 --> 00:00:13.575
+so the packages form a chain.
+
+5
+00:00:13.575 --> 00:00:18.150
+A replaced package, or a missing day,
+shows up as a break in that chain.
+
+6
+00:00:18.150 --> 00:00:22.211
+And the reviewer doesn't need
+the code to check it: sha256sum,
+
+7
+00:00:22.211 --> 00:00:27.763
+checking the sums file, is enough, and the
+kit's verify command checks the manifest.
+
+8
+00:00:27.763 --> 00:00:34.074
+Then what the ISSO receives: a period, with
+its own manifest and a period summary.
+
+9
+00:00:34.074 --> 00:00:37.609
+The summary speaks to the Gate
+4 criteria the code can measure,
+
+10
+00:00:37.609 --> 00:00:40.370
+and says plainly which
+ones it leaves to people.

@@ -1,0 +1,72 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.038
+Step ten breaks it on purpose.
+
+2
+00:00:02.038 --> 00:00:05.855
+Append a word to the drift
+summary inside day two's package,
+
+3
+00:00:05.855 --> 00:00:09.275
+and verify it: the file doesn't
+match its hash, an error.
+
+4
+00:00:09.275 --> 00:00:12.122
+Compare the days the
+wrong way round: refused,
+
+5
+00:00:12.122 --> 00:00:15.738
+because the current run isn't
+later than the previous one.
+
+6
+00:00:15.738 --> 00:00:17.800
+Each refusal exits with one.
+
+7
+00:00:17.800 --> 00:00:21.800
+And the sample workflow that would run
+all this on a schedule lints clean.
+
+8
+00:00:21.800 --> 00:00:24.588
+Step eleven runs the tests in both shells.
+
+9
+00:00:24.588 --> 00:00:27.992
+In PowerShell, the evidence
+tests, thirty-two pass,
+
+10
+00:00:27.992 --> 00:00:30.899
+then the whole suite,
+three hundred thirty.
+
+11
+00:00:30.899 --> 00:00:35.875
+In the POSIX shell, pytest in the drift
+pipeline: a hundred forty-two pass.
+
+12
+00:00:35.875 --> 00:00:40.400
+The path's verification log notes that
+this suite needs the whole repository,
+
+13
+00:00:40.400 --> 00:00:42.450
+not just the drift pipeline folder.
+
+14
+00:00:42.450 --> 00:00:45.000
+Then delete the output
+folder in both places,
+
+15
+00:00:45.000 --> 00:00:48.020
+because they hold the
+fixture's privileged holders.

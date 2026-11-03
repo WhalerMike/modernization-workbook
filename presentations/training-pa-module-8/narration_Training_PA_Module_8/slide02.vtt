@@ -1,0 +1,68 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.175
+Why this module?
+
+2
+00:00:01.175 --> 00:00:06.875
+The plan's last gate, Gate 4, asks for
+evidence for every elevation in the period.
+
+3
+00:00:06.875 --> 00:00:09.775
+Two facts from Microsoft
+Learn shape how you get it.
+
+4
+00:00:09.775 --> 00:00:15.009
+Microsoft Learn's page on Entra data
+retention says audit logs are kept for thirty
+
+5
+00:00:15.009 --> 00:00:17.319
+days with Microsoft Entra I D P1 or P2,
+
+6
+00:00:17.319 --> 00:00:20.013
+so you have to read them
+before they're gone.
+
+7
+00:00:20.013 --> 00:00:24.638
+And Microsoft Learn's page on PIM audit
+history shows that PIM can log one
+
+8
+00:00:24.638 --> 00:00:29.649
+activation under several correlation I
+D's, while its request I D stays the same.
+
+9
+00:00:29.649 --> 00:00:32.375
+And one thing carries over from Module 2:
+
+10
+00:00:32.375 --> 00:00:37.000
+every run repeats the emergency
+access check beside the inventory.
+
+11
+00:00:37.000 --> 00:00:40.411
+The comparison treats the
+emergency access rules,
+
+12
+00:00:40.411 --> 00:00:44.877
+the Global Administrator count and
+root-scope elevation as Tier 0,
+
+13
+00:00:44.877 --> 00:00:49.750
+whatever the row says, and any new or
+changed Tier 0 finding is an incident.
+
+14
+00:00:49.750 --> 00:00:55.220
+That's the program's drift rule: a drift
+on a Tier 0 object is a security incident.

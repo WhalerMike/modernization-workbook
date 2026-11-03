@@ -1,0 +1,83 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.781
+Lab 2 runs in a worldwide
+or G C C test tenant
+
+2
+00:00:03.781 --> 00:00:07.725
+with Microsoft Entra I
+D P1, never production.
+
+3
+00:00:07.725 --> 00:00:09.742
+Before it enforces anything,
+
+4
+00:00:09.742 --> 00:00:14.113
+build Module 2's emergency accounts
+and confirm one can sign in.
+
+5
+00:00:14.113 --> 00:00:18.693
+And register a phishing-resistant method
+for each test administrator first:
+
+6
+00:00:18.693 --> 00:00:23.201
+Microsoft Learn warns that enabling
+the policy first risks locking you out.
+
+7
+00:00:23.201 --> 00:00:26.795
+Then write your tenant's
+map, register a reader app,
+
+8
+00:00:26.795 --> 00:00:29.163
+plan, and apply twice, report-only.
+
+9
+00:00:29.163 --> 00:00:32.136
+Watch the report-only
+results in the sign-in log,
+
+10
+00:00:32.136 --> 00:00:35.338
+and then enforce the gate
+alone, with Allow Enforce.
+
+11
+00:00:35.338 --> 00:00:39.587
+Don't select C one in PIM in
+this lab; Module 4 does that.
+
+12
+00:00:39.587 --> 00:00:42.120
+The reader needs the
+three read permissions,
+
+13
+00:00:42.120 --> 00:00:45.612
+and the apply adds the two write
+permissions, and nothing else.
+
+14
+00:00:45.612 --> 00:00:49.150
+To back out, set each file
+the lab created to disabled,
+
+15
+00:00:49.150 --> 00:00:52.112
+and the contexts to
+unavailable, then apply.
+
+16
+00:00:52.112 --> 00:00:56.524
+Turning a policy off needs no Allow
+Enforce, and nothing is deleted.
+
+17
+00:00:56.524 --> 00:00:58.730
+The authors haven't run Lab 2.

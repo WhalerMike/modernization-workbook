@@ -1,0 +1,62 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.647
+Step five applies against the
+fake, with the same run I D,
+
+2
+00:00:03.647 --> 00:00:07.563
+so it sends exactly the nineteen
+requests the dry run wrote.
+
+3
+00:00:07.563 --> 00:00:11.001
+It prints the same read,
+plan and findings, then:
+
+4
+00:00:11.001 --> 00:00:15.887
+nineteen requests sent, and after
+a fresh read, zero left to change.
+
+5
+00:00:15.887 --> 00:00:18.400
+Step six shows the code refusing.
+
+6
+00:00:18.400 --> 00:00:22.512
+Build a client for the read task, and
+try to write a policy update with it.
+
+7
+00:00:22.512 --> 00:00:25.847
+It throws: that call isn't
+declared for the read task;
+
+8
+00:00:25.847 --> 00:00:28.150
+add it to the call list with its role.
+
+9
+00:00:28.150 --> 00:00:29.838
+A read client can't write.
+
+10
+00:00:29.838 --> 00:00:32.875
+Then ask the code to treat
+a web app as a scope.
+
+11
+00:00:32.875 --> 00:00:38.338
+It refuses: a scope must be a management
+group, a subscription or a resource group.
+
+12
+00:00:38.338 --> 00:00:41.770
+Step seven runs the tests,
+three hundred thirty pass,
+
+13
+00:00:41.770 --> 00:00:43.990
+and you delete the output folder.

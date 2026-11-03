@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.437
+The federal requirement.
+
+2
+00:00:01.437 --> 00:00:02.841
+The P R V groups' file,
+
+3
+00:00:02.841 --> 00:00:07.225
+the check and the plan are the
+evidence for the plan's task A2.1.
+
+4
+00:00:07.225 --> 00:00:12.558
+From NIST special publication eight
+hundred fifty-three they support A C six,
+
+5
+00:00:12.558 --> 00:00:18.058
+enhancement five, privileged accounts
+restricted to defined roles; A C six and A
+
+6
+00:00:18.058 --> 00:00:23.475
+C five, least privilege and separation of
+duties; and A C two, account management.
+
+7
+00:00:23.475 --> 00:00:28.417
+And from CISA's B O D twenty-five
+oh-one and its ScubaGear baseline:
+
+8
+00:00:28.417 --> 00:00:32.627
+M S A A D seven point four, no
+permanent active assignment,
+
+9
+00:00:32.627 --> 00:00:36.563
+and seven point five,
+provisioning only through PIM.
+
+10
+00:00:36.563 --> 00:00:38.425
+C M three covers the change:
+
+11
+00:00:38.425 --> 00:00:42.237
+reviewed before it's made,
+and an unsafe change stopped.
+
+12
+00:00:42.237 --> 00:00:48.052
+The evidence an ISSO keeps: the reviewed
+file, with each holder's end date and
+
+13
+00:00:48.052 --> 00:00:54.220
+ticket; each plan's diff, plan and findings;
+and each apply's results and manifest.

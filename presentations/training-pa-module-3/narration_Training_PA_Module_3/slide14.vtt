@@ -1,0 +1,66 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.025
+Check yourself with two questions.
+
+2
+00:00:02.025 --> 00:00:05.580
+First: the activation gate's
+policy is report-only,
+
+3
+00:00:05.580 --> 00:00:08.788
+and PIM requires context
+C one on activation.
+
+4
+00:00:08.788 --> 00:00:09.799
+What happens?
+
+5
+00:00:09.799 --> 00:00:13.668
+The answer is b: PIM's M F
+A fallback doesn't trigger,
+
+6
+00:00:13.668 --> 00:00:16.375
+because the policy is report-only.
+
+7
+00:00:16.375 --> 00:00:18.238
+Nothing gates the activation.
+
+8
+00:00:18.238 --> 00:00:20.917
+That's why Microsoft
+Learn says to create and
+
+9
+00:00:20.917 --> 00:00:23.813
+enable the policy before
+you select the context.
+
+10
+00:00:23.813 --> 00:00:27.674
+Second: a policy is in the
+tenant but not in the files.
+
+11
+00:00:27.674 --> 00:00:28.937
+What does the plan do?
+
+12
+00:00:28.937 --> 00:00:33.951
+The answer is b: it reports it as
+NotInRepository, and never deletes it.
+
+13
+00:00:33.951 --> 00:00:37.850
+You saw that for C A oh oh
+one in Lab 1, step five.
+
+14
+00:00:37.850 --> 00:00:42.820
+The module page has two more questions,
+each linked to the section that answers it.

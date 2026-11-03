@@ -1,0 +1,61 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:04.188
+Lab 1 runs in one PowerShell 7 session.
+
+3
+00:00:04.188 --> 00:00:07.738
+Step one runs Microsoft
+Learn's tutorial for reviewing
+
+4
+00:00:07.738 --> 00:00:11.750
+access to administrative roles
+against the fake, as published.
+
+5
+00:00:11.750 --> 00:00:13.300
+Eleven tests pass.
+
+6
+00:00:13.300 --> 00:00:16.667
+The third is the one to
+notice: the tutorial's POST,
+
+7
+00:00:16.667 --> 00:00:19.950
+sent twice, leaves two
+series with the same name.
+
+8
+00:00:19.950 --> 00:00:24.675
+That's why the code plans before it
+writes, and why rule A R twelve exists.
+
+9
+00:00:24.675 --> 00:00:27.375
+Step two lists each task's permissions.
+
+10
+00:00:27.375 --> 00:00:32.250
+Planning needs Access Review dot Read
+dot All, and Reader for the Azure series.
+
+11
+00:00:32.250 --> 00:00:37.888
+Applying needs Access Review dot ReadWrite
+dot All, and User Access Administrator.
+
+12
+00:00:37.888 --> 00:00:40.551
+Reading the evidence needs
+the same as planning.
+
+13
+00:00:40.551 --> 00:00:41.980
+Write only to apply.

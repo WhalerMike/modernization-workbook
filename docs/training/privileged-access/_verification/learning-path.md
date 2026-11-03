@@ -39,6 +39,7 @@ Method:
 - Module 8, step 5 adds `cd ../drift-pipeline` before the chapter's commands, so the POSIX steps run from the folder the lab's command list starts in. The chapter says "In `examples/drift-pipeline`" without a command.
 - Module 1 and the other modules merge the chapter's last step (`Invoke-Pester -Path tests`) with the cleanup (`Remove-Item -Recurse -Force out`) into one step. Same commands, same order.
 - Workbook Chapter 09 (deployment) isn't on `main` on 2026-11-02, so the path doesn't link it.
+- 2026-11-03, building the module decks: every module's Lab 1 was run again, as the module pages give the commands, in a fresh scratch copy of `examples/`; the output matched the kit captures (Module 8 differs only by its added `cd ../drift-pipeline` and the merged last step), and `drift-pipeline`'s pytest suite passed 142 in a copy of the whole `examples/` folder. Module 5's summary said "You read three PRV groups"; the fixture's desired state (`tests/fixtures/ch05/inputs/prv-groups.json`) lists four, and the fixture tenant holds five `PRV-*` groups and `Helpdesk-Admins-Legacy`. The summary now says the lab reads the tenant's PRV groups against a reviewed file of four.
 
 ## Not sourced
 

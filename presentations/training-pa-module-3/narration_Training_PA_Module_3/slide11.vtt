@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.012
+Step six applies the plan against
+the fake, three times in a row.
+
+2
+00:00:04.012 --> 00:00:08.789
+Each run builds a client that may write,
+reads the tenant, plans, and applies,
+
+3
+00:00:08.789 --> 00:00:13.800
+passing the check's findings and the
+emergency group, so the guards can refuse.
+
+4
+00:00:13.800 --> 00:00:18.087
+The first run sends six requests:
+the contexts and the strength.
+
+5
+00:00:18.087 --> 00:00:22.132
+The second run sends three: the
+three policies that were Blocked,
+
+6
+00:00:22.132 --> 00:00:26.025
+now that what they need exists,
+and each is created report-only.
+
+7
+00:00:26.025 --> 00:00:29.200
+The third run finds nothing
+to do, and sends nothing.
+
+8
+00:00:29.200 --> 00:00:32.650
+Then read the activation gate's
+state in the fake tenant:
+
+9
+00:00:32.650 --> 00:00:35.125
+enabled for reporting, but not enforced.
+
+10
+00:00:35.125 --> 00:00:36.988
+The gate is still report-only.
+
+11
+00:00:36.988 --> 00:00:40.037
+Turning it On is a
+separate, reviewed change.
+
+12
+00:00:40.037 --> 00:00:43.471
+Step seven runs the tests,
+three hundred thirty pass,
+
+13
+00:00:43.471 --> 00:00:45.700
+and you delete the output folder.

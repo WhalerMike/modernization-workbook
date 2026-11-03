@@ -1,0 +1,68 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.466
+Welcome to Module 5 of the
+Privileged Access learning path:
+
+2
+00:00:04.466 --> 00:00:06.900
+PIM for Groups, and the P R V groups.
+
+3
+00:00:06.900 --> 00:00:11.676
+This module serves the project
+plan's task A2.1 in Phase 2,
+
+4
+00:00:11.676 --> 00:00:16.763
+and A3.3 in Phase 3, with Chapter
+05 of the developer workbook.
+
+5
+00:00:16.763 --> 00:00:20.187
+The program never assigns a
+privileged role to a person.
+
+6
+00:00:20.187 --> 00:00:25.375
+It assigns the role to a role-assignable
+group named P R V, then the tier,
+
+7
+00:00:25.375 --> 00:00:30.563
+then the role, so the tier shows in
+every review, alert and audit record.
+
+8
+00:00:30.563 --> 00:00:32.662
+Module 1 reads those groups.
+
+9
+00:00:32.662 --> 00:00:34.101
+This module writes them.
+
+10
+00:00:34.101 --> 00:00:39.479
+You keep each group's own state in one
+reviewed file: who is a member or owner,
+
+11
+00:00:39.479 --> 00:00:43.800
+until when, on which ticket,
+and how membership is activated.
+
+12
+00:00:43.800 --> 00:00:49.035
+The code reads the tenant first, reports
+what's wrong, plans the exact requests,
+
+13
+00:00:49.035 --> 00:00:52.962
+and applies them only when you
+ask, and only past its guards.
+
+14
+00:00:52.962 --> 00:00:56.880
+It's illustrative: tested
+against fixtures and a fake.

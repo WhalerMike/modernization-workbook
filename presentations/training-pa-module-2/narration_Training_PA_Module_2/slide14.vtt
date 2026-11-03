@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.025
+Check yourself with two questions.
+
+2
+00:00:02.025 --> 00:00:05.600
+First: what is the lockout
+Microsoft Learn documents?
+
+3
+00:00:05.600 --> 00:00:09.634
+The answer is b: every Global
+Administrator and Privileged Role
+
+4
+00:00:09.634 --> 00:00:14.125
+Administrator eligible, approval
+required, and no approvers selected.
+
+5
+00:00:14.125 --> 00:00:17.275
+No one can approve, so
+administration is locked.
+
+6
+00:00:17.275 --> 00:00:22.913
+Second: a report-only Conditional Access
+policy doesn't exclude the emergency group.
+
+7
+00:00:22.913 --> 00:00:24.663
+What does E A oh eight report?
+
+8
+00:00:24.663 --> 00:00:27.882
+The answer is b: Info,
+because Microsoft Learn
+
+9
+00:00:27.882 --> 00:00:31.101
+says report-only policies
+need no exclusion.
+
+10
+00:00:31.101 --> 00:00:36.313
+You saw it for the policy that records
+emergency sign-ins in Lab 1, step four.
+
+11
+00:00:36.313 --> 00:00:41.280
+The module page has two more questions,
+each linked to the section that answers it.

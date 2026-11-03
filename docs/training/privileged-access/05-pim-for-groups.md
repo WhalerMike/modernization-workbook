@@ -312,7 +312,7 @@ Remove-Item -Recurse -Force out
 
 ## Summary (2 minutes)
 
-You read three PRV groups from a fictional tenant, found a standing member nobody granted, an owner trap and a nested group, read the exact requests that would fix them, saw a guard refuse a plan with too many removals, and applied eight requests to the fake.
+You read a fictional tenant's PRV groups against a reviewed file of four, found a standing member nobody granted, an owner trap and a nested group, read the exact requests that would fix them, saw a guard refuse a plan with too many removals, and applied eight requests to the fake.
 
 **The evidence an ISSO keeps:** the reviewed `prv-groups.json`, with each holder's end date and ticket; each plan's `diff.txt`, `plan.json` and `findings.json`; and each apply's `results.json` and `manifest.json`. The full list is in the chapter's [Federal requirements and evidence](../../project-plans/developer-workbooks/privileged-access/05-pim-for-groups.md#federal-requirements-and-evidence); before the code ships, work through its [checklist](../../project-plans/developer-workbooks/privileged-access/05-pim-for-groups.md#checklist).
 

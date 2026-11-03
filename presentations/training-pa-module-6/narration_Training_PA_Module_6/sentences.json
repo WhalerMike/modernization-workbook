@@ -1,0 +1,642 @@
+{
+ "1": [
+  [
+   0.05,
+   5.95,
+   "Welcome to Module 6 of the Privileged Access learning path: pim for Azure resources."
+  ],
+  [
+   6.0,
+   10.65,
+   "This module serves the project plan's task A3.2 in Phase 3, Azure privileged roles eligible through pim, with Chapter 06 of the developer workbook."
+  ],
+  [
+   16.65,
+   5.487,
+   "Owner, Contributor and User Access Administrator on a subscription are privileged too."
+  ],
+  [
+   22.137,
+   4.938,
+   "The plan makes them eligible through pim, with at most three subscription owners."
+  ],
+  [
+   27.075,
+   3.438,
+   "In this module you hold pim for Azure resources as code."
+  ],
+  [
+   30.512,
+   9.225,
+   "One reviewed file says which scopes are governed, the settings for each tier, who is eligible, and which standing assignments are allowed and who owns each one."
+  ],
+  [
+   39.737,
+   6.487,
+   "The code reads the estate, prints a diff, writes the requests it would send, and sends them only with Apply."
+  ],
+  [
+   46.225,
+   3.862,
+   "It's illustrative: tested against fixtures and a fake."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.2,
+   "Why its own module?"
+  ],
+  [
+   1.25,
+   3.825,
+   "Because pim for Azure resources isn't in Microsoft Graph."
+  ],
+  [
+   5.075,
+   6.588,
+   "It goes through Azure Resource Manager, and the caller needs Azure roles on the resource instead of Graph permissions."
+  ],
+  [
+   11.662,
+   12.938,
+   "The roles matter: Owner, Contributor and User Access Administrator on a subscription are privileged, and Microsoft Learn's Azure R B A C best practices say at most three subscription owners."
+  ],
+  [
+   24.6,
+   2.5,
+   "Four guards keep people from losing access."
+  ],
+  [
+   27.1,
+   10.512,
+   "Eligible first: each standing assignment held by a user or group gets an eligible replacement before its removal, so no holder loses the role before they can activate it."
+  ],
+  [
+   37.612,
+   12.488,
+   "Rule A Z oh five flags a standing assignment held by the identity the plan runs as; the apply needs it to finish, so decide it last, from another session, as this workbook's design guidance says."
+  ],
+  [
+   50.1,
+   8.287,
+   "The desired state refuses an authentication context before its Conditional Access policy is confirmed, as Microsoft Learn advises."
+  ],
+  [
+   58.388,
+   4.812,
+   "And policies go first, because a request that breaks a policy is refused."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   5.175,
+   "Here's what you'll be able to do by the end of this module, which takes about fifty minutes with the lab."
+  ],
+  [
+   5.225,
+   6.763,
+   "You'll explain why pim for Azure resources goes through Resource Manager, and which A P I version the code uses."
+  ],
+  [
+   11.988,
+   4.175,
+   "You'll explain why role settings must be set at every governed scope."
+  ],
+  [
+   16.163,
+   2.788,
+   "You'll say who can and can't be made eligible."
+  ],
+  [
+   18.95,
+   5.8,
+   "You'll read the plan's three kinds of operation and its findings, A Z oh one to oh six."
+  ],
+  [
+   24.75,
+   5.625,
+   "And you'll explain why the code declares User Access Administrator, not Owner, for the apply."
+  ],
+  [
+   30.375,
+   9.387,
+   "Before you start, finish Module 1, whose Azure half reads the same two schedule lists, and Module 4, whose seven managed rules are the same here."
+  ],
+  [
+   39.763,
+   11.65,
+   "Lab 2 needs a worldwide or G C C test tenant with a test management group, subscription and resource group, never production, and P2 or Governance licenses for eligible users."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   3.462,
+   "Unit 1: Resource Manager, scopes and holders."
+  ],
+  [
+   3.513,
+   17.2,
+   "Resource Manager, not Graph: three resource types under Microsoft dot Authorization do the work, and Microsoft Learn's page on the Azure R B A C A P I versions marks twenty twenty, ten, oh one as the generally available release of every pim resource type."
+  ],
+  [
+   20.712,
+   1.163,
+   "The code pins it."
+  ],
+  [
+   21.875,
+   11.75,
+   "Policies don't inherit: Microsoft Learn's page on Azure resource role settings says settings at a subscription aren't inherited by a resource group under it, so the file lists every scope it governs."
+  ],
+  [
+   33.625,
+   8.738,
+   "Who can be eligible: users, not applications, service principals or managed identities, which can't perform the activation steps."
+  ],
+  [
+   42.362,
+   5.013,
+   "So a standing Contributor held by a deployment pipeline is reported, and left alone."
+  ],
+  [
+   47.375,
+   11.15,
+   "And what counts as privileged: Learn's privileged administrator roles, of which the chapter governs the three the plan names, with Microsoft's best practice of at most three subscription owners."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   3.05,
+   "The findings, A Z oh one to oh six."
+  ],
+  [
+   3.1,
+   10.312,
+   "Oh one is standing Owner, Contributor or User Access Administrator outside the exceptions, against Microsoft Learn's advice of zero permanently active assignments."
+  ],
+  [
+   13.412,
+   3.375,
+   "It's Info for a holder on the exceptions list with an owner."
+  ],
+  [
+   16.788,
+   7.963,
+   "Oh two is a standing assignment held by a service principal or managed identity, which Microsoft Learn says can't be made eligible."
+  ],
+  [
+   24.75,
+   8.088,
+   "Oh three is User Access Administrator at root scope, the elevated access Microsoft Learn says to remove when the task is done."
+  ],
+  [
+   32.837,
+   5.275,
+   "Oh four is an eligibility the file doesn't declare, or one that never expires."
+  ],
+  [
+   38.112,
+   2.75,
+   "It's reported, never removed by the plan."
+  ],
+  [
+   40.862,
+   4.925,
+   "Oh five is the plan's own identity holding a standing role, the kit's own design."
+  ],
+  [
+   45.788,
+   4.675,
+   "And oh six is more than three Owners on a subscription, counted after the plan."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   2.538,
+   "Unit 2: the plan and the apply."
+  ],
+  [
+   2.587,
+   1.988,
+   "The call list has two tasks."
+  ],
+  [
+   4.575,
+   3.525,
+   "Reader reads; User Access Administrator applies."
+  ],
+  [
+   8.1,
+   10.537,
+   "Microsoft Learn's pim pages name two roles that can manage assignments, and the code follows the stricter statement and declares the narrower one, User Access Administrator."
+  ],
+  [
+   18.637,
+   1.788,
+   "Owner isn't needed for anything."
+  ],
+  [
+   20.425,
+   7.775,
+   "The plan's order is fixed: policy updates first, then new eligible assignments, then removal of standing assignments."
+  ],
+  [
+   28.2,
+   9.562,
+   "Each request has a G U I D derived from the run I D and the operation, so the dry run and the apply send exactly the requests the reviewer read."
+  ],
+  [
+   37.763,
+   5.338,
+   "An eligibility the file doesn't declare is reported, never removed by the plan."
+  ],
+  [
+   43.1,
+   4.875,
+   "And every run writes a state file, which holds each policy's rules as read."
+  ],
+  [
+   47.975,
+   1.188,
+   "That's the back-out."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   3.413,
+   "Lab 1 runs in one PowerShell 7 session."
+  ],
+  [
+   4.188,
+   9.2,
+   "The fixture estate has a management group, contoso root, a workload subscription, a control-plane subscription, and a resource group, R G payroll."
+  ],
+  [
+   13.387,
+   6.3,
+   "The identity that would run the apply is the fictional service principal S P P I M automation."
+  ],
+  [
+   19.688,
+   6.8,
+   "Step one replays Microsoft's examples from the Azure R E S T A P I specifications."
+  ],
+  [
+   26.488,
+   4.138,
+   "Six pass; the thirty-two not run are the chapter's other tests."
+  ],
+  [
+   30.625,
+   7.875,
+   "The second test is the one to notice: Microsoft's own assignment example is an activation, though its assignment type says Assigned."
+  ],
+  [
+   38.5,
+   3.1,
+   "Step two lists the roles each task needs."
+  ],
+  [
+   41.6,
+   1.288,
+   "Reading needs Reader."
+  ],
+  [
+   42.888,
+   3.45,
+   "Applying needs Reader and User Access Administrator."
+  ],
+  [
+   46.337,
+   1.788,
+   "Owner isn't needed for anything."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   2.438,
+   "Step three plans, as a dry run."
+  ],
+  [
+   2.487,
+   11.787,
+   "You give it the cloud, the fixture estate, the desired state, the principal I D of the identity that would run the apply, so it can flag that identity's own roles, an output folder and a run I D."
+  ],
+  [
+   14.275,
+   6.237,
+   "It reads nine assignment schedules and two eligibility schedules, and twelve policies at four scopes."
+  ],
+  [
+   20.512,
+   7.412,
+   "The plan: eleven policy updates, five eligible assignments to add, and three standing assignments to remove."
+  ],
+  [
+   27.925,
+   2.362,
+   "Nineteen requests, in that order."
+  ],
+  [
+   30.288,
+   4.562,
+   "The findings: seven, with two warnings and one information item."
+  ],
+  [
+   34.85,
+   5.237,
+   "It's a dry run, so the nineteen requests are written to the plan file, and none are sent."
+  ],
+  [
+   40.087,
+   2.7,
+   "Review the diff, then run again with Apply."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   1.6,
+   "Step four reads the diff."
+  ],
+  [
+   1.65,
+   16.938,
+   "The plus lines add eligible assignments: User Access Administrator at the root management group, Tier 0, for ninety days; Owner on the workload subscription, twice; and Contributor on the payroll resource group, twice, each for a hundred eighty days, Tier 1."
+  ],
+  [
+   18.587,
+   1.575,
+   "Three of them say converted."
+  ],
+  [
+   20.163,
+   11.963,
+   "Each converted line has its minus line below: the standing User Access Administrator, Owner and Contributor assignments those holders had, each removed only after its eligible replacement."
+  ],
+  [
+   32.125,
+   1.837,
+   "Eligible replacement first."
+  ],
+  [
+   33.962,
+   5.588,
+   "Then count the tilde lines: seventy policy rule changes, across the governed scopes."
+  ],
+  [
+   39.55,
+   3.475,
+   "The slide shortens the I D's and scope names to fit."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   2.763,
+   "Then the findings, leaving out the two warnings."
+  ],
+  [
+   2.812,
+   11.262,
+   "Three A Z oh one findings: standing User Access Administrator at the root management group, standing Owner on the workload subscription, and standing Contributor on the payroll resource group."
+  ],
+  [
+   14.075,
+   6.812,
+   "One oh one is Info: a Contributor on the control-plane subscription that's on the exceptions list with an owner."
+  ],
+  [
+   20.887,
+   9.4,
+   "A Z oh five is the automation service principal's own User Access Administrator: the apply needs it to finish, so decide it last, from another session."
+  ],
+  [
+   30.288,
+   5.4,
+   "A Z oh three is User Access Administrator at root scope, elevated access."
+  ],
+  [
+   35.688,
+   7.125,
+   "A Z oh two is a pipeline's standing Contributor, which can't be made eligible, so it's reported and left alone."
+  ],
+  [
+   42.812,
+   4.537,
+   "And A Z oh six: more than three Owners on the workload subscription."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   7.513,
+   "Step five applies against the fake, with the same run I D, so it sends exactly the nineteen requests the dry run wrote."
+  ],
+  [
+   7.562,
+   8.325,
+   "It prints the same read, plan and findings, then: nineteen requests sent, and after a fresh read, zero left to change."
+  ],
+  [
+   15.887,
+   2.513,
+   "Step six shows the code refusing."
+  ],
+  [
+   18.4,
+   4.112,
+   "Build a client for the read task, and try to write a policy update with it."
+  ],
+  [
+   22.512,
+   5.638,
+   "It throws: that call isn't declared for the read task; add it to the call list with its role."
+  ],
+  [
+   28.15,
+   1.688,
+   "A read client can't write."
+  ],
+  [
+   29.837,
+   3.038,
+   "Then ask the code to treat a web app as a scope."
+  ],
+  [
+   32.875,
+   5.463,
+   "It refuses: a scope must be a management group, a subscription or a resource group."
+  ],
+  [
+   38.337,
+   5.588,
+   "Step seven runs the tests, three hundred thirty pass, and you delete the output folder."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   10.725,
+   "Lab 2 runs in a worldwide or G C C test tenant, with a test management group, subscription and resource group, never production, and fictional users and groups."
+  ],
+  [
+   10.775,
+   6.375,
+   "Eligible users need Microsoft Entra I D P2 or Microsoft Entra I D Governance."
+  ],
+  [
+   17.15,
+   5.688,
+   "You prepare an app with Reader on each test scope, and write the desired state for the test scopes."
+  ],
+  [
+   22.837,
+   8.137,
+   "You plan liv, then apply under a User Access Administrator assignment that lasts one day, and try the narrower role on one scope."
+  ],
+  [
+   30.975,
+   2.25,
+   "No Graph permission is needed at all."
+  ],
+  [
+   33.225,
+   14.512,
+   "The back-out waits at least five minutes after the last assignment, removes the eligible assignments the run created, restores each policy from the dry run's state file, removes the app's roles and the app, and deletes the test output folders."
+  ],
+  [
+   47.737,
+   2.15,
+   "The authors haven't run Lab 2."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   1.387,
+   "The federal requirement."
+  ],
+  [
+   1.438,
+   8.613,
+   "The desired state, the plan and the read-back are the evidence for the plan's task A3.2, Azure privileged roles eligible through pim."
+  ],
+  [
+   10.05,
+   11.275,
+   "From nist special publication eight hundred fifty-three they support A C six, with enhancements one and five, A C two, and C M three with C M four, enhancement two."
+  ],
+  [
+   21.325,
+   1.35,
+   "Note one absence."
+  ],
+  [
+   22.675,
+   9.988,
+   "sis-uh's B O D twenty-five oh-one has Microsoft Entra I D policies, and they cover Entra roles, not Azure roles, so the chapter claims none of them here."
+  ],
+  [
+   32.663,
+   13.637,
+   "The evidence an I S S O keeps: the reviewed desired state; each run's state, plan, diff and findings, with its manifest; and the apply's diff-after file, which shows nothing left to change."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   1.975,
+   "Check yourself with two questions."
+  ],
+  [
+   2.025,
+   2.913,
+   "First: you set role settings at a subscription."
+  ],
+  [
+   4.938,
+   1.9,
+   "Does a resource group under it get them?"
+  ],
+  [
+   6.838,
+   1.837,
+   "The answer is b: no."
+  ],
+  [
+   8.675,
+   5.575,
+   "Microsoft Learn says the settings aren't inherited, so the file lists every governed scope."
+  ],
+  [
+   14.25,
+   4.825,
+   "Second: a deployment pipeline's service principal holds standing Contributor."
+  ],
+  [
+   19.075,
+   1.262,
+   "What does the plan do?"
+  ],
+  [
+   20.337,
+   7.375,
+   "The answer is c: it reports A Z oh two and leaves it alone, because service principals can't be made eligible."
+  ],
+  [
+   27.712,
+   2.288,
+   "You saw it in Lab 1, step four."
+  ],
+  [
+   30.0,
+   4.9,
+   "The module page has two more questions, each linked to the section that answers it."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   0.825,
+   "To sum up."
+  ],
+  [
+   0.875,
+   14.863,
+   "You read a fictional Azure estate at four scopes, planned nineteen requests in order, policies, then eligibility, then removals, saw each conversion add the eligible assignment first, and applied them to the fake with nothing left to change."
+  ],
+  [
+   15.738,
+   2.513,
+   "And you saw a read client refuse a write."
+  ],
+  [
+   18.25,
+   4.312,
+   "Next is Module 7: access reviews of privileged roles."
+  ],
+  [
+   22.562,
+   5.862,
+   "The approval gate controls the use of privilege; reviews control who keeps the eligibility."
+  ],
+  [
+   28.425,
+   11.825,
+   "In Module 7 you define every privileged review series as code, show a reviewer what a change will do before it reaches the tenant, and hand the I S S O the decisions each review produced."
+  ]
+ ]
+}

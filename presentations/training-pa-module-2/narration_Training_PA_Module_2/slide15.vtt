@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.875
+To sum up.
+
+2
+00:00:00.875 --> 00:00:05.625
+You checked two emergency accounts against
+Microsoft Learn's standard and found one
+
+3
+00:00:05.625 --> 00:00:09.505
+that fails five ways, three enforced
+policies that would lock them out,
+
+4
+00:00:09.505 --> 00:00:11.713
+and a stranger in their exclusion group.
+
+5
+00:00:11.713 --> 00:00:16.038
+And you built an alert that sees five
+events where Learn's sample sees two.
+
+6
+00:00:16.038 --> 00:00:20.205
+Carry one thing forward: before
+any later lab enforces anything,
+
+7
+00:00:20.205 --> 00:00:23.900
+build the emergency accounts
+and confirm one can sign in.
+
+8
+00:00:23.900 --> 00:00:29.675
+Next is Module 3: Conditional Access for
+administrators and the activation gate.
+
+9
+00:00:29.675 --> 00:00:34.494
+It's the first module that writes, so it's
+the first that could lock people out,
+
+10
+00:00:34.494 --> 00:00:36.204
+and its first rule, C A oh one,
+
+11
+00:00:36.204 --> 00:00:40.080
+keeps the emergency group
+excluded from every policy file.

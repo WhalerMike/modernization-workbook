@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.904
+Lab 2 runs in a worldwide or G C
+C test tenant with Microsoft Entra
+
+2
+00:00:04.904 --> 00:00:10.125
+I D P2 or Governance licenses and
+fictional people, never production.
+
+3
+00:00:10.125 --> 00:00:14.450
+Use groups made for the lab, because a
+group can't be taken back out of PIM.
+
+4
+00:00:14.450 --> 00:00:18.250
+As a Privileged Role Administrator,
+make the lab groups by hand.
+
+5
+00:00:18.250 --> 00:00:20.737
+Register a reader app and a writer app.
+
+6
+00:00:20.737 --> 00:00:24.468
+Plan as the reader, apply the
+reviewed diff as the writer,
+
+7
+00:00:24.468 --> 00:00:27.388
+then run the plan again
+and see zero changes.
+
+8
+00:00:27.388 --> 00:00:30.809
+The reader gets the four read
+permissions from step three;
+
+9
+00:00:30.809 --> 00:00:35.087
+the writer gets those and the three
+writes from step six, and nothing else.
+
+10
+00:00:35.087 --> 00:00:38.594
+To back out, empty both lists
+in your file and apply it,
+
+11
+00:00:38.594 --> 00:00:41.937
+so no schedule remains,
+then delete the lab folder.
+
+12
+00:00:41.937 --> 00:00:44.140
+The authors haven't run Lab 2.
