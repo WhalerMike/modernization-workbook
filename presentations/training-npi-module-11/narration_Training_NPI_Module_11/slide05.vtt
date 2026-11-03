@@ -1,0 +1,68 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.588
+Before you start, three
+things are in place.
+
+2
+00:00:02.588 --> 00:00:06.776
+Roles: every write in the runbook is
+a named person's delegated sign-in,
+
+3
+00:00:06.776 --> 00:00:11.994
+with a role activated through Privileged
+Identity Management for the change window,
+
+4
+00:00:11.994 --> 00:00:15.962
+which Microsoft Learn's P I M
+documentation shows how to activate.
+
+5
+00:00:15.962 --> 00:00:20.275
+The scheduled and read steps sign
+in as an app with a certificate.
+
+6
+00:00:20.275 --> 00:00:22.225
+Nothing signs in with a secret.
+
+7
+00:00:22.225 --> 00:00:26.600
+That rule is this workbook's design
+guidance, from the kit's write paths.
+
+8
+00:00:26.600 --> 00:00:30.379
+Approvals: the change advisory
+board approves the change record,
+
+9
+00:00:30.379 --> 00:00:33.948
+the identity governance officer
+approves the settings file,
+
+10
+00:00:33.948 --> 00:00:37.307
+a reviewer who isn't the operator
+approves each plan's hash,
+
+11
+00:00:37.307 --> 00:00:41.925
+and the ISSO and the change advisory
+board approve the promotion to production.
+
+12
+00:00:41.925 --> 00:00:43.938
+And one change record per stage.
+
+13
+00:00:43.938 --> 00:00:46.158
+Its number goes into the settings file,
+
+14
+00:00:46.158 --> 00:00:49.420
+and every manifest the deploy
+scripts write repeats it.

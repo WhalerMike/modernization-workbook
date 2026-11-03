@@ -1,0 +1,72 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.200
+Why does this matter?
+
+2
+00:00:01.200 --> 00:00:03.713
+Some workloads can't leave Kerberos yet.
+
+3
+00:00:03.713 --> 00:00:06.655
+A traditional service
+account with an S P N and a
+
+4
+00:00:06.655 --> 00:00:09.900
+password that never expires
+is the riskiest of them.
+
+5
+00:00:09.900 --> 00:00:14.885
+Microsoft Learn's guidance on securing
+group managed service accounts says
+
+6
+00:00:14.885 --> 00:00:19.325
+a G M S A gives the same workload a
+password that Windows changes for it.
+
+7
+00:00:19.325 --> 00:00:24.833
+And Learn's overview of delegated managed
+service accounts says a D M S A, on a
+
+8
+00:00:24.833 --> 00:00:30.875
+Windows Server 2025 domain, supersedes
+the old account and disables its password.
+
+9
+00:00:30.875 --> 00:00:35.185
+But a G M S A works only while
+Active Directory is authoritative,
+
+10
+00:00:35.185 --> 00:00:39.412
+which is why the program's guidance
+gives every one an end date.
+
+11
+00:00:39.412 --> 00:00:41.338
+So converting isn't the end.
+
+12
+00:00:41.338 --> 00:00:46.935
+Every G M S A and D M S A must either
+move to a workload identity, retire,
+
+13
+00:00:46.935 --> 00:00:52.737
+or sit on a dated Kerberos island list,
+with an S P N owner and an end date.
+
+14
+00:00:52.737 --> 00:00:54.827
+In this module you plan all three,
+
+15
+00:00:54.827 --> 00:00:58.440
+and you see the write path
+refuse a plan nobody approved.

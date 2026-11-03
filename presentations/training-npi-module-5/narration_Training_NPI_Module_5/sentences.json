@@ -1,0 +1,789 @@
+{
+ "1": [
+  [
+   0.05,
+   6.4,
+   "Welcome to Module 5 of the Non-Person Identity learning path: cut the privilege of service principals."
+  ],
+  [
+   6.45,
+   6.425,
+   "This module is the first half of Gate 4, Least privilege, with Chapter 7 of the developer workbook."
+  ],
+  [
+   12.875,
+   9.963,
+   "You'll sweep every service principal for what it holds: its application permissions, its delegated grants, its directory roles, and a managed identity's Azure roles."
+  ],
+  [
+   22.837,
+   9.375,
+   "You'll flag the broad grants that have no current exception, hand the privileged service principals to the Privileged Access plan, and build the quarterly owner review."
+  ],
+  [
+   32.212,
+   6.7,
+   "Then you'll turn the owners' decisions into a plan, and apply it only after a second person approves its hash."
+  ],
+  [
+   38.913,
+   3.3,
+   "The code runs on your laptop against a fictional estate."
+  ],
+  [
+   42.212,
+   5.013,
+   "It's illustrative: tested against fixtures, not run against a lyve tenant."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.613,
+   "Why does privilege need cutting?"
+  ],
+  [
+   1.663,
+   4.975,
+   "Because a workload can use its access faster and more widely than any person."
+  ],
+  [
+   6.638,
+   5.325,
+   "An application permission gives an app everything its scope allows, across the whole tenant."
+  ],
+  [
+   11.963,
+   6.463,
+   "And a permission like Directory dot ReadWrite dot All, granted to make it work, stays until someone takes it away."
+  ],
+  [
+   18.425,
+   3.775,
+   "In this module you find those grants and take them away safely."
+  ],
+  [
+   22.2,
+   6.45,
+   "You sweep every service principal, flag the broad grants without a current exception, and ask the owners."
+  ],
+  [
+   28.65,
+   1.75,
+   "Two rules hold the whole time."
+  ],
+  [
+   30.4,
+   3.95,
+   "Nothing is removed until a second person approves the plan's hash."
+  ],
+  [
+   34.35,
+   2.85,
+   "And the code removes a grant, never an app."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   5.225,
+   "Here's what you'll be able to do by the end of this module, which takes about sixty minutes with the lab."
+  ],
+  [
+   5.275,
+   6.737,
+   "You'll explain the difference between an application permission and a delegated grant, and why the type matters more than the name."
+  ],
+  [
+   12.012,
+   4.425,
+   "You'll name what makes a grant broad, and what a recorded exception must hold."
+  ],
+  [
+   16.438,
+   5.713,
+   "You'll say which service principals go to the Privileged Access plan, and why this chapter doesn't sweep them."
+  ],
+  [
+   22.15,
+   6.912,
+   "And you'll run the sweep, read the owner review and the plan, and watch the write path refuse a plan nobody approved."
+  ],
+  [
+   29.062,
+   8.5,
+   "Before you start, finish Module 1, because the sweep reads its register, and Module 2, because the review goes to the owners it checks."
+  ],
+  [
+   37.562,
+   5.3,
+   "Lab 1 needs PowerShell 7.1 or later with Pester 5, and no tenant."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   4.487,
+   "Unit 1 is the guide's Step 4, sub-steps four a to four c."
+  ],
+  [
+   4.537,
+   1.7,
+   "Four a is Graph permissions."
+  ],
+  [
+   6.237,
+   10.688,
+   "Microsoft Learn's guidance is to prefer delegated access where a user is present, because a delegated grant gives the app only the intersection of the user's rights and the scope."
+  ],
+  [
+   16.925,
+   13.8,
+   "And judge each grant by its type, not its name: the Microsoft Graph permissions reference shows Mail dot ReadWrite and Mail dot Send as application permissions, with the same names as their delegated versions, and the program rates them critical."
+  ],
+  [
+   30.725,
+   9.137,
+   "Learn also says removing a permission from the app registration doesn't revoke an existing grant, and that tokens already issued stay valid for their lifetime."
+  ],
+  [
+   39.862,
+   1.875,
+   "Four b is directory roles."
+  ],
+  [
+   41.737,
+   7.175,
+   "Microsoft Learn's page on privileged roles calls a service principal with a highly privileged role a control-plane asset."
+  ],
+  [
+   48.913,
+   5.475,
+   "Four c is Azure: Microsoft's guidance is to scope a role to the resource it's used on."
+  ],
+  [
+   54.388,
+   3.325,
+   "Four d and four e are Module 6's."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   5.55,
+   "Unit 2 starts with the rule the code holds, which is the program's, so it's design guidance."
+  ],
+  [
+   5.6,
+   6.3,
+   "Owners review every grant every quarter, and the review closes only when its findings are acted on."
+  ],
+  [
+   11.9,
+   8.537,
+   "No broad permission stands without a recorded exception, which names a justification, an approver, an approval date and an end date."
+  ],
+  [
+   20.438,
+   10.8,
+   "Where Microsoft Learn documents a narrower replacement, such as Selected permissions in SharePoint, or role-based access control for applications in Exchange Online, that's the target."
+  ],
+  [
+   31.238,
+   11.512,
+   "A managed identity's Azure roles belong at the resource, because, as Microsoft Learn's Azure role assignment steps say, a role at a subscription or management group reaches everything under it."
+  ],
+  [
+   42.75,
+   4.05,
+   "Privileged service principals are handed to the Privileged Access plan."
+  ],
+  [
+   46.8,
+   7.487,
+   "And the code removes a grant, never the app: one app role assignment through the resource, or one delegated grant narrowed."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   13.05,
+   "The sweep reads every service principal in the register: its app role assignments on every resource, not just Graph, its delegated grants, its directory roles, and for a managed identity, its Azure roles."
+  ],
+  [
+   13.1,
+   4.787,
+   "Then the check applies nine rules, N P L P oh one to oh nine."
+  ],
+  [
+   17.887,
+   8.213,
+   "Most rest on Microsoft Learn's permission and role pages; the exception rules and the unnamed-role rule are the program's design guidance."
+  ],
+  [
+   26.1,
+   4.438,
+   "Oh one: a broad application permission with no recorded exception."
+  ],
+  [
+   30.538,
+   7.638,
+   "Oh two: an exception that ended, or that's missing a justification, an approver, an approval date or an end date."
+  ],
+  [
+   38.175,
+   4.463,
+   "Oh three: a broad delegated scope consented for all users."
+  ],
+  [
+   42.638,
+   8.7,
+   "Oh four is subtle: a mail permission still granted in Entra while its exception relies on Exchange's scoped access, so the scope does nothing."
+  ],
+  [
+   51.337,
+   3.3,
+   "Oh five is mail limited by the legacy access policy."
+  ],
+  [
+   54.638,
+   5.175,
+   "Oh six and oh seven grade a managed identity's Azure role by how wide its scope is."
+  ],
+  [
+   59.812,
+   1.962,
+   "Oh eight hands a privileged app off."
+  ],
+  [
+   61.775,
+   2.55,
+   "And oh nine is a role nobody can name."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   2.775,
+   "Two pieces sit between the check and the plan."
+  ],
+  [
+   2.825,
+   1.562,
+   "First, the hand-off."
+  ],
+  [
+   4.388,
+   4.713,
+   "Four escalation permissions let an app grant itself more or act as others."
+  ],
+  [
+   9.1,
+   11.613,
+   "The Microsoft Graph permissions reference cautions that app role assignment read-write and role management read-write can grant authorization, and that application read-write lets an app act as other entities."
+  ],
+  [
+   20.712,
+   8.55,
+   "And Microsoft Learn's guide to granting permissions says only appropriate users should reach apps granted delegated permission grant read-write."
+  ],
+  [
+   29.262,
+   9.213,
+   "Any service principal holding one, or holding a directory role, is handed off whole to the Privileged Access plan, with everything it holds listed."
+  ],
+  [
+   38.475,
+   3.737,
+   "It gets no finding here, so two plans never disagree about it."
+  ],
+  [
+   42.212,
+   2.325,
+   "Second, the quarterly owner review."
+  ],
+  [
+   44.538,
+   5.475,
+   "It has one row per grant of every service principal that stays here, sent to its owners."
+  ],
+  [
+   50.013,
+   9.525,
+   "Under the program's design guidance, only decisions dated this quarter count; an earlier answer shows as the last decision, and the row is open again."
+  ],
+  [
+   59.538,
+   6.412,
+   "The review closes when every row is decided this quarter and nothing approved for removal is still granted."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   2.812,
+   "Unit 3 is the plan and the write path."
+  ],
+  [
+   2.862,
+   6.062,
+   "The plan has one action per broad grant and per decided change, and only two kinds ever write."
+  ],
+  [
+   8.925,
+   8.787,
+   "Remove app role removes an application permission an owner decided to remove, but only once any named replacement is already granted."
+  ],
+  [
+   17.712,
+   5.025,
+   "Narrow grant shrinks a delegated grant to a smaller set of scopes, never to nothing."
+  ],
+  [
+   22.738,
+   11.775,
+   "Everything else is recorded and sends nothing: waiting for a replacement or a decision, kept under an exception, re-scoped by the owner in reviewed infrastructure code, or handed off."
+  ],
+  [
+   34.513,
+   2.225,
+   "The write path is a separate script."
+  ],
+  [
+   36.737,
+   6.45,
+   "It runs only the plan whose hash was approved, for this tenant and cloud, no more than seven days old."
+  ],
+  [
+   43.188,
+   2.625,
+   "It re-reads each target before writing."
+  ],
+  [
+   45.812,
+   12.1,
+   "And it runs as a person with Privileged Role Administrator, never an unattended app, because, as the Microsoft Graph permissions reference cautions, the write permissions can grant authorization themselves."
+  ],
+  [
+   57.913,
+   3.1,
+   "The seven-day limit is the program's design guidance."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   6.625,
+   "Lab 1 runs in the non-person identity folder, in PowerShell 7, against a fictional estate."
+  ],
+  [
+   7.4,
+   5.088,
+   "First make Chapter 1's register, as in Module 1, because the sweep reads it."
+  ],
+  [
+   12.488,
+   5.075,
+   "Step one runs Learn's review script against the stand-ins: ten tests pass."
+  ],
+  [
+   17.562,
+   2.475,
+   "Step two lists what each task needs."
+  ],
+  [
+   20.038,
+   3.263,
+   "The sweep holds three Graph read permissions and Reader."
+  ],
+  [
+   23.3,
+   5.838,
+   "The write task is separate, and it's the one with app role assignment and delegated grant read-write."
+  ],
+  [
+   29.137,
+   9.075,
+   "Step three sweeps eleven service principals and twenty grants: twelve application permissions, five Azure roles and three delegated grants."
+  ],
+  [
+   38.212,
+   7.963,
+   "Two are skipped, the agent identity and its blueprint, which are Module 9's, and three are handed to the Privileged Access plan."
+  ],
+  [
+   46.175,
+   5.0,
+   "The owner review has fifteen rows, six still open, so it isn't closed."
+  ],
+  [
+   51.175,
+   3.212,
+   "And the plan has eleven actions, three of them writes."
+  ],
+  [
+   54.388,
+   1.175,
+   "Nothing is sent."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   4.1,
+   "Step four reads the findings by rule, and every rule shows up."
+  ],
+  [
+   4.15,
+   7.263,
+   "Oh one twice: the Mail Automation app holds the broad directory write permission and mail read-write with no exception."
+  ],
+  [
+   11.412,
+   4.562,
+   "Oh two: H R Connector's exception for full control of sites has ended."
+  ],
+  [
+   15.975,
+   3.9,
+   "Oh three: Partner CRM reads mail for all users."
+  ],
+  [
+   19.875,
+   2.862,
+   "Oh four and oh five are the two mail rules."
+  ],
+  [
+   22.738,
+   8.85,
+   "Oh six twice and oh seven: a batch machine's managed identity holds Azure roles at the subscription, a management group, and a resource group."
+  ],
+  [
+   31.587,
+   3.212,
+   "Oh nine: an app role the resource doesn't publish."
+  ],
+  [
+   34.8,
+   2.6,
+   "And oh eight three times, the hand-off."
+  ],
+  [
+   37.4,
+   4.6,
+   "Build Pipeline holds role management read-write, so it can grant itself more."
+  ],
+  [
+   42.0,
+   3.663,
+   "Deploy Bot holds a directory role and application read-write."
+  ],
+  [
+   45.663,
+   3.087,
+   "And id deploy is Contributor on a subscription."
+  ],
+  [
+   48.75,
+   2.85,
+   "All three go to the Privileged Access plan whole."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   3.275,
+   "Step five reads the open rows of the owner review."
+  ],
+  [
+   3.325,
+   1.137,
+   "There are six."
+  ],
+  [
+   4.463,
+   7.213,
+   "One of them shows how the quarter works: the batch machine's User dot Read dot All was kept on July fifteenth, an earlier quarter."
+  ],
+  [
+   11.675,
+   5.812,
+   "That answer doesn't count in the fourth quarter, so the row is open again, and the owner has to answer it."
+  ],
+  [
+   17.488,
+   2.9,
+   "Step six reads the plan's eleven actions."
+  ],
+  [
+   20.387,
+   0.925,
+   "Three write."
+  ],
+  [
+   21.312,
+   12.088,
+   "Remove app role for H R Connector, whose full-control site permission can go because its replacement, selected sites, is already granted; a removal that names a replacement waits until it is."
+  ],
+  [
+   33.4,
+   3.938,
+   "Remove app role for Mail Automation's broad directory permission."
+  ],
+  [
+   37.337,
+   3.55,
+   "And narrow grant for Partner CRM's delegated grant."
+  ],
+  [
+   40.888,
+   8.975,
+   "The other eight write nothing: three handed off, the kept ones, the rows awaiting a decision, and an Azure role for its owner to re-scope."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   3.2,
+   "Step seven dry-runs the plan with its approved hash."
+  ],
+  [
+   3.25,
+   1.863,
+   "It would send three requests."
+  ],
+  [
+   5.112,
+   7.975,
+   "Two are deletes, and look where they go: through the service principal ending in one oh, which is Microsoft Graph's own service principal."
+  ],
+  [
+   13.088,
+   7.075,
+   "The removal goes through the resource, not the app, the way Microsoft Learn's Delete app role assigned to reference says."
+  ],
+  [
+   20.163,
+   3.388,
+   "The third is a patch that narrows one delegated grant."
+  ],
+  [
+   23.55,
+   3.763,
+   "Step eight applies the plan to the fake, and three are sent."
+  ],
+  [
+   27.312,
+   9.85,
+   "Then it tries a hash nobody approved, all zeros, and the write path refuses: the plan's hash isn't the approved one, so it won't run a plan nobody reviewed."
+  ],
+  [
+   37.163,
+   5.013,
+   "Step nine runs every test: five hundred thirteen pass, none fail."
+  ],
+  [
+   42.175,
+   1.837,
+   "Then delete the output folder."
+  ],
+  [
+   44.013,
+   3.725,
+   "The owner review names owners, so don't leave it lying around."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   3.525,
+   "Lab 2 makes one real removal in your own test tenant."
+  ],
+  [
+   3.575,
+   10.5,
+   "You need a test tenant in the worldwide or G C C cloud and a test subscription, never production, with a test app registration and a test user-assigned managed identity."
+  ],
+  [
+   14.075,
+   6.95,
+   "A reading app holds the three read permissions and Reader, and a person with Privileged Role Administrator does the write."
+  ],
+  [
+   21.025,
+   7.0,
+   "Grant the test app the broad directory write permission on purpose, sweep it, and record the owner's remove decision."
+  ],
+  [
+   28.025,
+   2.538,
+   "A second person approves the plan's hash."
+  ],
+  [
+   30.562,
+   5.963,
+   "Then dry-run it and apply it, and confirm on the next sweep and in the audit log that the grant is gone."
+  ],
+  [
+   36.525,
+   10.65,
+   "To back it out, step six grants the removed permissions again with Learn's grant request, removes the test identity's roles, and deletes the identity, the app and the output."
+  ],
+  [
+   47.175,
+   2.15,
+   "The authors haven't run Lab 2."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   1.387,
+   "The federal requirement."
+  ],
+  [
+   1.438,
+   8.125,
+   "Gate 4 meets nist special publication eight hundred fifty-three A C six, A C six enhancement five, and I A nine."
+  ],
+  [
+   9.562,
+   3.4,
+   "The module's table maps each control to its evidence."
+  ],
+  [
+   12.963,
+   3.288,
+   "For least privilege, it's the sweep and the findings."
+  ],
+  [
+   16.25,
+   2.725,
+   "For privileged accounts, the hand-off file."
+  ],
+  [
+   18.975,
+   3.85,
+   "For review of privileges, the owner review and its status."
+  ],
+  [
+   22.825,
+   6.763,
+   "For change control, the plan and its hash, and the results and manifest from the dry run and the apply."
+  ],
+  [
+   29.587,
+   4.388,
+   "For separation of duties, the plan's hash approved by a second person."
+  ],
+  [
+   33.975,
+   4.037,
+   "And for the run's integrity, the manifest in each output folder."
+  ],
+  [
+   38.013,
+   4.638,
+   "K S I's are fed-ramp twenty X indicators for cloud service providers."
+  ],
+  [
+   42.65,
+   6.9,
+   "The agency lines its evidence up with what its providers report against them; it doesn't report K S I's itself."
+  ],
+  [
+   49.55,
+   3.25,
+   "Which file supports which indicator is the program's mapping."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   1.975,
+   "Check yourself with two questions."
+  ],
+  [
+   2.025,
+   4.412,
+   "First: Deploy Bot holds application read-write and a directory role."
+  ],
+  [
+   6.438,
+   1.562,
+   "What does the sweep do with it?"
+  ],
+  [
+   8.0,
+   1.225,
+   "The answer is b."
+  ],
+  [
+   9.225,
+   6.85,
+   "It hands it whole to the Privileged Access plan, as N P L P oh eight, and leaves it out of the owner review."
+  ],
+  [
+   16.075,
+   4.987,
+   "A directory role or an escalation permission is enough to hand an identity off."
+  ],
+  [
+   21.062,
+   3.462,
+   "Second: who sends the plan's writes in a lyve run?"
+  ],
+  [
+   24.525,
+   6.388,
+   "The answer is b: a person, signed in with Privileged Role Administrator, in a delegated session."
+  ],
+  [
+   30.913,
+   9.05,
+   "The Microsoft Graph permissions reference cautions that the write permissions can grant authorization themselves, so they're never an unattended app's standing permission."
+  ],
+  [
+   39.962,
+   4.925,
+   "The module page has three more questions, each linked to the section that answers it."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   0.825,
+   "To sum up."
+  ],
+  [
+   0.875,
+   10.575,
+   "You swept eleven service principals and twenty grants, found the broad grants with no current exception, and handed three privileged service principals to the Privileged Access plan."
+  ],
+  [
+   11.45,
+   8.975,
+   "You read the open rows of the quarter's owner review, applied three approved changes to the fake, and saw the write path refuse a plan nobody reviewed."
+  ],
+  [
+   20.425,
+   14.25,
+   "The evidence an I S S O keeps for Gate 4 from this module is the sweep, the findings, the hand-off, the owner review and its status, the plan with its approved hash, and the apply folder's results and manifest, all dated."
+  ],
+  [
+   34.675,
+   3.075,
+   "Before you ship, work through the chapter's checklist."
+  ],
+  [
+   37.75,
+   6.412,
+   "Next is Module 6: Conditional Access for workload identities, the other half of Gate 4."
+  ]
+ ]
+}

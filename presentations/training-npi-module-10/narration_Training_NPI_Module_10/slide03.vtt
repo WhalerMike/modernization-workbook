@@ -1,0 +1,72 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.857
+Here's what you'll be able to
+do by the end of this module,
+
+2
+00:00:02.857 --> 00:00:05.600
+which takes about seventy-five
+minutes with the lab.
+
+3
+00:00:05.600 --> 00:00:08.291
+You'll explain why the
+drift run compares with a
+
+4
+00:00:08.291 --> 00:00:11.050
+baseline only when a
+reviewer approved its hash.
+
+5
+00:00:11.050 --> 00:00:12.785
+You'll read the drift findings,
+
+6
+00:00:12.785 --> 00:00:16.325
+and say when a credential counts
+as added inside the pipeline.
+
+7
+00:00:16.325 --> 00:00:21.213
+You'll compare two vintages of the A I
+use-case inventory against the register.
+
+8
+00:00:21.213 --> 00:00:26.085
+You'll package two runs, chained,
+verify one with the checksum tool,
+
+9
+00:00:26.085 --> 00:00:28.612
+and assemble a period for the ISSO.
+
+10
+00:00:28.612 --> 00:00:30.927
+And you'll show that an edited file and a
+
+11
+00:00:30.927 --> 00:00:33.675
+package chained out of
+order are both refused.
+
+12
+00:00:33.675 --> 00:00:39.846
+Before you start: Modules 1 and 2, because
+the drift run runs their code unchanged;
+
+13
+00:00:39.846 --> 00:00:43.212
+Module 4, for the credential
+log; and Module 9.
+
+14
+00:00:43.212 --> 00:00:46.565
+Lab 1 also needs Python
+with pytest and PyYAML,
+
+15
+00:00:46.565 --> 00:00:49.270
+and a shell with sha two fifty-six sum.

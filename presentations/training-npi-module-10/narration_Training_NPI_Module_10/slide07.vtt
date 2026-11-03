@@ -1,0 +1,75 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.150
+Two more kinds of evidence
+sit beside the drift.
+
+2
+00:00:03.150 --> 00:00:07.761
+The review cycle reads the review
+records that Chapters 7 and 9 build;
+
+3
+00:00:07.761 --> 00:00:11.725
+this chapter doesn't run the
+reviews, it reads their records.
+
+4
+00:00:11.725 --> 00:00:14.158
+Following the program's design guidance,
+
+5
+00:00:14.158 --> 00:00:17.879
+it flags an app holding Graph
+permissions whose owners haven't
+
+6
+00:00:17.879 --> 00:00:21.600
+reviewed it in ninety-two days,
+and agent access with no end date.
+
+7
+00:00:21.600 --> 00:00:25.568
+And it flags an agent with no
+sponsor attestation in a year;
+
+8
+00:00:25.568 --> 00:00:30.775
+Microsoft Learn's best practices for
+Agent I D say every six to twelve months.
+
+9
+00:00:30.775 --> 00:00:34.256
+And a kind of review record that
+never arrived is a warning,
+
+10
+00:00:34.256 --> 00:00:37.012
+because a missing record
+isn't a passed review.
+
+11
+00:00:37.012 --> 00:00:41.153
+Then once a year, the program's
+vintage comparison checks this
+
+12
+00:00:41.153 --> 00:00:45.050
+year's A I use-case inventory
+against last year's, by use case.
+
+13
+00:00:45.050 --> 00:00:48.729
+It catches a new piloted or
+deployed system with no identity,
+
+14
+00:00:48.729 --> 00:00:53.731
+a retired one whose identities are still
+enabled, a changed authorization answer,
+
+15
+00:00:53.731 --> 00:00:57.980
+and an entry that left the inventory
+without being reported retired.

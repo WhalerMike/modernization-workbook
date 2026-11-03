@@ -1,0 +1,811 @@
+{
+ "1": [
+  [
+   0.05,
+   6.8,
+   "Welcome to Module 6 of the Non-Person Identity learning path: Conditional Access for workload identities."
+  ],
+  [
+   6.85,
+   7.088,
+   "This module is the Conditional Access half of Gate 4, Least privilege, with Chapter 8 of the developer workbook."
+  ],
+  [
+   13.938,
+   6.713,
+   "You'll hold the program's two workload policies as reviewed files, scoped by object I D, ring by ring."
+  ],
+  [
+   20.65,
+   6.175,
+   "You'll check them before they merge, plan them against a fictional tenant, and create every one report-only."
+  ],
+  [
+   26.825,
+   10.75,
+   "Then you'll read the service principal sign-ins, and see a ring enforced only when a person has reviewed them, the security chief has recorded the decision, and the change explicitly allows it."
+  ],
+  [
+   37.575,
+   3.237,
+   "The code runs on your laptop against a fictional tenant."
+  ],
+  [
+   40.812,
+   5.013,
+   "It's illustrative: tested against fixtures, not run against a lyve tenant."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   2.462,
+   "Why does the scope matter as much as the policy?"
+  ],
+  [
+   2.513,
+   8.6,
+   "Because Conditional Access for workload identities is narrow, as Microsoft Learn's Conditional Access for workload identities page sets out."
+  ],
+  [
+   11.113,
+   2.212,
+   "Block is the only grant control."
+  ],
+  [
+   13.325,
+   10.188,
+   "It covers single-tenant service principals registered in your tenant, and nothing else: not Microsoft or SaaS apps, not multitenant apps, and not managed identities."
+  ],
+  [
+   23.512,
+   7.487,
+   "A policy assigned to a group that holds a service principal isn't enforced for it; you have to assign the service principal directly."
+  ],
+  [
+   31.0,
+   4.388,
+   "And Workload I D Premium is needed to create or change these policies."
+  ],
+  [
+   35.388,
+   9.312,
+   "So in this module you hold the program's two policies, C A oh fifteen for location and C A oh thirty-seven for high risk, as reviewed files."
+  ],
+  [
+   44.7,
+   6.013,
+   "They're scoped by object I D, one ring at a time, and every one is created report-only."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   5.562,
+   "Here's what you'll be able to do by the end of this module, which takes about sixty-five minutes with the lab."
+  ],
+  [
+   5.612,
+   6.525,
+   "You'll state the four limits of Conditional Access for workload identities, and what covers the identities outside them."
+  ],
+  [
+   12.137,
+   5.612,
+   "You'll explain why each policy is rendered once per ring and always created report-only."
+  ],
+  [
+   17.75,
+   5.55,
+   "You'll run the pre-merge check, the tenant check and the plan, and read what each one reports."
+  ],
+  [
+   23.3,
+   4.562,
+   "You'll read a sign-in summary and say whether a ring is ready for enforcement."
+  ],
+  [
+   27.863,
+   6.5,
+   "And you'll see a ring held without the allow-enforce switch, enforced with it, and held again when the summary is edited."
+  ],
+  [
+   34.362,
+   11.95,
+   "Before you start, finish Module 5, the other half of Gate 4, and Module 1, because the scope names service principals by the enterprise application's object I D, as the register records them."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   4.475,
+   "Unit 1 is the guide's Step 4, sub-steps four d and four e."
+  ],
+  [
+   4.525,
+   2.6,
+   "Four d is custom security attributes."
+  ],
+  [
+   7.125,
+   14.125,
+   "You define an attribute set for applications, such as environment and data class, and, as Microsoft Learn's page on filtering for applications in Conditional Access says, a policy can then select target applications by attribute."
+  ],
+  [
+   21.25,
+   1.913,
+   "Only string attributes work."
+  ],
+  [
+   23.163,
+   6.625,
+   "And because service principals can't be members of dynamic groups, attributes are how this track targets by fact."
+  ],
+  [
+   29.788,
+   3.337,
+   "Four e is the workload identity policies themselves."
+  ],
+  [
+   33.125,
+   11.037,
+   "For each Tier 1 single-tenant service principal, assign it directly to a location block that allows only the networks it runs from, and to a high-risk block, both report-only first."
+  ],
+  [
+   44.163,
+   3.4,
+   "The results appear in the service principal sign-in logs."
+  ],
+  [
+   47.562,
+   5.088,
+   "Managed identities are governed through their role assignments and access reviews instead."
+  ],
+  [
+   52.65,
+   8.637,
+   "And Microsoft Learn's Conditional Access for workload identities page says creating or changing these policies needs Workload I D Premium."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   2.587,
+   "Unit 2 is the context and the files."
+  ],
+  [
+   2.638,
+   2.987,
+   "The program's design guidance sets two policies."
+  ],
+  [
+   5.625,
+   7.662,
+   "C A oh fifteen blocks the ring's service principals from anywhere but one named location, the workload egress ranges."
+  ],
+  [
+   13.287,
+   3.288,
+   "C A oh thirty-seven blocks them when their risk is high."
+  ],
+  [
+   16.575,
+   1.5,
+   "Two decisions frame them."
+  ],
+  [
+   18.075,
+   6.625,
+   "D N four is licensing: Workload I D Premium for the Tier 1 single-tenant service principals."
+  ],
+  [
+   24.7,
+   8.85,
+   "D N five is enforcement, and it's the see-so's call: enforce, extend report-only, or enforce with exclusions that are dated and owned."
+  ],
+  [
+   33.55,
+   9.988,
+   "The scope file is the record: each in-scope principal by object I D and ring, and each identity that's out of scope, with the control that covers it instead."
+  ],
+  [
+   43.538,
+   7.938,
+   "And each policy is rendered once per ring, so enforcing one ring changes one policy and leaves the next one in report-only."
+  ],
+  [
+   51.475,
+   1.7,
+   "That's the program's design."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   15.963,
+   "The pre-merge check holds nine rules, N P W C A oh one to oh nine, and most come straight from the limits on Microsoft Learn's Conditional Access for workload identities page; the range, ring and decision rules are the program's design guidance."
+  ],
+  [
+   16.012,
+   9.975,
+   "Oh one: a policy that targets users, groups, roles, a filter, or every service principal in the tenant, instead of the ring's object I D's."
+  ],
+  [
+   25.988,
+   2.688,
+   "Oh two: a managed identity in scope."
+  ],
+  [
+   28.675,
+   4.2,
+   "Oh three: a principal that isn't a single-tenant app registered here."
+  ],
+  [
+   32.875,
+   4.438,
+   "Oh four: an object I D that isn't a service principal in the tenant."
+  ],
+  [
+   37.312,
+   2.962,
+   "Oh five is the licensing record and the rings."
+  ],
+  [
+   40.275,
+   4.737,
+   "Oh six: an out-of-scope identity recorded without the control that covers it."
+  ],
+  [
+   45.013,
+   7.05,
+   "Oh seven: a policy that isn't report-only and block-only, for all resources and all client app types."
+  ],
+  [
+   52.062,
+   3.675,
+   "Oh eight keeps the egress ranges narrow and untrusted."
+  ],
+  [
+   55.737,
+   1.938,
+   "And oh nine guards enforcement."
+  ],
+  [
+   57.675,
+   3.3,
+   "A finding exits with code one and fails the pipeline."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   2.025,
+   "Unit 3 begins with the plan."
+  ],
+  [
+   2.075,
+   4.938,
+   "It compares the files with the tenant and gives each policy one of six actions."
+  ],
+  [
+   7.013,
+   7.763,
+   "Create, when the policy isn't in the tenant, and a new policy is always created report-only, whatever its ring's state."
+  ],
+  [
+   14.775,
+   4.775,
+   "Update, when it differs; the patch carries only the properties that changed."
+  ],
+  [
+   19.55,
+   2.05,
+   "No change, when it matches."
+  ],
+  [
+   21.6,
+   6.312,
+   "Blocked, for a location policy whose named location doesn't exist yet; the next run creates it."
+  ],
+  [
+   27.913,
+   4.763,
+   "Held, when the ring is marked for enforcement but this run may not enforce it."
+  ],
+  [
+   32.675,
+   6.388,
+   "And not in repository, for a workload policy that no file names, such as one someone made in the portal."
+  ],
+  [
+   39.062,
+   1.938,
+   "It's reported and left alone."
+  ],
+  [
+   41.0,
+   1.863,
+   "The code has no delete at all."
+  ],
+  [
+   42.862,
+   6.463,
+   "Rollback drops the ring from the enforcement record and applies, so its policies go back to report-only."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   7.362,
+   "Turning a policy on is the moment a production job can stop, so the code asks for five things at once, or the ring stays held."
+  ],
+  [
+   7.412,
+   2.438,
+   "A D N five record marks the ring."
+  ],
+  [
+   9.85,
+   1.913,
+   "The change says allow enforce."
+  ],
+  [
+   11.762,
+   4.15,
+   "The run names a sign-in summary whose hash the ring's record cites."
+  ],
+  [
+   15.912,
+   2.025,
+   "That summary shows the ring ready."
+  ],
+  [
+   17.938,
+   2.837,
+   "And every earlier ring is already enforced."
+  ],
+  [
+   20.775,
+   3.0,
+   "The five conditions are the program's design guidance."
+  ],
+  [
+   23.775,
+   2.362,
+   "The evidence comes from the sign-in reader."
+  ],
+  [
+   26.137,
+   11.312,
+   "Following Microsoft Learn's List sign-ins reference, it reads the beta sign-in list with a filter for service principal sign-ins, and sends a header without which report-only results don't come back."
+  ],
+  [
+   37.45,
+   6.4,
+   "Each principal gets one of four statuses: no sign-ins, not evaluated, would block, or clear."
+  ],
+  [
+   43.85,
+   3.712,
+   "A ring is ready only when every principal in it is clear."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   9.738,
+   "Lab 1 runs in the non-person identity folder, in PowerShell 7, against a fictional tenant whose egress ranges are documentation ranges."
+  ],
+  [
+   10.512,
+   7.8,
+   "Step one runs the tests on Learn's sample and page as published: nine pass, and the other thirty-nine in that file aren't run."
+  ],
+  [
+   18.312,
+   4.013,
+   "Step two lists three tasks, with three sets of permissions."
+  ],
+  [
+   22.325,
+   3.475,
+   "Reading the policies needs application and policy read."
+  ],
+  [
+   25.8,
+   4.05,
+   "Reading sign-ins needs the audit log and the Conditional Access read."
+  ],
+  [
+   29.85,
+   3.375,
+   "Only the apply task holds the Conditional Access write."
+  ],
+  [
+   33.225,
+   8.075,
+   "Step three runs the pre-merge check on the repository's own files and the fixture scope: no findings, exit code zero."
+  ],
+  [
+   41.3,
+   3.1,
+   "And step four runs the same check on Learn's sample."
+  ],
+  [
+   44.4,
+   5.45,
+   "It fails five times: oh one twice, oh seven twice, and oh eight once."
+  ],
+  [
+   49.85,
+   2.888,
+   "The sample is a model, not a file to create."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   5.412,
+   "Step five checks the scope against the fictional tenant and builds the plan, sending nothing."
+  ],
+  [
+   5.463,
+   9.6,
+   "The tenant check finds no findings and two information items: Legacy Reports and Build Pipeline are eligible but not Tier 1, so they're not in scope."
+  ],
+  [
+   15.062,
+   5.787,
+   "The plan has three creates, one no change, one update and one not in repository."
+  ],
+  [
+   20.85,
+   2.1,
+   "The named location is an update."
+  ],
+  [
+   22.95,
+   3.875,
+   "Ring 1's location policy already exists and matches."
+  ],
+  [
+   26.825,
+   3.375,
+   "Ring 1's risk policy and both of Ring 2's are new."
+  ],
+  [
+   30.2,
+   5.588,
+   "And a policy someone made in the portal is reported as not in the repository, and left alone."
+  ],
+  [
+   35.788,
+   4.287,
+   "The dry run writes its four requests to a file and sends none of them."
+  ],
+  [
+   40.075,
+   2.013,
+   "You'd rerun with apply to send them."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   7.375,
+   "Step six reads the service principal sign-ins over an eighteen-day window and summarizes them, principal by principal."
+  ],
+  [
+   7.425,
+   5.737,
+   "Ring 1 is ready for enforcement: Mail Automation and Payroll Export are both clear."
+  ],
+  [
+   13.162,
+   1.375,
+   "Ring 2 isn't ready."
+  ],
+  [
+   14.537,
+   7.9,
+   "Deploy Bot would be blocked, because it signed in from two oh three dot oh dot one thirteen dot seven, outside the egress ranges."
+  ],
+  [
+   22.438,
+   4.425,
+   "And H R Connector has no sign-ins at all, so there's nothing to judge."
+  ],
+  [
+   26.863,
+   3.712,
+   "A ring is ready only when every principal in it is clear."
+  ],
+  [
+   30.575,
+   2.025,
+   "The summary ends with its hash."
+  ],
+  [
+   32.6,
+   8.6,
+   "Write that hash down: in step eight, the enforcement record cites it, and that's how a reviewer's approval is tied to exactly this evidence."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   3.562,
+   "Step seven applies the plan against the fake, twice."
+  ],
+  [
+   3.612,
+   6.412,
+   "You read the scope and the repository, build a client for the apply task on the fake tenant, and send the plan."
+  ],
+  [
+   10.025,
+   2.288,
+   "The first run sends four requests."
+  ],
+  [
+   12.312,
+   3.825,
+   "The second sends none, because everything already matches."
+  ],
+  [
+   16.137,
+   2.55,
+   "That's what makes the apply safe to re-run."
+  ],
+  [
+   18.688,
+   3.35,
+   "Then list the policies whose names start with C A oh."
+  ],
+  [
+   22.038,
+   6.412,
+   "Every C A oh fifteen and C A oh thirty-seven policy is enabled for reporting but not enforced."
+  ],
+  [
+   28.45,
+   2.6,
+   "That's report-only, in Graph's words."
+  ],
+  [
+   31.05,
+   7.213,
+   "And C A oh oh one, a user policy that blocks legacy authentication, stays enabled and untouched."
+  ],
+  [
+   38.263,
+   3.15,
+   "The code changes only the policies its files name."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   2.45,
+   "Step eight tries to enforce Ring 1."
+  ],
+  [
+   2.5,
+   15.338,
+   "You copy the scope and add an enforcement record: D N five, outcome enforce, decided by the see-so, and Ring 1 with the summary's hash, reviewed by the I S S O. Plan without allow enforce, and Ring 1's location policy is held."
+  ],
+  [
+   17.837,
+   9.387,
+   "Plan again with allow enforce and the reviewed summary, and the held becomes a second update: C A oh fifteen Ring 1 goes from report-only to enabled."
+  ],
+  [
+   27.225,
+   8.9,
+   "Now add one byte to a copy of the summary and plan again, and it's held again, because the edited summary's hash isn't the one the reviewer recorded."
+  ],
+  [
+   36.125,
+   15.15,
+   "Step nine reads the alert definition: a query over the service principal sign-in logs for result type five three oh oh three, which Microsoft Learn's error code list names as blocked by Conditional Access, for the four in-scope object I D's."
+  ],
+  [
+   51.275,
+   3.825,
+   "Step ten runs the tests: five hundred thirteen pass."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   15.562,
+   "Lab 2 runs the same path in your own test tenant, worldwide or G C C, never production, with a Workload Identities Premium trial or license, one test app registration with a certificate, and a host whose public egress address you know."
+  ],
+  [
+   15.613,
+   6.65,
+   "Write a scope with the test app's enterprise application object I D in Ring 1, and plan with a reading app."
+  ],
+  [
+   22.262,
+   5.463,
+   "Apply report-only, and generate sign-ins from inside and outside the egress range."
+  ],
+  [
+   27.725,
+   9.0,
+   "Then, in a separate change, after at least fourteen days with the ring clear, enforce Ring 1, and watch a token from outside the range get blocked."
+  ],
+  [
+   36.725,
+   7.575,
+   "To back it out, step seven removes Ring 1 from the enforcement record and applies, so both policies return to report-only."
+  ],
+  [
+   44.3,
+   4.65,
+   "Then you turn them off or delete them by hand, because the code never deletes."
+  ],
+  [
+   48.95,
+   2.15,
+   "The authors haven't run Lab 2."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   1.387,
+   "The federal requirement."
+  ],
+  [
+   1.438,
+   10.2,
+   "This is the Conditional Access part of Gate 4, the guide's Step four e, and the guide's validate step names A C six, A C six enhancement five, and I A nine."
+  ],
+  [
+   11.637,
+   3.4,
+   "The module's table maps each control to its evidence."
+  ],
+  [
+   15.037,
+   5.162,
+   "Access enforcement and service identification: the scope file and the findings."
+  ],
+  [
+   20.2,
+   4.987,
+   "Least privilege and access restrictions for change: the three tasks' permissions."
+  ],
+  [
+   25.188,
+   5.638,
+   "Configuration settings and testing changes: the pre-merge check and the policy files."
+  ],
+  [
+   30.825,
+   4.75,
+   "Audit review and continuous monitoring: the sign-in summary and its hash."
+  ],
+  [
+   35.575,
+   4.938,
+   "Verification of controls: the held, enforced and edited plans."
+  ],
+  [
+   40.513,
+   2.725,
+   "And system monitoring: the alert definition."
+  ],
+  [
+   43.237,
+   4.638,
+   "K S I's are fed-ramp twenty X indicators for cloud service providers."
+  ],
+  [
+   47.875,
+   7.037,
+   "The agency lines its evidence up with what its providers report; which file supports which indicator is the program's mapping."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   1.975,
+   "Check yourself with two questions."
+  ],
+  [
+   2.025,
+   5.263,
+   "First: a policy is assigned to a group that contains a Tier 1 service principal."
+  ],
+  [
+   7.287,
+   1.012,
+   "What happens?"
+  ],
+  [
+   8.3,
+   1.225,
+   "The answer is b."
+  ],
+  [
+   9.525,
+   2.362,
+   "It isn't enforced for the service principal."
+  ],
+  [
+   11.887,
+   8.625,
+   "Microsoft Learn's Conditional Access for workload identities page says to assign it directly, by the enterprise application's object I D."
+  ],
+  [
+   20.512,
+   6.25,
+   "Second: a new C A oh thirty-seven policy is created on the same run that enforces its ring."
+  ],
+  [
+   26.762,
+   1.863,
+   "What state is it created in?"
+  ],
+  [
+   28.625,
+   2.312,
+   "The answer is b: report-only."
+  ],
+  [
+   30.938,
+   6.138,
+   "Every policy is created report-only, whatever its ring's state, and it turns on in the next run."
+  ],
+  [
+   37.075,
+   4.925,
+   "The module page has three more questions, each linked to the section that answers it."
+  ]
+ ],
+ "17": [
+  [
+   0.05,
+   0.825,
+   "To sum up."
+  ],
+  [
+   0.875,
+   4.35,
+   "You checked the policy files, and failed Learn's sample against the same rules."
+  ],
+  [
+   5.225,
+   7.438,
+   "You planned against a fictional tenant, created every policy report-only, and summarized the service principal sign-ins."
+  ],
+  [
+   12.662,
+   9.1,
+   "And you saw a ring enforced only with the D N five decision, the allow-enforce switch and the reviewed summary, and held again when the summary changed."
+  ],
+  [
+   21.762,
+   15.25,
+   "The evidence an I S S O keeps is the scope file, the pre-merge check, the findings, the plan and its requests, the sign-in summary with the hash the D N five record cites, the alert definition, and each run's manifest, all dated."
+  ],
+  [
+   37.013,
+   3.075,
+   "Before you ship, work through the chapter's checklist."
+  ],
+  [
+   40.087,
+   5.812,
+   "Next is Module 7: convert to managed identities and federation, Gate 5."
+  ]
+ ]
+}

@@ -1,0 +1,72 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.975
+The runbook adds five scripts, each
+with a fixture mode that serves
+
+2
+00:00:03.975 --> 00:00:07.900
+Graph and Active Directory from a
+file and sends nothing anywhere.
+
+3
+00:00:07.900 --> 00:00:10.738
+The preflight runs checks
+P F oh one to eleven,
+
+4
+00:00:10.738 --> 00:00:15.725
+writes a snapshot that the rollback
+restores, and writes nothing to the tenant.
+
+5
+00:00:15.725 --> 00:00:18.759
+The smoke test runs checks
+S T oh one to oh seven
+
+6
+00:00:18.759 --> 00:00:22.750
+against a synthetic service
+principal and service account.
+
+7
+00:00:22.750 --> 00:00:26.251
+Its one write is a probe
+that's expected to be refused:
+
+8
+00:00:26.251 --> 00:00:28.450
+a new secret on the synthetic app.
+
+9
+00:00:28.450 --> 00:00:30.262
+The rollback has two modes.
+
+10
+00:00:30.262 --> 00:00:32.874
+Plan writes the plan and prints its hash.
+
+11
+00:00:32.874 --> 00:00:37.021
+Apply checks the approved hash,
+the tenant and a seven-day age,
+
+12
+00:00:37.021 --> 00:00:40.338
+then dry-runs, or sends
+only with the apply switch.
+
+13
+00:00:40.338 --> 00:00:45.462
+It patches policies and enables or
+disables accounts, and it never deletes.
+
+14
+00:00:45.462 --> 00:00:49.612
+The evidence writer records a step
+that ran an earlier chapter's script.
+
+15
+00:00:49.612 --> 00:00:52.340
+And the evidence check is the go or no-go.

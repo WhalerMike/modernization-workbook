@@ -1,0 +1,73 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.850
+The checks are nine rules,
+N P W I F oh one to oh nine.
+
+2
+00:00:04.850 --> 00:00:08.025
+Oh one is the order, the
+program's design guidance.
+
+3
+00:00:08.025 --> 00:00:11.116
+Oh two, oh three and oh
+four are the three values,
+
+4
+00:00:11.116 --> 00:00:13.882
+from Microsoft Learn's federation pages:
+
+5
+00:00:13.882 --> 00:00:19.333
+a subject that isn't exactly what the
+workload's issuer will present, case for case;
+
+6
+00:00:19.333 --> 00:00:23.970
+an issuer that isn't exactly the
+workload's, a trailing slash included;
+
+7
+00:00:23.970 --> 00:00:27.875
+and an audience that isn't
+exactly the one Entra I D expects.
+
+8
+00:00:27.875 --> 00:00:32.567
+Oh five and oh six are Microsoft Learn's
+limits: a bad name, a wildcard, a
+
+9
+00:00:32.567 --> 00:00:36.337
+system-assigned parent, more
+than twenty credentials,
+
+10
+00:00:36.337 --> 00:00:38.850
+or the same issuer and subject twice.
+
+11
+00:00:38.850 --> 00:00:41.996
+Oh seven is a warning for
+a credential someone added
+
+12
+00:00:41.996 --> 00:00:45.288
+outside the reviewed file;
+it's reported, never deleted.
+
+13
+00:00:45.288 --> 00:00:48.025
+Oh eight is a failed token exchange test.
+
+14
+00:00:48.025 --> 00:00:51.107
+And oh nine is a parallel
+run that isn't clean,
+
+15
+00:00:51.107 --> 00:00:54.840
+such as an old secret still
+signing in after cutover.

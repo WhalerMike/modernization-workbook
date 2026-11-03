@@ -1,0 +1,80 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:04.101
+Lab 1 runs in the
+non-person identity folder,
+
+3
+00:00:04.101 --> 00:00:07.150
+in PowerShell 7, on the fictional estate.
+
+4
+00:00:07.150 --> 00:00:11.325
+Step one makes Module 1's register,
+because this check reads it.
+
+5
+00:00:11.325 --> 00:00:16.044
+Step two sends the samples from
+Microsoft Learn's Graph applications
+
+6
+00:00:16.044 --> 00:00:20.438
+tutorial to the fake: ten pass, and
+the twenty not run are Chapter 1's.
+
+7
+00:00:20.438 --> 00:00:23.088
+Step three lists what each task needs.
+
+8
+00:00:23.088 --> 00:00:28.649
+The ownership check needs only User dot Read
+dot All: it reads people, nothing else.
+
+9
+00:00:28.649 --> 00:00:30.224
+The write task is separate,
+
+10
+00:00:30.224 --> 00:00:33.800
+and it's the one that holds
+Application dot ReadWrite dot All.
+
+11
+00:00:33.800 --> 00:00:36.662
+Step four checks ownership
+and builds the plan.
+
+12
+00:00:36.662 --> 00:00:40.913
+Twenty-two identities are checked,
+and seven are orphan candidates.
+
+13
+00:00:40.913 --> 00:00:45.001
+That's twenty findings, three
+warnings and one information item.
+
+14
+00:00:45.001 --> 00:00:47.108
+The orphan plan has ten actions,
+
+15
+00:00:47.108 --> 00:00:50.675
+and three of them write: one
+AddOwner and two disables.
+
+16
+00:00:50.675 --> 00:00:51.850
+Nothing is sent.
+
+17
+00:00:51.850 --> 00:00:55.870
+And the plan's hash is the same
+on every run with these inputs.

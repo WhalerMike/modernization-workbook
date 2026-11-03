@@ -1,0 +1,685 @@
+{
+ "1": [
+  [
+   0.05,
+   6.338,
+   "Welcome to Module 3 of the Non-Person Identity learning path: decide each identity's target."
+  ],
+  [
+   6.388,
+   3.95,
+   "You have a register from Module 1 and its owners from Module 2."
+  ],
+  [
+   10.338,
+   4.188,
+   "Now every identity needs a target: where it ends up, and when."
+  ],
+  [
+   14.525,
+   8.975,
+   "This module is Gate 2, Decision, with Chapter 3 of the developer workbook, which turns the program's migration path matrix into code."
+  ],
+  [
+   23.5,
+   10.65,
+   "You'll run the matrix on the fixtures, read the owners' decisions and the waves they fall in, scope the Workload I D Premium license, and see why Gate 2 isn't met yet."
+  ],
+  [
+   34.15,
+   3.938,
+   "The code runs on your laptop, against the same fictional estate."
+  ],
+  [
+   38.087,
+   5.013,
+   "It's illustrative: tested against fixtures, not run against a lyve tenant."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   2.837,
+   "Every identity ends in one of five places."
+  ],
+  [
+   2.888,
+   1.0,
+   "Retire it."
+  ],
+  [
+   3.888,
+   3.812,
+   "Move it to a group managed or delegated managed service account."
+  ],
+  [
+   7.7,
+   4.9,
+   "Or move it to a managed identity, a federated credential, or a certificate."
+  ],
+  [
+   12.6,
+   10.312,
+   "The program's migration path matrix, which is design guidance, decides by the account type and by where the workload runs, and its rule is simple: no stored secrets."
+  ],
+  [
+   22.913,
+   4.225,
+   "But three things are easy to blur here, and the code keeps them apart."
+  ],
+  [
+   27.137,
+   2.013,
+   "The matrix proposes a target."
+  ],
+  [
+   29.15,
+   4.125,
+   "The application owner decides the disposition, account by account."
+  ],
+  [
+   33.275,
+   2.55,
+   "And the I S S O checks the gate."
+  ],
+  [
+   35.825,
+   5.438,
+   "Keep those three separate, and nobody can say the code made a decision that a person should have made."
+  ],
+  [
+   41.263,
+   5.825,
+   "In this module you run all three on the fixtures, and read why Gate 2 isn't met yet."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   5.487,
+   "Here's what you'll be able to do by the end of this module, which takes about fifty-five minutes with the lab."
+  ],
+  [
+   5.537,
+   5.75,
+   "You'll explain the difference between the matrix's proposal, the owner's disposition, and Gate 2."
+  ],
+  [
+   11.287,
+   5.062,
+   "You'll name the target the matrix proposes for each account type and workload location."
+  ],
+  [
+   16.35,
+   4.4,
+   "You'll run the matrix on the fixtures and explain each of its findings."
+  ],
+  [
+   20.75,
+   7.838,
+   "And you'll read a wave's rollback, and say which identities Conditional Access for workload identities can cover now, and which after conversion."
+  ],
+  [
+   28.587,
+   5.875,
+   "Before you start, finish Modules 1 and 2, because the matrix reads both of their runs."
+  ],
+  [
+   34.462,
+   4.525,
+   "And read Book 2, Chapter 9, on the migration path matrix."
+  ],
+  [
+   38.987,
+   5.037,
+   "Lab 1 needs PowerShell 7.1 or later with Pester 5, and a clone."
+  ],
+  [
+   44.025,
+   0.925,
+   "No tenant."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   7.525,
+   "Unit 1 is the guide's Step 2, and the slide shows part of its condensed decision table, which is the program's design guidance."
+  ],
+  [
+   7.575,
+   4.912,
+   "Anything disabled, unused or with no owner after Step 1 is retired."
+  ],
+  [
+   12.488,
+   5.838,
+   "A traditional account for an Azure workload goes to a managed identity, user-assigned preferred."
+  ],
+  [
+   18.325,
+   8.0,
+   "One calling Entra-protected A P I's from a host with an O I D C issuer gets an app registration with a federated credential."
+  ],
+  [
+   26.325,
+   8.537,
+   "A Kerberos-only account on premises goes to a group managed service account, or a delegated one on a Windows Server 2025 domain."
+  ],
+  [
+   34.862,
+   11.75,
+   "A managed service account is upgraded to a group managed one first, because, as Microsoft Learn's delegated managed service account documentation says, neither can be migrated to a delegated one."
+  ],
+  [
+   46.612,
+   6.013,
+   "And a client secret is replaced: a managed identity, then federation, then a certificate."
+  ],
+  [
+   52.625,
+   1.75,
+   "Two more points from Step 2."
+  ],
+  [
+   54.375,
+   1.762,
+   "High-risk accounts go first."
+  ],
+  [
+   56.138,
+   12.787,
+   "And a group managed account needs a K D S root key, created once per domain; Microsoft Learn's Create a K D S root key documentation says domain controllers wait up to ten hours after that."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   2.35,
+   "Unit 2 is the matrix as code."
+  ],
+  [
+   2.4,
+   3.587,
+   "The proposal gives every identity in scope a target."
+  ],
+  [
+   5.987,
+   7.487,
+   "sequel Server accounts are handed off, and an account found only by a password that never expires waits for confirmation."
+  ],
+  [
+   13.475,
+   7.838,
+   "For the rest, retire comes first: for an account Module 2 found unowned and nobody claimed, or one already disabled."
+  ],
+  [
+   21.312,
+   4.05,
+   "Otherwise the first matrix row that matches proposes the target."
+  ],
+  [
+   25.363,
+   9.05,
+   "Rows one to five send a traditional account off premises to a managed identity, or an app registration with a federated credential or a certificate."
+  ],
+  [
+   34.413,
+   9.012,
+   "Rows six and seven send a Kerberos account to a delegated managed service account where the domain and hosts allow one, otherwise a group managed one."
+  ],
+  [
+   43.425,
+   8.412,
+   "Rows eight to thirteen handle the managed service accounts, fourteen to eighteen the app registrations, and nineteen keeps a managed identity."
+  ],
+  [
+   51.837,
+   4.225,
+   "The workload facts come from the owner, and without them there's no proposal."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   8.787,
+   "The owner's disposition is read row by row, and what's missing or wrong becomes a finding, N P I M A T oh one to oh nine."
+  ],
+  [
+   8.838,
+   1.988,
+   "Oh one: no disposition."
+  ],
+  [
+   10.825,
+   4.0,
+   "Oh two: no proposal, because the workload facts are missing."
+  ],
+  [
+   14.825,
+   12.338,
+   "Oh three: a target that doesn't fit, such as a managed or group managed service account sent to a delegated one, which Microsoft Learn's delegated managed service account documentation says can't be done."
+  ],
+  [
+   27.163,
+   6.713,
+   "Oh four: the owner chose a target the matrix didn't propose; that's allowed, with a reason on the record."
+  ],
+  [
+   33.875,
+   6.213,
+   "Oh five: an account kept in Active Directory with no end date, or one past the program's dates."
+  ],
+  [
+   40.087,
+   4.325,
+   "Oh six: an account kept on Kerberos with no S P N owner."
+  ],
+  [
+   44.413,
+   4.062,
+   "Oh seven: a high-risk account re-platformed outside wave 1."
+  ],
+  [
+   48.475,
+   4.287,
+   "Oh eight: a wave with no rollback owner, or no review date."
+  ],
+  [
+   52.763,
+   3.362,
+   "And oh nine is the Workload I D Premium scope."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   1.212,
+   "Three more pieces."
+  ],
+  [
+   1.262,
+   1.375,
+   "First, the waves."
+  ],
+  [
+   2.638,
+   18.775,
+   "Each wave's rollback is built from its members' targets: re-enable the legacy account and revert the application's configuration, and for a delegated managed service account, the undo command from Microsoft Learn's Setting up delegated Managed Service Accounts documentation, with the superseded account kept, never deleted."
+  ],
+  [
+   21.413,
+   5.062,
+   "Second, decision D N 4, on the Workload I D Premium license."
+  ],
+  [
+   26.475,
+   9.1,
+   "Microsoft Learn's Conditional Access for workload identities documentation says it covers only single-tenant service principals registered in the tenant."
+  ],
+  [
+   35.575,
+   3.263,
+   "Multitenant apps and managed identities aren't covered."
+  ],
+  [
+   38.837,
+   10.363,
+   "The program's position, which is design guidance, is to license the single-tenant service principals classified Tier 1, and the code counts who's eligible now and after conversion."
+  ],
+  [
+   49.2,
+   1.1,
+   "It buys nothing."
+  ],
+  [
+   50.3,
+   11.925,
+   "Third, Gate 2 itself, the I S S O's: five criteria, each reported with its open findings, and the gate is met only when no finding of severity Finding is open."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   15.938,
+   "Step one evaluates Microsoft Learn's two service account decision tables, from Securing on-premises service accounts and Securing cloud-based service accounts, exactly as published: twelve tests pass, and the thirty-one not run are the example's own."
+  ],
+  [
+   16.712,
+   9.012,
+   "Step two lists what the matrix needs: two read permissions, License Assignment dot Read dot All and User dot Read dot All, and only the GET method."
+  ],
+  [
+   25.725,
+   4.688,
+   "Step three runs Modules 1 and 2 quietly, then the matrix."
+  ],
+  [
+   30.413,
+   12.675,
+   "Twenty-one identities are in scope and twenty get a proposal: six retire, seven keep, two group managed and two delegated managed service accounts, two managed identities, and one federated credential."
+  ],
+  [
+   43.087,
+   6.5,
+   "The owners have decided eighteen of twenty-two, in two waves, and each wave holds one high-risk account."
+  ],
+  [
+   49.587,
+   5.525,
+   "The license decision is Tier 1, two in scope, and the tenant holds two units."
+  ],
+  [
+   55.112,
+   3.55,
+   "Seven findings, four warnings, one information item."
+  ],
+  [
+   58.663,
+   6.112,
+   "And the last line: Gate 2 is not met, with the open findings for each of its five criteria."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   2.013,
+   "Step four reads the proposals."
+  ],
+  [
+   2.062,
+   4.487,
+   "Six are retire: Module 2's orphans and the disabled accounts."
+  ],
+  [
+   6.55,
+   7.4,
+   "svc hrsync and svc webfront go to a delegated managed service account, matrix row six."
+  ],
+  [
+   13.95,
+   8.45,
+   "Payroll Export and Deploy Bot go to a managed identity, row fourteen, and Mail Automation to a federated credential, row fifteen."
+  ],
+  [
+   22.4,
+   4.425,
+   "H R Connector has no proposal, because nobody recorded where it runs."
+  ],
+  [
+   26.825,
+   2.513,
+   "Step five reads the twelve findings."
+  ],
+  [
+   29.337,
+   8.025,
+   "svc hrsync is high risk, but scheduled in wave 2, so that's N P I M A T oh seven."
+  ],
+  [
+   37.362,
+   5.175,
+   "svc webfront is kept on Kerberos with no S P N owner, oh six."
+  ],
+  [
+   42.538,
+   6.6,
+   "The delegated account dmsa hrsync has no end date before G 5, oh five."
+  ],
+  [
+   49.138,
+   3.025,
+   "Wave 2 has no rollback owner, oh eight."
+  ],
+  [
+   52.163,
+   5.188,
+   "And Vendor Portal is multitenant, so Conditional Access can't cover it, oh nine."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   2.938,
+   "Step six prints each wave with its rollback."
+  ],
+  [
+   2.987,
+   10.6,
+   "Wave 1 is Mail Automation, with a rollback owner, and its rollback re-enables the legacy credential, reverts the configuration and removes the federated credential."
+  ],
+  [
+   13.588,
+   8.037,
+   "Wave 2 holds svc hrsync, a managed service account and Payroll Export, and its rollback owner is empty."
+  ],
+  [
+   21.625,
+   3.65,
+   "That's the N P I M A T oh eight finding."
+  ],
+  [
+   25.275,
+   11.137,
+   "Notice the delegated managed account's rollback is the undo command from Microsoft Learn's delegated managed service account documentation, and the superseded account is kept, never deleted."
+  ],
+  [
+   36.413,
+   3.625,
+   "Step seven reads the Workload I D Premium scope."
+  ],
+  [
+   40.038,
+   6.35,
+   "Six single-tenant app registrations can be covered by Conditional Access today, and four after conversion."
+  ],
+  [
+   46.388,
+   7.75,
+   "Payroll Export is one that leaves: its owner's decision moves it to a managed identity, and managed identities aren't covered."
+  ],
+  [
+   54.138,
+   4.213,
+   "Step eight runs every test: five hundred thirteen pass."
+  ],
+  [
+   58.35,
+   3.362,
+   "Then delete the output, which names accounts and owners."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   12.15,
+   "Lab 2 runs the matrix against your own test tenant, worldwide or G C C, never production, with fictional people, and with the Lab 2 runs of Modules 1 and 2 already done."
+  ],
+  [
+   12.2,
+   1.738,
+   "The run only reads."
+  ],
+  [
+   13.938,
+   5.737,
+   "Grant User dot Read dot All and License Assignment dot Read dot All to Module 1's reading app."
+  ],
+  [
+   19.675,
+   5.963,
+   "Write the owners' inputs for your test accounts: where each workload runs, and each owner's decision."
+  ],
+  [
+   25.637,
+   1.25,
+   "Run the matrix."
+  ],
+  [
+   26.887,
+   9.875,
+   "Record what the license read shows, and check in the admin center which principals Conditional Access can actually target, because that's the scope the D N 4 decision rests on."
+  ],
+  [
+   36.763,
+   4.612,
+   "To back it out, step six removes the two permissions and deletes the output."
+  ],
+  [
+   41.375,
+   2.15,
+   "The authors haven't run Lab 2."
+  ],
+  [
+   43.525,
+   3.138,
+   "The workbook's Chapter 3 has the exact commands."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   1.387,
+   "The federal requirement."
+  ],
+  [
+   1.438,
+   8.488,
+   "Gate 2 meets nist special publication eight hundred fifty-three A C two and I A five, and the module's table maps the evidence."
+  ],
+  [
+   9.925,
+   6.775,
+   "For account and authenticator management, the proposals, the reviewed matrix file and the owners' decisions."
+  ],
+  [
+   16.7,
+   3.95,
+   "For privileged accounts, with high-risk first, the findings."
+  ],
+  [
+   20.65,
+   4.013,
+   "For configuration change control, the waves and their rollback."
+  ],
+  [
+   24.663,
+   3.962,
+   "For access enforcement, the Workload I D Premium scope."
+  ],
+  [
+   28.625,
+   3.475,
+   "And for continuous monitoring, the gate's own status file."
+  ],
+  [
+   32.1,
+   4.638,
+   "K S I's are fed-ramp twenty X indicators for cloud service providers."
+  ],
+  [
+   36.737,
+   6.45,
+   "The agency lines its evidence up with what its providers report; it doesn't report K S I's itself."
+  ],
+  [
+   43.188,
+   3.25,
+   "Which file supports which indicator is the program's mapping."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   1.975,
+   "Check yourself with two questions."
+  ],
+  [
+   2.025,
+   3.2,
+   "First: who decides an identity's disposition?"
+  ],
+  [
+   5.225,
+   5.812,
+   "The answer is b: the application owner, account by account, under decision D N 3."
+  ],
+  [
+   11.037,
+   4.688,
+   "The matrix only proposes, and the I S S O checks the gate."
+  ],
+  [
+   15.725,
+   4.65,
+   "Second: a high-risk account is scheduled for re-platforming in wave 2."
+  ],
+  [
+   20.375,
+   1.012,
+   "What happens?"
+  ],
+  [
+   21.387,
+   7.362,
+   "The answer is a. N P I M A T oh seven raises a finding, because high-risk accounts go in wave 1."
+  ],
+  [
+   28.75,
+   3.425,
+   "The code reports it; it doesn't move the account itself."
+  ],
+  [
+   32.175,
+   4.987,
+   "You saw exactly that finding for svc hrsync in step five."
+  ],
+  [
+   37.163,
+   4.925,
+   "The module page has three more questions, each linked to the section that answers it."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   0.825,
+   "To sum up."
+  ],
+  [
+   0.875,
+   9.488,
+   "You proposed a target for twenty identities, checked the owners' dispositions, read two waves and their rollback, and scoped Workload I D Premium."
+  ],
+  [
+   10.363,
+   3.275,
+   "Gate 2 isn't met on the fixtures, and you can say why."
+  ],
+  [
+   13.637,
+   14.025,
+   "The evidence an I S S O keeps for Gate 2 from this module is the proposals, the decisions, the waves, the license scope, the findings, the gate's status, and the manifest that hashes them and the inputs, all dated."
+  ],
+  [
+   27.663,
+   3.075,
+   "Before you ship, work through the chapter's checklist."
+  ],
+  [
+   30.738,
+   3.2,
+   "Next is Module 4: set the credential rules."
+  ],
+  [
+   33.938,
+   8.562,
+   "The tenant can block new secrets and cap certificate lifetimes itself, and the rest is a rotation plan, from renewal to removal."
+  ]
+ ]
+}

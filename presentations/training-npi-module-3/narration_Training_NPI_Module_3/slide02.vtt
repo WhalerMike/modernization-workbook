@@ -1,0 +1,66 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.887
+Every identity ends in one of five places.
+
+2
+00:00:02.887 --> 00:00:03.888
+Retire it.
+
+3
+00:00:03.888 --> 00:00:07.700
+Move it to a group managed or
+delegated managed service account.
+
+4
+00:00:07.700 --> 00:00:12.600
+Or move it to a managed identity, a
+federated credential, or a certificate.
+
+5
+00:00:12.600 --> 00:00:17.522
+The program's migration path matrix,
+which is design guidance, decides by the
+
+6
+00:00:17.522 --> 00:00:20.334
+account type and by
+where the workload runs,
+
+7
+00:00:20.334 --> 00:00:22.912
+and its rule is simple: no stored secrets.
+
+8
+00:00:22.912 --> 00:00:27.138
+But three things are easy to blur
+here, and the code keeps them apart.
+
+9
+00:00:27.138 --> 00:00:29.150
+The matrix proposes a target.
+
+10
+00:00:29.150 --> 00:00:33.275
+The application owner decides the
+disposition, account by account.
+
+11
+00:00:33.275 --> 00:00:35.825
+And the ISSO checks the gate.
+
+12
+00:00:35.825 --> 00:00:38.478
+Keep those three separate,
+and nobody can say the
+
+13
+00:00:38.478 --> 00:00:41.263
+code made a decision that
+a person should have made.
+
+14
+00:00:41.263 --> 00:00:47.140
+In this module you run all three on the
+fixtures, and read why Gate 2 isn't met yet.

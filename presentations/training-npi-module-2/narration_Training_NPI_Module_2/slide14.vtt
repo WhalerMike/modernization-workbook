@@ -1,0 +1,65 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.025
+Check yourself with two questions.
+
+2
+00:00:02.025 --> 00:00:05.150
+First: which owners does
+the code count as valid?
+
+3
+00:00:05.150 --> 00:00:08.788
+The answer is b: users who
+are members and enabled.
+
+4
+00:00:08.788 --> 00:00:12.702
+A guest or a service principal
+listed as an owner raises a warning,
+
+5
+00:00:12.702 --> 00:00:14.587
+and doesn't count toward the two.
+
+6
+00:00:14.587 --> 00:00:17.396
+Second: you run the
+orphan action script with
+
+7
+00:00:17.396 --> 00:00:19.976
+an approved hash that
+isn't the plan's hash.
+
+8
+00:00:19.976 --> 00:00:20.987
+What happens?
+
+9
+00:00:20.987 --> 00:00:22.213
+The answer is b.
+
+10
+00:00:22.213 --> 00:00:25.112
+It refuses to run a plan nobody reviewed.
+
+11
+00:00:25.112 --> 00:00:27.876
+You saw that refusal in
+step eight of the lab.
+
+12
+00:00:27.876 --> 00:00:30.257
+The module page has three more questions,
+
+13
+00:00:30.257 --> 00:00:34.040
+each linked to the section that
+answers it, including how the code
+
+14
+00:00:34.040 --> 00:00:38.020
+disables an orphaned app, and why
+the write path is a person's session.

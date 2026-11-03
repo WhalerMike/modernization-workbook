@@ -1,0 +1,702 @@
+{
+ "1": [
+  [
+   0.05,
+   5.625,
+   "Welcome to Module 4 of the Non-Person Identity learning path: set the credential rules."
+  ],
+  [
+   5.675,
+   3.275,
+   "Module 3 decided where each identity ends up."
+  ],
+  [
+   8.95,
+   9.838,
+   "This module sets the rules for the credentials they hold on the way: what the tenant will refuse, and how a certificate is renewed and replaced without anyone having to remember."
+  ],
+  [
+   18.788,
+   8.162,
+   "It's Gate 3, Credential rules, with Chapter 4 of the developer workbook, on app management policies and certificate rotation."
+  ],
+  [
+   26.95,
+   8.137,
+   "You'll compare a tenant's policy with a reviewed file, plan a rotation from renewal to removal, and approve each write by its hash."
+  ],
+  [
+   35.087,
+   4.388,
+   "The code runs on your laptop, against a fictional tenant and key vault."
+  ],
+  [
+   39.475,
+   5.013,
+   "It's illustrative: tested against fixtures, not run against a lyve tenant."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.312,
+   "Why does this need code?"
+  ],
+  [
+   1.363,
+   2.337,
+   "The program's credential rules are short."
+  ],
+  [
+   3.7,
+   1.825,
+   "No long-lived secrets."
+  ],
+  [
+   5.525,
+   4.9,
+   "Managed identities first, then federated credentials, then certificates."
+  ],
+  [
+   10.425,
+   3.737,
+   "And every certificate in a vault and on a rotation calendar."
+  ],
+  [
+   14.162,
+   2.575,
+   "Those rules are the program's design guidance."
+  ],
+  [
+   16.738,
+   9.15,
+   "The tenant can enforce part of that itself, with an application management policy that blocks new secrets and caps new certificates at a hundred eighty days."
+  ],
+  [
+   25.887,
+   1.475,
+   "The rest needs code."
+  ],
+  [
+   27.363,
+   6.45,
+   "Key Vault can renew a certificate on a schedule, but Entra I D renews nothing on the app registration."
+  ],
+  [
+   33.812,
+   4.225,
+   "Somebody has to put the new certificate on the app, and take the old one off."
+  ],
+  [
+   38.038,
+   8.4,
+   "So in this module you compare the policy with the tenant, and you plan a rotation from renewal to removal, with each write approved by its hash."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   5.562,
+   "Here's what you'll be able to do by the end of this module, which takes about sixty-five minutes with the lab."
+  ],
+  [
+   5.612,
+   6.775,
+   "You'll describe the tenant default policy and an app management policy, and how an exception overrides the default."
+  ],
+  [
+   12.387,
+   5.987,
+   "You'll explain why the policy plan never drops or loosens a restriction the tenant already holds."
+  ],
+  [
+   18.375,
+   5.388,
+   "You'll name the steps of a rotation, from the owner's approval to removing the old certificate."
+  ],
+  [
+   23.762,
+   6.588,
+   "And you'll run both plans on the fixtures, dry-run them, and see the write path refuse a hash nobody approved."
+  ],
+  [
+   30.35,
+   11.113,
+   "Before you start, finish Module 1, because both plans read its register, and Module 3, because a secret isn't rotated: it's replaced by the target Module 3 decides."
+  ],
+  [
+   41.462,
+   5.037,
+   "Lab 1 needs PowerShell 7.1 or later with Pester 5, and a clone."
+  ],
+  [
+   46.5,
+   0.925,
+   "No tenant."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   3.188,
+   "Unit 1 is the guide's Step 3, eight steps."
+  ],
+  [
+   3.237,
+   1.1,
+   "Note three of them."
+  ],
+  [
+   4.338,
+   2.4,
+   "First, the policy's effective date."
+  ],
+  [
+   6.737,
+   8.012,
+   "The restrictions bind every app created after a date you choose, so new registrations follow the rule while the old ones are fixed later."
+  ],
+  [
+   14.75,
+   2.525,
+   "Second, the two rotation numbers."
+  ],
+  [
+   17.275,
+   9.637,
+   "An existing workload moves onto a certificate and is rotated at least yearly while it's being fixed, and every new registration starts under the hundred eighty day cap."
+  ],
+  [
+   26.913,
+   17.562,
+   "Third, closing the loop between vault and directory: a renewed certificate in Key Vault doesn't by itself change the credential on the app registration, which is why Microsoft Learn's procedure for rotating certificates on sequel Server enabled by Azure Arc uploads the new one as a separate step."
+  ],
+  [
+   44.475,
+   22.062,
+   "The other steps map the policy to three policies in sis-uh's Scuba Gear baseline, which are should policies, not required configurations; keep secrets by exception only; and cover a group managed account's password, which Microsoft Learn's group managed service account documentation says Windows changes every thirty days by default, and new federated credentials."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   2.562,
+   "Unit 2 reads the rules the code holds."
+  ],
+  [
+   2.612,
+   6.487,
+   "Microsoft Learn's application management policies A P I overview describes two kinds of policy."
+  ],
+  [
+   9.1,
+   9.6,
+   "The tenant default policy always exists, is disabled by default, and holds separate restrictions for application objects and for service principal objects."
+  ],
+  [
+   18.7,
+   2.888,
+   "The program sets the same restrictions on both."
+  ],
+  [
+   21.587,
+   4.763,
+   "An app management policy is assigned to one app, and an app takes only one."
+  ],
+  [
+   26.35,
+   6.438,
+   "It overrides the default for the restrictions it defines, and anything it doesn't define falls back to the default."
+  ],
+  [
+   32.788,
+   7.487,
+   "The program's design guidance uses it for an exception: documented, time-limited, with a record number and an end date."
+  ],
+  [
+   40.275,
+   1.512,
+   "Two facts to remember."
+  ],
+  [
+   41.788,
+   6.85,
+   "Neither kind blocks tokens for an existing app; only the create or update that breaks the policy is refused."
+  ],
+  [
+   48.638,
+   10.787,
+   "And Microsoft Learn's Workload I D F A Q lists app management policies in both the free edition and Workload I D Premium, so this module needs no Premium."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   12.025,
+   "The policy check reads the default policy, every app management policy, and each app registration, and compares the default with the reviewed file, restriction by restriction, on both objects."
+  ],
+  [
+   12.075,
+   6.412,
+   "Add or Change means the tenant lacks the program's restriction or holds a weaker one, so the program's goes in."
+  ],
+  [
+   18.488,
+   6.925,
+   "Keep Stricter means the tenant already holds something stronger, and Keep Existing means a restriction the file doesn't name."
+  ],
+  [
+   25.413,
+   1.938,
+   "Both stay as the tenant has them."
+  ],
+  [
+   27.35,
+   4.987,
+   "The body is merged, so the PATCH never drops a restriction and never loosens one."
+  ],
+  [
+   32.337,
+   19.438,
+   "The findings, N P I P O L oh one to oh six, flag a restriction the tenant doesn't hold yet, a policy outside the reviewed file, an expired or unassignable exception, and an app registration without the full app instance property lock, which stops anyone adding a credential to its service principals."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   8.975,
+   "Rotation, in the program's design, is raised automatically before expiry and approved by the owner, so the app never depends on someone remembering."
+  ],
+  [
+   9.025,
+   4.375,
+   "The code joins Key Vault and Entra I D in five steps."
+  ],
+  [
+   13.4,
+   3.188,
+   "A request is raised sixty days before expiry."
+  ],
+  [
+   16.587,
+   2.538,
+   "An owner who is an enabled member approves."
+  ],
+  [
+   19.125,
+   7.85,
+   "Key Vault makes the next version from its own policy, as Microsoft Learn's Key Vault certificate creation documentation describes."
+  ],
+  [
+   26.975,
+   3.45,
+   "The new certificate is added to the app beside the old one."
+  ],
+  [
+   30.425,
+   6.537,
+   "And once the owner records that the workload signs in with it, and seven days have passed, the old one is removed."
+  ],
+  [
+   36.962,
+   18.812,
+   "The findings, N P I R O T oh one to oh seven, flag a rotation due with no approval, a certificate with no vault binding, one expired with no replacement, a refused approval, a lifetime over the cap, and a client secret, which isn't rotated at all: it's reported for replacement."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   1.475,
+   "This is the kit's design."
+  ],
+  [
+   1.525,
+   13.375,
+   "One script can write in this chapter, and it refuses to run unless the plan's hash is the approved one, the plan is for this tenant, cloud and task and no more than seven days old, and each write is a declared call."
+  ],
+  [
+   14.9,
+   1.625,
+   "Then it checks every body."
+  ],
+  [
+   16.525,
+   11.975,
+   "The default policy PATCH may set only the enabled flag and the two restriction sets, and, checked again against the policy read just before the write, it never loosens or drops a live restriction."
+  ],
+  [
+   28.5,
+   1.788,
+   "The lock body is exact."
+  ],
+  [
+   30.288,
+   7.025,
+   "An attach keeps every certificate the app has and adds exactly one; a removal drops only the old one."
+  ],
+  [
+   37.312,
+   5.525,
+   "The Key Vault create body is empty, so the rotation never changes a certificate policy."
+  ],
+  [
+   42.837,
+   2.0,
+   "Delete and put are never sent."
+  ],
+  [
+   44.837,
+   5.037,
+   "Before each write it re-reads the target, and skips the write if anything changed."
+  ],
+  [
+   49.875,
+   3.163,
+   "And a lyve run is a person signed in, never an app."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   10.1,
+   "Step one makes Module 1's register, and step two sends Microsoft's samples to the fakes: nineteen pass, and the thirty-two not run are the code's own tests."
+  ],
+  [
+   10.875,
+   3.2,
+   "Step three lists what each of the four tasks needs."
+  ],
+  [
+   14.075,
+   4.325,
+   "The two reading tasks hold only read permissions and Key Vault Reader."
+  ],
+  [
+   18.4,
+   7.162,
+   "The two write tasks add Application dot ReadWrite dot All, the policy write permission, and Key Vault Certificates Officer."
+  ],
+  [
+   25.562,
+   3.425,
+   "Step four compares the policy and builds its plan."
+  ],
+  [
+   28.988,
+   2.15,
+   "The tenant's default is disabled."
+  ],
+  [
+   31.137,
+   4.175,
+   "The diff is six adds, one change and one keep existing."
+  ],
+  [
+   35.312,
+   7.612,
+   "The plan has ten actions, and eight write: patch the default, create and assign one exception, and lock five apps."
+  ],
+  [
+   42.925,
+   1.175,
+   "Nothing is sent."
+  ],
+  [
+   44.1,
+   11.363,
+   "Step five reads the diff: three restrictions added on both objects, for apps created after November fifteenth, and the tenant's own custom password restriction kept, in the PATCH body."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   3.125,
+   "Step six runs the policy plan three times."
+  ],
+  [
+   3.175,
+   8.438,
+   "First, with the plan's own hash and no Apply switch, it's a dry run: the write path runs its prechecks and reports eight writes it would send."
+  ],
+  [
+   11.613,
+   6.888,
+   "One PATCH of the default policy, a policy create and its assignment, and five lock PATCHes, one per app."
+  ],
+  [
+   18.5,
+   3.575,
+   "Then the same command with Apply sends all eight to the fake."
+  ],
+  [
+   22.075,
+   3.913,
+   "In Lab 1, Apply changes only the fake, in memory."
+  ],
+  [
+   25.988,
+   7.3,
+   "Then you run the plan with a hash of all zeros, which nobody approved, and it refuses to run a plan nobody reviewed."
+  ],
+  [
+   33.288,
+   5.125,
+   "Pasted line by line, as the lab means, the shell carries on after that refusal."
+  ],
+  [
+   38.413,
+   7.013,
+   "That's the pattern for every write in this path: a plan, a reviewed hash, a dry run, then Apply."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   2.4,
+   "Step seven builds the rotation plan."
+  ],
+  [
+   2.45,
+   7.737,
+   "It reads seven app registrations and writes seven steps: two findings, three information items, and three writes."
+  ],
+  [
+   10.188,
+   1.175,
+   "Nothing is sent."
+  ],
+  [
+   11.363,
+   1.812,
+   "Step eight reads the plan."
+  ],
+  [
+   13.175,
+   6.475,
+   "Vendor Portal's certificate is due within sixty days and an owner approved, so it's renewed in Key Vault."
+  ],
+  [
+   19.65,
+   6.938,
+   "H R Connector's new certificate was verified, and the seven-day overlap has passed, so the old one is removed."
+  ],
+  [
+   26.587,
+   2.862,
+   "Deploy Bot gets its new certificate attached."
+  ],
+  [
+   29.45,
+   6.088,
+   "Three apps still hold secrets: Legacy Reports, Mail Automation and Payroll Export."
+  ],
+  [
+   35.538,
+   2.188,
+   "Those are replaced, not rotated."
+  ],
+  [
+   37.725,
+   5.263,
+   "Step nine dry-runs the plan, three writes it would send, then applies it to the fake."
+  ],
+  [
+   42.987,
+   6.325,
+   "For Vendor Portal, Key Vault created the next version, and the next plan attaches it, after a new review."
+  ],
+  [
+   49.312,
+   4.15,
+   "Step ten runs every test: five hundred thirteen pass."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   13.938,
+   "Lab 2 runs both plans in your own test tenant, worldwide or G C C, with a test key vault that uses Azure role-based access, never production, with fictional people, and with Module 1's Lab 2 already run."
+  ],
+  [
+   13.988,
+   8.7,
+   "Apply the policy from a test copy of the reviewed file, then check that the tenant really refuses a new client secret and a twelve-month certificate."
+  ],
+  [
+   22.688,
+   1.863,
+   "Those refusals are evidence."
+  ],
+  [
+   24.55,
+   8.45,
+   "Then carry one test app through a whole rotation: raise it, approve it, renew, attach, verify, and remove."
+  ],
+  [
+   33.0,
+   6.45,
+   "Sign in as a person with Cloud Application Administrator and Key Vault Certificates Officer on the test vault."
+  ],
+  [
+   39.45,
+   8.4,
+   "To back it out, step eight is a person's PATCH of the default policy back to the copy saved before, because this code never loosens a policy."
+  ],
+  [
+   47.85,
+   2.65,
+   "Then delete the test objects and the output."
+  ],
+  [
+   50.5,
+   2.15,
+   "The authors haven't run Lab 2."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   1.387,
+   "The federal requirement."
+  ],
+  [
+   1.438,
+   15.8,
+   "Gate 3 meets nist special publication eight hundred fifty-three I A five, enhancement two, S C twelve and S C seventeen, and the policies M S dot A A D five point five to five point seven in sis-uh's Scuba Gear baseline."
+  ],
+  [
+   17.238,
+   3.975,
+   "Those three are should policies, not required configurations."
+  ],
+  [
+   21.212,
+   2.45,
+   "The module's table maps the evidence."
+  ],
+  [
+   23.663,
+   7.737,
+   "For configuration settings and the Scuba policies, the default policy as it was before, the diff, and the reviewed file."
+  ],
+  [
+   31.4,
+   3.237,
+   "For authenticator management, the policy findings."
+  ],
+  [
+   34.638,
+   6.287,
+   "For the certificates themselves, the rotation plan, the Key Vault bindings and the rotation findings."
+  ],
+  [
+   40.925,
+   5.15,
+   "For change control, each plan's approved hash and the dry-run and apply folders."
+  ],
+  [
+   46.075,
+   3.2,
+   "And for least privilege, each task's permission list."
+  ],
+  [
+   49.275,
+   6.575,
+   "K S I's are fed-ramp twenty X indicators for providers, and which file supports which is the program's mapping."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   1.975,
+   "Check yourself with two questions."
+  ],
+  [
+   2.025,
+   4.963,
+   "First: the tenant already holds a restriction the reviewed file doesn't name."
+  ],
+  [
+   6.987,
+   1.262,
+   "What does the plan do?"
+  ],
+  [
+   8.25,
+   1.212,
+   "The answer is c."
+  ],
+  [
+   9.463,
+   2.788,
+   "It keeps it as the tenant has it, Keep Existing."
+  ],
+  [
+   12.25,
+   7.737,
+   "The PATCH never drops or loosens a live restriction, and you saw that in step five, with the tenant's custom password restriction."
+  ],
+  [
+   19.988,
+   3.4,
+   "Second: Key Vault renewed a certificate on its own."
+  ],
+  [
+   23.387,
+   1.125,
+   "What's still missing?"
+  ],
+  [
+   24.512,
+   1.225,
+   "The answer is b."
+  ],
+  [
+   25.738,
+   11.0,
+   "The new certificate has to be added to the app registration, with the owner's approval, and the old one removed after the overlap, because Entra I D renews nothing on the app registration."
+  ],
+  [
+   36.737,
+   4.925,
+   "The module page has three more questions, each linked to the section that answers it."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   0.825,
+   "To sum up."
+  ],
+  [
+   0.875,
+   13.488,
+   "You compared a fictional tenant's default policy with the reviewed file, applied a plan that adds the program's restrictions and locks five apps, and carried three certificates through renewal, attach and removal, on the fakes."
+  ],
+  [
+   14.363,
+   14.375,
+   "The evidence an I S S O keeps for Gate 3 from this module is the default policy as it was before, the diff, both plans with their approved hashes, the findings, and the dry-run and apply folders with their manifests, all dated."
+  ],
+  [
+   28.738,
+   5.525,
+   "From Lab 2, add the tenant's refusals and the Scuba Gear result for the three policies."
+  ],
+  [
+   34.263,
+   3.075,
+   "Before you ship, work through the chapter's checklist."
+  ],
+  [
+   37.337,
+   7.4,
+   "Next is Module 5: cut the privilege of service principals, starting with the broad permissions and roles they hold."
+  ]
+ ]
+}

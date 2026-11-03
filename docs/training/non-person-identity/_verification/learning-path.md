@@ -36,6 +36,7 @@ Method:
 
 ## Found during the re-run
 
+- Module 11's step 10, run on November 3, 2026 in the same PowerShell session as steps 1 to 9, printed `PassedCount 54`, `FailedCount 1`: the end-to-end test "run preflight, smoke test and rollback end to end, and exit 0" checks `$LASTEXITCODE`, which step 8's exit code 1 leaves set. In a new session it printed 55 passed. The page now says to run step 10 in a new session.
 - Module 11's step 1 and step 5 end in an error by design. In a non-interactive `pwsh -c` session, the step 5 refusal ends the session; pasted line by line, the shell carries on, as with Chapters 04, 06 and 09.
 - The kit's Learn sample tests need `examples/third_party` beside `examples/non-person-identity`, and two `NpiDrift` tests read fixtures from `examples/drift-pipeline`. A learner with a full clone has both. A copy of the kit folder alone fails those tests. The pages don't need to say so, because the labs run in a clone.
 - When the refusal in Chapters 04, 06 and 09 of an unapproved plan hash runs in a non-interactive `pwsh -c` session, the refusal ends that session with exit code 1. Pasted line by line, as the labs mean, the shell carries on. The chapters don't state the exit code, and the modules don't either.

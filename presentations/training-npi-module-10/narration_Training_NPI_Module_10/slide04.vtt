@@ -1,0 +1,65 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.480
+Unit 1 is the guide's Step 6, run the
+lifecycle, which has four parts: owner change,
+
+2
+00:00:05.480 --> 00:00:09.383
+orphans, access reviews of
+owners, and decommissioning,
+
+3
+00:00:09.383 --> 00:00:12.862
+which disables first and
+deletes only afterward.
+
+4
+00:00:12.862 --> 00:00:16.706
+In the program's guidance, a
+non-person identity's events come
+
+5
+00:00:16.706 --> 00:00:20.626
+from its owning system and from
+credential expiry, not from HR.
+
+6
+00:00:20.626 --> 00:00:25.153
+Then the guide's Evidence section adds
+the program's rule this module turns into
+
+7
+00:00:25.153 --> 00:00:28.445
+code: run the checks on the
+continuous monitoring cadence,
+
+8
+00:00:28.445 --> 00:00:32.287
+and file their output with the date,
+the tenant and the check version.
+
+9
+00:00:32.287 --> 00:00:38.387
+The guide's validate step for Gate 6 names
+NIST special publication eight hundred
+
+10
+00:00:38.387 --> 00:00:41.884
+fifty-three controls A C
+two, enhancement three;
+
+11
+00:00:41.884 --> 00:00:45.113
+A C six, enhancement seven;
+A U six; and C A seven.
+
+12
+00:00:45.113 --> 00:00:52.457
+The FedRAMP K S I's it lines
+up with are K S I I A M A A M,
+
+13
+00:00:52.457 --> 00:00:56.470
+K S I M L A R V L and K S I M L A E V C.

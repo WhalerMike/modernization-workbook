@@ -1,0 +1,88 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.112
+The check runs nine rules, N
+P I K R B oh one to oh nine.
+
+2
+00:00:05.112 --> 00:00:09.637
+Oh one, oh four and oh eight come from
+Microsoft Learn's pages on the root key,
+
+3
+00:00:09.637 --> 00:00:14.755
+delegated managed service accounts and
+securing group managed service accounts;
+
+4
+00:00:14.755 --> 00:00:17.499
+the others are the
+program's design guidance.
+
+5
+00:00:17.499 --> 00:00:19.636
+Oh one: there's no K D S root key,
+
+6
+00:00:19.636 --> 00:00:23.350
+or one that became usable
+less than ten hours ago.
+
+7
+00:00:23.350 --> 00:00:28.100
+Oh two: a Kerberos account has no
+disposition, or an unknown one.
+
+8
+00:00:28.100 --> 00:00:31.111
+Oh three: the accounts
+allowed to retrieve a managed
+
+9
+00:00:31.111 --> 00:00:34.613
+password in Active Directory
+differ from the reviewed list.
+
+10
+00:00:34.613 --> 00:00:38.287
+Oh four is the one to
+remember: an unusable target.
+
+11
+00:00:38.287 --> 00:00:43.120
+Learn's overview and F A Q for delegated
+managed service accounts say a D M S A
+
+12
+00:00:43.120 --> 00:00:45.770
+can't come from a managed service account,
+
+13
+00:00:45.770 --> 00:00:50.913
+can't serve an account with unconstrained
+delegation, which stops working once
+
+14
+00:00:50.913 --> 00:00:56.213
+the migration completes, and needs Windows
+Server 2025 on the hosts and the domain.
+
+15
+00:00:56.213 --> 00:01:00.659
+Oh five and oh six: an island
+account with no S P N owner,
+
+16
+00:01:00.659 --> 00:01:03.762
+or no end date, or one after D oh eight's.
+
+17
+00:01:03.762 --> 00:01:07.363
+Oh seven: an account not
+reconciled with the end state.
+
+18
+00:01:07.363 --> 00:01:12.410
+Oh eight warns about a privileged group,
+and oh nine hands SQL Server accounts on.

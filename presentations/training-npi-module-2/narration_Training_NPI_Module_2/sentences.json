@@ -1,0 +1,662 @@
+{
+ "1": [
+  [
+   0.05,
+   6.825,
+   "Welcome to Module 2 of the Non-Person Identity learning path: owners, sponsors and the orphan rule."
+  ],
+  [
+   6.875,
+   4.8,
+   "In Module 1 you read every non-person identity into one register."
+  ],
+  [
+   11.675,
+   2.2,
+   "Now you check who answers for each one."
+  ],
+  [
+   13.875,
+   9.525,
+   "Ownership is part of Gate 1, Inventory, and the orphan rule is part of Gate 6, Lifecycle, and both come from Chapter 2 of the developer workbook."
+  ],
+  [
+   23.4,
+   10.262,
+   "You'll check every identity for two human owners and an active service record, and build the orphan rule as a plan that a reviewer approves by its hash before anything changes."
+  ],
+  [
+   33.663,
+   3.938,
+   "The code runs on your laptop, against the same fictional estate."
+  ],
+  [
+   37.6,
+   5.013,
+   "It's illustrative: tested against fixtures, not run against a lyve tenant."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   2.05,
+   "Why does ownership matter so much?"
+  ],
+  [
+   2.1,
+   7.487,
+   "Because, as the program's guidance on app ownership warns, an owner can add a credential to an app, and then act as the app."
+  ],
+  [
+   9.588,
+   3.188,
+   "So owners are a control, not a contact list."
+  ],
+  [
+   12.775,
+   13.062,
+   "The program wants two human owners on every app registration and service principal, a record in the system inventory, and an application owner for every Active Directory account, found before the account is touched."
+  ],
+  [
+   25.837,
+   6.05,
+   "An identity with no owner is an orphan, and the plan's decision D N 2 says what happens to it."
+  ],
+  [
+   31.887,
+   2.987,
+   "Whatever happens, the rule is never delete."
+  ],
+  [
+   34.875,
+   9.0,
+   "In this module you check ownership as code, and you build the orphan rule as a plan that a reviewer approves by its hash, before anything changes."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   5.225,
+   "Here's what you'll be able to do by the end of this module, which takes about sixty minutes with the lab."
+  ],
+  [
+   5.275,
+   4.75,
+   "You'll state the program's ownership rule, and which owners the code counts as valid."
+  ],
+  [
+   10.025,
+   6.737,
+   "You'll explain D N 2, the orphan rule, and how it differs from the program's own policy for orphaned apps."
+  ],
+  [
+   16.762,
+   4.138,
+   "You'll run the ownership check and read its findings and its orphan plan."
+  ],
+  [
+   20.9,
+   7.088,
+   "And you'll show that the write path only dry-runs without the Apply switch, and refuses a plan whose hash nobody approved."
+  ],
+  [
+   27.988,
+   5.625,
+   "Before you start, finish Module 1, because this module checks Module 1's register."
+  ],
+  [
+   33.612,
+   5.463,
+   "And read the guide's record each identity joins to, for the owner and sponsor fields."
+  ],
+  [
+   39.075,
+   6.1,
+   "Lab 1 needs PowerShell 7.1 or later with Pester 5, and a clone of the repository."
+  ],
+  [
+   45.175,
+   0.925,
+   "No tenant."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   1.488,
+   "Unit 1 is the guide."
+  ],
+  [
+   1.538,
+   5.05,
+   "Step 1 f joins each identity to its record and names who answers for it."
+  ],
+  [
+   6.588,
+   7.588,
+   "In the program's design guidance, every app registration and service principal gets two human owners, never service accounts."
+  ],
+  [
+   14.175,
+   11.225,
+   "The Owners list holds only the people who configure the app; the business approver goes in the registry and in the service management reference, because an owner can add a credential and act as the app."
+  ],
+  [
+   25.4,
+   4.713,
+   "And each identity gets a sponsor who is a federal employee mastered in H R."
+  ],
+  [
+   30.113,
+   4.638,
+   "A contractor can build or run a workload, but can't be its only sponsor."
+  ],
+  [
+   34.75,
+   2.35,
+   "Then Step 6 runs the lifecycle."
+  ],
+  [
+   37.1,
+   5.312,
+   "An owner who leaves or changes roles starts a transfer at least ten business days ahead."
+  ],
+  [
+   42.413,
+   2.55,
+   "An app with no named owner is an orphan."
+  ],
+  [
+   44.962,
+   9.812,
+   "And decommissioning always disables first, then deletes; Microsoft Learn's Deactivate an app registration documentation describes the reversible switch."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   2.587,
+   "Unit 2 reads the rule the code holds."
+  ],
+  [
+   2.638,
+   13.75,
+   "Microsoft Learn's enterprise application ownership documentation recommends at least two owners where possible, and its Get M G Service Principal Owner reference describes a service principal's owners as users or service principals."
+  ],
+  [
+   16.387,
+   3.487,
+   "The program's rule is stricter, and it's design guidance."
+  ],
+  [
+   19.875,
+   9.637,
+   "Two human owners, never service accounts, and not service principals or guests: the code counts an owner only if it's a user, a member, and enabled."
+  ],
+  [
+   29.512,
+   5.438,
+   "A service management reference that names a record in the system inventory, not free text."
+  ],
+  [
+   34.95,
+   10.575,
+   "And for every Active Directory account, an application owner, which comes from an owners file kept with the record, because the directory has no owners attribute the code can trust."
+  ],
+  [
+   45.525,
+   1.975,
+   "Then disable, never delete."
+  ],
+  [
+   47.5,
+   10.412,
+   "Microsoft Learn's Deactivate an app registration procedure is on the beta endpoint, so the code disables the tenant's service principal instead, on version one point oh."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   1.7,
+   "Now the orphan rule itself."
+  ],
+  [
+   1.75,
+   13.9,
+   "The plan's decision D N 2, which the C I S O owns, says: disable the identity once the identity governance officer confirms the finding, then allow thirty days for the office to name an owner or retire it."
+  ],
+  [
+   15.65,
+   1.012,
+   "Never delete."
+  ],
+  [
+   16.663,
+   9.613,
+   "The program's own governance policy for orphaned apps runs the other way round: thirty days to assign an owner, then access is suspended on day thirty-one."
+  ],
+  [
+   26.275,
+   5.175,
+   "And the program's rule for A I agents disables first, because an agent can act."
+  ],
+  [
+   31.45,
+   9.125,
+   "The code follows D N 2 as the plan states it, which is the stricter of the two, and the difference between the two stays open for the C I S O to decide."
+  ],
+  [
+   40.575,
+   9.213,
+   "Microsoft Learn's Governing Microsoft Entra service accounts documentation agrees on the shape: disable, but don't delete until the review is complete."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   9.762,
+   "The check reads each owner once, with only User dot Read dot All, and applies nine rules, N P I O W N oh one to oh nine."
+  ],
+  [
+   9.812,
+   7.425,
+   "Oh one is an app registration or legacy service principal with no valid human owner, which makes it an orphan candidate."
+  ],
+  [
+   17.238,
+   2.612,
+   "Oh two is one valid owner, not two."
+  ],
+  [
+   19.85,
+   7.713,
+   "Oh three, four and five are warnings: an owner that's a service principal, a guest, or disabled or not found."
+  ],
+  [
+   27.562,
+   6.737,
+   "Oh six is no service management reference, and oh seven a reference that names no record, or a retired one."
+  ],
+  [
+   34.3,
+   6.912,
+   "Oh eight is an Active Directory account with no valid application owner in the owners file, another orphan candidate."
+  ],
+  [
+   41.212,
+   7.1,
+   "And oh nine, information only, is an account Module 1 found only by a password that never expires."
+  ],
+  [
+   48.312,
+   5.213,
+   "The fields for A I sponsors are recorded, empty, for Module 9 to check."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   6.875,
+   "The check's orphan candidates and the owners' claims become a plan, one action each, and nothing in the plan writes."
+  ],
+  [
+   6.925,
+   7.95,
+   "Only two kinds of action can write, after review: Disable, and AddOwner, for a claim that names an enabled member."
+  ],
+  [
+   14.875,
+   8.812,
+   "The rest only record: waiting for the officer's confirmation, a claim window still open, a retirement candidate, a refused nominee."
+  ],
+  [
+   23.688,
+   5.475,
+   "The same inputs give the same plan, byte for byte, so a reviewer approves a hash."
+  ],
+  [
+   29.163,
+   5.05,
+   "Then a separate script, the only code in the example that can write, runs the plan."
+  ],
+  [
+   34.212,
+   9.637,
+   "It refuses unless the plan's hash is the approved one, the plan is for this tenant and cloud and no more than seven days old, and each write is declared."
+  ],
+  [
+   43.85,
+   5.45,
+   "The only PATCH body it allows sets account enabled to false, and it never sends a delete."
+  ],
+  [
+   49.3,
+   14.0,
+   "And a lyve run is a person's session, never an app's, because Microsoft Learn's Graph permissions reference warns that this write permission can let an app act as other entities, and the program's rule is that disabling is never automatic."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   6.375,
+   "Lab 1 runs in the non-person identity folder, in PowerShell 7, on the fictional estate."
+  ],
+  [
+   7.15,
+   4.175,
+   "Step one makes Module 1's register, because this check reads it."
+  ],
+  [
+   11.325,
+   9.113,
+   "Step two sends the samples from Microsoft Learn's Graph applications tutorial to the fake: ten pass, and the twenty not run are Chapter 1's."
+  ],
+  [
+   20.438,
+   2.65,
+   "Step three lists what each task needs."
+  ],
+  [
+   23.087,
+   5.562,
+   "The ownership check needs only User dot Read dot All: it reads people, nothing else."
+  ],
+  [
+   28.65,
+   5.15,
+   "The write task is separate, and it's the one that holds Application dot ReadWrite dot All."
+  ],
+  [
+   33.8,
+   2.862,
+   "Step four checks ownership and builds the plan."
+  ],
+  [
+   36.663,
+   4.25,
+   "Twenty-two identities are checked, and seven are orphan candidates."
+  ],
+  [
+   40.913,
+   4.088,
+   "That's twenty findings, three warnings and one information item."
+  ],
+  [
+   45.0,
+   5.675,
+   "The orphan plan has ten actions, and three of them write: one AddOwner and two disables."
+  ],
+  [
+   50.675,
+   1.175,
+   "Nothing is sent."
+  ],
+  [
+   51.85,
+   3.962,
+   "And the plan's hash is the same on every run with these inputs."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   2.438,
+   "Step five groups the findings by rule."
+  ],
+  [
+   2.487,
+   5.537,
+   "Two apps have no valid owner at all: Legacy Reports and Old sam-ul Connector."
+  ],
+  [
+   8.025,
+   1.925,
+   "Four have only one valid owner."
+  ],
+  [
+   9.95,
+   6.713,
+   "Build Pipeline's second owner is a service principal, and Vendor Portal's is a guest, so each counts only one."
+  ],
+  [
+   16.663,
+   8.762,
+   "Six have no service management reference, three have a reference to a record that isn't active, and five directory accounts have no valid application owner."
+  ],
+  [
+   25.425,
+   2.6,
+   "Step six reads the plan's ten actions."
+  ],
+  [
+   28.025,
+   7.312,
+   "Three write: Disable for svc backup and for Legacy Reports, and AddOwner for H R Connector, from a claim."
+  ],
+  [
+   35.337,
+   6.237,
+   "svc reports is a retirement candidate: it was disabled, and nobody claimed it in thirty days."
+  ],
+  [
+   41.575,
+   4.575,
+   "And the claim for Build Pipeline named a guest, so the nominee is refused."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   4.025,
+   "Step seven computes the plan's hash and dry-runs the plan with it."
+  ],
+  [
+   4.075,
+   15.9,
+   "Without the Apply switch, the write path runs its prechecks and stops, reporting three writes it would send: a directory disable for svc backup, a PATCH that turns off the Legacy Reports service principal, and a POST that adds an owner to H R Connector."
+  ],
+  [
+   19.975,
+   3.75,
+   "Step eight sends them to the fake with Apply: three sent."
+  ],
+  [
+   23.725,
+   8.975,
+   "In the results file, each disable tells the operator to record disabled on October thirtieth, and that the claim window ends November twenty-ninth."
+  ],
+  [
+   32.7,
+   7.575,
+   "Then you run the same plan with a hash of all zeros, which nobody approved, and it refuses to run a plan nobody reviewed."
+  ],
+  [
+   40.275,
+   4.112,
+   "Step nine runs every test: five hundred thirteen pass."
+  ],
+  [
+   44.388,
+   4.487,
+   "Delete the output folder when you're done, because it names accounts and owners."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   12.463,
+   "Lab 2 runs the rule in your own test tenant: worldwide or G C C, with a test Active Directory domain, never production, with fictional people, and with Module 1's Lab 2 already run."
+  ],
+  [
+   12.512,
+   5.75,
+   "Make two test orphans: an app registration with no owners, and a test service account."
+  ],
+  [
+   18.262,
+   3.725,
+   "Run the check with an app that holds only User dot Read dot All."
+  ],
+  [
+   21.988,
+   3.675,
+   "Confirm both orphans as the identity governance officer."
+  ],
+  [
+   25.663,
+   5.875,
+   "Then have a second person approve the plan's hash, which is the separation of duties the evidence records."
+  ],
+  [
+   31.538,
+   5.675,
+   "Dry-run the plan, then apply it, signed in as a person with Cloud Application Administrator."
+  ],
+  [
+   37.212,
+   10.55,
+   "To back it out, step six turns the service principal back on, enables the test account, deletes both test objects and the test app's registration, and deletes the output."
+  ],
+  [
+   47.763,
+   2.15,
+   "The authors haven't run Lab 2."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   1.387,
+   "The federal requirement."
+  ],
+  [
+   1.438,
+   12.125,
+   "Ownership is part of Gate 1 and the orphan rule part of Gate 6, and the guide's validate steps name A C two, A C two enhancement three, I A four and C M eight, among others."
+  ],
+  [
+   13.562,
+   3.237,
+   "The module's table maps each one to its evidence."
+  ],
+  [
+   16.8,
+   4.013,
+   "For account management, the ownership file and the owner findings."
+  ],
+  [
+   20.812,
+   6.713,
+   "For identifier management and the component inventory, the findings that each identity names an active record."
+  ],
+  [
+   27.525,
+   7.2,
+   "For disabling accounts and change control, the orphan plan with its hash, and the results and manifest from the apply."
+  ],
+  [
+   34.725,
+   6.312,
+   "For separation of duties, the officer's confirmations, and the plan hash approved by a second person."
+  ],
+  [
+   41.038,
+   3.675,
+   "And for least privilege, the permission lists for the two tasks."
+  ],
+  [
+   44.712,
+   9.375,
+   "K S I's are fed-ramp twenty X indicators for cloud service providers; the agency lines its evidence up with them, and the mapping is the program's."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   1.975,
+   "Check yourself with two questions."
+  ],
+  [
+   2.025,
+   3.125,
+   "First: which owners does the code count as valid?"
+  ],
+  [
+   5.15,
+   3.638,
+   "The answer is b: users who are members and enabled."
+  ],
+  [
+   8.787,
+   5.8,
+   "A guest or a service principal listed as an owner raises a warning, and doesn't count toward the two."
+  ],
+  [
+   14.588,
+   5.388,
+   "Second: you run the orphan action script with an approved hash that isn't the plan's hash."
+  ],
+  [
+   19.975,
+   1.012,
+   "What happens?"
+  ],
+  [
+   20.988,
+   1.225,
+   "The answer is b."
+  ],
+  [
+   22.212,
+   2.9,
+   "It refuses to run a plan nobody reviewed."
+  ],
+  [
+   25.113,
+   2.763,
+   "You saw that refusal in step eight of the lab."
+  ],
+  [
+   27.875,
+   10.088,
+   "The module page has three more questions, each linked to the section that answers it, including how the code disables an orphaned app, and why the write path is a person's session."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   0.825,
+   "To sum up."
+  ],
+  [
+   0.875,
+   12.762,
+   "You checked twenty-two identities for valid owners and active records, built an orphan plan of ten actions with three writes, dry-ran it, applied it to the fake, and saw the write path refuse a hash nobody approved."
+  ],
+  [
+   13.637,
+   15.1,
+   "The evidence an I S S O keeps from this module is the ownership file, the findings, and the orphan plan with its approved hash; the officer's confirmations; and the dry-run and apply folders, with their results and manifests, all dated."
+  ],
+  [
+   28.738,
+   3.075,
+   "Before you ship, work through the chapter's checklist."
+  ],
+  [
+   31.812,
+   3.962,
+   "Next is Module 3: decide each identity's target."
+  ],
+  [
+   35.775,
+   7.812,
+   "A matrix proposes where each identity should end up, the application owner decides, and the I S S O checks the gate."
+  ]
+ ]
+}

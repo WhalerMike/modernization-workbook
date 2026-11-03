@@ -1,0 +1,86 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.238
+Unit 1 is the guide's Step 3, eight steps.
+
+2
+00:00:03.238 --> 00:00:04.337
+Note three of them.
+
+3
+00:00:04.337 --> 00:00:06.738
+First, the policy's effective date.
+
+4
+00:00:06.738 --> 00:00:10.528
+The restrictions bind every app
+created after a date you choose,
+
+5
+00:00:10.528 --> 00:00:14.749
+so new registrations follow the rule
+while the old ones are fixed later.
+
+6
+00:00:14.749 --> 00:00:17.275
+Second, the two rotation numbers.
+
+7
+00:00:17.275 --> 00:00:22.093
+An existing workload moves onto a certificate
+and is rotated at least yearly while
+
+8
+00:00:22.093 --> 00:00:24.607
+it's being fixed, and
+every new registration
+
+9
+00:00:24.607 --> 00:00:26.912
+starts under the hundred eighty day cap.
+
+10
+00:00:26.912 --> 00:00:30.008
+Third, closing the loop
+between vault and directory:
+
+11
+00:00:30.008 --> 00:00:34.830
+a renewed certificate in Key Vault doesn't
+by itself change the credential on the
+
+12
+00:00:34.830 --> 00:00:40.013
+app registration, which is why Microsoft
+Learn's procedure for rotating certificates
+
+13
+00:00:40.013 --> 00:00:44.475
+on SQL Server enabled by Azure Arc
+uploads the new one as a separate step.
+
+14
+00:00:44.475 --> 00:00:49.223
+The other steps map the policy to three
+policies in CISA's Scuba Gear baseline,
+
+15
+00:00:49.223 --> 00:00:52.657
+which are should policies,
+not required configurations;
+
+16
+00:00:52.657 --> 00:00:57.259
+keep secrets by exception only; and
+cover a group managed account's password,
+
+17
+00:00:57.259 --> 00:01:01.862
+which Microsoft Learn's group managed
+service account documentation says
+
+18
+00:01:01.862 --> 00:01:06.600
+Windows changes every thirty days by
+default, and new federated credentials.

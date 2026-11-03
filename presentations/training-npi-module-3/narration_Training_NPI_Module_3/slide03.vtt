@@ -1,0 +1,67 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.890
+Here's what you'll be able to
+do by the end of this module,
+
+2
+00:00:02.890 --> 00:00:05.537
+which takes about fifty-five
+minutes with the lab.
+
+3
+00:00:05.537 --> 00:00:09.223
+You'll explain the difference
+between the matrix's proposal,
+
+4
+00:00:09.223 --> 00:00:11.287
+the owner's disposition, and Gate 2.
+
+5
+00:00:11.287 --> 00:00:13.748
+You'll name the target the matrix proposes
+
+6
+00:00:13.748 --> 00:00:16.349
+for each account type
+and workload location.
+
+7
+00:00:16.349 --> 00:00:20.750
+You'll run the matrix on the fixtures
+and explain each of its findings.
+
+8
+00:00:20.750 --> 00:00:24.570
+And you'll read a wave's rollback,
+and say which identities Conditional
+
+9
+00:00:24.570 --> 00:00:28.588
+Access for workload identities can
+cover now, and which after conversion.
+
+10
+00:00:28.588 --> 00:00:31.352
+Before you start, finish Modules 1 and 2,
+
+11
+00:00:31.352 --> 00:00:34.462
+because the matrix reads
+both of their runs.
+
+12
+00:00:34.462 --> 00:00:38.987
+And read Book 2, Chapter 9,
+on the migration path matrix.
+
+13
+00:00:38.987 --> 00:00:44.024
+Lab 1 needs PowerShell 7.1 or
+later with Pester 5, and a clone.
+
+14
+00:00:44.024 --> 00:00:45.000
+No tenant.

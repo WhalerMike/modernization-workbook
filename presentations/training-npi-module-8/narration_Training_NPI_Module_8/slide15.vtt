@@ -1,0 +1,72 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.025
+Check yourself with two questions.
+
+2
+00:00:02.025 --> 00:00:05.087
+First: a Kerberos account
+stays on the island.
+
+3
+00:00:05.087 --> 00:00:06.213
+What must it have?
+
+4
+00:00:06.213 --> 00:00:11.763
+The answer is b: an S P N owner and an
+end date no later than D oh eight's.
+
+5
+00:00:11.763 --> 00:00:17.252
+That's the program's design guidance for
+every account that stays on Kerberos,
+
+6
+00:00:17.252 --> 00:00:21.112
+and the check enforces it with
+N P I K R B oh five and oh six.
+
+7
+00:00:21.112 --> 00:00:25.376
+Second: why is svc
+webfront's D M S A blocked?
+
+8
+00:00:25.376 --> 00:00:26.600
+The answer is b.
+
+9
+00:00:26.600 --> 00:00:30.063
+The account is trusted for
+unconstrained delegation,
+
+10
+00:00:30.063 --> 00:00:34.758
+and Microsoft Learn's delegated
+managed service account documentation
+
+11
+00:00:34.758 --> 00:00:38.375
+says that stops working once
+a D M S A migration completes.
+
+12
+00:00:38.375 --> 00:00:41.790
+That's N P I K R B oh four,
+and it's why the plan records
+
+13
+00:00:41.790 --> 00:00:45.375
+the account as blocked
+instead of planning a write.
+
+14
+00:00:45.375 --> 00:00:47.802
+The module page has three more questions,
+
+15
+00:00:47.802 --> 00:00:50.350
+each linked to the
+section that answers it.

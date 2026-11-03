@@ -1,0 +1,734 @@
+{
+ "1": [
+  [
+   0.05,
+   6.537,
+   "Welcome to Module 11 of the Non-Person Identity learning path: deploy to test, then production."
+  ],
+  [
+   6.588,
+   6.85,
+   "This is the last module, and it serves every gate: each step of the runbook names the gate it moves forward."
+  ],
+  [
+   13.438,
+   4.412,
+   "It goes with Chapter 11 of the developer workbook, the deployment runbook."
+  ],
+  [
+   17.85,
+   1.2,
+   "One thing first."
+  ],
+  [
+   19.05,
+   7.725,
+   "Chapter 11 is held for the owner's review, and nobody has run its runbook against a lyve tenant, subscription or forest."
+  ],
+  [
+   26.775,
+   6.6,
+   "Its deploy scripts are tested against fictional tenants served by a fake, and their dry-run output is real."
+  ],
+  [
+   33.375,
+   3.325,
+   "Every live result in the chapter is labeled Expected."
+  ],
+  [
+   36.7,
+   7.45,
+   "So this module's Lab 1 runs only the dry run, on the kit's fixtures, and you'll read the live stages rather than run them."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.05,
+   "Why a runbook?"
+  ],
+  [
+   1.1,
+   6.05,
+   "Each chapter's Lab 2 proves one piece in a test tenant, by hand, and then backs it out."
+  ],
+  [
+   7.15,
+   6.812,
+   "A deployment has to prove them together, in an order that can be undone, against an environment someone depends on."
+  ],
+  [
+   13.963,
+   3.638,
+   "So the runbook is one set of commands, run twice."
+  ],
+  [
+   17.6,
+   6.263,
+   "First against an Entra test tenant, an Azure test subscription and an Active Directory test forest."
+  ],
+  [
+   23.863,
+   2.712,
+   "Then, unchanged, against production."
+  ],
+  [
+   26.575,
+   1.95,
+   "Only the settings file changes."
+  ],
+  [
+   28.525,
+   10.762,
+   "In this module you dry-run the scripts that guard that order: the settings check, the preflight, the smoke test, the rollback, and the evidence check that the promotion to production depends on."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   5.225,
+   "Here's what you'll be able to do by the end of this module, which takes about sixty minutes with the lab."
+  ],
+  [
+   5.275,
+   6.838,
+   "You'll explain what the runbook adds to each chapter's Lab 2, and why the policies that can block a sign-in come last."
+  ],
+  [
+   12.113,
+   6.188,
+   "You'll describe the settings file's rules: no secret, no placeholder, and the stage it says it is."
+  ],
+  [
+   18.3,
+   5.763,
+   "You'll run the preflight, the smoke test and the rollback plan on fixtures, and read their checks."
+  ],
+  [
+   24.062,
+   4.138,
+   "You'll show that a rollback plan whose hash nobody approved sends nothing."
+  ],
+  [
+   28.2,
+   7.037,
+   "And you'll explain why a fixture stage can never pass the evidence check, and what production's preflight needs from the test stage."
+  ],
+  [
+   35.237,
+   8.012,
+   "Before you start, finish Modules 1 to 10, or at least their Lab 1s: this module doesn't teach the kit's chapters again."
+  ],
+  [
+   43.25,
+   5.463,
+   "Module 10 matters most, for the evidence package and the first-week drift runs."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   2.188,
+   "Unit 1 starts with the safe order."
+  ],
+  [
+   2.237,
+   3.737,
+   "Inventory and owners come first, and they only read."
+  ],
+  [
+   5.975,
+   5.088,
+   "Then the app management policy, scoped to a pilot application and a synthetic one."
+  ],
+  [
+   11.062,
+   12.175,
+   "Microsoft Learn documents no report-only mode for these policies, but it says a policy refuses only a create or update that breaks it, so an existing secret keeps working while the pilot runs."
+  ],
+  [
+   23.238,
+   5.9,
+   "Then a federated credential and a managed identity on the pilot workload, beside the old secret."
+  ],
+  [
+   29.137,
+   6.438,
+   "Then a group managed service account on a test host, once the key distribution root key has replicated."
+  ],
+  [
+   35.575,
+   10.525,
+   "And last, Conditional Access for workload identities, in report-only mode, which Learn's Conditional Access documentation lets you use to estimate a policy's effect."
+  ],
+  [
+   46.1,
+   4.763,
+   "In production it's enabled wave by wave, after a reviewed sign-in summary."
+  ],
+  [
+   50.862,
+   6.125,
+   "The runbook decides nothing the gates decide; it deploys the controls that let each gate pass."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   2.538,
+   "Before you start, three things are in place."
+  ],
+  [
+   2.587,
+   13.375,
+   "Roles: every write in the runbook is a named person's delegated sign-in, with a role activated through Privileged Identity Management for the change window, which Microsoft Learn's P I M documentation shows how to activate."
+  ],
+  [
+   15.963,
+   4.312,
+   "The scheduled and read steps sign in as an app with a certificate."
+  ],
+  [
+   20.275,
+   1.95,
+   "Nothing signs in with a secret."
+  ],
+  [
+   22.225,
+   4.375,
+   "That rule is this workbook's design guidance, from the kit's write paths."
+  ],
+  [
+   26.6,
+   15.325,
+   "Approvals: the change advisory board approves the change record, the identity governance officer approves the settings file, a reviewer who isn't the operator approves each plan's hash, and the I S S O and the change advisory board approve the promotion to production."
+  ],
+  [
+   41.925,
+   2.013,
+   "And one change record per stage."
+  ],
+  [
+   43.938,
+   5.412,
+   "Its number goes into the settings file, and every manifest the deploy scripts write repeats it."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   3.275,
+   "The settings file is one jay-son file per stage."
+  ],
+  [
+   3.325,
+   10.85,
+   "It holds every value the commands need: the tenant, the cloud, the identities, the operators, the pilot, the synthetic objects, the policies and the waves."
+  ],
+  [
+   14.175,
+   5.725,
+   "The kit checks it before any command runs, against four rules, which are this workbook's design."
+  ],
+  [
+   19.9,
+   8.062,
+   "No secrets: a field whose name looks like a secret, or a value that looks like a client secret or a private key, stops the run."
+  ],
+  [
+   27.962,
+   7.475,
+   "The identities are named by client I D and certificate thumbprint, and the private key stays in the operator's certificate store."
+  ],
+  [
+   35.438,
+   5.787,
+   "No placeholders: a value still shaped like an angle-bracketed tenant I D stops the run."
+  ],
+  [
+   41.225,
+   5.338,
+   "The stage it says it is: the file's environment must match the stage you tell the command to run."
+  ],
+  [
+   46.562,
+   6.275,
+   "And the same commands for both stages: moving from test to production changes the file, and nothing else."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   7.85,
+   "The runbook adds five scripts, each with a fixture mode that serves Graph and Active Directory from a file and sends nothing anywhere."
+  ],
+  [
+   7.9,
+   7.825,
+   "The preflight runs checks P F oh one to eleven, writes a snapshot that the rollback restores, and writes nothing to the tenant."
+  ],
+  [
+   15.725,
+   7.025,
+   "The smoke test runs checks S T oh one to oh seven against a synthetic service principal and service account."
+  ],
+  [
+   22.75,
+   5.7,
+   "Its one write is a probe that's expected to be refused: a new secret on the synthetic app."
+  ],
+  [
+   28.45,
+   1.812,
+   "The rollback has two modes."
+  ],
+  [
+   30.262,
+   2.612,
+   "Plan writes the plan and prints its hash."
+  ],
+  [
+   32.875,
+   7.463,
+   "Apply checks the approved hash, the tenant and a seven-day age, then dry-runs, or sends only with the apply switch."
+  ],
+  [
+   40.337,
+   5.125,
+   "It patches policies and enables or disables accounts, and it never deletes."
+  ],
+  [
+   45.462,
+   4.15,
+   "The evidence writer records a step that ran an earlier chapter's script."
+  ],
+  [
+   49.612,
+   2.675,
+   "And the evidence check is the go or no-go."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   1.913,
+   "Unit 2 is the stages."
+  ],
+  [
+   1.962,
+   8.65,
+   "The lyve test stage prepares synthetic objects, runs the preflight, and deploys in the safe order, Steps 1.1 to 1.5."
+  ],
+  [
+   10.613,
+   5.987,
+   "Then it runs the smoke test, captures the evidence, rehearses the rollback, and deploys again."
+  ],
+  [
+   16.6,
+   15.113,
+   "Production starts only when every go or no-go criterion is signed, nine rows of them, and its preflight adds one check that runs only in production: P F eleven, which needs the test stage's smoke test to have passed every check, in another tenant."
+  ],
+  [
+   31.712,
+   5.188,
+   "Then production enables Conditional Access for workload identities one wave at a time."
+  ],
+  [
+   36.9,
+   7.487,
+   "Remember the status: nobody has run these stages against a lyve tenant, and every live result in them is labeled Expected."
+  ],
+  [
+   44.388,
+   2.95,
+   "That's why Lab 1 runs only the dry run."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   4.737,
+   "Lab 1 runs in the non-person identity folder, in PowerShell 7."
+  ],
+  [
+   5.513,
+   6.5,
+   "The test and production tenants are fictional and served by a fake, so nothing signs in and nothing is sent."
+  ],
+  [
+   12.012,
+   5.275,
+   "Step one loads the deploy module and checks the template, and it's refused on purpose."
+  ],
+  [
+   17.288,
+   6.287,
+   "You get an error, then every problem at once, starting with the environment placeholder that hasn't been replaced."
+  ],
+  [
+   23.575,
+   2.562,
+   "A filled-in file prints one line instead."
+  ],
+  [
+   26.137,
+   2.812,
+   "Step two runs the test stage's preflight."
+  ],
+  [
+   28.95,
+   2.688,
+   "It prints twelve passes and one warning."
+  ],
+  [
+   31.637,
+   12.113,
+   "The warning is P F oh six: the fixture's Conditional Access administrator holds a standing assignment, not one that's eligible through P I M, and the preflight reports it but doesn't block."
+  ],
+  [
+   43.75,
+   4.787,
+   "It writes two evidence records, and its last line says go for this stage."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   5.55,
+   "Step three runs the smoke test against the synthetic service principal and service account."
+  ],
+  [
+   5.6,
+   7.438,
+   "It prints eight passes, for checks S T oh one to oh seven, with oh five run once for each workload policy."
+  ],
+  [
+   13.037,
+   4.1,
+   "The synthetic app is in the register with two owners and no secret."
+  ],
+  [
+   17.137,
+   3.163,
+   "The synthetic service account is found and rated high."
+  ],
+  [
+   20.3,
+   4.388,
+   "The app management policy refuses a new secret on the synthetic app."
+  ],
+  [
+   24.688,
+   3.45,
+   "The federated credential matches the settings exactly."
+  ],
+  [
+   28.137,
+   4.088,
+   "Each workload policy assigns the synthetic service principal directly."
+  ],
+  [
+   32.225,
+   3.025,
+   "The synthetic sign-ins show the policies' result."
+  ],
+  [
+   35.25,
+   3.638,
+   "And the test host can retrieve the group managed account's password."
+  ],
+  [
+   38.888,
+   2.625,
+   "Read S T oh three closely."
+  ],
+  [
+   41.513,
+   9.137,
+   "It says the fixture's refusal is real code unverified, because Microsoft Learn doesn't give the exact error an app management policy returns."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   2.062,
+   "Steps four to six are the rollback."
+  ],
+  [
+   2.112,
+   4.888,
+   "Step four plans it from the preflight's snapshot, with the synthetic objects' cleanup."
+  ],
+  [
+   7.0,
+   12.675,
+   "Seven actions: turn the two workload policies off, restore the tenant's default app management policy, turn the pilot policy off, re-enable the legacy account, and disable the two synthetic objects."
+  ],
+  [
+   19.675,
+   1.625,
+   "No action is a delete."
+  ],
+  [
+   21.3,
+   2.413,
+   "The plan prints its hash for the reviewer."
+  ],
+  [
+   23.712,
+   9.15,
+   "Step five applies the plan with a hash nobody approved, all zeros, and it stops: the plan's hash isn't the approved one, and nothing was sent."
+  ],
+  [
+   32.862,
+   11.3,
+   "Step six applies it with the plan's own hash, but without the apply switch, so it's a dry run: seven would-apply actions, with both workload policies going from report-only to disabled."
+  ],
+  [
+   44.163,
+   4.8,
+   "In a real stage, a reviewer who isn't the operator passes you that hash."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   6.175,
+   "Step seven runs production's preflight, with the test stage's smoke test as its promotion evidence."
+  ],
+  [
+   6.225,
+   9.175,
+   "Fourteen passes, including P F eleven, which runs in production only: the test stage's smoke test passed, eight of eight, in another tenant."
+  ],
+  [
+   15.4,
+   3.75,
+   "Step eight checks the test stage's evidence, and it says no-go."
+  ],
+  [
+   19.15,
+   3.1,
+   "Four of nine requirement rows are present and passing."
+  ],
+  [
+   22.25,
+   9.125,
+   "Steps 1.1, 1.2, 1.3 and 1.5 are missing, because they record their evidence only when they run against a tenant."
+  ],
+  [
+   31.375,
+   4.925,
+   "And the rollback row fails on dry run, which the go or no-go doesn't accept."
+  ],
+  [
+   36.3,
+   3.538,
+   "The exit code is one, and that's right for a dry run."
+  ],
+  [
+   39.837,
+   5.263,
+   "Step nine lists the four evidence records and the K S I's each names."
+  ],
+  [
+   45.1,
+   3.688,
+   "Step ten runs the deploy scripts' fifty-five tests."
+  ],
+  [
+   48.788,
+   7.438,
+   "Run it in a new session: in the same session, one test reads the exit code step eight left behind, and fails."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   3.6,
+   "Lab 2 is the lyve test stage, and then production."
+  ],
+  [
+   3.65,
+   1.488,
+   "Nobody has run it yet."
+  ],
+  [
+   5.138,
+   10.887,
+   "You need an Entra test tenant with Workload I D Premium and Entra I D P1 or P2, an Azure test subscription and an Active Directory test forest, never production."
+  ],
+  [
+   16.025,
+   15.2,
+   "You also need an approved change record, the reader app and the deployment identity, each with a certificate, operators eligible for their roles through P I M, and the second labs of Chapters 1, 4, 5, 6 and 8 already run."
+  ],
+  [
+   31.225,
+   9.312,
+   "Fill in and check the settings file, create the synthetic objects and the pilot policy, run the preflight, and deploy Steps 1.1 to 1.5."
+  ],
+  [
+   40.538,
+   6.763,
+   "Then run the smoke test, capture the evidence, rehearse the rollback, deploy again, and check the evidence."
+  ],
+  [
+   47.3,
+   6.237,
+   "To back it out, Step 1.8 applies the approved rollback and checks the tenant against the baseline."
+  ],
+  [
+   53.538,
+   1.6,
+   "The kit never deletes."
+  ],
+  [
+   55.138,
+   4.3,
+   "Production comes only when every go or no-go criterion is signed."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   1.387,
+   "The federal requirement."
+  ],
+  [
+   1.438,
+   5.912,
+   "Every runbook step ends with a requirements table, and the kit writes an evidence record for each row."
+  ],
+  [
+   7.35,
+   9.2,
+   "The change record and the settings file's hash cover nist special publication eight hundred fifty-three C M three, C M five and A C five."
+  ],
+  [
+   16.55,
+   8.887,
+   "The preflight's checks on the deployment identity and the reader app cover authenticator management and least privilege, I A five and A C six."
+  ],
+  [
+   25.438,
+   5.05,
+   "Its baseline and policy-state checks cover continuous monitoring and change testing."
+  ],
+  [
+   30.488,
+   5.95,
+   "The smoke test covers account, inventory, identifier, access and audit controls."
+  ],
+  [
+   36.438,
+   4.15,
+   "The SHA256SUMS file covers A U nine."
+  ],
+  [
+   40.587,
+   9.512,
+   "And the rollback record covers C M three and C P ten, system recovery, but only from an applied rollback; a dry run isn't accepted."
+  ],
+  [
+   50.1,
+   6.925,
+   "K S I's are fed-ramp twenty X indicators for cloud providers, and every alignment is the program's reading."
+  ],
+  [
+   57.025,
+   3.975,
+   "The assessor and the authorizing official decide each control."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   1.975,
+   "Check yourself with two questions."
+  ],
+  [
+   2.025,
+   4.287,
+   "First: the rollback's plan hash isn't the one the reviewer approved."
+  ],
+  [
+   6.312,
+   1.475,
+   "What does apply mode do?"
+  ],
+  [
+   7.787,
+   1.225,
+   "The answer is b."
+  ],
+  [
+   9.012,
+   3.65,
+   "It stops before it sends anything, and says nothing was sent."
+  ],
+  [
+   12.662,
+   1.55,
+   "You saw it in step five."
+  ],
+  [
+   14.213,
+   4.325,
+   "Second: in the dry run, why does the evidence check end no-go?"
+  ],
+  [
+   18.538,
+   11.9,
+   "The answer is b. Steps 1.1 to 1.5 record their evidence only when they run against a tenant, and a dry-run rollback records dry run, which the go or no-go doesn't accept."
+  ],
+  [
+   30.438,
+   4.312,
+   "So a fixture stage can never pass the evidence check, and that's by design."
+  ],
+  [
+   34.75,
+   4.925,
+   "The module page has three more questions, each linked to the section that answers it."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   0.825,
+   "To sum up."
+  ],
+  [
+   0.875,
+   20.887,
+   "You dry-ran the runbook's own scripts: a settings file refused for its placeholders, a preflight that says go with one warning, a smoke test on synthetic objects, a rollback plan refused without its approved hash and dry-run with it, a production preflight that checks the test stage's smoke test, and an evidence check that says no-go on a fixture stage."
+  ],
+  [
+   21.762,
+   17.7,
+   "The evidence an I S S O keeps for each stage is the evidence folder, with one record per requirement row, the run folders they cover, the operator's input files, and the SHA256SUMS file, which the I S S O checks with sha256sum dash c."
+  ],
+  [
+   39.462,
+   3.462,
+   "Before you run a stage, work through the chapter's checklist."
+  ],
+  [
+   42.925,
+   1.775,
+   "And that's the end of the path."
+  ],
+  [
+   44.7,
+   4.912,
+   "Go back to the learning path, or to the Labs page for every lab in the workbook."
+  ]
+ ]
+}

@@ -1,0 +1,749 @@
+{
+ "1": [
+  [
+   0.05,
+   8.475,
+   "Welcome to Module 8 of the Non-Person Identity learning path: convert Kerberos accounts to group and delegated managed service accounts."
+  ],
+  [
+   8.525,
+   6.737,
+   "This module is the on-premises part of Gate 5, Conversion, with Chapter 6 of the developer workbook."
+  ],
+  [
+   15.262,
+   19.225,
+   "You'll give every Kerberos account a reviewed disposition, plan its move to a G M S A or, on a Windows Server 2025 domain, a D M S A, list what stays on the Kerberos island with an S P N owner and an end date, and reconcile every managed account with the program's end state."
+  ],
+  [
+   34.487,
+   3.9,
+   "Then you'll see the write path run a plan only by its approved hash."
+  ],
+  [
+   38.388,
+   4.812,
+   "The domain is fictional, and the apply changes only a fake, in memory."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.15,
+   "Why does this matter?"
+  ],
+  [
+   1.2,
+   2.513,
+   "Some workloads can't leave Kerberos yet."
+  ],
+  [
+   3.712,
+   6.188,
+   "A traditional service account with an S P N and a password that never expires is the riskiest of them."
+  ],
+  [
+   9.9,
+   9.425,
+   "Microsoft Learn's guidance on securing group managed service accounts says a G M S A gives the same workload a password that Windows changes for it."
+  ],
+  [
+   19.325,
+   11.55,
+   "And Learn's overview of delegated managed service accounts says a D M S A, on a Windows Server 2025 domain, supersedes the old account and disables its password."
+  ],
+  [
+   30.875,
+   8.537,
+   "But a G M S A works only while Active Directory is authoritative, which is why the program's guidance gives every one an end date."
+  ],
+  [
+   39.413,
+   1.925,
+   "So converting isn't the end."
+  ],
+  [
+   41.337,
+   11.4,
+   "Every G M S A and D M S A must either move to a workload identity, retire, or sit on a dated Kerberos island list, with an S P N owner and an end date."
+  ],
+  [
+   52.737,
+   5.65,
+   "In this module you plan all three, and you see the write path refuse a plan nobody approved."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   5.225,
+   "Here's what you'll be able to do by the end of this module, which takes about sixty minutes with the lab."
+  ],
+  [
+   5.275,
+   4.838,
+   "You'll name the four dispositions a Kerberos account can have, and what each one needs."
+  ],
+  [
+   10.113,
+   7.75,
+   "You'll explain why a D M S A can't be used for a managed service account, or for an account with unconstrained delegation."
+  ],
+  [
+   17.863,
+   5.0,
+   "You'll read the plan, the island list and the reconciliation for a fictional domain."
+  ],
+  [
+   22.863,
+   5.25,
+   "And you'll show that the write path runs only a plan whose hash was approved, and never deletes."
+  ],
+  [
+   28.113,
+   17.425,
+   "Before you start, finish Module 1, because the lab reads Chapter 1's register, and Module 3, where the matrix sends Kerberos-only accounts to a G M S A or a D M S A. Lab 1 needs PowerShell 7.1 or later with Pester 5, and a clone."
+  ],
+  [
+   45.538,
+   0.925,
+   "No tenant."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   1.825,
+   "Unit 1 is the guide's gate."
+  ],
+  [
+   1.875,
+   10.75,
+   "Its Step 5 is the program's guidance: build the target, give it two human owners, run old and new in parallel for thirty days, then disable the legacy account."
+  ],
+  [
+   12.625,
+   1.1,
+   "Never delete it."
+  ],
+  [
+   13.725,
+   30.887,
+   "Step 2 adds the prerequisites for a G M S A. Microsoft Learn's page on creating a K D S root key says the key is created once per domain, and domain controllers wait up to ten hours after it's created before they allow a G M S A. Step 3's seventh step covers the Active Directory side of credentials: Learn's guidance on securing group managed service accounts says Windows changes the password every thirty days by default, and the interval can be set only when the account is created."
+  ],
+  [
+   44.612,
+   6.138,
+   "The rollback for Step 5 is to re-enable the legacy account and revert the application's configuration."
+  ],
+  [
+   50.75,
+   11.1,
+   "A delegated account waits longer: Learn's overview of delegated managed service accounts recommends four ticket lifetimes, twenty-eight days, so the code completes a migration only then."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   3.2,
+   "Unit 2 starts with the context the code depends on."
+  ],
+  [
+   3.25,
+   3.487,
+   "Every Kerberos account gets one of four dispositions."
+  ],
+  [
+   6.737,
+   8.287,
+   "Convert, to a G M S A or a D M S A, with the new account's name, the workload and its hosts."
+  ],
+  [
+   15.025,
+   7.475,
+   "Island: it stays on Kerberos, with an S P N owner and an end date no later than decision D oh eight's."
+  ],
+  [
+   22.5,
+   2.95,
+   "Workload identity: Chapter 5 moves it."
+  ],
+  [
+   25.45,
+   3.862,
+   "Or retire, through the plan's reviewed decommission process."
+  ],
+  [
+   29.312,
+   2.525,
+   "The program adds four rules of its own."
+  ],
+  [
+   31.837,
+   3.325,
+   "They're the program's design guidance, not Microsoft's."
+  ],
+  [
+   35.163,
+   5.987,
+   "Every Kerberos account has a reviewed disposition, kept in a file the application owners own."
+  ],
+  [
+   41.15,
+   5.6,
+   "Who may retrieve a managed password is reviewed data, not whatever Active Directory holds today."
+  ],
+  [
+   46.75,
+   4.088,
+   "Every account that stays has an S P N owner and an end date."
+  ],
+  [
+   50.837,
+   3.388,
+   "And never delete: the old account is disabled at most."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   5.062,
+   "The check runs nine rules, N P I K R B oh one to oh nine."
+  ],
+  [
+   5.112,
+   12.387,
+   "Oh one, oh four and oh eight come from Microsoft Learn's pages on the root key, delegated managed service accounts and securing group managed service accounts; the others are the program's design guidance."
+  ],
+  [
+   17.5,
+   5.85,
+   "Oh one: there's no K D S root key, or one that became usable less than ten hours ago."
+  ],
+  [
+   23.35,
+   4.75,
+   "Oh two: a Kerberos account has no disposition, or an unknown one."
+  ],
+  [
+   28.1,
+   6.513,
+   "Oh three: the accounts allowed to retrieve a managed password in Active Directory differ from the reviewed list."
+  ],
+  [
+   34.612,
+   3.675,
+   "Oh four is the one to remember: an unusable target."
+  ],
+  [
+   38.288,
+   17.925,
+   "Learn's overview and F A Q for delegated managed service accounts say a D M S A can't come from a managed service account, can't serve an account with unconstrained delegation, which stops working once the migration completes, and needs Windows Server 2025 on the hosts and the domain."
+  ],
+  [
+   56.212,
+   7.55,
+   "Oh five and oh six: an island account with no S P N owner, or no end date, or one after D oh eight's."
+  ],
+  [
+   63.763,
+   3.6,
+   "Oh seven: an account not reconciled with the end state."
+  ],
+  [
+   67.362,
+   4.987,
+   "Oh eight warns about a privileged group, and oh nine hands sequel Server accounts on."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   3.225,
+   "Each account becomes exactly one action in the plan."
+  ],
+  [
+   3.275,
+   6.138,
+   "The G M S A path: create it, once the root key is ready and the retrievers are reviewed."
+  ],
+  [
+   9.412,
+   4.263,
+   "Wait while the server owner installs it and changes the service's identity."
+  ],
+  [
+   13.675,
+   5.75,
+   "Then a thirty-day parallel run, the program's guidance, and only then disable the old account."
+  ],
+  [
+   19.425,
+   5.925,
+   "The D M S A path: create it, if it passes every limit, and start the migration."
+  ],
+  [
+   25.35,
+   2.112,
+   "Twenty-eight days later, complete it."
+  ],
+  [
+   27.462,
+   13.088,
+   "Microsoft Learn's overview of delegated managed service accounts says completing disables the old account and moves its S P N's to the D M S A. Set retrievers fixes a list that differs from the reviewed one."
+  ],
+  [
+   40.55,
+   6.625,
+   "Anything else, like island, blocked or handed off, is recorded with its reason, and writes nothing."
+  ],
+  [
+   47.175,
+   7.725,
+   "The plan carries every input's hash, and the same inputs always give the same bytes, so a reviewer approves one hash."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   1.425,
+   "These are the kit's design."
+  ],
+  [
+   1.475,
+   2.612,
+   "Two outputs carry the chapter's end date."
+  ],
+  [
+   4.088,
+   11.35,
+   "The island list holds every account that stays on Kerberos, with its S P N owner, its end date, and whether it's ready for P four point six, the program's S P N retirement work."
+  ],
+  [
+   15.438,
+   2.987,
+   "The hand-off is ready only when every row is."
+  ],
+  [
+   18.425,
+   8.15,
+   "The reconciliation covers every G M S A and D M S A, existing or planned, and says where it ends up."
+  ],
+  [
+   26.575,
+   13.287,
+   "Writing to the domain lives in a separate script, and it refuses to run unless the plan's hash is the approved one, the plan is for this domain and no more than seven days old, and it's a person's session, never a job."
+  ],
+  [
+   39.862,
+   4.1,
+   "Nothing that removes, undoes or resets is ever run."
+  ],
+  [
+   43.962,
+   16.625,
+   "And the read holds no domain administration: Microsoft Learn's page for the root key class says its default security descriptor grants only Enterprise Admins, Domain Admins and SYSTEM, so the read gets a delegated read of the key's start and create times, nothing more."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   5.675,
+   "Lab 1 runs in the non-person identity folder of the examples, in PowerShell 7."
+  ],
+  [
+   6.45,
+   4.963,
+   "Its step one makes Chapter 1's register, so the chapter's steps are one ahead here."
+  ],
+  [
+   11.412,
+   4.5,
+   "The inventory prints its three lines, ending with where it wrote the register."
+  ],
+  [
+   15.912,
+   9.35,
+   "Step two runs Microsoft Learn's published gMSA, dMSA and root key procedures against the stand-ins: seventeen pass, none fail."
+  ],
+  [
+   25.262,
+   2.638,
+   "Step three lists what each task runs."
+  ],
+  [
+   27.9,
+   10.425,
+   "The read task, kerberos island, runs only the directory Get cmdlets: computers, domain controllers, objects, service accounts and users."
+  ],
+  [
+   38.325,
+   9.125,
+   "The write task, kerberos apply, adds the cmdlets that create and set a service account, start and complete a migration, and disable an account."
+  ],
+  [
+   47.45,
+   5.275,
+   "Notice what's missing from both lists: no cmdlet that removes or undoes anything."
+  ],
+  [
+   52.725,
+   3.237,
+   "The output on the slide is trimmed and wrapped to fit."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   3.625,
+   "Step four checks the Kerberos accounts and builds the plan."
+  ],
+  [
+   3.675,
+   3.4,
+   "Nine accounts are in scope, and the root key is ready."
+  ],
+  [
+   7.075,
+   3.962,
+   "There are six findings, one warning and two information items."
+  ],
+  [
+   11.037,
+   8.488,
+   "The plan has nine actions, four of them writes: one completed migration, two new G M S A's, and one retriever change."
+  ],
+  [
+   19.525,
+   1.175,
+   "Nothing is sent."
+  ],
+  [
+   20.7,
+   6.475,
+   "The island list holds five accounts, three of them ready for P four point six, so the hand-off isn't ready."
+  ],
+  [
+   27.175,
+   3.638,
+   "The reconciliation leaves one account unreconciled."
+  ],
+  [
+   30.812,
+   3.962,
+   "And the plan's hash is the same on every run with these inputs."
+  ],
+  [
+   34.775,
+   2.775,
+   "Step five reads the nine findings."
+  ],
+  [
+   37.55,
+   8.825,
+   "N P I K R B oh four blocks svc webfront's D M S A, because the account is trusted for unconstrained delegation."
+  ],
+  [
+   46.375,
+   7.0,
+   "Oh five and oh six flag svc intranet: no S P N owner, and an end date after D oh eight's."
+  ],
+  [
+   53.375,
+   3.575,
+   "And oh eight warns that gmsa ops is in Domain Admins."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   1.712,
+   "Step six reads the plan."
+  ],
+  [
+   1.762,
+   2.788,
+   "Nine actions, and these are the four writes."
+  ],
+  [
+   4.55,
+   2.163,
+   "Set retrievers for gmsa web."
+  ],
+  [
+   6.713,
+   6.938,
+   "Create a G M S A for the managed service account msa print oh one, and for svc intranet."
+  ],
+  [
+   13.65,
+   9.162,
+   "And complete the D M S A migration for svc h r sync, whose migration started forty days ago, past the twenty-eight-day wait."
+  ],
+  [
+   22.812,
+   2.125,
+   "svc webfront is blocked."
+  ],
+  [
+   24.938,
+   3.638,
+   "The other actions are recorded with their reasons and write nothing."
+  ],
+  [
+   28.575,
+   3.725,
+   "Step seven reads the island list and the reconciliation."
+  ],
+  [
+   32.3,
+   3.862,
+   "Five island rows, each under the name the account will end up with."
+  ],
+  [
+   36.163,
+   11.137,
+   "gmsa intranet has no S P N owner and ends at the end of 2028, so it isn't ready for P four point six, and its reconciliation outcome is unreconciled."
+  ],
+  [
+   47.3,
+   4.975,
+   "gmsa web isn't ready either, because its end date runs past D oh eight's."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   2.712,
+   "Step eight is the write path's dry run."
+  ],
+  [
+   2.763,
+   7.013,
+   "You take the plan's hash, which in a real run a second person would review and pass to you, and give it to the action script."
+  ],
+  [
+   9.775,
+   4.812,
+   "It reports four would-send lines, one for each write, and sends nothing."
+  ],
+  [
+   14.588,
+   4.312,
+   "Step nine runs the same command with the apply switch, against the fake."
+  ],
+  [
+   18.9,
+   5.35,
+   "Four writes are sent, including the completed migration for svc h r sync."
+  ],
+  [
+   24.25,
+   3.737,
+   "Then you pass a hash of zeros, a hash nobody approved."
+  ],
+  [
+   27.988,
+   6.275,
+   "The script refuses: the plan's hash isn't the approved one, and it won't run a plan nobody reviewed."
+  ],
+  [
+   34.263,
+   4.0,
+   "Pasted line by line, your shell carries on after the refusal."
+  ],
+  [
+   38.263,
+   5.025,
+   "Step ten runs every test: five hundred thirteen pass, none fail."
+  ],
+  [
+   43.288,
+   1.837,
+   "Then delete the output folder."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   15.738,
+   "Lab 2 moves to a test Active Directory domain, never production, with at least one Windows Server 2025 domain controller, a Windows Server 2025 member server, an existing K D S root key, and Chapter 1's Lab 2 run."
+  ],
+  [
+   15.787,
+   3.725,
+   "Make a traditional test account and a test managed service account."
+  ],
+  [
+   19.512,
+   4.425,
+   "Grant the read only the root key's two date attributes, nothing else."
+  ],
+  [
+   23.938,
+   5.287,
+   "Run the check, then apply the plan as a person with Domain Admins or equivalent rights."
+  ],
+  [
+   29.225,
+   4.787,
+   "Start the D M S A migration, and complete it after twenty-eight days."
+  ],
+  [
+   34.013,
+   16.238,
+   "To back it out, step six runs the undo command from Microsoft Learn's page on setting up delegated managed service accounts, by hand, because the code never runs it, re-enables the test account, removes the test objects by hand, and deletes the output folders."
+  ],
+  [
+   50.25,
+   2.15,
+   "The authors haven't run Lab 2."
+  ],
+  [
+   52.4,
+   3.138,
+   "The workbook's Chapter 6 has the exact commands."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   1.387,
+   "The federal requirement."
+  ],
+  [
+   1.438,
+   8.55,
+   "The Kerberos accounts are the on-premises part of Gate 5, and the guide's validate step names I A five, I A nine and A U two."
+  ],
+  [
+   9.988,
+   4.062,
+   "These are nist special publication eight hundred fifty-three controls."
+  ],
+  [
+   14.05,
+   3.638,
+   "The module's table maps each lab step to its evidence."
+  ],
+  [
+   17.688,
+   6.812,
+   "For authenticator management and change control, the plan, with the register's and each input's hash."
+  ],
+  [
+   24.5,
+   2.275,
+   "For account management, the findings."
+  ],
+  [
+   26.775,
+   7.912,
+   "For least privilege and access restrictions for change, the rights each task holds, and the reviewed list of password retrievers."
+  ],
+  [
+   34.688,
+   3.65,
+   "For the inventory, the island list and the reconciliation."
+  ],
+  [
+   38.337,
+   5.9,
+   "And for change control and disabling accounts, the results and manifest in the apply folder."
+  ],
+  [
+   44.237,
+   10.812,
+   "K S I's are fed-ramp twenty X indicators for cloud service providers; the agency lines its evidence up with them, and which file supports which indicator is the program's mapping."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   1.975,
+   "Check yourself with two questions."
+  ],
+  [
+   2.025,
+   3.062,
+   "First: a Kerberos account stays on the island."
+  ],
+  [
+   5.088,
+   1.125,
+   "What must it have?"
+  ],
+  [
+   6.213,
+   5.55,
+   "The answer is b: an S P N owner and an end date no later than D oh eight's."
+  ],
+  [
+   11.762,
+   9.35,
+   "That's the program's design guidance for every account that stays on Kerberos, and the check enforces it with N P I K R B oh five and oh six."
+  ],
+  [
+   21.113,
+   4.263,
+   "Second: why is svc webfront's D M S A blocked?"
+  ],
+  [
+   25.375,
+   1.225,
+   "The answer is b."
+  ],
+  [
+   26.6,
+   11.775,
+   "The account is trusted for unconstrained delegation, and Microsoft Learn's delegated managed service account documentation says that stops working once a D M S A migration completes."
+  ],
+  [
+   38.375,
+   7.0,
+   "That's N P I K R B oh four, and it's why the plan records the account as blocked instead of planning a write."
+  ],
+  [
+   45.375,
+   4.925,
+   "The module page has three more questions, each linked to the section that answers it."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   0.825,
+   "To sum up."
+  ],
+  [
+   0.875,
+   12.838,
+   "You checked nine Kerberos accounts in a fictional domain, read a plan with four writes, an island list and a reconciliation, applied the plan to a fake by its hash, and saw a plan nobody approved refused."
+  ],
+  [
+   13.713,
+   14.338,
+   "The evidence an I S S O keeps for Gate 5 from this module is the plan with its approved hash, the findings, the island list, the reconciliation, and the apply folder's results and manifest, all dated, and the test result."
+  ],
+  [
+   28.05,
+   3.075,
+   "Before you ship, work through the chapter's checklist."
+  ],
+  [
+   31.125,
+   4.275,
+   "Next is Module 9: govern A I agent identities."
+  ],
+  [
+   35.4,
+   10.475,
+   "Agents follow every gate you've done so far, and add three things: an agent can act, a blueprint holds every agent's credentials, and creation has to be gated."
+  ]
+ ]
+}

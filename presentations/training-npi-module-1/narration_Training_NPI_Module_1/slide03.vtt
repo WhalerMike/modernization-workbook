@@ -1,0 +1,65 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.890
+Here's what you'll be able to
+do by the end of this module,
+
+2
+00:00:02.890 --> 00:00:05.537
+which takes about fifty-five
+minutes with the lab.
+
+3
+00:00:05.537 --> 00:00:10.725
+You'll name the identity types the register
+holds, and where each one is read from.
+
+4
+00:00:10.725 --> 00:00:14.627
+You'll explain the program's
+high, medium and low risk rule,
+
+5
+00:00:14.627 --> 00:00:17.450
+and why a stale account
+is only ever a lead.
+
+6
+00:00:17.450 --> 00:00:22.075
+You'll run the inventory against the
+fixtures and read its high-risk findings.
+
+7
+00:00:22.075 --> 00:00:24.786
+And you'll show that the
+reader refuses a call the
+
+8
+00:00:24.786 --> 00:00:27.362
+task doesn't declare, and
+a cloud it doesn't know.
+
+9
+00:00:27.362 --> 00:00:32.292
+Before you start, read the guide's
+track at a glance: for this track,
+
+10
+00:00:32.292 --> 00:00:36.663
+the system inventory or C M D B
+is the source of truth, not HR.
+
+11
+00:00:36.663 --> 00:00:40.500
+And review Microsoft Automation
+Module 1 on permissions.
+
+12
+00:00:40.500 --> 00:00:46.600
+Lab 1 needs PowerShell 7.1 or later with
+Pester 5, and a clone of the repository.
+
+13
+00:00:46.600 --> 00:00:47.590
+No tenant.

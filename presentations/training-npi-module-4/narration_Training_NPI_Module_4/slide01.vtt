@@ -1,0 +1,60 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.011
+Welcome to Module 4 of the
+Non-Person Identity learning path:
+
+2
+00:00:04.011 --> 00:00:05.675
+set the credential rules.
+
+3
+00:00:05.675 --> 00:00:08.950
+Module 3 decided where
+each identity ends up.
+
+4
+00:00:08.950 --> 00:00:12.682
+This module sets the rules for the
+credentials they hold on the way:
+
+5
+00:00:12.682 --> 00:00:15.599
+what the tenant will refuse,
+and how a certificate is
+
+6
+00:00:15.599 --> 00:00:18.788
+renewed and replaced without
+anyone having to remember.
+
+7
+00:00:18.788 --> 00:00:23.349
+It's Gate 3, Credential rules, with
+Chapter 4 of the developer workbook,
+
+8
+00:00:23.349 --> 00:00:26.950
+on app management policies
+and certificate rotation.
+
+9
+00:00:26.950 --> 00:00:30.314
+You'll compare a tenant's
+policy with a reviewed file,
+
+10
+00:00:30.314 --> 00:00:35.087
+plan a rotation from renewal to removal,
+and approve each write by its hash.
+
+11
+00:00:35.087 --> 00:00:39.475
+The code runs on your laptop, against
+a fictional tenant and key vault.
+
+12
+00:00:39.475 --> 00:00:44.540
+It's illustrative: tested against
+fixtures, not run against a live tenant.

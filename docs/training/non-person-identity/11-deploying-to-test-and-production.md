@@ -202,7 +202,7 @@ Remove-Item -Recurse -Force out
     Invoke-Pester -Path deploy/tests -Output None -PassThru | Select-Object PassedCount, FailedCount, NotRunCount
     ```
 
-    Expect `PassedCount 55`, `FailedCount 0`, `NotRunCount 0`. The tests sit outside `tests/`, so the 513 every other module's Lab 1 counts doesn't change.
+    Expect `PassedCount 55`, `FailedCount 0`, `NotRunCount 0`. The tests sit outside `tests/`, so the 513 every other module's Lab 1 counts doesn't change. Run this step in a new PowerShell 7 session, from `examples/non-person-identity`: step 8 exits with code 1, and one end-to-end test checks `$LASTEXITCODE`, so in the same session it prints `PassedCount 54`, `FailedCount 1`.
 
 Delete the dry run's folder when you're done:
 

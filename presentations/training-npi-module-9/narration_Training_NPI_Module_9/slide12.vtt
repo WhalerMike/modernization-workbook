@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.912
+Step nine dry-runs the agent Conditional
+Access plan with its approved hash.
+
+2
+00:00:04.912 --> 00:00:07.156
+It would send exactly one request:
+
+3
+00:00:07.156 --> 00:00:12.125
+a POST to the beta Conditional Access
+endpoint on the cloud's own Graph host,
+
+4
+00:00:12.125 --> 00:00:16.212
+for the high-risk policy, because
+the other is already in place.
+
+5
+00:00:16.212 --> 00:00:20.574
+Step ten runs the same command with
+the apply switch, against the fake.
+
+6
+00:00:20.574 --> 00:00:24.252
+One write is sent, and the
+policy is created report-only,
+
+7
+00:00:24.252 --> 00:00:29.400
+with a reminder to review its report-only
+results before any change of state.
+
+8
+00:00:29.400 --> 00:00:34.163
+Then you pass a hash of zeros, one
+nobody approved, and the script refuses:
+
+9
+00:00:34.163 --> 00:00:39.088
+the plan's hash isn't the approved one,
+and it won't run a plan nobody reviewed.
+
+10
+00:00:39.088 --> 00:00:42.087
+Pasted line by line,
+your shell carries on.
+
+11
+00:00:42.087 --> 00:00:47.275
+Step eleven runs every test: five
+hundred thirteen pass, none fail.
+
+12
+00:00:47.275 --> 00:00:49.180
+Then delete the output folder.

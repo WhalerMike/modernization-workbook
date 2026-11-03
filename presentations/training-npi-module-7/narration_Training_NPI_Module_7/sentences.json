@@ -1,0 +1,749 @@
+{
+ "1": [
+  [
+   0.05,
+   7.112,
+   "Welcome to Module 7 of the Non-Person Identity learning path: convert to managed identities and federation."
+  ],
+  [
+   7.162,
+   6.188,
+   "This module is the first half of Gate 5, Conversion, with Chapter 5 of the developer workbook."
+  ],
+  [
+   13.35,
+   3.275,
+   "It's where service accounts and secrets actually get replaced."
+  ],
+  [
+   16.625,
+   11.375,
+   "You'll plan conversions in the program's order: a managed identity for an Azure-hosted workload, a federated credential where the host has an issuer, and a certificate only where neither applies."
+  ],
+  [
+   28.0,
+   7.938,
+   "You'll check each federated credential against the claims the workload will present, and test it against a fake token endpoint before it's created."
+  ],
+  [
+   35.938,
+   5.675,
+   "Then you'll read each conversion's parallel run, and see when the legacy account may be disabled."
+  ],
+  [
+   41.612,
+   5.5,
+   "The code is illustrative: tested against fixtures, not run against a lyve tenant."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.325,
+   "Why does this need care?"
+  ],
+  [
+   1.375,
+   4.812,
+   "Microsoft Learn's workload identity federation documentation explains it."
+  ],
+  [
+   6.188,
+   8.775,
+   "A federated credential tells Microsoft Entra I D to trust tokens from an outside issuer, such as GitHub Actions or a Kubernetes cluster."
+  ],
+  [
+   14.963,
+   14.65,
+   "Three values must match the workload's token exactly, case for case: the issuer, the subject, and the audience, which for Entra I D is exactly one value, A P I colon slash slash Azure A D Token Exchange."
+  ],
+  [
+   29.613,
+   1.738,
+   "And here's the quiet failure."
+  ],
+  [
+   31.35,
+   4.388,
+   "Learn says a credential with the wrong subject is created without any error."
+  ],
+  [
+   35.737,
+   5.575,
+   "It fails only when the workload tries to exchange its token, which may be the day you cut over."
+  ],
+  [
+   41.312,
+   9.938,
+   "So in this module, each federated credential is checked against the claims the workload will present, and tested against a fake token endpoint, before it's ever created."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   5.225,
+   "Here's what you'll be able to do by the end of this module, which takes about sixty minutes with the lab."
+  ],
+  [
+   5.275,
+   4.525,
+   "You'll state the order of targets, and the finding a target out of order raises."
+  ],
+  [
+   9.8,
+   6.1,
+   "You'll name the three values a federated credential must match, and the audience Entra I D expects."
+  ],
+  [
+   15.9,
+   5.275,
+   "You'll explain why every federated credential gets a token exchange test before it's created."
+  ],
+  [
+   21.175,
+   6.862,
+   "And you'll read a conversion's cutover gate and its parallel run status, and say when the legacy account may be disabled."
+  ],
+  [
+   28.038,
+   11.762,
+   "Before you start, finish Module 3, because the conversions follow the target and the wave it decides, and Module 4, because a certificate target is issued and rotated under its credential rules."
+  ],
+  [
+   39.8,
+   5.3,
+   "Lab 1 needs PowerShell 7.1 or later with Pester 5, and no tenant."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   3.562,
+   "Unit 1 is the guide's Step 5, which has five parts."
+  ],
+  [
+   3.612,
+   4.438,
+   "They're the program's conversion steps, design guidance, not Microsoft's."
+  ],
+  [
+   8.05,
+   11.537,
+   "Build the target: a managed identity with its role assignments, a federated credential tested by an actual token exchange, a certificate credential from the vault, or a group managed service account."
+  ],
+  [
+   19.587,
+   3.15,
+   "Give it two human owners and a rotation schedule."
+  ],
+  [
+   22.738,
+   9.162,
+   "Run old and new in parallel for thirty days: the application uses the new identity, and the legacy account stays enabled, and you watch both."
+  ],
+  [
+   31.9,
+   2.825,
+   "Disable the legacy account; don't delete it."
+  ],
+  [
+   34.725,
+   7.4,
+   "For an app registration losing a secret, remove the secret only after the new credential has carried production traffic."
+  ],
+  [
+   42.125,
+   4.862,
+   "And record the result: the target, the date and the disabled object's I D."
+  ],
+  [
+   46.987,
+   4.787,
+   "The program's dangers table adds one more: federation trusts too much."
+  ],
+  [
+   51.775,
+   9.075,
+   "A broad subject lets every workload on that issuer in, so the program's guidance is exact subjects, and approval of each credential as a change."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   2.513,
+   "Unit 2 starts with what the code depends on."
+  ],
+  [
+   2.562,
+   13.113,
+   "The order of targets is the program's: an Azure-hosted workload gets a managed identity, a host with an issuer, such as a pipeline, gets a federated credential, and a certificate is used only where neither applies."
+  ],
+  [
+   15.675,
+   4.513,
+   "A target out of that order raises N P W I F oh one."
+  ],
+  [
+   20.188,
+   6.713,
+   "Then the rules on Microsoft Learn's page of important considerations and restrictions for federated identity credentials."
+  ],
+  [
+   26.9,
+   3.725,
+   "The match is exact and case-sensitive, with no wildcards."
+  ],
+  [
+   30.625,
+   9.287,
+   "An app registration or a user-assigned managed identity holds at most twenty federated credentials, and a system-assigned identity can't hold one at all."
+  ],
+  [
+   39.913,
+   4.963,
+   "And, as you've heard, a credential with the wrong subject is created without error."
+  ],
+  [
+   44.875,
+   2.775,
+   "Everything in the checks follows from those facts."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   4.8,
+   "The checks are nine rules, N P W I F oh one to oh nine."
+  ],
+  [
+   4.85,
+   3.175,
+   "Oh one is the order, the program's design guidance."
+  ],
+  [
+   8.025,
+   19.85,
+   "Oh two, oh three and oh four are the three values, from Microsoft Learn's federation pages: a subject that isn't exactly what the workload's issuer will present, case for case; an issuer that isn't exactly the workload's, a trailing slash included; and an audience that isn't exactly the one Entra I D expects."
+  ],
+  [
+   27.875,
+   10.975,
+   "Oh five and oh six are Microsoft Learn's limits: a bad name, a wildcard, a system-assigned parent, more than twenty credentials, or the same issuer and subject twice."
+  ],
+  [
+   38.85,
+   6.438,
+   "Oh seven is a warning for a credential someone added outside the reviewed file; it's reported, never deleted."
+  ],
+  [
+   45.288,
+   2.737,
+   "Oh eight is a failed token exchange test."
+  ],
+  [
+   48.025,
+   6.763,
+   "And oh nine is a parallel run that isn't clean, such as an old secret still signing in after cutover."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   1.837,
+   "Two pieces make the check real."
+  ],
+  [
+   1.887,
+   4.638,
+   "First, the code works out the claims the workload's issuer will put in its token."
+  ],
+  [
+   6.525,
+   7.975,
+   "For GitHub, Microsoft Learn's trust page gives the formats: the repository and an environment, a branch or a tag."
+  ],
+  [
+   14.5,
+   2.538,
+   "For Kubernetes, it's the service account."
+  ],
+  [
+   17.038,
+   6.8,
+   "Anything it can't be sure of, such as a pull request, has to be captured from a real test run, not derived."
+  ],
+  [
+   23.837,
+   2.062,
+   "Second, the exchange test."
+  ],
+  [
+   25.9,
+   12.812,
+   "It builds the token request from Microsoft Learn's OAuth 2.0 client credentials flow page and sends it only to a fake token endpoint, which matches exactly and case-sensitively, the way Learn describes."
+  ],
+  [
+   38.712,
+   3.888,
+   "It passes only if the named credential is the one that matched."
+  ],
+  [
+   42.6,
+   1.863,
+   "Be clear about what that proves."
+  ],
+  [
+   44.462,
+   3.05,
+   "It shows a credential will match the claims you recorded."
+  ],
+  [
+   47.513,
+   5.888,
+   "Whether the real issuer presents those claims, and what the real service answers, is Lab 2's job."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   2.812,
+   "Unit 3 is the plan and the write path."
+  ],
+  [
+   2.862,
+   3.625,
+   "Each conversion gets actions, and only three ever write."
+  ],
+  [
+   6.487,
+   5.438,
+   "Create identity, for a user-assigned identity the file asks for that doesn't exist yet."
+  ],
+  [
+   11.925,
+   5.825,
+   "Create credential, for a federated credential that passes every check and its exchange test."
+  ],
+  [
+   17.75,
+   7.438,
+   "And disable legacy, after a clean thirty-day parallel run and the owner's approval, with Disable A D Account."
+  ],
+  [
+   25.188,
+   7.438,
+   "Everything else is a status, from awaiting cutover, to parallel running, to awaiting the owner's approval, to converted."
+  ],
+  [
+   32.625,
+   3.85,
+   "The thresholds for a clean run are the program's design guidance."
+  ],
+  [
+   36.475,
+   1.788,
+   "The write path is separate."
+  ],
+  [
+   38.263,
+   13.238,
+   "It runs only the plan whose hash was approved, one write at a time, the identity before its credential, because Microsoft Learn's trust page warns that parallel creates under one identity fail, and it never sends a delete."
+  ],
+  [
+   51.5,
+   5.513,
+   "And it runs as a person with Cloud Application Administrator and Managed Identity Contributor."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   6.525,
+   "Lab 1 runs in the non-person identity folder, in PowerShell 7, against a fictional tenant."
+  ],
+  [
+   7.3,
+   4.9,
+   "Step one sends Microsoft's samples to the fakes, and seventeen tests pass."
+  ],
+  [
+   12.2,
+   8.075,
+   "One of them is the whole risk in a single test: it creates a credential from the Graph sample, then exchanges a token with another subject."
+  ],
+  [
+   20.275,
+   6.7,
+   "The create succeeds, and the exchange fails with A A D S T S seven double oh two one."
+  ],
+  [
+   26.975,
+   2.475,
+   "Step two lists what each task needs."
+  ],
+  [
+   29.45,
+   3.925,
+   "The read task holds two Graph read permissions and Reader."
+  ],
+  [
+   33.375,
+   5.162,
+   "Only the apply task holds application read-write and Managed Identity Contributor."
+  ],
+  [
+   38.538,
+   11.912,
+   "Step three builds the plan: eight conversions in two waves, four exchange tests passed and two failed, seven findings and one warning, and twenty actions, four of them writes."
+  ],
+  [
+   50.45,
+   5.188,
+   "Nothing is sent, and the plan's hash is the same on every run with these inputs."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   6.575,
+   "Step four reads the findings, eight rows, and each one is a small mistake that would have failed in silence."
+  ],
+  [
+   6.625,
+   8.725,
+   "Payroll prod has an issuer with a trailing slash, and the environment Production, capital P, where the workflow presents production, lower case."
+  ],
+  [
+   15.35,
+   4.35,
+   "That's oh three, oh two, and a failed exchange, oh eight."
+  ],
+  [
+   19.7,
+   5.713,
+   "Payroll test is a warning, oh seven: it's in the tenant but not in the reviewed file."
+  ],
+  [
+   25.413,
+   6.25,
+   "Github intranet tag has an audience with a leading space, so it's oh four and a failed exchange."
+  ],
+  [
+   31.663,
+   6.675,
+   "Conversion six gives an Azure Functions app a certificate when a managed identity is available, which is oh one."
+  ],
+  [
+   38.337,
+   4.425,
+   "And conversion eight's secret still signs in after cutover, oh nine."
+  ],
+  [
+   42.763,
+   7.388,
+   "Step five reads the six exchange tests: payroll prod and github intranet tag fail, and the other four pass."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   7.263,
+   "Step six reads the conversions: each one's target, its cutover gate, its parallel run status and its day."
+  ],
+  [
+   7.312,
+   11.525,
+   "Conversion one, to a managed identity, is ready to disable its legacy account on day forty: a clean run past thirty days, and the owner approved, so it's the one disable in the plan."
+  ],
+  [
+   18.837,
+   5.275,
+   "Conversion seven is parallel running, on day fifteen of thirty, so it waits."
+  ],
+  [
+   24.113,
+   9.3,
+   "Conversion eight is the warning sign: on day fifty-nine, the legacy credential is still in use, so it isn't clean, and nothing is disabled."
+  ],
+  [
+   33.413,
+   2.237,
+   "The other five are awaiting cutover."
+  ],
+  [
+   35.65,
+   4.487,
+   "Three of them are blocked by the findings you just read, and two aren't ready yet."
+  ],
+  [
+   40.138,
+   2.163,
+   "Notice that a status isn't a write."
+  ],
+  [
+   42.3,
+   5.05,
+   "Only the plan's three write actions ever change anything, and only after review."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   3.2,
+   "Step seven dry-runs the plan with its approved hash."
+  ],
+  [
+   3.25,
+   2.312,
+   "It would send four writes, in order."
+  ],
+  [
+   5.562,
+   4.25,
+   "First, Disable A D Account for conversion one's legacy account."
+  ],
+  [
+   9.812,
+   1.775,
+   "Disabled, not deleted."
+  ],
+  [
+   11.588,
+   3.675,
+   "Then a post of an application's federated credential to Graph."
+  ],
+  [
+   15.262,
+   6.825,
+   "Then a put of the user-assigned identity, id webfront, to Resource Manager, before a put of its credential."
+  ],
+  [
+   22.087,
+   4.537,
+   "The identity always comes before its credential, one write at a time."
+  ],
+  [
+   26.625,
+   5.175,
+   "Step eight applies the plan to the fake, and all four are sent, in the same order."
+  ],
+  [
+   31.8,
+   9.85,
+   "Then it tries a hash nobody approved, all zeros, and the write path refuses: the plan's hash isn't the approved one, so it won't run a plan nobody reviewed."
+  ],
+  [
+   41.65,
+   5.013,
+   "Step nine runs every test: five hundred thirteen pass, none fail."
+  ],
+  [
+   46.663,
+   1.837,
+   "Then delete the output folder."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   10.338,
+   "Lab 2 takes the same path in your own test tenant, worldwide or G C C, with a test subscription, a test Active Directory domain and a test repository."
+  ],
+  [
+   10.387,
+   2.9,
+   "Never production, and only fictional names."
+  ],
+  [
+   13.287,
+   9.05,
+   "A reading app holds two Graph read permissions and Reader, and a person with Cloud Application Administrator and Managed Identity Contributor does the write."
+  ],
+  [
+   22.337,
+   4.213,
+   "Make a test conversion from a client secret to a federated credential."
+  ],
+  [
+   26.55,
+   7.438,
+   "The key step is capturing the real issuer and subject from one workflow run, because that's the truth the check compares against."
+  ],
+  [
+   33.987,
+   7.175,
+   "Then plan, apply, exchange a token for real, and run the parallel run through to the legacy account's disable."
+  ],
+  [
+   41.163,
+   9.35,
+   "To back it out, step seven enables the test account again, removes the test credentials, and deletes the rest by hand, because this code never deletes."
+  ],
+  [
+   50.513,
+   2.15,
+   "The authors haven't run Lab 2."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   1.387,
+   "The federal requirement."
+  ],
+  [
+   1.438,
+   6.862,
+   "Gate 5 meets nist special publication eight hundred fifty-three I A five, I A nine and A U two."
+  ],
+  [
+   8.3,
+   3.4,
+   "The module's table maps each control to its evidence."
+  ],
+  [
+   11.7,
+   6.412,
+   "Authenticator management and service identification: the conversion file, the plan and the findings."
+  ],
+  [
+   18.113,
+   3.325,
+   "Verification of controls: the exchange tests."
+  ],
+  [
+   21.438,
+   6.662,
+   "Account management and disabling accounts: the conversion records, the cutover log and the apply's results."
+  ],
+  [
+   28.1,
+   4.875,
+   "Least privilege and access restrictions for change: the two tasks' permissions."
+  ],
+  [
+   32.975,
+   4.588,
+   "Change control: the plan's hash, and the dry-run and apply folders."
+  ],
+  [
+   37.562,
+   5.388,
+   "Audit events: Lab 2's sign-in entry that shows a federated credential was used."
+  ],
+  [
+   42.95,
+   3.85,
+   "And the run's integrity: the manifest in each output folder."
+  ],
+  [
+   46.8,
+   7.987,
+   "K S I's are fed-ramp twenty X indicators for cloud service providers; which file supports which indicator is the program's mapping."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   1.975,
+   "Check yourself with two questions."
+  ],
+  [
+   2.025,
+   6.975,
+   "First: a credential's subject has Production, capital P, where the workflow presents production, lower case."
+  ],
+  [
+   9.0,
+   2.763,
+   "What happens when it's created in Entra I D?"
+  ],
+  [
+   11.762,
+   1.225,
+   "The answer is b."
+  ],
+  [
+   12.988,
+   3.75,
+   "It's created without error, and the token exchange fails later."
+  ],
+  [
+   16.738,
+   6.825,
+   "Microsoft Learn's workload identity federation documentation says a wrong subject is created successfully."
+  ],
+  [
+   23.562,
+   4.225,
+   "The check flags it first, as N P W I F oh two."
+  ],
+  [
+   27.788,
+   6.1,
+   "Second: conversion one ran forty days with no logon by the old account, and the owner approved."
+  ],
+  [
+   33.888,
+   2.4,
+   "What does the plan do with the legacy account?"
+  ],
+  [
+   36.288,
+   1.225,
+   "The answer is b."
+  ],
+  [
+   37.513,
+   3.775,
+   "It disables it with Disable A D Account, after review."
+  ],
+  [
+   41.288,
+   5.188,
+   "This code never deletes it, so the rollback, enabling it again, stays possible."
+  ],
+  [
+   46.475,
+   4.925,
+   "The module page has three more questions, each linked to the section that answers it."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   0.825,
+   "To sum up."
+  ],
+  [
+   0.875,
+   8.375,
+   "You planned eight conversions in two waves, and caught a trailing slash, a wrong case and a stray space before any credential reached the tenant."
+  ],
+  [
+   9.25,
+   10.562,
+   "You read each conversion's parallel run, applied four approved writes to the fake, an identity before its credential, and saw the write path refuse a plan nobody reviewed."
+  ],
+  [
+   19.812,
+   15.8,
+   "The evidence an I S S O keeps for Gate 5 from this module is the conversion file, the cutover log, the plan with its approved hash, the findings, the exchange tests, the conversion records, and the apply folder's results and manifest, all dated."
+  ],
+  [
+   35.612,
+   3.075,
+   "Before you ship, work through the chapter's checklist."
+  ],
+  [
+   38.688,
+   6.787,
+   "Next is Module 8: convert Kerberos accounts to group managed and delegated managed service accounts."
+  ]
+ ]
+}

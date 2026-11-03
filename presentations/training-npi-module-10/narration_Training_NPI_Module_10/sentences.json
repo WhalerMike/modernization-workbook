@@ -1,0 +1,756 @@
+{
+ "1": [
+  [
+   0.05,
+   6.55,
+   "Welcome to Module 10 of the Non-Person Identity learning path: find drift and file the evidence."
+  ],
+  [
+   6.6,
+   5.237,
+   "This module is Gate 6, Lifecycle, with Chapter 10 of the developer workbook."
+  ],
+  [
+   11.838,
+   16.238,
+   "You'll run two days of drift against a baseline a reviewer approved, compare two years of the A I use-case inventory, package both days with a hash for every file, chained, verify a package with a standard checksum tool, and assemble a period for the I S S O."
+  ],
+  [
+   28.075,
+   3.3,
+   "Then you'll break it on purpose, and watch the checks refuse."
+  ],
+  [
+   31.375,
+   4.237,
+   "If you're an I S S O reviewer, this module is yours in full."
+  ],
+  [
+   35.612,
+   4.938,
+   "The code runs on your laptop against fixtures, in PowerShell and in Python."
+  ],
+  [
+   40.55,
+   5.013,
+   "It's illustrative: tested against fixtures, not run against a lyve tenant."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   2.038,
+   "Why does this module come at the end?"
+  ],
+  [
+   2.087,
+   6.25,
+   "Because every gate before it ends in a state: an owner, a target, a credential, a scope."
+  ],
+  [
+   8.338,
+   2.038,
+   "This module keeps that state true."
+  ],
+  [
+   10.375,
+   14.412,
+   "A credential added by hand, a new consent grant, an app nobody has used in ninety days, which is Microsoft Learn's threshold for an unused app, or an owner who left: each one shows up as drift, against a baseline someone approved."
+  ],
+  [
+   24.788,
+   5.463,
+   "Then the evidence has to reach the I S S O in a form they can trust without trusting you."
+  ],
+  [
+   30.25,
+   4.9,
+   "Each run is packaged with a hash for every file, and chained to the run before."
+  ],
+  [
+   35.15,
+   4.213,
+   "The I S S O checks a package with the standard checksum tool alone."
+  ],
+  [
+   39.362,
+   4.475,
+   "And a period summary shows whether the checks ran every day, with no gap."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   5.55,
+   "Here's what you'll be able to do by the end of this module, which takes about seventy-five minutes with the lab."
+  ],
+  [
+   5.6,
+   5.45,
+   "You'll explain why the drift run compares with a baseline only when a reviewer approved its hash."
+  ],
+  [
+   11.05,
+   5.275,
+   "You'll read the drift findings, and say when a credential counts as added inside the pipeline."
+  ],
+  [
+   16.325,
+   4.888,
+   "You'll compare two vintages of the A I use-case inventory against the register."
+  ],
+  [
+   21.212,
+   7.4,
+   "You'll package two runs, chained, verify one with the checksum tool, and assemble a period for the I S S O."
+  ],
+  [
+   28.613,
+   5.062,
+   "And you'll show that an edited file and a package chained out of order are both refused."
+  ],
+  [
+   33.675,
+   9.537,
+   "Before you start: Modules 1 and 2, because the drift run runs their code unchanged; Module 4, for the credential log; and Module 9."
+  ],
+  [
+   43.212,
+   6.0,
+   "Lab 1 also needs Python with pytest and PyYAML, and a shell with sha two fifty-six sum."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   12.812,
+   "Unit 1 is the guide's Step 6, run the lifecycle, which has four parts: owner change, orphans, access reviews of owners, and decommissioning, which disables first and deletes only afterward."
+  ],
+  [
+   12.863,
+   7.763,
+   "In the program's guidance, a non-person identity's events come from its owning system and from credential expiry, not from H R."
+  ],
+  [
+   20.625,
+   11.662,
+   "Then the guide's Evidence section adds the program's rule this module turns into code: run the checks on the continuous monitoring cadence, and file their output with the date, the tenant and the check version."
+  ],
+  [
+   32.288,
+   12.825,
+   "The guide's validate step for Gate 6 names nist special publication eight hundred fifty-three controls A C two, enhancement three; A C six, enhancement seven; A U six; and C A seven."
+  ],
+  [
+   45.112,
+   11.3,
+   "The fed-ramp K S I's it lines up with are K S I I A M A A M, K S I M L A R V L and K S I M L A E V C."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   4.888,
+   "Unit 2 starts with what the evidence has to show: state, events and drift."
+  ],
+  [
+   4.938,
+   2.75,
+   "The run and the baseline are the kit's design."
+  ],
+  [
+   7.688,
+   1.863,
+   "One run writes one folder."
+  ],
+  [
+   9.55,
+   11.375,
+   "It holds Chapter 1's inventory and Chapter 2's ownership check, unchanged, plus this chapter's drift folder, and a run record that ties them together by each task's manifest hash."
+  ],
+  [
+   20.925,
+   7.062,
+   "A task that fails is recorded as an error, never as an empty result, so a failed read can't look like a fix."
+  ],
+  [
+   27.988,
+   10.675,
+   "The baseline, the program's design guidance, is a fingerprint per identity: a hash over twenty governance columns, such as owners, credentials, permissions and grants."
+  ],
+  [
+   38.663,
+   5.725,
+   "Last logon and password age are left out, because they move every day and aren't drift."
+  ],
+  [
+   44.388,
+   6.1,
+   "And the baseline counts only when it's passed with the hash a reviewer approved, for this tenant and cloud."
+  ],
+  [
+   50.487,
+   2.987,
+   "In a real run, a second person reviews it."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   3.1,
+   "Nine drift rules run against the approved baseline."
+  ],
+  [
+   3.15,
+   4.85,
+   "New and changed identities are warnings, with the exact columns that changed."
+  ],
+  [
+   8.0,
+   6.65,
+   "Ownerless identities are findings: orphan candidates in Chapter 2's run, and this code disables nothing."
+  ],
+  [
+   14.65,
+   14.35,
+   "An app with no sign-in for over ninety days, or a credential that expires within thirty, is a warning; both numbers are Microsoft Learn's, from its recommendations to remove unused applications and renew expiring credentials."
+  ],
+  [
+   29.0,
+   4.525,
+   "An enabled directory account whose password never expires is a finding."
+  ],
+  [
+   33.525,
+   10.95,
+   "So is a credential added outside the pipeline, one per key: Microsoft Learn's security operations guide for applications rates a credential added to an existing app as high risk."
+  ],
+  [
+   44.475,
+   6.662,
+   "A new consent grant or app permission is a warning, or a finding when it's tenant-wide or high privilege."
+  ],
+  [
+   51.138,
+   5.85,
+   "And the ninth is the honest one: an evidence gap is reported, never treated as a pass."
+  ],
+  [
+   56.987,
+   12.475,
+   "The key rule, the program's design guidance: a credential counts as inside the pipeline only when two independent records agree, the listed pipeline identity and the rotation pipeline's credential log."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   3.1,
+   "Two more kinds of evidence sit beside the drift."
+  ],
+  [
+   3.15,
+   8.575,
+   "The review cycle reads the review records that Chapters 7 and 9 build; this chapter doesn't run the reviews, it reads their records."
+  ],
+  [
+   11.725,
+   9.875,
+   "Following the program's design guidance, it flags an app holding Graph permissions whose owners haven't reviewed it in ninety-two days, and agent access with no end date."
+  ],
+  [
+   21.6,
+   9.175,
+   "And it flags an agent with no sponsor attestation in a year; Microsoft Learn's best practices for Agent I D say every six to twelve months."
+  ],
+  [
+   30.775,
+   6.237,
+   "And a kind of review record that never arrived is a warning, because a missing record isn't a passed review."
+  ],
+  [
+   37.013,
+   8.037,
+   "Then once a year, the program's vintage comparison checks this year's A I use-case inventory against last year's, by use case."
+  ],
+  [
+   45.05,
+   12.875,
+   "It catches a new piloted or deployed system with no identity, a retired one whose identities are still enabled, a changed authorization answer, and an entry that left the inventory without being reported retired."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   3.163,
+   "Unit 3 is what the I S S O receives."
+  ],
+  [
+   3.212,
+   11.238,
+   "Each run is packaged: the run itself, a summary with rule I D's and fingerprints but no names, an evidence manifest, and a checksum file anyone can verify with the standard tool."
+  ],
+  [
+   14.45,
+   9.275,
+   "Before it writes anything, the packager checks the run end to end: every manifest by its hash, nothing extra, one tenant and one cloud."
+  ],
+  [
+   23.725,
+   9.137,
+   "Each package records the previous package's manifest hash, so the packages form a chain, and a replaced package or a missing day shows up as a break."
+  ],
+  [
+   32.862,
+   6.675,
+   "Then the period verifies every package, checks the chain and coverage, and maps findings to each control."
+  ],
+  [
+   39.538,
+   11.963,
+   "There's no signing, by the kit's design: hashes, plus a locked time-based retention policy on the evidence store, the write once, read many storage Microsoft Learn documents for blob data."
+  ],
+  [
+   51.5,
+   5.775,
+   "Each control reads either evidence present, the assessor decides, or evidence incomplete."
+  ],
+  [
+   57.275,
+   3.25,
+   "The control mapping is the program's design guidance."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   6.225,
+   "Steps one to six run in the non-person identity folder of the examples, in PowerShell 7."
+  ],
+  [
+   7.0,
+   15.0,
+   "Step one runs Microsoft's Sentinel rule for new app credentials, the one Microsoft Learn's security operations guide for applications links, over the fixture: eleven tests pass, none fail, and forty of the file's other tests aren't run."
+  ],
+  [
+   22.0,
+   7.963,
+   "Step two lists what the run needs: four Graph read permissions, Application, AuditLog, Directory and User dot Read dot All."
+  ],
+  [
+   29.962,
+   1.675,
+   "Nothing ends in ReadWrite."
+  ],
+  [
+   31.637,
+   5.162,
+   "Step three runs the first day, the twenty-ninth of October, with no baseline."
+  ],
+  [
+   36.8,
+   11.025,
+   "Inventory, ownership and drift all report OK, and the run becomes a baseline candidate, with fourteen findings, four warnings and five information items, and its hash."
+  ],
+  [
+   47.825,
+   4.275,
+   "Step four approves that baseline by its hash and runs the second day."
+  ],
+  [
+   52.1,
+   6.6,
+   "It compares with the first day's baseline, and the drift appears: eighteen findings and eleven warnings."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   5.713,
+   "Step five reads day two's drift, grouped by rule and severity: twelve rows."
+  ],
+  [
+   5.763,
+   7.338,
+   "N P I D R F oh seven, three findings, holds the three credentials added outside the pipeline."
+  ],
+  [
+   13.1,
+   4.162,
+   "Notice what isn't there: the pipeline's own two certificate rotations."
+  ],
+  [
+   17.262,
+   6.188,
+   "Both were made by a listed pipeline identity and are in the credential log, so the two records agree."
+  ],
+  [
+   23.45,
+   6.787,
+   "N P I D R F oh eight, one finding, is Mail Automation's new grant for all users."
+  ],
+  [
+   30.238,
+   8.188,
+   "You'll also see seven ownerless identities, three enabled accounts whose passwords never expire, and the review cycle's findings."
+  ],
+  [
+   38.425,
+   7.55,
+   "Step six compares the A I use-case inventory's 2026 vintage with 2025's, against the register."
+  ],
+  [
+   45.975,
+   9.713,
+   "Five changes: one authorization changed, one entry left, two new and one retired, for three findings, two warnings and one information item."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   8.312,
+   "Step seven switches to a second shell, a POSIX shell at the root of your copy of the repository, and moves into the drift pipeline folder."
+  ],
+  [
+   8.363,
+   4.525,
+   "The runs it packages are the repository's copies of the two days you just made."
+  ],
+  [
+   12.887,
+   4.475,
+   "Package day one, then day two, chained to day one's manifest."
+  ],
+  [
+   17.363,
+   2.237,
+   "Each prints one line of jay-son."
+  ],
+  [
+   19.6,
+   5.25,
+   "The second says nineteen findings are new, eighty are open, and one is resolved."
+  ],
+  [
+   24.85,
+   3.388,
+   "Step eight verifies the second package three ways."
+  ],
+  [
+   28.238,
+   3.487,
+   "The packager's own verify reports twenty-one files."
+  ],
+  [
+   31.725,
+   5.8,
+   "The standard checksum tool, run against the checksum file, prints nothing and exits zero."
+  ],
+  [
+   37.525,
+   6.725,
+   "And a search of the summary for the fictional tenant's domain counts zero: no user principal name is in the summary."
+  ],
+  [
+   44.25,
+   4.15,
+   "That's the check an I S S O can run with nothing but standard tools."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   8.525,
+   "Step nine assembles the period for the I S S O, from the twenty-eighth to the thirtieth of October, with the A I inventory's vintage."
+  ],
+  [
+   8.575,
+   1.15,
+   "It exits two."
+  ],
+  [
+   9.725,
+   7.562,
+   "The chain has no breaks and no coverage gaps, across two packages, with nineteen findings opened and one closed."
+  ],
+  [
+   17.288,
+   1.6,
+   "But complete is false."
+  ],
+  [
+   18.887,
+   4.862,
+   "The summary's controls table shows why: some chapters haven't sent their findings."
+  ],
+  [
+   23.75,
+   4.487,
+   "A C two is evidence incomplete without Chapter 3's findings."
+  ],
+  [
+   28.238,
+   5.2,
+   "I A five waits on Chapters 4 and 6, and I A nine on Chapters 5 and 8."
+  ],
+  [
+   33.438,
+   4.225,
+   "The other controls read evidence present, the assessor decides."
+  ],
+  [
+   37.663,
+   4.275,
+   "That's honest: an incomplete period says so, instead of passing."
+  ],
+  [
+   41.938,
+   5.862,
+   "The summary also has a Gate 7 table, and a row for each package with its manifest hash."
+  ],
+  [
+   47.8,
+   2.362,
+   "The identity governance officer signs it."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   1.988,
+   "Step ten breaks it on purpose."
+  ],
+  [
+   2.038,
+   3.663,
+   "Append one line to the packaged summary, and verify again."
+  ],
+  [
+   5.7,
+   3.538,
+   "It exits one: the summary doesn't match its hash."
+  ],
+  [
+   9.238,
+   5.513,
+   "Then try to package day one as if it came after day two, chained to day two's manifest."
+  ],
+  [
+   14.75,
+   4.412,
+   "It exits one too: this run isn't later than the previous package."
+  ],
+  [
+   19.163,
+   8.012,
+   "So an edited file and a swapped package are both refused, and that's what lets the I S S O trust the chain without trusting you."
+  ],
+  [
+   27.175,
+   5.263,
+   "The step ends by linting the scheduled workflow, with no findings and no warnings."
+  ],
+  [
+   32.438,
+   10.15,
+   "Step eleven runs the tests in both folders: five hundred thirteen Pester tests pass in PowerShell, and one hundred forty-two pytest tests pass in the drift pipeline."
+  ],
+  [
+   42.587,
+   2.7,
+   "Then delete the output folder in both places."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   10.1,
+   "Lab 2 moves to your own test tenant, worldwide or G C C, with Entra I D P one or P two, never production, with fictional people."
+  ],
+  [
+   10.15,
+   4.612,
+   "You also need Chapter 1's test host and Chapter 2's Lab 2 inputs."
+  ],
+  [
+   14.762,
+   6.263,
+   "Register a reader app with a certificate and the four read permissions, run a baseline, and have it approved."
+  ],
+  [
+   21.025,
+   4.662,
+   "Then make three changes by hand: two secrets and one consent grant."
+  ],
+  [
+   25.688,
+   7.537,
+   "Run the drift run, and check the activity names it found against the admin center's audit log, because that's what the fixture assumed."
+  ],
+  [
+   33.225,
+   2.775,
+   "Then package and verify the test runs."
+  ],
+  [
+   36.0,
+   11.713,
+   "To back it out, step seven removes both secrets and the consent grant, the four permissions and the Reader assignment, deletes the reader app and its certificate, and deletes the runs and packages."
+  ],
+  [
+   47.712,
+   2.15,
+   "The authors haven't run Lab 2."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   1.387,
+   "The federal requirement."
+  ],
+  [
+   1.438,
+   7.987,
+   "These are nist special publication eight hundred fifty-three controls, and the module's table maps each lab step to its evidence."
+  ],
+  [
+   9.425,
+   5.775,
+   "For baseline configuration and change control, the baseline candidate and its approved hash."
+  ],
+  [
+   15.2,
+   4.112,
+   "For continuous monitoring and account management, the drift findings."
+  ],
+  [
+   19.312,
+   7.35,
+   "For automated audit actions, audit review and system monitoring, the events and the two credential and grant rules."
+  ],
+  [
+   26.663,
+   4.35,
+   "For disabling accounts, the sign-in activity and the unused-app rule."
+  ],
+  [
+   31.012,
+   2.975,
+   "For review of privileges, the review cycle."
+  ],
+  [
+   33.987,
+   9.412,
+   "And for the integrity of the record, A U nine and S I seven, the evidence manifest, the checksum file and the summary, and the period manifest."
+  ],
+  [
+   43.4,
+   4.638,
+   "K S I's are fed-ramp twenty X indicators for cloud service providers."
+  ],
+  [
+   48.038,
+   6.45,
+   "The agency lines its evidence up with what its providers report; it doesn't report K S I's itself."
+  ],
+  [
+   54.487,
+   3.25,
+   "Which file supports which indicator is the program's mapping."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   1.975,
+   "Check yourself with two questions."
+  ],
+  [
+   2.025,
+   3.788,
+   "First: a certificate rotation appears in the audit log."
+  ],
+  [
+   5.812,
+   2.275,
+   "When does it count as inside the pipeline?"
+  ],
+  [
+   8.088,
+   9.0,
+   "The answer is b: when the initiator is a listed pipeline identity, and the target and key I D are in the rotation pipeline's credential log."
+  ],
+  [
+   17.087,
+   11.25,
+   "That's the program's design guidance: two independent records must agree, so a stolen pipeline credential used outside the log still shows up as N P I D R F oh seven."
+  ],
+  [
+   28.337,
+   4.487,
+   "Second: you append a line to a packaged summary and run verify."
+  ],
+  [
+   32.825,
+   1.012,
+   "What happens?"
+  ],
+  [
+   33.837,
+   1.225,
+   "The answer is b."
+  ],
+  [
+   35.062,
+   3.812,
+   "It exits one, because the summary doesn't match its hash."
+  ],
+  [
+   38.875,
+   1.738,
+   "That's what you did in step ten."
+  ],
+  [
+   40.612,
+   4.925,
+   "The module page has three more questions, each linked to the section that answers it."
+  ]
+ ],
+ "17": [
+  [
+   0.05,
+   0.825,
+   "To sum up."
+  ],
+  [
+   0.875,
+   17.325,
+   "You ran two days of drift against an approved baseline, found three credentials added outside the pipeline, compared two A I inventory vintages, packaged and chained both days, assembled a period for the I S S O, and saw an edited file and a swapped package refused."
+  ],
+  [
+   18.2,
+   17.663,
+   "The evidence an I S S O keeps for Gate 6 is each day's package, with its evidence manifest, checksum file, summary and the run; the approved baseline's hash; the vintage comparison; and the period's manifest and summary, signed by the identity governance officer."
+  ],
+  [
+   35.862,
+   3.075,
+   "Before you ship, work through the chapter's checklist."
+  ],
+  [
+   38.938,
+   4.95,
+   "Next is Module 11, the last: deploy to test, then production."
+  ],
+  [
+   43.888,
+   8.787,
+   "It runs every gate's code in one safe order, with a preflight, a smoke test, an evidence record per requirement and a rehearsed rollback."
+  ]
+ ]
+}

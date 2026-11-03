@@ -1,0 +1,69 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.921
+Lab 2 moves to a test Active
+Directory domain, never production,
+
+2
+00:00:04.921 --> 00:00:10.636
+with at least one Windows Server 2025
+domain controller, a Windows Server
+
+3
+00:00:10.636 --> 00:00:15.788
+2025 member server, an existing K D S
+root key, and Chapter 1's Lab 2 run.
+
+4
+00:00:15.788 --> 00:00:19.512
+Make a traditional test account
+and a test managed service account.
+
+5
+00:00:19.512 --> 00:00:23.937
+Grant the read only the root key's
+two date attributes, nothing else.
+
+6
+00:00:23.937 --> 00:00:26.204
+Run the check, then apply the plan as a
+
+7
+00:00:26.204 --> 00:00:29.225
+person with Domain Admins
+or equivalent rights.
+
+8
+00:00:29.225 --> 00:00:34.012
+Start the D M S A migration, and
+complete it after twenty-eight days.
+
+9
+00:00:34.012 --> 00:00:38.775
+To back it out, step six runs the undo
+command from Microsoft Learn's page on
+
+10
+00:00:38.775 --> 00:00:42.366
+setting up delegated managed
+service accounts, by hand,
+
+11
+00:00:42.366 --> 00:00:46.113
+because the code never runs it,
+re-enables the test account,
+
+12
+00:00:46.113 --> 00:00:50.251
+removes the test objects by hand,
+and deletes the output folders.
+
+13
+00:00:50.251 --> 00:00:52.400
+The authors haven't run Lab 2.
+
+14
+00:00:52.400 --> 00:00:55.610
+The workbook's Chapter 6
+has the exact commands.

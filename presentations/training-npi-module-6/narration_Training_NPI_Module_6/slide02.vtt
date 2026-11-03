@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.512
+Why does the scope matter
+as much as the policy?
+
+2
+00:00:02.512 --> 00:00:06.343
+Because Conditional Access for
+workload identities is narrow,
+
+3
+00:00:06.343 --> 00:00:11.113
+as Microsoft Learn's Conditional Access
+for workload identities page sets out.
+
+4
+00:00:11.113 --> 00:00:13.325
+Block is the only grant control.
+
+5
+00:00:13.325 --> 00:00:18.494
+It covers single-tenant service principals
+registered in your tenant, and nothing
+
+6
+00:00:18.494 --> 00:00:23.513
+else: not Microsoft or SaaS apps, not
+multitenant apps, and not managed identities.
+
+7
+00:00:23.513 --> 00:00:28.087
+A policy assigned to a group that holds a
+service principal isn't enforced for it;
+
+8
+00:00:28.087 --> 00:00:30.999
+you have to assign the
+service principal directly.
+
+9
+00:00:30.999 --> 00:00:35.388
+And Workload I D Premium is needed
+to create or change these policies.
+
+10
+00:00:35.388 --> 00:00:40.001
+So in this module you hold the
+program's two policies, C A oh fifteen
+
+11
+00:00:40.001 --> 00:00:44.700
+for location and C A oh thirty-seven
+for high risk, as reviewed files.
+
+12
+00:00:44.700 --> 00:00:47.980
+They're scoped by object
+I D, one ring at a time,
+
+13
+00:00:47.980 --> 00:00:50.780
+and every one is created report-only.

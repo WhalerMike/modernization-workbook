@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.038
+Step ten breaks it on purpose.
+
+2
+00:00:02.038 --> 00:00:05.701
+Append one line to the packaged
+summary, and verify again.
+
+3
+00:00:05.701 --> 00:00:09.238
+It exits one: the summary
+doesn't match its hash.
+
+4
+00:00:09.238 --> 00:00:12.776
+Then try to package day one
+as if it came after day two,
+
+5
+00:00:12.776 --> 00:00:14.751
+chained to day two's manifest.
+
+6
+00:00:14.751 --> 00:00:19.162
+It exits one too: this run isn't
+later than the previous package.
+
+7
+00:00:19.162 --> 00:00:22.849
+So an edited file and a swapped
+package are both refused,
+
+8
+00:00:22.849 --> 00:00:27.175
+and that's what lets the ISSO trust
+the chain without trusting you.
+
+9
+00:00:27.175 --> 00:00:32.438
+The step ends by linting the scheduled
+workflow, with no findings and no warnings.
+
+10
+00:00:32.438 --> 00:00:37.626
+Step eleven runs the tests in both folders:
+five hundred thirteen Pester tests pass
+
+11
+00:00:37.626 --> 00:00:42.588
+in PowerShell, and one hundred forty-two
+pytest tests pass in the drift pipeline.
+
+12
+00:00:42.588 --> 00:00:45.340
+Then delete the output
+folder in both places.

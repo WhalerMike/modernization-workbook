@@ -1,0 +1,70 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.150
+Step four reads the findings by
+rule, and every rule shows up.
+
+2
+00:00:04.150 --> 00:00:08.004
+Oh one twice: the Mail Automation
+app holds the broad directory
+
+3
+00:00:08.004 --> 00:00:11.413
+write permission and mail
+read-write with no exception.
+
+4
+00:00:11.413 --> 00:00:15.974
+Oh two: HR Connector's exception
+for full control of sites has ended.
+
+5
+00:00:15.974 --> 00:00:19.875
+Oh three: Partner CRM
+reads mail for all users.
+
+6
+00:00:19.875 --> 00:00:22.737
+Oh four and oh five
+are the two mail rules.
+
+7
+00:00:22.737 --> 00:00:26.930
+Oh six twice and oh seven: a batch
+machine's managed identity holds
+
+8
+00:00:26.930 --> 00:00:31.588
+Azure roles at the subscription, a
+management group, and a resource group.
+
+9
+00:00:31.588 --> 00:00:34.799
+Oh nine: an app role the
+resource doesn't publish.
+
+10
+00:00:34.799 --> 00:00:37.400
+And oh eight three times, the hand-off.
+
+11
+00:00:37.400 --> 00:00:42.000
+Build Pipeline holds role management
+read-write, so it can grant itself more.
+
+12
+00:00:42.000 --> 00:00:45.663
+Deploy Bot holds a directory
+role and application read-write.
+
+13
+00:00:45.663 --> 00:00:48.750
+And id deploy is Contributor
+on a subscription.
+
+14
+00:00:48.750 --> 00:00:51.650
+All three go to the
+Privileged Access plan whole.

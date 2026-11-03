@@ -1,0 +1,78 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.525
+This is the kit's design.
+
+2
+00:00:01.525 --> 00:00:03.928
+One script can write in this chapter,
+
+3
+00:00:03.928 --> 00:00:08.012
+and it refuses to run unless the
+plan's hash is the approved one,
+
+4
+00:00:08.012 --> 00:00:12.738
+the plan is for this tenant, cloud and
+task and no more than seven days old,
+
+5
+00:00:12.738 --> 00:00:14.900
+and each write is a declared call.
+
+6
+00:00:14.900 --> 00:00:16.525
+Then it checks every body.
+
+7
+00:00:16.525 --> 00:00:21.722
+The default policy PATCH may set only the
+enabled flag and the two restriction sets,
+
+8
+00:00:21.722 --> 00:00:25.713
+and, checked again against the
+policy read just before the write,
+
+9
+00:00:25.713 --> 00:00:28.500
+it never loosens or
+drops a live restriction.
+
+10
+00:00:28.500 --> 00:00:30.288
+The lock body is exact.
+
+11
+00:00:30.288 --> 00:00:35.058
+An attach keeps every certificate
+the app has and adds exactly one;
+
+12
+00:00:35.058 --> 00:00:37.313
+a removal drops only the old one.
+
+13
+00:00:37.313 --> 00:00:39.491
+The Key Vault create body is empty,
+
+14
+00:00:39.491 --> 00:00:42.837
+so the rotation never
+changes a certificate policy.
+
+15
+00:00:42.837 --> 00:00:44.837
+Delete and put are never sent.
+
+16
+00:00:44.837 --> 00:00:49.874
+Before each write it re-reads the target,
+and skips the write if anything changed.
+
+17
+00:00:49.874 --> 00:00:53.090
+And a live run is a person
+signed in, never an app.

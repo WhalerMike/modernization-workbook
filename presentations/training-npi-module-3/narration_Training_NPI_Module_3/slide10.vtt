@@ -1,0 +1,79 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.988
+Step six prints each
+wave with its rollback.
+
+2
+00:00:02.988 --> 00:00:08.053
+Wave 1 is Mail Automation, with a rollback
+owner, and its rollback re-enables the
+
+3
+00:00:08.053 --> 00:00:13.587
+legacy credential, reverts the configuration
+and removes the federated credential.
+
+4
+00:00:13.587 --> 00:00:19.107
+Wave 2 holds svc hrsync, a managed
+service account and Payroll Export,
+
+5
+00:00:19.107 --> 00:00:21.625
+and its rollback owner is empty.
+
+6
+00:00:21.625 --> 00:00:25.275
+That's the N P I M A T oh eight finding.
+
+7
+00:00:25.275 --> 00:00:30.147
+Notice the delegated managed account's
+rollback is the undo command from Microsoft
+
+8
+00:00:30.147 --> 00:00:33.558
+Learn's delegated managed
+service account documentation,
+
+9
+00:00:33.558 --> 00:00:36.412
+and the superseded account
+is kept, never deleted.
+
+10
+00:00:36.412 --> 00:00:40.038
+Step seven reads the
+Workload I D Premium scope.
+
+11
+00:00:40.038 --> 00:00:43.249
+Six single-tenant app
+registrations can be covered by
+
+12
+00:00:43.249 --> 00:00:46.388
+Conditional Access today,
+and four after conversion.
+
+13
+00:00:46.388 --> 00:00:50.187
+Payroll Export is one that
+leaves: its owner's decision moves
+
+14
+00:00:50.187 --> 00:00:54.138
+it to a managed identity, and
+managed identities aren't covered.
+
+15
+00:00:54.138 --> 00:00:58.351
+Step eight runs every test:
+five hundred thirteen pass.
+
+16
+00:00:58.351 --> 00:01:01.780
+Then delete the output, which
+names accounts and owners.

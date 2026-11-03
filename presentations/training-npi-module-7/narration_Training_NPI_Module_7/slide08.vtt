@@ -1,0 +1,83 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.862
+Unit 3 is the plan and the write path.
+
+2
+00:00:02.862 --> 00:00:06.487
+Each conversion gets actions,
+and only three ever write.
+
+3
+00:00:06.487 --> 00:00:09.439
+Create identity, for a
+user-assigned identity
+
+4
+00:00:09.439 --> 00:00:11.925
+the file asks for that doesn't exist yet.
+
+5
+00:00:11.925 --> 00:00:14.875
+Create credential, for
+a federated credential
+
+6
+00:00:14.875 --> 00:00:17.750
+that passes every check
+and its exchange test.
+
+7
+00:00:17.750 --> 00:00:21.512
+And disable legacy, after
+a clean thirty-day parallel
+
+8
+00:00:21.512 --> 00:00:25.188
+run and the owner's approval,
+with Disable A D Account.
+
+9
+00:00:25.188 --> 00:00:28.409
+Everything else is a status,
+from awaiting cutover,
+
+10
+00:00:28.409 --> 00:00:32.626
+to parallel running, to awaiting
+the owner's approval, to converted.
+
+11
+00:00:32.626 --> 00:00:36.475
+The thresholds for a clean run
+are the program's design guidance.
+
+12
+00:00:36.475 --> 00:00:38.263
+The write path is separate.
+
+13
+00:00:38.263 --> 00:00:42.109
+It runs only the plan whose hash
+was approved, one write at a time,
+
+14
+00:00:42.109 --> 00:00:46.990
+the identity before its credential,
+because Microsoft Learn's trust page warns
+
+15
+00:00:46.990 --> 00:00:51.501
+that parallel creates under one identity
+fail, and it never sends a delete.
+
+16
+00:00:51.501 --> 00:00:54.119
+And it runs as a person
+with Cloud Application
+
+17
+00:00:54.119 --> 00:00:57.070
+Administrator and Managed
+Identity Contributor.

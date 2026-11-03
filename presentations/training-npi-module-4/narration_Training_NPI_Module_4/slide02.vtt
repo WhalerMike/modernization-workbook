@@ -1,0 +1,67 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.362
+Why does this need code?
+
+2
+00:00:01.362 --> 00:00:03.700
+The program's credential rules are short.
+
+3
+00:00:03.700 --> 00:00:05.525
+No long-lived secrets.
+
+4
+00:00:05.525 --> 00:00:10.425
+Managed identities first, then federated
+credentials, then certificates.
+
+5
+00:00:10.425 --> 00:00:14.162
+And every certificate in a vault
+and on a rotation calendar.
+
+6
+00:00:14.162 --> 00:00:16.737
+Those rules are the
+program's design guidance.
+
+7
+00:00:16.737 --> 00:00:21.102
+The tenant can enforce part of that
+itself, with an application management
+
+8
+00:00:21.102 --> 00:00:25.888
+policy that blocks new secrets and caps
+new certificates at a hundred eighty days.
+
+9
+00:00:25.888 --> 00:00:27.362
+The rest needs code.
+
+10
+00:00:27.362 --> 00:00:30.431
+Key Vault can renew a
+certificate on a schedule,
+
+11
+00:00:30.431 --> 00:00:33.813
+but Entra I D renews nothing
+on the app registration.
+
+12
+00:00:33.813 --> 00:00:38.037
+Somebody has to put the new certificate
+on the app, and take the old one off.
+
+13
+00:00:38.037 --> 00:00:42.128
+So in this module you compare the
+policy with the tenant, and you plan
+
+14
+00:00:42.128 --> 00:00:46.490
+a rotation from renewal to removal,
+with each write approved by its hash.

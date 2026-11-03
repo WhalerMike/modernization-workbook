@@ -1,0 +1,68 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.459
+Every call goes through one reader,
+
+2
+00:00:02.459 --> 00:00:06.362
+built for one task in one cloud,
+and it enforces five rules.
+
+3
+00:00:06.362 --> 00:00:11.325
+Only declared calls: the configuration
+file lists each call with its permission,
+
+4
+00:00:11.325 --> 00:00:15.325
+and a call the task doesn't declare
+throws before anything is sent.
+
+5
+00:00:15.325 --> 00:00:17.043
+Reads only: it sends GET,
+
+6
+00:00:17.043 --> 00:00:21.475
+and runs only the directory Get
+cmdlets the call list names.
+
+7
+00:00:21.475 --> 00:00:24.955
+One host: every URL,
+including every next link,
+
+8
+00:00:24.955 --> 00:00:30.975
+must be on the cloud's own Graph or Resource
+Manager host, or the token isn't sent.
+
+9
+00:00:30.975 --> 00:00:36.225
+One tenant: a live run refuses a session
+in another cloud or another tenant.
+
+10
+00:00:36.225 --> 00:00:39.562
+And every page: collections
+are read to the end.
+
+11
+00:00:39.562 --> 00:00:41.537
+One permission deserves a note.
+
+12
+00:00:41.537 --> 00:00:46.242
+The inventory holds Directory dot Read dot
+All only because Microsoft Learn's page
+
+13
+00:00:46.242 --> 00:00:51.151
+for listing delegated permission grants
+names it as the least-privileged permission.
+
+14
+00:00:51.151 --> 00:00:55.730
+It's the broadest read the inventory
+holds, and that's the only reason.

@@ -1,0 +1,55 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.875
+To sum up.
+
+2
+00:00:00.875 --> 00:00:05.225
+You checked the policy files, and failed
+Learn's sample against the same rules.
+
+3
+00:00:05.225 --> 00:00:09.762
+You planned against a fictional tenant,
+created every policy report-only,
+
+4
+00:00:09.762 --> 00:00:12.663
+and summarized the service
+principal sign-ins.
+
+5
+00:00:12.663 --> 00:00:17.287
+And you saw a ring enforced only with
+the D N five decision, the allow-enforce
+
+6
+00:00:17.287 --> 00:00:21.762
+switch and the reviewed summary, and
+held again when the summary changed.
+
+7
+00:00:21.762 --> 00:00:27.221
+The evidence an ISSO keeps is the scope
+file, the pre-merge check, the findings,
+
+8
+00:00:27.221 --> 00:00:32.160
+the plan and its requests, the sign-in
+summary with the hash the D N five
+
+9
+00:00:32.160 --> 00:00:37.012
+record cites, the alert definition,
+and each run's manifest, all dated.
+
+10
+00:00:37.012 --> 00:00:40.088
+Before you ship, work through
+the chapter's checklist.
+
+11
+00:00:40.088 --> 00:00:45.960
+Next is Module 7: convert to managed
+identities and federation, Gate 5.

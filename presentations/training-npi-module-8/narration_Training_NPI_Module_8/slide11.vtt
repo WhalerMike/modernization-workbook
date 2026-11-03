@@ -1,0 +1,67 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.762
+Step six reads the plan.
+
+2
+00:00:01.762 --> 00:00:04.550
+Nine actions, and these
+are the four writes.
+
+3
+00:00:04.550 --> 00:00:06.713
+Set retrievers for gmsa web.
+
+4
+00:00:06.713 --> 00:00:09.876
+Create a G M S A for the managed service
+
+5
+00:00:09.876 --> 00:00:13.651
+account msa print oh one,
+and for svc intranet.
+
+6
+00:00:13.651 --> 00:00:17.334
+And complete the D M S A
+migration for svc h r sync,
+
+7
+00:00:17.334 --> 00:00:22.812
+whose migration started forty days
+ago, past the twenty-eight-day wait.
+
+8
+00:00:22.812 --> 00:00:24.937
+svc webfront is blocked.
+
+9
+00:00:24.937 --> 00:00:28.576
+The other actions are recorded with
+their reasons and write nothing.
+
+10
+00:00:28.576 --> 00:00:32.300
+Step seven reads the island
+list and the reconciliation.
+
+11
+00:00:32.300 --> 00:00:36.162
+Five island rows, each under the
+name the account will end up with.
+
+12
+00:00:36.162 --> 00:00:41.347
+gmsa intranet has no S P N owner and
+ends at the end of 2028, so it isn't
+
+13
+00:00:41.347 --> 00:00:47.300
+ready for P four point six, and its
+reconciliation outcome is unreconciled.
+
+14
+00:00:47.300 --> 00:00:52.340
+gmsa web isn't ready either, because
+its end date runs past D oh eight's.

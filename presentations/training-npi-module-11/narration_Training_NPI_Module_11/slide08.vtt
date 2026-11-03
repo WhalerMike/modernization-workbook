@@ -1,0 +1,67 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.963
+Unit 2 is the stages.
+
+2
+00:00:01.963 --> 00:00:05.764
+The live test stage
+prepares synthetic objects,
+
+3
+00:00:05.764 --> 00:00:10.612
+runs the preflight, and deploys in
+the safe order, Steps 1.1 to 1.5.
+
+4
+00:00:10.612 --> 00:00:13.843
+Then it runs the smoke
+test, captures the evidence,
+
+5
+00:00:13.843 --> 00:00:16.600
+rehearses the rollback, and deploys again.
+
+6
+00:00:16.600 --> 00:00:20.764
+Production starts only when every
+go or no-go criterion is signed,
+
+7
+00:00:20.764 --> 00:00:25.776
+nine rows of them, and its preflight adds
+one check that runs only in production:
+
+8
+00:00:25.776 --> 00:00:28.552
+P F eleven, which needs
+the test stage's smoke
+
+9
+00:00:28.552 --> 00:00:31.713
+test to have passed every
+check, in another tenant.
+
+10
+00:00:31.713 --> 00:00:34.413
+Then production enables Conditional Access
+
+11
+00:00:34.413 --> 00:00:36.900
+for workload identities
+one wave at a time.
+
+12
+00:00:36.900 --> 00:00:41.286
+Remember the status: nobody has run
+these stages against a live tenant,
+
+13
+00:00:41.286 --> 00:00:44.387
+and every live result in
+them is labeled Expected.
+
+14
+00:00:44.387 --> 00:00:47.400
+That's why Lab 1 runs only the dry run.

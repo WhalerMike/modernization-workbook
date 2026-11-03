@@ -1,0 +1,78 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:04.088
+Lab 1 runs in the
+non-person identity folder,
+
+3
+00:00:04.088 --> 00:00:07.400
+in PowerShell 7, against
+a fictional estate.
+
+4
+00:00:07.400 --> 00:00:12.488
+First make Chapter 1's register, as in
+Module 1, because the sweep reads it.
+
+5
+00:00:12.488 --> 00:00:17.563
+Step one runs Learn's review script
+against the stand-ins: ten tests pass.
+
+6
+00:00:17.563 --> 00:00:20.037
+Step two lists what each task needs.
+
+7
+00:00:20.037 --> 00:00:23.301
+The sweep holds three Graph
+read permissions and Reader.
+
+8
+00:00:23.301 --> 00:00:26.039
+The write task is separate,
+and it's the one with
+
+9
+00:00:26.039 --> 00:00:29.138
+app role assignment and
+delegated grant read-write.
+
+10
+00:00:29.138 --> 00:00:33.213
+Step three sweeps eleven service
+principals and twenty grants:
+
+11
+00:00:33.213 --> 00:00:38.212
+twelve application permissions, five
+Azure roles and three delegated grants.
+
+12
+00:00:38.212 --> 00:00:41.647
+Two are skipped, the agent
+identity and its blueprint,
+
+13
+00:00:41.647 --> 00:00:46.175
+which are Module 9's, and three are
+handed to the Privileged Access plan.
+
+14
+00:00:46.175 --> 00:00:51.175
+The owner review has fifteen rows,
+six still open, so it isn't closed.
+
+15
+00:00:51.175 --> 00:00:54.387
+And the plan has eleven
+actions, three of them writes.
+
+16
+00:00:54.387 --> 00:00:55.630
+Nothing is sent.

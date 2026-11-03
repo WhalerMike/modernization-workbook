@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.875
+To sum up.
+
+2
+00:00:00.875 --> 00:00:05.226
+You compared a fictional tenant's
+default policy with the reviewed file,
+
+3
+00:00:05.226 --> 00:00:09.504
+applied a plan that adds the program's
+restrictions and locks five apps,
+
+4
+00:00:09.504 --> 00:00:14.363
+and carried three certificates through
+renewal, attach and removal, on the fakes.
+
+5
+00:00:14.363 --> 00:00:19.693
+The evidence an ISSO keeps for Gate 3 from
+this module is the default policy as it
+
+6
+00:00:19.693 --> 00:00:24.458
+was before, the diff, both plans with
+their approved hashes, the findings,
+
+7
+00:00:24.458 --> 00:00:28.738
+and the dry-run and apply folders
+with their manifests, all dated.
+
+8
+00:00:28.738 --> 00:00:31.300
+From Lab 2, add the tenant's refusals and
+
+9
+00:00:31.300 --> 00:00:34.263
+the Scuba Gear result
+for the three policies.
+
+10
+00:00:34.263 --> 00:00:37.338
+Before you ship, work through
+the chapter's checklist.
+
+11
+00:00:37.338 --> 00:00:41.037
+Next is Module 5: cut the
+privilege of service principals,
+
+12
+00:00:41.037 --> 00:00:44.810
+starting with the broad
+permissions and roles they hold.

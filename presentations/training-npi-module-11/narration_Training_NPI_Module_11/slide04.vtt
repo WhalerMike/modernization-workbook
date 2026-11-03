@@ -1,0 +1,75 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.238
+Unit 1 starts with the safe order.
+
+2
+00:00:02.238 --> 00:00:05.974
+Inventory and owners come
+first, and they only read.
+
+3
+00:00:05.974 --> 00:00:11.063
+Then the app management policy, scoped to
+a pilot application and a synthetic one.
+
+4
+00:00:11.063 --> 00:00:15.354
+Microsoft Learn documents no
+report-only mode for these policies,
+
+5
+00:00:15.354 --> 00:00:19.569
+but it says a policy refuses only
+a create or update that breaks it,
+
+6
+00:00:19.569 --> 00:00:23.237
+so an existing secret keeps
+working while the pilot runs.
+
+7
+00:00:23.237 --> 00:00:26.449
+Then a federated credential
+and a managed identity
+
+8
+00:00:26.449 --> 00:00:29.138
+on the pilot workload,
+beside the old secret.
+
+9
+00:00:29.138 --> 00:00:32.356
+Then a group managed service
+account on a test host,
+
+10
+00:00:32.356 --> 00:00:35.575
+once the key distribution
+root key has replicated.
+
+11
+00:00:35.575 --> 00:00:40.683
+And last, Conditional Access for workload
+identities, in report-only mode, which
+
+12
+00:00:40.683 --> 00:00:46.100
+Learn's Conditional Access documentation
+lets you use to estimate a policy's effect.
+
+13
+00:00:46.100 --> 00:00:50.863
+In production it's enabled wave by
+wave, after a reviewed sign-in summary.
+
+14
+00:00:50.863 --> 00:00:53.885
+The runbook decides
+nothing the gates decide;
+
+15
+00:00:53.885 --> 00:00:57.050
+it deploys the controls
+that let each gate pass.

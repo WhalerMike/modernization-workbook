@@ -1,0 +1,75 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.990
+Risk, the candidate target and the
+stale lead come from the program,
+
+2
+00:00:03.990 --> 00:00:06.712
+not from Microsoft, so
+they're design guidance.
+
+3
+00:00:06.712 --> 00:00:11.553
+An enabled identity is high risk for a
+password that never expires or hasn't changed
+
+4
+00:00:11.553 --> 00:00:16.043
+in more than three hundred sixty-five
+days, membership of a privileged Active
+
+5
+00:00:16.043 --> 00:00:20.813
+Directory group, unconstrained delegation,
+or a high-privilege Graph permission.
+
+6
+00:00:20.813 --> 00:00:24.616
+Other enabled traditional
+accounts, managed service accounts,
+
+7
+00:00:24.616 --> 00:00:29.137
+legacy service principals and anything
+holding a client secret are medium.
+
+8
+00:00:29.137 --> 00:00:30.562
+Everything else is low.
+
+9
+00:00:30.562 --> 00:00:35.250
+The target is only a candidate;
+Module 3 makes the decision.
+
+10
+00:00:35.250 --> 00:00:39.886
+A stale lead is an enabled directory
+account with no logon in ninety days,
+
+11
+00:00:39.886 --> 00:00:43.364
+and it's only a lead, because
+Microsoft Learn documents
+
+12
+00:00:43.364 --> 00:00:47.150
+that the last logon timestamp
+isn't updated at every sign-in.
+
+13
+00:00:47.150 --> 00:00:51.275
+Confirm it against the domain
+controller and Entra sign-in logs.
+
+14
+00:00:51.275 --> 00:00:55.125
+The code never disables,
+moves or deletes anything.
+
+15
+00:00:55.125 --> 00:00:59.930
+And SQL Server and LDAP-bind accounts
+are handed to the Data Platform plan.

@@ -1,0 +1,70 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.025
+Check yourself with two questions.
+
+2
+00:00:02.025 --> 00:00:06.175
+First: why is a client secret on
+a production blueprint a finding?
+
+3
+00:00:06.175 --> 00:00:07.145
+The answer is b.
+
+4
+00:00:07.145 --> 00:00:12.805
+Microsoft Learn's Agent I D documentation
+says the blueprint holds the credentials
+
+5
+00:00:12.805 --> 00:00:17.575
+for every agent made from it, so one
+leaked secret is every agent's secret.
+
+6
+00:00:17.575 --> 00:00:20.400
+That's why the blueprint is
+the credential boundary,
+
+7
+00:00:20.400 --> 00:00:22.963
+and why the program
+prefers a managed identity.
+
+8
+00:00:22.963 --> 00:00:24.887
+Second: a sponsor leaves.
+
+9
+00:00:24.887 --> 00:00:26.937
+When does the agent become orphaned?
+
+10
+00:00:26.937 --> 00:00:32.076
+The answer is c: when the new sponsor
+hasn't confirmed within ten business days.
+
+11
+00:00:32.076 --> 00:00:34.577
+That's the program's design guidance,
+
+12
+00:00:34.577 --> 00:00:38.913
+and N P I A I sixteen checks it,
+counting around federal holidays.
+
+13
+00:00:38.913 --> 00:00:42.950
+Then the orphaned agent goes to
+Chapter 2's orphan candidates.
+
+14
+00:00:42.950 --> 00:00:45.377
+The module page has three more questions,
+
+15
+00:00:45.377 --> 00:00:47.930
+each linked to the
+section that answers it.

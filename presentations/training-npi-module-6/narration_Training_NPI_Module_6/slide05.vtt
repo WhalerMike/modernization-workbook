@@ -1,0 +1,72 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.637
+Unit 2 is the context and the files.
+
+2
+00:00:02.637 --> 00:00:05.625
+The program's design
+guidance sets two policies.
+
+3
+00:00:05.625 --> 00:00:09.296
+C A oh fifteen blocks the
+ring's service principals from
+
+4
+00:00:09.296 --> 00:00:13.287
+anywhere but one named location,
+the workload egress ranges.
+
+5
+00:00:13.287 --> 00:00:16.575
+C A oh thirty-seven blocks
+them when their risk is high.
+
+6
+00:00:16.575 --> 00:00:18.075
+Two decisions frame them.
+
+7
+00:00:18.075 --> 00:00:21.119
+D N four is licensing:
+Workload I D Premium
+
+8
+00:00:21.119 --> 00:00:24.700
+for the Tier 1 single-tenant
+service principals.
+
+9
+00:00:24.700 --> 00:00:28.529
+D N five is enforcement, and
+it's the CISO's call: enforce,
+
+10
+00:00:28.529 --> 00:00:33.550
+extend report-only, or enforce with
+exclusions that are dated and owned.
+
+11
+00:00:33.550 --> 00:00:38.422
+The scope file is the record: each
+in-scope principal by object I D and ring,
+
+12
+00:00:38.422 --> 00:00:43.538
+and each identity that's out of scope,
+with the control that covers it instead.
+
+13
+00:00:43.538 --> 00:00:46.264
+And each policy is rendered once per ring,
+
+14
+00:00:46.264 --> 00:00:51.476
+so enforcing one ring changes one policy
+and leaves the next one in report-only.
+
+15
+00:00:51.476 --> 00:00:53.230
+That's the program's design.
