@@ -1,64 +1,64 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.500
+00:00:00.050 --> 00:00:03.505
 Runbook R04 gives the
 host its cloud identity.
 
 2
-00:00:03.500 --> 00:00:07.307
+00:00:03.505 --> 00:00:07.318
 Connecting a server to Arc
 creates a managed identity with no
 
 3
-00:00:07.307 --> 00:00:11.263
+00:00:07.318 --> 00:00:11.280
 secret anyone has to manage, and
 without it there's no Entra login.
 
 4
-00:00:11.263 --> 00:00:13.474
+00:00:11.280 --> 00:00:13.499
 The prerequisites carry the traps.
 
 5
-00:00:13.474 --> 00:00:16.789
+00:00:13.499 --> 00:00:16.733
 In a GCC-Moderate tenant,
 the Arc resources live
 
 6
-00:00:16.789 --> 00:00:20.188
+00:00:16.733 --> 00:00:20.138
 in a commercial subscription
 in the same tenant.
 
 7
-00:00:20.188 --> 00:00:24.756
+00:00:20.138 --> 00:00:24.718
 And the engine contacts Entra ID
 directly, not through the agent's proxy,
 
 8
-00:00:24.756 --> 00:00:29.788
+00:00:24.718 --> 00:00:29.758
 which is the one people miss: the agent
 shows Connected while Entra logins fail.
 
 9
-00:00:29.788 --> 00:00:34.634
+00:00:29.758 --> 00:00:34.607
 Then four steps: enroll, validate
 the token, confirm the extension,
 
 10
-00:00:34.634 --> 00:00:38.313
+00:00:34.607 --> 00:00:38.293
 and turn on Entra
 authentication, on a pilot first.
 
 11
-00:00:38.313 --> 00:00:42.200
+00:00:38.293 --> 00:00:42.191
 Two program functions need correcting
 before you run them for real.
 
 12
-00:00:42.200 --> 00:00:46.173
+00:00:42.191 --> 00:00:46.169
 And rollback has a catch:
 reconnecting creates a new identity,
 
 13
-00:00:46.173 --> 00:00:48.650
+00:00:46.169 --> 00:00:48.650
 so permissions must be granted again.

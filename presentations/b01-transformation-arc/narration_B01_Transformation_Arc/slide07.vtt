@@ -6,54 +6,55 @@ Identity comes first, because every
 later control reads its attributes.
 
 2
-00:00:04.862 --> 00:00:09.387
+00:00:04.862 --> 00:00:09.487
 For the workforce, the authoritative
 source is the HR system of record.
 
 3
-00:00:09.387 --> 00:00:14.327
+00:00:09.487 --> 00:00:14.428
 Four mechanisms rebuild what the OU tree
 did: attributes replace OU placement,
 
 4
-00:00:14.327 --> 00:00:19.724
+00:00:14.428 --> 00:00:19.825
 dynamic groups replace OU-based groups,
 administrative units replace OU delegation,
 
 5
-00:00:19.724 --> 00:00:23.524
+00:00:19.825 --> 00:00:23.625
 and Conditional Access replaces
 Group Policy inheritance.
 
 6
-00:00:23.524 --> 00:00:28.403
+00:00:23.625 --> 00:00:28.666
 The program's contribution is what ties
 them together: one HR-sourced stamp
 
 7
-00:00:28.403 --> 00:00:33.675
+00:00:28.666 --> 00:00:34.113
 drives membership, delegation, policy
 targeting, licensing and drift detection.
 
 8
-00:00:33.675 --> 00:00:34.838
+00:00:34.113 --> 00:00:35.275
 Two cautions.
 
 9
-00:00:34.838 --> 00:00:38.259
+00:00:35.275 --> 00:00:38.697
 Dynamic membership usually
 updates within a few hours,
 
 10
-00:00:38.259 --> 00:00:42.350
+00:00:38.697 --> 00:00:42.788
 but it can take more than a day, so
 design job moves around that delay.
 
 11
-00:00:42.350 --> 00:00:46.788
+00:00:42.788 --> 00:00:47.263
 And HR provisioning must be the only
 thing that writes those attributes.
 
 12
-00:00:46.788 --> 00:00:51.140
-Books 02 and 03 carry identity in depth.
+00:00:47.263 --> 00:00:53.880
+Two books carry identity in depth: Identity
+and Directory, and HR-Driven Identity.

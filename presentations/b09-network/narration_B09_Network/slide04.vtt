@@ -1,76 +1,76 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:05.837
+00:00:00.050 --> 00:00:05.847
 Read from the documents, TIC 3.0 describes
 goals; it doesn't prescribe methods.
 
 2
-00:00:05.837 --> 00:00:08.863
+00:00:05.847 --> 00:00:08.875
 It has four use cases,
 and none of them is SASE.
 
 3
-00:00:08.863 --> 00:00:14.192
+00:00:08.875 --> 00:00:14.211
 Two statements matter most for a branch:
 the same policy enforcement on every path,
 
 4
-00:00:14.192 --> 00:00:18.188
+00:00:14.211 --> 00:00:18.213
 and keeping CISA's visibility
 as branches connect directly.
 
 5
-00:00:18.188 --> 00:00:19.825
+00:00:18.213 --> 00:00:19.856
 Logging is the other half.
 
 6
-00:00:19.825 --> 00:00:24.718
+00:00:19.856 --> 00:00:24.756
 The current federal logging memo
 sets retention and content rules,
 
 7
-00:00:24.718 --> 00:00:28.825
+00:00:24.756 --> 00:00:28.870
 and the first agency logging
 plan is due November 18, 2026.
 
 8
-00:00:28.825 --> 00:00:29.900
+00:00:28.870 --> 00:00:29.938
 Here's the trap.
 
 9
-00:00:29.900 --> 00:00:33.472
+00:00:29.938 --> 00:00:33.514
 When branches leave the managed
 trusted internet service,
 
 10
-00:00:33.472 --> 00:00:35.950
+00:00:33.514 --> 00:00:35.996
 the telemetry CISA was receiving stops.
 
 11
-00:00:35.950 --> 00:00:39.219
+00:00:35.996 --> 00:00:39.269
 The replacement is CISA's
 log aggregation warehouse,
 
 12
-00:00:39.219 --> 00:00:43.650
+00:00:39.269 --> 00:00:43.711
 and onboarding needs the agency, CISA
 and the provider working together.
 
 13
-00:00:43.650 --> 00:00:46.987
+00:00:43.711 --> 00:00:47.048
 So keep the old service
 until CISA confirms parity.
 
 14
-00:00:46.987 --> 00:00:49.612
+00:00:47.048 --> 00:00:49.676
 Technology-neutral isn't requirement-free.
 
 15
-00:00:49.612 --> 00:00:53.050
+00:00:49.676 --> 00:00:53.132
 Four binding obligations still
 land on branch equipment.
 
 16
-00:00:53.050 --> 00:00:55.680
+00:00:53.132 --> 00:00:55.680
 Now, where data and trust should live.

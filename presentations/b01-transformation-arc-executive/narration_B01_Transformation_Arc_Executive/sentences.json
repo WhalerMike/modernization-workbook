@@ -7,51 +7,51 @@
   ],
   [
    0.762,
-   6.638,
-   "This is the executive briefing for Book 01 of the Federal Modernization Workbook, The Transformation Arc."
+   6.362,
+   "This is the executive briefing for The Transformation Arc, one of the books of the Federal Modernization Workbook."
   ],
   [
-   7.4,
+   7.125,
    12.225,
    "It runs about thirty minutes, and it's for the people who sponsor, fund, secure and authorize the move from a domain-joined estate to cloud identity, cloud device management and governed hybrid operations."
   ],
   [
-   19.625,
+   19.35,
    2.712,
    "The argument fits in three sentences."
   ],
   [
-   22.337,
+   22.062,
    9.012,
    "For twenty years Active Directory quietly did governance nobody wrote down, so modernization is a governance rebuild, not a platform swap."
   ],
   [
-   31.35,
+   31.075,
    7.6,
    "The estate has to be analyzed before anything moves, and the work delivered in gated phases with a rollback at every step."
   ],
   [
-   38.95,
+   38.675,
    4.562,
    "And leadership's job is to conduct the orchestra, not to play the instruments."
   ],
   [
-   43.513,
+   43.237,
    7.775,
    "I'll cover why this is hard, what changes, who leads, and how to deliver it, all the way to the retirement of Active Directory."
   ],
   [
-   51.288,
+   51.013,
    2.487,
    "There's no configuration on these slides."
   ],
   [
-   53.775,
+   53.5,
    4.625,
    "Each decision slide names the decision, who owns it, and when it's needed."
   ],
   [
-   58.4,
+   58.125,
    2.138,
    "Let's start with how the estate got here."
   ]
@@ -1260,51 +1260,51 @@
   ],
   [
    33.737,
-   2.763,
-   "HR defines what the worker attributes mean."
+   2.737,
+   "H R defines what the worker attributes mean."
   ],
   [
-   36.5,
+   36.475,
    5.362,
    "The authorizing official agrees the automation ceiling and every exception's end date."
   ],
   [
-   41.862,
+   41.837,
    4.55,
    "And the records officer settles retention before anything is decommissioned."
   ],
   [
-   46.413,
+   46.388,
    2.638,
    "None of this needs a vendor decision on day one."
   ],
   [
-   49.05,
+   49.025,
    8.588,
    "It needs an inventory, an owner and a date: the read-only assessment, a named sponsor and steward, and Gate G0 on the calendar."
   ],
   [
-   57.638,
+   57.612,
    2.475,
    "Microsoft has supplied the instruments."
   ],
   [
-   60.112,
+   60.087,
    4.625,
    "The program is the orchestra, and the people named in this briefing have to play it."
   ],
   [
-   64.737,
+   64.713,
    5.312,
    "Retiring Active Directory is a governance transformation, and it should be led as one."
   ],
   [
-   70.05,
-   4.075,
-   "Book 01 has the detail, with every claim footnoted."
+   70.025,
+   4.675,
+   "The Transformation Arc has the detail, with every claim footnoted."
   ],
   [
-   74.125,
+   74.7,
    0.762,
    "Thank you."
   ]

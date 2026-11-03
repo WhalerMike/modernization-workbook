@@ -1,77 +1,77 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.224
+00:00:00.050 --> 00:00:03.010
 The agency's cloud
 decides what it can use,
 
 2
-00:00:03.224 --> 00:00:07.612
-so Book 17 dates every product
+00:00:03.010 --> 00:00:07.275
+so this book dates every product
 statement to October 2026.
 
 3
-00:00:07.612 --> 00:00:13.096
+00:00:07.275 --> 00:00:12.811
 The core Agent ID platform, with
 blueprints, agent identities and sponsors,
 
 4
-00:00:13.096 --> 00:00:16.899
+00:00:12.811 --> 00:00:16.650
 was announced as generally
 available in April 2026.
 
 5
-00:00:16.899 --> 00:00:19.446
+00:00:16.650 --> 00:00:19.196
 But several controls are still preview,
 
 6
-00:00:19.446 --> 00:00:22.687
+00:00:19.196 --> 00:00:22.437
 including agent targeting
 in Conditional Access.
 
 7
-00:00:22.687 --> 00:00:23.976
+00:00:22.437 --> 00:00:23.726
 The slide lists them.
 
 8
-00:00:23.976 --> 00:00:26.187
+00:00:23.726 --> 00:00:25.937
 The government clouds
 are the bigger issue.
 
 9
-00:00:26.187 --> 00:00:31.801
+00:00:25.937 --> 00:00:31.551
 GCC has a partial, documented subset:
 identity and access governance for agents,
 
 10
-00:00:31.801 --> 00:00:36.563
+00:00:31.551 --> 00:00:36.313
 but not Microsoft's audit, data loss
 prevention or network controls.
 
 11
-00:00:36.563 --> 00:00:39.834
+00:00:36.313 --> 00:00:39.570
 GCC High and DOD have no
 published availability,
 
 12
-00:00:39.834 --> 00:00:44.250
+00:00:39.570 --> 00:00:43.969
 so treat agent identities as
 unavailable there until Microsoft
 
 13
-00:00:44.250 --> 00:00:48.912
+00:00:43.969 --> 00:00:48.612
 confirms otherwise in writing, and
 govern AI as workload identities.
 
 14
-00:00:48.912 --> 00:00:53.204
+00:00:48.612 --> 00:00:52.903
 The rule is simple: build on what's
 generally available in your own cloud,
 
 15
-00:00:53.204 --> 00:00:55.676
+00:00:52.903 --> 00:00:55.375
 and keep preview features as watch items.
 
 16
-00:00:55.676 --> 00:00:58.220
+00:00:55.375 --> 00:00:57.940
 Next, the person behind each agent.

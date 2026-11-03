@@ -2,7 +2,7 @@
   {
     "slide": 1,
     "title": "Access & Privilege: the executive briefing",
-    "say": "Welcome. This is the executive briefing for Book 04 of the Federal Modernization Workbook, Access and Privilege. It's for the people who make the calls on access. The argument is short. Under Zero Trust, every access request is decided by policy, so your Conditional Access policy set is your access control. Standing administrator rights turn one stolen credential into control of the tenant, and a stronger sign-in doesn't fix that. And the platform won't separate deciding from doing for you. I'll take four questions: why, what, who and how. Each decision slide names the decision, its owner and when it's needed. Let's start with how access gets decided."
+    "say": "Welcome. This is the executive briefing for Access and Privilege, one of the books of the Federal Modernization Workbook. It's for the people who make the calls on access. The argument is short. Under Zero Trust, every access request is decided by policy, so your Conditional Access policy set is your access control. Standing administrator rights turn one stolen credential into control of the tenant, and a stronger sign-in doesn't fix that. And the platform won't separate deciding from doing for you. I'll take four questions: why, what, who and how. Each decision slide names the decision, its owner and when it's needed. Let's start with how access gets decided."
   },
   {
     "slide": 2,
@@ -92,6 +92,6 @@
   {
     "slide": 19,
     "title": "Decisions to make, owners and timing",
-    "say": "So, the decisions. The CISO sets the baseline: all users covered, attribute-based policies only on verified data, the library adopted before wave one, and phishing-resistant MFA in report-only from day one. The CISO also owns the privilege model: every admin role eligible, tiers approved, approvers from outside the tier, and break-glass built and tested first, with the authorizing official accepting what stays standing. The sponsor and CIO fund the licenses, without a gap. The identity governance officer narrows the help desk role and tiers every app. Uncompensated exceptions go to the authorizing official. And the repository becomes the only path. Write the policy down, test it, prove it ran. Book 04 has the detail, every claim footnoted. Thank you."
+    "say": "So, the decisions. The CISO sets the baseline: all users covered, attribute-based policies only on verified data, the library adopted before wave one, and phishing-resistant MFA in report-only from day one. The CISO also owns the privilege model: every admin role eligible, tiers approved, approvers from outside the tier, and break-glass built and tested first, with the authorizing official accepting what stays standing. The sponsor and CIO fund the licenses, without a gap. The identity governance officer narrows the help desk role and tiers every app. Uncompensated exceptions go to the authorizing official. And the repository becomes the only path. Write the policy down, test it, prove it ran. Access and Privilege has the detail, every claim footnoted. Thank you."
   }
 ]

@@ -7,26 +7,26 @@
   ],
   [
    0.762,
-   7.088,
-   "This is the SD-WAN deep dive for Book 09 of the Federal Modernization Workbook, Network and Transport."
+   6.625,
+   "This is the SD-WAN deep dive for Network and Transport, one of the books of the Federal Modernization Workbook."
   ],
   [
-   7.85,
+   7.388,
    8.025,
    "It's for the engineers and architects who'll design, secure and evidence a branch fabric, and it stays on SD-WAN the whole way through."
   ],
   [
-   15.875,
+   15.412,
    10.137,
    "Part 1 is transport and the branch edge: the physics SD-WAN works against, then what tick three point oh and Microsoft 365 ask of a branch."
   ],
   [
-   26.012,
+   25.55,
    9.037,
    "Part 2 is governing and transforming: protecting the fabric itself, and a worked field-office estate with real sizing and an honest cost model."
   ],
   [
-   35.05,
+   34.587,
    3.312,
    "Let's start with what SD-WAN actually is, and isn't."
   ]

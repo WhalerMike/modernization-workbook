@@ -2,7 +2,7 @@
 
 ## Slide 1 — Cloud Boundary & Landing Zone: the technical deep dive
 
-Welcome. This is the technical deep dive for Book 10 of the Federal Modernization Workbook, Cloud Boundary and Landing Zone. It's for the cloud and platform engineers who build the landing zone, and the ISSOs who have to evidence what's in it. The whole book comes down to one idea: the license says what you bought, but the boundary says what you may use. Part 1 is about the boundary itself and what it quietly takes away. Part 2 is about building it into the landing zone and owning it in the authorization package. The code stays in the chapters. Let's start with why this bites so late.
+Welcome. This is the technical deep dive for Cloud Boundary and Landing Zone, one of the books of the Federal Modernization Workbook. It's for the cloud and platform engineers who build the landing zone, and the ISSOs who have to evidence what's in it. The whole book comes down to one idea: the license says what you bought, but the boundary says what you may use. Part 1 is about the boundary itself and what it quietly takes away. Part 2 is about building it into the landing zone and owning it in the authorization package. The code stays in the chapters. Let's start with why this bites so late.
 
 ## Slide 2 — Why this matters: the license is not the boundary
 

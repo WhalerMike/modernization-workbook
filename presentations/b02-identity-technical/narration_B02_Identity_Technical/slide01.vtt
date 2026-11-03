@@ -5,58 +5,63 @@ WEBVTT
 Welcome.
 
 2
-00:00:00.763 --> 00:00:05.932
-This is the technical deep dive for Book
-02 of the Federal Modernization Workbook,
+00:00:00.763 --> 00:00:04.319
+This is the technical deep dive
+for Identity and Directory,
 
 3
-00:00:05.932 --> 00:00:09.809
-Identity and Directory, for the
-architects and engineers who
+00:00:04.319 --> 00:00:09.038
+one of the books of the Federal Modernization
+Workbook, for the architects and
 
 4
-00:00:09.809 --> 00:00:13.687
-will run the move from Active
-Directory to Microsoft Entra ID.
+00:00:09.038 --> 00:00:13.612
+engineers who will run the move from
+Active Directory to Microsoft Entra ID.
 
 5
-00:00:13.687 --> 00:00:17.994
-What Book 02 accomplishes is a
+00:00:13.612 --> 00:00:17.728
+What this book accomplishes is a
 directory where placement has become
 
 6
-00:00:17.994 --> 00:00:22.526
+00:00:17.728 --> 00:00:21.913
 attributes and rules, and every service
 account has an owner and a target.
 
 7
-00:00:22.526 --> 00:00:24.668
+00:00:21.913 --> 00:00:23.843
 Of the workbook's four tracks,
 
 8
-00:00:24.668 --> 00:00:29.846
+00:00:23.843 --> 00:00:28.509
 it carries the directory side of the
 HR track and the service accounts;
 
 9
-00:00:29.846 --> 00:00:35.738
-people's attributes are Book 03, devices
-and servers Book 05, and AI agents Book 17.
+00:00:28.509 --> 00:00:32.933
+people's attributes are in HR-Driven
+Identity, devices and servers
 
 10
-00:00:35.738 --> 00:00:40.137
+00:00:32.933 --> 00:00:37.276
+in Devices and Endpoints, and AI
+agents in AI Identity Governance.
+
+11
+00:00:37.276 --> 00:00:41.675
 Part 1 assesses the forest, starting
 with what an ordinary account can see.
 
-11
-00:00:40.137 --> 00:00:43.700
+12
+00:00:41.675 --> 00:00:45.350
 Part 2 builds the Entra ID
 target and moves onto it.
 
-12
-00:00:43.700 --> 00:00:45.750
+13
+00:00:45.350 --> 00:00:47.400
 The code lives in the chapters.
 
-13
-00:00:45.750 --> 00:00:47.330
+14
+00:00:47.400 --> 00:00:48.980
 I'll stick to what matters.

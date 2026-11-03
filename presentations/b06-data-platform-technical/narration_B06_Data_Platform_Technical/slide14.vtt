@@ -1,64 +1,64 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.688
+00:00:00.050 --> 00:00:02.662
 The database is only half of the path.
 
 2
-00:00:02.688 --> 00:00:06.314
+00:00:02.662 --> 00:00:06.255
 An application that moved
 user sign-in to Entra ID but
 
 3
-00:00:06.314 --> 00:00:10.188
+00:00:06.255 --> 00:00:10.577
 still reaches SQL Server with
 a SQL login hasn't finished.
 
 4
-00:00:10.188 --> 00:00:14.190
+00:00:10.577 --> 00:00:14.540
 Both legs, user to application
 and application to database,
 
 5
-00:00:14.190 --> 00:00:16.313
+00:00:14.540 --> 00:00:16.611
 have to leave Active Directory.
 
 6
-00:00:16.313 --> 00:00:19.274
+00:00:16.611 --> 00:00:19.544
 For the user leg, the
 program sorts applications
 
 7
-00:00:19.274 --> 00:00:22.087
+00:00:19.544 --> 00:00:22.366
 into four classes in
 strict preference order.
 
 8
-00:00:22.087 --> 00:00:25.488
+00:00:22.366 --> 00:00:25.734
 OpenID Connect is the
 destination; SAML is next;
 
 9
-00:00:25.488 --> 00:00:30.845
+00:00:25.734 --> 00:00:31.039
 Application Proxy fronts an application
 that can't change; and Entra Domain
 
 10
-00:00:30.845 --> 00:00:36.287
+00:00:31.039 --> 00:00:36.426
 Services is the last resort, which still
 uses NTLM and needs a dated exception.
 
 11
-00:00:36.287 --> 00:00:40.867
+00:00:36.426 --> 00:00:40.960
 The database leg is a second axis,
 set by evidence: can the driver and
 
 12
-00:00:40.867 --> 00:00:45.363
+00:00:40.960 --> 00:00:45.403
 the vendor support Entra, and is it
 a config change or a code change?
 
 13
-00:00:45.363 --> 00:00:49.630
+00:00:45.403 --> 00:00:49.630
 Together they tell you what moves now
 and what gets scheduled or excepted.

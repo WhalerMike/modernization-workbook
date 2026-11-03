@@ -1,61 +1,61 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.240
+00:00:00.050 --> 00:00:04.246
 The program carries one rule
 forward unchanged: Critical and High
 
 2
-00:00:04.240 --> 00:00:09.725
+00:00:04.246 --> 00:00:09.739
 misconfigurations are fixed and verified
 before any certificate workload migrates.
 
 3
-00:00:09.725 --> 00:00:12.833
+00:00:09.739 --> 00:00:12.852
 Migrating from a CA that
 can be tricked into issuing
 
 4
-00:00:12.833 --> 00:00:16.375
+00:00:12.852 --> 00:00:16.400
 arbitrary credentials just
 carries the weakness forward.
 
 5
-00:00:16.375 --> 00:00:20.950
+00:00:16.400 --> 00:00:20.982
 And under the bring-your-own-CA model
 the program recommends, the new cloud
 
 6
-00:00:20.950 --> 00:00:25.975
+00:00:20.982 --> 00:00:26.019
 issuer chains to the existing hierarchy,
 so it inherits every weakness on day one.
 
 7
-00:00:25.975 --> 00:00:30.932
+00:00:26.019 --> 00:00:30.984
 The ESC labels from SpecterOps' 2021
 research are the shared vocabulary,
 
 8
-00:00:30.932 --> 00:00:34.237
+00:00:30.984 --> 00:00:34.301
 and the book uses them
 only for defensive checks.
 
 9
-00:00:34.237 --> 00:00:38.800
+00:00:34.301 --> 00:00:38.778
 They live in four places: templates,
 the forest's PKI objects,
 
 10
-00:00:38.800 --> 00:00:42.712
+00:00:38.778 --> 00:00:42.696
 the CA's own settings, and
 web enrollment endpoints.
 
 11
-00:00:42.712 --> 00:00:46.687
+00:00:42.696 --> 00:00:46.679
 Put a Defender for Identity
 sensor on every CA that stays.
 
 12
-00:00:46.687 --> 00:00:52.200
+00:00:46.679 --> 00:00:52.200
 In GCC, some of these assessments are still
 preview, so run the manual checks too.

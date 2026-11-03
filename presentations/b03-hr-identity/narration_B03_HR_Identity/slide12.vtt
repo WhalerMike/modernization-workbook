@@ -6,64 +6,64 @@ So how will we know it's
 working, and what do we need?
 
 2
-00:00:02.662 --> 00:00:07.938
+00:00:02.662 --> 00:00:07.951
 Five measures, each baselined in phase
 one and each one something leadership can
 
 3
-00:00:07.938 --> 00:00:13.291
+00:00:07.951 --> 00:00:13.318
 read: hours from separation to blocked
 access, orphaned accounts trending to zero,
 
 4
-00:00:13.291 --> 00:00:17.621
+00:00:13.318 --> 00:00:17.659
 fewer joiner and mover tickets,
 managers and organizations in the
 
 5
-00:00:17.621 --> 00:00:21.951
+00:00:17.659 --> 00:00:22.000
 directory matching HR, and every
 exception with an owner and an age.
 
 6
-00:00:21.951 --> 00:00:26.814
+00:00:22.000 --> 00:00:27.001
 From leadership, we need one decision:
 start HR-driven identity now,
 
 7
-00:00:26.814 --> 00:00:32.563
+00:00:27.001 --> 00:00:32.912
 as a design requirement of both the HR
 2.0 onboarding and the Entra ID migration.
 
 8
-00:00:32.563 --> 00:00:36.315
+00:00:32.912 --> 00:00:36.648
 To act on it: a sponsor across
 HR, identity and privacy;
 
 9
-00:00:36.315 --> 00:00:41.728
+00:00:36.648 --> 00:00:42.035
 identity named as a consumer in the HR
 2.0 interconnection plan; data owners
 
 10
-00:00:41.728 --> 00:00:44.695
+00:00:42.035 --> 00:00:44.988
 designated and the person key confirmed;
 
 11
-00:00:44.695 --> 00:00:48.187
+00:00:44.988 --> 00:00:48.463
 and a small team for the
 pre-onboarding data work.
 
 12
-00:00:48.187 --> 00:00:51.923
-Book 03 has the full design,
-every claim footnoted,
+00:00:48.463 --> 00:00:52.505
+HR-Driven Identity has the full
+design, every claim footnoted,
 
 13
-00:00:51.923 --> 00:00:56.113
-and Book 02 covers the directory
-migration it builds on.
+00:00:52.505 --> 00:00:57.262
+and Identity and Directory covers
+the directory migration it builds on.
 
 14
-00:00:56.113 --> 00:00:56.930
+00:00:57.262 --> 00:00:58.080
 Thank you.

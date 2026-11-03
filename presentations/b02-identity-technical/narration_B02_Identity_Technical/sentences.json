@@ -7,36 +7,36 @@
   ],
   [
    0.762,
-   12.925,
-   "This is the technical deep dive for Book 02 of the Federal Modernization Workbook, Identity and Directory, for the architects and engineers who will run the move from Active Directory to Microsoft Entra ID."
+   12.85,
+   "This is the technical deep dive for Identity and Directory, one of the books of the Federal Modernization Workbook, for the architects and engineers who will run the move from Active Directory to Microsoft Entra I D."
   ],
   [
-   13.688,
-   8.838,
-   "What Book 02 accomplishes is a directory where placement has become attributes and rules, and every service account has an owner and a target."
+   13.613,
+   8.3,
+   "What this book accomplishes is a directory where placement has become attributes and rules, and every service account has an owner and a target."
   ],
   [
-   22.525,
-   13.213,
-   "Of the workbook's four tracks, it carries the directory side of the HR track and the service accounts; people's attributes are Book 03, devices and servers Book 05, and AI agents Book 17."
+   21.913,
+   15.363,
+   "Of the workbook's four tracks, it carries the directory side of the H R track and the service accounts; people's attributes are in H R-Driven Identity, devices and servers in Devices and Endpoints, and A I agents in A I Identity Governance."
   ],
   [
-   35.737,
+   37.275,
    4.4,
    "Part 1 assesses the forest, starting with what an ordinary account can see."
   ],
   [
-   40.138,
-   3.562,
-   "Part 2 builds the Entra ID target and moves onto it."
+   41.675,
+   3.675,
+   "Part 2 builds the Entra I D target and moves onto it."
   ],
   [
-   43.7,
+   45.35,
    2.05,
    "The code lives in the chapters."
   ],
   [
-   45.75,
+   47.4,
    1.525,
    "I'll stick to what matters."
   ]
@@ -412,8 +412,8 @@
   ],
   [
    44.038,
-   4.525,
-   "Fixing it belongs to the P K I owner, through Book 07."
+   5.487,
+   "Fixing it belongs to the P K I owner, through the P K I and Certificates book."
   ]
  ],
  "12": [
@@ -804,16 +804,16 @@
   ],
   [
    35.725,
-   5.525,
-   "Book 04's library is the authoritative set and extends it for the sis-uh baseline."
+   9.463,
+   "The Access and Privilege book's library is the authoritative set, and extends it for sis-uh's B O D twenty-five oh-one required configurations."
   ],
   [
-   41.25,
+   45.188,
    6.763,
    "Rollout is staged: report-only, then a pilot, then phased waves, each behind a monitoring gate."
   ],
   [
-   48.013,
+   51.95,
    7.088,
    "And never switch an all-users policy straight from off to on without confirming both emergency accounts still sign in."
   ]
@@ -1058,11 +1058,11 @@
   ],
   [
    47.362,
-   4.225,
-   "Book 03, HR-Driven Identity, picks up next."
+   2.825,
+   "H R-Driven Identity picks up next."
   ],
   [
-   51.587,
+   50.188,
    0.762,
    "Thank you."
   ]

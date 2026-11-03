@@ -16,61 +16,62 @@ M-22-09 requires every request to be evaluated,
 with no trust from network location.
 
 4
-00:00:14.463 --> 00:00:19.512
+00:00:14.463 --> 00:00:19.520
 NIST describes a policy decision point,
 separate from where access is enforced,
 
 5
-00:00:19.512 --> 00:00:22.113
+00:00:19.520 --> 00:00:22.125
 and in Entra ID that's Conditional Access.
 
 6
-00:00:22.113 --> 00:00:26.667
+00:00:22.125 --> 00:00:26.679
 Its rules are simple: every policy
 that applies must be satisfied,
 
 7
-00:00:26.667 --> 00:00:30.125
+00:00:26.679 --> 00:00:30.137
 a block wins, and exclusions
 override everything.
 
 8
-00:00:30.125 --> 00:00:34.050
+00:00:30.137 --> 00:00:34.062
 What it replaces is access decided
 once and trusted afterward.
 
 9
-00:00:34.050 --> 00:00:36.250
+00:00:34.062 --> 00:00:36.262
 Inside the network, so trusted.
 
 10
-00:00:36.250 --> 00:00:38.888
+00:00:36.262 --> 00:00:38.901
 In the group, so allowed, forever.
 
 11
-00:00:38.888 --> 00:00:41.472
+00:00:38.901 --> 00:00:41.484
 Those assumptions survive
 a migration unless
 
 12
-00:00:41.472 --> 00:00:44.188
+00:00:41.484 --> 00:00:44.200
 someone deliberately
 replaces them with policy.
 
 13
-00:00:44.188 --> 00:00:46.476
+00:00:44.200 --> 00:00:46.488
 Two consequences run through the book.
 
 14
-00:00:46.476 --> 00:00:51.488
+00:00:46.488 --> 00:00:51.500
 Every exclusion is a standing hole, so
 each one needs an owner and a review.
 
 15
-00:00:51.488 --> 00:00:55.288
+00:00:51.500 --> 00:00:55.128
 And policy is only as good
 as the attributes it reads,
 
 16
-00:00:55.288 --> 00:00:57.740
-which is why Book 03 matters here.
+00:00:55.128 --> 00:00:58.320
+which is why HR-Driven
+Identity matters here.

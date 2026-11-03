@@ -1,69 +1,69 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.543
+00:00:00.050 --> 00:00:03.496
 This is where the engine
 stops accepting Kerberos
 
 2
-00:00:03.543 --> 00:00:07.037
+00:00:03.496 --> 00:00:06.942
 and NTLM and starts accepting
 Entra-issued tokens.
 
 3
-00:00:07.037 --> 00:00:11.072
+00:00:06.942 --> 00:00:11.163
 On SQL Server 2022 and later,
 you create a passwordless login
 
 4
-00:00:11.072 --> 00:00:15.187
+00:00:11.163 --> 00:00:15.220
 from the external provider, and
 the engine maps the token to it.
 
 5
-00:00:15.187 --> 00:00:20.255
+00:00:15.220 --> 00:00:20.218
 Two practical points: the instance's identity
 needs Graph read permission or login
 
 6
-00:00:20.255 --> 00:00:23.926
+00:00:20.218 --> 00:00:23.840
 creation fails, and Entra
 connections are always encrypted,
 
 7
-00:00:23.926 --> 00:00:26.276
+00:00:23.840 --> 00:00:26.157
 so clients must trust the certificate.
 
 8
-00:00:26.276 --> 00:00:27.600
+00:00:26.157 --> 00:00:27.463
 There are three types.
 
 9
-00:00:27.600 --> 00:00:32.178
+00:00:27.463 --> 00:00:31.941
 An Entra user login, where
 Conditional Access enforces MFA
 
 10
-00:00:32.178 --> 00:00:36.475
+00:00:31.941 --> 00:00:36.457
 before the token is even issued,
 with no SQL-level bypass.
 
 11
-00:00:36.475 --> 00:00:41.479
+00:00:36.457 --> 00:00:41.394
 An Entra group login, the familiar AD
 group pattern; with a dynamic group,
 
 12
-00:00:41.479 --> 00:00:45.550
+00:00:41.394 --> 00:00:45.410
 people gain and lose access as
 their HR attributes change.
 
 13
-00:00:45.550 --> 00:00:50.142
+00:00:45.410 --> 00:00:49.948
 And an application login, for a
 managed identity or service principal,
 
 14
-00:00:50.142 --> 00:00:53.210
+00:00:49.948 --> 00:00:53.210
 replacing a SQL login
 and its stored password.

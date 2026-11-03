@@ -2,7 +2,7 @@
   {
     "slide": 1,
     "title": "SQL Server Identity: the executive briefing",
-    "say": "Welcome. This is the executive briefing for Book 06 of the Federal Modernization Workbook, SQL Server identity. It's for the people who make the calls: the CIO, the CISO, the data platform owner, application owners and sponsors. The argument is short. Every domain-joined SQL Server inherited Windows Authentication, and none of it is visible to the identity plane that enforces multifactor sign-in. The estate has to be counted and shrunk before any login moves. And the destination is an Entra token on every connection, finished well before the program's own NTLM block date. Each decision slide names the decision, its owner and when it's needed. Let's start with why the database is where this hides."
+    "say": "Welcome. This is the executive briefing for Data Platform, the Federal Modernization Workbook's book on SQL Server identity. It's for the people who make the calls: the CIO, the CISO, the data platform owner, application owners and sponsors. The argument is short. Every domain-joined SQL Server inherited Windows Authentication, and none of it is visible to the identity plane that enforces multifactor sign-in. The estate has to be counted and shrunk before any login moves. And the destination is an Entra token on every connection, finished well before the program's own NTLM block date. Each decision slide names the decision, its owner and when it's needed. Let's start with why the database is where this hides."
   },
   {
     "slide": 2,
@@ -77,7 +77,7 @@
   {
     "slide": 16,
     "title": "Certificates the AD CS retirement plan can't see",
-    "say": "SQL Server leans on certificates in three places most retirement plans can't see. The TLS certificate every Entra connection now requires, since those connections are always encrypted. Certificates behind signed code and endpoints. And certificate sign-in, the stopgap for connections that can't reach Entra in time, which quietly depends on the domain controllers' own certificates. Cloud PKI can't help here; it doesn't issue to servers. Book 07 settles the issuer: a retained internal hierarchy, renewed through the lifecycle platform, with domain controller certificates kept until the last one retires. The decision for data leadership: set no retirement date for the old certificate authority until every SQL Server dependency has moved. Then, what done means."
+    "say": "SQL Server leans on certificates in three places most retirement plans can't see. The TLS certificate every Entra connection now requires, since those connections are always encrypted. Certificates behind signed code and endpoints. And certificate sign-in, the stopgap for connections that can't reach Entra in time, which quietly depends on the domain controllers' own certificates. Cloud PKI can't help here; it doesn't issue to servers. The workbook's certificate plan settles the issuer: a retained internal hierarchy, renewed through the lifecycle platform, with domain controller certificates kept until the last one retires. The decision for data leadership: set no retirement date for the old certificate authority until every SQL Server dependency has moved. Then, what done means."
   },
   {
     "slide": 17,
@@ -97,6 +97,6 @@
   {
     "slide": 20,
     "title": "Decisions to make, owners and timing",
-    "say": "So, the decisions. The CIO and data leadership hold the order, give every instance a verdict and a target, upgrade or retire old engines, set no retirement date for the old certificate authority until SQL Server's certificates have moved, and declare closure on evidence. The CISO sets the standard and reviews Azure roles like sysadmin. Server infrastructure onboards Arc now, on domain-joined hosts. Application and data owners approve their access rules and their cutovers. The authorizing official accepts the leveraged services and every exception. And the NTLM program decides the long tail. None of this waits on a purchase. Count the estate first. Book 06 has the detail, every claim footnoted. Thank you."
+    "say": "So, the decisions. The CIO and data leadership hold the order, give every instance a verdict and a target, upgrade or retire old engines, set no retirement date for the old certificate authority until SQL Server's certificates have moved, and declare closure on evidence. The CISO sets the standard and reviews Azure roles like sysadmin. Server infrastructure onboards Arc now, on domain-joined hosts. Application and data owners approve their access rules and their cutovers. The authorizing official accepts the leveraged services and every exception. And the NTLM program decides the long tail. None of this waits on a purchase. Count the estate first. Data Platform has the detail, every claim footnoted. Thank you."
   }
 ]

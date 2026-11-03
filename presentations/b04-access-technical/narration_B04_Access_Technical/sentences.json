@@ -7,38 +7,38 @@
   ],
   [
    0.762,
-   6.9,
-   "This is the technical deep dive for Book 04 of the Federal Modernization Workbook, Access and Privilege."
+   6.588,
+   "This is the technical deep dive for Access and Privilege, one of the books of the Federal Modernization Workbook."
   ],
   [
-   7.662,
+   7.35,
    2.237,
    "The short briefing made the argument."
   ],
   [
-   9.9,
+   9.588,
    8.912,
    "This session is for the people who build and run it: identity engineers, architects, and the security and assessment staff who have to prove it works."
   ],
   [
-   18.812,
+   18.5,
    5.375,
    "It comes in five modules, and each one stands on its own, so you can watch it in parts."
   ],
   [
-   24.188,
+   23.875,
    15.488,
    "After a short orientation, we'll cover the Conditional Access policy library, then rollout, exclusions and break-glass accounts, then pim self-request with approval, then access governance, and finally access as code and the evidence it produces."
   ],
   [
-   39.675,
+   39.362,
    3.163,
    "Every fact comes from a footnoted chapter of the book."
   ],
   [
-   42.837,
-   4.112,
-   "The code and JSON stay in the book; the slides carry the design."
+   42.525,
+   4.088,
+   "The code and jay-son stay in the book; the slides carry the design."
   ]
  ],
  "2": [
@@ -150,31 +150,31 @@
   ],
   [
    3.487,
-   14.463,
-   "The baseline Book 02 builds during the migration keeps its numbers, Book 04 adds the policies for risk, privileged workstations, segmented applications and workload identities, and there's one permanent report-only probe."
+   14.588,
+   "The baseline that Identity and Directory builds during the migration keeps its numbers, this book adds the policies for risk, privileged workstations, segmented applications and workload identities, and there's one permanent report-only probe."
   ],
   [
-   17.95,
+   18.075,
    11.25,
    "A retired number is never reused, and every name reads the same way: number, population, resource, then control, so you can read a policy on a call without opening it."
   ],
   [
-   29.2,
+   29.325,
    2.812,
    "The prerequisites matter more than people expect."
   ],
   [
-   32.013,
+   32.138,
    13.512,
    "Missing ones are the most common reason a report-only policy shows failures that aren't real: the emergency access group, the persona groups, named locations, a custom phishing-resistant strength, and device and application tags."
   ],
   [
-   45.525,
+   45.65,
    3.388,
    "And every policy is created in report-only first."
   ],
   [
-   48.913,
+   49.038,
    2.237,
    "Next, who those policies reach."
   ]
@@ -182,46 +182,46 @@
  "6": [
   [
    0.05,
-   7.275,
-   "Policies target populations, never people, and the populations are personas, kept identical to Book 02."
+   8.037,
+   "Policies target populations, never people, and the populations are personas, kept identical to those in Identity and Directory."
   ],
   [
-   7.325,
+   8.088,
    3.587,
    "Admins carry the most risk and get the strictest policies."
   ],
   [
-   10.912,
+   11.675,
    2.612,
    "Internals are employees and contractors."
   ],
   [
-   13.525,
+   14.287,
    11.213,
    "Externals are partner guests, Guests are everyone else from outside, and workload identities are service principals, which have to be assigned to a policy directly, not through a group."
   ],
   [
-   24.738,
+   25.5,
    5.612,
    "And break-glass, the two emergency accounts, are excluded from every enforced policy."
   ],
   [
-   30.35,
+   31.113,
    2.575,
    "Here's the failure mode that shapes the design."
   ],
   [
-   32.925,
+   33.688,
    7.938,
    "Persona groups are built from attributes, so a user with an empty attribute falls outside every policy that includes only that group."
   ],
   [
-   40.862,
+   41.625,
    2.275,
    "That's an exclusion nobody approved."
   ],
   [
-   43.138,
+   43.9,
    10.162,
    "So the library includes all users, excludes narrowly, and adds a deliberately redundant catch-all: M F A for all users on all resources."
   ]
@@ -281,26 +281,26 @@
   ],
   [
    17.262,
-   9.838,
-   "The table maps each Entra ID item to the policy that meets it, from blocking legacy authentication to phishing-resistant M F A for everyone."
+   9.975,
+   "The table maps each Entra I D item to the policy that meets it, from blocking legacy authentication to phishing-resistant M F A for everyone."
   ],
   [
-   27.1,
+   27.238,
    2.25,
    "One conflict is worth understanding."
   ],
   [
-   29.35,
-   10.512,
-   "Book 02 adopted Microsoft's current advice for high-risk users, require risk remediation, but the directive says block them, and when both apply, block wins."
+   29.488,
+   14.713,
+   "Microsoft Learn's Conditional Access guidance recommends require risk remediation for high-risk users, but the directive's required configurations say block them, and Microsoft Learn's page on managed policies says that when both apply, block wins."
   ],
   [
-   39.862,
+   44.2,
    6.138,
    "So in a tenant within the directive's scope, high-risk users are blocked and recovered through the help desk."
   ],
   [
-   46.0,
+   50.337,
    8.963,
    "Last, Microsoft creates some policies itself and turns them on later, so the program records a decision for each: adopt or supersede."
   ]
@@ -836,43 +836,43 @@
   ],
   [
    2.712,
-   8.175,
-   "The HR-driven lifecycle itself belongs to Book 03; this chapter covers only the workflow tasks that change access."
+   8.738,
+   "The H R-driven lifecycle itself belongs to H R-Driven Identity; this chapter covers only the workflow tasks that change access."
   ],
   [
-   10.887,
+   11.45,
    3.712,
    "A joiner gets access through packages, never a direct add."
   ],
   [
-   14.6,
+   15.162,
    9.887,
    "A move is a re-derivation, not an extra grant: the old department's access goes, the new department's arrives, and anything left over goes to review."
   ],
   [
-   24.488,
+   25.05,
    4.787,
    "A leaver loses every package, every group, and their refresh tokens."
   ],
   [
-   29.275,
-   5.75,
-   "An inactivity workflow catches accounts whose HR record never produced a leaver event."
+   29.837,
+   5.763,
+   "An inactivity workflow catches accounts whose H R record never produced a leaver event."
   ],
   [
-   35.025,
-   7.275,
-   "Guests are where unreviewed access piles up fastest, because nobody's HR record ends when a partner project does."
+   35.6,
+   7.2,
+   "Guests are where unreviewed access piles up fastest, because nobody's H R record ends when a partner project does."
   ],
   [
-   42.3,
+   42.8,
    3.775,
    "So guests arrive through a package with a sponsor and an expiry."
   ],
   [
-   46.075,
-   6.213,
-   "All of this needs Entra ID Governance licensing for the whole workforce, or some people stay ungoverned."
+   46.575,
+   6.2,
+   "All of this needs Entra I D Governance licensing for the whole workforce, or some people stay ungoverned."
   ]
  ],
  "24": [
@@ -1076,11 +1076,11 @@
   ],
   [
    48.5,
-   4.6,
-   "Book 05 covers the device compliance that Conditional Access reads."
+   5.1,
+   "Devices and Endpoints covers the device compliance that Conditional Access reads."
   ],
   [
-   53.1,
+   53.6,
    0.762,
    "Thank you."
   ]

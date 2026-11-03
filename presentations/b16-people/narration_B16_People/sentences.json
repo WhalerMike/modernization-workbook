@@ -7,51 +7,51 @@
   ],
   [
    0.762,
-   6.925,
-   "This briefing comes from Book 16 of the Federal Modernization Workbook, People: Training and Education."
+   6.513,
+   "This briefing comes from People: Training and Education, one of the books of the Federal Modernization Workbook."
   ],
   [
-   7.688,
-   6.625,
-   "It's written for CIOs and CISOs, workforce and training leads, ISSOs, and help desk leads."
+   7.275,
+   6.875,
+   "It's written for CIOs and CISOs, workforce and training leads, I S S O's, and help desk leads."
   ],
   [
-   14.312,
+   14.15,
    1.413,
    "I'll take four questions."
   ],
   [
-   15.725,
+   15.562,
    3.05,
    "Why do people, not tools, close the gap?"
   ],
   [
-   18.775,
+   18.613,
    1.6,
    "What does the program teach?"
   ],
   [
-   20.375,
+   20.212,
    1.788,
    "Who owns workforce readiness?"
   ],
   [
-   22.163,
+   22.0,
    3.212,
    "And how do you run the curriculum and measure whether it worked?"
   ],
   [
-   25.375,
+   25.212,
    4.1,
    "The short version: every book before this one changes what someone does."
   ],
   [
-   29.475,
+   29.312,
    6.487,
    "Tools enforce the new rules, but people run the estate, and a program that trains last pays twice."
   ],
   [
-   35.962,
+   35.8,
    1.988,
    "Let's start with what tools can't do."
   ]
@@ -403,41 +403,41 @@
  "9": [
   [
    0.05,
-   5.775,
-   "Vendors teach their products, and Book 16 names them as examples, never endorsements."
+   5.537,
+   "Vendors teach their products, and this book names them as examples, never endorsements."
   ],
   [
-   5.825,
+   5.588,
    10.562,
    "A vendor course earns a place only if it maps to a book procedure, it's current, the agency can keep the completion record, and the agency knows how the vendor handles learner data."
   ],
   [
-   16.387,
+   16.15,
    5.963,
    "That record point matters, because exam records tied to a work account vanish when the person leaves."
   ],
   [
-   22.35,
+   22.113,
    3.587,
    "Lab environments are harder to get than most programs expect."
   ],
   [
-   25.938,
+   25.7,
    5.7,
    "The free sandboxes are gone, and the developer sandbox isn't offered in any government cloud."
   ],
   [
-   31.637,
+   31.4,
    8.25,
    "So the program office arranges lab tenants, and before each gate the team rehearses once in the agency's own non-production government tenant."
   ],
   [
-   39.888,
+   39.65,
    7.2,
    "And every lab follows the same rules, starting with never production, synthetic data only, and tear it down at the end."
   ],
   [
-   47.087,
+   46.85,
    1.45,
    "Now, everyone else."
   ]
@@ -643,46 +643,46 @@
   ],
   [
    1.425,
-   10.988,
-   "Put training in every gate, measured against a roster from HR and identity records, not a headcount, and let a gate pass with a gap only as a named, dated exception."
+   11.2,
+   "Put training in every gate, measured against a roster from H R and identity records, not a headcount, and let a gate pass with a gap only as a named, dated exception."
   ],
   [
-   12.412,
+   12.625,
    5.688,
    "Train and verify the help desk first, before any new role and before every wave."
   ],
   [
-   18.1,
+   18.312,
    11.213,
    "Name the owners and keep them apart: the human capital office and the C I O set competencies, the see-so owns the security words, and the training lead reports while others decide."
   ],
   [
-   29.312,
+   29.525,
    3.413,
    "And certify with artifacts, renewed every year."
   ],
   [
-   32.725,
+   32.938,
    2.2,
    "The next step needs no procurement."
   ],
   [
-   34.925,
-   13.6,
-   "Build the role roster from HR records and role assignments, name a training lead and an owner for each track, and brief the workforce office, labor relations and the Section 508 program manager before the first gate."
+   35.138,
+   13.588,
+   "Build the role roster from H R records and role assignments, name a training lead and an owner for each track, and brief the workforce office, labor relations and the Section 508 program manager before the first gate."
   ],
   [
-   48.525,
+   48.725,
    2.763,
    "People, not tools, close the gap."
   ],
   [
-   51.288,
-   3.725,
-   "Book 16 has the detail, every claim footnoted."
+   51.487,
+   4.862,
+   "People: Training and Education has the detail, every claim footnoted."
   ],
   [
-   55.013,
+   56.35,
    0.762,
    "Thank you."
   ]

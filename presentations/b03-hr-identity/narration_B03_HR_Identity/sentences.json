@@ -7,31 +7,31 @@
   ],
   [
    0.762,
-   6.287,
-   "This briefing comes from Book 03 of the Federal Modernization Workbook, HR-Driven Identity."
+   6.263,
+   "This briefing comes from H R-Driven Identity, one of the books of the Federal Modernization Workbook."
   ],
   [
-   7.05,
+   7.025,
    11.213,
    "It makes one proposal, and we'll take it through four questions, the way you'd take it to leadership: why it matters, what to do, who has to be involved, and how to carry it out and know it's working."
   ],
   [
-   18.262,
-   5.662,
-   "Book 02 made the case that identity is now where every access decision gets made."
+   18.238,
+   11.5,
+   "Federal Zero Trust policy, O M B M twenty-two oh-nine and nist special publication eight hundred two-oh-seven, makes identity the place where every access decision gets made."
   ],
   [
-   23.925,
+   29.738,
    5.287,
    "This book asks the follow-up question: where should the facts behind that identity come from?"
   ],
   [
-   29.212,
-   4.025,
-   "The answer is the HR system of record, and the time to start is now."
+   35.025,
+   4.037,
+   "The answer is the H R system of record, and the time to start is now."
   ],
   [
-   33.237,
+   39.062,
    2.725,
    "First, where this book sits in the series."
   ]
@@ -39,41 +39,41 @@
  "2": [
   [
    0.05,
-   8.713,
-   "Here's why this matters: the series moves four populations to the cloud, each on its own track, and Book 03 is the HR track."
+   8.25,
+   "Here's why this matters: the series moves four populations to the cloud, each on its own track, and this book is the H R track."
   ],
   [
-   8.762,
+   8.3,
    1.125,
    "It's about people."
   ],
   [
-   9.887,
-   9.338,
-   "Every employee account follows the HR record, and every contractor account follows the contractor source of authority, which the agency still has to name."
+   9.425,
+   9.488,
+   "Every employee account follows the H R record, and every contractor account follows the contractor source of authority, which the agency still has to name."
   ],
   [
-   19.225,
+   18.913,
    4.787,
    "Then joining, moving and leaving change access by rule, with no ticket."
   ],
   [
-   24.012,
+   23.7,
    11.037,
    "You'll know you're there when every enabled account matches an authoritative record or an owned exception, and every group that came from an organizational unit (O U) is a validated rule."
   ],
   [
-   35.05,
-   8.162,
-   "Devices and servers are Book 05, and service accounts and AI agents are Books 02, 06 and 17."
+   34.737,
+   10.537,
+   "Devices and servers are in Devices and Endpoints, and service accounts and A I agents are in Identity and Directory, Data Platform, and A I Identity Governance."
   ],
   [
-   43.212,
-   1.825,
-   "HR never describes those."
+   45.275,
+   1.913,
+   "H R never describes those."
   ],
   [
-   45.038,
+   47.188,
    2.462,
    "Now, how identity gets built today."
   ]
@@ -148,41 +148,41 @@
   ],
   [
    4.05,
-   8.6,
-   "On the HR side, an O M B and OPM memo creates Federal HR 2.0, one government-wide core HR platform."
+   8.575,
+   "On the H R side, an O M B and OPM memo creates Federal H R 2.0, one government-wide core H R platform."
   ],
   [
-   12.65,
+   12.625,
    9.1,
    "OPM awarded the platform contract in June 2026, and the first agencies start moving as fiscal 2027 begins."
   ],
   [
-   21.75,
-   6.987,
-   "The sample timeline is about eight months per agency, with the agency's interconnections going live around month five."
+   21.725,
+   7.075,
+   "The sample timeline is about eight months per agency, with the agency's interconnections going lyve around month five."
   ],
   [
-   28.738,
-   6.062,
-   "On the identity side, agencies are already moving to Entra ID, which is Book 02."
+   28.8,
+   7.05,
+   "On the identity side, agencies are already moving to Entra I D, which Identity and Directory covers."
   ],
   [
-   34.8,
+   35.85,
    7.825,
-   "There, attributes drive Conditional Access, groups and delegation, and feeding them from an HR system is a supported path."
+   "There, attributes drive Conditional Access, groups and delegation, and feeding them from an H R system is a supported path."
   ],
   [
-   42.625,
-   8.637,
-   "So the window is this: design the identity feed in during HR onboarding, before those interconnections go live, not bolted on afterward."
+   43.675,
+   8.775,
+   "So the window is this: design the identity feed in during H R onboarding, before those interconnections go lyve, not bolted on afterward."
   ],
   [
-   51.263,
-   4.9,
-   "One honest limit: HR 2.0 covers federal employees only."
+   52.45,
+   4.7,
+   "One honest limit: H R 2.0 covers federal employees only."
   ],
   [
-   56.163,
+   57.15,
    6.062,
    "Contractors need their own authoritative source, and onboarding is the right time to decide that too."
   ]
@@ -559,26 +559,26 @@
   ],
   [
    2.663,
-   19.288,
-   "Five measures, each baselined in phase one and each one something leadership can read: hours from separation to blocked access, orphaned accounts trending to zero, fewer joiner and mover tickets, managers and organizations in the directory matching HR, and every exception with an owner and an age."
+   19.337,
+   "Five measures, each baselined in phase one and each one something leadership can read: hours from separation to blocked access, orphaned accounts trending to zero, fewer joiner and mover tickets, managers and organizations in the directory matching H R, and every exception with an owner and an age."
   ],
   [
-   21.95,
-   10.613,
-   "From leadership, we need one decision: start HR-driven identity now, as a design requirement of both the HR 2.0 onboarding and the Entra ID migration."
+   22.0,
+   10.912,
+   "From leadership, we need one decision: start H R-driven identity now, as a design requirement of both the H R 2.0 onboarding and the Entra I D migration."
   ],
   [
-   32.562,
-   15.625,
-   "To act on it: a sponsor across HR, identity and privacy; identity named as a consumer in the HR 2.0 interconnection plan; data owners designated and the person key confirmed; and a small team for the pre-onboarding data work."
+   32.913,
+   15.55,
+   "To act on it: a sponsor across H R, identity and privacy; identity named as a consumer in the H R 2.0 interconnection plan; data owners designated and the person key confirmed; and a small team for the pre-onboarding data work."
   ],
   [
-   48.188,
-   7.925,
-   "Book 03 has the full design, every claim footnoted, and Book 02 covers the directory migration it builds on."
+   48.462,
+   8.8,
+   "H R-Driven Identity has the full design, every claim footnoted, and Identity and Directory covers the directory migration it builds on."
   ],
   [
-   56.112,
+   57.263,
    0.762,
    "Thank you."
   ]

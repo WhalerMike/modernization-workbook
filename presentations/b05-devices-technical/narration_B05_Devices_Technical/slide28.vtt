@@ -1,64 +1,64 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.940
-Compliance policies decide whether a
-device is compliant; Conditional Access
+00:00:00.050 --> 00:00:05.152
+Compliance policies decide whether a device
+is compliant; Conditional Access decides
 
 2
-00:00:04.940 --> 00:00:09.312
-decides what a noncompliant device
-can reach, and Book 04 owns that part.
+00:00:05.152 --> 00:00:09.625
+what a noncompliant device can reach,
+and Access and Privilege owns that part.
 
 3
-00:00:09.312 --> 00:00:12.075
+00:00:09.625 --> 00:00:12.388
 This book's job is making
 the signal accurate.
 
 4
-00:00:12.075 --> 00:00:15.150
+00:00:12.388 --> 00:00:15.462
 Two tenant settings
 sit above every policy.
 
 5
-00:00:15.150 --> 00:00:20.425
+00:00:15.462 --> 00:00:20.738
 Devices with no compliance policy default
 to compliant, and the program flips that,
 
 6
-00:00:20.425 --> 00:00:24.400
+00:00:20.738 --> 00:00:24.713
 so a device that falls outside
 every group can't pass by default.
 
 7
-00:00:24.400 --> 00:00:28.297
+00:00:24.713 --> 00:00:28.609
 And compliance status stays
 valid for thirty days by default;
 
 8
-00:00:28.297 --> 00:00:32.117
+00:00:28.609 --> 00:00:32.429
 the program uses fourteen, short
 enough that a device left in
 
 9
-00:00:32.117 --> 00:00:35.937
+00:00:32.429 --> 00:00:36.249
 a drawer loses access, long enough
 not to catch staff on leave.
 
 10
-00:00:35.937 --> 00:00:37.710
+00:00:36.249 --> 00:00:38.022
 Read the dashboard carefully,
 
 11
-00:00:37.710 --> 00:00:41.538
+00:00:38.022 --> 00:00:41.850
 because some statuses hide devices
 from the noncompliant count.
 
 12
-00:00:41.538 --> 00:00:46.044
+00:00:41.850 --> 00:00:46.356
 And on Tier 0, a Defender detection
 becomes a compliance failure,
 
 13
-00:00:46.044 --> 00:00:47.640
+00:00:46.356 --> 00:00:47.950
 and so a loss of access.

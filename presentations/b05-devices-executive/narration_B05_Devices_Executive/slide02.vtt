@@ -1,55 +1,55 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.886
+00:00:00.050 --> 00:00:04.571
 Here's why this matters: the series
 moves four populations to the cloud,
 
 2
-00:00:04.886 --> 00:00:08.388
+00:00:04.571 --> 00:00:08.000
 each on its own track, and
-Book 05 carries two of them.
+this book carries two of them.
 
 3
-00:00:08.388 --> 00:00:12.874
+00:00:08.000 --> 00:00:12.487
 The Intune track is end-user devices,
 and the Arc track is servers.
 
 4
-00:00:12.874 --> 00:00:18.029
+00:00:12.487 --> 00:00:17.736
 A device's attributes come from device
 provisioning, like the Autopilot group tag,
 
 5
-00:00:18.029 --> 00:00:21.137
+00:00:17.736 --> 00:00:20.900
 never from HR, and a device
 rule can't read its owner.
 
 6
-00:00:21.137 --> 00:00:25.213
+00:00:20.900 --> 00:00:24.976
 Devices are done when their policy
 targets those attributes and
 
 7
-00:00:25.213 --> 00:00:28.987
+00:00:24.976 --> 00:00:28.750
 the computer-side GPO links are
 gone, one population at a time.
 
 8
-00:00:28.987 --> 00:00:34.513
+00:00:28.750 --> 00:00:34.275
 Servers are done when each is Arc-enabled,
 tagged, and evaluated by Azure Policy.
 
 9
-00:00:34.513 --> 00:00:37.928
+00:00:34.275 --> 00:00:37.690
 And Group Policy splits: user
 settings go with people,
 
 10
-00:00:37.928 --> 00:00:40.800
+00:00:37.690 --> 00:00:40.562
 computer settings with
 devices and servers.
 
 11
-00:00:40.800 --> 00:00:43.700
+00:00:40.562 --> 00:00:43.460
 First, which platforms each one reaches.

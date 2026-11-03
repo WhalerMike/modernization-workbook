@@ -5,55 +5,55 @@ WEBVTT
 Welcome.
 
 2
-00:00:00.763 --> 00:00:04.305
-This is the technical deep dive
-for Book 10 of the Federal
+00:00:00.763 --> 00:00:04.625
+This is the technical deep dive for
+Cloud Boundary and Landing Zone,
 
 3
-00:00:04.305 --> 00:00:07.924
-Modernization Workbook, Cloud
-Boundary and Landing Zone.
+00:00:04.625 --> 00:00:07.799
+one of the books of the
+Federal Modernization Workbook.
 
 4
-00:00:07.924 --> 00:00:11.854
+00:00:07.799 --> 00:00:11.955
 It's for the cloud and platform
 engineers who build the landing zone,
 
 5
-00:00:11.854 --> 00:00:14.450
+00:00:11.955 --> 00:00:14.700
 and the ISSOs who have to
 evidence what's in it.
 
 6
-00:00:14.450 --> 00:00:16.674
+00:00:14.700 --> 00:00:16.924
 The whole book comes down to one idea:
 
 7
-00:00:16.674 --> 00:00:20.975
+00:00:16.924 --> 00:00:21.225
 the license says what you bought, but
 the boundary says what you may use.
 
 8
-00:00:20.975 --> 00:00:25.063
+00:00:21.225 --> 00:00:25.313
 Part 1 is about the boundary itself
 and what it quietly takes away.
 
 9
-00:00:25.063 --> 00:00:27.709
+00:00:25.313 --> 00:00:27.959
 Part 2 is about building
 it into the landing
 
 10
-00:00:27.709 --> 00:00:30.650
+00:00:27.959 --> 00:00:30.900
 zone and owning it in the
 authorization package.
 
 11
-00:00:30.650 --> 00:00:32.663
+00:00:30.900 --> 00:00:32.913
 The code stays in the chapters.
 
 12
-00:00:32.663 --> 00:00:35.120
+00:00:32.913 --> 00:00:35.390
 Let's start with why this bites so late.
 
 13
@@ -397,51 +397,51 @@ scope, though that's services, not features.
 Next, how change and evidence now flow.
 
 85
-00:05:08.590 --> 00:05:13.103
+00:05:08.590 --> 00:05:13.083
 Under the new rules, providers don't go
 back for approval when they change things.
 
 86
-00:05:13.103 --> 00:05:18.360
+00:05:13.083 --> 00:05:18.315
 Routine changes need no notice at all,
 everyday changes are reported afterward,
 
 87
-00:05:18.360 --> 00:05:21.627
+00:05:18.315 --> 00:05:21.715
 and big ones get announced
 weeks ahead, all in JSON.
 
 88
-00:05:21.627 --> 00:05:24.364
+00:05:21.715 --> 00:05:24.439
 That means you can treat
 change notices as data
 
 89
-00:05:24.364 --> 00:05:27.240
+00:05:24.439 --> 00:05:27.310
 and test each one against
 your own authorization.
 
 90
-00:05:27.240 --> 00:05:32.231
+00:05:27.310 --> 00:05:32.280
 Certification evidence moves into
 trust centers with programmatic access,
 
 91
-00:05:32.231 --> 00:05:36.365
+00:05:32.280 --> 00:05:36.394
 though only a small share of
 listings showed one in October 2026.
 
 92
-00:05:36.365 --> 00:05:40.615
+00:05:36.394 --> 00:05:40.629
 And for years you'll hold old-style
 and new-style packages side by side.
 
 93
-00:05:40.615 --> 00:05:42.640
+00:05:40.629 --> 00:05:42.646
 Read each in its own terms.
 
 94
-00:05:42.640 --> 00:05:44.310
+00:05:42.646 --> 00:05:44.310
 That's Module 1.
 
 95
@@ -961,55 +961,55 @@ doesn't recognize the cloud.
 Next, the address plan.
 
 204
-00:12:44.080 --> 00:12:46.405
+00:12:44.080 --> 00:12:46.409
 An inventory needs a denominator.
 
 205
-00:12:46.405 --> 00:12:48.936
+00:12:46.409 --> 00:12:48.946
 A scan tells you what
 answered during a window;
 
 206
-00:12:48.936 --> 00:12:51.467
+00:12:48.946 --> 00:12:51.490
 the address plan tells
 you what was handed out.
 
 207
-00:12:51.467 --> 00:12:54.968
+00:12:51.490 --> 00:12:54.991
 Reconcile the two, or your
 scan is just a sample.
 
 208
-00:12:54.968 --> 00:12:58.113
+00:12:54.991 --> 00:12:58.144
 That's why the program
 treats IP address management
 
 209
-00:12:58.113 --> 00:13:00.893
+00:12:58.144 --> 00:13:00.933
 as the join key everything
 else correlates on.
 
 210
-00:13:00.893 --> 00:13:05.647
+00:13:00.933 --> 00:13:05.698
 But it isn't the boundary, and it isn't
 the asset record: it can't see software,
 
 211
-00:13:05.647 --> 00:13:10.243
+00:13:05.698 --> 00:13:10.297
 owners or classification, so a
 configuration database carries those.
 
 212
-00:13:10.243 --> 00:13:14.017
+00:13:10.297 --> 00:13:14.080
 And because cloud fabrics hand
 out addresses with no broadcast,
 
 213
-00:13:14.017 --> 00:13:16.154
+00:13:14.080 --> 00:13:16.151
 the plan has to live above all of them.
 
 214
-00:13:16.154 --> 00:13:18.580
+00:13:16.151 --> 00:13:18.580
 Next, how Azure mirrors it.
 
 215
@@ -1165,47 +1165,47 @@ and fails the run on any mismatch.
 Next, how to build it.
 
 246
-00:15:24.130 --> 00:15:28.540
+00:15:24.130 --> 00:15:28.550
 There are documented ways to build
 this loop on ServiceNow and Terraform,
 
 247
-00:15:28.540 --> 00:15:33.167
+00:15:28.550 --> 00:15:33.188
 and whichever you choose, the approver
 has to see the actual plan that will run.
 
 248
-00:15:33.167 --> 00:15:37.081
+00:15:33.188 --> 00:15:37.111
 The bigger point is that the pipeline
 itself is inside the boundary.
 
 249
-00:15:37.081 --> 00:15:41.375
+00:15:37.111 --> 00:15:41.416
 Terraform state and plans hold
 secrets, even ones marked sensitive,
 
 250
-00:15:41.375 --> 00:15:44.443
+00:15:41.416 --> 00:15:44.491
 so where the runner, the
 state and the repository
 
 251
-00:15:44.443 --> 00:15:47.818
+00:15:44.491 --> 00:15:47.797
 live is a boundary decision,
 not a tooling preference.
 
 252
-00:15:47.818 --> 00:15:52.518
+00:15:47.797 --> 00:15:52.508
 The program's default is a self-hosted
 runner and state inside the boundary.
 
 253
-00:15:52.518 --> 00:15:56.093
+00:15:52.508 --> 00:15:56.091
 And after apply, drift goes back
 through the same front door.
 
 254
-00:15:56.093 --> 00:15:57.840
+00:15:56.091 --> 00:15:57.840
 That's Module 3.
 
 255
@@ -1276,52 +1276,52 @@ the certification even covers you.
 Next, the record.
 
 269
-00:16:59.170 --> 00:17:02.170
+00:16:59.170 --> 00:17:02.178
 Your agency never
 authorizes a cloud service.
 
 270
-00:17:02.170 --> 00:17:05.295
+00:17:02.178 --> 00:17:05.307
 It authorizes its own
 system that uses one.
 
 271
-00:17:05.295 --> 00:17:08.834
+00:17:05.307 --> 00:17:08.854
 So your package covers only
 what you implement, configure,
 
 272
-00:17:08.834 --> 00:17:13.332
+00:17:08.854 --> 00:17:13.365
 operate or inherit, and you never paste
 the provider's control text into it.
 
 273
-00:17:13.332 --> 00:17:17.485
+00:17:13.365 --> 00:17:17.526
 The program's answer is a single
 boundary record: what's in scope,
 
 274
-00:17:17.485 --> 00:17:21.796
+00:17:17.526 --> 00:17:21.844
 what the probe found, the gaps,
 the equivalents and the exceptions.
 
 275
-00:17:21.796 --> 00:17:25.220
+00:17:21.844 --> 00:17:25.276
 Everything else cites it, so
 when a capability changes,
 
 276
-00:17:25.220 --> 00:17:28.645
+00:17:25.276 --> 00:17:28.703
 one record changes and every
 narrative stays current.
 
 277
-00:17:28.645 --> 00:17:31.770
+00:17:28.703 --> 00:17:31.766
 Information exchanges are
 where most crossings live.
 
 278
-00:17:31.770 --> 00:17:34.340
+00:17:31.766 --> 00:17:34.340
 Next, how to write the narratives.
 
 279

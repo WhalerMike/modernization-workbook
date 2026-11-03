@@ -5,52 +5,53 @@ WEBVTT
 Welcome.
 
 2
-00:00:00.763 --> 00:00:05.179
-This briefing is Book 09 of the
-Federal Modernization Workbook,
+00:00:00.763 --> 00:00:03.436
+This briefing comes from
+Network and Transport,
 
 3
-00:00:05.179 --> 00:00:06.762
-Network and Transport.
+00:00:03.436 --> 00:00:06.512
+one of the books of the
+Federal Modernization Workbook.
 
 4
-00:00:06.762 --> 00:00:11.885
+00:00:06.512 --> 00:00:11.635
 It's about moving branch traffic off the
 long hairpin through a distant data center,
 
 5
-00:00:11.885 --> 00:00:15.226
+00:00:11.635 --> 00:00:14.976
 without turning a latency
 gain into a compliance loss.
 
 6
-00:00:15.226 --> 00:00:19.100
+00:00:14.976 --> 00:00:18.850
 Faster and governed are different
 things, and the branch needs both.
 
 7
-00:00:19.100 --> 00:00:22.914
+00:00:18.850 --> 00:00:22.664
 We'll go in four steps: why
 physics decides the architecture,
 
 8
-00:00:22.914 --> 00:00:26.650
+00:00:22.664 --> 00:00:26.400
 what has to change, who owns the
 network, and how to get there.
 
 9
-00:00:26.650 --> 00:00:28.462
+00:00:26.400 --> 00:00:28.212
 Here's the short version up front.
 
 10
-00:00:28.462 --> 00:00:30.799
+00:00:28.212 --> 00:00:30.549
 No product shortens a fiber path.
 
 11
-00:00:30.799 --> 00:00:34.287
+00:00:30.549 --> 00:00:34.037
 So buy transport on physics,
 and govern it as compliance.
 
 12
-00:00:34.287 --> 00:00:35.930
+00:00:34.037 --> 00:00:35.660
 Let's start with the physics.

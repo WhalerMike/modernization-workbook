@@ -5,834 +5,844 @@ WEBVTT
 Welcome.
 
 2
-00:00:00.763 --> 00:00:05.517
-This briefing comes from Book 02 of
-the Federal Modernization Workbook,
+00:00:00.763 --> 00:00:05.464
+This briefing comes from Identity and
+Directory, the Federal Modernization
 
 3
-00:00:05.517 --> 00:00:09.875
-Identity and Directory: the move
-from Active Directory to Entra ID.
+00:00:05.464 --> 00:00:09.137
+Workbook's book on the move from
+Active Directory to Entra ID.
 
 4
-00:00:09.875 --> 00:00:14.812
-What Book 02 accomplishes is a directory
+00:00:09.137 --> 00:00:13.885
+What this book accomplishes is a directory
 where an object's place in the tree has
 
 5
-00:00:14.812 --> 00:00:19.825
+00:00:13.885 --> 00:00:18.562
 become attributes and rules, and every
 service account has an owner and a target.
 
 6
-00:00:19.825 --> 00:00:21.596
+00:00:18.562 --> 00:00:20.351
 Of the workbook's four tracks,
 
 7
-00:00:21.596 --> 00:00:25.875
+00:00:20.351 --> 00:00:24.674
 it carries the directory side of the
 HR track and the service accounts.
 
 8
-00:00:25.875 --> 00:00:33.325
-People's attributes are Book 03, devices
-and servers Book 05, and AI agents Book 17.
+00:00:24.674 --> 00:00:29.500
+People's attributes are in HR-Driven
+Identity, devices and servers
 
 9
-00:00:33.325 --> 00:00:37.385
+00:00:29.500 --> 00:00:34.237
+in Devices and Endpoints, and AI
+agents in AI Identity Governance.
+
+10
+00:00:34.237 --> 00:00:38.297
 We'll take it through four
 questions: why identity matters now,
 
-10
-00:00:37.385 --> 00:00:40.887
+11
+00:00:38.297 --> 00:00:41.799
 what changes, who owns which
 decisions, and how to do it.
 
-11
-00:00:40.887 --> 00:00:43.850
+12
+00:00:41.799 --> 00:00:44.762
 The short version: this
 isn't a directory upgrade.
 
-12
-00:00:43.850 --> 00:00:47.062
+13
+00:00:44.762 --> 00:00:47.975
 It decides whether every
 later control actually works.
 
-13
-00:00:47.062 --> 00:00:48.680
+14
+00:00:47.975 --> 00:00:49.600
 Let's start with why.
 
-14
+15
 00:00:52.430 --> 00:00:54.605
 Why does identity matter so much now?
 
-15
+16
 00:00:54.605 --> 00:00:58.855
 Because federal Zero Trust policy
 moved where access gets decided.
 
-16
+17
 00:00:58.855 --> 00:01:04.421
 M-22-09 requires enterprise-managed
 identities and phishing-resistant MFA.
 
-17
+18
 00:01:04.421 --> 00:01:10.136
 NIST 800-207 removes the trust that
 used to come from being on the network:
 
-18
+19
 00:01:10.136 --> 00:01:12.468
 every request is evaluated on its own.
 
-19
+20
 00:01:12.468 --> 00:01:17.155
 And CISA's maturity model puts
 identity first among its five pillars.
 
-20
+21
 00:01:17.155 --> 00:01:21.442
 In practice, the identity provider
 enforces whatever it believes.
 
-21
+22
 00:01:21.442 --> 00:01:24.117
 Who is this person,
 and is that still true?
 
-22
+23
 00:01:24.117 --> 00:01:26.906
 Which groups and roles
 do they hold, and why?
 
-23
+24
 00:01:26.906 --> 00:01:28.905
 Is their device managed and healthy?
 
-24
+25
 00:01:28.905 --> 00:01:32.709
 Conditional Access, Privileged
 Identity Management and
 
-25
+26
 00:01:32.709 --> 00:01:36.355
 device compliance all read
 those facts, on every sign-in.
 
-26
+27
 00:01:36.355 --> 00:01:37.969
 So if the facts are wrong,
 
-27
+28
 00:01:37.969 --> 00:01:41.680
 every policy built on them is
 wrong too, at machine speed.
 
-28
+29
 00:01:41.680 --> 00:01:47.020
 That's why this move decides whether every
 later control has true facts to act on.
 
-29
+30
 00:01:50.770 --> 00:01:55.533
 Microsoft isn't retiring Active Directory;
 it still supports and develops it.
 
-30
+31
 00:01:55.533 --> 00:01:59.607
 But every road now points to the
 cloud, and some of the dates are real.
 
-31
+32
 00:01:59.607 --> 00:02:04.265
 NTLM is deprecated, and its
 first version is already
 
-32
+33
 00:02:04.265 --> 00:02:08.707
 gone from Windows 11 24H2
 and Windows Server 2025.
 
-33
+34
 00:02:08.707 --> 00:02:13.233
 Entra ID now blocks sync from taking
 over privileged cloud accounts.
 
-34
+35
 00:02:13.233 --> 00:02:15.775
 And the date to circle is April 7, 2027:
 
-35
+36
 00:02:15.775 --> 00:02:20.184
 by then every Connect Sync server
 has to be on a current version
 
-36
+37
 00:02:20.184 --> 00:02:24.932
 with application-based authentication,
 or synchronization stops.
 
-37
+38
 00:02:24.932 --> 00:02:29.660
 Behind the dates is a direction:
 Cloud Sync replacing Connect Sync,
 
-38
+39
 00:02:29.660 --> 00:02:32.669
 and cloud authentication instead of AD FS.
 
-39
+40
 00:02:32.669 --> 00:02:34.570
 The trap is lift and shift.
 
-40
+41
 00:02:34.570 --> 00:02:40.117
 Sync the forest as it stands, and twenty-five
 years of organizational units (OUs),
 
-41
+42
 00:02:40.117 --> 00:02:44.470
 stale accounts and undocumented
 trusts arrive in the tenant.
 
-42
+43
 00:02:44.470 --> 00:02:49.656
 Meanwhile the governance that hierarchy
 carried, who could manage what and where
 
-43
+44
 00:02:49.656 --> 00:02:54.670
 policy applied, gets left behind, because
 Entra ID has no OU tree to carry it.
 
-44
+45
 00:02:58.420 --> 00:02:59.557
 So what changes?
 
-45
+46
 00:02:59.557 --> 00:03:03.120
 These are two different models,
 not two versions of one product.
 
-46
+47
 00:03:03.120 --> 00:03:08.808
 Active Directory is a hierarchy:
 a forest, domains, and nested OUs.
 
-47
+48
 00:03:08.808 --> 00:03:10.661
 Entra ID is one flat tenant,
 
-48
+49
 00:03:10.661 --> 00:03:15.295
 where structure comes from
 attributes and administrative units.
 
-49
+50
 00:03:15.295 --> 00:03:18.720
 In AD, much of who you are is
 where you sit in the tree.
 
-50
+51
 00:03:18.720 --> 00:03:22.306
 In Entra ID, it should come
 from attributes supplied by an
 
-51
+52
 00:03:22.306 --> 00:03:25.968
 authoritative source, and for
 the workforce that means HR.
 
-52
+53
 00:03:25.968 --> 00:03:30.088
 Policy moves from Group Policy to
 Conditional Access and Intune,
 
-53
+54
 00:03:30.088 --> 00:03:31.995
 targeted by those attributes.
 
-54
+55
 00:03:31.995 --> 00:03:36.821
 The protocols change, standing Domain
 Admin gives way to just-in-time roles,
 
-55
+56
 00:03:36.821 --> 00:03:41.257
 and management moves to Microsoft
 Graph; the slide lays out each pair.
 
-56
+57
 00:03:41.257 --> 00:03:43.595
 But the key idea is the bottom line.
 
-57
+58
 00:03:43.595 --> 00:03:47.832
 In Active Directory, governance is
 implied by where an object sits.
 
-58
+59
 00:03:47.832 --> 00:03:51.047
 In Entra ID it has to
 be stated explicitly,
 
-59
+60
 00:03:51.047 --> 00:03:54.710
 as data and rules, or it
 simply doesn't exist.
 
-60
+61
 00:03:58.460 --> 00:04:02.278
 Before the size of the job, it
 helps to know which job is whose,
 
-61
+62
 00:04:02.278 --> 00:04:05.785
 because one O U tree holds
 four different populations.
 
-62
+63
 00:04:05.785 --> 00:04:08.510
 The workbook treats them as four tracks.
 
-63
-00:04:08.510 --> 00:04:12.969
-People, the HR track: Book 02
+64
+00:04:08.510 --> 00:04:12.702
+People, the HR track: this book
 builds the directory side,
 
-64
-00:04:12.969 --> 00:04:16.010
-and Book 03 supplies the attributes.
-
 65
-00:04:16.010 --> 00:04:20.042
-End-user devices and servers,
-the Intune and Arc tracks:
+00:04:12.702 --> 00:04:16.348
+and HR-Driven Identity
+supplies the attributes.
 
 66
-00:04:20.042 --> 00:04:25.598
-Book 02's Group Policy analysis finds
-their settings, and Book 05 moves them.
+00:04:16.348 --> 00:04:20.960
+End-user devices and servers, the Intune
+and Arc tracks: this book's Group
 
 67
-00:04:25.598 --> 00:04:31.190
+00:04:20.960 --> 00:04:25.885
+Policy analysis finds their settings,
+and Devices and Endpoints moves them.
+
+68
+00:04:25.885 --> 00:04:30.774
 And the non-person track: every service
 account gets an owner and a target,
 
-68
-00:04:31.190 --> 00:04:34.173
-here in Book 02, with
-AI agents in Book 17.
-
 69
-00:04:34.173 --> 00:04:37.604
+00:04:30.774 --> 00:04:34.685
+here in this book, with AI agents
+in AI Identity Governance.
+
+70
+00:04:34.685 --> 00:04:38.116
 Appendix A maps that work
 to account management,
 
-70
-00:04:37.604 --> 00:04:43.523
+71
+00:04:38.116 --> 00:04:44.035
 attribute-based access and least
 privilege in NIST 800-53, and to M-22-09.
 
-71
-00:04:43.523 --> 00:04:46.710
+72
+00:04:44.035 --> 00:04:47.240
 Next, everything else
 the directory holds up.
 
-72
+73
 00:04:50.460 --> 00:04:53.498
 The second thing that changes
 is the size of the job.
 
-73
+74
 00:04:53.498 --> 00:04:56.522
 Most migration plans
 count users and groups.
 
-74
+75
 00:04:56.522 --> 00:05:01.944
 But Active Directory has also been
 holding the rest of the estate together:
 
-75
+76
 00:05:01.944 --> 00:05:07.628
 DNS and DHCP, the certificate services
 behind smart cards, Wi-Fi, VPN and servers,
 
-76
+77
 00:05:07.628 --> 00:05:11.213
 RADIUS sign-in, applications
 that bind over LDAP,
 
-77
+78
 00:05:11.213 --> 00:05:16.460
 the sync engine itself, domain-joined
 devices, time, and file permissions.
 
-78
+79
 00:05:16.460 --> 00:05:18.460
 You don't need to memorize the list.
 
-79
+80
 00:05:18.460 --> 00:05:22.598
 The point is that none of it moves
 just because users sync to the cloud.
 
-80
+81
 00:05:22.598 --> 00:05:27.123
 Some interim steps, like the
 NPS extension for Entra MFA,
 
-81
+82
 00:05:27.123 --> 00:05:30.173
 are useful, but they still depend on AD.
 
-82
+83
 00:05:30.173 --> 00:05:33.986
 So the program gives each
 dependency its own adapter:
 
-83
+84
 00:05:33.986 --> 00:05:37.886
 an owner, a target, a cutover
 test and a validation check.
 
-84
+85
 00:05:37.886 --> 00:05:41.260
 And they retire in priority
 order, not all at once.
 
-85
+86
 00:05:41.260 --> 00:05:43.150
 Next, delegation.
 
-86
+87
 00:05:46.900 --> 00:05:48.938
 The third change is delegation.
 
-87
+88
 00:05:48.938 --> 00:05:53.549
 In Active Directory, who could manage
 what was mostly expressed through OUs.
 
-88
+89
 00:05:53.549 --> 00:05:58.400
 Entra ID has none, so delegation
 has to be rebuilt on purpose.
 
-89
+90
 00:05:58.400 --> 00:06:02.263
 The program uses three tiers:
 tenant-wide control at Tier 0,
 
-90
+91
 00:06:02.263 --> 00:06:06.127
 service administration like
 Exchange or Intune at Tier 1,
 
-91
+92
 00:06:06.127 --> 00:06:11.600
 and departmental work like the help desk
 at Tier 2, scoped to administrative units.
 
-92
+93
 00:06:11.600 --> 00:06:13.274
 The platform has real limits,
 
-93
+94
 00:06:13.274 --> 00:06:16.412
 and the old design documents
 got several of them wrong.
 
-94
+95
 00:06:16.412 --> 00:06:21.173
 Administrative units can't be nested,
 role-holding groups can't be dynamic,
 
-95
+96
 00:06:21.173 --> 00:06:25.387
 and restricted management has to
 be chosen when a unit is created.
 
-96
+97
 00:06:25.387 --> 00:06:29.291
 That last one also takes its
 users out of Entra ID Governance,
 
-97
+98
 00:06:29.291 --> 00:06:32.726
 so no access reviews or
 lifecycle workflows for them.
 
-98
+99
 00:06:32.726 --> 00:06:35.542
 So the program's default
 is unrestricted units,
 
-99
+100
 00:06:35.542 --> 00:06:40.890
 with restricted management a deliberate,
 recorded choice for sensitive accounts.
 
-100
+101
 00:06:44.640 --> 00:06:48.978
 One more thing changes, and users
 will feel it: how they sign in.
 
-101
+102
 00:06:48.978 --> 00:06:55.666
 M-22-09 requires phishing-resistant MFA,
 and it names PIV as the simplest route.
 
-102
+103
 00:06:55.666 --> 00:06:57.653
 That flips the usual roadmap.
 
-103
+104
 00:06:57.653 --> 00:07:00.764
 Older plans saved smart-card
 sign-in for last.
 
-104
+105
 00:07:00.764 --> 00:07:03.968
 But federal staff already
 carry PIV or CAC cards,
 
-105
+106
 00:07:03.968 --> 00:07:08.531
 so certificate-based authentication
 in Entra ID is the fastest path:
 
-106
+107
 00:07:08.531 --> 00:07:13.015
 the credential's already issued,
 and no federation server is needed.
 
-107
+108
 00:07:13.015 --> 00:07:17.822
 The book runs four waves: privileged
 accounts first, then card holders, then
 
-108
+109
 00:07:17.822 --> 00:07:23.327
 managed Windows devices with Windows Hello,
 and finally everyone else with passkeys.
 
-109
+110
 00:07:23.327 --> 00:07:26.399
 Along the way, SMS and
 voice codes go for staff,
 
-110
+111
 00:07:26.399 --> 00:07:30.965
 and so do legacy protocols that
 send a password with every request.
 
-111
+112
 00:07:30.965 --> 00:07:36.165
 Those are found in the sign-in logs, fixed,
 blocked, and watched for thirty days.
 
-112
+113
 00:07:36.165 --> 00:07:38.670
 One thing stays on: password hash sync,
 
-113
+114
 00:07:38.670 --> 00:07:42.420
 for leaked-credential
 detection and as a fallback.
 
-114
+115
 00:07:46.170 --> 00:07:46.770
 Who.
 
-115
+116
 00:07:46.770 --> 00:07:51.195
 Directory migrations fail more often
 on ownership than on technology,
 
-116
+117
 00:07:51.195 --> 00:07:54.645
 so the book separates who
 decides from who does the work.
 
-117
+118
 00:07:54.645 --> 00:07:58.528
 Deciding: the CIO and sponsor
 set scope, funding and sequence;
 
-118
+119
 00:07:58.528 --> 00:08:01.168
 the CISO sets the control requirements;
 
-119
+120
 00:08:01.168 --> 00:08:05.516
 and the authorizing official
 accepts any risk the program carries
 
-120
+121
 00:08:05.516 --> 00:08:10.020
 instead of removing, like a service
 account that can't be converted yet.
 
-121
+122
 00:08:10.020 --> 00:08:14.205
 Building and running: identity
 engineering builds the target,
 
-122
+123
 00:08:14.205 --> 00:08:19.678
 from sync and authentication to PIM and
 administrative units; AD administrators
 
-123
+124
 00:08:19.678 --> 00:08:25.070
 clean up the source and eventually retire
 it, and the ISSO assembles the evidence.
 
-124
+125
 00:08:25.070 --> 00:08:28.264
 Then come the people
 who supply and accept:
 
-125
+126
 00:08:28.264 --> 00:08:31.732
 HR, application owners,
 the help desk and users.
 
-126
+127
 00:08:31.732 --> 00:08:33.782
 But one owner is usually missing.
 
-127
+128
 00:08:33.782 --> 00:08:36.758
 Microsoft's tools each own
 a slice of the picture,
 
-128
+129
 00:08:36.758 --> 00:08:41.145
 and nobody owns the gaps between them
 unless the program names someone.
 
-129
+130
 00:08:41.145 --> 00:08:43.130
 Next, how it's done.
 
-130
+131
 00:08:46.880 --> 00:08:50.137
 The book's How chapters follow five steps:
 
-131
+132
 00:08:50.137 --> 00:08:53.393
 discover, assess, build,
 migrate and prove.
 
-132
+133
 00:08:53.393 --> 00:08:57.898
 Discovery starts with the read-only
 access every employee already has,
 
-133
+134
 00:08:57.898 --> 00:09:02.480
 and only then asks for narrow, time-bound
 access to what you still can't see.
 
-134
+135
 00:09:02.480 --> 00:09:05.291
 The assessment covers
 the whole forest without
 
-135
+136
 00:09:05.291 --> 00:09:07.892
 ever requesting rights
 that expose secrets.
 
-136
+137
 00:09:07.892 --> 00:09:12.924
 For the build, the book recommends Cloud
 Sync unless something needs Connect Sync,
 
-137
+138
 00:09:12.924 --> 00:09:16.327
 password hash sync everywhere,
 PIM for every admin role,
 
-138
+139
 00:09:16.327 --> 00:09:18.917
 and a tested Conditional Access baseline.
 
-139
+140
 00:09:18.917 --> 00:09:22.403
 Migration runs in waves,
 moving to phishing-resistant
 
-140
+141
 00:09:22.403 --> 00:09:25.579
 sign-in and switching off
 legacy authentication.
 
-141
+142
 00:09:25.579 --> 00:09:28.274
 And proof means drift
 checks and an evidence
 
-142
+143
 00:09:28.274 --> 00:09:30.968
 bundle the authorizing
 official can rely on.
 
-143
+144
 00:09:30.968 --> 00:09:35.876
 A few rules hold every time: never
 enforce an untested policy on everyone,
 
-144
+145
 00:09:35.876 --> 00:09:38.657
 keep two cloud-only break-glass accounts,
 
-145
+146
 00:09:38.657 --> 00:09:43.360
 and treat any closure as unproven
 until it carries its evidence.
 
-146
-00:09:47.110 --> 00:09:50.773
+147
+00:09:47.110 --> 00:09:50.756
 Chapter 11 puts the steps together
 in a reference deployment.
 
-147
-00:09:50.773 --> 00:09:56.262
+148
+00:09:50.756 --> 00:09:56.217
 It's a framing pattern, not a real engagement:
 a civilian agency with two forests,
 
-148
-00:09:56.262 --> 00:10:00.147
+149
+00:09:56.217 --> 00:10:00.300
 a trust between them, and a
 fleet of SQL Server instances.
 
-149
-00:10:00.147 --> 00:10:03.336
+150
+00:10:00.300 --> 00:10:03.557
 The figures are illustrative,
 but the mechanics are real.
 
-150
-00:10:03.336 --> 00:10:09.447
+151
+00:10:03.557 --> 00:10:09.587
 It runs in five phases: discover,
 normalize, map, migrate and validate.
 
-151
-00:10:09.447 --> 00:10:10.860
+152
+00:10:09.587 --> 00:10:10.988
 Two moments stand out.
 
-152
-00:10:10.860 --> 00:10:15.160
+153
+00:10:10.988 --> 00:10:15.269
 Every account the registry can't tie
 to a real owner becomes a finding.
 
-153
-00:10:15.160 --> 00:10:18.283
+154
+00:10:15.269 --> 00:10:18.378
 And every change is recorded
 with who asked for it,
 
-154
-00:10:18.283 --> 00:10:20.873
+155
+00:10:18.378 --> 00:10:20.947
 on what authority, and
 a hash of the result.
 
-155
-00:10:20.873 --> 00:10:24.109
+156
+00:10:20.947 --> 00:10:24.170
 What comes out is an evidence
 bundle for the authorizing
 
-156
-00:10:24.109 --> 00:10:27.760
+157
+00:10:24.170 --> 00:10:27.813
 official and the assessor, who
 authorize the agency's own system.
 
-157
-00:10:27.760 --> 00:10:29.673
+158
+00:10:27.813 --> 00:10:29.711
 And it belongs to the agency.
 
-158
-00:10:29.673 --> 00:10:32.165
+159
+00:10:29.711 --> 00:10:32.193
 When the integrator leaves, the registry,
 
-159
-00:10:32.165 --> 00:10:36.784
+160
+00:10:32.193 --> 00:10:36.792
 the findings and the evidence stay
 behind for the next authorization cycle.
 
-160
-00:10:36.784 --> 00:10:38.700
+161
+00:10:36.792 --> 00:10:38.700
 So, what are we asking for?
 
-161
+162
 00:10:42.450 --> 00:10:43.400
 Four asks.
 
-162
+163
 00:10:43.400 --> 00:10:47.663
 Name the owners, including someone
 who owns the gaps between the tools.
 
-163
+164
 00:10:47.663 --> 00:10:49.763
 Start read-only discovery now.
 
-164
+165
 00:10:49.763 --> 00:10:52.096
 It needs no elevated access to begin,
 
-165
+166
 00:10:52.096 --> 00:10:56.687
 so any request for more can follow
 the evidence instead of coming first.
 
-166
+167
 00:10:56.687 --> 00:11:02.239
 Put the dates on the plan: Connect Sync
 has to be upgraded by April 7, 2027,
 
-167
+168
 00:11:02.239 --> 00:11:08.749
 and NTLM and legacy authentication should
 come off wave by wave, not in one weekend.
 
-168
+169
 00:11:08.749 --> 00:11:11.982
 And agree what done means:
 every control backed by
 
-169
+170
 00:11:11.982 --> 00:11:15.450
 evidence an assessor can read,
 not a status in a ticket.
 
-170
+171
 00:11:15.450 --> 00:11:19.750
 Identity matters because it's now
 where every access decision gets made.
 
-171
+172
 00:11:19.750 --> 00:11:23.934
 Getting it right once, while the
 platform is being rebuilt anyway,
 
-172
+173
 00:11:23.934 --> 00:11:27.188
 costs far less than rebuilding
 the same gaps twice.
 
-173
-00:11:27.188 --> 00:11:31.754
-Book 02 has the full argument and
-the runbooks, every claim footnoted,
-
 174
-00:11:31.754 --> 00:11:36.000
-and Book 03 picks up where the
-directory's facts should come from.
+00:11:27.188 --> 00:11:31.815
+Identity and Directory has the full
+argument and the runbooks, every claim
 
 175
-00:11:36.000 --> 00:11:36.830
+00:11:31.815 --> 00:11:34.427
+footnoted, and HR-Driven Identity picks up
+
+176
+00:11:34.427 --> 00:11:37.188
+where the directory's
+facts should come from.
+
+177
+00:11:37.188 --> 00:11:38.010
 Thank you.

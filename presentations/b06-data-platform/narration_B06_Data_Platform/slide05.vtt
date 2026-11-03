@@ -11,12 +11,12 @@ which gives each instance
 an Entra identity.
 
 3
-00:00:05.900 --> 00:00:09.621
+00:00:05.900 --> 00:00:09.782
 On SQL Server 2025, that's
 a managed identity;
 
 4
-00:00:09.621 --> 00:00:13.962
+00:00:09.782 --> 00:00:13.962
 on 2022, it's an app
 registration with a certificate.
 
@@ -31,44 +31,44 @@ Failover cluster instances can't
 use Entra authentication at all.
 
 7
-00:00:21.562 --> 00:00:26.745
+00:00:21.562 --> 00:00:26.791
 Entra authentication through Arc isn't
 available in the US Government Virginia
 
 8
-00:00:26.745 --> 00:00:31.387
+00:00:26.791 --> 00:00:31.474
 region, so a GCC tenant uses a commercial
 subscription in the same tenant.
 
 9
-00:00:31.387 --> 00:00:36.049
+00:00:31.474 --> 00:00:36.137
 The old runbook's government-cloud setup
 would never have produced Entra logins.
 
 10
-00:00:36.049 --> 00:00:38.112
+00:00:36.137 --> 00:00:38.200
 FIDO2 isn't supported here.
 
 11
-00:00:38.112 --> 00:00:42.094
+00:00:38.200 --> 00:00:42.182
 And granting the instance its Graph
 permissions takes a privileged
 
 12
-00:00:42.094 --> 00:00:45.237
+00:00:42.182 --> 00:00:45.325
 role administrator, so that
 step can't sit with the DBAs.
 
 13
-00:00:45.237 --> 00:00:50.009
+00:00:45.325 --> 00:00:49.860
 Arc isn't the only path, but it wins
 because it also brings inventory,
 
 14
-00:00:50.009 --> 00:00:54.087
-policy, updates and Defender
-for the host, which is Book 05.
+00:00:49.860 --> 00:00:55.137
+policy, updates and Defender for the
+host, which Devices and Endpoints covers.
 
 15
-00:00:54.087 --> 00:00:56.380
+00:00:55.137 --> 00:00:57.430
 Next, the logins themselves.

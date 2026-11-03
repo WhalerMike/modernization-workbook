@@ -1,79 +1,79 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.950
-The plan follows Book 01's model:
-seven phases and six gates.
+00:00:00.050 --> 00:00:05.150
+The plan follows the workbook's program
+model: seven phases and six gates.
 
 2
-00:00:04.950 --> 00:00:09.362
+00:00:05.150 --> 00:00:09.562
 It runs from pre-flight, through
 foundation, a pilot division,
 
 3
-00:00:09.362 --> 00:00:14.038
+00:00:09.562 --> 00:00:14.238
 general rollout and legacy
 retirement, to retiring AD DS itself.
 
 4
-00:00:14.038 --> 00:00:18.312
+00:00:14.238 --> 00:00:18.513
 Then comes steady state, which has
 no gate; it's a standing rhythm.
 
 5
-00:00:18.312 --> 00:00:22.090
+00:00:18.513 --> 00:00:22.290
 Each gate has a plain name, like
 Pilot Clean or Legacy Quiet,
 
 6
-00:00:22.090 --> 00:00:23.900
+00:00:22.290 --> 00:00:24.100
 and the slide shows them all.
 
 7
-00:00:23.900 --> 00:00:26.626
+00:00:24.100 --> 00:00:26.826
 Every phase is bound by
 the same constraints:
 
 8
-00:00:26.626 --> 00:00:30.972
+00:00:26.826 --> 00:00:31.172
 change starts at the authoritative
 source and closes with provenance,
 
 9
-00:00:30.972 --> 00:00:34.360
+00:00:31.172 --> 00:00:34.560
 privilege is time-bound,
 copies stay non-authoritative,
 
 10
-00:00:34.360 --> 00:00:37.675
+00:00:34.560 --> 00:00:37.875
 drift stays visible, and
 nothing needs rip-and-replace.
 
 11
-00:00:37.675 --> 00:00:41.075
+00:00:37.875 --> 00:00:41.275
 Underneath is one rule:
 assess before you act.
 
 12
-00:00:41.075 --> 00:00:45.826
+00:00:41.275 --> 00:00:46.026
 The master plan's illustrative fifty-two
 weeks stop short of retiring AD DS,
 
 13
-00:00:45.826 --> 00:00:49.275
+00:00:46.026 --> 00:00:49.475
 and large federal estates
 usually take several years.
 
 14
-00:00:49.275 --> 00:00:51.758
+00:00:49.475 --> 00:00:51.958
 Five workstreams run in parallel,
 
 15
-00:00:51.758 --> 00:00:55.925
+00:00:51.958 --> 00:00:56.125
 and one dependency never
 relaxes: PKI waits for identity.
 
 16
-00:00:55.925 --> 00:01:00.140
+00:00:56.125 --> 00:01:00.340
 The gates, not the calendar,
 decide when the next phase starts.

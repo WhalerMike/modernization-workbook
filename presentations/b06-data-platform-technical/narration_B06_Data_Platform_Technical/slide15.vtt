@@ -1,59 +1,59 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.434
+00:00:00.050 --> 00:00:04.393
 A transformation that reaches its end
 state and stops watching will slide back,
 
 2
-00:00:04.434 --> 00:00:09.150
+00:00:04.393 --> 00:00:09.066
 because any administrator with permission
 can switch an instance back to mixed mode.
 
 3
-00:00:09.150 --> 00:00:11.688
+00:00:09.066 --> 00:00:11.545
 So closure is a posture, not a date.
 
 4
-00:00:11.688 --> 00:00:16.574
+00:00:11.545 --> 00:00:16.411
 It holds when five conditions are true
 at once on every production instance:
 
 5
-00:00:16.574 --> 00:00:20.917
+00:00:16.411 --> 00:00:20.714
 no usable Windows logins apart from
 a documented break-glass group,
 
 6
-00:00:20.917 --> 00:00:23.011
+00:00:20.714 --> 00:00:23.019
 SQL Authentication eliminated,
 
 7
-00:00:23.011 --> 00:00:27.975
+00:00:23.019 --> 00:00:27.937
 Entra authentication observed working
 and nothing else, the engine holding
 
 8
-00:00:27.975 --> 00:00:32.551
+00:00:27.937 --> 00:00:32.470
 a cloud identity, and every human
 using MFA through Conditional Access.
 
 9
-00:00:32.551 --> 00:00:35.779
+00:00:32.470 --> 00:00:35.674
 No single setting does this,
 which is why the book names
 
 10
-00:00:35.779 --> 00:00:39.438
+00:00:35.674 --> 00:00:39.299
 the combined state the
 Entra-exclusive operational posture.
 
 11
-00:00:39.438 --> 00:00:44.651
+00:00:39.299 --> 00:00:44.698
 And drift, like a new SQL login or an
 offline Arc agent, is a violation.
 
 12
-00:00:44.651 --> 00:00:49.920
+00:00:44.698 --> 00:00:49.920
 The final months before April 2027
 are for validation, not migration.

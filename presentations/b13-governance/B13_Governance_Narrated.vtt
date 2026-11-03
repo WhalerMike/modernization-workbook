@@ -5,64 +5,65 @@ WEBVTT
 Welcome.
 
 2
-00:00:00.763 --> 00:00:05.231
-This briefing is Book 13 of the
-Federal Modernization Workbook,
+00:00:00.763 --> 00:00:04.117
+This briefing comes from
+Governance, Drift and Evidence,
 
 3
-00:00:05.231 --> 00:00:07.424
-Governance, Drift and Evidence.
+00:00:04.117 --> 00:00:07.400
+one of the books of the
+Federal Modernization Workbook.
 
 4
-00:00:07.424 --> 00:00:10.949
+00:00:07.400 --> 00:00:10.924
 It's about why compliance starts
 to decay the day after the audit,
 
 5
-00:00:10.949 --> 00:00:13.675
+00:00:10.924 --> 00:00:13.650
 and what governance that
 doesn't decay looks like.
 
 6
-00:00:13.675 --> 00:00:15.050
+00:00:13.650 --> 00:00:15.025
 We'll take four questions.
 
 7
-00:00:15.050 --> 00:00:17.725
+00:00:15.025 --> 00:00:17.700
 Why does a signed package
 start aging at once?
 
 8
-00:00:17.725 --> 00:00:20.388
+00:00:17.700 --> 00:00:20.363
 What keeps governance
 true between assessments?
 
 9
-00:00:20.388 --> 00:00:21.425
+00:00:20.363 --> 00:00:21.401
 Who governs it?
 
 10
-00:00:21.425 --> 00:00:26.162
+00:00:21.401 --> 00:00:26.137
 And how do you run it at machine tempo,
 reuse it across agencies, and scale it?
 
 11
-00:00:26.162 --> 00:00:30.495
+00:00:26.137 --> 00:00:30.469
 The short version: keep one authoritative
 record, let the systems prove
 
 12
-00:00:30.495 --> 00:00:34.901
+00:00:30.469 --> 00:00:34.875
 they still match it, and keep people
 on the decisions only people can make.
 
 13
-00:00:34.901 --> 00:00:39.975
+00:00:34.875 --> 00:00:39.950
 The slides and notes carry every detail
 and source; I'll stick to what matters.
 
 14
-00:00:39.975 --> 00:00:42.800
+00:00:39.950 --> 00:00:42.780
 Let's start with the day
 the package is signed.
 
@@ -373,77 +374,77 @@ it carries its proof.
 Next, determinism.
 
 81
-00:04:40.950 --> 00:04:45.300
+00:04:40.950 --> 00:04:45.308
 When the program says a control is
 satisfied, how does anyone know it's right?
 
 82
-00:04:45.300 --> 00:04:47.187
+00:04:45.308 --> 00:04:47.197
 The usual answer is trust.
 
 83
-00:04:47.187 --> 00:04:49.575
+00:04:47.197 --> 00:04:49.588
 The program's answer is determinism.
 
 84
-00:04:49.575 --> 00:04:53.182
+00:04:49.588 --> 00:04:53.201
 Give it the same version of
 the record and the same inputs,
 
 85
-00:04:53.182 --> 00:04:56.175
+00:04:53.201 --> 00:04:56.197
 and it produces the same
 evidence, byte for byte.
 
 86
-00:04:56.175 --> 00:04:58.675
+00:04:56.197 --> 00:04:58.703
 So an assessor doesn't
 have to trust the run.
 
 87
-00:04:58.675 --> 00:05:01.100
+00:04:58.703 --> 00:05:01.125
 They repeat it and compare the hashes.
 
 88
-00:05:01.100 --> 00:05:02.812
+00:05:01.125 --> 00:05:02.849
 That's different from automation.
 
 89
-00:05:02.812 --> 00:05:05.711
+00:05:02.849 --> 00:05:05.751
 Automation makes the answer arrive faster;
 
 90
-00:05:05.711 --> 00:05:09.413
+00:05:05.751 --> 00:05:09.456
 determinism makes it the same
 answer no matter who asks.
 
 91
-00:05:09.413 --> 00:05:13.012
+00:05:09.456 --> 00:05:12.985
 The rules live in three layers,
 each with its own reviewer:
 
 92
-00:05:13.012 --> 00:05:17.455
+00:05:12.985 --> 00:05:17.434
 rules that say what things mean,
 mappings that say which rules apply to
 
 93
-00:05:17.455 --> 00:05:21.974
+00:05:17.434 --> 00:05:21.960
 which controls, and runtime code, the
 only layer allowed to change state.
 
 94
-00:05:21.974 --> 00:05:26.988
+00:05:21.960 --> 00:05:26.980
 One honest limit: determinism is faithful
 to the record, not a check on it.
 
 95
-00:05:26.988 --> 00:05:30.175
+00:05:26.980 --> 00:05:30.173
 A wrong rule gives the same
 wrong answer every time.
 
 96
-00:05:30.175 --> 00:05:32.250
+00:05:30.173 --> 00:05:32.250
 Next, the drift engine.
 
 97
@@ -1032,10 +1033,10 @@ Governance that doesn't decay keeps
 proving itself every day after.
 
 220
-00:13:22.902 --> 00:13:26.614
-Book 13 has the detail,
-every claim footnoted.
+00:13:22.902 --> 00:13:27.827
+Governance, Drift and Evidence has
+the detail, every claim footnoted.
 
 221
-00:13:26.614 --> 00:13:27.430
+00:13:27.827 --> 00:13:28.650
 Thank you.

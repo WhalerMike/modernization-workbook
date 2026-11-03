@@ -5,62 +5,63 @@ WEBVTT
 Welcome.
 
 2
-00:00:00.763 --> 00:00:05.046
-This briefing is Book 11 of the
-Federal Modernization Workbook,
+00:00:00.763 --> 00:00:03.697
+This briefing comes from
+Zero Trust and Assessment,
 
 3
-00:00:05.046 --> 00:00:06.824
-Zero Trust and Assessment.
+00:00:03.697 --> 00:00:06.837
+one of the books of the
+Federal Modernization Workbook.
 
 4
-00:00:06.824 --> 00:00:10.987
+00:00:06.837 --> 00:00:11.000
 It's about how an agency measures
 its Zero Trust posture across every
 
 5
-00:00:10.987 --> 00:00:15.075
+00:00:11.000 --> 00:00:15.088
 estate it runs, and then turns what
 the tools find into a real program.
 
 6
-00:00:15.075 --> 00:00:16.450
+00:00:15.088 --> 00:00:16.463
 We'll take four questions.
 
 7
-00:00:16.450 --> 00:00:19.250
+00:00:16.463 --> 00:00:19.262
 Why is Zero Trust a whole-agency property?
 
 8
-00:00:19.250 --> 00:00:21.763
+00:00:19.262 --> 00:00:21.775
 What do the mandates and
 tools actually cover?
 
 9
-00:00:21.763 --> 00:00:23.162
+00:00:21.775 --> 00:00:23.175
 Who owns the posture?
 
 10
-00:00:23.162 --> 00:00:24.500
+00:00:23.175 --> 00:00:24.512
 And how do you assess it?
 
 11
-00:00:24.500 --> 00:00:29.268
+00:00:24.512 --> 00:00:29.280
 If you keep one idea, keep this
 one: unify first, assess second,
 
 12
-00:00:29.268 --> 00:00:33.550
+00:00:29.280 --> 00:00:33.562
 and treat every tool as
 evidence, never as the verdict.
 
 13
-00:00:33.550 --> 00:00:38.625
+00:00:33.562 --> 00:00:38.637
 The slides and notes carry every detail
 and source; I'll stick to what matters.
 
 14
-00:00:38.625 --> 00:00:42.350
+00:00:38.637 --> 00:00:42.350
 Let's start with why one score
 has to cover the whole agency.
 
@@ -432,81 +433,81 @@ directive really exists for.
 Next, the two tools that measure it.
 
 92
-00:05:48.740 --> 00:05:53.491
+00:05:48.740 --> 00:05:53.498
 Agencies run two free, read-only
 assessments of their Microsoft cloud,
 
 93
-00:05:53.491 --> 00:05:57.178
+00:05:53.498 --> 00:05:57.186
 and often drop one because
 both seem to cover identity.
 
 94
-00:05:57.178 --> 00:05:59.003
+00:05:57.186 --> 00:05:59.015
 But they answer different questions.
 
 95
-00:05:59.003 --> 00:06:04.152
+00:05:59.015 --> 00:06:04.172
 ScubaGear is CISA's tool, and asks whether
 the tenant meets the federal baseline.
 
 96
-00:06:04.152 --> 00:06:07.189
+00:06:04.172 --> 00:06:07.212
 Microsoft's Zero Trust
 Assessment asks how mature
 
 97
-00:06:07.189 --> 00:06:10.153
+00:06:07.212 --> 00:06:10.179
 the environment is against
 Microsoft's guidance.
 
 98
-00:06:10.153 --> 00:06:13.818
+00:06:10.179 --> 00:06:13.850
 It's a community project
 maintained by Microsoft employees,
 
 99
-00:06:13.818 --> 00:06:17.264
+00:06:13.850 --> 00:06:17.307
 not an official product, and
 no support program covers it.
 
 100
-00:06:17.264 --> 00:06:20.915
+00:06:17.307 --> 00:06:20.962
 They overlap on Entra ID
 and some Defender policies.
 
 101
-00:06:20.915 --> 00:06:24.371
+00:06:20.962 --> 00:06:24.422
 But only ScubaGear covers
 Exchange Online, Teams,
 
 102
-00:06:24.371 --> 00:06:29.765
+00:06:24.422 --> 00:06:29.739
 SharePoint and Power Platform, and 22 of
 the 50 mandatory policies live there.
 
 103
-00:06:29.765 --> 00:06:33.434
+00:06:29.739 --> 00:06:33.417
 Drop ScubaGear and you leave
 mandatory policies unassessed,
 
 104
-00:06:33.434 --> 00:06:36.240
+00:06:33.417 --> 00:06:36.226
 and stop the reporting
 the directive requires.
 
 105
-00:06:36.240 --> 00:06:38.984
+00:06:36.226 --> 00:06:38.974
 So run both, and reconcile
 at the control level:
 
 106
-00:06:38.984 --> 00:06:44.690
+00:06:38.974 --> 00:06:44.687
 the tenant setting, and the SP
 800-53 control it supports.
 
 107
-00:06:44.690 --> 00:06:48.850
+00:06:44.687 --> 00:06:48.850
 Next, everything beyond Microsoft 365.
 
 108
@@ -1031,10 +1032,10 @@ and let named people make the
 decisions the evidence supports.
 
 217
-00:13:53.698 --> 00:13:57.310
-Book 11 has the detail,
-every claim footnoted.
+00:13:53.698 --> 00:13:58.286
+Zero Trust and Assessment has the
+detail, every claim footnoted.
 
 218
-00:13:57.310 --> 00:13:58.140
+00:13:58.286 --> 00:13:59.100
 Thank you.

@@ -7,36 +7,36 @@
   ],
   [
    0.762,
-   7.812,
-   "This is the technical deep dive for Book 07 of the Federal Modernization Workbook, P K I and Certificates."
+   7.1,
+   "This is the technical deep dive for P K I and Certificates, one of the books of the Federal Modernization Workbook."
   ],
   [
-   8.575,
+   7.862,
    6.362,
    "It's for the P K I engineers and architects who will run the move off Active Directory Certificate Services."
   ],
   [
-   14.938,
+   14.225,
    1.562,
    "It comes in two parts."
   ],
   [
-   16.5,
+   15.787,
    10.325,
    "Part 1 is hardening and the target: how to make the A D CS that stays the best-defended system you own, then a target of four issuers and one lifecycle platform."
   ],
   [
-   26.825,
+   26.113,
    14.912,
    "Part 2 is issuing, migrating and retiring: Intune certificate profiles, strong mapping and Entra certificate-based authentication, then coexistence, the six-wave migration, monitoring and retiring the old CAs."
   ],
   [
-   41.737,
-   6.487,
-   "The commands live in the chapters and appendices, marked as illustrative and untested against production."
+   41.025,
+   6.412,
+   "The commands liv in the chapters and appendices, marked as illustrative and untested against production."
   ],
   [
-   48.225,
+   47.438,
    1.525,
    "I'll stick to what matters."
   ]

@@ -2,7 +2,7 @@
   {
     "slide": 1,
     "title": "Why Does Identity Matter?",
-    "say": "Welcome. This briefing comes from Book 02 of the Federal Modernization Workbook, Identity and Directory: the move from Active Directory to Entra ID. What Book 02 accomplishes is a directory where an object's place in the tree has become attributes and rules, and every service account has an owner and a target. Of the workbook's four tracks, it carries the directory side of the HR track and the service accounts. People's attributes are Book 03, devices and servers Book 05, and AI agents Book 17. We'll take it through four questions: why identity matters now, what changes, who owns which decisions, and how to do it. The short version: this isn't a directory upgrade. It decides whether every later control actually works. Let's start with why."
+    "say": "Welcome. This briefing comes from Identity and Directory, the Federal Modernization Workbook's book on the move from Active Directory to Entra ID. What this book accomplishes is a directory where an object's place in the tree has become attributes and rules, and every service account has an owner and a target. Of the workbook's four tracks, it carries the directory side of the HR track and the service accounts. People's attributes are in HR-Driven Identity, devices and servers in Devices and Endpoints, and AI agents in AI Identity Governance. We'll take it through four questions: why identity matters now, what changes, who owns which decisions, and how to do it. The short version: this isn't a directory upgrade. It decides whether every later control actually works. Let's start with why."
   },
   {
     "slide": 2,
@@ -22,7 +22,7 @@
   {
     "slide": 5,
     "title": "Four tracks: what Book 02 moves, and where the rest goes",
-    "say": "Before the size of the job, it helps to know which job is whose, because one O U tree holds four different populations. The workbook treats them as four tracks. People, the HR track: Book 02 builds the directory side, and Book 03 supplies the attributes. End-user devices and servers, the Intune and Arc tracks: Book 02's Group Policy analysis finds their settings, and Book 05 moves them. And the non-person track: every service account gets an owner and a target, here in Book 02, with AI agents in Book 17. Appendix A maps that work to account management, attribute-based access and least privilege in NIST 800-53, and to M-22-09. Next, everything else the directory holds up."
+    "say": "Before the size of the job, it helps to know which job is whose, because one O U tree holds four different populations. The workbook treats them as four tracks. People, the HR track: this book builds the directory side, and HR-Driven Identity supplies the attributes. End-user devices and servers, the Intune and Arc tracks: this book's Group Policy analysis finds their settings, and Devices and Endpoints moves them. And the non-person track: every service account gets an owner and a target, here in this book, with AI agents in AI Identity Governance. Appendix A maps that work to account management, attribute-based access and least privilege in NIST 800-53, and to M-22-09. Next, everything else the directory holds up."
   },
   {
     "slide": 6,
@@ -57,6 +57,6 @@
   {
     "slide": 12,
     "title": "What we're asking for",
-    "say": "Four asks. Name the owners, including someone who owns the gaps between the tools. Start read-only discovery now. It needs no elevated access to begin, so any request for more can follow the evidence instead of coming first. Put the dates on the plan: Connect Sync has to be upgraded by April 7, 2027, and NTLM and legacy authentication should come off wave by wave, not in one weekend. And agree what done means: every control backed by evidence an assessor can read, not a status in a ticket. Identity matters because it's now where every access decision gets made. Getting it right once, while the platform is being rebuilt anyway, costs far less than rebuilding the same gaps twice. Book 02 has the full argument and the runbooks, every claim footnoted, and Book 03 picks up where the directory's facts should come from. Thank you."
+    "say": "Four asks. Name the owners, including someone who owns the gaps between the tools. Start read-only discovery now. It needs no elevated access to begin, so any request for more can follow the evidence instead of coming first. Put the dates on the plan: Connect Sync has to be upgraded by April 7, 2027, and NTLM and legacy authentication should come off wave by wave, not in one weekend. And agree what done means: every control backed by evidence an assessor can read, not a status in a ticket. Identity matters because it's now where every access decision gets made. Getting it right once, while the platform is being rebuilt anyway, costs far less than rebuilding the same gaps twice. Identity and Directory has the full argument and the runbooks, every claim footnoted, and HR-Driven Identity picks up where the directory's facts should come from. Thank you."
   }
 ]

@@ -5,56 +5,56 @@ WEBVTT
 Welcome.
 
 2
-00:00:00.763 --> 00:00:04.377
-This is the executive briefing
-for Book 12 of the Federal
+00:00:00.763 --> 00:00:04.829
+This is the executive briefing for
+Security Operations and Telemetry,
 
 3
-00:00:04.377 --> 00:00:08.299
-Modernization Workbook, Security
-Operations and Telemetry.
+00:00:04.829 --> 00:00:07.999
+one of the books of the
+Federal Modernization Workbook.
 
 4
-00:00:08.299 --> 00:00:13.775
+00:00:07.999 --> 00:00:13.475
 It's for the CISO, the SOC lead,
 the CIO and authorizing officials.
 
 5
-00:00:13.775 --> 00:00:15.200
+00:00:13.475 --> 00:00:14.900
 The argument is short.
 
 6
-00:00:15.200 --> 00:00:19.620
+00:00:14.900 --> 00:00:19.320
 You can't defend what you can't see, and
 the gaps that matter most make no noise:
 
 7
-00:00:19.620 --> 00:00:24.325
+00:00:19.320 --> 00:00:24.025
 a system that never sent its logs looks
 exactly like one where nothing happened.
 
 8
-00:00:24.325 --> 00:00:27.600
+00:00:24.025 --> 00:00:27.300
 Storing logs isn't the same
 as detecting with them.
 
 9
-00:00:27.600 --> 00:00:31.488
+00:00:27.300 --> 00:00:31.188
 And a finding closes only when
 the thing is fixed, with proof.
 
 10
-00:00:31.488 --> 00:00:34.725
+00:00:31.188 --> 00:00:34.425
 I'll take four questions:
 why, what, who and how.
 
 11
-00:00:34.725 --> 00:00:39.100
+00:00:34.425 --> 00:00:38.800
 Each decision slide names the decision,
 its owner and when it's needed.
 
 12
-00:00:39.100 --> 00:00:41.960
+00:00:38.800 --> 00:00:41.650
 Let's start with what a
 dashboard can't show you.
 
@@ -437,58 +437,58 @@ division, with one incident queue.
 Next, how long to keep it all.
 
 92
-00:06:06.170 --> 00:06:08.757
+00:06:06.170 --> 00:06:08.763
 Retention is really two decisions.
 
 93
-00:06:08.757 --> 00:06:10.746
+00:06:08.763 --> 00:06:10.752
 First, the security floor.
 
 94
-00:06:10.746 --> 00:06:15.370
+00:06:10.752 --> 00:06:15.387
 Data your rules depend on stays in the
 alerting tier for at least six months,
 
 95
-00:06:15.370 --> 00:06:17.683
+00:06:15.387 --> 00:06:17.703
 because only that tier raises alerts.
 
 96
-00:06:17.683 --> 00:06:22.091
+00:06:17.703 --> 00:06:22.046
 Older or high-volume data can live in
 cheaper tiers you can still search,
 
 97
-00:06:22.091 --> 00:06:24.707
+00:06:22.046 --> 00:06:24.667
 and a tamper-proof copy
 serves as evidence.
 
 98
-00:06:24.707 --> 00:06:30.019
+00:06:24.667 --> 00:06:29.984
 Second, disposition: how long beyond the
 floor, and when data can be destroyed.
 
 99
-00:06:30.019 --> 00:06:34.220
+00:06:29.984 --> 00:06:34.197
 That belongs to the records officer,
 not to whoever holds the console.
 
 100
-00:06:34.220 --> 00:06:35.843
+00:06:34.197 --> 00:06:35.824
 So the CISO sets the floor,
 
 101
-00:06:35.843 --> 00:06:40.123
+00:06:35.824 --> 00:06:40.111
 and nobody shortens retention
 without the records officer agreeing,
 
 102
-00:06:40.123 --> 00:06:44.845
+00:06:40.111 --> 00:06:44.843
 because once logs are gone, an investigation
 or a legal hold can't get them back.
 
 103
-00:06:44.845 --> 00:06:46.810
+00:06:44.843 --> 00:06:46.810
 Next, the cost side.
 
 104
@@ -1081,10 +1081,10 @@ A gap nobody chose is still a decision.
 Make it on purpose.
 
 230
-00:14:24.275 --> 00:14:27.963
-Book 12 has the detail,
-every claim footnoted.
+00:14:24.275 --> 00:14:29.400
+Security Operations and Telemetry has
+the detail, every claim footnoted.
 
 231
-00:14:27.963 --> 00:14:28.800
+00:14:29.400 --> 00:14:30.210
 Thank you.

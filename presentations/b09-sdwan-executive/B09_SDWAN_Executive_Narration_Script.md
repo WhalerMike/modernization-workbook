@@ -46,4 +46,4 @@ The ask has three parts. Defer the fifty-million-dollar refresh pending a networ
 
 ## Slide 12 — Where to read next
 
-To go deeper, Book 09, Chapter 11 has the full worked case, with every assumption and its source. Chapter 05 covers what SD-WAN can and can't do, and how to secure the controller. Chapter 03 sets out the TIC 3.0 requirements, Chapter 10 the long interim and the refresh fork, and Chapter 13 the sequencing and the paired-branch study. The Book 09 executive briefing covers the wider network decisions. Every figure here is a planning estimate from the book. Thank you.
+To go deeper, Chapter 11 of Network and Transport has the full worked case, with every assumption and its source. Chapter 05 covers what SD-WAN can and can't do, and how to secure the controller. Chapter 03 sets out the TIC 3.0 requirements, Chapter 10 the long interim and the refresh fork, and Chapter 13 the sequencing and the paired-branch study. The Network and Transport executive briefing covers the wider network decisions. Every figure here is a planning estimate from the book. Thank you.

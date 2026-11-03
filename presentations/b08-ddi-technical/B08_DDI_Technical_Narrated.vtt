@@ -5,64 +5,64 @@ WEBVTT
 Welcome.
 
 2
-00:00:00.763 --> 00:00:04.750
+00:00:00.763 --> 00:00:04.780
 This is the technical deep
-dive for Book 08 of the
+dive for DNS, DHCP and IPAM,
 
 3
-00:00:04.750 --> 00:00:09.137
-Federal Modernization
-Workbook, DNS, DHCP and IPAM.
+00:00:04.780 --> 00:00:08.887
+one of the books of the
+Federal Modernization Workbook.
 
 4
-00:00:09.137 --> 00:00:13.701
+00:00:08.887 --> 00:00:13.451
 It's for the network and DDI engineers
 who will design the resolution paths,
 
 5
-00:00:13.701 --> 00:00:17.087
+00:00:13.451 --> 00:00:16.837
 move authority off Active
 Directory, and run the result.
 
 6
-00:00:17.087 --> 00:00:18.649
+00:00:16.837 --> 00:00:18.399
 It comes in two parts.
 
 7
-00:00:18.649 --> 00:00:20.789
+00:00:18.399 --> 00:00:20.539
 Part 1 covers the hard surfaces:
 
 8
-00:00:20.789 --> 00:00:24.985
+00:00:20.539 --> 00:00:24.735
 split-brain DNS and what Active
 Directory DNS really carries,
 
 9
-00:00:24.985 --> 00:00:27.782
+00:00:24.735 --> 00:00:27.532
 the places queries escape agency policy,
 
 10
-00:00:27.782 --> 00:00:32.800
+00:00:27.532 --> 00:00:32.550
 and the DNS identity and DNSSEC work
 underneath certificates and tokens.
 
 11
-00:00:32.800 --> 00:00:36.762
+00:00:32.550 --> 00:00:36.512
 Part 2 builds and runs the control
 plane: cloud private endpoints,
 
 12
-00:00:36.762 --> 00:00:41.164
+00:00:36.512 --> 00:00:40.914
 IPAM as the authority for address
 blocks, the reference architecture,
 
 13
-00:00:41.164 --> 00:00:45.200
+00:00:40.914 --> 00:00:44.950
 then the six-phase migration and
 the evidence that keeps it honest.
 
 14
-00:00:45.200 --> 00:00:50.050
+00:00:44.950 --> 00:00:49.790
 Vendors appear only as the book's
 examples, never as endorsements.
 
@@ -687,60 +687,60 @@ so the program adopts CISA's browser
 configuration as mandatory policy.
 
 144
-00:10:05.610 --> 00:10:08.298
+00:10:05.610 --> 00:10:08.264
 The third bypass sits on the access layer.
 
 145
-00:10:08.298 --> 00:10:13.264
+00:10:08.264 --> 00:10:13.163
 A rogue DHCP server handing out a
 malicious resolver can move a whole
 
 146
-00:10:13.264 --> 00:10:17.709
+00:10:13.163 --> 00:10:17.551
 subnet onto an attacker's DNS in
 one step, past every block list.
 
 147
-00:10:17.709 --> 00:10:22.035
+00:10:17.551 --> 00:10:22.467
 In IPv6, rogue router advertisements
 do the same, and they're often
 
 148
-00:10:22.035 --> 00:10:26.360
+00:10:22.467 --> 00:10:26.747
 the bigger surface, because many
 networks don't govern them at all.
 
 149
-00:10:26.360 --> 00:10:31.798
+00:10:26.747 --> 00:10:32.083
 Other DHCP options steer traffic too, like
 the search list and the proxy setting.
 
 150
-00:10:31.798 --> 00:10:34.761
+00:10:32.083 --> 00:10:35.008
 The Windows safeguard is
 narrower than it looks:
 
 151
-00:10:34.761 --> 00:10:39.798
+00:10:35.008 --> 00:10:40.009
 it stops a misconfigured Windows server,
 not a home router plugged into a wall port.
 
 152
-00:10:39.798 --> 00:10:43.567
+00:10:40.009 --> 00:10:43.730
 That takes DHCP snooping and
 RA Guard on the switches,
 
 153
-00:10:43.567 --> 00:10:49.222
+00:10:43.730 --> 00:10:49.302
 central option management, and IPAM so
 an unexpected lease is visible at once.
 
 154
-00:10:49.222 --> 00:10:51.688
+00:10:49.302 --> 00:10:51.736
 And since prevention is never complete,
 
 155
-00:10:51.688 --> 00:10:55.780
+00:10:51.736 --> 00:10:55.780
 watch for hosts whose queries
 never reach the governed logs.
 
@@ -1066,64 +1066,64 @@ and don't list a custom resolver
 beside Azure's built-in one.
 
 223
-00:15:41.910 --> 00:15:45.147
+00:15:41.910 --> 00:15:45.102
 The address side has the same
 problem as the name side.
 
 224
-00:15:45.147 --> 00:15:48.688
+00:15:45.102 --> 00:15:48.587
 Every cloud and NSX allocates
 addresses on its own,
 
 225
-00:15:48.688 --> 00:15:54.335
+00:15:48.587 --> 00:15:54.155
 so a range created in a console can overlap
 on-premises space or another division,
 
 226
-00:15:54.335 --> 00:15:57.285
+00:15:54.155 --> 00:15:57.064
 and nobody knows until a conflict appears.
 
 227
-00:15:57.285 --> 00:15:59.210
+00:15:57.064 --> 00:15:58.953
 Integration depth varies.
 
 228
-00:15:59.210 --> 00:16:03.953
+00:15:58.953 --> 00:16:03.655
 AWS can hand authority for private
 address scopes to an external IPAM,
 
 229
-00:16:03.953 --> 00:16:07.510
+00:16:03.655 --> 00:16:07.163
 with Infoblox as the book's
 example, but not in GovCloud,
 
 230
-00:16:07.510 --> 00:16:10.198
+00:16:07.163 --> 00:16:09.813
 so it doesn't help a
 GovCloud estate today.
 
 231
-00:16:10.198 --> 00:16:14.535
+00:16:09.813 --> 00:16:14.076
 Azure and Google Cloud can't hand
 off, so you mirror and reconcile.
 
 232
-00:16:14.535 --> 00:16:20.063
+00:16:14.076 --> 00:16:19.536
 The rule: reserve blocks in the enterprise
 IPAM before any cloud or NSX network is
 
 233
-00:16:20.063 --> 00:16:22.226
+00:16:19.536 --> 00:16:21.669
 created, integrate where you can,
 
 234
-00:16:22.226 --> 00:16:25.510
+00:16:21.669 --> 00:16:24.907
 reconcile where you can't,
 and monitor sync health.
 
 235
-00:16:25.510 --> 00:16:29.200
+00:16:24.907 --> 00:16:29.200
 And plan IPv4 and IPv6 together.
 
 236

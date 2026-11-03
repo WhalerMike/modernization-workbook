@@ -5,128 +5,129 @@ WEBVTT
 Welcome.
 
 2
-00:00:00.763 --> 00:00:05.717
-This briefing is Book 07 of the
-Federal Modernization Workbook,
+00:00:00.763 --> 00:00:03.647
+This briefing comes from
+PKI and Certificates,
 
 3
-00:00:05.717 --> 00:00:07.400
-PKI and Certificates.
+00:00:03.647 --> 00:00:07.049
+one of the books of the
+Federal Modernization Workbook.
 
 4
-00:00:07.400 --> 00:00:12.427
+00:00:07.049 --> 00:00:12.077
 It covers the move from Active Directory
 Certificate Services to Microsoft
 
 5
-00:00:12.427 --> 00:00:17.062
+00:00:12.077 --> 00:00:16.712
 Cloud PKI, Entra certificate-based
 authentication and the Federal PKI.
 
 6
-00:00:17.062 --> 00:00:19.075
+00:00:16.712 --> 00:00:18.725
 Here's why it deserves its own book.
 
 7
-00:00:19.075 --> 00:00:24.000
+00:00:18.725 --> 00:00:23.650
 Every other migration changes which
 system answers the question, who is this?
 
 8
-00:00:24.000 --> 00:00:26.513
+00:00:23.650 --> 00:00:26.163
 Certificates are how
 that answer gets proved.
 
 9
-00:00:26.513 --> 00:00:28.793
+00:00:26.163 --> 00:00:28.444
 So when they're handled
 as an afterthought,
 
 10
-00:00:28.793 --> 00:00:31.987
+00:00:28.444 --> 00:00:31.638
 things break long after everyone
 thought the work was done.
 
 11
-00:00:31.987 --> 00:00:35.885
+00:00:31.638 --> 00:00:35.534
 We'll go in four steps: why
 certificates outlive every migration,
 
 12
-00:00:35.885 --> 00:00:39.709
+00:00:35.534 --> 00:00:39.358
 what the target PKI looks like,
 who owns the certificate estate,
 
 13
-00:00:39.709 --> 00:00:43.238
+00:00:39.358 --> 00:00:42.887
 and how to move it without
 stranding a single certificate.
 
 14
-00:00:43.238 --> 00:00:44.990
+00:00:42.887 --> 00:00:44.630
 Let's start with the why.
 
 15
-00:00:48.740 --> 00:00:53.928
+00:00:48.740 --> 00:00:53.912
 Certificates outlive migrations because a
 certificate isn't a record in a directory.
 
 16
-00:00:53.928 --> 00:00:57.052
+00:00:53.912 --> 00:00:57.026
 It's a signed statement that's
 already been handed out.
 
 17
-00:00:57.052 --> 00:01:00.165
+00:00:57.026 --> 00:01:00.128
 When the directory moves,
 the certificate doesn't.
 
 18
-00:01:00.165 --> 00:01:04.540
+00:01:00.128 --> 00:01:04.489
 It keeps working until it expires,
 and then whatever relied on it stops.
 
 19
-00:01:04.540 --> 00:01:09.689
+00:01:04.489 --> 00:01:09.609
 And a lot relies on it: domain
 controllers, smart card and PIV logon,
 
 20
-00:01:09.689 --> 00:01:15.315
+00:01:09.609 --> 00:01:15.458
 Wi-Fi and VPN, TLS listeners like SQL
 Server, code signing and encryption.
 
 21
-00:01:15.315 --> 00:01:17.365
+00:01:15.458 --> 00:01:17.516
 That gives the program two clocks.
 
 22
-00:01:17.365 --> 00:01:21.008
+00:01:17.516 --> 00:01:21.148
 On the directory's clock,
 cutover is declared complete,
 
 23
-00:01:21.008 --> 00:01:25.865
+00:01:21.148 --> 00:01:25.998
 and months later the first expiry wave
 finds no issuer, far from its cause.
 
 24
-00:01:25.865 --> 00:01:29.657
+00:01:25.998 --> 00:01:29.778
 On the certificate's clock,
 the replacement issuer is
 
 25
-00:01:29.657 --> 00:01:33.277
+00:01:29.778 --> 00:01:33.368
 live before the first expiry,
 and AD CS retires last.
 
 26
-00:01:33.277 --> 00:01:35.864
+00:01:33.368 --> 00:01:35.939
 The program runs on the
 certificate's clock.
 
 27
-00:01:35.864 --> 00:01:39.410
+00:01:35.939 --> 00:01:39.410
 And the rules certificates live
 under are already changing.
 
@@ -208,82 +209,82 @@ runs as its own program.
 First, what does AD CS hold up?
 
 44
-00:02:49.250 --> 00:02:52.708
+00:02:49.250 --> 00:02:52.693
 Before you can move AD CS, you
 need to know what it holds up,
 
 45
-00:02:52.708 --> 00:02:54.362
+00:02:52.693 --> 00:02:54.340
 and it isn't just one server.
 
 46
-00:02:54.362 --> 00:02:58.993
+00:02:54.340 --> 00:02:58.950
 It's a hierarchy of CAs, a set of
 forest-wide objects like templates and
 
 47
-00:02:58.993 --> 00:03:03.950
+00:02:58.950 --> 00:03:03.886
 the NTAuth store, and Group Policy
 autoenrollment on every domain member.
 
 48
-00:03:03.950 --> 00:03:07.497
+00:03:03.886 --> 00:03:07.416
 The inventory has four layers:
 the CAs, the templates,
 
 49
-00:03:07.497 --> 00:03:11.538
+00:03:07.416 --> 00:03:11.441
 the certificates actually
 issued, and the relying parties.
 
 50
-00:03:11.538 --> 00:03:15.379
+00:03:11.441 --> 00:03:15.278
 The relying parties set the order
 of work, because a new issuer is
 
 51
-00:03:15.379 --> 00:03:19.512
+00:03:15.278 --> 00:03:19.393
 useful only once everything that
 checks its certificates trusts it.
 
 52
-00:03:19.512 --> 00:03:23.200
+00:03:19.393 --> 00:03:23.058
 Then every template and use
 case gets one of four verdicts.
 
 53
-00:03:23.200 --> 00:03:24.688
+00:03:23.058 --> 00:03:24.537
 Migrate it to the cloud.
 
 54
-00:03:24.688 --> 00:03:26.817
+00:03:24.537 --> 00:03:26.650
 Bridge it, running both issuers,
 
 55
-00:03:26.817 --> 00:03:30.749
+00:03:26.650 --> 00:03:30.565
 where the consumer depends on
 AD, like domain controllers.
 
 56
-00:03:30.749 --> 00:03:35.138
+00:03:30.565 --> 00:03:34.950
 Retain it where there's no cloud
 equivalent, like HSM-held code signing.
 
 57
-00:03:35.138 --> 00:03:36.263
+00:03:34.950 --> 00:03:35.978
 Or retire it.
 
 58
-00:03:36.263 --> 00:03:39.246
+00:03:35.978 --> 00:03:38.997
 The book also corrects its source here:
 
 59
-00:03:39.246 --> 00:03:43.350
+00:03:38.997 --> 00:03:43.359
 internal web and SQL Server
 TLS can't move to Cloud PKI.
 
 60
-00:03:43.350 --> 00:03:45.760
+00:03:43.359 --> 00:03:45.760
 And whatever stays has to be hardened.
 
 61
@@ -973,15 +974,15 @@ and the old CAs can retire
 without stranding anything.
 
 206
-00:13:01.103 --> 00:13:04.246
-Book 07 has the detail,
-every claim footnoted,
+00:13:01.103 --> 00:13:05.013
+PKI and Certificates has the
+detail, every claim footnoted,
 
 207
-00:13:04.246 --> 00:13:08.664
+00:13:05.013 --> 00:13:09.164
 with deployment checklists and
 a template-by-template matrix.
 
 208
-00:13:08.664 --> 00:13:09.480
+00:13:09.164 --> 00:13:09.990
 Thank you.

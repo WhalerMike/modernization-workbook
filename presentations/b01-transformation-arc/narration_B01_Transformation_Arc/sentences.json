@@ -7,31 +7,31 @@
   ],
   [
    0.762,
-   5.825,
-   "This briefing comes from Book 01 of the Federal Modernization Workbook, The Transformation Arc."
+   5.612,
+   "This briefing comes from The Transformation Arc, one of the books of the Federal Modernization Workbook."
   ],
   [
-   6.588,
+   6.375,
    7.925,
    "It's about the move from a domain-joined client-server estate to cloud identity, cloud device management and governed hybrid operations."
   ],
   [
-   14.512,
-   7.888,
-   "Book 01 is the workbook's overview: each part of it points to the book that carries the detail, so think of it as the map."
+   14.3,
+   7.375,
+   "This book is the workbook's overview: each part of it points to the book that carries the detail, so think of it as the map."
   ],
   [
-   22.4,
+   21.675,
    7.5,
    "We'll take four questions: why modernization is so hard, what actually has to change, who leads it, and how to get there."
   ],
   [
-   29.9,
+   29.175,
    6.65,
    "And if you remember one thing, make it this: modernization is a governance rebuild, not a platform swap."
   ],
   [
-   36.55,
+   35.825,
    2.138,
    "Let's start with how the estate got here."
   ]
@@ -264,38 +264,38 @@
   ],
   [
    4.862,
-   4.525,
-   "For the workforce, the authoritative source is the HR system of record."
+   4.625,
+   "For the workforce, the authoritative source is the H R system of record."
   ],
   [
-   9.387,
+   9.488,
    14.137,
    "Four mechanisms rebuild what the O U tree did: attributes replace O U placement, dynamic groups replace O U-based groups, administrative units replace O U delegation, and Conditional Access replaces Group Policy inheritance."
   ],
   [
-   23.525,
-   10.15,
-   "The program's contribution is what ties them together: one HR-sourced stamp drives membership, delegation, policy targeting, licensing and drift detection."
+   23.625,
+   10.488,
+   "The program's contribution is what ties them together: one H R-sourced stamp drives membership, delegation, policy targeting, licensing and drift detection."
   ],
   [
-   33.675,
+   34.112,
    1.163,
    "Two cautions."
   ],
   [
-   34.837,
+   35.275,
    7.513,
    "Dynamic membership usually updates within a few hours, but it can take more than a day, so design job moves around that delay."
   ],
   [
-   42.35,
-   4.438,
-   "And HR provisioning must be the only thing that writes those attributes."
+   42.788,
+   4.475,
+   "And H R provisioning must be the only thing that writes those attributes."
   ],
   [
-   46.788,
-   4.287,
-   "Books 02 and 03 carry identity in depth."
+   47.263,
+   6.562,
+   "Two books carry identity in depth: Identity and Directory, and H R-Driven Identity."
   ]
  ],
  "8": [
@@ -378,8 +378,8 @@
   ],
   [
    52.275,
-   3.562,
-   "Books 05 and 04 carry the detail."
+   5.213,
+   "The Devices and Endpoints book and the Access and Privilege book carry the detail."
   ]
  ],
  "10": [
@@ -420,8 +420,8 @@
   ],
   [
    49.413,
-   3.237,
-   "Books 08 and 09 carry the detail."
+   6.388,
+   "The books on D N S, DHCP and eye-pam, and on Network and Transport, carry the detail."
   ]
  ],
  "11": [
@@ -467,8 +467,8 @@
   ],
   [
    47.525,
-   3.2,
-   "Books 05 and 06 have the detail."
+   4.562,
+   "The Devices and Endpoints book and the Data Platform book have the detail."
   ]
  ],
  "12": [
@@ -499,18 +499,18 @@
   ],
   [
    28.525,
-   11.213,
-   "Entra certificate-based authentication moves card validation from the domain controller to Entra ID, though a card only counts as phishing-resistant if it's set up as multifactor."
+   11.312,
+   "Entra certificate-based authentication moves card validation from the domain controller to Entra I D, though a card only counts as phishing-resistant if it's set up as multifactor."
   ],
   [
-   39.737,
+   39.837,
    12.375,
    "And card issuance needs a successor first, because an enterprise CA depends on A D. Administrators hold no standing privilege: roles are activated just in time, and a vault covers what can't be."
   ],
   [
-   52.112,
-   5.325,
-   "Book 04 covers policy and privilege, and Book 07 the certificates."
+   52.212,
+   7.825,
+   "The Access and Privilege book covers policy and privilege, and the P K I and Certificates book covers the certificates."
   ]
  ],
  "13": [
@@ -734,11 +734,11 @@
   ],
   [
    41.5,
-   7.862,
-   "Book 01 is the map, and Books 02 to 09 carry each part in depth, with every claim footnoted."
+   9.738,
+   "This book is the map, and the technical books, from Identity and Directory to Network and Transport, carry each part in depth, with every claim footnoted."
   ],
   [
-   49.362,
+   51.237,
    0.762,
    "Thank you."
   ]

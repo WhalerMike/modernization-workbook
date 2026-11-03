@@ -1,80 +1,80 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.508
+00:00:00.050 --> 00:00:03.493
 Before you can move AD CS, you
 need to know what it holds up,
 
 2
-00:00:03.508 --> 00:00:05.162
+00:00:03.493 --> 00:00:05.140
 and it isn't just one server.
 
 3
-00:00:05.162 --> 00:00:09.793
+00:00:05.140 --> 00:00:09.750
 It's a hierarchy of CAs, a set of
 forest-wide objects like templates and
 
 4
-00:00:09.793 --> 00:00:14.750
+00:00:09.750 --> 00:00:14.686
 the NTAuth store, and Group Policy
 autoenrollment on every domain member.
 
 5
-00:00:14.750 --> 00:00:18.297
+00:00:14.686 --> 00:00:18.216
 The inventory has four layers:
 the CAs, the templates,
 
 6
-00:00:18.297 --> 00:00:22.338
+00:00:18.216 --> 00:00:22.241
 the certificates actually
 issued, and the relying parties.
 
 7
-00:00:22.338 --> 00:00:26.180
+00:00:22.241 --> 00:00:26.078
 The relying parties set the order
 of work, because a new issuer is
 
 8
-00:00:26.180 --> 00:00:30.312
+00:00:26.078 --> 00:00:30.193
 useful only once everything that
 checks its certificates trusts it.
 
 9
-00:00:30.312 --> 00:00:34.000
+00:00:30.193 --> 00:00:33.858
 Then every template and use
 case gets one of four verdicts.
 
 10
-00:00:34.000 --> 00:00:35.488
+00:00:33.858 --> 00:00:35.337
 Migrate it to the cloud.
 
 11
-00:00:35.488 --> 00:00:37.617
+00:00:35.337 --> 00:00:37.450
 Bridge it, running both issuers,
 
 12
-00:00:37.617 --> 00:00:41.549
+00:00:37.450 --> 00:00:41.365
 where the consumer depends on
 AD, like domain controllers.
 
 13
-00:00:41.549 --> 00:00:45.938
+00:00:41.365 --> 00:00:45.750
 Retain it where there's no cloud
 equivalent, like HSM-held code signing.
 
 14
-00:00:45.938 --> 00:00:47.063
+00:00:45.750 --> 00:00:46.778
 Or retire it.
 
 15
-00:00:47.063 --> 00:00:50.046
+00:00:46.778 --> 00:00:49.797
 The book also corrects its source here:
 
 16
-00:00:50.046 --> 00:00:54.150
+00:00:49.797 --> 00:00:54.159
 internal web and SQL Server
 TLS can't move to Cloud PKI.
 
 17
-00:00:54.150 --> 00:00:56.260
+00:00:54.159 --> 00:00:56.260
 And whatever stays has to be hardened.

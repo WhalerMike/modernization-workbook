@@ -1,62 +1,62 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.287
+00:00:00.050 --> 00:00:03.242
 The address side has the same
 problem as the name side.
 
 2
-00:00:03.287 --> 00:00:06.828
+00:00:03.242 --> 00:00:06.727
 Every cloud and NSX allocates
 addresses on its own,
 
 3
-00:00:06.828 --> 00:00:12.475
+00:00:06.727 --> 00:00:12.295
 so a range created in a console can overlap
 on-premises space or another division,
 
 4
-00:00:12.475 --> 00:00:15.425
+00:00:12.295 --> 00:00:15.204
 and nobody knows until a conflict appears.
 
 5
-00:00:15.425 --> 00:00:17.350
+00:00:15.204 --> 00:00:17.093
 Integration depth varies.
 
 6
-00:00:17.350 --> 00:00:22.093
+00:00:17.093 --> 00:00:21.795
 AWS can hand authority for private
 address scopes to an external IPAM,
 
 7
-00:00:22.093 --> 00:00:25.650
+00:00:21.795 --> 00:00:25.303
 with Infoblox as the book's
 example, but not in GovCloud,
 
 8
-00:00:25.650 --> 00:00:28.338
+00:00:25.303 --> 00:00:27.953
 so it doesn't help a
 GovCloud estate today.
 
 9
-00:00:28.338 --> 00:00:32.675
+00:00:27.953 --> 00:00:32.216
 Azure and Google Cloud can't hand
 off, so you mirror and reconcile.
 
 10
-00:00:32.675 --> 00:00:38.203
+00:00:32.216 --> 00:00:37.676
 The rule: reserve blocks in the enterprise
 IPAM before any cloud or NSX network is
 
 11
-00:00:38.203 --> 00:00:40.366
+00:00:37.676 --> 00:00:39.809
 created, integrate where you can,
 
 12
-00:00:40.366 --> 00:00:43.650
+00:00:39.809 --> 00:00:43.047
 reconcile where you can't,
 and monitor sync health.
 
 13
-00:00:43.650 --> 00:00:47.040
+00:00:43.047 --> 00:00:47.040
 And plan IPv4 and IPv6 together.

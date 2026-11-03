@@ -5,61 +5,61 @@ WEBVTT
 Welcome.
 
 2
-00:00:00.763 --> 00:00:03.942
-This is the executive
-briefing for Book 04 of the
+00:00:00.763 --> 00:00:04.002
+This is the executive briefing
+for Access and Privilege,
 
 3
-00:00:03.942 --> 00:00:07.600
-Federal Modernization
-Workbook, Access and Privilege.
+00:00:04.002 --> 00:00:07.174
+one of the books of the
+Federal Modernization Workbook.
 
 4
-00:00:07.600 --> 00:00:10.087
+00:00:07.174 --> 00:00:09.662
 It's for the people who
 make the calls on access.
 
 5
-00:00:10.087 --> 00:00:11.513
+00:00:09.662 --> 00:00:11.087
 The argument is short.
 
 6
-00:00:11.513 --> 00:00:15.555
+00:00:11.087 --> 00:00:15.130
 Under Zero Trust, every access
 request is decided by policy,
 
 7
-00:00:15.555 --> 00:00:19.762
+00:00:15.130 --> 00:00:19.338
 so your Conditional Access policy
 set is your access control.
 
 8
-00:00:19.762 --> 00:00:23.766
+00:00:19.338 --> 00:00:23.341
 Standing administrator rights
 turn one stolen credential into
 
 9
-00:00:23.766 --> 00:00:27.400
+00:00:23.341 --> 00:00:26.975
 control of the tenant, and a
 stronger sign-in doesn't fix that.
 
 10
-00:00:27.400 --> 00:00:30.813
+00:00:26.975 --> 00:00:30.388
 And the platform won't separate
 deciding from doing for you.
 
 11
-00:00:30.813 --> 00:00:34.049
+00:00:30.388 --> 00:00:33.624
 I'll take four questions:
 why, what, who and how.
 
 12
-00:00:34.049 --> 00:00:38.425
+00:00:33.624 --> 00:00:38.000
 Each decision slide names the decision,
 its owner and when it's needed.
 
 13
-00:00:38.425 --> 00:00:41.200
+00:00:38.000 --> 00:00:40.760
 Let's start with how access gets decided.
 
 14
@@ -1178,10 +1178,10 @@ Write the policy down,
 test it, prove it ran.
 
 251
-00:15:29.330 --> 00:15:33.330
-Book 04 has the detail,
-every claim footnoted.
+00:15:29.330 --> 00:15:33.380
+Access and Privilege has the
+detail, every claim footnoted.
 
 252
-00:15:33.330 --> 00:15:34.160
+00:15:33.380 --> 00:15:34.210
 Thank you.

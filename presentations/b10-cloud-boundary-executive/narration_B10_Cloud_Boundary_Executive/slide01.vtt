@@ -5,82 +5,82 @@ WEBVTT
 Welcome.
 
 2
-00:00:00.763 --> 00:00:04.250
-This is the executive briefing
-for Book 10 of the Federal
+00:00:00.763 --> 00:00:04.585
+This is the executive briefing for
+Cloud Boundary and Landing Zone,
 
 3
-00:00:04.250 --> 00:00:07.812
-Modernization Workbook, Cloud
-Boundary and Landing Zone.
+00:00:04.585 --> 00:00:07.725
+one of the books of the
+Federal Modernization Workbook.
 
 4
-00:00:07.812 --> 00:00:12.417
+00:00:07.725 --> 00:00:12.459
 It's for the people who sign for
 a cloud system or answer for it:
 
 5
-00:00:12.417 --> 00:00:15.824
+00:00:12.459 --> 00:00:15.963
 authorizing officials,
 ISSOs, CIOs and CISOs.
 
 6
-00:00:15.824 --> 00:00:18.175
+00:00:15.963 --> 00:00:18.313
 The book's argument fits in one line.
 
 7
-00:00:18.175 --> 00:00:22.175
+00:00:18.313 --> 00:00:22.312
 The license says what you bought;
 the boundary says what you may use.
 
 8
-00:00:22.175 --> 00:00:26.962
+00:00:22.312 --> 00:00:27.099
 A design that confuses the two fails in
 front of the assessor, not in the lab.
 
 9
-00:00:26.962 --> 00:00:29.799
+00:00:27.099 --> 00:00:29.937
 Over the next thirty minutes
 I'll take four questions.
 
 10
-00:00:29.799 --> 00:00:33.142
+00:00:29.937 --> 00:00:33.280
 Why the authorization boundary
 decides what you can use,
 
 11
-00:00:33.142 --> 00:00:35.275
+00:00:33.280 --> 00:00:35.413
 and why so much of it stays invisible.
 
 12
-00:00:35.275 --> 00:00:40.400
+00:00:35.413 --> 00:00:40.538
 What changed at FedRAMP in 2026, and what
 Government Community Cloud leaves out.
 
 13
-00:00:40.400 --> 00:00:41.838
+00:00:40.538 --> 00:00:41.976
 Who owns the boundary.
 
 14
-00:00:41.838 --> 00:00:45.011
+00:00:41.976 --> 00:00:45.149
 And how to respond when a
 capability falls outside it,
 
 15
-00:00:45.011 --> 00:00:47.824
+00:00:45.149 --> 00:00:47.962
 and evidence that response
 in your own package.
 
 16
-00:00:47.824 --> 00:00:50.312
+00:00:47.962 --> 00:00:50.449
 There's no configuration on these slides.
 
 17
-00:00:50.312 --> 00:00:54.987
+00:00:50.449 --> 00:00:55.125
 Each decision slide says what the decision
 is, who owns it, and when you need it.
 
 18
-00:00:54.987 --> 00:00:58.100
+00:00:55.125 --> 00:00:58.250
 Let's start with two
 agencies and one license.

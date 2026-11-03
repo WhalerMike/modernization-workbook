@@ -1,71 +1,71 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.175
+00:00:00.050 --> 00:00:04.116
 The audit's most important output
 is a category for every instance.
 
 2
-00:00:04.175 --> 00:00:09.499
+00:00:04.116 --> 00:00:09.638
 Category 1 is ready now: Arc
 connected, the SQL extension deployed,
 
 3
-00:00:09.499 --> 00:00:13.837
+00:00:09.638 --> 00:00:14.167
 Entra authentication on, and
 SQL Server 2022 or later.
 
 4
-00:00:13.837 --> 00:00:16.918
+00:00:14.167 --> 00:00:17.203
 Category 2 is eligible
 but not yet enabled,
 
 5
-00:00:16.918 --> 00:00:20.438
+00:00:17.203 --> 00:00:20.954
 and that's a server action,
 not a SQL Server change.
 
 6
-00:00:20.438 --> 00:00:23.738
+00:00:20.954 --> 00:00:24.207
 Category 3 isn't eligible
 yet: older engines,
 
 7
-00:00:23.738 --> 00:00:27.313
+00:00:24.207 --> 00:00:27.698
 and failover cluster
 instances on any version.
 
 8
-00:00:27.313 --> 00:00:31.031
+00:00:27.698 --> 00:00:31.364
 They upgrade, or carry an
 exception with a sunset date,
 
 9
-00:00:31.031 --> 00:00:34.750
+00:00:31.364 --> 00:00:34.977
 and an exception doesn't save
 them from the NTLM block.
 
 10
-00:00:34.750 --> 00:00:37.350
+00:00:34.977 --> 00:00:37.590
 Then the book's most
 common misunderstanding.
 
 11
-00:00:37.350 --> 00:00:40.556
+00:00:37.590 --> 00:00:40.751
 Layer 1 is the engine
 accepting Entra tokens,
 
 12
-00:00:40.556 --> 00:00:44.975
+00:00:40.751 --> 00:00:45.104
 and a domain-joined Windows Server
 2019 host can do that today.
 
 13
-00:00:44.975 --> 00:00:49.962
+00:00:45.104 --> 00:00:50.022
 Layer 2 is administrators signing in
 to the server itself with Entra ID.
 
 14
-00:00:49.962 --> 00:00:54.220
+00:00:50.022 --> 00:00:54.220
 That needs Windows Server 2025,
 and it's a separate program.

@@ -5,51 +5,51 @@ WEBVTT
 Welcome.
 
 2
-00:00:00.763 --> 00:00:04.172
+00:00:00.763 --> 00:00:04.224
 This is the technical deep
-dive for Book 03 of the
+dive for HR-Driven Identity,
 
 3
-00:00:04.172 --> 00:00:07.924
-Federal Modernization
-Workbook, HR-Driven Identity.
+00:00:04.224 --> 00:00:07.762
+one of the books of the
+Federal Modernization Workbook.
 
 4
-00:00:07.924 --> 00:00:10.637
+00:00:07.762 --> 00:00:10.498
 It's for the people
 who'll actually build it:
 
 5
-00:00:10.637 --> 00:00:14.975
+00:00:10.498 --> 00:00:14.875
 identity engineers, HR systems
 integrators and ICAM architects.
 
 6
-00:00:14.975 --> 00:00:19.400
+00:00:14.875 --> 00:00:19.300
 The short briefing makes the case for
 letting the personnel record drive identity.
 
 7
-00:00:19.400 --> 00:00:21.300
+00:00:19.300 --> 00:00:21.200
 This session goes underneath it.
 
 8
-00:00:21.300 --> 00:00:26.212
+00:00:21.200 --> 00:00:26.022
 Part 1 is the data and the pipe: who
 owns each fact, how a person is keyed,
 
 9
-00:00:26.212 --> 00:00:31.650
+00:00:26.022 --> 00:00:31.360
 and how records move from the new
 government-wide HR platform into Entra ID.
 
 10
-00:00:31.650 --> 00:00:36.725
+00:00:31.360 --> 00:00:36.612
 Part 2 is lifecycle, access and evidence,
 and the plan that ties it together.
 
 11
-00:00:36.725 --> 00:00:40.000
+00:00:36.612 --> 00:00:39.880
 First, where this session
 sits in the series.
 
@@ -1453,58 +1453,58 @@ the hire creates the account.
 Last, the population HR doesn't cover.
 
 305
-00:20:14.500 --> 00:20:16.619
+00:20:14.500 --> 00:20:16.623
 Contractors are the open question,
 
 306
-00:20:16.619 --> 00:20:20.200
+00:20:16.623 --> 00:20:20.212
 and the book frames it honestly
 as a decision for the agency.
 
 307
-00:20:20.200 --> 00:20:23.550
+00:20:20.212 --> 00:20:23.568
 They aren't in the HR platform's
 standards or its waves,
 
 308
-00:20:23.550 --> 00:20:28.575
+00:20:23.568 --> 00:20:28.527
 and today they usually live in spreadsheets
 nobody is required to keep current.
 
 309
-00:20:28.575 --> 00:20:31.125
+00:20:28.527 --> 00:20:31.081
 No single candidate source is complete.
 
 310
-00:20:31.125 --> 00:20:36.025
+00:20:31.081 --> 00:20:35.992
 The contingent worker record is the best
 fit but has no contract or vetting data;
 
 311
-00:20:36.025 --> 00:20:38.623
+00:20:35.992 --> 00:20:38.596
 the card system only covers badged people;
 
 312
-00:20:38.623 --> 00:20:42.187
+00:20:38.596 --> 00:20:42.166
 and a suitability register may
 not know when the work ends.
 
 313
-00:20:42.187 --> 00:20:47.498
+00:20:42.166 --> 00:20:47.487
 So give each fact one authority, hang the
 record on an accountable federal sponsor,
 
 314
-00:20:47.498 --> 00:20:50.388
+00:20:47.487 --> 00:20:50.382
 and end access at the
 earliest end condition.
 
 315
-00:20:50.388 --> 00:20:51.588
+00:20:50.382 --> 00:20:51.584
 Start read-only.
 
 316
-00:20:51.588 --> 00:20:54.110
+00:20:51.584 --> 00:20:54.110
 Finally, what to decide first.
 
 317

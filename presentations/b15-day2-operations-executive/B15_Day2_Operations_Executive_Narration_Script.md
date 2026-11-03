@@ -2,7 +2,7 @@
 
 ## Slide 1 — Day-2 Operations: the executive briefing
 
-This is the executive briefing for Book 15 of the Federal Modernization Workbook: Compliance Automation and Day-2 Operations. It's for the people who own what happens after cutover: the CIO, service owners, help desk and operations leads, and the CISO. The book's argument is simple. A modernized estate is judged on day two, at the help desk. Every routine change there touches a control, so compliance lives or dies in daily operations, not at the audit. I'll take four parts: why day two decides, what changes after cutover, who runs it, and how you prove and measure it. Each decision slide names the decision, its owner, and when it's needed. Let's start on Monday morning.
+This is the executive briefing for Compliance Automation and Day-2 Operations, one of the books of the Federal Modernization Workbook. It's for the people who own what happens after cutover: the CIO, service owners, help desk and operations leads, and the CISO. The book's argument is simple. A modernized estate is judged on day two, at the help desk. Every routine change there touches a control, so compliance lives or dies in daily operations, not at the audit. I'll take four parts: why day two decides, what changes after cutover, who runs it, and how you prove and measure it. Each decision slide names the decision, its owner, and when it's needed. Let's start on Monday morning.
 
 ## Slide 2 — The estate is judged on day two, at the help desk
 

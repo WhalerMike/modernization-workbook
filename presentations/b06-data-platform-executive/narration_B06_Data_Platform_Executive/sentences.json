@@ -7,41 +7,41 @@
   ],
   [
    0.762,
-   7.0,
-   "This is the executive briefing for Book 06 of the Federal Modernization Workbook, SQL Server identity."
+   7.2,
+   "This is the executive briefing for Data Platform, the Federal Modernization Workbook's book on sequel Server identity."
   ],
   [
-   7.763,
+   7.963,
    7.638,
    "It's for the people who make the calls: the C I O, the see-so, the data platform owner, application owners and sponsors."
   ],
   [
-   15.4,
+   15.6,
    1.425,
    "The argument is short."
   ],
   [
-   16.825,
+   17.025,
    9.262,
-   "Every domain-joined SQL Server inherited Windows Authentication, and none of it is visible to the identity plane that enforces multifactor sign-in."
+   "Every domain-joined sequel Server inherited Windows Authentication, and none of it is visible to the identity plane that enforces multifactor sign-in."
   ],
   [
-   26.087,
+   26.288,
    4.088,
    "The estate has to be counted and shrunk before any login moves."
   ],
   [
-   30.175,
+   30.375,
    7.987,
    "And the destination is an Entra token on every connection, finished well before the program's own N T L M block date."
   ],
   [
-   38.163,
+   38.362,
    4.375,
    "Each decision slide names the decision, its owner and when it's needed."
   ],
   [
-   42.538,
+   42.737,
    3.0,
    "Let's start with why the database is where this hides."
   ]
@@ -647,41 +647,41 @@
  "16": [
   [
    0.05,
-   5.175,
-   "SQL Server leans on certificates in three places most retirement plans can't see."
+   5.162,
+   "sequel Server leans on certificates in three places most retirement plans can't see."
   ],
   [
-   5.225,
+   5.213,
    6.537,
    "The TLS certificate every Entra connection now requires, since those connections are always encrypted."
   ],
   [
-   11.762,
+   11.75,
    3.125,
    "Certificates behind signed code and endpoints."
   ],
   [
-   14.887,
+   14.875,
    8.8,
    "And certificate sign-in, the stopgap for connections that can't reach Entra in time, which quietly depends on the domain controllers' own certificates."
   ],
   [
-   23.688,
+   23.675,
    3.925,
    "Cloud P K I can't help here; it doesn't issue to servers."
   ],
   [
-   27.613,
-   11.312,
-   "Book 07 settles the issuer: a retained internal hierarchy, renewed through the lifecycle platform, with domain controller certificates kept until the last one retires."
+   27.6,
+   11.6,
+   "The workbook's certificate plan settles the issuer: a retained internal hierarchy, renewed through the lifecycle platform, with domain controller certificates kept until the last one retires."
   ],
   [
-   38.925,
-   8.238,
-   "The decision for data leadership: set no retirement date for the old certificate authority until every SQL Server dependency has moved."
+   39.2,
+   8.175,
+   "The decision for data leadership: set no retirement date for the old certificate authority until every sequel Server dependency has moved."
   ],
   [
-   47.163,
+   47.375,
    1.45,
    "Then, what done means."
   ]
@@ -805,51 +805,51 @@
   ],
   [
    1.625,
-   16.175,
-   "The C I O and data leadership hold the order, give every instance a verdict and a target, upgrade or retire old engines, set no retirement date for the old certificate authority until SQL Server's certificates have moved, and declare closure on evidence."
+   16.225,
+   "The C I O and data leadership hold the order, give every instance a verdict and a target, upgrade or retire old engines, set no retirement date for the old certificate authority until sequel Server's certificates have moved, and declare closure on evidence."
   ],
   [
-   17.8,
+   17.85,
    4.05,
    "The see-so sets the standard and reviews Azure roles like sysadmin."
   ],
   [
-   21.85,
+   21.9,
    4.425,
    "Server infrastructure onboards Arc now, on domain-joined hosts."
   ],
   [
-   26.275,
+   26.325,
    4.55,
    "Application and data owners approve their access rules and their cutovers."
   ],
   [
-   30.825,
+   30.875,
    4.875,
    "The authorizing official accepts the leveraged services and every exception."
   ],
   [
-   35.7,
+   35.75,
    3.35,
    "And the N T L M program decides the long tail."
   ],
   [
-   39.05,
+   39.1,
    1.863,
    "None of this waits on a purchase."
   ],
   [
-   40.913,
+   40.962,
    1.663,
    "Count the estate first."
   ],
   [
-   42.575,
-   4.062,
-   "Book 06 has the detail, every claim footnoted."
+   42.625,
+   3.925,
+   "Data Platform has the detail, every claim footnoted."
   ],
   [
-   46.638,
+   46.55,
    0.762,
    "Thank you."
   ]

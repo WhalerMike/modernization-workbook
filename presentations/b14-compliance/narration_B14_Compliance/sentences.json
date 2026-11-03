@@ -7,51 +7,51 @@
   ],
   [
    0.762,
-   6.787,
-   "This briefing comes from Book 14 of the Federal Modernization Workbook, Federal Compliance and Authorization."
+   6.475,
+   "This briefing comes from Federal Compliance and Authorization, one of the books of the Federal Modernization Workbook."
   ],
   [
-   7.55,
+   7.237,
    5.9,
    "It's written for authorizing officials, information system security officers and CIOs."
   ],
   [
-   13.45,
+   13.137,
    1.413,
    "I'll take four questions."
   ],
   [
-   14.863,
+   14.55,
    5.775,
    "Why does every control need proof rather than a promise, and what is the federal clock asking for now?"
   ],
   [
-   20.637,
+   20.325,
    5.1,
    "What do the baseline, the closure rule and the agency-level control families require?"
   ],
   [
-   25.738,
+   25.425,
    1.438,
    "Who owns compliance?"
   ],
   [
-   27.175,
+   26.863,
    3.413,
    "And how do you build the authorization package and keep it current?"
   ],
   [
-   30.587,
+   30.275,
    7.463,
    "If you remember one thing, make it this: a control is closed when the thing that closes it is running, and the record shows it working."
   ],
   [
-   38.05,
+   37.737,
    3.288,
    "Everything else is a promise, and promises age."
   ],
   [
-   41.337,
+   41.025,
    2.138,
    "Let's start with who owes which proof."
   ]
@@ -230,46 +230,46 @@
   ],
   [
    12.125,
-   2.925,
-   "Book 14 applies two tests, in order."
+   3.337,
+   "The workbook's design applies two tests, in order."
   ],
   [
-   15.05,
+   15.463,
    7.075,
    "First, the mechanism exists: it's deployed, running, and reaches the part of the estate the control covers."
   ],
   [
-   22.125,
+   22.538,
    2.525,
    "A purchase order or a roadmap fails."
   ],
   [
-   24.65,
+   25.062,
    6.3,
    "Second, its proof is recorded: a machine-readable verification, a time, and what checked it."
   ],
   [
-   30.95,
+   31.363,
    5.312,
    "Fail the first test and the control is open, with a milestone in the plan of action."
   ],
   [
-   36.263,
+   36.675,
    5.75,
    "Pass the first but fail the second and it's worse: it looks closed and can't be shown to be."
   ],
   [
-   42.013,
+   42.425,
    2.45,
    "And a vendor roadmap is not a commitment."
   ],
   [
-   44.462,
+   44.875,
    4.175,
    "Date every claim, and write the capability into the contract."
   ],
   [
-   48.638,
+   49.05,
    2.975,
    "Next, the families no provider can close for you."
   ]
@@ -691,11 +691,11 @@
   ],
   [
    46.55,
-   4.075,
-   "Book 14 has the detail, with every claim footnoted."
+   5.45,
+   "Federal Compliance and Authorization has the detail, with every claim footnoted."
   ],
   [
-   50.625,
+   52.0,
    0.762,
    "Thank you."
   ]

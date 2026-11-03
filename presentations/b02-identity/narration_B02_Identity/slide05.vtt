@@ -15,45 +15,46 @@ four different populations.
 The workbook treats them as four tracks.
 
 4
-00:00:10.100 --> 00:00:14.559
-People, the HR track: Book 02
+00:00:10.100 --> 00:00:14.292
+People, the HR track: this book
 builds the directory side,
 
 5
-00:00:14.559 --> 00:00:17.600
-and Book 03 supplies the attributes.
+00:00:14.292 --> 00:00:17.938
+and HR-Driven Identity
+supplies the attributes.
 
 6
-00:00:17.600 --> 00:00:21.632
-End-user devices and servers,
-the Intune and Arc tracks:
+00:00:17.938 --> 00:00:22.550
+End-user devices and servers, the Intune
+and Arc tracks: this book's Group
 
 7
-00:00:21.632 --> 00:00:27.188
-Book 02's Group Policy analysis finds
-their settings, and Book 05 moves them.
+00:00:22.550 --> 00:00:27.475
+Policy analysis finds their settings,
+and Devices and Endpoints moves them.
 
 8
-00:00:27.188 --> 00:00:32.780
+00:00:27.475 --> 00:00:32.364
 And the non-person track: every service
 account gets an owner and a target,
 
 9
-00:00:32.780 --> 00:00:35.763
-here in Book 02, with
-AI agents in Book 17.
+00:00:32.364 --> 00:00:36.275
+here in this book, with AI agents
+in AI Identity Governance.
 
 10
-00:00:35.763 --> 00:00:39.194
+00:00:36.275 --> 00:00:39.706
 Appendix A maps that work
 to account management,
 
 11
-00:00:39.194 --> 00:00:45.113
+00:00:39.706 --> 00:00:45.625
 attribute-based access and least
 privilege in NIST 800-53, and to M-22-09.
 
 12
-00:00:45.113 --> 00:00:48.000
+00:00:45.625 --> 00:00:48.530
 Next, everything else
 the directory holds up.

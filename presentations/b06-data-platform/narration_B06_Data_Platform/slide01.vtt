@@ -5,49 +5,53 @@ WEBVTT
 Welcome.
 
 2
-00:00:00.763 --> 00:00:06.299
-This briefing is Book 06 of the Federal
-Modernization Workbook, the Data Platform.
+00:00:00.763 --> 00:00:02.997
+This briefing comes from Data Platform,
 
 3
-00:00:06.299 --> 00:00:08.787
+00:00:02.997 --> 00:00:06.112
+one of the books of the
+Federal Modernization Workbook.
+
+4
+00:00:06.112 --> 00:00:08.725
 It's about moving the
 SQL Server estate from
 
-4
-00:00:08.787 --> 00:00:11.275
+5
+00:00:08.725 --> 00:00:11.137
 Windows Authentication to cloud identity.
 
-5
-00:00:11.275 --> 00:00:12.963
+6
+00:00:11.137 --> 00:00:12.825
 Here's why it gets its own book.
 
-6
-00:00:12.963 --> 00:00:16.416
+7
+00:00:12.825 --> 00:00:16.278
 Every identity program
 eventually reaches the database,
 
-7
-00:00:16.416 --> 00:00:20.588
+8
+00:00:16.278 --> 00:00:20.450
 and that's where it finds the most
 Windows authentication still in use.
 
-8
-00:00:20.588 --> 00:00:25.340
+9
+00:00:20.450 --> 00:00:25.203
 We'll go in four steps: why the database
 is where legacy authentication hides,
 
-9
-00:00:25.340 --> 00:00:28.359
+10
+00:00:25.203 --> 00:00:28.222
 what replaces it, who owns
 the work, and how to do it,
 
-10
-00:00:28.359 --> 00:00:33.112
+11
+00:00:28.222 --> 00:00:32.975
 from the first inventory of the estate
 to a closed state you can keep proving.
 
-11
-00:00:33.112 --> 00:00:36.170
+12
+00:00:32.975 --> 00:00:36.000
 Let's start with how SQL
 Server decides who you are.

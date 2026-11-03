@@ -1,69 +1,69 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.275
+00:00:00.050 --> 00:00:02.265
 Start with what the engine actually does.
 
 2
-00:00:02.275 --> 00:00:05.862
+00:00:02.265 --> 00:00:06.055
 SQL Server doesn't check the
 password for a Windows login.
 
 3
-00:00:05.862 --> 00:00:10.587
+00:00:06.055 --> 00:00:10.752
 It trusts the Windows token, and Windows
 Authentication can't be switched off.
 
 4
-00:00:10.587 --> 00:00:14.179
+00:00:10.752 --> 00:00:14.327
 Normally the client gets a
 Kerberos ticket for the instance's
 
 5
-00:00:14.179 --> 00:00:17.700
+00:00:14.327 --> 00:00:17.853
 service principal name, and no
 password crosses the network.
 
 6
-00:00:17.700 --> 00:00:20.638
+00:00:17.853 --> 00:00:20.783
 The table on the slide
 is the one to remember.
 
 7
-00:00:20.638 --> 00:00:24.474
+00:00:20.783 --> 00:00:24.627
 When the SPN is right, remote
 connections use Kerberos.
 
 8
-00:00:24.474 --> 00:00:28.413
+00:00:24.627 --> 00:00:28.505
 When it's missing, they
 quietly fall back to NTLM.
 
 9
-00:00:28.413 --> 00:00:31.188
+00:00:28.505 --> 00:00:31.268
 When it's on the wrong
 account, they fail outright.
 
 10
-00:00:31.188 --> 00:00:35.429
+00:00:31.268 --> 00:00:35.489
 That silent fallback is the most
 consequential fault in the inheritance,
 
 11
-00:00:35.429 --> 00:00:38.836
+00:00:35.489 --> 00:00:38.881
 because nothing logs which
 protocol each connection used,
 
 12
-00:00:38.836 --> 00:00:42.938
+00:00:38.881 --> 00:00:42.966
 and none of these paths gives
 Conditional Access anything to evaluate.
 
 13
-00:00:42.938 --> 00:00:44.513
+00:00:42.966 --> 00:00:44.533
 None of this was a mistake.
 
 14
-00:00:44.513 --> 00:00:48.910
+00:00:44.533 --> 00:00:48.910
 It was correct engineering for a
 domain-joined world that no longer exists.

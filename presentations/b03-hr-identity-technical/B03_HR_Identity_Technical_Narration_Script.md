@@ -2,7 +2,7 @@
 
 ## Slide 1 — HR-Driven Identity: the technical deep dive
 
-Welcome. This is the technical deep dive for Book 03 of the Federal Modernization Workbook, HR-Driven Identity. It's for the people who'll actually build it: identity engineers, HR systems integrators and ICAM architects. The short briefing makes the case for letting the personnel record drive identity. This session goes underneath it. Part 1 is the data and the pipe: who owns each fact, how a person is keyed, and how records move from the new government-wide HR platform into Entra ID. Part 2 is lifecycle, access and evidence, and the plan that ties it together. First, where this session sits in the series.
+Welcome. This is the technical deep dive for HR-Driven Identity, one of the books of the Federal Modernization Workbook. It's for the people who'll actually build it: identity engineers, HR systems integrators and ICAM architects. The short briefing makes the case for letting the personnel record drive identity. This session goes underneath it. Part 1 is the data and the pipe: who owns each fact, how a person is keyed, and how records move from the new government-wide HR platform into Entra ID. Part 2 is lifecycle, access and evidence, and the plan that ties it together. First, where this session sits in the series.
 
 ## Slide 2 — This is the HR track: what it moves and how you know
 

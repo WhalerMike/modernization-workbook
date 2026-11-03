@@ -7,41 +7,41 @@
   ],
   [
    0.762,
-   6.0,
-   "This briefing is Book 09 of the Federal Modernization Workbook, Network and Transport."
+   5.75,
+   "This briefing comes from Network and Transport, one of the books of the Federal Modernization Workbook."
   ],
   [
-   6.763,
+   6.513,
    8.463,
    "It's about moving branch traffic off the long hairpin through a distant data center, without turning a latency gain into a compliance loss."
   ],
   [
-   15.225,
+   14.975,
    3.875,
    "Faster and governed are different things, and the branch needs both."
   ],
   [
-   19.1,
+   18.85,
    7.55,
    "We'll go in four steps: why physics decides the architecture, what has to change, who owns the network, and how to get there."
   ],
   [
-   26.65,
+   26.4,
    1.812,
    "Here's the short version up front."
   ],
   [
-   28.462,
+   28.212,
    2.337,
    "No product shortens a fiber path."
   ],
   [
-   30.8,
+   30.55,
    3.487,
    "So buy transport on physics, and govern it as compliance."
   ],
   [
-   34.288,
+   34.038,
    1.575,
    "Let's start with the physics."
   ]
@@ -740,41 +740,41 @@
   ],
   [
    1.65,
-   12.812,
-   "First, adopt the sequence as policy: the governor secured and live before traffic, the boundary change decided before cutover, and sis-uh telemetry parity confirmed before any legacy circuit ends."
+   12.625,
+   "First, adopt the sequence as policy: the governor secured and lyve before traffic, the boundary change decided before cutover, and sis-uh telemetry parity confirmed before any legacy circuit ends."
   ],
   [
-   14.463,
+   14.275,
    8.725,
    "Second, put the target in writing for every edge-device replacement, before the August 2027 deadline spends the money like for like."
   ],
   [
-   23.188,
+   23.0,
    8.338,
    "Third, decide the Microsoft 365 Optimize exception, with device-side tenant restrictions as a precondition."
   ],
   [
-   31.525,
+   31.337,
    6.162,
    "And fourth, name one decider per decision, from the authorizing official to the contracting officer."
   ],
   [
-   37.688,
+   37.5,
    12.55,
    "The next step is to write the application-to-path policy the boundary controls already ask for, and to instrument a sample of branches before the next migration wave, because that baseline can't be rebuilt afterward."
   ],
   [
-   50.237,
+   50.05,
    5.938,
    "Buy transport on physics and govern it as compliance, and the branch gets faster without getting weaker."
   ],
   [
-   56.175,
-   4.025,
-   "Book 09 has the detail, every claim footnoted."
+   55.987,
+   4.175,
+   "Network and Transport has the detail, every claim footnoted."
   ],
   [
-   60.2,
+   60.163,
    0.762,
    "Thank you."
   ]

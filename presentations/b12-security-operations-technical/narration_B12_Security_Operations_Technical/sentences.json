@@ -7,41 +7,41 @@
   ],
   [
    0.762,
-   7.425,
-   "This is the technical deep dive for Book 12 of the Federal Modernization Workbook, Security Operations and Telemetry."
+   7.35,
+   "This is the technical deep dive for Security Operations and Telemetry, one of the books of the Federal Modernization Workbook."
   ],
   [
-   8.188,
+   8.113,
    7.562,
    "It's for the people who build and run the SOC: detection engineers, SOC engineers and security architects."
   ],
   [
-   15.75,
+   15.675,
    2.362,
    "The whole book comes down to one idea."
   ],
   [
-   18.113,
+   18.038,
    6.688,
    "You can't defend what you can't see, and a finding only closes when the thing is actually fixed, with proof."
   ],
   [
-   24.8,
+   24.725,
    4.7,
    "Part 1 is about getting evidence to arrive and turning it into detections."
   ],
   [
-   29.5,
+   29.425,
    3.763,
    "Part 2 is about the findings that pile up, and who acts on them."
   ],
   [
-   33.263,
+   33.188,
    3.538,
    "The code lives in the chapters; I'll stick to what matters."
   ],
   [
-   36.8,
+   36.725,
    2.475,
    "Let's start with why this is harder than it looks."
   ]

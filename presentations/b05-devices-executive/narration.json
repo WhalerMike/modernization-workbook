@@ -2,12 +2,12 @@
   {
     "slide": 1,
     "title": "Devices & Endpoints: the executive briefing",
-    "say": "Welcome. This is the executive briefing for Book 05 of the Federal Modernization Workbook, Devices and Endpoints. It's for the people who decide how the fleet moves. The argument is short. Group Policy governed devices by where they sat in the directory, and that quietly did a lot of governance. None of it comes to the cloud, so it has to be rebuilt on purpose. Hybrid join is a waypoint, not a destination. And servers take their own road, through Azure Arc. I'll take four questions: why, what, who and how. Each decision slide names the decision, its owner and when it's needed. First, where this book sits in the series."
+    "say": "Welcome. This is the executive briefing for Devices and Endpoints, one of the books of the Federal Modernization Workbook. It's for the people who decide how the fleet moves. The argument is short. Group Policy governed devices by where they sat in the directory, and that quietly did a lot of governance. None of it comes to the cloud, so it has to be rebuilt on purpose. Hybrid join is a waypoint, not a destination. And servers take their own road, through Azure Arc. I'll take four questions: why, what, who and how. Each decision slide names the decision, its owner and when it's needed. First, where this book sits in the series."
   },
   {
     "slide": 2,
     "title": "Book 05 is the Intune and Arc tracks: devices, servers",
-    "say": "Here's why this matters: the series moves four populations to the cloud, each on its own track, and Book 05 carries two of them. The Intune track is end-user devices, and the Arc track is servers. A device's attributes come from device provisioning, like the Autopilot group tag, never from HR, and a device rule can't read its owner. Devices are done when their policy targets those attributes and the computer-side GPO links are gone, one population at a time. Servers are done when each is Arc-enabled, tagged, and evaluated by Azure Policy. And Group Policy splits: user settings go with people, computer settings with devices and servers. First, which platforms each one reaches."
+    "say": "Here's why this matters: the series moves four populations to the cloud, each on its own track, and this book carries two of them. The Intune track is end-user devices, and the Arc track is servers. A device's attributes come from device provisioning, like the Autopilot group tag, never from HR, and a device rule can't read its owner. Devices are done when their policy targets those attributes and the computer-side GPO links are gone, one population at a time. Servers are done when each is Arc-enabled, tagged, and evaluated by Azure Policy. And Group Policy splits: user settings go with people, computer settings with devices and servers. First, which platforms each one reaches."
   },
   {
     "slide": 3,
@@ -47,7 +47,7 @@
   {
     "slide": 10,
     "title": "Compliance is the access signal; make it fail closed",
-    "say": "Device compliance is where devices meet access. Intune decides whether a device is compliant, and Conditional Access, from Book 04, decides what it can reach. Out of the box, a device with no compliance policy counts as compliant. The program flips that, so a device that slips through every group can't pass. A device that stops reporting for two weeks loses access. And the grace period, how long a failing device keeps working, is a risk decision, not a technical one. On the most privileged workstations, a security detection also costs access. The decision for the CISO: make compliance fail closed, and set the grace period, before Conditional Access relies on it. Next, devices that can't enroll."
+    "say": "Device compliance is where devices meet access. Intune decides whether a device is compliant, and Conditional Access, from Access and Privilege, decides what it can reach. Out of the box, a device with no compliance policy counts as compliant. The program flips that, so a device that slips through every group can't pass. A device that stops reporting for two weeks loses access. And the grace period, how long a failing device keeps working, is a risk decision, not a technical one. On the most privileged workstations, a security detection also costs access. The decision for the CISO: make compliance fail closed, and set the grace period, before Conditional Access relies on it. Next, devices that can't enroll."
   },
   {
     "slide": 11,
@@ -102,6 +102,6 @@
   {
     "slide": 21,
     "title": "Decisions to make, owners and timing",
-    "say": "So, the decisions. The sponsor and CIO set the shape: an exit plan for every hybrid-joined device, no new device on the old path from the next purchase order, the governed path for large estates, and each server's domain exit as its own decision. Endpoint engineering freezes the GPOs, records every overlap, and calls each wave on measured results. The CISO makes compliance fail closed, adds a second approver to high-impact changes, sets the patch window, owns the evidence, and decides temporary exceptions. And the authorizing official accepts the rest: devices that can't enroll, standing exceptions, and any 2012 server that has to stay. Rebuild on purpose what the tree did implicitly. Book 05 has the detail, every claim footnoted. Thank you."
+    "say": "So, the decisions. The sponsor and CIO set the shape: an exit plan for every hybrid-joined device, no new device on the old path from the next purchase order, the governed path for large estates, and each server's domain exit as its own decision. Endpoint engineering freezes the GPOs, records every overlap, and calls each wave on measured results. The CISO makes compliance fail closed, adds a second approver to high-impact changes, sets the patch window, owns the evidence, and decides temporary exceptions. And the authorizing official accepts the rest: devices that can't enroll, standing exceptions, and any 2012 server that has to stay. Rebuild on purpose what the tree did implicitly. Devices and Endpoints has the detail, every claim footnoted. Thank you."
   }
 ]

@@ -1,65 +1,65 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:05.238
+00:00:00.050 --> 00:00:05.222
 Certificates outlive migrations because a
 certificate isn't a record in a directory.
 
 2
-00:00:05.238 --> 00:00:08.362
+00:00:05.222 --> 00:00:08.336
 It's a signed statement that's
 already been handed out.
 
 3
-00:00:08.362 --> 00:00:11.475
+00:00:08.336 --> 00:00:11.438
 When the directory moves,
 the certificate doesn't.
 
 4
-00:00:11.475 --> 00:00:15.850
+00:00:11.438 --> 00:00:15.799
 It keeps working until it expires,
 and then whatever relied on it stops.
 
 5
-00:00:15.850 --> 00:00:20.999
+00:00:15.799 --> 00:00:20.919
 And a lot relies on it: domain
 controllers, smart card and PIV logon,
 
 6
-00:00:20.999 --> 00:00:26.625
+00:00:20.919 --> 00:00:26.768
 Wi-Fi and VPN, TLS listeners like SQL
 Server, code signing and encryption.
 
 7
-00:00:26.625 --> 00:00:28.675
+00:00:26.768 --> 00:00:28.826
 That gives the program two clocks.
 
 8
-00:00:28.675 --> 00:00:32.318
+00:00:28.826 --> 00:00:32.458
 On the directory's clock,
 cutover is declared complete,
 
 9
-00:00:32.318 --> 00:00:37.175
+00:00:32.458 --> 00:00:37.308
 and months later the first expiry wave
 finds no issuer, far from its cause.
 
 10
-00:00:37.175 --> 00:00:40.967
+00:00:37.308 --> 00:00:41.088
 On the certificate's clock,
 the replacement issuer is
 
 11
-00:00:40.967 --> 00:00:44.587
+00:00:41.088 --> 00:00:44.678
 live before the first expiry,
 and AD CS retires last.
 
 12
-00:00:44.587 --> 00:00:47.174
+00:00:44.678 --> 00:00:47.249
 The program runs on the
 certificate's clock.
 
 13
-00:00:47.174 --> 00:00:50.420
+00:00:47.249 --> 00:00:50.420
 And the rules certificates live
 under are already changing.

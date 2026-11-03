@@ -5,54 +5,55 @@ WEBVTT
 Welcome.
 
 2
-00:00:00.763 --> 00:00:05.179
-This briefing is Book 09 of the
-Federal Modernization Workbook,
+00:00:00.763 --> 00:00:03.436
+This briefing comes from
+Network and Transport,
 
 3
-00:00:05.179 --> 00:00:06.762
-Network and Transport.
+00:00:03.436 --> 00:00:06.512
+one of the books of the
+Federal Modernization Workbook.
 
 4
-00:00:06.762 --> 00:00:11.885
+00:00:06.512 --> 00:00:11.635
 It's about moving branch traffic off the
 long hairpin through a distant data center,
 
 5
-00:00:11.885 --> 00:00:15.226
+00:00:11.635 --> 00:00:14.976
 without turning a latency
 gain into a compliance loss.
 
 6
-00:00:15.226 --> 00:00:19.100
+00:00:14.976 --> 00:00:18.850
 Faster and governed are different
 things, and the branch needs both.
 
 7
-00:00:19.100 --> 00:00:22.914
+00:00:18.850 --> 00:00:22.664
 We'll go in four steps: why
 physics decides the architecture,
 
 8
-00:00:22.914 --> 00:00:26.650
+00:00:22.664 --> 00:00:26.400
 what has to change, who owns the
 network, and how to get there.
 
 9
-00:00:26.650 --> 00:00:28.462
+00:00:26.400 --> 00:00:28.212
 Here's the short version up front.
 
 10
-00:00:28.462 --> 00:00:30.799
+00:00:28.212 --> 00:00:30.549
 No product shortens a fiber path.
 
 11
-00:00:30.799 --> 00:00:34.287
+00:00:30.549 --> 00:00:34.037
 So buy transport on physics,
 and govern it as compliance.
 
 12
-00:00:34.287 --> 00:00:36.230
+00:00:34.037 --> 00:00:35.960
 Let's start with the physics.
 
 13
@@ -197,78 +198,78 @@ edge before they carry traffic.
 Next, what policy actually requires.
 
 42
-00:02:30.820 --> 00:02:36.607
+00:02:30.820 --> 00:02:36.617
 Read from the documents, TIC 3.0 describes
 goals; it doesn't prescribe methods.
 
 43
-00:02:36.607 --> 00:02:39.633
+00:02:36.617 --> 00:02:39.645
 It has four use cases,
 and none of them is SASE.
 
 44
-00:02:39.633 --> 00:02:44.962
+00:02:39.645 --> 00:02:44.981
 Two statements matter most for a branch:
 the same policy enforcement on every path,
 
 45
-00:02:44.962 --> 00:02:48.958
+00:02:44.981 --> 00:02:48.983
 and keeping CISA's visibility
 as branches connect directly.
 
 46
-00:02:48.958 --> 00:02:50.595
+00:02:48.983 --> 00:02:50.626
 Logging is the other half.
 
 47
-00:02:50.595 --> 00:02:55.488
+00:02:50.626 --> 00:02:55.526
 The current federal logging memo
 sets retention and content rules,
 
 48
-00:02:55.488 --> 00:02:59.595
+00:02:55.526 --> 00:02:59.640
 and the first agency logging
 plan is due November 18, 2026.
 
 49
-00:02:59.595 --> 00:03:00.670
+00:02:59.640 --> 00:03:00.708
 Here's the trap.
 
 50
-00:03:00.670 --> 00:03:04.242
+00:03:00.708 --> 00:03:04.284
 When branches leave the managed
 trusted internet service,
 
 51
-00:03:04.242 --> 00:03:06.720
+00:03:04.284 --> 00:03:06.766
 the telemetry CISA was receiving stops.
 
 52
-00:03:06.720 --> 00:03:09.989
+00:03:06.766 --> 00:03:10.039
 The replacement is CISA's
 log aggregation warehouse,
 
 53
-00:03:09.989 --> 00:03:14.420
+00:03:10.039 --> 00:03:14.481
 and onboarding needs the agency, CISA
 and the provider working together.
 
 54
-00:03:14.420 --> 00:03:17.757
+00:03:14.481 --> 00:03:17.818
 So keep the old service
 until CISA confirms parity.
 
 55
-00:03:17.757 --> 00:03:20.382
+00:03:17.818 --> 00:03:20.446
 Technology-neutral isn't requirement-free.
 
 56
-00:03:20.382 --> 00:03:23.820
+00:03:20.446 --> 00:03:23.902
 Four binding obligations still
 land on branch equipment.
 
 57
-00:03:23.820 --> 00:03:26.750
+00:03:23.902 --> 00:03:26.750
 Now, where data and trust should live.
 
 58
@@ -996,79 +997,79 @@ So, the decisions.
 Here are the four decisions.
 
 210
-00:13:02.160 --> 00:13:07.459
+00:13:02.160 --> 00:13:07.381
 First, adopt the sequence as policy: the
 governor secured and live before traffic,
 
 211
-00:13:07.459 --> 00:13:10.385
+00:13:07.381 --> 00:13:10.265
 the boundary change
 decided before cutover,
 
 212
-00:13:10.385 --> 00:13:14.972
+00:13:10.265 --> 00:13:14.785
 and CISA telemetry parity confirmed
 before any legacy circuit ends.
 
 213
-00:13:14.972 --> 00:13:19.497
+00:13:14.785 --> 00:13:19.309
 Second, put the target in writing
 for every edge-device replacement,
 
 214
-00:13:19.497 --> 00:13:23.698
+00:13:19.309 --> 00:13:23.510
 before the August 2027 deadline
 spends the money like for like.
 
 215
-00:13:23.698 --> 00:13:27.682
+00:13:23.510 --> 00:13:27.494
 Third, decide the Microsoft
 365 Optimize exception,
 
 216
-00:13:27.682 --> 00:13:32.036
+00:13:27.494 --> 00:13:31.848
 with device-side tenant
 restrictions as a precondition.
 
 217
-00:13:32.036 --> 00:13:34.559
+00:13:31.848 --> 00:13:34.371
 And fourth, name one decider per decision,
 
 218
-00:13:34.559 --> 00:13:38.197
+00:13:34.371 --> 00:13:38.009
 from the authorizing official
 to the contracting officer.
 
 219
-00:13:38.197 --> 00:13:42.807
+00:13:38.009 --> 00:13:42.619
 The next step is to write the
 application-to-path policy the boundary controls
 
 220
-00:13:42.807 --> 00:13:46.636
+00:13:42.619 --> 00:13:46.448
 already ask for, and to instrument
 a sample of branches before the
 
 221
-00:13:46.636 --> 00:13:50.748
+00:13:46.448 --> 00:13:50.560
 next migration wave, because that
 baseline can't be rebuilt afterward.
 
 222
-00:13:50.748 --> 00:13:53.785
+00:13:50.560 --> 00:13:53.598
 Buy transport on physics
 and govern it as compliance,
 
 223
-00:13:53.785 --> 00:13:56.685
+00:13:53.598 --> 00:13:56.498
 and the branch gets faster
 without getting weaker.
 
 224
-00:13:56.685 --> 00:14:00.710
-Book 09 has the detail,
-every claim footnoted.
+00:13:56.498 --> 00:14:00.672
+Network and Transport has the
+detail, every claim footnoted.
 
 225
-00:14:00.710 --> 00:14:01.540
+00:14:00.672 --> 00:14:01.490
 Thank you.

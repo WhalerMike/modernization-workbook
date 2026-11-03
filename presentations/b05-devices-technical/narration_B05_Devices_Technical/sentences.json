@@ -7,41 +7,41 @@
   ],
   [
    0.762,
-   7.125,
-   "This is the technical deep dive for Book 05 of the Federal Modernization Workbook, Devices and Endpoints."
+   6.612,
+   "This is the technical deep dive for Devices and Endpoints, one of the books of the Federal Modernization Workbook."
   ],
   [
-   7.888,
+   7.375,
    6.75,
    "It's for the architects and engineers who move a domain-joined fleet onto Intune, and its servers onto Azure Arc."
   ],
   [
-   14.637,
+   14.125,
    1.562,
    "It comes in two parts."
   ],
   [
-   16.2,
+   15.688,
    13.262,
    "Part 1 is the endpoints: how a new device is governed from the moment it powers on, the three paths an existing estate can take to the same end state, and then the Group Policy sunset and the policy library that replaces it."
   ],
   [
-   29.462,
+   28.95,
    8.55,
    "Part 2 is servers and the run state: bringing servers under Arc with a day-one baseline, then operating and evidencing the whole fleet."
   ],
   [
-   38.013,
-   6.75,
-   "The scripts and policy payloads live in the chapters and Appendix A, marked as illustrative and untested."
+   37.5,
+   6.713,
+   "The scripts and policy payloads liv in the chapters and Appendix A, marked as illustrative and untested."
   ],
   [
-   44.763,
+   44.212,
    1.525,
    "I'll stick to what matters."
   ],
   [
-   46.288,
+   45.737,
    2.9,
    "First, where this session sits in the series."
   ]
@@ -49,36 +49,36 @@
  "2": [
   [
    0.05,
-   8.338,
-   "Here's why this matters: the series moves four populations to the cloud, each on its own track, and Book 05 carries two of them."
+   7.95,
+   "Here's why this matters: the series moves four populations to the cloud, each on its own track, and this book carries two of them."
   ],
   [
-   8.387,
+   8.0,
    4.487,
    "The Intune track is end-user devices, and the Arc track is servers."
   ],
   [
-   12.875,
-   8.262,
-   "A device's attributes come from device provisioning, like the Autopilot group tag, never from HR, and a device rule can't read its owner."
+   12.488,
+   8.412,
+   "A device's attributes come from device provisioning, like the Autopilot group tag, never from H R, and a device rule can't read its owner."
   ],
   [
-   21.137,
+   20.9,
    7.85,
    "Devices are done when their policy targets those attributes and the computer-side G P O links are gone, one population at a time."
   ],
   [
-   28.988,
+   28.75,
    5.525,
    "Servers are done when each is Arc-enabled, tagged, and evaluated by Azure Policy."
   ],
   [
-   34.513,
+   34.275,
    6.287,
    "And Group Policy splits: user settings go with people, computer settings with devices and servers."
   ],
   [
-   40.8,
+   40.562,
    2.962,
    "Next, why Group Policy can't come to the cloud."
   ]
@@ -1031,36 +1031,36 @@
  "28": [
   [
    0.05,
-   9.262,
-   "Compliance policies decide whether a device is compliant; Conditional Access decides what a noncompliant device can reach, and Book 04 owns that part."
+   9.575,
+   "Compliance policies decide whether a device is compliant; Conditional Access decides what a noncompliant device can reach, and Access and Privilege owns that part."
   ],
   [
-   9.312,
+   9.625,
    2.763,
    "This book's job is making the signal accurate."
   ],
   [
-   12.075,
+   12.387,
    3.075,
    "Two tenant settings sit above every policy."
   ],
   [
-   15.15,
+   15.463,
    9.25,
    "Devices with no compliance policy default to compliant, and the program flips that, so a device that falls outside every group can't pass by default."
   ],
   [
-   24.4,
+   24.712,
    11.537,
    "And compliance status stays valid for thirty days by default; the program uses fourteen, short enough that a device left in a drawer loses access, long enough not to catch staff on leave."
   ],
   [
-   35.938,
+   36.25,
    5.6,
    "Read the dashboard carefully, because some statuses hide devices from the noncompliant count."
   ],
   [
-   41.538,
+   41.85,
    6.037,
    "And on Tier 0, a Defender detection becomes a compliance failure, and so a loss of access."
   ]

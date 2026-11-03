@@ -7,36 +7,36 @@
   ],
   [
    0.762,
-   7.562,
-   "This is the technical deep dive for Book 13 of the Federal Modernization Workbook, Governance, Drift and Evidence."
+   7.412,
+   "This is the technical deep dive for Governance, Drift and Evidence, one of the books of the Federal Modernization Workbook."
   ],
   [
-   8.325,
-   6.9,
-   "It's for the people who keep governance true after the audit: governance engineers, platform owners and ISSOs."
+   8.175,
+   7.162,
+   "It's for the people who keep governance true after the audit: governance engineers, platform owners and I S S O's."
   ],
   [
-   15.225,
+   15.338,
    2.362,
    "The whole book comes down to one idea."
   ],
   [
-   17.587,
+   17.7,
    9.65,
    "A package that's assembled by hand starts going stale the day it's signed, so the evidence has to keep arriving, from one record, in a form anyone can re-run."
   ],
   [
-   27.238,
+   27.35,
    3.263,
    "Part 1 builds the record and the engine that watches it."
   ],
   [
-   30.5,
+   30.613,
    4.537,
    "Part 2 is the evidence, the owners, and how authorization uses it."
   ],
   [
-   35.038,
+   35.15,
    2.225,
    "Let's start with why governance decays."
   ]

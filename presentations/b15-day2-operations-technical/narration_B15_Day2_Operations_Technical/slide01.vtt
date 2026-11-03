@@ -5,46 +5,46 @@ WEBVTT
 Welcome.
 
 2
-00:00:00.763 --> 00:00:06.218
-This is the technical deep dive for Book
-15 of the Federal Modernization Workbook,
+00:00:00.763 --> 00:00:05.638
+This is the technical deep dive for
+Compliance Automation and Day-2 Operations,
 
 3
-00:00:06.218 --> 00:00:09.187
-Compliance Automation
-and Day-2 Operations.
+00:00:05.638 --> 00:00:09.037
+one of the books of the
+Federal Modernization Workbook.
 
 4
-00:00:09.187 --> 00:00:12.578
+00:00:09.037 --> 00:00:12.427
 It's for help desk leads,
 cloud and platform engineers,
 
 5
-00:00:12.578 --> 00:00:17.663
+00:00:12.427 --> 00:00:17.512
 and the people who automate controls: the
 teams who run the estate after cutover.
 
 6
-00:00:17.663 --> 00:00:21.916
+00:00:17.512 --> 00:00:21.934
 Part 1 is the front door and the
 authority: how a request comes in,
 
 7
-00:00:21.916 --> 00:00:26.251
+00:00:21.934 --> 00:00:26.442
 gets routed and verified, and what
 the help desk may do in Entra ID.
 
 8
-00:00:26.251 --> 00:00:31.788
+00:00:26.442 --> 00:00:31.714
 Part 2 is catalogs, records and controls:
 typed requests, SaaS integrations,
 
 9
-00:00:31.788 --> 00:00:37.325
+00:00:31.714 --> 00:00:36.987
 the CMDB, and control automation across
 four platforms, then who runs it all.
 
 10
-00:00:37.325 --> 00:00:40.100
+00:00:36.987 --> 00:00:39.770
 Let's start with why
 day two matters so much.

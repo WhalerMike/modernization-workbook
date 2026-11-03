@@ -1,72 +1,72 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.463
+00:00:00.050 --> 00:00:03.453
 The authorizing official doesn't
 read the evidence directly.
 
 2
-00:00:03.463 --> 00:00:07.933
+00:00:03.453 --> 00:00:07.908
 They read a package that summarizes
 it: the security and privacy plans,
 
 3
-00:00:07.933 --> 00:00:12.249
+00:00:07.908 --> 00:00:12.212
 the assessment reports, the plan of
 action, and an executive summary.
 
 4
-00:00:12.249 --> 00:00:17.069
+00:00:12.212 --> 00:00:17.014
 NIST says the package may be generated
 from a tool, and FedRAMP's 2026
 
 5
-00:00:17.069 --> 00:00:21.975
+00:00:17.014 --> 00:00:22.058
 rules now expect machine-readable
 artifacts, at least OSCAL and JSON.
 
 6
-00:00:21.975 --> 00:00:26.703
+00:00:22.058 --> 00:00:26.772
 In OSCAL the pieces link together: the
 assessment plan points to the security plan,
 
 7
-00:00:26.703 --> 00:00:29.067
+00:00:26.772 --> 00:00:29.129
 the results point to the assessment plan,
 
 8
-00:00:29.067 --> 00:00:31.987
+00:00:29.129 --> 00:00:32.049
 and the plan of action hangs
 from the security plan.
 
 9
-00:00:31.987 --> 00:00:34.526
+00:00:32.049 --> 00:00:34.583
 Every failing item gets a disposition.
 
 10
-00:00:34.526 --> 00:00:38.275
+00:00:34.583 --> 00:00:38.320
 Real drift is an open item
 with an owner and a deadline.
 
 11
-00:00:38.275 --> 00:00:43.450
+00:00:38.320 --> 00:00:43.478
 An accepted exception carries its expiry,
 and when that lapses, it's open again.
 
 12
-00:00:43.450 --> 00:00:45.275
+00:00:43.478 --> 00:00:45.295
 Nothing is always satisfied.
 
 13
-00:00:45.275 --> 00:00:47.871
+00:00:45.295 --> 00:00:47.883
 And an empty plan of action
 on a Moderate system
 
 14
-00:00:47.871 --> 00:00:50.800
+00:00:47.883 --> 00:00:50.805
 should make you ask what the
 assessment didn't look at.
 
 15
-00:00:50.800 --> 00:00:52.660
+00:00:50.805 --> 00:00:52.660
 Next, keeping it current.

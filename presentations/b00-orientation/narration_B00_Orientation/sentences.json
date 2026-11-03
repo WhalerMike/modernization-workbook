@@ -7,36 +7,36 @@
   ],
   [
    0.762,
-   6.438,
-   "This briefing comes from Book 00 of the Federal Modernization Workbook, Orientation and Program."
+   6.475,
+   "This briefing comes from Orientation and Program, the opening book of the Federal Modernization Workbook."
   ],
   [
-   7.2,
+   7.237,
    2.013,
    "It's the front door to the series."
   ],
   [
-   9.213,
+   9.25,
    6.812,
    "It makes the case for modernizing the client/server estate now, and it sets out the program that the other books carry out."
   ],
   [
-   16.025,
+   16.062,
    6.05,
    "One thing to know before we start: the workbook is independent technical guidance, not federal policy."
   ],
   [
-   22.075,
+   22.113,
    4.338,
    "When it says a law or a memo requires something, it cites the source."
   ],
   [
-   26.413,
+   26.45,
    11.225,
    "Everything else, the phases, the gates, the principles, who decides what, is the workbook's recommendation: one way to meet those requirements, not a requirement itself."
   ],
   [
-   37.638,
+   37.675,
    7.85,
    "We'll take four questions, why now, what the program is, who decides, and how it runs, and finish with the decisions to make next."
   ]
@@ -230,36 +230,36 @@
   ],
   [
    22.262,
-   6.1,
-   "And each topic has one home; Book 01, for example, owns the phases and gates."
+   6.263,
+   "And each topic has one home; for example, The Transformation Arc owns the phases and gates."
   ],
   [
-   28.363,
+   28.525,
    2.038,
    "Statements come in three kinds."
   ],
   [
-   30.4,
+   30.562,
    5.575,
    "External facts are footnoted to a primary source, checked on the day the book was built."
   ],
   [
-   35.975,
+   36.138,
    4.162,
    "Program positions are the program's own view, open to argument."
   ],
   [
-   40.138,
+   40.3,
    6.312,
    "And illustrative examples are labeled as such; the case studies are patterns, not real engagements."
   ],
   [
-   46.45,
+   46.612,
    5.15,
    "Each chapter also keeps a verification file, so every correction is visible."
   ],
   [
-   51.6,
+   51.763,
    1.4,
    "Now, what is the program?"
   ]
@@ -393,46 +393,46 @@
  "9": [
   [
    0.05,
-   4.9,
-   "The plan follows Book 01's model: seven phases and six gates."
+   5.1,
+   "The plan follows the workbook's program model: seven phases and six gates."
   ],
   [
-   4.95,
+   5.15,
    9.088,
    "It runs from pre-flight, through foundation, a pilot division, general rollout and legacy retirement, to retiring A D DS itself."
   ],
   [
-   14.037,
+   14.238,
    4.275,
    "Then comes steady state, which has no gate; it's a standing rhythm."
   ],
   [
-   18.312,
+   18.512,
    5.588,
    "Each gate has a plain name, like Pilot Clean or Legacy Quiet, and the slide shows them all."
   ],
   [
-   23.9,
+   24.1,
    13.775,
    "Every phase is bound by the same constraints: change starts at the authoritative source and closes with provenance, privilege is time-bound, copies stay non-authoritative, drift stays visible, and nothing needs rip-and-replace."
   ],
   [
-   37.675,
+   37.875,
    3.4,
    "Underneath is one rule: assess before you act."
   ],
   [
-   41.075,
+   41.275,
    8.2,
    "The master plan's illustrative fifty-two weeks stop short of retiring A D DS, and large federal estates usually take several years."
   ],
   [
-   49.275,
+   49.475,
    6.65,
    "Five workstreams run in parallel, and one dependency never relaxes: P K I waits for identity."
   ],
   [
-   55.925,
+   56.125,
    4.15,
    "The gates, not the calendar, decide when the next phase starts."
   ]
@@ -606,36 +606,36 @@
   ],
   [
    18.6,
-   9.75,
-   "Third, designate the authoritative sources: usually HR for employees, and a separate source for contractors, whom HR usually doesn't hold."
+   9.7,
+   "Third, designate the authoritative sources: usually H R for employees, and a separate source for contractors, whom H R usually doesn't hold."
   ],
   [
-   28.35,
+   28.3,
    6.075,
    "And fourth, set the thresholds and evidence rules before the first change, and never change them quietly."
   ],
   [
-   34.425,
+   34.375,
    7.25,
    "The recommended first wave is identity structure and dynamic membership, because every later wave scopes itself with them."
   ],
   [
-   41.675,
+   41.625,
    10.6,
    "And one clock is close: by the program's count, the Agency Logging Plan is due November 18, 2026, so confirm that date with the see-so's office now."
   ],
   [
-   52.275,
+   52.225,
    2.812,
    "Recover the governance once, in one program."
   ],
   [
-   55.087,
-   4.475,
-   "Book 00 has the detail, with every claim footnoted."
+   55.038,
+   4.875,
+   "Orientation and Program has the detail, with every claim footnoted."
   ],
   [
-   59.562,
+   59.913,
    0.762,
    "Thank you."
   ]
