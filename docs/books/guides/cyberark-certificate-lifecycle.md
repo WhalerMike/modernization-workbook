@@ -6,11 +6,12 @@ research-status: in review
 research-type: implementation guide
 research-book: "Book 07"
 date-modified: 2026-10-23
-last-reviewed: 2026-10-23
 aliases:
   - /docs/research/cyberark-certificate-lifecycle.html
+review-status: approved
+reviewed-sha256: 7260d633a619fb56c4bdc3a9837f65f525b9d844efbc43a4252018d90d0c4825
+last-reviewed: 2026-11-03
 ---
-
 # Certificate Lifecycle on CyberArk Certificate Manager {.unnumbered}
 
 [Book 07 — PKI & Certificates](../b07-pki/index.md) sets the certificate architecture: Microsoft Cloud PKI through Intune for managed devices, a hardened AD CS retained for servers and domain controllers, the Federal PKI for PIV, public CAs for internet-facing names, and one certificate lifecycle management (CLM) platform as the system of record for everything Intune and the PIV system don't manage. This implementation guide builds that CLM layer on CyberArk Certificate Manager, the program's choice because CyberArk is the agency's existing machine-identity vendor and the program doesn't add a second CLM vendor.

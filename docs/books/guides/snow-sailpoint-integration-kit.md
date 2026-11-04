@@ -6,11 +6,12 @@ research-status: draft
 research-type: implementation guide
 research-book: "Books 03, 13, 15"
 date-modified: 2026-10-24
-last-reviewed: 2026-10-24
 aliases:
   - /docs/research/snow-sailpoint-integration-kit.html
+review-status: approved
+reviewed-sha256: fabe8a4c0b0b51009db24bf00e4e16cd79edd2ed3a03b113a6242934bb8a43a5
+last-reviewed: 2026-11-03
 ---
-
 # Integrating ServiceNow and SailPoint: An Implementation Example (Pass 1) {.unnumbered}
 
 ::: {.callout-note}

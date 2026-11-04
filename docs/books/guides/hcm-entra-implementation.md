@@ -6,11 +6,12 @@ research-status: in review
 research-type: implementation guide
 research-book: "Book 03"
 date-modified: 2026-10-25
-last-reviewed: 2026-10-25
 aliases:
   - /docs/research/hcm-entra-implementation.html
+review-status: approved
+reviewed-sha256: 3832ceec5fc4dd209af31ff1fd70f2148b4d7c189a160174a31a43546406f807
+last-reviewed: 2026-11-03
 ---
-
 # Building Book 03's HR Pipeline: Oracle Fusion Cloud HCM to Microsoft Entra ID {.unnumbered}
 
 [Book 03 — HR-Driven Identity](../b03-hr-identity/index.md) sets the design: HR is the source of authority for the person, a middleware in the agency's boundary does [five duties for every event](../b03-hr-identity/05-the-provisioning-pipeline.md#the-middleware-five-duties-per-event), Microsoft Graph `/bulkUpload` is the one door into the directory, users land in Active Directory or Entra ID depending on where they are in the migration, and Lifecycle Workflows act on the accounts that provisioning creates. [Chapter 06](../b03-hr-identity/06-canonical-attribute-schema.md) fixes the canonical schema, and [Chapter 12](../b03-hr-identity/12-execution-plan.md) the phases. This guide shows how to build that pipeline from Oracle Fusion Cloud HCM, the Core HCM platform that Federal HR 2.0 awarded, to Microsoft Entra ID.

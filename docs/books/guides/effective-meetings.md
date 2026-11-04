@@ -8,8 +8,10 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
+review-status: approved
+reviewed-sha256: 3c7318d7a50f647265cfc4b52c754971b31f5f65a5bc01d263854b59e667142c
+last-reviewed: 2026-11-03
 ---
-
 # Effective Meetings — Purpose, Agenda, Roles, and Follow-Through
 
 *A meeting is a tool for deciding and coordinating; if it ends without decisions and owners, it was a status report that cost an hour of everyone's time.*
