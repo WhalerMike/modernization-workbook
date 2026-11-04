@@ -415,11 +415,11 @@
   ],
   [
    40.475,
-   6.838,
-   "The Federal Modernization Workbook's Book 13's point is that native tools change state; they don't close findings."
+   6.088,
+   "The Federal Modernization Workbook's point is that native tools change state; they don't close findings."
   ],
   [
-   47.312,
+   46.562,
    7.438,
    "The script only moves a finding to Awaiting verification, and Module 6's business rule blocks any other close."
   ]

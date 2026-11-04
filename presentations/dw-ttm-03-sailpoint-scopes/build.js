@@ -169,7 +169,7 @@ require("../_build/devwb.js")({
         ] }, pt: 13 },
       ],
       sources: "Sources: NIST SP 800-53B Moderate baseline (release 5.2.0). Chapter 03, “Federal requirements and evidence.”",
-      say: `What this proves: the drift and re-read clients hold read scopes only, and the workflow client holds one scope and is removed after use. That's least privilege and account management at Moderate, with the comparison kept beside the API client's approval. The Graph app registration holds only what it reads, with a certificate, which adds authenticator management, IA-5. And no part of Pass 1 can write to SailPoint, Entra ID or Active Directory, which is Book 13's rule that the coordination layer never writes configuration itself.`,
+      say: `What this proves: the drift and re-read clients hold read scopes only, and the workflow client holds one scope and is removed after use. That's least privilege and account management at Moderate, with the comparison kept beside the API client's approval. The Graph app registration holds only what it reads, with a certificate, which adds authenticator management, IA-5. And no part of Pass 1 can write to SailPoint, Entra ID or Active Directory, which is the Federal Modernization Workbook's rule that the coordination layer never writes configuration itself.`,
       detail: `The drift and re-read clients hold read scopes only, and the workflow client holds one scope, removed after use: NIST SP 800-53 AC-6 (least privilege) and AC-2 (account management) at Moderate; kept as the kit_calls.py --granted output with the API client's approval. The Graph app registration holds User.Read.All and, only if the audit is read, AuditLog.Read.All, with a certificate: AC-6; IA-5 (authenticator management) for the certificate; kept as the app registration's permissions and credential, reviewed with the call list. No component of Pass 1 can write to ISC, Entra ID or Active Directory: AC-6; Book 13's rule that the coordination layer never writes the configuration itself; kept as the call list and its test.`,
       cite: ["ttm03-moderate"],
       ref: "“Federal requirements and evidence”",
@@ -210,7 +210,7 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: two jobs, two clients; the Graph app",
       body: [
-        { terminal: "03-4", lines: "1,8-11" },
+        { terminal: "03-4", lines: "1,8-10", label: "examples/servicenow-sailpoint  ·  fixture data  ·  real output, trimmed" },
         { terminal: "03-5", lines: "1,10-14,23-25" },
         { callout: "the drift client's scopes fail the workflow task in both directions: the two jobs need two clients.", label: "Step 4's point: ", icon: "FaPeopleArrows", color: "teal" },
       ],

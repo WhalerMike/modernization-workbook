@@ -26,21 +26,21 @@ An app's permissions are counted once,
 so nothing high risk is counted twice.
 
 6
-00:00:20.937 --> 00:00:25.035
+00:00:20.937 --> 00:00:24.581
 Then the program's rules apply:
 high, medium or low risk,
 
 7
-00:00:25.035 --> 00:00:28.388
-and a candidate target
-from Book 02's matrix.
+00:00:24.581 --> 00:00:29.051
+and a candidate target from the
+workbook's migration path matrix.
 
 8
-00:00:28.388 --> 00:00:32.787
+00:00:29.051 --> 00:00:33.450
 That target is only a candidate,
 Chapter 3 makes the decision.
 
 9
-00:00:32.787 --> 00:00:36.580
+00:00:33.450 --> 00:00:37.220
 And SQL Server accounts are
 handed to the Data Platform plan.

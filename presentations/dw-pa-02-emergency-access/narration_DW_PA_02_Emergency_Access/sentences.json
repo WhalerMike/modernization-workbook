@@ -44,21 +44,21 @@
   ],
   [
    15.825,
-   5.763,
-   "That's the documented lockout, and it's why Book 04 makes this step the one that can't move."
+   7.987,
+   "That's the lockout Microsoft Learn documents, and it's why the workbook's privileged-access design makes this step the one that can't move."
   ],
   [
-   21.587,
+   23.812,
    5.338,
    "The emergency accounts are also the program's main exception to zero standing access."
   ],
   [
-   26.925,
+   29.15,
    5.0,
    "The inventory in Chapter 1 lets them through only because they're listed as exceptions."
   ],
   [
-   31.925,
+   34.15,
    2.575,
    "This chapter makes sure that exception is real."
   ]
@@ -108,8 +108,8 @@
   ],
   [
    23.962,
-   7.925,
-   "Book 04 adopts the same standard and adds two things of its own: dual custody, and a review after every use."
+   7.562,
+   "The workbook adopts Learn's standard and adds two things of its own: dual custody, and a review after every use."
   ]
  ],
  "5": [
@@ -258,8 +258,8 @@
   ],
   [
    26.4,
-   7.362,
-   "And whether the accounts belong to individuals is something Graph can't see, so the program's position stays Book 04's."
+   9.387,
+   "And whether the accounts belong to individuals is something Graph can't see, so the program keeps the workbook's design: the accounts aren't tied to one person."
   ]
  ],
  "10": [

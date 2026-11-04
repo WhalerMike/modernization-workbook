@@ -30,7 +30,7 @@ require("../_build/devwb.js")({
         ], label: "The order", color: "navy", pt: 14 }]] },
       ],
       sources: "Sources: Learn, Configure an app to trust an external identity provider (considerations); Book 02, Ch 10, Phase 4. Chapter 05, “What the code depends on.”",
-      say: `Why does this chapter exist? Because of one quiet failure. A federated credential with the wrong subject is created without any error. Nothing complains until the day the workload tries to exchange its token, and for GitHub, Learn says even that fails without an error. The plan's risk register names exactly this, and its answer is to test every exchange before the parallel run starts. That test is the center of the chapter. The order of conversion comes from Book 2: managed identities where the host is in Azure, federated credentials where the host speaks O I D C, certificates only where neither works.`,
+      say: `Why does this chapter exist? Because of one quiet failure. A federated credential with the wrong subject is created without any error. Nothing complains until the day the workload tries to exchange its token, and for GitHub, Learn says even that fails without an error. The plan's risk register names exactly this, and its answer is to test every exchange before the parallel run starts. That test is the center of the chapter. The order of conversion is the workbook's design: managed identities where the host is in Azure, federated credentials where the host speaks O I D C, certificates only where neither works.`,
       detail: `The chapter's epigraph: a federated credential with the wrong subject is accepted the day it's created and fails the day the workload depends on it, so the check belongs before the cutover, in code a reviewer has read. The order: Book 02's Phase 4 converts HIGH-risk accounts first and creates "managed identities for Azure-hosted workloads, federated credentials for pipelines and other OIDC-capable hosts, certificates only where neither applies" (Book 02, Chapter 10). The plan's decision D-N3 names the target for each account, and Chapter 03 builds the waves. This chapter takes the waves as given and holds the credentials. The risk this chapter exists for: Learn says it twice: a federated credential with the wrong subject "is created successfully without error," and the error appears only when the token exchange fails; for GitHub, the exchange "fails without error." The plan's risk register says the same, and its mitigation is to test each credential's token exchange before the parallel run starts (project plan, risks). That test is the center of this chapter.`,
       cite: ["np05-include"],
       ref: "Epigraph; “What the code depends on” — the order, the risk this chapter exists for",
@@ -261,7 +261,7 @@ require("../_build/devwb.js")({
       part: "How", title: "Lab 1: Microsoft's samples, then the plan",
       body: [
         { cols: [[{ terminal: "05-1" }], [{ callout: "the test that sends the Graph sample, then exchanges a token with another subject: the create succeeds, the exchange fails with AADSTS70021.", label: "Read in step 1: ", icon: "FaListCheck", color: "teal" }]] },
-        { terminal: "05-2" },
+        { terminal: "05-2", lines: "2-4", label: "examples/non-person-identity  ·  fixture data  ·  real output, trimmed" },
         { terminal: "05-3", lines: "1-4,6" },
       ],
       sources: "Sources: examples/non-person-identity (tests and fixtures, fictional). Chapter 05, “Lab 1: fixtures, no tenant,” steps 1–3.",

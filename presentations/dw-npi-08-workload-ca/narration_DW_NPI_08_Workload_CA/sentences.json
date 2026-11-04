@@ -61,41 +61,41 @@
  "3": [
   [
    0.05,
-   3.525,
-   "The program's design comes from Book 4: two policies."
+   5.237,
+   "The program's design comes from the workbook's Conditional Access library: two policies."
   ],
   [
-   3.575,
+   5.287,
    4.4,
    "One blocks workloads from anywhere except their named egress ranges."
   ],
   [
-   7.975,
+   9.688,
    4.162,
    "The other blocks them when Microsoft's risk detection marks them high."
   ],
   [
-   12.137,
+   13.85,
    5.625,
    "They roll out report-only first, then ring by ring, and they're never deleted on rollback."
   ],
   [
-   17.762,
+   19.475,
    1.488,
    "Two decisions frame it."
   ],
   [
-   19.25,
+   20.962,
    3.7,
    "The licensing decision covers the top-tier single-tenant apps."
   ],
   [
-   22.95,
+   24.663,
    6.963,
    "The enforcement decision is the security chief's: enforce, wait longer, or enforce with dated exclusions."
   ],
   [
-   29.913,
+   31.625,
    5.912,
    "And don't worry when the risk policy reports nothing; that's normal until something is actually risky."
   ]
@@ -273,8 +273,8 @@
   ],
   [
    27.225,
-   6.162,
-   "Rollback follows Book 4: take the ring off the record, and its policies go back to report-only."
+   6.862,
+   "Rollback follows the workbook's design: take the ring off the record, and its policies go back to report-only."
   ]
  ],
  "10": [

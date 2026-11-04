@@ -49,28 +49,23 @@
   ],
   [
    11.713,
-   9.387,
-   "Book 04 sets the schedule: the most sensitive tier every month, the rest every quarter, with access removed when reviewers stay silent."
+   9.6,
+   "The workbook's design sets the schedule: the most sensitive tier every month, the rest every quarter, with access removed when reviewers stay silent."
   ],
   [
-   21.1,
+   21.312,
    1.212,
    "And why as code?"
   ],
   [
-   22.312,
+   22.525,
    2.513,
    "Because a review set up by hand drifts."
   ],
   [
-   24.825,
+   25.038,
    5.888,
    "Someone leaves, a duration gets shortened, auto-apply is switched off once and never back on."
-  ],
-  [
-   30.712,
-   4.338,
-   "In code, every series has a file, a diff and a reviewer."
   ]
  ],
  "3": [
@@ -219,16 +214,16 @@
   ],
   [
    21.087,
-   7.963,
-   "The fixture's seven series follow Book 04's schedule: role reviews, reviews of the privileged groups, and one Azure role."
+   7.55,
+   "The fixture's seven series follow the workbook's schedule: role reviews, reviews of the privileged groups, and one Azure role."
   ],
   [
-   29.05,
+   28.637,
    4.7,
    "Notice the first row: Global Administrator makes no change on silence."
   ],
   [
-   33.75,
+   33.337,
    1.575,
    "We'll see why in a moment."
   ]
@@ -246,21 +241,21 @@
   ],
   [
    6.287,
-   11.213,
-   "The groups that hold the role aren't reviewed inside it; each gets its own membership series, which matches Book 04's pairing of every role review with a review of its privileged group."
+   11.113,
+   "The groups that hold the role aren't reviewed inside it; each gets its own membership series, which matches the workbook's design of pairing every role review with a review of its privileged group."
   ],
   [
-   17.5,
+   17.4,
    4.025,
    "Group reviews cover the group's members, a feature still in preview."
   ],
   [
-   21.525,
+   21.425,
    8.075,
    "Azure role reviews go to Resource Manager on a preview version, and their reviewers must be people or service principals, not groups."
   ],
   [
-   29.6,
+   29.5,
    7.412,
    "One honest gap: Learn's request table doesn't list some fields the code sets, so Lab 2 checks they take effect."
   ]

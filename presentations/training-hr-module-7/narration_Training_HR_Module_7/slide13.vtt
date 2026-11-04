@@ -30,30 +30,35 @@ run Lab 2 of Modules 1 to
 write a run in tenant mode.
 
 7
-00:00:22.937 --> 00:00:27.877
-Then you schedule it in Book 19's Chapter
-09 workflow, with each package written to
+00:00:22.937 --> 00:00:27.745
+Then you schedule it in the Chapter 09
+workflow from Building the Attribute-Driven
 
 8
-00:00:27.877 --> 00:00:32.963
-an immutable test storage container, and
-assemble a period from the scheduled runs.
+00:00:27.745 --> 00:00:32.203
+Migration, with each package written to
+an immutable test storage container,
 
 9
-00:00:32.963 --> 00:00:36.322
+00:00:32.203 --> 00:00:34.850
+and assemble a period
+from the scheduled runs.
+
+10
+00:00:34.850 --> 00:00:38.210
 To back it out, remove the
 schedule, delete the reader app,
 
-10
-00:00:36.322 --> 00:00:39.829
+11
+00:00:38.210 --> 00:00:41.717
 its credential and its consent,
 delete the test container
 
-11
-00:00:39.829 --> 00:00:43.262
+12
+00:00:41.717 --> 00:00:45.150
 if you created it for the lab,
 and delete the local folders.
 
-12
-00:00:43.262 --> 00:00:45.480
+13
+00:00:45.150 --> 00:00:47.350
 The authors haven't run Lab 2.

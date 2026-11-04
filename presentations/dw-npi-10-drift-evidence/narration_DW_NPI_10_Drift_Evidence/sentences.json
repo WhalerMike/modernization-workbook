@@ -54,21 +54,21 @@
   ],
   [
    16.725,
-   6.638,
-   "Book 2 sets the pattern: commit a baseline, compare every run with it, and close findings at the source."
+   7.862,
+   "The Identity and Directory book sets the pattern: commit a baseline, compare every run with it, and close findings at the source."
   ],
   [
-   23.363,
+   24.587,
    4.213,
    "The companion guide maps the controls, while the assessor decides."
   ],
   [
-   27.575,
-   2.763,
-   "And Book 17 adds the A I side."
+   28.8,
+   3.612,
+   "And the A I Identity Governance book adds the A I side."
   ],
   [
-   30.337,
+   32.413,
    6.35,
    "The code's job is to turn state, events and an approved baseline into evidence with no gaps."
   ]

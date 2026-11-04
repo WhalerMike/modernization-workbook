@@ -26,43 +26,44 @@ groups, roles, access packages
 and application access.
 
 6
-00:00:19.475 --> 00:00:23.307
+00:00:19.475 --> 00:00:23.115
 In the second, SailPoint becomes
 the provisioning service,
 
 7
-00:00:23.307 --> 00:00:25.887
-and takes on Book 03's middleware duties.
+00:00:23.115 --> 00:00:27.350
+and takes on the duties the workbook's
+design gives the HR middleware.
 
 8
-00:00:25.887 --> 00:00:27.599
+00:00:27.350 --> 00:00:29.062
 Pick one and write it down.
 
 9
-00:00:27.599 --> 00:00:28.575
+00:00:29.062 --> 00:00:30.037
 Not both.
 
 10
-00:00:28.575 --> 00:00:32.825
+00:00:30.037 --> 00:00:34.288
 Then record each attribute's writer
 in the program's attribute map.
 
 11
-00:00:32.825 --> 00:00:38.542
+00:00:34.288 --> 00:00:40.005
 One fact helps the choice: SailPoint's
 Oracle HCM Cloud connector reads Core HCM
 
 12
-00:00:38.542 --> 00:00:41.660
+00:00:40.005 --> 00:00:43.123
 directly, without an
 on-premises appliance,
 
 13
-00:00:41.660 --> 00:00:45.125
+00:00:43.123 --> 00:00:46.588
 and writes back only the
 user name and work email.
 
 14
-00:00:45.125 --> 00:00:50.470
+00:00:46.588 --> 00:00:51.940
 For the first pattern's build, the guide
 points to its Oracle HCM to Entra guide.

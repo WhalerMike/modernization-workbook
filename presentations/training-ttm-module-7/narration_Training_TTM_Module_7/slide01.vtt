@@ -31,26 +31,26 @@ You'll learn what Gate 7 runs
 on a schedule and reports.
 
 7
-00:00:26.900 --> 00:00:31.775
+00:00:26.900 --> 00:00:31.635
 Then you'll export a period's closed
 findings as the Federal Modernization
 
 8
-00:00:31.775 --> 00:00:36.728
-Workbook's Book 13's evidence records,
-chain one period to the next, and verify
+00:00:31.635 --> 00:00:36.140
+Workbook's evidence records, chain
+one period to the next, and verify the
 
 9
-00:00:36.728 --> 00:00:41.838
-the package the way an ISSO would,
-including catching a record someone removed.
+00:00:36.140 --> 00:00:40.875
+package the way an ISSO would, including
+catching a record someone removed.
 
 10
-00:00:41.838 --> 00:00:46.074
+00:00:40.875 --> 00:00:45.112
 If you're an ISSO reviewer,
 this module is yours in full.
 
 11
-00:00:46.074 --> 00:00:50.160
+00:00:45.112 --> 00:00:49.200
 The code is illustrative, tested
 against fictional fixtures.

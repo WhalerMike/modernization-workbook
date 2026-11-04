@@ -7,21 +7,21 @@
   ],
   [
    5.225,
-   14.225,
-   "This path builds the identity half of the Federal Modernization Workbook's Book 13's Ticket-to-Machine loop on two named products: ServiceNow as the front door and the record, and SailPoint Identity Security Cloud for identity governance."
+   13.387,
+   "This path builds the identity half of the Federal Modernization Workbook's Ticket-to-Machine loop on two named products: ServiceNow as the front door and the record, and SailPoint Identity Security Cloud for identity governance."
   ],
   [
-   19.45,
+   18.613,
    2.438,
    "They're an example, not an endorsement."
   ],
   [
-   21.887,
+   21.05,
    8.188,
    "This module starts at the guide's Gate 4, because every other gate writes or reads the record that gate defines: the identity finding."
   ],
   [
-   30.075,
+   29.238,
    10.55,
    "You'll map the kit's files to the loop's five steps, learn the finding's data contract, and check payloads on a laptop the way ServiceNow will, before anything reaches an instance."
   ]
@@ -49,26 +49,31 @@
   ],
   [
    12.438,
-   9.338,
-   "Book 13 says an assessor asks four questions about every finding: who owns it, by when, under whose approval, and with what evidence of closure."
+   9.262,
+   "An evidence record has to answer four questions about every finding: who owns it, by when, under whose approval, and with what evidence of closure."
   ],
   [
-   21.775,
+   21.7,
+   6.588,
+   "In nist special publication eight hundred fifty-three, control C M three asks for that record directly."
+  ],
+  [
+   28.288,
    4.2,
    "A ticket closed on done answers none of them; it records a claim."
   ],
   [
-   25.975,
-   10.037,
-   "Book 13's answer is a typed task: one record with a class, a severity, an owner, a clock, and an intended state that a later re-read can check."
+   32.487,
+   9.95,
+   "The workbook's answer is a typed task: one record with a class, a severity, an owner, a clock, and an intended state that a later re-read can check."
   ],
   [
-   36.013,
+   42.438,
    2.138,
    "Approval comes in later modules."
   ],
   [
-   38.15,
+   44.575,
    4.513,
    "Every step of the loop writes or reads this record, so it's where you start."
   ]
@@ -101,16 +106,16 @@
   ],
   [
    28.5,
-   4.825,
-   "Before you start, read Book 13's Chapter 10 and skim Appendix B."
+   6.612,
+   "Before you start, read Chapter 10 of the Governance, Drift and Evidence book, and skim its Appendix B."
   ],
   [
-   33.325,
+   35.112,
    4.938,
    "For Lab 1 you need Python, Node.js and a Bash-compatible shell."
   ],
   [
-   38.263,
+   40.05,
    4.35,
    "You don't need a ServiceNow instance or a SailPoint tenant until Lab 2."
   ]
@@ -259,38 +264,38 @@
   ],
   [
    11.975,
-   4.938,
-   "The drift class is one of Book 03's seven classes, and it's required."
+   4.763,
+   "The drift class is one of the workbook's seven drift classes, and it's required."
   ],
   [
-   16.913,
-   10.287,
-   "Severity is P one to P four; leave it out and it defaults by class, Book 03's High to P two and Medium to P three, which is design guidance."
+   16.738,
+   9.287,
+   "Severity is P one to P four; leave it out and it defaults by class, High to P two and Medium to P three, which is design guidance."
   ],
   [
-   27.2,
+   26.025,
    6.588,
    "System says where the re-read happens: a SailPoint account, a SailPoint identity or an Entra user."
   ],
   [
-   33.788,
+   32.612,
    6.025,
    "One subject identifier is required, and de-duplication uses the first one present."
   ],
   [
-   39.812,
+   38.638,
    1.65,
    "Origin says what raised it."
   ],
   [
-   41.462,
+   40.288,
    7.562,
    "And the intended state says what a re-read must find; when a SailPoint event arrives without one, the script derives it."
   ],
   [
-   49.025,
-   4.925,
-   "The implementation example maps each field to Book 13's evidence record."
+   47.85,
+   4.625,
+   "The implementation example maps each field to the workbook's evidence record."
   ]
  ],
  "8": [
@@ -343,63 +348,63 @@
   ],
   [
    1.65,
-   2.862,
-   "Book 13's severity and tempo table."
+   2.688,
+   "The workbook's severity and tempo table."
   ],
   [
-   4.513,
+   4.338,
    7.1,
    "A P one, critical, isn't fixed by a machine: the run halts and alerts, and a named role decides."
   ],
   [
-   11.613,
+   11.438,
    1.837,
    "Its window is immediate."
   ],
   [
-   13.45,
+   13.275,
    3.038,
    "P two, high, has a one-hour window."
   ],
   [
-   16.488,
+   16.312,
    2.862,
    "P three, medium, twenty-four hours."
   ],
   [
-   19.35,
+   19.175,
    3.138,
    "And P four, low, seventy-two hours."
   ],
   [
-   22.488,
+   22.312,
    3.638,
    "The script turns those windows into each record's due date."
   ],
   [
-   26.125,
+   25.95,
    1.163,
    "Two cautions."
   ],
   [
-   27.288,
+   27.113,
    5.162,
    "These are the program's internal windows, program design, not a federal requirement."
   ],
   [
-   32.45,
+   32.275,
    2.725,
    "They bound the response, not the occurrence."
   ],
   [
-   35.175,
+   35.0,
    7.338,
    "And they don't replace external timelines: where a sis-uh directive sets a shorter clock, the external clock governs."
   ],
   [
-   42.513,
-   5.65,
-   "Book 13 also notes that a program with no findings is more likely blind than clean."
+   42.337,
+   5.55,
+   "The workbook also notes that a program with no findings is more likely blind than clean."
   ]
  ],
  "10": [
@@ -440,8 +445,8 @@
   ],
   [
    41.775,
-   9.45,
-   "For missing identity and unauthorized write, which Book 13 routes to a person first, the empty intent is expected until that person sets it."
+   8.9,
+   "For missing identity and unauthorized write, which the loop routes to a person first, the empty intent is expected until that person sets it."
   ]
  ],
  "11": [
@@ -519,21 +524,21 @@
   ],
   [
    31.175,
-   7.575,
-   "Three carry the warning: the two missing identities and the unauthorized write, the classes Book 13 routes to a person."
+   7.075,
+   "Three carry the warning: the two missing identities and the unauthorized write, the classes the loop routes to a person."
   ],
   [
-   38.75,
+   38.25,
    4.875,
    "And the last line is twelve accepted, none rejected, none de-duplicated."
   ],
   [
-   43.625,
+   43.125,
    5.812,
    "Erin's two drifts in Entra I D, her department and her manager, have their own keys."
   ],
   [
-   49.438,
+   48.938,
    2.487,
    "Step five deletes the output folder."
   ]

@@ -6,7 +6,7 @@ Welcome to the Federal Modernization Workbook's developer workbook, Building Non
 
 ## Slide 2 — What the evidence has to show
 
-Why does this chapter come last? Because everything before it produces state, and state proves only the moment it was read. Four sources already say what the evidence is for. The plan asks for scheduled drift checks, a full review cycle, and evidence for specific controls. Book 2 sets the pattern: commit a baseline, compare every run with it, and close findings at the source. The companion guide maps the controls, while the assessor decides. And Book 17 adds the AI side. The code's job is to turn state, events and an approved baseline into evidence with no gaps.
+Why does this chapter come last? Because everything before it produces state, and state proves only the moment it was read. Four sources already say what the evidence is for. The plan asks for scheduled drift checks, a full review cycle, and evidence for specific controls. The Identity and Directory book sets the pattern: commit a baseline, compare every run with it, and close findings at the source. The companion guide maps the controls, while the assessor decides. And the AI Identity Governance book adds the AI side. The code's job is to turn state, events and an approved baseline into evidence with no gaps.
 
 ## Slide 3 — Learn's facts, the cloud and the other chapters
 

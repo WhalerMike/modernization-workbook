@@ -14,7 +14,7 @@ Next, which cloud. Everything here is Microsoft Graph, version one, with no Reso
 
 ## Slide 4 — Settings are per role, and Graph calls them rules
 
-Here's the shape of what we're managing. Every Microsoft Entra role has its own settings, independent of every other role, and every assignment of that role follows them. In Graph, each role gets one policy, and each policy holds seventeen rules with fixed names, grouped into activation, assignment and notification. This chapter manages the seven activation and assignment rules that Book 4 lists, the ones on the slide, and deliberately leaves the notification rules alone. Each of those seven becomes a few lines in a reviewed file.
+Here's the shape of what we're managing. Every Microsoft Entra role has its own settings, independent of every other role, and every assignment of that role follows them. In Graph, each role gets one policy, and each policy holds seventeen rules with fixed names, grouped into activation, assignment and notification. This chapter manages the seven activation and assignment rules in the workbook's privileged-access design, the ones on the slide, and deliberately leaves the notification rules alone. Each of those seven becomes a few lines in a reviewed file.
 
 ## Slide 5 — The authentication context: its policy, then PIM
 
@@ -22,7 +22,7 @@ The authentication context deserves its own slide, because it's easy to get wron
 
 ## Slide 6 — Learn's two samples, pinned and sent to a fake
 
-Microsoft gives you two samples. One shows how to find a role's policy and then update its rules, six requests, each carrying the right type. The other is a tutorial that makes a group eligible for a role and has a member activate it, which is exactly Book 4's pattern: roles are eligible to a group, never to a person. Those samples live only inside web pages, so the repository pins the pages' source, unmodified, with hashes a test checks. Then a harness sends every request to a fake Graph, so you can see what they really do.
+Microsoft gives you two samples. One shows how to find a role's policy and then update its rules, six requests, each carrying the right type. The other is a tutorial that makes a group eligible for a role and has a member activate it, which is exactly the workbook's pattern: roles are eligible to a group, never to a person. Those samples live only inside web pages, so the repository pins the pages' source, unmodified, with hashes a test checks. Then a harness sends every request to a fake Graph, so you can see what they really do.
 
 ## Slide 7 — What the rules sample leaves to you
 
@@ -34,7 +34,7 @@ The rest of the gaps are about safety. Nothing in the samples reads before writi
 
 ## Slide 9 — The code: one reviewed file per role, inside bounds
 
-So what does the code add? A module of its own, building on Book 4's appendix script, with one reviewed file per role, twenty-two in all, so a reviewer reads a change to a file as a change to the tenant. Approvers appear by alias, and a small bindings file per tenant turns each alias into a real group, so the same files serve a test tenant and production. Every file sits inside bounds. Where Learn's pages disagree on the longest activation, the code takes the stricter eight hours, and the owner capped standing active assignments at fifteen days.
+So what does the code add? A module of its own, building on the appendix script in Access and Privilege, with one reviewed file per role, twenty-two in all, so a reviewer reads a change to a file as a change to the tenant. Approvers appear by alias, and a small bindings file per tenant turns each alias into a real group, so the same files serve a test tenant and production. Every file sits inside bounds. Where Learn's pages disagree on the longest activation, the code takes the stricter eight hours, and the owner capped standing active assignments at fifteen days.
 
 ## Slide 10 — The checks: PA-PIM-01 to PA-PIM-09
 
@@ -46,7 +46,7 @@ Reading and writing are different jobs here, with different permissions. Every r
 
 ## Slide 12 — The diff, the plan, the read-back, the conversion
 
-This is the write path, and it's careful by design. First it reads each role's policy, then compares the seven rules with the file, after smoothing out differences that don't matter. The plan lists every change and sends nothing. Only when you ask to apply does it write: rules first, then eligibility, so each request meets the new limits. Then it reads the tenant again, and that read-back is the evidence, not the response. Converting standing access follows Book 4's order: eligible first, activation confirmed, and only then removed.
+This is the write path, and it's careful by design. First it reads each role's policy, then compares the seven rules with the file, after smoothing out differences that don't matter. The plan lists every change and sends nothing. Only when you ask to apply does it write: rules first, then eligibility, so each request meets the new limits. Then it reads the tenant again, and that read-back is the evidence, not the response. Converting standing access follows the workbook's order: eligible first, activation confirmed, and only then removed.
 
 ## Slide 13 — Who builds it, who owns it, who reviews it
 

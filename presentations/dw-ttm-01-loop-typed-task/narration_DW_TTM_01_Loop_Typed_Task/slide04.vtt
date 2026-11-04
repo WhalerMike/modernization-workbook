@@ -6,14 +6,14 @@ The record those steps share has a short
 data contract, kept in the kit's read me.
 
 2
-00:00:04.725 --> 00:00:08.883
+00:00:04.725 --> 00:00:08.669
 Every payload says what kind it
 is, a finding or a closure signal,
 
 3
-00:00:08.883 --> 00:00:13.600
-where it came from, and which of Book
-3's seven drift classes it belongs to.
+00:00:08.669 --> 00:00:13.600
+where it came from, and which of the
+workbook's seven drift classes it belongs to.
 
 4
 00:00:13.600 --> 00:00:18.754
@@ -26,10 +26,15 @@ one subject identifier, and the
 intended state a re-read must find.
 
 6
-00:00:23.637 --> 00:00:28.862
-The workbook doesn't restate where each
-field lands in Book 13's evidence record.
+00:00:23.637 --> 00:00:27.096
+This chapter doesn't restate
+where each field lands in the
 
 7
-00:00:28.862 --> 00:00:30.700
+00:00:27.096 --> 00:00:30.987
+workbook's evidence record; the
+implementation example has that.
+
+8
+00:00:30.987 --> 00:00:32.810
 It makes the fields checkable.

@@ -146,46 +146,46 @@ machine happens to be in.
 So what does the register have to hold?
 
 31
-00:01:57.080 --> 00:01:59.740
-On the directory side,
-Book 02 gives the types:
+00:01:57.080 --> 00:02:01.677
+On the directory side, Microsoft Learn's
+service account documentation gives the
 
 32
-00:01:59.740 --> 00:02:02.545
-the traditional user
+00:02:01.677 --> 00:02:04.651
+types: the traditional user
 account used as a service,
 
 33
-00:02:02.545 --> 00:02:05.349
+00:02:04.651 --> 00:02:07.287
 the managed service
 account tied to one server,
 
 34
-00:02:05.349 --> 00:02:09.951
+00:02:07.287 --> 00:02:11.613
 the group managed service account shared
 by several, and on newer domains the
 
 35
-00:02:09.951 --> 00:02:14.768
+00:02:11.613 --> 00:02:16.142
 delegated managed service account, which
 takes over from a traditional account.
 
 36
-00:02:14.768 --> 00:02:18.149
+00:02:16.142 --> 00:02:19.524
 Learn warns that nothing marks
 a service account as one,
 
 37
-00:02:18.149 --> 00:02:20.355
+00:02:19.524 --> 00:02:21.730
 so its search criteria can miss some.
 
 38
-00:02:20.355 --> 00:02:24.750
+00:02:21.730 --> 00:02:26.125
 On the Entra side, the list is always
 longer than the apps anyone asked for,
 
 39
-00:02:24.750 --> 00:02:29.580
+00:02:26.125 --> 00:02:30.950
 and each service principal carries a
 type that tells you what it really is.
 
@@ -249,32 +249,32 @@ Microsoft tells you how to find accounts;
 it doesn't tell you which ones are risky.
 
 52
-00:03:19.378 --> 00:03:24.427
+00:03:19.378 --> 00:03:24.100
 The risk rules, the candidate target and
-the stale threshold are the program's,
+the stale threshold are the workbook's
 
 53
-00:03:24.427 --> 00:03:27.662
-from the plan and Book 02,
-and the code keeps them in
+00:03:24.100 --> 00:03:26.861
+design guidance, and the
+code keeps them in one
 
 54
-00:03:27.662 --> 00:03:31.528
-one configuration file and
-labels them as design guidance.
+00:03:26.861 --> 00:03:30.203
+configuration file and labels
+them as design guidance.
 
 55
-00:03:31.528 --> 00:03:36.123
+00:03:30.203 --> 00:03:34.798
 And notice why stale is only ever
 a lead: the last logon attribute
 
 56
-00:03:36.123 --> 00:03:40.978
+00:03:34.798 --> 00:03:39.653
 isn't updated on every sign-in, so an
 account that looks idle may not be.
 
 57
-00:03:40.978 --> 00:03:45.880
+00:03:39.653 --> 00:03:44.560
 The plan says to confirm against the
 sign-in logs before retiring anything.
 
@@ -499,22 +499,22 @@ An app's permissions are counted once,
 so nothing high risk is counted twice.
 
 103
-00:06:42.787 --> 00:06:46.885
+00:06:42.787 --> 00:06:46.431
 Then the program's rules apply:
 high, medium or low risk,
 
 104
-00:06:46.885 --> 00:06:50.238
-and a candidate target
-from Book 02's matrix.
+00:06:46.431 --> 00:06:50.901
+and a candidate target from the
+workbook's migration path matrix.
 
 105
-00:06:50.238 --> 00:06:54.637
+00:06:50.901 --> 00:06:55.300
 That target is only a candidate,
 Chapter 3 makes the decision.
 
 106
-00:06:54.637 --> 00:06:58.730
+00:06:55.300 --> 00:06:59.370
 And SQL Server accounts are
 handed to the Data Platform plan.
 

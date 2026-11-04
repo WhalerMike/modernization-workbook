@@ -14,7 +14,7 @@ Next, which cloud. For a GCC tenant like this estate's, every call goes to the w
 
 ## Slide 4 — Two independent features meet in a PRV group
 
-Two Microsoft features meet in a P R V group, and it helps to keep them apart. A role-assignable group is the only kind that can hold an Entra role; you choose that at creation and can never change it, and there's a limit of five hundred. PIM for Groups is separate: just-in-time membership or ownership, each with its own policy. Book 04 combines them two ways. For an Entra role, the group is eligible and its members activate the role. For anything else, people are eligible for the group itself. The file records which.
+Two Microsoft features meet in a P R V group, and it helps to keep them apart. A role-assignable group is the only kind that can hold an Entra role; you choose that at creation and can never change it, and there's a limit of five hundred. PIM for Groups is separate: just-in-time membership or ownership, each with its own policy. The workbook's privileged-access design combines them two ways. For an Entra role, the group is eligible and its members activate the role. For anything else, people are eligible for the group itself. The file records which.
 
 ## Slide 5 — Where a group's PIM state lives in Graph
 

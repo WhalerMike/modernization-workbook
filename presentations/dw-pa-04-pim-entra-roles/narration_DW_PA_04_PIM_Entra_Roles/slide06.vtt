@@ -15,34 +15,34 @@ six requests, each
 carrying the right type.
 
 4
-00:00:08.776 --> 00:00:13.614
+00:00:08.776 --> 00:00:13.500
 The other is a tutorial that makes a
 group eligible for a role and has a member
 
 5
-00:00:13.614 --> 00:00:16.456
-activate it, which is
-exactly Book 4's pattern:
+00:00:13.500 --> 00:00:16.725
+activate it, which is exactly
+the workbook's pattern:
 
 6
-00:00:16.456 --> 00:00:19.375
+00:00:16.725 --> 00:00:19.575
 roles are eligible to a
 group, never to a person.
 
 7
-00:00:19.375 --> 00:00:22.199
+00:00:19.575 --> 00:00:22.399
 Those samples live only inside web pages,
 
 8
-00:00:22.199 --> 00:00:27.675
+00:00:22.399 --> 00:00:27.875
 so the repository pins the pages' source,
 unmodified, with hashes a test checks.
 
 9
-00:00:27.675 --> 00:00:30.818
+00:00:27.875 --> 00:00:31.018
 Then a harness sends every
 request to a fake Graph,
 
 10
-00:00:30.818 --> 00:00:32.950
+00:00:31.018 --> 00:00:33.140
 so you can see what they really do.

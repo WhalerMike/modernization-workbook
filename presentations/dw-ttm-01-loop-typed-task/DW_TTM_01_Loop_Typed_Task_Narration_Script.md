@@ -2,23 +2,23 @@
 
 ## Slide 1 — Chapter 01: The Loop and the Typed Task
 
-Welcome to the Federal Modernization Workbook's developer workbook, Building Ticket-to-Machine. This is Chapter 1: the loop and the typed task. Every step of Book 13's loop writes or reads one record, the identity finding. If its shape is wrong, the clock, the owner and the re-read are all wrong with it. We'll place each file of the ServiceNow and SailPoint kit in the loop, then check that record on a laptop before anything reaches ServiceNow, and finish with two labs and the dangers. The code is illustrative, tested against fixtures.
+Welcome to the Federal Modernization Workbook's developer workbook, Building Ticket-to-Machine. This is Chapter 1: the loop and the typed task. Every step of the workbook's Ticket-to-Machine loop writes or reads one record, the identity finding. If its shape is wrong, the clock, the owner and the re-read are all wrong with it. We'll place each file of the ServiceNow and SailPoint kit in the loop, then check that record on a laptop before anything reaches ServiceNow, and finish with two labs and the dangers. The code is illustrative, tested against fixtures.
 
 ## Slide 2 — Why the record comes first
 
 Why start with the record? Because the loop has one. A drift becomes a typed task with a class, a severity, an owner, a clock, the system where the re-read happens, and an intended state that says what the re-read must find. Get the class wrong and the finding bounces, so the drift is never recorded. Choose severity by hand and the windows stop meaning anything. And an intended state that names nothing is the quiet one: a re-read finds no difference, and the record closes on nothing.
 
-## Slide 3 — Book 13's loop and where the kit sits
+## Slide 3 — The workbook's loop and where the kit sits
 
-Book 13's loop has five steps: test, detect drift, raise a typed task, actuate on the native surface, and close with evidence. Here's where the kit sits in it. The drift client tests by joining HR, Microsoft Graph and SailPoint on the employee ID. SailPoint's event triggers detect drift. The workflows and a ServiceNow scripted REST resource raise the typed task. Nothing in the kit actuates yet: no code writes to Entra ID, Active Directory or SailPoint. And a business rule and the re-read client close only with evidence.
+The workbook's Ticket-to-Machine loop has five steps: test, detect drift, raise a typed task, actuate on the native surface, and close with evidence. Here's where the kit sits in it. The drift client tests by joining HR, Microsoft Graph and SailPoint on the employee ID. SailPoint's event triggers detect drift. The workflows and a ServiceNow scripted REST resource raise the typed task. Nothing in the kit actuates yet: no code writes to Entra ID, Active Directory or SailPoint. And a business rule and the re-read client close only with evidence.
 
 ## Slide 4 — The data contract: what every payload carries
 
-The record those steps share has a short data contract, kept in the kit's read me. Every payload says what kind it is, a finding or a closure signal, where it came from, and which of Book 3's seven drift classes it belongs to. It carries a severity, P1 to P4, the system where the re-read will happen, one subject identifier, and the intended state a re-read must find. The workbook doesn't restate where each field lands in Book 13's evidence record. It makes the fields checkable.
+The record those steps share has a short data contract, kept in the kit's read me. Every payload says what kind it is, a finding or a closure signal, where it came from, and which of the workbook's seven drift classes it belongs to. It carries a severity, P1 to P4, the system where the re-read will happen, one subject identifier, and the intended state a re-read must find. This chapter doesn't restate where each field lands in the workbook's evidence record; the implementation example has that. It makes the fields checkable.
 
 ## Slide 5 — What exists: the contract, enforced in one place
 
-What exists today? The contract is enforced in exactly one place, the scripted REST resource that runs inside ServiceNow. It validates the payload and answers four hundred with a reason. It maps severity to a priority and a due date on Book 13's tempo: P1 immediate, P2 one hour, P3 a day, P4 three days. That tempo is the program's design, not a federal rule. It defaults severity by class, de-duplicates against an open finding, and fills in an intended state from a SailPoint event. The catch: nothing outside ServiceNow applied the same rules.
+What exists today? The contract is enforced in exactly one place, the scripted REST resource that runs inside ServiceNow. It validates the payload and answers four hundred with a reason. It maps severity to a priority and a due date on the workbook's tempo: P1 immediate, P2 one hour, P3 a day, P4 three days. That tempo is the program's design, not a federal rule. It defaults severity by class, de-duplicates against an open finding, and fills in an intended state from a SailPoint event. The catch: nothing outside ServiceNow applied the same rules.
 
 ## Slide 6 — What the chapter adds: finding_contract.py
 
@@ -26,7 +26,7 @@ So the chapter adds a Python mirror of the contract. Its validate function appli
 
 ## Slide 7 — The empty intended state that looks present
 
-Here's the subtle case the chapter guards against. An intended state like the one on the slide is a non-empty object, so it looks present. But it names nothing: no attribute, no entitlement. A re-read compares against it, finds no difference, and would close the record on nothing. The check warns rather than rejects, because ServiceNow would accept it. For the two classes Book 13 sends to a person first, missing identity and an unauthorized write, the warning says that's expected until that person decides.
+Here's the subtle case the chapter guards against. An intended state like the one on the slide is a non-empty object, so it looks present. But it names nothing: no attribute, no entitlement. A re-read compares against it, finds no difference, and would close the record on nothing. The check warns rather than rejects, because ServiceNow would accept it. For the two classes the loop sends to a person first, missing identity and an unauthorized write, the warning says that's expected until that person decides.
 
 ## Slide 8 — The tests: 22 for the contract, 107 in all
 
@@ -42,7 +42,7 @@ Two points stay open, and the chapter says so rather than guessing. First, nobod
 
 ## Slide 11 — What the typed finding proves, and for whom
 
-What does this chapter's output prove? Every drift becomes one record with a class, a severity, an owner and a due date, and a malformed one is rejected at the door. That supports configuration change control and continuous monitoring, CM-3 and CA-7, both in the Moderate baseline, and the evidence is the ServiceNow record plus the contract tests. And the response window is applied by code, not chosen ticket by ticket. A typed finding is only the owned, clocked half of Book 13's record. Approval and the re-read come later.
+What does this chapter's output prove? Every drift becomes one record with a class, a severity, an owner and a due date, and a malformed one is rejected at the door. That supports configuration change control and continuous monitoring, CM-3 and CA-7, both in the Moderate baseline, and the evidence is the ServiceNow record plus the contract tests. And the response window is applied by code, not chosen ticket by ticket. A typed finding is only the owned, clocked half of the workbook's evidence record. Approval and the re-read come later.
 
 ## Slide 12 — Who builds it and who approves it
 
@@ -66,4 +66,4 @@ Each danger has a guard. If the Python mirror drifts from the script, a payload 
 
 ## Slide 17 — Done when: the chapter's checklist
 
-Here's what done looks like. The Python constants match the script that's actually deployed, and the parity test passes. Every client that posts findings runs its payloads through the validator in its own tests. Nothing a client builds is rejected, and every warning is understood. The windows are the program's current ones and the severity defaults match Book 3's classes. And the API requires authentication and a custom role. Next, Chapter 2 writes down every ServiceNow call and the least privilege it needs. Thanks for watching.
+Here's what done looks like. The Python constants match the script that's actually deployed, and the parity test passes. Every client that posts findings runs its payloads through the validator in its own tests. Nothing a client builds is rejected, and every warning is understood. The windows are the program's current ones and the severity defaults match the workbook's drift classes. And the API requires authentication and a custom role. Next, Chapter 2 writes down every ServiceNow call and the least privilege it needs. Thanks for watching.

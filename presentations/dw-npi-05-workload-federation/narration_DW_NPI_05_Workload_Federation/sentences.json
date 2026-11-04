@@ -59,8 +59,8 @@
   ],
   [
    25.525,
-   11.6,
-   "The order of conversion comes from Book 2: managed identities where the host is in Azure, federated credentials where the host speaks O I D C, certificates only where neither works."
+   11.812,
+   "The order of conversion is the workbook's design: managed identities where the host is in Azure, federated credentials where the host speaks O I D C, certificates only where neither works."
   ]
  ],
  "3": [

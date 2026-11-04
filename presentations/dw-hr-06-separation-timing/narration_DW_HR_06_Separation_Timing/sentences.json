@@ -39,31 +39,31 @@
   ],
   [
    1.637,
-   6.05,
-   "The guide's Gate 6 configures the leaver in Book 3's order and asks for the timing to be proved."
+   6.375,
+   "The guide's Gate 6 configures the leaver in the workbook's leaver order and asks for the timing to be proved."
   ],
   [
-   7.688,
+   8.012,
    2.3,
    "But no Microsoft report computes it."
   ],
   [
-   9.988,
+   10.312,
    3.075,
    "Lifecycle Workflows records that a run completed."
   ],
   [
-   13.062,
+   13.387,
    2.913,
    "The audit log records when the account was disabled."
   ],
   [
-   15.975,
+   16.3,
    4.5,
    "The card system and Intune record the rest, each in its own place."
   ],
   [
-   20.475,
+   20.8,
    11.2,
    "So this chapter computes the intervals: each leaver's time to block and time to revocation, the period's percentiles against the thresholds, and the separations that need someone's attention."
   ]
@@ -484,36 +484,36 @@
  "17": [
   [
    0.05,
-   5.938,
-   "Lab 2 uses a test tenant with a leaver workflow in Book 3's order; the authors haven't run it."
+   6.487,
+   "Lab 2 uses a test tenant with a leaver workflow in the workbook's leaver order; the authors haven't run it."
   ],
   [
-   5.987,
+   6.537,
    3.225,
    "Register a reader app with only the two permissions."
   ],
   [
-   9.213,
+   9.762,
    7.588,
    "Give one test user a leave date a few hours ahead and wait for the scheduled run, and run the leaver on demand for a second."
   ],
   [
-   16.8,
+   17.35,
    6.162,
    "Export the logs, and confirm which activity the revoke task really wrote, and who initiated it."
   ],
   [
-   22.962,
+   23.512,
    0.975,
    "Then measure."
   ],
   [
-   23.938,
+   24.488,
    3.138,
    "Each block should include the wait for the tenant schedule."
   ],
   [
-   27.075,
+   27.625,
    1.95,
    "Finally, back everything out."
   ]

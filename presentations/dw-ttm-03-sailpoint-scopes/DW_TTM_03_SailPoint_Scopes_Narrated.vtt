@@ -429,18 +429,18 @@ with a certificate, which adds
 authenticator management, IA-5.
 
 90
-00:05:52.033 --> 00:05:56.711
+00:05:52.033 --> 00:05:56.538
 And no part of Pass 1 can write to
 SailPoint, Entra ID or Active Directory,
 
 91
-00:05:56.711 --> 00:06:00.676
-which is the Federal Modernization
-Workbook's Book 13's rule
+00:05:56.538 --> 00:06:00.127
+which is the Federal
+Modernization Workbook's rule that
 
 92
-00:06:00.676 --> 00:06:05.330
-that the coordination layer never
+00:06:00.127 --> 00:06:04.300
+the coordination layer never
 writes configuration itself.
 
 93

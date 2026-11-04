@@ -19,44 +19,44 @@ with uncorrelated accounts
 treated as orphan candidates.
 
 5
-00:00:12.738 --> 00:00:17.713
-You named Book 03's drift classes,
+00:00:12.738 --> 00:00:17.088
+You named the workbook's drift classes,
 and the two the kit never computes.
 
 6
-00:00:17.713 --> 00:00:19.899
+00:00:17.088 --> 00:00:19.274
 You measured drift over two days,
 
 7
-00:00:19.899 --> 00:00:23.462
+00:00:19.274 --> 00:00:22.837
 and compared the runs as new,
 persisting and resolved.
 
 8
-00:00:23.462 --> 00:00:27.516
+00:00:22.837 --> 00:00:26.891
 And you saw why the comparison refuses
 runs that measured different things,
 
 9
-00:00:27.516 --> 00:00:30.862
+00:00:26.891 --> 00:00:30.237
 so nothing looks fixed just
 because it stopped being measured.
 
 10
-00:00:30.862 --> 00:00:34.416
+00:00:30.237 --> 00:00:33.791
 Before you ship, work through
 the Chapter 06 checklist,
 
 11
-00:00:34.416 --> 00:00:36.863
+00:00:33.791 --> 00:00:36.238
 and file the first run as the baseline.
 
 12
-00:00:36.863 --> 00:00:41.122
+00:00:36.238 --> 00:00:40.497
 Next is Module 5, drift to a typed
 task: you'll predict the finding a
 
 13
-00:00:41.122 --> 00:00:46.080
+00:00:40.497 --> 00:00:45.460
 SailPoint event produces, and test a
 workflow change before you import it.

@@ -19,45 +19,45 @@ or enabled for reporting but not
 enforced, which is report-only.
 
 5
-00:00:13.363 --> 00:00:17.530
-Book 04's rollout depends on knowing
-which policies are report-only;
+00:00:13.363 --> 00:00:17.775
+The workbook's Conditional Access
+rollout depends on knowing which policies
 
 6
-00:00:17.530 --> 00:00:21.251
-its phishing-resistant policy
-for everyone starts that way.
+00:00:17.775 --> 00:00:22.051
+are report-only; its phishing-resistant
+policy for everyone starts that way.
 
 7
-00:00:21.251 --> 00:00:22.600
+00:00:22.051 --> 00:00:23.400
 The collector reads.
 
 8
-00:00:22.600 --> 00:00:26.588
+00:00:23.400 --> 00:00:27.387
 The ca-export check writes one
 sorted JSON file per policy,
 
 9
-00:00:26.588 --> 00:00:30.575
+00:00:27.387 --> 00:00:31.375
 so any change shows up as a
 readable diff between two exports.
 
 10
-00:00:30.575 --> 00:00:33.217
+00:00:31.375 --> 00:00:34.017
 Writing is different:
 creating a policy needs
 
 11
-00:00:33.217 --> 00:00:36.137
+00:00:34.017 --> 00:00:36.937
 the Conditional Access
 read-write permission too.
 
 12
-00:00:36.137 --> 00:00:40.545
-Book 04 keeps the policies as code,
-so as design guidance, a pipeline
+00:00:36.937 --> 00:00:41.413
+The workbook keeps the policies as
+code, so as design guidance, a pipeline
 
 13
-00:00:40.545 --> 00:00:45.580
+00:00:41.413 --> 00:00:46.100
 holds the write permission and the
 evidence collector holds only the read.

@@ -121,16 +121,16 @@
   ],
   [
    23.45,
-   13.45,
-   "Before you start, you need the path's prerequisites: at least the overview of the Federal Modernization Workbook's Book 03, Microsoft Automation Modules 1 and 2, and enough Python to run a script and read jay-son."
+   14.512,
+   "Before you start, you need the path's prerequisites: at least the overview of the Federal Modernization Workbook's H R-Driven Identity book, Microsoft Automation Modules 1 and 2, and enough Python to run a script and read jay-son."
   ],
   [
-   36.9,
+   37.962,
    6.888,
    "Lab 1 needs Python 3.10 or later, pytest and a clone of the repository, and no tenant."
   ],
   [
-   43.788,
+   44.85,
    4.825,
    "Lab 2 needs a worldwide or G C C test tenant, never production."
   ]
@@ -216,7 +216,7 @@
   [
    29.5,
    3.138,
-   "Why does Book 03 treat this so seriously?"
+   "Why does the workbook's design treat this so seriously?"
   ],
   [
    32.638,

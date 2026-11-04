@@ -2,15 +2,15 @@
 
 ## Slide 1 — Chapter 07: Evidence Records for Book 13 and the ISSO
 
-Welcome back to Building Ticket-to-Machine. This is Chapter 7: evidence records for the Federal Modernization Workbook's Book 13 and the I S S O. The I S S O doesn't need the tracker. The I S S O needs one record per finding, in one shape, that nobody could have edited afterwards without it showing. This chapter reads closed findings out of ServiceNow, writes each in Book 13's evidence shape, checks what an assessor would check, and packages the period with a hash chain and a verifier. Then two labs and the dangers.
+Welcome back to Building Ticket-to-Machine. This is Chapter 7: evidence records for the Federal Modernization Workbook's Governance, Drift and Evidence book, and for the I S S O. The I S S O doesn't need the tracker. The I S S O needs one record per finding, in one shape, that nobody could have edited afterwards without it showing. This chapter reads closed findings out of ServiceNow, writes each in the shape of the workbook's evidence record, checks what an assessor would check, and packages the period with a hash chain and a verifier. Then two labs and the dangers.
 
 ## Slide 2 — Why the ISSO needs records, not the tracker
 
 Why records rather than the tracker? Because an assessor asks different questions from an operator. Chapter 5's re-read client already writes evidence onto every record it closes, but nothing read those records back out. And the assessor's worries are specific: was a record edited after it closed, so it now says something the re-read didn't? Was one quietly deleted, so the period only looks complete? Were fields filled in to claim an approval or an execution that never happened? This chapter answers each one.
 
-## Slide 3 — One record per finding, in Book 13's shape
+## Slide 3 — One record per finding, in the workbook's shape
 
-Each closed finding becomes one record with Book 13's seven fields. Origin: when and where the drift was detected. Owner and clock: who, how urgent, when it was due and whether it finished in time. The result: the re-read evidence and whether it's intact. And the closure, with its lane. The other three fields, approval, the executing identity and what ran, are written as null, each with its reason: Pass 1 doesn't actuate. The record says what it doesn't hold, rather than leaving the field out or filling it in.
+Each closed finding becomes one record with the seven fields of the workbook's evidence record. Origin: when and where the drift was detected. Owner and clock: who, how urgent, when it was due and whether it finished in time. The result: the re-read evidence and whether it's intact. And the closure, with its lane. The other three fields, approval, the executing identity and what ran, are written as null, each with its reason: Pass 1 doesn't actuate. The record says what it doesn't hold, rather than leaving the field out or filling it in.
 
 ## Slide 4 — Four checks per record, each reported by name
 
@@ -30,7 +30,7 @@ Eight tests cover the export: the seven fields and the null later-pass fields; t
 
 ## Slide 8 — The verified facts, and what isn't verified
 
-The vendor facts are few: the Table API's read and its query parameters, ServiceNow's Government Community Cloud at FedRAMP High, and SailPoint's Search events index, which the SailPoint half will read when it's built. The record shape, the window and the lanes are Book 13's, and the hash chain is design guidance. Two points stay open: the format and time zone of the dates the Table API returns, which the export parses both ways, and what SailPoint keeps in its events index and for how long. That's why the SailPoint half waits.
+The vendor facts are few: the Table API's read and its query parameters, ServiceNow's Government Community Cloud at FedRAMP High, and SailPoint's Search events index, which the SailPoint half will read when it's built. The record shape, the window and the lanes are the workbook's design, and the hash chain is the kit's design. Two points stay open: the format and time zone of the dates the Table API returns, which the export parses both ways, and what SailPoint keeps in its events index and for how long. That's why the SailPoint half waits.
 
 ## Slide 9 — What the package proves, for the ISSO
 
@@ -42,7 +42,7 @@ Who's involved? Developers who build the evidence pipeline, and the I S S O and 
 
 ## Slide 11 — Lab 1: exporting October's closed findings
 
-Lab 1. Eight tests pass. Then export October's five fictional findings. Four closed on a re-read, and one is a declared exception. Two of three judged closures were inside the window. Then the problems, by name: one closed late, one whose evidence no longer matches its hash, and one closed with no re-read evidence at all; its close note just says done, which Book 13 calls prose, not evidence. The command exits with a failure rather than producing a clean-looking package. The last line is the chain's head.
+Lab 1. Eight tests pass. Then export October's five fictional findings. Four closed on a re-read, and one is a declared exception. Two of three judged closures were inside the window. Then the problems, by name: one closed late, one whose evidence no longer matches its hash, and one closed with no re-read evidence at all; its close note just says done, which the workbook calls prose, not evidence. The command exits with a failure rather than producing a clean-looking package. The last line is the chain's head.
 
 ## Slide 12 — Lab 1: verify, continue the chain, tamper
 
@@ -58,4 +58,4 @@ The dangers map onto the assessor's worries. An edit after closure is caught by 
 
 ## Slide 15 — Done when: the evidence checklist
 
-Done looks like this. The export runs on a schedule as the evidence reader and holds nothing more. Each period's package verifies and continues the last period's chain. Every reported problem has gone to its owner, and none sits in the package unexplained. Manifests are stored where the exporter can't overwrite them. Window adherence is reviewed with Book 13's other measures. And the tests pass. Next, Chapter 8: one writer per attribute. Thanks for watching.
+Done looks like this. The export runs on a schedule as the evidence reader and holds nothing more. Each period's package verifies and continues the last period's chain. Every reported problem has gone to its owner, and none sits in the package unexplained. Manifests are stored where the exporter can't overwrite them. Window adherence is reviewed with the workbook's other measures. And the tests pass. Next, Chapter 8: one writer per attribute. Thanks for watching.

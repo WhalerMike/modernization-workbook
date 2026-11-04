@@ -168,16 +168,16 @@
   ],
   [
    28.6,
-   9.287,
-   "The Federal Modernization Workbook's Book 03's Chapter 06 explains why contractors fall outside Federal H R 2.0's scope."
+   10.162,
+   "Chapter 06 of the Federal Modernization Workbook's H R-Driven Identity book explains why contractors fall outside Federal H R 2.0's scope."
   ],
   [
-   37.888,
+   38.763,
    4.2,
    "Its Appendix A gives the contractor end conditions and their order."
   ],
   [
-   42.087,
+   42.962,
    7.85,
    "And the contractor evaluation recommends an agency-owned register now, with the Oracle contingent worker as a later source swap."
   ]
@@ -314,46 +314,46 @@
   ],
   [
    3.95,
-   7.65,
-   "It writes a file in the H R middleware's layout, and the middleware from Book 19's Chapter 01 builds the skim requests."
+   8.95,
+   "It writes a file in the H R middleware's layout, and the middleware from Chapter 01 of Building the Attribute-Driven Migration builds the skim requests."
   ],
   [
-   11.6,
+   12.9,
    5.0,
    "Its dry run is its default, so nothing reaches a tenant unless you ask it to."
   ],
   [
-   16.6,
+   17.9,
    8.562,
    "And in Module 1's register, inbound provisioning already names both the H R app and the contractor-source app, through that same middleware."
   ],
   [
-   25.163,
+   26.462,
    1.962,
    "Second, the sponsor review."
   ],
   [
-   27.125,
+   28.425,
    3.625,
    "It goes on the contractor access package's assignment policy."
   ],
   [
-   30.75,
+   32.05,
    1.45,
    "It runs twice a year."
   ],
   [
-   32.2,
+   33.5,
    4.888,
    "The manager, who is the sponsor, reviews, with a named fallback reviewer."
   ],
   [
-   37.087,
+   38.388,
    3.263,
    "And when nobody responds, access is removed."
   ],
   [
-   40.35,
+   41.65,
    8.662,
    "One caution from the kit: using the requestor's manager as a reviewer is among the things it lists as unconfirmed, so Lab 2 checks it."
   ]

@@ -433,45 +433,46 @@ The heart of the configuration
 is one reviewed file.
 
 91
-00:05:50.505 --> 00:05:55.257
+00:05:50.505 --> 00:05:55.116
 It names the scopes, the roles, who's
 eligible, and the settings for each tier,
 
 92
-00:05:55.257 --> 00:05:57.439
-taken from Book 04's role settings:
+00:05:55.116 --> 00:05:58.367
+taken from the workbook's
+privileged-access design:
 
 93
-00:05:57.439 --> 00:06:02.269
+00:05:58.367 --> 00:06:03.054
 shorter activations and tighter
 eligibility for the most sensitive tier,
 
 94
-00:06:02.269 --> 00:06:07.255
+00:06:03.054 --> 00:06:07.892
 approval by a named group, and a
 justification and ticket on every activation.
 
 95
-00:06:07.255 --> 00:06:10.005
+00:06:07.892 --> 00:06:10.642
 Those values are the
 program's design guidance.
 
 96
-00:06:10.005 --> 00:06:13.855
+00:06:10.642 --> 00:06:14.492
 The loader also refuses what
 Learn or the program rules out.
 
 97
-00:06:13.855 --> 00:06:16.454
+00:06:14.492 --> 00:06:17.092
 The subtle one is authentication context:
 
 98
-00:06:16.454 --> 00:06:21.207
+00:06:17.092 --> 00:06:21.845
 Learn says to create its Conditional
 Access policy before you point PIM at it,
 
 99
-00:06:21.207 --> 00:06:24.330
+00:06:21.845 --> 00:06:24.950
 so the file can't use it
 until that's confirmed.
 

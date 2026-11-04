@@ -34,36 +34,36 @@
   ],
   [
    6.338,
-   8.762,
-   "A terminated employee who's still enabled in Entra I D is stale access, which the Federal Modernization Workbook's Book 03 rates High."
+   8.537,
+   "A terminated employee who's still enabled in Entra I D is stale access, which the Federal Modernization Workbook's drift classes rate High."
   ],
   [
-   15.1,
+   14.875,
    3.987,
    "An account that matches nobody is an orphan account, also High."
   ],
   [
-   19.087,
+   18.863,
    4.638,
    "A department someone typed in by hand is attribute drift, rated Medium."
   ],
   [
-   23.725,
+   23.5,
    5.287,
    "Without a measurement you can't say how many there are, whether they're growing, or whether a fix worked."
   ],
   [
-   29.012,
+   28.788,
    7.35,
    "So Gate 3 connects the sources, correlates them on one key, and files the first measurement as the baseline."
   ],
   [
-   36.362,
+   36.138,
    2.562,
    "Every later gate is measured against it."
   ],
   [
-   38.925,
+   38.7,
    4.938,
    "In this module you run that measurement twice, on two days, and compare the days."
   ]
@@ -81,31 +81,31 @@
   ],
   [
    11.537,
-   5.275,
-   "You'll name Book 03's drift classes, and say which ones the kit doesn't compute."
+   4.662,
+   "You'll name the workbook's drift classes, and say which ones the kit doesn't compute."
   ],
   [
-   16.812,
+   16.2,
    6.912,
    "You'll run the drift reconciliation over fixtures and compare two runs as new, persisting and resolved."
   ],
   [
-   23.725,
+   23.113,
    5.175,
    "And you'll explain why a comparison of runs that computed different classes is refused."
   ],
   [
-   28.9,
+   28.288,
    1.938,
    "You need Module 3 first."
   ],
   [
-   30.837,
+   30.225,
    6.362,
    "For the Graph reads, the Microsoft Automation path's first module covers the four request patterns."
   ],
   [
-   37.2,
+   36.587,
    5.7,
    "Lab 1 runs on fixtures; Lab 2 needs a test tenant and a SailPoint sandbox."
   ]
@@ -128,83 +128,83 @@
   ],
   [
    18.25,
-   10.512,
-   "Three: correlate on employee I D, the key Book 03 joins on, and treat uncorrelated accounts as orphan candidates, not errors to suppress."
+   10.738,
+   "Three: correlate on employee I D, the key the workbook's design joins on, and treat uncorrelated accounts as orphan candidates, not errors to suppress."
   ],
   [
-   28.762,
+   28.988,
    5.162,
    "Four: turn on Native Change Detection on the Entra and Active Directory sources."
   ],
   [
-   33.925,
+   34.15,
    6.013,
    "It compares stored and newly read data on aggregation, and fires one event per changed account."
   ],
   [
-   39.938,
+   40.163,
    3.9,
    "Five: run the kit's drift reconciliation, read-only."
   ],
   [
-   43.837,
+   44.062,
    3.062,
    "And six: file the first run as the baseline."
   ],
   [
-   46.9,
+   47.125,
    3.112,
    "Expect a burst of High findings in the first month."
   ],
   [
-   50.013,
-   2.837,
-   "Book 03 calls that the measurement working."
+   50.237,
+   2.462,
+   "The workbook calls that the measurement working."
   ]
  ],
  "5": [
   [
    0.05,
-   6.45,
-   "Here are Book 03's drift classes, the ones the finding contract carries, and what the kit computes."
+   6.013,
+   "Here are the workbook's drift classes, the ones the finding contract carries, and what the kit computes."
   ],
   [
-   6.5,
+   6.062,
    4.263,
    "Missing identity: an active H R record with no matching account."
   ],
   [
-   10.762,
+   10.325,
    4.463,
    "Stale access: terminated in H R, enabled in the directory."
   ],
   [
-   15.225,
+   14.787,
    4.263,
    "Orphan account: an enabled account with no known employee I D."
   ],
   [
-   19.488,
+   19.05,
    2.875,
    "Those three are High, and the kit computes them."
   ],
   [
-   22.363,
+   21.925,
    4.862,
    "Attribute drift is Medium, and the kit compares department and manager."
   ],
   [
-   27.225,
+   26.788,
    8.463,
    "Unauthorized write, a write by anyone but the provisioning service, is High, and it's computed only when the run reads the Entra audit."
   ],
   [
-   35.688,
+   35.25,
    8.613,
    "Credential drift and schema drift are always reported as not computed, because they need the card system, Intune and the middleware's output."
   ],
   [
-   44.3,
+   43.862,
    4.112,
    "The severities are the program's defaults, not an external standard."
   ]
@@ -331,16 +331,16 @@
   ],
   [
    35.175,
-   5.013,
-   "Book 03 expects that burst, so triage it by class and severity."
+   5.162,
+   "The workbook's design expects that burst, so triage it by class and severity."
   ],
   [
-   40.188,
+   40.337,
    4.537,
    "And an H R extract with names in a shared folder spreads personal data."
   ],
   [
-   44.725,
+   44.875,
    4.338,
    "The run folder is evidence: keep it where H R data is allowed."
   ]
@@ -667,26 +667,26 @@
   ],
   [
    12.738,
-   4.975,
-   "You named Book 03's drift classes, and the two the kit never computes."
+   4.35,
+   "You named the workbook's drift classes, and the two the kit never computes."
   ],
   [
-   17.712,
+   17.087,
    5.75,
    "You measured drift over two days, and compared the runs as new, persisting and resolved."
   ],
   [
-   23.462,
+   22.837,
    7.4,
    "And you saw why the comparison refuses runs that measured different things, so nothing looks fixed just because it stopped being measured."
   ],
   [
-   30.863,
+   30.238,
    6.0,
    "Before you ship, work through the Chapter 06 checklist, and file the first run as the baseline."
   ],
   [
-   36.862,
+   36.237,
    9.162,
    "Next is Module 5, drift to a typed task: you'll predict the finding a SailPoint event produces, and test a workflow change before you import it."
   ]

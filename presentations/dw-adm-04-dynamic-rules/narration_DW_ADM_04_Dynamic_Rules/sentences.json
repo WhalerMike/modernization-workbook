@@ -307,21 +307,21 @@
   ],
   [
    3.775,
-   4.875,
-   "Run against Book 3's own table of rule patterns, it found three things."
+   6.312,
+   "Run against the H R-Driven Identity book's own table of rule patterns, it found three things."
   ],
   [
-   8.65,
+   10.088,
    6.725,
    "One pattern had no guest guard, so a guest with a matching employer name could have qualified; that's now fixed."
   ],
   [
-   15.375,
+   16.812,
    6.3,
    "Another let in a worker with an empty type, and the owner decided that shouldn't count, so it gained a clause."
   ],
   [
-   21.675,
+   23.113,
    7.95,
    "And the direct reports rule can't carry guards at all, because Learn says it can't be combined with anything, so the linter just notes it."
   ]
@@ -418,11 +418,11 @@
   ],
   [
    20.05,
-   4.875,
-   "Then you lint Book 3's table and evaluate a rule over the fictional people."
+   6.213,
+   "Then you lint the H R-Driven Identity book's table and evaluate a rule over the fictional people."
   ],
   [
-   24.925,
+   26.262,
    5.787,
    "The disabled account and the guest stay out, and the lower-case code gets in, just as Learn says."
   ]

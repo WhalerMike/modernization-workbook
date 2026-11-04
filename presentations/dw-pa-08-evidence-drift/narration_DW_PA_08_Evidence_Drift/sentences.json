@@ -44,26 +44,26 @@
   ],
   [
    12.012,
-   3.25,
-   "Book 04 already says what goes in the package."
+   4.675,
+   "The workbook's privileged-access design already says what goes in the package."
   ],
   [
-   15.262,
+   16.688,
    3.038,
    "Learn supplies the two facts the design turns on."
   ],
   [
-   18.3,
+   19.725,
    6.312,
    "First, the audit log only keeps thirty days, so evidence has to be collected before it ages out."
   ],
   [
-   24.613,
+   26.038,
    7.013,
    "Second, one activation can show up under several correlation I D's, but its request I D never changes."
   ],
   [
-   31.625,
+   33.05,
    2.3,
    "That request I D becomes the key."
   ]
@@ -310,8 +310,8 @@
   ],
   [
    31.462,
-   4.525,
-   "Any Tier 0 change is an incident, as Book 04 says."
+   4.338,
+   "Any Tier 0 change is an incident; that's the workbook's design."
   ]
  ],
  "11": [

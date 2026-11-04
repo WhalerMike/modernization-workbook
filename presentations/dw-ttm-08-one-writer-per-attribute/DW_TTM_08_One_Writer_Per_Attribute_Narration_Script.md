@@ -2,11 +2,11 @@
 
 ## Slide 1 — Chapter 08: One Writer per Attribute
 
-Welcome to the last chapter of Building Ticket-to-Machine. Chapter 8: one writer per attribute. Two writers on one attribute isn't drift you can fix. It's drift you've scheduled. Book 3 makes Entra inbound provisioning the one writer into the directory, but SailPoint can also provision Entra ID. If both write department, the reconciliation reports drift that the next sync recreates. This chapter compares the two provisioning configurations, offline, and names every attribute with two writers. Then two labs and the dangers.
+Welcome to the last chapter of Building Ticket-to-Machine. Chapter 8: one writer per attribute. Two writers on one attribute isn't drift you can fix. It's drift you've scheduled. The Federal Modernization Workbook's design makes Entra inbound provisioning the one writer into the directory, but SailPoint can also provision Entra ID. If both write department, the reconciliation reports drift that the next sync recreates. This chapter compares the two provisioning configurations, offline, and names every attribute with two writers. Then two labs and the dangers.
 
 ## Slide 2 — Why two writers is drift you've scheduled
 
-Why does this matter? The example guide's fourth gap: SailPoint reads the HR system and can provision the directory, while Book 3 makes Entra inbound provisioning the one writer. The guide's advice is to pick one writer per attribute. Either Entra inbound provisioning stays the door and SailPoint governs entitlements, or SailPoint becomes the provisioning service. Not both. Until now, the drift client saw only the symptom, drift that keeps coming back, never the cause. Both configurations export as JSON, so the check can run on files, today.
+Why does this matter? The example guide's fourth gap: SailPoint reads the HR system and can provision the directory, while the workbook's design makes Entra inbound provisioning the one writer. The guide's advice is to pick one writer per attribute. Either Entra inbound provisioning stays the door and SailPoint governs entitlements, or SailPoint becomes the provisioning service. Not both. Until now, the drift client saw only the symptom, drift that keeps coming back, never the cause. Both configurations export as JSON, so the check can run on files, today.
 
 ## Slide 3 — Why only this Pass 2 item is built
 
@@ -42,7 +42,7 @@ What this proves. Each Entra user attribute has one authoritative writer, or the
 
 ## Slide 11 — Who owns each writer, and who decides
 
-Who's involved? Identity engineers who own the inbound provisioning job or the SailPoint Entra source, and produce the two exports. The data architect, who decides which system owns each attribute and reviews the aliases; Book 3's default keeps Entra inbound provisioning as the writer. And the I S S O, who keeps the decisions. The two reads are read-only. One wrinkle: SailPoint's policies endpoint documents the org admin user level, so a personal token is the wrong tool; use an API client with one read scope.
+Who's involved? Identity engineers who own the inbound provisioning job or the SailPoint Entra source, and produce the two exports. The data architect, who decides which system owns each attribute and reviews the aliases; the workbook's default keeps Entra inbound provisioning as the writer. And the I S S O, who keeps the decisions. The two reads are read-only. One wrinkle: SailPoint's policies endpoint documents the org admin user level, so a personal token is the wrong tool; use an API client with one read scope.
 
 ## Slide 12 — Lab 1: department has two writers
 

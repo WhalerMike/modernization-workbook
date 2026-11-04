@@ -10,7 +10,7 @@ Why does this rule exist? Because there are several ways to close a finding with
 
 ## Slide 3 — The business rule: every close becomes a wait
 
-Here's the rule inside ServiceNow. It runs before any update that changes the state. If someone sets a closed state, the record goes to awaiting verification instead, unless that same update carries a new evidence hash and comes from the verifier account. Evidence alone isn't enough, and the verifier alone isn't enough. There's one human path: a named exception approver can cancel with a close note, which is the Federal Modernization Workbook's Book 13's declared-exception lane, and it stays on the record. The rule also governs tickets the Service Desk integration opened.
+Here's the rule inside ServiceNow. It runs before any update that changes the state. If someone sets a closed state, the record goes to awaiting verification instead, unless that same update carries a new evidence hash and comes from the verifier account. Evidence alone isn't enough, and the verifier alone isn't enough. There's one human path: a named exception approver can cancel with a close note, which is the Federal Modernization Workbook's declared-exception lane, and it stays on the record. The rule also governs tickets the Service Desk integration opened.
 
 ## Slide 4 — The re-read client: read, compare, close or reopen
 
@@ -38,7 +38,7 @@ Three points are open. The biggest: which user ServiceNow records for a call mad
 
 ## Slide 10 — What the re-read proves, and for whom
 
-For the I S S O, this is the closure evidence. A finding closed only after a re-read showed the intended state, with the query, the time, a hash of the response and the checker, which is Book 13's fourth clause and supports change control and continuous monitoring. No person can close a finding by setting its state, which is separation of duties. A read that predates the change doesn't count. And an empty intended state never closes anything: a verified change, not an asserted one.
+For the I S S O, this is the closure evidence. A finding closed only after a re-read showed the intended state, with the query, the time, a hash of the response and the checker, which is the workbook's closure clause, and it supports NIST SP 800-53's configuration change control, CM-3, and the monitoring for unauthorized change that NIST SP 800-37 calls for. No person can close a finding by setting its state, which is separation of duties. A read that predates the change doesn't count. And an empty intended state never closes anything: a verified change, not an asserted one.
 
 ## Slide 11 — Who owns the rule, the client and the evidence
 

@@ -38,10 +38,14 @@ Any role that isn't in the file is reported
 as unclassified, never assumed safe.
 
 9
-00:00:26.375 --> 00:00:31.850
-Azure roles get their tier from Book 04's
-placement table, by role and by scope.
+00:00:26.375 --> 00:00:30.834
+Azure roles get their tier from the
+workbook's privileged-access design,
 
 10
-00:00:31.850 --> 00:00:34.010
+00:00:30.834 --> 00:00:33.138
+a placement table by role and by scope.
+
+11
+00:00:33.138 --> 00:00:35.280
 Both are labeled design guidance.

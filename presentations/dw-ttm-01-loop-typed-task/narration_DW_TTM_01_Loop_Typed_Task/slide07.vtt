@@ -35,11 +35,11 @@ The check warns rather than rejects,
 because ServiceNow would accept it.
 
 8
-00:00:21.263 --> 00:00:26.017
-For the two classes Book 13 sends to a
-person first, missing identity and an
+00:00:21.263 --> 00:00:25.979
+For the two classes the loop sends to
+a person first, missing identity and an
 
 9
-00:00:26.017 --> 00:00:31.220
+00:00:25.979 --> 00:00:31.060
 unauthorized write, the warning says
 that's expected until that person decides.

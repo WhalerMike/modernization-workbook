@@ -16,36 +16,36 @@ so they don't need the
 emergency exclusion.
 
 4
-00:00:09.599 --> 00:00:15.034
-Book 04's pre-merge check is stricter,
-and fails any report-only file without it,
+00:00:09.599 --> 00:00:14.289
+The workbook's own pre-merge check is
+stricter, and fails any report-only
 
 5
-00:00:15.034 --> 00:00:18.175
-even the probe that's
-meant to exclude nobody.
+00:00:14.289 --> 00:00:18.262
+file without it, even the probe
+that's meant to exclude nobody.
 
 6
-00:00:18.175 --> 00:00:22.575
+00:00:18.262 --> 00:00:22.662
 The chapter's finding is that the
 stricter rule isn't wrong, just stricter.
 
 7
-00:00:22.575 --> 00:00:26.629
+00:00:22.662 --> 00:00:26.717
 So the code puts the exclusion in
 every file whatever its state,
 
 8
-00:00:26.629 --> 00:00:29.825
+00:00:26.717 --> 00:00:29.913
 because enforcing a file
 means changing one word.
 
 9
-00:00:29.825 --> 00:00:32.836
+00:00:29.913 --> 00:00:32.924
 Only a named report-only
 instrument may skip it,
 
 10
-00:00:32.836 --> 00:00:35.590
+00:00:32.924 --> 00:00:35.690
 and it fails the moment
 someone enables it.

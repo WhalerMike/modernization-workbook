@@ -38,15 +38,16 @@ before the parallel run starts.
 That test is the center of the chapter.
 
 9
-00:00:25.525 --> 00:00:28.208
-The order of conversion comes from Book 2:
+00:00:25.525 --> 00:00:28.613
+The order of conversion
+is the workbook's design:
 
 10
-00:00:28.208 --> 00:00:32.785
+00:00:28.613 --> 00:00:33.091
 managed identities where the host
 is in Azure, federated credentials
 
 11
-00:00:32.785 --> 00:00:37.180
+00:00:33.091 --> 00:00:37.390
 where the host speaks O I D C,
 certificates only where neither works.

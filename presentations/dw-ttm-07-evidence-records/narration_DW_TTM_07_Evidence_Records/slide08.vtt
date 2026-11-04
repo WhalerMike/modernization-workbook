@@ -16,28 +16,28 @@ Search events index, which the SailPoint
 half will read when it's built.
 
 4
-00:00:13.187 --> 00:00:16.744
-The record shape, the window
-and the lanes are Book 13's,
+00:00:13.187 --> 00:00:17.094
+The record shape, the window and
+the lanes are the workbook's design,
 
 5
-00:00:16.744 --> 00:00:19.250
-and the hash chain is design guidance.
+00:00:17.094 --> 00:00:19.225
+and the hash chain is the kit's design.
 
 6
-00:00:19.250 --> 00:00:24.483
+00:00:19.225 --> 00:00:24.458
 Two points stay open: the format and time
 zone of the dates the Table API returns,
 
 7
-00:00:24.483 --> 00:00:26.737
+00:00:24.458 --> 00:00:26.712
 which the export parses both ways,
 
 8
-00:00:26.737 --> 00:00:30.762
+00:00:26.712 --> 00:00:30.737
 and what SailPoint keeps in its
 events index and for how long.
 
 9
-00:00:30.762 --> 00:00:32.980
+00:00:30.737 --> 00:00:32.950
 That's why the SailPoint half waits.

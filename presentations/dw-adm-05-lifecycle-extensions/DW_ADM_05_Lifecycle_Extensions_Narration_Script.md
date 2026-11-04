@@ -6,7 +6,7 @@ Welcome to the Federal Modernization Workbook's developer workbook, Building the
 
 ## Slide 2 — Where the extensions sit, and Learn's contract
 
-Why does this chapter matter? Book 03 splits the work: provisioning creates accounts, and Lifecycle Workflows act on accounts that already exist. The built-in tasks handle the account itself, but everything else in a leaver, the PIV credential, the devices, the servers, goes through a custom task extension, which is code you write. Book 03 also sets three rules: one reusable Logic App per integration, block the account first, and make custom tasks safe to repeat. Learn sets the contract on the other side: how the Logic App is started, how long the workflow waits, and how the answer comes back. Let's see where that runs.
+Why does this chapter matter? Microsoft Learn splits the work: inbound provisioning creates accounts, and Lifecycle Workflows act on accounts that already exist. The built-in tasks handle the account itself, but everything else in a leaver, the PIV credential, the devices, the servers, goes through a custom task extension, which is code you write. The workbook's design also sets three rules: one reusable Logic App per integration, block the account first, and make custom tasks safe to repeat. Learn sets the contract on the other side: how the Logic App is started, how long the workflow waits, and how the answer comes back. Let's see where that runs.
 
 ## Slide 3 — Which cloud: Graph host, Azure Resource Manager, license
 
@@ -34,11 +34,11 @@ Now the program's code. There's one Logic App definition, and every integration 
 
 ## Slide 9 — Idempotency, the callback path and the registry
 
-Two ideas hold the design together. The first is idempotency. The key isn't a Microsoft feature; it's a promise the downstream system makes to do the work once per key. That matters because the same task can arrive twice: the extension may retry its call, a workflow can be rerun, and Book 03 resumes a partial leaver where it stopped. The second is the registry: one reviewed entry per integration, holding every value the deployment needs. Its extension settings have sensible defaults, and the builder refuses anything outside Learn's ranges.
+Two ideas hold the design together. The first is idempotency. The key isn't a Microsoft feature; it's a promise the downstream system makes to do the work once per key. That matters because the same task can arrive twice: the extension may retry its call, a workflow can be rerun, and the workbook's design resumes a partial leaver where it stopped. The second is the registry: one reviewed entry per integration, holding every value the deployment needs. Its extension settings have sensible defaults, and the builder refuses anything outside Learn's ranges.
 
-## Slide 10 — Five commands, and Book 03's leaver order
+## Slide 10 — Five commands, and the workbook's leaver order
 
-The tooling is one script with five commands. Lint applies twelve rules to any definition, including Microsoft's, and one of them adds up every possible retry wait so the callback can't arrive after the workflow has given up. Run plays a definition against the fakes, with failures and repeat deliveries on demand. Build refuses to write anything while there's a finding. And the two checks compare what's really in the tenant with the registry, including Book 03's leaver order: block the account and revoke its tokens first, then run the custom task. A failed revocation shouldn't stop the cleanup after it.
+The tooling is one script with five commands. Lint applies twelve rules to any definition, including Microsoft's, and one of them adds up every possible retry wait so the callback can't arrive after the workflow has given up. Run plays a definition against the fakes, with failures and repeat deliveries on demand. Build refuses to write anything while there's a finding. And the two checks compare what's really in the tenant with the registry, including the workbook's leaver order: block the account and revoke its tokens first, as Microsoft Learn's revoke-access guidance says, then run the custom task. A failed revocation shouldn't stop the cleanup after it.
 
 ## Slide 11 — Authorization, built from the registry and checked
 

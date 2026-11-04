@@ -1,44 +1,49 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.688
-Each closed finding becomes one
-record with Book 13's seven fields.
+00:00:00.050 --> 00:00:02.784
+Each closed finding
+becomes one record with the
 
 2
-00:00:04.688 --> 00:00:07.750
+00:00:02.784 --> 00:00:05.450
+seven fields of the
+workbook's evidence record.
+
+3
+00:00:05.450 --> 00:00:08.512
 Origin: when and where
 the drift was detected.
 
-3
-00:00:07.750 --> 00:00:13.237
+4
+00:00:08.512 --> 00:00:13.999
 Owner and clock: who, how urgent, when it
 was due and whether it finished in time.
 
-4
-00:00:13.237 --> 00:00:17.001
+5
+00:00:13.999 --> 00:00:17.763
 The result: the re-read evidence
 and whether it's intact.
 
-5
-00:00:17.001 --> 00:00:18.938
+6
+00:00:17.763 --> 00:00:19.700
 And the closure, with its lane.
 
-6
-00:00:18.938 --> 00:00:24.117
+7
+00:00:19.700 --> 00:00:24.879
 The other three fields, approval,
 the executing identity and what ran,
 
-7
-00:00:24.117 --> 00:00:28.750
+8
+00:00:24.879 --> 00:00:29.512
 are written as null, each with its
 reason: Pass 1 doesn't actuate.
 
-8
-00:00:28.750 --> 00:00:30.816
+9
+00:00:29.512 --> 00:00:31.578
 The record says what it doesn't hold,
 
-9
-00:00:30.816 --> 00:00:33.790
+10
+00:00:31.578 --> 00:00:34.560
 rather than leaving the
 field out or filling it in.

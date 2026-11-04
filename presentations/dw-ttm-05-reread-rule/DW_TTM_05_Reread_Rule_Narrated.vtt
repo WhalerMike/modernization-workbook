@@ -112,585 +112,594 @@ Evidence alone isn't enough, and
 the verifier alone isn't enough.
 
 25
-00:01:28.803 --> 00:01:33.455
+00:01:28.803 --> 00:01:33.321
 There's one human path: a named exception
 approver can cancel with a close note,
 
 26
-00:01:33.455 --> 00:01:36.799
+00:01:33.321 --> 00:01:36.075
 which is the Federal
-Modernization Workbook's Book 13's
+Modernization Workbook's
 
 27
-00:01:36.799 --> 00:01:39.852
+00:01:36.075 --> 00:01:39.040
 declared-exception lane,
 and it stays on the record.
 
 28
-00:01:39.852 --> 00:01:44.280
+00:01:39.040 --> 00:01:43.460
 The rule also governs tickets the
 Service Desk integration opened.
 
 29
-00:01:48.030 --> 00:01:50.455
+00:01:47.210 --> 00:01:49.635
 The other half is the re-read client.
 
 30
-00:01:50.455 --> 00:01:55.463
+00:01:49.635 --> 00:01:54.643
 It lists waiting findings, re-reads each
 subject according to its system, an
 
 31
-00:01:55.463 --> 00:01:57.886
+00:01:54.643 --> 00:01:57.066
 account, an identity or an Entra user,
 
 32
-00:01:57.886 --> 00:02:00.955
+00:01:57.066 --> 00:02:00.135
 and compares the read
 with the intended state.
 
 33
-00:02:00.955 --> 00:02:05.254
+00:02:00.135 --> 00:02:04.434
 A match closes the record with
 the evidence: the query, the time,
 
 34
-00:02:05.254 --> 00:02:10.818
+00:02:04.434 --> 00:02:09.998
 a hash of the response, the intended state
 and the checker, attached as JSON too.
 
 35
-00:02:10.818 --> 00:02:12.292
+00:02:09.998 --> 00:02:11.472
 A difference reopens it.
 
 36
-00:02:12.292 --> 00:02:15.804
+00:02:11.472 --> 00:02:14.984
 Because SailPoint's copy
 reflects the last aggregation,
 
 37
-00:02:15.804 --> 00:02:19.167
+00:02:14.984 --> 00:02:18.347
 a read older than the wait is
 pending for a grace period.
 
 38
-00:02:19.167 --> 00:02:22.170
+00:02:18.347 --> 00:02:21.350
 And nothing is written
 without the apply flag.
 
 39
-00:02:25.920 --> 00:02:27.158
+00:02:25.100 --> 00:02:26.338
 Two things were missing.
 
 40
-00:02:27.158 --> 00:02:28.571
+00:02:26.338 --> 00:02:27.751
 The first was this guard.
 
 41
-00:02:28.571 --> 00:02:32.261
+00:02:27.751 --> 00:02:31.441
 The client already skipped a record
 with an empty intended state,
 
 42
-00:02:32.261 --> 00:02:36.704
+00:02:31.441 --> 00:02:35.884
 but not one whose intended state was a
 non-empty object naming nothing, which is
 
 43
-00:02:36.704 --> 00:02:41.283
+00:02:35.884 --> 00:02:40.463
 exactly what ServiceNow stores for a native
 change the workflow didn't describe.
 
 44
-00:02:41.283 --> 00:02:44.288
+00:02:40.463 --> 00:02:43.468
 Comparing a read against
 that finds no difference,
 
 45
-00:02:44.288 --> 00:02:48.295
+00:02:43.468 --> 00:02:47.475
 so the client would have closed the
 record, with evidence, on nothing.
 
 46
-00:02:48.295 --> 00:02:51.381
+00:02:47.475 --> 00:02:50.561
 Now Chapter 1's check runs
 before anything is read,
 
 47
-00:02:51.381 --> 00:02:55.430
+00:02:50.561 --> 00:02:54.610
 and such a record is skipped
 with the reason, never verified.
 
 48
-00:02:59.180 --> 00:03:02.992
+00:02:58.360 --> 00:03:02.172
 The second thing missing was a way to
 watch the decisions without a tenant.
 
 49
-00:03:02.992 --> 00:03:07.762
+00:03:02.172 --> 00:03:06.942
 The offline mode takes saved waiting
 records in the Table API's shape,
 
 50
-00:03:07.762 --> 00:03:10.942
+00:03:06.942 --> 00:03:10.122
 saved reads keyed by
 subject, and a fixed clock.
 
 51
-00:03:10.942 --> 00:03:15.367
+00:03:10.122 --> 00:03:14.547
 The same function makes the same
 decisions; only the reader is swapped.
 
 52
-00:03:15.367 --> 00:03:18.475
+00:03:14.547 --> 00:03:17.655
 It's a dry run only: the
 apply flag is refused,
 
 53
-00:03:18.475 --> 00:03:24.155
+00:03:17.655 --> 00:03:23.335
 and a subject with no saved read is an
 error, because a missing read isn't a match.
 
 54
-00:03:24.155 --> 00:03:27.548
+00:03:23.335 --> 00:03:26.728
 Six fictional waiting
 records cover every outcome,
 
 55
-00:03:27.548 --> 00:03:32.330
+00:03:26.728 --> 00:03:31.510
 from a clean verify to the empty
 intended state the guard exists for.
 
 56
-00:03:36.080 --> 00:03:37.092
+00:03:35.260 --> 00:03:36.272
 The tests.
 
 57
-00:03:37.092 --> 00:03:42.029
+00:03:36.272 --> 00:03:41.209
 Six new offline tests cover the six
 outcomes, the grace period expiring,
 
 58
-00:03:42.029 --> 00:03:46.631
+00:03:41.209 --> 00:03:45.811
 the guard never calling the reader,
 a missing saved read as an error,
 
 59
-00:03:46.631 --> 00:03:49.392
+00:03:45.811 --> 00:03:48.572
 a null read as not
 found, and the refusals.
 
 60
-00:03:49.392 --> 00:03:52.755
+00:03:48.572 --> 00:03:51.935
 The kit's original nine
 re-read tests still pass.
 
 61
-00:03:52.755 --> 00:03:56.223
+00:03:51.935 --> 00:03:55.403
 And the business rule's six
 Node tests pin its behavior:
 
 62
-00:03:56.223 --> 00:04:01.233
+00:03:55.403 --> 00:04:00.413
 a person's close is redirected, only the
 verifier with fresh evidence may close,
 
 63
-00:04:01.233 --> 00:04:06.012
+00:04:00.413 --> 00:04:05.192
 either one alone isn't enough, the
 exception approver may cancel with a note,
 
 64
-00:04:06.012 --> 00:04:10.310
+00:04:05.192 --> 00:04:09.490
 and on incidents only the
 integration's tickets are governed.
 
 65
-00:04:14.060 --> 00:04:18.035
+00:04:13.240 --> 00:04:17.215
 The facts each re-read depends
 on, read on November first.
 
 66
-00:04:18.035 --> 00:04:20.797
+00:04:17.215 --> 00:04:19.977
 The Table API lists and patches records,
 
 67
-00:04:20.797 --> 00:04:26.322
+00:04:19.977 --> 00:04:25.502
 and the Attachment API uploads the evidence
 file with a mandatory content type.
 
 68
-00:04:26.322 --> 00:04:29.767
+00:04:25.502 --> 00:04:28.947
 An account is re-read through
 SailPoint's Accounts API,
 
 69
-00:04:29.767 --> 00:04:34.667
+00:04:28.947 --> 00:04:33.847
 an identity through Search on the
 identities index, and an Entra user through
 
 70
-00:04:34.667 --> 00:04:39.260
+00:04:33.847 --> 00:04:38.440
 Graph's get-a-user call, which returns
 not found when the user doesn't exist.
 
 71
-00:04:39.260 --> 00:04:42.500
+00:04:38.440 --> 00:04:41.680
 And SailPoint's own best-practice
 page confirms the gap:
 
 72
-00:04:42.500 --> 00:04:47.500
+00:04:41.680 --> 00:04:46.680
 the mapped ServiceNow status decides
 when it treats provisioning as complete.
 
 73
-00:04:51.250 --> 00:04:52.450
+00:04:50.430 --> 00:04:51.630
 Three points are open.
 
 74
-00:04:52.450 --> 00:04:55.351
+00:04:51.630 --> 00:04:54.531
 The biggest: which user
 ServiceNow records for a
 
 75
-00:04:55.351 --> 00:04:58.325
+00:04:54.531 --> 00:04:57.505
 call made with an OAuth
 client-credentials token.
 
 76
-00:04:58.325 --> 00:05:02.762
+00:04:57.505 --> 00:05:01.942
 The rule compares exactly that with its
 verifier property, so if they differ
 
 77
-00:05:02.762 --> 00:05:06.987
+00:05:01.942 --> 00:05:06.167
 it refuses every close, and people
 start looking for a way around the rule.
 
 78
-00:05:06.987 --> 00:05:09.099
+00:05:06.167 --> 00:05:08.279
 Lab 2 checks it before go-live.
 
 79
-00:05:09.099 --> 00:05:13.414
+00:05:08.279 --> 00:05:12.594
 Also open: how long a SailPoint read
 lags the source, which depends on the
 
 80
-00:05:13.414 --> 00:05:16.046
+00:05:12.594 --> 00:05:15.226
 aggregation schedule, and how to recognize
 
 81
-00:05:16.046 --> 00:05:19.200
+00:05:15.226 --> 00:05:18.380
 a ticket the Service
 Desk integration opened.
 
 82
-00:05:22.950 --> 00:05:26.275
+00:05:22.130 --> 00:05:25.455
 For the I S S O, this is
 the closure evidence.
 
 83
-00:05:26.275 --> 00:05:31.171
+00:05:25.455 --> 00:05:30.691
 A finding closed only after a re-read
 showed the intended state, with the query,
 
 84
-00:05:31.171 --> 00:05:35.149
-the time, a hash of the response
-and the checker, which is Book 13's
+00:05:30.691 --> 00:05:33.799
+the time, a hash of the
+response and the checker,
 
 85
-00:05:35.149 --> 00:05:39.662
-fourth clause and supports change
-control and continuous monitoring.
+00:05:33.799 --> 00:05:36.417
+which is the workbook's closure clause,
 
 86
-00:05:39.662 --> 00:05:44.625
+00:05:36.417 --> 00:05:43.535
+and it supports NIST SP 800-53's
+configuration change control, CM-3,
+
+87
+00:05:43.535 --> 00:05:48.443
+and the monitoring for unauthorized
+change that NIST SP 800-37 calls for.
+
+88
+00:05:48.443 --> 00:05:53.406
 No person can close a finding by setting
 its state, which is separation of duties.
 
-87
-00:05:44.625 --> 00:05:47.125
+89
+00:05:53.406 --> 00:05:55.905
 A read that predates the
 change doesn't count.
 
-88
-00:05:47.125 --> 00:05:50.822
+90
+00:05:55.905 --> 00:05:59.602
 And an empty intended state
 never closes anything:
 
-89
-00:05:50.822 --> 00:05:53.920
+91
+00:05:59.602 --> 00:06:02.700
 a verified change, not an asserted one.
 
-90
-00:05:57.670 --> 00:05:58.708
+92
+00:06:06.450 --> 00:06:07.488
 Who owns this?
 
-91
-00:05:58.708 --> 00:06:01.419
+93
+00:06:07.488 --> 00:06:10.199
 Developers who own the client or the rule;
 
-92
-00:06:01.419 --> 00:06:05.726
+94
+00:06:10.199 --> 00:06:14.506
 ServiceNow administrators who
 configure the rule's properties,
 
-93
-00:06:05.726 --> 00:06:10.512
+95
+00:06:14.506 --> 00:06:19.292
 the waiting state's value, the verifier's
 user name, and the exception role;
 
-94
-00:06:10.512 --> 00:06:13.782
+96
+00:06:19.292 --> 00:06:22.562
 and the I S S O, for whom
 this is the closure evidence.
 
-95
-00:06:13.782 --> 00:06:15.345
+97
+00:06:22.562 --> 00:06:24.125
 The identities are simple.
 
-96
-00:06:15.345 --> 00:06:20.157
+98
+00:06:24.125 --> 00:06:28.937
 The verifier can close a finding only
 in the same update as fresh evidence.
 
-97
-00:06:20.157 --> 00:06:23.046
+99
+00:06:28.937 --> 00:06:31.826
 A named exception approver
 can cancel with a note.
 
-98
-00:06:23.046 --> 00:06:28.380
+100
+00:06:31.826 --> 00:06:37.160
 Anyone else who sets a closed state just
 moves the record to awaiting verification.
 
-99
-00:06:32.130 --> 00:06:32.942
+101
+00:06:40.910 --> 00:06:41.722
 Lab 1.
 
-100
-00:06:32.942 --> 00:06:34.543
+102
+00:06:41.722 --> 00:06:43.323
 Fifteen tests pass.
 
-101
-00:06:34.543 --> 00:06:38.567
+103
+00:06:43.323 --> 00:06:47.347
 Then re-read the six waiting
 findings at noon on November first.
 
-102
-00:06:38.567 --> 00:06:40.705
+104
+00:06:47.347 --> 00:06:49.485
 Three verify and would close.
 
-103
-00:06:40.705 --> 00:06:44.712
+105
+00:06:49.485 --> 00:06:53.492
 One mismatches: a terminated user
 is still enabled in Entra ID,
 
-104
-00:06:44.712 --> 00:06:47.305
+106
+00:06:53.492 --> 00:06:56.085
 so it would reopen with that difference.
 
-105
-00:06:47.305 --> 00:06:51.705
+107
+00:06:56.085 --> 00:07:00.485
 One is pending: the SailPoint account
 was last modified before the finding
 
-106
-00:06:51.705 --> 00:06:56.317
+108
+00:07:00.485 --> 00:07:05.097
 started waiting, so the read predates the
 change and the client leaves it alone.
 
-107
-00:06:56.317 --> 00:07:00.380
+109
+00:07:05.097 --> 00:07:09.160
 And one is skipped, because its
 intended state names nothing.
 
-108
-00:07:00.380 --> 00:07:03.000
+110
+00:07:09.160 --> 00:07:11.780
 That's the case the guard exists for.
 
-109
-00:07:06.750 --> 00:07:08.938
+111
+00:07:15.530 --> 00:07:17.718
 Now run the same records a day later.
 
-110
-00:07:08.938 --> 00:07:12.249
+112
+00:07:17.718 --> 00:07:21.029
 The pending one has passed its
 twenty-four-hour grace period.
 
-111
-00:07:12.249 --> 00:07:14.295
+113
+00:07:21.029 --> 00:07:23.075
 The account still isn't disabled,
 
-112
-00:07:14.295 --> 00:07:17.325
+114
+00:07:23.075 --> 00:07:26.105
 so it's now a mismatch, and
 the record would reopen.
 
-113
-00:07:17.325 --> 00:07:20.675
+115
+00:07:26.105 --> 00:07:29.455
 A stale read can't hold
 a finding open forever.
 
-114
-00:07:20.675 --> 00:07:24.387
+116
+00:07:29.455 --> 00:07:33.167
 The results file keeps each
 outcome with its evidence hash.
 
-115
-00:07:24.387 --> 00:07:27.538
+117
+00:07:33.167 --> 00:07:36.318
 Finally, run the business
 rule's six Node tests.
 
-116
-00:07:27.538 --> 00:07:30.321
+118
+00:07:36.318 --> 00:07:39.101
 They pass: a person's close is redirected,
 
-117
-00:07:30.321 --> 00:07:34.310
+119
+00:07:39.101 --> 00:07:43.090
 and only the verifier with
 fresh evidence can close.
 
-118
-00:07:38.060 --> 00:07:40.246
+120
+00:07:46.840 --> 00:07:49.026
 Lab 2 is on your developer instance,
 
-119
-00:07:40.246 --> 00:07:43.185
+121
+00:07:49.026 --> 00:07:51.965
 never production, and the
 authors haven't run it.
 
-120
-00:07:43.185 --> 00:07:45.610
+122
+00:07:51.965 --> 00:07:54.390
 Configure the rule and its properties.
 
-121
-00:07:45.610 --> 00:07:50.960
+123
+00:07:54.390 --> 00:07:59.740
 Close a test finding as an ordinary user
 and watch it land in awaiting verification.
 
-122
-00:07:50.960 --> 00:07:54.386
+124
+00:07:59.740 --> 00:08:03.166
 Then the important step: as
 the verifier's OAuth client,
 
-123
-00:07:54.386 --> 00:07:58.497
+125
+00:08:03.166 --> 00:08:07.277
 make one harmless update and see
 which user ServiceNow recorded.
 
-124
-00:07:58.497 --> 00:08:02.961
+126
+00:08:07.277 --> 00:08:11.741
 If it isn't the verifier property,
 the rule will refuse every close.
 
-125
-00:08:02.961 --> 00:08:06.075
+127
+00:08:11.741 --> 00:08:14.855
 Then give a test finding
 a checkable intended
 
-126
-00:08:06.075 --> 00:08:09.272
+128
+00:08:14.855 --> 00:08:18.052
 state and run the client,
 dry first, then for real.
 
-127
-00:08:09.272 --> 00:08:10.640
+129
+00:08:18.052 --> 00:08:19.420
 Back it all out.
 
-128
-00:08:14.390 --> 00:08:17.727
+130
+00:08:23.170 --> 00:08:26.507
 The dangers line up with the
 ways to close without proof.
 
-129
-00:08:17.727 --> 00:08:21.053
+131
+00:08:26.507 --> 00:08:29.833
 Closure by ticket status
 is redirected by the rule.
 
-130
-00:08:21.053 --> 00:08:24.528
+132
+00:08:29.833 --> 00:08:33.308
 An intended state that names
 nothing is skipped by the guard.
 
-131
-00:08:24.528 --> 00:08:28.916
+133
+00:08:33.308 --> 00:08:37.696
 A stale read is pending inside the
 grace period and a mismatch after it.
 
-132
-00:08:28.916 --> 00:08:31.710
+134
+00:08:37.696 --> 00:08:40.490
 A missing read is an error, never a match;
 
-133
-00:08:31.710 --> 00:08:35.290
+135
+00:08:40.490 --> 00:08:44.070
 the live reader raises on
 anything but a not-found.
 
-134
-00:08:35.290 --> 00:08:40.303
+136
+00:08:44.070 --> 00:08:49.083
 A misconfigured verifier would refuse
 every close, so check it in Lab 2.
 
-135
-00:08:40.303 --> 00:08:44.120
+137
+00:08:49.083 --> 00:08:52.900
 And evidence edited after closure
 no longer proves anything,
 
-136
-00:08:44.120 --> 00:08:47.090
+138
+00:08:52.900 --> 00:08:55.870
 which is why Chapter
 7 recomputes the hash.
 
-137
-00:08:50.840 --> 00:08:52.040
+139
+00:08:59.620 --> 00:09:00.820
 Done looks like this.
 
-138
-00:08:52.040 --> 00:08:54.368
+140
+00:09:00.820 --> 00:09:03.148
 The rule is active on the finding table,
 
-139
-00:08:54.368 --> 00:08:59.315
+141
+00:09:03.148 --> 00:09:08.095
 and on incidents and request items if the
 Service Desk integration opens tickets.
 
-140
-00:08:59.315 --> 00:09:04.015
+142
+00:09:08.095 --> 00:09:12.795
 The verifier property matches the
 user ServiceNow actually records.
 
-141
-00:09:04.015 --> 00:09:07.803
+143
+00:09:12.795 --> 00:09:16.583
 The grace period is at least the
 longest aggregation interval.
 
-142
-00:09:07.803 --> 00:09:11.862
+144
+00:09:16.583 --> 00:09:20.642
 A dry run over this week's waiting
 findings skips nothing for an
 
-143
-00:09:11.862 --> 00:09:15.765
+145
+00:09:20.642 --> 00:09:24.545
 empty intended state, or each
 such record has gone to a person.
 
-144
-00:09:15.765 --> 00:09:18.903
+146
+00:09:24.545 --> 00:09:27.683
 Closed records carry their
 evidence and attachment.
 
-145
-00:09:18.903 --> 00:09:20.316
+147
+00:09:27.683 --> 00:09:29.096
 And the tests pass.
 
-146
-00:09:20.316 --> 00:09:23.853
+148
+00:09:29.096 --> 00:09:32.633
 Next, Chapter 6: drift reconciliation.
 
-147
-00:09:23.853 --> 00:09:25.010
+149
+00:09:32.633 --> 00:09:33.790
 Thanks for watching.

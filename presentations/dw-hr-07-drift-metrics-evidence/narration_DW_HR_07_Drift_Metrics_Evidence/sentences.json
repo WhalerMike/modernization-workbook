@@ -66,21 +66,21 @@
   ],
   [
    11.062,
-   7.325,
-   "So the nearest start is the program's own drift pipeline from the Federal Modernization Workbook's Book 19, Chapter 9."
+   8.75,
+   "So the nearest start is the program's own drift pipeline from Chapter 9 of the Federal Modernization Workbook's Building the Attribute-Driven Migration."
   ],
   [
-   18.387,
+   19.812,
    6.638,
    "It compares validation kit runs, keeps names out of the tracker and writes hashed, chained evidence packages."
   ],
   [
-   25.025,
+   26.45,
    6.325,
    "What it can't do is read lifecycle inputs, compute metrics against thresholds, or assemble a period."
   ],
   [
-   31.35,
+   32.775,
    6.425,
    "The verdict: keep it as the scheduler, the sign-in and the hashing, and give it a run shaped for the lifecycle."
   ]
@@ -115,31 +115,31 @@
  "5": [
   [
    0.05,
-   2.788,
-   "Here are the six classes, all from Book 3."
+   4.062,
+   "Here are the six classes, all of them the workbook's drift classes."
   ],
   [
-   2.837,
+   4.112,
    3.125,
    "A worker record with no account is missing identity."
   ],
   [
-   5.963,
+   7.237,
    6.537,
    "An enabled account for someone terminated, or a contractor past the earliest end, is stale access."
   ],
   [
-   12.5,
+   13.775,
    4.625,
    "An enabled account that matches nobody and no owned exception is an orphan."
   ],
   [
-   17.125,
+   18.4,
    8.338,
    "A second writer or forbidden write from Chapter 1's scan is an unauthorized write, keeping Chapter 1's object key so the fingerprint matches."
   ],
   [
-   25.462,
+   26.738,
    7.388,
    "And an active piv card for a separated worker, or for a contractor the source no longer holds, is credential drift."
   ]
@@ -147,41 +147,41 @@
  "6": [
   [
    0.05,
-   3.175,
-   "The six metrics are Book 3's measured lifecycle."
+   3.125,
+   "The six metrics are the workbook's measured lifecycle."
   ],
   [
-   3.225,
+   3.175,
    6.088,
    "Separation-to-block and separation-to-revocation come from Chapter 6, at the ninetieth percentile."
   ],
   [
-   9.312,
+   9.262,
    5.088,
    "Transfer-to-review comes from Chapter 4, and stays open while the review is open."
   ],
   [
-   14.4,
+   14.35,
    2.525,
    "Joiner readiness comes from Chapter 3."
   ],
   [
-   16.925,
+   16.875,
    4.612,
    "Correlation coverage and derivation purity this run computes itself."
   ],
   [
-   21.538,
+   21.488,
    2.6,
    "A metric over its threshold is a warning."
   ],
   [
-   24.137,
+   24.087,
    5.838,
    "And the key rule: a metric with no input is reported as not measured, never as zero."
   ],
   [
-   29.975,
+   29.925,
    5.375,
    "The thresholds are proposed starting values; choosing them is the agency's decision."
   ]
@@ -246,8 +246,8 @@
   ],
   [
    34.225,
-   3.513,
-   "The metrics and classes themselves are Book 3's design."
+   3.425,
+   "The metrics and classes themselves are the workbook's design."
   ]
  ],
  "9": [
@@ -497,16 +497,16 @@
   ],
   [
    20.2,
-   8.875,
-   "Schedule it in Book 19's workflow with no secret, writing packages to an immutable container outside the directory, each naming the last."
+   11.7,
+   "Schedule it in the drift pipeline's workflow from Building the Attribute-Driven Migration, with no secret, writing packages to an immutable container outside the directory, each naming the last."
   ],
   [
-   29.075,
+   31.9,
    3.5,
    "After a few runs, check that a skipped day shows as a gap."
   ],
   [
-   32.575,
+   35.4,
    1.212,
    "Then back it all out."
   ]

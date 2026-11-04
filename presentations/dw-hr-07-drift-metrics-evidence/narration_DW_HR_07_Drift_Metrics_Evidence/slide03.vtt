@@ -11,39 +11,39 @@ lifecycle metrics or joins HR, the directory
 and a card system into drift classes.
 
 3
-00:00:11.062 --> 00:00:14.572
-So the nearest start is the
-program's own drift pipeline
+00:00:11.062 --> 00:00:15.196
+So the nearest start is the program's
+own drift pipeline from Chapter 9 of
 
 4
-00:00:14.572 --> 00:00:18.387
-from the Federal Modernization
-Workbook's Book 19, Chapter 9.
+00:00:15.196 --> 00:00:19.812
+the Federal Modernization Workbook's
+Building the Attribute-Driven Migration.
 
 5
-00:00:18.387 --> 00:00:20.378
+00:00:19.812 --> 00:00:21.803
 It compares validation kit runs,
 
 6
-00:00:20.378 --> 00:00:25.025
+00:00:21.803 --> 00:00:26.450
 keeps names out of the tracker and writes
 hashed, chained evidence packages.
 
 7
-00:00:25.025 --> 00:00:27.602
+00:00:26.450 --> 00:00:29.027
 What it can't do is read lifecycle inputs,
 
 8
-00:00:27.602 --> 00:00:31.350
+00:00:29.027 --> 00:00:32.775
 compute metrics against
 thresholds, or assemble a period.
 
 9
-00:00:31.350 --> 00:00:35.235
+00:00:32.775 --> 00:00:36.660
 The verdict: keep it as the scheduler,
 the sign-in and the hashing,
 
 10
-00:00:35.235 --> 00:00:37.820
+00:00:36.660 --> 00:00:39.260
 and give it a run shaped
 for the lifecycle.

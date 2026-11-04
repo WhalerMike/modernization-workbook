@@ -6,44 +6,44 @@ Welcome back to Building
 Ticket-to-Machine.
 
 2
-00:00:02.200 --> 00:00:06.118
-This is Chapter 7: evidence
-records for the Federal
+00:00:02.200 --> 00:00:06.749
+This is Chapter 7: evidence records
+for the Federal Modernization
 
 3
-00:00:06.118 --> 00:00:09.663
-Modernization Workbook's
-Book 13 and the I S S O.
+00:00:06.749 --> 00:00:11.050
+Workbook's Governance, Drift and
+Evidence book, and for the I S S O.
 
 4
-00:00:09.663 --> 00:00:12.325
+00:00:11.050 --> 00:00:13.713
 The I S S O doesn't need the tracker.
 
 5
-00:00:12.325 --> 00:00:15.679
+00:00:13.713 --> 00:00:17.067
 The I S S O needs one record
 per finding, in one shape,
 
 6
-00:00:15.679 --> 00:00:19.850
+00:00:17.067 --> 00:00:21.238
 that nobody could have edited
 afterwards without it showing.
 
 7
-00:00:19.850 --> 00:00:23.170
+00:00:21.238 --> 00:00:24.370
 This chapter reads closed
 findings out of ServiceNow,
 
 8
-00:00:23.170 --> 00:00:27.744
-writes each in Book 13's evidence shape,
-checks what an assessor would check,
+00:00:24.370 --> 00:00:28.546
+writes each in the shape of the workbook's
+evidence record, checks what an
 
 9
-00:00:27.744 --> 00:00:31.137
-and packages the period with
-a hash chain and a verifier.
+00:00:28.546 --> 00:00:33.000
+assessor would check, and packages the
+period with a hash chain and a verifier.
 
 10
-00:00:31.137 --> 00:00:33.550
+00:00:33.000 --> 00:00:35.400
 Then two labs and the dangers.

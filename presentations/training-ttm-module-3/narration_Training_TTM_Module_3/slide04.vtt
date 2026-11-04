@@ -10,55 +10,55 @@ short of the loop in four places,
 and Gate 2 closes two of them on paper.
 
 3
-00:00:07.150 --> 00:00:10.083
+00:00:07.150 --> 00:00:10.021
 Gap two: with SailPoint's
 Service Catalog app,
 
 4
-00:00:10.083 --> 00:00:14.126
+00:00:10.021 --> 00:00:13.977
 requests follow the approval
 process defined in ServiceNow,
 
 5
-00:00:14.126 --> 00:00:19.595
+00:00:13.977 --> 00:00:19.330
 while the Federal Modernization Workbook's
-Book 15 decides owner-governed access,
+design decides owner-governed access,
 
 6
-00:00:19.595 --> 00:00:23.638
+00:00:19.330 --> 00:00:23.287
 classes A two and A three, in
 the identity governance platform.
 
 7
-00:00:23.638 --> 00:00:27.400
+00:00:23.287 --> 00:00:27.051
 Gate 2 answers with one approver
 system per authority class.
 
 8
-00:00:27.400 --> 00:00:30.237
+00:00:27.051 --> 00:00:29.887
 Gap four: two doors into the directory.
 
 9
-00:00:30.237 --> 00:00:35.095
-SailPoint can provision Entra ID
-and Active Directory, while Book 03
+00:00:29.887 --> 00:00:34.886
+SailPoint can provision Entra ID and
+Active Directory, while the workbook's
 
 10
-00:00:35.095 --> 00:00:40.463
-makes Entra inbound provisioning the
-one writer of HR-mastered attributes.
+00:00:34.886 --> 00:00:40.362
+design makes Entra inbound provisioning
+the one writer of HR-mastered attributes.
 
 11
-00:00:40.463 --> 00:00:43.424
+00:00:40.362 --> 00:00:43.324
 Gate 2 answers with one
 writer per attribute.
 
 12
-00:00:43.424 --> 00:00:47.237
+00:00:43.324 --> 00:00:47.137
 It also gives each change class
 a lane and a change-record type.
 
 13
-00:00:47.237 --> 00:00:50.140
+00:00:47.137 --> 00:00:50.040
 Every later gate builds
 what this one decides.

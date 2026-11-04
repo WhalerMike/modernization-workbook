@@ -19,34 +19,35 @@ directory audit; each can be a saved
 file, which is how the labs run.
 
 5
-00:00:13.925 --> 00:00:16.154
-It measures four of Book 3's classes,
+00:00:13.925 --> 00:00:16.849
+It measures four of the
+workbook's drift classes,
 
 6
-00:00:16.154 --> 00:00:19.613
+00:00:16.849 --> 00:00:20.138
 and an unauthorized write
 only when it reads the audit.
 
 7
-00:00:19.613 --> 00:00:23.696
+00:00:20.138 --> 00:00:24.220
 Credential and schema drift are
 always reported as not computed,
 
 8
-00:00:23.696 --> 00:00:25.738
+00:00:24.220 --> 00:00:26.262
 because they need other systems.
 
 9
-00:00:25.738 --> 00:00:28.838
+00:00:26.262 --> 00:00:29.362
 Each finding's ID is a
 hash of what it's about,
 
 10
-00:00:28.838 --> 00:00:31.850
+00:00:29.362 --> 00:00:32.374
 so the same drift has
 the same ID every run.
 
 11
-00:00:31.850 --> 00:00:35.090
+00:00:32.374 --> 00:00:35.620
 And pushing to ServiceNow
 still needs the apply flag.

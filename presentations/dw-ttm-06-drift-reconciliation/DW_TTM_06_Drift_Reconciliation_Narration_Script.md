@@ -2,7 +2,7 @@
 
 ## Slide 1 — Chapter 06: Drift Reconciliation
 
-Welcome back to Building Ticket-to-Machine. This is Chapter 6: drift reconciliation, the kit's Build 3. Events tell you what changed. A reconciliation tells you what is wrong now, including what changed while nobody was listening. The drift client joins the HR extract, Microsoft Graph and SailPoint on the employee ID and measures Book 3's drift classes. This chapter adds a comparison of two runs, so a scheduled run raises only what's new, and shows what has stopped being measured. Then a two-day lab on a laptop.
+Welcome back to Building Ticket-to-Machine. This is Chapter 6: drift reconciliation, the kit's Build 3. Events tell you what changed. A reconciliation tells you what is wrong now, including what changed while nobody was listening. The drift client joins the HR extract, Microsoft Graph and SailPoint on the employee ID and measures the Federal Modernization Workbook's drift classes. This chapter adds a comparison of two runs, so a scheduled run raises only what's new, and shows what has stopped being measured. Then a two-day lab on a laptop.
 
 ## Slide 2 — Why measure the state, not just the events
 
@@ -10,7 +10,7 @@ Why a reconciliation as well as events? Because events only tell you about chang
 
 ## Slide 3 — identity_drift.py: inputs, classes, IDs
 
-Here's the drift client. Its inputs are an HR extract, Graph users, SailPoint identities and uncorrelated accounts, and optionally the Entra directory audit; each can be a saved file, which is how the labs run. It measures four of Book 3's classes, and an unauthorized write only when it reads the audit. Credential and schema drift are always reported as not computed, because they need other systems. Each finding's ID is a hash of what it's about, so the same drift has the same ID every run. And pushing to ServiceNow still needs the apply flag.
+Here's the drift client. Its inputs are an HR extract, Graph users, SailPoint identities and uncorrelated accounts, and optionally the Entra directory audit; each can be a saved file, which is how the labs run. It measures four of the workbook's drift classes, and an unauthorized write only when it reads the audit. Credential and schema drift are always reported as not computed, because they need other systems. Each finding's ID is a hash of what it's about, so the same drift has the same ID every run. And pushing to ServiceNow still needs the apply flag.
 
 ## Slide 4 — drift_compare.py: new, persisting, resolved
 
@@ -22,7 +22,7 @@ To exercise the comparison, the chapter adds a second day to the fictional estat
 
 ## Slide 6 — The tests: four new, thirteen unchanged
 
-Four new tests cover the day-two story, identical runs, the refusal and the command line. The kit's original thirteen drift tests still pass, including the check that the Python and PowerShell clients produce the same finding IDs. One caution: these run over fictional exports, and two inputs, the manager expansion and the SailPoint employee ID attribute, are still on the verify list. And expect a burst of High findings in a real estate's first month. Book 3 calls that the measurement working.
+Four new tests cover the day-two story, identical runs, the refusal and the command line. The kit's original thirteen drift tests still pass, including the check that the Python and PowerShell clients produce the same finding IDs. One caution: these run over fictional exports, and two inputs, the manager expansion and the SailPoint employee ID attribute, are still on the verify list. And expect a burst of High findings in a real estate's first month. The workbook calls that the measurement working.
 
 ## Slide 7 — The verified facts behind the join
 
@@ -34,7 +34,7 @@ Three inputs aren't settled. Whether expanding the manager works under an applic
 
 ## Slide 9 — What the reconciliation proves, and for whom
 
-What this proves. Every active HR record has its accounts, every terminated one has none enabled, and every enabled account belongs to a person: account management, AC-2, and Book 3's leaver and orphan measures, kept as each run's output. Drift is measured on a schedule, and what changed between runs is reported: continuous monitoring and system monitoring. And what wasn't measured is stated, not implied, which feeds the Federal Modernization Workbook's Book 13's detection coverage measure. The not-computed list and the refusal are that evidence.
+What this proves. Every active HR record has its accounts, every terminated one has none enabled, and every enabled account belongs to a person: account management, AC-2, and the workbook's leaver and orphan measures, kept as each run's output. Drift is measured on a schedule, and what changed between runs is reported: continuous monitoring and system monitoring. And what wasn't measured is stated, not implied, which feeds the workbook's detection coverage measure. The not-computed list and the refusal are that evidence.
 
 ## Slide 10 — Who schedules it and who reads it
 

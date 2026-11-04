@@ -73,7 +73,7 @@ const SS = "Check and summary";
   ], 60);
   sources(s, "Sources: Module 7, \"Learning objectives,\" \"Prerequisites\"; \"Exercise: Lab 1.\"");
   notes(s,
-`Here's what you'll be able to do by the end. You'll name the six lifecycle drift classes and the six metrics, and say which module's output feeds each. You'll write a run from the earlier modules' outputs and read its findings. You'll package runs with a hash chain, verify a package, and check it yourself with sha256sum. And you'll assemble a reporting period, and explain why it can be incomplete even when its chain is whole. This run reads the outputs of Modules 1, 2, 3, 4 and 6. You don't need to have kept them: the first step of the lab rebuilds them. The packaging builds on the drift pipeline in Book 19's Chapter 09, and the lab calls it from the same clone.`,
+`Here's what you'll be able to do by the end. You'll name the six lifecycle drift classes and the six metrics, and say which module's output feeds each. You'll write a run from the earlier modules' outputs and read its findings. You'll package runs with a hash chain, verify a package, and check it yourself with sha256sum. And you'll assemble a reporting period, and explain why it can be incomplete even when its chain is whole. This run reads the outputs of Modules 1, 2, 3, 4 and 6. You don't need to have kept them: the first step of the lab rebuilds them. The packaging builds on the drift pipeline in Chapter 09 of the Federal Modernization Workbook's Building the Attribute-Driven Migration, and the lab calls it from the same clone.`,
   `${M} — "Learning objectives," "Prerequisites"; "Exercise: Lab 1."`);
 }
 endModule(SI);
@@ -93,7 +93,7 @@ endModule(SI);
     "attribute drift belongs to the ADM implementation guide's Gate 9.");
   sources(s, "Sources: Module 7, Unit 1 \"What the evidence has to show\"; Lab 1, step 6 (period-summary.md); \"Summary.\"");
   notes(s,
-`Unit 1 reads the guide's Step 7, which asks for five things. Run the drift classes: that's the run command, with classes L D one to L D six. Fix at the source, not in the directory: the period counts findings opened and closed, and keeps each unauthorized-write finding's closure at the source. Report the six metrics: the run computes them and flags any out of bounds or not measured. Prove the sole source for each population: this code doesn't decide that; it's seven days of provisioning logs against the audit log, in Book 03's Appendix C. And keep the evidence outside the directory: that's the package, verify and period commands. Book 03's Chapter 11 has the design. Attribute drift isn't this module's; it belongs to Gate 9 of the attribute-driven migration guide.`,
+`Unit 1 reads the guide's Step 7, which asks for five things. Run the drift classes: that's the run command, with classes L D one to L D six. Fix at the source, not in the directory: the period counts findings opened and closed, and keeps each unauthorized-write finding's closure at the source. Report the six metrics: the run computes them and flags any out of bounds or not measured. Prove the sole source for each population: this code doesn't decide that; it's seven days of provisioning logs against the audit log, in Appendix C of the HR-Driven Identity book. And keep the evidence outside the directory: that's the package, verify and period commands. Chapter 11 of the HR-Driven Identity book has the design. Attribute drift isn't this module's; it belongs to Gate 9 of the attribute-driven migration guide.`,
   `${M} — Unit 1 "What the evidence has to show"; Book 03, Chapter 11; Lab 1, step 6; "Summary."`);
 }
 
@@ -222,7 +222,8 @@ endModule(SC);
   const s = content(SL, "Try it: read the run's findings");
   tag(s, "How");
   const c = code(s, "Lab", 0.6, 1.45, 12.15, [
-    "$ python -c \"import json; [print(r['Rule'], r['Severity'], r['Object']) for r in json.load(open('out/ch07/runs/2026-11-01T0600Z/lifecycle/findings.json'))]\"",
+    "$ python -c \"import json; [print(r['Rule'], r['Severity'], r['Object']) \\",
+    "    for r in json.load(open('out/ch07/runs/2026-11-01T0600Z/lifecycle/findings.json'))]\"",
     "LD-01 Finding 100104                          LD-04 Finding morgan.lee@contoso.example",
     "LD-02 Finding drew.park@contoso.example       LD-04 Finding drew.park@contoso.example",
     "LD-02 Finding harper.vu@contoso.example       LD-04 Finding quinn.ross@contoso.example",
@@ -231,7 +232,7 @@ endModule(SC);
     "LD-03 Finding old.temp@contoso.example        LD-06 Finding 900011",
     "LD-04 Finding blake.ito@contoso.example       LD-07 Warn correlationCoverage    ... four more LD-07",
     "LD-04 Finding casey.ng@contoso.example        LD-08 Warn transferToReviewHours",
-  ], { label: "TRY IT  ·  LAB 1, STEP 3, RUN NOVEMBER 2, 2026 (SET IN TWO COLUMNS; FOUR LD-07 LINES TRIMMED)", pt: 9.5 });
+  ], { label: "TRY IT  ·  LAB 1, STEP 3, RUN NOVEMBER 2, 2026 (SET IN TWO COLUMNS; FOUR LD-07 LINES TRIMMED)", pt: 10 });
   const b = table(s, "Count", c + 0.25, [3.0, 9.15], ["Severity", "What step 3 shows"], [
     ["14 Findings", "One LD-01, three LD-02, two LD-03, five LD-04 (Module 1's four second writers and its forbidden delete), one LD-05, two LD-06"],
     ["6 Warns", "Five LD-07, one per metric out of bounds; one LD-08, for transfer-to-review"],
@@ -277,7 +278,7 @@ endModule(SC);
     "$ python ../drift-pipeline/python/hr_evidence.py period --evidence out/ch07/evidence --since 2026-10-01 --until 2026-11-02 --out out/ch07/periods",
     "{\"chain_breaks\": 0, \"complete\": false, \"coverage_gaps\": 0, \"open_at_end\": 20, \"packages\": 2, \"period\": \"period-2026-10-01_2026-11-02\"}",
     "$ cat out/ch07/periods/period-2026-10-01_2026-11-02/period-summary.md",
-  ], { label: "TRY IT  ·  LAB 1 OUTPUT, RUN NOVEMBER 2, 2026", pt: 9.5 });
+  ], { label: "TRY IT  ·  LAB 1 OUTPUT, RUN NOVEMBER 2, 2026", pt: 10 });
   const b = table(s, "Gate7", c + 0.2, [6.6, 3.85, 1.7], ["Gate 7 criterion, from period-summary.md", "From this code", "Status"], [
     ["Lifecycle drift classes found and closed at the source", "20 open at the end", "not met"],
     ["Metrics on the ConMon cadence, within the agency's thresholds", "5 out of bounds; 1 not measured", "not met"],
@@ -306,7 +307,7 @@ endModule(SC);
     "Lab 2 follows the workbook's Chapter 07, Lab 2, written from Microsoft Learn's procedures.");
   sources(s, "Sources: Module 7, \"Exercise: Lab 2\"; HR-Driven Identity path, \"What you need for the labs\"; path verification log, claim 3.");
   notes(s,
-`Lab 2 runs the same thing for real, in a worldwide or GCC test tenant, never production. The reader app uses a certificate or a federated credential, and holds only the two permissions the drift-read task lists, with admin consent. You export the workforce users, run Lab 2 of Modules 1 to 6 against the test tenant, and write a run in tenant mode. Then you schedule it in Book 19's Chapter 09 workflow, with each package written to an immutable test storage container, and assemble a period from the scheduled runs. To back it out, remove the schedule, delete the reader app, its credential and its consent, delete the test container if you created it for the lab, and delete the local folders. The authors haven't run Lab 2.`,
+`Lab 2 runs the same thing for real, in a worldwide or GCC test tenant, never production. The reader app uses a certificate or a federated credential, and holds only the two permissions the drift-read task lists, with admin consent. You export the workforce users, run Lab 2 of Modules 1 to 6 against the test tenant, and write a run in tenant mode. Then you schedule it in the Chapter 09 workflow from Building the Attribute-Driven Migration, with each package written to an immutable test storage container, and assemble a period from the scheduled runs. To back it out, remove the schedule, delete the reader app, its credential and its consent, delete the test container if you created it for the lab, and delete the local folders. The authors haven't run Lab 2.`,
   `${M} — "Exercise: Lab 2 (your test tenant)"; learning path index — "What you need for the labs."`);
 }
 endModule(SL);
