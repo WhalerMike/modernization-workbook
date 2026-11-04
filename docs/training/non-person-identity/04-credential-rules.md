@@ -5,10 +5,11 @@ doc-type: training-module
 research-status: draft
 research-type: training module
 research-book: "Books 04, 17"
-last-reviewed: 2026-11-02
 series-order: 4
+review-status: approved
+reviewed-sha256: ce914828dce0f4e9f6e93138004a852aab099415a025ff651bde5434b8286f7d
+last-reviewed: 2026-11-03
 ---
-
 # Module 4: Set the credential rules {.unnumbered}
 
 *Part of the [Non-Person Identity learning path](index.md). Gate G3 Credential rules. Workbook [Chapter 04](../../project-plans/developer-workbooks/non-person-identity/04-app-management-policies-and-certificate-rotation.md). About 65 minutes.*

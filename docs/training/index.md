@@ -41,8 +41,10 @@ listing:
     sort: "title asc"
     sort-ui: false
     filter-ui: false
+review-status: approved
+reviewed-sha256: ee55986225babe46bc4a84620849552f12cc313945d27c2a30e944ea9d51bfdc
+last-reviewed: 2026-11-03
 ---
-
 # Training {.unnumbered}
 
 Training pages teach a skill step by step, in the order you should learn it. They work like a [Microsoft Learn learning path](https://learn.microsoft.com/training/): a short series of modules, each building on the one before.

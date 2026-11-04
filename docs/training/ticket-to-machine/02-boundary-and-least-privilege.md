@@ -7,9 +7,10 @@ research-type: training module
 research-book: "Books 13, 15"
 series-order: 2
 date-modified: 2026-11-01
-last-reviewed: 2026-11-01
+review-status: approved
+reviewed-sha256: 3758b79013f95c7ca0eda77e4a8afd8f3dd52dc27d387269eb0e152ef188c93b
+last-reviewed: 2026-11-03
 ---
-
 # Ticket-to-Machine, Module 2: The Boundary and Least Privilege {.unnumbered}
 
 **Learning path:** [Ticket-to-Machine on ServiceNow and SailPoint](index.md) · Module 2 of 7 · 60 minutes · Guide [Gate 1](../../books/guides/ttm-servicenow-sailpoint.md#step-1-confirm-the-authorization-boundary) · Workbook [Chapter 02](../../project-plans/developer-workbooks/ticket-to-machine/02-servicenow-client-and-least-privilege.md) and [Chapter 03](../../project-plans/developer-workbooks/ticket-to-machine/03-sailpoint-client-and-scopes.md)

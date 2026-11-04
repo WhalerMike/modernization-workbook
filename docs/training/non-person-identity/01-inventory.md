@@ -5,10 +5,11 @@ doc-type: training-module
 research-status: draft
 research-type: training module
 research-book: "Books 02, 04"
-last-reviewed: 2026-11-02
 series-order: 1
+review-status: approved
+reviewed-sha256: e525a77729415dc0c0c164c34fd1187464d142b930c08daecab5759e226e2008
+last-reviewed: 2026-11-03
 ---
-
 # Module 1: Inventory every non-person identity {.unnumbered}
 
 *Part of the [Non-Person Identity learning path](index.md). Gate G1 Inventory. Workbook [Chapter 01](../../project-plans/developer-workbooks/non-person-identity/01-non-person-identity-inventory-as-code.md). About 55 minutes.*

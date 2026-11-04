@@ -5,10 +5,11 @@ doc-type: training-module
 research-status: draft
 research-type: training module
 research-book: "Book 03"
-last-reviewed: 2026-11-01
 series-order: 7
+review-status: approved
+reviewed-sha256: 6ac785fd5336753bc72262af80a8b47fcc13deea0aba49cfc799f8f6be59094d
+last-reviewed: 2026-11-03
 ---
-
 # Module 7: Find lifecycle drift and file the evidence {.unnumbered}
 
 *Part of the [HR-Driven Identity learning path](index.md). Gate G7 Drift and evidence. Workbook [Chapter 07](../../project-plans/developer-workbooks/hr-driven-identity/07-lifecycle-drift-and-evidence.md). About 60 minutes.*

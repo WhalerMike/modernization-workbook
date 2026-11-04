@@ -5,10 +5,11 @@ doc-type: training-module
 research-status: draft
 research-type: training module
 research-book: "Book 04"
-last-reviewed: 2026-11-02
 series-order: 6
+review-status: approved
+reviewed-sha256: f1d19e7ab1ddf49870751685ef1453086009b175bd395a324a4a17fe75359ab9
+last-reviewed: 2026-11-03
 ---
-
 # Module 6: PIM for Azure resources {.unnumbered}
 
 *Part of the [Privileged Access learning path](index.md). Plan Phase 3, task A3.2. Workbook [Chapter 06](../../project-plans/developer-workbooks/privileged-access/06-pim-for-azure-resources.md). About 50 minutes.*

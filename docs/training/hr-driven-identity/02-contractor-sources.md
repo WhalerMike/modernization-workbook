@@ -5,10 +5,11 @@ doc-type: training-module
 research-status: draft
 research-type: training module
 research-book: "Book 03"
-last-reviewed: 2026-11-01
 series-order: 2
+review-status: approved
+reviewed-sha256: a44a323c6774cc1ef3d97a589364b0db413508ae753b6c9de2e45294c9aff74b
+last-reviewed: 2026-11-03
 ---
-
 # Module 2: Run contractors from their own source {.unnumbered}
 
 *Part of the [HR-Driven Identity learning path](index.md). Gate G2 Sources. Workbook [Chapter 02](../../project-plans/developer-workbooks/hr-driven-identity/02-contractor-sources-and-end-dates.md). About 50 minutes.*

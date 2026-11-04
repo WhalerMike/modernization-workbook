@@ -5,10 +5,11 @@ doc-type: training-module
 research-status: draft
 research-type: training module
 research-book: "Books 02, 04"
-last-reviewed: 2026-11-02
 series-order: 11
+review-status: approved
+reviewed-sha256: 44238543c043db9dcede62e0364e84b023421dea6d122f61f2392aaf30bc2773
+last-reviewed: 2026-11-03
 ---
-
 # Module 11: Deploy to test, then production {.unnumbered}
 
 *Part of the [Non-Person Identity learning path](index.md). Every gate: each step of the runbook names its own. Workbook [Chapter 11](../../project-plans/developer-workbooks/non-person-identity/11-deploying-to-test-and-production.md). About 60 minutes.*

@@ -5,10 +5,11 @@ doc-type: training-module
 research-status: draft
 research-type: training module
 research-book: "Book 04"
-last-reviewed: 2026-11-02
 series-order: 7
+review-status: approved
+reviewed-sha256: fc81ecbfedfe3d91bf745c60fe65dca16a624d83b4200c79906b0ee53208accd
+last-reviewed: 2026-11-03
 ---
-
 # Module 7: Access reviews of privileged roles {.unnumbered}
 
 *Part of the [Privileged Access learning path](index.md). Plan Phase 2, task A2.7, and Phase 3, task A3.7. Workbook [Chapter 07](../../project-plans/developer-workbooks/privileged-access/07-access-reviews-of-privileged-roles.md). About 55 minutes.*

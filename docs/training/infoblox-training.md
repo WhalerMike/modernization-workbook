@@ -5,12 +5,14 @@ description: "Research under review: a verified catalog of official Infoblox tra
 research-status: in review
 research-type: external learning path
 research-book: "Books 08, 16"
-date-modified: 2026-10-22
-last-reviewed: 2026-10-22
+date-modified: 2026-10-22
+
 aliases:
   - /docs/research/infoblox-training.html
+review-status: approved
+reviewed-sha256: e18c7cfd7a2c9ae81d74dcc48e027f8af33df751d7087186d66e9db1ed601427
+last-reviewed: 2026-11-03
 ---
-
 # Infoblox Training and Learning Paths {.unnumbered}
 
 A companion to the research deep dive [Infoblox DDI for Federal Agencies](../evaluations/infoblox-ddi-federal.md) and to the training model in [Book 16 — People: Training & Education](../books/b16-people/index.md), whose [Chapter 06](../books/b16-people/06-vendor-training-and-labs.md) sets the rules for vendor training and labs. Every link below is official Infoblox material (or, where noted, a cloud provider's own page) and was opened on October 22, 2026. Infoblox's prices, course catalogs and trials change; confirm before you plan a budget.

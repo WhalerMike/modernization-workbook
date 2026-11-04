@@ -7,11 +7,12 @@ research-type: training module
 research-book: "Books 02, 04"
 series-order: 2
 date-modified: 2026-11-01
-last-reviewed: 2026-11-01
 aliases:
   - /docs/research/ms-automation-entra.html
+review-status: approved
+reviewed-sha256: 2e3cfef56fb7f340b1d786791abd93ceb3f75657a424949f2978f40d7bb09324
+last-reviewed: 2026-11-03
 ---
-
 # Microsoft Automation, Module 2: Microsoft Entra ID through Microsoft Graph {.unnumbered}
 
 **Learning path:** [Microsoft Automation](index.md#microsoft-automation-learning-path) · Module 2 of 3 · 95 minutes · Code: [examples/ms-automation](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/ms-automation) (`entra_tasks.py`, `FmwGraph.psm1`)

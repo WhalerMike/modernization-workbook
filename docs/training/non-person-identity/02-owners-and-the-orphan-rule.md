@@ -5,10 +5,11 @@ doc-type: training-module
 research-status: draft
 research-type: training module
 research-book: "Books 02, 04, 17"
-last-reviewed: 2026-11-02
 series-order: 2
+review-status: approved
+reviewed-sha256: 99c7f7f270b2cf27393b48393fa61deccaa32f3c2ce19f00b6c5d0176cafdcff
+last-reviewed: 2026-11-03
 ---
-
 # Module 2: Owners, sponsors and the orphan rule {.unnumbered}
 
 *Part of the [Non-Person Identity learning path](index.md). Gates G1 Inventory and G6 Lifecycle. Workbook [Chapter 02](../../project-plans/developer-workbooks/non-person-identity/02-ownership-and-the-orphan-rule.md). About 60 minutes.*

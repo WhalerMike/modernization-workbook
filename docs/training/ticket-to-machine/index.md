@@ -7,9 +7,10 @@ research-type: training module
 research-book: "Books 13, 15"
 series-order: 0
 date-modified: 2026-11-01
-last-reviewed: 2026-11-01
+review-status: approved
+reviewed-sha256: 629e98978b0aeb47e439198076f47a9ae8cbfbba67a5b8ed61ef7911990d4b76
+last-reviewed: 2026-11-03
 ---
-
 # Learning path: Ticket-to-Machine on ServiceNow and SailPoint {.unnumbered}
 
 In this learning path, you build the identity half of [Book 13's Ticket-to-Machine loop](../../books/b13-governance/appendix-b-ticket-to-machine-reference.md#the-coordination-loop) on two named products: ServiceNow as the front door and the record, and SailPoint Identity Security Cloud (ISC) for identity governance. You learn it in the order the example implementation guide builds it, one or two gates per module, and you prove each step with the developer workbook's tested code.

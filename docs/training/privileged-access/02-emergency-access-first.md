@@ -5,10 +5,11 @@ doc-type: training-module
 research-status: draft
 research-type: training module
 research-book: "Book 04"
-last-reviewed: 2026-11-02
 series-order: 2
+review-status: approved
+reviewed-sha256: 5a5e56c6a31931311af38602c98724f701bbdf9a26b78947b897bd3ceba30894
+last-reviewed: 2026-11-03
 ---
-
 # Module 2: Emergency access first {.unnumbered}
 
 *Part of the [Privileged Access learning path](index.md). Plan Phase 0, task A0.4, and Phase 1, task A1.1. Workbook [Chapter 02](../../project-plans/developer-workbooks/privileged-access/02-emergency-access-as-code.md). About 55 minutes.*

@@ -7,11 +7,12 @@ research-type: training module
 research-book: "Books 02, 04, 05, 06, 10, 15"
 series-order: 1
 date-modified: 2026-11-01
-last-reviewed: 2026-11-01
 aliases:
   - /docs/research/ms-automation-foundations.html
+review-status: approved
+reviewed-sha256: 6171cf044793243168251dddcc0e8e6ca737b89a8b5cce1835e13bc2db5fbd16
+last-reviewed: 2026-11-03
 ---
-
 # Microsoft Automation, Module 1: Graph and Azure Foundations {.unnumbered}
 
 **Learning path:** [Microsoft Automation](index.md#microsoft-automation-learning-path) · Module 1 of 3 · 85 minutes · Code: [examples/ms-automation](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/ms-automation) · Developer workbook: [Book 19, Chapter 02](../books/b19-developer-workbook/02-graph-clients-for-government-clouds.md)

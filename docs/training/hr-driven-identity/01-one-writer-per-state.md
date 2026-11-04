@@ -5,10 +5,11 @@ doc-type: training-module
 research-status: draft
 research-type: training module
 research-book: "Book 03"
-last-reviewed: 2026-11-01
 series-order: 1
+review-status: approved
+reviewed-sha256: 5167f511a76f4221f18bb032a4c1c0da23ec5d1551293243c194290251c080fc
+last-reviewed: 2026-11-03
 ---
-
 # Module 1: Name one writer for every account state {.unnumbered}
 
 *Part of the [HR-Driven Identity learning path](index.md). Gate G1 Writers. Workbook [Chapter 01](../../project-plans/developer-workbooks/hr-driven-identity/01-the-writer-register-as-code.md). About 50 minutes.*

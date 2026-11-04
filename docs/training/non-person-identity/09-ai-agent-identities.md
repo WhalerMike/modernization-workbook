@@ -5,10 +5,11 @@ doc-type: training-module
 research-status: draft
 research-type: training module
 research-book: "Books 04, 17"
-last-reviewed: 2026-11-02
 series-order: 9
+review-status: approved
+reviewed-sha256: 7c056acb418a1f61f23b0f324b5549117d06e0f265a93cf62dd400eaefa3f7ed
+last-reviewed: 2026-11-03
 ---
-
 # Module 9: Govern AI agent identities {.unnumbered}
 
 *Part of the [Non-Person Identity learning path](index.md). The guide's [AI agents](../../books/guides/non-person-identity-implementation.md#ai-agents) section. Workbook [Chapter 09](../../project-plans/developer-workbooks/non-person-identity/09-ai-agent-identities.md). About 65 minutes.*

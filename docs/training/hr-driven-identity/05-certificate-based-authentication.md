@@ -5,10 +5,11 @@ doc-type: training-module
 research-status: draft
 research-type: training module
 research-book: "Book 03"
-last-reviewed: 2026-11-01
 series-order: 5
+review-status: approved
+reviewed-sha256: 2c927c2294cb7dc1eb588741dc2fb30b893e0420df1da5b72096510460042ecf
+last-reviewed: 2026-11-03
 ---
-
 # Module 5: Check certificate-based authentication {.unnumbered}
 
 *Part of the [HR-Driven Identity learning path](index.md). Gate G5 Credentials. Workbook [Chapter 05](../../project-plans/developer-workbooks/hr-driven-identity/05-certificate-based-authentication-checks.md). About 45 minutes.*

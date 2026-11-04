@@ -7,9 +7,10 @@ research-type: training module
 research-book: "Book 19"
 series-order: 7
 date-modified: 2026-11-02
-last-reviewed: 2026-11-02
+review-status: approved
+reviewed-sha256: 104cc41882b0543f6da4e195aa11c3ec351b7f9f7eed7351dd8a3c14d868b288
+last-reviewed: 2026-11-03
 ---
-
 # Attribute-Driven Migration, Module 7: Extend Lifecycle Workflows {.unnumbered}
 
 **Learning path:** [Building the Attribute-Driven Migration](index.md) · Module 7 of 9 · 50 minutes · Guide [Gate 7](../../books/guides/attribute-driven-migration-implementation.md#gate-7-prove-a-mover-across-the-tracks) and [Gate 8](../../books/guides/attribute-driven-migration-implementation.md#gate-8-cut-over-and-retire-the-ou-tree) · Workbook [Chapter 05](../../books/b19-developer-workbook/05-lifecycle-workflows-custom-extensions.md)

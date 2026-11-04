@@ -7,9 +7,10 @@ research-type: training module
 research-book: "Book 19"
 series-order: 2
 date-modified: 2026-11-02
-last-reviewed: 2026-11-02
+review-status: approved
+reviewed-sha256: 175235376502d6a53d8348a0b886c260aa2efb33004d3cc6b0d1e2469654539e
+last-reviewed: 2026-11-03
 ---
-
 # Attribute-Driven Migration, Module 2: Write a Validation Kit Check {.unnumbered}
 
 **Learning path:** [Building the Attribute-Driven Migration](index.md) · Module 2 of 9 · 45 minutes · Guide [Gate 3](../../books/guides/attribute-driven-migration-implementation.md#gate-3-map-the-attributes-through-sync) · Workbook [Chapter 03](../../books/b19-developer-workbook/03-writing-a-validation-kit-check.md)

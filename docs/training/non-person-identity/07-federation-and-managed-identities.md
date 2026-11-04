@@ -5,10 +5,11 @@ doc-type: training-module
 research-status: draft
 research-type: training module
 research-book: "Books 02, 04"
-last-reviewed: 2026-11-02
 series-order: 7
+review-status: approved
+reviewed-sha256: 5649de2673e17785f7115713e4be7eb4dd6286ae955e43420810940f228fe4ef
+last-reviewed: 2026-11-03
 ---
-
 # Module 7: Convert to managed identities and federation {.unnumbered}
 
 *Part of the [Non-Person Identity learning path](index.md). Gate G5 Conversion. Workbook [Chapter 05](../../project-plans/developer-workbooks/non-person-identity/05-workload-identity-federation-and-managed-identities.md). About 60 minutes.*

@@ -5,10 +5,11 @@ doc-type: training-module
 research-status: draft
 research-type: training module
 research-book: "Book 03"
-last-reviewed: 2026-11-01
 series-order: 3
+review-status: approved
+reviewed-sha256: 2619b8cac22cc405ed173942b90356c94dd82f24166f55279c559699cf36f1aa
+last-reviewed: 2026-11-03
 ---
-
 # Module 3: Make joiners ready on day one {.unnumbered}
 
 *Part of the [HR-Driven Identity learning path](index.md). Gate G3 Joiners. Workbook [Chapter 03](../../project-plans/developer-workbooks/hr-driven-identity/03-joiner-workflows-as-code.md). About 50 minutes.*

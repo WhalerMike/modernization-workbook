@@ -5,10 +5,11 @@ doc-type: training-module
 research-status: draft
 research-type: training module
 research-book: "Book 04"
-last-reviewed: 2026-11-02
 series-order: 5
+review-status: approved
+reviewed-sha256: 25a057ad1c906fc6a110ba008500f86a16693a7d9c4bfa64a91b28dc8975aca7
+last-reviewed: 2026-11-03
 ---
-
 # Module 5: PIM for Groups and the PRV groups {.unnumbered}
 
 *Part of the [Privileged Access learning path](index.md). Plan Phase 2, task A2.1, and Phase 3, task A3.3. Workbook [Chapter 05](../../project-plans/developer-workbooks/privileged-access/05-pim-for-groups.md). About 55 minutes.*
