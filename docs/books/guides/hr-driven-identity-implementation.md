@@ -11,9 +11,10 @@ lifecycle_review: 2027-05-01
 research-status: draft
 research-type: implementation guide
 research-book: "Book 03"
-last-reviewed: 2026-11-01
+review-status: approved
+reviewed-sha256: 4144b7590301c4084a6c82e2d5f1ad9c74f1483a37d207ef132492c3cad46f0c
+last-reviewed: 2026-11-03
 ---
-
 # HR-Driven Identity: An Implementation Guide
 
 *The pipeline makes the account exist; this guide makes the HR record decide everything that happens to it after that, and proves it did.*

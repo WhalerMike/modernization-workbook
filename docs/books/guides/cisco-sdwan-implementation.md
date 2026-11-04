@@ -5,12 +5,14 @@ description: "Research under review: an implementation guide for building Book 0
 research-status: in review
 research-type: implementation guide
 research-book: "Book 09"
-date-modified: 2026-10-29
-last-reviewed: 2026-10-24
+date-modified: 2026-10-29
+
 aliases:
   - /docs/research/cisco-sdwan-implementation.html
+review-status: approved
+reviewed-sha256: 6ab90478f2dd5ece700ec745da39bd0dc3dd5f785367ae30491655f3aad94610
+last-reviewed: 2026-11-03
 ---
-
 # Building Book 09's SD-WAN Design on Cisco Catalyst SD-WAN {.unnumbered}
 
 [Book 09 — Network & Transport](../b09-network/index.md) sets the design: a governor (SD-WAN plus security services) at every branch before any new egress turns on, four branch egress patterns of which one is never allowed, lean and bulk path classes, a 12-hub field-office fabric with 24 consolidated distribution points, and decision records that become boundary-change evidence. [Chapter 11](../b09-network/11-field-office-wan-transformation.md) uses Cisco Catalyst edges as its costable example. This guide shows how to build that design on Cisco Catalyst SD-WAN. It also covers the part a build plan usually skips: the same product was the subject of a 2026 emergency directive, so the first gate in the build is proving the control plane is patched, hunted and hardened.

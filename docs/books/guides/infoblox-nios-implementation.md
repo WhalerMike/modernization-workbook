@@ -6,11 +6,12 @@ research-status: in review
 research-type: implementation guide
 research-book: "Book 08"
 date-modified: 2026-10-29
-last-reviewed: 2026-10-23
 aliases:
   - /docs/research/infoblox-nios-implementation.html
+review-status: approved
+reviewed-sha256: d6021c9d85f879811a26229b3d4945359e768ffc50b20fcd49096741c6a47054
+last-reviewed: 2026-11-03
 ---
-
 # Implementing Book 08 on Infoblox NIOS {.unnumbered}
 
 [Book 08 — DNS, DHCP & IPAM](../b08-ddi/index.md) sets the program's design: one governed authoritative DDI plane, a coexistence period with Microsoft DNS and DHCP, zones and scopes moved one at a time, DNSSEC signing and validation, and six migration phases that end on evidence rather than dates. The product deep dive [Infoblox DDI for Federal Agencies](../../evaluations/infoblox-ddi-federal.md) explains why Infoblox fits that design. This implementation guide shows how to build it on Infoblox NIOS 9.1, and how to move off Microsoft DNS and DHCP without breaking anything.

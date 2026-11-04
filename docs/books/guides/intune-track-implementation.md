@@ -8,8 +8,10 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
+review-status: approved
+reviewed-sha256: d500552803d2c267523aabde260ac68f8c747eea18e4bb836ed8b3006ee90342
+last-reviewed: 2026-11-03
 ---
-
 # Intune Track Implementation: Attribute-Driven Management of End-User Devices
 
 *A device gets the right policy because of what it says about itself, so the work is making one service say it, making nothing else able to, and proving both every week.*

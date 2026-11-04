@@ -8,8 +8,10 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
+review-status: approved
+reviewed-sha256: b35e860c71d37d8ee0a2c6129137cce2d5cf0e8df3833cccc2f8df23b5986d07
+last-reviewed: 2026-11-03
 ---
-
 # Non-Person Identity: An Implementation Guide
 
 *A person leaves and HR tells you; a service account's owner leaves and nothing tells you, so this track has to build the record that HR provides for everyone else.*
