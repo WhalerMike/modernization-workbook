@@ -7,51 +7,51 @@
   ],
   [
    0.762,
-   8.238,
-   "This briefing comes from Book 17 of the Federal Modernization Workbook, AI Identity Governance, the last book in the series."
+   7.8,
+   "This briefing comes from A I Identity Governance, one of the books of the Federal Modernization Workbook, and the last in the series."
   ],
   [
-   9.0,
-   9.338,
-   "It's written for Chief AI Officers, CIOs and CISOs, identity and security operations teams, ISSOs, and authorizing officials."
+   8.562,
+   9.512,
+   "It's written for Chief A I Officers, CIOs and CISOs, identity and security operations teams, I S S O's, and authorizing officials."
   ],
   [
-   18.337,
+   18.075,
    1.413,
    "I'll take four questions."
   ],
   [
-   19.75,
-   2.962,
-   "Why do AI agents need identities and owners?"
+   19.488,
+   2.862,
+   "Why do A I agents need identities and owners?"
   ],
   [
-   22.712,
+   22.35,
    1.7,
    "What does governing them involve?"
   ],
   [
-   24.413,
-   1.7,
-   "Who owns AI identity?"
+   24.05,
+   1.587,
+   "Who owns A I identity?"
   ],
   [
-   26.113,
-   4.513,
-   "And how do you scan the inventory and evidence AI systems for authorization?"
+   25.637,
+   4.4,
+   "And how do you scan the inventory and evidence A I systems for authorization?"
   ],
   [
-   30.625,
-   4.55,
-   "The short version: an AI system that can act is an account with permissions."
+   30.038,
+   4.612,
+   "The short version: an A I system that can act is an account with permissions."
   ],
   [
-   35.175,
+   34.65,
    6.362,
-   "Most were deployed outside the identity program, and there's no separate AI authorization to fall back on."
+   "Most were deployed outside the identity program, and there's no separate A I authorization to fall back on."
   ],
   [
-   41.538,
+   41.013,
    2.362,
    "Let's start with what makes an agent an account."
   ]
@@ -184,45 +184,45 @@
   [
    0.05,
    3.413,
-   "Federal AI policy was rewritten in 2025."
+   "Federal A I policy was rewritten in 2025."
   ],
   [
    3.462,
-   9.225,
-   "One O M B memo governs use, with a Chief AI Officer, an annual use-case inventory, and minimum practices for high-impact AI."
+   9.338,
+   "One O M B memo governs use, with a Chief A I Officer, an annual use-case inventory, and minimum practices for high-impact A I."
   ],
   [
-   12.688,
-   8.5,
-   "Its companion governs acquisition, and says AI run as an information system needs an authorization to operate before it deploys."
+   12.8,
+   8.238,
+   "Its companion governs acquisition, and says A I run as an information system needs an authorization to operate before it deploys."
   ],
   [
-   21.188,
+   21.038,
    2.638,
    "What the rules don't do matters just as much."
   ],
   [
-   23.825,
-   2.45,
-   "There's no AI-specific authorization."
+   23.675,
+   2.7,
+   "There's no A I-specific authorization."
   ],
   [
-   26.275,
+   26.375,
    9.387,
    "Agencies keep following their existing authorization process, the memo's own risk acceptance doesn't replace it, and it sets no identity requirements at all."
   ],
   [
-   35.663,
+   35.763,
    8.75,
    "So a high-impact use case needs two decisions before it deploys: the signed risk acceptance on its impact assessment, and the system's authorization."
   ],
   [
-   44.413,
-   10.113,
-   "One footnote: a recent executive order changes the preferred term in some documents, but Book 17 keeps saying AI, because the instruments it applies still do."
+   44.513,
+   9.887,
+   "One footnote: a recent executive order changes the preferred term in some documents, but this book keeps saying A I, because the instruments it applies still do."
   ],
   [
-   54.525,
+   54.4,
    1.712,
    "Next, the inventory."
   ]
@@ -329,46 +329,46 @@
  "7": [
   [
    0.05,
-   7.562,
-   "The agency's cloud decides what it can use, so Book 17 dates every product statement to October 2026."
+   7.225,
+   "The agency's cloud decides what it can use, so this book dates every product statement to October 2026."
   ],
   [
-   7.612,
-   9.287,
-   "The core Agent ID platform, with blueprints, agent identities and sponsors, was announced as generally available in April 2026."
+   7.275,
+   9.375,
+   "The core Agent I D platform, with blueprints, agent identities and sponsors, was announced as generally available in April 2026."
   ],
   [
-   16.9,
+   16.65,
    5.787,
    "But several controls are still preview, including agent targeting in Conditional Access."
   ],
   [
-   22.688,
+   22.438,
    1.288,
    "The slide lists them."
   ],
   [
-   23.975,
+   23.725,
    2.212,
    "The government clouds are the bigger issue."
   ],
   [
-   26.188,
+   25.938,
    10.375,
    "G C C has a partial, documented subset: identity and access governance for agents, but not Microsoft's audit, data loss prevention or network controls."
   ],
   [
-   36.562,
-   12.35,
-   "G C C High and DOD have no published availability, so treat agent identities as unavailable there until Microsoft confirms otherwise in writing, and govern AI as workload identities."
+   36.312,
+   12.3,
+   "G C C High and DOD have no published availability, so treat agent identities as unavailable there until Microsoft confirms otherwise in writing, and govern A I as workload identities."
   ],
   [
-   48.913,
+   48.612,
    6.763,
    "The rule is simple: build on what's generally available in your own cloud, and keep preview features as watch items."
   ],
   [
-   55.675,
+   55.375,
    2.5,
    "Next, the person behind each agent."
   ]
@@ -683,46 +683,46 @@
   ],
   [
    1.425,
-   11.475,
-   "Count AI identities, not AI projects: no use case is recorded as piloted or deployed without a link to its identity record, created before any credential is issued."
+   11.412,
+   "Count A I identities, not A I projects: no use case is recorded as piloted or deployed without a link to its identity record, created before any credential is issued."
   ],
   [
-   12.9,
-   7.787,
-   "Put a person's name on every one, an agency employee as sponsor, with HR's mover and leaver events reaching the agent."
+   12.838,
+   8.0,
+   "Put a person's name on every one, an agency employee as sponsor, with H R's mover and leaver events reaching the agent."
   ],
   [
-   20.688,
+   20.837,
    8.6,
    "Take away stored secrets and standing privilege, and keep the block-unless-approved policy in report-only mode while agent targeting is preview."
   ],
   [
-   29.288,
-   8.85,
-   "And authorize AI through the process you already run, with two signatures for high-impact AI and the service authentication control tailored in."
+   29.438,
+   8.938,
+   "And authorize A I through the process you already run, with two signatures for high-impact A I and the service authentication control tailored in."
   ],
   [
-   38.138,
+   38.375,
    2.15,
    "The next step needs no new tooling."
   ],
   [
-   40.288,
+   40.525,
    10.65,
    "Run the inventory checks on the agency's own submission, start with agentic systems and missing authorizations, and confirm each agent capability in your own cloud first."
   ],
   [
-   50.938,
-   3.45,
-   "Every AI system needs an identity and an owner."
+   51.175,
+   3.4,
+   "Every A I system needs an identity and an owner."
   ],
   [
-   54.388,
-   3.95,
-   "Book 17 has the detail, every claim footnoted."
+   54.575,
+   4.263,
+   "A I Identity Governance has the detail, every claim footnoted."
   ],
   [
-   58.337,
+   58.837,
    0.762,
    "Thank you."
   ]

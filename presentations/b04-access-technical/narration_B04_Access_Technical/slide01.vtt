@@ -5,63 +5,63 @@ WEBVTT
 Welcome.
 
 2
-00:00:00.763 --> 00:00:03.971
+00:00:00.763 --> 00:00:04.091
 This is the technical deep
-dive for Book 04 of the
+dive for Access and Privilege,
 
 3
-00:00:03.971 --> 00:00:07.662
-Federal Modernization
-Workbook, Access and Privilege.
+00:00:04.091 --> 00:00:07.350
+one of the books of the
+Federal Modernization Workbook.
 
 4
-00:00:07.662 --> 00:00:09.899
+00:00:07.350 --> 00:00:09.587
 The short briefing made the argument.
 
 5
-00:00:09.899 --> 00:00:14.172
+00:00:09.587 --> 00:00:13.860
 This session is for the people who
 build and run it: identity engineers,
 
 6
-00:00:14.172 --> 00:00:18.812
+00:00:13.860 --> 00:00:18.500
 architects, and the security and assessment
 staff who have to prove it works.
 
 7
-00:00:18.812 --> 00:00:22.395
+00:00:18.500 --> 00:00:22.083
 It comes in five modules, and
 each one stands on its own,
 
 8
-00:00:22.395 --> 00:00:24.187
+00:00:22.083 --> 00:00:23.875
 so you can watch it in parts.
 
 9
-00:00:24.187 --> 00:00:29.095
+00:00:23.875 --> 00:00:28.782
 After a short orientation, we'll cover
 the Conditional Access policy library,
 
 10
-00:00:29.095 --> 00:00:34.002
+00:00:28.782 --> 00:00:33.689
 then rollout, exclusions and break-glass
 accounts, then PIM self-request with
 
 11
-00:00:34.002 --> 00:00:36.149
+00:00:33.689 --> 00:00:35.836
 approval, then access governance,
 
 12
-00:00:36.149 --> 00:00:39.676
+00:00:35.836 --> 00:00:39.363
 and finally access as code
 and the evidence it produces.
 
 13
-00:00:39.676 --> 00:00:42.838
+00:00:39.363 --> 00:00:42.525
 Every fact comes from a
 footnoted chapter of the book.
 
 14
-00:00:42.838 --> 00:00:47.020
+00:00:42.525 --> 00:00:46.680
 The code and JSON stay in the
 book; the slides carry the design.

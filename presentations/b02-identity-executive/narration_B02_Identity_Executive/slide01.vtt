@@ -5,64 +5,69 @@ WEBVTT
 Welcome.
 
 2
-00:00:00.763 --> 00:00:06.357
-This is the executive briefing for Book
-02 of the Federal Modernization Workbook,
+00:00:00.763 --> 00:00:04.558
+This is the executive briefing
+for Identity and Directory,
 
 3
-00:00:06.357 --> 00:00:10.223
-Identity and Directory, for
-the people who make the calls:
+00:00:04.558 --> 00:00:09.284
+one of the books of the Federal
+Modernization Workbook, for the people who
 
 4
-00:00:10.223 --> 00:00:14.337
-the CIO, the CISO, the identity
-program lead and the sponsors.
+00:00:09.284 --> 00:00:14.087
+make the calls: the CIO, the CISO, the
+identity program lead and the sponsors.
 
 5
-00:00:14.337 --> 00:00:15.763
+00:00:14.087 --> 00:00:15.513
 The argument is short.
 
 6
-00:00:15.763 --> 00:00:19.242
+00:00:15.513 --> 00:00:18.992
 Zero Trust moved the access
 decision onto identity,
 
 7
-00:00:19.242 --> 00:00:23.612
+00:00:18.992 --> 00:00:23.362
 so whatever the directory believes,
 every application enforces.
 
 8
-00:00:23.612 --> 00:00:26.071
+00:00:23.362 --> 00:00:25.821
 And syncing the forest as it stands just
 
 9
-00:00:26.071 --> 00:00:28.975
+00:00:25.821 --> 00:00:28.725
 copies twenty-five years
 of risk into the cloud.
 
 10
-00:00:28.975 --> 00:00:33.281
-What Book 02 accomplishes is a
+00:00:28.725 --> 00:00:32.840
+What this book accomplishes is a
 directory where placement has become
 
 11
-00:00:33.281 --> 00:00:37.813
+00:00:32.840 --> 00:00:37.025
 attributes and rules, and every service
 account has an owner and a target.
 
 12
-00:00:37.813 --> 00:00:43.203
+00:00:37.025 --> 00:00:41.731
 It carries the directory side of the
 HR track and the service accounts;
 
 13
-00:00:43.203 --> 00:00:49.337
-people's attributes are Book 03, devices
-and servers Book 05, and AI agents Book 17.
+00:00:41.731 --> 00:00:46.194
+people's attributes are in HR-Driven
+Identity, devices and servers
 
 14
-00:00:49.337 --> 00:00:52.100
+00:00:46.194 --> 00:00:50.575
+in Devices and Endpoints, and AI
+agents in AI Identity Governance.
+
+15
+00:00:50.575 --> 00:00:53.330
 Let's start with where
 access gets decided now.

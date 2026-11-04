@@ -7,46 +7,46 @@
   ],
   [
    0.762,
-   6.838,
-   "This is the executive briefing for Book 04 of the Federal Modernization Workbook, Access and Privilege."
+   6.412,
+   "This is the executive briefing for Access and Privilege, one of the books of the Federal Modernization Workbook."
   ],
   [
-   7.6,
+   7.175,
    2.487,
    "It's for the people who make the calls on access."
   ],
   [
-   10.088,
+   9.662,
    1.425,
    "The argument is short."
   ],
   [
-   11.512,
+   11.088,
    8.25,
    "Under Zero Trust, every access request is decided by policy, so your Conditional Access policy set is your access control."
   ],
   [
-   19.762,
+   19.337,
    7.638,
    "Standing administrator rights turn one stolen credential into control of the tenant, and a stronger sign-in doesn't fix that."
   ],
   [
-   27.4,
+   26.975,
    3.413,
    "And the platform won't separate deciding from doing for you."
   ],
   [
-   30.812,
+   30.387,
    3.237,
    "I'll take four questions: why, what, who and how."
   ],
   [
-   34.05,
+   33.625,
    4.375,
    "Each decision slide names the decision, its owner and when it's needed."
   ],
   [
-   38.425,
+   38.0,
    2.4,
    "Let's start with how access gets decided."
   ]
@@ -878,11 +878,11 @@
   ],
   [
    46.6,
-   4.0,
-   "Book 04 has the detail, every claim footnoted."
+   4.05,
+   "Access and Privilege has the detail, every claim footnoted."
   ],
   [
-   50.6,
+   50.65,
    0.762,
    "Thank you."
   ]

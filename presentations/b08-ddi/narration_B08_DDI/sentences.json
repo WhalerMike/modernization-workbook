@@ -7,41 +7,41 @@
   ],
   [
    0.762,
-   7.362,
-   "This briefing is Book 08 of the Federal Modernization Workbook, D N S, DHCP and eye-pam."
+   7.213,
+   "This briefing comes from D N S, DHCP and eye-pam, one of the books of the Federal Modernization Workbook."
   ],
   [
-   8.125,
+   7.975,
    8.0,
    "It's about governing the name and address layer as one control plane, across the data center, every cloud and the branch edge."
   ],
   [
-   16.125,
+   15.975,
    4.237,
    "That may sound like plumbing, but here's the idea that drives the whole book."
   ],
   [
-   20.363,
+   20.212,
    2.138,
    "Every connection starts with a name."
   ],
   [
-   22.5,
+   22.35,
    3.3,
    "So whoever governs the name layer governs the enterprise."
   ],
   [
-   25.8,
+   25.65,
    8.175,
    "We'll go in four steps: why D N S is now the control plane, what has to change, who owns it, and how to migrate it and run it."
   ],
   [
-   33.975,
+   33.825,
    7.4,
    "Along the way you'll hear about failures that don't look like D N S failures at all, which is exactly why they're so hard to find."
   ],
   [
-   41.375,
+   41.225,
    1.25,
    "Let's start with why."
   ]
@@ -803,11 +803,11 @@
   ],
   [
    57.35,
-   4.075,
-   "Book 08 has the detail, every claim footnoted."
+   5.638,
+   "D N S, DHCP and eye-pam has the detail, every claim footnoted."
   ],
   [
-   61.425,
+   62.987,
    0.762,
    "Thank you."
   ]

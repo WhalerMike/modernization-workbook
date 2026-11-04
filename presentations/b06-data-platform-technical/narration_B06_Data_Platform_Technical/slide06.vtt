@@ -1,21 +1,21 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.447
+00:00:00.050 --> 00:00:03.398
 Module 2 is the audit, the
 principals and the decision:
 
 2
-00:00:03.447 --> 00:00:06.612
+00:00:03.398 --> 00:00:06.517
 what the audit reads on
 every surviving instance,
 
 3
-00:00:06.612 --> 00:00:11.245
+00:00:06.517 --> 00:00:11.083
 the three Arc-eligibility categories,
 the principal types that replace
 
 4
-00:00:11.245 --> 00:00:15.860
+00:00:11.083 --> 00:00:15.860
 Windows and SQL logins, and the parallel
 run that makes the cutover safe.

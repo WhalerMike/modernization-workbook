@@ -7,41 +7,41 @@
   ],
   [
    0.762,
-   6.638,
-   "This briefing is Book 07 of the Federal Modernization Workbook, P K I and Certificates."
+   6.287,
+   "This briefing comes from P K I and Certificates, one of the books of the Federal Modernization Workbook."
   ],
   [
-   7.4,
+   7.05,
    9.662,
    "It covers the move from Active Directory Certificate Services to Microsoft Cloud P K I, Entra certificate-based authentication and the Federal P K I."
   ],
   [
-   17.062,
+   16.712,
    2.013,
    "Here's why it deserves its own book."
   ],
   [
-   19.075,
+   18.725,
    4.925,
    "Every other migration changes which system answers the question, who is this?"
   ],
   [
-   24.0,
+   23.65,
    2.513,
    "Certificates are how that answer gets proved."
   ],
   [
-   26.512,
+   26.163,
    5.475,
    "So when they're handled as an afterthought, things break long after everyone thought the work was done."
   ],
   [
-   31.988,
+   31.637,
    11.25,
    "We'll go in four steps: why certificates outlive every migration, what the target P K I looks like, who owns the certificate estate, and how to move it without stranding a single certificate."
   ],
   [
-   43.237,
+   42.888,
    1.387,
    "Let's start with the why."
   ]
@@ -721,11 +721,11 @@
   ],
   [
    51.212,
-   7.562,
-   "Book 07 has the detail, every claim footnoted, with deployment checklists and a template-by-template matrix."
+   8.062,
+   "P K I and Certificates has the detail, every claim footnoted, with deployment checklists and a template-by-template matrix."
   ],
   [
-   58.775,
+   59.275,
    0.762,
    "Thank you."
   ]

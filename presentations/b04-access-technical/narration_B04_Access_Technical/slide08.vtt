@@ -23,45 +23,50 @@ with a deadline of June
 20, 2025 for the first set.
 
 6
-00:00:17.263 --> 00:00:21.491
+00:00:17.263 --> 00:00:21.550
 The table maps each Entra ID item
 to the policy that meets it,
 
 7
-00:00:21.491 --> 00:00:27.100
+00:00:21.550 --> 00:00:27.237
 from blocking legacy authentication to
 phishing-resistant MFA for everyone.
 
 8
-00:00:27.100 --> 00:00:29.350
+00:00:27.237 --> 00:00:29.488
 One conflict is worth understanding.
 
 9
-00:00:29.350 --> 00:00:34.565
-Book 02 adopted Microsoft's current
-advice for high-risk users, require risk
+00:00:29.488 --> 00:00:34.606
+Microsoft Learn's Conditional Access
+guidance recommends require risk remediation
 
 10
-00:00:34.565 --> 00:00:39.862
-remediation, but the directive says block
-them, and when both apply, block wins.
+00:00:34.606 --> 00:00:39.510
+for high-risk users, but the directive's
+required configurations say block them, and
 
 11
-00:00:39.862 --> 00:00:42.303
+00:00:39.510 --> 00:00:44.201
+Microsoft Learn's page on managed policies
+says that when both apply, block wins.
+
+12
+00:00:44.201 --> 00:00:46.641
 So in a tenant within
 the directive's scope,
 
-12
-00:00:42.303 --> 00:00:46.000
+13
+00:00:46.641 --> 00:00:50.338
 high-risk users are blocked and
 recovered through the help desk.
 
-13
-00:00:46.000 --> 00:00:50.730
+14
+00:00:50.338 --> 00:00:55.067
 Last, Microsoft creates some policies
 itself and turns them on later,
 
-14
-00:00:50.730 --> 00:00:55.030
+15
+00:00:55.067 --> 00:00:59.350
 so the program records a decision
 for each: adopt or supersede.

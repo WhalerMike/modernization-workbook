@@ -5,63 +5,63 @@ WEBVTT
 Welcome.
 
 2
-00:00:00.763 --> 00:00:04.750
+00:00:00.763 --> 00:00:04.780
 This is the technical deep
-dive for Book 08 of the
+dive for DNS, DHCP and IPAM,
 
 3
-00:00:04.750 --> 00:00:09.137
-Federal Modernization
-Workbook, DNS, DHCP and IPAM.
+00:00:04.780 --> 00:00:08.887
+one of the books of the
+Federal Modernization Workbook.
 
 4
-00:00:09.137 --> 00:00:13.701
+00:00:08.887 --> 00:00:13.451
 It's for the network and DDI engineers
 who will design the resolution paths,
 
 5
-00:00:13.701 --> 00:00:17.087
+00:00:13.451 --> 00:00:16.837
 move authority off Active
 Directory, and run the result.
 
 6
-00:00:17.087 --> 00:00:18.649
+00:00:16.837 --> 00:00:18.399
 It comes in two parts.
 
 7
-00:00:18.649 --> 00:00:20.789
+00:00:18.399 --> 00:00:20.539
 Part 1 covers the hard surfaces:
 
 8
-00:00:20.789 --> 00:00:24.985
+00:00:20.539 --> 00:00:24.735
 split-brain DNS and what Active
 Directory DNS really carries,
 
 9
-00:00:24.985 --> 00:00:27.782
+00:00:24.735 --> 00:00:27.532
 the places queries escape agency policy,
 
 10
-00:00:27.782 --> 00:00:32.800
+00:00:27.532 --> 00:00:32.550
 and the DNS identity and DNSSEC work
 underneath certificates and tokens.
 
 11
-00:00:32.800 --> 00:00:36.762
+00:00:32.550 --> 00:00:36.512
 Part 2 builds and runs the control
 plane: cloud private endpoints,
 
 12
-00:00:36.762 --> 00:00:41.164
+00:00:36.512 --> 00:00:40.914
 IPAM as the authority for address
 blocks, the reference architecture,
 
 13
-00:00:41.164 --> 00:00:45.200
+00:00:40.914 --> 00:00:44.950
 then the six-phase migration and
 the evidence that keeps it honest.
 
 14
-00:00:45.200 --> 00:00:49.750
+00:00:44.950 --> 00:00:49.490
 Vendors appear only as the book's
 examples, never as endorsements.

@@ -33,39 +33,39 @@ in front of human access, and Windows
 Authentication goes around both.
 
 8
-00:00:28.875 --> 00:00:32.274
-Third, the directory
-modernization in Book 02 ends the
+00:00:28.875 --> 00:00:32.597
+Third, the directory modernization
+in Identity and Directory
 
 9
-00:00:32.274 --> 00:00:35.825
-domain-joined world that the
-service accounts depend on.
+00:00:32.597 --> 00:00:36.463
+ends the domain-joined world that
+the service accounts depend on.
 
 10
-00:00:35.825 --> 00:00:38.950
+00:00:36.463 --> 00:00:39.587
 There's no external NTLM deadline.
 
 11
-00:00:38.950 --> 00:00:44.652
+00:00:39.587 --> 00:00:45.340
 The real dates are support dates for older
 SQL Server and Windows Server versions,
 
 12
-00:00:44.652 --> 00:00:48.425
+00:00:45.340 --> 00:00:48.987
 running through 2026 and 2027,
 and the slide lists them.
 
 13
-00:00:48.425 --> 00:00:53.266
+00:00:48.987 --> 00:00:54.011
 SQL Server 2014 and 2017 can't
 use Entra authentication at all,
 
 14
-00:00:53.266 --> 00:00:58.013
+00:00:54.011 --> 00:00:58.662
 so they only get to the closed
 state by upgrade or retirement.
 
 15
-00:00:58.013 --> 00:01:00.340
+00:00:58.662 --> 00:01:00.980
 The work starts with the estate itself.

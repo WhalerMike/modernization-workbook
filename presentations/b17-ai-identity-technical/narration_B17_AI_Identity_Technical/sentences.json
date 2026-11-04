@@ -7,41 +7,41 @@
   ],
   [
    0.762,
-   7.425,
-   "This is the technical deep dive for Book 17 of the Federal Modernization Workbook, AI Identity Governance."
+   7.175,
+   "This is the technical deep dive for A I Identity Governance, one of the books of the Federal Modernization Workbook."
   ],
   [
-   8.188,
+   7.938,
    8.675,
-   "It's for identity engineers, security engineers and platform owners, the people who issue the credentials AI signs in with and watch what it does."
+   "It's for identity engineers, security engineers and platform owners, the people who issue the credentials A I signs in with and watch what it does."
   ],
   [
-   16.863,
-   6.75,
-   "The book's idea is simple: an AI agent that can act is an account, and it needs what every account needs."
+   16.613,
+   6.775,
+   "The book's idea is simple: an A I agent that can act is an account, and it needs what every account needs."
   ],
   [
-   23.613,
+   23.387,
    3.587,
    "An owner, a credential, limits, and an end."
   ],
   [
-   27.2,
+   26.975,
    3.0,
    "Part 1 is the identity and the inventory."
   ],
   [
-   30.2,
+   29.975,
    2.562,
    "Part 2 is governing it and proving it."
   ],
   [
-   32.763,
+   32.538,
    6.562,
    "One note before we start: the product details here are dated October 2026, and they move fast."
   ],
   [
-   39.325,
+   39.1,
    1.35,
    "Let's begin with why."
   ]

@@ -11,45 +11,50 @@ By default each policy goes
 to a dynamic device group.
 
 3
-00:00:07.925 --> 00:00:11.030
+00:00:07.925 --> 00:00:10.974
 Microsoft's current
 guidance, checked October 29,
 
 4
-00:00:11.030 --> 00:00:14.589
+00:00:10.974 --> 00:00:14.469
 is to prefer assignment filters
 where they meet the need,
 
 5
-00:00:14.589 --> 00:00:17.922
+00:00:14.469 --> 00:00:17.741
 because dynamic device
 groups add processing delay,
 
 6
-00:00:17.922 --> 00:00:22.087
-and the Federal Modernization
-Workbook's Book 05 now says the same.
+00:00:17.741 --> 00:00:21.906
+as Microsoft Learn's page on
+assigning policies in Intune explains,
 
 7
-00:00:22.087 --> 00:00:26.475
+00:00:21.906 --> 00:00:25.475
+and the Federal Modernization
+Workbook now says the same.
+
+8
+00:00:25.475 --> 00:00:29.863
 Send user settings to user groups
 and device settings to device groups.
 
-8
-00:00:26.475 --> 00:00:29.754
+9
+00:00:29.863 --> 00:00:33.142
 The exception is tier and
 role: filters can't read
 
-9
-00:00:29.754 --> 00:00:33.688
+10
+00:00:33.142 --> 00:00:37.076
 device extension attributes,
 so those stay in group rules.
 
-10
-00:00:33.688 --> 00:00:38.388
+11
+00:00:37.076 --> 00:00:41.775
 And underneath it all, a device rule
 can never read its owner's attributes.
 
-11
-00:00:38.388 --> 00:00:41.040
+12
+00:00:41.775 --> 00:00:44.420
 Next, how device attributes get written.

@@ -1,59 +1,59 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.738
+00:00:00.050 --> 00:00:02.704
 The third bypass sits on the access layer.
 
 2
-00:00:02.738 --> 00:00:07.704
+00:00:02.704 --> 00:00:07.603
 A rogue DHCP server handing out a
 malicious resolver can move a whole
 
 3
-00:00:07.704 --> 00:00:12.149
+00:00:07.603 --> 00:00:11.991
 subnet onto an attacker's DNS in
 one step, past every block list.
 
 4
-00:00:12.149 --> 00:00:16.475
+00:00:11.991 --> 00:00:16.907
 In IPv6, rogue router advertisements
 do the same, and they're often
 
 5
-00:00:16.475 --> 00:00:20.800
+00:00:16.907 --> 00:00:21.187
 the bigger surface, because many
 networks don't govern them at all.
 
 6
-00:00:20.800 --> 00:00:26.238
+00:00:21.187 --> 00:00:26.523
 Other DHCP options steer traffic too, like
 the search list and the proxy setting.
 
 7
-00:00:26.238 --> 00:00:29.201
+00:00:26.523 --> 00:00:29.448
 The Windows safeguard is
 narrower than it looks:
 
 8
-00:00:29.201 --> 00:00:34.238
+00:00:29.448 --> 00:00:34.449
 it stops a misconfigured Windows server,
 not a home router plugged into a wall port.
 
 9
-00:00:34.238 --> 00:00:38.007
+00:00:34.449 --> 00:00:38.170
 That takes DHCP snooping and
 RA Guard on the switches,
 
 10
-00:00:38.007 --> 00:00:43.662
+00:00:38.170 --> 00:00:43.742
 central option management, and IPAM so
 an unexpected lease is visible at once.
 
 11
-00:00:43.662 --> 00:00:46.128
+00:00:43.742 --> 00:00:46.176
 And since prevention is never complete,
 
 12
-00:00:46.128 --> 00:00:49.920
+00:00:46.176 --> 00:00:49.920
 watch for hosts whose queries
 never reach the governed logs.

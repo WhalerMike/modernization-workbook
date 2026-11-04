@@ -7,31 +7,31 @@
   ],
   [
    0.762,
-   8.312,
-   "This is the technical deep dive for Book 06 of the Federal Modernization Workbook, Data Platform: SQL Server Identity."
+   7.2,
+   "This is the technical deep dive for Data Platform, the Federal Modernization Workbook's book on sequel Server identity."
   ],
   [
-   9.075,
-   15.1,
-   "The book moves the SQL Server estate off Windows Authentication and onto Microsoft Entra ID, and this session is for the people who do that work: database administrators, the identity and server teams beside them, and the security staff who sign off."
+   7.963,
+   15.175,
+   "The book moves the sequel Server estate off Windows Authentication and onto Microsoft Entra I D, and this session is for the people who do that work: database administrators, the identity and server teams beside them, and the security staff who sign off."
   ],
   [
-   24.175,
+   23.137,
    1.562,
    "It comes in two parts."
   ],
   [
-   25.738,
+   24.7,
    9.463,
    "Part 1 is the strategy: why the inheritance has to end, how the estate is rationalized, the authentication decision, and how N T L M goes away."
   ],
   [
-   35.2,
+   34.163,
    3.85,
    "Part 2 walks the ten runbooks in the order a DBA runs them."
   ],
   [
-   39.05,
+   38.013,
    10.713,
    "One convention throughout: April 1, 2027 is the program's own N T L M backstop, not a Microsoft deadline, and I'll say which dates are external."
   ]
@@ -1036,11 +1036,11 @@
   ],
   [
    44.337,
-   6.438,
-   "Book 06 has the chapters and all ten runbooks, with every external claim footnoted."
+   6.2,
+   "Data Platform has the chapters and all ten runbooks, with every external claim footnoted."
   ],
   [
-   50.775,
+   50.538,
    0.762,
    "Thank you."
   ]

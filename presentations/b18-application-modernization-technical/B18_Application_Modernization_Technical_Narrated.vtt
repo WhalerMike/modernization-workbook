@@ -5,59 +5,59 @@ WEBVTT
 Welcome.
 
 2
-00:00:00.763 --> 00:00:03.762
-This is the technical deep
-dive for Book 18 of the
+00:00:00.763 --> 00:00:04.423
+This is the technical deep dive
+for Application Modernization,
 
 3
-00:00:03.762 --> 00:00:07.662
-Federal Modernization Workbook,
-Application Modernization.
+00:00:04.423 --> 00:00:07.600
+one of the books of the
+Federal Modernization Workbook.
 
 4
-00:00:07.662 --> 00:00:10.950
+00:00:07.600 --> 00:00:10.887
 It's for architects,
 application and data engineers,
 
 5
-00:00:10.950 --> 00:00:15.919
+00:00:10.887 --> 00:00:15.857
 database administrators and system
 security officers, the people who decide
 
 6
-00:00:15.919 --> 00:00:20.812
+00:00:15.857 --> 00:00:20.750
 what each legacy application becomes, then
 build it, move its data and prove it.
 
 7
-00:00:20.812 --> 00:00:24.697
+00:00:20.750 --> 00:00:24.635
 The book's idea is simple:
 modernization is a portfolio
 
 8
-00:00:24.697 --> 00:00:29.099
+00:00:24.635 --> 00:00:29.037
 decision made one application at
 a time, not one giant rewrite.
 
 9
-00:00:29.099 --> 00:00:31.425
+00:00:29.037 --> 00:00:31.363
 Part 1 is deciding and designing.
 
 10
-00:00:31.425 --> 00:00:33.700
+00:00:31.363 --> 00:00:33.638
 Part 2 is governing and running.
 
 11
-00:00:33.700 --> 00:00:35.464
+00:00:33.638 --> 00:00:35.402
 One note before we start:
 
 12
-00:00:35.464 --> 00:00:40.050
+00:00:35.402 --> 00:00:39.988
 product versions here are as of
 late October 2026, and they move.
 
 13
-00:00:40.050 --> 00:00:41.750
+00:00:39.988 --> 00:00:41.700
 Let's begin with why.
 
 14
@@ -425,55 +425,55 @@ the strangler fig, and then the hardest
 part of most refactors: the data.
 
 92
-00:05:27.510 --> 00:05:28.585
+00:05:27.510 --> 00:05:28.588
 Here's the target.
 
 93
-00:05:28.585 --> 00:05:31.822
+00:05:28.588 --> 00:05:31.829
 React front ends that only call A P I's.
 
 94
-00:05:31.822 --> 00:05:34.465
+00:05:31.829 --> 00:05:34.478
 A thin Node layer where
 a front end needs one,
 
 95
-00:05:34.465 --> 00:05:38.797
+00:05:34.478 --> 00:05:38.822
 and a gateway that also acts as the
 switch for incremental replacement.
 
 96
-00:05:38.797 --> 00:05:43.710
+00:05:38.822 --> 00:05:43.742
 Java and Spring Boot services that each
 publish a contract and own their data.
 
 97
-00:05:43.710 --> 00:05:46.373
+00:05:43.742 --> 00:05:46.409
 And everything in
 containers on Kubernetes.
 
 98
-00:05:46.373 --> 00:05:50.652
+00:05:46.409 --> 00:05:50.698
 These are mainstream choices with big
 labor pools and long support windows,
 
 99
-00:05:50.652 --> 00:05:53.573
+00:05:50.698 --> 00:05:53.557
 because these business
 rules will live for decades.
 
 100
-00:05:53.573 --> 00:05:56.548
+00:05:53.557 --> 00:05:56.538
 And they're the program's
 design, not a federal rule.
 
 101
-00:05:56.548 --> 00:06:00.709
+00:05:56.538 --> 00:06:00.707
 An agency built on .NET can keep
 the structure and swap the list.
 
 102
-00:06:00.709 --> 00:06:02.510
+00:06:00.707 --> 00:06:02.510
 Next, the clocks.
 
 103
@@ -631,42 +631,42 @@ They're guidance, not requirements.
 Now, the data.
 
 136
-00:08:00.580 --> 00:08:04.152
+00:08:00.580 --> 00:08:04.126
 Code can be replaced a piece at
 a time, but data moves once,
 
 137
-00:08:04.152 --> 00:08:07.880
+00:08:04.126 --> 00:08:07.825
 and the move isn't done until
 you can prove nothing was lost.
 
 138
-00:08:07.880 --> 00:08:11.963
+00:08:07.825 --> 00:08:11.871
 So the program treats it as
 three jobs: convert the schema,
 
 139
-00:08:11.963 --> 00:08:16.480
+00:08:11.871 --> 00:08:16.355
 move the rows, and prove the result,
 looping back on any mismatch.
 
 140
-00:08:16.480 --> 00:08:20.042
+00:08:16.355 --> 00:08:19.916
 Choosing the engine is usually
 settled by what you already run.
 
 141
-00:08:20.042 --> 00:08:24.217
+00:08:19.916 --> 00:08:24.066
 And remember that the engine also decides
 which conversion tools you can use.
 
 142
-00:08:24.217 --> 00:08:30.143
+00:08:24.066 --> 00:08:30.160
 If the target is SQL Server, arrive
 already on Book 6's modern sign-in pattern.
 
 143
-00:08:30.143 --> 00:08:32.750
+00:08:30.160 --> 00:08:32.750
 Next, where conversions go wrong.
 
 144
@@ -713,49 +713,49 @@ every emulation call as debt to pay down.
 Next, the tools themselves.
 
 153
-00:09:14.030 --> 00:09:19.767
+00:09:14.030 --> 00:09:19.684
 Here are the conversion tools as of October
 2026, as examples, not endorsements.
 
 154
-00:09:19.767 --> 00:09:21.467
+00:09:19.684 --> 00:09:21.373
 Three facts shape your plan.
 
 155
-00:09:21.467 --> 00:09:25.879
+00:09:21.373 --> 00:09:25.650
 Only A W S tools convert
 DB2 to PostgreSQL.
 
 156
-00:09:25.879 --> 00:09:30.268
+00:09:25.650 --> 00:09:30.512
 Microsoft's assistant targets
 only SQL Server and Azure SQL.
 
 157
-00:09:30.268 --> 00:09:34.393
+00:09:30.512 --> 00:09:34.577
 And the newer AI-assisted conversion
 sends your source code to a model,
 
 158
-00:09:34.393 --> 00:09:38.305
+00:09:34.577 --> 00:09:38.442
 which puts that model's endpoint
 inside your migration's boundary.
 
 159
-00:09:38.305 --> 00:09:40.974
+00:09:38.442 --> 00:09:41.072
 Treat whatever it produces as a draft that
 
 160
-00:09:40.974 --> 00:09:43.643
+00:09:41.072 --> 00:09:43.696
 a person reviews and the validation tests.
 
 161
-00:09:43.643 --> 00:09:46.081
+00:09:43.696 --> 00:09:46.105
 So pick the engine with
 these limits in view.
 
 162
-00:09:46.081 --> 00:09:48.170
+00:09:46.105 --> 00:09:48.170
 Next, proving the move.
 
 163
@@ -806,49 +806,49 @@ Pick totals the program office recognizes.
 Next, the switch itself.
 
 173
-00:10:28.510 --> 00:10:31.444
+00:10:28.510 --> 00:10:31.451
 There are three ways to
 cut over: all at once,
 
 174
-00:10:31.444 --> 00:10:34.797
+00:10:31.451 --> 00:10:34.813
 in phases, or by running
 both systems in parallel.
 
 175
-00:10:34.797 --> 00:10:36.678
+00:10:34.813 --> 00:10:36.698
 All three end at the same gate:
 
 176
-00:10:36.678 --> 00:10:40.360
+00:10:36.698 --> 00:10:40.390
 three clean validation results
 and a rehearsed way back.
 
 177
-00:10:40.360 --> 00:10:45.749
+00:10:40.390 --> 00:10:45.713
 Phases and parallel runs mean both systems
 live side by side for a while, and here's
 
 178
-00:10:45.749 --> 00:10:50.897
+00:10:45.713 --> 00:10:50.874
 the rule that matters most: never let
 the application write to both databases.
 
 179
-00:10:50.897 --> 00:10:53.135
+00:10:50.874 --> 00:10:53.118
 Those writes drift apart silently.
 
 180
-00:10:53.135 --> 00:10:58.610
+00:10:53.118 --> 00:10:58.605
 Instead, one system owns each table,
 and changes are replicated from the log.
 
 181
-00:10:58.610 --> 00:10:59.922
+00:10:58.605 --> 00:10:59.919
 That's Module 2.
 
 182
-00:10:59.922 --> 00:11:01.640
+00:10:59.919 --> 00:11:01.640
 Next, Part 2.
 
 183

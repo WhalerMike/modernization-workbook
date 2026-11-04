@@ -7,31 +7,31 @@
   ],
   [
    0.762,
-   8.375,
-   "This is the technical deep dive for Book 08 of the Federal Modernization Workbook, D N S, DHCP and eye-pam."
+   8.125,
+   "This is the technical deep dive for D N S, DHCP and eye-pam, one of the books of the Federal Modernization Workbook."
   ],
   [
-   9.137,
+   8.887,
    7.95,
    "It's for the network and D D I engineers who will design the resolution paths, move authority off Active Directory, and run the result."
   ],
   [
-   17.087,
+   16.837,
    1.562,
    "It comes in two parts."
   ],
   [
-   18.65,
+   18.4,
    14.15,
    "Part 1 covers the hard surfaces: split-brain D N S and what Active Directory D N S really carries, the places queries escape agency policy, and the D N S identity and DNSSEC work underneath certificates and tokens."
   ],
   [
-   32.8,
+   32.55,
    12.4,
    "Part 2 builds and runs the control plane: cloud private endpoints, eye-pam as the authority for address blocks, the reference architecture, then the six-phase migration and the evidence that keeps it honest."
   ],
   [
-   45.2,
+   44.95,
    4.487,
    "Vendors appear only as the book's examples, never as endorsements."
   ]

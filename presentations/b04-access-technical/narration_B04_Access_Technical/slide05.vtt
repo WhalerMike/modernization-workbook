@@ -6,59 +6,59 @@ The library is one policy
 set, numbered once.
 
 2
-00:00:03.488 --> 00:00:07.889
-The baseline Book 02 builds during
-the migration keeps its numbers,
+00:00:03.488 --> 00:00:08.278
+The baseline that Identity and Directory
+builds during the migration keeps its
 
 3
-00:00:07.889 --> 00:00:12.526
-Book 04 adds the policies for risk,
-privileged workstations, segmented
+00:00:08.278 --> 00:00:13.141
+numbers, this book adds the policies for
+risk, privileged workstations, segmented
 
 4
-00:00:12.526 --> 00:00:17.950
+00:00:13.141 --> 00:00:18.075
 applications and workload identities, and
 there's one permanent report-only probe.
 
 5
-00:00:17.950 --> 00:00:23.103
+00:00:18.075 --> 00:00:23.228
 A retired number is never reused, and
 every name reads the same way: number,
 
 6
-00:00:23.103 --> 00:00:25.593
+00:00:23.228 --> 00:00:25.718
 population, resource, then control,
 
 7
-00:00:25.593 --> 00:00:29.200
+00:00:25.718 --> 00:00:29.325
 so you can read a policy on
 a call without opening it.
 
 8
-00:00:29.200 --> 00:00:32.012
+00:00:29.325 --> 00:00:32.137
 The prerequisites matter
 more than people expect.
 
 9
-00:00:32.012 --> 00:00:36.828
+00:00:32.137 --> 00:00:36.953
 Missing ones are the most common reason
 a report-only policy shows failures that
 
 10
-00:00:36.828 --> 00:00:41.285
+00:00:36.953 --> 00:00:41.410
 aren't real: the emergency access group,
 the persona groups, named locations,
 
 11
-00:00:41.285 --> 00:00:45.525
+00:00:41.410 --> 00:00:45.650
 a custom phishing-resistant strength,
 and device and application tags.
 
 12
-00:00:45.525 --> 00:00:48.913
+00:00:45.650 --> 00:00:49.038
 And every policy is created
 in report-only first.
 
 13
-00:00:48.913 --> 00:00:51.220
+00:00:49.038 --> 00:00:51.340
 Next, who those policies reach.

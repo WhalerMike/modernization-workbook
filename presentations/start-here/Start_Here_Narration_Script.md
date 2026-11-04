@@ -38,4 +38,4 @@ The decision belongs to a few people. The executive sponsor, with the CIO, owns 
 
 ## Slide 10 — Where to go next
 
-To go deeper, start with the Book 00 executive briefing, which lays out the decisions with owners and timing. Book 01, Chapter 12 is the roadmap, with every phase and gate. Book 02 covers identity and the directory, and Book 03 makes the full case for HR-driven identity. Every claim in this briefing is footnoted to a primary source in those books. The workbook is independent analysis, not an official publication of any agency. Thank you for starting here.
+To go deeper, start with the executive briefing for Orientation and Program, which lays out the decisions with owners and timing. Chapter 12 of The Transformation Arc is the roadmap, with every phase and gate. Identity and Directory covers identity and the directory, and HR-Driven Identity makes the full case for HR-driven identity. Every claim in this briefing is footnoted to a primary source in those books. The workbook is independent analysis, not an official publication of any agency. Thank you for starting here.

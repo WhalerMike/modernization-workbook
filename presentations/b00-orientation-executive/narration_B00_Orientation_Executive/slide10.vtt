@@ -1,93 +1,93 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:06.088
+00:00:00.050 --> 00:00:06.200
 Five workstreams carry the work: identity,
 policy, services, compute and access.
 
 2
-00:00:06.088 --> 00:00:08.804
+00:00:06.200 --> 00:00:08.934
 They run together, because
 finishing one before
 
 3
-00:00:08.804 --> 00:00:11.421
+00:00:08.934 --> 00:00:11.600
 starting the next roughly
 doubles the program.
 
 4
-00:00:11.421 --> 00:00:12.717
+00:00:11.600 --> 00:00:12.912
 They still have an order.
 
 5
-00:00:12.717 --> 00:00:16.033
+00:00:12.912 --> 00:00:16.375
 Identity comes first,
 because policy, access,
 
 6
-00:00:16.033 --> 00:00:20.352
+00:00:16.375 --> 00:00:20.774
 devices and data all decide
 based on who or what is asking.
 
 7
-00:00:20.352 --> 00:00:22.089
+00:00:20.774 --> 00:00:22.487
 Policy follows identity.
 
 8
-00:00:22.089 --> 00:00:25.809
+00:00:22.487 --> 00:00:26.313
 Services, naming and
 addressing, can run in parallel.
 
 9
-00:00:25.809 --> 00:00:29.091
+00:00:26.313 --> 00:00:29.620
 Compute comes mid to late,
 and access comes later,
 
 10
-00:00:29.091 --> 00:00:32.176
+00:00:29.620 --> 00:00:32.762
 because it consumes both
 identity and policy.
 
 11
-00:00:32.176 --> 00:00:36.367
+00:00:32.762 --> 00:00:36.977
 The master plan organized the same
 work as five technology pillars,
 
 12
-00:00:36.367 --> 00:00:39.839
+00:00:36.977 --> 00:00:40.513
 and that left two gaps: nobody
 owned the question of which
 
 13
-00:00:39.839 --> 00:00:43.533
+00:00:40.513 --> 00:00:44.275
 policy surface owns a setting,
 and access had no pillar at all.
 
 14
-00:00:43.533 --> 00:00:47.373
-Book 01 closes them, with a
-security-engineering lead for
+00:00:44.275 --> 00:00:48.651
+The workbook's program model closes
+them, with a security-engineering
 
 15
-00:00:47.373 --> 00:00:51.312
-policy and a joint identity
+00:00:48.651 --> 00:00:52.725
+lead for policy and a joint identity
 and security lead for access.
 
 16
-00:00:51.312 --> 00:00:56.478
+00:00:52.725 --> 00:00:57.999
 Every week lost in assessment or
 attribute design moves every later gate,
 
 17
-00:00:56.478 --> 00:01:00.468
+00:00:57.999 --> 00:01:02.063
 and one dependency never
 relaxes: PKI waits for identity.
 
 18
-00:01:00.468 --> 00:01:06.173
+00:01:02.063 --> 00:01:07.900
 The decision, during Phase 0: name the five
 workstream leads, including those two.
 
 19
-00:01:06.173 --> 00:01:07.476
+00:01:07.900 --> 00:01:09.550
 Next, the projects.

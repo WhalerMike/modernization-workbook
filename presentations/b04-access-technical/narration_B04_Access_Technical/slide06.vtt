@@ -1,72 +1,73 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.131
-Policies target populations, never people,
+00:00:00.050 --> 00:00:04.903
+Policies target populations, never
+people, and the populations are personas,
 
 2
-00:00:03.131 --> 00:00:07.325
-and the populations are personas,
-kept identical to Book 02.
+00:00:04.903 --> 00:00:08.087
+kept identical to those in
+Identity and Directory.
 
 3
-00:00:07.325 --> 00:00:10.912
+00:00:08.087 --> 00:00:11.675
 Admins carry the most risk and
 get the strictest policies.
 
 4
-00:00:10.912 --> 00:00:13.524
+00:00:11.675 --> 00:00:14.287
 Internals are employees and contractors.
 
 5
-00:00:13.524 --> 00:00:17.730
+00:00:14.287 --> 00:00:18.492
 Externals are partner guests, Guests
 are everyone else from outside,
 
 6
-00:00:17.730 --> 00:00:20.754
+00:00:18.492 --> 00:00:21.516
 and workload identities
 are service principals,
 
 7
-00:00:20.754 --> 00:00:24.738
+00:00:21.516 --> 00:00:25.500
 which have to be assigned to a policy
 directly, not through a group.
 
 8
-00:00:24.738 --> 00:00:27.624
+00:00:25.500 --> 00:00:28.386
 And break-glass, the
 two emergency accounts,
 
 9
-00:00:27.624 --> 00:00:30.350
+00:00:28.386 --> 00:00:31.112
 are excluded from every enforced policy.
 
 10
-00:00:30.350 --> 00:00:32.925
+00:00:31.112 --> 00:00:33.688
 Here's the failure mode
 that shapes the design.
 
 11
-00:00:32.925 --> 00:00:36.750
+00:00:33.688 --> 00:00:37.513
 Persona groups are built from
 attributes, so a user with an empty
 
 12
-00:00:36.750 --> 00:00:40.863
+00:00:37.513 --> 00:00:41.626
 attribute falls outside every policy
 that includes only that group.
 
 13
-00:00:40.863 --> 00:00:43.137
+00:00:41.626 --> 00:00:43.900
 That's an exclusion nobody approved.
 
 14
-00:00:43.137 --> 00:00:47.240
+00:00:43.900 --> 00:00:48.002
 So the library includes all
 users, excludes narrowly,
 
 15
-00:00:47.240 --> 00:00:53.350
+00:00:48.002 --> 00:00:54.120
 and adds a deliberately redundant catch-all:
 MFA for all users on all resources.

@@ -1,70 +1,75 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:05.462
-Conversion follows the Federal Modernization
-Workbook's Book 02's fourth phase.
+00:00:00.050 --> 00:00:02.945
+Conversion follows the
+fourth phase of the Federal
 
 2
-00:00:05.462 --> 00:00:09.823
+00:00:02.945 --> 00:00:05.638
+Modernization Workbook's
+directory migration.
+
+3
+00:00:05.638 --> 00:00:09.998
 It takes six to eight weeks, and the
 order is a managed identity first,
 
-3
-00:00:09.823 --> 00:00:12.938
+4
+00:00:09.998 --> 00:00:13.113
 then a federated credential,
 then a certificate.
 
-4
-00:00:12.938 --> 00:00:14.876
+5
+00:00:13.113 --> 00:00:15.051
 Step one builds the target.
 
-5
-00:00:14.876 --> 00:00:19.112
+6
+00:00:15.051 --> 00:00:19.287
 A federated credential must be
 tested with a real token exchange.
 
-6
-00:00:19.112 --> 00:00:22.950
+7
+00:00:19.287 --> 00:00:23.125
 Step two names two human owners
 and a rotation schedule.
 
-7
-00:00:22.950 --> 00:00:26.925
+8
+00:00:23.125 --> 00:00:27.100
 Step three runs old and new
 side by side for thirty days.
 
-8
-00:00:26.925 --> 00:00:31.462
+9
+00:00:27.100 --> 00:00:31.637
 The application uses the new identity,
 and the old account stays enabled.
 
-9
-00:00:31.462 --> 00:00:34.012
+10
+00:00:31.637 --> 00:00:34.187
 Watch the new identity's
 sign-ins in Entra,
 
-10
-00:00:34.012 --> 00:00:37.387
+11
+00:00:34.187 --> 00:00:37.562
 and the old account's logons
 on the domain controllers.
 
-11
-00:00:37.387 --> 00:00:40.988
+12
+00:00:37.562 --> 00:00:41.162
 Step four disables the old
 account, but never deletes it.
 
-12
-00:00:40.988 --> 00:00:44.337
+13
+00:00:41.162 --> 00:00:44.513
 An Active Directory account
 moves to a holding container.
 
-13
-00:00:44.337 --> 00:00:49.012
+14
+00:00:44.513 --> 00:00:49.188
 A secret is removed only after the new
 credential has carried real traffic.
 
-14
-00:00:49.012 --> 00:00:54.600
+15
+00:00:49.188 --> 00:00:54.770
 Step five records the result: the target,
 the date, and the disabled object's ID.

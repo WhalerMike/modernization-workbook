@@ -5,51 +5,51 @@ WEBVTT
 Welcome.
 
 2
-00:00:00.763 --> 00:00:04.543
+00:00:00.763 --> 00:00:04.798
 This is the technical deep dive
-for Book 13 of the Federal
+for Governance, Drift and Evidence,
 
 3
-00:00:04.543 --> 00:00:08.324
-Modernization Workbook,
-Governance, Drift and Evidence.
+00:00:04.798 --> 00:00:08.174
+one of the books of the
+Federal Modernization Workbook.
 
 4
-00:00:08.324 --> 00:00:12.082
+00:00:08.174 --> 00:00:12.074
 It's for the people who keep
 governance true after the audit:
 
 5
-00:00:12.082 --> 00:00:15.225
+00:00:12.074 --> 00:00:15.337
 governance engineers,
 platform owners and ISSOs.
 
 6
-00:00:15.225 --> 00:00:17.587
+00:00:15.337 --> 00:00:17.700
 The whole book comes down to one idea.
 
 7
-00:00:17.587 --> 00:00:22.216
+00:00:17.700 --> 00:00:22.329
 A package that's assembled by hand
 starts going stale the day it's signed,
 
 8
-00:00:22.216 --> 00:00:27.237
+00:00:22.329 --> 00:00:27.350
 so the evidence has to keep arriving, from
 one record, in a form anyone can re-run.
 
 9
-00:00:27.237 --> 00:00:30.501
+00:00:27.350 --> 00:00:30.613
 Part 1 builds the record and
 the engine that watches it.
 
 10
-00:00:30.501 --> 00:00:35.037
+00:00:30.613 --> 00:00:35.150
 Part 2 is the evidence, the owners,
 and how authorization uses it.
 
 11
-00:00:35.037 --> 00:00:37.620
+00:00:35.150 --> 00:00:37.740
 Let's start with why governance decays.
 
 12
@@ -522,103 +522,103 @@ and the engine that uses it to
 find, classify and record drift.
 
 112
-00:06:52.260 --> 00:06:55.097
+00:06:52.260 --> 00:06:55.103
 Automation makes the answer arrive faster.
 
 113
-00:06:55.097 --> 00:06:58.519
+00:06:55.103 --> 00:06:58.532
 Determinism makes it the same
 answer no matter who runs it,
 
 114
-00:06:58.519 --> 00:07:03.010
+00:06:58.532 --> 00:07:03.040
 and that's the only kind an assessor can
 check without taking your word for it.
 
 115
-00:07:03.010 --> 00:07:07.797
+00:07:03.040 --> 00:07:07.831
 Same record version, same inputs,
 same evidence, byte for byte.
 
 116
-00:07:07.797 --> 00:07:12.846
+00:07:07.831 --> 00:07:12.889
 That sounds easy and isn't: two runs can
 agree and still serialize differently,
 
 117
-00:07:12.846 --> 00:07:16.710
+00:07:12.889 --> 00:07:16.758
 so you need a fixed canonical
 format and a pinned toolchain.
 
 118
-00:07:16.710 --> 00:07:18.885
+00:07:16.758 --> 00:07:18.943
 The payoff is the picture on the left.
 
 119
-00:07:18.885 --> 00:07:22.478
+00:07:18.943 --> 00:07:22.544
 The assessor re-runs the
 window, and if the hashes match,
 
 120
-00:07:22.478 --> 00:07:25.273
+00:07:22.544 --> 00:07:25.347
 the evidence is verified by reproduction.
 
 121
-00:07:25.273 --> 00:07:27.872
+00:07:25.347 --> 00:07:27.957
 If they don't, that's a finding in itself.
 
 122
-00:07:27.872 --> 00:07:29.970
+00:07:27.957 --> 00:07:29.970
 Now, where the rules live.
 
 123
-00:07:33.720 --> 00:07:37.920
+00:07:33.720 --> 00:07:37.852
 The rules live in three layers, and
 keeping them apart is the point.
 
 124
-00:07:37.920 --> 00:07:39.833
+00:07:37.852 --> 00:07:39.773
 The first says what a rule means.
 
 125
-00:07:39.833 --> 00:07:41.732
+00:07:39.773 --> 00:07:41.678
 The second says where it applies.
 
 126
-00:07:41.732 --> 00:07:44.132
+00:07:41.678 --> 00:07:44.080
 The third is the code that evaluates it.
 
 127
-00:07:44.132 --> 00:07:47.220
+00:07:44.080 --> 00:07:47.179
 Each has its own reviewer
 and leaves its own evidence.
 
 128
-00:07:47.220 --> 00:07:48.482
+00:07:47.179 --> 00:07:48.441
 Why not combine them?
 
 129
-00:07:48.482 --> 00:07:52.340
+00:07:48.441 --> 00:07:52.313
 Because they change at different
 speeds, carry different blast radius,
 
 130
-00:07:52.340 --> 00:07:56.198
+00:07:52.313 --> 00:07:56.180
 and when something drifts you want
 to know whether the meaning shifted,
 
 131
-00:07:56.198 --> 00:07:58.945
+00:07:56.180 --> 00:07:58.933
 a mapping broke, or the code
 disagrees with the rule.
 
 132
-00:07:58.945 --> 00:08:02.358
+00:07:58.933 --> 00:08:02.352
 And only the runtime is ever
 allowed to change anything.
 
 133
-00:08:02.358 --> 00:08:05.820
+00:08:02.352 --> 00:08:05.820
 Next, what rules as code
 looks like in practice.
 

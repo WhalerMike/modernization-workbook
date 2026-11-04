@@ -1,69 +1,69 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.671
+00:00:00.050 --> 00:00:03.655
 Behind the charter sit fifteen
 principles, in five groups,
 
 2
-00:00:03.671 --> 00:00:06.462
+00:00:03.655 --> 00:00:06.433
 each tied to the book
 that carries it in depth.
 
 3
-00:00:06.462 --> 00:00:10.706
+00:00:06.433 --> 00:00:10.657
 The foundation group applies to
 every change: one source of truth,
 
 4
-00:00:10.706 --> 00:00:14.163
+00:00:10.657 --> 00:00:14.098
 change control with provenance,
 and drift detection.
 
 5
-00:00:14.163 --> 00:00:16.237
+00:00:14.098 --> 00:00:16.165
 The change rule is the strict one.
 
 6
-00:00:16.237 --> 00:00:21.165
+00:00:16.165 --> 00:00:21.061
 Every move, add, change, deletion or
 reset starts at the source of truth,
 
 7
-00:00:21.165 --> 00:00:26.091
+00:00:21.061 --> 00:00:25.966
 carries a real authorization, runs
 with just-in-time least privilege,
 
 8
-00:00:26.091 --> 00:00:30.413
+00:00:25.966 --> 00:00:30.268
 closes with proof, and produces
 its evidence automatically.
 
 9
-00:00:30.413 --> 00:00:34.138
+00:00:30.268 --> 00:00:33.988
 Put simply, no closure counts
 unless it carries its proof.
 
 10
-00:00:34.138 --> 00:00:39.219
+00:00:33.988 --> 00:00:39.039
 The other groups say what replaces the
 OU tree, how devices and policy move,
 
 11
-00:00:39.219 --> 00:00:43.800
+00:00:39.039 --> 00:00:43.843
 how the HR feed and SQL Server fit
 in, and how the program itself runs.
 
 12
-00:00:43.800 --> 00:00:48.382
+00:00:43.843 --> 00:00:48.404
 Two source rules were also corrected
 against Microsoft's documentation,
 
 13
-00:00:48.382 --> 00:00:51.837
+00:00:48.404 --> 00:00:51.847
 including token lifetimes;
 the details are in the notes.
 
 14
-00:00:51.837 --> 00:00:54.020
+00:00:51.847 --> 00:00:54.020
 Next, the phases and gates.

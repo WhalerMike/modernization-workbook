@@ -5,62 +5,63 @@ WEBVTT
 Welcome.
 
 2
-00:00:00.763 --> 00:00:04.960
-This briefing is Book 12 of the
-Federal Modernization Workbook,
+00:00:00.763 --> 00:00:04.199
+This briefing comes from Security
+Operations and Telemetry,
 
 3
-00:00:04.960 --> 00:00:07.337
-Security Operations and Telemetry.
+00:00:04.199 --> 00:00:07.299
+one of the books of the
+Federal Modernization Workbook.
 
 4
-00:00:07.337 --> 00:00:11.818
+00:00:07.299 --> 00:00:11.780
 It's about how an agency makes every
 part of its estate emit evidence,
 
 5
-00:00:11.818 --> 00:00:16.938
+00:00:11.780 --> 00:00:16.900
 turns that evidence into detection and
 response, and then proves it all works.
 
 6
-00:00:16.938 --> 00:00:18.313
+00:00:16.900 --> 00:00:18.275
 We'll take four questions.
 
 7
-00:00:18.313 --> 00:00:20.475
+00:00:18.275 --> 00:00:20.438
 Why can't you defend what you can't see?
 
 8
-00:00:20.475 --> 00:00:24.425
+00:00:20.438 --> 00:00:24.388
 What must each plane emit, and
 how do findings reach one queue?
 
 9
-00:00:24.425 --> 00:00:26.487
+00:00:24.388 --> 00:00:26.449
 Who runs security operations?
 
 10
-00:00:26.487 --> 00:00:29.638
+00:00:26.449 --> 00:00:29.600
 And how do you run detection,
 response and monitoring?
 
 11
-00:00:29.638 --> 00:00:33.493
+00:00:29.600 --> 00:00:33.456
 The short version: design
 visibility instead of assuming it,
 
 12
-00:00:33.493 --> 00:00:37.812
+00:00:33.456 --> 00:00:37.775
 and close a finding only when the
 thing is actually fixed, with proof.
 
 13
-00:00:37.812 --> 00:00:42.887
+00:00:37.775 --> 00:00:42.850
 The slides and notes carry every detail
 and source; I'll stick to what matters.
 
 14
-00:00:42.887 --> 00:00:45.790
+00:00:42.850 --> 00:00:45.770
 Let's start with why
 visibility can't be assumed.

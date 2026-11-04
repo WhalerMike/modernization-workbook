@@ -81,51 +81,51 @@
  "3": [
   [
    0.05,
-   2.525,
+   2.513,
    "The gates assume some things are already in place."
   ],
   [
-   2.575,
+   2.562,
    6.112,
    "The H R pipeline is lyve, with shadow differences explained and no unmatched creations."
   ],
   [
-   8.688,
+   8.675,
    6.463,
    "The attribute foundation is done: the slot register is signed, and the attributes are proven on the pilot."
   ],
   [
-   15.15,
-   9.738,
-   "The Federal Modernization Workbook's Book 03's first-phase decisions are made: the person key, the authority map, the worker types and the privacy basis."
+   15.137,
+   10.875,
+   "The Federal Modernization Workbook's first-phase decisions for H R-driven identity are made: the person key, the authority map, the worker types and the privacy basis."
   ],
   [
-   24.887,
+   26.012,
    1.4,
    "Licensing matters."
   ],
   [
-   26.288,
+   27.413,
    10.162,
    "Inbound provisioning needs Entra I D P1, but workflows, entitlement management, access reviews and automatic assignment need Entra I D Governance."
   ],
   [
-   36.45,
+   37.575,
    4.737,
    "Roles go through pim, with the workflows administrator role behind approval."
   ],
   [
-   41.188,
+   42.312,
    7.075,
    "And logs leave Entra I D before the first gate, because its own retention is short and can't be recovered later."
   ],
   [
-   48.263,
+   49.388,
    7.463,
    "As for where things run: the H R platform runs on Oracle Cloud Infrastructure, and the lifecycle's automation runs in Azure."
   ],
   [
-   55.725,
+   56.85,
    6.525,
    "Apps on AWS or Oracle Cloud only see these changes through the access Entra I D grants them."
   ]

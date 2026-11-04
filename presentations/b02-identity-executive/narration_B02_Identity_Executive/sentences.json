@@ -7,36 +7,36 @@
   ],
   [
    0.762,
-   13.575,
-   "This is the executive briefing for Book 02 of the Federal Modernization Workbook, Identity and Directory, for the people who make the calls: the C I O, the see-so, the identity program lead and the sponsors."
+   13.325,
+   "This is the executive briefing for Identity and Directory, one of the books of the Federal Modernization Workbook, for the people who make the calls: the C I O, the see-so, the identity program lead and the sponsors."
   ],
   [
-   14.338,
+   14.088,
    1.425,
    "The argument is short."
   ],
   [
-   15.762,
+   15.512,
    7.85,
    "Zero Trust moved the access decision onto identity, so whatever the directory believes, every application enforces."
   ],
   [
-   23.613,
+   23.363,
    5.362,
    "And syncing the forest as it stands just copies twenty-five years of risk into the cloud."
   ],
   [
-   28.975,
-   8.838,
-   "What Book 02 accomplishes is a directory where placement has become attributes and rules, and every service account has an owner and a target."
+   28.725,
+   8.3,
+   "What this book accomplishes is a directory where placement has become attributes and rules, and every service account has an owner and a target."
   ],
   [
-   37.812,
-   11.525,
-   "It carries the directory side of the HR track and the service accounts; people's attributes are Book 03, devices and servers Book 05, and AI agents Book 17."
+   37.025,
+   13.55,
+   "It carries the directory side of the H R track and the service accounts; people's attributes are in H R-Driven Identity, devices and servers in Devices and Endpoints, and A I agents in A I Identity Governance."
   ],
   [
-   49.337,
+   50.575,
    2.7,
    "Let's start with where access gets decided now."
   ]
@@ -210,33 +210,33 @@
   ],
   [
    12.213,
-   7.338,
-   "Entra ID has no tree; it governs by what an object carries: attributes, memberships and roles."
+   7.463,
+   "Entra I D has no tree; it governs by what an object carries: attributes, memberships and roles."
   ],
   [
-   19.55,
+   19.675,
    3.85,
    "So every placement-based rule has to be rewritten explicitly."
   ],
   [
-   23.4,
+   23.525,
    9.825,
    "Administrative units (A U's) help, but they can't nest, and for synced users the attributes are still written on-premises, so every change waits on sync."
   ],
   [
-   33.225,
+   33.35,
    7.312,
    "That makes one decision come early: which attributes are authoritative, what they mean, and where each one is mastered."
   ],
   [
-   40.538,
-   4.438,
-   "HR decides the meaning, and identity engineering decides the flow."
+   40.663,
+   4.338,
+   "H R decides the meaning, and identity engineering decides the flow."
   ],
   [
-   44.975,
-   3.263,
-   "But first, which of this is Book 02's job."
+   45.0,
+   4.088,
+   "But first, which of this is the job of Identity and Directory."
   ]
  ],
  "6": [
@@ -247,26 +247,26 @@
   ],
   [
    7.975,
-   7.85,
-   "People are the HR track: Book 02 builds the directory side, and Book 03 decides where their attributes come from."
+   8.213,
+   "People are the H R track: this book builds the directory side, and H R-Driven Identity decides where their attributes come from."
   ],
   [
-   15.825,
-   9.075,
-   "Devices and servers are the Intune and Arc tracks: Book 02's Group Policy analysis finds their settings, and Book 05 moves them."
+   16.188,
+   9.15,
+   "Devices and servers are the Intune and Arc tracks: this book's Group Policy analysis finds their settings, and Devices and Endpoints moves them."
   ],
   [
-   24.9,
-   8.912,
-   "Service accounts are the non-person track: Book 02 gives every one an owner and a target, and Book 17 carries AI agents."
+   25.337,
+   9.225,
+   "Service accounts are the non-person track: this book gives every one an owner and a target, and A I Identity Governance carries A I agents."
   ],
   [
-   33.812,
+   34.562,
    9.125,
    "Appendix A ties that to account management, attribute-based access and least privilege in nist 800-53, and to M twenty-two oh-nine."
   ],
   [
-   42.938,
+   43.688,
    2.75,
    "Now, the part Conditional Access can't see."
   ]
@@ -868,51 +868,51 @@
   ],
   [
    10.65,
-   3.925,
-   "HR settles what the attributes mean before anything is mapped."
+   3.788,
+   "H R settles what the attributes mean before anything is mapped."
   ],
   [
-   14.575,
+   14.438,
    3.5,
    "Application owners chase down their old sign-in paths."
   ],
   [
-   18.075,
+   17.938,
    4.062,
    "Identity engineering approves the delegation model and each wave."
   ],
   [
-   22.137,
+   22.0,
    6.825,
    "The see-so names the gap owner, sets privileged access and phishing-resistant sign-in, and owns the evidence."
   ],
   [
-   28.962,
+   28.825,
    3.163,
    "The authorizing official keeps the legacy cutoff."
   ],
   [
-   32.125,
+   31.988,
    4.862,
    "And the sponsor retires Active Directory one gate at a time, sync engine last."
   ],
   [
-   36.987,
+   36.85,
    2.25,
    "None of this is a directory upgrade."
   ],
   [
-   39.237,
+   39.1,
    5.475,
    "Discover what Active Directory encodes, rebuild it explicitly, and prove it survived."
   ],
   [
-   44.712,
-   2.112,
-   "Book 02 has the detail."
+   44.575,
+   2.675,
+   "Identity and Directory has the detail."
   ],
   [
-   46.825,
+   47.25,
    0.762,
    "Thank you."
   ]

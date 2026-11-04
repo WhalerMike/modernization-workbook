@@ -7,36 +7,36 @@
   ],
   [
    6.862,
-   8.738,
-   "Instead of eight chapters one at a time, we'll follow one person's record all the way through Book 13's loop on ServiceNow and SailPoint."
+   9.475,
+   "Instead of eight chapters one at a time, we'll follow one person's record all the way through the workbook's Ticket-to-Machine loop on ServiceNow and SailPoint."
   ],
   [
-   15.6,
+   16.337,
    9.588,
    "Her name is Erin, and she's fictional: every value you'll see comes from the kit's own test fixtures, and every command was re-run before it went on a slide."
   ],
   [
-   25.188,
+   25.925,
    15.887,
    "Seven scenes: the drift run finds her, her drift becomes a typed task, least-privilege clients touch it, we find why it keeps coming back, the fix is actuated, a re-read closes it, and her closure becomes evidence an I S S O can verify."
   ],
   [
-   41.075,
+   41.812,
    3.875,
    "Each scene ends with a command to try and a one-question check."
   ],
   [
-   44.95,
+   45.688,
    3.612,
    "One more thing before we start: the code is illustrative."
   ],
   [
-   48.562,
+   49.3,
    8.037,
    "Its tests pass against fixtures and mocked responses, but it hasn't been run against a live ServiceNow instance or SailPoint tenant."
   ],
   [
-   56.6,
+   57.337,
    5.812,
    "Where the vendors' documentation doesn't settle a point, the workbook says so, and so will we."
   ]
@@ -101,71 +101,71 @@
   ],
   [
    1.038,
-   7.888,
-   "Book 13's loop has five steps: test, detect drift, raise a typed task, actuate, and close with evidence."
+   8.525,
+   "The workbook's Ticket-to-Machine loop has five steps: test, detect drift, raise a typed task, actuate, and close with evidence."
   ],
   [
-   8.925,
+   9.562,
    5.05,
    "The example guide builds it in seven gates, and the workbook's chapters build the code."
   ],
   [
-   13.975,
+   14.613,
    3.987,
    "Scene one is the drift run, Gate 3 and Chapter 6."
   ],
   [
-   17.962,
+   18.6,
    5.425,
    "Scene two turns her drift into a typed task, Gate 4, Chapters 1 and 4."
   ],
   [
-   23.387,
+   24.025,
    4.713,
    "Scene three is least privilege, Gate 1, Chapters 2 and 3."
   ],
   [
-   28.1,
+   28.738,
    4.737,
    "Scene four finds why her department keeps drifting, Gate 2, Chapter 8."
   ],
   [
-   32.837,
+   33.475,
    5.95,
    "Scene five is actuation, Gate 5, which the kit's first pass deliberately doesn't build."
   ],
   [
-   38.788,
+   39.425,
    3.85,
    "Scene six is the re-read, Gate 6, Chapter 5."
   ],
   [
-   42.638,
+   43.275,
    4.125,
    "And scene seven is the evidence, Gate 7, Chapter 7."
   ],
   [
-   46.763,
+   47.4,
    1.95,
    "Every scene has the same shape."
   ],
   [
-   48.712,
+   49.35,
    7.338,
    "First, the story beat: what happens to Erin's record, with the code that handles it and the federal requirement behind it."
   ],
   [
-   56.05,
+   56.688,
    6.175,
    "Then a slide called Try it, with the exact Lab 1 command from the workbook and the output it really printed."
   ],
   [
-   62.225,
+   62.862,
    1.587,
    "Then a one-question check."
   ],
   [
-   63.812,
+   64.45,
    4.25,
    "Pause the video if you want to answer it; the answer opens the next slide."
   ]
@@ -339,16 +339,16 @@
   ],
   [
    46.65,
-   3.825,
-   "The tempo is Book 13's design, not a federal clock."
+   3.638,
+   "The tempo is the workbook's design, not a federal clock."
   ],
   [
-   50.475,
+   50.288,
    11.125,
    "The important design choice is that the rules liv in one place, the scripted REST resource inside ServiceNow, and the Python mirror is held to it by a test that reads the JavaScript."
   ],
   [
-   61.6,
+   61.413,
    7.713,
    "So a malformed payload fails on a laptop, not as a four hundred from a live instance, and the mirror can't quietly go stale."
   ]
@@ -843,11 +843,11 @@
   ],
   [
    41.312,
-   4.138,
-   "Why it matters: Gate 6, Book 13's fourth clause."
+   4.15,
+   "Why it matters: Gate 6, the workbook's closure clause."
   ],
   [
-   45.45,
+   45.462,
    6.75,
    "The record closes only on a re-read, with its evidence, and no person can close it by setting its state."
   ]
@@ -954,31 +954,31 @@
   ],
   [
    12.325,
-   12.675,
-   "On a real instance, that closed record is read back out and written as one line of an evidence package, in Book 13's shape: origin, owner and clock, the re-read result, and the closure."
+   13.562,
+   "On a real instance, that closed record is read back out and written as one line of an evidence package, in the shape of the workbook's evidence record: origin, owner and clock, the re-read result, and the closure."
   ],
   [
-   25.0,
+   25.887,
    8.25,
    "Approval, the executing identity and what ran are written as null, each with its reason, because the first pass doesn't actuate."
   ],
   [
-   33.25,
+   34.138,
    2.125,
    "The record says what it doesn't hold."
   ],
   [
-   35.375,
+   36.263,
    5.838,
    "Each line carries the hash of the line before it, and a manifest holds a hash of every file."
   ],
   [
-   41.212,
+   42.1,
    2.025,
    "Why it matters: Gate 7."
   ],
   [
-   43.237,
+   44.125,
    4.425,
    "The I S S O gets records nobody could edit or remove without it showing."
   ]

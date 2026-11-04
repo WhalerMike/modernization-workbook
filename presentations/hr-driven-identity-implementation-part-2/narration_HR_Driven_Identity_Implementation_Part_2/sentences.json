@@ -522,56 +522,56 @@
  "11": [
   [
    0.05,
-   7.15,
-   "The separation gate puts the leaver in the Federal Modernization Workbook's Book 03's order and then proves the timing."
+   6.35,
+   "The separation gate puts the leaver in the Federal Modernization Workbook's leaver order and then proves the timing."
   ],
   [
-   7.2,
-   3.138,
-   "Disable the account and revoke its sessions first."
+   6.4,
+   6.662,
+   "Disable the account and revoke its sessions first, the steps Microsoft Learn's revoke-access guidance gives."
   ],
   [
-   10.338,
+   13.062,
    6.938,
    "Then one custom task starts the device retire and the card revocation together, and waits for both to report."
   ],
   [
-   17.275,
+   20.0,
    8.15,
    "That wait can run from thirty minutes to three hours, and if it times out, it goes to a high-priority exception, not a retry loop."
   ],
   [
-   25.425,
+   28.15,
    3.875,
    "Then come the removals, and a read-back to confirm the block took."
   ],
   [
-   29.3,
+   32.025,
    3.312,
    "A disabled account with lyve sessions is an incident."
   ],
   [
-   32.612,
+   35.337,
    5.013,
    "Deletion comes last, in a separate workflow, after the devices are retired."
   ],
   [
-   37.625,
+   40.35,
    4.787,
    "Set the leave time late in the day, and remember the schedule is part of the time allowed."
   ],
   [
-   42.413,
+   45.138,
    6.4,
    "An emergency means an immediate out-of-band block, then the same sequence on demand, behind approval."
   ],
   [
-   48.812,
+   51.538,
    5.013,
    "A separation entered more than three days late misses the trigger, so run it by hand."
   ],
   [
-   53.825,
+   56.55,
    2.3,
    "Privileged leavers need their own path."
   ]
@@ -852,26 +852,26 @@
   ],
   [
    37.862,
-   2.638,
-   "For the design, see Book 03."
+   4.312,
+   "For the design, see the workbook's H R-Driven Identity book."
   ],
   [
-   40.5,
+   42.175,
    5.85,
    "For the attributes these gates read, see the attribute-driven migration implementation guide."
   ],
   [
-   46.35,
+   48.025,
    9.7,
    "To learn it all in order, use the learning path for H R-driven identity: seven modules, one per gate, each with a fixture lab and a knowledge check."
   ],
   [
-   56.05,
+   57.725,
    2.212,
    "The pipeline makes the account exist."
   ],
   [
-   58.263,
+   59.938,
    5.763,
    "These seven gates make the H R record decide what happens to it, and they leave the evidence that it did."
   ]

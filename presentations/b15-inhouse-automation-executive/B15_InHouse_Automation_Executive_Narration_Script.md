@@ -46,4 +46,4 @@ So here's the ask. Approve a small pilot in a developer instance. Made-up data o
 
 ## Slide 12 — Where to read next
 
-Everything in this briefing comes from Book 15, Chapter 13 of the Federal Modernization Workbook, and every source is footnoted there. Chapter 11 describes the compliance application itself, Chapter 10 covers who runs day two, and the workbook's ServiceNow example is a tested starting point for the pilot. Thank you for your time.
+Everything in this briefing comes from Chapter 13 of Compliance Automation and Day-Two Operations, in the Federal Modernization Workbook, and every source is footnoted there. Chapter 11 describes the compliance application itself, Chapter 10 covers who runs day two, and the workbook's ServiceNow example is a tested starting point for the pilot. Thank you for your time.

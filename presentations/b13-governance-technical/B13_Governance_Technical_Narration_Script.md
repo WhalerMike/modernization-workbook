@@ -2,7 +2,7 @@
 
 ## Slide 1 — Governance, Drift & Evidence: the technical deep dive
 
-Welcome. This is the technical deep dive for Book 13 of the Federal Modernization Workbook, Governance, Drift and Evidence. It's for the people who keep governance true after the audit: governance engineers, platform owners and ISSOs. The whole book comes down to one idea. A package that's assembled by hand starts going stale the day it's signed, so the evidence has to keep arriving, from one record, in a form anyone can re-run. Part 1 builds the record and the engine that watches it. Part 2 is the evidence, the owners, and how authorization uses it. Let's start with why governance decays.
+Welcome. This is the technical deep dive for Governance, Drift and Evidence, one of the books of the Federal Modernization Workbook. It's for the people who keep governance true after the audit: governance engineers, platform owners and ISSOs. The whole book comes down to one idea. A package that's assembled by hand starts going stale the day it's signed, so the evidence has to keep arriving, from one record, in a form anyone can re-run. Part 1 builds the record and the engine that watches it. Part 2 is the evidence, the owners, and how authorization uses it. Let's start with why governance decays.
 
 ## Slide 2 — Why this matters: a signed package starts aging at once
 

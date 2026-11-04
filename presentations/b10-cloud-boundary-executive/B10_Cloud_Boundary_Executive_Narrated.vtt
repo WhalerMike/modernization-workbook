@@ -5,83 +5,83 @@ WEBVTT
 Welcome.
 
 2
-00:00:00.763 --> 00:00:04.250
-This is the executive briefing
-for Book 10 of the Federal
+00:00:00.763 --> 00:00:04.585
+This is the executive briefing for
+Cloud Boundary and Landing Zone,
 
 3
-00:00:04.250 --> 00:00:07.812
-Modernization Workbook, Cloud
-Boundary and Landing Zone.
+00:00:04.585 --> 00:00:07.725
+one of the books of the
+Federal Modernization Workbook.
 
 4
-00:00:07.812 --> 00:00:12.417
+00:00:07.725 --> 00:00:12.459
 It's for the people who sign for
 a cloud system or answer for it:
 
 5
-00:00:12.417 --> 00:00:15.824
+00:00:12.459 --> 00:00:15.963
 authorizing officials,
 ISSOs, CIOs and CISOs.
 
 6
-00:00:15.824 --> 00:00:18.175
+00:00:15.963 --> 00:00:18.313
 The book's argument fits in one line.
 
 7
-00:00:18.175 --> 00:00:22.175
+00:00:18.313 --> 00:00:22.312
 The license says what you bought;
 the boundary says what you may use.
 
 8
-00:00:22.175 --> 00:00:26.962
+00:00:22.312 --> 00:00:27.099
 A design that confuses the two fails in
 front of the assessor, not in the lab.
 
 9
-00:00:26.962 --> 00:00:29.799
+00:00:27.099 --> 00:00:29.937
 Over the next thirty minutes
 I'll take four questions.
 
 10
-00:00:29.799 --> 00:00:33.142
+00:00:29.937 --> 00:00:33.280
 Why the authorization boundary
 decides what you can use,
 
 11
-00:00:33.142 --> 00:00:35.275
+00:00:33.280 --> 00:00:35.413
 and why so much of it stays invisible.
 
 12
-00:00:35.275 --> 00:00:40.400
+00:00:35.413 --> 00:00:40.538
 What changed at FedRAMP in 2026, and what
 Government Community Cloud leaves out.
 
 13
-00:00:40.400 --> 00:00:41.838
+00:00:40.538 --> 00:00:41.976
 Who owns the boundary.
 
 14
-00:00:41.838 --> 00:00:45.011
+00:00:41.976 --> 00:00:45.149
 And how to respond when a
 capability falls outside it,
 
 15
-00:00:45.011 --> 00:00:47.824
+00:00:45.149 --> 00:00:47.962
 and evidence that response
 in your own package.
 
 16
-00:00:47.824 --> 00:00:50.312
+00:00:47.962 --> 00:00:50.449
 There's no configuration on these slides.
 
 17
-00:00:50.312 --> 00:00:54.987
+00:00:50.449 --> 00:00:55.125
 Each decision slide says what the decision
 is, who owns it, and when you need it.
 
 18
-00:00:54.987 --> 00:00:58.400
+00:00:55.125 --> 00:00:58.550
 Let's start with two
 agencies and one license.
 
@@ -1023,112 +1023,112 @@ Next, what to do when a
 capability is outside.
 
 216
-00:13:28.360 --> 00:13:31.062
+00:13:28.360 --> 00:13:31.065
 When a capability is outside the boundary,
 
 217
-00:13:31.062 --> 00:13:35.385
+00:13:31.065 --> 00:13:35.393
 the book gives three honest responses,
 each a decision with an owner.
 
 218
-00:13:35.385 --> 00:13:38.110
+00:13:35.393 --> 00:13:38.120
 One: compensate inside the boundary.
 
 219
-00:13:38.110 --> 00:13:40.682
+00:13:38.120 --> 00:13:40.694
 Rebuild the capability, or enough of it,
 
 220
-00:13:40.682 --> 00:13:44.460
+00:13:40.694 --> 00:13:44.475
 from signals you do have, and
 say plainly that it's derived.
 
 221
-00:13:44.460 --> 00:13:47.602
+00:13:44.475 --> 00:13:47.621
 For the network gap,
 scheduled runs of Microsoft's
 
 222
-00:13:47.602 --> 00:13:50.285
+00:13:47.621 --> 00:13:50.305
 test tool close part of
 it, labeled derived.
 
 223
-00:13:50.285 --> 00:13:55.460
+00:13:50.305 --> 00:13:55.494
 A narrative that hides the substitution is
 exactly the kind an assessor takes apart.
 
 224
-00:13:55.460 --> 00:13:57.735
+00:13:55.494 --> 00:13:57.760
 Two: a documented exception.
 
 225
-00:13:57.735 --> 00:14:00.513
+00:13:57.760 --> 00:14:00.541
 Either a request through
 the provider's process,
 
 226
-00:14:00.513 --> 00:14:04.472
+00:14:00.541 --> 00:14:04.507
 or the authorizing official accepting
 the residual risk in writing.
 
 227
-00:14:04.472 --> 00:14:09.311
+00:14:04.507 --> 00:14:09.349
 A gap you intend to close goes on the plan
 of action and milestones, with an owner.
 
 228
-00:14:09.311 --> 00:14:13.653
+00:14:09.349 --> 00:14:13.621
 A gap you'll live with gets a signed
 exception with an end or review date,
 
 229
-00:14:13.653 --> 00:14:17.472
+00:14:13.621 --> 00:14:17.444
 so that permanent is a decision
 someone repeats, not a default.
 
 230
-00:14:17.472 --> 00:14:21.448
+00:14:17.444 --> 00:14:21.421
 Three: an alternative path, a
 different certified service.
 
 231
-00:14:21.448 --> 00:14:25.673
+00:14:21.421 --> 00:14:25.652
 And going without is legitimate
 too, as long as someone decided it.
 
 232
-00:14:25.673 --> 00:14:27.622
+00:14:25.652 --> 00:14:27.599
 Before any of these, probe.
 
 233
-00:14:27.622 --> 00:14:30.241
+00:14:27.599 --> 00:14:30.225
 Test what actually works
 in your own tenant,
 
 234
-00:14:30.241 --> 00:14:33.297
+00:14:30.225 --> 00:14:33.284
 on a schedule and after
 relevant provider notices.
 
 235
-00:14:33.297 --> 00:14:36.642
+00:14:33.284 --> 00:14:36.632
 So for each gap, the system
 owner proposes a response,
 
 236
-00:14:36.642 --> 00:14:39.987
+00:14:36.632 --> 00:14:39.980
 the authorizing official
 decides every exception,
 
 237
-00:14:39.987 --> 00:14:45.122
+00:14:39.980 --> 00:14:45.120
 and the CISO sets the evidence class,
 before a design depends on the capability.
 
 238
-00:14:45.122 --> 00:14:47.980
+00:14:45.120 --> 00:14:47.980
 Next, two cautions on exceptions.
 
 239
@@ -1659,10 +1659,10 @@ The license says what you bought;
 the boundary says what you may use.
 
 349
-00:21:50.890 --> 00:21:54.740
-Book 10 has the detail,
-with every claim footnoted.
+00:21:50.890 --> 00:21:56.115
+Cloud Boundary and Landing Zone has
+the detail, with every claim footnoted.
 
 350
-00:21:54.740 --> 00:21:55.550
+00:21:56.115 --> 00:21:56.950
 Thank you.

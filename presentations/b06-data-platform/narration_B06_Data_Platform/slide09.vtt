@@ -10,68 +10,68 @@ is granted by attribute,
 and applications move by driver.
 
 3
-00:00:06.013 --> 00:00:10.172
+00:00:06.013 --> 00:00:10.140
 On access, dynamic Entra
 groups driven by HR attributes
 
 4
-00:00:10.172 --> 00:00:14.150
+00:00:10.140 --> 00:00:14.088
 grant database access, so no
 DBA hands it out manually.
 
 5
-00:00:14.150 --> 00:00:19.012
-Privileged database roles go through
-just-in-time elevation from Book 04,
+00:00:14.088 --> 00:00:18.189
+Privileged database roles go
+through just-in-time elevation from
 
 6
-00:00:19.012 --> 00:00:22.200
-and reviews cover the
-groups, not just the logins.
+00:00:18.189 --> 00:00:22.513
+Access and Privilege, and reviews
+cover the groups, not just the logins.
 
 7
-00:00:22.200 --> 00:00:25.856
+00:00:22.513 --> 00:00:26.168
 On applications, the book
 sorts them into four classes,
 
 8
-00:00:25.856 --> 00:00:28.050
+00:00:26.168 --> 00:00:28.362
 each with its own migration path.
 
 9
-00:00:28.050 --> 00:00:31.570
+00:00:28.362 --> 00:00:31.883
 Connection strings name a
 specific Entra authentication
 
 10
-00:00:31.570 --> 00:00:34.587
+00:00:31.883 --> 00:00:34.900
 mode in production, rather
 than a catch-all default.
 
 11
-00:00:34.587 --> 00:00:37.499
+00:00:34.900 --> 00:00:37.812
 All the common database
 drivers support Entra,
 
 12
-00:00:37.499 --> 00:00:40.187
+00:00:37.812 --> 00:00:40.500
 and the book has a table
 of minimum versions.
 
 13
-00:00:40.187 --> 00:00:42.413
+00:00:40.500 --> 00:00:42.725
 The last mile is the connection string.
 
 14
-00:00:42.413 --> 00:00:47.725
+00:00:42.725 --> 00:00:48.037
 Any application that still says Integrated
 Security keeps the Windows path alive.
 
 15
-00:00:47.725 --> 00:00:51.962
+00:00:48.037 --> 00:00:52.275
 So the application inventory is
 part of closure, not a follow-up.
 
 16
-00:00:51.962 --> 00:00:54.260
+00:00:52.275 --> 00:00:54.580
 And closure is the last big idea.

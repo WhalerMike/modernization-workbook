@@ -7,36 +7,36 @@
   ],
   [
    0.762,
-   6.9,
-   "This is the technical deep dive for Book 18 of the Federal Modernization Workbook, Application Modernization."
+   6.838,
+   "This is the technical deep dive for Application Modernization, one of the books of the Federal Modernization Workbook."
   ],
   [
-   7.662,
+   7.6,
    13.15,
    "It's for architects, application and data engineers, database administrators and system security officers, the people who decide what each legacy application becomes, then build it, move its data and prove it."
   ],
   [
-   20.812,
+   20.75,
    8.287,
    "The book's idea is simple: modernization is a portfolio decision made one application at a time, not one giant rewrite."
   ],
   [
-   29.1,
+   29.038,
    2.325,
    "Part 1 is deciding and designing."
   ],
   [
-   31.425,
+   31.363,
    2.275,
    "Part 2 is governing and running."
   ],
   [
-   33.7,
+   33.638,
    6.35,
    "One note before we start: product versions here are as of late October 2026, and they move."
   ],
   [
-   40.05,
+   39.987,
    1.35,
    "Let's begin with why."
   ]

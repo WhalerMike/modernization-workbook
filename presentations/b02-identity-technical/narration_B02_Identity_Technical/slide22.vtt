@@ -44,26 +44,31 @@ sign-in for everyone to requiring
 phishing-resistant strength for admins.
 
 10
-00:00:35.725 --> 00:00:41.250
-Book 04's library is the authoritative
-set and extends it for the CISA baseline.
+00:00:35.725 --> 00:00:40.168
+The Access and Privilege book's
+library is the authoritative set,
 
 11
-00:00:41.250 --> 00:00:44.406
+00:00:40.168 --> 00:00:45.188
+and extends it for CISA's BOD
+25-01 required configurations.
+
+12
+00:00:45.188 --> 00:00:48.344
 Rollout is staged:
 report-only, then a pilot,
 
-12
-00:00:44.406 --> 00:00:48.013
+13
+00:00:48.344 --> 00:00:51.951
 then phased waves, each
 behind a monitoring gate.
 
-13
-00:00:48.013 --> 00:00:51.412
+14
+00:00:51.951 --> 00:00:55.349
 And never switch an all-users
 policy straight from off to
 
-14
-00:00:51.412 --> 00:00:55.150
+15
+00:00:55.349 --> 00:00:59.090
 on without confirming both
 emergency accounts still sign in.

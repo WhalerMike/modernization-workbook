@@ -19,56 +19,57 @@ the ticket was marked complete.
 None of those is the control operating.
 
 5
-00:00:12.125 --> 00:00:15.050
-Book 14 applies two tests, in order.
+00:00:12.125 --> 00:00:15.462
+The workbook's design
+applies two tests, in order.
 
 6
-00:00:15.050 --> 00:00:18.463
+00:00:15.462 --> 00:00:18.876
 First, the mechanism exists:
 it's deployed, running,
 
 7
-00:00:18.463 --> 00:00:22.125
+00:00:18.876 --> 00:00:22.538
 and reaches the part of the
 estate the control covers.
 
 8
-00:00:22.125 --> 00:00:24.650
+00:00:22.538 --> 00:00:25.063
 A purchase order or a roadmap fails.
 
 9
-00:00:24.650 --> 00:00:26.721
+00:00:25.063 --> 00:00:27.133
 Second, its proof is recorded:
 
 10
-00:00:26.721 --> 00:00:30.950
+00:00:27.133 --> 00:00:31.362
 a machine-readable verification,
 a time, and what checked it.
 
 11
-00:00:30.950 --> 00:00:36.262
+00:00:31.362 --> 00:00:36.675
 Fail the first test and the control is open,
 with a milestone in the plan of action.
 
 12
-00:00:36.262 --> 00:00:39.467
+00:00:36.675 --> 00:00:39.879
 Pass the first but fail
 the second and it's worse:
 
 13
-00:00:39.467 --> 00:00:42.013
+00:00:39.879 --> 00:00:42.425
 it looks closed and can't be shown to be.
 
 14
-00:00:42.013 --> 00:00:44.463
+00:00:42.425 --> 00:00:44.875
 And a vendor roadmap is not a commitment.
 
 15
-00:00:44.463 --> 00:00:48.637
+00:00:44.875 --> 00:00:49.050
 Date every claim, and write the
 capability into the contract.
 
 16
-00:00:48.637 --> 00:00:51.670
+00:00:49.050 --> 00:00:52.080
 Next, the families no
 provider can close for you.

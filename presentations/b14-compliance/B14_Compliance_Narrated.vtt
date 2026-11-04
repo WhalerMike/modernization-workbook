@@ -5,72 +5,73 @@ WEBVTT
 Welcome.
 
 2
-00:00:00.763 --> 00:00:05.141
-This briefing comes from Book 14 of
-the Federal Modernization Workbook,
+00:00:00.763 --> 00:00:04.258
+This briefing comes from Federal
+Compliance and Authorization,
 
 3
-00:00:05.141 --> 00:00:07.549
-Federal Compliance and Authorization.
+00:00:04.258 --> 00:00:07.237
+one of the books of the
+Federal Modernization Workbook.
 
 4
-00:00:07.549 --> 00:00:10.217
+00:00:07.237 --> 00:00:09.904
 It's written for authorizing officials,
 
 5
-00:00:10.217 --> 00:00:13.450
+00:00:09.904 --> 00:00:13.137
 information system security
 officers and CIOs.
 
 6
-00:00:13.450 --> 00:00:14.863
+00:00:13.137 --> 00:00:14.550
 I'll take four questions.
 
 7
-00:00:14.863 --> 00:00:18.103
+00:00:14.550 --> 00:00:17.790
 Why does every control need
 proof rather than a promise,
 
 8
-00:00:18.103 --> 00:00:20.638
+00:00:17.790 --> 00:00:20.325
 and what is the federal
 clock asking for now?
 
 9
-00:00:20.638 --> 00:00:21.876
+00:00:20.325 --> 00:00:21.564
 What do the baseline,
 
 10
-00:00:21.876 --> 00:00:25.737
+00:00:21.564 --> 00:00:25.425
 the closure rule and the agency-level
 control families require?
 
 11
-00:00:25.737 --> 00:00:27.176
+00:00:25.425 --> 00:00:26.863
 Who owns compliance?
 
 12
-00:00:27.176 --> 00:00:30.588
+00:00:26.863 --> 00:00:30.276
 And how do you build the authorization
 package and keep it current?
 
 13
-00:00:30.588 --> 00:00:34.178
+00:00:30.276 --> 00:00:33.866
 If you remember one thing, make
 it this: a control is closed when
 
 14
-00:00:34.178 --> 00:00:38.050
+00:00:33.866 --> 00:00:37.738
 the thing that closes it is running,
 and the record shows it working.
 
 15
-00:00:38.050 --> 00:00:41.338
+00:00:37.738 --> 00:00:41.025
 Everything else is a
 promise, and promises age.
 
 16
-00:00:41.338 --> 00:00:43.840
+00:00:41.025 --> 00:00:43.520
 Let's start with who owes which proof.
 
 17
@@ -307,57 +308,58 @@ the ticket was marked complete.
 None of those is the control operating.
 
 66
-00:03:46.685 --> 00:03:49.610
-Book 14 applies two tests, in order.
+00:03:46.685 --> 00:03:50.022
+The workbook's design
+applies two tests, in order.
 
 67
-00:03:49.610 --> 00:03:53.023
+00:03:50.022 --> 00:03:53.436
 First, the mechanism exists:
 it's deployed, running,
 
 68
-00:03:53.023 --> 00:03:56.685
+00:03:53.436 --> 00:03:57.098
 and reaches the part of the
 estate the control covers.
 
 69
-00:03:56.685 --> 00:03:59.210
+00:03:57.098 --> 00:03:59.623
 A purchase order or a roadmap fails.
 
 70
-00:03:59.210 --> 00:04:01.281
+00:03:59.623 --> 00:04:01.693
 Second, its proof is recorded:
 
 71
-00:04:01.281 --> 00:04:05.510
+00:04:01.693 --> 00:04:05.922
 a machine-readable verification,
 a time, and what checked it.
 
 72
-00:04:05.510 --> 00:04:10.822
+00:04:05.922 --> 00:04:11.235
 Fail the first test and the control is open,
 with a milestone in the plan of action.
 
 73
-00:04:10.822 --> 00:04:14.027
+00:04:11.235 --> 00:04:14.439
 Pass the first but fail
 the second and it's worse:
 
 74
-00:04:14.027 --> 00:04:16.573
+00:04:14.439 --> 00:04:16.985
 it looks closed and can't be shown to be.
 
 75
-00:04:16.573 --> 00:04:19.023
+00:04:16.985 --> 00:04:19.435
 And a vendor roadmap is not a commitment.
 
 76
-00:04:19.023 --> 00:04:23.197
+00:04:19.435 --> 00:04:23.610
 Date every claim, and write the
 capability into the contract.
 
 77
-00:04:23.197 --> 00:04:26.530
+00:04:23.610 --> 00:04:26.940
 Next, the families no
 provider can close for you.
 
@@ -654,74 +656,74 @@ nobody assesses their own work.
 Now, the package itself.
 
 139
-00:08:21.030 --> 00:08:24.443
+00:08:21.030 --> 00:08:24.433
 The authorizing official doesn't
 read the evidence directly.
 
 140
-00:08:24.443 --> 00:08:28.913
+00:08:24.433 --> 00:08:28.888
 They read a package that summarizes
 it: the security and privacy plans,
 
 141
-00:08:28.913 --> 00:08:33.229
+00:08:28.888 --> 00:08:33.192
 the assessment reports, the plan of
 action, and an executive summary.
 
 142
-00:08:33.229 --> 00:08:38.049
+00:08:33.192 --> 00:08:37.994
 NIST says the package may be generated
 from a tool, and FedRAMP's 2026
 
 143
-00:08:38.049 --> 00:08:42.955
+00:08:37.994 --> 00:08:43.038
 rules now expect machine-readable
 artifacts, at least OSCAL and JSON.
 
 144
-00:08:42.955 --> 00:08:47.683
+00:08:43.038 --> 00:08:47.752
 In OSCAL the pieces link together: the
 assessment plan points to the security plan,
 
 145
-00:08:47.683 --> 00:08:50.047
+00:08:47.752 --> 00:08:50.109
 the results point to the assessment plan,
 
 146
-00:08:50.047 --> 00:08:52.967
+00:08:50.109 --> 00:08:53.029
 and the plan of action hangs
 from the security plan.
 
 147
-00:08:52.967 --> 00:08:55.506
+00:08:53.029 --> 00:08:55.563
 Every failing item gets a disposition.
 
 148
-00:08:55.506 --> 00:08:59.255
+00:08:55.563 --> 00:08:59.300
 Real drift is an open item
 with an owner and a deadline.
 
 149
-00:08:59.255 --> 00:09:04.430
+00:08:59.300 --> 00:09:04.458
 An accepted exception carries its expiry,
 and when that lapses, it's open again.
 
 150
-00:09:04.430 --> 00:09:06.255
+00:09:04.458 --> 00:09:06.275
 Nothing is always satisfied.
 
 151
-00:09:06.255 --> 00:09:08.851
+00:09:06.275 --> 00:09:08.863
 And an empty plan of action
 on a Moderate system
 
 152
-00:09:08.851 --> 00:09:11.780
+00:09:08.863 --> 00:09:11.785
 should make you ask what the
 assessment didn't look at.
 
 153
-00:09:11.780 --> 00:09:13.940
+00:09:11.785 --> 00:09:13.940
 Next, keeping it current.
 
 154
@@ -940,10 +942,10 @@ A promise is true on the day it's signed.
 Proof keeps showing itself.
 
 199
-00:11:53.900 --> 00:11:57.975
-Book 14 has the detail,
-with every claim footnoted.
+00:11:53.900 --> 00:11:59.350
+Federal Compliance and Authorization has
+the detail, with every claim footnoted.
 
 200
-00:11:57.975 --> 00:11:58.810
+00:11:59.350 --> 00:12:00.170
 Thank you.

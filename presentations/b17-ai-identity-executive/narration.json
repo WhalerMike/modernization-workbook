@@ -2,7 +2,7 @@
   {
     "slide": 1,
     "title": "AI Identity Governance: the executive briefing",
-    "say": "Welcome. This is the executive briefing for Book 17 of the Federal Modernization Workbook, AI Identity Governance. It's for the people who make the calls: the CIO, the CISO, the Chief AI Officer, authorizing officials, the privacy officer and sponsors. The argument is short. An AI system that can act, not just answer, is an account. Most AI arrived outside the identity program, with no owner and no end date. And there's no separate AI authorization, so those accounts belong in the boundary your authorizing official already reviews. I'll take four questions: why, what, who and how. Each decision slide names the decision, its owner and when it's needed. Let's start with what makes an agent an account."
+    "say": "Welcome. This is the executive briefing for AI Identity Governance, one of the books of the Federal Modernization Workbook. It's for the people who make the calls: the CIO, the CISO, the Chief AI Officer, authorizing officials, the privacy officer and sponsors. The argument is short. An AI system that can act, not just answer, is an account. Most AI arrived outside the identity program, with no owner and no end date. And there's no separate AI authorization, so those accounts belong in the boundary your authorizing official already reviews. I'll take four questions: why, what, who and how. Each decision slide names the decision, its owner and when it's needed. Let's start with what makes an agent an account."
   },
   {
     "slide": 2,
@@ -87,6 +87,6 @@
   {
     "slide": 18,
     "title": "Decisions to make, owners and timing",
-    "say": "So, the decisions. System owners treat any agent with no governed identity as a high-priority finding the moment it's found. Authorizing officials authorize AI through the existing process, before deployment, with both high-impact signatures on one record. The Chief AI Officer links every live inventory entry to an identity record and runs the scan each vintage. The CIO budgets the licenses. System owners name an agency employee as every sponsor, and raise each new tool or model as a possible change. The CISO sets the rules: no production secrets, no standing privilege. And no credential is issued before its identity record exists. None of this needs a new authorization. Book 17 has the detail, every claim footnoted. Thank you."
+    "say": "So, the decisions. System owners treat any agent with no governed identity as a high-priority finding the moment it's found. Authorizing officials authorize AI through the existing process, before deployment, with both high-impact signatures on one record. The Chief AI Officer links every live inventory entry to an identity record and runs the scan each vintage. The CIO budgets the licenses. System owners name an agency employee as every sponsor, and raise each new tool or model as a possible change. The CISO sets the rules: no production secrets, no standing privilege. And no credential is issued before its identity record exists. None of this needs a new authorization. AI Identity Governance has the detail, every claim footnoted. Thank you."
   }
 ]

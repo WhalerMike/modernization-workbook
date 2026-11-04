@@ -56,20 +56,24 @@ that changed between aggregations.
 Then run the kit's drift reconciliation.
 
 13
-00:00:40.824 --> 00:00:47.300
-It joins HR, Graph and SailPoint on the
-key, and reports Book 03's drift classes.
+00:00:40.824 --> 00:00:43.875
+It joins HR, Graph and
+SailPoint on the key,
 
 14
-00:00:47.300 --> 00:00:49.650
-File that first run as the baseline.
+00:00:43.875 --> 00:00:46.925
+and reports the workbook's drift classes.
 
 15
-00:00:49.650 --> 00:00:53.450
+00:00:46.925 --> 00:00:49.275
+File that first run as the baseline.
+
+16
+00:00:49.275 --> 00:00:53.075
 And expect a burst of high-severity
 findings in the first month.
 
-16
-00:00:53.450 --> 00:00:55.630
+17
+00:00:53.075 --> 00:00:55.250
 That just means the
 measurement is working.

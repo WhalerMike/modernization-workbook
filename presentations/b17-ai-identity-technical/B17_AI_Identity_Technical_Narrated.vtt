@@ -5,58 +5,58 @@ WEBVTT
 Welcome.
 
 2
-00:00:00.763 --> 00:00:04.137
-This is the technical deep
-dive for Book 17 of the
+00:00:00.763 --> 00:00:04.463
+This is the technical deep dive
+for AI Identity Governance,
 
 3
-00:00:04.137 --> 00:00:08.187
-Federal Modernization Workbook,
-AI Identity Governance.
+00:00:04.463 --> 00:00:07.937
+one of the books of the
+Federal Modernization Workbook.
 
 4
-00:00:08.187 --> 00:00:12.343
+00:00:07.937 --> 00:00:12.093
 It's for identity engineers, security
 engineers and platform owners,
 
 5
-00:00:12.343 --> 00:00:16.863
+00:00:12.093 --> 00:00:16.613
 the people who issue the credentials AI
 signs in with and watch what it does.
 
 6
-00:00:16.863 --> 00:00:21.030
+00:00:16.613 --> 00:00:20.795
 The book's idea is simple: an AI
 agent that can act is an account,
 
 7
-00:00:21.030 --> 00:00:23.613
+00:00:20.795 --> 00:00:23.388
 and it needs what every account needs.
 
 8
-00:00:23.613 --> 00:00:27.200
+00:00:23.388 --> 00:00:26.974
 An owner, a credential,
 limits, and an end.
 
 9
-00:00:27.200 --> 00:00:30.200
+00:00:26.974 --> 00:00:29.975
 Part 1 is the identity and the inventory.
 
 10
-00:00:30.200 --> 00:00:32.762
+00:00:29.975 --> 00:00:32.537
 Part 2 is governing it and proving it.
 
 11
-00:00:32.762 --> 00:00:34.513
+00:00:32.537 --> 00:00:34.288
 One note before we start:
 
 12
-00:00:34.513 --> 00:00:39.325
+00:00:34.288 --> 00:00:39.100
 the product details here are dated
 October 2026, and they move fast.
 
 13
-00:00:39.325 --> 00:00:41.030
+00:00:39.100 --> 00:00:40.810
 Let's begin with why.
 
 14
@@ -1489,65 +1489,65 @@ compare when they arrive.
 Let's close with decisions.
 
 316
-00:20:09.570 --> 00:20:11.895
+00:20:09.570 --> 00:20:11.899
 Every decision here has one owner.
 
 317
-00:20:11.895 --> 00:20:14.563
+00:20:11.899 --> 00:20:14.493
 The Chief AI Officer requires every live
 
 318
-00:20:14.563 --> 00:20:17.545
+00:20:14.493 --> 00:20:17.481
 inventory entry to link
 to an identity record.
 
 319
-00:20:17.545 --> 00:20:20.162
+00:20:17.481 --> 00:20:20.109
 The identity governance officer makes sure
 
 320
-00:20:20.162 --> 00:20:22.920
+00:20:20.109 --> 00:20:22.872
 that record exists before
 any credential does.
 
 321
-00:20:22.920 --> 00:20:26.374
+00:20:22.872 --> 00:20:26.330
 The CISO sets the credential,
 policy and logging rules,
 
 322
-00:20:26.374 --> 00:20:29.152
+00:20:26.330 --> 00:20:29.113
 the system owner decides
 what an AI may reach,
 
 323
-00:20:29.152 --> 00:20:33.883
+00:20:29.113 --> 00:20:33.852
 and the authorizing official decides
 when a change needs reauthorization.
 
 324
-00:20:33.883 --> 00:20:39.058
+00:20:33.852 --> 00:20:39.037
 And you can start Monday without buying
 anything: list your agents and their owners,
 
 325
-00:20:39.058 --> 00:20:42.883
+00:20:39.037 --> 00:20:42.869
 scan your own inventory, build
 the block policy in report-only,
 
 326
-00:20:42.883 --> 00:20:46.333
+00:20:42.869 --> 00:20:46.325
 export your logs, and tailor
 service authentication in.
 
 327
-00:20:46.333 --> 00:20:48.507
+00:20:46.325 --> 00:20:48.503
 An agent that acts is an account.
 
 328
-00:20:48.507 --> 00:20:50.282
+00:20:48.503 --> 00:20:50.281
 Give it an owner and an end.
 
 329
-00:20:50.282 --> 00:20:51.110
+00:20:50.281 --> 00:20:51.110
 Thank you.

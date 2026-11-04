@@ -26,59 +26,64 @@ Retire decisions lead to disabled accounts,
 which account management asks for.
 
 6
-00:00:19.275 --> 00:00:23.512
-And Book 02's fourth phase is the
-books' gate for service accounts.
+00:00:19.275 --> 00:00:21.979
+And the fourth phase of
+the workbook's directory
 
 7
-00:00:23.512 --> 00:00:28.062
+00:00:21.979 --> 00:00:24.413
+migration is its gate
+for service accounts.
+
+8
+00:00:24.413 --> 00:00:28.963
 To validate, every row in the record
 has a target and a decide-by date.
 
-8
-00:00:28.062 --> 00:00:31.180
+9
+00:00:28.963 --> 00:00:32.080
 The kit check for Active
 Directory accounts shows
 
-9
-00:00:31.180 --> 00:00:34.075
+10
+00:00:32.080 --> 00:00:34.975
 every high-risk one in the
 first wave, or retired.
 
-10
-00:00:34.075 --> 00:00:37.187
+11
+00:00:34.975 --> 00:00:38.087
 The check for secrets lists
 each app that holds one.
 
-11
-00:00:37.187 --> 00:00:41.350
+12
+00:00:38.087 --> 00:00:42.249
 Each has a credential target, or an
 exception that says why it can't move.
 
-12
-00:00:41.350 --> 00:00:44.629
+13
+00:00:42.249 --> 00:00:45.529
 Workload ID Premium is
 available in Azure Government
 
-13
-00:00:44.629 --> 00:00:47.762
+14
+00:00:45.529 --> 00:00:48.662
 through the account manager,
 but its free trial isn't.
 
-14
-00:00:47.762 --> 00:00:51.454
+15
+00:00:48.662 --> 00:00:52.354
 The interim path is an account
 kept on Kerberos, islanded,
 
-15
-00:00:51.454 --> 00:00:55.538
+16
+00:00:52.354 --> 00:00:56.438
 with an owner and an end date
 the authorizing official accepts.
 
-16
-00:00:55.538 --> 00:00:57.413
+17
+00:00:56.438 --> 00:00:58.313
 To roll back, re-decide.
 
-17
-00:00:57.413 --> 00:00:59.260
+18
+00:00:58.313 --> 00:01:00.140
 The record keeps the history.

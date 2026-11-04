@@ -1,55 +1,55 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:05.300
+00:00:00.050 --> 00:00:05.223
 Cloud PKI gives you two ways to anchor
 trust, and both can live in one tenant.
 
 2
-00:00:05.300 --> 00:00:09.540
+00:00:05.223 --> 00:00:09.477
 With a Cloud PKI root, you create
 the whole hierarchy in the cloud,
 
 3
-00:00:09.540 --> 00:00:12.900
+00:00:09.477 --> 00:00:12.843
 but every relying party has
 to be given the new root.
 
 4
-00:00:12.900 --> 00:00:17.881
+00:00:12.843 --> 00:00:17.834
 With bring your own CA, you create an
 issuing CA in the cloud and your existing
 
 5
-00:00:17.881 --> 00:00:22.863
+00:00:17.834 --> 00:00:22.825
 private CA signs it, so the chain relying
 parties already trust is preserved.
 
 6
-00:00:22.863 --> 00:00:26.425
+00:00:22.825 --> 00:00:26.390
 A few details matter, like
 making sure the signing
 
 7
-00:00:26.425 --> 00:00:29.813
+00:00:26.390 --> 00:00:29.784
 CA publishes its chain
 over HTTP, not just LDAP.
 
 8
-00:00:29.813 --> 00:00:32.350
+00:00:29.784 --> 00:00:32.329
 But one consequence outweighs the rest.
 
 9
-00:00:32.350 --> 00:00:36.744
+00:00:32.329 --> 00:00:36.729
 Under bring your own CA, the private
 root's CRL stays where it is,
 
 10
-00:00:36.744 --> 00:00:41.225
+00:00:36.729 --> 00:00:41.218
 and every relying party, Entra ID
 included, still has to fetch it.
 
 11
-00:00:41.225 --> 00:00:44.590
+00:00:41.218 --> 00:00:44.590
 A root that publishes late
 breaks the cloud issuer too.

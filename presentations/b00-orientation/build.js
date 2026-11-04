@@ -269,7 +269,7 @@ Directory and structure principles say what replaces the OU tree. Devices and po
 
 // ------------------------------------------------------------------ What 4
 {
-  const s = D.content("What the program is", "Seven phases and six gates: Book 01's model");
+  const s = D.content("What the program is", "Seven phases and six gates: the workbook's model");
   tag(s, "What");
   const ph = [["Pre-flight", "G0 Ready to Plan"], ["Foundation", "G1 Foundation Complete"], ["Pilot division", "G2 Pilot Clean"], ["General rollout", "G3 Rollout Complete"],
     ["Legacy retirement", "G4 Legacy Quiet"], ["AD DS retirement", "G5 AD Retired"], ["Steady state", "No gate: a cadence"]];

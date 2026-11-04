@@ -5,58 +5,58 @@ WEBVTT
 Welcome.
 
 2
-00:00:00.763 --> 00:00:03.969
-This is the executive
-briefing for Book 05 of the
+00:00:00.763 --> 00:00:04.183
+This is the executive briefing
+for Devices and Endpoints,
 
 3
-00:00:03.969 --> 00:00:07.737
-Federal Modernization Workbook,
-Devices and Endpoints.
+00:00:04.183 --> 00:00:07.462
+one of the books of the
+Federal Modernization Workbook.
 
 4
-00:00:07.737 --> 00:00:10.525
+00:00:07.462 --> 00:00:10.251
 It's for the people who
 decide how the fleet moves.
 
 5
-00:00:10.525 --> 00:00:11.950
+00:00:10.251 --> 00:00:11.675
 The argument is short.
 
 6
-00:00:11.950 --> 00:00:15.891
+00:00:11.675 --> 00:00:15.616
 Group Policy governed devices by
 where they sat in the directory,
 
 7
-00:00:15.891 --> 00:00:18.300
+00:00:15.616 --> 00:00:18.025
 and that quietly did a lot of governance.
 
 8
-00:00:18.300 --> 00:00:22.313
+00:00:18.025 --> 00:00:22.038
 None of it comes to the cloud, so
 it has to be rebuilt on purpose.
 
 9
-00:00:22.313 --> 00:00:25.475
+00:00:22.038 --> 00:00:25.201
 Hybrid join is a waypoint,
 not a destination.
 
 10
-00:00:25.475 --> 00:00:28.700
+00:00:25.201 --> 00:00:28.425
 And servers take their own
 road, through Azure Arc.
 
 11
-00:00:28.700 --> 00:00:31.937
+00:00:28.425 --> 00:00:31.662
 I'll take four questions:
 why, what, who and how.
 
 12
-00:00:31.937 --> 00:00:36.313
+00:00:31.662 --> 00:00:36.038
 Each decision slide names the decision,
 its owner and when it's needed.
 
 13
-00:00:36.313 --> 00:00:39.100
+00:00:36.038 --> 00:00:38.830
 First, where this book sits in the series.

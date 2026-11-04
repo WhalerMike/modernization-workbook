@@ -1,83 +1,88 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.063
-The separation gate puts the leaver
-in the Federal Modernization
+00:00:00.050 --> 00:00:02.799
+The separation gate puts
+the leaver in the Federal
 
 2
-00:00:04.063 --> 00:00:07.200
-Workbook's Book 03's order
-and then proves the timing.
+00:00:02.799 --> 00:00:06.400
+Modernization Workbook's leaver
+order and then proves the timing.
 
 3
-00:00:07.200 --> 00:00:10.338
+00:00:06.400 --> 00:00:09.509
 Disable the account and
-revoke its sessions first.
+revoke its sessions first,
 
 4
-00:00:10.338 --> 00:00:13.768
+00:00:09.509 --> 00:00:13.062
+the steps Microsoft Learn's
+revoke-access guidance gives.
+
+5
+00:00:13.062 --> 00:00:16.492
 Then one custom task starts
 the device retire and the
 
-5
-00:00:13.768 --> 00:00:17.276
+6
+00:00:16.492 --> 00:00:20.000
 card revocation together,
 and waits for both to report.
 
-6
-00:00:17.276 --> 00:00:21.955
+7
+00:00:20.000 --> 00:00:24.680
 That wait can run from thirty minutes
 to three hours, and if it times out,
 
-7
-00:00:21.955 --> 00:00:25.425
+8
+00:00:24.680 --> 00:00:28.150
 it goes to a high-priority
 exception, not a retry loop.
 
-8
-00:00:25.425 --> 00:00:29.300
+9
+00:00:28.150 --> 00:00:32.025
 Then come the removals, and a
 read-back to confirm the block took.
 
-9
-00:00:29.300 --> 00:00:32.612
+10
+00:00:32.025 --> 00:00:35.337
 A disabled account with live
 sessions is an incident.
 
-10
-00:00:32.612 --> 00:00:37.625
+11
+00:00:35.337 --> 00:00:40.350
 Deletion comes last, in a separate
 workflow, after the devices are retired.
 
-11
-00:00:37.625 --> 00:00:39.445
+12
+00:00:40.350 --> 00:00:42.170
 Set the leave time late in the day,
 
-12
-00:00:39.445 --> 00:00:42.412
+13
+00:00:42.170 --> 00:00:45.137
 and remember the schedule is
 part of the time allowed.
 
-13
-00:00:42.412 --> 00:00:45.613
+14
+00:00:45.137 --> 00:00:48.338
 An emergency means an
 immediate out-of-band block,
 
-14
-00:00:45.613 --> 00:00:48.813
+15
+00:00:48.338 --> 00:00:51.538
 then the same sequence on
 demand, behind approval.
 
-15
-00:00:48.813 --> 00:00:51.392
+16
+00:00:51.538 --> 00:00:54.118
 A separation entered more than three days
 
-16
-00:00:51.392 --> 00:00:53.825
+17
+00:00:54.118 --> 00:00:56.551
 late misses the trigger,
 so run it by hand.
 
-17
-00:00:53.825 --> 00:00:56.180
+18
+00:00:56.551 --> 00:00:58.920
 Privileged leavers need their own path.

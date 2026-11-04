@@ -1,66 +1,66 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.075
+00:00:00.050 --> 00:00:04.057
 Chapter 11 puts it all together
 on one representative estate.
 
 2
-00:00:04.075 --> 00:00:08.637
+00:00:04.057 --> 00:00:08.598
 It's a composite, not a real engagement,
 and the counts are illustrative.
 
 3
-00:00:08.637 --> 00:00:12.798
+00:00:08.598 --> 00:00:12.729
 Picture about fifty thousand
 users in two forests,
 
 4
-00:00:12.798 --> 00:00:19.237
+00:00:12.729 --> 00:00:19.139
 joined by a forest trust nobody documented
 or owns, moving to Microsoft 365 GCC.
 
 5
-00:00:19.237 --> 00:00:22.004
+00:00:19.139 --> 00:00:21.923
 There are five phases, and
 each ends with a signed
 
 6
-00:00:22.004 --> 00:00:24.701
+00:00:21.923 --> 00:00:24.608
 readiness bundle that
 the next one starts from.
 
 7
-00:00:24.701 --> 00:00:29.941
+00:00:24.608 --> 00:00:29.810
 Discovery finds about four hundred
 accounts with service principal names, and
 
 8
-00:00:29.941 --> 00:00:35.340
+00:00:29.810 --> 00:00:35.422
 every SQL Server one is captured, because
 a missing one silently falls back to NTLM.
 
 9
-00:00:35.340 --> 00:00:39.152
+00:00:35.422 --> 00:00:39.216
 Normalizing resolves a clash
 between two Operations OUs
 
 10
-00:00:39.152 --> 00:00:42.725
+00:00:39.216 --> 00:00:42.776
 in an organizational registry,
 not by renaming groups.
 
 11
-00:00:42.725 --> 00:00:46.138
+00:00:42.776 --> 00:00:46.173
 Mapping finds four adapters
 that carry the risk,
 
 12
-00:00:46.138 --> 00:00:49.550
+00:00:46.173 --> 00:00:49.569
 including PKI and RADIUS,
 which move in lockstep.
 
 13
-00:00:49.550 --> 00:00:53.830
+00:00:49.569 --> 00:00:53.830
 Then migration and validation,
 with every operation recorded.

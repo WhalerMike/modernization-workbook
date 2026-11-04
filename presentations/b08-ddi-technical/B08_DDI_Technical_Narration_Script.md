@@ -2,7 +2,7 @@
 
 ## Slide 1 — DNS, DHCP & IPAM: the technical deep dive
 
-Welcome. This is the technical deep dive for Book 08 of the Federal Modernization Workbook, DNS, DHCP and IPAM. It's for the network and DDI engineers who will design the resolution paths, move authority off Active Directory, and run the result. It comes in two parts. Part 1 covers the hard surfaces: split-brain DNS and what Active Directory DNS really carries, the places queries escape agency policy, and the DNS identity and DNSSEC work underneath certificates and tokens. Part 2 builds and runs the control plane: cloud private endpoints, IPAM as the authority for address blocks, the reference architecture, then the six-phase migration and the evidence that keeps it honest. Vendors appear only as the book's examples, never as endorsements.
+Welcome. This is the technical deep dive for DNS, DHCP and IPAM, one of the books of the Federal Modernization Workbook. It's for the network and DDI engineers who will design the resolution paths, move authority off Active Directory, and run the result. It comes in two parts. Part 1 covers the hard surfaces: split-brain DNS and what Active Directory DNS really carries, the places queries escape agency policy, and the DNS identity and DNSSEC work underneath certificates and tokens. Part 2 builds and runs the control plane: cloud private endpoints, IPAM as the authority for address blocks, the reference architecture, then the six-phase migration and the evidence that keeps it honest. Vendors appear only as the book's examples, never as endorsements.
 
 ## Slide 2 — Why this matters: DNS now decides far more than an address
 

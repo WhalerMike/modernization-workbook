@@ -120,26 +120,26 @@
   ],
   [
    7.925,
-   14.162,
-   "Microsoft's current guidance, checked October 29, is to prefer assignment filters where they meet the need, because dynamic device groups add processing delay, and the Federal Modernization Workbook's Book 05 now says the same."
+   17.55,
+   "Microsoft's current guidance, checked October 29, is to prefer assignment filters where they meet the need, because dynamic device groups add processing delay, as Microsoft Learn's page on assigning policies in Intune explains, and the Federal Modernization Workbook now says the same."
   ],
   [
-   22.087,
+   25.475,
    4.388,
    "Send user settings to user groups and device settings to device groups."
   ],
   [
-   26.475,
+   29.863,
    7.213,
    "The exception is tier and role: filters can't read device extension attributes, so those stay in group rules."
   ],
   [
-   33.688,
+   37.075,
    4.7,
    "And underneath it all, a device rule can never read its owner's attributes."
   ],
   [
-   38.388,
+   41.775,
    2.587,
    "Next, how device attributes get written."
   ]
@@ -172,11 +172,11 @@
   ],
   [
    31.6,
-   3.55,
-   "Book 05's sample now uses the signed-in one."
+   3.225,
+   "The workbook's sample now uses the signed-in one."
   ],
   [
-   35.15,
+   34.825,
    3.0,
    "Then, the dangers of dynamic device groups."
   ]
@@ -355,25 +355,25 @@
   [
    3.538,
    8.787,
-   "Service accounts have no HR record, so nobody's leave date ever turns them off, and that's why they're so often over-privileged and forgotten."
+   "Service accounts have no H R record, so nobody's leave date ever turns them off, and that's why they're so often over-privileged and forgotten."
   ],
   [
    12.325,
-   3.263,
-   "The table is Book 02's migration matrix."
+   3.812,
+   "The table is the workbook's migration matrix for service accounts."
   ],
   [
-   15.588,
+   16.137,
    17.863,
    "The rule is to get rid of stored secrets: a traditional account becomes an app registration with a certificate or federated credential, or a managed identity in Azure; on-premises Kerberos workloads go to a g M S A; and an M S A upgrades to a g M S A first."
   ],
   [
-   33.45,
+   34.0,
    5.75,
    "Each one gets an owner before it's touched, and an account nobody will own is a retirement candidate."
   ],
   [
-   39.2,
+   39.75,
    1.712,
    "Next, the cloud side."
   ]

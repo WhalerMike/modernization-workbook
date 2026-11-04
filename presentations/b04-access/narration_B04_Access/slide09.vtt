@@ -1,70 +1,70 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.213
+00:00:00.050 --> 00:00:03.216
 Finally, governance, code and evidence.
 
 2
-00:00:03.213 --> 00:00:08.311
+00:00:03.216 --> 00:00:08.322
 Governance means access is requested
 through packages with approval and an expiry
 
 3
-00:00:08.311 --> 00:00:10.569
+00:00:08.322 --> 00:00:10.584
 date, reviews run on a tiered schedule,
 
 4
-00:00:10.569 --> 00:00:13.337
+00:00:10.584 --> 00:00:13.357
 and guests have sponsors
 and get reviewed too.
 
 5
-00:00:13.337 --> 00:00:15.406
+00:00:13.357 --> 00:00:15.428
 As code means Conditional Access,
 
 6
-00:00:15.406 --> 00:00:18.950
+00:00:15.428 --> 00:00:18.904
 PIM settings and access packages
 live in version control.
 
 7
-00:00:18.950 --> 00:00:21.717
+00:00:18.904 --> 00:00:21.678
 Changes go through review
 instead of the portal,
 
 8
-00:00:21.717 --> 00:00:24.000
+00:00:21.678 --> 00:00:23.964
 and drift is watched against a baseline.
 
 9
-00:00:24.000 --> 00:00:28.974
+00:00:23.964 --> 00:00:28.941
 Evidence means all of this maps to the
 federal access-control and monitoring
 
 10
-00:00:28.974 --> 00:00:34.025
+00:00:28.941 --> 00:00:34.000
 controls, with every elevation and every
 review on record; the slide lists them.
 
 11
-00:00:34.025 --> 00:00:36.063
+00:00:34.000 --> 00:00:36.045
 And there are two traps in the tooling.
 
 12
-00:00:36.063 --> 00:00:40.466
+00:00:36.045 --> 00:00:40.454
 Reviewing an application doesn't remove
 members of the groups assigned to it,
 
 13
-00:00:40.466 --> 00:00:42.462
+00:00:40.454 --> 00:00:42.453
 so the groups need their own review.
 
 14
-00:00:42.462 --> 00:00:46.257
+00:00:42.453 --> 00:00:46.253
 And Entra keeps sign-in and
 audit logs for only thirty days,
 
 15
-00:00:46.257 --> 00:00:49.320
+00:00:46.253 --> 00:00:49.320
 so the evidence has to be
 exported from day one.

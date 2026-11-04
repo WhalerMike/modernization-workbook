@@ -37,7 +37,7 @@
   {
     "slide": 8,
     "title": "Gate 8: the per-wave attribute gate",
-    "say": "Every wave passes the same attribute gate, straight from Book 03's Appendix C. First, a validation report, signed before the cutover is even scheduled. Second, a dry run on production data with writes switched off, where every difference from the directory gets explained. Third, the cutover, one population at a time, with named records spot-checked after the first cycle. Fourth, seven days in which every create, change and disable traces to an HR event. Anything in the audit log without a matching provisioning record is a finding, and the clock restarts. No kit check covers that week; the provisioning logs joined on the key are the evidence. Only then does the ticket path for account creation close. The kit still runs on every wave, including a shadow comparison for each group the wave replaces."
+    "say": "Every wave passes the same attribute gate, straight from the Federal Modernization Workbook's acceptance and cutover appendix for HR-driven identity. First, a validation report, signed before the cutover is even scheduled. Second, a dry run on production data with writes switched off, where every difference from the directory gets explained. Third, the cutover, one population at a time, with named records spot-checked after the first cycle. Fourth, seven days in which every create, change and disable traces to an HR event. Anything in the audit log without a matching provisioning record is a finding, and the clock restarts. No kit check covers that week; the provisioning logs joined on the key are the evidence. Only then does the ticket path for account creation close. The kit still runs on every wave, including a shadow comparison for each group the wave replaces."
   },
   {
     "slide": 9,
@@ -67,7 +67,7 @@
   {
     "slide": 14,
     "title": "Gate 9: the standing checks, track by track",
-    "say": "Gate 9's proof isn't a one-time run; it's a set of standing checks on the drift cadence. For the HR track, the uncorrelated accounts, the counts per code and the duplicate keys. For groups and units, membership swings, paused processing and unit rules against their groups. Each track also runs its own standing checks in its own guide: devices missing their provisioning attributes and stale devices for Intune, seven checks for Arc servers from tags to role assignments, and owners, credentials and AI agent sponsors for non-person identities. The commands differ by track: delegated for HR, certificate-based for Intune, Reader on the subscriptions for Arc. Behind them sits Book 01's verification list, ending in zero drift findings. This gate has no rollback. It's the standing loop."
+    "say": "Gate 9's proof isn't a one-time run; it's a set of standing checks on the drift cadence. For the HR track, the uncorrelated accounts, the counts per code and the duplicate keys. For groups and units, membership swings, paused processing and unit rules against their groups. Each track also runs its own standing checks in its own guide: devices missing their provisioning attributes and stale devices for Intune, seven checks for Arc servers from tags to role assignments, and owners, credentials and AI agent sponsors for non-person identities. The commands differ by track: delegated for HR, certificate-based for Intune, Reader on the subscriptions for Arc. Behind them sits the workbook's verification list, ending in zero drift findings. This gate has no rollback. It's the standing loop."
   },
   {
     "slide": 15,

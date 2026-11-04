@@ -11,45 +11,46 @@ and they move by different paths, so
 the workbook treats them as four tracks.
 
 3
-00:00:07.975 --> 00:00:12.029
-People are the HR track: Book
-02 builds the directory side,
+00:00:07.975 --> 00:00:11.882
+People are the HR track: this
+book builds the directory side,
 
 4
-00:00:12.029 --> 00:00:15.825
-and Book 03 decides where
-their attributes come from.
+00:00:11.882 --> 00:00:16.188
+and HR-Driven Identity decides
+where their attributes come from.
 
 5
-00:00:15.825 --> 00:00:19.437
-Devices and servers are
-the Intune and Arc tracks:
+00:00:16.188 --> 00:00:20.453
+Devices and servers are the Intune
+and Arc tracks: this book's Group
 
 6
-00:00:19.437 --> 00:00:24.900
-Book 02's Group Policy analysis finds
-their settings, and Book 05 moves them.
+00:00:20.453 --> 00:00:25.338
+Policy analysis finds their settings,
+and Devices and Endpoints moves them.
 
 7
-00:00:24.900 --> 00:00:28.183
-Service accounts are the non-person track:
+00:00:25.338 --> 00:00:29.991
+Service accounts are the non-person
+track: this book gives every one
 
 8
-00:00:28.183 --> 00:00:33.812
-Book 02 gives every one an owner and a
-target, and Book 17 carries AI agents.
+00:00:29.991 --> 00:00:34.562
+an owner and a target, and AI Identity
+Governance carries AI agents.
 
 9
-00:00:33.812 --> 00:00:36.941
+00:00:34.562 --> 00:00:37.691
 Appendix A ties that
 to account management,
 
 10
-00:00:36.941 --> 00:00:42.937
+00:00:37.691 --> 00:00:43.687
 attribute-based access and least
 privilege in NIST 800-53, and to M-22-09.
 
 11
-00:00:42.937 --> 00:00:45.740
+00:00:43.687 --> 00:00:46.490
 Now, the part Conditional
 Access can't see.

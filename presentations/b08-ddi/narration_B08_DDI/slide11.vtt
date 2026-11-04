@@ -1,78 +1,78 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.935
+00:00:00.050 --> 00:00:04.942
 The migration runs in six phases,
 from inventory and coexistence
 
 2
-00:00:04.935 --> 00:00:10.362
+00:00:04.942 --> 00:00:10.376
 through to decommissioning AD DNS and
 DHCP, then hardening and evidence.
 
 3
-00:00:10.362 --> 00:00:13.059
+00:00:10.376 --> 00:00:13.075
 Each phase ends with
 a rollback point and a
 
 4
-00:00:13.059 --> 00:00:16.525
+00:00:13.075 --> 00:00:16.552
 resolution test from every
 origin, not a calendar date.
 
 5
-00:00:16.525 --> 00:00:19.862
+00:00:16.552 --> 00:00:19.894
 Every move, whether it's
 a zone, a forwarder,
 
 6
-00:00:19.862 --> 00:00:23.887
+00:00:19.894 --> 00:00:23.917
 a DHCP scope or a wave of
 clients, runs the same loop.
 
 7
-00:00:23.887 --> 00:00:25.999
+00:00:23.917 --> 00:00:25.954
 Lower the time-to-live well ahead.
 
 8
-00:00:25.999 --> 00:00:30.737
+00:00:25.954 --> 00:00:30.694
 Import with a dry run, never moving
 the core zone or locator records.
 
 9
-00:00:30.737 --> 00:00:32.351
+00:00:30.694 --> 00:00:32.317
 Validate from everywhere.
 
 10
-00:00:32.351 --> 00:00:36.263
+00:00:32.317 --> 00:00:36.233
 Then switch, and watch, while the
 old authority keeps answering.
 
 11
-00:00:36.263 --> 00:00:39.772
+00:00:36.233 --> 00:00:39.749
 One warning from Azure: removing
 a network link deletes the
 
 12
-00:00:39.772 --> 00:00:43.138
+00:00:39.749 --> 00:00:43.120
 records registered through it,
 and they can't be restored.
 
 13
-00:00:43.138 --> 00:00:45.950
+00:00:43.120 --> 00:00:45.935
 And decommissioning is
 gated, never scheduled.
 
 14
-00:00:45.950 --> 00:00:50.280
+00:00:45.935 --> 00:00:50.271
 The old servers retire only after
 the records resolve cleanly for a
 
 15
-00:00:50.280 --> 00:00:54.688
+00:00:50.271 --> 00:00:54.685
 sustained period, parallel operation
 passes, and failover is tested.
 
 16
-00:00:54.688 --> 00:00:56.980
+00:00:54.685 --> 00:00:56.980
 Then the plane has to run every day.

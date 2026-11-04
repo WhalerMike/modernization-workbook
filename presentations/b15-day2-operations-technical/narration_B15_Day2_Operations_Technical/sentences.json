@@ -7,26 +7,21 @@
   ],
   [
    0.762,
-   8.425,
-   "This is the technical deep dive for Book 15 of the Federal Modernization Workbook, Compliance Automation and Day-2 Operations."
+   8.275,
+   "This is the technical deep dive for Compliance Automation and Day-2 Operations, one of the books of the Federal Modernization Workbook."
   ],
   [
-   9.188,
+   9.037,
    8.475,
    "It's for help desk leads, cloud and platform engineers, and the people who automate controls: the teams who run the estate after cutover."
   ],
   [
-   17.663,
-   8.588,
-   "Part 1 is the front door and the authority: how a request comes in, gets routed and verified, and what the help desk may do in Entra ID."
+   17.512,
+   19.475,
+   "Part 1 is the front door and the authority: how a request comes in, gets routed and verified, and what the help desk may do in Entra I D. Part 2 is catalogs, records and controls: typed requests, SaaS integrations, the CMDB, and control automation across four platforms, then who runs it all."
   ],
   [
-   26.25,
-   11.075,
-   "Part 2 is catalogs, records and controls: typed requests, SaaS integrations, the CMDB, and control automation across four platforms, then who runs it all."
-  ],
-  [
-   37.325,
+   36.987,
    2.712,
    "Let's start with why day two matters so much."
   ]

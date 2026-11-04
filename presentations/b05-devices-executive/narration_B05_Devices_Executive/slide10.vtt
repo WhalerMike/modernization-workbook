@@ -6,54 +6,54 @@ Device compliance is
 where devices meet access.
 
 2
-00:00:03.112 --> 00:00:06.186
-Intune decides whether
-a device is compliant,
+00:00:03.112 --> 00:00:07.419
+Intune decides whether a device is
+compliant, and Conditional Access,
 
 3
-00:00:06.186 --> 00:00:10.312
-and Conditional Access, from Book
-04, decides what it can reach.
+00:00:07.419 --> 00:00:10.612
+from Access and Privilege,
+decides what it can reach.
 
 4
-00:00:10.312 --> 00:00:14.775
+00:00:10.612 --> 00:00:15.076
 Out of the box, a device with no
 compliance policy counts as compliant.
 
 5
-00:00:14.775 --> 00:00:19.725
+00:00:15.076 --> 00:00:20.025
 The program flips that, so a device that
 slips through every group can't pass.
 
 6
-00:00:19.725 --> 00:00:23.325
+00:00:20.025 --> 00:00:23.625
 A device that stops reporting
 for two weeks loses access.
 
 7
-00:00:23.325 --> 00:00:27.160
+00:00:23.625 --> 00:00:27.460
 And the grace period, how long
 a failing device keeps working,
 
 8
-00:00:27.160 --> 00:00:29.538
+00:00:27.460 --> 00:00:29.838
 is a risk decision, not a technical one.
 
 9
-00:00:29.538 --> 00:00:34.663
+00:00:29.838 --> 00:00:34.962
 On the most privileged workstations, a
 security detection also costs access.
 
 10
-00:00:34.663 --> 00:00:38.200
+00:00:34.962 --> 00:00:38.499
 The decision for the CISO:
 make compliance fail closed,
 
 11
-00:00:38.200 --> 00:00:42.275
+00:00:38.499 --> 00:00:42.574
 and set the grace period, before
 Conditional Access relies on it.
 
 12
-00:00:42.275 --> 00:00:44.640
+00:00:42.574 --> 00:00:44.930
 Next, devices that can't enroll.

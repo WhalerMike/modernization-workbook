@@ -5,80 +5,80 @@ WEBVTT
 Welcome.
 
 2
-00:00:00.763 --> 00:00:03.779
-This is the executive
-briefing for Book 01 of the
+00:00:00.763 --> 00:00:04.043
+This is the executive briefing
+for The Transformation Arc,
 
 3
-00:00:03.779 --> 00:00:07.400
-Federal Modernization Workbook,
-The Transformation Arc.
+00:00:04.043 --> 00:00:07.124
+one of the books of the
+Federal Modernization Workbook.
 
 4
-00:00:07.400 --> 00:00:11.499
+00:00:07.124 --> 00:00:11.224
 It runs about thirty minutes, and it's
 for the people who sponsor, fund,
 
 5
-00:00:11.499 --> 00:00:16.111
+00:00:11.224 --> 00:00:15.836
 secure and authorize the move from a
 domain-joined estate to cloud identity,
 
 6
-00:00:16.111 --> 00:00:19.625
+00:00:15.836 --> 00:00:19.350
 cloud device management and
 governed hybrid operations.
 
 7
-00:00:19.625 --> 00:00:22.337
+00:00:19.350 --> 00:00:22.062
 The argument fits in three sentences.
 
 8
-00:00:22.337 --> 00:00:27.352
+00:00:22.062 --> 00:00:27.077
 For twenty years Active Directory
 quietly did governance nobody wrote down,
 
 9
-00:00:27.352 --> 00:00:31.349
+00:00:27.077 --> 00:00:31.074
 so modernization is a governance
 rebuild, not a platform swap.
 
 10
-00:00:31.349 --> 00:00:34.651
+00:00:31.074 --> 00:00:34.376
 The estate has to be analyzed
 before anything moves,
 
 11
-00:00:34.651 --> 00:00:38.950
+00:00:34.376 --> 00:00:38.675
 and the work delivered in gated
 phases with a rollback at every step.
 
 12
-00:00:38.950 --> 00:00:43.512
+00:00:38.675 --> 00:00:43.237
 And leadership's job is to conduct the
 orchestra, not to play the instruments.
 
 13
-00:00:43.512 --> 00:00:46.686
+00:00:43.237 --> 00:00:46.410
 I'll cover why this is hard,
 what changes, who leads,
 
 14
-00:00:46.686 --> 00:00:51.288
+00:00:46.410 --> 00:00:51.012
 and how to deliver it, all the way to
 the retirement of Active Directory.
 
 15
-00:00:51.288 --> 00:00:53.775
+00:00:51.012 --> 00:00:53.500
 There's no configuration on these slides.
 
 16
-00:00:53.775 --> 00:00:58.400
+00:00:53.500 --> 00:00:58.125
 Each decision slide names the decision,
 who owns it, and when it's needed.
 
 17
-00:00:58.400 --> 00:01:00.900
+00:00:58.125 --> 00:01:00.610
 Let's start with how the estate got here.
 
 18
@@ -1800,62 +1800,62 @@ The CISO sets the control
 requirements, enforced at Gate G1.
 
 377
-00:24:39.097 --> 00:24:41.860
+00:24:39.097 --> 00:24:41.834
 HR defines what the
 worker attributes mean.
 
 378
-00:24:41.860 --> 00:24:44.872
+00:24:41.834 --> 00:24:44.847
 The authorizing official
 agrees the automation
 
 379
-00:24:44.872 --> 00:24:47.222
+00:24:44.847 --> 00:24:47.197
 ceiling and every exception's end date.
 
 380
-00:24:47.222 --> 00:24:51.772
+00:24:47.197 --> 00:24:51.747
 And the records officer settles retention
 before anything is decommissioned.
 
 381
-00:24:51.772 --> 00:24:54.411
+00:24:51.747 --> 00:24:54.386
 None of this needs a vendor
 decision on day one.
 
 382
-00:24:54.411 --> 00:24:59.094
+00:24:54.386 --> 00:24:59.069
 It needs an inventory, an owner and
 a date: the read-only assessment,
 
 383
-00:24:59.094 --> 00:25:02.998
+00:24:59.069 --> 00:25:02.973
 a named sponsor and steward,
 and Gate G0 on the calendar.
 
 384
-00:25:02.998 --> 00:25:05.473
+00:25:02.973 --> 00:25:05.447
 Microsoft has supplied the instruments.
 
 385
-00:25:05.473 --> 00:25:10.097
+00:25:05.447 --> 00:25:10.072
 The program is the orchestra, and the people
 named in this briefing have to play it.
 
 386
-00:25:10.097 --> 00:25:13.838
+00:25:10.072 --> 00:25:13.814
 Retiring Active Directory is
 a governance transformation,
 
 387
-00:25:13.838 --> 00:25:15.409
+00:25:13.814 --> 00:25:15.385
 and it should be led as one.
 
 388
-00:25:15.409 --> 00:25:19.485
-Book 01 has the detail,
-with every claim footnoted.
+00:25:15.385 --> 00:25:20.060
+The Transformation Arc has the
+detail, with every claim footnoted.
 
 389
-00:25:19.485 --> 00:25:20.310
+00:25:20.060 --> 00:25:20.890
 Thank you.

@@ -5,49 +5,49 @@ WEBVTT
 Welcome.
 
 2
-00:00:00.763 --> 00:00:04.543
+00:00:00.763 --> 00:00:04.798
 This is the technical deep dive
-for Book 13 of the Federal
+for Governance, Drift and Evidence,
 
 3
-00:00:04.543 --> 00:00:08.324
-Modernization Workbook,
-Governance, Drift and Evidence.
+00:00:04.798 --> 00:00:08.174
+one of the books of the
+Federal Modernization Workbook.
 
 4
-00:00:08.324 --> 00:00:12.082
+00:00:08.174 --> 00:00:12.074
 It's for the people who keep
 governance true after the audit:
 
 5
-00:00:12.082 --> 00:00:15.225
+00:00:12.074 --> 00:00:15.337
 governance engineers,
 platform owners and ISSOs.
 
 6
-00:00:15.225 --> 00:00:17.587
+00:00:15.337 --> 00:00:17.700
 The whole book comes down to one idea.
 
 7
-00:00:17.587 --> 00:00:22.216
+00:00:17.700 --> 00:00:22.329
 A package that's assembled by hand
 starts going stale the day it's signed,
 
 8
-00:00:22.216 --> 00:00:27.237
+00:00:22.329 --> 00:00:27.350
 so the evidence has to keep arriving, from
 one record, in a form anyone can re-run.
 
 9
-00:00:27.237 --> 00:00:30.501
+00:00:27.350 --> 00:00:30.613
 Part 1 builds the record and
 the engine that watches it.
 
 10
-00:00:30.501 --> 00:00:35.037
+00:00:30.613 --> 00:00:35.150
 Part 2 is the evidence, the owners,
 and how authorization uses it.
 
 11
-00:00:35.037 --> 00:00:37.320
+00:00:35.150 --> 00:00:37.440
 Let's start with why governance decays.

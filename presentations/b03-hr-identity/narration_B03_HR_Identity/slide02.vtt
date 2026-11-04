@@ -1,62 +1,63 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:05.314
+00:00:00.050 --> 00:00:04.933
 Here's why this matters: the series
 moves four populations to the cloud,
 
 2
-00:00:05.314 --> 00:00:08.763
+00:00:04.933 --> 00:00:08.300
 each on its own track, and
-Book 03 is the HR track.
+this book is the HR track.
 
 3
-00:00:08.763 --> 00:00:09.887
+00:00:08.300 --> 00:00:09.425
 It's about people.
 
 4
-00:00:09.887 --> 00:00:14.483
+00:00:09.425 --> 00:00:14.095
 Every employee account follows the HR
 record, and every contractor account
 
 5
-00:00:14.483 --> 00:00:19.225
+00:00:14.095 --> 00:00:18.913
 follows the contractor source of authority,
 which the agency still has to name.
 
 6
-00:00:19.225 --> 00:00:24.012
+00:00:18.913 --> 00:00:23.700
 Then joining, moving and leaving
 change access by rule, with no ticket.
 
 7
-00:00:24.012 --> 00:00:29.128
+00:00:23.700 --> 00:00:28.816
 You'll know you're there when every enabled
 account matches an authoritative record
 
 8
-00:00:29.128 --> 00:00:31.979
+00:00:28.816 --> 00:00:31.667
 or an owned exception,
 and every group that came
 
 9
-00:00:31.979 --> 00:00:35.049
+00:00:31.667 --> 00:00:34.737
 from an organizational unit
 (OU) is a validated rule.
 
 10
-00:00:35.049 --> 00:00:37.997
-Devices and servers are Book 05,
+00:00:34.737 --> 00:00:39.924
+Devices and servers are in Devices and
+Endpoints, and service accounts and AI
 
 11
-00:00:37.997 --> 00:00:43.212
-and service accounts and AI
-agents are Books 02, 06 and 17.
+00:00:39.924 --> 00:00:45.274
+agents are in Identity and Directory, Data
+Platform, and AI Identity Governance.
 
 12
-00:00:43.212 --> 00:00:45.037
+00:00:45.274 --> 00:00:47.188
 HR never describes those.
 
 13
-00:00:45.037 --> 00:00:47.570
+00:00:47.188 --> 00:00:49.700
 Now, how identity gets built today.

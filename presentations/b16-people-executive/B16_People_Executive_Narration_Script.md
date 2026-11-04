@@ -2,7 +2,7 @@
 
 ## Slide 1 — People & Training: the executive briefing
 
-Welcome. This is the executive briefing for Book 16 of the Federal Modernization Workbook, People: Training and Education. It's for the CIO, the chief human capital officer and HR leadership, the CISO, the workforce and training leads, and the program's sponsors. Tools enforce the new rules, but people make the decisions those rules depend on, so the modernization isn't finished until people do their jobs the new way. I'll take four questions: why people close the gap, what the curriculum teaches, who owns readiness, and how to run and measure it. Each decision slide names the decision, its owner and when it's needed. Let's start with the gap itself.
+Welcome. This is the executive briefing for People: Training and Education, one of the books of the Federal Modernization Workbook. It's for the CIO, the chief human capital officer and HR leadership, the CISO, the workforce and training leads, and the program's sponsors. Tools enforce the new rules, but people make the decisions those rules depend on, so the modernization isn't finished until people do their jobs the new way. I'll take four questions: why people close the gap, what the curriculum teaches, who owns readiness, and how to run and measure it. Each decision slide names the decision, its owner and when it's needed. Let's start with the gap itself.
 
 ## Slide 2 — The tools enforce; people make the decisions
 
@@ -78,4 +78,4 @@ Leadership needs a short, regular view, not a dashboard nobody acts on. At every
 
 ## Slide 20 — Decisions to make, owners and timing
 
-So, the decisions in one place. The sponsor and CIO fund the learning program and name a training lead. The program office puts training into every gate and onto the roadmap. The chief human capital officer's office owns the roster, the training plan and the position codes. The CISO decides what people are taught. The help desk manager and the wave owner decide when people are actually ready, and the authorizing official alone accepts the risk if they aren't. None of this is a procurement. The first step is simple: draft the roster of everyone whose work changes. Tools enforce; people decide. Book 16 has the detail, with every claim footnoted. Thank you.
+So, the decisions in one place. The sponsor and CIO fund the learning program and name a training lead. The program office puts training into every gate and onto the roadmap. The chief human capital officer's office owns the roster, the training plan and the position codes. The CISO decides what people are taught. The help desk manager and the wave owner decide when people are actually ready, and the authorizing official alone accepts the risk if they aren't. None of this is a procurement. The first step is simple: draft the roster of everyone whose work changes. Tools enforce; people decide. People: Training and Education has the detail, with every claim footnoted. Thank you.
