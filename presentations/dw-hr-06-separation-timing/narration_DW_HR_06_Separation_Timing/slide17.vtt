@@ -1,47 +1,48 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.256
-Lab 2 uses a test tenant with a
-leaver workflow in Book 3's order;
+00:00:00.050 --> 00:00:03.371
+Lab 2 uses a test tenant with
+a leaver workflow in the
 
 2
-00:00:04.256 --> 00:00:05.988
+00:00:03.371 --> 00:00:06.537
+workbook's leaver order;
 the authors haven't run it.
 
 3
-00:00:05.988 --> 00:00:09.212
+00:00:06.537 --> 00:00:09.762
 Register a reader app with
 only the two permissions.
 
 4
-00:00:09.212 --> 00:00:14.220
+00:00:09.762 --> 00:00:14.769
 Give one test user a leave date a few
 hours ahead and wait for the scheduled run,
 
 5
-00:00:14.220 --> 00:00:16.801
+00:00:14.769 --> 00:00:17.350
 and run the leaver on demand for a second.
 
 6
-00:00:16.801 --> 00:00:19.921
+00:00:17.350 --> 00:00:20.471
 Export the logs, and
 confirm which activity the
 
 7
-00:00:19.921 --> 00:00:22.962
+00:00:20.471 --> 00:00:23.512
 revoke task really wrote,
 and who initiated it.
 
 8
-00:00:22.962 --> 00:00:23.937
+00:00:23.512 --> 00:00:24.487
 Then measure.
 
 9
-00:00:23.937 --> 00:00:27.076
+00:00:24.487 --> 00:00:27.626
 Each block should include the
 wait for the tenant schedule.
 
 10
-00:00:27.076 --> 00:00:29.090
+00:00:27.626 --> 00:00:29.640
 Finally, back everything out.

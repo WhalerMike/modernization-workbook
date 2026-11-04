@@ -42,20 +42,20 @@ actions run from a vendor's cloud.
 Why?
 
 10
-00:00:25.450 --> 00:00:26.414
+00:00:25.450 --> 00:00:26.587
 The answer is a.
 
 11
-00:00:26.414 --> 00:00:30.912
-Book 15 prefers execution through
-a connector inside the boundary,
+00:00:26.587 --> 00:00:31.421
+The workbook's design prefers execution
+through a connector inside the boundary,
 
 12
-00:00:30.912 --> 00:00:34.688
+00:00:31.421 --> 00:00:34.762
 so each vendor-cloud action
 becomes a recorded data flow.
 
 13
-00:00:34.688 --> 00:00:39.650
+00:00:34.762 --> 00:00:39.720
 The module page has two more questions,
 each linked to the section that answers it.

@@ -54,7 +54,7 @@ const SS = "Check and summary";
     "connect the sources, correlate them on one key, and file the first measurement as the baseline. Later gates are measured against it.");
   sources(s, "Sources: Module 4, Unit 1 \"Introduction\"; Book 03, Chapter 11, \"Drift between HR and the directory\"; the guide's Gate 3, step 6.");
   notes(s,
-`Why measure first? Because drift comes in kinds, and each kind needs a number before it needs a ticket. A terminated employee who's still enabled in Entra ID is stale access, which Book 03 rates High. An account that matches nobody is an orphan account, also High. A department someone typed in by hand is attribute drift, rated Medium. Without a measurement you can't say how many there are, whether they're growing, or whether a fix worked. So Gate 3 connects the sources, correlates them on one key, and files the first measurement as the baseline. Every later gate is measured against it. In this module you run that measurement twice, on two days, and compare the days.`,
+`Why measure first? Because drift comes in kinds, and each kind needs a number before it needs a ticket. A terminated employee who's still enabled in Entra ID is stale access, which the Federal Modernization Workbook's drift classes rate High. An account that matches nobody is an orphan account, also High. A department someone typed in by hand is attribute drift, rated Medium. Without a measurement you can't say how many there are, whether they're growing, or whether a fix worked. So Gate 3 connects the sources, correlates them on one key, and files the first measurement as the baseline. Every later gate is measured against it. In this module you run that measurement twice, on two days, and compare the days.`,
   `${M} — Unit 1 "Introduction"; Book 03, Chapter 11 — "Drift between HR and the directory"; the guide — "Step 3," step 6.`);
 }
 
@@ -73,7 +73,7 @@ const SS = "Check and summary";
   ], 45);
   sources(s, "Sources: Module 4, Unit 1 \"Learning objectives,\" \"Prerequisites\"; Unit 5 \"Exercise: Lab 2.\"");
   notes(s,
-`Here's what you'll be able to do by the end of this module, which takes about forty-five minutes with the lab. You'll explain what Gate 3 connects, the key it correlates on, and what it files as the baseline. You'll name Book 03's drift classes, and say which ones the kit doesn't compute. You'll run the drift reconciliation over fixtures and compare two runs as new, persisting and resolved. And you'll explain why a comparison of runs that computed different classes is refused. You need Module 3 first. For the Graph reads, the Microsoft Automation path's first module covers the four request patterns. Lab 1 runs on fixtures; Lab 2 needs a test tenant and a SailPoint sandbox.`,
+`Here's what you'll be able to do by the end of this module, which takes about forty-five minutes with the lab. You'll explain what Gate 3 connects, the key it correlates on, and what it files as the baseline. You'll name the workbook's drift classes, and say which ones the kit doesn't compute. You'll run the drift reconciliation over fixtures and compare two runs as new, persisting and resolved. And you'll explain why a comparison of runs that computed different classes is refused. You need Module 3 first. For the Graph reads, the Microsoft Automation path's first module covers the four request patterns. Lab 1 runs on fixtures; Lab 2 needs a test tenant and a SailPoint sandbox.`,
   `${M} — Unit 1 "Learning objectives," "Prerequisites."`);
 }
 endModule(SI);
@@ -92,13 +92,13 @@ endModule(SI);
   ], { fontSize: 12, limit: 6.55 });
   sources(s, "Sources: Module 4, Unit 2; the guide's \"Step 3: Connect the sources and measure the starting drift.\"");
   notes(s,
-`Gate 3 has six steps. One: aggregate HR into SailPoint as the authoritative source, read-only under Gate 2's first pattern. Two: connect Entra ID and Active Directory as SailPoint sources, the Entra connector and the Active Directory connector through the virtual appliance. Three: correlate on employee I D, the key Book 03 joins on, and treat uncorrelated accounts as orphan candidates, not errors to suppress. Four: turn on Native Change Detection on the Entra and Active Directory sources. It compares stored and newly read data on aggregation, and fires one event per changed account. Five: run the kit's drift reconciliation, read-only. And six: file the first run as the baseline. Expect a burst of High findings in the first month. Book 03 calls that the measurement working.`,
+`Gate 3 has six steps. One: aggregate HR into SailPoint as the authoritative source, read-only under Gate 2's first pattern. Two: connect Entra ID and Active Directory as SailPoint sources, the Entra connector and the Active Directory connector through the virtual appliance. Three: correlate on employee I D, the key the workbook's design joins on, and treat uncorrelated accounts as orphan candidates, not errors to suppress. Four: turn on Native Change Detection on the Entra and Active Directory sources. It compares stored and newly read data on aggregation, and fires one event per changed account. Five: run the kit's drift reconciliation, read-only. And six: file the first run as the baseline. Expect a burst of High findings in the first month. The workbook calls that the measurement working.`,
   `${M} — Unit 2 "Connecting the sources"; the guide — "Step 3: Connect the sources and measure the starting drift," Steps.`);
 }
 
 // ================================================================== 5 Drift classes
 {
-  const s = content(SC, "Book 03's drift classes, and what the kit computes");
+  const s = content(SC, "The workbook's drift classes, and what the kit computes");
   tag(s, "What");
   const b = table(s, "Classes", 1.45, [2.8, 5.2, 1.4, 2.75], ["Class", "Detection signal", "Severity", "In the kit"], [
     ["Missing identity", "Active HR records without a matching employeeId", "High", "Computed"],
@@ -112,7 +112,7 @@ endModule(SI);
   line(s, "Defaults", "The severities are the program's defaults, not an external standard. A class not computed is said, in not_computed, not implied.", b + 0.25, 0.7, 13.5);
   sources(s, "Sources: Module 4, Unit 2; Book 03, Chapter 11, \"Drift between HR and the directory\"; workbook Chapter 06, \"What exists.\"");
   notes(s,
-`Here are Book 03's drift classes, the ones the finding contract carries, and what the kit computes. Missing identity: an active HR record with no matching account. Stale access: terminated in HR, enabled in the directory. Orphan account: an enabled account with no known employee I D. Those three are High, and the kit computes them. Attribute drift is Medium, and the kit compares department and manager. Unauthorized write, a write by anyone but the provisioning service, is High, and it's computed only when the run reads the Entra audit. Credential drift and schema drift are always reported as not computed, because they need the card system, Intune and the middleware's output. The severities are the program's defaults, not an external standard.`,
+`Here are the workbook's drift classes, the ones the finding contract carries, and what the kit computes. Missing identity: an active HR record with no matching account. Stale access: terminated in HR, enabled in the directory. Orphan account: an enabled account with no known employee I D. Those three are High, and the kit computes them. Attribute drift is Medium, and the kit compares department and manager. Unauthorized write, a write by anyone but the provisioning service, is High, and it's computed only when the run reads the Entra audit. Credential drift and schema drift are always reported as not computed, because they need the card system, Intune and the middleware's output. The severities are the program's defaults, not an external standard.`,
   `${M} — Unit 2 "Connecting the sources"; Book 03, Chapter 11 — "Drift between HR and the directory"; workbook Chapter 06 — "What exists."`);
 }
 
@@ -170,7 +170,7 @@ endModule(SI);
   ], { fontSize: 12, limit: 5.6 });
   sources(s, "Sources: Module 4, Unit 3; workbook Chapter 06, \"Dangers.\"");
   notes(s,
-`Chapter 06's dangers are worth reading before you schedule anything. A class one run skipped looks resolved: unauthorized writes disappear on the night the audit read fails. The guard is the comparison's refusal. A resolved finding closes the record: drift that left the measurement, not the estate, gets called fixed. The guard is that only the re-read closes. Pushing every finding every night fills the tracker with repeats, so push only the comparison's new findings. The first month's burst gets read as failure, and the pipeline is turned off before it's tuned. Book 03 expects that burst, so triage it by class and severity. And an HR extract with names in a shared folder spreads personal data. The run folder is evidence: keep it where HR data is allowed.`,
+`Chapter 06's dangers are worth reading before you schedule anything. A class one run skipped looks resolved: unauthorized writes disappear on the night the audit read fails. The guard is the comparison's refusal. A resolved finding closes the record: drift that left the measurement, not the estate, gets called fixed. The guard is that only the re-read closes. Pushing every finding every night fills the tracker with repeats, so push only the comparison's new findings. The first month's burst gets read as failure, and the pipeline is turned off before it's tuned. The workbook's design expects that burst, so triage it by class and severity. And an HR extract with names in a shared folder spreads personal data. The run folder is evidence: keep it where HR data is allowed.`,
   `${M} — Unit 3 "Run over run"; workbook Chapter 06 — "Dangers."`);
 }
 endModule(SC);
@@ -339,7 +339,7 @@ endModule(SA);
     "work through the Chapter 06 checklist, and file the first run as the baseline.");
   sources(s, "Sources: Module 4, Unit 7 \"Summary\"; Module 5; Learning path index, \"What you'll be able to do\"; workbook Chapter 06, \"Checklist.\"");
   notes(s,
-`To sum up. You learned how Gate 3 connects HR, Entra ID and Active Directory through SailPoint, and correlates them on employee I D, with uncorrelated accounts treated as orphan candidates. You named Book 03's drift classes, and the two the kit never computes. You measured drift over two days, and compared the runs as new, persisting and resolved. And you saw why the comparison refuses runs that measured different things, so nothing looks fixed just because it stopped being measured. Before you ship, work through the Chapter 06 checklist, and file the first run as the baseline. Next is Module 5, drift to a typed task: you'll predict the finding a SailPoint event produces, and test a workflow change before you import it.`,
+`To sum up. You learned how Gate 3 connects HR, Entra ID and Active Directory through SailPoint, and correlates them on employee I D, with uncorrelated accounts treated as orphan candidates. You named the workbook's drift classes, and the two the kit never computes. You measured drift over two days, and compared the runs as new, persisting and resolved. And you saw why the comparison refuses runs that measured different things, so nothing looks fixed just because it stopped being measured. Before you ship, work through the Chapter 06 checklist, and file the first run as the baseline. Next is Module 5, drift to a typed task: you'll predict the finding a SailPoint event produces, and test a workflow change before you import it.`,
   `${M} — Unit 7 "Summary"; workbook Chapter 06 — "Checklist"; Learning path index — "What you'll be able to do," "Modules."`);
 }
 endModule(SS);

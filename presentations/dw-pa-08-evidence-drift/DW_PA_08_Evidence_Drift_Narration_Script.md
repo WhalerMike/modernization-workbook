@@ -6,7 +6,7 @@ Welcome to the Federal Modernization Workbook's developer workbook, Building Pri
 
 ## Slide 2 — What the evidence has to show
 
-Why does this chapter exist? Because the program's last gates ask for things a single snapshot can't give: a Tier 0 drift handled as an incident, and evidence for every elevation in the period. Book 04 already says what goes in the package. Learn supplies the two facts the design turns on. First, the audit log only keeps thirty days, so evidence has to be collected before it ages out. Second, one activation can show up under several correlation IDs, but its request ID never changes. That request ID becomes the key.
+Why does this chapter exist? Because the program's last gates ask for things a single snapshot can't give: a Tier 0 drift handled as an incident, and evidence for every elevation in the period. The workbook's privileged-access design already says what goes in the package. Learn supplies the two facts the design turns on. First, the audit log only keeps thirty days, so evidence has to be collected before it ages out. Second, one activation can show up under several correlation IDs, but its request ID never changes. That request ID becomes the key.
 
 ## Slide 3 — Which cloud: the audit read's Graph host
 
@@ -38,7 +38,7 @@ Learn's pages disagree in two places that matter here, and the chapter writes bo
 
 ## Slide 10 — Compare, by fingerprint; Tier 0 drift is an incident
 
-The comparison is where state becomes drift. Before it compares anything, it checks both runs: every file against its manifest, the same tenant, cloud and mode, and a current run that's actually later. Then every difference gets a result. Two of them are careful by design. A task that failed this time is unverified, not resolved, so a permissions error can't make yesterday's findings vanish. And activations are left out of assignment drift, because they come and go within hours and the audit already records them. Any Tier 0 change is an incident, as Book 04 says.
+The comparison is where state becomes drift. Before it compares anything, it checks both runs: every file against its manifest, the same tenant, cloud and mode, and a current run that's actually later. Then every difference gets a result. Two of them are careful by design. A task that failed this time is unverified, not resolved, so a permissions error can't make yesterday's findings vanish. And activations are left out of assignment drift, because they come and go within hours and the audit already records them. Any Tier 0 change is an incident; that's the workbook's design.
 
 ## Slide 11 — No names in the tracker; packages in a hash chain
 

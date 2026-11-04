@@ -31,39 +31,40 @@ and ScubaGear's application-credential
 policies apply to the program's own apps too.
 
 7
-00:00:24.112 --> 00:00:26.224
+00:00:24.112 --> 00:00:26.228
 Continuous monitoring, C A seven,
 
 8
-00:00:26.224 --> 00:00:29.663
+00:00:26.228 --> 00:00:29.675
 depends on collectors that
 return complete results.
 
 9
-00:00:29.663 --> 00:00:33.892
+00:00:29.675 --> 00:00:33.904
 And BOD 25-01 requires
 the SCuBA assessment tools
 
 10
-00:00:33.892 --> 00:00:37.063
+00:00:33.904 --> 00:00:37.075
 and continuous reporting
 for in-scope tenants.
 
 11
-00:00:37.063 --> 00:00:39.937
-Book 02's Appendix A has the mapping.
+00:00:37.075 --> 00:00:41.000
+Appendix A of the Identity and
+Directory book has the mapping.
 
 12
-00:00:39.937 --> 00:00:44.732
+00:00:41.000 --> 00:00:45.794
 The evidence an ISSO keeps: for each
 collector, its cloud, endpoint,
 
 13
-00:00:44.732 --> 00:00:50.148
+00:00:45.794 --> 00:00:51.210
 app registration, credential type,
 exact permissions and consent record,
 
 14
-00:00:50.148 --> 00:00:53.860
+00:00:51.210 --> 00:00:54.910
 plus the call list and its
 tests in the repository.

@@ -22,21 +22,21 @@
   ],
   [
    10.9,
-   7.775,
-   "Book 3 makes Entra inbound provisioning the one writer into the directory, but SailPoint can also provision Entra I D."
+   9.725,
+   "The Federal Modernization Workbook's design makes Entra inbound provisioning the one writer into the directory, but SailPoint can also provision Entra I D."
   ],
   [
-   18.675,
+   20.625,
    5.562,
    "If both write department, the reconciliation reports drift that the next sync recreates."
   ],
   [
-   24.238,
+   26.188,
    7.2,
    "This chapter compares the two provisioning configurations, offline, and names every attribute with two writers."
   ],
   [
-   31.438,
+   33.388,
    2.35,
    "Then two labs and the dangers."
   ]
@@ -49,31 +49,31 @@
   ],
   [
    1.2,
-   9.838,
-   "The example guide's fourth gap: SailPoint reads the H R system and can provision the directory, while Book 3 makes Entra inbound provisioning the one writer."
+   10.25,
+   "The example guide's fourth gap: SailPoint reads the H R system and can provision the directory, while the workbook's design makes Entra inbound provisioning the one writer."
   ],
   [
-   11.037,
+   11.45,
    3.237,
    "The guide's advice is to pick one writer per attribute."
   ],
   [
-   14.275,
+   14.688,
    7.975,
    "Either Entra inbound provisioning stays the door and SailPoint governs entitlements, or SailPoint becomes the provisioning service."
   ],
   [
-   22.25,
+   22.663,
    0.975,
    "Not both."
   ],
   [
-   23.225,
+   23.637,
    6.4,
    "Until now, the drift client saw only the symptom, drift that keeps coming back, never the cause."
   ],
   [
-   29.625,
+   30.038,
    5.438,
    "Both configurations export as jay-son, so the check can run on files, today."
   ]
@@ -327,21 +327,21 @@
   ],
   [
    8.213,
-   10.225,
-   "The data architect, who decides which system owns each attribute and reviews the aliases; Book 3's default keeps Entra inbound provisioning as the writer."
+   10.238,
+   "The data architect, who decides which system owns each attribute and reviews the aliases; the workbook's default keeps Entra inbound provisioning as the writer."
   ],
   [
-   18.438,
+   18.45,
    3.275,
    "And the I S S O, who keeps the decisions."
   ],
   [
-   21.712,
+   21.725,
    1.775,
    "The two reads are read-only."
   ],
   [
-   23.488,
+   23.5,
    10.863,
    "One wrinkle: SailPoint's policies endpoint documents the org admin user level, so a personal token is the wrong tool; use an A P I client with one read scope."
   ]

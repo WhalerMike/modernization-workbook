@@ -118,36 +118,36 @@
   ],
   [
    7.15,
-   16.488,
-   "Gap two: with SailPoint's Service Catalog app, requests follow the approval process defined in ServiceNow, while the Federal Modernization Workbook's Book 15 decides owner-governed access, classes A two and A three, in the identity governance platform."
+   16.137,
+   "Gap two: with SailPoint's Service Catalog app, requests follow the approval process defined in ServiceNow, while the Federal Modernization Workbook's design decides owner-governed access, classes A two and A three, in the identity governance platform."
   ],
   [
-   23.637,
+   23.288,
    3.763,
    "Gate 2 answers with one approver system per authority class."
   ],
   [
-   27.4,
+   27.05,
    2.837,
    "Gap four: two doors into the directory."
   ],
   [
-   30.238,
-   10.225,
-   "SailPoint can provision Entra I D and Active Directory, while Book 03 makes Entra inbound provisioning the one writer of H R-mastered attributes."
+   29.887,
+   10.475,
+   "SailPoint can provision Entra I D and Active Directory, while the workbook's design makes Entra inbound provisioning the one writer of H R-mastered attributes."
   ],
   [
-   40.462,
+   40.362,
    2.962,
    "Gate 2 answers with one writer per attribute."
   ],
   [
-   43.425,
+   43.325,
    3.812,
    "It also gives each change class a lane and a change-record type."
   ],
   [
-   47.237,
+   47.138,
    2.85,
    "Every later gate builds what this one decides."
   ]
@@ -170,31 +170,31 @@
   ],
   [
    19.475,
-   6.412,
-   "In the second, SailPoint becomes the provisioning service, and takes on Book 03's middleware duties."
+   7.875,
+   "In the second, SailPoint becomes the provisioning service, and takes on the duties the workbook's design gives the H R middleware."
   ],
   [
-   25.887,
+   27.35,
    1.712,
    "Pick one and write it down."
   ],
   [
-   27.6,
+   29.062,
    0.975,
    "Not both."
   ],
   [
-   28.575,
+   30.038,
    4.25,
    "Then record each attribute's writer in the program's attribute map."
   ],
   [
-   32.825,
+   34.288,
    12.3,
    "One fact helps the choice: SailPoint's Oracle H C M Cloud connector reads Core H C M directly, without an on-premises appliance, and writes back only the user name and work email."
   ],
   [
-   45.125,
+   46.587,
    5.287,
    "For the first pattern's build, the guide points to its Oracle H C M to Entra guide."
   ]
@@ -227,26 +227,26 @@
   ],
   [
    28.125,
-   5.175,
-   "Step three gives each change class a lane, from Book 13's Appendix B."
+   4.85,
+   "Step three gives each change class a lane, following the workbook's design."
   ],
   [
-   33.3,
+   32.975,
    3.212,
    "The mapping onto these products is the program's inference."
   ],
   [
-   36.513,
+   36.188,
    6.75,
    "An autonomous class runs as a standard change, and the authorizing official accepts any class run that way."
   ],
   [
-   43.263,
+   42.938,
    3.288,
    "A gated class is an access request with approval."
   ],
   [
-   46.55,
+   46.225,
    4.112,
    "Step four writes the decisions to the record as a reviewed change."
   ]
@@ -561,36 +561,36 @@
   ],
   [
    4.912,
-   8.75,
-   "Either Book 03's pipeline, Entra inbound provisioning from H R, is already lyve, or accounts are still created from tickets."
+   8.7,
+   "Either the workbook's H R pipeline, Entra inbound provisioning from H R, is already lyve, or accounts are still created from tickets."
   ],
   [
-   13.662,
+   13.613,
    3.737,
    "Either way, Gate 2 decides who writes each attribute."
   ],
   [
-   17.4,
+   17.35,
    3.2,
    "For availability, Gate 2 uses nothing new."
   ],
   [
-   20.6,
-   15.713,
-   "If Book 03's A P I-driven inbound provisioning is the writer, it's available in Azure for U S Government, as are pim, entitlement management, access reviews and Lifecycle Workflows, read on November 1, 2026."
+   20.55,
+   16.425,
+   "If A P I-driven inbound provisioning is the writer, Microsoft Learn's feature availability page lists it in Azure for U S Government, as are pim, entitlement management, access reviews and Lifecycle Workflows, read on November 1, 2026."
   ],
   [
-   36.312,
+   36.975,
    4.188,
    "In G C C, Entra I D is the commercial service."
   ],
   [
-   40.5,
+   41.163,
    7.125,
    "The interim path: where the H R pipeline isn't lyve yet, SailPoint can't be measured against a source of authority."
   ],
   [
-   47.625,
+   48.288,
    5.888,
    "Decide the writers now, and run Gates 3 to 6 against the H R extract the kit reads."
   ]
@@ -623,16 +623,16 @@
   ],
   [
    25.387,
-   5.838,
-   "And Book 13 requires the authorizing official to accept any autonomous class in writing."
+   6.138,
+   "And the workbook's design requires the authorizing official to accept any autonomous class in writing."
   ],
   [
-   31.225,
+   31.525,
    8.975,
    "Chapter 08 maps the check to configuration settings, change control, impact analysis, continuous monitoring and system monitoring."
   ],
   [
-   40.2,
+   40.5,
    10.425,
    "The evidence an I S S O keeps: the attribute map with each writer, the approver and lane tables, and the check's output with the data architect's decisions."
   ]

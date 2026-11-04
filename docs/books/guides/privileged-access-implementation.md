@@ -11,9 +11,10 @@ lifecycle_review: 2027-05-01
 research-status: draft
 research-type: implementation guide
 research-book: "Book 04"
-last-reviewed: 2026-11-02
+review-status: approved
+reviewed-sha256: 06695e63bf4b5893b9e149e50773042b3b118c1b6ace68b4ef76f62e8ed3adac
+last-reviewed: 2026-11-03
 ---
-
 # Privileged Access: An Implementation Guide
 
 *Standing privilege is the attack path; this guide removes it gate by gate, and builds the way back in before it locks the door.*

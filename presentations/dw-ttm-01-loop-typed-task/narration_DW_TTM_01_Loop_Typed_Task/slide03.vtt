@@ -1,47 +1,47 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.877
-Book 13's loop has five steps: test,
-detect drift, raise a typed task,
+00:00:00.050 --> 00:00:04.781
+The workbook's Ticket-to-Machine loop
+has five steps: test, detect drift,
 
 2
-00:00:04.877 --> 00:00:08.975
-actuate on the native surface,
-and close with evidence.
+00:00:04.781 --> 00:00:09.675
+raise a typed task, actuate on the
+native surface, and close with evidence.
 
 3
-00:00:08.975 --> 00:00:10.612
+00:00:09.675 --> 00:00:11.312
 Here's where the kit sits in it.
 
 4
-00:00:10.612 --> 00:00:13.202
+00:00:11.312 --> 00:00:13.901
 The drift client tests by joining HR,
 
 5
-00:00:13.202 --> 00:00:16.741
+00:00:13.901 --> 00:00:17.440
 Microsoft Graph and
 SailPoint on the employee ID.
 
 6
-00:00:16.741 --> 00:00:19.675
+00:00:17.440 --> 00:00:20.374
 SailPoint's event triggers detect drift.
 
 7
-00:00:19.675 --> 00:00:24.525
+00:00:20.374 --> 00:00:25.225
 The workflows and a ServiceNow scripted
 REST resource raise the typed task.
 
 8
-00:00:24.525 --> 00:00:26.924
+00:00:25.225 --> 00:00:27.624
 Nothing in the kit actuates yet:
 
 9
-00:00:26.924 --> 00:00:31.262
+00:00:27.624 --> 00:00:31.962
 no code writes to Entra ID,
 Active Directory or SailPoint.
 
 10
-00:00:31.262 --> 00:00:35.760
+00:00:31.962 --> 00:00:36.460
 And a business rule and the re-read
 client close only with evidence.

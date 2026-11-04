@@ -6,7 +6,7 @@ Welcome to the Federal Modernization Workbook's developer workbook, Building the
 
 ## Slide 2 — Analytics finds the landing zone; it doesn't decide
 
-Why does this need code at all? Because the operator side is already written, in Book 5's sunset program and the Intune track's gates, and what's missing is the software for two of those steps: importing the policies for analysis, and building the library. Two rules from those pages shape everything that follows. Every setting has exactly one owning policy and one owning tool, so the library only holds what Intune owns. And policies are built with no assignments; assigning them is a separate, reviewed step. Let's see what Microsoft's tools say about the stakes.
+Why does this need code at all? Because the operator side is already written, in the Devices and Endpoints book's sunset program and the Intune track's gates, and what's missing is the software for two of those steps: importing the policies for analysis, and building the library. Two rules from those pages shape everything that follows. Every setting has exactly one owning policy and one owning tool, so the library only holds what Intune owns. And policies are built with no assignments; assigning them is a separate, reviewed step. Let's see what Microsoft's tools say about the stakes.
 
 ## Slide 3 — What Learn says about the tools sets the stakes
 

@@ -6,7 +6,7 @@ Welcome to the Federal Modernization Workbook's developer workbook, Building Pri
 
 ## Slide 2 — Why reviews, and why as code
 
-Why reviews at all? The approval gate from the earlier chapters controls when privilege is used. Reviews control who keeps the right to use it. Without them, eligibility only grows. Book 04 sets the schedule: the most sensitive tier every month, the rest every quarter, with access removed when reviewers stay silent. And why as code? Because a review set up by hand drifts. Someone leaves, a duration gets shortened, auto-apply is switched off once and never back on. In code, every series has a file, a diff and a reviewer.
+Why reviews at all? The approval gate from the earlier chapters controls when privilege is used. Reviews control who keeps the right to use it. Without them, eligibility only grows. The workbook's design sets the schedule: the most sensitive tier every month, the rest every quarter, with access removed when reviewers stay silent. And why as code? Because a review set up by hand drifts. Someone leaves, a duration gets shortened, auto-apply is switched off once and never back on. In code, every series has a file, a diff and a reviewer.
 
 ## Slide 3 — What it costs, and which cloud it runs in
 
@@ -26,11 +26,11 @@ The rest of the gaps are about evidence and permission. The tutorial gives revie
 
 ## Slide 7 — The reviewed file: seven series in the fixture
 
-Now the code. It's a new module, and unlike the earlier chapters, it can write to a tenant, but only with the apply switch, only what the dry run listed, and it never deletes. One file holds every series. Each has a managed name prefix, a kind, a tier, a cadence, reviewers, a fallback and instructions for reviewers. The fixture's seven series follow Book 04's schedule: role reviews, reviews of the privileged groups, and one Azure role. Notice the first row: Global Administrator makes no change on silence. We'll see why in a moment.
+Now the code. It's a new module, and unlike the earlier chapters, it can write to a tenant, but only with the apply switch, only what the dry run listed, and it never deletes. One file holds every series. Each has a managed name prefix, a kind, a tier, a cadence, reviewers, a fallback and instructions for reviewers. The fixture's seven series follow the workbook's schedule: role reviews, reviews of the privileged groups, and one Azure role. Notice the first row: Global Administrator makes no change on silence. We'll see why in a moment.
 
 ## Slide 8 — The bodies: built only from Learn's documented shapes
 
-Each request body is built only from shapes Learn documents. A role series reviews users. The groups that hold the role aren't reviewed inside it; each gets its own membership series, which matches Book 04's pairing of every role review with a review of its privileged group. Group reviews cover the group's members, a feature still in preview. Azure role reviews go to Resource Manager on a preview version, and their reviewers must be people or service principals, not groups. One honest gap: Learn's request table doesn't list some fields the code sets, so Lab 2 checks they take effect.
+Each request body is built only from shapes Learn documents. A role series reviews users. The groups that hold the role aren't reviewed inside it; each gets its own membership series, which matches the workbook's design of pairing every role review with a review of its privileged group. Group reviews cover the group's members, a feature still in preview. Azure role reviews go to Resource Manager on a preview version, and their reviewers must be people or service principals, not groups. One honest gap: Learn's request table doesn't list some fields the code sets, so Lab 2 checks they take effect.
 
 ## Slide 9 — The checks: PA-AR-01 to PA-AR-14
 

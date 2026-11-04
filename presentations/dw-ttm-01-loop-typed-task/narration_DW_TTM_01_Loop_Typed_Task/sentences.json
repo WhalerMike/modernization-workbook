@@ -12,21 +12,21 @@
   ],
   [
    8.688,
-   5.6,
-   "Every step of Book 13's loop writes or reads one record, the identity finding."
+   6.412,
+   "Every step of the workbook's Ticket-to-Machine loop writes or reads one record, the identity finding."
   ],
   [
-   14.287,
+   15.1,
    5.025,
    "If its shape is wrong, the clock, the owner and the re-read are all wrong with it."
   ],
   [
-   19.312,
+   20.125,
    10.912,
    "We'll place each file of the ServiceNow and SailPoint kit in the loop, then check that record on a laptop before anything reaches ServiceNow, and finish with two labs and the dangers."
   ],
   [
-   30.225,
+   31.038,
    3.4,
    "The code is illustrative, tested against fixtures."
   ]
@@ -66,31 +66,31 @@
  "3": [
   [
    0.05,
-   8.925,
-   "Book 13's loop has five steps: test, detect drift, raise a typed task, actuate on the native surface, and close with evidence."
+   9.625,
+   "The workbook's Ticket-to-Machine loop has five steps: test, detect drift, raise a typed task, actuate on the native surface, and close with evidence."
   ],
   [
-   8.975,
+   9.675,
    1.637,
    "Here's where the kit sits in it."
   ],
   [
-   10.613,
+   11.312,
    9.062,
    "The drift client tests by joining H R, Microsoft Graph and SailPoint on the employee I D. SailPoint's event triggers detect drift."
   ],
   [
-   19.675,
+   20.375,
    4.85,
    "The workflows and a ServiceNow scripted REST resource raise the typed task."
   ],
   [
-   24.525,
+   25.225,
    6.737,
    "Nothing in the kit actuates yet: no code writes to Entra I D, Active Directory or SailPoint."
   ],
   [
-   31.262,
+   31.962,
    4.438,
    "And a business rule and the re-read client close only with evidence."
   ]
@@ -104,7 +104,7 @@
   [
    4.725,
    8.875,
-   "Every payload says what kind it is, a finding or a closure signal, where it came from, and which of Book 3's seven drift classes it belongs to."
+   "Every payload says what kind it is, a finding or a closure signal, where it came from, and which of the workbook's seven drift classes it belongs to."
   ],
   [
    13.6,
@@ -113,11 +113,11 @@
   ],
   [
    23.637,
-   5.225,
-   "The workbook doesn't restate where each field lands in Book 13's evidence record."
+   7.35,
+   "This chapter doesn't restate where each field lands in the workbook's evidence record; the implementation example has that."
   ],
   [
-   28.863,
+   30.988,
    1.762,
    "It makes the fields checkable."
   ]
@@ -140,21 +140,21 @@
   ],
   [
    11.775,
-   10.075,
-   "It maps severity to a priority and a due date on Book 13's tempo: P1 immediate, P2 one hour, P3 a day, P4 three days."
+   9.787,
+   "It maps severity to a priority and a due date on the workbook's tempo: P1 immediate, P2 one hour, P3 a day, P4 three days."
   ],
   [
-   21.85,
+   21.562,
    3.55,
    "That tempo is the program's design, not a federal rule."
   ],
   [
-   25.4,
+   25.113,
    7.812,
    "It defaults severity by class, de-duplicates against an open finding, and fills in an intended state from a SailPoint event."
   ],
   [
-   33.212,
+   32.925,
    3.95,
    "The catch: nothing outside ServiceNow applied the same rules."
   ]
@@ -209,8 +209,8 @@
   ],
   [
    21.262,
-   9.9,
-   "For the two classes Book 13 sends to a person first, missing identity and an unauthorized write, the warning says that's expected until that person decides."
+   9.738,
+   "For the two classes the loop sends to a person first, missing identity and an unauthorized write, the warning says that's expected until that person decides."
   ]
  ],
  "8": [
@@ -307,11 +307,11 @@
   ],
   [
    27.9,
-   4.888,
-   "A typed finding is only the owned, clocked half of Book 13's record."
+   5.2,
+   "A typed finding is only the owned, clocked half of the workbook's evidence record."
   ],
   [
-   32.788,
+   33.1,
    2.362,
    "Approval and the re-read come later."
   ]
@@ -504,21 +504,21 @@
   ],
   [
    16.512,
-   5.625,
-   "The windows are the program's current ones and the severity defaults match Book 3's classes."
+   6.125,
+   "The windows are the program's current ones and the severity defaults match the workbook's drift classes."
   ],
   [
-   22.137,
+   22.637,
    3.688,
    "And the A P I requires authentication and a custom role."
   ],
   [
-   25.825,
+   26.325,
    5.513,
    "Next, Chapter 2 writes down every ServiceNow call and the least privilege it needs."
   ],
   [
-   31.337,
+   31.837,
    1.1,
    "Thanks for watching."
   ]

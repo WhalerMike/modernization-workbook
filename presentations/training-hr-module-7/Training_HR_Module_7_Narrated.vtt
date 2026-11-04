@@ -175,834 +175,849 @@ You don't need to have kept them: the
 first step of the lab rebuilds them.
 
 38
-00:02:07.867 --> 00:02:12.461
+00:02:07.867 --> 00:02:12.008
 The packaging builds on the drift
-pipeline in the Federal Modernization
+pipeline in Chapter 09 of the Federal
 
 39
-00:02:12.461 --> 00:02:17.110
-Workbook's Book 19's Chapter 09, and
-the lab calls it from the same clone.
+00:02:12.008 --> 00:02:16.008
+Modernization Workbook's Building
+the Attribute-Driven Migration,
 
 40
-00:02:20.860 --> 00:02:24.948
+00:02:16.008 --> 00:02:18.620
+and the lab calls it from the same clone.
+
+41
+00:02:22.370 --> 00:02:26.458
 Unit 1 reads the guide's Step
 7, which asks for five things.
 
-41
-00:02:24.948 --> 00:02:30.985
+42
+00:02:26.458 --> 00:02:32.495
 Run the drift classes: that's the run
 command, with classes L D one to L D six.
 
-42
-00:02:30.985 --> 00:02:35.570
+43
+00:02:32.495 --> 00:02:37.080
 Fix at the source, not in the directory:
 the period counts findings opened
 
-43
-00:02:35.570 --> 00:02:40.460
+44
+00:02:37.080 --> 00:02:41.970
 and closed, and keeps each unauthorized-write
 finding's closure at the source.
 
-44
-00:02:40.460 --> 00:02:42.007
+45
+00:02:41.970 --> 00:02:43.517
 Report the six metrics:
 
-45
-00:02:42.007 --> 00:02:46.322
+46
+00:02:43.517 --> 00:02:47.832
 the run computes them and flags
 any out of bounds or not measured.
 
-46
-00:02:46.322 --> 00:02:51.472
+47
+00:02:47.832 --> 00:02:52.819
 Prove the sole source for each
 population: this code doesn't decide that;
 
-47
-00:02:51.472 --> 00:02:57.234
-it's seven days of provisioning logs against
-the audit log, in Book 03's Appendix C.
-
 48
-00:02:57.234 --> 00:03:00.263
+00:02:52.819 --> 00:02:56.877
+it's seven days of provisioning
+logs against the audit log,
+
+49
+00:02:56.877 --> 00:02:59.920
+in Appendix C of the
+HR-Driven Identity book.
+
+50
+00:02:59.920 --> 00:03:02.948
 And keep the evidence
 outside the directory:
 
-49
-00:03:00.263 --> 00:03:03.373
+51
+00:03:02.948 --> 00:03:06.058
 that's the package, verify
 and period commands.
 
-50
-00:03:03.373 --> 00:03:06.385
-Book 03's Chapter 11 has the design.
+52
+00:03:06.058 --> 00:03:10.294
+Chapter 11 of the HR-Driven
+Identity book has the design.
 
-51
-00:03:06.385 --> 00:03:08.734
+53
+00:03:10.294 --> 00:03:12.644
 Attribute drift isn't this module's;
 
-52
-00:03:08.734 --> 00:03:13.140
+54
+00:03:12.644 --> 00:03:17.050
 it belongs to Gate 9 of the
 attribute-driven migration guide.
 
-53
-00:03:16.890 --> 00:03:19.278
+55
+00:03:20.800 --> 00:03:23.188
 Unit 2 turns to the workbook chapter.
 
-54
-00:03:19.278 --> 00:03:20.566
+56
+00:03:23.188 --> 00:03:24.476
 Here are the classes.
 
-55
-00:03:20.566 --> 00:03:25.165
+57
+00:03:24.476 --> 00:03:29.075
 L D one, missing identity: an active
 worker record with no account.
 
-56
-00:03:25.165 --> 00:03:30.649
+58
+00:03:29.075 --> 00:03:34.559
 L D two, stale access: a worker terminated
 in HR whose account is still enabled,
 
-57
-00:03:30.649 --> 00:03:34.653
+59
+00:03:34.559 --> 00:03:38.563
 or a contractor past the
 earliest end and still enabled.
 
-58
-00:03:34.653 --> 00:03:36.381
+60
+00:03:38.563 --> 00:03:40.291
 L D three, orphan account:
 
-59
-00:03:36.381 --> 00:03:40.964
+61
+00:03:40.291 --> 00:03:44.874
 an enabled account that matches
 no worker or contractor record.
 
-60
-00:03:40.964 --> 00:03:42.977
+62
+00:03:44.874 --> 00:03:46.887
 L D four, unauthorized write:
 
-61
-00:03:42.977 --> 00:03:47.527
+63
+00:03:46.887 --> 00:03:51.437
 Module 1's audit scan found a
 second writer or a forbidden write.
 
-62
-00:03:47.527 --> 00:03:52.728
+64
+00:03:51.437 --> 00:03:56.638
 L D five, credential drift: an active
 PIV card for a separated worker.
 
-63
-00:03:52.728 --> 00:03:56.996
+65
+00:03:56.638 --> 00:04:00.906
 And L D six, the contractor version:
 an active card for someone whose
 
-64
-00:03:56.996 --> 00:04:01.265
+66
+00:04:00.906 --> 00:04:05.175
 engagement ended, or whom the
 contractor source doesn't hold at all.
 
-65
-00:04:01.265 --> 00:04:02.753
+67
+00:04:05.175 --> 00:04:06.663
 Those six are Findings.
 
-66
-00:04:02.753 --> 00:04:06.195
+68
+00:04:06.663 --> 00:04:10.105
 Two more rules are warnings
 about the metrics:
 
-67
-00:04:06.195 --> 00:04:10.080
+69
+00:04:10.105 --> 00:04:13.990
 L D seven, out of bounds,
 and L D eight, not measured.
 
-68
-00:04:13.830 --> 00:04:15.105
+70
+00:04:17.740 --> 00:04:19.015
 The six metrics.
 
-69
-00:04:15.105 --> 00:04:19.864
+71
+00:04:19.015 --> 00:04:23.774
 Two come from Module 6: the ninetieth
 percentiles of separation-to-block,
 
-70
-00:04:19.864 --> 00:04:24.305
+72
+00:04:23.774 --> 00:04:28.215
 at most four hours, and
 separation-to-revocation, at most twenty-four.
 
-71
-00:04:24.305 --> 00:04:27.778
+73
+00:04:28.215 --> 00:04:31.688
 Transfer-to-review comes from
 Module 4's mover review,
 
-72
-00:04:27.778 --> 00:04:29.830
+74
+00:04:31.688 --> 00:04:33.740
 at most two hundred forty hours.
 
-73
-00:04:29.830 --> 00:04:34.718
+75
+00:04:33.740 --> 00:04:38.628
 The joiner readiness rate comes from
 Module 3, at least ninety-five percent.
 
-74
-00:04:34.718 --> 00:04:38.093
+76
+00:04:38.628 --> 00:04:42.003
 And two are computed by this
 run: correlation coverage,
 
-75
-00:04:38.093 --> 00:04:42.893
+77
+00:04:42.003 --> 00:04:46.803
 the share of enabled accounts that
 resolve to a current worker or contractor,
 
-76
-00:04:42.893 --> 00:04:46.118
+78
+00:04:46.803 --> 00:04:50.028
 at least ninety-nine percent;
 and derivation purity,
 
-77
-00:04:46.118 --> 00:04:51.293
+79
+00:04:50.028 --> 00:04:55.203
 the share of access-granting memberships
 computed by rule, at least eighty percent.
 
-78
-00:04:51.293 --> 00:04:57.105
+80
+00:04:55.203 --> 00:05:01.015
 Module 1's scan and Module 2's contractor
 decisions feed the drift classes instead.
 
-79
-00:04:57.105 --> 00:05:02.630
+81
+00:05:01.015 --> 00:05:06.540
 One rule matters most here: a metric with
 no input is not measured, never zero.
 
-80
-00:05:02.630 --> 00:05:05.568
+82
+00:05:06.540 --> 00:05:09.478
 And the thresholds are the
 program's starting values.
 
-81
-00:05:05.568 --> 00:05:09.740
+83
+00:05:09.478 --> 00:05:13.650
 Choosing them is the agency's
 decision under C A seven.
 
-82
-00:05:13.490 --> 00:05:16.240
+84
+00:05:17.400 --> 00:05:20.150
 A run is one folder, and it only reads.
 
-83
-00:05:16.240 --> 00:05:21.820
+85
+00:05:20.150 --> 00:05:25.730
 Its run dot JSON records the tenant,
 the cloud and the mode, and a SHA-256 of
 
-84
-00:05:21.820 --> 00:05:27.765
+86
+00:05:25.730 --> 00:05:31.675
 each module output it read, so anyone can
 tell exactly which inputs produced it.
 
-85
-00:05:27.765 --> 00:05:33.028
+87
+00:05:31.675 --> 00:05:36.938
 Beside it, the lifecycle folder holds
 the findings, the metrics and a manifest.
 
-86
-00:05:33.028 --> 00:05:37.444
+88
+00:05:36.938 --> 00:05:41.354
 Before the run reads an earlier
 module's output, it checks that output
 
-87
-00:05:37.444 --> 00:05:41.939
+89
+00:05:41.354 --> 00:05:45.849
 against its own manifest, so a changed
 file is caught, not silently used.
 
-88
-00:05:41.939 --> 00:05:44.861
+90
+00:05:45.849 --> 00:05:48.771
 The tools also write
 each output folder once:
 
-89
-00:05:44.861 --> 00:05:48.177
+91
+00:05:48.771 --> 00:05:52.087
 they refuse a folder that
 already holds a manifest.
 
-90
-00:05:48.177 --> 00:05:50.738
+92
+00:05:52.087 --> 00:05:54.648
 That's why the lab's
 first step deletes the
 
-91
-00:05:50.738 --> 00:05:53.752
+93
+00:05:54.648 --> 00:05:57.662
 out folder and rebuilds
 the five module outputs.
 
-92
-00:05:53.752 --> 00:05:56.415
+94
+00:05:57.662 --> 00:06:00.325
 Lab 1 writes its runs in fixture mode.
 
-93
-00:05:56.415 --> 00:06:01.120
+95
+00:06:00.325 --> 00:06:05.030
 Lab 2 writes them in tenant mode,
 from your test tenant's exports.
 
-94
-00:06:04.870 --> 00:06:07.982
+96
+00:06:08.780 --> 00:06:11.892
 The packaging is three commands
 in the drift pipeline.
 
-95
-00:06:07.982 --> 00:06:12.594
+97
+00:06:11.892 --> 00:06:16.504
 Package seals one run: a SHA-256
 for every file, the tenant I D,
 
-96
-00:06:12.594 --> 00:06:18.358
+98
+00:06:16.504 --> 00:06:22.268
 and the hash of the previous package's
 manifest, which is what chains them.
 
-97
-00:06:18.358 --> 00:06:22.995
+99
+00:06:22.268 --> 00:06:26.905
 A package is written once, and a run
 from a different tenant is refused.
 
-98
-00:06:22.995 --> 00:06:24.933
+100
+00:06:26.905 --> 00:06:28.843
 Verify rechecks a package.
 
-99
-00:06:24.933 --> 00:06:29.605
+101
+00:06:28.843 --> 00:06:33.515
 But the ISSO doesn't need the
 kit to trust it: sha256sum,
 
-100
-00:06:29.605 --> 00:06:35.021
+102
+00:06:33.515 --> 00:06:38.931
 checking the SHA256SUMS file,
 is their own independent check.
 
-101
-00:06:35.021 --> 00:06:38.283
+103
+00:06:38.931 --> 00:06:42.193
 Period assembles the packages
 in a reporting window.
 
-102
-00:06:38.283 --> 00:06:41.708
+104
+00:06:42.193 --> 00:06:45.618
 If there's a gap in coverage
 or a broken link in the chain,
 
-103
-00:06:41.708 --> 00:06:43.307
+105
+00:06:45.618 --> 00:06:47.217
 the period isn't complete.
 
-104
-00:06:43.307 --> 00:06:48.969
+106
+00:06:47.217 --> 00:06:52.879
 It also scores Gate 7's criteria and maps
 the findings and metrics to five controls.
 
-105
-00:06:48.969 --> 00:06:54.420
+107
+00:06:52.879 --> 00:06:58.330
 That mapping is the program's design
 guidance; the assessor decides each control.
 
-106
-00:06:58.170 --> 00:06:58.895
+108
+00:07:02.080 --> 00:07:02.805
 Try it.
 
-107
-00:06:58.895 --> 00:07:04.963
+109
+00:07:02.805 --> 00:07:08.873
 Step one deletes any out folder, then
 rebuilds five inputs, one command each:
 
-108
-00:07:04.963 --> 00:07:10.834
+110
+00:07:08.873 --> 00:07:14.744
 Module 1's writer scan, Module 2's
 contractor extract, Module 3's readiness,
 
-109
-00:07:10.834 --> 00:07:15.532
+111
+00:07:14.744 --> 00:07:19.442
 Module 4's mover residual and
 Module 6's separation timing.
 
-110
-00:07:15.532 --> 00:07:18.290
+112
+00:07:19.442 --> 00:07:22.200
 The full commands are on the module page;
 
-111
-00:07:18.290 --> 00:07:22.133
+113
+00:07:22.200 --> 00:07:26.043
 each one exits two, because
 each fixture holds findings.
 
-112
-00:07:22.133 --> 00:07:25.332
+114
+00:07:26.043 --> 00:07:29.242
 Step two writes the
 first run, for October.
 
-113
-00:07:25.332 --> 00:07:29.144
+115
+00:07:29.242 --> 00:07:33.054
 It reads four module outputs
 and prints the six metrics.
 
-114
-00:07:29.144 --> 00:07:32.423
+116
+00:07:33.054 --> 00:07:36.333
 Separation-to-block at
 five point five two hours,
 
-115
-00:07:32.423 --> 00:07:35.783
+117
+00:07:36.333 --> 00:07:39.693
 and revocation at a hundred
 ten, both out of bounds.
 
-116
-00:07:35.783 --> 00:07:40.570
+118
+00:07:39.693 --> 00:07:44.480
 Transfer-to-review isn't measured,
 because the mover's review is still open.
 
-117
-00:07:40.570 --> 00:07:45.573
+119
+00:07:44.480 --> 00:07:49.483
 Readiness is twenty-five percent,
 correlation coverage fifty-eight percent,
 
-118
-00:07:45.573 --> 00:07:49.482
+120
+00:07:49.483 --> 00:07:53.392
 and derivation purity seventy-six
 percent: all out of bounds.
 
-119
-00:07:49.482 --> 00:07:52.230
+121
+00:07:53.392 --> 00:07:56.140
 Fourteen Findings, six Warns.
 
-120
-00:07:55.980 --> 00:07:59.380
+122
+00:07:59.890 --> 00:08:03.290
 Step three prints the
 findings, one line each.
 
-121
-00:07:59.380 --> 00:08:01.055
+123
+00:08:03.290 --> 00:08:04.965
 There are fourteen Findings.
 
-122
-00:08:01.055 --> 00:08:04.005
+124
+00:08:04.965 --> 00:08:07.915
 One missing identity, a
 worker with no account.
 
-123
-00:08:04.005 --> 00:08:09.154
+125
+00:08:07.915 --> 00:08:13.064
 Three stale accounts, among them Drew
 and Harper, two of Module 6's leavers,
 
-124
-00:08:09.154 --> 00:08:12.930
+126
+00:08:13.064 --> 00:08:16.840
 still enabled, and a contractor
 past the earliest end.
 
-125
-00:08:12.930 --> 00:08:16.443
+127
+00:08:16.840 --> 00:08:20.353
 Two orphans, a print kiosk
 and an old temp account.
 
-126
-00:08:16.443 --> 00:08:19.709
+128
+00:08:20.353 --> 00:08:23.619
 Five unauthorized writes,
 which are Module 1's four
 
-127
-00:08:19.709 --> 00:08:23.442
+129
+00:08:23.619 --> 00:08:27.352
 second writers and its forbidden
 delete, carried forward.
 
-128
-00:08:23.442 --> 00:08:25.662
+130
+00:08:27.352 --> 00:08:29.572
 One active card for a separated worker,
 
-129
-00:08:25.662 --> 00:08:28.229
+131
+00:08:29.572 --> 00:08:32.139
 and two contractor cards
 that should be gone.
 
-130
-00:08:28.229 --> 00:08:32.924
+132
+00:08:32.139 --> 00:08:36.834
 Then six Warns: five L D seven,
 one for each metric out of bounds,
 
-131
-00:08:32.924 --> 00:08:36.867
+133
+00:08:36.834 --> 00:08:40.777
 and one L D eight, for the
 metric that wasn't measured.
 
-132
-00:08:36.867 --> 00:08:40.168
+134
+00:08:40.777 --> 00:08:44.078
 Notice how the earlier modules'
 results reappear here.
 
-133
-00:08:40.168 --> 00:08:42.450
+135
+00:08:44.078 --> 00:08:46.360
 This run is where they all meet.
 
-134
-00:08:46.200 --> 00:08:49.991
+136
+00:08:50.110 --> 00:08:53.901
 Step four writes the next day's
 run, for the first of November,
 
-135
-00:08:49.991 --> 00:08:53.163
+137
+00:08:53.901 --> 00:08:57.073
 and it prints the same
 metrics and the same counts.
 
-136
-00:08:53.163 --> 00:08:55.551
+138
+00:08:57.073 --> 00:08:59.461
 Step five packages both runs.
 
-137
-00:08:55.551 --> 00:09:00.837
+139
+00:08:59.461 --> 00:09:04.747
 The first package opens twenty findings,
 the fourteen Findings and six Warns.
 
-138
-00:09:00.837 --> 00:09:03.236
+140
+00:09:04.747 --> 00:09:07.146
 The second package names the first one's
 
-139
-00:09:03.236 --> 00:09:05.851
+141
+00:09:07.146 --> 00:09:09.761
 manifest as its previous,
 which chains them.
 
-140
-00:09:05.851 --> 00:09:08.368
+142
+00:09:09.761 --> 00:09:12.278
 It opens nothing new and closes nothing,
 
-141
-00:09:08.368 --> 00:09:11.725
+143
+00:09:12.278 --> 00:09:15.635
 because the inputs didn't
 change between the two runs.
 
-142
-00:09:11.725 --> 00:09:15.042
+144
+00:09:15.635 --> 00:09:18.952
 Then verify confirms the
 second package: six files,
 
-143
-00:09:15.042 --> 00:09:18.675
+145
+00:09:18.952 --> 00:09:22.585
 and the same manifest hash
 the package command printed.
 
-144
-00:09:18.675 --> 00:09:22.487
+146
+00:09:22.585 --> 00:09:26.397
 Your hashes match these only if your
 fixtures are the committed ones.
 
-145
-00:09:22.487 --> 00:09:27.339
+147
+00:09:26.397 --> 00:09:31.249
 Finally, the ISSO's own check,
 with no kit at all: sha256sum,
 
-146
-00:09:27.339 --> 00:09:32.240
+148
+00:09:31.249 --> 00:09:36.150
 run inside the package
 folder, reports every file OK.
 
-147
-00:09:35.990 --> 00:09:41.265
+149
+00:09:39.900 --> 00:09:45.175
 Step six assembles the period, from the
 first of October to the second of November.
 
-148
-00:09:41.265 --> 00:09:44.653
+150
+00:09:45.175 --> 00:09:48.563
 Two packages, no chain
 breaks, no coverage gaps,
 
-149
-00:09:44.653 --> 00:09:48.577
+151
+00:09:48.563 --> 00:09:52.487
 twenty findings open at the
 end, and complete is false.
 
-150
-00:09:48.577 --> 00:09:49.827
+152
+00:09:52.487 --> 00:09:53.737
 Exit code two.
 
-151
-00:09:49.827 --> 00:09:52.340
+153
+00:09:53.737 --> 00:09:56.250
 Print the period summary and you see why.
 
-152
-00:09:52.340 --> 00:09:54.515
+154
+00:09:56.250 --> 00:09:58.425
 It scores Gate 7's criteria.
 
-153
-00:09:54.515 --> 00:10:00.015
+155
+00:09:58.425 --> 00:10:03.925
 The evidence criterion is met: kept outside
 the directory, with an unbroken chain.
 
-154
-00:10:00.015 --> 00:10:03.588
+156
+00:10:03.925 --> 00:10:07.498
 But drift is still open, so
 the first criterion isn't met,
 
-155
-00:10:03.588 --> 00:10:07.478
+157
+00:10:07.498 --> 00:10:11.388
 and five metrics are out of
 bounds, so the second isn't either.
 
-156
-00:10:07.478 --> 00:10:11.515
+158
+00:10:11.388 --> 00:10:15.425
 The fourth, the sole source,
 isn't decided by this code at all.
 
-157
-00:10:11.515 --> 00:10:14.968
+159
+00:10:15.425 --> 00:10:18.878
 That's the point of this
 step: an unbroken chain proves
 
-158
-00:10:14.968 --> 00:10:18.028
+160
+00:10:18.878 --> 00:10:21.938
 the record is intact, not
 that the gate is passed.
 
-159
-00:10:18.028 --> 00:10:20.337
+161
+00:10:21.938 --> 00:10:24.247
 Step seven runs both test suites,
 
-160
-00:10:20.337 --> 00:10:25.490
+162
+00:10:24.247 --> 00:10:29.400
 fifty-seven and a hundred forty-two
 tests, and deletes the out folder.
 
-161
-00:10:29.240 --> 00:10:31.862
+163
+00:10:33.150 --> 00:10:35.772
 Lab 2 runs the same thing for real,
 
-162
-00:10:31.862 --> 00:10:35.940
+164
+00:10:35.772 --> 00:10:39.850
 in a worldwide or GCC test
 tenant, never production.
 
-163
-00:10:35.940 --> 00:10:39.668
+165
+00:10:39.850 --> 00:10:43.578
 The reader app uses a certificate
 or a federated credential,
 
-164
-00:10:39.668 --> 00:10:44.590
+166
+00:10:43.578 --> 00:10:48.500
 and holds only the two permissions the
 drift-read task lists, with admin consent.
 
-165
-00:10:44.590 --> 00:10:48.358
+167
+00:10:48.500 --> 00:10:52.269
 You export the workforce users,
 run Lab 2 of Modules 1 to
 
-166
-00:10:48.358 --> 00:10:52.127
+168
+00:10:52.269 --> 00:10:56.037
 6 against the test tenant, and
 write a run in tenant mode.
 
-167
-00:10:52.127 --> 00:10:57.067
-Then you schedule it in Book 19's Chapter
-09 workflow, with each package written to
-
-168
-00:10:57.067 --> 00:11:02.153
-an immutable test storage container, and
-assemble a period from the scheduled runs.
-
 169
-00:11:02.153 --> 00:11:05.512
+00:10:56.037 --> 00:11:00.845
+Then you schedule it in the Chapter 09
+workflow from Building the Attribute-Driven
+
+170
+00:11:00.845 --> 00:11:05.303
+Migration, with each package written to
+an immutable test storage container,
+
+171
+00:11:05.303 --> 00:11:07.950
+and assemble a period
+from the scheduled runs.
+
+172
+00:11:07.950 --> 00:11:11.310
 To back it out, remove the
 schedule, delete the reader app,
 
-170
-00:11:05.512 --> 00:11:09.019
+173
+00:11:11.310 --> 00:11:14.817
 its credential and its consent,
 delete the test container
 
-171
-00:11:09.019 --> 00:11:12.452
+174
+00:11:14.817 --> 00:11:18.250
 if you created it for the lab,
 and delete the local folders.
 
-172
-00:11:12.452 --> 00:11:14.970
+175
+00:11:18.250 --> 00:11:20.750
 The authors haven't run Lab 2.
 
-173
-00:11:18.720 --> 00:11:20.107
+176
+00:11:24.500 --> 00:11:25.887
 The federal requirement.
 
-174
-00:11:20.107 --> 00:11:24.474
+177
+00:11:25.887 --> 00:11:30.254
 In NIST special publication
 eight hundred fifty-three terms,
 
-175
-00:11:24.474 --> 00:11:30.039
+178
+00:11:30.254 --> 00:11:35.819
 this gate meets C A seven, continuous
 monitoring with system-level metrics, and
 
-176
-00:11:30.039 --> 00:11:35.433
+179
+00:11:35.819 --> 00:11:41.213
 A U six and A U eleven with S I twelve:
 the review and retention of audit records.
 
-177
-00:11:35.433 --> 00:11:39.794
+180
+00:11:41.213 --> 00:11:45.574
 It also meets BOD 25-01's
 continuous reporting.
 
-178
-00:11:39.794 --> 00:11:44.524
+181
+00:11:45.574 --> 00:11:50.304
 The evidence an ISSO keeps for
 Gate 7: every period's manifest,
 
-179
-00:11:44.524 --> 00:11:48.970
+182
+00:11:50.304 --> 00:11:54.750
 summary and checksum file,
 with the approved thresholds.
 
-180
-00:11:48.970 --> 00:11:53.745
+183
+00:11:54.750 --> 00:11:59.525
 The packages, with each unauthorized-write
 finding's closure at the source.
 
-181
-00:11:53.745 --> 00:11:57.472
+184
+00:11:59.525 --> 00:12:03.252
 The storage container's retention
 and immutability settings,
 
-182
-00:11:57.472 --> 00:11:59.120
+185
+00:12:03.252 --> 00:12:04.900
 set to the records schedule.
 
-183
-00:11:59.120 --> 00:12:01.745
+186
+00:12:04.900 --> 00:12:07.525
 And the ScubaGear results
 beside the period.
 
-184
-00:12:01.745 --> 00:12:07.520
+187
+00:12:07.525 --> 00:12:13.300
 The guide's Evidence section gathers all
 seven gates into one file per population.
 
-185
-00:12:11.270 --> 00:12:14.770
+188
+00:12:17.050 --> 00:12:20.550
 Check yourself with two questions
 from the module's knowledge check.
 
-186
-00:12:14.770 --> 00:12:17.932
+189
+00:12:20.550 --> 00:12:23.712
 First: Module 4's mover
 review is still open,
 
-187
-00:12:17.932 --> 00:12:20.733
+190
+00:12:23.712 --> 00:12:26.513
 so there's no transfer-to-review value.
 
-188
-00:12:20.733 --> 00:12:22.220
+191
+00:12:26.513 --> 00:12:28.000
 How does the run report it?
 
-189
-00:12:22.220 --> 00:12:27.658
+192
+00:12:28.000 --> 00:12:33.438
 The answer is c: as not measured,
 rule L D eight, never as zero.
 
-190
-00:12:27.658 --> 00:12:31.658
+193
+00:12:33.438 --> 00:12:37.438
 A zero would look like the best
 possible result, and it would be false.
 
-191
-00:12:31.658 --> 00:12:34.901
+194
+00:12:37.438 --> 00:12:40.682
 Second: the period
 reports zero chain breaks
 
-192
-00:12:34.901 --> 00:12:38.145
+195
+00:12:40.682 --> 00:12:43.925
 and zero coverage gaps,
 but complete is false.
 
-193
-00:12:38.145 --> 00:12:38.833
+196
+00:12:43.925 --> 00:12:44.613
 Why?
 
-194
-00:12:38.833 --> 00:12:39.873
+197
+00:12:44.613 --> 00:12:45.653
 The answer is a.
 
-195
-00:12:39.873 --> 00:12:45.421
+198
+00:12:45.653 --> 00:12:51.201
 Drift is still open and metrics are out of
 bounds, so Gate 7's criteria aren't met.
 
-196
-00:12:45.421 --> 00:12:47.481
+199
+00:12:51.201 --> 00:12:53.261
 The period scores the criteria,
 
-197
-00:12:47.481 --> 00:12:51.207
+200
+00:12:53.261 --> 00:12:56.987
 and an unbroken chain meets
 only the evidence criterion.
 
-198
-00:12:51.207 --> 00:12:53.640
+201
+00:12:56.987 --> 00:12:59.420
 The module page has three more questions,
 
-199
-00:12:53.640 --> 00:12:56.500
+202
+00:12:59.420 --> 00:13:02.280
 each linked to the
 section that teaches it.
 
-200
-00:13:00.250 --> 00:13:01.075
+203
+00:13:06.030 --> 00:13:06.855
 To sum up.
 
-201
-00:13:01.075 --> 00:13:03.715
+204
+00:13:06.855 --> 00:13:09.495
 You rebuilt the earlier modules' outputs,
 
-202
-00:13:03.715 --> 00:13:08.062
+205
+00:13:09.495 --> 00:13:13.842
 and wrote two daily runs of the
 lifecycle drift classes and metrics.
 
-203
-00:13:08.062 --> 00:13:10.384
+206
+00:13:13.842 --> 00:13:16.164
 You packaged them with a hash chain,
 
-204
-00:13:10.384 --> 00:13:15.267
+207
+00:13:16.164 --> 00:13:21.047
 verified a package with the kit and
 with sha256sum, and assembled a period
 
-205
-00:13:15.267 --> 00:13:19.750
+208
+00:13:21.047 --> 00:13:25.530
 that shows exactly which of Gate 7's
 criteria are met, and which aren't.
 
-206
-00:13:19.750 --> 00:13:24.050
+209
+00:13:25.530 --> 00:13:29.830
 And with that, you've finished the
 HR-Driven Identity learning path.
 
-207
-00:13:24.050 --> 00:13:28.283
+210
+00:13:29.830 --> 00:13:34.063
 Across seven modules you named one
 writer for every account state,
 
-208
-00:13:28.283 --> 00:13:33.209
+211
+00:13:34.063 --> 00:13:38.989
 ran contractors from their own source,
 made joiners ready on day one, assigned
 
-209
-00:13:33.209 --> 00:13:36.056
+212
+00:13:38.989 --> 00:13:41.836
 access from attributes,
 checked card sign-in,
 
-210
-00:13:36.056 --> 00:13:38.750
+213
+00:13:41.836 --> 00:13:44.530
 timed separations, and filed the evidence.
 
-211
-00:13:38.750 --> 00:13:40.335
+214
+00:13:44.530 --> 00:13:46.115
 Go back to the learning path,
 
-212
-00:13:40.335 --> 00:13:43.900
+215
+00:13:46.115 --> 00:13:49.680
 or check your agency's progress
 against the guide's checklist.

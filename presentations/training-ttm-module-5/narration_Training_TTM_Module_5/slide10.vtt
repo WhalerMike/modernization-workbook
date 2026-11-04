@@ -50,21 +50,21 @@ And a closure signal must
 never be treated as closure.
 
 11
-00:00:40.475 --> 00:00:43.857
+00:00:40.475 --> 00:00:43.519
 The Federal Modernization
-Workbook's Book 13's point is
+Workbook's point is that
 
 12
-00:00:43.857 --> 00:00:47.313
-that native tools change state;
+00:00:43.519 --> 00:00:46.563
+native tools change state;
 they don't close findings.
 
 13
-00:00:47.313 --> 00:00:51.279
+00:00:46.563 --> 00:00:50.529
 The script only moves a finding
 to Awaiting verification,
 
 14
-00:00:51.279 --> 00:00:54.820
+00:00:50.529 --> 00:00:54.050
 and Module 6's business rule
 blocks any other close.

@@ -5,44 +5,44 @@ WEBVTT
 Why does this gate need code?
 
 2
-00:00:01.637 --> 00:00:04.783
+00:00:01.637 --> 00:00:05.081
 The guide's Gate 6 configures
-the leaver in Book
+the leaver in the workbook's
 
 3
-00:00:04.783 --> 00:00:07.687
-3's order and asks for
+00:00:05.081 --> 00:00:08.012
+leaver order and asks for
 the timing to be proved.
 
 4
-00:00:07.687 --> 00:00:09.988
+00:00:08.012 --> 00:00:10.312
 But no Microsoft report computes it.
 
 5
-00:00:09.988 --> 00:00:13.063
+00:00:10.312 --> 00:00:13.387
 Lifecycle Workflows records
 that a run completed.
 
 6
-00:00:13.063 --> 00:00:15.975
+00:00:13.387 --> 00:00:16.300
 The audit log records when
 the account was disabled.
 
 7
-00:00:15.975 --> 00:00:20.475
+00:00:16.300 --> 00:00:20.800
 The card system and Intune record
 the rest, each in its own place.
 
 8
-00:00:20.475 --> 00:00:22.829
+00:00:20.800 --> 00:00:23.154
 So this chapter computes the intervals:
 
 9
-00:00:22.829 --> 00:00:27.252
+00:00:23.154 --> 00:00:27.577
 each leaver's time to block and time to
 revocation, the period's percentiles
 
 10
-00:00:27.252 --> 00:00:31.730
+00:00:27.577 --> 00:00:32.060
 against the thresholds, and the
 separations that need someone's attention.

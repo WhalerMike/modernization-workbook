@@ -6,7 +6,7 @@ Welcome to Building HR-Driven Identity. This is Chapter 1: the writer register a
 
 ## Slide 2 — Why this gate comes first
 
-Why does this gate come first? Because every later gate leans on it. The guide's first step names one writer for every state and value. Without that, a late active value of true from the pipeline undoes a workflow's disable, and a help desk edit to an organization code moves a person's access without HR knowing. Book 3 explains the design. This chapter makes it checkable.
+Why does this gate come first? Because every later gate leans on it. The guide's first step names one writer for every state and value. Without that, a late active value of true from the pipeline undoes a workflow's disable, and a help desk edit to an organization code moves a person's access without HR knowing. The HR-Driven Identity book explains the design. This chapter makes it checkable.
 
 ## Slide 3 — Which cloud, for this read
 

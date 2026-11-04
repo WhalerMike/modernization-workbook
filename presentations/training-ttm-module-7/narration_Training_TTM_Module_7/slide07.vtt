@@ -24,50 +24,55 @@ But nothing read the records back out.
 Chapter 07 adds the evidence export.
 
 6
-00:00:20.063 --> 00:00:24.343
+00:00:20.063 --> 00:00:23.914
 It reads closed and cancelled
 findings through the Table API,
 
 7
-00:00:24.343 --> 00:00:29.800
-under its own read-only role, and writes
-one record per finding in Book 13's shape.
+00:00:23.914 --> 00:00:27.238
+under its own read-only role,
+and writes one record per
 
 8
-00:00:29.800 --> 00:00:33.063
+00:00:27.238 --> 00:00:30.637
+finding in the shape of the
+workbook's evidence record.
+
+9
+00:00:30.637 --> 00:00:33.900
 Then it runs four checks
 on each, reported by name.
 
-9
-00:00:33.063 --> 00:00:35.637
+10
+00:00:33.900 --> 00:00:36.475
 Does the evidence still
 hash to the stored hash?
 
-10
-00:00:35.637 --> 00:00:37.779
+11
+00:00:36.475 --> 00:00:38.616
 If not, it was edited after closure,
 
-11
-00:00:37.779 --> 00:00:40.913
+12
+00:00:38.616 --> 00:00:41.750
 or cut short by the
 four-thousand-character field.
 
-12
-00:00:40.913 --> 00:00:43.375
+13
+00:00:41.750 --> 00:00:44.212
 Does a closed record
 carry evidence at all?
 
-13
-00:00:43.375 --> 00:00:46.275
+14
+00:00:44.212 --> 00:00:47.112
 If not, the close bypassed
 the business rule.
 
-14
-00:00:46.275 --> 00:00:48.975
+15
+00:00:47.112 --> 00:00:49.812
 Does the evidence say the
 intended state matched?
 
-15
-00:00:48.975 --> 00:00:53.830
+16
+00:00:49.812 --> 00:00:54.670
 And did it finish inside its response
 window, verified at or before its due date?

@@ -1,54 +1,58 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.575
-The program's design comes
-from Book 4: two policies.
+00:00:00.050 --> 00:00:02.776
+The program's design
+comes from the workbook's
 
 2
-00:00:03.575 --> 00:00:07.975
+00:00:02.776 --> 00:00:05.287
+Conditional Access library: two policies.
+
+3
+00:00:05.287 --> 00:00:09.687
 One blocks workloads from anywhere
 except their named egress ranges.
 
-3
-00:00:07.975 --> 00:00:12.137
+4
+00:00:09.687 --> 00:00:13.850
 The other blocks them when Microsoft's
 risk detection marks them high.
 
-4
-00:00:12.137 --> 00:00:15.306
+5
+00:00:13.850 --> 00:00:17.019
 They roll out report-only
 first, then ring by ring,
 
-5
-00:00:15.306 --> 00:00:17.762
+6
+00:00:17.019 --> 00:00:19.475
 and they're never deleted on rollback.
 
-6
-00:00:17.762 --> 00:00:19.250
+7
+00:00:19.475 --> 00:00:20.963
 Two decisions frame it.
 
-7
-00:00:19.250 --> 00:00:22.950
+8
+00:00:20.963 --> 00:00:24.662
 The licensing decision covers
 the top-tier single-tenant apps.
 
-8
-00:00:22.950 --> 00:00:26.270
+9
+00:00:24.662 --> 00:00:27.983
 The enforcement decision
 is the security chief's:
 
-9
-00:00:26.270 --> 00:00:29.913
+10
+00:00:27.983 --> 00:00:31.626
 enforce, wait longer, or
 enforce with dated exclusions.
 
-10
-00:00:29.913 --> 00:00:32.976
+11
+00:00:31.626 --> 00:00:34.688
 And don't worry when the
 risk policy reports nothing;
 
-11
-00:00:32.976 --> 00:00:35.880
+12
+00:00:34.688 --> 00:00:37.610
 that's normal until
 something is actually risky.

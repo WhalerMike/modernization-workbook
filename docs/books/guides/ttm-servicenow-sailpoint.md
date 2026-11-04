@@ -6,11 +6,12 @@ research-status: draft
 research-type: implementation guide
 research-book: "Books 13, 15"
 date-modified: 2026-11-01
-last-reviewed: 2026-11-01
 aliases:
   - /docs/research/ttm-servicenow-sailpoint.html
+review-status: approved
+reviewed-sha256: 3b4cb512f6c8283c5a4eca8f3ef42230bf587c07162836dcf22255a3f2c9b435
+last-reviewed: 2026-11-03
 ---
-
 # Ticket-to-Machine on ServiceNow and SailPoint: An Example Implementation Guide {.unnumbered}
 
 *Two products can carry the loop, but neither closes it on its own: the ticket has to authorize a machine, and only a re-read can close the ticket.*

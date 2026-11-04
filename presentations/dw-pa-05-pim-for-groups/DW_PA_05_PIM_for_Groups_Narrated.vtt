@@ -150,21 +150,22 @@ just-in-time membership or
 ownership, each with its own policy.
 
 32
-00:02:09.770 --> 00:02:12.420
-Book 04 combines them two ways.
+00:02:09.770 --> 00:02:13.683
+The workbook's privileged-access
+design combines them two ways.
 
 33
-00:02:12.420 --> 00:02:16.970
+00:02:13.683 --> 00:02:18.233
 For an Entra role, the group is eligible
 and its members activate the role.
 
 34
-00:02:16.970 --> 00:02:20.358
+00:02:18.233 --> 00:02:21.620
 For anything else, people are
 eligible for the group itself.
 
 35
-00:02:20.358 --> 00:02:22.220
+00:02:21.620 --> 00:02:23.490
 The file records which.
 
 36

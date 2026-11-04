@@ -1,70 +1,74 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:05.638
-Every lane writes the same record, Book
-13's evidence record, with seven fields.
+00:00:00.050 --> 00:00:02.251
+Every lane writes the same record,
 
 2
-00:00:05.638 --> 00:00:08.588
+00:00:02.251 --> 00:00:05.475
+the workbook's evidence
+record, with seven fields.
+
+3
+00:00:05.475 --> 00:00:08.425
 The guide shows where each
 comes from on these products.
 
-3
-00:00:08.588 --> 00:00:11.526
+4
+00:00:08.425 --> 00:00:11.363
 Origin is the SailPoint
 trigger and workflow,
 
-4
-00:00:11.526 --> 00:00:14.851
+5
+00:00:11.363 --> 00:00:14.688
 the reconciliation finding,
 or the catalog request.
 
-5
-00:00:14.851 --> 00:00:20.125
+6
+00:00:14.688 --> 00:00:19.963
 Owner and clock are the ServiceNow
 assignment, severity, priority and due date.
 
-6
-00:00:20.125 --> 00:00:23.275
+7
+00:00:19.963 --> 00:00:23.112
 Approval is the ServiceNow
 or SailPoint approval.
 
-7
-00:00:23.275 --> 00:00:27.741
+8
+00:00:23.112 --> 00:00:27.579
 Executing identity is the connector's
 or spoke's service principal,
 
-8
-00:00:27.741 --> 00:00:29.575
+9
+00:00:27.579 --> 00:00:29.413
 or a person's PIM activation.
 
-9
-00:00:29.575 --> 00:00:34.437
+10
+00:00:29.413 --> 00:00:34.275
 What ran is the provisioning event, the
 workflow version or the session recording.
 
-10
-00:00:34.437 --> 00:00:39.563
+11
+00:00:34.275 --> 00:00:39.400
 Result is the re-read evidence, and
 closure is the closed record with its hash.
 
-11
-00:00:39.563 --> 00:00:45.487
+12
+00:00:39.400 --> 00:00:45.325
 In Pass 1, three of those are empty:
 approval, executing identity and what ran.
 
-12
-00:00:45.487 --> 00:00:50.075
+13
+00:00:45.325 --> 00:00:49.913
 Pass 1 doesn't actuate, so the record
 that would hold them is a later pass.
 
-13
-00:00:50.075 --> 00:00:53.100
+14
+00:00:49.913 --> 00:00:52.938
 The export writes each as
 null, with that reason,
 
-14
-00:00:53.100 --> 00:00:56.180
+15
+00:00:52.938 --> 00:00:56.020
 rather than leaving the
 field out or filling it.

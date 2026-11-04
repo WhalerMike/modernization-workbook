@@ -24,35 +24,45 @@ or what the account should
 look like afterward.
 
 6
-00:00:12.437 --> 00:00:16.823
-Book 13 says an assessor asks four
-questions about every finding:
+00:00:12.437 --> 00:00:16.912
+An evidence record has to answer
+four questions about every finding:
 
 7
-00:00:16.823 --> 00:00:21.776
+00:00:16.912 --> 00:00:21.700
 who owns it, by when, under whose approval,
 and with what evidence of closure.
 
 8
-00:00:21.776 --> 00:00:25.975
+00:00:21.700 --> 00:00:25.265
+In NIST special publication
+eight hundred fifty-three,
+
+9
+00:00:25.265 --> 00:00:28.288
+control C M three asks
+for that record directly.
+
+10
+00:00:28.288 --> 00:00:32.488
 A ticket closed on done answers
 none of them; it records a claim.
 
-9
-00:00:25.975 --> 00:00:30.901
-Book 13's answer is a typed task:
+11
+00:00:32.488 --> 00:00:37.594
+The workbook's answer is a typed task:
 one record with a class, a severity,
 
-10
-00:00:30.901 --> 00:00:36.012
+12
+00:00:37.594 --> 00:00:42.437
 an owner, a clock, and an intended
 state that a later re-read can check.
 
-11
-00:00:36.012 --> 00:00:38.151
+13
+00:00:42.437 --> 00:00:44.576
 Approval comes in later modules.
 
-12
-00:00:38.151 --> 00:00:42.720
+14
+00:00:44.576 --> 00:00:49.150
 Every step of the loop writes or reads
 this record, so it's where you start.

@@ -91,11 +91,11 @@
   ],
   [
    19.962,
-   11.05,
-   "There's one human path: a named exception approver can cancel with a close note, which is the Federal Modernization Workbook's Book 13's declared-exception lane, and it stays on the record."
+   10.238,
+   "There's one human path: a named exception approver can cancel with a close note, which is the Federal Modernization Workbook's declared-exception lane, and it stays on the record."
   ],
   [
-   31.012,
+   30.2,
    4.062,
    "The rule also governs tickets the Service Desk integration opened."
   ]
@@ -265,21 +265,21 @@
   ],
   [
    3.375,
-   13.387,
-   "A finding closed only after a re-read showed the intended state, with the query, the time, a hash of the response and the checker, which is Book 13's fourth clause and supports change control and continuous monitoring."
+   22.988,
+   "A finding closed only after a re-read showed the intended state, with the query, the time, a hash of the response and the checker, which is the workbook's closure clause, and it supports nist special publication eight hundred fifty-three's configuration change control, CM-3, and the monitoring for unauthorized change that nist SP 800-37 calls for."
   ],
   [
-   16.762,
+   26.363,
    4.963,
    "No person can close a finding by setting its state, which is separation of duties."
   ],
   [
-   21.725,
+   31.325,
    2.5,
    "A read that predates the change doesn't count."
   ],
   [
-   24.225,
+   33.825,
    6.425,
    "And an empty intended state never closes anything: a verified change, not an asserted one."
   ]

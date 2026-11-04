@@ -10,41 +10,41 @@ from shapes Learn documents.
 A role series reviews users.
 
 3
-00:00:06.288 --> 00:00:09.673
+00:00:06.288 --> 00:00:09.413
 The groups that hold the role
 aren't reviewed inside it;
 
 4
-00:00:09.673 --> 00:00:13.361
-each gets its own membership
-series, which matches Book 04's
+00:00:09.413 --> 00:00:13.580
+each gets its own membership series,
+which matches the workbook's design
 
 5
-00:00:13.361 --> 00:00:17.500
-pairing of every role review with
+00:00:13.580 --> 00:00:17.400
+of pairing every role review with
 a review of its privileged group.
 
 6
-00:00:17.500 --> 00:00:21.525
+00:00:17.400 --> 00:00:21.425
 Group reviews cover the group's
 members, a feature still in preview.
 
 7
-00:00:21.525 --> 00:00:25.377
+00:00:21.425 --> 00:00:25.277
 Azure role reviews go to Resource
 Manager on a preview version,
 
 8
-00:00:25.377 --> 00:00:29.600
+00:00:25.277 --> 00:00:29.500
 and their reviewers must be people
 or service principals, not groups.
 
 9
-00:00:29.600 --> 00:00:33.349
+00:00:29.500 --> 00:00:33.249
 One honest gap: Learn's
 request table doesn't list some
 
 10
-00:00:33.349 --> 00:00:37.080
+00:00:33.249 --> 00:00:36.980
 fields the code sets, so Lab
 2 checks they take effect.

@@ -295,8 +295,8 @@
   ],
   [
    23.413,
-   12.925,
-   "And no part of Pass 1 can write to SailPoint, Entra I D or Active Directory, which is the Federal Modernization Workbook's Book 13's rule that the coordination layer never writes configuration itself."
+   11.912,
+   "And no part of Pass 1 can write to SailPoint, Entra I D or Active Directory, which is the Federal Modernization Workbook's rule that the coordination layer never writes configuration itself."
   ]
  ],
  "11": [

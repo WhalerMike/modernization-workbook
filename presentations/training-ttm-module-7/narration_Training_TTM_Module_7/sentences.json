@@ -27,16 +27,16 @@
   ],
   [
    26.9,
-   14.938,
-   "Then you'll export a period's closed findings as the Federal Modernization Workbook's Book 13's evidence records, chain one period to the next, and verify the package the way an I S S O would, including catching a record someone removed."
+   13.975,
+   "Then you'll export a period's closed findings as the Federal Modernization Workbook's evidence records, chain one period to the next, and verify the package the way an I S S O would, including catching a record someone removed."
   ],
   [
-   41.837,
+   40.875,
    4.237,
    "If you're an I S S O reviewer, this module is yours in full."
   ],
   [
-   46.075,
+   45.112,
    4.025,
    "The code is illustrative, tested against fictional fixtures."
   ]
@@ -101,36 +101,36 @@
   ],
   [
    9.675,
-   6.05,
-   "You'll describe Book 13's evidence record, which of its fields Pass 1 leaves empty, and why."
+   5.737,
+   "You'll describe the workbook's evidence record, which of its fields Pass 1 leaves empty, and why."
   ],
   [
-   15.725,
+   15.412,
    5.5,
    "You'll produce an evidence package for a period, and continue its hash chain into the next."
   ],
   [
-   21.225,
+   20.913,
    5.525,
    "And you'll verify a package, and explain how the verifier catches an edited or removed record."
   ],
   [
-   26.75,
+   26.438,
    2.575,
    "Before you start, finish Module 6."
   ],
   [
-   29.325,
+   29.012,
    8.8,
    "If you're an I S S O reviewer working only this module, read Module 1's Unit 3 first, on the identity finding and its contract."
   ],
   [
-   38.125,
+   37.812,
    1.7,
    "Lab 1 needs no tenant."
   ],
   [
-   39.825,
+   39.513,
    6.4,
    "Lab 2 needs your developer instance, with at least one finding closed in Module 6's Lab 2."
   ]
@@ -138,61 +138,61 @@
  "4": [
   [
    0.05,
-   3.55,
-   "Once the loop runs, it runs on Book 13's tempo."
+   3.188,
+   "Once the loop runs, it runs on the workbook's tempo."
   ],
   [
-   3.6,
+   3.237,
    1.1,
    "P1 halts."
   ],
   [
-   4.7,
+   4.338,
    5.5,
    "P2 has one hour, P3 twenty-four hours, and P4 seventy-two hours."
   ],
   [
-   10.2,
+   9.838,
    3.138,
    "Those are the program's windows, not federal ones."
   ],
   [
-   13.338,
+   12.975,
    3.1,
    "Gate 7 is how you operate it, in five steps."
   ],
   [
-   16.438,
+   16.075,
    6.425,
    "Schedule the drift reconciliation and the re-read client, and keep their outputs with the date and the checker version."
   ],
   [
-   22.863,
+   22.5,
    2.562,
    "Report five measures to the governance board."
   ],
   [
-   25.425,
+   25.062,
    2.55,
    "Route the identity fixes through the loop."
   ],
   [
-   27.975,
-   2.862,
-   "Export the evidence in Book 13's shape."
+   27.613,
+   3.862,
+   "Export the evidence in the shape of the workbook's evidence record."
   ],
   [
-   30.837,
+   31.475,
    5.263,
    "And review each declared exception at its end date, and each L4 class quarterly."
   ],
   [
-   36.1,
+   36.737,
    7.9,
    "The guide's Gate 7 validation names the export as its automated check, and Chapter 07 builds its ServiceNow half."
   ],
   [
-   44.0,
+   44.638,
    1.637,
    "That's what you'll run in the lab."
   ]
@@ -200,36 +200,36 @@
  "5": [
   [
    0.05,
-   12.525,
-   "Gate 7 reports five measures to the governance board, from Book 13's Chapter 10: detection coverage, window adherence, escalation rate, machine-closure share, and the declared-exception count."
+   11.838,
+   "Gate 7 reports five measures to the governance board, from the workbook's design: detection coverage, window adherence, escalation rate, machine-closure share, and the declared-exception count."
   ],
   [
-   12.575,
+   11.887,
    1.9,
    "How is Gate 7 validated?"
   ],
   [
-   14.475,
+   13.787,
    2.237,
    "The automated checks are read-only."
   ],
   [
-   16.712,
+   16.025,
    7.888,
    "The evidence export writes and checks the records, and the drift comparison from Module 4 classifies findings across two runs."
   ],
   [
-   24.6,
+   23.913,
    3.288,
    "The five measures themselves have no automated check yet."
   ],
   [
-   27.887,
+   27.2,
    12.525,
    "The manual validation is that the scheduled runs have run for a month with outputs kept, the measures have been reported once, and the first monthly package has been assembled end to end and accepted by the I S S O."
   ],
   [
-   40.413,
+   39.725,
    12.637,
    "Until the export exists in your estate, the interim path is to assemble the package by hand, from a ServiceNow report of closed findings with their evidence attachments and a SailPoint event search for the same period."
   ]
@@ -237,56 +237,56 @@
  "6": [
   [
    0.05,
-   5.588,
-   "Every lane writes the same record, Book 13's evidence record, with seven fields."
+   5.425,
+   "Every lane writes the same record, the workbook's evidence record, with seven fields."
   ],
   [
-   5.638,
+   5.475,
    2.95,
    "The guide shows where each comes from on these products."
   ],
   [
-   8.588,
+   8.425,
    6.263,
    "Origin is the SailPoint trigger and workflow, the reconciliation finding, or the catalog request."
   ],
   [
-   14.85,
+   14.688,
    5.275,
    "Owner and clock are the ServiceNow assignment, severity, priority and due date."
   ],
   [
-   20.125,
+   19.962,
    3.15,
    "Approval is the ServiceNow or SailPoint approval."
   ],
   [
-   23.275,
+   23.113,
    6.3,
    "Executing identity is the connector's or spoke's service principal, or a person's pim activation."
   ],
   [
-   29.575,
+   29.413,
    4.862,
    "What ran is the provisioning event, the workflow version or the session recording."
   ],
   [
-   34.438,
+   34.275,
    5.125,
    "Result is the re-read evidence, and closure is the closed record with its hash."
   ],
   [
-   39.562,
+   39.4,
    5.925,
    "In Pass 1, three of those are empty: approval, executing identity and what ran."
   ],
   [
-   45.487,
+   45.325,
    4.588,
    "Pass 1 doesn't actuate, so the record that would hold them is a later pass."
   ],
   [
-   50.075,
+   49.913,
    6.05,
    "The export writes each as null, with that reason, rather than leaving the field out or filling it."
   ]
@@ -309,41 +309,41 @@
   ],
   [
    20.062,
-   9.738,
-   "It reads closed and cancelled findings through the Table A P I, under its own read-only role, and writes one record per finding in Book 13's shape."
+   10.575,
+   "It reads closed and cancelled findings through the Table A P I, under its own read-only role, and writes one record per finding in the shape of the workbook's evidence record."
   ],
   [
-   29.8,
+   30.637,
    3.263,
    "Then it runs four checks on each, reported by name."
   ],
   [
-   33.062,
+   33.9,
    2.575,
    "Does the evidence still hash to the stored hash?"
   ],
   [
-   35.638,
+   36.475,
    5.275,
    "If not, it was edited after closure, or cut short by the four-thousand-character field."
   ],
   [
-   40.913,
+   41.75,
    2.462,
    "Does a closed record carry evidence at all?"
   ],
   [
-   43.375,
+   44.212,
    2.9,
    "If not, the close bypassed the business rule."
   ],
   [
-   46.275,
+   47.112,
    2.7,
    "Does the evidence say the intended state matched?"
   ],
   [
-   48.975,
+   49.812,
    4.8,
    "And did it finish inside its response window, verified at or before its due date?"
   ]
@@ -413,31 +413,31 @@
   ],
   [
    5.025,
-   9.025,
-   "Chapter 07 measures it the way Book 13 and Book 12's Chapter 12 define it: closures inside the window, over closures judged."
+   7.513,
+   "Chapter 07 measures it the way the workbook's design defines it: closures inside the window, over closures judged."
   ],
   [
-   14.05,
+   12.537,
    4.513,
    "It isn't a ratio of open findings, which improves as new ones arrive."
   ],
   [
-   18.562,
+   17.05,
    14.9,
    "The kit's fixture has five fictional closed records, one per case: one closed in its window, one closed late, one whose evidence was edited after it closed, one cancelled as a declared exception, and one closed with no evidence at all."
   ],
   [
-   33.462,
+   31.95,
    2.188,
    "You'll export all five in the lab."
   ],
   [
-   35.65,
+   34.138,
    7.725,
    "One thing wasn't verified: the format and time zone of the date values the Table A P I returns on a given instance."
   ],
   [
-   43.375,
+   41.862,
    4.35,
    "The export parses both common forms, and Lab 2 checks yours."
   ]
@@ -658,11 +658,11 @@
   ],
   [
    49.975,
-   7.787,
-   "Two controls Book 13 maps to the loop, A U ten and C M five enhancement one, aren't in the Moderate baseline."
+   7.8,
+   "Two controls the workbook maps to the loop, A U ten and C M five enhancement one, aren't in nist's Moderate baseline."
   ],
   [
-   57.763,
+   57.775,
    5.3,
    "At Moderate, the chain supports integrity, and signing the package is a further step."
   ]
@@ -732,31 +732,31 @@
   ],
   [
    3.538,
-   12.625,
-   "You exported a period's closed findings as Book 13 evidence records, chained one period to the next, and verified a package the way an I S S O does, including catching a record someone removed."
+   12.6,
+   "You exported a period's closed findings as the workbook's evidence records, chained one period to the next, and verified a package the way an I S S O does, including catching a record someone removed."
   ],
   [
-   16.163,
+   16.137,
    3.75,
    "Before shipping, work through the Chapter 07 checklist."
   ],
   [
-   19.913,
+   19.887,
    3.513,
    "And with that, you've finished the Ticket-to-Machine learning path."
   ],
   [
-   23.425,
+   23.4,
    15.812,
    "Across seven modules, you built the loop gate by gate: the typed task and its contract, the boundary and least privilege, one writer per attribute, the sources and the starting drift, drift to a task, the re-read rule, and now the evidence."
   ],
   [
-   39.237,
+   39.212,
    4.925,
    "What the workbook doesn't build yet, and why, is at the end of its chapters table."
   ],
   [
-   44.163,
+   44.138,
    1.788,
    "Thanks for working through the path."
   ]

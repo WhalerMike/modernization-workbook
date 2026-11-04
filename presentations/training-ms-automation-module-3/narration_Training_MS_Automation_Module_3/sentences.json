@@ -7,26 +7,26 @@
   ],
   [
    6.65,
-   9.475,
-   "The Federal Modernization Workbook's Book 05 moves the fleet from Group Policy to Intune, and then has to prove, continuously, what each device is."
+   10.512,
+   "The Federal Modernization Workbook's Devices and Endpoints book moves the fleet from Group Policy to Intune, and then has to prove, continuously, what each device is."
   ],
   [
-   16.125,
-   12.188,
-   "In this module you'll map Book 05's evidence questions to the Graph A P I that answers each one, its least-privileged permission, and whether it's in version one point oh or only in beta."
+   17.163,
+   12.225,
+   "In this module you'll map the workbook's device evidence questions to the Graph A P I that answers each one, its least-privileged permission, and whether it's in version one point oh or only in beta."
   ],
   [
-   28.312,
+   29.387,
    5.862,
    "Then you'll run five read-only checks, in Python and PowerShell, against a fictional fleet."
   ],
   [
-   34.175,
+   35.25,
    4.938,
    "They complement the validation kit's Intune checks by reading Intune's own records."
   ],
   [
-   39.112,
+   40.188,
    6.938,
    "Like Module 2's checks, they're illustrative: tested against fixtures, not proven against lyve tenants."
   ]
@@ -54,21 +54,21 @@
   ],
   [
    19.387,
-   16.387,
-   "Book 05's Chapter 10 asks for evidence a script can collect: which devices fail which policy, which devices no policy reaches, which stopped checking in, which aren't encrypted or are below the OS floor, and which Autopilot registrations won't get a profile."
+   16.762,
+   "The workbook's device evidence guidance asks for evidence a script can collect: which devices fail which policy, which devices no policy reaches, which stopped checking in, which aren't encrypted or are below the OS floor, and which Autopilot registrations won't get a profile."
   ],
   [
-   35.775,
+   36.15,
    7.5,
    "The validation kit already has six Intune checks, reading Entra device objects, group tags and assignment design."
   ],
   [
-   43.275,
+   43.65,
    1.85,
    "This module doesn't repeat them."
   ],
   [
-   45.125,
+   45.5,
    2.413,
    "Its checks read Intune's own records."
   ]
@@ -81,36 +81,36 @@
   ],
   [
    5.5,
-   7.3,
-   "You'll name the Graph A P I, least-privileged permission and stage for each of Book 05's evidence questions."
+   7.412,
+   "You'll name the Graph A P I, least-privileged permission and stage for each of the workbook's device evidence questions."
   ],
   [
-   12.8,
+   12.912,
    3.8,
    "You'll explain which three things the program relies on are beta-only."
   ],
   [
-   16.6,
+   16.712,
    6.388,
    "You'll read managed devices and per-policy compliance status, including why the checks join on device name."
   ],
   [
-   22.988,
+   23.1,
    4.275,
    "You'll keep remote actions and export jobs out of a read-only collector."
   ],
   [
-   27.262,
+   27.375,
    5.325,
    "And you'll say what differs in G C C High and D O D, and run the five checks."
   ],
   [
-   32.587,
+   32.7,
    4.125,
    "You need Module 1, and Module 2 for the Conditional Access side."
   ],
   [
-   36.712,
+   36.825,
    4.638,
    "Lab 2 needs a test tenant with an Intune license and a few test devices."
   ]
@@ -118,31 +118,31 @@
  "4": [
   [
    0.05,
-   5.675,
-   "Here are six of Book 05's questions with the Intune A P I that answers each."
+   6.112,
+   "Here are six of the workbook's device evidence questions with the Intune A P I that answers each."
   ],
   [
-   5.725,
+   6.162,
    9.375,
    "Enrolled devices, with their OS, compliance state, encryption and last sync, come from managed devices, with the managed devices read permission."
   ],
   [
-   15.1,
+   15.537,
    8.05,
    "Compliance policies, their assignments and their per-device statuses need the configuration read permission, in version one point oh."
   ],
   [
-   23.15,
+   23.587,
    7.537,
    "The Settings Catalog and endpoint security policies, and assignment filters, use the same permission, but they're beta only."
   ],
   [
-   30.688,
+   31.125,
    9.825,
    "Autopilot registrations are in version one point oh with the service configuration read permission, but whether each one has been given a deployment profile is beta only."
   ],
   [
-   40.513,
+   40.95,
    5.65,
    "And every Intune A P I in Graph needs an active Intune license for the tenant."
   ]
@@ -160,21 +160,21 @@
   ],
   [
    12.463,
-   8.938,
-   "The Settings Catalog: Book 05's policy library is mostly Settings Catalog profiles, so exporting the library as code depends on beta."
+   9.137,
+   "The Settings Catalog: the workbook's Intune policy library is mostly Settings Catalog profiles, so exporting the library as code depends on beta."
   ],
   [
-   21.4,
+   21.6,
    11.275,
    "Assignment filters: the filter list is beta, and version one point oh can't tell you which filter an assignment uses, which is why the validation kit's filter check needs its include-beta switch."
   ],
   [
-   32.675,
+   32.875,
    8.762,
    "And Autopilot profiles: version one point oh lists registrations, but the profile assignment status and the profiles themselves are beta."
   ],
   [
-   41.438,
+   41.638,
    7.088,
    "As design guidance, re-run a beta-dependent check after each beta change before you use its result as evidence."
   ]
@@ -439,31 +439,31 @@
   ],
   [
    1.363,
-   9.45,
-   "Book 05's agency manages Windows with Group Policy, and often Configuration Manager, and is moving to Intune in a G C C tenant."
+   10.537,
+   "The agency the workbook's device plan describes manages Windows with Group Policy, and often Configuration Manager, and is moving to Intune in a G C C tenant."
   ],
   [
-   10.812,
+   11.9,
    2.925,
    "G C C has no separate Intune instance."
   ],
   [
-   13.738,
+   14.825,
    8.625,
    "In Microsoft's words, G C C is the same instance as Intune in the commercial space, and it uses the worldwide Graph host."
   ],
   [
-   22.363,
+   23.45,
    10.95,
    "G C C High and D O D share a separate government instance, with their own Graph hosts, and moving between instances means unenrolling and re-enrolling every device."
   ],
   [
-   33.312,
+   34.4,
    13.137,
    "Microsoft's service description lists what isn't available there, with no plans to add it: Windows Autopilot, Remediations, feature update and compatibility reports, the ServiceNow connector and Subscription Activation."
   ],
   [
-   46.45,
+   47.538,
    9.55,
    "Standard device management, compliance, configuration and app policies, is available, with Log Analytics export and Defender security settings management."
   ]
@@ -501,11 +501,11 @@
   ],
   [
    43.425,
-   7.8,
-   "In G C C High or D O D, Book 05's Chapter 04 compares Autopilot device preparation."
+   8.6,
+   "In G C C High or D O D, Chapter 04 of the Devices and Endpoints book compares Autopilot device preparation."
   ],
   [
-   51.225,
+   52.025,
    3.038,
    "And label the Settings Catalog export as beta."
   ]
@@ -533,11 +533,11 @@
   ],
   [
    33.788,
-   7.912,
-   "Book 11's Appendix A has the M twenty-two oh-nine mapping, and Book 05's Chapter 10 says what an assessor reads."
+   9.4,
+   "Appendix A of the Zero Trust and Assessment book has the M twenty-two oh-nine mapping, and Chapter 10 of Devices and Endpoints says what an assessor reads."
   ],
   [
-   41.7,
+   43.188,
    13.675,
    "The evidence an I S S O keeps: each check's dated output, with its evidences list and the beta label; the coverage result and the changed default; and encryption findings confirmed in Intune's own report."
   ]
@@ -592,41 +592,41 @@
   ],
   [
    0.875,
-   7.787,
-   "You mapped Book 05's evidence questions to Intune A P I's, their least-privileged permissions and their stage."
+   7.625,
+   "You mapped the workbook's device evidence questions to Intune A P I's, their least-privileged permissions and their stage."
   ],
   [
-   8.662,
+   8.5,
    3.575,
    "You learned which three things the program relies on are beta-only."
   ],
   [
-   12.238,
+   12.075,
    5.125,
    "You read managed devices and compliance status, and saw why the checks join on device name."
   ],
   [
-   17.363,
+   17.2,
    3.65,
    "You kept remote actions and export jobs out of the collector."
   ],
   [
-   21.012,
+   20.85,
    5.763,
    "And you ran the five checks, and saw why Autopilot is a G C C and commercial check."
   ],
   [
-   26.775,
+   26.613,
    7.45,
    "That finishes the Microsoft Automation learning path: three modules, about four hours and twenty-five minutes with each lab."
   ],
   [
-   34.225,
+   34.062,
    5.263,
    "To put the checks on a schedule, go to the Intune track implementation guide's Gate 6."
   ],
   [
-   39.487,
+   39.325,
    5.213,
    "Modules on Azure Arc and Resource Manager, Teams, and monitoring are planned."
   ]

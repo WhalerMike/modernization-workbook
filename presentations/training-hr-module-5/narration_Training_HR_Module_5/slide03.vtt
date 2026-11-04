@@ -50,21 +50,21 @@ Pass bridges a new hire to the card,
 and this gate ends that bridge.
 
 11
-00:00:33.237 --> 00:00:37.880
+00:00:33.237 --> 00:00:37.795
 Some familiarity with P K I terms
 helps, like issuing authority,
 
 12
-00:00:37.880 --> 00:00:42.256
-revocation list and policy O
-I D; the Federal Modernization
+00:00:37.795 --> 00:00:43.054
+revocation list and policy O I D;
+Chapter 06 of the Federal Modernization
 
 13
-00:00:42.256 --> 00:00:46.274
-Workbook's Book 07's Chapter
-06 explains them for Entra.
+00:00:43.054 --> 00:00:47.524
+Workbook's PKI and Certificates
+book explains them for Entra.
 
 14
-00:00:46.274 --> 00:00:49.560
+00:00:47.524 --> 00:00:50.810
 Lab 1 needs Python and
 pytest, and no tenant.

@@ -6,7 +6,7 @@ Welcome to the Federal Modernization Workbook's developer workbook, Building Pri
 
 ## Slide 2 — Why the emergency accounts come first
 
-Why start here? Because the order matters. If approval for privileged roles is switched on before working emergency accounts exist, you can lock everyone out: every administrator role is eligible, approval is required, and nobody is left to approve. That's the documented lockout, and it's why Book 04 makes this step the one that can't move. The emergency accounts are also the program's main exception to zero standing access. The inventory in Chapter 1 lets them through only because they're listed as exceptions. This chapter makes sure that exception is real.
+Why start here? Because the order matters. If approval for privileged roles is switched on before working emergency accounts exist, you can lock everyone out: every administrator role is eligible, approval is required, and nobody is left to approve. That's the lockout Microsoft Learn documents, and it's why the workbook's privileged-access design makes this step the one that can't move. The emergency accounts are also the program's main exception to zero standing access. The inventory in Chapter 1 lets them through only because they're listed as exceptions. This chapter makes sure that exception is real.
 
 ## Slide 3 — Which cloud: Graph host, alert subscription, methods
 
@@ -14,7 +14,7 @@ Next, which cloud. The check reads Microsoft Graph, and the host depends on the 
 
 ## Slide 4 — Microsoft's standard for emergency access accounts
 
-Here's what Microsoft gives you. Learn's emergency access page is the standard: at least two cloud-only accounts on the onmicrosoft domain, strong phishing-resistant sign-in that's different from your everyday admins, Global Administrator held permanently, and exclusion from blocking policies through one dedicated group. Then you have to run them: watch their logs, and test them at least every ninety days. Book 04 adopts the same standard and adds two things of its own: dual custody, and a review after every use.
+Here's what Microsoft gives you. Learn's emergency access page is the standard: at least two cloud-only accounts on the onmicrosoft domain, strong phishing-resistant sign-in that's different from your everyday admins, Global Administrator held permanently, and exclusion from blocking policies through one dedicated group. Then you have to run them: watch their logs, and test them at least every ninety days. The workbook adopts Learn's standard and adds two things of its own: dual custody, and a review after every use.
 
 ## Slide 5 — Learn's sample alert, pinned and run offline
 
@@ -34,7 +34,7 @@ Here are the ten rules the check applies on every run. Most come straight from L
 
 ## Slide 9 — Every enforced policy, and where the sources differ
 
-One rule needs a closer look. Learn says to exclude the emergency accounts from policies that block or restrict sign-in. Deciding which policies do that is a judgment, and the code shouldn't make judgments, so it checks every enforced policy instead. The sources also disagree in two places, and the chapter records both so nobody quietly loosens the code later. Report-only policies are reported as information, not failures. And whether the accounts belong to individuals is something Graph can't see, so the program's position stays Book 04's.
+One rule needs a closer look. Learn says to exclude the emergency accounts from policies that block or restrict sign-in. Deciding which policies do that is a judgment, and the code shouldn't make judgments, so it checks every enforced policy instead. The sources also disagree in two places, and the chapter records both so nobody quietly loosens the code later. Report-only policies are reported as information, not failures. And whether the accounts belong to individuals is something Graph can't see, so the program keeps the workbook's design: the accounts aren't tied to one person.
 
 ## Slide 10 — The alert: three legs and a reviewed template
 

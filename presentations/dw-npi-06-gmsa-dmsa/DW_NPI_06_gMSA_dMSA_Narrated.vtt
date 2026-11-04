@@ -126,17 +126,17 @@ the old password stops working
 and the old account is disabled.
 
 27
-00:01:45.827 --> 00:01:49.265
-Book 2's matrix says which
-target each account gets.
+00:01:45.827 --> 00:01:50.302
+The workbook's migration path matrix
+says which target each account gets.
 
 28
-00:01:49.265 --> 00:01:53.740
+00:01:50.302 --> 00:01:54.778
 And because everything here is an Active
 Directory command against the domain,
 
 29
-00:01:53.740 --> 00:01:57.290
+00:01:54.778 --> 00:01:58.320
 the cloud choice doesn't change
 anything in this chapter.
 

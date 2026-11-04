@@ -8,8 +8,10 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
+review-status: approved
+reviewed-sha256: a6021b9f107ef57488d14ea1be89a0318a4a1ba17269aba2d87c501861adce6b
+last-reviewed: 2026-11-03
 ---
-
 # Attribute-Driven Migration from Active Directory to Microsoft Entra ID
 
 *In Active Directory an object's place in the tree decided what applied to it; in Entra ID what the object says about itself decides, so the migration is really the work of making those statements true and keeping them true.*

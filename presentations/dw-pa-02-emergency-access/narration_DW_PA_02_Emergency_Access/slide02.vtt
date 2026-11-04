@@ -24,33 +24,34 @@ approval is required, and
 nobody is left to approve.
 
 6
-00:00:15.825 --> 00:00:17.854
-That's the documented lockout,
+00:00:15.825 --> 00:00:20.032
+That's the lockout Microsoft Learn
+documents, and it's why the workbook's
 
 7
-00:00:17.854 --> 00:00:21.588
-and it's why Book 04 makes this
-step the one that can't move.
+00:00:20.032 --> 00:00:23.812
+privileged-access design makes
+this step the one that can't move.
 
 8
-00:00:21.588 --> 00:00:24.444
+00:00:23.812 --> 00:00:26.669
 The emergency accounts
 are also the program's
 
 9
-00:00:24.444 --> 00:00:26.925
+00:00:26.669 --> 00:00:29.150
 main exception to zero standing access.
 
 10
-00:00:26.925 --> 00:00:29.494
+00:00:29.150 --> 00:00:31.719
 The inventory in Chapter
 1 lets them through
 
 11
-00:00:29.494 --> 00:00:31.925
+00:00:31.719 --> 00:00:34.150
 only because they're listed as exceptions.
 
 12
-00:00:31.925 --> 00:00:34.560
+00:00:34.150 --> 00:00:36.790
 This chapter makes sure
 that exception is real.

@@ -8,8 +8,10 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
+review-status: approved
+reviewed-sha256: 068a698498f872e085c3e51af02f4f196a497b16311e884d149940d526b1a205
+last-reviewed: 2026-11-03
 ---
-
 # Ansible for Configuration Automation
 
 *Ansible can reach almost anything with an SSH port or an API, which is exactly why a program has to decide, setting by setting, where it is allowed to write.*

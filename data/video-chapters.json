@@ -5461,31 +5461,31 @@
    "What the linter found in Book 03's own table"
   ],
   [
-   403,
+   404,
    "The shadow diff, the pause manifest and the tests"
   ],
   [
-   438,
+   440,
    "Who owns the rules, and what each step may do"
   ],
   [
-   475,
+   476,
    "Lab 1: Learn's samples and the rules, offline"
   ],
   [
-   509,
+   512,
    "Lab 1: the pull request check, broken on purpose"
   ],
   [
-   542,
+   545,
    "Lab 2: a test tenant, Graph's evaluator, a drill"
   ],
   [
-   579,
+   582,
    "Dangers, and the guard for each"
   ],
   [
-   613,
+   616,
    "Done when: the chapter's checklist"
   ]
  ],
@@ -5515,7 +5515,7 @@
    "What it leaves to you: failure, repeats and secrets"
   ],
   [
-   241,
+   242,
    "The appid value, and the verdict"
   ],
   [
@@ -5528,38 +5528,38 @@
   ],
   [
    355,
-   "Five commands, and Book 03's leaver order"
+   "Five commands, and the workbook's leaver order"
   ],
   [
-   396,
+   399,
    "Authorization, built from the registry and checked"
   ],
   [
-   435,
+   438,
    "Where Learn's pages disagree, and what the code does"
   ],
   [
-   472,
+   475,
    "Who builds it, approves it, and what it needs"
   ],
   [
-   509,
+   512,
    "Lab 1: Learn's definition, then the program's"
   ],
   [
-   546,
+   549,
    "Lab 1: failures, the build and the read-backs"
   ],
   [
-   583,
+   586,
    "Lab 2: a test tenant, a real run, a failure drill"
   ],
   [
-   619,
+   622,
    "Dangers, and the guard for each"
   ],
   [
-   657,
+   660,
    "Done when: the chapter's checklist"
   ]
  ],
@@ -5573,67 +5573,67 @@
    "Analytics finds the landing zone; it doesn't decide"
   ],
   [
-   77,
+   79,
    "What Learn says about the tools sets the stakes"
   ],
   [
-   114,
+   116,
    "Which cloud: Graph host and Intune instance"
   ],
   [
-   153,
+   154,
    "Microsoft's settings catalog samples, pinned"
   ],
   [
-   192,
+   193,
    "What the samples get right, and the write gaps"
   ],
   [
-   227,
+   228,
    "The record gaps, and the verdict"
   ],
   [
-   265,
+   266,
    "Read: the VK-INT-07 gate and the move plan"
   ],
   [
-   303,
+   304,
    "Write: one reviewed file per policy"
   ],
   [
-   340,
+   341,
    "Lint: ten rules, four that carry the program"
   ],
   [
-   376,
+   378,
    "Diff, then create only what is missing"
   ],
   [
-   416,
+   417,
    "Verified calls, beta stage and open questions"
   ],
   [
-   453,
+   454,
    "Who builds it, who approves it, which roles"
   ],
   [
-   489,
+   491,
    "Lab 1: the gate, the sample twice, the plan"
   ],
   [
-   527,
+   528,
    "Lab 1: lint, dry run, apply, break it on purpose"
   ],
   [
-   562,
+   563,
    "Lab 2: a test tenant, a real import, Migrate"
   ],
   [
-   603,
+   604,
    "Dangers, and the guard for each"
   ],
   [
-   642,
+   643,
    "Done when: the chapter's checklist"
   ]
  ],
@@ -5869,67 +5869,67 @@
    "Why this gate comes first"
   ],
   [
-   64,
+   66,
    "Which cloud, for this read"
   ],
   [
-   102,
+   103,
    "What Microsoft Learn gives you"
   ],
   [
-   140,
+   142,
    "What Learn leaves to you, and what the kit adds"
   ],
   [
-   178,
+   180,
    "The register: one writer and a backstop per row"
   ],
   [
-   214,
+   216,
    "The register checks: WR-01 to WR-09"
   ],
   [
-   251,
+   252,
    "The scan: every protected write, tested"
   ],
   [
-   286,
+   287,
    "Two GET permissions, and what the scan can't see"
   ],
   [
-   321,
+   323,
    "The tests: nine for this chapter, 57 in all"
   ],
   [
-   359,
+   360,
    "The verified facts, and where Learn is silent"
   ],
   [
-   394,
+   396,
    "What the register and scan prove, and for whom"
   ],
   [
-   434,
+   436,
    "Who builds, who owns, who removes"
   ],
   [
-   466,
+   467,
    "Lab 1: what the scan reads, and October's scan"
   ],
   [
-   502,
+   503,
    "Lab 1: the findings, a saved query, the tests"
   ],
   [
-   542,
+   544,
    "Lab 2: real records in a test tenant"
   ],
   [
-   580,
+   582,
    "Dangers, and the guard for each"
   ],
   [
-   619,
+   620,
    "Done when: the writer register checklist"
   ]
  ],
@@ -6275,7 +6275,7 @@
    "The verified facts"
   ],
   [
-   359,
+   360,
    "Where Learn says nothing or differs"
   ],
   [
@@ -6287,7 +6287,7 @@
    "Who builds, who owns, who reports"
   ],
   [
-   471,
+   472,
    "Lab 1: the read and the measurement"
   ],
   [
@@ -6307,7 +6307,7 @@
    "Dangers, and the guard for each"
   ],
   [
-   634,
+   635,
    "Done when: the separation checklist"
   ]
  ],
@@ -6325,63 +6325,63 @@
    "Start from Book 19's pipeline, and what it leaves"
   ],
   [
-   112,
+   113,
    "The run: what it reads and writes"
   ],
   [
-   152,
+   154,
    "Six lifecycle drift classes"
   ],
   [
-   189,
+   192,
    "Six metrics, each against a threshold"
   ],
   [
-   228,
+   231,
    "The package, the chain and the period"
   ],
   [
-   268,
+   271,
    "The verified facts"
   ],
   [
-   310,
+   313,
    "What stays open, and what's design guidance"
   ],
   [
-   347,
+   349,
    "What the evidence proves, and for whom"
   ],
   [
-   391,
+   394,
    "Who runs the checks, who fixes, who signs"
   ],
   [
-   421,
+   423,
    "Lab 1: the chapter outputs, then the first run"
   ],
   [
-   459,
+   462,
    "Lab 1: reading the findings"
   ],
   [
-   497,
+   500,
    "Lab 1: package both runs, chained, and verify"
   ],
   [
-   530,
+   533,
    "Lab 1: the period, and the tests"
   ],
   [
-   575,
+   578,
    "Lab 2: a run against a test tenant"
   ],
   [
-   613,
+   619,
    "Dangers, and the guard for each"
   ],
   [
-   648,
+   654,
    "Done when: the Gate 7 checklist"
   ]
  ],
@@ -6403,11 +6403,11 @@
    "What the register has to hold"
   ],
   [
-   153,
+   154,
    "Two directory reads, nine Graph, one Resource Manager"
   ],
   [
-   191,
+   193,
    "Risk, candidate target and stale lead: the program's"
   ],
   [
@@ -6431,19 +6431,19 @@
    "The register: one row, the same columns, every type"
   ],
   [
-   422,
+   423,
    "The findings, the manifest and the tests"
   ],
   [
-   461,
+   462,
    "Who builds it, who runs it, what it may read"
   ],
   [
-   500,
+   501,
    "Lab 1: Learn's samples, the permissions, the run"
   ],
   [
-   538,
+   539,
    "Lab 1: the eight HIGH rows, the guards, the hand-off"
   ],
   [
@@ -6451,11 +6451,11 @@
    "Lab 2: a test tenant and a test domain"
   ],
   [
-   612,
+   613,
    "Dangers, and the guard for each"
   ],
   [
-   649,
+   650,
    "Done when: the chapter's checklist"
   ]
  ],
@@ -6481,51 +6481,51 @@
    "The orphan rule: disable first, never delete"
   ],
   [
-   189,
+   194,
    "Learn's Graph samples, pinned and sent to a fake"
   ],
   [
-   227,
+   232,
    "What the query counts wrong"
   ],
   [
-   261,
+   266,
    "What the samples leave out entirely, and the verdict"
   ],
   [
-   298,
+   303,
    "The check: nine rules, NPI-OWN-01 to NPI-OWN-09"
   ],
   [
-   336,
+   341,
    "The orphan rule as a plan nothing in it writes"
   ],
   [
-   374,
+   380,
    "The separate write path, and why it's a person"
   ],
   [
-   410,
+   415,
    "Who keeps each input, and who decides"
   ],
   [
-   449,
+   454,
    "Lab 1: samples, permissions, the check and the plan"
   ],
   [
-   488,
+   493,
    "Lab 1: the findings, the plan, and a refused hash"
   ],
   [
-   526,
+   532,
    "Lab 2: two test orphans, confirmed and disabled"
   ],
   [
-   563,
+   568,
    "Dangers, and the guard for each"
   ],
   [
-   598,
+   604,
    "Done when: the chapter's checklist"
   ]
  ],
@@ -6703,7 +6703,7 @@
    "What the samples accept in silence"
   ],
   [
-   240,
+   241,
    "What the samples leave to you"
   ],
   [
@@ -6715,7 +6715,7 @@
    "The checks: nine rules, NPI-WIF-01 to NPI-WIF-09"
   ],
   [
-   355,
+   356,
    "What the workload presents, and the exchange test"
   ],
   [
@@ -6723,7 +6723,7 @@
    "The plan: actions, and the evidence for a clean run"
   ],
   [
-   437,
+   438,
    "The separate write path: an approved hash, one at a time"
   ],
   [
@@ -6739,7 +6739,7 @@
    "Lab 1: findings, conversions, dry run and apply"
   ],
   [
-   594,
+   595,
    "Lab 2: a test tenant, a real token, a real disable"
   ],
   [
@@ -6765,63 +6765,63 @@
    "What gMSAs and dMSAs are, and where the code runs"
   ],
   [
-   120,
+   122,
    "Learn's four procedures, pinned and run"
   ],
   [
-   158,
+   159,
    "What the procedures leave to you: the key and the steps"
   ],
   [
-   193,
+   194,
    "What they leave to you: limits, waits and deletes"
   ],
   [
-   230,
+   231,
    "The code and its four reviewed inputs"
   ],
   [
-   265,
+   266,
    "The check: nine rules, NPI-KRB-01 to NPI-KRB-09"
   ],
   [
-   306,
+   307,
    "The plan: one action per account"
   ],
   [
-   343,
+   344,
    "The island list and the reconciliation"
   ],
   [
-   381,
+   382,
    "The separate write path, and its refusals"
   ],
   [
-   417,
+   418,
    "Who builds, runs and reviews it, and with what rights"
   ],
   [
-   456,
+   457,
    "Lab 1: Learn's procedures, then the check"
   ],
   [
-   491,
+   492,
    "Lab 1: reading the findings and the plan"
   ],
   [
-   528,
+   529,
    "Lab 1: the island list, a dry run and a refusal"
   ],
   [
-   565,
+   566,
    "Lab 2: a test domain, a real migration"
   ],
   [
-   603,
+   604,
    "Dangers, and the guard for each"
   ],
   [
-   640,
+   641,
    "Done when: the chapter's checklist"
   ]
  ],
@@ -6913,63 +6913,63 @@
    "The program's two policies and its two decisions"
   ],
   [
-   120,
+   121,
    "Learn's sample JSON, pinned and checked"
   ],
   [
-   157,
+   158,
    "What the sample leaves to you: values and targets"
   ],
   [
-   196,
+   197,
    "What it leaves to you: risk, evidence, scope, rings"
   ],
   [
-   229,
+   231,
    "The code and its reviewed files, one policy per ring"
   ],
   [
-   265,
+   267,
    "The pre-merge and tenant check: NPI-WCA-01 to -09"
   ],
   [
-   305,
+   307,
    "The plan, the dry run and the writes"
   ],
   [
-   342,
+   345,
    "Enforcement, ring by ring: five conditions"
   ],
   [
-   379,
+   382,
    "The sign-in reader, its summary and the block alert"
   ],
   [
-   416,
+   418,
    "Who owns the policies, and what each task may hold"
   ],
   [
-   456,
+   458,
    "Lab 1: Learn's sample, then the pre-merge check"
   ],
   [
-   491,
+   494,
    "Lab 1: the plan and the sign-in summary"
   ],
   [
-   530,
+   532,
    "Lab 1: apply twice, enforce Ring 1, read the alert"
   ],
   [
-   568,
+   570,
    "Lab 2: a test tenant, report-only, then one ring"
   ],
   [
-   605,
+   607,
    "Dangers, and the guard for each"
   ],
   [
-   642,
+   644,
    "Done when: the chapter's checklist"
   ]
  ],
@@ -6991,59 +6991,59 @@
    "The program's rules, N6.1 to N6.7"
   ],
   [
-   166,
+   167,
    "Learn's Agent ID samples, pinned and sent to a fake"
   ],
   [
-   206,
+   207,
    "What the samples leave out: reads and sponsors"
   ],
   [
-   241,
+   242,
    "What they leave out: secrets, inheritance, CA"
   ],
   [
-   280,
+   281,
    "The code, its inputs and what it reads"
   ],
   [
-   319,
+   320,
    "The checks, part 1: creation, handshake, sponsors"
   ],
   [
-   356,
+   358,
    "The checks, part 2: privilege, sponsors, CA, drift"
   ],
   [
-   394,
+   395,
    "The agent CA plan and the separate write path"
   ],
   [
-   430,
+   432,
    "Who keeps the records, and what each task may hold"
   ],
   [
-   469,
+   470,
    "Lab 1: Learn's samples, D-N6, then the check"
   ],
   [
-   507,
+   508,
    "Lab 1: reading the findings and the sponsor fields"
   ],
   [
-   546,
+   547,
    "Lab 1: the GCC High fallback, a dry run, a refusal"
   ],
   [
-   585,
+   586,
    "Lab 2: a test tenant, one governed agent"
   ],
   [
-   624,
+   625,
    "Dangers, and the guard for each"
   ],
   [
-   662,
+   663,
    "Done when: the chapter's checklist"
   ]
  ],
@@ -7057,63 +7057,63 @@
    "What the evidence has to show"
   ],
   [
-   85,
+   87,
    "Learn's facts, the cloud and the other chapters"
   ],
   [
-   125,
+   127,
    "Microsoft's Sentinel rule, pinned and run offline"
   ],
   [
-   167,
+   169,
    "What the rule misses: initiators, keys, targets"
   ],
   [
-   203,
+   205,
    "What it misses: the pipeline, names and scope"
   ],
   [
-   239,
+   241,
    "The run, the approved baseline and the reads"
   ],
   [
-   279,
+   281,
    "The drift rules: NPI-DRF-01 to NPI-DRF-09"
   ],
   [
-   318,
+   320,
    "The review cycle and the annual vintage comparison"
   ],
   [
-   357,
+   359,
    "The package, the chain and what the ISSO receives"
   ],
   [
-   396,
+   398,
    "Who runs it, who signs it, and what it may read"
   ],
   [
-   432,
+   434,
    "Lab 1: the rule, then two days of runs"
   ],
   [
-   469,
+   471,
    "Lab 1: reading the drift and the vintage"
   ],
   [
-   508,
+   510,
    "Lab 1: package, verify, the period, then break it"
   ],
   [
-   549,
+   551,
    "Lab 2: a test tenant, three changes to see"
   ],
   [
-   585,
+   587,
    "Dangers, and the guard for each"
   ],
   [
-   623,
+   626,
    "Done when: the checklist, and the workbook's end"
   ]
  ],
@@ -7139,55 +7139,55 @@
    "The tier comes from the program, not Microsoft"
   ],
   [
-   192,
+   193,
    "Learn's samples, pinned and run against stand-ins"
   ],
   [
-   234,
+   235,
    "What the samples miss: eligibility, paging, groups"
   ],
   [
-   269,
+   270,
    "What the samples miss: names, clouds, Azure"
   ],
   [
-   306,
+   307,
    "The reader and its four rules"
   ],
   [
-   341,
+   342,
    "The rows: one per assignment, counted once"
   ],
   [
-   378,
+   379,
    "The findings: nine rules, PA-INV-01 to PA-INV-09"
   ],
   [
-   418,
+   420,
    "The manifest, the tests, and one known gap"
   ],
   [
-   454,
+   456,
    "Who builds it, who reviews it, what it may read"
   ],
   [
-   492,
+   493,
    "Lab 1: run Learn's samples and the inventory offline"
   ],
   [
-   529,
+   530,
    "Lab 1: reading the findings and the refusals"
   ],
   [
-   567,
+   568,
    "Lab 2: a test tenant, read-only, cross-checked"
   ],
   [
-   604,
+   605,
    "Dangers, and the guard for each"
   ],
   [
-   640,
+   641,
    "Done when: the chapter's checklist"
   ]
  ],
@@ -7201,59 +7201,59 @@
    "Why the emergency accounts come first"
   ],
   [
-   77,
+   79,
    "Which cloud: Graph host, alert subscription, methods"
   ],
   [
-   115,
+   117,
    "Microsoft's standard for emergency access accounts"
   ],
   [
-   151,
+   153,
    "Learn's sample alert, pinned and run offline"
   ],
   [
-   187,
+   189,
    "What the sample misses, and what the code adds"
   ],
   [
-   222,
+   224,
    "The code: four commands and two input files"
   ],
   [
-   259,
+   261,
    "The check: ten rules, PA-EA-01 to PA-EA-10"
   ],
   [
-   296,
+   298,
    "Every enforced policy, and where the sources differ"
   ],
   [
-   334,
+   338,
    "The alert: three legs and a reviewed template"
   ],
   [
-   375,
+   378,
    "Who builds it, who runs it, what it may read"
   ],
   [
-   409,
+   413,
    "Lab 1: run Learn's queries and the check offline"
   ],
   [
-   444,
+   447,
    "Lab 1: reading the findings and the guards"
   ],
   [
-   482,
+   486,
    "Lab 2: a test tenant, a real query, a drill"
   ],
   [
-   517,
+   521,
    "Dangers, and the guard for each"
   ],
   [
-   554,
+   558,
    "Done when: the chapter's checklist"
   ]
  ],
@@ -7264,70 +7264,70 @@
   ],
   [
    40,
-   "The first writes to a tenant: what Book 04 asks"
+   "The first writes to a tenant: what the workbook asks"
   ],
   [
-   78,
+   79,
    "Learn sets the order: the gate before PIM selects it"
   ],
   [
-   114,
+   115,
    "Which cloud: Graph v1.0 on the worldwide host"
   ],
   [
-   151,
+   152,
    "Microsoft's template for administrators, pinned"
   ],
   [
-   192,
+   193,
    "What the template misses: roles, strength, IDs"
   ],
   [
-   227,
+   228,
    "What the template misses: exclusion, state, gate"
   ],
   [
-   261,
+   263,
    "The code and the policy files"
   ],
   [
-   301,
+   303,
    "The pre-merge check: PA-CA-01 to PA-CA-09"
   ],
   [
-   342,
+   343,
    "Report-only policies and the emergency exclusion"
   ],
   [
-   381,
+   383,
    "The plan, the dry run and the writes"
   ],
   [
-   420,
+   421,
    "Where Learn's pages differ, recorded"
   ],
   [
-   457,
+   458,
    "Who builds it, who reviews it, what it may do"
   ],
   [
-   493,
+   494,
    "Lab 1: check the template and the files offline"
   ],
   [
-   531,
+   532,
    "Lab 1: plan, dry run, and three applies to the fake"
   ],
   [
-   568,
+   569,
    "Lab 2: a test tenant, report-only, then the gate"
   ],
   [
-   605,
+   607,
    "Dangers, and the guard for each"
   ],
   [
-   640,
+   642,
    "Done when: the chapter's checklist"
   ]
  ],
@@ -7349,59 +7349,59 @@
    "Settings are per role, and Graph calls them rules"
   ],
   [
-   154,
+   156,
    "The authentication context: its policy, then PIM"
   ],
   [
-   194,
+   196,
    "Learn's two samples, pinned and sent to a fake"
   ],
   [
-   231,
+   233,
    "What the rules sample leaves to you"
   ],
   [
-   267,
+   268,
    "What the tutorial leaves to you, and the verdict"
   ],
   [
-   301,
+   302,
    "The code: one reviewed file per role, inside bounds"
   ],
   [
-   339,
+   341,
    "The checks: PA-PIM-01 to PA-PIM-09"
   ],
   [
-   375,
+   378,
    "The calls, and a permission for each task"
   ],
   [
-   412,
+   414,
    "The diff, the plan, the read-back, the conversion"
   ],
   [
-   451,
+   453,
    "Who builds it, who owns it, who reviews it"
   ],
   [
-   487,
+   490,
    "Lab 1: Learn's samples, permissions, a dry run"
   ],
   [
-   524,
+   526,
    "Lab 1: reading the diff, the block and the apply"
   ],
   [
-   561,
+   563,
    "Lab 2: one role in a test tenant, then back out"
   ],
   [
-   598,
+   601,
    "Dangers, and the guard for each"
   ],
   [
-   633,
+   636,
    "Done when: the chapter's checklist"
   ]
  ],
@@ -7423,59 +7423,59 @@
    "Two independent features meet in a PRV group"
   ],
   [
-   145,
+   147,
    "Where a group's PIM state lives in Graph"
   ],
   [
-   182,
+   183,
    "Microsoft's samples, pinned and sent to a fake"
   ],
   [
-   219,
+   220,
    "What the samples leave to you"
   ],
   [
-   257,
+   258,
    "The code, the reviewed file and the tier policy"
   ],
   [
-   294,
+   295,
    "Activation limits and the authentication context"
   ],
   [
-   330,
+   332,
    "The findings: PA-PG-01 to PA-PG-09"
   ],
   [
-   369,
+   370,
    "The plan, the dry run, -Apply and seven guards"
   ],
   [
-   406,
+   407,
    "Where Learn's pages differ, recorded on purpose"
   ],
   [
-   443,
+   444,
    "Who builds it, and the least privilege per call"
   ],
   [
-   481,
+   482,
    "Lab 1: Microsoft's samples, then a dry run"
   ],
   [
-   517,
+   519,
    "Lab 1: findings, the diff, a guard and -Apply"
   ],
   [
-   555,
+   557,
    "Lab 2: a test tenant, lab groups, two apps"
   ],
   [
-   592,
+   594,
    "Dangers, and the guard for each"
   ],
   [
-   629,
+   630,
    "Done when: the chapter's checklist"
   ]
  ],
@@ -7525,15 +7525,15 @@
    "The read and the plan, in the order it must run"
   ],
   [
-   427,
+   428,
    "Findings, and an apply that is off by default"
   ],
   [
-   469,
+   470,
    "Who owns it, who reviews it, what it runs as"
   ],
   [
-   508,
+   509,
    "Lab 1: replay the examples and plan a dry run"
   ],
   [
@@ -7549,7 +7549,7 @@
    "Dangers, and the guard for each"
   ],
   [
-   664,
+   665,
    "Done when: the chapter's checklist"
   ]
  ],
@@ -7563,67 +7563,67 @@
    "Why reviews, and why as code"
   ],
   [
-   82,
+   81,
    "What it costs, and which cloud it runs in"
   ],
   [
-   123,
+   122,
    "Learn's tutorial, pinned and run against a fake"
   ],
   [
-   162,
+   161,
    "What the tutorial leaves to you: the review itself"
   ],
   [
-   202,
+   200,
    "What it leaves to you: evidence, targets, permission"
   ],
   [
-   237,
+   236,
    "The reviewed file: seven series in the fixture"
   ],
   [
-   277,
+   275,
    "The bodies: built only from Learn's documented shapes"
   ],
   [
-   318,
+   316,
    "The checks: PA-AR-01 to PA-AR-14"
   ],
   [
-   356,
+   354,
    "PA-AR-06: the one guard that changes the setting"
   ],
   [
-   395,
+   393,
    "The dry run, the diff, and -Apply"
   ],
   [
-   431,
+   429,
    "The evidence: decisions read back for the ISSO"
   ],
   [
-   471,
+   469,
    "Who owns the reviews, and least privilege per call"
   ],
   [
-   510,
+   508,
    "Lab 1: run the tutorial and the dry run offline"
   ],
   [
-   550,
+   548,
    "Lab 1: Learn's body, the apply, the evidence"
   ],
   [
-   585,
+   583,
    "Lab 2: one real review, closed and read back"
   ],
   [
-   623,
+   621,
    "Dangers, and the guard for each"
   ],
   [
-   660,
+   658,
    "Done when: the chapter's checklist"
   ]
  ],
@@ -7637,67 +7637,67 @@
    "What the evidence has to show"
   ],
   [
-   79,
+   81,
    "Which cloud: the audit read's Graph host"
   ],
   [
-   117,
+   118,
    "Learn's PIM audit page and its three queries"
   ],
   [
-   156,
+   157,
    "What the queries find, and what they mix up"
   ],
   [
-   198,
+   199,
    "What the queries leave out entirely"
   ],
   [
-   237,
+   239,
    "The run: state, events, and one folder per run"
   ],
   [
-   277,
+   278,
    "The audit read, and what it flags"
   ],
   [
-   313,
+   315,
    "Where Learn's pages differ, and why it fails closed"
   ],
   [
-   350,
+   352,
    "Compare, by fingerprint; Tier 0 drift is an incident"
   ],
   [
-   390,
+   391,
    "No names in the tracker; packages in a hash chain"
   ],
   [
-   430,
+   431,
    "The period the ISSO receives, and the schedule"
   ],
   [
-   470,
+   472,
    "Who runs it, who receives it, what it may read"
   ],
   [
-   506,
+   507,
    "Lab 1: Learn's queries and two days of runs"
   ],
   [
-   544,
+   545,
    "Lab 1: compare, package, the period, a break"
   ],
   [
-   582,
+   583,
    "Lab 2: a test tenant, one activation, read twice"
   ],
   [
-   620,
+   621,
    "Dangers, and the guard for each"
   ],
   [
-   657,
+   658,
    "Done when: the chapter's checklist"
   ]
  ],
@@ -7707,67 +7707,67 @@
    "Chapter 01: The Loop and the Typed Task"
   ],
   [
-   37,
+   38,
    "Why the record comes first"
   ],
   [
-   72,
-   "Book 13's loop and where the kit sits"
+   73,
+   "The workbook's loop and where the kit sits"
   ],
   [
-   112,
+   113,
    "The data contract: what every payload carries"
   ],
   [
-   146,
+   150,
    "What exists: the contract, enforced in one place"
   ],
   [
-   188,
+   191,
    "What the chapter adds: finding_contract.py"
   ],
   [
-   222,
+   225,
    "The empty intended state that looks present"
   ],
   [
-   257,
+   260,
    "The tests: 22 for the contract, 107 in all"
   ],
   [
-   289,
+   292,
    "The verified facts the code depends on"
   ],
   [
-   327,
+   330,
    "What couldn't be verified"
   ],
   [
-   362,
+   365,
    "What the typed finding proves, and for whom"
   ],
   [
-   401,
+   404,
    "Who builds it and who approves it"
   ],
   [
-   433,
+   436,
    "Lab 1: five sample payloads, checked"
   ],
   [
-   469,
+   473,
    "Lab 1: the script's tests and the drift payloads"
   ],
   [
-   507,
+   510,
    "Lab 2: post one finding to a developer instance"
   ],
   [
-   541,
+   544,
    "Dangers, and the guard for each"
   ],
   [
-   575,
+   579,
    "Done when: the chapter's checklist"
   ]
  ],
@@ -7879,27 +7879,27 @@
    "What the scopes prove, and for whom"
   ],
   [
-   369,
+   368,
    "Who owns the SailPoint side"
   ],
   [
-   403,
+   402,
    "Lab 1: what the drift client needs from ISC"
   ],
   [
-   436,
+   435,
    "Lab 1: two jobs, two clients; the Graph app"
   ],
   [
-   468,
+   467,
    "Lab 2: two API clients in a sandbox tenant"
   ],
   [
-   504,
+   503,
    "Dangers, and the guard for each"
   ],
   [
-   541,
+   540,
    "Done when: the SailPoint and Graph checklist"
   ]
  ],
@@ -7991,19 +7991,19 @@
    "The guard: never verify against nothing"
   ],
   [
-   179,
+   178,
    "The offline mode, and six waiting records"
   ],
   [
-   216,
+   215,
    "The tests: six offline, nine re-read, six rule"
   ],
   [
-   254,
+   253,
    "The verified facts behind every re-read"
   ],
   [
-   291,
+   290,
    "What couldn't be verified about the rule"
   ],
   [
@@ -8011,27 +8011,27 @@
    "What the re-read proves, and for whom"
   ],
   [
-   357,
+   366,
    "Who owns the rule, the client and the evidence"
   ],
   [
-   392,
+   400,
    "Lab 1: six waiting findings at noon"
   ],
   [
-   426,
+   435,
    "Lab 1: a day later, and the rule's own tests"
   ],
   [
-   458,
+   466,
    "Lab 2: close one finding with evidence"
   ],
   [
-   494,
+   503,
    "Dangers, and the guard for each"
   ],
   [
-   530,
+   539,
    "Done when: the re-read checklist"
   ]
  ],
@@ -8041,35 +8041,35 @@
    "Chapter 06: Drift Reconciliation"
   ],
   [
-   36,
+   37,
    "Why measure the state, not just the events"
   ],
   [
-   71,
+   72,
    "identity_drift.py: inputs, classes, IDs"
   ],
   [
-   110,
+   112,
    "drift_compare.py: new, persisting, resolved"
   ],
   [
-   147,
+   149,
    "Day two of the fictional estate"
   ],
   [
-   182,
+   183,
    "The tests: four new, thirteen unchanged"
   ],
   [
-   217,
+   219,
    "The verified facts behind the join"
   ],
   [
-   255,
+   256,
    "What couldn't be verified about the join"
   ],
   [
-   288,
+   289,
    "What the reconciliation proves, and for whom"
   ],
   [
@@ -8077,7 +8077,7 @@
    "Who schedules it and who reads it"
   ],
   [
-   362,
+   361,
    "Lab 1: day one and day two"
   ],
   [
@@ -8085,15 +8085,15 @@
    "Lab 1: comparing the days, and the refusal"
   ],
   [
-   443,
+   442,
    "Lab 2: a live run on synthetic data"
   ],
   [
-   479,
+   478,
    "Dangers, and the guard for each"
   ],
   [
-   516,
+   515,
    "Done when: the reconciliation checklist"
   ]
  ],
@@ -8103,59 +8103,59 @@
    "Chapter 07: Evidence Records for Book 13 and the ISSO"
   ],
   [
-   37,
+   39,
    "Why the ISSO needs records, not the tracker"
   ],
   [
-   71,
-   "One record per finding, in Book 13's shape"
+   73,
+   "One record per finding, in the workbook's shape"
   ],
   [
-   109,
+   112,
    "Four checks per record, each reported by name"
   ],
   [
-   144,
+   147,
    "The package: a hash per file and a chain"
   ],
   [
-   179,
+   181,
    "The verifier, the live read, five records"
   ],
   [
-   215,
+   217,
    "The tests: eight, from fields to chains"
   ],
   [
-   252,
+   255,
    "The verified facts, and what isn't verified"
   ],
   [
-   289,
+   292,
    "What the package proves, for the ISSO"
   ],
   [
-   327,
+   330,
    "Who builds the pipeline and who reads it"
   ],
   [
-   361,
+   363,
    "Lab 1: exporting October's closed findings"
   ],
   [
-   398,
+   400,
    "Lab 1: verify, continue the chain, tamper"
   ],
   [
-   434,
+   437,
    "Lab 2: a live export from a developer instance"
   ],
   [
-   468,
+   471,
    "Dangers, and the guard for each"
   ],
   [
-   505,
+   507,
    "Done when: the evidence checklist"
   ]
  ],
@@ -8165,63 +8165,63 @@
    "Chapter 08: One Writer per Attribute"
   ],
   [
-   37,
+   39,
    "Why two writers is drift you've scheduled"
   ],
   [
-   76,
+   79,
    "Why only this Pass 2 item is built"
   ],
   [
-   111,
+   114,
    "Export one: the inbound job's schema"
   ],
   [
-   144,
+   147,
    "Export two: SailPoint's provisioning policies"
   ],
   [
-   178,
+   180,
    "Three severities, and aliases a reviewer checks"
   ],
   [
-   214,
+   216,
    "The tests: six, from flow types to the CLI"
   ],
   [
-   247,
+   249,
    "The verified facts behind the two exports"
   ],
   [
-   286,
+   289,
    "What couldn't be verified about the writers"
   ],
   [
-   323,
+   325,
    "What the writer check proves, and for whom"
   ],
   [
-   357,
+   360,
    "Who owns each writer, and who decides"
   ],
   [
-   396,
+   398,
    "Lab 1: department has two writers"
   ],
   [
-   428,
+   430,
    "Lab 1: the alias, the guard, the reads"
   ],
   [
-   461,
+   463,
    "Lab 2: your own exports, reviewed"
   ],
   [
-   496,
+   498,
    "Dangers, and the guard for each"
   ],
   [
-   532,
+   534,
    "Done when: the writer checklist"
   ]
  ],
@@ -10679,51 +10679,51 @@
    "What you'll be able to do in Module 1"
   ],
   [
-   152,
+   153,
    "The lifecycle rows: one writer and a backstop each"
   ],
   [
-   207,
+   208,
    "Four named writers, and why a writer is access"
   ],
   [
-   261,
+   262,
    "The register check: WR-01 to WR-09"
   ],
   [
-   316,
+   317,
    "The audit-log scan: every protected write, judged"
   ],
   [
-   367,
+   369,
    "What the scan can't see, and what it can't confirm"
   ],
   [
-   421,
+   422,
    "Try it: what the scan reads, and the register check"
   ],
   [
-   473,
+   474,
    "Try it: scan a month of audit records"
   ],
   [
-   521,
+   522,
    "Try it: read the findings and a saved query"
   ],
   [
-   579,
+   580,
    "Lab 2: scan your own test tenant"
   ],
   [
-   635,
+   636,
    "The federal requirement and evidence for Gate 1"
   ],
   [
-   684,
+   685,
    "Check yourself: two questions on writers"
   ],
   [
-   731,
+   733,
    "Summary, and next: Module 2, contractor sources"
   ]
  ],
@@ -10745,47 +10745,47 @@
    "The guide's order: measure, settle, then the leaver"
   ],
   [
-   205,
+   206,
    "The earliest end: the first condition that applies"
   ],
   [
-   260,
+   261,
    "The source checks and the reconciliation's rules"
   ],
   [
-   317,
+   318,
    "The middleware sends it; the sponsor review ends it"
   ],
   [
-   371,
+   373,
    "Try it: compute the earliest ends"
   ],
   [
-   426,
+   428,
    "Try it: read the decisions and build the requests"
   ],
   [
-   480,
+   482,
    "Try it: reconcile the register, cards and directory"
   ],
   [
-   535,
+   537,
    "Try it: write the sponsor review settings"
   ],
   [
-   590,
+   592,
    "Lab 2: send two test contractors in a test tenant"
   ],
   [
-   644,
+   646,
    "The federal requirement and evidence for Gate 2"
   ],
   [
-   700,
+   702,
    "Check yourself: two questions on contractors"
   ],
   [
-   749,
+   751,
    "Summary, and next: Module 3, joiners on day one"
   ]
  ],
@@ -10807,27 +10807,27 @@
    "The joiner in the guide: three things to notice"
   ],
   [
-   208,
+   209,
    "Six workflow files, all scoped on codes"
   ],
   [
-   264,
+   265,
    "The lint: JW-01 to JW-15, before the tenant"
   ],
   [
-   325,
+   326,
    "The plan, and what makes a hire ready"
   ],
   [
-   375,
+   376,
    "Try it: the reads, and the lint on the program's files"
   ],
   [
-   423,
+   424,
    "Try it: lint three broken workflows"
   ],
   [
-   476,
+   477,
    "Try it: plan the files against the tenant's export"
   ],
   [
@@ -10835,19 +10835,19 @@
    "Try it: measure day one"
   ],
   [
-   563,
+   564,
    "Lab 2: plan and send one change in a test tenant"
   ],
   [
-   619,
+   620,
    "The federal requirement and evidence for Gate 3"
   ],
   [
-   677,
+   678,
    "Check yourself: two questions on joiners"
   ],
   [
-   724,
+   725,
    "Summary, and next: Module 4, access and movers"
   ]
  ],
@@ -10869,35 +10869,35 @@
    "Access from attributes: the guide's rules for Gate 4"
   ],
   [
-   207,
+   208,
    "The program's three policy files"
   ],
   [
-   263,
+   264,
    "The lint: AA-01 to AA-09, over a population"
   ],
   [
-   317,
+   318,
    "The mover's residual review: what a rule can't see"
   ],
   [
-   373,
+   374,
    "Try it: the reads, and the lint on the program's policies"
   ],
   [
-   419,
+   420,
    "Try it: lint broken policies and scan for memberOf"
   ],
   [
-   474,
+   475,
    "Try it: list a mover's residual access"
   ],
   [
-   528,
+   529,
    "Lab 2: one automatic policy in a test tenant"
   ],
   [
-   587,
+   588,
    "GCC High's gap, and privileged access out of rules"
   ],
   [
@@ -10905,11 +10905,11 @@
    "The federal requirement and evidence for Gate 4"
   ],
   [
-   700,
+   701,
    "Check yourself: two questions on access and movers"
   ],
   [
-   749,
+   750,
    "Summary, and next: Module 5, certificate checks"
   ]
  ],
@@ -10927,51 +10927,51 @@
    "What you'll be able to do in Module 5"
   ],
   [
-   150,
+   152,
    "Credentials follow HR events"
   ],
   [
-   206,
+   209,
    "The CRL limits the check holds each cloud to"
   ],
   [
-   258,
+   261,
    "The measurement: download each CRL once"
   ],
   [
-   303,
+   306,
    "The check, part 1: the trust store and each CRL"
   ],
   [
-   359,
+   361,
    "The check, part 2: the method and the policy"
   ],
   [
-   416,
+   419,
    "Try it: list the reads and measure the CRLs"
   ],
   [
-   465,
+   468,
    "Try it: check the fictional tenant for GCC"
   ],
   [
-   519,
+   521,
    "Try it: the same tenant, checked for GCC High"
   ],
   [
-   567,
+   569,
    "Lab 2: revoke a test card and watch Entra refuse it"
   ],
   [
-   616,
+   619,
    "The federal requirement, and the evidence to keep"
   ],
   [
-   676,
+   679,
    "Check yourself: two questions on card sign-in"
   ],
   [
-   721,
+   723,
    "Summary, and next: Module 6, separation timing"
   ]
  ],
@@ -10993,47 +10993,47 @@
    "The leaver sequence: block first, dispose last"
   ],
   [
-   195,
+   198,
    "The schedule, late entries and the catch-up window"
   ],
   [
-   246,
+   249,
    "The two intervals, and the records each reads"
   ],
   [
-   303,
+   306,
    "The rules: ST-01 to ST-09"
   ],
   [
-   355,
+   359,
    "Which thresholds are samples the agency replaces"
   ],
   [
-   403,
+   406,
    "Try it: measure the fictional leavers"
   ],
   [
-   461,
+   465,
    "Try it: read the twelve findings as stories"
   ],
   [
-   516,
+   519,
    "Try it: the intervals file Module 7 reads"
   ],
   [
-   565,
+   569,
    "Lab 2: one scheduled and one on-demand test leaver"
   ],
   [
-   618,
+   622,
    "The federal requirement, and the evidence to keep"
   ],
   [
-   676,
+   680,
    "Check yourself: two questions on separations"
   ],
   [
-   725,
+   729,
    "Summary, and next: Module 7, drift and evidence"
   ]
  ],
@@ -11051,55 +11051,55 @@
    "What you'll be able to do in Module 7"
   ],
   [
-   140,
+   142,
    "What the evidence has to show: the guide's Step 7"
   ],
   [
-   196,
+   200,
    "The drift classes: LD-01 to LD-08"
   ],
   [
-   253,
+   257,
    "The six metrics, and where each value comes from"
   ],
   [
-   313,
+   317,
    "The run: one read-only folder per run"
   ],
   [
-   364,
+   368,
    "The package, the chain and the period"
   ],
   [
-   418,
+   422,
    "Try it: rebuild the inputs and write the first run"
   ],
   [
-   475,
+   479,
    "Try it: read the run's findings"
   ],
   [
-   526,
+   530,
    "Try it: package two runs, chained, and verify"
   ],
   [
-   575,
+   579,
    "Try it: assemble the period, and read why it fails"
   ],
   [
-   629,
+   633,
    "Lab 2: schedule the run in a test tenant"
   ],
   [
-   678,
+   684,
    "The federal requirement, and the evidence to keep"
   ],
   [
-   731,
+   737,
    "Check yourself: two questions on drift and evidence"
   ],
   [
-   780,
+   785,
    "Summary: you've finished the learning path"
   ]
  ],
@@ -11125,47 +11125,47 @@
    "What changes in a government cloud beyond hosts"
   ],
   [
-   247,
+   249,
    "Sign in as a workload, without a secret"
   ],
   [
-   306,
+   308,
    "Least-privileged permissions, and what they hide"
   ],
   [
-   367,
+   369,
    "Use the current tools; the old modules are retired"
   ],
   [
-   429,
+   431,
    "Four request patterns every Graph script needs"
   ],
   [
-   488,
+   490,
    "Throttling limits, and what changes a request's cost"
   ],
   [
-   542,
+   544,
    "Try it: the client refuses the wrong cloud and call"
   ],
   [
-   604,
+   606,
    "Lab 2: one permission, in your own test tenant"
   ],
   [
-   654,
+   656,
    "Where agencies are: GCC, GCC High and DoD"
   ],
   [
-   716,
+   718,
    "The federal requirement, and the evidence to keep"
   ],
   [
-   774,
+   777,
    "Check yourself: two questions on foundations"
   ],
   [
-   817,
+   820,
    "Summary, and next: Module 2, Entra ID"
   ]
  ],
@@ -11175,63 +11175,63 @@
    "Module 2: Microsoft Entra ID through Graph"
   ],
   [
-   52,
+   53,
    "Why script the evidence your ISSO asks for"
   ],
   [
-   93,
+   94,
    "What you'll be able to do in Module 2"
   ],
   [
-   139,
+   140,
    "Evidence questions mapped to Graph APIs"
   ],
   [
-   194,
+   196,
    "Sign-in activity and membership: the traps"
   ],
   [
-   246,
+   247,
    "Conditional Access: read it with one permission"
   ],
   [
-   295,
+   297,
    "PIM: eligible, active, and permanent active"
   ],
   [
-   345,
+   347,
    "Application credentials against three ScubaGear rules"
   ],
   [
-   385,
+   387,
    "Logs, retention, and authentication methods"
   ],
   [
-   438,
+   440,
    "The five checks, and a reader's permissions"
   ],
   [
-   493,
+   495,
    "Try it: find permanent privileged assignments"
   ],
   [
-   541,
+   543,
    "Lab 2: run the checks read-only in a test tenant"
   ],
   [
-   595,
+   597,
    "Where agencies are: Entra ID in GCC High and DoD"
   ],
   [
-   655,
+   657,
    "The federal requirement and evidence for Entra ID"
   ],
   [
-   714,
+   717,
    "Check yourself: two questions on Entra ID"
   ],
   [
-   752,
+   755,
    "Summary, and next: Module 3, Intune"
   ]
  ],
@@ -11241,63 +11241,63 @@
    "Module 3: Intune through Microsoft Graph"
   ],
   [
-   50,
+   51,
    "Why compliance records decide device access"
   ],
   [
-   101,
+   103,
    "What you'll be able to do in Module 3"
   ],
   [
-   147,
-   "Book 05's questions mapped to Intune APIs"
+   148,
+   "The workbook's device questions mapped to Intune APIs"
   ],
   [
-   197,
+   199,
    "Three things the program relies on are beta-only"
   ],
   [
-   249,
+   252,
    "Managed devices: what the checks read and leave out"
   ],
   [
-   298,
+   300,
    "Compliance status, coverage, and the name join"
   ],
   [
-   353,
+   355,
    "Keep remote actions and exports out of a collector"
   ],
   [
-   404,
+   407,
    "The five checks and the controls they evidence"
   ],
   [
-   463,
+   465,
    "Try it: find the devices no policy reaches"
   ],
   [
-   521,
+   523,
    "Lab 2: read your test tenant's fleet, read-only"
   ],
   [
-   577,
+   579,
    "Where agencies are: one Intune for GCC, one for High"
   ],
   [
-   637,
+   640,
    "Autopilot in GCC High and DoD, and interim paths"
   ],
   [
-   695,
+   700,
    "The federal requirement and evidence for Intune"
   ],
   [
-   755,
+   760,
    "Check yourself: two questions on Intune"
   ],
   [
-   795,
+   801,
    "Summary: you've finished the path"
   ]
  ],
@@ -12533,63 +12533,63 @@
    "Module 1: The loop and the typed task"
   ],
   [
-   44,
+   43,
    "Why a ticket marked done isn't a record"
   ],
   [
-   91,
+   96,
    "What you'll be able to do in Module 1"
   ],
   [
-   138,
+   145,
    "The loop: five steps, and a layer that never writes"
   ],
   [
-   189,
+   196,
    "Where the kit sits in the loop, in Pass 1"
   ],
   [
-   243,
+   251,
    "The products at each step, and four gaps"
   ],
   [
-   296,
+   303,
    "The identity finding's data contract"
   ],
   [
-   354,
+   360,
    "What the Scripted REST resource does with a payload"
   ],
   [
-   406,
+   412,
    "Severity and tempo: where the due dates come from"
   ],
   [
-   458,
+   464,
    "finding_contract.py, and an intent with nothing in it"
   ],
   [
-   514,
+   519,
    "Try it: check five sample payloads"
   ],
   [
-   562,
+   567,
    "Try it: every payload the drift client would post"
   ],
   [
-   618,
+   623,
    "Lab 2: post a checked payload to a developer instance"
   ],
   [
-   666,
+   670,
    "The federal requirement, and the evidence to keep"
   ],
   [
-   723,
+   727,
    "Check yourself: two questions on the typed task"
   ],
   [
-   764,
+   769,
    "Summary, and next: Module 2, least privilege"
   ]
  ],
@@ -12647,7 +12647,7 @@
    "Where agencies are: the boundary on the Marketplace"
   ],
   [
-   660,
+   659,
    "The federal requirement, and the evidence to keep"
   ],
   [
@@ -12681,47 +12681,47 @@
    "Two writer patterns: pick one, not both"
   ],
   [
-   242,
+   243,
    "One approver system per class, and a lane for each"
   ],
   [
-   296,
+   297,
    "writer_check.py reads two provisioning exports"
   ],
   [
-   350,
+   351,
    "Finding, Warn and Info, and the inputs to review"
   ],
   [
-   402,
+   403,
    "What the check guards against, and what it misses"
   ],
   [
-   453,
+   454,
    "Try it: find the attribute with two writers"
   ],
   [
-   503,
+   504,
    "Try it: the directory guard and the two reads"
   ],
   [
-   556,
+   557,
    "Lab 2: export the real mappings and run the check"
   ],
   [
-   604,
+   605,
    "Where agencies are: the HR feed, and the clouds"
   ],
   [
-   662,
+   664,
    "The federal requirement, and the evidence to keep"
   ],
   [
-   717,
+   719,
    "Check yourself: two questions on two writers"
   ],
   [
-   760,
+   762,
    "Summary, and next: Module 4, the starting drift"
   ]
  ],
@@ -12739,55 +12739,55 @@
    "What you'll be able to do in Module 4"
   ],
   [
-   133,
+   132,
    "Gate 3: connect, correlate on employeeId, measure"
   ],
   [
-   190,
-   "Book 03's drift classes, and what the kit computes"
+   189,
+   "The workbook's drift classes, and what the kit computes"
   ],
   [
-   242,
+   241,
    "The reconciliation: inputs, stable IDs, outputs"
   ],
   [
-   300,
+   298,
    "Run over run: new, persisting, resolved"
   ],
   [
-   351,
+   349,
    "Dangers of a nightly run, and the guards"
   ],
   [
-   404,
+   402,
    "Try it: measure day one"
   ],
   [
-   458,
+   456,
    "Try it: compare day two, then a run without the audit"
   ],
   [
-   511,
+   510,
    "Lab 2: measure your test tenant on two days"
   ],
   [
-   562,
+   561,
    "Where agencies are: GCC, GCC High, and interim paths"
   ],
   [
-   616,
+   615,
    "Validate Gate 3 before you file the baseline"
   ],
   [
-   666,
+   665,
    "The federal requirement, and the evidence to keep"
   ],
   [
-   719,
+   718,
    "Check yourself: two questions on drift runs"
   ],
   [
-   765,
+   763,
    "Summary, and next: Module 5, a typed task"
   ]
  ],
@@ -12833,15 +12833,15 @@
    "Dangers between an event and a finding"
   ],
   [
-   508,
+   507,
    "Try it: what the native-change workflow posts"
   ],
   [
-   562,
+   561,
    "Try it: the mover's finding and the closure signal"
   ],
   [
-   622,
+   621,
    "Lab 2: one workflow in a SailPoint sandbox"
   ],
   [
@@ -12849,11 +12849,11 @@
    "The federal requirement, and the evidence to keep"
   ],
   [
-   733,
+   732,
    "Check yourself: two questions on drift to a task"
   ],
   [
-   777,
+   776,
    "Summary, and next: Module 6, the re-read rule"
   ]
  ],
@@ -12867,59 +12867,59 @@
    "Why a closed ticket isn't a closed finding"
   ],
   [
-   91,
+   90,
    "What you'll be able to do in Module 6"
   ],
   [
-   138,
+   137,
    "Gate 5: the ticket authorizes a machine, by lane"
   ],
   [
-   196,
+   195,
    "Gate 6: the business rule decides who can close"
   ],
   [
-   253,
+   252,
    "The re-read client: read, compare, close or reopen"
   ],
   [
-   307,
+   306,
    "A stale read waits; a missing read is an error"
   ],
   [
-   360,
+   359,
    "Chapter 05 adds a guard and an offline mode"
   ],
   [
-   415,
+   414,
    "Six fictional waiting records, one per outcome"
   ],
   [
-   467,
+   466,
    "Try it: re-read six findings at noon on November 1"
   ],
   [
-   523,
+   522,
    "Try it: a day later, and the business rule's tests"
   ],
   [
-   581,
+   580,
    "Lab 2: enforce the rule in a developer instance"
   ],
   [
-   636,
+   635,
    "What differs in government clouds for Gates 5 and 6"
   ],
   [
-   697,
+   696,
    "The federal requirement, and the evidence to keep"
   ],
   [
-   761,
+   760,
    "Check yourself: two questions on the re-read rule"
   ],
   [
-   802,
+   801,
    "Summary, and next: Module 7, evidence for the ISSO"
   ]
  ],
@@ -12929,27 +12929,27 @@
    "Module 7: Evidence for the ISSO"
   ],
   [
-   54,
+   53,
    "Why ticket history doesn't prove the month"
   ],
   [
-   93,
+   92,
    "What you'll be able to do in Module 7"
   ],
   [
-   143,
+   142,
    "Gate 7: operating the tempo"
   ],
   [
-   193,
+   192,
    "Five measures for the governance board"
   ],
   [
-   250,
-   "Book 13's evidence record, field by field"
+   249,
+   "The workbook's evidence record, field by field"
   ],
   [
-   310,
+   309,
    "One record per finding, and four checks on each"
   ],
   [
@@ -12961,31 +12961,31 @@
    "Window adherence, and five fictional records"
   ],
   [
-   485,
+   483,
    "Dangers to the evidence, and the guard for each"
   ],
   [
-   538,
+   536,
    "Try it: export October and verify the package"
   ],
   [
-   598,
+   596,
    "Try it: chain November, then remove a record"
   ],
   [
-   653,
+   651,
    "Lab 2: export live from your developer instance"
   ],
   [
-   699,
+   697,
    "The federal requirement, and the evidence to keep"
   ],
   [
-   766,
+   764,
    "Check yourself: two questions on the evidence"
   ],
   [
-   814,
+   812,
    "Summary: you've finished the path"
   ]
  ]

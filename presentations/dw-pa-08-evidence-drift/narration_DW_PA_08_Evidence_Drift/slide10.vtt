@@ -44,6 +44,6 @@ because they come and go within hours
 and the audit already records them.
 
 10
-00:00:31.463 --> 00:00:36.050
-Any Tier 0 change is an
-incident, as Book 04 says.
+00:00:31.463 --> 00:00:35.860
+Any Tier 0 change is an incident;
+that's the workbook's design.

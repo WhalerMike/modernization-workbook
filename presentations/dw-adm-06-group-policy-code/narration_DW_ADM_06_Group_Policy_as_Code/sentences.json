@@ -39,26 +39,26 @@
   ],
   [
    1.613,
-   13.325,
-   "Because the operator side is already written, in Book 5's sunset program and the Intune track's gates, and what's missing is the software for two of those steps: importing the policies for analysis, and building the library."
+   14.55,
+   "Because the operator side is already written, in the Devices and Endpoints book's sunset program and the Intune track's gates, and what's missing is the software for two of those steps: importing the policies for analysis, and building the library."
   ],
   [
-   14.938,
+   16.163,
    3.375,
    "Two rules from those pages shape everything that follows."
   ],
   [
-   18.312,
+   19.538,
    7.1,
    "Every setting has exactly one owning policy and one owning tool, so the library only holds what Intune owns."
   ],
   [
-   25.413,
+   26.637,
    5.438,
    "And policies are built with no assignments; assigning them is a separate, reviewed step."
   ],
   [
-   30.85,
+   32.075,
    2.875,
    "Let's see what Microsoft's tools say about the stakes."
   ]

@@ -39,16 +39,16 @@
   ],
   [
    5.188,
-   14.15,
-   "Book 04 gives it three things to build: the administrator policy set, the gate that demands a fresh phishing-resistant proof from a compliant device at the moment someone elevates, and the custom authentication strength both rely on."
+   15.4,
+   "The workbook's privileged-access design gives it three things to build: the administrator policy set, the gate that demands a fresh phishing-resistant proof from a compliant device at the moment someone elevates, and the custom authentication strength both rely on."
   ],
   [
-   19.337,
+   20.587,
    3.775,
    "Unlike the first two chapters, this code can change things."
   ],
   [
-   23.113,
+   24.363,
    11.188,
    "So its design is cautious on purpose: it writes only when told, creates every new policy in report-only, enforces only with a separate switch, and never deletes."
   ]
@@ -206,21 +206,21 @@
   ],
   [
    0.988,
-   9.887,
-   "This chapter adds its own module, its own call list, an entry script, and the policy files themselves, one file per object, as Book 04 asks."
+   10.025,
+   "This chapter adds its own module, its own call list, an entry script, and the policy files themselves, one file per object, as the workbook's design asks."
   ],
   [
-   10.875,
+   11.012,
    10.637,
    "There are the two authentication contexts, the custom strength, the five administrator policies, and the two gate policies, one for activation and one for protected actions."
   ],
   [
-   21.512,
+   21.65,
    5.15,
    "The activation gate demands the strength and a compliant device, every single time."
   ],
   [
-   26.663,
+   26.8,
    9.325,
    "Placeholders resolve from a per-tenant map, except the strength, which is looked up by name in the tenant, so a policy can never point at a strength that isn't there."
   ]
@@ -265,21 +265,21 @@
   ],
   [
    9.6,
-   8.575,
-   "Book 04's pre-merge check is stricter, and fails any report-only file without it, even the probe that's meant to exclude nobody."
+   8.662,
+   "The workbook's own pre-merge check is stricter, and fails any report-only file without it, even the probe that's meant to exclude nobody."
   ],
   [
-   18.175,
+   18.262,
    4.4,
    "The chapter's finding is that the stricter rule isn't wrong, just stricter."
   ],
   [
-   22.575,
+   22.663,
    7.25,
    "So the code puts the exclusion in every file whatever its state, because enforcing a file means changing one word."
   ],
   [
-   29.825,
+   29.913,
    5.713,
    "Only a named report-only instrument may skip it, and it fails the moment someone enables it."
   ]

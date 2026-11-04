@@ -8,8 +8,10 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
+review-status: approved
+reviewed-sha256: 308dec0a05be0952641080c27ba620665d353fe137826f7471b45c00694a3129
+last-reviewed: 2026-11-03
 ---
-
 # Azure Arc Track: Implementation Guide
 
 *Arc gives each server an address in Azure; the work of this track is making sure that what the address says about the server is true, written by one hand, and read by every policy that governs it.*

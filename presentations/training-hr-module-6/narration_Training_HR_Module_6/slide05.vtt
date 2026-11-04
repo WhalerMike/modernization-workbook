@@ -24,43 +24,47 @@ Past three days, the scheduled
 trigger skips the user.
 
 6
-00:00:14.237 --> 00:00:19.663
-Book 03's Chapter 08 explains why a
-separation entered late misses it.
+00:00:14.237 --> 00:00:17.201
+Chapter 08 of the HR-Driven Identity book
 
 7
-00:00:19.663 --> 00:00:24.753
+00:00:17.201 --> 00:00:20.775
+explains why a separation
+entered late misses it.
+
+8
+00:00:20.775 --> 00:00:25.865
 So rule S T three flags any separation
 entered more than three days after its
 
-8
-00:00:24.753 --> 00:00:28.712
+9
+00:00:25.865 --> 00:00:29.824
 effective date: a Finding if
 nobody ran the leaver on demand,
 
-9
-00:00:28.712 --> 00:00:30.651
+10
+00:00:29.824 --> 00:00:31.763
 and only a Warn if someone did.
 
-10
-00:00:30.651 --> 00:00:32.663
+11
+00:00:31.763 --> 00:00:33.775
 Second, the tenant's schedule.
 
-11
-00:00:32.663 --> 00:00:37.801
+12
+00:00:33.775 --> 00:00:38.913
 Lifecycle Workflows runs on a schedule, and
 that can delay a scheduled leaver's run.
 
-12
-00:00:37.801 --> 00:00:39.966
+13
+00:00:38.913 --> 00:00:41.079
 The wait is part of separation-to-block,
 
-13
-00:00:39.966 --> 00:00:43.825
+14
+00:00:41.079 --> 00:00:44.938
 so the guide says the schedule
 belongs inside the approved interval.
 
-14
-00:00:43.825 --> 00:00:46.510
+15
+00:00:44.938 --> 00:00:47.640
 Set the threshold and
 the schedule together.

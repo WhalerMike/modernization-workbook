@@ -25,16 +25,21 @@ with fixed names, grouped into
 activation, assignment and notification.
 
 6
-00:00:19.837 --> 00:00:24.619
+00:00:19.837 --> 00:00:24.637
 This chapter manages the seven activation
-and assignment rules that Book 4 lists,
+and assignment rules in the workbook's
 
 7
-00:00:24.619 --> 00:00:29.050
-the ones on the slide, and deliberately
-leaves the notification rules alone.
+00:00:24.637 --> 00:00:27.390
+privileged-access design,
+the ones on the slide,
 
 8
-00:00:29.050 --> 00:00:32.810
+00:00:27.390 --> 00:00:30.637
+and deliberately leaves the
+notification rules alone.
+
+9
+00:00:30.637 --> 00:00:34.390
 Each of those seven becomes a
 few lines in a reviewed file.

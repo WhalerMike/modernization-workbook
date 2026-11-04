@@ -69,21 +69,21 @@
   ],
   [
    15.787,
-   6.537,
-   "The Federal Modernization Workbook's Book 13's rule is different: a success response isn't closure."
+   5.55,
+   "The Federal Modernization Workbook's rule is different: a success response isn't closure."
   ],
   [
-   22.325,
+   21.337,
    4.825,
    "A finding closes only when a re-read of the target shows the intended state."
   ],
   [
-   27.15,
+   26.163,
    7.225,
    "Gate 6 enforces that in ServiceNow, for identity findings and for the tickets the Service Desk integration opens."
   ],
   [
-   34.375,
+   33.388,
    7.362,
    "In this module you see where the fix runs, and then you enforce the rule and watch the re-read client decide six findings."
   ]
@@ -767,8 +767,8 @@
   ],
   [
    34.987,
-   12.213,
-   "You'll learn what Gate 7 runs and reports, export closed findings as Book 13's evidence records, chain one period to the next, and verify the package the way an I S S O would."
+   11.975,
+   "You'll learn what Gate 7 runs and reports, export closed findings as the workbook's evidence records, chain one period to the next, and verify the package the way an I S S O would."
   ]
  ]
 }

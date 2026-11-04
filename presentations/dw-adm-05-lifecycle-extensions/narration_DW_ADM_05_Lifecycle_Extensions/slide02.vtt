@@ -5,50 +5,50 @@ WEBVTT
 Why does this chapter matter?
 
 2
-00:00:01.562 --> 00:00:05.395
-Book 03 splits the work:
-provisioning creates accounts,
+00:00:01.562 --> 00:00:06.247
+Microsoft Learn splits the work:
+inbound provisioning creates accounts,
 
 3
-00:00:05.395 --> 00:00:09.562
+00:00:06.247 --> 00:00:10.087
 and Lifecycle Workflows act on
 accounts that already exist.
 
 4
-00:00:09.562 --> 00:00:14.631
+00:00:10.087 --> 00:00:15.157
 The built-in tasks handle the account
 itself, but everything else in a leaver,
 
 5
-00:00:14.631 --> 00:00:17.527
+00:00:15.157 --> 00:00:18.053
 the PIV credential, the
 devices, the servers,
 
 6
-00:00:17.527 --> 00:00:21.550
+00:00:18.053 --> 00:00:22.076
 goes through a custom task
 extension, which is code you write.
 
 7
-00:00:21.550 --> 00:00:26.904
-Book 03 also sets three rules: one
-reusable Logic App per integration,
+00:00:22.076 --> 00:00:27.786
+The workbook's design also sets three rules:
+one reusable Logic App per integration,
 
 8
-00:00:26.904 --> 00:00:31.600
+00:00:27.786 --> 00:00:31.925
 block the account first, and make
 custom tasks safe to repeat.
 
 9
-00:00:31.600 --> 00:00:35.985
+00:00:31.925 --> 00:00:36.310
 Learn sets the contract on the other
 side: how the Logic App is started,
 
 10
-00:00:35.985 --> 00:00:39.600
+00:00:36.310 --> 00:00:39.925
 how long the workflow waits,
 and how the answer comes back.
 
 11
-00:00:39.600 --> 00:00:41.180
+00:00:39.925 --> 00:00:41.520
 Let's see where that runs.

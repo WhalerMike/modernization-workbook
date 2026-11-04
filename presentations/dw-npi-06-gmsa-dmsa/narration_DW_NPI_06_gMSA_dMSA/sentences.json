@@ -76,11 +76,11 @@
   ],
   [
    23.137,
-   3.438,
-   "Book 2's matrix says which target each account gets."
+   4.475,
+   "The workbook's migration path matrix says which target each account gets."
   ],
   [
-   26.575,
+   27.613,
    7.662,
    "And because everything here is an Active Directory command against the domain, the cloud choice doesn't change anything in this chapter."
   ]

@@ -7,26 +7,26 @@
   ],
   [
    2.2,
-   7.463,
-   "This is Chapter 7: evidence records for the Federal Modernization Workbook's Book 13 and the I S S O."
+   8.85,
+   "This is Chapter 7: evidence records for the Federal Modernization Workbook's Governance, Drift and Evidence book, and for the I S S O."
   ],
   [
-   9.662,
+   11.05,
    2.663,
    "The I S S O doesn't need the tracker."
   ],
   [
-   12.325,
+   13.713,
    7.525,
    "The I S S O needs one record per finding, in one shape, that nobody could have edited afterwards without it showing."
   ],
   [
-   19.85,
-   11.287,
-   "This chapter reads closed findings out of ServiceNow, writes each in Book 13's evidence shape, checks what an assessor would check, and packages the period with a hash chain and a verifier."
+   21.238,
+   11.762,
+   "This chapter reads closed findings out of ServiceNow, writes each in the shape of the workbook's evidence record, checks what an assessor would check, and packages the period with a hash chain and a verifier."
   ],
   [
-   31.137,
+   33.0,
    2.35,
    "Then two labs and the dangers."
   ]
@@ -71,36 +71,36 @@
  "3": [
   [
    0.05,
-   4.638,
-   "Each closed finding becomes one record with Book 13's seven fields."
+   5.4,
+   "Each closed finding becomes one record with the seven fields of the workbook's evidence record."
   ],
   [
-   4.688,
+   5.45,
    3.062,
    "Origin: when and where the drift was detected."
   ],
   [
-   7.75,
+   8.512,
    5.487,
    "Owner and clock: who, how urgent, when it was due and whether it finished in time."
   ],
   [
-   13.238,
+   14.0,
    3.763,
    "The result: the re-read evidence and whether it's intact."
   ],
   [
-   17.0,
+   17.762,
    1.938,
    "And the closure, with its lane."
   ],
   [
-   18.938,
+   19.7,
    9.812,
    "The other three fields, approval, the executing identity and what ran, are written as null, each with its reason: Pass 1 doesn't actuate."
   ],
   [
-   28.75,
+   29.512,
    4.987,
    "The record says what it doesn't hold, rather than leaving the field out or filling it in."
   ]
@@ -231,16 +231,16 @@
   ],
   [
    13.188,
-   6.062,
-   "The record shape, the window and the lanes are Book 13's, and the hash chain is design guidance."
+   6.037,
+   "The record shape, the window and the lanes are the workbook's design, and the hash chain is the kit's design."
   ],
   [
-   19.25,
+   19.225,
    11.512,
    "Two points stay open: the format and time zone of the dates the Table A P I returns, which the export parses both ways, and what SailPoint keeps in its events index and for how long."
   ],
   [
-   30.762,
+   30.738,
    2.15,
    "That's why the SailPoint half waits."
   ]
@@ -332,16 +332,16 @@
   ],
   [
    12.137,
-   14.35,
-   "Then the problems, by name: one closed late, one whose evidence no longer matches its hash, and one closed with no re-read evidence at all; its close note just says done, which Book 13 calls prose, not evidence."
+   14.412,
+   "Then the problems, by name: one closed late, one whose evidence no longer matches its hash, and one closed with no re-read evidence at all; its close note just says done, which the workbook calls prose, not evidence."
   ],
   [
-   26.488,
+   26.55,
    4.463,
    "The command exits with a failure rather than producing a clean-looking package."
   ],
   [
-   30.95,
+   31.012,
    1.9,
    "The last line is the chain's head."
   ]
@@ -480,21 +480,21 @@
   ],
   [
    18.6,
-   3.95,
-   "Window adherence is reviewed with Book 13's other measures."
+   3.812,
+   "Window adherence is reviewed with the workbook's other measures."
   ],
   [
-   22.55,
+   22.413,
    1.413,
    "And the tests pass."
   ],
   [
-   23.962,
+   23.825,
    3.4,
    "Next, Chapter 8: one writer per attribute."
   ],
   [
-   27.363,
+   27.225,
    1.1,
    "Thanks for watching."
   ]

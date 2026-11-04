@@ -58,7 +58,7 @@ const SS = "Check and summary";
     "see where the fix runs, then enforce the rule and watch the re-read client decide six findings.");
   sources(s, "Sources: Module 6, Unit 1 \"Introduction\"; guide, Gate 6; workbook Chapter 05, \"What exists\" (Gap 1); SailPoint, SDIM: Best Practices.");
   notes(s,
-`Why does this matter? SailPoint's Service Desk integration treats a provisioning task as complete when the mapped ServiceNow status says so. So a technician sets a ticket to Closed, and nothing was checked. The account might still be enabled. The group might still be there. Book 13's rule is different: a success response isn't closure. A finding closes only when a re-read of the target shows the intended state. Gate 6 enforces that in ServiceNow, for identity findings and for the tickets the Service Desk integration opens. In this module you see where the fix runs, and then you enforce the rule and watch the re-read client decide six findings.`,
+`Why does this matter? SailPoint's Service Desk integration treats a provisioning task as complete when the mapped ServiceNow status says so. So a technician sets a ticket to Closed, and nothing was checked. The account might still be enabled. The group might still be there. The Federal Modernization Workbook's rule is different: a success response isn't closure. A finding closes only when a re-read of the target shows the intended state. Gate 6 enforces that in ServiceNow, for identity findings and for the tickets the Service Desk integration opens. In this module you see where the fix runs, and then you enforce the rule and watch the re-read client decide six findings.`,
   `${M} — Unit 1 "Introduction."`);
 }
 
@@ -348,7 +348,7 @@ endModule(SA);
     "work through the Chapter 05 checklist.");
   sources(s, "Sources: Module 6, Unit 8 \"Summary\"; Module 7, Unit 1.");
   notes(s,
-`To sum up. You learned where actuation runs on these products: SailPoint's connectors, ServiceNow's Entra spoke, the declared-exception lane, and people only through just-in-time activation. You saw how the business rule and the re-read client keep a ticket status from closing a finding. You saw how the client treats stale reads, missing reads and empty intended states. And you ran it offline over six findings on two days. Before shipping, work through the Chapter 05 checklist. Next is Module 7, the last in the path: evidence for the ISSO. You'll learn what Gate 7 runs and reports, export closed findings as Book 13's evidence records, chain one period to the next, and verify the package the way an ISSO would.`,
+`To sum up. You learned where actuation runs on these products: SailPoint's connectors, ServiceNow's Entra spoke, the declared-exception lane, and people only through just-in-time activation. You saw how the business rule and the re-read client keep a ticket status from closing a finding. You saw how the client treats stale reads, missing reads and empty intended states. And you ran it offline over six findings on two days. Before shipping, work through the Chapter 05 checklist. Next is Module 7, the last in the path: evidence for the ISSO. You'll learn what Gate 7 runs and reports, export closed findings as the workbook's evidence records, chain one period to the next, and verify the package the way an ISSO would.`,
   `${M} — Unit 8 "Summary"; Module 7 — Unit 1 "Introduction."`);
 }
 endModule(SS);

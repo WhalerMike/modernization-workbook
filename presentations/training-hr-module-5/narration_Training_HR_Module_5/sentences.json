@@ -111,11 +111,11 @@
   ],
   [
    33.237,
-   13.037,
-   "Some familiarity with P K I terms helps, like issuing authority, revocation list and policy O I D; the Federal Modernization Workbook's Book 07's Chapter 06 explains them for Entra."
+   14.287,
+   "Some familiarity with P K I terms helps, like issuing authority, revocation list and policy O I D; Chapter 06 of the Federal Modernization Workbook's P K I and Certificates book explains them for Entra."
   ],
   [
-   46.275,
+   47.525,
    3.225,
    "Lab 1 needs Python and pytest, and no tenant."
   ]
@@ -133,21 +133,21 @@
   ],
   [
    14.988,
-   10.387,
-   "Book 03's Chapter 09 explains why revocation checking matters, and that a reissued card changes the binding between the piv certificate and the Entra user."
+   11.6,
+   "Chapter 09 of the H R-Driven Identity book explains why revocation checking matters, and that a reissued card changes the binding between the piv certificate and the Entra user."
   ],
   [
-   25.375,
+   26.587,
    2.2,
    "Notice what this module doesn't cover."
   ],
   [
-   27.575,
+   28.788,
    10.125,
    "Binding coverage and affinity for each user belong to the validation kit's check, V K piv oh one, and to Gate 6 of the attribute-driven migration guide."
   ],
   [
-   37.7,
+   38.913,
    14.025,
    "This module checks the tenant's settings: the certificate authorities in the trust store, the X dot five-oh-nine certificate method, the authentication strengths and the Conditional Access policies, plus a measurement of each revocation list."
   ]

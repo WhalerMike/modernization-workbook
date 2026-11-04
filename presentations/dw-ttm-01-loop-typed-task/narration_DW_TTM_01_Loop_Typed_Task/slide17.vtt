@@ -28,25 +28,25 @@ Nothing a client builds is rejected,
 and every warning is understood.
 
 7
-00:00:16.513 --> 00:00:19.362
-The windows are the
-program's current ones and
+00:00:16.513 --> 00:00:19.432
+The windows are the program's
+current ones and the
 
 8
-00:00:19.362 --> 00:00:22.137
-the severity defaults
-match Book 3's classes.
+00:00:19.432 --> 00:00:22.637
+severity defaults match the
+workbook's drift classes.
 
 9
-00:00:22.137 --> 00:00:25.825
+00:00:22.637 --> 00:00:26.325
 And the API requires
 authentication and a custom role.
 
 10
-00:00:25.825 --> 00:00:31.338
+00:00:26.325 --> 00:00:31.838
 Next, Chapter 2 writes down every ServiceNow
 call and the least privilege it needs.
 
 11
-00:00:31.338 --> 00:00:32.500
+00:00:31.838 --> 00:00:33.000
 Thanks for watching.

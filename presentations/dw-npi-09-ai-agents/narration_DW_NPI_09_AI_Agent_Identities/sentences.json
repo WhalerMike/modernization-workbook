@@ -93,31 +93,31 @@
  "4": [
   [
    0.05,
-   9.475,
-   "Here are the program's rules, from Book 17, each held as a finding with a stable I D. Creation is closed, so an agent can't just appear."
+   10.975,
+   "Here are the program's rules, the workbook's design for A I identities, each held as a finding with a stable I D. Creation is closed, so an agent can't just appear."
   ],
   [
-   9.525,
+   11.025,
    6.388,
    "Every production agent has a reviewed handshake before it exists, naming who answers for it and what it may do."
   ],
   [
-   15.912,
+   17.413,
    4.487,
    "Credentials prefer a managed identity, and never a production secret."
   ],
   [
-   20.4,
+   21.9,
    6.888,
    "Inheritance never hands every future grant to every agent, and no agent holds a standing privileged role."
   ],
   [
-   27.288,
+   28.788,
    5.312,
    "Sponsors are real employees, and a transfer has ten business days to be confirmed."
   ],
   [
-   32.6,
+   34.1,
    2.688,
    "And drift is watched, with priorities."
   ]

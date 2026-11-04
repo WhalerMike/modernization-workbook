@@ -39,10 +39,11 @@ Report-only policies are reported
 as information, not failures.
 
 9
-00:00:26.400 --> 00:00:31.231
+00:00:26.400 --> 00:00:30.984
 And whether the accounts belong to
 individuals is something Graph can't see,
 
 10
-00:00:31.231 --> 00:00:33.820
-so the program's position stays Book 04's.
+00:00:30.984 --> 00:00:35.860
+so the program keeps the workbook's design:
+the accounts aren't tied to one person.

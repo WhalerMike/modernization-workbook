@@ -5,40 +5,40 @@ WEBVTT
 So what does the code add?
 
 2
-00:00:01.375 --> 00:00:05.100
-A module of its own, building
-on Book 4's appendix script,
+00:00:01.375 --> 00:00:06.260
+A module of its own, building on the
+appendix script in Access and Privilege,
 
 3
-00:00:05.100 --> 00:00:08.411
+00:00:06.260 --> 00:00:09.411
 with one reviewed file per
 role, twenty-two in all,
 
 4
-00:00:08.411 --> 00:00:12.550
+00:00:09.411 --> 00:00:13.350
 so a reviewer reads a change to
 a file as a change to the tenant.
 
 5
-00:00:12.550 --> 00:00:17.429
+00:00:13.350 --> 00:00:18.229
 Approvers appear by alias, and a small
 bindings file per tenant turns each
 
 6
-00:00:17.429 --> 00:00:22.388
+00:00:18.229 --> 00:00:23.188
 alias into a real group, so the same
 files serve a test tenant and production.
 
 7
-00:00:22.388 --> 00:00:24.550
+00:00:23.188 --> 00:00:25.351
 Every file sits inside bounds.
 
 8
-00:00:24.550 --> 00:00:29.487
+00:00:25.351 --> 00:00:30.287
 Where Learn's pages disagree on the longest
 activation, the code takes the stricter
 
 9
-00:00:29.487 --> 00:00:34.200
+00:00:30.287 --> 00:00:34.990
 eight hours, and the owner capped standing
 active assignments at fifteen days.

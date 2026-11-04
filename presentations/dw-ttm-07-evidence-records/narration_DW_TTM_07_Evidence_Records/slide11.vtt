@@ -24,29 +24,30 @@ Two of three judged closures
 were inside the window.
 
 6
-00:00:12.138 --> 00:00:15.094
+00:00:12.138 --> 00:00:15.019
 Then the problems, by
 name: one closed late,
 
 7
-00:00:15.094 --> 00:00:20.486
-one whose evidence no longer matches
-its hash, and one closed with no re-read
+00:00:15.019 --> 00:00:18.241
+one whose evidence no
+longer matches its hash,
 
 8
-00:00:20.486 --> 00:00:23.704
-evidence at all; its
-close note just says done,
+00:00:18.241 --> 00:00:21.378
+and one closed with no
+re-read evidence at all;
 
 9
-00:00:23.704 --> 00:00:26.487
-which Book 13 calls prose, not evidence.
+00:00:21.378 --> 00:00:26.549
+its close note just says done, which
+the workbook calls prose, not evidence.
 
 10
-00:00:26.487 --> 00:00:30.951
+00:00:26.549 --> 00:00:31.013
 The command exits with a failure rather
 than producing a clean-looking package.
 
 11
-00:00:30.951 --> 00:00:32.900
+00:00:31.013 --> 00:00:32.980
 The last line is the chain's head.

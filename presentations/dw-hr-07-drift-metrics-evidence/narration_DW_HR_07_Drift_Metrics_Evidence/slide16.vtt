@@ -26,20 +26,25 @@ Write a run in tenant mode
 and read every finding.
 
 6
-00:00:20.200 --> 00:00:24.479
-Schedule it in Book 19's workflow
-with no secret, writing packages
+00:00:20.200 --> 00:00:25.069
+Schedule it in the drift pipeline's
+workflow from Building the Attribute-Driven
 
 7
-00:00:24.479 --> 00:00:29.075
-to an immutable container outside
-the directory, each naming the last.
+00:00:25.069 --> 00:00:28.630
+Migration, with no secret,
+writing packages to an immutable
 
 8
-00:00:29.075 --> 00:00:32.575
+00:00:28.630 --> 00:00:31.900
+container outside the directory,
+each naming the last.
+
+9
+00:00:31.900 --> 00:00:35.400
 After a few runs, check that
 a skipped day shows as a gap.
 
-9
-00:00:32.575 --> 00:00:33.840
+10
+00:00:35.400 --> 00:00:36.670
 Then back it all out.

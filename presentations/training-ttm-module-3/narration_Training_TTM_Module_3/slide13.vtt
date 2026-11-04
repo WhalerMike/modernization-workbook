@@ -10,55 +10,59 @@ The guide assumes one of two
 starting points for the HR feed.
 
 3
-00:00:04.913 --> 00:00:09.375
-Either Book 03's pipeline, Entra
-inbound provisioning from HR,
+00:00:04.913 --> 00:00:09.628
+Either the workbook's HR pipeline,
+Entra inbound provisioning from HR,
 
 4
-00:00:09.375 --> 00:00:13.662
+00:00:09.628 --> 00:00:13.612
 is already live, or accounts
 are still created from tickets.
 
 5
-00:00:13.662 --> 00:00:17.399
+00:00:13.612 --> 00:00:17.350
 Either way, Gate 2 decides
 who writes each attribute.
 
 6
-00:00:17.399 --> 00:00:20.600
+00:00:17.350 --> 00:00:20.550
 For availability, Gate 2 uses nothing new.
 
 7
-00:00:20.600 --> 00:00:25.199
-If Book 03's API-driven inbound
+00:00:20.550 --> 00:00:24.094
+If API-driven inbound
 provisioning is the writer,
 
 8
-00:00:25.199 --> 00:00:31.235
-it's available in Azure for U S Government,
-as are PIM, entitlement management,
+00:00:24.094 --> 00:00:29.886
+Microsoft Learn's feature availability
+page lists it in Azure for U S Government,
 
 9
-00:00:31.235 --> 00:00:36.313
+00:00:29.886 --> 00:00:32.393
+as are PIM, entitlement management,
+
+10
+00:00:32.393 --> 00:00:36.975
 access reviews and Lifecycle
 Workflows, read on November 1, 2026.
 
-10
-00:00:36.313 --> 00:00:40.500
+11
+00:00:36.975 --> 00:00:41.163
 In GCC, Entra ID is
 the commercial service.
 
-11
-00:00:40.500 --> 00:00:43.867
+12
+00:00:41.163 --> 00:00:44.530
 The interim path: where the
 HR pipeline isn't live yet,
 
-12
-00:00:43.867 --> 00:00:47.625
+13
+00:00:44.530 --> 00:00:48.288
 SailPoint can't be measured
 against a source of authority.
 
-13
-00:00:47.625 --> 00:00:53.570
+14
+00:00:48.288 --> 00:00:54.240
 Decide the writers now, and run Gates 3 to
 6 against the HR extract the kit reads.

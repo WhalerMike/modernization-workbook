@@ -14,7 +14,7 @@ Next, which cloud. This estate is a GCC tenant with commercial Azure, so every h
 
 ## Slide 4 — What the register has to hold
 
-So what does the register have to hold? On the directory side, Book 02 gives the types: the traditional user account used as a service, the managed service account tied to one server, the group managed service account shared by several, and on newer domains the delegated managed service account, which takes over from a traditional account. Learn warns that nothing marks a service account as one, so its search criteria can miss some. On the Entra side, the list is always longer than the apps anyone asked for, and each service principal carries a type that tells you what it really is.
+So what does the register have to hold? On the directory side, Microsoft Learn's service account documentation gives the types: the traditional user account used as a service, the managed service account tied to one server, the group managed service account shared by several, and on newer domains the delegated managed service account, which takes over from a traditional account. Learn warns that nothing marks a service account as one, so its search criteria can miss some. On the Entra side, the list is always longer than the apps anyone asked for, and each service principal carries a type that tells you what it really is.
 
 ## Slide 5 — Two directory reads, nine Graph, one Resource Manager
 
@@ -22,7 +22,7 @@ Put together, the register reads two collections from Active Directory, nine fro
 
 ## Slide 6 — Risk, candidate target and stale lead: the program's
 
-Here's an important line between Microsoft and the program. Microsoft tells you how to find accounts; it doesn't tell you which ones are risky. The risk rules, the candidate target and the stale threshold are the program's, from the plan and Book 02, and the code keeps them in one configuration file and labels them as design guidance. And notice why stale is only ever a lead: the last logon attribute isn't updated on every sign-in, so an account that looks idle may not be. The plan says to confirm against the sign-in logs before retiring anything.
+Here's an important line between Microsoft and the program. Microsoft tells you how to find accounts; it doesn't tell you which ones are risky. The risk rules, the candidate target and the stale threshold are the workbook's design guidance, and the code keeps them in one configuration file and labels them as design guidance. And notice why stale is only ever a lead: the last logon attribute isn't updated on every sign-in, so an account that looks idle may not be. The plan says to confirm against the sign-in logs before retiring anything.
 
 ## Slide 7 — What Learn gives you, and the pinned copies
 
@@ -42,7 +42,7 @@ So what does the code build? It starts with one reader that every chapter in thi
 
 ## Slide 11 — The register: one row, the same columns, every type
 
-The register gives every identity one row with the same columns, whatever its type, so it all lands in one file. Directory accounts carry password age, last logon and privileged groups; Entra objects carry owners, credentials and permissions. An app's permissions are counted once, so nothing high risk is counted twice. Then the program's rules apply: high, medium or low risk, and a candidate target from Book 02's matrix. That target is only a candidate, Chapter 3 makes the decision. And SQL Server accounts are handed to the Data Platform plan.
+The register gives every identity one row with the same columns, whatever its type, so it all lands in one file. Directory accounts carry password age, last logon and privileged groups; Entra objects carry owners, credentials and permissions. An app's permissions are counted once, so nothing high risk is counted twice. Then the program's rules apply: high, medium or low risk, and a candidate target from the workbook's migration path matrix. That target is only a candidate, Chapter 3 makes the decision. And SQL Server accounts are handed to the Data Platform plan.
 
 ## Slide 12 — The findings, the manifest and the tests
 

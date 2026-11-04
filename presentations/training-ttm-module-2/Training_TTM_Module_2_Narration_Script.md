@@ -18,7 +18,7 @@ Gate 1 records and decides; it builds nothing. It has six steps. One: confirm ea
 
 ## Slide 5 — Four integration identities, and the vendor-cloud flows
 
-Four non-person identities carry the integration. SailPoint's Entra connector app registration in the agency's tenant. The ServiceNow Entra spoke's app registration. The ServiceNow integration user that SailPoint's workflow posts as, together with the verifier account the re-read client closes records as. And the SailPoint API client the kit's clients read with. As design guidance, each has two named owners and a federal sponsor in the system inventory. Now the flows. SailPoint's cloud connectors call Microsoft Graph from SailPoint's cloud; only the Active Directory path runs through its on-premises virtual appliance. And, by inference, its workflows call out from SailPoint's cloud to ServiceNow. The Federal Modernization Workbook's Book 15 prefers execution through a connector inside the boundary, so each vendor-cloud action becomes a recorded data flow.
+Four non-person identities carry the integration. SailPoint's Entra connector app registration in the agency's tenant. The ServiceNow Entra spoke's app registration. The ServiceNow integration user that SailPoint's workflow posts as, together with the verifier account the re-read client closes records as. And the SailPoint API client the kit's clients read with. As design guidance, each has two named owners and a federal sponsor in the system inventory. Now the flows. SailPoint's cloud connectors call Microsoft Graph from SailPoint's cloud; only the Active Directory path runs through its on-premises virtual appliance. And, by inference, its workflows call out from SailPoint's cloud to ServiceNow. The Federal Modernization Workbook's design prefers execution through a connector inside the boundary, so each vendor-cloud action becomes a recorded data flow.
 
 ## Slide 6 — The call list: privilege a test can check
 
@@ -58,7 +58,7 @@ The federal requirement. The guide maps Gate 1 to NIST special publication eight
 
 ## Slide 15 — Check yourself: two questions on least privilege
 
-Check yourself with two questions from the module's knowledge check. First: why does the evidence export get its own evidence reader role, instead of reusing the verifier's? The answer is b. With the verifier's role, the export could also close findings. The reader can't change a record it's about to hash. Roles are split by task. Second: Gate 1 asks you to record which actions run from a vendor's cloud. Why? The answer is a. Book 15 prefers execution through a connector inside the boundary, so each vendor-cloud action becomes a recorded data flow. The module page has two more questions, each linked to the section that answers it.
+Check yourself with two questions from the module's knowledge check. First: why does the evidence export get its own evidence reader role, instead of reusing the verifier's? The answer is b. With the verifier's role, the export could also close findings. The reader can't change a record it's about to hash. Roles are split by task. Second: Gate 1 asks you to record which actions run from a vendor's cloud. Why? The answer is a. The workbook's design prefers execution through a connector inside the boundary, so each vendor-cloud action becomes a recorded data flow. The module page has two more questions, each linked to the section that answers it.
 
 ## Slide 16 — Summary, and next: Module 3, one writer
 

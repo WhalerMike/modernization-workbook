@@ -131,8 +131,8 @@
   ],
   [
    34.737,
-   8.887,
-   "The packaging builds on the drift pipeline in the Federal Modernization Workbook's Book 19's Chapter 09, and the lab calls it from the same clone."
+   10.387,
+   "The packaging builds on the drift pipeline in Chapter 09 of the Federal Modernization Workbook's Building the Attribute-Driven Migration, and the lab calls it from the same clone."
   ]
  ],
  "4": [
@@ -158,21 +158,21 @@
   ],
   [
    25.512,
-   10.912,
-   "Prove the sole source for each population: this code doesn't decide that; it's seven days of provisioning logs against the audit log, in Book 03's Appendix C."
+   12.088,
+   "Prove the sole source for each population: this code doesn't decide that; it's seven days of provisioning logs against the audit log, in Appendix C of the H R-Driven Identity book."
   ],
   [
-   36.425,
+   37.6,
    6.138,
    "And keep the evidence outside the directory: that's the package, verify and period commands."
   ],
   [
-   42.562,
-   3.013,
-   "Book 03's Chapter 11 has the design."
+   43.737,
+   4.237,
+   "Chapter 11 of the H R-Driven Identity book has the design."
   ],
   [
-   45.575,
+   47.975,
    6.4,
    "Attribute drift isn't this module's; it belongs to Gate 9 of the attribute-driven migration guide."
   ]
@@ -576,16 +576,16 @@
   ],
   [
    22.938,
-   10.025,
-   "Then you schedule it in Book 19's Chapter 09 workflow, with each package written to an immutable test storage container, and assemble a period from the scheduled runs."
+   11.912,
+   "Then you schedule it in the Chapter 09 workflow from Building the Attribute-Driven Migration, with each package written to an immutable test storage container, and assemble a period from the scheduled runs."
   ],
   [
-   32.962,
+   34.85,
    10.3,
    "To back it out, remove the schedule, delete the reader app, its credential and its consent, delete the test container if you created it for the lab, and delete the local folders."
   ],
   [
-   43.263,
+   45.15,
    2.15,
    "The authors haven't run Lab 2."
   ]

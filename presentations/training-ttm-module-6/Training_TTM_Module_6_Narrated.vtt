@@ -81,34 +81,34 @@ The account might still be enabled.
 The group might still be there.
 
 18
-00:01:01.208 --> 00:01:05.565
-The Federal Modernization Workbook's
-Book 13's rule is different:
+00:01:01.208 --> 00:01:04.732
+The Federal Modernization
+Workbook's rule is different:
 
 19
-00:01:05.565 --> 00:01:07.744
+00:01:04.732 --> 00:01:06.757
 a success response isn't closure.
 
 20
-00:01:07.744 --> 00:01:12.570
+00:01:06.757 --> 00:01:11.582
 A finding closes only when a re-read of
 the target shows the intended state.
 
 21
-00:01:12.570 --> 00:01:14.799
+00:01:11.582 --> 00:01:13.812
 Gate 6 enforces that in ServiceNow,
 
 22
-00:01:14.799 --> 00:01:19.795
+00:01:13.812 --> 00:01:18.808
 for identity findings and for the tickets
 the Service Desk integration opens.
 
 23
-00:01:19.795 --> 00:01:22.300
+00:01:18.808 --> 00:01:21.313
 In this module you see where the fix runs,
 
 24
-00:01:22.300 --> 00:01:27.530
+00:01:21.313 --> 00:01:26.520
 and then you enforce the rule and watch
 the re-read client decide six findings.
 
@@ -1041,15 +1041,15 @@ Next is Module 7, the last in
 the path: evidence for the ISSO.
 
 220
-00:13:57.758 --> 00:14:00.720
+00:13:57.758 --> 00:14:00.560
 You'll learn what Gate 7 runs and reports,
 
 221
-00:14:00.720 --> 00:14:04.672
-export closed findings as
-Book 13's evidence records,
+00:14:00.560 --> 00:14:04.721
+export closed findings as the
+workbook's evidence records,
 
 222
-00:14:04.672 --> 00:14:10.030
+00:14:04.721 --> 00:14:09.790
 chain one period to the next, and verify
 the package the way an ISSO would.

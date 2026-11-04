@@ -6,7 +6,7 @@ Welcome to the Federal Modernization Workbook's developer workbook, Building Non
 
 ## Slide 2 — Why the token exchange test comes first
 
-Why does this chapter exist? Because of one quiet failure. A federated credential with the wrong subject is created without any error. Nothing complains until the day the workload tries to exchange its token, and for GitHub, Learn says even that fails without an error. The plan's risk register names exactly this, and its answer is to test every exchange before the parallel run starts. That test is the center of the chapter. The order of conversion comes from Book 2: managed identities where the host is in Azure, federated credentials where the host speaks O I D C, certificates only where neither works.
+Why does this chapter exist? Because of one quiet failure. A federated credential with the wrong subject is created without any error. Nothing complains until the day the workload tries to exchange its token, and for GitHub, Learn says even that fails without an error. The plan's risk register names exactly this, and its answer is to test every exchange before the parallel run starts. That test is the center of the chapter. The order of conversion is the workbook's design: managed identities where the host is in Azure, federated credentials where the host speaks O I D C, certificates only where neither works.
 
 ## Slide 3 — Which cloud: Graph, Resource Manager, sign-in
 

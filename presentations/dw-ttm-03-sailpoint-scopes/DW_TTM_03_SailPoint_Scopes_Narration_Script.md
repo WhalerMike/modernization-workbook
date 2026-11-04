@@ -38,7 +38,7 @@ Four points are still open. SailPoint's public pages don't say what API domain a
 
 ## Slide 10 — What the scopes prove, and for whom
 
-What this proves: the drift and re-read clients hold read scopes only, and the workflow client holds one scope and is removed after use. That's least privilege and account management at Moderate, with the comparison kept beside the API client's approval. The Graph app registration holds only what it reads, with a certificate, which adds authenticator management, IA-5. And no part of Pass 1 can write to SailPoint, Entra ID or Active Directory, which is the Federal Modernization Workbook's Book 13's rule that the coordination layer never writes configuration itself.
+What this proves: the drift and re-read clients hold read scopes only, and the workflow client holds one scope and is removed after use. That's least privilege and account management at Moderate, with the comparison kept beside the API client's approval. The Graph app registration holds only what it reads, with a certificate, which adds authenticator management, IA-5. And no part of Pass 1 can write to SailPoint, Entra ID or Active Directory, which is the Federal Modernization Workbook's rule that the coordination layer never writes configuration itself.
 
 ## Slide 11 — Who owns the SailPoint side
 
