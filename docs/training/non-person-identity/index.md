@@ -6,7 +6,6 @@ doc-type: training-path
 research-status: draft
 research-type: training module
 research-book: "Books 02, 04, 17"
-last-reviewed: 2026-11-02
 series-order: 0
 listing:
   - id: npi-modules
@@ -17,8 +16,10 @@ listing:
     sort: "series-order asc"
     sort-ui: false
     filter-ui: false
+review-status: approved
+reviewed-sha256: b0c76bd79442e5b17c5427230d660848b9b852f90e3f71dc4669cef4f595ddd3
+last-reviewed: 2026-11-03
 ---
-
 # Learning path: Non-Person Identity in Microsoft Entra ID {.unnumbered}
 
 A person leaves and HR tells you. A service account's owner leaves and nothing tells you. This learning path teaches you to build the record that HR gives you for people: every non-person identity listed, owned, decided, credentialed, scoped and watched. You work through the six gates of [Non-Person Identity: An Implementation Guide](../../books/guides/non-person-identity-implementation.md) in order. In each module you run the tested code from the developer workbook [*Building Non-Person Identity*](../../project-plans/developer-workbooks/non-person-identity/index.md) on your laptop, then read what the same step takes in a test tenant.

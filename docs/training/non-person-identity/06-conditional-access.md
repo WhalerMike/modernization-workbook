@@ -5,10 +5,11 @@ doc-type: training-module
 research-status: draft
 research-type: training module
 research-book: "Books 02, 04"
-last-reviewed: 2026-11-02
 series-order: 6
+review-status: approved
+reviewed-sha256: 2c6e50fd611cdf420d8cd8046688bfcd756c830d9a6e224fee30f23701fcaee6
+last-reviewed: 2026-11-03
 ---
-
 # Module 6: Conditional Access for workload identities {.unnumbered}
 
 *Part of the [Non-Person Identity learning path](index.md). Gate G4 Least privilege. Workbook [Chapter 08](../../project-plans/developer-workbooks/non-person-identity/08-conditional-access-for-workload-identities.md). About 65 minutes.*

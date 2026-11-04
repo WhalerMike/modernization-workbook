@@ -7,9 +7,10 @@ research-type: training module
 research-book: "Book 19"
 series-order: 3
 date-modified: 2026-11-02
-last-reviewed: 2026-11-02
+review-status: approved
+reviewed-sha256: 16ad88ccbbd987047d04430a96af46af1eda309c5b3afc0cac37584eb1897253
+last-reviewed: 2026-11-03
 ---
-
 # Attribute-Driven Migration, Module 3: Keep Dynamic Rules as Code {.unnumbered}
 
 **Learning path:** [Building the Attribute-Driven Migration](index.md) · Module 3 of 9 · 50 minutes · Guide [Gate 4](../../books/guides/attribute-driven-migration-implementation.md#gate-4-the-dynamic-group-library-and-administrative-units) · Workbook [Chapter 04](../../books/b19-developer-workbook/04-dynamic-rules-as-code.md)

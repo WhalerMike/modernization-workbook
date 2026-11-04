@@ -7,9 +7,10 @@ research-type: training module
 research-book: "Books 13, 15"
 series-order: 7
 date-modified: 2026-11-01
-last-reviewed: 2026-11-01
+review-status: approved
+reviewed-sha256: d7edb0899ec1e16ada8041002f12ebc6d7f5061348374594cd5bbfe47ebc1b96
+last-reviewed: 2026-11-03
 ---
-
 # Ticket-to-Machine, Module 7: Evidence for the ISSO {.unnumbered}
 
 **Learning path:** [Ticket-to-Machine on ServiceNow and SailPoint](index.md) · Module 7 of 7 · 45 minutes · Guide [Gate 7](../../books/guides/ttm-servicenow-sailpoint.md#step-7-operate-the-tempo) · Workbook [Chapter 07](../../project-plans/developer-workbooks/ticket-to-machine/07-evidence-records.md)

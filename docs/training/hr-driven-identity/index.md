@@ -6,7 +6,6 @@ doc-type: training-path
 research-status: draft
 research-type: training module
 research-book: "Book 03"
-last-reviewed: 2026-11-01
 series-order: 0
 listing:
   - id: hr-modules
@@ -17,8 +16,10 @@ listing:
     sort: "series-order asc"
     sort-ui: false
     filter-ui: false
+review-status: approved
+reviewed-sha256: 1887fb98f3cd29d5c9903e9c9103c99a2ec3b42499e914c22c869e30549a1814
+last-reviewed: 2026-11-03
 ---
-
 # Learning path: HR-Driven Identity in Microsoft Entra ID {.unnumbered}
 
 The HR pipeline makes an account exist. This learning path teaches what happens to that account afterward: how the HR record decides every change, and how you prove that it did. You work through the seven gates of [HR-Driven Identity: An Implementation Guide](../../books/guides/hr-driven-identity-implementation.md) in order. In each module you run the tested code from the developer workbook [*Building HR-Driven Identity*](../../project-plans/developer-workbooks/hr-driven-identity/index.md) on your laptop, then read what the same step takes in a test tenant.

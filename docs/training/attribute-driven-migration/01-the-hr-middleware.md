@@ -7,9 +7,10 @@ research-type: training module
 research-book: "Book 19"
 series-order: 1
 date-modified: 2026-11-02
-last-reviewed: 2026-11-02
+review-status: approved
+reviewed-sha256: 2b012ac4769d49f8c112eeda58c1111e029e6dc3cd0a81ab2a19b9ca8979abec
+last-reviewed: 2026-11-03
 ---
-
 # Attribute-Driven Migration, Module 1: Send HR Records through a Middleware that Fails Closed {.unnumbered}
 
 **Learning path:** [Building the Attribute-Driven Migration](index.md) · Module 1 of 9 · 55 minutes · Guide [Gate 2](../../books/guides/attribute-driven-migration-implementation.md#gate-2-prove-the-attributes) and [Gate 3](../../books/guides/attribute-driven-migration-implementation.md#gate-3-map-the-attributes-through-sync) · Workbook [Chapter 01](../../books/b19-developer-workbook/01-the-hr-to-entra-middleware.md)

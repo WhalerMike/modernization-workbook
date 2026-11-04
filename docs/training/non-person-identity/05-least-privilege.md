@@ -5,10 +5,11 @@ doc-type: training-module
 research-status: draft
 research-type: training module
 research-book: "Books 02, 04"
-last-reviewed: 2026-11-02
 series-order: 5
+review-status: approved
+reviewed-sha256: 9ad9f5a7225a29044ccf06f83f44d637ad91652dfbc324df1b91413de6e20e54
+last-reviewed: 2026-11-03
 ---
-
 # Module 5: Cut the privilege of service principals {.unnumbered}
 
 *Part of the [Non-Person Identity learning path](index.md). Gate G4 Least privilege. Workbook [Chapter 07](../../project-plans/developer-workbooks/non-person-identity/07-least-privilege-for-service-principals.md). About 60 minutes.*

@@ -7,9 +7,10 @@ research-type: training module
 research-book: "Books 13, 15"
 series-order: 3
 date-modified: 2026-11-01
-last-reviewed: 2026-11-01
+review-status: approved
+reviewed-sha256: 31176c44f35180d98c44173c4d932d97325afedb9567472d5551b1b39aa224e3
+last-reviewed: 2026-11-03
 ---
-
 # Ticket-to-Machine, Module 3: One Writer per Attribute {.unnumbered}
 
 **Learning path:** [Ticket-to-Machine on ServiceNow and SailPoint](index.md) · Module 3 of 7 · 40 minutes · Guide [Gate 2](../../books/guides/ttm-servicenow-sailpoint.md#step-2-decide-the-writers-and-the-approvers) · Workbook [Chapter 08](../../project-plans/developer-workbooks/ticket-to-machine/08-one-writer-per-attribute.md)

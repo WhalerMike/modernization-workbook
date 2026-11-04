@@ -6,7 +6,6 @@ doc-type: training-path
 research-status: draft
 research-type: training module
 research-book: "Book 04"
-last-reviewed: 2026-11-02
 series-order: 0
 listing:
   - id: pa-modules
@@ -17,8 +16,10 @@ listing:
     sort: "series-order asc"
     sort-ui: false
     filter-ui: false
+review-status: approved
+reviewed-sha256: 5e7b6d1421e16fa7792a4a5ea5f6cd61cdfc6280306d7581e9e86152dd29c8e4
+last-reviewed: 2026-11-03
 ---
-
 # Learning path: Privileged Access in Microsoft Entra ID and Azure {.unnumbered}
 
 Privilege should be just-in-time, by tier, and provable. This learning path teaches you to build the software that gets an estate there: code that reads every privileged assignment, checks the emergency access accounts, holds Conditional Access, PIM and access review settings as reviewed files, and hands the ISSO evidence a reviewer can check. You work through the eight chapters of the developer workbook [*Building Privileged Access*](../../project-plans/developer-workbooks/privileged-access/index.md) in order. In each module you run the workbook's tested code on your laptop, then read what the same step takes in a test tenant.

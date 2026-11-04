@@ -5,10 +5,11 @@ doc-type: training-module
 research-status: draft
 research-type: training module
 research-book: "Book 04"
-last-reviewed: 2026-11-02
 series-order: 8
+review-status: approved
+reviewed-sha256: 20bd21c4d00ca1afc9c59e20f32d965ca2bf2dba1bac790d100c2560d76a6bb1
+last-reviewed: 2026-11-03
 ---
-
 # Module 8: Evidence and drift for the ISSO {.unnumbered}
 
 *Part of the [Privileged Access learning path](index.md). Plan Phase 3, task A3.6, and Phase 4, task A4.3, for Gate 4. Workbook [Chapter 08](../../project-plans/developer-workbooks/privileged-access/08-evidence-and-drift.md). About 65 minutes.*

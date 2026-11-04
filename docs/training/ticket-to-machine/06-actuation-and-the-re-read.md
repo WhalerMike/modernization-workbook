@@ -7,9 +7,10 @@ research-type: training module
 research-book: "Books 13, 15"
 series-order: 6
 date-modified: 2026-11-01
-last-reviewed: 2026-11-01
+review-status: approved
+reviewed-sha256: 4be48b298100d76dbdebb15bcfdef081651f3154ee69e7c930ecec6755f4fbab
+last-reviewed: 2026-11-03
 ---
-
 # Ticket-to-Machine, Module 6: Actuation and the Re-read Rule {.unnumbered}
 
 **Learning path:** [Ticket-to-Machine on ServiceNow and SailPoint](index.md) · Module 6 of 7 · 55 minutes · Guide [Gate 5](../../books/guides/ttm-servicenow-sailpoint.md#step-5-actuate-on-the-native-surface) and [Gate 6](../../books/guides/ttm-servicenow-sailpoint.md#step-6-close-only-on-a-re-read) · Workbook [Chapter 05](../../project-plans/developer-workbooks/ticket-to-machine/05-the-re-read-rule.md)

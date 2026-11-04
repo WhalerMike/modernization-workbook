@@ -5,10 +5,11 @@ doc-type: training-module
 research-status: draft
 research-type: training module
 research-book: "Books 02, 04, 17"
-last-reviewed: 2026-11-02
 series-order: 10
+review-status: approved
+reviewed-sha256: 87e52d6518b059380c7ba222934f70125c2f734013795d5cc82a77dda751b38c
+last-reviewed: 2026-11-03
 ---
-
 # Module 10: Find drift and file the evidence {.unnumbered}
 
 *Part of the [Non-Person Identity learning path](index.md). Gate G6 Lifecycle. Workbook [Chapter 10](../../project-plans/developer-workbooks/non-person-identity/10-drift-and-evidence.md). About 75 minutes.*

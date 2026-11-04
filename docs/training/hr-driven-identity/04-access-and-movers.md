@@ -5,10 +5,11 @@ doc-type: training-module
 research-status: draft
 research-type: training module
 research-book: "Book 03"
-last-reviewed: 2026-11-01
 series-order: 4
+review-status: approved
+reviewed-sha256: 47e9e428b420c6db17e8a24ba1365ae2a4d57ee6808c5b0686848f84a29cfa3a
+last-reviewed: 2026-11-03
 ---
-
 # Module 4: Assign access from attributes and review what a move leaves {.unnumbered}
 
 *Part of the [HR-Driven Identity learning path](index.md). Gate G4 Access and movers. Workbook [Chapter 04](../../project-plans/developer-workbooks/hr-driven-identity/04-access-from-attributes-and-the-mover-review.md). About 50 minutes.*

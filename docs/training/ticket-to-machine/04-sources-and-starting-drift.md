@@ -7,9 +7,10 @@ research-type: training module
 research-book: "Books 13, 15"
 series-order: 4
 date-modified: 2026-11-01
-last-reviewed: 2026-11-01
+review-status: approved
+reviewed-sha256: f6f4262f2e0bab69700070d75450d0b2c74129335ba6b42adf29316a7d292a1c
+last-reviewed: 2026-11-03
 ---
-
 # Ticket-to-Machine, Module 4: Sources and the Starting Drift {.unnumbered}
 
 **Learning path:** [Ticket-to-Machine on ServiceNow and SailPoint](index.md) · Module 4 of 7 · 45 minutes · Guide [Gate 3](../../books/guides/ttm-servicenow-sailpoint.md#step-3-connect-the-sources-and-measure-the-starting-drift) · Workbook [Chapter 06](../../project-plans/developer-workbooks/ticket-to-machine/06-drift-reconciliation.md)

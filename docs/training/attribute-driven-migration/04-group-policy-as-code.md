@@ -7,9 +7,10 @@ research-type: training module
 research-book: "Book 19"
 series-order: 4
 date-modified: 2026-11-02
-last-reviewed: 2026-11-02
+review-status: approved
+reviewed-sha256: 282ddc1cc71e7fb46a8c58ce4df98bd80e280fc50bf51dbe27badd312d185d46
+last-reviewed: 2026-11-03
 ---
-
 # Attribute-Driven Migration, Module 4: Move Group Policy as Code {.unnumbered}
 
 **Learning path:** [Building the Attribute-Driven Migration](index.md) · Module 4 of 9 · 50 minutes · Guide [Gate 0](../../books/guides/attribute-driven-migration-implementation.md#gate-0-read-the-ou-tree), [Gate 5](../../books/guides/attribute-driven-migration-implementation.md#gate-5-personas-and-targeting-conventions) and [Gate 8](../../books/guides/attribute-driven-migration-implementation.md#gate-8-cut-over-and-retire-the-ou-tree) · Workbook [Chapter 06](../../books/b19-developer-workbook/06-group-policy-as-code.md)

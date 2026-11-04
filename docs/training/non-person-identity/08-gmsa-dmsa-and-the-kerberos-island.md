@@ -5,10 +5,11 @@ doc-type: training-module
 research-status: draft
 research-type: training module
 research-book: "Books 02, 04"
-last-reviewed: 2026-11-02
 series-order: 8
+review-status: approved
+reviewed-sha256: e7185cd0fde5e4b86f9dd48f3ca8fb9bb7a5ede7d1e7de2a09d2ee0f58810fdf
+last-reviewed: 2026-11-03
 ---
-
 # Module 8: Convert Kerberos accounts to gMSAs and dMSAs {.unnumbered}
 
 *Part of the [Non-Person Identity learning path](index.md). Gate G5 Conversion. Workbook [Chapter 06](../../project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.md). About 60 minutes.*

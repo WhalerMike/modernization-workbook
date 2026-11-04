@@ -5,10 +5,11 @@ doc-type: training-module
 research-status: draft
 research-type: training module
 research-book: "Book 04"
-last-reviewed: 2026-11-02
 series-order: 3
+review-status: approved
+reviewed-sha256: defb48a8ee9f3de1d13ec6303ee9e377ac6dfd5ee343edc1874c762eb0e16214
+last-reviewed: 2026-11-03
 ---
-
 # Module 3: Conditional Access for administrators and the activation gate {.unnumbered}
 
 *Part of the [Privileged Access learning path](index.md). Plan Phase 1, task A1.5, and Phase 2, tasks A2.3, A2.5 and A2.6. Workbook [Chapter 03](../../project-plans/developer-workbooks/privileged-access/03-conditional-access-for-administrators.md). About 55 minutes.*

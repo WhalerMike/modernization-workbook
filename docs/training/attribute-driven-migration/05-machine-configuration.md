@@ -7,9 +7,10 @@ research-type: training module
 research-book: "Book 19"
 series-order: 5
 date-modified: 2026-11-02
-last-reviewed: 2026-11-02
+review-status: approved
+reviewed-sha256: e96d495da7a3765766be31d7f90159824f247a7a661497d0b68498ece2a89b93
+last-reviewed: 2026-11-03
 ---
-
 # Attribute-Driven Migration, Module 5: Build Machine Configuration Packages {.unnumbered}
 
 **Learning path:** [Building the Attribute-Driven Migration](index.md) · Module 5 of 9 · 45 minutes · Guide [Gate 5](../../books/guides/attribute-driven-migration-implementation.md#gate-5-personas-and-targeting-conventions) · Workbook [Chapter 07](../../books/b19-developer-workbook/07-machine-configuration-packages.md)

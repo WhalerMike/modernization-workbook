@@ -8,7 +8,6 @@ research-type: training module
 research-book: "Book 19"
 series-order: 0
 date-modified: 2026-11-02
-last-reviewed: 2026-11-02
 listing:
   - id: adm-modules
     contents:
@@ -18,8 +17,10 @@ listing:
     sort: "series-order asc"
     sort-ui: false
     filter-ui: false
+review-status: approved
+reviewed-sha256: a0ed4e27ff8330b12c52d722632b4cb2a6f3cb99ef0eb7b68a121b759d5f6532
+last-reviewed: 2026-11-03
 ---
-
 # Learning path: Building the Attribute-Driven Migration {.unnumbered}
 
 The Attribute-Driven Migration moves an agency from Active Directory to Microsoft Entra ID by placing people, devices and servers in policy through attributes, not OU placement. Two long documents describe it. [Attribute-Driven Migration: An Implementation Guide](../../books/guides/attribute-driven-migration-implementation.md) tells the people who **run** the migration what has to be true at each of its ten gates, and how to prove it. [Book 19, *Building the Attribute-Driven Migration*](../../books/b19-developer-workbook/index.md) teaches the people who **build** the software those gates rely on.

@@ -7,9 +7,10 @@ research-type: training module
 research-book: "Book 19"
 series-order: 6
 date-modified: 2026-11-02
-last-reviewed: 2026-11-02
+review-status: approved
+reviewed-sha256: 74247dae5a453a9fe40c5aab7410ee8e78f1d2e66067f139bfccc952f353bc9d
+last-reviewed: 2026-11-03
 ---
-
 # Attribute-Driven Migration, Module 6: Onboard Servers with Ansible beside Arc {.unnumbered}
 
 **Learning path:** [Building the Attribute-Driven Migration](index.md) · Module 6 of 9 · 45 minutes · Guide [Gate 5](../../books/guides/attribute-driven-migration-implementation.md#gate-5-personas-and-targeting-conventions) and [Gate 8](../../books/guides/attribute-driven-migration-implementation.md#gate-8-cut-over-and-retire-the-ou-tree) · Workbook [Chapter 08](../../books/b19-developer-workbook/08-ansible-beside-arc.md)

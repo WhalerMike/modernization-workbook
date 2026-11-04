@@ -7,11 +7,12 @@ research-type: training module
 research-book: "Book 05"
 series-order: 3
 date-modified: 2026-11-01
-last-reviewed: 2026-11-01
 aliases:
   - /docs/research/ms-automation-intune.html
+review-status: approved
+reviewed-sha256: 584af72de10a47b53bc0719e820682b14a789a5af7c162ecc54f559b01ccab09
+last-reviewed: 2026-11-03
 ---
-
 # Microsoft Automation, Module 3: Intune through Microsoft Graph {.unnumbered}
 
 **Learning path:** [Microsoft Automation](index.md#microsoft-automation-learning-path) · Module 3 of 3 · 85 minutes · Code: [examples/ms-automation](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/ms-automation) (`intune_tasks.py`, `FmwGraph.psm1`) · Guide: [Intune track, Gate 6](../books/guides/intune-track-implementation.md#gate-6-operating-it)

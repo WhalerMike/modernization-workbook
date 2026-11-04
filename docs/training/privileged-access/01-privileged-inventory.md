@@ -5,10 +5,11 @@ doc-type: training-module
 research-status: draft
 research-type: training module
 research-book: "Book 04"
-last-reviewed: 2026-11-02
 series-order: 1
+review-status: approved
+reviewed-sha256: 661103f6ebdcec0cfe8d634f029bd89c475547c4e0cb2180972b3df00e983985
+last-reviewed: 2026-11-03
 ---
-
 # Module 1: Inventory every privileged assignment {.unnumbered}
 
 *Part of the [Privileged Access learning path](index.md). Plan Phase 0, tasks A0.1 and A0.2, Gate 0. Workbook [Chapter 01](../../project-plans/developer-workbooks/privileged-access/01-privileged-inventory-as-code.md). About 50 minutes.*

@@ -5,10 +5,11 @@ doc-type: training-module
 research-status: draft
 research-type: training module
 research-book: "Books 02, 04"
-last-reviewed: 2026-11-02
 series-order: 3
+review-status: approved
+reviewed-sha256: 3919a681daf09b8cd0997da1bc8f2387a123635b6e82c904b10129c09aa12652
+last-reviewed: 2026-11-03
 ---
-
 # Module 3: Decide each identity's target {.unnumbered}
 
 *Part of the [Non-Person Identity learning path](index.md). Gate G2 Decision. Workbook [Chapter 03](../../project-plans/developer-workbooks/non-person-identity/03-the-migration-path-matrix-as-code.md). About 55 minutes.*

@@ -5,10 +5,11 @@ doc-type: training-module
 research-status: draft
 research-type: training module
 research-book: "Book 04"
-last-reviewed: 2026-11-02
 series-order: 4
+review-status: approved
+reviewed-sha256: e893d568aa32181b9db526fe73633d52ffa2ce77d4674ec7a9195db061f4345b
+last-reviewed: 2026-11-03
 ---
-
 # Module 4: PIM for Microsoft Entra roles as code {.unnumbered}
 
 *Part of the [Privileged Access learning path](index.md). Plan Phase 1, task A1.6; Phase 2, tasks A2.1 and A2.2; Phase 3, task A3.1. Workbook [Chapter 04](../../project-plans/developer-workbooks/privileged-access/04-pim-for-entra-roles-as-code.md). About 55 minutes.*

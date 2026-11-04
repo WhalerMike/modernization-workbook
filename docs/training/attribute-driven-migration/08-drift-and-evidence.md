@@ -7,9 +7,10 @@ research-type: training module
 research-book: "Book 19"
 series-order: 8
 date-modified: 2026-11-02
-last-reviewed: 2026-11-02
+review-status: approved
+reviewed-sha256: 43069096ad0c8f6f2b14099af9247afa22441d6870abe8e7437f8c45ba97af57
+last-reviewed: 2026-11-03
 ---
-
 # Attribute-Driven Migration, Module 8: Run the Drift Pipeline and Hand Over the Evidence {.unnumbered}
 
 **Learning path:** [Building the Attribute-Driven Migration](index.md) · Module 8 of 9 · 55 minutes · Guide [Gate 9](../../books/guides/attribute-driven-migration-implementation.md#gate-9-keep-the-attributes-true) · Workbook [Chapter 09](../../books/b19-developer-workbook/09-drift-pipelines-and-evidence.md)

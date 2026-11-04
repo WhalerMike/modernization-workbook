@@ -5,10 +5,11 @@ doc-type: training-module
 research-status: draft
 research-type: training module
 research-book: "Book 03"
-last-reviewed: 2026-11-01
 series-order: 6
+review-status: approved
+reviewed-sha256: d8252cdaf4395582ad615b99f08550248e8d1fe634254fb38280b399625e19e7
+last-reviewed: 2026-11-03
 ---
-
 # Module 6: Time separations from the logs {.unnumbered}
 
 *Part of the [HR-Driven Identity learning path](index.md). Gate G6 Separation. Workbook [Chapter 06](../../project-plans/developer-workbooks/hr-driven-identity/06-separation-timing.md). About 45 minutes.*

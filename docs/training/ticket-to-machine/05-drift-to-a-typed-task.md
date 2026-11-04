@@ -7,9 +7,10 @@ research-type: training module
 research-book: "Books 13, 15"
 series-order: 5
 date-modified: 2026-11-01
-last-reviewed: 2026-11-01
+review-status: approved
+reviewed-sha256: 0b932af051c943b2717d970fbaf584fbf0db475661fd9036063935b915403353
+last-reviewed: 2026-11-03
 ---
-
 # Ticket-to-Machine, Module 5: Drift to a Typed Task {.unnumbered}
 
 **Learning path:** [Ticket-to-Machine on ServiceNow and SailPoint](index.md) · Module 5 of 7 · 45 minutes · Guide [Gate 3](../../books/guides/ttm-servicenow-sailpoint.md#step-3-connect-the-sources-and-measure-the-starting-drift) and [Gate 4](../../books/guides/ttm-servicenow-sailpoint.md#step-4-open-the-front-door) · Workbook [Chapter 04](../../project-plans/developer-workbooks/ticket-to-machine/04-drift-to-a-typed-task.md)

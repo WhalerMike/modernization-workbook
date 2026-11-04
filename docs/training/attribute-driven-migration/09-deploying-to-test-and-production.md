@@ -7,9 +7,10 @@ research-type: training module
 research-book: "Book 19"
 series-order: 9
 date-modified: 2026-11-02
-last-reviewed: 2026-11-02
+review-status: approved
+reviewed-sha256: 2894cadc65cd7cf6d103fb0864b4158979c06bd61a83821627455299a5fa24d0
+last-reviewed: 2026-11-03
 ---
-
 # Attribute-Driven Migration, Module 9: Deploy to Test, then Production {.unnumbered}
 
 **Learning path:** [Building the Attribute-Driven Migration](index.md) · Module 9 of 9 · 50 minutes · Every gate, through the [step-to-gate map](../../books/b19-developer-workbook/10-deploying-to-test-and-production.md#step-to-gate-map) · Workbook [Chapter 10](../../books/b19-developer-workbook/10-deploying-to-test-and-production.md)
