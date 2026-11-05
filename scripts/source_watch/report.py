@@ -208,6 +208,10 @@ def gate_rows(results: dict) -> list[str]:
     return rows
 
 
+def register_rows(results: dict) -> list[str]:
+    return [f"| [{md(r['title'][:120])}]({r['url']}) | {r['type']} | {md(r['fix'])} |" for r in results.get("register", [])]
+
+
 def has_findings(results: dict) -> bool:
     return bool(
         results.get("baseline")
@@ -217,6 +221,7 @@ def has_findings(results: dict) -> bool:
         or review_rows(results)
         or lifecycle_rows(results)
         or gate_rows(results)
+        or register_rows(results)
     )
 
 
@@ -333,6 +338,15 @@ def render(results: dict, budget: int | None = None) -> str:
             if add(text + block, key):
                 last_book, last_chapter = book, chapter
 
+    register = register_rows(results)
+    if register:
+        # First, so it's never the part an issue cuts: slides depend on these rows.
+        parts.append(
+            "\n## Source Register: rows to decide\n\nSlides and videos link to these rows. The scan never edits the register: "
+            "each fix below goes through a reviewed pull request that adds a line to the row's history.\n\n"
+            "| Source | What happened | What it needs |\n|---|---|---|\n" + "\n".join(register)
+        )
+        size += len(parts[-1]) + 1
     section("Changed, moved or gone sources", src, "sources")
     section("New publications", feeds, "publications")
     if manual:
@@ -363,7 +377,7 @@ def render(results: dict, budget: int | None = None) -> str:
             add(row, "lifecycle")
     if gated:
         add(
-            "\n## Gated pages awaiting review\n\nThese pages (the developer workbooks, the implementation guides and the training paths) are gated: each waits for the owner's review, and a page "
+            "\n## Gated pages awaiting review\n\nThese pages (the developer workbooks, the implementation guides, the training paths and the Source Register) are gated: each waits for the owner's review, and a page "
             "changed after approval waits again. Work that builds on a page, such as its narrated chapter tour, waits too. "
             "After reading a page, approve it with `python scripts/source_watch/review_gate.py --approve <page>` in a reviewed pull request; "
             "it is listed every week until then.\n\n| Page | Why it is listed |\n|---|---|",

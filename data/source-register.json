@@ -1,0 +1,1274 @@
+{
+ "sources": [
+  {
+   "id": "bod-25-01",
+   "title": "CISA BOD 25-01, Implementing Secure Practices for Cloud Services",
+   "publisher": "CISA",
+   "url": "https://www.cisa.gov/news-events/directives/bod-25-01-implementing-secure-practices-cloud-services",
+   "status": "active",
+   "added": "2026-11-05",
+   "labels": [
+    "BOD 25-01",
+    "CISA BOD 25-01"
+   ],
+   "history": [
+    {
+     "date": "2026-11-05",
+     "change": "Added: cited on the Start series and Book 00 slides"
+    }
+   ]
+  },
+  {
+   "id": "bod-26-02",
+   "title": "CISA BOD 26-02, Mitigating Risk From End-of-Support Edge Devices",
+   "publisher": "CISA",
+   "url": "https://www.cisa.gov/news-events/directives/bod-26-02-mitigating-risk-end-support-edge-devices",
+   "status": "active",
+   "added": "2026-11-05",
+   "labels": [
+    "BOD 26-02",
+    "CISA BOD 26-02"
+   ],
+   "history": [
+    {
+     "date": "2026-11-05",
+     "change": "Added: cited on the Start series and Book 00 slides"
+    }
+   ]
+  },
+  {
+   "id": "cisa-logging",
+   "title": "CISA Logging Reference Architecture",
+   "publisher": "CISA",
+   "url": "https://www.cisa.gov/Logging",
+   "status": "active",
+   "added": "2026-11-05",
+   "labels": [
+    "Logging Reference Architecture",
+    "CISA Logging Reference Architecture"
+   ],
+   "history": [
+    {
+     "date": "2026-11-05",
+     "change": "Added: cited on the Start series and Book 00 slides"
+    }
+   ]
+  },
+  {
+   "id": "cisa-ztmm",
+   "title": "CISA Zero Trust Maturity Model v2.0, Zero Trust Maturity Model",
+   "publisher": "CISA",
+   "url": "https://www.cisa.gov/sites/default/files/2023-04/zero_trust_maturity_model_v2_508.pdf",
+   "status": "active",
+   "added": "2026-11-05",
+   "labels": [
+    "Zero Trust Maturity Model v2.0",
+    "CISA Zero Trust Maturity Model v2.0",
+    "CISA ZTMM v2.0"
+   ],
+   "history": [
+    {
+     "date": "2026-11-05",
+     "change": "Added: cited on the Start series and Book 00 slides"
+    }
+   ]
+  },
+  {
+   "id": "fedramp-2026",
+   "title": "FedRAMP Consolidated Rules for 2026, Propelling Change: FedRAMP Launches Consolidated Rules for 2026",
+   "publisher": "FedRAMP",
+   "url": "https://www.fedramp.gov/2026-06-25-propelling-change-fedramp-launches-consolidated-rules-for-2026/",
+   "status": "active",
+   "added": "2026-11-05",
+   "labels": [
+    "Propelling Change",
+    "FedRAMP Consolidated Rules for 2026",
+    "Consolidated Rules for 2026"
+   ],
+   "history": [
+    {
+     "date": "2026-11-05",
+     "change": "Added: cited on the Start series and Book 00 slides"
+    }
+   ]
+  },
+  {
+   "id": "fedramp-ksi",
+   "title": "Key Security Indicators",
+   "publisher": "FedRAMP",
+   "url": "https://www.fedramp.gov/2026/providers/20x/key-security-indicators/",
+   "status": "active",
+   "added": "2026-11-05",
+   "labels": [
+    "FedRAMP KSIs",
+    "Key Security Indicators"
+   ],
+   "history": [
+    {
+     "date": "2026-11-05",
+     "change": "Added: cited on the Start series and Book 00 slides"
+    }
+   ]
+  },
+  {
+   "id": "important-dates-for-the-consolidated-rules",
+   "title": "Important Dates for the Consolidated Rules for 2026",
+   "publisher": "FedRAMP",
+   "url": "https://www.fedramp.gov/2026/timeline/",
+   "status": "active",
+   "added": "2026-11-05",
+   "labels": [
+    "Important Dates",
+    "Important Dates for the Consolidated Rules"
+   ],
+   "history": [
+    {
+     "date": "2026-11-05",
+     "change": "Added: cited on the Start series and Book 00 slides"
+    }
+   ]
+  },
+  {
+   "id": "ntc-0004",
+   "title": "FedRAMP Notice NTC-0004, Initial Outcome from RFC-0020 FedRAMP Authorization Designations",
+   "publisher": "FedRAMP",
+   "url": "https://www.fedramp.gov/notices/0004/",
+   "status": "active",
+   "added": "2026-11-05",
+   "labels": [
+    "Notice NTC-0004",
+    "FedRAMP Notice NTC-0004"
+   ],
+   "history": [
+    {
+     "date": "2026-11-05",
+     "change": "Added: cited on the Start series and Book 00 slides"
+    }
+   ]
+  },
+  {
+   "id": "using-a-fedramp-certified-cloud-service",
+   "title": "Using a FedRAMP Certified Cloud Service",
+   "publisher": "FedRAMP",
+   "url": "https://www.fedramp.gov/2026/agencies/use/",
+   "status": "active",
+   "added": "2026-11-05",
+   "labels": [
+    "Using a FedRAMP Certified Cloud Service",
+    "certified-service use"
+   ],
+   "history": [
+    {
+     "date": "2026-11-05",
+     "change": "Added: cited on the Start series and Book 00 slides"
+    }
+   ]
+  },
+  {
+   "id": "active-directory-accounts",
+   "title": "Active Directory accounts",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/windows-server/identity/ad-ds/manage/understand-default-user-accounts",
+   "status": "active",
+   "added": "2026-11-05",
+   "labels": [
+    "Active Directory accounts",
+    "DC password hashes"
+   ],
+   "history": [
+    {
+     "date": "2026-11-05",
+     "change": "Added: cited on the Start series and Book 00 slides"
+    }
+   ]
+  },
+  {
+   "id": "active-directory-federation-services-ad-fs",
+   "title": "Active Directory Federation Services (AD FS) decommission guide",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/windows-server/identity/ad-fs/decommission/adfs-decommission-guide",
+   "status": "active",
+   "added": "2026-11-05",
+   "labels": [
+    "AD FS decommission guide"
+   ],
+   "history": [
+    {
+     "date": "2026-11-05",
+     "change": "Added: cited on the Start series and Book 00 slides"
+    }
+   ]
+  },
+  {
+   "id": "active-directory-integrated-dns-zones",
+   "title": "Active Directory-Integrated DNS Zones",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/windows-server/identity/ad-ds/plan/active-directory-integrated-dns-zones",
+   "status": "active",
+   "added": "2026-11-05",
+   "labels": [
+    "AD-integrated DNS",
+    "AD-integrated DNS zones"
+   ],
+   "history": [
+    {
+     "date": "2026-11-05",
+     "change": "Added: cited on the Start series and Book 00 slides"
+    }
+   ]
+  },
+  {
+   "id": "administrative-units-in-microsoft-entra-id",
+   "title": "Administrative units in Microsoft Entra ID",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/entra/identity/role-based-access-control/administrative-units",
+   "status": "active",
+   "added": "2026-11-05",
+   "labels": [
+    "Entra administrative units"
+   ],
+   "history": [
+    {
+     "date": "2026-11-05",
+     "change": "Added: cited on the Start series and Book 00 slides"
+    }
+   ]
+  },
+  {
+   "id": "audit-use-of-ntlmv1-on-a-windows-server",
+   "title": "Audit use of NTLMv1 on a Windows Server-based domain controller",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/troubleshoot/windows-server/windows-security/audit-domain-controller-ntlmv1",
+   "status": "active",
+   "added": "2026-11-05",
+   "labels": [
+    "NTLM deprecation",
+    "deprecated Windows features"
+   ],
+   "history": [
+    {
+     "date": "2026-11-05",
+     "change": "Added: cited on the Start series and Book 00 slides"
+    }
+   ]
+  },
+  {
+   "id": "block-legacy-authentication-with-conditional",
+   "title": "Block legacy authentication with Conditional Access",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/entra/identity/conditional-access/policy-block-legacy-authentication",
+   "status": "active",
+   "added": "2026-11-05",
+   "labels": [],
+   "history": [
+    {
+     "date": "2026-11-05",
+     "change": "Added: cited on the Start series and Book 00 slides"
+    }
+   ]
+  },
+  {
+   "id": "common-questions-answers-and-scenarios-with",
+   "title": "Common questions, answers, and scenarios with policies and profiles in Microsoft Intune",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/intune/device-configuration/troubleshoot-device-profiles#conflicts",
+   "status": "active",
+   "added": "2026-11-05",
+   "labels": [
+    "Intune conflicts",
+    "Intune policy conflicts",
+    "policy conflicts"
+   ],
+   "history": [
+    {
+     "date": "2026-11-05",
+     "change": "Added: cited on the Start series and Book 00 slides"
+    }
+   ]
+  },
+  {
+   "id": "continuous-access-evaluation",
+   "title": "Continuous access evaluation",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/entra/identity/conditional-access/concept-continuous-access-evaluation",
+   "status": "active",
+   "added": "2026-11-05",
+   "labels": [
+    "continuous access evaluation"
+   ],
+   "history": [
+    {
+     "date": "2026-11-05",
+     "change": "Added: cited on the Start series and Book 00 slides"
+    }
+   ]
+  },
+  {
+   "id": "ending-support-in-2025",
+   "title": "Ending Support in 2025",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/lifecycle/end-of-support/end-of-support-2025",
+   "status": "active",
+   "added": "2026-11-05",
+   "labels": [],
+   "history": [
+    {
+     "date": "2026-11-05",
+     "change": "Added: cited on the Start series and Book 00 slides"
+    }
+   ]
+  },
+  {
+   "id": "ending-support-in-2026",
+   "title": "Ending Support in 2026",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/lifecycle/end-of-support/end-of-support-2026",
+   "status": "active",
+   "added": "2026-11-05",
+   "labels": [
+    "Lifecycle end-of-support pages",
+    "Microsoft lifecycle pages",
+    "Microsoft product lifecycle pages"
+   ],
+   "history": [
+    {
+     "date": "2026-11-05",
+     "change": "Added: cited on the Start series and Book 00 slides"
+    }
+   ]
+  },
+  {
+   "id": "ending-support-in-2027",
+   "title": "Ending Support in 2027",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/lifecycle/end-of-support/end-of-support-2027",
+   "status": "active",
+   "added": "2026-11-05",
+   "labels": [],
+   "history": [
+    {
+     "date": "2026-11-05",
+     "change": "Added: cited on the Start series and Book 00 slides"
+    }
+   ]
+  },
+  {
+   "id": "ending-support-in-2029",
+   "title": "Ending Support in 2029",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/lifecycle/end-of-support/end-of-support-2029",
+   "status": "active",
+   "added": "2026-11-05",
+   "labels": [],
+   "history": [
+    {
+     "date": "2026-11-05",
+     "change": "Added: cited on the Start series and Book 00 slides"
+    }
+   ]
+  },
+  {
+   "id": "group-policy-application-rules-for-domain",
+   "title": "Group Policy application rules for domain controllers",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/troubleshoot/windows-server/active-directory/group-policy-application-rules-for-domain-controller",
+   "status": "active",
+   "added": "2026-11-05",
+   "labels": [
+    "DC Group Policy",
+    "Group Policy for domain controllers"
+   ],
+   "history": [
+    {
+     "date": "2026-11-05",
+     "change": "Added: cited on the Start series and Book 00 slides"
+    }
+   ]
+  },
+  {
+   "id": "group-policy-processing",
+   "title": "Group Policy processing",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/windows-server/identity/ad-ds/manage/group-policy/group-policy-processing",
+   "status": "active",
+   "added": "2026-11-05",
+   "labels": [
+    "Group Policy processing"
+   ],
+   "history": [
+    {
+     "date": "2026-11-05",
+     "change": "Added: cited on the Start series and Book 00 slides"
+    }
+   ]
+  },
+  {
+   "id": "how-to-decommission-a-windows-enterprise",
+   "title": "How to decommission a Windows enterprise certification authority and remove all related objects",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/troubleshoot/windows-server/certificates-and-public-key-infrastructure-pki/decommission-enterprise-certification-authority-and-remove-objects",
+   "status": "active",
+   "added": "2026-11-05",
+   "labels": [
+    "CA decommissioning"
+   ],
+   "history": [
+    {
+     "date": "2026-11-05",
+     "change": "Added: cited on the Start series and Book 00 slides"
+    }
+   ]
+  },
+  {
+   "id": "manage-emergency-access-accounts-in",
+   "title": "Manage emergency access accounts in Microsoft Entra ID",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/entra/identity/role-based-access-control/security-emergency-access",
+   "status": "active",
+   "added": "2026-11-05",
+   "labels": [
+    "emergency access accounts"
+   ],
+   "history": [
+    {
+     "date": "2026-11-05",
+     "change": "Added: cited on the Start series and Book 00 slides"
+    }
+   ]
+  },
+  {
+   "id": "manage-endpoint-security-in-microsoft-intune",
+   "title": "Manage endpoint security in Microsoft Intune",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/intune/device-security/endpoint-security-policies",
+   "status": "active",
+   "added": "2026-11-05",
+   "labels": [
+    "endpoint security"
+   ],
+   "history": [
+    {
+     "date": "2026-11-05",
+     "change": "Added: cited on the Start series and Book 00 slides"
+    }
+   ]
+  },
+  {
+   "id": "microsoft-entra-licensing",
+   "title": "Microsoft Entra licensing",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/entra/fundamentals/licensing",
+   "status": "active",
+   "added": "2026-11-05",
+   "labels": [
+    "Entra licensing",
+    "Microsoft Entra licensing"
+   ],
+   "history": [
+    {
+     "date": "2026-11-05",
+     "change": "Added: cited on the Start series and Book 00 slides"
+    }
+   ]
+  },
+  {
+   "id": "microsoft-identity-manager-2016-news-and",
+   "title": "Microsoft Identity Manager 2016 news and updates",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/microsoft-identity-manager/microsoft-identity-manager-2016",
+   "status": "active",
+   "added": "2026-11-05",
+   "labels": [
+    "MIM 2016 news and updates",
+    "Microsoft Identity Manager 2016 news and updates"
+   ],
+   "history": [
+    {
+     "date": "2026-11-05",
+     "change": "Added: cited on the Start series and Book 00 slides"
+    }
+   ]
+  },
+  {
+   "id": "migrate-from-federation-to-cloud",
+   "title": "Migrate from federation to cloud authentication",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/entra/identity/hybrid/connect/migrate-from-federation-to-cloud-authentication",
+   "status": "active",
+   "added": "2026-11-05",
+   "labels": [
+    "AD FS migration",
+    "federation to cloud authentication"
+   ],
+   "history": [
+    {
+     "date": "2026-11-05",
+     "change": "Added: cited on the Start series and Book 00 slides"
+    }
+   ]
+  },
+  {
+   "id": "migrate-from-microsoft-entra-connect-to",
+   "title": "Migrate from Microsoft Entra Connect to Cloud Sync: Decision Guide",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/entra/identity/hybrid/cloud-sync/connect-to-cloud-sync-decision-guide",
+   "status": "active",
+   "added": "2026-11-05",
+   "labels": [
+    "Cloud Sync decision guide"
+   ],
+   "history": [
+    {
+     "date": "2026-11-05",
+     "change": "Added: cited on the Start series and Book 00 slides"
+    }
+   ]
+  },
+  {
+   "id": "network-policy-server-overview",
+   "title": "Network Policy Server overview",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/windows-server/networking/technologies/nps/nps-top",
+   "status": "active",
+   "added": "2026-11-05",
+   "labels": [
+    "Network Policy Server"
+   ],
+   "history": [
+    {
+     "date": "2026-11-05",
+     "change": "Added: cited on the Start series and Book 00 slides"
+    }
+   ]
+  },
+  {
+   "id": "onpremisesextensionattributes-resource-type",
+   "title": "onPremisesExtensionAttributes resource type",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/graph/api/resources/onpremisesextensionattributes?view=graph-rest-1.0",
+   "status": "active",
+   "added": "2026-11-05",
+   "labels": [
+    "Entra extension attributes",
+    "Microsoft Graph, onPremisesExtensionAttributes",
+    "onPremisesExtensionAttributes"
+   ],
+   "history": [
+    {
+     "date": "2026-11-05",
+     "change": "Added: cited on the Start series and Book 00 slides"
+    }
+   ]
+  },
+  {
+   "id": "overview-of-microsoft-cloud-pki-for",
+   "title": "Overview of Microsoft Cloud PKI for Microsoft Intune",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/intune/cloud-pki/",
+   "status": "active",
+   "added": "2026-11-05",
+   "labels": [
+    "Cloud PKI overview and deployment"
+   ],
+   "history": [
+    {
+     "date": "2026-11-05",
+     "change": "Added: cited on the Start series and Book 00 slides"
+    }
+   ]
+  },
+  {
+   "id": "plan-a-conditional-access-deployment",
+   "title": "Plan a Conditional Access deployment",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/entra/identity/conditional-access/plan-conditional-access",
+   "status": "active",
+   "added": "2026-11-05",
+   "labels": [
+    "Plan a Conditional Access deployment"
+   ],
+   "history": [
+    {
+     "date": "2026-11-05",
+     "change": "Added: cited on the Start series and Book 00 slides"
+    }
+   ]
+  },
+  {
+   "id": "policy-csp-controlpolicyconflict",
+   "title": "Policy CSP - ControlPolicyConflict",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/windows/client-management/mdm/policy-csp-controlpolicyconflict",
+   "status": "active",
+   "added": "2026-11-05",
+   "labels": [
+    "MDMWinsOverGP"
+   ],
+   "history": [
+    {
+     "date": "2026-11-05",
+     "change": "Added: cited on the Start series and Book 00 slides"
+    }
+   ]
+  },
+  {
+   "id": "powershell-support-lifecycle",
+   "title": "PowerShell Support Lifecycle",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/powershell/scripting/install/powershell-support-lifecycle",
+   "status": "active",
+   "added": "2026-11-05",
+   "labels": [
+    "PowerShell support lifecycle"
+   ],
+   "history": [
+    {
+     "date": "2026-11-05",
+     "change": "Added: cited on the Start series and Book 00 slides"
+    }
+   ]
+  },
+  {
+   "id": "sql-server-enabled-by-azure-arc",
+   "title": "SQL Server enabled by Azure Arc",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/sql/sql-server/azure-arc/overview",
+   "status": "active",
+   "added": "2026-11-05",
+   "labels": [
+    "SQL Server enabled by Azure Arc"
+   ],
+   "history": [
+    {
+     "date": "2026-11-05",
+     "change": "Added: cited on the Start series and Book 00 slides"
+    }
+   ]
+  },
+  {
+   "id": "understand-and-manage-dynamic-group",
+   "title": "Understand and manage dynamic group processing in Microsoft Entra ID",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/entra/identity/users/manage-dynamic-group",
+   "status": "active",
+   "added": "2026-11-05",
+   "labels": [
+    "dynamic group processing",
+    "dynamic membership processing",
+    "dynamic membership rules and processing"
+   ],
+   "history": [
+    {
+     "date": "2026-11-05",
+     "change": "Added: cited on the Start series and Book 00 slides"
+    }
+   ]
+  },
+  {
+   "id": "understanding-the-active-directory-logical",
+   "title": "Understanding the Active Directory Logical Model",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/windows-server/identity/ad-ds/plan/understanding-the-active-directory-logical-model",
+   "status": "active",
+   "added": "2026-11-05",
+   "labels": [
+    "AD DS OUs and logical model",
+    "AD DS logical model",
+    "AD logical model"
+   ],
+   "history": [
+    {
+     "date": "2026-11-05",
+     "change": "Added: cited on the Start series and Book 00 slides"
+    }
+   ]
+  },
+  {
+   "id": "users-in-active-directory-domain-services",
+   "title": "Users in Active Directory Domain Services",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/windows/win32/ad/users-in-active-directory-domain-services",
+   "status": "active",
+   "added": "2026-11-05",
+   "labels": [
+    "AD DS users and OUs",
+    "Users in AD DS"
+   ],
+   "history": [
+    {
+     "date": "2026-11-05",
+     "change": "Added: cited on the Start series and Book 00 slides"
+    }
+   ]
+  },
+  {
+   "id": "walkthrough-create-an-intune-settings",
+   "title": "Walkthrough - Create an Intune settings catalog policy and compare with on-premises ADMX",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/intune/device-configuration/settings-catalog/tutorial-group-policy-migration",
+   "status": "active",
+   "added": "2026-11-05",
+   "labels": [
+    "Intune settings catalog",
+    "Intune settings catalog vs. ADMX"
+   ],
+   "history": [
+    {
+     "date": "2026-11-05",
+     "change": "Added: cited on the Start series and Book 00 slides"
+    }
+   ]
+  },
+  {
+   "id": "what-are-access-reviews",
+   "title": "What are access reviews?",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/entra/id-governance/access-reviews-overview",
+   "status": "active",
+   "added": "2026-11-05",
+   "labels": [
+    "PIM licensing",
+    "access reviews"
+   ],
+   "history": [
+    {
+     "date": "2026-11-05",
+     "change": "Added: cited on the Start series and Book 00 slides"
+    }
+   ]
+  },
+  {
+   "id": "what-is-active-directory-certificate",
+   "title": "What is Active Directory Certificate Services?",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/windows-server/identity/ad-cs/active-directory-certificate-services-overview",
+   "status": "active",
+   "added": "2026-11-05",
+   "labels": [
+    "AD CS",
+    "AD CS overview"
+   ],
+   "history": [
+    {
+     "date": "2026-11-05",
+     "change": "Added: cited on the Start series and Book 00 slides"
+    }
+   ]
+  },
+  {
+   "id": "what-is-azure-dns-private-resolver",
+   "title": "What is Azure DNS Private Resolver?",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/azure/dns/dns-private-resolver-overview",
+   "status": "active",
+   "added": "2026-11-05",
+   "labels": [
+    "Azure DNS Private Resolver"
+   ],
+   "history": [
+    {
+     "date": "2026-11-05",
+     "change": "Added: cited on the Start series and Book 00 slides"
+    }
+   ]
+  },
+  {
+   "id": "what-is-conditional-access",
+   "title": "What is Conditional Access?",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/entra/identity/conditional-access/overview",
+   "status": "active",
+   "added": "2026-11-05",
+   "labels": [
+    "Conditional Access"
+   ],
+   "history": [
+    {
+     "date": "2026-11-05",
+     "change": "Added: cited on the Start series and Book 00 slides"
+    }
+   ]
+  },
+  {
+   "id": "what-is-microsoft-entra-privileged-identity",
+   "title": "What is Microsoft Entra Privileged Identity Management?",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-configure",
+   "status": "active",
+   "added": "2026-11-05",
+   "labels": [
+    "PIM"
+   ],
+   "history": [
+    {
+     "date": "2026-11-05",
+     "change": "Added: cited on the Start series and Book 00 slides"
+    }
+   ]
+  },
+  {
+   "id": "windows-10-reaching-end-of-support",
+   "title": "Windows 10 reaching end of support",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/lifecycle/announcements/windows-10-end-of-support",
+   "status": "active",
+   "added": "2026-11-05",
+   "labels": [
+    "Windows 10 reaching end of support"
+   ],
+   "history": [
+    {
+     "date": "2026-11-05",
+     "change": "Added: cited on the Start series and Book 00 slides"
+    }
+   ]
+  },
+  {
+   "id": "windows-server-release-information",
+   "title": "Windows Server release information",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/windows/release-health/windows-server-release-info",
+   "status": "active",
+   "added": "2026-11-05",
+   "labels": [
+    "Windows Server release information"
+   ],
+   "history": [
+    {
+     "date": "2026-11-05",
+     "change": "Added: cited on the Start series and Book 00 slides"
+    }
+   ]
+  },
+  {
+   "id": "kb5014754-certificate-based-authentication",
+   "title": "KB5014754: Certificate-based authentication changes on Windows domain controllers",
+   "publisher": "Microsoft Support",
+   "url": "https://support.microsoft.com/topic/kb5014754-certificate-based-authentication-changes-on-windows-domain-controllers-ad2c23b0-15d8-4340-a468-4d4f3b188f16",
+   "status": "active",
+   "added": "2026-11-05",
+   "labels": [
+    "Microsoft KB5014754"
+   ],
+   "history": [
+    {
+     "date": "2026-11-05",
+     "change": "Added: cited on the Start series and Book 00 slides"
+    }
+   ]
+  },
+  {
+   "id": "layers-and-models",
+   "title": "Layers and Models",
+   "publisher": "NIST",
+   "url": "https://pages.nist.gov/OSCAL/learn/concepts/layer/",
+   "status": "active",
+   "added": "2026-11-05",
+   "labels": [
+    "OSCAL layers and models"
+   ],
+   "history": [
+    {
+     "date": "2026-11-05",
+     "change": "Added: cited on the Start series and Book 00 slides"
+    }
+   ]
+  },
+  {
+   "id": "sp-800-137",
+   "title": "NIST SP 800-137, Information Security Continuous Monitoring (ISCM) for Federal Information Systems and Organizations",
+   "publisher": "NIST",
+   "url": "https://csrc.nist.gov/pubs/sp/800/137/final",
+   "status": "active",
+   "added": "2026-11-05",
+   "labels": [
+    "SP 800-137",
+    "NIST SP 800-137"
+   ],
+   "history": [
+    {
+     "date": "2026-11-05",
+     "change": "Added: cited on the Start series and Book 00 slides"
+    }
+   ]
+  },
+  {
+   "id": "sp-800-207",
+   "title": "NIST SP 800-207, Zero Trust Architecture",
+   "publisher": "NIST",
+   "url": "https://csrc.nist.gov/pubs/sp/800/207/final",
+   "status": "active",
+   "added": "2026-11-05",
+   "labels": [
+    "SP 800-207",
+    "NIST SP 800-207"
+   ],
+   "history": [
+    {
+     "date": "2026-11-05",
+     "change": "Added: cited on the Start series and Book 00 slides"
+    }
+   ]
+  },
+  {
+   "id": "sp-800-30",
+   "title": "NIST SP 800-30 Rev. 1, Guide for Conducting Risk Assessments",
+   "publisher": "NIST",
+   "url": "https://csrc.nist.gov/pubs/sp/800/30/r1/final",
+   "status": "active",
+   "added": "2026-11-05",
+   "labels": [
+    "SP 800-30 Rev. 1",
+    "NIST SP 800-30 Rev. 1"
+   ],
+   "history": [
+    {
+     "date": "2026-11-05",
+     "change": "Added: cited on the Start series and Book 00 slides"
+    }
+   ]
+  },
+  {
+   "id": "sp-800-37",
+   "title": "NIST SP 800-37 Rev. 2, Risk Management Framework for Information Systems and Organizations: A System Life Cycle Approach for Security and Privacy",
+   "publisher": "NIST",
+   "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-37r2.pdf",
+   "status": "active",
+   "added": "2026-11-05",
+   "labels": [
+    "NIST SP 800-37",
+    "NIST SP 800-37 Rev. 2",
+    "SP 800-37 Rev. 2"
+   ],
+   "history": [
+    {
+     "date": "2026-11-05",
+     "change": "Added: cited on the Start series and Book 00 slides"
+    }
+   ]
+  },
+  {
+   "id": "sp-800-53",
+   "title": "NIST SP 800-53 Rev. 5, Security and Privacy Controls for Information Systems and Organizations",
+   "publisher": "NIST",
+   "url": "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final",
+   "status": "active",
+   "added": "2026-11-05",
+   "labels": [
+    "NIST SP 800-53",
+    "NIST SP 800-53 Rev. 5",
+    "SP 800-53 Rev. 5"
+   ],
+   "history": [
+    {
+     "date": "2026-11-05",
+     "change": "Added: cited on the Start series and Book 00 slides"
+    }
+   ]
+  },
+  {
+   "id": "sp-800-88",
+   "title": "NIST SP 800-88 Rev. 2, Guidelines for Media Sanitization",
+   "publisher": "NIST",
+   "url": "https://csrc.nist.gov/pubs/sp/800/88/r2/final",
+   "status": "active",
+   "added": "2026-11-05",
+   "labels": [
+    "SP 800-88 Rev. 2",
+    "NIST SP 800-88 Rev. 2"
+   ],
+   "history": [
+    {
+     "date": "2026-11-05",
+     "change": "Added: cited on the Start series and Book 00 slides"
+    }
+   ]
+  },
+  {
+   "id": "controlled-unclassified-information-cui",
+   "title": "Controlled Unclassified Information (CUI)",
+   "publisher": "National Archives",
+   "url": "https://www.archives.gov/cui/faqs.html",
+   "status": "active",
+   "added": "2026-11-05",
+   "labels": [
+    "Controlled Unclassified Information FAQ"
+   ],
+   "history": [
+    {
+     "date": "2026-11-05",
+     "change": "Added: cited on the Start series and Book 00 slides"
+    }
+   ]
+  },
+  {
+   "id": "m-19-17",
+   "title": "OMB M-19-17, Enabling Mission Delivery through Improved Identity, Credential, and Access Management",
+   "publisher": "Office of Management and Budget",
+   "url": "https://www.whitehouse.gov/wp-content/uploads/2019/05/M-19-17.pdf",
+   "status": "active",
+   "added": "2026-11-05",
+   "labels": [
+    "M-19-17",
+    "OMB M-19-17"
+   ],
+   "history": [
+    {
+     "date": "2026-11-05",
+     "change": "Added: cited on the Start series and Book 00 slides"
+    }
+   ]
+  },
+  {
+   "id": "m-22-09",
+   "title": "OMB M-22-09, Moving the U.S. Government Toward Zero Trust Cybersecurity Principles",
+   "publisher": "Office of Management and Budget",
+   "url": "https://www.whitehouse.gov/wp-content/uploads/2022/01/M-22-09.pdf",
+   "status": "active",
+   "added": "2026-11-05",
+   "labels": [
+    "M-22-09",
+    "OMB M-22-09"
+   ],
+   "history": [
+    {
+     "date": "2026-11-05",
+     "change": "Added: cited on the Start series and Book 00 slides"
+    }
+   ]
+  },
+  {
+   "id": "m-26-05",
+   "title": "OMB M-26-05, Adopting a Risk-based Approach to Software and Hardware Security",
+   "publisher": "Office of Management and Budget",
+   "url": "https://www.whitehouse.gov/wp-content/uploads/2026/01/M-26-05-Adopting-a-Risk-based-Approach-to-Software-and-Hardware-Security.pdf",
+   "status": "active",
+   "added": "2026-11-05",
+   "labels": [
+    "M-26-05",
+    "OMB M-26-05"
+   ],
+   "history": [
+    {
+     "date": "2026-11-05",
+     "change": "Added: cited on the Start series and Book 00 slides"
+    }
+   ]
+  },
+  {
+   "id": "m-26-14",
+   "title": "OMB M-26-14, Ensuring Effective and Efficient Agency Logging and Network Visibility to Defend Against Evolving Cyber Threats",
+   "publisher": "Office of Management and Budget",
+   "url": "https://www.whitehouse.gov/wp-content/uploads/2026/05/M-26-14-Ensuring-Effective-and-Efficient-Agency-Logging-and-Network-Visibility-to-Defend-Against-Evolving-Cyber-Threats.pdf",
+   "status": "active",
+   "added": "2026-11-05",
+   "labels": [
+    "M-26-14",
+    "OMB M-26-14"
+   ],
+   "history": [
+    {
+     "date": "2026-11-05",
+     "change": "Added: cited on the Start series and Book 00 slides"
+    }
+   ]
+  },
+  {
+   "id": "creating-federal-hr-2-0-by-consolidating",
+   "title": "Creating \"Federal HR 2.0\" by Consolidating Core Human Capital Management Across the Federal Government",
+   "publisher": "Office of Personnel Management",
+   "url": "https://www.opm.gov/chcoc/latest-memos/creating-federal-hr-20-by-consolidating-core-human-capital-management-across-the-federal-government.pdf",
+   "status": "active",
+   "added": "2026-11-05",
+   "labels": [
+    "OMB/OPM Federal HR 2.0 memo",
+    "OMB/OPM memo Dec. 10, 2025",
+    "OMB/OPM memo of Dec. 10, 2025"
+   ],
+   "history": [
+    {
+     "date": "2026-11-05",
+     "change": "Added: cited on the Start series and Book 00 slides"
+    }
+   ]
+  },
+  {
+   "id": "opm-awards-contract-for-first-ever",
+   "title": "OPM Awards Contract for First Ever Governmentwide HR Platform",
+   "publisher": "Office of Personnel Management",
+   "url": "https://www.opm.gov/news/news-releases/opm-awards-contract-for-first-ever-governmentwide-hr-platform/",
+   "status": "active",
+   "added": "2026-11-05",
+   "labels": [
+    "OPM Core HCM award",
+    "OPM award"
+   ],
+   "history": [
+    {
+     "date": "2026-11-05",
+     "change": "Added: cited on the Start series and Book 00 slides"
+    }
+   ]
+  },
+  {
+   "id": "us-office-of-personnel-management-selects",
+   "title": "US Office of Personnel Management Selects Oracle to Power Federal Workforce Modernization",
+   "publisher": "Oracle",
+   "url": "https://www.oracle.com/news/announcement/us-office-of-personnel-management-selects-oracle-to-power-federal-workforce-modernization-2026-06-11/",
+   "status": "active",
+   "added": "2026-11-05",
+   "labels": [
+    "Oracle announcement"
+   ],
+   "history": [
+    {
+     "date": "2026-11-05",
+     "change": "Added: cited on the Start series and Book 00 slides"
+    }
+   ]
+  },
+  {
+   "id": "certified-pre-owned",
+   "title": "Certified Pre-Owned",
+   "publisher": "Other sources",
+   "url": "https://specterops.io/blog/2021/06/17/certified-pre-owned/",
+   "status": "active",
+   "added": "2026-11-05",
+   "labels": [
+    "Certified Pre-Owned"
+   ],
+   "history": [
+    {
+     "date": "2026-11-05",
+     "change": "Added: cited on the Start series and Book 00 slides"
+    }
+   ]
+  },
+  {
+   "id": "cis-microsoft-windows-server-benchmarks",
+   "title": "CIS Microsoft Windows Server Benchmarks",
+   "publisher": "Other sources",
+   "url": "https://www.cisecurity.org/benchmark/microsoft_windows_server",
+   "status": "active",
+   "added": "2026-11-05",
+   "labels": [
+    "CIS Windows Server 2025 Benchmark v2.1.0"
+   ],
+   "history": [
+    {
+     "date": "2026-11-05",
+     "change": "Added: cited on the Start series and Book 00 slides"
+    }
+   ]
+  },
+  {
+   "id": "githooks",
+   "title": "githooks",
+   "publisher": "Other sources",
+   "url": "https://git-scm.com/docs/githooks",
+   "status": "active",
+   "added": "2026-11-05",
+   "labels": [
+    "Git githooks"
+   ],
+   "history": [
+    {
+     "date": "2026-11-05",
+     "change": "Added: cited on the Start series and Book 00 slides"
+    }
+   ]
+  },
+  {
+   "id": "protected-branches",
+   "title": "Protected Branches",
+   "publisher": "Other sources",
+   "url": "https://docs.gitea.com/usage/access-control/protected-branches",
+   "status": "active",
+   "added": "2026-11-05",
+   "labels": [
+    "Protected Branches"
+   ],
+   "history": [
+    {
+     "date": "2026-11-05",
+     "change": "Added: cited on the Start series and Book 00 slides"
+    }
+   ]
+  },
+  {
+   "id": "webvtt-the-web-video-text-tracks-format",
+   "title": "WebVTT: The Web Video Text Tracks Format",
+   "publisher": "Other sources",
+   "url": "https://www.w3.org/TR/webvtt1/",
+   "status": "active",
+   "added": "2026-11-05",
+   "labels": [
+    "WebVTT"
+   ],
+   "history": [
+    {
+     "date": "2026-11-05",
+     "change": "Added: cited on the Start series and Book 00 slides"
+    }
+   ]
+  },
+  {
+   "id": "information-and-communication-technology-ict",
+   "title": "Information and Communication Technology (ICT) Standards and Guidelines",
+   "publisher": "U.S. Access Board",
+   "url": "https://www.access-board.gov/ict/",
+   "status": "active",
+   "added": "2026-11-05",
+   "labels": [
+    "Revised 508 Standards"
+   ],
+   "history": [
+    {
+     "date": "2026-11-05",
+     "change": "Added: cited on the Start series and Book 00 slides"
+    }
+   ]
+  }
+ ],
+ "phrases": {
+  "Ending Support in 2025, 2026, 2027 and 2029": {
+   "Ending Support in 2025": "ending-support-in-2025",
+   "2026": "ending-support-in-2026",
+   "2027": "ending-support-in-2027",
+   "2029": "ending-support-in-2029"
+  },
+  "Microsoft Lifecycle, 2025–2029": {
+   "2025": "ending-support-in-2025",
+   "2029": "ending-support-in-2029"
+  },
+  "CISA BOD 25-01 and 26-02": {
+   "CISA BOD 25-01": "bod-25-01",
+   "26-02": "bod-26-02"
+  },
+  "Consolidated Rules for 2026 and timeline": {
+   "Consolidated Rules for 2026": "fedramp-2026",
+   "timeline": "important-dates-for-the-consolidated-rules"
+  },
+  "; FedRAMP)": {
+   "FedRAMP": "fedramp-2026"
+  },
+  "Microsoft Entra: administrative units": {
+   "administrative units": "administrative-units-in-microsoft-entra-id"
+  },
+  "Microsoft Learn on legacy authentication and emergency access": {
+   "legacy authentication": "block-legacy-authentication-with-conditional",
+   "emergency access": "manage-emergency-access-accounts-in"
+  },
+  "AD CS overview and CA decommissioning": {
+   "AD CS overview": "what-is-active-directory-certificate",
+   "CA decommissioning": "how-to-decommission-a-windows-enterprise"
+  }
+ },
+ "site": {
+  "Books 00–03": "https://whalermike.github.io/modernization-workbook/docs/books/index.html",
+  "Presentations page": "https://whalermike.github.io/modernization-workbook/docs/presentations/index.html",
+  "the Start Here page": "https://whalermike.github.io/modernization-workbook/docs/start-here.html",
+  "whalermike.github.io/modernization-workbook": "https://whalermike.github.io/modernization-workbook/",
+  "whalermike.github.io/modernization-workbook/docs/books/b00-orientation/": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/index.html"
+ }
+}

@@ -8,7 +8,7 @@ ten seconds long. This script refuses a video that breaks those rules.
 The links come from <Base>_Narrated_sources.json, which presentations/_build/link_sources.py
 writes. YouTube makes links clickable in a description but not in captions or the transcript,
 and a description holds 5,000 characters, so it goes in this order until it's full: the
-chapters, the book chapters, then the original sources. The Watch page always has every
+chapters, the book chapters, then the sources, by their Source Register rows. The Watch page always has every
 source, slide by slide, and the description links to it first.
 
     python scripts/youtube_description.py Start_Here_Narrated B00_Orientation_Narrated
@@ -26,7 +26,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SITE = "https://whalermike.github.io/modernization-workbook/"
-CROSSWALK = "docs/reference/federal-framework-crosswalk.html"
+REGISTER = "docs/reference/source-register.html"
 LIMIT = 5000
 INTRO = ("A narrated briefing from the Federal Modernization Workbook, a free public reference for federal "
          "IT modernization. It isn't an official government publication.")
@@ -64,9 +64,9 @@ def link_lists(sources: list[dict]) -> tuple[list[str], list[str]]:
             if "/docs/books/" in url:
                 base = url.split("#")[0]
                 books.setdefault(base, book_title(base) if base.endswith(".html") else link["text"])
-            elif not url.startswith(SITE) or CROSSWALK in url:
-                # A link on a bare number ("26-02") means nothing out of its sentence: name the page.
-                text = link["text"] if re.match(r"\D{3}", link["text"]) else re.split(r"[/#]", url)[-1]
+            elif REGISTER in url:
+                # A link on a bare number ("26-02") means nothing out of its sentence: name the row.
+                text = link["text"] if re.match(r"\D{3}", link["text"]) else url.rsplit("#", 1)[-1]
                 others.setdefault(url, text)
     return ([f"{t}: {u}" for u, t in books.items()], [f"{t}: {u}" for u, t in others.items()])
 
@@ -81,7 +81,7 @@ def build(vid: str, title: str, chapters: list, sources: list[dict]) -> tuple[st
     text = "\n".join(head)
     books, others = link_lists(sources)
     left = 0
-    for heading, lines in (("From the workbook", books), ("Original sources", others)):
+    for heading, lines in (("From the workbook", books), ("Sources, each with its link to the original", others)):
         if not lines:
             continue
         block = f"\n\n{heading}"

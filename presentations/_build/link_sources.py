@@ -8,9 +8,8 @@ the slides already say:
     Book 00, Ch 01 (Success criteria)     the chapter page, and the heading when one matches
     Chapters 03 and 07, App. A            each one on its own (no book named: the last one
                                           named in the paragraph, then the deck's own book)
-    OMB M-22-09, CISA BOD 25-01           data/source-links.yml: a federal source links to its
-                                          row in the Federal Framework Crosswalk, and the row
-                                          links to the original; anything else, to the page
+    OMB M-22-09, Group Policy processing  data/source-register.json: the source's permanent row
+                                          in the Source Register, which links to the original
 
 It covers the shape named "Sources", the "Source list" shapes of the backup slides, and
 table cells (not header rows) that name a book or chapter. Run it again and the result is
@@ -22,7 +21,7 @@ the same. The slide text never changes, so the voice and the captions don't eith
 A narrated deck also gets <Base>_Narrated_sources.json, one entry per slide with a link,
 which scripts/youtube_description.py and the Watch page read.
 
-Needs lxml and PyYAML.
+Needs lxml.
 """
 
 from __future__ import annotations
@@ -32,17 +31,18 @@ import copy
 import json
 import re
 import shutil
+import sys
 import tempfile
 import zipfile
 from pathlib import Path
 
-import yaml
 from lxml import etree
 
 ROOT = Path(__file__).resolve().parents[2]
-SITE = "https://whalermike.github.io/modernization-workbook/"
-CROSSWALK = "docs/reference/federal-framework-crosswalk.html"
-LINKS = ROOT / "data" / "source-links.yml"
+sys.path.insert(0, str(ROOT / "scripts" / "source_watch"))
+import register  # noqa: E402
+
+SITE = register.SITE
 A = "{http://schemas.openxmlformats.org/drawingml/2006/main}"
 P = "{http://schemas.openxmlformats.org/presentationml/2006/main}"
 R = "{http://schemas.openxmlformats.org/officeDocument/2006/relationships}"
@@ -54,14 +54,6 @@ BOOK = re.compile(r"\bBook (\d\d)\b")
 CHAPTERS = re.compile(r"\b(?:Chapters?|Ch\.?) ?(\d\d(?:(?:, and |, | and |–)\d\d)*)")
 APPENDIX = re.compile(r"\b(?:Appendix|App\.) ([A-C])\b")
 TABLE_CELL = re.compile(r"\bBook \d\d\b|\bCh\.? ?\d\d|\bChapters? \d\d|\bApp\. [A-C]\b")
-
-
-def slug(text: str) -> str:
-    """The id Pandoc gives a heading."""
-    text = re.sub(r"[*_`]", "", text).lower()
-    text = re.sub(r"[^\w\s.-]", "", text)
-    text = re.sub(r"\s+", "-", text.strip())
-    return re.sub(r"^[^a-z]+", "", text)
 
 
 class Pages:
@@ -86,12 +78,7 @@ class Pages:
 
     def heads(self, page: Path) -> list[tuple[str, str]]:
         if page not in self.headings:
-            found = []
-            for m in re.finditer(r"^#{2,4} +(.+?)\s*$", page.read_text(encoding="utf-8"), re.M):
-                text, attr = re.match(r"(.*?)(?:\s*\{(.*)\})?$", m.group(1)).groups()
-                ident = re.search(r"#([\w.-]+)", attr or "")
-                found.append((text.strip(), ident.group(1) if ident else slug(text)))
-            self.headings[page] = found
+            self.headings[page] = register.page_headings(page)
         return self.headings[page]
 
     def section(self, page: Path, item: str) -> str | None:
@@ -108,15 +95,18 @@ class Pages:
 
 
 def load_labels() -> list[tuple[str, dict]]:
-    """Every label, longest first: {label: {url} or {parts: {text: url}}}."""
-    data = yaml.safe_load(LINKS.read_text(encoding="utf-8"))
+    """Every label, longest first: {label: {url} or {parts: {text: url}}}. A source's label goes
+    to its register row, never to the original, so a released deck can't go stale."""
+    data = register.load()
     labels: dict[str, dict] = {}
-    for entry in data["crosswalk"]:
-        url = f"{SITE}{CROSSWALK}#{entry['id']}"
-        for label in entry["labels"]:
-            labels[label] = {"url": url}
-    for label, target in data["direct"].items():
-        labels[label] = {"url": target} if isinstance(target, str) else {"parts": target}
+    for s in data["sources"]:
+        if s["status"] == "active":
+            for label in s["labels"]:
+                labels[label] = {"url": register.row_url(s["id"])}
+    for phrase, parts in data["phrases"].items():
+        labels[phrase] = {"parts": {part: register.row_url(i) for part, i in parts.items()}}
+    for label, url in data["site"].items():
+        labels[label] = {"url": url}
     return sorted(labels.items(), key=lambda kv: -len(kv[0]))
 
 

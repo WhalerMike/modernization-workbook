@@ -34,12 +34,12 @@ Book 00 — Orientation & Program: https://whalermike.github.io/modernization-wo
 Book 02 — Identity & Directory: https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/index.html
 Book 03 — HR-Driven Identity: https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/index.html
 
-Original sources
-Microsoft lifecycle pages: https://learn.microsoft.com/lifecycle/end-of-support/end-of-support-2026
-CISA BOD 25-01: https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#bod-25-01
-bod-26-02: https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#bod-26-02
-OMB M-26-14: https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#m-26-14
-OMB/OPM memo Dec. 10, 2025: https://www.opm.gov/chcoc/latest-memos/creating-federal-hr-20-by-consolidating-core-human-capital-management-across-the-federal-government.pdf
-OPM award: https://www.opm.gov/news/news-releases/opm-awards-contract-for-first-ever-governmentwide-hr-platform/
-Oracle announcement: https://www.oracle.com/news/announcement/us-office-of-personnel-management-selects-oracle-to-power-federal-workforce-modernization-2026-06-11/
-NIST SP 800-53 Rev. 5: https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#sp-800-53
+Sources, each with its link to the original
+Microsoft lifecycle pages: https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#ending-support-in-2026
+CISA BOD 25-01: https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-25-01
+bod-26-02: https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-26-02
+OMB M-26-14: https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-26-14
+OMB/OPM memo Dec. 10, 2025: https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#creating-federal-hr-2-0-by-consolidating
+OPM award: https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#opm-awards-contract-for-first-ever
+Oracle announcement: https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#us-office-of-personnel-management-selects
+NIST SP 800-53 Rev. 5: https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53
