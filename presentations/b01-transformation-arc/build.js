@@ -484,7 +484,7 @@ Each month, ask about the drift trend, signed changes and open risk acceptances.
 
 The assessment account holds no write rights, the code imports no write commands, and every call is logged. A default authenticated account already reads more than most teams expect: the topology, the OU tree, most Group Policy, users, groups and certificate templates. A narrow second tier adds only server-side exports, never secrets. Every run records who, when, against what, and a hash of every file.
 
-Eleven streams feed the risk scoring. One example: Windows Server 2012 extended updates through Arc ended on October 13, 2026, and Windows Server 2016 reaches end of support on January 12, 2027, so every such server needs a disposition.
+Eleven streams feed the risk scoring. One example: Windows Server 2012 extended updates through Arc ended on October 13, 2026, and Windows Server 2016's end of support is January 12, 2027, so every such server needs a disposition, and any 2016 server that remains is an exception with a retirement date.
 
 And no application leaves its data until its transactions are profiled.`,
   "Book 01, Chapter 10 — Analyzing the Estate.");
@@ -599,7 +599,7 @@ And set the dates: gate dates on the sponsor's calendar, and every exception's e
 
 None of this requires a vendor decision on day one. Start with an inventory, an owner, and a date.
 
-Modernization is a governance rebuild, not a platform swap. Book 01 is the map, and Books 02 to 09 carry each part in depth, every claim footnoted. Thank you.`,
+Modernization is a governance rebuild, not a platform swap. Book 01 is the map, and Books 02 to 18 carry each part in depth, every claim footnoted. Thank you.`,
   "Book 01, Chapter 09 (What to do next); Chapter 12 (Where to start); index.");
 }
 

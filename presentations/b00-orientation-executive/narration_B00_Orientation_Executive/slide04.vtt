@@ -1,88 +1,90 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.653
+00:00:00.050 --> 00:00:02.662
 The second set of clocks
 is vendor support.
 
 2
-00:00:02.653 --> 00:00:07.880
+00:00:02.662 --> 00:00:07.909
 After end of support there are no new
 security updates and no assisted support,
 
 3
-00:00:07.880 --> 00:00:11.821
+00:00:07.909 --> 00:00:11.863
 and for an estate built in the
 early 2000s, the dates cluster.
 
 4
-00:00:11.821 --> 00:00:18.389
+00:00:11.863 --> 00:00:18.475
 Windows 10 and Exchange Server 2016
 and 2019 ended in October 2025.
 
 5
-00:00:18.389 --> 00:00:23.433
+00:00:18.475 --> 00:00:23.384
 SQL Server 2016, SharePoint
 Server 2016 and 2019,
 
 6
-00:00:23.433 --> 00:00:28.926
+00:00:23.384 --> 00:00:28.750
 and the last Windows Server
 2012 updates ended this year.
 
 7
-00:00:28.926 --> 00:00:32.398
-The one to watch is Windows Server 2016,
+00:00:28.750 --> 00:00:34.208
+Windows Server 2016 ends on January
+12, 2027, and this workbook plans on
 
 8
-00:00:32.398 --> 00:00:37.117
-which ends on January 12,
-2027, under three months away.
+00:00:34.208 --> 00:00:40.137
+those servers being gone by then, with
+any that remain handled as exceptions.
 
 9
-00:00:37.117 --> 00:00:41.115
-It runs many of the domain
-controllers built in the last decade.
+00:00:40.137 --> 00:00:45.226
+Windows Server 2019
+follows on January 9, 2029.
 
 10
-00:00:41.115 --> 00:00:46.054
-And Microsoft Identity Manager
-2016 ends on January 9, 2029,
+00:00:45.226 --> 00:00:49.181
+Microsoft Identity Manager
+2016 ends that same day,
 
 11
-00:00:46.054 --> 00:00:52.078
+00:00:49.181 --> 00:00:54.700
 so an agency syncing HR data through it
 has a date, not an open-ended bridge.
 
 12
-00:00:52.078 --> 00:00:56.398
+00:00:54.700 --> 00:00:59.025
 A vendor date isn't a federal mandate
 on its own, but the two connect.
 
 13
-00:00:56.398 --> 00:01:02.332
+00:00:59.025 --> 00:01:04.979
 BOD 26-02 turns end of support into a
 directed action for edge devices, and every
 
 14
-00:01:02.332 --> 00:01:08.347
+00:01:04.979 --> 00:01:11.025
 security plan promises flaw remediation
 an unsupported product can't deliver.
 
 15
-00:01:08.347 --> 00:01:11.376
+00:01:11.025 --> 00:01:14.065
 So running past end of
 support is a decision for the
 
 16
-00:01:11.376 --> 00:01:14.554
+00:01:14.065 --> 00:01:17.250
 authorizing official, who
 signs the risk acceptance.
 
 17
-00:01:14.554 --> 00:01:17.146
-The first falls due on January 12.
+00:01:17.250 --> 00:01:23.362
+Any Windows Server 2016 server still
+running on January 12 needs that signature.
 
 18
-00:01:17.146 --> 00:01:19.370
+00:01:23.362 --> 00:01:25.580
 Next, how to read these clocks.

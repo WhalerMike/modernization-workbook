@@ -67,7 +67,7 @@
   {
     "slide": 14,
     "title": "Inventory first: read-only, with provenance",
-    "say": "How do you get there? Start with an inventory. You can't modernize what you haven't counted, and nothing gets retired until it's written down: read-only, with proof of how it was read. The assessment account has no write rights, the code can't issue write commands, and every call is logged. An ordinary signed-in account already sees more than most teams expect: the topology, the OU tree, most Group Policy, users and groups. Every run records who, when, against what, and a hash of every file. Eleven streams feed the risk scoring. One example: Windows Server 2016 reaches end of support on January 12, 2027, so every such server needs a disposition. And no application leaves its data until its transactions are profiled."
+    "say": "How do you get there? Start with an inventory. You can't modernize what you haven't counted, and nothing gets retired until it's written down: read-only, with proof of how it was read. The assessment account has no write rights, the code can't issue write commands, and every call is logged. An ordinary signed-in account already sees more than most teams expect: the topology, the OU tree, most Group Policy, users and groups. Every run records who, when, against what, and a hash of every file. Eleven streams feed the risk scoring. One example: Windows Server 2016's end of support is January 12, 2027, so every such server needs a disposition, and any that remains is an exception with a retirement date. And no application leaves its data until its transactions are profiled."
   },
   {
     "slide": 15,
@@ -82,6 +82,6 @@
   {
     "slide": 17,
     "title": "Decisions to make, and next steps",
-    "say": "So, four decisions. First, name the owners, one decider per decision, starting with the sponsor, the authorizing official and the steward, and confirm who holds the Zero Trust lead role that M-22-09 required. Second, run the read-only assessment across all eleven categories, with provenance. Third, stand up the platform host, so every change has one writer and a plan. And fourth, set the dates: gate dates on the sponsor's calendar, and every exception's end date on the authorizing official's. None of this needs a vendor decision on day one. Start with an inventory, an owner, and a date. Modernization is a governance rebuild, not a platform swap. This book is the map, and the technical books, from Identity and Directory to Network and Transport, carry each part in depth, with every claim footnoted. Thank you."
+    "say": "So, four decisions. First, name the owners, one decider per decision, starting with the sponsor, the authorizing official and the steward, and confirm who holds the Zero Trust lead role that M-22-09 required. Second, run the read-only assessment across all eleven categories, with provenance. Third, stand up the platform host, so every change has one writer and a plan. And fourth, set the dates: gate dates on the sponsor's calendar, and every exception's end date on the authorizing official's. None of this needs a vendor decision on day one. Start with an inventory, an owner, and a date. Modernization is a governance rebuild, not a platform swap. This book is the map, and the books that follow carry each part in depth, with every claim footnoted. Thank you."
   }
 ]

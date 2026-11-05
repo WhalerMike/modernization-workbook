@@ -997,16 +997,16 @@
   ],
   [
    23.062,
-   10.35,
-   "Windows Server 2016 reaches end of support on January twelfth, 2027, so enroll those hosts in ESUs before then if they won't be upgraded."
+   10.762,
+   "Windows Server 2016's end of support is January twelfth, 2027, so any host that remains is an exception: enroll it in ESUs before then."
   ],
   [
-   33.413,
-   13.575,
-   "Arc servers can also use Entra ID for Remote Desktop, but only on Server 2025 or Windows 11 24H2, and Conditional Access isn't supported there; the control is role-based access held through pim."
+   33.825,
+   13.512,
+   "Arc servers can also use Entra I D for Remote Desktop, but only on Server 2025 or Windows 11 24H2, and Conditional Access isn't supported there; the control is role-based access held through pim."
   ],
   [
-   46.987,
+   47.337,
    5.362,
    "And rollback has an order: remove extensions, disconnect, then uninstall."
   ]

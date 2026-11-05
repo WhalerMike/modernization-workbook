@@ -593,11 +593,11 @@
   ],
   [
    33.85,
-   9.525,
-   "One example: Windows Server 2016 reaches end of support on January 12, 2027, so every such server needs a disposition."
+   12.512,
+   "One example: Windows Server 2016's end of support is January 12, 2027, so every such server needs a disposition, and any that remains is an exception with a retirement date."
   ],
   [
-   43.375,
+   46.362,
    4.237,
    "And no application leaves its data until its transactions are profiled."
   ]
@@ -734,11 +734,11 @@
   ],
   [
    41.5,
-   9.738,
-   "This book is the map, and the technical books, from Identity and Directory to Network and Transport, carry each part in depth, with every claim footnoted."
+   6.388,
+   "This book is the map, and the books that follow carry each part in depth, with every claim footnoted."
   ],
   [
-   51.237,
+   47.888,
    0.762,
    "Thank you."
   ]

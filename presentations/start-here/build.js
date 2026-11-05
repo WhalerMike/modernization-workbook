@@ -160,14 +160,14 @@ const S = "Start here";
   const s = content(S, "The clocks nobody can move");
   tag(s, "Why");
   img(s, "b00-orientation/ch01-external-clocks", "The external clocks: federal policy dates (M-22-09 actions, BOD 25-01 mandatory Microsoft 365 policies June 20, 2025, the M-26-14 logging plan, FedRAMP Consolidated Rules mandatory January 1, 2027, BOD 26-02 edge devices out February 5, 2027, no new FedRAMP Rev5 applications June 11, 2027) and vendor end-of-support dates (including Windows Server 2016 on January 12, 2027 and SQL Server 2017 on October 12, 2027), all landing on one estate and one governed program.", 0.6, 1.45, 8.2, 4.95);
-  panel(s, "Nearest", 9.0, 1.5, 3.75, 3.3, HEX.red, HEX.redTint, "THE NEAREST DATE", "Windows Server 2016", [
-    "End of support January 12, 2027",
-    "Often where domain controllers, certificate authorities and NPS run",
-    "Bring your own count of 2016 servers (design guidance)",
+  panel(s, "Next", 9.0, 1.5, 3.75, 3.3, HEX.red, HEX.redTint, "THE NEXT DATES", "Still ahead", [
+    "Agency Logging Plan: November 18, 2026, by the program's count",
+    "FedRAMP rules: mandatory January 1, 2027",
+    "Windows Server 2016 gone by January 12, 2027; Server 2019 ends January 9, 2029",
   ], 13);
   sources(s, "Sources: Book 00, Ch 01 (external clocks; Microsoft lifecycle pages; CISA BOD 25-01 and 26-02; OMB M-26-14; FedRAMP).");
   notes(s,
-`Book 00 Chapter 01's tables: OMB M-22-09 (Jan. 26, 2022); CISA BOD 25-01 (Dec. 17, 2024), mandatory SCuBA configurations for production cloud tenants; CISA BOD 26-02 (Feb. 5, 2026), end-of-support edge devices; OMB M-26-14 (May 22, 2026), which rescinds M-21-31 and sets risk-based logging; FedRAMP Consolidated Rules for 2026, launched June 25, 2026, mandatory January 1, 2027. End of support: Windows 10 and Exchange 2016/2019 passed October 14, 2025; SQL Server 2016 passed July 14, 2026; Windows Server 2012 ESU Year 3 passed October 13, 2026; Windows Server 2016 January 12, 2027; SQL Server 2017 October 12, 2027; Windows Server 2019 and MIM 2016 January 9, 2029. Book 00 Chapter 03: NPS uses the AD domain as its user account database when it's a domain member. The local count is design guidance.`,
+`Book 00 Chapter 01's tables: OMB M-22-09 (Jan. 26, 2022); CISA BOD 25-01 (Dec. 17, 2024), mandatory SCuBA configurations for production cloud tenants; CISA BOD 26-02 (Feb. 5, 2026), end-of-support edge devices; OMB M-26-14 (May 22, 2026), which rescinds M-21-31 and sets risk-based logging; FedRAMP Consolidated Rules for 2026, launched June 25, 2026, mandatory January 1, 2027. End of support: Windows 10 and Exchange 2016/2019 passed October 14, 2025; SQL Server 2016 passed July 14, 2026; Windows Server 2012 ESU Year 3 passed October 13, 2026; Windows Server 2016 January 12, 2027; SQL Server 2017 October 12, 2027; Windows Server 2019 and MIM 2016 January 9, 2029. Book 00 Chapter 03: NPS uses the AD domain as its user account database when it's a domain member. The workbook's server standard is in Book 00 Chapter 01.`,
   "Book 00, Chapter 01 (external clocks and end-of-support tables) and Chapter 03.");
 }
 
@@ -284,7 +284,7 @@ const S = "Start here";
     ["Workstream leads", "Playbook content and readiness in their domain"],
   ], { fontSize: 12.5 });
   panel(s, "Bring", 7.4, 1.5, 5.35, 3.6, HEX.amber, HEX.amberTint, "BRING FOUR LOCAL NUMBERS · DESIGN GUIDANCE", "And one decision", [
-    "How many Windows Server 2016 servers you run",
+    "How many Windows Server 2019 servers you run",
     "How many contractors sit outside the HR system",
     "How long a departing person keeps access",
     "Your Federal HR 2.0 wave and dates",

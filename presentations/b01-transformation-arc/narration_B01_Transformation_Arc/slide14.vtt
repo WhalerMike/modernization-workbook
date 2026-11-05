@@ -48,16 +48,20 @@ what, and a hash of every file.
 Eleven streams feed the risk scoring.
 
 11
-00:00:33.850 --> 00:00:39.565
-One example: Windows Server 2016
-reaches end of support on January 12,
+00:00:33.850 --> 00:00:38.837
+One example: Windows Server 2016's
+end of support is January 12, 2027,
 
 12
-00:00:39.565 --> 00:00:43.375
-2027, so every such server
-needs a disposition.
+00:00:38.837 --> 00:00:41.919
+so every such server needs a disposition,
 
 13
-00:00:43.375 --> 00:00:47.660
+00:00:41.919 --> 00:00:46.362
+and any that remains is an
+exception with a retirement date.
+
+14
+00:00:46.362 --> 00:00:50.660
 And no application leaves its data
 until its transactions are profiled.

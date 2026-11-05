@@ -148,7 +148,7 @@ Hybrid join appears on this chain only as a waypoint. Microsoft's guidance is th
 
 ## The bottom line
 
-Active Directory retirement is a **governance transformation**, not a migration project. The hard part isn't the API calls; it's deciding the target state, proving it is right and keeping it right. This book describes how, and Books 02 to 09 carry each part in depth.
+Active Directory retirement is a **governance transformation**, not a migration project. The hard part isn't the API calls; it's deciding the target state, proving it is right and keeping it right. This book describes how, and Books 02 to 18 carry each part in depth.
 
 The argument in brief:
 

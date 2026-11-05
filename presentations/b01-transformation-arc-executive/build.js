@@ -424,7 +424,7 @@ The CISO decides: phishing-resistant MFA as the end state for everyone, with FID
     ["Assessment tools", "What to do with the findings"],
   ];
   leftTable(s, ["Instrument", "What it doesn't decide"], inst.map((r) => [bold(r[0]), { text: r[1] }]),
-    [2.6, 4.3], [0.4, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6], 13);
+    [2.6, 4.3], [0.4, 0.53, 0.53, 0.53, 0.53, 0.53, 0.53], 13);
   sideBox(s, "Policy", "FaLandmark", HEX.navy, HEX.navyTint, "Federal policy already says", [
     "M-22-09: the whole C-suite aligned and committed",
     "M-22-09: a zero trust lead named within 30 days",
@@ -619,7 +619,7 @@ The decision closes the loop on ownership. Put the gate dates on the sponsor's c
     ["G5 AD Retired", "Sponsor and CIO"],
   ];
   leftTable(s, ["Gate", "Who decides"], gates.map((r, i) => [bold(r[0], i === 5 ? HEX.red : HEX.navy), { text: r[1] }]),
-    [3.1, 3.8], [0.4, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6], 13);
+    [3.1, 3.8], [0.4, 0.53, 0.53, 0.53, 0.53, 0.53, 0.53], 13);
   sideBox(s, "Triggers", "FaArrowsRotate", HEX.amber, HEX.amberTint, "Rollback triggers are thresholds", [
     "Drift over threshold for a day: halt the phase",
     "Access policy blocking real sign-ins: revert",
@@ -652,14 +652,14 @@ So G5 is the sponsor's and the CIO's decision, made on evidence: no live product
     ["FaServer", "End of support", HEX.amber, HEX.amberTint, ["Windows 10: October 14, 2025", "Server 2012 and 2012 R2 updates: October 13, 2026", "Windows Server 2016: January 12, 2027"]],
   ]);
   decision(s, "Sequence the program against the agency's own deadlines and end-of-support dates, not against FedRAMP's 2027 date",
-    "Executive sponsor and CIO", "Now: Server 2016 ends January 12, 2027");
+    "Executive sponsor and CIO", "Now");
   sources(s, "Sources: FedRAMP Consolidated Rules for 2026 (Important Dates; Using a Certified Cloud Service); OMB M-26-14; CISA BOD 25-01; OMB M-22-09; Microsoft lifecycle. Book 01, Chapter 12.");
   narrate(s,
 `Two external clocks bear on the schedule, and they're easy to conflate.
 
 FedRAMP's Consolidated Rules for 2026, announced on June 25, 2026, govern how cloud services are certified. They become mandatory for everyone on January 1, 2027, and FedRAMP stops accepting new Rev5 certification applications on June 11, 2027. None of that certifies the agency's own estate. FedRAMP is explicit that each agency still authorizes its own federal information systems, and should never create a standalone authorization for a cloud service. What the 2027 date changes is the evidence your providers publish and you inherit.
 
-The deadlines that bind the agency directly come from OMB and CISA: M-26-14's logging plan and maturity levels, and BOD 25-01's secure configuration baselines for in-scope Microsoft 365 tenants. The estate has its own dates too. Windows 10 reached end of support on October 14, 2025. Extended security updates for Windows Server 2012 and 2012 R2 ended on October 13, 2026, and Windows Server 2016 reaches end of support on January 12, 2027.
+The deadlines that bind the agency directly come from OMB and CISA: M-26-14's logging plan and maturity levels, and BOD 25-01's secure configuration baselines for in-scope Microsoft 365 tenants. The estate has its own dates too. Windows 10 reached end of support on October 14, 2025. Extended security updates for Windows Server 2012 and 2012 R2 ended on October 13, 2026, and Windows Server 2016's end of support is January 12, 2027.
 
 Mainframes have a place in the sequence. Token-based access joins the access workstream late, discrete read-mostly transactions first, and M-22-09 notes that mainframes may need other zero trust mechanisms where endpoint detection tools don't fit.
 

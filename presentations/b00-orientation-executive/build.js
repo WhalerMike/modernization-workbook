@@ -166,7 +166,7 @@ So the nearest decision: confirm them with the CISO's office, starting with the 
     ["Windows 10; Exchange Server 2016 and 2019", "Oct 14, 2025", "Passed"],
     ["SQL Server 2016; SharePoint Server 2016 and 2019", "July 14, 2026", "Passed"],
     ["Windows Server 2012 and 2012 R2, ESU Year 3", "Oct 13, 2026", "Passed"],
-    ["Windows Server 2016", "Jan 12, 2027", "Under three months"],
+    ["Windows Server 2016", "Jan 12, 2027", "Planning deadline"],
     ["SQL Server 2017", "Oct 12, 2027", "About a year"],
     ["Windows Server 2019; Identity Manager 2016", "Jan 9, 2029", "Within the horizon"],
   ];
@@ -179,17 +179,17 @@ So the nearest decision: confirm them with the CISO's office, starting with the 
     "Every security plan asserts flaw remediation",
     "Running past it is a risk acceptance the AO signs",
   ]);
-  decision(s, "Retire, or accept in writing, every component that will run past end of support, starting with Windows Server 2016",
-    "Authorizing official", "January 12, 2027");
+  decision(s, "Retire, or accept in writing, every component that will run past end of support",
+    "Authorizing official", "Before each end-of-support date");
   sources(s, "Sources: Microsoft Learn — Ending Support in 2025, 2026, 2027 and 2029; MIM 2016 news and updates; CISA BOD 26-02; NIST SP 800-53 Rev. 5 (SA-22). Book 00, Chapter 01; Appendix A.");
   narrate(s,
 `The second set of clocks is vendor support. After end of support there are no new security updates and no assisted support, and for an estate built in the early 2000s, the dates cluster.
 
-Windows 10 and Exchange Server 2016 and 2019 ended in October 2025; SQL Server 2016, SharePoint Server 2016 and 2019, and the last Windows Server 2012 security updates ended this year. Windows Server 2016 ends on January 12, 2027, under three months away, and it's the operating system of many domain controllers built in the last decade. Windows Server 2019 and Microsoft Identity Manager 2016 end on January 9, 2029. Identity Manager's date was extended from 2026, so an agency that syncs HR data through it has a date, not an open-ended bridge.
+Windows 10 and Exchange Server 2016 and 2019 ended in October 2025; SQL Server 2016, SharePoint Server 2016 and 2019, and the last Windows Server 2012 security updates ended this year. Windows Server 2016 ends on January 12, 2027, and the workbook plans on those servers being gone by then, with any that remain handled as exceptions. Windows Server 2019 and Microsoft Identity Manager 2016 end on January 9, 2029. Identity Manager's date was extended from 2026, so an agency that syncs HR data through it has a date, not an open-ended bridge.
 
 A vendor date isn't a federal mandate on its own, but the two connect. BOD 26-02 turns end of support into a directed action for internet-facing edge devices, and every system security plan asserts flaw remediation that an unsupported product can't deliver.
 
-So running past end of support is a decision, and it belongs to the authorizing official, who has to sign the risk acceptance. The first of those falls due with Windows Server 2016, on January 12.`,
+So running past end of support is a decision, and it belongs to the authorizing official, who has to sign the risk acceptance. Any Windows Server 2016 server still running on January 12 needs that signature.`,
   "Book 00, Chapter 01 — Why Modernize, and Why Now (Vendor support); Appendix A — Risk Register and Control Traceability (SA-22, Unsupported System Components); Chapter 07 — Who Runs the Program (Who decides what: risk acceptance).");
 }
 
@@ -701,7 +701,7 @@ The register doesn't satisfy a control. It tells the agency when its system secu
     ["Fund one sequenced program; budget AD DS retirement and people beyond the core", "Sponsor and CIO", "Before design begins"],
     ["Build the steward and steering committee from the zero trust lead and ICAM body", "Sponsor and CIO", "Phase 0"],
     ["Confirm the M-26-14 dates, starting with the Agency Logging Plan", "CISO's office", "Nov 18, 2026 (program's count)"],
-    ["Retire, or accept in writing, every component past end of support", "Authorizing official", "Jan 12, 2027 (WS 2016)"],
+    ["Retire, or accept in writing, every component past end of support", "Authorizing official", "Before each end-of-support date"],
     ["Set the evidence and provenance expectations for every change", "Steward", "Before the first change"],
     ["Close, or have the AO accept, every Critical finding", "Steward; the AO accepts", "G0"],
     ["Record the pilot's thresholds; sign G2 on the data", "Steward and sponsor", "Before the pilot"],
@@ -719,7 +719,7 @@ The register doesn't satisfy a control. It tells the agency when its system secu
 
 The executive sponsor charters the program as governance reconstruction, signs the charter, and puts names in it as Phase 0's entry work. The sponsor and CIO fund one sequenced program, with the AD DS retirement phase and the people beyond the five-and-a-half-person core in the budget, approved before design begins. And they build the steward and steering committee from the zero trust lead and the ICAM governance body the agency already has.
 
-The CISO's office confirms the M-26-14 dates, starting with the Agency Logging Plan, due November 18 by the program's count. The authorizing official decides whether anything runs past end of support, beginning with Windows Server 2016 on January 12.
+The CISO's office confirms the M-26-14 dates, starting with the Agency Logging Plan, due November 18 by the program's count. The authorizing official decides whether anything runs past end of support, including any Windows Server 2016 server left after January 12.
 
 The steward sets the evidence and provenance expectations before the first change, and clears G0 only when every Critical finding is closed or accepted by the authorizing official. The steward and sponsor record the pilot's thresholds before it opens, and sign G2 on the data. The sponsor and CIO decide when each Active Directory component retires, after the records officer is consulted. And the steward records the handover to operations before the project team leaves.
 

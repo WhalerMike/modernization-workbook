@@ -87,7 +87,7 @@
   {
     "slide": 18,
     "title": "The support dates that bind the fleet now",
-    "say": "Windows Server 2012's extended updates ended on October 13, 2026. Any of those hosts still running gets no more security fixes from anywhere, so the book treats them as a red finding: migrate, upgrade or isolate. Windows Server 2016 reaches end of support on January 12, 2027, so any you can't upgrade in time should be enrolled for extended updates through Arc before then. Windows 11 version 23H2 stops getting updates on November 10, and Windows 10 is already out of support, so each one left is an exception with an upgrade date. The decision can't wait: server infrastructure acts on the 2012 hosts now, and the authorizing official accepts any that must stay. Next, patching."
+    "say": "Windows Server 2012's extended updates ended on October 13, 2026. Any of those hosts still running gets no more security fixes from anywhere, so the book treats them as a red finding: migrate, upgrade or isolate. Windows Server 2016's end of support is January 12, 2027, so any that remain are exceptions, enrolled for extended updates through Arc before then. Windows 11 version 23H2 stops getting updates on November 10, and Windows 10 is already out of support, so each one left is an exception with an upgrade date. The decision can't wait: server infrastructure acts on the 2012 hosts now, and the authorizing official accepts any that must stay. Next, patching."
   },
   {
     "slide": 19,

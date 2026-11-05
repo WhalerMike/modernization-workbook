@@ -86,21 +86,16 @@
   ],
   [
    16.637,
-   7.987,
-   "And the closest date is Windows Server 2016, which reaches end of support on January twelfth, 2027."
+   9.175,
+   "Windows Server 2016's end of support is January twelfth, 2027, and this workbook plans on those servers being gone by then."
   ],
   [
-   24.625,
-   4.713,
-   "In many estates that's where domain controllers and certificate authorities run."
+   25.812,
+   8.525,
+   "But a current server still sits in the same directory, and Windows Server 2019's date is already set for January 2029."
   ],
   [
-   29.337,
-   6.237,
-   "Count your own 2016 servers before the meeting; that number will do more than any slide."
-  ],
-  [
-   35.575,
+   34.337,
    2.425,
    "So with time short, where do you begin?"
   ]
@@ -303,11 +298,11 @@
   ],
   [
    14.588,
-   15.05,
-   "To make the conversation concrete, bring four local numbers: how many 2016 servers you run, how many contractors sit outside the HR system, how long it takes a departing person to lose access, and your HR 2.0 wave."
+   15.65,
+   "To make the conversation concrete, bring four local numbers: how many Windows Server 2019 servers you run, how many contractors sit outside the H R system, how long it takes a departing person to lose access, and your H R 2.0 wave."
   ],
   [
-   29.637,
+   30.238,
    6.3,
    "Then ask for one decision: approve the four-week pre-flight, with a named owner and a start date."
   ]

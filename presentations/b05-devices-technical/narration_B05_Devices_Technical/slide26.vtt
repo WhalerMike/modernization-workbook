@@ -30,31 +30,31 @@ migrate, upgrade, or isolate
 it and record the risk.
 
 7
-00:00:23.063 --> 00:00:28.331
-Windows Server 2016 reaches end of
-support on January twelfth, 2027,
+00:00:23.063 --> 00:00:28.091
+Windows Server 2016's end of
+support is January twelfth, 2027,
 
 8
-00:00:28.331 --> 00:00:33.412
-so enroll those hosts in ESUs before
-then if they won't be upgraded.
+00:00:28.091 --> 00:00:33.824
+so any host that remains is an exception:
+enroll it in ESUs before then.
 
 9
-00:00:33.412 --> 00:00:37.155
+00:00:33.824 --> 00:00:37.549
 Arc servers can also use
 Entra ID for Remote Desktop,
 
 10
-00:00:37.155 --> 00:00:41.854
+00:00:37.549 --> 00:00:42.227
 but only on Server 2025 or Windows
 11 24H2, and Conditional Access
 
 11
-00:00:41.854 --> 00:00:46.988
+00:00:42.227 --> 00:00:47.337
 isn't supported there; the control is
 role-based access held through PIM.
 
 12
-00:00:46.988 --> 00:00:52.420
+00:00:47.337 --> 00:00:52.750
 And rollback has an order: remove
 extensions, disconnect, then uninstall.

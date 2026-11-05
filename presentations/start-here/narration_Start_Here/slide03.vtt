@@ -21,29 +21,25 @@ FedRAMP's new rules become
 mandatory in January 2027.
 
 5
-00:00:16.637 --> 00:00:20.231
-And the closest date is
-Windows Server 2016,
+00:00:16.637 --> 00:00:21.271
+Windows Server 2016's end of
+support is January twelfth, 2027,
 
 6
-00:00:20.231 --> 00:00:24.624
-which reaches end of support
-on January twelfth, 2027.
+00:00:21.271 --> 00:00:25.812
+and this workbook plans on those
+servers being gone by then.
 
 7
-00:00:24.624 --> 00:00:29.338
-In many estates that's where domain
-controllers and certificate authorities run.
+00:00:25.812 --> 00:00:29.760
+But a current server still
+sits in the same directory,
 
 8
-00:00:29.338 --> 00:00:32.763
-Count your own 2016
-servers before the meeting;
+00:00:29.760 --> 00:00:34.337
+and Windows Server 2019's date
+is already set for January 2029.
 
 9
-00:00:32.763 --> 00:00:35.574
-that number will do more than any slide.
-
-10
-00:00:35.574 --> 00:00:38.060
+00:00:34.337 --> 00:00:36.820
 So with time short, where do you begin?

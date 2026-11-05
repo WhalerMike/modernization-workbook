@@ -131,21 +131,21 @@
   ],
   [
    40.2,
-   10.35,
-   "Vendors add their own clock: Windows Server 2016, which runs many domain controllers, ends support on January 12, 2027."
+   10.863,
+   "Vendors add their own clock: Windows Server 2016 ends support on January 12, 2027, and this workbook plans on those servers being gone by then."
   ],
   [
-   50.55,
+   51.062,
    1.675,
    "The slide lists the rest."
   ],
   [
-   52.225,
+   52.737,
    1.837,
    "Nothing fails on a single date."
   ],
   [
-   54.062,
+   54.575,
    6.237,
    "But every one of these deadlines assumes the agency knows what it runs, who owns it, and what governs it."
   ]
