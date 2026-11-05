@@ -50,3 +50,7 @@ Editor: W5. Sources: the series appendix in place ("Federal Requirements Mapping
 | Previous link | "Continue the book" callout (Ch 12 → Appendix B) | — |
 | Footnotes (M-22-09, ZTMM, 800-207, 800-53) | Footnotes with section references and access dates | — |
 | Whitepaper Federal Framework Alignment table | Mapping table and "cited but don't say" table | Row by row per claims 18–27 |
+
+## Server standard, November 5, 2026
+
+Added the exception sentence; dates carried. The standard itself is verified in Book 00's Chapter 01 log, rows S1 to S7.

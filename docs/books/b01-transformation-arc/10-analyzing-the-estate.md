@@ -102,7 +102,7 @@ Every computer object: distinguished name, DNS host name, operating system and v
 
 - **Unconstrained delegation.** A host trusted for delegation to any service can be made to impersonate any user who authenticates to it, including a domain admin; Microsoft's guidance is to remove it or move to constrained delegation.[^c10-mdi-deleg]
 - **Weak encryption types.** Windows Server 2025 domain controllers no longer issue ticket-granting tickets with RC4,[^c10-ws2025] so a host or account that supports only RC4 is a finding before migration starts.
-- **Unsupported operating systems.** Windows Server 2012 and 2012 R2 Extended Security Updates through Azure Arc ended on October 13, 2026, and Windows Server 2016 reaches end of support on January 12, 2027.[^c10-esu] Every server on those versions needs a disposition in the plan.
+- **Unsupported operating systems.** Windows Server 2012 and 2012 R2 Extended Security Updates through Azure Arc ended on October 13, 2026, and Windows Server 2016's end of support is January 12, 2027.[^c10-esu] Every server on those versions needs a disposition in the plan. Under the workbook's [server standard](../b00-orientation/01-why-modernize-now.md#the-workbooks-server-standard), any 2016 server that remains is an exception, with Extended Security Updates, a signed risk acceptance and a retirement date.
 
 ### Stream 5 — Service accounts and service principal names
 

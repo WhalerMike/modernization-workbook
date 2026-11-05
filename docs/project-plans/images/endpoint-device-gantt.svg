@@ -138,7 +138,7 @@
 <text x="14" y="811" font-size="10.5" fill="#64748b">E4.5  Policy baseline as code: machine configuration pre…</text>
 <line x1="455.5" y1="807.5" x2="485.5" y2="807.5" stroke="#cbd5e1" stroke-width="2"/>
 <rect x="428.2" y="803" width="27.3" height="9" rx="2" fill="#2563EB"/>
-<text x="14" y="828" font-size="10.5" fill="#64748b">E4.6  Windows Server 2016 hosts that won&#x27;t be upgraded i…</text>
+<text x="14" y="828" font-size="10.5" fill="#64748b">E4.6  Any Windows Server 2016 exception hosts: connected…</text>
 <line x1="373.6" y1="824.5" x2="741.8" y2="824.5" stroke="#cbd5e1" stroke-width="2"/>
 <rect x="360.0" y="820" width="13.6" height="9" rx="2" fill="#2563EB"/>
 <text x="14" y="845" font-size="10.5" fill="#64748b">E4.7  Pilot server wave: connected with tags through the…</text>

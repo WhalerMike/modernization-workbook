@@ -58,3 +58,7 @@ All eleven original footnotes were re-opened (or re-found by search) on Oct 20, 
 | Book_03: Continue the series | Continue the book | edited to the new reading order |
 
 Diagram sources edited (labels only): `book-03-audit-inputs-and-record` (SPN wording, claim 17); `book-03-ch01-arc-eligibility-classification`, `book-03-ch01-login-types` (book references renumbered).
+
+## Server standard, November 5, 2026
+
+Tense only; date carried from row 2. The Server 2019 floor is unchanged. The standard itself is verified in Book 00's Chapter 01 log, rows S1 to S7.

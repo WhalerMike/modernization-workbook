@@ -158,7 +158,7 @@ Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devic
 46,Task,40,"E4.5 Policy baseline as code: machine configuration prerequisites, Azure compute security baselines, Update Manager schedules by PatchGroup, Defender for Servers Plan 2, extension allowlists","E4.5 · Task · owner or approver: Server infrastructure
 Duration 10 working days · wk 6–7 · total float 11 d · predecessors: E4.2
 Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html#the-day-one-baseline",fmw,fmw-endpoint-device,fmw-id-e4.5,task,owner-server-infrastructure,,2027-02-08,2027-02-19,49,,,,,,,
-47,Task,40,"E4.6 Windows Server 2016 hosts that won't be upgraded in time: connected for ESUs before end of support (January 12, 2027), Allow/None allowlist","E4.6 · Task · owner or approver: Server infrastructure
+47,Task,40,"E4.6 Any Windows Server 2016 exception hosts: connected for ESUs before end of support (January 12, 2027), Allow/None allowlist","E4.6 · Task · owner or approver: Server infrastructure
 Duration 5 working days · wk 1 · total float 135 d · predecessors: —
 Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html#extended-security-updates",fmw,fmw-endpoint-device,fmw-id-e4.6,task,owner-server-infrastructure,,2027-01-04,2027-01-08,56,,,,,,,
 48,Task,40,"E4.7 Pilot server wave: connected with tags through the chosen tool, licensing attested, certificate file removed, agent local controls set","E4.7 · Task · owner or approver: Server infrastructure
@@ -189,7 +189,7 @@ Duration 5 working days · wk 27 · total float 5 d · predecessors: E4.10
 Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html#monitoring-the-server-estate",fmw,fmw-endpoint-device,fmw-id-e4.13,task,owner-server-infrastructure,,2027-07-05,2027-07-09,56,,,,,,,
 56,Task,40,EG4 Gate 4 — Servers under Arc,"EG4 · Gate · owner or approver: CISO / ISSO
 Duration 0 working days · end of wk 27 · total float 5 d · predecessors: E4.10, E4.11, E4.12, E4.13, E4.6
-Criteria: Every in-scope server Connected with the full tag taxonomy, or in the exception register with its tier; machine configuration baseline assigned and evaluated, noncompliance filed as findings; Update Manager assessing every server and patching on its PatchGroup schedule; Defender for Servers Plan 2 onboarded; no onboarding credential or certificate file left after any wave; every Windows Server 2016 host upgraded or ESU-covered; rollback rehearsed
+Criteria: Every in-scope server Connected with the full tag taxonomy, or in the exception register with its tier; machine configuration baseline assigned and evaluated, noncompliance filed as findings; Update Manager assessing every server and patching on its PatchGroup schedule; Defender for Servers Plan 2 onboarded; no onboarding credential or certificate file left after any wave; no Windows Server 2016 host remains, or each one is a recorded exception with ESU coverage; rollback rehearsed
 Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html#what-this-chapter-establishes",fmw,fmw-endpoint-device,fmw-id-eg4,gate,owner-ciso-isso,,2027-07-12,2027-07-09,57,63,,,,,,
 57,Task,40,X-P37 Every server Arc-connected or excepted (program P3.7),"X-P37 · External · owner or approver: Platform teams (program)
 Duration 0 working days · end of wk 28 · total float fixed date · predecessors: EG4

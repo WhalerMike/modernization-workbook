@@ -358,7 +358,9 @@ Effect: Audit \| Category: Compliance \| Severity: High
   ---------------------------------------------------------------------------
   **Status**   **Operating Systems**
   ------------ --------------------------------------------------------------
-  Allowed      Windows Server 2016, 2019, 2022, 2025
+  Allowed      Windows Server 2019, 2022, 2025
+
+  Exception    Windows Server 2016 (ESU, risk acceptance, retirement date)
 
   Blocked      Windows Server 2012 R2 and earlier (end of extended support)
   ---------------------------------------------------------------------------

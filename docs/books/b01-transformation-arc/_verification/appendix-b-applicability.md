@@ -52,3 +52,7 @@ Found by the workbook-wide sweep of federal citations for the Federal Framework 
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
 | 1 | Footnote: Azure holds a P-ATO at High | Notes | clarified as Microsoft's pre-2026 term | B10 Ch03 |
+
+## Server standard, November 5, 2026
+
+Tense only; dates carried from row 8. The standard itself is verified in Book 00's Chapter 01 log, rows S1 to S7.
