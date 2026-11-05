@@ -1,0 +1,360 @@
+[
+ {
+  "slide": 2,
+  "title": "Book 05 is the Intune and Arc tracks: devices, servers",
+  "links": [
+   {
+    "text": "Book 05, Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/03-where-device-and-server-data-lives.html"
+   },
+   {
+    "text": "04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/04-intune-first-onboarding.html"
+   },
+   {
+    "text": "07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/07-the-gpo-sunset-program.html"
+   },
+   {
+    "text": "08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/08-gpo-to-intune-policy-migration.html"
+   },
+   {
+    "text": "09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html"
+   },
+   {
+    "text": "10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/10-operating-and-evidencing-the-fleet.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "Why Group Policy can't come to the cloud",
+  "links": [
+   {
+    "text": "Group Policy processing",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#group-policy-processing"
+   },
+   {
+    "text": "Intune policy conflicts",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#common-questions-answers-and-scenarios-with"
+   },
+   {
+    "text": "MDMWinsOverGP",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#policy-csp-controlpolicyconflict"
+   },
+   {
+    "text": "Book 05, Ch 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/01-why-group-policy-cant-come-to-the-cloud.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "The hybrid-join trap, and where each device fact lives",
+  "links": [
+   {
+    "text": "Book 05, Ch 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/02-the-hybrid-join-trap.html"
+   },
+   {
+    "text": "03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/03-where-device-and-server-data-lives.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Intune-first: five pillars and a five-phase process",
+  "links": [
+   {
+    "text": "Book 05, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/04-intune-first-onboarding.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Which end-user platforms Intune covers, and how",
+  "links": [
+   {
+    "text": "Book 05, Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/03-where-device-and-server-data-lives.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Windows in a GCC tenant: Autopilot or device preparation",
+  "links": [
+   {
+    "text": "Book 05, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/04-intune-first-onboarding.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Carrying the purchase order to the device's configuration",
+  "links": [
+   {
+    "text": "Book 05, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/04-intune-first-onboarding.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "The day-zero baseline, and the four exception paths",
+  "links": [
+   {
+    "text": "Book 05, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/04-intune-first-onboarding.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Three paths to one end state: governed, manual and retrofit",
+  "links": [
+   {
+    "text": "Conditional Access",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-conditional-access"
+   },
+   {
+    "text": "emergency access accounts",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#manage-emergency-access-accounts-in"
+   },
+   {
+    "text": "Book 05, Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/05-the-governed-manual-and-retrofit-paths.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "The runbook's sharp edges: precedence, NTLM and SPNs",
+  "links": [
+   {
+    "text": "NTLM deprecation",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#audit-use-of-ntlmv1-on-a-windows-server"
+   },
+   {
+    "text": "policy conflicts",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#common-questions-answers-and-scenarios-with"
+   },
+   {
+    "text": "Book 05, Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/05-the-governed-manual-and-retrofit-paths.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "The sunset pipeline and Group Policy analytics",
+  "links": [
+   {
+    "text": "Book 05, Ch 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/01-why-group-policy-cant-come-to-the-cloud.html"
+   },
+   {
+    "text": "Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/07-the-gpo-sunset-program.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Classify, then dispose: tags, questions, landing zones",
+  "links": [
+   {
+    "text": "endpoint security",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#manage-endpoint-security-in-microsoft-intune"
+   },
+   {
+    "text": "Book 05, Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/07-the-gpo-sunset-program.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Coexistence: who wins while GPOs and Intune both apply",
+  "links": [
+   {
+    "text": "Intune policy conflicts",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#common-questions-answers-and-scenarios-with"
+   },
+   {
+    "text": "endpoint security",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#manage-endpoint-security-in-microsoft-intune"
+   },
+   {
+    "text": "Book 05, Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/07-the-gpo-sunset-program.html"
+   }
+  ]
+ },
+ {
+  "slide": 17,
+  "title": "Seven phases at working level: durations, gates and waves",
+  "links": [
+   {
+    "text": "Book 05, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/08-gpo-to-intune-policy-migration.html"
+   }
+  ]
+ },
+ {
+  "slide": 18,
+  "title": "The policy library: attribute targeting and the compliance set",
+  "links": [
+   {
+    "text": "Book 05, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/08-gpo-to-intune-policy-migration.html"
+   }
+  ]
+ },
+ {
+  "slide": 19,
+  "title": "Endpoint security settings, and the crosswalk traps",
+  "links": [
+   {
+    "text": "Book 05, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/08-gpo-to-intune-policy-migration.html"
+   },
+   {
+    "text": "App. A",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/appendix-a-gpo-to-intune-crosswalk.html"
+   }
+  ]
+ },
+ {
+  "slide": 21,
+  "title": "What Arc changes, and what it doesn't",
+  "links": [
+   {
+    "text": "Book 05, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html"
+   }
+  ]
+ },
+ {
+  "slide": 22,
+  "title": "Which servers Arc reaches, and four tiers for the rest",
+  "links": [
+   {
+    "text": "Book 05, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html"
+   },
+   {
+    "text": "Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/03-where-device-and-server-data-lives.html"
+   }
+  ]
+ },
+ {
+  "slide": 23,
+  "title": "Before you onboard: roles, network, tags and images",
+  "links": [
+   {
+    "text": "Book 05, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html"
+   }
+  ]
+ },
+ {
+  "slide": 24,
+  "title": "Onboarding a wave with a least-privileged principal",
+  "links": [
+   {
+    "text": "Book 05, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html"
+   }
+  ]
+ },
+ {
+  "slide": 25,
+  "title": "The day-one baseline: configuration, patching and protection",
+  "links": [
+   {
+    "text": "Book 05, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html"
+   }
+  ]
+ },
+ {
+  "slide": 26,
+  "title": "Extended Security Updates, Entra ID sign-in and rollback",
+  "links": [
+   {
+    "text": "Book 05, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html"
+   }
+  ]
+ },
+ {
+  "slide": 28,
+  "title": "Making the compliance signal accurate",
+  "links": [
+   {
+    "text": "Intune conflicts",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#common-questions-answers-and-scenarios-with"
+   },
+   {
+    "text": "Book 05, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/10-operating-and-evidencing-the-fleet.html"
+   }
+  ]
+ },
+ {
+  "slide": 29,
+  "title": "Windows updates: rings, Autopatch and version currency",
+  "links": [
+   {
+    "text": "Book 05, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/10-operating-and-evidencing-the-fleet.html"
+   }
+  ]
+ },
+ {
+  "slide": 30,
+  "title": "Reconciling three inventories, and retiring a device in order",
+  "links": [
+   {
+    "text": "Book 05, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/10-operating-and-evidencing-the-fleet.html"
+   }
+  ]
+ },
+ {
+  "slide": 31,
+  "title": "Drift detection: what the logs can tell you, and when",
+  "links": [
+   {
+    "text": "Book 05, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/10-operating-and-evidencing-the-fleet.html"
+   }
+  ]
+ },
+ {
+  "slide": 32,
+  "title": "The evidence an assessor reads, and the GCC boundary facts",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "Key Security Indicators",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   },
+   {
+    "text": "Book 05, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/10-operating-and-evidencing-the-fleet.html"
+   }
+  ]
+ }
+]

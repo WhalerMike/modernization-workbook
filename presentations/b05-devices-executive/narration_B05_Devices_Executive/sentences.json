@@ -781,21 +781,21 @@
   ],
   [
    16.087,
-   11.375,
-   "Windows Server 2016 reaches end of support on January 12, 2027, so any you can't upgrade in time should be enrolled for extended updates through Arc before then."
+   11.0,
+   "Windows Server 2016's end of support is January 12, 2027, so any that remain are exceptions, enrolled for extended updates through Arc before then."
   ],
   [
-   27.462,
+   27.087,
    10.838,
    "Windows 11 version 23H2 stops getting updates on November 10, and Windows 10 is already out of support, so each one left is an exception with an upgrade date."
   ],
   [
-   38.3,
+   37.925,
    8.675,
    "The decision can't wait: server infrastructure acts on the 2012 hosts now, and the authorizing official accepts any that must stay."
   ],
   [
-   46.975,
+   46.6,
    1.3,
    "Next, patching."
   ]

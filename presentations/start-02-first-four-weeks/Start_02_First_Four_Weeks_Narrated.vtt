@@ -246,223 +246,223 @@ might move away from its data,
 it measures how chatty it is.
 
 53
-00:03:06.937 --> 00:03:11.045
+00:03:06.937 --> 00:03:11.857
 Out of this come risk findings,
-like unsafe delegation or
+like unsafe delegation or a Windows
 
 54
-00:03:11.045 --> 00:03:15.676
-servers on Windows Server 2016,
+00:03:11.857 --> 00:03:16.776
+Server 2016 host nobody expected,
 and every one gets a disposition.
 
 55
-00:03:15.676 --> 00:03:19.050
+00:03:16.776 --> 00:03:20.150
 But a list only helps if you
 can prove where it came from.
 
 56
-00:03:22.800 --> 00:03:26.729
+00:03:23.900 --> 00:03:27.829
 Every assessment run carries its
 own receipt: who ran it, when,
 
 57
-00:03:26.729 --> 00:03:30.030
+00:03:27.829 --> 00:03:31.130
 against which forest and
 which domain controller,
 
 58
-00:03:30.030 --> 00:03:34.038
+00:03:31.130 --> 00:03:35.138
 with which rights, and a fingerprint
 of every file it produced.
 
 59
-00:03:34.038 --> 00:03:36.649
+00:03:35.138 --> 00:03:37.749
 A run without that receipt is rejected.
 
 60
-00:03:36.649 --> 00:03:40.525
+00:03:37.749 --> 00:03:41.625
 The receipt lands in the
 repository, which this phase seeds.
 
 61
-00:03:40.525 --> 00:03:44.300
+00:03:41.625 --> 00:03:45.400
 From here on, every artifact is
 a reviewed change with a status,
 
 62
-00:03:44.300 --> 00:03:48.000
+00:03:45.400 --> 00:03:49.100
 and nothing becomes official
 until the steward approves it.
 
 63
-00:03:48.000 --> 00:03:51.495
+00:03:49.100 --> 00:03:52.595
 The inventory itself is sensitive,
 so it's stored encrypted,
 
 64
-00:03:51.495 --> 00:03:54.562
+00:03:52.595 --> 00:03:55.662
 and the assessment workstation
 is wiped afterward.
 
 65
-00:03:54.562 --> 00:03:57.300
+00:03:55.662 --> 00:03:58.400
 Next, the program's own access.
 
 66
-00:04:01.050 --> 00:04:05.862
+00:04:02.150 --> 00:04:06.962
 The program practices what it asks of
 everyone else, starting with its own access.
 
 67
-00:04:05.862 --> 00:04:10.412
+00:04:06.962 --> 00:04:11.512
 The directory reader is an ordinary
 account, never a domain administrator.
 
 68
-00:04:10.412 --> 00:04:14.956
+00:04:11.512 --> 00:04:16.056
 The connections to cloud identity,
 device management and server management
 
 69
-00:04:14.956 --> 00:04:19.500
+00:04:16.056 --> 00:04:20.600
 each get their own service identity, with
 only the permissions that job needs.
 
 70
-00:04:19.500 --> 00:04:24.242
+00:04:20.600 --> 00:04:25.342
 And the part of the platform that approves
 a change runs under different credentials
 
 71
-00:04:24.242 --> 00:04:28.450
+00:04:25.342 --> 00:04:29.550
 from the part that carries it out, so no
 single account can both decide and act.
 
 72
-00:04:28.450 --> 00:04:29.980
+00:04:29.550 --> 00:04:31.080
 Then come the people.
 
 73
-00:04:33.730 --> 00:04:37.305
+00:04:34.830 --> 00:04:38.405
 By week four, every finding
 has a class and an owner.
 
 74
-00:04:37.305 --> 00:04:42.030
+00:04:38.405 --> 00:04:43.130
 Critical findings block the gate: each
 one is fixed, or formally accepted
 
 75
-00:04:42.030 --> 00:04:46.518
+00:04:43.130 --> 00:04:47.618
 by the authorizing official, the only
 person who can accept that risk.
 
 76
-00:04:46.518 --> 00:04:49.818
+00:04:47.618 --> 00:04:50.918
 High findings get an owner and
 a date before the next gate.
 
 77
-00:04:49.818 --> 00:04:51.242
+00:04:50.918 --> 00:04:52.342
 The people are named too.
 
 78
-00:04:51.242 --> 00:04:54.407
+00:04:52.342 --> 00:04:55.507
 The steward decides the gate,
 with the sponsor as backup,
 
 79
-00:04:54.407 --> 00:04:57.917
+00:04:55.507 --> 00:04:59.017
 and the workstream leads review
 what was found in their areas.
 
 80
-00:04:57.917 --> 00:05:01.693
+00:04:59.017 --> 00:05:02.793
 The steering committee advises; it
 doesn't add a second signature.
 
 81
-00:05:01.693 --> 00:05:03.520
+00:05:02.793 --> 00:05:04.620
 So what does the gate check?
 
 82
-00:05:07.270 --> 00:05:12.757
+00:05:08.370 --> 00:05:13.857
 Gate G zero is a checklist, answered from
 the repository, not from a status meeting.
 
 83
-00:05:12.757 --> 00:05:14.208
+00:05:13.857 --> 00:05:15.308
 Is the platform working,
 
 84
-00:05:14.208 --> 00:05:18.270
+00:05:15.308 --> 00:05:19.370
 with its service identities scoped
 and its logs in central logging?
 
 85
-00:05:18.270 --> 00:05:22.570
+00:05:19.370 --> 00:05:23.670
 Is the assessment committed, covering
 every area, with its receipts?
 
 86
-00:05:22.570 --> 00:05:26.333
+00:05:23.670 --> 00:05:27.433
 Is every finding classified,
 with nothing critical left open?
 
 87
-00:05:26.333 --> 00:05:30.170
+00:05:27.433 --> 00:05:31.270
 And is the decision itself recorded,
 with the name of whoever made it?
 
 88
-00:05:30.170 --> 00:05:33.695
+00:05:31.270 --> 00:05:34.795
 The answer can be go, no-go,
 or go with conditions.
 
 89
-00:05:33.695 --> 00:05:38.460
+00:05:34.795 --> 00:05:39.560
 A gate passed on a date without the
 evidence just moves the failure later.
 
 90
-00:05:42.210 --> 00:05:45.910
+00:05:43.310 --> 00:05:47.010
 At week four, leadership holds
 facts instead of estimates.
 
 91
-00:05:45.910 --> 00:05:49.735
+00:05:47.010 --> 00:05:50.835
 An inventory of the whole estate,
 with proof of how it was read.
 
 92
-00:05:49.735 --> 00:05:53.385
+00:05:50.835 --> 00:05:54.485
 A findings list where every
 item has an owner and a date.
 
 93
-00:05:53.385 --> 00:05:56.835
+00:05:54.485 --> 00:05:57.935
 A platform that records every
 decision and who made it.
 
 94
-00:05:56.835 --> 00:05:59.010
+00:05:57.935 --> 00:06:00.110
 And a gate decision, on the record.
 
 95
-00:05:59.010 --> 00:06:03.412
+00:06:00.110 --> 00:06:04.512
 Right after the gate, the assessment
 becomes eight modernization plans,
 
 96
-00:06:03.412 --> 00:06:08.035
+00:06:04.512 --> 00:06:09.135
 generated from data rather than drawn up
 by hand, and approved by the steward.
 
 97
-00:06:08.035 --> 00:06:10.906
+00:06:09.135 --> 00:06:12.006
 That's where the foundation work begins,
 
 98
-00:06:10.906 --> 00:06:14.800
+00:06:12.006 --> 00:06:15.900
 and it's the subject of Episode
 3: Foundation to Gate G1.

@@ -45,28 +45,28 @@ the Agency Logging Plan under
 M-26-14 is due November 18, 2026.
 
 10
-00:00:40.200 --> 00:00:44.513
-Vendors add their own
-clock: Windows Server 2016,
+00:00:40.200 --> 00:00:46.057
+Vendors add their own clock: Windows
+Server 2016 ends support on January 12,
 
 11
-00:00:44.513 --> 00:00:50.550
-which runs many domain controllers,
-ends support on January 12, 2027.
+00:00:46.057 --> 00:00:51.063
+2027, and this workbook plans on
+those servers being gone by then.
 
 12
-00:00:50.550 --> 00:00:52.225
+00:00:51.063 --> 00:00:52.737
 The slide lists the rest.
 
 13
-00:00:52.225 --> 00:00:54.062
+00:00:52.737 --> 00:00:54.574
 Nothing fails on a single date.
 
 14
-00:00:54.062 --> 00:00:58.420
+00:00:54.574 --> 00:00:58.933
 But every one of these deadlines
 assumes the agency knows what it runs,
 
 15
-00:00:58.420 --> 00:01:00.360
+00:00:58.933 --> 00:01:00.860
 who owns it, and what governs it.

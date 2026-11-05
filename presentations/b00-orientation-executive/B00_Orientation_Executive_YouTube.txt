@@ -10,22 +10,22 @@ Chapters
 1:11 The directory governed the estate, and nobody wrote it down
 2:19 Federal policy now sets the dates
 3:43 Vendor support dates cluster on the same estate
-5:06 Read the clocks exactly, then run one program
-6:20 The charter: the page the sponsor signs
-7:34 Six success criteria, each tested at a gate
-8:44 Fifteen principles, one idea underneath
-9:48 Seven phases, six gates, and who clears each
-11:01 Five workstreams in parallel, one critical path
-12:15 Seven projects, run inside the program
-13:25 Who decides: one decider per row
-14:38 Three decisions the plans put on the wrong desk
-15:47 The people the program needs, and its rhythm
-16:57 Pre-flight: assessment before action
-18:06 Foundation and pilot: prove it on one division
-19:19 Roll out in waves, then retire only what nothing uses
-20:32 Steady state, and what success looks like
-21:42 The risk register: what can sink the program
-23:00 Decisions to make, and who makes them
+5:13 Read the clocks exactly, then run one program
+6:27 The charter: the page the sponsor signs
+7:41 Six success criteria, each tested at a gate
+8:51 Fifteen principles, one idea underneath
+9:55 Seven phases, six gates, and who clears each
+11:07 Five workstreams in parallel, one critical path
+12:21 Seven projects, run inside the program
+13:32 Who decides: one decider per row
+14:44 Three decisions the plans put on the wrong desk
+15:53 The people the program needs, and its rhythm
+17:03 Pre-flight: assessment before action
+18:12 Foundation and pilot: prove it on one division
+19:25 Roll out in waves, then retire only what nothing uses
+20:38 Steady state, and what success looks like
+21:48 The risk register: what can sink the program
+23:06 Decisions to make, and who makes them
 
 From the workbook
 Book 00: Chapter 01 — Why Modernize, and Why Now: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/01-why-modernize-now.html

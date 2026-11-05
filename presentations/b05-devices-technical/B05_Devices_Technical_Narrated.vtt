@@ -72,1823 +72,1823 @@ First, where this session
 sits in the series.
 
 16
-00:00:53.300 --> 00:00:57.821
+00:00:52.750 --> 00:00:57.271
 Here's why this matters: the series
 moves four populations to the cloud,
 
 17
-00:00:57.821 --> 00:01:01.250
+00:00:57.271 --> 00:01:00.700
 each on its own track, and
 this book carries two of them.
 
 18
-00:01:01.250 --> 00:01:05.737
+00:01:00.700 --> 00:01:05.187
 The Intune track is end-user devices,
 and the Arc track is servers.
 
 19
-00:01:05.737 --> 00:01:10.986
+00:01:05.187 --> 00:01:10.436
 A device's attributes come from device
 provisioning, like the Autopilot group tag,
 
 20
-00:01:10.986 --> 00:01:14.150
+00:01:10.436 --> 00:01:13.600
 never from HR, and a device
 rule can't read its owner.
 
 21
-00:01:14.150 --> 00:01:18.226
+00:01:13.600 --> 00:01:17.676
 Devices are done when their policy
 targets those attributes and
 
 22
-00:01:18.226 --> 00:01:22.000
+00:01:17.676 --> 00:01:21.450
 the computer-side GPO links are
 gone, one population at a time.
 
 23
-00:01:22.000 --> 00:01:27.525
+00:01:21.450 --> 00:01:26.975
 Servers are done when each is Arc-enabled,
 tagged, and evaluated by Azure Policy.
 
 24
-00:01:27.525 --> 00:01:30.940
+00:01:26.975 --> 00:01:30.390
 And Group Policy splits: user
 settings go with people,
 
 25
-00:01:30.940 --> 00:01:33.812
+00:01:30.390 --> 00:01:33.262
 computer settings with
 devices and servers.
 
 26
-00:01:33.812 --> 00:01:37.130
+00:01:33.262 --> 00:01:36.580
 Next, why Group Policy
 can't come to the cloud.
 
 27
-00:01:41.120 --> 00:01:42.507
+00:01:40.330 --> 00:01:41.717
 Here's why this matters.
 
 28
-00:01:42.507 --> 00:01:45.208
+00:01:41.717 --> 00:01:44.418
 For twenty years, Group
 Policy did a great deal
 
 29
-00:01:45.208 --> 00:01:47.908
+00:01:44.418 --> 00:01:47.118
 of governance without
 anyone writing it down.
 
 30
-00:01:47.908 --> 00:01:50.809
+00:01:47.118 --> 00:01:50.019
 A computer sat in an
 organizational unit (OU),
 
 31
-00:01:50.809 --> 00:01:56.209
+00:01:50.019 --> 00:01:55.419
 the linked GPOs applied in a fixed order,
 and that one structure was the targeting,
 
 32
-00:01:56.209 --> 00:01:59.433
+00:01:55.419 --> 00:01:58.643
 the precedence, the
 delegation and the evidence.
 
 33
-00:01:59.433 --> 00:02:01.118
+00:01:58.643 --> 00:02:00.328
 Microsoft says it plainly:
 
 34
-00:02:01.118 --> 00:02:05.408
+00:02:00.328 --> 00:02:04.618
 Group Policy enforcement isn't
 possible on cloud-native endpoints.
 
 35
-00:02:05.408 --> 00:02:09.707
+00:02:04.618 --> 00:02:08.917
 Intune can deliver most of the
 settings, but every mechanism changes.
 
 36
-00:02:09.707 --> 00:02:14.407
+00:02:08.917 --> 00:02:13.617
 Targeting is flat, devices check in
 about every eight hours instead of every
 
 37
-00:02:14.407 --> 00:02:19.257
+00:02:13.617 --> 00:02:18.467
 ninety minutes, and when two policies
 disagree, the setting may not apply at all.
 
 38
-00:02:19.257 --> 00:02:22.833
+00:02:18.467 --> 00:02:22.043
 On a hybrid device, Group
 Policy wins by default.
 
 39
-00:02:22.833 --> 00:02:28.261
+00:02:22.043 --> 00:02:27.471
 So the program's rule is regenerate, not
 copy: identify the mandatory settings,
 
 40
-00:02:28.261 --> 00:02:32.270
+00:02:27.471 --> 00:02:31.480
 compare them with MDM, and
 treat the gaps as blockers.
 
 41
-00:02:36.020 --> 00:02:39.132
+00:02:35.230 --> 00:02:38.342
 Two more ideas frame
 everything in this session.
 
 42
-00:02:39.132 --> 00:02:41.271
+00:02:38.342 --> 00:02:40.481
 First, the hybrid-join trap.
 
 43
-00:02:41.271 --> 00:02:46.230
+00:02:40.481 --> 00:02:45.440
 Converting a domain-joined fleet to hybrid
 join is close to a tenant-wide switch:
 
 44
-00:02:46.230 --> 00:02:50.289
+00:02:45.440 --> 00:02:49.499
 extend the sync scope, and every
 Windows device registers itself,
 
 45
-00:02:50.289 --> 00:02:53.145
+00:02:49.499 --> 00:02:52.355
 with nothing checking
 ownership or approval.
 
 46
-00:02:53.145 --> 00:02:58.426
+00:02:52.355 --> 00:02:57.636
 Microsoft's guidance is that Entra join
 is the default for new or reset devices,
 
 47
-00:02:58.426 --> 00:03:01.432
+00:02:57.636 --> 00:03:00.642
 and hybrid join is a
 waypoint, not the end goal.
 
 48
-00:03:01.432 --> 00:03:05.044
+00:03:00.642 --> 00:03:04.254
 Done ungoverned, the waypoint
 becomes the destination.
 
 49
-00:03:05.044 --> 00:03:07.183
+00:03:04.254 --> 00:03:06.393
 Second, where the truth lives.
 
 50
-00:03:07.183 --> 00:03:11.495
+00:03:06.393 --> 00:03:10.705
 A laptop is described by
 procurement, Autopilot, Entra ID,
 
 51
-00:03:11.495 --> 00:03:15.257
+00:03:10.705 --> 00:03:14.467
 Intune and Defender records,
 and a server adds Arc.
 
 52
-00:03:15.257 --> 00:03:17.452
+00:03:14.467 --> 00:03:16.662
 The program decides, fact by fact,
 
 53
-00:03:17.452 --> 00:03:21.433
+00:03:16.662 --> 00:03:20.643
 which one is authoritative, and
 correlates on the right key.
 
 54
-00:03:21.433 --> 00:03:24.949
+00:03:20.643 --> 00:03:24.159
 And one rule to remember:
 delete the Entra object last,
 
 55
-00:03:24.949 --> 00:03:28.660
+00:03:24.159 --> 00:03:27.870
 because that deletes the
 BitLocker recovery keys.
 
 56
-00:03:32.410 --> 00:03:36.685
+00:03:31.620 --> 00:03:35.895
 Module 1 is Intune-first onboarding
 and the migration paths.
 
 57
-00:03:36.685 --> 00:03:40.248
+00:03:35.895 --> 00:03:39.458
 Migration brings an existing
 device under governance;
 
 58
-00:03:40.248 --> 00:03:44.198
+00:03:39.458 --> 00:03:43.408
 Intune-first refuses to let an
 ungoverned device exist at all.
 
 59
-00:03:44.198 --> 00:03:46.435
+00:03:43.408 --> 00:03:45.645
 Chapter 04 covers new devices,
 
 60
-00:03:46.435 --> 00:03:50.830
+00:03:45.645 --> 00:03:50.040
 and Chapter 05 the three
 paths for the existing estate.
 
 61
-00:03:54.580 --> 00:03:56.542
+00:03:53.790 --> 00:03:55.752
 The doctrine is simple to state.
 
 62
-00:03:56.542 --> 00:04:00.375
+00:03:55.752 --> 00:03:59.585
 A new asset is governed from
 the moment it first powers on:
 
 63
-00:04:00.375 --> 00:04:03.881
+00:03:59.585 --> 00:04:03.091
 by Intune for endpoints, and
 by Azure Arc for servers.
 
 64
-00:04:03.881 --> 00:04:07.369
+00:04:03.091 --> 00:04:06.579
 There's no waiting room where it
 joins Active Directory first,
 
 65
-00:04:07.369 --> 00:04:10.242
+00:04:06.579 --> 00:04:09.452
 or reaches production
 without a compliance check.
 
 66
-00:04:10.242 --> 00:04:13.784
+00:04:09.452 --> 00:04:12.994
 Five pillars carry it, and
 they're the program's doctrine,
 
 67
-00:04:13.784 --> 00:04:15.631
+00:04:12.994 --> 00:04:14.841
 not Microsoft requirements.
 
 68
-00:04:15.631 --> 00:04:18.779
+00:04:14.841 --> 00:04:17.989
 The ones to remember: no
 ungoverned device, ever;
 
 69
-00:04:18.779 --> 00:04:23.947
+00:04:17.989 --> 00:04:23.157
 procurement is the first governance
 step, the way HR feeds user provisioning;
 
 70
-00:04:23.947 --> 00:04:28.469
+00:04:23.157 --> 00:04:27.679
 and an onboarding failure produces
 a quarantine entry and a ticket,
 
 71
-00:04:28.469 --> 00:04:30.892
+00:04:27.679 --> 00:04:30.102
 never a degraded production device.
 
 72
-00:04:30.892 --> 00:04:33.899
+00:04:30.102 --> 00:04:33.108
 Every asset then follows
 the same five phases,
 
 73
-00:04:33.899 --> 00:04:36.905
+00:04:33.108 --> 00:04:36.115
 from procure through
 provision and validate.
 
 74
-00:04:36.905 --> 00:04:40.998
+00:04:36.115 --> 00:04:40.208
 The organizational assignment comes from
 the first source that can supply it,
 
 75
-00:04:40.998 --> 00:04:44.050
+00:04:40.208 --> 00:04:43.260
 and the target is fourteen
 days from purchase order.
 
 76
-00:04:47.800 --> 00:04:49.349
+00:04:47.010 --> 00:04:48.559
 Here's why this matters:
 
 77
-00:04:49.349 --> 00:04:53.263
+00:04:48.559 --> 00:04:52.473
 the Intune track is every end-user
 device, not just Windows.
 
 78
-00:04:53.263 --> 00:04:56.256
+00:04:52.473 --> 00:04:55.466
 Windows 11 and Cloud
 PCs are fully managed,
 
 79
-00:04:56.256 --> 00:04:59.763
+00:04:55.466 --> 00:04:58.973
 and Azure Virtual Desktop
 is managed with limits.
 
 80
-00:04:59.763 --> 00:05:02.961
+00:04:58.973 --> 00:05:02.171
 Apple devices come in through
 Apple Business Manager,
 
 81
-00:05:02.961 --> 00:05:06.374
+00:05:02.171 --> 00:05:05.584
 and Android Enterprise is
 managed in all four of its modes.
 
 82
-00:05:06.374 --> 00:05:11.675
+00:05:05.584 --> 00:05:10.885
 Linux desktops are limited: Ubuntu
 and Red Hat, mostly for compliance.
 
 83
-00:05:11.675 --> 00:05:16.513
+00:05:10.885 --> 00:05:15.723
 ChromeOS shows up as inventory, but
 Google's console keeps the policy.
 
 84
-00:05:16.513 --> 00:05:21.012
+00:05:15.723 --> 00:05:20.222
 Windows 10 is out of support, so it
 can enroll but nothing's guaranteed.
 
 85
-00:05:21.012 --> 00:05:26.488
+00:05:20.222 --> 00:05:25.698
 And servers, printers, network gear
 and IoT aren't Intune platforms at all.
 
 86
-00:05:26.488 --> 00:05:31.312
+00:05:25.698 --> 00:05:30.522
 Servers go to Arc, and the rest get a
 tier, which we'll come to in Module 3.
 
 87
-00:05:31.312 --> 00:05:34.990
+00:05:30.522 --> 00:05:34.200
 Next, Windows in a GCC tenant.
 
 88
-00:05:38.740 --> 00:05:42.190
+00:05:37.950 --> 00:05:41.400
 Microsoft now ships two
 ways to provision Windows.
 
 89
-00:05:42.190 --> 00:05:45.067
+00:05:41.400 --> 00:05:44.277
 Autopilot device preparation is the newer,
 
 90
-00:05:45.067 --> 00:05:47.865
+00:05:44.277 --> 00:05:47.075
 simpler one, with near
 real-time reporting.
 
 91
-00:05:47.865 --> 00:05:50.477
+00:05:47.075 --> 00:05:49.687
 Classic Autopilot is more feature-rich.
 
 92
-00:05:50.477 --> 00:05:53.947
+00:05:49.687 --> 00:05:53.157
 The difference that matters
 most here is registration:
 
 93
-00:05:53.947 --> 00:05:57.039
+00:05:53.157 --> 00:05:56.249
 device preparation has none,
 so it has no group tag.
 
 94
-00:05:57.039 --> 00:06:03.265
+00:05:56.249 --> 00:06:02.475
 In a GCC tenant both are available, because
 GCC uses the commercial Intune service.
 
 95
-00:06:03.265 --> 00:06:07.886
+00:06:02.475 --> 00:06:07.096
 The program's default for standard hardware
 is classic Autopilot, user-driven,
 
 96
-00:06:07.886 --> 00:06:12.720
+00:06:07.096 --> 00:06:11.930
 with Entra join, because its registration
 carries the procurement attribute and
 
 97
-00:06:12.720 --> 00:06:17.128
+00:06:11.930 --> 00:06:16.338
 the purchase order from the vendor to
 the device before it's ever powered on.
 
 98
-00:06:17.128 --> 00:06:20.544
+00:06:16.338 --> 00:06:19.754
 Use device preparation
 where its advantages matter,
 
 99
-00:06:20.544 --> 00:06:25.203
+00:06:19.754 --> 00:06:24.413
 such as faster provisioning or a tenant
 that might later move to GCC High.
 
 100
-00:06:25.203 --> 00:06:28.810
+00:06:24.413 --> 00:06:28.020
 And never use either with
 hybrid join for new devices.
 
 101
-00:06:32.560 --> 00:06:34.924
+00:06:31.770 --> 00:06:34.134
 Here's how a procurement
 decision reaches a
 
 102
-00:06:34.924 --> 00:06:37.748
+00:06:34.134 --> 00:06:36.958
 device's configuration
 without anyone touching it.
 
 103
-00:06:37.748 --> 00:06:42.034
+00:06:36.958 --> 00:06:41.244
 The purchase order carries an
 organizational code and the serial number.
 
 104
-00:06:42.034 --> 00:06:46.428
+00:06:41.244 --> 00:06:45.638
 The supplier registers the device at
 purchase, which is also what makes it
 
 105
-00:06:46.428 --> 00:06:50.748
+00:06:45.638 --> 00:06:49.958
 zero-touch, after a one-time recorded
 approval by a Global Administrator.
 
 106
-00:06:50.748 --> 00:06:55.252
+00:06:49.958 --> 00:06:54.462
 That group tag shows up on the Entra
 device, a dynamic group matches on it,
 
 107
-00:06:55.252 --> 00:06:59.298
+00:06:54.462 --> 00:06:58.508
 and the profile, compliance and
 configuration follow the group.
 
 108
-00:06:59.298 --> 00:07:03.600
+00:06:58.508 --> 00:07:02.810
 The tag holds a node identifier,
 never a free-text department name,
 
 109
-00:07:03.600 --> 00:07:08.698
+00:07:02.810 --> 00:07:07.908
 so a reorganization changes a mapping
 table, not thousands of registrations.
 
 110
-00:07:08.698 --> 00:07:11.857
+00:07:07.908 --> 00:07:11.067
 Enrollment restrictions
 are the enforcement point:
 
 111
-00:07:11.857 --> 00:07:15.662
+00:07:11.067 --> 00:07:14.872
 block personal Windows enrollment,
 and an unregistered device
 
 112
-00:07:15.662 --> 00:07:19.610
+00:07:14.872 --> 00:07:18.820
 simply fails to enroll, which is
 the quarantine pillar in practice.
 
 113
-00:07:19.610 --> 00:07:23.380
+00:07:18.820 --> 00:07:22.590
 The slide covers naming and
 the Enrollment Status Page.
 
 114
-00:07:27.130 --> 00:07:32.268
+00:07:26.340 --> 00:07:31.478
 A new device should arrive at a known baseline
 before anyone uses it, in two halves.
 
 115
-00:07:32.268 --> 00:07:34.218
+00:07:31.478 --> 00:07:33.428
 Compliance decides access.
 
 116
-00:07:34.218 --> 00:07:39.056
+00:07:33.428 --> 00:07:38.266
 The first step is a tenant-wide setting:
 mark devices with no compliance policy
 
 117
-00:07:39.056 --> 00:07:44.118
+00:07:38.266 --> 00:07:43.328
 as not compliant, so an unassigned device
 can't pass Conditional Access by default.
 
 118
-00:07:44.118 --> 00:07:47.603
+00:07:43.328 --> 00:07:46.813
 The Windows policy then
 requires the usual protections,
 
 119
-00:07:47.603 --> 00:07:50.643
+00:07:46.813 --> 00:07:49.853
 like BitLocker, Secure
 Boot and current Defender.
 
 120
-00:07:50.643 --> 00:07:55.692
+00:07:49.853 --> 00:07:54.902
 Configuration sets the device up, starting
 from Microsoft's security baselines.
 
 121
-00:07:55.692 --> 00:07:58.369
+00:07:54.902 --> 00:07:57.579
 Because these devices
 never had Group Policy,
 
 122
-00:07:58.369 --> 00:08:01.468
+00:07:57.579 --> 00:08:00.678
 there's nothing to conflict
 with, and that's the payoff.
 
 123
-00:08:01.468 --> 00:08:04.794
+00:08:00.678 --> 00:08:04.004
 Four exception paths cover what
 can't follow the main path,
 
 124
-00:08:04.794 --> 00:08:08.606
+00:08:04.004 --> 00:08:07.816
 from personal devices to Windows
 machines that can't enroll at all.
 
 125
-00:08:08.606 --> 00:08:13.918
+00:08:07.816 --> 00:08:13.128
 Each needs written justification, a
 compensating control and an audit entry,
 
 126
-00:08:13.918 --> 00:08:16.600
+00:08:13.128 --> 00:08:15.810
 and the last one is isolated first.
 
 127
-00:08:20.350 --> 00:08:23.750
+00:08:19.560 --> 00:08:22.960
 Chapter 05 is how the
 existing estate gets there.
 
 128
-00:08:23.750 --> 00:08:28.940
+00:08:22.960 --> 00:08:28.150
 The sources described three separate kits
 that repeated most of the same steps,
 
 129
-00:08:28.940 --> 00:08:33.815
+00:08:28.150 --> 00:08:33.025
 because the destination is the same:
 servers in Arc, workstations in Intune,
 
 130
-00:08:33.815 --> 00:08:38.375
+00:08:33.025 --> 00:08:37.585
 NTLM restricted after it's measured,
 and Conditional Access enforced.
 
 131
-00:08:38.375 --> 00:08:40.875
+00:08:37.585 --> 00:08:40.085
 What differs is who holds
 the decision record.
 
 132
-00:08:40.875 --> 00:08:46.475
+00:08:40.085 --> 00:08:45.685
 The rule all three obey: the control
 plane governs, the data plane executes.
 
 133
-00:08:46.475 --> 00:08:50.281
+00:08:45.685 --> 00:08:49.491
 Every path runs four phases
 in order, observe, onboard,
 
 134
-00:08:50.281 --> 00:08:55.125
+00:08:49.491 --> 00:08:54.335
 harden and watch, and nothing is
 restricted until it's been measured.
 
 135
-00:08:55.125 --> 00:08:58.225
+00:08:54.335 --> 00:08:57.435
 The manual path suits
 small estates and pilots.
 
 136
-00:08:58.225 --> 00:09:02.100
+00:08:57.435 --> 00:09:01.310
 The governed path puts an approval
 reference on every change.
 
 137
-00:09:02.100 --> 00:09:05.006
+00:09:01.310 --> 00:09:04.216
 The retrofit adopts a
 hand-modernized estate,
 
 138
-00:09:05.006 --> 00:09:07.988
+00:09:04.216 --> 00:09:07.198
 at the risk of blessing
 whatever drift is there.
 
 139
-00:09:07.988 --> 00:09:13.060
+00:09:07.198 --> 00:09:12.270
 And the federal ceiling is human
 approval; autonomous action is refused.
 
 140
-00:09:16.810 --> 00:09:20.622
+00:09:16.020 --> 00:09:19.832
 Three places in the shared
 runbook cause most of the outages.
 
 141
-00:09:20.622 --> 00:09:21.897
+00:09:19.832 --> 00:09:21.107
 Precedence first.
 
 142
-00:09:21.897 --> 00:09:27.423
+00:09:21.107 --> 00:09:26.633
 Existing devices usually enroll in Intune
 through Group Policy, with no reimage.
 
 143
-00:09:27.423 --> 00:09:32.067
+00:09:26.633 --> 00:09:31.277
 But while the GPOs are still linked,
 overlaps are dangerous: Group Policy
 
 144
-00:09:32.067 --> 00:09:36.635
+00:09:31.277 --> 00:09:35.845
 usually wins, and for some settings
 it's a race with no guaranteed winner.
 
 145
-00:09:36.635 --> 00:09:40.835
+00:09:35.845 --> 00:09:40.045
 So document every overlap before
 Intune enforces anything.
 
 146
-00:09:40.835 --> 00:09:42.797
+00:09:40.045 --> 00:09:42.007
 NTLM second.
 
 147
-00:09:42.797 --> 00:09:48.474
+00:09:42.007 --> 00:09:47.684
 A common mistake is treating the strictest
 LAN Manager level as blocking NTLM;
 
 148
-00:09:48.474 --> 00:09:52.753
+00:09:47.684 --> 00:09:51.963
 it doesn't, because domain
 controllers still accept NTLMv2.
 
 149
-00:09:52.753 --> 00:09:56.420
+00:09:51.963 --> 00:09:55.630
 Blocking takes the Restrict
 NTLM policies, staged,
 
 150
-00:09:56.420 --> 00:10:00.961
+00:09:55.630 --> 00:10:00.171
 and only after a fourteen to thirty
 day audit and owner sign-off.
 
 151
-00:10:00.961 --> 00:10:02.422
+00:10:00.171 --> 00:10:01.632
 And SPNs third.
 
 152
-00:10:02.422 --> 00:10:08.797
+00:10:01.632 --> 00:10:08.007
 A missing SPN is the silent case: Kerberos
 isn't tried and NTLM quietly works,
 
 153
-00:10:08.797 --> 00:10:12.860
+00:10:08.007 --> 00:10:12.070
 until the NTLM block
 turns it into an outage.
 
 154
-00:10:16.610 --> 00:10:21.448
+00:10:15.820 --> 00:10:20.658
 Module 2 is the GPO sunset, the
 program for the existing fleet.
 
 155
-00:10:21.448 --> 00:10:25.309
+00:10:20.658 --> 00:10:24.519
 It replaces Group Policy on
 endpoints already deployed,
 
 156
-00:10:25.309 --> 00:10:30.073
+00:10:24.519 --> 00:10:29.283
 and it's measured by GPOs retired with
 evidence, not by settings copied.
 
 157
-00:10:30.073 --> 00:10:35.940
+00:10:29.283 --> 00:10:35.150
 Chapters 07 and 08 run it, and
 Appendix A is the crosswalk.
 
 158
-00:10:39.690 --> 00:10:44.860
+00:10:38.900 --> 00:10:44.070
 The program keeps three efforts apart:
 Intune-first for new devices, this sunset
 
 159
-00:10:44.860 --> 00:10:50.265
+00:10:44.070 --> 00:10:49.475
 for the existing fleet, and regenerate-not-copy
 as the way replacements are written.
 
 160
-00:10:50.265 --> 00:10:55.340
+00:10:49.475 --> 00:10:54.550
 Microsoft's own advice is that assessing
 every setting is likely impractical,
 
 161
-00:10:55.340 --> 00:10:59.165
+00:10:54.550 --> 00:10:58.375
 so the program runs seven steps,
 each with an exit condition.
 
 162
-00:10:59.165 --> 00:11:03.221
+00:10:58.375 --> 00:11:02.431
 Step one: nothing is translated or
 retired until it's inventoried,
 
 163
-00:11:03.221 --> 00:11:08.028
+00:11:02.431 --> 00:11:07.238
 including its targeting, because that's
 the part that doesn't survive the move.
 
 164
-00:11:08.028 --> 00:11:11.294
+00:11:07.238 --> 00:11:10.504
 Group Policy analytics then
 shows, setting by setting,
 
 165
-00:11:11.294 --> 00:11:15.215
+00:11:10.504 --> 00:11:14.425
 what's ready to migrate, what isn't
 supported and what's deprecated.
 
 166
-00:11:15.215 --> 00:11:18.003
+00:11:14.425 --> 00:11:17.213
 Plan around its limits,
 which are on the slide.
 
 167
-00:11:18.003 --> 00:11:22.164
+00:11:17.213 --> 00:11:21.374
 Its migrate step is, in
 Microsoft's words, best effort.
 
 168
-00:11:22.164 --> 00:11:25.487
+00:11:21.374 --> 00:11:24.697
 So the program treats the
 readiness report as proof that
 
 169
-00:11:25.487 --> 00:11:28.880
+00:11:24.697 --> 00:11:28.090
 an equivalent exists, never
 that a setting is needed.
 
 170
-00:11:32.630 --> 00:11:38.905
+00:11:31.840 --> 00:11:38.115
 Step two gives every setting one tag:
 required, obsolete, high-risk or redundant.
 
 171
-00:11:38.905 --> 00:11:40.918
+00:11:38.115 --> 00:11:40.128
 Only required settings move on.
 
 172
-00:11:40.918 --> 00:11:45.493
+00:11:40.128 --> 00:11:44.703
 Each one then faces four questions
 in order, and the first yes decides.
 
 173
-00:11:45.493 --> 00:11:47.630
+00:11:44.703 --> 00:11:46.840
 Is it still needed in the target model?
 
 174
-00:11:47.630 --> 00:11:52.130
+00:11:46.840 --> 00:11:51.340
 Group Policy accumulated settings that
 existed only because it could set them.
 
 175
-00:11:52.130 --> 00:11:54.393
+00:11:51.340 --> 00:11:53.603
 Does Intune have a native equivalent?
 
 176
-00:11:54.393 --> 00:11:55.304
+00:11:53.603 --> 00:11:54.514
 Most do.
 
 177
-00:11:55.304 --> 00:11:57.405
+00:11:54.514 --> 00:11:56.615
 Does a cloud pattern remove the need?
 
 178
-00:11:57.405 --> 00:12:01.801
+00:11:56.615 --> 00:12:01.011
 Folder redirection, for example,
 becomes OneDrive Known Folder Move,
 
 179
-00:12:01.801 --> 00:12:04.655
+00:12:01.011 --> 00:12:03.865
 and mapped printers
 become Universal Print.
 
 180
-00:12:04.655 --> 00:12:06.693
+00:12:03.865 --> 00:12:05.903
 And can a script enforce and prove it?
 
 181
-00:12:06.693 --> 00:12:10.214
+00:12:05.903 --> 00:12:09.424
 A setting that fails all four
 becomes a dated exception,
 
 182
-00:12:10.214 --> 00:12:13.354
+00:12:09.424 --> 00:12:12.564
 and its GPO stays linked
 for that population only.
 
 183
-00:12:13.354 --> 00:12:16.996
+00:12:12.564 --> 00:12:16.206
 The answers send settings to
 four landing zones in Intune,
 
 184
-00:12:16.996 --> 00:12:19.250
+00:12:16.206 --> 00:12:18.460
 and the slide has their limits.
 
 185
-00:12:23.000 --> 00:12:26.481
+00:12:22.210 --> 00:12:25.691
 While a population has both
 GPOs and Intune policies,
 
 186
-00:12:26.481 --> 00:12:28.775
+00:12:25.691 --> 00:12:27.985
 three conflict systems are in play.
 
 187
-00:12:28.775 --> 00:12:33.463
+00:12:27.985 --> 00:12:32.673
 Inside Intune, configuration policies
 have no precedence over each other.
 
 188
-00:12:33.463 --> 00:12:36.797
+00:12:32.673 --> 00:12:36.007
 A conflict is reported and
 the setting might not apply,
 
 189
-00:12:36.797 --> 00:12:39.687
+00:12:36.007 --> 00:12:38.897
 so each setting gets
 exactly one owning policy.
 
 190
-00:12:39.687 --> 00:12:44.379
+00:12:38.897 --> 00:12:43.589
 The chapter also corrects earlier program
 material: there's no last-write-wins,
 
 191
-00:12:44.379 --> 00:12:48.926
+00:12:43.589 --> 00:12:48.136
 and endpoint security doesn't
 automatically beat configuration profiles.
 
 192
-00:12:48.926 --> 00:12:54.197
+00:12:48.136 --> 00:12:53.407
 Between Group Policy and MDM, Group Policy
 keeps winning unless you change that,
 
 193
-00:12:54.197 --> 00:12:57.312
+00:12:53.407 --> 00:12:56.522
 and outside the core policy
 settings it's a race.
 
 194
-00:12:57.312 --> 00:13:00.017
+00:12:56.522 --> 00:12:59.227
 Between Configuration Manager and Intune,
 
 195
-00:13:00.017 --> 00:13:04.224
+00:12:59.227 --> 00:13:03.434
 the co-management slider decides,
 with a couple of traps on the slide.
 
 196
-00:13:04.224 --> 00:13:09.347
+00:13:03.434 --> 00:13:08.557
 Disabling a GPO link is the moment
 production behavior changes, so it's gated:
 
 197
-00:13:09.347 --> 00:13:12.273
+00:13:08.557 --> 00:13:11.483
 freeze, back up, prove
 the replacement works,
 
 198
-00:13:12.273 --> 00:13:16.050
+00:13:11.483 --> 00:13:15.260
 then disable the link with
 one reversible command.
 
 199
-00:13:19.800 --> 00:13:24.807
+00:13:19.010 --> 00:13:24.017
 Chapter 08 breaks the seven phases into
 working tasks, with durations from the
 
 200
-00:13:24.807 --> 00:13:30.200
+00:13:24.017 --> 00:13:29.410
 program's reference plan for a large fleet
 that already runs Configuration Manager.
 
 201
-00:13:30.200 --> 00:13:34.928
+00:13:29.410 --> 00:13:34.138
 First comes the inventory and classification,
 then co-management for a pilot,
 
 202
-00:13:34.928 --> 00:13:40.025
+00:13:34.138 --> 00:13:39.235
 then building every policy unassigned, with
 the riskier protections in audit mode.
 
 203
-00:13:40.025 --> 00:13:44.280
+00:13:39.235 --> 00:13:43.490
 The pilot is about five percent of
 the fleet, representative across
 
 204
-00:13:44.280 --> 00:13:48.763
+00:13:43.490 --> 00:13:47.973
 tiers and regions, and the GPOs stay
 linked so conflicts can be measured.
 
 205
-00:13:48.763 --> 00:13:54.173
+00:13:47.973 --> 00:13:53.383
 Then four waves of three weeks each, and
 finally the links and GPOs are disabled,
 
 206
-00:13:54.173 --> 00:13:56.837
+00:13:53.383 --> 00:13:56.047
 kept ninety days, backed up and deleted.
 
 207
-00:13:56.837 --> 00:14:02.175
+00:13:56.047 --> 00:14:01.385
 On these estimates, the program reaches the
 last phase in roughly thirty-four weeks.
 
 208
-00:14:02.175 --> 00:14:05.682
+00:14:01.385 --> 00:14:04.892
 One reminder: rolling back
 a pilot means reassigning a
 
 209
-00:14:05.682 --> 00:14:09.850
+00:14:04.892 --> 00:14:09.060
 policy with the old value, not
 just removing the assignment.
 
 210
-00:14:13.600 --> 00:14:18.412
+00:14:12.810 --> 00:14:17.622
 The policy library has five types, and
 every policy is assigned to dynamic
 
 211
-00:14:18.412 --> 00:14:22.987
+00:14:17.622 --> 00:14:22.197
 device groups built from attributes,
 which replaces OU-based scoping.
 
 212
-00:14:22.987 --> 00:14:27.530
+00:14:22.197 --> 00:14:26.740
 Those attributes are the device's own
 extension attributes, written through
 
 213
-00:14:27.530 --> 00:14:31.576
+00:14:26.740 --> 00:14:30.786
 Microsoft Graph, with one numbering
 and one fixed spelling per value.
 
 214
-00:14:31.576 --> 00:14:36.425
+00:14:30.786 --> 00:14:35.635
 The correction that matters: assignment
 filters can't read extension attributes.
 
 215
-00:14:36.425 --> 00:14:39.411
+00:14:35.635 --> 00:14:38.621
 Attribute targeting
 belongs in the group rule;
 
 216
-00:14:39.411 --> 00:14:43.087
+00:14:38.621 --> 00:14:42.297
 filters work on Intune properties
 like join type or model.
 
 217
-00:14:43.087 --> 00:14:46.501
+00:14:42.297 --> 00:14:45.711
 Three Microsoft facts shape
 every compliance policy.
 
 218
-00:14:46.501 --> 00:14:50.025
+00:14:45.711 --> 00:14:49.235
 Noncompliance actions are
 scheduled in days, not hours.
 
 219
-00:14:50.025 --> 00:14:51.407
+00:14:49.235 --> 00:14:50.617
 There's no block action;
 
 220
-00:14:51.407 --> 00:14:55.625
+00:14:50.617 --> 00:14:54.835
 blocking is what Conditional Access
 does with a noncompliant device.
 
 221
-00:14:55.625 --> 00:14:58.830
+00:14:54.835 --> 00:14:58.040
 And encryption and boot
 checks are measured at boot,
 
 222
-00:14:58.830 --> 00:15:01.513
+00:14:58.040 --> 00:15:00.723
 so a newly encrypted
 device needs a restart.
 
 223
-00:15:01.513 --> 00:15:06.310
+00:15:00.723 --> 00:15:05.520
 The slide has the compliance set,
 including a strict Tier 0 policy.
 
 224
-00:15:10.060 --> 00:15:13.576
+00:15:09.270 --> 00:15:12.786
 Endpoint security policies
 aren't a higher-priority source;
 
 225
-00:15:13.576 --> 00:15:16.810
+00:15:12.786 --> 00:15:16.020
 they have the same standing
 as configuration profiles.
 
 226
-00:15:16.810 --> 00:15:21.629
+00:15:16.020 --> 00:15:20.839
 In the program's library, though, they
 own every Defender, BitLocker, firewall,
 
 227
-00:15:21.629 --> 00:15:24.000
+00:15:20.839 --> 00:15:23.210
 account protection and LAPS setting,
 
 228
-00:15:24.000 --> 00:15:28.360
+00:15:23.210 --> 00:15:27.570
 and the settings catalog profiles
 that duplicated them are retired.
 
 229
-00:15:28.360 --> 00:15:30.422
+00:15:27.570 --> 00:15:29.632
 The slide walks through each one.
 
 230
-00:15:30.422 --> 00:15:31.648
+00:15:29.632 --> 00:15:30.858
 A few highlights.
 
 231
-00:15:31.648 --> 00:15:36.183
+00:15:30.858 --> 00:15:35.393
 Sending every file sample to Microsoft
 can upload organizational data,
 
 232
-00:15:36.183 --> 00:15:37.997
+00:15:35.393 --> 00:15:37.207
 so that's the data owner's call.
 
 233
-00:15:37.997 --> 00:15:42.213
+00:15:37.207 --> 00:15:41.423
 Silent encryption and a TPM PIN
 can't apply to the same device,
 
 234
-00:15:42.213 --> 00:15:44.910
+00:15:41.423 --> 00:15:44.120
 so Tier 0 gets its own BitLocker policy.
 
 235
-00:15:44.910 --> 00:15:49.447
+00:15:44.120 --> 00:15:48.657
 On an Entra-joined device, the
 firewall's domain profile doesn't apply.
 
 236
-00:15:49.447 --> 00:15:54.373
+00:15:48.657 --> 00:15:53.583
 And attack surface reduction rules run in
 audit for thirty days before blocking.
 
 237
-00:15:54.373 --> 00:15:56.777
+00:15:53.583 --> 00:15:55.987
 Appendix A flags the crosswalk traps,
 
 238
-00:15:56.777 --> 00:16:01.090
+00:15:55.987 --> 00:16:00.300
 such as a logon message breaking
 Autopilot pre-provisioning.
 
 239
-00:16:04.840 --> 00:16:07.098
+00:16:04.050 --> 00:16:06.308
 Module 3 is servers under Azure Arc.
 
 240
-00:16:07.098 --> 00:16:09.589
+00:16:06.308 --> 00:16:08.799
 Intune doesn't support Windows Server,
 
 241
-00:16:09.589 --> 00:16:13.015
+00:16:08.799 --> 00:16:12.225
 so Arc takes over the job
 Group Policy did for servers.
 
 242
-00:16:13.015 --> 00:16:15.923
+00:16:12.225 --> 00:16:15.133
 Arc gives a server an
 address in the control plane;
 
 243
-00:16:15.923 --> 00:16:19.900
+00:16:15.133 --> 00:16:19.110
 what governs it is everything
 you then attach to that address.
 
 244
-00:16:23.650 --> 00:16:26.938
+00:16:22.860 --> 00:16:26.148
 Arc is the management plane,
 not the identity plane.
 
 245
-00:16:26.938 --> 00:16:30.769
+00:16:26.148 --> 00:16:29.979
 Onboarding doesn't change how
 a server authenticates users or
 
 246
-00:16:30.769 --> 00:16:34.674
+00:16:29.979 --> 00:16:33.884
 whether it's domain-joined, so keep
 the two separate in every plan.
 
 247
-00:16:34.674 --> 00:16:39.485
+00:16:33.884 --> 00:16:38.695
 What changes: the server becomes an
 Azure resource, with role-based access,
 
 248
-00:16:39.485 --> 00:16:43.900
+00:16:38.695 --> 00:16:43.110
 tags and Azure Policy, and extensions
 that run with full privileges.
 
 249
-00:16:43.900 --> 00:16:48.212
+00:16:43.110 --> 00:16:47.422
 What doesn't: its domain membership,
 its workload and where it runs.
 
 250
-00:16:48.212 --> 00:16:50.188
+00:16:47.422 --> 00:16:49.398
 Arc isn't a migration to Azure.
 
 251
-00:16:50.188 --> 00:16:52.287
+00:16:49.398 --> 00:16:51.497
 Two properties shape operations.
 
 252
-00:16:52.287 --> 00:16:54.013
+00:16:51.497 --> 00:16:53.223
 Azure is the source of truth,
 
 253
-00:16:54.013 --> 00:16:57.463
+00:16:53.223 --> 00:16:56.673
 so every change is checked
 before it reaches the server.
 
 254
-00:16:57.463 --> 00:16:59.712
+00:16:56.673 --> 00:16:58.922
 And connection state is evidence.
 
 255
-00:16:59.712 --> 00:17:04.197
+00:16:58.922 --> 00:17:03.407
 A server disconnected for fourteen
 days loses its baseline assignments,
 
 256
-00:17:04.197 --> 00:17:06.550
+00:17:03.407 --> 00:17:05.760
 and after forty-five days it can expire.
 
 257
-00:17:06.550 --> 00:17:09.965
+00:17:05.760 --> 00:17:09.175
 Plan cost by service, too;
 with the right licensing,
 
 258
-00:17:09.965 --> 00:17:15.070
+00:17:09.175 --> 00:17:14.280
 several management services come at
 no extra cost, once you attest it.
 
 259
-00:17:18.820 --> 00:17:22.677
+00:17:18.030 --> 00:17:21.887
 Here's why this matters: the Arc
 track is servers wherever they run,
 
 260
-00:17:22.677 --> 00:17:25.320
+00:17:21.887 --> 00:17:24.530
 and the inventory needs
 everything else too.
 
 261
-00:17:25.320 --> 00:17:31.178
+00:17:24.530 --> 00:17:30.388
 Arc covers Windows Server 2016 through
 2025, the supported Linux distributions,
 
 262
-00:17:31.178 --> 00:17:35.899
+00:17:30.388 --> 00:17:35.109
 physical servers and any hypervisor,
 VMware VMs through vCenter,
 
 263
-00:17:35.899 --> 00:17:41.407
+00:17:35.109 --> 00:17:40.617
 and AWS and Google Cloud instances, with
 Google's connector still in preview.
 
 264
-00:17:41.407 --> 00:17:43.056
+00:17:40.617 --> 00:17:42.266
 Azure VMs don't need Arc.
 
 265
-00:17:43.056 --> 00:17:47.482
+00:17:42.266 --> 00:17:46.692
 AIX, Solaris, the mainframe and
 network devices aren't covered.
 
 266
-00:17:47.482 --> 00:17:53.286
+00:17:46.692 --> 00:17:52.496
 So every device lands in one of four tiers:
 Intune or Arc; its own tool, with the
 
 267
-00:17:53.286 --> 00:17:55.532
+00:17:52.496 --> 00:17:54.742
 CMDB holding its attributes;
 
 268
-00:17:55.532 --> 00:17:59.932
+00:17:54.742 --> 00:17:59.142
 discovered and monitored only;
 or segmented and retired.
 
 269
-00:17:59.932 --> 00:18:03.795
+00:17:59.142 --> 00:18:03.005
 A device in no tier is a finding
 against the inventory control.
 
 270
-00:18:03.795 --> 00:18:06.330
+00:18:03.005 --> 00:18:05.540
 Next, getting ready to onboard.
 
 271
-00:18:10.080 --> 00:18:13.218
+00:18:09.290 --> 00:18:12.428
 Before the first server
 connects, settle four things.
 
 272
-00:18:13.218 --> 00:18:14.343
+00:18:12.428 --> 00:18:13.553
 Roles first.
 
 273
-00:18:14.343 --> 00:18:16.246
+00:18:13.553 --> 00:18:15.456
 Use the narrowest built-in roles,
 
 274
-00:18:16.246 --> 00:18:20.617
+00:18:15.456 --> 00:18:19.827
 and remember that extensions run
 arbitrary scripts with full privileges.
 
 275
-00:18:20.617 --> 00:18:24.982
+00:18:19.827 --> 00:18:24.192
 Microsoft says to treat any Contributor
 on an Arc resource as an indirect
 
 276
-00:18:24.982 --> 00:18:28.415
+00:18:24.192 --> 00:18:27.625
 administrator of the server,
 so scope those roles tightly
 
 277
-00:18:28.415 --> 00:18:31.706
+00:18:27.625 --> 00:18:30.916
 and hold them through
 Privileged Identity Management.
 
 278
-00:18:31.706 --> 00:18:36.695
+00:18:30.916 --> 00:18:35.905
 Network: the agent only talks outbound
 over 443, with no inbound rule,
 
 279
-00:18:36.695 --> 00:18:41.418
+00:18:35.905 --> 00:18:40.628
 and a private link scope keeps
 that traffic off public networks.
 
 280
-00:18:41.418 --> 00:18:45.417
+00:18:40.628 --> 00:18:44.627
 Run the agent's connectivity check
 from a representative server first.
 
 281
-00:18:45.417 --> 00:18:48.498
+00:18:44.627 --> 00:18:47.708
 Tags: settle one taxonomy
 at connection time,
 
 282
-00:18:48.498 --> 00:18:52.743
+00:18:47.708 --> 00:18:51.953
 because tags drive policy scope,
 patching and cost reporting.
 
 283
-00:18:52.743 --> 00:18:56.141
+00:18:51.953 --> 00:18:55.351
 And images: install the
 agent in your golden image,
 
 284
-00:18:56.141 --> 00:19:00.970
+00:18:55.351 --> 00:19:00.180
 but never connect the image, or
 every clone shares one resource ID.
 
 285
-00:19:04.720 --> 00:19:06.508
+00:19:03.930 --> 00:19:05.718
 Onboarding runs in waves.
 
 286
-00:19:06.508 --> 00:19:10.857
+00:19:05.718 --> 00:19:10.067
 Each wave creates its credential,
 connects a set of servers, attaches the
 
 287
-00:19:10.857 --> 00:19:15.569
+00:19:10.067 --> 00:19:14.779
 baseline on the same change, verifies,
 and then removes what onboarding needed.
 
 288
-00:19:15.569 --> 00:19:17.920
+00:19:14.779 --> 00:19:17.130
 Microsoft supports many methods.
 
 289
-00:19:17.920 --> 00:19:22.161
+00:19:17.130 --> 00:19:21.371
 The program recommends a dedicated
 service principal that signs in with a
 
 290
-00:19:22.161 --> 00:19:26.470
+00:19:21.371 --> 00:19:25.680
 certificate, deployed through the
 automation the server team already runs.
 
 291
-00:19:26.470 --> 00:19:30.007
+00:19:25.680 --> 00:19:29.217
 That credential is needed only
 while the connect command runs,
 
 292
-00:19:30.007 --> 00:19:32.320
+00:19:29.217 --> 00:19:31.530
 so keep its life short
 and its scope small.
 
 293
-00:19:32.320 --> 00:19:34.614
+00:19:31.530 --> 00:19:33.824
 Someone holding it could connect servers
 
 294
-00:19:34.614 --> 00:19:37.432
+00:19:33.824 --> 00:19:36.642
 outside your organization
 into your subscription.
 
 295
-00:19:37.432 --> 00:19:40.832
+00:19:36.642 --> 00:19:40.042
 Protect it in deployment,
 too: a secret in a hand-built
 
 296
-00:19:40.832 --> 00:19:45.021
+00:19:40.042 --> 00:19:44.231
 startup script is readable by
 every domain user through SYSVOL.
 
 297
-00:19:45.021 --> 00:19:49.275
+00:19:44.231 --> 00:19:48.485
 And for sensitive servers, set
 local controls Azure can't override,
 
 298
-00:19:49.275 --> 00:19:51.480
+00:19:48.485 --> 00:19:50.690
 like an extension allowlist.
 
 299
-00:19:55.230 --> 00:19:58.462
+00:19:54.440 --> 00:19:57.672
 A connected server is
 addressable, not yet governed.
 
 300
-00:19:58.462 --> 00:20:01.027
+00:19:57.672 --> 00:20:00.237
 Three things get attached
 on the same change.
 
 301
-00:20:01.027 --> 00:20:04.315
+00:20:00.237 --> 00:20:03.525
 Configuration, through
 Azure machine configuration,
 
 302
-00:20:04.315 --> 00:20:09.434
+00:20:03.525 --> 00:20:08.644
 which audits or sets operating system
 settings and reports compliance per machine,
 
 303
-00:20:09.434 --> 00:20:11.994
+00:20:08.644 --> 00:20:11.204
 scoped by Azure resource
 rather than by OU.
 
 304
-00:20:11.994 --> 00:20:16.674
+00:20:11.204 --> 00:20:15.884
 Keep the customized baseline in the
 governance repository as policy-as-code,
 
 305
-00:20:16.674 --> 00:20:20.404
+00:20:15.884 --> 00:20:19.614
 and treat noncompliance as a
 finding, not a failed deployment.
 
 306
-00:20:20.404 --> 00:20:24.129
+00:20:19.614 --> 00:20:23.339
 Patching, through Azure Update
 Manager, which assesses daily,
 
 307
-00:20:24.129 --> 00:20:27.636
+00:20:23.339 --> 00:20:26.846
 patches in maintenance windows
 and groups servers by tag.
 
 308
-00:20:27.636 --> 00:20:30.278
+00:20:26.846 --> 00:20:29.488
 And protection, through
 Defender for Servers.
 
 309
-00:20:30.278 --> 00:20:33.698
+00:20:29.488 --> 00:20:32.908
 The program's FedRAMP
 Moderate scope uses Plan 2,
 
 310
-00:20:33.698 --> 00:20:36.663
+00:20:32.908 --> 00:20:35.873
 plus Defender for SQL on SQL hosts.
 
 311
-00:20:36.663 --> 00:20:40.629
+00:20:35.873 --> 00:20:39.839
 Onboard Defender through Arc,
 rather than installing it directly,
 
 312
-00:20:40.629 --> 00:20:43.140
+00:20:39.839 --> 00:20:42.350
 which gives you only Plan 1 function.
 
 313
-00:20:46.890 --> 00:20:50.411
+00:20:46.100 --> 00:20:49.621
 Arc is also how many organizations
 keep end-of-support servers
 
 314
-00:20:50.411 --> 00:20:53.728
+00:20:49.621 --> 00:20:52.938
 patched while they migrate, and
 the dates are the point here.
 
 315
-00:20:53.728 --> 00:20:56.025
+00:20:52.938 --> 00:20:55.235
 As of October twentieth, 2026,
 
 316
-00:20:56.025 --> 00:21:02.438
+00:20:55.235 --> 00:21:01.648
 Windows Server 2012 and 2012 R2 receive
 no further security updates through any
 
 317
-00:21:02.438 --> 00:21:05.979
+00:21:01.648 --> 00:21:05.189
 channel, so any still
 running is a red finding:
 
 318
-00:21:05.979 --> 00:21:09.903
+00:21:05.189 --> 00:21:09.113
 migrate, upgrade, or isolate
 it and record the risk.
 
 319
-00:21:09.903 --> 00:21:15.171
-Windows Server 2016 reaches end of
-support on January twelfth, 2027,
+00:21:09.113 --> 00:21:14.141
+Windows Server 2016's end of
+support is January twelfth, 2027,
 
 320
-00:21:15.171 --> 00:21:20.252
-so enroll those hosts in ESUs before
-then if they won't be upgraded.
+00:21:14.141 --> 00:21:19.874
+so any host that remains is an exception:
+enroll it in ESUs before then.
 
 321
-00:21:20.252 --> 00:21:23.995
+00:21:19.874 --> 00:21:23.599
 Arc servers can also use
 Entra ID for Remote Desktop,
 
 322
-00:21:23.995 --> 00:21:28.694
+00:21:23.599 --> 00:21:28.277
 but only on Server 2025 or Windows
 11 24H2, and Conditional Access
 
 323
-00:21:28.694 --> 00:21:33.828
+00:21:28.277 --> 00:21:33.387
 isn't supported there; the control is
 role-based access held through PIM.
 
 324
-00:21:33.828 --> 00:21:39.560
+00:21:33.387 --> 00:21:39.100
 And rollback has an order: remove
 extensions, disconnect, then uninstall.
 
 325
-00:21:43.310 --> 00:21:46.698
+00:21:42.850 --> 00:21:46.238
 Module 4 is operating
 and evidencing the fleet.
 
 326
-00:21:46.698 --> 00:21:51.795
+00:21:46.238 --> 00:21:51.335
 Once the GPOs are gone, a device's state
 has to be proved from three records:
 
 327
-00:21:51.795 --> 00:21:57.061
+00:21:51.335 --> 00:21:56.601
 the policy library, the status Intune
 and Defender report, and the audit log.
 
 328
-00:21:57.061 --> 00:21:59.710
+00:21:56.601 --> 00:21:59.250
 Operating means keeping them in agreement.
 
 329
-00:22:03.460 --> 00:22:08.562
+00:22:03.000 --> 00:22:08.102
 Compliance policies decide whether a device
 is compliant; Conditional Access decides
 
 330
-00:22:08.562 --> 00:22:13.035
+00:22:08.102 --> 00:22:12.575
 what a noncompliant device can reach,
 and Access and Privilege owns that part.
 
 331
-00:22:13.035 --> 00:22:15.798
+00:22:12.575 --> 00:22:15.338
 This book's job is making
 the signal accurate.
 
 332
-00:22:15.798 --> 00:22:18.872
+00:22:15.338 --> 00:22:18.412
 Two tenant settings
 sit above every policy.
 
 333
-00:22:18.872 --> 00:22:24.148
+00:22:18.412 --> 00:22:23.688
 Devices with no compliance policy default
 to compliant, and the program flips that,
 
 334
-00:22:24.148 --> 00:22:28.123
+00:22:23.688 --> 00:22:27.663
 so a device that falls outside
 every group can't pass by default.
 
 335
-00:22:28.123 --> 00:22:32.019
+00:22:27.663 --> 00:22:31.559
 And compliance status stays
 valid for thirty days by default;
 
 336
-00:22:32.019 --> 00:22:35.839
+00:22:31.559 --> 00:22:35.379
 the program uses fourteen, short
 enough that a device left in
 
 337
-00:22:35.839 --> 00:22:39.659
+00:22:35.379 --> 00:22:39.199
 a drawer loses access, long enough
 not to catch staff on leave.
 
 338
-00:22:39.659 --> 00:22:41.432
+00:22:39.199 --> 00:22:40.972
 Read the dashboard carefully,
 
 339
-00:22:41.432 --> 00:22:45.260
+00:22:40.972 --> 00:22:44.800
 because some statuses hide devices
 from the noncompliant count.
 
 340
-00:22:45.260 --> 00:22:49.766
+00:22:44.800 --> 00:22:49.306
 And on Tier 0, a Defender detection
 becomes a compliance failure,
 
 341
-00:22:49.766 --> 00:22:51.660
+00:22:49.306 --> 00:22:51.200
 and so a loss of access.
 
 342
-00:22:55.100 --> 00:22:58.810
+00:22:54.950 --> 00:22:58.660
 Intune manages Windows updates
 through four policy types,
 
 343
-00:22:58.810 --> 00:23:01.762
+00:22:58.660 --> 00:23:01.612
 and the rings stage each
 month's quality update.
 
 344
-00:23:01.762 --> 00:23:05.462
+00:23:01.612 --> 00:23:05.312
 The ring names follow Windows
 Autopatch, Test, First,
 
 345
-00:23:05.462 --> 00:23:09.763
+00:23:05.312 --> 00:23:09.613
 Fast and Broad, from the engineering
 lab out to everyone else.
 
 346
-00:23:09.763 --> 00:23:11.825
+00:23:09.613 --> 00:23:11.675
 The values are the program's design.
 
 347
-00:23:11.825 --> 00:23:16.945
+00:23:11.675 --> 00:23:16.795
 With them, a quality update reaches every
 online device within about sixteen days
 
 348
-00:23:16.945 --> 00:23:21.688
+00:23:16.795 --> 00:23:21.538
 of release, and an update that breaks an
 early ring can be paused before Broad.
 
 349
-00:23:21.688 --> 00:23:26.439
+00:23:21.538 --> 00:23:26.289
 Autopatch automates all of
 this, and it's included for
 
 350
-00:23:26.439 --> 00:23:31.300
+00:23:26.289 --> 00:23:31.150
 GCC customers with G3 or G5,
 though not in GCC High or DoD.
 
 351
-00:23:31.300 --> 00:23:35.325
+00:23:31.150 --> 00:23:35.175
 It maintains its own rings, so
 don't assign yours to its devices.
 
 352
-00:23:35.325 --> 00:23:42.209
+00:23:35.175 --> 00:23:42.059
 And version currency: 23H2 Enterprise
 stops receiving updates on November tenth,
 
 353
-00:23:42.209 --> 00:23:45.920
+00:23:42.059 --> 00:23:45.770
 2026, so feature updates target 25H2 now.
 
 354
-00:23:49.670 --> 00:23:54.427
+00:23:49.520 --> 00:23:54.277
 Intune, Entra ID and Defender each
 keep their own device inventory,
 
 355
-00:23:54.427 --> 00:23:57.195
+00:23:54.277 --> 00:23:57.045
 and they disagree in predictable ways.
 
 356
-00:23:57.195 --> 00:24:00.907
+00:23:57.045 --> 00:24:00.757
 The program reconciles them
 weekly on the Entra device ID.
 
 357
-00:24:00.907 --> 00:24:05.300
+00:24:00.757 --> 00:24:05.150
 Every enrolled device needs an Entra
 object with its attributes set and
 
 358
-00:24:05.300 --> 00:24:09.620
+00:24:05.150 --> 00:24:09.470
 a healthy Defender sensor, and a device
 missing from any one is a finding.
 
 359
-00:24:09.620 --> 00:24:13.295
+00:24:09.470 --> 00:24:13.145
 That same comparison is the
 evidence for a complete inventory.
 
 360
-00:24:13.295 --> 00:24:18.496
+00:24:13.145 --> 00:24:18.346
 Treat stale records with care: cleanup
 rules hide devices but don't delete them,
 
 361
-00:24:18.496 --> 00:24:23.457
+00:24:18.346 --> 00:24:23.307
 and Entra's sign-in date isn't updated
 every time, so disable before deleting.
 
 362
-00:24:23.457 --> 00:24:25.404
+00:24:23.307 --> 00:24:25.254
 Retirement follows a fixed order,
 
 363
-00:24:25.404 --> 00:24:28.532
+00:24:25.254 --> 00:24:28.382
 because the order decides
 what can still be recovered.
 
 364
-00:24:28.532 --> 00:24:33.950
+00:24:28.382 --> 00:24:33.800
 Export the BitLocker keys and LAPS password
 first, then wipe, deregister and delete,
 
 365
-00:24:33.950 --> 00:24:39.260
+00:24:33.800 --> 00:24:39.110
 and delete the Entra object last, because
 that permanently removes its keys.
 
 366
-00:24:43.010 --> 00:24:47.175
+00:24:42.860 --> 00:24:47.025
 Drift is a gap between the policy
 library and what a device reports,
 
 367
-00:24:47.175 --> 00:24:52.172
+00:24:47.025 --> 00:24:52.022
 one the policy should have prevented, like
 BitLocker off or an OS below the floor.
 
 368
-00:24:52.172 --> 00:24:56.816
+00:24:52.022 --> 00:24:56.666
 The program finds it with the same loop
 as the governed path: a daily export,
 
 369
-00:24:56.816 --> 00:25:00.851
+00:24:56.666 --> 00:25:00.701
 a comparison with the library,
 classification, and remediation,
 
 370
-00:25:00.851 --> 00:25:04.048
+00:25:00.701 --> 00:25:03.898
 with policy changes going
 through change control.
 
 371
-00:25:04.048 --> 00:25:05.359
+00:25:03.898 --> 00:25:05.209
 The catch is timing.
 
 372
-00:25:05.359 --> 00:25:10.012
+00:25:05.209 --> 00:25:09.862
 Intune's audit logs arrive in Log
 Analytics right away, but compliance and
 
 373
-00:25:10.012 --> 00:25:15.122
+00:25:09.862 --> 00:25:14.972
 inventory data are exported once a day and
 can take up to forty-eight hours to land.
 
 374
-00:25:15.122 --> 00:25:19.261
+00:25:14.972 --> 00:25:19.111
 So those tables are for trends and
 evidence, not minute-level alerts.
 
 375
-00:25:19.261 --> 00:25:22.757
+00:25:19.111 --> 00:25:22.607
 That's why fleet-wide alerts
 come from the daily export,
 
 376
-00:25:22.757 --> 00:25:26.410
+00:25:22.607 --> 00:25:26.260
 but Tier 0 noncompliance is
 polled from Graph every hour.
 
 377
-00:25:26.410 --> 00:25:29.720
+00:25:26.260 --> 00:25:29.570
 Otherwise the alert would
 arrive two days late.
 
 378
-00:25:33.470 --> 00:25:35.345
+00:25:33.320 --> 00:25:35.195
 Last, what the assessor reads.
 
 379
-00:25:35.345 --> 00:25:38.621
+00:25:35.195 --> 00:25:38.471
 The evidence is the records
 the services already keep,
 
 380
-00:25:38.621 --> 00:25:42.551
+00:25:38.471 --> 00:25:42.401
 exported on a schedule and retained,
 mapped to the configuration
 
 381
-00:25:42.551 --> 00:25:48.520
+00:25:42.401 --> 00:25:48.370
 management and flaw remediation
 controls in NIST SP 800-53.
 
 382
-00:25:48.520 --> 00:25:52.832
+00:25:48.370 --> 00:25:52.682
 Baseline configuration is the policy
 library under version control.
 
 383
-00:25:52.832 --> 00:25:55.695
+00:25:52.682 --> 00:25:55.545
 Inventory is the weekly reconciliation.
 
 384
-00:25:55.695 --> 00:25:57.969
+00:25:55.545 --> 00:25:57.819
 Flaw remediation is the ring table,
 
 385
-00:25:57.969 --> 00:26:01.420
+00:25:57.819 --> 00:26:01.270
 whose deadlines set the
 organization's patch period.
 
 386
-00:26:01.420 --> 00:26:03.558
+00:26:01.270 --> 00:26:03.408
 Two GCC facts matter.
 
 387
-00:26:03.558 --> 00:26:06.289
+00:26:03.408 --> 00:26:06.139
 Intune in GCC uses the commercial service,
 
 388
-00:26:06.289 --> 00:26:11.519
+00:26:06.139 --> 00:26:11.369
 and Windows Update for Business reports
 don't meet GCC compliance requirements,
 
 389
-00:26:11.519 --> 00:26:15.344
+00:26:11.369 --> 00:26:15.194
 so patch evidence comes from
 Intune and Autopatch reports.
 
 390
-00:26:15.344 --> 00:26:20.403
+00:26:15.194 --> 00:26:20.253
 So, from Monday: inventory and triage
 every GPO, set the compliance defaults,
 
 391
-00:26:20.403 --> 00:26:24.482
+00:26:20.253 --> 00:26:24.332
 carry procurement into the group
 tag, onboard servers with a
 
 392
-00:26:24.482 --> 00:26:29.295
+00:26:24.332 --> 00:26:29.145
 short-lived certificate principal,
 and reconcile inventories weekly.
 
 393
-00:26:29.295 --> 00:26:30.110
+00:26:29.145 --> 00:26:29.960
 Thank you.

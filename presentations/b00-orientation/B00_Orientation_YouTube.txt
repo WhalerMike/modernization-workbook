@@ -9,13 +9,13 @@ Chapters
 0:00 Why Modernize, and Why Now?
 0:49 Active Directory did governance nobody wrote down
 1:46 The schedule now belongs to OMB, CISA, FedRAMP and vendors
-2:50 Read the clocks exactly, then run one program
-3:54 How the workbook works: eighteen books, four questions
-4:51 The charter: the page the sponsor signs
-5:54 Six success criteria, each tested at a gate
+2:51 Read the clocks exactly, then run one program
+3:55 How the workbook works: eighteen books, four questions
+4:52 The charter: the page the sponsor signs
+5:55 Six success criteria, each tested at a gate
 6:52 Fifteen principles in five groups
 7:50 Seven phases and six gates: the workbook's model
-8:54 Seven complementary projects, run inside the program
+8:55 Seven complementary projects, run inside the program
 9:56 Who decides: one owner for every decision
 10:53 From pre-flight to steady state: what each stretch proves
 11:53 Decisions to make, and next steps

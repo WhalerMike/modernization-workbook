@@ -102,7 +102,7 @@ A connected server is addressable, not yet governed. Three things get attached o
 
 ## Slide 26 — Extended Security Updates, Entra ID sign-in and rollback
 
-Arc is also how many organizations keep end-of-support servers patched while they migrate, and the dates are the point here. As of October twentieth, 2026, Windows Server 2012 and 2012 R2 receive no further security updates through any channel, so any still running is a red finding: migrate, upgrade, or isolate it and record the risk. Windows Server 2016 reaches end of support on January twelfth, 2027, so enroll those hosts in ESUs before then if they won't be upgraded. Arc servers can also use Entra ID for Remote Desktop, but only on Server 2025 or Windows 11 24H2, and Conditional Access isn't supported there; the control is role-based access held through PIM. And rollback has an order: remove extensions, disconnect, then uninstall.
+Arc is also how many organizations keep end-of-support servers patched while they migrate, and the dates are the point here. As of October twentieth, 2026, Windows Server 2012 and 2012 R2 receive no further security updates through any channel, so any still running is a red finding: migrate, upgrade, or isolate it and record the risk. Windows Server 2016's end of support is January twelfth, 2027, so any host that remains is an exception: enroll it in ESUs before then. Arc servers can also use Entra ID for Remote Desktop, but only on Server 2025 or Windows 11 24H2, and Conditional Access isn't supported there; the control is role-based access held through PIM. And rollback has an order: remove extensions, disconnect, then uninstall.
 
 ## Slide 27 — Module 4: Operating and evidencing the fleet
 

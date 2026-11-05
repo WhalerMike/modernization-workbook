@@ -689,7 +689,7 @@ The sponsor and CIO set the unjoin waves; server infrastructure records each ser
   tag(s, "How");
   const dates = [
     ["Windows Server 2012 / R2", "Extended updates ended Oct 13, 2026", "Migrate, upgrade or isolate"],
-    ["Windows Server 2016", "End of support Jan 12, 2027", "Enroll in Arc ESUs first"],
+    ["Windows Server 2016", "End of support Jan 12, 2027", "Any left: exception, Arc ESUs"],
     ["Windows 11, version 23H2", "Updates end Nov 10, 2026", "Target 25H2 now"],
     ["SQL Server 2014", "ESUs until July 2027", "Plan the move"],
     ["SQL Server 2016", "ESUs until July 17, 2029", "Track coverage"],
@@ -705,7 +705,7 @@ The sponsor and CIO set the unjoin waves; server infrastructure records each ser
 
 Windows Server 2012 and 2012 R2 left their Extended Security Update period on October 13, 2026; that month's update was the last, and the Arc ESU licenses deactivated the next day. Any such host still running now receives no further security updates through any channel. The book treats it as a red finding: migrate it, upgrade it, or isolate it and record the risk acceptance.
 
-Windows Server 2016 reaches end of support on January 12, 2027. Extended updates through Arc are available for up to three years, through 2030, and billing begins January 13, so any 2016 host that won't be upgraded in time should be connected and enrolled before then. Through Arc, extended updates are billed monthly, need no product keys, and show coverage per server.
+Windows Server 2016's end of support is January 12, 2027, and any host that remains is an exception. Extended updates through Arc are available for up to three years, through 2030, and billing begins January 13, so any 2016 host that won't be upgraded in time should be connected and enrolled before then. Through Arc, extended updates are billed monthly, need no product keys, and show coverage per server.
 
 On the client side, Windows 11 version 23H2 stops receiving updates on November 10, 2026, so the feature update policy targets 25H2 now and the compliance floor rises each year. Windows 10 has been out of support since October 14, 2025; Intune still lets it enroll, but Microsoft no longer guarantees it works, so each remaining device is an exception with an upgrade date. And SQL Server 2014 and 2016 have extended updates until July 2027 and July 2029.
 

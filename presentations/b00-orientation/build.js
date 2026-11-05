@@ -141,7 +141,7 @@ None of that was wrong. It just was never written down. And the cloud doesn't in
   narrate(s,
 `The second reason is the calendar, and it isn't the agency's any more. Federal policy sets dates from outside. M-22-09's Zero Trust actions were due by the end of fiscal 2024; the deadline has passed, but the actions remain in force. BOD 25-01's mandatory cloud-tenant policies were due June 20, 2025. BOD 26-02 requires listed end-of-support edge devices to be decommissioned by February 5, 2027. M-26-14 rescinded M-21-31, and asks for an Agency Logging Plan within 90 days of CISA's Logging Reference Architecture, published on August 20, 2026. Counted from that date, the plan is due November 18, 2026; that's the program's arithmetic, not a date OMB published. And FedRAMP's Consolidated Rules become mandatory on January 1, 2027.
 
-Vendor support adds its own clock. Windows 10 and Exchange Server 2016 and 2019 ended in October 2025. Windows Server 2016, the operating system of many domain controllers, ends January 12, 2027. Nothing fails on a single date. But every deadline assumes the agency knows what it runs, who owns it and what governs it.`,
+Vendor support adds its own clock. Windows 10 and Exchange Server 2016 and 2019 ended in October 2025. Windows Server 2016 ends January 12, 2027, and the workbook plans on those servers being gone by then. Nothing fails on a single date. But every deadline assumes the agency knows what it runs, who owns it and what governs it.`,
   "Book 00, Chapter 01 — Why Modernize, and Why Now (The clocks that now set the schedule: Federal policy; Vendor support).");
 }
 

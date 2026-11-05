@@ -26,31 +26,31 @@
     "The clocks nobody can move"
    ],
    [
-    102,
+    101,
     "Everything decides on identity"
    ],
    [
-    137,
+    136,
     "HR is being rebuilt anyway"
    ],
    [
-    183,
+    182,
     "The access risk agencies already carry"
    ],
    [
-    220,
+    219,
     "The first ask: four weeks, no vendor decision"
    ],
    [
-    255,
+    254,
     "The finish line: Gate G1, Foundation Complete"
    ],
    [
-    291,
+    290,
     "Who decides, and what to bring"
    ],
    [
-    331,
+    330,
     "Where to go next"
    ]
   ],
@@ -332,23 +332,23 @@
     "What the assessment inventories"
    ],
    [
-    202,
+    203,
     "Provenance, and seeding the repository"
    ],
    [
-    241,
+    242,
     "Least privilege for the program's own access"
    ],
    [
-    273,
+    274,
     "Owners named, findings classified"
    ],
    [
-    307,
+    308,
     "Gate G0, Ready to Plan: the checklist"
    ],
    [
-    342,
+    343,
     "What leadership sees at week four"
    ]
   ],
@@ -994,11 +994,11 @@
     "Four local numbers that make it real"
    ],
    [
-    105,
+    106,
     "For the CIO: the clocks and the cost"
    ],
    [
-    142,
+    143,
     "For the CISO: leavers and account findings"
    ],
    [
@@ -1006,19 +1006,19 @@
     "For the CHCO: HR 2.0 and the contractor source"
    ],
    [
-    218,
+    219,
     "For the authorizing official: evidence over attestation"
    ],
    [
-    255,
+    256,
     "The decision: an owner, a date and a first gate"
    ],
    [
-    290,
+    291,
     "Charter roles: who signs what"
    ],
    [
-    328,
+    329,
     "What to bring to the meeting"
    ]
   ],
@@ -1907,7 +1907,7 @@
   "id": "B00_Orientation_Executive_Narrated",
   "title": "Book 00 — Orientation & Program: executive briefing",
   "group": "book",
-  "minutes": 24,
+  "minutes": 25,
   "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/B00_Orientation_Executive_Narrated.mp4",
   "youtube": null,
   "vtt": "presentations/b00-orientation-executive/B00_Orientation_Executive_Narrated.vtt",
@@ -1934,67 +1934,67 @@
     "Vendor support dates cluster on the same estate"
    ],
    [
-    306,
+    313,
     "Read the clocks exactly, then run one program"
    ],
    [
-    380,
+    387,
     "The charter: the page the sponsor signs"
    ],
    [
-    454,
+    461,
     "Six success criteria, each tested at a gate"
    ],
    [
-    524,
+    531,
     "Fifteen principles, one idea underneath"
    ],
    [
-    588,
+    595,
     "Seven phases, six gates, and who clears each"
    ],
    [
-    661,
+    667,
     "Five workstreams in parallel, one critical path"
    ],
    [
-    735,
+    741,
     "Seven projects, run inside the program"
    ],
    [
-    805,
+    812,
     "Who decides: one decider per row"
    ],
    [
-    878,
+    884,
     "Three decisions the plans put on the wrong desk"
    ],
    [
-    947,
+    953,
     "The people the program needs, and its rhythm"
    ],
    [
-    1017,
+    1023,
     "Pre-flight: assessment before action"
    ],
    [
-    1086,
+    1092,
     "Foundation and pilot: prove it on one division"
    ],
    [
-    1159,
+    1165,
     "Roll out in waves, then retire only what nothing uses"
    ],
    [
-    1232,
+    1238,
     "Steady state, and what success looks like"
    ],
    [
-    1302,
+    1308,
     "The risk register: what can sink the program"
    ],
    [
-    1380,
+    1386,
     "Decisions to make, and who makes them"
    ]
   ],
@@ -2686,19 +2686,19 @@
     "The schedule now belongs to OMB, CISA, FedRAMP and vendors"
    ],
    [
-    170,
+    171,
     "Read the clocks exactly, then run one program"
    ],
    [
-    234,
+    235,
     "How the workbook works: eighteen books, four questions"
    ],
    [
-    291,
+    292,
     "The charter: the page the sponsor signs"
    ],
    [
-    354,
+    355,
     "Six success criteria, each tested at a gate"
    ],
    [
@@ -2710,7 +2710,7 @@
     "Seven phases and six gates: the workbook's model"
    ],
    [
-    534,
+    535,
     "Seven complementary projects, run inside the program"
    ],
    [
@@ -3228,11 +3228,502 @@
     "The clocks: FedRAMP's dates don't set the agency's"
    ],
    [
-    1445,
+    1444,
     "Decisions, owners, and where to start"
    ]
   ],
-  "sources": null
+  "sources": [
+   {
+    "slide": 2,
+    "title": "Every new mandate assumes a foundation never built",
+    "links": [
+     {
+      "text": "OMB M-22-09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
+     },
+     {
+      "text": "CISA BOD 25-01",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-25-01"
+     },
+     {
+      "text": "OMB M-26-14",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-26-14"
+     },
+     {
+      "text": "Book 01, Chapters 01",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/01-why-modernization-is-hard.html"
+     },
+     {
+      "text": "09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/09-who-leads-the-transformation.html"
+     },
+     {
+      "text": "12",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html"
+     }
+    ]
+   },
+   {
+    "slide": 3,
+    "title": "Active Directory was the governance nobody wrote down",
+    "links": [
+     {
+      "text": "Book 01, Chapters 02",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/02-the-problem.html"
+     },
+     {
+      "text": "09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/09-who-leads-the-transformation.html"
+     }
+    ]
+   },
+   {
+    "slide": 4,
+    "title": "Five things must be true before the target holds",
+    "links": [
+     {
+      "text": "NIST SP 800-207",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-207"
+     },
+     {
+      "text": "OMB M-22-09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
+     },
+     {
+      "text": "CISA ZTMM v2.0",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cisa-ztmm"
+     },
+     {
+      "text": "OMB M-26-14",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-26-14"
+     },
+     {
+      "text": "Book 01, Chapter 01",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/01-why-modernization-is-hard.html"
+     }
+    ]
+   },
+   {
+    "slide": 5,
+    "title": "Platform: one governed host, one authoritative writer",
+    "links": [
+     {
+      "text": "NIST SP 800-207",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-207"
+     },
+     {
+      "text": "CISA ZTMM v2.0",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cisa-ztmm"
+     },
+     {
+      "text": "OMB M-26-14",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-26-14"
+     },
+     {
+      "text": "Book 01, Chapters 03",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/03-platform-foundation.html"
+     },
+     {
+      "text": "09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/09-who-leads-the-transformation.html"
+     },
+     {
+      "text": "12",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html"
+     }
+    ]
+   },
+   {
+    "slide": 6,
+    "title": "Identity: the attributes have to be true first",
+    "links": [
+     {
+      "text": "OMB M-22-09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
+     },
+     {
+      "text": "NIST SP 800-207",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-207"
+     },
+     {
+      "text": "Book 01, Chapters 04",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/04-identity-transformation.html"
+     },
+     {
+      "text": "09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/09-who-leads-the-transformation.html"
+     },
+     {
+      "text": "12",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html"
+     }
+    ]
+   },
+   {
+    "slide": 7,
+    "title": "Four tracks, four sources of truth, one end state",
+    "links": [
+     {
+      "text": "Book 01, Chapters 01",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/01-why-modernization-is-hard.html"
+     },
+     {
+      "text": "04",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/04-identity-transformation.html"
+     },
+     {
+      "text": "07",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/07-compute-transformation.html"
+     },
+     {
+      "text": "08",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/08-access-plane.html"
+     },
+     {
+      "text": "Appendix A",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/appendix-a-requirements-mapping.html"
+     },
+     {
+      "text": "Book 02, Chapter 09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/09-building-the-entra-target.html"
+     },
+     {
+      "text": "Book 05, Chapters 03",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/03-where-device-and-server-data-lives.html"
+     },
+     {
+      "text": "09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html"
+     }
+    ]
+   },
+   {
+    "slide": 8,
+    "title": "Policy: regenerate Group Policy; don't copy it",
+    "links": [
+     {
+      "text": "policy conflicts",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#common-questions-answers-and-scenarios-with"
+     },
+     {
+      "text": "emergency access accounts",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#manage-emergency-access-accounts-in"
+     },
+     {
+      "text": "CISA BOD 25-01",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-25-01"
+     },
+     {
+      "text": "Book 01, Chapters 05",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/05-policy-transformation.html"
+     },
+     {
+      "text": "09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/09-who-leads-the-transformation.html"
+     },
+     {
+      "text": "12",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html"
+     }
+    ]
+   },
+   {
+    "slide": 9,
+    "title": "Network services: DNS, DHCP and IPAM move together",
+    "links": [
+     {
+      "text": "NIST SP 800-53 Rev. 5",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+     },
+     {
+      "text": "OMB M-22-09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
+     },
+     {
+      "text": "AD-integrated DNS",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#active-directory-integrated-dns-zones"
+     },
+     {
+      "text": "Book 01, Chapters 06",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/06-network-services.html"
+     },
+     {
+      "text": "12",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html"
+     }
+    ]
+   },
+   {
+    "slide": 10,
+    "title": "Compute: the domain join is the last thing to go",
+    "links": [
+     {
+      "text": "NTLM deprecation",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#audit-use-of-ntlmv1-on-a-windows-server"
+     },
+     {
+      "text": "Book 01, Chapters 07",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/07-compute-transformation.html"
+     },
+     {
+      "text": "09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/09-who-leads-the-transformation.html"
+     },
+     {
+      "text": "10",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/10-analyzing-the-estate.html"
+     },
+     {
+      "text": "12",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html"
+     }
+    ]
+   },
+   {
+    "slide": 11,
+    "title": "Access: log in to applications, not networks",
+    "links": [
+     {
+      "text": "OMB M-22-09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
+     },
+     {
+      "text": "NIST SP 800-207",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-207"
+     },
+     {
+      "text": "CISA BOD 25-01",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-25-01"
+     },
+     {
+      "text": "CISA ZTMM v2.0",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cisa-ztmm"
+     },
+     {
+      "text": "PIM",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-microsoft-entra-privileged-identity"
+     },
+     {
+      "text": "Book 01, Chapters 08",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/08-access-plane.html"
+     },
+     {
+      "text": "12",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html"
+     }
+    ]
+   },
+   {
+    "slide": 12,
+    "title": "Microsoft supplies the instruments, not the orchestra",
+    "links": [
+     {
+      "text": "OMB M-22-09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
+     },
+     {
+      "text": "OMB M-19-17",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-19-17"
+     },
+     {
+      "text": "NIST SP 800-37 Rev. 2",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-37"
+     },
+     {
+      "text": "Entra licensing",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-licensing"
+     },
+     {
+      "text": "Book 01, Chapter 09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/09-who-leads-the-transformation.html"
+     }
+    ]
+   },
+   {
+    "slide": 13,
+    "title": "One decider per decision; the AO signs for risk",
+    "links": [
+     {
+      "text": "NIST SP 800-37 Rev. 2",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-37"
+     },
+     {
+      "text": "OMB M-22-09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
+     },
+     {
+      "text": "OMB M-26-14",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-26-14"
+     },
+     {
+      "text": "CISA BOD 25-01",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-25-01"
+     },
+     {
+      "text": "Book 01, Chapters 09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/09-who-leads-the-transformation.html"
+     },
+     {
+      "text": "12",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html"
+     }
+    ]
+   },
+   {
+    "slide": 14,
+    "title": "Three decisions that land on the wrong desk",
+    "links": [
+     {
+      "text": "CISA BOD 25-01",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-25-01"
+     },
+     {
+      "text": "OMB M-19-17",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-19-17"
+     },
+     {
+      "text": "Book 01, Chapter 09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/09-who-leads-the-transformation.html"
+     }
+    ]
+   },
+   {
+    "slide": 15,
+    "title": "Analyze the estate first: read-only, with provenance",
+    "links": [
+     {
+      "text": "NIST SP 800-53 Rev. 5",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+     },
+     {
+      "text": "AD CS",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-active-directory-certificate"
+     },
+     {
+      "text": "Book 01, Chapters 09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/09-who-leads-the-transformation.html"
+     },
+     {
+      "text": "10",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/10-analyzing-the-estate.html"
+     },
+     {
+      "text": "12",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html"
+     }
+    ]
+   },
+   {
+    "slide": 16,
+    "title": "Analyze, plan, deliver: nothing moves without a plan",
+    "links": [
+     {
+      "text": "CISA ZTMM v2.0",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cisa-ztmm"
+     },
+     {
+      "text": "OMB M-22-09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
+     },
+     {
+      "text": "OMB M-26-14",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-26-14"
+     },
+     {
+      "text": "Book 01, Chapters 03",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/03-platform-foundation.html"
+     },
+     {
+      "text": "11",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/11-analysis-plan-delivery.html"
+     }
+    ]
+   },
+   {
+    "slide": 17,
+    "title": "The roadmap: seven phases, six gates, five workstreams",
+    "links": [
+     {
+      "text": "NIST SP 800-207",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-207"
+     },
+     {
+      "text": "emergency access accounts",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#manage-emergency-access-accounts-in"
+     },
+     {
+      "text": "M-22-09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
+     },
+     {
+      "text": "Book 01, Chapters 09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/09-who-leads-the-transformation.html"
+     },
+     {
+      "text": "12",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html"
+     }
+    ]
+   },
+   {
+    "slide": 18,
+    "title": "Gates go green on data, and rollback has an end",
+    "links": [
+     {
+      "text": "Book 01, Chapters 09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/09-who-leads-the-transformation.html"
+     },
+     {
+      "text": "12",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html"
+     }
+    ]
+   },
+   {
+    "slide": 19,
+    "title": "The clocks: FedRAMP's dates don't set the agency's",
+    "links": [
+     {
+      "text": "FedRAMP Consolidated Rules for 2026",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-2026"
+     },
+     {
+      "text": "Important Dates",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#important-dates-for-the-consolidated-rules"
+     },
+     {
+      "text": "OMB M-26-14",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-26-14"
+     },
+     {
+      "text": "CISA BOD 25-01",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-25-01"
+     },
+     {
+      "text": "OMB M-22-09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
+     },
+     {
+      "text": "Book 01, Chapter 12",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html"
+     }
+    ]
+   },
+   {
+    "slide": 20,
+    "title": "Decisions, owners, and where to start",
+    "links": [
+     {
+      "text": "Book 01, Chapters 09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/09-who-leads-the-transformation.html"
+     },
+     {
+      "text": "What to do next",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/09-who-leads-the-transformation.html#what-to-do-next"
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "B01_Transformation_Arc_Narrated",
@@ -3305,19 +3796,344 @@
     "Inventory first: read-only, with provenance"
    ],
    [
-    759,
+    762,
     "Analyze, plan, deliver, under an actuation ceiling"
    ],
    [
-    813,
+    816,
     "The roadmap: seven phases, gated by data"
    ],
    [
-    866,
+    869,
     "Decisions to make, and next steps"
    ]
   ],
-  "sources": null
+  "sources": [
+   {
+    "slide": 2,
+    "title": "Four eras built the estate; none kept one truth",
+    "links": [
+     {
+      "text": "Book 01, Chapter 01",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/01-why-modernization-is-hard.html"
+     }
+    ]
+   },
+   {
+    "slide": 3,
+    "title": "Sessions carried trust; tokens are checked each time",
+    "links": [
+     {
+      "text": "continuous access evaluation",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#continuous-access-evaluation"
+     },
+     {
+      "text": "Book 01, Chapter 01",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/01-why-modernization-is-hard.html"
+     }
+    ]
+   },
+   {
+    "slide": 4,
+    "title": "The OU tree was the governance tree",
+    "links": [
+     {
+      "text": "Book 01, Chapter 02",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/02-the-problem.html"
+     }
+    ]
+   },
+   {
+    "slide": 5,
+    "title": "Eleven categories, and the failures are silent",
+    "links": [
+     {
+      "text": "Book 01, Chapter 02",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/02-the-problem.html"
+     }
+    ]
+   },
+   {
+    "slide": 6,
+    "title": "One governed host, five roles, one writer",
+    "links": [
+     {
+      "text": "Windows Server release information",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#windows-server-release-information"
+     },
+     {
+      "text": "OMB M-26-14",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-26-14"
+     },
+     {
+      "text": "Book 01, Chapter 03",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/03-platform-foundation.html"
+     }
+    ]
+   },
+   {
+    "slide": 7,
+    "title": "Identity: one HR stamp drives five outcomes",
+    "links": [
+     {
+      "text": "OMB M-22-09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
+     },
+     {
+      "text": "NIST SP 800-207",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-207"
+     },
+     {
+      "text": "dynamic membership rules and processing",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#understand-and-manage-dynamic-group"
+     },
+     {
+      "text": "Book 01, Chapter 04",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/04-identity-transformation.html"
+     }
+    ]
+   },
+   {
+    "slide": 8,
+    "title": "Four tracks, each with its own source of truth",
+    "links": [
+     {
+      "text": "Book 01, Chapters 01",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/01-why-modernization-is-hard.html"
+     },
+     {
+      "text": "04",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/04-identity-transformation.html"
+     },
+     {
+      "text": "07",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/07-compute-transformation.html"
+     },
+     {
+      "text": "08",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/08-access-plane.html"
+     },
+     {
+      "text": "Appendix A",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/appendix-a-requirements-mapping.html"
+     },
+     {
+      "text": "Book 05, Chapters 03",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/03-where-device-and-server-data-lives.html"
+     },
+     {
+      "text": "09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html"
+     },
+     {
+      "text": "Book 02, Chapter 09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/09-building-the-entra-target.html"
+     }
+    ]
+   },
+   {
+    "slide": 9,
+    "title": "Policy: regenerate Group Policy, don't copy it",
+    "links": [
+     {
+      "text": "Intune conflicts",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#common-questions-answers-and-scenarios-with"
+     },
+     {
+      "text": "Conditional Access",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-conditional-access"
+     },
+     {
+      "text": "CISA BOD 25-01",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-25-01"
+     },
+     {
+      "text": "Book 01, Chapter 05",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/05-policy-transformation.html"
+     }
+    ]
+   },
+   {
+    "slide": 10,
+    "title": "DNS, DHCP and IPAM move together, and with AD",
+    "links": [
+     {
+      "text": "AD-integrated DNS zones",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#active-directory-integrated-dns-zones"
+     },
+     {
+      "text": "NIST SP 800-53",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+     },
+     {
+      "text": "Book 01, Chapter 06",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/06-network-services.html"
+     }
+    ]
+   },
+   {
+    "slide": 11,
+    "title": "Compute: the domain join is the last thing to go",
+    "links": [
+     {
+      "text": "NTLM deprecation",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#audit-use-of-ntlmv1-on-a-windows-server"
+     },
+     {
+      "text": "Book 01, Chapter 07",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/07-compute-transformation.html"
+     }
+    ]
+   },
+   {
+    "slide": 12,
+    "title": "The access plane: every request decided again",
+    "links": [
+     {
+      "text": "OMB M-22-09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
+     },
+     {
+      "text": "NIST SP 800-207",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-207"
+     },
+     {
+      "text": "CISA BOD 25-01",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-25-01"
+     },
+     {
+      "text": "AD CS",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-active-directory-certificate"
+     },
+     {
+      "text": "PIM",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-microsoft-entra-privileged-identity"
+     },
+     {
+      "text": "continuous access evaluation",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#continuous-access-evaluation"
+     },
+     {
+      "text": "Book 01, Chapter 08",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/08-access-plane.html"
+     }
+    ]
+   },
+   {
+    "slide": 13,
+    "title": "Instruments versus orchestra: who leads it",
+    "links": [
+     {
+      "text": "NIST SP 800-37 Rev. 2",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-37"
+     },
+     {
+      "text": "OMB M-22-09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
+     },
+     {
+      "text": "M-19-17",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-19-17"
+     },
+     {
+      "text": "CISA BOD 25-01",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-25-01"
+     },
+     {
+      "text": "Book 01, Chapter 09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/09-who-leads-the-transformation.html"
+     }
+    ]
+   },
+   {
+    "slide": 14,
+    "title": "Inventory first: read-only, with provenance",
+    "links": [
+     {
+      "text": "NIST SP 800-53",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+     },
+     {
+      "text": "Book 01, Chapter 10",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/10-analyzing-the-estate.html"
+     }
+    ]
+   },
+   {
+    "slide": 15,
+    "title": "Analyze, plan, deliver, under an actuation ceiling",
+    "links": [
+     {
+      "text": "CISA Zero Trust Maturity Model v2.0",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cisa-ztmm"
+     },
+     {
+      "text": "OMB M-22-09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
+     },
+     {
+      "text": "M-26-14",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-26-14"
+     },
+     {
+      "text": "Book 01, Chapters 03",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/03-platform-foundation.html"
+     },
+     {
+      "text": "11",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/11-analysis-plan-delivery.html"
+     }
+    ]
+   },
+   {
+    "slide": 16,
+    "title": "The roadmap: seven phases, gated by data",
+    "links": [
+     {
+      "text": "NIST SP 800-207",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-207"
+     },
+     {
+      "text": "FedRAMP Consolidated Rules for 2026",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-2026"
+     },
+     {
+      "text": "Using a FedRAMP Certified Cloud Service",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#using-a-fedramp-certified-cloud-service"
+     },
+     {
+      "text": "Book 01, Chapter 12",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html"
+     }
+    ]
+   },
+   {
+    "slide": 17,
+    "title": "Decisions to make, and next steps",
+    "links": [
+     {
+      "text": "OMB M-22-09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
+     },
+     {
+      "text": "NIST SP 800-37 Rev. 2",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-37"
+     },
+     {
+      "text": "Book 01, Chapters 09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/09-who-leads-the-transformation.html"
+     },
+     {
+      "text": "10",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/10-analyzing-the-estate.html"
+     },
+     {
+      "text": "12",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html"
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "B02_Identity_Executive_Narrated",
@@ -4279,11 +5095,11 @@
     "The support dates that bind the fleet now"
    ],
    [
-    873,
+    872,
     "Update rings set the patch clock"
    ],
    [
-    921,
+    920,
     "Run the fleet on records, and retire it in order"
    ],
    [
@@ -4291,7 +5107,344 @@
     "Decisions to make, owners and timing"
    ]
   ],
-  "sources": null
+  "sources": [
+   {
+    "slide": 2,
+    "title": "Book 05 is the Intune and Arc tracks: devices, servers",
+    "links": [
+     {
+      "text": "Book 05, Ch 03",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/03-where-device-and-server-data-lives.html"
+     },
+     {
+      "text": "04",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/04-intune-first-onboarding.html"
+     },
+     {
+      "text": "07",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/07-the-gpo-sunset-program.html"
+     },
+     {
+      "text": "08",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/08-gpo-to-intune-policy-migration.html"
+     },
+     {
+      "text": "09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html"
+     },
+     {
+      "text": "10",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/10-operating-and-evidencing-the-fleet.html"
+     }
+    ]
+   },
+   {
+    "slide": 3,
+    "title": "What Intune and Arc cover, and the strategy for the rest",
+    "links": [
+     {
+      "text": "Book 05, Ch 03",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/03-where-device-and-server-data-lives.html"
+     },
+     {
+      "text": "Ch 09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html"
+     },
+     {
+      "text": "Which servers Arc reaches",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html#which-servers-arc-reaches"
+     }
+    ]
+   },
+   {
+    "slide": 4,
+    "title": "Group Policy governed by position; the cloud has none",
+    "links": [
+     {
+      "text": "Group Policy processing",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#group-policy-processing"
+     },
+     {
+      "text": "Intune policy conflicts",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#common-questions-answers-and-scenarios-with"
+     },
+     {
+      "text": "Book 05, Chapter 01",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/01-why-group-policy-cant-come-to-the-cloud.html"
+     },
+     {
+      "text": "Book 02, Chapter 02",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/02-the-structural-problem.html"
+     }
+    ]
+   },
+   {
+    "slide": 5,
+    "title": "Running both isn't a safe middle ground",
+    "links": [
+     {
+      "text": "MDMWinsOverGP",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#policy-csp-controlpolicyconflict"
+     },
+     {
+      "text": "Book 05, Chapters 01",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/01-why-group-policy-cant-come-to-the-cloud.html"
+     },
+     {
+      "text": "06",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/06-who-owns-the-endpoint.html"
+     }
+    ]
+   },
+   {
+    "slide": 6,
+    "title": "Hybrid join is a waypoint, not a destination",
+    "links": [
+     {
+      "text": "Book 05, Chapter 02",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/02-the-hybrid-join-trap.html"
+     },
+     {
+      "text": "Chapter 06",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/06-who-owns-the-endpoint.html"
+     }
+    ]
+   },
+   {
+    "slide": 7,
+    "title": "What an ungoverned flip loses, and never covers",
+    "links": [
+     {
+      "text": "Conditional Access",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-conditional-access"
+     },
+     {
+      "text": "Book 05, Chapters 02",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/02-the-hybrid-join-trap.html"
+     },
+     {
+      "text": "06",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/06-who-owns-the-endpoint.html"
+     }
+    ]
+   },
+   {
+    "slide": 8,
+    "title": "Each fact about a device has one source",
+    "links": [
+     {
+      "text": "Book 05, Chapter 03",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/03-where-device-and-server-data-lives.html"
+     }
+    ]
+   },
+   {
+    "slide": 9,
+    "title": "Intune-first: no ungoverned device, ever",
+    "links": [
+     {
+      "text": "Book 05, Chapter 04",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/04-intune-first-onboarding.html"
+     },
+     {
+      "text": "Chapter 06",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/06-who-owns-the-endpoint.html"
+     }
+    ]
+   },
+   {
+    "slide": 10,
+    "title": "Compliance is the access signal; make it fail closed",
+    "links": [
+     {
+      "text": "Conditional Access",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-conditional-access"
+     },
+     {
+      "text": "Book 05, Chapters 04",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/04-intune-first-onboarding.html"
+     },
+     {
+      "text": "06",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/06-who-owns-the-endpoint.html"
+     },
+     {
+      "text": "10",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/10-operating-and-evidencing-the-fleet.html"
+     }
+    ]
+   },
+   {
+    "slide": 11,
+    "title": "The device that can't enroll is a governed exception",
+    "links": [
+     {
+      "text": "Conditional Access",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-conditional-access"
+     },
+     {
+      "text": "Book 05, Chapters 04",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/04-intune-first-onboarding.html"
+     },
+     {
+      "text": "06",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/06-who-owns-the-endpoint.html"
+     }
+    ]
+   },
+   {
+    "slide": 12,
+    "title": "Three paths to one governed end state",
+    "links": [
+     {
+      "text": "Book 05, Chapters 05",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/05-the-governed-manual-and-retrofit-paths.html"
+     },
+     {
+      "text": "06",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/06-who-owns-the-endpoint.html"
+     }
+    ]
+   },
+   {
+    "slide": 13,
+    "title": "Who owns the endpoint: deciding isn't doing",
+    "links": [
+     {
+      "text": "NIST SP 800-37 Rev. 2",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-37"
+     },
+     {
+      "text": "Book 05, Chapter 06",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/06-who-owns-the-endpoint.html"
+     },
+     {
+      "text": "Book 02, Chapter 06",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/06-who-owns-the-migration.html"
+     }
+    ]
+   },
+   {
+    "slide": 14,
+    "title": "Who decides what for devices and servers",
+    "links": [
+     {
+      "text": "Book 05, Chapter 06",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/06-who-owns-the-endpoint.html"
+     }
+    ]
+   },
+   {
+    "slide": 15,
+    "title": "Sunset Group Policy setting by setting",
+    "links": [
+     {
+      "text": "Book 05, Chapters 07",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/07-the-gpo-sunset-program.html"
+     },
+     {
+      "text": "06",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/06-who-owns-the-endpoint.html"
+     }
+    ]
+   },
+   {
+    "slide": 16,
+    "title": "Seven phases, about 34 weeks, each with a gate",
+    "links": [
+     {
+      "text": "Book 05, Chapters 06",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/06-who-owns-the-endpoint.html"
+     },
+     {
+      "text": "08",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/08-gpo-to-intune-policy-migration.html"
+     }
+    ]
+   },
+   {
+    "slide": 17,
+    "title": "Servers come under governance through Azure Arc",
+    "links": [
+     {
+      "text": "Book 05, Chapters 06",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/06-who-owns-the-endpoint.html"
+     },
+     {
+      "text": "09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html"
+     }
+    ]
+   },
+   {
+    "slide": 18,
+    "title": "The support dates that bind the fleet now",
+    "links": [
+     {
+      "text": "Book 05, Chapters 08",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/08-gpo-to-intune-policy-migration.html"
+     },
+     {
+      "text": "10",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/10-operating-and-evidencing-the-fleet.html"
+     }
+    ]
+   },
+   {
+    "slide": 19,
+    "title": "Update rings set the patch clock",
+    "links": [
+     {
+      "text": "NIST SP 800-53",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+     },
+     {
+      "text": "Book 05, Chapters 06",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/06-who-owns-the-endpoint.html"
+     },
+     {
+      "text": "10",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/10-operating-and-evidencing-the-fleet.html"
+     }
+    ]
+   },
+   {
+    "slide": 20,
+    "title": "Run the fleet on records, and retire it in order",
+    "links": [
+     {
+      "text": "NIST SP 800-53",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+     },
+     {
+      "text": "Book 05, Chapters 06",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/06-who-owns-the-endpoint.html"
+     },
+     {
+      "text": "10",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/10-operating-and-evidencing-the-fleet.html"
+     }
+    ]
+   },
+   {
+    "slide": 21,
+    "title": "Decisions to make, owners and timing",
+    "links": [
+     {
+      "text": "NIST SP 800-53",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+     },
+     {
+      "text": "Book 05, Chapters 01",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/01-why-group-policy-cant-come-to-the-cloud.html"
+     },
+     {
+      "text": "10",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/10-operating-and-evidencing-the-fleet.html"
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "B05_Devices_Narrated",
@@ -4501,11 +5654,370 @@
     "Drift detection: what the logs can tell you, and when"
    ],
    [
-    1532,
+    1533,
     "The evidence an assessor reads, and the GCC boundary facts"
    ]
   ],
-  "sources": null
+  "sources": [
+   {
+    "slide": 2,
+    "title": "Book 05 is the Intune and Arc tracks: devices, servers",
+    "links": [
+     {
+      "text": "Book 05, Ch 03",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/03-where-device-and-server-data-lives.html"
+     },
+     {
+      "text": "04",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/04-intune-first-onboarding.html"
+     },
+     {
+      "text": "07",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/07-the-gpo-sunset-program.html"
+     },
+     {
+      "text": "08",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/08-gpo-to-intune-policy-migration.html"
+     },
+     {
+      "text": "09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html"
+     },
+     {
+      "text": "10",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/10-operating-and-evidencing-the-fleet.html"
+     }
+    ]
+   },
+   {
+    "slide": 3,
+    "title": "Why Group Policy can't come to the cloud",
+    "links": [
+     {
+      "text": "Group Policy processing",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#group-policy-processing"
+     },
+     {
+      "text": "Intune policy conflicts",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#common-questions-answers-and-scenarios-with"
+     },
+     {
+      "text": "MDMWinsOverGP",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#policy-csp-controlpolicyconflict"
+     },
+     {
+      "text": "Book 05, Ch 01",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/01-why-group-policy-cant-come-to-the-cloud.html"
+     }
+    ]
+   },
+   {
+    "slide": 4,
+    "title": "The hybrid-join trap, and where each device fact lives",
+    "links": [
+     {
+      "text": "Book 05, Ch 02",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/02-the-hybrid-join-trap.html"
+     },
+     {
+      "text": "03",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/03-where-device-and-server-data-lives.html"
+     }
+    ]
+   },
+   {
+    "slide": 6,
+    "title": "Intune-first: five pillars and a five-phase process",
+    "links": [
+     {
+      "text": "Book 05, Ch 04",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/04-intune-first-onboarding.html"
+     }
+    ]
+   },
+   {
+    "slide": 7,
+    "title": "Which end-user platforms Intune covers, and how",
+    "links": [
+     {
+      "text": "Book 05, Ch 03",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/03-where-device-and-server-data-lives.html"
+     }
+    ]
+   },
+   {
+    "slide": 8,
+    "title": "Windows in a GCC tenant: Autopilot or device preparation",
+    "links": [
+     {
+      "text": "Book 05, Ch 04",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/04-intune-first-onboarding.html"
+     }
+    ]
+   },
+   {
+    "slide": 9,
+    "title": "Carrying the purchase order to the device's configuration",
+    "links": [
+     {
+      "text": "Book 05, Ch 04",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/04-intune-first-onboarding.html"
+     }
+    ]
+   },
+   {
+    "slide": 10,
+    "title": "The day-zero baseline, and the four exception paths",
+    "links": [
+     {
+      "text": "Book 05, Ch 04",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/04-intune-first-onboarding.html"
+     }
+    ]
+   },
+   {
+    "slide": 11,
+    "title": "Three paths to one end state: governed, manual and retrofit",
+    "links": [
+     {
+      "text": "Conditional Access",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-conditional-access"
+     },
+     {
+      "text": "emergency access accounts",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#manage-emergency-access-accounts-in"
+     },
+     {
+      "text": "Book 05, Ch 05",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/05-the-governed-manual-and-retrofit-paths.html"
+     }
+    ]
+   },
+   {
+    "slide": 12,
+    "title": "The runbook's sharp edges: precedence, NTLM and SPNs",
+    "links": [
+     {
+      "text": "NTLM deprecation",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#audit-use-of-ntlmv1-on-a-windows-server"
+     },
+     {
+      "text": "policy conflicts",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#common-questions-answers-and-scenarios-with"
+     },
+     {
+      "text": "Book 05, Ch 05",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/05-the-governed-manual-and-retrofit-paths.html"
+     }
+    ]
+   },
+   {
+    "slide": 14,
+    "title": "The sunset pipeline and Group Policy analytics",
+    "links": [
+     {
+      "text": "Book 05, Ch 01",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/01-why-group-policy-cant-come-to-the-cloud.html"
+     },
+     {
+      "text": "Ch 07",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/07-the-gpo-sunset-program.html"
+     }
+    ]
+   },
+   {
+    "slide": 15,
+    "title": "Classify, then dispose: tags, questions, landing zones",
+    "links": [
+     {
+      "text": "endpoint security",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#manage-endpoint-security-in-microsoft-intune"
+     },
+     {
+      "text": "Book 05, Ch 07",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/07-the-gpo-sunset-program.html"
+     }
+    ]
+   },
+   {
+    "slide": 16,
+    "title": "Coexistence: who wins while GPOs and Intune both apply",
+    "links": [
+     {
+      "text": "Intune policy conflicts",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#common-questions-answers-and-scenarios-with"
+     },
+     {
+      "text": "endpoint security",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#manage-endpoint-security-in-microsoft-intune"
+     },
+     {
+      "text": "Book 05, Ch 07",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/07-the-gpo-sunset-program.html"
+     }
+    ]
+   },
+   {
+    "slide": 17,
+    "title": "Seven phases at working level: durations, gates and waves",
+    "links": [
+     {
+      "text": "Book 05, Ch 08",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/08-gpo-to-intune-policy-migration.html"
+     }
+    ]
+   },
+   {
+    "slide": 18,
+    "title": "The policy library: attribute targeting and the compliance set",
+    "links": [
+     {
+      "text": "Book 05, Ch 08",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/08-gpo-to-intune-policy-migration.html"
+     }
+    ]
+   },
+   {
+    "slide": 19,
+    "title": "Endpoint security settings, and the crosswalk traps",
+    "links": [
+     {
+      "text": "Book 05, Ch 08",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/08-gpo-to-intune-policy-migration.html"
+     },
+     {
+      "text": "App. A",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/appendix-a-gpo-to-intune-crosswalk.html"
+     }
+    ]
+   },
+   {
+    "slide": 21,
+    "title": "What Arc changes, and what it doesn't",
+    "links": [
+     {
+      "text": "Book 05, Ch 09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html"
+     }
+    ]
+   },
+   {
+    "slide": 22,
+    "title": "Which servers Arc reaches, and four tiers for the rest",
+    "links": [
+     {
+      "text": "Book 05, Ch 09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html"
+     },
+     {
+      "text": "Ch 03",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/03-where-device-and-server-data-lives.html"
+     }
+    ]
+   },
+   {
+    "slide": 23,
+    "title": "Before you onboard: roles, network, tags and images",
+    "links": [
+     {
+      "text": "Book 05, Ch 09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html"
+     }
+    ]
+   },
+   {
+    "slide": 24,
+    "title": "Onboarding a wave with a least-privileged principal",
+    "links": [
+     {
+      "text": "Book 05, Ch 09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html"
+     }
+    ]
+   },
+   {
+    "slide": 25,
+    "title": "The day-one baseline: configuration, patching and protection",
+    "links": [
+     {
+      "text": "Book 05, Ch 09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html"
+     }
+    ]
+   },
+   {
+    "slide": 26,
+    "title": "Extended Security Updates, Entra ID sign-in and rollback",
+    "links": [
+     {
+      "text": "Book 05, Ch 09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html"
+     }
+    ]
+   },
+   {
+    "slide": 28,
+    "title": "Making the compliance signal accurate",
+    "links": [
+     {
+      "text": "Intune conflicts",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#common-questions-answers-and-scenarios-with"
+     },
+     {
+      "text": "Book 05, Ch 10",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/10-operating-and-evidencing-the-fleet.html"
+     }
+    ]
+   },
+   {
+    "slide": 29,
+    "title": "Windows updates: rings, Autopatch and version currency",
+    "links": [
+     {
+      "text": "Book 05, Ch 10",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/10-operating-and-evidencing-the-fleet.html"
+     }
+    ]
+   },
+   {
+    "slide": 30,
+    "title": "Reconciling three inventories, and retiring a device in order",
+    "links": [
+     {
+      "text": "Book 05, Ch 10",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/10-operating-and-evidencing-the-fleet.html"
+     }
+    ]
+   },
+   {
+    "slide": 31,
+    "title": "Drift detection: what the logs can tell you, and when",
+    "links": [
+     {
+      "text": "Book 05, Ch 10",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/10-operating-and-evidencing-the-fleet.html"
+     }
+    ]
+   },
+   {
+    "slide": 32,
+    "title": "The evidence an assessor reads, and the GCC boundary facts",
+    "links": [
+     {
+      "text": "NIST SP 800-53 Rev. 5",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+     },
+     {
+      "text": "Key Security Indicators",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+     },
+     {
+      "text": "Book 05, Ch 10",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/10-operating-and-evidencing-the-fleet.html"
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "B06_Data_Platform_Executive_Narrated",

@@ -30,16 +30,16 @@ might move away from its data,
 it measures how chatty it is.
 
 7
-00:00:18.787 --> 00:00:22.895
+00:00:18.787 --> 00:00:23.707
 Out of this come risk findings,
-like unsafe delegation or
+like unsafe delegation or a Windows
 
 8
-00:00:22.895 --> 00:00:27.526
-servers on Windows Server 2016,
+00:00:23.707 --> 00:00:28.626
+Server 2016 host nobody expected,
 and every one gets a disposition.
 
 9
-00:00:27.526 --> 00:00:30.600
+00:00:28.626 --> 00:00:31.700
 But a list only helps if you
 can prove where it came from.

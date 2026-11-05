@@ -12,7 +12,7 @@
   {
     "slide": 3,
     "title": "The schedule now belongs to OMB, CISA, FedRAMP and vendors",
-    "say": "And the calendar isn't the agency's any more. Policy and vendors set the dates from outside. Some have already passed: M-22-09's Zero Trust actions were due by the end of fiscal 2024, and they're still in force. Others are close. FedRAMP's Consolidated Rules become mandatory on January 1, 2027. BOD 26-02 wants listed end-of-support edge devices gone by February 5, 2027. And by the program's own count, not a date OMB published, the Agency Logging Plan under M-26-14 is due November 18, 2026. Vendors add their own clock: Windows Server 2016, which runs many domain controllers, ends support on January 12, 2027. The slide lists the rest. Nothing fails on a single date. But every one of these deadlines assumes the agency knows what it runs, who owns it, and what governs it."
+    "say": "And the calendar isn't the agency's any more. Policy and vendors set the dates from outside. Some have already passed: M-22-09's Zero Trust actions were due by the end of fiscal 2024, and they're still in force. Others are close. FedRAMP's Consolidated Rules become mandatory on January 1, 2027. BOD 26-02 wants listed end-of-support edge devices gone by February 5, 2027. And by the program's own count, not a date OMB published, the Agency Logging Plan under M-26-14 is due November 18, 2026. Vendors add their own clock: Windows Server 2016 ends support on January 12, 2027, and this workbook plans on those servers being gone by then. The slide lists the rest. Nothing fails on a single date. But every one of these deadlines assumes the agency knows what it runs, who owns it, and what governs it."
   },
   {
     "slide": 4,

@@ -10,7 +10,7 @@ Here are the four reasons on one page. There are deadlines nobody can move. Ever
 
 ## Slide 3 — The clocks nobody can move
 
-Modernization is usually treated as a choice of timing. It isn't, because the dates are set outside the agency. Federal directives already require secure cloud configurations and better logging. FedRAMP's new rules become mandatory in January 2027. And the closest date is Windows Server 2016, which reaches end of support on January twelfth, 2027. In many estates that's where domain controllers and certificate authorities run. Count your own 2016 servers before the meeting; that number will do more than any slide. So with time short, where do you begin?
+Modernization is usually treated as a choice of timing. It isn't, because the dates are set outside the agency. Federal directives already require secure cloud configurations and better logging. FedRAMP's new rules become mandatory in January 2027. Windows Server 2016's end of support is January twelfth, 2027, and this workbook plans on those servers being gone by then. But a current server still sits in the same directory, and Windows Server 2019's date is already set for January 2029. So with time short, where do you begin?
 
 ## Slide 4 — Everything decides on identity
 
@@ -34,7 +34,7 @@ Phase one, the foundation, runs about four more weeks and ends at a gate leaders
 
 ## Slide 9 — Who decides, and what to bring
 
-The decision belongs to a few people. The executive sponsor, with the CIO, owns scope, funding and sequence. The steward owns the target design and the early gates. And workstream leads say when their area is ready. To make the conversation concrete, bring four local numbers: how many 2016 servers you run, how many contractors sit outside the HR system, how long it takes a departing person to lose access, and your HR 2.0 wave. Then ask for one decision: approve the four-week pre-flight, with a named owner and a start date.
+The decision belongs to a few people. The executive sponsor, with the CIO, owns scope, funding and sequence. The steward owns the target design and the early gates. And workstream leads say when their area is ready. To make the conversation concrete, bring four local numbers: how many Windows Server 2019 servers you run, how many contractors sit outside the HR system, how long it takes a departing person to lose access, and your HR 2.0 wave. Then ask for one decision: approve the four-week pre-flight, with a named owner and a start date.
 
 ## Slide 10 — Where to go next
 

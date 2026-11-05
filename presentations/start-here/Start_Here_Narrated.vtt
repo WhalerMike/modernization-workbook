@@ -97,330 +97,330 @@ FedRAMP's new rules become
 mandatory in January 2027.
 
 21
-00:01:16.837 --> 00:01:20.431
-And the closest date is
-Windows Server 2016,
+00:01:16.837 --> 00:01:21.471
+Windows Server 2016's end of
+support is January twelfth, 2027,
 
 22
-00:01:20.431 --> 00:01:24.824
-which reaches end of support
-on January twelfth, 2027.
+00:01:21.471 --> 00:01:26.012
+and this workbook plans on those
+servers being gone by then.
 
 23
-00:01:24.824 --> 00:01:29.538
-In many estates that's where domain
-controllers and certificate authorities run.
+00:01:26.012 --> 00:01:29.960
+But a current server still
+sits in the same directory,
 
 24
-00:01:29.538 --> 00:01:32.963
-Count your own 2016
-servers before the meeting;
+00:01:29.960 --> 00:01:34.537
+and Windows Server 2019's date
+is already set for January 2029.
 
 25
-00:01:32.963 --> 00:01:35.774
-that number will do more than any slide.
-
-26
-00:01:35.774 --> 00:01:38.560
+00:01:34.537 --> 00:01:37.320
 So with time short, where do you begin?
 
-27
-00:01:42.310 --> 00:01:46.135
+26
+00:01:41.070 --> 00:01:44.895
 You begin with identity, because
 everything else decides on it.
 
-28
-00:01:46.135 --> 00:01:49.455
+27
+00:01:44.895 --> 00:01:48.215
 Access policy, devices,
 data, certificates:
 
-29
-00:01:49.455 --> 00:01:53.060
+28
+00:01:48.215 --> 00:01:51.820
 each one asks who or what
 is making the request.
 
-30
-00:01:53.060 --> 00:01:55.789
+29
+00:01:51.820 --> 00:01:54.549
 If the answer to that
 question isn't trustworthy,
 
-31
-00:01:55.789 --> 00:01:57.972
+30
+00:01:54.549 --> 00:01:56.732
 nothing built on top of it can be either.
 
-32
-00:01:57.972 --> 00:02:02.517
+31
+00:01:56.732 --> 00:02:01.277
 That's why the workbook numbers its
 books in this order, with identity first
 
-33
-00:02:02.517 --> 00:02:07.135
+32
+00:02:01.277 --> 00:02:05.895
 and infrastructure next, then the cloud
 boundary, assurance and operations.
 
-34
-00:02:07.135 --> 00:02:09.510
+33
+00:02:05.895 --> 00:02:08.270
 Skipping ahead only moves the problem.
 
-35
-00:02:09.510 --> 00:02:13.900
+34
+00:02:08.270 --> 00:02:12.660
 And right now there's an unusual
 opportunity on the identity side.
 
-36
-00:02:17.650 --> 00:02:24.312
+35
+00:02:16.410 --> 00:02:23.072
 Federal HR 2.0 is moving agencies onto one
 government-wide human resources platform.
 
-37
-00:02:24.312 --> 00:02:31.296
+36
+00:02:23.072 --> 00:02:30.056
 The OMB and OPM memo came in December
 2025, Oracle won the contract in June 2026,
 
-38
-00:02:31.296 --> 00:02:35.551
+37
+00:02:30.056 --> 00:02:34.311
 and agencies move in
 waves through fiscal 2027.
 
-39
-00:02:35.551 --> 00:02:40.013
+38
+00:02:34.311 --> 00:02:38.773
 Each agency's move includes new
 connections, designed during onboarding.
 
-40
-00:02:40.013 --> 00:02:45.625
+39
+00:02:38.773 --> 00:02:44.385
 OPM rebuilds the HR side, but the
 identity side is left to the agency.
 
-41
-00:02:45.625 --> 00:02:49.288
+40
+00:02:44.385 --> 00:02:48.048
 If identity rides along,
 the agency connects once.
 
-42
-00:02:49.288 --> 00:02:51.438
+41
+00:02:48.048 --> 00:02:50.198
 If it waits, it builds twice.
 
-43
-00:02:51.438 --> 00:02:56.137
+42
+00:02:50.198 --> 00:02:54.897
 That's why the workbook calls HR
 2.0 the opening, not the project.
 
-44
-00:02:56.137 --> 00:02:59.710
+43
+00:02:54.897 --> 00:02:58.470
 Which brings us to the risk
 agencies already carry.
 
-45
-00:03:03.460 --> 00:03:06.736
+44
+00:03:02.220 --> 00:03:05.496
 Today, who gets an account,
 and when access ends,
 
-46
-00:03:06.736 --> 00:03:10.098
+45
+00:03:05.496 --> 00:03:08.858
 often lives in tickets,
 spreadsheets and email.
 
-47
-00:03:10.098 --> 00:03:13.648
+46
+00:03:08.858 --> 00:03:12.408
 A contractor roster is out of
 date the moment it's saved.
 
-48
-00:03:13.648 --> 00:03:17.893
+47
+00:03:12.408 --> 00:03:16.653
 Quarterly access reviews can't see a
 transition when it happens, so a review
 
-49
-00:03:17.893 --> 00:03:22.548
+48
+00:03:16.653 --> 00:03:21.308
 ninety days after someone leaves ends up
 approving an account nobody should have.
 
-50
-00:03:22.548 --> 00:03:27.084
+49
+00:03:21.308 --> 00:03:25.844
 Assessors know this pattern well; it's
 where account-management findings come from.
 
-51
-00:03:27.084 --> 00:03:29.561
+50
+00:03:25.844 --> 00:03:28.321
 HR-driven identity fixes the cause:
 
-52
-00:03:29.561 --> 00:03:34.598
+51
+00:03:28.321 --> 00:03:33.358
 the HR record becomes the source of
 who works here, and access follows it.
 
-53
-00:03:34.598 --> 00:03:36.730
+52
+00:03:33.358 --> 00:03:35.490
 So what exactly is the ask?
 
-54
-00:03:40.480 --> 00:03:41.742
+53
+00:03:39.240 --> 00:03:40.502
 The ask is small.
 
-55
-00:03:41.742 --> 00:03:46.654
+54
+00:03:40.502 --> 00:03:45.414
 Phase zero is a four-week pre-flight,
 and it doesn't require choosing a vendor.
 
-56
-00:03:46.654 --> 00:03:48.934
+55
+00:03:45.414 --> 00:03:47.694
 It needs three things: an inventory,
 
-57
-00:03:48.934 --> 00:03:52.705
+56
+00:03:47.694 --> 00:03:51.465
 from a read-only assessment of
 the current estate; an owner,
 
-58
-00:03:52.705 --> 00:03:57.184
+57
+00:03:51.465 --> 00:03:55.944
 meaning a named executive sponsor
 and a steward who runs the program;
 
-59
-00:03:57.184 --> 00:04:02.292
+58
+00:03:55.944 --> 00:04:01.052
 and a date, with the first gate on the
 calendar next to those external deadlines.
 
-60
-00:04:02.292 --> 00:04:06.697
+59
+00:04:01.052 --> 00:04:05.457
 At the end of four weeks, leadership
 sees the estate as it really is,
 
-61
-00:04:06.697 --> 00:04:09.143
+60
+00:04:05.457 --> 00:04:07.903
 and decides the next step from facts.
 
-62
-00:04:09.143 --> 00:04:11.860
+61
+00:04:07.903 --> 00:04:10.620
 Then comes the first real milestone.
 
-63
-00:04:15.610 --> 00:04:19.123
+62
+00:04:14.370 --> 00:04:17.883
 Phase one, the foundation,
 runs about four more weeks
 
-64
-00:04:19.123 --> 00:04:22.635
+63
+00:04:17.883 --> 00:04:21.395
 and ends at a gate leadership
 can check, not just sign.
 
-65
-00:04:22.635 --> 00:04:26.497
+64
+00:04:21.395 --> 00:04:25.257
 Groups and administrative units
 are in place, with no drift.
 
-66
-00:04:26.497 --> 00:04:29.465
+65
+00:04:25.257 --> 00:04:28.225
 Everyone is under
 multifactor authentication,
 
-67
-00:04:29.465 --> 00:04:33.173
+66
+00:04:28.225 --> 00:04:31.933
 except a few emergency accounts
 that are vaulted and tested.
 
-68
-00:04:33.173 --> 00:04:36.248
+67
+00:04:31.933 --> 00:04:35.008
 The core infrastructure is
 covered by address management.
 
-69
-00:04:36.248 --> 00:04:39.398
+68
+00:04:35.008 --> 00:04:38.158
 And the HR feed is live for
 a first group of people.
 
-70
-00:04:39.398 --> 00:04:41.422
+69
+00:04:38.158 --> 00:04:40.182
 Each of those is measured from data.
 
-71
-00:04:41.422 --> 00:04:45.611
+70
+00:04:40.182 --> 00:04:44.371
 When the gate passes, everything else
 has something solid to stand on.
 
-72
-00:04:45.611 --> 00:04:47.560
+71
+00:04:44.371 --> 00:04:46.320
 So who needs to be in the room?
 
-73
-00:04:51.310 --> 00:04:53.535
+72
+00:04:50.070 --> 00:04:52.295
 The decision belongs to a few people.
 
-74
-00:04:53.535 --> 00:04:59.160
+73
+00:04:52.295 --> 00:04:57.920
 The executive sponsor, with the CIO,
 owns scope, funding and sequence.
 
-75
-00:04:59.160 --> 00:05:02.685
+74
+00:04:57.920 --> 00:05:01.445
 The steward owns the target
 design and the early gates.
 
-76
-00:05:02.685 --> 00:05:05.848
+75
+00:05:01.445 --> 00:05:04.608
 And workstream leads say
 when their area is ready.
 
-77
-00:05:05.848 --> 00:05:10.274
+76
+00:05:04.608 --> 00:05:08.884
 To make the conversation concrete,
 bring four local numbers:
 
+77
+00:05:08.884 --> 00:05:14.699
+how many Windows Server 2019 servers you
+run, how many contractors sit outside the
+
 78
-00:05:10.274 --> 00:05:15.852
-how many 2016 servers you run, how many
-contractors sit outside the HR system,
+00:05:14.699 --> 00:05:18.975
+HR system, how long it takes a
+departing person to lose access,
 
 79
-00:05:15.852 --> 00:05:20.898
-how long it takes a departing person
-to lose access, and your HR 2.0 wave.
+00:05:18.975 --> 00:05:20.258
+and your HR 2.0 wave.
 
 80
-00:05:20.898 --> 00:05:24.876
+00:05:20.258 --> 00:05:24.237
 Then ask for one decision:
 approve the four-week pre-flight,
 
 81
-00:05:24.876 --> 00:05:27.560
+00:05:24.237 --> 00:05:26.920
 with a named owner and a start date.
 
 82
-00:05:31.310 --> 00:05:35.864
+00:05:30.670 --> 00:05:35.224
 To go deeper, start with the executive
 briefing for Orientation and Program,
 
 83
-00:05:35.864 --> 00:05:38.972
+00:05:35.224 --> 00:05:38.332
 which lays out the decisions
 with owners and timing.
 
 84
-00:05:38.972 --> 00:05:44.073
+00:05:38.332 --> 00:05:43.433
 Chapter 12 of The Transformation Arc is
 the roadmap, with every phase and gate.
 
 85
-00:05:44.073 --> 00:05:48.181
+00:05:43.433 --> 00:05:47.541
 Identity and Directory covers
 identity and the directory,
 
 86
-00:05:48.181 --> 00:05:52.709
+00:05:47.541 --> 00:05:52.069
 and HR-Driven Identity makes the
 full case for HR-driven identity.
 
 87
-00:05:52.709 --> 00:05:57.772
+00:05:52.069 --> 00:05:57.132
 Every claim in this briefing is footnoted
 to a primary source in those books.
 
 88
-00:05:57.772 --> 00:06:03.572
+00:05:57.132 --> 00:06:02.932
 The workbook is independent analysis, not
 an official publication of any agency.
 
 89
-00:06:03.572 --> 00:06:05.080
+00:06:02.932 --> 00:06:04.440
 Thank you for starting here.

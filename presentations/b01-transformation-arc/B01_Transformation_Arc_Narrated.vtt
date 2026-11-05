@@ -884,210 +884,214 @@ what, and a hash of every file.
 Eleven streams feed the risk scoring.
 
 184
-00:12:21.470 --> 00:12:27.185
-One example: Windows Server 2016
-reaches end of support on January 12,
+00:12:21.470 --> 00:12:26.457
+One example: Windows Server 2016's
+end of support is January 12, 2027,
 
 185
-00:12:27.185 --> 00:12:30.995
-2027, so every such server
-needs a disposition.
+00:12:26.457 --> 00:12:29.539
+so every such server needs a disposition,
 
 186
-00:12:30.995 --> 00:12:35.580
+00:12:29.539 --> 00:12:33.982
+and any that remains is an
+exception with a retirement date.
+
+187
+00:12:33.982 --> 00:12:38.580
 And no application leaves its data
 until its transactions are profiled.
 
-187
-00:12:39.330 --> 00:12:43.817
+188
+00:12:42.330 --> 00:12:46.817
 Chapter 11 turns the inventory
 into change, in three stages.
 
-188
-00:12:43.817 --> 00:12:47.867
+189
+00:12:46.817 --> 00:12:50.867
 Analyze compares the current state
 with the target and produces a diff.
 
-189
-00:12:47.867 --> 00:12:51.961
+190
+00:12:50.867 --> 00:12:54.961
 Plan expands that diff into
 actions, each scoped to one object,
 
-190
-00:12:51.961 --> 00:12:55.493
+191
+00:12:54.961 --> 00:12:58.493
 put in dependency order, and
 paired with its rollback.
 
-191
-00:12:55.493 --> 00:12:59.830
+192
+00:12:58.493 --> 00:13:02.830
 A plan has to pass validation, then
 approval by someone who didn't write it.
 
-192
-00:12:59.830 --> 00:13:04.268
+193
+00:13:02.830 --> 00:13:07.268
 Then a separate identity carries it
 out and closes with an evidence packet.
 
-193
-00:13:04.268 --> 00:13:08.900
+194
+00:13:07.268 --> 00:13:11.900
 How far automation may go is capped
 by a ladder, from simply recording,
 
-194
-00:13:08.900 --> 00:13:12.231
+195
+00:13:11.900 --> 00:13:15.231
 up to autonomy for a short
 list of low-risk changes.
 
-195
-00:13:12.231 --> 00:13:14.731
+196
+00:13:15.231 --> 00:13:17.731
 The default ceiling is gated actuation,
 
-196
-00:13:14.731 --> 00:13:18.217
+197
+00:13:17.731 --> 00:13:21.217
 because it's a posture an
 authorizing official can sign.
 
-197
-00:13:18.217 --> 00:13:21.376
+198
+00:13:21.217 --> 00:13:24.376
 CISA calls its maturity
 model a general guide,
 
-198
-00:13:21.376 --> 00:13:25.505
+199
+00:13:24.376 --> 00:13:28.505
 not a strict set of requirements,
 so this is design, not mandate.
 
-199
-00:13:25.505 --> 00:13:29.980
+200
+00:13:28.505 --> 00:13:32.980
 And when nothing has drifted,
 the next run plans zero actions.
 
-200
-00:13:33.730 --> 00:13:38.447
+201
+00:13:36.730 --> 00:13:41.447
 Chapter 12 puts it all in sequence: an
 illustrative fifty-two-week program,
 
-201
-00:13:38.447 --> 00:13:43.552
+202
+00:13:41.447 --> 00:13:46.552
 seven phases from pre-flight to steady
 state, with five workstreams in parallel.
 
-202
-00:13:43.552 --> 00:13:46.704
+203
+00:13:46.552 --> 00:13:49.704
 Large federal estates
 usually take several years;
 
-203
-00:13:46.704 --> 00:13:49.542
+204
+00:13:49.704 --> 00:13:52.542
 the weeks are a sequencing
 model, not a promise.
 
-204
-00:13:49.542 --> 00:13:54.125
+205
+00:13:52.542 --> 00:13:57.125
 A phase opens only when the previous
 gate clears, and gates read from data.
 
-205
-00:13:54.125 --> 00:13:58.071
+206
+00:13:57.125 --> 00:14:01.071
 “Zero drift for fourteen days”
 is a query, not a signature.
 
-206
-00:13:58.071 --> 00:14:02.981
+207
+00:14:01.071 --> 00:14:05.981
 Underneath it all is one structural
 move: separate truth from enforcement.
 
-207
-00:14:02.981 --> 00:14:06.929
+208
+00:14:05.981 --> 00:14:09.929
 A governance layer holds and
 reconciles the authoritative state,
 
-208
-00:14:06.929 --> 00:14:11.064
+209
+00:14:09.929 --> 00:14:14.064
 while the identity, network and device
 platforms enforce it at runtime.
 
-209
-00:14:11.064 --> 00:14:12.786
+210
+00:14:14.064 --> 00:14:15.786
 And read one clock carefully:
 
-210
-00:14:12.786 --> 00:14:16.798
+211
+00:14:15.786 --> 00:14:19.798
 FedRAMP's 2027 date is about
 certifying cloud providers.
 
-211
-00:14:16.798 --> 00:14:19.844
+212
+00:14:19.798 --> 00:14:22.844
 The agency still authorizes
 its own systems.
 
-212
-00:14:19.844 --> 00:14:22.630
+213
+00:14:22.844 --> 00:14:25.630
 That brings us to the decisions.
 
-213
-00:14:26.450 --> 00:14:27.825
+214
+00:14:29.450 --> 00:14:30.825
 So, four decisions.
 
-214
-00:14:27.825 --> 00:14:32.325
+215
+00:14:30.825 --> 00:14:35.325
 First, name the owners, one decider per
 decision, starting with the sponsor,
 
-215
-00:14:32.325 --> 00:14:34.906
+216
+00:14:35.325 --> 00:14:37.906
 the authorizing official and the steward,
 
-216
-00:14:34.906 --> 00:14:39.775
+217
+00:14:37.906 --> 00:14:42.775
 and confirm who holds the Zero Trust
 lead role that M-22-09 required.
 
-217
-00:14:39.775 --> 00:14:45.437
+218
+00:14:42.775 --> 00:14:48.437
 Second, run the read-only assessment across
 all eleven categories, with provenance.
 
-218
-00:14:45.437 --> 00:14:50.675
+219
+00:14:48.437 --> 00:14:53.675
 Third, stand up the platform host, so
 every change has one writer and a plan.
 
-219
-00:14:50.675 --> 00:14:54.438
+220
+00:14:53.675 --> 00:14:57.438
 And fourth, set the dates: gate
 dates on the sponsor's calendar,
 
-220
-00:14:54.438 --> 00:14:58.200
+221
+00:14:57.438 --> 00:15:01.200
 and every exception's end date
 on the authorizing official's.
 
-221
-00:14:58.200 --> 00:15:00.838
+222
+00:15:01.200 --> 00:15:03.838
 None of this needs a vendor
 decision on day one.
 
-222
-00:15:00.838 --> 00:15:03.925
+223
+00:15:03.838 --> 00:15:06.925
 Start with an inventory,
 an owner, and a date.
 
-223
-00:15:03.925 --> 00:15:07.900
+224
+00:15:06.925 --> 00:15:10.900
 Modernization is a governance
 rebuild, not a platform swap.
 
-224
-00:15:07.900 --> 00:15:12.769
-This book is the map, and the technical
-books, from Identity and Directory to
-
 225
-00:15:12.769 --> 00:15:17.638
-Network and Transport, carry each part
-in depth, with every claim footnoted.
+00:15:10.900 --> 00:15:13.854
+This book is the map,
+and the books that follow
 
 226
-00:15:17.638 --> 00:15:18.460
+00:15:13.854 --> 00:15:17.288
+carry each part in depth,
+with every claim footnoted.
+
+227
+00:15:17.288 --> 00:15:18.120
 Thank you.
