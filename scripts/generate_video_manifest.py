@@ -216,6 +216,12 @@ def chapters_of(deck: Path, script: Path) -> list[list] | None:
     return chapters
 
 
+def sources_of(folder: Path, vid: str) -> list[dict] | None:
+    """Each slide's linked sources, from presentations/_build/link_sources.py, for the Watch page."""
+    side = folder / f"{vid}_sources.json"
+    return json.loads(side.read_text(encoding="utf-8")) if side.exists() else None
+
+
 def collect() -> list[dict]:
     seconds = json.loads(DURATIONS.read_text(encoding="utf-8")) if DURATIONS.exists() else {}
     youtube = json.loads(YOUTUBE.read_text(encoding="utf-8")) if YOUTUBE.exists() else {}
@@ -243,6 +249,7 @@ def collect() -> list[dict]:
                 "source": page,
                 "kits": kits_of(folder, page),
                 "chapters": chapters_of(deck, script) if deck.exists() else cached.get(vid),
+                "sources": sources_of(folder, vid),
             }
         )
     unknown = sorted(set(youtube) - {v["id"] for v in videos})

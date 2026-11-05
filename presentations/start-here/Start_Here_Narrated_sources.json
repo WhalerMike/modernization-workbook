@@ -1,0 +1,238 @@
+[
+ {
+  "slide": 1,
+  "title": "Start Here: Where Modernization Begins",
+  "links": [
+   {
+    "text": "Book 00, Ch 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/01-why-modernize-now.html"
+   },
+   {
+    "text": "03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/03-the-charter.html"
+   },
+   {
+    "text": "Book 01, Ch 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/02-the-problem.html"
+   },
+   {
+    "text": "12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html"
+   },
+   {
+    "text": "Book 03, Ch 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/02-why-hr-is-the-source-of-authority.html"
+   },
+   {
+    "text": "03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/03-federal-hr-2-0.html"
+   }
+  ]
+ },
+ {
+  "slide": 2,
+  "title": "Four reasons to start now",
+  "links": [
+   {
+    "text": "Book 00, Ch 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/01-why-modernize-now.html"
+   },
+   {
+    "text": "Book 03, Ch 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/02-why-hr-is-the-source-of-authority.html"
+   },
+   {
+    "text": "03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/03-federal-hr-2-0.html"
+   },
+   {
+    "text": "Book 01, Ch 12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html"
+   },
+   {
+    "text": "Where to start",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html#where-to-start"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "The clocks nobody can move",
+  "links": [
+   {
+    "text": "Book 00, Ch 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/01-why-modernize-now.html"
+   },
+   {
+    "text": "Microsoft lifecycle pages",
+    "url": "https://learn.microsoft.com/lifecycle/end-of-support/end-of-support-2026"
+   },
+   {
+    "text": "CISA BOD 25-01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#bod-25-01"
+   },
+   {
+    "text": "26-02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#bod-26-02"
+   },
+   {
+    "text": "OMB M-26-14",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#m-26-14"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "Everything decides on identity",
+  "links": [
+   {
+    "text": "Book 00, Ch 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/01-why-modernize-now.html"
+   },
+   {
+    "text": "Ch 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/02-how-to-use-this-workbook.html"
+   },
+   {
+    "text": "Book 01, Ch 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/02-the-problem.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "HR is being rebuilt anyway",
+  "links": [
+   {
+    "text": "Book 03, Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/03-federal-hr-2-0.html"
+   },
+   {
+    "text": "OMB/OPM memo Dec. 10, 2025",
+    "url": "https://www.opm.gov/chcoc/latest-memos/creating-federal-hr-20-by-consolidating-core-human-capital-management-across-the-federal-government.pdf"
+   },
+   {
+    "text": "OPM award",
+    "url": "https://www.opm.gov/news/news-releases/opm-awards-contract-for-first-ever-governmentwide-hr-platform/"
+   },
+   {
+    "text": "Oracle announcement",
+    "url": "https://www.oracle.com/news/announcement/us-office-of-personnel-management-selects-oracle-to-power-federal-workforce-modernization-2026-06-11/"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "The access risk agencies already carry",
+  "links": [
+   {
+    "text": "Book 03, Ch 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/02-why-hr-is-the-source-of-authority.html"
+   },
+   {
+    "text": "fragmented truth",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/02-why-hr-is-the-source-of-authority.html#the-fragmented-truth-problem"
+   },
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#sp-800-53"
+   },
+   {
+    "text": "Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/10-from-attributes-to-access.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "The first ask: four weeks, no vendor decision",
+  "links": [
+   {
+    "text": "Book 01, Ch 12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html"
+   },
+   {
+    "text": "Phase 0",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html#phase-0-pre-flight-weeks-14"
+   },
+   {
+    "text": "Where to start",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html#where-to-start"
+   },
+   {
+    "text": "Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/10-analyzing-the-estate.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "The finish line: Gate G1, Foundation Complete",
+  "links": [
+   {
+    "text": "Book 01, Ch 12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html"
+   },
+   {
+    "text": "Phase 1 — Foundation",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html#phase-1-foundation-weeks-58"
+   },
+   {
+    "text": "key takeaways",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html#key-takeaways"
+   },
+   {
+    "text": "Book 03, Ch 12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/12-execution-plan.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Who decides, and what to bring",
+  "links": [
+   {
+    "text": "Book 00, Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/03-the-charter.html"
+   },
+   {
+    "text": "Book 01, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/09-who-leads-the-transformation.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Where to go next",
+  "links": [
+   {
+    "text": "whalermike.github.io/modernization-workbook",
+    "url": "https://whalermike.github.io/modernization-workbook/"
+   },
+   {
+    "text": "Books 00–03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/index.html"
+   },
+   {
+    "text": "Presentations page",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/presentations/index.html"
+   },
+   {
+    "text": "Book 00",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/index.html"
+   },
+   {
+    "text": "Book 01, Chapter 12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html"
+   },
+   {
+    "text": "Book 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/index.html"
+   },
+   {
+    "text": "Book 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/index.html"
+   }
+  ]
+ }
+]

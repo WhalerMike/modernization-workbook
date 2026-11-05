@@ -1,0 +1,410 @@
+[
+ {
+  "slide": 2,
+  "title": "Active Directory did governance nobody wrote down",
+  "links": [
+   {
+    "text": "AD DS users and OUs",
+    "url": "https://learn.microsoft.com/windows/win32/ad/users-in-active-directory-domain-services"
+   },
+   {
+    "text": "AD logical model",
+    "url": "https://learn.microsoft.com/windows-server/identity/ad-ds/plan/understanding-the-active-directory-logical-model"
+   },
+   {
+    "text": "Group Policy processing",
+    "url": "https://learn.microsoft.com/windows-server/identity/ad-ds/manage/group-policy/group-policy-processing"
+   },
+   {
+    "text": "AD-integrated DNS zones",
+    "url": "https://learn.microsoft.com/windows-server/identity/ad-ds/plan/active-directory-integrated-dns-zones"
+   },
+   {
+    "text": "AD CS overview",
+    "url": "https://learn.microsoft.com/windows-server/identity/ad-cs/active-directory-certificate-services-overview"
+   },
+   {
+    "text": "Entra administrative units",
+    "url": "https://learn.microsoft.com/entra/identity/role-based-access-control/administrative-units"
+   },
+   {
+    "text": "Book 00, Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/01-why-modernize-now.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "The schedule now belongs to OMB, CISA, FedRAMP and vendors",
+  "links": [
+   {
+    "text": "OMB M-22-09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#m-22-09"
+   },
+   {
+    "text": "M-26-14",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#m-26-14"
+   },
+   {
+    "text": "CISA BOD 25-01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#bod-25-01"
+   },
+   {
+    "text": "BOD 26-02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#bod-26-02"
+   },
+   {
+    "text": "Logging Reference Architecture",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#cisa-logging"
+   },
+   {
+    "text": "FedRAMP Consolidated Rules for 2026",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#fedramp-2026"
+   },
+   {
+    "text": "2025",
+    "url": "https://learn.microsoft.com/lifecycle/end-of-support/end-of-support-2025"
+   },
+   {
+    "text": "2029",
+    "url": "https://learn.microsoft.com/lifecycle/end-of-support/end-of-support-2029"
+   },
+   {
+    "text": "Book 00, Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/01-why-modernize-now.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "Read the clocks exactly, then run one program",
+  "links": [
+   {
+    "text": "Using a FedRAMP Certified Cloud Service",
+    "url": "https://www.fedramp.gov/2026/agencies/use/"
+   },
+   {
+    "text": "Notice NTC-0004",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#ntc-0004"
+   },
+   {
+    "text": "CISA BOD 25-01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#bod-25-01"
+   },
+   {
+    "text": "OMB M-22-09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#m-22-09"
+   },
+   {
+    "text": "M-26-14",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#m-26-14"
+   },
+   {
+    "text": "Book 00, Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/01-why-modernize-now.html"
+   },
+   {
+    "text": "Book 11, Chapters 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b11-zero-trust/03-what-the-mandates-require.html"
+   },
+   {
+    "text": "04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b11-zero-trust/04-scuba-and-bod-25-01.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "How the workbook works: eighteen books, four questions",
+  "links": [
+   {
+    "text": "Book 00, Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/02-how-to-use-this-workbook.html"
+   },
+   {
+    "text": "Every book asks four questions",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/02-how-to-use-this-workbook.html#every-book-asks-four-questions"
+   },
+   {
+    "text": "How claims are verified",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/02-how-to-use-this-workbook.html#how-claims-are-verified"
+   },
+   {
+    "text": "OMB M-26-14",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#m-26-14"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "The charter: the page the sponsor signs",
+  "links": [
+   {
+    "text": "Intune settings catalog vs. ADMX",
+    "url": "https://learn.microsoft.com/intune/device-configuration/settings-catalog/tutorial-group-policy-migration"
+   },
+   {
+    "text": "Entra administrative units",
+    "url": "https://learn.microsoft.com/entra/identity/role-based-access-control/administrative-units"
+   },
+   {
+    "text": "Microsoft Graph, onPremisesExtensionAttributes",
+    "url": "https://learn.microsoft.com/graph/api/resources/onpremisesextensionattributes?view=graph-rest-1.0"
+   },
+   {
+    "text": "OMB M-22-09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#m-22-09"
+   },
+   {
+    "text": "Book 00, Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/03-the-charter.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Six success criteria, each tested at a gate",
+  "links": [
+   {
+    "text": "Book 00, Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/03-the-charter.html"
+   },
+   {
+    "text": "Success criteria",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/03-the-charter.html#success-criteria"
+   },
+   {
+    "text": "Chapter 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/10-retirement-steady-state-and-success.html"
+   },
+   {
+    "text": "the program scorecard",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/10-retirement-steady-state-and-success.html#measuring-success-the-program-scorecard"
+   },
+   {
+    "text": "Book 01, Chapter 12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Fifteen principles in five groups",
+  "links": [
+   {
+    "text": "PIM",
+    "url": "https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-configure"
+   },
+   {
+    "text": "Conditional Access",
+    "url": "https://learn.microsoft.com/entra/identity/conditional-access/overview"
+   },
+   {
+    "text": "Intune policy conflicts",
+    "url": "https://learn.microsoft.com/intune/device-configuration/troubleshoot-device-profiles#conflicts"
+   },
+   {
+    "text": "continuous access evaluation",
+    "url": "https://learn.microsoft.com/entra/identity/conditional-access/concept-continuous-access-evaluation"
+   },
+   {
+    "text": "CISA ZTMM v2.0",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#cisa-ztmm"
+   },
+   {
+    "text": "OMB M-22-09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#m-22-09"
+   },
+   {
+    "text": "NIST SP 800-207",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#sp-800-207"
+   },
+   {
+    "text": "Book 00, Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/04-the-principles.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Seven phases and six gates: the workbook's model",
+  "links": [
+   {
+    "text": "Book 00, Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/05-the-program-plan.html"
+   },
+   {
+    "text": "phases",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/05-the-program-plan.html#the-seven-phases-and-six-gates"
+   },
+   {
+    "text": "workstreams",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/05-the-program-plan.html#five-workstreams-run-in-parallel"
+   },
+   {
+    "text": "critical path",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/05-the-program-plan.html#the-critical-path"
+   },
+   {
+    "text": "Book 01, Chapter 12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html"
+   },
+   {
+    "text": "Book 07, Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/07-coexistence-and-migration.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Seven complementary projects, run inside the program",
+  "links": [
+   {
+    "text": "NTLM deprecation",
+    "url": "https://learn.microsoft.com/troubleshoot/windows-server/windows-security/audit-domain-controller-ntlmv1"
+   },
+   {
+    "text": "PIM licensing",
+    "url": "https://learn.microsoft.com/entra/id-governance/access-reviews-overview"
+   },
+   {
+    "text": "emergency access accounts",
+    "url": "https://learn.microsoft.com/entra/identity/role-based-access-control/security-emergency-access"
+   },
+   {
+    "text": "NIST SP 800-137",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#sp-800-137"
+   },
+   {
+    "text": "FedRAMP KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#fedramp-ksi"
+   },
+   {
+    "text": "certified-service use",
+    "url": "https://www.fedramp.gov/2026/agencies/use/"
+   },
+   {
+    "text": "OMB M-26-05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#m-26-05"
+   },
+   {
+    "text": "Book 00, Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/06-the-project-portfolio.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Who decides: one owner for every decision",
+  "links": [
+   {
+    "text": "NIST SP 800-37 Rev. 2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#sp-800-37"
+   },
+   {
+    "text": "OMB M-22-09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#m-22-09"
+   },
+   {
+    "text": "OMB M-19-17",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#m-19-17"
+   },
+   {
+    "text": "Book 00, Chapters 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/03-the-charter.html"
+   },
+   {
+    "text": "07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/07-who-runs-the-program.html"
+   },
+   {
+    "text": "Book 01, Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/09-who-leads-the-transformation.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "From pre-flight to steady state: what each stretch proves",
+  "links": [
+   {
+    "text": "AD FS migration",
+    "url": "https://learn.microsoft.com/entra/identity/hybrid/connect/migrate-from-federation-to-cloud-authentication"
+   },
+   {
+    "text": "DC Group Policy",
+    "url": "https://learn.microsoft.com/troubleshoot/windows-server/active-directory/group-policy-application-rules-for-domain-controller"
+   },
+   {
+    "text": "CA decommissioning",
+    "url": "https://learn.microsoft.com/troubleshoot/windows-server/certificates-and-public-key-infrastructure-pki/decommission-enterprise-certification-authority-and-remove-objects"
+   },
+   {
+    "text": "DC password hashes",
+    "url": "https://learn.microsoft.com/windows-server/identity/ad-ds/manage/understand-default-user-accounts"
+   },
+   {
+    "text": "NIST SP 800-88 Rev. 2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#sp-800-88"
+   },
+   {
+    "text": "Microsoft Entra licensing",
+    "url": "https://learn.microsoft.com/entra/fundamentals/licensing"
+   },
+   {
+    "text": "Book 00, Chapters 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/08-pre-flight-and-assessment.html"
+   },
+   {
+    "text": "09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html"
+   },
+   {
+    "text": "10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/10-retirement-steady-state-and-success.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Decisions to make, and next steps",
+  "links": [
+   {
+    "text": "OMB M-22-09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#m-22-09"
+   },
+   {
+    "text": "M-19-17",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#m-19-17"
+   },
+   {
+    "text": "M-26-14",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#m-26-14"
+   },
+   {
+    "text": "CISA Logging Reference Architecture",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#cisa-logging"
+   },
+   {
+    "text": "Book 00, Chapters 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/01-why-modernize-now.html"
+   },
+   {
+    "text": "03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/03-the-charter.html"
+   },
+   {
+    "text": "05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/05-the-program-plan.html"
+   },
+   {
+    "text": "07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/07-who-runs-the-program.html"
+   },
+   {
+    "text": "10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/10-retirement-steady-state-and-success.html"
+   }
+  ]
+ }
+]

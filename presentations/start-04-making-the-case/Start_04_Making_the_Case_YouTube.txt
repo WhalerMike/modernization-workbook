@@ -1,0 +1,28 @@
+Start series, Episode 4 — Making the Case at Your Agency
+
+A narrated briefing from the Federal Modernization Workbook, a free public reference for federal IT modernization. It isn't an official government publication.
+
+Every source, slide by slide, with links:
+https://whalermike.github.io/modernization-workbook/docs/presentations/watch.html?v=Start_04_Making_the_Case_Narrated#sources
+
+Chapters
+0:00 Making the Case at Your Agency
+0:32 One page, one decision
+1:05 Four local numbers that make it real
+1:45 For the CIO: the clocks and the cost
+2:22 For the CISO: leavers and account findings
+2:59 For the CHCO: HR 2.0 and the contractor source
+3:38 For the authorizing official: evidence over attestation
+4:15 The decision: an owner, a date and a first gate
+4:50 Charter roles: who signs what
+5:28 What to bring to the meeting
+
+From the workbook
+Book 00: Chapter 01 — Why Modernize, and Why Now: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/01-why-modernize-now.html
+Book 00: Chapter 03 — The Program Charter: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/03-the-charter.html
+Book 01: Chapter 09 — Who Leads the Transformation: https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/09-who-leads-the-transformation.html
+Book 01: Chapter 12 — The Migration Roadmap: https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html
+Book 03: Chapter 02 — Why HR Is the Source of Authority: https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/02-why-hr-is-the-source-of-authority.html
+Book 03: Chapter 03 — Federal HR 2.0 and the Core HCM Platform: https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/03-federal-hr-2-0.html
+Book 03: Chapter 12 — Execution Plan: https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/12-execution-plan.html
+Book 00 — Orientation & Program: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/index.html

@@ -20,6 +20,7 @@ fmw-eyebrow: "Videos"
   <p id="fmw-player-source" hidden style="font-size:1rem;margin:.5rem 0 .25rem"></p>
   <p id="fmw-player-links" style="font-size:.9rem;color:#475569;margin-bottom:.25rem"></p>
   <details id="fmw-player-chapters" hidden style="font-size:.9rem"><summary></summary><ol style="margin:.25rem 0 0;padding-left:1.5rem"></ol></details>
+  <details id="fmw-player-sources" hidden style="font-size:.9rem;margin-top:.25rem;scroll-margin-top:5rem"><summary></summary><ol style="margin:.25rem 0 0;padding-left:1.5rem"></ol></details>
 </div>
 <noscript><p>The player needs JavaScript. Every video below can also be downloaded as an MP4.</p></noscript>
 <script src="fmw-chapters.js" defer></script>
@@ -97,7 +98,42 @@ fmw-eyebrow: "Videos"
         });
         chapters.hidden = false;
       }
-      if (params.get("v")) { document.getElementById("fmw-player").scrollIntoView(); }
+      if (v.sources) {
+        // Each slide's sources, linked: captions and the transcript can't carry links.
+        var sources = document.getElementById("fmw-player-sources");
+        var rows = sources.querySelector("ol");
+        sources.querySelector("summary").textContent = "Sources, slide by slide (" + v.sources.length + ")";
+        v.sources.forEach(function (s) {
+          var li = document.createElement("li");
+          var at = v.chapters && v.chapters[s.slide - 1];
+          if (at) {
+            var b = document.createElement("button");
+            b.type = "button";
+            b.className = "btn btn-link p-0 text-start";
+            b.setAttribute("data-fmw-t", at[0]);
+            b.textContent = Math.floor(at[0] / 60) + ":" + String(at[0] % 60).padStart(2, "0") + " " + s.title;
+            li.appendChild(b);
+          } else {
+            li.appendChild(document.createTextNode(s.title));
+          }
+          li.appendChild(document.createTextNode(": "));
+          s.links.forEach(function (l, i) {
+            if (i) { li.appendChild(document.createTextNode(" · ")); }
+            li.appendChild(link(l.url, l.text));
+          });
+          rows.appendChild(li);
+        });
+        sources.hidden = false;
+        if (window.location.hash === "#sources") {
+          // The page above moves as it finishes loading, so go there again once it has.
+          var show = function () { sources.scrollIntoView(); };
+          sources.open = true;
+          show();
+          window.addEventListener("load", show);
+          video.addEventListener("loadedmetadata", show, { once: true });
+        }
+      }
+      if (params.get("v") && window.location.hash !== "#sources") { document.getElementById("fmw-player").scrollIntoView(); }
     })
     .catch(function () {
       title.textContent = "The player couldn't load";
