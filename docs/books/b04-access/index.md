@@ -75,10 +75,11 @@ This is Book 04 of the [Federal Modernization Workbook](../index.md). It builds 
 
 ## Version and revision history {#version-history}
 
-**Version 1.3**, in [edition 2026.11.2](../../about/archive.md#edition-2026-11-2) (November 2, 2026). Every edition is kept on the [Archive](../../about/archive.md) page; every change between editions is in the [commit history](https://github.com/WhalerMike/modernization-workbook/commits/main/docs/books/b04-access).
+**Version 1.4**, in [edition 2026.11.3](../../about/archive.md#edition-2026-11-3) (November 5, 2026). Every edition is kept on the [Archive](../../about/archive.md) page; every change between editions is in the [commit history](https://github.com/WhalerMike/modernization-workbook/commits/main/docs/books/b04-access).
 
 | Version | Edition | Date | Changes |
 |---|---|---|---|
+| 1.4 | [2026.11.3](../../about/archive.md#edition-2026-11-3) | 2026-11-05 | Book decks: narration names the book or the original source, and 68 videos re-exported ([#344](https://github.com/WhalerMike/modernization-workbook/pull/344)) |
 | 1.3 | [2026.11.2](../../about/archive.md#edition-2026-11-2) | 2026-11-02 | Section 508: accessibility gates in Books 18 and 16, notes in Books 04 and 15 ([#314](https://github.com/WhalerMike/modernization-workbook/pull/314)); Privacy for workforce identity: Book 03 Chapter 14, and privacy sections in six books ([#317](https://github.com/WhalerMike/modernization-workbook/pull/317)); Privileged Access implementation guide: eight gates, emergency access first ([#325](https://github.com/WhalerMike/modernization-workbook/pull/325)) |
 | 1.2 | [2026.11.1](../../about/archive.md#edition-2026-11-1) | 2026-11-01 | Edition 2026.11: record the edition, and publish the four gate-level decks and videos ([#282](https://github.com/WhalerMike/modernization-workbook/pull/282)) |
 | 1.1 | [2026.11](../../about/archive.md#edition-2026-11) | 2026-11-01 | Move the decks and narration audio out of git, onto edition 2026.10 ([#260](https://github.com/WhalerMike/modernization-workbook/pull/260)); Cite CISA's Hybrid Identity Solutions Guidance and its sources ([#265](https://github.com/WhalerMike/modernization-workbook/pull/265)); Retire Research: move each page to a home by type (guides, training, reference, evaluations, explainers) ([#269](https://github.com/WhalerMike/modernization-workbook/pull/269)); Content rules: one home per type, and the federal layers every guide carries ([#271](https://github.com/WhalerMike/modernization-workbook/pull/271)) |

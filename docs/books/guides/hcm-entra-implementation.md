@@ -369,10 +369,11 @@ Related: [Book 03 — HR-Driven Identity](../b03-hr-identity/index.md), [Book 02
 
 ## Version and revision history {#version-history}
 
-**Version 1.1**, in [edition 2026.11.1](../../about/archive.md#edition-2026-11-1) (November 1, 2026). Every edition is kept on the [Archive](../../about/archive.md) page; every change between editions is in the [commit history](https://github.com/WhalerMike/modernization-workbook/commits/main/docs/books/guides/hcm-entra-implementation.md).
+**Version 1.2**, in [edition 2026.11.3](../../about/archive.md#edition-2026-11-3) (November 5, 2026). Every edition is kept on the [Archive](../../about/archive.md) page; every change between editions is in the [commit history](https://github.com/WhalerMike/modernization-workbook/commits/main/docs/books/guides/hcm-entra-implementation.md).
 
 | Version | Edition | Date | Changes |
 |---|---|---|---|
+| 1.2 | [2026.11.3](../../about/archive.md#edition-2026-11-3) | 2026-11-05 | Review gate: Mike's approval of the 15 implementation guides gated on November 3 ([#348](https://github.com/WhalerMike/modernization-workbook/pull/348)) |
 | 1.1 | [2026.11.1](../../about/archive.md#edition-2026-11-1) | 2026-11-01 | Edition 2026.11: record the edition, and publish the four gate-level decks and videos ([#282](https://github.com/WhalerMike/modernization-workbook/pull/282)) |
 | 1.0 | [2026.11](../../about/archive.md#edition-2026-11) | 2026-11-01 | Retire Research: move each page to a home by type (guides, training, reference, evaluations, explainers) ([#269](https://github.com/WhalerMike/modernization-workbook/pull/269)) |
 

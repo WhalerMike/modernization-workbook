@@ -18,12 +18,12 @@ The workbook grew as separate whitepapers, guides, series and case studies. The 
 | Book | Topic | Opening question | Status | Chapters | Pages | Last updated |
 |---|---|---|---|---:|---:|---|
 | **B00** | **[Orientation & Program](b00-orientation/index.md)** | **Why modernize, and why now?** | **Draft** | 10 + 3 app. | 215 | 2026-11-05 |
-| **B01** | **[The Transformation Arc: Client-Server to Hybrid Cloud](b01-transformation-arc/index.md)** | **Why is modernization so hard?** | **Draft** | 12 + 2 app. | 170 | 2026-11-01 |
+| **B01** | **[The Transformation Arc: Client-Server to Hybrid Cloud](b01-transformation-arc/index.md)** | **Why is modernization so hard?** | **Draft** | 12 + 2 app. | 170 | 2026-11-05 |
 | **B02** | **[Identity & Directory: AD to Entra ID](b02-identity/index.md)** | **Why does identity matter?** | **Draft** | 11 + 3 app. | 345 | 2026-11-01 |
 | **B03** | **[HR-Driven Identity & Lifecycle](b03-hr-identity/index.md)** | **Why should HR, not IT, decide who exists?** | **Draft** | 14 + 3 app. | 200 | 2026-11-03 |
 | **B04** | **[Access & Privilege](b04-access/index.md)** | **Why is every access decision a policy decision?** | **Draft** | 10 + 2 app. | 285 | 2026-11-03 |
-| **B05** | **[Devices & Endpoints: GPO to Intune and Arc](b05-devices/index.md)** | **Why can't Group Policy come to the cloud?** | **Draft** | 10 + 1 app. | 275 | 2026-11-01 |
-| **B06** | **[Data Platform: SQL Server Identity](b06-data-platform/index.md)** | **Why is the database where legacy authentication hides?** | **Draft** | 33 + 3 app. | 275 | 2026-11-03 |
+| **B05** | **[Devices & Endpoints: GPO to Intune and Arc](b05-devices/index.md)** | **Why can't Group Policy come to the cloud?** | **Draft** | 10 + 1 app. | 275 | 2026-11-05 |
+| **B06** | **[Data Platform: SQL Server Identity](b06-data-platform/index.md)** | **Why is the database where legacy authentication hides?** | **Draft** | 33 + 3 app. | 275 | 2026-11-05 |
 | **B07** | **[PKI & Certificates](b07-pki/index.md)** | **Why do certificates outlive every migration?** | **Draft** | 9 + 3 app. | 195 | 2026-11-03 |
 | **B08** | **[DNS, DHCP & IPAM](b08-ddi/index.md)** | **Why is DNS now the control plane?** | **Draft** | 12 + 3 app. | 190 | 2026-11-01 |
 | **B09** | **[Network & Transport](b09-network/index.md)** | **Why does physics decide the architecture?** | **Draft** | 13 + 3 app. | 295 | 2026-11-01 |

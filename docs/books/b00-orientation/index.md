@@ -75,10 +75,11 @@ This is Book 00 of the [Federal Modernization Workbook](../index.md), the front 
 
 ## Version and revision history {#version-history}
 
-**Version 1.2**, in [edition 2026.11.1](../../about/archive.md#edition-2026-11-1) (November 1, 2026). Every edition is kept on the [Archive](../../about/archive.md) page; every change between editions is in the [commit history](https://github.com/WhalerMike/modernization-workbook/commits/main/docs/books/b00-orientation).
+**Version 1.3**, in [edition 2026.11.3](../../about/archive.md#edition-2026-11-3) (November 5, 2026). Every edition is kept on the [Archive](../../about/archive.md) page; every change between editions is in the [commit history](https://github.com/WhalerMike/modernization-workbook/commits/main/docs/books/b00-orientation).
 
 | Version | Edition | Date | Changes |
 |---|---|---|---|
+| 1.3 | [2026.11.3](../../about/archive.md#edition-2026-11-3) | 2026-11-05 | Book decks: narration names the book or the original source, and 68 videos re-exported ([#344](https://github.com/WhalerMike/modernization-workbook/pull/344)); Source links: slides link their sources, YouTube descriptions, and sources on the Watch page ([#349](https://github.com/WhalerMike/modernization-workbook/pull/349)); Source Register: a permanent row for every source, under revision control ([#350](https://github.com/WhalerMike/modernization-workbook/pull/350)); Book 00 Chapter 01: the workbook's Windows Server planning standard ([#352](https://github.com/WhalerMike/modernization-workbook/pull/352)); YouTube descriptions: a bare link names its Source Register row ([#354](https://github.com/WhalerMike/modernization-workbook/pull/354)); Decks and narration: the Windows Server standard in ten decks ([#355](https://github.com/WhalerMike/modernization-workbook/pull/355)) |
 | 1.2 | [2026.11.1](../../about/archive.md#edition-2026-11-1) | 2026-11-01 | Edition 2026.11: record the edition, and publish the four gate-level decks and videos ([#282](https://github.com/WhalerMike/modernization-workbook/pull/282)) |
 | 1.1 | [2026.11](../../about/archive.md#edition-2026-11) | 2026-11-01 | Move the decks and narration audio out of git, onto edition 2026.10 ([#260](https://github.com/WhalerMike/modernization-workbook/pull/260)); Retire Research: move each page to a home by type (guides, training, reference, evaluations, explainers) ([#269](https://github.com/WhalerMike/modernization-workbook/pull/269)) |
 | 1.0 | [2026.10](../../about/archive.md#edition-2026-10) | 2026-10-31 | First edition (23 merged changes since the book began) |

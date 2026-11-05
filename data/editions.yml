@@ -519,6 +519,153 @@ editions:
           - "HR-Driven Identity labs: exact commands for every step, real output, commands lists (#293)"
           - "Ticket-to-Machine: federal requirements, KSIs and evidence for every scripted kit action (#301)"
           - "Building Ticket-to-Machine, Chapter 09: deploying to test and production (#302)"
+  - id: edition-2026.11.3
+    date: 2026-11-05
+    commit: 1c7092b7de927ada1299e38836da5a1013d53e38
+    summary: "Adds the workbook's Windows Server planning standard (Windows Server 2016 gone by January 12, 2027, Server 2019 as the minimum), slide source links through the Source Register in ten decks, narration that names the original source, and the training module decks."
+    units:
+      b00-orientation:
+        changes:
+          - "Book decks: narration names the book or the original source, and 68 videos re-exported (#344)"
+          - "Source links: slides link their sources, YouTube descriptions, and sources on the Watch page (#349)"
+          - "Source Register: a permanent row for every source, under revision control (#350)"
+          - "Book 00 Chapter 01: the workbook's Windows Server planning standard (#352)"
+          - "YouTube descriptions: a bare link names its Source Register row (#354)"
+          - "Decks and narration: the Windows Server standard in ten decks (#355)"
+      b01-transformation-arc:
+        changes:
+          - "Book decks: narration names the book or the original source, and 68 videos re-exported (#344)"
+          - "Windows Server standard across the books, guide, Arc policy and endpoint plan (#353)"
+          - "Decks and narration: the Windows Server standard in ten decks (#355)"
+      b02-identity:
+        changes:
+          - "Book decks: narration names the book or the original source, and 68 videos re-exported (#344)"
+      b03-hr-identity:
+        changes:
+          - "Book decks: narration names the book or the original source, and 68 videos re-exported (#344)"
+      b04-access:
+        changes:
+          - "Book decks: narration names the book or the original source, and 68 videos re-exported (#344)"
+      b05-devices:
+        changes:
+          - "Book decks: narration names the book or the original source, and 68 videos re-exported (#344)"
+          - "Windows Server standard across the books, guide, Arc policy and endpoint plan (#353)"
+          - "Decks and narration: the Windows Server standard in ten decks (#355)"
+      b06-data-platform:
+        changes:
+          - "Book decks: narration names the book or the original source, and 68 videos re-exported (#344)"
+          - "Windows Server standard across the books, guide, Arc policy and endpoint plan (#353)"
+      b07-pki:
+        changes:
+          - "Book decks: narration names the book or the original source, and 68 videos re-exported (#344)"
+      b08-ddi:
+        changes:
+          - "Book decks: narration names the book or the original source, and 68 videos re-exported (#344)"
+      b09-network:
+        changes:
+          - "Book decks: narration names the book or the original source, and 68 videos re-exported (#344)"
+      b10-cloud-boundary:
+        changes:
+          - "Book decks: narration names the book or the original source, and 68 videos re-exported (#344)"
+      b11-zero-trust:
+        changes:
+          - "Book decks: narration names the book or the original source, and 68 videos re-exported (#344)"
+      b12-security-operations:
+        changes:
+          - "Book decks: narration names the book or the original source, and 68 videos re-exported (#344)"
+      b13-governance:
+        changes:
+          - "Book decks: narration names the book or the original source, and 68 videos re-exported (#344)"
+      b14-compliance:
+        changes:
+          - "Book decks: narration names the book or the original source, and 68 videos re-exported (#344)"
+      b15-day2-operations:
+        changes:
+          - "Book decks: narration names the book or the original source, and 68 videos re-exported (#344)"
+      b16-people:
+        changes:
+          - "Book decks: narration names the book or the original source, and 68 videos re-exported (#344)"
+      b17-ai-identity:
+        changes:
+          - "Book decks: narration names the book or the original source, and 68 videos re-exported (#344)"
+      b18-application-modernization:
+        changes:
+          - "Book decks: narration names the book or the original source, and 68 videos re-exported (#344)"
+      b19-developer-workbook:
+        changes:
+          - "Review gate: Mike's approval of the 53 pages in the November 2 review packet (#334)"
+          - "Review gate: cover the guides and training; document the VK-DG-03 exception (#336)"
+          - "Review gate: Mike's approval of four pages changed on November 3 (#341)"
+      guides/ansible-configuration-automation:
+        changes:
+          - "Review gate: Mike's approval of the 15 implementation guides gated on November 3 (#348)"
+      guides/arc-track-implementation:
+        changes:
+          - "Review gate: Mike's approval of the 15 implementation guides gated on November 3 (#348)"
+          - "Windows Server standard across the books, guide, Arc policy and endpoint plan (#353)"
+          - "Approve the Arc track guide on Mike's word (#358)"
+      guides/attribute-driven-migration-implementation:
+        changes:
+          - "Deck and audio links point at edition 2026.11.3"
+      guides/attribute-driven-migration:
+        changes:
+          - "Review gate: Mike's approval of the 15 implementation guides gated on November 3 (#348)"
+      guides/cisco-sdwan-implementation:
+        changes:
+          - "Review gate: Mike's approval of the 15 implementation guides gated on November 3 (#348)"
+      guides/cyberark-certificate-lifecycle:
+        changes:
+          - "Review gate: Mike's approval of the 15 implementation guides gated on November 3 (#348)"
+      guides/effective-meetings:
+        changes:
+          - "Review gate: Mike's approval of the 15 implementation guides gated on November 3 (#348)"
+      guides/hcm-entra-implementation:
+        changes:
+          - "Review gate: Mike's approval of the 15 implementation guides gated on November 3 (#348)"
+      guides/hr-driven-identity-implementation:
+        changes:
+          - "Review gate: Mike's approval of the 15 implementation guides gated on November 3 (#348)"
+      guides/infoblox-nios-implementation:
+        changes:
+          - "Review gate: Mike's approval of the 15 implementation guides gated on November 3 (#348)"
+      guides/intune-track-implementation:
+        changes:
+          - "Review gate: Mike's approval of the 15 implementation guides gated on November 3 (#348)"
+      guides/non-person-identity-implementation:
+        changes:
+          - "NPI: apply the November 3 decisions on the discrepancies (#338)"
+          - "Review gate: Mike's approval of the 15 implementation guides gated on November 3 (#348)"
+      guides/privileged-access-implementation:
+        changes:
+          - "Privileged Access: fixes found preparing a live test-tenant run (#332)"
+          - "Review gate: Mike's approval of the 15 implementation guides gated on November 3 (#348)"
+      guides/snow-sailpoint-integration-kit:
+        changes:
+          - "Review gate: Mike's approval of the 15 implementation guides gated on November 3 (#348)"
+      guides/ttm-servicenow-sailpoint:
+        changes:
+          - "Review gate: Mike's approval of the 15 implementation guides gated on November 3 (#348)"
+      guides/ttm-task-catalog:
+        changes:
+          - "Review gate: Mike's approval of the 15 implementation guides gated on November 3 (#348)"
+      developer-workbooks/hr-driven-identity:
+        changes:
+          - "Review gate: Mike's approval of the 53 pages in the November 2 review packet (#334)"
+      developer-workbooks/non-person-identity:
+        changes:
+          - "Review gate: Mike's approval of the 53 pages in the November 2 review packet (#334)"
+          - "NPI: apply the November 3 decisions on the discrepancies (#338)"
+          - "Training: a narrated video for every Non-Person Identity module, following the settled decisions (#340)"
+          - "Review gate: Mike's approval of four pages changed on November 3 (#341)"
+          - "Review gate: Mike's approval of NPI Chapter 06 (#343)"
+      developer-workbooks/privileged-access:
+        changes:
+          - "Privileged Access: fixes found preparing a live test-tenant run (#332)"
+          - "PIM alert check: a refused role policy read is a Finding, not the end of the run (#333)"
+          - "Review gate: Mike's approval of the 53 pages in the November 2 review packet (#334)"
+      developer-workbooks/ticket-to-machine:
+        changes:
+          - "Review gate: Mike's approval of the 53 pages in the November 2 review packet (#334)"
 # (scripts/cut_edition.py adds each new edition at the end of the list above.)
 
 # Releases that aren't editions (kits, video sets), listed on the Archive page.
