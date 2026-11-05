@@ -82,13 +82,25 @@ The second set of clocks is the support lifecycle of what the estate runs. After
 | Exchange Server 2016 and 2019; Office 2016 and 2019 | October 14, 2025[^c01-eos2025] | Passed |
 | SQL Server 2016; SharePoint Server 2016 and 2019 | July 14, 2026[^c01-eos2026] | Passed |
 | Windows Server 2012 and 2012 R2, Extended Security Updates Year 3 | October 13, 2026[^c01-eos2026] | Passed |
-| Windows Server 2016 | January 12, 2027[^c01-eos2027] | Under three months away |
+| Windows Server 2016 | January 12, 2027[^c01-eos2027] | The workbook's planning deadline; see the standard below |
 | SQL Server 2017 | October 12, 2027[^c01-eos2027] | About a year away |
 | Windows Server 2019; Microsoft Identity Manager 2016 | January 9, 2029[^c01-eos2029] | Within a typical program's horizon |
 
-Two of these deserve a note. Microsoft extended Microsoft Identity Manager 2016's end of support from January 13, 2026 to January 9, 2029,[^c01-mim] so an agency that synchronizes HR data into Active Directory through it has a date, not an open-ended bridge. And Windows Server 2016 is the operating system of many domain controllers built in the last decade; its date falls inside the window in which most agencies will still be running a forest.
+Two of these deserve a note. Microsoft extended Microsoft Identity Manager 2016's end of support from January 13, 2026 to January 9, 2029,[^c01-mim] so an agency that synchronizes HR data into Active Directory through it has a date, not an open-ended bridge. And Windows Server 2019, the minimum in the standard below, shares that date, which falls inside the window in which most agencies will still be running a forest.
 
 A vendor date is not a federal mandate on its own, but the two connect. BOD 26-02 turns end of support into a directed action for internet-facing edge devices,[^c01-bod2602] and every system security plan asserts flaw remediation that an unsupported product can't deliver. Running past end of support becomes a risk acceptance an authorizing official has to sign.
+
+### The workbook's server standard
+
+This workbook plans on Windows Server 2016 being gone from production by its January 12, 2027 end of support, with Windows Server 2019 as the minimum. Any 2016 server that remains is an exception, with Extended Security Updates through Azure Arc, a signed risk acceptance and a retirement date.
+
+This is the workbook's planning standard. It isn't a federal requirement, and it isn't a count of where agencies stand. An agency that still runs 2016 servers on that date can use everything here, and handles each of those servers as an exception.
+
+Microsoft doesn't offer the exception path as a way to stay. It calls Extended Security Updates a "last resort" and "a temporary bridge."[^c01-esu-faq] They deliver Critical and Important security updates for up to three years, through 2030, and they don't extend the product's lifecycle or add general technical support.[^c01-esu-faq][^c01-arc-esu] Enrollment through Azure Arc has been open since August 3, 2026, and billing begins January 13, 2027.[^c01-arc-esu] [Book 05, Chapter 09](../b05-devices/09-servers-under-azure-arc.md#extended-security-updates) covers the enrollment.
+
+A current operating system buys time, but it doesn't modernize the estate. A domain controller on Windows Server 2019 serves the same forest as the one it replaced, and the same implicit governance still sits in that forest. Server 2019 has its own date, January 9, 2029, so the next upgrade is already on the clock.
+
+One use of the name continues. Windows Server 2016 is also a functional level: the most recent one for domain controllers on Server 2019 and 2022, and the minimum for adding a Server 2025 domain controller.[^c01-fl] A forest with no 2016 servers can still report that level, and that's expected.
 
 ### What the clocks don't require
 
@@ -107,7 +119,7 @@ Federal modernization has usually been attempted as a sequence of independent pr
 
 Every project touches the same implicit decisions. Moving devices to Intune needs the policy that GPO links carried. Retiring AD-integrated DNS needs the names the forest registered. Moving certificate trust needs the enrollment the directory controlled. Enforcing Conditional Access needs the access that groups granted. If each project rediscovers those decisions on its own, they are rediscovered differently, and the estate ends up with several partial answers to the same question. If no project owns them, they fall between projects until something breaks.
 
-The clocks make the cost visible. The external dates in the tables above don't line up with any single project's scope. A Windows Server 2016 deadline touches domain controllers, certificate authorities, file servers and line-of-business applications at once. M-26-14's logging objectives apply to every information system the agency owns or operates, including those run by third parties on its behalf.[^c01-m2614] A program can sequence the work against those dates. A collection of projects can only race them.
+The clocks make the cost visible. The external dates in the tables above don't line up with any single project's scope. A Windows Server end-of-support date, as 2016's did and 2019's will, touches domain controllers, certificate authorities, file servers and line-of-business applications at once. M-26-14's logging objectives apply to every information system the agency owns or operates, including those run by third parties on its behalf.[^c01-m2614] A program can sequence the work against those dates. A collection of projects can only race them.
 
 The sequencing has a logic of its own, and it starts with identity. Policy, access, devices and data all decide on the basis of who or what is asking, so identity has to be authoritative before the decisions that depend on it can be trusted. Network services, addressing and certificates follow, because they carry the names and trust everything else relies on. Telemetry and automated governance come last in the build and first in importance once running, because they are how the program proves that the target state holds. That is the program's design position, and [Book 01, Chapter 12](../b01-transformation-arc/12-migration-roadmap.md) turns it into seven phases and six gates.
 
@@ -171,5 +183,8 @@ The case for modernizing now is not that something breaks on a particular date. 
 [^c01-eos2025]: Microsoft Learn, "Ending Support in 2025," <https://learn.microsoft.com/lifecycle/end-of-support/end-of-support-2025> (accessed Oct 21, 2026).
 [^c01-eos2026]: Microsoft Learn, "Ending Support in 2026" (what end of support means; SQL Server 2016 and SharePoint Server 2016 and 2019 on July 14, 2026; Windows Server 2012 and 2012 R2 ESU Year 3 on October 13, 2026), <https://learn.microsoft.com/lifecycle/end-of-support/end-of-support-2026> (accessed Oct 21, 2026).
 [^c01-eos2027]: Microsoft Learn, "Ending Support in 2027," <https://learn.microsoft.com/lifecycle/end-of-support/end-of-support-2027> (accessed Oct 21, 2026).
+[^c01-esu-faq]: Microsoft Learn, "Lifecycle FAQ - Extended Security Updates" ("a last resort paid option"; "a temporary bridge to stay secure while one migrates"; the program doesn't extend the product's lifecycle and doesn't include general technical support), <https://learn.microsoft.com/lifecycle/faq/extended-security-updates> (accessed Nov 5, 2026).
+[^c01-arc-esu]: Microsoft Learn, "Prepare to deliver Extended Security Updates for Windows Server" (Windows Server 2016: Critical and Important security updates for up to three years, through 2030; configurable in the Azure portal from August 3, 2026; billing begins January 13, 2027), <https://learn.microsoft.com/azure/azure-arc/servers/prepare-extended-security-updates> (accessed Nov 5, 2026).
+[^c01-fl]: Microsoft Learn, "Active Directory Domain Services functional levels" (Windows Server 2019 and 2022 use Windows Server 2016 as the most recent functional level), <https://learn.microsoft.com/windows-server/identity/ad-ds/active-directory-functional-levels>, and "Identifying your functional level upgrade" (existing domains must be at the Windows Server 2016 domain and forest functional levels to promote a Windows Server 2025 domain controller), <https://learn.microsoft.com/windows-server/identity/ad-ds/plan/identifying-your-functional-level-upgrade> (accessed Nov 5, 2026).
 [^c01-eos2029]: Microsoft Learn, "Ending Support in 2029" (Windows Server 2019 and Microsoft Identity Manager 2016, January 9, 2029), <https://learn.microsoft.com/lifecycle/end-of-support/end-of-support-2029> (accessed Oct 21, 2026).
 [^c01-mim]: Microsoft Learn, "Microsoft Identity Manager 2016 news and updates," Updates in MIM 2016 SP3 (end of support extended from January 13, 2026 to January 9, 2029), <https://learn.microsoft.com/microsoft-identity-manager/microsoft-identity-manager-2016> (accessed Oct 21, 2026).
