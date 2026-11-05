@@ -37,7 +37,7 @@ Book 03 — HR-Driven Identity: https://whalermike.github.io/modernization-workb
 Sources, each with its link to the original
 Microsoft lifecycle pages: https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#ending-support-in-2026
 CISA BOD 25-01: https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-25-01
-bod-26-02: https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-26-02
+CISA BOD 26-02: https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-26-02
 OMB M-26-14: https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-26-14
 OMB/OPM memo Dec. 10, 2025: https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#creating-federal-hr-2-0-by-consolidating
 OPM award: https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#opm-awards-contract-for-first-ever
