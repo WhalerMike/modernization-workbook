@@ -9,8 +9,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
 review-status: approved
-reviewed-sha256: 308dec0a05be0952641080c27ba620665d353fe137826f7471b45c00694a3129
-last-reviewed: 2026-11-03
+reviewed-sha256: ae6fd8c535bcaee26c65f07b2c0aead75956e639a4e29ac1fb2cf5c8359d1f22
+last-reviewed: 2026-11-05
 ---
 # Azure Arc Track: Implementation Guide
 
