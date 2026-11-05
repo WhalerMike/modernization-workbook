@@ -1,0 +1,326 @@
+[
+ {
+  "slide": 2,
+  "title": "Four eras built the estate; none kept one truth",
+  "links": [
+   {
+    "text": "Book 01, Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/01-why-modernization-is-hard.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "Sessions carried trust; tokens are checked each time",
+  "links": [
+   {
+    "text": "continuous access evaluation",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#continuous-access-evaluation"
+   },
+   {
+    "text": "Book 01, Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/01-why-modernization-is-hard.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "The OU tree was the governance tree",
+  "links": [
+   {
+    "text": "Book 01, Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/02-the-problem.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Eleven categories, and the failures are silent",
+  "links": [
+   {
+    "text": "Book 01, Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/02-the-problem.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "One governed host, five roles, one writer",
+  "links": [
+   {
+    "text": "Windows Server release information",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#windows-server-release-information"
+   },
+   {
+    "text": "OMB M-26-14",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-26-14"
+   },
+   {
+    "text": "Book 01, Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/03-platform-foundation.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Identity: one HR stamp drives five outcomes",
+  "links": [
+   {
+    "text": "OMB M-22-09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
+   },
+   {
+    "text": "NIST SP 800-207",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-207"
+   },
+   {
+    "text": "dynamic membership rules and processing",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#understand-and-manage-dynamic-group"
+   },
+   {
+    "text": "Book 01, Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/04-identity-transformation.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Four tracks, each with its own source of truth",
+  "links": [
+   {
+    "text": "Book 01, Chapters 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/01-why-modernization-is-hard.html"
+   },
+   {
+    "text": "04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/04-identity-transformation.html"
+   },
+   {
+    "text": "07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/07-compute-transformation.html"
+   },
+   {
+    "text": "08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/08-access-plane.html"
+   },
+   {
+    "text": "Appendix A",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/appendix-a-requirements-mapping.html"
+   },
+   {
+    "text": "Book 05, Chapters 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/03-where-device-and-server-data-lives.html"
+   },
+   {
+    "text": "09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html"
+   },
+   {
+    "text": "Book 02, Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/09-building-the-entra-target.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Policy: regenerate Group Policy, don't copy it",
+  "links": [
+   {
+    "text": "Intune conflicts",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#common-questions-answers-and-scenarios-with"
+   },
+   {
+    "text": "Conditional Access",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-conditional-access"
+   },
+   {
+    "text": "CISA BOD 25-01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-25-01"
+   },
+   {
+    "text": "Book 01, Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/05-policy-transformation.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "DNS, DHCP and IPAM move together, and with AD",
+  "links": [
+   {
+    "text": "AD-integrated DNS zones",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#active-directory-integrated-dns-zones"
+   },
+   {
+    "text": "NIST SP 800-53",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "Book 01, Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/06-network-services.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Compute: the domain join is the last thing to go",
+  "links": [
+   {
+    "text": "NTLM deprecation",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#audit-use-of-ntlmv1-on-a-windows-server"
+   },
+   {
+    "text": "Book 01, Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/07-compute-transformation.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "The access plane: every request decided again",
+  "links": [
+   {
+    "text": "OMB M-22-09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
+   },
+   {
+    "text": "NIST SP 800-207",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-207"
+   },
+   {
+    "text": "CISA BOD 25-01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-25-01"
+   },
+   {
+    "text": "AD CS",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-active-directory-certificate"
+   },
+   {
+    "text": "PIM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-microsoft-entra-privileged-identity"
+   },
+   {
+    "text": "continuous access evaluation",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#continuous-access-evaluation"
+   },
+   {
+    "text": "Book 01, Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/08-access-plane.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Instruments versus orchestra: who leads it",
+  "links": [
+   {
+    "text": "NIST SP 800-37 Rev. 2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-37"
+   },
+   {
+    "text": "OMB M-22-09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
+   },
+   {
+    "text": "M-19-17",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-19-17"
+   },
+   {
+    "text": "CISA BOD 25-01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-25-01"
+   },
+   {
+    "text": "Book 01, Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/09-who-leads-the-transformation.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Inventory first: read-only, with provenance",
+  "links": [
+   {
+    "text": "NIST SP 800-53",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "Book 01, Chapter 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/10-analyzing-the-estate.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Analyze, plan, deliver, under an actuation ceiling",
+  "links": [
+   {
+    "text": "CISA Zero Trust Maturity Model v2.0",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cisa-ztmm"
+   },
+   {
+    "text": "OMB M-22-09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
+   },
+   {
+    "text": "M-26-14",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-26-14"
+   },
+   {
+    "text": "Book 01, Chapters 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/03-platform-foundation.html"
+   },
+   {
+    "text": "11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/11-analysis-plan-delivery.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "The roadmap: seven phases, gated by data",
+  "links": [
+   {
+    "text": "NIST SP 800-207",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-207"
+   },
+   {
+    "text": "FedRAMP Consolidated Rules for 2026",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-2026"
+   },
+   {
+    "text": "Using a FedRAMP Certified Cloud Service",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#using-a-fedramp-certified-cloud-service"
+   },
+   {
+    "text": "Book 01, Chapter 12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html"
+   }
+  ]
+ },
+ {
+  "slide": 17,
+  "title": "Decisions to make, and next steps",
+  "links": [
+   {
+    "text": "OMB M-22-09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
+   },
+   {
+    "text": "NIST SP 800-37 Rev. 2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-37"
+   },
+   {
+    "text": "Book 01, Chapters 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/09-who-leads-the-transformation.html"
+   },
+   {
+    "text": "10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/10-analyzing-the-estate.html"
+   },
+   {
+    "text": "12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html"
+   }
+  ]
+ }
+]
