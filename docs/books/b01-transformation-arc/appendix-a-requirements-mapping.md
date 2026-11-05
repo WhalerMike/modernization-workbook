@@ -73,7 +73,7 @@ The modernization whitepaper that Chapters 10 to 12 absorbed, and much of what c
 ## Reading the SP 800-53 controls
 
 - **Baseline membership.** AC-2, AC-3, AC-17, IA-2 with enhancements (1), (2) and (12), IA-5, CM-2, CM-6, CM-8, SA-8, SA-22, SC-20, SC-21, SC-22, AU-2, AU-6, AU-12, SI-4 and CA-7 are in the Low, Moderate and High baselines. AC-6, AC-6(7), CM-3 and IA-5(2) are in Moderate and High.[^aA-53b]
-- **SA-22 is the control the end-of-support dates land on.** Windows Server 2012 and 2012 R2 Extended Security Updates through Azure Arc ended on October 13, 2026, and Windows Server 2016 reaches end of support on January 12, 2027 ([Chapter 10](10-analyzing-the-estate.md)); every such server needs a replacement or a documented justification.
+- **SA-22 is the control the end-of-support dates land on.** Windows Server 2012 and 2012 R2 Extended Security Updates through Azure Arc ended on October 13, 2026, and Windows Server 2016's end of support is January 12, 2027 ([Chapter 10](10-analyzing-the-estate.md)); every such server needs a replacement or a documented justification. Under the workbook's [server standard](../b00-orientation/01-why-modernize-now.md#the-workbooks-server-standard), the justification for a remaining 2016 server is a recorded exception, with Extended Security Updates, a signed risk acceptance and a retirement date.
 - **Release.** Control identifiers and titles are from SP 800-53 Rev. 5, release 5.2.0.[^aA-53]
 
 ## Sources

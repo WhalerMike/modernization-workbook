@@ -42,7 +42,7 @@ NTLMv2 has a firm backstop: on 2027-04-01 the program's enforcement phase disabl
 ## What is actually due in 2027
 Nothing in Microsoft's NTLM roadmap or in M-22-09 falls due on 2027-04-01; that date is the program's. Three external lifecycle dates in 2027 do bear on the SQL Server estate, and they reinforce the order this book sets:
 
-- **Windows Server 2016** leaves extended support on January 12, 2027.[^c02-ws2016]
+- **Windows Server 2016** has an extended support end date of January 12, 2027.[^c02-ws2016]
 - **SQL Server 2014** reaches the end of its third and final Extended Security Update year in July 2027; SQL Server 2016's first ESU year also ends then.[^c02-sql2014][^c02-sql2016]
 - **SQL Server 2017** leaves extended support on October 12, 2027.[^c02-sql2017]
 

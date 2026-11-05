@@ -69,3 +69,7 @@ The Start Kit gained transaction profiling. Microsoft source opened October 29, 
 |---|---|---|---|---|
 | 1 | The Start Kit's `Invoke-FMPTransactionProfile` builds `transaction-profiles/` from a team catalog and measured round trips (packet capture export, SQL Server connection counters, or a named tool), refuses estimates, and marks each application Pass or Blocked | Profiling transactions before separation | added; implementation | examples/start-kit (PR in this change); tests/powershell, 197 Pester tests passing on Windows PowerShell 5.1 and PowerShell 7, Oct 29, 2026 |
 | 2 | SQL Server counter method reads `sys.dm_exec_connections.num_reads` (documented as byte reads) with SELECT-only T-SQL; needs VIEW SERVER STATE, or VIEW SERVER PERFORMANCE STATE on 2022 and later | Same (README carries the detail) | verified | Microsoft Learn, sys.dm_exec_connections (Transact-SQL) |
+
+## Server standard, November 5, 2026
+
+Added the exception sentence; dates carried from row 11. The standard itself is verified in Book 00's Chapter 01 log, rows S1 to S7.

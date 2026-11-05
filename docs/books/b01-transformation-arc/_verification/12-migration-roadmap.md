@@ -90,3 +90,7 @@ W5 owns the journey, phases and roadmap parts. Other parts are listed with their
 | Federal Framework Alignment table | Appendix A requirements mapping and "cited but don't say" table | Each row checked; corrections listed in Appendix A's verification file |
 | Call to Action | Ch 12 "Where to start" | — |
 | Appendix — Narrative provenance mapped to program canon | — | Not carried: it maps the paper to internal decision records and names internal series; the workbook is self-contained and the paper itself marks the appendix as separable |
+
+## Server standard, November 5, 2026
+
+Tense only; dates carried from row 19. The standard itself is verified in Book 00's Chapter 01 log, rows S1 to S7.

@@ -89,3 +89,7 @@ Existing: VK-ARC-01 to VK-ARC-05; VK-NPI-01, VK-NPI-02, VK-NPI-03, VK-NPI-07.
 | Claim | Where | Verdict |
 |---|---|---|
 | Optional `PatchOwner` tag mirroring the CMDB's patch owner; only `UpdateManager` servers get scheduled patching | Step 2 tag table | design guidance, labeled; links Book 05 Ch 09, Azure Update Manager, which carries the rule and its verification (G6) |
+
+## Server standard, November 5, 2026
+
+ESU guidance reworded as the exception path; dates carried. The standard itself is verified in Book 00's Chapter 01 log, rows S1 to S7.

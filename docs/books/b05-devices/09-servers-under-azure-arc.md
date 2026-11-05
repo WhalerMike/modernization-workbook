@@ -258,7 +258,7 @@ Arc is also how many organizations keep end-of-support servers patched while the
 | SQL Server 2014 | ESU year 3 | ESUs available until July 2027[^c09-sql-esu] |
 | SQL Server 2016 | ESU year 1 (from July 14, 2026) | ESUs available until July 17, 2029[^c09-sql-esu] |
 
-Any Windows Server 2012 or 2012 R2 host still running now receives no further security updates through any channel. Treat it as a red finding: migrate or upgrade it, or isolate it and record the risk acceptance. Windows Server 2016 hosts should be connected and enrolled before January 12, 2027 if they won't be upgraded in time.
+Any Windows Server 2012 or 2012 R2 host still running now receives no further security updates through any channel. Treat it as a red finding: migrate or upgrade it, or isolate it and record the risk acceptance. Under the workbook's [server standard](../b00-orientation/01-why-modernize-now.md#the-workbooks-server-standard), any Windows Server 2016 host that remains is an exception: connect and enroll it before January 12, 2027, record the signed risk acceptance and set its retirement date.
 
 ESUs through Arc are billed monthly through Azure, need no product keys on the server, and show coverage per server in the portal. Purchasing them needs Software Assurance through a volume licensing program, unless the servers are licensed through SPLA or a server subscription. Don't use Arc to deliver ESUs to VDI virtual machines; use Multiple Activation Keys instead.[^c09-esu] A server connected only for ESUs can run with a reduced endpoint list, and its extension allowlist can be set to `Allow/None` so the extension manager runs for billing without allowing any extension to install.[^c09-esu][^c09-agent-archive]
 
@@ -357,7 +357,7 @@ Servers aren't Intune-managed, so they can't get certificates from Cloud PKI. Af
 1. Arc attaches the management plane: an Azure resource ID, RBAC, tags, policy and extensions. It doesn't change domain membership or authentication by itself.
 2. Onboard with a dedicated, certificate-based service principal holding only the onboarding role on the target resource group, and remove the credential when the wave closes.
 3. A connected server is governed only once machine configuration, Update Manager and Defender for Servers are attached and their results are watched.
-4. Windows Server 2012 left ESU coverage on October 13, 2026; Windows Server 2016 needs Arc ESU enrollment before January 12, 2027 if it can't be upgraded.
+4. Windows Server 2012 left ESU coverage on October 13, 2026; any Windows Server 2016 host that remains is an exception and needs Arc ESU enrollment before January 12, 2027.
 5. Entra ID sign-in is available on Windows Server 2025 with Desktop Experience and on Linux. It Entra-joins the Windows server and doesn't bring Conditional Access with it.
 
 ::: {.callout-tip}

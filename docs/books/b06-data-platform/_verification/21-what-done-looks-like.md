@@ -45,3 +45,7 @@ Source: the existing page `21-what-done-looks-like.md` (former narrative Book 09
 | § 2027-04-01: A Consequence, Not a Completion Date (+ diagram) | Kept argument; "network-level" corrected; links to R05, Chapters 15 and 22 | edited |
 | Diagram source `book-09-ch02-reading-2027-04-01.flow.yaml` | Node b: tag "2027-04-01 (program date)"; body "Domain-wide; ignores the engine exception registry" (was "Network-level; ignores exceptions") | edited (needs re-render) |
 | "What Book 09 establishes — Chapter 2" callout | "What this chapter establishes"; item 3 restated; item 4 added | edited |
+
+## Server standard, November 5, 2026
+
+Tense only; date carried. The standard itself is verified in Book 00's Chapter 01 log, rows S1 to S7.

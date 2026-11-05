@@ -1098,7 +1098,7 @@ Source: ../books/b05-devices/09-servers-under-azure-arc.md#the-day-one-baseline<
     <Task>
       <UID>47</UID>
       <ID>47</ID>
-      <Name>E4.6 Windows Server 2016 hosts that won't be upgraded in time: connected for ESUs before end of support (January 12, 2027), Allow/None allowlist</Name>
+      <Name>E4.6 Any Windows Server 2016 exception hosts: connected for ESUs before end of support (January 12, 2027), Allow/None allowlist</Name>
       <OutlineNumber>5.7</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-01-04T08:00:00</Start>
@@ -1318,7 +1318,7 @@ Source: ../books/b05-devices/09-servers-under-azure-arc.md#monitoring-the-server
       <Milestone>1</Milestone>
       <Contact>CISO / ISSO</Contact>
       <Notes>Owner or approver: CISO / ISSO
-Criteria: Every in-scope server Connected with the full tag taxonomy, or in the exception register with its tier; machine configuration baseline assigned and evaluated, noncompliance filed as findings; Update Manager assessing every server and patching on its PatchGroup schedule; Defender for Servers Plan 2 onboarded; no onboarding credential or certificate file left after any wave; every Windows Server 2016 host upgraded or ESU-covered; rollback rehearsed
+Criteria: Every in-scope server Connected with the full tag taxonomy, or in the exception register with its tier; machine configuration baseline assigned and evaluated, noncompliance filed as findings; Update Manager assessing every server and patching on its PatchGroup schedule; Defender for Servers Plan 2 onboarded; no onboarding credential or certificate file left after any wave; no Windows Server 2016 host remains, or each one is a recorded exception with ESU coverage; rollback rehearsed
 Source: ../books/b05-devices/09-servers-under-azure-arc.md#what-this-chapter-establishes</Notes>
       <PredecessorLink>
         <PredecessorUID>52</PredecessorUID>

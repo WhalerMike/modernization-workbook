@@ -96,7 +96,7 @@ The full matrix, with what Microsoft documents and what is the program's reading
 
 | Population | Arc coverage | Implementation decision |
 |---|---|---|
-| Windows Server 2016, 2019, 2022, 2025 (Desktop and Core) | Supported; 2016 gets new agent versions until February 2030 | Tier 1. Windows Server 2016 reaches end of support January 12, 2027: enroll it in ESUs through Arc first if it won't be upgraded in time ([Book 05](../b05-devices/09-servers-under-azure-arc.md#extended-security-updates)) |
+| Windows Server 2016, 2019, 2022, 2025 (Desktop and Core) | Supported; 2016 gets new agent versions until February 2030 | Tier 1. Windows Server 2016's end of support is January 12, 2027: any host that remains is an exception under the workbook's [server standard](../b00-orientation/01-why-modernize-now.md#the-workbooks-server-standard), enrolled in ESUs through Arc ([Book 05](../b05-devices/09-servers-under-azure-arc.md#extended-security-updates)) |
 | Windows Server 2012 and 2012 R2 | Listed, but no new agent versions after November 2026; ESUs ended October 13, 2026, and Arc support doesn't extend them | Tier 4: migrate, upgrade or isolate with a recorded risk acceptance. Arc still gives inventory, not patches |
 | Linux: RHEL 7–10, Rocky and AlmaLinux 8–9, Oracle Linux 7–10, SLES 12 SP5 and 15, Ubuntu 18.04–26.04, Debian 11–13, Amazon Linux 2 and 2023, Azure Linux 3.0 | Supported, with several releases losing new agent versions after November 2026; not tested on CIS-hardened systems | Tier 1, with a pilot on hardened builds. Releases past their agent end date go on a retirement date or to tier 2 under [Ansible](ansible-configuration-automation.md#linux-and-unix) |
 | VMware vSphere VMs | Arc-enabled VMware vSphere through the resource bridge, then guest management (the agent) | Tier 1 for the guests; ESXi hosts are tier 2 under vCenter ([Ansible guide](ansible-configuration-automation.md#vmware)) |
@@ -253,7 +253,7 @@ Each wave follows Book 05's five steps: prepare, connect, attest and baseline, v
 | 1 | Non-production, all OS families | Turns tag enforcement on; first Update Manager schedules |
 | 2 | Production servers of low criticality | Production change control, maintenance windows |
 | 3 | Production, high criticality; sensitive servers with local agent lockdown | Extension allowlists and `incomingconnections.enabled false` decided per server class first ([Book 05](../b05-devices/09-servers-under-azure-arc.md#lock-down-what-the-agent-will-accept)) |
-| 4 | Windows Server 2016 not upgrading before January 12, 2027 | ESU enrollment in the same change ([Book 05](../b05-devices/09-servers-under-azure-arc.md#extended-security-updates)) |
+| 4 | Windows Server 2016 host remaining past January 12, 2027 | Exception: ESU enrollment in the same change ([Book 05](../b05-devices/09-servers-under-azure-arc.md#extended-security-updates)) |
 | Other clouds and VMware | In parallel, by their own owners | Connector or bridge prerequisites |
 
 : Onboarding waves {.striped .hover}

@@ -161,3 +161,7 @@ Pages read on 2026-10-30 through the Microsoft Learn documentation service; no p
 | G4 | GuestConfiguration module creates, validates, tests, publishes and creates policy; PowerShell 7; PSDesiredStateConfiguration 2.0.7 for Windows; applying packages need Arc agent 1.10.0 or later | Step 3 | verified | `c09-mc-custom` |
 | G5 | `ConvertFrom-GPO` (BaselineManagement) converts GPO backups to DSC; community solution, supported by its maintainers, not Microsoft; quickstart applies to Windows PowerShell 4.0 and 5.0 | Step 4 | verified; "draft, recompile, test in audit" is labeled design guidance | `c09-gpo-dsc` |
 | G6 | One patch owner per server; Update Manager assessment only where another tool patches | Azure Update Manager | design guidance, labeled | — |
+
+## Server standard, November 5, 2026
+
+ESU guidance reworded as the exception path; dates carried from row 44. The standard itself is verified in Book 00's Chapter 01 log, rows S1 to S7.

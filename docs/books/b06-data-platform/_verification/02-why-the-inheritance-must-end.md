@@ -64,3 +64,7 @@ Book-wide consistency pass. *Design-consistency* rows restate a program choice t
 |---|---|---|---|---|
 | CR2-1 | October 2026 `BlockNTLMv1SSO` default change scoped to Windows 11, versions 24H2, 25H2, 26H1 and 26H2, and Windows Server 2025 (was "Windows 11" unqualified); new note `[^c02-ntlmv1-mc]`. Chapter 14 and Runbook R06 ("24H2 through 26H2") were already right | line 33; note line 102 | factual (corrected; this chapter was the wrong one) | Windows message center entry of Oct 14, 2026, <https://learn.microsoft.com/windows/release-health/windows-message-center>; KB5066470, <https://support.microsoft.com/help/5066470> |
 | CR2-2 | `[^c02-blockntlmv1sso]` title updated to the KB's current title, "Manage NTLMv1 changes and prevent network authentication issues in Windows," with its applies-to list; accessed date Oct 21, 2026 | note line 86 | factual (citation corrected) | <https://support.microsoft.com/help/5066470> |
+
+## Server standard, November 5, 2026
+
+Tense only; date carried. The standard itself is verified in Book 00's Chapter 01 log, rows S1 to S7.

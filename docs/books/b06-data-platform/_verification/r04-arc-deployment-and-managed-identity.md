@@ -69,3 +69,7 @@ Book-wide consistency pass. *Design-consistency* rows restate a program choice t
 | # | Change | Where | Kind | Source |
 |---|---|---|---|---|
 | CR2-1 | Host prerequisite "a supported Windows Server host" changed to Windows Server 2019 or later, the program's floor from Chapter 07; adds that SQL Server enabled by Azure Arc itself supports Windows Server 2016 and later, and that Windows Server 2016's extended support ends January 12, 2027. New notes `[^r04-sql-os]`, `[^r04-ws2016]` | line 56; notes lines 249, 251 | design-consistency with factual support | <https://learn.microsoft.com/sql/sql-server/azure-arc/prerequisites#supported-configurations>; <https://learn.microsoft.com/lifecycle/products/windows-server-2016> |
+
+## Server standard, November 5, 2026
+
+Tense only; date carried. The standard itself is verified in Book 00's Chapter 01 log, rows S1 to S7.

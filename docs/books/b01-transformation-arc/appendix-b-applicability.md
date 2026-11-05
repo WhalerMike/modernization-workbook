@@ -36,7 +36,7 @@ The target state in Chapters 03 to 08 is built on Microsoft's commercial cloud s
 
 ## Platform assumptions
 
-- **Windows Server 2025** for the platform host ([Chapter 03](03-platform-foundation.md)). Earlier supported versions work for the assessment role, but check their support dates: Windows Server 2012 and 2012 R2 Extended Security Updates ended on October 13, 2026, and Windows Server 2016 reaches end of support on January 12, 2027.[^aB-esu]
+- **Windows Server 2025** for the platform host ([Chapter 03](03-platform-foundation.md)). Earlier supported versions work for the assessment role, but check their support dates: Windows Server 2012 and 2012 R2 Extended Security Updates ended on October 13, 2026, and Windows Server 2016's end of support is January 12, 2027.[^aB-esu]
 - **Windows 11** user devices for Microsoft Entra join and Windows Autopilot ([Chapter 07](07-compute-transformation.md)). Windows 10 reached end of support on October 14, 2025.[^aB-win10]
 - **Microsoft Entra ID P1** at minimum, for Conditional Access, dynamic groups and administrative-unit administration: each administrator assigned a role over an administrative unit needs P1, and so does each member of an administrative unit with a dynamic membership rule.[^aB-au] **Microsoft Entra ID P2** (or Microsoft Entra ID Governance) for Privileged Identity Management, and P2 for Identity Protection risk policies.[^aB-licensing] **Microsoft Entra ID Governance** (or Microsoft Entra Suite) for Lifecycle Workflows and access reviews; P2 alone doesn't include Lifecycle Workflows.[^aB-lcw][^aB-govlicensing]
 - **Microsoft Intune** licensing for every managed user device.
