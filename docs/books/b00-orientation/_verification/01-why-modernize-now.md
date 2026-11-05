@@ -75,3 +75,17 @@ Checked October 21, 2026. Book 00's chapters were reconciled with each other; ea
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
 | X1 | Jan 1, 2027: rules take mandatory effect "for all stakeholders," subject to area-specific applicability and effective dates; over the next year all CSPs must follow them to keep certification | Federal policy table | verified; wording made exact, and aligned with Ch05 (which had narrowed it to providers) | FedRAMP, "Important Dates for the Consolidated Rules for 2026" (fedramp.gov/2026/timeline), Mandatory Adoption entry, fetched Oct 21, 2026 |
+
+## Server standard, November 5, 2026
+
+The workbook's owner set the planning standard in this chapter: Windows Server 2016 gone from production by end of support, Server 2019 as the minimum, and any remaining 2016 server an exception. Row 29 above records the sentence this change replaced. Its claim is no longer in the chapter.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| S1 | The standard, and that it is neither a federal requirement nor a count of agencies | The workbook's server standard | restated-as-design (the workbook's planning standard; no statistic claimed) | — |
+| S2 | ESUs: "last resort", "a temporary bridge"; don't extend the lifecycle; no general technical support | The workbook's server standard | verified | Learn, "Lifecycle FAQ - Extended Security Updates" |
+| S3 | WS2016 ESUs: Critical and Important, up to three years, through 2030; portal from Aug 3, 2026; billing from Jan 13, 2027 | The workbook's server standard | verified | Learn, "Prepare to deliver Extended Security Updates for Windows Server" |
+| S4 | WS2019 and WS2022 use the WS2016 functional level as their most recent | The workbook's server standard | verified | Learn, "Active Directory Domain Services functional levels" |
+| S5 | A WS2025 DC needs the domain and forest at the WS2016 functional level | The workbook's server standard | verified | Learn, "Identifying your functional level upgrade" |
+| S6 | Upgrading the operating system leaves the forest and its implicit governance in place | The workbook's server standard | restated-as-design (follows from this chapter's governance argument) | — |
+| S7 | WS2019 end of support Jan 9, 2029 | Vendor support; the workbook's server standard | carried from row 27 | Learn, "Ending Support in 2029" |
