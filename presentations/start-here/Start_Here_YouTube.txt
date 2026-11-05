@@ -1,0 +1,45 @@
+Start Here: Where Modernization Begins
+
+A narrated briefing from the Federal Modernization Workbook, a free public reference for federal IT modernization. It isn't an official government publication.
+
+Every source, slide by slide, with links:
+https://whalermike.github.io/modernization-workbook/docs/presentations/watch.html?v=Start_Here_Narrated#sources
+
+Chapters
+0:00 Start Here: Where Modernization Begins
+0:31 Four reasons to start now
+1:00 The clocks nobody can move
+1:42 Everything decides on identity
+2:17 HR is being rebuilt anyway
+3:03 The access risk agencies already carry
+3:40 The first ask: four weeks, no vendor decision
+4:15 The finish line: Gate G1, Foundation Complete
+4:51 Who decides, and what to bring
+5:31 Where to go next
+
+From the workbook
+Book 00: Chapter 01 — Why Modernize, and Why Now: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/01-why-modernize-now.html
+Book 00: Chapter 03 — The Program Charter: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/03-the-charter.html
+Book 01: Chapter 02 — The Problem: Governance Hidden in the Directory: https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/02-the-problem.html
+Book 01: Chapter 12 — The Migration Roadmap: https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html
+Book 03: Chapter 02 — Why HR Is the Source of Authority: https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/02-why-hr-is-the-source-of-authority.html
+Book 03: Chapter 03 — Federal HR 2.0 and the Core HCM Platform: https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/03-federal-hr-2-0.html
+Book 00: Chapter 02 — How to Use This Workbook: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/02-how-to-use-this-workbook.html
+Book 03: Chapter 10 — From Attributes to Access: https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/10-from-attributes-to-access.html
+Book 01: Chapter 10 — Analyzing the Estate: https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/10-analyzing-the-estate.html
+Book 03: Chapter 12 — Execution Plan: https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/12-execution-plan.html
+Book 01: Chapter 09 — Who Leads the Transformation: https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/09-who-leads-the-transformation.html
+The Workbook Books: https://whalermike.github.io/modernization-workbook/docs/books/index.html
+Book 00 — Orientation & Program: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/index.html
+Book 02 — Identity & Directory: https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/index.html
+Book 03 — HR-Driven Identity: https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/index.html
+
+Original sources
+Microsoft lifecycle pages: https://learn.microsoft.com/lifecycle/end-of-support/end-of-support-2026
+CISA BOD 25-01: https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#bod-25-01
+bod-26-02: https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#bod-26-02
+OMB M-26-14: https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#m-26-14
+OMB/OPM memo Dec. 10, 2025: https://www.opm.gov/chcoc/latest-memos/creating-federal-hr-20-by-consolidating-core-human-capital-management-across-the-federal-government.pdf
+OPM award: https://www.opm.gov/news/news-releases/opm-awards-contract-for-first-ever-governmentwide-hr-platform/
+Oracle announcement: https://www.oracle.com/news/announcement/us-office-of-personnel-management-selects-oracle-to-power-federal-workforce-modernization-2026-06-11/
+NIST SP 800-53 Rev. 5: https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#sp-800-53

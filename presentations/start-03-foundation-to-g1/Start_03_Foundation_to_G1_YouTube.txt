@@ -1,0 +1,31 @@
+Start series, Episode 3 — Foundation to Gate G1
+
+A narrated briefing from the Federal Modernization Workbook, a free public reference for federal IT modernization. It isn't an official government publication.
+
+Every source, slide by slide, with links:
+https://whalermike.github.io/modernization-workbook/docs/presentations/watch.html?v=Start_03_Foundation_to_G1_Narrated#sources
+
+Chapters
+0:00 Foundation to Gate G1: Weeks Five to Eight
+0:37 Five workstreams, one foundation
+1:13 Groups and administrative units: scope from attributes
+1:49 The Conditional Access baseline, report-only first
+2:26 Emergency access: the one standing exception
+3:05 The first HR feed, for a foundation scope
+3:43 Address management for Tier 0, Arc for pilot servers
+4:23 Gate G1 is measured from data, not signature
+5:00 What can go wrong in weeks five to eight
+5:39 What leadership sees at Gate G1
+
+From the workbook
+Book 01: Chapter 06 — Network Services: DNS, DHCP and IPAM: https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/06-network-services.html
+Book 01: Chapter 12 — The Migration Roadmap: https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html
+Book 00: Chapter 09 — Design, Pilot and Rollout: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html
+Book 02: Chapter 05 — Delegation Without OUs: https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/05-delegation-without-ous.html
+Book 04: Chapter 03 — The Conditional Access Model: https://whalermike.github.io/modernization-workbook/docs/books/b04-access/03-the-conditional-access-model.html
+Book 04: Chapter 07 — The Conditional Access Policy Library: https://whalermike.github.io/modernization-workbook/docs/books/b04-access/07-the-conditional-access-policy-library.html
+Book 04: Chapter 02 — Why Standing Privilege Fails: https://whalermike.github.io/modernization-workbook/docs/books/b04-access/02-why-standing-privilege-fails.html
+Book 04: Chapter 04 — Privileged Roles and Tiers: https://whalermike.github.io/modernization-workbook/docs/books/b04-access/04-privileged-roles-and-tiers.html
+Book 03: Chapter 12 — Execution Plan: https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/12-execution-plan.html
+Book 08: Chapter 07 — Cloud Private Endpoints, SDN and IPAM Consistency: https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/07-cloud-private-endpoints-and-ipam.html
+Book 05: Chapter 09 — Servers Under Azure Arc: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html

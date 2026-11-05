@@ -1,0 +1,284 @@
+[
+ {
+  "slide": 1,
+  "title": "The First Four Weeks: What Phase 0 Produces",
+  "links": [
+   {
+    "text": "Book 01, Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/03-platform-foundation.html"
+   },
+   {
+    "text": "10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/10-analyzing-the-estate.html"
+   },
+   {
+    "text": "12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html"
+   },
+   {
+    "text": "Book 00, Ch 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/01-why-modernize-now.html"
+   },
+   {
+    "text": "03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/03-the-charter.html"
+   },
+   {
+    "text": "08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/08-pre-flight-and-assessment.html"
+   }
+  ]
+ },
+ {
+  "slide": 2,
+  "title": "Four weeks, one goal, one exit",
+  "links": [
+   {
+    "text": "Book 01, Ch 12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html"
+   },
+   {
+    "text": "Phase 0 — Pre-flight",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html#phase-0-pre-flight-weeks-14"
+   },
+   {
+    "text": "Book 00, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/08-pre-flight-and-assessment.html"
+   },
+   {
+    "text": "Where pre-flight sits in the program",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/08-pre-flight-and-assessment.html#where-pre-flight-sits-in-the-program"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "Day one: three entry conditions",
+  "links": [
+   {
+    "text": "Book 01, Ch 12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html"
+   },
+   {
+    "text": "Book 00, Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/03-the-charter.html"
+   },
+   {
+    "text": "governance and ownership",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/03-the-charter.html#governance-and-ownership"
+   },
+   {
+    "text": "Book 01, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/10-analyzing-the-estate.html"
+   },
+   {
+    "text": "two tiers",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/10-analyzing-the-estate.html#least-privilege-delegation-in-two-tiers"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "The platform host: where every decision is written down",
+  "links": [
+   {
+    "text": "Book 01, Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/03-platform-foundation.html"
+   },
+   {
+    "text": "the architectural claim",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/03-platform-foundation.html#the-architectural-claim"
+   },
+   {
+    "text": "why one host",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/03-platform-foundation.html#why-one-host"
+   },
+   {
+    "text": "operational properties",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/03-platform-foundation.html#operational-properties"
+   },
+   {
+    "text": "Book 00, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/08-pre-flight-and-assessment.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Reading the estate without changing it",
+  "links": [
+   {
+    "text": "Book 01, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/10-analyzing-the-estate.html"
+   },
+   {
+    "text": "Book 00, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/08-pre-flight-and-assessment.html"
+   },
+   {
+    "text": "five steps",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/08-pre-flight-and-assessment.html#five-steps-from-default-read-to-approved-plans"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "What the assessment inventories",
+  "links": [
+   {
+    "text": "Book 01, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/10-analyzing-the-estate.html"
+   },
+   {
+    "text": "the eleven ingestion streams",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/10-analyzing-the-estate.html#the-eleven-ingestion-streams"
+   },
+   {
+    "text": "profiling transactions",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/10-analyzing-the-estate.html#profiling-transactions-before-separation"
+   },
+   {
+    "text": "Book 00, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/08-pre-flight-and-assessment.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Provenance, and seeding the repository",
+  "links": [
+   {
+    "text": "Book 01, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/10-analyzing-the-estate.html"
+   },
+   {
+    "text": "provenance-bound output",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/10-analyzing-the-estate.html#provenance-bound-output"
+   },
+   {
+    "text": "one artifact set per run",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/10-analyzing-the-estate.html#one-artifact-set-per-run"
+   },
+   {
+    "text": "Book 00, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/08-pre-flight-and-assessment.html"
+   },
+   {
+    "text": "repository conventions",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/08-pre-flight-and-assessment.html#repository-conventions"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Least privilege for the program's own access",
+  "links": [
+   {
+    "text": "Book 01, Ch 12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html"
+   },
+   {
+    "text": "Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/03-platform-foundation.html"
+   },
+   {
+    "text": "authentication bridge",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/03-platform-foundation.html#legacy-to-modern-authentication-bridge"
+   },
+   {
+    "text": "separation of governance and execution",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/03-platform-foundation.html#separation-of-governance-and-execution"
+   },
+   {
+    "text": "Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/10-analyzing-the-estate.html"
+   },
+   {
+    "text": "Book 00, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/08-pre-flight-and-assessment.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Owners named, findings classified",
+  "links": [
+   {
+    "text": "Book 00, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/08-pre-flight-and-assessment.html"
+   },
+   {
+    "text": "Book 01, Ch 12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html"
+   },
+   {
+    "text": "Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/09-who-leads-the-transformation.html"
+   },
+   {
+    "text": "decision rights",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/09-who-leads-the-transformation.html#decision-rights-across-the-program"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Gate G0, Ready to Plan: the checklist",
+  "links": [
+   {
+    "text": "Book 00, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/08-pre-flight-and-assessment.html"
+   },
+   {
+    "text": "Gate G0: the go/no-go checklist",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/08-pre-flight-and-assessment.html#gate-g0-the-gono-go-checklist"
+   },
+   {
+    "text": "Ch 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/01-why-modernize-now.html"
+   },
+   {
+    "text": "what leadership should take from this",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/01-why-modernize-now.html#what-leadership-should-take-from-this"
+   },
+   {
+    "text": "Book 01, Ch 12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "What leadership sees at week four",
+  "links": [
+   {
+    "text": "Book 00, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/08-pre-flight-and-assessment.html"
+   },
+   {
+    "text": "key takeaways",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/08-pre-flight-and-assessment.html#key-takeaways"
+   },
+   {
+    "text": "Book 01, Ch 12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html"
+   },
+   {
+    "text": "Where to start",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html#where-to-start"
+   },
+   {
+    "text": "Book 00, Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/08-pre-flight-and-assessment.html"
+   },
+   {
+    "text": "Book 01, Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/03-platform-foundation.html"
+   },
+   {
+    "text": "Book 01, Chapter 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/10-analyzing-the-estate.html"
+   }
+  ]
+ }
+]

@@ -1,0 +1,57 @@
+Book 00 — Orientation & Program: executive briefing
+
+A narrated briefing from the Federal Modernization Workbook, a free public reference for federal IT modernization. It isn't an official government publication.
+
+Every source, slide by slide, with links:
+https://whalermike.github.io/modernization-workbook/docs/presentations/watch.html?v=B00_Orientation_Executive_Narrated#sources
+
+Chapters
+0:00 What Must Leadership Decide, and When?
+1:11 The directory governed the estate, and nobody wrote it down
+2:19 Federal policy now sets the dates
+3:43 Vendor support dates cluster on the same estate
+5:06 Read the clocks exactly, then run one program
+6:20 The charter: the page the sponsor signs
+7:34 Six success criteria, each tested at a gate
+8:44 Fifteen principles, one idea underneath
+9:48 Seven phases, six gates, and who clears each
+11:01 Five workstreams in parallel, one critical path
+12:15 Seven projects, run inside the program
+13:25 Who decides: one decider per row
+14:38 Three decisions the plans put on the wrong desk
+15:47 The people the program needs, and its rhythm
+16:57 Pre-flight: assessment before action
+18:06 Foundation and pilot: prove it on one division
+19:19 Roll out in waves, then retire only what nothing uses
+20:32 Steady state, and what success looks like
+21:42 The risk register: what can sink the program
+23:00 Decisions to make, and who makes them
+
+From the workbook
+Book 00: Chapter 01 — Why Modernize, and Why Now: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/01-why-modernize-now.html
+Book 00: Chapter 03 — The Program Charter: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/03-the-charter.html
+Book 00: Appendix A — Risk Register and Control Traceability: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/appendix-a-risk-register-and-traceability.html
+Book 00: Chapter 07 — Who Runs the Program: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/07-who-runs-the-program.html
+Book 00: Chapter 05 — The Program Plan: Phases and Gates: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/05-the-program-plan.html
+Book 00: Chapter 10 — Retirement, Steady State and Measuring Success: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/10-retirement-steady-state-and-success.html
+Book 01: Chapter 09 — Who Leads the Transformation: https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/09-who-leads-the-transformation.html
+Book 01: Chapter 03 — The Platform Foundation: https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/03-platform-foundation.html
+Book 00: Chapter 04 — The Modernization Principles: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/04-the-principles.html
+Book 01: Chapter 12 — The Migration Roadmap: https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html
+Book 00 — Orientation & Program: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/index.html
+Book 00: Chapter 06 — The Complementary Projects: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/06-the-project-portfolio.html
+Book 01: Chapter 07 — Compute Transformation: https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/07-compute-transformation.html
+Book 00: Chapter 08 — Pre-Flight: Platform and Assessment: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/08-pre-flight-and-assessment.html
+Book 00: Chapter 09 — Design, Pilot and Rollout: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html
+
+Original sources
+AD DS logical model: https://learn.microsoft.com/windows-server/identity/ad-ds/plan/understanding-the-active-directory-logical-model
+Group Policy processing: https://learn.microsoft.com/windows-server/identity/ad-ds/manage/group-policy/group-policy-processing
+AD-integrated DNS: https://learn.microsoft.com/windows-server/identity/ad-ds/plan/active-directory-integrated-dns-zones
+AD CS: https://learn.microsoft.com/windows-server/identity/ad-cs/active-directory-certificate-services-overview
+Entra administrative units: https://learn.microsoft.com/entra/identity/role-based-access-control/administrative-units
+Intune settings catalog: https://learn.microsoft.com/intune/device-configuration/settings-catalog/tutorial-group-policy-migration
+OMB M-22-09: https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#m-22-09
+CISA BOD 25-01: https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#bod-25-01
+BOD 26-02: https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#bod-26-02
+timeline: https://www.fedramp.gov/2026/timeline/

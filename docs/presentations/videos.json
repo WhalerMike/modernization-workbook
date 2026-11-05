@@ -53,6 +53,244 @@
     331,
     "Where to go next"
    ]
+  ],
+  "sources": [
+   {
+    "slide": 1,
+    "title": "Start Here: Where Modernization Begins",
+    "links": [
+     {
+      "text": "Book 00, Ch 01",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/01-why-modernize-now.html"
+     },
+     {
+      "text": "03",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/03-the-charter.html"
+     },
+     {
+      "text": "Book 01, Ch 02",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/02-the-problem.html"
+     },
+     {
+      "text": "12",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html"
+     },
+     {
+      "text": "Book 03, Ch 02",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/02-why-hr-is-the-source-of-authority.html"
+     },
+     {
+      "text": "03",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/03-federal-hr-2-0.html"
+     }
+    ]
+   },
+   {
+    "slide": 2,
+    "title": "Four reasons to start now",
+    "links": [
+     {
+      "text": "Book 00, Ch 01",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/01-why-modernize-now.html"
+     },
+     {
+      "text": "Book 03, Ch 02",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/02-why-hr-is-the-source-of-authority.html"
+     },
+     {
+      "text": "03",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/03-federal-hr-2-0.html"
+     },
+     {
+      "text": "Book 01, Ch 12",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html"
+     },
+     {
+      "text": "Where to start",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html#where-to-start"
+     }
+    ]
+   },
+   {
+    "slide": 3,
+    "title": "The clocks nobody can move",
+    "links": [
+     {
+      "text": "Book 00, Ch 01",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/01-why-modernize-now.html"
+     },
+     {
+      "text": "Microsoft lifecycle pages",
+      "url": "https://learn.microsoft.com/lifecycle/end-of-support/end-of-support-2026"
+     },
+     {
+      "text": "CISA BOD 25-01",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#bod-25-01"
+     },
+     {
+      "text": "26-02",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#bod-26-02"
+     },
+     {
+      "text": "OMB M-26-14",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#m-26-14"
+     }
+    ]
+   },
+   {
+    "slide": 4,
+    "title": "Everything decides on identity",
+    "links": [
+     {
+      "text": "Book 00, Ch 01",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/01-why-modernize-now.html"
+     },
+     {
+      "text": "Ch 02",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/02-how-to-use-this-workbook.html"
+     },
+     {
+      "text": "Book 01, Ch 02",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/02-the-problem.html"
+     }
+    ]
+   },
+   {
+    "slide": 5,
+    "title": "HR is being rebuilt anyway",
+    "links": [
+     {
+      "text": "Book 03, Ch 03",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/03-federal-hr-2-0.html"
+     },
+     {
+      "text": "OMB/OPM memo Dec. 10, 2025",
+      "url": "https://www.opm.gov/chcoc/latest-memos/creating-federal-hr-20-by-consolidating-core-human-capital-management-across-the-federal-government.pdf"
+     },
+     {
+      "text": "OPM award",
+      "url": "https://www.opm.gov/news/news-releases/opm-awards-contract-for-first-ever-governmentwide-hr-platform/"
+     },
+     {
+      "text": "Oracle announcement",
+      "url": "https://www.oracle.com/news/announcement/us-office-of-personnel-management-selects-oracle-to-power-federal-workforce-modernization-2026-06-11/"
+     }
+    ]
+   },
+   {
+    "slide": 6,
+    "title": "The access risk agencies already carry",
+    "links": [
+     {
+      "text": "Book 03, Ch 02",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/02-why-hr-is-the-source-of-authority.html"
+     },
+     {
+      "text": "fragmented truth",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/02-why-hr-is-the-source-of-authority.html#the-fragmented-truth-problem"
+     },
+     {
+      "text": "NIST SP 800-53 Rev. 5",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#sp-800-53"
+     },
+     {
+      "text": "Ch 10",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/10-from-attributes-to-access.html"
+     }
+    ]
+   },
+   {
+    "slide": 7,
+    "title": "The first ask: four weeks, no vendor decision",
+    "links": [
+     {
+      "text": "Book 01, Ch 12",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html"
+     },
+     {
+      "text": "Phase 0",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html#phase-0-pre-flight-weeks-14"
+     },
+     {
+      "text": "Where to start",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html#where-to-start"
+     },
+     {
+      "text": "Ch 10",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/10-analyzing-the-estate.html"
+     }
+    ]
+   },
+   {
+    "slide": 8,
+    "title": "The finish line: Gate G1, Foundation Complete",
+    "links": [
+     {
+      "text": "Book 01, Ch 12",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html"
+     },
+     {
+      "text": "Phase 1 — Foundation",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html#phase-1-foundation-weeks-58"
+     },
+     {
+      "text": "key takeaways",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html#key-takeaways"
+     },
+     {
+      "text": "Book 03, Ch 12",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/12-execution-plan.html"
+     }
+    ]
+   },
+   {
+    "slide": 9,
+    "title": "Who decides, and what to bring",
+    "links": [
+     {
+      "text": "Book 00, Ch 03",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/03-the-charter.html"
+     },
+     {
+      "text": "Book 01, Ch 09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/09-who-leads-the-transformation.html"
+     }
+    ]
+   },
+   {
+    "slide": 10,
+    "title": "Where to go next",
+    "links": [
+     {
+      "text": "whalermike.github.io/modernization-workbook",
+      "url": "https://whalermike.github.io/modernization-workbook/"
+     },
+     {
+      "text": "Books 00–03",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/index.html"
+     },
+     {
+      "text": "Presentations page",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/presentations/index.html"
+     },
+     {
+      "text": "Book 00",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/index.html"
+     },
+     {
+      "text": "Book 01, Chapter 12",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html"
+     },
+     {
+      "text": "Book 02",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/index.html"
+     },
+     {
+      "text": "Book 03",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/index.html"
+     }
+    ]
+   }
   ]
  },
  {
@@ -113,6 +351,290 @@
     342,
     "What leadership sees at week four"
    ]
+  ],
+  "sources": [
+   {
+    "slide": 1,
+    "title": "The First Four Weeks: What Phase 0 Produces",
+    "links": [
+     {
+      "text": "Book 01, Ch 03",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/03-platform-foundation.html"
+     },
+     {
+      "text": "10",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/10-analyzing-the-estate.html"
+     },
+     {
+      "text": "12",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html"
+     },
+     {
+      "text": "Book 00, Ch 01",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/01-why-modernize-now.html"
+     },
+     {
+      "text": "03",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/03-the-charter.html"
+     },
+     {
+      "text": "08",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/08-pre-flight-and-assessment.html"
+     }
+    ]
+   },
+   {
+    "slide": 2,
+    "title": "Four weeks, one goal, one exit",
+    "links": [
+     {
+      "text": "Book 01, Ch 12",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html"
+     },
+     {
+      "text": "Phase 0 — Pre-flight",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html#phase-0-pre-flight-weeks-14"
+     },
+     {
+      "text": "Book 00, Ch 08",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/08-pre-flight-and-assessment.html"
+     },
+     {
+      "text": "Where pre-flight sits in the program",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/08-pre-flight-and-assessment.html#where-pre-flight-sits-in-the-program"
+     }
+    ]
+   },
+   {
+    "slide": 3,
+    "title": "Day one: three entry conditions",
+    "links": [
+     {
+      "text": "Book 01, Ch 12",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html"
+     },
+     {
+      "text": "Book 00, Ch 03",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/03-the-charter.html"
+     },
+     {
+      "text": "governance and ownership",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/03-the-charter.html#governance-and-ownership"
+     },
+     {
+      "text": "Book 01, Ch 10",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/10-analyzing-the-estate.html"
+     },
+     {
+      "text": "two tiers",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/10-analyzing-the-estate.html#least-privilege-delegation-in-two-tiers"
+     }
+    ]
+   },
+   {
+    "slide": 4,
+    "title": "The platform host: where every decision is written down",
+    "links": [
+     {
+      "text": "Book 01, Ch 03",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/03-platform-foundation.html"
+     },
+     {
+      "text": "the architectural claim",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/03-platform-foundation.html#the-architectural-claim"
+     },
+     {
+      "text": "why one host",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/03-platform-foundation.html#why-one-host"
+     },
+     {
+      "text": "operational properties",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/03-platform-foundation.html#operational-properties"
+     },
+     {
+      "text": "Book 00, Ch 08",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/08-pre-flight-and-assessment.html"
+     }
+    ]
+   },
+   {
+    "slide": 5,
+    "title": "Reading the estate without changing it",
+    "links": [
+     {
+      "text": "Book 01, Ch 10",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/10-analyzing-the-estate.html"
+     },
+     {
+      "text": "Book 00, Ch 08",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/08-pre-flight-and-assessment.html"
+     },
+     {
+      "text": "five steps",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/08-pre-flight-and-assessment.html#five-steps-from-default-read-to-approved-plans"
+     }
+    ]
+   },
+   {
+    "slide": 6,
+    "title": "What the assessment inventories",
+    "links": [
+     {
+      "text": "Book 01, Ch 10",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/10-analyzing-the-estate.html"
+     },
+     {
+      "text": "the eleven ingestion streams",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/10-analyzing-the-estate.html#the-eleven-ingestion-streams"
+     },
+     {
+      "text": "profiling transactions",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/10-analyzing-the-estate.html#profiling-transactions-before-separation"
+     },
+     {
+      "text": "Book 00, Ch 08",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/08-pre-flight-and-assessment.html"
+     }
+    ]
+   },
+   {
+    "slide": 7,
+    "title": "Provenance, and seeding the repository",
+    "links": [
+     {
+      "text": "Book 01, Ch 10",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/10-analyzing-the-estate.html"
+     },
+     {
+      "text": "provenance-bound output",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/10-analyzing-the-estate.html#provenance-bound-output"
+     },
+     {
+      "text": "one artifact set per run",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/10-analyzing-the-estate.html#one-artifact-set-per-run"
+     },
+     {
+      "text": "Book 00, Ch 08",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/08-pre-flight-and-assessment.html"
+     },
+     {
+      "text": "repository conventions",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/08-pre-flight-and-assessment.html#repository-conventions"
+     }
+    ]
+   },
+   {
+    "slide": 8,
+    "title": "Least privilege for the program's own access",
+    "links": [
+     {
+      "text": "Book 01, Ch 12",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html"
+     },
+     {
+      "text": "Ch 03",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/03-platform-foundation.html"
+     },
+     {
+      "text": "authentication bridge",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/03-platform-foundation.html#legacy-to-modern-authentication-bridge"
+     },
+     {
+      "text": "separation of governance and execution",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/03-platform-foundation.html#separation-of-governance-and-execution"
+     },
+     {
+      "text": "Ch 10",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/10-analyzing-the-estate.html"
+     },
+     {
+      "text": "Book 00, Ch 08",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/08-pre-flight-and-assessment.html"
+     }
+    ]
+   },
+   {
+    "slide": 9,
+    "title": "Owners named, findings classified",
+    "links": [
+     {
+      "text": "Book 00, Ch 08",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/08-pre-flight-and-assessment.html"
+     },
+     {
+      "text": "Book 01, Ch 12",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html"
+     },
+     {
+      "text": "Ch 09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/09-who-leads-the-transformation.html"
+     },
+     {
+      "text": "decision rights",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/09-who-leads-the-transformation.html#decision-rights-across-the-program"
+     }
+    ]
+   },
+   {
+    "slide": 10,
+    "title": "Gate G0, Ready to Plan: the checklist",
+    "links": [
+     {
+      "text": "Book 00, Ch 08",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/08-pre-flight-and-assessment.html"
+     },
+     {
+      "text": "Gate G0: the go/no-go checklist",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/08-pre-flight-and-assessment.html#gate-g0-the-gono-go-checklist"
+     },
+     {
+      "text": "Ch 01",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/01-why-modernize-now.html"
+     },
+     {
+      "text": "what leadership should take from this",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/01-why-modernize-now.html#what-leadership-should-take-from-this"
+     },
+     {
+      "text": "Book 01, Ch 12",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html"
+     }
+    ]
+   },
+   {
+    "slide": 11,
+    "title": "What leadership sees at week four",
+    "links": [
+     {
+      "text": "Book 00, Ch 08",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/08-pre-flight-and-assessment.html"
+     },
+     {
+      "text": "key takeaways",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/08-pre-flight-and-assessment.html#key-takeaways"
+     },
+     {
+      "text": "Book 01, Ch 12",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html"
+     },
+     {
+      "text": "Where to start",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html#where-to-start"
+     },
+     {
+      "text": "Book 00, Chapter 08",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/08-pre-flight-and-assessment.html"
+     },
+     {
+      "text": "Book 01, Chapter 03",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/03-platform-foundation.html"
+     },
+     {
+      "text": "Book 01, Chapter 10",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/10-analyzing-the-estate.html"
+     }
+    ]
+   }
   ]
  },
  {
@@ -169,6 +691,280 @@
     339,
     "What leadership sees at Gate G1"
    ]
+  ],
+  "sources": [
+   {
+    "slide": 1,
+    "title": "Foundation to Gate G1: Weeks Five to Eight",
+    "links": [
+     {
+      "text": "Book 01, Ch 06",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/06-network-services.html"
+     },
+     {
+      "text": "12",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html"
+     },
+     {
+      "text": "Book 00, Ch 09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html"
+     }
+    ]
+   },
+   {
+    "slide": 2,
+    "title": "Five workstreams, one foundation",
+    "links": [
+     {
+      "text": "Book 01, Ch 12",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html"
+     },
+     {
+      "text": "Phase 1 — Foundation",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html#phase-1-foundation-weeks-58"
+     },
+     {
+      "text": "Book 00, Ch 09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html"
+     },
+     {
+      "text": "Phase 1 — Foundation",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html#phase-1-foundation"
+     }
+    ]
+   },
+   {
+    "slide": 3,
+    "title": "Groups and administrative units: scope from attributes",
+    "links": [
+     {
+      "text": "Book 02, Ch 05",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/05-delegation-without-ous.html"
+     },
+     {
+      "text": "what administrative units are",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/05-delegation-without-ous.html#what-administrative-units-are"
+     },
+     {
+      "text": "role assignment matrix",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/05-delegation-without-ous.html#role-assignment-matrix"
+     },
+     {
+      "text": "Book 00, Ch 09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html"
+     },
+     {
+      "text": "dynamic groups",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html#dynamic-groups-policy-and-access"
+     }
+    ]
+   },
+   {
+    "slide": 4,
+    "title": "The Conditional Access baseline, report-only first",
+    "links": [
+     {
+      "text": "Book 01, Ch 12",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html"
+     },
+     {
+      "text": "Book 04, Ch 03",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/03-the-conditional-access-model.html"
+     },
+     {
+      "text": "baseline principles",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/03-the-conditional-access-model.html#the-programs-baseline-principles"
+     },
+     {
+      "text": "exclusions",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/03-the-conditional-access-model.html#exclusions"
+     },
+     {
+      "text": "Ch 07",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/07-the-conditional-access-policy-library.html"
+     },
+     {
+      "text": "Wave 1",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/07-the-conditional-access-policy-library.html#wave-1-foundation"
+     },
+     {
+      "text": "rollout",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/07-the-conditional-access-policy-library.html#rollout-from-report-only-to-enforcement"
+     },
+     {
+      "text": "rollback",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/07-the-conditional-access-policy-library.html#rollback"
+     }
+    ]
+   },
+   {
+    "slide": 5,
+    "title": "Emergency access: the one standing exception",
+    "links": [
+     {
+      "text": "Book 04, Ch 02",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/02-why-standing-privilege-fails.html"
+     },
+     {
+      "text": "break-glass: the one governed exception",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/02-why-standing-privilege-fails.html#break-glass-the-one-governed-exception"
+     },
+     {
+      "text": "Ch 04",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/04-privileged-roles-and-tiers.html"
+     },
+     {
+      "text": "emergency access accounts",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/04-privileged-roles-and-tiers.html#emergency-access-accounts"
+     },
+     {
+      "text": "Book 01, Ch 12",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html"
+     },
+     {
+      "text": "Phase 1",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html#phase-1-foundation-weeks-58"
+     }
+    ]
+   },
+   {
+    "slide": 6,
+    "title": "The first HR feed, for a foundation scope",
+    "links": [
+     {
+      "text": "Book 03, Ch 12",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/12-execution-plan.html"
+     },
+     {
+      "text": "sequencing principle",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/12-execution-plan.html#sequencing-principle"
+     },
+     {
+      "text": "Book 00, Ch 09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html"
+     },
+     {
+      "text": "Gate G1",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html#gate-g1-foundation-complete"
+     },
+     {
+      "text": "Book 01, Ch 12",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html"
+     }
+    ]
+   },
+   {
+    "slide": 7,
+    "title": "Address management for Tier 0, Arc for pilot servers",
+    "links": [
+     {
+      "text": "Book 01, Ch 06",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/06-network-services.html"
+     },
+     {
+      "text": "informal to governed",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/06-network-services.html#ipam-informal-to-governed"
+     },
+     {
+      "text": "Ch 12",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html"
+     },
+     {
+      "text": "Book 08, Ch 07",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/07-cloud-private-endpoints-and-ipam.html"
+     },
+     {
+      "text": "SDN–IPAM consistency",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/07-cloud-private-endpoints-and-ipam.html#sdnipam-consistency-across-cloud-providers-and-vmware"
+     },
+     {
+      "text": "Book 05, Ch 09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html"
+     }
+    ]
+   },
+   {
+    "slide": 8,
+    "title": "Gate G1 is measured from data, not signature",
+    "links": [
+     {
+      "text": "Book 01, Ch 12",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html"
+     },
+     {
+      "text": "gates",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html#gates-rollback-and-authority"
+     },
+     {
+      "text": "rollback and authority",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html#gates-rollback-and-authority"
+     },
+     {
+      "text": "Book 00, Ch 09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html"
+     },
+     {
+      "text": "Book 02, Ch 05",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/05-delegation-without-ous.html"
+     },
+     {
+      "text": "drift detection",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/05-delegation-without-ous.html#drift-detection"
+     }
+    ]
+   },
+   {
+    "slide": 9,
+    "title": "What can go wrong in weeks five to eight",
+    "links": [
+     {
+      "text": "Book 01, Ch 12",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html"
+     },
+     {
+      "text": "common failure modes",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html#common-failure-modes"
+     },
+     {
+      "text": "Book 04, Ch 03",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/03-the-conditional-access-model.html"
+     },
+     {
+      "text": "exclusions",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/03-the-conditional-access-model.html#exclusions"
+     },
+     {
+      "text": "Ch 04",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/04-privileged-roles-and-tiers.html"
+     },
+     {
+      "text": "Book 03, Ch 12",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/12-execution-plan.html"
+     },
+     {
+      "text": "sequencing principle",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/12-execution-plan.html#sequencing-principle"
+     }
+    ]
+   },
+   {
+    "slide": 10,
+    "title": "What leadership sees at Gate G1",
+    "links": [
+     {
+      "text": "Book 01, Ch 12",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html"
+     },
+     {
+      "text": "Phase 2 — Pilot division",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html#phase-2-pilot-division-weeks-916"
+     },
+     {
+      "text": "Book 00, Ch 09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html"
+     }
+    ]
+   }
   ]
  },
  {
@@ -225,6 +1021,324 @@
     328,
     "What to bring to the meeting"
    ]
+  ],
+  "sources": [
+   {
+    "slide": 1,
+    "title": "Making the Case at Your Agency",
+    "links": [
+     {
+      "text": "Book 00, Ch 01",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/01-why-modernize-now.html"
+     },
+     {
+      "text": "03",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/03-the-charter.html"
+     },
+     {
+      "text": "Book 01, Ch 09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/09-who-leads-the-transformation.html"
+     },
+     {
+      "text": "12",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html"
+     },
+     {
+      "text": "Book 03, Ch 02",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/02-why-hr-is-the-source-of-authority.html"
+     },
+     {
+      "text": "03",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/03-federal-hr-2-0.html"
+     }
+    ]
+   },
+   {
+    "slide": 2,
+    "title": "One page, one decision",
+    "links": [
+     {
+      "text": "Book 01, Ch 12",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html"
+     },
+     {
+      "text": "Where to start",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html#where-to-start"
+     },
+     {
+      "text": "Ch 09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/09-who-leads-the-transformation.html"
+     },
+     {
+      "text": "What to do next",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/09-who-leads-the-transformation.html#what-to-do-next"
+     },
+     {
+      "text": "Book 00, Ch 01",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/01-why-modernize-now.html"
+     }
+    ]
+   },
+   {
+    "slide": 3,
+    "title": "Four local numbers that make it real",
+    "links": [
+     {
+      "text": "Book 00, Ch 01",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/01-why-modernize-now.html"
+     },
+     {
+      "text": "vendor support",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/01-why-modernize-now.html#vendor-support"
+     },
+     {
+      "text": "Book 03, Ch 02",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/02-why-hr-is-the-source-of-authority.html"
+     },
+     {
+      "text": "what HR provides",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/02-why-hr-is-the-source-of-authority.html#what-hr-provides-and-what-identity-architecture-must-add"
+     },
+     {
+      "text": "Ch 03",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/03-federal-hr-2-0.html"
+     },
+     {
+      "text": "program facts",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/03-federal-hr-2-0.html#the-program-facts"
+     },
+     {
+      "text": "Book 00, Ch 01",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/01-why-modernize-now.html"
+     },
+     {
+      "text": "Book 03, Ch 02",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/02-why-hr-is-the-source-of-authority.html"
+     },
+     {
+      "text": "03",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/03-federal-hr-2-0.html"
+     },
+     {
+      "text": "Book 03, Ch 02",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/02-why-hr-is-the-source-of-authority.html"
+     },
+     {
+      "text": "Book 03, Ch 03",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/03-federal-hr-2-0.html"
+     }
+    ]
+   },
+   {
+    "slide": 4,
+    "title": "For the CIO: the clocks and the cost",
+    "links": [
+     {
+      "text": "Book 00, Ch 01",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/01-why-modernize-now.html"
+     },
+     {
+      "text": "federal policy",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/01-why-modernize-now.html#federal-policy"
+     },
+     {
+      "text": "vendor support",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/01-why-modernize-now.html#vendor-support"
+     },
+     {
+      "text": "why one program",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/01-why-modernize-now.html#why-one-program-not-a-set-of-projects"
+     },
+     {
+      "text": "Book 01, Ch 09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/09-who-leads-the-transformation.html"
+     },
+     {
+      "text": "Ch 12",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html"
+     }
+    ]
+   },
+   {
+    "slide": 5,
+    "title": "For the CISO: leavers and account findings",
+    "links": [
+     {
+      "text": "Book 03, Ch 02",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/02-why-hr-is-the-source-of-authority.html"
+     },
+     {
+      "text": "federal policy frame",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/02-why-hr-is-the-source-of-authority.html#the-federal-policy-frame"
+     },
+     {
+      "text": "why this can't be patched",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/02-why-hr-is-the-source-of-authority.html#why-this-cant-be-patched"
+     },
+     {
+      "text": "Ch 12",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/12-execution-plan.html"
+     },
+     {
+      "text": "Phase 4",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/12-execution-plan.html#phase-4-lifecycle-automation-and-attribute-derived-access"
+     }
+    ]
+   },
+   {
+    "slide": 6,
+    "title": "For the CHCO: HR 2.0 and the contractor source",
+    "links": [
+     {
+      "text": "Book 03, Ch 03",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/03-federal-hr-2-0.html"
+     },
+     {
+      "text": "program facts",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/03-federal-hr-2-0.html#the-program-facts"
+     },
+     {
+      "text": "the opportunity",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/03-federal-hr-2-0.html#why-this-is-the-opportunity-not-the-project"
+     },
+     {
+      "text": "not the project",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/03-federal-hr-2-0.html#why-this-is-the-opportunity-not-the-project"
+     },
+     {
+      "text": "Ch 12",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/12-execution-plan.html"
+     },
+     {
+      "text": "Book 01, Ch 09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/09-who-leads-the-transformation.html"
+     },
+     {
+      "text": "HR and the contractor sources",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/09-who-leads-the-transformation.html#hr-and-the-contractor-sources"
+     }
+    ]
+   },
+   {
+    "slide": 7,
+    "title": "For the authorizing official: evidence over attestation",
+    "links": [
+     {
+      "text": "Book 01, Ch 09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/09-who-leads-the-transformation.html"
+     },
+     {
+      "text": "the CISO and the authorizing official",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/09-who-leads-the-transformation.html#the-ciso-and-the-authorizing-official"
+     },
+     {
+      "text": "governance properties",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/09-who-leads-the-transformation.html#the-governance-properties-that-matter"
+     },
+     {
+      "text": "decision rights",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/09-who-leads-the-transformation.html#decision-rights-across-the-program"
+     },
+     {
+      "text": "Ch 12",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html"
+     },
+     {
+      "text": "key takeaways",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html#key-takeaways"
+     }
+    ]
+   },
+   {
+    "slide": 8,
+    "title": "The decision: an owner, a date and a first gate",
+    "links": [
+     {
+      "text": "Book 01, Ch 12",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html"
+     },
+     {
+      "text": "Where to start",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html#where-to-start"
+     },
+     {
+      "text": "Ch 09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/09-who-leads-the-transformation.html"
+     },
+     {
+      "text": "how a sponsor evaluates the program",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/09-who-leads-the-transformation.html#how-a-sponsor-evaluates-the-program"
+     },
+     {
+      "text": "what to do next",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/09-who-leads-the-transformation.html#what-to-do-next"
+     }
+    ]
+   },
+   {
+    "slide": 9,
+    "title": "Charter roles: who signs what",
+    "links": [
+     {
+      "text": "Book 00, Ch 03",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/03-the-charter.html"
+     },
+     {
+      "text": "governance and ownership",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/03-the-charter.html#governance-and-ownership"
+     },
+     {
+      "text": "Book 01, Ch 09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/09-who-leads-the-transformation.html"
+     },
+     {
+      "text": "who leads",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/09-who-leads-the-transformation.html#who-leads-decides-and-does-the-work"
+     },
+     {
+      "text": "decides and does the work",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/09-who-leads-the-transformation.html#who-leads-decides-and-does-the-work"
+     },
+     {
+      "text": "decision rights",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/09-who-leads-the-transformation.html#decision-rights-across-the-program"
+     }
+    ]
+   },
+   {
+    "slide": 10,
+    "title": "What to bring to the meeting",
+    "links": [
+     {
+      "text": "whalermike.github.io/modernization-workbook",
+      "url": "https://whalermike.github.io/modernization-workbook/"
+     },
+     {
+      "text": "the Start Here page",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/start-here.html"
+     },
+     {
+      "text": "Book 00",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/index.html"
+     },
+     {
+      "text": "Book 01, Ch 09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/09-who-leads-the-transformation.html"
+     },
+     {
+      "text": "12",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html"
+     },
+     {
+      "text": "Book 03, Ch 02",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/02-why-hr-is-the-source-of-authority.html"
+     },
+     {
+      "text": "03",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/03-federal-hr-2-0.html"
+     }
+    ]
+   }
   ]
  },
  {
@@ -330,7 +1444,8 @@
     868,
     "Handing Gates 0–3 to Part 2"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "Attribute_Driven_Migration_Deeper_Dive_Part_2_Narrated",
@@ -436,7 +1551,8 @@
     948,
     "Decisions, owners, and on to Part 3"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "Attribute_Driven_Migration_Deeper_Dive_Part_3_Narrated",
@@ -526,7 +1642,8 @@
     877,
     "Decisions, the checklist, and where to go next"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "Attribute_Driven_Migration_Technical_Part_1_Narrated",
@@ -654,7 +1771,8 @@
     1027,
     "What's in Part 2"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "Attribute_Driven_Migration_Technical_Part_2_Narrated",
@@ -782,7 +1900,8 @@
     1063,
     "Decisions, owners, and where to start"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "B00_Orientation_Executive_Narrated",
@@ -878,6 +1997,666 @@
     1380,
     "Decisions to make, and who makes them"
    ]
+  ],
+  "sources": [
+   {
+    "slide": 2,
+    "title": "The directory governed the estate, and nobody wrote it down",
+    "links": [
+     {
+      "text": "AD DS logical model",
+      "url": "https://learn.microsoft.com/windows-server/identity/ad-ds/plan/understanding-the-active-directory-logical-model"
+     },
+     {
+      "text": "Group Policy processing",
+      "url": "https://learn.microsoft.com/windows-server/identity/ad-ds/manage/group-policy/group-policy-processing"
+     },
+     {
+      "text": "AD-integrated DNS",
+      "url": "https://learn.microsoft.com/windows-server/identity/ad-ds/plan/active-directory-integrated-dns-zones"
+     },
+     {
+      "text": "AD CS",
+      "url": "https://learn.microsoft.com/windows-server/identity/ad-cs/active-directory-certificate-services-overview"
+     },
+     {
+      "text": "Entra administrative units",
+      "url": "https://learn.microsoft.com/entra/identity/role-based-access-control/administrative-units"
+     },
+     {
+      "text": "Intune settings catalog",
+      "url": "https://learn.microsoft.com/intune/device-configuration/settings-catalog/tutorial-group-policy-migration"
+     },
+     {
+      "text": "Book 00, Chapters 01",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/01-why-modernize-now.html"
+     },
+     {
+      "text": "03",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/03-the-charter.html"
+     }
+    ]
+   },
+   {
+    "slide": 3,
+    "title": "Federal policy now sets the dates",
+    "links": [
+     {
+      "text": "OMB M-22-09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#m-22-09"
+     },
+     {
+      "text": "CISA BOD 25-01",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#bod-25-01"
+     },
+     {
+      "text": "BOD 26-02",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#bod-26-02"
+     },
+     {
+      "text": "OMB M-26-14",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#m-26-14"
+     },
+     {
+      "text": "CISA Logging Reference Architecture",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#cisa-logging"
+     },
+     {
+      "text": "Consolidated Rules for 2026",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#fedramp-2026"
+     },
+     {
+      "text": "timeline",
+      "url": "https://www.fedramp.gov/2026/timeline/"
+     },
+     {
+      "text": "Book 00, Chapter 01",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/01-why-modernize-now.html"
+     }
+    ]
+   },
+   {
+    "slide": 4,
+    "title": "Vendor support dates cluster on the same estate",
+    "links": [
+     {
+      "text": "Ending Support in 2025",
+      "url": "https://learn.microsoft.com/lifecycle/end-of-support/end-of-support-2025"
+     },
+     {
+      "text": "2026",
+      "url": "https://learn.microsoft.com/lifecycle/end-of-support/end-of-support-2026"
+     },
+     {
+      "text": "2027",
+      "url": "https://learn.microsoft.com/lifecycle/end-of-support/end-of-support-2027"
+     },
+     {
+      "text": "2029",
+      "url": "https://learn.microsoft.com/lifecycle/end-of-support/end-of-support-2029"
+     },
+     {
+      "text": "MIM 2016 news and updates",
+      "url": "https://learn.microsoft.com/microsoft-identity-manager/microsoft-identity-manager-2016"
+     },
+     {
+      "text": "CISA BOD 26-02",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#bod-26-02"
+     },
+     {
+      "text": "NIST SP 800-53 Rev. 5",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#sp-800-53"
+     },
+     {
+      "text": "Book 00, Chapter 01",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/01-why-modernize-now.html"
+     },
+     {
+      "text": "Appendix A",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/appendix-a-risk-register-and-traceability.html"
+     }
+    ]
+   },
+   {
+    "slide": 5,
+    "title": "Read the clocks exactly, then run one program",
+    "links": [
+     {
+      "text": "Using a FedRAMP Certified Cloud Service",
+      "url": "https://www.fedramp.gov/2026/agencies/use/"
+     },
+     {
+      "text": "FedRAMP Notice NTC-0004",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#ntc-0004"
+     },
+     {
+      "text": "OMB M-22-09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#m-22-09"
+     },
+     {
+      "text": "CISA BOD 25-01",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#bod-25-01"
+     },
+     {
+      "text": "Book 00, Chapters 01",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/01-why-modernize-now.html"
+     },
+     {
+      "text": "07",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/07-who-runs-the-program.html"
+     }
+    ]
+   },
+   {
+    "slide": 6,
+    "title": "The charter: the page the sponsor signs",
+    "links": [
+     {
+      "text": "Book 00, Chapter 03",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/03-the-charter.html"
+     },
+     {
+      "text": "Purpose",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/03-the-charter.html#purpose"
+     },
+     {
+      "text": "The problem",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/03-the-charter.html#the-problem"
+     },
+     {
+      "text": "Objectives",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/03-the-charter.html#objectives"
+     },
+     {
+      "text": "Scope",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/03-the-charter.html#scope"
+     },
+     {
+      "text": "Next steps",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/03-the-charter.html#next-steps"
+     },
+     {
+      "text": "OMB M-22-09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#m-22-09"
+     },
+     {
+      "text": "Chapter 05",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/05-the-program-plan.html"
+     }
+    ]
+   },
+   {
+    "slide": 7,
+    "title": "Six success criteria, each tested at a gate",
+    "links": [
+     {
+      "text": "Book 00, Chapter 03",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/03-the-charter.html"
+     },
+     {
+      "text": "Success criteria",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/03-the-charter.html#success-criteria"
+     },
+     {
+      "text": "Chapter 10",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/10-retirement-steady-state-and-success.html"
+     },
+     {
+      "text": "Delivery measures",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/10-retirement-steady-state-and-success.html#delivery-measures"
+     },
+     {
+      "text": "Book 01, Chapter 09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/09-who-leads-the-transformation.html"
+     },
+     {
+      "text": "How a sponsor evaluates the program",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/09-who-leads-the-transformation.html#how-a-sponsor-evaluates-the-program"
+     },
+     {
+      "text": "Chapter 03",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/03-platform-foundation.html"
+     }
+    ]
+   },
+   {
+    "slide": 8,
+    "title": "Fifteen principles, one idea underneath",
+    "links": [
+     {
+      "text": "Entra extension attributes",
+      "url": "https://learn.microsoft.com/graph/api/resources/onpremisesextensionattributes?view=graph-rest-1.0"
+     },
+     {
+      "text": "PIM",
+      "url": "https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-configure"
+     },
+     {
+      "text": "Conditional Access",
+      "url": "https://learn.microsoft.com/entra/identity/conditional-access/overview"
+     },
+     {
+      "text": "continuous access evaluation",
+      "url": "https://learn.microsoft.com/entra/identity/conditional-access/concept-continuous-access-evaluation"
+     },
+     {
+      "text": "NIST SP 800-207",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#sp-800-207"
+     },
+     {
+      "text": "Book 00, Chapters 03",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/03-the-charter.html"
+     },
+     {
+      "text": "04",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/04-the-principles.html"
+     }
+    ]
+   },
+   {
+    "slide": 9,
+    "title": "Seven phases, six gates, and who clears each",
+    "links": [
+     {
+      "text": "Book 00, Chapters 05",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/05-the-program-plan.html"
+     },
+     {
+      "text": "07",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/07-who-runs-the-program.html"
+     },
+     {
+      "text": "Book 01, Chapters 09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/09-who-leads-the-transformation.html"
+     },
+     {
+      "text": "12",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html"
+     },
+     {
+      "text": "phases",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html#the-seven-phases"
+     },
+     {
+      "text": "Book 00",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/index.html"
+     }
+    ]
+   },
+   {
+    "slide": 10,
+    "title": "Five workstreams in parallel, one critical path",
+    "links": [
+     {
+      "text": "Book 00, Chapter 05",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/05-the-program-plan.html"
+     },
+     {
+      "text": "Five workstreams",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/05-the-program-plan.html#five-workstreams-run-in-parallel"
+     },
+     {
+      "text": "run in parallel",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/05-the-program-plan.html#five-workstreams-run-in-parallel"
+     },
+     {
+      "text": "The critical path",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/05-the-program-plan.html#the-critical-path"
+     },
+     {
+      "text": "The first five actions",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/05-the-program-plan.html#the-first-five-actions"
+     },
+     {
+      "text": "Chapter 03",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/03-the-charter.html"
+     },
+     {
+      "text": "Governance and ownership",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/03-the-charter.html#governance-and-ownership"
+     },
+     {
+      "text": "Book 01, Chapter 12",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html"
+     }
+    ]
+   },
+   {
+    "slide": 11,
+    "title": "Seven projects, run inside the program",
+    "links": [
+     {
+      "text": "Book 00, Chapter 06",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/06-the-project-portfolio.html"
+     },
+     {
+      "text": "The seven projects at a glance",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/06-the-project-portfolio.html#the-seven-projects-at-a-glance"
+     },
+     {
+      "text": "Why this order",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/06-the-project-portfolio.html#why-this-order"
+     },
+     {
+      "text": "How the projects fit the program",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/06-the-project-portfolio.html#how-the-projects-fit-the-program"
+     },
+     {
+      "text": "What the charters leave to the agency",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/06-the-project-portfolio.html#what-the-charters-leave-to-the-agency"
+     },
+     {
+      "text": "Chapter 07",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/07-who-runs-the-program.html"
+     },
+     {
+      "text": "The complementary projects",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/07-who-runs-the-program.html#the-complementary-projects"
+     }
+    ]
+   },
+   {
+    "slide": 12,
+    "title": "Who decides: one decider per row",
+    "links": [
+     {
+      "text": "OMB M-22-09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#m-22-09"
+     },
+     {
+      "text": "OMB M-19-17",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#m-19-17"
+     },
+     {
+      "text": "NIST SP 800-37 Rev. 2",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#sp-800-37"
+     },
+     {
+      "text": "Book 00, Chapters 03",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/03-the-charter.html"
+     },
+     {
+      "text": "07",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/07-who-runs-the-program.html"
+     },
+     {
+      "text": "Book 01, Chapter 09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/09-who-leads-the-transformation.html"
+     },
+     {
+      "text": "Chapter 07",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/07-compute-transformation.html"
+     }
+    ]
+   },
+   {
+    "slide": 13,
+    "title": "Three decisions the plans put on the wrong desk",
+    "links": [
+     {
+      "text": "NIST SP 800-37 Rev. 2",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#sp-800-37"
+     },
+     {
+      "text": "Book 00, Chapter 07",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/07-who-runs-the-program.html"
+     },
+     {
+      "text": "Who decides what",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/07-who-runs-the-program.html#who-decides-what"
+     },
+     {
+      "text": "Keeping the roles apart",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/07-who-runs-the-program.html#keeping-the-roles-apart"
+     },
+     {
+      "text": "Chapter 08",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/08-pre-flight-and-assessment.html"
+     },
+     {
+      "text": "Appendix A",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/appendix-a-risk-register-and-traceability.html"
+     }
+    ]
+   },
+   {
+    "slide": 14,
+    "title": "The people the program needs, and its rhythm",
+    "links": [
+     {
+      "text": "Book 00, Chapter 07",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/07-who-runs-the-program.html"
+     },
+     {
+      "text": "The rhythm",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/07-who-runs-the-program.html#the-rhythm"
+     },
+     {
+      "text": "The gate review",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/07-who-runs-the-program.html#the-gate-review"
+     },
+     {
+      "text": "The people the program needs",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/07-who-runs-the-program.html#the-people-the-program-needs"
+     },
+     {
+      "text": "Appendix A",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/appendix-a-risk-register-and-traceability.html"
+     },
+     {
+      "text": "Book 01, Chapter 12",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html"
+     },
+     {
+      "text": "Chapter 07",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/07-compute-transformation.html"
+     }
+    ]
+   },
+   {
+    "slide": 15,
+    "title": "Pre-flight: assessment before action",
+    "links": [
+     {
+      "text": "Book 00, Chapter 08",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/08-pre-flight-and-assessment.html"
+     },
+     {
+      "text": "Where pre-flight sits",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/08-pre-flight-and-assessment.html#where-pre-flight-sits-in-the-program"
+     },
+     {
+      "text": "The platform host",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/08-pre-flight-and-assessment.html#the-platform-host-the-programs-reference-design"
+     },
+     {
+      "text": "The read-only assessment",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/08-pre-flight-and-assessment.html#the-read-only-assessment"
+     },
+     {
+      "text": "The twenty-three deliverables",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/08-pre-flight-and-assessment.html#the-twenty-three-deliverables"
+     },
+     {
+      "text": "Gate G0",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/08-pre-flight-and-assessment.html#gate-g0-the-gono-go-checklist"
+     },
+     {
+      "text": "Chapter 07",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/07-who-runs-the-program.html"
+     },
+     {
+      "text": "The repository as the program's memory",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/07-who-runs-the-program.html#the-repository-as-the-programs-memory"
+     }
+    ]
+   },
+   {
+    "slide": 16,
+    "title": "Foundation and pilot: prove it on one division",
+    "links": [
+     {
+      "text": "dynamic membership processing",
+      "url": "https://learn.microsoft.com/entra/identity/users/manage-dynamic-group"
+     },
+     {
+      "text": "Plan a Conditional Access deployment",
+      "url": "https://learn.microsoft.com/entra/identity/conditional-access/plan-conditional-access"
+     },
+     {
+      "text": "emergency access accounts",
+      "url": "https://learn.microsoft.com/entra/identity/role-based-access-control/security-emergency-access"
+     },
+     {
+      "text": "Book 00, Chapter 09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html"
+     }
+    ]
+   },
+   {
+    "slide": 17,
+    "title": "Roll out in waves, then retire only what nothing uses",
+    "links": [
+     {
+      "text": "AD FS decommission guide",
+      "url": "https://learn.microsoft.com/windows-server/identity/ad-fs/decommission/adfs-decommission-guide"
+     },
+     {
+      "text": "Group Policy for domain controllers",
+      "url": "https://learn.microsoft.com/troubleshoot/windows-server/active-directory/group-policy-application-rules-for-domain-controller"
+     },
+     {
+      "text": "Active Directory accounts",
+      "url": "https://learn.microsoft.com/windows-server/identity/ad-ds/manage/understand-default-user-accounts"
+     },
+     {
+      "text": "NIST SP 800-88 Rev. 2",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#sp-800-88"
+     },
+     {
+      "text": "Book 00, Chapters 07",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/07-who-runs-the-program.html"
+     },
+     {
+      "text": "09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html"
+     },
+     {
+      "text": "10",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/10-retirement-steady-state-and-success.html"
+     }
+    ]
+   },
+   {
+    "slide": 18,
+    "title": "Steady state, and what success looks like",
+    "links": [
+     {
+      "text": "NIST SP 800-53 Rev. 5",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#sp-800-53"
+     },
+     {
+      "text": "Book 00, Chapter 10",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/10-retirement-steady-state-and-success.html"
+     },
+     {
+      "text": "Phase 6",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/10-retirement-steady-state-and-success.html#phase-6-steady-state"
+     },
+     {
+      "text": "Drift remediation SLAs",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/10-retirement-steady-state-and-success.html#drift-remediation-slas"
+     },
+     {
+      "text": "Handing over to operations",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/10-retirement-steady-state-and-success.html#handing-over-to-operations"
+     },
+     {
+      "text": "The program scorecard",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/10-retirement-steady-state-and-success.html#measuring-success-the-program-scorecard"
+     },
+     {
+      "text": "Chapter 05",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/05-the-program-plan.html"
+     },
+     {
+      "text": "Appendix A",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/appendix-a-risk-register-and-traceability.html"
+     }
+    ]
+   },
+   {
+    "slide": 19,
+    "title": "The risk register: what can sink the program",
+    "links": [
+     {
+      "text": "NIST SP 800-53 Rev. 5",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#sp-800-53"
+     },
+     {
+      "text": "NIST SP 800-30 Rev. 1",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#sp-800-30"
+     },
+     {
+      "text": "Microsoft KB5014754",
+      "url": "https://support.microsoft.com/topic/kb5014754-certificate-based-authentication-changes-on-windows-domain-controllers-ad2c23b0-15d8-4340-a468-4d4f3b188f16"
+     },
+     {
+      "text": "Book 00, Appendix A",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/appendix-a-risk-register-and-traceability.html"
+     },
+     {
+      "text": "Chapters 03",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/03-the-charter.html"
+     },
+     {
+      "text": "05",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/05-the-program-plan.html"
+     },
+     {
+      "text": "07",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/07-who-runs-the-program.html"
+     }
+    ]
+   },
+   {
+    "slide": 20,
+    "title": "Decisions to make, and who makes them",
+    "links": [
+     {
+      "text": "Book 00, Chapters 01",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/01-why-modernize-now.html"
+     },
+     {
+      "text": "03",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/03-the-charter.html"
+     },
+     {
+      "text": "05",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/05-the-program-plan.html"
+     },
+     {
+      "text": "07",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/07-who-runs-the-program.html"
+     },
+     {
+      "text": "08",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/08-pre-flight-and-assessment.html"
+     },
+     {
+      "text": "09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html"
+     },
+     {
+      "text": "10",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/10-retirement-steady-state-and-success.html"
+     },
+     {
+      "text": "Appendix A",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/appendix-a-risk-register-and-traceability.html"
+     }
+    ]
+   }
   ]
  },
  {
@@ -946,6 +2725,416 @@
     713,
     "Decisions to make, and next steps"
    ]
+  ],
+  "sources": [
+   {
+    "slide": 2,
+    "title": "Active Directory did governance nobody wrote down",
+    "links": [
+     {
+      "text": "AD DS users and OUs",
+      "url": "https://learn.microsoft.com/windows/win32/ad/users-in-active-directory-domain-services"
+     },
+     {
+      "text": "AD logical model",
+      "url": "https://learn.microsoft.com/windows-server/identity/ad-ds/plan/understanding-the-active-directory-logical-model"
+     },
+     {
+      "text": "Group Policy processing",
+      "url": "https://learn.microsoft.com/windows-server/identity/ad-ds/manage/group-policy/group-policy-processing"
+     },
+     {
+      "text": "AD-integrated DNS zones",
+      "url": "https://learn.microsoft.com/windows-server/identity/ad-ds/plan/active-directory-integrated-dns-zones"
+     },
+     {
+      "text": "AD CS overview",
+      "url": "https://learn.microsoft.com/windows-server/identity/ad-cs/active-directory-certificate-services-overview"
+     },
+     {
+      "text": "Entra administrative units",
+      "url": "https://learn.microsoft.com/entra/identity/role-based-access-control/administrative-units"
+     },
+     {
+      "text": "Book 00, Chapter 01",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/01-why-modernize-now.html"
+     }
+    ]
+   },
+   {
+    "slide": 3,
+    "title": "The schedule now belongs to OMB, CISA, FedRAMP and vendors",
+    "links": [
+     {
+      "text": "OMB M-22-09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#m-22-09"
+     },
+     {
+      "text": "M-26-14",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#m-26-14"
+     },
+     {
+      "text": "CISA BOD 25-01",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#bod-25-01"
+     },
+     {
+      "text": "BOD 26-02",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#bod-26-02"
+     },
+     {
+      "text": "Logging Reference Architecture",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#cisa-logging"
+     },
+     {
+      "text": "FedRAMP Consolidated Rules for 2026",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#fedramp-2026"
+     },
+     {
+      "text": "2025",
+      "url": "https://learn.microsoft.com/lifecycle/end-of-support/end-of-support-2025"
+     },
+     {
+      "text": "2029",
+      "url": "https://learn.microsoft.com/lifecycle/end-of-support/end-of-support-2029"
+     },
+     {
+      "text": "Book 00, Chapter 01",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/01-why-modernize-now.html"
+     }
+    ]
+   },
+   {
+    "slide": 4,
+    "title": "Read the clocks exactly, then run one program",
+    "links": [
+     {
+      "text": "Using a FedRAMP Certified Cloud Service",
+      "url": "https://www.fedramp.gov/2026/agencies/use/"
+     },
+     {
+      "text": "Notice NTC-0004",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#ntc-0004"
+     },
+     {
+      "text": "CISA BOD 25-01",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#bod-25-01"
+     },
+     {
+      "text": "OMB M-22-09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#m-22-09"
+     },
+     {
+      "text": "M-26-14",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#m-26-14"
+     },
+     {
+      "text": "Book 00, Chapter 01",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/01-why-modernize-now.html"
+     },
+     {
+      "text": "Book 11, Chapters 03",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b11-zero-trust/03-what-the-mandates-require.html"
+     },
+     {
+      "text": "04",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b11-zero-trust/04-scuba-and-bod-25-01.html"
+     }
+    ]
+   },
+   {
+    "slide": 5,
+    "title": "How the workbook works: eighteen books, four questions",
+    "links": [
+     {
+      "text": "Book 00, Chapter 02",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/02-how-to-use-this-workbook.html"
+     },
+     {
+      "text": "Every book asks four questions",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/02-how-to-use-this-workbook.html#every-book-asks-four-questions"
+     },
+     {
+      "text": "How claims are verified",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/02-how-to-use-this-workbook.html#how-claims-are-verified"
+     },
+     {
+      "text": "OMB M-26-14",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#m-26-14"
+     }
+    ]
+   },
+   {
+    "slide": 6,
+    "title": "The charter: the page the sponsor signs",
+    "links": [
+     {
+      "text": "Intune settings catalog vs. ADMX",
+      "url": "https://learn.microsoft.com/intune/device-configuration/settings-catalog/tutorial-group-policy-migration"
+     },
+     {
+      "text": "Entra administrative units",
+      "url": "https://learn.microsoft.com/entra/identity/role-based-access-control/administrative-units"
+     },
+     {
+      "text": "Microsoft Graph, onPremisesExtensionAttributes",
+      "url": "https://learn.microsoft.com/graph/api/resources/onpremisesextensionattributes?view=graph-rest-1.0"
+     },
+     {
+      "text": "OMB M-22-09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#m-22-09"
+     },
+     {
+      "text": "Book 00, Chapter 03",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/03-the-charter.html"
+     }
+    ]
+   },
+   {
+    "slide": 7,
+    "title": "Six success criteria, each tested at a gate",
+    "links": [
+     {
+      "text": "Book 00, Chapter 03",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/03-the-charter.html"
+     },
+     {
+      "text": "Success criteria",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/03-the-charter.html#success-criteria"
+     },
+     {
+      "text": "Chapter 10",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/10-retirement-steady-state-and-success.html"
+     },
+     {
+      "text": "the program scorecard",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/10-retirement-steady-state-and-success.html#measuring-success-the-program-scorecard"
+     },
+     {
+      "text": "Book 01, Chapter 12",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html"
+     }
+    ]
+   },
+   {
+    "slide": 8,
+    "title": "Fifteen principles in five groups",
+    "links": [
+     {
+      "text": "PIM",
+      "url": "https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-configure"
+     },
+     {
+      "text": "Conditional Access",
+      "url": "https://learn.microsoft.com/entra/identity/conditional-access/overview"
+     },
+     {
+      "text": "Intune policy conflicts",
+      "url": "https://learn.microsoft.com/intune/device-configuration/troubleshoot-device-profiles#conflicts"
+     },
+     {
+      "text": "continuous access evaluation",
+      "url": "https://learn.microsoft.com/entra/identity/conditional-access/concept-continuous-access-evaluation"
+     },
+     {
+      "text": "CISA ZTMM v2.0",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#cisa-ztmm"
+     },
+     {
+      "text": "OMB M-22-09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#m-22-09"
+     },
+     {
+      "text": "NIST SP 800-207",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#sp-800-207"
+     },
+     {
+      "text": "Book 00, Chapter 04",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/04-the-principles.html"
+     }
+    ]
+   },
+   {
+    "slide": 9,
+    "title": "Seven phases and six gates: the workbook's model",
+    "links": [
+     {
+      "text": "Book 00, Chapter 05",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/05-the-program-plan.html"
+     },
+     {
+      "text": "phases",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/05-the-program-plan.html#the-seven-phases-and-six-gates"
+     },
+     {
+      "text": "workstreams",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/05-the-program-plan.html#five-workstreams-run-in-parallel"
+     },
+     {
+      "text": "critical path",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/05-the-program-plan.html#the-critical-path"
+     },
+     {
+      "text": "Book 01, Chapter 12",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html"
+     },
+     {
+      "text": "Book 07, Chapter 07",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/07-coexistence-and-migration.html"
+     }
+    ]
+   },
+   {
+    "slide": 10,
+    "title": "Seven complementary projects, run inside the program",
+    "links": [
+     {
+      "text": "NTLM deprecation",
+      "url": "https://learn.microsoft.com/troubleshoot/windows-server/windows-security/audit-domain-controller-ntlmv1"
+     },
+     {
+      "text": "PIM licensing",
+      "url": "https://learn.microsoft.com/entra/id-governance/access-reviews-overview"
+     },
+     {
+      "text": "emergency access accounts",
+      "url": "https://learn.microsoft.com/entra/identity/role-based-access-control/security-emergency-access"
+     },
+     {
+      "text": "NIST SP 800-137",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#sp-800-137"
+     },
+     {
+      "text": "FedRAMP KSIs",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#fedramp-ksi"
+     },
+     {
+      "text": "certified-service use",
+      "url": "https://www.fedramp.gov/2026/agencies/use/"
+     },
+     {
+      "text": "OMB M-26-05",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#m-26-05"
+     },
+     {
+      "text": "Book 00, Chapter 06",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/06-the-project-portfolio.html"
+     }
+    ]
+   },
+   {
+    "slide": 11,
+    "title": "Who decides: one owner for every decision",
+    "links": [
+     {
+      "text": "NIST SP 800-37 Rev. 2",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#sp-800-37"
+     },
+     {
+      "text": "OMB M-22-09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#m-22-09"
+     },
+     {
+      "text": "OMB M-19-17",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#m-19-17"
+     },
+     {
+      "text": "Book 00, Chapters 03",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/03-the-charter.html"
+     },
+     {
+      "text": "07",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/07-who-runs-the-program.html"
+     },
+     {
+      "text": "Book 01, Chapter 09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/09-who-leads-the-transformation.html"
+     }
+    ]
+   },
+   {
+    "slide": 12,
+    "title": "From pre-flight to steady state: what each stretch proves",
+    "links": [
+     {
+      "text": "AD FS migration",
+      "url": "https://learn.microsoft.com/entra/identity/hybrid/connect/migrate-from-federation-to-cloud-authentication"
+     },
+     {
+      "text": "DC Group Policy",
+      "url": "https://learn.microsoft.com/troubleshoot/windows-server/active-directory/group-policy-application-rules-for-domain-controller"
+     },
+     {
+      "text": "CA decommissioning",
+      "url": "https://learn.microsoft.com/troubleshoot/windows-server/certificates-and-public-key-infrastructure-pki/decommission-enterprise-certification-authority-and-remove-objects"
+     },
+     {
+      "text": "DC password hashes",
+      "url": "https://learn.microsoft.com/windows-server/identity/ad-ds/manage/understand-default-user-accounts"
+     },
+     {
+      "text": "NIST SP 800-88 Rev. 2",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#sp-800-88"
+     },
+     {
+      "text": "Microsoft Entra licensing",
+      "url": "https://learn.microsoft.com/entra/fundamentals/licensing"
+     },
+     {
+      "text": "Book 00, Chapters 08",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/08-pre-flight-and-assessment.html"
+     },
+     {
+      "text": "09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html"
+     },
+     {
+      "text": "10",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/10-retirement-steady-state-and-success.html"
+     }
+    ]
+   },
+   {
+    "slide": 13,
+    "title": "Decisions to make, and next steps",
+    "links": [
+     {
+      "text": "OMB M-22-09",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#m-22-09"
+     },
+     {
+      "text": "M-19-17",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#m-19-17"
+     },
+     {
+      "text": "M-26-14",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#m-26-14"
+     },
+     {
+      "text": "CISA Logging Reference Architecture",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#cisa-logging"
+     },
+     {
+      "text": "Book 00, Chapters 01",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/01-why-modernize-now.html"
+     },
+     {
+      "text": "03",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/03-the-charter.html"
+     },
+     {
+      "text": "05",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/05-the-program-plan.html"
+     },
+     {
+      "text": "07",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/07-who-runs-the-program.html"
+     },
+     {
+      "text": "10",
+      "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/10-retirement-steady-state-and-success.html"
+     }
+    ]
+   }
   ]
  },
  {
@@ -1042,7 +3231,8 @@
     1445,
     "Decisions, owners, and where to start"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "B01_Transformation_Arc_Narrated",
@@ -1126,7 +3316,8 @@
     866,
     "Decisions to make, and next steps"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "B02_Identity_Executive_Narrated",
@@ -1218,7 +3409,8 @@
     911,
     "Decisions to make, owners and timing"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "B02_Identity_Narrated",
@@ -1282,7 +3474,8 @@
     643,
     "What we're asking for"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "B02_Identity_Technical_Narrated",
@@ -1414,7 +3607,8 @@
     1371,
     "What the assessor receives, and what the agency keeps"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "B03_HR_Identity_Executive_Narrated",
@@ -1506,7 +3700,8 @@
     896,
     "Decisions to make, owners and timing"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "B03_HR_Identity_Narrated",
@@ -1570,7 +3765,8 @@
     648,
     "How we'll know it works, and what we need"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "B03_HR_Identity_Technical_Narrated",
@@ -1714,7 +3910,8 @@
     1257,
     "Decisions to make, and next steps for HR-driven identity"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "B04_Access_Executive_Narrated",
@@ -1806,7 +4003,8 @@
     882,
     "Decisions to make, owners and timing"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "B04_Access_Narrated",
@@ -1862,7 +4060,8 @@
     504,
     "What we need"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "B04_Access_Technical_Narrated",
@@ -1990,7 +4189,8 @@
     1312,
     "Taking it back to the tenant"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "B05_Devices_Executive_Narrated",
@@ -2090,7 +4290,8 @@
     966,
     "Decisions to make, owners and timing"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "B05_Devices_Narrated",
@@ -2158,7 +4359,8 @@
     672,
     "Run it, prove it, and what we need"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "B05_Devices_Technical_Narrated",
@@ -2302,7 +4504,8 @@
     1532,
     "The evidence an assessor reads, and the GCC boundary facts"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "B06_Data_Platform_Executive_Narrated",
@@ -2398,7 +4601,8 @@
     889,
     "Decisions to make, owners and timing"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "B06_Data_Platform_Narrated",
@@ -2458,7 +4662,8 @@
     585,
     "What we need"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "B06_Data_Platform_Technical_Narrated",
@@ -2586,7 +4791,8 @@
     1293,
     "What to take back to the estate"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "B07_PKI_Executive_Narrated",
@@ -2674,7 +4880,8 @@
     788,
     "Decisions to make, owners and timing"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "B07_PKI_Narrated",
@@ -2742,7 +4949,8 @@
     729,
     "Decisions to make, and next steps"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "B07_PKI_Technical_Narrated",
@@ -2878,7 +5086,8 @@
     1415,
     "Retire AD CS last, and hand the assessor the evidence"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "B08_DDI_Executive_Narrated",
@@ -2970,7 +5179,8 @@
     839,
     "Decisions to make, owners and timing"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "B08_DDI_Narrated",
@@ -3042,7 +5252,8 @@
     760,
     "Decisions to make, and next steps"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "B08_DDI_Technical_Narrated",
@@ -3174,7 +5385,8 @@
     1390,
     "Keeping it honest: troubleshooting and the evidence checklist"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "B09_Network_Executive_Narrated",
@@ -3254,7 +5466,8 @@
     1271,
     "Start now: the work that needs no award"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "B09_Network_Narrated",
@@ -3330,7 +5543,8 @@
     780,
     "Decisions to make, and next steps"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "B09_Network_Technical_Narrated",
@@ -3474,7 +5688,8 @@
     1219,
     "Decisions for the owners, and next steps"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "B09_SDWAN_Technical_Narrated",
@@ -3614,7 +5829,8 @@
     1144,
     "What to decide, what to evidence, what to start"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "B09_SDWAN_Executive_Narrated",
@@ -3678,7 +5894,8 @@
     427,
     "Where to read next"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "B10_Cloud_Boundary_Executive_Narrated",
@@ -3758,7 +5975,8 @@
     1232,
     "Five decisions, five owners, and the next step"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "B10_Cloud_Boundary_Narrated",
@@ -3834,7 +6052,8 @@
     773,
     "Decisions to make, and next steps"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "B10_Cloud_Boundary_Technical_Narrated",
@@ -3978,7 +6197,8 @@
     1175,
     "Decisions to make, and the first week's work"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "B11_Zero_Trust_Executive_Narrated",
@@ -4058,7 +6278,8 @@
     1310,
     "Decisions to make this quarter, and who makes them"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "B11_Zero_Trust_Narrated",
@@ -4130,7 +6351,8 @@
     780,
     "Decisions to make, and next steps"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "B11_Zero_Trust_Technical_Narrated",
@@ -4274,7 +6496,8 @@
     1145,
     "Decisions for this quarter, none of them a purchase"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "B12_Security_Operations_Executive_Narrated",
@@ -4366,7 +6589,8 @@
     822,
     "Decisions to make, owners and timing"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "B12_Security_Operations_Narrated",
@@ -4438,7 +6662,8 @@
     754,
     "Decisions to make, and next steps"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "B12_Security_Operations_Technical_Narrated",
@@ -4582,7 +6807,8 @@
     1118,
     "Decisions to make, and what to run on Monday"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "B13_Governance_Executive_Narrated",
@@ -4674,7 +6900,8 @@
     856,
     "Governance decisions: owners and timing"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "B13_Governance_Narrated",
@@ -4746,7 +6973,8 @@
     750,
     "Decisions to make, and next steps"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "B13_Governance_Technical_Narrated",
@@ -4890,7 +7118,8 @@
     1176,
     "Decisions to make, and what to start on Monday"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "B13_Ticket_to_Machine_Narrated",
@@ -4974,7 +7203,8 @@
     638,
     "What to decide, and where to read next"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "B14_Compliance_Executive_Narrated",
@@ -5066,7 +7296,8 @@
     882,
     "Decisions to make, owners and timing"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "B14_Compliance_Narrated",
@@ -5134,7 +7365,8 @@
     667,
     "Decisions to make, and next steps"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "B15_InHouse_Automation_Executive_Narrated",
@@ -5209,7 +7441,8 @@
     516,
     "Where to read next"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "B15_Day2_Operations_Executive_Narrated",
@@ -5297,7 +7530,8 @@
     775,
     "Day-two decisions: owners and timing"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "B15_Day2_Operations_Narrated",
@@ -5365,7 +7599,8 @@
     675,
     "Decisions to make, and next steps"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "B15_Day2_Operations_Technical_Narrated",
@@ -5497,7 +7732,8 @@
     1180,
     "Decisions to make, and next steps for day two"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "B16_People_Executive_Narrated",
@@ -5593,7 +7829,8 @@
     831,
     "Decisions to make, owners and timing"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "B16_People_Narrated",
@@ -5665,7 +7902,8 @@
     696,
     "Decisions to make, and next steps"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "B17_AI_Identity_Executive_Narrated",
@@ -5753,7 +7991,8 @@
     830,
     "Decisions to make, owners and timing"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "B17_AI_Identity_Narrated",
@@ -5825,7 +8064,8 @@
     718,
     "Decisions to make, and next steps"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "B17_AI_Identity_Technical_Narrated",
@@ -5969,7 +8209,8 @@
     1209,
     "Decisions, owners, and what to start on Monday"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "B18_Application_Modernization_Executive_Narrated",
@@ -6071,7 +8312,8 @@
     807,
     "Decisions to make, owners and timing"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "B18_Application_Modernization_Narrated",
@@ -6145,7 +8387,8 @@
     528,
     "Decisions to make, and next steps"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "B18_Application_Modernization_Technical_Narrated",
@@ -6303,7 +8546,8 @@
     1204,
     "Decisions, owners, and what to start on Monday"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "TTM_Story_One_Drift_Case_Narrated",
@@ -6425,7 +8669,8 @@
     1189,
     "Your turn: Lab 2, and where to go next"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "Guide_Ansible_Technical_Narrated",
@@ -6563,7 +8808,8 @@
     1096,
     "Decisions, owners, and where to start"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "Guide_Effective_Meetings_Narrated",
@@ -6667,7 +8913,8 @@
     798,
     "Further reading, and the standard in one line"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "HR_Driven_Identity_Implementation_Part_1_Narrated",
@@ -6768,7 +9015,8 @@
     897,
     "Handing G1–G3 to Part 2"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "HR_Driven_Identity_Implementation_Part_2_Narrated",
@@ -6874,7 +9122,8 @@
     892,
     "One evidence file per population, and what's next"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "Non_Person_Identity_Implementation_Part_1_Narrated",
@@ -6960,7 +9209,8 @@
     930,
     "Handing G1–G3 to Part 2"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "Non_Person_Identity_Implementation_Part_2_Narrated",
@@ -7051,7 +9301,8 @@
     892,
     "The dangers to keep in view, and where to go next"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "TTM_ServiceNow_SailPoint_Implementation_Part_1_Narrated",
@@ -7146,7 +9397,8 @@
     919,
     "Handing G1–G4 to Part 2"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "TTM_ServiceNow_SailPoint_Implementation_Part_2_Narrated",
@@ -7233,7 +9485,8 @@
     854,
     "From Draft to Proved, and where to go next"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "B08_DDI_Requirements_Narrated",
@@ -7313,7 +9566,8 @@
     771,
     "Decisions to make, and the next steps"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "Research_Cisco_SDWAN_Narrated",
@@ -7415,7 +9669,8 @@
     980,
     "What to verify, decide, and read next"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "Research_CyberArk_CLM_Narrated",
@@ -7567,7 +9822,8 @@
     1162,
     "Decisions, vendor asks and next steps"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "Research_Hybrid_Credentials_Narrated",
@@ -7651,7 +9907,8 @@
     640,
     "What changed in the books, and next steps"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "Research_Cloud_DNS_Part_1_Narrated",
@@ -7735,7 +9992,8 @@
     974,
     "What to confirm, and what Part 2 covers"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "Research_Cloud_DNS_Part_2_Narrated",
@@ -7819,7 +10077,8 @@
     971,
     "Where Infoblox fits, and what to confirm"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "Research_HR_Identity_DNS_Narrated",
@@ -7883,7 +10142,8 @@
     538,
     "Decisions, next steps and where this fits"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "Research_Infoblox_Impl_Narrated",
@@ -8015,7 +10275,8 @@
     1265,
     "Decisions, vendor asks and next steps"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "Infoblox_DDI_Federal_Deep_Dive_Narrated",
@@ -8167,7 +10428,8 @@
     1592,
     "Rollout sequence, decisions and next steps"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "Research_Trinzic_MultiCloud_Narrated",
@@ -8223,7 +10485,8 @@
     469,
     "Where this fits the workbook, and next steps"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "Research_Device_Naming_Narrated",
@@ -8291,7 +10554,8 @@
     584,
     "Decisions, next steps and where this fits"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "Research_TTM_ServiceNow_SailPoint_Narrated",
@@ -8370,7 +10634,8 @@
     558,
     "What to verify, decide, and read next"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "DW_HR_01_Writer_Register_Narrated",
@@ -8469,7 +10734,8 @@
     620,
     "Done when: the writer register checklist"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "DW_HR_02_Contractor_End_Dates_Narrated",
@@ -8572,7 +10838,8 @@
     648,
     "Done when: the contractor checklist"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "DW_HR_03_Joiner_Workflows_Narrated",
@@ -8671,7 +10938,8 @@
     610,
     "Done when: the Gate 3 checklist"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "DW_HR_04_Access_From_Attributes_Narrated",
@@ -8770,7 +11038,8 @@
     632,
     "Done when: the Gate 4 checklist"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "DW_HR_05_CBA_Checks_Narrated",
@@ -8864,7 +11133,8 @@
     641,
     "Done when: the CBA checklist"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "DW_HR_06_Separation_Timing_Narrated",
@@ -8962,7 +11232,8 @@
     635,
     "Done when: the separation checklist"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "DW_HR_07_Drift_Metrics_Evidence_Narrated",
@@ -9071,7 +11342,8 @@
     654,
     "Done when: the Gate 7 checklist"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "DW_NPI_01_Inventory_as_Code_Narrated",
@@ -9165,7 +11437,8 @@
     650,
     "Done when: the chapter's checklist"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "DW_NPI_02_Ownership_Orphan_Rule_Narrated",
@@ -9255,7 +11528,8 @@
     604,
     "Done when: the chapter's checklist"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "DW_NPI_03_Migration_Path_Matrix_Narrated",
@@ -9349,7 +11623,8 @@
     646,
     "Done when: the chapter's checklist"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "DW_NPI_04_App_Policy_Rotation_Narrated",
@@ -9443,7 +11718,8 @@
     631,
     "Done when: the chapter's checklist"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "DW_NPI_05_Workload_Federation_Narrated",
@@ -9537,7 +11813,8 @@
     671,
     "Done when: the chapter's checklist"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "DW_NPI_06_gMSA_dMSA_Narrated",
@@ -9631,7 +11908,8 @@
     641,
     "Done when: the chapter's checklist"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "DW_NPI_07_Least_Privilege_Narrated",
@@ -9725,7 +12003,8 @@
     651,
     "Done when: the chapter's checklist"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "DW_NPI_08_Workload_CA_Narrated",
@@ -9819,7 +12098,8 @@
     644,
     "Done when: the chapter's checklist"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "DW_NPI_09_AI_Agent_Identities_Narrated",
@@ -9913,7 +12193,8 @@
     663,
     "Done when: the chapter's checklist"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "DW_NPI_10_Drift_Evidence_Narrated",
@@ -10008,7 +12289,8 @@
     626,
     "Done when: the checklist, and the workbook's end"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "DW_PA_01_Privileged_Inventory_Narrated",
@@ -10102,7 +12384,8 @@
     641,
     "Done when: the chapter's checklist"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "DW_PA_02_Emergency_Access_Narrated",
@@ -10188,7 +12471,8 @@
     558,
     "Done when: the chapter's checklist"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "DW_PA_03_CA_Activation_Gate_Narrated",
@@ -10282,7 +12566,8 @@
     642,
     "Done when: the chapter's checklist"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "DW_PA_04_PIM_Entra_Roles_Narrated",
@@ -10376,7 +12661,8 @@
     636,
     "Done when: the chapter's checklist"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "DW_PA_05_PIM_for_Groups_Narrated",
@@ -10470,7 +12756,8 @@
     630,
     "Done when: the chapter's checklist"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "DW_PA_06_PIM_Azure_Resources_Narrated",
@@ -10564,7 +12851,8 @@
     665,
     "Done when: the chapter's checklist"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "DW_PA_07_Access_Reviews_Narrated",
@@ -10658,7 +12946,8 @@
     658,
     "Done when: the chapter's checklist"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "DW_PA_08_Evidence_Drift_Narrated",
@@ -10757,7 +13046,8 @@
     658,
     "Done when: the chapter's checklist"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "DW_ADM_01_HR_Entra_Middleware_Narrated",
@@ -10851,7 +13141,8 @@
     620,
     "Done when: the chapter's checklist"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "DW_ADM_02_Graph_Clients_Narrated",
@@ -10960,7 +13251,8 @@
     644,
     "Done when: the chapter's checklist"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "DW_ADM_03_Validation_Kit_Check_Narrated",
@@ -11054,7 +13346,8 @@
     627,
     "Done when: the reviewer's checklist"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "DW_ADM_04_Dynamic_Rules_Narrated",
@@ -11148,7 +13441,8 @@
     616,
     "Done when: the chapter's checklist"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "DW_ADM_05_Lifecycle_Extensions_Narrated",
@@ -11242,7 +13536,8 @@
     660,
     "Done when: the chapter's checklist"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "DW_ADM_06_Group_Policy_as_Code_Narrated",
@@ -11341,7 +13636,8 @@
     643,
     "Done when: the chapter's checklist"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "DW_ADM_07_Machine_Configuration_Narrated",
@@ -11435,7 +13731,8 @@
     638,
     "Done when: the chapter's checklist"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "DW_ADM_08_Ansible_Beside_Arc_Narrated",
@@ -11529,7 +13826,8 @@
     641,
     "Done when: the chapter's checklist"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "DW_ADM_09_Drift_Pipelines_Evidence_Narrated",
@@ -11638,7 +13936,8 @@
     645,
     "Done when: the chapter's checklist"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "DW_TTM_01_Loop_Typed_Task_Narrated",
@@ -11728,7 +14027,8 @@
     579,
     "Done when: the chapter's checklist"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "DW_TTM_02_ServiceNow_Least_Privilege_Narrated",
@@ -11814,7 +14114,8 @@
     526,
     "Done when: the ServiceNow checklist"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "DW_TTM_03_SailPoint_Scopes_Narrated",
@@ -11900,7 +14201,8 @@
     540,
     "Done when: the SailPoint and Graph checklist"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "DW_TTM_04_Drift_Typed_Task_Narrated",
@@ -11986,7 +14288,8 @@
     533,
     "Done when: the Build 1 checklist"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "DW_TTM_05_Reread_Rule_Narrated",
@@ -12072,7 +14375,8 @@
     539,
     "Done when: the re-read checklist"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "DW_TTM_06_Drift_Reconciliation_Narrated",
@@ -12154,7 +14458,8 @@
     515,
     "Done when: the reconciliation checklist"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "DW_TTM_07_Evidence_Records_Narrated",
@@ -12236,7 +14541,8 @@
     507,
     "Done when: the evidence checklist"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "DW_TTM_08_One_Writer_Per_Attribute_Narrated",
@@ -12322,7 +14628,8 @@
     534,
     "Done when: the writer checklist"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "Training_ADM_Module_1_Narrated",
@@ -12404,7 +14711,8 @@
     786,
     "Summary, and next: Module 2, a validation kit check"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "Training_ADM_Module_2_Narrated",
@@ -12482,7 +14790,8 @@
     748,
     "Summary, and next: Module 3, dynamic rules as code"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "Training_ADM_Module_3_Narrated",
@@ -12560,7 +14869,8 @@
     762,
     "Summary, and next: Module 4, Group Policy as code"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "Training_ADM_Module_4_Narrated",
@@ -12647,7 +14957,8 @@
     842,
     "Summary, and next: Module 5, machine configuration"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "Training_ADM_Module_5_Narrated",
@@ -12729,7 +15040,8 @@
     819,
     "Summary, and next: Module 6, Ansible beside Arc"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "Training_ADM_Module_6_Narrated",
@@ -12811,7 +15123,8 @@
     882,
     "Summary, and next: Module 7, Lifecycle Workflows"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "Training_ADM_Module_7_Narrated",
@@ -12889,7 +15202,8 @@
     793,
     "Summary, and next: Module 8, drift and evidence"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "Training_ADM_Module_8_Narrated",
@@ -12971,7 +15285,8 @@
     809,
     "Summary, and next: Module 9, test then production"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "Training_ADM_Module_9_Narrated",
@@ -13049,7 +15364,8 @@
     769,
     "Summary: you've finished the path"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "Training_HR_Module_1_Narrated",
@@ -13131,7 +15447,8 @@
     733,
     "Summary, and next: Module 2, contractor sources"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "Training_HR_Module_2_Narrated",
@@ -13218,7 +15535,8 @@
     751,
     "Summary, and next: Module 3, joiners on day one"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "Training_HR_Module_3_Narrated",
@@ -13300,7 +15618,8 @@
     725,
     "Summary, and next: Module 4, access and movers"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "Training_HR_Module_4_Narrated",
@@ -13387,7 +15706,8 @@
     750,
     "Summary, and next: Module 5, certificate checks"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "Training_HR_Module_5_Narrated",
@@ -13469,7 +15789,8 @@
     723,
     "Summary, and next: Module 6, separation timing"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "Training_HR_Module_6_Narrated",
@@ -13551,7 +15872,8 @@
     729,
     "Summary, and next: Module 7, drift and evidence"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "Training_HR_Module_7_Narrated",
@@ -13642,7 +15964,8 @@
     785,
     "Summary: you've finished the learning path"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "Training_MS_Automation_Module_1_Narrated",
@@ -13728,7 +16051,8 @@
     820,
     "Summary, and next: Module 2, Entra ID"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "Training_MS_Automation_Module_2_Narrated",
@@ -13814,7 +16138,8 @@
     755,
     "Summary, and next: Module 3, Intune"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "Training_MS_Automation_Module_3_Narrated",
@@ -13905,7 +16230,8 @@
     801,
     "Summary: you've finished the path"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "Training_NPI_Module_10_Narrated",
@@ -14000,7 +16326,8 @@
     916,
     "Summary, and next: Module 11, test then production"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "Training_NPI_Module_11_Narrated",
@@ -14086,7 +16413,8 @@
     808,
     "Summary: you've finished the learning path"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "Training_NPI_Module_1_Narrated",
@@ -14173,7 +16501,8 @@
     784,
     "Summary, and next: Module 2, owners and orphans"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "Training_NPI_Module_2_Narrated",
@@ -14260,7 +16589,8 @@
     762,
     "Summary, and next: Module 3, decide the target"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "Training_NPI_Module_3_Narrated",
@@ -14343,7 +16673,8 @@
     750,
     "Summary, and next: Module 4, the credential rules"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "Training_NPI_Module_4_Narrated",
@@ -14430,7 +16761,8 @@
     786,
     "Summary, and next: Module 5, cut the privilege"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "Training_NPI_Module_5_Narrated",
@@ -14521,7 +16853,8 @@
     843,
     "Summary, and next: Module 6, Conditional Access"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "Training_NPI_Module_6_Narrated",
@@ -14616,7 +16949,8 @@
     860,
     "Summary, and next: Module 7, conversions"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "Training_NPI_Module_7_Narrated",
@@ -14707,7 +17041,8 @@
     843,
     "Summary, and next: Module 8, gMSAs and dMSAs"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "Training_NPI_Module_8_Narrated",
@@ -14798,7 +17133,8 @@
     889,
     "Summary, and next: Module 9, AI agent identities"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "Training_NPI_Module_9_Narrated",
@@ -14889,7 +17225,8 @@
     833,
     "Summary, and next: Module 10, drift and evidence"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "Training_PA_Module_1_Narrated",
@@ -14971,7 +17308,8 @@
     781,
     "Summary, and next: Module 2, emergency access first"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "Training_PA_Module_2_Narrated",
@@ -15053,7 +17391,8 @@
     766,
     "Summary, and next: Module 3, the activation gate"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "Training_PA_Module_3_Narrated",
@@ -15135,7 +17474,8 @@
     776,
     "Summary, and next: Module 4, PIM for Entra roles"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "Training_PA_Module_4_Narrated",
@@ -15217,7 +17557,8 @@
     779,
     "Summary, and next: Module 5, PIM for Groups"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "Training_PA_Module_5_Narrated",
@@ -15303,7 +17644,8 @@
     784,
     "Summary, and next: Module 6, PIM for Azure resources"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "Training_PA_Module_6_Narrated",
@@ -15385,7 +17727,8 @@
     735,
     "Summary, and next: Module 7, access reviews"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "Training_PA_Module_7_Narrated",
@@ -15467,7 +17810,8 @@
     757,
     "Summary, and next: Module 8, evidence and drift"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "Training_PA_Module_8_Narrated",
@@ -15566,7 +17910,8 @@
     921,
     "Summary: you've finished the path"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "Training_TTM_Module_1_Narrated",
@@ -15652,7 +17997,8 @@
     769,
     "Summary, and next: Module 2, least privilege"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "Training_TTM_Module_2_Narrated",
@@ -15738,7 +18084,8 @@
     758,
     "Summary, and next: Module 3, one writer"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "Training_TTM_Module_3_Narrated",
@@ -15824,7 +18171,8 @@
     762,
     "Summary, and next: Module 4, the starting drift"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "Training_TTM_Module_4_Narrated",
@@ -15910,7 +18258,8 @@
     763,
     "Summary, and next: Module 5, a typed task"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "Training_TTM_Module_5_Narrated",
@@ -15996,7 +18345,8 @@
     776,
     "Summary, and next: Module 6, the re-read rule"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "Training_TTM_Module_6_Narrated",
@@ -16082,7 +18432,8 @@
     801,
     "Summary, and next: Module 7, evidence for the ISSO"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "Training_TTM_Module_7_Narrated",
@@ -16168,7 +18519,8 @@
     812,
     "Summary: you've finished the path"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "HR_Driven_Identity_AnyAgency_Narrated",
@@ -16248,7 +18600,8 @@
     924,
     "More modernizations I’ve designed"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "HR_Driven_Identity_Exec_AnyAgency_Narrated",
@@ -16300,7 +18653,8 @@
     670,
     "More modernizations I’ve designed"
    ]
-  ]
+  ],
+  "sources": null
  },
  {
   "id": "HR_Driven_Identity_Contractor_Source_AnyAgency_Narrated",
@@ -16344,6 +18698,7 @@
     524,
     "Sequence: start with what already exists"
    ]
-  ]
+  ],
+  "sources": null
  }
 ]
