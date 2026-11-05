@@ -45,7 +45,7 @@ AD-integrated DNS zones: https://whalermike.github.io/modernization-workbook/doc
 AD CS overview: https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-active-directory-certificate
 Entra administrative units: https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#administrative-units-in-microsoft-entra-id
 OMB M-22-09: https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09
-m-26-14: https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-26-14
+OMB M-26-14: https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-26-14
 CISA BOD 25-01: https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-25-01
 BOD 26-02: https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-26-02
 Logging Reference Architecture: https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cisa-logging

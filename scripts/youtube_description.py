@@ -54,8 +54,15 @@ def book_title(url: str) -> str:
     return f"Book {book.group(1)}: {title}" if book and not title.startswith("Book") else title
 
 
+def row_names() -> dict[str, str]:
+    """Each Source Register row's fullest short name, by id: 'CISA BOD 26-02' for bod-26-02."""
+    rows = json.loads((ROOT / "data" / "source-register.json").read_text(encoding="utf-8"))["sources"]
+    return {r["id"]: max(r.get("labels") or [r["title"]], key=len) for r in rows}
+
+
 def link_lists(sources: list[dict]) -> tuple[list[str], list[str]]:
     """(book chapter lines, original source lines), each page once, in slide order."""
+    names = row_names()
     books: dict[str, str] = {}
     others: dict[str, str] = {}
     for slide in sources:
@@ -66,7 +73,8 @@ def link_lists(sources: list[dict]) -> tuple[list[str], list[str]]:
                 books.setdefault(base, book_title(base) if base.endswith(".html") else link["text"])
             elif REGISTER in url:
                 # A link on a bare number ("26-02") means nothing out of its sentence: name the row.
-                text = link["text"] if re.match(r"\D{3}", link["text"]) else url.rsplit("#", 1)[-1]
+                row = url.rsplit("#", 1)[-1]
+                text = link["text"] if re.match(r"\D{3}", link["text"]) else names.get(row, row)
                 others.setdefault(url, text)
     return ([f"{t}: {u}" for u, t in books.items()], [f"{t}: {u}" for u, t in others.items()])
 

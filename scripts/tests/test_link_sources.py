@@ -48,6 +48,11 @@ class Description(unittest.TestCase):
         with self.assertRaises(SystemExit):
             Y.check_chapters("x", [[3, "a"], [20, "b"], [30, "c"]])
 
+    def test_a_bare_number_takes_the_row_name(self):
+        url = f"{Y.SITE}{Y.REGISTER}#bod-26-02"
+        _, others = Y.link_lists([{"links": [{"text": "26-02", "url": url}]}])
+        self.assertEqual(others, [f"CISA BOD 26-02: {url}"])
+
     def test_stays_under_the_limit(self):
         chapters = [[i * 20, f"Slide {i}"] for i in range(20)]
         links = [{"text": f"Source {i}", "url": f"{Y.SITE}{Y.REGISTER}#{'x' * 80}{i}"} for i in range(200)]
