@@ -5,27 +5,27 @@
   "links": [
    {
     "text": "AD DS users and OUs",
-    "url": "https://learn.microsoft.com/windows/win32/ad/users-in-active-directory-domain-services"
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#users-in-active-directory-domain-services"
    },
    {
     "text": "AD logical model",
-    "url": "https://learn.microsoft.com/windows-server/identity/ad-ds/plan/understanding-the-active-directory-logical-model"
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#understanding-the-active-directory-logical"
    },
    {
     "text": "Group Policy processing",
-    "url": "https://learn.microsoft.com/windows-server/identity/ad-ds/manage/group-policy/group-policy-processing"
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#group-policy-processing"
    },
    {
     "text": "AD-integrated DNS zones",
-    "url": "https://learn.microsoft.com/windows-server/identity/ad-ds/plan/active-directory-integrated-dns-zones"
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#active-directory-integrated-dns-zones"
    },
    {
     "text": "AD CS overview",
-    "url": "https://learn.microsoft.com/windows-server/identity/ad-cs/active-directory-certificate-services-overview"
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-active-directory-certificate"
    },
    {
     "text": "Entra administrative units",
-    "url": "https://learn.microsoft.com/entra/identity/role-based-access-control/administrative-units"
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#administrative-units-in-microsoft-entra-id"
    },
    {
     "text": "Book 00, Chapter 01",
@@ -39,35 +39,35 @@
   "links": [
    {
     "text": "OMB M-22-09",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#m-22-09"
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
    },
    {
     "text": "M-26-14",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#m-26-14"
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-26-14"
    },
    {
     "text": "CISA BOD 25-01",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#bod-25-01"
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-25-01"
    },
    {
     "text": "BOD 26-02",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#bod-26-02"
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-26-02"
    },
    {
     "text": "Logging Reference Architecture",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#cisa-logging"
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cisa-logging"
    },
    {
     "text": "FedRAMP Consolidated Rules for 2026",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#fedramp-2026"
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-2026"
    },
    {
     "text": "2025",
-    "url": "https://learn.microsoft.com/lifecycle/end-of-support/end-of-support-2025"
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#ending-support-in-2025"
    },
    {
     "text": "2029",
-    "url": "https://learn.microsoft.com/lifecycle/end-of-support/end-of-support-2029"
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#ending-support-in-2029"
    },
    {
     "text": "Book 00, Chapter 01",
@@ -81,23 +81,23 @@
   "links": [
    {
     "text": "Using a FedRAMP Certified Cloud Service",
-    "url": "https://www.fedramp.gov/2026/agencies/use/"
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#using-a-fedramp-certified-cloud-service"
    },
    {
     "text": "Notice NTC-0004",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#ntc-0004"
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#ntc-0004"
    },
    {
     "text": "CISA BOD 25-01",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#bod-25-01"
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-25-01"
    },
    {
     "text": "OMB M-22-09",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#m-22-09"
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
    },
    {
     "text": "M-26-14",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#m-26-14"
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-26-14"
    },
    {
     "text": "Book 00, Chapter 01",
@@ -131,7 +131,7 @@
    },
    {
     "text": "OMB M-26-14",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#m-26-14"
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-26-14"
    }
   ]
  },
@@ -141,19 +141,19 @@
   "links": [
    {
     "text": "Intune settings catalog vs. ADMX",
-    "url": "https://learn.microsoft.com/intune/device-configuration/settings-catalog/tutorial-group-policy-migration"
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#walkthrough-create-an-intune-settings"
    },
    {
     "text": "Entra administrative units",
-    "url": "https://learn.microsoft.com/entra/identity/role-based-access-control/administrative-units"
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#administrative-units-in-microsoft-entra-id"
    },
    {
     "text": "Microsoft Graph, onPremisesExtensionAttributes",
-    "url": "https://learn.microsoft.com/graph/api/resources/onpremisesextensionattributes?view=graph-rest-1.0"
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#onpremisesextensionattributes-resource-type"
    },
    {
     "text": "OMB M-22-09",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#m-22-09"
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
    },
    {
     "text": "Book 00, Chapter 03",
@@ -193,31 +193,31 @@
   "links": [
    {
     "text": "PIM",
-    "url": "https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-configure"
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-microsoft-entra-privileged-identity"
    },
    {
     "text": "Conditional Access",
-    "url": "https://learn.microsoft.com/entra/identity/conditional-access/overview"
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-conditional-access"
    },
    {
     "text": "Intune policy conflicts",
-    "url": "https://learn.microsoft.com/intune/device-configuration/troubleshoot-device-profiles#conflicts"
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#common-questions-answers-and-scenarios-with"
    },
    {
     "text": "continuous access evaluation",
-    "url": "https://learn.microsoft.com/entra/identity/conditional-access/concept-continuous-access-evaluation"
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#continuous-access-evaluation"
    },
    {
     "text": "CISA ZTMM v2.0",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#cisa-ztmm"
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cisa-ztmm"
    },
    {
     "text": "OMB M-22-09",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#m-22-09"
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
    },
    {
     "text": "NIST SP 800-207",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#sp-800-207"
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-207"
    },
    {
     "text": "Book 00, Chapter 04",
@@ -261,31 +261,31 @@
   "links": [
    {
     "text": "NTLM deprecation",
-    "url": "https://learn.microsoft.com/troubleshoot/windows-server/windows-security/audit-domain-controller-ntlmv1"
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#audit-use-of-ntlmv1-on-a-windows-server"
    },
    {
     "text": "PIM licensing",
-    "url": "https://learn.microsoft.com/entra/id-governance/access-reviews-overview"
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-are-access-reviews"
    },
    {
     "text": "emergency access accounts",
-    "url": "https://learn.microsoft.com/entra/identity/role-based-access-control/security-emergency-access"
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#manage-emergency-access-accounts-in"
    },
    {
     "text": "NIST SP 800-137",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#sp-800-137"
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-137"
    },
    {
     "text": "FedRAMP KSIs",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#fedramp-ksi"
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
    },
    {
     "text": "certified-service use",
-    "url": "https://www.fedramp.gov/2026/agencies/use/"
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#using-a-fedramp-certified-cloud-service"
    },
    {
     "text": "OMB M-26-05",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#m-26-05"
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-26-05"
    },
    {
     "text": "Book 00, Chapter 06",
@@ -299,15 +299,15 @@
   "links": [
    {
     "text": "NIST SP 800-37 Rev. 2",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#sp-800-37"
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-37"
    },
    {
     "text": "OMB M-22-09",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#m-22-09"
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
    },
    {
     "text": "OMB M-19-17",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#m-19-17"
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-19-17"
    },
    {
     "text": "Book 00, Chapters 03",
@@ -329,27 +329,27 @@
   "links": [
    {
     "text": "AD FS migration",
-    "url": "https://learn.microsoft.com/entra/identity/hybrid/connect/migrate-from-federation-to-cloud-authentication"
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#migrate-from-federation-to-cloud"
    },
    {
     "text": "DC Group Policy",
-    "url": "https://learn.microsoft.com/troubleshoot/windows-server/active-directory/group-policy-application-rules-for-domain-controller"
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#group-policy-application-rules-for-domain"
    },
    {
     "text": "CA decommissioning",
-    "url": "https://learn.microsoft.com/troubleshoot/windows-server/certificates-and-public-key-infrastructure-pki/decommission-enterprise-certification-authority-and-remove-objects"
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#how-to-decommission-a-windows-enterprise"
    },
    {
     "text": "DC password hashes",
-    "url": "https://learn.microsoft.com/windows-server/identity/ad-ds/manage/understand-default-user-accounts"
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#active-directory-accounts"
    },
    {
     "text": "NIST SP 800-88 Rev. 2",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#sp-800-88"
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-88"
    },
    {
     "text": "Microsoft Entra licensing",
-    "url": "https://learn.microsoft.com/entra/fundamentals/licensing"
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-licensing"
    },
    {
     "text": "Book 00, Chapters 08",
@@ -371,19 +371,19 @@
   "links": [
    {
     "text": "OMB M-22-09",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#m-22-09"
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
    },
    {
     "text": "M-19-17",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#m-19-17"
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-19-17"
    },
    {
     "text": "M-26-14",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#m-26-14"
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-26-14"
    },
    {
     "text": "CISA Logging Reference Architecture",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#cisa-logging"
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cisa-logging"
    },
    {
     "text": "Book 00, Chapters 01",

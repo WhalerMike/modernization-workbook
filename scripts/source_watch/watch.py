@@ -61,6 +61,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import citations  # noqa: E402
 import feeds as feedlib  # noqa: E402
 import gitsource  # noqa: E402
+import register  # noqa: E402
 import report  # noqa: E402
 import review_dates  # noqa: E402
 import review_gate  # noqa: E402
@@ -676,6 +677,7 @@ def main() -> int:
         "review_due": review_dates.due(now.date()),
         "lifecycle_due": review_dates.lifecycle_due(now.date()),
         "review_gate": review_gate.waiting(),
+        "register": register.proposals(events),
         "books": citations.books(),
         "chapters": citations.chapter_titles(cited),
     }

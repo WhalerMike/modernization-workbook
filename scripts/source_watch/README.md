@@ -285,6 +285,7 @@ Files:
 | `watch.py` | Fingerprints and classifies each source, polls the feeds, and writes the state and results. |
 | `feeds.py` | The feed readers and the topic matching. |
 | `report.py` | Renders the Markdown digest and opens the issue. |
+| `register.py` | The [Source Register](../../docs/reference/source-register.md): generates the page from `data/source-register.json`, checks its rules, and digests each row's latest result for the page to read. The scan never edits the register: a row whose original moved or went is listed in the issue with the fix it needs. |
 | `review_dates.py` | Lists the status-labeled pages due for review (`last-reviewed` older than 90 days, or missing), and the pages whose `lifecycle_review` date has passed. |
 | `data/source-watch/config.json` | Threshold, concurrency, timeouts, per-host delays, skipped hosts and curl hosts. |
 | `data/source-watch/feeds.json` | The feeds and the topic → book map. |

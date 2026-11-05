@@ -35,16 +35,10 @@ class Resolve(unittest.TestCase):
         got = self.links("Book 00, Chapter 03 (Success criteria).")
         self.assertEqual(got[1], ("Success criteria", "03-the-charter.html#success-criteria"))
 
-    def test_federal_source_links_to_its_crosswalk_row(self):
+    def test_a_source_links_to_its_register_row(self):
         got = self.links("OMB M-22-09, M-26-14")
-        self.assertEqual(got, [("OMB M-22-09", "federal-framework-crosswalk.html#m-22-09"),
-                               ("M-26-14", "federal-framework-crosswalk.html#m-26-14")])
-
-    def test_every_crosswalk_id_is_a_row(self):
-        text = (ROOT / "docs" / "reference" / "federal-framework-crosswalk.md").read_text(encoding="utf-8")
-        import yaml
-        for entry in yaml.safe_load(L.LINKS.read_text(encoding="utf-8"))["crosswalk"]:
-            self.assertIn(f"]({entry['url']}){{#{entry['id']}}}", text)
+        self.assertEqual(got, [("OMB M-22-09", "source-register.html#m-22-09"),
+                               ("M-26-14", "source-register.html#m-26-14")])
 
 
 class Description(unittest.TestCase):
@@ -56,7 +50,7 @@ class Description(unittest.TestCase):
 
     def test_stays_under_the_limit(self):
         chapters = [[i * 20, f"Slide {i}"] for i in range(20)]
-        links = [{"text": f"Source {i}", "url": f"https://example.org/{'x' * 80}{i}"} for i in range(200)]
+        links = [{"text": f"Source {i}", "url": f"{Y.SITE}{Y.REGISTER}#{'x' * 80}{i}"} for i in range(200)]
         text, left = Y.build("x", "Title", chapters, [{"slide": 1, "title": "t", "links": links}])
         self.assertLessEqual(len(text), Y.LIMIT)
         self.assertGreater(left, 0)

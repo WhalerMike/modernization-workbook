@@ -73,6 +73,11 @@ jobs:
           cp assets/reference-mslearn.docx docs/compliance/day2-kit/reference-mslearn.docx
           cp assets/reference-mslearn.docx docs/compliance/day2-kit/assets/reference-mslearn.docx
 
+      - name: Check the Source Register
+        run: python3 scripts/source_watch/register.py --check
+        env:
+          REGISTER_BASE: origin/${{ github.base_ref }}
+
       - name: Run the tiered check
         # The script prints the tier, the reason and every check's result, and
         # writes the summary to $GITHUB_STEP_SUMMARY.

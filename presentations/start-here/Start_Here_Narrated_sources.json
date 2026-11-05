@@ -65,19 +65,19 @@
    },
    {
     "text": "Microsoft lifecycle pages",
-    "url": "https://learn.microsoft.com/lifecycle/end-of-support/end-of-support-2026"
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#ending-support-in-2026"
    },
    {
     "text": "CISA BOD 25-01",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#bod-25-01"
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-25-01"
    },
    {
     "text": "26-02",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#bod-26-02"
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-26-02"
    },
    {
     "text": "OMB M-26-14",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#m-26-14"
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-26-14"
    }
   ]
  },
@@ -109,15 +109,15 @@
    },
    {
     "text": "OMB/OPM memo Dec. 10, 2025",
-    "url": "https://www.opm.gov/chcoc/latest-memos/creating-federal-hr-20-by-consolidating-core-human-capital-management-across-the-federal-government.pdf"
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#creating-federal-hr-2-0-by-consolidating"
    },
    {
     "text": "OPM award",
-    "url": "https://www.opm.gov/news/news-releases/opm-awards-contract-for-first-ever-governmentwide-hr-platform/"
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#opm-awards-contract-for-first-ever"
    },
    {
     "text": "Oracle announcement",
-    "url": "https://www.oracle.com/news/announcement/us-office-of-personnel-management-selects-oracle-to-power-federal-workforce-modernization-2026-06-11/"
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#us-office-of-personnel-management-selects"
    }
   ]
  },
@@ -135,7 +135,7 @@
    },
    {
     "text": "NIST SP 800-53 Rev. 5",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#sp-800-53"
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
    },
    {
     "text": "Ch 10",

@@ -4,8 +4,8 @@
 Some pages are published as drafts but held behind a review gate: Book 19
 (`docs/books/b19-developer-workbook/`), the developer workbooks under Projects
 (`docs/project-plans/developer-workbooks/`), the implementation guides
-(`docs/books/guides/`) and the training paths (`docs/training/`). Pages and
-folders whose names start with `_` (briefs, verification logs) aren't gated.
+(`docs/books/guides/`), the training paths (`docs/training/`) and the Source
+Register (`docs/reference/source-register.md`). Pages and folders whose names start with `_` (briefs, verification logs) aren't gated.
 Each gated page records the review in its front matter:
 
     review-status: approved          # or pending
@@ -44,7 +44,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 # Folders (every page in them and their subfolders) and single pages.
 GATED = ["docs/project-plans/developer-workbooks", "docs/books/b19-developer-workbook",
-         "docs/books/guides", "docs/training"]
+         "docs/books/guides", "docs/training", "docs/reference/source-register.md"]
 
 FRONT_MATTER = re.compile(r"\A---\s*\n(.*?)\n---\s*\n", re.S)
 # The narrated-tour callout or table the tour build writes (presentations/_build/link_tours.py):

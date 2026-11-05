@@ -37,16 +37,15 @@ Book 01: Chapter 09 — Who Leads the Transformation: https://whalermike.github.
 Book 00: Chapter 08 — Pre-Flight: Platform and Assessment: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/08-pre-flight-and-assessment.html
 Book 00: Chapter 09 — Design, Pilot and Rollout: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html
 
-Original sources
-AD DS users and OUs: https://learn.microsoft.com/windows/win32/ad/users-in-active-directory-domain-services
-AD logical model: https://learn.microsoft.com/windows-server/identity/ad-ds/plan/understanding-the-active-directory-logical-model
-Group Policy processing: https://learn.microsoft.com/windows-server/identity/ad-ds/manage/group-policy/group-policy-processing
-AD-integrated DNS zones: https://learn.microsoft.com/windows-server/identity/ad-ds/plan/active-directory-integrated-dns-zones
-AD CS overview: https://learn.microsoft.com/windows-server/identity/ad-cs/active-directory-certificate-services-overview
-Entra administrative units: https://learn.microsoft.com/entra/identity/role-based-access-control/administrative-units
-OMB M-22-09: https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#m-22-09
-m-26-14: https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#m-26-14
-CISA BOD 25-01: https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#bod-25-01
-BOD 26-02: https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#bod-26-02
-Logging Reference Architecture: https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html#cisa-logging
-end-of-support-2025: https://learn.microsoft.com/lifecycle/end-of-support/end-of-support-2025
+Sources, each with its link to the original
+AD DS users and OUs: https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#users-in-active-directory-domain-services
+AD logical model: https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#understanding-the-active-directory-logical
+Group Policy processing: https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#group-policy-processing
+AD-integrated DNS zones: https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#active-directory-integrated-dns-zones
+AD CS overview: https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-active-directory-certificate
+Entra administrative units: https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#administrative-units-in-microsoft-entra-id
+OMB M-22-09: https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09
+m-26-14: https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-26-14
+CISA BOD 25-01: https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-25-01
+BOD 26-02: https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-26-02
+Logging Reference Architecture: https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cisa-logging
