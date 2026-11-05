@@ -5,7 +5,7 @@
   "group": "start",
   "minutes": 6,
   "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Start_Here_Narrated.mp4",
-  "youtube": "9CNbtdYxCcs",
+  "youtube": null,
   "vtt": "presentations/start-here/Start_Here_Narrated.vtt",
   "deck": "https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.2/Start_Here_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/start-here/Start_Here_Narration_Script.md",
