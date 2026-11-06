@@ -10,7 +10,8 @@ It checks that:
   - the matrix has one column per book, in order, and one score (0-3) in every cell;
   - the matrix has a row for every framework in the status table (STATUS_TO_MATRIX below),
     and the only other rows are the ones in EXTRA_ROWS;
-  - `last-reviewed` is not older than `date-modified`.
+  - `last-reviewed` is not older than `date-modified`;
+  - the NIST RMF row equals what the RMF Map's marks give (rmf_scores), when rmf-map.md sits beside the page.
 
 It never edits the page. It reads no scores from the books: it checks the page's own
 consistency, not the scoring.
@@ -48,6 +49,26 @@ STATUS_TO_MATRIX = {
 }
 # Matrix rows that are not in the status table: the frameworks the workbook relies on most.
 EXTRA_ROWS = ["NIST SP 800-53", "FedRAMP", "CISA ZTMM", "HSPD-12", "OMB M-26-14", "FISMA"]
+# Books that tie an RMF task to a control and an artifact: a requirements-mapping appendix, or (Books 10,
+# 19) an evidence table in the chapter the map links. A judgment from reading them, so it's kept here.
+RMF_TIED = {6, 8, 9, 10, 11, 12, 13, 14, 17, 19}
+
+
+def rmf_scores(map_text: str, books: list[int]) -> list[int]:
+    """Each book's RMF score from the map's marks, by the rule in the page's how-to-read section."""
+    best = dict.fromkeys(books, 0)
+    for line in map_text.splitlines():
+        m = re.match(r"\|\s*([PCSIARM]-\d+)\b", line)
+        if not m:
+            continue
+        mark = line.rstrip().rstrip("|").rsplit("|", 1)[-1].strip().replace("*", "").lower()
+        for n in {int(b) for b in re.findall(r"\.\./books/b(\d\d)-", line)}:
+            score = 1
+            if mark == "covered":
+                score = 3 if n in RMF_TIED and m.group(1) != "I-1" else 2
+            if n in best:
+                best[n] = max(best[n], score)
+    return [best[n] for n in books]
 
 
 def book_numbers(books: Path) -> list[int]:
@@ -120,6 +141,10 @@ def check(page: Path, books: Path) -> list[str]:
         for r in table_rows(lines, hi):
             names.append(r[0])
             cells = r[1:]
+            if r[0].startswith("NIST RMF") and (page.parent / "rmf-map.md").is_file() and got == nums:
+                derived = rmf_scores((page.parent / "rmf-map.md").read_text(encoding="utf-8"), nums)
+                if [str(x) for x in derived] != cells:
+                    found.append(f"NIST RMF row is {cells}, the RMF Map gives {derived}")
             if len(cells) != len(cols) or any(c not in {"0", "1", "2", "3"} for c in cells):
                 found.append(f"matrix row '{r[0]}' has {len(cells)} cells (need {len(cols)} scores of 0-3)")
         # status table
