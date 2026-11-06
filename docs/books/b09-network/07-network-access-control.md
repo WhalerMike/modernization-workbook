@@ -113,7 +113,7 @@ Dedicated NAC platforms issue CoA from their own session state. Microsoft's NPS 
 - **Session identity.** A CoA must carry the attributes that identify the session (Calling-Station-Id, NAS-IP-Address, Acct-Session-Id), which exist only in RADIUS accounting. The accounting feed stops being telemetry and becomes enforcement infrastructure, with Tier 0-adjacent integrity and availability requirements.
 - **Throttling.** The source design polled every 15 minutes for devices whose state had changed. A broad noncompliant-devices query at that rate exceeds the compliance retrieval service's four-hour limit;[^c07-intune-nac] a poller has to work device by device or use another Microsoft-supported interface with its own limits.
 
-The engineering cost of that list is one of the strongest arguments for a NAC platform in the D3 decision. Whatever issues the CoA, state its timing honestly. "Within 20 minutes" means 20 minutes after Intune registers the state change, and Intune's own evaluation can lag the device. The bound that always holds is the re-authentication backstop below: even with the CoA path down, no noncompliant device survives past the next re-authentication.
+The engineering cost of that list is one of the strongest arguments for a NAC platform in the D3 decision. Whatever issues the CoA, state its timing honestly. "Within 20 minutes" means 20 minutes after Intune registers the state change, and Intune's own evaluation can lag the device. The only fixed bound is the session timer below, plus Intune's detection lag: even with the CoA path down, a noncompliant device is re-evaluated at the next re-authentication, but that check reads only what Intune currently knows.
 
 ## The policy tiers
 
@@ -148,7 +148,7 @@ MAC addresses are trivially spoofed. An attacker who learns an approved device's
 | Termination-Action | RADIUS-Request | Re-authenticate rather than disconnect at timeout |
 | Idle-Timeout | 1,800 seconds (30 minutes) | Release ports whose device has gone quiet |
 
-A device compliant at 08:00 that fails a check at 14:00 lands in remediation by 16:00 at the latest, and much sooner when CoA is working and Intune has registered the change.
+A device compliant at 08:00 that fails a check at 14:00 is re-evaluated at its next re-authentication, 16:00 if the session started at 08:00. Whether that re-evaluation reads it as noncompliant depends on Intune's lag: up to about eight hours for most changes, much less for the Windows settings that trigger client-driven evaluation, and quick when CoA is working and Intune has registered the change.
 
 ## Certificates and supplicant profiles
 
