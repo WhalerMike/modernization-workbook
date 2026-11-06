@@ -272,7 +272,7 @@ def main(argv: list[str] | None = None, http: kc.Http | None = None, out=None) -
     result = write_package(records, args.out_dir, args.period, previous_head, args.generated_at)
     s = result["summary"]
     wa = s["window_adherence"]
-    print(f"{s['records']} evidence records: {s['closed_on_reread']} closed on a re-read, "
+    print(f"{s['records']} evidence records: {s['closed_on_reread']} closed, "
           f"{s['declared_exceptions']} declared exception", file=out)
     print(f"Window adherence: {wa['closed_inside_window']} of {wa['closed_judged']} closed inside the window", file=out)
     for record in records:
