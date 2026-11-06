@@ -29,7 +29,7 @@ The loop's fifth clause, "emits verified, secured evidence automatically," for i
 ## Narrated tour
 {{< fmw-video DW_TTM_07_Evidence_Records_Narrated >}}
 
-[Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.3/DW_TTM_07_Evidence_Records.pptx) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.3/DW_TTM_07_Evidence_Records_Narrated.pptx) (about 9 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-ttm-07-evidence-records/DW_TTM_07_Evidence_Records_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-ttm-07-evidence-records/DW_TTM_07_Evidence_Records_Narrated.vtt). Recorded on November 1, 2026 from the approved chapter.
+[Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.4/DW_TTM_07_Evidence_Records.pptx) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.4/DW_TTM_07_Evidence_Records_Narrated.pptx) (about 9 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-ttm-07-evidence-records/DW_TTM_07_Evidence_Records_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-ttm-07-evidence-records/DW_TTM_07_Evidence_Records_Narrated.vtt). Recorded on November 1, 2026 from the approved chapter.
 :::
 
 <!-- tour:end -->

@@ -617,10 +617,11 @@ The row numbers are the workbook's [research gaps log](https://github.com/Whaler
 
 ## Version and revision history {#version-history}
 
-**Version 1.1**, in [edition 2026.11.3](../../about/archive.md#edition-2026-11-3) (November 5, 2026). Every edition is kept on the [Archive](../../about/archive.md) page; every change between editions is in the [commit history](https://github.com/WhalerMike/modernization-workbook/commits/main/docs/books/guides/privileged-access-implementation.md).
+**Version 1.2**, in [edition 2026.11.4](../../about/archive.md#edition-2026-11-4) (November 5, 2026). Every edition is kept on the [Archive](../../about/archive.md) page; every change between editions is in the [commit history](https://github.com/WhalerMike/modernization-workbook/commits/main/docs/books/guides/privileged-access-implementation.md).
 
 | Version | Edition | Date | Changes |
 |---|---|---|---|
+| 1.2 | [2026.11.4](../../about/archive.md#edition-2026-11-4) | 2026-11-05 | Deck and audio links point at edition 2026.11.4 |
 | 1.1 | [2026.11.3](../../about/archive.md#edition-2026-11-3) | 2026-11-05 | Privileged Access: fixes found preparing a live test-tenant run ([#332](https://github.com/WhalerMike/modernization-workbook/pull/332)); Review gate: Mike's approval of the 15 implementation guides gated on November 3 ([#348](https://github.com/WhalerMike/modernization-workbook/pull/348)) |
 | 1.0 | [2026.11.2](../../about/archive.md#edition-2026-11-2) | 2026-11-02 | Privileged Access implementation guide: eight gates, emergency access first ([#325](https://github.com/WhalerMike/modernization-workbook/pull/325)); Privileged Access kit: PIM alert check covers PIM for Groups (PA-PIM-12, PA-PIM-13) ([#328](https://github.com/WhalerMike/modernization-workbook/pull/328)) |
 
