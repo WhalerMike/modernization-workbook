@@ -47,7 +47,7 @@ jobs:
       - name: Install dependencies
         # pytest and the packages the example kits' Python suites import.
         run: >-
-          sudo apt-get update && sudo apt-get install -y librsvg2-bin python3-yaml python3-jsonschema
+          sudo apt-get update && sudo apt-get install -y librsvg2-bin python3-yaml python3-jsonschema python3-regex
           python3-pytest python3-cryptography python3-requests python3-openpyxl
 
       - name: Pester 5
