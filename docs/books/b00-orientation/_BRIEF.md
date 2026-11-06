@@ -7,8 +7,8 @@ specifics with this book's: front matter `family: b00-orientation`, `book: B00`;
 `docs/images/diagrams/b00-orientation/src/chNN-short-name.flow.yaml`, referenced as
 `../../images/diagrams/b00-orientation/svg/chNN-short-name.svg`. Footnote keys `[^cNN-key]` (`[^aX-key]` in appendices).
 The site is the **Federal Modernization Workbook**: use that name wherever the workbook is named. The program is "the
-Federal Modernization Program". **Never write "UIAO"** or any other engine or product name for the program, and never
-name a specific agency (no SSA / Social Security Administration). Today is 2026-10-21.
+Federal Modernization Program". **Never write** an engine or product name for the program, and never
+name a specific agency. Today is 2026-10-21.
 
 Book 00 is the front door of the workbook. It answers **"Why modernize, and why now?"** Its argument: federal IT
 estates still run on a twenty-year-old client/server model whose governance was implicit in Active Directory; federal

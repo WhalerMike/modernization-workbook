@@ -9,8 +9,8 @@ date-modified: 2026-10-23
 aliases:
   - /docs/research/cyberark-certificate-lifecycle.html
 review-status: approved
-reviewed-sha256: 7260d633a619fb56c4bdc3a9837f65f525b9d844efbc43a4252018d90d0c4825
-last-reviewed: 2026-11-03
+reviewed-sha256: f21a091f5695aa58a07994913e52012c6f1a3c0402693d4c21e6b4520c6c501a
+last-reviewed: 2026-11-05
 ---
 # Certificate Lifecycle on CyberArk Certificate Manager {.unnumbered}
 

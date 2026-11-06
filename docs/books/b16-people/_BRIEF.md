@@ -9,7 +9,7 @@ specifics with this book's: front matter `family: b16-people`, `book: B16`; diag
 rendered as chapter endnotes. The site is the **Federal Modernization Workbook**; the program is "the Federal
 Modernization Program". Today is 2026-10-22.
 
-**Hard rules:** never write "UIAO" or any other engine/product name for the program; never name a specific agency (never
+**Hard rules:** never write an engine/product name for the program; never name a specific agency (never
 carry Quarto shortcodes like `{{< meta agency.short >}}`); every external claim independently researched against a
 primary source you actually opened and endnoted; never send personal data (email addresses, names) to any website,
 including in HTTP headers; guidance, not policy — "requires" only with a cited requirement, program design labeled as
