@@ -325,17 +325,17 @@ At steady state, on these assumptions, the program returns about \$5.9M a year a
 
 ### Five-year phased position
 
-Savings ramp as offices move to local transport at MPLS contract renewal, not on day one.
+Savings ramp as offices move to local transport at MPLS contract renewal, not on day one. Office migration runs from month 18 to month 48 ([roadmap](#implementation-roadmap)). Assuming an even pace, 6 of the 30 months fall in Year 2, so the average share of offices on local transport is 5% in Year 2, 40% in Year 3 and 80% in Year 4, and full steady state arrives in Year 5.
 
 | Year | Migration | Capital | Net savings | Cumulative |
 |---|---|---|---|---|
 | 1 | Design, hubs, pilot | \$10.0M | \$0 | −\$10.0M |
-| 2 | 30% of offices | \$0 | \$1.77M | −\$8.23M |
-| 3 | 70% of offices | \$0 | \$4.12M | −\$4.11M |
-| 4 | 100% | \$0 | \$5.89M | +\$1.78M |
-| 5 | Steady state | \$0 | \$5.89M | +\$7.67M |
+| 2 | Migration begins at month 18 (5% average) | \$0 | \$0.29M | −\$9.71M |
+| 3 | 40% average | \$0 | \$2.36M | −\$7.35M |
+| 4 | 80% average; all offices migrated by month 48 | \$0 | \$4.71M | −\$2.64M |
+| 5 | Steady state | \$0 | \$5.89M | +\$3.25M |
 
-The network program reaches a positive cumulative position in year four. The refresh reaches −\$50M in year one and recurs at the next refresh cycle. The five-year difference is about \$57.7M.
+The network program reaches a positive cumulative position in year five. The refresh reaches −\$50M in year one and recurs at the next refresh cycle. The five-year difference is about \$53.3M.
 
 The comparison isn't scope for scope, deliberately. The \$50M funds content delivery only. The \$10M funds the network that consolidation depends on, and the same transport and hubs also carry Microsoft 365, Teams, TIC 3.0 breakout and the Intune migration. Funding the hub and transport layer once, instead of piecemeal under separate initiatives, is the argument. A sponsor who wants only the content problem solved should weigh the \$10.0M capital against the transport savings above, not against the full capability list.
 
@@ -375,7 +375,7 @@ Phase 0 is funded first, at about \$1.8M over six months, out of the Year 1 tota
 
 | Risk | Rating | Mitigation |
 |---|---|---|
-| TIC 3.0 branch breakout accreditation slips | High | Start Phase 0 with the accreditation package. Fall back to hub-only breakout, a defensible end state that still removes the per-office DP. If a 12-month slip delays every migration wave, the five-year net falls from about +\$7.7M to about +\$1.8M and the advantage over the refresh from about \$57.7M to about \$51.8M; the case survives, but breakeven moves to year five |
+| TIC 3.0 branch breakout accreditation slips | High | Start Phase 0 with the accreditation package. Fall back to hub-only breakout, a defensible end state that still removes the per-office DP. If a 12-month slip delays every migration wave, the five-year net falls from about +\$3.3M to about −\$2.6M and the advantage over the refresh from about \$53.3M to about \$47.4M; the case survives against the refresh, but breakeven moves beyond year five |
 | Current MPLS cost is below the assumption | High | Validate before submission. Below \$873, re-present the case on capability; it stays cheaper than \$50M |
 | Replacement telemetry lags cutover, leaving a gap when MPLS is retired | High | Start the agency–CISA–provider coordination in Phase 0; gate each office's MPLS retirement on confirmed telemetry for that office ([Chapter 03](03-what-tic-3-requires.md)) |
 | Encrypted throughput licensed below circuit speed | Medium | State the throughput entitlement per platform in the bill of materials; test under load in the pilot |
@@ -415,7 +415,7 @@ The architectural conclusion, about 24 distribution points across 12 hubs instea
 
 ## Recommendation
 
-The refresh solves content delivery over constrained links by distributing infrastructure instead of fixing the constraint, at the moment the estate has committed to a management platform that reduces the need. A network program that addresses the same problem needs about \$10.0M in first-year capital, reaches a positive cumulative position in year four on base-case assumptions, helps every cloud workload rather than one, and is a prerequisite for the Intune migration, which makes it an enabling investment rather than a competing one.
+The refresh solves content delivery over constrained links by distributing infrastructure instead of fixing the constraint, at the moment the estate has committed to a management platform that reduces the need. A network program that addresses the same problem needs about \$10.0M in first-year capital, reaches a positive cumulative position in year five on base-case assumptions, helps every cloud workload rather than one, and is a prerequisite for the Intune migration, which makes it an enabling investment rather than a competing one.
 
 1. Defer the \$50M refresh pending a network modernization assessment.
 2. Ask the sponsor to state whether \$50M is acquisition cost or five-year total cost of ownership, and to itemize scope beyond the distribution point.
@@ -427,7 +427,7 @@ The refresh solves content delivery over constrained links by distributing infra
 
 ::: {.callout-tip}
 ## Position statement for a briefing
-The \$50M distribution point refresh solves content delivery over constrained field office links. An SD-WAN and regional breakout program solves the same problem for about \$10M in capital, is expected to be cash-positive by year four if current MPLS spend is above \$873 per office per month, is a prerequisite for the Intune migration, and helps every other cloud workload. Recommend deferring the refresh pending a network modernization assessment.
+The \$50M distribution point refresh solves content delivery over constrained field office links. An SD-WAN and regional breakout program solves the same problem for about \$10M in capital, is expected to be cash-positive by year five if current MPLS spend is above \$873 per office per month, is a prerequisite for the Intune migration, and helps every other cloud workload. Recommend deferring the refresh pending a network modernization assessment.
 :::
 
 ::: {.callout-tip}
