@@ -1,0 +1,8 @@
+{
+  "_comment": "Fictional acceptance register for the fixture runs. RA-2026-017 is in date on the run of 2026-10-29; RA-2026-004 expired on 2026-10-15.",
+  "schema": "fmp-acceptances/1",
+  "acceptances": [
+    {"ref": "RA-2026-017", "fingerprint": "1062215af65fccf9", "expires": "2026-12-31", "note": "Fictional: overlapping device policies, accepted for the pilot"},
+    {"ref": "RA-2026-004", "fingerprint": "a6cfb5bfc34c9acf", "expires": "2026-10-15", "note": "Fictional: lapsed"}
+  ]
+}
