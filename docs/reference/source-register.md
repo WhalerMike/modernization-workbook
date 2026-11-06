@@ -5,6 +5,9 @@ description: "The Federal Modernization Workbook's register of the sources its s
 doc-type: reference
 fmw-eyebrow: "Reference"
 date-modified: 2026-11-05
+review-status: approved
+reviewed-sha256: 27b883a94083abbd0c060d33db693869d963ac78f15495dbe88324f0ee398bcb
+last-reviewed: 2026-11-06
 ---
 
 # Source Register {.unnumbered}

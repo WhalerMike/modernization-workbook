@@ -354,7 +354,7 @@ The sweep also found and corrected five inconsistencies on October 23, 2026: Boo
 | NIST IR 8547 (initial public draft) | Transition to post-quantum cryptography standards | Book 07 (PKI & Certificates) | Draft |
 | NIST National Checklist Program | Configuration checklist repository (SP 800-70) | Book 12 (Security Operations & Telemetry) | Cited as current; SP 800-70 Rev. 5 (May 2026) superseded Rev. 4[^ncp] |
 | NIST National Vulnerability Database | NVD | Book 11 (Zero Trust & Assessment); Book 14 (Federal Compliance & Authorization) | Cited as current |
-| NIST OSCAL | Open Security Controls Assessment Language | All 18 books | Cited as current |
+| NIST OSCAL | Open Security Controls Assessment Language | All 19 books | Cited as current |
 | NIST Privacy Framework 1.0 | Privacy risk management (voluntary) | Book 03 (HR-Driven Identity) | Version 1.0 (Jan 2020) current; Version 1.1 is an initial public draft |
 | SP 1800-35 | Implementing a Zero Trust Architecture | Book 09 (Network & Transport); Book 11 (Zero Trust & Assessment) | Cited as current |
 | SP 800-120 | EAP methods for wireless authentication | Book 09 (Network & Transport) | Withdrawn Oct 19, 2018 |
@@ -381,7 +381,7 @@ The sweep also found and corrected five inconsistencies on October 23, 2026: Boo
 | SP 800-50 Rev. 1 | Cybersecurity and privacy learning program | Book 14 (Federal Compliance & Authorization); Book 16 (People: Training & Education) | Supersedes the 2003 SP 800-50 and SP 800-16 |
 | SP 800-52 Rev. 2 | TLS guidelines | Book 09 (Network & Transport) | Cited as current |
 | SP 800-53 Rev. 4 / FedRAMP Rev. 4 baseline | Prior control catalog | Book 15 (Compliance Automation & Day-2 Operations); Book 17 (AI Identity Governance) | Superseded by Rev. 5 |
-| [SP 800-53 Rev. 5 (release 5.2.0)](source-register.md#sp-800-53){#sp-800-53} | Security and privacy controls | All 18 books | Cited as current |
+| [SP 800-53 Rev. 5 (release 5.2.0)](source-register.md#sp-800-53){#sp-800-53} | Security and privacy controls | All 19 books | Cited as current |
 | SP 800-53A Rev. 5 | Control assessment procedures | Book 12 (Security Operations & Telemetry); Book 13 (Governance, Drift & Evidence); Book 14 (Federal Compliance & Authorization); Book 15 (Compliance Automation & Day-2 Operations); Book 16 (People: Training & Education) | Cited as current |
 | SP 800-53B | Control baselines | All except Book 00 (Orientation & Program); Book 02 (Identity & Directory); Book 05 (Devices & Endpoints); Book 07 (PKI & Certificates) | Cited as current |
 | SP 800-60 | Information types to security categories | Book 14 (Federal Compliance & Authorization) | Cited as current |
@@ -402,7 +402,7 @@ The sweep also found and corrected five inconsistencies on October 23, 2026: Boo
 
 | Instrument | What it is | Books citing it | Status, as the books state it |
 |---|---|---|---|
-| FedRAMP (program, generally) | Federal Risk and Authorization Management Program | All 18 books | Cited as current |
+| FedRAMP (program, generally) | Federal Risk and Authorization Management Program | All 19 books | Cited as current |
 | [FedRAMP 20x and Key Security Indicators](source-register.md#fedramp-ksi){#fedramp-ksi} | 20x certification; KSI families | All except Book 03 (HR-Driven Identity); Book 06 (Data Platform: SQL Server Identity); Book 07 (PKI & Certificates); Book 08 (DNS, DHCP & IPAM); Book 09 (Network & Transport) | Cited as current |
 | FedRAMP AI Prioritization Initiative | AI service prioritization | Book 17 (AI Identity Governance) | Cited as current |
 | [FedRAMP Consolidated Rules for 2026 (Certification Classes A-D)](source-register.md#fedramp-2026){#fedramp-2026} | 2026 rule set | All except Book 03 (HR-Driven Identity); Book 06 (Data Platform: SQL Server Identity); Book 07 (PKI & Certificates) | Cited as current |
