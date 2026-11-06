@@ -1,0 +1,18 @@
+{
+  "listing": "/docs/books/b12-security-operations/index.html",
+  "items": [
+    "/docs/books/b12-security-operations/01-you-cant-defend-what-you-cant-see.html",
+    "/docs/books/b12-security-operations/02-the-evidence-contract.html",
+    "/docs/books/b12-security-operations/03-identity-telemetry.html",
+    "/docs/books/b12-security-operations/04-platform-and-m365-telemetry.html",
+    "/docs/books/b12-security-operations/05-from-log-warehouse-to-detection.html",
+    "/docs/books/b12-security-operations/06-vulnerability-management.html",
+    "/docs/books/b12-security-operations/07-patch-configuration-and-baselines.html",
+    "/docs/books/b12-security-operations/08-cloud-native-posture.html",
+    "/docs/books/b12-security-operations/09-data-protection-and-classification.html",
+    "/docs/books/b12-security-operations/10-who-runs-security-operations.html",
+    "/docs/books/b12-security-operations/11-detection-engineering-and-response.html",
+    "/docs/books/b12-security-operations/12-evidence-metrics-and-continuous-monitoring.html",
+    "/docs/books/b12-security-operations/appendix-a-requirements-mapping.html"
+  ]
+}

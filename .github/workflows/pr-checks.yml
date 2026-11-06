@@ -47,7 +47,7 @@ jobs:
       - name: Install dependencies
         # pytest and the packages the example kits' Python suites import.
         run: >-
-          sudo apt-get update && sudo apt-get install -y librsvg2-bin python3-yaml python3-jsonschema
+          sudo apt-get update && sudo apt-get install -y librsvg2-bin python3-yaml python3-jsonschema python3-regex
           python3-pytest python3-cryptography python3-requests python3-openpyxl
 
       - name: Pester 5
@@ -80,6 +80,9 @@ jobs:
 
       - name: Check references to books and chapters
         run: python3 scripts/book_crosswalk.py --check --strict
+
+      - name: Check the Federal Framework Crosswalk
+        run: python3 scripts/check_framework_crosswalk.py --check
 
       - name: Check the RMF map
         run: python3 scripts/check_rmf_map.py --check

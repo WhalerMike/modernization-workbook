@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="Specific, evidenced requests an agency can put to a cloud provider about its government offering, each tied to a FedRAMP 2026 rule or to the provider’s own documentation, with Microsoft 365 GCC as the worked example: a machine-readable exclusion list, a named exception path per feature, the network observability layer, a FedRAMP-compatible trust center, the relationship between same-named packages, and more.">
+<meta name="description" content="Who decides, who does the work and who is consulted when an agency sets its Zero Trust posture, runs its assessments and acts on the findings, with the roles of the CIO, the Zero Trust program lead, the CISO, the authorizing official, the pillar owners and security operations, a responsibility matrix and the access each team needs.">
 
-<title>Appendix A — What to Ask a Cloud Provider For – Federal Modernization Workbook</title>
+<title>Chapter 07 — Who Owns Zero Trust – Federal Modernization Workbook</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -34,8 +34,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../">
-<link href="../../../docs/books/b10-cloud-boundary/appendix-b-platform-host-interfaces.html" rel="next">
-<link href="../../../docs/books/b10-cloud-boundary/11-the-authorization-package.html" rel="prev">
+<link href="../../../docs/books/b11-zero-trust/08-close-before-you-assess.html" rel="next">
+<link href="../../../docs/books/b11-zero-trust/06-beyond-microsoft-365.html" rel="prev">
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
@@ -46,6 +46,9 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../../site_libs/bootstrap/bootstrap-231ac825f573ecaa34244e8f518e0111.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -399,7 +402,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../docs/books/b10-cloud-boundary/index.html">Book 10 — Cloud Boundary &amp; Landing Zone</a></li><li class="breadcrumb-item"><a href="../../../docs/books/b10-cloud-boundary/appendix-a-what-to-ask-for.html">Appendix A — What to Ask a Cloud Provider For</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../docs/books/b11-zero-trust/index.html">Book 11 — Zero Trust &amp; Assessment</a></li><li class="breadcrumb-item"><a href="../../../docs/books/b11-zero-trust/07-who-owns-zero-trust.html">Chapter 07 — Who Owns Zero Trust</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -1491,11 +1494,11 @@ ul.task-list li input[type="checkbox"] {
       <div class="sidebar-item-container"> 
             <a href="../../../docs/books/b10-cloud-boundary/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Book 10 — Cloud Boundary &amp; Landing Zone</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../docs/books/b10-cloud-boundary/01-why-the-boundary-decides.html" class="sidebar-item-text sidebar-link">
@@ -1564,7 +1567,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../docs/books/b10-cloud-boundary/appendix-a-what-to-ask-for.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../../docs/books/b10-cloud-boundary/appendix-a-what-to-ask-for.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Appendix A — What to Ask a Cloud Provider For</span></a>
   </div>
 </li>
@@ -1580,11 +1583,11 @@ ul.task-list li input[type="checkbox"] {
       <div class="sidebar-item-container"> 
             <a href="../../../docs/books/b11-zero-trust/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Book 11 — Zero Trust &amp; Assessment</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../docs/books/b11-zero-trust/01-a-whole-agency-property.html" class="sidebar-item-text sidebar-link">
@@ -1623,7 +1626,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../docs/books/b11-zero-trust/07-who-owns-zero-trust.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/books/b11-zero-trust/07-who-owns-zero-trust.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Chapter 07 — Who Owns Zero Trust</span></a>
   </div>
 </li>
@@ -2505,24 +2508,15 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#how-to-make-the-ask" id="toc-how-to-make-the-ask" class="nav-link active" data-scroll-target="#how-to-make-the-ask">How to make the ask</a></li>
-  <li><a href="#requests-about-the-offerings-scope-and-gaps" id="toc-requests-about-the-offerings-scope-and-gaps" class="nav-link" data-scroll-target="#requests-about-the-offerings-scope-and-gaps">Requests about the offering’s scope and gaps</a>
-  <ul class="collapse">
-  <li><a href="#a1.-publish-the-per-feature-exclusion-list-as-data" id="toc-a1.-publish-the-per-feature-exclusion-list-as-data" class="nav-link" data-scroll-target="#a1.-publish-the-per-feature-exclusion-list-as-data">A1. Publish the per-feature exclusion list as data</a></li>
-  <li><a href="#a2.-name-the-exception-path-per-feature" id="toc-a2.-name-the-exception-path-per-feature" class="nav-link" data-scroll-target="#a2.-name-the-exception-path-per-feature">A2. Name the exception path per feature</a></li>
-  <li><a href="#a3.-restore-the-network-observability-layer-or-publish-the-obstacle" id="toc-a3.-restore-the-network-observability-layer-or-publish-the-obstacle" class="nav-link" data-scroll-target="#a3.-restore-the-network-observability-layer-or-publish-the-obstacle">A3. Restore the network observability layer, or publish the obstacle</a></li>
-  <li><a href="#a4.-state-what-each-environments-certification-would-and-wouldnt-change" id="toc-a4.-state-what-each-environments-certification-would-and-wouldnt-change" class="nav-link" data-scroll-target="#a4.-state-what-each-environments-certification-would-and-wouldnt-change">A4. State what each environment’s certification would and wouldn’t change</a></li>
-  <li><a href="#a5.-say-which-delivered-software-is-outside-the-certified-offering" id="toc-a5.-say-which-delivered-software-is-outside-the-certified-offering" class="nav-link" data-scroll-target="#a5.-say-which-delivered-software-is-outside-the-certified-offering">A5. Say which delivered software is outside the certified offering</a></li>
-  </ul></li>
-  <li><a href="#requests-about-evidence-and-change" id="toc-requests-about-evidence-and-change" class="nav-link" data-scroll-target="#requests-about-evidence-and-change">Requests about evidence and change</a>
-  <ul class="collapse">
-  <li><a href="#a6.-provide-a-fedramp-compatible-trust-center-with-programmatic-access" id="toc-a6.-provide-a-fedramp-compatible-trust-center-with-programmatic-access" class="nav-link" data-scroll-target="#a6.-provide-a-fedramp-compatible-trust-center-with-programmatic-access">A6. Provide a FedRAMP-compatible trust center with programmatic access</a></li>
-  <li><a href="#a7.-deliver-significant-change-notifications-as-a-feed" id="toc-a7.-deliver-significant-change-notifications-as-a-feed" class="nav-link" data-scroll-target="#a7.-deliver-significant-change-notifications-as-a-feed">A7. Deliver Significant Change Notifications as a feed</a></li>
-  <li><a href="#a8.-document-the-cryptographic-modules-per-service" id="toc-a8.-document-the-cryptographic-modules-per-service" class="nav-link" data-scroll-target="#a8.-document-the-cryptographic-modules-per-service">A8. Document the cryptographic modules per service</a></li>
-  </ul></li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
+  <li><a href="#why-the-posture-needs-its-own-owner" id="toc-why-the-posture-needs-its-own-owner" class="nav-link active" data-scroll-target="#why-the-posture-needs-its-own-owner">Why the posture needs its own owner</a></li>
+  <li><a href="#decision-rights-and-work-are-different-things" id="toc-decision-rights-and-work-are-different-things" class="nav-link" data-scroll-target="#decision-rights-and-work-are-different-things">Decision rights and work are different things</a></li>
+  <li><a href="#the-roles" id="toc-the-roles" class="nav-link" data-scroll-target="#the-roles">The roles</a></li>
+  <li><a href="#the-responsibility-matrix" id="toc-the-responsibility-matrix" class="nav-link" data-scroll-target="#the-responsibility-matrix">The responsibility matrix</a></li>
+  <li><a href="#who-owns-each-pillar" id="toc-who-owns-each-pillar" class="nav-link" data-scroll-target="#who-owns-each-pillar">Who owns each pillar</a></li>
+  <li><a href="#roles-in-each-system" id="toc-roles-in-each-system" class="nav-link" data-scroll-target="#roles-in-each-system">Roles in each system</a></li>
+  <li><a href="#what-changes-in-one-table" id="toc-what-changes-in-one-table" class="nav-link" data-scroll-target="#what-changes-in-one-table">What changes, in one table</a></li>
   </ul>
-<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="appendix-a-what-to-ask-for.docx"><i class="bi bi-file-word"></i>MS Word</a></li></ul></div></nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="07-who-owns-zero-trust.docx"><i class="bi bi-file-word"></i>MS Word</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -2532,15 +2526,15 @@ ul.task-list li input[type="checkbox"] {
   and has not been reviewed or endorsed by, any federal agency.
 </div>
 
-<header id="title-block-header" class="quarto-title-block default fmw-hero"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../docs/books/b10-cloud-boundary/index.html">Book 10 — Cloud Boundary &amp; Landing Zone</a></li><li class="breadcrumb-item"><a href="../../../docs/books/b10-cloud-boundary/appendix-a-what-to-ask-for.html">Appendix A — What to Ask a Cloud Provider For</a></li></ol></nav>
-<p class="fmw-eyebrow">Federal Modernization Workbook · Book 10 · Appendix</p>
+<header id="title-block-header" class="quarto-title-block default fmw-hero"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../docs/books/b11-zero-trust/index.html">Book 11 — Zero Trust &amp; Assessment</a></li><li class="breadcrumb-item"><a href="../../../docs/books/b11-zero-trust/07-who-owns-zero-trust.html">Chapter 07 — Who Owns Zero Trust</a></li></ol></nav>
+<p class="fmw-eyebrow">Federal Modernization Workbook · Book 11 · Who</p>
 <div class="quarto-title">
-<h1 class="title">Appendix A — What to Ask a Cloud Provider For</h1>
+<h1 class="title">Chapter 07 — Who Owns Zero Trust</h1>
 </div>
 
 <div>
   <div class="description">
-    Specific, evidenced requests an agency can put to a cloud provider about its government offering, each tied to a FedRAMP 2026 rule or to the provider’s own documentation, with Microsoft 365 GCC as the worked example: a machine-readable exclusion list, a named exception path per feature, the network observability layer, a FedRAMP-compatible trust center, the relationship between same-named packages, and more.
+    Who decides, who does the work and who is consulted when an agency sets its Zero Trust posture, runs its assessments and acts on the findings, with the roles of the CIO, the Zero Trust program lead, the CISO, the authorizing official, the pillar owners and security operations, a responsibility matrix and the access each team needs.
   </div>
 </div>
 
@@ -2558,7 +2552,7 @@ ul.task-list li input[type="checkbox"] {
 
 
 <div class="fmw-lede">
-<p><em>“Give us commercial parity” can’t be answered; a specific question tied to a published rule or a published exclusion can.</em></p>
+<p><em>Every pillar of a Zero Trust program already has an owner; what most agencies lack is an owner for the posture itself, the one person who can say what the whole-agency score covers, and that person can’t sit inside any cloud provider’s relationship or any single pillar.</em></p>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -2566,136 +2560,606 @@ ul.task-list li input[type="checkbox"] {
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>In this appendix
+<span class="screen-reader-only">Note</span>In this chapter
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>A set of requests an agency can put to a cloud provider about its government offering, each with the rule or documented fact it rests on and what a useful answer looks like. Microsoft 365 GCC is the worked example throughout, because <a href="../../../docs/books/b10-cloud-boundary/04-gcc-and-the-feature-gap.html">Chapter 04</a> documents its gaps, but every request applies to any provider. <a href="../../../docs/books/b10-cloud-boundary/09-equivalents-and-exceptions.html">Chapter 09</a> covers what the agency does while it waits for an answer, and <a href="../../../docs/books/b10-cloud-boundary/11-the-authorization-package.html">Chapter 11</a> covers where the answers go in the authorization package.</p>
+<p>The people who decide, do and advise when an agency sets a Zero Trust target, assesses against it and acts on what it finds: the CIO and executive sponsor, the Zero Trust program lead, the CISO and ISSO, the authorizing official, the five pillar owners and the owner of the naming and identity plane, security operations, the assessment operators, control assessors, and the privacy and records offices. A responsibility matrix covers each decision, a table maps each pillar to its owner and its book, and a role map shows the access each team needs in the assessment tools.</p>
 </div>
 </div>
-<section id="how-to-make-the-ask" class="level2">
-<h2 class="anchored" data-anchor-id="how-to-make-the-ask">How to make the ask</h2>
-<p>The productive conversation with a provider isn’t “grant us commercial parity.” It is a short list of questions, each of which the provider can answer yes, no, or with a date. Three habits make a request hard to deflect:</p>
-<ol type="1">
-<li><strong>Name the item.</strong> One feature, one package, one rule. “GCC withholds telemetry” invites a general reply; “the admin center’s network connectivity layer is documented as unavailable in GCC, GCC High and DoD”<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> doesn’t.</li>
-<li><strong>Cite the basis.</strong> Quote the provider’s own documentation or the FedRAMP rule, with a link. Microsoft’s ExpressRoute for Microsoft 365 process is the model: Microsoft reviews each request and authorizes it only “when a customer’s regulatory requirement mandates direct connectivity,” and asks the customer for “the text excerpt and web link to the regulation.”<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> A provider that uses that standard for its own exceptions can’t object to it being used in return.</li>
-<li><strong>Ask for data, not documents.</strong> The 2026 FedRAMP rules make much of a provider’s certification data machine-readable by requirement.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a><a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> Ask for the feed and its documentation, not a PDF.</li>
-</ol>
-<p>Each request below follows the same layout: what to ask, why the provider can answer it, and what a useful answer looks like.</p>
+<p>Zero Trust programs don’t usually fail for lack of owners. They fail because every owner is a pillar owner. Identity engineering owns Conditional Access, endpoint engineering owns Intune, network engineering owns the edge, application owners own their applications, and the data office owns classification. Each runs its own tool, reports on its own schedule, and can truthfully say its pillar is improving. Nobody owns the question this book keeps asking: what is the agency’s posture, across all five pillars and every estate it runs, and what does the number on the cover page actually measure?</p>
+<p><a href="../../../docs/books/b11-zero-trust/01-a-whole-agency-property.html">Chapter 01</a> argues that Zero Trust maturity is a property of the whole agency and that three assessments stapled together are not one assessment. <a href="../../../docs/books/b11-zero-trust/02-governance-principles.html">Chapter 02</a> names Governance as the cross-cutting capability programs invest in least. This chapter turns both arguments into names. CISA’s Zero Trust Maturity Model makes the same point about people: adoption needs engagement from senior leadership, IT staff, data and system owners and users, and it requires agencies to move stove-piped IT services and staff into a coordinated strategy with agency-wide buy-in for a common architecture and governance policies.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> OMB M-22-09 says agency leadership and the whole “C-suite” should be aligned behind the overhaul, and it required each agency to designate a zero trust strategy implementation lead within 30 days.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> What neither document says is who decides when a ScubaGear omission expires, or who can declare that a Zero Trust Assessment score covers the agency. That is the program’s recommended model, set out below as design.</p>
+<p><a href="../../../docs/books/b01-transformation-arc/09-who-leads-the-transformation.html">Book 01, Chapter 09</a> sets out the program-wide model and the Risk Management Framework roles. <a href="../../../docs/books/b04-access/06-who-decides-access.html">Book 04, Chapter 06</a>, <a href="../../../docs/books/b05-devices/06-who-owns-the-endpoint.html">Book 05, Chapter 06</a> and <a href="../../../docs/books/b09-network/09-who-owns-the-network.html">Book 09, Chapter 09</a> apply it to access, endpoints and the network. This chapter applies it to the posture that sits across all of them. Adapt the roles to the agency’s governance, but keep one decider per row.</p>
+<div id="fig-ch07-zero-trust-owners" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Three rows of cards. Top row, decision makers: the CIO and executive sponsor in amber, who own strategy, funding and tie-breaks; the authorizing official in amber, who accepts residual risk, approves plans of action and milestones and accepts SCuBA deviations; and the CISO and ISSO in violet, who set control requirements, evidence standards and assessment rules. Arrows labeled funding, risk decisions and requirements run from each to a violet card in the middle row, the Zero Trust program lead, who owns the whole-agency score, cross-pillar correlation and the assessment calendar. Beside the program lead in the middle row are the assessment operators in slate, who run ScubaGear and the Zero Trust Assessment under scoped accounts, and the control assessors in slate, who assess with the independence the authorizing official sets. The program lead sends findings and priorities down to the bottom row: the pillar owners in blue, who own identity, devices, networks, applications and data and remediate through change control; the owner of the naming and identity plane in blue, which is governed as a Tier-0 asset; and security operations in violet, which receives drift findings and logs. A slate pill reads: cloud providers' native tools are evidence inputs and are consulted, never owners, with a dashed arrow to the program lead.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ch07-zero-trust-owners-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="../../images/diagrams/b11-zero-trust/svg/ch07-zero-trust-owners.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;1: Who decides, who does the work and who supports a whole-agency Zero Trust posture."><img src="../../images/diagrams/b11-zero-trust/svg/ch07-zero-trust-owners.svg" class="img-fluid figure-img" alt="Three rows of cards. Top row, decision makers: the CIO and executive sponsor in amber, who own strategy, funding and tie-breaks; the authorizing official in amber, who accepts residual risk, approves plans of action and milestones and accepts SCuBA deviations; and the CISO and ISSO in violet, who set control requirements, evidence standards and assessment rules. Arrows labeled funding, risk decisions and requirements run from each to a violet card in the middle row, the Zero Trust program lead, who owns the whole-agency score, cross-pillar correlation and the assessment calendar. Beside the program lead in the middle row are the assessment operators in slate, who run ScubaGear and the Zero Trust Assessment under scoped accounts, and the control assessors in slate, who assess with the independence the authorizing official sets. The program lead sends findings and priorities down to the bottom row: the pillar owners in blue, who own identity, devices, networks, applications and data and remediate through change control; the owner of the naming and identity plane in blue, which is governed as a Tier-0 asset; and security operations in violet, which receives drift findings and logs. A slate pill reads: cloud providers' native tools are evidence inputs and are consulted, never owners, with a dashed arrow to the program lead."></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ch07-zero-trust-owners-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Who decides, who does the work and who supports a whole-agency Zero Trust posture.
+</figcaption>
+</figure>
+</div>
+<section id="why-the-posture-needs-its-own-owner" class="level2">
+<h2 class="anchored" data-anchor-id="why-the-posture-needs-its-own-owner">Why the posture needs its own owner</h2>
+<p>Three facts from earlier chapters make the posture a separate thing to own.</p>
+<p>The first is scope. CISA’s ScubaGear and Microsoft’s Zero Trust Assessment overlap mainly on Microsoft Entra ID and, as of version 3.1.0, on Defender threat policies (<a href="../../../docs/books/b11-zero-trust/05-two-assessment-tools.html">Chapter 05</a>), and both stop at the edge of Microsoft’s platform. Every other cloud provider offers its own native posture tooling, and the on-premises virtualization estate has none of theirs (<a href="../../../docs/books/b11-zero-trust/06-beyond-microsoft-365.html">Chapter 06</a>). A provider assessing its own platform is scoped to that platform. It has no view of the other providers, the network layer or the hypervisors, and no reason to reconcile against them. The agency is the only party that can hold one posture across all of them, so the agency, not any provider’s tool or account team, has to own it. The governance principles paper puts this as an ask: assign agency-level Zero Trust ownership separately from any cloud service provider relationship.</p>
+<p>The second is correlation. A finding about a stale service-principal credential matters to the identity pillar, the applications pillar and whichever data the principal can reach. If those three pillars resolve objects through three naming systems, someone has to correlate the finding by hand, and in most programs nobody is assigned to. The governance principles paper asks agencies to name a cross-pillar correlation owner. In the program’s model that is the Zero Trust program lead.</p>
+<p>The third is risk. CISA’s maturity model is explicit that it does not address risk acceptance, among other things,<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> and it describes itself as a general guide, not a strict set of requirements.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> Risk acceptance sits where it always has, with the authorizing official under the Risk Management Framework. The authorizing official is the only organizational official who can accept security and privacy risk on the organization’s behalf, approves plans of action and milestones, and decides whether a significant change needs reauthorization.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> A maturity target, a tool score and a risk decision are three different things owned by three different people. Programs that blur them end up with a tool vendor’s dashboard quietly standing in for an authorization decision.</p>
 </section>
-<section id="requests-about-the-offerings-scope-and-gaps" class="level2">
-<h2 class="anchored" data-anchor-id="requests-about-the-offerings-scope-and-gaps">Requests about the offering’s scope and gaps</h2>
-<section id="a1.-publish-the-per-feature-exclusion-list-as-data" class="level3">
-<h3 class="anchored" data-anchor-id="a1.-publish-the-per-feature-exclusion-list-as-data">A1. Publish the per-feature exclusion list as data</h3>
-<p><strong>Ask.</strong> Publish, for each government environment, the list of features that are unavailable or limited compared with the commercial service, as a machine-readable artifact with a stable identifier per feature and a date per entry.</p>
-<p><strong>Basis.</strong> The exclusions already exist as individual notes in the provider’s documentation: Microsoft states them page by page for the admin center’s network connectivity, Adoption Score, informed network routing, the Office 365 CDN, Windows release health and others (<a href="../../../docs/books/b10-cloud-boundary/04-gcc-and-the-feature-gap.html">Chapter 04</a>). The gap is that they can’t be enumerated without reading every page. FedRAMP already requires a related list: a public list of the services in the offering and their security categories, complete enough for a customer “to determine which services are and are not included in the FedRAMP Minimum Assessment Scope without requesting access to underlying FedRAMP Certification Data” (CDS-CSO-SVC), with public offering information in human-readable and JSON form (CDS-CSO-PUB).<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> That rule covers services, not features within them, so this request extends a list the provider already has to keep.</p>
-<p><strong>A useful answer.</strong> A JSON or CSV file, updated on a stated cadence, that an agency can diff month to month and load into its feature-gap register.</p>
+<section id="decision-rights-and-work-are-different-things" class="level2">
+<h2 class="anchored" data-anchor-id="decision-rights-and-work-are-different-things">Decision rights and work are different things</h2>
+<p>The program separates three kinds of involvement, as Book 01 does. A role <em>decides</em> when it is accountable for the outcome and can say no. A role <em>does</em> the work when it builds, configures, runs or remediates. A role is <em>consulted</em> when the decision can’t be made well without its input, even though the decision isn’t its to make.</p>
+<p>The split matters for Zero Trust because many assessment decisions are risk decisions that look like configuration. Marking a ScubaGear policy as omitted removes it from the report. Marking a result incorrect changes what the tool says about the tenant. Treating a skipped Zero Trust Assessment check as a pass, because the license for it isn’t in the agency’s boundary, overstates the posture. ScubaGear’s own documentation warns that omitting policies or marking results incorrect can introduce blind spots, and says omissions must only be made if approved within the organization’s security risk management process.<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> CISA’s BOD 25-01 says the same thing at the directive level: authorizing officials may accept risk for deviations from the mandatory SCuBA policies to meet operational needs, under agency policy, and agencies must identify and explain those deviations when they report.<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a> The decision behind an edit to a configuration file therefore belongs to the authorizing official, even though an engineer types it.</p>
 </section>
-<section id="a2.-name-the-exception-path-per-feature" class="level3">
-<h3 class="anchored" data-anchor-id="a2.-name-the-exception-path-per-feature">A2. Name the exception path per feature</h3>
-<p><strong>Ask.</strong> For each excluded feature, state whether any exception process exists, and if one does, what requirement (quoted, with a link) would move it, as ExpressRoute for Microsoft 365 already does.</p>
-<p><strong>Basis.</strong> The ExpressRoute process shows that feature-level exceptions exist and that the provider can describe their trigger precisely.<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> Note what that trigger is: a regulatory requirement that mandates the capability. FedRAMP certification and FISMA don’t supply that hook by themselves, so an agency shouldn’t assume an exception is available because it is a federal customer. <a href="../../../docs/books/b10-cloud-boundary/09-equivalents-and-exceptions.html">Chapter 09</a> walks through the ExpressRoute case.</p>
-<p><strong>A useful answer.</strong> Per feature: “no exception path,” or “exception path exists; the trigger is X; the request goes to Y.”</p>
+<section id="the-roles" class="level2">
+<h2 class="anchored" data-anchor-id="the-roles">The roles</h2>
+<p>The <strong>CIO and executive sponsor</strong> set the Zero Trust strategy, its scope and its funding, and they break ties. Under the Risk Management Framework the CIO designates the senior agency information security officer, maintains security policy and reports to the head of the agency on the security program’s effectiveness, and, with authorizing officials, allocates the resources that protect the agency’s systems.<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a> For this book that means three decisions. The scope decision: which estates the whole-agency score covers (every tenant, every cloud, the network, the virtualization estate), stated in writing so the score can’t quietly shrink to the estates that assess well. The sequence decision: <a href="../../../docs/books/b11-zero-trust/08-close-before-you-assess.html">Chapter 08</a> closes BOD 25-01 findings before the maturity assessment, and that order competes for the same engineers as every other deadline. And the tie-break: identity engineering, endpoint engineering and network engineering can each reasonably claim a cross-pillar control, such as device posture in a token, and the CIO decides which team owns it.</p>
+<p>The <strong>Zero Trust program lead</strong> owns the posture. Many agencies will give this role to the zero trust strategy implementation lead M-22-09 required them to designate.<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a> In the program’s model the lead owns four things. The definition of the whole-agency score: what it covers, what it excludes, and the unified record each assessed object resolves to; a score that can’t point to that record is reported as partial assessments, not one. The cross-pillar correlation: when one finding touches several pillars, the lead’s team routes it and makes sure it isn’t closed in one pillar while open in another. The assessment calendar: which tool runs against which estate, when, with which pinned version, and when results are re-run after remediation. And the prioritized program in <a href="../../../docs/books/b11-zero-trust/10-evidence-not-verdicts.html">Chapter 10</a>: turning findings into a ranked worklist that each pillar owner executes. The lead decides priority and sequence. The lead doesn’t accept risk; that goes to the authorizing official. The lead’s independence from any cloud provider relationship is the point of the role, so the lead shouldn’t also be the agency’s account owner for its largest cloud vendor.</p>
+<p>The <strong>CISO and ISSO</strong> decide what the posture has to meet. The CISO, as the senior agency information security officer, carries out the CIO’s security responsibilities and is the CIO’s primary liaison to authorizing officials, system owners, common control providers and system security officers.<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a> In the program’s model the CISO sets the control requirements for each pillar, the evidence standard (what makes an assessment output acceptable as evidence: a pinned tool version, a recorded run time, an unaltered output file, a hash), which assessment tools the agency may run against production tenants, and the rules for the accounts that run them. The CISO also owns the requirement that assessment outputs are handled as sensitive data, because Microsoft warns that the Zero Trust Assessment report and its export folder contain sensitive tenant information that threat actors could use, and should be shared only with authorized personnel.<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a> A ScubaGear report describes the same weaknesses from a different angle and gets the same handling. The ISSO for each system assembles the evidence, keeps the system’s plan of action and milestones current and reviews the security impact of each remediation change, as the system security officer role does under the RMF.<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a></p>
+<p>The <strong>authorizing official</strong> accepts residual risk. For this book that covers four kinds of decision. Deviations from a mandatory SCuBA policy, which BOD 25-01 lets authorizing officials accept under agency policy.<a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a> Omissions and incorrect-result markings in the ScubaGear configuration file that have no expiration date, since a standing omission is a standing risk acceptance. The plan of action and milestones for each system, which the authorizing official approves.<a href="#fn14" class="footnote-ref" id="fnref14" role="doc-noteref"><sup>14</sup></a> And the degree of assessor independence, which the authorizing official determines explicitly when an assessment supports an authorization or ongoing authorization.<a href="#fn15" class="footnote-ref" id="fnref15" role="doc-noteref"><sup>15</sup></a> Most agencies have several authorizing officials, so the whole-agency posture spans more than one of them. The program lead aggregates; each authorizing official accepts risk only for the systems and common controls they authorize. The authorizing official can delegate day-to-day work to a designated representative, but not the acceptance of risk itself.<a href="#fn16" class="footnote-ref" id="fnref16" role="doc-noteref"><sup>16</sup></a></p>
+<p>The <strong>pillar owners</strong> do the remediation and own their pillar’s maturity. The program maps each pillar of CISA’s model, which M-22-09 also uses to organize its goals,<a href="#fn17" class="footnote-ref" id="fnref17" role="doc-noteref"><sup>17</sup></a> to the team that owns it after modernization, and each team’s book assigns it decisions in detail (see the table below). Pillar owners triage findings in their pillar, remediate through their normal change control, and record the closure evidence that lets the finding be re-tested. Many of them are also common control providers in RMF terms: the identity platform, for example, provides controls that every application inherits. A common control provider is responsible for implementing, assessing and monitoring those controls and for producing plans of action and milestones for any that are deficient.<a href="#fn18" class="footnote-ref" id="fnref18" role="doc-noteref"><sup>18</sup></a> A pillar owner decides how to fix a finding. A pillar owner doesn’t decide that a finding doesn’t need fixing.</p>
+<p>The <strong>owner of the naming and identity plane</strong> holds the unified record the score depends on. <a href="../../../docs/books/b11-zero-trust/06-beyond-microsoft-365.html">Chapter 06</a> explains why Network, every cloud and the virtualization estate have to resolve objects against one authoritative naming and identity plane before their assessments mean the same thing, and why that plane, once it exists, is the most valuable target in the estate: a complete asset map that may also carry reconciliation privileges across every domain. In the program’s model identity engineering owns the identity half and the DNS/DDI team (<a href="../../../docs/books/b08-ddi/09-who-owns-dns.html">Book 08</a>) owns naming and addressing. Whoever owns it, the plane is governed as a Tier-0 asset: administrative access is eligible rather than standing and time-boxed, it has its own monitored telemetry stream, and its design assumes it will be attacked directly.</p>
+<p><strong>Security operations</strong> receives what the posture emits. OMB M-26-14, which rescinded M-21-31, requires that logs be readily available to the agency’s top-level security operations center for continuous event monitoring and for threat hunting, investigation, response and forensics, and that the logs collected identify the identity used for each operation and every change to privilege levels.<a href="#fn19" class="footnote-ref" id="fnref19" role="doc-noteref"><sup>19</sup></a> For this book that means three duties. Security operations consumes drift findings (a control that passed last interval and fails this one), because some of them are the first sign of an intrusion rather than an administrative slip. It monitors the assessment accounts themselves, which hold broad read access to every tenant they assess. And it is consulted on every omission and every exception, because it is the team that finds out when one is used.</p>
+<p>The <strong>assessment operators</strong> run the tools. In most agencies this is a security engineering or compliance team inside the CISO’s organization. They run ScubaGear and the Zero Trust Assessment on the calendar the program lead sets, under accounts the CISO approves, on hosts inside the authorization boundary, and they deliver unaltered outputs to the evidence repository. BOD 25-01 required agencies to deploy the SCuBA assessment tools for in-scope tenants and report results to CISA, either continuously through CISA’s monitoring integration or quarterly in a CISA-approved machine-readable format.<a href="#fn20" class="footnote-ref" id="fnref20" role="doc-noteref"><sup>20</sup></a> CISA’s implementation guidance offers four routes: CISA-hosted ScubaConnect, self-hosted ScubaConnect, an agency-hosted integration through CLAW or TALON, and manual quarterly upload through CyberScope (<a href="../../../docs/books/b11-zero-trust/04-scuba-and-bod-25-01.html">Chapter 04</a>).<a href="#fn21" class="footnote-ref" id="fnref21" role="doc-noteref"><sup>21</sup></a> Whichever route the agency picks, the operators own it. They don’t edit results, and they don’t decide omissions.</p>
+<p><strong>Control assessors</strong> assess with the independence the authorizing official sets. Under the RMF the assessor determines whether controls are implemented correctly, operating as intended and producing the desired outcome, reports deficiencies and their severity, and can recommend corrective actions.<a href="#fn22" class="footnote-ref" id="fnref22" role="doc-noteref"><sup>22</sup></a> SP 800-53 provides for independent assessors both for point-in-time assessments and for ongoing monitoring.<a href="#fn23" class="footnote-ref" id="fnref23" role="doc-noteref"><sup>23</sup></a> In the program’s model a ScubaGear or Zero Trust Assessment run is evidence the assessor reads, not an assessment the tool performs. The assessor can re-run the evidence assembly, compare hashes and walk a finding back to its raw output (<a href="../../../docs/books/b11-zero-trust/09-running-the-assessment.html">Chapter 09</a>), and that is what makes the tool output assessable rather than merely archived.</p>
+<p>The <strong>privacy and records offices</strong> are consulted. The Zero Trust Assessment’s own guide warns that reports, exports and diagnostics can contain tenant configuration and personal information.<a href="#fn24" class="footnote-ref" id="fnref24" role="doc-noteref"><sup>24</sup></a> The senior agency official for privacy is consulted before assessment outputs are retained, shared outside the security organization or loaded into a reporting tool. The records officer sets how long each output is kept. That retention is a records decision, not a tool default.</p>
 </section>
-<section id="a3.-restore-the-network-observability-layer-or-publish-the-obstacle" class="level3">
-<h3 class="anchored" data-anchor-id="a3.-restore-the-network-observability-layer-or-publish-the-obstacle">A3. Restore the network observability layer, or publish the obstacle</h3>
-<p><strong>Ask.</strong> Make the Microsoft 365 admin center’s network connectivity layer available in GCC: network assessments per location, network insights, network provider attribution and the Network Provider Index. If it can’t be, publish the specific obstacle (which data, which processing location, which control) that prevents it.</p>
-<p><strong>Basis.</strong> Microsoft documents the feature as supporting commercial and 21Vianet tenants “but not GCC Moderate, GCC High, or DoD.”<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a> It is the broadest documented loss for network decisions: it is the source of the per-location assessments and of the attribution of performance to named network providers, classified as ISP, Overlay (“VPN, Cloud Proxy, SD-WAN, and SASE”) or Corporate.<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a> Without it, an agency funds its own measurement to choose between transport and SASE providers (<a href="../../../docs/books/b09-network/12-microsoft-365-traffic.html">Book 09 Chapter 12</a>).</p>
-<p><strong>A useful answer.</strong> A target date for GCC, or a named obstacle specific enough that the agency can judge whether a compensating capability or an alternative path is the better use of its money.</p>
-</section>
-<section id="a4.-state-what-each-environments-certification-would-and-wouldnt-change" class="level3">
-<h3 class="anchored" data-anchor-id="a4.-state-what-each-environments-certification-would-and-wouldnt-change">A4. State what each environment’s certification would and wouldn’t change</h3>
-<p><strong>Ask.</strong> Explain the relationship between packages that share a name. For Microsoft 365 GCC: does <code>MSO365MTA</code> (Class D, FedRAMP In Process) supersede <code>MSO365MT</code> (Class C, FedRAMP Certified), run alongside it, or get withdrawn; what is its target date; and which of the documented GCC exclusions, if any, a Class D certification would lift.</p>
-<p><strong>Basis.</strong> The Marketplace shows two packages with the identical offering name, one Certified at Class C and one In Process at Class D, and doesn’t state how they relate.<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a> FedRAMP’s rules say a change of certification class “requires a new assessment and cannot be done under the Significant Change Notification rules,”<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a> which is consistent with a separate package but doesn’t explain it. Microsoft’s own service description says GCC “supports” FedRAMP “at a High Impact level,”<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a> which the Class C Marketplace record doesn’t match.</p>
-<p><strong>A useful answer.</strong> A plain statement of the plan and its date, and a per-exclusion answer to “would Class D change this?” An agency planning against a Moderate ceiling needs that answer before it commissions a compensating capability it may not need, or defers one it will.</p>
-</section>
-<section id="a5.-say-which-delivered-software-is-outside-the-certified-offering" class="level3">
-<h3 class="anchored" data-anchor-id="a5.-say-which-delivered-software-is-outside-the-certified-offering">A5. Say which delivered software is outside the certified offering</h3>
-<p><strong>Ask.</strong> List the agents, clients and other software the provider delivers for installation on agency systems, and state for each whether it is operated in a shared-responsibility model (and so inside the certified offering) or delivered to the agency to operate (and so outside FedRAMP’s scope).</p>
-<p><strong>Basis.</strong> The Minimum Assessment Scope rules say software “delivered separately for installation on agency systems and not operated in a shared responsibility model” is “entirely outside the scope of FedRAMP.”<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a> Whatever falls outside has to be covered by the agency’s own authorization (<a href="../../../docs/books/b10-cloud-boundary/03-what-changed-at-fedramp.html">Chapter 03</a>).</p>
-<p><strong>A useful answer.</strong> A list the agency can reconcile against its own software inventory, one line per component.</p>
-</section>
-</section>
-<section id="requests-about-evidence-and-change" class="level2">
-<h2 class="anchored" data-anchor-id="requests-about-evidence-and-change">Requests about evidence and change</h2>
-<section id="a6.-provide-a-fedramp-compatible-trust-center-with-programmatic-access" class="level3">
-<h3 class="anchored" data-anchor-id="a6.-provide-a-fedramp-compatible-trust-center-with-programmatic-access">A6. Provide a FedRAMP-compatible trust center with programmatic access</h3>
-<p><strong>Ask.</strong> Provide certification data through a FedRAMP-compatible trust center with documented programmatic access, just-in-time access provisioning, and self-service access management for agency users and systems.</p>
-<p><strong>Basis.</strong> The 2026 rules require providers to “use a FedRAMP-compatible trust center to store and share FedRAMP Certification Data” (CDS-CSO-UTC), and require trust centers to “provide documented programmatic access to all FedRAMP Certification Data, including programmatic access to human-readable materials” (CDS-TRC-PAC), to share it “without interruption” (CDS-TRC-USH) and to log access for at least six months (CDS-TRC-ACL).<a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a> On October 21, 2026, the Marketplace data showed a trust-center entry for 110 of its 781 listings and none for the three Microsoft 365 government packages.<a href="#fn14" class="footnote-ref" id="fnref14" role="doc-noteref"><sup>14</sup></a></p>
-<p><strong>A useful answer.</strong> A trust-center URL, API documentation, and an access process the agency’s governance tooling can use without a human request each time.</p>
-</section>
-<section id="a7.-deliver-significant-change-notifications-as-a-feed" class="level3">
-<h3 class="anchored" data-anchor-id="a7.-deliver-significant-change-notifications-as-a-feed">A7. Deliver Significant Change Notifications as a feed</h3>
-<p><strong>Ask.</strong> Deliver Significant Change Notifications in JSON through a documented mechanism the agency can subscribe to, with the 12-month history the rules require.</p>
-<p><strong>Basis.</strong> Providers must make all notifications and related audit records available “in human-readable and JSON formats” (SCN-CSO-HRM) and keep 12 months of them with the certification data (SCN-CSO-HIS); the notification mechanism must be documented in the certification package (SCN-CSO-NOM).<a href="#fn15" class="footnote-ref" id="fnref15" role="doc-noteref"><sup>15</sup></a> Agencies, for their part, must review ongoing certification reports for changes that affect their own authorization.<a href="#fn16" class="footnote-ref" id="fnref16" role="doc-noteref"><sup>16</sup></a></p>
-<p><strong>A useful answer.</strong> An endpoint or subscription, a schema, and a statement of which changes the provider classes as routine recurring and so won’t notify.</p>
-</section>
-<section id="a8.-document-the-cryptographic-modules-per-service" class="level3">
-<h3 class="anchored" data-anchor-id="a8.-document-the-cryptographic-modules-per-service">A8. Document the cryptographic modules per service</h3>
-<p><strong>Ask.</strong> Provide the list of cryptographic modules used to protect federal customer data in each service, with their CMVP validation status, and the defaults applied to agency tenants.</p>
-<p><strong>Basis.</strong> CMU-CSO-CMD requires that documentation; CMU-CSO-UVM makes validated modules a SHOULD at Class C and a MUST at Class D; CMU-CSO-CAT asks providers to configure agency tenants by default to use validated modules where available.<a href="#fn17" class="footnote-ref" id="fnref17" role="doc-noteref"><sup>17</sup></a> NIST moved all FIPS 140-2 certificates to the Historical List on September 22, 2026 (<a href="../../../docs/books/b09-network/03-what-tic-3-requires.html">Book 09 Chapter 03</a>), so the validation status of each module is now a live question.</p>
-<p><strong>A useful answer.</strong> A per-service module list with certificate numbers and the tenant defaults, in machine-readable form.</p>
-</section>
-</section>
-<section id="summary" class="level2">
-<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<section id="the-responsibility-matrix" class="level2">
+<h2 class="anchored" data-anchor-id="the-responsibility-matrix">The responsibility matrix</h2>
+<p>D = decides (accountable) · R = does the work · C = consulted · blank = informed at most.</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>#</th>
-<th>Request</th>
-<th>Rule or documented basis</th>
+<th>Decision or work item</th>
+<th>CIO / sponsor</th>
+<th>ZT program lead</th>
+<th>CISO / ISSO</th>
+<th>AO</th>
+<th>Pillar owners</th>
+<th>Identity-plane owner</th>
+<th>SecOps</th>
+<th>Assessment operators</th>
+<th>Assessors</th>
+<th>Privacy / records</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>A1</td>
-<td>Per-feature exclusion list as data</td>
-<td>Provider’s per-feature notes; extends CDS-CSO-SVC and CDS-CSO-PUB</td>
+<td>Zero Trust strategy, scope and funding</td>
+<td>D</td>
+<td>R</td>
+<td>C</td>
+<td>C</td>
+<td>C</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 <tr class="even">
-<td>A2</td>
-<td>Exception path per feature</td>
-<td>ExpressRoute for Microsoft 365 authorization process</td>
+<td>Designate the zero trust strategy implementation lead</td>
+<td>D</td>
+<td></td>
+<td>C</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 <tr class="odd">
-<td>A3</td>
-<td>Network observability layer in GCC, or the named obstacle</td>
-<td>Admin center network connectivity documented as not in GCC</td>
+<td>Definition of the whole-agency score: what it covers and excludes</td>
+<td>C</td>
+<td>D, R</td>
+<td>C</td>
+<td>C</td>
+<td>C</td>
+<td>C</td>
+<td></td>
+<td></td>
+<td>C</td>
+<td></td>
 </tr>
 <tr class="even">
-<td>A4</td>
-<td>What each certification would and wouldn’t change</td>
-<td>Same-named packages on the Marketplace; class change needs a new assessment</td>
+<td>The unified naming and identity record that assessments resolve to</td>
+<td>C</td>
+<td>C</td>
+<td>C</td>
+<td></td>
+<td>C</td>
+<td>D, R</td>
+<td>C</td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 <tr class="odd">
-<td>A5</td>
-<td>Delivered software outside the offering</td>
-<td>MAS-CSO-IIR guidance on agents and clients</td>
+<td>Cross-pillar correlation and routing of findings</td>
+<td></td>
+<td>D, R</td>
+<td>C</td>
+<td></td>
+<td>R</td>
+<td>C</td>
+<td>C</td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 <tr class="even">
-<td>A6</td>
-<td>FedRAMP-compatible trust center with programmatic access</td>
-<td>CDS-CSO-UTC; CDS-TRC-USH, -PAC, -ACL</td>
+<td>Control requirements and evidence standard per pillar</td>
+<td></td>
+<td>C</td>
+<td>D</td>
+<td>C</td>
+<td>C</td>
+<td>C</td>
+<td>C</td>
+<td>C</td>
+<td>C</td>
+<td></td>
 </tr>
 <tr class="odd">
-<td>A7</td>
-<td>Change notifications as a feed</td>
-<td>SCN-CSO-HRM, -HIS, -NOM</td>
+<td>Maturity target per pillar (program design, not a mandate)</td>
+<td>C</td>
+<td>D</td>
+<td>C</td>
+<td>C</td>
+<td>R</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 <tr class="even">
-<td>A8</td>
-<td>Cryptographic modules per service</td>
-<td>CMU-CSO-CMD, -UVM, -CAT</td>
+<td>Approved assessment tools and pinned versions</td>
+<td></td>
+<td>C</td>
+<td>D</td>
+<td></td>
+<td></td>
+<td></td>
+<td>C</td>
+<td>R</td>
+<td>C</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Assessment accounts, consent grants and their scope</td>
+<td></td>
+<td></td>
+<td>D</td>
+<td></td>
+<td></td>
+<td>R</td>
+<td>C</td>
+<td>R</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Assessment calendar and re-runs after remediation</td>
+<td></td>
+<td>D</td>
+<td>C</td>
+<td></td>
+<td>C</td>
+<td></td>
+<td>C</td>
+<td>R</td>
+<td>C</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>BOD 25-01 tenant inventory and reporting route to CISA</td>
+<td>C</td>
+<td>C</td>
+<td>D</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>R</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>ScubaGear annotations (comments, remediation dates)</td>
+<td></td>
+<td>C</td>
+<td>D</td>
+<td></td>
+<td>R</td>
+<td></td>
+<td></td>
+<td>R</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Omission or incorrect-result marking with an expiration date</td>
+<td></td>
+<td>C</td>
+<td>D</td>
+<td>C</td>
+<td>R</td>
+<td></td>
+<td>C</td>
+<td>R</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Omission, deviation or incorrect-result marking with no end date</td>
+<td></td>
+<td>C</td>
+<td>R</td>
+<td>D</td>
+<td>C</td>
+<td></td>
+<td>C</td>
+<td>R</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Finding priority and sequence</td>
+<td></td>
+<td>D</td>
+<td>C</td>
+<td>C</td>
+<td>R</td>
+<td>C</td>
+<td>C</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Remediation through change control</td>
+<td></td>
+<td>C</td>
+<td>C</td>
+<td></td>
+<td>D, R</td>
+<td>R</td>
+<td>C</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Plan of action and milestones per system</td>
+<td></td>
+<td>C</td>
+<td>R</td>
+<td>D</td>
+<td>R</td>
+<td></td>
+<td></td>
+<td></td>
+<td>C</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Degree of assessor independence</td>
+<td></td>
+<td></td>
+<td>C</td>
+<td>D</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>R</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Drift findings surfaced to the authorizing official</td>
+<td></td>
+<td>R</td>
+<td>R</td>
+<td>D</td>
+<td>C</td>
+<td></td>
+<td>R</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Logs and detections for assessment accounts and drift</td>
+<td></td>
+<td></td>
+<td>D</td>
+<td></td>
+<td></td>
+<td>C</td>
+<td>R</td>
+<td>C</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Agency Logging Plan coverage of Zero Trust telemetry</td>
+<td>C</td>
+<td>C</td>
+<td>D</td>
+<td></td>
+<td>R</td>
+<td>R</td>
+<td>R</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Handling, retention and sharing of assessment outputs</td>
+<td></td>
+<td>C</td>
+<td>D</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>R</td>
+<td></td>
+<td>C</td>
+</tr>
+<tr class="odd">
+<td>Cloud provider native-tool findings admitted as evidence</td>
+<td></td>
+<td>D</td>
+<td>C</td>
+<td></td>
+<td>R</td>
+<td></td>
+<td></td>
+<td>R</td>
+<td>C</td>
+<td></td>
 </tr>
 </tbody>
 </table>
-<p>Each request is answerable, none needs a boundary argument, and A1, A5, A6, A7 and A8 rest on obligations the 2026 rules already place on providers. Record each request, its date and the provider’s answer in the authorization package (<a href="../../../docs/books/b10-cloud-boundary/11-the-authorization-package.html">Chapter 11</a>): a documented “no” is evidence too. The explainer <a href="../../../docs/books/explainers/hr2-shared-governance-fedramp-boundary.html#questions-to-ask">Federal HR 2.0 Across Agencies and Boundaries</a> works through A6 and A8 against one Rev5 SaaS platform, with the questions an agency would put to its provider.</p>
+<p>Six rows need comment.</p>
+<p>The <strong>score</strong> row gives the program lead the decision because the definition of “whole agency” is the thing every other role has an incentive to narrow. A pillar owner whose estate assesses badly would prefer it excluded; a cloud account team would prefer its own tool’s score to stand in for the whole. The lead decides, the authorizing official and the assessors are consulted, and the exclusions are written down.</p>
+<p>The <strong>identity-plane</strong> row gives that decision to the plane’s owner rather than the program lead, because the plane is infrastructure with its own privileged access and blast radius, not a reporting artifact. The program lead depends on it and is consulted.</p>
+<p>The <strong>omission</strong> rows split on time, as the exception rows do in Books 05, 08 and 09. The CISO can approve an omission that expires, because it is a bounded, reviewable decision recorded in the configuration file itself. An omission, deviation or incorrect-result marking with no end date is a standing risk acceptance and goes to the authorizing official, which matches BOD 25-01’s assignment of deviation risk to authorizing officials.<a href="#fn25" class="footnote-ref" id="fnref25" role="doc-noteref"><sup>25</sup></a></p>
+<p>The <strong>priority</strong> row gives the program lead priority and sequence, while the <strong>remediation</strong> row gives each pillar owner the decision about how to fix. The lead can say a finding is first; only the pillar owner can say how it is closed, and the closure evidence has to satisfy the CISO’s standard.</p>
+<p>The <strong>drift</strong> row gives the authorizing official the decision because drift is change to an authorized system. A control that passed every interval and failed the last one is a different finding from one that has always failed, and the authorizing official decides whether it amounts to a significant change.<a href="#fn26" class="footnote-ref" id="fnref26" role="doc-noteref"><sup>26</sup></a> The program lead and security operations prepare it; the ScubaGear integration paper’s adoption step is to treat these findings as artifacts the authorizing official sees, not only security operations.</p>
+<p>The <strong>native-tool</strong> row is the governance principle in one line. A cloud provider’s native posture tool is admitted as evidence for its own platform, by the program lead, under the CISO’s evidence standard. It is never admitted as the agency’s score.</p>
+</section>
+<section id="who-owns-each-pillar" class="level2">
+<h2 class="anchored" data-anchor-id="who-owns-each-pillar">Who owns each pillar</h2>
+<div id="fig-ch07-pillars-and-owners" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Top row, five blue cards for CISA's Zero Trust pillars and their owners: Identity, owned by identity engineering; Devices, owned by endpoint engineering; Networks, owned by network engineering; Applications and workloads, owned by application owners and platform teams; and Data, owned by the data owners and the data office. Below them, a slate card for the naming and identity plane, which every pillar resolves its objects against, owned by identity engineering and the DNS and DDI team. Below that, three violet cards for the cross-cutting capabilities: Visibility and analytics, owned by security operations; Automation and orchestration, owned by the pillar owners under gated change; and Governance, owned by the Zero Trust program lead with the CISO and the authorizing official. An amber pill at the bottom reads: risk acceptance stays with the authorizing official; the maturity model does not address it.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ch07-pillars-and-owners-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="../../images/diagrams/b11-zero-trust/svg/ch07-pillars-and-owners.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;2: Each pillar has an owner; the cross-cutting capabilities have owners too, and Governance belongs to the program lead and the authorizing official, not to a tool."><img src="../../images/diagrams/b11-zero-trust/svg/ch07-pillars-and-owners.svg" class="img-fluid figure-img" alt="Top row, five blue cards for CISA's Zero Trust pillars and their owners: Identity, owned by identity engineering; Devices, owned by endpoint engineering; Networks, owned by network engineering; Applications and workloads, owned by application owners and platform teams; and Data, owned by the data owners and the data office. Below them, a slate card for the naming and identity plane, which every pillar resolves its objects against, owned by identity engineering and the DNS and DDI team. Below that, three violet cards for the cross-cutting capabilities: Visibility and analytics, owned by security operations; Automation and orchestration, owned by the pillar owners under gated change; and Governance, owned by the Zero Trust program lead with the CISO and the authorizing official. An amber pill at the bottom reads: risk acceptance stays with the authorizing official; the maturity model does not address it."></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ch07-pillars-and-owners-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Each pillar has an owner; the cross-cutting capabilities have owners too, and Governance belongs to the program lead and the authorizing official, not to a tool.
+</figcaption>
+</figure>
+</div>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>ZTMM pillar or capability</th>
+<th>Owner in the program’s model</th>
+<th>Decides</th>
+<th>Where the book assigns it</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Identity</td>
+<td>Identity engineering</td>
+<td>Authentication methods, Conditional Access design, privileged identity model, within the CISO’s requirements</td>
+<td><a href="../../../docs/books/b02-identity/index.html">Book 02</a>, <a href="../../../docs/books/b04-access/index.html">Book 04</a></td>
+</tr>
+<tr class="even">
+<td>Devices</td>
+<td>Endpoint engineering</td>
+<td>Compliance policies, enrollment paths, device posture signals</td>
+<td><a href="../../../docs/books/b05-devices/index.html">Book 05</a></td>
+</tr>
+<tr class="odd">
+<td>Networks</td>
+<td>Network engineering, with security architecture</td>
+<td>Transport, enforcement points, segmentation phasing</td>
+<td><a href="../../../docs/books/b09-network/index.html">Book 09</a></td>
+</tr>
+<tr class="even">
+<td>Applications and workloads</td>
+<td>Application owners, with the platform teams</td>
+<td>Application dependencies, workload identities, cutover windows</td>
+<td><a href="../../../docs/books/b04-access/05-applications-and-workload-identities.html">Book 04, Chapter 05</a>, <a href="../../../docs/books/b06-data-platform/index.html">Book 06</a></td>
+</tr>
+<tr class="odd">
+<td>Data</td>
+<td>Data owners and the data office</td>
+<td>Categorization and labeling, access to sensitive data</td>
+<td>Designed in <a href="../../../docs/books/b12-security-operations/09-data-protection-and-classification.html">Book 12, Chapter 09</a>; M-22-09’s data actions are also mapped in <a href="../../../docs/books/b01-transformation-arc/appendix-a-requirements-mapping.html">Book 01, Appendix A</a></td>
+</tr>
+<tr class="even">
+<td>Naming and identity plane</td>
+<td>Identity engineering and the DNS/DDI team</td>
+<td>The authoritative record every pillar resolves to</td>
+<td><a href="../../../docs/books/b08-ddi/index.html">Book 08</a>, <a href="../../../docs/books/b11-zero-trust/06-beyond-microsoft-365.html">Chapter 06</a></td>
+</tr>
+<tr class="odd">
+<td>Other clouds and virtualization</td>
+<td>The platform team for each estate</td>
+<td>Native configuration of each estate, reconciled to the plane</td>
+<td><a href="../../../docs/books/b10-cloud-boundary/index.html">Book 10</a>, <a href="../../../docs/books/b11-zero-trust/06-beyond-microsoft-365.html">Chapter 06</a></td>
+</tr>
+<tr class="even">
+<td>Visibility and analytics</td>
+<td>Security operations</td>
+<td>Detections, alert tuning, log coverage</td>
+<td>M-26-14 Agency Logging Plan</td>
+</tr>
+<tr class="odd">
+<td>Automation and orchestration</td>
+<td>Pillar owners, under gated change</td>
+<td>Which corrective actions run, and with whose approval</td>
+<td><a href="../../../docs/books/b01-transformation-arc/03-platform-foundation.html">Book 01, Chapter 03</a></td>
+</tr>
+<tr class="even">
+<td>Governance</td>
+<td>Zero Trust program lead, with the CISO and the authorizing official</td>
+<td>Policies and their enforcement across pillars</td>
+<td>This chapter</td>
+</tr>
+</tbody>
+</table>
+<p>CISA defines Governance in the model as the definition and enforcement of agency cybersecurity policies, procedures and processes within and across pillars.<a href="#fn27" class="footnote-ref" id="fnref27" role="doc-noteref"><sup>27</sup></a> “Across pillars” is the part no pillar owner can deliver alone, which is why the program puts it with the program lead rather than distributing it.</p>
+</section>
+<section id="roles-in-each-system" class="level2">
+<h2 class="anchored" data-anchor-id="roles-in-each-system">Roles in each system</h2>
+<p>Decision rights don’t change what a console lets someone do. Roles do, and the assessment tools need broad read access to the tenants they assess. The program maps each team to the least-privileged role in each system it touches.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Team</th>
+<th>ScubaGear run</th>
+<th>Zero Trust Assessment run</th>
+<th>CISA reporting</th>
+<th>Evidence repository</th>
+<th>SIEM</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Assessment operators</td>
+<td>Global Reader for most products; Power Platform Administrator with the required license only if Power Platform is assessed, and Fabric Administrator with a Power BI or Fabric license only if Power BI is assessed<a href="#fn28" class="footnote-ref" id="fnref28" role="doc-noteref"><sup>28</sup></a></td>
+<td>Global Reader for the Graph context; Security Reader for protection-policy checks; SharePoint Administrator for SharePoint tenant commands; Azure Reader on in-scope subscriptions<a href="#fn29" class="footnote-ref" id="fnref29" role="doc-noteref"><sup>29</sup></a></td>
+<td>Upload or operate ScubaConnect</td>
+<td>Write unaltered outputs</td>
+<td>Read own account activity</td>
+</tr>
+<tr class="even">
+<td>Identity engineering</td>
+<td>Grants the one-time application consent</td>
+<td>Grants the one-time consent through an authorized consent role; doesn’t run the assessment under that account<a href="#fn30" class="footnote-ref" id="fnref30" role="doc-noteref"><sup>30</sup></a></td>
+<td>None</td>
+<td>Read</td>
+<td>Read</td>
+</tr>
+<tr class="odd">
+<td>ZT program lead and team</td>
+<td>None</td>
+<td>None</td>
+<td>Read</td>
+<td>Read; maintain the score definition</td>
+<td>Read</td>
+</tr>
+<tr class="even">
+<td>CISO and ISSO</td>
+<td>None</td>
+<td>None</td>
+<td>Approve</td>
+<td>Read; approve evidence</td>
+<td>Read</td>
+</tr>
+<tr class="odd">
+<td>Pillar owners</td>
+<td>None</td>
+<td>None</td>
+<td>None</td>
+<td>Read own pillar’s findings; write closure evidence</td>
+<td>Read</td>
+</tr>
+<tr class="even">
+<td>Control assessors</td>
+<td>None</td>
+<td>None</td>
+<td>Read</td>
+<td>Read; re-run evidence assembly</td>
+<td>Read</td>
+</tr>
+<tr class="odd">
+<td>Security operations</td>
+<td>None</td>
+<td>None</td>
+<td>None</td>
+<td>Read drift findings</td>
+<td>Detections on assessment accounts</td>
+</tr>
+</tbody>
+</table>
+<p>Three notes. The Zero Trust Assessment’s guide is explicit that a highly privileged administrator should be used for the initial consent only, and that consent doesn’t assign runtime roles: the assessment account should be a reader.<a href="#fn31" class="footnote-ref" id="fnref31" role="doc-noteref"><sup>31</sup></a> Microsoft’s get-started page still describes a Global Administrator granting first-run consent and later runs as Global Reader;<a href="#fn32" class="footnote-ref" id="fnref32" role="doc-noteref"><sup>32</sup></a> the program follows the narrower guide in the tool’s own repository. The assessment accounts are among the most sensitive identities in the design, because between them they can read the configuration of every tenant the agency runs; they are eligible rather than standing where the platform allows, and their sign-ins are logged to the top-level SOC as M-26-14 requires for privileged operations.<a href="#fn33" class="footnote-ref" id="fnref33" role="doc-noteref"><sup>33</sup></a> And the Zero Trust Assessment sends a telemetry event by default that carries the tenant ID; it can be disabled with <code>-DisableTelemetry</code>.<a href="#fn34" class="footnote-ref" id="fnref34" role="doc-noteref"><sup>34</sup></a> Whether to disable it is a CISO decision recorded with the tool approval, not an operator’s choice on the day.</p>
+</section>
+<section id="what-changes-in-one-table" class="level2">
+<h2 class="anchored" data-anchor-id="what-changes-in-one-table">What changes, in one table</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Old habit</th>
+<th>What replaces it</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Each pillar reports its own maturity</td>
+<td>The program lead owns one posture, with a written definition of what the score covers</td>
+</tr>
+<tr class="even">
+<td>The cloud provider’s tool score is the Zero Trust score</td>
+<td>Native tools are evidence for their own platform, admitted under the CISO’s evidence standard</td>
+</tr>
+<tr class="odd">
+<td>Whoever runs ScubaGear decides what to omit</td>
+<td>Expiring omissions are a CISO decision; standing ones go to the authorizing official</td>
+</tr>
+<tr class="even">
+<td>Exceptions live in a Word document</td>
+<td>Exceptions live in the versioned configuration file, with a rationale and an expiration date</td>
+</tr>
+<tr class="odd">
+<td>A skipped check is quietly scored as a pass</td>
+<td>A skipped check is recorded as absence of evidence, a different claim</td>
+</tr>
+<tr class="even">
+<td>The assessment runs before audits</td>
+<td>The program lead runs a calendar, and re-runs after remediation</td>
+</tr>
+<tr class="odd">
+<td>Drift findings go to security operations only</td>
+<td>Drift findings reach the authorizing official as changes to an authorized system</td>
+</tr>
+<tr class="even">
+<td>Assessment output is shared freely</td>
+<td>Output is handled as sensitive, kept inside the boundary and retained on a records decision</td>
+</tr>
+<tr class="odd">
+<td>The unified identity plane is just plumbing</td>
+<td>It is a Tier-0 asset with its own owner, privileged controls and telemetry</td>
+</tr>
+</tbody>
+</table>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -2706,7 +3170,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><a href="../../../docs/books/b10-cloud-boundary/11-the-authorization-package.html">← Previous: Chapter 11 — Evidencing the Boundary in the Authorization Package</a> · <a href="../../../docs/books/b10-cloud-boundary/index.html">Book index</a> · <a href="../../../docs/books/b10-cloud-boundary/appendix-b-platform-host-interfaces.html">Next: Appendix B — Platform Host Interface Reference →</a></p>
+<p><a href="../../../docs/books/b11-zero-trust/06-beyond-microsoft-365.html">← Previous: Chapter 06 — Beyond Microsoft 365: Networks, Other Clouds and Virtualized Estates</a> · <a href="../../../docs/books/b11-zero-trust/index.html">Book index</a> · <a href="../../../docs/books/b11-zero-trust/08-close-before-you-assess.html">Next: Chapter 08 — Close Before You Assess →</a></p>
 </div>
 </div>
 
@@ -2715,23 +3179,40 @@ ul.task-list li input[type="checkbox"] {
 <section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr>
 <ol>
-<li id="fn1"><p>Microsoft Learn, “Network connectivity in the Microsoft 365 Admin Center,” <a href="https://learn.microsoft.com/microsoft-365/enterprise/office-365-network-mac-perf-overview?view=o365-worldwide" class="uri">https://learn.microsoft.com/microsoft-365/enterprise/office-365-network-mac-perf-overview?view=o365-worldwide</a> (accessed Oct 21, 2026).<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>Microsoft Learn, “Assessing Enterprise network last mile” (note on ExpressRoute for Microsoft 365 authorization), <a href="https://learn.microsoft.com/microsoft-365/enterprise/assessing-network-connectivity?view=o365-worldwide" class="uri">https://learn.microsoft.com/microsoft-365/enterprise/assessing-network-connectivity?view=o365-worldwide</a> (accessed Oct 21, 2026).<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3"><p>FedRAMP, “Certification Data Sharing,” <em>FedRAMP Consolidated Rules for 2026</em> (CDS-CSO-PUB, CDS-CSO-SVC, CDS-CSO-UTC, CDS-TRC-USH, -PAC, -ACL), <a href="https://www.fedramp.gov/2026/reference/certification-data-sharing/" class="uri">https://www.fedramp.gov/2026/reference/certification-data-sharing/</a> (accessed Oct 21, 2026).<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn4"><p>FedRAMP, “Significant Change Notification,” <em>FedRAMP Consolidated Rules for 2026</em> (SCN-CSO-EVA, -HIS, -HRM, -NOM), <a href="https://www.fedramp.gov/2026/reference/significant-change-notification/" class="uri">https://www.fedramp.gov/2026/reference/significant-change-notification/</a> (accessed Oct 21, 2026).<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn5"><p>FedRAMP, “Certification Data Sharing,” <em>FedRAMP Consolidated Rules for 2026</em> (CDS-CSO-PUB, CDS-CSO-SVC, CDS-CSO-UTC, CDS-TRC-USH, -PAC, -ACL), <a href="https://www.fedramp.gov/2026/reference/certification-data-sharing/" class="uri">https://www.fedramp.gov/2026/reference/certification-data-sharing/</a> (accessed Oct 21, 2026).<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn6"><p>Microsoft Learn, “Assessing Enterprise network last mile” (note on ExpressRoute for Microsoft 365 authorization), <a href="https://learn.microsoft.com/microsoft-365/enterprise/assessing-network-connectivity?view=o365-worldwide" class="uri">https://learn.microsoft.com/microsoft-365/enterprise/assessing-network-connectivity?view=o365-worldwide</a> (accessed Oct 21, 2026).<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn7"><p>Microsoft Learn, “Network connectivity in the Microsoft 365 Admin Center,” <a href="https://learn.microsoft.com/microsoft-365/enterprise/office-365-network-mac-perf-overview?view=o365-worldwide" class="uri">https://learn.microsoft.com/microsoft-365/enterprise/office-365-network-mac-perf-overview?view=o365-worldwide</a> (accessed Oct 21, 2026).<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn8"><p>Microsoft Learn, “Network provider details and connectivity attribution in the Microsoft 365 Admin Center,” <a href="https://learn.microsoft.com/microsoft-365/enterprise/office-365-network-mac-perf-nppdetails?view=o365-worldwide" class="uri">https://learn.microsoft.com/microsoft-365/enterprise/office-365-network-mac-perf-nppdetails?view=o365-worldwide</a> (accessed Oct 21, 2026).<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn9"><p>FedRAMP Marketplace product data, <a href="https://www.fedramp.gov/marketplace/products.json" class="uri">https://www.fedramp.gov/marketplace/products.json</a>, dataset last changed October 21, 2026 (accessed Oct 21, 2026). Records MSO365MT, MSO365MTA and FR1824057433; count of listings with a populated <code>trust_center</code> field computed from the same file.<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn10"><p>FedRAMP, “Significant Change Notification,” <em>FedRAMP Consolidated Rules for 2026</em> (SCN-CSO-EVA, -HIS, -HRM, -NOM), <a href="https://www.fedramp.gov/2026/reference/significant-change-notification/" class="uri">https://www.fedramp.gov/2026/reference/significant-change-notification/</a> (accessed Oct 21, 2026).<a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn11"><p>Microsoft Learn, “Office 365 GCC” (service description), <a href="https://learn.microsoft.com/office365/servicedescriptions/office-365-platform-service-description/office-365-us-government/gcc" class="uri">https://learn.microsoft.com/office365/servicedescriptions/office-365-platform-service-description/office-365-us-government/gcc</a> (accessed Oct 21, 2026).<a href="#fnref11" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn12"><p>FedRAMP, “Minimum Assessment Scope,” <em>FedRAMP Consolidated Rules for 2026</em> (MAS-CSO-IIR and its notes), <a href="https://www.fedramp.gov/2026/reference/minimum-assessment-scope/" class="uri">https://www.fedramp.gov/2026/reference/minimum-assessment-scope/</a> (accessed Oct 21, 2026).<a href="#fnref12" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn13"><p>FedRAMP, “Certification Data Sharing,” <em>FedRAMP Consolidated Rules for 2026</em> (CDS-CSO-PUB, CDS-CSO-SVC, CDS-CSO-UTC, CDS-TRC-USH, -PAC, -ACL), <a href="https://www.fedramp.gov/2026/reference/certification-data-sharing/" class="uri">https://www.fedramp.gov/2026/reference/certification-data-sharing/</a> (accessed Oct 21, 2026).<a href="#fnref13" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn14"><p>FedRAMP Marketplace product data, <a href="https://www.fedramp.gov/marketplace/products.json" class="uri">https://www.fedramp.gov/marketplace/products.json</a>, dataset last changed October 21, 2026 (accessed Oct 21, 2026). Records MSO365MT, MSO365MTA and FR1824057433; count of listings with a populated <code>trust_center</code> field computed from the same file.<a href="#fnref14" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn15"><p>FedRAMP, “Significant Change Notification,” <em>FedRAMP Consolidated Rules for 2026</em> (SCN-CSO-EVA, -HIS, -HRM, -NOM), <a href="https://www.fedramp.gov/2026/reference/significant-change-notification/" class="uri">https://www.fedramp.gov/2026/reference/significant-change-notification/</a> (accessed Oct 21, 2026).<a href="#fnref15" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn16"><p>FedRAMP, <em>FedRAMP Consolidated Rules for 2026</em>, machine-readable ruleset <code>fedramp-consolidated-rules.json</code>, version 2026.10.13.01 (agency rule CCM-AGM-ROR), <a href="https://github.com/FedRAMP/rules" class="uri">https://github.com/FedRAMP/rules</a> (accessed Oct 21, 2026).<a href="#fnref16" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn17"><p>FedRAMP, “Cryptographic Module Use,” <em>FedRAMP Consolidated Rules for 2026</em> (CMU-CSO-CMD, CMU-CSO-UVM, CMU-CSO-CAT), <a href="https://www.fedramp.gov/2026/reference/cryptographic-module-use/" class="uri">https://www.fedramp.gov/2026/reference/cryptographic-module-use/</a> (accessed Oct 21, 2026).<a href="#fnref17" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>Cybersecurity and Infrastructure Security Agency, <em>Zero Trust Maturity Model</em>, Version 2.0, April 2023, §4 (Challenges in Zero Trust Adoption) and §5 (Zero Trust Maturity Model: cross-cutting capability definitions, scope limits, and “general guide” statement), <a href="https://www.cisa.gov/sites/default/files/2023-04/zero_trust_maturity_model_v2_508.pdf" class="uri">https://www.cisa.gov/sites/default/files/2023-04/zero_trust_maturity_model_v2_508.pdf</a> (accessed Oct 21, 2026).<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Office of Management and Budget, M-22-09, <em>Moving the U.S. Government Toward Zero Trust Cybersecurity Principles</em>, January 26, 2022, §II and §III (introduction), <a href="https://www.whitehouse.gov/wp-content/uploads/2022/01/M-22-09.pdf" class="uri">https://www.whitehouse.gov/wp-content/uploads/2022/01/M-22-09.pdf</a> (accessed Oct 21, 2026).<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Cybersecurity and Infrastructure Security Agency, <em>Zero Trust Maturity Model</em>, Version 2.0, April 2023, §4 (Challenges in Zero Trust Adoption) and §5 (Zero Trust Maturity Model: cross-cutting capability definitions, scope limits, and “general guide” statement), <a href="https://www.cisa.gov/sites/default/files/2023-04/zero_trust_maturity_model_v2_508.pdf" class="uri">https://www.cisa.gov/sites/default/files/2023-04/zero_trust_maturity_model_v2_508.pdf</a> (accessed Oct 21, 2026).<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>Cybersecurity and Infrastructure Security Agency, <em>Zero Trust Maturity Model</em>, Version 2.0, April 2023, §4 (Challenges in Zero Trust Adoption) and §5 (Zero Trust Maturity Model: cross-cutting capability definitions, scope limits, and “general guide” statement), <a href="https://www.cisa.gov/sites/default/files/2023-04/zero_trust_maturity_model_v2_508.pdf" class="uri">https://www.cisa.gov/sites/default/files/2023-04/zero_trust_maturity_model_v2_508.pdf</a> (accessed Oct 21, 2026).<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>National Institute of Standards and Technology, SP 800-37 Rev.&nbsp;2, <em>Risk Management Framework for Information Systems and Organizations: A System Life Cycle Approach for Security and Privacy</em>, December 2018, Appendix D (Roles and Responsibilities), <a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-37r2.pdf" class="uri">https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-37r2.pdf</a> (accessed Oct 21, 2026).<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>Cybersecurity and Infrastructure Security Agency, ScubaGear v2.0.0 documentation, “Configuration File,” sections “Annotate Policies” and “Omit Policies,” <a href="https://github.com/cisagov/ScubaGear/blob/v2.0.0/docs/configuration/configuration.md" class="uri">https://github.com/cisagov/ScubaGear/blob/v2.0.0/docs/configuration/configuration.md</a> (accessed Oct 26, 2026).<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p>Cybersecurity and Infrastructure Security Agency, BOD 25-01, <em>Implementing Secure Practices for Cloud Services</em>, December 17, 2024, “Required Actions” and “Implementation Guidance and Clarifications,” <a href="https://www.cisa.gov/news-events/directives/bod-25-01-implementing-secure-practices-cloud-services" class="uri">https://www.cisa.gov/news-events/directives/bod-25-01-implementing-secure-practices-cloud-services</a> (accessed Oct 21, 2026).<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p>National Institute of Standards and Technology, SP 800-37 Rev.&nbsp;2, <em>Risk Management Framework for Information Systems and Organizations: A System Life Cycle Approach for Security and Privacy</em>, December 2018, Appendix D (Roles and Responsibilities), <a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-37r2.pdf" class="uri">https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-37r2.pdf</a> (accessed Oct 21, 2026).<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9"><p>Office of Management and Budget, M-22-09, <em>Moving the U.S. Government Toward Zero Trust Cybersecurity Principles</em>, January 26, 2022, §II and §III (introduction), <a href="https://www.whitehouse.gov/wp-content/uploads/2022/01/M-22-09.pdf" class="uri">https://www.whitehouse.gov/wp-content/uploads/2022/01/M-22-09.pdf</a> (accessed Oct 21, 2026).<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn10"><p>National Institute of Standards and Technology, SP 800-37 Rev.&nbsp;2, <em>Risk Management Framework for Information Systems and Organizations: A System Life Cycle Approach for Security and Privacy</em>, December 2018, Appendix D (Roles and Responsibilities), <a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-37r2.pdf" class="uri">https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-37r2.pdf</a> (accessed Oct 21, 2026).<a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn11"><p>Microsoft Learn, “Get started with the Zero Trust Assessment,” sections “Prerequisites” and “Run the assessment,” <a href="https://learn.microsoft.com/security/zero-trust/assessment/get-started" class="uri">https://learn.microsoft.com/security/zero-trust/assessment/get-started</a> (accessed Oct 21, 2026).<a href="#fnref11" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn12"><p>National Institute of Standards and Technology, SP 800-37 Rev.&nbsp;2, <em>Risk Management Framework for Information Systems and Organizations: A System Life Cycle Approach for Security and Privacy</em>, December 2018, Appendix D (Roles and Responsibilities), <a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-37r2.pdf" class="uri">https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-37r2.pdf</a> (accessed Oct 21, 2026).<a href="#fnref12" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn13"><p>Cybersecurity and Infrastructure Security Agency, BOD 25-01, <em>Implementing Secure Practices for Cloud Services</em>, December 17, 2024, “Required Actions” and “Implementation Guidance and Clarifications,” <a href="https://www.cisa.gov/news-events/directives/bod-25-01-implementing-secure-practices-cloud-services" class="uri">https://www.cisa.gov/news-events/directives/bod-25-01-implementing-secure-practices-cloud-services</a> (accessed Oct 21, 2026).<a href="#fnref13" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn14"><p>National Institute of Standards and Technology, SP 800-37 Rev.&nbsp;2, <em>Risk Management Framework for Information Systems and Organizations: A System Life Cycle Approach for Security and Privacy</em>, December 2018, Appendix D (Roles and Responsibilities), <a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-37r2.pdf" class="uri">https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-37r2.pdf</a> (accessed Oct 21, 2026).<a href="#fnref14" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn15"><p>National Institute of Standards and Technology, SP 800-37 Rev.&nbsp;2, <em>Risk Management Framework for Information Systems and Organizations: A System Life Cycle Approach for Security and Privacy</em>, December 2018, Appendix D (Roles and Responsibilities), <a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-37r2.pdf" class="uri">https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-37r2.pdf</a> (accessed Oct 21, 2026).<a href="#fnref15" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn16"><p>National Institute of Standards and Technology, SP 800-37 Rev.&nbsp;2, <em>Risk Management Framework for Information Systems and Organizations: A System Life Cycle Approach for Security and Privacy</em>, December 2018, Appendix D (Roles and Responsibilities), <a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-37r2.pdf" class="uri">https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-37r2.pdf</a> (accessed Oct 21, 2026).<a href="#fnref16" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn17"><p>Office of Management and Budget, M-22-09, <em>Moving the U.S. Government Toward Zero Trust Cybersecurity Principles</em>, January 26, 2022, §II and §III (introduction), <a href="https://www.whitehouse.gov/wp-content/uploads/2022/01/M-22-09.pdf" class="uri">https://www.whitehouse.gov/wp-content/uploads/2022/01/M-22-09.pdf</a> (accessed Oct 21, 2026).<a href="#fnref17" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn18"><p>National Institute of Standards and Technology, SP 800-37 Rev.&nbsp;2, <em>Risk Management Framework for Information Systems and Organizations: A System Life Cycle Approach for Security and Privacy</em>, December 2018, Appendix D (Roles and Responsibilities), <a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-37r2.pdf" class="uri">https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-37r2.pdf</a> (accessed Oct 21, 2026).<a href="#fnref18" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn19"><p>Office of Management and Budget, M-26-14, <em>Ensuring Effective and Efficient Agency Logging and Network Visibility to Defend Against Evolving Cyber Threats</em>, May 22, 2026, rescission of M-21-31, “Prioritization,” and Appendix B (Minimum Logging Baseline Requirements, items 2 and 5), <a href="https://www.whitehouse.gov/wp-content/uploads/2026/05/M-26-14-Ensuring-Effective-and-Efficient-Agency-Logging-and-Network-Visibility-to-Defend-Against-Evolving-Cyber-Threats.pdf" class="uri">https://www.whitehouse.gov/wp-content/uploads/2026/05/M-26-14-Ensuring-Effective-and-Efficient-Agency-Logging-and-Network-Visibility-to-Defend-Against-Evolving-Cyber-Threats.pdf</a> (accessed Oct 21, 2026).<a href="#fnref19" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn20"><p>Cybersecurity and Infrastructure Security Agency, BOD 25-01, <em>Implementing Secure Practices for Cloud Services</em>, December 17, 2024, “Required Actions” and “Implementation Guidance and Clarifications,” <a href="https://www.cisa.gov/news-events/directives/bod-25-01-implementing-secure-practices-cloud-services" class="uri">https://www.cisa.gov/news-events/directives/bod-25-01-implementing-secure-practices-cloud-services</a> (accessed Oct 21, 2026).<a href="#fnref20" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn21"><p>Cybersecurity and Infrastructure Security Agency, <em>BOD 25-01 Implementation Guidance: Implementing Secure Practices for Cloud Services</em>, reporting options and deviations, <a href="https://www.cisa.gov/news-events/directives/bod-25-01-implementation-guidance-implementing-secure-practices-cloud-services" class="uri">https://www.cisa.gov/news-events/directives/bod-25-01-implementation-guidance-implementing-secure-practices-cloud-services</a> (accessed Oct 21, 2026).<a href="#fnref21" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn22"><p>National Institute of Standards and Technology, SP 800-37 Rev.&nbsp;2, <em>Risk Management Framework for Information Systems and Organizations: A System Life Cycle Approach for Security and Privacy</em>, December 2018, Appendix D (Roles and Responsibilities), <a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-37r2.pdf" class="uri">https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-37r2.pdf</a> (accessed Oct 21, 2026).<a href="#fnref22" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn23"><p>National Institute of Standards and Technology, SP 800-53 Rev.&nbsp;5, <em>Security and Privacy Controls for Information Systems and Organizations</em>, controls CA-2(1) and CA-7(1), checked against the release 5.2.0 OSCAL catalog, <a href="https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json" class="uri">https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json</a> (accessed Oct 21, 2026).<a href="#fnref23" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn24"><p>Microsoft, Zero Trust Assessment repository, “Run the Zero Trust Assessment” (PowerShell guide), sections “Data handling and telemetry” and “Permissions and roles,” <a href="https://github.com/microsoft/zerotrustassessment/blob/main/src/powershell/doc/readme.md" class="uri">https://github.com/microsoft/zerotrustassessment/blob/main/src/powershell/doc/readme.md</a> (accessed Oct 21, 2026).<a href="#fnref24" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn25"><p>Cybersecurity and Infrastructure Security Agency, BOD 25-01, <em>Implementing Secure Practices for Cloud Services</em>, December 17, 2024, “Required Actions” and “Implementation Guidance and Clarifications,” <a href="https://www.cisa.gov/news-events/directives/bod-25-01-implementing-secure-practices-cloud-services" class="uri">https://www.cisa.gov/news-events/directives/bod-25-01-implementing-secure-practices-cloud-services</a> (accessed Oct 21, 2026).<a href="#fnref25" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn26"><p>National Institute of Standards and Technology, SP 800-37 Rev.&nbsp;2, <em>Risk Management Framework for Information Systems and Organizations: A System Life Cycle Approach for Security and Privacy</em>, December 2018, Appendix D (Roles and Responsibilities), <a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-37r2.pdf" class="uri">https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-37r2.pdf</a> (accessed Oct 21, 2026).<a href="#fnref26" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn27"><p>Cybersecurity and Infrastructure Security Agency, <em>Zero Trust Maturity Model</em>, Version 2.0, April 2023, §4 (Challenges in Zero Trust Adoption) and §5 (Zero Trust Maturity Model: cross-cutting capability definitions, scope limits, and “general guide” statement), <a href="https://www.cisa.gov/sites/default/files/2023-04/zero_trust_maturity_model_v2_508.pdf" class="uri">https://www.cisa.gov/sites/default/files/2023-04/zero_trust_maturity_model_v2_508.pdf</a> (accessed Oct 21, 2026).<a href="#fnref27" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn28"><p>Cybersecurity and Infrastructure Security Agency, ScubaGear v2.0.0 documentation, “Interactive Permissions,” section “User Permissions,” <a href="https://github.com/cisagov/ScubaGear/blob/v2.0.0/docs/prerequisites/interactive.md" class="uri">https://github.com/cisagov/ScubaGear/blob/v2.0.0/docs/prerequisites/interactive.md</a> (accessed Oct 26, 2026).<a href="#fnref28" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn29"><p>Microsoft, Zero Trust Assessment repository, “Run the Zero Trust Assessment” (PowerShell guide), sections “Data handling and telemetry” and “Permissions and roles,” <a href="https://github.com/microsoft/zerotrustassessment/blob/main/src/powershell/doc/readme.md" class="uri">https://github.com/microsoft/zerotrustassessment/blob/main/src/powershell/doc/readme.md</a> (accessed Oct 21, 2026).<a href="#fnref29" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn30"><p>Microsoft, Zero Trust Assessment repository, “Run the Zero Trust Assessment” (PowerShell guide), sections “Data handling and telemetry” and “Permissions and roles,” <a href="https://github.com/microsoft/zerotrustassessment/blob/main/src/powershell/doc/readme.md" class="uri">https://github.com/microsoft/zerotrustassessment/blob/main/src/powershell/doc/readme.md</a> (accessed Oct 21, 2026).<a href="#fnref30" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn31"><p>Microsoft, Zero Trust Assessment repository, “Run the Zero Trust Assessment” (PowerShell guide), sections “Data handling and telemetry” and “Permissions and roles,” <a href="https://github.com/microsoft/zerotrustassessment/blob/main/src/powershell/doc/readme.md" class="uri">https://github.com/microsoft/zerotrustassessment/blob/main/src/powershell/doc/readme.md</a> (accessed Oct 21, 2026).<a href="#fnref31" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn32"><p>Microsoft Learn, “Get started with the Zero Trust Assessment,” sections “Prerequisites” and “Run the assessment,” <a href="https://learn.microsoft.com/security/zero-trust/assessment/get-started" class="uri">https://learn.microsoft.com/security/zero-trust/assessment/get-started</a> (accessed Oct 21, 2026).<a href="#fnref32" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn33"><p>Office of Management and Budget, M-26-14, <em>Ensuring Effective and Efficient Agency Logging and Network Visibility to Defend Against Evolving Cyber Threats</em>, May 22, 2026, rescission of M-21-31, “Prioritization,” and Appendix B (Minimum Logging Baseline Requirements, items 2 and 5), <a href="https://www.whitehouse.gov/wp-content/uploads/2026/05/M-26-14-Ensuring-Effective-and-Efficient-Agency-Logging-and-Network-Visibility-to-Defend-Against-Evolving-Cyber-Threats.pdf" class="uri">https://www.whitehouse.gov/wp-content/uploads/2026/05/M-26-14-Ensuring-Effective-and-Efficient-Agency-Logging-and-Network-Visibility-to-Defend-Against-Evolving-Cyber-Threats.pdf</a> (accessed Oct 21, 2026).<a href="#fnref33" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn34"><p>Microsoft, Zero Trust Assessment repository, “Run the Zero Trust Assessment” (PowerShell guide), sections “Data handling and telemetry” and “Permissions and roles,” <a href="https://github.com/microsoft/zerotrustassessment/blob/main/src/powershell/doc/readme.md" class="uri">https://github.com/microsoft/zerotrustassessment/blob/main/src/powershell/doc/readme.md</a> (accessed Oct 21, 2026).<a href="#fnref34" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 
@@ -3145,13 +3626,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../../docs/books/b10-cloud-boundary/11-the-authorization-package.html" class="pagination-link" aria-label="Chapter 11 — Evidencing the Boundary in the Authorization Package">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Chapter 11 — Evidencing the Boundary in the Authorization Package</span>
+      <a href="../../../docs/books/b11-zero-trust/06-beyond-microsoft-365.html" class="pagination-link" aria-label="Chapter 06 — Beyond Microsoft 365: Networks, Other Clouds and Virtualized Estates">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Chapter 06 — Beyond Microsoft 365: Networks, Other Clouds and Virtualized Estates</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../../docs/books/b10-cloud-boundary/appendix-b-platform-host-interfaces.html" class="pagination-link" aria-label="Appendix B — Platform Host Interface Reference">
-        <span class="nav-page-text">Appendix B — Platform Host Interface Reference</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../../docs/books/b11-zero-trust/08-close-before-you-assess.html" class="pagination-link" aria-label="Chapter 08 — Close Before You Assess">
+        <span class="nav-page-text">Chapter 08 — Close Before You Assess</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -3341,6 +3822,38 @@ ul.task-list li input[type="checkbox"] {
     if (hr) hr.remove();
   });
 </script>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 

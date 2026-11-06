@@ -210,7 +210,7 @@ az policy assignment create `
 ## Validate: Gate 2
 - The taxonomy table is signed by the CMDB owner and the server platform owner, with one writer named per tag.
 - Resource groups exist per owning team and environment, each with its owner recorded.
-- **VK-ARC-01** runs with the taxonomy as its input against the pilot servers after Gate 3's first wave, and reports none missing a required tag. Before that, run it against the tag policies' compliance results in `DoNotEnforce` mode to see what enforcement would deny.
+- **VK-ARC-01** runs with the taxonomy as its input against the pilot servers after Gate 3's first wave, and reports none missing a required tag. Before that, read the tag policies' compliance results in `DoNotEnforce` mode directly in Azure Policy to see what enforcement would deny; VK-ARC-01 reads the servers and the taxonomy, not policy results.
 :::
 
 ## Step 3: Onboarding at scale {#step-3-onboarding-at-scale}
@@ -265,7 +265,7 @@ Three things happen on the same change as each connect: the license attestation 
 ::: {.callout-tip}
 ## Validate: Gate 3 (each wave)
 - **VK-ARC-02** reports every server in the wave **Connected**, none disconnected or expired, and every agent on a version within Microsoft's one-year support window.
-- **VK-ARC-01** reports no server in the wave missing a required tag, and the tag values equal the CMDB fixture's.
+- **VK-ARC-01** reports no server in the wave missing a required tag, and every tag value is one the taxonomy allows. The kit checks the taxonomy only; no check compares tag values with the CMDB, so review that comparison in the reconciliation report ([2.2](#one-writer-per-tag)).
 - **VK-ARC-04** shows the wave's servers moved from "not Arc-enabled" to Arc, and no server left without a tier.
 - **VK-NPI-02** shows the wave's onboarding credential removed or expired; **VK-NPI-01** shows it had two owners while it existed; **VK-NPI-07** lists each new machine's system-assigned managed identity for the inventory.
 - On SQL Server hosts, R04's managed-identity token test passes ([Step 2 of R04](../b06-data-platform/r04-arc-deployment-and-managed-identity.md#step-2-validate-the-managed-identity-token)).
@@ -372,7 +372,7 @@ Granting access by tag ("operators of `Workload=FileServices`") isn't supported 
 | Danger | How it fails | Mitigation | Validate |
 |---|---|---|---|
 | **Onboarding credential sprawl** | Each team creates its own onboarding service principal with a year-long secret and subscription scope; the secrets end up in scripts, GPO shares and wikis, and any one of them lets an attacker register outside servers into the subscription | One onboarding identity per wave, certificate or managed identity, scoped to the wave's resource group, removed at close ([Step 3](#step-3-onboarding-at-scale)); application management policies that block new password secrets ([companion guide](attribute-driven-migration.md#service-principals-managed-identities-and-workload-identities)); a private link scope so a stolen credential can't be used from outside ([Book 05](../b05-devices/09-servers-under-azure-arc.md#create-the-onboarding-service-principal)) | **VK-NPI-02**, **VK-NPI-03**, **VK-NPI-01**; **VK-ARC-06** for stray onboarding grants |
-| **Tag drift** | Someone edits a tag in the portal; a server leaves its patch group or gets the wrong environment, and nothing in Azure flags it because the new value is valid | One writer, the CMDB reconciliation ([2.2](#one-writer-per-tag)); deny policies for required tags; Contributor and Tag Contributor kept off Arc scopes; the Activity log's tag writes reviewed ([Step 8](#step-8-operating-it)) | **VK-ARC-01** against the CMDB fixture, reporting values that differ, not only values missing |
+| **Tag drift** | Someone edits a tag in the portal; a server leaves its patch group or gets the wrong environment, and nothing in Azure flags it because the new value is valid | One writer, the CMDB reconciliation ([2.2](#one-writer-per-tag)); deny policies for required tags; Contributor and Tag Contributor kept off Arc scopes; the Activity log's tag writes reviewed ([Step 8](#step-8-operating-it)) | **VK-ARC-01**, which reports values the taxonomy doesn't allow as well as values missing (it doesn't compare with the CMDB, so the reconciliation report carries that check) |
 | **Two tools on one setting** | Ansible, Configuration Manager or a leftover GPO sets a value that machine configuration also sets; under auto-correct the two flip it back and forth while both report success | One owning tool per setting as the CMDB's `config_owner` ([Ansible guide](ansible-configuration-automation.md#one-owning-tool-per-setting)), mirrored in the `ConfigOwner` tag; `ApplyAnd*` assignments only on resource groups whose servers machine configuration owns; computer-side GPO links disabled as servers move ([companion guide](attribute-driven-migration.md#arc-track)) | **VK-ARC-07**: servers whose `ConfigOwner` isn't machine configuration but that carry an `ApplyAndMonitor` or `ApplyAndAutoCorrect` assignment |
 | **Silent baseline loss** | A server stays disconnected past 14 days and loses its guest assignments; compliance reports stop including it rather than reporting it noncompliant | Disconnection alerts and the Advisor 30-day recommendation ([Step 8](#step-8-operating-it)) | **VK-ARC-02** |
 | **Wrong cloud** | Servers onboarded to Azure Government when the tenant is GCC-Moderate, or the reverse, and a needed feature isn't there | The cloud decision recorded before Gate 1 ([1.1](#choose-the-azure-cloud)) | Gate 1 record |
@@ -411,7 +411,7 @@ resources
 | order by status asc, name asc
 ```
 
-The `agentVersion` property name is taken from Microsoft's Arc Jumpstart inventory example rather than a Learn page; check it against the kit's fixtures. The join to the CMDB on `CmdbId` (or on host name and BIOS UUID where the tag is absent) produces **VK-ARC-04**, and the correlation keys between Arc, Entra ID and Defender are in [Book 05, Chapter 03](../b05-devices/03-where-device-and-server-data-lives.md#how-the-records-correlate).
+The `agentVersion` property name is taken from Microsoft's Arc Jumpstart inventory example rather than a Learn page; check it against the kit's fixtures. **VK-ARC-04** joins the CMDB export (`cmdb.csv`) to the Arc machines on short host name, matching the CMDB `Name` column to the machine name, and the correlation keys between Arc, Entra ID and Defender are in [Book 05, Chapter 03](../b05-devices/03-where-device-and-server-data-lives.md#how-the-records-correlate).
 
 ### 8.4 Evidence
 

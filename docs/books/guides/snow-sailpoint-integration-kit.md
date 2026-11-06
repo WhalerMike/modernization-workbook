@@ -147,10 +147,10 @@ Mocks prove the logic, not the integration. To move this example past *illustrat
 
 ## Planned for Pass 2
 
+Two read-only pieces already ship in the example: `writer_check.py` (one writer per attribute, gap 4) flags any attribute with two writers across the Entra and SailPoint provisioning mappings, and `evidence_export.py` writes Book 13 evidence records for closed findings. Still planned:
+
 - **One approver per authority class** (gap 2): routing table and catalog variables; ServiceNow approves A0 and A1, SailPoint approves A2 and A3.
 - **Change records on demand** (gap 3): a flow that raises a standard, normal or emergency change from the request item by change class.
-- **One writer per attribute** (gap 4): a read-only check of SailPoint and Entra provisioning mappings that flags any attribute with two writers.
-- **Evidence export:** a nightly bundle of SailPoint events and ServiceNow records in Book 13's evidence shape.
 - **Optional: email intake.** An Exchange Online mail-flow rule redirects a team mailbox to the ServiceNow inbound address; an inbound email action turns structured messages ("my information is wrong", "access I don't recognize", "possible unauthorized change") into an unassigned triage record; after triage and any required approval, a ServiceNow flow calls a SailPoint workflow's external trigger (examples in PowerShell and Python). Email starts intake only: it never approves, verifies a person or closes a record (Book 15, Chapter 03).
 - Further tasks added as they're defined.
 

@@ -11,7 +11,7 @@ doc-type: section-landing
 
 This register lists the decisions behind the workbook, from the repository's first pull request on, one entry each. Each entry gives the question, the options that were considered, the choice, the reason for it, its basis, its sources and the pages it shaped. The [Reviewers' Guide](reviewers-guide.md) explains how to check an entry and how to tell us you agree or disagree with it. Use the entry's ID when you do.
 
-There are **139** workbook decisions: 136 settled, 0 challenged and 3 superseded. Below them are the **80** decision points the sample project plans leave to the agency that adopts them.
+There are **143** workbook decisions: 140 settled, 0 challenged and 3 superseded. Below them are the **80** decision points the sample project plans leave to the agency that adopts them.
 
 ::: {.callout-note}
 ## How to read the basis
@@ -173,6 +173,10 @@ There are **139** workbook decisions: 136 settled, 0 challenged and 3 superseded
 | [WD-137](#wd-137) | 2026-11-06 | Does the workbook teach assurance selection for partner persons, or only cite it? | Workbook design | settled |
 | [WD-138](#wd-138) | 2026-11-06 | In what order are the 1,625 consistency findings fixed, given the partner additions? | Workbook design | settled |
 | [WD-139](#wd-139) | 2026-11-06 | When are the sources behind the new partner chapter checked? | Workbook design | settled |
+| [WD-140](#wd-140) | 2026-11-06 | Which Microsoft Entra route is the default for partners outside the agency's own organization? | Microsoft Learn | settled |
+| [WD-141](#wd-141) | 2026-11-06 | How does the Entra profile keep WD-134 (Guest by default) when the product default differs? | Microsoft Learn | settled |
+| [WD-142](#wd-142) | 2026-11-06 | When are the cloud pair for Government-cloud partners and the unverified source items settled? | Workbook design | settled |
+| [WD-143](#wd-143) | 2026-11-06 | When do the sources for the partner chapter enter the Source Register? | Workbook design | settled |
 
 : Workbook decisions, oldest first {.striped .hover}
 
@@ -2413,6 +2417,72 @@ There are **139** workbook decisions: 136 settled, 0 challenged and 3 superseded
 | **Defined in** | — |
 
 [Agree, disagree or send evidence on WD-139](https://github.com/WhalerMike/modernization-workbook/issues/new?template=decision-feedback.yml&title=WD-139%3A+)
+
+### WD-140: Which Microsoft Entra route is the default for partners outside the agency's own organization? {#wd-140}
+
+| | |
+|---|---|
+| **Options considered** | Cross-tenant synchronization and entitlement management as equal options; Entitlement management with B2B guests as the default, cross-tenant synchronization as the exception |
+| **Choice** | Entitlement management with B2B collaboration guests is the default route for outside partners. Cross-tenant synchronization is the exception, used only with a recorded reason. |
+| **Rationale** | Microsoft's FAQ says cross-tenant synchronization is intended for use within an organization, for privacy reasons, and points to entitlement management for inviting B2B users across organizations. It pushes only internal members of the source tenant and does not collect user consent. |
+| **Basis** | Microsoft Learn |
+| **Sources** | [Microsoft Learn, What is cross-tenant synchronization?](https://learn.microsoft.com/entra/identity/multi-tenant-organizations/cross-tenant-synchronization-overview); [Microsoft Learn, Govern access for external users in entitlement management](https://learn.microsoft.com/entra/id-governance/entitlement-management-external-users) |
+| **Pages affected** | [Access and Privilege](../books/b04-access/index.md), [HR-Driven Identity](../books/b03-hr-identity/index.md) |
+| **Date** | 2026-11-06 |
+| **Status** | settled |
+| **Defined in** | — |
+| **Note** | Refines [WD-135](#wd-135), which kept the Entra profile as the practical page; it does not change that choice. |
+
+[Agree, disagree or send evidence on WD-140](https://github.com/WhalerMike/modernization-workbook/issues/new?template=decision-feedback.yml&title=WD-140%3A+)
+
+### WD-141: How does the Entra profile keep WD-134 (Guest by default) when the product default differs? {#wd-141}
+
+| | |
+|---|---|
+| **Options considered** | Accept the product default (external member); Set the userType mapping to Guest explicitly and require an exception record for Member |
+| **Choice** | The Entra profile states the userType mapping as a required setting, set to Guest. Member remains an exception that needs an exception record. |
+| **Rationale** | Cross-tenant synchronization creates external members by default, and an existing guest is not changed unless the mapping is set to Always. The workbook's Conditional Access library scopes Members separately from guests, so the default would move partners into the internal baselines. |
+| **Basis** | Microsoft Learn |
+| **Sources** | [Microsoft Learn, Configure cross-tenant synchronization](https://learn.microsoft.com/entra/identity/multi-tenant-organizations/cross-tenant-synchronization-configure); [Microsoft Learn, What is cross-tenant synchronization?](https://learn.microsoft.com/entra/identity/multi-tenant-organizations/cross-tenant-synchronization-overview) |
+| **Pages affected** | [Access and Privilege](../books/b04-access/index.md) |
+| **Date** | 2026-11-06 |
+| **Status** | settled |
+| **Defined in** | — |
+| **Note** | [WD-134](#wd-134) stands; this entry records how it is applied. |
+
+[Agree, disagree or send evidence on WD-141](https://github.com/WhalerMike/modernization-workbook/issues/new?template=decision-feedback.yml&title=WD-141%3A+)
+
+### WD-142: When are the cloud pair for Government-cloud partners and the unverified source items settled? {#wd-142}
+
+| | |
+|---|---|
+| **Options considered** | In the chapter draft; In a second source pass before any chapter text |
+| **Choice** | A second source pass settles the cloud pair for a partner in a Government cloud tenant, and the four unverified items (FIPS 201-3 eligibility, FedRAMP's current requirements, EO 14028's status, GRS 3.2 retention), before any chapter text is written. What it cannot settle stays listed as unverified. |
+| **Rationale** | Finding a wrong cloud pair or an outdated requirement after drafting means rework, as WD-139 already reasoned. |
+| **Basis** | Workbook design |
+| **Sources** | None external: the choice rests on the pages it shaped. |
+| **Pages affected** | [`docs/books/b03-hr-identity/_verification/15-external-partner-identity.md`](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/books/b03-hr-identity/_verification/15-external-partner-identity.md) |
+| **Date** | 2026-11-06 |
+| **Status** | settled |
+| **Defined in** | — |
+
+[Agree, disagree or send evidence on WD-142](https://github.com/WhalerMike/modernization-workbook/issues/new?template=decision-feedback.yml&title=WD-142%3A+)
+
+### WD-143: When do the sources for the partner chapter enter the Source Register? {#wd-143}
+
+| | |
+|---|---|
+| **Options considered** | Now; When the chapter is written and cites them |
+| **Choice** | The candidate sources enter the Source Register when the chapter is written and cites them in footnotes. |
+| **Rationale** | The register accepts a row only for a source the books cite in a footnote, so rows added now would have no citation to check against. |
+| **Basis** | Workbook design |
+| **Sources** | None external: the choice rests on the pages it shaped. |
+| **Pages affected** | [Source Register](../reference/source-register.md) |
+| **Date** | 2026-11-06 |
+| **Status** | settled |
+| **Defined in** | — |
+
+[Agree, disagree or send evidence on WD-143](https://github.com/WhalerMike/modernization-workbook/issues/new?template=decision-feedback.yml&title=WD-143%3A+)
 
 ## Decision points in the sample project plans {#plan-decisions}
 

@@ -53,7 +53,7 @@ The framework for unclassified federal information that needs protection is Exec
 3. **CUI sets a confidentiality floor.** Systems that process, store or transmit CUI Basic are categorized at "no less than the moderate confidentiality impact level," with NIST SP 800-53 controls applied.[^c09-cfr2002] NIST SP 800-171 is the requirement set for CUI on non-federal systems.[^c09-cfr2002]
 4. **Marking is prescribed.** Every CUI item carries a banner marking whose control marking is "CUI" (or "CONTROLLED"); category markings are mandatory for CUI Specified and optional for CUI Basic unless agency policy requires them; and "authorized holders who designate CUI may not use alternative markings."[^c09-cfr2002]
 
-The CUI Registry decides which category a record falls in and whether its authority is Basic or Specified. Three examples from the registry correct the program's earlier drafts:
+The CUI Registry decides which category a record falls in and whether its authority is Basic or Specified. Four examples from the registry correct the program's earlier drafts:
 
 | Information | Registry category | Basic or Specified | Banner marking |
 |---|---|---|---|
@@ -356,8 +356,8 @@ The order matters because each step depends on the one before it. It is the prog
 
 1. **Decide the key options first.** Choose Microsoft-managed or BYOK for the tenant key, whether Customer Key applies, and which categories, if any, need DKE, before labels encrypt production content.
 2. **Deploy the taxonomy as code to a pilot.** Publish labels to a pilot group, confirm markings and encryption in Office apps and in SharePoint, then widen the policy.
-3. **Run auto-labeling and DLP in simulation, then enforce.** Measure false positives against real content before any policy acts.
-4. **Turn on the detections.** Label downgrade, mass label removal and DLP override patterns (FMP-DET-05 and FMP-DET-06) go to the SIEM before enforcement begins ([Chapter 11](11-detection-engineering-and-response.md)).
+3. **Turn on the detections.** Label downgrade, mass label removal and DLP override patterns (FMP-DET-05 and FMP-DET-06) go to the SIEM before enforcement begins ([Chapter 11](11-detection-engineering-and-response.md)).
+4. **Run auto-labeling and DLP in simulation, then enforce.** Measure false positives against real content before any policy acts.
 5. **Set audit retention to the requirement.** Licenses and retention policies decide how long label and DLP events survive ([Chapter 04](04-platform-and-m365-telemetry.md)).
 
 ## Honest limits
@@ -396,13 +396,13 @@ As in [Chapter 08](08-cloud-native-posture.md), FedRAMP's 2026 indicators are wr
 
 The earlier drafts mapped classification to `KSI-CNA`. The current Cloud Native Architecture indicators are about privileges, intended state, attack surface, network traffic and availability, so the program now maps data protection to the Service Configuration indicators above.[^c09-ksi]
 
-The control-level depth for this chapter is in two Federal Compliance volumes: [Data Protection: Microsoft Purview and Cryptographic Key Management](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_III_Book_05_Data_Protection_Purview.md) and [Data Protection Deployment](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_VI_Book_05_Data_Protection_Deployment.md). [Appendix A](appendix-a-requirements-mapping.md) maps all of this book's controls together.
+The control-level depth for this chapter is in two Federal Compliance volumes: [Data Protection: Microsoft Purview and Cryptographic Key Management](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_III_Book_05_Data_Protection_Purview.md) and [Data Protection Deployment](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_VI_Book_05_Data_Protection_Deployment.md). [Appendix A](appendix-a-requirements-mapping.md) maps the book's core controls.
 
 ## What to take from this chapter
 
 1. Network and identity controls regulate the pipe. Only classification tells any control what the payload is, and a CASB can enforce on it only once the label is there.
 2. The CUI framework has two control levels. Basic or Specified is decided by the authority in the CUI Registry, not by how sensitive the content feels: Privacy Act records are CUI Basic, federal taxpayer information is CUI Specified.
-3. Non-CUI information can't carry a dissemination control of its own. "Internal" is a label for uncontrolled information, not a fifth control level.
+3. Non-CUI information can't carry a dissemination control of its own. "Internal" is a label for uncontrolled information, not a third control level.
 4. Deploy labels, auto-labeling and DLP as code, simulate before enforcing, and watch the override path once enforcement starts.
 5. BYOK, Customer Key and Double Key Encryption are three different choices. Only DKE is per label, and it costs search, eDiscovery, coauthoring and Copilot for that content.
 6. Customer Key keys must never expire. A rotation policy written for an Azure SQL key will break Microsoft 365 if applied to them.

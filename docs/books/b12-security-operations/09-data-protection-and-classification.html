@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="What Microsoft 365 GCC is in Microsoft’s own documentation, why its feature gaps are published one feature at a time and run in both directions, what agencies verifiably lose (the admin center’s network connectivity layer above all), the three Microsoft 365 government packages on the FedRAMP Marketplace including a second GCC package pursuing Class D (High), and why impact level and feature availability are different axes.">
+<meta name="description" content="Why network and identity controls can’t tell a press release from a Privacy Act record, what the federal CUI framework in 32 CFR Part 2002 actually defines, how the program maps CUI Basic and CUI Specified to Microsoft Purview sensitivity labels and deploys the taxonomy as code, how DLP enforces label-derived signal on the service, the endpoint and the network, how customer-managed keys, BYOK and Double Key Encryption differ, and why a CASB alone can’t close the payload gap.">
 
-<title>Chapter 04 — GCC, GCC High and the Commercial Feature Gap – Federal Modernization Workbook</title>
+<title>Chapter 09 — Data Protection and Classification – Federal Modernization Workbook</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -24,6 +24,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -34,8 +69,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../">
-<link href="../../../docs/books/b10-cloud-boundary/05-the-landing-zone.html" rel="next">
-<link href="../../../docs/books/b10-cloud-boundary/03-what-changed-at-fedramp.html" rel="prev">
+<link href="../../../docs/books/b12-security-operations/10-who-runs-security-operations.html" rel="next">
+<link href="../../../docs/books/b12-security-operations/08-cloud-native-posture.html" rel="prev">
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
@@ -402,7 +437,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../docs/books/b10-cloud-boundary/index.html">Book 10 — Cloud Boundary &amp; Landing Zone</a></li><li class="breadcrumb-item"><a href="../../../docs/books/b10-cloud-boundary/04-gcc-and-the-feature-gap.html">Chapter 04 — GCC, GCC High and the Commercial Feature Gap</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../docs/books/b12-security-operations/index.html">Book 12 — Security Operations &amp; Telemetry</a></li><li class="breadcrumb-item"><a href="../../../docs/books/b12-security-operations/09-data-protection-and-classification.html">Chapter 09 — Data Protection and Classification</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -1494,11 +1529,11 @@ ul.task-list li input[type="checkbox"] {
       <div class="sidebar-item-container"> 
             <a href="../../../docs/books/b10-cloud-boundary/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Book 10 — Cloud Boundary &amp; Landing Zone</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../docs/books/b10-cloud-boundary/01-why-the-boundary-decides.html" class="sidebar-item-text sidebar-link">
@@ -1519,7 +1554,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../docs/books/b10-cloud-boundary/04-gcc-and-the-feature-gap.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../../docs/books/b10-cloud-boundary/04-gcc-and-the-feature-gap.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Chapter 04 — GCC, GCC High and the Commercial Feature Gap</span></a>
   </div>
 </li>
@@ -1660,11 +1695,11 @@ ul.task-list li input[type="checkbox"] {
       <div class="sidebar-item-container"> 
             <a href="../../../docs/books/b12-security-operations/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Book 12 — Security Operations &amp; Telemetry</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../docs/books/b12-security-operations/01-you-cant-defend-what-you-cant-see.html" class="sidebar-item-text sidebar-link">
@@ -1715,7 +1750,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../docs/books/b12-security-operations/09-data-protection-and-classification.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/books/b12-security-operations/09-data-protection-and-classification.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Chapter 09 — Data Protection and Classification</span></a>
   </div>
 </li>
@@ -2508,16 +2543,36 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#what-gcc-is-in-microsofts-own-words" id="toc-what-gcc-is-in-microsofts-own-words" class="nav-link active" data-scroll-target="#what-gcc-is-in-microsofts-own-words">What GCC is, in Microsoft’s own words</a>
+  <li><a href="#the-classification-gap" id="toc-the-classification-gap" class="nav-link active" data-scroll-target="#the-classification-gap">The classification gap</a>
   <ul class="collapse">
-  <li><a href="#the-gaps-form-a-list-not-a-ladder" id="toc-the-gaps-form-a-list-not-a-ladder" class="nav-link" data-scroll-target="#the-gaps-form-a-list-not-a-ladder">The gaps form a list, not a ladder</a></li>
+  <li><a href="#why-casb-alone-is-insufficient" id="toc-why-casb-alone-is-insufficient" class="nav-link" data-scroll-target="#why-casb-alone-is-insufficient">Why CASB alone is insufficient</a></li>
   </ul></li>
-  <li><a href="#what-agencies-verifiably-lose" id="toc-what-agencies-verifiably-lose" class="nav-link" data-scroll-target="#what-agencies-verifiably-lose">What agencies verifiably lose</a></li>
-  <li><a href="#a-note-on-names" id="toc-a-note-on-names" class="nav-link" data-scroll-target="#a-note-on-names">A note on names</a></li>
-  <li><a href="#microsoft-is-pursuing-high-for-gcc-and-what-that-doesnt-change" id="toc-microsoft-is-pursuing-high-for-gcc-and-what-that-doesnt-change" class="nav-link" data-scroll-target="#microsoft-is-pursuing-high-for-gcc-and-what-that-doesnt-change">Microsoft is pursuing High for GCC, and what that doesn’t change</a></li>
-  <li><a href="#impact-level-and-feature-availability-are-different-axes" id="toc-impact-level-and-feature-availability-are-different-axes" class="nav-link" data-scroll-target="#impact-level-and-feature-availability-are-different-axes">Impact level and feature availability are different axes</a></li>
+  <li><a href="#the-federal-cui-framework" id="toc-the-federal-cui-framework" class="nav-link" data-scroll-target="#the-federal-cui-framework">The federal CUI framework</a></li>
+  <li><a href="#mapping-cui-to-sensitivity-labels" id="toc-mapping-cui-to-sensitivity-labels" class="nav-link" data-scroll-target="#mapping-cui-to-sensitivity-labels">Mapping CUI to sensitivity labels</a></li>
+  <li><a href="#the-label-taxonomy-as-code" id="toc-the-label-taxonomy-as-code" class="nav-link" data-scroll-target="#the-label-taxonomy-as-code">The label taxonomy as code</a></li>
+  <li><a href="#automatic-labeling" id="toc-automatic-labeling" class="nav-link" data-scroll-target="#automatic-labeling">Automatic labeling</a>
+  <ul class="collapse">
+  <li><a href="#sensitive-information-types" id="toc-sensitive-information-types" class="nav-link" data-scroll-target="#sensitive-information-types">Sensitive information types</a></li>
+  <li><a href="#trainable-classifiers" id="toc-trainable-classifiers" class="nav-link" data-scroll-target="#trainable-classifiers">Trainable classifiers</a></li>
+  <li><a href="#auto-labeling-policies" id="toc-auto-labeling-policies" class="nav-link" data-scroll-target="#auto-labeling-policies">Auto-labeling policies</a></li>
+  </ul></li>
+  <li><a href="#dlp-on-three-enforcement-surfaces" id="toc-dlp-on-three-enforcement-surfaces" class="nav-link" data-scroll-target="#dlp-on-three-enforcement-surfaces">DLP on three enforcement surfaces</a>
+  <ul class="collapse">
+  <li><a href="#the-minimum-policy-baseline" id="toc-the-minimum-policy-baseline" class="nav-link" data-scroll-target="#the-minimum-policy-baseline">The minimum policy baseline</a></li>
+  </ul></li>
+  <li><a href="#keys-the-agency-controls" id="toc-keys-the-agency-controls" class="nav-link" data-scroll-target="#keys-the-agency-controls">Keys the agency controls</a>
+  <ul class="collapse">
+  <li><a href="#azure-workloads-key-vault-and-tde-with-a-customer-managed-key" id="toc-azure-workloads-key-vault-and-tde-with-a-customer-managed-key" class="nav-link" data-scroll-target="#azure-workloads-key-vault-and-tde-with-a-customer-managed-key">Azure workloads: Key Vault and TDE with a customer-managed key</a></li>
+  <li><a href="#keys-on-other-clouds" id="toc-keys-on-other-clouds" class="nav-link" data-scroll-target="#keys-on-other-clouds">Keys on other clouds</a></li>
+  </ul></li>
+  <li><a href="#non-repudiation-is-a-separate-question" id="toc-non-repudiation-is-a-separate-question" class="nav-link" data-scroll-target="#non-repudiation-is-a-separate-question">Non-repudiation is a separate question</a></li>
+  <li><a href="#deployment-sequence" id="toc-deployment-sequence" class="nav-link" data-scroll-target="#deployment-sequence">Deployment sequence</a></li>
+  <li><a href="#honest-limits" id="toc-honest-limits" class="nav-link" data-scroll-target="#honest-limits">Honest limits</a></li>
+  <li><a href="#the-control-map-for-this-chapter" id="toc-the-control-map-for-this-chapter" class="nav-link" data-scroll-target="#the-control-map-for-this-chapter">The control map for this chapter</a></li>
+  <li><a href="#alignment-with-fedramps-key-security-indicators" id="toc-alignment-with-fedramps-key-security-indicators" class="nav-link" data-scroll-target="#alignment-with-fedramps-key-security-indicators">Alignment with FedRAMP’s Key Security Indicators</a></li>
+  <li><a href="#what-to-take-from-this-chapter" id="toc-what-to-take-from-this-chapter" class="nav-link" data-scroll-target="#what-to-take-from-this-chapter">What to take from this chapter</a></li>
   </ul>
-<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="04-gcc-and-the-feature-gap.docx"><i class="bi bi-file-word"></i>MS Word</a></li></ul></div></nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="09-data-protection-and-classification.docx"><i class="bi bi-file-word"></i>MS Word</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -2527,15 +2582,15 @@ ul.task-list li input[type="checkbox"] {
   and has not been reviewed or endorsed by, any federal agency.
 </div>
 
-<header id="title-block-header" class="quarto-title-block default fmw-hero"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../docs/books/b10-cloud-boundary/index.html">Book 10 — Cloud Boundary &amp; Landing Zone</a></li><li class="breadcrumb-item"><a href="../../../docs/books/b10-cloud-boundary/04-gcc-and-the-feature-gap.html">Chapter 04 — GCC, GCC High and the Commercial Feature Gap</a></li></ol></nav>
-<p class="fmw-eyebrow">Federal Modernization Workbook · Book 10 · What</p>
+<header id="title-block-header" class="quarto-title-block default fmw-hero"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../docs/books/b12-security-operations/index.html">Book 12 — Security Operations &amp; Telemetry</a></li><li class="breadcrumb-item"><a href="../../../docs/books/b12-security-operations/09-data-protection-and-classification.html">Chapter 09 — Data Protection and Classification</a></li></ol></nav>
+<p class="fmw-eyebrow">Federal Modernization Workbook · Book 12 · What</p>
 <div class="quarto-title">
-<h1 class="title">Chapter 04 — GCC, GCC High and the Commercial Feature Gap</h1>
+<h1 class="title">Chapter 09 — Data Protection and Classification</h1>
 </div>
 
 <div>
   <div class="description">
-    What Microsoft 365 GCC is in Microsoft’s own documentation, why its feature gaps are published one feature at a time and run in both directions, what agencies verifiably lose (the admin center’s network connectivity layer above all), the three Microsoft 365 government packages on the FedRAMP Marketplace including a second GCC package pursuing Class D (High), and why impact level and feature availability are different axes.
+    Why network and identity controls can’t tell a press release from a Privacy Act record, what the federal CUI framework in 32 CFR Part 2002 actually defines, how the program maps CUI Basic and CUI Specified to Microsoft Purview sensitivity labels and deploys the taxonomy as code, how DLP enforces label-derived signal on the service, the endpoint and the network, how customer-managed keys, BYOK and Double Key Encryption differ, and why a CASB alone can’t close the payload gap.
   </div>
 </div>
 
@@ -2553,7 +2608,7 @@ ul.task-list li input[type="checkbox"] {
 
 
 <div class="fmw-lede">
-<p><em>GCC isn’t a compliance perimeter that dims the commercial service; it is the commercial footprint with a list of features left out, and a list can be read, argued and asked about one line at a time.</em></p>
+<p><em>Every control in the pipe can be satisfied while the payload leaves, because nothing upstream ever said what the payload was.</em></p>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -2565,148 +2620,292 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>How Microsoft itself describes GCC, GCC High and DoD; why their feature gaps form a list rather than a ladder; what an agency in GCC verifiably loses, starting with the network connectivity layer of the Microsoft 365 admin center; the three Microsoft 365 government packages on the FedRAMP Marketplace, including a second GCC package now pursuing Class D (High); and why a higher certification class would not by itself bring the missing features back. <a href="../../../docs/books/b10-cloud-boundary/09-equivalents-and-exceptions.html">Chapter 09</a> covers what to do about each gap.</p>
+<p>The classification gap that remains after network and identity hardening, and why a cloud access security broker (CASB) can’t close it alone. What the federal CUI framework in 32 CFR Part 2002 and the CUI Registry actually define, and how the program maps CUI Basic and CUI Specified to Microsoft Purview sensitivity labels, deployed as code. Automatic labeling, DLP on three enforcement surfaces, and the three different things “customer-managed key” can mean in Microsoft 365, with each feature’s availability in GCC and GCC High checked on Microsoft Learn.</p>
 </div>
 </div>
-<p>Federal reasoning about Microsoft 365 Government Community Cloud (GCC) usually starts from a picture: a compliance boundary drawn around the commercial service that filters out telemetry and withholds features for accreditation reasons. If that picture were right, an agency would have two moves: accept the boundary, or leave for GCC High. Microsoft’s documentation doesn’t describe GCC that way. It describes a service that shares the commercial network footprint, with specific features excluded and each exclusion published in its own note. That is a different problem with different remedies, because a published list of exclusions can be inventoried, prioritized and argued feature by feature.</p>
-<p>This chapter uses only what Microsoft and FedRAMP publish. It builds the case on documented exclusions because, for an agency arguing with a provider or an assessor, a documented exclusion is stronger evidence than any inference drawn from a boundary model.</p>
-<section id="what-gcc-is-in-microsofts-own-words" class="level2">
-<h2 class="anchored" data-anchor-id="what-gcc-is-in-microsofts-own-words">What GCC is, in Microsoft’s own words</h2>
-<p>Five documented facts set the shape:</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Documented fact</th>
-<th>What it means</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>GCC has no endpoint list of its own: Microsoft publishes one list for “Worldwide (including GCC),” and separate lists for GCC High and DoD<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></td>
-<td>GCC users reach the same network endpoints as commercial users; it isn’t a separate network regime</td>
-</tr>
-<tr class="even">
-<td>“Office 365 and Office 365 GCC are paired with Microsoft Entra ID in Azure. Office 365 GCC High and Office 365 DoD are paired with Microsoft Entra ID in Azure Government”<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></td>
-<td>Integration with Azure services follows the identity pairing: GCC integrates with commercial Azure, GCC High and DoD with Azure Government</td>
-</tr>
-<tr class="odd">
-<td>The GCC service description says “Office 365 GCC operates in conjunction with Azure Public Cloud,” and that GCC customer support is “not included in the service accreditation boundary”<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></td>
-<td>Even inside GCC, some parts of the service relationship sit outside the accredited scope, and Microsoft says so per item</td>
-</tr>
-<tr class="even">
-<td>Microsoft describes GCC High and DoD as environments with “extra network restrictions on which external endpoints the services are permitted to access,” where on-premises connections need an allowlist request with a three-week service level that “can’t be expedited”<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></td>
-<td>The restricted, separately networked environment begins at GCC High, not at GCC</td>
-</tr>
-<tr class="odd">
-<td>Feature gaps are documented feature by feature, and some run the other way: “Windows release health is available for Government Community Cloud (GCC) tenants, but isn’t available for GCC High and DoD”<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></td>
-<td>There is no single ladder of restriction from commercial to DoD</td>
-</tr>
-</tbody>
-</table>
-<p>One documented fact points the other way and is worth knowing before a reviewer raises it. The FedRAMP Marketplace description of the GCC package says that “M365 GCC leverages Azure Government as the IaaS/PaaS for the underlying infrastructure and hardware.”<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> That is a statement about the infrastructure the package inherits controls from. It doesn’t change the endpoint list or the Entra ID pairing an agency designs against, but an agency’s system security plan should cite both statements and not paraphrase either into “GCC runs on commercial Azure” or “GCC runs on Azure Government.”</p>
-<section id="the-gaps-form-a-list-not-a-ladder" class="level3">
-<h3 class="anchored" data-anchor-id="the-gaps-form-a-list-not-a-ladder">The gaps form a list, not a ladder</h3>
-<p>Microsoft publishes feature availability for government plans per product and per feature. A few examples from its own tables show both directions:</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Feature</th>
-<th>GCC</th>
-<th>GCC High</th>
-<th>DoD</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Network connectivity in the Microsoft 365 admin center<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a></td>
-<td>No</td>
-<td>No</td>
-<td>No</td>
-</tr>
-<tr class="even">
-<td>Adoption Score<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a></td>
-<td>No</td>
-<td>No</td>
-<td>No</td>
-</tr>
-<tr class="odd">
-<td>Office 365 Content Delivery Network for SharePoint<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a></td>
-<td>No</td>
-<td>No</td>
-<td>No</td>
-</tr>
-<tr class="even">
-<td>Microsoft 365 informed network routing<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a></td>
-<td>No</td>
-<td>No</td>
-<td>No</td>
-</tr>
-<tr class="odd">
-<td>Windows release health<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a></td>
-<td>Yes</td>
-<td>No</td>
-<td>No</td>
-</tr>
-<tr class="even">
-<td>Word version history; Excel Office Scripts<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a></td>
-<td>Yes</td>
-<td>No</td>
-<td>No</td>
-</tr>
-</tbody>
-</table>
-<div id="fig-ch04-exclusions-both-ways" class="quarto-float quarto-figure quarto-figure-center anchored" alt="At the top, a slate box: Worldwide commercial, the full feature set; GCC rides the same Worldwide endpoints and gaps are documented feature by feature. Two arrows lead down. A red box, missing in GCC, GCC High and DoD, excluded everywhere: admin center network connectivity, Adoption Score, Office 365 CDN, informed network routing. An amber box, in GCC but not in GCC High or DoD, excluded further up: Windows release health, Word version history, Excel Office Scripts. Both lead to a violet box: the agency's register, one row per feature with the citation, which feeds the compensate, exception or alternative-path decision in Chapter 09.">
+<p>Network controls decide which paths traffic can take. Authentication decides who is asserting an identity, Conditional Access decides whether that identity may reach a workload from a given device, and privileged access management decides how long an administrator holds elevated scope. <a href="../../../docs/books/b09-network/index.html">Book 09</a>, <a href="../../../docs/books/b02-identity/index.html">Book 02</a> and <a href="../../../docs/books/b04-access/index.html">Book 04</a> build those controls. None of them answers a different question: what is in the file?</p>
+<p>A user who is legitimately authenticated, on a compliant device, sending a file to an approved destination passes every one of those controls. If the file holds a Social Security number list extracted for a workflow, it leaves anyway, because nothing upstream identified it as sensitive before it moved. This chapter closes that gap with three coordinated mechanisms: a classification taxonomy enforced through sensitivity labels, DLP policies that act on the label and on content inspection, and encryption under keys the agency controls. They are the data-layer contributions to AC-4, the AC-16 attribute controls, MP-3, SC-12, SC-13 and SC-28.</p>
+<div id="fig-ch09-label-signal-surfaces" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A top-to-bottom flow. A slate card for a file or message, the payload the pipe can't read, leads to a blue card titled sensitivity label from Microsoft Purview, applied manually, by auto-labeling or by a classifier and stored in clear text in metadata so it travels with the file. Beside the label a green card says label encryption, under the agency's key choice, protects the content wherever it goes. From the label, three arrows go down to three blue cards side by side: service DLP in Exchange, SharePoint, OneDrive and Teams, which blocks external sharing and sending and detects Social Security numbers in chat; endpoint DLP on onboarded Windows and macOS devices, which blocks print and removable media and audits network shares; and the CASB, Defender for Cloud Apps sessions, which filter on the label at upload and download. All three send arrows to a violet card at the bottom: the evidence contract, receiving label, DLP, override and key events.">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-ch04-exclusions-both-ways-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="../../images/diagrams/b10-cloud-boundary/svg/ch04-exclusions-both-ways.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;1: Feature gaps are published one feature at a time: some features are missing from every government environment, others reach GCC and stop there, and the agency’s register records each one with its citation."><img src="../../images/diagrams/b10-cloud-boundary/svg/ch04-exclusions-both-ways.svg" class="img-fluid figure-img" alt="At the top, a slate box: Worldwide commercial, the full feature set; GCC rides the same Worldwide endpoints and gaps are documented feature by feature. Two arrows lead down. A red box, missing in GCC, GCC High and DoD, excluded everywhere: admin center network connectivity, Adoption Score, Office 365 CDN, informed network routing. An amber box, in GCC but not in GCC High or DoD, excluded further up: Windows release health, Word version history, Excel Office Scripts. Both lead to a violet box: the agency's register, one row per feature with the citation, which feeds the compensate, exception or alternative-path decision in Chapter 09."></a>
+<div aria-describedby="fig-ch09-label-signal-surfaces-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="../../images/diagrams/b12-security-operations/svg/ch09-label-signal-surfaces.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;1: One label, three enforcement surfaces: Purview classifies the payload, and the service, the endpoint and the CASB each act on the label it carries."><img src="../../images/diagrams/b12-security-operations/svg/ch09-label-signal-surfaces.svg" class="img-fluid figure-img" alt="A top-to-bottom flow. A slate card for a file or message, the payload the pipe can't read, leads to a blue card titled sensitivity label from Microsoft Purview, applied manually, by auto-labeling or by a classifier and stored in clear text in metadata so it travels with the file. Beside the label a green card says label encryption, under the agency's key choice, protects the content wherever it goes. From the label, three arrows go down to three blue cards side by side: service DLP in Exchange, SharePoint, OneDrive and Teams, which blocks external sharing and sending and detects Social Security numbers in chat; endpoint DLP on onboarded Windows and macOS devices, which blocks print and removable media and audits network shares; and the CASB, Defender for Cloud Apps sessions, which filter on the label at upload and download. All three send arrows to a violet card at the bottom: the evidence contract, receiving label, DLP, override and key events."></a>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ch04-exclusions-both-ways-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Feature gaps are published one feature at a time: some features are missing from every government environment, others reach GCC and stop there, and the agency’s register records each one with its citation.
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ch09-label-signal-surfaces-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: One label, three enforcement surfaces: Purview classifies the payload, and the service, the endpoint and the CASB each act on the label it carries.
 </figcaption>
 </figure>
 </div>
-<p>The two diagnoses lead to different remedies. If GCC were a boundary, the only move would be to accept it or move to GCC High, and GCC High is more restricted on several of these lines, not less. Because GCC is the worldwide service with an enumerated set of exclusions, each exclusion is its own question with its own answer, and some answers are obtainable: a compensating capability inside the boundary, a documented exception, or an alternative path (<a href="../../../docs/books/b10-cloud-boundary/09-equivalents-and-exceptions.html">Chapter 09</a> and <a href="../../../docs/books/b10-cloud-boundary/10-alternative-collaboration-paths.html">Chapter 10</a>).</p>
+<section id="the-classification-gap" class="level2">
+<h2 class="anchored" data-anchor-id="the-classification-gap">The classification gap</h2>
+<p>An assessment of a Microsoft 365 tenant that has finished network and identity hardening, but has no classification program, finds the same structural gaps from agency to agency. They are framing patterns drawn from the program’s assessments, not findings from a named engagement.</p>
+<ul>
+<li><strong>No classification scheme.</strong> Documents carry no labels. Sensitivity, where it’s recorded at all, lives in a file name, a free-text metadata field or a folder name, none of which a control can read or enforce.</li>
+<li><strong>Sharing is set per container, not per document.</strong> SharePoint external sharing is configured for a site or library, so a CUI document and a public document in the same library get the same policy.</li>
+<li><strong>No DLP on Teams.</strong> A Social Security number pasted into a Teams chat reaches the service without any rule looking for it.</li>
+<li><strong>Keys without an owner.</strong> Database encryption keys, certificate private keys and application secrets sit in configuration files, local certificate stores or individual subscriptions, with no central inventory, rotation policy or access audit. Nobody can show whether keys were rotated after an administrator with access left.</li>
+<li><strong>Access is granted to containers.</strong> Read access to a site is read access to everything in it, whatever its sensitivity.</li>
+</ul>
+<section id="why-casb-alone-is-insufficient" class="level3">
+<h3 class="anchored" data-anchor-id="why-casb-alone-is-insufficient">Why CASB alone is insufficient</h3>
+<p>A CASB sees the application, the user, the device’s compliance state, the destination and the volume. It enforces access policy on those signals (<a href="../../../docs/books/b09-network/05-sd-wan-sase-and-governed-transport.html">Book 09, Chapter 05</a> places it in the SASE design). What it can’t do by itself is tell a released press statement from a Privacy Act record. Without a classification on the file it can apply only coarse policies, such as blocking all uploads to consumer storage or all downloads above a size, and it can’t enforce “block external sharing of CUI” because it can’t tell which files are CUI.</p>
+<p>The sensitivity label supplies that signal. Microsoft describes the label as stored “in clear text in the metadata for files and emails,” so third-party apps and services can read it, and as persistent: it “stays with the content, no matter where you save or store it.”<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> (An earlier draft of this program said the label travels as an encrypted property; that is wrong. The label is readable; the content is what label encryption protects.) Defender for Cloud Apps session policies can filter on the label: block the download of labeled files to unmanaged devices, or block the upload of a file that contains sensitive data and doesn’t carry the right label.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> Purview classifies; the CASB enforces on the classification. They work on different layers, and neither substitutes for the other.</p>
 </section>
 </section>
-<section id="what-agencies-verifiably-lose" class="level2">
-<h2 class="anchored" data-anchor-id="what-agencies-verifiably-lose">What agencies verifiably lose</h2>
-<p>The most consequential single exclusion isn’t a telemetry detail. It is the whole network connectivity layer of the Microsoft 365 admin center, which “supports tenants in WW Commercial and China (Operated by 21Vianet, released on 2024-09-23), but not GCC Moderate, GCC High, or DoD.”<a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a> A commercial tenant gets all of the following at no extra license cost (the only requirement is a license that provides access to the admin center).<a href="#fn14" class="footnote-ref" id="fnref14" role="doc-noteref"><sup>14</sup></a></p>
+<section id="the-federal-cui-framework" class="level2">
+<h2 class="anchored" data-anchor-id="the-federal-cui-framework">The federal CUI framework</h2>
+<p>The framework for unclassified federal information that needs protection is Executive Order 13556, which designates the National Archives and Records Administration as the CUI Executive Agent; NARA’s Information Security Oversight Office issued 32 CFR Part 2002 to implement it.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> Four provisions shape any label design:</p>
+<ol type="1">
+<li><strong>CUI is the only lawful category of controlled unclassified information.</strong> “All unclassified information throughout the executive branch that requires any safeguarding or dissemination control is CUI,” and agencies “may not implement safeguarding or dissemination controls for any unclassified information other than those controls consistent with the CUI Program.”<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></li>
+<li><strong>There are two control levels, not four.</strong> <em>CUI Basic</em> is CUI whose authorizing law, regulation or policy “does not set out specific handling or dissemination controls.” <em>CUI Specified</em> is CUI whose authority “contains specific handling controls that it requires or permits agencies to use that differ from those for CUI Basic.”<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> Everything else is <em>uncontrolled unclassified information</em>, which “agencies must still handle … in accordance with” FISMA.<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a></li>
+<li><strong>CUI sets a confidentiality floor.</strong> Systems that process, store or transmit CUI Basic are categorized at “no less than the moderate confidentiality impact level,” with NIST SP 800-53 controls applied.<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a> NIST SP 800-171 is the requirement set for CUI on non-federal systems.<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a></li>
+<li><strong>Marking is prescribed.</strong> Every CUI item carries a banner marking whose control marking is “CUI” (or “CONTROLLED”); category markings are mandatory for CUI Specified and optional for CUI Basic unless agency policy requires them; and “authorized holders who designate CUI may not use alternative markings.”<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a></li>
+</ol>
+<p>The CUI Registry decides which category a record falls in and whether its authority is Basic or Specified. Three examples from the registry correct the program’s earlier drafts:</p>
+<table class="table-striped table-hover caption-top table">
+<caption>CUI Registry entries that drive the label design</caption>
+<thead>
+<tr class="header">
+<th>Information</th>
+<th>Registry category</th>
+<th>Basic or Specified</th>
+<th>Banner marking</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Privacy Act records (5 U.S.C. 552a(b))</td>
+<td>Privacy (<code>PRVCY</code>)</td>
+<td>Basic</td>
+<td><code>CUI</code>, or <code>CUI//PRVCY</code> where agency policy requires category markings<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a></td>
+</tr>
+<tr class="even">
+<td>Federal taxpayer information (26 U.S.C. 6103)</td>
+<td>Federal Taxpayer Information (<code>TAX</code>)</td>
+<td>Specified</td>
+<td><code>CUI//SP-TAX</code><a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a></td>
+</tr>
+<tr class="odd">
+<td>Health information</td>
+<td>Health Information (<code>HLTH</code>)</td>
+<td>Specified or Basic, depending on the authority</td>
+<td><code>CUI//SP-HLTH</code> for specified authorities, <code>CUI</code> for basic ones<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a></td>
+</tr>
+<tr class="even">
+<td>Law enforcement techniques and procedures</td>
+<td>General Law Enforcement (<code>LEI</code>)</td>
+<td>Basic for the authorities listed</td>
+<td><code>CUI</code> or <code>CUI//LEI</code><a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a></td>
+</tr>
+</tbody>
+</table>
+<p>Two of the program’s earlier assumptions don’t survive that reading. Privacy Act records aren’t CUI Specified: the registry lists 5 U.S.C. 552a(b) as a Basic authority, so a “CUI Specified — Privacy Act” label with a <code>CUI//SP-PRVCY</code> banner would mark them wrongly. And “Internal” and “Law Enforcement Sensitive” aren’t CUI categories. “Internal” is the program’s name for uncontrolled unclassified information that isn’t cleared for release; it may not carry a dissemination control of its own.</p>
+</section>
+<section id="mapping-cui-to-sensitivity-labels" class="level2">
+<h2 class="anchored" data-anchor-id="mapping-cui-to-sensitivity-labels">Mapping CUI to sensitivity labels</h2>
+<p>The program’s label taxonomy is a design built on that framework. The parent and sublabel structure follows Purview: a parent label groups sublabels, and the sublabel carries the protection.<a href="#fn14" class="footnote-ref" id="fnref14" role="doc-noteref"><sup>14</sup></a></p>
+<table class="table-striped table-hover caption-top table">
+<caption>The program’s CUI label taxonomy (design)</caption>
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Tier</th>
+<th>Label (parent / sublabel)</th>
+<th>Content marking</th>
+<th>Encryption</th>
+<th>Who can open it</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Public</td>
+<td><code>Public</code></td>
+<td>None</td>
+<td>None</td>
+<td>Anyone</td>
+</tr>
+<tr class="even">
+<td>Uncontrolled, not for release</td>
+<td><code>Internal</code></td>
+<td>None (no CUI or dissemination legend)</td>
+<td>None</td>
+<td>Not restricted by the label</td>
+</tr>
+<tr class="odd">
+<td>CUI Basic</td>
+<td><code>CUI</code> / <code>CUI Basic</code></td>
+<td>Header <code>CUI</code></td>
+<td>Yes, tenant key</td>
+<td>Everyone in the agency’s tenant</td>
+</tr>
+<tr class="even">
+<td>CUI Basic with category marking (where agency policy requires it)</td>
+<td><code>CUI</code> / <code>CUI//PRVCY</code></td>
+<td>Header <code>CUI//PRVCY</code></td>
+<td>Yes, tenant key</td>
+<td>Everyone in the agency’s tenant</td>
+</tr>
+<tr class="odd">
+<td>CUI Specified</td>
+<td><code>CUI</code> / <code>CUI//SP-TAX</code> (one sublabel per specified authority the agency holds)</td>
+<td>Header with the category marking</td>
+<td>Yes, tenant key; Double Key Encryption for the narrowest set</td>
+<td>A named, mail-enabled security group of authorized holders</td>
+</tr>
+</tbody>
+</table>
+<div id="fig-ch09-cui-to-labels" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A mapping diagram, top to bottom. At the top, an amber card says the CUI Registry decides the category and whether each authority is basic or specified, with dashed arrows to CUI Basic and CUI Specified. Below it, the 32 CFR Part 2002 framework in slate, in a row: uncontrolled unclassified information handled under FISMA, CUI Specified and CUI Basic. Below that, the label taxonomy, each label under its source: Public and Internal labels in slate for uncontrolled information, with no CUI marking and no dissemination legend; a blue CUI parent label with a CUI Basic sublabel, header CUI, encrypted to everyone in the tenant, and an optional CUI slash slash PRVCY sublabel where agency policy requires category markings; and a violet CUI Specified sublabel such as CUI slash slash SP-TAX, header with the category marking, encrypted to a named authorized-holder group. A red note at the bottom says Privacy Act records are CUI Basic under 5 U.S.C. 552a(b), not CUI Specified.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ch09-cui-to-labels-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="../../images/diagrams/b12-security-operations/svg/ch09-cui-to-labels.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;2: The CUI framework’s two control levels map to label tiers; the CUI Registry, not the label name, decides which sublabel a record takes."><img src="../../images/diagrams/b12-security-operations/svg/ch09-cui-to-labels.svg" class="img-fluid figure-img" alt="A mapping diagram, top to bottom. At the top, an amber card says the CUI Registry decides the category and whether each authority is basic or specified, with dashed arrows to CUI Basic and CUI Specified. Below it, the 32 CFR Part 2002 framework in slate, in a row: uncontrolled unclassified information handled under FISMA, CUI Specified and CUI Basic. Below that, the label taxonomy, each label under its source: Public and Internal labels in slate for uncontrolled information, with no CUI marking and no dissemination legend; a blue CUI parent label with a CUI Basic sublabel, header CUI, encrypted to everyone in the tenant, and an optional CUI slash slash PRVCY sublabel where agency policy requires category markings; and a violet CUI Specified sublabel such as CUI slash slash SP-TAX, header with the category marking, encrypted to a named authorized-holder group. A red note at the bottom says Privacy Act records are CUI Basic under 5 U.S.C. 552a(b), not CUI Specified."></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ch09-cui-to-labels-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: The CUI framework’s two control levels map to label tiers; the CUI Registry, not the label name, decides which sublabel a record takes.
+</figcaption>
+</figure>
+</div>
+<p>Three rules come with the taxonomy:</p>
 <ul>
-<li><strong>A network assessment for the tenant and for each location,</strong> a points value from 0 to 100 averaging TCP latency, download speed and UDP connection quality, compiled once a day. Microsoft treats 80 as the healthy baseline, “above which you shouldn’t expect to receive regular user complaints.”<a href="#fn15" class="footnote-ref" id="fnref15" role="doc-noteref"><sup>15</sup></a> Each location’s assessment is compared with other Microsoft 365 customers in the same city, and history can be reported for up to two years.<a href="#fn16" class="footnote-ref" id="fnref16" role="doc-noteref"><sup>16</sup></a></li>
-<li><strong>A per-location view of the network perimeter:</strong> the egress point, the in-use and optimal Exchange and SharePoint front doors, the DNS recursive resolver and any proxy, with an estimated latency improvement calculated against other organizations in the same city.<a href="#fn17" class="footnote-ref" id="fnref17" role="doc-noteref"><sup>17</sup></a></li>
-<li><strong>Network insights,</strong> including detection of TLS interception, where users’ connections present certificates not issued by Microsoft 365, with service health notifications.<a href="#fn18" class="footnote-ref" id="fnref18" role="doc-noteref"><sup>18</sup></a></li>
-<li><strong>Network provider attribution.</strong> The admin center identifies each network provider between users and Microsoft’s network as ISP, Overlay (“VPN, Cloud Proxy, SD-WAN, and SASE”) or Corporate, and attributes performance and availability to each: Exchange, SharePoint and Teams assessments, SharePoint throughput, Exchange latency, and Teams packet loss, jitter and latency. A Network Provider Index chart, currently for the United States only, ranks the highest-performing providers in the same state.<a href="#fn19" class="footnote-ref" id="fnref19" role="doc-noteref"><sup>19</sup></a></li>
+<li><strong>Use groups, not people.</strong> Encryption permissions can be granted to “any specific user or email-enabled security group, distribution group, or Microsoft 365 group,” but not to a security group that isn’t email-enabled.<a href="#fn15" class="footnote-ref" id="fnref15" role="doc-noteref"><sup>15</sup></a> Holders of a specified category are a group whose membership the identity lifecycle maintains (<a href="../../../docs/books/b03-hr-identity/index.html">Book 03</a>).</li>
+<li><strong>Don’t let records expire by default.</strong> A label can set encrypted content to expire after a number of days.<a href="#fn16" class="footnote-ref" id="fnref16" role="doc-noteref"><sup>16</sup></a> For federal records under a retention schedule, an expiry date is a decision for the records officer, not a default.</li>
+<li><strong>The label carries the banner.</strong> The header marking is how the program applies the CUI banner on screen and on paper. Content markings are inserted by Office apps, while labels applied by services such as SharePoint auto-labeling apply the metadata and encryption without inserting the marking until the file is relabeled in an Office app.<a href="#fn17" class="footnote-ref" id="fnref17" role="doc-noteref"><sup>17</sup></a></li>
 </ul>
-<p>An agency choosing between SASE or transport providers in a commercial tenant has comparative evidence about those providers, produced by Microsoft, in its own admin center. The same agency in GCC has none of it, and has to fund its own measurement to reach a decision a commercial enterprise makes from a dashboard. <a href="../../../docs/books/b09-network/12-microsoft-365-traffic.html">Book 09 Chapter 12</a> covers how a GCC agency steers and measures Microsoft 365 traffic without it.</p>
-<p>Some measurement does remain. Microsoft’s network connectivity test tool lists US Government (GCC) as a supported version, with public report sharing disabled.<a href="#fn20" class="footnote-ref" id="fnref20" role="doc-noteref"><sup>20</sup></a> Its insights are run locally from the location being tested rather than aggregated daily from the tenant, but they include, for example, a flag when the network egress is more than 500 miles from the user’s office, “since that’s likely to increase the TCP latency by more than 25 ms.”<a href="#fn21" class="footnote-ref" id="fnref21" role="doc-noteref"><sup>21</sup></a> That insight comes from the test tool, which GCC can use, not from the admin center’s network connectivity page.</p>
-<p>Alongside that layer, other documented exclusions follow the same pattern:</p>
-<ul>
-<li><strong>Adoption Score</strong>, the admin center’s usage-and-readiness report, “isn’t available in GCC High, GCC, and DOD tenants.”<a href="#fn22" class="footnote-ref" id="fnref22" role="doc-noteref"><sup>22</sup></a> Microsoft’s page describes five scored categories (six with Copilot); in GCC the whole report is unavailable, not individual categories.</li>
-<li><strong>Informed network routing</strong>, the feedback channel that lets a supported SD-WAN steer Microsoft 365 traffic between circuits, “supports tenants in WW Commercial cloud but not the GCC Moderate, GCC High, DoD, Germany, or China clouds.”<a href="#fn23" class="footnote-ref" id="fnref23" role="doc-noteref"><sup>23</sup></a> <a href="../../../docs/books/b08-ddi/appendix-c-applicability.html">Book 08 Appendix C</a> and <a href="../../../docs/books/b09-network/12-microsoft-365-traffic.html">Book 09 Chapter 12</a> record the same limit.</li>
-<li><strong>The Office 365 CDN</strong> for SharePoint static assets “is only available to tenants in the production (worldwide) cloud”; tenants in the US Government, China and Germany clouds don’t support it.<a href="#fn24" class="footnote-ref" id="fnref24" role="doc-noteref"><sup>24</sup></a></li>
-</ul>
-<div class="callout callout-style-default callout-important callout-titled">
+</section>
+<section id="the-label-taxonomy-as-code" class="level2">
+<h2 class="anchored" data-anchor-id="the-label-taxonomy-as-code">The label taxonomy as code</h2>
+<p>The taxonomy is declared, reviewed and deployed from source control, not clicked into the portal, so that the protection settings at each tier are visible in review and identical across environments. The same applies to label policies, auto-labeling and DLP. The program’s pipeline treats each as a versioned artifact, and a change goes through review like any other configuration (<a href="../../../docs/books/b12-security-operations/07-patch-configuration-and-baselines.html">Chapter 07</a>).</p>
+<div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>Build the register on documented exclusions only
+<span class="screen-reader-only">Warning</span>Illustrative code
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Every row in an agency’s feature-gap register should carry a citation to the provider’s own statement that the feature is unavailable in its environment. Gaps inferred from a boundary model, or from a feature that “seems” to return nothing, belong in a separate list marked as unconfirmed until they are tested (<a href="../../../docs/books/b10-cloud-boundary/02-the-invisible-boundary.html">Chapter 02</a>). An argument built on inferred rows won’t survive a reviewer holding the provider’s documentation; one built on cited rows can’t be dismissed.</p>
+<p>The PowerShell in this chapter is illustrative. It hasn’t been tested against a production tenant or subscription. Cmdlet and parameter names were checked against Microsoft Learn on October 21, 2026; review every value, the agency’s own CUI categories and its authorized-holder groups before running anything, and run against a test tenant first.</p>
 </div>
 </div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Security &amp; Compliance PowerShell (ExchangeOnlineManagement module).</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># GCC: no extra parameters. GCC High: add</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">#   -ConnectionUri 'https://ps.compliance.protection.office365.us/powershell-liveid/'</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">#   -AzureADAuthorizationEndpointUri 'https://login.microsoftonline.us/organizations'</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>Connect-IPPSSession <span class="op">-</span>UserPrincipalName <span class="st">'labels-admin@example.gov'</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Rights granted to everyone in the tenant for CUI Basic.</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="va">$tenantRights</span> <span class="op">=</span> <span class="st">'example.gov:VIEW,VIEWRIGHTSDATA,DOCEDIT,EDIT,PRINT,EXTRACT,REPLY,REPLYALL,FORWARD,OBJMODEL'</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Uncontrolled tiers: no marking, no encryption.</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>New-Label <span class="op">-</span>Name <span class="st">'Public'</span> <span class="op">-</span>DisplayName <span class="st">'Public'</span> <span class="op">-</span>ContentType <span class="st">'File, Email'</span> `</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span>Tooltip <span class="st">'Cleared for public release.'</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>New-Label <span class="op">-</span>Name <span class="st">'Internal'</span> <span class="op">-</span>DisplayName <span class="st">'Internal'</span> <span class="op">-</span>ContentType <span class="st">'File, Email'</span> `</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span>Tooltip <span class="st">'Not cleared for public release. Not CUI.'</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co"># CUI parent. The sublabels carry marking and encryption.</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>New-Label <span class="op">-</span>Name <span class="st">'CUI'</span> <span class="op">-</span>DisplayName <span class="st">'CUI'</span> <span class="op">-</span>ContentType <span class="st">'File, Email'</span> `</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span>Tooltip <span class="st">'Controlled Unclassified Information. Choose the sublabel for the authority.'</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>New-Label <span class="op">-</span>Name <span class="st">'CUI-Basic'</span> <span class="op">-</span>DisplayName <span class="st">'CUI Basic'</span> <span class="op">-</span>ParentId <span class="st">'CUI'</span> <span class="op">-</span>ContentType <span class="st">'File, Email'</span> `</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span>Tooltip <span class="st">'CUI Basic. Banner marking: CUI.'</span> `</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span>ApplyContentMarkingHeaderEnabled <span class="va">$true</span> <span class="op">-</span>ApplyContentMarkingHeaderText <span class="st">'CUI'</span> `</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span>EncryptionEnabled <span class="va">$true</span> <span class="op">-</span>EncryptionProtectionType <span class="st">'Template'</span> `</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span>EncryptionRightsDefinitions <span class="va">$tenantRights</span> `</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span>EncryptionContentExpiredOnDateInDaysOrNever <span class="st">'Never'</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="co"># One sublabel per CUI Specified authority the agency holds.</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="co"># The rights go to a mail-enabled security group of authorized holders.</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>New-Label <span class="op">-</span>Name <span class="st">'CUI-SP-TAX'</span> <span class="op">-</span>DisplayName <span class="st">'CUI//SP-TAX'</span> <span class="op">-</span>ParentId <span class="st">'CUI'</span> <span class="op">-</span>ContentType <span class="st">'File, Email'</span> `</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span>Tooltip <span class="st">'Federal taxpayer information, 26 U.S.C. 6103. Banner marking: CUI//SP-TAX.'</span> `</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span>ApplyContentMarkingHeaderEnabled <span class="va">$true</span> <span class="op">-</span>ApplyContentMarkingHeaderText <span class="st">'CUI//SP-TAX'</span> `</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span>EncryptionEnabled <span class="va">$true</span> <span class="op">-</span>EncryptionProtectionType <span class="st">'Template'</span> `</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span>EncryptionRightsDefinitions <span class="st">'fti-holders@example.gov:VIEW,VIEWRIGHTSDATA,DOCEDIT,EDIT,REPLY,REPLYALL,OBJMODEL'</span> `</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span>EncryptionContentExpiredOnDateInDaysOrNever <span class="st">'Never'</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Publish to a pilot group first, then widen to All.</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>New-LabelPolicy <span class="op">-</span>Name <span class="st">'FMP-CUI-Labels-Pilot'</span> `</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span>Labels <span class="st">'Public'</span><span class="op">,</span><span class="st">'Internal'</span><span class="op">,</span><span class="st">'CUI'</span><span class="op">,</span><span class="st">'CUI-Basic'</span><span class="op">,</span><span class="st">'CUI-SP-TAX'</span> `</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span>ExchangeLocation <span class="st">'label-pilot@example.gov'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Four corrections to the program’s earlier scripts are built into that block. <code>-LabelActions</code> is “reserved for internal Microsoft use,” so content marking uses the <code>-ApplyContentMarking*</code> parameters instead.<a href="#fn18" class="footnote-ref" id="fnref18" role="doc-noteref"><sup>18</sup></a> <code>New-Label</code> requires <code>-Tooltip</code> as well as <code>-Name</code> and <code>-DisplayName</code>.<a href="#fn19" class="footnote-ref" id="fnref19" role="doc-noteref"><sup>19</sup></a> <code>-ParentId</code> accepts the parent label’s name, so the parent’s GUID isn’t needed.<a href="#fn20" class="footnote-ref" id="fnref20" role="doc-noteref"><sup>20</sup></a> And a label policy is scoped to users through <code>-ExchangeLocation</code> (mailboxes, or <code>All</code>); its <code>-SharePointLocation</code> parameter is “reserved for internal Microsoft use” and there is no Teams location on a label policy.<a href="#fn21" class="footnote-ref" id="fnref21" role="doc-noteref"><sup>21</sup></a> Labels appear in SharePoint, OneDrive and Teams for the users the policy covers.</p>
 </section>
-<section id="a-note-on-names" class="level2">
-<h2 class="anchored" data-anchor-id="a-note-on-names">A note on names</h2>
-<p>“GCC Moderate” isn’t a Microsoft offering name. The offering is Government Community Cloud, and its Marketplace package is Microsoft 365 Government Community Cloud &amp; Supporting Services, <code>MSO365MT</code>.<a href="#fn25" class="footnote-ref" id="fnref25" role="doc-noteref"><sup>25</sup></a> Microsoft does use the phrase for the environment, as the network connectivity and informed network routing pages above show,<a href="#fn26" class="footnote-ref" id="fnref26" role="doc-noteref"><sup>26</sup></a><a href="#fn27" class="footnote-ref" id="fnref27" role="doc-noteref"><sup>27</sup></a> and the workbook’s other books follow that usage. Writing “GCC Moderate” for the environment is fine. Treating it as the name of a distinct product or a distinct FedRAMP certification isn’t, because there is neither.</p>
+<section id="automatic-labeling" class="level2">
+<h2 class="anchored" data-anchor-id="automatic-labeling">Automatic labeling</h2>
+<p>Manual labeling puts the classification decision on the author. Authors label the obviously sensitive document correctly and miss the routine one: a spreadsheet of Social Security numbers extracted for a workflow, or a chat message with a taxpayer number sent while answering a question. Automatic labeling classifies on content, whether or not the author recognized it as sensitive.</p>
+<section id="sensitive-information-types" class="level3">
+<h3 class="anchored" data-anchor-id="sensitive-information-types">Sensitive information types</h3>
+<p>Sensitive information types (SITs) are pattern classifiers. The built-in U.S. types include U.S. social security number (SSN), U.S. individual taxpayer identification number (ITIN), U.S. bank account number, U.S. driver’s license number and U.S./U.K. passport number, plus Drug Enforcement Agency (DEA) number and IP address.<a href="#fn22" class="footnote-ref" id="fnref22" role="doc-noteref"><sup>22</sup></a> There is no built-in U.S. employer identification number (EIN) type, so EINs need a custom SIT, as do agency identifiers such as case or claim numbers. Custom SITs are defined as XML rule packages and imported with <code>New-DlpSensitiveInformationTypeRulePackage -FileData</code>.<a href="#fn23" class="footnote-ref" id="fnref23" role="doc-noteref"><sup>23</sup></a> An earlier program script built the rule package as a PowerShell hashtable converted to JSON; that format isn’t accepted.</p>
 </section>
-<section id="microsoft-is-pursuing-high-for-gcc-and-what-that-doesnt-change" class="level2">
-<h2 class="anchored" data-anchor-id="microsoft-is-pursuing-high-for-gcc-and-what-that-doesnt-change">Microsoft is pursuing High for GCC, and what that doesn’t change</h2>
-<p>The FedRAMP Marketplace carries three Microsoft 365 government packages that are routinely run together. Read from FedRAMP’s Marketplace dataset on October 21, 2026:<a href="#fn28" class="footnote-ref" id="fnref28" role="doc-noteref"><sup>28</sup></a></p>
-<table class="caption-top table">
+<section id="trainable-classifiers" class="level3">
+<h3 class="anchored" data-anchor-id="trainable-classifiers">Trainable classifiers</h3>
+<p>For categories that have no pattern, such as case notes, budget working papers or policy drafts, trainable classifiers use machine learning. Microsoft provides pretrained classifiers. A custom classifier needs “at least 50 positive samples (up to 500) and at least 150 negative samples (up to 1,500),” supports English only and is seeded from dedicated SharePoint folders.<a href="#fn24" class="footnote-ref" id="fnref24" role="doc-noteref"><sup>24</sup></a> Draw the samples from the real document population, informal documents included; a classifier trained only on formally formatted documents will miss the rest.</p>
+</section>
+<section id="auto-labeling-policies" class="level3">
+<h3 class="anchored" data-anchor-id="auto-labeling-policies">Auto-labeling policies</h3>
+<p>Service-side auto-labeling labels content at rest in SharePoint and OneDrive and messages in Exchange. Client-side labeling in Office apps recommends or applies a label as the author works. Both are available in GCC and GCC High, along with machine learning classifiers for client-side auto-labeling.<a href="#fn25" class="footnote-ref" id="fnref25" role="doc-noteref"><sup>25</sup></a><a href="#fn26" class="footnote-ref" id="fnref26" role="doc-noteref"><sup>26</sup></a></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Service-side auto-labeling for SharePoint and OneDrive, in simulation first.</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>New-AutoSensitivityLabelPolicy <span class="op">-</span>Name <span class="st">'FMP-Auto-CUI-Basic'</span> `</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span>ApplySensitivityLabel <span class="st">'CUI-Basic'</span> `</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span>SharePointLocation <span class="st">'All'</span> <span class="op">-</span>OneDriveLocation <span class="st">'All'</span> `</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span>Mode <span class="st">'TestWithoutNotifications'</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># One rule per workload; -Workload is required.</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="va">$ssn</span> <span class="op">=</span> <span class="op">@(</span>@<span class="op">{</span> Name <span class="op">=</span> <span class="st">'U.S. Social Security Number (SSN)'</span><span class="op">;</span> minCount <span class="op">=</span> <span class="st">'1'</span><span class="op">;</span> minConfidence <span class="op">=</span> <span class="st">'85'</span> <span class="op">})</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>New-AutoSensitivityLabelRule <span class="op">-</span>Policy <span class="st">'FMP-Auto-CUI-Basic'</span> <span class="op">-</span>Name <span class="st">'SSN in SharePoint'</span> `</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span>Workload <span class="st">'SharePoint'</span> <span class="op">-</span>ContentContainsSensitiveInformation <span class="va">$ssn</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>New-AutoSensitivityLabelRule <span class="op">-</span>Policy <span class="st">'FMP-Auto-CUI-Basic'</span> <span class="op">-</span>Name <span class="st">'SSN in OneDrive'</span> `</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span>Workload <span class="st">'OneDriveForBusiness'</span> <span class="op">-</span>ContentContainsSensitiveInformation <span class="va">$ssn</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co"># After the simulation results are reviewed and false positives resolved:</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>Set-AutoSensitivityLabelPolicy <span class="op">-</span>Identity <span class="st">'FMP-Auto-CUI-Basic'</span> <span class="op">-</span>Mode <span class="st">'Enable'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>TestWithoutNotifications</code> is “an audit mode where no actions are taken, and no notifications are sent”; <code>TestWithNotifications</code> sends notifications without acting; <code>Enable</code> applies the label.<a href="#fn27" class="footnote-ref" id="fnref27" role="doc-noteref"><sup>27</sup></a> The rule’s <code>-Workload</code> parameter is required and takes <code>Exchange</code>, <code>SharePoint</code> or <code>OneDriveForBusiness</code>.<a href="#fn28" class="footnote-ref" id="fnref28" role="doc-noteref"><sup>28</sup></a> Run every policy in simulation first and review what it would label. A false-positive spike that stamps CUI Specified on routine documents becomes a help desk event across the agency.</p>
+</section>
+</section>
+<section id="dlp-on-three-enforcement-surfaces" class="level2">
+<h2 class="anchored" data-anchor-id="dlp-on-three-enforcement-surfaces">DLP on three enforcement surfaces</h2>
+<p>DLP acts at three points in the data’s life, each with a different reach. All three are available in GCC and GCC High: DLP for files and email, Teams chat and channel messages, endpoint DLP, the on-premises scanner and the Defender for Cloud Apps integration.<a href="#fn29" class="footnote-ref" id="fnref29" role="doc-noteref"><sup>29</sup></a><a href="#fn30" class="footnote-ref" id="fnref30" role="doc-noteref"><sup>30</sup></a></p>
+<table class="table-striped table-hover caption-top table">
+<caption>The three DLP enforcement surfaces</caption>
+<thead>
+<tr class="header">
+<th>Surface</th>
+<th>Where it’s enforced</th>
+<th>What it catches</th>
+<th>Prerequisite</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Microsoft 365 service DLP</td>
+<td>Server-side in Exchange, SharePoint, OneDrive and Teams</td>
+<td>External sharing, external send, sensitive data in chat</td>
+<td>None beyond licensing; independent of the device’s state</td>
+</tr>
+<tr class="even">
+<td>Endpoint DLP</td>
+<td>On the device</td>
+<td>Print, removable media, network share, copy and paste of labeled or sensitive content</td>
+<td>Device onboarded; onboarding is shared with Defender for Endpoint, so devices already onboarded there need no further step<a href="#fn31" class="footnote-ref" id="fnref31" role="doc-noteref"><sup>31</sup></a></td>
+</tr>
+<tr class="odd">
+<td>CASB</td>
+<td>At the session, through Defender for Cloud Apps</td>
+<td>Upload and download of labeled files to and from cloud apps</td>
+<td>Apps routed through Conditional Access app control<a href="#fn32" class="footnote-ref" id="fnref32" role="doc-noteref"><sup>32</sup></a></td>
+</tr>
+</tbody>
+</table>
+<p>Endpoint DLP covers onboarded Windows 10 and 11 and macOS devices, and Windows Server 2019 and later, where it’s off until turned on for servers.<a href="#fn33" class="footnote-ref" id="fnref33" role="doc-noteref"><sup>33</sup></a><a href="#fn34" class="footnote-ref" id="fnref34" role="doc-noteref"><sup>34</sup></a> A device excluded from onboarding receives no endpoint policy, so check onboarding coverage before relying on endpoint DLP (<a href="../../../docs/books/b05-devices/index.html">Book 05</a>).</p>
+<section id="the-minimum-policy-baseline" class="level3">
+<h3 class="anchored" data-anchor-id="the-minimum-policy-baseline">The minimum policy baseline</h3>
+<p>The program’s baseline for a Moderate system is a design, named by surface, tier and action:</p>
+<table class="table-striped table-hover caption-top table">
+<caption>The program’s minimum DLP baseline (design)</caption>
 <colgroup>
 <col style="width: 25%">
 <col style="width: 25%">
@@ -2715,73 +2914,320 @@ Figure&nbsp;1: Feature gaps are published one feature at a time: some features a
 </colgroup>
 <thead>
 <tr class="header">
-<th>Package</th>
-<th>Offering</th>
-<th>Status</th>
-<th>Class</th>
+<th>Policy</th>
+<th>Surface</th>
+<th>Condition</th>
+<th>Action</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>MSO365MT</code></td>
-<td>Microsoft 365 Government Community Cloud &amp; Supporting Services</td>
-<td>FedRAMP Certified (certification date November 20, 2014); 100 authorizations, 91 agencies listed</td>
-<td>Class C (Moderate)</td>
+<td>Block external sharing of CUI</td>
+<td>SharePoint, OneDrive</td>
+<td>Label is any CUI sublabel</td>
+<td>Block for external users, policy tip, incident report</td>
 </tr>
 <tr class="even">
-<td><code>MSO365MTA</code></td>
-<td>Microsoft 365 Government Community Cloud &amp; Supporting Services (the identical name)</td>
-<td>FedRAMP In Process, Initial Implementation; 0 authorizations</td>
-<td>Class D (High)</td>
+<td>Block external send of CUI</td>
+<td>Exchange</td>
+<td>Label is any CUI sublabel and the recipient is external</td>
+<td>Block, policy tip</td>
 </tr>
 <tr class="odd">
-<td><code>FR1824057433</code></td>
-<td>Microsoft 365 Government Community Cloud-High</td>
-<td>FedRAMP Certified (December 26, 2024); 5 authorizations</td>
-<td>Class D (High)</td>
+<td>Block print and removable media for CUI Specified</td>
+<td>Endpoint</td>
+<td>Label is a CUI Specified sublabel</td>
+<td>Block, audit event</td>
+</tr>
+<tr class="even">
+<td>Audit copy to network shares for CUI</td>
+<td>Endpoint</td>
+<td>Label is any CUI sublabel</td>
+<td>Audit</td>
+</tr>
+<tr class="odd">
+<td>Block CUI upload to unapproved cloud apps</td>
+<td>CASB</td>
+<td>Label is any CUI sublabel; app not on the approved list</td>
+<td>Block, alert</td>
+</tr>
+<tr class="even">
+<td>Alert on bulk download</td>
+<td>SharePoint, CASB</td>
+<td>Unusual volume in a short window</td>
+<td>Alert to security operations</td>
+</tr>
+<tr class="odd">
+<td>Detect Social Security numbers in Teams</td>
+<td>Teams</td>
+<td>SSN SIT, high confidence</td>
+<td>Block, policy tip, alert</td>
 </tr>
 </tbody>
 </table>
-<div id="fig-ch04-three-packages" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Three boxes in a row. Green, MSO365MT, Microsoft 365 Government Community Cloud and Supporting Services: FedRAMP Certified, Class C Moderate, 100 authorizations, Worldwide endpoint set, paired with Entra ID in Azure. Amber, MSO365MTA, same name as MSO365MT: FedRAMP In Process, Class D High, Initial Implementation, 0 authorizations, relationship to MSO365MT not stated. Blue, FR1824057433, Microsoft 365 Government Community Cloud-High: FedRAMP Certified, Class D High, 5 authorizations, own endpoint set, paired with Entra ID in Azure Government. Dashed red lines from all three lead to a red box below: feature availability is a separate axis; admin center network connectivity is not in GCC, GCC High or DoD, already absent at Class D in GCC High, so a higher class for GCC would not by itself bring it back.">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-ch04-three-packages-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="../../images/diagrams/b10-cloud-boundary/svg/ch04-three-packages.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;2: The three Microsoft 365 government packages on the FedRAMP Marketplace, and the network connectivity exclusion that applies to all of them."><img src="../../images/diagrams/b10-cloud-boundary/svg/ch04-three-packages.svg" class="img-fluid figure-img" alt="Three boxes in a row. Green, MSO365MT, Microsoft 365 Government Community Cloud and Supporting Services: FedRAMP Certified, Class C Moderate, 100 authorizations, Worldwide endpoint set, paired with Entra ID in Azure. Amber, MSO365MTA, same name as MSO365MT: FedRAMP In Process, Class D High, Initial Implementation, 0 authorizations, relationship to MSO365MT not stated. Blue, FR1824057433, Microsoft 365 Government Community Cloud-High: FedRAMP Certified, Class D High, 5 authorizations, own endpoint set, paired with Entra ID in Azure Government. Dashed red lines from all three lead to a red box below: feature availability is a separate axis; admin center network connectivity is not in GCC, GCC High or DoD, already absent at Class D in GCC High, so a higher class for GCC would not by itself bring it back."></a>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ch04-three-packages-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: The three Microsoft 365 government packages on the FedRAMP Marketplace, and the network connectivity exclusion that applies to all of them.
-</figcaption>
-</figure>
-</div>
-<p><code>MSO365MT</code> is the GCC service most civilian agencies run, certified at Class C. <code>FR1824057433</code> is GCC High, a different product with its own endpoints and its own Entra ID pairing. Neither is new. <code>MSO365MTA</code> is. It carries the same offering name and the same service description as the certified GCC package, at Class D, with the same independent assessor; its Marketplace history starts with status changes on July 1 and July 20, 2026, and records another on October 19, 2026.<a href="#fn29" class="footnote-ref" id="fnref29" role="doc-noteref"><sup>29</sup></a></p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Fact and inference, separated
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The <strong>fact</strong> is the table above, read from FedRAMP’s own dataset. The <strong>inference</strong> is that <code>MSO365MTA</code> is an effort to certify the GCC service at High, running in parallel with its existing Class C certification. That is the straightforward reading of a same-named Class D package in Initial Implementation, and it is consistent with FedRAMP’s rule that a change of certification class “requires a new assessment and cannot be done under the Significant Change Notification rules.”<a href="#fn30" class="footnote-ref" id="fnref30" role="doc-noteref"><sup>30</sup></a> But the Marketplace doesn’t state the relationship between two packages sharing a name, or whether one will supersede the other, run alongside it, or be withdrawn. Treat the reading as a question to put to Microsoft (<a href="../../../docs/books/b10-cloud-boundary/appendix-a-what-to-ask-for.html">Appendix A</a>), not as a roadmap commitment.</p>
-</div>
-</div>
-<p>Microsoft’s own documentation adds a complication. Its GCC service description says that “Office 365 Government supports the Federal Risk and Authorization Management Program (FedRAMP) accreditation at a High Impact level,”<a href="#fn31" class="footnote-ref" id="fnref31" role="doc-noteref"><sup>31</sup></a> and its Azure feature-availability page says the GCC environment “helps customers comply with US government requirements, including FedRAMP High.”<a href="#fn32" class="footnote-ref" id="fnref32" role="doc-noteref"><sup>32</sup></a> The Marketplace record for the certified GCC package says Class C (Moderate).<a href="#fn33" class="footnote-ref" id="fnref33" role="doc-noteref"><sup>33</sup></a> For an authorization package, cite the Marketplace record and the package itself, and record the discrepancy; <a href="../../../docs/books/b08-ddi/appendix-c-applicability.html">Book 08 Appendix C</a> takes the same position.</p>
-<p><strong>Why the High package matters.</strong> A great deal of federal “we can’t have that in GCC” reasoning rests on an assumed Moderate ceiling. If GCC is certified at Class D, that premise has a shelf life, and a multi-year architecture that hard-codes Moderate (in a schema value, a control-parameter narrative or an acquisition assumption) is building on a foundation that may move. FedRAMP’s guidance already loosens the link from the other side: an agency may use a certification package for a cloud service “at any security category they deem appropriate following the Risk Management Framework.”<a href="#fn34" class="footnote-ref" id="fnref34" role="doc-noteref"><sup>34</sup></a></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Labels are matched through ContentContainsSensitiveInformation groups.</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="va">$cuiLabels</span> <span class="op">=</span> <span class="op">@(</span>@<span class="op">{</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  operator <span class="op">=</span> <span class="st">'And'</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  groups   <span class="op">=</span> <span class="op">@(</span>@<span class="op">{</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    operator <span class="op">=</span> <span class="st">'Or'</span><span class="op">;</span> name <span class="op">=</span> <span class="st">'CUI labels'</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    labels   <span class="op">=</span> <span class="op">@(</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>      @<span class="op">{</span> name <span class="op">=</span> <span class="st">'CUI-Basic'</span><span class="op">;</span>  <span class="fu">type</span> <span class="op">=</span> <span class="st">'Sensitivity'</span> <span class="op">},</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>      @<span class="op">{</span> name <span class="op">=</span> <span class="st">'CUI-SP-TAX'</span><span class="op">;</span> <span class="fu">type</span> <span class="op">=</span> <span class="st">'Sensitivity'</span> <span class="op">}</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">)</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="op">})</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Block external sharing of CUI in SharePoint and OneDrive.</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>New-DlpCompliancePolicy <span class="op">-</span>Name <span class="st">'FMP-DLP-CUI-ExternalShare'</span> `</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span>SharePointLocation <span class="st">'All'</span> <span class="op">-</span>OneDriveLocation <span class="st">'All'</span> <span class="op">-</span>Mode <span class="st">'TestWithNotifications'</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>New-DlpComplianceRule <span class="op">-</span>Policy <span class="st">'FMP-DLP-CUI-ExternalShare'</span> <span class="op">-</span>Name <span class="st">'Block external access to CUI'</span> `</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span>ContentContainsSensitiveInformation <span class="va">$cuiLabels</span> `</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span>AccessScope <span class="st">'NotInOrganization'</span> <span class="op">-</span>BlockAccess <span class="va">$true</span> <span class="op">-</span>BlockAccessScope <span class="st">'PerUser'</span> `</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span>NotifyUser <span class="st">'Owner'</span> `</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span>NotifyPolicyTipCustomText <span class="st">'This file is labeled CUI and cannot be shared outside the agency.'</span> `</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span>GenerateIncidentReport <span class="st">'secops-dlp@example.gov'</span> <span class="op">-</span>ReportSeverityLevel <span class="st">'High'</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Block external email of CUI.</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>New-DlpCompliancePolicy <span class="op">-</span>Name <span class="st">'FMP-DLP-CUI-ExternalEmail'</span> <span class="op">-</span>ExchangeLocation <span class="st">'All'</span> <span class="op">-</span>Mode <span class="st">'TestWithNotifications'</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>New-DlpComplianceRule <span class="op">-</span>Policy <span class="st">'FMP-DLP-CUI-ExternalEmail'</span> <span class="op">-</span>Name <span class="st">'Block external send of CUI'</span> `</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span>ContentContainsSensitiveInformation <span class="va">$cuiLabels</span> `</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span>AccessScope <span class="st">'NotInOrganization'</span> <span class="op">-</span>BlockAccess <span class="va">$true</span> `</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span>NotifyUser <span class="st">'Owner'</span> `</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span>NotifyPolicyTipCustomText <span class="st">'This message is labeled CUI and cannot be sent outside the agency.'</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Social Security numbers in Teams chat and channel messages.</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>New-DlpCompliancePolicy <span class="op">-</span>Name <span class="st">'FMP-DLP-SSN-Teams'</span> <span class="op">-</span>TeamsLocation <span class="st">'All'</span> <span class="op">-</span>Mode <span class="st">'TestWithNotifications'</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>New-DlpComplianceRule <span class="op">-</span>Policy <span class="st">'FMP-DLP-SSN-Teams'</span> <span class="op">-</span>Name <span class="st">'SSN in Teams'</span> `</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span>ContentContainsSensitiveInformation <span class="op">@(</span>@<span class="op">{</span> Name <span class="op">=</span> <span class="st">'U.S. Social Security Number (SSN)'</span><span class="op">;</span> minCount <span class="op">=</span> <span class="st">'1'</span><span class="op">;</span> minConfidence <span class="op">=</span> <span class="st">'85'</span> <span class="op">})</span> `</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span>BlockAccess <span class="va">$true</span> <span class="op">-</span>NotifyUser <span class="st">'LastModifier'</span> `</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span>NotifyPolicyTipCustomText <span class="st">'This message appears to contain a Social Security number. Use the approved secure transfer service.'</span> `</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span>GenerateAlert <span class="st">'secops-dlp@example.gov'</span> <span class="op">-</span>ReportSeverityLevel <span class="st">'Medium'</span></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Endpoint: block print and removable media for CUI Specified; audit network shares.</span></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a><span class="va">$cuiSpecified</span> <span class="op">=</span> <span class="op">@(</span>@<span class="op">{</span></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>  operator <span class="op">=</span> <span class="st">'And'</span></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>  groups   <span class="op">=</span> <span class="op">@(</span>@<span class="op">{</span> operator <span class="op">=</span> <span class="st">'Or'</span><span class="op">;</span> name <span class="op">=</span> <span class="st">'CUI Specified'</span></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>                  labels <span class="op">=</span> <span class="op">@(</span>@<span class="op">{</span> name <span class="op">=</span> <span class="st">'CUI-SP-TAX'</span><span class="op">;</span> <span class="fu">type</span> <span class="op">=</span> <span class="st">'Sensitivity'</span> <span class="op">})</span> <span class="op">})</span></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>New-DlpCompliancePolicy <span class="op">-</span>Name <span class="st">'FMP-DLP-Endpoint-CUI-SP'</span> <span class="op">-</span>EndpointDlpLocation <span class="st">'All'</span> <span class="op">-</span>Mode <span class="st">'TestWithNotifications'</span></span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>New-DlpComplianceRule <span class="op">-</span>Policy <span class="st">'FMP-DLP-Endpoint-CUI-SP'</span> <span class="op">-</span>Name <span class="st">'Restrict CUI Specified on devices'</span> `</span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span>ContentContainsSensitiveInformation <span class="va">$cuiSpecified</span> `</span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span>EndpointDlpRestrictions <span class="op">@(</span></span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>    @<span class="op">{</span> Setting <span class="op">=</span> <span class="st">'Print'</span><span class="op">;</span>          Value <span class="op">=</span> <span class="st">'Block'</span> <span class="op">},</span></span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>    @<span class="op">{</span> Setting <span class="op">=</span> <span class="st">'RemovableMedia'</span><span class="op">;</span> Value <span class="op">=</span> <span class="st">'Block'</span> <span class="op">},</span></span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>    @<span class="op">{</span> Setting <span class="op">=</span> <span class="st">'NetworkShare'</span><span class="op">;</span>   Value <span class="op">=</span> <span class="st">'Audit'</span> <span class="op">}</span></span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>  <span class="op">)</span> `</span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span>NotifyUser <span class="st">'Owner'</span> <span class="op">-</span>GenerateAlert <span class="st">'secops-dlp@example.gov'</span> <span class="op">-</span>ReportSeverityLevel <span class="st">'High'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The program’s earlier DLP scripts used parameters that don’t exist. There is no <code>-ContentContainsSensitivityLabel</code>; labels are matched inside <code>-ContentContainsSensitiveInformation</code> with a group whose <code>labels</code> entries have <code>type = "Sensitivity"</code>.<a href="#fn35" class="footnote-ref" id="fnref35" role="doc-noteref"><sup>35</sup></a> Severity is <code>-ReportSeverityLevel</code>, not <code>-Severity</code>. <code>-GenerateAlert</code> takes an email address or <code>SiteAdmin</code>, not a role name such as <code>SecurityManager</code>. Endpoint restriction settings are names like <code>Print</code>, <code>RemovableMedia</code>, <code>NetworkShare</code> and <code>CopyPaste</code>, with values <code>Audit</code>, <code>Block</code>, <code>Ignore</code> or <code>Warn</code>, and <code>Block</code> or <code>Warn</code> also needs <code>-NotifyUser</code>.<a href="#fn36" class="footnote-ref" id="fnref36" role="doc-noteref"><sup>36</sup></a> <code>-BlockAccessScope PerUser</code> blocks external users while leaving the owner’s access intact.<a href="#fn37" class="footnote-ref" id="fnref37" role="doc-noteref"><sup>37</sup></a> A DLP policy’s <code>Mode</code> takes the same simulation values as auto-labeling, so every policy here starts in <code>TestWithNotifications</code>.<a href="#fn38" class="footnote-ref" id="fnref38" role="doc-noteref"><sup>38</sup></a></p>
+<p>Once DLP is enforcing, the override path becomes something to watch. A user who overrides a policy tip repeatedly, or a sudden removal or downgrade of labels across many files, is a detection, not a report line. <a href="../../../docs/books/b12-security-operations/11-detection-engineering-and-response.html">Chapter 11</a> carries those rules as FMP-DET-05 (mass label removal or decryption) and FMP-DET-06 (DLP override pattern).</p>
 </section>
-<section id="impact-level-and-feature-availability-are-different-axes" class="level2">
-<h2 class="anchored" data-anchor-id="impact-level-and-feature-availability-are-different-axes">Impact level and feature availability are different axes</h2>
-<p>Raising the certification class doesn’t restore excluded features. The exclusions in this chapter are product decisions published per feature, not consequences of an impact level. The admin center’s network connectivity layer is documented as unavailable in GCC, GCC High and DoD alike,<a href="#fn35" class="footnote-ref" id="fnref35" role="doc-noteref"><sup>35</sup></a> and GCC High is already certified at Class D.<a href="#fn36" class="footnote-ref" id="fnref36" role="doc-noteref"><sup>36</sup></a> A Class D certification for GCC would change what data an agency may place in the service and how its authorizing official reasons about it. It would not, by itself, return the per-location network assessments, the provider attribution or informed network routing.</p>
-<p>That distinction is the book’s argument in small. The authorization boundary decides what an agency may put where; the provider’s per-feature decisions decide what the service does in each environment. Conflating the two produces the boundary framing this chapter rejects, and it is why an agency waiting for a certification to restore a capability may wait indefinitely for something the certification was never going to deliver.</p>
-<p>The practical conclusions:</p>
+</section>
+<section id="keys-the-agency-controls" class="level2">
+<h2 class="anchored" data-anchor-id="keys-the-agency-controls">Keys the agency controls</h2>
+<p>“Bring your own key” means three different things in Microsoft 365, and an assessor will ask which one the system security plan means. All three are listed as available in GCC and GCC High.<a href="#fn39" class="footnote-ref" id="fnref39" role="doc-noteref"><sup>39</sup></a><a href="#fn40" class="footnote-ref" id="fnref40" role="doc-noteref"><sup>40</sup></a></p>
+<table class="table-striped table-hover caption-top table">
+<caption>Three meanings of “customer-managed key” in Microsoft 365</caption>
+<thead>
+<tr class="header">
+<th>Option</th>
+<th>What it protects</th>
+<th>Where the key lives</th>
+<th>What the agency gives up</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>BYOK for the Azure Rights Management root key</td>
+<td>Every item protected by label encryption, tenant-wide. The tenant key is “your organization’s root key” for that encryption service, and other keys chain to it.<a href="#fn41" class="footnote-ref" id="fnref41" role="doc-noteref"><sup>41</sup></a></td>
+<td>An RSA 2048-bit key in the agency’s Azure Key Vault (Premium for HSM protection), ideally a dedicated vault; the service needs <code>get</code>, <code>decrypt</code> and <code>sign</code> on it<a href="#fn42" class="footnote-ref" id="fnref42" role="doc-noteref"><sup>42</sup></a></td>
+<td>Nothing functional; it adds a key the agency must keep available</td>
+</tr>
+<tr class="even">
+<td>Microsoft Purview Customer Key</td>
+<td>Service encryption at rest for Exchange, SharePoint and OneDrive, and multiple workloads, through data encryption policies</td>
+<td>Two keys in two Azure Key Vaults in two separate subscriptions, per workload<a href="#fn43" class="footnote-ref" id="fnref43" role="doc-noteref"><sup>43</sup></a></td>
+<td>Nothing functional; it adds two vaults per workload and strict key hygiene</td>
+</tr>
+<tr class="odd">
+<td>Double Key Encryption (DKE)</td>
+<td>Only the content labeled with a DKE label</td>
+<td>One key in the agency’s own DKE service, one in Azure; “viewing data protected with Double Key Encryption requires access to both keys”<a href="#fn44" class="footnote-ref" id="fnref44" role="doc-noteref"><sup>44</sup></a></td>
+<td>eDiscovery, search and indexing, Office for the web and coauthoring, and Copilot for that content<a href="#fn45" class="footnote-ref" id="fnref45" role="doc-noteref"><sup>45</sup></a></td>
+</tr>
+</tbody>
+</table>
+<p>That table corrects the program’s earlier label mapping, which showed “AIP BYOK” as a per-tier encryption setting. BYOK replaces the tenant root key for every encrypted label at once; it doesn’t distinguish CUI Basic from CUI Specified. The per-label key choice is DKE, and Microsoft positions it for the small set of “highly sensitive” content that justifies losing those services.<a href="#fn46" class="footnote-ref" id="fnref46" role="doc-noteref"><sup>46</sup></a> The program’s design is BYOK or Microsoft-managed for the tenant key, Customer Key where the authorizing official requires agency-held keys for service encryption at rest, and DKE only for the narrowest CUI Specified categories whose authority demands it.</p>
+<p>Customer Key has rules that an ordinary key-rotation policy would break:</p>
+<ul>
+<li>Each vault must have soft delete and purge protection enabled at creation with a 90-day retention period.<a href="#fn47" class="footnote-ref" id="fnref47" role="doc-noteref"><sup>47</sup></a></li>
+<li>Keys must be RSA (up to 4,096 bits), and Customer Key “can’t use expired keys”: the onboarding service “only accepts keys without an expiration date,” and Microsoft cautions against setting one.<a href="#fn48" class="footnote-ref" id="fnref48" role="doc-noteref"><sup>48</sup></a></li>
+<li>Microsoft keeps an availability key that lets the service recover if both customer keys are lost; its use is logged in the unified audit log as <code>CustomerKeyServiceEncryption</code> with the activity “Fallback to availability key.”<a href="#fn49" class="footnote-ref" id="fnref49" role="doc-noteref"><sup>49</sup></a></li>
+</ul>
+<p>A rotation policy that sets an expiry, appropriate for an Azure SQL protector, will cause an outage if applied to a Customer Key key.</p>
+<section id="azure-workloads-key-vault-and-tde-with-a-customer-managed-key" class="level3">
+<h3 class="anchored" data-anchor-id="azure-workloads-key-vault-and-tde-with-a-customer-managed-key">Azure workloads: Key Vault and TDE with a customer-managed key</h3>
+<p>For Azure workloads, the customer-managed key sits in Key Vault Premium or Managed HSM. Microsoft states that Premium HSM-protected keys are “generated and protected by FIPS 140-3 Level 3 validated Marvell LiquidSecurity HSMs,” and Managed HSM is a single-tenant FIPS 140-3 Level 3 service whose security domain the customer holds.<a href="#fn50" class="footnote-ref" id="fnref50" role="doc-noteref"><sup>50</sup></a><a href="#fn51" class="footnote-ref" id="fnref51" role="doc-noteref"><sup>51</sup></a> SC-13 is a property of the validated module, so check the CMVP certificate for each one. FIPS 140-2 certificates moved to the CMVP Historical List in September 2026; NIST says the CMVP “supports the purchase and use of these modules for existing systems,” so a 140-2 module in an existing system isn’t automatically noncompliant, but new procurements should rely on 140-3 modules.<a href="#fn52" class="footnote-ref" id="fnref52" role="doc-noteref"><sup>52</sup></a></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Azure PowerShell. Azure Government: Connect-AzAccount -Environment AzureUSGovernment</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>Connect-AzAccount</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>Set-AzContext <span class="op">-</span>Subscription <span class="st">'&lt;key-management-subscription-id&gt;'</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>New-AzResourceGroup <span class="op">-</span>Name <span class="st">'rg-fmp-keys'</span> <span class="op">-</span>Location <span class="st">'&lt;region&gt;'</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Premium for HSM-protected keys. Soft delete is on by default for new vaults;</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># purge protection must be requested. Azure RBAC is the default access model.</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>New-AzKeyVault <span class="op">-</span>Name <span class="st">'kv-fmp-sql-01'</span> <span class="op">-</span>ResourceGroupName <span class="st">'rg-fmp-keys'</span> <span class="op">-</span>Location <span class="st">'&lt;region&gt;'</span> `</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span>Sku <span class="st">'Premium'</span> <span class="op">-</span>EnablePurgeProtection <span class="op">-</span>SoftDeleteRetentionInDays <span class="dv">90</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co"># An HSM-protected RSA key for the Azure SQL TDE protector.</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="va">$key</span> <span class="op">=</span> Add-AzKeyVaultKey <span class="op">-</span>VaultName <span class="st">'kv-fmp-sql-01'</span> <span class="op">-</span>Name <span class="st">'cmk-sql-tde'</span> `</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span>Destination <span class="st">'HSM'</span> <span class="op">-</span>KeyType <span class="st">'RSA'</span> <span class="op">-</span>Size <span class="dv">3072</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Rotation policy as a reviewed file (see the JSON below), not inline values.</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>Set-AzKeyVaultKeyRotationPolicy <span class="op">-</span>VaultName <span class="st">'kv-fmp-sql-01'</span> <span class="op">-</span>Name <span class="st">'cmk-sql-tde'</span> `</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span>PolicyPath <span class="st">'.\policies\cmk-sql-tde.rotation.json'</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Grant the SQL server's managed identity the data-plane role it needs.</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="va">$sql</span> <span class="op">=</span> Get-AzSqlServer <span class="op">-</span>ResourceGroupName <span class="st">'rg-fmp-data'</span> <span class="op">-</span>ServerName <span class="st">'sql-fmp-01'</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>New-AzRoleAssignment <span class="op">-</span>ObjectId <span class="va">$sql</span><span class="op">.</span><span class="fu">Identity</span><span class="op">.</span><span class="fu">PrincipalId</span> `</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span>RoleDefinitionName <span class="st">'Key Vault Crypto Service Encryption User'</span> `</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span>Scope <span class="op">(</span>Get-AzKeyVault <span class="op">-</span>VaultName <span class="st">'kv-fmp-sql-01'</span><span class="op">).</span><span class="fu">ResourceId</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Make the key the TDE protector and let SQL follow new key versions.</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>Add-AzSqlServerKeyVaultKey <span class="op">-</span>ResourceGroupName <span class="st">'rg-fmp-data'</span> <span class="op">-</span>ServerName <span class="st">'sql-fmp-01'</span> <span class="op">-</span>KeyId <span class="va">$key</span><span class="op">.</span><span class="fu">Id</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>Set-AzSqlServerTransparentDataEncryptionProtector <span class="op">-</span>ResourceGroupName <span class="st">'rg-fmp-data'</span> <span class="op">-</span>ServerName <span class="st">'sql-fmp-01'</span> `</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span>Type <span class="st">'AzureKeyVault'</span> <span class="op">-</span>KeyId <span class="va">$key</span><span class="op">.</span><span class="fu">Id</span> <span class="op">-</span>AutoRotationEnabled <span class="va">$true</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"lifetimeActions"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span> <span class="dt">"trigger"</span><span class="fu">:</span> <span class="fu">{</span> <span class="dt">"timeAfterCreate"</span><span class="fu">:</span> <span class="st">"P12M"</span> <span class="fu">},</span> <span class="dt">"action"</span><span class="fu">:</span> <span class="fu">{</span> <span class="dt">"type"</span><span class="fu">:</span> <span class="st">"Rotate"</span> <span class="fu">}</span> <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span> <span class="dt">"trigger"</span><span class="fu">:</span> <span class="fu">{</span> <span class="dt">"timeBeforeExpiry"</span><span class="fu">:</span> <span class="st">"P30D"</span> <span class="fu">},</span> <span class="dt">"action"</span><span class="fu">:</span> <span class="fu">{</span> <span class="dt">"type"</span><span class="fu">:</span> <span class="st">"Notify"</span> <span class="fu">}</span> <span class="fu">}</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"attributes"</span><span class="fu">:</span> <span class="fu">{</span> <span class="dt">"expiryTime"</span><span class="fu">:</span> <span class="st">"P14M"</span> <span class="fu">}</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The program’s earlier scripts used <code>-EnableSoftDelete</code> and <code>-EnableRbacAuthorization</code>, which <code>New-AzKeyVault</code> doesn’t have; soft delete is on by default, and RBAC is the default access model unless <code>-DisableRbacAuthorization</code> is used.<a href="#fn53" class="footnote-ref" id="fnref53" role="doc-noteref"><sup>53</sup></a> They also granted the SQL identity “Key Vault Crypto User.” Microsoft’s TDE guidance names Key Vault Crypto Service Encryption User for the server identity under RBAC, or <code>get</code>, <code>wrapKey</code> and <code>unwrapKey</code> under an access policy.<a href="#fn54" class="footnote-ref" id="fnref54" role="doc-noteref"><sup>54</sup></a> With automatic rotation on, the TDE protector moves to a new key version “within 24 hours” of its creation.<a href="#fn55" class="footnote-ref" id="fnref55" role="doc-noteref"><sup>55</sup></a> The 12-month cryptoperiod in the JSON is the program’s choice; the rotation-policy file format follows Microsoft’s example.<a href="#fn56" class="footnote-ref" id="fnref56" role="doc-noteref"><sup>56</sup></a> SQL Server instances on premises and on Azure Arc are covered in <a href="../../../docs/books/b06-data-platform/index.html">Book 06</a>.</p>
+</section>
+<section id="keys-on-other-clouds" class="level3">
+<h3 class="anchored" data-anchor-id="keys-on-other-clouds">Keys on other clouds</h3>
+<p>Key custody is per platform. Each provider runs its own key management service, and a key in one doesn’t protect data in another. AWS Key Management Service and AWS CloudHSM, for example, appear in the certified-services lists of both AWS FedRAMP offerings.<a href="#fn57" class="footnote-ref" id="fnref57" role="doc-noteref"><sup>57</sup></a> The program’s position is that classification and DLP policy can coordinate across the estate, while key custody stays native to each platform and is unified only at the governance layer: an inventory of which keys protect which classified data, emitted under the evidence contract. Purview’s labeling for multicloud data sources through the Data Map is in preview, so the program doesn’t yet rely on it for evidence.<a href="#fn58" class="footnote-ref" id="fnref58" role="doc-noteref"><sup>58</sup></a></p>
+</section>
+</section>
+<section id="non-repudiation-is-a-separate-question" class="level2">
+<h2 class="anchored" data-anchor-id="non-repudiation-is-a-separate-question">Non-repudiation is a separate question</h2>
+<p>The program’s earlier drafts argued that Purview Audit (Premium) satisfies AU-10’s irrefutability standard through signed records in storage tenant administrators can’t reach. Microsoft doesn’t describe the product that way. It documents Audit (Premium) as audit log retention policies, longer retention (one year by default for some workloads, up to ten years with an add-on), intelligent insights such as <code>MailItemsAccessed</code> and search events, and higher bandwidth to the Management Activity API.<a href="#fn59" class="footnote-ref" id="fnref59" role="doc-noteref"><sup>59</sup></a> None of those is a non-repudiation mechanism, and the claim has been removed.</p>
+<p>AU-10 is in the NIST SP 800-53B High baseline and not the Moderate baseline.<a href="#fn60" class="footnote-ref" id="fnref60" role="doc-noteref"><sup>60</sup></a> An agency that adopts it above the Moderate floor needs a design for it: exporting the high-value events this chapter and <a href="../../../docs/books/b12-security-operations/04-platform-and-m365-telemetry.html">Chapter 04</a> name into write-once storage that tenant administrators can’t alter, with the export itself evidenced. That is program design. Chapter 04 carries audit retention and the license that decides it.</p>
+<p>The certificate practice statement the source volume pairs with SC-17 belongs to the PKI: <a href="../../../docs/books/b07-pki/05-who-owns-the-certificate-estate.html">Book 07, Chapter 05</a> covers the certificate policy and trust anchors, and the full RFC 3647 outline stays in the Federal Compliance volume linked below.</p>
+</section>
+<section id="deployment-sequence" class="level2">
+<h2 class="anchored" data-anchor-id="deployment-sequence">Deployment sequence</h2>
+<p>The order matters because each step depends on the one before it. It is the program’s design:</p>
 <ol type="1">
-<li>Describe GCC as the worldwide service with a documented set of exclusions, and cite the exclusions; don’t describe it as a perimeter.</li>
-<li>Keep a per-feature register, one row per exclusion, each with its citation and its environment columns (GCC, GCC High, DoD). Expect rows that differ between environments in both directions.</li>
-<li>Treat the network connectivity layer as the largest documented loss for network decisions, and budget for the independent measurement that replaces it.</li>
-<li>Cite the Marketplace class for the package the agency actually uses, and plan for <code>MSO365MTA</code> as an open question, not a commitment.</li>
-<li>Never plan to recover a missing feature by waiting for a higher certification class. Ask the provider, per feature, what would move it.</li>
+<li><strong>Decide the key options first.</strong> Choose Microsoft-managed or BYOK for the tenant key, whether Customer Key applies, and which categories, if any, need DKE, before labels encrypt production content.</li>
+<li><strong>Deploy the taxonomy as code to a pilot.</strong> Publish labels to a pilot group, confirm markings and encryption in Office apps and in SharePoint, then widen the policy.</li>
+<li><strong>Run auto-labeling and DLP in simulation, then enforce.</strong> Measure false positives against real content before any policy acts.</li>
+<li><strong>Turn on the detections.</strong> Label downgrade, mass label removal and DLP override patterns (FMP-DET-05 and FMP-DET-06) go to the SIEM before enforcement begins (<a href="../../../docs/books/b12-security-operations/11-detection-engineering-and-response.html">Chapter 11</a>).</li>
+<li><strong>Set audit retention to the requirement.</strong> Licenses and retention policies decide how long label and DLP events survive (<a href="../../../docs/books/b12-security-operations/04-platform-and-m365-telemetry.html">Chapter 04</a>).</li>
 </ol>
-<p><a href="../../../docs/books/b10-cloud-boundary/09-equivalents-and-exceptions.html">Chapter 09</a> turns the register into decisions, and <a href="../../../docs/books/b10-cloud-boundary/appendix-a-what-to-ask-for.html">Appendix A</a> lists the specific questions to put to the provider.</p>
+</section>
+<section id="honest-limits" class="level2">
+<h2 class="anchored" data-anchor-id="honest-limits">Honest limits</h2>
+<ul>
+<li>Auto-labeling is only as accurate as its classifiers. Manual labeling discipline and the label-removal detection compensate for mislabeled or stripped content.</li>
+<li>Agency-held keys move the burden of custody to the agency. Rotation, backup and recovery become the agency’s job, and a deleted key without a backup is unrecoverable data.<a href="#fn61" class="footnote-ref" id="fnref61" role="doc-noteref"><sup>61</sup></a></li>
+<li>DLP restricts the movement of content it matches. It doesn’t model behavior; insider risk and detection engineering cover what pattern matching misses.</li>
+</ul>
+</section>
+<section id="the-control-map-for-this-chapter" class="level2">
+<h2 class="anchored" data-anchor-id="the-control-map-for-this-chapter">The control map for this chapter</h2>
+<table class="table-striped table-hover caption-top table">
+<caption>Controls this chapter contributes to</caption>
+<thead>
+<tr class="header">
+<th>Control</th>
+<th>How this chapter contributes</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>AC-4</td>
+<td>Label-derived DLP on the service, the endpoint and the CASB</td>
+<td>The primary data-layer flow control</td>
+</tr>
+<tr class="even">
+<td>AC-16</td>
+<td>Labels as security attributes associated with the information and retained with it</td>
+<td>AC-16 isn’t in any NIST SP 800-53B baseline; adopt it explicitly if the SSP relies on it<a href="#fn62" class="footnote-ref" id="fnref62" role="doc-noteref"><sup>62</sup></a></td>
+</tr>
+<tr class="odd">
+<td>MP-3</td>
+<td>Label content markings as electronic CUI marking</td>
+<td>MP-2, MP-4 and MP-5 govern system media; claim them only for removable media and print, which endpoint DLP controls</td>
+</tr>
+<tr class="even">
+<td>SC-12</td>
+<td>Key Vault, Customer Key and BYOK with inventory, rotation and access audit</td>
+<td>SC-12(1) is in the High baseline only<a href="#fn63" class="footnote-ref" id="fnref63" role="doc-noteref"><sup>63</sup></a></td>
+</tr>
+<tr class="odd">
+<td>SC-13</td>
+<td>FIPS 140-3 validated modules</td>
+<td>Check each module’s CMVP certificate</td>
+</tr>
+<tr class="even">
+<td>SC-28</td>
+<td>TDE with a customer-managed key; label encryption beyond the database boundary</td>
+<td>Label encryption follows the file wherever it’s stored</td>
+</tr>
+</tbody>
+</table>
+<p>A 3PAO may prefer label-based attribute control anchored to AC-16 and AC-4, with MP claims reserved for physical and removable media. Read the MP row as supporting evidence for the data-layer intent, not the sole closure of the media controls.</p>
+</section>
+<section id="alignment-with-fedramps-key-security-indicators" class="level2">
+<h2 class="anchored" data-anchor-id="alignment-with-fedramps-key-security-indicators">Alignment with FedRAMP’s Key Security Indicators</h2>
+<p>As in <a href="../../../docs/books/b12-security-operations/08-cloud-native-posture.html">Chapter 08</a>, FedRAMP’s 2026 indicators are written for cloud service providers, and the program borrows them as a vocabulary for its own evidence.<a href="#fn64" class="footnote-ref" id="fnref64" role="doc-noteref"><sup>64</sup></a> The mapping is the program’s design.</p>
+<table class="table-striped table-hover caption-top table">
+<caption>Data-protection evidence mapped to FedRAMP’s 2026 Key Security Indicators</caption>
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Data-protection evidence</th>
+<th>Indicator and FedRAMP’s wording</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Label encryption, TDE with customer-managed keys, DLP enforcement logs</td>
+<td><strong>KSI-SVC-SIN</strong> Securing Information: “Information is encrypted or otherwise secured from unwanted access or modification” (related controls include SC-13, SC-28 and AC-21)</td>
+</tr>
+<tr class="even">
+<td>Key inventory, rotation policy compliance, access reviews</td>
+<td><strong>KSI-SVC-ASM</strong> Automating Secret Management: “Management, protection, and regular rotation of digital keys, certificates, and other secrets is automated and persistently reviewed” (SC-12, SC-12(1), SC-17)</td>
+</tr>
+<tr class="odd">
+<td>Spill response for CUI placed where it doesn’t belong</td>
+<td><strong>KSI-SVC-RUD</strong> Removing Unwanted Data, which names spills explicitly</td>
+</tr>
+<tr class="even">
+<td>Label and DLP events in the event-type list</td>
+<td><strong>KSI-MLA-LET</strong> Logging Event Types (related controls include AU-2, AU-10 and AU-12)</td>
+</tr>
+</tbody>
+</table>
+<p>The earlier drafts mapped classification to <code>KSI-CNA</code>. The current Cloud Native Architecture indicators are about privileges, intended state, attack surface, network traffic and availability, so the program now maps data protection to the Service Configuration indicators above.<a href="#fn65" class="footnote-ref" id="fnref65" role="doc-noteref"><sup>65</sup></a></p>
+<p>The control-level depth for this chapter is in two Federal Compliance volumes: <a href="https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_III_Book_05_Data_Protection_Purview.md">Data Protection: Microsoft Purview and Cryptographic Key Management</a> and <a href="https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_VI_Book_05_Data_Protection_Deployment.md">Data Protection Deployment</a>. <a href="../../../docs/books/b12-security-operations/appendix-a-requirements-mapping.html">Appendix A</a> maps all of this book’s controls together.</p>
+</section>
+<section id="what-to-take-from-this-chapter" class="level2">
+<h2 class="anchored" data-anchor-id="what-to-take-from-this-chapter">What to take from this chapter</h2>
+<ol type="1">
+<li>Network and identity controls regulate the pipe. Only classification tells any control what the payload is, and a CASB can enforce on it only once the label is there.</li>
+<li>The CUI framework has two control levels. Basic or Specified is decided by the authority in the CUI Registry, not by how sensitive the content feels: Privacy Act records are CUI Basic, federal taxpayer information is CUI Specified.</li>
+<li>Non-CUI information can’t carry a dissemination control of its own. “Internal” is a label for uncontrolled information, not a fifth control level.</li>
+<li>Deploy labels, auto-labeling and DLP as code, simulate before enforcing, and watch the override path once enforcement starts.</li>
+<li>BYOK, Customer Key and Double Key Encryption are three different choices. Only DKE is per label, and it costs search, eDiscovery, coauthoring and Copilot for that content.</li>
+<li>Customer Key keys must never expire. A rotation policy written for an Azure SQL key will break Microsoft 365 if applied to them.</li>
+</ol>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -2792,7 +3238,7 @@ Figure&nbsp;2: The three Microsoft 365 government packages on the FedRAMP Market
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><a href="../../../docs/books/b10-cloud-boundary/03-what-changed-at-fedramp.html">← Previous: Chapter 03 — What Changed at FedRAMP</a> · <a href="../../../docs/books/b10-cloud-boundary/index.html">Book index</a> · <a href="../../../docs/books/b10-cloud-boundary/05-the-landing-zone.html">Next: Chapter 05 — The Landing Zone →</a></p>
+<p><a href="../../../docs/books/b12-security-operations/08-cloud-native-posture.html">← Previous: Chapter 08 — Cloud-Native Posture</a> · <a href="../../../docs/books/b12-security-operations/index.html">Book index</a> · <a href="../../../docs/books/b12-security-operations/10-who-runs-security-operations.html">Next: Chapter 10 — Who Runs Security Operations →</a></p>
 </div>
 </div>
 
@@ -2801,42 +3247,71 @@ Figure&nbsp;2: The three Microsoft 365 government packages on the FedRAMP Market
 <section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr>
 <ol>
-<li id="fn1"><p>Microsoft Learn, “Microsoft 365 U.S. Government GCC High endpoints” (endpoint list navigation: “Worldwide (including GCC),” 21Vianet, DoD, GCC High), <a href="https://learn.microsoft.com/microsoft-365/enterprise/microsoft-365-u-s-government-gcc-high-endpoints?view=o365-worldwide" class="uri">https://learn.microsoft.com/microsoft-365/enterprise/microsoft-365-u-s-government-gcc-high-endpoints?view=o365-worldwide</a> (accessed Oct 21, 2026).<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>Microsoft Learn, “Cloud feature availability for US Government customers,” section “Microsoft 365 integration,” <a href="https://learn.microsoft.com/azure/security/fundamentals/feature-availability#microsoft-365-integration" class="uri">https://learn.microsoft.com/azure/security/fundamentals/feature-availability#microsoft-365-integration</a> (accessed Oct 21, 2026).<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3"><p>Microsoft Learn, “Office 365 GCC” (service description: US Government community compliance; customer support), <a href="https://learn.microsoft.com/office365/servicedescriptions/office-365-platform-service-description/office-365-us-government/gcc" class="uri">https://learn.microsoft.com/office365/servicedescriptions/office-365-platform-service-description/office-365-us-government/gcc</a> (accessed Oct 21, 2026).<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn4"><p>Microsoft Learn, “Additional network security requirements for Office 365 GCC High and DOD,” <a href="https://learn.microsoft.com/microsoft-365/enterprise/additional-network-security-requirements-for-office-365-gcchigh-and-dod?view=o365-worldwide" class="uri">https://learn.microsoft.com/microsoft-365/enterprise/additional-network-security-requirements-for-office-365-gcchigh-and-dod?view=o365-worldwide</a> (accessed Oct 21, 2026).<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn5"><p>Microsoft Learn, “How to check Windows release health,” Prerequisites, <a href="https://learn.microsoft.com/windows/deployment/update/check-release-health#prerequisites" class="uri">https://learn.microsoft.com/windows/deployment/update/check-release-health#prerequisites</a> (accessed Oct 21, 2026).<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn6"><p>FedRAMP Marketplace product data, <a href="https://www.fedramp.gov/marketplace/products.json" class="uri">https://www.fedramp.gov/marketplace/products.json</a>, dataset last changed October 21, 2026 (accessed Oct 21, 2026). Records MSO365MT, MSO365MTA and FR1824057433: status, phase, certification class, impact level, authorization count, agency list, certification date, independent assessor, event log and service description.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn7"><p>Microsoft Learn, “Network connectivity in the Microsoft 365 Admin Center,” <a href="https://learn.microsoft.com/microsoft-365/enterprise/office-365-network-mac-perf-overview?view=o365-worldwide" class="uri">https://learn.microsoft.com/microsoft-365/enterprise/office-365-network-mac-perf-overview?view=o365-worldwide</a> (accessed Oct 21, 2026).<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn8"><p>Microsoft Learn, “Microsoft Adoption Score” (prerequisites; score categories), <a href="https://learn.microsoft.com/microsoft-365/admin/adoption/adoption-score?view=o365-worldwide" class="uri">https://learn.microsoft.com/microsoft-365/admin/adoption/adoption-score?view=o365-worldwide</a> (accessed Oct 21, 2026).<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn9"><p>Microsoft Learn, “Office 365 Content Delivery Network (CDN) Quickstart,” <a href="https://learn.microsoft.com/microsoft-365/enterprise/office-365-cdn-quickstart?view=o365-worldwide" class="uri">https://learn.microsoft.com/microsoft-365/enterprise/office-365-cdn-quickstart?view=o365-worldwide</a> (accessed Oct 21, 2026).<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn10"><p>Microsoft Learn, “Microsoft 365 informed network routing,” <a href="https://learn.microsoft.com/microsoft-365/enterprise/office-365-network-mac-perf-cpe?view=o365-worldwide" class="uri">https://learn.microsoft.com/microsoft-365/enterprise/office-365-network-mac-perf-cpe?view=o365-worldwide</a> (accessed Oct 21, 2026).<a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn11"><p>Microsoft Learn, “How to check Windows release health,” Prerequisites, <a href="https://learn.microsoft.com/windows/deployment/update/check-release-health#prerequisites" class="uri">https://learn.microsoft.com/windows/deployment/update/check-release-health#prerequisites</a> (accessed Oct 21, 2026).<a href="#fnref11" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn12"><p>Microsoft Learn, “Office application and feature availability in Government plans,” <a href="https://learn.microsoft.com/office365/servicedescriptions/office-applications-service-description/office-application-and-feature-availability-in-government-plans" class="uri">https://learn.microsoft.com/office365/servicedescriptions/office-applications-service-description/office-application-and-feature-availability-in-government-plans</a> (accessed Oct 21, 2026).<a href="#fnref12" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn13"><p>Microsoft Learn, “Network connectivity in the Microsoft 365 Admin Center,” <a href="https://learn.microsoft.com/microsoft-365/enterprise/office-365-network-mac-perf-overview?view=o365-worldwide" class="uri">https://learn.microsoft.com/microsoft-365/enterprise/office-365-network-mac-perf-overview?view=o365-worldwide</a> (accessed Oct 21, 2026).<a href="#fnref13" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn14"><p>Microsoft Learn, “Network connectivity in the Microsoft 365 Admin Center,” <a href="https://learn.microsoft.com/microsoft-365/enterprise/office-365-network-mac-perf-overview?view=o365-worldwide" class="uri">https://learn.microsoft.com/microsoft-365/enterprise/office-365-network-mac-perf-overview?view=o365-worldwide</a> (accessed Oct 21, 2026).<a href="#fnref14" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn15"><p>Microsoft Learn, “Microsoft 365 network assessment,” <a href="https://learn.microsoft.com/microsoft-365/enterprise/office-365-network-mac-perf-score?view=o365-worldwide" class="uri">https://learn.microsoft.com/microsoft-365/enterprise/office-365-network-mac-perf-score?view=o365-worldwide</a> (accessed Oct 21, 2026).<a href="#fnref15" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn16"><p>Microsoft Learn, “Microsoft 365 network assessment,” <a href="https://learn.microsoft.com/microsoft-365/enterprise/office-365-network-mac-perf-score?view=o365-worldwide" class="uri">https://learn.microsoft.com/microsoft-365/enterprise/office-365-network-mac-perf-score?view=o365-worldwide</a> (accessed Oct 21, 2026).<a href="#fnref16" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn17"><p>Microsoft Learn, “Network connectivity in the Microsoft 365 Admin Center,” <a href="https://learn.microsoft.com/microsoft-365/enterprise/office-365-network-mac-perf-overview?view=o365-worldwide" class="uri">https://learn.microsoft.com/microsoft-365/enterprise/office-365-network-mac-perf-overview?view=o365-worldwide</a> (accessed Oct 21, 2026).<a href="#fnref17" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn18"><p>Microsoft Learn, “Microsoft 365 Network Insights,” <a href="https://learn.microsoft.com/microsoft-365/enterprise/office-365-network-mac-perf-insights?view=o365-worldwide" class="uri">https://learn.microsoft.com/microsoft-365/enterprise/office-365-network-mac-perf-insights?view=o365-worldwide</a> (accessed Oct 21, 2026).<a href="#fnref18" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn19"><p>Microsoft Learn, “Network provider details and connectivity attribution in the Microsoft 365 Admin Center,” <a href="https://learn.microsoft.com/microsoft-365/enterprise/office-365-network-mac-perf-nppdetails?view=o365-worldwide" class="uri">https://learn.microsoft.com/microsoft-365/enterprise/office-365-network-mac-perf-nppdetails?view=o365-worldwide</a> (accessed Oct 21, 2026).<a href="#fnref19" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn20"><p>Microsoft Learn, “Microsoft 365 network connectivity test tool” (version table; network egress distance insight), <a href="https://learn.microsoft.com/microsoft-365/enterprise/office-365-network-mac-perf-onboarding-tool?view=o365-worldwide" class="uri">https://learn.microsoft.com/microsoft-365/enterprise/office-365-network-mac-perf-onboarding-tool?view=o365-worldwide</a> (accessed Oct 21, 2026).<a href="#fnref20" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn21"><p>Microsoft Learn, “Microsoft 365 network connectivity test tool” (version table; network egress distance insight), <a href="https://learn.microsoft.com/microsoft-365/enterprise/office-365-network-mac-perf-onboarding-tool?view=o365-worldwide" class="uri">https://learn.microsoft.com/microsoft-365/enterprise/office-365-network-mac-perf-onboarding-tool?view=o365-worldwide</a> (accessed Oct 21, 2026).<a href="#fnref21" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn22"><p>Microsoft Learn, “Microsoft Adoption Score” (prerequisites; score categories), <a href="https://learn.microsoft.com/microsoft-365/admin/adoption/adoption-score?view=o365-worldwide" class="uri">https://learn.microsoft.com/microsoft-365/admin/adoption/adoption-score?view=o365-worldwide</a> (accessed Oct 21, 2026).<a href="#fnref22" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn23"><p>Microsoft Learn, “Microsoft 365 informed network routing,” <a href="https://learn.microsoft.com/microsoft-365/enterprise/office-365-network-mac-perf-cpe?view=o365-worldwide" class="uri">https://learn.microsoft.com/microsoft-365/enterprise/office-365-network-mac-perf-cpe?view=o365-worldwide</a> (accessed Oct 21, 2026).<a href="#fnref23" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn24"><p>Microsoft Learn, “Office 365 Content Delivery Network (CDN) Quickstart,” <a href="https://learn.microsoft.com/microsoft-365/enterprise/office-365-cdn-quickstart?view=o365-worldwide" class="uri">https://learn.microsoft.com/microsoft-365/enterprise/office-365-cdn-quickstart?view=o365-worldwide</a> (accessed Oct 21, 2026).<a href="#fnref24" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn25"><p>FedRAMP Marketplace product data, <a href="https://www.fedramp.gov/marketplace/products.json" class="uri">https://www.fedramp.gov/marketplace/products.json</a>, dataset last changed October 21, 2026 (accessed Oct 21, 2026). Records MSO365MT, MSO365MTA and FR1824057433: status, phase, certification class, impact level, authorization count, agency list, certification date, independent assessor, event log and service description.<a href="#fnref25" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn26"><p>Microsoft Learn, “Network connectivity in the Microsoft 365 Admin Center,” <a href="https://learn.microsoft.com/microsoft-365/enterprise/office-365-network-mac-perf-overview?view=o365-worldwide" class="uri">https://learn.microsoft.com/microsoft-365/enterprise/office-365-network-mac-perf-overview?view=o365-worldwide</a> (accessed Oct 21, 2026).<a href="#fnref26" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn27"><p>Microsoft Learn, “Microsoft 365 informed network routing,” <a href="https://learn.microsoft.com/microsoft-365/enterprise/office-365-network-mac-perf-cpe?view=o365-worldwide" class="uri">https://learn.microsoft.com/microsoft-365/enterprise/office-365-network-mac-perf-cpe?view=o365-worldwide</a> (accessed Oct 21, 2026).<a href="#fnref27" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn28"><p>FedRAMP Marketplace product data, <a href="https://www.fedramp.gov/marketplace/products.json" class="uri">https://www.fedramp.gov/marketplace/products.json</a>, dataset last changed October 21, 2026 (accessed Oct 21, 2026). Records MSO365MT, MSO365MTA and FR1824057433: status, phase, certification class, impact level, authorization count, agency list, certification date, independent assessor, event log and service description.<a href="#fnref28" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn29"><p>FedRAMP Marketplace product data, <a href="https://www.fedramp.gov/marketplace/products.json" class="uri">https://www.fedramp.gov/marketplace/products.json</a>, dataset last changed October 21, 2026 (accessed Oct 21, 2026). Records MSO365MT, MSO365MTA and FR1824057433: status, phase, certification class, impact level, authorization count, agency list, certification date, independent assessor, event log and service description.<a href="#fnref29" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn30"><p>FedRAMP, “Significant Change Notification,” <em>FedRAMP Consolidated Rules for 2026</em> (SCN-CSO-EVA), <a href="https://www.fedramp.gov/2026/reference/significant-change-notification/" class="uri">https://www.fedramp.gov/2026/reference/significant-change-notification/</a> (accessed Oct 21, 2026).<a href="#fnref30" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn31"><p>Microsoft Learn, “Office 365 GCC” (service description: US Government community compliance; customer support), <a href="https://learn.microsoft.com/office365/servicedescriptions/office-365-platform-service-description/office-365-us-government/gcc" class="uri">https://learn.microsoft.com/office365/servicedescriptions/office-365-platform-service-description/office-365-us-government/gcc</a> (accessed Oct 21, 2026).<a href="#fnref31" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn32"><p>Microsoft Learn, “Cloud feature availability for US Government customers,” section “Microsoft 365 integration,” <a href="https://learn.microsoft.com/azure/security/fundamentals/feature-availability#microsoft-365-integration" class="uri">https://learn.microsoft.com/azure/security/fundamentals/feature-availability#microsoft-365-integration</a> (accessed Oct 21, 2026).<a href="#fnref32" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn33"><p>FedRAMP Marketplace product data, <a href="https://www.fedramp.gov/marketplace/products.json" class="uri">https://www.fedramp.gov/marketplace/products.json</a>, dataset last changed October 21, 2026 (accessed Oct 21, 2026). Records MSO365MT, MSO365MTA and FR1824057433: status, phase, certification class, impact level, authorization count, agency list, certification date, independent assessor, event log and service description.<a href="#fnref33" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn34"><p>FedRAMP, Notice NTC-0004, <em>Initial Outcome from RFC-0020 FedRAMP Authorization Designations</em>, February 25, 2026, <a href="https://www.fedramp.gov/notices/0004/" class="uri">https://www.fedramp.gov/notices/0004/</a> (accessed Oct 21, 2026).<a href="#fnref34" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn35"><p>Microsoft Learn, “Network connectivity in the Microsoft 365 Admin Center,” <a href="https://learn.microsoft.com/microsoft-365/enterprise/office-365-network-mac-perf-overview?view=o365-worldwide" class="uri">https://learn.microsoft.com/microsoft-365/enterprise/office-365-network-mac-perf-overview?view=o365-worldwide</a> (accessed Oct 21, 2026).<a href="#fnref35" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn36"><p>FedRAMP Marketplace product data, <a href="https://www.fedramp.gov/marketplace/products.json" class="uri">https://www.fedramp.gov/marketplace/products.json</a>, dataset last changed October 21, 2026 (accessed Oct 21, 2026). Records MSO365MT, MSO365MTA and FR1824057433: status, phase, certification class, impact level, authorization count, agency list, certification date, independent assessor, event log and service description.<a href="#fnref36" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>Microsoft Learn, “Learn about sensitivity labels,” section “What a sensitivity label is,” <a href="https://learn.microsoft.com/purview/sensitivity-labels" class="uri">https://learn.microsoft.com/purview/sensitivity-labels</a> (accessed Oct 21, 2026).<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Microsoft Learn, “Create Microsoft Defender for Cloud Apps session policies,” <a href="https://learn.microsoft.com/defender-cloud-apps/session-policy-aad" class="uri">https://learn.microsoft.com/defender-cloud-apps/session-policy-aad</a> (accessed Oct 21, 2026); and “Commonly used Microsoft Defender for Cloud Apps information protection policies,” <a href="https://learn.microsoft.com/defender-cloud-apps/policies-information-protection" class="uri">https://learn.microsoft.com/defender-cloud-apps/policies-information-protection</a> (accessed Oct 21, 2026).<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>National Archives and Records Administration, “About Controlled Unclassified Information (CUI),” <a href="https://www.archives.gov/cui/about" class="uri">https://www.archives.gov/cui/about</a> (accessed Oct 21, 2026).<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>32 CFR Part 2002, <em>Controlled Unclassified Information</em>, §§ 2002.1(c), 2002.4(j), (r) and (ss), 2002.14(g) and (h), and 2002.20(b), electronic Code of Federal Regulations, as in effect October 1, 2026, retrieved through the eCFR versioner API, <a href="https://www.ecfr.gov/api/versioner/v1/full/2026-10-01/title-32.xml?part=2002" class="uri">https://www.ecfr.gov/api/versioner/v1/full/2026-10-01/title-32.xml?part=2002</a> (accessed Oct 21, 2026).<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>32 CFR Part 2002, <em>Controlled Unclassified Information</em>, §§ 2002.1(c), 2002.4(j), (r) and (ss), 2002.14(g) and (h), and 2002.20(b), electronic Code of Federal Regulations, as in effect October 1, 2026, retrieved through the eCFR versioner API, <a href="https://www.ecfr.gov/api/versioner/v1/full/2026-10-01/title-32.xml?part=2002" class="uri">https://www.ecfr.gov/api/versioner/v1/full/2026-10-01/title-32.xml?part=2002</a> (accessed Oct 21, 2026).<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>32 CFR Part 2002, <em>Controlled Unclassified Information</em>, §§ 2002.1(c), 2002.4(j), (r) and (ss), 2002.14(g) and (h), and 2002.20(b), electronic Code of Federal Regulations, as in effect October 1, 2026, retrieved through the eCFR versioner API, <a href="https://www.ecfr.gov/api/versioner/v1/full/2026-10-01/title-32.xml?part=2002" class="uri">https://www.ecfr.gov/api/versioner/v1/full/2026-10-01/title-32.xml?part=2002</a> (accessed Oct 21, 2026).<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p>32 CFR Part 2002, <em>Controlled Unclassified Information</em>, §§ 2002.1(c), 2002.4(j), (r) and (ss), 2002.14(g) and (h), and 2002.20(b), electronic Code of Federal Regulations, as in effect October 1, 2026, retrieved through the eCFR versioner API, <a href="https://www.ecfr.gov/api/versioner/v1/full/2026-10-01/title-32.xml?part=2002" class="uri">https://www.ecfr.gov/api/versioner/v1/full/2026-10-01/title-32.xml?part=2002</a> (accessed Oct 21, 2026).<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p>32 CFR Part 2002, <em>Controlled Unclassified Information</em>, §§ 2002.1(c), 2002.4(j), (r) and (ss), 2002.14(g) and (h), and 2002.20(b), electronic Code of Federal Regulations, as in effect October 1, 2026, retrieved through the eCFR versioner API, <a href="https://www.ecfr.gov/api/versioner/v1/full/2026-10-01/title-32.xml?part=2002" class="uri">https://www.ecfr.gov/api/versioner/v1/full/2026-10-01/title-32.xml?part=2002</a> (accessed Oct 21, 2026).<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9"><p>32 CFR Part 2002, <em>Controlled Unclassified Information</em>, §§ 2002.1(c), 2002.4(j), (r) and (ss), 2002.14(g) and (h), and 2002.20(b), electronic Code of Federal Regulations, as in effect October 1, 2026, retrieved through the eCFR versioner API, <a href="https://www.ecfr.gov/api/versioner/v1/full/2026-10-01/title-32.xml?part=2002" class="uri">https://www.ecfr.gov/api/versioner/v1/full/2026-10-01/title-32.xml?part=2002</a> (accessed Oct 21, 2026).<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn10"><p>National Archives and Records Administration, CUI Registry, “Privacy” (category detail: General Privacy, authority 5 USC 552a(b), Basic), page last reviewed July 20, 2026, <a href="https://www.archives.gov/cui/registry/category-detail/privacy" class="uri">https://www.archives.gov/cui/registry/category-detail/privacy</a> (accessed Oct 21, 2026).<a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn11"><p>National Archives and Records Administration, CUI Registry, “Federal Taxpayer Information,” banner marking CUI//SP-TAX, authority 26 USC 6103 Specified, <a href="https://www.archives.gov/cui/registry/category-detail/federal-taxpayer-info" class="uri">https://www.archives.gov/cui/registry/category-detail/federal-taxpayer-info</a> (accessed Oct 21, 2026).<a href="#fnref11" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn12"><p>National Archives and Records Administration, CUI Registry, “Health Information,” <a href="https://www.archives.gov/cui/registry/category-detail/health-info" class="uri">https://www.archives.gov/cui/registry/category-detail/health-info</a> (accessed Oct 21, 2026).<a href="#fnref12" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn13"><p>National Archives and Records Administration, CUI Registry, “General Law Enforcement,” page last reviewed July 29, 2025, <a href="https://www.archives.gov/cui/registry/category-detail/general-law-enforcement" class="uri">https://www.archives.gov/cui/registry/category-detail/general-law-enforcement</a> (accessed Oct 21, 2026).<a href="#fnref13" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn14"><p>Microsoft Learn, “New-Label” (parameters ContentType, EncryptionContentExpiredOnDateInDaysOrNever, EncryptionProtectionType, EncryptionRightsDefinitions, LabelActions and ParentId), source <a href="https://github.com/MicrosoftDocs/office-docs-powershell/blob/main/exchange/exchange-ps/ExchangePowerShell/New-Label.md" class="uri">https://github.com/MicrosoftDocs/office-docs-powershell/blob/main/exchange/exchange-ps/ExchangePowerShell/New-Label.md</a>, published at <a href="https://learn.microsoft.com/powershell/module/exchangepowershell/new-label" class="uri">https://learn.microsoft.com/powershell/module/exchangepowershell/new-label</a> (accessed Oct 21, 2026).<a href="#fnref14" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn15"><p>Microsoft Learn, “Restrict access to content by using sensitivity labels to apply encryption,” section “Assign permissions now,” <a href="https://learn.microsoft.com/purview/encryption-sensitivity-labels" class="uri">https://learn.microsoft.com/purview/encryption-sensitivity-labels</a> (accessed Oct 21, 2026).<a href="#fnref15" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn16"><p>Microsoft Learn, “New-Label” (parameters ContentType, EncryptionContentExpiredOnDateInDaysOrNever, EncryptionProtectionType, EncryptionRightsDefinitions, LabelActions and ParentId), source <a href="https://github.com/MicrosoftDocs/office-docs-powershell/blob/main/exchange/exchange-ps/ExchangePowerShell/New-Label.md" class="uri">https://github.com/MicrosoftDocs/office-docs-powershell/blob/main/exchange/exchange-ps/ExchangePowerShell/New-Label.md</a>, published at <a href="https://learn.microsoft.com/powershell/module/exchangepowershell/new-label" class="uri">https://learn.microsoft.com/powershell/module/exchangepowershell/new-label</a> (accessed Oct 21, 2026).<a href="#fnref16" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn17"><p>Microsoft Learn, “Manage sensitivity labels in Office apps,” section “When Office apps apply content marking and encryption,” <a href="https://learn.microsoft.com/purview/sensitivity-labels-office-apps" class="uri">https://learn.microsoft.com/purview/sensitivity-labels-office-apps</a> (accessed Oct 21, 2026).<a href="#fnref17" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn18"><p>Microsoft Learn, “New-Label” (parameters ContentType, EncryptionContentExpiredOnDateInDaysOrNever, EncryptionProtectionType, EncryptionRightsDefinitions, LabelActions and ParentId), source <a href="https://github.com/MicrosoftDocs/office-docs-powershell/blob/main/exchange/exchange-ps/ExchangePowerShell/New-Label.md" class="uri">https://github.com/MicrosoftDocs/office-docs-powershell/blob/main/exchange/exchange-ps/ExchangePowerShell/New-Label.md</a>, published at <a href="https://learn.microsoft.com/powershell/module/exchangepowershell/new-label" class="uri">https://learn.microsoft.com/powershell/module/exchangepowershell/new-label</a> (accessed Oct 21, 2026).<a href="#fnref18" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn19"><p>Microsoft Learn, “New-Label” (parameters ContentType, EncryptionContentExpiredOnDateInDaysOrNever, EncryptionProtectionType, EncryptionRightsDefinitions, LabelActions and ParentId), source <a href="https://github.com/MicrosoftDocs/office-docs-powershell/blob/main/exchange/exchange-ps/ExchangePowerShell/New-Label.md" class="uri">https://github.com/MicrosoftDocs/office-docs-powershell/blob/main/exchange/exchange-ps/ExchangePowerShell/New-Label.md</a>, published at <a href="https://learn.microsoft.com/powershell/module/exchangepowershell/new-label" class="uri">https://learn.microsoft.com/powershell/module/exchangepowershell/new-label</a> (accessed Oct 21, 2026).<a href="#fnref19" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn20"><p>Microsoft Learn, “New-Label” (parameters ContentType, EncryptionContentExpiredOnDateInDaysOrNever, EncryptionProtectionType, EncryptionRightsDefinitions, LabelActions and ParentId), source <a href="https://github.com/MicrosoftDocs/office-docs-powershell/blob/main/exchange/exchange-ps/ExchangePowerShell/New-Label.md" class="uri">https://github.com/MicrosoftDocs/office-docs-powershell/blob/main/exchange/exchange-ps/ExchangePowerShell/New-Label.md</a>, published at <a href="https://learn.microsoft.com/powershell/module/exchangepowershell/new-label" class="uri">https://learn.microsoft.com/powershell/module/exchangepowershell/new-label</a> (accessed Oct 21, 2026).<a href="#fnref20" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn21"><p>Microsoft Learn, “New-LabelPolicy” (parameters ExchangeLocation, ExchangeLocationException and SharePointLocation), source <a href="https://github.com/MicrosoftDocs/office-docs-powershell/blob/main/exchange/exchange-ps/ExchangePowerShell/New-LabelPolicy.md" class="uri">https://github.com/MicrosoftDocs/office-docs-powershell/blob/main/exchange/exchange-ps/ExchangePowerShell/New-LabelPolicy.md</a>, published at <a href="https://learn.microsoft.com/powershell/module/exchangepowershell/new-labelpolicy" class="uri">https://learn.microsoft.com/powershell/module/exchangepowershell/new-labelpolicy</a> (accessed Oct 21, 2026).<a href="#fnref21" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn22"><p>Microsoft Learn, “Sensitive information type entity definitions,” <a href="https://learn.microsoft.com/purview/sit-sensitive-information-type-entity-definitions" class="uri">https://learn.microsoft.com/purview/sit-sensitive-information-type-entity-definitions</a> (accessed Oct 21, 2026).<a href="#fnref22" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn23"><p>Microsoft Learn, “New-DlpSensitiveInformationTypeRulePackage,” source <a href="https://github.com/MicrosoftDocs/office-docs-powershell/blob/main/exchange/exchange-ps/ExchangePowerShell/New-DlpSensitiveInformationTypeRulePackage.md" class="uri">https://github.com/MicrosoftDocs/office-docs-powershell/blob/main/exchange/exchange-ps/ExchangePowerShell/New-DlpSensitiveInformationTypeRulePackage.md</a>, published at <a href="https://learn.microsoft.com/powershell/module/exchangepowershell/new-dlpsensitiveinformationtyperulepackage" class="uri">https://learn.microsoft.com/powershell/module/exchangepowershell/new-dlpsensitiveinformationtyperulepackage</a> (accessed Oct 21, 2026).<a href="#fnref23" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn24"><p>Microsoft Learn, “Get started with trainable classifiers,” <a href="https://learn.microsoft.com/purview/trainable-classifiers-get-started-with" class="uri">https://learn.microsoft.com/purview/trainable-classifiers-get-started-with</a>, and “Learn about trainable classifiers,” <a href="https://learn.microsoft.com/purview/trainable-classifiers-learn-about" class="uri">https://learn.microsoft.com/purview/trainable-classifiers-learn-about</a> (accessed Oct 21, 2026).<a href="#fnref24" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn25"><p>Microsoft Learn, “Plan for Microsoft Purview compliance and risk management solutions – GCC deployments,” Step 4, <a href="https://learn.microsoft.com/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/plan-for-microsoft-purview-gcc-deployments" class="uri">https://learn.microsoft.com/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/plan-for-microsoft-purview-gcc-deployments</a> (accessed Oct 21, 2026).<a href="#fnref25" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn26"><p>Microsoft Learn, “Plan for Microsoft Purview compliance and risk management solutions – GCC High deployments,” Step 4, <a href="https://learn.microsoft.com/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/plan-for-microsoft-purview-gcc-high-deployments" class="uri">https://learn.microsoft.com/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/plan-for-microsoft-purview-gcc-high-deployments</a> (accessed Oct 21, 2026).<a href="#fnref26" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn27"><p>Microsoft Learn, “New-AutoSensitivityLabelPolicy” (parameter Mode), source <a href="https://github.com/MicrosoftDocs/office-docs-powershell/blob/main/exchange/exchange-ps/ExchangePowerShell/New-AutoSensitivityLabelPolicy.md" class="uri">https://github.com/MicrosoftDocs/office-docs-powershell/blob/main/exchange/exchange-ps/ExchangePowerShell/New-AutoSensitivityLabelPolicy.md</a>, published at <a href="https://learn.microsoft.com/powershell/module/exchangepowershell/new-autosensitivitylabelpolicy" class="uri">https://learn.microsoft.com/powershell/module/exchangepowershell/new-autosensitivitylabelpolicy</a> (accessed Oct 21, 2026).<a href="#fnref27" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn28"><p>Microsoft Learn, “New-AutoSensitivityLabelRule” (parameters Workload and ContentContainsSensitiveInformation), source <a href="https://github.com/MicrosoftDocs/office-docs-powershell/blob/main/exchange/exchange-ps/ExchangePowerShell/New-AutoSensitivityLabelRule.md" class="uri">https://github.com/MicrosoftDocs/office-docs-powershell/blob/main/exchange/exchange-ps/ExchangePowerShell/New-AutoSensitivityLabelRule.md</a>, published at <a href="https://learn.microsoft.com/powershell/module/exchangepowershell/new-autosensitivitylabelrule" class="uri">https://learn.microsoft.com/powershell/module/exchangepowershell/new-autosensitivitylabelrule</a> (accessed Oct 21, 2026).<a href="#fnref28" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn29"><p>Microsoft Learn, “Plan for Microsoft Purview compliance and risk management solutions – GCC deployments,” Step 4, <a href="https://learn.microsoft.com/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/plan-for-microsoft-purview-gcc-deployments" class="uri">https://learn.microsoft.com/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/plan-for-microsoft-purview-gcc-deployments</a> (accessed Oct 21, 2026).<a href="#fnref29" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn30"><p>Microsoft Learn, “Plan for Microsoft Purview compliance and risk management solutions – GCC High deployments,” Step 4, <a href="https://learn.microsoft.com/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/plan-for-microsoft-purview-gcc-high-deployments" class="uri">https://learn.microsoft.com/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/plan-for-microsoft-purview-gcc-high-deployments</a> (accessed Oct 21, 2026).<a href="#fnref30" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn31"><p>Microsoft Learn, “Onboard Windows devices into Microsoft 365 overview,” <a href="https://learn.microsoft.com/purview/device-onboarding-overview" class="uri">https://learn.microsoft.com/purview/device-onboarding-overview</a> (accessed Oct 21, 2026).<a href="#fnref31" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn32"><p>Microsoft Learn, “Create Microsoft Defender for Cloud Apps session policies,” <a href="https://learn.microsoft.com/defender-cloud-apps/session-policy-aad" class="uri">https://learn.microsoft.com/defender-cloud-apps/session-policy-aad</a> (accessed Oct 21, 2026); and “Commonly used Microsoft Defender for Cloud Apps information protection policies,” <a href="https://learn.microsoft.com/defender-cloud-apps/policies-information-protection" class="uri">https://learn.microsoft.com/defender-cloud-apps/policies-information-protection</a> (accessed Oct 21, 2026).<a href="#fnref32" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn33"><p>Microsoft Learn, “Onboard Windows devices into Microsoft 365 overview,” <a href="https://learn.microsoft.com/purview/device-onboarding-overview" class="uri">https://learn.microsoft.com/purview/device-onboarding-overview</a> (accessed Oct 21, 2026).<a href="#fnref33" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn34"><p>Microsoft Learn, “Get started with endpoint data loss prevention,” <a href="https://learn.microsoft.com/purview/endpoint-dlp-getting-started" class="uri">https://learn.microsoft.com/purview/endpoint-dlp-getting-started</a> (accessed Oct 21, 2026).<a href="#fnref34" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn35"><p>Microsoft Learn, “New-DlpComplianceRule” (parameters AccessScope, BlockAccessScope, ContentContainsSensitiveInformation, EndpointDlpRestrictions, GenerateAlert, NotifyUser and ReportSeverityLevel), source <a href="https://github.com/MicrosoftDocs/office-docs-powershell/blob/main/exchange/exchange-ps/ExchangePowerShell/New-DlpComplianceRule.md" class="uri">https://github.com/MicrosoftDocs/office-docs-powershell/blob/main/exchange/exchange-ps/ExchangePowerShell/New-DlpComplianceRule.md</a>, published at <a href="https://learn.microsoft.com/powershell/module/exchangepowershell/new-dlpcompliancerule" class="uri">https://learn.microsoft.com/powershell/module/exchangepowershell/new-dlpcompliancerule</a> (accessed Oct 21, 2026).<a href="#fnref35" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn36"><p>Microsoft Learn, “New-DlpComplianceRule” (parameters AccessScope, BlockAccessScope, ContentContainsSensitiveInformation, EndpointDlpRestrictions, GenerateAlert, NotifyUser and ReportSeverityLevel), source <a href="https://github.com/MicrosoftDocs/office-docs-powershell/blob/main/exchange/exchange-ps/ExchangePowerShell/New-DlpComplianceRule.md" class="uri">https://github.com/MicrosoftDocs/office-docs-powershell/blob/main/exchange/exchange-ps/ExchangePowerShell/New-DlpComplianceRule.md</a>, published at <a href="https://learn.microsoft.com/powershell/module/exchangepowershell/new-dlpcompliancerule" class="uri">https://learn.microsoft.com/powershell/module/exchangepowershell/new-dlpcompliancerule</a> (accessed Oct 21, 2026).<a href="#fnref36" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn37"><p>Microsoft Learn, “New-DlpComplianceRule” (parameters AccessScope, BlockAccessScope, ContentContainsSensitiveInformation, EndpointDlpRestrictions, GenerateAlert, NotifyUser and ReportSeverityLevel), source <a href="https://github.com/MicrosoftDocs/office-docs-powershell/blob/main/exchange/exchange-ps/ExchangePowerShell/New-DlpComplianceRule.md" class="uri">https://github.com/MicrosoftDocs/office-docs-powershell/blob/main/exchange/exchange-ps/ExchangePowerShell/New-DlpComplianceRule.md</a>, published at <a href="https://learn.microsoft.com/powershell/module/exchangepowershell/new-dlpcompliancerule" class="uri">https://learn.microsoft.com/powershell/module/exchangepowershell/new-dlpcompliancerule</a> (accessed Oct 21, 2026).<a href="#fnref37" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn38"><p>Microsoft Learn, “New-DlpCompliancePolicy” (parameter Mode), source <a href="https://github.com/MicrosoftDocs/office-docs-powershell/blob/main/exchange/exchange-ps/ExchangePowerShell/New-DlpCompliancePolicy.md" class="uri">https://github.com/MicrosoftDocs/office-docs-powershell/blob/main/exchange/exchange-ps/ExchangePowerShell/New-DlpCompliancePolicy.md</a>, published at <a href="https://learn.microsoft.com/powershell/module/exchangepowershell/new-dlpcompliancepolicy" class="uri">https://learn.microsoft.com/powershell/module/exchangepowershell/new-dlpcompliancepolicy</a> (accessed Oct 21, 2026).<a href="#fnref38" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn39"><p>Microsoft Learn, “Plan for Microsoft Purview compliance and risk management solutions – GCC deployments,” Step 4, <a href="https://learn.microsoft.com/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/plan-for-microsoft-purview-gcc-deployments" class="uri">https://learn.microsoft.com/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/plan-for-microsoft-purview-gcc-deployments</a> (accessed Oct 21, 2026).<a href="#fnref39" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn40"><p>Microsoft Learn, “Plan for Microsoft Purview compliance and risk management solutions – GCC High deployments,” Step 4, <a href="https://learn.microsoft.com/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/plan-for-microsoft-purview-gcc-high-deployments" class="uri">https://learn.microsoft.com/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/plan-for-microsoft-purview-gcc-high-deployments</a> (accessed Oct 21, 2026).<a href="#fnref40" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn41"><p>Microsoft Learn, “Managing the root key for your Azure Rights Management service,” <a href="https://learn.microsoft.com/purview/rights-management-tenant-key" class="uri">https://learn.microsoft.com/purview/rights-management-tenant-key</a> (accessed Oct 21, 2026).<a href="#fnref41" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn42"><p>Microsoft Learn, “Bring your own key for the Azure Rights Management service root key,” <a href="https://learn.microsoft.com/purview/rights-management-byok" class="uri">https://learn.microsoft.com/purview/rights-management-byok</a> (accessed Oct 21, 2026).<a href="#fnref42" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn43"><p>Microsoft Learn, “Set up Customer Key,” <a href="https://learn.microsoft.com/purview/customer-key-set-up" class="uri">https://learn.microsoft.com/purview/customer-key-set-up</a> (accessed Oct 21, 2026).<a href="#fnref43" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn44"><p>Microsoft Learn, “What is Double Key Encryption (DKE)?,” <a href="https://learn.microsoft.com/purview/double-key-encryption" class="uri">https://learn.microsoft.com/purview/double-key-encryption</a> (accessed Oct 21, 2026).<a href="#fnref44" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn45"><p>Microsoft Learn, “What is Double Key Encryption (DKE)?,” <a href="https://learn.microsoft.com/purview/double-key-encryption" class="uri">https://learn.microsoft.com/purview/double-key-encryption</a> (accessed Oct 21, 2026).<a href="#fnref45" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn46"><p>Microsoft Learn, “What is Double Key Encryption (DKE)?,” <a href="https://learn.microsoft.com/purview/double-key-encryption" class="uri">https://learn.microsoft.com/purview/double-key-encryption</a> (accessed Oct 21, 2026).<a href="#fnref46" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn47"><p>Microsoft Learn, “Set up Customer Key,” <a href="https://learn.microsoft.com/purview/customer-key-set-up" class="uri">https://learn.microsoft.com/purview/customer-key-set-up</a> (accessed Oct 21, 2026).<a href="#fnref47" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn48"><p>Microsoft Learn, “Set up Customer Key,” <a href="https://learn.microsoft.com/purview/customer-key-set-up" class="uri">https://learn.microsoft.com/purview/customer-key-set-up</a> (accessed Oct 21, 2026).<a href="#fnref48" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn49"><p>Microsoft Learn, “Learn about the availability key for Customer Key,” <a href="https://learn.microsoft.com/purview/customer-key-availability-key-understand" class="uri">https://learn.microsoft.com/purview/customer-key-availability-key-understand</a> (accessed Oct 21, 2026).<a href="#fnref49" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn50"><p>Microsoft Learn, “About Azure Key Vault,” <a href="https://learn.microsoft.com/azure/key-vault/general/overview" class="uri">https://learn.microsoft.com/azure/key-vault/general/overview</a> (accessed Oct 21, 2026).<a href="#fnref50" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn51"><p>Microsoft Learn, “Control your data in the cloud by using Managed HSM,” <a href="https://learn.microsoft.com/azure/key-vault/managed-hsm/mhsm-control-data" class="uri">https://learn.microsoft.com/azure/key-vault/managed-hsm/mhsm-control-data</a> (accessed Oct 21, 2026).<a href="#fnref51" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn52"><p>National Institute of Standards and Technology, “FIPS 140-3 Transition Effort,” Computer Security Resource Center, updated April 13, 2026, <a href="https://csrc.nist.gov/projects/fips-140-3-transition-effort" class="uri">https://csrc.nist.gov/projects/fips-140-3-transition-effort</a> (accessed Oct 21, 2026). The page gives September 21, 2026 as the date FIPS 140-2 validations move to the Historical List and, in its timeline, September 22, 2026.<a href="#fnref52" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn53"><p>Microsoft Learn, “New-AzKeyVault,” source <a href="https://github.com/Azure/azure-powershell/blob/main/src/KeyVault/KeyVault/help/New-AzKeyVault.md" class="uri">https://github.com/Azure/azure-powershell/blob/main/src/KeyVault/KeyVault/help/New-AzKeyVault.md</a>, published at <a href="https://learn.microsoft.com/powershell/module/az.keyvault/new-azkeyvault" class="uri">https://learn.microsoft.com/powershell/module/az.keyvault/new-azkeyvault</a> (accessed Oct 21, 2026).<a href="#fnref53" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn54"><p>Microsoft Learn, “Azure SQL Transparent Data Encryption with customer-managed key,” section “Permissions to configure customer-managed TDE,” <a href="https://learn.microsoft.com/azure/azure-sql/database/transparent-data-encryption-byok-overview" class="uri">https://learn.microsoft.com/azure/azure-sql/database/transparent-data-encryption-byok-overview</a> (accessed Oct 21, 2026).<a href="#fnref54" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn55"><p>Microsoft Learn, “Rotate the Transparent data encryption (TDE) protector,” section “Automatic key rotation,” <a href="https://learn.microsoft.com/azure/azure-sql/database/transparent-data-encryption-byok-key-rotation" class="uri">https://learn.microsoft.com/azure/azure-sql/database/transparent-data-encryption-byok-key-rotation</a> (accessed Oct 21, 2026).<a href="#fnref55" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn56"><p>Microsoft Learn, “Set-AzKeyVaultKeyRotationPolicy,” example 1, source <a href="https://github.com/Azure/azure-powershell/blob/main/src/KeyVault/KeyVault/help/Set-AzKeyVaultKeyRotationPolicy.md" class="uri">https://github.com/Azure/azure-powershell/blob/main/src/KeyVault/KeyVault/help/Set-AzKeyVaultKeyRotationPolicy.md</a>, published at <a href="https://learn.microsoft.com/powershell/module/az.keyvault/set-azkeyvaultkeyrotationpolicy" class="uri">https://learn.microsoft.com/powershell/module/az.keyvault/set-azkeyvaultkeyrotationpolicy</a> (accessed Oct 21, 2026).<a href="#fnref56" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn57"><p>FedRAMP Marketplace product data, <a href="https://www.fedramp.gov/marketplace/products.json" class="uri">https://www.fedramp.gov/marketplace/products.json</a>, dataset last changed October 21, 2026 (accessed Oct 21, 2026): AWS US East/West (AGENCYAMAZONEW) and AWS GovCloud (F1603047866) both list AWS Key Management Service (KMS) and AWS CloudHSM among certified services.<a href="#fnref57" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn58"><p>Microsoft Learn, “Learn about sensitivity labels in Data Map (preview),” <a href="https://learn.microsoft.com/purview/data-map-sensitivity-labels" class="uri">https://learn.microsoft.com/purview/data-map-sensitivity-labels</a> (accessed Oct 21, 2026).<a href="#fnref58" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn59"><p>Microsoft Learn, “Learn about auditing solutions in Microsoft Purview,” section “Audit (Premium),” <a href="https://learn.microsoft.com/purview/audit-solutions-overview" class="uri">https://learn.microsoft.com/purview/audit-solutions-overview</a> (accessed Oct 21, 2026).<a href="#fnref59" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn60"><p>National Institute of Standards and Technology, SP 800-53B, <em>Control Baselines for Information Systems and Organizations</em>, Moderate and High baseline profiles, release 5.2.0, OSCAL content, <a href="https://github.com/usnistgov/oscal-content/tree/main/nist.gov/SP800-53/rev5" class="uri">https://github.com/usnistgov/oscal-content/tree/main/nist.gov/SP800-53/rev5</a> (accessed Oct 21, 2026). AU-10 and SC-12(1) appear in the High profile only; AC-16 appears in neither.<a href="#fnref60" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn61"><p>Microsoft Learn, “Set up Customer Key,” <a href="https://learn.microsoft.com/purview/customer-key-set-up" class="uri">https://learn.microsoft.com/purview/customer-key-set-up</a> (accessed Oct 21, 2026).<a href="#fnref61" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn62"><p>National Institute of Standards and Technology, SP 800-53B, <em>Control Baselines for Information Systems and Organizations</em>, Moderate and High baseline profiles, release 5.2.0, OSCAL content, <a href="https://github.com/usnistgov/oscal-content/tree/main/nist.gov/SP800-53/rev5" class="uri">https://github.com/usnistgov/oscal-content/tree/main/nist.gov/SP800-53/rev5</a> (accessed Oct 21, 2026). AU-10 and SC-12(1) appear in the High profile only; AC-16 appears in neither.<a href="#fnref62" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn63"><p>National Institute of Standards and Technology, SP 800-53B, <em>Control Baselines for Information Systems and Organizations</em>, Moderate and High baseline profiles, release 5.2.0, OSCAL content, <a href="https://github.com/usnistgov/oscal-content/tree/main/nist.gov/SP800-53/rev5" class="uri">https://github.com/usnistgov/oscal-content/tree/main/nist.gov/SP800-53/rev5</a> (accessed Oct 21, 2026). AU-10 and SC-12(1) appear in the High profile only; AC-16 appears in neither.<a href="#fnref63" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn64"><p>FedRAMP, “Key Security Indicators,” <em>FedRAMP Consolidated Rules for 2026</em>, <a href="https://fedramp.gov/2026/reference/key-security-indicators/" class="uri">https://fedramp.gov/2026/reference/key-security-indicators/</a> (accessed Oct 21, 2026).<a href="#fnref64" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn65"><p>FedRAMP, “Key Security Indicators,” <em>FedRAMP Consolidated Rules for 2026</em>, <a href="https://fedramp.gov/2026/reference/key-security-indicators/" class="uri">https://fedramp.gov/2026/reference/key-security-indicators/</a> (accessed Oct 21, 2026).<a href="#fnref65" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 
@@ -3250,13 +3725,13 @@ Figure&nbsp;2: The three Microsoft 365 government packages on the FedRAMP Market
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../../docs/books/b10-cloud-boundary/03-what-changed-at-fedramp.html" class="pagination-link" aria-label="Chapter 03 — What Changed at FedRAMP">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Chapter 03 — What Changed at FedRAMP</span>
+      <a href="../../../docs/books/b12-security-operations/08-cloud-native-posture.html" class="pagination-link" aria-label="Chapter 08 — Cloud-Native Posture">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Chapter 08 — Cloud-Native Posture</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../../docs/books/b10-cloud-boundary/05-the-landing-zone.html" class="pagination-link" aria-label="Chapter 05 — The Landing Zone">
-        <span class="nav-page-text">Chapter 05 — The Landing Zone</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../../docs/books/b12-security-operations/10-who-runs-security-operations.html" class="pagination-link" aria-label="Chapter 10 — Who Runs Security Operations">
+        <span class="nav-page-text">Chapter 10 — Who Runs Security Operations</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

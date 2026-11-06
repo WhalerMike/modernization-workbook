@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="The decision sequence and the technical dependencies behind it, the phase-inversion failure mode and the evidence for and against it, how to measure branch transport cost in your own estate rather than importing figures, what to stop doing, the evidence the boundary change needs, and the measurements that confirm or refute the case.">
+<meta name="description" content="The awareness and training controls (AT-1 to AT-4, with insider threat, social engineering and role-based training), incident response and contingency training (IR-2, CP-3), the federal training requirements behind them, and how training records become evidence an assessor can re-derive.">
 
-<title>Chapter 13 — Sequencing, Cost and Evidence – Federal Modernization Workbook</title>
+<title>Chapter 09 — Training and Awareness Controls – Federal Modernization Workbook</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -24,6 +24,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -34,8 +69,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../">
-<link href="../../../docs/books/b09-network/appendix-a-optimize-exemption-instruments.html" rel="next">
-<link href="../../../docs/books/b09-network/12-microsoft-365-traffic.html" rel="prev">
+<link href="../../../docs/books/b14-compliance/10-who-owns-compliance.html" rel="next">
+<link href="../../../docs/books/b14-compliance/08-privacy-pii-processing.html" rel="prev">
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
@@ -402,7 +437,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../docs/books/b09-network/index.html">Book 09 — Network &amp; Transport</a></li><li class="breadcrumb-item"><a href="../../../docs/books/b09-network/13-sequencing-cost-and-evidence.html">Chapter 13 — Sequencing, Cost and Evidence</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../docs/books/b14-compliance/index.html">Book 14 — Federal Compliance &amp; Authorization</a></li><li class="breadcrumb-item"><a href="../../../docs/books/b14-compliance/09-training-and-awareness-controls.html">Chapter 09 — Training and Awareness Controls</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -1387,11 +1422,11 @@ ul.task-list li input[type="checkbox"] {
       <div class="sidebar-item-container"> 
             <a href="../../../docs/books/b09-network/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Book 09 — Network &amp; Transport</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../docs/books/b09-network/01-why-physics-decides-the-architecture.html" class="sidebar-item-text sidebar-link">
@@ -1466,7 +1501,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../docs/books/b09-network/13-sequencing-cost-and-evidence.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../../docs/books/b09-network/13-sequencing-cost-and-evidence.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Chapter 13 — Sequencing, Cost and Evidence</span></a>
   </div>
 </li>
@@ -1850,11 +1885,11 @@ ul.task-list li input[type="checkbox"] {
       <div class="sidebar-item-container"> 
             <a href="../../../docs/books/b14-compliance/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Book 14 — Federal Compliance &amp; Authorization</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-15" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-15" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-15" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-15" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../docs/books/b14-compliance/01-proof-not-a-promise.html" class="sidebar-item-text sidebar-link">
@@ -1905,7 +1940,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../docs/books/b14-compliance/09-training-and-awareness-controls.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/books/b14-compliance/09-training-and-awareness-controls.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Chapter 09 — Training and Awareness Controls</span></a>
   </div>
 </li>
@@ -2508,28 +2543,26 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#the-decision-sequence" id="toc-the-decision-sequence" class="nav-link active" data-scroll-target="#the-decision-sequence">The decision sequence</a></li>
-  <li><a href="#the-phases-behind-the-sequence" id="toc-the-phases-behind-the-sequence" class="nav-link" data-scroll-target="#the-phases-behind-the-sequence">The phases behind the sequence</a></li>
-  <li><a href="#phase-inversion" id="toc-phase-inversion" class="nav-link" data-scroll-target="#phase-inversion">Phase inversion</a>
+  <li><a href="#what-federal-law-and-policy-require" id="toc-what-federal-law-and-policy-require" class="nav-link active" data-scroll-target="#what-federal-law-and-policy-require">What federal law and policy require</a></li>
+  <li><a href="#the-controls-one-by-one" id="toc-the-controls-one-by-one" class="nav-link" data-scroll-target="#the-controls-one-by-one">The controls, one by one</a></li>
+  <li><a href="#literacy-training-and-awareness-at-2" id="toc-literacy-training-and-awareness-at-2" class="nav-link" data-scroll-target="#literacy-training-and-awareness-at-2">Literacy training and awareness (AT-2)</a>
   <ul class="collapse">
-  <li><a href="#what-the-federal-record-supports" id="toc-what-the-federal-record-supports" class="nav-link" data-scroll-target="#what-the-federal-record-supports">What the federal record supports</a></li>
-  <li><a href="#the-competing-explanations-a-reviewer-will-raise" id="toc-the-competing-explanations-a-reviewer-will-raise" class="nav-link" data-scroll-target="#the-competing-explanations-a-reviewer-will-raise">The competing explanations a reviewer will raise</a></li>
-  <li><a href="#if-you-are-already-inverted" id="toc-if-you-are-already-inverted" class="nav-link" data-scroll-target="#if-you-are-already-inverted">If you are already inverted</a></li>
+  <li><a href="#phishing-exercises-at-21" id="toc-phishing-exercises-at-21" class="nav-link" data-scroll-target="#phishing-exercises-at-21">Phishing exercises (AT-2(1))</a></li>
   </ul></li>
-  <li><a href="#measuring-cost-in-your-own-estate" id="toc-measuring-cost-in-your-own-estate" class="nav-link" data-scroll-target="#measuring-cost-in-your-own-estate">Measuring cost in your own estate</a>
+  <li><a href="#role-based-training-at-3" id="toc-role-based-training-at-3" class="nav-link" data-scroll-target="#role-based-training-at-3">Role-based training (AT-3)</a></li>
+  <li><a href="#incident-response-and-contingency-training-ir-2-cp-3" id="toc-incident-response-and-contingency-training-ir-2-cp-3" class="nav-link" data-scroll-target="#incident-response-and-contingency-training-ir-2-cp-3">Incident response and contingency training (IR-2, CP-3)</a></li>
+  <li><a href="#training-records-as-evidence-at-4" id="toc-training-records-as-evidence-at-4" class="nav-link" data-scroll-target="#training-records-as-evidence-at-4">Training records as evidence (AT-4)</a>
   <ul class="collapse">
-  <li><a href="#what-the-public-record-doesnt-give-you" id="toc-what-the-public-record-doesnt-give-you" class="nav-link" data-scroll-target="#what-the-public-record-doesnt-give-you">What the public record doesn’t give you</a></li>
-  <li><a href="#what-is-citable" id="toc-what-is-citable" class="nav-link" data-scroll-target="#what-is-citable">What is citable</a></li>
-  <li><a href="#the-mpls-versus-broadband-multiple" id="toc-the-mpls-versus-broadband-multiple" class="nav-link" data-scroll-target="#the-mpls-versus-broadband-multiple">The MPLS-versus-broadband multiple</a></li>
-  <li><a href="#the-cost-structure-which-you-can-build-without-unit-prices" id="toc-the-cost-structure-which-you-can-build-without-unit-prices" class="nav-link" data-scroll-target="#the-cost-structure-which-you-can-build-without-unit-prices">The cost structure, which you can build without unit prices</a></li>
-  <li><a href="#the-mechanisms-worth-measuring" id="toc-the-mechanisms-worth-measuring" class="nav-link" data-scroll-target="#the-mechanisms-worth-measuring">The mechanisms worth measuring</a></li>
-  <li><a href="#a-worked-example-every-input-stated" id="toc-a-worked-example-every-input-stated" class="nav-link" data-scroll-target="#a-worked-example-every-input-stated">A worked example, every input stated</a></li>
+  <li><a href="#what-the-record-has-to-answer" id="toc-what-the-record-has-to-answer" class="nav-link" data-scroll-target="#what-the-record-has-to-answer">What the record has to answer</a></li>
+  <li><a href="#where-the-record-lives" id="toc-where-the-record-lives" class="nav-link" data-scroll-target="#where-the-record-lives">Where the record lives</a></li>
+  <li><a href="#feeding-the-record-from-microsoft-365" id="toc-feeding-the-record-from-microsoft-365" class="nav-link" data-scroll-target="#feeding-the-record-from-microsoft-365">Feeding the record from Microsoft 365</a></li>
+  <li><a href="#how-long-to-keep-it" id="toc-how-long-to-keep-it" class="nav-link" data-scroll-target="#how-long-to-keep-it">How long to keep it</a></li>
   </ul></li>
-  <li><a href="#what-to-stop-doing" id="toc-what-to-stop-doing" class="nav-link" data-scroll-target="#what-to-stop-doing">What to stop doing</a></li>
-  <li><a href="#evidence-for-the-boundary-change" id="toc-evidence-for-the-boundary-change" class="nav-link" data-scroll-target="#evidence-for-the-boundary-change">Evidence for the boundary change</a></li>
-  <li><a href="#how-to-confirm-or-refute-the-case" id="toc-how-to-confirm-or-refute-the-case" class="nav-link" data-scroll-target="#how-to-confirm-or-refute-the-case">How to confirm or refute the case</a></li>
+  <li><a href="#cloud-providers-and-the-training-indicator" id="toc-cloud-providers-and-the-training-indicator" class="nav-link" data-scroll-target="#cloud-providers-and-the-training-indicator">Cloud providers and the training indicator</a></li>
+  <li><a href="#who-owns-the-training-evidence" id="toc-who-owns-the-training-evidence" class="nav-link" data-scroll-target="#who-owns-the-training-evidence">Who owns the training evidence</a></li>
+  <li><a href="#what-changes-in-one-table" id="toc-what-changes-in-one-table" class="nav-link" data-scroll-target="#what-changes-in-one-table">What changes, in one table</a></li>
   </ul>
-<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="13-sequencing-cost-and-evidence.docx"><i class="bi bi-file-word"></i>MS Word</a></li></ul></div></nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="09-training-and-awareness-controls.docx"><i class="bi bi-file-word"></i>MS Word</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -2539,15 +2572,15 @@ ul.task-list li input[type="checkbox"] {
   and has not been reviewed or endorsed by, any federal agency.
 </div>
 
-<header id="title-block-header" class="quarto-title-block default fmw-hero"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../docs/books/b09-network/index.html">Book 09 — Network &amp; Transport</a></li><li class="breadcrumb-item"><a href="../../../docs/books/b09-network/13-sequencing-cost-and-evidence.html">Chapter 13 — Sequencing, Cost and Evidence</a></li></ol></nav>
-<p class="fmw-eyebrow">Federal Modernization Workbook · Book 09 · How</p>
+<header id="title-block-header" class="quarto-title-block default fmw-hero"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../docs/books/b14-compliance/index.html">Book 14 — Federal Compliance &amp; Authorization</a></li><li class="breadcrumb-item"><a href="../../../docs/books/b14-compliance/09-training-and-awareness-controls.html">Chapter 09 — Training and Awareness Controls</a></li></ol></nav>
+<p class="fmw-eyebrow">Federal Modernization Workbook · Book 14 · What</p>
 <div class="quarto-title">
-<h1 class="title">Chapter 13 — Sequencing, Cost and Evidence</h1>
+<h1 class="title">Chapter 09 — Training and Awareness Controls</h1>
 </div>
 
 <div>
   <div class="description">
-    The decision sequence and the technical dependencies behind it, the phase-inversion failure mode and the evidence for and against it, how to measure branch transport cost in your own estate rather than importing figures, what to stop doing, the evidence the boundary change needs, and the measurements that confirm or refute the case.
+    The awareness and training controls (AT-1 to AT-4, with insider threat, social engineering and role-based training), incident response and contingency training (IR-2, CP-3), the federal training requirements behind them, and how training records become evidence an assessor can re-derive.
   </div>
 </div>
 
@@ -2565,7 +2598,7 @@ ul.task-list li input[type="checkbox"] {
 
 
 <div class="fmw-lede">
-<p><em>Order decides whether branch modernization is a gain or a compliance regression, and a cost case only survives review when every number in it came from the agency’s own estate.</em></p>
+<p><em>Training is the one control family that no configuration can close; it closes when the right people have been trained for the roles they actually hold, and the record proves it.</em></p>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -2577,36 +2610,155 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The decision sequence (governor before traffic, boundary change before cutover) and the phase dependencies behind it, which are technical rather than mandated. Phase inversion: what happens to cost attribution when cloud migration runs ahead of transport, what the federal record supports, and what competes with it. How to build the cost case from your own circuits and branches, what to stop doing, the evidence an authorization package needs for the boundary change, and three measurements that would confirm or refute the whole argument in a given estate.</p>
+<p>The federal requirements for security and privacy training: FISMA, OMB Circular A-130, OPM’s rule at 5 CFR 930.301, and NIST SP 800-50 Rev.&nbsp;1, which replaced the 2003 guide and SP 800-16 in 2024. Then the controls one by one, with their NIST and FedRAMP baselines stated separately: literacy training with its insider threat and social engineering enhancements, role-based training, incident response and contingency training, and training records. The last part shows how the agency turns those records into evidence an assessor can re-derive, and how a learning management system feeds that evidence. <a href="../../../docs/books/b16-people/index.html">Book 16</a> covers curriculum, delivery and education in depth. This chapter stays with the controls and their evidence.</p>
 </div>
 </div>
-<p>The earlier chapters establish what to build. This one is about the order in which to build it and how to prove that it paid. Both arguments are easy to make badly. Sequencing is often presented as a federal requirement, which it isn’t; cost is often presented with figures nobody measured, which a budget examiner will check. The honest versions are weaker in tone and stronger in review: the sequence is an engineering dependency, and the cost is something an agency measures in its own estate with a stated method.</p>
-<div id="fig-ch13-decision-sequence" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Top to bottom, six cards joined by arrows. Step 0, violet: bring the governor under vulnerability management, privileged-access control and logging before it carries traffic. Step 1, slate: buy the pipe on measured physics within the acquisition and supply-chain envelope. Step 2, blue: deploy the governor before production traffic; the gate is a control layer that is live, inspecting and logging. Step 3, amber: treat the boundary change as a significant change and decide it before the first production cutover. Step 4, amber: handle Microsoft 365 Optimize traffic through its own documented SC-7(4) exception. Step 5, violet: register the evidence and confirm CISA telemetry parity before any legacy circuit is terminated. A dashed red arrow from step 1 straight to production traffic, skipping steps 2 and 3, leads to a red card: fast circuits before the security layer is live, a compliance regression with better latency.">
+<p>Almost every other control in this book closes through something a machine can show. A Conditional Access policy enforces access rules. A logging configuration emits events. A protective DNS resolver blocks known-bad domains. An assessor can read the setting, re-run the query and see the result. Training is different. The awareness and training (AT) family asks whether people know what to do, and the only thing that proves it is a record of who was trained, on what, and when, set against a list of who should have been.</p>
+<p>That makes training controls easy to over-claim. A policy that says “all users complete annual training” is an attestation. A dashboard that shows 98 percent completion is a number with no denominator unless someone can say which roster the 98 percent was measured against, where the completions came from, and whether the people in high-risk roles are in the 2 percent who haven’t finished. This chapter treats training the way <a href="../../../docs/books/b13-governance/index.html">Book 13</a> treats every control: evidence over attestation, derived from the system that holds the facts, with the derivation repeatable by someone who didn’t produce it.</p>
+<p>The chapter covers the controls and their evidence. Curriculum design, delivery methods, learning paths for the people who run the program, and how the agency measures whether training changes behavior belong to <a href="../../../docs/books/b16-people/index.html">Book 16, People: Training &amp; Education</a>.</p>
+<div id="fig-ch09-training-evidence-chain" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Three cards across the top feed one violet card in the middle. On the left, a slate card labeled the denominator: the role roster, saying who holds which role, from HR and identity governance. In the center, a blue card labeled system of record: the learning management system, with one completion record per person and course, for AT-4. On the right, a blue card labeled exercise records: drills and tabletops, with attendance and after-action reports, for IR-2 and CP-3. All three send arrows to the violet training evidence record, derived on a schedule with population, required, complete and overdue counts and exercise dates, with source files hashed and no names in the summary. From the record, an amber arrow goes to an amber card, the ISSO, who reviews, confirms the record and routes the gaps, and a dashed arrow goes to a slate card, assessors and the authorizing official, who read but never edit and re-derive the record from its sources.">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-ch13-decision-sequence-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="../../images/diagrams/b09-network/svg/ch13-decision-sequence.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;1: The decision sequence: a step zero for the governor’s own security, then five steps, each closed by a gate; doing them out of order is the costliest mistake."><img src="../../images/diagrams/b09-network/svg/ch13-decision-sequence.svg" class="img-fluid figure-img" alt="Top to bottom, six cards joined by arrows. Step 0, violet: bring the governor under vulnerability management, privileged-access control and logging before it carries traffic. Step 1, slate: buy the pipe on measured physics within the acquisition and supply-chain envelope. Step 2, blue: deploy the governor before production traffic; the gate is a control layer that is live, inspecting and logging. Step 3, amber: treat the boundary change as a significant change and decide it before the first production cutover. Step 4, amber: handle Microsoft 365 Optimize traffic through its own documented SC-7(4) exception. Step 5, violet: register the evidence and confirm CISA telemetry parity before any legacy circuit is terminated. A dashed red arrow from step 1 straight to production traffic, skipping steps 2 and 3, leads to a red card: fast circuits before the security layer is live, a compliance regression with better latency."></a>
+<div aria-describedby="fig-ch09-training-evidence-chain-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="../../images/diagrams/b14-compliance/svg/ch09-training-evidence-chain.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;1: How training becomes evidence: three sources, one derived record, independent readers."><img src="../../images/diagrams/b14-compliance/svg/ch09-training-evidence-chain.svg" class="img-fluid figure-img" alt="Three cards across the top feed one violet card in the middle. On the left, a slate card labeled the denominator: the role roster, saying who holds which role, from HR and identity governance. In the center, a blue card labeled system of record: the learning management system, with one completion record per person and course, for AT-4. On the right, a blue card labeled exercise records: drills and tabletops, with attendance and after-action reports, for IR-2 and CP-3. All three send arrows to the violet training evidence record, derived on a schedule with population, required, complete and overdue counts and exercise dates, with source files hashed and no names in the summary. From the record, an amber arrow goes to an amber card, the ISSO, who reviews, confirms the record and routes the gaps, and a dashed arrow goes to a slate card, assessors and the authorizing official, who read but never edit and re-derive the record from its sources."></a>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ch13-decision-sequence-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: The decision sequence: a step zero for the governor’s own security, then five steps, each closed by a gate; doing them out of order is the costliest mistake.
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ch09-training-evidence-chain-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: How training becomes evidence: three sources, one derived record, independent readers.
 </figcaption>
 </figure>
 </div>
-<section id="the-decision-sequence" class="level2">
-<h2 class="anchored" data-anchor-id="the-decision-sequence">The decision sequence</h2>
-<p><a href="../../../docs/books/b09-network/02-transport-is-physics-control-is-compliance.html">Chapter 02</a> introduced the order of operations; this chapter sets out what each step depends on and what closes it. <a href="../../../docs/books/b09-network/09-who-owns-the-network.html">Chapter 09</a> names who decides each gate.</p>
-<ol start="0" type="1">
-<li><strong>Secure the governor first.</strong> The SD-WAN controller and its edges are internet-facing infrastructure with estate-wide authority, so they come under vulnerability management, privileged-access control and off-box logging before they carry production traffic (<a href="../../../docs/books/b09-network/05-sd-wan-sase-and-governed-transport.html">Chapter 05</a> lists the controls and the 2026 emergency directive that shows why).</li>
-<li><strong>Buy the pipe on measured physics</strong>, within the acquisition and supply-chain envelope, with diversity where the mission needs it. Measured means per-site latency and loss recorded before the order, not a carrier’s marketing figure (<a href="../../../docs/books/b09-network/01-why-physics-decides-the-architecture.html">Chapter 01</a>, <a href="../../../docs/books/b09-network/02-transport-is-physics-control-is-compliance.html">Chapter 02</a>).</li>
-<li><strong>Deploy the governor before production traffic.</strong> The gate is a control layer that is live, inspecting and logging at that site. A site whose control layer isn’t live doesn’t get its new egress turned on.</li>
-<li><strong>Treat the boundary change as the significant change it is.</strong> NIST defines a significant change as one “likely to substantively affect the security or privacy posture of a system,” and such changes may trigger an event-driven authorization action under either reauthorization or ongoing authorization.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> A new egress path, a new device class at every branch or a new governor changes the system the package describes. File it and have it decided before the first production cutover, not discovered by an assessor afterward.</li>
-<li><strong>Handle Microsoft 365 traffic through its own documented exception.</strong> SC-7(4) requires each exception to the traffic flow policy to be documented “with a supporting mission or business need and duration of that need,” and reviewed on a defined cadence.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> <a href="../../../docs/books/b09-network/12-microsoft-365-traffic.html">Chapter 12</a> and <a href="../../../docs/books/b09-network/appendix-a-optimize-exemption-instruments.html">Appendix A</a> carry the exemption and its instruments.</li>
-<li><strong>Register the supporting evidence</strong>, and confirm CISA telemetry parity before any legacy circuit or MTIPS service ends (<a href="../../../docs/books/b09-network/03-what-tic-3-requires.html">Chapter 03</a> explains why CLAW parity is the exit criterion).</li>
-</ol>
-<p>Doing these out of order, and above all lighting up fast connections before the security layer is live, is in the program’s experience the most common and most costly mistake in branch modernization. A field office moved from a centralized hairpin to ungoverned local breakout has lost assessed boundary protection relative to where it started: a compliance regression with better latency.</p>
+<section id="what-federal-law-and-policy-require" class="level2">
+<h2 class="anchored" data-anchor-id="what-federal-law-and-policy-require">What federal law and policy require</h2>
+<p>Four layers of requirement sit under the AT controls. They agree on the essentials and differ in age.</p>
+<p><strong>FISMA</strong> makes training part of every agency’s information security program. The program must include security awareness training that informs personnel, “including contractors and other users,” of the risks associated with their activities and their responsibilities under agency policy. The agency head must make sure the agency has trained personnel sufficient to comply, and the CIO’s delegated authority includes training and overseeing personnel with significant responsibilities for information security.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p><strong>OMB Circular A-130</strong> turns that into seven obligations. Agencies must run mandatory agency-wide security and privacy awareness and training programs for all employees and contractors, consistent with OMB, NIST and OPM guidance. They must give users foundational and more advanced training and “ensure that measures are in place to test the knowledge level” of users. They must give role-based security and privacy training to people with assigned security and privacy roles, including managers, “before authorizing access” or before they perform their duties. And they must establish rules of behavior, with consequences for violating them, and make sure employees and contractors have read and agreed to them.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> The rules-of-behavior obligation is SP 800-53’s PL-4, which asks for a documented acknowledgment before access is granted.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
+<p><strong>OPM’s rule at 5 CFR 930.301</strong> is the oldest layer and the most specific about audiences. It requires each executive agency to have a plan for information systems security awareness and training, to identify employees with significant information security responsibilities and give them role-specific training under NIST guidance, and to expose all users of federal information systems, including “employees, contractors, students, guest researchers, visitors,” to security awareness materials at least annually. It lists what executives, program and functional managers, CIOs and security staff, and IT operations staff must each be trained in; requires new employees to receive awareness material before they get access; leaves the frequency of refresher training to the agency, based on the sensitivity of the information people use; and requires training when the system environment or procedures change significantly or an employee moves into a role that needs it.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> The section dates from June 14, 2004 and has not been amended since. It cites the 2002 FISMA as its authority and points to a NIST publications web address that predates the current site.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> Its substance still binds; its pointers are out of date.</p>
+<p><strong>NIST SP 800-50 Rev.&nbsp;1</strong>, <em>Building a Cybersecurity and Privacy Learning Program</em>, published September 2024, is the current guidance those pointers lead to. It superseded the 2003 SP 800-50 and SP 800-16, which NIST withdrew the same day.<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a><a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a> It reframes training as a cybersecurity and privacy learning program with a four-phase life cycle (plan and strategy, analysis and design, development and implementation, assessment and improvement), adds privacy as a foundational element, and sends role definitions for cybersecurity work to the NICE Workforce Framework in SP 800-181 Rev.&nbsp;1.<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a> It divides the audience into three segments: all users, privileged access account holders, and staff with significant cybersecurity or privacy responsibilities.<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a> The source material for this chapter cited SP 800-16 as current; it is not.</p>
+<p>Two narrower requirements add content. OMB M-17-12 requires every person with access to federal information or systems to be trained on how to identify and respond to a breach of personally identifiable information, including the agency’s internal reporting process, before they get access, and suggests specialized breach training for supervisors and people responsible for high value assets.<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a> And Executive Order 13587, signed October 7, 2011, created the Insider Threat Task Force and directed it to issue minimum standards that are “binding on the executive branch.”<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a> The task force’s minimum standards require insider threat programs to create procedures for initial and recurring employee training, with documentation, and to verify that all cleared employees have completed insider threat awareness training.<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a> Those standards govern the agency’s insider threat program for classified information. AT-2(2), below, asks for insider threat awareness for every system user. The agency should build one module that satisfies both, and record it once.</p>
 </section>
-<section id="the-phases-behind-the-sequence" class="level2">
-<h2 class="anchored" data-anchor-id="the-phases-behind-the-sequence">The phases behind the sequence</h2>
-<p>The same logic applies at program scale. Federal modernization proceeds through phases whose order reflects technical dependency, not policy mandate: no OMB memorandum, CISA directive or executive order specifies the sequence below. An earlier version of the source analysis treated network attestation as a policy precondition for cloud authorization; it isn’t, and the argument has to stand on engineering. It does.</p>
+<section id="the-controls-one-by-one" class="level2">
+<h2 class="anchored" data-anchor-id="the-controls-one-by-one">The controls, one by one</h2>
+<p>The table gives each control’s NIST SP 800-53B baseline and FedRAMP 2026 class membership as separate facts, as <a href="../../../docs/books/b13-governance/appendix-a-requirements-mapping.html">Book 13, Appendix A</a> does. An agency system categorized Moderate selects from the NIST column. A FedRAMP Class C cloud service is held to the FedRAMP column. The two agree for most of this family, but not for all of it.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Control</th>
+<th>What it asks</th>
+<th>NIST SP 800-53B</th>
+<th>FedRAMP 2026</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>AT-1, Policy and Procedures</td>
+<td>An awareness and training policy and procedures, a designated official to manage them, and review on a defined schedule</td>
+<td>L, M, H, Privacy</td>
+<td>B, C, D</td>
+</tr>
+<tr class="even">
+<td>AT-2, Literacy Training and Awareness</td>
+<td>Security and privacy literacy training for all system users, including managers, senior executives and contractors, at initial training, at a defined frequency, and when system changes or defined events require it; content updated and incident lessons learned incorporated</td>
+<td>L, M, H, Privacy</td>
+<td>B, C, D</td>
+</tr>
+<tr class="odd">
+<td>AT-2(1), Practical Exercises</td>
+<td>Exercises in literacy training that simulate events and incidents</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td>AT-2(2), Insider Threat</td>
+<td>Training on recognizing and reporting potential indicators of insider threat</td>
+<td>L, M, H</td>
+<td>B, C, D</td>
+</tr>
+<tr class="odd">
+<td>AT-2(3), Social Engineering and Mining</td>
+<td>Training on recognizing and reporting potential and actual social engineering and social mining</td>
+<td>M, H</td>
+<td>C, D</td>
+</tr>
+<tr class="even">
+<td>AT-3, Role-based Training</td>
+<td>Role-based security and privacy training for defined roles before access or duties, at a defined frequency, and on system changes; content updated and lessons learned incorporated</td>
+<td>L, M, H, Privacy</td>
+<td>B, C, D</td>
+</tr>
+<tr class="odd">
+<td>AT-3(3), Practical Exercises</td>
+<td>Practical exercises in role-based training</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td>AT-3(5), Processing Personally Identifiable Information</td>
+<td>Initial and recurring training for defined roles on the PII processing and transparency controls</td>
+<td>Privacy</td>
+<td>—</td>
+</tr>
+<tr class="odd">
+<td>AT-4, Training Records</td>
+<td>Document and monitor awareness and role-based training; retain individual training records for a defined period</td>
+<td>L, M, H, Privacy</td>
+<td>B, C, D</td>
+</tr>
+<tr class="even">
+<td>AT-6, Training Feedback</td>
+<td>Feedback on training results to defined personnel at a defined frequency</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr class="odd">
+<td>IR-2, Incident Response Training</td>
+<td>Training consistent with assigned roles within a defined period of assuming the role or gaining access, on system changes and at a defined frequency; content reviewed and updated</td>
+<td>L, M, H, Privacy</td>
+<td>B, C, D</td>
+</tr>
+<tr class="even">
+<td>IR-2(1) and IR-2(2), Simulated Events; Automated Training Environments</td>
+<td>Simulated events in incident response training; an automated training environment</td>
+<td>H</td>
+<td>D</td>
+</tr>
+<tr class="odd">
+<td>IR-2(3), Breach</td>
+<td>Training on identifying and responding to a breach, including the reporting process</td>
+<td>Privacy</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td>CP-3, Contingency Training</td>
+<td>Training consistent with contingency roles within a defined period of assuming the role, on system changes and at a defined frequency; content reviewed and updated</td>
+<td>L, M, H</td>
+<td>B, C, D</td>
+</tr>
+<tr class="odd">
+<td>CP-3(1), Simulated Events</td>
+<td>Simulated events in contingency training</td>
+<td>H</td>
+<td>D</td>
+</tr>
+</tbody>
+</table>
+<p>Sources: control text from NIST SP 800-53 Rev.&nbsp;5, release 5.2.0;<a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a> NIST baselines from the SP 800-53B Low, Moderate, High and privacy baseline profiles;<a href="#fn14" class="footnote-ref" id="fnref14" role="doc-noteref"><sup>14</sup></a> FedRAMP classes from the 2026 Rev5 control reference, which assigns no FedRAMP-specific parameter values to any AT, IR-2 or CP-3 control.<a href="#fn15" class="footnote-ref" id="fnref15" role="doc-noteref"><sup>15</sup></a></p>
+<p>Three corrections to the source material follow from the table.</p>
+<ul>
+<li><strong>Two enhancements it claimed to close aren’t in any NIST or FedRAMP baseline.</strong> AT-2(1) and AT-3(3), the practical-exercise enhancements, are optional. Phishing simulation and hands-on labs are good practice, and SP 800-50 Rev.&nbsp;1 recommends experiential learning,<a href="#fn16" class="footnote-ref" id="fnref16" role="doc-noteref"><sup>16</sup></a> but an agency that adopts them is tailoring them in, not meeting a Moderate requirement.</li>
+<li><strong>AT-3(5) is a privacy-baseline control, not a Moderate one.</strong> It applies because the system processes PII and the privacy baseline is selected, which is <a href="../../../docs/books/b14-compliance/08-privacy-pii-processing.html">Chapter 08</a>’s ground.</li>
+<li><strong>AT-2(3) was missing.</strong> Social engineering and mining is in NIST’s Moderate baseline and FedRAMP Classes C and D. The source’s awareness content covered phishing and social engineering but never claimed the control, so the control-closure table omitted one of the Moderate requirements it actually met.</li>
+</ul>
+<p>Most of these controls leave the frequencies and time periods to the organization. Neither NIST nor FedRAMP sets “annual” for AT-2, AT-3, IR-2 or CP-3. The annual floor for awareness comes from 5 CFR 930.301,<a href="#fn17" class="footnote-ref" id="fnref17" role="doc-noteref"><sup>17</sup></a> and the “before access” rule from A-130, AT-2, AT-3 and M-17-12.<a href="#fn18" class="footnote-ref" id="fnref18" role="doc-noteref"><sup>18</sup></a><a href="#fn19" class="footnote-ref" id="fnref19" role="doc-noteref"><sup>19</sup></a> Every other number in this chapter is the agency’s to define, and the program’s suggested values are labeled as design.</p>
+</section>
+<section id="literacy-training-and-awareness-at-2" class="level2">
+<h2 class="anchored" data-anchor-id="literacy-training-and-awareness-at-2">Literacy training and awareness (AT-2)</h2>
+<p>AT-2 covers everyone who uses the system, and its first requirement is timing. Training happens as part of initial training for new users, before access under A-130 and OPM’s rule, then at the agency’s frequency, which can’t be less often than annually for awareness, and again when a system change or a defined event calls for it.<a href="#fn20" class="footnote-ref" id="fnref20" role="doc-noteref"><sup>20</sup></a><a href="#fn21" class="footnote-ref" id="fnref21" role="doc-noteref"><sup>21</sup></a> SP 800-50 Rev.&nbsp;1, quoting SP 800-53’s discussion of AT-2, notes that subsequent literacy training can be one or more short ad hoc sessions on recent attack schemes or policy changes rather than a repeat of the full course.<a href="#fn22" class="footnote-ref" id="fnref22" role="doc-noteref"><sup>22</sup></a></p>
+<p>The program’s awareness content, by design, covers these modules. The controls each one helps evidence are in the right-hand column.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -2615,387 +2767,409 @@ Figure&nbsp;1: The decision sequence: a step zero for the governor’s own secur
 </colgroup>
 <thead>
 <tr class="header">
-<th>Phase</th>
-<th>Activity</th>
-<th>Depends on</th>
+<th>Module</th>
+<th>Content</th>
+<th>Controls it evidences</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>0</td>
-<td>Assessment and inventory</td>
-<td>Nothing; it documents the current WAN, including whether branch transport is governed and measurable</td>
+<td>Zero trust and the agency’s access model</td>
+<td>Why access is verified each time; phishing-resistant sign-in; what a user should expect to be asked</td>
+<td>AT-2</td>
 </tr>
 <tr class="even">
-<td>1</td>
-<td>Identity and access modernization</td>
-<td>Can run in parallel with 2; must precede zero trust network access enforcement in 4</td>
+<td>Phishing and social engineering</td>
+<td>Recognizing pretexts in email, phone and chat; help desk impersonation; reporting with the built-in report button</td>
+<td>AT-2, AT-2(3)</td>
 </tr>
 <tr class="odd">
-<td>2</td>
-<td>Network and transport modernization</td>
-<td>TIC 3.0 use case adoption, local breakout, the branch-edge policy layer, telemetry to CISA</td>
+<td>Authentication hygiene</td>
+<td>Phishing-resistant methods, why SMS codes are a fallback, never approving an unexpected prompt</td>
+<td>AT-2, IA-5</td>
 </tr>
 <tr class="even">
-<td>3</td>
-<td>Cloud workload migration</td>
-<td>Phase 2, for a performance and cost baseline that can be attributed</td>
+<td>Insider threat</td>
+<td>Behavioral indicators, reporting obligations, the agency’s insider threat program</td>
+<td>AT-2(2)</td>
 </tr>
 <tr class="odd">
-<td>4</td>
-<td>Zero trust continuous verification</td>
-<td>Phase 1 for identity, 2 for observable transport, 3 for protected resources</td>
+<td>Data handling</td>
+<td>Controlled unclassified information markings, sensitivity labels, sharing rules</td>
+<td>AT-2</td>
+</tr>
+<tr class="even">
+<td>Breach and incident reporting</td>
+<td>What a suspected breach is, how and to whom to report it, at once</td>
+<td>AT-2, IR-2(3) where selected</td>
+</tr>
+<tr class="odd">
+<td>Rules of behavior and acceptable use</td>
+<td>The system use notice; the rules of behavior acknowledgment</td>
+<td>PL-4, AC-8</td>
+</tr>
+<tr class="even">
+<td>Remote and mobile work</td>
+<td>Device and network risks away from the office</td>
+<td>AT-2</td>
 </tr>
 </tbody>
 </table>
-<p>The dependency that matters most is 3 on 2. It isn’t that migration fails without governed transport. It’s that without it, nobody can tell afterward why migration cost what it did.</p>
+<p>Two items need care. The breach module is the M-17-12 requirement, and its point is speed: M-17-12 has the agency’s principal SOC report breaches to US-CERT, now part of CISA, under its notification guidelines,<a href="#fn23" class="footnote-ref" id="fnref23" role="doc-noteref"><sup>23</sup></a> whose one-hour clock starts when the top-level SOC or CSIRT identifies the incident (<a href="../../../docs/books/b12-security-operations/10-who-runs-security-operations.html">Book 12, Chapter 10</a>). The source material taught a “72-hour reporting window” for PII breaches. That figure is not the federal rule and the program doesn’t teach it; <a href="../../../docs/books/b14-compliance/08-privacy-pii-processing.html">Chapter 08</a> carries the M-17-12 breach preparation requirements, the response plan and the annual tabletop. And the insider threat module should be the same module the insider threat program uses for cleared staff, so one completion record serves AT-2(2) and the task force’s standard.<a href="#fn24" class="footnote-ref" id="fnref24" role="doc-noteref"><sup>24</sup></a></p>
+<section id="phishing-exercises-at-21" class="level3">
+<h3 class="anchored" data-anchor-id="phishing-exercises-at-21">Phishing exercises (AT-2(1))</h3>
+<p>Phishing simulation is the most common form of the optional practical-exercise enhancement. SP 800-50 Rev.&nbsp;1 recommends measuring click-through and report rates, ideally by work role, and offers the NIST Phish Scale for rating how hard a simulated message is. It also sets three conditions the source material didn’t: include the legal team in designing and reviewing exercises, avoid “using legitimate brands or naming federal organizations” in the bait, and tell employees that random exercises happen and that results guide learning, so that the exercises are not punitive and no one is called out.<a href="#fn25" class="footnote-ref" id="fnref25" role="doc-noteref"><sup>25</sup></a> The source proposed scenarios that impersonate <code>.gov</code> and <code>.mil</code> senders. The program instead tests the same instincts with lures that don’t impersonate a real agency, after legal review.</p>
+<p>In a Microsoft 365 GCC tenant, Attack simulation training in Microsoft Defender for Office 365 Plan 2 is one option. Microsoft documents it as available in GCC, GCC High and DoD, with some features missing in GCC High and DoD, and licensed through Microsoft 365 G5, Office 365 G5 or Defender for Office 365 Plan 2 for Government.<a href="#fn26" class="footnote-ref" id="fnref26" role="doc-noteref"><sup>26</sup></a> Any platform that records results per user and exports them works the same way for evidence.</p>
 </section>
-<section id="phase-inversion" class="level2">
-<h2 class="anchored" data-anchor-id="phase-inversion">Phase inversion</h2>
-<p>Most agencies are migrating workloads to cloud now, while transport modernization is years away (<a href="../../../docs/books/b09-network/10-the-long-interim.html">Chapter 10</a>). The consequence is less about performance than about <strong>attribution</strong>, and this book calls the failure mode <strong>phase inversion</strong>: cloud migration completes before the agency can govern and measure the transport its users reach the cloud over.</p>
-<p>After migration, application response times and cloud bills are both worse than the business case assumed. The agency has cloud metrics and application metrics. It doesn’t have per-application transport metrics, because those come from the device it hasn’t deployed. Cost is attributed to the only thing being measured, the cloud, and the remedies follow the attribution: more instances, more caching, read replicas, a delivery layer. Each raises cloud spend, which strengthens the “cloud is too expensive” narrative, which generates pressure to repatriate. The transport contribution is never identified, because it never appears in the data anyone examines.</p>
-<div id="fig-ch13-phase-inversion" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A loop of five cards. A red card: cloud migration completes before branch transport is governed or measured. It leads to a slate card: response times and cloud bills are both worse than the business case. Then an amber card: only cloud and application metrics exist, so cost is attributed to the cloud. Then a red card: remedies follow the attribution, more instances, caching, read replicas and a delivery layer, each raising cloud spend. Then a red card: the cloud-is-too-expensive narrative and repatriation pressure. A dashed arrow loops back to the attribution card. A separate green card at the side, joined by a dashed line to the attribution card: instrument a sample of branches before the next migration wave, so transport appears in the data.">
+</section>
+<section id="role-based-training-at-3" class="level2">
+<h2 class="anchored" data-anchor-id="role-based-training-at-3">Role-based training (AT-3)</h2>
+<p>AT-3 applies to the roles the agency defines, before those people get access or perform duties, and again at the agency’s frequency and on system changes.<a href="#fn27" class="footnote-ref" id="fnref27" role="doc-noteref"><sup>27</sup></a> The hard part is the definition. SP 800-50 Rev.&nbsp;1 describes it as a multi-step process that starts with defining the significant cybersecurity and privacy work roles and identifying the staff aligned to them, usually led by the CIO, CISO or chief privacy officer in partnership with HR.<a href="#fn28" class="footnote-ref" id="fnref28" role="doc-noteref"><sup>28</sup></a> FISMA requires role-based training for personnel with significant security responsibilities,<a href="#fn29" class="footnote-ref" id="fnref29" role="doc-noteref"><sup>29</sup></a> and A-130 extends it to privacy roles.<a href="#fn30" class="footnote-ref" id="fnref30" role="doc-noteref"><sup>30</sup></a></p>
+<p>The program’s model uses six role tiers. The tiers, examples and hours are the program’s design; the agency should set its own from its role definitions and the NICE Framework.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Tier</th>
+<th>Examples</th>
+<th>Training focus</th>
+<th>Frequency (design)</th>
+<th>Hours per year (design)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1. System and platform administrators</td>
+<td>Cloud, identity, network, DNS and server administrators</td>
+<td>Hardening the platforms they run, change control, break-glass procedures, backup and recovery</td>
+<td>Annual, and on adoption of a new platform</td>
+<td>24–40</td>
+</tr>
+<tr class="even">
+<td>2. Privileged access users</td>
+<td>Holders of eligible administrative roles, privileged workstation users</td>
+<td>Just-in-time activation, session controls, the privileged access model in <a href="../../../docs/books/b04-access/index.html">Book 04</a></td>
+<td>Annual</td>
+<td>8–16</td>
+</tr>
+<tr class="odd">
+<td>3. Developers and engineers</td>
+<td>Application developers, pipeline owners, infrastructure-as-code authors</td>
+<td>Secure coding, dependency management, software bills of materials, pipeline security</td>
+<td>Annual, plus lab exercises</td>
+<td>24–40</td>
+</tr>
+<tr class="even">
+<td>4. Incident responders</td>
+<td>SOC analysts, incident handlers, detection engineers</td>
+<td>Playbooks, investigation, evidence handling, the incident response plan</td>
+<td>Semiannual</td>
+<td>16–24</td>
+</tr>
+<tr class="odd">
+<td>5. Data stewards and PII processors</td>
+<td>Records managers, HR system owners, staff who process PII</td>
+<td>Classification and labeling, data loss prevention, privacy notices and assessments, breach handling</td>
+<td>Annual</td>
+<td>8–12</td>
+</tr>
+<tr class="even">
+<td>6. Executives and program officials</td>
+<td>Authorizing officials, system owners, ISSMs, contracting officer’s representatives</td>
+<td>Risk acceptance, plans of action and milestones, the authorization package, contract security clauses</td>
+<td>Annual</td>
+<td>4–8</td>
+</tr>
+</tbody>
+</table>
+<p>Three notes on the tiers.</p>
+<p><strong>Tier membership is a fact the agency already holds.</strong> Who holds an eligible administrative role is in the identity platform. Who owns a system is in the system inventory. Who processes PII is, or should be, in the privacy program’s records. The program derives each tier’s roster from those sources rather than from a training coordinator’s spreadsheet, so a person who gains a role appears in the roster that day and is overdue on the date the role’s training requirement says. <a href="../../../docs/books/b03-hr-identity/index.html">Book 03</a> builds the HR-driven identity record this depends on, and <a href="../../../docs/books/b04-access/index.html">Book 04</a> the eligible-role model. A roster that lags the role assignment is the most common way an AT-3 record overstates completion.</p>
+<p><strong>Developers get a secure delivery track.</strong> The supply chain controls in <a href="../../../docs/books/b14-compliance/07-supply-chain-risk-management.html">Chapter 07</a> automate software bills of materials and vulnerability scanning in the pipeline. The automation produces findings; developers decide whether a finding is fixed or carried with a justified exploitability statement. The track teaches those decisions: dependency pinning and review, reading a scanner’s output, what a vulnerability exploitability statement asserts, pipeline secrets and workflow permissions, and secure code review. The source’s hands-on formats, an annual SBOM lab, an annual triage exercise, quarterly paired code review and an annual supply-chain tabletop with the incident response team, are good design. They count toward AT-3, and toward AT-3(3) if the agency selects it.</p>
+<p><strong>Data stewards get the privacy track.</strong> For a system on the privacy baseline, AT-3(5) asks for initial and recurring training on the PII processing and transparency controls,<a href="#fn31" class="footnote-ref" id="fnref31" role="doc-noteref"><sup>31</sup></a> and SP 800-50 Rev.&nbsp;1 says role-based privacy training for federal agencies should address the agency’s privacy artifacts, including system of records notices, privacy impact assessments and Privacy Act statements.<a href="#fn32" class="footnote-ref" id="fnref32" role="doc-noteref"><sup>32</sup></a> <a href="../../../docs/books/b14-compliance/08-privacy-pii-processing.html">Chapter 08</a> defines those artifacts; this track teaches the people who produce and use them.</p>
+<div id="fig-ch09-four-populations" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Four blue cards on the left, one per training population, each listing the controls it evidences. Every system user: AT-2 literacy training, AT-2(2) insider threat, AT-2(3) social engineering and AT-2(1) phishing exercises. Significant security or privacy roles: AT-3 role-based training, AT-3(3) practical exercises and AT-3(5) PII processing. Developers and engineers: an AT-3 secure delivery track that ties to the supply chain controls. Incident response and recovery staff: IR-2 incident response training and CP-3 contingency training. Each sends a violet arrow to one violet card on the right, AT-4 training records: one record set for all four populations, reviewed on a schedule.">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-ch13-phase-inversion-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="../../images/diagrams/b09-network/svg/ch13-phase-inversion.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;2: Phase inversion as a loop: with no transport metrics, slowness is attributed to the cloud, the remedies raise cloud spend, and the transport cause never enters the data."><img src="../../images/diagrams/b09-network/svg/ch13-phase-inversion.svg" class="img-fluid figure-img" alt="A loop of five cards. A red card: cloud migration completes before branch transport is governed or measured. It leads to a slate card: response times and cloud bills are both worse than the business case. Then an amber card: only cloud and application metrics exist, so cost is attributed to the cloud. Then a red card: remedies follow the attribution, more instances, caching, read replicas and a delivery layer, each raising cloud spend. Then a red card: the cloud-is-too-expensive narrative and repatriation pressure. A dashed arrow loops back to the attribution card. A separate green card at the side, joined by a dashed line to the attribution card: instrument a sample of branches before the next migration wave, so transport appears in the data."></a>
+<div aria-describedby="fig-ch09-four-populations-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="../../images/diagrams/b14-compliance/svg/ch09-four-populations.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;2: Four training populations, the controls each evidences, and the single record set behind them."><img src="../../images/diagrams/b14-compliance/svg/ch09-four-populations.svg" class="img-fluid figure-img" alt="Four blue cards on the left, one per training population, each listing the controls it evidences. Every system user: AT-2 literacy training, AT-2(2) insider threat, AT-2(3) social engineering and AT-2(1) phishing exercises. Significant security or privacy roles: AT-3 role-based training, AT-3(3) practical exercises and AT-3(5) PII processing. Developers and engineers: an AT-3 secure delivery track that ties to the supply chain controls. Incident response and recovery staff: IR-2 incident response training and CP-3 contingency training. Each sends a violet arrow to one violet card on the right, AT-4 training records: one record set for all four populations, reviewed on a schedule."></a>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ch13-phase-inversion-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: Phase inversion as a loop: with no transport metrics, slowness is attributed to the cloud, the remedies raise cloud spend, and the transport cause never enters the data.
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ch09-four-populations-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Four training populations, the controls each evidences, and the single record set behind them.
 </figcaption>
 </figure>
 </div>
-<p>The self-reinforcing property is what makes it worth naming: the remedy for a misattributed cost raises the cost that was misattributed.</p>
-<section id="what-the-federal-record-supports" class="level3">
-<h3 class="anchored" data-anchor-id="what-the-federal-record-supports">What the federal record supports</h3>
-<p>The individual links in that chain have support in the federal record. The composed phenomenon does not appear in any literature the sources could find, and it is presented here as the program’s own inference. The distinction matters, so the parts are set out separately.</p>
-<ul>
-<li><strong>Agencies can’t track cloud costs and savings consistently.</strong> GAO reviewed 16 agencies in 2019 and found they “identified issues in tracking and reporting cloud spending and savings data,” concluding it was likely that agency-reported figures “were underreported.”<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> In 2022 GAO named tracking costs and savings as one of four federal cloud challenges, finding agencies “often using inconsistent data to calculate cloud spending.”<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> In June 2026, across all 24 CFO Act agencies, 17 reported that control of cloud costs required changes in IT management approaches.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></li>
-<li><strong>Transport requirements weren’t understood at migration time.</strong> In the same 2026 report, Commerce officials said cloud usage and requirements, including “data volume, bandwidth, throughput,” did not translate one for one from the on-premises solution, which created “a large degree of uncertainty in the first few years following the migration.”<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> GAO filed this as a cost-tracking problem. It is an agency saying bandwidth and throughput weren’t understood at migration; it is not a claim of misattribution and shouldn’t be represented as one.</li>
-<li><strong>Transport constraints raised cost in a federal cloud context.</strong> CISA’s TIC Program Guidebook says the demands placed on agency TIC access points and the resulting degraded performance “increased the cost and decreased the effectiveness of the TIC initiative when using cloud services.”<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a></li>
-<li><strong>Transport cost has been assumed out of a federal cloud estimate.</strong> GAO’s own Inspector General found that GAO “did not include data egress fees in a major system’s cost estimate,” deeming them minimal, and had not established formal procedures implementing cloud cost management policies.<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a> Narrow, but a clean primary-source instance of the estimating blind spot.</li>
-<li><strong>Latency is a first-order, non-obvious performance driver.</strong> A University of Cambridge study injected latency at fine resolution and found “10 µs latency in each direction enough to have a noticeable effect,” with 50 µs significantly negative and Memcached degrading over 20 percent at 100 µs.<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a> That is a data-center study at microsecond scale. WAN latency is about three orders of magnitude larger, which makes the mechanism more plausible at WAN scale, but the microsecond findings aren’t WAN measurements and shouldn’t be quoted as such.</li>
-</ul>
-<p>What is not documented is the composed claim: no GAO or inspector general report, academic paper or research-firm study the sources found describes transport-attributable cost being misattributed to cloud and driving compensatory spend. The best-known public debate on cloud cost, Andreessen Horowitz’s “The Cost of Cloud, a Trillion Dollar Paradox” and its rebuttals, doesn’t discuss network transport on either side.<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a> That silence is the gap this section addresses, and it is also why the claim has to be labeled an inference.</p>
 </section>
-<section id="the-competing-explanations-a-reviewer-will-raise" class="level3">
-<h3 class="anchored" data-anchor-id="the-competing-explanations-a-reviewer-will-raise">The competing explanations a reviewer will raise</h3>
-<p>These are better evidenced than the transport explanation, and a business case has to address them rather than ignore them.</p>
-<ul>
-<li><strong>Idle and oversized resources.</strong> Flexera’s 2026 <em>State of the Cloud</em> survey of 753 cloud decision-makers puts estimated wasted cloud spend at 29 percent, up for the first time in five years.<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a> Flexera sells cost-management tools, so read it as a vendor survey, but it is the best-evidenced driver of overspend and it isn’t network-related.</li>
-<li><strong>Egress fees are small.</strong> The UK Competition and Markets Authority, with access to provider financial data, found egress fees were 0–5 percent of 2022 UK public cloud revenues at each of the three largest providers, and that a majority of each provider’s customers paid less than 1 percent of their spend on egress.<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a> This book’s argument is not about egress fees; it is about transport-<em>induced</em> compute and operating spend. It will be read as an egress argument unless it says otherwise, so it says otherwise here.</li>
-<li><strong>Licensing.</strong> GAO found restrictive software licensing raised costs at four of six agencies reviewed, with officials in several cases “unable to specify the actual amount of increase.”<a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a> (The source paper said six agencies were unable to specify; the finding is narrower.) Federally documented, and not transport.</li>
-<li><strong>Management and accounting change.</strong> The 17 of 24 agencies that needed changed IT management approaches to control cloud cost are an organizational explanation competing directly with the transport one.<a href="#fn14" class="footnote-ref" id="fnref14" role="doc-noteref"><sup>14</sup></a></li>
-<li><strong>Repatriation is smaller than claimed.</strong> Uptime Institute’s 2022 survey data found 33 percent of respondents had moved some production applications off public cloud and 6 percent had abandoned public cloud altogether, and its analysis concludes that high costs drive repatriation but the impact is overstated.<a href="#fn15" class="footnote-ref" id="fnref15" role="doc-noteref"><sup>15</sup></a> Neither Uptime nor comparable surveys list network or latency among stated reasons. The widely repeated claim that a large majority of organizations will repatriate comes from vendor-sponsored surveys without published methods and shouldn’t be cited.</li>
-</ul>
-<p>That last point bears on falsifiability. The phase-inversion claim predicts that organizations would <em>not</em> name transport as the cause, since by hypothesis they can’t see it. Survey silence is therefore weak evidence in either direction, and the claim is hard to test from survey data. It isn’t untestable; the last section of this chapter says what would settle it.</p>
-</section>
-<section id="if-you-are-already-inverted" class="level3">
-<h3 class="anchored" data-anchor-id="if-you-are-already-inverted">If you are already inverted</h3>
-<p>Most agencies reading this have already migrated. The correction isn’t to unwind anything:</p>
-<ol type="1">
-<li><strong>Instrument before you buy.</strong> Deploy transport measurement at a representative sample of branches; many agencies can get per-path latency and loss from existing equipment without new capital (<a href="../../../docs/books/b09-network/10-the-long-interim.html">Chapter 10</a>, action 2). Establish what fraction of application latency is transport-attributable before proposing a transport program.</li>
-<li><strong>Re-baseline the attribution.</strong> Take the last four quarters of cloud spend growth and test how much correlates with user-experience complaints and help desk volume by branch rather than with workload growth.</li>
-<li><strong>Fix chattiness first where it dominates.</strong> The round-trip arithmetic in <a href="../../../docs/books/b09-network/06-legacy-protocols-on-re-routed-paths.html">Chapter 06</a> will identify applications where an application change returns more than any transport change can.</li>
-<li><strong>Then scope the branch-edge program</strong> to the branches and applications where the measurement says it pays, rather than to every branch on principle.</li>
-</ol>
-<p>That sequence produces a business case a reviewer can’t take apart, because every number in it came from the agency’s own estate.</p>
-</section>
-</section>
-<section id="measuring-cost-in-your-own-estate" class="level2">
-<h2 class="anchored" data-anchor-id="measuring-cost-in-your-own-estate">Measuring cost in your own estate</h2>
-<p>An agency building a business case needs numbers, and the honest report on where public ones come from is partly negative. The negative findings are useful in themselves: they explain why so many figures in circulation are unsourced.</p>
-<section id="what-the-public-record-doesnt-give-you" class="level3">
-<h3 class="anchored" data-anchor-id="what-the-public-record-doesnt-give-you">What the public record doesn’t give you</h3>
-<ul>
-<li><strong>No realized EIS savings figure.</strong> The sources found no GAO quantification of savings realized under EIS. GAO’s most recent EIS report (August 2026) is about transition delays and service disruption, not savings.<a href="#fn16" class="footnote-ref" id="fnref16" role="doc-noteref"><sup>16</sup></a></li>
-<li><strong>No published before-and-after SD-WAN cost from a federal agency.</strong> Task order ceilings are public; the sources found no realized cost deltas.</li>
-<li><strong>No federal figure that isolates legacy WAN or MPLS operating cost.</strong> The federal operations-and-maintenance figures the sources found cover all of IT, not network.</li>
-<li><strong>EIS unit prices exist but must be pulled per service and location.</strong> GSA’s EIS Public Pricer is open to the public and offers downloads of awarded services by geography and vendor, plus CLIN data, but prices for specific circuits and sites still have to be looked up for the agency’s own locations.<a href="#fn17" class="footnote-ref" id="fnref17" role="doc-noteref"><sup>17</sup></a> (The source paper said the pricer has no bulk export; it does offer downloads.) GSA says MTIPS pricing can be found in the EIS pricing tool, with port charges monthly and optional features priced separately.<a href="#fn18" class="footnote-ref" id="fnref18" role="doc-noteref"><sup>18</sup></a> (The source paper said MTIPS is priced only on an individual case basis and excluded from the pricer; GSA’s current MTIPS page doesn’t say that. Any feature that is priced case by case still won’t appear as a unit price.)</li>
-</ul>
-</section>
-<section id="what-is-citable" class="level3">
-<h3 class="anchored" data-anchor-id="what-is-citable">What is citable</h3>
+<section id="incident-response-and-contingency-training-ir-2-cp-3" class="level2">
+<h2 class="anchored" data-anchor-id="incident-response-and-contingency-training-ir-2-cp-3">Incident response and contingency training (IR-2, CP-3)</h2>
+<p>IR-2 and CP-3 are written the same way. Each asks for training consistent with assigned roles, within an organization-defined period of taking on the role, when system changes require it, and at a defined frequency after that, with the content reviewed and updated.<a href="#fn33" class="footnote-ref" id="fnref33" role="doc-noteref"><sup>33</sup></a> Both are in every NIST baseline and FedRAMP Classes B to D; their simulated-event enhancements are High and Class D only.<a href="#fn34" class="footnote-ref" id="fnref34" role="doc-noteref"><sup>34</sup></a><a href="#fn35" class="footnote-ref" id="fnref35" role="doc-noteref"><sup>35</sup></a></p>
+<p>The guidance behind them is older than the controls. SP 800-34 Rev.&nbsp;1, the contingency planning guide (May 2010, updated November 2010, still final), says training for people with contingency plan responsibilities should be provided at least annually, that people newly appointed to plan roles should be trained shortly afterward, and that recovery staff should ideally be able to do their jobs “without aid of the actual ISCP document,” because the plan may be unavailable in the first hours of a disruption.<a href="#fn36" class="footnote-ref" id="fnref36" role="doc-noteref"><sup>36</sup></a> Both it and SP 800-84, <em>Guide to Test, Training, and Exercise Programs for IT Plans and Capabilities</em> (September 2006, still final), separate training, which teaches people their roles, from exercises and tests, which check that the plan and the people work.<a href="#fn37" class="footnote-ref" id="fnref37" role="doc-noteref"><sup>37</sup></a><a href="#fn38" class="footnote-ref" id="fnref38" role="doc-noteref"><sup>38</sup></a> SP 800-61 Rev.&nbsp;3, the April 2025 incident response guide, adds one recommendation under the Cybersecurity Framework’s awareness and training category: role-based training should include incident-related responsibilities.<a href="#fn39" class="footnote-ref" id="fnref39" role="doc-noteref"><sup>39</sup></a></p>
+<p>The distinction matters for evidence. The source’s quarterly calendar counted three functional failover tests as CP-3 training. They are CP-4 contingency plan tests, which <a href="../../../docs/books/b14-compliance/06-contingency-and-continuity.html">Chapter 06</a> covers. They train the people who take part, and the program records their attendance, but CP-3’s evidence is the training itself: a record that each person named in the contingency plan was trained for their role within the period the agency set.</p>
+<p>The program’s cadence, by design:</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
-<th>Figure</th>
-<th>Source</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Agencies could have saved about $329 million had they transitioned to Networx on time, against savings of 28.4 percent of FTS2001 spending; GSA’s transition costs rose $66.4 million, 44 percent over the baseline</td>
-<td>GAO-14-63, December 2013<a href="#fn19" class="footnote-ref" id="fnref19" role="doc-noteref"><sup>19</sup></a></td>
-</tr>
-<tr class="even">
-<td>Billing for six agencies’ legacy Networx contracts rose from about $13.4 million in February 2025 to about $40.9 million in March 2025, a 206 percent increase, with their transitions more than three years past GSA’s revised deadline</td>
-<td>GAO-26-107919, August 2026<a href="#fn20" class="footnote-ref" id="fnref20" role="doc-noteref"><sup>20</sup></a></td>
-</tr>
-<tr class="odd">
-<td>37 EIS task orders worth over $7.4 billion in just over a year of the program</td>
-<td>ACT-IAC case study, as reported June 2020<a href="#fn21" class="footnote-ref" id="fnref21" role="doc-noteref"><sup>21</sup></a></td>
-</tr>
-<tr class="even">
-<td>About 80 percent of more than $100 billion in annual federal IT spending goes to operations and maintenance</td>
-<td>GAO-25-107795, July 2025<a href="#fn22" class="footnote-ref" id="fnref22" role="doc-noteref"><sup>22</sup></a></td>
-</tr>
-<tr class="odd">
-<td>Up to $50 billion in combined EIS contract value; about $2.5 billion spent through GSA telecom contracts in FY2019</td>
-<td>CRS IF11668, October 2020<a href="#fn23" class="footnote-ref" id="fnref23" role="doc-noteref"><sup>23</sup></a></td>
-</tr>
-</tbody>
-</table>
-<p>The GAO-26-107919 figure is now the strongest cost-of-delay number in the federal record, because it prices deferral directly rather than modeling it. (The source paper’s “$2.08 billion” Networx-extension figure couldn’t be traced to any source and is dropped.)</p>
-</section>
-<section id="the-mpls-versus-broadband-multiple" class="level3">
-<h3 class="anchored" data-anchor-id="the-mpls-versus-broadband-multiple">The MPLS-versus-broadband multiple</h3>
-<p>The claim that MPLS costs three to ten times broadband per megabit circulates widely, mostly from WAN brokers, SD-WAN vendors and their content marketing, none of whom publish a method. The one independent dataset the sources found, from TeleGeography, a research firm that sells WAN pricing data, reports a smaller and less consistent gap. On Q4 2019 data with local access included, DIA was cheaper than MPLS almost everywhere, but at 20 Mbps in New York “most carriers price DIA at a slight discount—one offered a significant discount and two offered it at a premium.”<a href="#fn24" class="footnote-ref" id="fnref24" role="doc-noteref"><sup>24</sup></a> The data is several years old and the free publication gives percentages rather than absolute prices. An agency shouldn’t build a business case on the marketing multiple; it should price its own circuits and sites in the EIS pricer.</p>
-</section>
-<section id="the-cost-structure-which-you-can-build-without-unit-prices" class="level3">
-<h3 class="anchored" data-anchor-id="the-cost-structure-which-you-can-build-without-unit-prices">The cost structure, which you can build without unit prices</h3>
-<p>EIS charging units make the drivers explicit, and the structural difference between architectures is which variable the cost scales with. This table is the program’s analysis of the cost structure, not a price list.</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Architecture</th>
-<th>Recurring</th>
-<th>One-time</th>
-<th>Scales with</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>MPLS with central TIC or MTIPS</td>
-<td>VPN service port charge per site; access charge per location; equipment lease and maintenance; MTIPS port charge plus optional features</td>
-<td>Access installation; CPE procurement and installation; site preparation; design and engineering</td>
-<td>Site count × port speed; largely insensitive to actual traffic, because you buy ports</td>
-</tr>
-<tr class="even">
-<td>DIA plus SASE, no branch edge</td>
-<td>Internet service port charge; access charge per site; SASE subscription; any usage-based egress</td>
-<td>Access installation; minimal CPE; SASE onboarding</td>
-<td>User count: the structural break from the row above</td>
-</tr>
-<tr class="odd">
-<td>DIA plus SASE plus a branch edge</td>
-<td>The row above, plus appliance license and orchestration per site (or a managed network service charge per site), usually plus a second access circuit</td>
-<td>Appliance procurement and installation labor per site</td>
-<td>Site count × bandwidth tier, plus user count for the SASE layer</td>
-</tr>
-<tr class="even">
-<td>Agency-operated access point</td>
-<td>Around-the-clock SOC staffing; facilities; security stack subscriptions and support; transport into the access point</td>
-<td>Security stack capital; build-out; accreditation</td>
-<td>Internal; the sources found no published federal figure</td>
-</tr>
-</tbody>
-</table>
-<p>The move from the first row to the second changes the cost <em>variable</em>, from site count and port speed to user count. For an agency with many small branches that tends to be favorable; for one with few large sites and many users it may not be. That’s the calculation to run, and it can be run in the EIS pricer with real numbers before anything is procured. Note the term most often left out: a per-user annual SASE subscription across a large workforce is the line most likely to dominate the comparison, and SD-WAN-versus-MPLS framings routinely omit it. Vendor GSA schedule price lists show per-user pricing for some SASE products; price the specific candidates from their current schedule contracts rather than from a figure in a paper. (The source paper’s per-user range for one vendor couldn’t be confirmed against a public GSA price list and is dropped.) <a href="../../../docs/books/b09-network/11-field-office-wan-transformation.html">Chapter 11</a> applies this structure to a large field-office estate with its inputs labeled.</p>
-</section>
-<section id="the-mechanisms-worth-measuring" class="level3">
-<h3 class="anchored" data-anchor-id="the-mechanisms-worth-measuring">The mechanisms worth measuring</h3>
-<p>Four effects plausibly move compute cost, and all four are measurable:</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Mechanism</th>
-<th>What happens</th>
-<th>What to measure</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Connection re-establishment</td>
-<td>Each re-established session costs a TLS handshake, an authentication exchange and application session setup on both sides</td>
-<td>Server-side new-connection rate against active-session count; connection setups per transaction</td>
-</tr>
-<tr class="even">
-<td>Retry after a path event</td>
-<td>Clients that reconnect at once produce a burst of server-side connection handling</td>
-<td>Connection-rate spikes correlated with WAN path events, and their duration</td>
-</tr>
-<tr class="odd">
-<td>Authentication replay</td>
-<td>Failed token exchanges generate repeat cycles at the identity provider</td>
-<td>Authentication request volume against successful authentications</td>
-</tr>
-<tr class="even">
-<td>Cache invalidation</td>
-<td>Dropped sessions discard application caches and force cold execution</td>
-<td>Cache hit ratio and query time distribution around session-drop events</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="a-worked-example-every-input-stated" class="level3">
-<h3 class="anchored" data-anchor-id="a-worked-example-every-input-stated">A worked example, every input stated</h3>
-<p>To show the shape of the arithmetic, not to supply a result. Every input is an assumption chosen for illustration:</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 50%">
-<col style="width: 50%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Input</th>
-<th>Value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Branch users</td>
-<td>5,000</td>
-</tr>
-<tr class="even">
-<td>Application server instances, running continuously</td>
-<td>40</td>
-</tr>
-<tr class="odd">
-<td>On-demand-equivalent rate</td>
-<td>$0.192 per instance-hour</td>
-</tr>
-<tr class="even">
-<td>Measured reduction in average CPU from less connection churn</td>
-<td>X percent</td>
-</tr>
-</tbody>
-</table>
-<p>Annual compute at baseline is 40 × $0.192 × 8,760 hours = $67,277. If lower utilization allows a proportional reduction in instances, the annual saving is about $67,277 × X; at X = 10 percent, that’s $6,728 a year.</p>
-<p>The example is deliberately unflattering. Compute savings alone rarely justify a branch-edge program, and a business case resting on them won’t survive a budget examiner who asks for the instance count. The defensible case rests on four other cost categories, each measurable from data the agency already holds and, in most estates, each larger than the compute term:</p>
-<ul>
-<li>help desk volume by branch, normalized by user count;</li>
-<li>circuit capacity bought as headroom for unmanaged queuing;</li>
-<li>analyst hours spent on alerts closed as benign network behavior;</li>
-<li>the risk cost of control assertions that can’t be evidenced.</li>
-</ul>
-<p>This cost structure is also the core of the investment record federal capital planning asks for: full life-cycle cost split into development and operations, risk-adjusted return, and milestones measured on cost, capability, timeliness and quality. <a href="../../../docs/books/b00-orientation/appendix-c-funding-and-acquisition.html">Book 00, Appendix C</a> maps it to 40 U.S.C. §11312, Circular A-11 Section 55 and the Technology Modernization Fund’s financial template.</p>
-</section>
-</section>
-<section id="what-to-stop-doing" class="level2">
-<h2 class="anchored" data-anchor-id="what-to-stop-doing">What to stop doing</h2>
-<ul>
-<li><strong>Stop putting a routing-attributable percentage into a TCO model on the authority of a white paper, including this book.</strong> Put in a measured figure with its method attached, or a range with the assumption labeled as an assumption. A migration business case that omits routing architecture as a cost variable is incomplete; one that includes an invented figure for it is worse, because it will be checked.</li>
-<li><strong>Stop using the unsourced figures in circulation.</strong> Claims such as 12–18 percent extra application-server CPU from hairpin routing, or $200,000–$400,000 a year of cloud overspend for a 5,000-user agency, came with no derivation, no measurement, no instance count and no rate. Earlier versions of this book’s sources offered them; they are withdrawn.</li>
-<li><strong>Stop citing the MPLS-to-broadband multiple.</strong> Price your own circuits.</li>
-<li><strong>Stop justifying a branch-edge program on latency alone.</strong> For chattiness the application change dominates (<a href="../../../docs/books/b09-network/06-legacy-protocols-on-re-routed-paths.html">Chapter 06</a>); the stronger argument is governance and evidence.</li>
-<li><strong>Stop presenting the sequence as a mandate.</strong> It is a technical dependency, and saying so is what makes it survive review.</li>
-<li><strong>Stop treating an undocumented gap as a private matter.</strong> An assessor who finds it records a finding. Document it as an accepted risk with compensating measures (<a href="../../../docs/books/b09-network/10-the-long-interim.html">Chapter 10</a>).</li>
-</ul>
-</section>
-<section id="evidence-for-the-boundary-change" class="level2">
-<h2 class="anchored" data-anchor-id="evidence-for-the-boundary-change">Evidence for the boundary change</h2>
-<p>The boundary change in step 3 is decided on evidence, and the evidence is the same material that later supports the control assertions. Where an agency asserts SC-7, SI-4, AC-17 or CA-7 for a system whose users reach it over branch transport (<a href="../../../docs/books/b09-network/03-what-tic-3-requires.html">Chapter 03</a> lists what each asserts), the package should carry:</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
+<th>Event</th>
+<th>Frequency (design)</th>
+<th>Participants</th>
 <th>Evidence</th>
-<th>What it shows</th>
-<th>Produced by</th>
+<th>Controls</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Application-to-path routing policy</td>
-<td>The path, priority, failover behavior and source-address presentation for each application class; the SC-7(4) traffic flow policy</td>
-<td>The policy document from <a href="../../../docs/books/b09-network/10-the-long-interim.html">Chapter 10</a>, action 1</td>
+<td>Incident response procedure walkthrough</td>
+<td>Semiannual</td>
+<td>SOC and incident response team</td>
+<td>Attendance record, procedure version</td>
+<td>IR-2</td>
 </tr>
 <tr class="even">
-<td>QoS policy at the branch edge</td>
-<td>Where and how priority is applied before the constrained link</td>
-<td>Branch-edge configuration export</td>
+<td>Playbook drill</td>
+<td>Quarterly</td>
+<td>SOC analysts</td>
+<td>Drill report</td>
+<td>IR-2; IR-2(1) if selected</td>
 </tr>
 <tr class="odd">
-<td>Failover policy and its measured recovery time</td>
-<td>That failover works, and how fast</td>
-<td>A test record per site class, with date and method</td>
+<td>Tabletop: ransomware (one of the twice-yearly incident response exercises, <a href="../../../docs/books/b14-compliance/05-program-management-controls.html">Chapter 05</a>)</td>
+<td>Annual</td>
+<td>Incident response team and leadership</td>
+<td>Attendance, after-action report</td>
+<td>IR-2, CP-3</td>
 </tr>
 <tr class="even">
-<td>Path-performance monitoring</td>
-<td>Per-application latency, loss and jitter by path</td>
-<td>Governor telemetry, or flow records plus synthetic transactions in the interim</td>
+<td>Tabletop: supply chain compromise</td>
+<td>Annual</td>
+<td>Incident response, development and leadership</td>
+<td>Attendance, after-action report</td>
+<td>IR-2, AT-3</td>
 </tr>
 <tr class="odd">
-<td>Decision records</td>
-<td>Which path or policy decision was made, under which policy, when</td>
-<td>The SD-WAN and SASE decision records in <a href="../../../docs/books/b09-network/05-sd-wan-sase-and-governed-transport.html">Chapter 05</a></td>
+<td>Contingency role training</td>
+<td>On appointment, then annual</td>
+<td>Everyone named in a contingency plan</td>
+<td>Completion record per person</td>
+<td>CP-3</td>
 </tr>
 <tr class="even">
-<td>Traffic-flow exceptions</td>
-<td>Each exception with its mission need, duration and review</td>
-<td>The SC-7(4) instruments in <a href="../../../docs/books/b09-network/appendix-a-optimize-exemption-instruments.html">Appendix A</a></td>
+<td>Contingency exercise: multi-system outage (the plan’s first-year tabletop, then the annual functional exercise, <a href="../../../docs/books/b14-compliance/06-contingency-and-continuity.html">Chapter 06</a>)</td>
+<td>Annual</td>
+<td>All recovery-designated staff and leadership</td>
+<td>Attendance, after-action report, plan updates</td>
+<td>CP-3, CP-4</td>
 </tr>
 <tr class="odd">
-<td>CISA telemetry parity</td>
-<td>That CISA’s visibility survives the move off MTIPS</td>
-<td>CLAW onboarding confirmation (<a href="../../../docs/books/b09-network/03-what-tic-3-requires.html">Chapter 03</a>)</td>
-</tr>
-<tr class="even">
-<td>Known limitations</td>
-<td>Which assertions lack a mechanism, and the compensating measures</td>
-<td>The accepted-risk entry</td>
+<td>Failover tests by platform</td>
+<td>Per <a href="../../../docs/books/b14-compliance/06-contingency-and-continuity.html">Chapter 06</a></td>
+<td>Platform teams</td>
+<td>Test report with measured recovery time</td>
+<td>CP-4</td>
 </tr>
 </tbody>
 </table>
-<p>Under OMB M-26-14, the transport question is now also a logging-maturity question: among its minimum log content, agencies must be able to determine “source and destination network address information, including protocols, ports, and session attributes.”<a href="#fn25" class="footnote-ref" id="fnref25" role="doc-noteref"><sup>25</sup></a> Where no mechanism produces that record at a branch, the package should say so as a known limitation rather than leave it implicit. <a href="../../../docs/books/b09-network/appendix-b-requirements-mapping.html">Appendix B</a> maps each requirement to its chapter and evidence.</p>
+<p>Every tabletop produces an after-action report that records attendance by role and date, the scenario and its injects, the gaps found against the plan, and corrective actions with owners and due dates. The ISSO reviews it and it is filed with the system’s evidence. The corrective actions go where <a href="../../../docs/books/b13-governance/09-who-governs.html">Book 13, Chapter 09</a> sends every finding: fixed inside a window, or carried by a named decision. Lessons learned also go back into the training content, which CP-2 asks for explicitly, and AT-2 and AT-3 ask for in their own words.<a href="#fn40" class="footnote-ref" id="fnref40" role="doc-noteref"><sup>40</sup></a> <a href="../../../docs/books/b12-security-operations/11-detection-engineering-and-response.html">Book 12, Chapter 11</a> covers the playbooks the drills exercise.</p>
 </section>
-<section id="how-to-confirm-or-refute-the-case" class="level2">
-<h2 class="anchored" data-anchor-id="how-to-confirm-or-refute-the-case">How to confirm or refute the case</h2>
-<p>When funding becomes possible, the number that survives a budget examiner is a measurement. The direct test is a <strong>paired-branch study</strong>, run around a migration wave or a device deployment:</p>
-<div id="fig-ch13-paired-branch" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Top to bottom. A slate card: select two branches with comparable user counts and application mix. A violet card: instrument both for 30 days, listing WAN path events, application server CPU and new-connection rate, identity provider authentication volume, database cache hit ratio, and help desk tickets tagged by application. An amber card: deploy the branch-edge policy layer at one branch only. A violet card: instrument both for a further 30 days. A green card: the effect size is the post-period difference adjusted for the pre-period difference, agency-specific and defensible.">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-ch13-paired-branch-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="../../images/diagrams/b09-network/svg/ch13-paired-branch.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Figure&nbsp;3: The paired-branch study: two comparable branches instrumented for 30 days, a change at one, 30 more days, and the effect size as the difference in differences."><img src="../../images/diagrams/b09-network/svg/ch13-paired-branch.svg" class="img-fluid figure-img" alt="Top to bottom. A slate card: select two branches with comparable user counts and application mix. A violet card: instrument both for 30 days, listing WAN path events, application server CPU and new-connection rate, identity provider authentication volume, database cache hit ratio, and help desk tickets tagged by application. An amber card: deploy the branch-edge policy layer at one branch only. A violet card: instrument both for a further 30 days. A green card: the effect size is the post-period difference adjusted for the pre-period difference, agency-specific and defensible."></a>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ch13-paired-branch-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3: The paired-branch study: two comparable branches instrumented for 30 days, a change at one, 30 more days, and the effect size as the difference in differences.
-</figcaption>
-</figure>
-</div>
+<section id="training-records-as-evidence-at-4" class="level2">
+<h2 class="anchored" data-anchor-id="training-records-as-evidence-at-4">Training records as evidence (AT-4)</h2>
+<p>AT-4 is two sentences: document and monitor training activities, and retain individual training records for a period the organization defines.<a href="#fn41" class="footnote-ref" id="fnref41" role="doc-noteref"><sup>41</sup></a> Everything else in this chapter becomes assessable through it.</p>
+<section id="what-the-record-has-to-answer" class="level3">
+<h3 class="anchored" data-anchor-id="what-the-record-has-to-answer">What the record has to answer</h3>
+<p>An assessor reviewing AT-2, AT-3, IR-2 and CP-3 asks four questions, and the record should answer each one for a stated review window.</p>
 <ol type="1">
-<li>Select two branches with comparable user counts and application mix.</li>
-<li>Instrument both for 30 days: WAN path events, application server CPU and new-connection rate, identity provider authentication volume, database cache hit ratio, and help desk tickets tagged by application.</li>
-<li>Make the change at one branch only: deploy the branch-edge layer, or, to test phase inversion, run the study across a migration wave.</li>
-<li>Instrument both for a further 30 days.</li>
-<li>The difference in the post-period, adjusted for the pre-period difference, is the effect size. It is agency-specific and defensible, and it is the number to put in a business case.</li>
+<li>Did every system user complete literacy training, including the insider threat and social engineering content, before access and within the agency’s frequency?</li>
+<li>Did every person in each defined role complete that role’s training?</li>
+<li>Did developers and engineers complete the secure delivery track?</li>
+<li>Were the people named in the incident response and contingency plans trained for their roles, and did the drills and tabletops happen on schedule?</li>
 </ol>
-<p>Three further measurements would settle the phase-inversion question in a given estate:</p>
-<ol type="1">
-<li><strong>Instance-count elasticity to path events.</strong> If autoscaling or manual capacity increases correlate with branch WAN path degradation rather than with user or transaction volume, the mechanism is present. If they correlate only with volume, it isn’t.</li>
-<li><strong>Cache and replica additions traced to a diagnosis.</strong> Where a caching layer or read replica was added after migration, examine the incident or performance record that justified it. If the diagnosis was “slow application” with no transport measurement available, the attribution was unavailable rather than wrong, which is the claim.</li>
-<li><strong>Help desk ticket clustering by branch.</strong> Ticket volume per user that varies significantly by branch, uncorrelated with application mix, points at transport; a uniform distribution points away from it.</li>
-</ol>
-<p>An agency that runs these has either evidence or a disproof, and either is worth more than the argument.</p>
-<div class="callout callout-style-default callout-note callout-titled">
+<p>Each answer has a numerator and a denominator. The numerator comes from the learning management system, which holds one completion record per person and course. The denominator comes from the role roster: the identity platform for users and privileged roles, the system inventory for owners, the contingency and incident response plans for recovery staff. A completion percentage that doesn’t say which roster it was measured against isn’t evidence, because it can’t be re-derived.</p>
+</section>
+<section id="where-the-record-lives" class="level3">
+<h3 class="anchored" data-anchor-id="where-the-record-lives">Where the record lives</h3>
+<p>The learning management system is the system of record for individual completions; the evidence record is derived from it. The program keeps the two apart for three reasons.</p>
+<ul>
+<li><strong>It is how the platforms are built.</strong> Microsoft describes Viva Learning as a learning hub that ingests content and learner records from a learning management system, and says the LMS “is the ultimate source of content and learner records.”<a href="#fn42" class="footnote-ref" id="fnref42" role="doc-noteref"><sup>42</sup></a> The hub is a view. The evidence should come from the source.</li>
+<li><strong>It survives a product change.</strong> The derived record has a fixed shape. Replacing the learning platform means writing a new export mapping, not redefining the control. A vendor’s roadmap is not a commitment, and an evidence pipeline that depends on one product staying in service will break when it doesn’t.</li>
+<li><strong>It keeps sensitive data where it belongs.</strong> SP 800-50 Rev.&nbsp;1 warns that training records “are often part of employment or contract records” and can be tied to performance evaluations, and asks program managers to manage the risks of processing learning data, including risks in learning management systems and reporting.<a href="#fn43" class="footnote-ref" id="fnref43" role="doc-noteref"><sup>43</sup></a> The derived record carries counts, not names. The per-person detail stays in the system of record, behind its access controls, where the ISSO and the assessor can sample it.</li>
+</ul>
+<p>The derived record follows the evidence contract in <a href="../../../docs/books/b12-security-operations/02-the-evidence-contract.html">Book 12, Chapter 02</a>: what was measured, against what, from which sources, when, and with what integrity check. <a href="../../../docs/books/b13-governance/07-evidence-over-attestation.html">Book 13, Chapter 07</a> explains why an assessor should be able to regenerate it rather than trust it.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>What this chapter establishes
+<span class="screen-reader-only">Warning</span>Illustrative, not production code
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<ol type="1">
-<li>The order is fixed by engineering, not mandate: secure the governor, buy the pipe on measured physics, deploy the governor before traffic, decide the boundary change before cutover, handle Microsoft 365 through its own exception, and register the evidence.</li>
-<li>Phase inversion is the program’s inference, built on documented parts: agencies can’t track cloud cost consistently, transport needs weren’t understood at migration, and CISA says the hairpin raised cloud cost. Better-evidenced explanations compete with it and must be answered.</li>
-<li>The public cost record is thin: no realized EIS savings figure and no federal before-and-after SD-WAN figure. GAO’s 206 percent Networx billing increase is the strongest cost-of-delay number available.</li>
-<li>Build the cost case from your own circuits, sites and users. The SASE per-user subscription is the term most often left out; compute savings are the smallest term.</li>
-<li>The boundary-change package needs the routing policy, QoS and failover evidence, path telemetry, exceptions, CISA telemetry parity and stated limitations.</li>
-<li>A paired-branch study and three targeted measurements confirm or refute the case in a given estate.</li>
-</ol>
+<p>The record layout and script below are illustrative. They haven’t been tested against a production learning management system or a real workforce. Field names, course identifiers and file layouts are examples; map them to the agency’s own systems and review the script before running it.</p>
 </div>
 </div>
+<p>A derived training evidence record, as the program designs it:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"recordType"</span><span class="fu">:</span> <span class="st">"training-evidence-record"</span><span class="fu">,</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"generatedAt"</span><span class="fu">:</span> <span class="st">"2026-10-01T06:00:00Z"</span><span class="fu">,</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"reviewWindow"</span><span class="fu">:</span> <span class="fu">{</span> <span class="dt">"start"</span><span class="fu">:</span> <span class="st">"2025-10-01"</span><span class="fu">,</span> <span class="dt">"end"</span><span class="fu">:</span> <span class="st">"2026-09-30"</span> <span class="fu">},</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"sources"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span> <span class="dt">"role"</span><span class="fu">:</span> <span class="st">"completions"</span><span class="fu">,</span> <span class="dt">"system"</span><span class="fu">:</span> <span class="st">"agency LMS export"</span><span class="fu">,</span> <span class="dt">"file"</span><span class="fu">:</span> <span class="st">"lms-completions-2026-10-01.csv"</span><span class="fu">,</span> <span class="dt">"sha256"</span><span class="fu">:</span> <span class="st">"&lt;hash&gt;"</span> <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span> <span class="dt">"role"</span><span class="fu">:</span> <span class="st">"roster"</span><span class="fu">,</span> <span class="dt">"system"</span><span class="fu">:</span> <span class="st">"role roster from HR and identity governance"</span><span class="fu">,</span> <span class="dt">"file"</span><span class="fu">:</span> <span class="st">"role-roster-2026-10-01.csv"</span><span class="fu">,</span> <span class="dt">"sha256"</span><span class="fu">:</span> <span class="st">"&lt;hash&gt;"</span> <span class="fu">}</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"populations"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span> <span class="dt">"population"</span><span class="fu">:</span> <span class="st">"all-users"</span><span class="fu">,</span>       <span class="dt">"controls"</span><span class="fu">:</span> <span class="ot">[</span><span class="st">"AT-2"</span><span class="ot">,</span> <span class="st">"AT-2(2)"</span><span class="ot">,</span> <span class="st">"AT-2(3)"</span><span class="ot">]</span><span class="fu">,</span> <span class="dt">"required"</span><span class="fu">:</span> <span class="dv">4210</span><span class="fu">,</span> <span class="dt">"complete"</span><span class="fu">:</span> <span class="dv">4122</span><span class="fu">,</span> <span class="dt">"overdue"</span><span class="fu">:</span> <span class="dv">88</span> <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span> <span class="dt">"population"</span><span class="fu">:</span> <span class="st">"tier1-admins"</span><span class="fu">,</span>    <span class="dt">"controls"</span><span class="fu">:</span> <span class="ot">[</span><span class="st">"AT-3"</span><span class="ot">]</span><span class="fu">,</span>                       <span class="dt">"required"</span><span class="fu">:</span> <span class="dv">64</span><span class="fu">,</span>   <span class="dt">"complete"</span><span class="fu">:</span> <span class="dv">64</span><span class="fu">,</span>   <span class="dt">"overdue"</span><span class="fu">:</span> <span class="dv">0</span> <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span> <span class="dt">"population"</span><span class="fu">:</span> <span class="st">"tier3-developers"</span><span class="fu">,</span><span class="dt">"controls"</span><span class="fu">:</span> <span class="ot">[</span><span class="st">"AT-3"</span><span class="ot">]</span><span class="fu">,</span>                       <span class="dt">"required"</span><span class="fu">:</span> <span class="dv">91</span><span class="fu">,</span>   <span class="dt">"complete"</span><span class="fu">:</span> <span class="dv">89</span><span class="fu">,</span>   <span class="dt">"overdue"</span><span class="fu">:</span> <span class="dv">2</span> <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span> <span class="dt">"population"</span><span class="fu">:</span> <span class="st">"tier5-stewards"</span><span class="fu">,</span>  <span class="dt">"controls"</span><span class="fu">:</span> <span class="ot">[</span><span class="st">"AT-3"</span><span class="ot">,</span> <span class="st">"AT-3(5)"</span><span class="ot">]</span><span class="fu">,</span>            <span class="dt">"required"</span><span class="fu">:</span> <span class="dv">47</span><span class="fu">,</span>   <span class="dt">"complete"</span><span class="fu">:</span> <span class="dv">46</span><span class="fu">,</span>   <span class="dt">"overdue"</span><span class="fu">:</span> <span class="dv">1</span> <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span> <span class="dt">"population"</span><span class="fu">:</span> <span class="st">"ir-dr-roles"</span><span class="fu">,</span>     <span class="dt">"controls"</span><span class="fu">:</span> <span class="ot">[</span><span class="st">"IR-2"</span><span class="ot">,</span> <span class="st">"CP-3"</span><span class="ot">]</span><span class="fu">,</span>               <span class="dt">"required"</span><span class="fu">:</span> <span class="dv">38</span><span class="fu">,</span>   <span class="dt">"complete"</span><span class="fu">:</span> <span class="dv">38</span><span class="fu">,</span>   <span class="dt">"overdue"</span><span class="fu">:</span> <span class="dv">0</span> <span class="fu">}</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"exercises"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span> <span class="dt">"type"</span><span class="fu">:</span> <span class="st">"ir-tabletop"</span><span class="fu">,</span> <span class="dt">"controls"</span><span class="fu">:</span> <span class="ot">[</span><span class="st">"IR-2"</span><span class="ot">]</span><span class="fu">,</span> <span class="dt">"date"</span><span class="fu">:</span> <span class="st">"2026-08-14"</span><span class="fu">,</span> <span class="dt">"afterActionReport"</span><span class="fu">:</span> <span class="st">"aar-2026-08-14.pdf"</span><span class="fu">,</span> <span class="dt">"sha256"</span><span class="fu">:</span> <span class="st">"&lt;hash&gt;"</span> <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span> <span class="dt">"type"</span><span class="fu">:</span> <span class="st">"contingency-tabletop"</span><span class="fu">,</span> <span class="dt">"controls"</span><span class="fu">:</span> <span class="ot">[</span><span class="st">"CP-3"</span><span class="ot">,</span> <span class="st">"CP-4"</span><span class="ot">]</span><span class="fu">,</span> <span class="dt">"date"</span><span class="fu">:</span> <span class="st">"2026-07-22"</span><span class="fu">,</span> <span class="dt">"afterActionReport"</span><span class="fu">:</span> <span class="st">"aar-2026-07-22.pdf"</span><span class="fu">,</span> <span class="dt">"sha256"</span><span class="fu">:</span> <span class="st">"&lt;hash&gt;"</span> <span class="fu">}</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"review"</span><span class="fu">:</span> <span class="fu">{</span> <span class="dt">"reviewerRole"</span><span class="fu">:</span> <span class="st">"ISSO"</span><span class="fu">,</span> <span class="dt">"reviewed"</span><span class="fu">:</span> <span class="kw">null</span><span class="fu">,</span> <span class="dt">"nextReview"</span><span class="fu">:</span> <span class="st">"2027-01-01"</span> <span class="fu">}</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Four things differ from the source material’s version, on purpose. The record states its review window and its roster, so its percentages can be recomputed. It carries hashes of its source files, so an assessor can confirm the record was built from the files they are shown. It names the reviewer’s role, not a person, and leaves the review empty until the ISSO completes it. And it has no pass or fail field. Whether 88 overdue users is acceptable is a decision, made by the ISSO under the threshold the agency sets, and recorded as a review, not computed into the record by the script that produced it. The program’s suggested threshold is 95 percent completion per population, with every overdue person in a privileged tier treated as a finding regardless of the percentage, because the people the percentage hides are the ones the control exists for.</p>
+<p>The script below builds the population counts from two exports. It uses only standard PowerShell cmdlets and reads files; it calls no service.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Illustrative: derive training population counts from an LMS completion export</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># and a role roster. Both inputs are CSV files exported by their systems of record.</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">param</span><span class="op">(</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">[</span><span class="dt">string</span><span class="op">]</span><span class="va">$CompletionsCsv</span> <span class="op">=</span> <span class="st">'.\lms-completions.csv'</span><span class="op">,</span>   <span class="co"># UserPrincipalName,CourseId,Status,CompletedDate</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">[</span><span class="dt">string</span><span class="op">]</span><span class="va">$RosterCsv</span>      <span class="op">=</span> <span class="st">'.\role-roster.csv'</span><span class="op">,</span>       <span class="co"># UserPrincipalName,Population,RequiredBy</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">[</span>datetime<span class="op">]</span><span class="va">$WindowStart</span>  <span class="op">=</span> <span class="st">'2025-10-01'</span><span class="op">,</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">[</span>datetime<span class="op">]</span><span class="va">$WindowEnd</span>    <span class="op">=</span> <span class="st">'2026-09-30'</span><span class="op">,</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">[</span><span class="dt">string</span><span class="op">]</span><span class="va">$OutFile</span>        <span class="op">=</span> <span class="st">'.\training-evidence-record.json'</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="op">)</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Which courses satisfy which population (agency-defined; examples only)</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="va">$requiredCourses</span> <span class="op">=</span> @<span class="op">{</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">'all-users'</span>        <span class="op">=</span> <span class="op">@(</span><span class="st">'SEC-AWARE-2026'</span><span class="op">)</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">'tier1-admins'</span>     <span class="op">=</span> <span class="op">@(</span><span class="st">'ROLE-ADMIN-2026'</span><span class="op">)</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">'tier3-developers'</span> <span class="op">=</span> <span class="op">@(</span><span class="st">'ROLE-SECDEV-2026'</span><span class="op">)</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">'tier5-stewards'</span>   <span class="op">=</span> <span class="op">@(</span><span class="st">'ROLE-PRIVACY-2026'</span><span class="op">)</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">'ir-dr-roles'</span>      <span class="op">=</span> <span class="op">@(</span><span class="st">'ROLE-IR-2026'</span><span class="op">,</span> <span class="st">'ROLE-CP-2026'</span><span class="op">)</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="va">$controls</span> <span class="op">=</span> @<span class="op">{</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">'all-users'</span>        <span class="op">=</span> <span class="op">@(</span><span class="st">'AT-2'</span><span class="op">,</span> <span class="st">'AT-2(2)'</span><span class="op">,</span> <span class="st">'AT-2(3)'</span><span class="op">)</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">'tier1-admins'</span>     <span class="op">=</span> <span class="op">@(</span><span class="st">'AT-3'</span><span class="op">)</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">'tier3-developers'</span> <span class="op">=</span> <span class="op">@(</span><span class="st">'AT-3'</span><span class="op">)</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">'tier5-stewards'</span>   <span class="op">=</span> <span class="op">@(</span><span class="st">'AT-3'</span><span class="op">,</span> <span class="st">'AT-3(5)'</span><span class="op">)</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    <span class="st">'ir-dr-roles'</span>      <span class="op">=</span> <span class="op">@(</span><span class="st">'IR-2'</span><span class="op">,</span> <span class="st">'CP-3'</span><span class="op">)</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="va">$completions</span> <span class="op">=</span> <span class="fu">Import-Csv</span> <span class="op">-</span>Path <span class="va">$CompletionsCsv</span> <span class="op">|</span> <span class="fu">Where-Object</span> <span class="op">{</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    <span class="va">$_</span><span class="op">.</span><span class="fu">Status</span> <span class="op">-eq</span> <span class="st">'completed'</span> <span class="op">-and</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    <span class="op">[</span>datetime<span class="op">]</span><span class="va">$_</span><span class="op">.</span><span class="fu">CompletedDate</span> <span class="op">-ge</span> <span class="va">$WindowStart</span> <span class="op">-and</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>    <span class="op">[</span>datetime<span class="op">]</span><span class="va">$_</span><span class="op">.</span><span class="fu">CompletedDate</span> <span class="op">-le</span> <span class="va">$WindowEnd</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="va">$roster</span> <span class="op">=</span> <span class="fu">Import-Csv</span> <span class="op">-</span>Path <span class="va">$RosterCsv</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a><span class="va">$populations</span> <span class="op">=</span> <span class="cf">foreach</span> <span class="op">(</span><span class="va">$group</span> <span class="kw">in</span> <span class="op">(</span><span class="va">$roster</span> <span class="op">|</span> <span class="fu">Group-Object</span> <span class="op">-</span>Property Population<span class="op">))</span> <span class="op">{</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>    <span class="va">$courses</span>  <span class="op">=</span> <span class="va">$requiredCourses</span><span class="op">[</span><span class="va">$group</span><span class="op">.</span><span class="fu">Name</span><span class="op">]</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>    <span class="va">$complete</span> <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>    <span class="va">$overdue</span>  <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>    <span class="cf">foreach</span> <span class="op">(</span><span class="va">$person</span> <span class="kw">in</span> <span class="va">$group</span><span class="op">.</span><span class="fu">Group</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>        <span class="va">$done</span> <span class="op">=</span> <span class="va">$completions</span> <span class="op">|</span> <span class="fu">Where-Object</span> <span class="op">{</span></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>            <span class="va">$_</span><span class="op">.</span><span class="fu">UserPrincipalName</span> <span class="op">-eq</span> <span class="va">$person</span><span class="op">.</span><span class="fu">UserPrincipalName</span> <span class="op">-and</span> <span class="va">$_</span><span class="op">.</span><span class="fu">CourseId</span> <span class="op">-</span>in <span class="va">$courses</span></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>        <span class="co"># A person is complete only when every required course for the population is done</span></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>        <span class="va">$doneIds</span> <span class="op">=</span> <span class="op">@(</span><span class="va">$done</span> <span class="op">|</span> <span class="fu">Select-Object</span> <span class="op">-</span>ExpandProperty CourseId <span class="op">-</span>Unique<span class="op">)</span></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span><span class="va">$doneIds</span><span class="op">.</span><span class="fu">Count</span> <span class="op">-eq</span> <span class="va">$courses</span><span class="op">.</span><span class="fu">Count</span><span class="op">)</span> <span class="op">{</span> <span class="va">$complete</span><span class="op">++</span> <span class="op">}</span></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elseif</span> <span class="op">([</span>datetime<span class="op">]</span><span class="va">$person</span><span class="op">.</span><span class="fu">RequiredBy</span> <span class="op">-lt</span> <span class="va">$WindowEnd</span><span class="op">)</span> <span class="op">{</span> <span class="va">$overdue</span><span class="op">++</span> <span class="op">}</span></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>    <span class="op">[</span>ordered<span class="op">]</span>@<span class="op">{</span></span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>        population <span class="op">=</span> <span class="va">$group</span><span class="op">.</span><span class="fu">Name</span></span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>        controls   <span class="op">=</span> <span class="va">$controls</span><span class="op">[</span><span class="va">$group</span><span class="op">.</span><span class="fu">Name</span><span class="op">]</span></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>        required   <span class="op">=</span> <span class="va">$group</span><span class="op">.</span><span class="fu">Count</span></span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>        complete   <span class="op">=</span> <span class="va">$complete</span></span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>        overdue    <span class="op">=</span> <span class="va">$overdue</span></span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a><span class="va">$record</span> <span class="op">=</span> <span class="op">[</span>ordered<span class="op">]</span>@<span class="op">{</span></span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>    recordType   <span class="op">=</span> <span class="st">'training-evidence-record'</span></span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>    generatedAt  <span class="op">=</span> <span class="op">[</span>datetime<span class="op">]::</span>UtcNow<span class="op">.</span><span class="fu">ToString</span><span class="op">(</span><span class="st">'o'</span><span class="op">)</span></span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>    reviewWindow <span class="op">=</span> <span class="op">[</span>ordered<span class="op">]</span>@<span class="op">{</span> <span class="fu">start</span> <span class="op">=</span> <span class="va">$WindowStart</span><span class="op">.</span><span class="fu">ToString</span><span class="op">(</span><span class="st">'yyyy-MM-dd'</span><span class="op">);</span> <span class="kw">end</span> <span class="op">=</span> <span class="va">$WindowEnd</span><span class="op">.</span><span class="fu">ToString</span><span class="op">(</span><span class="st">'yyyy-MM-dd'</span><span class="op">)</span> <span class="op">}</span></span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>    sources      <span class="op">=</span> <span class="op">@(</span></span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>        <span class="op">[</span>ordered<span class="op">]</span>@<span class="op">{</span> role <span class="op">=</span> <span class="st">'completions'</span><span class="op">;</span> file <span class="op">=</span> <span class="op">(</span><span class="fu">Split-Path</span> <span class="va">$CompletionsCsv</span> <span class="op">-</span>Leaf<span class="op">);</span> sha256 <span class="op">=</span> <span class="op">(</span>Get-FileHash <span class="op">-</span>Path <span class="va">$CompletionsCsv</span> <span class="op">-</span>Algorithm SHA256<span class="op">).</span><span class="fu">Hash</span> <span class="op">}</span></span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>        <span class="op">[</span>ordered<span class="op">]</span>@<span class="op">{</span> role <span class="op">=</span> <span class="st">'roster'</span><span class="op">;</span>      file <span class="op">=</span> <span class="op">(</span><span class="fu">Split-Path</span> <span class="va">$RosterCsv</span> <span class="op">-</span>Leaf<span class="op">);</span>      sha256 <span class="op">=</span> <span class="op">(</span>Get-FileHash <span class="op">-</span>Path <span class="va">$RosterCsv</span> <span class="op">-</span>Algorithm SHA256<span class="op">).</span><span class="fu">Hash</span> <span class="op">}</span></span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>    <span class="op">)</span></span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>    populations  <span class="op">=</span> <span class="op">@(</span><span class="va">$populations</span><span class="op">)</span></span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>    review       <span class="op">=</span> <span class="op">[</span>ordered<span class="op">]</span>@<span class="op">{</span> reviewerRole <span class="op">=</span> <span class="st">'ISSO'</span><span class="op">;</span> reviewed <span class="op">=</span> <span class="va">$null</span> <span class="op">}</span></span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a><span class="va">$record</span> <span class="op">|</span> <span class="fu">ConvertTo-Json</span> <span class="op">-</span>Depth <span class="dv">6</span> <span class="op">|</span> <span class="fu">Set-Content</span> <span class="op">-</span>Path <span class="va">$OutFile</span> <span class="op">-</span>Encoding utf8</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The script counts a person complete only when every course their population requires is done inside the window, and overdue only when their required-by date has passed. It doesn’t decide anything. The exercise entries come from the filed after-action reports, which the ISSO adds when each report is approved.</p>
+</section>
+<section id="feeding-the-record-from-microsoft-365" class="level3">
+<h3 class="anchored" data-anchor-id="feeding-the-record-from-microsoft-365">Feeding the record from Microsoft 365</h3>
+<p>Agencies on Microsoft 365 sometimes plan to pull completions from Viva Learning through Microsoft Graph, as the source material did. Three facts about that interface matter. The employee learning API exists so that a learning management system or provider can push content and learner records into Viva Learning; it isn’t a reporting export.<a href="#fn44" class="footnote-ref" id="fnref44" role="doc-noteref"><sup>44</sup></a> The documented call that lists course activities works per user (<code>GET /users/{user-id}/employeeExperience/learningCourseActivities</code>) and supports only delegated permissions, with <code>LearningAssignedCourse.Read.All</code> as the least privileged. The tenant-level path the source used, <code>/employeeExperience/learningCourseActivities</code>, is documented only for getting one activity by its ID, and the <code>LearningAssignmentReport.Read.All</code> permission the source required isn’t a Microsoft Graph permission.<a href="#fn45" class="footnote-ref" id="fnref45" role="doc-noteref"><sup>45</sup></a> And Microsoft lists these APIs for the global service only, not the US Government L4 or L5 (DoD) clouds.<a href="#fn46" class="footnote-ref" id="fnref46" role="doc-noteref"><sup>46</sup></a> A Microsoft 365 GCC tenant uses the global Graph service; a GCC High tenant can’t use them. For all three reasons the program takes its completions from the learning management system’s own export, as the script does, and treats any hub as a convenience for learners.</p>
+</section>
+<section id="how-long-to-keep-it" class="level3">
+<h3 class="anchored" data-anchor-id="how-long-to-keep-it">How long to keep it</h3>
+<p>AT-4 leaves the retention period to the organization, and FedRAMP sets no value for it.<a href="#fn47" class="footnote-ref" id="fnref47" role="doc-noteref"><sup>47</sup></a><a href="#fn48" class="footnote-ref" id="fnref48" role="doc-noteref"><sup>48</sup></a> NARA’s General Records Schedule 2.6, item 010, covers non-mission employee training program records, including “mandatory training tracking and reporting files” and employee attendance records, for all federal workers, “civilian, military, and contractors,” and authorizes destruction when three years old or three years after superseded, with longer retention allowed for business use.<a href="#fn49" class="footnote-ref" id="fnref49" role="doc-noteref"><sup>49</sup></a> Information security training is one of the schedule’s own examples. The records officer decides which item applies to the learning management system’s records and to the derived evidence records, as <a href="../../../docs/books/b13-governance/09-who-governs.html">Book 13, Chapter 09</a> assigns for every record the program keeps. The program’s suggestion is to keep the derived records and their source hashes for at least as long as the system’s authorization package relies on them.</p>
+</section>
+</section>
+<section id="cloud-providers-and-the-training-indicator" class="level2">
+<h2 class="anchored" data-anchor-id="cloud-providers-and-the-training-indicator">Cloud providers and the training indicator</h2>
+<p>FedRAMP’s 2026 Key Security Indicators include one for training. KSI-CED-RAT, Reviewing All Training, says the effectiveness of cybersecurity education and training is “persistently reviewed,” including at least general training for all employees, role-specific training for employees in high-risk roles, secure software delivery training for development and engineering staff, and training for staff involved in incident response or disaster recovery. FedRAMP relates it to AT-2, AT-2(2), AT-2(3), AT-3, AT-3(5), AT-4, CP-3, CP-3(1), IR-2 and its three enhancements, and several other controls.<a href="#fn50" class="footnote-ref" id="fnref50" role="doc-noteref"><sup>50</sup></a></p>
+<p>The indicator binds cloud service providers, not agencies (<a href="../../../docs/books/b12-security-operations/12-evidence-metrics-and-continuous-monitoring.html#fedramps-key-security-indicators">Book 12, Chapter 12</a>). The source material treated it as the agency’s own requirement and as the last item in an internal checklist the agency had to finish. For the agency it does two smaller things. It is a provider’s obligation the agency can see: when a system relies on a certified cloud service, the agency reviews the provider’s quarterly Ongoing Certification Report under FedRAMP’s rules (<a href="../../../docs/books/b13-governance/11-reciprocity-and-one-authorization.html">Book 13, Chapter 11</a>), and the provider’s training evidence is part of what it certifies. And it is a useful vocabulary. The four populations in this chapter are the indicator’s four dimensions, adopted as the program’s design because they cover the controls an agency must evidence anyway. The indicator’s emphasis on effectiveness, not only completion, is also where <a href="../../../docs/books/b16-people/index.html">Book 16</a> picks up: AT-6’s feedback loop, SP 800-50 Rev.&nbsp;1’s assessment and improvement phase, and metrics that show whether behavior changed.<a href="#fn51" class="footnote-ref" id="fnref51" role="doc-noteref"><sup>51</sup></a></p>
+</section>
+<section id="who-owns-the-training-evidence" class="level2">
+<h2 class="anchored" data-anchor-id="who-owns-the-training-evidence">Who owns the training evidence</h2>
+<p><a href="../../../docs/books/b14-compliance/10-who-owns-compliance.html">Chapter 10</a> assigns the compliance roles in full. For training, the program’s model is short.</p>
+<ul>
+<li>The <strong>CISO</strong> owns the agency’s awareness and training policy (AT-1 asks for a designated official to manage it), defines which roles are significant, and sets the completion threshold.<a href="#fn52" class="footnote-ref" id="fnref52" role="doc-noteref"><sup>52</sup></a></li>
+<li>The <strong>CIO</strong> oversees personnel with significant security responsibilities and makes sure they are trained, which SP 800-37 lists among the CIO’s duties.<a href="#fn53" class="footnote-ref" id="fnref53" role="doc-noteref"><sup>53</sup></a></li>
+<li>The <strong>system owner</strong> makes sure the system’s users and support staff receive the security and privacy training they need, a responsibility SP 800-37 assigns by name.<a href="#fn54" class="footnote-ref" id="fnref54" role="doc-noteref"><sup>54</sup></a></li>
+<li>The <strong>ISSO</strong> runs the system’s training day to day, which SP 800-37 says the system security officer’s duties may include, and reviews the derived record.<a href="#fn55" class="footnote-ref" id="fnref55" role="doc-noteref"><sup>55</sup></a></li>
+<li>The <strong>senior agency official for privacy</strong> owns the privacy content and AT-3(5); the <strong>insider threat program</strong> owns the insider threat module; the <strong>training office</strong> runs the learning management system and its export; <strong>HR and identity engineering</strong> own the roster; and the <strong>records officer</strong> decides retention.</li>
+<li><strong>Supervisors</strong> are accountable for their staff completing on time, and <strong>contracting officer’s representatives</strong> for contractor staff, whom every requirement in this chapter covers.</li>
+</ul>
+</section>
+<section id="what-changes-in-one-table" class="level2">
+<h2 class="anchored" data-anchor-id="what-changes-in-one-table">What changes, in one table</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Old habit</th>
+<th>What replaces it</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>“Annual training” as the whole requirement</td>
+<td>Before access, at a defined frequency, on system changes and on new roles; annual is OPM’s floor for awareness, not NIST’s rule</td>
+</tr>
+<tr class="even">
+<td>A completion percentage on a dashboard</td>
+<td>Counts per population, measured against a stated roster for a stated window, re-derivable from hashed sources</td>
+</tr>
+<tr class="odd">
+<td>A training coordinator’s list of who needs role training</td>
+<td>Rosters derived from the identity platform, the system inventory and the plans, so a new role holder is tracked from the day they get the role</td>
+</tr>
+<tr class="even">
+<td>Optional enhancements claimed as Moderate closures</td>
+<td>NIST baseline and FedRAMP class stated separately; AT-2(1) and AT-3(3) tailored in by choice; AT-2(3) claimed because it’s required</td>
+</tr>
+<tr class="odd">
+<td>Failover tests counted as contingency training</td>
+<td>CP-3 evidenced by role training records; failover tests evidence CP-4</td>
+</tr>
+<tr class="even">
+<td>Phishing tests that impersonate federal senders and name the people who clicked</td>
+<td>Legally reviewed lures that don’t impersonate real organizations, results used for learning, not discipline</td>
+</tr>
+<tr class="odd">
+<td>Evidence pulled from whatever learning tool is current</td>
+<td>The learning management system as system of record, a fixed derived record, and a mapping that changes when the tool does</td>
+</tr>
+<tr class="even">
+<td>A script that marks the control as passed</td>
+<td>A record that states the facts and an ISSO review that makes the decision</td>
+</tr>
+</tbody>
+</table>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -3006,7 +3180,7 @@ Figure&nbsp;3: The paired-branch study: two comparable branches instrumented for
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><a href="../../../docs/books/b09-network/12-microsoft-365-traffic.html">← Previous: Chapter 12 — Microsoft 365 Traffic and the Optimize Inspection Exemption</a> · <a href="../../../docs/books/b09-network/index.html">Book index</a> · <a href="../../../docs/books/b09-network/appendix-a-optimize-exemption-instruments.html">Next: Appendix A — Optimize Exemption Decision Instruments →</a></p>
+<p><a href="../../../docs/books/b14-compliance/08-privacy-pii-processing.html">← Previous: Chapter 08 — Privacy: PII Processing and Transparency</a> · <a href="../../../docs/books/b14-compliance/index.html">Book index</a> · <a href="../../../docs/books/b14-compliance/10-who-owns-compliance.html">Next: Chapter 10 — Who Owns Compliance →</a></p>
 </div>
 </div>
 
@@ -3015,31 +3189,61 @@ Figure&nbsp;3: The paired-branch study: two comparable branches instrumented for
 <section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr>
 <ol>
-<li id="fn1"><p>National Institute of Standards and Technology, SP 800-37 Rev.&nbsp;2, <em>Risk Management Framework for Information Systems and Organizations</em>, December 2018, Appendix F, “Event-Driven Triggers and Significant Changes,” <a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-37r2.pdf" class="uri">https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-37r2.pdf</a> (accessed Oct 21, 2026).<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>National Institute of Standards and Technology, SP 800-53 Rev.&nbsp;5, <em>Security and Privacy Controls for Information Systems and Organizations</em>, SC-7(4)(d) and (e), <a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-53r5.pdf" class="uri">https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-53r5.pdf</a> (accessed Oct 21, 2026).<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3"><p>Government Accountability Office, GAO-19-58, <em>Cloud Computing: Agencies Have Increased Usage and Realized Benefits, but Cost and Savings Data Need to Be Better Tracked</em>, April 4, 2019, <a href="https://www.gao.gov/products/gao-19-58" class="uri">https://www.gao.gov/products/gao-19-58</a> (accessed Oct 21, 2026).<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn4"><p>Government Accountability Office, GAO-22-106195, <em>Cloud Computing: Federal Agencies Face Four Challenges</em>, September 28, 2022, <a href="https://www.gao.gov/products/gao-22-106195" class="uri">https://www.gao.gov/products/gao-22-106195</a> (accessed Oct 21, 2026).<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn5"><p>Government Accountability Office, GAO-26-107530, <em>Cloud Computing: Federal Government Needs to Address Procurement Challenges</em>, June 23, 2026, <a href="https://www.gao.gov/products/gao-26-107530" class="uri">https://www.gao.gov/products/gao-26-107530</a>; Commerce passage in the report body, <a href="https://www.gao.gov/assets/gao-26-107530.pdf" class="uri">https://www.gao.gov/assets/gao-26-107530.pdf</a> (accessed Oct 21, 2026).<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn6"><p>Government Accountability Office, GAO-26-107530, <em>Cloud Computing: Federal Government Needs to Address Procurement Challenges</em>, June 23, 2026, <a href="https://www.gao.gov/products/gao-26-107530" class="uri">https://www.gao.gov/products/gao-26-107530</a>; Commerce passage in the report body, <a href="https://www.gao.gov/assets/gao-26-107530.pdf" class="uri">https://www.gao.gov/assets/gao-26-107530.pdf</a> (accessed Oct 21, 2026).<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn7"><p>Cybersecurity and Infrastructure Security Agency, <em>Trusted Internet Connections 3.0, TIC Core Guidance Volume 1: Program Guidebook</em>, Version 1.2, September 2026 (the reissue of the July 2025 edition; the quoted passage is unchanged), <a href="https://www.cisa.gov/sites/default/files/2026-09/TIC_3.0_Program_Guidebook_September_2026_47.pdf" class="uri">https://www.cisa.gov/sites/default/files/2026-09/TIC_3.0_Program_Guidebook_September_2026_47.pdf</a> (accessed Oct 23, 2026).<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn8"><p>Government Accountability Office, Office of Inspector General, OIG-25-1, <em>Data Egress: Opportunities Exist for GAO to Strengthen Procedures for Management of Data Egress Fees</em>, February 24, 2025, <a href="https://gao.gov/products/oig-25-1" class="uri">https://gao.gov/products/oig-25-1</a> (accessed Oct 21, 2026).<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn9"><p>Diana Andreea Popescu, Noa Zilberman and Andrew W. Moore, <em>Characterizing the impact of network latency on cloud-based applications’ performance</em>, University of Cambridge Computer Laboratory Technical Report UCAM-CL-TR-914, November 2017, <a href="https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-914.pdf" class="uri">https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-914.pdf</a> (accessed Oct 21, 2026).<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn10"><p><strong>Third-party source (investor analysis).</strong> Sarah Wang and Martin Casado, “The Cost of Cloud, a Trillion Dollar Paradox,” Andreessen Horowitz, May 27, 2021, <a href="https://a16z.com/the-cost-of-cloud-a-trillion-dollar-paradox/" class="uri">https://a16z.com/the-cost-of-cloud-a-trillion-dollar-paradox/</a> (accessed Oct 21, 2026).<a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn11"><p><strong>Third-party source (vendor survey).</strong> Flexera, “Flexera 2026 State of the Cloud Report,” March 18, 2026, <a href="https://www.flexera.com/blog/finops/flexera-2026-state-of-the-cloud-report-the-convergence-of-cloud-and-value/" class="uri">https://www.flexera.com/blog/finops/flexera-2026-state-of-the-cloud-report-the-convergence-of-cloud-and-value/</a> (accessed Oct 21, 2026).<a href="#fnref11" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn12"><p>UK Competition and Markets Authority, <em>Cloud services market investigation: Egress fees working paper</em>, May 23, 2024, Tables 2.2 and 2.3, <a href="https://assets.publishing.service.gov.uk/media/664f2556993111924d9d3aa8/240521_-_Egress_Fees__.pdf" class="uri">https://assets.publishing.service.gov.uk/media/664f2556993111924d9d3aa8/240521_-_Egress_Fees__.pdf</a> (accessed Oct 21, 2026). Figures are published as redacted ranges.<a href="#fnref12" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn13"><p>Government Accountability Office, GAO-25-107114, <em>Cloud Computing: Selected Agencies Need to Implement Updated Guidance for Managing Restrictive Licenses</em>, November 13, 2024, pp.&nbsp;14–15, <a href="https://www.gao.gov/assets/gao-25-107114.pdf" class="uri">https://www.gao.gov/assets/gao-25-107114.pdf</a> (accessed Oct 21, 2026).<a href="#fnref13" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn14"><p>Government Accountability Office, GAO-26-107530, <em>Cloud Computing: Federal Government Needs to Address Procurement Challenges</em>, June 23, 2026, <a href="https://www.gao.gov/products/gao-26-107530" class="uri">https://www.gao.gov/products/gao-26-107530</a>; Commerce passage in the report body, <a href="https://www.gao.gov/assets/gao-26-107530.pdf" class="uri">https://www.gao.gov/assets/gao-26-107530.pdf</a> (accessed Oct 21, 2026).<a href="#fnref14" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn15"><p><strong>Third-party source (industry survey).</strong> Owen Rogers, “High costs drive cloud repatriation, but impact is overstated,” Uptime Institute Journal, March 22, 2023 (2022 Data Center Capacity Trends Survey), <a href="https://journal.uptimeinstitute.com/high-costs-drive-cloud-repatriation-but-impact-is-overstated" class="uri">https://journal.uptimeinstitute.com/high-costs-drive-cloud-repatriation-but-impact-is-overstated</a> (accessed Oct 21, 2026).<a href="#fnref15" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn16"><p>Government Accountability Office, GAO-26-107919, <em>Telecommunications: GSA Should Assess Agencies’ Effectiveness at Preventing Service Disruptions</em>, August 31, 2026, <a href="https://www.gao.gov/products/gao-26-107919" class="uri">https://www.gao.gov/products/gao-26-107919</a> (accessed Oct 21, 2026). Table, “Amount Billed for Selected Agencies’ Legacy Networx Contracts in February 2025 and March 2025”: $13,376,056.85 and $40,925,594.85.<a href="#fnref16" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn17"><p>General Services Administration, EIS Public Pricer, <a href="https://eis-public-pricer.eos.gsa.gov/" class="uri">https://eis-public-pricer.eos.gsa.gov/</a> (accessed Oct 21, 2026).<a href="#fnref17" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn18"><p>General Services Administration, “MTIPS features and price structure,” updated May 21, 2025, <a href="https://gsa.gov/node/98938" class="uri">https://gsa.gov/node/98938</a> (accessed Oct 21, 2026).<a href="#fnref18" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn19"><p>Government Accountability Office, GAO-14-63, <em>Telecommunications: GSA Needs to Share and Prioritize Lessons Learned to Avoid Future Transition Delays</em>, December 5, 2013, <a href="https://www.gao.gov/products/GAO-14-63" class="uri">https://www.gao.gov/products/GAO-14-63</a> (accessed Oct 21, 2026).<a href="#fnref19" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn20"><p>Government Accountability Office, GAO-26-107919, <em>Telecommunications: GSA Should Assess Agencies’ Effectiveness at Preventing Service Disruptions</em>, August 31, 2026, <a href="https://www.gao.gov/products/gao-26-107919" class="uri">https://www.gao.gov/products/gao-26-107919</a> (accessed Oct 21, 2026). Table, “Amount Billed for Selected Agencies’ Legacy Networx Contracts in February 2025 and March 2025”: $13,376,056.85 and $40,925,594.85.<a href="#fnref20" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn21"><p><strong>Third-party source (trade press).</strong> ExecutiveBiz, “ACT-IAC Study: $7.4B Worth of Task Orders Awarded Through EIS Telecom Contract,” June 9, 2020, <a href="https://executivebiz.com/2020/06/act-iac-study-74b-worth-of-task-orders-awarded-through-eis-telecom-contract" class="uri">https://executivebiz.com/2020/06/act-iac-study-74b-worth-of-task-orders-awarded-through-eis-telecom-contract</a> (accessed Oct 21, 2026), reporting the ACT-IAC <em>GSA Enterprise Infrastructure Solutions (EIS) Case Study</em>. The study itself could not be retrieved.<a href="#fnref21" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn22"><p>Government Accountability Office, GAO-25-107795, <em>Information Technology: Agencies Need to Plan for Modernizing Critical Decades-Old Legacy Systems</em>, July 17, 2025, <a href="https://www.gao.gov/products/gao-25-107795" class="uri">https://www.gao.gov/products/gao-25-107795</a> (accessed Oct 21, 2026).<a href="#fnref22" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn23"><p>Congressional Research Service, IF11668, <em>Federal Telecommunications Modernization: Transitioning from Networx to Enterprise Infrastructure Solutions</em>, Patricia Moloney Figliola, October 19, 2020, <a href="https://www.everycrsreport.com/reports/IF11668.html" class="uri">https://www.everycrsreport.com/reports/IF11668.html</a> (accessed Oct 21, 2026).<a href="#fnref23" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn24"><p><strong>Third-party source (research firm).</strong> Greg Bryan, “WAN Pricing Mythbusters: Is MPLS Priced Like DIA?”, TeleGeography, April 21, 2020, <a href="https://resources.telegeography.com/wan-pricing-mythbusters-is-mpls-is-priced-like-dia" class="uri">https://resources.telegeography.com/wan-pricing-mythbusters-is-mpls-is-priced-like-dia</a> (accessed Oct 21, 2026).<a href="#fnref24" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn25"><p>Office of Management and Budget, M-26-14, <em>Ensuring Effective and Efficient Agency Logging and Network Visibility to Defend Against Evolving Cyber Threats</em>, May 22, 2026, <a href="https://www.whitehouse.gov/wp-content/uploads/2026/05/M-26-14-Ensuring-Effective-and-Efficient-Agency-Logging-and-Network-Visibility-to-Defend-Against-Evolving-Cyber-Threats.pdf" class="uri">https://www.whitehouse.gov/wp-content/uploads/2026/05/M-26-14-Ensuring-Effective-and-Efficient-Agency-Logging-and-Network-Visibility-to-Defend-Against-Evolving-Cyber-Threats.pdf</a> (accessed Oct 21, 2026).<a href="#fnref25" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>Federal Information Security Modernization Act of 2014, 44 U.S.C. § 3554, subsections (a)(3)(D), (a)(4) and (b)(4), <a href="https://www.law.cornell.edu/uscode/text/44/3554" class="uri">https://www.law.cornell.edu/uscode/text/44/3554</a> (accessed Oct 21, 2026).<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Office of Management and Budget, Circular A-130, <em>Managing Information as a Strategic Resource</em>, July 2016, Appendix I, §4.h (Awareness and Training), items 1–7, <a href="https://www.whitehouse.gov/wp-content/uploads/legacy_drupal_files/omb/circulars/A130/a130revised.pdf" class="uri">https://www.whitehouse.gov/wp-content/uploads/legacy_drupal_files/omb/circulars/A130/a130revised.pdf</a> (accessed Oct 21, 2026).<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>National Institute of Standards and Technology, SP 800-53 Rev.&nbsp;5, <em>Security and Privacy Controls for Information Systems and Organizations</em>, controls AT-1, AT-2 and enhancements (1)–(6), AT-3 and enhancements (1)–(5), AT-4, AT-6, CP-2 (item g), CP-3 and CP-3(1), IR-2 and enhancements (1)–(3), and PL-4, <a href="https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final" class="uri">https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final</a>; control text checked against the release 5.2.0 OSCAL catalog, <a href="https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json" class="uri">https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json</a> (both accessed Oct 21, 2026).<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>5 CFR § 930.301, “Information systems security awareness training program,” paragraphs (a)(1)–(5) and (b)–(d), <a href="https://www.law.cornell.edu/cfr/text/5/930.301" class="uri">https://www.law.cornell.edu/cfr/text/5/930.301</a>; source note (69 FR 32836, June 14, 2004) and authority (5 U.S.C. 4118; Pub. L. 107-347) checked in the eCFR text of subpart C as of October 1, 2026, <a href="https://www.ecfr.gov/api/versioner/v1/full/2026-10-01/title-5.xml?part=930&amp;subpart=C" class="uri">https://www.ecfr.gov/api/versioner/v1/full/2026-10-01/title-5.xml?part=930&amp;subpart=C</a> (both accessed Oct 21, 2026).<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>5 CFR § 930.301, “Information systems security awareness training program,” paragraphs (a)(1)–(5) and (b)–(d), <a href="https://www.law.cornell.edu/cfr/text/5/930.301" class="uri">https://www.law.cornell.edu/cfr/text/5/930.301</a>; source note (69 FR 32836, June 14, 2004) and authority (5 U.S.C. 4118; Pub. L. 107-347) checked in the eCFR text of subpart C as of October 1, 2026, <a href="https://www.ecfr.gov/api/versioner/v1/full/2026-10-01/title-5.xml?part=930&amp;subpart=C" class="uri">https://www.ecfr.gov/api/versioner/v1/full/2026-10-01/title-5.xml?part=930&amp;subpart=C</a> (both accessed Oct 21, 2026).<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>National Institute of Standards and Technology, SP 800-50 Rev.&nbsp;1, <em>Building a Cybersecurity and Privacy Learning Program</em>, September 2024, Introduction, §1.3 (CPLP Life Cycle), §2.4.1 (Measurements), §§2.5.1–2.5.4 (audience segments and determining significant responsibilities), §2.7.2 (Experiential Learning), and footnote 6 in §1.5 (role-based privacy training), <a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-50r1.pdf" class="uri">https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-50r1.pdf</a>; publication page and supersession of SP 800-50 and SP 800-16, <a href="https://csrc.nist.gov/pubs/sp/800/50/r1/final" class="uri">https://csrc.nist.gov/pubs/sp/800/50/r1/final</a> (both accessed Oct 21, 2026).<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p>National Institute of Standards and Technology, SP 800-16, <em>Information Technology Security Training Requirements: A Role- and Performance-Based Model</em>, April 1998, publication page (“Withdrawn on September 12, 2024. Superseded by SP 800-50 Rev.&nbsp;1”), <a href="https://csrc.nist.gov/pubs/sp/800/16/final" class="uri">https://csrc.nist.gov/pubs/sp/800/16/final</a> (accessed Oct 21, 2026).<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p>National Institute of Standards and Technology, SP 800-50 Rev.&nbsp;1, <em>Building a Cybersecurity and Privacy Learning Program</em>, September 2024, Introduction, §1.3 (CPLP Life Cycle), §2.4.1 (Measurements), §§2.5.1–2.5.4 (audience segments and determining significant responsibilities), §2.7.2 (Experiential Learning), and footnote 6 in §1.5 (role-based privacy training), <a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-50r1.pdf" class="uri">https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-50r1.pdf</a>; publication page and supersession of SP 800-50 and SP 800-16, <a href="https://csrc.nist.gov/pubs/sp/800/50/r1/final" class="uri">https://csrc.nist.gov/pubs/sp/800/50/r1/final</a> (both accessed Oct 21, 2026).<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9"><p>National Institute of Standards and Technology, SP 800-50 Rev.&nbsp;1, <em>Building a Cybersecurity and Privacy Learning Program</em>, September 2024, Introduction, §1.3 (CPLP Life Cycle), §2.4.1 (Measurements), §§2.5.1–2.5.4 (audience segments and determining significant responsibilities), §2.7.2 (Experiential Learning), and footnote 6 in §1.5 (role-based privacy training), <a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-50r1.pdf" class="uri">https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-50r1.pdf</a>; publication page and supersession of SP 800-50 and SP 800-16, <a href="https://csrc.nist.gov/pubs/sp/800/50/r1/final" class="uri">https://csrc.nist.gov/pubs/sp/800/50/r1/final</a> (both accessed Oct 21, 2026).<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn10"><p>Office of Management and Budget, M-17-12, <em>Preparing for and Responding to a Breach of Personally Identifiable Information</em>, January 3, 2017, §IV (Training and Awareness Campaigns) and §VII.D.1 (Reporting to US-CERT), <a href="https://www.whitehouse.gov/wp-content/uploads/legacy_drupal_files/omb/memoranda/2017/m-17-12_0.pdf" class="uri">https://www.whitehouse.gov/wp-content/uploads/legacy_drupal_files/omb/memoranda/2017/m-17-12_0.pdf</a> (accessed Oct 21, 2026).<a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn11"><p>Executive Order 13587, <em>Structural Reforms To Improve the Security of Classified Networks and the Responsible Sharing and Safeguarding of Classified Information</em>, October 7, 2011, 76 FR 63811, §6, <a href="https://www.govinfo.gov/content/pkg/FR-2011-10-13/html/2011-26729.htm" class="uri">https://www.govinfo.gov/content/pkg/FR-2011-10-13/html/2011-26729.htm</a> (accessed Oct 21, 2026).<a href="#fnref11" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn12"><p>National Insider Threat Task Force, <em>Insider Threat Minimum Standards</em> (checklist), revision of February 4, 2021, “Employee Training and Awareness,” items 1–3, <a href="https://archive.dni.gov/files/NCSC/documents/features/Minimum_Standards_revision-20210204.pdf" class="uri">https://archive.dni.gov/files/NCSC/documents/features/Minimum_Standards_revision-20210204.pdf</a> (accessed Oct 21, 2026).<a href="#fnref12" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn13"><p>National Institute of Standards and Technology, SP 800-53 Rev.&nbsp;5, <em>Security and Privacy Controls for Information Systems and Organizations</em>, controls AT-1, AT-2 and enhancements (1)–(6), AT-3 and enhancements (1)–(5), AT-4, AT-6, CP-2 (item g), CP-3 and CP-3(1), IR-2 and enhancements (1)–(3), and PL-4, <a href="https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final" class="uri">https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final</a>; control text checked against the release 5.2.0 OSCAL catalog, <a href="https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json" class="uri">https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json</a> (both accessed Oct 21, 2026).<a href="#fnref13" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn14"><p>National Institute of Standards and Technology, SP 800-53B, <em>Control Baselines for Information Systems and Organizations</em>, OSCAL Low, Moderate, High and privacy baseline profiles, release 5.2.0, <a href="https://github.com/usnistgov/oscal-content/tree/main/nist.gov/SP800-53/rev5/json" class="uri">https://github.com/usnistgov/oscal-content/tree/main/nist.gov/SP800-53/rev5/json</a> (accessed Oct 21, 2026).<a href="#fnref14" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn15"><p>FedRAMP, “Full Rev5 Control Reference,” <em>FedRAMP Consolidated Rules for 2026</em>, Awareness and Training, Incident Response (IR-02 and enhancements) and Contingency Planning (CP-03 and CP-03(01)) family pages, “FedRAMP Rev5 Baselines” line per control, <a href="https://www.fedramp.gov/2026/reference/controls/awareness-and-training/" class="uri">https://www.fedramp.gov/2026/reference/controls/awareness-and-training/</a>, <a href="https://www.fedramp.gov/2026/reference/controls/incident-response/" class="uri">https://www.fedramp.gov/2026/reference/controls/incident-response/</a>, <a href="https://www.fedramp.gov/2026/reference/controls/contingency-planning/" class="uri">https://www.fedramp.gov/2026/reference/controls/contingency-planning/</a> (accessed Oct 21, 2026).<a href="#fnref15" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn16"><p>National Institute of Standards and Technology, SP 800-50 Rev.&nbsp;1, <em>Building a Cybersecurity and Privacy Learning Program</em>, September 2024, Introduction, §1.3 (CPLP Life Cycle), §2.4.1 (Measurements), §§2.5.1–2.5.4 (audience segments and determining significant responsibilities), §2.7.2 (Experiential Learning), and footnote 6 in §1.5 (role-based privacy training), <a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-50r1.pdf" class="uri">https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-50r1.pdf</a>; publication page and supersession of SP 800-50 and SP 800-16, <a href="https://csrc.nist.gov/pubs/sp/800/50/r1/final" class="uri">https://csrc.nist.gov/pubs/sp/800/50/r1/final</a> (both accessed Oct 21, 2026).<a href="#fnref16" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn17"><p>5 CFR § 930.301, “Information systems security awareness training program,” paragraphs (a)(1)–(5) and (b)–(d), <a href="https://www.law.cornell.edu/cfr/text/5/930.301" class="uri">https://www.law.cornell.edu/cfr/text/5/930.301</a>; source note (69 FR 32836, June 14, 2004) and authority (5 U.S.C. 4118; Pub. L. 107-347) checked in the eCFR text of subpart C as of October 1, 2026, <a href="https://www.ecfr.gov/api/versioner/v1/full/2026-10-01/title-5.xml?part=930&amp;subpart=C" class="uri">https://www.ecfr.gov/api/versioner/v1/full/2026-10-01/title-5.xml?part=930&amp;subpart=C</a> (both accessed Oct 21, 2026).<a href="#fnref17" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn18"><p>Office of Management and Budget, Circular A-130, <em>Managing Information as a Strategic Resource</em>, July 2016, Appendix I, §4.h (Awareness and Training), items 1–7, <a href="https://www.whitehouse.gov/wp-content/uploads/legacy_drupal_files/omb/circulars/A130/a130revised.pdf" class="uri">https://www.whitehouse.gov/wp-content/uploads/legacy_drupal_files/omb/circulars/A130/a130revised.pdf</a> (accessed Oct 21, 2026).<a href="#fnref18" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn19"><p>Office of Management and Budget, M-17-12, <em>Preparing for and Responding to a Breach of Personally Identifiable Information</em>, January 3, 2017, §IV (Training and Awareness Campaigns) and §VII.D.1 (Reporting to US-CERT), <a href="https://www.whitehouse.gov/wp-content/uploads/legacy_drupal_files/omb/memoranda/2017/m-17-12_0.pdf" class="uri">https://www.whitehouse.gov/wp-content/uploads/legacy_drupal_files/omb/memoranda/2017/m-17-12_0.pdf</a> (accessed Oct 21, 2026).<a href="#fnref19" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn20"><p>National Institute of Standards and Technology, SP 800-53 Rev.&nbsp;5, <em>Security and Privacy Controls for Information Systems and Organizations</em>, controls AT-1, AT-2 and enhancements (1)–(6), AT-3 and enhancements (1)–(5), AT-4, AT-6, CP-2 (item g), CP-3 and CP-3(1), IR-2 and enhancements (1)–(3), and PL-4, <a href="https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final" class="uri">https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final</a>; control text checked against the release 5.2.0 OSCAL catalog, <a href="https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json" class="uri">https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json</a> (both accessed Oct 21, 2026).<a href="#fnref20" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn21"><p>5 CFR § 930.301, “Information systems security awareness training program,” paragraphs (a)(1)–(5) and (b)–(d), <a href="https://www.law.cornell.edu/cfr/text/5/930.301" class="uri">https://www.law.cornell.edu/cfr/text/5/930.301</a>; source note (69 FR 32836, June 14, 2004) and authority (5 U.S.C. 4118; Pub. L. 107-347) checked in the eCFR text of subpart C as of October 1, 2026, <a href="https://www.ecfr.gov/api/versioner/v1/full/2026-10-01/title-5.xml?part=930&amp;subpart=C" class="uri">https://www.ecfr.gov/api/versioner/v1/full/2026-10-01/title-5.xml?part=930&amp;subpart=C</a> (both accessed Oct 21, 2026).<a href="#fnref21" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn22"><p>National Institute of Standards and Technology, SP 800-50 Rev.&nbsp;1, <em>Building a Cybersecurity and Privacy Learning Program</em>, September 2024, Introduction, §1.3 (CPLP Life Cycle), §2.4.1 (Measurements), §§2.5.1–2.5.4 (audience segments and determining significant responsibilities), §2.7.2 (Experiential Learning), and footnote 6 in §1.5 (role-based privacy training), <a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-50r1.pdf" class="uri">https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-50r1.pdf</a>; publication page and supersession of SP 800-50 and SP 800-16, <a href="https://csrc.nist.gov/pubs/sp/800/50/r1/final" class="uri">https://csrc.nist.gov/pubs/sp/800/50/r1/final</a> (both accessed Oct 21, 2026).<a href="#fnref22" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn23"><p>Office of Management and Budget, M-17-12, <em>Preparing for and Responding to a Breach of Personally Identifiable Information</em>, January 3, 2017, §IV (Training and Awareness Campaigns) and §VII.D.1 (Reporting to US-CERT), <a href="https://www.whitehouse.gov/wp-content/uploads/legacy_drupal_files/omb/memoranda/2017/m-17-12_0.pdf" class="uri">https://www.whitehouse.gov/wp-content/uploads/legacy_drupal_files/omb/memoranda/2017/m-17-12_0.pdf</a> (accessed Oct 21, 2026).<a href="#fnref23" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn24"><p>National Insider Threat Task Force, <em>Insider Threat Minimum Standards</em> (checklist), revision of February 4, 2021, “Employee Training and Awareness,” items 1–3, <a href="https://archive.dni.gov/files/NCSC/documents/features/Minimum_Standards_revision-20210204.pdf" class="uri">https://archive.dni.gov/files/NCSC/documents/features/Minimum_Standards_revision-20210204.pdf</a> (accessed Oct 21, 2026).<a href="#fnref24" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn25"><p>National Institute of Standards and Technology, SP 800-50 Rev.&nbsp;1, <em>Building a Cybersecurity and Privacy Learning Program</em>, September 2024, Introduction, §1.3 (CPLP Life Cycle), §2.4.1 (Measurements), §§2.5.1–2.5.4 (audience segments and determining significant responsibilities), §2.7.2 (Experiential Learning), and footnote 6 in §1.5 (role-based privacy training), <a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-50r1.pdf" class="uri">https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-50r1.pdf</a>; publication page and supersession of SP 800-50 and SP 800-16, <a href="https://csrc.nist.gov/pubs/sp/800/50/r1/final" class="uri">https://csrc.nist.gov/pubs/sp/800/50/r1/final</a> (both accessed Oct 21, 2026).<a href="#fnref25" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn26"><p>Microsoft Learn, “Get started using Attack simulation training in Defender for Office 365,” section “What do you need to know before you begin?,” <a href="https://learn.microsoft.com/defender-office-365/attack-simulation-training-get-started" class="uri">https://learn.microsoft.com/defender-office-365/attack-simulation-training-get-started</a>; and “Microsoft Defender for Office 365 Features service description,” Attack simulation training, <a href="https://learn.microsoft.com/office365/servicedescriptions/microsoft-defender-for-office-365-features" class="uri">https://learn.microsoft.com/office365/servicedescriptions/microsoft-defender-for-office-365-features</a> (both accessed Oct 21, 2026).<a href="#fnref26" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn27"><p>National Institute of Standards and Technology, SP 800-53 Rev.&nbsp;5, <em>Security and Privacy Controls for Information Systems and Organizations</em>, controls AT-1, AT-2 and enhancements (1)–(6), AT-3 and enhancements (1)–(5), AT-4, AT-6, CP-2 (item g), CP-3 and CP-3(1), IR-2 and enhancements (1)–(3), and PL-4, <a href="https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final" class="uri">https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final</a>; control text checked against the release 5.2.0 OSCAL catalog, <a href="https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json" class="uri">https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json</a> (both accessed Oct 21, 2026).<a href="#fnref27" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn28"><p>National Institute of Standards and Technology, SP 800-50 Rev.&nbsp;1, <em>Building a Cybersecurity and Privacy Learning Program</em>, September 2024, Introduction, §1.3 (CPLP Life Cycle), §2.4.1 (Measurements), §§2.5.1–2.5.4 (audience segments and determining significant responsibilities), §2.7.2 (Experiential Learning), and footnote 6 in §1.5 (role-based privacy training), <a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-50r1.pdf" class="uri">https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-50r1.pdf</a>; publication page and supersession of SP 800-50 and SP 800-16, <a href="https://csrc.nist.gov/pubs/sp/800/50/r1/final" class="uri">https://csrc.nist.gov/pubs/sp/800/50/r1/final</a> (both accessed Oct 21, 2026).<a href="#fnref28" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn29"><p>Federal Information Security Modernization Act of 2014, 44 U.S.C. § 3554, subsections (a)(3)(D), (a)(4) and (b)(4), <a href="https://www.law.cornell.edu/uscode/text/44/3554" class="uri">https://www.law.cornell.edu/uscode/text/44/3554</a> (accessed Oct 21, 2026).<a href="#fnref29" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn30"><p>Office of Management and Budget, Circular A-130, <em>Managing Information as a Strategic Resource</em>, July 2016, Appendix I, §4.h (Awareness and Training), items 1–7, <a href="https://www.whitehouse.gov/wp-content/uploads/legacy_drupal_files/omb/circulars/A130/a130revised.pdf" class="uri">https://www.whitehouse.gov/wp-content/uploads/legacy_drupal_files/omb/circulars/A130/a130revised.pdf</a> (accessed Oct 21, 2026).<a href="#fnref30" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn31"><p>National Institute of Standards and Technology, SP 800-53 Rev.&nbsp;5, <em>Security and Privacy Controls for Information Systems and Organizations</em>, controls AT-1, AT-2 and enhancements (1)–(6), AT-3 and enhancements (1)–(5), AT-4, AT-6, CP-2 (item g), CP-3 and CP-3(1), IR-2 and enhancements (1)–(3), and PL-4, <a href="https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final" class="uri">https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final</a>; control text checked against the release 5.2.0 OSCAL catalog, <a href="https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json" class="uri">https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json</a> (both accessed Oct 21, 2026).<a href="#fnref31" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn32"><p>National Institute of Standards and Technology, SP 800-50 Rev.&nbsp;1, <em>Building a Cybersecurity and Privacy Learning Program</em>, September 2024, Introduction, §1.3 (CPLP Life Cycle), §2.4.1 (Measurements), §§2.5.1–2.5.4 (audience segments and determining significant responsibilities), §2.7.2 (Experiential Learning), and footnote 6 in §1.5 (role-based privacy training), <a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-50r1.pdf" class="uri">https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-50r1.pdf</a>; publication page and supersession of SP 800-50 and SP 800-16, <a href="https://csrc.nist.gov/pubs/sp/800/50/r1/final" class="uri">https://csrc.nist.gov/pubs/sp/800/50/r1/final</a> (both accessed Oct 21, 2026).<a href="#fnref32" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn33"><p>National Institute of Standards and Technology, SP 800-53 Rev.&nbsp;5, <em>Security and Privacy Controls for Information Systems and Organizations</em>, controls AT-1, AT-2 and enhancements (1)–(6), AT-3 and enhancements (1)–(5), AT-4, AT-6, CP-2 (item g), CP-3 and CP-3(1), IR-2 and enhancements (1)–(3), and PL-4, <a href="https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final" class="uri">https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final</a>; control text checked against the release 5.2.0 OSCAL catalog, <a href="https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json" class="uri">https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json</a> (both accessed Oct 21, 2026).<a href="#fnref33" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn34"><p>National Institute of Standards and Technology, SP 800-53B, <em>Control Baselines for Information Systems and Organizations</em>, OSCAL Low, Moderate, High and privacy baseline profiles, release 5.2.0, <a href="https://github.com/usnistgov/oscal-content/tree/main/nist.gov/SP800-53/rev5/json" class="uri">https://github.com/usnistgov/oscal-content/tree/main/nist.gov/SP800-53/rev5/json</a> (accessed Oct 21, 2026).<a href="#fnref34" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn35"><p>FedRAMP, “Full Rev5 Control Reference,” <em>FedRAMP Consolidated Rules for 2026</em>, Awareness and Training, Incident Response (IR-02 and enhancements) and Contingency Planning (CP-03 and CP-03(01)) family pages, “FedRAMP Rev5 Baselines” line per control, <a href="https://www.fedramp.gov/2026/reference/controls/awareness-and-training/" class="uri">https://www.fedramp.gov/2026/reference/controls/awareness-and-training/</a>, <a href="https://www.fedramp.gov/2026/reference/controls/incident-response/" class="uri">https://www.fedramp.gov/2026/reference/controls/incident-response/</a>, <a href="https://www.fedramp.gov/2026/reference/controls/contingency-planning/" class="uri">https://www.fedramp.gov/2026/reference/controls/contingency-planning/</a> (accessed Oct 21, 2026).<a href="#fnref35" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn36"><p>National Institute of Standards and Technology, SP 800-34 Rev.&nbsp;1, <em>Contingency Planning Guide for Federal Information Systems</em>, May 2010 (updated November 11, 2010), §3.5 (Plan Testing, Training, and Exercises) and §3.5.2 (Training), <a href="https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-34r1.pdf" class="uri">https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-34r1.pdf</a>; status checked on <a href="https://csrc.nist.gov/pubs/sp/800/34/r1/upd1/final" class="uri">https://csrc.nist.gov/pubs/sp/800/34/r1/upd1/final</a> (both accessed Oct 21, 2026).<a href="#fnref36" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn37"><p>National Institute of Standards and Technology, SP 800-34 Rev.&nbsp;1, <em>Contingency Planning Guide for Federal Information Systems</em>, May 2010 (updated November 11, 2010), §3.5 (Plan Testing, Training, and Exercises) and §3.5.2 (Training), <a href="https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-34r1.pdf" class="uri">https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-34r1.pdf</a>; status checked on <a href="https://csrc.nist.gov/pubs/sp/800/34/r1/upd1/final" class="uri">https://csrc.nist.gov/pubs/sp/800/34/r1/upd1/final</a> (both accessed Oct 21, 2026).<a href="#fnref37" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn38"><p>National Institute of Standards and Technology, SP 800-84, <em>Guide to Test, Training, and Exercise Programs for IT Plans and Capabilities</em>, September 2006, publication page (final), <a href="https://csrc.nist.gov/pubs/sp/800/84/final" class="uri">https://csrc.nist.gov/pubs/sp/800/84/final</a> (accessed Oct 21, 2026).<a href="#fnref38" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn39"><p>National Institute of Standards and Technology, SP 800-61 Rev.&nbsp;3, <em>Incident Response Recommendations and Considerations for Cybersecurity Risk Management: A CSF 2.0 Community Profile</em>, April 2025, Table 2, PR.AT-02, recommendation R1, <a href="https://doi.org/10.6028/NIST.SP.800-61r3" class="uri">https://doi.org/10.6028/NIST.SP.800-61r3</a> (accessed Oct 21, 2026).<a href="#fnref39" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn40"><p>National Institute of Standards and Technology, SP 800-53 Rev.&nbsp;5, <em>Security and Privacy Controls for Information Systems and Organizations</em>, controls AT-1, AT-2 and enhancements (1)–(6), AT-3 and enhancements (1)–(5), AT-4, AT-6, CP-2 (item g), CP-3 and CP-3(1), IR-2 and enhancements (1)–(3), and PL-4, <a href="https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final" class="uri">https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final</a>; control text checked against the release 5.2.0 OSCAL catalog, <a href="https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json" class="uri">https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json</a> (both accessed Oct 21, 2026).<a href="#fnref40" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn41"><p>National Institute of Standards and Technology, SP 800-53 Rev.&nbsp;5, <em>Security and Privacy Controls for Information Systems and Organizations</em>, controls AT-1, AT-2 and enhancements (1)–(6), AT-3 and enhancements (1)–(5), AT-4, AT-6, CP-2 (item g), CP-3 and CP-3(1), IR-2 and enhancements (1)–(3), and PL-4, <a href="https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final" class="uri">https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final</a>; control text checked against the release 5.2.0 OSCAL catalog, <a href="https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json" class="uri">https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json</a> (both accessed Oct 21, 2026).<a href="#fnref41" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn42"><p>Microsoft Learn, “Add learning management systems for Microsoft Viva Learning,” section “Dataflow architecture,” <a href="https://learn.microsoft.com/viva/learning/configure-lms" class="uri">https://learn.microsoft.com/viva/learning/configure-lms</a> (accessed Oct 21, 2026).<a href="#fnref42" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn43"><p>National Institute of Standards and Technology, SP 800-50 Rev.&nbsp;1, <em>Building a Cybersecurity and Privacy Learning Program</em>, September 2024, Introduction, §1.3 (CPLP Life Cycle), §2.4.1 (Measurements), §§2.5.1–2.5.4 (audience segments and determining significant responsibilities), §2.7.2 (Experiential Learning), and footnote 6 in §1.5 (role-based privacy training), <a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-50r1.pdf" class="uri">https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-50r1.pdf</a>; publication page and supersession of SP 800-50 and SP 800-16, <a href="https://csrc.nist.gov/pubs/sp/800/50/r1/final" class="uri">https://csrc.nist.gov/pubs/sp/800/50/r1/final</a> (both accessed Oct 21, 2026).<a href="#fnref43" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn44"><p>Microsoft Learn, “Use the employee learning API to integrate with Viva Learning,” Microsoft Graph v1.0, <a href="https://learn.microsoft.com/graph/api/resources/viva-learning-api-overview?view=graph-rest-1.0" class="uri">https://learn.microsoft.com/graph/api/resources/viva-learning-api-overview?view=graph-rest-1.0</a> (accessed Oct 21, 2026).<a href="#fnref44" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn45"><p>Microsoft Learn, “List learningCourseActivities,” Microsoft Graph v1.0, national cloud availability, permissions and HTTP request, <a href="https://learn.microsoft.com/graph/api/learningcourseactivity-list?view=graph-rest-1.0" class="uri">https://learn.microsoft.com/graph/api/learningcourseactivity-list?view=graph-rest-1.0</a>; “learningCourseActivity resource type,” <a href="https://learn.microsoft.com/graph/api/resources/learningcourseactivity?view=graph-rest-1.0" class="uri">https://learn.microsoft.com/graph/api/resources/learningcourseactivity?view=graph-rest-1.0</a>; “Get learningCourseActivity,” HTTP request, <a href="https://learn.microsoft.com/graph/api/learningcourseactivity-get?view=graph-rest-1.0" class="uri">https://learn.microsoft.com/graph/api/learningcourseactivity-get?view=graph-rest-1.0</a>; and “Microsoft Graph permissions reference,” employee learning permissions, <a href="https://learn.microsoft.com/graph/permissions-reference" class="uri">https://learn.microsoft.com/graph/permissions-reference</a> (all accessed Oct 21, 2026).<a href="#fnref45" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn46"><p>Microsoft Learn, “List learningCourseActivities,” Microsoft Graph v1.0, national cloud availability, permissions and HTTP request, <a href="https://learn.microsoft.com/graph/api/learningcourseactivity-list?view=graph-rest-1.0" class="uri">https://learn.microsoft.com/graph/api/learningcourseactivity-list?view=graph-rest-1.0</a>; “learningCourseActivity resource type,” <a href="https://learn.microsoft.com/graph/api/resources/learningcourseactivity?view=graph-rest-1.0" class="uri">https://learn.microsoft.com/graph/api/resources/learningcourseactivity?view=graph-rest-1.0</a>; “Get learningCourseActivity,” HTTP request, <a href="https://learn.microsoft.com/graph/api/learningcourseactivity-get?view=graph-rest-1.0" class="uri">https://learn.microsoft.com/graph/api/learningcourseactivity-get?view=graph-rest-1.0</a>; and “Microsoft Graph permissions reference,” employee learning permissions, <a href="https://learn.microsoft.com/graph/permissions-reference" class="uri">https://learn.microsoft.com/graph/permissions-reference</a> (all accessed Oct 21, 2026).<a href="#fnref46" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn47"><p>National Institute of Standards and Technology, SP 800-53 Rev.&nbsp;5, <em>Security and Privacy Controls for Information Systems and Organizations</em>, controls AT-1, AT-2 and enhancements (1)–(6), AT-3 and enhancements (1)–(5), AT-4, AT-6, CP-2 (item g), CP-3 and CP-3(1), IR-2 and enhancements (1)–(3), and PL-4, <a href="https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final" class="uri">https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final</a>; control text checked against the release 5.2.0 OSCAL catalog, <a href="https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json" class="uri">https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json</a> (both accessed Oct 21, 2026).<a href="#fnref47" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn48"><p>FedRAMP, “Full Rev5 Control Reference,” <em>FedRAMP Consolidated Rules for 2026</em>, Awareness and Training, Incident Response (IR-02 and enhancements) and Contingency Planning (CP-03 and CP-03(01)) family pages, “FedRAMP Rev5 Baselines” line per control, <a href="https://www.fedramp.gov/2026/reference/controls/awareness-and-training/" class="uri">https://www.fedramp.gov/2026/reference/controls/awareness-and-training/</a>, <a href="https://www.fedramp.gov/2026/reference/controls/incident-response/" class="uri">https://www.fedramp.gov/2026/reference/controls/incident-response/</a>, <a href="https://www.fedramp.gov/2026/reference/controls/contingency-planning/" class="uri">https://www.fedramp.gov/2026/reference/controls/contingency-planning/</a> (accessed Oct 21, 2026).<a href="#fnref48" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn49"><p>National Archives and Records Administration, General Records Schedule 2.6, <em>Employee Training Records</em>, Transmittal No.&nbsp;35, May 2024, introduction and item 010 (Non-mission employee training program records), <a href="https://www.archives.gov/files/records-mgmt/grs/grs02-6.pdf" class="uri">https://www.archives.gov/files/records-mgmt/grs/grs02-6.pdf</a> (accessed Oct 21, 2026).<a href="#fnref49" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn50"><p>FedRAMP, “Key Security Indicators,” <em>FedRAMP Consolidated Rules for 2026</em>, Cybersecurity Education theme, KSI-CED-RAT (statement and Related SP 800-53 Controls), <a href="https://www.fedramp.gov/2026/reference/key-security-indicators/" class="uri">https://www.fedramp.gov/2026/reference/key-security-indicators/</a> (accessed Oct 21, 2026).<a href="#fnref50" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn51"><p>National Institute of Standards and Technology, SP 800-50 Rev.&nbsp;1, <em>Building a Cybersecurity and Privacy Learning Program</em>, September 2024, Introduction, §1.3 (CPLP Life Cycle), §2.4.1 (Measurements), §§2.5.1–2.5.4 (audience segments and determining significant responsibilities), §2.7.2 (Experiential Learning), and footnote 6 in §1.5 (role-based privacy training), <a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-50r1.pdf" class="uri">https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-50r1.pdf</a>; publication page and supersession of SP 800-50 and SP 800-16, <a href="https://csrc.nist.gov/pubs/sp/800/50/r1/final" class="uri">https://csrc.nist.gov/pubs/sp/800/50/r1/final</a> (both accessed Oct 21, 2026).<a href="#fnref51" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn52"><p>National Institute of Standards and Technology, SP 800-53 Rev.&nbsp;5, <em>Security and Privacy Controls for Information Systems and Organizations</em>, controls AT-1, AT-2 and enhancements (1)–(6), AT-3 and enhancements (1)–(5), AT-4, AT-6, CP-2 (item g), CP-3 and CP-3(1), IR-2 and enhancements (1)–(3), and PL-4, <a href="https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final" class="uri">https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final</a>; control text checked against the release 5.2.0 OSCAL catalog, <a href="https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json" class="uri">https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json</a> (both accessed Oct 21, 2026).<a href="#fnref52" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn53"><p>National Institute of Standards and Technology, SP 800-37 Rev.&nbsp;2, <em>Risk Management Framework for Information Systems and Organizations: A System Life Cycle Approach for Security and Privacy</em>, December 2018, Appendix D (Chief Information Officer, System Owner, System Security or Privacy Officer), <a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-37r2.pdf" class="uri">https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-37r2.pdf</a> (accessed Oct 21, 2026).<a href="#fnref53" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn54"><p>National Institute of Standards and Technology, SP 800-37 Rev.&nbsp;2, <em>Risk Management Framework for Information Systems and Organizations: A System Life Cycle Approach for Security and Privacy</em>, December 2018, Appendix D (Chief Information Officer, System Owner, System Security or Privacy Officer), <a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-37r2.pdf" class="uri">https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-37r2.pdf</a> (accessed Oct 21, 2026).<a href="#fnref54" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn55"><p>National Institute of Standards and Technology, SP 800-37 Rev.&nbsp;2, <em>Risk Management Framework for Information Systems and Organizations: A System Life Cycle Approach for Security and Privacy</em>, December 2018, Appendix D (Chief Information Officer, System Owner, System Security or Privacy Officer), <a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-37r2.pdf" class="uri">https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-37r2.pdf</a> (accessed Oct 21, 2026).<a href="#fnref55" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 
@@ -3453,13 +3657,13 @@ Figure&nbsp;3: The paired-branch study: two comparable branches instrumented for
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../../docs/books/b09-network/12-microsoft-365-traffic.html" class="pagination-link" aria-label="Chapter 12 — Microsoft 365 Traffic and the Optimize Inspection Exemption">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Chapter 12 — Microsoft 365 Traffic and the Optimize Inspection Exemption</span>
+      <a href="../../../docs/books/b14-compliance/08-privacy-pii-processing.html" class="pagination-link" aria-label="Chapter 08 — Privacy: PII Processing and Transparency">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Chapter 08 — Privacy: PII Processing and Transparency</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../../docs/books/b09-network/appendix-a-optimize-exemption-instruments.html" class="pagination-link" aria-label="Appendix A — Optimize Exemption Decision Instruments">
-        <span class="nav-page-text">Appendix A — Optimize Exemption Decision Instruments</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../../docs/books/b14-compliance/10-who-owns-compliance.html" class="pagination-link" aria-label="Chapter 10 — Who Owns Compliance">
+        <span class="nav-page-text">Chapter 10 — Who Owns Compliance</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

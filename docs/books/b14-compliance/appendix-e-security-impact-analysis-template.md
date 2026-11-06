@@ -161,7 +161,7 @@ The kits' outputs are illustrative and tested against fixtures, not against a li
 
 ::: {.callout-tip}
 ## Continue the book
-[← Previous: Appendix D — Security Assessment Report Template](appendix-d-security-assessment-report-template.md) · [Book index](index.md)
+[← Previous: Appendix D — Security Assessment Report Template](appendix-d-security-assessment-report-template.md) · [Book index](index.md) · [Next: Appendix F — Categorization Walk-Through](appendix-f-categorization-walkthrough.md)
 :::
 
 [^aE-sp80053]: National Institute of Standards and Technology, SP 800-53 Rev. 5, *Security and Privacy Controls for Information Systems and Organizations*, controls CM-3, CM-4, CM-4(1) and CM-4(2); text read from the release 5.2.0 OSCAL catalog, <https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json> (accessed Nov 6, 2026).

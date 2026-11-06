@@ -18,7 +18,7 @@ aliases:
 This is a rough draft, written to think the problem through. It pulls together what Books 03, 13 and 15 already say, and lists what they don't say yet. The service windows and some of the routing are **proposals** (program design guidance), not settled positions. Expect it to change.
 :::
 
-HR-driven identity doesn't end identity maintenance. It moves it. In a ticket-driven estate, whoever can change the directory ends up owning the data, so fixes happen at the console. Once HR is the source of authority, the same fixes still come up: a wrong department, a late separation, a duplicate person, a contractor nobody owns. But they have to be made somewhere else, by someone else, and carried back by the pipeline. [Book 03, Chapter 11](../b03-hr-identity/11-drift-metrics-and-evidence.md) puts the rule in five words: **fix the record or the rule, never the copy.**
+HR-driven identity doesn't end identity maintenance. It moves it. In a ticket-driven estate, whoever can change the directory ends up owning the data, so fixes happen at the console. Once HR is the source of authority, the same fixes still come up: a wrong department, a late separation, a duplicate person, a contractor nobody owns. But they have to be made somewhere else, by someone else, and carried back by the pipeline. [Book 03, Chapter 11](../b03-hr-identity/11-drift-metrics-and-evidence.md) puts the rule in one line, in its drift diagram: **fix the record or the rule, never the copy.**
 
 This draft asks what that means day to day. What still breaks, who fixes each kind of break, where the fix is made, how fast, and what happens when the source can't move fast enough.
 

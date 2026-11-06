@@ -246,7 +246,7 @@ This gate is Book 05's GPO sunset, run at the working level of [Chapter 08's sev
 ### Step 3.2: build the policy library (Phases 2 and 3)
 
 1. **Where Configuration Manager manages the fleet**, enable co-management for a pilot collection and decide `MDMWinsOverGP` per population ([Phase 2](../b05-devices/08-gpo-to-intune-policy-migration.md#phase-2-coexistence-planning); [coexistence rules](../b05-devices/07-the-gpo-sunset-program.md#coexistence-who-wins)). Never configure the settings that sit outside the Policy CSP, such as Defender and Windows Hello for Business, in both channels.
-2. **Build the library unassigned**: compliance policies CP-001 to CP-005, configuration profiles, endpoint security ES-001 to ES-006 and app protection AP-001 and AP-002, with attack surface reduction in audit mode ([Phase 3](../b05-devices/08-gpo-to-intune-policy-migration.md#phase-3-baseline-authoring); [compliance policies](../b05-devices/08-gpo-to-intune-policy-migration.md#compliance-policies)).
+2. **Build the library unassigned**: compliance policies CP-001 to CP-003 and CP-005 (CP-004 is a server baseline, not an Intune policy), configuration profiles, endpoint security ES-001 to ES-006 and app protection AP-001 and AP-002, with attack surface reduction in audit mode ([Phase 3](../b05-devices/08-gpo-to-intune-policy-migration.md#phase-3-baseline-authoring); [compliance policies](../b05-devices/08-gpo-to-intune-policy-migration.md#compliance-policies)).
 3. **Create them as code** from the repository with the [Graph templates](../b05-devices/08-gpo-to-intune-policy-migration.md#microsoft-graph-templates), noting which resources are beta only.
 4. **Peer review** each policy: every setting traces to a decision record, and no setting appears in two policies.
 
@@ -254,7 +254,7 @@ This gate is Book 05's GPO sunset, run at the working level of [Chapter 08's sev
 
 ### Step 3.3: report-only and pilot rings (Phase 4)
 
-The pilot cohort is about 5% of the fleet, representative across tiers, regions and departments, with the GPOs still linked ([Phase 4](../b05-devices/08-gpo-to-intune-policy-migration.md#phase-4-pilot)). Intune has no tenant-wide report-only switch, so the program builds the report-only ring from four parts *(design guidance)*:
+The pilot cohort is about 5% of the fleet, representative across tiers, regions and departments, with the GPOs still linked ([Phase 4](../b05-devices/08-gpo-to-intune-policy-migration.md#phase-4-pilot)). Intune has no tenant-wide report-only switch, so the program builds the report-only ring from three parts *(design guidance)*:
 
 1. **Audit mode** for attack surface reduction rules and controlled folder access, and a 7-day compliance grace period instead of 1 for the pilot groups.
 2. **Conditional Access in report-only** for the compliant-device policies, owned by Book 04 ([rollout](../b04-access/07-the-conditional-access-policy-library.md#rollout-from-report-only-to-enforcement)). Report-only compliance policies can repeatedly prompt macOS, iOS and Android users to pick a device certificate, and Microsoft advises excluding those platforms,[^iti-ca-report-only] so scope report-only to Windows and pilot Apple and Android in a small enforced ring.

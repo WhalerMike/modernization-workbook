@@ -238,7 +238,7 @@ Windows Authentication was good engineering for its world. The destination is cl
 - **Training has two tracks.** Contributors learn to land a reviewed change. Operators learn to run the discovery and drift tools and interpret their output.
 - **Test plans live in one catalog.** Every plan has a canonical entry, declares its pass signal, and stays in the catalog when retired.
 
-These are the program's design. **Carried in depth by:** [Book 16, People: Training & Education](../b16-people/index.md). The books' own acceptance and validation material shows the test-plan pattern: [Book 03, Appendix C — Acceptance and Cutover](../b03-hr-identity/appendix-c-acceptance-and-cutover.md) and the validation test plan in [Book 04, Chapter 08](../b04-access/08-pim-self-request-with-approval.md#validation-test-plan).
+These are the program's design. **Carried in depth by:** [Book 16, People: Training & Education](../b16-people/index.md). The books' own acceptance and validation material shows the test-plan pattern: [Book 03, Appendix C — Acceptance and Cutover](../b03-hr-identity/appendix-c-acceptance-and-cutover.md) and the validation test plan in [Book 04, Chapter 08](../b04-access/08-pim-self-request-with-approval.md#validation-test-plan). The test plan catalog itself appears in [Book 14, Chapter 11](../b14-compliance/11-the-authorization-package.md).
 
 ## 14. Zero Trust governance {#principle-14}
 
@@ -294,7 +294,7 @@ Book 01 states the fourth principle in its operational form, "govern actively": 
 | 10 | Group Policy Object sunset | Devices and policy | [B05 Ch07](../b05-devices/07-the-gpo-sunset-program.md) | [B05 Ch08](../b05-devices/08-gpo-to-intune-policy-migration.md) |
 | 11 | Drift detection | Foundation | [B03 Ch11](../b03-hr-identity/11-drift-metrics-and-evidence.md) | [B02 Ch05](../b02-identity/05-delegation-without-ous.md), [B01 Ch04](../b01-transformation-arc/04-identity-transformation.md); [B13](../b13-governance/index.md) |
 | 12 | SQL Server identity transformation | Identity and data | [B06](../b06-data-platform/index.md) | [B06 Ch07](../b06-data-platform/07-the-authentication-audit.md), [B06 Ch20](../b06-data-platform/20-the-closure-condition.md) |
-| 13 | Education, training and test plans | Program | [B16](../b16-people/index.md) | [B03 App C](../b03-hr-identity/appendix-c-acceptance-and-cutover.md) |
+| 13 | Education, training and test plans | Program | [B16](../b16-people/index.md) | [B03 App C](../b03-hr-identity/appendix-c-acceptance-and-cutover.md); test plan catalog: [B14 Ch 11](../b14-compliance/11-the-authorization-package.md) |
 | 14 | Zero Trust governance | Program | [B11 Ch02](../b11-zero-trust/02-governance-principles.md) | [B11 Ch06](../b11-zero-trust/06-beyond-microsoft-365.md), [B04 Ch02](../b04-access/02-why-standing-privilege-fails.md) |
 | 15 | The modernization journey | Program | [B01 Ch12](../b01-transformation-arc/12-migration-roadmap.md) | [B09 Ch04](../b09-network/04-logical-centralization-and-token-security.md) |
 

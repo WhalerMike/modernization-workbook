@@ -1,0 +1,18 @@
+{
+  "listing": "/docs/books/b10-cloud-boundary/index.html",
+  "items": [
+    "/docs/books/b10-cloud-boundary/01-why-the-boundary-decides.html",
+    "/docs/books/b10-cloud-boundary/02-the-invisible-boundary.html",
+    "/docs/books/b10-cloud-boundary/03-what-changed-at-fedramp.html",
+    "/docs/books/b10-cloud-boundary/04-gcc-and-the-feature-gap.html",
+    "/docs/books/b10-cloud-boundary/05-the-landing-zone.html",
+    "/docs/books/b10-cloud-boundary/06-ipam-and-network-as-code.html",
+    "/docs/books/b10-cloud-boundary/07-the-front-door.html",
+    "/docs/books/b10-cloud-boundary/08-who-owns-the-boundary.html",
+    "/docs/books/b10-cloud-boundary/09-equivalents-and-exceptions.html",
+    "/docs/books/b10-cloud-boundary/10-alternative-collaboration-paths.html",
+    "/docs/books/b10-cloud-boundary/11-the-authorization-package.html",
+    "/docs/books/b10-cloud-boundary/appendix-a-what-to-ask-for.html",
+    "/docs/books/b10-cloud-boundary/appendix-b-platform-host-interfaces.html"
+  ]
+}

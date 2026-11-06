@@ -99,11 +99,13 @@ fmw-eyebrow: "Videos"
         chapters.hidden = false;
       }
       if (v.sources) {
+        // Fetched on demand, so videos.json carries only the path and stays small.
+        fetch("../../" + v.sources).then(function (r) { return r.json(); }).then(function (slides) {
         // Each slide's sources, linked: captions and the transcript can't carry links.
         var sources = document.getElementById("fmw-player-sources");
         var rows = sources.querySelector("ol");
-        sources.querySelector("summary").textContent = "Sources, slide by slide (" + v.sources.length + ")";
-        v.sources.forEach(function (s) {
+        sources.querySelector("summary").textContent = "Sources, slide by slide (" + slides.length + ")";
+        slides.forEach(function (s) {
           var li = document.createElement("li");
           var at = v.chapters && v.chapters[s.slide - 1];
           if (at) {
@@ -132,6 +134,7 @@ fmw-eyebrow: "Videos"
           window.addEventListener("load", show);
           video.addEventListener("loadedmetadata", show, { once: true });
         }
+        }).catch(function () {});
       }
       if (params.get("v") && window.location.hash !== "#sources") { document.getElementById("fmw-player").scrollIntoView(); }
     })

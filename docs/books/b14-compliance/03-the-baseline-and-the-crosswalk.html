@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="Book 09 of the Federal Modernization Workbook: the speed-of-light floor, transport versus control, what TIC 3.0 and M-26-14 actually require, logical centralization and token-based security, SD-WAN and SASE, legacy protocols on re-routed paths, 802.1X and RADIUS, the reference architecture, who owns the network, the long interim, field-office WAN transformation, Microsoft 365 traffic, and sequencing, cost and evidence.">
+<meta name="description" content="Which controls apply and where the workbook treats them: the NIST SP 800-53B Moderate baseline and FedRAMP class membership as two separate facts, how the series control crosswalk was built, its coverage by volume and by book, the FedRAMP 2026 indicator view and why the indicators bind providers, and how an agency uses the crosswalk together with the product inventory questionnaire.">
 
-<title>Book 09 — Network &amp; Transport – Federal Modernization Workbook</title>
+<title>Chapter 03 — The Control Baseline and the Crosswalk – Federal Modernization Workbook</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -34,10 +34,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../">
-<link href="../../../docs/books/b09-network/01-why-physics-decides-the-architecture.html" rel="next">
-<link href="../../../docs/books/b08-ddi/appendix-c-applicability.html" rel="prev">
-<script src="../../../site_libs/quarto-listing/list.min.js"></script>
-<script src="../../../site_libs/quarto-listing/quarto-listing.js"></script>
+<link href="../../../docs/books/b14-compliance/04-closure-with-proof.html" rel="next">
+<link href="../../../docs/books/b14-compliance/02-the-federal-clock.html" rel="prev">
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
@@ -48,6 +46,9 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../../site_libs/bootstrap/bootstrap-231ac825f573ecaa34244e8f518e0111.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -75,68 +76,10 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-chapters .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-title','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
-      
-      searchColumns: ["listing-title","listing-author"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-chapters'] = new List('listing-chapters', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=DM+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -459,7 +402,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../docs/books/b09-network/index.html">Book 09 — Network &amp; Transport</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../docs/books/b14-compliance/index.html">Book 14 — Federal Compliance &amp; Authorization</a></li><li class="breadcrumb-item"><a href="../../../docs/books/b14-compliance/03-the-baseline-and-the-crosswalk.html">Chapter 03 — The Control Baseline and the Crosswalk</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -1442,13 +1385,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../../docs/books/b09-network/index.html" class="sidebar-item-text sidebar-link active">
+            <a href="../../../docs/books/b09-network/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Book 09 — Network &amp; Transport</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../docs/books/b09-network/01-why-physics-decides-the-architecture.html" class="sidebar-item-text sidebar-link">
@@ -1907,11 +1850,11 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="../../../docs/books/b14-compliance/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Book 14 — Federal Compliance &amp; Authorization</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-15" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-15" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-15" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-15" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../docs/books/b14-compliance/01-proof-not-a-promise.html" class="sidebar-item-text sidebar-link">
@@ -1926,7 +1869,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../docs/books/b14-compliance/03-the-baseline-and-the-crosswalk.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/books/b14-compliance/03-the-baseline-and-the-crosswalk.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Chapter 03 — The Control Baseline and the Crosswalk</span></a>
   </div>
 </li>
@@ -2565,13 +2508,29 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#why-what-who-how" id="toc-why-what-who-how" class="nav-link active" data-scroll-target="#why-what-who-how">Why, what, who, how</a></li>
-  <li><a href="#reading-paths" id="toc-reading-paths" class="nav-link" data-scroll-target="#reading-paths">Reading paths</a></li>
-  <li><a href="#where-this-book-sits-in-the-workbook" id="toc-where-this-book-sits-in-the-workbook" class="nav-link" data-scroll-target="#where-this-book-sits-in-the-workbook">Where this book sits in the workbook</a></li>
-  <li><a href="#chapters" id="toc-chapters" class="nav-link" data-scroll-target="#chapters">Chapters</a></li>
-  <li><a href="#version-history" id="toc-version-history" class="nav-link" data-scroll-target="#version-history">Version and revision history</a></li>
+  <li><a href="#two-facts-not-one" id="toc-two-facts-not-one" class="nav-link active" data-scroll-target="#two-facts-not-one">Two facts, not one</a>
+  <ul class="collapse">
+  <li><a href="#controls-that-sit-outside-both" id="toc-controls-that-sit-outside-both" class="nav-link" data-scroll-target="#controls-that-sit-outside-both">Controls that sit outside both</a></li>
+  </ul></li>
+  <li><a href="#how-the-crosswalk-was-built" id="toc-how-the-crosswalk-was-built" class="nav-link" data-scroll-target="#how-the-crosswalk-was-built">How the crosswalk was built</a>
+  <ul class="collapse">
+  <li><a href="#a-hand-maintained-superset-and-a-generated-slice" id="toc-a-hand-maintained-superset-and-a-generated-slice" class="nav-link" data-scroll-target="#a-hand-maintained-superset-and-a-generated-slice">A hand-maintained superset and a generated slice</a></li>
+  </ul></li>
+  <li><a href="#coverage-by-volume-and-by-book" id="toc-coverage-by-volume-and-by-book" class="nav-link" data-scroll-target="#coverage-by-volume-and-by-book">Coverage by volume and by book</a>
+  <ul class="collapse">
+  <li><a href="#what-the-index-doesnt-cover" id="toc-what-the-index-doesnt-cover" class="nav-link" data-scroll-target="#what-the-index-doesnt-cover">What the index doesn’t cover</a></li>
+  </ul></li>
+  <li><a href="#the-fedramp-2026-indicator-view" id="toc-the-fedramp-2026-indicator-view" class="nav-link" data-scroll-target="#the-fedramp-2026-indicator-view">The FedRAMP 2026 indicator view</a>
+  <ul class="collapse">
+  <li><a href="#the-indicators-bind-providers" id="toc-the-indicators-bind-providers" class="nav-link" data-scroll-target="#the-indicators-bind-providers">The indicators bind providers</a></li>
+  </ul></li>
+  <li><a href="#the-product-inventory-questionnaire" id="toc-the-product-inventory-questionnaire" class="nav-link" data-scroll-target="#the-product-inventory-questionnaire">The product inventory questionnaire</a>
+  <ul class="collapse">
+  <li><a href="#the-scope-rule-and-its-dispositions" id="toc-the-scope-rule-and-its-dispositions" class="nav-link" data-scroll-target="#the-scope-rule-and-its-dispositions">The scope rule and its dispositions</a></li>
+  </ul></li>
+  <li><a href="#how-an-agency-uses-the-two-together" id="toc-how-an-agency-uses-the-two-together" class="nav-link" data-scroll-target="#how-an-agency-uses-the-two-together">How an agency uses the two together</a></li>
   </ul>
-<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="index.docx"><i class="bi bi-file-word"></i>MS Word</a></li></ul></div></nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="03-the-baseline-and-the-crosswalk.docx"><i class="bi bi-file-word"></i>MS Word</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -2581,17 +2540,15 @@ window.Quarto = {
   and has not been reviewed or endorsed by, any federal agency.
 </div>
 
-<header id="title-block-header" class="quarto-title-block default fmw-hero fmw-hero-dark">
-<p class="fmw-eyebrow">Federal Modernization Workbook · Book 09</p>
+<header id="title-block-header" class="quarto-title-block default fmw-hero"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../docs/books/b14-compliance/index.html">Book 14 — Federal Compliance &amp; Authorization</a></li><li class="breadcrumb-item"><a href="../../../docs/books/b14-compliance/03-the-baseline-and-the-crosswalk.html">Chapter 03 — The Control Baseline and the Crosswalk</a></li></ol></nav>
+<p class="fmw-eyebrow">Federal Modernization Workbook · Book 14 · What</p>
 <div class="quarto-title">
-<h1 class="title">Book 09 — Network &amp; Transport</h1>
-<p class="fmw-tagline">Physics, Control and the Order of Operations</p>
-<p class="subtitle lead">Transport is a physics decision; control is a compliance decision: why physics decides the architecture, what TIC 3.0 and the network control plane require, who owns the network, and how to move branches without a compliance regression</p>
+<h1 class="title">Chapter 03 — The Control Baseline and the Crosswalk</h1>
 </div>
 
 <div>
   <div class="description">
-    Book 09 of the Federal Modernization Workbook: the speed-of-light floor, transport versus control, what TIC 3.0 and M-26-14 actually require, logical centralization and token-based security, SD-WAN and SASE, legacy protocols on re-routed paths, 802.1X and RADIUS, the reference architecture, who owns the network, the long interim, field-office WAN transformation, Microsoft 365 traffic, and sequencing, cost and evidence.
+    Which controls apply and where the workbook treats them: the NIST SP 800-53B Moderate baseline and FedRAMP class membership as two separate facts, how the series control crosswalk was built, its coverage by volume and by book, the FedRAMP 2026 indicator view and why the indicators bind providers, and how an agency uses the crosswalk together with the product inventory questionnaire.
   </div>
 </div>
 
@@ -2608,322 +2565,525 @@ window.Quarto = {
 </header>
 
 
+<div class="fmw-lede">
+<p><em>A crosswalk tells you where a control is treated. It doesn’t tell you the control applies, that it is closed, or that anyone else’s authorization covers it. Those are separate facts, and each has its own source.</em></p>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>In this chapter
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The two baseline facts every control carries: membership in a NIST SP 800-53B baseline, and membership in a FedRAMP certification class. How the series control crosswalk was built and what a row in it does and doesn’t claim. Its coverage by volume and by book, checked again for this chapter. The FedRAMP 2026 Key Security Indicator view, corrected to the indicators FedRAMP actually publishes, and why those indicators bind cloud providers rather than agencies. Then how an agency uses the crosswalk together with the product inventory questionnaire. <a href="../../../docs/books/b14-compliance/appendix-a-control-crosswalk.html">Appendix A</a> holds the condensed crosswalk and <a href="../../../docs/books/b14-compliance/appendix-b-product-inventory-questionnaire.html">Appendix B</a> the questionnaire.</p>
+</div>
+</div>
+<section id="two-facts-not-one" class="level2">
+<h2 class="anchored" data-anchor-id="two-facts-not-one">Two facts, not one</h2>
+<p>“Is this control required at Moderate?” sounds like one question. It is two, and the answers don’t always agree.</p>
+<p>The first fact is NIST’s. SP 800-53B provides three security control baselines, one for each system impact level (low, moderate and high), and a separate privacy baseline that applies to systems whatever their impact level.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> An agency system categorized Moderate starts from NIST’s Moderate baseline and tailors it. In release 5.2.0 that baseline holds 287 controls and control enhancements.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> The release changed no baselines; NIST updated the version number to keep it in step with SP 800-53.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
+<p>The second fact is FedRAMP’s. Under the FedRAMP Consolidated Rules for 2026, launched on June 25, 2026, a cloud service offering is FedRAMP Certified in a certification class from A to D.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> FedRAMP’s notice on the designations said that for Rev5, “Class C will include the current Moderate baseline” and Class D the current High baseline.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> FedRAMP’s 2026 control reference lists, for every control, the Rev5 classes whose baselines include it. Counted across all twenty families, 322 controls and enhancements are listed for Class C.<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> OMB’s FedRAMP memorandum explains the difference in a footnote: a FedRAMP authorization follows the steps in SP 800-37, “but the control baselines used have been specifically tailored for cloud offerings.”<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a></p>
+<div id="fig-ch03-two-facts-one-index" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Two cards side by side at the top. Left, slate: fact 1, NIST SP 800-53B, the Moderate baseline, for an agency system categorized Moderate, 287 controls and enhancements. Right, blue: fact 2, FedRAMP 2026, Class C membership, for a certified cloud service offering, 322 controls and enhancements. Dashed arrows from both lead to a violet card, an index, not a decision: the control crosswalk, 152 controls each pointing to the volumes and books that treat it as a subject, of which 122 sit in NIST Moderate and 123 in FedRAMP Class C. A green arrow labeled points into leads from the crosswalk to a green card, the agency's system security plan, covering every control the system's baseline selects with its origination and evidence. A slate arrow labeled selects runs from the NIST baseline directly to the system security plan.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ch03-two-facts-one-index-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="../../images/diagrams/b14-compliance/svg/ch03-two-facts-one-index.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;1: The NIST Moderate baseline and FedRAMP Class C membership are separate facts; the crosswalk is an index that points into both and decides neither."><img src="../../images/diagrams/b14-compliance/svg/ch03-two-facts-one-index.svg" class="img-fluid figure-img" alt="Two cards side by side at the top. Left, slate: fact 1, NIST SP 800-53B, the Moderate baseline, for an agency system categorized Moderate, 287 controls and enhancements. Right, blue: fact 2, FedRAMP 2026, Class C membership, for a certified cloud service offering, 322 controls and enhancements. Dashed arrows from both lead to a violet card, an index, not a decision: the control crosswalk, 152 controls each pointing to the volumes and books that treat it as a subject, of which 122 sit in NIST Moderate and 123 in FedRAMP Class C. A green arrow labeled points into leads from the crosswalk to a green card, the agency's system security plan, covering every control the system's baseline selects with its origination and evidence. A slate arrow labeled selects runs from the NIST baseline directly to the system security plan."></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ch03-two-facts-one-index-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: The NIST Moderate baseline and FedRAMP Class C membership are separate facts; the crosswalk is an index that points into both and decides neither.
+</figcaption>
+</figure>
+</div>
+<p>The two sets mostly overlap, and the places they don’t are the places a plan goes wrong. Class C includes 36 controls and enhancements that NIST’s Moderate baseline doesn’t, and the controls this book relies on show the pattern:</p>
+<table class="table-striped table-hover caption-top table">
+<caption>Where NIST baselines and FedRAMP classes diverge, for controls the series treats</caption>
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Control</th>
+<th>NIST SP 800-53B</th>
+<th>FedRAMP 2026 classes</th>
+<th>What it means for a plan</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>AU-10 Non-repudiation</td>
+<td>High only</td>
+<td>D</td>
+<td>Not required of a Moderate agency system or a Class C service</td>
+</tr>
+<tr class="even">
+<td>AU-12(1) System-wide and Time-correlated Audit Trail</td>
+<td>High only</td>
+<td>D</td>
+<td>Same: a design choice below High</td>
+</tr>
+<tr class="odd">
+<td>SC-12(1) Availability (of cryptographic keys)</td>
+<td>High only</td>
+<td>D</td>
+<td>Same</td>
+</tr>
+<tr class="even">
+<td>CM-5(1) Automated Access Enforcement and Audit Records</td>
+<td>High only</td>
+<td>C, D</td>
+<td>Required of a Class C service, not of a Moderate agency system</td>
+</tr>
+<tr class="odd">
+<td>SI-2(3) Time to Remediate Flaws and Benchmarks for Corrective Actions</td>
+<td>none</td>
+<td>C, D</td>
+<td>FedRAMP adds it; NIST selects it in no baseline</td>
+</tr>
+<tr class="even">
+<td>SI-4(16) Correlate Monitoring Information</td>
+<td>none</td>
+<td>C, D</td>
+<td>FedRAMP adds it</td>
+</tr>
+<tr class="odd">
+<td>AU-6(4) Central Review and Analysis</td>
+<td>none</td>
+<td>D</td>
+<td>FedRAMP adds it at Class D only</td>
+</tr>
+<tr class="even">
+<td>SC-8 and SC-8(1) Transmission Confidentiality and Integrity, Cryptographic Protection</td>
+<td>Moderate, High</td>
+<td>B, C, D</td>
+<td>FedRAMP selects them a class lower than NIST</td>
+</tr>
+<tr class="odd">
+<td>CA-5 Plan of Action and Milestones</td>
+<td>Low, Moderate, High</td>
+<td>none listed</td>
+<td>FedRAMP’s 2026 reference page shows no class line for CA-5</td>
+</tr>
+</tbody>
+</table>
+<p>Sources for the table: NIST’s OSCAL baseline profiles and FedRAMP’s 2026 Rev5 control reference, both read on October 21, 2026.<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a><a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a> <a href="../../../docs/books/b13-governance/appendix-a-requirements-mapping.html">Book 13, Appendix A</a> reached the same results for its own controls. The CA-5 gap looks like an omission on the page rather than a policy: a plan of action and milestones is in every NIST baseline, and the program keeps one whatever the class line says.</p>
+<p>The rule this chapter follows, and every chapter of this book follows, is to cite the two facts separately. “Required at Moderate” means nothing until it says which. An agency system categorized Moderate uses the NIST baseline its categorization selects. A FedRAMP Class C service uses FedRAMP’s.</p>
+<section id="controls-that-sit-outside-both" class="level3">
+<h3 class="anchored" data-anchor-id="controls-that-sit-outside-both">Controls that sit outside both</h3>
+<p>Two families in the crosswalk have no security-baseline membership at all, and that is by design, not by omission. SP 800-53B says the program management controls “are implemented at the organization level and are not directed at individual information systems.” PM-1 is marked as deployed organization-wide, not associated with the security control baselines, and independent of any system impact level.<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a> The PII processing and transparency controls are selected through the privacy baseline instead: all eight, PT-1 to PT-8, are in it, with the enhancements PT-5(2), PT-6(1), PT-6(2), PT-7(1) and PT-7(2), and so is AT-3(5), role-based training on processing personally identifiable information.<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a> FedRAMP lists no class for the PM and PT controls the series indexes.<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a> <a href="../../../docs/books/b14-compliance/05-program-management-controls.html">Chapter 05</a> and <a href="../../../docs/books/b14-compliance/08-privacy-pii-processing.html">Chapter 08</a> treat them as what they are: agency-level and privacy-program obligations, not things a cloud provider’s package can close.</p>
+</section>
+</section>
+<section id="how-the-crosswalk-was-built" class="level2">
+<h2 class="anchored" data-anchor-id="how-the-crosswalk-was-built">How the crosswalk was built</h2>
+<p>The series crosswalk is a reverse index. It answers one question: for a given SP 800-53 Rev.&nbsp;5 control, where in the Federal Compliance series is it treated? It exists for three jobs: answering an assessor, building a system security plan’s control-origination table, and checking that a control family is covered before an authorization review.</p>
+<p>The rules for what earns a row are the author’s, and they are strict:</p>
+<ul>
+<li><strong>Only first-class treatment counts.</strong> A row was extracted from each book’s own control-closure tables and from the sections where the control is the substantive subject. A control a book mentions in passing, cites in a framework cross-reference or names in a vendor appendix was deliberately left out.</li>
+<li><strong>Titles are NIST’s.</strong> Every title is the official SP 800-53 Rev.&nbsp;5 short title, which sometimes differs from a book’s prose. For this chapter all 149 identifiers and titles were checked against the CSRC control catalog export for release 5.2.0 and the OSCAL catalog. All 149 exist and none is withdrawn; the titles match apart from capitalization and the crosswalk’s practice of prefixing an enhancement with its base control’s title.<a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a><a href="#fn14" class="footnote-ref" id="fnref14" role="doc-noteref"><sup>14</sup></a></li>
+<li><strong>Enhancements get their own row only when a book cites the enhancement.</strong> Otherwise coverage is recorded at the base control.</li>
+<li><strong>Implementation rows sit beside architecture rows.</strong> Where the implementation volume turns a control into deployable code, it appears on the same row as the architecture book that closes it, so the “what” and the “how” are visible together.</li>
+<li><strong>The training volume contributes only its own subject.</strong> It adds AT-2 and AT-3, the training program itself, not the many controls it teaches.</li>
+<li><strong>Coordination is not a second closure.</strong> The three coordination and day-2 volumes (workflow-platform control-compliance automation, multi-cloud DDI automation and workflow-platform day-2 operations) record where a control is <em>made operational and evidenced</em>: drift raised as a tracked task, a change gated by an approved record, an asset reconciled to the inventory’s join key. A row for one of them is not an independent claim that the control closes there. Only four controls appear in those volumes and nowhere else: CM-5 (separation of duties over DDI change), AC-2(3), AC-2(4) and SA-9(2).</li>
+</ul>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>Status — draft book
+<span class="screen-reader-only">Important</span>A pointer, not an inheritance claim
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>This book brings together the workbook’s <em>Physics of a Single Source of Truth</em> series, the branch-networking whitepapers (<em>The Branch Edge Gap</em>, <em>The Long Interim</em>, <em>SD-WAN vs.&nbsp;DIA Under TIC 3.0</em>, <em>Network Transport and Governance</em>, and the field-office WAN paper), the Microsoft 365 Optimize exemption instruments, and the short SD-WAN, SASE and RADIUS pages. Every external claim was checked against a primary source on October 20–21, 2026 and carries a footnote. The earlier pages are kept in the repository’s <a href="https://github.com/WhalerMike/modernization-workbook/tree/main/archive/b09-network"><code>archive/b09-network/</code></a> folder, and their old addresses forward to the chapters that replaced them.</p>
+<p>“Addressed here” is a coverage pointer. Whether a control is fully inherited from a provider, partly satisfied or shared depends on the authorization boundary and the assessor’s determination. Read the named book, and the evidence it names, for the substantive treatment. <a href="../../../docs/books/b14-compliance/04-closure-with-proof.html">Chapter 04</a> sets out what it takes for a control to count as closed.</p>
 </div>
 </div>
+<section id="a-hand-maintained-superset-and-a-generated-slice" class="level3">
+<h3 class="anchored" data-anchor-id="a-hand-maintained-superset-and-a-generated-slice">A hand-maintained superset and a generated slice</h3>
+<p>The crosswalk is maintained by hand. Alongside it, the program’s design generates a smaller crosswalk from its machine-checked closure record, behind the same drift gate as each book’s generated “controls closed here” table, so that slice can’t silently fall out of step. The hand-maintained table is the superset: it indexes controls in books the closure record hasn’t yet reached. The difference between the two is a queue of controls that are <em>claimed in prose but not yet proven by the record</em>, and the series publishes it rather than hiding it. As the record is back-filled book by book, the generated slice grows toward the full index. That is the same rule <a href="../../../docs/books/b14-compliance/04-closure-with-proof.html">Chapter 04</a> applies to closure itself: a number someone maintains by hand is a claim; a number a generator derives from records is evidence.</p>
+</section>
+</section>
+<section id="coverage-by-volume-and-by-book" class="level2">
+<h2 class="anchored" data-anchor-id="coverage-by-volume-and-by-book">Coverage by volume and by book</h2>
+<p>The crosswalk indexes 152 distinct controls and enhancements in 18 families. Recounted from the table for this chapter, the distinct controls each volume treats are below. A control treated in several volumes is counted in each, so the column doesn’t sum to 152. Three of the 152, AT-2(3), PT-6 and PT-8, were missing from the source and are treated by no volume.</p>
+<table class="table-striped table-hover caption-top table">
+<caption>Distinct controls treated in each volume, recounted from the crosswalk on October 21, 2026</caption>
+<thead>
+<tr class="header">
+<th>Volume (subject)</th>
+<th>Distinct controls</th>
+<th>Where the depth is</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>I — Foundation and transport</td>
+<td>41</td>
+<td><a href="https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_I_Book_00_Foundation_Transport_Overview.md">Volume overview</a>; workbook <a href="../../../docs/books/b08-ddi/index.html">Book 08</a>, <a href="../../../docs/books/b09-network/index.html">Book 09</a>, <a href="../../../docs/books/b07-pki/index.html">Book 07</a></td>
+</tr>
+<tr class="even">
+<td>II — Data platform</td>
+<td>22</td>
+<td><a href="https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_II_Book_00_Data_Platform_Overview.md">Volume overview</a>; workbook <a href="../../../docs/books/b06-data-platform/index.html">Book 06</a></td>
+</tr>
+<tr class="odd">
+<td>III — Security operations</td>
+<td>54</td>
+<td><a href="https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_III_Book_00_Security_Operations_Overview.md">Volume overview</a>; workbook <a href="../../../docs/books/b12-security-operations/index.html">Book 12</a></td>
+</tr>
+<tr class="even">
+<td>IV — Governance and assurance</td>
+<td>54</td>
+<td>This book, <a href="../../../docs/books/b14-compliance/05-program-management-controls.html">Chapters 05</a> to <a href="../../../docs/books/b14-compliance/09-training-and-awareness-controls.html">09</a> and <a href="../../../docs/books/b14-compliance/11-the-authorization-package.html">11</a></td>
+</tr>
+<tr class="odd">
+<td>V — Training and certification</td>
+<td>2</td>
+<td><a href="../../../docs/books/b16-people/01-people-close-the-gap.html">Replaced by Book 16 chapter</a>; <a href="../../../docs/books/b14-compliance/09-training-and-awareness-controls.html">Chapter 09</a></td>
+</tr>
+<tr class="even">
+<td>VI — Implementation as code</td>
+<td>38</td>
+<td><a href="../../../docs/books/b15-day2-operations/02-day-two-is-where-compliance-lives.html">Replaced by Book 15 chapter</a></td>
+</tr>
+<tr class="odd">
+<td>VII — Workflow-platform control-compliance automation</td>
+<td>9</td>
+<td><a href="../../../docs/books/b15-day2-operations/02-day-two-is-where-compliance-lives.html">Replaced by Book 15 chapter</a></td>
+</tr>
+<tr class="even">
+<td>VIII — Multi-cloud DDI landing-zone automation</td>
+<td>6</td>
+<td><a href="https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_VIII_Book_00_DDI_Automation_Overview.md">Volume overview</a></td>
+</tr>
+<tr class="odd">
+<td>IX — Workflow-platform day-2 operations</td>
+<td>16</td>
+<td><a href="../../../docs/books/b15-day2-operations/01-the-help-desk-decides.html">Replaced by Book 15 chapter</a></td>
+</tr>
+<tr class="even">
+<td><strong>Series, distinct</strong></td>
+<td><strong>152</strong></td>
+<td><a href="../../../docs/books/b14-compliance/appendix-a-control-crosswalk.html">Appendix A</a></td>
+</tr>
+</tbody>
+</table>
+<p>The crosswalk’s own summary table gave 12 controls for the workflow-platform automation volume and 10 for the day-2 operations volume. Recounted from the rows themselves, the figures are 9 and 16: three enhancements the text attributes to the automation volume (AC-2(3), AC-2(4) and SA-9(2)) are indexed under the day-2 volume’s SaaS-integration book, and the day-2 volume’s per-book rows add up to 16 distinct controls. The table above uses the recount. Volumes VI to IX raise the per-volume figures far more than the series total, because they mostly operationalize controls the architecture volumes already treat.</p>
+<p>By book, coverage is concentrated. The crosswalk has 293 book-to-control pointers, and the twelve books that treat the most controls account for 136 of them:</p>
+<table class="table-striped table-hover caption-top table">
+<caption>The books that treat the most controls</caption>
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Book (subject)</th>
+<th>Distinct controls</th>
+<th>Controls treated</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Cloud landing zone with authoritative DDI and IPAM</td>
+<td>16</td>
+<td>SC-20, SC-21, SC-22, SC-7, SC-8, AC-4, CM-2, CM-8, AU-2, AU-12, IA-5(2), IA-9, IR-4, SA-9, SI-3, PL-8</td>
+</tr>
+<tr class="even">
+<td>Business continuity</td>
+<td>15</td>
+<td>CP-2 to CP-10 and seven CP enhancements</td>
+</tr>
+<tr class="odd">
+<td>SQL Server authentication modernization</td>
+<td>14</td>
+<td>AC-2, AC-3, AC-17, IA-2, IA-3, IA-5, IA-5(1), AU-2, AU-12, CM-2, CM-8, CA-7, SC-8, SI-4</td>
+</tr>
+<tr class="even">
+<td>SIEM, XDR and detection</td>
+<td>13</td>
+<td>AU-6, AU-6(1), AU-6(4), AU-7, AU-8, AU-11, IR-4, IR-6, IR-8, SI-4 and three SI-4 enhancements</td>
+</tr>
+<tr class="odd">
+<td>Network access control (802.1X)</td>
+<td>11</td>
+<td>IA-3, IA-3(1), AC-3, AC-17, AC-19, AC-20, CM-6, CM-7, CM-8, SC-7(3), SC-7(5)</td>
+</tr>
+<tr class="even">
+<td>Data protection</td>
+<td>11</td>
+<td>SC-12, SC-12(1), SC-13, SC-17, SC-28, MP-2 to MP-5, AC-4, AU-10</td>
+</tr>
+<tr class="odd">
+<td>Telecommunications modernization (SD-WAN and SASE)</td>
+<td>10</td>
+<td>SC-7, SC-7(7), SC-8, AC-4, AU-2, AU-12, CA-7, SA-9, SI-3, SI-4</td>
+</tr>
+<tr class="even">
+<td>Privileged access management</td>
+<td>10</td>
+<td>AC-5, AC-6 and five AC-6 enhancements, AC-11, AC-12, IA-11</td>
+</tr>
+<tr class="odd">
+<td>Network enforcement</td>
+<td>9</td>
+<td>AC-4, AC-17, AC-19, IA-3, SC-7, SC-7(8), SC-8, SC-8(1), SI-4</td>
+</tr>
+<tr class="even">
+<td>Database consolidation and network physics</td>
+<td>9</td>
+<td>AU-9, CA-3, CP-9, CP-10, SA-8, SC-5, SC-8, SC-28, SI-12</td>
+</tr>
+<tr class="odd">
+<td>Cybersecurity training and awareness</td>
+<td>9</td>
+<td>AT-2, AT-3, AT-4 and four AT enhancements, CP-3, IR-2</td>
+</tr>
+<tr class="even">
+<td>Program management</td>
+<td>9</td>
+<td>PM-1, PM-2, PM-5, PM-7, PM-9, PM-11, PM-14, PM-15, PM-30</td>
+</tr>
+</tbody>
+</table>
+<p>Ninety-four of the 152 controls are treated in exactly one book. The contingency, supply chain, privacy and program management families each live almost entirely in one governance book, which is why this book carries them in their own chapters (<a href="../../../docs/books/b14-compliance/06-contingency-and-continuity.html">06</a>, <a href="../../../docs/books/b14-compliance/07-supply-chain-risk-management.html">07</a>, <a href="../../../docs/books/b14-compliance/08-privacy-pii-processing.html">08</a> and <a href="../../../docs/books/b14-compliance/05-program-management-controls.html">05</a>). <a href="../../../docs/books/b14-compliance/12-the-series-as-a-map.html">Chapter 12</a> turns the index around and reads it as a map, volume by volume.</p>
+<section id="what-the-index-doesnt-cover" class="level3">
+<h3 class="anchored" data-anchor-id="what-the-index-doesnt-cover">What the index doesn’t cover</h3>
+<p>The crosswalk says itself that it is not a gap analysis against a baseline. That can now be quantified. Of the 287 controls and enhancements in NIST’s Moderate baseline, the crosswalk indexes 122. Of the 322 FedRAMP lists for Class C, it indexes 123.<a href="#fn15" class="footnote-ref" id="fnref15" role="doc-noteref"><sup>15</sup></a><a href="#fn16" class="footnote-ref" id="fnref16" role="doc-noteref"><sup>16</sup></a> The remaining Moderate controls are of three kinds:</p>
+<ul>
+<li><strong>Policy and procedure controls.</strong> The “-1” control of each of the eighteen security families (AC-1, AU-1 and so on) is in the Moderate baseline. The series indexes only one of them, SR-1.</li>
+<li><strong>Families the series doesn’t build.</strong> Physical and environmental protection (18 Moderate controls) and maintenance (9) have no crosswalk rows. In a cloud boundary much of PE is inherited from the provider; on premises it is the agency’s.</li>
+<li><strong>Enhancements the books don’t cite by number.</strong> Seventy-four Moderate-baseline enhancements, most of them in AC, CM and IA, have no row of their own; where a book treats them at all, it is under the base control.</li>
+</ul>
+<p>None of this is a defect in the index. It is the reason the index can’t stand in for the system security plan. The plan has to address every control the system’s baseline selects, and the crosswalk only says where the workbook can help with some of them.</p>
+</section>
+</section>
+<section id="the-fedramp-2026-indicator-view" class="level2">
+<h2 class="anchored" data-anchor-id="the-fedramp-2026-indicator-view">The FedRAMP 2026 indicator view</h2>
+<p>The crosswalk also carried a column of FedRAMP 20x indicator labels: theme codes such as KSI-IAM and KSI-MLA, and a label, KSI-022, for the training controls. Those labels predate the 2026 rules. FedRAMP now publishes 46 Key Security Indicators in ten themes, each with its own identifier (KSI-CED-RAT, KSI-CMT-RMV and so on) and a list of “Related SP 800-53 Controls.” FedRAMP revised many of those mappings on October 13, 2026.<a href="#fn17" class="footnote-ref" id="fnref17" role="doc-noteref"><sup>17</sup></a> No indicator is numbered KSI-022; the training controls are cited by KSI-CED-RAT, “Reviewing All Training.”</p>
+<p>Recomputed from FedRAMP’s page on October 21, 2026, 118 of the 149 controls the crosswalk then indexed (before AT-2(3), PT-6 and PT-8 were added) are cited by at least one indicator. By theme:</p>
+<table class="table-striped table-hover caption-top table">
+<caption>Crosswalk controls by FedRAMP 2026 indicator theme (a control cited by several themes is counted in each)</caption>
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Theme</th>
+<th>Crosswalk controls cited</th>
+<th>Indicators that cite them</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Cybersecurity Education (CED)</td>
+<td>7</td>
+<td>KSI-CED-RAT</td>
+</tr>
+<tr class="even">
+<td>Change Management (CMT)</td>
+<td>9</td>
+<td>KSI-CMT-LMC, CMT-RMV, CMT-RVP, CMT-VTD</td>
+</tr>
+<tr class="odd">
+<td>Cloud Native Architecture (CNA)</td>
+<td>13</td>
+<td>KSI-CNA-DFP, CNA-IBP, CNA-MAT, CNA-OFA, CNA-RNT, CNA-RVP, CNA-ULN</td>
+</tr>
+<tr class="even">
+<td>Identity and Access Management (IAM)</td>
+<td>39</td>
+<td>KSI-IAM-AAM, IAM-APM, IAM-ELP, IAM-JIT, IAM-SNU, IAM-SUS</td>
+</tr>
+<tr class="odd">
+<td>Incident Response (INR)</td>
+<td>3</td>
+<td>KSI-INR-AAR, INR-RIR, INR-RPI</td>
+</tr>
+<tr class="even">
+<td>Monitoring, Logging, and Auditing (MLA)</td>
+<td>23</td>
+<td>KSI-MLA-EVC, MLA-LET, MLA-OSM, MLA-RVL</td>
+</tr>
+<tr class="odd">
+<td>Policy and Inventory (PIY)</td>
+<td>9</td>
+<td>KSI-PIY-GIV, PIY-RIS, PIY-RSD</td>
+</tr>
+<tr class="even">
+<td>Recovery Planning (RPL)</td>
+<td>14</td>
+<td>KSI-RPL-ABO, RPL-ARP, RPL-RRO, RPL-TRC</td>
+</tr>
+<tr class="odd">
+<td>Supply Chain Risk (SCR)</td>
+<td>15</td>
+<td>KSI-SCR-MIT, SCR-MON</td>
+</tr>
+<tr class="even">
+<td>Service Configuration (SVC)</td>
+<td>25</td>
+<td>KSI-SVC-ACM, SVC-ASM, SVC-EIS, SVC-PRR, SVC-SIN, SVC-VCM, SVC-VRI</td>
+</tr>
+</tbody>
+</table>
+<p>Several of the crosswalk’s theme assignments don’t survive the check. AC-4 and AC-17 are cited by identity indicators, not network-architecture ones. CA-3 is cited by KSI-SCR-MON, not by the inventory theme. SI-2 is cited by KSI-CMT-VTD and SI-2(2) by KSI-SVC-EIS, not by the logging theme. CA-5, CA-6, the media protection controls, and every PT control and every PM control the series indexes except PM-7 are cited by no indicator at all.<a href="#fn18" class="footnote-ref" id="fnref18" role="doc-noteref"><sup>18</sup></a> <a href="../../../docs/books/b14-compliance/appendix-a-control-crosswalk.html">Appendix A</a> drops the indicator column; <a href="../../../docs/books/b13-governance/appendix-a-requirements-mapping.html">Book 13, Appendix A</a> maps the current indicators, but only for the governance controls.</p>
+<section id="the-indicators-bind-providers" class="level3">
+<h3 class="anchored" data-anchor-id="the-indicators-bind-providers">The indicators bind providers</h3>
+<p>The indicator view is useful to an agency, but it doesn’t describe the agency’s obligations. FedRAMP 20x, in FedRAMP’s own words, works “by asking cloud service providers to demonstrate desired security capabilities,” and FedRAMP describes the indicators as giving measurable validation that control protections are working.<a href="#fn19" class="footnote-ref" id="fnref19" role="doc-noteref"><sup>19</sup></a> The indicators are outcome statements a provider demonstrates to become and stay certified (<a href="../../../docs/books/b10-cloud-boundary/03-what-changed-at-fedramp.html">Book 10, Chapter 03</a>).</p>
+<p>What FedRAMP’s rules ask of agencies is different. Agencies must complete the Authorization to Operate process for federal information systems that use certified cloud services (AGU-USE-ABU), and must make sure their governance, risk, compliance and inventory tools can produce and ingest machine-readable artifacts, including at least OSCAL JSON (AGU-AGC-GRC).<a href="#fn20" class="footnote-ref" id="fnref20" role="doc-noteref"><sup>20</sup></a> They also review each provider’s quarterly Ongoing Certification Report against the risk tolerance in their ATO. The Collaborative Continuous Monitoring rule says MUST and the Agency Use rule says SHOULD; the workbook follows the stricter one (<a href="../../../docs/books/b12-security-operations/12-evidence-metrics-and-continuous-monitoring.html">Book 12, Chapter 12</a>, <a href="../../../docs/books/b13-governance/11-reciprocity-and-one-authorization.html">Book 13, Chapter 11</a>).</p>
+<p>So read an indicator mapping in the crosswalk as a statement about <em>the provider’s</em> evidence. An agency that runs its own estate the same way, with logged and monitored changes and redeployment from version control, is making a design choice and can show its assessor the same kind of evidence. It isn’t meeting a FedRAMP requirement, because none applies to it.</p>
+</section>
+</section>
+<section id="the-product-inventory-questionnaire" class="level2">
+<h2 class="anchored" data-anchor-id="the-product-inventory-questionnaire">The product inventory questionnaire</h2>
+<p>The crosswalk starts from controls. The questionnaire starts from the estate. It exists because a compliance plan executed without full visibility into the agency’s deployed tooling can’t select a coordination approach, or claim an inherited control, without first knowing what is already in place and how it is authorized.</p>
+<p>It is organized by the same volumes as the crosswalk. Each row is a product category (cloud platforms, DDI and IPAM, certificates and PKI, the HR system of record, directory and identity provider, network equipment, network access control, SD-WAN and SASE, privileged access, vulnerability assessment, patch and systems management, cloud posture, SIEM, XDR, SOAR, backup, SBOM tooling, GRC and OSCAL tooling, the workflow platform and its connectors, and so on) with example products. For each, the agency fills four working columns:</p>
+<table class="table-striped table-hover caption-top table">
+<caption>The questionnaire’s working columns</caption>
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Column</th>
+<th>What to record</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>In use?</td>
+<td>Yes, no, or partly</td>
+</tr>
+<tr class="even">
+<td>Product and offering</td>
+<td>The specific offering, not the vendor: a government edition and a commercial edition of the same product are different answers</td>
+</tr>
+<tr class="odd">
+<td>FedRAMP status</td>
+<td>The Marketplace status, certification class and FedRAMP ID, read on the day you fill the row</td>
+</tr>
+<tr class="even">
+<td>Deployment surface</td>
+<td>Cloud service, network equipment, operating system, or cross-surface</td>
+</tr>
+</tbody>
+</table>
+<p>A fifth column, <em>Maps to</em>, is pre-filled. It names the series book and functional plane the answer feeds, which is how the questionnaire hands off to the crosswalk.</p>
+<p>The FedRAMP status column is the one that goes stale fastest. The Marketplace publishes its data as a dataset that records, for each listing, its status, certification class and impact level. On October 21, 2026 it held 781 listings, and the statuses included “FedRAMP Certified,” “Initial Implementation,” “FedRAMP In Process,” “Agency Authorization In Process” and “Legacy FedRAMP Ready.”<a href="#fn21" class="footnote-ref" id="fnref21" role="doc-noteref"><sup>21</sup></a> The last of those exists because FedRAMP stopped accepting FedRAMP Ready submissions after July 28, 2026.<a href="#fn22" class="footnote-ref" id="fnref22" role="doc-noteref"><sup>22</sup></a> A status recorded in the spring may not be the status in the fall; record the date you read it.</p>
+<section id="the-scope-rule-and-its-dispositions" class="level3">
+<h3 class="anchored" data-anchor-id="the-scope-rule-and-its-dispositions">The scope rule and its dispositions</h3>
+<p>The questionnaire asks the agency to name the level its boundary is authorized at, and then to check every in-boundary dependency against it. Its dispositions, with two corrections:</p>
+<table class="table-striped table-hover caption-top table">
+<caption>Questionnaire dispositions, as corrected for this chapter</caption>
+<thead>
+<tr class="header">
+<th>Situation</th>
+<th>Disposition</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Certified at the boundary’s level (Class C for a Moderate boundary)</td>
+<td>In scope. Record the FedRAMP ID</td>
+</tr>
+<tr class="even">
+<td>Certified only at a higher class (Class D, no Class C offering)</td>
+<td>Usable. The questionnaire flagged this case for review; under M-24-15, agencies must presume a FedRAMP package adequate for an authorization “at or below” its impact level, and FedRAMP’s notice on the designations says agencies may use a certification package at any security category they deem appropriate under the Risk Management Framework.<a href="#fn23" class="footnote-ref" id="fnref23" role="doc-noteref"><sup>23</sup></a><a href="#fn24" class="footnote-ref" id="fnref24" role="doc-noteref"><sup>24</sup></a> Record it; the higher class is not a defect</td>
+</tr>
+<tr class="odd">
+<td>On-premises equipment or software, not a cloud service</td>
+<td>Not a FedRAMP item. FedRAMP’s scope is cloud computing products and services that handle federal information for an agency.<a href="#fn25" class="footnote-ref" id="fnref25" role="doc-noteref"><sup>25</sup></a> The equipment is assessed inside the agency’s own authorization, with its own evidence; <a href="../../../docs/books/b14-compliance/appendix-b-product-inventory-questionnaire.html">Appendix B</a> lists the instruments the series uses</td>
+</tr>
+<tr class="even">
+<td>A cloud service that isn’t FedRAMP certified</td>
+<td>Flag it. Agencies must promote the use of certified services when the use is within FedRAMP’s scope, and some uses are outside it.<a href="#fn26" class="footnote-ref" id="fnref26" role="doc-noteref"><sup>26</sup></a> The program’s design is to treat an uncertified in-boundary dependency as a decision for the authorizing official: find a certified or government edition, replace it, or document why the use is out of scope</td>
+</tr>
+<tr class="odd">
+<td>A category with no product at all</td>
+<td>Flag it as a gap</td>
+</tr>
+</tbody>
+</table>
+<p>Everything flagged rolls up into the questionnaire’s flags-and-gaps list, which becomes the procurement and boundary-decision agenda.</p>
+<p>Two rules of the instrument are worth keeping as program design. First, a published questionnaire ships empty. A pre-filled block answers the questions before the reader starts, and the reader’s own estate is the point; an agency’s filled-in edition stays with the agency. Second, a preference for products the agency already licenses is earned, not automatic: an incumbent suite is the default candidate for a role only where it genuinely reaches every surface the role covers, across providers, operating systems and network equipment. Where it reaches only its own vendor’s surfaces, the better cross-vendor option at the boundary’s level wins. Product names in the questionnaire are examples of a category, never recommendations, and <a href="../../../docs/books/b14-compliance/04-closure-with-proof.html">Chapter 04</a> explains why every product claim in it carries a date.</p>
+</section>
+</section>
+<section id="how-an-agency-uses-the-two-together" class="level2">
+<h2 class="anchored" data-anchor-id="how-an-agency-uses-the-two-together">How an agency uses the two together</h2>
+<div id="fig-ch03-using-the-instruments" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Four cards from left to right. Step 1, slate: the inventory questionnaire, recording what is deployed, its FedRAMP status and class, and where it runs. Step 2, amber: flags and gaps, for anything below the boundary level, not a cloud service, not certified, or missing. Step 3, violet: crosswalk lookup, giving for each control the books that treat it and the evidence they name. Step 4, green: plan and package, with the origination table, the gaps the index doesn't cover and the provider packages reused. A dashed violet arrow labeled next review returns from step 4 to step 1.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ch03-using-the-instruments-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="../../images/diagrams/b14-compliance/svg/ch03-using-the-instruments.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;2: The inventory questionnaire comes first, its flags and gaps go to a decision agenda, the crosswalk points each control to its treatment, and the plan and package close the loop until the next review."><img src="../../images/diagrams/b14-compliance/svg/ch03-using-the-instruments.svg" class="img-fluid figure-img" alt="Four cards from left to right. Step 1, slate: the inventory questionnaire, recording what is deployed, its FedRAMP status and class, and where it runs. Step 2, amber: flags and gaps, for anything below the boundary level, not a cloud service, not certified, or missing. Step 3, violet: crosswalk lookup, giving for each control the books that treat it and the evidence they name. Step 4, green: plan and package, with the origination table, the gaps the index doesn't cover and the provider packages reused. A dashed violet arrow labeled next review returns from step 4 to step 1."></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ch03-using-the-instruments-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: The inventory questionnaire comes first, its flags and gaps go to a decision agenda, the crosswalk points each control to its treatment, and the plan and package close the loop until the next review.
+</figcaption>
+</figure>
+</div>
+<p>The order matters, and it is the program’s design:</p>
+<ol type="1">
+<li><strong>Inventory first.</strong> Fill the questionnaire against the estate as it is. Verify each status on the Marketplace that day. Flag what fails the scope rule.</li>
+<li><strong>Decide the flags.</strong> The flags-and-gaps list goes to whoever owns boundary and procurement decisions (<a href="../../../docs/books/b14-compliance/10-who-owns-compliance.html">Chapter 10</a>). A flag that nobody decides is a finding waiting to be written.</li>
+<li><strong>Look up the controls.</strong> For each control the system’s baseline selects, the crosswalk names the books that treat it. Use the row to find the mechanism and the evidence the book names; don’t copy the row into the plan as if it were an implementation statement.</li>
+<li><strong>Write what the index can’t.</strong> Every Moderate control with no crosswalk row still needs an implementation statement in the system security plan. Where a certified provider’s package covers it, the agency reuses that package under the presumption of adequacy and records its own decision; the provider’s indicators and quarterly reports become part of the agency’s continuous-monitoring input (<a href="../../../docs/books/b14-compliance/11-the-authorization-package.html">Chapter 11</a>).</li>
+<li><strong>Repeat.</strong> Product statuses, FedRAMP mappings and the index itself all change. The next review starts again at step 1.</li>
+</ol>
+<p>For an assessor, the crosswalk answers “where does your program treat SC-20?” in one lookup. It doesn’t answer “is SC-20 closed?” That question has a different answer, and the next chapter sets the rule for it.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Download and present
+<span class="screen-reader-only">Tip</span>Continue the book
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong><a href="../../../downloads/b09-network-bundle.docx">b09-network-bundle.docx</a></strong>: the whole book as one Word document, regenerated on every site deploy.</p>
-<p><strong>15-minute presentation (about 13 minutes narrated)</strong>: the Why / What / Who / How deck and its narrated, self-running edition, with built-in captions, are on the <a href="../../../docs/presentations/index.html#book-09">Presentations</a> page.</p>
-<p><strong>Executive briefing (about 30 minutes live, 22 narrated)</strong>: the decisions, their owners and timing, on the <a href="../../../docs/presentations/index.html#executive-b09">Presentations</a> page.</p>
-<p><strong>Technical deep dive (about 50 minutes live, 19 narrated)</strong>: TIC 3.0 in practice, SD-WAN and SASE, network access control after AD, and the reference architecture, in modules on the <a href="../../../docs/presentations/index.html#technical-b09">Presentations</a> page.</p>
-<p><strong>SD-WAN technical deep dive (about 50 minutes live, 18 narrated)</strong>: transport physics, the branch edge and TIC 3.0, securing and governing the fabric, and the field-office transformation, on the <a href="../../../docs/presentations/index.html#technical-b09-sdwan">Presentations</a> page.</p>
-<p><strong>SD-WAN executive business case (about 7 minutes narrated)</strong>: the field-office WAN case from Chapter 11, its cost, roadmap, gates and the decision to ask for, on the <a href="../../../docs/presentations/index.html#executive-b09-sdwan">Presentations</a> page. Research under review: the <a href="../../../docs/evaluations/sdwan-platform-deep-dive.html">SD-WAN platform deep dive</a> and the <a href="../../../docs/books/guides/cisco-sdwan-implementation.html">Cisco Catalyst SD-WAN implementation guide</a>.</p>
+<p><a href="../../../docs/books/b14-compliance/02-the-federal-clock.html">← Previous: Chapter 02 — The Federal Clock</a> · <a href="../../../docs/books/b14-compliance/index.html">Book index</a> · <a href="../../../docs/books/b14-compliance/04-closure-with-proof.html">Next: Chapter 04 — Closure: A Control Closes Only With Its Proof →</a></p>
 </div>
 </div>
-<p>Every other book in this workbook moves something: identities, devices, databases, certificates, names. This one is about the paths they move over, and the one constraint no product removes. Light in fiber covers about 200 kilometers per millisecond, and conversational voice leaves the network roughly 70 to 100 milliseconds one way. A field office that hairpins through a distant data center spends much of that on the detour, and a faster circuit doesn’t straighten the path. So the architecture follows physics: centralize the source of truth logically, then need less global synchronization rather than trying to make it faster. The second idea is the book’s spine: <strong>transport is a physics decision; control is a compliance decision.</strong> Direct internet access, MPLS, satellite and 5G are pipes that close one control family, telecommunications diversity. The governor above them, SD-WAN and the security service edge enforcing TIC 3.0 policy, closes the protection controls and is itself attack surface. Done in the wrong order, lighting up fast connections before the governor is live, modernization becomes a compliance regression with better latency.</p>
-<section id="why-what-who-how" class="level2">
-<h2 class="anchored" data-anchor-id="why-what-who-how">Why, what, who, how</h2>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th></th>
-<th>Question</th>
-<th>Chapters</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>Why</strong></td>
-<td>Why does physics decide the architecture, and why are transport and control separate decisions?</td>
-<td><a href="../../../docs/books/b09-network/01-why-physics-decides-the-architecture.html">01</a>, <a href="../../../docs/books/b09-network/02-transport-is-physics-control-is-compliance.html">02</a></td>
-</tr>
-<tr class="even">
-<td><strong>What</strong></td>
-<td>What federal policy actually requires, and what the target network looks like: centralization and tokens, SD-WAN and SASE, legacy protocols on new paths, network access control and the reference architecture</td>
-<td><a href="../../../docs/books/b09-network/03-what-tic-3-requires.html">03</a>, <a href="../../../docs/books/b09-network/04-logical-centralization-and-token-security.html">04</a>, <a href="../../../docs/books/b09-network/05-sd-wan-sase-and-governed-transport.html">05</a>, <a href="../../../docs/books/b09-network/06-legacy-protocols-on-re-routed-paths.html">06</a>, <a href="../../../docs/books/b09-network/07-network-access-control.html">07</a>, <a href="../../../docs/books/b09-network/08-reference-architecture.html">08</a></td>
-</tr>
-<tr class="odd">
-<td><strong>Who</strong></td>
-<td>Who decides and who does the work for the network and its transport</td>
-<td><a href="../../../docs/books/b09-network/09-who-owns-the-network.html">09</a></td>
-</tr>
-<tr class="even">
-<td><strong>How</strong></td>
-<td>Hold a safe posture through the long interim, transform a field-office WAN, handle Microsoft 365 traffic, and sequence, cost and evidence the change</td>
-<td><a href="../../../docs/books/b09-network/10-the-long-interim.html">10</a>, <a href="../../../docs/books/b09-network/11-field-office-wan-transformation.html">11</a>, <a href="../../../docs/books/b09-network/12-microsoft-365-traffic.html">12</a>, <a href="../../../docs/books/b09-network/13-sequencing-cost-and-evidence.html">13</a></td>
-</tr>
-</tbody>
-</table>
-<p>Appendices: <a href="../../../docs/books/b09-network/appendix-a-optimize-exemption-instruments.html">A — Optimize exemption decision instruments</a> · <a href="../../../docs/books/b09-network/appendix-b-requirements-mapping.html">B — Requirements mapping and sources</a> · <a href="../../../docs/books/b09-network/appendix-c-glossary.html">C — Glossary</a></p>
+
+
 </section>
-<section id="reading-paths" class="level2">
-<h2 class="anchored" data-anchor-id="reading-paths">Reading paths</h2>
-<ul>
-<li><strong>Executives (20 minutes):</strong> Chapters 01, 02 and 13, or the 15-minute presentation.</li>
-<li><strong>Network and security architects:</strong> Chapters 01–08, then 13.</li>
-<li><strong>Authorizing officials and boundary owners:</strong> Chapters 02, 03, 09 and 12, with Appendices A and B.</li>
-<li><strong>Program managers and acquisition:</strong> Chapters 09, 10, 11 and 13.</li>
-<li><strong>Identity and endpoint engineers:</strong> Chapters 04, 06 and 07.</li>
-</ul>
-</section>
-<section id="where-this-book-sits-in-the-workbook" class="level2">
-<h2 class="anchored" data-anchor-id="where-this-book-sits-in-the-workbook">Where this book sits in the workbook</h2>
-<p>This is Book 09 of the <a href="../../../docs/books/index.html">Federal Modernization Workbook</a>. <a href="../../../docs/books/b08-ddi/index.html">Book 08 — DNS, DHCP &amp; IPAM</a> governs the name layer that SD-WAN interception and encrypted DNS touch (<a href="../../../docs/books/b08-ddi/05-edge-interception-and-bypass.html">Chapter 05</a>). <a href="../../../docs/books/b07-pki/index.html">Book 07 — PKI &amp; Certificates</a> issues the certificates 802.1X depends on, and <a href="../../../docs/books/b04-access/index.html">Book 04 — Access &amp; Privilege</a> turns network location into one signal among many. <a href="../../../docs/books/b05-devices/index.html">Book 05 — Devices &amp; Endpoints</a> and <a href="../../../docs/books/b06-data-platform/index.html">Book 06 — Data Platform</a> carry the device and database work that moves over these paths. For control-level depth, the Federal Compliance volumes on <a href="https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_I_Book_02_Network_Access_Control_802_1X.md">802.1X network access control</a>, <a href="https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_I_Book_05_Network_Modernization.md">network modernization</a> and <a href="https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_I_Book_06_Federal_Telecommunications_Modernization.md">telecommunications modernization</a> remain in the repository.</p>
-</section>
-<section id="chapters" class="level2">
-<h2 class="anchored" data-anchor-id="chapters">Chapters</h2>
-<div id="listing-chapters" class="quarto-listing quarto-listing-container-table">
-<table class="quarto-listing-table table">
-<thead>
-<tr>
-
-<th>
-Title
-</th>
-
-<th>
-Description
-</th>
-
-</tr>
-</thead>
-<tbody class="list">
-
-<tr data-index="0" data-listing-file-modified-sort="1793993753749" data-listing-reading-time-sort="22" data-listing-word-count-sort="4382" data-listing-title-sort="Chapter 01 — Why Physics Decides the Architecture" data-listing-filename-sort="01-why-physics-decides-the-architecture.md">
-<td>
-<a href="../../../docs/books/b09-network/01-why-physics-decides-the-architecture.html" class="title listing-title">Chapter 01 — Why Physics Decides the Architecture</a>
-</td>
-<td>
-<span class="listing-description">Why latency is a physical constraint no product removes: the pendulum back toward logical centralization, the speed-of-light floor, what the 150 ms voice budget really allows, what a hairpin costs, and why the right move is to need less global synchronization.</span>
-</td>
-
-</tr>
-
-<tr data-index="1" data-listing-file-modified-sort="1793993753752" data-listing-reading-time-sort="24" data-listing-word-count-sort="4701" data-listing-title-sort="Chapter 02 — Transport Is Physics, Control Is Compliance" data-listing-filename-sort="02-transport-is-physics-control-is-compliance.md">
-<td>
-<a href="../../../docs/books/b09-network/02-transport-is-physics-control-is-compliance.html" class="title listing-title">Chapter 02 — Transport Is Physics, Control Is Compliance</a>
-</td>
-<td>
-<span class="listing-description">Why “SD-WAN versus DIA” is a false choice: what direct internet access solves and what it leaves undone, the transport menu and the one control family transport closes, what the governing control layer contributes, why that governor is itself attack surface, and the order of operations that keeps modernization from becoming a compliance regression.</span>
-</td>
-
-</tr>
-
-<tr data-index="2" data-listing-file-modified-sort="1793993753754" data-listing-reading-time-sort="38" data-listing-word-count-sort="7448" data-listing-title-sort="Chapter 03 — What TIC 3.0 and Federal Policy Actually Require" data-listing-filename-sort="03-what-tic-3-requires.md">
-<td>
-<a href="../../../docs/books/b09-network/03-what-tic-3-requires.html" class="title listing-title">Chapter 03 — What TIC 3.0 and Federal Policy Actually Require</a>
-</td>
-<td>
-<span class="listing-description">What TIC 3.0 and the surrounding federal instruments require of a branch network as of October 2026, read from the documents themselves: the TIC 3.0 document set and use cases, the binding obligations that land on branch equipment, the control assertions an agency makes about its own boundary, the encryption requirement that is and isn’t there, logging and CISA telemetry after MTIPS, FedRAMP’s limits, and the DoD contrast.</span>
-</td>
-
-</tr>
-
-<tr data-index="3" data-listing-file-modified-sort="1793993753756" data-listing-reading-time-sort="17" data-listing-word-count-sort="3282" data-listing-title-sort="Chapter 04 — Logical Centralization and Token-Based Security" data-listing-filename-sort="04-logical-centralization-and-token-security.md">
-<td>
-<a href="../../../docs/books/b09-network/04-logical-centralization-and-token-security.html" class="title listing-title">Chapter 04 — Logical Centralization and Token-Based Security</a>
-</td>
-<td>
-<span class="listing-description">Why one logical source of truth beats many authoritative copies, why token-based security is what makes a shared store safe, and how choosing the weakest consistency each flow tolerates keeps centralization inside the limits physics sets.</span>
-</td>
-
-</tr>
-
-<tr data-index="4" data-listing-file-modified-sort="1793993753758" data-listing-reading-time-sort="35" data-listing-word-count-sort="6998" data-listing-title-sort="Chapter 05 — SD-WAN, SASE and Governed-Path Transport" data-listing-filename-sort="05-sd-wan-sase-and-governed-transport.md">
-<td>
-<a href="../../../docs/books/b09-network/05-sd-wan-sase-and-governed-transport.html" class="title listing-title">Chapter 05 — SD-WAN, SASE and Governed-Path Transport</a>
-</td>
-<td>
-<span class="listing-description">What SD-WAN’s differentiated transport can and can’t do against the propagation floor, how SASE security services sit above it under TIC 3.0, the proposed token-bound governed path, the evidence the fabric must emit, and the controls owed to the controller and edges that make all of it possible.</span>
-</td>
-
-</tr>
-
-<tr data-index="5" data-listing-file-modified-sort="1793993753760" data-listing-reading-time-sort="23" data-listing-word-count-sort="4474" data-listing-title-sort="Chapter 06 — Legacy Protocols on Re-Routed Paths" data-listing-filename-sort="06-legacy-protocols-on-re-routed-paths.md">
-<td>
-<a href="../../../docs/books/b09-network/06-legacy-protocols-on-re-routed-paths.html" class="title listing-title">Chapter 06 — Legacy Protocols on Re-Routed Paths</a>
-</td>
-<td>
-<span class="listing-description">What actually breaks when an enforcement point sits in the path or the path changes, the real network dependencies of Kerberos and NTLM, why round trips rather than transport dominate chatty applications, and where transport genuinely matters for token-based access and continuous access evaluation.</span>
-</td>
-
-</tr>
-
-<tr data-index="6" data-listing-file-modified-sort="1793993753762" data-listing-reading-time-sort="40" data-listing-word-count-sort="7864" data-listing-title-sort="Chapter 07 — Network Access Control: 802.1X and RADIUS" data-listing-filename-sort="07-network-access-control.md">
-<td>
-<a href="../../../docs/books/b09-network/07-network-access-control.html" class="title listing-title">Chapter 07 — Network Access Control: 802.1X and RADIUS</a>
-</td>
-<td>
-<span class="listing-description">How port-based network access control with 802.1X, EAP-TLS and RADIUS proves which device is on the wire, why Network Policy Server is an Active Directory dependency that an Entra-native estate outgrows, and how to choose, deploy and evidence the replacement.</span>
-</td>
-
-</tr>
-
-<tr data-index="7" data-listing-file-modified-sort="1793993753764" data-listing-reading-time-sort="22" data-listing-word-count-sort="4258" data-listing-title-sort="Chapter 08 — Reference Architecture: Consistency Classes Meet Network Classes" data-listing-filename-sort="08-reference-architecture.md">
-<td>
-<a href="../../../docs/books/b09-network/08-reference-architecture.html" class="title listing-title">Chapter 08 — Reference Architecture: Consistency Classes Meet Network Classes</a>
-</td>
-<td>
-<span class="listing-description">The book’s reference architecture: the rule that aligns each data flow’s consistency class with a network class, the program’s SaaS data plane as the worked example, four branch egress architectures compared, and the five design decisions that carry most of the risk.</span>
-</td>
-
-</tr>
-
-<tr data-index="8" data-listing-file-modified-sort="1793993753765" data-listing-reading-time-sort="28" data-listing-word-count-sort="5471" data-listing-title-sort="Chapter 09 — Who Owns the Network and Its Transport" data-listing-filename-sort="09-who-owns-the-network.md">
-<td>
-<a href="../../../docs/books/b09-network/09-who-owns-the-network.html" class="title listing-title">Chapter 09 — Who Owns the Network and Its Transport</a>
-</td>
-<td>
-<span class="listing-description">Who decides, who does the work and who is consulted when an agency changes its transport, its branch control layer, its TIC 3.0 posture and its network access control, with a responsibility matrix, the owner of each step in the decision sequence, and the access each team needs.</span>
-</td>
-
-</tr>
-
-<tr data-index="9" data-listing-file-modified-sort="1793993753767" data-listing-reading-time-sort="29" data-listing-word-count-sort="5723" data-listing-title-sort="Chapter 10 — The Long Interim" data-listing-filename-sort="10-the-long-interim.md">
-<td>
-<a href="../../../docs/books/b09-network/10-the-long-interim.html" class="title listing-title">Chapter 10 — The Long Interim</a>
-</td>
-<td>
-<span class="listing-description">The posture for an agency that can’t buy SD-WAN or adopt a TIC 3.0 use case for years: why each alternative to a branch-edge policy layer has closed, which of its functions are obtainable now, why the target is far off, how BOD 26-02 pulls the branch refresh forward, and the ten interim actions that need no award.</span>
-</td>
-
-</tr>
-
-<tr data-index="10" data-listing-file-modified-sort="1793993753770" data-listing-reading-time-sort="45" data-listing-word-count-sort="8993" data-listing-title-sort="Chapter 11 — Field Office WAN Transformation" data-listing-filename-sort="11-field-office-wan-transformation.md">
-<td>
-<a href="../../../docs/books/b09-network/11-field-office-wan-transformation.html" class="title listing-title">Chapter 11 — Field Office WAN Transformation</a>
-</td>
-<td>
-<span class="listing-description">Why a per-office distribution point refresh treats a transport problem as a content problem, and how SD-WAN, direct internet access and a 12-hub content tier sized to Configuration Manager’s published limits replace it.</span>
-</td>
-
-</tr>
-
-<tr data-index="11" data-listing-file-modified-sort="1793993753773" data-listing-reading-time-sort="19" data-listing-word-count-sort="3730" data-listing-title-sort="Chapter 12 — Microsoft 365 Traffic and the Optimize Inspection Exemption" data-listing-filename-sort="12-microsoft-365-traffic.md">
-<td>
-<a href="../../../docs/books/b09-network/12-microsoft-365-traffic.html" class="title listing-title">Chapter 12 — Microsoft 365 Traffic and the Optimize Inspection Exemption</a>
-</td>
-<td>
-<span class="listing-description">What Microsoft’s Optimize, Allow and Default endpoint categories mean, why Microsoft’s bypass-inspection guidance collides with an inspect-everything boundary at a branch with direct internet access, how a documented SC-7(4) traffic-flow exception resolves the collision, what tenant restrictions v2 does and doesn’t keep, and the three decision instruments the exemption needs.</span>
-</td>
-
-</tr>
-
-<tr data-index="12" data-listing-file-modified-sort="1793993753775" data-listing-reading-time-sort="27" data-listing-word-count-sort="5382" data-listing-title-sort="Chapter 13 — Sequencing, Cost and Evidence" data-listing-filename-sort="13-sequencing-cost-and-evidence.md">
-<td>
-<a href="../../../docs/books/b09-network/13-sequencing-cost-and-evidence.html" class="title listing-title">Chapter 13 — Sequencing, Cost and Evidence</a>
-</td>
-<td>
-<span class="listing-description">The decision sequence and the technical dependencies behind it, the phase-inversion failure mode and the evidence for and against it, how to measure branch transport cost in your own estate rather than importing figures, what to stop doing, the evidence the boundary change needs, and the measurements that confirm or refute the case.</span>
-</td>
-
-</tr>
-
-<tr data-index="13" data-listing-file-modified-sort="1793993753842" data-listing-reading-time-sort="25" data-listing-word-count-sort="4908" data-listing-title-sort="Appendix A — Optimize Exemption Decision Instruments" data-listing-filename-sort="appendix-a-optimize-exemption-instruments.md">
-<td>
-<a href="../../../docs/books/b09-network/appendix-a-optimize-exemption-instruments.html" class="title listing-title">Appendix A — Optimize Exemption Decision Instruments</a>
-</td>
-<td>
-<span class="listing-description">Templates for the three documents that exempt the Microsoft 365 Optimize endpoint set from TLS break-and-inspect at branch direct internet egress under NIST SP 800-53 SC-7(4): a skeleton for the authorizing official’s exception memo, the pilot site register that serves as the exception record, and the architecture review determination against TIC 3.0 Security Capabilities Catalog version 3.3.</span>
-</td>
-
-</tr>
-
-<tr data-index="14" data-listing-file-modified-sort="1793993753844" data-listing-reading-time-sort="19" data-listing-word-count-sort="3609" data-listing-title-sort="Appendix B — Requirements Mapping and Sources" data-listing-filename-sort="appendix-b-requirements-mapping.md">
-<td>
-<a href="../../../docs/books/b09-network/appendix-b-requirements-mapping.html" class="title listing-title">Appendix B — Requirements Mapping and Sources</a>
-</td>
-<td>
-<span class="listing-description">A compliance-enabling crosswalk, not a compliance claim: each federal requirement that touches branch network and transport design (TIC 3.0, OMB M-19-26, M-22-09, M-26-14, M-26-15, CISA Protective DNS, BOD 23-02, BOD 26-02, BOD 26-04, NIST SP 800-53 Rev.&nbsp;5, SP 800-52 Rev.&nbsp;2, FIPS 140 and FedRAMP), what it actually asks, where the book addresses it and the evidence it calls for, followed by the book’s sources.</span>
-</td>
-
-</tr>
-
-<tr data-index="15" data-listing-file-modified-sort="1793993753845" data-listing-reading-time-sort="19" data-listing-word-count-sort="3723" data-listing-title-sort="Appendix C — Glossary" data-listing-filename-sort="appendix-c-glossary.md">
-<td>
-<a href="../../../docs/books/b09-network/appendix-c-glossary.html" class="title listing-title">Appendix C — Glossary</a>
-</td>
-<td>
-<span class="listing-description">Plain definitions of the network, transport, policy and control terms used across Book 09, with corrections to terms the sources got wrong. Policy and product facts are as of October 21, 2026.</span>
-</td>
-
-</tr>
-
-</tbody>
-</table>
-<div class="listing-no-matching d-none">No matching items</div>
-</div>
-<!-- revisions:start: generated by scripts/generate_revisions.py from data/editions.yml; edit those, not this section -->
-</section>
-<section id="version-history" class="level2">
-<h2 class="anchored" data-anchor-id="version-history">Version and revision history</h2>
-<p><strong>Version 1.4</strong>, in <a href="../../../docs/about/archive.html#edition-2026-11-4">edition 2026.11.4</a> (November 5, 2026). Every edition is kept on the <a href="../../../docs/about/archive.html">Archive</a> page; every change between editions is in the <a href="https://github.com/WhalerMike/modernization-workbook/commits/main/docs/books/b09-network">commit history</a>.</p>
-<table class="table-striped table-hover caption-top table">
-<caption>Versions of this book, newest first</caption>
-<thead>
-<tr class="header">
-<th>Version</th>
-<th>Edition</th>
-<th>Date</th>
-<th>Changes</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>1.4</td>
-<td><a href="../../../docs/about/archive.html#edition-2026-11-4">2026.11.4</a></td>
-<td>2026-11-05</td>
-<td>Sweep stale wording, and link sources on every deck (<a href="https://github.com/WhalerMike/modernization-workbook/pull/361">#361</a>)</td>
-</tr>
-<tr class="even">
-<td>1.3</td>
-<td><a href="../../../docs/about/archive.html#edition-2026-11-3">2026.11.3</a></td>
-<td>2026-11-05</td>
-<td>Book decks: narration names the book or the original source, and 68 videos re-exported (<a href="https://github.com/WhalerMike/modernization-workbook/pull/344">#344</a>)</td>
-</tr>
-<tr class="odd">
-<td>1.2</td>
-<td><a href="../../../docs/about/archive.html#edition-2026-11-1">2026.11.1</a></td>
-<td>2026-11-01</td>
-<td>Edition 2026.11: record the edition, and publish the four gate-level decks and videos (<a href="https://github.com/WhalerMike/modernization-workbook/pull/282">#282</a>)</td>
-</tr>
-<tr class="even">
-<td>1.1</td>
-<td><a href="../../../docs/about/archive.html#edition-2026-11">2026.11</a></td>
-<td>2026-11-01</td>
-<td>Move the decks and narration audio out of git, onto edition 2026.10 (<a href="https://github.com/WhalerMike/modernization-workbook/pull/260">#260</a>); Retire Research: move each page to a home by type (guides, training, reference, evaluations, explainers) (<a href="https://github.com/WhalerMike/modernization-workbook/pull/269">#269</a>)</td>
-</tr>
-<tr class="odd">
-<td>1.0</td>
-<td><a href="../../../docs/about/archive.html#edition-2026-10">2026.10</a></td>
-<td>2026-10-31</td>
-<td>First edition (22 merged changes since the book began)</td>
-</tr>
-</tbody>
-</table>
-<!-- revisions:end -->
-
-
-
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>National Institute of Standards and Technology, SP 800-53B, <em>Control Baselines for Information Systems and Organizations</em>, September 2020 (includes updates as of December 10, 2020; release 5.2.0 planning note of August 27, 2025, “no changes to the baselines”), abstract and Table 3-13, Program Management Family, <a href="https://csrc.nist.gov/pubs/sp/800/53/b/upd1/final" class="uri">https://csrc.nist.gov/pubs/sp/800/53/b/upd1/final</a>; PDF <a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-53B.pdf" class="uri">https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-53B.pdf</a> (accessed Oct 21, 2026).<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>National Institute of Standards and Technology, SP 800-53 Rev.&nbsp;5.2.0 Low, Moderate, High and Privacy baseline profiles in OSCAL (last modified May 11, 2026), <a href="https://github.com/usnistgov/oscal-content/tree/main/nist.gov/SP800-53/rev5/json" class="uri">https://github.com/usnistgov/oscal-content/tree/main/nist.gov/SP800-53/rev5/json</a> (accessed Oct 21, 2026). Moderate: 287 controls and enhancements; membership of each crosswalk control computed from the profiles’ included control identifiers.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>National Institute of Standards and Technology, SP 800-53B, <em>Control Baselines for Information Systems and Organizations</em>, September 2020 (includes updates as of December 10, 2020; release 5.2.0 planning note of August 27, 2025, “no changes to the baselines”), abstract and Table 3-13, Program Management Family, <a href="https://csrc.nist.gov/pubs/sp/800/53/b/upd1/final" class="uri">https://csrc.nist.gov/pubs/sp/800/53/b/upd1/final</a>; PDF <a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-53B.pdf" class="uri">https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-53B.pdf</a> (accessed Oct 21, 2026).<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>FedRAMP, “Propelling Change: FedRAMP Launches Consolidated Rules for 2026,” June 25, 2026, <a href="https://www.fedramp.gov/2026-06-25-propelling-change-fedramp-launches-consolidated-rules-for-2026/" class="uri">https://www.fedramp.gov/2026-06-25-propelling-change-fedramp-launches-consolidated-rules-for-2026/</a> (accessed Oct 21, 2026).<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>FedRAMP, Notice NTC-0004, <em>Initial Outcome from RFC-0020 FedRAMP Authorization Designations</em>, February 25, 2026, <a href="https://www.fedramp.gov/notices/0004/" class="uri">https://www.fedramp.gov/notices/0004/</a> (accessed Oct 21, 2026).<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>FedRAMP, “Full Rev5 Control Reference,” <em>FedRAMP Consolidated Rules for 2026</em>, all twenty family pages (“FedRAMP Rev5 Baselines” line per control; Class C listed for 322 controls and enhancements; CA-05 shows no class line), <a href="https://www.fedramp.gov/2026/reference/controls/" class="uri">https://www.fedramp.gov/2026/reference/controls/</a> (accessed Oct 21, 2026).<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p>Office of Management and Budget, M-24-15, <em>Modernizing the Federal Risk and Authorization Management Program (FedRAMP)</em>, July 25, 2024, §IV.a (The Presumption of Adequacy) and footnote 7, <a href="https://www.whitehouse.gov/wp-content/uploads/2024/07/M-24-15-Modernizing-the-Federal-Risk-and-Authorization-Management-Program.pdf" class="uri">https://www.whitehouse.gov/wp-content/uploads/2024/07/M-24-15-Modernizing-the-Federal-Risk-and-Authorization-Management-Program.pdf</a> (accessed Oct 21, 2026).<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p>National Institute of Standards and Technology, SP 800-53 Rev.&nbsp;5.2.0 Low, Moderate, High and Privacy baseline profiles in OSCAL (last modified May 11, 2026), <a href="https://github.com/usnistgov/oscal-content/tree/main/nist.gov/SP800-53/rev5/json" class="uri">https://github.com/usnistgov/oscal-content/tree/main/nist.gov/SP800-53/rev5/json</a> (accessed Oct 21, 2026). Moderate: 287 controls and enhancements; membership of each crosswalk control computed from the profiles’ included control identifiers.<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9"><p>FedRAMP, “Full Rev5 Control Reference,” <em>FedRAMP Consolidated Rules for 2026</em>, all twenty family pages (“FedRAMP Rev5 Baselines” line per control; Class C listed for 322 controls and enhancements; CA-05 shows no class line), <a href="https://www.fedramp.gov/2026/reference/controls/" class="uri">https://www.fedramp.gov/2026/reference/controls/</a> (accessed Oct 21, 2026).<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn10"><p>National Institute of Standards and Technology, SP 800-53B, <em>Control Baselines for Information Systems and Organizations</em>, September 2020 (includes updates as of December 10, 2020; release 5.2.0 planning note of August 27, 2025, “no changes to the baselines”), abstract and Table 3-13, Program Management Family, <a href="https://csrc.nist.gov/pubs/sp/800/53/b/upd1/final" class="uri">https://csrc.nist.gov/pubs/sp/800/53/b/upd1/final</a>; PDF <a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-53B.pdf" class="uri">https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-53B.pdf</a> (accessed Oct 21, 2026).<a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn11"><p>National Institute of Standards and Technology, SP 800-53 Rev.&nbsp;5.2.0 Low, Moderate, High and Privacy baseline profiles in OSCAL (last modified May 11, 2026), <a href="https://github.com/usnistgov/oscal-content/tree/main/nist.gov/SP800-53/rev5/json" class="uri">https://github.com/usnistgov/oscal-content/tree/main/nist.gov/SP800-53/rev5/json</a> (accessed Oct 21, 2026). Moderate: 287 controls and enhancements; membership of each crosswalk control computed from the profiles’ included control identifiers.<a href="#fnref11" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn12"><p>FedRAMP, “Full Rev5 Control Reference,” <em>FedRAMP Consolidated Rules for 2026</em>, all twenty family pages (“FedRAMP Rev5 Baselines” line per control; Class C listed for 322 controls and enhancements; CA-05 shows no class line), <a href="https://www.fedramp.gov/2026/reference/controls/" class="uri">https://www.fedramp.gov/2026/reference/controls/</a> (accessed Oct 21, 2026).<a href="#fnref12" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn13"><p>National Institute of Standards and Technology, SP 800-53 Rev.&nbsp;5, release 5.2.0, publication page (planning note of August 27, 2025) <a href="https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final" class="uri">https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final</a>, and the Cybersecurity and Privacy Reference Tool export for SP_800_53_5_2_0, <a href="https://csrc.nist.gov/projects/cprt/catalog#/cprt/framework/version/SP_800_53_5_2_0/home" class="uri">https://csrc.nist.gov/projects/cprt/catalog#/cprt/framework/version/SP_800_53_5_2_0/home</a> (accessed Oct 21, 2026).<a href="#fnref13" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn14"><p>National Institute of Standards and Technology, SP 800-53 Rev.&nbsp;5.2.0 OSCAL catalog (version 5.2.0, last modified May 11, 2026), <a href="https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json" class="uri">https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json</a> (accessed Oct 21, 2026).<a href="#fnref14" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn15"><p>National Institute of Standards and Technology, SP 800-53 Rev.&nbsp;5.2.0 Low, Moderate, High and Privacy baseline profiles in OSCAL (last modified May 11, 2026), <a href="https://github.com/usnistgov/oscal-content/tree/main/nist.gov/SP800-53/rev5/json" class="uri">https://github.com/usnistgov/oscal-content/tree/main/nist.gov/SP800-53/rev5/json</a> (accessed Oct 21, 2026). Moderate: 287 controls and enhancements; membership of each crosswalk control computed from the profiles’ included control identifiers.<a href="#fnref15" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn16"><p>FedRAMP, “Full Rev5 Control Reference,” <em>FedRAMP Consolidated Rules for 2026</em>, all twenty family pages (“FedRAMP Rev5 Baselines” line per control; Class C listed for 322 controls and enhancements; CA-05 shows no class line), <a href="https://www.fedramp.gov/2026/reference/controls/" class="uri">https://www.fedramp.gov/2026/reference/controls/</a> (accessed Oct 21, 2026).<a href="#fnref16" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn17"><p>FedRAMP, “Key Security Indicators,” <em>FedRAMP Consolidated Rules for 2026</em>, indicator statements, themes and “Related SP 800-53 Controls,” including the mapping updates of October 13, 2026, <a href="https://www.fedramp.gov/2026/reference/key-security-indicators/" class="uri">https://www.fedramp.gov/2026/reference/key-security-indicators/</a> (accessed Oct 21, 2026).<a href="#fnref17" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn18"><p>FedRAMP, “Key Security Indicators,” <em>FedRAMP Consolidated Rules for 2026</em>, indicator statements, themes and “Related SP 800-53 Controls,” including the mapping updates of October 13, 2026, <a href="https://www.fedramp.gov/2026/reference/key-security-indicators/" class="uri">https://www.fedramp.gov/2026/reference/key-security-indicators/</a> (accessed Oct 21, 2026).<a href="#fnref18" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn19"><p>FedRAMP, “Key Security Indicators,” Cloud Service Providers, FedRAMP 20x Certification Rules, <em>FedRAMP Consolidated Rules for 2026</em>, <a href="https://www.fedramp.gov/2026/providers/20x/key-security-indicators/" class="uri">https://www.fedramp.gov/2026/providers/20x/key-security-indicators/</a> (accessed Oct 21, 2026).<a href="#fnref19" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn20"><p>FedRAMP, “Agency Use of FedRAMP Certified Cloud Services,” <em>FedRAMP Consolidated Rules for 2026</em>, rules AGU-USE-ABU, AGU-AGC-GRC and AGU-USE-ROR, <a href="https://www.fedramp.gov/2026/reference/agency-use/" class="uri">https://www.fedramp.gov/2026/reference/agency-use/</a> (accessed Oct 21, 2026).<a href="#fnref20" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn21"><p>FedRAMP Marketplace product data, <a href="https://www.fedramp.gov/marketplace/products.json" class="uri">https://www.fedramp.gov/marketplace/products.json</a>, dataset last changed October 21, 2026 (fields <code>status</code>, <code>cert_class</code>, <code>impact_level</code>; 781 listings), browsable at <a href="https://www.fedramp.gov/marketplace/products/" class="uri">https://www.fedramp.gov/marketplace/products/</a> (accessed Oct 21, 2026).<a href="#fnref21" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn22"><p>FedRAMP, “Important Dates for the Consolidated Rules for 2026” (July 28, 2026: FedRAMP Ready goes legacy), <a href="https://www.fedramp.gov/2026/timeline/" class="uri">https://www.fedramp.gov/2026/timeline/</a> (accessed Oct 21, 2026).<a href="#fnref22" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn23"><p>Office of Management and Budget, M-24-15, <em>Modernizing the Federal Risk and Authorization Management Program (FedRAMP)</em>, July 25, 2024, §IV.a (The Presumption of Adequacy) and footnote 7, <a href="https://www.whitehouse.gov/wp-content/uploads/2024/07/M-24-15-Modernizing-the-Federal-Risk-and-Authorization-Management-Program.pdf" class="uri">https://www.whitehouse.gov/wp-content/uploads/2024/07/M-24-15-Modernizing-the-Federal-Risk-and-Authorization-Management-Program.pdf</a> (accessed Oct 21, 2026).<a href="#fnref23" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn24"><p>FedRAMP, Notice NTC-0004, <em>Initial Outcome from RFC-0020 FedRAMP Authorization Designations</em>, February 25, 2026, <a href="https://www.fedramp.gov/notices/0004/" class="uri">https://www.fedramp.gov/notices/0004/</a> (accessed Oct 21, 2026).<a href="#fnref24" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn25"><p>FedRAMP, “Scope of FedRAMP,” <em>FedRAMP Consolidated Rules for 2026</em>, <a href="https://www.fedramp.gov/2026/scope/" class="uri">https://www.fedramp.gov/2026/scope/</a> (accessed Oct 21, 2026).<a href="#fnref25" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn26"><p>FedRAMP, “Scope of FedRAMP,” <em>FedRAMP Consolidated Rules for 2026</em>, <a href="https://www.fedramp.gov/2026/scope/" class="uri">https://www.fedramp.gov/2026/scope/</a> (accessed Oct 21, 2026).<a href="#fnref26" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
@@ -3336,13 +3496,13 @@ Description
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../../docs/books/b08-ddi/appendix-c-applicability.html" class="pagination-link" aria-label="Appendix C — Applicability">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Appendix C — Applicability</span>
+      <a href="../../../docs/books/b14-compliance/02-the-federal-clock.html" class="pagination-link" aria-label="Chapter 02 — The Federal Clock">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Chapter 02 — The Federal Clock</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../../docs/books/b09-network/01-why-physics-decides-the-architecture.html" class="pagination-link" aria-label="Chapter 01 — Why Physics Decides the Architecture">
-        <span class="nav-page-text">Chapter 01 — Why Physics Decides the Architecture</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../../docs/books/b14-compliance/04-closure-with-proof.html" class="pagination-link" aria-label="Chapter 04 — Closure: A Control Closes Only With Its Proof">
+        <span class="nav-page-text">Chapter 04 — Closure: A Control Closes Only With Its Proof</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -3532,6 +3692,38 @@ Description
     if (hr) hr.remove();
   });
 </script>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 

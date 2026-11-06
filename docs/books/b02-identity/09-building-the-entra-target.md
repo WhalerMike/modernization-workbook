@@ -77,7 +77,7 @@ The core user attribute mapping is in the following table. The full reference is
 | `employeeID`, `employeeType` | `employeeId`, `employeeType` | `employeeId` is the HR person key and rules can read it; rules can't read `employeeType`, so the program mirrors worker type in `extensionAttribute11` |
 | `manager` (DN) | `manager` (relationship) | Resolved as a relationship, not an attribute. Rules can't read it as a property; only the separate direct-reports rule uses it |
 | `memberOf` | `memberOf` (relationship) | Resolved by the sync engine. Don't build rules on it ([Dynamic group rule syntax](#dynamic-group-rule-syntax)) |
-| `extensionAttribute1`–`15` | `onPremisesExtensionAttributes` | Up to 1,024 characters each, also known as Exchange custom attributes 1–15. Read-only in Graph for synced users, so edit them in AD or at the HR source; for a cloud-only user that was previously synced, read-only in Graph but managed through Exchange.[^c09-user-resource] Rules can read them. Program-assigned meanings in the [program attribute map](../b03-hr-identity/06-canonical-attribute-schema.md#program-attribute-map) |
+| `extensionAttribute1`–`15` | `onPremisesExtensionAttributes` | Up to 1,024 characters each, also known as Exchange custom attributes 1–15. Read-only in Graph for synced users, so edit them in AD or at the HR source; for a cloud-only user that was previously synced and not converted, read-only in Graph but managed through Exchange, while a user whose source of authority was converted to the cloud can have them set directly.[^c09-user-resource] Rules can read them. Program-assigned meanings in the [program attribute map](../b03-hr-identity/06-canonical-attribute-schema.md#program-attribute-map) |
 | Custom schema attributes | Directory extensions (`extension_<appId>_<name>`) | Synced from AD through the sync engine; single-valued ones can be read by rules[^c09-dynamic-properties] |
 | `userAccountControl` | `accountEnabled` | The disabled bit becomes a Boolean; every access rule should require `accountEnabled -eq true` |
 | `pwdLastSet` | `lastPasswordChangeDateTime` (nearest equivalent, not synced) | Connect Sync syncs `pwdLastSet` as a mechanical property that tells Entra ID when to invalidate issued tokens.[^c09-sync-attributes] `lastPasswordChangeDateTime` is the Entra user's own last password change or creation time[^c09-user-resource] |
@@ -135,7 +135,7 @@ OUs serve three governance functions in Active Directory: Group Policy scoping, 
 
 ::: {.callout-important}
 ## Design principle: placement versus attributes
-Entra ID inverts the Active Directory governance model. In AD, *placement* determines policy: an object's OU decides which Group Policy Objects apply. In Entra ID, *attributes* determine policy: an object's properties decide its group memberships, and memberships decide which policies apply. This inversion is the most important architectural idea in the migration, and it's why attribute quality ([Chapter 08](08-assessing-the-forest.md)) gates everything that follows.
+Entra ID inverts the Active Directory governance model. In AD, *placement* determines policy: an object's OU decides which Group Policy Objects apply. In Entra ID, *attributes* determine policy: an object's properties decide its group memberships, and memberships decide which policies apply. This inversion is the most important architectural idea in the migration, and it's why attribute quality gates everything that follows. Proving the attributes is Stage 2 of the [attribute-driven migration guide](../guides/attribute-driven-migration.md#stage-2-prove-the-attributes-are-true-before-anything-depends-on-them), and the program's attribute design is in [Book 03](../b03-hr-identity/06-canonical-attribute-schema.md).
 :::
 
 In AD, *where* an object sits does half the work; in Entra ID, *what the object says about itself* has to do all of it. The models differ in these ways (the [companion guide](../guides/attribute-driven-migration.md#attributes) has the full comparison):
@@ -249,7 +249,7 @@ Three cautions apply:
 
 - **Membership isn't instant.** When an attribute changes, Entra ID re-evaluates the dynamic group rules in the directory, and membership changes don't appear immediately.[^c09-dynamic-troubleshoot] Plan for that delay where a dynamic group gates access to a critical resource.
 - **Attribute write permissions are a security boundary.** A dynamic group is only as trustworthy as the controls on the attributes it reads. Some on-premises attributes can be self-writable; audit write permissions, at the source and in Entra ID, for every attribute used in a security-sensitive rule.[^c09-dynamic-license]
-- **Don't build on `memberOf`.** The preview `memberOf` operator lets a dynamic group include members of other groups, but Microsoft is ending the preview: after November 3, 2026, dynamic groups, dynamic administrative units, and access package auto-assignment policies that use it stop updating and freeze in their last state.[^c09-memberof] Replace any `memberOf` rule before then.
+- **Don't build on `memberOf`.** The preview `memberOf` operator lets a dynamic group include members of other groups, but Microsoft ended the preview on November 3, 2026: dynamic groups, dynamic administrative units, and access package auto-assignment policies that use it have stopped updating and are frozen in their last state.[^c09-memberof] Replace any `memberOf` rule now.
 
 ## Choosing and configuring the sync engine
 
@@ -274,6 +274,7 @@ The program's comparison draws on Microsoft's decision guide (as of its October 
 | Attribute-based filtering | Yes | Limited |
 | Advanced sync rules | Yes (sync rules editor) | No (expression builder only) |
 | Cross-forest references; merging attributes across domains | Yes | No |
+| Microsoft Entra Domain Services (synced users' password hashes) | Supported | Not supported |
 | Group provisioning from Entra ID to AD | No | Yes |
 | Device writeback | Yes (discontinued in favor of Cloud Kerberos trust) | No |
 | Pass-through authentication or AD FS configured by the tool | Yes | No (configured separately; keeps working after migration) |
@@ -284,7 +285,7 @@ Two corrections to older guidance matter here. First, Group Writeback v2 in Conn
 
 ::: {.callout-tip}
 ## Recommendation: Cloud Sync unless a Connect-only requirement applies
-Use Cloud Sync for new deployments and plan to migrate existing Connect Sync installations to it. Stay on Connect Sync, for now, only where a forest needs something Cloud Sync doesn't do: more than 150,000 objects in a domain, groups over 50,000 members, advanced sync rules, cross-forest references, or attribute merging across domains. Both engines can run in the same forest with mutually exclusive scopes, which lets you move populations in stages.[^c09-hybrid-scenarios]
+Use Cloud Sync for new deployments and plan to migrate existing Connect Sync installations to it. Stay on Connect Sync, for now, only where a forest needs something Cloud Sync doesn't do: more than 150,000 objects in a domain, groups over 50,000 members, advanced sync rules, cross-forest references, attribute merging across domains, or Microsoft Entra Domain Services, which Cloud Sync doesn't support. Both engines can run in the same forest with mutually exclusive scopes, which lets you move populations in stages.[^c09-hybrid-scenarios]
 :::
 
 ::: {.callout-important}

@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="Why the address plan is the join key for inventory and boundary evidence, how the enterprise IPAM stays the authority while Azure Virtual Network Manager pools mirror it and Azure Policy enforces it, and how the landing zone, address plan, naming plane, network and enforcement edge are deployed as layered code.">
+<meta name="description" content="How to emit Microsoft Entra ID audit, sign-in, provisioning, Graph activity and ID Protection logs through diagnostic settings: which categories to enable and why, the Log Analytics table each lands in, deploying the setting by portal, tenant-scope Bicep or az rest, retention that satisfies the logging baseline, sovereign-cloud endpoints, and Microsoft Graph as targeted evidence rather than the feed.">
 
-<title>Chapter 06 — IPAM and Network as Code – Federal Modernization Workbook</title>
+<title>Chapter 03 — Identity Telemetry from Entra ID – Federal Modernization Workbook</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -69,8 +69,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../">
-<link href="../../../docs/books/b10-cloud-boundary/07-the-front-door.html" rel="next">
-<link href="../../../docs/books/b10-cloud-boundary/05-the-landing-zone.html" rel="prev">
+<link href="../../../docs/books/b12-security-operations/04-platform-and-m365-telemetry.html" rel="next">
+<link href="../../../docs/books/b12-security-operations/02-the-evidence-contract.html" rel="prev">
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
@@ -437,7 +437,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../docs/books/b10-cloud-boundary/index.html">Book 10 — Cloud Boundary &amp; Landing Zone</a></li><li class="breadcrumb-item"><a href="../../../docs/books/b10-cloud-boundary/06-ipam-and-network-as-code.html">Chapter 06 — IPAM and Network as Code</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../docs/books/b12-security-operations/index.html">Book 12 — Security Operations &amp; Telemetry</a></li><li class="breadcrumb-item"><a href="../../../docs/books/b12-security-operations/03-identity-telemetry.html">Chapter 03 — Identity Telemetry from Entra ID</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -1529,11 +1529,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a href="../../../docs/books/b10-cloud-boundary/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Book 10 — Cloud Boundary &amp; Landing Zone</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../docs/books/b10-cloud-boundary/01-why-the-boundary-decides.html" class="sidebar-item-text sidebar-link">
@@ -1566,7 +1566,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../docs/books/b10-cloud-boundary/06-ipam-and-network-as-code.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../../docs/books/b10-cloud-boundary/06-ipam-and-network-as-code.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Chapter 06 — IPAM and Network as Code</span></a>
   </div>
 </li>
@@ -1695,11 +1695,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a href="../../../docs/books/b12-security-operations/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Book 12 — Security Operations &amp; Telemetry</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../docs/books/b12-security-operations/01-you-cant-defend-what-you-cant-see.html" class="sidebar-item-text sidebar-link">
@@ -1714,7 +1714,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../docs/books/b12-security-operations/03-identity-telemetry.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/books/b12-security-operations/03-identity-telemetry.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Chapter 03 — Identity Telemetry from Entra ID</span></a>
   </div>
 </li>
@@ -2543,27 +2543,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#the-address-plan-is-the-join-key" id="toc-the-address-plan-is-the-join-key" class="nav-link active" data-scroll-target="#the-address-plan-is-the-join-key">The address plan is the join key</a>
+  <li><a href="#before-you-start" id="toc-before-you-start" class="nav-link active" data-scroll-target="#before-you-start">Before you start</a></li>
+  <li><a href="#the-log-categories-and-their-tables" id="toc-the-log-categories-and-their-tables" class="nav-link" data-scroll-target="#the-log-categories-and-their-tables">The log categories and their tables</a>
   <ul class="collapse">
-  <li><a href="#what-ipam-cant-see" id="toc-what-ipam-cant-see" class="nav-link" data-scroll-target="#what-ipam-cant-see">What IPAM can’t see</a></li>
+  <li><a href="#why-all-four-sign-in-streams-are-core" id="toc-why-all-four-sign-in-streams-are-core" class="nav-link" data-scroll-target="#why-all-four-sign-in-streams-are-core">Why all four sign-in streams are core</a></li>
   </ul></li>
-  <li><a href="#addresses-without-broadcast" id="toc-addresses-without-broadcast" class="nav-link" data-scroll-target="#addresses-without-broadcast">Addresses without broadcast</a></li>
-  <li><a href="#azure-mirror-the-authority-enforce-the-pool" id="toc-azure-mirror-the-authority-enforce-the-pool" class="nav-link" data-scroll-target="#azure-mirror-the-authority-enforce-the-pool">Azure: mirror the authority, enforce the pool</a>
+  <li><a href="#path-a-the-portal" id="toc-path-a-the-portal" class="nav-link" data-scroll-target="#path-a-the-portal">Path A: the portal</a></li>
+  <li><a href="#path-b-tenant-scope-bicep" id="toc-path-b-tenant-scope-bicep" class="nav-link" data-scroll-target="#path-b-tenant-scope-bicep">Path B: tenant-scope Bicep</a></li>
+  <li><a href="#path-c-az-rest" id="toc-path-c-az-rest" class="nav-link" data-scroll-target="#path-c-az-rest">Path C: <code>az rest</code></a></li>
+  <li><a href="#retention-what-the-logging-baseline-asks-for" id="toc-retention-what-the-logging-baseline-asks-for" class="nav-link" data-scroll-target="#retention-what-the-logging-baseline-asks-for">Retention: what the logging baseline asks for</a></li>
+  <li><a href="#sovereign-clouds" id="toc-sovereign-clouds" class="nav-link" data-scroll-target="#sovereign-clouds">Sovereign clouds</a></li>
+  <li><a href="#microsoft-graph-targeted-evidence-not-the-feed" id="toc-microsoft-graph-targeted-evidence-not-the-feed" class="nav-link" data-scroll-target="#microsoft-graph-targeted-evidence-not-the-feed">Microsoft Graph: targeted evidence, not the feed</a>
   <ul class="collapse">
-  <li><a href="#a-boundary-check-on-the-ipam-service-itself" id="toc-a-boundary-check-on-the-ipam-service-itself" class="nav-link" data-scroll-target="#a-boundary-check-on-the-ipam-service-itself">A boundary check on the IPAM service itself</a></li>
+  <li><a href="#permissions" id="toc-permissions" class="nav-link" data-scroll-target="#permissions">Permissions</a></li>
+  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a></li>
   </ul></li>
-  <li><a href="#network-as-code" id="toc-network-as-code" class="nav-link" data-scroll-target="#network-as-code">Network as code</a>
-  <ul class="collapse">
-  <li><a href="#the-naming-module-declared" id="toc-the-naming-module-declared" class="nav-link" data-scroll-target="#the-naming-module-declared">The naming module, declared</a></li>
-  <li><a href="#deployment-order" id="toc-deployment-order" class="nav-link" data-scroll-target="#deployment-order">Deployment order</a></li>
-  </ul></li>
-  <li><a href="#inputs-that-change-underneath-the-code" id="toc-inputs-that-change-underneath-the-code" class="nav-link" data-scroll-target="#inputs-that-change-underneath-the-code">Inputs that change underneath the code</a></li>
-  <li><a href="#why-reproducible-matters" id="toc-why-reproducible-matters" class="nav-link" data-scroll-target="#why-reproducible-matters">Why reproducible matters</a></li>
-  <li><a href="#controls-the-network-code-puts-into-operation" id="toc-controls-the-network-code-puts-into-operation" class="nav-link" data-scroll-target="#controls-the-network-code-puts-into-operation">Controls the network code puts into operation</a></li>
-  <li><a href="#honest-limits" id="toc-honest-limits" class="nav-link" data-scroll-target="#honest-limits">Honest limits</a></li>
-  <li><a href="#what-this-chapter-establishes" id="toc-what-this-chapter-establishes" class="nav-link" data-scroll-target="#what-this-chapter-establishes">What this chapter establishes</a></li>
+  <li><a href="#verify-emission" id="toc-verify-emission" class="nav-link" data-scroll-target="#verify-emission">Verify emission</a></li>
+  <li><a href="#privacy-identity-telemetry-is-pii" id="toc-privacy-identity-telemetry-is-pii" class="nav-link" data-scroll-target="#privacy-identity-telemetry-is-pii">Privacy: identity telemetry is PII</a></li>
+  <li><a href="#what-this-chapter-doesnt-cover" id="toc-what-this-chapter-doesnt-cover" class="nav-link" data-scroll-target="#what-this-chapter-doesnt-cover">What this chapter doesn’t cover</a></li>
   </ul>
-<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="06-ipam-and-network-as-code.docx"><i class="bi bi-file-word"></i>MS Word</a></li></ul></div></nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="03-identity-telemetry.docx"><i class="bi bi-file-word"></i>MS Word</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -2573,15 +2572,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   and has not been reviewed or endorsed by, any federal agency.
 </div>
 
-<header id="title-block-header" class="quarto-title-block default fmw-hero"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../docs/books/b10-cloud-boundary/index.html">Book 10 — Cloud Boundary &amp; Landing Zone</a></li><li class="breadcrumb-item"><a href="../../../docs/books/b10-cloud-boundary/06-ipam-and-network-as-code.html">Chapter 06 — IPAM and Network as Code</a></li></ol></nav>
-<p class="fmw-eyebrow">Federal Modernization Workbook · Book 10 · What</p>
+<header id="title-block-header" class="quarto-title-block default fmw-hero"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../docs/books/b12-security-operations/index.html">Book 12 — Security Operations &amp; Telemetry</a></li><li class="breadcrumb-item"><a href="../../../docs/books/b12-security-operations/03-identity-telemetry.html">Chapter 03 — Identity Telemetry from Entra ID</a></li></ol></nav>
+<p class="fmw-eyebrow">Federal Modernization Workbook · Book 12 · What</p>
 <div class="quarto-title">
-<h1 class="title">Chapter 06 — IPAM and Network as Code</h1>
+<h1 class="title">Chapter 03 — Identity Telemetry from Entra ID</h1>
 </div>
 
 <div>
   <div class="description">
-    Why the address plan is the join key for inventory and boundary evidence, how the enterprise IPAM stays the authority while Azure Virtual Network Manager pools mirror it and Azure Policy enforces it, and how the landing zone, address plan, naming plane, network and enforcement edge are deployed as layered code.
+    How to emit Microsoft Entra ID audit, sign-in, provisioning, Graph activity and ID Protection logs through diagnostic settings: which categories to enable and why, the Log Analytics table each lands in, deploying the setting by portal, tenant-scope Bicep or az rest, retention that satisfies the logging baseline, sovereign-cloud endpoints, and Microsoft Graph as targeted evidence rather than the feed.
   </div>
 </div>
 
@@ -2599,7 +2598,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <div class="fmw-lede">
-<p><em>An inventory needs a denominator, and in a cloud estate the only plane that sees every component at the moment it joins is the one that hands out its address.</em></p>
+<p><em>Identity is the first plane an attacker touches and the first one a defender loses sight of, because Entra ID keeps its own logs for only a month unless someone deliberately sends them somewhere.</em></p>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -2611,298 +2610,346 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Why the address plan is the join key the rest of the boundary evidence correlates on, and what IPAM can’t tell you. How software-defined networks assign addresses without broadcast DHCP. How the enterprise IPAM stays the authority in Azure: Virtual Network Manager pools mirror its reservations and Azure Policy refuses any virtual network that doesn’t take its address from a pool, with a boundary caveat about the service itself. Then network as code: the five layered modules, the order they deploy in, the external inputs that change underneath them, and the controls they put into operation.</p>
+<p>Which Microsoft Entra ID log categories exist, which Log Analytics table each lands in, and which ones the program enables in every tenant. How to deploy the tenant-scope diagnostic setting by portal, Bicep or <code>az rest</code>, why the retention block on that setting does nothing, and how to prove emission is working. It closes with the endpoint changes for GCC High and DoD, and with Microsoft Graph’s audit APIs as a tool for pulling specific evidence, not for feeding a SIEM.</p>
 </div>
 </div>
-<p><a href="../../../docs/books/b10-cloud-boundary/05-the-landing-zone.html">Chapter 05</a> built the structure that decides what can be deployed. This chapter covers the two things every deployment draws on: an address, and a network path. Both have to come from a single authority, and both have to be reproducible from reviewed source. If they aren’t, the boundary evidence has no denominator: nobody can say what <em>should</em> be in the boundary, only what a scan happened to find.</p>
-<p>The naming half of this plane (authoritative DNS, DNSSEC, split-horizon views and response policy zones) is <a href="../../../docs/books/b08-ddi/index.html">Book 08</a>’s subject, and the per-cloud details of private DNS and address management are in <a href="../../../docs/books/b08-ddi/07-cloud-private-endpoints-and-ipam.html">Book 08, Chapter 07</a>. This chapter takes the landing-zone view: what the address plan has to do for the boundary, and how it gets built.</p>
-<div id="fig-ch06-address-authority" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Four cards from left to right. A blue card for the enterprise IPAM, the authority: blocks for on-premises, other clouds and Azure are reserved there first. An arrow labeled mirror leads to an amber card for Azure Virtual Network Manager IPAM pools: root and child pools, with ranges used elsewhere entered as static CIDRs, and a footnote that the service isn't named in Microsoft's FedRAMP audit-scope tables, so coverage must be confirmed. An arrow leads to a green card for an Azure Policy deny assignment: no virtual network without a pool allocation. An arrow leads to a slate card for a workload virtual network, which asks for a size while the pool picks the prefix. A dashed violet arrow labeled discovery and reconciliation runs from the virtual network back to the enterprise IPAM.">
+<p><a href="../../../docs/books/b12-security-operations/02-the-evidence-contract.html">Chapter 02</a> set the rule that every plane emits deliberately, under one evidence contract. Identity comes first because it is the join key for almost everything else: a mailbox read, a Key Vault secret retrieval and a role assignment all trace back to a sign-in. It is also the plane where the default is most misleading. Entra ID records audit and sign-in activity whether or not anyone configures anything, and the admin center shows it. That makes the tenant look instrumented. But with Entra ID P1 or P2, audit and sign-in data is kept for 30 days (seven days on the Free tier), Microsoft Graph activity logs aren’t kept at all unless they are routed somewhere, and an upgrade never recovers data that already expired.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> An agency that hasn’t created a diagnostic setting has a rolling 30-day window of identity history and nothing older.</p>
+<p>The mechanism that fixes this is the Entra <em>diagnostic setting</em>: a tenant-level object that streams selected log categories to a Log Analytics workspace, an Event Hubs namespace, a storage account or a partner solution.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> This chapter is about getting that one object right, keeping it right, and proving it works.</p>
+<div id="fig-ch03-identity-emission-paths" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Top to bottom. At the top, a slate card for the Microsoft Entra ID tenant lists the log families: directory audit, four sign-in streams (interactive, non-interactive, service principal, managed identity), provisioning, Microsoft Graph activity and ID Protection risk. An arrow leads down to a blue card for the tenant-scope diagnostic setting, resource type microsoft.aadiam/diagnosticSettings, deployed from code. From it, a green arrow leads down to a green card for the Log Analytics workspace with table names such as SigninLogs, AADNonInteractiveUserSignInLogs, AuditLogs and MicrosoftGraphActivityLogs, retention set per table; a second arrow leads to a slate card beside it for Event Hubs feeding a non-Microsoft SIEM. Beside the diagnostic setting, an amber card for Microsoft Graph auditLogs APIs is joined to the tenant by a dashed arrow labeled targeted evidence pulls, within the 30-day window. A violet card below the workspace, the completeness query, reads back from it.">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-ch06-address-authority-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="../../images/diagrams/b10-cloud-boundary/svg/ch06-address-authority.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;1: The enterprise IPAM is the authority; Azure pools mirror it and Azure Policy enforces it."><img src="../../images/diagrams/b10-cloud-boundary/svg/ch06-address-authority.svg" class="img-fluid figure-img" alt="Four cards from left to right. A blue card for the enterprise IPAM, the authority: blocks for on-premises, other clouds and Azure are reserved there first. An arrow labeled mirror leads to an amber card for Azure Virtual Network Manager IPAM pools: root and child pools, with ranges used elsewhere entered as static CIDRs, and a footnote that the service isn't named in Microsoft's FedRAMP audit-scope tables, so coverage must be confirmed. An arrow leads to a green card for an Azure Policy deny assignment: no virtual network without a pool allocation. An arrow leads to a slate card for a workload virtual network, which asks for a size while the pool picks the prefix. A dashed violet arrow labeled discovery and reconciliation runs from the virtual network back to the enterprise IPAM."></a>
+<div aria-describedby="fig-ch03-identity-emission-paths-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="../../images/diagrams/b12-security-operations/svg/ch03-identity-emission-paths.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;1: Entra ID log categories flow through one tenant-scope diagnostic setting to the workspace tables the SOC queries; Microsoft Graph answers specific questions on the side."><img src="../../images/diagrams/b12-security-operations/svg/ch03-identity-emission-paths.svg" class="img-fluid figure-img" alt="Top to bottom. At the top, a slate card for the Microsoft Entra ID tenant lists the log families: directory audit, four sign-in streams (interactive, non-interactive, service principal, managed identity), provisioning, Microsoft Graph activity and ID Protection risk. An arrow leads down to a blue card for the tenant-scope diagnostic setting, resource type microsoft.aadiam/diagnosticSettings, deployed from code. From it, a green arrow leads down to a green card for the Log Analytics workspace with table names such as SigninLogs, AADNonInteractiveUserSignInLogs, AuditLogs and MicrosoftGraphActivityLogs, retention set per table; a second arrow leads to a slate card beside it for Event Hubs feeding a non-Microsoft SIEM. Beside the diagnostic setting, an amber card for Microsoft Graph auditLogs APIs is joined to the tenant by a dashed arrow labeled targeted evidence pulls, within the 30-day window. A violet card below the workspace, the completeness query, reads back from it."></a>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ch06-address-authority-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: The enterprise IPAM is the authority; Azure pools mirror it and Azure Policy enforces it.
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ch03-identity-emission-paths-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Entra ID log categories flow through one tenant-scope diagnostic setting to the workspace tables the SOC queries; Microsoft Graph answers specific questions on the side.
 </figcaption>
 </figure>
 </div>
-<section id="the-address-plan-is-the-join-key" class="level2">
-<h2 class="anchored" data-anchor-id="the-address-plan-is-the-join-key">The address plan is the join key</h2>
-<p>NIST SP 800-53 CM-8 asks for an inventory of system components that “accurately reflects the system,” “includes all components within the system,” and doesn’t double-count components or include ones assigned to other systems.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Every one of those tests needs a reference population. A discovery scan enumerates what answered a probe during a scan window; an IPAM database enumerates what was <em>allocated</em>. The scan’s results have to be reconciled against the allocation, or the scan is a sample with no denominator. That’s the Federal Modernization Program’s design position, carried from Federal Compliance <a href="https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_I_Book_01_Cloud_Landing_Zone_IPAM_FedRAMP.md">Volume I, Book 01</a>: the address plan is the key every other inventory joins on, because every component has to take an address before it can do anything else.</p>
-<p>Federal policy points the same way. CISA’s BOD 23-01 requires agencies to perform automated asset discovery every 7 days covering, at minimum, “the entire IPv4 space used by the agency,” and applies to IP-addressable assets in on-premises, roaming and cloud deployment models (it excludes ephemeral assets such as containers, and third-party-managed SaaS).<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> “The entire IPv4 space used by the agency” is a number only the address plan can supply. For cloud providers, FedRAMP’s 2026 Key Security Indicators include KSI-PIY-GIV: “Authoritative sources are used to automatically generate real-time inventories of all information resources when needed.”<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> KSIs bind providers, not the agency’s own system, but the indicator states the same principle the program applies to its landing zone.</p>
-<p>One correction to the way this argument is often made: an authorization boundary isn’t defined by IP ranges. NIST defines it as the components of the system being authorized,<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> and SaaS components inside a boundary may hold no agency address at all. The IPAM export is the authoritative record of the agency-addressed assets, and it feeds the component inventory and the network diagram; it’s reconciled against the service and interconnection list, not a substitute for it.</p>
-<section id="what-ipam-cant-see" class="level3">
-<h3 class="anchored" data-anchor-id="what-ipam-cant-see">What IPAM can’t see</h3>
-<p>IPAM sees every device that holds an address. It doesn’t see installed software, patch state, the owner or data classification of a workload, which system boundary an asset belongs to, the relationships between assets, or assets with no IP address at all (smart cards, hardware security modules, air-gapped devices). The address record is the network-layer identity of an asset, not the asset record. Most agencies also run several partial inventories at once: Intune for endpoints, Azure Arc for enrolled servers, AWS Systems Manager for instances with its agent, vCenter for VMware guests. Each misses what the others manage; every one of their assets has an address.</p>
-<p>So the program treats IPAM as the join key and a configuration management database (CMDB) as the asset record, and sets requirements for the CMDB rather than naming one:</p>
+<section id="before-you-start" class="level2">
+<h2 class="anchored" data-anchor-id="before-you-start">Before you start</h2>
 <table class="caption-top table">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
 <thead>
 <tr class="header">
 <th>Requirement</th>
-<th>What it means</th>
-<th>Driver</th>
+<th>Detail</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Cross-platform discovery</td>
-<td>Ingest from Intune, Arc, AWS Systems Manager, vCenter, the IPAM and network management without manual entry</td>
-<td>CM-8</td>
+<td>Role</td>
+<td><strong>Security Administrator</strong> on the tenant, to create or edit a diagnostic setting.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></td>
 </tr>
 <tr class="even">
-<td>Address correlation</td>
-<td>Every asset record links to its IPAM record (address, FQDN, lease state)</td>
-<td>CM-8</td>
+<td>Custom security attributes</td>
+<td>The <code>CustomSecurityAttributeAuditLogs</code> category is configured separately, on the <strong>Custom security attributes</strong> tab, and needs <strong>Attribute Log Administrator</strong> as well as Security Administrator.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></td>
 </tr>
 <tr class="odd">
-<td>Deduplication</td>
-<td>One normalized record when several sources report the same asset</td>
-<td>CM-8</td>
+<td>Destination</td>
+<td>The workspace, event hub or storage account must exist before the setting is created.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></td>
 </tr>
 <tr class="even">
-<td>Boundary classification</td>
-<td>Each record carries its environment and its system-boundary membership, and in-boundary versus out-of-boundary is queryable</td>
-<td>CM-8, CA-3</td>
+<td>Event Hubs tenancy</td>
+<td>The subscription and Event Hubs namespace must both be associated with the Entra tenant whose logs are streamed.<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a></td>
 </tr>
 <tr class="odd">
-<td>Owner scoping</td>
-<td>Each asset is assigned to an owner, who sees only their own assets</td>
-<td>AC-3, AC-6</td>
-</tr>
-<tr class="even">
-<td>Change audit</td>
-<td>Every change records time, source, before and after, and actor, and feeds the SIEM</td>
-<td>AU-3, AU-12</td>
-</tr>
-<tr class="odd">
-<td>Unmanaged devices</td>
-<td>Devices seen only by address and DHCP fingerprint appear as unmanaged, not omitted</td>
-<td>CM-8</td>
-</tr>
-<tr class="even">
-<td>Certification</td>
-<td>The platform holds its own FedRAMP certification at Moderate or above, or is carried inside the agency’s boundary</td>
-<td>Boundary</td>
-</tr>
-<tr class="odd">
-<td>Lifecycle</td>
-<td>Provisioning, active, decommissioning and retired states, with a release of the address triggering review</td>
-<td>CM-8(1)</td>
+<td>Licensing</td>
+<td>Microsoft Graph activity logs need Entra ID P1 or P2.<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a> Microsoft Sentinel’s Entra ID connector needs P1 or P2 to ingest sign-in logs, and Workload ID Premium for the two service-principal risk tables.<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a></td>
 </tr>
 </tbody>
 </table>
-<p>Until a CMDB is selected, IPAM is the best available proxy for CM-8: every in-scope address is documented, but that’s the network-layer foundation, not full closure. A proof of concept should test three things at once: one managed laptop producing one deduplicated record that joins the MDM record, the DHCP lease, the device certificate and the FQDN; an unenrolled device appearing as unmanaged within one lease cycle; and two owners who can’t see each other’s assets. The full requirement set and a candidate landscape are in <a href="https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_I_Book_01_Cloud_Landing_Zone_IPAM_FedRAMP.md">Volume I, Book 01</a>; check every candidate’s status on the FedRAMP Marketplace at the time of procurement.</p>
 </section>
-</section>
-<section id="addresses-without-broadcast" class="level2">
-<h2 class="anchored" data-anchor-id="addresses-without-broadcast">Addresses without broadcast</h2>
-<p>Classic DHCP depends on a Layer 2 broadcast, and software-defined networks don’t carry one. Each fabric assigns addresses itself:</p>
-<ul>
-<li><strong>Azure.</strong> Virtual networks are Layer 3 overlays with no Layer 2 semantics. Azure assigns private addresses from the subnet range and reserves five in every subnet: the network address, the default gateway, two addresses that map Azure DNS into the virtual network, and the last address.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></li>
-<li><strong>AWS.</strong> The VPC assigns addresses from the subnet and also reserves five: the network address, the VPC router, the Amazon DNS server at the base of the VPC range plus two, one reserved for future use, and the broadcast address, which is reserved because VPCs don’t support broadcast.<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> (The base-plus-two address is the DNS server, not a DHCP responder, as some descriptions have it.)</li>
-<li><strong>VMware NSX.</strong> DHCP is handled by the NSX logical gateways, and VMware Cloud Foundation 9.1 integrates natively with an enterprise IPAM for block allocation and DNS registration (<a href="../../../docs/books/b08-ddi/07-cloud-private-endpoints-and-ipam.html">Book 08, Chapter 07</a>).</li>
-</ul>
-<p>Because no fabric’s assignments are visible to the others, the address plan has to live above all of them, and each fabric has to draw from it. How deeply each platform can integrate with an external authority differs: AWS VPC IPAM can hand a scope’s allocation authority to an external IPAM in commercial Regions but not in GovCloud, VMware Cloud Foundation 9.1 integrates natively, and Azure needs a mirror-and-reconcile pattern (<a href="../../../docs/books/b08-ddi/07-cloud-private-endpoints-and-ipam.html">Book 08, Chapter 07</a>). The Azure pattern is the one this book’s reference environment uses.</p>
-</section>
-<section id="azure-mirror-the-authority-enforce-the-pool" class="level2">
-<h2 class="anchored" data-anchor-id="azure-mirror-the-authority-enforce-the-pool">Azure: mirror the authority, enforce the pool</h2>
-<p>Azure Virtual Network Manager’s IP address management (IPAM) feature creates address pools: a root pool for the whole range and child pools beneath it, up to seven layers. Virtual networks allocate non-overlapping CIDRs from a pool, <strong>static CIDRs</strong> reserve ranges that are in use outside Azure, both IPv4 and IPv6 pools are supported, one pool can serve virtual networks in several regions, and the <strong>IPAM Pool User</strong> role lets teams consume a pool without managing it.<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a> Microsoft lists the feature as generally available in every region where Virtual Network Manager is available except six (none of them in the United States).<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a></p>
-<p>The pattern that keeps the enterprise IPAM authoritative has three parts:</p>
-<ol type="1">
-<li><strong>Reserve first in the enterprise IPAM.</strong> The Azure range is carved there, alongside on-premises and other-cloud space.</li>
-<li><strong>Mirror into Azure.</strong> The Azure root pool holds the Azure range; every range used elsewhere that overlaps it is entered as a static CIDR, so Azure can’t hand it out.</li>
-<li><strong>Enforce the pool.</strong> Virtual Network Manager doesn’t stop overlapping address space on its own. Microsoft’s documented fix is an Azure Policy definition that denies any virtual network without an allocation from a designated pool; since a pool hands out only non-overlapping prefixes, overlap becomes impossible inside the policy’s scope.<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a></li>
-</ol>
-<p>Then reconcile: DDI discovery reads what Azure actually allocated and compares it with the enterprise reservations, and a mismatch is a finding (<a href="../../../docs/books/b08-ddi/11-operating-the-control-plane.html">Book 08, Chapter 11</a>).</p>
+<section id="the-log-categories-and-their-tables" class="level2">
+<h2 class="anchored" data-anchor-id="the-log-categories-and-their-tables">The log categories and their tables</h2>
+<p>The category name you tick in the diagnostic setting is not always the table name you query. Microsoft says so directly in the ID Protection export guidance: the names in diagnostic settings “are not the same as the table names” used in KQL, and most of the tables carry an <code>AAD</code> prefix.<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a> The mapping isn’t mechanical (<code>SignInLogs</code> lands in <code>SigninLogs</code>, with a lowercase <em>i</em>), so detection rules and retention settings must name the table, not the category.</p>
+<p>The tier column is the program’s design: <strong>Core</strong> categories carry the event-logging, record-content and record-generation evidence (NIST SP 800-53 AU-2, AU-3 and AU-12)<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a> for every tenant regardless of which features it uses; <strong>High value</strong> categories need ID Protection licensing; <strong>Conditional</strong> categories produce data only when a feature is deployed.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Category (diagnostic setting)</th>
+<th>Log Analytics table</th>
+<th>Tier</th>
+<th>What it captures</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>AuditLogs</code></td>
+<td><code>AuditLogs</code></td>
+<td>Core</td>
+<td>Changes to applications, groups, users and licenses</td>
+</tr>
+<tr class="even">
+<td><code>SignInLogs</code></td>
+<td><code>SigninLogs</code></td>
+<td>Core</td>
+<td>Interactive sign-ins: password entered or MFA challenge passed</td>
+</tr>
+<tr class="odd">
+<td><code>NonInteractiveUserSignInLogs</code></td>
+<td><code>AADNonInteractiveUserSignInLogs</code></td>
+<td>Core</td>
+<td>Sign-ins a client performs on a user’s behalf with a token or code</td>
+</tr>
+<tr class="even">
+<td><code>ServicePrincipalSignInLogs</code></td>
+<td><code>AADServicePrincipalSignInLogs</code></td>
+<td>Core</td>
+<td>Apps and service principals authenticating with certificates or client secrets</td>
+</tr>
+<tr class="odd">
+<td><code>ManagedIdentitySignInLogs</code></td>
+<td><code>AADManagedIdentitySignInLogs</code></td>
+<td>Core</td>
+<td>Managed identities, where Azure manages the secret</td>
+</tr>
+<tr class="even">
+<td><code>ProvisioningLogs</code></td>
+<td><code>AADProvisioningLogs</code></td>
+<td>Core</td>
+<td>Users, groups and roles provisioned by the Entra provisioning service</td>
+</tr>
+<tr class="odd">
+<td><code>MicrosoftGraphActivityLogs</code></td>
+<td><code>MicrosoftGraphActivityLogs</code></td>
+<td>Core</td>
+<td>Every HTTP request against the tenant’s resources through Microsoft Graph</td>
+</tr>
+<tr class="even">
+<td><code>RiskyUsers</code></td>
+<td><code>AADRiskyUsers</code></td>
+<td>High value</td>
+<td>Users ID Protection assesses as at risk</td>
+</tr>
+<tr class="odd">
+<td><code>UserRiskEvents</code></td>
+<td><code>AADUserRiskEvents</code></td>
+<td>High value</td>
+<td>Individual user risk detections</td>
+</tr>
+<tr class="even">
+<td><code>RiskyServicePrincipals</code></td>
+<td><code>AADRiskyServicePrincipals</code></td>
+<td>High value</td>
+<td>Workload identities assessed as risky</td>
+</tr>
+<tr class="odd">
+<td><code>ServicePrincipalRiskEvents</code></td>
+<td><code>AADServicePrincipalRiskEvents</code></td>
+<td>High value</td>
+<td>Workload identity risk detections</td>
+</tr>
+<tr class="even">
+<td><code>RiskyAgents</code></td>
+<td><code>AADRiskyAgents</code></td>
+<td>Conditional</td>
+<td>Agent identities assessed as risky</td>
+</tr>
+<tr class="odd">
+<td><code>AgentRiskEvents</code></td>
+<td><code>AADAgentRiskEvents</code></td>
+<td>Conditional</td>
+<td>Agent identity risk detections</td>
+</tr>
+<tr class="even">
+<td><code>ADFSSignInLogs</code></td>
+<td><code>ADFSSignInLogs</code></td>
+<td>Conditional</td>
+<td>AD FS application sign-ins; keep it while federation remains</td>
+</tr>
+<tr class="odd">
+<td><code>CustomSecurityAttributeAuditLogs</code></td>
+<td><code>AADCustomSecurityAttributeAuditLogs</code></td>
+<td>Conditional</td>
+<td>Changes to custom security attribute definitions and assignments</td>
+</tr>
+<tr class="even">
+<td><code>NetworkAccessTrafficLogs</code></td>
+<td><code>NetworkAccessTraffic</code></td>
+<td>Conditional</td>
+<td>Global Secure Access traffic; no data without Internet or Private Access</td>
+</tr>
+<tr class="odd">
+<td><code>RemoteNetworkHealthLogs</code></td>
+<td><code>RemoteNetworkHealthLogs</code></td>
+<td>Conditional</td>
+<td>Global Secure Access remote-network health</td>
+</tr>
+<tr class="even">
+<td><code>EnrichedOffice365AuditLogs</code></td>
+<td><code>EnrichedMicrosoft365AuditLogs</code></td>
+<td>Conditional</td>
+<td>Global Secure Access enriched Microsoft 365 logs; needs Internet Access and enrichment turned on</td>
+</tr>
+<tr class="odd">
+<td><code>MicrosoftServicePrincipalSignInLogs</code></td>
+<td>—</td>
+<td>Not enabled</td>
+<td>Microsoft first-party service-to-service sign-ins (preview)</td>
+</tr>
+</tbody>
+</table>
+<p>Category names and descriptions are from Microsoft’s list of identity logs that can be streamed;<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a> table names from the Sentinel Entra ID connector reference,<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a> the ID Protection export mapping (including the agent risk tables)<a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a> and the Azure Monitor table reference for custom security attributes.<a href="#fn14" class="footnote-ref" id="fnref14" role="doc-noteref"><sup>14</sup></a> Microsoft recommends sending custom security attribute logs to a different destination from the directory audit logs, so attribute assignments aren’t revealed by accident, and only Attribute Log Reader or Attribute Log Administrator can read them.<a href="#fn15" class="footnote-ref" id="fnref15" role="doc-noteref"><sup>15</sup></a> The program routes them to a separate workspace with narrower access.</p>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Warning
+<span class="screen-reader-only">Warning</span>Leave <code>MicrosoftServicePrincipalSignInLogs</code> off
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The code in this chapter is illustrative, adapted from Microsoft’s published samples, and hasn’t been tested against a production tenant. Replace the names, ranges and identifiers, validate against the current resource provider API versions, and deploy through the change-controlled pipeline in <a href="../../../docs/books/b10-cloud-boundary/07-the-front-door.html">Chapter 07</a>, not from a workstation.</p>
+<p>Microsoft describes these preview logs as complex and high in volume, says they are “not essential for security investigations,” and strongly advises against acting on them, for example by disabling applications, because that can cause misconfiguration and even tenant lock-out.<a href="#fn16" class="footnote-ref" id="fnref16" role="doc-noteref"><sup>16</sup></a> They cost money to ingest and invite exactly the wrong response. The program doesn’t enable them.</p>
 </div>
 </div>
-<p>The pool and its mirrored reservation, in Bicep (adapted from Microsoft’s sample):<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a></p>
-<pre class="bicep"><code>param locationName string = resourceGroup().location
-param networkManagerName string = 'vnm-platform-001'
-param ipamPoolName string = 'ipam-pool-azure-root'
-param azureRangePrefix string = '10.40.0.0/14'        // the Azure block reserved in the enterprise IPAM
-param mirroredPrefix string = '10.41.128.0/20'        // a range in use outside Azure, mirrored as a static CIDR
+<section id="why-all-four-sign-in-streams-are-core" class="level3">
+<h3 class="anchored" data-anchor-id="why-all-four-sign-in-streams-are-core">Why all four sign-in streams are core</h3>
+<p><code>SignInLogs</code> covers only interactive human sign-ins. It doesn’t see a client app refreshing a token for a user, a service principal authenticating with a client secret, or a managed identity reading from Key Vault. Those are the other three sign-in categories, and they are where unattended credentials (the ones nobody is watching) do their work. A tenant that streams only <code>SignInLogs</code> is blind to every non-human authentication in the estate while appearing, on the sign-ins blade, to be fully instrumented.</p>
+<p>The cost argument against them is real but doesn’t change the answer. Microsoft notes that non-interactive and service-principal sign-ins can be five to ten times larger than interactive ones.<a href="#fn17" class="footnote-ref" id="fnref17" role="doc-noteref"><sup>17</sup></a> Graph activity logs are larger again: Microsoft’s own planning estimate is about 15 GiB a month of Azure Monitor Logs data for a 1,000-user tenant and about 1,200 GiB for 100,000 users, and diagnostic settings can’t filter them, although a workspace transformation or the Basic table plan can reduce cost.<a href="#fn18" class="footnote-ref" id="fnref18" role="doc-noteref"><sup>18</sup></a> The program’s position is that volume is managed with table plans and transformations, never by leaving a sign-in stream off. Microsoft Graph activity logs are what show what a compromised account or app actually <em>did</em> with its token, and Microsoft recommends routing them to the same workspace as the sign-in logs so the two can be joined.<a href="#fn19" class="footnote-ref" id="fnref19" role="doc-noteref"><sup>19</sup></a></p>
+</section>
+</section>
+<section id="path-a-the-portal" class="level2">
+<h2 class="anchored" data-anchor-id="path-a-the-portal">Path A: the portal</h2>
+<p>For a one-time setup in a lab or a first tenant:</p>
+<ol type="1">
+<li>Sign in to the Microsoft Entra admin center as at least a Security Administrator.</li>
+<li>Browse to <strong>Entra ID</strong> &gt; <strong>Monitoring &amp; health</strong> &gt; <strong>Diagnostic settings</strong>. (<strong>Export Settings</strong> on the <strong>Audit Logs</strong> or <strong>Sign-ins</strong> page reaches the same place.)<a href="#fn20" class="footnote-ref" id="fnref20" role="doc-noteref"><sup>20</sup></a></li>
+<li>Select <strong>Add diagnostic setting</strong>.</li>
+<li>Enter a name. The name can’t be changed when the setting is edited later,<a href="#fn21" class="footnote-ref" id="fnref21" role="doc-noteref"><sup>21</sup></a> so choose one an assessor will recognize, such as <code>fmp-siem-emission-core</code>.</li>
+<li>Select the Core categories, plus the High value categories if ID Protection is licensed.</li>
+<li>Under <strong>Destination details</strong>, choose <strong>Send to Log Analytics workspace</strong> (and, for a non-Microsoft SIEM, <strong>Stream to an event hub</strong>), then the subscription and destination.</li>
+<li>Select <strong>Save</strong>.<a href="#fn22" class="footnote-ref" id="fnref22" role="doc-noteref"><sup>22</sup></a></li>
+</ol>
+<p>Don’t judge success in the first hour. Microsoft’s general guidance is that logs can take up to three days to start appearing in the destination; its ID Protection guidance suggests around 15 minutes for the risk tables.<a href="#fn23" class="footnote-ref" id="fnref23" role="doc-noteref"><sup>23</sup></a><a href="#fn24" class="footnote-ref" id="fnref24" role="doc-noteref"><sup>24</sup></a> Graph activity logs usually arrive within 30 minutes and occasionally take up to two hours.<a href="#fn25" class="footnote-ref" id="fnref25" role="doc-noteref"><sup>25</sup></a> The verification query later in this chapter is run at 24 hours and again at 72.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>The portal is right for the first tenant and wrong for the fleet
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A setting someone clicked once has no source of truth, no review trail and no drift detection. FedRAMP’s Consolidated Rules for 2026 include KSI-MLA-EVC, <em>Evaluating Configurations</em>, which expects the configuration of machine-based information resources, especially infrastructure as code, to be continuously evaluated and tested, and KSI-MLA-LET, which expects a current list of the event types that will be logged.<a href="#fn26" class="footnote-ref" id="fnref26" role="doc-noteref"><sup>26</sup></a> The program deploys the Entra setting from code (Path B or C), keeps the category list in the repository as that list, and compares the deployed setting against it on a schedule.</p>
+</div>
+</div>
+</section>
+<section id="path-b-tenant-scope-bicep" class="level2">
+<h2 class="anchored" data-anchor-id="path-b-tenant-scope-bicep">Path B: tenant-scope Bicep</h2>
+<p>Entra diagnostic settings are the Azure Resource Manager resource type <code>microsoft.aadiam/diagnosticSettings</code>, API version <code>2017-04-01</code>, and they deploy only at <strong>tenant</strong> scope.<a href="#fn27" class="footnote-ref" id="fnref27" role="doc-noteref"><sup>27</sup></a> That is why the usual resource-scope tooling doesn’t reach them.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Illustrative code
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The templates, scripts and queries in this chapter are illustrative. They haven’t been tested against a production tenant. Check every resource type, API version, category and table name against the Microsoft Learn pages cited, run them first in a test tenant, and put them through the program’s change control before they touch a production identity system.</p>
+</div>
+</div>
+<pre class="bicep"><code>// entra-diagnostics.bicep
+// Deploy with:
+//   az deployment tenant create --location &lt;region&gt; \
+//     --template-file entra-diagnostics.bicep \
+//     --parameters workspaceId=&lt;log-analytics-workspace-resource-id&gt;
+targetScope = 'tenant'
 
-resource networkManager 'Microsoft.Network/networkManagers@2024-05-01' = {
-  name: networkManagerName
-  location: locationName
-  properties: {
-    networkManagerScopes: {
-      managementGroups: []
-      subscriptions: [
-        subscription().id
-      ]
-    }
-    networkManagerScopeAccesses: [
-      'Connectivity'
-    ]
-  }
-}
+@description('Full resource ID of the destination Log Analytics workspace.')
+param workspaceId string
 
-resource ipamPool 'Microsoft.Network/networkManagers/ipamPools@2024-05-01' = {
-  parent: networkManager
-  name: ipamPoolName
-  location: locationName
-  properties: {
-    addressPrefixes: [
-      azureRangePrefix
-    ]
-  }
-}
+@description('Diagnostic setting name. It cannot be changed after creation.')
+param settingName string = 'fmp-siem-emission-core'
 
-resource mirrored 'Microsoft.Network/networkManagers/ipamPools/staticCidrs@2024-05-01' = {
-  parent: ipamPool
-  name: 'static-onprem-dc-east'
+// Core and High value tiers. Keep this list in the repository; it is the
+// program's record of which identity event types are logged.
+var categories = [
+  'AuditLogs'
+  'SignInLogs'
+  'NonInteractiveUserSignInLogs'
+  'ServicePrincipalSignInLogs'
+  'ManagedIdentitySignInLogs'
+  'ProvisioningLogs'
+  'MicrosoftGraphActivityLogs'
+  'RiskyUsers'
+  'UserRiskEvents'
+  'RiskyServicePrincipals'
+  'ServicePrincipalRiskEvents'
+]
+
+resource entraDiagnostics 'microsoft.aadiam/diagnosticSettings@2017-04-01' = {
+  name: settingName
   properties: {
-    addressPrefixes: [
-      mirroredPrefix
-    ]
+    workspaceId: workspaceId
+    logs: [for category in categories: {
+      category: category
+      enabled: true
+    }]
   }
 }</code></pre>
-<p>A virtual network then asks for a size, not a range, and the pool picks a non-overlapping prefix:<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a></p>
-<pre class="bicep"><code>param ipamPoolId string   // resource ID of the pool above
-
-resource vnet 'Microsoft.Network/virtualNetworks@2024-05-01' = {
-  name: 'vnet-workload-001'
-  location: resourceGroup().location
-  properties: {
-    addressSpace: {
-      ipamPoolPrefixAllocations: [
-        {
-          numberOfIpAddresses: '256'
-          pool: {
-            id: ipamPoolId
-          }
-        }
-      ]
-    }
-  }
-}</code></pre>
-<p>And the policy that refuses anything else, assigned at the Landing zones management group (adapted from Microsoft’s sample to one pool):<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"mode"</span><span class="fu">:</span> <span class="st">"All"</span><span class="fu">,</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"parameters"</span><span class="fu">:</span> <span class="fu">{},</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"policyRule"</span><span class="fu">:</span> <span class="fu">{</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"if"</span><span class="fu">:</span> <span class="fu">{</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"allOf"</span><span class="fu">:</span> <span class="ot">[</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>        <span class="fu">{</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>          <span class="dt">"field"</span><span class="fu">:</span> <span class="st">"type"</span><span class="fu">,</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>          <span class="dt">"equals"</span><span class="fu">:</span> <span class="st">"Microsoft.Network/virtualNetworks"</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>        <span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>        <span class="fu">{</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>          <span class="dt">"not"</span><span class="fu">:</span> <span class="fu">{</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"field"</span><span class="fu">:</span> <span class="st">"Microsoft.Network/virtualNetworks/addressSpace.ipamPoolPrefixAllocations[*].pool.id"</span><span class="fu">,</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"equals"</span><span class="fu">:</span> <span class="st">"/subscriptions/&lt;subscriptionID&gt;/resourceGroups/&lt;resourceGroupName&gt;/providers/Microsoft.Network/networkManagers/vnm-platform-001/ipamPools/ipam-pool-azure-root"</span></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>          <span class="fu">}</span></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>        <span class="fu">}</span></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>      <span class="ot">]</span></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">},</span></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"then"</span><span class="fu">:</span> <span class="fu">{</span></span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"effect"</span><span class="fu">:</span> <span class="st">"deny"</span></span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Roll it out the way <a href="../../../docs/books/b10-cloud-boundary/05-the-landing-zone.html">Chapter 05</a> describes: audit first, list the existing virtual networks that would fail, associate them with the pool, then switch to deny.</p>
-<section id="a-boundary-check-on-the-ipam-service-itself" class="level3">
-<h3 class="anchored" data-anchor-id="a-boundary-check-on-the-ipam-service-itself">A boundary check on the IPAM service itself</h3>
-<p>This is the book’s argument in miniature. Azure Virtual Network Manager isn’t named in Microsoft’s FedRAMP audit-scope tables for Azure or Azure Government (both last updated February 2026); Virtual Network, DNS, Firewall and Private Link are.<a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a> The tables don’t say whether pool management is covered under another listed service. Until Microsoft confirms it in writing, treat the pool as a dependency the agency records and decides on, using one of <a href="../../../docs/books/b10-cloud-boundary/09-equivalents-and-exceptions.html">Chapter 09</a>’s three paths: confirm coverage, carry it as a documented exception, or keep the authority entirely in the enterprise IPAM and reconcile Azure allocations by discovery alone. The enterprise IPAM’s own status matters too. Infoblox Government Cloud (FR2017257053), for example, is listed as FedRAMP Certified at Class C (Moderate), certified December 15, 2022; its Marketplace description now covers Universal DDI and Universal Asset Insights as well as the threat-defense services it was first authorized for, so read the current listing for scope rather than older press releases.<a href="#fn14" class="footnote-ref" id="fnref14" role="doc-noteref"><sup>14</sup></a> An agency that runs its own DDI grid on premises carries it in its own boundary and inherits nothing.</p>
-</section>
-</section>
-<section id="network-as-code" class="level2">
-<h2 class="anchored" data-anchor-id="network-as-code">Network as code</h2>
-<p>The landing zone, the address plan and the network can all be built from reviewed source. Federal Compliance <a href="https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_VI_Book_01_Landing_Zone_Network_as_Code.md">Volume VI, Book 01</a> organizes the build as five modules, each owning one plane and depending only on the layers beneath it. The layering is the design: the address plan has to exist before workloads can be counted against it, and the enforcement edge has to read from the naming plane.</p>
-<div id="fig-ch06-module-layers" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Five stacked cards from bottom to top. Platform, in blue: management groups, subscriptions or accounts, and organization policy. Address plan, in blue: address-space allocation and the subnet plan, the source of truth. Above it, side by side, Naming, in blue: authoritative DNS, DNSSEC signing, response policy zones and DHCP scopes; and Network, in blue: hub and spoke, segmentation, firewall and route intent. Both depend on the address plan. At the top, Enforcement edge, in green: the SASE or TIC 3.0 policy enforcement point capability set, which depends on the network and naming modules. A violet evidence record card receives dashed arrows labeled deployed state from the platform, address plan and enforcement edge modules; every module writes its state there.">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-ch06-module-layers-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="../../images/diagrams/b10-cloud-boundary/svg/ch06-module-layers.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;2: Five layered modules, each depending only on the layers beneath it, all emitting state as evidence."><img src="../../images/diagrams/b10-cloud-boundary/svg/ch06-module-layers.svg" class="img-fluid figure-img" alt="Five stacked cards from bottom to top. Platform, in blue: management groups, subscriptions or accounts, and organization policy. Address plan, in blue: address-space allocation and the subnet plan, the source of truth. Above it, side by side, Naming, in blue: authoritative DNS, DNSSEC signing, response policy zones and DHCP scopes; and Network, in blue: hub and spoke, segmentation, firewall and route intent. Both depend on the address plan. At the top, Enforcement edge, in green: the SASE or TIC 3.0 policy enforcement point capability set, which depends on the network and naming modules. A violet evidence record card receives dashed arrows labeled deployed state from the platform, address plan and enforcement edge modules; every module writes its state there."></a>
+<p>The resource schema still includes a <code>retentionPolicy</code> block on each log entry,<a href="#fn28" class="footnote-ref" id="fnref28" role="doc-noteref"><sup>28</sup></a> and the source template this chapter replaces set it. It is left out on purpose.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ch06-module-layers-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: Five layered modules, each depending only on the layers beneath it, all emitting state as evidence.
-</figcaption>
-</figure>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>The retention block on a diagnostic setting does nothing
 </div>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Layer</th>
-<th>Module</th>
-<th>Owns</th>
-<th>Depends on</th>
-<th>Deployed example</th>
-<th>Substitution</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Foundation</td>
-<td><code>platform</code></td>
-<td>Management groups, subscriptions or accounts, organization policy</td>
-<td>—</td>
-<td>Azure landing zone (Bicep or Terraform)</td>
-<td>AWS Control Tower with Landing Zone Accelerator</td>
-</tr>
-<tr class="even">
-<td>Addressing</td>
-<td><code>ipam</code></td>
-<td>Address-space allocation and subnet plan (the source of truth)</td>
-<td><code>platform</code></td>
-<td>Enterprise IPAM plus mirrored Virtual Network Manager pools</td>
-<td>AWS VPC IPAM</td>
-</tr>
-<tr class="odd">
-<td>Naming</td>
-<td><code>ddi</code></td>
-<td>Authoritative DNS, DNSSEC signing, response policy zones, DHCP scopes</td>
-<td><code>ipam</code></td>
-<td>Enterprise DDI or cloud DNS as code</td>
-<td>Another DDI platform; Route 53</td>
-</tr>
-<tr class="even">
-<td>Transport</td>
-<td><code>network</code></td>
-<td>Hub and spoke, segmentation, firewall and route intent</td>
-<td><code>ipam</code></td>
-<td>Virtual networks and Azure Firewall</td>
-<td>VPC and AWS Network Firewall</td>
-</tr>
-<tr class="odd">
-<td>Enforcement</td>
-<td><code>edge</code></td>
-<td>The SASE or TIC 3.0 policy enforcement point capability set</td>
-<td><code>network</code>, <code>ddi</code></td>
-<td>SASE tenant configuration as code</td>
-<td>Another SASE provider’s configuration as code</td>
-</tr>
-</tbody>
-</table>
-<p>Each module writes its deployed state to the program’s evidence record, and the <code>ipam</code> module’s output, the authoritative address plan, is what later makes the CM-8 join possible. The substitution column is the point of naming mechanisms rather than products: changing vendors changes the module syntax and the connectors, not what the module has to do.</p>
-<section id="the-naming-module-declared" class="level3">
-<h3 class="anchored" data-anchor-id="the-naming-module-declared">The naming module, declared</h3>
-<p>The naming module carries the load, because it’s the source of truth the name-resolution controls depend on. What it declares, whatever the provider’s syntax:</p>
+</div>
+<div class="callout-body-container callout-body">
+<p>Diagnostic-settings storage retention is deprecated, and Microsoft disabled all of its retention functionality on September 30, 2025; any value left on a setting no longer has any effect. Storage retention is now set with an Azure Storage lifecycle management policy on the storage account, and Log Analytics retention is set per table in the workspace.<a href="#fn29" class="footnote-ref" id="fnref29" role="doc-noteref"><sup>29</sup></a> Setting <code>days: 3650</code> here and recording it as the agency’s retention control is a finding waiting to happen.</p>
+</div>
+</div>
+</section>
+<section id="path-c-az-rest" class="level2">
+<h2 class="anchored" data-anchor-id="path-c-az-rest">Path C: <code>az rest</code></h2>
+<p><code>az monitor diagnostic-settings create</code> creates a setting on a resource identified by its resource ID,<a href="#fn30" class="footnote-ref" id="fnref30" role="doc-noteref"><sup>30</sup></a> and the Entra setting is not a resource inside a subscription. The direct route is <code>az rest</code> against the tenant-scope Resource Manager path:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/usr/bin/env bash</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Create or update the Entra tenant diagnostic setting.</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Requires: Security Administrator on the tenant.</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> <span class="at">-euo</span> pipefail</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="va">ARM</span><span class="op">=</span><span class="st">"https://management.azure.com"</span>   <span class="co"># Azure Government: https://management.usgovcloudapi.net</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="va">SETTING_NAME</span><span class="op">=</span><span class="st">"fmp-siem-emission-core"</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="va">WORKSPACE_ID</span><span class="op">=</span><span class="st">"/subscriptions/</span><span class="va">${SUBSCRIPTION_ID}</span><span class="st">/resourceGroups/</span><span class="va">${RG}</span><span class="st">/providers/Microsoft.OperationalInsights/workspaces/</span><span class="va">${WORKSPACE}</span><span class="st">"</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="va">CATEGORIES</span><span class="op">=</span><span class="va">(</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  AuditLogs SignInLogs NonInteractiveUserSignInLogs</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  ServicePrincipalSignInLogs ManagedIdentitySignInLogs</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  ProvisioningLogs MicrosoftGraphActivityLogs</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  RiskyUsers UserRiskEvents</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  RiskyServicePrincipals ServicePrincipalRiskEvents</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="va">)</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="va">LOGS_JSON</span><span class="op">=</span><span class="va">$(</span><span class="bu">printf</span> <span class="st">'%s\n'</span> <span class="st">"</span><span class="va">${CATEGORIES</span><span class="op">[@]</span><span class="va">}</span><span class="st">"</span> <span class="dt">\</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  <span class="kw">|</span> <span class="ex">jq</span> <span class="at">-R</span> . <span class="kw">|</span> <span class="ex">jq</span> <span class="at">-s</span> <span class="st">'map({category: ., enabled: true})'</span><span class="va">)</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="ex">az</span> rest <span class="at">--method</span> PUT <span class="dt">\</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">--uri</span> <span class="st">"</span><span class="va">${ARM}</span><span class="st">/providers/microsoft.aadiam/diagnosticSettings/</span><span class="va">${SETTING_NAME}</span><span class="st">?api-version=2017-04-01"</span> <span class="dt">\</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">--headers</span> <span class="st">"Content-Type=application/json"</span> <span class="dt">\</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">--body</span> <span class="st">"</span><span class="va">$(</span><span class="ex">jq</span> <span class="at">-n</span> <span class="at">--arg</span> ws <span class="st">"</span><span class="va">$WORKSPACE_ID</span><span class="st">"</span> <span class="at">--argjson</span> logs <span class="st">"</span><span class="va">$LOGS_JSON</span><span class="st">"</span> <span class="dt">\</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>      <span class="st">'{properties: {workspaceId: $ws, logs: $logs}}'</span><span class="va">)</span><span class="st">"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Read the state back. This is also the way to see which categories a given tenant offers, because Microsoft’s reference says to perform a GET on diagnostic settings to obtain the category list for a resource.<a href="#fn31" class="footnote-ref" id="fnref31" role="doc-noteref"><sup>31</sup></a></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">az</span> rest <span class="at">--method</span> GET <span class="dt">\</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">--uri</span> <span class="st">"</span><span class="va">${ARM}</span><span class="st">/providers/microsoft.aadiam/diagnosticSettings?api-version=2017-04-01"</span> <span class="dt">\</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">--query</span> <span class="st">"value[].{name:name, workspace:properties.workspaceId, categories:properties.logs[?enabled].category}"</span> <span class="dt">\</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">-o</span> jsonc</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The program commits the output of that GET with each change, so the evidence package carries the deployed setting itself, not just the template that was meant to produce it.</p>
+</section>
+<section id="retention-what-the-logging-baseline-asks-for" class="level2">
+<h2 class="anchored" data-anchor-id="retention-what-the-logging-baseline-asks-for">Retention: what the logging baseline asks for</h2>
+<p>OMB M-26-14 rescinded M-21-31 and set a minimum baseline: retained logs must be <em>searchable</em> for at least six months after creation and <em>retrievable</em> for a year. The memo defines the two words. Searchable data “can be immediately used for cyber defense,” with no preparation step; retrievable data can be used after one or more intermediate steps, such as replaying it from long-term storage.<a href="#fn32" class="footnote-ref" id="fnref32" role="doc-noteref"><sup>32</sup></a> The baseline also lists the activities logs must support, including “determining the identity used for performing operations” and “identifying actions that affect changes to privilege levels.”<a href="#fn33" class="footnote-ref" id="fnref33" role="doc-noteref"><sup>33</sup></a> Entra audit and sign-in logs are the primary evidence for both.</p>
+<p>A Log Analytics workspace maps onto those definitions cleanly. Tables on the Analytics plan keep data in <em>analytics retention</em>, where it can be queried immediately, for up to two years; <em>total retention</em>, which adds low-cost long-term retention, can run to 12 years, and data in the long-term portion is reached through a search job.<a href="#fn34" class="footnote-ref" id="fnref34" role="doc-noteref"><sup>34</sup></a> The default for most tables is 30 days.<a href="#fn35" class="footnote-ref" id="fnref35" role="doc-noteref"><sup>35</sup></a> The program’s design for every identity table above:</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -2911,73 +2958,166 @@ Figure&nbsp;2: Five layered modules, each depending only on the layers beneath i
 </colgroup>
 <thead>
 <tr class="header">
-<th>Declared property</th>
-<th>Why it’s declared, not clicked</th>
-<th>Control</th>
+<th>Setting</th>
+<th>Value</th>
+<th>Why</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>The zone is authoritative and DNSSEC-signed</td>
-<td>Signed responses become an attestable property of source</td>
-<td>SC-20</td>
+<td>Analytics retention</td>
+<td>At least 180 days</td>
+<td>Immediately queryable: M-26-14’s <em>searchable</em></td>
 </tr>
 <tr class="even">
-<td>The recursive resolver validates DNSSEC</td>
-<td>Validation can’t be turned off in a portal without a diff</td>
-<td>SC-21</td>
+<td>Total retention</td>
+<td>At least 365 days, longer where a records schedule requires it</td>
+<td>Long-term retention reached by search job: <em>retrievable</em></td>
 </tr>
 <tr class="odd">
-<td>Authoritative and recursive roles are separate resources</td>
-<td>Role separation is visible in the code</td>
-<td>SC-22</td>
-</tr>
-<tr class="even">
-<td>Query logging is on</td>
-<td>Every resolution is telemetry</td>
-<td>AU-12</td>
-</tr>
-<tr class="odd">
-<td>The response policy zone is attached to a named Protective DNS feed, starting in log-only mode</td>
-<td>Blocking is a reviewed change, not a toggle</td>
-<td>SC-7, SI-4</td>
-</tr>
-<tr class="even">
-<td>The zone’s identifier is an output</td>
-<td>The inventory join consumes it</td>
-<td>CM-8</td>
+<td>Table plan</td>
+<td>Analytics for tables that detections query; Basic considered only for high-volume tables (Graph activity) that are hunted rather than alerted on</td>
+<td>Cost managed by plan, not by leaving categories off</td>
 </tr>
 </tbody>
 </table>
-<p>The workbook gives no resource code for this module, because the resource schema depends on the provider chosen. Use the DDI vendor’s provider or the cloud’s DNS resources, and see <a href="../../../docs/books/b08-ddi/06-dns-identity-and-dnssec.html">Book 08, Chapter 06</a> for DNSSEC and <a href="../../../docs/books/b08-ddi/05-edge-interception-and-bypass.html">Book 08, Chapter 05</a> for Protective DNS. Because DHCP scopes and the address plan come from the same <code>ipam</code> source, a device’s lease, its address and its inventory record form one chain of custody instead of three independent guesses.</p>
+<p>Retention is set per table, by portal, <code>az monitor log-analytics workspace table update</code> with <code>--retention-time</code> and <code>--total-retention-time</code>, or <code>Update-AzOperationalInsightsTable</code>.<a href="#fn36" class="footnote-ref" id="fnref36" role="doc-noteref"><sup>36</sup></a> Shortening a table’s total retention takes effect only after a 30-day wait, which protects against mistakes; lengthening it applies to data already in the table.<a href="#fn37" class="footnote-ref" id="fnref37" role="doc-noteref"><sup>37</sup></a> The Entra admin center’s own 30-day window is no substitute: it is a viewing convenience, not evidence storage.</p>
 </section>
-<section id="deployment-order" class="level3">
-<h3 class="anchored" data-anchor-id="deployment-order">Deployment order</h3>
-<ol type="1">
-<li>Apply <code>platform</code>, then <code>ipam</code>, then <code>ddi</code> and <code>network</code>, in dependency order, through the change-controlled pipeline, never a portal.</li>
-<li>Run the response policy zone in log-only mode first to baseline normal resolution, then switch it to enforcing. (It’s the same discipline as Azure Policy’s audit-then-deny rollout.)</li>
-<li>Register the <code>ipam</code> output as the authoritative inventory source the CM-8 join reads.</li>
-<li>Point the <code>edge</code> at the <code>ddi</code> resolver, so egress name resolution is governed at the enforcement point (<a href="../../../docs/books/b09-network/05-sd-wan-sase-and-governed-transport.html">Book 09, Chapter 05</a>).</li>
-</ol>
-</section>
-</section>
-<section id="inputs-that-change-underneath-the-code" class="level2">
-<h2 class="anchored" data-anchor-id="inputs-that-change-underneath-the-code">Inputs that change underneath the code</h2>
-<p>Some of what the network code enforces comes from outside the agency. The clearest example is Microsoft 365’s endpoint list, which feeds firewall rules, proxy bypass lists and DNS policy. Three facts about it are often wrong in older designs, including this book’s source volume:</p>
-<ul>
-<li><strong>There’s no separate GCC list.</strong> Microsoft’s IP Address and URL web service has four instances (Worldwide, China, USGovDoD and USGovGCCHigh), and a GCC tenant uses Worldwide.<a href="#fn15" class="footnote-ref" id="fnref15" role="doc-noteref"><sup>15</sup></a> A design that blocks “commercial” Microsoft 365 endpoints to keep GCC traffic inside the boundary would block GCC itself; <a href="../../../docs/books/b09-network/12-microsoft-365-traffic.html">Book 09, Chapter 12</a> covers the right scoping.</li>
-<li><strong>The cadence is monthly, with notice.</strong> Microsoft updates the entries at the beginning of each month, publishes out-of-band changes when needed, and gives 30 days’ notice before new endpoints are used.<a href="#fn16" class="footnote-ref" id="fnref16" role="doc-noteref"><sup>16</sup></a></li>
-<li><strong>Poll the version, not the list.</strong> Microsoft recommends checking the version method no more than once an hour and calling the endpoints method only when the version changes.<a href="#fn17" class="footnote-ref" id="fnref17" role="doc-noteref"><sup>17</sup></a></li>
-</ul>
-<p>The program’s position is that an external list like this is an input to the network code, fetched by a scheduled job, turned into a change, and applied through the same pipeline as everything else, so the time between Microsoft’s change and the agency’s enforcement is bounded and recorded. Book 09 owns the routing and inspection decisions; this chapter only insists that the list arrives as code.</p>
-</section>
-<section id="why-reproducible-matters" class="level2">
-<h2 class="anchored" data-anchor-id="why-reproducible-matters">Why reproducible matters</h2>
-<p>The program’s closure argument from Volume I is that no scanner <em>creates</em> an authoritative naming plane or inventory; a scanner can only measure drift from one. Network as code is what makes that source of truth reproducible. A boundary and an address plan defined in code can be re-derived, diffed and attested; a hand-built landing zone leaves an assessor nothing to point at but a snapshot no one can regenerate. Two Moderate-baseline enhancements state the operational version of this: CM-2(2) asks for automated mechanisms that keep the baseline current, complete, accurate and available, and CM-8(1) asks that the inventory be updated “as part of component installations, removals, and system updates.”<a href="#fn18" class="footnote-ref" id="fnref18" role="doc-noteref"><sup>18</sup></a><a href="#fn19" class="footnote-ref" id="fnref19" role="doc-noteref"><sup>19</sup></a></p>
-</section>
-<section id="controls-the-network-code-puts-into-operation" class="level2">
-<h2 class="anchored" data-anchor-id="controls-the-network-code-puts-into-operation">Controls the network code puts into operation</h2>
+<section id="sovereign-clouds" class="level2">
+<h2 class="anchored" data-anchor-id="sovereign-clouds">Sovereign clouds</h2>
+<p>The endpoint you deploy to depends on which Entra cloud the tenant lives in, and that follows the Microsoft 365 environment. Office 365 GCC is paired with Microsoft Entra ID in commercial Azure; GCC High and DoD are paired with Entra ID in Azure Government.<a href="#fn38" class="footnote-ref" id="fnref38" role="doc-noteref"><sup>38</sup></a></p>
 <table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Microsoft 365 environment</th>
+<th>Resource Manager (diagnostic setting)</th>
+<th>Microsoft Graph</th>
+<th>Sign-in authority</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>GCC</td>
+<td><code>management.azure.com</code></td>
+<td><code>https://graph.microsoft.com</code></td>
+<td><code>login.microsoftonline.com</code></td>
+</tr>
+<tr class="even">
+<td>GCC High</td>
+<td><code>management.usgovcloudapi.net</code></td>
+<td><code>https://graph.microsoft.us</code></td>
+<td><code>login.microsoftonline.us</code></td>
+</tr>
+<tr class="odd">
+<td>DoD</td>
+<td><code>management.usgovcloudapi.net</code></td>
+<td><code>https://dod-graph.microsoft.us</code></td>
+<td><code>login.microsoftonline.us</code></td>
+</tr>
+</tbody>
+</table>
+<p>Graph endpoints and the GCC rule (keep using the worldwide endpoints) are from Microsoft’s national cloud deployment page;<a href="#fn39" class="footnote-ref" id="fnref39" role="doc-noteref"><sup>39</sup></a> Resource Manager endpoints from the Azure Government comparison.<a href="#fn40" class="footnote-ref" id="fnref40" role="doc-noteref"><sup>40</sup></a> Microsoft Graph activity logs and the Graph audit log APIs are available in the US Government L4 and L5 (DoD) deployments.<a href="#fn41" class="footnote-ref" id="fnref41" role="doc-noteref"><sup>41</sup></a><a href="#fn42" class="footnote-ref" id="fnref42" role="doc-noteref"><sup>42</sup></a> Microsoft Sentinel’s Entra ID connector is generally available in both commercial Azure and Azure Government.<a href="#fn43" class="footnote-ref" id="fnref43" role="doc-noteref"><sup>43</sup></a> Feature availability still differs by cloud in places, and <a href="../../../docs/books/b10-cloud-boundary/index.html">Book 10</a> is the place to check each capability against the agency’s boundary.</p>
+</section>
+<section id="microsoft-graph-targeted-evidence-not-the-feed" class="level2">
+<h2 class="anchored" data-anchor-id="microsoft-graph-targeted-evidence-not-the-feed">Microsoft Graph: targeted evidence, not the feed</h2>
+<p>Graph’s <code>auditLogs</code> APIs answer the question <em>show me this specific thing</em>: who granted this role, which sign-ins this app made last Tuesday. They are the wrong tool for continuous collection, and Microsoft says so: the API “isn’t designed for pulling large amounts of activity data,” and doing so “might lead to issues with pagination and performance.”<a href="#fn44" class="footnote-ref" id="fnref44" role="doc-noteref"><sup>44</sup></a> Graph also returns only what Entra still holds, which is the 30-day default window with P1 or P2.<a href="#fn45" class="footnote-ref" id="fnref45" role="doc-noteref"><sup>45</sup></a><a href="#fn46" class="footnote-ref" id="fnref46" role="doc-noteref"><sup>46</sup></a> The diagnostic setting is the feed; Graph is the magnifying glass.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Endpoint</th>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>GET /v1.0/auditLogs/directoryAudits</code></td>
+<td>Directory audit history: user, group, app and device management, PIM, access reviews, password resets and more<a href="#fn47" class="footnote-ref" id="fnref47" role="doc-noteref"><sup>47</sup></a></td>
+</tr>
+<tr class="even">
+<td><code>GET /v1.0/auditLogs/signIns</code></td>
+<td>Interactive sign-ins and successful federated sign-ins; up to 1,000 per page, newest first<a href="#fn48" class="footnote-ref" id="fnref48" role="doc-noteref"><sup>48</sup></a></td>
+</tr>
+<tr class="odd">
+<td><code>GET /beta/auditLogs/signIns</code> with <code>signInEventTypes</code></td>
+<td>Non-interactive, service-principal and managed-identity sign-ins (beta; not for production use)<a href="#fn49" class="footnote-ref" id="fnref49" role="doc-noteref"><sup>49</sup></a></td>
+</tr>
+<tr class="even">
+<td><code>GET /v1.0/auditLogs/provisioning</code></td>
+<td>Provisioning service activity<a href="#fn50" class="footnote-ref" id="fnref50" role="doc-noteref"><sup>50</sup></a></td>
+</tr>
+</tbody>
+</table>
+<p>The v1.0 <code>signIns</code> endpoint does not return the three non-human sign-in streams; Microsoft’s examples reach them only through the beta endpoint with a <code>signInEventTypes</code> filter.<a href="#fn51" class="footnote-ref" id="fnref51" role="doc-noteref"><sup>51</sup></a><a href="#fn52" class="footnote-ref" id="fnref52" role="doc-noteref"><sup>52</sup></a> That is one more reason the evidence of record is the workspace, where all four streams are first-class tables.</p>
+<section id="permissions" class="level3">
+<h3 class="anchored" data-anchor-id="permissions">Permissions</h3>
+<p><code>AuditLog.Read.All</code> is the least-privileged permission, delegated or application, for listing both directory audits and sign-ins; getting a single directory audit item needs <code>AuditLog.Read.All</code> <em>and</em> <code>Directory.Read.All</code>.<a href="#fn53" class="footnote-ref" id="fnref53" role="doc-noteref"><sup>53</sup></a> For delegated access the signed-in user also needs a supporting role: Reports Reader, Security Reader or Security Administrator for directory audits, with Global Reader and Security Operator also supported for sign-ins.<a href="#fn54" class="footnote-ref" id="fnref54" role="doc-noteref"><sup>54</sup></a><a href="#fn55" class="footnote-ref" id="fnref55" role="doc-noteref"><sup>55</sup></a></p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Conditional Access results are separately gated, and silently omitted
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The <code>appliedConditionalAccessPolicies</code> property is left out of a <code>signIns</code> response unless the caller can read Conditional Access data: for an app, <code>Policy.Read.All</code>, <code>Policy.Read.ConditionalAccess</code> or <code>Policy.ReadWrite.ConditionalAccess</code>; for a user, a role such as Global Reader, Security Reader, Security Administrator or Conditional Access Administrator.<a href="#fn56" class="footnote-ref" id="fnref56" role="doc-noteref"><sup>56</sup></a> Nothing in the response says the property was dropped. An evidence pull built without one of those permissions produces sign-in records that look complete and contain no Conditional Access evaluation, which is exactly what account management and least-privilege assessment (AC-2 and AC-6) turn on.<a href="#fn57" class="footnote-ref" id="fnref57" role="doc-noteref"><sup>57</sup></a> Grant the narrowest of the three, <code>Policy.Read.ConditionalAccess</code>, to every evidence-collection app that reads sign-ins.</p>
+</div>
+</div>
+</section>
+<section id="examples" class="level3">
+<h3 class="anchored" data-anchor-id="examples">Examples</h3>
+<p>Always bound the time range; Microsoft advises a <code>createdDateTime</code> filter so the request doesn’t time out.<a href="#fn58" class="footnote-ref" id="fnref58" role="doc-noteref"><sup>58</sup></a> Conditional Access failures in one week:</p>
+<pre class="http"><code>GET https://graph.microsoft.com/v1.0/auditLogs/signIns?$filter=conditionalAccessStatus eq 'failure' and createdDateTime ge 2026-10-01T00:00:00Z and createdDateTime lt 2026-10-08T00:00:00Z&amp;$top=999
+Authorization: Bearer {token}</code></pre>
+<p>Role-management changes since a date, with the Microsoft Graph PowerShell SDK (<code>Get-MgAuditLogDirectoryAudit</code> and <code>Get-MgAuditLogSignIn</code> are the audit and sign-in cmdlets<a href="#fn59" class="footnote-ref" id="fnref59" role="doc-noteref"><sup>59</sup></a>):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>Connect-MgGraph <span class="op">-</span>Scopes <span class="st">'AuditLog.Read.All'</span><span class="op">,</span> <span class="st">'Policy.Read.ConditionalAccess'</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>Get-MgAuditLogDirectoryAudit <span class="op">-</span>All `</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span>Filter <span class="st">"category eq 'RoleManagement' and activityDateTime ge 2026-10-01T00:00:00Z"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>In GCC High, the app registration must be created in the Azure Government Entra admin center, and a scope that names the Graph domain must use the national-cloud domain; for app-only access the correct value is <code>https://graph.microsoft.us/.default</code>.<a href="#fn60" class="footnote-ref" id="fnref60" role="doc-noteref"><sup>60</sup></a> In PowerShell that is <code>Connect-MgGraph -Environment USGov</code>, as in Microsoft’s example.<a href="#fn61" class="footnote-ref" id="fnref61" role="doc-noteref"><sup>61</sup></a> For DoD, use the <code>dod-graph.microsoft.us</code> domain from the table above.<a href="#fn62" class="footnote-ref" id="fnref62" role="doc-noteref"><sup>62</sup></a></p>
+</section>
+</section>
+<section id="verify-emission" class="level2">
+<h2 class="anchored" data-anchor-id="verify-emission">Verify emission</h2>
+<p>A setting that saved without error is not proof that logs are arriving. The program runs the query below against the destination workspace 24 and 72 hours after any change, and daily thereafter. It compares an explicit list of expected tables with what actually arrived, so a table that never received data shows up as a row marked <code>MISSING</code> instead of silently disappearing from the results. It uses <code>union isfuzzy=true</code>, which lets the query run when some of the named tables don’t exist yet; without it, a single missing table makes the whole query fail.<a href="#fn63" class="footnote-ref" id="fnref63" role="doc-noteref"><sup>63</sup></a></p>
+<pre class="kusto"><code>// Entra diagnostic-setting completeness.
+// Pass: every expected table returns Status == "OK".
+let expected = datatable(TableName: string) [
+    "SigninLogs", "AADNonInteractiveUserSignInLogs",
+    "AADServicePrincipalSignInLogs", "AADManagedIdentitySignInLogs",
+    "AuditLogs", "AADProvisioningLogs", "MicrosoftGraphActivityLogs",
+    "AADRiskyUsers", "AADUserRiskEvents"
+];
+let observed = union isfuzzy=true withsource=TableName
+    SigninLogs, AADNonInteractiveUserSignInLogs,
+    AADServicePrincipalSignInLogs, AADManagedIdentitySignInLogs,
+    AuditLogs, AADProvisioningLogs, MicrosoftGraphActivityLogs,
+    AADRiskyUsers, AADUserRiskEvents
+    | where TimeGenerated &gt; ago(7d)
+    | summarize RecordCount = count(), LastRecord = max(TimeGenerated) by TableName;
+expected
+| join kind=leftouter observed on TableName
+| project TableName, RecordCount, LastRecord,
+    Status = case(isnull(LastRecord), "MISSING",
+                  LastRecord &lt; ago(24h), "STALE",
+                  "OK")
+| order by Status asc, TableName asc</code></pre>
+<p><code>MISSING</code> means the category was never enabled, was enabled against a different workspace, or (for the risk tables) has had nothing to report; check the GET output from Path C before concluding anything. <code>STALE</code> is the more dangerous result: emission worked and then stopped, and any query over a wide time range will keep returning the old data and hide the gap. Some tenants legitimately produce no provisioning or risk events in a quiet week, so the program records an expected-quiet exception for those tables rather than lowering the bar for the sign-in tables.</p>
+<p>Where the workspace is Microsoft Sentinel, its <strong>Microsoft Entra ID</strong> data connector writes these same categories to these same tables, and needs read and write permission on the Entra diagnostic settings to show its status.<a href="#fn64" class="footnote-ref" id="fnref64" role="doc-noteref"><sup>64</sup></a> The program still treats the tenant diagnostic setting, deployed from code, as the control of record, and checks for duplicate settings sending the same categories to the same workspace. How the tables become detections is <a href="../../../docs/books/b12-security-operations/05-from-log-warehouse-to-detection.html">Chapter 05</a>, and the control-level detail is in the compliance volume <a href="https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_III_Book_06_SIEM_XDR_Detection.md">Vol III Book 06, SIEM, XDR and Detection</a>.</p>
+</section>
+<section id="privacy-identity-telemetry-is-pii" class="level2">
+<h2 class="anchored" data-anchor-id="privacy-identity-telemetry-is-pii">Privacy: identity telemetry is PII</h2>
+<p>Every record this chapter collects is about a person. A sign-in event identifies the user by name, username and user ID, and records the application and resource, the IP address and an approximate location, and the browser, operating system and compliance state of the device.<a href="#fn65" class="footnote-ref" id="fnref65" role="doc-noteref"><sup>65</sup></a> Under A-130’s definition that is personally identifiable information, and a workspace holding a year of it is a profile of each worker’s day.<a href="#fn66" class="footnote-ref" id="fnref66" role="doc-noteref"><sup>66</sup></a> M-26-14 sets what to log and for how long; it doesn’t address privacy, and the Privacy Act and A-130 apply to the logs as to any other PII. Where the agency retrieves log records by a person’s name or identifier, they are records in a system of records, and the privacy office decides which notice covers them.<a href="#fn67" class="footnote-ref" id="fnref67" role="doc-noteref"><sup>67</sup></a></p>
+<p>Three controls in the privacy baseline, which applies at every impact level, shape the design: AU-3(3) limits the PII in audit records to the elements the agency names, PT-3 confines processing to its documented purposes, and SI-12 governs retention and disposal.<a href="#fn68" class="footnote-ref" id="fnref68" role="doc-noteref"><sup>68</sup></a> The program’s position is that identity logs are collected for security monitoring and incident response, and that using them to measure an individual’s productivity or attendance is a new purpose that needs the privacy office’s approval first. Pipelines the program writes log the enterprise person key and a hash, not names or payloads (<a href="../../../docs/books/b03-hr-identity/appendix-b-security-and-privacy.html">Book 03, Appendix B</a>); Microsoft’s logs arrive as Microsoft defines them, so access to the workspace is the control that matters there. <a href="../../../docs/books/b03-hr-identity/14-privacy-for-workforce-identity.html">Book 03, Chapter 14</a> covers the wider obligations.</p>
+<table class="table-striped table-hover caption-top table">
+<caption>Privacy obligations for identity telemetry</caption>
 <colgroup>
 <col style="width: 33%">
 <col style="width: 33%">
@@ -2985,63 +3125,43 @@ Figure&nbsp;2: Five layered modules, each depending only on the layers beneath i
 </colgroup>
 <thead>
 <tr class="header">
-<th>Control</th>
-<th>Title</th>
-<th>How the code deploys it</th>
+<th>Obligation</th>
+<th>What the engineer does</th>
+<th>Who signs off</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>SC-7</td>
-<td>Boundary Protection</td>
-<td>Segmentation and firewall and route intent as code at the enforcement edge</td>
+<td>Purpose limitation (PT-3)</td>
+<td>Documents security monitoring and incident response as the purposes; routes any other proposed use of identity logs to the privacy office</td>
+<td>Privacy office; CISO</td>
 </tr>
 <tr class="even">
-<td>SC-20</td>
-<td>Secure Name/Address Resolution Service (Authoritative Source)</td>
-<td>A DNSSEC-signing authoritative zone declared in code</td>
+<td>Limit PII in audit records (AU-3(3))</td>
+<td>Keeps program-written log lines to the person key, the event and a hash; adds nothing to exports beyond what detection needs</td>
+<td>ISSO; privacy office</td>
 </tr>
 <tr class="odd">
-<td>SC-21</td>
-<td>Secure Name/Address Resolution Service (Recursive or Caching Resolver)</td>
-<td>A validating resolver plus a Protective DNS response policy</td>
+<td>Access to the logs</td>
+<td>Restricts workspace and table access to the SOC and named investigators, and reviews that access with the other privileged roles</td>
+<td>ISSO</td>
 </tr>
 <tr class="even">
-<td>SC-22</td>
-<td>Architecture and Provisioning for Name/Address Resolution Service</td>
-<td>Authoritative and recursive roles as distinct resources</td>
+<td>SORN and PIA coverage</td>
+<td>Asks the privacy office which notice covers the workspace and the SIEM; updates the PIA when a new log category or a new consumer is added</td>
+<td>Privacy office</td>
 </tr>
 <tr class="odd">
-<td>CM-8</td>
-<td>System Component Inventory</td>
-<td>An address-keyed inventory derived from the IPAM source of truth</td>
-</tr>
-<tr class="even">
-<td>AC-4</td>
-<td>Information Flow Enforcement</td>
-<td>Flow policy at the SASE or TIC policy enforcement point</td>
+<td>Retention and disposal (SI-12)</td>
+<td>Sets retention to the logging baseline and the records schedule, and no longer</td>
+<td>Records officer; ISSO</td>
 </tr>
 </tbody>
 </table>
-<p>Control titles are from SP 800-53 Rev.&nbsp;5, release 5.2.0.<a href="#fn20" class="footnote-ref" id="fnref20" role="doc-noteref"><sup>20</sup></a> How the evidence is presented in the package is <a href="../../../docs/books/b10-cloud-boundary/11-the-authorization-package.html">Chapter 11</a>’s subject.</p>
 </section>
-<section id="honest-limits" class="level2">
-<h2 class="anchored" data-anchor-id="honest-limits">Honest limits</h2>
-<ul>
-<li>The code deploys the mechanism; it doesn’t repeal operational discipline. An out-of-band portal change still causes drift, which is why the deployed state is re-asserted by tests and Azure Policy keeps evaluating (<a href="../../../docs/books/b10-cloud-boundary/07-the-front-door.html">Chapter 07</a>).</li>
-<li>Protective DNS is only as current as the threat feed behind it.</li>
-<li>Mirroring isn’t federation. Until a cloud lets an external IPAM allocate directly, the mirror and the reconciliation job are a second copy that can lag; monitor sync health.</li>
-<li>Multi-cloud substitution changes syntax and connectors, not the mechanism, but each substitution has its own boundary status to check.</li>
-</ul>
-</section>
-<section id="what-this-chapter-establishes" class="level2">
-<h2 class="anchored" data-anchor-id="what-this-chapter-establishes">What this chapter establishes</h2>
-<ol type="1">
-<li>The address plan is the join key: IPAM enumerates what was allocated, and every scan and inventory reconciles against it. It isn’t the boundary itself and isn’t an asset manager.</li>
-<li>In Azure, the enterprise IPAM stays the authority; Virtual Network Manager pools mirror it as static CIDRs, and an Azure Policy deny makes pool allocation mandatory.</li>
-<li>Virtual Network Manager isn’t named in Microsoft’s FedRAMP audit-scope tables, so the pool is a recorded dependency until coverage is confirmed.</li>
-<li>Network as code is five layered modules (platform, address plan, naming, network, enforcement edge), deployed in dependency order through a pipeline, with external inputs such as Microsoft 365’s endpoint list arriving as code.</li>
-</ol>
+<section id="what-this-chapter-doesnt-cover" class="level2">
+<h2 class="anchored" data-anchor-id="what-this-chapter-doesnt-cover">What this chapter doesn’t cover</h2>
+<p>Entra diagnostic settings emit identity events. They don’t emit Azure control-plane or resource activity, and they don’t emit the Microsoft 365 unified audit log; both are <a href="../../../docs/books/b12-security-operations/04-platform-and-m365-telemetry.html">Chapter 04</a>. Conditional Access and PIM policy design, which produce many of the events logged here, is <a href="../../../docs/books/b04-access/index.html">Book 04</a>. Telemetry that the authorization boundary itself blocks, and its compensating controls, is a boundary question for <a href="../../../docs/books/b10-cloud-boundary/index.html">Book 10</a>.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -3052,7 +3172,7 @@ Figure&nbsp;2: Five layered modules, each depending only on the layers beneath i
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><a href="../../../docs/books/b10-cloud-boundary/05-the-landing-zone.html">← Previous: Chapter 05 — The Landing Zone</a> · <a href="../../../docs/books/b10-cloud-boundary/index.html">Book index</a> · <a href="../../../docs/books/b10-cloud-boundary/07-the-front-door.html">Next: Chapter 07 — The Landing Zone Front Door →</a></p>
+<p><a href="../../../docs/books/b12-security-operations/02-the-evidence-contract.html">← Previous: Chapter 02 — Telemetry Is the Precondition: The Evidence Contract</a> · <a href="../../../docs/books/b12-security-operations/index.html">Book index</a> · <a href="../../../docs/books/b12-security-operations/04-platform-and-m365-telemetry.html">Next: Chapter 04 — Azure Platform and Microsoft 365 Audit Telemetry →</a></p>
 </div>
 </div>
 
@@ -3061,26 +3181,74 @@ Figure&nbsp;2: Five layered modules, each depending only on the layers beneath i
 <section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr>
 <ol>
-<li id="fn1"><p>National Institute of Standards and Technology, SP 800-53 Rev.&nbsp;5, <em>Security and Privacy Controls for Information Systems and Organizations</em> (release 5.2.0, August 27, 2025), CM-2(2), CM-8, CM-8(1) and control titles, <a href="https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final" class="uri">https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final</a>; OSCAL catalog <a href="https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json" class="uri">https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json</a> (accessed Oct 21, 2026).<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>Cybersecurity and Infrastructure Security Agency, Binding Operational Directive 23-01, <em>Improving Asset Visibility and Vulnerability Detection on Federal Networks</em>, October 3, 2022, Scope and Required Actions, <a href="https://www.cisa.gov/news-events/directives/bod-23-01-improving-asset-visibility-and-vulnerability-detection-federal-networks" class="uri">https://www.cisa.gov/news-events/directives/bod-23-01-improving-asset-visibility-and-vulnerability-detection-federal-networks</a> (accessed Oct 21, 2026).<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3"><p>FedRAMP, “Policy and Inventory,” Key Security Indicators, <em>Consolidated Rules for 2026</em> (KSI-PIY-GIV), <a href="https://fedramp.gov/2026/providers/20x/key-security-indicators/policy-and-inventory/" class="uri">https://fedramp.gov/2026/providers/20x/key-security-indicators/policy-and-inventory/</a> (accessed Oct 21, 2026).<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn4"><p>National Institute of Standards and Technology, SP 800-37 Rev.&nbsp;2, <em>Risk Management Framework for Information Systems and Organizations</em>, December 2018, Appendix A glossary, “authorization boundary,” <a href="https://csrc.nist.gov/pubs/sp/800/37/r2/final" class="uri">https://csrc.nist.gov/pubs/sp/800/37/r2/final</a> (accessed Oct 21, 2026).<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn5"><p>Microsoft Learn, “Azure Virtual Network frequently asked questions (FAQ),” Configuration, <a href="https://learn.microsoft.com/azure/virtual-network/virtual-networks-faq" class="uri">https://learn.microsoft.com/azure/virtual-network/virtual-networks-faq</a> (accessed Oct 21, 2026).<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn6"><p>AWS, <em>Amazon VPC User Guide</em>, “Subnet CIDR blocks,” Subnet sizing for IPv4, <a href="https://docs.aws.amazon.com/vpc/latest/userguide/subnet-sizing.html" class="uri">https://docs.aws.amazon.com/vpc/latest/userguide/subnet-sizing.html</a> (accessed Oct 21, 2026).<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn7"><p>Microsoft Learn, “What is IP address management (IPAM) in Azure Virtual Network Manager?,” <a href="https://learn.microsoft.com/en-us/azure/virtual-network-manager/concept-ip-address-management" class="uri">https://learn.microsoft.com/en-us/azure/virtual-network-manager/concept-ip-address-management</a> (accessed Oct 21, 2026).<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn8"><p>Microsoft Learn, “Deploy IPAM pools and static CIDRs with Azure Virtual Network Manager - Bicep” (availability note and Bicep samples), <a href="https://learn.microsoft.com/azure/virtual-network-manager/deploy-ip-address-management-pools-bicep" class="uri">https://learn.microsoft.com/azure/virtual-network-manager/deploy-ip-address-management-pools-bicep</a> (accessed Oct 21, 2026).<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn9"><p>Microsoft Learn, “Prevent overlapping virtual network address spaces with Azure Policy and IPAM,” <a href="https://learn.microsoft.com/azure/virtual-network-manager/prevent-overlapping-ip-address-space-policy-ipam" class="uri">https://learn.microsoft.com/azure/virtual-network-manager/prevent-overlapping-ip-address-space-policy-ipam</a> (accessed Oct 21, 2026).<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn10"><p>Microsoft Learn, “Deploy IPAM pools and static CIDRs with Azure Virtual Network Manager - Bicep” (availability note and Bicep samples), <a href="https://learn.microsoft.com/azure/virtual-network-manager/deploy-ip-address-management-pools-bicep" class="uri">https://learn.microsoft.com/azure/virtual-network-manager/deploy-ip-address-management-pools-bicep</a> (accessed Oct 21, 2026).<a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn11"><p>Microsoft Learn, “Deploy IPAM pools and static CIDRs with Azure Virtual Network Manager - Bicep” (availability note and Bicep samples), <a href="https://learn.microsoft.com/azure/virtual-network-manager/deploy-ip-address-management-pools-bicep" class="uri">https://learn.microsoft.com/azure/virtual-network-manager/deploy-ip-address-management-pools-bicep</a> (accessed Oct 21, 2026).<a href="#fnref11" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn12"><p>Microsoft Learn, “Prevent overlapping virtual network address spaces with Azure Policy and IPAM,” <a href="https://learn.microsoft.com/azure/virtual-network-manager/prevent-overlapping-ip-address-space-policy-ipam" class="uri">https://learn.microsoft.com/azure/virtual-network-manager/prevent-overlapping-ip-address-space-policy-ipam</a> (accessed Oct 21, 2026).<a href="#fnref12" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn13"><p>Microsoft Learn, “Azure and other Microsoft cloud services compliance scope” (Azure public and Azure Government services by audit scope, last updated February 2026), <a href="https://learn.microsoft.com/en-us/azure/azure-government/compliance/azure-services-in-fedramp-auditscope" class="uri">https://learn.microsoft.com/en-us/azure/azure-government/compliance/azure-services-in-fedramp-auditscope</a> (accessed Oct 21, 2026).<a href="#fnref13" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn14"><p>FedRAMP Marketplace, <code>products.json</code> (meta <code>last_change</code> 2026-10-21), Infoblox Government Cloud, FR2017257053: FedRAMP Certified, Moderate, Class C, certification date 2022-12-15, service description, <a href="https://www.fedramp.gov/marketplace/products.json" class="uri">https://www.fedramp.gov/marketplace/products.json</a> (accessed Oct 21, 2026).<a href="#fnref14" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn15"><p>Microsoft Learn, “Microsoft 365 IP Address and URL web service,” Version web method, Endpoints web method and Changes web method, <a href="https://learn.microsoft.com/en-us/microsoft-365/enterprise/microsoft-365-ip-web-service?view=o365-worldwide" class="uri">https://learn.microsoft.com/en-us/microsoft-365/enterprise/microsoft-365-ip-web-service?view=o365-worldwide</a> (accessed Oct 21, 2026).<a href="#fnref15" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn16"><p>Microsoft Learn, “Microsoft 365 IP Address and URL web service,” Version web method, Endpoints web method and Changes web method, <a href="https://learn.microsoft.com/en-us/microsoft-365/enterprise/microsoft-365-ip-web-service?view=o365-worldwide" class="uri">https://learn.microsoft.com/en-us/microsoft-365/enterprise/microsoft-365-ip-web-service?view=o365-worldwide</a> (accessed Oct 21, 2026).<a href="#fnref16" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn17"><p>Microsoft Learn, “Microsoft 365 IP Address and URL web service,” Version web method, Endpoints web method and Changes web method, <a href="https://learn.microsoft.com/en-us/microsoft-365/enterprise/microsoft-365-ip-web-service?view=o365-worldwide" class="uri">https://learn.microsoft.com/en-us/microsoft-365/enterprise/microsoft-365-ip-web-service?view=o365-worldwide</a> (accessed Oct 21, 2026).<a href="#fnref17" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn18"><p>National Institute of Standards and Technology, SP 800-53 Rev.&nbsp;5, <em>Security and Privacy Controls for Information Systems and Organizations</em> (release 5.2.0, August 27, 2025), CM-2(2), CM-8, CM-8(1) and control titles, <a href="https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final" class="uri">https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final</a>; OSCAL catalog <a href="https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json" class="uri">https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json</a> (accessed Oct 21, 2026).<a href="#fnref18" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn19"><p>National Institute of Standards and Technology, SP 800-53B, Moderate baseline, release 5.2.0 OSCAL profile <code>NIST_SP-800-53_rev5_MODERATE-baseline_profile.json</code> (includes CM-2(2) and CM-8(1)), <a href="https://github.com/usnistgov/oscal-content/tree/main/nist.gov/SP800-53/rev5/json" class="uri">https://github.com/usnistgov/oscal-content/tree/main/nist.gov/SP800-53/rev5/json</a> (accessed Oct 21, 2026).<a href="#fnref19" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn20"><p>National Institute of Standards and Technology, SP 800-53 Rev.&nbsp;5, <em>Security and Privacy Controls for Information Systems and Organizations</em> (release 5.2.0, August 27, 2025), CM-2(2), CM-8, CM-8(1) and control titles, <a href="https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final" class="uri">https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final</a>; OSCAL catalog <a href="https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json" class="uri">https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json</a> (accessed Oct 21, 2026).<a href="#fnref20" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>Microsoft Learn, “Microsoft Entra data retention,” sections “How long does Microsoft Entra ID store the data?” and “Can I see last month’s data after getting a premium license?,” <a href="https://learn.microsoft.com/entra/identity/monitoring-health/reference-reports-data-retention" class="uri">https://learn.microsoft.com/entra/identity/monitoring-health/reference-reports-data-retention</a> (accessed Oct 21, 2026).<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Microsoft Learn, “Configure Microsoft Entra diagnostic settings for activity logs,” sections “Prerequisites,” “Select the logs and destination” and “Basic process,” <a href="https://learn.microsoft.com/entra/identity/monitoring-health/howto-configure-diagnostic-settings" class="uri">https://learn.microsoft.com/entra/identity/monitoring-health/howto-configure-diagnostic-settings</a> (accessed Oct 21, 2026).<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Microsoft Learn, “What are the identity logs you can stream to an endpoint?,” sections “Log streaming requirements and options” and “Activity log options,” <a href="https://learn.microsoft.com/entra/identity/monitoring-health/concept-diagnostic-settings-logs-options" class="uri">https://learn.microsoft.com/entra/identity/monitoring-health/concept-diagnostic-settings-logs-options</a> (accessed Oct 21, 2026).<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>Microsoft Learn, “What are the identity logs you can stream to an endpoint?,” sections “Log streaming requirements and options” and “Activity log options,” <a href="https://learn.microsoft.com/entra/identity/monitoring-health/concept-diagnostic-settings-logs-options" class="uri">https://learn.microsoft.com/entra/identity/monitoring-health/concept-diagnostic-settings-logs-options</a> (accessed Oct 21, 2026).<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>Microsoft Learn, “Configure Microsoft Entra diagnostic settings for activity logs,” sections “Prerequisites,” “Select the logs and destination” and “Basic process,” <a href="https://learn.microsoft.com/entra/identity/monitoring-health/howto-configure-diagnostic-settings" class="uri">https://learn.microsoft.com/entra/identity/monitoring-health/howto-configure-diagnostic-settings</a> (accessed Oct 21, 2026).<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>Microsoft Learn, “How to stream activity logs to an event hub,” sections “Stream logs to an event hub” and “Activity log integration options and considerations,” <a href="https://learn.microsoft.com/entra/identity/monitoring-health/howto-stream-logs-to-event-hub" class="uri">https://learn.microsoft.com/entra/identity/monitoring-health/howto-stream-logs-to-event-hub</a> (accessed Oct 21, 2026).<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p>Microsoft Learn, “Access Microsoft Graph activity logs,” sections “Prerequisites,” “Cost planning estimates,” “Cost reduction for Log Analytics” and “Limitations,” and the national cloud availability table, <a href="https://learn.microsoft.com/graph/microsoft-graph-activity-logs-overview" class="uri">https://learn.microsoft.com/graph/microsoft-graph-activity-logs-overview</a> (accessed Oct 21, 2026).<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p>Microsoft Learn, “Send data to Microsoft Sentinel using the Microsoft Entra ID data connector,” sections “Prerequisites” and “Microsoft Entra ID data connector data types,” <a href="https://learn.microsoft.com/azure/sentinel/connect-azure-active-directory" class="uri">https://learn.microsoft.com/azure/sentinel/connect-azure-active-directory</a> (accessed Oct 21, 2026).<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9"><p>Microsoft Learn, “How To: Export risk data,” sections “Diagnostic settings” and “Log Analytics” (category-to-table mapping), <a href="https://learn.microsoft.com/entra/id-protection/howto-export-risk-data" class="uri">https://learn.microsoft.com/entra/id-protection/howto-export-risk-data</a> (accessed Oct 21, 2026).<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn10"><p>National Institute of Standards and Technology, SP 800-53 Rev.&nbsp;5, <em>Security and Privacy Controls for Information Systems and Organizations</em>, controls AC-2, AC-6, AU-2, AU-3, AU-11 and AU-12 (OSCAL catalog release 5.2.0), <a href="https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final" class="uri">https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final</a> and <a href="https://github.com/usnistgov/oscal-content/tree/main/nist.gov/SP800-53/rev5" class="uri">https://github.com/usnistgov/oscal-content/tree/main/nist.gov/SP800-53/rev5</a> (accessed Oct 21, 2026).<a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn11"><p>Microsoft Learn, “What are the identity logs you can stream to an endpoint?,” sections “Log streaming requirements and options” and “Activity log options,” <a href="https://learn.microsoft.com/entra/identity/monitoring-health/concept-diagnostic-settings-logs-options" class="uri">https://learn.microsoft.com/entra/identity/monitoring-health/concept-diagnostic-settings-logs-options</a> (accessed Oct 21, 2026).<a href="#fnref11" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn12"><p>Microsoft Learn, “Send data to Microsoft Sentinel using the Microsoft Entra ID data connector,” sections “Prerequisites” and “Microsoft Entra ID data connector data types,” <a href="https://learn.microsoft.com/azure/sentinel/connect-azure-active-directory" class="uri">https://learn.microsoft.com/azure/sentinel/connect-azure-active-directory</a> (accessed Oct 21, 2026).<a href="#fnref12" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn13"><p>Microsoft Learn, “How To: Export risk data,” sections “Diagnostic settings” and “Log Analytics” (category-to-table mapping), <a href="https://learn.microsoft.com/entra/id-protection/howto-export-risk-data" class="uri">https://learn.microsoft.com/entra/id-protection/howto-export-risk-data</a> (accessed Oct 21, 2026).<a href="#fnref13" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn14"><p>Microsoft Learn, Azure Monitor Logs table reference, “AADCustomSecurityAttributeAuditLogs,” <a href="https://learn.microsoft.com/azure/azure-monitor/reference/tables/aadcustomsecurityattributeauditlogs" class="uri">https://learn.microsoft.com/azure/azure-monitor/reference/tables/aadcustomsecurityattributeauditlogs</a> (accessed Oct 21, 2026).<a href="#fnref14" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn15"><p>Microsoft Learn, “Manage access to custom security attributes in Microsoft Entra ID,” section “Custom security attribute audit logs,” <a href="https://learn.microsoft.com/entra/fundamentals/custom-security-attributes-manage" class="uri">https://learn.microsoft.com/entra/fundamentals/custom-security-attributes-manage</a> (accessed Oct 21, 2026).<a href="#fnref15" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn16"><p>Microsoft Learn, “What are the identity logs you can stream to an endpoint?,” sections “Log streaming requirements and options” and “Activity log options,” <a href="https://learn.microsoft.com/entra/identity/monitoring-health/concept-diagnostic-settings-logs-options" class="uri">https://learn.microsoft.com/entra/identity/monitoring-health/concept-diagnostic-settings-logs-options</a> (accessed Oct 21, 2026).<a href="#fnref16" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn17"><p>Microsoft Learn, “How to stream activity logs to an event hub,” sections “Stream logs to an event hub” and “Activity log integration options and considerations,” <a href="https://learn.microsoft.com/entra/identity/monitoring-health/howto-stream-logs-to-event-hub" class="uri">https://learn.microsoft.com/entra/identity/monitoring-health/howto-stream-logs-to-event-hub</a> (accessed Oct 21, 2026).<a href="#fnref17" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn18"><p>Microsoft Learn, “Access Microsoft Graph activity logs,” sections “Prerequisites,” “Cost planning estimates,” “Cost reduction for Log Analytics” and “Limitations,” and the national cloud availability table, <a href="https://learn.microsoft.com/graph/microsoft-graph-activity-logs-overview" class="uri">https://learn.microsoft.com/graph/microsoft-graph-activity-logs-overview</a> (accessed Oct 21, 2026).<a href="#fnref18" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn19"><p>Microsoft Learn, “What are the identity logs you can stream to an endpoint?,” sections “Log streaming requirements and options” and “Activity log options,” <a href="https://learn.microsoft.com/entra/identity/monitoring-health/concept-diagnostic-settings-logs-options" class="uri">https://learn.microsoft.com/entra/identity/monitoring-health/concept-diagnostic-settings-logs-options</a> (accessed Oct 21, 2026).<a href="#fnref19" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn20"><p>Microsoft Learn, “How to stream activity logs to an event hub,” sections “Stream logs to an event hub” and “Activity log integration options and considerations,” <a href="https://learn.microsoft.com/entra/identity/monitoring-health/howto-stream-logs-to-event-hub" class="uri">https://learn.microsoft.com/entra/identity/monitoring-health/howto-stream-logs-to-event-hub</a> (accessed Oct 21, 2026).<a href="#fnref20" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn21"><p>Microsoft Learn, “How to stream activity logs to an event hub,” sections “Stream logs to an event hub” and “Activity log integration options and considerations,” <a href="https://learn.microsoft.com/entra/identity/monitoring-health/howto-stream-logs-to-event-hub" class="uri">https://learn.microsoft.com/entra/identity/monitoring-health/howto-stream-logs-to-event-hub</a> (accessed Oct 21, 2026).<a href="#fnref21" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn22"><p>Microsoft Learn, “Configure Microsoft Entra diagnostic settings for activity logs,” sections “Prerequisites,” “Select the logs and destination” and “Basic process,” <a href="https://learn.microsoft.com/entra/identity/monitoring-health/howto-configure-diagnostic-settings" class="uri">https://learn.microsoft.com/entra/identity/monitoring-health/howto-configure-diagnostic-settings</a> (accessed Oct 21, 2026).<a href="#fnref22" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn23"><p>Microsoft Learn, “Configure Microsoft Entra diagnostic settings for activity logs,” sections “Prerequisites,” “Select the logs and destination” and “Basic process,” <a href="https://learn.microsoft.com/entra/identity/monitoring-health/howto-configure-diagnostic-settings" class="uri">https://learn.microsoft.com/entra/identity/monitoring-health/howto-configure-diagnostic-settings</a> (accessed Oct 21, 2026).<a href="#fnref23" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn24"><p>Microsoft Learn, “How To: Export risk data,” sections “Diagnostic settings” and “Log Analytics” (category-to-table mapping), <a href="https://learn.microsoft.com/entra/id-protection/howto-export-risk-data" class="uri">https://learn.microsoft.com/entra/id-protection/howto-export-risk-data</a> (accessed Oct 21, 2026).<a href="#fnref24" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn25"><p>Microsoft Learn, “Access Microsoft Graph activity logs,” sections “Prerequisites,” “Cost planning estimates,” “Cost reduction for Log Analytics” and “Limitations,” and the national cloud availability table, <a href="https://learn.microsoft.com/graph/microsoft-graph-activity-logs-overview" class="uri">https://learn.microsoft.com/graph/microsoft-graph-activity-logs-overview</a> (accessed Oct 21, 2026).<a href="#fnref25" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn26"><p>FedRAMP, <em>FedRAMP Consolidated Rules for 2026</em>, Key Security Indicators, “Monitoring, Logging, and Auditing” (KSI-MLA-EVC, KSI-MLA-LET, KSI-MLA-OSM, KSI-MLA-RVL), <a href="https://www.fedramp.gov/2026/providers/20x/key-security-indicators/monitoring-logging-and-auditing/" class="uri">https://www.fedramp.gov/2026/providers/20x/key-security-indicators/monitoring-logging-and-auditing/</a> (accessed Oct 21, 2026).<a href="#fnref26" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn27"><p>Microsoft Learn, Azure Resource Manager template reference, “microsoft.aadiam diagnosticSettings 2017-04-01,” Bicep resource definition and property values, <a href="https://learn.microsoft.com/azure/templates/microsoft.aadiam/2017-04-01/diagnosticsettings" class="uri">https://learn.microsoft.com/azure/templates/microsoft.aadiam/2017-04-01/diagnosticsettings</a> (accessed Oct 21, 2026).<a href="#fnref27" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn28"><p>Microsoft Learn, Azure Resource Manager template reference, “microsoft.aadiam diagnosticSettings 2017-04-01,” Bicep resource definition and property values, <a href="https://learn.microsoft.com/azure/templates/microsoft.aadiam/2017-04-01/diagnosticsettings" class="uri">https://learn.microsoft.com/azure/templates/microsoft.aadiam/2017-04-01/diagnosticsettings</a> (accessed Oct 21, 2026).<a href="#fnref28" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn29"><p>Microsoft Learn, “Migrate from diagnostic settings storage retention to Azure Storage lifecycle management,” <a href="https://learn.microsoft.com/azure/azure-monitor/essentials/migrate-to-azure-storage-lifecycle-policy" class="uri">https://learn.microsoft.com/azure/azure-monitor/essentials/migrate-to-azure-storage-lifecycle-policy</a> (accessed Oct 21, 2026).<a href="#fnref29" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn30"><p>Microsoft Learn, “Diagnostic settings in Azure Monitor,” section “Methods for creating a diagnostic setting” (CLI tab), <a href="https://learn.microsoft.com/azure/azure-monitor/platform/diagnostic-settings" class="uri">https://learn.microsoft.com/azure/azure-monitor/platform/diagnostic-settings</a> (accessed Oct 21, 2026).<a href="#fnref30" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn31"><p>Microsoft Learn, Azure Resource Manager template reference, “microsoft.aadiam diagnosticSettings 2017-04-01,” Bicep resource definition and property values, <a href="https://learn.microsoft.com/azure/templates/microsoft.aadiam/2017-04-01/diagnosticsettings" class="uri">https://learn.microsoft.com/azure/templates/microsoft.aadiam/2017-04-01/diagnosticsettings</a> (accessed Oct 21, 2026).<a href="#fnref31" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn32"><p>Office of Management and Budget, M-26-14, <em>Ensuring Effective and Efficient Agency Logging and Network Visibility to Defend Against Evolving Cyber Threats</em>, May 22, 2026, rescission of M-21-31 and Appendix B (Minimum Logging Baseline Requirements and Objectives, items 1 and 5, notes 6 and 7), <a href="https://www.whitehouse.gov/wp-content/uploads/2026/05/M-26-14-Ensuring-Effective-and-Efficient-Agency-Logging-and-Network-Visibility-to-Defend-Against-Evolving-Cyber-Threats.pdf" class="uri">https://www.whitehouse.gov/wp-content/uploads/2026/05/M-26-14-Ensuring-Effective-and-Efficient-Agency-Logging-and-Network-Visibility-to-Defend-Against-Evolving-Cyber-Threats.pdf</a> (accessed Oct 21, 2026).<a href="#fnref32" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn33"><p>Office of Management and Budget, M-26-14, <em>Ensuring Effective and Efficient Agency Logging and Network Visibility to Defend Against Evolving Cyber Threats</em>, May 22, 2026, rescission of M-21-31 and Appendix B (Minimum Logging Baseline Requirements and Objectives, items 1 and 5, notes 6 and 7), <a href="https://www.whitehouse.gov/wp-content/uploads/2026/05/M-26-14-Ensuring-Effective-and-Efficient-Agency-Logging-and-Network-Visibility-to-Defend-Against-Evolving-Cyber-Threats.pdf" class="uri">https://www.whitehouse.gov/wp-content/uploads/2026/05/M-26-14-Ensuring-Effective-and-Efficient-Agency-Logging-and-Network-Visibility-to-Defend-Against-Evolving-Cyber-Threats.pdf</a> (accessed Oct 21, 2026).<a href="#fnref33" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn34"><p>Microsoft Learn, “Manage data retention in a Log Analytics workspace,” sections “Analytics, long-term, and total retention,” “How retention modifications work” and “Configure table-level retention,” <a href="https://learn.microsoft.com/azure/azure-monitor/logs/data-retention-configure" class="uri">https://learn.microsoft.com/azure/azure-monitor/logs/data-retention-configure</a> (accessed Oct 21, 2026).<a href="#fnref34" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn35"><p>Microsoft Learn, “Manage data retention in a Log Analytics workspace,” sections “Analytics, long-term, and total retention,” “How retention modifications work” and “Configure table-level retention,” <a href="https://learn.microsoft.com/azure/azure-monitor/logs/data-retention-configure" class="uri">https://learn.microsoft.com/azure/azure-monitor/logs/data-retention-configure</a> (accessed Oct 21, 2026).<a href="#fnref35" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn36"><p>Microsoft Learn, “Manage data retention in a Log Analytics workspace,” sections “Analytics, long-term, and total retention,” “How retention modifications work” and “Configure table-level retention,” <a href="https://learn.microsoft.com/azure/azure-monitor/logs/data-retention-configure" class="uri">https://learn.microsoft.com/azure/azure-monitor/logs/data-retention-configure</a> (accessed Oct 21, 2026).<a href="#fnref36" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn37"><p>Microsoft Learn, “Manage data retention in a Log Analytics workspace,” sections “Analytics, long-term, and total retention,” “How retention modifications work” and “Configure table-level retention,” <a href="https://learn.microsoft.com/azure/azure-monitor/logs/data-retention-configure" class="uri">https://learn.microsoft.com/azure/azure-monitor/logs/data-retention-configure</a> (accessed Oct 21, 2026).<a href="#fnref37" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn38"><p>Microsoft Learn, “Cloud feature availability for US Government customers,” section “Microsoft 365 integration,” <a href="https://learn.microsoft.com/azure/security/fundamentals/feature-availability" class="uri">https://learn.microsoft.com/azure/security/fundamentals/feature-availability</a> (accessed Oct 21, 2026).<a href="#fnref38" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn39"><p>Microsoft Learn, “Microsoft Graph national cloud deployments,” sections “App registration and token service root endpoints” and “Microsoft Graph and Graph Explorer service root endpoints,” <a href="https://learn.microsoft.com/graph/deployments" class="uri">https://learn.microsoft.com/graph/deployments</a> (accessed Oct 21, 2026).<a href="#fnref39" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn40"><p>Microsoft Learn, “Compare Azure Government and global Azure,” section “Guidance for developers” (Azure Resource Manager endpoint), <a href="https://learn.microsoft.com/azure/azure-government/compare-azure-government-global-azure" class="uri">https://learn.microsoft.com/azure/azure-government/compare-azure-government-global-azure</a> (accessed Oct 21, 2026).<a href="#fnref40" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn41"><p>Microsoft Learn, “Access Microsoft Graph activity logs,” sections “Prerequisites,” “Cost planning estimates,” “Cost reduction for Log Analytics” and “Limitations,” and the national cloud availability table, <a href="https://learn.microsoft.com/graph/microsoft-graph-activity-logs-overview" class="uri">https://learn.microsoft.com/graph/microsoft-graph-activity-logs-overview</a> (accessed Oct 21, 2026).<a href="#fnref41" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn42"><p>Microsoft Learn, Microsoft Graph v1.0 reference, “List signIns,” sections “Permissions” and “Optional query parameters,” and national cloud availability table, <a href="https://learn.microsoft.com/graph/api/signin-list?view=graph-rest-1.0" class="uri">https://learn.microsoft.com/graph/api/signin-list?view=graph-rest-1.0</a> (accessed Oct 21, 2026).<a href="#fnref42" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn43"><p>Microsoft Learn, “Microsoft Sentinel feature support for Azure commercial/other clouds,” section “Data collection,” <a href="https://learn.microsoft.com/azure/sentinel/feature-availability" class="uri">https://learn.microsoft.com/azure/sentinel/feature-availability</a> (accessed Oct 21, 2026).<a href="#fnref43" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn44"><p>Microsoft Learn, “How to analyze activity logs with Microsoft Graph,” sections “Access reports using Microsoft Graph Explorer,” “Sample sign-in queries” and “Access reports using Microsoft Graph PowerShell,” <a href="https://learn.microsoft.com/entra/identity/monitoring-health/howto-analyze-activity-logs-with-microsoft-graph" class="uri">https://learn.microsoft.com/entra/identity/monitoring-health/howto-analyze-activity-logs-with-microsoft-graph</a> (accessed Oct 21, 2026).<a href="#fnref44" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn45"><p>Microsoft Learn, Microsoft Graph v1.0 reference, “List signIns,” sections “Permissions” and “Optional query parameters,” and national cloud availability table, <a href="https://learn.microsoft.com/graph/api/signin-list?view=graph-rest-1.0" class="uri">https://learn.microsoft.com/graph/api/signin-list?view=graph-rest-1.0</a> (accessed Oct 21, 2026).<a href="#fnref45" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn46"><p>Microsoft Learn, “Microsoft Entra data retention,” sections “How long does Microsoft Entra ID store the data?” and “Can I see last month’s data after getting a premium license?,” <a href="https://learn.microsoft.com/entra/identity/monitoring-health/reference-reports-data-retention" class="uri">https://learn.microsoft.com/entra/identity/monitoring-health/reference-reports-data-retention</a> (accessed Oct 21, 2026).<a href="#fnref46" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn47"><p>Microsoft Learn, Microsoft Graph v1.0 reference, “List directoryAudits,” <a href="https://learn.microsoft.com/graph/api/directoryaudit-list?view=graph-rest-1.0" class="uri">https://learn.microsoft.com/graph/api/directoryaudit-list?view=graph-rest-1.0</a>, and “Get directoryAudit,” <a href="https://learn.microsoft.com/graph/api/directoryaudit-get?view=graph-rest-1.0" class="uri">https://learn.microsoft.com/graph/api/directoryaudit-get?view=graph-rest-1.0</a>, sections “Permissions” (accessed Oct 21, 2026).<a href="#fnref47" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn48"><p>Microsoft Learn, Microsoft Graph v1.0 reference, “List signIns,” sections “Permissions” and “Optional query parameters,” and national cloud availability table, <a href="https://learn.microsoft.com/graph/api/signin-list?view=graph-rest-1.0" class="uri">https://learn.microsoft.com/graph/api/signin-list?view=graph-rest-1.0</a> (accessed Oct 21, 2026).<a href="#fnref48" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn49"><p>Microsoft Learn, “How to analyze activity logs with Microsoft Graph,” sections “Access reports using Microsoft Graph Explorer,” “Sample sign-in queries” and “Access reports using Microsoft Graph PowerShell,” <a href="https://learn.microsoft.com/entra/identity/monitoring-health/howto-analyze-activity-logs-with-microsoft-graph" class="uri">https://learn.microsoft.com/entra/identity/monitoring-health/howto-analyze-activity-logs-with-microsoft-graph</a> (accessed Oct 21, 2026).<a href="#fnref49" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn50"><p>Microsoft Learn, “How to analyze activity logs with Microsoft Graph,” sections “Access reports using Microsoft Graph Explorer,” “Sample sign-in queries” and “Access reports using Microsoft Graph PowerShell,” <a href="https://learn.microsoft.com/entra/identity/monitoring-health/howto-analyze-activity-logs-with-microsoft-graph" class="uri">https://learn.microsoft.com/entra/identity/monitoring-health/howto-analyze-activity-logs-with-microsoft-graph</a> (accessed Oct 21, 2026).<a href="#fnref50" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn51"><p>Microsoft Learn, Microsoft Graph v1.0 reference, “List signIns,” sections “Permissions” and “Optional query parameters,” and national cloud availability table, <a href="https://learn.microsoft.com/graph/api/signin-list?view=graph-rest-1.0" class="uri">https://learn.microsoft.com/graph/api/signin-list?view=graph-rest-1.0</a> (accessed Oct 21, 2026).<a href="#fnref51" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn52"><p>Microsoft Learn, “How to analyze activity logs with Microsoft Graph,” sections “Access reports using Microsoft Graph Explorer,” “Sample sign-in queries” and “Access reports using Microsoft Graph PowerShell,” <a href="https://learn.microsoft.com/entra/identity/monitoring-health/howto-analyze-activity-logs-with-microsoft-graph" class="uri">https://learn.microsoft.com/entra/identity/monitoring-health/howto-analyze-activity-logs-with-microsoft-graph</a> (accessed Oct 21, 2026).<a href="#fnref52" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn53"><p>Microsoft Learn, Microsoft Graph v1.0 reference, “List directoryAudits,” <a href="https://learn.microsoft.com/graph/api/directoryaudit-list?view=graph-rest-1.0" class="uri">https://learn.microsoft.com/graph/api/directoryaudit-list?view=graph-rest-1.0</a>, and “Get directoryAudit,” <a href="https://learn.microsoft.com/graph/api/directoryaudit-get?view=graph-rest-1.0" class="uri">https://learn.microsoft.com/graph/api/directoryaudit-get?view=graph-rest-1.0</a>, sections “Permissions” (accessed Oct 21, 2026).<a href="#fnref53" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn54"><p>Microsoft Learn, Microsoft Graph v1.0 reference, “List directoryAudits,” <a href="https://learn.microsoft.com/graph/api/directoryaudit-list?view=graph-rest-1.0" class="uri">https://learn.microsoft.com/graph/api/directoryaudit-list?view=graph-rest-1.0</a>, and “Get directoryAudit,” <a href="https://learn.microsoft.com/graph/api/directoryaudit-get?view=graph-rest-1.0" class="uri">https://learn.microsoft.com/graph/api/directoryaudit-get?view=graph-rest-1.0</a>, sections “Permissions” (accessed Oct 21, 2026).<a href="#fnref54" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn55"><p>Microsoft Learn, Microsoft Graph v1.0 reference, “List signIns,” sections “Permissions” and “Optional query parameters,” and national cloud availability table, <a href="https://learn.microsoft.com/graph/api/signin-list?view=graph-rest-1.0" class="uri">https://learn.microsoft.com/graph/api/signin-list?view=graph-rest-1.0</a> (accessed Oct 21, 2026).<a href="#fnref55" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn56"><p>Microsoft Learn, Microsoft Graph v1.0 reference, “List signIns,” sections “Permissions” and “Optional query parameters,” and national cloud availability table, <a href="https://learn.microsoft.com/graph/api/signin-list?view=graph-rest-1.0" class="uri">https://learn.microsoft.com/graph/api/signin-list?view=graph-rest-1.0</a> (accessed Oct 21, 2026).<a href="#fnref56" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn57"><p>National Institute of Standards and Technology, SP 800-53 Rev.&nbsp;5, <em>Security and Privacy Controls for Information Systems and Organizations</em>, controls AC-2, AC-6, AU-2, AU-3, AU-11 and AU-12 (OSCAL catalog release 5.2.0), <a href="https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final" class="uri">https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final</a> and <a href="https://github.com/usnistgov/oscal-content/tree/main/nist.gov/SP800-53/rev5" class="uri">https://github.com/usnistgov/oscal-content/tree/main/nist.gov/SP800-53/rev5</a> (accessed Oct 21, 2026).<a href="#fnref57" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn58"><p>Microsoft Learn, Microsoft Graph v1.0 reference, “List signIns,” sections “Permissions” and “Optional query parameters,” and national cloud availability table, <a href="https://learn.microsoft.com/graph/api/signin-list?view=graph-rest-1.0" class="uri">https://learn.microsoft.com/graph/api/signin-list?view=graph-rest-1.0</a> (accessed Oct 21, 2026).<a href="#fnref58" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn59"><p>Microsoft Learn, “How to analyze activity logs with Microsoft Graph,” sections “Access reports using Microsoft Graph Explorer,” “Sample sign-in queries” and “Access reports using Microsoft Graph PowerShell,” <a href="https://learn.microsoft.com/entra/identity/monitoring-health/howto-analyze-activity-logs-with-microsoft-graph" class="uri">https://learn.microsoft.com/entra/identity/monitoring-health/howto-analyze-activity-logs-with-microsoft-graph</a> (accessed Oct 21, 2026).<a href="#fnref59" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn60"><p>Microsoft Learn, “Access national cloud deployments with the Microsoft Graph SDKs,” sections “Prerequisites,” “Permission scopes” and “Examples” (PowerShell tab), <a href="https://learn.microsoft.com/graph/sdks/national-clouds" class="uri">https://learn.microsoft.com/graph/sdks/national-clouds</a> (accessed Oct 21, 2026).<a href="#fnref60" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn61"><p>Microsoft Learn, “Access national cloud deployments with the Microsoft Graph SDKs,” sections “Prerequisites,” “Permission scopes” and “Examples” (PowerShell tab), <a href="https://learn.microsoft.com/graph/sdks/national-clouds" class="uri">https://learn.microsoft.com/graph/sdks/national-clouds</a> (accessed Oct 21, 2026).<a href="#fnref61" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn62"><p>Microsoft Learn, “Microsoft Graph national cloud deployments,” sections “App registration and token service root endpoints” and “Microsoft Graph and Graph Explorer service root endpoints,” <a href="https://learn.microsoft.com/graph/deployments" class="uri">https://learn.microsoft.com/graph/deployments</a> (accessed Oct 21, 2026).<a href="#fnref62" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn63"><p>Microsoft Learn, Kusto Query Language reference, “union operator,” parameter <code>isfuzzy</code>, <a href="https://learn.microsoft.com/kusto/query/union-operator" class="uri">https://learn.microsoft.com/kusto/query/union-operator</a> (accessed Oct 21, 2026).<a href="#fnref63" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn64"><p>Microsoft Learn, “Send data to Microsoft Sentinel using the Microsoft Entra ID data connector,” sections “Prerequisites” and “Microsoft Entra ID data connector data types,” <a href="https://learn.microsoft.com/azure/sentinel/connect-azure-active-directory" class="uri">https://learn.microsoft.com/azure/sentinel/connect-azure-active-directory</a> (accessed Oct 21, 2026).<a href="#fnref64" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn65"><p>Microsoft Learn, “Learn about the sign-in log activity details” (sections “Who” and “Location and Device”), <a href="https://learn.microsoft.com/en-us/entra/identity/monitoring-health/concept-sign-in-log-activity-details" class="uri">https://learn.microsoft.com/en-us/entra/identity/monitoring-health/concept-sign-in-log-activity-details</a> (accessed Nov 2, 2026).<a href="#fnref65" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn66"><p>Office of Management and Budget, Circular A-130, <em>Managing Information as a Strategic Resource</em>, July 28, 2016 (§10, definition 57, personally identifiable information; Appendix II §3, Fair Information Practice Principles), <a href="https://www.whitehouse.gov/wp-content/uploads/legacy_drupal_files/omb/circulars/A130/a130revised.pdf" class="uri">https://www.whitehouse.gov/wp-content/uploads/legacy_drupal_files/omb/circulars/A130/a130revised.pdf</a> (accessed Nov 2, 2026).<a href="#fnref66" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn67"><p>Privacy Act of 1974, 5 U.S.C. §552a (2023 edition), subsection (a)(5), system of records, <a href="https://www.govinfo.gov/content/pkg/USCODE-2023-title5/html/USCODE-2023-title5-partI-chap5-subchapII-sec552a.htm" class="uri">https://www.govinfo.gov/content/pkg/USCODE-2023-title5/html/USCODE-2023-title5-partI-chap5-subchapII-sec552a.htm</a> (accessed Nov 2, 2026).<a href="#fnref67" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn68"><p>National Institute of Standards and Technology, SP 800-53 Rev.&nbsp;5, <em>Security and Privacy Controls for Information Systems and Organizations</em>, Release 5.2.0 (controls AU-3(3), PT-3 and SI-12), <a href="https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final" class="uri">https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final</a>; and SP 800-53B, <em>Control Baselines for Information Systems and Organizations</em> (the privacy baseline, “applied to systems irrespective of impact level”), <a href="https://csrc.nist.gov/pubs/sp/800/53/b/upd1/final" class="uri">https://csrc.nist.gov/pubs/sp/800/53/b/upd1/final</a>; control text and privacy-baseline membership read from NIST’s OSCAL Release 5.2.0 catalog and privacy baseline profile, <a href="https://github.com/usnistgov/oscal-content/tree/main/nist.gov/SP800-53/rev5" class="uri">https://github.com/usnistgov/oscal-content/tree/main/nist.gov/SP800-53/rev5</a> (accessed Nov 2, 2026).<a href="#fnref68" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 
@@ -3494,13 +3662,13 @@ Figure&nbsp;2: Five layered modules, each depending only on the layers beneath i
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../../docs/books/b10-cloud-boundary/05-the-landing-zone.html" class="pagination-link" aria-label="Chapter 05 — The Landing Zone">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Chapter 05 — The Landing Zone</span>
+      <a href="../../../docs/books/b12-security-operations/02-the-evidence-contract.html" class="pagination-link" aria-label="Chapter 02 — Telemetry Is the Precondition: The Evidence Contract">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Chapter 02 — Telemetry Is the Precondition: The Evidence Contract</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../../docs/books/b10-cloud-boundary/07-the-front-door.html" class="pagination-link" aria-label="Chapter 07 — The Landing Zone Front Door">
-        <span class="nav-page-text">Chapter 07 — The Landing Zone Front Door</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../../docs/books/b12-security-operations/04-platform-and-m365-telemetry.html" class="pagination-link" aria-label="Chapter 04 — Azure Platform and Microsoft 365 Audit Telemetry">
+        <span class="nav-page-text">Chapter 04 — Azure Platform and Microsoft 365 Audit Telemetry</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
