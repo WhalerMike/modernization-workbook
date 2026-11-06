@@ -744,7 +744,7 @@ The rollback is rehearsed in the test stage, in full, before promotion. It pause
 | 6 | The test evidence is uploaded, and `sha256sum -c SHA256SUMS` passes on the uploaded copy | The evidence container | G7 |
 | 7 | The ISSO has accepted the test evidence | The production change record | All |
 | 8 | The production change record is approved, with the window, the first scope and the rollback plan | The production change record | All |
-| 9 | The production pre-flight, with the test evidence, has 0 Finding | `evidence/production/preflight` | All |
+| 9 | The production pre-flight, with the test evidence, shows no Finding other than PF-05 for the workflows not yet created; after the Stage 2 deploy, its pre-flight has 0 Finding | `evidence/production/preflight`, then `evidence/production/preflight-after-deploy` | All |
 | 10 | Every requirement row of the test stage has its evidence present and passing: `evidence.py check --stage test` has 0 Finding | The command's output, kept with the go/no-go record | All |
 
 Criterion 10 is one command over the test stage's records:
@@ -769,6 +769,8 @@ The production HR feed and the production tenant: Microsoft 365 GCC (Moderate) f
    python deploy/deploy_settings.py check --settings "$SETTINGS" --evidence-dir "$EVIDENCE/records"
    ```
 
+   Until the *Deploy* step below creates the production workflows, this check fails DS-02 and DS-05 for the six workflow IDs alone; that is expected, as in Stage 1.
+
 2. **Run the pre-flight with the test evidence.** Download the test stage's last smoke output from the evidence container first, so the check reads the kept copy:
 
    ```bash
@@ -789,7 +791,7 @@ The production HR feed and the production tenant: Microsoft 365 GCC (Moderate) f
    Pre-flight production (gcc, fixture): 0 Finding, 0 Warn, 16 Info
    ```
 
-   A tenant-mode production run refuses fixture-mode evidence: the modes must match (a test pins that).
+   Before the production workflows exist, PF-05 reports each as missing, so the live run shows those rows as its only Findings; the 0 Finding result is the pre-flight after the *Deploy* step below. A tenant-mode production run refuses fixture-mode evidence: the modes must match (a test pins that).
 
 **Requirements and evidence for this step.**
 
@@ -805,7 +807,7 @@ The production HR feed and the production tenant: Microsoft 365 GCC (Moderate) f
 
 **Gates:** G2, G3, G6, G1.
 
-Run the same five deploy steps as Stage 1 (*Deploy*, steps 1 to 5), in the production session. **Expected result:** six workflows created with scheduling off, the IDs recorded in `deploy/settings.production.json`, and a pre-flight after deploy with 0 Finding. Stage 1's deploy table applies row for row; its evidence is the production session's `workflow-plan`, `workflow-ids.json` and `workflows-recorded-*.json`.
+Run the same five deploy steps as Stage 1 (*Deploy*, steps 1 to 5), in the production session; in step 5, add the `--test-evidence` argument from the pre-flight step above, because a production pre-flight without it gives a PF-06 Finding. **Expected result:** six workflows created with scheduling off, the IDs recorded in `deploy/settings.production.json`, and a pre-flight after deploy with 0 Finding. Stage 1's deploy table applies row for row; its evidence is the production session's `workflow-plan`, `workflow-ids.json` and `workflows-recorded-*.json`.
 
 ### Staged enable by scope
 
