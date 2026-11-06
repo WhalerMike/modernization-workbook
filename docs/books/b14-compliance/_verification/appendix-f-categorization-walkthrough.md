@@ -1,4 +1,4 @@
-# Verification — Appendix C, Categorization Walk-Through
+# Verification — Appendix F, Categorization Walk-Through
 
 Opened and text-extracted on November 6, 2026: NIST SP 800-37 Rev. 2, SP 800-60 Vol. 1 Rev. 1 and SP 800-60 Vol. 2 Rev. 1 (nvlpubs.nist.gov PDFs). The system, its adjustments and its approvals are invented for illustration.
 
