@@ -1,6 +1,6 @@
 ---
 title: "Chapter 12 — The Series as a Map: Which Volume and Book Closes Each Control"
-description: "A reader's map of the Federal Compliance series: for each volume, what it covers, which workbook book now carries it (Books 00 to 17), and which control families it claims closure for; what the agency's first assessment can be expected to find before the program; and the residual compliance risk an agency should expect even with the whole program in place."
+description: "A reader's map of the Federal Compliance series: for each volume, what it covers, which workbook book now carries it, and which control families it claims closure for; what the agency's first assessment can be expected to find before the program; and the residual compliance risk an agency should expect even with the whole program in place."
 doc-type: workbook-chapter
 audience: [Executive, Technical, Customer]
 family: b14-compliance

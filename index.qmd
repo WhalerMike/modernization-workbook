@@ -338,7 +338,7 @@ format:
 <section class="mw-section" id="books">
   <div class="mw-inner">
     <p class="section-label">The Books</p>
-    <h2 class="section-title">All nineteen books published.</h2>
+    <h2 class="section-title">All nineteen books and the developer workbook published.</h2>
     <p class="section-body">Start with Book 01 for the whole arc, or go straight to the topic in front of you. Every book reads in its Why / What / Who / How order and downloads as one Word document.</p>
     <div class="book-cards">
       <div class="book-card">
@@ -495,7 +495,7 @@ format:
 <section class="mw-section" id="coming">
   <div class="mw-inner">
     <p class="section-label">The Full Workbook</p>
-    <h2 class="section-title">Nineteen books in all.</h2>
+    <h2 class="section-title">Nineteen books and a developer workbook.</h2>
     <p class="section-body">Every book is now published as a draft and revised as its sources change; the workbook's earlier documents are archived in the repository, and their old addresses forward to the chapters that replaced them. <a href="docs/books/index.html">The Workbook Books</a> lists every book, its opening question and when it was last updated.</p>
   </div>
 </section>

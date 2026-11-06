@@ -30,7 +30,7 @@ The books fix that. Each book takes one topic, consolidates every page the workb
 
 ## Nineteen books
 
-The workbook is organized as nineteen books, numbered B00 to B18. Book 00, this one, is the front door: it makes the case for modernizing now and sets out the program that the other books carry out. Book 01 tells the end-to-end transformation arc from client/server to hybrid cloud. Books 02 to 18 each take one domain in depth.
+The workbook is organized as nineteen topic books, numbered B00 to B18, and a code-first developer workbook, Book 19. Book 00, this one, is the front door: it makes the case for modernizing now and sets out the program that the other books carry out. Book 01 tells the end-to-end transformation arc from client/server to hybrid cloud. Books 02 to 18 each take one domain in depth.
 
 The numbering follows the dependency chain [Chapter 01](01-why-modernize-now.md) describes. Identity comes first because every later decision depends on it; the estate's infrastructure follows; boundary, assurance and operations come after. The map above groups the books that way, and the [book index](../index.md) lists them with their status.
 
