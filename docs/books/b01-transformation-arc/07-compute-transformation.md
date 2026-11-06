@@ -85,7 +85,7 @@ Every service principal name in the inventory's Kerberos map ([Chapter 10](10-an
 - **Retire** it, often the cheapest option for end-of-life applications.
 - **Island** it, as a last resort: a minimal AD island hosting only that application, with a documented end-of-life date.
 
-No server leaves the domain until every SPN on it is resolved. [Book 06, Chapter 18](../b06-data-platform/18-the-four-class-pattern-for-applications.md) applies the same decision to SQL-consuming applications.
+No server leaves the domain until every SPN on it is resolved. [Book 06, Chapter 18](../b06-data-platform/18-the-four-class-pattern-for-applications.md) sorts SQL-consuming applications by a four-class taxonomy instead (OIDC, SAML, application proxy and Entra Domain Services). Its Entra Domain Services class is the nearest counterpart to a Kerberos island: the last resort for an application that needs real LDAP and Kerberos, which keeps the AD dependency and carries a documented exception with a sunset date, until the application moves to a higher class or is retired.
 
 NTLM is resolved in the same pass. Microsoft has deprecated every version of NTLM and recommends replacing NTLM calls with Negotiate, which tries Kerberos first.[^c07-ntlm] NTLMv1 is removed starting with Windows 11, version 24H2 and Windows Server 2025, and NTLMv2 still works on Windows Server 2025 but will be removed in a future release.[^c07-ntlm-ws] NTLM authentication is opaque to Entra ID's sign-in logs and to Conditional Access, so the program treats every remaining NTLM flow as an item to remove, not to accept ([Book 06, Chapter 15](../b06-data-platform/15-the-three-phases-of-ntlm-elimination.md)).
 

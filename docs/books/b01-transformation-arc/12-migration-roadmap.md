@@ -71,7 +71,7 @@ The last two G0 conditions come straight from Microsoft's guidance for leaving A
 
 **Goal.** Put the identity primitives in place before anything else moves.
 
-- **Identity:** enterprise-level dynamic groups; administrative units for Tier 1 and selected Tier 2 scopes; the HR-to-cloud provisioning feed for the foundation scope ([Book 03, Chapter 12](../b03-hr-identity/12-execution-plan.md)).
+- **Identity:** enterprise-level dynamic groups; administrative units for Tier 1 and selected Tier 2 scopes; the HR-to-cloud provisioning feed for the foundation scope: the feed built and proved end to end in a test tenant, before any population is cut over. That is the work of Book 03's own Phases 0 to 2, which [Book 03, Chapter 12](../b03-hr-identity/12-execution-plan.md) maps to this roadmap's Phase 1; its Phase 3 pilot go-live feeds this roadmap's Phase 2, and its Phases 4 and 5 run inside this roadmap's Phase 3.
 - **Policy:** the enterprise Conditional Access baseline: MFA for all users, legacy authentication blocked, emergency access accounts excluded from every policy that blocks or restricts sign-in. Microsoft's own procedure starts the legacy-authentication block in report-only mode so the impact can be read before enforcement.[^c12-legacy] Microsoft recommends at least two cloud-only emergency access accounts using phishing-resistant methods, monitored on every use and tested at least every 90 days.[^c12-breakglass]
 - **Services:** IP address management covering the platform host and Tier 0 infrastructure.
 - **Compute:** the platform host and pilot servers connected through Azure Arc.
