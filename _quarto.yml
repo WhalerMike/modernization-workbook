@@ -1,9 +1,9 @@
 project:
   type: website
-  # Rebuilds _sitemap-tree.md (included by sitemap.qmd) from the pages
-  # about to be rendered, so the Site Map always matches the site.
+  # Rebuilds _workbook-map-tree.md (included by workbook-map.qmd) from the pages
+  # about to be rendered, so the Workbook Map always matches the site.
   pre-render:
-    - scripts/generate_sitemap.py
+    - scripts/generate_workbook_map.py
     # Fills the Chapters, Pages and Last updated columns of the books table.
     - scripts/generate_book_metrics.py
     # Lists every command in examples/ from the commands' own help.
@@ -13,11 +13,11 @@ project:
   output-dir: _site
   render:
     # The site publishes only the workbook books, the presentations, and the
-    # home and site-map pages. Every other document stays in the repository,
+    # home and Workbook Map pages. Every other document stays in the repository,
     # unpublished, until the book that absorbs it is built (see
     # docs/books/index.md); books link to those sources on GitHub.
     - "index.qmd"
-    - "sitemap.qmd"
+    - "workbook-map.qmd"
     - "404.qmd"
     - "docs/start-here.md"
     # One page listing every download: kits, Word editions, videos.
@@ -204,8 +204,8 @@ website:
             text: "Decision Register"
           - href: docs/about/archive.md
             text: "Archive: every edition"
-      - href: sitemap.qmd
-        text: "Site Map"
+      - href: workbook-map.qmd
+        text: "Workbook Map"
     right:
       - href: https://github.com/WhalerMike/modernization-workbook
         text: "GitHub"

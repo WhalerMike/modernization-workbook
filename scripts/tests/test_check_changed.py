@@ -20,7 +20,7 @@ PUBLISHED_ROOTS = ("docs/books/", "docs/evaluations/", "docs/training/", "docs/r
 
 def published(path: str) -> bool:
     """A stand-in for _quarto.yml's project.render rules."""
-    if path in ("index.qmd", "sitemap.qmd", "404.qmd", "docs/start-here.md"):
+    if path in ("index.qmd", "workbook-map.qmd", "404.qmd", "docs/start-here.md"):
         return True
     if any(part.startswith(("_", ".")) for part in path.split("/")):
         return False
@@ -59,7 +59,7 @@ class FullTier(unittest.TestCase):
         self.assert_full(mods("docs/books/b07-pki/_metadata.yml"), "folder metadata")
 
     def test_build_scripts_and_manifests(self):
-        for p in ("scripts/generate_sitemap.py", "scripts/generate_book_metrics.py",
+        for p in ("scripts/generate_workbook_map.py", "scripts/generate_book_metrics.py",
                   "scripts/generate_video_manifest.py", "scripts/write_redirects.py", "scripts/redirects.yml",
                   "scripts/build_bundles.py", "scripts/bundles.yml", "scripts/bundle-filter.lua",
                   ".github/workflows/quarto-pages.yml"):

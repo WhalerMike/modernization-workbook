@@ -1,0 +1,32 @@
+---
+title: "Workbook Map"
+subtitle: "Every page, deck, video and kit: what it does, where it lands and when it last changed"
+toc: true
+toc-depth: 2
+---
+
+This page lists **every object in the workbook**, so you can scan or search
+(`Ctrl`/`Cmd`+`F`) all of it at once. Each entry links to where the object lands.
+Use the contents on the right to jump between sections.
+
+| Date | What it means |
+|---|---|
+| Baseline | One date for everything, set by the baseline edition once the books have been checked against each other |
+| Last updated | The last time the object itself changed. Edition numbers in links and review records don't count |
+| Last verified | The last time the page was reviewed, or its claims were checked against their sources |
+
+: The dates in this map {.striped}
+
+A **Last updated** date later than **Last verified** means the page has changed since it was last checked.
+
+::: {.callout-note}
+This map is **generated on every site build** by
+[`scripts/generate_workbook_map.py`](https://github.com/WhalerMike/modernization-workbook/blob/main/scripts/generate_workbook_map.py),
+so it always matches the site. To regenerate it locally without a full build:
+
+```bash
+python scripts/generate_workbook_map.py
+```
+:::
+
+{{< include _workbook-map-tree.md >}}

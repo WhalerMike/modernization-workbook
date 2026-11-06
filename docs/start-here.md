@@ -59,5 +59,6 @@ Four short executive briefings, about six minutes each, watched in order. Episod
 | [Book 02 — Identity & Directory](books/b02-identity/index.md) | The identity foundation |
 | [Book 03 — HR-Driven Identity](books/b03-hr-identity/index.md) | HR as the source of authority, and Federal HR 2.0 |
 | [All presentations](presentations/index.md) | A deck for every book, with narrated editions |
+| [Workbook Map](../workbook-map.qmd) | Every page, deck, video and kit: what it does, where it lands and when it last changed |
 
 The workbook is independent analysis, not an official publication of any agency. Every claim in this briefing is footnoted to a primary source in the chapters linked above.

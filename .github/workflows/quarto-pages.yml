@@ -49,9 +49,9 @@ jobs:
         run: python3 scripts/command_reference.py
 
       - name: Generate site map
-        # Quarto resolves the include in sitemap.qmd before any pre-render
+        # Quarto resolves the include in workbook-map.qmd before any pre-render
         # script runs, so the tree must exist before the first render.
-        run: python3 scripts/generate_sitemap.py
+        run: python3 scripts/generate_workbook_map.py
 
       - name: Render DOCX to temporary directory
         run: |

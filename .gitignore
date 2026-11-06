@@ -1,8 +1,8 @@
 /.quarto/
 /_site/
 /_docx/
-# generated at build time by scripts/generate_sitemap.py
-/_sitemap-tree.md
+# generated at build time by scripts/generate_workbook_map.py
+/_workbook-map-tree.md
 # generated at build time by scripts/command_reference.py
 /docs/reference/_commands-body.md
 
