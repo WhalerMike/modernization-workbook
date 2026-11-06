@@ -96,6 +96,17 @@ Test them with `python -m pytest deploy/tests -q` (46 tests, kept apart from the
 | `python python/hr_evidence.py verify <package>` | Rechecks every file and the run inside | 0, 1 |
 | `python python/hr_evidence.py period --evidence <dir> --since <date> --until <date> --out <dir>` | Verifies the period's packages, the chain and the coverage; gives each metric's series and the Gate 7 criteria | 0 complete, 2 not, 1 |
 
+## OSCAL output (first slice)
+
+`python/oscal_export.py` turns an evidence package (drift report, findings, `EVIDENCE-MANIFEST.json`) into NIST OSCAL **1.2.3** JSON: an Assessment Results document and a POA&M. Release 1.2.3 is the version Book 14, Chapter 11 pins and the latest stable release on the OSCAL project's GitHub releases page (August 7, 2026). Generating needs only the standard library. `validate` checks against the pinned NIST schemas in `data/oscal-1.2.3/` (CC0, see its README) and needs `pip install jsonschema regex`. UUIDs are uuid5 over stable keys and timestamps come from the run, so reruns diff clean. Illustrative: validated against the schema and tested on fixtures, not accepted by any assessor tool.
+
+```bash
+python python/oscal_export.py export --package out/evidence/2026-10-29-0617-fixture-runner-fixture --acceptances oscal/tests/fixtures/acceptances.json --out out/oscal
+python python/oscal_export.py validate out/oscal/assessment-results.json out/oscal/poam.json
+```
+
+Dispositions (actionable drift, governed exception, lapsed acceptance) come from an acceptance register keyed by finding fingerprint; check-to-control mapping is `data/check-controls.json` (a draft to review). Supports RMF tasks A-4 (assessment results), A-6 and M-4 (POA&M); evidence for CA-2, CA-5, CA-7 and KSI-MLA-EVC. Tests: `python -m pytest oscal/tests -q` (17, separate suite so `tests` stays at 142). Not yet: SSP and Assessment Plan generation (next slice), so `import-ssp` and `import-ap` hrefs point at files you supply.
+
 ## Not covered
 
 - It doesn't run the validation kit or sign in; the workflow does both, and it hasn't been run against Azure.
