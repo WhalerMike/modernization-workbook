@@ -15,7 +15,7 @@ lifecycle_review: 2027-04-01
 
 # Chapter 11 — Three Principal Types: User, Group, Service Principal
 
-*This is the moment the engine stops accepting Kerberos and NTLM and starts accepting Entra-issued tokens.*
+*This is the moment the engine starts accepting Entra-issued tokens, and the Windows-backed logins that let Kerberos and NTLM in are removed.*
 
 ::: {.callout-note}
 ## In this chapter
@@ -26,7 +26,7 @@ Everything in Chapters 01 through 10 is prerequisite; everything in Chapters 14 
 
 ![Every legacy login type maps to an Entra principal.](../../images/sql-server/diagrams/svg/book-05-principal-mapping.svg){fig-alt="Type U Windows users map to type E Entra users, type G Windows groups to type X Entra groups, type S SQL logins to Entra applications (a managed identity or service principal), and sa is disabled and renamed rather than migrated."}
 
-This is the technical heart of the book: the engine stops accepting Kerberos tickets and NTLM exchanges and starts accepting Entra ID OAuth 2.0 access tokens, which Entra ID issues only after its sign-in conditions (identity, group membership, device compliance, MFA) are met. The SQL Server engine-authentication decision records the canonical sequence this chapter follows.
+This is the technical heart of the book: the engine starts accepting Entra ID OAuth 2.0 access tokens, with no usable Windows-backed login left to accept Kerberos tickets or NTLM exchanges. Windows Authentication itself can't be switched off; what ends is the logins that use it. Entra ID issues the tokens only after its sign-in conditions (identity, group membership, device compliance, MFA) are met. The SQL Server engine-authentication decision records the canonical sequence this chapter follows.
 
 ## The FROM EXTERNAL PROVIDER syntax
 

@@ -69,7 +69,7 @@ The sequencing imperative follows: complete the SQL Server login migration befor
 ::: {.callout-warning title="Unresolved: what happens to the long tail on 2027-04-01"}
 **Known fact.** Microsoft's plan is to disable network NTLM by default in the next major Windows release, subject to change; 2027-04-01 is this program's date, not Microsoft's ([Chapter 14](14-ntlm-and-the-patterns-that-generate-it.md)).
 
-**Dependency.** Pre-2022 instances, which can't use Entra authentication at all,[^c15-entra-sql] and deferred applications that can't reach Kerberos or Entra tokens by then rely on the certificate-based interim posture, which needs a replacement CA issuing before AD CS is retired ([Chapter 22](22-where-sql-server-touches-adcs.md)).
+**Dependency.** Pre-2022 instances, which can't use Entra authentication at all,[^c15-entra-sql] and deferred applications that can't reach Kerberos or Entra tokens by then rely on the certificate-based interim posture, which depends on Book 07's retained AD CS plan, with domain controller certificates staying on AD CS until the last domain controller retires ([Chapter 22](22-where-sql-server-touches-adcs.md)).
 
 **Unresolved decision.** Whether the Phase C date holds for instances whose interim posture isn't in place, or whether they get dated exceptions with network-level isolation.
 

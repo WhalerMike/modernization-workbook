@@ -132,9 +132,9 @@ ALTER ROLE [db_datareader] ADD MEMBER [sql-app-readers];
 
 ## Step 3 — The parallel run
 
-**Keep the Windows logins enabled** alongside the new Entra logins. Both work; nothing is removed. This is the parallel-run window the program's decision requires, and it's what makes the cutover reversible.
+**Keep the Windows logins enabled** alongside the new Entra logins. Both work; nothing is removed. This is the side-by-side validation the program's decision requires, and it's what makes the cutover reversible. The program's sequence is create, validate, disable, observe for 30 days, then drop ([Chapter 11](11-three-principal-types.md)); this step covers validation, and the 30-day observation follows the disable in Step 4.
 
-Observe which authentication scheme connections actually use, over a **30-day** window. Querying these views needs `VIEW SERVER STATE`, or `VIEW SERVER PERFORMANCE STATE` on SQL Server 2022 and later.[^r05-dm-exec-connections]
+Observe which authentication scheme connections actually use while both logins are enabled. Querying these views needs `VIEW SERVER STATE`, or `VIEW SERVER PERFORMANCE STATE` on SQL Server 2022 and later.[^r05-dm-exec-connections]
 
 ```sql
 -- Live: how are sessions authenticating right now?
@@ -150,7 +150,7 @@ ORDER BY sessions DESC;
 
 Read the `auth_scheme` column with two cautions. Connections made on the server itself always report `NTLM`, even when Kerberos is configured correctly, so judge Kerberos and NTLM only on connections from other hosts.[^r05-auth-scheme] And Microsoft documents the column only as the SQL Server or Windows authentication scheme of the connection,[^r05-dm-exec-connections] without listing the value an Entra-authenticated connection reports. Confirm on the pilot instance what your Entra test connections show before you encode it in the exit criteria.
 
-A point-in-time query misses connections that come and go between samples. Capture successful logins for the whole window with SQL Server Audit, so you have a durable 30-day record. The `SUCCESSFUL_LOGIN_GROUP` action group records every successful login, including connections reused from a pool.[^r05-audit-groups]
+A point-in-time query misses connections that come and go between samples. Capture successful logins for the whole window with SQL Server Audit, so you have a durable record that carries on through the 30-day observation after the disable in Step 4. The `SUCCESSFUL_LOGIN_GROUP` action group records every successful login, including connections reused from a pool.[^r05-audit-groups]
 
 ```sql
 USE master;
@@ -166,7 +166,7 @@ CREATE SERVER AUDIT SPECIFICATION [FMP_LoginParallelRun_Spec]
 ALTER SERVER AUDIT [FMP_LoginParallelRun] WITH (STATE = ON);
 ```
 
-Size the file target for the instance's login rate (pooled logins are recorded too), restrict access to the audit folder, and read the files with `sys.fn_get_audit_file`.[^r05-create-audit] The exit criteria for the window:
+Size the file target for the instance's login rate (pooled logins are recorded too), restrict access to the audit folder, and read the files with `sys.fn_get_audit_file`.[^r05-create-audit] The exit criteria for the validation period:
 
 - Every application and job that connected through a Windows login now also appears connecting through its Entra login.
 - **No** `NTLM` rows remain for the instance from remote clients (cross-check [Runbook R06](r06-ntlm-detection-and-remediation.md)).
@@ -176,14 +176,14 @@ Size the file target for the instance's login rate (pooled logins are recorded t
 
 ## Step 4 — Cutover
 
-Only after the observation window's exit criteria are met:
+Only after the validation period's exit criteria are met:
 
 ```sql
 -- Disable (don't drop) the superseded Windows login.
 ALTER LOGIN [CONTOSO\jdoe] DISABLE;
 ```
 
-Disable, observe for a further short tail, and only then consider dropping. Two things to check before you call a principal cut over. A principal often has more than one Windows path into the instance, such as an individual login and membership in one or more Windows **group** logins; cut over the group logins too, and confirm in the audit record that no Windows-authenticated logins remain for the principal. And disabling a login that is a `sysadmin` member also needs `CONTROL SERVER`.[^r05-alter-login] The narrative's rule, that the date is a backstop and the migration must already be complete, applies here: the program's 2027-04-01 NTLM backstop ([Runbook R06](r06-ntlm-detection-and-remediation.md)) is a program planning date, not a Microsoft deadline ([Chapter 02](02-why-the-inheritance-must-end.md)), and it assumes this cutover is finished well before it.
+Then observe for **30 days** after the disable, keeping the same SQL Server Audit running, and drop the login only when that record, with failed-login events for the disabled login added (`FAILED_LOGIN_GROUP`), shows nothing still depends on it. The sequence is create, validate, disable, observe for 30 days, drop ([Chapter 11](11-three-principal-types.md)); non-production instances may shorten the observation with documented owner sign-off. Two things to check before you call a principal cut over. A principal often has more than one Windows path into the instance, such as an individual login and membership in one or more Windows **group** logins; cut over the group logins too, and confirm in the audit record that no Windows-authenticated logins remain for the principal. And disabling a login that is a `sysadmin` member also needs `CONTROL SERVER`.[^r05-alter-login] The narrative's rule, that the date is a backstop and the migration must already be complete, applies here: the program's 2027-04-01 NTLM backstop ([Runbook R06](r06-ntlm-detection-and-remediation.md)) is a program planning date, not a Microsoft deadline ([Chapter 02](02-why-the-inheritance-must-end.md)), and it assumes this cutover is finished well before it.
 
 ## Rollback
 
@@ -193,7 +193,7 @@ Because the Windows logins are **disabled, not dropped**, rollback is immediate:
 ALTER LOGIN [CONTOSO\jdoe] ENABLE;
 ```
 
-The Windows database users from Step 2 are still in place, so re-enabling the login restores the old path in full. That is why nothing is dropped during the migration: keeping a disabled login costs almost nothing against the value of an instant rollback path.
+The Windows database users from Step 2 are still in place, so re-enabling the login restores the old path in full. That is why nothing is dropped until the 30-day observation after the disable ends: keeping a disabled login costs almost nothing against the value of an instant rollback path.
 
 ## The `sa` account
 
@@ -204,7 +204,7 @@ ALTER LOGIN [sa] DISABLE;
 ALTER LOGIN [sa] WITH NAME = [<new name>];
 ```
 
-Closing the enabled `sa` account is one step toward Windows-only, then Entra-only, authentication. For instances connected to Arc, Microsoft added a portal option to disable SQL authentication, generally available since April 2026; use it, after the SQL logins themselves are migrated, to close mixed mode.[^r05-arc-release-notes]
+Closing the enabled `sa` account is one step toward the Entra-exclusive operational posture. On SQL Server 2025 on Windows connected to Arc, Microsoft added a portal option to disable SQL authentication, generally available since April 2026; use it, after the SQL logins themselves are migrated. It is a separate setting from `LoginMode`, not a replacement for it.[^r05-arc-release-notes] On SQL Server 2022 instances, set Windows Authentication mode (`LoginMode = 1`) once the SQL logins are migrated.
 
 ::: {.callout-tip}
 ## Continue the book
