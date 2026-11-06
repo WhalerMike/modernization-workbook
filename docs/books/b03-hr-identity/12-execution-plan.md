@@ -1,6 +1,6 @@
 ---
 title: "Chapter 12 — Execution Plan"
-description: "One phase model for the whole program, Phase 0 to Phase 6, with the work and the exit gate for each: program alignment, attribute authority and schema, pipeline build and test, hybrid go-live, lifecycle automation and attribute-derived access, cutover to cloud-mastered populations, and sustained posture. Plus roles and the open verification register."
+description: "The HR track's phase model, Phase 0 to Phase 6, mapped to the program plan's phases, with the work and the exit gate for each: program alignment, attribute authority and schema, pipeline build and test, hybrid go-live, lifecycle automation and attribute-derived access, cutover to cloud-mastered populations, and sustained posture. Plus roles and the open verification register."
 doc-type: workbook-chapter
 audience: [Executive, Technical, Customer]
 family: b03-hr-identity
@@ -19,10 +19,12 @@ lifecycle_review: 2027-04-01
 
 ::: {.callout-note}
 ## In this chapter
-The one phase model this site uses, 0 to 6, with each phase's work and exit gate. The program at a glance. Roles. The open verification register.
+The HR track's phase model, 0 to 6, with each phase's work and exit gate, and how it maps to Book 00's phases. The program at a glance. Roles. The open verification register.
 :::
 
 ## Sequencing principle
+
+These phases are the HR-driven identity track's own. They are not the same phases as the seven-phase program plan in [Book 00, Chapter 05](../b00-orientation/05-the-program-plan.md#the-seven-phases-and-six-gates), where Phase 2 is the pilot division, Phase 3 is general rollout and Phase 5 is AD DS retirement. Read this track's Phases 0 to 2 as the work behind Book 00's Phase 1 (which puts the HR feed in place), Phase 3 here (the pilot) as feeding Book 00's Phase 2 pilot gate, and Phases 4 and 5 here as the lifecycle and cutover work inside Book 00's Phase 3 rollout, and Phase 6 here as Book 00's steady state. The gates of the two models are separate: this track's gates don't stand in for Book 00's G0 to G5.
 
 Each phase's gate is the next phase's precondition. The order isn't optional: deriving access from attributes nobody has agreed to trust is how fragmented truth gets rebuilt with better tooling. One caveat governs the whole program: the source must be *correct*, not just *designated*. A drifted HR feed produces drifted access faster than any ticket queue could, so data quality at the source is Phase 1 work, not a later clean-up. A phase that can't pass its gate stops the plan, not the standard.
 
@@ -39,14 +41,15 @@ Each phase's gate is the next phase's precondition. The order isn't optional: de
 - In the agency's Entra ID migration plan, name HR as the source for each population that moves, so the two migrations share one cutover schedule.
 - Identify legacy identity-relevant data to retain, and define how to preserve what doesn't migrate.
 - Confirm the pause on any competing Core HCM modernization; the memo allows exceptions only from the OMB and OPM Directors.
+- Take the HR-to-identity feed to the Core HCM Steering Committee as an agency-specific integration request (Chapter 03).
 
-**Gate:** the integration-point inventory is signed by the ISSO and submitted to the agency's HR 2.0 team, which sends the agency's responses to OMB and OPM as the memo directs.
+**Gate:** the integration-point inventory is signed by the ISSO and submitted to the agency's HR 2.0 team, which sends the agency's responses to OMB and OPM as the memo directs; the Steering Committee request for the identity feed is logged.
 
 ## Phase 1 — Attribute authority and schema
 
 - Record the enterprise identifier decision (Chapter 04): which key is the enterprise person key, and how source keys map to it.
 - Build the standard-attribute crosswalk (Chapter 06): each OPM standard element an identity decision reads, mapped to the canonical model; and the nature-of-action trigger table (Chapter 08).
-- Establish the privacy basis: routine use under the governing SORNs, the updated PIA, and the minimized attribute set (Appendix B).
+- Establish the privacy basis: the disclosure basis the privacy office determines under the governing SORNs, the updated PIA, and the minimized attribute set (Appendix B).
 - Decide the contractor and vendor source (Chapter 06): Core HCM contingent workers, the PIV sponsorship system, the agency's contractor suitability register, or a combination with one authority per fact. Retire the COR spreadsheets as a source of truth.
 - Decide the contractor PIV path (Chapter 09): the contractor joiner as the sponsorship trigger, the card management system's termination, revocation and expiry events into the middleware with their latency, and the end-date notice to the PIV office. The PIV office owns the interface; identity engineering and security are consulted. **Pending proof.** The contractor PIV path is the program's design and hasn't yet been validated in practice; the criteria for Proved are in the evaluation's [Status and review](../../evaluations/oracle-contingent-worker-contractor-source.md#status-and-review).
 - Sign the attribute authority map (Chapter 04): every attribute any access decision reads, its authoritative system, its derivation rule if derived, and its data-quality owner.
@@ -56,7 +59,7 @@ Each phase's gate is the next phase's precondition. The order isn't optional: de
 - Baseline HR data against reality for worker type, organization, supervisor and status, and fix errors at the source. Populate `employeeId` on existing accounts; flag every unmatched enabled account as an orphan candidate with an owner.
 - Inventory the PIV issuing CAs' CRL distribution points and sizes against Entra's limits (Chapter 09).
 
-**Gate:** the identifier decision, authority map and schema are signed; correlation-key population meets the approved threshold on the pilot cohort (proposed starting point: at least 99%); every enabled account is correlated to a worker record or on a dated exception list.
+**Gate:** the identifier decision, authority map and schema are signed; the disclosure basis is confirmed in writing by the privacy office, the PIA is updated and the minimized attribute set is agreed; the extension-attribute carriers are confirmed free; correlation-key population meets the approved threshold on the pilot cohort (proposed starting point: at least 99%); every enabled account is correlated to a worker record or on a dated exception list.
 
 ## Phase 2 — Pipeline build and test
 
@@ -84,7 +87,7 @@ Each phase's gate is the next phase's precondition. The order isn't optional: de
 - Convert hand-maintained groups to rules for dynamic membership, group by group, with a shadow comparison before each cutover (Chapter 10). Re-base access packages so approvals route to the supervisor of record: entitlement management's "Manager as approver" reads the user's `manager` attribute, so the HR-written supervisor link becomes the approval route, with a fallback approver for users who have none.[^c12-ap-approval]
 - Inventory OU-bound policy for retirement in Phase 5.
 
-**Gate (proposed starting criteria):** zero missed leavers across a full pay-period cycle; separation-to-block within the approved threshold and separation-to-revocation measured in hours; day-one readiness demonstrated; the account-creation ticket queue retired for covered populations; for covered applications, every entitlement resolves to a rule, an attribute and a worker record; a test reorganization in HR propagates to groups and approvals with zero manual directory changes.
+**Gate (proposed starting criteria):** zero missed leavers across a full pay-period cycle; separation-to-block within the approved threshold and separation-to-revocation measured in hours; day-one readiness demonstrated; for covered applications, every entitlement resolves to a rule, an attribute and a worker record; a test reorganization in HR propagates to groups and approvals with zero manual directory changes.
 
 ## Phase 5 — Cutover, population by population
 
@@ -108,8 +111,8 @@ Each population cuts over to HR-driven identity as it moves to Entra ID, and the
 
 | Phase | Output | Gate |
 |---|---|---|
-| 0 — Program alignment | Integration-point inventory; named points of contact | Inventory signed and submitted |
-| 1 — Attribute authority and schema | Signed authority map and schema; source data fixed; correlation baseline | Identifier decision recorded; risk-approved correlation threshold met on pilot; every enabled account correlated or excepted |
+| 0 — Program alignment | Integration-point inventory; named points of contact | Inventory signed and submitted; Steering Committee request logged |
+| 1 — Attribute authority and schema | Signed authority map and schema; source data fixed; correlation baseline | Identifier decision recorded; disclosure basis confirmed, PIA updated and minimized set agreed; carriers confirmed free; risk-approved correlation threshold met on pilot; every enabled account correlated or excepted |
 | 2 — Pipeline build and test | Middleware, apps, workflows, extensions in a test tenant | End-to-end J/M/L with evidence, including device and certificate steps |
 | 3 — Hybrid go-live (pilot) | Agents, initial sync, deltas, shadow mode | Risk-approved observation period with explained differences; zero unmatched creations |
 | 4 — Lifecycle automation and derived access | Leaver-first automation; dynamic groups; re-based access packages | Proposed: zero missed leavers; block within threshold; test reorganization with zero manual changes |
@@ -147,7 +150,7 @@ Phases 1 and 2 produce no visible change for end users, which is exactly why est
 | Whether the card management system can publish termination, revocation and expiry events keyed on the enterprise person key, and how fast | Whether the card system can be a contractor leaver input (Chapter 09) | Confirm with the PIV office and the card management system's operator |
 | Whether the contractor suitability register records engagement end dates and the enterprise person key | Whether it can be the contractor leaver signal and join on one key (Chapter 06) | Confirm with the register's owner |
 | Nature-of-action families and codes | The lifecycle trigger table (Chapter 08) | Checked against the GPPA, October 2026 edition;[^c12-gppa] re-check at engagement time |
-| Routine use under the governing SORNs; PIA update | The privacy basis for the feed (Appendix B) | Confirm with the agency privacy office |
+| Disclosure basis under the governing SORNs; PIA update | The privacy basis for the feed (Appendix B) | Confirm with the agency privacy office |
 | User source-of-authority transfer and Entra-to-AD provisioning in the tenant | The target landing pattern (Chapter 05) | Confirm availability and prerequisites in GCC |
 | Extension-attribute carriers free and mappable | Phase 1 gate | Check per tenant |
 | PIV issuing CA CRL sizes and delta CRLs | Revocation latency and CBA availability (Chapter 09) | Check per issuing CA |
