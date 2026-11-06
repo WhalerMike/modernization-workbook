@@ -343,7 +343,7 @@ On the governed path, the same scripts run with `-ApprovalRef` on every state-ch
 |---|---|---|---|---|
 | Server TLS certificates once servers leave the domain | Internal server TLS | Standalone AD CS under the same root | CyberArk Certificate Manager | Renews them; CAPI driver on Windows, Apache/PEM or the Server Agent on Linux |
 | WinRM over HTTPS listener certificates | Internal server TLS | Retained AD CS | CyberArk Certificate Manager | Renews them (inference) |
-| Intune device certificates (SCEP or PKCS) | Device and user auth (Intune) | Cloud PKI | Intune | Nothing |
+| Intune device certificates (SCEP from Cloud PKI; SCEP or PKCS only from AD CS through the connector) | Device and user auth (Intune) | Cloud PKI | Intune | Nothing |
 | Arc agent managed-identity certificate | Not a Book 07 class | Azure | Platform-managed, or not X.509 | Nothing: the agent renews it |
 | Hybrid-join device certificate | Not a Book 07 class | Self-signed or Entra | Platform-managed, or not X.509 | Nothing: platform-managed |
 
