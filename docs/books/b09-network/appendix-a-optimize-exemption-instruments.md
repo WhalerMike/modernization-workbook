@@ -141,7 +141,7 @@ Every line must be true before a site is listed in Table A2. A site that fails a
 - ☐ Monitoring agent registered to the **government instance** of the monitoring service, and absent from any commercial console.
 - ☐ **Tenant restrictions v2 signaled from the endpoint** and verified in force, with the device and browser population it doesn't cover listed rather than assumed empty.
 - ☐ Pre-cutover baseline captured and retained. This is the one step that can't be recovered afterward.
-- ☐ Branch telemetry reaching CISA services under the arrangement named in the memo.
+- ☐ Branch telemetry reaching CISA services under the arrangement named in the memo. For a pilot site this line may be open if the gap is recorded at Attachment B, B3; it must be true before the site joins fleet rollout.
 - ☐ Edge device sized for the finished architecture, including on-box inspection if the capability transfer places it there.
 - ☐ Revert owner named, reachable and able to act within one shift without an approval cycle.
 
