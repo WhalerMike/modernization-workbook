@@ -39,6 +39,18 @@ class Gate(unittest.TestCase):
     def tearDown(self):
         self.tmp.cleanup()
 
+    def test_a_new_edition_in_a_deck_link_keeps_the_approval(self):
+        url = "https://github.com/WhalerMike/modernization-workbook/releases/download/{}/DW_ADM_01.pptx"
+        self.page.write_text(PAGE + "\n[Deck](" + url.format("edition-2026.11.3") + ")\n", encoding="utf-8")
+        self.page.write_text(rg.approve(self.page), encoding="utf-8")
+        approved = self.page.read_text(encoding="utf-8")
+        self.page.write_text(approved.replace("edition-2026.11.3", "edition-2026.12"), encoding="utf-8")
+        self.assertEqual(rg.waiting(self.root), [], "a new edition's tag")
+        self.page.write_text(approved.replace("DW_ADM_01.pptx", "DW_ADM_02.pptx"), encoding="utf-8")
+        self.assertEqual(len(rg.waiting(self.root)), 1, "a link to a different file")
+        self.page.write_text(approved.replace("edition-2026.11.3/", "videos-2026-10-23/"), encoding="utf-8")
+        self.assertEqual(len(rg.waiting(self.root)), 1, "a link off the edition")
+
     def test_a_pending_page_waits_and_underscore_files_are_skipped(self):
         rows = rg.waiting(self.root)
         self.assertEqual([r["page"] for r in rows], [f"{rg.GATED[0]}/01-test.md"])

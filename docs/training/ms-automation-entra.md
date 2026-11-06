@@ -10,7 +10,7 @@ date-modified: 2026-11-01
 aliases:
   - /docs/research/ms-automation-entra.html
 review-status: approved
-reviewed-sha256: 3209ad68bd831d2fc849a9497c763ae1709540068083e12cf0c0f9dbd47a5ac9
+reviewed-sha256: d66a70f35515ecb7274b67e51c94fa6b10f6d0a5c17661926c96bc8388761b7c
 last-reviewed: 2026-11-05
 ---
 # Microsoft Automation, Module 2: Microsoft Entra ID through Microsoft Graph {.unnumbered}

@@ -10,7 +10,7 @@ date-modified: 2026-11-01
 aliases:
   - /docs/research/ms-automation-intune.html
 review-status: approved
-reviewed-sha256: ca1fddca34e6f7b77822c2be80acd7b4c503c46e1011d5718d95313e915bcc37
+reviewed-sha256: c5c9beb28c641038c4c783fac907a060d78e2de5aa69affaba88a54e80da34c1
 last-reviewed: 2026-11-05
 ---
 # Microsoft Automation, Module 3: Intune through Microsoft Graph {.unnumbered}

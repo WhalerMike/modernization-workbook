@@ -10,7 +10,7 @@ date-modified: 2026-11-01
 aliases:
   - /docs/research/ms-automation-foundations.html
 review-status: approved
-reviewed-sha256: 1a8d8cf155884b587ee38472020b25d61e7ec0fc1dde6d7e818085d50264ea21
+reviewed-sha256: 70cbcf33e60f3245c9b3e0477526d3b398ba969b71305f1530ac6f8e06bb708c
 last-reviewed: 2026-11-05
 ---
 # Microsoft Automation, Module 1: Graph and Azure Foundations {.unnumbered}
