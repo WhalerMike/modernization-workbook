@@ -6,6 +6,8 @@ project:
     - scripts/generate_workbook_map.py
     # Fills the Chapters, Pages and Last updated columns of the books table.
     - scripts/generate_book_metrics.py
+    # Fills the How the books connect table on the Books page.
+    - scripts/book_crosswalk.py
     # Lists every command in examples/ from the commands' own help.
     - scripts/command_reference.py
   # Writes forwarding pages for removed or merged URLs (scripts/redirects.yml).

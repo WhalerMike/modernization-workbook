@@ -128,6 +128,16 @@ The site always shows `main`. An **edition** is a fixed state of it: a git tag `
 
 A book is version 1.0 in the first edition it appears in, and one step up (1.1, 1.2) in each later edition that changes it. To start a new major version, set `version: "2.0"` on the book's entry in that edition. `scripts/generate_revisions.py` writes the history sections and the Archive from the record; never edit between the `revisions:start` / `revisions:end` or `archive:start` / `archive:end` comments. A developer workbook's pages, its implementation guide among them, all count as changes to that workbook. The review gate (`scripts/source_watch/review_gate.py`) leaves the generated history section out of a gated page's hash, as it does the narrated-tour block, so a new edition doesn't send approved pages back for review; any edit outside the markers still does. Its `--check` runs in the pull request checks whenever the record, a carrying page or the Archive changes (and in the FULL tier): it fails on a stale section, an edition id or date out of order, a book the record names that doesn't exist, or an edition with no tag.
 
+### Consistency read for an edition
+
+The workbook had one full read of every published page. Before each later edition, read only what changed and what leans on it:
+
+```bash
+python scripts/book_crosswalk.py --read-list edition-2026.11.4
+```
+
+Give it the last edition's tag. It lists the pages to read in full, the pages elsewhere that cite them, and the books the [book map](docs/books/index.md#how-the-books-connect) shows leaning most on each changed book. Fix what the read finds before cutting the edition. Pull requests already fail on a book or chapter reference that can't be right.
+
 ### Cutting an edition
 
 From a clean checkout of `main`, with the GitHub CLI signed in:
