@@ -81,6 +81,9 @@ jobs:
       - name: Check references to books and chapters
         run: python3 scripts/book_crosswalk.py --check --strict
 
+      - name: Check the Federal Framework Crosswalk
+        run: python3 scripts/check_framework_crosswalk.py --check
+
       - name: Run the tiered check
         # The script prints the tier, the reason and every check's result, and
         # writes the summary to $GITHUB_STEP_SUMMARY.
