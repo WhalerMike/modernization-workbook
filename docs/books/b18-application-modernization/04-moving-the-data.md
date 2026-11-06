@@ -37,7 +37,7 @@ The book's target architecture ([Chapter 03](03-the-target-reference-architectur
 | Current release, October 2026 | PostgreSQL 18, first released September 25, 2025 and supported to November 14, 2030; PostgreSQL 19 is at release candidate 1 (October 15, 2026)[^c04-pg-versions] | SQL Server 2025 (17.x), alongside 2022 and 2019, as targets of Microsoft's migration assistant[^c04-ssma] |
 | Support model | Each major version supported for five years after first release; PostgreSQL 14 receives no fixes after November 12, 2026[^c04-pg-versions] | Microsoft's product lifecycle |
 | Typical fit (program design) | Oracle sources with PL/SQL that converts well to PL/pgSQL; agencies standardizing on open-source engines or managed PostgreSQL services | Agencies with an established SQL Server estate and its operations, licensing and skills; Db2 and Oracle sources where Microsoft's tooling is preferred |
-| Identity and authentication | Engine and platform specific; part of the application's design in [Chapter 03](03-the-target-reference-architecture.md) | The program's SQL Server identity work in Book 06 applies in full (see below) |
+| Identity and authentication | Engine and platform specific; an open design item for each application, not settled in [Chapter 03](03-the-target-reference-architecture.md) | The program's SQL Server identity work in Book 06 applies in full (see below) |
 
 Two practical points follow from the table. First, a migration that targets PostgreSQL 14 now lands on a version that leaves community support within weeks; a new target should be PostgreSQL 18, or 19 once it is released and the agency's platform supports it. Second, the choice of engine also chooses the conversion tooling, because no single tool covers every source and target pair, as the tools table below shows.
 
@@ -93,7 +93,7 @@ This is what the book's reference implementation does. Its DB2 and Oracle to Pos
 
 Commercial tools do some of this work. AWS Database Migration Service, for example, validates by comparing each source row with its corresponding target row after a full load, and validates changes as they occur during change data capture; it writes mismatches to a control table on the target and offers validation-only tasks that can be run just before or during a cut-over window to count how many rows don't match at that moment.[^c04-dms-validation] Its documented limits are a useful checklist for any tool: validation needs a primary key or unique index on each table; it doesn't validate views or Oracle `LONG` columns; rows modified continuously during validation can't be validated; writes to the target from outside the migration make results unreliable; and validation stops when it finds more than 10,000 failed or suspended records.[^c04-dms-validation] A tool's row comparison is strong evidence for the second check. It isn't the third, because it compares what the tool moved, not what the business counts.
 
-The program keeps the three results with the cut-over decision. Each validation run produces a report naming the source and target, the time, the tables, the three results and every mismatch, and that report is the evidence the review gates in [Chapter 07](07-who-governs-the-architecture.md) examine before cut-over and the change record in [Chapter 06](06-compliance-by-design.md) retains.
+The program keeps the three results with the cut-over decision. Each validation run produces a report naming the source and target, the time, the tables, the three results and every mismatch, and that report is the evidence the release gate (Gate 4) in [Chapter 07](07-who-governs-the-architecture.md) examines before cut-over and the change record in [Chapter 06](06-compliance-by-design.md) retains.
 
 ## Cutting over
 
@@ -140,6 +140,7 @@ A new engine, hosting location or administration model can change a system of re
 | PIA update (M-03-22 §II.B.2) | Reports the new engine, any consolidation of databases, and every coexistence copy (CDC target, read replica) | Privacy office |
 | Test data (PM-25; SI-12(2)) | Converts and rehearses on masked or synthetic data; runs row-level validation only inside the production boundary and deletes its failure reports after reconciliation | Data owner; privacy office |
 | Inventory of PII (PM-5(1)) | Updates the PII system inventory when the target goes live and when the source retires | Privacy office |
+| Data inventory entry (Evidence Act; M-25-05) | Moves the data asset's entry in the agency data inventory to the new engine and updates its metadata when the target goes live, so the chief data officer's governance body sees the change ([Chapter 06](06-compliance-by-design.md)) | Data owner |
 | Disposal (SI-12(3)) | Retires the source and its backups only after the records disposition is confirmed ([Chapter 06](06-compliance-by-design.md#records-from-design-to-decommissioning); [Book 00, Chapter 10](../b00-orientation/10-retirement-steady-state-and-success.md#records-before-hardware-the-decommissioning-checklist)) | Records officer |
 
 : Privacy obligations in the data move {.striped .hover}
