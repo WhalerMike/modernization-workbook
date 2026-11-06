@@ -135,6 +135,7 @@ These are the only values you replace in this chapter's commands:
 | `<settings-file>` | That stage's settings file, such as `C:/change/CHG-2026-1102-T/settings.test.json` |
 | `<egress-range>` | The pilot's egress range for the workload location policy, in CIDR form (Chapter 08's `NL-WorkloadEgress`) |
 | `<microsoft-owner-tenant-id>` | The tenant ID Microsoft's first-party apps report as their owner, as Chapter 08 records it |
+| `<oos-object-id>`, `<oos-name>`, `<oos-class>`, `<oos-control>`, `<oos-reviewed-by>`, `<oos-reviewed-on>` | One identity that stays out of the Conditional Access scope (each managed identity and multitenant app in the tenant, including the pilot's managed identity) and the control that covers it, as Chapter 08's `outOfScope` entries have them; without a record for each, Chapter 08's check raises NPI-WCA-06 and the apply refuses to start |
 | `<d-n4-outcome>` | The CISO's Workload ID Premium decision (D-N4), in words, with `<d-n4-by>` and `<d-n4-on>` |
 | `<d-n5-by>`, `<d-n5-on>` | Who decided D-N5 (enforce a wave), and when |
 | `<sha>` | A plan's SHA-256, as the reviewer passes it back to you |
@@ -485,13 +486,14 @@ Run these before each stage, in the session block, after the Prepare step.
 
    The last line is `Result: GO for this stage` or `Result: NO-GO` with exit code 1. Fix every Fail before the stage starts.
 
-3. **Check the KDS root key** (G5), on a domain controller in the stage's forest, as a member of Domain Admins. A gMSA needs one, and domain controllers wait up to 10 hours after it's created before they allow a gMSA:[^np11-kds]
+3. **Check the KDS root key** (G5), on a domain controller in the stage's forest, with the delegated read of `msKds-UseStartTime` and `msKds-CreateTime` that [Chapter 06](06-gmsa-dmsa-and-the-kerberos-island.md) grants, not as a Domain Admin: `Get-KdsRootKey` returns the key's value, and Chapter 06 rejects it. A gMSA needs one, and domain controllers wait up to 10 hours after it's created before they allow a gMSA:[^np11-kds]
 
    ```powershell
-   Get-KdsRootKey | Select-Object KeyId, EffectiveTime, CreationTime
+   $cfg = (Get-ADRootDSE).configurationNamingContext
+   Get-ADObject -SearchBase "CN=Master Root Keys,CN=Group Key Distribution Service,CN=Services,$cfg" -Filter * -Properties msKds-UseStartTime, msKds-CreateTime | Select-Object Name, msKds-UseStartTime, msKds-CreateTime
    ```
 
-   **Expected:** at least one key whose `EffectiveTime` is more than 10 hours ago. If there is none, create one and wait 10 hours before Step 1.4:
+   **Expected:** at least one key whose `msKds-UseStartTime` is more than 10 hours ago. If there is none, create one and wait 10 hours before Step 1.4:
 
    ```powershell
    Add-KdsRootKey -EffectiveImmediately
@@ -518,7 +520,7 @@ Run these before each stage, in the session block, after the Prepare step.
 | CM-8, IA-4 | PF-07: the pilot and synthetic objects exist | KSI-PIY-GIV | PF-07 |
 | CM-3(2), CM-4(2) | PF-08: workload policies not enforced before the stage | KSI-CMT-VTD | PF-08 |
 | CA-7, CM-2 | PF-09: the VK-NPI baseline before the change | KSI-MLA-EVC | PF-09; the validation kit's `ValidationResults.json` under `runs/PRE` |
-| IA-5, IA-9 | PF-10 and the KDS root key: the forest can issue a gMSA | KSI-IAM-SNU | PF-10; the `Get-KdsRootKey` output filed with the change record |
+| IA-5, IA-9 | PF-10 and the KDS root key: the forest can issue a gMSA | KSI-IAM-SNU | PF-10; the start-time read's output filed with the change record |
 
 ## Stage 1: live test
 
@@ -644,7 +646,7 @@ Fulfils [G5 Conversion](../../../books/guides/non-person-identity-implementation
    Add-Content $s.pilot.cutoverLogPath "pilot-02,$(Get-Date -Format yyyy-MM-dd),$($s.operators[0].upn),,"
    ```
 
-   **Expected:** in the test stage, the run lasts as long as the smoke test needs; the 30-day run and the disable belong to production (Step 2.2). The old secret stays on the app: the pilot's app management policy doesn't remove it, and Chapter 04's change does, after the run.
+   **Expected:** in the test stage, the run lasts as long as the smoke test needs; the 30-day run and the disable belong to production (Step 2.2). The old secret stays on the app: the pilot's app management policy doesn't remove it, and the owner does, in a separate reviewed change made by hand (Chapter 04's write path accepts only certificates), after the run.
 
 Record the step's evidence:
 
@@ -695,6 +697,8 @@ Fulfils the Conditional Access half of [G4 Least privilege](../../../books/guide
        @{ objectId = $s.pilot.spObjectId; appId = $s.pilot.appClientId; name = $s.pilot.name; tier = 'Tier1'; servicePrincipalType = 'Application'; signInAudience = 'AzureADMyOrg'; ring = 'Ring1'; record = $s.changeRecord },
        @{ objectId = $s.smoke.spObjectId; appId = $s.smoke.appClientId; name = "npi-smoke-$stage"; tier = 'Tier1'; servicePrincipalType = 'Application'; signInAudience = 'AzureADMyOrg'; ring = 'Ring1'; record = $s.changeRecord })
    $sc.outOfScope = @()
+   # One record for each managed identity and multitenant app in the tenant, including the pilot's managed identity from Step 1.3; repeat the line for each
+   $sc.outOfScope += @{ objectId = '<oos-object-id>'; name = '<oos-name>'; class = '<oos-class>'; control = '<oos-control>'; reviewedBy = '<oos-reviewed-by>'; reviewedOn = '<oos-reviewed-on>' }
    $sc.egress.ranges = @('<egress-range>')
    $sc.licensing = @{ decision = 'D-N4'; outcome = '<d-n4-outcome>'; decidedBy = '<d-n4-by>'; decidedOn = '<d-n4-on>' }
    $sc.microsoftOwnerTenantIds = @('<microsoft-owner-tenant-id>')

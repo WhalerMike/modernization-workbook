@@ -145,7 +145,7 @@ Nothing in the plan writes. Each conversion gets one or more actions:
 | `LegacyStillInUse`, `NewCredentialFailing`, `NoSignInsOnNewCredential` | The run isn't clean (NPI-WIF-09) | No |
 | `AwaitingOwnerApproval` | A clean 30 days; the application owner approves the disable in the cutover log | No |
 | `DisableLegacy` | A clean 30 days and the owner's approval: `Disable-ADAccount -Identity <objectGUID>` | Yes, after review |
-| `RemoveSecretByOwner` | A clean 30 days for an app registration's secret: the owner removes it through [Chapter 04](04-app-management-policies-and-certificate-rotation.md)'s reviewed change; this code removes no credential | No |
+| `RemoveSecretByOwner` | A clean 30 days for an app registration's secret: the owner removes it in a separate reviewed change made by hand, because Chapter 04's write path accepts only certificates; this code removes no credential | No |
 | `Converted` | `DisabledOn` recorded: record the target, the date and the disabled object's ID | No |
 
 **The evidence for a clean run.** The new identity's sign-ins come from Graph's beta sign-in log, filtered by time, `appId` and `signInEventTypes` (`managedIdentity` or `servicePrincipal`), because only beta returns service principal and managed identity sign-ins, and only beta carries `clientCredentialType` and `federatedCredentialId`.[^np05-signins] [^np05-signin-resource] A new credential's sign-in is one with `clientCredentialType` `federatedIdentityCredential` and the credential's own ID, or `managedIdentity` for a managed identity. The legacy credential is in use if a `clientSecret` sign-in appears on the app after cutover, or the legacy AD account's `LastLogonDate` is after it, which is a lead to confirm on the domain controllers, not a fact (Chapter 01's research gaps, row 3). *Design guidance:* 30 days with no legacy use, no failed sign-ins on the new credential, at least one successful one, and a week with none is a finding.
@@ -624,7 +624,7 @@ KSIs are FedRAMP 20x indicators for cloud service providers. The KSI column name
 | Credentials created in parallel | 409 under one identity | One write at a time, the identity first |
 | The first exchange right after creation | `AADSTS70021` during propagation | The apply says to wait; Lab 2 waits and retries |
 | A disable on a stale lead | The job fails because the old account was still in use | 30 days, sign-ins on the new identity, no legacy use, the owner's approval, and a re-read before the write |
-| A delete | The rollback is gone | No delete action; the writer refuses `DELETE`; secrets are removed by the owner through [Chapter 04](04-app-management-policies-and-certificate-rotation.md) |
+| A delete | The rollback is gone | No delete action; the writer refuses `DELETE`; secrets are removed by the owner in a separate reviewed change made by hand (Chapter 04's write path accepts only certificates) |
 | A secret removed too early | The workload falls back and fails | `RemoveSecretByOwner` only after a clean run; `clientSecret` sign-ins after cutover keep the run open |
 | An assertion sent to a real endpoint | A token, or a test assertion, leaves the machine | The exchange test runs only against the fake; the manifest records the call, never the assertion |
 | An unattended app with `Application.ReadWrite.All` | A standing permission that can add a credential to any app | The write path is a person's delegated session; the read path holds `Application.Read.All` and `AuditLog.Read.All` |
@@ -639,7 +639,7 @@ KSIs are FedRAMP 20x indicators for cloud service providers. The KSI column name
 - [ ] Every user-assigned identity was created by the write path, and every managed identity's role assignments are in its record for Chapter 07.
 - [ ] The plan's SHA-256 was approved by someone other than the person who applied it, and the write path ran as a person, delegated.
 - [ ] Every cutover is in the cutover log, and every parallel run shows sign-ins on the new identity, no legacy use, and 30 days.
-- [ ] Every disable has the owner's approval and a `DisabledOn`; every secret is removed through [Chapter 04](04-app-management-policies-and-certificate-rotation.md)'s change, after its run.
+- [ ] Every disable has the owner's approval and a `DisabledOn`; every secret is removed by the owner in a separate reviewed change made by hand, after its run.
 - [ ] Nothing was deleted by this code; rollback (re-enable, revert the configuration) is still possible.
 - [ ] The pinned samples match their manifests, and every upstream commit since the pins has been reviewed.
 

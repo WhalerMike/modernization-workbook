@@ -87,7 +87,7 @@ Running the samples against the fixture estate shows what they do and what they 
 | Finds user accounts with SPNs, accounts trusted for delegation and passwords that never expire | — | Kept as the model: the same three criteria, plus the naming convention Learn recommends for them[^np01-user-svc] and the description attribute Learn suggests for on-premises service accounts[^np01-onprem] |
 | Reads every user with `-Filter *` and filters on the client, in three separate queries | Three full reads of the domain, and an account in two lists appears twice; no list is a register | One `Get-ADUser -LDAPFilter` query, one row per account, `DetectedBy` saying which criteria matched |
 | The password-never-expires query returns a person, with nothing to tell them apart | A person's account lands on a service account list, or a service account is dismissed as a person | Kept, marked "detected only by a password that never expires" (NPI-INV-08), so someone confirms before Chapter 02 applies the ownership rule |
-| The delegation query returns computer accounts | A domain-joined server sits among the service accounts | User objects only; computer accounts are left to Chapter 06 (research gaps, row 8) |
+| The delegation query returns computer accounts | A domain-joined server sits among the service accounts | User objects only; computer accounts are out of scope for the register, and Chapter 06 reads only traditional accounts, MSAs, gMSAs and dMSAs (research gaps, row 8) |
 | Reads no last logon, password age or group membership, though the page says to assess privileged group membership | Neither a stale lead nor "over-privileged" can be computed | `LastLogonDate`, `PasswordLastSet`, `MemberOf` and the delegation flags, read in the same query |
 | `Get-ADServiceAccount -Filter *` names two object classes; a dMSA comes back unlabeled, and the gMSA filter drops it | dMSAs, the type Book 02 keeps, go unclassified | MSA, gMSA and dMSA by object class; any other class reported as unknown (NPI-INV-09; research gaps, row 1) |
 | Reads no `PrincipalsAllowedToRetrieveManagedPassword` | A gMSA's blast radius is the hosts that can retrieve its password (the [implementation guide](../../../books/guides/non-person-identity-implementation.md#step-1-inventory-every-non-person-identity), step 1a) | Recorded in `Hosts` |
@@ -167,10 +167,10 @@ An account whose SPN starts with `MSSQLSvc/`, or whose name matches the program'
 
 ### The tests
 
-Pester 5 under PowerShell 7, 97 tests in three files, none needing a module, a tenant, a domain or a network. This chapter's are:
+Pester 5 under PowerShell 7, 513 tests across the kit (Lab 1 runs them all), none needing a module, a tenant, a domain or a network. This chapter's are:
 
 - `tests/MicrosoftSamples.Tests.ps1`, 20 tests in the Chapter 01 blocks: Learn's commands and script, run as published.
-- `tests/NpiInventory.Tests.ps1`, 36 tests: clouds, the call list (each task's declaration equals the union of its calls), refused calls, cmdlets, hosts and writes, paging with page sizes of 1, 3 and 50, the one LDAP query, every type in the register, credentials, permissions, risk, targets, the hand-off, stale leads, each finding, the manifest's hashes and the console output.
+- `tests/NpiInventory.Tests.ps1`, 37 tests: clouds, the call list (each task's declaration equals the union of its calls), refused calls, cmdlets, hosts and writes, paging with page sizes of 1, 3 and 50, the one LDAP query, every type in the register, credentials, permissions, risk, targets, the hand-off, stale leads, each finding, the manifest's hashes and the console output.
 
 The other 10 sample tests and the 31 in `tests/NpiOwnership.Tests.ps1` are Chapter 02's.
 
@@ -425,7 +425,7 @@ Remove-Item -Recurse -Force out/inventory-test
    Import-Csv out/inventory-test/register.csv | Where-Object Source -ne 'AD' | Sort-Object Type, Name | Format-Table Type, Name
    ```
 
-8. **Back it out.** Remove the Reader assignment and the two permissions, delete the app registration and its certificate, and delete `out/inventory-test`: it maps which accounts and apps can do what.
+8. **Back it out.** Do this after the last test-tenant lab, not before: Chapters 02, 03, 04, 06, 07 and 09 reuse this lab's reading app, its certificate and `out/inventory-test`, so keep all three until then, or rebuild them for each later lab. Then remove the Reader assignment and the two permissions, delete the app registration and its certificate, and delete `out/inventory-test`: it maps which accounts and apps can do what.
 
    1. In the Azure portal, open the resource group, **Access control (IAM)** > **Role assignments**, select the app's **Reader** row, and **Delete**.
    2. In the Microsoft Entra admin center, **Entra ID** > **App registrations**, open the app, and **Delete** it, with its certificate and its two permissions.

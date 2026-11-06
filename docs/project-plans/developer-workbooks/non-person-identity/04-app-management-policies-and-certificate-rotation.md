@@ -195,12 +195,12 @@ Both plans are written with the register's SHA-256, the tenant, the cloud and th
 - the Key Vault create body is empty: the rotation never changes a certificate policy;
 - `DELETE` and `PUT` are never sent.
 
-Before each write it re-reads the target and skips the write if the precheck no longer holds: the default policy changed since the diff was reviewed, a policy with the exception's name exists, the app already holds a policy, the app is already locked, the app's certificates or the vault's current version changed. Without `-Apply` it stops after the prechecks and reports `WouldSend`. With `-Apply` it sends, polls a Key Vault create until it completes,[^np04-kv-pending] and records every request in its manifest. A live run is delegated: a person signed in with Cloud Application Administrator and, for a rotation, Key Vault Certificates Officer on the vault.
+Before each write it re-reads the target and skips the write if the precheck no longer holds: the default policy changed since the diff was reviewed, a policy with the exception's name exists, the app already holds a policy, the app is already locked, the app's certificates or the vault's current version changed. Without `-Apply` it stops after the prechecks and reports `WouldSend`. With `-Apply` it sends, polls a Key Vault create until it completes,[^np04-kv-pending] and records every request in its manifest. A live run is delegated: a person signed in with Security Administrator and Cloud Application Administrator (or Application Administrator) for a policy run, and, for a rotation, Cloud Application Administrator and Key Vault Certificates Officer on the vault.
 
 | Task | Calls | Permissions and roles |
 |---|---|---|
 | `app-policy` (read) | `GET /policies/defaultAppManagementPolicy`, `/policies/appManagementPolicies`, `.../{id}/appliesTo`, `/applications/{id}` | `Application.Read.All`, `Policy.Read.All`[^np04-tenant-get] [^np04-amp-list] [^np04-amp-appliesto] [^np04-app-get] |
-| `policy-apply` (write, delegated only) | The reads; `PATCH /policies/defaultAppManagementPolicy`; `POST /policies/appManagementPolicies`; `POST /applications/{id}/appManagementPolicies/$ref`; `PATCH /applications/{id}` (lock) | `Application.Read.All`, `Application.ReadWrite.All`, `Policy.Read.All`, `Policy.ReadWrite.ApplicationConfiguration`; Cloud Application Administrator[^np04-tenant-update] [^np04-amp-post] [^np04-amp-assign] [^np04-app-update] |
+| `policy-apply` (write, delegated only) | The reads; `PATCH /policies/defaultAppManagementPolicy`; `POST /policies/appManagementPolicies`; `POST /applications/{id}/appManagementPolicies/$ref`; `PATCH /applications/{id}` (lock) | `Application.Read.All`, `Application.ReadWrite.All`, `Policy.Read.All`, `Policy.ReadWrite.ApplicationConfiguration`; Security Administrator and Cloud Application Administrator or Application Administrator[^np04-tenant-update] [^np04-amp-post] [^np04-amp-assign] [^np04-app-update] |
 | `rotation` (read) | `GET /applications/{id}`, `.../owners`, `/users/{id}`; Key Vault `GET /certificates/{name}` | `Application.Read.All`, `User.Read.All`; Key Vault Reader[^np04-kv-rbac] (research gaps, row 35) |
 | `rotation-apply` (write, delegated only) | `GET /applications/{id}`; Key Vault `GET /certificates/{name}`, `POST .../create`, `GET .../pending`; `PATCH /applications/{id}` (`keyCredentials`) | `Application.Read.All`, `Application.ReadWrite.All`; Key Vault Reader, Key Vault Certificates Officer; Cloud Application Administrator[^np04-app-update] [^np04-kv-cert-access] |
 
@@ -640,7 +640,7 @@ Copy-Item config/app-management-policy.json, config/rotation.json <test-copy>/
    (Get-FileHash out/policy-test/policy-plan.json -Algorithm SHA256).Hash.ToLower()
    ```
 
-3. **Review, dry-run and apply,** signed in as a person with Cloud Application Administrator:
+3. **Review, dry-run and apply,** signed in as a person with Security Administrator and Cloud Application Administrator (or Application Administrator):
 
    ```powershell
    Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes Application.Read.All, Application.ReadWrite.All, Policy.Read.All, Policy.ReadWrite.ApplicationConfiguration
@@ -648,7 +648,7 @@ Copy-Item config/app-management-policy.json, config/rotation.json <test-copy>/
    ./Invoke-NpiCredentialAction.ps1 -Cloud gcc -PlanPath out/policy-test/policy-plan.json -ApprovedSha256 <sha> -OutputPath out/policy-test-apply -Apply
    ```
 
-   Record whether Cloud Application Administrator alone was enough (research gaps, row 33) and the `state` Graph returns for each restriction (row 32). In the admin center, **Entra ID** > **Enterprise apps** > **Application policies** should show **Block password addition** and **Restrict max certificate lifetime** on, with no "modified outside of this interface" message.[^np04-configure] This reads the default policy back:
+   Record whether Cloud Application Administrator alone was enough, as confirmation only (research gaps, row 33) and the `state` Graph returns for each restriction (row 32). In the admin center, **Entra ID** > **Enterprise apps** > **Application policies** should show **Block password addition** and **Restrict max certificate lifetime** on, with no "modified outside of this interface" message.[^np04-configure] This reads the default policy back:
 
    ```powershell
    Invoke-MgGraphRequest -Uri https://graph.microsoft.com/v1.0/policies/defaultAppManagementPolicy | ConvertTo-Json -Depth 10
