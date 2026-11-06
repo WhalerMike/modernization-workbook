@@ -48,12 +48,12 @@ A control that is described in a plan but can't be shown working is a promise. A
 | **Who** | Who owns compliance, from the ISSO to the authorizing official | [10](10-who-owns-compliance.md) |
 | **How** | Build the authorization package and run continuous monitoring, and use the series as a map | [11](11-the-authorization-package.md), [12](12-the-series-as-a-map.md) |
 
-Appendices: [A — Control crosswalk](appendix-a-control-crosswalk.md) · [B — Product inventory questionnaire](appendix-b-product-inventory-questionnaire.md) · [C — Categorization walk-through](appendix-c-categorization-walkthrough.md)
+Appendices: [A — Control crosswalk](appendix-a-control-crosswalk.md) · [B — Product inventory questionnaire](appendix-b-product-inventory-questionnaire.md) · [C — Security assessment plan template](appendix-c-security-assessment-plan-template.md) · [D — Security assessment report template](appendix-d-security-assessment-report-template.md) · [E — Security impact analysis template](appendix-e-security-impact-analysis-template.md) · [F — Categorization walk-through](appendix-f-categorization-walkthrough.md)
 
 ## Reading paths
 
 - **Executives (20 minutes):** Chapters 01, 02 and 10, or the 15-minute presentation.
-- **ISSOs and compliance teams:** Chapters 03, 04 and 11, with both appendices.
+- **ISSOs and compliance teams:** Chapters 03, 04 and 11, with Appendices A and B. **Control assessors and system owners:** Chapter 11 with Appendices C, D and E.
 - **Authorizing officials:** Chapters 01, 02, 10 and 11.
 - **Privacy offices:** Chapter 08. **Supply chain and acquisition:** Chapter 07. **Continuity planners:** Chapter 06.
 - **Anyone choosing what to read next:** Chapter 12.

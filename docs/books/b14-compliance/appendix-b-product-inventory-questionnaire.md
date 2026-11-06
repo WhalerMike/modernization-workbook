@@ -143,7 +143,7 @@ Roll up everything that failed the scope rule, and every category with no produc
 
 ::: {.callout-tip}
 ## Continue the book
-[← Previous: Appendix A — Control Crosswalk](appendix-a-control-crosswalk.md) · [Book index](index.md) · [Next: Appendix C — Categorization Walk-Through](appendix-c-categorization-walkthrough.md)
+[← Previous: Appendix A — Control Crosswalk](appendix-a-control-crosswalk.md) · [Next: Appendix C — Security Assessment Plan Template →](appendix-c-security-assessment-plan-template.md) · [Book index](index.md)
 :::
 
 [^aB-scope]: FedRAMP, "Scope of FedRAMP," *FedRAMP Consolidated Rules for 2026*, quoting OMB Memorandum M-24-15, <https://www.fedramp.gov/2026/scope/> (accessed Oct 21, 2026).
