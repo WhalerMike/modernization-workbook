@@ -30,6 +30,13 @@ Every command in these kits is listed, with what it does and the pages that teac
 | **Ansible examples** — CMDB-driven inventory, assessment, Arc onboarding and drift | A dynamic inventory that reads a CMDB export and groups hosts by coverage tier, platform and configuration owner, and four small playbooks: the CM-8 inventory feed with Azure Arc agent status, Arc onboarding gated by check mode and an explicit `confirm_change=true`, a Linux baseline drift check pinned to check mode, and read-only Cisco IOS and Infoblox NIOS facts. Clean under `ansible-lint` (production profile) and `yamllint`, with tests that fail on any ungated write; run against a test control node, not proven against a live estate. See the companion guide [Ansible for Configuration Automation](books/guides/ansible-configuration-automation.md). | [ansible-examples.zip](../downloads/ansible-examples.zip), rebuilt on every site deploy from [`examples/ansible`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/ansible), with a `.txt` copy of every playbook and script |
 | **Application modernization reference implementation** | A Spring Boot REST service over PostgreSQL with its OpenAPI contract, a React front end, a DB2/Oracle to PostgreSQL migration tool that proves the move with row counts, checksums and aggregate reconciliation, and an agentic AI pattern with a provider-neutral interface and a stub model, so no API key is needed. Tests run against a real embedded PostgreSQL engine; docker-compose runs the whole stack. Illustrative, not production code. See [Book 18, Chapter 08](books/b18-application-modernization/08-the-reference-implementation.md). | [app-modernization.zip](../downloads/app-modernization.zip), rebuilt on every site deploy from [`examples/app-modernization`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/app-modernization), with a `.txt` copy of every source file |
 
+## Meeting templates
+
+| Template | Word form |
+|---|---|
+| [The One-Page Ask](books/guides/one-page-ask.md): the page to bring to the meeting that approves the pre-flight | [The_One_Page_Ask.docx](books/guides/files/The_One_Page_Ask.docx) |
+| [Charter Sign-Off Sheet](books/guides/charter-sign-off-sheet.md): names for the charter roles and the six gates | [Charter_Sign_Off_Sheet.docx](books/guides/files/Charter_Sign_Off_Sheet.docx) |
+
 ## Books as Word documents
 
 Each book downloads as one Word document with its chapters in reading order, its notes and its diagrams. The [books page](books/index.md) lists each book's chapter and page counts.

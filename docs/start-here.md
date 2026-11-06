@@ -56,6 +56,7 @@ Four short executive briefings, about six minutes each, watched in order. Episod
 |---|---|
 | [Book 00 executive briefing](presentations/index.md#executive-b00) | The decisions leadership must make, with owners and timing |
 | [Book 01, Chapter 12 — Migration roadmap](books/b01-transformation-arc/12-migration-roadmap.md) | Seven phases and six gates |
+| [The One-Page Ask](books/guides/one-page-ask.md) and [Charter Sign-Off Sheet](books/guides/charter-sign-off-sheet.md) | Fill-in Word forms for the meeting: the decision, your four numbers, and who signs what |
 | [Book 02 — Identity & Directory](books/b02-identity/index.md) | The identity foundation |
 | [Book 03 — HR-Driven Identity](books/b03-hr-identity/index.md) | HR as the source of authority, and Federal HR 2.0 |
 | [All presentations](presentations/index.md) | A deck for every book, with narrated editions |
