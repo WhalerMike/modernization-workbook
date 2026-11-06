@@ -124,7 +124,7 @@ The RADIUS server returns a VLAN (and optionally a filter and a session timeout)
 | Production | 100–190, by department | Valid certificate and Intune compliant | Agency resources, governed by network ACLs |
 | Remediation | 200 | Valid certificate, Intune noncompliant | Intune, Windows Update and Defender update endpoints, and DNS for those names only |
 | Quarantine | 999 | No certificate, unknown CA, expired or revoked | Captive portal only; no internal routing or internal name resolution |
-| Guest | 500 | MAC Authentication Bypass, unmanaged device | Internet only |
+| Guest | 500 | Explicitly registered guest or visitor device | Internet only |
 | IoT and OT | 300 | MAC Authentication Bypass, approved device class | That device class's management systems only |
 
 A device reaches production only by passing two independent checks: a certificate that is valid, issued by the device identity CA and not revoked, and a compliant state in Intune. A device that passes the first and fails the second goes to remediation, never silently to production. The remediation segment lets the device fix itself: updates install, definitions refresh, Intune re-evaluates, and CoA moves the port back without a reconnect. Build its allow list from Microsoft's published endpoint lists for the tenant's cloud rather than from a copied list of host names, because the endpoints differ between commercial, GCC and GCC High clouds ([Chapter 12](12-microsoft-365-traffic.md) covers how those lists are maintained).
@@ -133,7 +133,7 @@ Quarantine catches devices that fail certificate authentication entirely. A capt
 
 ### MAC Authentication Bypass
 
-Devices that can't run a supplicant, such as IP phones, printers, badge readers, cameras and HVAC controllers, are admitted by MAC Authentication Bypass (MAB): when the 802.1X timeout expires with no answer, the switch sends the device's MAC address to the RADIUS server as the credential. The policy matches it against approved device-class prefixes (to the IoT segment) and lets everything else fall to guest.
+Devices that can't run a supplicant, such as IP phones, printers, badge readers, cameras and HVAC controllers, are admitted by MAC Authentication Bypass (MAB): when the 802.1X timeout expires with no answer, the switch sends the device's MAC address to the RADIUS server as the credential. The policy matches it against approved device-class prefixes (to the IoT segment) and lets everything else fall to quarantine. Only devices explicitly registered as guest or visitor devices are placed in the guest segment.
 
 ::: {.callout-warning}
 ## MAB is classification, not authentication
@@ -222,7 +222,7 @@ For assessors, the program keeps RADIUS accounting exports (90 days, per the age
 | IA-3(1) Cryptographic bidirectional authentication | No mutual device-to-network authentication | The RADIUS server and the device each prove possession of a certificate's private key |
 | AC-3 Access enforcement | Policy is enforced only once a device has layer 3 connectivity | Policy is enforced at the port, before connectivity |
 | AC-18(1) Wireless access: authentication and encryption | The managed SSID admits anything that knows the passphrase | WPA3-Enterprise with EAP-TLS admits only enrolled devices with valid certificates |
-| AC-19 Access control for mobile devices | Personal devices reach the managed SSID | Unmanaged devices can't authenticate and are pointed to guest |
+| AC-19 Access control for mobile devices | Personal devices reach the managed SSID | Unmanaged devices can't authenticate; registered guest devices are pointed to guest, and all others are quarantined |
 | AC-20 Use of external systems | Vendor laptops in conference rooms are treated as agency devices | Vendor devices are quarantined unless an approved, time-limited exception exists |
 | SC-7(5) Deny by default, allow by exception | Unauthenticated devices get whatever the port's VLAN offers | The default is quarantine; access requires a successful authentication |
 | CM-6, CM-7 Configuration settings, least functionality | A noncompliant device reaches production; IoT devices move laterally | Noncompliant devices go to remediation; each IoT class reaches only its management systems |
