@@ -1,0 +1,284 @@
+[
+ {
+  "slide": 2,
+  "title": "Why the payload is where the record stays true",
+  "links": [
+   {
+    "text": "API-driven inbound provisioning with PowerShell script",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#api-driven-inbound-provisioning-with"
+   },
+   {
+    "text": "Perform bulkUpload",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#perform-bulkupload"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/01-the-hr-to-entra-middleware.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "Which cloud: the Graph host and the token authority",
+  "links": [
+   {
+    "text": "Microsoft Graph national cloud deployments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
+   },
+   {
+    "text": "Microsoft Entra feature availability",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-feature-availability"
+   },
+   {
+    "text": "CSV2SCIM at f2e8c59",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#csv2scim-at-f2e8c59"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/01-the-hr-to-entra-middleware.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "Where the middleware sits, and what it writes",
+  "links": [
+   {
+    "text": "Perform bulkUpload",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#perform-bulkupload"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/01-the-hr-to-entra-middleware.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Microsoft's sample: CSV2SCIM and its five modes",
+  "links": [
+   {
+    "text": "API-driven inbound provisioning with PowerShell script",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#api-driven-inbound-provisioning-with"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/01-the-hr-to-entra-middleware.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "The mapping file, and the pinned copy",
+  "links": [
+   {
+    "text": "API-driven inbound provisioning with PowerShell script",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#api-driven-inbound-provisioning-with"
+   },
+   {
+    "text": "CSV2SCIM at f2e8c59",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#csv2scim-at-f2e8c59"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/01-the-hr-to-entra-middleware.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "What the sample leaves to you: the record",
+  "links": [
+   {
+    "text": "API-driven inbound provisioning with PowerShell script",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#api-driven-inbound-provisioning-with"
+   },
+   {
+    "text": "CSV2SCIM at f2e8c59",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#csv2scim-at-f2e8c59"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/01-the-hr-to-entra-middleware.html"
+   },
+   {
+    "text": "Book 03, App. C",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/appendix-c-acceptance-and-cutover.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "What it leaves to you: pacing, clouds and evidence",
+  "links": [
+   {
+    "text": "CSV2SCIM at f2e8c59",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#csv2scim-at-f2e8c59"
+   },
+   {
+    "text": "Microsoft Graph national cloud deployments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/01-the-hr-to-entra-middleware.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "The code: two equivalent clients, one mapping",
+  "links": [
+   {
+    "text": "Perform bulkUpload",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#perform-bulkupload"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/01-the-hr-to-entra-middleware.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Validate, fail closed, and send the whole record",
+  "links": [
+   {
+    "text": "API-driven inbound provisioning concepts",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#api-driven-inbound-provisioning-concepts"
+   },
+   {
+    "text": "Book 03, App. A",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/appendix-a-lifecycle-rules.html"
+   },
+   {
+    "text": "quarantine contract",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/appendix-a-lifecycle-rules.html#the-quarantine-contract"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/01-overview-and-applicability.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Order, batch and hold; pace, retry and stop",
+  "links": [
+   {
+    "text": "ID Governance licensing",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-id-governance-licensing"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/01-the-hr-to-entra-middleware.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "The provenance manifest and the tests",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/01-the-hr-to-entra-middleware.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Who builds it, and what each identity may do",
+  "links": [
+   {
+    "text": "Perform bulkUpload",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#perform-bulkupload"
+   },
+   {
+    "text": "List provisioningObjectSummary",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-provisioningobjectsummary"
+   },
+   {
+    "text": "inbound provisioning concepts",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#api-driven-inbound-provisioning-concepts"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/01-the-hr-to-entra-middleware.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Lab 1: Microsoft's sample, then the hardened client",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/01-the-hr-to-entra-middleware.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Lab 1: compare, break it, hold it, test it",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/01-the-hr-to-entra-middleware.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Lab 2: a test tenant, five records, reconciled",
+  "links": [
+   {
+    "text": "inbound provisioning concepts",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#api-driven-inbound-provisioning-concepts"
+   },
+   {
+    "text": "Perform bulkUpload",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#perform-bulkupload"
+   },
+   {
+    "text": "List provisioningObjectSummary",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-provisioningobjectsummary"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/01-the-hr-to-entra-middleware.html"
+   }
+  ]
+ },
+ {
+  "slide": 17,
+  "title": "Dangers, and the guard for each",
+  "links": [
+   {
+    "text": "API-driven inbound provisioning concepts",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#api-driven-inbound-provisioning-concepts"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/01-the-hr-to-entra-middleware.html"
+   }
+  ]
+ },
+ {
+  "slide": 18,
+  "title": "Done when: the chapter's checklist",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/01-the-hr-to-entra-middleware.html"
+   },
+   {
+    "text": "Perform bulkUpload",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#perform-bulkupload"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/01-the-hr-to-entra-middleware.html"
+   }
+  ]
+ }
+]

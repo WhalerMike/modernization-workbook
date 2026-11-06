@@ -1,0 +1,686 @@
+[
+ {
+  "slide": 2,
+  "title": "Why this matters: the attributes now decide",
+  "links": [
+   {
+    "text": "Manage rules for dynamic membership groups",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#manage-rules-for-dynamic-membership-groups"
+   },
+   {
+    "text": "Book 01, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/04-identity-transformation.html"
+   },
+   {
+    "text": "Book 03, Ch 12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/12-execution-plan.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "What the OU tree encoded, and where each job goes",
+  "links": [
+   {
+    "text": "Manage rules for dynamic membership groups",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#manage-rules-for-dynamic-membership-groups"
+   },
+   {
+    "text": "Book 01, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/04-identity-transformation.html"
+   },
+   {
+    "text": "Book 02, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/09-building-the-entra-target.html"
+   },
+   {
+    "text": "Book 03, Ch 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/06-canonical-attribute-schema.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Four tracks, four sources of truth",
+  "links": [
+   {
+    "text": "Book 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/index.html"
+   },
+   {
+    "text": "Book 05, Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/03-where-device-and-server-data-lives.html"
+   },
+   {
+    "text": "04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/04-intune-first-onboarding.html"
+   },
+   {
+    "text": "08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/08-gpo-to-intune-policy-migration.html"
+   },
+   {
+    "text": "Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html"
+   },
+   {
+    "text": "Book 02, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/09-building-the-entra-target.html"
+   },
+   {
+    "text": "Book 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/index.html"
+   },
+   {
+    "text": "Book 17",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b17-ai-identity/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "What this migration accomplishes, and how you know",
+  "links": [
+   {
+    "text": "Book 03, Ch 12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/12-execution-plan.html"
+   },
+   {
+    "text": "Book 05, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/08-gpo-to-intune-policy-migration.html"
+   },
+   {
+    "text": "10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/10-operating-and-evidencing-the-fleet.html"
+   },
+   {
+    "text": "Book 02, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/10-migrating-and-governing.html"
+   },
+   {
+    "text": "Book 17, Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b17-ai-identity/05-owners-sponsors-and-lifecycle.html"
+   },
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Federal requirements each track satisfies",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "OMB M-19-17",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-19-17"
+   },
+   {
+    "text": "M-22-09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
+   },
+   {
+    "text": "M-25-21",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-25-21"
+   },
+   {
+    "text": "M-26-14",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-26-14"
+   },
+   {
+    "text": "FIPS 201-3",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fips-201-3"
+   },
+   {
+    "text": "BOD 25-01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-25-01"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "AD vs Entra ID: the model",
+  "links": [
+   {
+    "text": "user resource type",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#user-resource-type"
+   },
+   {
+    "text": "dynamic membership rules",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#manage-rules-for-dynamic-membership-groups"
+   },
+   {
+    "text": "Book 01, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/04-identity-transformation.html"
+   },
+   {
+    "text": "Book 02, Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/03-ad-and-entra-side-by-side.html"
+   },
+   {
+    "text": "09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/09-building-the-entra-target.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "The attributes you know, side by side",
+  "links": [
+   {
+    "text": "user resource type",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#user-resource-type"
+   },
+   {
+    "text": "dynamic membership rules",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#manage-rules-for-dynamic-membership-groups"
+   },
+   {
+    "text": "certificateUserIds",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#mapping-to-the-certificateuserids-attribute"
+   },
+   {
+    "text": "Book 03, Ch 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/06-canonical-attribute-schema.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Attribute stores and who can read them",
+  "links": [
+   {
+    "text": "certificateUserIds",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#mapping-to-the-certificateuserids-attribute"
+   },
+   {
+    "text": "Book 03, Ch 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/06-canonical-attribute-schema.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Nine stages, each with a decider and a gate",
+  "links": [
+   {
+    "text": "Book 02, Ch 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/06-who-owns-the-migration.html"
+   },
+   {
+    "text": "Book 03, Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/07-who-owns-workforce-identity.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Stage 0: read what the tree encodes before moving it",
+  "links": [
+   {
+    "text": "Book 02, Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/07-read-only-discovery.html"
+   },
+   {
+    "text": "Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/08-assessing-the-forest.html"
+   },
+   {
+    "text": "OU hierarchy",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/08-assessing-the-forest.html#ou-hierarchy-and-delegation"
+   },
+   {
+    "text": "what to collect",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/08-assessing-the-forest.html#what-to-collect"
+   },
+   {
+    "text": "Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/09-building-the-entra-target.html"
+   },
+   {
+    "text": "per-group decision",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/09-building-the-entra-target.html#the-per-group-decision"
+   },
+   {
+    "text": "AdminSDHolder",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/09-building-the-entra-target.html#adminsdholder-and-protected-groups"
+   },
+   {
+    "text": "Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/10-migrating-and-governing.html"
+   },
+   {
+    "text": "Phase 0",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/10-migrating-and-governing.html#phase-0-assessment"
+   },
+   {
+    "text": "Book 05, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/08-gpo-to-intune-policy-migration.html"
+   },
+   {
+    "text": "09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Stage 1: HR is the authority, one fact to one system",
+  "links": [
+   {
+    "text": "Book 01, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/04-identity-transformation.html"
+   },
+   {
+    "text": "Book 03, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/04-attribute-authority.html"
+   },
+   {
+    "text": "identifiers",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/04-attribute-authority.html#one-person-layered-identifiers"
+   },
+   {
+    "text": "Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/07-who-owns-workforce-identity.html"
+   },
+   {
+    "text": "where ownership fails",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/07-who-owns-workforce-identity.html#where-ownership-fails-and-how-the-program-prevents-it"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Federal HR 2.0: the coming source and what OPM leaves open",
+  "links": [
+   {
+    "text": "Book 03, Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/03-federal-hr-2-0.html"
+   },
+   {
+    "text": "program facts",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/03-federal-hr-2-0.html#the-program-facts"
+   },
+   {
+    "text": "what OPM requires",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/03-federal-hr-2-0.html#what-opm-requires-and-what-it-leaves-to-the-agency"
+   },
+   {
+    "text": "Ch 12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/12-execution-plan.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "API-driven inbound provisioning and the two landing zones",
+  "links": [
+   {
+    "text": "API-driven inbound provisioning concepts",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#api-driven-inbound-provisioning-concepts"
+   },
+   {
+    "text": "Entra releases",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-releases-and-announcements"
+   },
+   {
+    "text": "Entra feature availability",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-feature-availability"
+   },
+   {
+    "text": "Book 03, Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/05-the-provisioning-pipeline.html"
+   }
+  ]
+ },
+ {
+  "slide": 17,
+  "title": "What HR doesn't supply: contractors and other writers",
+  "links": [
+   {
+    "text": "Book 03, Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/03-federal-hr-2-0.html"
+   },
+   {
+    "text": "04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/04-attribute-authority.html"
+   },
+   {
+    "text": "05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/05-the-provisioning-pipeline.html"
+   },
+   {
+    "text": "06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/06-canonical-attribute-schema.html"
+   },
+   {
+    "text": "one fact",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/06-canonical-attribute-schema.html#one-fact-one-authority"
+   },
+   {
+    "text": "one authority",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/06-canonical-attribute-schema.html#one-fact-one-authority"
+   },
+   {
+    "text": "sequence",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/06-canonical-attribute-schema.html#sequence-start-with-what-already-exists"
+   },
+   {
+    "text": "Ch 13",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/13-reference-deployment.html"
+   },
+   {
+    "text": "Book 05, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/08-gpo-to-intune-policy-migration.html"
+   }
+  ]
+ },
+ {
+  "slide": 18,
+  "title": "The canonical schema, and one writer per attribute",
+  "links": [
+   {
+    "text": "Book 03, Ch 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/06-canonical-attribute-schema.html"
+   },
+   {
+    "text": "design rules",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/06-canonical-attribute-schema.html#design-rules"
+   },
+   {
+    "text": "writers",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/06-canonical-attribute-schema.html#writers"
+   },
+   {
+    "text": "program attribute map",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/06-canonical-attribute-schema.html#program-attribute-map"
+   },
+   {
+    "text": "Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/07-who-owns-workforce-identity.html"
+   },
+   {
+    "text": "Book 06, Ch 17",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/17-dynamic-membership-delegation-and-privilege.html"
+   }
+  ]
+ },
+ {
+  "slide": 19,
+  "title": "Stage 2: prove the attributes true before use",
+  "links": [
+   {
+    "text": "Book 01, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/04-identity-transformation.html"
+   },
+   {
+    "text": "from sessions to tokens",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/04-identity-transformation.html#from-sessions-to-tokens"
+   },
+   {
+    "text": "Book 03, Ch 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/06-canonical-attribute-schema.html"
+   },
+   {
+    "text": "writers",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/06-canonical-attribute-schema.html#writers"
+   },
+   {
+    "text": "Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/07-who-owns-workforce-identity.html"
+   },
+   {
+    "text": "privacy office",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/07-who-owns-workforce-identity.html#the-privacy-office"
+   },
+   {
+    "text": "Ch 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/11-drift-metrics-and-evidence.html"
+   },
+   {
+    "text": "Ch 12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/12-execution-plan.html"
+   },
+   {
+    "text": "sequencing principle",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/12-execution-plan.html#sequencing-principle"
+   },
+   {
+    "text": "Phase 1",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/12-execution-plan.html#phase-1-attribute-authority-and-schema"
+   }
+  ]
+ },
+ {
+  "slide": 20,
+  "title": "Stage 3: map the attributes through sync",
+  "links": [
+   {
+    "text": "Book 02, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/09-building-the-entra-target.html"
+   },
+   {
+    "text": "sync engine",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/09-building-the-entra-target.html#choosing-and-configuring-the-sync-engine"
+   },
+   {
+    "text": "filtering",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/09-building-the-entra-target.html#filtering"
+   },
+   {
+    "text": "attribute flow",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/09-building-the-entra-target.html#attribute-flow-and-transformations"
+   },
+   {
+    "text": "Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/10-migrating-and-governing.html"
+   },
+   {
+    "text": "Book 03, Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/05-the-provisioning-pipeline.html"
+   },
+   {
+    "text": "Ch 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/06-canonical-attribute-schema.html"
+   },
+   {
+    "text": "Ch 12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/12-execution-plan.html"
+   },
+   {
+    "text": "Phase 3",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/12-execution-plan.html#phase-3-hybrid-go-live-pilot"
+   }
+  ]
+ },
+ {
+  "slide": 22,
+  "title": "Stage 4: OU subtrees become dynamic-group rules",
+  "links": [
+   {
+    "text": "Book 01, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/04-identity-transformation.html"
+   },
+   {
+    "text": "two query patterns",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/04-identity-transformation.html#the-two-query-patterns"
+   },
+   {
+    "text": "Book 02, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/09-building-the-entra-target.html"
+   },
+   {
+    "text": "Book 03, Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/07-who-owns-workforce-identity.html"
+   },
+   {
+    "text": "Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/10-from-attributes-to-access.html"
+   },
+   {
+    "text": "rule patterns",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/10-from-attributes-to-access.html#rule-patterns"
+   },
+   {
+    "text": "Book 06, Ch 16",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/16-groups-roles-and-membership.html"
+   },
+   {
+    "text": "Ch 17",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/17-dynamic-membership-delegation-and-privilege.html"
+   }
+  ]
+ },
+ {
+  "slide": 23,
+  "title": "Stage 5: delegation moves to administrative units",
+  "links": [
+   {
+    "text": "Book 01, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/04-identity-transformation.html"
+   },
+   {
+    "text": "three-tier model",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/04-identity-transformation.html#the-three-tier-model"
+   },
+   {
+    "text": "restricted management",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/04-identity-transformation.html#restricted-management"
+   },
+   {
+    "text": "Book 02, Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/05-delegation-without-ous.html"
+   },
+   {
+    "text": "drift",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/05-delegation-without-ous.html#drift-detection"
+   },
+   {
+    "text": "Ch 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/06-who-owns-the-migration.html"
+   },
+   {
+    "text": "Book 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 24,
+  "title": "Stage 6: Conditional Access targets personas, not the tree",
+  "links": [
+   {
+    "text": "Book 01, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/04-identity-transformation.html"
+   },
+   {
+    "text": "verification",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/04-identity-transformation.html#verification"
+   },
+   {
+    "text": "Book 02, Ch 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/06-who-owns-the-migration.html"
+   },
+   {
+    "text": "Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/09-building-the-entra-target.html"
+   },
+   {
+    "text": "testing and rollout",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/09-building-the-entra-target.html#testing-and-rollout"
+   },
+   {
+    "text": "Book 04, Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/03-the-conditional-access-model.html"
+   },
+   {
+    "text": "personas",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/03-the-conditional-access-model.html#personas"
+   },
+   {
+    "text": "pairs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/03-the-conditional-access-model.html#policies-come-in-pairs"
+   },
+   {
+    "text": "exclusions",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/03-the-conditional-access-model.html#exclusions"
+   }
+  ]
+ },
+ {
+  "slide": 25,
+  "title": "Dynamic user groups: the dangers, and how to avoid them",
+  "links": [
+   {
+    "text": "Book 03, Ch 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/06-canonical-attribute-schema.html"
+   },
+   {
+    "text": "10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/10-from-attributes-to-access.html"
+   },
+   {
+    "text": "Book 06, Ch 16",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/16-groups-roles-and-membership.html"
+   },
+   {
+    "text": "17",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/17-dynamic-membership-delegation-and-privilege.html"
+   }
+  ]
+ },
+ {
+  "slide": 26,
+  "title": "Limits: dynamic membership and latency",
+  "links": [
+   {
+    "text": "dynamic membership rules",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#manage-rules-for-dynamic-membership-groups"
+   },
+   {
+    "text": "memberOf operator",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-dynamic-membership-groups-with-the"
+   },
+   {
+    "text": "dynamic group processing",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#understand-and-manage-dynamic-group"
+   },
+   {
+    "text": "Book 03, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/08-joiner-mover-leaver.html"
+   },
+   {
+    "text": "10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/10-from-attributes-to-access.html"
+   }
+  ]
+ },
+ {
+  "slide": 27,
+  "title": "Part 1 decisions: the HR track, owners, where to start",
+  "links": [
+   {
+    "text": "Book 02, Ch 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/06-who-owns-the-migration.html"
+   },
+   {
+    "text": "Book 03, Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/07-who-owns-workforce-identity.html"
+   }
+  ]
+ },
+ {
+  "slide": 28,
+  "title": "What's in Part 2",
+  "links": [
+   {
+    "text": "Books 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/index.html"
+   }
+  ]
+ }
+]

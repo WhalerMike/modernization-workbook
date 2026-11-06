@@ -1,0 +1,120 @@
+[
+ {
+  "slide": 2,
+  "title": "Why a closed ticket isn't a closed finding",
+  "links": [
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/05-the-re-read-rule.html"
+   },
+   {
+    "text": "SDIM: Best Practices",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sailpoint-sdim-best-practices"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Gate 6: the business rule decides who can close",
+  "links": [
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/05-the-re-read-rule.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "The re-read client: read, compare, close or reopen",
+  "links": [
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/05-the-re-read-rule.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "A stale read waits; a missing read is an error",
+  "links": [
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/05-the-re-read-rule.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Chapter 05 adds a guard and an offline mode",
+  "links": [
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/05-the-re-read-rule.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Six fictional waiting records, one per outcome",
+  "links": [
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/05-the-re-read-rule.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Try it: re-read six findings at noon on November 1",
+  "links": [
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/05-the-re-read-rule.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Try it: a day later, and the business rule's tests",
+  "links": [
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/05-the-re-read-rule.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Lab 2: enforce the rule in a developer instance",
+  "links": [
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/05-the-re-read-rule.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "The federal requirement, and the evidence to keep",
+  "links": [
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/05-the-re-read-rule.html"
+   },
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/05-the-re-read-rule.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Check yourself: two questions on the re-read rule",
+  "links": [
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/05-the-re-read-rule.html"
+   }
+  ]
+ }
+]

@@ -1,0 +1,280 @@
+[
+ {
+  "slide": 2,
+  "title": "Why the inventory comes first",
+  "links": [
+   {
+    "text": "Plan a PIM deployment",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#plan-a-privileged-identity-management"
+   },
+   {
+    "text": "Book 04, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/04-privileged-roles-and-tiers.html"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/01-access-is-a-policy-decision.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "Which cloud: Graph and Resource Manager hosts",
+  "links": [
+   {
+    "text": "Graph national cloud deployments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
+   },
+   {
+    "text": "Compare Azure Government and global Azure",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#compare-azure-government-and-global-azure"
+   },
+   {
+    "text": "EMS for US Government",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#enterprise-mobility-security-for-us"
+   },
+   {
+    "text": "Entra feature availability",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-feature-availability"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/01-privileged-inventory-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "What the inventory reads: five collections",
+  "links": [
+   {
+    "text": "PIM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-microsoft-entra-privileged-identity"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/01-privileged-inventory-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "The tier comes from the program, not Microsoft",
+  "links": [
+   {
+    "text": "Privileged roles",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#privileged-roles-and-permissions-in"
+   },
+   {
+    "text": "Azure built-in roles",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#azure-built-in-roles"
+   },
+   {
+    "text": "Book 04, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/04-privileged-roles-and-tiers.html"
+   },
+   {
+    "text": "Appendix B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/appendix-b-pim-role-settings.html"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/01-access-is-a-policy-decision.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Learn's samples, pinned and run against stand-ins",
+  "links": [
+   {
+    "text": "PIM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-microsoft-entra-privileged-identity"
+   },
+   {
+    "text": "entra-docs at 07cb73d",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#entra-docs-at-07cb73d"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/01-privileged-inventory-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "What the samples miss: eligibility, paging, groups",
+  "links": [
+   {
+    "text": "Get-MgRoleManagementDirectoryRoleAssignment",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#get-mgrolemanagementdirectoryroleassignment"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/01-privileged-inventory-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "What the samples miss: names, clouds, Azure",
+  "links": [
+   {
+    "text": "Azure built-in roles",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#azure-built-in-roles"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/01-privileged-inventory-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "The reader and its four rules",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/01-privileged-inventory-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "The rows: one per assignment, counted once",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/01-privileged-inventory-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "The findings: nine rules, PA-INV-01 to PA-INV-09",
+  "links": [
+   {
+    "text": "Plan a PIM deployment",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#plan-a-privileged-identity-management"
+   },
+   {
+    "text": "Entra roles best practices",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#entra-roles-best-practices"
+   },
+   {
+    "text": "Azure RBAC best practices",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#best-practices-for-azure-rbac"
+   },
+   {
+    "text": "Graph permissions overview",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#overview-of-microsoft-graph-permissions"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/01-privileged-inventory-as-code.html"
+   },
+   {
+    "text": "Book 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "The manifest, the tests, and one known gap",
+  "links": [
+   {
+    "text": "List group members",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-group-members"
+   },
+   {
+    "text": "Known issues in Microsoft Graph",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#known-issues-in-microsoft-graph"
+   },
+   {
+    "text": "Get-MgRoleManagementDirectoryRoleAssignment",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#get-mgrolemanagementdirectoryroleassignment"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/01-privileged-inventory-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Who builds it, who reviews it, what it may read",
+  "links": [
+   {
+    "text": "List group members",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-group-members"
+   },
+   {
+    "text": "Azure built-in roles",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#azure-built-in-roles"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/01-privileged-inventory-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Lab 1: run Learn's samples and the inventory offline",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/01-privileged-inventory-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Lab 1: reading the findings and the refusals",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/01-privileged-inventory-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Lab 2: a test tenant, read-only, cross-checked",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/01-privileged-inventory-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 17,
+  "title": "Dangers, and the guard for each",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/01-privileged-inventory-as-code.html"
+   },
+   {
+    "text": "Known issues in Microsoft Graph",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#known-issues-in-microsoft-graph"
+   }
+  ]
+ },
+ {
+  "slide": 18,
+  "title": "Done when: the chapter's checklist",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/01-privileged-inventory-as-code.html"
+   },
+   {
+    "text": "Plan a PIM deployment",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#plan-a-privileged-identity-management"
+   }
+  ]
+ }
+]

@@ -1,0 +1,458 @@
+[
+ {
+  "slide": 2,
+  "title": "Every access decision is a policy decision",
+  "links": [
+   {
+    "text": "OMB M-22-09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
+   },
+   {
+    "text": "NIST SP 800-207",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-207"
+   },
+   {
+    "text": "CISA ZTMM v2.0",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cisa-ztmm"
+   },
+   {
+    "text": "Conditional Access",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-conditional-access"
+   },
+   {
+    "text": "Book 04, Chapters 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/01-access-is-a-policy-decision.html"
+   },
+   {
+    "text": "03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/03-the-conditional-access-model.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "Membership and location decide once; policy, every time",
+  "links": [
+   {
+    "text": "OMB M-22-09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
+   },
+   {
+    "text": "NIST SP 800-207",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-207"
+   },
+   {
+    "text": "dynamic membership processing",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#understand-and-manage-dynamic-group"
+   },
+   {
+    "text": "Book 04, Chapters 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/01-access-is-a-policy-decision.html"
+   },
+   {
+    "text": "03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/03-the-conditional-access-model.html"
+   },
+   {
+    "text": "Book 02, Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/06-who-owns-the-migration.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "Standing privilege is an open door",
+  "links": [
+   {
+    "text": "NSA/CISA AA23-278A",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#aa23-278a"
+   },
+   {
+    "text": "PIM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-microsoft-entra-privileged-identity"
+   },
+   {
+    "text": "Book 04, Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/02-why-standing-privilege-fails.html"
+   },
+   {
+    "text": "Book 02, Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/06-who-owns-the-migration.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "What least privilege requires, and what policy says",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "SP 800-53B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53b"
+   },
+   {
+    "text": "OMB M-22-09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
+   },
+   {
+    "text": "NIST SP 800-207",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-207"
+   },
+   {
+    "text": "CISA ZTMM v2.0",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cisa-ztmm"
+   },
+   {
+    "text": "Book 04, Chapters 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/02-why-standing-privilege-fails.html"
+   },
+   {
+    "text": "04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/04-privileged-roles-and-tiers.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "The Conditional Access baseline, built to BOD 25-01",
+  "links": [
+   {
+    "text": "CISA BOD 25-01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-25-01"
+   },
+   {
+    "text": "required configurations",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-25-01-required-configurations"
+   },
+   {
+    "text": "SCuBA Entra ID baseline",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#scuba-entra-baseline"
+   },
+   {
+    "text": "Conditional Access",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-conditional-access"
+   },
+   {
+    "text": "Book 04, Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/07-the-conditional-access-policy-library.html"
+   },
+   {
+    "text": "Book 02, Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/06-who-owns-the-migration.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Phishing-resistant MFA is the end state",
+  "links": [
+   {
+    "text": "CISA BOD 25-01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-25-01"
+   },
+   {
+    "text": "OMB M-22-09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
+   },
+   {
+    "text": "authentication strengths",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#conditional-access-authentication-strengths"
+   },
+   {
+    "text": "passwordless deployment",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#plan-a-phishing-resistant-passwordless"
+   },
+   {
+    "text": "Book 04, Chapters 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/03-the-conditional-access-model.html"
+   },
+   {
+    "text": "07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/07-the-conditional-access-policy-library.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Policies come in pairs, and Microsoft adds its own",
+  "links": [
+   {
+    "text": "Conditional Access",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-conditional-access"
+   },
+   {
+    "text": "Book 04, Chapters 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/03-the-conditional-access-model.html"
+   },
+   {
+    "text": "07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/07-the-conditional-access-policy-library.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Privileged roles are tiered by what they can take over",
+  "links": [
+   {
+    "text": "privileged roles",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#privileged-roles-and-permissions-in"
+   },
+   {
+    "text": "least privileged roles by task",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#least-privileged-roles-by-task-in-microsoft"
+   },
+   {
+    "text": "enterprise access model",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#enterprise-access-model"
+   },
+   {
+    "text": "PIM role settings",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-microsoft-entra-role-settings-in"
+   },
+   {
+    "text": "Book 04, Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/04-privileged-roles-and-tiers.html"
+   },
+   {
+    "text": "Book 02, Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/06-who-owns-the-migration.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Just in time, approved from outside the tier",
+  "links": [
+   {
+    "text": "PIM role settings",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-microsoft-entra-role-settings-in"
+   },
+   {
+    "text": "Book 04, Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/08-pim-self-request-with-approval.html"
+   },
+   {
+    "text": "Appendix B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/appendix-b-pim-role-settings.html"
+   },
+   {
+    "text": "Book 02, Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/06-who-owns-the-migration.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Four things that can quietly undo the gate",
+  "links": [
+   {
+    "text": "PIM licensing",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-are-access-reviews"
+   },
+   {
+    "text": "protected actions",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-are-protected-actions-in-microsoft"
+   },
+   {
+    "text": "PIM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-microsoft-entra-privileged-identity"
+   },
+   {
+    "text": "Book 04, Chapters 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/04-privileged-roles-and-tiers.html"
+   },
+   {
+    "text": "08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/08-pim-self-request-with-approval.html"
+   },
+   {
+    "text": "Book 02, Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/06-who-owns-the-migration.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Break-glass: the one governed exception",
+  "links": [
+   {
+    "text": "emergency access accounts",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#manage-emergency-access-accounts-in"
+   },
+   {
+    "text": "NIST SP 800-53",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "Book 04, Chapters 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/02-why-standing-privilege-fails.html"
+   },
+   {
+    "text": "04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/04-privileged-roles-and-tiers.html"
+   },
+   {
+    "text": "06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/06-who-decides-access.html"
+   },
+   {
+    "text": "08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/08-pim-self-request-with-approval.html"
+   },
+   {
+    "text": "Book 02, Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/06-who-owns-the-migration.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Deciding isn't doing: rules Entra doesn't enforce",
+  "links": [
+   {
+    "text": "NIST SP 800-53",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "Book 04, Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/06-who-decides-access.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Application risk tiers set the approval chain",
+  "links": [
+   {
+    "text": "Book 04, Chapters 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/05-applications-and-workload-identities.html"
+   },
+   {
+    "text": "06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/06-who-decides-access.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Applications are identities, with owners and an end",
+  "links": [
+   {
+    "text": "Book 04, Chapters 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/05-applications-and-workload-identities.html"
+   },
+   {
+    "text": "06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/06-who-decides-access.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Who decides what for access",
+  "links": [
+   {
+    "text": "NIST SP 800-37 Rev. 2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-37"
+   },
+   {
+    "text": "NIST SP 800-53",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "CISA BOD 25-01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-25-01"
+   },
+   {
+    "text": "Book 04, Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/06-who-decides-access.html"
+   },
+   {
+    "text": "responsibility matrix",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/06-who-decides-access.html#the-responsibility-matrix"
+   },
+   {
+    "text": "Exceptions",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/06-who-decides-access.html#exceptions"
+   },
+   {
+    "text": "Book 02, Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/06-who-owns-the-migration.html"
+   }
+  ]
+ },
+ {
+  "slide": 17,
+  "title": "Govern access with packages, reviews and expiry",
+  "links": [
+   {
+    "text": "NIST SP 800-53",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "access reviews",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-are-access-reviews"
+   },
+   {
+    "text": "Book 04, Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/09-access-governance.html"
+   }
+  ]
+ },
+ {
+  "slide": 18,
+  "title": "Access as code, and the evidence it leaves",
+  "links": [
+   {
+    "text": "NIST SP 800-53",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "FedRAMP 20x KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   },
+   {
+    "text": "Book 04, Chapters 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/09-access-governance.html"
+   },
+   {
+    "text": "10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/10-access-as-code-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 19,
+  "title": "Decisions to make, owners and timing",
+  "links": [
+   {
+    "text": "OMB M-22-09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
+   },
+   {
+    "text": "CISA BOD 25-01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-25-01"
+   },
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "Book 04, Chapters 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/01-access-is-a-policy-decision.html"
+   },
+   {
+    "text": "10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/10-access-as-code-and-evidence.html"
+   },
+   {
+    "text": "Book 02, Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/06-who-owns-the-migration.html"
+   }
+  ]
+ }
+]

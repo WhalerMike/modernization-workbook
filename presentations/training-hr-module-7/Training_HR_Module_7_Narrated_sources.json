@@ -1,0 +1,22 @@
+[
+ {
+  "slide": 4,
+  "title": "What the evidence has to show: the guide's Step 7",
+  "links": [
+   {
+    "text": "Book 03, Appendix C",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/appendix-c-acceptance-and-cutover.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Lab 2: schedule the run in a test tenant",
+  "links": [
+   {
+    "text": "Book 19, Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/09-drift-pipelines-and-evidence.html"
+   }
+  ]
+ }
+]

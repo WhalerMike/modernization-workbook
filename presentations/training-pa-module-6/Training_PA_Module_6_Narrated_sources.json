@@ -1,0 +1,68 @@
+[
+ {
+  "slide": 2,
+  "title": "Why Azure roles need their own module",
+  "links": [
+   {
+    "text": "Best practices for Azure RBAC",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#best-practices-for-azure-rbac"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "Resource Manager, scopes and holders",
+  "links": [
+   {
+    "text": "Configure Azure resource role settings",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-azure-resource-role-settings-in"
+   },
+   {
+    "text": "PIM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-microsoft-entra-privileged-identity"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "The findings: PA-AZ-01 to PA-AZ-06",
+  "links": [
+   {
+    "text": "Plan a PIM deployment",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#plan-a-privileged-identity-management"
+   },
+   {
+    "text": "Best practices for Azure RBAC",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#best-practices-for-azure-rbac"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "The plan, the apply, and the narrower role",
+  "links": [
+   {
+    "text": "Assign Azure resource roles",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#assign-azure-resource-roles-in-privileged"
+   },
+   {
+    "text": "PIM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-microsoft-entra-privileged-identity"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "The federal requirement and the evidence for A3.2",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "Key Security Indicators",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   }
+  ]
+ }
+]

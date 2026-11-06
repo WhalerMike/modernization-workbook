@@ -1,0 +1,176 @@
+[
+ {
+  "slide": 2,
+  "title": "SQL Server trusts whatever Windows tells it",
+  "links": [
+   {
+    "text": "sys.dm_exec_connections",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sys-dm-exec-connections-transact-sql"
+   },
+   {
+    "text": "Book 06, Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/01-what-windows-authentication-actually-is.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "Three drivers, and what is really due in 2027",
+  "links": [
+   {
+    "text": "deprecated features (NTLM)",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#deprecated-features-for-windows-client"
+   },
+   {
+    "text": "OMB M-22-09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
+   },
+   {
+    "text": "Book 06, Chapters 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/02-why-the-inheritance-must-end.html"
+   },
+   {
+    "text": "21",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/21-what-done-looks-like.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "Rationalize the estate before migrating it",
+  "links": [
+   {
+    "text": "setspn",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#setspn"
+   },
+   {
+    "text": "Book 06, Chapters 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/03-the-shape-of-twenty-years.html"
+   },
+   {
+    "text": "06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/06-retain-consolidate-retire.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Azure Arc gives each instance an Entra identity",
+  "links": [
+   {
+    "text": "Microsoft Entra authentication for SQL Server",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-authentication-for-sql"
+   },
+   {
+    "text": "SQL Server enabled by Azure Arc",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sql-server-enabled-by-azure-arc"
+   },
+   {
+    "text": "Book 06, Chapters 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/09-what-arc-provides-to-sql-server.html"
+   },
+   {
+    "text": "10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/10-arc-deployment-sequencing.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Logins move to Entra principals, in parallel",
+  "links": [
+   {
+    "text": "sys.server_principals",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sys-server-principals-transact-sql"
+   },
+   {
+    "text": "ALTER USER",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#alter-user-transact-sql"
+   },
+   {
+    "text": "Book 06, Chapters 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/11-three-principal-types.html"
+   },
+   {
+    "text": "12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/12-the-engine-authentication-decision.html"
+   },
+   {
+    "text": "Book 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Who decides, who does the work for the data platform",
+  "links": [
+   {
+    "text": "NIST SP 800-37 Rev. 2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-37"
+   },
+   {
+    "text": "Book 06, Chapter 13",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/13-who-owns-the-data-platform.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Eliminate NTLM in three phases",
+  "links": [
+   {
+    "text": "Book 06, Chapters 14",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/14-ntlm-and-the-patterns-that-generate-it.html"
+   },
+   {
+    "text": "15",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/15-the-three-phases-of-ntlm-elimination.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Access by attribute, applications by driver",
+  "links": [
+   {
+    "text": "dynamic membership",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#manage-rules-for-dynamic-membership-groups"
+   },
+   {
+    "text": "administrative units",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#administrative-units-in-microsoft-entra-id"
+   },
+   {
+    "text": "Book 06, Chapters 16",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/16-groups-roles-and-membership.html"
+   },
+   {
+    "text": "19",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/19-connection-string-migration.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Closure is a posture you keep proving",
+  "links": [
+   {
+    "text": "Cloud PKI",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#overview-of-microsoft-cloud-pki-for"
+   },
+   {
+    "text": "Intune supported platforms",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#supported-operating-systems-and-browsers-in"
+   },
+   {
+    "text": "Book 06, Chapters 20",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/20-the-closure-condition.html"
+   },
+   {
+    "text": "22",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/22-where-sql-server-touches-adcs.html"
+   }
+  ]
+ }
+]

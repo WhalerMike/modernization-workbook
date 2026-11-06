@@ -1,0 +1,130 @@
+[
+ {
+  "slide": 4,
+  "title": "Three workflows, one front door",
+  "links": [
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/04-drift-to-a-typed-task.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "What the Scripted REST resource does with a payload",
+  "links": [
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/04-drift-to-a-typed-task.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Seeing the payload before a tenant does",
+  "links": [
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/04-drift-to-a-typed-task.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Fix 1: multivalued changes are now reverted",
+  "links": [
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/04-drift-to-a-typed-task.html"
+   },
+   {
+    "text": "Native Change Account Updated",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sailpoint-trigger-native-change"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Fix 2: the attribute joins the de-duplication key",
+  "links": [
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/04-drift-to-a-typed-task.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "What couldn't be verified, and Lab 2 settles",
+  "links": [
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/04-drift-to-a-typed-task.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Dangers between an event and a finding",
+  "links": [
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/04-drift-to-a-typed-task.html"
+   },
+   {
+    "text": "Book 13, Chapter 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/10-ticket-to-machine.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Try it: what the native-change workflow posts",
+  "links": [
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/04-drift-to-a-typed-task.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Try it: the mover's finding and the closure signal",
+  "links": [
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/04-drift-to-a-typed-task.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Lab 2: one workflow in a SailPoint sandbox",
+  "links": [
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/04-drift-to-a-typed-task.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "The federal requirement, and the evidence to keep",
+  "links": [
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/04-drift-to-a-typed-task.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Check yourself: two questions on drift to a task",
+  "links": [
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/04-drift-to-a-typed-task.html"
+   }
+  ]
+ }
+]

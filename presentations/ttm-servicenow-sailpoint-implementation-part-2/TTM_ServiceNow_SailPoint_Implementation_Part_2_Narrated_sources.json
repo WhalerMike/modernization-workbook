@@ -1,0 +1,142 @@
+[
+ {
+  "slide": 2,
+  "title": "G5–G7 on one page: done when, proved by, rollback",
+  "links": [
+   {
+    "text": "Book 13, Appendix B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/appendix-b-ticket-to-machine-reference.html"
+   },
+   {
+    "text": "the five-clause request chain",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/appendix-b-ticket-to-machine-reference.html#the-five-clause-request-chain"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "G5: the ticket authorizes a machine, by authority",
+  "links": [
+   {
+    "text": "Book 15, Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/03-intake-triage-and-routing.html"
+   },
+   {
+    "text": "PIM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-microsoft-entra-privileged-identity"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "G5: change records, and the declared-exception lane",
+  "links": [
+   {
+    "text": "Book 13, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/10-ticket-to-machine.html"
+   },
+   {
+    "text": "no machine can reach the surface",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/10-ticket-to-machine.html#when-no-machine-can-reach-the-surface"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "G5: requirement, evidence, availability, rollback",
+  "links": [
+   {
+    "text": "Book 13, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/10-ticket-to-machine.html"
+   },
+   {
+    "text": "Book 15, Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/03-intake-triage-and-routing.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "G6: Awaiting verification, and the business rule",
+  "links": [
+   {
+    "text": "Book 13, Appendix B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/appendix-b-ticket-to-machine-reference.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "G6: requirement, evidence, availability, rollback",
+  "links": [
+   {
+    "text": "Microsoft Graph national cloud deployments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "G7: the tempo, the five measures, the schedules",
+  "links": [
+   {
+    "text": "Book 13, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/10-ticket-to-machine.html"
+   },
+   {
+    "text": "what the tempo shows leadership",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/10-ticket-to-machine.html#what-the-tempo-shows-leadership"
+   },
+   {
+    "text": "Appendix B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/appendix-b-ticket-to-machine-reference.html"
+   },
+   {
+    "text": "severity and tempo",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/appendix-b-ticket-to-machine-reference.html#severity-and-tempo"
+   },
+   {
+    "text": "the evidence record",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/appendix-b-ticket-to-machine-reference.html#the-evidence-record"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "G7: the identity fixes, routed through the loop",
+  "links": [
+   {
+    "text": "Book 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "G7: requirement, evidence, availability, rollback",
+  "links": [
+   {
+    "text": "Book 15, Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/03-intake-triage-and-routing.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "The evidence record on ServiceNow and SailPoint",
+  "links": [
+   {
+    "text": "Book 13, Appendix A",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/appendix-a-requirements-mapping.html"
+   },
+   {
+    "text": "Appendix B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/appendix-b-ticket-to-machine-reference.html"
+   },
+   {
+    "text": "the evidence record",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/appendix-b-ticket-to-machine-reference.html#the-evidence-record"
+   }
+  ]
+ }
+]

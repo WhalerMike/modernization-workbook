@@ -1,0 +1,152 @@
+[
+ {
+  "slide": 2,
+  "title": "Why a ticket marked done isn't a record",
+  "links": [
+   {
+    "text": "Book 13, Appendix B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/appendix-b-ticket-to-machine-reference.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "The loop: five steps, and a layer that never writes",
+  "links": [
+   {
+    "text": "Book 13, Appendix B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/appendix-b-ticket-to-machine-reference.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Where the kit sits in the loop, in Pass 1",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/01-the-loop-and-the-typed-task.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "The products at each step, and four gaps",
+  "links": [
+   {
+    "text": "Book 15",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/index.html"
+   },
+   {
+    "text": "Book 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "The identity finding's data contract",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/01-the-loop-and-the-typed-task.html"
+   },
+   {
+    "text": "Book 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/index.html"
+   },
+   {
+    "text": "Book 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "What the Scripted REST resource does with a payload",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/01-the-loop-and-the-typed-task.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Severity and tempo: where the due dates come from",
+  "links": [
+   {
+    "text": "Book 13, Appendix B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/appendix-b-ticket-to-machine-reference.html"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/01-why-governance-decays.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "finding_contract.py, and an intent with nothing in it",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/01-the-loop-and-the-typed-task.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Try it: check five sample payloads",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/01-the-loop-and-the-typed-task.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Try it: every payload the drift client would post",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/01-the-loop-and-the-typed-task.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Lab 2: post a checked payload to a developer instance",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/01-the-loop-and-the-typed-task.html"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/01-the-loop-and-the-typed-task.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "The federal requirement, and the evidence to keep",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/01-the-loop-and-the-typed-task.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Summary, and next: Module 2, least privilege",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/01-the-loop-and-the-typed-task.html"
+   }
+  ]
+ }
+]

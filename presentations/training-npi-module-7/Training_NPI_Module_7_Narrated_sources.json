@@ -1,0 +1,96 @@
+[
+ {
+  "slide": 2,
+  "title": "Why a federated credential can fail in silence",
+  "links": [
+   {
+    "text": "Workload identity federation concepts",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#workload-identity-federation-concepts"
+   },
+   {
+    "text": "FIC considerations",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#important-considerations-and-restrictions"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "The order of targets, and Learn's rules",
+  "links": [
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/05-workload-identity-federation-and-managed-identities.html"
+   },
+   {
+    "text": "FIC considerations",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#important-considerations-and-restrictions"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "The checks: NPI-WIF-01 to NPI-WIF-09",
+  "links": [
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/05-workload-identity-federation-and-managed-identities.html"
+   },
+   {
+    "text": "Configure an app to trust an external IdP",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-an-app-to-trust-an-external"
+   },
+   {
+    "text": "FIC considerations",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#important-considerations-and-restrictions"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "What the workload presents, and the exchange test",
+  "links": [
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/05-workload-identity-federation-and-managed-identities.html"
+   },
+   {
+    "text": "Configure an app to trust an external IdP",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-an-app-to-trust-an-external"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "The plan, the parallel run and the write path",
+  "links": [
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/05-workload-identity-federation-and-managed-identities.html"
+   },
+   {
+    "text": "List signIns",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-signins"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Try it: read each conversion's parallel run",
+  "links": [
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/05-workload-identity-federation-and-managed-identities.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Check yourself: two questions on conversion",
+  "links": [
+   {
+    "text": "FIC considerations",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#important-considerations-and-restrictions"
+   }
+  ]
+ }
+]

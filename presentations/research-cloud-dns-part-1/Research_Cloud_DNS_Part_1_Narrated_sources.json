@@ -1,0 +1,170 @@
+[
+ {
+  "slide": 1,
+  "title": "Cloud DNS, Part 1: The Native Resolvers",
+  "links": [
+   {
+    "text": "FedRAMP Marketplace",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-marketplace"
+   }
+  ]
+ },
+ {
+  "slide": 2,
+  "title": "Why cloud DNS belongs to one policy plane",
+  "links": [
+   {
+    "text": "Book 08, Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/07-cloud-private-endpoints-and-ipam.html"
+   },
+   {
+    "text": "Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/08-reference-architecture.html"
+   },
+   {
+    "text": "Moving from per-cloud local syncs to a unified control plane",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/08-reference-architecture.html#moving-from-per-cloud-local-syncs-to-a-unified-control-plane"
+   },
+   {
+    "text": "Book 08 Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/07-cloud-private-endpoints-and-ipam.html"
+   },
+   {
+    "text": "08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/08-reference-architecture.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "The answer in brief: native resolvers as the bridge",
+  "links": [
+   {
+    "text": "Azure DNSSEC",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#dnssec-overview"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "AWS GovCloud (US) beside the commercial Regions",
+  "links": [
+   {
+    "text": "Book 08, Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/07-cloud-private-endpoints-and-ipam.html"
+   },
+   {
+    "text": "Book 08, Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/07-cloud-private-endpoints-and-ipam.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Azure: the DNS Private Resolver",
+  "links": [
+   {
+    "text": "Azure DNS Private Resolver",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-azure-dns-private-resolver"
+   },
+   {
+    "text": "endpoints and rulesets",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#azure-dns-private-resolver-endpoints-and"
+   },
+   {
+    "text": "Azure DNS FAQ",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#azure-dns-faq"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Azure: DNS resolver policy, logging and DNSSEC",
+  "links": [
+   {
+    "text": "DNS resolver policy",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#dns-resolver-policy"
+   },
+   {
+    "text": "Azure DNS monitoring",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#azure-dns-monitoring-data-reference"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Oracle Cloud: how the VCN resolver answers",
+  "links": [
+   {
+    "text": "Book 08, Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/07-cloud-private-endpoints-and-ipam.html"
+   },
+   {
+    "text": "How each platform implements private DNS",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/07-cloud-private-endpoints-and-ipam.html#how-each-platform-implements-private-dns"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Who authorizes it: AWS and Azure FedRAMP scope",
+  "links": [
+   {
+    "text": "FedRAMP Marketplace products.json",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-marketplace"
+   },
+   {
+    "text": "Azure Retail Prices API",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#azure-retail-prices-api"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Who authorizes it: Oracle US Government Cloud",
+  "links": [
+   {
+    "text": "FedRAMP Marketplace products.json",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-marketplace"
+   },
+   {
+    "text": "Book 08, Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/07-cloud-private-endpoints-and-ipam.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "How the three resolvers meet on-premises DNS",
+  "links": [
+   {
+    "text": "AWS Resolving queries between VPCs and your network",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#aws-route-53-resolver"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "How Protective DNS, policy and logs reach each cloud",
+  "links": [
+   {
+    "text": "CISA Encrypted DNS Implementation Guidance",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cisa-encrypted-dns"
+   },
+   {
+    "text": "Book 12, Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b12-security-operations/05-from-log-warehouse-to-detection.html"
+   }
+  ]
+ },
+ {
+  "slide": 17,
+  "title": "What to confirm, and what Part 2 covers",
+  "links": [
+   {
+    "text": "Book 08, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/10-migration-sequence.html"
+   }
+  ]
+ }
+]

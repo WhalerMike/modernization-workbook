@@ -1,0 +1,92 @@
+[
+ {
+  "slide": 2,
+  "title": "Why the inventory is always larger than you think",
+  "links": [
+   {
+    "text": "user-based service accounts",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#secure-user-based-service-accounts-in-active"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "The register: two AD reads, nine Graph, one ARM",
+  "links": [
+   {
+    "text": "Get-ADUser",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#get-aduser"
+   },
+   {
+    "text": "Get-ADServiceAccount",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#get-adserviceaccount"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/01-non-person-identity-inventory-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "The reader: five rules every call obeys",
+  "links": [
+   {
+    "text": "List oauth2PermissionGrants",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-oauth2permissiongrants-delegated"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/01-non-person-identity-inventory-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Risk, the candidate target, stale leads, the hand-off",
+  "links": [
+   {
+    "text": "Last-Logon-Timestamp attribute",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#last-logon-timestamp-attribute"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/01-non-person-identity-inventory-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "The findings: NPI-INV-01 to NPI-INV-09",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/01-non-person-identity-inventory-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Try it: run the inventory, read the HIGH-risk rows",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/01-non-person-identity-inventory-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "The federal requirement and evidence for Gate G1",
+  "links": [
+   {
+    "text": "NIST SP 800-53",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "FedRAMP 20x KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   }
+  ]
+ }
+]

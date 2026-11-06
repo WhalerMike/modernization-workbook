@@ -1,0 +1,512 @@
+[
+ {
+  "slide": 1,
+  "title": "Certificate Lifecycle on CyberArk Certificate Manager",
+  "links": [
+   {
+    "text": "CyberArk Certificate Manager",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cyberark-certificate-manager"
+   },
+   {
+    "text": "FedRAMP Marketplace",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-marketplace"
+   },
+   {
+    "text": "NIST CMVP",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#nist-cmvp"
+   },
+   {
+    "text": "Book 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 2,
+  "title": "What this guide implements: Book 07's issuer map",
+  "links": [
+   {
+    "text": "Book 07, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/04-the-target-pki.html"
+   },
+   {
+    "text": "Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/05-who-owns-the-certificate-estate.html"
+   },
+   {
+    "text": "renewal ownership",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/05-who-owns-the-certificate-estate.html#renewal-ownership-per-certificate-class"
+   },
+   {
+    "text": "Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/08-lifecycle-monitoring-and-decommissioning.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "Prerequisites and decisions before you build",
+  "links": [
+   {
+    "text": "FedRAMP Marketplace products.json",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-marketplace"
+   },
+   {
+    "text": "CyberArk 26.1 System Requirements",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cyberark-cm-system-requirements"
+   },
+   {
+    "text": "Book 07, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/04-the-target-pki.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "Inside the platform: what it is made of",
+  "links": [
+   {
+    "text": "CyberArk 26.1 System Requirements",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cyberark-cm-system-requirements"
+   },
+   {
+    "text": "Message Bus",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cyberark-cm-message-bus"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Inside the platform: the server roles",
+  "links": [
+   {
+    "text": "CyberArk 26.1 System Requirements",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cyberark-cm-system-requirements"
+   },
+   {
+    "text": "Message Bus",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cyberark-cm-message-bus"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "The back end: engines, log servers and message bus",
+  "links": [
+   {
+    "text": "Log server",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cyberark-cm-log-server"
+   },
+   {
+    "text": "Message Bus",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cyberark-cm-message-bus"
+   },
+   {
+    "text": "System Requirements",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cyberark-cm-system-requirements"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Components: switched on server by server",
+  "links": [
+   {
+    "text": "System Requirements",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cyberark-cm-system-requirements"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Drivers, agents, the database and the keys",
+  "links": [
+   {
+    "text": "System Requirements",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cyberark-cm-system-requirements"
+   },
+   {
+    "text": "HSM configuration",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cyberark-cm-hsm-configuration"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "What the platform connects to",
+  "links": [
+   {
+    "text": "syslog channel",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cyberark-cm-syslog-channel"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "A two-site reference topology",
+  "links": [
+   {
+    "text": "Message Bus",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cyberark-cm-message-bus"
+   },
+   {
+    "text": "System Requirements",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cyberark-cm-system-requirements"
+   },
+   {
+    "text": "HSM configuration",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cyberark-cm-hsm-configuration"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "One certificate's journey through the platform",
+  "links": [
+   {
+    "text": "Log server",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cyberark-cm-log-server"
+   },
+   {
+    "text": "Book 07, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/08-lifecycle-monitoring-and-decommissioning.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Part 1: Build the platform",
+  "links": [
+   {
+    "text": "CyberArk 26.1 System Requirements",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cyberark-cm-system-requirements"
+   },
+   {
+    "text": "NIST CMVP",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#nist-cmvp"
+   },
+   {
+    "text": "Book 07 Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/05-who-owns-the-certificate-estate.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Architecture: cluster, components and availability",
+  "links": [
+   {
+    "text": "CyberArk 26.1 System Requirements",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cyberark-cm-system-requirements"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "FIPS posture: what you can and can't claim",
+  "links": [
+   {
+    "text": "System Requirements",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cyberark-cm-system-requirements"
+   },
+   {
+    "text": "NIST CMVP",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#nist-cmvp"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Console sign-in: Entra SSO with certificate-based auth",
+  "links": [
+   {
+    "text": "Book 07, Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/05-who-owns-the-certificate-estate.html"
+   },
+   {
+    "text": "06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/06-device-and-user-certificates.html"
+   }
+  ]
+ },
+ {
+  "slide": 18,
+  "title": "Backup and disaster recovery: database and keys",
+  "links": [
+   {
+    "text": "HSM configuration",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cyberark-cm-hsm-configuration"
+   },
+   {
+    "text": "Book 07, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/08-lifecycle-monitoring-and-decommissioning.html"
+   }
+  ]
+ },
+ {
+  "slide": 19,
+  "title": "Part 2: Connect the issuers",
+  "links": [
+   {
+    "text": "AD CS",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-active-directory-certificate"
+   },
+   {
+    "text": "Book 07 Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/03-hardening-what-stays.html"
+   },
+   {
+    "text": "07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/07-coexistence-and-migration.html"
+   }
+  ]
+ },
+ {
+  "slide": 20,
+  "title": "The AD CS driver: permissions, templates, versions",
+  "links": [
+   {
+    "text": "Book 07 Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/03-hardening-what-stays.html"
+   }
+  ]
+ },
+ {
+  "slide": 21,
+  "title": "Scoping the CLM's CA account under ESC7",
+  "links": [
+   {
+    "text": "Book 07 Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/03-hardening-what-stays.html"
+   },
+   {
+    "text": "05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/05-who-owns-the-certificate-estate.html"
+   }
+  ]
+ },
+ {
+  "slide": 22,
+  "title": "Public and cloud CA drivers in 26.1",
+  "links": [
+   {
+    "text": "CyberArk 26.1 System Requirements",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cyberark-cm-system-requirements"
+   }
+  ]
+ },
+ {
+  "slide": 23,
+  "title": "Intune coexistence: who owns device certificates",
+  "links": [
+   {
+    "text": "Cloud PKI",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#overview-of-microsoft-cloud-pki-for"
+   },
+   {
+    "text": "Book 07 Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/04-the-target-pki.html"
+   },
+   {
+    "text": "07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/07-coexistence-and-migration.html"
+   }
+  ]
+ },
+ {
+  "slide": 25,
+  "title": "Discovery scans and CA import",
+  "links": [
+   {
+    "text": "Book 07, Ch 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/02-what-ad-cs-holds-up.html"
+   },
+   {
+    "text": "Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/08-lifecycle-monitoring-and-decommissioning.html"
+   }
+  ]
+ },
+ {
+  "slide": 26,
+  "title": "Ownership: policy folders, owners and the CMDB",
+  "links": [
+   {
+    "text": "Book 07, Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/05-who-owns-the-certificate-estate.html"
+   },
+   {
+    "text": "Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/08-lifecycle-monitoring-and-decommissioning.html"
+   }
+  ]
+ },
+ {
+  "slide": 27,
+  "title": "Enrollment automation: ACME, EST, SCEP, REST, agents",
+  "links": [
+   {
+    "text": "System Requirements",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cyberark-cm-system-requirements"
+   },
+   {
+    "text": "Book 07, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/08-lifecycle-monitoring-and-decommissioning.html"
+   }
+  ]
+ },
+ {
+  "slide": 28,
+  "title": "Kubernetes, ServiceNow and SIEM inside the boundary",
+  "links": [
+   {
+    "text": "syslog channel",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cyberark-cm-syslog-channel"
+   },
+   {
+    "text": "FedRAMP Marketplace",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-marketplace"
+   }
+  ]
+ },
+ {
+  "slide": 29,
+  "title": "Part 4: Migrate and operate",
+  "links": [
+   {
+    "text": "Book 07 Ch 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/01-why-certificates-outlive-every-migration.html"
+   },
+   {
+    "text": "Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/05-who-owns-the-certificate-estate.html"
+   },
+   {
+    "text": "Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/07-coexistence-and-migration.html"
+   },
+   {
+    "text": "Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/08-lifecycle-monitoring-and-decommissioning.html"
+   },
+   {
+    "text": "CA/Browser Forum Baseline Requirements",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cabf-baseline-requirements"
+   },
+   {
+    "text": "Book 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 30,
+  "title": "Build sequence mapped to Book 07's six waves",
+  "links": [
+   {
+    "text": "Book 07, Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/07-coexistence-and-migration.html"
+   },
+   {
+    "text": "Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/04-the-target-pki.html"
+   },
+   {
+    "text": "issuer decision",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/04-the-target-pki.html#the-issuer-decision-for-internal-server-certificates"
+   },
+   {
+    "text": "Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/08-lifecycle-monitoring-and-decommissioning.html"
+   },
+   {
+    "text": "decommissioning",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/08-lifecycle-monitoring-and-decommissioning.html#decommissioning-ad-cs"
+   }
+  ]
+ },
+ {
+  "slide": 31,
+  "title": "Renewal as public TLS lifetimes shrink",
+  "links": [
+   {
+    "text": "Book 07, Ch 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/01-why-certificates-outlive-every-migration.html"
+   },
+   {
+    "text": "Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/08-lifecycle-monitoring-and-decommissioning.html"
+   }
+  ]
+ },
+ {
+  "slide": 32,
+  "title": "Monitoring and drift on the CLM platform",
+  "links": [
+   {
+    "text": "Book 07, Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/05-who-owns-the-certificate-estate.html"
+   },
+   {
+    "text": "Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/08-lifecycle-monitoring-and-decommissioning.html"
+   },
+   {
+    "text": "monitoring",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/08-lifecycle-monitoring-and-decommissioning.html#monitoring"
+   },
+   {
+    "text": "drift patterns",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/08-lifecycle-monitoring-and-decommissioning.html#drift-patterns"
+   },
+   {
+    "text": "syslog channel",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cyberark-cm-syslog-channel"
+   }
+  ]
+ },
+ {
+  "slide": 33,
+  "title": "Decommissioning AD CS with the CLM inventory",
+  "links": [
+   {
+    "text": "Book 07, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/08-lifecycle-monitoring-and-decommissioning.html"
+   },
+   {
+    "text": "Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/07-coexistence-and-migration.html"
+   },
+   {
+    "text": "Wave 6",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/07-coexistence-and-migration.html#wave-6-decommission-weeks-3744"
+   },
+   {
+    "text": "Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/04-the-target-pki.html"
+   }
+  ]
+ },
+ {
+  "slide": 34,
+  "title": "Decisions, vendor asks and next steps",
+  "links": [
+   {
+    "text": "Book 07, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/04-the-target-pki.html"
+   },
+   {
+    "text": "Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/05-who-owns-the-certificate-estate.html"
+   },
+   {
+    "text": "Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/07-coexistence-and-migration.html"
+   },
+   {
+    "text": "Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/08-lifecycle-monitoring-and-decommissioning.html"
+   }
+  ]
+ }
+]

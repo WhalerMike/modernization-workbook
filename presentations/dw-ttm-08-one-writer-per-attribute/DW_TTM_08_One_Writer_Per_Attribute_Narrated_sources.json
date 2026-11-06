@@ -1,0 +1,184 @@
+[
+ {
+  "slide": 2,
+  "title": "Why two writers is drift you've scheduled",
+  "links": [
+   {
+    "text": "Book 03, Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/05-the-provisioning-pipeline.html"
+   },
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/08-joiner-mover-leaver.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "Why only this Pass 2 item is built",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/08-one-writer-per-attribute.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "Export one: the inbound job's schema",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/08-one-writer-per-attribute.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Export two: SailPoint's provisioning policies",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/08-one-writer-per-attribute.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Three severities, and aliases a reviewer checks",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/08-one-writer-per-attribute.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "The tests: six, from flow types to the CLI",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/08-one-writer-per-attribute.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "The verified facts behind the two exports",
+  "links": [
+   {
+    "text": "Graph national cloud deployments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
+   },
+   {
+    "text": "FedRAMP Marketplace data",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-marketplace"
+   },
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/08-one-writer-per-attribute.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "What couldn't be verified about the writers",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/08-one-writer-per-attribute.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "What the writer check proves, and for whom",
+  "links": [
+   {
+    "text": "NIST SP 800-53B Moderate baseline",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53b"
+   },
+   {
+    "text": "release 5.2.0",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/08-one-writer-per-attribute.html"
+   },
+   {
+    "text": "NIST SP 800-53",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "Book 13",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/index.html"
+   },
+   {
+    "text": "Book 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Who owns each writer, and who decides",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/08-one-writer-per-attribute.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Lab 1: department has two writers",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/08-one-writer-per-attribute.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Lab 1: the alias, the guard, the reads",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/08-one-writer-per-attribute.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Lab 2: your own exports, reviewed",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/08-one-writer-per-attribute.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Dangers, and the guard for each",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/08-one-writer-per-attribute.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Done when: the writer checklist",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/08-one-writer-per-attribute.html"
+   }
+  ]
+ }
+]

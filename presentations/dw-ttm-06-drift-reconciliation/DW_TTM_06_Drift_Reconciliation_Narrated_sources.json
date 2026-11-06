@@ -1,0 +1,226 @@
+[
+ {
+  "slide": 2,
+  "title": "Why measure the state, not just the events",
+  "links": [
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/06-drift-reconciliation.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "identity_drift.py: inputs, classes, IDs",
+  "links": [
+   {
+    "text": "Book 03, Chapter 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/11-drift-metrics-and-evidence.html"
+   },
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/06-canonical-attribute-schema.html"
+   },
+   {
+    "text": "Book 03, Chapter 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/11-drift-metrics-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "drift_compare.py: new, persisting, resolved",
+  "links": [
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/06-drift-reconciliation.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Day two of the fictional estate",
+  "links": [
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/06-drift-reconciliation.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "The tests: four new, thirteen unchanged",
+  "links": [
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/06-drift-reconciliation.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "The verified facts behind the join",
+  "links": [
+   {
+    "text": "List users",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-users"
+   },
+   {
+    "text": "List manager",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-manager"
+   },
+   {
+    "text": "List directoryAudits",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-directoryaudits"
+   },
+   {
+    "text": "Graph national cloud deployments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
+   },
+   {
+    "text": "ISC v3 searchPost",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sailpoint-isc-v3-search"
+   },
+   {
+    "text": "listAccounts",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sailpoint-isc-v3-accounts"
+   },
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/06-drift-reconciliation.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "What couldn't be verified about the join",
+  "links": [
+   {
+    "text": "List manager",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-manager"
+   },
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/06-drift-reconciliation.html"
+   },
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/03-sailpoint-client-and-scopes.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "What the reconciliation proves, and for whom",
+  "links": [
+   {
+    "text": "NIST SP 800-53B Moderate baseline",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53b"
+   },
+   {
+    "text": "release 5.2.0",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/06-drift-reconciliation.html"
+   },
+   {
+    "text": "NIST SP 800-53",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "Book 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/index.html"
+   },
+   {
+    "text": "Book 13",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Who schedules it and who reads it",
+  "links": [
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/06-drift-reconciliation.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Lab 1: day one and day two",
+  "links": [
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/06-drift-reconciliation.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Lab 1: comparing the days, and the refusal",
+  "links": [
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/06-drift-reconciliation.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Lab 2: a live run on synthetic data",
+  "links": [
+   {
+    "text": "List users",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-users"
+   },
+   {
+    "text": "List manager",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-manager"
+   },
+   {
+    "text": "List directoryAudits",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-directoryaudits"
+   },
+   {
+    "text": "ISC v3 searchPost",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sailpoint-isc-v3-search"
+   },
+   {
+    "text": "listAccounts",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sailpoint-isc-v3-accounts"
+   },
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/06-drift-reconciliation.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Dangers, and the guard for each",
+  "links": [
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/06-drift-reconciliation.html"
+   },
+   {
+    "text": "Book 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Done when: the reconciliation checklist",
+  "links": [
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/06-drift-reconciliation.html"
+   }
+  ]
+ }
+]

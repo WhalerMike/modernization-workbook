@@ -21,6 +21,7 @@ From the workbook
 Book 01: Chapter 06 — Network Services: DNS, DHCP and IPAM: https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/06-network-services.html
 Book 01: Chapter 12 — The Migration Roadmap: https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html
 Book 00: Chapter 09 — Design, Pilot and Rollout: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html
+Book 02 — Identity & Directory: https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/index.html
 Book 02: Chapter 05 — Delegation Without OUs: https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/05-delegation-without-ous.html
 Book 04: Chapter 03 — The Conditional Access Model: https://whalermike.github.io/modernization-workbook/docs/books/b04-access/03-the-conditional-access-model.html
 Book 04: Chapter 07 — The Conditional Access Policy Library: https://whalermike.github.io/modernization-workbook/docs/books/b04-access/07-the-conditional-access-policy-library.html

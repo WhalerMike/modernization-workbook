@@ -1,0 +1,124 @@
+[
+ {
+  "slide": 4,
+  "title": "What Step 4 asks for: Graph, directory roles, Azure",
+  "links": [
+   {
+    "text": "Graph permissions reference",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-graph-permissions-reference"
+   },
+   {
+    "text": "Privileged roles",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#privileged-roles-and-permissions-in"
+   },
+   {
+    "text": "Azure RBAC best practices",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#best-practices-for-azure-rbac"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "The rule the code holds: review, justify, narrow",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/07-least-privilege-for-service-principals.html"
+   },
+   {
+    "text": "RBAC for Applications in Exchange Online",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#role-based-access-control-for-applications"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "The check: NPI-LP-01 to NPI-LP-09",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/07-least-privilege-for-service-principals.html"
+   },
+   {
+    "text": "Graph permissions reference",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-graph-permissions-reference"
+   },
+   {
+    "text": "Application Access Policies",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#application-access-policies-legacy"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "The hand-off, and the quarterly owner review",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/07-least-privilege-for-service-principals.html"
+   },
+   {
+    "text": "Graph permissions reference",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-graph-permissions-reference"
+   },
+   {
+    "text": "Grant or revoke API permissions",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#grant-or-revoke-api-permissions"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "The plan, and the separate write path",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/07-least-privilege-for-service-principals.html"
+   },
+   {
+    "text": "Delete appRoleAssignedTo",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#delete-approleassignedto"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Try it: the findings and the hand-off",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/07-least-privilege-for-service-principals.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Try it: the open review rows, and the plan",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/07-least-privilege-for-service-principals.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Try it: a dry run, the apply, and a refusal",
+  "links": [
+   {
+    "text": "Delete appRoleAssignedTo",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#delete-approleassignedto"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Check yourself: two questions on least privilege",
+  "links": [
+   {
+    "text": "Microsoft Graph permissions reference",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-graph-permissions-reference"
+   }
+  ]
+ }
+]

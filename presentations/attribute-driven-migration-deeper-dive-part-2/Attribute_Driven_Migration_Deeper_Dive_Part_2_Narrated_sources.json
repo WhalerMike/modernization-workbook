@@ -1,0 +1,218 @@
+[
+ {
+  "slide": 2,
+  "title": "Gates 4–6 at a glance, and the slots they read",
+  "links": [
+   {
+    "text": "Book 03, Ch 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/06-canonical-attribute-schema.html"
+   },
+   {
+    "text": "Book 02, Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/05-delegation-without-ous.html"
+   },
+   {
+    "text": "Book 04, Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/03-the-conditional-access-model.html"
+   },
+   {
+    "text": "Book 05, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/08-gpo-to-intune-policy-migration.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "Rule text: two patterns, with every guard",
+  "links": [
+   {
+    "text": "Book 03, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/10-from-attributes-to-access.html"
+   },
+   {
+    "text": "Book 01, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/04-identity-transformation.html"
+   },
+   {
+    "text": "Book 06, Ch 17",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/17-dynamic-membership-delegation-and-privilege.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "Test, then shadow: VK-DG-03 and VK-DG-04",
+  "links": [
+   {
+    "text": "Book 06, Ch 17",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/17-dynamic-membership-delegation-and-privilege.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "The memberOf preview ends; watch membership deltas",
+  "links": [
+   {
+    "text": "Book 02, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/09-building-the-entra-target.html"
+   },
+   {
+    "text": "Book 06, Ch 17",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/17-dynamic-membership-delegation-and-privilege.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Administrative units: three tiers, restriction first",
+  "links": [
+   {
+    "text": "Book 02, Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/05-delegation-without-ous.html"
+   },
+   {
+    "text": "registry",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/05-delegation-without-ous.html#administrative-unit-registry"
+   },
+   {
+    "text": "Book 03, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/10-from-attributes-to-access.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Conditional Access personas from slot 11",
+  "links": [
+   {
+    "text": "Book 04, Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/03-the-conditional-access-model.html"
+   },
+   {
+    "text": "personas",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/03-the-conditional-access-model.html#personas"
+   },
+   {
+    "text": "pairs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/03-the-conditional-access-model.html#policies-come-in-pairs"
+   },
+   {
+    "text": "exclusions",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/03-the-conditional-access-model.html#exclusions"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Device targeting: device slots, groups, filters",
+  "links": [
+   {
+    "text": "Book 05, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/08-gpo-to-intune-policy-migration.html"
+   },
+   {
+    "text": "assignment strategy",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/08-gpo-to-intune-policy-migration.html#assignment-strategy"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Moving device GPOs: adopt Microsoft's tools",
+  "links": [
+   {
+    "text": "Book 05, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/08-gpo-to-intune-policy-migration.html"
+   },
+   {
+    "text": "Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/07-the-gpo-sunset-program.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "The Migrate step, the pilot, and rollback",
+  "links": [
+   {
+    "text": "Book 05, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/08-gpo-to-intune-policy-migration.html"
+   },
+   {
+    "text": "Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/07-the-gpo-sunset-program.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Moving server GPOs: audit beside Group Policy first",
+  "links": [
+   {
+    "text": "Book 05, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "RHEL on AWS under Ansible: one owner per setting",
+  "links": [
+   {
+    "text": "Book 05, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "What the overview simplified",
+  "links": [
+   {
+    "text": "Book 02, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/09-building-the-entra-target.html"
+   },
+   {
+    "text": "Book 03, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/10-from-attributes-to-access.html"
+   },
+   {
+    "text": "Book 05, Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/07-the-gpo-sunset-program.html"
+   },
+   {
+    "text": "08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/08-gpo-to-intune-policy-migration.html"
+   },
+   {
+    "text": "Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "PIV binding: certificateUserIds values and limits",
+  "links": [
+   {
+    "text": "Book 03, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/09-credentials-and-certificates.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Affinity, the binding's writer, and the open pilot",
+  "links": [
+   {
+    "text": "Book 03, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/09-credentials-and-certificates.html"
+   },
+   {
+    "text": "Book 07, Ch 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/06-device-and-user-certificates.html"
+   }
+  ]
+ }
+]

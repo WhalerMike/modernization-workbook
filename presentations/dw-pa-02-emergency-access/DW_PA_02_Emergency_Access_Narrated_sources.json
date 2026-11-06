@@ -1,0 +1,236 @@
+[
+ {
+  "slide": 2,
+  "title": "Why the emergency accounts come first",
+  "links": [
+   {
+    "text": "emergency access accounts",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#manage-emergency-access-accounts-in"
+   },
+   {
+    "text": "Plan a PIM deployment",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#plan-a-privileged-identity-management"
+   },
+   {
+    "text": "Book 04, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/08-pim-self-request-with-approval.html"
+   },
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/02-why-standing-privilege-fails.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "Which cloud: Graph host, alert subscription, methods",
+  "links": [
+   {
+    "text": "Microsoft Graph national cloud deployments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
+   },
+   {
+    "text": "Microsoft Entra feature availability",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-feature-availability"
+   },
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/02-emergency-access-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "Microsoft's standard for emergency access accounts",
+  "links": [
+   {
+    "text": "emergency access accounts",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#manage-emergency-access-accounts-in"
+   },
+   {
+    "text": "Book 04, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/04-privileged-roles-and-tiers.html"
+   },
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/02-why-standing-privilege-fails.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Learn's sample alert, pinned and run offline",
+  "links": [
+   {
+    "text": "emergency access accounts",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#manage-emergency-access-accounts-in"
+   },
+   {
+    "text": "MicrosoftDocs/entra-docs at 07cb73d",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#entra-docs-at-07cb73d"
+   },
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/02-emergency-access-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "What the sample misses, and what the code adds",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/02-emergency-access-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "The code: four commands and two input files",
+  "links": [
+   {
+    "text": "emergency access accounts",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#manage-emergency-access-accounts-in"
+   },
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/02-emergency-access-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "The check: ten rules, PA-EA-01 to PA-EA-10",
+  "links": [
+   {
+    "text": "emergency access accounts",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#manage-emergency-access-accounts-in"
+   },
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/02-emergency-access-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Every enforced policy, and where the sources differ",
+  "links": [
+   {
+    "text": "report-only mode",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#analyze-conditional-access-policy-impact"
+   },
+   {
+    "text": "Book 04, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/04-privileged-roles-and-tiers.html"
+   },
+   {
+    "text": "Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/10-access-as-code-and-evidence.html"
+   },
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/02-why-standing-privilege-fails.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "The alert: three legs and a reviewed template",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/02-emergency-access-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Who builds it, who runs it, what it may read",
+  "links": [
+   {
+    "text": "Get a user",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#get-a-user"
+   },
+   {
+    "text": "List methods",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-methods"
+   },
+   {
+    "text": "List group members",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-group-members"
+   },
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/02-emergency-access-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Lab 1: run Learn's queries and the check offline",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/02-emergency-access-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Lab 1: reading the findings and the guards",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/02-emergency-access-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Lab 2: a test tenant, a real query, a drill",
+  "links": [
+   {
+    "text": "emergency access accounts",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#manage-emergency-access-accounts-in"
+   },
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/02-emergency-access-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Dangers, and the guard for each",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/02-emergency-access-as-code.html"
+   },
+   {
+    "text": "emergency access accounts",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#manage-emergency-access-accounts-in"
+   },
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/08-evidence-and-drift.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Done when: the chapter's checklist",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/02-emergency-access-as-code.html"
+   },
+   {
+    "text": "emergency access accounts",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#manage-emergency-access-accounts-in"
+   }
+  ]
+ }
+]

@@ -1,0 +1,260 @@
+[
+ {
+  "slide": 2,
+  "title": "Why the owners travel with every connect",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/08-ansible-beside-arc.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "Who reads the tags after the connect",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/08-ansible-beside-arc.html"
+   },
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/07-machine-configuration-packages.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "Which Azure: a GCC estate goes to commercial",
+  "links": [
+   {
+    "text": "Planning identity for Azure Government",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#planning-identity-for-azure-government"
+   },
+   {
+    "text": "azcmagent connect",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#azcmagent-connect"
+   },
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/08-ansible-beside-arc.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "What Learn gives you: the azure_arc role",
+  "links": [
+   {
+    "text": "Connect machines to Azure Arc at scale with Ansible",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#connect-machines-to-azure-arc-at-scale-with"
+   },
+   {
+    "text": "Plan and deploy Azure Arc-enabled servers",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#plan-and-deploy-azure-arc-enabled-servers"
+   },
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/08-ansible-beside-arc.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "The pinned role, and what Learn's page doesn't say",
+  "links": [
+   {
+    "text": "ansible-collections/azure roles/azure_arc at afa62c3",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#ansible-azure-arc-role-at-afa62c3"
+   },
+   {
+    "text": "Connect machines to Azure Arc at scale with Ansible",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#connect-machines-to-azure-arc-at-scale-with"
+   },
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/08-ansible-beside-arc.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "What the role leaves to you: owners and waves",
+  "links": [
+   {
+    "text": "ansible-collections/azure azure_arc role at afa62c3",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#ansible-azure-arc-role-at-afa62c3"
+   },
+   {
+    "text": "Plan and deploy Azure Arc-enabled servers",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#plan-and-deploy-azure-arc-enabled-servers"
+   },
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/08-ansible-beside-arc.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "What the role leaves to you: cloud and record",
+  "links": [
+   {
+    "text": "ansible-collections/azure azure_arc role at afa62c3",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#ansible-azure-arc-role-at-afa62c3"
+   },
+   {
+    "text": "azcmagent connect",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#azcmagent-connect"
+   },
+   {
+    "text": "Connect machines with Ansible",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#connect-machines-to-azure-arc-at-scale-with"
+   },
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/08-ansible-beside-arc.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "First, the patch_owner column",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/08-ansible-beside-arc.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "The inventory: owners to groups and tags",
+  "links": [
+   {
+    "text": "azcmagent connect",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#azcmagent-connect"
+   },
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/08-ansible-beside-arc.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "The wave plan, written before anything runs",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/08-ansible-beside-arc.html"
+   },
+   {
+    "text": "Plan and deploy Azure Arc-enabled servers",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#plan-and-deploy-azure-arc-enabled-servers"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Onboarding with Microsoft's role, gated",
+  "links": [
+   {
+    "text": "azure_arc role at afa62c3",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#ansible-azure-arc-role-at-afa62c3"
+   },
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/08-ansible-beside-arc.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Who runs it, and the least role that onboards",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/08-ansible-beside-arc.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Lab 1: the inventory, and the role's failed dry run",
+  "links": [
+   {
+    "text": "azure_arc role at afa62c3",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#ansible-azure-arc-role-at-afa62c3"
+   },
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/08-ansible-beside-arc.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Lab 1: plan, dry-run and break the CMDB",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/08-ansible-beside-arc.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Lab 2: one disposable server, connected for real",
+  "links": [
+   {
+    "text": "Connect machines with Ansible",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#connect-machines-to-azure-arc-at-scale-with"
+   },
+   {
+    "text": "azcmagent disconnect",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#azcmagent-disconnect"
+   },
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/08-ansible-beside-arc.html"
+   }
+  ]
+ },
+ {
+  "slide": 17,
+  "title": "Dangers, and the guard for each",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/08-ansible-beside-arc.html"
+   },
+   {
+    "text": "Connect machines with Ansible",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#connect-machines-to-azure-arc-at-scale-with"
+   },
+   {
+    "text": "azcmagent connect",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#azcmagent-connect"
+   }
+  ]
+ },
+ {
+  "slide": 18,
+  "title": "Done when: the chapter's checklist",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/08-ansible-beside-arc.html"
+   },
+   {
+    "text": "Plan and deploy Azure Arc-enabled servers",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#plan-and-deploy-azure-arc-enabled-servers"
+   },
+   {
+    "text": "Planning identity for Azure Government",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#planning-identity-for-azure-government"
+   }
+  ]
+ }
+]

@@ -98,7 +98,7 @@ Appendices: [A — Lifecycle rules](appendix-a-lifecycle-rules.md) · [B — Sec
 
 ## Where this book sits in the workbook
 
-- **[SQL Server Identity Transformation, Book 07](../b06-data-platform/16-groups-roles-and-membership.md)** applies the attribute-to-access chain of Chapter 10 to SQL Server logins and database roles.
+- **[Book 06, Chapter 16](../b06-data-platform/16-groups-roles-and-membership.md)** applies the attribute-to-access chain of Chapter 10 to SQL Server logins and database roles.
 - **[Book 07 — PKI & Certificates](../b07-pki/index.md)** sets the issuer and renewal owner for every certificate class, including the move off AD CS; [Book 06, Chapter 22](../b06-data-platform/22-where-sql-server-touches-adcs.md) covers SQL Server's certificate dependencies; Chapter 09 covers only the certificate steps of the leaver sequence.
 - **[Federal Compliance Vol I Book 04](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_I_Book_04_HRIT_Identity_Org_SSOT.md)** carries the compliance treatment of the same controls (AC-2, IA-4, PS-4, PS-5, SI-12). The architecture contributes mechanisms and evidence to them; it doesn't satisfy them on its own.
 - **[Book 01, Chapter 04](../b01-transformation-arc/04-identity-transformation.md)** covers the move from the OU tree to attribute-driven structure.

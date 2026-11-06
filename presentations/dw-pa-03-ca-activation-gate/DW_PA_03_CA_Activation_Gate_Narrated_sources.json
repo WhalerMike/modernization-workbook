@@ -1,0 +1,348 @@
+[
+ {
+  "slide": 2,
+  "title": "The first writes to a tenant: what the workbook asks",
+  "links": [
+   {
+    "text": "Book 04, Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/07-the-conditional-access-policy-library.html"
+   },
+   {
+    "text": "Wave 2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/07-the-conditional-access-policy-library.html#wave-2-administrators"
+   },
+   {
+    "text": "Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/08-pim-self-request-with-approval.html"
+   },
+   {
+    "text": "Step 2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/08-pim-self-request-with-approval.html#step-2-build-the-authentication-context-and-its-policy"
+   },
+   {
+    "text": "Appendix A",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/appendix-a-conditional-access-templates.html"
+   },
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/03-the-conditional-access-model.html"
+   },
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/07-access-reviews-of-privileged-roles.html"
+   },
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/08-evidence-and-drift.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "Learn sets the order: the gate before PIM selects it",
+  "links": [
+   {
+    "text": "Configure Microsoft Entra role settings in PIM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-microsoft-entra-role-settings-in"
+   },
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/03-conditional-access-for-administrators.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "Which cloud: Graph v1.0 on the worldwide host",
+  "links": [
+   {
+    "text": "Graph national cloud deployments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
+   },
+   {
+    "text": "Entra feature availability",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-feature-availability"
+   },
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/03-conditional-access-for-administrators.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Microsoft's template for administrators, pinned",
+  "links": [
+   {
+    "text": "graph-docs at a693031",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#graph-docs-at-a693031"
+   },
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/03-conditional-access-for-administrators.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "What the template misses: roles, strength, IDs",
+  "links": [
+   {
+    "text": "Conditional Access",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-conditional-access"
+   },
+   {
+    "text": "authentication strengths",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#conditional-access-authentication-strengths"
+   },
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/03-conditional-access-for-administrators.html"
+   },
+   {
+    "text": "Book 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "What the template misses: exclusion, state, gate",
+  "links": [
+   {
+    "text": "emergency access accounts",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#manage-emergency-access-accounts-in"
+   },
+   {
+    "text": "Conditional Access",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-conditional-access"
+   },
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/03-conditional-access-for-administrators.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "The code and the policy files",
+  "links": [
+   {
+    "text": "Configure Microsoft Entra role settings in PIM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-microsoft-entra-role-settings-in"
+   },
+   {
+    "text": "Book 04, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/08-pim-self-request-with-approval.html"
+   },
+   {
+    "text": "Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/10-access-as-code-and-evidence.html"
+   },
+   {
+    "text": "Appendix A",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/appendix-a-conditional-access-templates.html"
+   },
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/03-the-conditional-access-model.html"
+   },
+   {
+    "text": "Book 04, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/08-pim-self-request-with-approval.html"
+   },
+   {
+    "text": "Book 04, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/08-pim-self-request-with-approval.html"
+   },
+   {
+    "text": "PIM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-microsoft-entra-privileged-identity"
+   },
+   {
+    "text": "Book 04, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/08-pim-self-request-with-approval.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "The pre-merge check: PA-CA-01 to PA-CA-09",
+  "links": [
+   {
+    "text": "PIM role settings",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-microsoft-entra-role-settings-in"
+   },
+   {
+    "text": "protected actions",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-are-protected-actions-in-microsoft"
+   },
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/03-conditional-access-for-administrators.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Report-only policies and the emergency exclusion",
+  "links": [
+   {
+    "text": "emergency access accounts",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#manage-emergency-access-accounts-in"
+   },
+   {
+    "text": "Conditional Access",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-conditional-access"
+   },
+   {
+    "text": "Book 04, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/04-privileged-roles-and-tiers.html"
+   },
+   {
+    "text": "07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/07-the-conditional-access-policy-library.html"
+   },
+   {
+    "text": "10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/10-access-as-code-and-evidence.html"
+   },
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/03-the-conditional-access-model.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "The plan, the dry run and the writes",
+  "links": [
+   {
+    "text": "Book 04, Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/07-the-conditional-access-policy-library.html"
+   },
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/03-the-conditional-access-model.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Where Learn's pages differ, recorded",
+  "links": [
+   {
+    "text": "PIM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-microsoft-entra-privileged-identity"
+   },
+   {
+    "text": "protected actions",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-are-protected-actions-in-microsoft"
+   },
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/03-conditional-access-for-administrators.html"
+   },
+   {
+    "text": "Book 04, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/04-privileged-roles-and-tiers.html"
+   },
+   {
+    "text": "Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/10-access-as-code-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Who builds it, who reviews it, what it may do",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/03-conditional-access-for-administrators.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Lab 1: check the template and the files offline",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/03-conditional-access-for-administrators.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Lab 1: plan, dry run, and three applies to the fake",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/03-conditional-access-for-administrators.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Lab 2: a test tenant, report-only, then the gate",
+  "links": [
+   {
+    "text": "Book 04, Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/07-the-conditional-access-policy-library.html"
+   },
+   {
+    "text": "rollout",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/07-the-conditional-access-policy-library.html#rollout-from-report-only-to-enforcement"
+   },
+   {
+    "text": "rollback",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/07-the-conditional-access-policy-library.html#rollback"
+   },
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/03-the-conditional-access-model.html"
+   }
+  ]
+ },
+ {
+  "slide": 17,
+  "title": "Dangers, and the guard for each",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/03-conditional-access-for-administrators.html"
+   },
+   {
+    "text": "PIM role settings",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-microsoft-entra-role-settings-in"
+   },
+   {
+    "text": "Book 04, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/08-pim-self-request-with-approval.html"
+   },
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/02-emergency-access-as-code.html"
+   },
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/04-pim-for-entra-roles-as-code.html"
+   },
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/08-evidence-and-drift.html"
+   }
+  ]
+ },
+ {
+  "slide": 18,
+  "title": "Done when: the chapter's checklist",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/03-conditional-access-for-administrators.html"
+   }
+  ]
+ }
+]

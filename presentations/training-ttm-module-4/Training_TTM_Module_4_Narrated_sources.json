@@ -1,0 +1,120 @@
+[
+ {
+  "slide": 2,
+  "title": "Why each drift needs a number before a ticket",
+  "links": [
+   {
+    "text": "Book 03, Chapter 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/11-drift-metrics-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "Gate 3: connect, correlate on employeeId, measure",
+  "links": [
+   {
+    "text": "Book 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/index.html"
+   },
+   {
+    "text": "Book 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "The workbook's drift classes, and what the kit computes",
+  "links": [
+   {
+    "text": "Book 03, Chapter 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/11-drift-metrics-and-evidence.html"
+   },
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/06-canonical-attribute-schema.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "The reconciliation: inputs, stable IDs, outputs",
+  "links": [
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/06-drift-reconciliation.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Run over run: new, persisting, resolved",
+  "links": [
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/06-drift-reconciliation.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Dangers of a nightly run, and the guards",
+  "links": [
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/06-drift-reconciliation.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Try it: measure day one",
+  "links": [
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/06-drift-reconciliation.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Try it: compare day two, then a run without the audit",
+  "links": [
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/06-drift-reconciliation.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Lab 2: measure your test tenant on two days",
+  "links": [
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/06-drift-reconciliation.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "The federal requirement, and the evidence to keep",
+  "links": [
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/06-drift-reconciliation.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Summary, and next: Module 5, a typed task",
+  "links": [
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/06-drift-reconciliation.html"
+   }
+  ]
+ }
+]

@@ -1,0 +1,236 @@
+[
+ {
+  "slide": 2,
+  "title": "Gates 0–3 on one page: done when, proved by",
+  "links": [
+   {
+    "text": "Book 03, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/04-attribute-authority.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "Baseline: trace the last real events, not the process",
+  "links": [
+   {
+    "text": "Book 03, Ch 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/11-drift-metrics-and-evidence.html"
+   },
+   {
+    "text": "Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/08-joiner-mover-leaver.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "Baseline evidence: where each number comes from",
+  "links": [
+   {
+    "text": "Book 03, Ch 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/11-drift-metrics-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Gate 0: run the Start Kit, read-only, Tier A first",
+  "links": [
+   {
+    "text": "Book 02, Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/07-read-only-discovery.html"
+   },
+   {
+    "text": "08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/08-assessing-the-forest.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Gate 0: the decision record, one row per group",
+  "links": [
+   {
+    "text": "Book 02, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/09-building-the-entra-target.html"
+   },
+   {
+    "text": "per-group decision",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/09-building-the-entra-target.html#the-per-group-decision"
+   },
+   {
+    "text": "organizational units",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/09-building-the-entra-target.html#organizational-units"
+   },
+   {
+    "text": "AdminSDHolder",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/09-building-the-entra-target.html#adminsdholder-and-protected-groups"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "What the overview simplified",
+  "links": [
+   {
+    "text": "Book 02, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/09-building-the-entra-target.html"
+   },
+   {
+    "text": "filtering",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/09-building-the-entra-target.html#filtering"
+   },
+   {
+    "text": "Book 03, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/04-attribute-authority.html"
+   },
+   {
+    "text": "06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/06-canonical-attribute-schema.html"
+   },
+   {
+    "text": "08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/08-joiner-mover-leaver.html"
+   },
+   {
+    "text": "11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/11-drift-metrics-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Gate 1: the user slot register, slot by slot",
+  "links": [
+   {
+    "text": "Book 03, Ch 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/06-canonical-attribute-schema.html"
+   },
+   {
+    "text": "Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/04-attribute-authority.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Gate 1: one store, one writer, one owner",
+  "links": [
+   {
+    "text": "Book 03, Ch 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/06-canonical-attribute-schema.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Gate 2: threshold, writers out, logs out",
+  "links": [
+   {
+    "text": "Book 03, Ch 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/06-canonical-attribute-schema.html"
+   },
+   {
+    "text": "Writers",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/06-canonical-attribute-schema.html#writers"
+   },
+   {
+    "text": "Ch 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/11-drift-metrics-and-evidence.html"
+   },
+   {
+    "text": "evidence",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/11-drift-metrics-and-evidence.html#the-evidence-each-event-leaves"
+   },
+   {
+    "text": "Ch 12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/12-execution-plan.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Gate 3: two landing zones, one carrier, mapped",
+  "links": [
+   {
+    "text": "Book 02, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/09-building-the-entra-target.html"
+   },
+   {
+    "text": "engine",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/09-building-the-entra-target.html#choosing-and-configuring-the-sync-engine"
+   },
+   {
+    "text": "filtering",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/09-building-the-entra-target.html#filtering"
+   },
+   {
+    "text": "attribute flow",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/09-building-the-entra-target.html#attribute-flow-and-transformations"
+   },
+   {
+    "text": "Book 03, Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/05-the-provisioning-pipeline.html"
+   },
+   {
+    "text": "06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/06-canonical-attribute-schema.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Gate 3: the /bulkUpload record, sent whole",
+  "links": [
+   {
+    "text": "Book 03, Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/05-the-provisioning-pipeline.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Gate 3: the match trap and the April 7, 2027 deadline",
+  "links": [
+   {
+    "text": "Book 02, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/09-building-the-entra-target.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Gate 3: proving it flowed, and backing it out",
+  "links": [
+   {
+    "text": "Book 02, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/10-migrating-and-governing.html"
+   },
+   {
+    "text": "Book 03, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/08-joiner-mover-leaver.html"
+   },
+   {
+    "text": "12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/12-execution-plan.html"
+   },
+   {
+    "text": "Book 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/index.html"
+   },
+   {
+    "text": "Book 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/index.html"
+   },
+   {
+    "text": "Book 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/index.html"
+   },
+   {
+    "text": "Book 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/index.html"
+   }
+  ]
+ }
+]

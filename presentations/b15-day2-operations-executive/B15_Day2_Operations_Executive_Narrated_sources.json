@@ -1,0 +1,432 @@
+[
+ {
+  "slide": 2,
+  "title": "The estate is judged on day two, at the help desk",
+  "links": [
+   {
+    "text": "Book 15, Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/01-the-help-desk-decides.html"
+   },
+   {
+    "text": "Day two is most of the work",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/01-the-help-desk-decides.html#day-two-is-most-of-the-work"
+   },
+   {
+    "text": "How modernization quietly reverts",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/01-the-help-desk-decides.html#how-modernization-quietly-reverts"
+   },
+   {
+    "text": "What leadership should take from this",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/01-the-help-desk-decides.html#what-leadership-should-take-from-this"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "An authenticator reset hands over the account",
+  "links": [
+   {
+    "text": "Entra built-in roles",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-built-in-roles"
+   },
+   {
+    "text": "OMB M-22-09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
+   },
+   {
+    "text": "NIST SP 800-63B-4",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-63b-4"
+   },
+   {
+    "text": "CISA AA23-320A",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#aa23-320a"
+   },
+   {
+    "text": "Book 15, Chapters 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/01-the-help-desk-decides.html"
+   },
+   {
+    "text": "03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/03-intake-triage-and-routing.html"
+   },
+   {
+    "text": "10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/10-who-runs-day-two.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "Day-two volume is where controls erode",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "SP 800-53B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53b"
+   },
+   {
+    "text": "release 5.2.0",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "SP 800-137",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-137"
+   },
+   {
+    "text": "Book 15, Chapters 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/02-day-two-is-where-compliance-lives.html"
+   },
+   {
+    "text": "10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/10-who-runs-day-two.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Buy the contract, not the product",
+  "links": [
+   {
+    "text": "FedRAMP Marketplace products.json",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-marketplace"
+   },
+   {
+    "text": "SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "53B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53b"
+   },
+   {
+    "text": "Book 15, Chapters 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/02-day-two-is-where-compliance-lives.html"
+   },
+   {
+    "text": "10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/10-who-runs-day-two.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "One front door, routed by the authority a task needs",
+  "links": [
+   {
+    "text": "CISA AA23-320A",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#aa23-320a"
+   },
+   {
+    "text": "Book 15, Chapters 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/03-intake-triage-and-routing.html"
+   },
+   {
+    "text": "10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/10-who-runs-day-two.html"
+   },
+   {
+    "text": "Book 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "The help desk executes; it never decides",
+  "links": [
+   {
+    "text": "privileged roles",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#privileged-roles-and-permissions-in"
+   },
+   {
+    "text": "PIM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-microsoft-entra-privileged-identity"
+   },
+   {
+    "text": "audit activities",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-audit-log-categories-and"
+   },
+   {
+    "text": "Book 15, Chapters 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/04-help-desk-authority-in-entra.html"
+   },
+   {
+    "text": "10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/10-who-runs-day-two.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "High-risk tasks need two approvers besides the executor",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "PIM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-microsoft-entra-privileged-identity"
+   },
+   {
+    "text": "Book 15, Chapters 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/04-help-desk-authority-in-entra.html"
+   },
+   {
+    "text": "10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/10-who-runs-day-two.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Consent says who may approve; only a verdict says whether",
+  "links": [
+   {
+    "text": "CISA BOD 25-01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-25-01"
+   },
+   {
+    "text": "FedRAMP 2026",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-2026"
+   },
+   {
+    "text": "SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "Book 15, Chapters 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/01-the-help-desk-decides.html"
+   },
+   {
+    "text": "06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/06-saas-integration-governance.html"
+   },
+   {
+    "text": "10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/10-who-runs-day-two.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "The inventory is only as good as its reconciliation",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "Book 15, Chapters 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/07-the-cmdb-and-asset-identity.html"
+   },
+   {
+    "text": "10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/10-who-runs-day-two.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "One loop on every cloud, closed on a re-test",
+  "links": [
+   {
+    "text": "CISA BOD 26-04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-26-04"
+   },
+   {
+    "text": "Defender for Cloud ServiceNow integration",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#overview-of-the-servicenow-integration"
+   },
+   {
+    "text": "Book 15, Chapters 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/08-control-automation-m365-and-azure.html"
+   },
+   {
+    "text": "10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/10-who-runs-day-two.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Who runs day two: decisions away from the keyboard",
+  "links": [
+   {
+    "text": "NIST SP 800-37 Rev. 2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-37"
+   },
+   {
+    "text": "SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "Book 15, Chapter 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/10-who-runs-day-two.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Measure day-two health where the work happens",
+  "links": [
+   {
+    "text": "Book 15, Chapter 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/10-who-runs-day-two.html"
+   },
+   {
+    "text": "Staffing",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/10-who-runs-day-two.html#staffing-measuring-and-watching-the-queue"
+   },
+   {
+    "text": "measuring and watching the queue",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/10-who-runs-day-two.html#staffing-measuring-and-watching-the-queue"
+   },
+   {
+    "text": "responsibility matrix",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/10-who-runs-day-two.html#the-responsibility-matrix"
+   },
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/07-the-cmdb-and-asset-identity.html"
+   },
+   {
+    "text": "Measuring the inventory",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/07-the-cmdb-and-asset-identity.html#measuring-the-inventory"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "The CAB authorizes changes; it never accepts risk",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "Book 15, Chapter 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/10-who-runs-day-two.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Prove with systems; attest only what no system sees",
+  "links": [
+   {
+    "text": "NIST SP 800-37 Rev. 2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-37"
+   },
+   {
+    "text": "SP 800-137",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-137"
+   },
+   {
+    "text": "SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "FedRAMP 2026",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-2026"
+   },
+   {
+    "text": "SDR-CSX-KSI",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-security-decision-record"
+   },
+   {
+    "text": "Book 15, Chapters 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/10-who-runs-day-two.html"
+   },
+   {
+    "text": "11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/11-attestation-and-the-compliance-app.html"
+   },
+   {
+    "text": "12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/12-the-day-two-runbook.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Buy the native compliance apps first; build the gaps",
+  "links": [
+   {
+    "text": "Defender for Cloud support matrix",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#support-matrices-for-defender-for-cloud"
+   },
+   {
+    "text": "FedRAMP Marketplace",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-marketplace"
+   },
+   {
+    "text": "Book 15, Chapter 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/11-attestation-and-the-compliance-app.html"
+   }
+  ]
+ },
+ {
+  "slide": 17,
+  "title": "The runbook checks the automation, not just the estate",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "53B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53b"
+   },
+   {
+    "text": "Book 15, Chapter 12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/12-the-day-two-runbook.html"
+   }
+  ]
+ },
+ {
+  "slide": 18,
+  "title": "Day-two decisions: owners and timing",
+  "links": [
+   {
+    "text": "NIST SP 800-37 Rev. 2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-37"
+   },
+   {
+    "text": "SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "OMB M-22-09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
+   },
+   {
+    "text": "CISA BOD 25-01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-25-01"
+   },
+   {
+    "text": "BOD 26-04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-26-04"
+   },
+   {
+    "text": "FedRAMP 2026 rules",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-2026"
+   },
+   {
+    "text": "Book 15, Chapters 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/01-the-help-desk-decides.html"
+   },
+   {
+    "text": "12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/12-the-day-two-runbook.html"
+   },
+   {
+    "text": "Chapter 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/10-who-runs-day-two.html"
+   }
+  ]
+ }
+]

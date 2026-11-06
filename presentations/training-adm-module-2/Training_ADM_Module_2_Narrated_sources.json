@@ -1,0 +1,70 @@
+[
+ {
+  "slide": 2,
+  "title": "Why soft and hard match must be blocked",
+  "links": [
+   {
+    "text": "Set-EntraDirSyncFeature",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#set-entradirsyncfeature"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "The lesson in the catalog entry: least privilege",
+  "links": [
+   {
+    "text": "Get onPremisesDirectorySynchronization",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#get-onpremisesdirectorysynchronization"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Rows and outcome: Finding, Warn and Info",
+  "links": [
+   {
+    "text": "Set-EntraDirSyncFeature",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#set-entradirsyncfeature"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Try it: a matching window, then an export",
+  "links": [
+   {
+    "text": "Book 19, Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/03-writing-a-validation-kit-check.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Lab 2: run the check on your tenant's export",
+  "links": [
+   {
+    "text": "Book 19, Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/03-writing-a-validation-kit-check.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "The federal requirement and evidence for Module 2",
+  "links": [
+   {
+    "text": "NIST SP 800-53",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "SP 800-53B Moderate baseline",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53b"
+   },
+   {
+    "text": "Key Security Indicators",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   }
+  ]
+ }
+]

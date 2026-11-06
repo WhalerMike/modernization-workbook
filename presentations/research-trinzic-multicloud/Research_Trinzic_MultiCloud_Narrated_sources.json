@@ -1,0 +1,96 @@
+[
+ {
+  "slide": 1,
+  "title": "Trinzic Alone, or Trinzic Plus Cloud DDI?",
+  "links": [
+   {
+    "text": "FedRAMP Marketplace",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-marketplace"
+   },
+   {
+    "text": "Book 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 2,
+  "title": "The words you need before we start",
+  "links": [
+   {
+    "text": "VPC IPAM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#aws-vpc-ipam-infoblox"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "What Trinzic is, and what it does well on premises",
+  "links": [
+   {
+    "text": "Book 08, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/08-reference-architecture.html"
+   },
+   {
+    "text": "FedRAMP products.json",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-marketplace"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Option B: the Grid joined to Universal DDI",
+  "links": [
+   {
+    "text": "AWS VPC IPAM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#aws-vpc-ipam-infoblox"
+   },
+   {
+    "text": "products.json",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-marketplace"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Option C: Trinzic alongside native cloud DNS",
+  "links": [
+   {
+    "text": "AWS VPC IPAM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#aws-vpc-ipam-infoblox"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "The rules that prevent split-brain",
+  "links": [
+   {
+    "text": "Book 08, Ch 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/02-split-brain-dns.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Where this fits the workbook, and next steps",
+  "links": [
+   {
+    "text": "Book 08, Ch 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/02-split-brain-dns.html"
+   },
+   {
+    "text": "07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/07-cloud-private-endpoints-and-ipam.html"
+   },
+   {
+    "text": "08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/08-reference-architecture.html"
+   },
+   {
+    "text": "12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/12-selection-cost-and-residual-risk.html"
+   }
+  ]
+ }
+]

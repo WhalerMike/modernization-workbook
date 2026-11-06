@@ -2,7 +2,7 @@
 
 ## Slide 1 — Chapter 08: Evidence and Drift for the ISSO
 
-Welcome to the Federal Modernization Workbook's developer workbook, Building Privileged Access. This is Chapter 8, the last one: evidence and drift for the ISSO. An inventory taken once only proves the day it was taken. The ISSO needs every day of the period, every elevation in it, and a record nobody could have edited afterwards. We'll start from Learn's audit queries for PIM, see what they leave out, then walk the run, the comparison, the package, the period, two labs and the dangers. One note before we begin: the code is illustrative, tested against fixtures.
+Welcome to the Federal Modernization Workbook's developer workbook, Building Privileged Access. This is Chapter 8: evidence and drift for the ISSO. An inventory taken once only proves the day it was taken. The ISSO needs every day of the period, every elevation in it, and a record nobody could have edited afterwards. We'll start from Learn's audit queries for PIM, see what they leave out, then walk the run, the comparison, the package, the period, two labs and the dangers. One note before we begin: the code is illustrative, tested against fixtures.
 
 ## Slide 2 — What the evidence has to show
 
@@ -70,4 +70,4 @@ Every danger here is a way evidence can lie. The quietest is a failed read that 
 
 ## Slide 18 — Done when: the chapter's checklist
 
-Here's what done looks like. On the run side: all three tasks succeed, the reader holds exactly nine read-only permissions and no secret, every window picks up where the last one ended, and every Tier 0 incident has a record. On the evidence side: no names in the tracker, every package verifies with a standard hashing tool, the chain is unbroken, the storage is locked, and the period summary is signed and accepted. That's the last chapter; the workbook index lists all eight if you want to go back. Thanks for watching.
+Here's what done looks like. On the run side: all three tasks succeed, the reader holds exactly nine read-only permissions and no secret, every window picks up where the last one ended, and every Tier 0 incident has a record. On the evidence side: no names in the tracker, every package verifies with a standard hashing tool, the chain is unbroken, the storage is locked, and the period summary is signed and accepted. Next is Chapter 9, deploying to test and production. Thanks for watching.

@@ -1,0 +1,238 @@
+[
+ {
+  "slide": 2,
+  "title": "Identity is now where access is decided",
+  "links": [
+   {
+    "text": "OMB M-22-09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
+   },
+   {
+    "text": "NIST SP 800-207",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-207"
+   },
+   {
+    "text": "CISA ZTMM v2.0",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cisa-ztmm"
+   },
+   {
+    "text": "Book 02, Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/01-why-identity-matters.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "AD isn't retiring — but every road now points to the cloud",
+  "links": [
+   {
+    "text": "deprecated Windows features",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#audit-use-of-ntlmv1-on-a-windows-server"
+   },
+   {
+    "text": "Windows message center",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#windows-message-center"
+   },
+   {
+    "text": "Book 02, Chapters 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/01-why-identity-matters.html"
+   },
+   {
+    "text": "03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/03-ad-and-entra-side-by-side.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "Two directories, two different models",
+  "links": [
+   {
+    "text": "administrative units",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#administrative-units-in-microsoft-entra-id"
+   },
+   {
+    "text": "Conditional Access",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-conditional-access"
+   },
+   {
+    "text": "Book 02, Chapters 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/02-the-structural-problem.html"
+   },
+   {
+    "text": "03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/03-ad-and-entra-side-by-side.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Four tracks: what Book 02 moves, and where the rest goes",
+  "links": [
+   {
+    "text": "Book 02, Ch 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/02-the-structural-problem.html"
+   },
+   {
+    "text": "08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/08-assessing-the-forest.html"
+   },
+   {
+    "text": "09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/09-building-the-entra-target.html"
+   },
+   {
+    "text": "Appendix A",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/appendix-a-federal-requirements-crosswalk.html"
+   },
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "OMB M-22-09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
+   },
+   {
+    "text": "Books 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/index.html"
+   },
+   {
+    "text": "Book 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/index.html"
+   },
+   {
+    "text": "Book 05, Chapters 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/03-where-device-and-server-data-lives.html"
+   },
+   {
+    "text": "04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/04-intune-first-onboarding.html"
+   },
+   {
+    "text": "08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/08-gpo-to-intune-policy-migration.html"
+   },
+   {
+    "text": "Book 05, Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html"
+   },
+   {
+    "text": "Book 02, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/09-building-the-entra-target.html"
+   },
+   {
+    "text": "Book 17",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b17-ai-identity/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "The migration surface is much larger than users and groups",
+  "links": [
+   {
+    "text": "Cloud PKI",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#overview-of-microsoft-cloud-pki-for"
+   },
+   {
+    "text": "Book 02, Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/04-the-hidden-migration-surface.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Delegation has to be rebuilt without OUs",
+  "links": [
+   {
+    "text": "administrative units",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#administrative-units-in-microsoft-entra-id"
+   },
+   {
+    "text": "Book 02, Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/05-delegation-without-ous.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Sign-in moves to phishing-resistant credentials",
+  "links": [
+   {
+    "text": "OMB M-22-09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
+   },
+   {
+    "text": "authentication strengths",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#conditional-access-authentication-strengths"
+   },
+   {
+    "text": "Book 02, Chapter 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/10-migrating-and-governing.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Who decides, who does the work",
+  "links": [
+   {
+    "text": "NIST SP 800-37 Rev. 2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-37"
+   },
+   {
+    "text": "OMB M-19-17",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-19-17"
+   },
+   {
+    "text": "Book 02, Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/06-who-owns-the-migration.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "How: discover, assess, build, migrate, prove",
+  "links": [
+   {
+    "text": "PIM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-microsoft-entra-privileged-identity"
+   },
+   {
+    "text": "emergency access accounts",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#manage-emergency-access-accounts-in"
+   },
+   {
+    "text": "workload identity federation",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#workload-identity-federation-concepts"
+   },
+   {
+    "text": "Book 02, Chapters 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/07-read-only-discovery.html"
+   },
+   {
+    "text": "11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/11-reference-deployment.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "What a reference deployment produces",
+  "links": [
+   {
+    "text": "NIST SP 800-37 Rev. 2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-37"
+   },
+   {
+    "text": "Entra authentication for SQL Server",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-authentication-for-sql"
+   },
+   {
+    "text": "Book 02, Chapter 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/11-reference-deployment.html"
+   }
+  ]
+ }
+]

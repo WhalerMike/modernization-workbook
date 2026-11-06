@@ -1,0 +1,196 @@
+[
+ {
+  "slide": 1,
+  "title": "Book 09's SD-WAN Design on Cisco Catalyst SD-WAN",
+  "links": [
+   {
+    "text": "FedRAMP Marketplace",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-marketplace"
+   }
+  ]
+ },
+ {
+  "slide": 2,
+  "title": "Why this guide starts with a directive",
+  "links": [
+   {
+    "text": "CISA KEV catalog",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cisa-kev"
+   },
+   {
+    "text": "Book 09, Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/05-sd-wan-sase-and-governed-transport.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "ED 26-03: what it required, and when",
+  "links": [
+   {
+    "text": "ED 26-03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#ed-26-03"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "Nine exploited flaws: a standing posture",
+  "links": [
+   {
+    "text": "CISA KEV catalog",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cisa-kev"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "The fixed-release floor, train by train",
+  "links": [
+   {
+    "text": "CISA KEV catalog",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cisa-kev"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Hunt and harden: CISA's companion guidance",
+  "links": [
+   {
+    "text": "ED 26-03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#ed-26-03"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Hosted or on-premises, and why the gate stays",
+  "links": [
+   {
+    "text": "FedRAMP Marketplace products.json",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-marketplace"
+   },
+   {
+    "text": "CISA ED 26-03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#ed-26-03"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "The 12-hub fabric on Catalyst SD-WAN",
+  "links": [
+   {
+    "text": "FedRAMP Marketplace",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-marketplace"
+   },
+   {
+    "text": "Book 09, Ch 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/11-field-office-wan-transformation.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "FIPS and Common Criteria: controllers vs edges",
+  "links": [
+   {
+    "text": "NIST CMVP",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#nist-cmvp"
+   },
+   {
+    "text": "NIAP PCL",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#niap-pcl"
+   },
+   {
+    "text": "CIS Benchmarks",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cis-benchmarks"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "TIC 3.0 patterns on Catalyst",
+  "links": [
+   {
+    "text": "Book 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/index.html"
+   },
+   {
+    "text": "Book 09, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/08-reference-architecture.html"
+   },
+   {
+    "text": "Ch 12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/12-microsoft-365-traffic.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Secure Access, Global Secure Access and GCC",
+  "links": [
+   {
+    "text": "FedRAMP Marketplace",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-marketplace"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Evidence and telemetry the fabric emits",
+  "links": [
+   {
+    "text": "CISA ED 26-03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#ed-26-03"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "The phased build, mapped to Book 09's gates",
+  "links": [
+   {
+    "text": "Book 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/index.html"
+   },
+   {
+    "text": "Book 09, Ch 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/11-field-office-wan-transformation.html"
+   },
+   {
+    "text": "Ch 13",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/13-sequencing-cost-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 17,
+  "title": "Where this changes Book 09's planning",
+  "links": [
+   {
+    "text": "ED 26-03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#ed-26-03"
+   },
+   {
+    "text": "CISA KEV",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cisa-kev"
+   }
+  ]
+ },
+ {
+  "slide": 20,
+  "title": "What to verify, decide, and read next",
+  "links": [
+   {
+    "text": "Book 09, Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/05-sd-wan-sase-and-governed-transport.html"
+   },
+   {
+    "text": "Ch 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/11-field-office-wan-transformation.html"
+   }
+  ]
+ }
+]

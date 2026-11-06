@@ -2,7 +2,7 @@
 
 ## Slide 1 — Chapter 10: Drift and Evidence for the ISSO
 
-Welcome to the Federal Modernization Workbook's developer workbook, Building Non-Person Identity. This is Chapter 10, the last one: drift and evidence for the security officer. A register approved once proves only the day it was approved. The security officer needs to know what changed since, who changed it, and that nobody edited the record afterwards. We'll start from the Sentinel rule Learn links for added credentials, see what it misses, then walk the drift run, the approved baseline, the rules, the review cycle, the vintage comparison and the hash chain, two labs and the dangers. One note before we begin: the code is illustrative, tested against fixtures.
+Welcome to the Federal Modernization Workbook's developer workbook, Building Non-Person Identity. This is Chapter 10: drift and evidence for the security officer. A register approved once proves only the day it was approved. The security officer needs to know what changed since, who changed it, and that nobody edited the record afterwards. We'll start from the Sentinel rule Learn links for added credentials, see what it misses, then walk the drift run, the approved baseline, the rules, the review cycle, the vintage comparison and the hash chain, two labs and the dangers. One note before we begin: the code is illustrative, tested against fixtures.
 
 ## Slide 2 — What the evidence has to show
 

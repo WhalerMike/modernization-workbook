@@ -1,0 +1,132 @@
+[
+ {
+  "slide": 2,
+  "title": "Why \"to make it work\" is the wrong grant",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/02-servicenow-client-and-least-privilege.html"
+   },
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/03-sailpoint-client-and-scopes.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "The call list: privilege a test can check",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/02-servicenow-client-and-least-privilege.html"
+   },
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/03-sailpoint-client-and-scopes.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "ServiceNow roles, split by task",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/02-servicenow-client-and-least-privilege.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "ISC scopes and Graph permissions each task needs",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/03-sailpoint-client-and-scopes.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "What a client-credentials token can't do in ISC",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/03-sailpoint-client-and-scopes.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Try it: catch two over-wide ServiceNow grants",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/02-servicenow-client-and-least-privilege.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Try it: a manage scope, one client, and the audit",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/03-sailpoint-client-and-scopes.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Lab 2: build the roles and clients in test instances",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/02-servicenow-client-and-least-privilege.html"
+   },
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/03-sailpoint-client-and-scopes.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Where agencies are: the boundary on the Marketplace",
+  "links": [
+   {
+    "text": "FedRAMP Marketplace",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-marketplace"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "The federal requirement, and the evidence to keep",
+  "links": [
+   {
+    "text": "Chapters 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/02-servicenow-client-and-least-privilege.html"
+   },
+   {
+    "text": "03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/03-sailpoint-client-and-scopes.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Summary, and next: Module 3, one writer",
+  "links": [
+   {
+    "text": "Chapters 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/02-servicenow-client-and-least-privilege.html"
+   },
+   {
+    "text": "03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/03-sailpoint-client-and-scopes.html"
+   }
+  ]
+ }
+]

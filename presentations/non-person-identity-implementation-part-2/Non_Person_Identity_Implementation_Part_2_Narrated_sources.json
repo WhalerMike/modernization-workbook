@@ -1,0 +1,172 @@
+[
+ {
+  "slide": 3,
+  "title": "G4: cut privilege across five surfaces",
+  "links": [
+   {
+    "text": "least privileged roles by task",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#least-privileged-roles-by-task-in-microsoft"
+   },
+   {
+    "text": "privileged roles",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#privileged-roles-and-permissions-in"
+   },
+   {
+    "text": "Book 04, Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/05-applications-and-workload-identities.html"
+   },
+   {
+    "text": "06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/06-who-decides-access.html"
+   },
+   {
+    "text": "07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/07-the-conditional-access-policy-library.html"
+   },
+   {
+    "text": "Book 17, Ch 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b17-ai-identity/06-credentials-and-least-privilege.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "G4: requirement, evidence, availability, rollback",
+  "links": [
+   {
+    "text": "Workload ID FAQ",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#workload-id-faq"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "G5: build the target, run in parallel, then disable",
+  "links": [
+   {
+    "text": "Book 02, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/10-migrating-and-governing.html"
+   },
+   {
+    "text": "Phase 4",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/10-migrating-and-governing.html#phase-4-service-account-modernization"
+   },
+   {
+    "text": "Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/05-delegation-without-ous.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "G5: requirement, evidence, availability, rollback",
+  "links": [
+   {
+    "text": "Book 02, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/10-migrating-and-governing.html"
+   },
+   {
+    "text": "Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/05-delegation-without-ous.html"
+   },
+   {
+    "text": "Ch 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/06-who-owns-the-migration.html"
+   },
+   {
+    "text": "Book 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "G6: owner change, orphans and owner reviews",
+  "links": [
+   {
+    "text": "Book 04, Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/05-applications-and-workload-identities.html"
+   },
+   {
+    "text": "06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/06-who-decides-access.html"
+   },
+   {
+    "text": "Book 17, Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b17-ai-identity/05-owners-sponsors-and-lifecycle.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "G6: disable first, then delete",
+  "links": [
+   {
+    "text": "Book 04, Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/05-applications-and-workload-identities.html"
+   },
+   {
+    "text": "Book 17, Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b17-ai-identity/05-owners-sponsors-and-lifecycle.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "SQL Server: the engine, the instance, the applications",
+  "links": [
+   {
+    "text": "Book 06, Ch 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/02-why-the-inheritance-must-end.html"
+   },
+   {
+    "text": "09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/09-what-arc-provides-to-sql-server.html"
+   },
+   {
+    "text": "11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/11-three-principal-types.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "AI agents: sponsors, blueprints and gated creation",
+  "links": [
+   {
+    "text": "Book 17, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b17-ai-identity/04-kinds-of-ai-identity.html"
+   },
+   {
+    "text": "05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b17-ai-identity/05-owners-sponsors-and-lifecycle.html"
+   },
+   {
+    "text": "06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b17-ai-identity/06-credentials-and-least-privilege.html"
+   },
+   {
+    "text": "Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b17-ai-identity/09-running-the-inventory-scan.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Evidence and rollback across the track",
+  "links": [
+   {
+    "text": "Book 02, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/10-migrating-and-governing.html"
+   },
+   {
+    "text": "Book 17, Ch 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b17-ai-identity/06-credentials-and-least-privilege.html"
+   },
+   {
+    "text": "Appendix A",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b17-ai-identity/appendix-a-requirements-mapping.html"
+   }
+  ]
+ }
+]

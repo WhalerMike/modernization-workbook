@@ -1,0 +1,144 @@
+[
+ {
+  "slide": 5,
+  "title": "Sign-in activity and membership: the traps",
+  "links": [
+   {
+    "text": "List users",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-users"
+   },
+   {
+    "text": "user resource",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#user-resource-type"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Conditional Access: read it with one permission",
+  "links": [
+   {
+    "text": "Conditional Access",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-conditional-access"
+   },
+   {
+    "text": "Create conditionalAccessPolicy",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#create-conditionalaccesspolicy"
+   },
+   {
+    "text": "Book 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "PIM: eligible, active, and permanent active",
+  "links": [
+   {
+    "text": "PIM APIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#privileged-identity-management-apis"
+   },
+   {
+    "text": "ScubaGear aad.md",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#scuba-entra-baseline"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Application credentials against three ScubaGear rules",
+  "links": [
+   {
+    "text": "keyCredential",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#keycredential-resource-type"
+   },
+   {
+    "text": "List applications",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-applications"
+   },
+   {
+    "text": "appRoleAssignedTo",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#delete-approleassignedto"
+   },
+   {
+    "text": "ScubaGear aad.md",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#scuba-entra-baseline"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Logs, retention, and authentication methods",
+  "links": [
+   {
+    "text": "List directoryAudits",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-directoryaudits"
+   },
+   {
+    "text": "List signIns",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-signins"
+   },
+   {
+    "text": "Entra data retention",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-data-retention"
+   },
+   {
+    "text": "List methods",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-methods"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "The five checks, and a reader's permissions",
+  "links": [
+   {
+    "text": "Book 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Where agencies are: Entra ID in GCC High and DoD",
+  "links": [
+   {
+    "text": "Entra feature availability",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-feature-availability"
+   },
+   {
+    "text": "Compare Azure Government and global Azure",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#compare-azure-government-and-global-azure"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "The federal requirement and evidence for Entra ID",
+  "links": [
+   {
+    "text": "Book 02, Appendix A",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/appendix-a-federal-requirements-crosswalk.html"
+   },
+   {
+    "text": "BOD 25-01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/appendix-a-federal-requirements-crosswalk.html#cisa-bod-25-01-and-the-scuba-baselines"
+   },
+   {
+    "text": "OMB M-22-09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/appendix-a-federal-requirements-crosswalk.html#omb-m-22-09"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Summary, and next: Module 3, Intune",
+  "links": [
+   {
+    "text": "Book 04, Chapter 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/10-access-as-code-and-evidence.html"
+   }
+  ]
+ }
+]

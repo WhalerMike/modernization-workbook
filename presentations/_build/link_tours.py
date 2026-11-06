@@ -153,7 +153,7 @@ pi = ROOT / "docs/presentations/index.md"
 md = pi.read_text(encoding="utf-8")
 md = re.sub(r"\n## Developer workbook chapter tours\n.*?(?=\n## )", "", md, flags=re.S)
 out = ["", "## Developer workbook chapter tours", "",
-       "Each chapter of [Book 19](../books/b19-developer-workbook/index.md) and of three [developer workbooks](../project-plans/developer-workbooks/index.md) under Projects has a narrated tour of about ten minutes: "
+       "Each code chapter of [Book 19](../books/b19-developer-workbook/index.md) and of four [developer workbooks](../project-plans/developer-workbooks/index.md) under Projects has a narrated tour of about ten minutes: "
        "why the chapter's code comes first, what Microsoft's own sample gives and leaves out, the code and its tests, who runs it, the two labs, the dangers and the checklist. "
        "The slides follow the Why, What, Who and How order of the book decks; each slide's notes carry the narration, the chapter's full detail and the footnotes it rests on.", ""]
 for wb, rows in tours.items():

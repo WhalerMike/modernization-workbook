@@ -1,0 +1,632 @@
+[
+ {
+  "slide": 2,
+  "title": "Why this matters: the license is not the boundary",
+  "links": [
+   {
+    "text": "Using a FedRAMP Certified Cloud Service",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#using-a-fedramp-certified-cloud-service"
+   },
+   {
+    "text": "network connectivity",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#network-connectivity-in-the-microsoft-365"
+   },
+   {
+    "text": "informed network routing",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-365-informed-network-routing"
+   },
+   {
+    "text": "Adoption Score",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-adoption-score"
+   },
+   {
+    "text": "Book 10, Ch 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b10-cloud-boundary/01-why-the-boundary-decides.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "Three checks, three owners, one overlap you can use",
+  "links": [
+   {
+    "text": "FedRAMP 2026 definitions",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-definitions"
+   },
+   {
+    "text": "MAS",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-minimum-assessment-scope"
+   },
+   {
+    "text": "GCC service description",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#office-365-gcc"
+   },
+   {
+    "text": "Intune government service",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-intune-for-us-government-gcc-high"
+   },
+   {
+    "text": "Book 10, Ch 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b10-cloud-boundary/01-why-the-boundary-decides.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Why the boundary stays invisible, and a claim corrected",
+  "links": [
+   {
+    "text": "Intune government service",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-intune-for-us-government-gcc-high"
+   },
+   {
+    "text": "endpoint analytics",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#endpoint-analytics-overview"
+   },
+   {
+    "text": "Advanced Analytics",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#advanced-analytics-overview"
+   },
+   {
+    "text": "network connectivity",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#network-connectivity-in-the-microsoft-365"
+   },
+   {
+    "text": "Adoption Score",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-adoption-score"
+   },
+   {
+    "text": "Azure FedRAMP audit scope",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#azure-dynamics-365-microsoft-365-and-power"
+   },
+   {
+    "text": "Book 10, Ch 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b10-cloud-boundary/02-the-invisible-boundary.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Four dimensions change across any boundary",
+  "links": [
+   {
+    "text": "FedRAMP 2026 definitions",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-definitions"
+   },
+   {
+    "text": "Azure feature availability",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cloud-feature-availability-for-us-government"
+   },
+   {
+    "text": "Book 10, Ch 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b10-cloud-boundary/02-the-invisible-boundary.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "FedRAMP 2026: services are certified; agencies authorize",
+  "links": [
+   {
+    "text": "NTC-0013",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#ntc-0013"
+   },
+   {
+    "text": "FedRAMP 2026 timeline",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#important-dates-for-the-consolidated-rules"
+   },
+   {
+    "text": "Book 10, Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b10-cloud-boundary/03-what-changed-at-fedramp.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Minimum Assessment Scope: a data test, per resource",
+  "links": [
+   {
+    "text": "FedRAMP 2026",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-2026"
+   },
+   {
+    "text": "Minimum Assessment Scope",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-minimum-assessment-scope"
+   },
+   {
+    "text": "Certification Data Sharing",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-certification-data-sharing"
+   },
+   {
+    "text": "OMB M-24-15",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-24-15"
+   },
+   {
+    "text": "Book 10, Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b10-cloud-boundary/03-what-changed-at-fedramp.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Change is notified, not re-approved; data becomes a feed",
+  "links": [
+   {
+    "text": "FedRAMP 2026",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-2026"
+   },
+   {
+    "text": "Significant Change Notification",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-significant-change"
+   },
+   {
+    "text": "Certification Data Sharing",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-certification-data-sharing"
+   },
+   {
+    "text": "Book 10, Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b10-cloud-boundary/03-what-changed-at-fedramp.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "GCC is the worldwide service minus a published list",
+  "links": [
+   {
+    "text": "M365 endpoints",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-365-endpoints"
+   },
+   {
+    "text": "Azure feature availability",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cloud-feature-availability-for-us-government"
+   },
+   {
+    "text": "GCC service description",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#office-365-gcc"
+   },
+   {
+    "text": "Windows release health",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#how-to-check-windows-release-health"
+   },
+   {
+    "text": "Marketplace MSO365MT",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-marketplace-mso365mt"
+   },
+   {
+    "text": "Book 10, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b10-cloud-boundary/04-gcc-and-the-feature-gap.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "The largest documented loss: network observability",
+  "links": [
+   {
+    "text": "network connectivity",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#network-connectivity-in-the-microsoft-365"
+   },
+   {
+    "text": "network assessment",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-365-network-assessment"
+   },
+   {
+    "text": "Network Insights",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-365-network-insights"
+   },
+   {
+    "text": "connectivity test tool",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-365-network-connectivity-test-tool"
+   },
+   {
+    "text": "Adoption Score",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-adoption-score"
+   },
+   {
+    "text": "Book 10, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b10-cloud-boundary/04-gcc-and-the-feature-gap.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Three packages, and why High won't bring features back",
+  "links": [
+   {
+    "text": "FedRAMP Marketplace products.json",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-marketplace"
+   },
+   {
+    "text": "MSO365MT",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-marketplace-mso365mt"
+   },
+   {
+    "text": "SCN-CSO-EVA",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-significant-change"
+   },
+   {
+    "text": "GCC service description",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#office-365-gcc"
+   },
+   {
+    "text": "Book 10, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b10-cloud-boundary/04-gcc-and-the-feature-gap.html"
+   },
+   {
+    "text": "09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b10-cloud-boundary/09-equivalents-and-exceptions.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Work the gap as a list: register, probe, equivalent",
+  "links": [
+   {
+    "text": "NIST SP 800-37 Rev. 2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-37"
+   },
+   {
+    "text": "network connectivity",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#network-connectivity-in-the-microsoft-365"
+   },
+   {
+    "text": "connectivity test tool",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-365-network-connectivity-test-tool"
+   },
+   {
+    "text": "Book 10, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b10-cloud-boundary/09-equivalents-and-exceptions.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Exceptions, scope arguments and buying the capability",
+  "links": [
+   {
+    "text": "ExpressRoute for M365",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#using-expressroute-for-routing-microsoft-365"
+   },
+   {
+    "text": "Network Provider Program",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-365-network-provider-program"
+   },
+   {
+    "text": "NIST SP 800-37",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-37"
+   },
+   {
+    "text": "MAS",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-minimum-assessment-scope"
+   },
+   {
+    "text": "SCN",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-significant-change"
+   },
+   {
+    "text": "Book 10, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b10-cloud-boundary/09-equivalents-and-exceptions.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Change the suite, keep the identity plane",
+  "links": [
+   {
+    "text": "FedRAMP Marketplace",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-marketplace"
+   },
+   {
+    "text": "Book 10, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b10-cloud-boundary/10-alternative-collaboration-paths.html"
+   }
+  ]
+ },
+ {
+  "slide": 18,
+  "title": "The hierarchy is where boundary policy lands",
+  "links": [
+   {
+    "text": "subscription vending",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#subscription-vending"
+   },
+   {
+    "text": "Book 10, Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b10-cloud-boundary/05-the-landing-zone.html"
+   }
+  ]
+ },
+ {
+  "slide": 19,
+  "title": "Five boundary decisions, five enforced mechanisms",
+  "links": [
+   {
+    "text": "FedRAMP audit scope",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#azure-dynamics-365-microsoft-365-and-power"
+   },
+   {
+    "text": "Book 10, Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b10-cloud-boundary/05-the-landing-zone.html"
+   }
+  ]
+ },
+ {
+  "slide": 20,
+  "title": "AWS, GovCloud and automation that declares its boundary",
+  "links": [
+   {
+    "text": "FedRAMP Marketplace",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-marketplace"
+   },
+   {
+    "text": "Book 10, Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b10-cloud-boundary/05-the-landing-zone.html"
+   }
+  ]
+ },
+ {
+  "slide": 21,
+  "title": "The address plan: the denominator every inventory needs",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "CISA BOD 23-01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-23-01"
+   },
+   {
+    "text": "Book 10, Ch 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b10-cloud-boundary/06-ipam-and-network-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 22,
+  "title": "Mirror the authority, enforce the pool",
+  "links": [
+   {
+    "text": "Azure FedRAMP audit scope",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#azure-dynamics-365-microsoft-365-and-power"
+   },
+   {
+    "text": "FedRAMP Marketplace",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-marketplace"
+   },
+   {
+    "text": "Book 10, Ch 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b10-cloud-boundary/06-ipam-and-network-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 23,
+  "title": "Network as code: five modules in dependency order",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "SP 800-53B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53b"
+   },
+   {
+    "text": "Book 10, Ch 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b10-cloud-boundary/06-ipam-and-network-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 24,
+  "title": "The front door: six steps from request to closed change",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "SP 800-53B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53b"
+   },
+   {
+    "text": "subscription vending",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#subscription-vending"
+   },
+   {
+    "text": "CISA BOD 23-01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-23-01"
+   },
+   {
+    "text": "Book 10, Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b10-cloud-boundary/07-the-front-door.html"
+   }
+  ]
+ },
+ {
+  "slide": 25,
+  "title": "Building the loop, and why the pipeline is in scope",
+  "links": [
+   {
+    "text": "FedRAMP Marketplace",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-marketplace"
+   },
+   {
+    "text": "Book 10, Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b10-cloud-boundary/07-the-front-door.html"
+   }
+  ]
+ },
+ {
+  "slide": 27,
+  "title": "One decider per row: who owns the boundary",
+  "links": [
+   {
+    "text": "NIST SP 800-37 Rev. 2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-37"
+   },
+   {
+    "text": "FedRAMP 2026",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-2026"
+   },
+   {
+    "text": "FAR 1.602-1",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#far-1-602-1"
+   },
+   {
+    "text": "shared responsibility",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#shared-responsibility-in-the-cloud"
+   },
+   {
+    "text": "Book 10, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b10-cloud-boundary/08-who-owns-the-boundary.html"
+   }
+  ]
+ },
+ {
+  "slide": 28,
+  "title": "The boundary record: write it once, cite it everywhere",
+  "links": [
+   {
+    "text": "NIST SP 800-37 Rev. 2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-37"
+   },
+   {
+    "text": "SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "NIST OSCAL",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#layers-and-models"
+   },
+   {
+    "text": "FedRAMP 2026",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-2026"
+   },
+   {
+    "text": "Book 10, Ch 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b10-cloud-boundary/11-the-authorization-package.html"
+   }
+  ]
+ },
+ {
+  "slide": 29,
+  "title": "Narratives at the boundary, and whose package you read",
+  "links": [
+   {
+    "text": "FedRAMP 2026",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-2026"
+   },
+   {
+    "text": "MAS",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-minimum-assessment-scope"
+   },
+   {
+    "text": "Marketplace MSO365MT",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-marketplace-mso365mt"
+   },
+   {
+    "text": "Book 10, Ch 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b10-cloud-boundary/11-the-authorization-package.html"
+   }
+  ]
+ },
+ {
+  "slide": 30,
+  "title": "Keeping the package current: one review, one decider",
+  "links": [
+   {
+    "text": "FedRAMP 2026",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-2026"
+   },
+   {
+    "text": "SCN",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-significant-change"
+   },
+   {
+    "text": "Collaborative Continuous Monitoring",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-collaborative-conmon"
+   },
+   {
+    "text": "Rev5 Class C",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-rev5-class-c"
+   },
+   {
+    "text": "CDS",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-certification-data-sharing"
+   },
+   {
+    "text": "NIST SP 800-37",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-37"
+   },
+   {
+    "text": "NIST OSCAL",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#layers-and-models"
+   },
+   {
+    "text": "Book 10, Ch 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b10-cloud-boundary/11-the-authorization-package.html"
+   }
+  ]
+ },
+ {
+  "slide": 31,
+  "title": "What to ask a cloud provider for, with the basis",
+  "links": [
+   {
+    "text": "FedRAMP 2026",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-2026"
+   },
+   {
+    "text": "CDS",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-certification-data-sharing"
+   },
+   {
+    "text": "SCN",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-significant-change"
+   },
+   {
+    "text": "MAS",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-minimum-assessment-scope"
+   },
+   {
+    "text": "network connectivity",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#network-connectivity-in-the-microsoft-365"
+   },
+   {
+    "text": "ExpressRoute for M365",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#using-expressroute-for-routing-microsoft-365"
+   },
+   {
+    "text": "GCC service description",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#office-365-gcc"
+   },
+   {
+    "text": "Book 10, App. A",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b10-cloud-boundary/appendix-a-what-to-ask-for.html"
+   }
+  ]
+ },
+ {
+  "slide": 32,
+  "title": "Decisions to make, and the first week's work",
+  "links": [
+   {
+    "text": "Book 10, Chapters 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b10-cloud-boundary/01-why-the-boundary-decides.html"
+   },
+   {
+    "text": "11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b10-cloud-boundary/11-the-authorization-package.html"
+   },
+   {
+    "text": "Appendix A",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b10-cloud-boundary/appendix-a-what-to-ask-for.html"
+   }
+  ]
+ }
+]

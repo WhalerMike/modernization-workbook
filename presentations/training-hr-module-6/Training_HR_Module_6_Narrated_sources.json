@@ -1,0 +1,22 @@
+[
+ {
+  "slide": 8,
+  "title": "Which thresholds are samples the agency replaces",
+  "links": [
+   {
+    "text": "FIPS 201-3",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fips-201-3"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Lab 2: one scheduled and one on-demand test leaver",
+  "links": [
+   {
+    "text": "Book 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/index.html"
+   }
+  ]
+ }
+]

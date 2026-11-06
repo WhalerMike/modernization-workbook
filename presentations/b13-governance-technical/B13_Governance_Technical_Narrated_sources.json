@@ -1,0 +1,620 @@
+[
+ {
+  "slide": 2,
+  "title": "Why this matters: a signed package starts aging at once",
+  "links": [
+   {
+    "text": "44 U.S.C. § 3554",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#usc-44-3554"
+   },
+   {
+    "text": "NIST SP 800-37 Rev. 2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-37"
+   },
+   {
+    "text": "SP 800-137",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-137"
+   },
+   {
+    "text": "OMB Circular A-130",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#omb-a-130"
+   },
+   {
+    "text": "Book 13, Ch 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/01-why-governance-decays.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "Drift: five sources, silent unless something compares",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "SP 800-37 Rev. 2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-37"
+   },
+   {
+    "text": "SP 800-137",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-137"
+   },
+   {
+    "text": "AA23-278A",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#aa23-278a"
+   },
+   {
+    "text": "Book 13, Ch 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/02-drift-is-the-primary-threat.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Five drift classes, each a question asked of the record",
+  "links": [
+   {
+    "text": "Book 13, Ch 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/02-drift-is-the-primary-threat.html"
+   },
+   {
+    "text": "Book 01, Ch 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/11-analysis-plan-delivery.html"
+   },
+   {
+    "text": "Book 13, Ch 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/02-drift-is-the-primary-threat.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "One authoritative record: every copy is a pointer",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "FedRAMP 2026",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-2026"
+   },
+   {
+    "text": "Pro Git",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#pro-git-objects"
+   },
+   {
+    "text": "Book 13, Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/03-one-authoritative-record.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Six control planes, cut by authority, not by log source",
+  "links": [
+   {
+    "text": "NIST SP 800-207",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-207"
+   },
+   {
+    "text": "Microsoft Graph, onPremisesExtensionAttributes",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#onpremisesextensionattributes-resource-type"
+   },
+   {
+    "text": "Book 13, Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/03-one-authoritative-record.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "The five-clause path every MACD-R change travels",
+  "links": [
+   {
+    "text": "PIM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-microsoft-entra-privileged-identity"
+   },
+   {
+    "text": "Book 00, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/04-the-principles.html"
+   },
+   {
+    "text": "Book 13, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/04-change-control-and-provenance.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Changing the record: the pull request is the authorization",
+  "links": [
+   {
+    "text": "About protected branches",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#github-about-protected-branches"
+   },
+   {
+    "text": "FedRAMP 2026",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-2026"
+   },
+   {
+    "text": "Book 04, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/10-access-as-code-and-evidence.html"
+   },
+   {
+    "text": "Book 13, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/04-change-control-and-provenance.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "No closure counts unless it carries its proof",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "SP 800-53B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53b"
+   },
+   {
+    "text": "FedRAMP 2026",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-2026"
+   },
+   {
+    "text": "Book 13, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/04-change-control-and-provenance.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Determinism, not automation, is what an assessor can check",
+  "links": [
+   {
+    "text": "RFC 8785",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#rfc-8785"
+   },
+   {
+    "text": "JSON Canonicalization Scheme",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#rfc-8785"
+   },
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "Book 13, Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/05-deterministic-governance.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Three rule layers, three change boundaries",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "SP 800-53B Moderate baseline",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53b"
+   },
+   {
+    "text": "Book 13, Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/05-deterministic-governance.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Rules as code, and where they meet OSCAL's models",
+  "links": [
+   {
+    "text": "CISA ScubaGear",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#scubagear"
+   },
+   {
+    "text": "NIST OSCAL Layers and Models",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#layers-and-models"
+   },
+   {
+    "text": "SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "SP 800-53B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53b"
+   },
+   {
+    "text": "Book 13, Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/05-deterministic-governance.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "The drift engine compares against a versioned record",
+  "links": [
+   {
+    "text": "NIST SP 800-128",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-128"
+   },
+   {
+    "text": "SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "Book 13, Ch 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/06-the-drift-engine.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "One drift model: domain checks are instances, not lists",
+  "links": [
+   {
+    "text": "Book 13, Ch 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/06-the-drift-engine.html"
+   },
+   {
+    "text": "Books 00",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/index.html"
+   },
+   {
+    "text": "Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/03-the-charter.html"
+   },
+   {
+    "text": "Book 13, Ch 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/06-the-drift-engine.html"
+   }
+  ]
+ },
+ {
+  "slide": 17,
+  "title": "Severity sets the clock; the ladder sets who acts",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "SP 800-53B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53b"
+   },
+   {
+    "text": "Book 13, Ch 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/06-the-drift-engine.html"
+   }
+  ]
+ },
+ {
+  "slide": 19,
+  "title": "Attestation names who's accountable; evidence shows it",
+  "links": [
+   {
+    "text": "NIST SP 800-53A Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53a"
+   },
+   {
+    "text": "SP 800-37 Rev. 2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-37"
+   },
+   {
+    "text": "FedRAMP 2026",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-2026"
+   },
+   {
+    "text": "Book 13, Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/07-evidence-over-attestation.html"
+   }
+  ]
+ },
+ {
+  "slide": 20,
+  "title": "The evidence chain and the provenance envelope",
+  "links": [
+   {
+    "text": "NIST OSCAL Layers and Models",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#layers-and-models"
+   },
+   {
+    "text": "Book 12, Ch 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b12-security-operations/02-the-evidence-contract.html"
+   },
+   {
+    "text": "Book 13, Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/07-evidence-over-attestation.html"
+   }
+  ]
+ },
+ {
+  "slide": 21,
+  "title": "Hash, hash chain, signature: what each one proves",
+  "links": [
+   {
+    "text": "FIPS 186-5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fips-186-5"
+   },
+   {
+    "text": "NIST OSCAL",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#layers-and-models"
+   },
+   {
+    "text": "SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "SP 800-53A",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53a"
+   },
+   {
+    "text": "OMB M-26-14",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-26-14"
+   },
+   {
+    "text": "Book 13, Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/07-evidence-over-attestation.html"
+   }
+  ]
+ },
+ {
+  "slide": 22,
+  "title": "Adapters: one platform's dialect into one record",
+  "links": [
+   {
+    "text": "Book 13, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/08-the-adapter-model.html"
+   },
+   {
+    "text": "Book 01, Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/03-platform-foundation.html"
+   },
+   {
+    "text": "Ch 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/11-analysis-plan-delivery.html"
+   },
+   {
+    "text": "Book 02, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/04-the-hidden-migration-surface.html"
+   },
+   {
+    "text": "Book 13, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/08-the-adapter-model.html"
+   }
+  ]
+ },
+ {
+  "slide": 23,
+  "title": "The adapter contract, versioning and lifecycle",
+  "links": [
+   {
+    "text": "Graph permissions",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-graph-permissions-reference"
+   },
+   {
+    "text": "Semantic Versioning 2.0.0",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#semver-2-0-0"
+   },
+   {
+    "text": "Book 13, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/08-the-adapter-model.html"
+   }
+  ]
+ },
+ {
+  "slide": 25,
+  "title": "Who governs: five questions, one owner each",
+  "links": [
+   {
+    "text": "NIST SP 800-37 Rev. 2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-37"
+   },
+   {
+    "text": "SP 800-137",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-137"
+   },
+   {
+    "text": "36 CFR 1220.34",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cfr-36-1220-34"
+   },
+   {
+    "text": "Book 13, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/09-who-governs.html"
+   }
+  ]
+ },
+ {
+  "slide": 26,
+  "title": "Exceptions, the board, and who governs the governors",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "SP 800-37 Rev. 2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-37"
+   },
+   {
+    "text": "NARA GRS 3.1",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#nara-grs-3-1"
+   },
+   {
+    "text": "Book 13, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/09-who-governs.html"
+   }
+  ]
+ },
+ {
+  "slide": 27,
+  "title": "Ticket to machine, in brief: the person stops at approval",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "SP 800-137",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-137"
+   },
+   {
+    "text": "CISA BOD 26-04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-26-04"
+   },
+   {
+    "text": "CA/B Forum SC-081v3",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cabf-sc-081v3"
+   },
+   {
+    "text": "Book 13, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/10-ticket-to-machine.html"
+   },
+   {
+    "text": "App. B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/appendix-b-ticket-to-machine-reference.html"
+   }
+  ]
+ },
+ {
+  "slide": 28,
+  "title": "Reciprocity: one package, each agency's own decision",
+  "links": [
+   {
+    "text": "NIST SP 800-37 Rev. 2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-37"
+   },
+   {
+    "text": "OMB M-24-15",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-24-15"
+   },
+   {
+    "text": "FedRAMP 2026 agency rules",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-2026"
+   },
+   {
+    "text": "CCM-AGM-ROR",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-collaborative-conmon"
+   },
+   {
+    "text": "OMB A-130",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#omb-a-130"
+   },
+   {
+    "text": "Book 13, Ch 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/11-reciprocity-and-one-authorization.html"
+   }
+  ]
+ },
+ {
+  "slide": 29,
+  "title": "Ongoing authorization, indicators and signed manifests",
+  "links": [
+   {
+    "text": "NIST SP 800-37 Rev. 2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-37"
+   },
+   {
+    "text": "OMB A-130",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#omb-a-130"
+   },
+   {
+    "text": "FedRAMP 2026",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-2026"
+   },
+   {
+    "text": "SDR-CSX-KSI",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-security-decision-record"
+   },
+   {
+    "text": "FIPS 186-5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fips-186-5"
+   },
+   {
+    "text": "Book 13, Ch 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/11-reciprocity-and-one-authorization.html"
+   }
+  ]
+ },
+ {
+  "slide": 30,
+  "title": "Continuous monitoring run as a chartered project",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "SP 800-37 Rev. 2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-37"
+   },
+   {
+    "text": "SP 800-137",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-137"
+   },
+   {
+    "text": "OMB A-130",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#omb-a-130"
+   },
+   {
+    "text": "Book 13, Ch 12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/12-governance-at-scale.html"
+   }
+  ]
+ },
+ {
+  "slide": 31,
+  "title": "Coverage, the gap register, and three ways a gap closes",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "SP 800-37 Rev. 2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-37"
+   },
+   {
+    "text": "SP 800-137",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-137"
+   },
+   {
+    "text": "OMB A-130",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#omb-a-130"
+   },
+   {
+    "text": "Book 13, Ch 12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/12-governance-at-scale.html"
+   }
+  ]
+ },
+ {
+  "slide": 32,
+  "title": "Decisions to make, and what to start on Monday",
+  "links": [
+   {
+    "text": "Book 13, Chapters 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/03-one-authoritative-record.html"
+   },
+   {
+    "text": "12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/12-governance-at-scale.html"
+   },
+   {
+    "text": "NIST SP 800-37 Rev. 2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-37"
+   },
+   {
+    "text": "SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   }
+  ]
+ }
+]

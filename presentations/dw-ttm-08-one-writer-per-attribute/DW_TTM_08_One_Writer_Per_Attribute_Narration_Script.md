@@ -2,7 +2,7 @@
 
 ## Slide 1 — Chapter 08: One Writer per Attribute
 
-Welcome to the last chapter of Building Ticket-to-Machine. Chapter 8: one writer per attribute. Two writers on one attribute isn't drift you can fix. It's drift you've scheduled. The Federal Modernization Workbook's design makes Entra inbound provisioning the one writer into the directory, but SailPoint can also provision Entra ID. If both write department, the reconciliation reports drift that the next sync recreates. This chapter compares the two provisioning configurations, offline, and names every attribute with two writers. Then two labs and the dangers.
+Welcome to Building Ticket-to-Machine, Chapter 8: one writer per attribute. Two writers on one attribute isn't drift you can fix. It's drift you've scheduled. The Federal Modernization Workbook's design makes Entra inbound provisioning the one writer into the directory, but SailPoint can also provision Entra ID. If both write department, the reconciliation reports drift that the next sync recreates. This chapter compares the two provisioning configurations, offline, and names every attribute with two writers. Then two labs and the dangers.
 
 ## Slide 2 — Why two writers is drift you've scheduled
 

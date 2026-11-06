@@ -124,7 +124,7 @@ Each module of the [Microsoft Automation learning path](../training/index.md#mic
 
 ## Developer workbook chapter tours
 
-Each chapter of [Book 19](../books/b19-developer-workbook/index.md) and of three [developer workbooks](../project-plans/developer-workbooks/index.md) under Projects has a narrated tour of about ten minutes: why the chapter's code comes first, what Microsoft's own sample gives and leaves out, the code and its tests, who runs it, the two labs, the dangers and the checklist. The slides follow the Why, What, Who and How order of the book decks; each slide's notes carry the narration, the chapter's full detail and the footnotes it rests on.
+Each code chapter of [Book 19](../books/b19-developer-workbook/index.md) and of four [developer workbooks](../project-plans/developer-workbooks/index.md) under Projects has a narrated tour of about ten minutes: why the chapter's code comes first, what Microsoft's own sample gives and leaves out, the code and its tests, who runs it, the two labs, the dangers and the checklist. The slides follow the Why, What, Who and How order of the book decks; each slide's notes carry the narration, the chapter's full detail and the footnotes it rests on.
 
 ### Building the Attribute-Driven Migration
 

@@ -1,0 +1,288 @@
+[
+ {
+  "slide": 2,
+  "title": "What workload Conditional Access can and can't do",
+  "links": [
+   {
+    "text": "Conditional Access for workload identities",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#conditional-access-for-workload-identities"
+   },
+   {
+    "text": "national cloud deployments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
+   },
+   {
+    "text": "Workload ID FAQ",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#workload-id-faq"
+   },
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/08-conditional-access-for-workload-identities.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "The program's two policies and its two decisions",
+  "links": [
+   {
+    "text": "Workload ID FAQ",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#workload-id-faq"
+   },
+   {
+    "text": "ID Protection for workload identities",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#securing-workload-identities"
+   },
+   {
+    "text": "Book 04, Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/05-applications-and-workload-identities.html"
+   },
+   {
+    "text": "07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/07-the-conditional-access-policy-library.html"
+   },
+   {
+    "text": "Appendix A",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/appendix-a-conditional-access-templates.html"
+   },
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/08-pim-self-request-with-approval.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "Learn's sample JSON, pinned and checked",
+  "links": [
+   {
+    "text": "CA for workload identities",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#conditional-access-for-workload-identities"
+   },
+   {
+    "text": "ID Protection for workload identities",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#securing-workload-identities"
+   },
+   {
+    "text": "Create conditionalAccessPolicy",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#create-conditionalaccesspolicy"
+   },
+   {
+    "text": "entra-docs at 7f78b50",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#entra-docs-at-7f78b50"
+   },
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/08-conditional-access-for-workload-identities.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "What the sample leaves to you: values and targets",
+  "links": [
+   {
+    "text": "CA for workload identities",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#conditional-access-for-workload-identities"
+   },
+   {
+    "text": "conditionalAccessConditionSet",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#conditionalaccessconditionset-resource-type"
+   },
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/08-conditional-access-for-workload-identities.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "What it leaves to you: risk, evidence, scope, rings",
+  "links": [
+   {
+    "text": "conditionalAccessConditionSet",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#conditionalaccessconditionset-resource-type"
+   },
+   {
+    "text": "Conditional Access for workload identities",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#conditional-access-for-workload-identities"
+   },
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/08-conditional-access-for-workload-identities.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "The code and its reviewed files, one policy per ring",
+  "links": [
+   {
+    "text": "Book 04, Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/07-the-conditional-access-policy-library.html"
+   },
+   {
+    "text": "Appendix A",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/appendix-a-conditional-access-templates.html"
+   },
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/08-pim-self-request-with-approval.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "The pre-merge and tenant check: NPI-WCA-01 to -09",
+  "links": [
+   {
+    "text": "Conditional Access for workload identities",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#conditional-access-for-workload-identities"
+   },
+   {
+    "text": "conditionalAccessConditionSet",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#conditionalaccessconditionset-resource-type"
+   },
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/08-conditional-access-for-workload-identities.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "The plan, the dry run and the writes",
+  "links": [
+   {
+    "text": "Conditional Access for workload identities",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#conditional-access-for-workload-identities"
+   },
+   {
+    "text": "Book 04, Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/07-the-conditional-access-policy-library.html"
+   },
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/08-pim-self-request-with-approval.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Enforcement, ring by ring: five conditions",
+  "links": [
+   {
+    "text": "Book 04, Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/07-the-conditional-access-policy-library.html"
+   },
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/08-pim-self-request-with-approval.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "The sign-in reader, its summary and the block alert",
+  "links": [
+   {
+    "text": "List signIns",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-signins"
+   },
+   {
+    "text": "appliedConditionalAccessPolicy",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#appliedconditionalaccesspolicy-resource-type"
+   },
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/08-conditional-access-for-workload-identities.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Who owns the policies, and what each task may hold",
+  "links": [
+   {
+    "text": "List signIns",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-signins"
+   },
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/08-conditional-access-for-workload-identities.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Lab 1: Learn's sample, then the pre-merge check",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/08-conditional-access-for-workload-identities.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Lab 1: the plan and the sign-in summary",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/08-conditional-access-for-workload-identities.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Lab 1: apply twice, enforce Ring 1, read the alert",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/08-conditional-access-for-workload-identities.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Lab 2: a test tenant, report-only, then one ring",
+  "links": [
+   {
+    "text": "Conditional Access for workload identities",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#conditional-access-for-workload-identities"
+   },
+   {
+    "text": "Workload ID FAQ",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#workload-id-faq"
+   },
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/08-conditional-access-for-workload-identities.html"
+   }
+  ]
+ },
+ {
+  "slide": 17,
+  "title": "Dangers, and the guard for each",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/08-conditional-access-for-workload-identities.html"
+   },
+   {
+    "text": "Conditional Access for workload identities",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#conditional-access-for-workload-identities"
+   }
+  ]
+ },
+ {
+  "slide": 18,
+  "title": "Done when: the chapter's checklist",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/08-conditional-access-for-workload-identities.html"
+   }
+  ]
+ }
+]

@@ -1,0 +1,94 @@
+[
+ {
+  "slide": 2,
+  "title": "Why Gate 9: without it, everything slowly decays",
+  "links": [
+   {
+    "text": "Book 19, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/09-drift-pipelines-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "Where the pipeline sits: change, not drift",
+  "links": [
+   {
+    "text": "Book 19, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/09-drift-pipelines-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "What Learn's sample workflows leave to you",
+  "links": [
+   {
+    "text": "Book 19, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/09-drift-pipelines-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Compare: this run against the last",
+  "links": [
+   {
+    "text": "Book 19, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/09-drift-pipelines-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Findings without names, and a chained package",
+  "links": [
+   {
+    "text": "Book 19, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/09-drift-pipelines-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Try it: lint the workflows, print a cloud's hosts",
+  "links": [
+   {
+    "text": "Microsoft Graph national cloud deployments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Lab 2: a scheduled run in your test tenant",
+  "links": [
+   {
+    "text": "Book 19, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/09-drift-pipelines-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "The federal requirement and evidence for Module 8",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "SP 800-53B Moderate baseline",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53b"
+   },
+   {
+    "text": "Key Security Indicators",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   },
+   {
+    "text": "Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/09-drift-pipelines-and-evidence.html"
+   }
+  ]
+ }
+]

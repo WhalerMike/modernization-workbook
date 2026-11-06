@@ -1,0 +1,288 @@
+[
+ {
+  "slide": 2,
+  "title": "Why the token exchange test comes first",
+  "links": [
+   {
+    "text": "Book 02, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/10-migrating-and-governing.html"
+   },
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/05-delegation-without-ous.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "Which cloud: Graph, Resource Manager, sign-in",
+  "links": [
+   {
+    "text": "Microsoft Graph national cloud deployments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
+   },
+   {
+    "text": "Compare Azure Government and global Azure",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#compare-azure-government-and-global-azure"
+   },
+   {
+    "text": "Create federatedIdentityCredential",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#create-federatedidentitycredential"
+   },
+   {
+    "text": "List signIns",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-signins"
+   },
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/05-workload-identity-federation-and-managed-identities.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "What a federated credential is, and its rules",
+  "links": [
+   {
+    "text": "Workload identity federation concepts",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#workload-identity-federation-concepts"
+   },
+   {
+    "text": "Create federatedIdentityCredential",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#create-federatedidentitycredential"
+   },
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/05-workload-identity-federation-and-managed-identities.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Learn's samples, pinned and sent to fakes",
+  "links": [
+   {
+    "text": "Create federatedIdentityCredential",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#create-federatedidentitycredential"
+   },
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/05-workload-identity-federation-and-managed-identities.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "What the samples accept in silence",
+  "links": [
+   {
+    "text": "workload identity federation",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#workload-identity-federation-concepts"
+   },
+   {
+    "text": "Flexible credentials",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#flexible-federated-identity-credentials"
+   },
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/05-workload-identity-federation-and-managed-identities.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "What the samples leave to you",
+  "links": [
+   {
+    "text": "Configure an app to trust an external IdP",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-an-app-to-trust-an-external"
+   },
+   {
+    "text": "Important considerations for federated identity credentials",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#important-considerations-and-restrictions"
+   },
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/05-workload-identity-federation-and-managed-identities.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "The code: one module, a reviewed file, a cutover log",
+  "links": [
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/05-workload-identity-federation-and-managed-identities.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "The checks: nine rules, NPI-WIF-01 to NPI-WIF-09",
+  "links": [
+   {
+    "text": "Create federatedIdentityCredential",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#create-federatedidentitycredential"
+   },
+   {
+    "text": "Flexible credentials",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#flexible-federated-identity-credentials"
+   },
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/05-workload-identity-federation-and-managed-identities.html"
+   },
+   {
+    "text": "Book 02, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/10-migrating-and-governing.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "What the workload presents, and the exchange test",
+  "links": [
+   {
+    "text": "Configure an app to trust an external IdP",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-an-app-to-trust-an-external"
+   },
+   {
+    "text": "Flexible credentials",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#flexible-federated-identity-credentials"
+   },
+   {
+    "text": "Mutable subjects",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#mutable-subjects-in-federated-identity"
+   },
+   {
+    "text": "OAuth 2.0 client credentials flow",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-identity-platform-and-the-oauth-2"
+   },
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/05-workload-identity-federation-and-managed-identities.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "The plan: actions, and the evidence for a clean run",
+  "links": [
+   {
+    "text": "List signIns",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-signins"
+   },
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/05-workload-identity-federation-and-managed-identities.html"
+   },
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/04-app-management-policies-and-certificate-rotation.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "The separate write path: an approved hash, one at a time",
+  "links": [
+   {
+    "text": "Important considerations for federated identity credentials",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#important-considerations-and-restrictions"
+   },
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/05-workload-identity-federation-and-managed-identities.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Who builds it, who runs it, what it may touch",
+  "links": [
+   {
+    "text": "List signIns",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-signins"
+   },
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/05-workload-identity-federation-and-managed-identities.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Lab 1: Microsoft's samples, then the plan",
+  "links": [
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/05-workload-identity-federation-and-managed-identities.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Lab 1: findings, conversions, dry run and apply",
+  "links": [
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/05-workload-identity-federation-and-managed-identities.html"
+   },
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/04-app-management-policies-and-certificate-rotation.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Lab 2: a test tenant, a real token, a real disable",
+  "links": [
+   {
+    "text": "Important considerations for federated identity credentials",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#important-considerations-and-restrictions"
+   },
+   {
+    "text": "List signIns",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-signins"
+   },
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/05-workload-identity-federation-and-managed-identities.html"
+   }
+  ]
+ },
+ {
+  "slide": 17,
+  "title": "Dangers, and the guard for each",
+  "links": [
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/05-workload-identity-federation-and-managed-identities.html"
+   },
+   {
+    "text": "Mutable subjects",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#mutable-subjects-in-federated-identity"
+   },
+   {
+    "text": "Important considerations for federated identity credentials",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#important-considerations-and-restrictions"
+   },
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/04-app-management-policies-and-certificate-rotation.html"
+   }
+  ]
+ },
+ {
+  "slide": 18,
+  "title": "Done when: the chapter's checklist",
+  "links": [
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/05-workload-identity-federation-and-managed-identities.html"
+   }
+  ]
+ }
+]

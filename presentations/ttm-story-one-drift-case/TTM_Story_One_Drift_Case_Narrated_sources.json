@@ -1,0 +1,224 @@
+[
+ {
+  "slide": 2,
+  "title": "The cast and the stakes",
+  "links": [
+   {
+    "text": "Ch 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/06-drift-reconciliation.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "Erin's path through the loop and the gates",
+  "links": [
+   {
+    "text": "Ch 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/01-the-loop-and-the-typed-task.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "Scene 1: the drift run finds Erin",
+  "links": [
+   {
+    "text": "Ch 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/06-drift-reconciliation.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Try it: day one finds Erin's four findings",
+  "links": [
+   {
+    "text": "Ch 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/06-drift-reconciliation.html"
+   },
+   {
+    "text": "Ch 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/01-the-loop-and-the-typed-task.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Scene 2: Erin's drift becomes a typed task",
+  "links": [
+   {
+    "text": "Ch 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/01-the-loop-and-the-typed-task.html"
+   },
+   {
+    "text": "Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/04-drift-to-a-typed-task.html"
+   },
+   {
+    "text": "Book 13",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Try it: what ServiceNow will do with Erin's payloads",
+  "links": [
+   {
+    "text": "Ch 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/01-the-loop-and-the-typed-task.html"
+   },
+   {
+    "text": "Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/04-drift-to-a-typed-task.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Scene 3: who may touch Erin's record",
+  "links": [
+   {
+    "text": "Ch 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/02-servicenow-client-and-least-privilege.html"
+   },
+   {
+    "text": "Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/03-sailpoint-client-and-scopes.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Try it: catching a grant that's too wide",
+  "links": [
+   {
+    "text": "Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/03-sailpoint-client-and-scopes.html"
+   },
+   {
+    "text": "Ch 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/02-servicenow-client-and-least-privilege.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Scene 4: why Erin's department keeps drifting",
+  "links": [
+   {
+    "text": "Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/08-one-writer-per-attribute.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Try it: two writers on department",
+  "links": [
+   {
+    "text": "Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/08-one-writer-per-attribute.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Scene 5: the fix, on the native surface",
+  "links": [
+   {
+    "text": "Ch 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/01-the-loop-and-the-typed-task.html"
+   },
+   {
+    "text": "Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/04-drift-to-a-typed-task.html"
+   }
+  ]
+ },
+ {
+  "slide": 17,
+  "title": "Try it: a provisioning success only signals",
+  "links": [
+   {
+    "text": "Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/04-drift-to-a-typed-task.html"
+   },
+   {
+    "text": "Ch 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/01-the-loop-and-the-typed-task.html"
+   }
+  ]
+ },
+ {
+  "slide": 19,
+  "title": "Scene 6: the re-read closes Erin's finding",
+  "links": [
+   {
+    "text": "Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/05-the-re-read-rule.html"
+   },
+   {
+    "text": "Ch 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/06-drift-reconciliation.html"
+   },
+   {
+    "text": "Book 13",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 20,
+  "title": "Try it: day two, and the re-read",
+  "links": [
+   {
+    "text": "Ch 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/06-drift-reconciliation.html"
+   },
+   {
+    "text": "Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/05-the-re-read-rule.html"
+   }
+  ]
+ },
+ {
+  "slide": 22,
+  "title": "Scene 7: Erin's closure becomes evidence",
+  "links": [
+   {
+    "text": "Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/07-evidence-records.html"
+   },
+   {
+    "text": "Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/05-the-re-read-rule.html"
+   }
+  ]
+ },
+ {
+  "slide": 23,
+  "title": "Try it: the package, verified and tampered",
+  "links": [
+   {
+    "text": "Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/07-evidence-records.html"
+   }
+  ]
+ },
+ {
+  "slide": 25,
+  "title": "Your turn: Lab 2, and where to go next",
+  "links": [
+   {
+    "text": "Ch 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/01-the-loop-and-the-typed-task.html"
+   },
+   {
+    "text": "08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/08-one-writer-per-attribute.html"
+   }
+  ]
+ }
+]

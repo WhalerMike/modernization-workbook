@@ -1,0 +1,144 @@
+[
+ {
+  "slide": 2,
+  "title": "Why converting a Kerberos account isn't the end",
+  "links": [
+   {
+    "text": "Secure group managed service accounts",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#secure-group-managed-service-accounts"
+   },
+   {
+    "text": "Delegated Managed Service Accounts overview",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#delegated-managed-service-accounts-overview"
+   },
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "The gate: a parallel run, then disable, never delete",
+  "links": [
+   {
+    "text": "Create a KDS root key",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#create-a-key-distribution-service-kds-root"
+   },
+   {
+    "text": "Secure group managed service accounts",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#secure-group-managed-service-accounts"
+   },
+   {
+    "text": "Delegated Managed Service Accounts overview",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#delegated-managed-service-accounts-overview"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Four dispositions, and the program's four rules",
+  "links": [
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.html"
+   },
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/05-workload-identity-federation-and-managed-identities.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "The check: NPI-KRB-01 to NPI-KRB-09",
+  "links": [
+   {
+    "text": "Create a KDS root key",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#create-a-key-distribution-service-kds-root"
+   },
+   {
+    "text": "Delegated Managed Service Accounts overview and FAQ",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#delegated-managed-service-accounts-overview"
+   },
+   {
+    "text": "Secure gMSAs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#secure-group-managed-service-accounts"
+   },
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "The plan: one action per account, approved by hash",
+  "links": [
+   {
+    "text": "New-ADServiceAccount",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#new-adserviceaccount"
+   },
+   {
+    "text": "dMSA overview",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#delegated-managed-service-accounts-overview"
+   },
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "The island list, the reconciliation, the write path",
+  "links": [
+   {
+    "text": "ms-Kds-Prov-RootKey class",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#ms-kds-prov-rootkey-class"
+   },
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Lab 2: a test domain, and a real migration",
+  "links": [
+   {
+    "text": "Setting up delegated Managed Service Accounts",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#setting-up-delegated-managed-service"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/01-non-person-identity-inventory-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "The federal requirement and evidence for Gate G5",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "Key Security Indicators",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Check yourself: two questions on the Kerberos island",
+  "links": [
+   {
+    "text": "Delegated Managed Service Accounts overview and FAQ",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#delegated-managed-service-accounts-overview"
+   }
+  ]
+ }
+]

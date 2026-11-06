@@ -31,6 +31,12 @@ class Resolve(unittest.TestCase):
         got = self.links("Ch. 01, 07; App. A", "00")
         self.assertEqual([t for t, _ in got], ["Ch. 01", "07", "App. A"])
 
+    def test_a_tour_deck_means_its_own_workbook(self):
+        self.assertEqual(L.deck_book(Path("presentations/dw-pa-08-evidence-drift/x.pptx")), "pa")
+        self.assertEqual(L.deck_book(Path("presentations/dw-adm-09-drift-pipelines-evidence/x.pptx")), "19")
+        got = self.links("Sources: Chapter 08.", "pa")
+        self.assertEqual(got, [("Chapter 08", "08-evidence-and-drift.html")])
+
     def test_section_name_links_to_its_heading(self):
         got = self.links("Book 00, Chapter 03 (Success criteria).")
         self.assertEqual(got[1], ("Success criteria", "03-the-charter.html#success-criteria"))

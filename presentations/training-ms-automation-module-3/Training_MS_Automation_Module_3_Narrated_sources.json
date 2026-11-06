@@ -1,0 +1,80 @@
+[
+ {
+  "slide": 2,
+  "title": "Why compliance records decide device access",
+  "links": [
+   {
+    "text": "Book 05, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/10-operating-and-evidencing-the-fleet.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "The five checks and the controls they evidence",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "ScubaGear aad.md",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#scuba-entra-baseline"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Where agencies are: one Intune for GCC, one for High",
+  "links": [
+   {
+    "text": "Intune for US Government",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-intune-for-us-government-gcc-high"
+   },
+   {
+    "text": "Graph national cloud deployments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Autopilot in GCC High and DoD, and interim paths",
+  "links": [
+   {
+    "text": "List windowsAutopilotDeviceIdentities",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-windowsautopilotdeviceidentities"
+   },
+   {
+    "text": "Intune government service",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-intune-for-us-government-gcc-high"
+   },
+   {
+    "text": "Book 05, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/04-intune-first-onboarding.html"
+   },
+   {
+    "text": "Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/10-operating-and-evidencing-the-fleet.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "The federal requirement and evidence for Intune",
+  "links": [
+   {
+    "text": "ScubaGear aad.md",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#scuba-entra-baseline"
+   },
+   {
+    "text": "Book 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b11-zero-trust/index.html"
+   },
+   {
+    "text": "Book 05, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/10-operating-and-evidencing-the-fleet.html"
+   }
+  ]
+ }
+]

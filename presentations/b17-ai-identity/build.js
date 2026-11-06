@@ -97,7 +97,7 @@ const cards3 = (s, list, size) => list.forEach((c, i) => {
     { text: "A 15-minute briefing for Chief AI Officers, CIOs, CISOs, identity teams, ISSOs and authorizing officials", options: { color: HEX.slate } },
   ], { x: 0.8, y: 5.6, w: 8, h: 0.8, fontSize: 16 });
   narrate(s,
-`This briefing comes from Book 17 of the Federal Modernization Workbook, AI Identity Governance, the last book in the series. It's written for Chief AI Officers, C I Os and CISOs, identity and security operations teams, I S S Os, and authorizing officials.
+`This briefing comes from Book 17 of the Federal Modernization Workbook, AI Identity Governance. It's written for Chief AI Officers, C I Os and CISOs, identity and security operations teams, I S S Os, and authorizing officials.
 
 I'll take four questions: why AI agents need identities and owners; what governing them involves; who owns AI identity; and how to scan the inventory and evidence AI systems for authorization.
 

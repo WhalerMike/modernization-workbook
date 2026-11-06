@@ -1,0 +1,94 @@
+[
+ {
+  "slide": 4,
+  "title": "Agent ID: blueprints, agent identities, and the stage",
+  "links": [
+   {
+    "text": "Entra releases",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-releases-and-announcements"
+   },
+   {
+    "text": "Conditional Access for agents",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#conditional-access-for-agents"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Decision D-N6 as data: AgentId or Fallback mode",
+  "links": [
+   {
+    "text": "Microsoft Entra feature availability",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-feature-availability"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "The program's rules the code holds, N6.1 to N6.7",
+  "links": [
+   {
+    "text": "Configure inheritable permissions",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-inheritable-permissions-for-agent"
+   },
+   {
+    "text": "Authorization in Agent ID",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#authorization-in-microsoft-entra-agent-id"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "The checks: NPI-AI-01 to NPI-AI-23",
+  "links": [
+   {
+    "text": "sponsor tasks",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#agent-identity-sponsor-tasks-in-lifecycle"
+   },
+   {
+    "text": "Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/09-ai-agent-identities.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "The agent CA plan and the separate write path",
+  "links": [
+   {
+    "text": "Conditional Access for agents",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#conditional-access-for-agents"
+   },
+   {
+    "text": "Create conditionalAccessPolicy",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#create-conditionalaccesspolicy"
+   },
+   {
+    "text": "Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/09-ai-agent-identities.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "The federal requirement and evidence for AI agents",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "OMB M-25-21",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-25-21"
+   },
+   {
+    "text": "CISA ScubaGear",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#scubagear"
+   },
+   {
+    "text": "Key Security Indicators",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   }
+  ]
+ }
+]

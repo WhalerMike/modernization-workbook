@@ -1,0 +1,76 @@
+[
+ {
+  "slide": 4,
+  "title": "G1: inventory every kind of non-person identity",
+  "links": [
+   {
+    "text": "Book 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/index.html"
+   },
+   {
+    "text": "Book 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/index.html"
+   },
+   {
+    "text": "Book 17",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b17-ai-identity/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "G1: join each identity to a record, owner and sponsor",
+  "links": [
+   {
+    "text": "Book 02, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/09-building-the-entra-target.html"
+   },
+   {
+    "text": "10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/10-migrating-and-governing.html"
+   },
+   {
+    "text": "Book 04, Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/05-applications-and-workload-identities.html"
+   },
+   {
+    "text": "Book 17, Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b17-ai-identity/05-owners-sponsors-and-lifecycle.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "G2: five targets, decided by type and where it runs",
+  "links": [
+   {
+    "text": "Book 02, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/09-building-the-entra-target.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "G2: requirement, evidence, availability, rollback",
+  "links": [
+   {
+    "text": "Book 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "G3: the vault, the upload, and secrets by exception",
+  "links": [
+   {
+    "text": "Key Vault autorotation",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#tutorial-configure-certificate-autorotation"
+   },
+   {
+    "text": "Book 04, Ch 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/06-who-decides-access.html"
+   }
+  ]
+ }
+]

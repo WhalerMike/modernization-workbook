@@ -1,0 +1,256 @@
+[
+ {
+  "slide": 2,
+  "title": "Why this matters: Ansible can write almost anywhere",
+  "links": [
+   {
+    "text": "Book 05, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/04-intune-first-onboarding.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Five tools, and the population each one owns",
+  "links": [
+   {
+    "text": "Book 05, Ch 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/01-why-group-policy-cant-come-to-the-cloud.html"
+   },
+   {
+    "text": "03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/03-where-device-and-server-data-lives.html"
+   },
+   {
+    "text": "04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/04-intune-first-onboarding.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "One owning tool per setting, recorded in the CMDB",
+  "links": [
+   {
+    "text": "Book 05, Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/03-where-device-and-server-data-lives.html"
+   },
+   {
+    "text": "04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/04-intune-first-onboarding.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Arc onboarding at scale: Microsoft's role, three sign-ins",
+  "links": [
+   {
+    "text": "Arc identity and authorization",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#arc-servers-identity-and-authorization"
+   },
+   {
+    "text": "Book 05, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html"
+   },
+   {
+    "text": "Book 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Onboarding waves: CMDB tags, secrets off the console",
+  "links": [
+   {
+    "text": "azcmagent connect",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#azcmagent-connect"
+   },
+   {
+    "text": "Book 05, Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/03-where-device-and-server-data-lives.html"
+   },
+   {
+    "text": "the rule",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/03-where-device-and-server-data-lives.html#the-rule"
+   },
+   {
+    "text": "Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html"
+   },
+   {
+    "text": "onboarding",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html#onboarding"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "VMware, Infoblox, Windows and cloud VMs: who owns what",
+  "links": [
+   {
+    "text": "Books 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/index.html"
+   },
+   {
+    "text": "Book 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Versions, and authorization status as published",
+  "links": [
+   {
+    "text": "FedRAMP Marketplace",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-marketplace"
+   },
+   {
+    "text": "Book 12, Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b12-security-operations/07-patch-configuration-and-baselines.html"
+   },
+   {
+    "text": "Book 12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b12-security-operations/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "FIPS mode and baseline content: what's published",
+  "links": [
+   {
+    "text": "NIST SP 800-53",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "CIS Benchmarks",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cis-benchmarks"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Where the controller can run",
+  "links": [
+   {
+    "text": "Book 12, Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b12-security-operations/07-patch-configuration-and-baselines.html"
+   }
+  ]
+ },
+ {
+  "slide": 17,
+  "title": "The controller is a non-person identity",
+  "links": [
+   {
+    "text": "Book 02, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/09-building-the-entra-target.html"
+   },
+   {
+    "text": "Book 04, Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/05-applications-and-workload-identities.html"
+   },
+   {
+    "text": "Book 05, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html"
+   }
+  ]
+ },
+ {
+  "slide": 19,
+  "title": "Evidence for CM-2, CM-3, CM-6, CM-7 and CM-8",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "Book 12, Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b12-security-operations/07-patch-configuration-and-baselines.html"
+   },
+   {
+    "text": "Book 12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b12-security-operations/index.html"
+   },
+   {
+    "text": "Book 12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b12-security-operations/index.html"
+   },
+   {
+    "text": "Book 12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b12-security-operations/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 20,
+  "title": "Audit, privilege, supply chain, and the evidence store",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "Book 12, Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b12-security-operations/07-patch-configuration-and-baselines.html"
+   }
+  ]
+ },
+ {
+  "slide": 24,
+  "title": "A phased path: read-only first, enforcement later",
+  "links": [
+   {
+    "text": "Book 05, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html"
+   },
+   {
+    "text": "Book 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 25,
+  "title": "The CMDB-driven inventory: groups from attributes",
+  "links": [
+   {
+    "text": "Book 05, Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/03-where-device-and-server-data-lives.html"
+   }
+  ]
+ },
+ {
+  "slide": 26,
+  "title": "Four example playbooks, and what each one proves",
+  "links": [
+   {
+    "text": "azcmagent connect",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#azcmagent-connect"
+   }
+  ]
+ },
+ {
+  "slide": 28,
+  "title": "The adoption checklist, area by area",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   }
+  ]
+ },
+ {
+  "slide": 29,
+  "title": "Decisions, owners, and where to start",
+  "links": [
+   {
+    "text": "Book 05, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html"
+   }
+  ]
+ }
+]

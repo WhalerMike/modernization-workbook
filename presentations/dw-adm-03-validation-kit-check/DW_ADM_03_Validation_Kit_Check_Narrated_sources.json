@@ -1,0 +1,244 @@
+[
+ {
+  "slide": 2,
+  "title": "Why this check: soft match and hard match takeover",
+  "links": [
+   {
+    "text": "Set-EntraDirSyncFeature",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#set-entradirsyncfeature"
+   },
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/03-writing-a-validation-kit-check.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "Which cloud: the Graph host and the read's reach",
+  "links": [
+   {
+    "text": "Microsoft Graph national cloud deployments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
+   },
+   {
+    "text": "Get onPremisesDirectorySynchronization",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#get-onpremisesdirectorysynchronization"
+   },
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/03-writing-a-validation-kit-check.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "The anatomy of a check: five parts",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/03-writing-a-validation-kit-check.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "The catalog entry, and the lesson in it",
+  "links": [
+   {
+    "text": "Get onPremisesDirectorySynchronization",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#get-onpremisesdirectorysynchronization"
+   },
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/03-writing-a-validation-kit-check.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "When the only supported role is Global Administrator",
+  "links": [
+   {
+    "text": "Get onPremisesDirectorySynchronization",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#get-onpremisesdirectorysynchronization"
+   },
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/03-writing-a-validation-kit-check.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "The function, and the wrapper every check shares",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/03-writing-a-validation-kit-check.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "One data path, and evidence of which path was used",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/03-writing-a-validation-kit-check.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Rows and outcome: three severities, unsafe defaults",
+  "links": [
+   {
+    "text": "Set-EntraDirSyncFeature",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#set-entradirsyncfeature"
+   },
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/03-writing-a-validation-kit-check.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Fixtures and tests: both directions, exact counts",
+  "links": [
+   {
+    "text": "Get onPremisesDirectorySynchronization",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#get-onpremisesdirectorysynchronization"
+   },
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/03-writing-a-validation-kit-check.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "The safety tests, and why the fix stays out",
+  "links": [
+   {
+    "text": "Set-EntraDirSyncFeature",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#set-entradirsyncfeature"
+   },
+   {
+    "text": "group: evaluateDynamicMembership",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#group-evaluatedynamicmembership"
+   },
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/03-writing-a-validation-kit-check.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Verified facts: the calls behind the check",
+  "links": [
+   {
+    "text": "Get onPremisesDirectorySynchronization",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#get-onpremisesdirectorysynchronization"
+   },
+   {
+    "text": "Set-EntraDirSyncFeature",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#set-entradirsyncfeature"
+   },
+   {
+    "text": "evaluateDynamicMembership",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#group-evaluatedynamicmembership"
+   },
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/03-writing-a-validation-kit-check.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Who extends the kit, who runs what, with which role",
+  "links": [
+   {
+    "text": "Get onPremisesDirectorySynchronization",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#get-onpremisesdirectorysynchronization"
+   },
+   {
+    "text": "Set-EntraDirSyncFeature",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#set-entradirsyncfeature"
+   },
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/03-writing-a-validation-kit-check.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Lab 1: run the check on the fixtures",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/03-writing-a-validation-kit-check.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Lab 1: scope, default run, and a planted mistake",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/03-writing-a-validation-kit-check.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Lab 2: an export from a test tenant",
+  "links": [
+   {
+    "text": "Get onPremisesDirectorySynchronization",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#get-onpremisesdirectorysynchronization"
+   },
+   {
+    "text": "Microsoft Graph national cloud deployments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
+   },
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/03-writing-a-validation-kit-check.html"
+   }
+  ]
+ },
+ {
+  "slide": 17,
+  "title": "Dangers, and the guard for each",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/03-writing-a-validation-kit-check.html"
+   },
+   {
+    "text": "Get onPremisesDirectorySynchronization",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#get-onpremisesdirectorysynchronization"
+   }
+  ]
+ },
+ {
+  "slide": 18,
+  "title": "Done when: the reviewer's checklist",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/03-writing-a-validation-kit-check.html"
+   },
+   {
+    "text": "Get onPremisesDirectorySynchronization",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#get-onpremisesdirectorysynchronization"
+   }
+  ]
+ }
+]

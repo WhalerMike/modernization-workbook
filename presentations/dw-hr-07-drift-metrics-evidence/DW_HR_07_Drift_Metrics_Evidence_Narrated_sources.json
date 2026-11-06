@@ -1,0 +1,276 @@
+[
+ {
+  "slide": 2,
+  "title": "Why a daily proof, and a record that outlives accounts",
+  "links": [
+   {
+    "text": "Entra data retention",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-data-retention"
+   },
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/07-lifecycle-drift-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "Start from Book 19's pipeline, and what it leaves",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/07-lifecycle-drift-and-evidence.html"
+   },
+   {
+    "text": "Book 19, Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/09-drift-pipelines-and-evidence.html"
+   },
+   {
+    "text": "what it leaves to you",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/09-drift-pipelines-and-evidence.html#what-it-leaves-to-you"
+   },
+   {
+    "text": "Book 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "The run: what it reads and writes",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/07-lifecycle-drift-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Six lifecycle drift classes",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/07-lifecycle-drift-and-evidence.html"
+   },
+   {
+    "text": "Book 03, Chapter 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/11-drift-metrics-and-evidence.html"
+   },
+   {
+    "text": "Book 03, Chapter 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/11-drift-metrics-and-evidence.html"
+   },
+   {
+    "text": "Book 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/index.html"
+   },
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/02-why-hr-is-the-source-of-authority.html"
+   },
+   {
+    "text": "Book 03, Chapter 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/11-drift-metrics-and-evidence.html"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/01-the-writer-register-as-code.html"
+   },
+   {
+    "text": "Book 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/index.html"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/01-overview-and-applicability.html"
+   },
+   {
+    "text": "Book 03, Chapter 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/11-drift-metrics-and-evidence.html"
+   },
+   {
+    "text": "Book 03, Chapter 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/11-drift-metrics-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Six metrics, each against a threshold",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/07-lifecycle-drift-and-evidence.html"
+   },
+   {
+    "text": "Book 03, Chapter 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/11-drift-metrics-and-evidence.html"
+   },
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/06-separation-timing.html"
+   },
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/06-separation-timing.html"
+   },
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/04-access-from-attributes-and-the-mover-review.html"
+   },
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/03-joiner-workflows-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "The package, the chain and the period",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/07-lifecycle-drift-and-evidence.html"
+   },
+   {
+    "text": "Book 03, Chapter 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/11-drift-metrics-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "The verified facts",
+  "links": [
+   {
+    "text": "List users",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-users"
+   },
+   {
+    "text": "Graph national cloud deployments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
+   },
+   {
+    "text": "Entra data retention",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-data-retention"
+   },
+   {
+    "text": "Entra feature availability",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-feature-availability"
+   },
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/07-lifecycle-drift-and-evidence.html"
+   },
+   {
+    "text": "Book 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "What stays open, and what's design guidance",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/07-lifecycle-drift-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "What the evidence proves, and for whom",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/07-lifecycle-drift-and-evidence.html"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/01-the-writer-register-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Who runs the checks, who fixes, who signs",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/07-lifecycle-drift-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Lab 1: the chapter outputs, then the first run",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/07-lifecycle-drift-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Lab 1: reading the findings",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/07-lifecycle-drift-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Lab 1: package both runs, chained, and verify",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/07-lifecycle-drift-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Lab 1: the period, and the tests",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/07-lifecycle-drift-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Lab 2: a run against a test tenant",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/07-lifecycle-drift-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 17,
+  "title": "Dangers, and the guard for each",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/07-lifecycle-drift-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 18,
+  "title": "Done when: the Gate 7 checklist",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/07-lifecycle-drift-and-evidence.html"
+   }
+  ]
+ }
+]

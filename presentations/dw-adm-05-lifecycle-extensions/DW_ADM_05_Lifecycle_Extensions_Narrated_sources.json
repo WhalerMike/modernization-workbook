@@ -1,0 +1,276 @@
+[
+ {
+  "slide": 2,
+  "title": "Where the extensions sit, and Learn's contract",
+  "links": [
+   {
+    "text": "custom task extension",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#lifecycle-workflows-custom-task-extension"
+   },
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/05-lifecycle-workflows-custom-extensions.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "Which cloud: Graph host, Azure Resource Manager, license",
+  "links": [
+   {
+    "text": "Graph national cloud deployments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
+   },
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/05-lifecycle-workflows-custom-extensions.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "Learn's Logic App definition, pinned and run",
+  "links": [
+   {
+    "text": "Configure a Logic App",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-a-logic-app-for-lifecycle-workflow"
+   },
+   {
+    "text": "Trigger Logic Apps",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#trigger-logic-apps-based-on-custom-task"
+   },
+   {
+    "text": "MicrosoftDocs/entra-docs at 07cb73d",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#entra-docs-at-07cb73d"
+   },
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/05-lifecycle-workflows-custom-extensions.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "What it leaves to you: cloud, path and status",
+  "links": [
+   {
+    "text": "Configure a Logic App",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-a-logic-app-for-lifecycle-workflow"
+   },
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/05-lifecycle-workflows-custom-extensions.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "What it leaves to you: failure, repeats and secrets",
+  "links": [
+   {
+    "text": "Configure a Logic App",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-a-logic-app-for-lifecycle-workflow"
+   },
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/05-lifecycle-workflows-custom-extensions.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "The appid value, and the verdict",
+  "links": [
+   {
+    "text": "Configure a Logic App",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-a-logic-app-for-lifecycle-workflow"
+   },
+   {
+    "text": "Access token claims reference",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#access-token-claims-reference"
+   },
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/05-lifecycle-workflows-custom-extensions.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "One Logic App per integration, in four steps",
+  "links": [
+   {
+    "text": "Graph national cloud deployments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
+   },
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/05-lifecycle-workflows-custom-extensions.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Idempotency, the callback path and the registry",
+  "links": [
+   {
+    "text": "Configure a Logic App",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-a-logic-app-for-lifecycle-workflow"
+   },
+   {
+    "text": "Book 03, Appendix A",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/appendix-a-lifecycle-rules.html"
+   },
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/05-the-provisioning-pipeline.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Five commands, and the workbook's leaver order",
+  "links": [
+   {
+    "text": "built-in tasks",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#lifecycle-workflow-built-in-tasks"
+   },
+   {
+    "text": "create customTaskExtensions",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#create-customtaskextensions"
+   },
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/05-lifecycle-workflows-custom-extensions.html"
+   },
+   {
+    "text": "Book 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Authorization, built from the registry and checked",
+  "links": [
+   {
+    "text": "Configure a Logic App",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-a-logic-app-for-lifecycle-workflow"
+   },
+   {
+    "text": "create customTaskExtensions",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#create-customtaskextensions"
+   },
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/05-lifecycle-workflows-custom-extensions.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Where Learn's pages disagree, and what the code does",
+  "links": [
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/05-lifecycle-workflows-custom-extensions.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Who builds it, approves it, and what it needs",
+  "links": [
+   {
+    "text": "custom task extension",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#lifecycle-workflows-custom-task-extension"
+   },
+   {
+    "text": "create customTaskExtensions",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#create-customtaskextensions"
+   },
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/05-lifecycle-workflows-custom-extensions.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Lab 1: Learn's definition, then the program's",
+  "links": [
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/05-lifecycle-workflows-custom-extensions.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Lab 1: failures, the build and the read-backs",
+  "links": [
+   {
+    "text": "Compare Azure Government and global Azure",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#compare-azure-government-and-global-azure"
+   },
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/05-lifecycle-workflows-custom-extensions.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Lab 2: a test tenant, a real run, a failure drill",
+  "links": [
+   {
+    "text": "Trigger Logic Apps",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#trigger-logic-apps-based-on-custom-task"
+   },
+   {
+    "text": "custom task extension",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#lifecycle-workflows-custom-task-extension"
+   },
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/05-lifecycle-workflows-custom-extensions.html"
+   }
+  ]
+ },
+ {
+  "slide": 17,
+  "title": "Dangers, and the guard for each",
+  "links": [
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/05-lifecycle-workflows-custom-extensions.html"
+   },
+   {
+    "text": "Configure a Logic App",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-a-logic-app-for-lifecycle-workflow"
+   },
+   {
+    "text": "Compare Azure Government and global Azure",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#compare-azure-government-and-global-azure"
+   }
+  ]
+ },
+ {
+  "slide": 18,
+  "title": "Done when: the chapter's checklist",
+  "links": [
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/05-lifecycle-workflows-custom-extensions.html"
+   },
+   {
+    "text": "Configure a Logic App",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-a-logic-app-for-lifecycle-workflow"
+   },
+   {
+    "text": "Graph national cloud deployments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
+   }
+  ]
+ }
+]

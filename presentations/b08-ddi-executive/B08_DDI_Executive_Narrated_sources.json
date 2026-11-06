@@ -1,0 +1,470 @@
+[
+ {
+  "slide": 2,
+  "title": "DNS now decides far more than an address",
+  "links": [
+   {
+    "text": "OMB M-08-23",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-08-23"
+   },
+   {
+    "text": "NIST SP 800-81r3",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-81"
+   },
+   {
+    "text": "OMB M-22-09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
+   },
+   {
+    "text": "CISA ZTMM v2.0",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cisa-ztmm"
+   },
+   {
+    "text": "Book 08, Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/01-dns-is-the-control-plane.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "Several platforms, no shared state: split-brain",
+  "links": [
+   {
+    "text": "DNS resolver policy",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#dns-resolver-policy"
+   },
+   {
+    "text": "NIST SP 800-81r3",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-81"
+   },
+   {
+    "text": "Book 08, Chapters 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/01-dns-is-the-control-plane.html"
+   },
+   {
+    "text": "02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/02-split-brain-dns.html"
+   },
+   {
+    "text": "12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/12-selection-cost-and-residual-risk.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "Encrypted and Protective DNS are requirements",
+  "links": [
+   {
+    "text": "OMB M-22-09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
+   },
+   {
+    "text": "CISA Protective DNS Resolver",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cisa-protective-dns"
+   },
+   {
+    "text": "CISA Encrypted DNS Implementation Guidance",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cisa-encrypted-dns"
+   },
+   {
+    "text": "NIST SP 800-81r3",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-81"
+   },
+   {
+    "text": "Book 08, Chapters 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/03-federal-requirements.html"
+   },
+   {
+    "text": "05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/05-edge-interception-and-bypass.html"
+   },
+   {
+    "text": "09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/09-who-owns-dns.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Logging, DNSSEC and IPv6 complete the floor",
+  "links": [
+   {
+    "text": "OMB M-26-14",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-26-14"
+   },
+   {
+    "text": "CISA Logging Reference Architecture",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cisa-logging"
+   },
+   {
+    "text": "OMB M-08-23",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-08-23"
+   },
+   {
+    "text": "OMB M-21-07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-21-07"
+   },
+   {
+    "text": "CISA TIC 3.0 v3.3",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#tic-3-security-capabilities"
+   },
+   {
+    "text": "NIST SP 800-81r3",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-81"
+   },
+   {
+    "text": "Book 08, Chapters 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/03-federal-requirements.html"
+   },
+   {
+    "text": "11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/11-operating-the-control-plane.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Leaving AD DNS is an inventory problem first",
+  "links": [
+   {
+    "text": "DNS and AD DS",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#dns-and-ad-ds"
+   },
+   {
+    "text": "dynamic update",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#dynamic-update"
+   },
+   {
+    "text": "Book 08, Chapters 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/04-active-directory-dns-departure.html"
+   },
+   {
+    "text": "09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/09-who-owns-dns.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Where a query slips past agency policy",
+  "links": [
+   {
+    "text": "OMB M-22-09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
+   },
+   {
+    "text": "CISA Encrypted DNS guidance",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cisa-encrypted-dns"
+   },
+   {
+    "text": "MITRE ATT&CK T1557.003",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#mitre-t1557-003"
+   },
+   {
+    "text": "RFC 6105",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#rfc-6105"
+   },
+   {
+    "text": "Book 08, Chapters 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/05-edge-interception-and-bypass.html"
+   },
+   {
+    "text": "08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/08-reference-architecture.html"
+   },
+   {
+    "text": "09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/09-who-owns-dns.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Certificates and tokens fail when names do",
+  "links": [
+   {
+    "text": "OMB M-08-23",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-08-23"
+   },
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "NIST SP 800-81r3",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-81"
+   },
+   {
+    "text": "Azure DNSSEC",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#dnssec-overview"
+   },
+   {
+    "text": "Book 08, Chapters 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/06-dns-identity-and-dnssec.html"
+   },
+   {
+    "text": "09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/09-who-owns-dns.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "IPAM is the address record of the estate",
+  "links": [
+   {
+    "text": "AWS VPC IPAM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#aws-vpc-ipam-infoblox"
+   },
+   {
+    "text": "OMB M-22-09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
+   },
+   {
+    "text": "OMB M-21-07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-21-07"
+   },
+   {
+    "text": "CISA ZTMM v2.0",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cisa-ztmm"
+   },
+   {
+    "text": "Book 08, Chapters 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/01-dns-is-the-control-plane.html"
+   },
+   {
+    "text": "07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/07-cloud-private-endpoints-and-ipam.html"
+   },
+   {
+    "text": "09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/09-who-owns-dns.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Five settings carry almost all of the risk",
+  "links": [
+   {
+    "text": "CISA Protective DNS Resolver",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cisa-protective-dns"
+   },
+   {
+    "text": "AWS Route 53 VPC Resolver",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#aws-route-53-resolver"
+   },
+   {
+    "text": "Book 08, Chapters 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/01-dns-is-the-control-plane.html"
+   },
+   {
+    "text": "08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/08-reference-architecture.html"
+   },
+   {
+    "text": "09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/09-who-owns-dns.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Choosing the platform and the source of truth",
+  "links": [
+   {
+    "text": "FedRAMP Consolidated Rules for 2026",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-2026"
+   },
+   {
+    "text": "FedRAMP Marketplace data",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-marketplace"
+   },
+   {
+    "text": "Book 08, Chapters 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/03-federal-requirements.html"
+   },
+   {
+    "text": "08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/08-reference-architecture.html"
+   },
+   {
+    "text": "12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/12-selection-cost-and-residual-risk.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "One decider per decision, named on purpose",
+  "links": [
+   {
+    "text": "NIST SP 800-37 Rev. 2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-37"
+   },
+   {
+    "text": "Book 08, Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/09-who-owns-dns.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Who decides what for DNS, DHCP and IPAM",
+  "links": [
+   {
+    "text": "NIST SP 800-37 Rev. 2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-37"
+   },
+   {
+    "text": "OMB M-22-09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
+   },
+   {
+    "text": "CISA Protective DNS Resolver",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cisa-protective-dns"
+   },
+   {
+    "text": "Book 08, Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/09-who-owns-dns.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Most record changes need no change board",
+  "links": [
+   {
+    "text": "Book 08, Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/09-who-owns-dns.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Six phases, each closed by its evidence",
+  "links": [
+   {
+    "text": "Azure DNS Private Resolver",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-azure-dns-private-resolver"
+   },
+   {
+    "text": "Azure Private DNS FAQ",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#azure-private-dns-faq"
+   },
+   {
+    "text": "Book 08, Chapters 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/09-who-owns-dns.html"
+   },
+   {
+    "text": "10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/10-migration-sequence.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "AD DNS retires through gates, not on a date",
+  "links": [
+   {
+    "text": "Remove-DhcpServerInDC",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#remove-dhcpserverindc"
+   },
+   {
+    "text": "NARA GRS 3.2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#nara-grs-3-2"
+   },
+   {
+    "text": "Book 08, Chapters 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/04-active-directory-dns-departure.html"
+   },
+   {
+    "text": "09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/09-who-owns-dns.html"
+   },
+   {
+    "text": "10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/10-migration-sequence.html"
+   },
+   {
+    "text": "12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/12-selection-cost-and-residual-risk.html"
+   }
+  ]
+ },
+ {
+  "slide": 17,
+  "title": "Operate it as one plane, and prove it",
+  "links": [
+   {
+    "text": "OMB M-26-14",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-26-14"
+   },
+   {
+    "text": "DNS logging and diagnostics",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#enable-dns-logging-and-diagnostics"
+   },
+   {
+    "text": "DNS resolver policy",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#dns-resolver-policy"
+   },
+   {
+    "text": "Book 08, Chapters 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/11-operating-the-control-plane.html"
+   },
+   {
+    "text": "12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/12-selection-cost-and-residual-risk.html"
+   }
+  ]
+ },
+ {
+  "slide": 18,
+  "title": "Price the meters; keep the residual risk on record",
+  "links": [
+   {
+    "text": "Azure Retail Prices API",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#azure-retail-prices-api"
+   },
+   {
+    "text": "AWS VPC IPAM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#aws-vpc-ipam-infoblox"
+   },
+   {
+    "text": "Book 08, Chapter 12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/12-selection-cost-and-residual-risk.html"
+   }
+  ]
+ },
+ {
+  "slide": 19,
+  "title": "Decisions to make, owners and timing",
+  "links": [
+   {
+    "text": "OMB M-22-09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
+   },
+   {
+    "text": "M-26-14",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-26-14"
+   },
+   {
+    "text": "CISA Protective DNS",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cisa-protective-dns"
+   },
+   {
+    "text": "NIST SP 800-81r3",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-81"
+   },
+   {
+    "text": "Book 08, Chapters 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/01-dns-is-the-control-plane.html"
+   },
+   {
+    "text": "12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/12-selection-cost-and-residual-risk.html"
+   }
+  ]
+ }
+]

@@ -1,0 +1,484 @@
+[
+ {
+  "slide": 4,
+  "title": "What Intune covers",
+  "links": [
+   {
+    "text": "Intune supported platforms",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#supported-operating-systems-and-browsers-in"
+   },
+   {
+    "text": "Book 05, Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/03-where-device-and-server-data-lives.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Intune targeting: device groups, and prefer filters",
+  "links": [
+   {
+    "text": "Manage rules for dynamic membership groups",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#manage-rules-for-dynamic-membership-groups"
+   },
+   {
+    "text": "Book 05, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/08-gpo-to-intune-policy-migration.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Beyond users: Intune and Entra devices",
+  "links": [
+   {
+    "text": "dynamic membership rules",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#manage-rules-for-dynamic-membership-groups"
+   },
+   {
+    "text": "Book 05, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/08-gpo-to-intune-policy-migration.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Dynamic device groups: the dangers, and how to avoid them",
+  "links": [
+   {
+    "text": "stale devices",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#how-to-manage-stale-devices-in-microsoft"
+   },
+   {
+    "text": "Book 05, Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/03-where-device-and-server-data-lives.html"
+   },
+   {
+    "text": "04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/04-intune-first-onboarding.html"
+   },
+   {
+    "text": "08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/08-gpo-to-intune-policy-migration.html"
+   },
+   {
+    "text": "10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/10-operating-and-evidencing-the-fleet.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "What Azure Arc covers",
+  "links": [
+   {
+    "text": "multicloud connector",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-multicloud-connector-enabled-by"
+   },
+   {
+    "text": "Book 05, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html"
+   },
+   {
+    "text": "Book 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Beyond users: Azure Arc servers, through Resource Manager",
+  "links": [
+   {
+    "text": "azcmagent connect",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#azcmagent-connect"
+   },
+   {
+    "text": "Book 05, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Devices neither covers: the strategy",
+  "links": [
+   {
+    "text": "Book 05, Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/03-where-device-and-server-data-lives.html"
+   },
+   {
+    "text": "09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html"
+   },
+   {
+    "text": "10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/10-operating-and-evidencing-the-fleet.html"
+   },
+   {
+    "text": "Books 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/index.html"
+   },
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Non-person track: service accounts, MSAs and gMSAs",
+  "links": [
+   {
+    "text": "Book 02, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/09-building-the-entra-target.html"
+   },
+   {
+    "text": "Ch 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/06-who-owns-the-migration.html"
+   },
+   {
+    "text": "Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/10-migrating-and-governing.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Non-person track: workload identities and AI agents",
+  "links": [
+   {
+    "text": "Book 02, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/09-building-the-entra-target.html"
+   },
+   {
+    "text": "Book 17, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b17-ai-identity/04-kinds-of-ai-identity.html"
+   },
+   {
+    "text": "05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b17-ai-identity/05-owners-sponsors-and-lifecycle.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Beyond users: service principals and custom attributes",
+  "links": [
+   {
+    "text": "CA for workload identities",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#conditional-access-for-workload-identities"
+   },
+   {
+    "text": "Book 04, Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/03-the-conditional-access-model.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "The object-type crosswalk: stores, writers, consumers",
+  "links": [
+   {
+    "text": "Book 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/index.html"
+   },
+   {
+    "text": "Book 03, Ch 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/06-canonical-attribute-schema.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "PIV and CAC: the certificate binding is an attribute",
+  "links": [
+   {
+    "text": "Set up CBA",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#set-up-microsoft-entra-certificate-based"
+   },
+   {
+    "text": "M-22-09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
+   },
+   {
+    "text": "Book 03, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/09-credentials-and-certificates.html"
+   },
+   {
+    "text": "Book 07, Ch 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/06-device-and-user-certificates.html"
+   }
+  ]
+ },
+ {
+  "slide": 17,
+  "title": "certificateUserIds: who writes it, and the open pilot",
+  "links": [
+   {
+    "text": "certificateUserIds",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#mapping-to-the-certificateuserids-attribute"
+   },
+   {
+    "text": "Book 03, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/09-credentials-and-certificates.html"
+   },
+   {
+    "text": "Book 07, Ch 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/06-device-and-user-certificates.html"
+   },
+   {
+    "text": "Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/07-coexistence-and-migration.html"
+   }
+  ]
+ },
+ {
+  "slide": 19,
+  "title": "Worked example: one analyst, every mechanism",
+  "links": [
+   {
+    "text": "Book 02, Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/05-delegation-without-ous.html"
+   },
+   {
+    "text": "Book 03, Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/05-the-provisioning-pipeline.html"
+   },
+   {
+    "text": "Ch 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/06-canonical-attribute-schema.html"
+   },
+   {
+    "text": "Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/10-from-attributes-to-access.html"
+   },
+   {
+    "text": "Book 04, Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/03-the-conditional-access-model.html"
+   },
+   {
+    "text": "Book 05, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/08-gpo-to-intune-policy-migration.html"
+   },
+   {
+    "text": "Book 06, Ch 17",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/17-dynamic-membership-delegation-and-privilege.html"
+   }
+  ]
+ },
+ {
+  "slide": 20,
+  "title": "The mover event: one personnel action, no ticket",
+  "links": [
+   {
+    "text": "dynamic membership rules",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#manage-rules-for-dynamic-membership-groups"
+   },
+   {
+    "text": "Book 01, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/04-identity-transformation.html"
+   },
+   {
+    "text": "Book 02, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/10-migrating-and-governing.html"
+   },
+   {
+    "text": "Book 03, Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/05-the-provisioning-pipeline.html"
+   },
+   {
+    "text": "08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/08-joiner-mover-leaver.html"
+   },
+   {
+    "text": "11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/11-drift-metrics-and-evidence.html"
+   },
+   {
+    "text": "Book 05, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/08-gpo-to-intune-policy-migration.html"
+   },
+   {
+    "text": "Book 06, Ch 16",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/16-groups-roles-and-membership.html"
+   }
+  ]
+ },
+ {
+  "slide": 21,
+  "title": "Stage 7: cut over in phases, wave by wave",
+  "links": [
+   {
+    "text": "Book 00, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html"
+   },
+   {
+    "text": "Book 01, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/04-identity-transformation.html"
+   },
+   {
+    "text": "Book 03, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/08-joiner-mover-leaver.html"
+   },
+   {
+    "text": "Ch 12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/12-execution-plan.html"
+   },
+   {
+    "text": "Book 05, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/08-gpo-to-intune-policy-migration.html"
+   }
+  ]
+ },
+ {
+  "slide": 22,
+  "title": "Stage 8: detect drift and fix it at the source",
+  "links": [
+   {
+    "text": "Book 01, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/04-identity-transformation.html"
+   },
+   {
+    "text": "verification",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/04-identity-transformation.html#verification"
+   },
+   {
+    "text": "Book 02, Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/05-delegation-without-ous.html"
+   },
+   {
+    "text": "drift detection",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/05-delegation-without-ous.html#drift-detection"
+   },
+   {
+    "text": "Ch 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/06-who-owns-the-migration.html"
+   },
+   {
+    "text": "Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/10-migrating-and-governing.html"
+   },
+   {
+    "text": "Book 03, Ch 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/11-drift-metrics-and-evidence.html"
+   },
+   {
+    "text": "Ch 12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/12-execution-plan.html"
+   },
+   {
+    "text": "Phase 6",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/12-execution-plan.html#phase-6-sustained-posture"
+   },
+   {
+    "text": "Book 06, Ch 17",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/17-dynamic-membership-delegation-and-privilege.html"
+   },
+   {
+    "text": "access reviews",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/17-dynamic-membership-delegation-and-privilege.html#access-reviews"
+   }
+  ]
+ },
+ {
+  "slide": 23,
+  "title": "Limits: administrative units",
+  "links": [
+   {
+    "text": "administrative units",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#administrative-units-in-microsoft-entra-id"
+   },
+   {
+    "text": "administrative units",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#administrative-units-in-microsoft-entra-id"
+   },
+   {
+    "text": "Book 01, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/04-identity-transformation.html"
+   },
+   {
+    "text": "Book 02, Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/05-delegation-without-ous.html"
+   }
+  ]
+ },
+ {
+  "slide": 24,
+  "title": "Lifecycle Workflows: the pieces and the limits",
+  "links": [
+   {
+    "text": "execution limits and quarantine",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-execution-limits-and-quarantine"
+   }
+  ]
+ },
+ {
+  "slide": 25,
+  "title": "Lifecycle Workflows at our scale: what could break",
+  "links": [
+   {
+    "text": "execution limits and quarantine",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-execution-limits-and-quarantine"
+   },
+   {
+    "text": "Book 03, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/08-joiner-mover-leaver.html"
+   }
+  ]
+ },
+ {
+  "slide": 26,
+  "title": "What still needs AD during hybrid",
+  "links": [
+   {
+    "text": "Books 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/index.html"
+   },
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   }
+  ]
+ },
+ {
+  "slide": 27,
+  "title": "The checklist, stage by stage",
+  "links": [
+   {
+    "text": "Book 02, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/09-building-the-entra-target.html"
+   },
+   {
+    "text": "Book 05, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/08-gpo-to-intune-policy-migration.html"
+   },
+   {
+    "text": "09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html"
+   },
+   {
+    "text": "Book 17, Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b17-ai-identity/05-owners-sponsors-and-lifecycle.html"
+   }
+  ]
+ },
+ {
+  "slide": 28,
+  "title": "Decisions, owners, and where to start",
+  "links": [
+   {
+    "text": "Book 02, Ch 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/06-who-owns-the-migration.html"
+   },
+   {
+    "text": "Book 03, Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/07-who-owns-workforce-identity.html"
+   },
+   {
+    "text": "Book 17, Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b17-ai-identity/05-owners-sponsors-and-lifecycle.html"
+   }
+  ]
+ }
+]

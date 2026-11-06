@@ -1,0 +1,112 @@
+[
+ {
+  "slide": 2,
+  "title": "Why a deployment proves what each Lab 2 can't",
+  "links": [
+   {
+    "text": "Chapter 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/11-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "The safe order: what can block a sign-in comes last",
+  "links": [
+   {
+    "text": "Conditional Access for workload identities",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#conditional-access-for-workload-identities"
+   },
+   {
+    "text": "Chapter 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/11-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Before you start: PIM roles, approvals, a change record",
+  "links": [
+   {
+    "text": "PIM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-microsoft-entra-privileged-identity"
+   },
+   {
+    "text": "Chapter 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/11-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "The settings file: four rules, checked before any command",
+  "links": [
+   {
+    "text": "Chapter 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/11-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "The code it adds: five scripts, each with a fixture mode",
+  "links": [
+   {
+    "text": "Chapter 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/11-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "The stages and the promotion to production",
+  "links": [
+   {
+    "text": "Chapter 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/11-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Lab 2: the live test stage, then production",
+  "links": [
+   {
+    "text": "Chapter 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/11-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "The federal requirement and evidence, every gate",
+  "links": [
+   {
+    "text": "NIST SP 800-53",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "FedRAMP 20x KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   },
+   {
+    "text": "Chapter 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/11-deploying-to-test-and-production.html"
+   },
+   {
+    "text": "KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Summary: you've finished the learning path",
+  "links": [
+   {
+    "text": "Chapter 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/11-deploying-to-test-and-production.html"
+   }
+  ]
+ }
+]

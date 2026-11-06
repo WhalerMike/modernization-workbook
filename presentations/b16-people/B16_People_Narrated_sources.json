@@ -1,0 +1,368 @@
+[
+ {
+  "slide": 2,
+  "title": "Tools enforce; people decide",
+  "links": [
+   {
+    "text": "Book 16, Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b16-people/01-people-close-the-gap.html"
+   },
+   {
+    "text": "What each book changes in people's work",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b16-people/01-people-close-the-gap.html#what-each-book-changes-in-peoples-work"
+   },
+   {
+    "text": "Tools enforce",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b16-people/01-people-close-the-gap.html#tools-enforce-people-decide"
+   },
+   {
+    "text": "people decide",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b16-people/01-people-close-the-gap.html#tools-enforce-people-decide"
+   },
+   {
+    "text": "Books 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "Training last is paid for twice",
+  "links": [
+   {
+    "text": "5 CFR 930.301",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cfr-5-930-301"
+   },
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "release 5.2.0",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "OMB Circular A-130",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#omb-a-130"
+   },
+   {
+    "text": "Book 16, Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b16-people/01-people-close-the-gap.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "What federal workforce rules require",
+  "links": [
+   {
+    "text": "44 U.S.C. § 3554",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#usc-44-3554"
+   },
+   {
+    "text": "5 CFR 930.301",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cfr-5-930-301"
+   },
+   {
+    "text": "OMB A-130",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#omb-a-130"
+   },
+   {
+    "text": "NIST SP 800-181 Rev. 1",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-181"
+   },
+   {
+    "text": "GAO-19-144",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gao-19-144"
+   },
+   {
+    "text": "Book 16, Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b16-people/02-what-the-workforce-rules-require.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Education first, then training by role",
+  "links": [
+   {
+    "text": "Book 16, Chapters 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b16-people/01-people-close-the-gap.html"
+   },
+   {
+    "text": "Education before training",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b16-people/01-people-close-the-gap.html#education-before-training"
+   },
+   {
+    "text": "Book 00, Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/04-the-principles.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "The compliance track teaches tracing",
+  "links": [
+   {
+    "text": "SP 800-37 Rev. 2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-37"
+   },
+   {
+    "text": "FedRAMP 2026 rules",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-2026"
+   },
+   {
+    "text": "Agency Use",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-agency-use"
+   },
+   {
+    "text": "Key Security Indicators",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   },
+   {
+    "text": "Notice NTC-0004",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#ntc-0004"
+   },
+   {
+    "text": "SP 800-53A",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53a"
+   },
+   {
+    "text": "SP 800-137",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-137"
+   },
+   {
+    "text": "Book 16, Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b16-people/03-the-compliance-track.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Implementation: done means the evidence landed",
+  "links": [
+   {
+    "text": "Plan a Conditional Access deployment",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#plan-a-conditional-access-deployment"
+   },
+   {
+    "text": "emergency access accounts",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#manage-emergency-access-accounts-in"
+   },
+   {
+    "text": "Book 16, Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b16-people/04-the-implementation-track.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Certify what people can show",
+  "links": [
+   {
+    "text": "OMB A-130",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#omb-a-130"
+   },
+   {
+    "text": "NIST SP 800-50 Rev. 1",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-50"
+   },
+   {
+    "text": "SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "release 5.2.0",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "SP 800-53B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53b"
+   },
+   {
+    "text": "Book 16, Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b16-people/05-assessment-and-certification.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Vendor training, and labs that can't hurt production",
+  "links": [
+   {
+    "text": "NIST SP 800-50 Rev. 1",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-50"
+   },
+   {
+    "text": "SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "Book 16, Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b16-people/06-vendor-training-and-labs.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Every user signs in differently",
+  "links": [
+   {
+    "text": "OMB M-22-09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
+   },
+   {
+    "text": "NIST SP 800-63B-4",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-63b-4"
+   },
+   {
+    "text": "CISA AA23-320A",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#aa23-320a"
+   },
+   {
+    "text": "Revised 508 Standards",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#information-and-communication-technology-ict"
+   },
+   {
+    "text": "OMB M-24-08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-24-08"
+   },
+   {
+    "text": "Book 16, Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b16-people/07-end-user-training.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "One decider per row; the reporter doesn't decide",
+  "links": [
+   {
+    "text": "44 U.S.C. § 3554",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#usc-44-3554"
+   },
+   {
+    "text": "5 CFR 410.201",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cfr-5-410-201"
+   },
+   {
+    "text": "930.301",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cfr-5-930-301"
+   },
+   {
+    "text": "NIST SP 800-37 Rev. 2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-37"
+   },
+   {
+    "text": "SP 800-50 Rev. 1",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-50"
+   },
+   {
+    "text": "OMB M-24-08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-24-08"
+   },
+   {
+    "text": "Book 16, Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b16-people/08-who-owns-workforce-readiness.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Run training on the roadmap's calendar",
+  "links": [
+   {
+    "text": "5 CFR 930.301",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cfr-5-930-301"
+   },
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "SP 800-50 Rev. 1",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-50"
+   },
+   {
+    "text": "OMB A-130",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#omb-a-130"
+   },
+   {
+    "text": "Book 16, Chapters 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b16-people/01-people-close-the-gap.html"
+   },
+   {
+    "text": "09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b16-people/09-building-and-running-the-curriculum.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Measure readiness, not attendance",
+  "links": [
+   {
+    "text": "OMB A-130",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#omb-a-130"
+   },
+   {
+    "text": "NIST SP 800-50 Rev. 1",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-50"
+   },
+   {
+    "text": "SP 800-181 Rev. 1",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-181"
+   },
+   {
+    "text": "passwordless deployment",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#plan-a-phishing-resistant-passwordless"
+   },
+   {
+    "text": "Book 16, Chapter 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b16-people/10-measuring-readiness.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Decisions to make, and next steps",
+  "links": [
+   {
+    "text": "5 CFR 930.301",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cfr-5-930-301"
+   },
+   {
+    "text": "OMB A-130",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#omb-a-130"
+   },
+   {
+    "text": "NIST SP 800-50 Rev. 1",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-50"
+   },
+   {
+    "text": "OMB M-24-08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-24-08"
+   },
+   {
+    "text": "Book 16, Chapters 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b16-people/01-people-close-the-gap.html"
+   },
+   {
+    "text": "05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b16-people/05-assessment-and-certification.html"
+   },
+   {
+    "text": "08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b16-people/08-who-owns-workforce-readiness.html"
+   },
+   {
+    "text": "09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b16-people/09-building-and-running-the-curriculum.html"
+   },
+   {
+    "text": "10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b16-people/10-measuring-readiness.html"
+   }
+  ]
+ }
+]

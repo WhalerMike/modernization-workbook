@@ -1,0 +1,258 @@
+[
+ {
+  "slide": 2,
+  "title": "Why contractors need their own code",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/02-contractor-sources-and-end-dates.html"
+   },
+   {
+    "text": "Book 03, Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/06-canonical-attribute-schema.html"
+   },
+   {
+    "text": "Appendix A",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/appendix-a-lifecycle-rules.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "Which cloud, for these reads and writes",
+  "links": [
+   {
+    "text": "Microsoft Entra feature availability",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-feature-availability"
+   },
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/02-contractor-sources-and-end-dates.html"
+   },
+   {
+    "text": "Book 19, Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/01-the-hr-to-entra-middleware.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "What Microsoft gives you",
+  "links": [
+   {
+    "text": "Perform bulkUpload",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#perform-bulkupload"
+   },
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/02-contractor-sources-and-end-dates.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "What it leaves to you, and the kit adds",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/02-contractor-sources-and-end-dates.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "The earliest end: the first condition wins",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/02-contractor-sources-and-end-dates.html"
+   },
+   {
+    "text": "Book 03, Appendix A",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/appendix-a-lifecycle-rules.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "The source checks and the reconciliation",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/02-contractor-sources-and-end-dates.html"
+   },
+   {
+    "text": "Book 03, Appendix A",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/appendix-a-lifecycle-rules.html"
+   },
+   {
+    "text": "Chapter 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/11-drift-metrics-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "One read, and the sponsor review as code",
+  "links": [
+   {
+    "text": "Set-MgEntitlementManagementAssignmentPolicy",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#set-mgentitlementmanagementassignmentpolicy"
+   },
+   {
+    "text": "requestorManager",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#requestormanager-resource-type"
+   },
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/02-contractor-sources-and-end-dates.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "The tests: seven new, 57 in the kit",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/02-contractor-sources-and-end-dates.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "The verified facts",
+  "links": [
+   {
+    "text": "Perform bulkUpload",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#perform-bulkupload"
+   },
+   {
+    "text": "access reviews",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-are-access-reviews"
+   },
+   {
+    "text": "requestorManager",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#requestormanager-resource-type"
+   },
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/02-contractor-sources-and-end-dates.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Where Learn differs or says nothing",
+  "links": [
+   {
+    "text": "requestorManager",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#requestormanager-resource-type"
+   },
+   {
+    "text": "Perform bulkUpload",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#perform-bulkupload"
+   },
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/02-contractor-sources-and-end-dates.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "What the output proves, and for whom",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/02-contractor-sources-and-end-dates.html"
+   },
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/06-separation-timing.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Who builds, who owns, who runs it",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/02-contractor-sources-and-end-dates.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Lab 1: the read, the extract, the decisions",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/02-contractor-sources-and-end-dates.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Lab 1: the SCIM requests and the reconciliation",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/02-contractor-sources-and-end-dates.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Lab 1: the review settings and the tests",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/02-contractor-sources-and-end-dates.html"
+   }
+  ]
+ },
+ {
+  "slide": 17,
+  "title": "Lab 2: a test tenant",
+  "links": [
+   {
+    "text": "Perform bulkUpload",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#perform-bulkupload"
+   },
+   {
+    "text": "Set-MgEntitlementManagementAssignmentPolicy",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#set-mgentitlementmanagementassignmentpolicy"
+   },
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/02-contractor-sources-and-end-dates.html"
+   }
+  ]
+ },
+ {
+  "slide": 18,
+  "title": "Dangers, and the guard for each",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/02-contractor-sources-and-end-dates.html"
+   },
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/07-lifecycle-drift-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 19,
+  "title": "Done when: the contractor checklist",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/02-contractor-sources-and-end-dates.html"
+   }
+  ]
+ }
+]

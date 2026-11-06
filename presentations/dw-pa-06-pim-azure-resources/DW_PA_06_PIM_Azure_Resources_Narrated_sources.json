@@ -1,0 +1,312 @@
+[
+ {
+  "slide": 2,
+  "title": "Why standing Azure roles have to go",
+  "links": [
+   {
+    "text": "Azure built-in roles",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#azure-built-in-roles"
+   },
+   {
+    "text": "Best practices for Azure RBAC",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#best-practices-for-azure-rbac"
+   },
+   {
+    "text": "Plan a PIM deployment",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#plan-a-privileged-identity-management"
+   },
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/06-pim-for-azure-resources.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "Which cloud: the Resource Manager host",
+  "links": [
+   {
+    "text": "Graph national cloud deployments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
+   },
+   {
+    "text": "Compare Azure Government and global Azure",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#compare-azure-government-and-global-azure"
+   },
+   {
+    "text": "EMS for US Government",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#enterprise-mobility-security-for-us"
+   },
+   {
+    "text": "Entra feature availability",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-feature-availability"
+   },
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/06-pim-for-azure-resources.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "Resource Manager, not Graph: three resource types",
+  "links": [
+   {
+    "text": "PIM APIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#privileged-identity-management-apis"
+   },
+   {
+    "text": "Role Management Policies - Update",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#role-management-policies-update"
+   },
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/06-pim-for-azure-resources.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "The version, the scopes and who can be eligible",
+  "links": [
+   {
+    "text": "Assign Azure resource roles",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#assign-azure-resource-roles-in-privileged"
+   },
+   {
+    "text": "PIM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-microsoft-entra-privileged-identity"
+   },
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/06-pim-for-azure-resources.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Microsoft's sample: walkthroughs and pinned examples",
+  "links": [
+   {
+    "text": "Role Management Policies - Update",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#role-management-policies-update"
+   },
+   {
+    "text": "Azure/azure-rest-api-specs at 411fb22",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#azure-rest-api-specs-at-411fb22"
+   },
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/06-pim-for-azure-resources.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "What the examples get wrong if read naively",
+  "links": [
+   {
+    "text": "Azure/azure-rest-api-specs examples at 411fb22",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#azure-rest-api-specs-at-411fb22"
+   },
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/06-pim-for-azure-resources.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "What the examples leave out entirely",
+  "links": [
+   {
+    "text": "Azure/azure-rest-api-specs examples at 411fb22",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#azure-rest-api-specs-at-411fb22"
+   },
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/06-pim-for-azure-resources.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "The code: a call list with least-privileged roles",
+  "links": [
+   {
+    "text": "PIM APIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#privileged-identity-management-apis"
+   },
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/06-pim-for-azure-resources.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "The desired state: settings by tier, and its refusals",
+  "links": [
+   {
+    "text": "PIM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-microsoft-entra-privileged-identity"
+   },
+   {
+    "text": "Configure Azure resource role settings",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-azure-resource-role-settings-in"
+   },
+   {
+    "text": "Book 04, Appendix B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/appendix-b-pim-role-settings.html"
+   },
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/06-who-decides-access.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "The read and the plan, in the order it must run",
+  "links": [
+   {
+    "text": "PIM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-microsoft-entra-privileged-identity"
+   },
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/06-pim-for-azure-resources.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Findings, and an apply that is off by default",
+  "links": [
+   {
+    "text": "Plan a PIM deployment",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#plan-a-privileged-identity-management"
+   },
+   {
+    "text": "PIM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-microsoft-entra-privileged-identity"
+   },
+   {
+    "text": "Best practices for Azure RBAC",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#best-practices-for-azure-rbac"
+   },
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/06-pim-for-azure-resources.html"
+   },
+   {
+    "text": "Book 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Who owns it, who reviews it, what it runs as",
+  "links": [
+   {
+    "text": "PIM APIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#privileged-identity-management-apis"
+   },
+   {
+    "text": "Graph permissions",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-graph-permissions-reference"
+   },
+   {
+    "text": "PIM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-microsoft-entra-privileged-identity"
+   },
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/06-pim-for-azure-resources.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Lab 1: replay the examples and plan a dry run",
+  "links": [
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/06-pim-for-azure-resources.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Lab 1: reading the plan, applying, the refusals",
+  "links": [
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/06-pim-for-azure-resources.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Lab 2: a test subscription, a live plan, a back-out",
+  "links": [
+   {
+    "text": "PIM APIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#privileged-identity-management-apis"
+   },
+   {
+    "text": "PIM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-microsoft-entra-privileged-identity"
+   },
+   {
+    "text": "Configure Azure resource role settings",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-azure-resource-role-settings-in"
+   },
+   {
+    "text": "Assign Azure resource roles",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#assign-azure-resource-roles-in-privileged"
+   },
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/06-pim-for-azure-resources.html"
+   }
+  ]
+ },
+ {
+  "slide": 17,
+  "title": "Dangers, and the guard for each",
+  "links": [
+   {
+    "text": "PIM APIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#privileged-identity-management-apis"
+   },
+   {
+    "text": "PIM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-microsoft-entra-privileged-identity"
+   },
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/06-pim-for-azure-resources.html"
+   }
+  ]
+ },
+ {
+  "slide": 18,
+  "title": "Done when: the chapter's checklist",
+  "links": [
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/06-pim-for-azure-resources.html"
+   },
+   {
+    "text": "Best practices for Azure RBAC",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#best-practices-for-azure-rbac"
+   },
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/06-pim-for-azure-resources.html"
+   }
+  ]
+ }
+]

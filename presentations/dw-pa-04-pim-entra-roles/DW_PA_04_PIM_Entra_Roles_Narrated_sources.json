@@ -1,0 +1,332 @@
+[
+ {
+  "slide": 2,
+  "title": "Why role settings become code, in a fixed order",
+  "links": [
+   {
+    "text": "Configure Microsoft Entra role settings in PIM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-microsoft-entra-role-settings-in"
+   },
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/04-pim-for-entra-roles-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "Which cloud: Graph v1.0 on the worldwide host",
+  "links": [
+   {
+    "text": "Graph national cloud deployments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
+   },
+   {
+    "text": "Entra feature availability",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-feature-availability"
+   },
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/04-pim-for-entra-roles-as-code.html"
+   },
+   {
+    "text": "PIM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-microsoft-entra-privileged-identity"
+   },
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/06-pim-for-azure-resources.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "Settings are per role, and Graph calls them rules",
+  "links": [
+   {
+    "text": "Configure Microsoft Entra role settings in PIM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-microsoft-entra-role-settings-in"
+   },
+   {
+    "text": "Rules in PIM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#rules-in-pim-mapping-guide"
+   },
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/04-pim-for-entra-roles-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "The authentication context: its policy, then PIM",
+  "links": [
+   {
+    "text": "role settings in PIM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-microsoft-entra-role-settings-in"
+   },
+   {
+    "text": "Rules in PIM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#rules-in-pim-mapping-guide"
+   },
+   {
+    "text": "Plan a PIM deployment",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#plan-a-privileged-identity-management"
+   },
+   {
+    "text": "Entra releases",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-releases-and-announcements"
+   },
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/04-pim-for-entra-roles-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Learn's two samples, pinned and sent to a fake",
+  "links": [
+   {
+    "text": "Update rules in PIM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#update-rules-in-pim-by-using-microsoft-graph"
+   },
+   {
+    "text": "Assign privileged roles using PIM APIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#assign-privileged-roles-using-pim-for"
+   },
+   {
+    "text": "PIM APIs overview",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#privileged-identity-management-apis"
+   },
+   {
+    "text": "microsoft-graph-docs-contrib at a693031",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#graph-docs-at-a693031"
+   },
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/04-pim-for-entra-roles-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "What the rules sample leaves to you",
+  "links": [
+   {
+    "text": "Update rules in PIM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#update-rules-in-pim-by-using-microsoft-graph"
+   },
+   {
+    "text": "List roleManagementPolicyAssignments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-rolemanagementpolicyassignments"
+   },
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/04-pim-for-entra-roles-as-code.html"
+   },
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/03-conditional-access-for-administrators.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "What the tutorial leaves to you, and the verdict",
+  "links": [
+   {
+    "text": "Update rules in PIM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#update-rules-in-pim-by-using-microsoft-graph"
+   },
+   {
+    "text": "Assign privileged roles using PIM APIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#assign-privileged-roles-using-pim-for"
+   },
+   {
+    "text": "Create roleEligibilityScheduleRequest",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#create-roleeligibilityschedulerequest"
+   },
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/04-pim-for-entra-roles-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "The code: one reviewed file per role, inside bounds",
+  "links": [
+   {
+    "text": "role settings in PIM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-microsoft-entra-role-settings-in"
+   },
+   {
+    "text": "PIM APIs overview",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#privileged-identity-management-apis"
+   },
+   {
+    "text": "Update rules in PIM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#update-rules-in-pim-by-using-microsoft-graph"
+   },
+   {
+    "text": "Rules in PIM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#rules-in-pim-mapping-guide"
+   },
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/04-pim-for-entra-roles-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "The checks: PA-PIM-01 to PA-PIM-09",
+  "links": [
+   {
+    "text": "role settings in PIM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-microsoft-entra-role-settings-in"
+   },
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/04-pim-for-entra-roles-as-code.html"
+   },
+   {
+    "text": "Ch 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/02-emergency-access-as-code.html"
+   },
+   {
+    "text": "Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/07-access-reviews-of-privileged-roles.html"
+   },
+   {
+    "text": "Book 04, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/08-pim-self-request-with-approval.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "The calls, and a permission for each task",
+  "links": [
+   {
+    "text": "PIM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-microsoft-entra-privileged-identity"
+   },
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/04-pim-for-entra-roles-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "The diff, the plan, the read-back, the conversion",
+  "links": [
+   {
+    "text": "List roleManagementPolicyAssignments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-rolemanagementpolicyassignments"
+   },
+   {
+    "text": "Update rules in PIM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#update-rules-in-pim-by-using-microsoft-graph"
+   },
+   {
+    "text": "Book 04, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/08-pim-self-request-with-approval.html"
+   },
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/04-privileged-roles-and-tiers.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Who builds it, who owns it, who reviews it",
+  "links": [
+   {
+    "text": "Update rules in PIM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#update-rules-in-pim-by-using-microsoft-graph"
+   },
+   {
+    "text": "Create roleEligibilityScheduleRequest",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#create-roleeligibilityschedulerequest"
+   },
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/04-pim-for-entra-roles-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Lab 1: Learn's samples, permissions, a dry run",
+  "links": [
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/04-pim-for-entra-roles-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Lab 1: reading the diff, the block and the apply",
+  "links": [
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/04-pim-for-entra-roles-as-code.html"
+   },
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/03-conditional-access-for-administrators.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Lab 2: one role in a test tenant, then back out",
+  "links": [
+   {
+    "text": "Configure Microsoft Entra role settings in PIM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-microsoft-entra-role-settings-in"
+   },
+   {
+    "text": "Book 04, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/08-pim-self-request-with-approval.html"
+   },
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/04-privileged-roles-and-tiers.html"
+   }
+  ]
+ },
+ {
+  "slide": 17,
+  "title": "Dangers, and the guard for each",
+  "links": [
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/04-pim-for-entra-roles-as-code.html"
+   },
+   {
+    "text": "Configure Microsoft Entra role settings in PIM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-microsoft-entra-role-settings-in"
+   },
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/08-evidence-and-drift.html"
+   }
+  ]
+ },
+ {
+  "slide": 18,
+  "title": "Done when: the chapter's checklist",
+  "links": [
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/04-pim-for-entra-roles-as-code.html"
+   }
+  ]
+ }
+]

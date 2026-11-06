@@ -1,0 +1,128 @@
+[
+ {
+  "slide": 2,
+  "title": "The seven gates on one page: done when, proved by",
+  "links": [
+   {
+    "text": "Book 03, Ch 12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/12-execution-plan.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "Before G1: what the gates assume, and where they run",
+  "links": [
+   {
+    "text": "Book 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "G1: the lifecycle rows of the writer register",
+  "links": [
+   {
+    "text": "Book 03, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/08-joiner-mover-leaver.html"
+   },
+   {
+    "text": "Book 03, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/04-attribute-authority.html"
+   },
+   {
+    "text": "06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/06-canonical-attribute-schema.html"
+   },
+   {
+    "text": "Appendix A",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/appendix-a-lifecycle-rules.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "G1: version the scope, remove the other writers",
+  "links": [
+   {
+    "text": "Book 03, Ch 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/06-canonical-attribute-schema.html"
+   },
+   {
+    "text": "09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/09-credentials-and-certificates.html"
+   },
+   {
+    "text": "11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/11-drift-metrics-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "G1: requirement, evidence, availability, rollback",
+  "links": [
+   {
+    "text": "Book 03, Ch 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/11-drift-metrics-and-evidence.html"
+   },
+   {
+    "text": "Appendix B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/appendix-b-security-and-privacy.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "G2: employees from HR, contractors from their own source",
+  "links": [
+   {
+    "text": "Book 03, Ch 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/06-canonical-attribute-schema.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "G2: requirement, evidence, availability, rollback",
+  "links": [
+   {
+    "text": "Book 03, Ch 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/11-drift-metrics-and-evidence.html"
+   },
+   {
+    "text": "12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/12-execution-plan.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "G3: few workflows, scoped by code, with limits",
+  "links": [
+   {
+    "text": "Book 03, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/08-joiner-mover-leaver.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "G3: the Temporary Access Pass bridge and day-one access",
+  "links": [
+   {
+    "text": "M-22-09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
+   },
+   {
+    "text": "Book 04, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/09-access-governance.html"
+   },
+   {
+    "text": "Book 03, Ch 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/11-drift-metrics-and-evidence.html"
+   }
+  ]
+ }
+]

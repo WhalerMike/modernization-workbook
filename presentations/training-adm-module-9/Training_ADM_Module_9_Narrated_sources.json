@@ -1,0 +1,132 @@
+[
+ {
+  "slide": 2,
+  "title": "Why a deployment isn't nine Lab 2s in a row",
+  "links": [
+   {
+    "text": "Chapter 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/10-deploying-to-test-and-production.html"
+   },
+   {
+    "text": "Book 19, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/10-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "One settings file per stage, and three identities",
+  "links": [
+   {
+    "text": "group: evaluateDynamicMembership",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#group-evaluatedynamicmembership"
+   },
+   {
+    "text": "Book 19, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/10-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "The live test stage: nothing grants access unchecked",
+  "links": [
+   {
+    "text": "Book 19, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/10-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Promotion, then production in waves",
+  "links": [
+   {
+    "text": "Book 19, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/10-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Try it: the test stage's pre-flight check",
+  "links": [
+   {
+    "text": "Book 19, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/10-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Try it: record four changes, write the rollback",
+  "links": [
+   {
+    "text": "Book 19, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/10-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Try it: the smoke test says no-go on fixtures",
+  "links": [
+   {
+    "text": "Book 19, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/10-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Try it: check the evidence, then try to promote",
+  "links": [
+   {
+    "text": "Book 19, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/10-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Lab 2: the live test stage",
+  "links": [
+   {
+    "text": "Book 19, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/10-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "The federal requirement and evidence for Module 9",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "Key Security Indicators",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   },
+   {
+    "text": "Chapter 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/10-deploying-to-test-and-production.html"
+   },
+   {
+    "text": "KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Summary: you've finished the path",
+  "links": [
+   {
+    "text": "Book 19, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/10-deploying-to-test-and-production.html"
+   }
+  ]
+ }
+]

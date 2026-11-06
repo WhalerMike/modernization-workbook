@@ -7,51 +7,51 @@
   ],
   [
    0.762,
-   7.8,
-   "This briefing comes from A I Identity Governance, one of the books of the Federal Modernization Workbook, and the last in the series."
+   6.25,
+   "This briefing comes from A I Identity Governance, one of the books of the Federal Modernization Workbook."
   ],
   [
-   8.562,
+   7.013,
    9.512,
    "It's written for Chief A I Officers, CIOs and CISOs, identity and security operations teams, I S S O's, and authorizing officials."
   ],
   [
-   18.075,
+   16.525,
    1.413,
    "I'll take four questions."
   ],
   [
-   19.488,
+   17.938,
    2.862,
    "Why do A I agents need identities and owners?"
   ],
   [
-   22.35,
+   20.8,
    1.7,
    "What does governing them involve?"
   ],
   [
-   24.05,
+   22.5,
    1.587,
    "Who owns A I identity?"
   ],
   [
-   25.637,
+   24.087,
    4.4,
    "And how do you scan the inventory and evidence A I systems for authorization?"
   ],
   [
-   30.038,
+   28.488,
    4.612,
    "The short version: an A I system that can act is an account with permissions."
   ],
   [
-   34.65,
+   33.1,
    6.362,
    "Most were deployed outside the identity program, and there's no separate A I authorization to fall back on."
   ],
   [
-   41.013,
+   39.462,
    2.362,
    "Let's start with what makes an agent an account."
   ]

@@ -1,0 +1,152 @@
+[
+ {
+  "slide": 1,
+  "title": "DNS for HR-Driven Identity Across Clouds",
+  "links": [
+   {
+    "text": "FedRAMP Marketplace data",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-marketplace"
+   },
+   {
+    "text": "Books 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 2,
+  "title": "The HR-driven chain, end to end",
+  "links": [
+   {
+    "text": "Oracle HCM provisioning tutorial",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-oracle-human-capital-management"
+   },
+   {
+    "text": "Book 03 Ch05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/05-the-provisioning-pipeline.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "Almost every name is public and vendor-owned",
+  "links": [
+   {
+    "text": "Book 08 Ch07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/07-cloud-private-endpoints-and-ipam.html"
+   },
+   {
+    "text": "Ch08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/08-reference-architecture.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "What must resolve where",
+  "links": [
+   {
+    "text": "Book 08 Ch07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/07-cloud-private-endpoints-and-ipam.html"
+   },
+   {
+    "text": "Ch08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/08-reference-architecture.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Government clouds use different names",
+  "links": [
+   {
+    "text": "Graph national clouds",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Oracle: private access is routing, not DNS",
+  "links": [
+   {
+    "text": "FedRAMP Marketplace data",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-marketplace"
+   },
+   {
+    "text": "products.json",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-marketplace"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "How it breaks: seven failure modes",
+  "links": [
+   {
+    "text": "Book 08 Ch02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/02-split-brain-dns.html"
+   },
+   {
+    "text": "Ch10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/10-migration-sequence.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "What the agency must do",
+  "links": [
+   {
+    "text": "Book 03 Ch05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/05-the-provisioning-pipeline.html"
+   },
+   {
+    "text": "Book 08 Ch02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/02-split-brain-dns.html"
+   },
+   {
+    "text": "Ch07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/07-cloud-private-endpoints-and-ipam.html"
+   },
+   {
+    "text": "Ch08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/08-reference-architecture.html"
+   },
+   {
+    "text": "Ch10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/10-migration-sequence.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Decisions, next steps and where this fits",
+  "links": [
+   {
+    "text": "Book 03 Ch03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/03-federal-hr-2-0.html"
+   },
+   {
+    "text": "Ch05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/05-the-provisioning-pipeline.html"
+   },
+   {
+    "text": "Book 08 Ch02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/02-split-brain-dns.html"
+   },
+   {
+    "text": "Ch07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/07-cloud-private-endpoints-and-ipam.html"
+   },
+   {
+    "text": "Ch08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/08-reference-architecture.html"
+   },
+   {
+    "text": "Ch10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/10-migration-sequence.html"
+   }
+  ]
+ }
+]

@@ -1,0 +1,564 @@
+[
+ {
+  "slide": 2,
+  "title": "Module 1 — The inheritance and the estate",
+  "links": [
+   {
+    "text": "Book 06, Chapters 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/01-what-windows-authentication-actually-is.html"
+   },
+   {
+    "text": "06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/06-retain-consolidate-retire.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "Windows Authentication, precisely",
+  "links": [
+   {
+    "text": "Choose an authentication mode",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#choose-an-authentication-mode"
+   },
+   {
+    "text": "Register an SPN",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#register-a-service-principal-name-for"
+   },
+   {
+    "text": "Book 06, Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/01-what-windows-authentication-actually-is.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "Three drivers end it; four 2027 dates are real",
+  "links": [
+   {
+    "text": "Deprecated features (NTLM)",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#deprecated-features-for-windows-client"
+   },
+   {
+    "text": "OMB M-22-09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
+   },
+   {
+    "text": "Book 06, Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/02-why-the-inheritance-must-end.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Inventory, rationalize, then gate",
+  "links": [
+   {
+    "text": "setspn",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#setspn"
+   },
+   {
+    "text": "Entra authentication for SQL Server",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-authentication-for-sql"
+   },
+   {
+    "text": "Book 06, Chapters 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/04-the-estate-inventory.html"
+   },
+   {
+    "text": "06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/06-retain-consolidate-retire.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Module 2 — The audit, the principals and the decision",
+  "links": [
+   {
+    "text": "Book 06, Chapters 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/07-the-authentication-audit.html"
+   },
+   {
+    "text": "08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/08-reading-the-audit.html"
+   },
+   {
+    "text": "11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/11-three-principal-types.html"
+   },
+   {
+    "text": "12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/12-the-engine-authentication-decision.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "What the authentication audit reads",
+  "links": [
+   {
+    "text": "Change server authentication mode",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#change-server-authentication-mode"
+   },
+   {
+    "text": "sys.server_principals",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sys-server-principals-transact-sql"
+   },
+   {
+    "text": "Book 06, Chapters 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/07-the-authentication-audit.html"
+   },
+   {
+    "text": "12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/12-the-engine-authentication-decision.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Arc eligibility: three categories, two layers",
+  "links": [
+   {
+    "text": "SQL Server enabled by Azure Arc",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sql-server-enabled-by-azure-arc"
+   },
+   {
+    "text": "Entra authentication for SQL Server",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-authentication-for-sql"
+   },
+   {
+    "text": "Book 06, Chapters 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/07-the-authentication-audit.html"
+   },
+   {
+    "text": "08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/08-reading-the-audit.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Three principal types replace Windows logins",
+  "links": [
+   {
+    "text": "CREATE LOGIN",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#create-login-transact-sql"
+   },
+   {
+    "text": "Entra authentication for SQL Server",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-authentication-for-sql"
+   },
+   {
+    "text": "Arc managed identity",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#managed-identity-for-sql-server-enabled-by"
+   },
+   {
+    "text": "Conditional access for Azure SQL",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#conditional-access-for-azure-sql"
+   },
+   {
+    "text": "dynamic membership",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#manage-rules-for-dynamic-membership-groups"
+   },
+   {
+    "text": "Book 06, Chapter 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/11-three-principal-types.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "The parallel run and the five decisions",
+  "links": [
+   {
+    "text": "Disable SQL authentication",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#disable-sql-authentication-for-sql-server"
+   },
+   {
+    "text": "SQL Server enabled by Azure Arc",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sql-server-enabled-by-azure-arc"
+   },
+   {
+    "text": "sys.server_principals",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sys-server-principals-transact-sql"
+   },
+   {
+    "text": "Book 06, Chapters 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/11-three-principal-types.html"
+   },
+   {
+    "text": "12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/12-the-engine-authentication-decision.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Module 3 — NTLM, applications and closure",
+  "links": [
+   {
+    "text": "Book 06, Chapters 14",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/14-ntlm-and-the-patterns-that-generate-it.html"
+   },
+   {
+    "text": "15",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/15-the-three-phases-of-ntlm-elimination.html"
+   },
+   {
+    "text": "18",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/18-the-four-class-pattern-for-applications.html"
+   },
+   {
+    "text": "20",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/20-the-closure-condition.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Four patterns that generate NTLM",
+  "links": [
+   {
+    "text": "Register an SPN",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#register-a-service-principal-name-for"
+   },
+   {
+    "text": "KDC_ERR_PRINCIPAL_NOT_UNIQUE",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#kerberos-generates-kdc-err-s-principal"
+   },
+   {
+    "text": "Book 06, Chapter 14",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/14-ntlm-and-the-patterns-that-generate-it.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Discover, restrict, eliminate",
+  "links": [
+   {
+    "text": "status code 0x32",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#status-code-0x32-and-you-can-t-join-a-domain"
+   },
+   {
+    "text": "Book 06, Chapters 14",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/14-ntlm-and-the-patterns-that-generate-it.html"
+   },
+   {
+    "text": "15",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/15-the-three-phases-of-ntlm-elimination.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Applications: four classes, two axes",
+  "links": [
+   {
+    "text": "Book 06, Chapter 18",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/18-the-four-class-pattern-for-applications.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Closure: five conditions, held continuously",
+  "links": [
+   {
+    "text": "Disable SQL authentication",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#disable-sql-authentication-for-sql-server"
+   },
+   {
+    "text": "sys.server_principals",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sys-server-principals-transact-sql"
+   },
+   {
+    "text": "sys.dm_exec_connections",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sys-dm-exec-connections-transact-sql"
+   },
+   {
+    "text": "Conditional access for Azure SQL",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#conditional-access-for-azure-sql"
+   },
+   {
+    "text": "Book 06, Chapters 12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/12-the-engine-authentication-decision.html"
+   },
+   {
+    "text": "20",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/20-the-closure-condition.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Module 4 — Runbooks R01–R05: inventory to Entra logins",
+  "links": [
+   {
+    "text": "Book 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 17,
+  "title": "R01 — Prerequisites and the evidence model",
+  "links": [
+   {
+    "text": "azcmagent connect",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#azcmagent-connect"
+   },
+   {
+    "text": "Planning identity for Azure Government",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#planning-identity-for-azure-government"
+   },
+   {
+    "text": "Book 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 18,
+  "title": "R02 — Estate discovery and the consolidation gate",
+  "links": [
+   {
+    "text": "setspn",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#setspn"
+   },
+   {
+    "text": "sys.linked_logins",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sys-linked-logins-transact-sql"
+   },
+   {
+    "text": "Book 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 19,
+  "title": "R03 — The authentication audit",
+  "links": [
+   {
+    "text": "sys.linked_logins",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sys-linked-logins-transact-sql"
+   },
+   {
+    "text": "Entra authentication for SQL Server",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-authentication-for-sql"
+   },
+   {
+    "text": "KDC_ERR_PRINCIPAL_NOT_UNIQUE",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#kerberos-generates-kdc-err-s-principal"
+   },
+   {
+    "text": "Book 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 20,
+  "title": "R04 — Arc deployment and the managed identity",
+  "links": [
+   {
+    "text": "Arc managed identity",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#managed-identity-for-sql-server-enabled-by"
+   },
+   {
+    "text": "Entra authentication setup",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#tutorial-set-up-microsoft-entra"
+   },
+   {
+    "text": "Arc in US Government",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sql-server-enabled-by-azure-arc-in-us"
+   },
+   {
+    "text": "azcmagent connect",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#azcmagent-connect"
+   },
+   {
+    "text": "Book 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 21,
+  "title": "R05 — Login migration and the parallel run",
+  "links": [
+   {
+    "text": "Entra authentication setup",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#tutorial-set-up-microsoft-entra"
+   },
+   {
+    "text": "ALTER USER",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#alter-user-transact-sql"
+   },
+   {
+    "text": "sys.dm_exec_connections",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sys-dm-exec-connections-transact-sql"
+   },
+   {
+    "text": "Book 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 22,
+  "title": "Module 5 — Runbooks R06–R10: NTLM to certificates",
+  "links": [
+   {
+    "text": "Book 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 23,
+  "title": "R06 — NTLM detection and remediation",
+  "links": [
+   {
+    "text": "Register an SPN",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#register-a-service-principal-name-for"
+   },
+   {
+    "text": "setspn",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#setspn"
+   },
+   {
+    "text": "status code 0x32",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#status-code-0x32-and-you-can-t-join-a-domain"
+   },
+   {
+    "text": "Book 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 24,
+  "title": "R07 — Groups, admin units and the CA perimeter",
+  "links": [
+   {
+    "text": "Graph national clouds",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
+   },
+   {
+    "text": "group resource",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#group-resource-type"
+   },
+   {
+    "text": "dynamic membership",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#manage-rules-for-dynamic-membership-groups"
+   },
+   {
+    "text": "CREATE LOGIN",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#create-login-transact-sql"
+   },
+   {
+    "text": "Conditional access for Azure SQL",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#conditional-access-for-azure-sql"
+   },
+   {
+    "text": "Book 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 25,
+  "title": "R08 — Application chain and connection strings",
+  "links": [
+   {
+    "text": "Arc managed identity",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#managed-identity-for-sql-server-enabled-by"
+   },
+   {
+    "text": "Entra authentication for SQL Server",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-authentication-for-sql"
+   },
+   {
+    "text": "Book 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 26,
+  "title": "R09 — Continuous monitoring and closure",
+  "links": [
+   {
+    "text": "Change server authentication mode",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#change-server-authentication-mode"
+   },
+   {
+    "text": "sys.server_principals",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sys-server-principals-transact-sql"
+   },
+   {
+    "text": "Arc managed identity",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#managed-identity-for-sql-server-enabled-by"
+   },
+   {
+    "text": "Disable SQL authentication",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#disable-sql-authentication-for-sql-server"
+   },
+   {
+    "text": "Book 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 27,
+  "title": "R10 — Certificate discovery for AD CS",
+  "links": [
+   {
+    "text": "LDAPS certificates",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-certificates-for-ldap-over-ssl-in"
+   },
+   {
+    "text": "CREATE LOGIN",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#create-login-transact-sql"
+   },
+   {
+    "text": "Cloud PKI",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#overview-of-microsoft-cloud-pki-for"
+   },
+   {
+    "text": "Book 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 28,
+  "title": "What to take back to the estate",
+  "links": [
+   {
+    "text": "Book 06, Chapters 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/06-retain-consolidate-retire.html"
+   },
+   {
+    "text": "11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/11-three-principal-types.html"
+   },
+   {
+    "text": "14",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/14-ntlm-and-the-patterns-that-generate-it.html"
+   },
+   {
+    "text": "18",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/18-the-four-class-pattern-for-applications.html"
+   },
+   {
+    "text": "20",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/20-the-closure-condition.html"
+   }
+  ]
+ }
+]

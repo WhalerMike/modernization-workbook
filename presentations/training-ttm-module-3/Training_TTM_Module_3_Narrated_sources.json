@@ -1,0 +1,130 @@
+[
+ {
+  "slide": 2,
+  "title": "Why drift that comes back means two writers",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/08-one-writer-per-attribute.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "Gate 2 closes two of the four gaps on paper",
+  "links": [
+   {
+    "text": "Book 15",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/index.html"
+   },
+   {
+    "text": "Book 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "One approver system per class, and a lane for each",
+  "links": [
+   {
+    "text": "Book 13, Appendix B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/appendix-b-ticket-to-machine-reference.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "writer_check.py reads two provisioning exports",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/08-one-writer-per-attribute.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Finding, Warn and Info, and the inputs to review",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/08-one-writer-per-attribute.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "What the check guards against, and what it misses",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/08-one-writer-per-attribute.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Try it: find the attribute with two writers",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/08-one-writer-per-attribute.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Try it: the directory guard and the two reads",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/08-one-writer-per-attribute.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Lab 2: export the real mappings and run the check",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/08-one-writer-per-attribute.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Where agencies are: the HR feed, and the clouds",
+  "links": [
+   {
+    "text": "Book 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "The federal requirement, and the evidence to keep",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/08-one-writer-per-attribute.html"
+   },
+   {
+    "text": "Book 13",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Summary, and next: Module 4, the starting drift",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/08-one-writer-per-attribute.html"
+   }
+  ]
+ }
+]

@@ -1,0 +1,116 @@
+[
+ {
+  "slide": 3,
+  "title": "The loop on two products, and the four gaps",
+  "links": [
+   {
+    "text": "Book 13, Appendix B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/appendix-b-ticket-to-machine-reference.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "G1: FedRAMP status, and what runs from a vendor cloud",
+  "links": [
+   {
+    "text": "FedRAMP Marketplace data",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-marketplace"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "G1: requirement, evidence, availability, rollback",
+  "links": [
+   {
+    "text": "Book 13, Appendix A",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/appendix-a-requirements-mapping.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "G2: one writer per attribute, one approver per class",
+  "links": [
+   {
+    "text": "Book 03, Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/05-the-provisioning-pipeline.html"
+   },
+   {
+    "text": "Book 15, Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/03-intake-triage-and-routing.html"
+   },
+   {
+    "text": "Book 13, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/09-who-governs.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "G2: a lane for every change class",
+  "links": [
+   {
+    "text": "Book 13, Appendix B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/appendix-b-ticket-to-machine-reference.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "G2: requirement, evidence, availability, rollback",
+  "links": [
+   {
+    "text": "Book 13",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "G3: aggregate, correlate on employeeId, detect change",
+  "links": [
+   {
+    "text": "Book 03, Ch 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/11-drift-metrics-and-evidence.html"
+   },
+   {
+    "text": "Book 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/index.html"
+   },
+   {
+    "text": "Book 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "G4: one front door for findings and requests",
+  "links": [
+   {
+    "text": "Book 13, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/10-ticket-to-machine.html"
+   },
+   {
+    "text": "Book 15, Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/03-intake-triage-and-routing.html"
+   },
+   {
+    "text": "Book 15",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "G4: requirement, evidence, availability, rollback",
+  "links": [
+   {
+    "text": "Book 13, Appendix A",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/appendix-a-requirements-mapping.html"
+   }
+  ]
+ }
+]

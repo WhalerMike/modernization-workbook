@@ -1,0 +1,304 @@
+[
+ {
+  "slide": 2,
+  "title": "What the evidence has to show",
+  "links": [
+   {
+    "text": "Entra data retention",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-data-retention"
+   },
+   {
+    "text": "PIM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-microsoft-entra-privileged-identity"
+   },
+   {
+    "text": "Book 04, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/08-pim-self-request-with-approval.html"
+   },
+   {
+    "text": "Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/10-access-as-code-and-evidence.html"
+   },
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/08-pim-self-request-with-approval.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "Which cloud: the audit read's Graph host",
+  "links": [
+   {
+    "text": "Microsoft Graph national cloud deployments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
+   },
+   {
+    "text": "List directoryAudits",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-directoryaudits"
+   },
+   {
+    "text": "Microsoft Entra feature availability",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-feature-availability"
+   },
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/08-evidence-and-drift.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "Learn's PIM audit page and its three queries",
+  "links": [
+   {
+    "text": "PIM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-microsoft-entra-privileged-identity"
+   },
+   {
+    "text": "PIM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-microsoft-entra-privileged-identity"
+   },
+   {
+    "text": "entra-docs at 07cb73d",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#entra-docs-at-07cb73d"
+   },
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/08-evidence-and-drift.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "What the queries find, and what they mix up",
+  "links": [
+   {
+    "text": "PIM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-microsoft-entra-privileged-identity"
+   },
+   {
+    "text": "PIM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-microsoft-entra-privileged-identity"
+   },
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/08-evidence-and-drift.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "What the queries leave out entirely",
+  "links": [
+   {
+    "text": "List directoryAudits",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-directoryaudits"
+   },
+   {
+    "text": "Entra data retention",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-data-retention"
+   },
+   {
+    "text": "PIM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-microsoft-entra-privileged-identity"
+   },
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/08-evidence-and-drift.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "The run: state, events, and one folder per run",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/08-evidence-and-drift.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "The audit read, and what it flags",
+  "links": [
+   {
+    "text": "List directoryAudits",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-directoryaudits"
+   },
+   {
+    "text": "PIM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-microsoft-entra-privileged-identity"
+   },
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/08-evidence-and-drift.html"
+   },
+   {
+    "text": "Book 04, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/08-pim-self-request-with-approval.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Where Learn's pages differ, and why it fails closed",
+  "links": [
+   {
+    "text": "PIM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-microsoft-entra-privileged-identity"
+   },
+   {
+    "text": "PIM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-microsoft-entra-privileged-identity"
+   },
+   {
+    "text": "List directoryAudits",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-directoryaudits"
+   },
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/08-evidence-and-drift.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Compare, by fingerprint; Tier 0 drift is an incident",
+  "links": [
+   {
+    "text": "Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/09-deploying-to-test-and-production.html"
+   },
+   {
+    "text": "Book 04, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/10-access-as-code-and-evidence.html"
+   },
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/08-pim-self-request-with-approval.html"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/01-privileged-inventory-as-code.html"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/01-privileged-inventory-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "No names in the tracker; packages in a hash chain",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/08-evidence-and-drift.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "The period the ISSO receives, and the schedule",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/08-evidence-and-drift.html"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/01-privileged-inventory-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Who runs it, who receives it, what it may read",
+  "links": [
+   {
+    "text": "List directoryAudits",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-directoryaudits"
+   },
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/08-evidence-and-drift.html"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/01-privileged-inventory-as-code.html"
+   },
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/02-emergency-access-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Lab 1: Learn's queries and two days of runs",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/08-evidence-and-drift.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Lab 1: compare, package, the period, a break",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/08-evidence-and-drift.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Lab 2: a test tenant, one activation, read twice",
+  "links": [
+   {
+    "text": "PIM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-microsoft-entra-privileged-identity"
+   },
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/08-evidence-and-drift.html"
+   }
+  ]
+ },
+ {
+  "slide": 17,
+  "title": "Dangers, and the guard for each",
+  "links": [
+   {
+    "text": "Entra data retention",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-data-retention"
+   },
+   {
+    "text": "PIM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-microsoft-entra-privileged-identity"
+   },
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/08-evidence-and-drift.html"
+   }
+  ]
+ },
+ {
+  "slide": 18,
+  "title": "Done when: the chapter's checklist",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/08-evidence-and-drift.html"
+   },
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/08-evidence-and-drift.html"
+   }
+  ]
+ }
+]

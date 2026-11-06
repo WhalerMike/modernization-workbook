@@ -1,0 +1,106 @@
+[
+ {
+  "slide": 2,
+  "title": "Why a second proof at the moment of activation",
+  "links": [
+   {
+    "text": "Configure Microsoft Entra role settings in PIM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-microsoft-entra-role-settings-in"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "The gate and the order Learn sets for it",
+  "links": [
+   {
+    "text": "Configure Microsoft Entra role settings in PIM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-microsoft-entra-role-settings-in"
+   },
+   {
+    "text": "Book 04, Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/07-the-conditional-access-policy-library.html"
+   },
+   {
+    "text": "Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/08-pim-self-request-with-approval.html"
+   },
+   {
+    "text": "Appendix A",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/appendix-a-conditional-access-templates.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "The pre-merge check: PA-CA-01 to PA-CA-09",
+  "links": [
+   {
+    "text": "Conditional Access",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-conditional-access"
+   },
+   {
+    "text": "authentication strengths",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#conditional-access-authentication-strengths"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Report-only policies and the emergency exclusion",
+  "links": [
+   {
+    "text": "emergency access accounts",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#manage-emergency-access-accounts-in"
+   },
+   {
+    "text": "Conditional Access",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-conditional-access"
+   },
+   {
+    "text": "Book 04, Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/07-the-conditional-access-policy-library.html"
+   },
+   {
+    "text": "Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/10-access-as-code-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Reading a plan: seven actions",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/03-conditional-access-for-administrators.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "The federal requirement and the evidence for Module 3",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "OMB M-22-09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
+   },
+   {
+    "text": "CISA BOD 25-01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-25-01"
+   },
+   {
+    "text": "MS.AAD.3.6v1",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#scuba-entra-baseline"
+   },
+   {
+    "text": "Key Security Indicators",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   }
+  ]
+ }
+]

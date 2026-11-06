@@ -1,0 +1,376 @@
+[
+ {
+  "slide": 2,
+  "title": "An agent that acts is an account",
+  "links": [
+   {
+    "text": "OMB M-25-21",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-25-21"
+   },
+   {
+    "text": "Conditional Access for agents",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#conditional-access-for-agents"
+   },
+   {
+    "text": "Book 17, Chapters 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b17-ai-identity/01-ai-agents-need-identities.html"
+   },
+   {
+    "text": "03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b17-ai-identity/03-the-inventory-as-an-identity-source.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "AI arrived outside the identity program",
+  "links": [
+   {
+    "text": "Book 17, Chapters 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b17-ai-identity/01-ai-agents-need-identities.html"
+   },
+   {
+    "text": "07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b17-ai-identity/07-monitoring-drift-and-shadow-ai.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "The controls already apply; coverage is the gap",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "release 5.2.0",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "NIST AI 100-1",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#ai-100-1"
+   },
+   {
+    "text": "Book 17, Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b17-ai-identity/01-ai-agents-need-identities.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "What federal AI rules require, and what they don't",
+  "links": [
+   {
+    "text": "OMB M-25-21",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-25-21"
+   },
+   {
+    "text": "M-25-22",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-25-22"
+   },
+   {
+    "text": "Book 17, Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b17-ai-identity/02-what-federal-ai-rules-require.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Two signatures before high-impact AI deploys",
+  "links": [
+   {
+    "text": "OMB M-25-21",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-25-21"
+   },
+   {
+    "text": "NIST SP 800-37 Rev. 2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-37"
+   },
+   {
+    "text": "Book 17, Chapters 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b17-ai-identity/02-what-federal-ai-rules-require.html"
+   },
+   {
+    "text": "03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b17-ai-identity/03-the-inventory-as-an-identity-source.html"
+   },
+   {
+    "text": "08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b17-ai-identity/08-who-owns-ai-identity.html"
+   },
+   {
+    "text": "Appendix A",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b17-ai-identity/appendix-a-requirements-mapping.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "The inventory is a seed list, not an identity source",
+  "links": [
+   {
+    "text": "M-25-21",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-25-21"
+   },
+   {
+    "text": "Book 17, Chapters 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b17-ai-identity/03-the-inventory-as-an-identity-source.html"
+   },
+   {
+    "text": "08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b17-ai-identity/08-who-owns-ai-identity.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Kinds of AI identity, and what your cloud has today",
+  "links": [
+   {
+    "text": "Conditional Access for agents",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#conditional-access-for-agents"
+   },
+   {
+    "text": "Entra feature availability",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-feature-availability"
+   },
+   {
+    "text": "Book 17, Chapters 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b17-ai-identity/04-kinds-of-ai-identity.html"
+   },
+   {
+    "text": "05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b17-ai-identity/05-owners-sponsors-and-lifecycle.html"
+   },
+   {
+    "text": "08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b17-ai-identity/08-who-owns-ai-identity.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "A named human, and a lifecycle that ends",
+  "links": [
+   {
+    "text": "Book 17, Chapters 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b17-ai-identity/05-owners-sponsors-and-lifecycle.html"
+   },
+   {
+    "text": "08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b17-ai-identity/08-who-owns-ai-identity.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "No stored secrets, no standing privilege",
+  "links": [
+   {
+    "text": "Conditional Access for agents",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#conditional-access-for-agents"
+   },
+   {
+    "text": "BOD 25-01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-25-01"
+   },
+   {
+    "text": "Book 17, Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b17-ai-identity/06-credentials-and-least-privilege.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Watch it, and find what nobody declared",
+  "links": [
+   {
+    "text": "OMB M-25-21",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-25-21"
+   },
+   {
+    "text": "Book 17, Chapters 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b17-ai-identity/07-monitoring-drift-and-shadow-ai.html"
+   },
+   {
+    "text": "08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b17-ai-identity/08-who-owns-ai-identity.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Two decision tracks meet on one AI system",
+  "links": [
+   {
+    "text": "OMB M-25-21",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-25-21"
+   },
+   {
+    "text": "M-25-22",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-25-22"
+   },
+   {
+    "text": "NIST SP 800-37 Rev. 2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-37"
+   },
+   {
+    "text": "NIST AI 100-1",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#ai-100-1"
+   },
+   {
+    "text": "Book 17, Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b17-ai-identity/08-who-owns-ai-identity.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Who decides what for an AI identity",
+  "links": [
+   {
+    "text": "OMB M-25-21",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-25-21"
+   },
+   {
+    "text": "M-25-22",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-25-22"
+   },
+   {
+    "text": "NIST SP 800-37 Rev. 2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-37"
+   },
+   {
+    "text": "NIST AI 100-1",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#ai-100-1"
+   },
+   {
+    "text": "Book 17, Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b17-ai-identity/08-who-owns-ai-identity.html"
+   },
+   {
+    "text": "responsibility matrix",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b17-ai-identity/08-who-owns-ai-identity.html#the-responsibility-matrix"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Run the inventory scan on the agency's own file",
+  "links": [
+   {
+    "text": "OMB M-25-21",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-25-21"
+   },
+   {
+    "text": "Book 17, Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b17-ai-identity/09-running-the-inventory-scan.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "A central scan starts the conversation, not the fix",
+  "links": [
+   {
+    "text": "CISA BOD 23-01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-23-01"
+   },
+   {
+    "text": "Book 17, Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b17-ai-identity/09-running-the-inventory-scan.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Evidence the authorizing official can use",
+  "links": [
+   {
+    "text": "OMB M-25-21",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-25-21"
+   },
+   {
+    "text": "M-25-22",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-25-22"
+   },
+   {
+    "text": "NIST SP 800-37 Rev. 2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-37"
+   },
+   {
+    "text": "SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "SP 800-53B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53b"
+   },
+   {
+    "text": "FedRAMP 2026",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-2026"
+   },
+   {
+    "text": "Book 17, Chapter 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b17-ai-identity/10-evidence-and-authorization.html"
+   }
+  ]
+ },
+ {
+  "slide": 17,
+  "title": "Keep the evidence current: three AI clocks",
+  "links": [
+   {
+    "text": "OMB M-25-21",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-25-21"
+   },
+   {
+    "text": "44 U.S.C. § 3554",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#usc-44-3554"
+   },
+   {
+    "text": "OMB A-130",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#omb-a-130"
+   },
+   {
+    "text": "NIST COSIS project",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#nist-cosis"
+   },
+   {
+    "text": "Book 17, Chapter 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b17-ai-identity/10-evidence-and-authorization.html"
+   }
+  ]
+ },
+ {
+  "slide": 18,
+  "title": "Decisions to make, owners and timing",
+  "links": [
+   {
+    "text": "OMB M-25-21",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-25-21"
+   },
+   {
+    "text": "M-25-22",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-25-22"
+   },
+   {
+    "text": "NIST SP 800-37 Rev. 2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-37"
+   },
+   {
+    "text": "SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "Book 17, Chapters 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b17-ai-identity/01-ai-agents-need-identities.html"
+   },
+   {
+    "text": "10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b17-ai-identity/10-evidence-and-authorization.html"
+   }
+  ]
+ }
+]

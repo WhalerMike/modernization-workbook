@@ -1,0 +1,64 @@
+[
+ {
+  "slide": 4,
+  "title": "The series, the cadence and the licensing",
+  "links": [
+   {
+    "text": "ID Governance licensing",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-id-governance-licensing"
+   },
+   {
+    "text": "PIM for Groups",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#privileged-identity-management-pim-for"
+   },
+   {
+    "text": "Book 04, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/09-access-governance.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "The checks: PA-AR-01 to PA-AR-14",
+  "links": [
+   {
+    "text": "Create definitions",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#create-definitions"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Try it: Learn's tutorial, and each task's permissions",
+  "links": [
+   {
+    "text": "Review access to administrative roles using access reviews APIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#review-access-to-administrative-roles-using"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Try it: check Learn's body, then apply in the fake",
+  "links": [
+   {
+    "text": "Review access to administrative roles using access reviews APIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#review-access-to-administrative-roles-using"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "The federal requirement and the evidence for Module 7",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "Key Security Indicators",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   }
+  ]
+ }
+]
