@@ -1,4 +1,4 @@
-# Verification — Appendix F, Prepare-Step Templates
+# Verification — Appendix G, Prepare-Step Templates
 
 Written November 6, 2026. SP 800-37 Rev. 2 and SP 800-30 Rev. 1 PDFs opened from nvlpubs.nist.gov and read as text.
 

@@ -1,19 +1,19 @@
 ---
-title: "Appendix F — Prepare-Step Templates"
+title: "Appendix G — Prepare-Step Templates"
 description: "Fill-in templates, each with a Copilot prompt, for three Prepare tasks in NIST SP 800-37 Rev. 2: the risk management strategy and risk tolerance statement (Task P-2), the system-level risk assessment (Task P-14), and impact-level prioritization of systems that share an impact level (Task P-6), with a scoring worksheet whose factors are labeled design guidance and a list of what stays the agency's decision."
 doc-type: workbook-chapter
 audience: [Executive, Technical, Customer]
 family: b14-compliance
 book: B14
 part: Appendix
-series-order: 95
+series-order: 96
 status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
 ---
 
-# Appendix F — Prepare-Step Templates
+# Appendix G — Prepare-Step Templates
 
 *The workbook can supply the shape of these documents. It cannot supply the numbers, the tolerance or the signature, because those are the agency's.*
 

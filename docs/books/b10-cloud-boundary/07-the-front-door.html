@@ -1,0 +1,3428 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="The governed request that turns landing-zone code into an approved, evidenced and reconciled provisioning event: subscription vending, the six-step loop from catalog request to closed change, the ServiceNow and Terraform paths that implement it, where the pipeline itself must live, and the evidence it produces.">
+
+<title>Chapter 07 — The Landing Zone Front Door – Federal Modernization Workbook</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../docs/books/b10-cloud-boundary/08-who-owns-the-boundary.html" rel="next">
+<link href="../../../docs/books/b10-cloud-boundary/06-ipam-and-network-as-code.html" rel="prev">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-3e64db84d37dea41f36a9f8c79e61bb0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-231ac825f573ecaa34244e8f518e0111.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=DM+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">Federal Modernization Workbook</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../docs/start-here.html"> 
+<span class="menu-text">Start here</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-books" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Books</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-books">    
+        <li>
+    <a class="dropdown-item" href="../../../docs/books/index.html">
+ <span class="dropdown-text">All books</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/books/b00-orientation/index.html">
+ <span class="dropdown-text">Book 00 — Orientation &amp; Program</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/books/b01-transformation-arc/index.html">
+ <span class="dropdown-text">Book 01 — The Transformation Arc</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/books/b02-identity/index.html">
+ <span class="dropdown-text">Book 02 — Identity &amp; Directory</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/books/b03-hr-identity/index.html">
+ <span class="dropdown-text">Book 03 — HR-Driven Identity</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/books/b04-access/index.html">
+ <span class="dropdown-text">Book 04 — Access &amp; Privilege</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/books/b05-devices/index.html">
+ <span class="dropdown-text">Book 05 — Devices &amp; Endpoints</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/books/b06-data-platform/index.html">
+ <span class="dropdown-text">Book 06 — Data Platform: SQL Server Identity</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/books/b07-pki/index.html">
+ <span class="dropdown-text">Book 07 — PKI &amp; Certificates</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/books/b08-ddi/index.html">
+ <span class="dropdown-text">Book 08 — DNS, DHCP &amp; IPAM</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/books/b09-network/index.html">
+ <span class="dropdown-text">Book 09 — Network &amp; Transport</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/books/b10-cloud-boundary/index.html">
+ <span class="dropdown-text">Book 10 — Cloud Boundary &amp; Landing Zone</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/books/b11-zero-trust/index.html">
+ <span class="dropdown-text">Book 11 — Zero Trust &amp; Assessment</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/books/b12-security-operations/index.html">
+ <span class="dropdown-text">Book 12 — Security Operations &amp; Telemetry</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/books/b13-governance/index.html">
+ <span class="dropdown-text">Book 13 — Governance, Drift &amp; Evidence</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/books/b14-compliance/index.html">
+ <span class="dropdown-text">Book 14 — Federal Compliance &amp; Authorization</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/books/b15-day2-operations/index.html">
+ <span class="dropdown-text">Book 15 — Compliance Automation &amp; Day-2 Operations</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/books/b16-people/index.html">
+ <span class="dropdown-text">Book 16 — People: Training &amp; Education</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/books/b17-ai-identity/index.html">
+ <span class="dropdown-text">Book 17 — AI Identity Governance</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/books/b18-application-modernization/index.html">
+ <span class="dropdown-text">Book 18 — Application Modernization</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/books/b19-developer-workbook/index.html">
+ <span class="dropdown-text">Book 19 — Building the Attribute-Driven Migration</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/books/guides/attribute-driven-migration.html">
+ <span class="dropdown-text">Guide: Attribute-Driven Migration to Entra ID</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/books/guides/attribute-driven-migration-implementation.html">
+ <span class="dropdown-text">Guide: Attribute-Driven Migration Implementation</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/books/guides/intune-track-implementation.html">
+ <span class="dropdown-text">Guide: Intune Track Implementation</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/books/guides/arc-track-implementation.html">
+ <span class="dropdown-text">Guide: Azure Arc Track Implementation</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/books/guides/non-person-identity-implementation.html">
+ <span class="dropdown-text">Guide: Non-Person Identity Implementation</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/books/guides/privileged-access-implementation.html">
+ <span class="dropdown-text">Guide: Privileged Access Implementation</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/books/guides/ansible-configuration-automation.html">
+ <span class="dropdown-text">Guide: Ansible for Configuration Automation</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/books/guides/effective-meetings.html">
+ <span class="dropdown-text">Guide: Effective Meetings</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/books/guides/hcm-entra-implementation.html">
+ <span class="dropdown-text">Guide: Oracle HCM to Entra ID Pipeline</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/books/guides/hr-driven-identity-implementation.html">
+ <span class="dropdown-text">Guide: HR-Driven Identity Implementation</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/books/guides/cyberark-certificate-lifecycle.html">
+ <span class="dropdown-text">Guide: Certificate Lifecycle on CyberArk</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/books/guides/infoblox-nios-implementation.html">
+ <span class="dropdown-text">Guide: Book 08 on Infoblox NIOS</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/books/guides/cisco-sdwan-implementation.html">
+ <span class="dropdown-text">Guide: Book 09 on Cisco Catalyst SD-WAN</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/books/guides/ttm-servicenow-sailpoint.html">
+ <span class="dropdown-text">Guide: Ticket-to-Machine on ServiceNow and SailPoint</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/books/guides/snow-sailpoint-integration-kit.html">
+ <span class="dropdown-text">Guide: ServiceNow and SailPoint Integration Kit</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/books/guides/ttm-task-catalog.html">
+ <span class="dropdown-text">Guide: Internal Ticket-to-Machine Task Catalog</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/books/explainers/index.html">
+ <span class="dropdown-text">Explainers</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-projects" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Projects</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-projects">    
+        <li>
+    <a class="dropdown-item" href="../../../docs/project-plans/index.html">
+ <span class="dropdown-text">Project Plans</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/project-plans/developer-workbooks/index.html">
+ <span class="dropdown-text">Developer Workbooks</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/project-plans/developer-workbooks/privileged-access/index.html">
+ <span class="dropdown-text">Building Privileged Access</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/project-plans/developer-workbooks/non-person-identity/index.html">
+ <span class="dropdown-text">Building Non-Person Identity</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/project-plans/developer-workbooks/ticket-to-machine/index.html">
+ <span class="dropdown-text">Building Ticket-to-Machine</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/project-plans/developer-workbooks/hr-driven-identity/index.html">
+ <span class="dropdown-text">Building HR-Driven Identity</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../../docs/evaluations/index.html"> 
+<span class="menu-text">Evaluations</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../docs/training/index.html"> 
+<span class="menu-text">Training</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../docs/training/labs.html"> 
+<span class="menu-text">Labs</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../docs/presentations/index.html"> 
+<span class="menu-text">Presentations</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../docs/presentations/watch.html"> 
+<span class="menu-text">Videos</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../docs/downloads.html"> 
+<span class="menu-text">Downloads</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-reference" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Reference</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-reference">    
+        <li>
+    <a class="dropdown-item" href="../../../docs/reference/commands.html">
+ <span class="dropdown-text">Commands</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/reference/federal-framework-crosswalk.html">
+ <span class="dropdown-text">Federal Framework Crosswalk</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/reference/source-register.html">
+ <span class="dropdown-text">Federal Framework Crosswalk</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/reference/rmf-map.html">
+ <span class="dropdown-text">RMF Map</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/reference/m-19-17-ficam-crosswalk.html">
+ <span class="dropdown-text">M-19-17 and FICAM Crosswalk</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/reference/graph-practice-crosswalk.html">
+ <span class="dropdown-text">Microsoft Practice Crosswalk</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-about" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">About</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-about">    
+        <li>
+    <a class="dropdown-item" href="../../../docs/inspiration/index.html">
+ <span class="dropdown-text">Inspiration</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/about/sources-and-verification.html">
+ <span class="dropdown-text">Sources and Verification</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/about/reviewers-guide.html">
+ <span class="dropdown-text">Reviewers’ Guide</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/about/decision-register.html">
+ <span class="dropdown-text">Decision Register</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/about/archive.html">
+ <span class="dropdown-text">Archive: every edition</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../../workbook-map.html"> 
+<span class="menu-text">Workbook Map</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/WhalerMike/modernization-workbook"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text">GitHub</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../docs/books/b10-cloud-boundary/index.html">Book 10 — Cloud Boundary &amp; Landing Zone</a></li><li class="breadcrumb-item"><a href="../../../docs/books/b10-cloud-boundary/07-the-front-door.html">Chapter 07 — The Landing Zone Front Door</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">The Workbook Books</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../../docs/books/b00-orientation/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Book 00 — Orientation &amp; Program</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b00-orientation/01-why-modernize-now.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 01 — Why Modernize, and Why Now</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b00-orientation/02-how-to-use-this-workbook.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 02 — How to Use This Workbook</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b00-orientation/03-the-charter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 03 — The Program Charter</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b00-orientation/04-the-principles.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 04 — The Modernization Principles</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b00-orientation/05-the-program-plan.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 05 — The Program Plan: Phases and Gates</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b00-orientation/06-the-project-portfolio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 06 — The Complementary Projects</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b00-orientation/07-who-runs-the-program.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 07 — Who Runs the Program</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b00-orientation/08-pre-flight-and-assessment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 08 — Pre-Flight: Platform and Assessment</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b00-orientation/09-design-pilot-and-rollout.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 09 — Design, Pilot and Rollout</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b00-orientation/10-retirement-steady-state-and-success.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 10 — Retirement, Steady State and Measuring Success</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b00-orientation/appendix-a-risk-register-and-traceability.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Appendix A — Risk Register and Control Traceability</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b00-orientation/appendix-b-engagement-archetype.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Appendix B — The Engagement Archetype (Illustrative)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b00-orientation/appendix-c-funding-and-acquisition.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Appendix C — Funding and Acquiring the Program</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../../docs/books/b01-transformation-arc/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Book 01 — The Transformation Arc</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b01-transformation-arc/01-why-modernization-is-hard.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 01 — Why Modernization Is Hard</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b01-transformation-arc/02-the-problem.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 02 — The Problem: Governance Hidden in the Directory</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b01-transformation-arc/03-platform-foundation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 03 — The Platform Foundation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b01-transformation-arc/04-identity-transformation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 04 — Identity Transformation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b01-transformation-arc/05-policy-transformation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 05 — Policy Transformation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b01-transformation-arc/06-network-services.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 06 — Network Services: DNS, DHCP and IPAM</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b01-transformation-arc/07-compute-transformation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 07 — Compute Transformation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b01-transformation-arc/08-access-plane.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 08 — The Access Plane</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b01-transformation-arc/09-who-leads-the-transformation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 09 — Who Leads the Transformation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b01-transformation-arc/10-analyzing-the-estate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 10 — Analyzing the Estate</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b01-transformation-arc/11-analysis-plan-delivery.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 11 — Analysis, Plan, Delivery</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b01-transformation-arc/12-migration-roadmap.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 12 — The Migration Roadmap</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b01-transformation-arc/appendix-a-requirements-mapping.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Appendix A — Requirements Mapping</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b01-transformation-arc/appendix-b-applicability.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Appendix B — Applicability</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../../docs/books/b02-identity/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Book 02 — Identity &amp; Directory</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b02-identity/01-why-identity-matters.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 01 — Why Identity Matters</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b02-identity/02-the-structural-problem.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 02 — The Structural Problem</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b02-identity/03-ad-and-entra-side-by-side.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 03 — Active Directory and Entra ID, Side by Side</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b02-identity/04-the-hidden-migration-surface.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 04 — The Hidden Migration Surface</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b02-identity/05-delegation-without-ous.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 05 — Delegation Without OUs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b02-identity/06-who-owns-the-migration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 06 — Who Owns the Migration</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b02-identity/07-read-only-discovery.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 07 — Read-Only Discovery</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b02-identity/08-assessing-the-forest.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 08 — Assessing the Forest</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b02-identity/09-building-the-entra-target.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 09 — Building the Entra ID Target</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b02-identity/10-migrating-and-governing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 10 — Migrating and Governing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b02-identity/11-reference-deployment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 11 — Reference Deployment</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b02-identity/appendix-a-federal-requirements-crosswalk.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Appendix A — Federal Requirements Crosswalk</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b02-identity/appendix-b-forest-assessment-module.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Appendix B — Forest Assessment Module</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b02-identity/appendix-c-identity-assessment-module.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Appendix C — Identity Assessment Module</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../../docs/books/b03-hr-identity/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Book 03 — HR-Driven Identity</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b03-hr-identity/01-overview-and-applicability.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 01 — Overview and Applicability</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b03-hr-identity/02-why-hr-is-the-source-of-authority.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 02 — Why HR Is the Source of Authority</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b03-hr-identity/03-federal-hr-2-0.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 03 — Federal HR 2.0 and the Core HCM Platform</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b03-hr-identity/04-attribute-authority.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 04 — Attribute Authority</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b03-hr-identity/05-the-provisioning-pipeline.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 05 — Provisioning Services</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b03-hr-identity/06-canonical-attribute-schema.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 06 — The Canonical Workforce Identity Model</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b03-hr-identity/07-who-owns-workforce-identity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 07 — Who Owns Workforce Identity</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b03-hr-identity/08-joiner-mover-leaver.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 08 — Joiner, Mover, Leaver</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b03-hr-identity/09-credentials-and-certificates.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 09 — Credentials and Certificates Across Joiner, Mover, Leaver</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b03-hr-identity/10-from-attributes-to-access.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 10 — From Attributes to Access</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b03-hr-identity/11-drift-metrics-and-evidence.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 11 — Drift, Metrics and Evidence</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b03-hr-identity/12-execution-plan.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 12 — Execution Plan</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b03-hr-identity/13-reference-deployment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 13 — Reference Deployment (Illustrative)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b03-hr-identity/14-privacy-for-workforce-identity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 14 — Privacy for Workforce Identity</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b03-hr-identity/appendix-a-lifecycle-rules.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Appendix A — Lifecycle Rules</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b03-hr-identity/appendix-b-security-and-privacy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Appendix B — Security and Privacy Assessment</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b03-hr-identity/appendix-c-acceptance-and-cutover.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Appendix C — Acceptance and Cutover</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../../docs/books/b04-access/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Book 04 — Access &amp; Privilege</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b04-access/01-access-is-a-policy-decision.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 01 — Access Is a Policy Decision</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b04-access/02-why-standing-privilege-fails.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 02 — Why Standing Privilege Fails</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b04-access/03-the-conditional-access-model.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 03 — The Conditional Access Model</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b04-access/04-privileged-roles-and-tiers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 04 — Privileged Roles and Tiers</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b04-access/05-applications-and-workload-identities.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 05 — Applications and Workload Identities</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b04-access/06-who-decides-access.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 06 — Who Decides Access</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b04-access/07-the-conditional-access-policy-library.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 07 — The Conditional Access Policy Library</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b04-access/08-pim-self-request-with-approval.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 08 — PIM Self-Request with Approval</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b04-access/09-access-governance.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 09 — Access Governance: Packages, Reviews and Lifecycle</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b04-access/10-access-as-code-and-evidence.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 10 — Access as Code, and the Evidence It Produces</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b04-access/appendix-a-conditional-access-templates.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Appendix A — Conditional Access Policy Templates</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b04-access/appendix-b-pim-role-settings.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Appendix B — PIM Role Settings Reference</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../../docs/books/b05-devices/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Book 05 — Devices &amp; Endpoints</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b05-devices/01-why-group-policy-cant-come-to-the-cloud.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 01 — Why Group Policy Can’t Come to the Cloud</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b05-devices/02-the-hybrid-join-trap.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 02 — The Hybrid Join Trap</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b05-devices/03-where-device-and-server-data-lives.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 03 — Where Device and Server Data Lives</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b05-devices/04-intune-first-onboarding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 04 — Intune-First Onboarding</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b05-devices/05-the-governed-manual-and-retrofit-paths.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 05 — The Governed, Manual and Retrofit Paths</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b05-devices/06-who-owns-the-endpoint.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 06 — Who Owns the Endpoint</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b05-devices/07-the-gpo-sunset-program.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 07 — The GPO Sunset Program</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b05-devices/08-gpo-to-intune-policy-migration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 08 — GPO to Intune Policy Migration</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b05-devices/09-servers-under-azure-arc.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 09 — Servers Under Azure Arc</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b05-devices/10-operating-and-evidencing-the-fleet.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 10 — Operating and Evidencing the Fleet</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b05-devices/appendix-a-gpo-to-intune-crosswalk.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Appendix A — GPO to Intune Crosswalk</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../../docs/books/b06-data-platform/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Book 06 — Data Platform: SQL Server Identity</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b06-data-platform/01-what-windows-authentication-actually-is.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 01 — What Windows Authentication Actually Is</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b06-data-platform/02-why-the-inheritance-must-end.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 02 — Why the Inheritance Must End</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b06-data-platform/03-the-shape-of-twenty-years.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 03 — The Shape of Twenty Years</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b06-data-platform/04-the-estate-inventory.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 04 — The Estate Inventory</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b06-data-platform/05-rationalization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 05 — Rationalization: Utilization, Versions and Dependencies</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b06-data-platform/06-retain-consolidate-retire.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 06 — The Retain, Consolidate, Retire Decision</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b06-data-platform/07-the-authentication-audit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 07 — The Authentication Audit</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b06-data-platform/08-reading-the-audit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 08 — Reading the Audit: Classification and Triage</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b06-data-platform/09-what-arc-provides-to-sql-server.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 09 — What Arc Provides to SQL Server</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b06-data-platform/10-arc-deployment-sequencing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 10 — Arc Deployment Sequencing for SQL Server Hosts</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b06-data-platform/11-three-principal-types.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 11 — Three Principal Types: User, Group, Service Principal</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b06-data-platform/12-the-engine-authentication-decision.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 12 — What the Engine-Authentication Decision Settles</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b06-data-platform/13-who-owns-the-data-platform.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 13 — Who Owns the Data Platform</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b06-data-platform/14-ntlm-and-the-patterns-that-generate-it.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 14 — NTLMv1, NTLMv2 and the Patterns That Generate NTLM</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b06-data-platform/15-the-three-phases-of-ntlm-elimination.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 15 — The Three Phases of NTLM Elimination for SQL Server</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b06-data-platform/16-groups-roles-and-membership.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 16 — Groups, Roles and How Membership Reaches the Engine</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b06-data-platform/17-dynamic-membership-delegation-and-privilege.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 17 — Dynamic Membership, Delegation and Privileged Access</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b06-data-platform/18-the-four-class-pattern-for-applications.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 18 — The Four-Class Pattern Applied to SQL-Consuming Applications</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b06-data-platform/19-connection-string-migration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 19 — Connection String Migration: The Last Mile</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b06-data-platform/20-the-closure-condition.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 20 — The Closure Condition</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b06-data-platform/21-what-done-looks-like.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 21 — What Done Looks Like</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b06-data-platform/22-where-sql-server-touches-adcs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 22 — Where SQL Server Touches AD CS</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b06-data-platform/23-epilogue-the-platform-question.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 23 — Epilogue: The Platform Question</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b06-data-platform/appendix-a-requirements-mapping.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Appendix A — Requirements Mapping</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b06-data-platform/appendix-b-ato-kit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Appendix B — Security-Approval (ATO) Kit</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b06-data-platform/appendix-c-applicability.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Appendix C — Applicability</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b06-data-platform/r01-prerequisites.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Runbook R01 — Prerequisites &amp; Using This Companion</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b06-data-platform/r02-estate-discovery-and-consolidation-gate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Runbook R02 — Estate Discovery &amp; the Consolidation Gate</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b06-data-platform/r03-the-authentication-audit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Runbook R03 — The Authentication Audit</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b06-data-platform/r04-arc-deployment-and-managed-identity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Runbook R04 — Arc Deployment &amp; the Managed Identity</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b06-data-platform/r05-login-migration-and-parallel-run.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Runbook R05 — Login Migration &amp; Parallel-Run Validation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b06-data-platform/r06-ntlm-detection-and-remediation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Runbook R06 — NTLM Detection &amp; Remediation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b06-data-platform/r07-groups-aus-and-the-conditional-access-perimeter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Runbook R07 — Groups, Administrative Units &amp; the Conditional Access Perimeter</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b06-data-platform/r08-application-chain-and-connection-strings.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Runbook R08 — The Application Chain &amp; Connection-String Migration</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b06-data-platform/r09-continuous-monitoring-and-closure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Runbook R09 — Continuous Monitoring &amp; the CCM-BIR Closure Record</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b06-data-platform/r10-certificate-discovery-for-adcs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Runbook R10 — Certificate Discovery for SQL Server’s ADCS Dependencies</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../../docs/books/b07-pki/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Book 07 — PKI &amp; Certificates</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b07-pki/01-why-certificates-outlive-every-migration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 01 — Why Certificates Outlive Every Migration</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b07-pki/02-what-ad-cs-holds-up.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 02 — What AD CS Holds Up</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b07-pki/03-hardening-what-stays.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 03 — Hardening What Stays</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b07-pki/04-the-target-pki.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 04 — The Target PKI: Cloud PKI, AD CS and Federal PKI</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b07-pki/05-who-owns-the-certificate-estate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 05 — Who Owns the Certificate Estate</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b07-pki/06-device-and-user-certificates.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 06 — Device and User Certificates: Intune and Entra CBA</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b07-pki/07-coexistence-and-migration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 07 — Coexistence and Migration</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b07-pki/08-lifecycle-monitoring-and-decommissioning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 08 — Lifecycle, Monitoring and Decommissioning</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b07-pki/09-federal-workforce-credentials.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 09 — Federal Workforce Credentials: PIV, Derived PIV and Cloud Authentication</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b07-pki/appendix-a-deployment-checklists.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Appendix A — Cloud PKI and CBA Deployment Checklists</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b07-pki/appendix-b-template-migration-matrix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Appendix B — Certificate Template Migration Matrix</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b07-pki/appendix-c-anatomy-of-the-clm-platform.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Appendix C — Anatomy of the CLM Platform</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../../docs/books/b08-ddi/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Book 08 — DNS, DHCP &amp; IPAM</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b08-ddi/01-dns-is-the-control-plane.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 01 — DNS Is Now the Control Plane</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b08-ddi/02-split-brain-dns.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 02 — Split-Brain DNS: The Structural Problem</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b08-ddi/03-federal-requirements.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 03 — Federal Requirements: NIST SP 800-81, FedRAMP and Zero Trust</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b08-ddi/04-active-directory-dns-departure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 04 — The Active Directory DNS Departure</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b08-ddi/05-edge-interception-and-bypass.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 05 — Edge Interception, Encrypted DNS and Rogue DHCP</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b08-ddi/06-dns-identity-and-dnssec.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 06 — DNS Identity, Certificates and DNSSEC</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b08-ddi/07-cloud-private-endpoints-and-ipam.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 07 — Cloud Private Endpoints, SDN and IPAM Consistency</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b08-ddi/08-reference-architecture.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 08 — Reference Architecture and the Five Critical Decisions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b08-ddi/09-who-owns-dns.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 09 — Who Owns DNS, DHCP and IPAM</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b08-ddi/10-migration-sequence.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 10 — The Migration Sequence</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b08-ddi/11-operating-the-control-plane.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 11 — Operating the Control Plane: Delegation, Automation and Evidence</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b08-ddi/12-selection-cost-and-residual-risk.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 12 — Platform Selection, Cost and Residual Risk</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b08-ddi/appendix-a-dns-record-types.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Appendix A — DNS Record Types and Ecosystem Integrations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b08-ddi/appendix-b-requirements-mapping.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Appendix B — Requirements Mapping and Sources</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b08-ddi/appendix-c-applicability.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Appendix C — Applicability</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../../docs/books/b09-network/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Book 09 — Network &amp; Transport</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b09-network/01-why-physics-decides-the-architecture.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 01 — Why Physics Decides the Architecture</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b09-network/02-transport-is-physics-control-is-compliance.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 02 — Transport Is Physics, Control Is Compliance</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b09-network/03-what-tic-3-requires.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 03 — What TIC 3.0 and Federal Policy Actually Require</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b09-network/04-logical-centralization-and-token-security.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 04 — Logical Centralization and Token-Based Security</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b09-network/05-sd-wan-sase-and-governed-transport.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 05 — SD-WAN, SASE and Governed-Path Transport</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b09-network/06-legacy-protocols-on-re-routed-paths.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 06 — Legacy Protocols on Re-Routed Paths</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b09-network/07-network-access-control.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 07 — Network Access Control: 802.1X and RADIUS</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b09-network/08-reference-architecture.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 08 — Reference Architecture: Consistency Classes Meet Network Classes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b09-network/09-who-owns-the-network.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 09 — Who Owns the Network and Its Transport</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b09-network/10-the-long-interim.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 10 — The Long Interim</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b09-network/11-field-office-wan-transformation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 11 — Field Office WAN Transformation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b09-network/12-microsoft-365-traffic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 12 — Microsoft 365 Traffic and the Optimize Inspection Exemption</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b09-network/13-sequencing-cost-and-evidence.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 13 — Sequencing, Cost and Evidence</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b09-network/appendix-a-optimize-exemption-instruments.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Appendix A — Optimize Exemption Decision Instruments</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b09-network/appendix-b-requirements-mapping.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Appendix B — Requirements Mapping and Sources</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b09-network/appendix-c-glossary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Appendix C — Glossary</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../../docs/books/b10-cloud-boundary/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Book 10 — Cloud Boundary &amp; Landing Zone</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b10-cloud-boundary/01-why-the-boundary-decides.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 01 — Why the Boundary Decides What You Can Use</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b10-cloud-boundary/02-the-invisible-boundary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 02 — The Invisible Boundary</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b10-cloud-boundary/03-what-changed-at-fedramp.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 03 — What Changed at FedRAMP</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b10-cloud-boundary/04-gcc-and-the-feature-gap.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 04 — GCC, GCC High and the Commercial Feature Gap</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b10-cloud-boundary/05-the-landing-zone.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 05 — The Landing Zone</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b10-cloud-boundary/06-ipam-and-network-as-code.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 06 — IPAM and Network as Code</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b10-cloud-boundary/07-the-front-door.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Chapter 07 — The Landing Zone Front Door</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b10-cloud-boundary/08-who-owns-the-boundary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 08 — Who Owns the Boundary</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b10-cloud-boundary/09-equivalents-and-exceptions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 09 — In-Boundary Equivalents and Documented Exceptions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b10-cloud-boundary/10-alternative-collaboration-paths.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 10 — Alternative Collaboration Paths</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b10-cloud-boundary/11-the-authorization-package.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 11 — Evidencing the Boundary in the Authorization Package</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b10-cloud-boundary/appendix-a-what-to-ask-for.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Appendix A — What to Ask a Cloud Provider For</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b10-cloud-boundary/appendix-b-platform-host-interfaces.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Appendix B — Platform Host Interface Reference</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../../docs/books/b11-zero-trust/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Book 11 — Zero Trust &amp; Assessment</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b11-zero-trust/01-a-whole-agency-property.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 01 — Zero Trust Is a Whole-Agency Property</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b11-zero-trust/02-governance-principles.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 02 — Governance Principles for Zero Trust</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b11-zero-trust/03-what-the-mandates-require.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 03 — What CISA’s Maturity Model and M-22-09 Actually Require</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b11-zero-trust/04-scuba-and-bod-25-01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 04 — SCuBA and BOD 25-01</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b11-zero-trust/05-two-assessment-tools.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 05 — ScubaGear and Microsoft’s Zero Trust Assessment</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b11-zero-trust/06-beyond-microsoft-365.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 06 — Beyond Microsoft 365: Networks, Other Clouds and Virtualized Estates</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b11-zero-trust/07-who-owns-zero-trust.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 07 — Who Owns Zero Trust</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b11-zero-trust/08-close-before-you-assess.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 08 — Close Before You Assess</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b11-zero-trust/09-running-the-assessment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 09 — Running the Assessment and Ingesting the Evidence</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b11-zero-trust/10-evidence-not-verdicts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 10 — Evidence, Not Verdicts: From Findings to a Program</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b11-zero-trust/appendix-a-requirements-mapping.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Appendix A — Requirements Mapping: Pillars, Controls and Books</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../../docs/books/b12-security-operations/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Book 12 — Security Operations &amp; Telemetry</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b12-security-operations/01-you-cant-defend-what-you-cant-see.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 01 — You Can’t Defend What You Can’t See</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b12-security-operations/02-the-evidence-contract.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 02 — Telemetry Is the Precondition: The Evidence Contract</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b12-security-operations/03-identity-telemetry.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 03 — Identity Telemetry from Entra ID</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b12-security-operations/04-platform-and-m365-telemetry.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 04 — Azure Platform and Microsoft 365 Audit Telemetry</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b12-security-operations/05-from-log-warehouse-to-detection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 05 — From Log Warehouse to Detection: SIEM and XDR</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b12-security-operations/06-vulnerability-management.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 06 — Vulnerability Management</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b12-security-operations/07-patch-configuration-and-baselines.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 07 — Patch, Configuration and Hardening Baselines</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b12-security-operations/08-cloud-native-posture.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 08 — Cloud-Native Posture</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b12-security-operations/09-data-protection-and-classification.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 09 — Data Protection and Classification</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b12-security-operations/10-who-runs-security-operations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 10 — Who Runs Security Operations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b12-security-operations/11-detection-engineering-and-response.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 11 — Detection Engineering and Response Automation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b12-security-operations/12-evidence-metrics-and-continuous-monitoring.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 12 — Evidence, Metrics and Continuous Monitoring</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b12-security-operations/appendix-a-requirements-mapping.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Appendix A — Requirements Mapping: Controls, Mandates and Books</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../../docs/books/b13-governance/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Book 13 — Governance, Drift &amp; Evidence</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-14" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b13-governance/01-why-governance-decays.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 01 — Why Compliance Decays the Day After the Audit</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b13-governance/02-drift-is-the-primary-threat.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 02 — Drift Is the Primary Threat</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b13-governance/03-one-authoritative-record.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 03 — One Authoritative Record: Single Source of Truth and the Six Planes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b13-governance/04-change-control-and-provenance.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 04 — Change Control and Provenance</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b13-governance/05-deterministic-governance.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 05 — Deterministic Governance: The Three-Layer Rule Model</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b13-governance/06-the-drift-engine.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 06 — The Drift Engine</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b13-governance/07-evidence-over-attestation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 07 — Evidence Over Attestation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b13-governance/08-the-adapter-model.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 08 — The Adapter Model</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b13-governance/09-who-governs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 09 — Who Governs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b13-governance/10-ticket-to-machine.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 10 — Operational Tempo: Ticket to Machine, Not Ticket to Human</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b13-governance/11-reciprocity-and-one-authorization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 11 — Reciprocity, Indicators and One Authorization</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b13-governance/12-governance-at-scale.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 12 — Governance at Scale and the Continuous-Monitoring Program</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b13-governance/13-records-evidence-and-retention.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 13 — Records, Evidence and Retention</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b13-governance/appendix-a-requirements-mapping.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Appendix A — Requirements Mapping: Controls, Mandates and Books</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b13-governance/appendix-b-ticket-to-machine-reference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Appendix B — Ticket-to-Machine Reference</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../../docs/books/b14-compliance/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Book 14 — Federal Compliance &amp; Authorization</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-15" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-15" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b14-compliance/01-proof-not-a-promise.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 01 — Proof, Not a Promise</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b14-compliance/02-the-federal-clock.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 02 — The Federal Clock</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b14-compliance/03-the-baseline-and-the-crosswalk.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 03 — The Control Baseline and the Crosswalk</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b14-compliance/04-closure-with-proof.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 04 — Closure: A Control Closes Only With Its Proof</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b14-compliance/05-program-management-controls.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 05 — Program Management Controls</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b14-compliance/06-contingency-and-continuity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 06 — Contingency Planning and Business Continuity</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b14-compliance/07-supply-chain-risk-management.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 07 — Supply Chain Risk Management</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b14-compliance/08-privacy-pii-processing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 08 — Privacy: PII Processing and Transparency</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b14-compliance/09-training-and-awareness-controls.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 09 — Training and Awareness Controls</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b14-compliance/10-who-owns-compliance.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 10 — Who Owns Compliance</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b14-compliance/11-the-authorization-package.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 11 — The Authorization Package and Continuous Monitoring</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b14-compliance/12-the-series-as-a-map.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 12 — The Series as a Map: Which Volume and Book Closes Each Control</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b14-compliance/appendix-a-control-crosswalk.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Appendix A — Control Crosswalk</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b14-compliance/appendix-b-product-inventory-questionnaire.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Appendix B — Product Inventory Questionnaire</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b14-compliance/appendix-c-prepare-step-templates.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Appendix C — Prepare-Step Templates</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../../docs/books/b15-day2-operations/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Book 15 — Compliance Automation &amp; Day-2 Operations</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-16" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-16" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b15-day2-operations/01-the-help-desk-decides.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 01 — Modernization Succeeds or Fails at the Help Desk</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b15-day2-operations/02-day-two-is-where-compliance-lives.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 02 — Day Two Is Where Compliance Lives or Dies</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b15-day2-operations/03-intake-triage-and-routing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 03 — Intake, Triage and Routing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b15-day2-operations/04-help-desk-authority-in-entra.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 04 — Help Desk Authority in Entra ID</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b15-day2-operations/05-the-service-catalogs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 05 — The Service Catalogs: ITSM and Teams Telephony</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b15-day2-operations/06-saas-integration-governance.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 06 — SaaS Integration Governance</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b15-day2-operations/07-the-cmdb-and-asset-identity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 07 — The CMDB and Asset Identity</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b15-day2-operations/08-control-automation-m365-and-azure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 08 — Control Compliance Automation: Microsoft 365 and Azure</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b15-day2-operations/09-control-automation-aws-and-vmware.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 09 — Control Compliance Automation: AWS and VMware</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b15-day2-operations/10-who-runs-day-two.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 10 — Who Runs Day Two</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b15-day2-operations/11-attestation-and-the-compliance-app.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 11 — Attestation, Evidence and the Compliance Application</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b15-day2-operations/12-the-day-two-runbook.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 12 — The Day-Two Operator Runbook and Validation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b15-day2-operations/13-building-day-two-automation-in-house.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 13 — Building Day-Two Automation In-House</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b15-day2-operations/appendix-a-help-desk-task-reference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Appendix A — Help Desk Task Reference</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../../docs/books/b16-people/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Book 16 — People: Training &amp; Education</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-17" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-17" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b16-people/01-people-close-the-gap.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 01 — People, Not Tools, Close the Gap</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b16-people/02-what-the-workforce-rules-require.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 02 — What Federal Workforce Rules Require</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b16-people/03-the-compliance-track.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 03 — The Compliance Track</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b16-people/04-the-implementation-track.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 04 — The Implementation Track</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b16-people/05-assessment-and-certification.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 05 — Assessment and Certification</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b16-people/06-vendor-training-and-labs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 06 — Vendor Training and Lab Environments</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b16-people/07-end-user-training.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 07 — End-User Training for the Modernized Estate</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b16-people/08-who-owns-workforce-readiness.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 08 — Who Owns Workforce Readiness</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b16-people/09-building-and-running-the-curriculum.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 09 — Building and Running the Curriculum</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b16-people/10-measuring-readiness.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 10 — Measuring Readiness and Evidencing It</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b16-people/appendix-a-curriculum-map.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Appendix A — The Curriculum Map: Role, Book and Track</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../../docs/books/b17-ai-identity/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Book 17 — AI Identity Governance</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-18" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-18" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b17-ai-identity/01-ai-agents-need-identities.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 01 — Why AI Agents Need Identities and Owners</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b17-ai-identity/02-what-federal-ai-rules-require.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 02 — What Federal AI Rules Require, and What They Don’t</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b17-ai-identity/03-the-inventory-as-an-identity-source.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 03 — The AI Use-Case Inventory as an Identity Source</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b17-ai-identity/04-kinds-of-ai-identity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 04 — Kinds of AI Identity: Workloads, Agents and Delegated Access</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b17-ai-identity/05-owners-sponsors-and-lifecycle.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 05 — Owners, Sponsors and the AI Identity Lifecycle</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b17-ai-identity/06-credentials-and-least-privilege.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 06 — Credentials, Least Privilege and Access Policy for AI</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b17-ai-identity/07-monitoring-drift-and-shadow-ai.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 07 — Monitoring, Drift and Shadow AI</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b17-ai-identity/08-who-owns-ai-identity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 08 — Who Owns AI Identity Governance</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b17-ai-identity/09-running-the-inventory-scan.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 09 — Running the Inventory Scan, Agency and Central</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b17-ai-identity/10-evidence-and-authorization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 10 — Evidence and Authorization for AI Systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b17-ai-identity/appendix-a-requirements-mapping.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Appendix A — Requirements Mapping: AI Rules to Identity Controls</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../../docs/books/b18-application-modernization/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Book 18 — Application Modernization</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-19" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-19" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b18-application-modernization/01-a-portfolio-not-a-rewrite.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 01 — A Portfolio, Not a Rewrite</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b18-application-modernization/02-triaging-the-portfolio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 02 — Triaging the Portfolio</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b18-application-modernization/03-the-target-reference-architecture.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 03 — The Target Reference Architecture</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b18-application-modernization/04-moving-the-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 04 — Moving the Data: DB2 and Oracle to PostgreSQL or SQL Server</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b18-application-modernization/05-generative-and-agentic-ai.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 05 — Generative and Agentic AI in the Architecture</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b18-application-modernization/06-compliance-by-design.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 06 — Compliance by Design</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b18-application-modernization/07-who-governs-the-architecture.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 07 — Who Governs the Architecture</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b18-application-modernization/08-the-reference-implementation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 08 — The Reference Implementation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b18-application-modernization/09-togaf-and-zachman.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 09 — Mapping the Work to TOGAF and Zachman</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b18-application-modernization/10-running-the-portfolio-in-waves.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 10 — Running the Portfolio in Waves</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../../docs/books/b19-developer-workbook/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Book 19 — Building the Attribute-Driven Migration</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-20" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-20" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b19-developer-workbook/01-the-hr-to-entra-middleware.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 01 — The HR-to-Entra Middleware</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b19-developer-workbook/02-graph-clients-for-government-clouds.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 02 — Graph Clients for the Government Clouds</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b19-developer-workbook/03-writing-a-validation-kit-check.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 03 — Writing a Validation Kit Check</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b19-developer-workbook/04-dynamic-rules-as-code.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 04 — Dynamic Rules as Code</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b19-developer-workbook/05-lifecycle-workflows-custom-extensions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 05 — Lifecycle Workflows Custom Extensions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b19-developer-workbook/06-group-policy-as-code.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 06 — Moving Group Policy as Code</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b19-developer-workbook/07-machine-configuration-packages.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 07 — Machine Configuration Packages</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b19-developer-workbook/08-ansible-beside-arc.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 08 — Ansible Beside Arc</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b19-developer-workbook/09-drift-pipelines-and-evidence.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 09 — Drift Pipelines and Evidence to the ISSO</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/b19-developer-workbook/10-deploying-to-test-and-production.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 10 — Deploying to Test and Production</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-21" role="navigation" aria-expanded="false">
+ <span class="menu-text">Companion guides</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-21" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-21" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/guides/attribute-driven-migration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Attribute-Driven Migration from Active Directory to Microsoft Entra ID</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/guides/attribute-driven-migration-implementation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Attribute-Driven Migration: An Implementation Guide</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/guides/intune-track-implementation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Intune Track Implementation: Attribute-Driven Management of End-User Devices</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/guides/arc-track-implementation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Azure Arc Track: Implementation Guide</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/guides/non-person-identity-implementation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Non-Person Identity: An Implementation Guide</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/guides/privileged-access-implementation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Privileged Access: An Implementation Guide</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/guides/ansible-configuration-automation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ansible for Configuration Automation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/guides/effective-meetings.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Effective Meetings — Purpose, Agenda, Roles, and Follow-Through</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/guides/hcm-entra-implementation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Building Book 03’s HR Pipeline: Oracle Fusion Cloud HCM to Microsoft Entra ID</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/guides/hr-driven-identity-implementation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">HR-Driven Identity: An Implementation Guide</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/guides/cyberark-certificate-lifecycle.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Certificate Lifecycle on CyberArk Certificate Manager</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/guides/infoblox-nios-implementation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Implementing Book 08 on Infoblox NIOS</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/guides/cisco-sdwan-implementation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Building Book 09’s SD-WAN Design on Cisco Catalyst SD-WAN</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/guides/ttm-servicenow-sailpoint.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ticket-to-Machine on ServiceNow and SailPoint: An Example Implementation Guide</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/guides/snow-sailpoint-integration-kit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Integrating ServiceNow and SailPoint: An Implementation Example (Pass 1)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/guides/ttm-task-catalog.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Building an internal Ticket-to-Machine task catalog</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../../docs/books/explainers/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Explainers</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-22" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-22" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/explainers/ddi-platform-requirements.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">What a Federal DDI Platform Must Do</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/explainers/device-naming-after-ad.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Who Names the Device After AD?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/explainers/hr-identity-dns.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DNS for HR-Driven Identity Across Clouds</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/explainers/hr2-shared-governance-fedramp-boundary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Federal HR 2.0 Across Agencies and Boundaries: Shared Governance, FedRAMP’s 2026 Rules and What Oracle Publishes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/explainers/hybrid-credentials.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Certificates, Tokens and Keys Across the Hybrid Estate</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/explainers/identity-maintenance.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Keeping Identity Correct After HR Becomes the Source</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/books/explainers/omb-ai-memos-m-25-21-m-25-22.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Governing and Buying AI Under M-25-21 and M-25-22</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#why-code-isnt-change-control-by-itself" id="toc-why-code-isnt-change-control-by-itself" class="nav-link active" data-scroll-target="#why-code-isnt-change-control-by-itself">Why code isn’t change control by itself</a></li>
+  <li><a href="#microsofts-model-subscription-vending" id="toc-microsofts-model-subscription-vending" class="nav-link" data-scroll-target="#microsofts-model-subscription-vending">Microsoft’s model: subscription vending</a></li>
+  <li><a href="#the-provisioning-loop" id="toc-the-provisioning-loop" class="nav-link" data-scroll-target="#the-provisioning-loop">The provisioning loop</a>
+  <ul class="collapse">
+  <li><a href="#step-5-carries-the-most-weight" id="toc-step-5-carries-the-most-weight" class="nav-link" data-scroll-target="#step-5-carries-the-most-weight">Step 5 carries the most weight</a></li>
+  </ul></li>
+  <li><a href="#building-the-loop-on-servicenow-and-terraform" id="toc-building-the-loop-on-servicenow-and-terraform" class="nav-link" data-scroll-target="#building-the-loop-on-servicenow-and-terraform">Building the loop on ServiceNow and Terraform</a></li>
+  <li><a href="#the-pipeline-is-inside-the-boundary-too" id="toc-the-pipeline-is-inside-the-boundary-too" class="nav-link" data-scroll-target="#the-pipeline-is-inside-the-boundary-too">The pipeline is inside the boundary too</a></li>
+  <li><a href="#after-apply-drift" id="toc-after-apply-drift" class="nav-link" data-scroll-target="#after-apply-drift">After apply: drift</a></li>
+  <li><a href="#the-evidence-the-loop-leaves" id="toc-the-evidence-the-loop-leaves" class="nav-link" data-scroll-target="#the-evidence-the-loop-leaves">The evidence the loop leaves</a></li>
+  <li><a href="#honest-limits" id="toc-honest-limits" class="nav-link" data-scroll-target="#honest-limits">Honest limits</a></li>
+  <li><a href="#what-this-chapter-establishes" id="toc-what-this-chapter-establishes" class="nav-link" data-scroll-target="#what-this-chapter-establishes">What this chapter establishes</a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="07-the-front-door.docx"><i class="bi bi-file-word"></i>MS Word</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+<div class="fmw-disclaimer" role="note" aria-label="Site disclaimer" style="background:#fff7e6;color:#5c3b00;border-bottom:1px solid #f0d9a8;font-size:.85rem;line-height:1.45;padding:.45rem 1rem;text-align:center;">
+  <strong style="color:#3d2700;">This is not an official U.S. federal government website.</strong>
+  The Federal Modernization Workbook is independent technical analysis. It does not represent the position of,
+  and has not been reviewed or endorsed by, any federal agency.
+</div>
+
+<header id="title-block-header" class="quarto-title-block default fmw-hero"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../docs/books/b10-cloud-boundary/index.html">Book 10 — Cloud Boundary &amp; Landing Zone</a></li><li class="breadcrumb-item"><a href="../../../docs/books/b10-cloud-boundary/07-the-front-door.html">Chapter 07 — The Landing Zone Front Door</a></li></ol></nav>
+<p class="fmw-eyebrow">Federal Modernization Workbook · Book 10 · What</p>
+<div class="quarto-title">
+<h1 class="title">Chapter 07 — The Landing Zone Front Door</h1>
+</div>
+
+<div>
+  <div class="description">
+    The governed request that turns landing-zone code into an approved, evidenced and reconciled provisioning event: subscription vending, the six-step loop from catalog request to closed change, the ServiceNow and Terraform paths that implement it, where the pipeline itself must live, and the evidence it produces.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="fmw-lede">
+<p><em>Landing-zone code that anyone can apply from a laptop is a click path with extra steps; it becomes change control only when every run starts from an approved request and ends reconciled to the address plan.</em></p>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>In this chapter
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Why infrastructure as code isn’t change control by itself. Microsoft’s own model for the front door, subscription vending, and what it asks the request to capture. The six-step provisioning loop (request, approve, plan, apply, reconcile, close) and the control each step evidences, with reconciliation to the address plan as the step that carries the most weight. Two documented ways to build the loop on ServiceNow and Terraform, why the pipeline and its state are themselves a boundary question, how the front door composes with drift detection, and the evidence the loop leaves behind.</p>
+</div>
+</div>
+<p><a href="../../../docs/books/b10-cloud-boundary/06-ipam-and-network-as-code.html">Chapter 06</a> put the landing zone, the address plan and the network into reviewed modules. That solves reproducibility, not governance. A Terraform or Bicep module that any engineer with credentials can apply is no more controlled than the portal it replaced: there’s no approval trail, no guarantee the plan was reviewed, and no guarantee the address block it took ever reached the IPAM. The missing piece is the <em>front door</em>: the governed request that turns “run the module” into “an approved, evidenced, reconciled provisioning event.”</p>
+<p>A note on the name: this chapter’s front door is the request path into the landing zone. It has nothing to do with Azure Front Door, Microsoft’s global load-balancing and web application firewall service.</p>
+<div id="fig-ch07-provisioning-loop" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Six cards in sequence. Step 1, request, in slate: a catalog item with typed variables for environment, size, address need, owner, budget and classification. Step 2, approve, in amber: routed approval where the requester can't approve their own request. Step 3, plan, in amber: a speculative plan the approver reviews before anything changes. Step 4, apply, in blue: the pipeline applies the reviewed source. Step 5, reconcile, in green and marked as the step that carries the most weight: the address allocation is written to and checked against the enterprise IPAM, and the CMDB is updated. Step 6, close, in violet: a validation gate confirms the deployed landing zone matches intent, and the change record and gate verdict become evidence. A dashed red arrow from step 3 leads to a red card: rejected, the run is discarded and nothing changes.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ch07-provisioning-loop-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="../../images/diagrams/b10-cloud-boundary/svg/ch07-provisioning-loop.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;1: The provisioning loop: six steps from catalog request to closed change, with a rejected plan discarded."><img src="../../images/diagrams/b10-cloud-boundary/svg/ch07-provisioning-loop.svg" class="img-fluid figure-img" alt="Six cards in sequence. Step 1, request, in slate: a catalog item with typed variables for environment, size, address need, owner, budget and classification. Step 2, approve, in amber: routed approval where the requester can't approve their own request. Step 3, plan, in amber: a speculative plan the approver reviews before anything changes. Step 4, apply, in blue: the pipeline applies the reviewed source. Step 5, reconcile, in green and marked as the step that carries the most weight: the address allocation is written to and checked against the enterprise IPAM, and the CMDB is updated. Step 6, close, in violet: a validation gate confirms the deployed landing zone matches intent, and the change record and gate verdict become evidence. A dashed red arrow from step 3 leads to a red card: rejected, the run is discarded and nothing changes."></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ch07-provisioning-loop-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: The provisioning loop: six steps from catalog request to closed change, with a rejected plan discarded.
+</figcaption>
+</figure>
+</div>
+<section id="why-code-isnt-change-control-by-itself" class="level2">
+<h2 class="anchored" data-anchor-id="why-code-isnt-change-control-by-itself">Why code isn’t change control by itself</h2>
+<p>NIST SP 800-53 CM-3 asks an organization to determine which changes are configuration-controlled, review proposed changes and “approve or disapprove such changes with explicit consideration for security and privacy impact analyses,” document the decisions, implement only approved changes, keep records, and monitor the activity.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Infrastructure as code supplies the reviewable artifact CM-3 needs, but not the approval, the record or the guarantee that only approved changes run. CM-3(2) adds that changes are tested, validated and documented before they’re finalized, and CM-8(1) asks that the component inventory be updated as part of installations and removals, not afterward.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> All three are in the Moderate baseline.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
+<p>The program’s position, from Federal Compliance <a href="https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_IX_Book_02_Landing_Zone_Front_Door.md">Volume IX, Book 02</a>, is that the code is necessary and the governed front door is what makes it <em>assessable</em>. Without it, CM-3 becomes an assertion and the inventory forks the first time someone applies a module outside the pipeline.</p>
+</section>
+<section id="microsofts-model-subscription-vending" class="level2">
+<h2 class="anchored" data-anchor-id="microsofts-model-subscription-vending">Microsoft’s model: subscription vending</h2>
+<p>Microsoft’s Cloud Adoption Framework has a name for this: <strong>subscription vending</strong>, a platform mechanism for programmatically issuing subscriptions to workload teams, which it describes as giving teams “an official front door” for requests.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> The model involves three groups. A Cloud Center of Excellence sets the business rules and the approval process; workload teams make requests; the platform team creates and configures the subscription and hands it over. Microsoft’s guidance maps closely onto what a federal boundary needs:<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></p>
+<ul>
+<li><strong>Automate request capture and approval, inside the existing ITSM tool</strong>, and tie the approval’s business logic to the platform team’s deployment pipeline.</li>
+<li><strong>Gather requirements at intake</strong>: anticipated budget, subscription owner, networking expectations, and business criticality and confidentiality classification, enough for the platform team to place the subscription in the right management group (<a href="../../../docs/books/b10-cloud-boundary/05-the-landing-zone.html">Chapter 05</a>).</li>
+<li><strong>Use an IPAM system in the vending process</strong> for address assignment, and never use overlapping addresses in one routing domain.</li>
+<li><strong>Enforce network governance</strong> with Azure Policy on the management group hierarchy, or with Virtual Network Manager security admin rules. The platform team always creates the virtual networks that peer to the hub; workload teams can be allowed to create subnets.</li>
+<li><strong>Create and configure with infrastructure as code.</strong> Microsoft publishes subscription vending modules for Bicep and Terraform. Creating the subscription itself programmatically requires a commercial agreement (Enterprise Agreement, Microsoft Customer Agreement or Microsoft Partner Agreement) with the right role; configuring it doesn’t.</li>
+<li><strong>Set up access at creation.</strong> Designate an owner, use Microsoft Entra groups, and use Privileged Identity Management for groups for elevated access. Workload identities used for deployment can’t use PIM and receive standing access, so Microsoft recommends managed identities to avoid managing secrets.</li>
+</ul>
+<p>Two consequences matter for the boundary. The intake form is where the classification that drives placement is captured, so a missing or wrong classification is a boundary error made at the front door. And the vending pipeline’s identity holds standing access to every subscription it touches, which makes it one of the most privileged identities in the landing zone (<a href="../../../docs/books/b04-access/05-applications-and-workload-identities.html">Book 04, Chapter 05</a> covers workload identities).</p>
+</section>
+<section id="the-provisioning-loop" class="level2">
+<h2 class="anchored" data-anchor-id="the-provisioning-loop">The provisioning loop</h2>
+<p>The front door is a loop with six steps. The step names and their order are the program’s design; the control mappings use SP 800-53 Rev.&nbsp;5 titles.<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Step</th>
+<th>What happens</th>
+<th>Control it evidences</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1. Request</td>
+<td>A catalog item captures the landing-zone parameters (environment, size, address need, owner, budget, classification) as typed variables, not free text</td>
+<td>CM-3 (the change is defined)</td>
+</tr>
+<tr class="even">
+<td>2. Approve</td>
+<td>The request routes for approval; the requester can’t approve their own request</td>
+<td>CM-3, AC-5 (Separation of Duties), CM-5 (Access Restrictions for Change)</td>
+</tr>
+<tr class="odd">
+<td>3. Plan</td>
+<td>A speculative plan shows exactly what will change; the approver reviews it before any state changes</td>
+<td>CM-3, CM-3(2)</td>
+</tr>
+<tr class="even">
+<td>4. Apply</td>
+<td>The pipeline applies the reviewed source; deployed state equals reviewed source</td>
+<td>CM-2, CM-3</td>
+</tr>
+<tr class="odd">
+<td>5. Reconcile</td>
+<td>The address and subnet allocation is written to and reconciled with the enterprise IPAM, and the CMDB is updated</td>
+<td>CM-8, CM-8(1)</td>
+</tr>
+<tr class="even">
+<td>6. Close</td>
+<td>A validation gate confirms the landing zone matches intent; the change record and the gate’s verdict are the evidence</td>
+<td>CM-3, AU-2</td>
+</tr>
+</tbody>
+</table>
+<p>Separation of duties isn’t CM-5 alone. The control that names it is AC-5, Separation of Duties; CM-5, Access Restrictions for Change, covers who can make changes.<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a> Both apply: AC-5 to the approval, CM-5 to the pipeline identity that’s the only thing allowed to apply.</p>
+<section id="step-5-carries-the-most-weight" class="level3">
+<h3 class="anchored" data-anchor-id="step-5-carries-the-most-weight">Step 5 carries the most weight</h3>
+<p>No landing zone stands up outside the address plan. An address block that infrastructure as code allocated but never reconciled to the IPAM is shadow inventory the moment it exists: CM-8’s “includes all components” fails, and BOD 23-01’s weekly discovery, which has to cover “the entire IPv4 space used by the agency,” is now chasing a range the agency’s own records don’t contain.<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a> The front door makes reconciliation part of provisioning rather than a cleanup job. In practice that means the pipeline asks the enterprise IPAM for the block (or confirms the block the Virtual Network Manager pool chose against the enterprise reservation), writes the allocation back with the request number and owner, and fails the run if the two disagree.</p>
+</section>
+</section>
+<section id="building-the-loop-on-servicenow-and-terraform" class="level2">
+<h2 class="anchored" data-anchor-id="building-the-loop-on-servicenow-and-terraform">Building the loop on ServiceNow and Terraform</h2>
+<p>Many agencies already run their change process in ServiceNow. Two documented integrations can carry this loop, and they differ in where Terraform runs and how approval works.</p>
+<p><strong>ServiceNow Cloud Provisioning and Governance (CPG) with its Terraform connector.</strong> A cloud catalog item is created from a Terraform template, and the provider type decides where Terraform runs: a Linux-based Terraform open-source server (“Terraform Environment”), a Windows-based server, or Terraform Enterprise or Terraform Cloud, reached through a MID Server. ServiceNow’s documentation says not to hard-code credentials in templates (they come from Terraform variables fetched from the platform) and notes that the connector doesn’t support AWS IAM role-based authentication with Terraform templates by default. The CPG page doesn’t describe a plan-review step.<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a></p>
+<p><strong>HashiCorp’s ServiceNow Service Catalog for Terraform.</strong> Version 2.9 (October 2025) added catalog items with an approval workflow: requesting one generates a plan-only run that goes to a designated approver; if the approver accepts, an apply run provisions; if the approver rejects, “the run is discarded, and no changes are made.” The announcement describes the integration with HCP Terraform.<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a></p>
+<p>The documented plan-approval workflow is HashiCorp’s: a plan-only run goes to the approver, and an apply run follows only on acceptance.<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a> ServiceNow’s CPG instructions for a Terraform catalog item describe no plan-review step.<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a> Either way, the program’s requirement is the same: the approver sees the plan that will be applied, not a description of it, and an approved plan is applied without regeneration or drift.</p>
+<p>The DDI side of the loop already has a pattern. ServiceNow documents an IntegrationHub spoke that reserves addresses from a catalog request and a Service Graph Connector that imports subnets, pools, allocated addresses and DNS data into the CMDB (<a href="../../../docs/books/b08-ddi/11-operating-the-control-plane.html">Book 08, Chapter 11</a>). The landing-zone front door reuses the same records: the same connectors, the same in-boundary MID Server and the same validation-gate discipline, extended from one subnet to a whole landing zone. ServiceNow’s own government offering is listed on the FedRAMP Marketplace as Government Community Cloud (F1305072116), FedRAMP Certified at Class D (High).<a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a></p>
+</section>
+<section id="the-pipeline-is-inside-the-boundary-too" class="level2">
+<h2 class="anchored" data-anchor-id="the-pipeline-is-inside-the-boundary-too">The pipeline is inside the boundary too</h2>
+<p>The front door holds the most sensitive material in the landing zone: credentials that can create subscriptions, the plans that describe every resource, and Terraform state. HashiCorp warns that secrets in configuration end up in state and plan files, that values marked <code>sensitive</code> are still stored there, and that anyone with access to those files can read them, so state is sensitive data.<a href="#fn14" class="footnote-ref" id="fnref14" role="doc-noteref"><sup>14</sup></a> Where the runner, the state and the repository live is therefore a boundary decision, not a tooling preference.</p>
+<p>The FedRAMP Marketplace makes that concrete. As of October 21, 2026, it has no listing for HashiCorp’s HCP Terraform; GitHub Enterprise Cloud is listed at Class B under the low-impact SaaS level (LI-SaaS); and GitLab Dedicated for Government is listed at Class C (Moderate).<a href="#fn15" class="footnote-ref" id="fnref15" role="doc-noteref"><sup>15</sup></a> None of that forbids a tool; it means each one either inherits a certification that matches the boundary, gets carried in the agency’s own package, or goes through the exception process in <a href="../../../docs/books/b10-cloud-boundary/09-equivalents-and-exceptions.html">Chapter 09</a>. The program’s default is a self-hosted runner and state backend inside the agency’s boundary, with the repository on a platform whose certification covers what it stores. In the workbook’s reference architecture, that runner is a role of the platform host (<a href="../../../docs/books/b01-transformation-arc/03-platform-foundation.html">Book 01, Chapter 03</a>).</p>
+</section>
+<section id="after-apply-drift" class="level2">
+<h2 class="anchored" data-anchor-id="after-apply-drift">After apply: drift</h2>
+<p>The front door governs provisioning. What happens after apply is Azure Policy’s job: existing resources are re-evaluated on a 24-hour cycle, and a subscription created or moved in the hierarchy is evaluated against subscription-level assignments in about 30 minutes.<a href="#fn16" class="footnote-ref" id="fnref16" role="doc-noteref"><sup>16</sup></a> The two compose: provisioning is governed, then drift is monitored, and a drift finding opens a request that goes back through the same front door. A portal change that fixes a problem without a request is itself a finding.</p>
+<p>Two further rules from the program’s design. A plan’s risk is bounded by the module’s blast radius, so plans that destroy or replace resources carry a heightened approval (a second approver, or the change board). And reconciliation is only as good as the authoritative record it targets: until the enterprise IPAM decision lands, step 5 reconciles against whatever authoritative address record exists, and says so in the evidence.</p>
+</section>
+<section id="the-evidence-the-loop-leaves" class="level2">
+<h2 class="anchored" data-anchor-id="the-evidence-the-loop-leaves">The evidence the loop leaves</h2>
+<p>Every run produces the same artifacts, which is what makes the loop assessable:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Artifact</th>
+<th>What it shows</th>
+<th>Where it goes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>The catalog request</td>
+<td>Who asked, for what, with which classification</td>
+<td>Change record</td>
+</tr>
+<tr class="even">
+<td>The approval</td>
+<td>Who approved, and that they weren’t the requester</td>
+<td>Change record</td>
+</tr>
+<tr class="odd">
+<td>The plan</td>
+<td>Exactly what was to change</td>
+<td>Attached to the change record</td>
+</tr>
+<tr class="even">
+<td>The apply log</td>
+<td>What changed, by which identity, from which commit</td>
+<td>Pipeline log, retained</td>
+</tr>
+<tr class="odd">
+<td>The reconciliation result</td>
+<td>The allocation matches the IPAM; the CMDB is updated</td>
+<td>IPAM and CMDB audit trail</td>
+</tr>
+<tr class="even">
+<td>The gate verdict</td>
+<td>The landing zone matches intent</td>
+<td>Change record; evidence store</td>
+</tr>
+</tbody>
+</table>
+<p>FedRAMP’s 2026 Change Management indicators describe the same discipline for cloud providers: KSI-CMT-LMC asks that modifications be “logged and monitored,” KSI-CMT-VTD that “persistent testing and validation of changes throughout deployment is automated,” and KSI-CMT-RMV favors redeploying version-controlled resources over modifying them directly.<a href="#fn17" class="footnote-ref" id="fnref17" role="doc-noteref"><sup>17</sup></a> Those indicators bind providers seeking certification, not the agency’s own system (<a href="../../../docs/books/b10-cloud-boundary/03-what-changed-at-fedramp.html">Chapter 03</a>), but an agency that runs its landing zone this way can show its authorizing official the same kind of evidence its providers show FedRAMP. <a href="../../../docs/books/b10-cloud-boundary/11-the-authorization-package.html">Chapter 11</a> covers how these artifacts enter the package.</p>
+</section>
+<section id="honest-limits" class="level2">
+<h2 class="anchored" data-anchor-id="honest-limits">Honest limits</h2>
+<ul>
+<li>The front door governs only what goes through it. Break-glass access to the portal has to exist, and every use of it is an exception to review.</li>
+<li>The speculative plan is only as safe as the reviewer’s attention; a large plan that nobody reads is approval theater. Keep modules small enough that a plan is reviewable.</li>
+<li>Reconciliation depends on the IPAM decision. Until it’s made, the loop reconciles against the best authoritative record available and records which one.</li>
+<li>Subscription creation by API depends on the agency’s commercial agreement and its roles, which some agencies don’t control directly.</li>
+</ul>
+</section>
+<section id="what-this-chapter-establishes" class="level2">
+<h2 class="anchored" data-anchor-id="what-this-chapter-establishes">What this chapter establishes</h2>
+<ol type="1">
+<li>Infrastructure as code becomes change control only behind a governed front door; Microsoft calls its version subscription vending.</li>
+<li>The loop is request, approve, plan, apply, reconcile, close, and each step evidences a named control; separation of duties is AC-5.</li>
+<li>Reconciliation to the address plan is the step that keeps the inventory whole.</li>
+<li>ServiceNow’s CPG Terraform connector and HashiCorp’s Service Catalog for Terraform are documented ways to build it; the documented plan-approval workflow is HashiCorp’s.</li>
+<li>The runner, the state and the repository are inside the boundary question, and Terraform state is sensitive data.</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Continue the book
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><a href="../../../docs/books/b10-cloud-boundary/06-ipam-and-network-as-code.html">← Previous: Chapter 06 — IPAM and Network as Code</a> · <a href="../../../docs/books/b10-cloud-boundary/index.html">Book index</a> · <a href="../../../docs/books/b10-cloud-boundary/08-who-owns-the-boundary.html">Next: Chapter 08 — Who Owns the Boundary →</a></p>
+</div>
+</div>
+
+
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>National Institute of Standards and Technology, SP 800-53 Rev.&nbsp;5, <em>Security and Privacy Controls for Information Systems and Organizations</em> (release 5.2.0, August 27, 2025), AC-5, CM-2, CM-3, CM-3(2), CM-5, CM-8 and CM-8(1), <a href="https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final" class="uri">https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final</a>; OSCAL catalog <a href="https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json" class="uri">https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json</a> (accessed Oct 21, 2026).<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>National Institute of Standards and Technology, SP 800-53 Rev.&nbsp;5, <em>Security and Privacy Controls for Information Systems and Organizations</em> (release 5.2.0, August 27, 2025), AC-5, CM-2, CM-3, CM-3(2), CM-5, CM-8 and CM-8(1), <a href="https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final" class="uri">https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final</a>; OSCAL catalog <a href="https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json" class="uri">https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json</a> (accessed Oct 21, 2026).<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>National Institute of Standards and Technology, SP 800-53B, Moderate baseline, release 5.2.0 OSCAL profile <code>NIST_SP-800-53_rev5_MODERATE-baseline_profile.json</code> (includes AC-5, CM-3(2), CM-5 and CM-8(1)), <a href="https://github.com/usnistgov/oscal-content/tree/main/nist.gov/SP800-53/rev5/json" class="uri">https://github.com/usnistgov/oscal-content/tree/main/nist.gov/SP800-53/rev5/json</a> (accessed Oct 21, 2026).<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>Microsoft Learn, “Subscription vending,” Azure landing zone design area, <a href="https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/subscription-vending" class="uri">https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/subscription-vending</a> (accessed Oct 21, 2026).<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>Microsoft Learn, “Subscription vending,” Azure landing zone design area, <a href="https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/subscription-vending" class="uri">https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/subscription-vending</a> (accessed Oct 21, 2026).<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>National Institute of Standards and Technology, SP 800-53 Rev.&nbsp;5, <em>Security and Privacy Controls for Information Systems and Organizations</em> (release 5.2.0, August 27, 2025), AC-5, CM-2, CM-3, CM-3(2), CM-5, CM-8 and CM-8(1), <a href="https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final" class="uri">https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final</a>; OSCAL catalog <a href="https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json" class="uri">https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json</a> (accessed Oct 21, 2026).<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p>National Institute of Standards and Technology, SP 800-53 Rev.&nbsp;5, <em>Security and Privacy Controls for Information Systems and Organizations</em> (release 5.2.0, August 27, 2025), AC-5, CM-2, CM-3, CM-3(2), CM-5, CM-8 and CM-8(1), <a href="https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final" class="uri">https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final</a>; OSCAL catalog <a href="https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json" class="uri">https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json</a> (accessed Oct 21, 2026).<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p>Cybersecurity and Infrastructure Security Agency, Binding Operational Directive 23-01, <em>Improving Asset Visibility and Vulnerability Detection on Federal Networks</em>, October 3, 2022, Required Actions, <a href="https://www.cisa.gov/news-events/directives/bod-23-01-improving-asset-visibility-and-vulnerability-detection-federal-networks" class="uri">https://www.cisa.gov/news-events/directives/bod-23-01-improving-asset-visibility-and-vulnerability-detection-federal-networks</a> (accessed Oct 21, 2026).<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9"><p>ServiceNow, “Create a catalog item from the Terraform template,” Cloud Provisioning and Governance (Xanadu release documentation), <a href="https://www.servicenow.com/docs/r/LZHoJyH9VPKmhdIph_6gSw/3iqnDky~T_x0iLV2Mxog3g" class="uri">https://www.servicenow.com/docs/r/LZHoJyH9VPKmhdIph_6gSw/3iqnDky~T_x0iLV2Mxog3g</a> (accessed Oct 21, 2026).<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn10"><p>HashiCorp, “ServiceNow Catalog for Terraform adds approval workflow integration,” October 2, 2025, <a href="https://www.hashicorp.com/blog/servicenow-catalog-for-terraform-adds-approval-workflow-integration" class="uri">https://www.hashicorp.com/blog/servicenow-catalog-for-terraform-adds-approval-workflow-integration</a> (accessed Oct 21, 2026).<a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn11"><p>HashiCorp, “ServiceNow Catalog for Terraform adds approval workflow integration,” October 2, 2025, <a href="https://www.hashicorp.com/blog/servicenow-catalog-for-terraform-adds-approval-workflow-integration" class="uri">https://www.hashicorp.com/blog/servicenow-catalog-for-terraform-adds-approval-workflow-integration</a> (accessed Oct 21, 2026).<a href="#fnref11" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn12"><p>ServiceNow, “Create a catalog item from the Terraform template,” Cloud Provisioning and Governance (Xanadu release documentation), <a href="https://www.servicenow.com/docs/r/LZHoJyH9VPKmhdIph_6gSw/3iqnDky~T_x0iLV2Mxog3g" class="uri">https://www.servicenow.com/docs/r/LZHoJyH9VPKmhdIph_6gSw/3iqnDky~T_x0iLV2Mxog3g</a> (accessed Oct 21, 2026).<a href="#fnref12" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn13"><p>FedRAMP Marketplace, <code>products.json</code> (meta <code>last_change</code> 2026-10-21): ServiceNow Government Community Cloud, F1305072116, FedRAMP Certified, High, Class D; GitHub Enterprise Cloud, FR1812058188, FedRAMP Certified, LI-SaaS, Class B; GitLab Dedicated for Government, FR2411959145, FedRAMP Certified, Moderate, Class C; no listing for HashiCorp HCP Terraform, <a href="https://www.fedramp.gov/marketplace/products.json" class="uri">https://www.fedramp.gov/marketplace/products.json</a> (accessed Oct 21, 2026).<a href="#fnref13" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn14"><p>HashiCorp, “Manage sensitive data in your configuration,” Terraform documentation, <a href="https://developer.hashicorp.com/terraform/language/manage-sensitive-data" class="uri">https://developer.hashicorp.com/terraform/language/manage-sensitive-data</a> (accessed Oct 21, 2026).<a href="#fnref14" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn15"><p>FedRAMP Marketplace, <code>products.json</code> (meta <code>last_change</code> 2026-10-21): ServiceNow Government Community Cloud, F1305072116, FedRAMP Certified, High, Class D; GitHub Enterprise Cloud, FR1812058188, FedRAMP Certified, LI-SaaS, Class B; GitLab Dedicated for Government, FR2411959145, FedRAMP Certified, Moderate, Class C; no listing for HashiCorp HCP Terraform, <a href="https://www.fedramp.gov/marketplace/products.json" class="uri">https://www.fedramp.gov/marketplace/products.json</a> (accessed Oct 21, 2026).<a href="#fnref15" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn16"><p>Microsoft Learn, “Get compliance data of Azure resources,” Evaluation triggers, <a href="https://learn.microsoft.com/azure/governance/policy/how-to/get-compliance-data" class="uri">https://learn.microsoft.com/azure/governance/policy/how-to/get-compliance-data</a> (accessed Oct 21, 2026).<a href="#fnref16" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn17"><p>FedRAMP, “Change Management,” Key Security Indicators, <em>Consolidated Rules for 2026</em> (KSI-CMT-LMC, KSI-CMT-RMV, KSI-CMT-VTD), <a href="https://fedramp.gov/2026/providers/20x/key-security-indicators/change-management/" class="uri">https://fedramp.gov/2026/providers/20x/key-security-indicators/change-management/</a> (accessed Oct 21, 2026).<a href="#fnref17" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/whalermike\.github\.io\/modernization-workbook\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+            // default icon
+            link.classList.add("external");
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../../docs/books/b10-cloud-boundary/06-ipam-and-network-as-code.html" class="pagination-link" aria-label="Chapter 06 — IPAM and Network as Code">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Chapter 06 — IPAM and Network as Code</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../../docs/books/b10-cloud-boundary/08-who-owns-the-boundary.html" class="pagination-link" aria-label="Chapter 08 — Who Owns the Boundary">
+        <span class="nav-page-text">Chapter 08 — Who Owns the Boundary</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Federal Modernization Workbook — topic books for federal IT modernization, each framed Why / What / Who / How.</p>
+</div>   
+    <div class="nav-footer-center">
+<p><strong>Not an official U.S. government website.</strong> Independent technical analysis; not reviewed or endorsed by any federal agency.</p>
+</div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="https://github.com/WhalerMike/modernization-workbook">
+<p>Source</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="https://github.com/WhalerMike/modernization-workbook/blob/main/LICENSE.md">
+<p>© 2026 Michael F. Stratton · License</p>
+</a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+<!-- Copy-link buttons (included after the body on every page).
+     1. "Copy link" next to the page title copies the page's address.
+     2. "Copy link" next to each download link (deck, Word bundle, video, captions, PDF) copies a link to
+        the place on the site that describes the document: its table row's anchor, else its section
+        heading, else the page. A shared link opens that page; it never starts a file download. -->
+<style>
+  .fmw-copy-link {
+    display: inline-flex; align-items: center; gap: .3em;
+    margin-left: .45em; padding: .05em .55em;
+    font-size: .78rem; line-height: 1.5; font-family: inherit;
+    color: #0f5e5c; background: #eef6f5;
+    border: 1px solid #b9dcd8; border-radius: 999px;
+    cursor: pointer; vertical-align: middle; white-space: nowrap;
+  }
+  .fmw-copy-link:hover, .fmw-copy-link:focus-visible { background: #d9eeeb; border-color: #0f5e5c; outline: none; }
+  .fmw-copy-link:focus-visible { box-shadow: 0 0 0 2px #0f5e5c40; }
+  .fmw-copy-link.fmw-copied { color: #1d4d1f; background: #e6f4e6; border-color: #8cc28f; }
+  .fmw-copy-link svg { width: 1em; height: 1em; }
+  .fmw-copy-page { margin: .35rem 0 0; }
+  .fmw-copy-status { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  @media print { .fmw-copy-link { display: none; } }
+</style>
+<script>
+(function () {
+  var FILE = /\.(pptx|docx|mp4|vtt|pdf|zip|xlsx)(?:[?#].*)?$/i;
+  var ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">' +
+             '<path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg>';
+
+  var status = document.createElement("div");
+  status.className = "fmw-copy-status";
+  status.setAttribute("role", "status");
+  status.setAttribute("aria-live", "polite");
+  document.body.appendChild(status);
+
+  function pageUrl() { return location.href.split("#")[0]; }
+
+  // The place that describes a download link: its table row's anchor, else the nearest section, else the page.
+  function shareUrlFor(link) {
+    var row = link.closest("tr");
+    if (row) {
+      var anchored = row.querySelector("[id]");
+      if (anchored && anchored.id) return pageUrl() + "#" + anchored.id;
+    }
+    var section = link.closest("section[id]");
+    if (section) return pageUrl() + "#" + section.id;
+    return pageUrl();
+  }
+
+  function copy(text, button, label) {
+    function done(ok) {
+      button.classList.toggle("fmw-copied", ok);
+      button.lastChild.textContent = ok ? " Copied" : " Copy failed";
+      status.textContent = ok ? "Link copied: " + label : "Couldn't copy the link";
+      setTimeout(function () { button.classList.remove("fmw-copied"); button.lastChild.textContent = " Copy link"; }, 1800);
+    }
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(text).then(function () { done(true); }, function () { done(fallback(text)); });
+    } else {
+      done(fallback(text));
+    }
+  }
+
+  function fallback(text) {
+    var t = document.createElement("textarea");
+    t.value = text; t.setAttribute("readonly", ""); t.style.position = "fixed"; t.style.top = "-1000px";
+    document.body.appendChild(t); t.select();
+    var ok = false;
+    try { ok = document.execCommand("copy"); } catch (e) { ok = false; }
+    document.body.removeChild(t);
+    return ok;
+  }
+
+  function makeButton(getUrl, label, title) {
+    var b = document.createElement("button");
+    b.type = "button";
+    b.className = "fmw-copy-link";
+    b.title = title;
+    b.setAttribute("aria-label", "Copy link to " + label);
+    b.innerHTML = ICON + '<span> Copy link</span>';
+    b.addEventListener("click", function (e) { e.preventDefault(); copy(getUrl(), b, label); });
+    return b;
+  }
+
+  // 1. Page link, under the title.
+  var title = document.querySelector("#title-block-header h1.title, header h1.title, main h1");
+  if (title) {
+    var wrap = document.createElement("div");
+    wrap.className = "fmw-copy-page";
+    var name = (title.textContent || document.title).trim();
+    wrap.appendChild(makeButton(pageUrl, "this page: " + name, "Copy a link to this page"));
+    title.insertAdjacentElement("afterend", wrap);
+  }
+
+  // 2. Share links for downloads in the page content. In a table, one button per row, in its first
+  //    cell (a row's deck, narrated edition and captions share one place on the page); elsewhere,
+  //    one button beside each download link.
+  var TIP = "Copy a link to where this document is described on the site (opens the page, not a download)";
+  var main = document.querySelector("main") || document.body;
+  var rowsDone = [];
+  main.querySelectorAll("a[href]").forEach(function (a) {
+    var href = a.getAttribute("href") || "";
+    if (!FILE.test(href) || a.closest("nav, .sidebar, #quarto-header")) return;
+    var row = a.closest("tr");
+    if (row) {
+      if (rowsDone.indexOf(row) !== -1) return;
+      rowsDone.push(row);
+      var first = row.querySelector("td, th");
+      var label = (first ? first.textContent : a.textContent).trim();
+      if (first) first.appendChild(makeButton(function () { return shareUrlFor(a); }, label, TIP));
+      return;
+    }
+    var name = (a.textContent || href).trim();
+    var heading = a.closest("section[id]");
+    var where = heading ? heading.querySelector("h1, h2, h3, h4") : null;
+    a.insertAdjacentElement("afterend", makeButton(function () { return shareUrlFor(a); },
+      name + (where ? " (" + where.textContent.trim() + ")" : ""), TIP));
+  });
+})();
+</script>
+<script>
+/* Tables that adapt to the screen. On a desktop a table stays a table. On a phone, a table of 4 to 10
+   columns becomes stacked cards: each row a card, each value labelled with its column name. Wider
+   tables (more than 10 columns, such as a coverage matrix) stay a grid and scroll sideways inside their
+   own box. CSS in assets/fmw-theme.scss does the switch at phone width; this script adds the labels
+   and the scroll box. */
+(function () {
+  document.querySelectorAll("main table").forEach(function (table) {
+    var head = table.querySelector("thead tr");
+    if (!head) return;
+    var names = Array.prototype.map.call(head.children, function (th) { return th.textContent.trim(); });
+    var cols = names.length;
+    if (cols >= 6) table.classList.add("fmw-dense");
+    if (cols > 10) {
+      if (!table.parentElement.classList.contains("fmw-table-scroll")) {
+        var box = document.createElement("div");
+        box.className = "fmw-table-scroll";
+        table.parentNode.insertBefore(box, table);
+        box.appendChild(table);
+      }
+      return;
+    }
+    if (cols < 4) return;
+    table.classList.add("fmw-stack");
+    table.querySelectorAll("tbody tr").forEach(function (tr) {
+      Array.prototype.forEach.call(tr.children, function (td, i) {
+        if (names[i]) td.setAttribute("data-label", names[i]);
+      });
+    });
+  });
+})();
+</script>
+<script>
+  document.querySelectorAll("section#footnotes").forEach(function (s) {
+    if (s.querySelector("h2")) return;
+    var h = document.createElement("h2");
+    h.id = "notes"; h.className = "fmw-notes-title"; h.textContent = "Notes";
+    var hr = s.querySelector("hr");
+    s.insertBefore(h, hr ? hr.nextSibling : s.firstChild);
+    if (hr) hr.remove();
+  });
+</script>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+</body></html>

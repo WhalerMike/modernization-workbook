@@ -114,7 +114,7 @@ The center of the strategy is the risk tolerance statement, signed by the author
 | Integrity of payment and case records | Low | Accuracy and audit trail |
 | Supply chain | Low | The supply chain strategy (PM-30) |
 
-[Appendix F](appendix-f-prepare-step-templates.md#template-1-risk-management-strategy-and-risk-tolerance-p-2) gives a fill-in outline for the strategy and the tolerance statement, and leaves every value to the agency.
+[Appendix G](appendix-g-prepare-step-templates.md#template-1-risk-management-strategy-and-risk-tolerance-p-2) gives a fill-in outline for the strategy and the tolerance statement, and leaves every value to the agency.
 
 The program's register scores each risk as likelihood times impact, each on a 1-to-5 scale, and sets a response window by score: document and monitor at 1–4, a POA&M within 90 days at 5–9, within 30 days at 10–15, and escalation to the authorizing official with a POA&M within 15 days at 16–25. Those thresholds are the program's design, not federal requirements. Where a federal timeline applies, it governs: a vulnerability in CISA's Known Exploited Vulnerabilities catalog carries the remediation timeline BOD 26-04 sets, whatever the register's score.[^c05-bod2604]
 
