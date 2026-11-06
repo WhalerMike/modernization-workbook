@@ -78,6 +78,9 @@ jobs:
         env:
           REGISTER_BASE: origin/${{ github.base_ref }}
 
+      - name: Check references to books and chapters
+        run: python3 scripts/book_crosswalk.py --check --strict
+
       - name: Run the tiered check
         # The script prints the tier, the reason and every check's result, and
         # writes the summary to $GITHUB_STEP_SUMMARY.
