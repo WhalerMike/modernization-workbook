@@ -530,7 +530,7 @@ This chapter turns the other chapters' outputs into continuous monitoring: a run
 | An edit after packaging and runs out of order are refused (step 8: exit `1` twice) | SI-7; AU-9 | KSI-SVC-VRI | The test results |
 | The comparator, packager and linter pass (step 9: 142 tests) | SA-11 | KSI-CMT-VTD | The repository's test results |
 | The pipeline signs in with a federated credential; no secret is stored (Lab 2, step 1: `credential.json`, `az ad app federated-credential create`) | IA-5 | KSI-IAM-SNU | The app registration; the Entra audit log |
-| The pipeline identity can only read (Lab 2, step 2: Graph read permissions and Reader) | AC-6 | KSI-IAM-ELP | The app registration and role assignments |
+| The pipeline identity reads the tenant and writes only to the evidence container (Lab 2, steps 2 and 3: Graph read permissions, Reader, and Storage Blob Data Contributor on the container) | AC-6 | KSI-IAM-ELP | The app registration and role assignments |
 | Evidence can be created and read, but not changed or deleted, until retention ends (Lab 2, step 3: the `drift-evidence` container's time-based retention, locked in production) | AU-9; AU-11 (Audit Record Retention) | No indicator pairing in this repository's verified mappings | The storage account |
 | The workflow copied into the repository passes the linter before it runs (Lab 2, step 4) | CM-3(2) | KSI-CMT-VTD | The test repository's history |
 | A run by hand writes the baseline package and one issue (Lab 2, step 5) | CA-7 | KSI-MLA-EVC | The evidence container; the tracker |
@@ -565,7 +565,7 @@ Key Security Indicators are FedRAMP 20x indicators for cloud service providers. 
 
 - [ ] The workflow passes `workflow_lint.py` with no findings, and every action is pinned to a commit.
 - [ ] The app has a federated credential whose subject is the pipeline's environment, and no client secret or certificate.
-- [ ] The app has only the Graph read permissions and Azure Reader the selected checks need.
+- [ ] The app has only the Graph read permissions and Azure Reader the selected checks need, plus Storage Blob Data Contributor on the evidence container and nothing wider.
 - [ ] The cloud in the workflow, the Azure environment, the audience and the Graph host agree (`cloud --name` prints them).
 - [ ] The job that signs in has no write grant besides `id-token`; the job that writes issues has no Azure access.
 - [ ] A check that errors leaves its findings open; issues close only on a run that read the tenant.
