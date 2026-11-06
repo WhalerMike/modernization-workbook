@@ -36,7 +36,7 @@ Microsoft's order of preference for the blueprint credential matches the order [
 
 1. **A managed identity as a federated identity credential.** Microsoft recommends it for production blueprints because it obtains Entra tokens without any credential to manage; it requires the code to run on an Azure service.[^c06-create-blueprint] It is a credential on the blueprint, not a replacement for the agent identity.[^c06-agent-sps]
 2. **Workload identity federation** for agents running outside Azure. Microsoft documents two integration patterns for agents built on other platforms such as Amazon Bedrock and n8n: the Microsoft Entra ID Auth SDK running as a sidecar, and federation.[^c06-third-party] Federation moves trust to the external issuer, so approving a federated credential is approving every workload that issuer will vouch for under that subject ([Book 04, Chapter 05](../b04-access/05-applications-and-workload-identities.md#workload-identity-federation)).
-3. **A certificate**, with the private key in Azure Key Vault or a hardware security module, rotated at least annually even though blueprints allow long-lived credentials.[^c06-best-practices]
+3. **A certificate**, with the private key in Azure Key Vault or a hardware security module, kept within the program's 180-day certificate cap (below) even though blueprints allow long-lived credentials.[^c06-best-practices]
 4. **A client secret only for development and test.** Microsoft supports secrets on blueprints but says they aren't recommended for production, and its best practices say to rotate them out before going live.[^c06-create-blueprint][^c06-best-practices]
 
 Microsoft also says to isolate credentials per blueprint and per environment, using separate blueprints or environment-specific federated credentials for development, test and production, and to review sign-in logs to confirm agents use the intended credential type.[^c06-best-practices]
@@ -218,7 +218,7 @@ The Conditional Access rows for GCC need care. Microsoft's Agent 365 service des
 
 ![This book's certificates and the engine that renews each.](../../images/diagrams/b17-ai-identity/svg/certs-clm.svg){fig-alt="Agent blueprint and service principal certificates go to the app's owner or Key Vault (outside book 07's classes); Global Secure Access TLS inspection, Google agent identities (SPIFFE certificates) go to Platform-managed, or not X.509 (no clm lifecycle)."}
 
-None of this book's certificates is renewed by the CLM platform. Agent and service-principal certificates aren't one of Book 07's classes; this book's annual rotation and the 180-day app policy govern them, and the platform at most places the certificate in Key Vault (inference).[^clm-drivers]
+None of this book's certificates is renewed by the CLM platform. Agent and service-principal certificates aren't one of Book 07's classes; the 180-day certificate cap in the program's application management policy governs them, and the platform at most places the certificate in Key Vault (inference).[^clm-drivers]
 
 
 ::: {.callout-tip}

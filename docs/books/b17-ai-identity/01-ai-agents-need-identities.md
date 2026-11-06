@@ -19,7 +19,7 @@ lifecycle_review: 2027-04-01
 
 ::: {.callout-note}
 ## In this chapter
-What changes when an AI system stops answering questions and starts taking actions, and the three ways such a system reaches agency data. How most AI arrived outside the identity program, so that it has no owner of record, no organizational placement, no credential lifecycle and no leaver process. Why the risks it carries are identity risks, and why the existing control catalog already covers it. And the seven things every AI identity needs, which the rest of the book builds.
+What changes when an AI system stops answering questions and starts taking actions, and the four ways such a system reaches agency data. How most AI arrived outside the identity program, so that it has no owner of record, no organizational placement, no credential lifecycle and no leaver process. Why the risks it carries are identity risks, and why the existing control catalog already covers it. And the seven things every AI identity needs, which the rest of the book builds.
 :::
 
 A chat assistant that drafts a memo for a person to read is a tool. The person reads the draft, decides what to keep and sends it under their own name. Nothing the assistant does reaches a record until a person acts.
@@ -38,9 +38,9 @@ The inventory shows where agencies are. OMB's consolidated 2025 inventory, as of
 
 The rest of this book uses a simple distinction. An AI system that only answers produces output that a person then acts on. An AI system that can act, not just answer, holds its own access and uses it. Both need governing. The second needs governing as an identity, because it is one.
 
-## Three ways in
+## Four ways in
 
-However it is built, an AI system that acts reaches agency data in one of three ways, and Microsoft's documentation for agents in Entra ID lays them out clearly.[^c01-ca-agents]
+However it is built, an AI system that acts reaches agency data in one of four ways. Three run through the identity provider, and Microsoft's documentation for agents in Entra ID lays them out clearly.[^c01-ca-agents]
 
 1. **On behalf of a signed-in user.** The agent exchanges the user's sign-in for a token to the resource it needs. The user is the token's subject; the agent is the actor. Policy applies to the user, and the agent can reach whatever the user can reach.
 2. **As itself.** The agent requests a token with its own identity and no user present. The agent's identity is the subject, and policy targets that identity. This is how a background agent runs on a schedule or responds to events.
