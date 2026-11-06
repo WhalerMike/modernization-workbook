@@ -224,6 +224,8 @@ The program's schedule, by target. It refines the review schedule in [Book 02, C
 | Tier 3 application access groups | Annual (January) | 21 days | Application or department owner | Department owner | No change | Yes |
 | Packages and groups with guests | Quarterly | 14 days | Sponsors | Governance office | Remove access | Yes |
 | Microsoft 365 group membership | Semiannual | 21 days | Group owners | Governance office | No change | No (recommendations only) |
+| `CA-Exclude-*` conditional access exclusion groups | Quarterly | 14 days | Group owner | Governance office | Remove access | Yes |
+| `PIM-Approvers-*` approver groups | Quarterly (`PIM-Approvers-T0` monthly, with the Tier 0 row) | 14 days | Governance office | Privileged Role Administrator | Remove access | Yes |
 
 ### Upon completion: auto-apply and the no-response default
 
@@ -318,7 +320,7 @@ A gap in log forwarding is a gap in evidence. The governance office confirms for
 
 ### Governance alerts
 
-Detections that guard the governance process itself run in the SIEM; the detection queries for privileged activity and sign-in coverage are in [Book 02, Chapter 10](../b02-identity/10-migrating-and-governing.md#detection-rules) and the consent and application alerts are [Chapter 05](05-applications-and-workload-identities.md)'s. Three are specific to this chapter:
+Detections that guard the governance process itself run in the SIEM; the detection queries for privileged activity and sign-in coverage are in [Book 02, Chapter 10](../b02-identity/10-migrating-and-governing.md#detection-rules) and the consent and application alerts are in [Chapter 06, Evidence and monitoring](06-who-decides-access.md#evidence-and-monitoring). Three are specific to this chapter:
 
 | Alert | Trigger | Priority |
 |---|---|---|
