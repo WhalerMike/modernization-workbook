@@ -29,7 +29,7 @@ The conversion behind the project plan's tasks N3.2 to N3.4: workload identities
 ## Narrated tour
 {{< fmw-video DW_NPI_05_Workload_Federation_Narrated >}}
 
-[Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.3/DW_NPI_05_Workload_Federation.pptx) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.3/DW_NPI_05_Workload_Federation_Narrated.pptx) (about 12 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-npi-05-workload-federation/DW_NPI_05_Workload_Federation_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-npi-05-workload-federation/DW_NPI_05_Workload_Federation_Narrated.vtt). Recorded on November 2, 2026 from the approved chapter.
+[Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.4/DW_NPI_05_Workload_Federation.pptx) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.4/DW_NPI_05_Workload_Federation_Narrated.pptx) (about 12 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-npi-05-workload-federation/DW_NPI_05_Workload_Federation_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-npi-05-workload-federation/DW_NPI_05_Workload_Federation_Narrated.vtt). Recorded on November 2, 2026 from the approved chapter.
 :::
 
 <!-- tour:end -->

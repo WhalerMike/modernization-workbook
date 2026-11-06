@@ -666,6 +666,138 @@ editions:
       developer-workbooks/ticket-to-machine:
         changes:
           - "Review gate: Mike's approval of the 53 pages in the November 2 review packet (#334)"
+  - id: edition-2026.11.4
+    date: 2026-11-05
+    commit: 77a4644744d9fb2d0a1ab17b7593b9572ed7932d
+    summary: "Source links on every deck that cites a source, through a Source Register of 519 rows, and corrected book and chapter wording, with eight videos re-recorded."
+    units:
+      b00-orientation:
+        changes:
+          - "Approve ten pages on Mike's word, and drop two names from the briefs (#360)"
+          - "Sweep stale wording, and link sources on every deck (#361)"
+      b01-transformation-arc:
+        changes:
+          - "Sweep stale wording, and link sources on every deck (#361)"
+      b02-identity:
+        changes:
+          - "Sweep stale wording, and link sources on every deck (#361)"
+      b03-hr-identity:
+        changes:
+          - "Sweep stale wording, and link sources on every deck (#361)"
+      b04-access:
+        changes:
+          - "Sweep stale wording, and link sources on every deck (#361)"
+      b05-devices:
+        changes:
+          - "Sweep stale wording, and link sources on every deck (#361)"
+      b06-data-platform:
+        changes:
+          - "Sweep stale wording, and link sources on every deck (#361)"
+      b07-pki:
+        changes:
+          - "Sweep stale wording, and link sources on every deck (#361)"
+      b08-ddi:
+        changes:
+          - "Sweep stale wording, and link sources on every deck (#361)"
+      b09-network:
+        changes:
+          - "Sweep stale wording, and link sources on every deck (#361)"
+      b10-cloud-boundary:
+        changes:
+          - "Sweep stale wording, and link sources on every deck (#361)"
+      b11-zero-trust:
+        changes:
+          - "Sweep stale wording, and link sources on every deck (#361)"
+      b12-security-operations:
+        changes:
+          - "Approve ten pages on Mike's word, and drop two names from the briefs (#360)"
+          - "Sweep stale wording, and link sources on every deck (#361)"
+      b13-governance:
+        changes:
+          - "Approve ten pages on Mike's word, and drop two names from the briefs (#360)"
+          - "Sweep stale wording, and link sources on every deck (#361)"
+      b14-compliance:
+        changes:
+          - "Approve ten pages on Mike's word, and drop two names from the briefs (#360)"
+          - "Sweep stale wording, and link sources on every deck (#361)"
+      b15-day2-operations:
+        changes:
+          - "Approve ten pages on Mike's word, and drop two names from the briefs (#360)"
+          - "Sweep stale wording, and link sources on every deck (#361)"
+      b16-people:
+        changes:
+          - "Approve ten pages on Mike's word, and drop two names from the briefs (#360)"
+          - "Sweep stale wording, and link sources on every deck (#361)"
+      b17-ai-identity:
+        changes:
+          - "Approve ten pages on Mike's word, and drop two names from the briefs (#360)"
+          - "Sweep stale wording, and link sources on every deck (#361)"
+      b18-application-modernization:
+        changes:
+          - "Sweep stale wording, and link sources on every deck (#361)"
+      b19-developer-workbook:
+        changes:
+          - "Sweep stale wording, and link sources on every deck (#361)"
+      guides/ansible-configuration-automation:
+        changes:
+          - "Deck and audio links point at edition 2026.11.4"
+      guides/arc-track-implementation:
+        changes:
+          - "Deck and audio links point at edition 2026.11.4"
+      guides/attribute-driven-migration-implementation:
+        changes:
+          - "Deck and audio links point at edition 2026.11.4"
+      guides/attribute-driven-migration:
+        changes:
+          - "Deck and audio links point at edition 2026.11.4"
+      guides/cisco-sdwan-implementation:
+        changes:
+          - "Approve ten pages on Mike's word, and drop two names from the briefs (#360)"
+      guides/cyberark-certificate-lifecycle:
+        changes:
+          - "Approve ten pages on Mike's word, and drop two names from the briefs (#360)"
+      guides/effective-meetings:
+        changes:
+          - "Deck and audio links point at edition 2026.11.4"
+      guides/hcm-entra-implementation:
+        changes:
+          - "Deck and audio links point at edition 2026.11.4"
+      guides/hr-driven-identity-implementation:
+        changes:
+          - "Approve ten pages on Mike's word, and drop two names from the briefs (#360)"
+      guides/infoblox-nios-implementation:
+        changes:
+          - "Approve ten pages on Mike's word, and drop two names from the briefs (#360)"
+      guides/intune-track-implementation:
+        changes:
+          - "Deck and audio links point at edition 2026.11.4"
+      guides/non-person-identity-implementation:
+        changes:
+          - "Deck and audio links point at edition 2026.11.4"
+      guides/privileged-access-implementation:
+        changes:
+          - "Deck and audio links point at edition 2026.11.4"
+      guides/snow-sailpoint-integration-kit:
+        changes:
+          - "Deck and audio links point at edition 2026.11.4"
+      guides/ttm-servicenow-sailpoint:
+        changes:
+          - "Approve ten pages on Mike's word, and drop two names from the briefs (#360)"
+      guides/ttm-task-catalog:
+        changes:
+          - "Deck and audio links point at edition 2026.11.4"
+      developer-workbooks/hr-driven-identity:
+        changes:
+          - "Deck and audio links point at edition 2026.11.4"
+      developer-workbooks/non-person-identity:
+        changes:
+          - "Deck and audio links point at edition 2026.11.4"
+      developer-workbooks/privileged-access:
+        changes:
+          - "Deck and audio links point at edition 2026.11.4"
+      developer-workbooks/ticket-to-machine:
+        changes:
+          - "Approve ten pages on Mike's word, and drop two names from the briefs (#360)"
 # (scripts/cut_edition.py adds each new edition at the end of the list above.)
 
 # Releases that aren't editions (kits, video sets), listed on the Archive page.

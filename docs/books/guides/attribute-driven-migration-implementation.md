@@ -666,10 +666,11 @@ This is a companion guide, not part of a numbered book. [← The Workbook Books]
 
 ## Version and revision history {#version-history}
 
-**Version 1.4**, in [edition 2026.11.3](../../about/archive.md#edition-2026-11-3) (November 5, 2026). Every edition is kept on the [Archive](../../about/archive.md) page; every change between editions is in the [commit history](https://github.com/WhalerMike/modernization-workbook/commits/main/docs/books/guides/attribute-driven-migration-implementation.md).
+**Version 1.5**, in [edition 2026.11.4](../../about/archive.md#edition-2026-11-4) (November 5, 2026). Every edition is kept on the [Archive](../../about/archive.md) page; every change between editions is in the [commit history](https://github.com/WhalerMike/modernization-workbook/commits/main/docs/books/guides/attribute-driven-migration-implementation.md).
 
 | Version | Edition | Date | Changes |
 |---|---|---|---|
+| 1.5 | [2026.11.4](../../about/archive.md#edition-2026-11-4) | 2026-11-05 | Deck and audio links point at edition 2026.11.4 |
 | 1.4 | [2026.11.3](../../about/archive.md#edition-2026-11-3) | 2026-11-05 | Deck and audio links point at edition 2026.11.3 |
 | 1.3 | [2026.11.2](../../about/archive.md#edition-2026-11-2) | 2026-11-02 | Labs: one page that lists every lab, and "Try it" links in the guides ([#290](https://github.com/WhalerMike/modernization-workbook/pull/290)); Attribute-Driven Migration learning path: nine modules on Book 19 ([#323](https://github.com/WhalerMike/modernization-workbook/pull/323)) |
 | 1.2 | [2026.11.1](../../about/archive.md#edition-2026-11-1) | 2026-11-01 | Edition 2026.11: record the edition, and publish the four gate-level decks and videos ([#282](https://github.com/WhalerMike/modernization-workbook/pull/282)) |

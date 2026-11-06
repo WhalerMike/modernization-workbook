@@ -155,10 +155,11 @@ The prompt sheet `copilot-prompts.md` has copy-paste prompts to turn a task desc
 
 ## Version and revision history {#version-history}
 
-**Version 1.1**, in [edition 2026.11.3](../../about/archive.md#edition-2026-11-3) (November 5, 2026). Every edition is kept on the [Archive](../../about/archive.md) page; every change between editions is in the [commit history](https://github.com/WhalerMike/modernization-workbook/commits/main/docs/books/guides/ttm-task-catalog.md).
+**Version 1.2**, in [edition 2026.11.4](../../about/archive.md#edition-2026-11-4) (November 5, 2026). Every edition is kept on the [Archive](../../about/archive.md) page; every change between editions is in the [commit history](https://github.com/WhalerMike/modernization-workbook/commits/main/docs/books/guides/ttm-task-catalog.md).
 
 | Version | Edition | Date | Changes |
 |---|---|---|---|
+| 1.2 | [2026.11.4](../../about/archive.md#edition-2026-11-4) | 2026-11-05 | Deck and audio links point at edition 2026.11.4 |
 | 1.1 | [2026.11.3](../../about/archive.md#edition-2026-11-3) | 2026-11-05 | Review gate: Mike's approval of the 15 implementation guides gated on November 3 ([#348](https://github.com/WhalerMike/modernization-workbook/pull/348)) |
 | 1.0 | [2026.11.2](../../about/archive.md#edition-2026-11-2) | 2026-11-02 | Ticket-to-Machine task catalog pack: build an internal task catalog with Copilot ([#310](https://github.com/WhalerMike/modernization-workbook/pull/310)) |
 

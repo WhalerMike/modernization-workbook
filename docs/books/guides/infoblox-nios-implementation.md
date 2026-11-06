@@ -22,8 +22,8 @@ last-reviewed: 2026-11-05
 
 | Edition | File |
 |---|---|
-| Deck, presented live (about 52 minutes) | [Research_Infoblox_Impl.pptx](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.3/Research_Infoblox_Impl.pptx) |
-| Narrated, self-running (about 22 minutes, captions) | [Research_Infoblox_Impl_Narrated.pptx](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.3/Research_Infoblox_Impl_Narrated.pptx) |
+| Deck, presented live (about 52 minutes) | [Research_Infoblox_Impl.pptx](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.4/Research_Infoblox_Impl.pptx) |
+| Narrated, self-running (about 22 minutes, captions) | [Research_Infoblox_Impl_Narrated.pptx](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.4/Research_Infoblox_Impl_Narrated.pptx) |
 | Narration script and caption track | [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/research-infoblox-impl/Research_Infoblox_Impl_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/research-infoblox-impl/Research_Infoblox_Impl_Narrated.vtt) |
 
 ## What it covers
@@ -65,10 +65,11 @@ Related: [Book 08 — DNS, DHCP & IPAM](../b08-ddi/index.md), the [Book 08 techn
 
 ## Version and revision history {#version-history}
 
-**Version 1.2**, in [edition 2026.11.3](../../about/archive.md#edition-2026-11-3) (November 5, 2026). Every edition is kept on the [Archive](../../about/archive.md) page; every change between editions is in the [commit history](https://github.com/WhalerMike/modernization-workbook/commits/main/docs/books/guides/infoblox-nios-implementation.md).
+**Version 1.3**, in [edition 2026.11.4](../../about/archive.md#edition-2026-11-4) (November 5, 2026). Every edition is kept on the [Archive](../../about/archive.md) page; every change between editions is in the [commit history](https://github.com/WhalerMike/modernization-workbook/commits/main/docs/books/guides/infoblox-nios-implementation.md).
 
 | Version | Edition | Date | Changes |
 |---|---|---|---|
+| 1.3 | [2026.11.4](../../about/archive.md#edition-2026-11-4) | 2026-11-05 | Approve ten pages on Mike's word, and drop two names from the briefs ([#360](https://github.com/WhalerMike/modernization-workbook/pull/360)) |
 | 1.2 | [2026.11.3](../../about/archive.md#edition-2026-11-3) | 2026-11-05 | Review gate: Mike's approval of the 15 implementation guides gated on November 3 ([#348](https://github.com/WhalerMike/modernization-workbook/pull/348)) |
 | 1.1 | [2026.11.1](../../about/archive.md#edition-2026-11-1) | 2026-11-01 | Edition 2026.11: record the edition, and publish the four gate-level decks and videos ([#282](https://github.com/WhalerMike/modernization-workbook/pull/282)) |
 | 1.0 | [2026.11](../../about/archive.md#edition-2026-11) | 2026-11-01 | Retire Research: move each page to a home by type (guides, training, reference, evaluations, explainers) ([#269](https://github.com/WhalerMike/modernization-workbook/pull/269)) |
