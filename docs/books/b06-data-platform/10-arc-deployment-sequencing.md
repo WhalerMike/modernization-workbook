@@ -51,7 +51,7 @@ The extension registers every instance of SQL Server 2014 or later, so it isn't 
 - The extension's deployer connects as `NT AUTHORITY\SYSTEM` with Windows authentication, so that login must exist, be enabled and hold `CONNECT SQL`. Hardening baselines that remove it make the extension fail to provision.
 - On Windows, the host needs .NET Framework 4.7.2 or later.
 
-The authentication-audit script's Arc-eligibility classification (Category 1 versus Category 2 versus Category 3) is the primary input for prioritizing Arc deployment across the estate. Category 2 instances are the immediate deployment targets, and the audit's login inventory and NTLM risk signals within Category 2 are used to order those deployments by remediation urgency.
+The Arc-eligibility classification derived from the authentication audit (Category 1 versus Category 2 versus Category 3, [Runbook R03](r03-the-authentication-audit.md)) is the primary input for prioritizing Arc deployment across the estate. Category 2 instances are the immediate deployment targets, and the audit's login inventory and NTLM risk signals within Category 2 are used to order those deployments by remediation urgency.
 
 ## Enabling Microsoft Entra authentication on the instance
 
@@ -79,7 +79,7 @@ The first check calls the Arc agent's local identity endpoint (HIMDS) on the ser
 
 A successful token response confirms three things at once: that the managed identity exists in Entra ID, that the Arc agent is functioning, and that the server's ARM resource is in a healthy state. A failed token response at this stage requires Arc troubleshooting before the SQL Server migration can proceed.
 
-The authentication-audit script's Arc-eligibility classification is updated on each run to reflect the current managed-identity state, so the per-instance compliance record reflects this verification outcome in near real time.
+The Arc-eligibility classification is re-derived on each audit run to reflect the current managed-identity state, so the per-instance compliance record reflects this verification outcome in near real time.
 
 ::: {.callout-note title="What this chapter establishes"}
 1. Enrollment runs in a strict order: egress connectivity, the Connected Machine agent, the SQL extension (deployed automatically), then Entra authentication configured per instance.

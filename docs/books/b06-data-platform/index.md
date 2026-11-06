@@ -58,7 +58,7 @@ Appendices: [A — Requirements mapping](appendix-a-requirements-mapping.md) · 
 
 ## The destination
 
-Windows Authentication and SQL Authentication are eliminated for SQL Server 2022 and later and replaced with Microsoft Entra authentication: OAuth 2.0 tokens, an Entra identity for each instance (the Arc managed identity on SQL Server 2025, an app registration on SQL Server 2022), and multifactor authentication for every human principal. Versions that can't use Entra authentication reach the closed state only by upgrade or retirement.
+For SQL Server 2022 and later, no usable Windows-backed or SQL Authentication login remains, and Microsoft Entra authentication replaces them, as the evidenced Entra-exclusive operational posture rather than an engine mode: OAuth 2.0 tokens, an Entra identity for each instance (the Arc managed identity on SQL Server 2025, an app registration on SQL Server 2022), and multifactor authentication for every human principal. Versions that can't use Entra authentication reach the closed state only by upgrade or retirement.
 
 ![How a connection authenticates before, during and after the transformation.](../../images/sql-server/diagrams/svg/series-01-before-during-after.svg){fig-alt="Before: a domain-joined client gets a Kerberos ticket or falls back to NTLM, invisible to Entra ID. During: legacy and migrated clients coexist, with two authorities and old logins disabled after validation. After: users, apps and managed identities authenticate with Entra tokens and no domain controller is in the path."}
 

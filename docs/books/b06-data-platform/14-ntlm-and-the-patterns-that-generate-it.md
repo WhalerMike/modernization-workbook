@@ -56,7 +56,7 @@ NTLMv1 found by the authentication audit or Phase A traffic analysis is a critic
 
 ## NTLMv2: the program's 2027-04-01 backstop
 
-NTLMv2 is what most SQL Server NTLM traffic in a modern estate uses. Phase B restricts it to documented exception groups; Phase C disables it at the 2027-04-01 hard cutover, the program's own backstop. That is a program decision, not a Microsoft deadline: Microsoft's stated plan is to disable network NTLM by default, not remove it, in the next major Windows release, subject to change.[^c14-plan] SQL Server NTLMv2 connections must move before that date either to Kerberos, as an interim posture, or to Entra ID OAuth 2.0 authentication, the final destination.
+NTLMv2 is what most SQL Server NTLM traffic in a modern estate uses. Phase B restricts it to documented exception lists; Phase C disables it at the 2027-04-01 hard cutover, the program's own backstop. That is a program decision, not a Microsoft deadline: Microsoft's stated plan is to disable network NTLM by default, not remove it, in the next major Windows release, subject to change.[^c14-plan] SQL Server NTLMv2 connections must move before that date either to Kerberos, as an interim posture, or to Entra ID OAuth 2.0 authentication, the final destination.
 
 Cloud Kerberos trust, which the Kerberos/NTLM-elimination program deploys for Windows Hello for Business, helps the interim posture on Entra-joined clients: the client gets a partial ticket-granting ticket from Entra ID and exchanges it with an on-premises domain controller for a full one, which it then uses for resources such as SQL Server.[^c14-entra-kerberos] It doesn't remove the domain controller from the path, which matters for Pattern Two below.
 
@@ -106,7 +106,7 @@ In the program's target architecture, Arc-enabled servers run without a domain j
 
 ::: {.callout-note title="What this chapter establishes"}
 1. NTLM is a protocol, not a setting; no single switch removes it from SQL Server connections. Microsoft has deprecated every version and removed NTLMv1 from current Windows, but the 2027-04-01 date is the program's.
-2. NTLMv1 is blocked early with LAN Manager level 5, which still accepts NTLMv2; NTLMv2 is restricted to exception groups, then blocked at the program's 2027-04-01 cutover.
+2. NTLMv1 is blocked early with LAN Manager level 5, which still accepts NTLMv2; NTLMv2 is restricted to documented exception lists, then blocked at the program's 2027-04-01 cutover.
 3. Four patterns generate NTLM at the SQL layer (missing SPNs, unreachable domain controllers, linked-server passthrough and non-domain-joined or same-host clients), and each must be found before it can be fixed. Duplicate or misplaced SPNs fail rather than fall back.
 :::
 

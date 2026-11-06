@@ -45,7 +45,7 @@ The commands and queries on this page are illustrative. They haven't been tested
     -OutputPath .\output\$(Get-Date -Format yyyy-MM-dd)
 ```
 
-The audit JSON's `InstanceAudits[]` already carries the raw closure signals: `AuthenticationMode` (read from `SERVERPROPERTY('IsIntegratedSecurityOnly')`, so it reports the *running* mode as "Windows Authentication Only" or "Mixed Mode (Windows + SQL)"), the `SQLLogins`, `WindowsLogins` and `OrphanedLogins` arrays (login-type counts), the `IsSA`, `IsDisabled` and `PasswordLastSet` columns in the per-login `*_logins.csv`, and the service-identity and `EntraIDReady` fields (Arc and extension state). It's the same output Runbook R03 documents. Continuous monitoring isn't a different script, only a different cadence.
+The audit JSON's `InstanceAudits[]` already carries the raw closure signals: `AuthenticationMode` (read from `SERVERPROPERTY('IsIntegratedSecurityOnly')`, so it reports the *running* mode as "Windows Authentication Only" or "Mixed Mode (Windows + SQL)"), the `SQLLogins`, `WindowsLogins` and `OrphanedLogins` arrays (login-type counts), the `IsSA`, `IsDisabled` and `PasswordLastSet` columns in the per-login `*_logins.csv`, and the service-identity and `EntraIDReady` fields (a readiness flag; Arc agent and extension state come from the Arc inventory, joined by host). It's the same output Runbook R03 documents. Continuous monitoring isn't a different script, only a different cadence.
 
 ## Step 2 — Assemble the per-instance closure record
 
@@ -60,8 +60,8 @@ The closure record's field set is the canonical one in [Chapter 20](20-the-closu
 | 3 | Every other active login is **type E or X** and maps to a known user, application or group | Entra principals are reconciled, not just present ([Chapter 17](17-dynamic-membership-delegation-and-privilege.md)) | Login census joined to the Entra inventory ([Runbook R07](r07-groups-aus-and-the-conditional-access-perimeter.md)) |
 | 3 | Zero remote **NTLM or Kerberos** connections over the validation period | Nothing but Entra authentication is in use | `auth_scheme` sampling, SQL Server Audit and host logon events (Step 4; external join) |
 | 3 | The expected principals obtain SQL tokens and log in | Entra authentication is observed working | Entra sign-in logs (external join) and SQL Server Audit (Step 4) |
-| 4 | Arc Connected Machine agent **connected** | The host is reachable from the cloud control plane | Service-identity and Arc fields; `azcmagent show` reports *Agent Status* ([Runbook R04](r04-arc-deployment-and-managed-identity.md))[^r09-azcmagent] |
-| 4 | Azure extension for SQL Server **deployed** | The engine has the extension that manages its Entra configuration | Extension state |
+| 4 | Arc Connected Machine agent **connected** | The host is reachable from the cloud control plane | Arc inventory joined by host; `azcmagent show` reports *Agent Status* ([Runbook R04](r04-arc-deployment-and-managed-identity.md))[^r09-azcmagent] |
+| 4 | Azure extension for SQL Server **deployed** | The engine has the extension that manages its Entra configuration | Extension state (Arc inventory, joined by host) |
 | 4 | Microsoft Entra authentication **configured** on the instance | The engine can validate Entra tokens: through the primary managed identity on SQL Server 2025, or an app registration on SQL Server 2022[^r09-mi] | `EntraIDReady` plus extension state |
 | 5 | **MFA through Conditional Access** for human SQL Server sign-ins over the validation period | Every human sign-in to the SQL resource met MFA | Entra sign-in logs and Conditional Access results (external join) |
 
@@ -85,7 +85,7 @@ The program records specific transitions as **compliance violations**, not advis
 
 - `LoginMode` changing **1 → 2** (Windows Authentication mode to mixed mode): mixed mode enabled without authorization. The new mode takes effect only when the service restarts,[^r09-auth-mode] and the D1.8 audit reads the running mode, so a change made in the registry is invisible to the audit until that restart. If earlier warning matters, add a registry check of `LoginMode` alongside the audit.
 - A **new type-S** login present this run but not last: a SQL Authentication login was created.
-- A **new type-U or type-G** login on a previously Entra-only instance: Windows-backed identity was reintroduced.
+- A **new type-U or type-G** login on an instance previously in the Entra-exclusive posture: Windows-backed identity was reintroduced.
 - The **Arc agent offline** or the SQL Server extension unavailable: Entra token validation on the engine is at risk.
 
 **`Compare-FMPClosureRun`**, in the `FMPSqlServerMigration` module, is the mechanical diff. It indexes a baseline and a current D1.8 run by instance and emits one event per regression (`mixed_mode_enabled`, `new_sql_auth_login`, `new_windows_login`, `arc_agent_offline`, each flagged `violation = true`), plus informational `instance_appeared` and `instance_disappeared` events. An appeared instance is a possible discovery gap; re-run Runbook R02. The envelope's `compliance_violation` is true whenever any violation event is present.

@@ -19,14 +19,14 @@ lifecycle_review: 2027-04-01
 
 ::: {.callout-note}
 ## In this runbook
-The two-phase NTLM runbook for SQL Server. Phase 1 is detection: three read-only audits that map every `MSSQLSvc` service principal name (SPN), classify the collisions that force NTLM fallback, and find the delegation settings that shape what can move to Kerberos. Phase 2 is remediation: SPN registration and repair, linked-server fixes, and the phased Group Policy restriction, each review-required and run through change control.
+The two-phase NTLM runbook for SQL Server. Phase 1 is detection: three read-only audits that map every `MSSQLSvc` service principal name (SPN), classify the SPN collisions that break Kerberos, and find the delegation settings that shape what can move to Kerberos. Phase 2 is remediation: SPN registration and repair, linked-server fixes, and the phased Group Policy restriction, each review-required and run through change control.
 :::
 
 **Pairs with:** [Chapter 14 — NTLMv1, NTLMv2 and the Patterns That Generate NTLM](14-ntlm-and-the-patterns-that-generate-it.md) and [Chapter 15 — The Three Phases of NTLM Elimination for SQL Server](15-the-three-phases-of-ntlm-elimination.md). Those chapters explain why NTLM is a protocol you negotiate your way out of, not a switch you turn off. This page is the detect-then-remediate procedure. Detection is read-only and backed by the program's discovery scripts. Remediation changes production (SPNs, linked servers and Group Policy) and is marked review-required throughout.
 
 ## The shape of the problem
 
-Windows Authentication to SQL Server tries Kerberos first. The client builds an SPN for the instance and asks the Key Distribution Center (KDC) for a ticket; if no ticket can be obtained, authentication falls back to NTLM.[^r06-spn] In practice that happens for four reasons: a missing or duplicated `MSSQLSvc` SPN, a client that can't reach a KDC, a linked-server hop that needs delegation, or a host or client outside the domain. One more case surprises teams that measure NTLM: even with a correct SPN, a *local* connection on the SQL Server host itself uses NTLM, and only remote connections use Kerberos.[^r06-spn] And an SPN registered to the *wrong* account doesn't fall back at all; authentication fails.[^r06-spn]
+Windows Authentication to SQL Server tries Kerberos first. The client builds an SPN for the instance and asks the Key Distribution Center (KDC) for a ticket; if no ticket can be obtained, authentication falls back to NTLM.[^r06-spn] In practice that happens for four reasons: a missing `MSSQLSvc` SPN, a client that can't reach a KDC, a linked-server hop that needs delegation, or a host or client outside the domain. One more case surprises teams that measure NTLM: even with a correct SPN, a *local* connection on the SQL Server host itself uses NTLM, and only remote connections use Kerberos.[^r06-spn] And an SPN registered to the *wrong* account, or a *duplicated* SPN, doesn't fall back at all; authentication fails.[^r06-spn]
 
 You can't remediate what you haven't detected, so this runbook has two phases: **detect** (run first, read-only), then **remediate** (review-required, audit first).
 
@@ -50,13 +50,13 @@ This script catalogs every SPN, flags duplicates and orphans, and assigns a migr
 
 The source table also listed a `-D4InputFile` parameter for a Spec1-D1.4 cross-reference; the script has no such parameter, so it's removed here. Delegation is reported per SPN from the account's own attributes (`HasDelegation`).
 
-The output is a `*_SPNInventory_<domain>_<timestamp>.json` file (`Summary`, `SPNs[]`, `Duplicates[]`, `Orphans[]`) plus `*.csv` and, when duplicates exist, `*_duplicates.csv`. Each SPN record includes `IsOrphan`, `DaysSinceLogon`, `HasDelegation` and a `MigrationTarget`; for `MSSQLSvc` the target is *"Entra ID auth for SQL 2022+ via Arc"*, because Microsoft Entra authentication starts with SQL Server 2022.[^r06-entra-sql] A **missing** `MSSQLSvc` SPN is the most common silent-NTLM root cause in the program's experience; a **duplicate** is the second.
+The output is a `*_SPNInventory_<domain>_<timestamp>.json` file (`Summary`, `SPNs[]`, `Duplicates[]`, `Orphans[]`) plus `*.csv` and, when duplicates exist, `*_duplicates.csv`. Each SPN record includes `IsOrphan`, `DaysSinceLogon`, `HasDelegation` and a `MigrationTarget`; for `MSSQLSvc` the target is *"Entra ID auth for SQL 2022+ via Arc"*, because Microsoft Entra authentication starts with SQL Server 2022.[^r06-entra-sql] A **missing** `MSSQLSvc` SPN is the most common silent-NTLM root cause in the program's experience. A **duplicate** isn't a silent-NTLM cause: it breaks Kerberos and makes the connection fail, so it surfaces as an error rather than as NTLM traffic.
 
 The SPN formats SQL Server uses are `MSSQLSvc/<FQDN>:<port>` for TCP connections (default and named instances), and `MSSQLSvc/<FQDN>` or `MSSQLSvc/<FQDN>:<instancename>` for other protocols. When SQL Server starts it tries to register the TCP form itself, and this succeeds only if its service account has permission to write `servicePrincipalName`; virtual accounts and managed service accounts can.[^r06-spn] An inventory that shows no `MSSQLSvc` SPN for an instance running under a domain user account usually means that registration failed at startup, which SQL Server records as a warning in its error log.[^r06-spn]
 
 ### `Spec3-D1.7-Get-SPNCollisionReport.ps1` — what breaks Kerberos
 
-This script consumes the D1.5 inventory (or queries Active Directory live) and classifies the collisions that force NTLM fallback.
+This script consumes the D1.5 inventory (or queries Active Directory live) and classifies the collisions that break Kerberos authentication.
 
 | Parameter | Type | Default | Purpose |
 |---|---|---|---|
@@ -149,7 +149,7 @@ NTLM elimination is sequenced, not a single cutover. Two different policy famili
 ## Verification and rollback
 
 - **Verify Kerberos** after SPN work. On a client, run `klist purge`, reconnect, and run `klist` to confirm that a `MSSQLSvc` ticket was issued; `klist get MSSQLSvc/sqlhost.contoso.gov:1433` requests one directly.[^r06-klist] On the instance, `SELECT auth_scheme FROM sys.dm_exec_connections WHERE session_id = @@SPID;` returns `KERBEROS` for a Kerberos connection.[^r06-spn] Test from a remote client; a local connection reports NTLM by design.[^r06-spn]
-- **Re-run detection.** Spec3-D1.7 should report zero CRITICAL collisions, and the Spec3-D1.8 audit ([Runbook R03](r03-the-authentication-audit.md)) should show no NTLM connections for the instance.
+- **Re-run detection.** Spec3-D1.7 should report zero CRITICAL collisions, and the connection checks of [Runbook R05](r05-login-migration-and-parallel-run.md) (the `sys.dm_exec_connections` query and SQL Server Audit) should show no remote NTLM connections for the instance. The Spec3-D1.8 audit doesn't carry connection data, so it can't show this.
 - **Rollback.** SPN changes are reversible (`setspn -D`, or re-add with `-S`). Group Policy changes revert by restoring the prior LAN Manager level and *Restrict NTLM* values. Because the Group Policy block is the *last* step, the earlier Kerberos fixes can be validated long before anything is refused.
 
 ::: {.callout-tip}

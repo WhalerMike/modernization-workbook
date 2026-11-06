@@ -115,7 +115,8 @@ List prices change and agreements differ, so this table names the license each c
 | 03–08 | Arc inventory and the audit | SQL Server license; Arc's client connection summary needs Software Assurance, a SQL Server subscription or pay-as-you-go | [^aB-arcov] |
 | 09–12 | Entra authentication on the engine | Available with "License only": no Software Assurance or pay-as-you-go needed | [^aB-arcov] |
 | 09–10 | SQL Server 2022 certificate | Azure Key Vault (consumption) | [^aB-appreg] |
-| 11–12, 16–17, 20–21 | Conditional Access (MFA, device, location, risk) | Microsoft Entra ID P1 | [^aB-ca] |
+| 11–12, 16–17, 20–21 | Conditional Access (MFA, device, location) | Microsoft Entra ID P1 | [^aB-ca] |
+| 11–12, 16–17, 20–21 | Conditional Access conditions based on sign-in risk | Microsoft Entra ID P2 | [^aB-ca] |
 | 16–17 | Dynamic membership groups | Microsoft Entra ID P1 for each unique member | [^aB-dyn] |
 | 16–17 | PIM for Groups | Microsoft Entra ID P2, or a tier that includes it (Microsoft Entra ID Governance, Microsoft Entra Suite) | [^aB-lic] |
 | 16–17 | Access reviews | Microsoft Entra ID Governance or Microsoft Entra Suite; some capabilities work with Microsoft Entra ID P2 | [^aB-ar] |
