@@ -196,7 +196,7 @@ The earlier material mapped each monitoring dimension to a FedRAMP Key Security 
 | Dimension | Cadence (program design) | Where it is built |
 |---|---|---|
 | Identity anomalies | Real time | [Book 12, Chapter 03](../b12-security-operations/03-identity-telemetry.md) |
-| Network anomalies | Real time | [Book 12, Chapter 04](../b12-security-operations/04-platform-and-m365-telemetry.md) |
+| Network anomalies | Real time | [Book 12, Chapter 05](../b12-security-operations/05-from-log-warehouse-to-detection.md) |
 | Endpoint threats | Real time | [Book 05, Chapter 10](../b05-devices/10-operating-and-evidencing-the-fleet.md) |
 | Vulnerability posture | Daily | [Book 12, Chapter 06](../b12-security-operations/06-vulnerability-management.md) |
 | Software inventory drift | Every build | [Chapter 07](07-supply-chain-risk-management.md) |

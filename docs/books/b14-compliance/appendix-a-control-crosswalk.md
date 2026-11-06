@@ -101,6 +101,7 @@ No infrastructure book builds a training program. [Chapter 09](09-training-and-a
 | AT-2 | Literacy Training and Awareness | L M H, Privacy | B C D | — | Open |
 | AT-2(1) | Practical Exercises | none | none | — | Open |
 | AT-2(2) | Insider Threat | L M H | B C D | — | Open |
+| AT-2(3) | Social Engineering and Mining | M H | C D | — | Open |
 | AT-3 | Role-based Training | L M H, Privacy | B C D | — | Open |
 | AT-3(3) | Practical Exercises | none | none | — | Open |
 | AT-3(5) | Processing Personally Identifiable Information | Privacy only | none | — | Open |
@@ -259,7 +260,9 @@ The PT family is open in the program's design: no infrastructure book establishe
 | PT-3 | Personally Identifiable Information Processing Purposes | Privacy only | none | — | Open |
 | PT-4 | Consent | Privacy only | none | — | Open |
 | PT-5 | Privacy Notice | Privacy only | none | — | Open |
+| PT-6 | System of Records Notice | Privacy only | none | — | Open |
 | PT-7 | Specific Categories of Personally Identifiable Information | Privacy only | none | — | Open |
+| PT-8 | Computer Matching Requirements | Privacy only | none | — | Open |
 
 ### Risk Assessment (RA)
 
@@ -327,15 +330,15 @@ Flaw remediation, malicious code protection and monitoring are security operatio
 
 ### Supply Chain Risk Management (SR)
 
-The supply chain family is open or partly closed. Supplier assessment is touched where zero trust assessment extends to services beyond Microsoft 365 ([Book 11, Chapter 06](../b11-zero-trust/06-beyond-microsoft-365.md)), but the plan, the acquisition terms, notification agreements and component authenticity are the agency's to establish. [Chapter 07](07-supply-chain-risk-management.md) covers them.
+The supply chain family is open in the program's design: no infrastructure book builds supplier assessment, the plan, the acquisition terms, notification agreements or component authenticity, and they are the agency's to establish. [Chapter 07](07-supply-chain-risk-management.md) covers them.
 
 | Control | Title | NIST SP 800-53B | FedRAMP 2026 class | Workbook chapter | Status (design) |
 |---|---|---|---|---|---|
 | SR-1 | Policy and Procedures | L M H | B C D | — | Open |
 | SR-2 | Supply Chain Risk Management Plan | L M H | B C D | — | Open |
-| SR-3 | Supply Chain Controls and Processes | L M H | B C D | [B11 Ch06](../b11-zero-trust/06-beyond-microsoft-365.md) | Partly closed |
+| SR-3 | Supply Chain Controls and Processes | L M H | B C D | — | Open |
 | SR-5 | Acquisition Strategies, Tools, and Methods | L M H | B C D | — | Open |
-| SR-6 | Supplier Assessments and Reviews | M H | C D | [B11 Ch06](../b11-zero-trust/06-beyond-microsoft-365.md) | Partly closed |
+| SR-6 | Supplier Assessments and Reviews | M H | C D | — | Open |
 | SR-8 | Notification Agreements | L M H | B C D | — | Open |
 | SR-10 | Inspection of Systems or Components | L M H | B C D | — | Open |
 | SR-11 | Component Authenticity | L M H | B C D | — | Open |
@@ -370,12 +373,12 @@ Every source below was opened on October 21, 2026.
 
 | Certificate | Book 07 class | Issued by | Renewed by | What the CLM platform does |
 |---|---|---|---|---|
-| Server, appliance and public TLS (SC-8, SC-12, SC-17) | C4 to C6 | Retained AD CS; public CA | CyberArk Certificate Manager | Inventory, owners, renewal and installation are the evidence |
-| CA certificates and CRLs (SC-17) | CA certificates and CRLs | The hierarchy | AD CS autoenrollment | Revocation monitoring |
+| Server, appliance and public TLS (SC-8, SC-12, SC-17) | Internal server TLS on servers, appliances and Linux hosts; public-facing TLS | Retained AD CS; public CA | CyberArk Certificate Manager | Inventory, owners, renewal and installation are the evidence |
+| CA certificates and CRLs (SC-17) | CA certificates and CRLs, root and issuing | The hierarchy | Key ceremony and CRL schedule | Revocation monitoring |
 | PIV (IA-2, IA-5(2)) | PIV | Federal PKI | PIV card system | Nothing |
 | Device certificates (IA-5(2)) | Device and user auth (Intune) | Cloud PKI | Intune | Nothing |
 
-![This book's certificates and the engine that renews each.](../../images/diagrams/b14-compliance/svg/certs-clm.svg){fig-alt="Server, appliance and public TLS (SC-8, SC-12, SC-17) go to CyberArk Certificate Manager (renews and installs); CA certificates and CRLs (SC-17) go to AD CS autoenrollment (renews; the platform only watches); PIV (IA-2, IA-5(2)) go to PIV card system (renews piv credentials); Device certificates (IA-5(2)) go to Intune (renews device certificates)."}
+![This book's certificates and the engine that renews each.](../../images/diagrams/b14-compliance/svg/certs-clm.svg){fig-alt="Server, appliance and public TLS (SC-8, SC-12, SC-17) go to CyberArk Certificate Manager (renews and installs); CA certificates and CRLs (SC-17) go to the key ceremony and CRL schedule (renews; the platform only watches); PIV (IA-2, IA-5(2)) go to PIV card system (renews piv credentials); Device certificates (IA-5(2)) go to Intune (renews device certificates)."}
 
 For SC-13, no CMVP certificate names the CLM platform itself; the evidence is FIPS-mode Windows plus the HSM's own validation, and the ACME servers can't run in FIPS mode ([Book 07, Appendix C](../b07-pki/appendix-c-anatomy-of-the-clm-platform.md)).[^clm-acme]
 

@@ -47,7 +47,7 @@ NIST SP 800-53 Rev. 5 groups the PII-specific transparency controls in the PT fa
 
 Source: NIST's catalog, release 5.2.0, and its privacy baseline profile.[^c08-sp80053][^c08-sp80053b]
 
-The PT family isn't the whole privacy baseline. It also carries program controls such as PM-18 (privacy program plan), PM-19 (privacy program leadership role) and PM-5(1) (inventory of PII), and RA-8 (privacy impact assessments), among others.[^c08-sp80053b] Two corrections to the source follow from that. The source called its PT-1 template a "Privacy Program Plan"; the privacy program plan is PM-18, an agency-level document, while PT-1 is the policy and procedures for this family. The source also covered only six of the eight PT controls; it left out PT-6 and PT-8, which are where the Privacy Act's publication and matching rules land. This chapter covers all eight. The agency-level program controls belong to [Chapter 05](05-program-management-controls.md).
+The PT family isn't the whole privacy baseline. It also carries program controls such as PM-18 (privacy program plan), PM-19 (privacy program leadership role) and PM-5(1) (inventory of PII), and RA-8 (privacy impact assessments), among others.[^c08-sp80053b] Two corrections to the source follow from that. The source called its PT-1 template a "Privacy Program Plan"; the privacy program plan is PM-18, an agency-level document, while PT-1 is the policy and procedures for this family. The source also covered only six of the eight PT controls; it left out PT-6 and PT-8, which are where the Privacy Act's publication and matching rules land. This chapter covers all eight. PM-5(1) is covered here with the data-flow map. [Chapter 05](05-program-management-controls.md) covers the other agency-level program controls the series builds, but not PM-18 or PM-19; this chapter names them without building them, and PM-19 appointments appear in [Chapter 10](10-who-owns-compliance.md).
 
 ## The legal frame
 
@@ -237,7 +237,7 @@ The program's privacy continuous monitoring strategy sets these cadences. They a
 
 : Privacy continuous monitoring cadences. Program design, except the tabletop frequency, which M-17-12 sets. {.striped .hover}
 
-The breach tabletop frequency is M-17-12's.[^c08-m1712] Breach response itself is an incident-response subject ([Book 12, Chapter 11](../b12-security-operations/11-detection-engineering-and-response.md)).
+The breach tabletop frequency is M-17-12's.[^c08-m1712] Reporting a breach is an incident-response subject: the one-hour clock for notifying CISA is in [Chapter 09](09-training-and-awareness-controls.md) and [Book 12, Chapter 10](../b12-security-operations/10-who-runs-security-operations.md).
 
 ## Before a system that processes PII goes live
 
