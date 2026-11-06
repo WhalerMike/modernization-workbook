@@ -179,8 +179,8 @@ None of this requires a vendor decision on day one. It requires an inventory, an
 
 1. **Name the owners.** Fill in the decision matrix with names, starting with the sponsor, the authorizing official and the steward, and confirm who in the agency already holds the zero trust implementation lead and ICAM governance roles.
 2. **Treat the series as project guidance.** Turn it into versioned artifacts: adapter interfaces, policy libraries, validation checks. The series is the narrative; the artifacts are the authority.
-3. **Run a read-only assessment** ([Chapter 10](10-analyzing-the-estate.md)). In the program's experience a first pass takes days to a few weeks, depending on forest size and access approvals, and its output feeds every later decision.
-4. **Stand up the platform host** ([Chapter 03](03-platform-foundation.md)). Everything else follows from it.
+3. **Stand up the platform host** ([Chapter 03](03-platform-foundation.md)). The assessment runs from it and commits to its repository, and everything else follows from it.
+4. **Run a read-only assessment** ([Chapter 10](10-analyzing-the-estate.md)). In the program's experience a first pass takes days to a few weeks, depending on forest size and access approvals, and its output feeds every later decision.
 5. **Set the dates.** Put the gate dates from [Chapter 12](12-migration-roadmap.md) on the sponsor's calendar, and the end date of every exception on the authorizing official's.
 
 Microsoft has supplied the instruments for the new era. The program is the orchestra, this series is the score, and the people named in this chapter are the ones who have to play it. Retiring Active Directory is a governance transformation, and it should be led as one.

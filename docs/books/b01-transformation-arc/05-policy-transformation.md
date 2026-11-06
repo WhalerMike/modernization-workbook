@@ -120,7 +120,7 @@ The program numbers its Conditional Access policies once, in a single library: C
 
 A bad block rule locks users out; a bad require rule adds a step that can be fixed. Microsoft describes block access as a powerful control to apply only when you understand its impact, and to test in report-only mode first.[^c05-ca-plan] The program therefore uses a require wherever a require achieves the goal: MFA, a compliant device, a session lifetime.
 
-Blocks remain where a requirement can't be met by a stronger sign-in or where federal configuration baselines demand one. Under BOD 25-01, federal civilian agencies must implement CISA's mandatory SCuBA policies for their Microsoft 365 tenants,[^c05-bod2501] and the Entra ID baseline says legacy authentication shall be blocked, users detected as high risk shall be blocked, and sign-ins detected as high-risk shall be blocked.[^c05-scuba] Book 04's library also blocks device code flow and pairs grant policies with blocks so that an application is closed to everyone the grant doesn't name. Those are the sanctioned blocks; any other block needs a recorded reason.
+Blocks remain where a requirement can't be met by a stronger sign-in or where federal configuration baselines demand one. Under BOD 25-01, federal civilian agencies must implement CISA's mandatory SCuBA policies for their Microsoft 365 tenants,[^c05-bod2501] and the Entra ID baseline says legacy authentication shall be blocked, users detected as high risk shall be blocked, and sign-ins detected as high-risk shall be blocked.[^c05-scuba] [Book 04's policy library](../b04-access/07-the-conditional-access-policy-library.md) is the list of sanctioned blocks, including device code flow, applications closed to everyone a grant doesn't name, and the location and privileged access workstation blocks; any block outside it needs a recorded reason.
 
 ## Server configuration
 
@@ -146,7 +146,7 @@ A plan that sets one setting in two layers for the same device fails validation.
 
 The coexistence period adds a second source. On a hybrid device that receives both a GPO and an Intune policy for the same setting, Group Policy wins by default. The MDMWinsOverGP setting reverses that, but only for settings in the Policy CSP; for settings defined in other CSPs Microsoft warns there is a race and no guarantee which one wins, so the same setting shouldn't be configured in both.[^c05-mdmwins] The program records every overlapping setting before Intune enforces it and retires the GPO side in the next wave ([Book 05, Chapter 05](../b05-devices/05-the-governed-manual-and-retrofit-paths.md)).
 
-Conditional Access has no layers to lean on. Every policy that applies to a sign-in must be satisfied, and if any applicable policy blocks, evaluation stops and the user is blocked.[^c05-ca-eval] So the program never uses a block to correct the scope of a grant policy. A scoping mistake is fixed in the grant policy's assignment, because a narrow block layered under a broad requirement produces lockouts that are hard to trace.
+Conditional Access has no layers to lean on. Every policy that applies to a sign-in must be satisfied, and if any applicable policy blocks, evaluation stops and the user is blocked.[^c05-ca-eval] So the program doesn't layer a block over a grant policy to correct a scoping mistake in it; a deliberate grant-and-block pair from Book 04's library is a design, not a correction. A scoping mistake is fixed in the grant policy's assignment, because a narrow block layered under a broad requirement produces lockouts that are hard to trace.
 
 ## Break-glass exclusions and testing
 
@@ -156,8 +156,8 @@ Every policy change passes four stages, and the pipeline rejects any change that
 
 1. **Plan validation:** schema and boundary checks, including the one-owning-layer rule.
 2. **Simulated tenant:** tests assert the expected effect.
-3. **Pilot:** a pilot group, watched by the drift engine for a set period. Conditional Access policies run in report-only mode here, which evaluates them at sign-in and logs the result without enforcing it.[^c05-report-only]
-4. **Production:** only after a clean pilot.
+3. **Pilot:** a pilot group, watched by the drift engine for a set period. Conditional Access policies run in report-only mode first, which evaluates them at sign-in and logs the result without enforcing it,[^c05-report-only] and are then enforced for the pilot group.
+4. **Production:** only after a clean pilot, expanding ring by ring.
 
 ![Every policy change passes four gates, and a failure at any gate returns it to the plan.](../../images/diagrams/b01-transformation-arc/svg/ch05-change-gates.svg){#fig-ch05-change-gates fig-alt="Four cards in a vertical chain. Stage 1, amber, plan validation: schema, boundary and one-owning-layer checks. Stage 2, blue, simulated tenant: tests assert the expected effect. Stage 3, violet, pilot: a pilot group watched by the drift engine, with Conditional Access in report-only mode. Stage 4, green, production after a clean pilot. A dashed red arrow from each of the first three stages loops back to a slate pill labeled return to plan."}
 
@@ -169,12 +169,12 @@ The last GPO is typically the Default Domain Policy, because domain account poli
 
 ## Verification
 
-Policy migration passes when every Intune profile, compliance policy, Conditional Access policy and machine configuration assignment derives from a repository manifest that targets attribute-scoped dynamic groups or tagged Azure scopes, and the forest has no linked GPOs except those inside their rollback window, the two default domain policies, and the minimum set a remaining Kerberos island needs.
+Policy migration passes when every Intune profile, compliance policy, Conditional Access policy and machine configuration assignment derives from a repository manifest that targets attribute-scoped dynamic groups or tagged Azure scopes, and the forest has no linked GPOs except the two default domain policies, and the minimum set a remaining Kerberos island needs.
 
 ## Key takeaways
 
 1. Group Policy is regenerated into Intune, Conditional Access and machine configuration, not copied setting by setting, and the move also ends the policy plane's dependency on reaching a domain controller.
-2. Each setting has exactly one owning layer, enforced at plan validation; Group Policy and Intune never set the same setting during coexistence.
+2. Each setting has exactly one owning layer, enforced at plan validation; overlaps during coexistence are recorded before Intune enforces and the Group Policy side retires in the next wave.
 3. Conditional Access follows one numbered library, prefers require to block, and blocks only where a requirement can't help or a federal baseline demands it.
 4. The last GPO retires only when no AD accounts remain in use.
 

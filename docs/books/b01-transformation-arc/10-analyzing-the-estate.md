@@ -19,18 +19,18 @@ lifecycle_review: 2027-04-01
 
 ::: {.callout-note}
 ## In this chapter
-The assessment discipline that starts every modernization: why it is read-only, how the access it needs is split into a default tier and a narrow, requested tier, and what provenance every run carries. Then the eleven ingestion streams, one per dependency category, what each captures and which later chapter consumes it; the analysis layer; the committed artifact set; and the transaction profile that has to exist before any application is separated from its data. The forest-level depth is in [Book 02](../b02-identity/index.md), Chapters 07 and 08.
+The assessment discipline that starts every modernization: why it is read-only, how the access it needs is split into a default tier and a narrow, requested tier, and what provenance every run carries. Then the eleven ingestion streams, which with the NPS inventory cover the eleven dependency categories, what each captures and which later chapter consumes it; the analysis layer; the committed artifact set; and the transaction profile that has to exist before any application is separated from its data. The forest-level depth is in [Book 02](../b02-identity/index.md), Chapters 07 and 08.
 :::
 
 > **Dependency chain:** **Inventory** → Plan → Identity → Policy → Network services → Devices and servers → Access plane → Retire AD DS → Prove steady state
 
 ## The assessment discipline
 
-You can't modernize what you haven't enumerated. Every modernization in the Federal Modernization Program begins with a read-only, least-privilege, provenance-bound analysis of the existing client/server estate. The output is a structured, versioned artifact set, one stream per dependency category, committed to the program's authoritative repository and consumed by every later chapter.
+You can't modernize what you haven't enumerated. Every modernization in the Federal Modernization Program begins with a read-only, least-privilege, provenance-bound analysis of the existing client/server estate. The output is a structured, versioned artifact set, eleven ingestion streams and an NPS inventory covering the eleven dependency categories, committed to the program's authoritative repository and consumed by every later chapter.
 
 No writes. No guesses. No "we'll handle that later."
 
-![The assessment pipeline: a read-only account, a narrow requested tier, eleven streams, analysis, and one committed artifact set that is the planning step's only input.](../../images/diagrams/b01-transformation-arc/svg/ch10-assessment-pipeline.svg){#fig-ch10-assessment-pipeline fig-alt="A vertical flow. A slate box for the dedicated assessment account at Tier A, with default Authenticated Users rights and no writes, reads into a slate box for the eleven streams, one per dependency category. Beside the account, an amber Tier B box lists narrow read-only additions: DHCP Users membership on each DHCP server, a DNS server settings export and a CA database export; a dashed amber arrow shows it filling recorded gaps in the streams. The streams feed a violet graph-analysis box (dependency graphs, risk scores, gap findings), which commits to a violet provenance-bound artifact set recording who, when, against what, which tier and a hash per file. A blue arrow leads to the plan generator of Chapter 11, which accepts only a committed artifact set."}
+![The assessment pipeline: a read-only account, a narrow requested tier, eleven streams, analysis, and one committed artifact set that is the planning step's only input.](../../images/diagrams/b01-transformation-arc/svg/ch10-assessment-pipeline.svg){#fig-ch10-assessment-pipeline fig-alt="A vertical flow. A slate box for the dedicated assessment account at Tier A, with default Authenticated Users rights and no writes, reads into a slate box for the eleven streams that together with the NPS inventory cover the eleven dependency categories. Beside the account, an amber Tier B box lists narrow read-only additions: DHCP Users membership on each DHCP server, a DNS server settings export and a CA database export; a dashed amber arrow shows it filling recorded gaps in the streams. The streams feed a violet graph-analysis box (dependency graphs, risk scores, gap findings), which commits to a violet provenance-bound artifact set recording who, when, against what, which tier and a hash per file. A blue arrow leads to the plan generator of Chapter 11, which accepts only a committed artifact set."}
 
 ## The assessment problem
 
@@ -82,7 +82,7 @@ The engine rejects a run without provenance.
 
 ## The eleven ingestion streams
 
-The assessment produces eleven streams organized along the dependency categories in [Chapter 02](02-the-problem.md). They don't map one to one: DNS and DHCP are separate streams, the forest topology and the OU hierarchy get streams of their own, trust relationships are collected with the forest topology, and RADIUS/NPS, which depends on AD rather than living in it, is inventoried separately from the NPS servers themselves; [Book 09, Chapter 07](../b09-network/07-network-access-control.md) covers that inventory and its migration. Each stream has its own normalized schema and its own committed location. Where a stream needs Tier B, the stream says which part.
+The assessment produces eleven streams organized along the dependency categories in [Chapter 02](02-the-problem.md). They don't map one to one: DNS and DHCP are separate streams, the forest topology and the OU hierarchy get streams of their own, trust relationships are collected with the forest topology, and RADIUS/NPS, which depends on AD rather than living in it, is inventoried separately from the NPS servers themselves, by the Start Kit's `Invoke-FMPNpsInventory`, whose output goes in the `NPS/` folder of the artifact set. [Book 09, Chapter 07](../b09-network/07-network-access-control.md) covers the migration of RADIUS and NPS, not the inventory. Each stream has its own normalized schema and its own committed location. Where a stream needs Tier B, the stream says which part.
 
 ### Stream 1 — Forest and domain topology
 
@@ -167,6 +167,7 @@ assessments/
     ├── adcs/
     ├── ldap-bindings.jsonl
     ├── kerberos-spn-map.json
+    ├── NPS/                         ← Invoke-FMPNpsInventory output
     ├── transaction-profiles/        ← see below
     └── analysis/
         ├── attribute-mapping.md
