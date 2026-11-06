@@ -840,9 +840,9 @@ class Checker:
     # ------------------------------------------------------------- steps
     def sitemap(self) -> Result:
         # Both generated files are includes Quarto resolves before its pre-render scripts run.
-        # The command reference goes first: the site map runs `quarto inspect`, which needs
+        # The command reference goes first: the Workbook Map runs `quarto inspect`, which needs
         # every include to exist.
-        for script in ("scripts/command_reference.py", "scripts/generate_sitemap.py"):
+        for script in ("scripts/command_reference.py", "scripts/generate_workbook_map.py"):
             code, _ = run([PY, script])
             if code != 0:
                 return Result("", "fail", detail=[f"{script}: exit {code}"])
@@ -1059,7 +1059,7 @@ class Checker:
         steps: list[tuple[str, Callable]] = []
         if p.tier == "FULL":
             steps += [
-                ("Generate site map and command reference", self.sitemap),
+                ("Generate Workbook Map and command reference", self.sitemap),
                 ("Render site" + ("" if a.skip_docx else " (DOCX, then HTML)"), self.render_full),
                 ("Links and anchors (every published page)", self.link_check),
                 ("Footnotes (every page and bundle)", self.footnote_check),
@@ -1073,7 +1073,7 @@ class Checker:
             ]
         elif p.tier == "CHANGED":
             steps += [
-                ("Generate site map and command reference", self.sitemap),
+                ("Generate Workbook Map and command reference", self.sitemap),
                 (f"Render {len(p.pages)} page(s) to HTML", self.render_pages),
                 ("Links and anchors (changed pages, inbound)", self.link_check),
                 ("Footnotes (changed pages, their bundles)", self.footnote_check),

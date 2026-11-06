@@ -47,7 +47,7 @@ REPO = Path(__file__).resolve().parents[1]
 TERMS = REPO / "data" / "neutrality-terms.txt"
 BASELINE = REPO / "data" / "neutrality-baseline.txt"
 ROOTS = ("docs/", "examples/", "data/", "presentations/", "scripts/")
-TOP_LEVEL = ("README.md", "index.qmd", "404.qmd", "sitemap.qmd", "PROJECT-CHARTER.md", "PROJECT-PLAN.md",
+TOP_LEVEL = ("README.md", "index.qmd", "404.qmd", "workbook-map.qmd", "PROJECT-CHARTER.md", "PROJECT-PLAN.md",
              "STATUS.md", "CONTRIBUTING.md", "_quarto.yml")
 EXCLUDE = (
     "archive/",

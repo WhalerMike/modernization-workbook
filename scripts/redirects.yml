@@ -4,6 +4,8 @@
 # bookmarks and external links keep working. Paths are relative to the
 # site root, as .html output paths.
 redirects:
+  # The Site Map became the Workbook Map.
+  sitemap.html: workbook-map.html
   # SQL Server narrative: the short book-* series and the neutralized twin
   # were folded into the canonical Book_* series.
   docs/case-studies/sql-server-narrative/book-01-the-inheritance.html: docs/books/b06-data-platform/01-what-windows-authentication-actually-is.html

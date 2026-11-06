@@ -9,4 +9,4 @@ The Federal Modernization Workbook now publishes its material as topic books. Pa
 
 - [The Workbook Books](https://whalermike.github.io/modernization-workbook/docs/books/index.html): all nineteen books and their status.
 - [Presentations](https://whalermike.github.io/modernization-workbook/docs/presentations/index.html): the 15-minute deck for each book.
-- [Site Map](https://whalermike.github.io/modernization-workbook/sitemap.html): every page on the site.
+- [Workbook Map](https://whalermike.github.io/modernization-workbook/workbook-map.html): every page, deck, video and kit.

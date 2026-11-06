@@ -148,6 +148,8 @@ Two federal obligations do reach the internal systems the program builds, and th
 
 ## Map of the books
 
+The table below shows the books. The [Workbook Map](../../../workbook-map.qmd) lists every object in the workbook, with what it does, where it lands, and when it was last updated and verified.
+
 | Book | Topic | Opening question | Group |
 |---|---|---|---|
 | B00 | [Orientation & Program](index.md) | Why modernize, and why now? | Orientation and arc |
