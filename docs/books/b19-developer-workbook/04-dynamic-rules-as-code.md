@@ -446,7 +446,7 @@ Get-DrDynamicCollections -Invoke $invoke -Endpoint (Get-DrGraphEndpoint -Cloud U
 
    ```powershell
    $invoke = { param($Method, $Uri, $Body, $Headers) Invoke-MgGraphRequest -Method $Method -Uri $Uri -Body $Body -Headers $Headers }
-   $m = New-DrPauseManifest -Invoke $invoke -Cloud USGov -Reason 'Drill'
+   $m = New-DrPauseManifest -Invoke $invoke -Cloud <environment> -Reason 'Drill'
    Invoke-DrPause -Manifest $m -Invoke $invoke            # dry run: what would pause
    Invoke-DrPause -Manifest $m -Invoke $invoke -Apply
    $criticalIds = @($groups | Where-Object { ($lib | Where-Object displayName -EQ $_.DisplayName).critical } | ForEach-Object Id)
@@ -463,7 +463,7 @@ Get-DrDynamicCollections -Invoke $invoke -Endpoint (Get-DrGraphEndpoint -Cloud U
 
    ```powershell
    foreach ($g in $groups) { Remove-MgGroup -GroupId $g.Id }
-   Get-DrDynamicCollections -Invoke $invoke -Endpoint (Get-DrGraphEndpoint -Cloud USGov) | Where-Object state_before -cne 'On' | Format-Table kind, displayName, state_before
+   Get-DrDynamicCollections -Invoke $invoke -Endpoint (Get-DrGraphEndpoint -Cloud <environment>) | Where-Object state_before -cne 'On' | Format-Table kind, displayName, state_before
    ```
 
 ## Verified facts
