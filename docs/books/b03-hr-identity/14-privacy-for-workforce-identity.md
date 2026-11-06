@@ -165,8 +165,7 @@ For this book, the official (or the privacy staff the official delegates to) sig
 
 ## NIST SP 800-53: the PT family and privacy at Moderate
 
-**No PT control is in the Moderate baseline.** In NIST SP 800-53B's Release 5.2.0 baselines, the low, moderate and high baselines are security baselines; the PII processing and transparency controls are in the separate privacy baseline, which "is applied to systems irrespective of impact level."[^c14-sp80053b] A Moderate system that processes PII, which every system in this book is, carries both: the Moderate security baseline and the privacy baseline. Of the privacy baseline's 96 controls and enhancements, 43 are also in the Moderate baseline (among them SI-12, CM-4, SA-9 and PS-6), and 53 come only from the privacy baseline (all of PT, most PM privacy controls, RA-8, AU-3(3), SI-12(1)–(3), SI-18 and SI-19).[^c14-sp80053b] (Book 14, Chapter 03's summary of the PT controls in the privacy baseline lists PT-1 to PT-5 and PT-7; the OSCAL profile also includes PT-6 and PT-8.)
-
+**No PT control is in the Moderate baseline.** In NIST SP 800-53B's Release 5.2.0 baselines, the low, moderate and high baselines are security baselines; the PII processing and transparency controls are in the separate privacy baseline, which "is applied to systems irrespective of impact level."[^c14-sp80053b] A Moderate system that processes PII, which every system in this book is, carries both: the Moderate security baseline and the privacy baseline. Of the privacy baseline's 96 controls and enhancements, 43 are also in the Moderate baseline (among them SI-12, CM-4, SA-9 and PS-6), and 53 come only from the privacy baseline (all of PT, most PM privacy controls, RA-8, AU-3(3), SI-12(1)–(3), SI-18 and SI-19).[^c14-sp80053b]
 | Control | In the privacy baseline | What the identity engineer does |
 |---|---|---|
 | PT-1 Policy and Procedures | Yes | Follows the agency's PII processing policy; no identity-specific policy |
@@ -186,7 +185,7 @@ The other privacy-baseline controls this chapter uses are RA-8 (the PIA), PM-5(1
 
 ## The privacy checklist
 
-Run it before a change reaches the pipeline's change control (Chapter 11), and attach the answers to the change record. Each line names who answers.
+Run it before a change reaches the pipeline's change control (Chapter 12, Phase 6), and attach the answers to the change record. Each line names who answers.
 
 **Before adding an attribute**
 

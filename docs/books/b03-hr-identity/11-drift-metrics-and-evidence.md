@@ -37,7 +37,7 @@ An event-driven lifecycle is also a measured one: every interval from event to a
 
 : Lifecycle metrics[^c11-nist-80053] {.striped .hover}
 
-None of these numbers exists in a ticket-driven estate, because the events they measure aren't recorded as events. Two inputs shape the first metric and belong in its definition: the Lifecycle Workflows schedule interval (Chapter 08), which is three hours by default and can be set from 1 to 24 hours,[^c11-lcw-schedule] and the CRL publication interval of the PIV issuing CA (Chapter 09).
+None of these numbers exists in a ticket-driven estate, because the events they measure aren't recorded as events. Two inputs shape the leaver metrics and belong in their definitions. The Lifecycle Workflows schedule interval (Chapter 08), which is three hours by default and can be set from 1 to 24 hours,[^c11-lcw-schedule] shapes both the separation-to-block and the separation-to-revocation interval. The CRL publication interval of the PIV issuing CA (Chapter 09) shapes the separation-to-revocation interval only, because the block doesn't wait on the CRL.
 
 These metrics are also what CA-7 asks for. Continuous monitoring requires the organization to establish system-level metrics, the frequencies for monitoring them and for assessing control effectiveness, and the response actions and reporting that follow.[^c11-nist-80053] The six metrics above are candidates for those system-level metrics; choosing them, and their thresholds, is the agency's decision.
 

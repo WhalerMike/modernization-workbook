@@ -96,7 +96,7 @@ No system becomes authoritative because it receives a copy. No source field shou
 
 **Native attributes first.** Organizational placement is carried by approved attributes and the manager relationship, not by directory-container position. Extensions are added only when a required policy can't use a supported native property.
 
-**Privacy by design.** Moving personnel data into a directory is a disclosure. Identity is a routine-use consumer of the HR system of records and receives only the attributes its decisions read (Appendix B).
+**Privacy by design.** Moving personnel data into a directory is a disclosure. Identity receives the HR system of records under the disclosure basis the privacy office determines, normally need-to-know inside the agency that maintains the records, and receives only the attributes its decisions read (Appendix B).
 
 **Control support, not control closure.** The architecture implements mechanisms and produces evidence that support controls such as account management, identifier management, personnel termination, personnel transfer, and information management. It doesn't establish compliance by itself. Control satisfaction also depends on approved agency policy, organization-defined parameters, operating procedures, inherited controls, privacy and records decisions, exception handling, and assessment.
 
