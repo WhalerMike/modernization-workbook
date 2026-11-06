@@ -124,7 +124,7 @@ Everything that differs between the test tenant and production is in one JSON fi
 
 ### Step 0: start every session
 
-Run this block at the start of every PowerShell session in this chapter. Stage 1 sets `$S` to the test file; Stage 2 sets it to the production file. Nothing else in the commands changes. In the very first session the settings file doesn't exist yet, so do [Step 0.1](#step-01-make-the-test-settings-file) first to make it, then run this block.
+Run this block at the start of every PowerShell session in this chapter. Stage 1 sets `$S` to the test file; Stage 2 sets it to the production file. Nothing else in the commands changes. In the very first session the settings file doesn't exist yet, so do [Step 0.1](#step-0.1-make-the-test-settings-file) first to make it, then run this block.
 
 ```powershell
 Set-Location <kit-folder>
