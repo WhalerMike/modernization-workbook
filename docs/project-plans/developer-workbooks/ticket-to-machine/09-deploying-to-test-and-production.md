@@ -623,7 +623,7 @@ use_role
 ls -1 "$EVIDENCE"
 ```
 
-Expect `3 evidence records: 3 closed on a re-read, ...`, then `Package holds: every file matches the manifest and the chain is unbroken.` The listing is the stage's evidence; the [evidence table](#evidence) says what each file proves.
+Expect `3 evidence records: 3 closed, ...`, then `Package holds: every file matches the manifest and the chain is unbroken.` The listing is the stage's evidence; the [evidence table](#evidence) says what each file proves.
 
 **Requirements and evidence: Step 1.7** ([G7](../../../books/guides/ttm-servicenow-sailpoint.md#step-7-operate-the-tempo)).
 
