@@ -111,7 +111,7 @@ Book 18 answers one question: **why is application modernization a portfolio dec
 | Who | Who decides, and who governs the architecture over time? | An architecture review board with clear decision rights, approved standards and patterns, and review gates that produce the evidence compliance needs | [07](07-who-governs-the-architecture.md) |
 | How | How does an agency run it at scale? | A small reference implementation to copy; the work mapped to TOGAF and Zachman so enterprise architects can place it; and the portfolio run in waves, from a pilot through a modernization factory to the long tail | [08](08-the-reference-implementation.md), [09](09-togaf-and-zachman.md), [10](10-running-the-portfolio-in-waves.md) |
 
-The rest of the book is written for two readers at once. Solution architects need the dispositions, the reference architecture, the data migration patterns and the review gates in enough detail to use them. Executives need to know which decisions are theirs, what each one costs and what evidence they should expect to see. Each chapter ends with what leadership should take from it.
+The rest of the book is written for two readers at once. Solution architects need the dispositions, the reference architecture, the data migration patterns and the review gates in enough detail to use them. Executives need to know which decisions are theirs, what each one costs and what evidence they should expect to see. Each chapter except Chapter 08, the reference implementation walk-through, ends with what leadership should take from it.
 
 ## Honest limits
 
