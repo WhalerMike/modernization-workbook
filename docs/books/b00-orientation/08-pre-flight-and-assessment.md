@@ -221,7 +221,7 @@ The set is sensitive. It maps privileged groups, service accounts and certificat
 
 ## Gate G0: the go/no-go checklist
 
-G0 combines the platform checklist above with assessment milestones M-008 to M-010 and Book 01's three conditions. The steward decides it, with the executive sponsor as backup ([Book 01, Chapter 12](../b01-transformation-arc/12-migration-roadmap.md#gates-rollback-and-authority)); the steering committee's review is an input to that decision, not a second signature. Each item is answered from the repository, and the gate record is committed under `reports/phase-gates/` using the program's gate review template ([Chapter 05](05-the-program-plan.md)).
+G0 combines the platform checklist above with assessment milestones M-008 to M-010 and Book 01's three conditions. The steward decides it, with the executive sponsor as backup ([Book 01, Chapter 12](../b01-transformation-arc/12-migration-roadmap.md#gates-rollback-and-authority)); the steering committee's review is an input to that decision, not a second signature. Each item is answered from the repository, and the gate record is committed under `reports/phase-gates/` using the program's gate review template ([Chapter 07](07-who-runs-the-program.md#the-gate-review)).
 
 **Platform host operational**
 
