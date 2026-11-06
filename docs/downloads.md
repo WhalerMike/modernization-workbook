@@ -36,6 +36,10 @@ Every command in these kits is listed, with what it does and the pages that teac
 |---|---|
 | [The One-Page Ask](books/guides/one-page-ask.md): the page to bring to the meeting that approves the pre-flight | [The_One_Page_Ask.docx](books/guides/files/The_One_Page_Ask.docx) |
 | [Charter Sign-Off Sheet](books/guides/charter-sign-off-sheet.md): names for the charter roles and the six gates | [Charter_Sign_Off_Sheet.docx](books/guides/files/Charter_Sign_Off_Sheet.docx) |
+| [For the CIO](books/guides/brief-cio.md): the clocks and the cost, on one page | [Brief_for_the_CIO.docx](books/guides/files/Brief_for_the_CIO.docx) |
+| [For the CISO](books/guides/brief-ciso.md): leavers and account findings, on one page | [Brief_for_the_CISO.docx](books/guides/files/Brief_for_the_CISO.docx) |
+| [For the CHCO](books/guides/brief-chco.md): Federal HR 2.0 and the contractor source, on one page | [Brief_for_the_CHCO.docx](books/guides/files/Brief_for_the_CHCO.docx) |
+| [For the Authorizing Official](books/guides/brief-authorizing-official.md): evidence over attestation, on one page | [Brief_for_the_Authorizing_Official.docx](books/guides/files/Brief_for_the_Authorizing_Official.docx) |
 
 ## Books as Word documents
 

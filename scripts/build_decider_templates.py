@@ -24,6 +24,11 @@ GUIDES = ROOT / "docs" / "books" / "guides"
 PAGES = {
     "one-page-ask.md": ("The One-Page Ask", "The_One_Page_Ask.docx", 9.5),
     "charter-sign-off-sheet.md": ("Charter Sign-Off Sheet", "Charter_Sign_Off_Sheet.docx", 9.5),
+    "brief-cio.md": ("For the CIO: The Clocks and the Cost", "Brief_for_the_CIO.docx", 9.5),
+    "brief-ciso.md": ("For the CISO: Leavers and Account Findings", "Brief_for_the_CISO.docx", 9.5),
+    "brief-chco.md": ("For the CHCO: HR 2.0 and the Contractor Source", "Brief_for_the_CHCO.docx", 9.5),
+    "brief-authorizing-official.md": (
+        "For the Authorizing Official: Evidence over Attestation", "Brief_for_the_Authorizing_Official.docx", 9.5),
 }
 NOTICE = "Federal Modernization Workbook template. Design guidance, not an official publication of any agency."
 
