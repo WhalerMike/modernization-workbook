@@ -220,18 +220,22 @@ The record shape is the evidence contract specified in [Book 12, Chapter 02](../
 
 ```json
 {
+  "asset_id": "ipam:10.4.2.17",
   "source": "machine-config",
-  "assetId": "ipam:10.4.2.17",
-  "timestamp": "2026-07-09T15:13:00Z",
-  "control": ["CM-6"],
-  "ksiTag": ["KSI-CMT"],
-  "verdict": "compliant",
-  "detail": { "rule": "2.3.1.1", "desired": "Disabled", "observed": "Disabled" },
-  "evidenceRef": "loganalytics://.../row/abc123"
+  "surface": "operating system",
+  "control": "CM-6",
+  "state": { "rule": "2.3.1.1", "desired": "Disabled", "observed": "Disabled" },
+  "verdict": "pass",
+  "observed_at": "2026-07-09T15:13:00Z",
+  "disposition": "applied",
+  "x_attestation": {
+    "ksi_tag": ["KSI-CMT"],
+    "evidence_ref": "loganalytics://.../row/abc123"
+  }
 }
 ```
 
-Two fields carry the weight. `assetId` is the authoritative identity from the network and asset records, so records from different surfaces about the same machine correlate; without it the trail fragments. `control` is what binds raw telemetry to the package; without it, the record is just a log line. `verdict` takes one of four values (compliant, drift, remediated, exception), and the ITSM platform writes the same shape when a control test runs or a POA&M item closes.
+Two fields carry the weight. `asset_id` is the authoritative identity from the network and asset records, so records from different surfaces about the same machine correlate; without it the trail fragments. `control` is what binds raw telemetry to the package; without it, the record is just a log line. `verdict` takes one of three values (pass, warn, fail), and `disposition` carries the remediation status (applied, accepted risk or open). The `x_attestation` block is this chapter's extension for the key security indicator tag and the evidence pointer, not part of Book 12's eight fields. The ITSM platform writes the same shape when a control test runs or a POA&M item closes.
 
 ### Four stages
 

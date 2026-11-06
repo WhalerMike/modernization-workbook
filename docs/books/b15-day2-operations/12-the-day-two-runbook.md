@@ -96,7 +96,7 @@ Consent restriction governs *who* may approve an integration. It doesn't decide 
 
 1. **Originate.** The request records the application, its business owner and the directory attributes it will receive (what identity data leaves the boundary, and to which external system).
 2. **Authorize: verdict before configuration.** Record the service's authorization status at or above the required baseline before consent is granted. A missing or lapsed authorization stops the request. An approved-software list is necessary but not sufficient.
-3. **Least privilege on the grant.** Consent is scoped to the minimum the application needs; the approver is not the requester; the grant is executed through the connector, not a portal click by a standing administrator.
+3. **Least privilege on the grant.** Consent is scoped to the minimum the application needs; the approver is not the requester; the grant is executed by an identity governance office role holder who activates the role through PIM against the ticket, not a portal click by a standing administrator and never by the help desk ([Book 04, Chapter 06](../b04-access/06-who-decides-access.md#who-approves-admin-consent)).
 4. **Declare the endpoints.** The application's sign-on and provisioning endpoints, ports and protocols are recorded, so network allow-lists derive from the declaration and an undeclared endpoint shows up as drift.
 5. **Close and re-check.** Closure records the verdict, the scoped consent and the endpoint declaration; the authorization is re-checked on a cadence and a lapse raises a task (CA-7).
 
