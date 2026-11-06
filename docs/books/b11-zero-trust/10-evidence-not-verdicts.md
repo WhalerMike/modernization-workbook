@@ -162,7 +162,7 @@ Neither maturity stage is mandatory. CISA calls the model a general guide rather
 
 ## Drift is continuous verification
 
-The program detects drift in six classes, each mapped to a Zero Trust concern.
+The program detects drift in five classes, each mapped to a Zero Trust concern.
 
 | Drift class | Zero Trust concern |
 |---|---|
@@ -171,7 +171,6 @@ The program detects drift in six classes, each mapped to a Zero Trust concern.
 | `DRIFT-PROVENANCE` | A claim chain is broken, so that pillar's evidence is no longer trustworthy |
 | `DRIFT-SCHEMA` | Declared and observed state don't match structurally |
 | `DRIFT-SEMANTIC` | State is structurally valid but stale |
-| `DRIFT-SSOT-CONTENTION` | A write went to an instance demoted after the authoritative-source roster was ratified: the stewardship decision exists and is being bypassed |
 
 Schema and provenance drift run in continuous integration today. Runtime detection of identity, authorization and semantic drift is defined in the program's drift standard and partly implemented, for the adapters that implement the runtime contract.
 

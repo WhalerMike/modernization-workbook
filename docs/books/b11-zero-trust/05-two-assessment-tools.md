@@ -73,7 +73,7 @@ The left column is the content of the SCuBA baselines that has no Zero Trust Ass
 
 ::: {.callout-warning}
 ## ILLUSTRATIVE — replace before external release
-An earlier analysis of Microsoft's public demo report, with 295 checks, put about 47% of the Zero Trust Assessment's checks (140) in an area a SCuBA baseline also covers, almost all of it Identity, and about 53% (155) in areas with no SCuBA baseline. Those figures predate release 3.1.0, which has 364 tests and adds threat-protection checks that change the split. Your tenant's split comes from running both tools against it; [Chapter 09](09-running-the-assessment.md) shows how the program ingests both reports and computes it.
+An earlier analysis of Microsoft's public demo report, with 295 checks, put about 47% of the Zero Trust Assessment's checks (140) in an area a SCuBA baseline also covers, almost all of it Identity, and about 53% (155) in areas with no SCuBA baseline. Those figures predate release 3.1.0, which has 364 tests and adds threat-protection checks that change the split. Your tenant's split comes from running both tools against it; [Chapter 09](09-running-the-assessment.md) shows how the program ingests both reports, and [Chapter 10](10-evidence-not-verdicts.md) shows how it reconciles them at the control level.
 :::
 
 Two caveats matter more than any percentage.

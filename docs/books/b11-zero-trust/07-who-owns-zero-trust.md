@@ -122,7 +122,7 @@ The **native-tool** row is the governance principle in one line. A cloud provide
 | Devices | Endpoint engineering | Compliance policies, enrollment paths, device posture signals | [Book 05](../b05-devices/index.md) |
 | Networks | Network engineering, with security architecture | Transport, enforcement points, segmentation phasing | [Book 09](../b09-network/index.md) |
 | Applications and workloads | Application owners, with the platform teams | Application dependencies, workload identities, cutover windows | [Book 04, Chapter 05](../b04-access/05-applications-and-workload-identities.md), [Book 06](../b06-data-platform/index.md) |
-| Data | Data owners and the data office | Categorization and labeling, access to sensitive data | No book of its own yet; M-22-09's data actions are mapped in [Book 01, Appendix A](../b01-transformation-arc/appendix-a-requirements-mapping.md) |
+| Data | Data owners and the data office | Categorization and labeling, access to sensitive data | Designed in [Book 12, Chapter 09](../b12-security-operations/09-data-protection-and-classification.md); M-22-09's data actions are also mapped in [Book 01, Appendix A](../b01-transformation-arc/appendix-a-requirements-mapping.md) |
 | Naming and identity plane | Identity engineering and the DNS/DDI team | The authoritative record every pillar resolves to | [Book 08](../b08-ddi/index.md), [Chapter 06](06-beyond-microsoft-365.md) |
 | Other clouds and virtualization | The platform team for each estate | Native configuration of each estate, reconciled to the plane | [Book 10](../b10-cloud-boundary/index.md), [Chapter 06](06-beyond-microsoft-365.md) |
 | Visibility and analytics | Security operations | Detections, alert tuning, log coverage | M-26-14 Agency Logging Plan |
