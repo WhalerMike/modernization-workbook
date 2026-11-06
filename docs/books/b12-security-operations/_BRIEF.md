@@ -9,8 +9,8 @@ specifics with this book's: front matter `family: b12-security-operations`, `boo
 appendices); the site and Word editions render them as chapter endnotes. The site is the **Federal Modernization
 Workbook**; the program is "the Federal Modernization Program". Today is 2026-10-21.
 
-**Hard rules:** never write "UIAO" or any other engine/product name for the program; never name a specific agency (no SSA /
-Social Security Administration; "Social Security number" is fine); every external claim independently researched against a
+**Hard rules:** never write an engine/product name for the program; never name a specific agency ("Social Security
+number" is fine); every external claim independently researched against a
 primary source you actually opened and endnoted; **never send personal data (email addresses, names) to any website,
 including in HTTP headers or User-Agent strings** — if a site requires that, skip it and use another primary source; the
 workbook is guidance, not policy: say "requires" only with a cited requirement, and label program design as design.

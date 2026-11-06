@@ -9,7 +9,7 @@ specifics with this book's: front matter `family: b13-governance`, `book: B13`; 
 rendered as chapter endnotes. The site is the **Federal Modernization Workbook**; the program is "the Federal
 Modernization Program". Today is 2026-10-21.
 
-**Hard rules:** never write "UIAO" or any other engine/product name for the program; never name a specific agency; every
+**Hard rules:** never write an engine/product name for the program; never name a specific agency; every
 external claim independently researched against a primary source you actually opened and endnoted; never send personal
 data (email addresses, names) to any website, including in HTTP headers; the workbook is guidance, not policy — say
 "requires" only with a cited requirement and label program design as design; keep line endings as found (check with

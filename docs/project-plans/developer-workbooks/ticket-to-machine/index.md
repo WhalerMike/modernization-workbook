@@ -19,8 +19,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
 review-status: approved
-reviewed-sha256: eea979a710dfeae2ff4bfe7391bfbf5c9417f970325a30cd938a6f7b82c22ae8
-last-reviewed: 2026-11-03
+reviewed-sha256: a8af296700d1d89deef342293d767acbf95d9c3ed4c1fa16306de41aedb10f4b
+last-reviewed: 2026-11-05
 ---
 # Building Ticket-to-Machine {.unnumbered}
 
