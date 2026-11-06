@@ -1,0 +1,23 @@
+{
+  "_comment": "Illustrative map from validation kit check IDs to NIST SP 800-53 Rev. 5 controls, for oscal_export.py. A first draft to review, not a determination: the agency decides which controls a check evidences. A check not listed under 'checks' takes its track's controls. Control IDs are written as in the SP 800-53 text; the converter lowercases them for OSCAL.",
+  "schema": "fmp-check-controls/1",
+  "tracks": {
+    "HR": ["AC-2", "IA-4"],
+    "DG": ["AC-2", "CM-6"],
+    "INT": ["CM-8", "CM-6"],
+    "ARC": ["CM-8", "CM-6"],
+    "NPI": ["IA-5", "AC-6"],
+    "CA": ["AC-3", "AC-6"]
+  },
+  "checks": {
+    "VK-HR-05": ["AC-2", "PS-4"],
+    "VK-HR-06": ["AC-2", "CM-6"],
+    "VK-ARC-02": ["CM-8", "SI-2"],
+    "VK-ARC-03": ["CM-6", "CM-2"],
+    "VK-ARC-05": ["SI-2", "RA-5"],
+    "VK-ARC-06": ["AC-6", "AC-2"],
+    "VK-NPI-02": ["IA-5"],
+    "VK-NPI-05": ["AC-6"],
+    "VK-NPI-08": ["AC-2", "IA-4"]
+  }
+}

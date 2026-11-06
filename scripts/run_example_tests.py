@@ -69,8 +69,8 @@ PESTER = (
 # Test folders in a kit, relative to it. A kit's deploy/ scripts keep their own suite under deploy/tests,
 # so a chapter lab that runs `pytest tests` and states the kit's test count isn't changed by them. The
 # CISA baseline checks added to a kit after its chapters were written keep theirs under baseline/tests
-# for the same reason.
-TEST_DIRS = ("tests", "deploy/tests", "baseline/tests")
+# for the same reason, and so do the OSCAL converter's (oscal/tests).
+TEST_DIRS = ("tests", "deploy/tests", "baseline/tests", "oscal/tests")
 
 
 def suites(kit: str) -> list[tuple[str, str]]:

@@ -1,19 +1,19 @@
 ---
-title: "Appendix C — Prepare-Step Templates"
+title: "Appendix F — Prepare-Step Templates"
 description: "Fill-in templates, each with a Copilot prompt, for three Prepare tasks in NIST SP 800-37 Rev. 2: the risk management strategy and risk tolerance statement (Task P-2), the system-level risk assessment (Task P-14), and impact-level prioritization of systems that share an impact level (Task P-6), with a scoring worksheet whose factors are labeled design guidance and a list of what stays the agency's decision."
 doc-type: workbook-chapter
 audience: [Executive, Technical, Customer]
 family: b14-compliance
 book: B14
 part: Appendix
-series-order: 92
+series-order: 95
 status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
 ---
 
-# Appendix C — Prepare-Step Templates
+# Appendix F — Prepare-Step Templates
 
 *The workbook can supply the shape of these documents. It cannot supply the numbers, the tolerance or the signature, because those are the agency's.*
 
@@ -233,7 +233,7 @@ You are helping our risk executive prepare an optional impact-level prioritizati
 
 ::: {.callout-tip}
 ## Continue the book
-[← Previous: Appendix B — Product Inventory Questionnaire](appendix-b-product-inventory-questionnaire.md) · [Book index](index.md)
+[← Previous: Appendix E — Security Impact Analysis Template](appendix-e-security-impact-analysis-template.md) · [Book index](index.md)
 :::
 
 [^aC-37]: National Institute of Standards and Technology, SP 800-37 Rev. 2, *Risk Management Framework for Information Systems and Organizations: A System Life Cycle Approach for Security and Privacy*, December 2018, Chapter 3, Tasks P-2 (including footnote 54), P-6 (including footnotes 61 to 63) and P-14 (including footnotes 67 and 68), <https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-37r2.pdf> (accessed Nov 6, 2026).
