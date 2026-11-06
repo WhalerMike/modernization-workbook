@@ -61,7 +61,7 @@ Production adds four placeholders in [Step 2.4](#step-2.4-convert-standing-assig
 |---|---|---|
 | Change owner | The identity engineering lead | Opens the change record, approves each stage, signs the go/no-go with the ISSO |
 | Deployment operator | An engineer with no standing administrator role | Runs every command, signed in as the deployment apps below, never as a person |
-| Privileged Role Administrator | A named administrator, activated through PIM for the task | Does the portal steps: creates the role-assignable groups, grants admin consent, assigns Azure roles to the deployment app |
+| Privileged Role Administrator | A named administrator, activated through PIM for the task | Does the portal steps: creates the role-assignable groups, grants admin consent. The Azure role assignments for the deployment app are made by a named Owner or User Access Administrator on the scopes, since only those built-in roles can write role assignments |
 | Approvers | Members of `PIM-Approvers-T1` (two or more) | Approve the synthetic administrator's activation in the smoke test |
 | Reviewers | Members of the reviewers group | Decide the pilot access review in the smoke test |
 | Security operations | The alert's action group | Receive the emergency access alert, and confirm the drill |
@@ -124,7 +124,7 @@ Everything that differs between the test tenant and production is in one JSON fi
 
 ### Step 0: start every session
 
-Run this block at the start of every PowerShell session in this chapter. Stage 1 sets `$S` to the test file; Stage 2 sets it to the production file. Nothing else in the commands changes.
+Run this block at the start of every PowerShell session in this chapter. Stage 1 sets `$S` to the test file; Stage 2 sets it to the production file. Nothing else in the commands changes. In the very first session the settings file doesn't exist yet, so do [Step 0.1](#step-0.1-make-the-test-settings-file) first to make it, then run this block.
 
 ```powershell
 Set-Location <kit-folder>
@@ -383,7 +383,7 @@ Record the step's evidence. The script judges the run folder as `deploy/requirem
 | NIST SP 800-53 AC-6 Least Privilege | The pilot role is eligible to its `PRV` group, for at most its tier's eligibility; activation lasts at most eight hours | KSI-IAM-JIT, KSI-IAM-ELP | `pim-plan/diff.csv`; `pim-apply/` with `before.json` and an empty `verify.csv`; the `pim-roles` record |
 | AC-5 Separation of Duties | Approval by `PIM-Approvers-T1`, which isn't eligible for the role (PA-PIM-03) | KSI-IAM-JIT | `pim-plan/findings.json` with no PA-PIM-03 |
 | CM-5 Access Restrictions for Change | Role settings change only through the writer app, from a reviewed file | KSI-IAM-JIT | `pim-apply/manifest.json` with each write's SHA-256 |
-| BOD 25-01 MS.AAD.7.4v1 to MS.AAD.7.8v1 | Highly privileged roles are assigned through PIM, with no permanent active assignment except the emergency accounts | KSI-IAM-JIT | `pim-apply/verify.csv`; the role's settings in PIM |
+| BOD 25-01 MS.AAD.7.4v1 to MS.AAD.7.6v1 | Highly privileged roles are assigned through PIM, with no permanent active assignment except the emergency accounts | KSI-IAM-JIT | `pim-apply/verify.csv`; the role's settings in PIM |
 
 ### Step 1.4: PIM for Groups
 
@@ -460,7 +460,7 @@ Connect-MgGraph -Environment $c.GraphEnvironment -TenantId $t -ClientId $app.rev
 Get-Content "$run/reviews-apply/results.json" -Raw | ConvertFrom-Json | Format-Table Name, Action, Result, Note
 ```
 
-**Expected:** `PAR-T1-TeamsAdministrator-Pilot` is `Create`, `Sent`, `read back`. [Chapter 07](07-access-reviews-of-privileged-roles.md)'s guard keeps the emergency accounts' Global Administrator out of any review that could remove it.
+**Expected:** `PAR-T1-TeamsAdministrator-Pilot` is `Create`, `Sent`, `read back`. [Chapter 07](07-access-reviews-of-privileged-roles.md)'s guard keeps silence from removing the emergency accounts' Global Administrator assignment (the series reviews them with "no change" on silence), and PA-AR-E08 flags a reviewer's denial, which can still land.
 
 Record the step's evidence. The script judges the run folder as `deploy/requirements.json` says and writes the record to `<outputRoot>/evidence`:
 
@@ -578,7 +578,7 @@ Run [Chapter 08](08-evidence-and-drift.md)'s evidence run as the reader, so the 
 ```powershell
 Connect-MgGraph -Environment $c.GraphEnvironment -TenantId $t -ClientId $app.reader -CertificateThumbprint $tp -NoWelcome
 Connect-AzAccount -ServicePrincipal -Environment $c.AzureEnvironment -Tenant $t -ApplicationId $app.azure -CertificateThumbprint $tp
-./Invoke-PaEvidenceRun.ps1 -Cloud $cfg.cloud -TenantId $t -OutputPath "$run/evidence" -AzureScope $cfg.azure.scopes `
+./Invoke-PaEvidenceRun.ps1 -Cloud $cfg.cloud -TenantId $t -OutputPath "$run/evidence-run" -AzureScope $cfg.azure.scopes `
     -EmergencyConfigPath "$in/emergency-access.json" -ValidationsPath "$in/emergency-validations.csv" -ExceptionsPath "$in/exceptions.csv"
 ```
 
@@ -586,7 +586,7 @@ In a POSIX shell, from `<kit-folder>/../drift-pipeline`, with `RUN` set to the s
 
 ```bash
 RUN=../privileged-access/out/deploy-test
-DAY1=$RUN/evidence/$(ls $RUN/evidence | sort | tail -n 1)
+DAY1=$RUN/evidence-run/$(ls $RUN/evidence-run | sort | tail -n 1)
 python python/pa_evidence.py compare --current $DAY1 --out $RUN/evidence-compare
 python python/pa_evidence.py package --run $DAY1 --diff $RUN/evidence-compare/pa-drift-report.json --out $RUN/evidence-package
 python python/pa_evidence.py verify $RUN/evidence-package/$(basename $DAY1)
@@ -601,13 +601,13 @@ Get-ChildItem $run -Recurse -File | Get-FileHash -Algorithm SHA256 | ForEach-Obj
 Record the step's evidence. The script judges the run folder as `deploy/requirements.json` says and writes the record to `<outputRoot>/evidence`:
 
 ```powershell
-./deploy/Add-PaEvidenceRecord.ps1 -SettingsPath $S -Step evidence -RunPath "$run/evidence" -Command './Invoke-PaEvidenceRun.ps1 (Step 1.8)'
+./deploy/Add-PaEvidenceRecord.ps1 -SettingsPath $S -Step evidence -RunPath "$run/evidence-run" -Command './Invoke-PaEvidenceRun.ps1 (Step 1.8)'
 ```
 
 | Requirement | What this step does | KSI it aligns to | Evidence the ISSO keeps |
 |---|---|---|---|
 | NIST SP 800-53 AU-9 Protection of Audit Information | The stage's evidence is hashed per file and chained, then kept with the change record | KSI-MLA-OSM | `evidence-package/` and its `verify` output; `<outputRoot>.sha256`; `evidence/records.csv` |
-| CA-7 Continuous Monitoring | Chapter 08's run reads the end state with the code that will watch production | KSI-MLA-EVC | `evidence/` (Chapter 08's run); the `evidence` record |
+| CA-7 Continuous Monitoring | Chapter 08's run reads the end state with the code that will watch production | KSI-MLA-EVC | `evidence-run/` (Chapter 08's run); the `evidence` record |
 | CM-3 Configuration Change Control | The change record holds the hashes of what the stage produced | KSI-CMT-LMC | The change record; `evidence/records.csv` |
 | FedRAMP: agency use of an authorized cloud service | The agency's evidence of its own configuration sits beside what its providers report | — | This step's package, filed with the providers' reports |
 
@@ -902,7 +902,7 @@ The requirements are Stage 1's, Steps 1.1 to 1.6, now in production:
 |---|---|---|---|
 | NIST SP 800-53 AC-2, AC-2(4), AU-2, CA-7 | The emergency accounts checked, alerted on and drilled in production | KSI-MLA-LET, KSI-MLA-EVC | `out/deploy-production/emergency/`; the alert email; the `emergency-access` record |
 | AC-3; IA-2(1), IA-2(2); CM-3(2); OMB M-22-09; BOD 25-01 MS.AAD.3.6v1 | Administrator policies report-only for seven days, then enforced one per change, the gate first | KSI-IAM-APM, KSI-IAM-ELP, KSI-CMT-VTD | `ca-*/` folders; sign-in log exports; the `conditional-access` record |
-| AC-5, AC-6, CM-5; BOD 25-01 MS.AAD.7.4v1 to MS.AAD.7.8v1 | Every role's settings, wave by wave, each read back with no difference | KSI-IAM-JIT, KSI-IAM-ELP | `pim-plan-w1/` to `pim-apply-w4/`, each `verify.csv` empty; the `pim-roles` record |
+| AC-5, AC-6, CM-5; BOD 25-01 MS.AAD.7.4v1 to MS.AAD.7.6v1 | Every role's settings, wave by wave, each read back with no difference | KSI-IAM-JIT, KSI-IAM-ELP | `pim-plan-w1/` to `pim-apply-w4/`, each `verify.csv` empty; the `pim-roles` record |
 | AC-2, AC-6; BOD 25-01 MS.AAD.7.5v1 | The production `PRV` groups under PIM for Groups | KSI-IAM-JIT, KSI-IAM-ELP | `groups-*/`; the `pim-groups` record |
 | AC-6, CM-5; FedRAMP agency use | Azure role policies and eligibility in the production subscriptions | KSI-IAM-JIT, KSI-IAM-ELP | `azure-dry/`, `azure-apply/`; the activity log; the `azure-roles` record |
 | AC-2, AC-6(7) | Review series for every privileged role | KSI-IAM-JIT, KSI-IAM-ELP | `reviews-*/`; the `access-reviews` record |
