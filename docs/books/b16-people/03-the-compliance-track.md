@@ -36,12 +36,12 @@ The track has one body of content and several ways through it. The roles are the
 
 | Role | What the track gives them | Path |
 |---|---|---|
-| ISSO and ISSM | The whole tracing skill, for every evidence area their system has | All modules and the capstone |
-| Compliance staff and continuous-monitoring operators | Reading records against their freshness rules and keeping the package current | Modules 0, 1 to 8 for their areas, 9, and the capstone |
+| ISSO and ISSM | The whole tracing skill, for every evidence area | All modules and the capstone |
+| Compliance staff and continuous-monitoring operators | Reading records against their freshness rules and keeping the package current | Modules 0, 1 to 8, 9, and the capstone, which covers all eight areas |
 | Control assessor | Testing a closure claim without relying on the operator's word | All modules; the capstone is assessed, not written |
 | Authorizing official and designated representative | Knowing what a sufficient package looks like and which questions to ask of it | Modules 0 and 9, and a reviewed capstone from their own system |
 | System owner | What their system must show and who produces it | Modules 0 and 9, and the modules for the areas they own |
-| Privacy and supply chain leads | The areas their programs depend on | Modules 0, 6 and 9, with [Book 14, Chapters 07 and 08](../b14-compliance/07-supply-chain-risk-management.md) |
+| Privacy and supply chain leads | The areas their programs depend on | Modules 0, 6, 8 and 9, with [Book 14, Chapters 07 and 08](../b14-compliance/07-supply-chain-risk-management.md) |
 
 The NICE Framework gives these roles a common vocabulary. Its current components, version 2.2.0, list Security Control Assessment, Systems Authorization, Systems Security Management, Privacy Compliance, Cybersecurity Policy and Planning and Technology Program Auditing among the work roles in its Oversight and Governance category.[^c03-nice] The program maps the ISSO and ISSM to Systems Security Management, the assessor to Security Control Assessment and the authorizing official's staff to Systems Authorization. That mapping is the program's design; an agency should set its own from its position descriptions and the coding rules in [Chapter 02](02-what-the-workforce-rules-require.md).
 
@@ -88,7 +88,7 @@ The program organizes a system's evidence into eight areas, each fed by particul
 |---|---|---|---|---|
 | 1 | Identity | Books [02](../b02-identity/index.md), [03](../b03-hr-identity/index.md), [04](../b04-access/index.md), [06](../b06-data-platform/index.md), [07](../b07-pki/index.md) | IA-2, IA-5, AC-2, AC-6 | [Book 12, Ch 03](../b12-security-operations/03-identity-telemetry.md); [Book 14, Ch 04](../b14-compliance/04-closure-with-proof.md) |
 | 2 | Addressing and inventory | [Book 08](../b08-ddi/index.md); [Book 10, Ch 06](../b10-cloud-boundary/06-ipam-and-network-as-code.md) | CM-8 | [Book 12, Ch 02](../b12-security-operations/02-the-evidence-contract.md) |
-| 3 | Network | [Book 09](../b09-network/index.md); [Book 10, Ch 07](../b10-cloud-boundary/07-the-front-door.md) | SC-7, SC-8, AC-4 | [Book 09, Ch 13](../b09-network/13-sequencing-cost-and-evidence.md); [Book 12, Ch 12](../b12-security-operations/12-evidence-metrics-and-continuous-monitoring.md) |
+| 3 | Network | [Book 09](../b09-network/index.md) | SC-7, SC-8, AC-4 | [Book 09, Ch 13](../b09-network/13-sequencing-cost-and-evidence.md); [Book 12, Ch 12](../b12-security-operations/12-evidence-metrics-and-continuous-monitoring.md) |
 | 4 | Telemetry | [Book 12](../b12-security-operations/index.md) | CA-7, SI-4, AU-6, RA-5 | [Book 12, Ch 02, 05, 06, 12](../b12-security-operations/12-evidence-metrics-and-continuous-monitoring.md) |
 | 5 | Endpoint | [Book 05](../b05-devices/index.md); [Book 09, Ch 07](../b09-network/07-network-access-control.md) | CM-8, IA-3, SI-2 | [Book 05, Ch 10](../b05-devices/10-operating-and-evidencing-the-fleet.md); [Book 12, Ch 07](../b12-security-operations/07-patch-configuration-and-baselines.md) |
 | 6 | Configuration, change and supply chain | [Book 13](../b13-governance/index.md); [Book 15](../b15-day2-operations/index.md) | CM-2, CM-3, SR family, PM family | [Book 13, Ch 04, 06](../b13-governance/04-change-control-and-provenance.md); [Book 14, Ch 05, 07](../b14-compliance/07-supply-chain-risk-management.md) |
@@ -213,7 +213,7 @@ The document is deliberately the skeleton of a continuous-monitoring narrative t
 
 ## Order and pairing
 
-Module 0 comes first, and Module 9 after at least two evidence-area modules. Modules 1 and 2 are best taken early because the others join to them; the rest can be taken in any order, and an ISSO need only take the areas their system has. The program's suggestion is to pair each evidence-area module with the implementation module that builds the same area ([Chapter 04](04-the-implementation-track.md#order-and-pairing)), so that ISSOs and engineers work from the same records. The track is part of each program gate's readiness: before a gate in [Book 01, Chapter 12](../b01-transformation-arc/12-migration-roadmap.md) passes, the ISSOs for the affected systems should have completed the modules for the areas that gate changes.
+Module 0 comes first, and Module 9 after at least two evidence-area modules. Modules 1 and 2 are best taken early because the others join to them; the rest can be taken in any order. Because the capstone covers all eight areas and passes only with every area at level 2 or higher, every capstone candidate takes all eight evidence-area modules; there is no not-applicable option. The program's suggestion is to pair each evidence-area module with the implementation module that builds the same area ([Chapter 04](04-the-implementation-track.md#order-and-pairing)), so that ISSOs and engineers work from the same records. The track is part of each program gate's readiness: before a gate in [Book 01, Chapter 12](../b01-transformation-arc/12-migration-roadmap.md) passes, the ISSOs for the affected systems should have completed the modules for the areas that gate changes.
 
 ## Outside learning, as examples
 

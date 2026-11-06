@@ -47,14 +47,14 @@ Book 01 sets seven phases and six gates.[^c09-roadmap] [Chapter 01](01-people-cl
 | Phase 2, pilot division → G2 Pilot Clean | The pilot division's users, its managers, the help desk, department champions | The just-in-time cycle below, run for the first time; every new module tested on the pilot before the rollout uses it |
 | Phase 3, general rollout → G3 Rollout Complete | Each wave's users, managers and champions; the help desk for every wave | The same cycle, wave by wave, with the modules corrected after each wave |
 | Phase 4, legacy retirement → G4 Legacy Quiet | AD administrators, application owners, the records officer's staff | Role transition training for AD administrators moving to cloud roles; briefings on what each retirement removes and what replaces it |
-| Phase 5, AD DS retirement → G5 AD Retired | AD administrators; the help desk | Retirement of every AD-era runbook and module, so nobody is trained on a system that no longer exists |
+| Phase 5, AD DS retirement → G5 AD Retired | AD administrators; the help desk | Retirement of every AD-era runbook and module, except the named procedures of a documented Kerberos island and the staff who run it until the island's end date, so nobody is trained on a system that no longer exists |
 | Phase 6, steady state | Everyone, by role | Refresh at the agency's frequency; training for new hires and new role holders; the annual evaluation |
 
 Two rows need comment.
 
 Phase 1 trains the help desk before anyone else is migrated. The help desk becomes a target as soon as its new powers exist, and [Book 15, Chapter 04](../b15-day2-operations/04-help-desk-authority-in-entra.md) gives technicians roles that can reset credentials and issue Temporary Access Passes. A-130 requires role-based training for people with assigned security roles "before authorizing access" to federal information or systems or "performing assigned duties."[^c09-a130] The program applies that literally: no technician is made eligible for a help desk role until their training and verification check are on record.
 
-Phase 5 is the step most curricula skip. When Active Directory retires, its modules and runbooks must be retired with it. A module left in the catalog keeps being assigned, and an assessment written for the old procedure keeps passing people who would now do the wrong thing.
+Phase 5 is the step most curricula skip. When Active Directory retires, its modules and runbooks must be retired with it. If the agency keeps domain controllers as a documented Kerberos island, the island's named procedures and the staff who run it stay in the catalog until its end date, and nothing else does. A module left in the catalog keeps being assigned, and an assessment written for the old procedure keeps passing people who would now do the wrong thing.
 
 ## Orientation: education before training
 
